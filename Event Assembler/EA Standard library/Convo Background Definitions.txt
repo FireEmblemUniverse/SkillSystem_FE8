@@ -1,0 +1,178 @@
+#ifdef _FE7_
+
+#define LynTentBackground 0x00
+#define Housewithfireplace 0x01
+#define VillageGarden 0x02
+#define VillageGardenNight 0x03
+#define RoadToVillage 0x04
+#define RoadToVillageNight 0x05
+#define RoadToVillageSunset 0x06
+#define RoadToVillagePartialDark 0x07
+#define RoadToVillageLighter 0x08
+#define DestroyedVillage 0x09
+#define SeaPort 0x0A
+#define Ship 0x0B
+#define RockyOceanCoast 0x0C
+#define BadonInn 0x0D
+#define OutsideBernCaelinCastle 0x0E
+#define OutsideAraphenCastle 0x0F
+
+#define InsideCastle 0x10
+#define InsideCastleDarker 0x11
+#define CastleRoom 0x12
+#define CastleRoomDark 0x13
+#define CastleRoomBern 0x14
+#define CastleHall 0x15
+#define CastleHallDarkPurple 0x16
+
+#define CastleGardenCaelin 0x17
+#define CastleGardenBern 0x18
+#define CastleHallwayDoor 0x19
+#define CastleHallwayDoorDarkPurple 0x1A
+
+#define Cell 0x1B
+
+#define ForestEdge 0x1C
+#define PlainsHills 0x1D
+#define PlainsHillsSunset 0x1E
+#define PlainsHillsNight 0x1F
+#define PlainsHillsFoggy 0x20
+#define PlainsHillsMoreFoggy 0x21
+
+#define Plains 0x22
+
+#define ForestAndMountain 0x23
+#define ForestAndMountainPartDarker 0x24
+#define ForestAndMountainFog 0x25
+#define ForestAndMountainSunset 0x26
+#define ForestAndMountainNight 0x27
+#define ForestAndMountainLighter 0x28
+#define ForestAndMountainLighter2 0x29
+
+#define Forest 0x2A
+#define Forest2 0x2B
+
+#define ValorForest 0x2C
+#define ValorForestCornerLight 0x2D
+#define ValorForestFoggy 0x2E
+
+#define City 0x2F
+#define CityGolden 0x30
+#define CityGate 0x31
+#define CityGateSunset 0x32
+#define CityGateDarker 0x33
+#define CityGate2 0x34
+
+#define InnWithBeds 0x35
+
+#define OutsideFortressBrown 0x36
+#define OutsideFortressGray 0x37
+#define OutsideFortressBrownNight 0x38
+#define OutsideFortressBrown2 0x39
+#define OutsideFortressGray2 0x3A
+#define OutsideFortressBrown3 0x3B
+
+#define InsideCastle2 0x3C
+#define InsideCastlePurple 0x3D
+#define InsideCastleSunset 0x3E
+
+#define OutsideAbandonedFortress 0x3F
+#define OutsideAbandonedFortressSunset 0x40
+#define OutsideAbandonedFortressFoggy 0x41
+
+#define InsideAbandonedFortressBrown 0x42
+#define InsideAbandonedFortressDark 0x43
+
+#define DragonsGateChamberBrown 0x44
+#define DragonsGateChamberGreen 0x45
+
+#define DungeonHallwayBrown 0x46
+#define DungeonHallwayBlue 0x47
+#define DungeonHallwayGreen 0x48
+
+#define ShrineAlter 0x49
+#define AthosShrineAlter 0x4A
+#define AthosShrineAlterDarker 0x4B
+
+#define ShrineHallway 0x4C
+#define ShrineHallwayDarker 0x4D
+#define ShrineHallwayPurple 0x4E
+#define ShrineAlter2Brown 0x4F
+#define ShrineAlter2Golden 0x50
+
+#define Desert 0x51
+#define DesertSunset 0x52
+#define DragonsGateGreen 0x53
+#define DragonsGateNight 0x54
+#define FirePit 0x55
+#define ShrineAlter3 0x56
+#define Cave 0x57
+#define ShrineAlter4 0x58
+#define Sky 0x59
+#define Camp 0x5A
+#define Black 0x5B
+#define DragonsGateCloseUp 0x5C
+#define DragonsGateCloseUpLighter 0x5D
+#define ToBeContinued 0x5E
+#define GameOverBackground 0x5F
+
+#endif
+
+#ifdef _FE8_
+
+#define HouseBG 0x00
+#define Salehs_House 0x01
+#define Village 0x02
+#define Outside_Village_Day 0x03
+#define Outside_Village_Evening 0x04
+#define Town_Day 0x05
+#define Town_Past 0x06
+#define Harbor 0x07
+#define Ship 0x08
+#define Inn 0x09
+#define Castle_Hall 0x0A
+#define Castle_Hall_Night 0x0B
+#define Castle_Hall_2 0x0C
+#define Castle_Hall_2_Past 0x0D
+#define Castle_Room 0x0E
+#define Castle_Room_Past 0x0F
+#define Castle_Hall_3 0x10
+#define Castle_Hall_3_Night 0x11
+#define Castle_Hall_4 0x12
+#define Castle_Garden 0x13
+#define Castle_Garden_Past 0x14
+#define Castle_Outside 0x15
+#define Castle_Outside_Past 0x16
+#define Prison_Cell 0x17
+#define Plain 0x18
+#define Plain_Evening 0x19
+#define Plain_Fog 0x1A
+#define Plain_2 0x1B
+#define Plain_3 0x1C
+#define Woodland 0x1D
+#define Woodland_Fog 0x1E
+#define Woodland_Evening 0x1F
+#define Woodland_Night 0x20
+#define Riverside 0x21
+#define Forest 0x22
+#define Forest_2 0x23
+#define Town_Gate 0x24
+#define Fort_Outside 0x25
+#define Fort 0x26
+#define Fort_Evening 0x27
+#define Fort_Ruins 0x28
+#define Fort_Ruins_Outside 0x29
+#define Fort_2 0x2A
+#define Fort_2_Burning 0x2B
+#define Shrine 0x2C
+#define Shrine_lighter 0x2D
+#define Shrine_2 0x2E
+#define Shrine_3 0x2F
+#define Desert 0x30
+#define Forest_Dense 0x31
+#define Volcano 0x32
+#define Temple_Gate 0x33
+#define Temple_Ruins_Inside 0x34
+#define Black 0x35
+
+#endif

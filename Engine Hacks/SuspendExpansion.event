@@ -1,0 +1,25 @@
+//Suspend Expansion
+//Expanded Suspend
+PUSH
+  ORG 0xA6446 //Disable checksum check
+  SHORT 0x0000
+  ORG 0xA6408 //Stop checksum calculation, as it loads all of the save data into RAM.
+  SHORT 0x4770
+  ORG 0xA30EC //Make all suspends to first slot.
+  WORD 0x000000D4
+  ORG 0xA2FE4 //Length of suspend data
+  WORD 0x00003EF0
+
+  ORG 0xA5B88
+  gotoHackWithR3(saveHack)
+  ORG 0xA5D2A
+  SHORT 0x0000 //NOP for word alignment
+  gotoHackWithR3(loadHack)
+POP
+
+ALIGN 4
+saveHack:
+#incbin "ASM/Expanded Suspend/SaveMoreBytesHack.dmp"
+ALIGN 4
+loadHack:
+#incbin "ASM/Expanded Suspend/LoadMoreBytesHack.dmp"

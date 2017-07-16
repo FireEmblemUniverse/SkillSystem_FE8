@@ -1,0 +1,16 @@
+RallySkillList: //rally mag isn't in this because no split assumed
+BYTE RallyStrID RallySklID RallySpdID RallyDefID RallyResID RallyLukID RallyMovID RallySpectrumID
+BYTE 0
+ALIGN 4
+
+RallyUsability:
+#incbin "Rally Usability.dmp"
+POIN RallySkillList
+POIN SkillTester
+POIN AuraSkillCheck
+
+RallyEffect:
+#incbin "Rally Effect.dmp"
+POIN RallySkillList
+POIN SkillTester
+POIN AuraSkillCheck

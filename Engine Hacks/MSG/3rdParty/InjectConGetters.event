@@ -1,0 +1,87 @@
+#ifndef MSG_INJECT_CON_GETTERS_EVENT
+#define MSG_INJECT_CON_GETTERS_EVENT
+
+#include "eastdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+// Everything in this file is the work of Teq, big thanks to him
+
+PUSH
+	//Stat screen
+	ORG $8731E
+	SHORT 0x68E8 //ldr r0,[r5,#0xC]
+	BL(prGotoConGetter)
+	SHORT 0x68E9 0x680A 0x2313 0x56D2 0x6849 0x2311 0x56C9 0x1853 0x68E9 //ldr r1,[r5,#0xC]; ldr r2,[r1]; mov r3,#0x13; ldsb r2,[r2,r3]; ldr r1,[r1,#0x4]; mov r3,#0x11; ldsb r1,[r1,r3]; add r3,r2,r1; ldr r1,[r5,#0xC]
+
+	//Aid getter (Yes, Aid has a getter and con doesn't. No, this does not make any sense.)
+	ORG $189CE
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoConGetter)
+	SHORT 0xE003 //b
+	ORG $189EC
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoConGetter)
+	SHORT 0x1C01 0xE002 //mov r1,r0; b
+	ORG $18A00
+	SHORT 0x1C20
+	BL(prGotoConGetter)
+	SHORT 0x1C01 0xE002 //mov r1,r0; b
+
+	//Rescue check
+	ORG $18324
+	SHORT 0xB401 0x1C20 //push {r0}; mov r0,r4
+	BL(prGotoConGetter)
+	SHORT 0x1C02 0xBC01 0xE003 //mov r2,r0; pop {r0}; b
+
+	//Display rescuee's con
+	ORG $34A78
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoConGetter)
+	SHORT 0x1C03 0xE005 //mov r3,r0; b
+
+	//Load con into battle struct
+	ORG $2A5CE
+	SHORT 0x1C30 //mov r0,r6
+	BL(prGotoConGetter)
+	SHORT 0x6872 0xE001 //ldr r2,[r6,#0x4]; b
+
+	//Display con on prep screen
+	ORG $9C192
+	SHORT 0x1C28 //mov r0,r5
+	BL(prGotoConGetter)
+	SHORT 0x1C01 0xE004 //mov r1,r0; b
+
+	//Another display, but not sure what
+	ORG $9C38C
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoConGetter)
+	SHORT 0x1C03 0x6862 0xE004 //mov r3,r0; ldr r2,[r4,#0x4]; b
+
+	//Unit menu display
+	ORG $92966
+	SHORT 0x6800 //ldr r0,[r0]
+	BL(prGotoConGetter)
+	SHORT 0x1C02 0x1C3B 0x331A 0xE004 //mov r2,r0; mov r3,r7; add r3,#0x1A; b
+
+	//Unit menu sorting via con, ascending
+	ORG $93A28
+	SHORT 0xB404 0x6830 //push {r2}; ldr r0,[r6]
+	BL(prGotoConGetter)
+	SHORT 0xBC04 0x1C03 0xE004 //pop {r2}; mov r3,r0; b
+	ORG $93A48
+	SHORT 0xB408 0x6828 //push {r3}; ldr r0,[r5]
+	BL(prGotoConGetter)
+	SHORT 0xBC08 0xE006 //pop {r3}; b
+
+	//Unit menu sorting via con, descending
+	ORG $93AD4
+	SHORT 0xB404 0x6830 //push {r2}; ldr r0,[r6]
+	BL(prGotoConGetter)
+	SHORT 0xBC04 0x1C03 0xE004 //pop {r2}; mov r3,r0; b
+	ORG $93AF4
+	SHORT 0xB408 0x6828 //push {r3}; ldr r0,[r5]
+	BL(prGotoConGetter)
+	SHORT 0xBC08 0xE006 //pop {r3}; b
+POP
+
+#endif // MSG_INJECT_CON_GETTERS_EVENT

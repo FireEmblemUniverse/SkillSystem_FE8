@@ -1,0 +1,10 @@
+#define Write_Word(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x0; ASMC EventWriter+1"
+#define Write_Short(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x1; ASMC EventWriter+1"
+#define Write_Byte(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x2; ASMC EventWriter+1"
+  ALIGN 4
+  EventReader:
+  #incbin "ASM/eventreader.dmp"
+  ALIGN 4
+  EventWriter:
+  #incbin "ASM/eventwriter.dmp"
+  

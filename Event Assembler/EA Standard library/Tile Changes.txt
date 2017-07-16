@@ -1,0 +1,14 @@
+
+//Tile change macro
+#ifdef _FE6_
+#define TileMap(TCN,X1,X2,L1,L2,TilePointer) "BYTE TCN X1 X2 L1 L2 0 0 0; POIN TilePointer"
+#define TileMapEnd "WORD 0xFF 0 0"
+#endif
+#ifdef _FE7_
+#define TileMap(TCN,X1,X2,L1,L2,TilePointer) "BYTE TCN X1 X2 L1 L2 0 0 0; POIN TilePointer"
+#define TileMapEnd "WORD 0xFF 0 0"
+#endif
+#ifdef _FE8_
+#define TileMap(TCN,X1,X2,L1,L2,TilePointer) "BYTE TCN X1 X2 L1 L2 0 0 0; POIN TilePointer"
+#define TileMapEnd "WORD 0xFF 0 0"
+#endif

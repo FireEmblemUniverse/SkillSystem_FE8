@@ -1,0 +1,68 @@
+//was at 89a3508 [pointer at 7b8bc and 9a3860]
+PUSH
+ORG $7b8bc
+POIN MapAnimsSkillRoutines
+ORG $9a3860
+POIN MapAnimsSkillRoutines
+
+ORG $7a8c0
+POIN MidMASRoutines
+POP
+
+MapAnimsSkillRoutines:
+BYTE $02 $00 $00 $00 $61 $53 $01 $08 
+BYTE $02 $00 $00 $00 $01 $A8 $07 $08 
+BYTE $0E $00 $01 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $41 $A9 $07 $08 //before stuff actually shows up
+BYTE $0E $00 $02 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $B9 $AB $07 $08 
+BYTE $14 $00 $00 $00 $B1 $D1 $00 $08 
+BYTE $0E $00 $05 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $AD $AC $07 $08 
+BYTE $02 $00 $00 $00 $65 $B4 $07 $08 
+BYTE $0E $00 $01 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $DD $AA $07 $08 
+BYTE $0E $00 $0F $00 $00 $00 $00 $00 
+BYTE $0B $00 $00 $00 $00 $00 $00 $00 
+BYTE $03 $00 $00 $00 $95 $A8 $07 $08 
+BYTE $02 $00 $00 $00 $F1 $A8 $07 $08 
+BYTE $0E $00 $01 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $05 $A9 $07 $08 
+BYTE $0E $00 $01 $00 $00 $00 $00 $00 
+BYTE $0E $00 $05 $00 $00 $00 $00 $00 
+BYTE $0C $00 $00 $00 $00 $00 $00 $00 
+MidMASRoutines:
+BYTE $02 $00 $00 $00 $85 $A9 $07 $08 
+BYTE $14 $00 $00 $00 $B1 $D1 $00 $08 
+BYTE $02 $00 $00 $00 $01 $AA $07 $08 
+BYTE $08 $00 $00 $00 $80 $2C $9A $08 
+BYTE $02 $00 $00 $00 $B9 $BB $07 $08 
+BYTE $0E $00 $01 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $09 $A7 $07 $08 
+BYTE $0E $00 $00 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $4D $AA $07 $08 //show exp/level up 
+BYTE $0E $00 $00 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00; POIN SkillCheckAnimsOff|1 //checks skill learned?
+BYTE $0E $00 $00 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $2D $A7 $07 $08 //checks weapon broke
+BYTE $0E $00 $08 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $95 $A7 $07 $08 //checks weapon lvl
+BYTE $0E $00 $00 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $41 $A9 $07 $08 //also called above 
+BYTE $0E $00 $02 $00 $00 $00 $00 $00 
+BYTE $02 $00 $00 $00 $71 $53 $01 $08 
+BYTE $02 $00 $00 $00 $0D $A8 $07 $08 
+BYTE $00 $00 $00 $00 $00 $00 $00 $00
+
+SkillCheckAnimsOff:
+#incbin "skillCheckAnimsOff.dmp"
+POIN LevelUpSkillTable
+POIN SkillAdder
+POIN PopupStruct
+
+PopupStruct:
+BYTE $0C $00 $00 $00 $5A $00 $00 $00 //sound played is 5A
+BYTE $06 $00 $00 $00; WORD LearnedSkillText //8 is text ID
+BYTE $0D $00 $00 $00 $00 $00 $00 $00 //run skill icon routine
+BYTE $06 $00 $00 $00 $01 $00 $00 $00 
+BYTE $00 $00 $00 $00 $00 $00 $00 $00

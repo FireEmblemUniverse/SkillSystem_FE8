@@ -1,0 +1,106 @@
+//Dragon Vein hack installation. Remember to add the Unit Menu Option.
+
+PUSH
+#ifndef VeinDefinitions
+    #define VeinDefinitions
+    #define Vein_Map_Sprite_Number 0x67 //Use the one after Light Rune for now
+    #define DragonVeinSFXID 0x57
+    #define DragonVeinTrapID 0x6
+    #define DragonVeinEffectTableOffset 0xF00000
+    #define VeinEffect(id, event) "PUSH; ORG DragonVeinEffectTableOffset + (4 * id); POIN event; POP"
+    #define Vein(XX,YY,EffectID) "BYTE DragonVeinTrapID XX YY EffectID 0x0 0x0"
+        #define Vein(XX,YY,EffectID, TextID) "BYTE DragonVeinTrapID XX YY EffectID; SHORT TextID"
+    #define VeinActivation "EARTHQUAKE_START 0x0; MUSS DragonVeinSFXID; STAL 0x20; FlashWhite; STAL 0xC0; EARTHQUAKE_END; MURE 0x06; STAL 0x40"
+    // #define UMText_DV 0xd0
+    // #define UMText_DVDesc 0xd1
+#endif
+
+#ifndef SongTableOffset
+  #define SongTableOffset  0x224470
+  #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+#endif
+
+SongTable(DragonVeinSFXID,DragonVeinSFX,7) //Song Group 7 is for map sfx
+
+ORG (0x037864+4*(DragonVeinTrapID-1))
+POIN VeinInitialization
+
+ORG 0x27318
+#incbin "ASM/Dragon Vein/DrawingDragonVein_1.dmp"
+ORG 0x2731C
+POIN (DrawingOffset_External+0x1)
+ORG 0x27332
+#incbin "ASM/Dragon Vein/DrawingDragonVein_2.dmp"
+ORG 0x27338
+#incbin "ASM/Dragon Vein/DrawingDragonVein_3.dmp"
+ORG (0x8AF880+0x8*Vein_Map_Sprite_Number)
+SHORT 0x0002
+SHORT 0x0000
+POIN VeinGraphics
+
+ORG $2e444 //prevent suspend from breaking the game
+SHORT 0
+POP
+
+MESSAGE DVs installed to CURRENTOFFSET
+
+DrawingOffset_External:
+#incbin "ASM/Dragon Vein/DrawingDragonVein_Ext_A.dmp"
+BYTE DragonVeinTrapID
+#incbin "ASM/Dragon Vein/DrawingDragonVein_Ext_B.dmp"
+BYTE Vein_Map_Sprite_Number
+#incbin "ASM/Dragon Vein/DrawingDragonVein_Ext_C.dmp"
+
+VeinInitialization:
+#incbin "ASM/Dragon Vein/Initialize.dmp"
+
+VeinGraphics:
+//#incbin "ASM/Dragon Vein/SparkleGraphic.dmp"
+#incext Png2Dmp "ASM/Dragon Vein/sparkle_final_4_Sheet.png" --lz77
+
+VeinUsability:
+#incbin "ASM/Dragon Vein/Dragon Vein Usability.dmp"
+WORD DragonVeinTrapID
+POIN SkillTester
+WORD DragonsBloodID
+
+VeinEffect:
+#incbin "ASM/Dragon Vein/Dragon Vein Execution.dmp"
+POIN DragonVeinEffectTableOffset
+
+PUSH
+ORG $8cce4
+#include "Extensions/Hack Installation.txt"
+jumpToHack(VeinTextBox)
+
+ORG $8c360
+jumpToHack(VeinHPFix)
+
+ORG $8c51c
+jumpToHack(VeinHPFix2)
+POP
+
+VeinHPFix:
+#incbin "ASM/Dragon Vein/hpfix.dmp"
+VeinHPFix2:
+#incbin "ASM/Dragon Vein/hpfix2.dmp"
+
+VeinTextBox:
+#incbin "ASM/Dragon Vein/dv_display.dmp"
+
+ALIGN 4
+DragonVeinSFXData:
+#incbin "bin/DragonVeinSFX.dmp"
+DragonVeinSFX:
+WORD $1 //Dunno what this is, but leave it
+POIN DragonVeinVoicemap
+POIN DragonVeinSFXData
+
+DragonVeinVoicemap:
+WORD $3c00
+POIN DragonVeinWav
+WORD $FF00FF
+
+DragonVeinWav:
+#incbin "bin/DragonVein_wav.dmp"
+  

@@ -1,0 +1,29 @@
+# 0x0094
+HP Bars[.][X]
+
+# 0x00B2
+Set health bar display[X]
+
+# 0x160 PrologueChName
+Boss Rush[X]
+
+#0x3A LearnedSkillText
+#first text ID in the free block
+Learned  [X]
+
+#include "statscreen_text.txt"
+
+#include "unitmenu_text.txt"
+
+#0x903 HouseText
+#first text ID in the free block
+[MidRight][LoadFace][CurrentPortrait]Nothing to see here.[A][X]
+
+## VillageText
+[MidRight][LoadFace][CurrentPortrait]These look useful.[A][X]
+
+## DV1Desc
+Freeze all enemies[N]
+for one turn[X]
+
+#include "skilldesc_text.txt"

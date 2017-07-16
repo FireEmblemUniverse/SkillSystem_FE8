@@ -1,0 +1,155 @@
+#ifndef MSG_INJECT_MOV_GETTERS_EVENT
+#define MSG_INJECT_MOV_GETTERS_EVENT
+
+#include "eastdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+// Everything in this file is the work of Teq, big thanks to him
+
+PUSH
+	//When filling in the movement table
+	ORG $1CB7A
+	BL(prGotoMovGetter)
+	SHORT 0x1C01 0x6828 //mov r1,r0; ldr r0,[r5]
+
+	//^
+	ORG $1A3A0
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoMovGetter)
+	SHORT 0x1C02 0x2010 0x5620 0x2111 0x5661 0x46C0 0x46C0 0x46C0 //mov r2,r0; mov r0,#0x10; ldsb r0,[r4,r0]; mov r1,#0x11; ldsb r1,[r4,r1]; nop; nop; nop
+
+	//Writing movement range to coordinate buffer
+	ORG $32E4E
+	SHORT 0x6820 //ldr r0,[r4]
+	BL(prGotoMovGetter)
+	SHORT 0x682A 0x46C0 //ldr r2,[r5]; nop
+
+	//Initializing the battle struct
+	ORG $2A5DE
+	SHORT 0x1C30 //mov r0,r6
+	BL(prGotoMovGetter)
+
+	//After performing an action; check if you can canto
+	ORG $1D278
+	SHORT 0x6820 //ldr r0,[r4]
+	BL(prGotoMovGetter)
+	SHORT 0x4A09 0xE002 //ldr r2,ActionCenterStruct, b
+
+	//^
+	ORG $18BF0
+	SHORT 0x6800 0x4681 //ldr r0,[r0]; mov r9,r0
+	BL(prGotoMovGetter)
+	SHORT 0x1C01 0x464A 0x46C0 0x46C0 //mov r1,r0; mov r2,r9; nop; nop
+
+	//Stat screen
+	ORG $87300
+	callHack_r3(prStatScreenMovGetter)
+	SHORT 0x46C0
+
+	//Unit screen
+	ORG $92944
+	SHORT 0x1C0D //mov r5,r1
+	BL(prGotoMovGetter)
+	SHORT 0x1C02 0x1C29 0x1C38 0x3014 //mov r2,r0; mov r1,r5; mov r0,r7; add r0,#0x14
+
+	//Rearranging order by mov on unit screen (yes, the following code is messy)
+	ORG $9427E
+	SHORT 0xB40A //push {r1,r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC0A 0xB401 0x0098 0x1843 0x681C 0x6820 0xB408 //pop {r1,r3}; push {r0}; lsl r0,r3,#0x2; add r3,r0,r1; ldr r4,[r3]; ldr r0,[r4]; push {r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC08 0x1C01 0xBC01 0x1C02 0x46C0 0x46C0 //pop {r3}; mov r1,r0; pop {r0}; mov r2,r0; nop; nop
+
+	//Identical as above, more or less
+	ORG $9430C
+	SHORT 0xB40A //push {r1,r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC0A 0xB401 0x0098 0x1843 0x681C 0x6820 0xB408 //pop {r1,r3}; push {r0}; lsl r0,r3,#0x2; add r3,r0,r1; ldr r4,[r3]; ldr r0,[r4]; push {r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC08 0x1C01 0xBC01 0x1C02 0x46C0 0x46C0 //pop {r3}; mov r1,r0; pop {r0}; mov r2,r0; nop; nop
+
+	//Danger Zone
+	ORG $1B898
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoMovGetter)
+	SHORT 0x1C01 //mov r1,r0
+
+	//No idea; may be AI related
+	ORG $3E7FC
+	SHORT 0x6830 0xB40C //ldr r0,[r6]; push {r2-r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC0C 0xE001 //pop {r2-r3}; b
+
+	//^
+	ORG $3EC5A
+	SHORT 0xB40C //push {r2,r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC0C 0x1C05 0x46C0 0x46C0 //pop {r2,r3}; mov r5,r0; nop; nop
+
+	//Almost certainly AI related
+	ORG $3993C
+	BL(prGotoMovGetter)
+	SHORT 0x1C04 0xE002 //mov r4,r0; b
+
+	//^
+	ORG $3AC6E
+	SHORT 0xB401 0x1C20 //push r0; mov r0,r4
+	BL(prGotoMovGetter)
+	SHORT 0x1C01 0xBC01 0x46C0 //mov r1,r0; pop r0; nop
+
+	//Definitely AI related
+	ORG $3ACC6
+	SHORT 0x1C07 0x1C20 //mov r7,r0; mov r0,r4
+	BL(prGotoMovGetter)
+	SHORT 0x183F 0x1C28 //add r7,r0; mov r0,r5
+	BL(prGotoMovGetter)
+	SHORT 0x19C1 0xE005 //add r1,r0,r7; b
+
+	//No idea
+	ORG $3B0B8
+	SHORT 0xB40C 0x1C18 //push {r2,r3}; mov r0,r3
+	BL(prGotoMovGetter)
+	SHORT 0xBC0C 0x1C01 0x46C0 //pop {r2,r3}; mov r1,r0; nop
+
+	//No idea
+	ORG $3BB28
+	SHORT 0xB40C //push {r2-r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC0C 0x1C01 0x46C0 0x46C0 //pop {r2-r3}; mov r1,r0; nop; nop
+
+	//No idea
+	ORG $3BD14
+	SHORT 0xB40C //push {r2-r3}
+	BL(prGotoMovGetter)
+	SHORT 0xBC0C 0x1C01 0x46C0 0x46C0 //pop {r2-r3}; mov r1,r0; nop; nop
+
+	//AI related (something about a certain number of movement ranges away)
+	ORG $3F026
+	BL(prGotoMovGetter)
+	SHORT 0x1C02 0x6820 0xE001 //mov r2,r0; ldr r0,[r4]; b
+
+	//^
+	ORG $3F16E
+	BL(prGotoMovGetter)
+	SHORT 0x1C02 0x6828 0xE001 //mov r2,r0; ldr r0,[r5]; b
+
+	//Some call to the function that fills in the movement table
+	ORG $41068
+	SHORT 0x1C20 //mov r0,r4
+	BL(prGotoMovGetter)
+	SHORT 0x1C02 0x2010 0x5620 0x2111 0x5661 0x46C0 0x46C0 0x46C0 //mov r2,r0; mov r0,#0x10; ldsb r0,[r4,r0]; mov r1,#0x11; ldsb r1,[r4,r1]; nop; nop; nop
+
+	//Probably AI related
+	ORG $3C08E
+	SHORT 0x1C28 //mov r0,r5
+	BL(prGotoMovGetter)
+	SHORT 0x46C0 //nop
+
+	//No idea
+	ORG $1D864
+	SHORT 0x1C10 //mov r0,r2
+	BL(prGotoMovGetter)
+	SHORT 0x46C0 0x46C0
+POP
+
+#endif // MSG_INJECT_MOV_GETTERS_EVENT

@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Impale001
+POIN TSA_Impale002
+POIN TSA_Impale003
+
+GraphicsList:
+POIN Graphics_Impale001
+POIN Graphics_Impale002
+POIN Graphics_Impale003
+
+PalettesList:
+POIN Pal_Impale001
+POIN Pal_Impale002
+POIN Pal_Impale003
+
+TSA_Impale001:
+#incbin "Impale001.map.bin"
+TSA_Impale002:
+#incbin "Impale002.map.bin"
+TSA_Impale003:
+#incbin "Impale003.map.bin"
+
+Graphics_Impale001:
+#incbin "Impale001.img.bin"
+Graphics_Impale002:
+#incbin "Impale002.img.bin"
+Graphics_Impale003:
+#incbin "Impale003.img.bin"
+
+Pal_Impale001:
+#incbin "Impale001.pal.bin"
+Pal_Impale002:
+#incbin "Impale002.pal.bin"
+Pal_Impale003:
+#incbin "Impale003.pal.bin"

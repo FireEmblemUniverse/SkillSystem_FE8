@@ -1,0 +1,42 @@
+#ifndef TOOL_HELPERS
+#define TOOL_HELPERS
+
+#ifdef _FE6_
+#ifndef TextTable
+    #define TextTable 0x0F635C
+#endif
+#ifndef PortraitTable
+    #define PortraitTable 0x66074C
+#endif
+#endif
+
+
+#ifdef _FE7_
+#ifndef TextTable
+    #define TextTable 0xB808AC
+#endif
+#ifndef PortraitTable
+    #define PortraitTable 0xC96584
+#endif
+#endif
+
+
+#ifdef _FE8_
+#ifndef TextTable
+    #define TextTable 0x15D48C
+#endif
+#ifndef PortraitTable
+    #define PortraitTable 0x8ACBC4
+#endif
+#endif
+
+
+//For use with ParseFile
+#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset | 0x80000000); POP" //Anti-huffman
+
+
+//For use with PortraitFormatter
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0x00000000; BYTE mouthX mouthY eyeX eyeY; WORD 0x01; POP"
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY, eyeControl) "PUSH; ORG PortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0x00000000; BYTE mouthX mouthY eyeX eyeY; WORD eyeControl; POP"
+
+#endif

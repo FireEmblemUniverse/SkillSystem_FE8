@@ -1,0 +1,10 @@
+Adept notes:
+
+Brave weapon goes:
+10 00 08 0D (brave effect, end battle, damage)
+00 00 00 0D (damage)
+
+802b03c check number of rounds to display
+802b0a0 checks for brave ability
+
+8b32178 (temp loccation of adept check)

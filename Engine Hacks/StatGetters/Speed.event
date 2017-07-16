@@ -1,0 +1,24 @@
+#ifndef MODULAR_GETTER_SPEED_EVENT
+#define MODULAR_GETTER_SPEED_EVENT
+
+#include "_Common.event"
+
+pSpeedModifiers: // Speed
+	POIN prAddUnitSpeed prHalveIfRescuing prDebuffSpd prAddEquipSpeed prRallySpd
+WORD 0
+
+prAddUnitSpeed:
+	rAdd(rSByteAt(UNIT_SPEED))
+
+prAddEquipSpeed:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemSpdBonus)))
+
+prDebuffSpd:
+	#incbin "_asm/DebuffSpd.bin"
+	WORD DebuffTable
+
+prRallySpd:
+	#incbin "_asm/RallySpd.bin"
+	WORD DebuffTable
+
+#endif // MODULAR_GETTER_SPEED_EVENT

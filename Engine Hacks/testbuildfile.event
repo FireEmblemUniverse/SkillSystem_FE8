@@ -1,0 +1,8 @@
+ORG $b2a610
+  //TESTING Stat Screen
+  PUSH
+  ORG $205b24 //24 for stat screen
+  POIN MSS_test|1
+  POP
+  MSS_test:
+  #incbin "Engine Hacks/mss_base.dmp"

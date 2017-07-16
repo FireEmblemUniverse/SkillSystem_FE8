@@ -1,0 +1,25 @@
+##Halts event execution for a while.
+##Things like unit movement, animations
+##and others continue normally while stalled.
+STAL, 2, 8, -game:FE6 -repeatable -indexMode:8
+##Amount of frames to stall.
+	Time to stall, 4, 4, -preferredBase:10
+
+STAL, 2, 4, -game:FE7 -repeatable -indexMode:8
+	Time to stall, 2, 2, -preferredBase:10
+
+STAL, 0xE20, 4, -game:FE8 -repeatable -indexMode:8
+	Time to stall, 2, 2, -preferredBase:10
+
+STAL2, 0x0E22, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+STAL3, 0x0E23, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+#
+#Chapters: 2, 10, 20...
+##Stalling used in CG cutscenes
+CGSTAL, 0x4, 4, -game:FE7 -indexMode:8
+##Amount of time to stall
+	Stall time, 2, 2, -preferredBase:10
+

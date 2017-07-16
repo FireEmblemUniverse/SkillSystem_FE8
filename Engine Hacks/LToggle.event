@@ -1,0 +1,15 @@
+#ifdef inBLRange
+
+PUSH
+  //Toggle Anims with L
+    ORG $2caf2
+    BL(ToggleAnim)
+POP
+
+ALIGN 4
+ToggleAnim:
+#incbin "ASM/Ltoggle.dmp"
+
+#else
+ERROR _file_ is not in BL Range
+#endif

@@ -1,0 +1,4 @@
+PROTECT 0x0 0x10
+ORG 0x10
+WORD 0xDEADBEEF
+#include "Test.event"

@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Colossus001
+POIN TSA_Colossus002
+POIN TSA_Colossus003
+
+GraphicsList:
+POIN Graphics_Colossus001
+POIN Graphics_Colossus002
+POIN Graphics_Colossus003
+
+PalettesList:
+POIN Pal_Colossus001
+POIN Pal_Colossus002
+POIN Pal_Colossus003
+
+TSA_Colossus001:
+#incbin "Colossus001.map.bin"
+TSA_Colossus002:
+#incbin "Colossus002.map.bin"
+TSA_Colossus003:
+#incbin "Colossus003.map.bin"
+
+Graphics_Colossus001:
+#incbin "Colossus001.img.bin"
+Graphics_Colossus002:
+#incbin "Colossus002.img.bin"
+Graphics_Colossus003:
+#incbin "Colossus003.img.bin"
+
+Pal_Colossus001:
+#incbin "Colossus001.pal.bin"
+Pal_Colossus002:
+#incbin "Colossus002.pal.bin"
+Pal_Colossus003:
+#incbin "Colossus003.pal.bin"

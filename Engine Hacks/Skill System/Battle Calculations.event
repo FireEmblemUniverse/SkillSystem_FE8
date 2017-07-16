@@ -1,0 +1,40 @@
+//battle calculations loop fe8
+#include "Internals/BattleCalcDefinitions.event"
+#include "Extensions/Hack Installation.txt"
+PUSH
+ORG 0x2a95c
+jumpToHack(BtlLoopParent)
+
+ORG 0x2a3f8
+//rewrite range map
+jumpToHack(rewriteRangeMap)
+
+// ORG 0x2AFFE //make 0xc = cannot double
+// SHORT 0x280C 0xD005
+POP
+
+//under free space
+ALIGN 4
+BtlLoopParent:
+#incbin "Internals/FE8_calc_loop.dmp"
+BtlLoopTable:
+POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+POIN FaireCheck
+POIN BreakerCheck
+POIN BlowCheck
+POIN DefendingCheck
+POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
+POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
+POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm VoiceOfPeace Anathema LilysPoise
+POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple LightWeight
+POIN UpWithArch
+POIN LethalitySkill NonGBALethalitySkill Bane
+// Because of how killing machine works, critical check should always be done last
+POIN CriticalCheck
+
+//add any new ones before here
+POIN 0
+
+rewriteRangeMap:
+#incbin "Internals/rewriteRangeMap.dmp"
+ALIGN 4

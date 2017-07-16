@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Luna001
+POIN TSA_Luna002
+POIN TSA_Luna003
+
+GraphicsList:
+POIN Graphics_Luna001
+POIN Graphics_Luna002
+POIN Graphics_Luna003
+
+PalettesList:
+POIN Pal_Luna001
+POIN Pal_Luna002
+POIN Pal_Luna003
+
+TSA_Luna001:
+#incbin "Luna001.map.bin"
+TSA_Luna002:
+#incbin "Luna002.map.bin"
+TSA_Luna003:
+#incbin "Luna003.map.bin"
+
+Graphics_Luna001:
+#incbin "Luna001.img.bin"
+Graphics_Luna002:
+#incbin "Luna002.img.bin"
+Graphics_Luna003:
+#incbin "Luna003.img.bin"
+
+Pal_Luna001:
+#incbin "Luna001.pal.bin"
+Pal_Luna002:
+#incbin "Luna002.pal.bin"
+Pal_Luna003:
+#incbin "Luna003.pal.bin"

@@ -1,0 +1,45 @@
+//was at 78d520
+PUSH
+ORG $7604c
+POIN ekrPopupRoutineList
+
+// ORG $78d544
+// POIN $760EB
+ORG $760EA
+SHORT $b510 $1c04 $224c $5aa2 //changes ldr to ldrh for weapon rank checking
+
+// ORG $78d54c
+// POIN $76113
+ORG $76110
+SHORT $bd00 //pop pc
+SHORT $b510 $1c04 $204c $5a20
+POP
+
+ALIGN 4
+ekrPopupRoutineList:
+BYTE $01 $00 $00 $00 $9C $82 $0E $08 //string ekrPopup
+BYTE $03 $00 $00 $00 $6D $60 $07 $08 
+BYTE $03 $00 $00 $00 $89 $60 $07 $08 
+BYTE $03 $00 $00 $00 $B1 $60 $07 $08 
+
+BYTE $03 $00 $00 $00; POIN LearnSkill|1 //displays skill if learned i guess? use halfword at 4e
+BYTE $03 $00 $00 $00; POIN LearnSkill2|1 //timing, probably?
+
+BYTE $03 $00 $00 $00 $EB $60 $07 $08 //shows wlvl up if word 4c is not 0 (change to 80760f0 to ldrh)
+BYTE $03 $00 $00 $00 $13 $61 $07 $08 //timing, probably (change 8076118 to ldrh)
+
+BYTE $03 $00 $00 $00 $51 $61 $07 $08 //showing weapon broke??
+BYTE $03 $00 $00 $00 $79 $61 $07 $08 
+BYTE $03 $00 $00 $00 $B5 $61 $07 $08 
+BYTE $03 $00 $00 $00 $DD $61 $07 $08 
+BYTE $03 $00 $00 $00 $1D $62 $07 $08 
+BYTE $03 $00 $00 $00 $4D $62 $07 $08 
+BYTE $00 $00 $00 $00 $00 $00 $00 $00
+
+ALIGN 4
+LearnSkill:
+#incbin "popup1.dmp"
+
+ALIGN 4
+LearnSkill2:
+#incbin "popup2.dmp"

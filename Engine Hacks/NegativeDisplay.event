@@ -1,0 +1,15 @@
+#ifdef inBLRange
+
+PUSH
+  //Negative Wt/Crit Display
+    ORG $4146
+    BL(NegDisplay)
+POP
+
+ALIGN 4
+NegDisplay:
+#incbin "ASM/negative_display.dmp"
+
+#else
+ERROR _file_ is not in BL Range
+#endif

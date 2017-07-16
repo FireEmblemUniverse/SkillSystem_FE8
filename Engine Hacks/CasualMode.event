@@ -1,0 +1,6 @@
+PUSH
+ORG $18418
+jumpToHack(CasualMode)
+POP
+CasualMode:
+#incbin "ASM/CasualModeFE8.dmp"

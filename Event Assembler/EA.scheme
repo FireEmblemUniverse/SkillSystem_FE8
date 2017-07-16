@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Scheme>
+  <!--Codes used by each language-->
+  <keyword-classes>
+    <keyword-class name="FE6">ASMC CAM1 CMON CMOF CURF CUMO CURE ENDA JUMP ENUT ENUF MNCH POIN WORD SHORT BYTE STAL WEA1 _0x1 _0x4 _0xA _ASM2 _IF0x21 _0x3E _0x40 _0x41 _0x42 _0x4D _0x4E _0x59 IFAF IFAT ELSE ENIF IFET IFEF IFCNA FADI FADU FAWI FAWU HIDEMAP SHOWMAP REMA BACG TEX1 MORETEXT ITGC ITGV SHLI MONE AFEV AREA CHAR LOCA VILL SHOP CHES DOOR ASME END_MAIN TURN TURN_HM MAC2 MACC LOMA MUS1 MUS2 SOUN MURE MUSI MUNO MUEN CUSI CHAI DISA ENUN FIGH BLDT KILL LOU1 LOU2 MOVE MOVENEXTTO MOMA UNIT ASMWORLDMAP ZOOMTO ZOOMOUT HIGHLIGHT SHOWARROW PLACEDOT REMOVE2 REMOVE1 PLACEFLAG REMOVE4 REMOVE3 SHOWPORTRAIT TEXTWM TEXTBOXTOBOTTOM TEXTBOXTOTOP REMOVETEXTBOX SHOWMAPTEXT ORG ALIGN CURRENTOFFSET MESSAGE ERROR WARNING</keyword-class>
+    <keyword-class name="FE7">ASMC CAM1 CAM2 CMON CMOF CURF CUMO CURE ENDA ENDB THE_END LYN_END CALL JUMP ENUT ENUF MNCH OOBB POIN WORD SHORT BYTE STAL CGSTAL BLST ENDTRAP FIRE GAST VCBF VCWF WEA1 WEA2 _0x1 _0x8 _0x15 _0x16 _0x17 _0x21 _MOVE0x2C _0x30 _0x33 _ASM0x3F _ASM0x42 _IF0x4A _IF0x4B _IFTT2 _ASM0x59 _ASM0x5A _0x61 _0x6E _0x85 _FADU2 _0x87 _0x89 _0x8A _FADI2 _0x95 _0x96 _0x9A _0xA1 _0xA2 _0xA3 _0xA4 _0xA5 _0xA8 _0xAA _0xAB _0xAD _0xAE _0xB6 _0xBE _0xC1 _0xC2 _0xC3 _0xCA _0xD0 _0xDC _LIGHTNING _0xDE _0xDF _0xE0 _0xE1 _0xE2 _0xE3 _0xE4 _0xE5 _0xE6 IFAF IFAT ELSE ENIF IFET IFEF IFHM IFEM IFYN IFNY IFTT IFTU IFUF IFCA IFCD FADI FADU FAWI FAWU FADICG FADUCG HIDEMAP SHOWMAP REMA RETB REBU BACG SHCG FROMCGTOBG FROMBGTOCG FROMCGTOMAP NEVENTS NCONVOS TEX1 TEX2 MORETEXT TEXTIFEM MORETEXTIFEM TEXTCG MORETEXTCG TEX6 TEX8 TEXTIFTACTF MORETEXTIFTACTF TEXTIFEVENTID MORETEXTIFEVENTID TEXTIFASM MORETEXTIFASM ITGC ITGM ITGV SHLI MONE AFEV AREA CHAR CHARASM LOCA VILL SHOP CHES DOOR ASME END_MAIN UNKWON UNKWON2 COORDS END TURN MAC1 MACC MAC2 MAC3 MACE LOMA MUS1 MUS2 MUS3 SOUN MURE MUSI MUNO MUEN CUSI CHAI UNCM UNCR DISA ENUN FIGH BLDT KILL LOU1 LOUMODE1 LOU2 LOUMODE2 LOEV LOUFILTERED LOUFILTERED2 MOVE MOVENEXTTO MOVEMAINC REPOS MOMA REPA UNIT WARP ASMWORLDMAP PUTSPRITE REMSPRITE LOADWM HIGHLIGHT FADETOWM PLACEDOT RIPPLE SHOWPORTRAIT REMOVEPORTRAIT TEXTWM TEXTBOXTOTOP TEXTBOXTOBOTTOM SCRO REMOVETEXTBOX ORG ALIGN CURRENTOFFSET MESSAGE ERROR WARNING</keyword-class>
+    <keyword-class name="FE8">ASMC CAM1 CUMO CURE ENDA ENDB CALL MNCH MNC2 POIN WORD SHORT BYTE STAL BLST ENDTRAP FIRE ARROW EGG VCWF WEA1 _SETVAL _SAVEFORBATTLE _CALL_HELL _SETCONDITION _SETCONDITION2 _ASMC2 _MUSICSOMETHING _LOAD1 _LOAD_WHATEVER _LOAD2 _LOAD3 _MOVE _MOVE1 _MOVE2 _MOVE3 _WARP _GIVEITEMTO _GIVEITEMTOMAIN _0x0220 _0x0221 _0x0228 _0x0229 _0x0320 _0x0321 _0x0420 _0x0620 _0x0621 _0x0625 _0x0722 _0x0C44 _0x0C45 _0x0E22 _0x0E23 _0x0F20 _0x0F21 _0x0F23 _0x1020 _0x1120 _0x1322 _0x1324 _0x1326 _0x1328 _0x1620 _0x1860 _0x1861 _0x1862 _0x1920 _0x1922 _0x1923 _0x1924 _0x1925 _0x1927 _0x1928 _0x1929 _0x1A21 _0x1A22 _0x1A23 _0x1A24 _0x1A25 _0x1B21 _0x2140 _0x2141 _0x2220 _0x2620 _0x2629 _0x2720 _0x2721 _0x2920 _0x2A23 _0x2A24 _0x2B22 _0x2D20 _0x2E21 _0x3240 _0x3242 _0x3322 _0x3320 _0x3323 _0x3325 _0x3326 _0x3327 _0x3328 _0x3420 _0x3421 _0x3425 _0x3428 _0x342A _0x342B _0x342C _0x342D _0x342E _0x3640 _0x3722 _0x3920 _0x3921 _0x3A40 _0x3E20 _0x4040 _0x4120 _0x4121 _0x412F _0x4220 _0x422F _0x4320 _0x4420 _0x4520 _0x452F _0x8340 _0x8440 _0x8540 _0x8680 _0x8780 _0x8880 _0x8920 _0x9040 _0x9140 _0x9240 _0x9340 _0x9440 _0x9540 _0x9640 _0x9720 _0x9920 _0x9A40 _0x9B40 _0x9D40 _0xA140 _0xA240 _0xA340 _0xA440 _0xA520 _0xA640 _0xA760 _0xA8C0 _0xA980 _0xAA40 _0xAB40 _0xAC40 _0xAF40 _0xB120 _0xB240 _0xB320 _0xB460 _0xB520 _0xB680 _0xB720 _0xB840 _0xB940 _0xBA40 _0xBD40 _0xBE40 _0xC220 _0xC360 _0xC540 _0xC720 _0xC920 ELSE ENIF FADI FADU FAWU FAWI REMA TEX8 TEXTSTART TEXTSHOW TEXTCONT TEXTEND SHLI AFEV AREA CHAR LOCA VILL SHOP CHES DOOR END_MAIN TURN LOMA MUS1 MUS2 MURE SOUN MUSI MUNO CUSA CUSE CUSN DISA ENUN FIG1 FIG2 MOVE PROM UNIT REDA SKIPWN PUTSPRITE REMSPRITE PLACEDOT SHOWPORTRAIT TEXTWM FE8Code ORG ALIGN CURRENTOFFSET MESSAGE ERROR WARNING</keyword-class>
+  </keyword-classes>
+  <base-language name="EA-language-base">
+    <lexer name="cpp" />
+    <property name="lexer.cpp.track.preprocessor" value="0" />
+    <use-styles>
+      <style name="Default" key="32" />
+      <style name="Whitespace" key="0" class="whitespace" />
+      <style name="Comment" key="1" class="commentbox" />
+      <style name="Comment Line" key="2" class="commentline" />
+      <style name="Number" key="4" class="number" />
+      <style name="Keyword" key="5" class="keyword" />
+      <style name="String" key="6" class="string" />
+      <style name="Character" key="7" class="string" />
+      <style name="Operator" key="10" bold="true" />
+      <style name="Identifier" key="11" />
+      <style name="End of line string" key="12" fore="000000" back="E0C0E0" eolfilled="true" />
+    </use-styles>
+  </base-language>
+  <language base="EA-language-base" name="FE6" title="FE6 Event Assembly" folding="true" foldcomments="true" foldelse="true" foldcompact="true" foldpreproc="true">
+    <lexer name="cpp" />
+    <property name="lexer.cpp.track.preprocessor" value="0" />
+    <comments line="//" streamStart="/*" streamEnd="*/" />
+    <use-keywords>
+      <keyword key="0" name="Code names" class="FE6" />
+    </use-keywords>
+    <use-styles>
+      <style name="Preprocessor" key="9" class="preprocessor" />
+    </use-styles>
+  </language>
+  <language base="EA-language-base" name="FE7" title="FE7 Event Assembly" folding="true" foldcomments="true" foldelse="true" foldcompact="true" foldpreproc="true">
+    <lexer name="cpp" />
+    <property name="lexer.cpp.track.preprocessor" value="0" />
+    <comments line="//" streamStart="/*" streamEnd="*/" />
+    <use-keywords>
+      <keyword key="0" name="Code names" class="FE7" />
+    </use-keywords>
+    <use-styles>
+      <style name="Preprocessor" key="9" class="preprocessor" />
+    </use-styles>
+  </language>
+  <language base="EA-language-base" name="FE8" title="FE8 Event Assembly" folding="true" foldcomments="true" foldelse="true" foldcompact="true" foldpreproc="true">
+    <lexer name="cpp" />
+    <property name="lexer.cpp.track.preprocessor" value="0" />
+    <comments line="//" streamStart="/*" streamEnd="*/" />
+    <use-keywords>
+      <keyword key="0" name="Code names" class="FE8" />
+    </use-keywords>
+    <use-styles>
+      <style name="Preprocessor" key="9" class="preprocessor" />
+    </use-styles>
+  </language>
+</Scheme>

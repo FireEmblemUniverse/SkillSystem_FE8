@@ -1,0 +1,9 @@
+PUSH
+//Statscreen palette based on allegiance
+ORG $8859c
+jumpToHack(StatscreenAlleg)
+POP
+
+ALIGN 4
+StatscreenAlleg:
+#incbin "ASM/statscreenAlleg.dmp"

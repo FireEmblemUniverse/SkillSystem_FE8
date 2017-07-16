@@ -1,0 +1,10 @@
+PUSH
+ORG $32f0c
+jumpToHack(ArrowFix)
+ORG $1cdf8
+POIN ArrowChecker
+POP
+ArrowFix:
+#incbin "ASM/MovementArrowFix.dmp"
+ArrowChecker:
+#incbin "ASM/MovementArrowFix2.dmp"

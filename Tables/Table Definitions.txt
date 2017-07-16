@@ -1,0 +1,147 @@
+//ifndef guards
+#ifndef TABLE_DEFINITIONS
+
+#define TABLE_DEFINITIONS
+
+#ifndef CharacterTable
+    #define CharacterTable 0x803D30
+#endif
+#ifndef ClassTable
+  #define ClassTable 0x807110
+#endif
+#ifndef ItemTable
+  #define ItemTable 0x809B10
+#endif
+#ifndef DebuffTable
+  #define DebuffTable 0x203f100
+#endif
+//#ifndef PersonalMusicTable
+  //#define PersonalMusicTable 0x758a60
+//#endif
+
+//Weapon Ability 1 definitions:
+#define IsWeapon 0x1
+#define IsMagic 0x2
+#define IsStaff 0x4
+#define Indestructible 0x8
+#define Unsellable 0x10
+#define IsBrave 0x20
+#define MagicDamage 0x40
+#define Uncounterable 0x80
+
+//Weapon Ability 2 definitions:
+#define ReverseTriangle 0x1
+#define CannotRepair 0x2
+#define MonsterWeapon 0x4
+#define WeaponLock1 0x8
+#define SwordmasterLock 0x10
+#define WeaponLock2 0x20
+#define NegateFlyingEffectiveness 0x40
+#define NegateCriticals 0x80
+
+//Weapon Ability 3 definitions:
+#define CannotUse 0x1
+#define NegateDef 0x2
+#ifdef _FE8_
+  #define EirikaLock 0x4
+  #define EphraimLock 0x8
+  #define WeaponLock3 0x10
+  #define WeaponLock4 0x20
+#endif
+#ifdef _FE7_
+  #define EliwoodLock 0x4
+  #define HectorLock 0x8
+  #define LynLock 0x10
+  #define AthosLock 0x20
+#endif
+
+//Weapon Ability 4 definitions
+#define CannotDoubleEffect 0xC
+
+//Character/Class Ability 1 definitions:
+#define MountedAid 0x1
+#define HasCanto 0x2
+#define Steal 0x4
+#define CanUseLockpick 0x8
+#define CanDance 0x10
+#define CanPlay 0x20
+#define CritBoost 0x40
+#define UseBallista 0x80
+
+//Ability 2 definitions:
+#define IsPromoted 0x1
+#define IsSupply 0x2
+#define HorseIcon 0x4
+#define DragonIcon 0x8
+#define PegIcon 0x10
+#define IsLord 0x20
+#define IsFemale 0x40
+#define IsBoss 0x80
+
+//Ability 3 definitions:
+#define SwordmasterUnlock 0x2
+#define UseMonsterWeapons 0x4
+#ifdef _FE7_
+  #define Morph 0x8
+#endif
+#ifdef _FE8_
+  #define TraineeLevelCap 0x8
+#endif
+#define CannotControl 0x10
+#define TriangleAttack 0x20
+#define TriangleAttack2 0x40
+#define DecrementIDAfterLoad 0x80
+
+//Ability 4 definitions:
+#define GiveNoExp 0x1
+#define Lethality 0x2
+#define IsMagicSeal 0x3
+#ifdef _FE7_
+  #define DropLastItem 0x8
+  #define UnlockEliwood 0x10
+  #define UnlockHector 0x20
+  #define UnlockLyn 0x40
+  #define UnlockAthos 0x80
+#endif
+#ifdef _FE8_
+  #define Summoning 0x8
+  #define UnlockEirika 0x10
+  #define UnlockEphraim 0x20
+  #define UnlockLock3 0x40
+  #define UnlockLock4 0x80
+#endif
+
+//weapon types
+/*
+#define Swords 0x0
+#define Lances 0x1
+#define Axes 0x2
+#define Bows 0x3
+#define Staves 0x4
+#define Tomes 0x5
+#define Shurikens 0x6
+#define Stones 0x7
+#define ItemType 0x9
+*/
+
+#define NoRank 0x0
+#define ERank 0x1
+#define DRank 0x1F
+#define CRank 0x47
+#define BRank 0x79
+#define ARank 0xB5
+#define SRank 0xFB
+
+#define negateByte(byte) "0x100-byte"
+#define IsPointer 0x8000000
+
+  #define defWTAAdvantage(attackingType, defendingType) "BYTE attackingType defendingType"//"BYTE attackingType defendingType 0x0F 0x01"
+  #define defWTADisadvantage(attackingType, defendingType) "BYTE defendingType attackingType" //"BYTE attackingType defendingType 0xF1 0xFF"
+  #define endWTATable "BYTE 0xFF 0xFF"
+
+  #define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
+  #define defWeaponDebuffs(str, mag, skl, spd, luk, def, res) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4)) mag"
+
+#endif
+
+#include "External Tables.event"

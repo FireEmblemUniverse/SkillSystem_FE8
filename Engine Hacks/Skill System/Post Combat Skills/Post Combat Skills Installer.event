@@ -1,0 +1,93 @@
+//Post combat Skills loop
+//This is actually called whenever an unit ends their action, not just after an attack
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG $1D308 //hook just before the check for misc event
+jumpToHack(PostCombatLoop)
+ORG $1D2B8 //this used to set state to "cantoing", it's just there to make sure galeforce has priority
+jumpToHack(CheckGaleforce)
+//ORG $39BDC //this added 1 to make the ai move the next unit
+POP
+
+ALIGN 4
+CheckGaleforce: //decides if the unit should be cantoing or not
+#incbin "checkgaleforce.dmp"
+ALIGN 4
+
+PostCombatLoop:
+#incbin "post_loop.dmp"
+POIN PostCombatSkills
+
+PostCombatSkills: //I like having savage blow as the first one because it makes the activation sound play first
+POIN SavageBlow Despoil Lifetaker //lifetaker should probably go after any messages because it can mess with the palette a bit
+POIN Canto CantoPlus Galeforce //this order for canto and friends is the only one I tested
+WORD 0 //Terminator
+MESSAGE PostCombatLoop
+MESSAGE Galeforce
+Lifetaker:
+#incbin "lifetaker.dmp"
+POIN SkillTester
+WORD LifetakerID
+POIN LifetakerEvent
+LifetakerEvent:
+#include "LifetakerEvent.event"
+ALIGN 4
+
+Despoil:
+#incbin "despoil.dmp"
+POIN SkillTester
+WORD DespoilID
+POIN DespoilEvent
+DespoilEvent:
+#include "DespoilEvent.event"
+ALIGN 4
+
+SavageBlow:
+#incbin "savageblow.dmp"
+POIN SkillTester
+WORD SavageBlowID
+POIN SavageBlowEvent
+POIN AuraSkillCheck
+SavageBlowEvent:
+#include "SavageBlowEvent.event"
+ALIGN 4
+
+Galeforce:
+#incbin "galeforce.dmp"
+POIN SkillTester
+WORD GaleforceID
+POIN GaleforceEvent
+GaleforceEvent:
+#include "GaleforceEvent.event"
+ALIGN 4
+
+Canto:
+#incbin "canto.dmp"
+POIN SkillTester
+WORD CantoID
+
+CantoPlus:
+#incbin "cantoplus.dmp"
+POIN SkillTester
+WORD CantoPlusID
+
+PUSH //some changes to vanilla code to make everything work
+ORG $1D24C //check for canto, modified to just check for cantoing bit set
+SHORT 0x7B18
+SHORT 0x2102
+SHORT 0x4008
+SHORT 0x46C0; SHORT 0x46C0; SHORT 0x46C0; SHORT 0x46C0; SHORT 0x46C0
+SHORT 0x2802
+ORG $18754 //this used to set state to "turn ended"
+SHORT 0x46C0
+ORG $1D264 //this used to be part of the "check if already cantoing"
+SHORT 0x2000
+ORG $1D26C //this used to be part of the "check for this turn's action"
+SHORT 0x2110
+ORG $323A0 //making dance not clear the galeforce flag
+SHORT 0xFFBD
+SHORT 0xFFFF
+ORG $39B98 //this sets 00040000 to the status bitfield thing for some reason on non-player units
+SHORT 0x46C0
+POP

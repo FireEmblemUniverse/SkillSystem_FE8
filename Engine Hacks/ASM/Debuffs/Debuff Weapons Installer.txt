@@ -1,0 +1,40 @@
+#define Extra_Data_Location 0x0203F100
+#define ItemTable 0x809B10
+
+
+#define defWeaponDebuffs(str, skl, spd, luk, def, res) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4))"
+
+ORG 0x2B54E
+SHORT 0x0000
+jumpToHack(damagedThisTurn)
+
+ORG 0x2B422
+#incbin "Set Hit This Turn.dmp"
+
+ORG 0x2C078
+callHack_r3(setDebuffs)
+
+
+//If not using Fates EXP hack
+/*
+ORG 0x2C56C
+mov r1, #0x01
+and r0, r1
+*/
+
+
+
+ORG FreeSpace
+ALIGN 4
+damagedThisTurn:
+#incbin "Set Damaged This Turn.dmp"
+
+setDebuffs:
+#incbin "Set Debuffs.dmp"
+WORD Extra_Data_Location
+POIN ItemTable
+POIN DebuffTable
+
+DebuffTable:
+defWeaponDebuffs(0,0,0,0,0,0) //let 0-index entry be no debuffs.
+defWeaponDebuffs(0,1,1,0,2,2) //Bronze Shuriken debuff.

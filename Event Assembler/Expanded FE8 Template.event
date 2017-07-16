@@ -1,0 +1,75 @@
+//Made by CrazyColorz5 of Fire Emblem Universe
+//Based off of Camtech75's Skeleton
+#include EAstdlib.event
+
+#ifndef InlineEvents
+  //Assume the Map is contained and documented elsewhere.
+  #define ChName_DefaultChapterOffset 0x01000000
+  PUSH
+  ORG ChName_DefaultChapterOffset
+#endif
+
+#define ChName_ID 0x01 //TODO: Change this depending on what chapter you're making.
+EventPointerTable(ChName_ID, ChName_ThisChapter)
+
+ChName_ThisChapter:
+
+POIN ChName_TurnBasedEvents
+POIN ChName_CharacterBasedEvents
+POIN ChName_LocationBasedEvents
+POIN ChName_MiscBasedEvents
+POIN ChName_Dunno ChName_Dunno ChName_Dunno
+POIN ChName_Tutorial
+POIN ChName_Ballista1 ChName_Ballista2
+POIN ChName_Units1 ChName_Units1
+POIN $0 $0 $0 $0 $0 $0
+POIN ChName_BeginningScene ChName_EndingScene
+
+ChName_TurnBasedEvents:
+TURN
+
+ChName_CharacterBasedEvents:
+CHAR
+
+ChName_LocationBasedEvents:
+LOCA
+
+ChName_MiscBasedEvents:
+CauseGameOverIfLordDies
+//Add Win Condition
+AFEV
+
+ChName_Dunno:
+END_MAIN
+
+ChName_Tutorial:
+END_MAIN
+
+ChName_Ballista1:
+BLST
+
+ChName_Ballista2:
+BLST
+ALIGN 4
+
+ChName_Units1:
+//Add Player Units
+UNIT
+
+
+ChName_BeginningScene:
+FADU 0x8
+
+ENDB
+
+
+ChName_EndingScene:
+
+MNCH 0x01 //TODO: Replace with proper code for next chapter.
+ENDA
+
+
+#ifndef InlineEvents
+  MESSAGE Events end at offset CURRENTOFFSET
+  POP
+#endif

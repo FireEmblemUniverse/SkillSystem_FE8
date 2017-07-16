@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Adept001
+POIN TSA_Adept002
+POIN TSA_Adept003
+
+GraphicsList:
+POIN Graphics_Adept001
+POIN Graphics_Adept002
+POIN Graphics_Adept003
+
+PalettesList:
+POIN Pal_Adept001
+POIN Pal_Adept002
+POIN Pal_Adept003
+
+TSA_Adept001:
+#incbin "Adept001.map.bin"
+TSA_Adept002:
+#incbin "Adept002.map.bin"
+TSA_Adept003:
+#incbin "Adept003.map.bin"
+
+Graphics_Adept001:
+#incbin "Adept001.img.bin"
+Graphics_Adept002:
+#incbin "Adept002.img.bin"
+Graphics_Adept003:
+#incbin "Adept003.img.bin"
+
+Pal_Adept001:
+#incbin "Adept001.pal.bin"
+Pal_Adept002:
+#incbin "Adept002.pal.bin"
+Pal_Adept003:
+#incbin "Adept003.pal.bin"

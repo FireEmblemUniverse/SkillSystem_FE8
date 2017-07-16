@@ -1,0 +1,257 @@
+INLINE SkillAnimationPointerTable,Skill Pointer
+0x0,0
+AcrobatID 1 ,0
+PassID 2 ,0
+CantoPlusID 3 ,0
+WaryFighterID 4 ,0
+SureShotID 5 ,0
+ProvokeID 6 ,0
+SaviorID 7 ,0
+MercyID 8  ,0
+FrenzyID 9 ,0
+AdeptID 10 ,AdeptAnim|IsPointer
+CantoID 11 ,0
+CunningID 12 ,0
+LethalityID 13 ,0
+LunaID 14 ,LunaAnim|IsPointer
+SolID 15 ,SolAnim|IsPointer
+AetherID 16 ,AetherAnim|IsPointer
+AstraID 17 ,AstraAnim|IsPointer
+DisciplineID 18 ,0
+SwordbreakerID 19 ,0
+LancebreakerID 20 ,0
+AxebreakerID 21 ,0
+BowbreakerID 22 ,0
+TomebreakerID 23 ,0
+AegisID 24 ,AegisAnim|IsPointer
+PaviseID 25 ,PaviseAnim|IsPointer
+DuelistsBlowID 26 ,0
+DeathBlowID 27 ,0
+DartingBlowID 28 ,0
+WardingBlowID 29 ,0
+CertainBlowID 30 ,0
+ArmoredBlowID 31 ,0
+VantageID 32 ,0
+DesperationID 33 ,0
+WrathID 34 ,0
+CounterID 35 ,0
+CounterMagicID 36 ,0
+MiracleID 37 ,0
+SwordfaireID 38 ,0
+LancefaireID 39 ,0
+AxefaireID 40 ,0
+BowfaireID 41 ,0
+TomefaireID 42 ,0
+CritUpID 43 ,0
+SlayerID 44 ,0
+SummonID 45 ,0
+DanceID 46 ,0
+LifetakerID 47 ,0
+GaleforceID 48 ,0
+RenewalID 49 ,0
+NiceThighsID 50 ,0
+DemoiselleID 51 ,0
+GentilhommeID 52 ,0
+MaleficAuraID 53 ,0
+InspirationID 54 ,0
+CharmID 55 ,0
+VoiceOfPeaceID 56 ,0
+AmaterasuID 57 ,0
+SpurStrID 58 ,0
+SpurMagID 59 ,0
+SpurSpdID 60 ,0
+SpurDefID 61 ,0
+SpurResID 62 ,0
+NihilID 63 ,0
+NullifyID 64,0
+ParagonID 65 ,0
+ImpaleID 66 ,ImpaleAnim|IsPointer
+ColossusID 67,ColossusAnim|IsPointer
+RallyStrID 68 ,0
+RallyMagID 69 ,0
+RallySklID 70 ,0
+RallySpdID 71 ,0
+RallyLukID 72 ,0
+RallyDefID 73 ,0
+RallyResID 74 ,0
+RallyMovID 75 ,0
+RallySpectrumID 76 ,0
+BowRangeUpID 77,0
+StaffSavantID 78,0
+LiveToServeID 79 ,0
+IgnisID 80,IgnisAnim|IsPointer
+LifeAndDeathID 81,0
+LockTouchID 82 ,0
+LungeID 83,0
+IntimidateID 84 ,0
+OpportunistID 85,0
+TrampleID 86,0
+CamaraderieID 87 ,0
+ForeignPrincessID 88,0
+SavageBlowID 89,0
+ReliefID 90 ,0
+TantivyID 91 ,0
+FocusID 92 ,0
+BondID 93 ,0
+AnathemaID 94 ,0
+LilysPoiseID 95 ,0
+0x60,0
+0x61,0
+0x62,0
+0x63,0
+0x64,0
+0x65,0
+0x66,0
+0x67,0
+0x68,0
+0x69,0
+0x6a,0
+0x6b,0
+0x6c,0
+0x6d,0
+0x6e,0
+0x6f,0
+0x70,0
+0x71,0
+0x72,0
+0x73,0
+0x74,0
+0x75,0
+0x76,0
+0x77,0
+0x78,0
+0x79,0
+0x7a,0
+0x7b,0
+0x7c,0
+0x7d,0
+0x7e,0
+0x7f,0
+0x80,0
+0x81,0
+0x82,0
+0x83,0
+0x84,0
+0x85,0
+0x86,0
+0x87,0
+0x88,0
+0x89,0
+0x8a,0
+0x8b,0
+0x8c,0
+0x8d,0
+0x8e,0
+0x8f,0
+0x90,0
+0x91,0
+0x92,0
+0x93,0
+0x94,0
+0x95,0
+0x96,0
+0x97,0
+0x98,0
+0x99,0
+0x9a,0
+0x9b,0
+0x9c,0
+0x9d,0
+0x9e,0
+0x9f,0
+0xa0,0
+0xa1,0
+0xa2,0
+0xa3,0
+0xa4,0
+0xa5,0
+0xa6,0
+0xa7,0
+0xa8,0
+0xa9,0
+0xaa,0
+0xab,0
+0xac,0
+0xad,0
+0xae,0
+0xaf,0
+0xb0,0
+0xb1,0
+0xb2,0
+0xb3,0
+0xb4,0
+0xb5,0
+0xb6,0
+0xb7,0
+0xb8,0
+0xb9,0
+0xba,0
+0xbb,0
+0xbc,0
+0xbd,0
+0xbe,0
+0xbf,0
+0xc0,0
+0xc1,0
+0xc2,0
+0xc3,0
+0xc4,0
+0xc5,0
+0xc6,0
+0xc7,0
+0xc8,0
+0xc9,0
+0xca,0
+0xcb,0
+0xcc,0
+0xcd,0
+0xce,0
+0xcf,0
+0xd0,0
+0xd1,0
+0xd2,0
+0xd3,0
+0xd4,0
+0xd5,0
+0xd6,0
+0xd7,0
+0xd8,0
+0xd9,0
+0xda,0
+0xdb,0
+0xdc,0
+0xdd,0
+0xde,0
+0xdf,0
+0xe0,0
+0xe1,0
+0xe2,0
+0xe3,0
+0xe4,0
+0xe5,0
+0xe6,0
+0xe7,0
+0xe8,0
+0xe9,0
+0xea,0
+0xeb,0
+0xec,0
+0xed,0
+0xee,0
+0xef,0
+0xf0,0
+0xf1,0
+0xf2,0
+0xf3,0
+0xf4,0
+0xf5,0
+0xf6,0
+0xf7,0
+0xf8,0
+0xf9,0
+0xfa,0
+0xfb,0
+0xfc,0
+0xfd,0
+0xfe,0
+0xff,0

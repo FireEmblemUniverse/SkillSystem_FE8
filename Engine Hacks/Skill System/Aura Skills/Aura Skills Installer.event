@@ -1,0 +1,114 @@
+//Aura skills installer
+
+PUSH
+//things go here
+ORG 0x2B1AC //fix triangle attack
+    BYTE 0x02
+
+POP
+
+ALIGN 4
+AuraSkillCheck:
+#incbin "AuraSkillCheck.dmp"
+POIN AuraSkillTest
+ALIGN 4
+AuraSkillTest:
+#incbin "AuraSkillTest.dmp"
+POIN SkillTester
+
+SpurStr: //checked in fe8_calc_loop
+#incbin "SpurStr.dmp"
+POIN AuraSkillCheck
+WORD SpurStrID
+
+SpurMag: //checked in fe8_calc_loop
+#incbin "SpurMag.dmp"
+POIN AuraSkillCheck
+WORD SpurMagID
+
+// SpurSkl: //checked in fe8_calc_loop
+// #incbin "SpurSkl.dmp"
+// POIN AuraSkillCheck
+// WORD SpurSklID
+
+SpurSpd: //checked in fe8_calc_loop
+#incbin "SpurSpd.dmp"
+POIN AuraSkillCheck
+WORD SpurSpdID
+
+// SpurLuk: //checked in fe8_calc_loop
+// #incbin "SpurLuk.dmp"
+// POIN AuraSkillCheck
+// WORD SpurLukID
+
+SpurDef: //checked in fe8_calc_loop
+#incbin "SpurDef.dmp"
+POIN AuraSkillCheck
+WORD SpurDefID
+
+SpurRes: //checked in fe8_calc_loop
+#incbin "SpurRes.dmp"
+POIN AuraSkillCheck
+WORD SpurResID
+
+Demoiselle:
+#incbin "Demoiselle.dmp"
+POIN AuraSkillCheck
+WORD DemoiselleID
+
+Gentilhomme:
+#incbin "Gentilhomme.dmp"
+POIN AuraSkillCheck
+WORD GentilhommeID
+
+MaleficAura:
+#incbin "MaleficAura.dmp"
+POIN AuraSkillCheck
+WORD MaleficAuraID
+
+Intimidate:
+#incbin "Intimidate.dmp"
+POIN AuraSkillCheck
+WORD IntimidateID
+
+Inspiration:
+#incbin "Inspiration.dmp"
+POIN AuraSkillCheck
+WORD InspirationID
+
+Charm:
+#incbin "Charm.dmp"
+POIN AuraSkillCheck
+WORD CharmID
+
+VoiceOfPeace:
+#incbin "VoiceOfPeace.dmp"
+POIN AuraSkillCheck
+WORD VoiceOfPeaceID
+
+Tantivy:
+#incbin "Tantivy.dmp"
+POIN SkillTester
+POIN AuraSkillCheck
+WORD TantivyID
+
+Focus:
+#incbin "Focus.dmp"
+POIN SkillTester
+POIN AuraSkillCheck
+WORD FocusID
+
+Anathema:
+#incbin "Anathema.dmp"
+POIN AuraSkillCheck
+WORD AnathemaID
+
+LilysPoise:
+#incbin "LilysPoise.dmp"
+POIN AuraSkillCheck
+WORD LilysPoiseID
+
+UpWithArch:
+#incbin "UpWithArch.dmp"
+POIN AuraSkillCheck
+WORD UpWithArchID

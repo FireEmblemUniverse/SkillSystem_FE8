@@ -1,0 +1,7 @@
+Additional Data Format:
+0-2: Debuffs, 4 bits each (str/skl/spd/def/res/luk)
+3: Rallys (bit 7 = rally move, bit 8 = rally spectrum)
+4: Str/Skl Silver Debuff (5 bits), bit 6 = half magic?, bit 7 = half strength, HO bit = Hexing Rod
+5: Magic
+6: LO Nibble = Dual Guard Meter?
+7: unused3

@@ -1,0 +1,13 @@
+#ifndef MSG_EXT_SKILLSYSTEM_EVENT
+#define MSG_EXT_SKILLSYSTEM_EVENT
+
+#define rIfHasSkill(aSkillId) "rIf(prCheckSkill, aSkillId)"
+#define rIfHasNotSkill(aSkillId) "rIf(prCheckNotSkill, aSkillId)"
+
+prCheckNotSkill: // Use rIf(prCheckNotSkill, skillId)
+    rNot
+prCheckSkill: // Use rIf(prCheckSkill, skillId)
+    SHORT 0xB500 0x4803 0x4686 0x1C08 0x1C11 0xF800 0xBC02 0x4708
+    POIN SkillTester
+
+#endif // MSG_EXT_SKILLSYSTEM_EVENT

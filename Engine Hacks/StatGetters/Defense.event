@@ -1,0 +1,24 @@
+#ifndef MODULAR_GETTER_DEFENSE_EVENT
+#define MODULAR_GETTER_DEFENSE_EVENT
+
+#include "_Common.event"
+
+pDefenseModifiers: // Defense
+	POIN prAddUnitDefense prDebuffDef prAddEquipDefense prRallyDef
+WORD 0
+
+prAddUnitDefense:
+	rAdd(rSByteAt(UNIT_DEFENSE))
+
+prAddEquipDefense:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemDefBonus)))
+
+prDebuffDef:
+	#incbin "_asm/DebuffDef.bin"
+	WORD DebuffTable
+
+prRallyDef:
+	#incbin "_asm/RallyDef.bin"
+	WORD DebuffTable
+
+#endif // MODULAR_GETTER_DEFENSE_EVENT

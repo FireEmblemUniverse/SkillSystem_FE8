@@ -1,0 +1,128 @@
+//Essential Fixes for FE8
+//Install with Event Assembler
+PUSH
+//Set Default Options
+  ORG $30d8a  //animations type 2
+  SHORT $3306
+  ORG $30da6  //Game/text speed Fast, Autocursor off
+  SHORT $22d0
+
+//Break HP Cap for Players/NPCs (credit Solum)
+  ORG $181ee
+  SHORT $1c11
+  ORG $2bf4c
+  BYTE $7f
+
+//skip hand axe wait for return
+  ORG $514e
+  SHORT 0
+  ORG $58c90
+  POIN $596cc
+
+//12 Tracks/16 Sounds Fix (credit Agro/Brendor)
+  ORG $2900
+  SHORT $e00c
+  ORG $2924
+  SHORT $280c $d00e $200c
+  ORG $22440c
+  BYTE $10
+  ORG $224414
+  SHORT $67b0 $0300 $0010
+
+//Fix Weak Promoted Enemies (credit Gryz)
+  ORG $180b4
+  SHORT $2a00 $dc00 $2201
+
+//Hold A to speed up movement (credit Gryz)
+  ORG $794ee
+  SHORT 0
+
+//Skip H&S screen
+  ORG $CC20C
+  SHORT 0
+
+//Skip Intro cutscene
+  ORG $C6714
+  SHORT 0
+
+//Skip New Game text
+  ORG $C4928
+  SHORT 0
+
+//Silence New Game music
+  ORG $C4A0C
+  BYTE 0
+
+//Autocursor Fix (credit Vennobennu)
+  ORG $3325a
+  SHORT $e021
+
+//Pierce Glitch Fix (credit Brendor)
+  ORG $2b290
+  BYTE $a0
+  // ORG $2b482
+  // BYTE $a0
+
+//Unlock Sound Room songs
+  ORG $aede0
+  BYTE $FF
+
+//CG Fade glitch
+  ORG $EBCA
+  BYTE 8
+  ORG $EDE0
+  SHORT $1c0a
+
+//Enemy Control Glitch Fix (Credits to Brendor)
+  ORG 0x377A0
+  SHORT 0xE007
+
+//Mode Coefficient EXP fix (credit Vennobennu)
+  ORG 0x2C474
+  WORD 0
+
+#include "Extensions/Hack Installation.txt"
+//Anti-Huffman Patch, by Hextator and Nintenlord
+{
+  ORG 0x2BA4 //Pointer Tester
+  BYTE 0x00 0xB5 0xC2 0x0F 0x02 0xD0 
+  BL(uncompHelper) /*0x07 0xF0 0x63 0xFB*/
+  SHORT 0xE001
+  BL(compressedHelper) /*0x07 0xF0 0x58 0xFB*/
+  SHORT 0xBD00
+  
+  ORG 0xA24A
+  BYTE 0x05 0xD0 0x04 0x49 0x28 0x1C 0x00 0xF0 0x16 0xF8 0x35 0x60 0x00 0xE0 0x01 0x48 0x70 0xBC 0x00 0xBD 0x00 0x00 
+  WORD 0x0202A6AC
+  
+  compressedHelper:
+  SHORT 0xB500 0x4A02 0x6812
+  BL(0xD18C8) //In-game unencoding routine, I assume
+  SHORT 0xBD00 
+  WORD 0x03004150
+  
+  uncompHelper:
+  jumpToHack(AntiHuffmanFreeSpace) //FEditor uses r2 instead of r3, but it shouldn't matter.
+  
+  ORG 0x464470
+  AntiHuffmanFreeSpace: //Can be relocated as necessary.
+  BYTE 0x80 0x23 0x1B 0x06 0xC0 0x1A 0x02 0x78 0x0A 0x70 0x01 0x31 0x01 0x30 0x00 0x2A 0xF9 0xD1 0x70 0x47
+}
+
+//Animation Hacks by Hextator
+{
+//C01 hack
+ORG $46446c
+WORD 0x80522cd
+ORG $5138
+WORD $47004800 $8464421
+ORG $464420
+WORD 0x401820FF 0xD00A2801 0xD8062818 0x6A10D103 0x62103804 0x4B0BE013 0x4B0B4718 0x041B4718 0x009B0E1B 0x3101A102 0x4908468E 0x46C04708 0xD1002801 0x33042300 0x1AC06A10 0x1C206210 0x46C0BD30 0x08005145 0x08005159 0x080522CD
+
+//C48 hack
+ORG $58d64
+WORD $8464400
+ORG $464400
+WORD 0x3D046A3D 0x022D682D 0xA5020C28 0x46AE3501 0x47284D01 0x47004801 0x08071991 0x080596CD
+}
+POP

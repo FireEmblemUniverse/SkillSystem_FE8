@@ -1,0 +1,40 @@
+one side's hp loaded at 513f8 (attacker?)
+other side at 513f2 (defender?)
+
+hp stored at 203e1ac and 203e1ae
+
+buffer for tiles at 2017248 and 448
+(amount to heal at 0x48 of r5's 6c struct - 8052890)
+
+
+oh snap that struct is efxhpbarresire
+called in 80525e8 (runesword hit) which is called at 8055424 (runesword anim each frame)
+
+normal damage done at 80523ec (loaded at 8052330) change to efxhpbarresire to drain hp (must have hp drain effect to work correctly tho)
+(also should edit the routine to be simultaneous but like meh)
+
+80585bc checks for hp drain bit in battle buffer - BUT it fails to drain hp correctly...
+
+802b71a checks for drain hp effect:
+  load attacker's max hp (r0) and current hp (r1)
+  load damage dealt (r2)
+  add damage to currhp (r1)
+  check currhp >= maxhp
+  update hp to new value anyway, and set the drain hp bit.
+
+805282c is important?
+
+so 80523ec or 805282c?
+
+aha update the values at 203e1ac and 203e1ae to update the HP. (written at 805243e)
+
+STRUCT NOTES:
+2c is a counter - every 2 frames for hp decrease, every 4 frames for healing... maybe make it every other frame as well???
+48 is the hp change. find out how this is written! 80523ae - part of 8052304
+  this is a word, but really it could just be a halfword or even a byte. CHANGE TO SHORT
+4c is the current hp as well? CHANGE TO SHORT
+50 is the final hp CHANGE TO SHORT
+2e is the current hp. ALREADY A SHORT
+60 is the defender's AIS ptr
+5c is the attacker's AIS ptr
+64 is the initiator

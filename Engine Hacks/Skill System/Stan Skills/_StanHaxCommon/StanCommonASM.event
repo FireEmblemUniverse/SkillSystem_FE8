@@ -1,0 +1,28 @@
+#ifndef INSTALL_STAN_COMMON_ASM_EVENT
+#define INSTALL_STAN_COMMON_ASM_EVENT
+
+ALIGN 4
+prUnit_CanBeOnPosition:
+	#incbin "asm/CanUnitBeOnPosition.bin"
+
+ALIGN 4
+prUnit_CanStandOnPosition:
+	#incbin "asm/CanUnitStandOnPosition.bin"
+
+ALIGN 4
+prMOVEUNIT_MoveTowards:
+	#incbin "asm/MoveMOVEUNITTowards.bin"
+
+ALIGN 4
+prClearRangeMap:
+	#incbin "asm/ClearRangeMap.bin"
+
+ALIGN 4
+prClearMoveMap:
+	#incbin "asm/ClearMoveMap.bin"
+
+ALIGN 4
+prClearRangeAndMoveMap:
+	#incbin "asm/ClearRangeAndMoveMap.bin"
+
+#endif // INSTALL_STAN_COMMON_ASM_EVENT

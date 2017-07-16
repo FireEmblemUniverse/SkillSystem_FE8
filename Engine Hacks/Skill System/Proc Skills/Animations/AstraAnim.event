@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Astra001
+POIN TSA_Astra002
+POIN TSA_Astra003
+
+GraphicsList:
+POIN Graphics_Astra001
+POIN Graphics_Astra002
+POIN Graphics_Astra003
+
+PalettesList:
+POIN Pal_Astra001
+POIN Pal_Astra002
+POIN Pal_Astra003
+
+TSA_Astra001:
+#incbin "Astra001.map.bin"
+TSA_Astra002:
+#incbin "Astra002.map.bin"
+TSA_Astra003:
+#incbin "Astra003.map.bin"
+
+Graphics_Astra001:
+#incbin "Astra001.img.bin"
+Graphics_Astra002:
+#incbin "Astra002.img.bin"
+Graphics_Astra003:
+#incbin "Astra003.img.bin"
+
+Pal_Astra001:
+#incbin "Astra001.pal.bin"
+Pal_Astra002:
+#incbin "Astra002.pal.bin"
+Pal_Astra003:
+#incbin "Astra003.pal.bin"

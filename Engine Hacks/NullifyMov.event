@@ -1,0 +1,15 @@
+//Nullify Move based on AI
+PUSH
+ORG $1cb74 //map display
+jumpToHack(NullifyMov)
+ORG $87300 //info screen
+jumpToHack(NullifyMov+0x28)
+ORG $1b898 //danger zone
+jumpToHack(NullifyMovDZ)
+POP
+
+ALIGN 4
+NullifyMov:
+#incbin "ASM/NullifyMov.dmp"
+NullifyMovDZ:
+#incbin "ASM/nullifydangerzone_rescue.dmp"

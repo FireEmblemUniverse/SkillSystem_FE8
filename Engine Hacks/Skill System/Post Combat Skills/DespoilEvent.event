@@ -1,0 +1,36 @@
+Despoil:
+CAM1 0xFFFF
+CUMO 0xFFFF
+STAL 0x24
+CURE
+SMOV 0x3 RedGem
+GIVEITEMTO 0xFFFF
+NoFade
+ENDA
+
+//PlayerDespoil:
+//GiveMoney(1000)
+//NoFade
+//ENDA
+/*
+@writing code to ram (at setval slots) so I can make the cursor flash in the current unit, probably should redo this
+ldr	r1,=#0x30004C4
+ldr	r0,=#0x00001B22
+str	r0, [r1,#0x00]
+ldr	r0,=#0x00003B20
+ldrh	r2, [r4,#0x10]
+lsl	r2, #0x10
+add	r0, r2
+str	r0, [r1,#0x04]
+ldr	r0,=#0x00240E20
+str	r0, [r1,#0x08]
+ldr	r0,=#0x00003B22
+str	r0, [r1,#0x0C]
+ldr	r0,=#0x00000120
+str	r0, [r1,#0x10]
+ldr	r0,=#0x800D07C		@event engine thingy
+mov	lr, r0
+ldr	r0,=#0x30004C4		@this event is going to be just "flash cursor"
+mov	r1, #0x01		@0x01 = wait for events
+.short	0xF800
+*/

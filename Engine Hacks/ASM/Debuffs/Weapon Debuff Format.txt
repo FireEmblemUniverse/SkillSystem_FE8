@@ -1,0 +1,12 @@
+UNKNOWN (Zero)
+33
+1
+NEDU
+NULL
+
+0x80 = half str debuff
+0x40 = half mag debuff
+0x20 = silver debuff
+0x1F -> index in debuff table for shurikens, 0 means no debuff
+
+debuff table - each entry is 0x3 bytes long; same as the debuff in extra data.

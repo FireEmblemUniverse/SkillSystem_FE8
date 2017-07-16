@@ -1,0 +1,15 @@
+##Code that calls ASM routine in events.
+ASMC, 0x17, 8, -language:FE6 -repeatable -indexMode:8
+##Offset of the ASM routine. Thumb routines
+##need to be added 1.
+	Offset, 4, 4, -pointer:ASM
+
+ASMC, 0x3E, 8, -language:FE7 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+
+ASMC, 0xD40, 8, -language:FE8 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+
+#Calls ASM code if bit 0x8 in event execution bitfield is not set
+ASMC2, 0xD41, 8, -language:FE8 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM

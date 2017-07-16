@@ -1,0 +1,184 @@
+//Battle procs loop
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG $2b3ec
+jumpToHack(ProcLoopParent)
+
+ORG $59064
+jumpToHack(SkillActivationAnims)
+POP
+
+ProcLoopParent:
+#incbin "proc_loop.dmp"
+POIN Proc_Start 
+POIN DownWithArch
+POIN Proc_Sureshot Proc_Aegis Proc_Pavise Proc_Luna Proc_Sol Proc_Lethality Proc_Bane Proc_Moonbow //etc
+POIN Proc_Mercy Proc_Miracle Proc_Adept Proc_Astra Proc_Impale Proc_Colossus Proc_Ignis Proc_Aether Proc_Counter Proc_CounterMagic
+POIN Proc_FlashyMode 
+POIN Chargeups Proc_Finish 0
+
+ALIGN 4
+Proc_Start:
+#incbin "proc_start.dmp"
+
+ALIGN 4
+Proc_Finish:
+#incbin "proc_finish.dmp"
+
+ALIGN 4
+Proc_Sureshot:
+#incbin "proc_sureshot.dmp"
+POIN SkillTester
+WORD SureShotID
+
+Proc_Aegis:
+#incbin "proc_aegis.dmp"
+POIN SkillTester
+WORD AegisID
+
+Proc_Adept:
+#incbin "proc_adept.dmp"
+POIN SkillTester
+WORD AdeptID
+
+Proc_Astra:
+#incbin "proc_astra.dmp"
+POIN SkillTester
+WORD AstraID
+
+Proc_Pavise:
+#incbin "proc_pavise.dmp"
+POIN SkillTester
+WORD PaviseID
+
+Proc_Sol:
+#incbin "proc_sol.dmp"
+POIN SkillTester
+WORD SolID
+
+Proc_Luna:
+#incbin "proc_luna.dmp"
+POIN SkillTester
+WORD LunaID
+
+Proc_Lethality:
+#incbin "proc_lethality.dmp"
+POIN SkillTester
+WORD LethalityID
+
+Proc_Aether:
+#incbin "proc_aether.dmp"
+POIN SkillTester
+WORD AetherID
+
+Proc_Counter:
+#incbin "proc_counter.dmp"
+POIN SkillTester
+WORD CounterID
+
+Proc_CounterMagic:
+#incbin "proc_countermagic.dmp"
+POIN SkillTester
+WORD CounterMagicID
+
+Proc_Miracle:
+#incbin "proc_miracle.dmp"
+POIN SkillTester
+WORD MiracleID
+
+Proc_Mercy:
+#incbin "proc_mercy.dmp"
+
+Proc_Impale:
+#incbin "proc_impale.dmp"
+POIN SkillTester
+WORD ImpaleID
+
+Proc_Colossus:
+#incbin "proc_colossus.dmp"
+POIN SkillTester
+WORD ColossusID
+
+Proc_Ignis:
+#incbin "proc_ignis.dmp"
+POIN SkillTester
+WORD IgnisID
+
+Proc_FlashyMode:
+#incbin "proc__flashymode.dmp"
+
+Proc_Moonbow:
+#incbin "proc_moonbow.dmp"
+POIN SkillTester
+WORD MoonbowID
+
+Proc_Bane: //Proc_Bane should always come after Proc_Lethality
+#incbin "proc_bane.dmp" //bane does not proc against counter because it was giving problems
+POIN SkillTester
+WORD CounterID
+WORD CounterMagicID
+WORD BaneID
+
+DownWithArch: //lethality if the enemies name starts with "Arch"
+#incbin "proc_downwitharch.dmp"
+POIN SkillTester
+WORD DownWithArchID
+
+Chargeups:
+#incbin "Chargeups.dmp"
+
+SkillActivationAnims:
+#incbin "activationanims.dmp"
+POIN SkillAnimationPointerTable
+
+LunaAnim:
+{
+#include "Animations/LunaAnim.event"
+}
+
+AstraAnim:
+{
+  #include "Animations/AstraAnim.event"
+}
+
+AdeptAnim:
+{
+  #include "Animations/AdeptAnim.event"
+}
+
+SolAnim:
+{
+  #include "Animations/SolAnim.event"
+}
+
+AetherAnim:
+{
+  #include "Animations/AetherAnim.event"
+}
+
+
+ImpaleAnim:
+{
+  #include "Animations/ImpaleAnim.event"
+}
+
+ColossusAnim:
+{
+  #include "Animations/ColossusAnim.event"
+}
+
+IgnisAnim:
+{
+  #include "Animations/IgnisAnim.event"
+}
+
+PaviseAnim:
+{
+  #include "Animations/PaviseAnim.event"
+}
+
+AegisAnim:
+{
+  #include "Animations/AegisAnim.event"
+}

@@ -1,0 +1,31 @@
+#ifndef MODULAR_GETTER_AID_EVENT
+#define MODULAR_GETTER_AID_EVENT
+
+#include "_Common.event"
+
+pAidModifiers: // Aid
+	POIN prAddUnitFinalConstitution prSubstractOne prAdjustAidIfMounted
+WORD 0
+
+prAddUnitFinalConstitution:
+	rAdd(rCallExternal(prConGetter))
+
+prSubstractOne:
+	rSubConst(1)
+
+prAdjustAidIfMounted:
+{
+	rIfUnitHasAttribute(CA_MOUNTEDAID)
+		rCallSequence(_prNegate _prAddBaseMountedAidBonus _prAddMoreIfNotFemale)
+
+_prNegate:
+	rMinus(rCurrent)
+
+_prAddBaseMountedAidBonus:
+	rAddConst(19)
+
+_prAddMoreIfNotFemale: // Stupid mechanic imo, but we're going vanilla so :shrug:
+	rIfUnitHasNotAttribute(CA_FEMALE, rAddConst(5))
+}
+
+#endif // MODULAR_GETTER_AID_EVENT

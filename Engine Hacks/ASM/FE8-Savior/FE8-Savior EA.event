@@ -1,0 +1,71 @@
+//FE8 Savior
+//By Tequila
+
+// #include EAstdlib.event
+// #include "Extensions/Hack Installation.txt"
+
+#ifdef inBLRange
+	#define Ladder_r2 0xD18C8
+	PUSH
+	ORG $191D0 //skill getter
+	replaceWithHack(SaviorSkl)
+	
+	ORG $19210 //speed getter
+	replaceWithHack(SaviorSpd)
+
+	
+	//Fix the stat screen
+	ORG $8721C
+	SHORT 0x4A00 0xE001
+	POIN SaviorFlag|1
+	BL(Ladder_r2)
+	SHORT 0x46C0
+	
+	ORG $87238
+	SHORT 0x4A00 0xE001
+	POIN SaviorFlag|1
+	BL(Ladder_r2)
+	SHORT 0x46C0
+	
+	ORG $87266
+	SHORT 0x4A01 0x46C0 0xE001
+	POIN SaviorFlag|1
+	BL(Ladder_r2)
+	
+	ORG $87282
+	SHORT 0x4A01 0x46C0 0xE001
+	POIN SaviorFlag|1
+	BL(Ladder_r2)
+	
+	//Removes the red arrows
+	ORG $883B8
+	BL(Remove_Red_Arrows)
+	POP
+
+	ALIGN 4
+	Remove_Red_Arrows:
+	jumpToHack(Really_Remove_Red_Arrows|1)
+	ALIGN 4
+	SaviorSkl:
+	#incbin "SaviorSkl.dmp"
+	POIN SkillTester
+	WORD SaviorID
+	ALIGN 4
+	SaviorSpd:
+	#incbin "SaviorSpd.dmp"
+	POIN SkillTester
+	WORD SaviorID
+	ALIGN 4
+	SaviorFlag:
+	#incbin "SaviorCheck.dmp"
+	POIN SkillTester
+	WORD SaviorID
+	ALIGN 4
+	Really_Remove_Red_Arrows:
+	#incbin "SaviorArrows.dmp"
+	POIN SkillTester
+	WORD SaviorID
+	
+#else
+  ERROR Savior hack must be installed within BL range
+#endif

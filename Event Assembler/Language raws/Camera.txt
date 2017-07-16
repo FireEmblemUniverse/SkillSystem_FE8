@@ -1,0 +1,43 @@
+##Moves camera on chapter map.
+CAM1, 0xB, 8, -game:FE6 -indexMode:8
+##Position to move the camera to.
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+#Chapters: 2, 3, 5...
+CAM1, 0xC, 8, -game:FE6 -indexMode:8
+##Character to move the camera on.
+	Character, 4, 4
+
+
+CAM1, 0x22, 4, -game:FE7 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+CAM1, 0x20, 4, -game:FE7 -indexMode:8
+	Character, 2, 2
+
+##Moves camera on chapter map.
+CAM2, 0x1F, 4, -game:FE7 -indexMode:8
+##Position to move the camera to.
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+CAM1, 0x2628, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+CAM1, 0x2621, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+##Allows camera to move automatically with units
+##during events.
+CMON, 0x3C, 4, -game:FE7 -indexMode:8
+
+##Stops camera from moving automatically with units
+##during events.
+CMOF, 0x3D, 4, -game:FE7 -indexMode:8
+
+
+#Chapters: 4, 9
+CMON, 0x15, 4, -game:FE6 -indexMode:8
+
+#Chapters: 1, 2, 3...
+CMOF, 0x16, 4, -game:FE6 -indexMode:8
+

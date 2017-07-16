@@ -1,0 +1,21 @@
+
+##CAuses warp animation on a unit.
+##Unit isn't actually moved by this code.
+WARP, 0xCC, 12, -game:FE7 -indexMode:8
+##Location of the warp animation.
+	Location, 4, 4, -coordinate:2 -preferredBase:10
+##Whether warp animation is for warping in (animation 
+##goes from up to down) or out (other way around)
+	In or out, 8, 1
+
+WARP, 0xCD, 12, -game:FE7 -indexMode:8
+##Character to do the warp animation on.
+	Character, 4, 4
+	In or out, 8, 1
+
+#Uses the coord data in rB
+WARP_OUT, 0x4120, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+WARP_IN, 0x4121, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed

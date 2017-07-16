@@ -1,0 +1,28 @@
+//FE8 Master Getter installer
+//By Tequila
+
+#ifdef inBLRange
+	
+	#include "Extensions/Hack Installation.txt"
+	#include "Mov Getter/Mov Getter EA.event" //check if this works with nullify move?
+	#include "Con Getter/Con Getter EA.event"
+	
+	ALIGN 4
+	Mov_Getter:
+	#incbin "Mov Getter/Mov_Getter_Rally.dmp"
+	WORD DebuffTable
+	POIN SkillTester
+	WORD CelerityID
+
+	ALIGN 4
+	Con_Getter:
+	#incbin "Con Getter/Con_Getter.dmp"
+	
+	ALIGN 4
+//	Stat_Screen_Mov:
+	//#incbin "Mov Getter/Stat_Screen_Mov.dmp"
+	//POIN Mov_Getter
+	
+#else
+	ERROR _file_ must be installed in BL range
+#endif

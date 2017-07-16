@@ -1,0 +1,80 @@
+0802B2E8 B5F0     push    {r4-r7,r14}
+0802B2EA 4647     mov     r7,r8
+0802B2EC B480     push    {r7}
+0802B2EE 1C05     mov     r5,r0             @r0 = attacker
+0802B2F0 1C0E     mov     r6,r1             @r1 = defender
+0802B2F2 4C24     ldr     r4,=#0x203A608    @&Battle buffer?
+0802B2F4 6820     ldr     r0,[r4]
+0802B2F6 6800     ldr     r0,[r0]
+0802B2F8 0340     lsl     r0,r0,#0xD        @Clear higher bits?
+0802B2FA 0B41     lsr     r1,r0,#0xD
+0802B2FC 2702     mov     r7,#0x2           @Hit
+0802B2FE 1C08     mov     r0,r1
+0802B300 4038     and     r0,r7
+0802B302 2800     cmp     r0,#0x0
+0802B304 D138     bne     #0x802B378        @If miss, end.
+0802B306 2080     mov     r0,#0x80
+0802B308 01C0     lsl     r0,r0,#0x7        @0x0400 ???
+0802B30A 4008     and     r0,r1
+0802B30C 2800     cmp     r0,#0x0
+0802B30E D133     bne     #0x802B378
+0802B310 2080     mov     r0,#0x80          @0x1000
+0802B312 0240     lsl     r0,r0,#0x9
+0802B314 4008     and     r0,r1
+0802B316 2800     cmp     r0,#0x0
+0802B318 D12E     bne     #0x802B378
+0802B31A 2080     mov     r0,#0x80
+0802B31C 0200     lsl     r0,r0,#0x8        @0x0800 -- great shield? lethality?Great Shield
+0802B31E 4680     mov     r8,r0
+0802B320 4001     and     r1,r0
+0802B322 2900     cmp     r1,#0x0
+0802B324 D128     bne     #0x802B378
+0802B326 1C28     mov     r0,r5
+0802B328 3048     add     r0,#0x48          @Equipped item after battle
+0802B32A 8800     ldrh    r0,[r0]
+0802B32C F7ECF9FA bl      #0x8017724        @Get weapon effect
+0802B330 2801     cmp     r0,#0x1           @Poison
+0802B332 D021     beq     #0x802B378        @end
+0802B334 6820     ldr     r0,[r4]           @Reload battle buffer
+0802B336 6800     ldr     r0,[r0]
+0802B338 0340     lsl     r0,r0,#0xD
+0802B33A 0B40     lsr     r0,r0,#0xD
+0802B33C 4038     and     r0,r7             @Hit again
+0802B33E 2800     cmp     r0,#0x0
+0802B340 D11A     bne     #0x802B378        @If miss end
+0802B342 6870     ldr     r0,[r6,#0x4]      @Class
+0802B344 7901     ldrb    r1,[r0,#0x4]      @Class Number
+0802B346 290C     cmp     r1,#0xC
+0802B348 DC16     bgt     #0x802B378
+0802B34A 290B     cmp     r1,#0xB
+0802B34C DB14     blt     #0x802B378        @Check for the two generals
+0802B34E 2008     mov     r0,#0x8           @Attacker level?
+0802B350 5628     ldsb    r0,[r5,r0]
+0802B352 0400     lsl     r0,r0,#0x10
+0802B354 0C00     lsr     r0,r0,#0x10       @unsigned short
+0802B356 2100     mov     r1,#0x0
+0802B358 F7FFF8E8 bl      #0x802A52C        @Somethin. Proc?
+0802B35C 0600     lsl     r0,r0,#0x18
+0802B35E 1600     asr     r0,r0,#0x18
+0802B360 2801     cmp     r0,#0x1
+0802B362 D109     bne     #0x802B378
+0802B364 6823     ldr     r3,[r4]
+0802B366 681A     ldr     r2,[r3]
+0802B368 0351     lsl     r1,r2,#0xD
+0802B36A 0B49     lsr     r1,r1,#0xD
+0802B36C 4640     mov     r0,r8             @0x0800 - great shield?
+0802B36E 4301     orr     r1,r0
+0802B370 4805     ldr     r0,=#0xFFF80000
+0802B372 4010     and     r0,r2
+0802B374 4308     orr     r0,r1
+0802B376 6018     str     r0,[r3]
+0802B378 BC08     pop     {r3}
+0802B37A 4698     mov     r8,r3
+0802B37C BCF0     pop     {r4-r7}
+0802B37E BC01     pop     {r0}
+0802B380 4700     bx      r0
+0802B382 0000     lsl     r0,r0,#0x0
+0802B384 A608     add     r6,=#0x802B3A8
+0802B386 0203     lsl     r3,r0,#0x8
+0802B388 0000     lsl     r0,r0,#0x0
+0802B38A FFF8     bl      lr+#0xFF0

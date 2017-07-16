@@ -1,0 +1,232 @@
+DISCLAIMER:
+All insults are used as jokes and are not supposed to offend anyone.
+If you, however, still feel that you are offended, feel free to rant
+in some hidden corner of the Internet as much as you want.
+
+-------------------------------------------------
+-----------Basic language abilities--------------
+-------------------------------------------------
+
+Comments:
+ /**/ = Ingores everything between the **'s.
+  Example: 
+   MNCH /*Coment!!!11!!*/ 0x55 
+  will look the same to the assembler as:
+   MNCH 0x55  
+  The comments can be nested, meaning /*Co /*mm*/ ent*/ will be
+  commented out completely.
+
+ // = Ingores the rest of the line
+  Example:
+   MNCH 0x55 //lol commentz!!11!! noob, ?!?!?!?!??!?!??!??! orly stfu u suck
+  will look the same to the assembler as:
+   MNCH 0x55
+
+Using labels: 
+ If the first word of a lines ends with :, it is considered to 
+ be a label. A label can be followed by normal code. The part 
+ before : is the labels name. Example:
+  randomName:
+ Label can be used in the code by placing it's name as the pointer 
+ parameter. Example:
+  POIN randomName
+
+Hex/dec/bin numbers.
+ Hex number must ALWAYS start with either 0x or $. Binary numbers
+ end with b or B. Othervise, the number will be interpretetted 
+ as dec. Letters in dec numbers will cause errors and values other than
+ 0 and 1 will cause errors bin numbers. 0x and $ are the same unless 
+ specified othervise. 
+
+Several codes on one line lines:
+ Adding ; to somewhere to a line will make assembler consider
+ the text after ; as a new code instead of parameters of the old code.
+ Note that line can have as many ; as you want.
+
+Arithmetics aka calculating aka math:
+ The following operations are supported:
+ +, -, *, /, %, &, |, ^, <<, >>
+ Dividing with zero naturally causes problems.
+ The following operations are being included, so don't use them
+ as part of names or codes:
+ !, ~
+
+Spelling mistakes:
+ Misspellers will be punished.
+ Muhahahahahahahahaaaaaaaaa!!!!1111!!!!!
+
+-----------------------------------------------
+----------------Preprocessor-------------------
+-----------------------------------------------
+
+Preprocessor is does exactly what you can deduce from the name, it
+will modify the code before passing it to the actual assembler.
+You can interact with preprocessor by using preprocessor commands,
+which you have several at your disposal. All preprocessor commands
+start with #, so they are easy to spot in code. Preprocessor is
+currently only available for assembly, so you won't see preprocessor
+related things in disassembled code.
+
+Defining stuff:
+ You can define a piece of text to mean something else with #define.
+ First parameter is the text that you are giving meaning to and the 
+ second is the real value. Note that using defined things as the
+ real value causes problems. Example:
+  #define Eliwood 1
+ This can be then used in your code like this:
+  IFCA 15 Eliwood
+ The defined name must be made of letters, numbers and underscore '_'.
+
+Definition files:
+ #define file *file path* 
+ The define files themselves are like this:
+  0x01 Eliwood EliwoodLord IronSword
+  0x02 Hector  LynLord     SlimSword
+ This defines Eliwood, EliwoodLord and IronSword as values 1 and
+ Hector, LynLord and SlimSword as values 2.
+
+Undefining:
+ You can use #undef to undefine something defined with
+ #define. Attempting to undefine something that hasn't been defined
+ is ignored.
+
+Checking if something is defined:
+ With #ifdef and #ifndef, you can check if something is defined
+ or not. #endif must be used to sign an end of #if check.
+ #else can be used between #if and #endif to react for opposite
+ result. #if's can stack.
+
+Automatically defined stuff:
+ Event assembler automatically defines _EA_. It also defines either
+ _FE6_, _FE7_ or _FE8_ depending on the selected game. Other defined
+ names are _line_ and _file_ that stand for current line and file,
+ respectably. Undefining or defining any of these leads to undefined 
+ behaviour.
+
+Including other files:
+ Using #include *filePath* you can include extra code and 
+ variable definitions from other files into this.
+
+Including a binary file:
+ You can include a binary file amongst the event assembly
+ with #incbin *file path*. This will copy all data from the
+ file into the part of the code where #incbin is used.
+
+Using double quotes:
+ Surrouding text with "" allows you to force them as single
+ parameter for preprosessor. In the actual code, they will be 
+ treated as normal characters.
+
+Macros:
+ Macros are defined like anything else, except they take parameters too.
+ Example:
+ #define Sieze(eventID,offset,X,Y) "LOCA eventID offset [X,Y] 0xF"
+ Separate parameters are separated by , in the macro definition.
+ After definition, the macro can be then used in the code like this:
+  Sieze(0x20,Sieze_Your_Mom,2,33)
+ And that will look to assembler like this:
+  LOCA 0x20 Sieze_Your_Mom [2,33] 0x0F
+ As with other defines, macros and their parameters must be made from
+ letters, numbers and underscore '_'.
+
+Adding and dumbing the pool:
+ You can add codes into the pool by using AddToPool macro:
+  AddToPool(code)
+ Then later in code you can dump the added line with #pool.
+ The AddToPool is then replaced with a label pointing to the
+ dumped code.
+
+Libraries:
+ Event Assembler Standard Library contains large amount of definitions
+ and macros to help you write code easier and help reduce repetition of 
+ common event structures. You can include EAstdlib by including
+ #include EAstdlib.event in your code. For further info, see EAstdlib.event
+ file, which is just normal text file you can open in text editor.
+ More libraries may be made in future, possibly by other authors.
+
+Built-in Macros:
+ There are some macros that are built into the Event Assembler itself
+ instead of being part of a library. The reason is simple, they can't 
+ be made any other way. These are:
+
+  AddToPool(code)
+   See: Adding and dumbing the pool
+   
+  IsDefined(name)
+   Returns 1 if the name is currently defined, else 0.
+     
+  ConstVector(param1, param2, ..., paramN)
+   Constructs a new vector from the parameters. Example:
+    ConstVector(1, 2, 3, 4, 5, 6, 7)
+   is processed to:
+    [1,2,3,4,5,6,7]
+   
+  DeconstVector(vector)   
+   The reverse of ConstVector, it takes a vector and returns it's 
+   coordinates seoparated by space. Example:
+    DeconstVector([1,2,3,4,5,6,7])
+   is processed to:
+    1 2 3 4 5 6 7
+    
+  ToParameters(vector)
+   Takes a vector and trims the [ and ] from it. Example:
+    ToParameters([1,2,3,4,5,6,7])
+   is processed to:
+    1,2,3,4,5,6,7
+    
+  Signum(value)
+   Takes a value and returns -1 if the values is negative,
+   1 if it's positive and 0 if it's 0.
+  
+  Switch(toSwitchOn, option1, option2,...,optionN)
+   Returns the option specified by the toSwitchOn.
+   If toSwitchOn is 1, then it returns option1, if 2
+   it returns to option2 and etc. Example:
+    Switch(4, 0, 0, 0, 1337, 9001, 9001, 9001)
+   is processed to:
+    1337
+   Attempting to access unspecified option leads
+   the macro getting replaced with empty string.
+
+  String(text)
+   Inserts text as ASCII encoded text.
+
+----------------------------------------
+----------------Codes-------------------
+----------------------------------------
+
+Special codes
+ ORG *Offset*
+  Changes the current offset of assembly. Note that if 
+  this isn't used, the compiler automatically starts to
+  assemble the code to offset 0, which will break the 
+  ROM utterly.
+  
+   Offset = Offset to change to. Can be either
+            smaller or larger than the previous offset.
+ 
+ CURRENTOFFSET
+  Not a code, but a value that can be used as a 
+  parameter by another code.
+ 
+ MESSAGE
+  Sends a message to post to Event Assembler.
+ 
+ ERROR
+  Sends a message to post as an error to Event Assembler.
+ 
+ WARNING
+  Sends a message to post as a warning to Event Assembler.
+ 
+ {
+ }
+  Starts and ends a label scope. Labels defined in a scope
+  are only available in child scopes.
+
+ ALIGN *value* 
+  Aligns current offset by adding to it if necessary. Most 
+  codes require an alignment of 4, so if you get an error
+  about offset not being divisible by a value, use ALIGN before 
+  that code to fix the error.
+
+   Value = The value to pad the offset to.

@@ -1,0 +1,16 @@
+//Contemporary talk and support - put in BL range
+#ifdef inBLRange
+  PUSH
+  ORG $323c2
+  BL(TalkFix)
+  ORG $32438
+  BL(SupportFix)
+  POP
+  ALIGN 4
+  TalkFix:
+  #incbin "ASM\TalkFix.dmp"
+  SupportFix:
+  #incbin "ASM\SupportFix.dmp"
+#else
+  ERROR Talk and Support hack must be installed within BL range
+#endif

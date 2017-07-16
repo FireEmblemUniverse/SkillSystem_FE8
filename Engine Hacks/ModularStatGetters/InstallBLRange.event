@@ -1,0 +1,20 @@
+#ifndef MSG_INSTALL_BLRANGE_EVENT
+#define MSG_INSTALL_BLRANGE_EVENT
+
+#include "eastdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+#include "MSGDefinitions.event"
+
+#include "InjectMovGetters.event"
+#include "InjectConGetters.event"
+
+ALIGN 4
+
+pGotoMovGetter:
+	replaceWithHack(pMovGetter)
+
+pGotoConGetter:
+	replaceWithHack(pConGetter)
+
+#endif // MSG_INSTALL_BLRANGE_EVENT

@@ -1,0 +1,575 @@
+NOTE: These macros are built in to the EA standard library
+and you must include them manually in your file to be able 
+to use them.
+
+
+-------------------------------------------------
+-----------EA Standard Library Macros------------
+-------------------------------------------------
+The corresponding FE6/FE7/FE8 definitions are automatically included unless you define _NO_FE#_DEFINITIONS_ where # is 6, 7, or 8.
+
+
+Chapter Pointer List Editors
+ FE6:
+  EventPointerTable(id,offset)
+ FE7:
+  EventPointerTable(id,offset)
+ FE8:
+  EventPointerTable(id,offset)
+
+  Overwrites a pointer in the event pointer array.
+
+  Parameters:
+   id = ID in the array of pointers to overwrite.
+   offset = Offset of event data.
+
+Escape Point Helpers
+ FE7:
+  EscapePointPointerTable(entry, pointer)
+  NPCEscapePointPointerTable(entry, pointer)
+ FE8:
+  EscapePointPointerTable(entry, pointer)
+  NPCEscapePointPointerTable(entry, pointer)
+  
+  Points the given chapter's escape points, for enemies and NPCs respctively, to the given pointer.
+  
+  Parameters:
+   entry = the chapter event id number to define tiles for
+   pointer = pointer to escape tile list
+  
+ FE7:
+  EscapePoint(xLoc, yLoc, exitAnimation)
+  TerminateEscapePoints
+  EscapePointEnd
+ FE8:
+  EscapePoint(xLoc, yLoc, exitAnimation)
+  TerminateEscapePoints
+  EscapePointEnd
+  
+  Define escape points with EscapePoint, then TerminateEscapePoints (or EscapePointEnd) when you're done. Make a pointer before the list and use it for your PointerTable.
+  
+  Parameters:
+   xLoc = x-coordinate of the escape point
+   yLoc = y-coordinate of the escape point
+   exitAnimation = one of MoveLeft, MoveRight, MoveUp, MoveDown, or NoMove
+
+World Map Pointer Table List Editors
+ FE7:
+  WorldMapPointerTable(id,offset)
+  
+  Overwrites a pointer in the world map pointer array.
+
+  Parameters:
+   id = ID in the array of pointers to overwrite.
+   offset = Offset of event data.
+
+Execute Preparations Screen
+ FE7: 
+  GotoPrepScreen
+ FE8:
+  GotoPrepScreen
+
+  Goes to preparations screen if programmed.
+
+Turn Event Helpers
+ FE6:
+  TurnEventPlayer(eventID,pointer,turn)
+  TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns)
+ FE7:
+  TurnEventPlayer(eventID,pointer,turn)
+  TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns)
+ FE8:
+  TurnEventPlayer(eventID,pointer,turn)
+  TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns)
+
+  Makes turn event that occurs before player phase.
+
+  Parameters:
+   eventID = ID to identify event by.
+   pointer = Pointer to event or event label.
+   turn = Turn event occurs on.
+   StartTurn = Turn event starts on.
+   amountofTurns = Number of turns event occurs on.
+
+ 
+ FE6:
+  TurnEventEnemy(eventID,pointer,turn)
+  TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns)
+ FE7:
+  TurnEventEnemy(eventID,pointer,turn)
+  TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns)
+ FE8:
+  TurnEventEnemy(eventID,pointer,turn)
+  TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns)
+
+  Makes turn event that occurs before enemy phase.
+
+  Parameters:
+   eventID = ID to identify event by.
+   pointer = Pointer to event or event label.
+   turn = Turn event occurs on.
+   StartTurn = Turn event starts on.
+   amountofTurns = Number of turns event occurs on.
+
+Character Event Helpers
+ FE6:
+  CharacterEventBothWays(eventID,eventPtr,char1,char2)
+ FE7:
+  CharacterEventBothWays(eventID,eventPtr,char1,char2)
+ FE8:
+  CharacterEventBothWays(eventID,eventPtr,char1,char2)
+
+  Makes character event that can occur be either character
+  talking to the other.
+
+  Parameters:
+   eventID = ID to identify event by.
+   eventPtr = Pointer to event or event label.
+   char1 = Character one in convo.
+   char2 = Character two in convo.
+
+Location Event Helpers
+ Village
+  FE6:
+   Village(eventID,offset,X,Y)
+  FE7
+   Village(eventID,offset,X,Y)
+  FE8:
+   Village(eventID,offset,X,Y)
+
+   Specifies location of village event and makes appropriate map
+   change happen after execution.
+
+   Parameters:
+    eventID = ID to identify event by.
+    offset = Pointer to event or event label.
+    X = Horizontal coordinate of village.
+    Y = Vertical coordinate of village.
+
+ House
+  FE6:
+   House(eventID,offset,X,Y)
+  FE7:
+   House(eventID,offset,X,Y)
+  FE8:
+   House(eventID,offset,X,Y)
+
+   Specifies location of house event.
+  
+   Parameters:
+    eventID = ID to identify event by.
+    offset = Pointer to event or event label.
+    X = Horizontal coordinate of house.
+    Y = Vertical coordinate of house.
+
+ Armory
+  FE6:
+   Armory(offset,X,Y)
+  FE7:
+   Armory(offset,X,Y)
+  FE8:
+   Armory(offset,X,Y)
+
+   Specifies location of an Armory.
+  
+  Parameters:
+   offset: Pointer to shop data or event label.
+   X = Horizontal coordinate of armory.
+   Y = Vertical coordinate of armory. 
+
+ Vendor
+  FE6:
+   Vendor(offset,X,Y)
+  FE7:
+   Vendor(offset,X,Y)
+  FE8:
+   Vendor(offset,X,Y)
+
+   Specifies location of a Vendor.
+  
+  Parameters:
+   offset: Pointer to shop data or event label.
+   X = Horizontal coordinate of vendor.
+   Y = Vertical coordinate of vendor. 
+
+
+ Secret Shop
+  FE6:
+   SecretShop(offset,X,Y)
+  FE7:
+   SecretShop(offset,X,Y)
+  FE8:
+   SecretShop(offset,X,Y)
+
+   Specifies location of a secret shop.
+  
+  Parameters:
+   offset: Pointer to shop data or event label.
+   X = Horizontal coordinate of secret shop.
+   Y = Vertical coordinate of secret shop. 
+
+ Chest
+  FE6:
+   Chest(item,X,Y)
+   ChestMoney(amountOfMoney,X,Y) 
+  FE7:
+   Chest(item,X,Y)
+   ChestMoney(amountOfMoney,X,Y) 
+  FE8:
+   Chest(item,X,Y)
+   ChestMoney(amountOfMoney,X,Y) 
+
+   Specifies location of a chest.
+
+   Parameters:
+    item = Item in chest.
+    amountOfMoney = Amount of money in chest.
+    X = Horizontal coordinate of chest.
+    Y = Vertical coordinate of chest. 
+
+ Door
+  FE6:
+   Door(X,Y)
+  FE7:
+   Door(X,Y)
+  FE8:
+   Door(X,Y)
+
+   Specifies location of an unlockable door.
+
+   Parameters:
+    X = Horizontal coordinate of door.
+    Y = Vertical coordinate of door.
+
+ Seize
+  FE6: 
+   Seize(X,Y)
+   Seize(eventID,offset,X,Y)
+  FE7:
+   Seize(X,Y)
+   Seize(eventID,offset,X,Y)
+  FE8:
+   Seize(X,Y)
+   Seize(eventID,offset,X,Y)
+ 
+   Specifies location to seize.
+
+   Parameters:
+    eventID = ID to identify event by.
+    offset = Pointer to event or event label.
+    X = Horizontal coordinate of seize.
+    Y = Vertical coordinate of seize.
+
+Misc Event Helpers
+ Game Over If Lord Dies
+  FE6:
+   CauseGameOverIfLordDies
+  FE7:
+   CauseGameOverIfLordDies
+  FE8:
+   CauseGameOverIfLordDies
+   
+   Causes game over event to load if event 0x65
+   is loaded.
+
+ Defeat Boss
+  FE6:
+   DefeatBoss(offset)
+  FE7:
+   DefeatBoss(offset)
+  FE8:
+   DefeatBoss(offset)
+
+   Goes to event after event 0x02 (usually boss).
+
+   Parameters:
+    offset = Pointer to event or event label.
+
+ Defeat All
+  FE6:
+   DefeatAll(offset)
+  FE7:
+   DefeatAll(offset)
+  FE8:
+   DefeatAll(offset)
+
+   Goes to event after all enemies are defeated.
+
+   Parameters:
+    offset = Pointer to event or event label.
+
+Common Event Helpers
+ Village Event Yielding Reward
+  FE7:
+   VillageEventItem(textID,background,item)
+   VillageEventMoney(textID,background,money)
+
+   Makes village event that yields item or money.
+
+   Parameters:
+    textID = ID of text bank.
+    background = Background to load for convo.
+    item = Item to give.
+    money = Amount of money to give.
+ House Event
+  FE7:
+   HouseEvent(textID,background)
+
+   Makes a house event.
+   
+   Parameters:
+    textID = ID of text bank.
+    background = Background to load for convo.
+
+ Convo Event
+  FE7:
+   ConvoEvent(textID)
+   
+   Creates basic conversation event.
+
+   Parameters:
+    textID = ID of text bank.
+
+ Reinforcement Event
+  FE7:
+   ReinforcementEvent(unitPtr)
+
+   Creates a basic reinforcements event. 
+ 
+   Parameters: 
+    unitPtr = Pointer to unit data or unit data label.
+
+Other Helpers
+ 
+ Text
+  FE6:
+   Text(text)
+   Text(background,text)
+  FE7:
+   Text(text)
+   Text(background,text)
+  FE8:
+   Text(text)
+   Text(background,text)
+
+   Creates basic text event.
+ 
+   Parameters:
+    background = Background to load.
+    text = ID of text bank.
+
+ Smooth Change to Cutscene
+  FE7:
+   ChangeToCutScene(cutscene)
+
+   Changes to cut scene.
+
+   Parameters:
+    cutscene = Cutscene to load.
+
+ Text on Scroll
+  FE7:
+   ScrollText(textID)
+
+   Loads text on a scroll.
+
+   Parameters:
+    textID = ID of text bank.
+
+ Show Lyn Mode Fallen Text
+  FE7:
+   ShowLynModeFallenText
+
+   Shows Lyn Mode's fallen text.
+
+ Show Fallen Text
+  FE7:
+   ShowFallenText
+
+   Shows fallen text for Eliwood or Hector modes.
+
+ Move to Chapter
+  FE6:
+   MoveToChapter(chapter)
+  FE7:
+   MoveToChapter(chapter)
+  FE8:
+   MoveToChapter(chapter)
+
+   Moves to chapter.
+
+   Parameter:
+    chapter = Chapter to move to.
+
+ Game Over
+  FE6:
+   GameOver
+  FE7:
+   GameOver
+  FE8:
+   GameOver
+
+   Causes Game Over event.
+
+ Quintessence Effect
+  FE7:
+   QuintessenceEffect
+ 
+   Causes quintessence effect.
+
+ Rumble Effect
+  FE7:
+   Rumble
+   
+   Starts rumble effect.
+
+ Warp In Effect
+  FE7:
+   WarpIn(Char,Class,X,Y)
+   WarpIn(UnitPtr,X,Y)
+  FE8:
+   WarpIn(Char,Class,X,Y)
+   WarpIn(UnitPtr,X,Y)
+
+   Warps character with warp in effect.
+
+   Parameters:
+    char = Character to warp.
+    class = Class of character to warp.
+    UnitPtr = Pointer to unit data or unit data label.
+    X = Horizontal coordinate of effect.
+    Y = Vertical coordinate of effect.
+
+ Warp Out Effect
+  FE7:
+   WarpOut(X,Y)
+   WarpOut(Char)
+  FE8:
+   WarpOut(X,Y)
+   WarpOut(Char)
+
+   Warps character with warp out effect.
+
+   Parameters:
+    char = Character to warp.
+    X = Horizontal coordinate of effect.
+    Y = Vertical coordinate of effect.
+
+ Cursor Flash
+  FE6:
+   FlashCursor(X,Y,time)
+   FlashCursor(character,time)
+  FE7:
+   FlashCursor(X,Y,time)
+   FlashCursor(character,time)
+  FE8:
+   FlashCursor(X,Y,time)
+   FlashCursor(character,time)
+
+   Flashes cursor over character or location.
+
+   Parameters:
+    time = Time to delay after flashing cursor.
+    character = Character to flash cursor over.
+    X = Horizontal coordinate of effect.
+    Y = Vertical coordinate of effect.
+
+ Change Alliance to Ally
+  FE7:
+   TurnAlly(char)
+  FE8:
+   TurnAlly(char)
+
+   Changes character's alliance to ally.
+
+   Parameters:
+    char = Character to change to ally.
+
+ Change Alliance to Enemy
+  FE7:
+   TurnEnemy(char)
+  FE8:
+   TurnEnemy(char)
+
+   Changes character's alliance to enemy.
+
+   Parameters:
+    char = Character to change to enemy.
+
+ Change Alliance to NPC
+  FE7:
+   TurnNPC(char)
+  FE8:
+   TurnNPC(char)
+
+   Changes character's alliance to NPC.
+
+   Parameters:
+    char = Character to change to NPC.
+
+ Move Character Off Screen
+  FE6:
+   MoveOff(char,X,Y)
+  FE7:
+   MoveOff(char,X,Y)
+  FE8:
+   MoveOff(char,X,Y)
+
+   Moves character off of map.
+
+   Parameters:
+    char = Character to move.
+    X = Horizontal coordinate to move to.
+    Y = Vertical coordinate to move to.
+
+ Rescue
+  FE7:
+   Rescue(char,rescuer)
+
+   Rescues a character with another character.
+
+   Parameters:
+    char = Character to be rescued.
+    rescuer = Character to rescue other character. 
+
+  Make Units Invisible
+   FE7:
+    UnitsInvisible
+
+    Makes all units invisible.
+
+ Promote Main Character
+  FE7:
+   PromoteMainChar
+
+   Promotes main character.
+
+ Clear Units
+  FE7:
+   UnitClear
+
+   Clears all units.
+
+World Map Helpers
+ Start World Map
+  FE6:
+   StartWorldMap
+  FE7:
+   StartWorldMap(Map, X, Y, LoadWay)
+
+   Starts world map data.
+
+   Pointers:
+    Map = Map to load.
+    Loadway = Way to load map.
+    X = Horizontal coordinate, in pixels, to load on.
+    Y = Vertical coordinate, in pixels, to load on.
+
+ End World Map
+  FE6:
+   EndWorldMap
+  FE7:
+   EndWorldMap
+ 
+   Ends world map data.
+

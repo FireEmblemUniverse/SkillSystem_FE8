@@ -1,0 +1,49 @@
+#include "Extensions/Hack Installation.txt"
+PUSH
+  ORG $1c90c
+  jumpToHack(ArrowCheck)
+
+  ORG $1c8b2
+  SHORT 0x8919 //prevent key bounce
+
+  ORG $1c8bc
+  jumpToHack(BCheck)
+
+  ORG $1ca1c
+  jumpToHack(ACheck)
+
+  // ORG $1cae4
+  // jumpToHack(StartCheck) //this check is now part of dangerzone
+POP
+
+ALIGN 4
+ArrowCheck:
+#incbin "super sekrit/arrowcheck.dmp"
+
+BCheck:
+#incbin "super sekrit/b_check.dmp"
+
+ACheck:
+#incbin "super sekrit/a_check.dmp"
+
+// StartCheck:
+// #incbin "super sekrit/start_check.dmp"
+// POIN SecretEvent
+
+SecretEvent:
+CHECK_EVENTID 0xB1 //slot c = 0 or 1
+BNE 0x1234 0xC 0x0
+ENUT 0xB1
+NOTIFY SecretMessage 0x8 0x0 //text, music/sound, 0
+// SVAL 0x3 10000
+// GIVEITEMTOMAIN 0x0 //gives 10k gold
+ENUN
+LOAD1 0x1 SecretCharacter
+LABEL 0x1234
+NoFade
+ENDA
+
+SecretCharacter: //Sigurd
+#define Sigurd 0x2A
+UNIT Sigurd EphraimMasterLord 0x00 Level(20, Ally, 1) [0,17] 0x00 0x00 0 0 [Siegmund, Sieglind, ManiKatti] NoAI 
+UNIT

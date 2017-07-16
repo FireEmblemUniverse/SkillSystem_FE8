@@ -1,0 +1,68 @@
+#define Free_Space 0xEAB000
+#define Free_Saved_RAM_Space 0x0203F100
+
+//Installation
+#include "Extensions/Hack Installation.txt"
+#define Debuff_Table Free_Saved_RAM_Space
+
+//To zero out the additional data upon making a new unit.
+ORG 0x17D7C
+gotoHackWithR3(Initialization)
+//This is for loading a previously deployed unit for the first time on a map.
+ORG 0xA5808
+gotoHackWithR3(Reloading)
+
+ORG 0x188A8 //This is for decreasing the debuffs each turn/ending rally
+jumpToHack(PerTurn)
+
+ORG 0x19190
+gotoHack(MaxHPGetter)
+ORG 0x191B0
+gotoHack(StrengthGetter)
+ORG 0x191D0
+gotoHack(SkillGetter)
+ORG 0x19210
+gotoHack(SpeedGetter)
+ORG 0x19250
+gotoHack(DefenseGetter)
+ORG 0x19270
+gotoHack(ResistanceGetter)
+ORG 0x19298
+gotoHack(LuckGetter)
+
+ORG Free_Space
+MaxHPGetter:
+#incbin "MaxHP Getter.dmp"
+WORD Debuff_Table
+StrengthGetter:
+#incbin "Strength Getter.dmp"
+WORD Debuff_Table
+SkillGetter:
+#incbin "Skill Getter.dmp"
+WORD Debuff_Table
+SpeedGetter:
+#incbin "Speed Getter.dmp"
+WORD Debuff_Table
+DefenseGetter:
+#incbin "Defense Getter.dmp"
+WORD Debuff_Table
+ResistanceGetter:
+#incbin "Resistance Getter.dmp"
+WORD Debuff_Table
+LuckGetter:
+#incbin "Luck Getter.dmp"
+WORD Debuff_Table
+
+
+
+Initialization:
+#incbin "New Initializer.dmp"
+WORD Debuff_Table
+
+Reloading:
+#incbin "New Reload.dmp"
+WORD Debuff_Table
+
+PerTurn:
+#incbin "ProcessDebuffs.dmp"
+WORD Debuff_Table

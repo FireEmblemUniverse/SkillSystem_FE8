@@ -1,0 +1,22 @@
+#ifndef INSTALL_STAT_GETTERS_EVENT
+#define INSTALL_STAT_GETTERS_EVENT
+
+#include "../MSG/InstallCore.event"
+#include "../MSG/InstallHelpers.event"
+#include "../MSG/Extentions/SkillSystem.event"
+
+#include "_Common.event"
+
+#include "MaxHP.event"
+#include "CurHP.event"
+#include "Power.event"
+#include "Skill.event"
+#include "Speed.event"
+#include "Defense.event"
+#include "Resistance.event"
+#include "Luck.event"
+#include "Constitution.event"
+#include "Movement.event"
+#include "Aid.event"
+
+#endif // INSTALL_STAT_GETTERS_EVENT

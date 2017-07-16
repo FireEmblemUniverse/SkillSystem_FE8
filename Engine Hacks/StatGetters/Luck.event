@@ -1,0 +1,24 @@
+#ifndef MODULAR_GETTER_LUCK_EVENT
+#define MODULAR_GETTER_LUCK_EVENT
+
+#include "_Common.event"
+
+pLuckModifiers: // Luck
+	POIN prAddUnitLuck prDebuffLck prAddEquipLuck prRallyLck
+WORD 0
+
+prAddUnitLuck:
+	rAdd(rSByteAt(UNIT_LUCK))
+
+prAddEquipLuck:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemLckBonus)))
+
+prDebuffLck:
+	#incbin "_asm/DebuffLck.bin"
+	WORD DebuffTable
+
+prRallyLck:
+	#incbin "_asm/RallyLck.bin"
+	WORD DebuffTable
+
+#endif // MODULAR_GETTER_LUCK_EVENT

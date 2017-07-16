@@ -1,0 +1,126 @@
+//Converted from repointbuffer.ups using CUPS
+//Repoint the buffer 
+#define NewBattleBufferLocation 0x203aac0 //was 203a5ec
+#define BattleBufferWidth 8
+#define maxAtks 31
+#define BattleBufferAnimsOn1 (NewBattleBufferLocation+(maxAtks*8)) //was 203e12a
+#define BattleBufferAnimsOn2 (BattleBufferAnimsOn1+(maxAtks*4)) //was 203e156
+
+PUSH
+ORG 0x2aea0
+BYTE maxAtks*4 //max number of attacks
+
+ORG $2aeae //clear out more buffer
+SHORT 0x8050 //strh r0, [r2,2]
+SHORT 0x6054 //str r0, [r2,4]
+
+ORG 0x58212
+BYTE maxAtks*4 //max number of attacks
+ORG 0x5822a
+BYTE maxAtks*4  //max number of attacks - NEED TO REPOINT 203e156
+
+ORG 0x58258
+WORD BattleBufferAnimsOn2
+ORG 0x58350
+WORD BattleBufferAnimsOn2
+ORG 0x5856c
+WORD BattleBufferAnimsOn2
+ORG 0x585ac
+WORD BattleBufferAnimsOn1
+ORG 0x5862c
+WORD BattleBufferAnimsOn2
+ORG 0x58698
+WORD BattleBufferAnimsOn2
+ORG 0x58768
+WORD BattleBufferAnimsOn2
+ORG 0x58844
+WORD BattleBufferAnimsOn2
+ORG 0x58a6c
+WORD BattleBufferAnimsOn2
+ORG 0x58a84
+WORD BattleBufferAnimsOn2
+
+ORG $58248
+WORD BattleBufferAnimsOn1
+ORG $58564
+WORD BattleBufferAnimsOn1
+ORG $58a28
+WORD BattleBufferAnimsOn1
+ORG $58a54
+WORD BattleBufferAnimsOn1
+ORG $58b50
+WORD BattleBufferAnimsOn1
+
+ORG $2b90a
+BYTE BattleBufferWidth
+ORG $2b91c
+BYTE BattleBufferWidth
+ORG $2aeb2
+BYTE BattleBufferWidth
+ORG $5881c
+BYTE BattleBufferWidth
+ORG $7a886
+BYTE BattleBufferWidth
+ORG $2d2b8
+BYTE BattleBufferWidth
+ORG $2d2c8
+BYTE BattleBufferWidth
+ORG $2cc5c
+BYTE BattleBufferWidth
+ORG $2cf6c
+SHORT ($3400+(BattleBufferWidth-4)) $0CD0
+ORG $2d098
+SHORT (0x6808 + BattleBufferWidth*16) 0x0200 0x0ec0 (0x3100 + BattleBufferWidth) 0x6031
+
+ORG 0x2aec4
+WORD NewBattleBufferLocation
+ORG 0x2c44c
+WORD NewBattleBufferLocation
+ORG 0x2c660
+WORD NewBattleBufferLocation
+ORG 0x2cb0c
+WORD NewBattleBufferLocation
+ORG 0x2ce98
+WORD NewBattleBufferLocation
+ORG 0x2cfa8
+WORD NewBattleBufferLocation
+ORG 0x2f658
+WORD NewBattleBufferLocation
+ORG 0x2f730
+WORD NewBattleBufferLocation
+ORG 0x2f7fc
+WORD NewBattleBufferLocation
+ORG 0x58244
+WORD NewBattleBufferLocation
+ORG 0x58930
+WORD NewBattleBufferLocation
+ORG 0x72564
+WORD NewBattleBufferLocation
+ORG 0x7b4cc
+WORD NewBattleBufferLocation
+ORG 0x7b574
+WORD NewBattleBufferLocation
+ORG 0x7b628
+WORD NewBattleBufferLocation
+ORG 0x7b680
+WORD NewBattleBufferLocation
+ORG 0x7b6d8
+WORD NewBattleBufferLocation
+ORG 0x7b738
+WORD NewBattleBufferLocation
+ORG 0x7b790
+WORD NewBattleBufferLocation
+ORG 0x7b7e8
+WORD NewBattleBufferLocation
+ORG 0x7b84c
+WORD NewBattleBufferLocation
+ORG 0x7b8b8
+WORD NewBattleBufferLocation
+ORG 0x7b9b0
+WORD NewBattleBufferLocation
+ORG 0x7c920
+WORD NewBattleBufferLocation
+ORG 0xa6d18
+WORD NewBattleBufferLocation
+
+POP

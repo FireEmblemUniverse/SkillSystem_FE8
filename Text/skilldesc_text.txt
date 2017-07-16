@@ -1,0 +1,558 @@
+
+## SD_Savior
+Savior: Can rescue[N]
+without penalties.[X]
+
+## SD_Adept
+Adept: Gain a consecutive attack.[N]
+(Speed % activation)[X]
+
+## SD_Acrobat
+Acrobat: All traversable[N]
+terrain costs 1 movement.[X]
+
+## SD_Pass
+Pass: Can move through[N]
+enemy units.[X]
+
+## SD_CantoPlus
+Canto+: Can move again after[N]
+attacking and other actions.[X]
+
+## SD_WaryFighter
+Wary Fighter: Unit cannot[N]
+double or be doubled.[X]
+
+## SD_SureShot
+Sure Shot: A precision attack that[N]
+always hits and does 1.5x damage.[N]
+(Skill % activation)[X]
+
+## SD_Provoke
+Provoke: Enemies are more[N]
+likely to target this unit.[X]
+
+## SD_Mercy
+Mercy: Enemies are left[N]
+with at least 1 HP.[X]
+
+## SD_Frenzy
+Frenzy: For every 4 damage[N]
+taken, +1 to damage dealt.[X]
+
+## SD_Canto
+Canto: Can move again[N]
+after certain actions.[X]
+
+## SD_Cunning
+Cunning: Can steal items, pick[N]
+locks, and see in darkness.[X]
+
+## SD_Lethality
+Lethality: Instantly kill opponent.[N]
+(Skill/2 % activation)[X]
+
+## SD_Bane
+Bane: Leave the opponent at 1 HP.[N]
+(Skill/2 % activation)[X]
+
+## SD_Luna
+Luna: Negates enemy defenses.[N]
+(Skill % activation)[X]
+
+## SD_Sol
+Sol: Restore damage dealt as HP.[N]
+(Skill % activation)[X]
+
+## SD_Aether
+Aether: First strike absorbs HP,[N]
+second strike negates defenses.[N]
+(Skill/2 % activation)[X]
+
+## SD_Astra
+Astra: 5 attacks at half damage.[N]
+(Skill % activation)[X]
+
+## SD_Discipline
+Discipline: Weapon experience[N]
+gains are doubled.[X]
+
+## SD_Swordbreaker
+Swordbreaker: +50 Hit/Avo when[N]
+enemy has a sword equipped.[X]
+
+## SD_Lancebreaker
+Lancebreaker: +50 Hit/Avo when[N]
+enemy has a lance equipped.[X]
+
+## SD_Axebreaker
+Axebreaker: +50 Hit/Avo when[N]
+enemy has an axe equipped.[X]
+
+## SD_Bowbreaker
+Bowbreaker: +50 Hit/Avo when[N]
+enemy has a bow equipped.[X]
+
+## SD_Tomebreaker
+Tomebreaker: +50 Hit/Avo when[N]
+enemy has a tome equipped.[X]
+
+## SD_Aegis
+Aegis: Nullify a magic attack.[N]
+(Skill % activation)[X]
+
+## SD_Pavise
+Pavise: Nullify a physical attack.[N]
+(Skill % activation)[X]
+
+## SD_DuelistsBlow
+Duelist's Blow: +30 Avo[N]
+when initiating battle.[X]
+
+## SD_DeathBlow
+Death Blow: +20 Crit[N]
+when initiating battle.[X]
+
+## SD_DartingBlow
+Darting Blow: +5 Attack Speed[N]
+when initiating battle.[X]
+
+## SD_WardingBlow
+Warding Blow: +20 Res[N]
+when initiating battle.[X]
+
+## SD_CertainBlow
+Certain Blow: +40 Hit[N]
+when initiating battle.[X]
+
+## SD_ArmoredBlow
+Armored Blow: +10 Def[N]
+when initiating battle.[X]
+
+## SD_Vantage
+Vantage: If HP < 50%,[N]
+strike first when attacked.[X]
+
+## SD_Desperation
+Desperation: If HP < 50%,[N]
+double attacks occur immediately.[X]
+
+## SD_Wrath
+Wrath: If HP < 50%,[N]
++20 critical rate.[X]
+
+## SD_Counter
+Counter: Physical damage taken[N]
+at 1-2 range is reflected.[X]
+
+## SD_Countermagic
+Countermagic: Magic damage taken[N]
+at 1-2 range is reflected.[X]
+
+## SD_Miracle
+Miracle: Survive a lethal[N]
+attack if HP > 50%.[X]
+
+## SD_Swordfaire
+Swordfaire: +4 damage[N]
+when equipping a sword.[X]
+
+## SD_Lancefaire
+Lancefaire: +4 damage[N]
+when equipping a lance.[X]
+
+## SD_Axefaire
+Axefaire: +4 damage[N]
+when equipping an axe.[X]
+
+## SD_Bowfaire
+Bowfaire: +4 damage[N]
+when equipping a bow.[X]
+
+## SD_Tomefaire
+Tomefaire: +4 damage[N]
+when equipping a tome.[X]
+
+## SD_CritUp
+Crit Boost: +15 critical rate.[X]
+
+## SD_Slayer
+Slayer: Deal effective damage[N]
+to monster units.[X]
+
+## SD_Summon
+Summon: Can conjure a phantom[N]
+soldier to fight alongside you.[X]
+
+## SD_Dance
+Dance: Refresh an ally unit[N]
+to let them act again.[X]
+
+## SD_Lifetaker
+Lifetaker: Restore up to 50% HP after[N]
+attacking and defeating an enemy.[X]
+
+## SD_Galeforce
+Galeforce: Move again after[N]
+attacking and defeating an enemy.[X]
+
+## SD_Renewal
+Renewal: Restore 30% of max HP[N]
+at the start of each turn.[X]
+
+## SD_NiceThighs
+Nice Thighs: No effect, really.[N]
+Just thought I'd point them out.[X]
+
+## SD_Demoiselle
+Demoiselle: Male allies within[N]
+2 tiles receive -2 damage.[X]
+
+## SD_Gentilhomme
+Gentilhomme: Female allies within[N]
+2 tiles receive -2 damage.[X]
+
+## SD_MaleficAura
+Malefic Aura: Enemies within 2[N]
+tiles receive +2 magic damage.[X]
+
+## SD_Inspiration
+Inspiration: Allies within 2 tiles[N]
+deal +2 damage and receive -2 damage.[X]
+
+## SD_Charm
+Charm: Allies within 2[N]
+tiles deal +2 damage.[X]
+
+## SD_VoiceOfPeace
+Voice of Peace: Enemies within[N]
+2 tiles deal -2 damage.[X]
+
+## SD_Amaterasu
+Amaterasu: Allies within 2 tiles[N]
+recover 20% HP each turn.[X]
+
+## SD_SpurStr
+Spur Strength: Adjacent allies[N]
+deal +4 physical damage.[X]
+
+## SD_SpurMag
+Spur Magic: Adjacent allies[N]
+deal +4 magical damage.[X]
+
+## SD_SpurSpd
+Spur Speed: Adjacent allies[N]
+gain +4 Attack Speed.[X]
+
+## SD_SpurDef
+Spur Defense: Adjacent allies[N]
+take -4 physical damage.[X]
+
+## SD_SpurRes
+Spur Resistance: Adjacent allies[N]
+take -4 magical damage.[X]
+
+## SD_Nihil
+Nihil: Cancels the opponent's[N]
+skills in combat.[X]
+
+## SD_Nullify
+Nullify: Unit is protected[N]
+from all effective attacks.[X]
+
+## SD_Paragon
+Paragon: Experience gain[N]
+is doubled.[X]
+
+## SD_Impale
+Impale: Deal 4x damage.[N]
+(Skill % activation)[X]
+
+## SD_Colossus
+Colossus: Triples Strength.[N]
+(Skill % activation)[X]
+
+## SD_RallyStr
+Rally Strength: +4 Str[N]
+to allies within 2 tiles.[X]
+
+## SD_RallyMag
+Rally Magic: +4 Mag to[N]
+allies within 2 tiles.[X]
+
+## SD_RallySkl
+Rally Skill: +4 Skill[N]
+to allies within 2 tiles.[X]
+
+## SD_RallySpd
+Rally Speed: +4 Spd to[N]
+allies within 2 tiles.[X]
+
+## SD_RallyLuk
+Rally Luck: +4 Luck to[N]
+allies within 2 tiles.[X]
+
+## SD_RallyDef
+Rally Defense: +4 Def to[N]
+allies within 2 tiles.[X]
+
+## SD_RallyRes
+Rally Resistance: +4 Res[N]
+to allies within 2 tiles.[X]
+
+## SD_RallyMov
+Rally Movement: +1 Move[N]
+to allies within 2 tiles.[X]
+
+## SD_RallySpectrum
+Rally Spectrum: +2 all stats[N]
+to allies within 2 tiles.[X]
+
+## SD_BowRangeUp
+Bow Range +1: Maximum range[N]
+of equipped bows is increased.[X]
+
+## SD_StaffSavant
+Staff Savant: Maximum range[N]
+of staves is increased by 1.[X]
+
+## SD_LiveToServe
+Live to Serve: When healing[N]
+an ally, also heals self.[X]
+
+## SD_Ignis
+Ignis: Add Def/2 and Res/2[N]
+to damage dealt.[N]
+(Skill % activation)[X]
+
+## SD_LifeAndDeath
+Life and Death: +10 to[N]
+damage dealt and taken.[X]
+
+## SD_LockTouch
+Locktouch: Can open locks[N]
+without keys or picks.[X]
+
+## SD_Lunge
+Lunge: Swap places with the[N]
+opponent after combat.[X]
+
+## SD_Intimidate
+Intimidate: -10 Avoid to[N]
+all enemies within 2 tiles.[X]
+
+## SD_Opportunist
+Opportunist: +4 damage[N]
+if the foe cannot counter.[X]
+
+## SD_Trample
+Trample: +5 damage to[N]
+unmounted units.[X]
+
+## SD_Camaraderie
+Camaraderie: Recover 10% HP each turn[N]
+if there are allies within 2 tiles.[X]
+
+## SD_ForeignPrincess
+Foreign Princess: Foreign army units[N]
+take -2/+2 damage dealt/taken.[X]
+
+## SD_SavageBlow
+Savage Blow: After attacking, enemies[N]
+within 2 tiles take 20% damage.[X]
+
+## SD_Relief
+Relief: Recover 20% HP each turn if[N]
+there are no allies within 2 tiles.[X]
+
+## SD_Tantivy
+Tantivy: +10 Hit/Avoid if there are[N]
+no allies within 3 tiles.[X]
+
+## SD_Focus
+Focus: +10 Critical if there are[N]
+no allies within 3 tiles.[X]
+
+## SD_Bond
+Bond: All allies within 3 tiles[N]
+recover 10% HP each turn.[X]
+
+## SD_Anathema
+Anathema: -10 Avoid/Dodge to all[N]
+enemies within 3 tiles.[X]
+
+## SD_LilysPoise
+Lily's Poise: Adjacent allies gain[N]
++1/-3 damage dealt/received.[X]
+
+## SD_Expertise
+Expertise: Reduce bonus damage[N]
+from critical hits by 50%.[X]
+
+## SD_Celerity
+Celerity: Movement +2.[X]
+
+## SD_FieryBlood
+Fiery Blood: +4 damage[N]
+when HP is not at max.[X]
+
+## SD_ElbowRoom
+Elbow Room: +3 damage dealt[N]
+when on open terrain.[X]
+
+## SD_NaturalCover
+Natural Cover: -3 damage taken[N]
+when on terrain with effects.[X]
+
+## SD_SealStr
+Seal Attack: Debuff opponent's Str/Mag[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_SealSkl
+Seal Skill: Debuff opponent's Skl[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_SealSpd
+Seal Speed: Debuff opponent's Spd[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_SealLuk
+Seal Luck: Debuff opponent's Luck[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_SealDef
+Seal Defense: Debuff opponent's Def[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_SealRes
+Seal Resistance: Debuff opponent's Res[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_Gamble
+Gamble: A reckless attack with[N]
+halved hit but doubled crit.[X]
+
+## SD_DragonsBlood
+Dragon's Blood: Unit is able[N]
+to activate Dragon Veins.[X]
+
+## SD_Personality
+Nice Personality: This unit has[N]
+a deep and engaging character,[N]
+bursting at the seams with development.[X]
+
+## SD_Quickdraw
+Quick Draw: +4 Damage[N]
+when initiating battle.[X]
+
+## SD_Winddisciple
+Wind Disciple: +10 Hit and[N]
+Avoid when HP is not at max.[X]
+
+## SD_Strongriposte
+Strong Riposte: When under[N]
+attack, damage +3. [X]
+
+## SD_Patience
+Patience: When under[N]
+attack, avoid +10. [X]
+
+## SD_Pursuit
+Pursuit: When under attack,[N]
+attack speed +2. [X]
+
+## SD_LightWeight
+Light Weight: When holding three[N]
+or less items, attack speed +3.[X]
+
+## SD_KillingMachine
+Killing Machine: Total critical[N]
+rate is doubled.[X]
+
+## SD_CriticalForce
+Critical Force: Base critical is[N]
+Skl * 1.5.[X]
+
+## SD_Chivalry
+Chivalry: When foe is at full HP,[N]
+attack and def/res +2.[X]
+
+## SD_Pragmatic
+Pragmatic: When foe is not at full HP,[N]
+attack +3 and def/res+1.[X]
+
+## SD_Armsthrift
+Armsthrift: Luck % chance to not[N]
+consume weapon durability.[X]
+
+## SD_Moonbow
+Moonbow: Enemy Def/Res is[N]
+reduced by 25%. Charge: 2[X]
+
+## SD_Shove
+Shove: Allows unit to push[N]
+other units one tile away.[X]
+
+## SD_Smite
+Smite: Allows unit to push[N]
+other units two tiles away.[X]
+
+## SD_DownWithArch
+Down with Arch: If the hit lands,[N]
+instantly kill the enemy unit.[N]
+(Only if name starts with "Arch")[X]
+
+## SD_UpWithArch
+Up with Arch: Adjacent ally units gain[N]
+might equal to half this unit's might.[N]
+(Only if name starts with "Arch")[X]
+
+## SD_RightfulArch
+Rightful Arch: Sets Skill[N]
+activation rate to 100%.[X]
+
+## SD_RightfulKing
+Rightful King: +10% to[N]
+Skill activation rate.[X]
+
+## SD_RightfulGod
+Rightful God: +30% to[N]
+Skill activation rate.[X]
+
+## SD_LuckySeven
+Lucky Seven: +20 Hit and Avoid[N]
+until the 7th turn.[X]
+
+## SD_OddRhythm
+Odd Rhythm: +10 Hit and Avoid[N]
+on odd numbered turns.[X]
+
+## SD_EvenRhythm
+Even Rhythm: +10 Hit and Avoid[N]
+on even numbered turns.[X]
+
+## SD_QuickBurn
+Quick Burn: +15 Hit and Avoid.[N]
+This bonus decreases each turn.[X]
+
+## SD_SlowBurn
+Slow Burn: +1 Hit and Avoid for[N]
+each passing turn, up to 15.[X]
+
+## SD_Despoil
+Despoil: Obtain a Red Gem after[N]
+attacking and defeating an enemy.[N]
+(Luck % activation)[X]
+
+## SD_Pivot
+Pivot: Allows unit to move to the[N]
+opposite side of an adjacent ally.[X]
+
+## SD_Reposition
+Reposition: Allows unit to pull an[N]
+adjacent ally to its opposite side.[X]
+
+## SD_Swap
+Swap: Allows unit to swap positions[N]
+with an adjacent ally.[X]
+

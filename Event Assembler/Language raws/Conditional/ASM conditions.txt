@@ -1,0 +1,24 @@
+
+#Chapters: 1, 2, 4...
+##Branch is ASM routine returns nonzero
+GOTO_IFAT, 0x1F, 12, -game:FE6 -indexMode:8
+	Conditional ID, 4, 4
+##Offset of the ASM routine. Thumb routines
+##need to be added 1. Returns either 0 or 1.
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+GOTO_IFAT, 0x48, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+
+##Branch if ASM routine returns 0.
+GOTO_IFAF, 0x20, 12, -game:FE6 -indexMode:8
+	Conditional ID, 4, 2
+##Offset of the ASM routine. Thumb routines
+##need to be added 1. Returns either 0 or 1.
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+GOTO_IFAF, 0x49, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM

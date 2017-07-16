@@ -1,0 +1,29 @@
+//TODO: make the sleep staff inflict freeze
+
+PUSH
+ORG 0x276F8  //sick displays sleep map anim
+WORD 0x80277A8
+// ORG 0x178EA  //2 turns = 1 player phase
+// BYTE 0x20
+ORG 0x8C3D8
+WORD 0x808C3F0  //HP area display
+ORG $18d50
+// jumpToHack(FreezeEffect) //I think the move getters are good enough
+ORG $188e4
+jumpToHack(FreezeDecrease)
+ORG $18878
+jumpToHack(FreezeDecrease2)
+POP
+ALIGN 4
+// FreezeEffect:
+// #incbin "ASM/freeze.dmp"
+// POIN FreezeMovement
+
+// FreezeMovement:
+// #incbin "ASM/freezemovement.dmp"
+
+FreezeDecrease:
+#incbin "ASM/freeze_decrease.dmp"
+
+FreezeDecrease2:
+#incbin "ASM/freeze_decrease_2.dmp"

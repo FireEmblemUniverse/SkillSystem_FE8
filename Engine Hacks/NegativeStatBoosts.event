@@ -1,0 +1,18 @@
+//Negative Stat Boosts
+PUSH
+ORG $4bf0
+jumpToHack(NegStatBoosts)
+ORG $5900b0 //minus sign position fix
+WORD 0 0 0 $3ff0 $eaac $3ff0
+ORG $86ae2 //drawing the bars
+SHORT 0
+jumpToHack(NegativeStatBars)
+POP
+
+ALIGN 4
+NegStatBoosts:
+#incbin "negativestatboosts.dmp"
+
+ALIGN 4
+NegativeStatBars:
+#incbin "negativestatbar.dmp"

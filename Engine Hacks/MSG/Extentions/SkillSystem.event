@@ -1,0 +1,20 @@
+#ifndef MSG_EXT_SKILLSYSTEM_EVENT
+#define MSG_EXT_SKILLSYSTEM_EVENT
+
+#ifndef _FE8_
+	ERROR _file_ should be assembled for FE8
+#endif // _FE8_
+
+#ifndef SKILLSYSTEM_SKILL_TESTER
+	#define SKILLSYSTEM_SKILL_TESTER SkillTester
+#endif
+
+MSG_prCheckUnitSkill: // Wraps SkillTester for MSG
+	rCallExternal(SKILLSYSTEM_SKILL_TESTER)
+
+#define rIfUnitHasSkill(aSkillId)            "rWithConstant(aSkillId); rIf(MSG_prCheckUnitSkill)"
+#define rIfUnitHasSkill(aSkillId, arNext)    "rIfUnitHasSkill(aSkillId); arNext"
+#define rIfUnitHasNotSkill(aSkillId)         "rWithConstant(aSkillId); rIfNot(MSG_prCheckUnitSkill)"
+#define rIfUnitHasNotSkill(aSkillId, arNext) "rIfUnitHasNotSkill(aSkillId); arNext"
+
+#endif // MSG_EXT_SKILLSYSTEM_EVENT

@@ -1,0 +1,24 @@
+#ifndef MODULAR_GETTER_POWER_EVENT
+#define MODULAR_GETTER_POWER_EVENT
+
+#include "_Common.event"
+
+pPowerModifiers: // Power
+	POIN prAddUnitPower prDebuffStr prAddEquipPower prRallyStr
+WORD 0
+
+prAddUnitPower:
+	rAdd(rSByteAt(UNIT_POWER))
+
+prAddEquipPower:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemPowBonus)))
+
+prDebuffStr:
+	#incbin "_asm/DebuffStr.bin"
+	WORD DebuffTable
+
+prRallyStr:
+	#incbin "_asm/RallyStr.bin"
+	WORD DebuffTable
+
+#endif // MODULAR_GETTER_POWER_EVENT

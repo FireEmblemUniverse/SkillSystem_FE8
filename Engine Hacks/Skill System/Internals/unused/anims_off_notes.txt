@@ -1,0 +1,12 @@
+11474 pops up item drops after combat
+it also pops up wrank up and such if anims are off
+  1119c and 11270 are relevant somehow
+
+8011704 when eirika anims off and wlvl up
+  this is loaded by 807a794 which is part of the routine list in 89a3614 (starts at 89a3508 [pointer at 7b8bc])
+  the map anim fight uses routine 807b854 (initialise map fight struct?)
+
+80116e0 when weapon broke
+
+80114dc when seth anims on/off and drop item
+

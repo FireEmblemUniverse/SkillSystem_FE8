@@ -1,0 +1,67 @@
+//Made by markyjoe1990 of Youtube
+//Modified by Nintenlord
+//Modified by Crazycolorz5 and Arch
+
+//TODO: Find and replace ChName with a unique identifier.
+
+#define DISABLE_TUTORIALS
+#include EAstdlib.event
+
+#ifndef InlineEvents
+    #define ChName_DefaultOffset 0x1000000 //TODO: Change Me
+    #define ChName_ID
+    EventPointerTable(ChName_ID,ChName_Start)
+    ORG ChName_DefaultOffset
+#endif
+
+ChName_Start:
+POIN ChName_Turn_Events 
+POIN ChName_Character_Events 
+POIN ChName_Location_Events 
+POIN ChName_Misc_Events
+POIN ChName_TrapData ChName_TrapData
+POIN ChName_EliwoodNM ChName_EliwoodHM ChName_HectorNM ChName_HectorHM
+POIN ChName_Good ChName_Good ChName_Good ChName_Good //Same order as the above line, but we probably don't need to differentiate between them
+POIN ChName_Opening_Event ChName_Ending_Event
+
+ChName_EliwoodNM:
+UNIT
+ChName_EliwoodHM:
+UNIT
+ChName_HectorNM:
+UNIT
+ChName_HectorHM:
+UNIT
+
+ChName_Good:
+UNIT
+
+ChName_Turn_Events:
+OpeningTurnEvent(ChName_Opening_Event)
+END_MAIN
+
+ChName_Character_Events:
+END_MAIN
+
+ChName_Location_Events:
+END_MAIN
+
+ChName_Misc_Events:
+CauseGameOverIfLordDies
+END_MAIN
+
+ChName_Opening_Event:
+ENDA
+
+ChName_Ending_Event:
+MoveToChapter(NextChapter) //TODO: Put the next chapter here
+ENDA
+
+ChName_TrapData:
+ENDTRAP
+
+ALIGN 4
+
+#ifndef InlineEvents
+    MESSAGE Events end at offset currentOffset
+#endif

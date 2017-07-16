@@ -1,0 +1,57 @@
+//Made by markyjoe1990 of Youtube
+//Modified by Nintenlord
+//Modified by Crazycolorz5 and Arch
+
+#define DISABLE_TUTORIALS
+#include EAstdlib.event
+
+EventPointerTable(EventTableID,Pointers)
+
+
+ORG StartOffset
+Pointers:
+POIN Turn_events 
+POIN Character_events 
+POIN Location_events 
+POIN Misc_events
+POIN TrapData TrapData
+POIN EliwoodNM EliwoodHM HectorNM HectorHM
+POIN Good Good Good Good //Same order as the above line, but we probably don't need to differentiate between them
+POIN Opening_event Ending_event
+
+EliwoodNM:
+EliwoodHM:
+HectorNM:
+HectorHM:
+UNIT
+
+Good:
+UNIT
+
+Turn_events:
+OpeningTurnEvent(Opening_event)
+END_MAIN
+
+Character_events:
+END_MAIN
+
+Location_events:
+END_MAIN
+
+Misc_events:
+CauseGameOverIfLordDies
+END_MAIN
+
+Opening_event:
+ENDA
+
+Ending_event:
+MoveToChapter(NextChapter)
+ENDA
+
+TrapData:
+ENDTRAP
+
+
+MESSAGE Events end at offset currentOffset
+//The map for this chapter is at offset: ????????

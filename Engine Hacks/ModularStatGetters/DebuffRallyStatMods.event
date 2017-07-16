@@ -1,0 +1,55 @@
+prHexingRod:
+  #incbin "asm/HexingRod.bin"
+  WORD DebuffTable
+
+prDebuffStr:
+  #incbin "asm/DebuffStr.bin"
+  WORD DebuffTable
+
+prDebuffSkl:
+  #incbin "asm/DebuffSkl.bin"
+  WORD DebuffTable
+
+prDebuffSpd:
+  #incbin "asm/DebuffSpd.bin"
+  WORD DebuffTable
+
+prDebuffDef:
+  #incbin "asm/DebuffDef.bin"
+  WORD DebuffTable
+
+prDebuffRes:
+  #incbin "asm/DebuffRes.bin"
+  WORD DebuffTable
+
+prDebuffLck:
+  #incbin "asm/DebuffLck.bin"
+  WORD DebuffTable
+
+prRallyStr:
+  #incbin "asm/RallyStr.bin"
+  WORD DebuffTable
+
+prRallySkl:
+  #incbin "asm/RallySkl.bin"
+  WORD DebuffTable
+
+prRallySpd:
+  #incbin "asm/RallySpd.bin"
+  WORD DebuffTable
+
+prRallyDef:
+  #incbin "asm/RallyDef.bin"
+  WORD DebuffTable
+
+prRallyRes:
+  #incbin "asm/RallyRes.bin"
+  WORD DebuffTable
+
+prRallyLck:
+  #incbin "asm/RallyLck.bin"
+  WORD DebuffTable
+
+prRallyMov:
+  #incbin "asm/RallyMov.bin"
+  WORD DebuffTable

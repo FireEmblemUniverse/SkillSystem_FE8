@@ -1,0 +1,15 @@
+#ifndef MODULAR_GETTER_CURHP_EVENT
+#define MODULAR_GETTER_CURHP_EVENT
+
+#include "_Common.event"
+
+// Note: prCapHPIfOverMax comes with MSG (InstallHelpers.event) since it's direct asm (+ you'll probably want it anyway)
+
+pCurHPModifiers: // Current HP
+	POIN prAddUnitCurHP prCapHPIfOverMax
+WORD 0
+
+prAddUnitCurHP:
+	rAdd(rSByteAt(UNIT_CURHP))
+
+#endif // MODULAR_GETTER_CURHP_EVENT

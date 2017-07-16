@@ -1,0 +1,26 @@
+
+#ifndef ClassTable
+  #ifdef _FE8_
+    #define ClassTable 0x807110
+  #endif
+  #ifdef _FE7_
+    #define ClassTable 0xBE015C
+  #endif
+  //FE6 not supported as the macro is different
+#endif
+
+#define SetClassAnimation(ClassID,Pointer) "PUSH; ORG ClassTable+(ClassID*84)+52; POIN Pointer; POP"
+#define AddClassAnimation(AnimationID,WeaponType,Custom) "BYTE WeaponType Custom AnimationID 0x0"
+#define AddHandAxeAnimation(AnimationID) "BYTE 0x28 0x0 AnimationID 0x0 0x29 0x0 AnimationID 0x0 0x2C 0x0 AnimationID 0x0"
+#define EndClassAnimation "BYTE 0x0 0x0 0x0 0x0"
+#define Swords 0x0
+#define Lances 0x01
+#define Axes 0x2
+#define Bows 0x3
+#define Staves 0x04
+#define Anima 0x05
+#define Light 0x06
+#define Dark 0x07
+#define Disarmed 0x09
+#define CustomAni 0x0
+#define GenericAni 0x01

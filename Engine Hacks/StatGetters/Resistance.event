@@ -1,0 +1,27 @@
+#ifndef MODULAR_GETTER_RESISTANCE_EVENT
+#define MODULAR_GETTER_RESISTANCE_EVENT
+
+#include "_Common.event"
+
+pResistanceModifiers: // Resistance
+	POIN prAddUnitResistance prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod
+WORD 0
+
+prAddUnitResistance:
+	rAdd(rSByteAt(UNIT_RESISTANCE))
+
+prAddEquipResistance:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemResBonus)))
+
+prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current pure water/barrier bonus duration
+	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))
+
+prDebuffRes:
+	#incbin "_asm/DebuffRes.bin"
+	WORD DebuffTable
+
+prRallyRes:
+	#incbin "_asm/RallyRes.bin"
+	WORD DebuffTable
+
+#endif // MODULAR_GETTER_RESISTANCE_EVENT

@@ -1,0 +1,112 @@
+#Chapters: 2, 6
+##Moves a unit on chapter map.
+MOVE, 0xD, 12, -game:FE6 -indexMode:8
+##Position of the unit to move.
+	Old position, 4, 4, coordinates:2
+##Position to move the unit to.
+	New position, 8, 4, coordinates:2
+
+MOVE, 0xF, 12, -game:FE6 -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+#Chapters: 2
+MOVE, 0x10, 12, -game:FE6 -indexMode:8
+##Character ID of the unit to move.
+	Character, 4, 4
+##Pointer to MOMA codes that control moving.
+	Move manual pointer, 8, 4, -pointer:moveManual
+
+#Chapters: 13
+##Move character next to another character.
+MOVENEXTTO, 0x11, 12, -game:FE6 -indexMode:8
+##Character to move.
+	Character to move, 4, 4
+##Character to move the other character next to.
+	Character to move to, 8, 4	
+
+
+MOVE, 0x23, 12, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+MOVE, 0x24, 16, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+##Speed in which the unit moves in.
+	Speed, 12, 4, -preferredBase:10
+
+MOVE, 0x25, 12, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	Move manual pointer, 8, 4, -pointer:moveManual
+
+MOVE, 0x26, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+MOVE, 0x27, 16, -game:FE7 -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+	Speed, 12, 4, -preferredBase:10
+
+MOVE, 0x28, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Move manual pointer, 8, 4, -pointer:moveManual
+
+MOVENEXTTO, 0x29, 12, -game:FE7 -indexMode:8
+	Character to move, 4, 4
+	Character to move to, 8, 4	
+
+##Move main character.
+MOVEMAINC, 0x2A, 8, -game:FE7 -indexMode:8
+##Position to move the main character to.
+	Position, 4, 4, -coordinates:2 -preferredBase:10 -signed
+
+MOVE, 0x2B, 16, -game:FE7 -indexMode:8
+	Character, 4, 1
+	Speed, 6, 1
+	New position, 8, 4, -coordinates:2 -preferredBase:10 -signed
+	Move manual pointer, 12, 4, -pointer:moveManual
+
+##Move unit witout showing movement animations.
+REPOS, 0x2E, 12, -game:FE7 -indexMode:8
+##Position of the unit to move.
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+##Position to move the unit to.
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+REPOS, 0x2F, 12, -game:FE7 -indexMode:8
+##Character ID to move the unit to.
+	Character, 4, 4
+	New position, 8, 4, -coordinates:2 -preferredBase:10 -signed
+
+	
+#Movement codes
+MOVE, 0x2F40, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2
+	Character, 4, 2
+	Position to move to, 6, 2, -coordinate:2 -preferredBase:10
+
+MOVEONTO, 0x2F41, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2
+	Character, 4, 2
+	Target Character, 6, 2
+
+#Move one step
+MOVE_1STEP, 0x2F42, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2
+	Character, 4, 2
+	Direction, 6, 2
+
+#Tutorial Movement
+MOVEFORCED, 0x2F43, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Character, 4, 2
+	Value3, 6, 2
+
+
+
+##Move manual which controls movement of a unit.
+MOMA, 0, 1, -game:FE6:FE7 -indexMode:8 -terminatingList:04 -end -priority:moveManual -offsetMod:1
+##Action to to do, including moving, speed changing and other stuff.
+	Action, 0, 1

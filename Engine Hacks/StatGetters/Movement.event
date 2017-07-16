@@ -1,0 +1,32 @@
+#ifndef MODULAR_GETTER_MOVEMENT_EVENT
+#define MODULAR_GETTER_MOVEMENT_EVENT
+
+#include "_Common.event"
+
+pMovModifiers: // Movement
+	POIN prAddUnitBaseMov prAddUnitMovBonus prRallyMov prSkillCelerity prNullifyIfGuardAI prNullifyIfFreeze
+WORD 0
+
+prAddUnitBaseMov: // byte 0x12 in ROM class data is base class movement
+	rAdd(rForWordAt(UNIT_ROMCLASS, rSByteAt(0x12))) 
+
+prAddUnitMovBonus:
+	rAdd(rSByteAt(UNIT_MOV_BONUS))
+
+prSkillCelerity:
+	rIfUnitHasSkill(CelerityID)
+		rAddConst(2)
+
+prNullifyIfGuardAI:
+	rIfUnitHasGuardAI
+		rConstant(0)
+
+prNullifyIfFreeze:
+	rIfUnitHasStatus(0x9)
+		rConstant(0)
+
+prRallyMov:
+	#incbin "_asm/RallyMov.bin"
+	WORD DebuffTable
+
+#endif // MODULAR_GETTER_MOVEMENT_EVENT

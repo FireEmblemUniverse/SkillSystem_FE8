@@ -1,0 +1,118 @@
+
+#ifdef inBLRange
+
+PUSH
+  //Pair Up Suite
+    ORG $27218
+      BL(PairUpMapSprite)
+    ORG $272c8 //draw rescued but not dead units
+      WORD 0x20C
+    ORG $3280a
+      BYTE 05 //kill dead units (fix fading issues)
+    ORG $278B4 //don't draw rescuing icon
+      SHORT 0xe03c
+    ORG $28112 //fix moving enemies with partners
+      SHORT 0
+    ORG $3A03C //fix fading in and out between turns
+      WORD 0
+    // ORG $320E2 //sets 0x40 bit when waiting/taking actions.
+    //   SHORT 0
+    ORG $320EE  //actual pair up routine (combined rescue/pair up depending on selected command)
+      BL(PairUp) //Pair up is disabled for now
+    ORG $1833E    //ignore con/aid check
+      SHORT 0
+    ORG $25356    //can't pair up with green units
+      BL(0x24DA4)
+    ORG $1CA9E    //set original unit
+      BL(SwitchCanceler)
+    ORG $1d158    //check if should switch
+      BL(SwitchCanceler+0x14)
+    ORG $59d44c   //Give effect pointer
+      POIN TransferEffect+1
+    ORG $59d42c   //Take effect pointer
+      POIN TransferEffect+1
+    ORG $229b0    //Allow transfers between pairs
+      SHORT 0
+    ORG $25538    //Allow transfers between pairs
+      SHORT 0
+
+    //rescue preview
+    ORG $35212
+    BYTE $E //width
+    ORG $35226
+    BYTE $E //width
+    ORG $3522a
+    BYTE 0 //top box height
+    ORG $35252
+    SHORT 0 0 //nop drawing Aid
+    ORG $3525c
+    SHORT 0 0 //nop drawing mounted icon
+    ORG $35264
+    SHORT $2100 //bottom box height
+    ORG $3526c
+    BYTE 4 //bottom box Y coord
+    ORG $35294
+    BYTE $17 //move pointy hand up
+    ORG $35278
+    WORD 0 //Don't draw trv/con whatever
+    ORG $35288
+    WORD 0 //as above
+
+    //transfer preview
+    ORG $352DC
+    SHORT $1C2F //draw rescuer not rescuee
+    ORG $34AAE
+    SHORT $4678 $8D00 //load text ID
+    ORG $34ADA
+    SHORT $4F9 //text ID
+    ORG $34AC4
+    BL($193E8) //fetch trv or --
+    ORG $34ACC
+    SHORT $2118 //set X-coord
+    ORG $34AD0
+    BL($4480) //draw trv/--
+    ORG $34AA0
+    SHORT $4F9 //text ID
+    ORG $34A78
+    SHORT $1C20
+    BL($193E8) //fetch trv/--
+    SHORT 0 0 0 0 0 0 0 $1C03 $1C28 $2118 $2202 //padding and set x-coord
+    BL($4480) //draw trv/--
+    ORG $353D2
+    SHORT 0 0 0
+    ORG $3531E
+    SHORT 0 0 //don't draw mounted icon
+    ORG $35448
+    SHORT 0 0 //don't draw mounted icon
+POP
+ALIGN 4
+PairUp:
+#incbin "ASM/pairup.dmp"
+PairUpMapSprite:
+#incbin "ASM/mapsprite.dmp"
+SwitchCanceler:
+#incbin "ASM/switch2.dmp"
+
+ALIGN 4
+SwitchUsability:
+#incbin "ASM/SwitchCheck.dmp"
+ALIGN 4
+SwitchCommand:
+#incbin "ASM/switch.dmp"
+
+ALIGN 4
+RescueEffect: //sets 203f101 to 1
+BYTE $00 $B5 $02 $49 $01 $20 $08 $70 $01 $49 $08 $47 $01 $F1 $03 $02 $DF $28 $02 $08
+
+ALIGN 4
+TransferUsability:
+#incbin "ASM/TransferUsability.dmp"
+ALIGN 4
+TransferTarget:
+#incbin "ASM/TransferTarget.dmp"
+ALIGN 4
+TransferEffect:
+#incbin "ASM/TransferEffect.dmp"
+#else
+ERROR _file_ is not in BL Range
+#endif

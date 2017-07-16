@@ -1,0 +1,56 @@
+#ifndef MSG_DEFINITIONS_EVENT
+#define MSG_DEFINITIONS_EVENT
+
+#ifndef _FE8_
+	ERROR Modular Stat Getters is for FE8
+#endif // _FE8_
+
+// Vanilla Routines Pointers
+#define prGetItemHPBonus  0x080163F0
+#define prGetItemPowBonus 0x08016420
+#define prGetItemSklBonus 0x08016450
+#define prGetItemSpdBonus 0x08016480
+#define prGetItemDefBonus 0x080164B0
+#define prGetItemResBonus 0x080164E0
+#define prGetItemLckBonus 0x08016510
+
+// defines pointer as ARM pointer (only useful for MSG, since it reverses last bit to default to thumb)
+#define prARM(aPtr) "(aPtr|1)"
+
+// Routine templates
+
+#define rCall(arToCall) "SHORT 0xB510 0x4C02 0x46A6 0xF800 0xBD10 0x46C0; POIN arToCall"
+
+// Conditionals
+#define rIf(arpCheck, aArg) "SHORT 0xB530 0x1C04 0x1C0D 0x4A08 0x4B06 0x469E 0xF800 0x2800 0xD004 0x1C20 0x1C29 0xF000 0xF809 0xE000 0x1C20 0xBC30 0xBC02 0x4708; POIN arpCheck; WORD aArg"
+#define rIf(arpCheck) "rIf(arpCheck, 0)"
+
+// Arithmetics
+#define rAdd "SHORT 0xB510 0x1C04 0xF000 0xF804 0x1900 0xBC10 0xBC02 0x4708"
+#define rSub "SHORT 0xB510 0x1C04 0xF000 0xF806 0x1A24 0x1C20 0xBC10 0xBC02 0x4708 0x46C0"
+#define rShiftRight(aAmount) "SHORT (0x1000 | ((aAmount)<<6)) 0x4770"
+#define rShiftLeft(aAmount)  "SHORT (0x0000 | ((aAmount)<<6)) 0x4770"
+
+// Constant
+#define rConst(aValue) "SHORT (0x2000 | (aValue)) 0x4770"
+
+// Simple Getters
+#define rGetCharByte(aStatOffset) "SHORT (0x2000 | (aStatOffset)) 0x5C08 0x4770 0x46C0"
+
+// Helpers
+#define rAddCharByte(aStatOffset) "rAdd; rGetCharByte(aStatOffset)"
+#define rAddConst(aValue) "rAdd; rConst(aValue)"
+
+#define rCallForEquip(arpToCall) "SHORT 0xB500 0x1C08 0x4B03 0x469E 0xF800 0xF000 0xF805 0xBC02 0x4708 0x0000 0x6B28 0x0801; rCall(arpToCall)"
+#define rCallForUnit(arpToCall) "SHORT 0xB500 0x1C08 0xF000 0xF802 0xBC02 0x4708; rCall(arpToCall)"
+
+#define rHalveStat rShiftRight(1)
+#define rNullify rConst(0)
+
+// Checks
+#define rNot "SHORT 0xB500 0xF000 0xF803 0x2101 0x4048 0xBD00"
+
+// Shifts r1 to r0, r2 to r1, r3 to r2 and then bl to routine inserted directly after
+// #define rShiftArgs "SHORT 0xB500 0x1C08 0x1C11 0x1C1A 0xF000 0xF802 0xBC02 0x4708"
+
+#endif // MSG_DEFINITIONS_EVENT

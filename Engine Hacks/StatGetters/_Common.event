@@ -1,0 +1,7 @@
+#ifndef MODULAR_GETTER_COMMON_EVENT
+#define MODULAR_GETTER_COMMON_EVENT
+
+prHalveIfRescuing:
+	rIfUnitHasState(US_RESCUING, rHalved)
+
+#endif // MODULAR_GETTER_COMMON_EVENT

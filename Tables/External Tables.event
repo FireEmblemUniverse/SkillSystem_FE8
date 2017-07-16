@@ -1,0 +1,7 @@
+WeaponDebuffTable:
+defWeaponDebuffs(0,0,0,0,0,0,0) //0x0: let 0-index entry be no debuffs.
+defWeaponDebuffs(0,0,1,1,0,2,2) //0x1: Bronze Shuriken debuff.
+defWeaponDebuffs(0,2,0,0,0,3,3) //0x2: Iron Shuriken debuff.
+defWeaponDebuffs(3,0,0,0,0,4,4) //0x3: Steel Shuriken debuff.
+defWeaponDebuffs(0,0,0,4,0,4,4) //0x4: Silver Shuriken debuff.
+defWeaponDebuffs(4,0,0,4,0,4,4) //0x5: Pebble debuff.

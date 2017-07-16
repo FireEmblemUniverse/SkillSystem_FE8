@@ -1,0 +1,4 @@
+prSkillCelerity:
+  rIfHasSkill(CelerityID)
+  rAdd
+  rConst(2)

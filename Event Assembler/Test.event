@@ -1,0 +1,10 @@
+ASSERT 5
+
+ORG 10
+Label1:
+MESSAGE "After orging to 10 " currentOffset
+
+ORG Label1+5
+MESSAGE "After orging to my label " currentOffset
+
+ASSERT 10-currentOffset
