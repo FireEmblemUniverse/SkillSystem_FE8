@@ -13,10 +13,11 @@ ldr r2, LungeMarker
 ldrb r2, [r2]
 cmp r2, #3 @lunge selected
 beq Lunge
-@ ldr        r2,DefenderStruct
-@ ldrb    r2,[r2,#0x13]        @defender's hp
-@ cmp        r2,#0x0
-@ beq        Lunge
+
+ldrb        r2, [r5, #0xd] @the defender
+cmp r2, #0x0 @if no defender it was a wall/snag
+bne Lunge
+
 NotLunge:
 ldr        r2,[r6]
 strb    r4,[r2,#0x10]
