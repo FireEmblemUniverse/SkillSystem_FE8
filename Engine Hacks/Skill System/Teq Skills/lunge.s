@@ -14,10 +14,6 @@ ldrb r2, [r2]
 cmp r2, #3 @lunge selected
 beq Lunge
 
-ldrb        r2, [r5, #0xd] @the defender
-cmp r2, #0x0 @if no defender it was a wall/snag
-bne Lunge
-
 NotLunge:
 ldr        r2,[r6]
 strb    r4,[r2,#0x10]
@@ -25,6 +21,11 @@ strb    r7,[r2,#0x11]
 b        GoBack
 
 Lunge:
+
+ldrb        r2, [r5, #0xd] @the defender
+cmp r2, #0x0 @if no defender it was a wall/snag
+beq NotLunge
+
 @check if lunging unit died
 ldr r2, [r6]
 ldrb r2, [r2, #0x13] @currenthp
