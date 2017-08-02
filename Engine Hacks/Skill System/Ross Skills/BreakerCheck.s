@@ -1,4 +1,5 @@
 .equ BreakerIDList, SkillTester+4
+.equ HitAvoidBonus, BreakerIDList+4
 .thumb
 
 push {r4-r7, lr} 
@@ -14,14 +15,15 @@ mov     lr, r3
 cmp r0, #0            @Check if unit has the corresponding Faire skill.
 beq NoSkill
 mov     r0,r4        @Move attacker's data into r0.
+ldr     r1, HitAvoidBonus @Load Hit/Avoid Bonus into r1
 add     r0,#0x60    @Move to the attacker's hit.
 ldrh    r3,[r0]        @Load the attacker's hit into r3.
-add     r3,#30    @Add 30 to the attacker's hit.
+add     r3,r1    @Add bonus to the attacker's hit.
 strh     r3,[r0]        @Store attacker hit.
 mov     r0,r4         @Get attacker data again.
 add     r0,#0x62    @Move to the attacker avoid.
 ldrh    r3,[r0]        @Load the attacker's avoid into r3.
-add     r3,#30    @Add 30 to the attacker's avoid.
+add     r3,r1    @Add bonus to the attacker's avoid.
 strh     r3,[r0]        @Store attacker hit.
 NoSkill:
 pop {r4-r7} 
@@ -32,3 +34,4 @@ bx r0
 SkillTester:
 @POIN SkillTester
 @POIN BreakerIDList
+@WORD HitAvoidBonus
