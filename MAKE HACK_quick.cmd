@@ -1,4 +1,4 @@
-﻿cd %~dp0
+cd %~dp0
 
 copy FE8_clean.gba SkillsTest.gba
 
