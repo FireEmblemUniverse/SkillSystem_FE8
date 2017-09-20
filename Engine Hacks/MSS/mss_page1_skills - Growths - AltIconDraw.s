@@ -1,8 +1,5 @@
 .thumb
 @draws the stat screen
-
-.set NoAltIconDraw, 1 @ 
-
 .include "mss_defs.s"
 .set SkillGetter, IconGraphic+4
 .set SkillTester, SkillGetter+4
@@ -259,8 +256,7 @@ Const2_2028E70:
 
 .include "Get Talkee.asm"
 
-.ltorg
-IconGraphic:
+.include "alternateicondraw.s"
 @POIN SkillIcons at the end here
 @POIN SkillGetter after that
 @POIN SkillTester after THAT

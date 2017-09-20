@@ -135,6 +135,9 @@ POP
   #include "MSG/InstallHelpers.event"
   
   #include "StatGetters/_InstallStatGetters.event"
+  
+  ALIGN 4
+  #include "IconRework/IconRework.event"
 
 ALIGN 4
 
