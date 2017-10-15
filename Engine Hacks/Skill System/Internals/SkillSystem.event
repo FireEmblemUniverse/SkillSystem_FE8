@@ -53,6 +53,8 @@ ORG $18680
 jumpToHack(Unset_Attack_Flag_2)
 POP
 
+MESSAGE CURRENTOFFSET
+
 Skill_Getter: //gets a list of skills
 #incbin skillGetter.dmp
 POIN PersonalSkillTable
@@ -121,14 +123,15 @@ WORD SS_SkillsDefaultRText
 SkillAdder: //given chardata in r0, skill in r1, add skill if possible
 #incbin addSkill.dmp
 
+ALIGN 4
 SkillLearner:
 #incbin learnskill.dmp
 POIN LevelUpSkillTable
 POIN SkillAdder
 
 AlternateIconPopup:
-#incbin alternateicon_3732.dmp
-POIN SkillIcons
+// #incbin alternateicon_3732.dmp
+// POIN SkillIcons
 
 AnimsOnPopupHack:
 #incbin "animsonhack_75ca8.dmp"

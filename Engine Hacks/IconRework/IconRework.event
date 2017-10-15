@@ -1,7 +1,7 @@
 #ifndef HAX_ICON_REWORK
 #define HAX_ICON_REWORK
 
-#define ICON_SHEET_COUNT 2 // 0 for item icons & 1 for skill icons
+#define ICON_SHEET_COUNT 2 // #0 for item icons & #1 for skill icons
 
 #include "IconRework_Internal.event"
 

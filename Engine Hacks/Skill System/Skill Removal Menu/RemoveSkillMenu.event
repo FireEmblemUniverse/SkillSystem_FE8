@@ -1,0 +1,137 @@
+#ifndef HAX_REMOVE_SKILL_MENU
+#define HAX_REMOVE_SKILL_MENU
+
+// I'm sorry this took this long
+
+#include "_6CDefinitions.event"
+
+{
+
+// Battle 6C Hook
+PUSH; ORG 0x59DB04
+	_6C_JUMP(_p6CFromBattle6C)
+	_6C_END
+POP
+
+// Arena 6C Hook
+PUSH; ORG 0x59DB54
+	_6C_JUMP(_p6CFromArena6C)
+	_6C_END
+POP
+
+// Promotion 6C Hook
+PUSH; ORG 0xB126FC
+	_6C_JUMP(_p6CFromPromotion6C)
+POP
+
+ALIGN 4
+_p6CFromBattle6C:
+	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	_6C_CALL_ROUTINE_2(0x0328D0+1) // Handles Item Drop
+	_6C_CALL_ROUTINE(0x03286C+1) // idk
+	_6C_YIELD
+	_6C_END
+
+ALIGN 4
+_p6CFromArena6C:
+	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	_6C_CALL_ROUTINE(0x0329A0+1) // idk
+	_6C_YIELD
+	_6C_END
+
+ALIGN 4
+_p6CFromPromotion6C:
+	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	_6C_END
+
+ALIGN 4
+prCheckForSkillForgetting:
+	#incbin "asm/CheckForSkillForgetting.bin"
+	POIN (prCallRemoveSkillMenu+1)
+
+}
+
+ALIGN 4
+prCallRemoveSkillMenu:
+{
+	#incbin "asm/CallMenuRemoveSkill.bin"
+	POIN pMenuDef_RemoveSkill
+
+ALIGN 4
+pMenuDef_RemoveSkill:
+	BYTE 1 1 0xE 0 // x, y, w, h
+	WORD 0       // unknown
+	POIN pCommandDefs_RemoveSkill
+	WORD 0
+	WORD 0
+	WORD 0
+	POIN (prMenuRemoveSkill_OnCancel+1)
+	WORD 0
+	WORD 0
+
+// Usability, Draw, Effect
+#define MenuCommand_UDE(aprUsability, aprDraw, aprEffect) "WORD 0; SHORT 0 0; BYTE 0 0; SHORT 0; POIN ((aprUsability)+1) ((aprDraw)+1) ((aprEffect)+1); WORD 0 0 0"
+
+ALIGN 4
+pCommandDefs_RemoveSkill:
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoLearnEffect)
+UM_Separator
+	
+	// WORD 0
+	// SHORT 0 0 // text ids
+	// BYTE 0 0 // text color, ????
+	// SHORT 0 // ? (padding?)
+	// POIN (prMenuRemoveSkillCommand_Usability+1)
+	// POIN (prMenuRemoveSkillCommand_Draw+1)
+	// POIN (prMenuRemoveSkillCommand_Effect+1)
+	// WORD 0 // idle
+	// WORD 0 // hover
+	// WORD 0 // ?
+
+ALIGN 4
+prMenuRemoveSkill_OnCancel:
+	#incbin "asm/MenuRemoveSkill_OnCancel.bin"
+
+ALIGN 4
+prMenuRemoveSkillCommand_Usability:
+	#incbin "asm/MenuRemoveSkillCommand_Usability.bin"
+	POIN (prGetSkillIdByIndex+1)
+
+ALIGN 4
+prMenuRemoveSkillCommand_ForgetEffect:
+	#incbin "asm/MenuRemoveSkillCommand_ForgetEffect.bin"
+
+ALIGN 4
+prMenuRemoveSkillCommand_NoLearnEffect:
+	#incbin "asm/MenuRemoveSkillCommand_NoLearnEffect.bin"
+
+ALIGN 4
+prMenuRemoveSkillCommand_NoEffect:
+	#incbin "asm/MenuRemoveSkillCommand_NoEffect.bin"
+
+ALIGN 4
+prMenuRemoveSkillCommand_Draw:
+	#incbin "asm/MenuRemoveSkillCommand_Draw.bin"
+	POIN (prDrawSkillMenuCommand+1)
+	POIN (prGetSkillIdByIndex+1)
+
+ALIGN 4
+prDrawSkillMenuCommand:
+	#incbin "asm/DrawSkillMenuCommand.bin"
+	POIN SkillDescTable
+
+ALIGN 4
+prGetSkillIdByIndex:
+	#incbin "asm/GetSkillIdByIndex.bin"
+	POIN PersonalSkillTable
+	POIN ClassSkillTable
+
+}
+
+#endif // HAX_REMOVE_SKILL_MENU

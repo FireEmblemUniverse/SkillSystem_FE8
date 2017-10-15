@@ -87,7 +87,7 @@ DrawPopup:
 @originally 80116e0
 push {r4,lr}
 mov r4, r1
-blh 0x801145c @what was this? stores hw at r0 to 30005F4
+blh 0x801145c @ set popup item
 @ ldr r0, =0x8592420 @ for weapon broke
 @ ldr r0, =0x8592468 @ for weapon level up
 ldr r0, PopupStruct

@@ -70,9 +70,9 @@ mov r0, #0 @palette
 mov r1, #0x12
 blh 0x80035d4
 mov r0, r10
-mov r1, #0x80
+mov r1, #0x01
 lsl r1, #8
-orr r0, r1 @set top bit of hw
+orr r0, r1 @set bit 9 of hw
 mov r1, #0x40
 ldr r3, =0x8075eb7
 bx r3
