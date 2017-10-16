@@ -9,6 +9,8 @@
 .set EAL_pPopupDef,     (EALiterals+0x00)
 .set EAL_time,          (EALiterals+0x04)
 
+@ Arguments: r0 = Parent 6C
+@ Returns:   r0 = 0 on success (skill is displayed)
 hey:
 	push {r4, lr}
 	

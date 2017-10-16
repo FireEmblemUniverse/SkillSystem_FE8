@@ -13,10 +13,10 @@ ForgetEffect:
 	sub  r2, #2       @ Leaned Skills Commands are Commands 2+ (up to 6 excluded)
 	
 	@ r0 = Char Id
-	ldr  r0, =ppActiveUnit
-	ldr  r0, [r0]     @ r0 = pActiveUnit
-	ldr  r0, [r0]     @ r0 = pActiveChar
-	ldrb r0, [r0, #4] @ r0 = ActiveCharId
+	ldr  r0, [r0, #0x14] @ Menu 6C Parent
+	ldr  r0, [r0, #0x2C] @ Field 2C of Wrapper is Unit
+	ldr  r0, [r0]       @ r0 = pActiveChar
+	ldrb r0, [r0, #4]   @ r0 = ActiveCharId
 	
 	@ r3 = Learned Skill List for Active Char
 	ldr r3, =pBWLTable

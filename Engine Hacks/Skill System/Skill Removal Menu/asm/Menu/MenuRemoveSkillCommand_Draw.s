@@ -30,15 +30,15 @@ Draw:
 	mov  r1, #0x3C
 	ldrb r1, [r4, r1]
 	
-	mov r0, r4
-	add r0, #0x34
+	mov r3, r4
+	add r3, #0x34
 	
 	cmp r1, #2
 	bge NonFixedSkill @ If Skill Index >= 2 (not Char nor Class Skill), then no need to set the color to gray.
 	
 	@ Setting Text Color to Gray
 	mov  r2, #1
-	strb r2, [r0, #3]
+	strb r2, [r3, #3]
 	
 NonFixedSkill:
 	cmp r1, #6
@@ -46,11 +46,11 @@ NonFixedSkill:
 	
 	@ Setting Text Color to Blue
 	mov  r2, #2
-	strb r2, [r0, #3]
+	strb r2, [r3, #3]
 	
 NonExtraLearnSkill:
-	ldr r0, =ppActiveUnit
-	ldr r0, [r0]
+	ldr r0, [r0, #0x14] @ Menu 6C Parent
+	ldr r0, [r0, #0x2C] @ Field 2C of Wrapper is Unit
 	
 	ldr  r3, lprGetSkillIdByIndex
 	_blr r3

@@ -5,24 +5,22 @@
 
 .set pExtraItemOrSkill,          0x0202BCDE
 
-@ Arguments: r0 = Parent 6C
+@ Arguments: r0 = Unit, r1 = Parent 6C
+@ Returns:   r0 = 0 on success (aka a skill is to be learned)
 CheckForSkillForgetting:
 	push {r4, lr}
 	
-	mov r4, r0
+	ldr  r3, =pExtraItemOrSkill
+	ldrh r3, [r3]
 	
-	ldr  r0, =pExtraItemOrSkill
-	ldrh r1, [r0]
-	
-	lsr r0, r1, #15
+	lsr r3, #15
 	beq NoNewSkill @ last bit not set
 	
-	ldr r3, EAL_prCallSkillForgetMenu
-	mov lr, r3
+	@ implied @ arg r0 = Unit
+	@ implied @ arg r1 = Parent 6C
 	
-	mov r0, r4 @ arg r0 = parent 6C
-	
-	.short 0xF800
+	ldr  r3, EAL_prCallSkillForgetMenu
+	_blr r3
 	
 	mov r0, #0
 	b End

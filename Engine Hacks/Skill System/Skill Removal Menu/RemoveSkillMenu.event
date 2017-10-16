@@ -3,32 +3,41 @@
 
 // I'm sorry this took this long
 
-// Notes on things:
+// Things to know:
 /*
 	I changed the skill adding routine to set the short at 0202BCDE to (0x8000 | SkillID) when trying to learn a skill but the unit ran out of slots.
 	
-	Routines that are usable:
+	Routines that are usable to the outside:
 	
 	(prCallRemoveSkillMenu+1)
-		call with parent 6C in r0 (0 works), will create the skill forgetting menu for active unit, and new skill id located at byte 0202BCDE.
+		Arguments: r0 = Unit, r1 = Parent 6C (can be 0)
+		Returns:   nothing
+		Will create the skill forgetting menu for given unit, and new skill id located at byte 0202BCDE.
 	
 	(prCheckForSkillForgetting+1)
-		call with parent 6C in r0 (0 works), will check if the top bit of short at 0202BCDE is set, and if set, will call (prCallRemoveSkillMenu+1). Returns 1 if the skill menu wasn't created, so it's suitable for usage with _6C_CALL_ROUTINE_2.
+		Arguments: r0 = Unit, r1 = Parent 6C
+		Returns:   r0 = 0 on success (menu is open and all)
+		Will check if the top bit of short at 0202BCDE is set, and if set, will call (prCallRemoveSkillMenu+1).
 	
 	(prCallSkillLearnedPopup+1)
-		call with parent 6C in r0 (0 works) this one is kinda bonus, since it doesn't have much todo with the menu itself. Calls a popup that displays "Learned <skill>", with skill being the one at 0202BCDE. As the routine above, it is suitable for use with _6C_CALL_ROUTINE_2 (returns 1 if no popup was created).
+		Arguments: r0 = Parent 6C
+		Returns:   r0 = 0 on success (skill is displayed and all)
+		This one is kinda bonus, since it doesn't have much todo with the menu itself. Calls a popup that displays "Learned <skill>", with skill being the one at 0202BCDE. It is suitable for use with _6C_CALL_ROUTINE_2 (return values match).
 	
 	(prLearnNewSkill+1)
-		call with skill index in r0, parent 6C in r1 (0 works, but may be a bad idea). Learns given skill to active unit, and displays popup & menu accordingly. Meant to work with things like skill learning through items or something.
+		Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent 6C
+		Returns:   r0 = 6C (if you really need it)
+		Learns given skill to active unit, and displays popup & menu accordingly. Meant to work with things like skill learning through items or something.
 	
 	(ASMC_LearnNewSkill+1)
-		call through events with ASMC. Will learn to the active unit the skill of index in Slot 2
+		call through events with ASMC. Will learn to the unit defined by slot 2 the skill of index in slot 1
 		Ex:
-			SVAL 2 NiceThighsID
+			SVAL 1 NiceThighsID
+			SVAL 2 (-1) // (-1) is active unit
 			ASMC (ASMC_LearnNewSkill+1)
 	
 	(ASMC_HasSkill+1)
-		kinda bonus too, checks if active unit has skill in slot 2 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
+		kinda bonus too, checks if unit in slot 2 has skill in slot 1 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
 
 */
 
@@ -55,7 +64,7 @@ POP
 
 ALIGN 4
 _p6CFromBattle6C:
-	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting+1)
 	_6C_CALL_ROUTINE_2(0x0328D0+1) // Handles Item Drop
 	_6C_CALL_ROUTINE(0x03286C+1) // idk
 	_6C_YIELD
@@ -63,7 +72,7 @@ _p6CFromBattle6C:
 
 ALIGN 4
 _p6CFromArena6C:
-	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting+1)
 	_6C_CALL_ROUTINE(0x0329A0+1) // idk
 	_6C_YIELD
 	_6C_END
@@ -73,20 +82,27 @@ _p6CFromArena6C:
 	// _6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
 	// _6C_END
 
+ALIGN 4
+_prCheckForBattleSkillForgetting:
+	#incbin "asm/CheckForBattleSkillForgetting.bin"
+	POIN (prCheckForSkillForgetting+1)
+
 }
 
 ALIGN 4
 ASMC_LearnNewSkill:
-	#incbin "asm/ASMC_LearnSkill.bin"
+	#incbin "asm/ASMC/ASMC_LearnSkill.bin"
 	POIN (prLearnNewSkill+1)
 
 ALIGN 4
 ASMC_HasSkill:
-	#incbin "asm/ASMC_HasSkill.bin"
+	#incbin "asm/ASMC/ASMC_HasSkill.bin"
 	POIN (SkillTester+1)
 
 ALIGN 4
 prLearnNewSkill:
+// Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent 6C
+// Returns:   r0 = 6C (if you really need it)
 {
 	#incbin "asm/LearnNewSkill.bin"
 	POIN p6C_NewSkillLearn
@@ -95,16 +111,22 @@ prLearnNewSkill:
 p6C_NewSkillLearn:
 	_6C_SET_NAME(_psName)
 	_6C_CALL_ROUTINE_2(prCallSkillLearnedPopup+1)
-	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	_6C_CALL_ROUTINE_2(_prCheckForget+1)
 	_6C_END
 	
 _psName:
 	String(SS_LearnNewSkill)
 	BYTE 0; ALIGN 4
+
+_prCheckForget:
+	#incbin "asm/LearnNewSkill_CheckForget.bin"
+	POIN (prCheckForSkillForgetting+1)
 }
 
 ALIGN 4
 prCallSkillLearnedPopup:
+// Arguments: r0 = Parent 6C
+// Returns:   r0 = 0 on success (skill is displayed and all)
 {
 	#incbin "asm/CallSkillLearnedPopup.bin"
 	POIN _pPopupDef
@@ -121,14 +143,24 @@ _pPopupDef: // Copied from the one in Internals
 
 ALIGN 4
 prCheckForSkillForgetting:
+// Arguments: r0 = Unit, r1 = Parent 6C
+// Returns:   r0 = 0 on success (menu is open and all)
 	#incbin "asm/CheckForSkillForgetting.bin"
 	POIN (prCallRemoveSkillMenu+1)
 
 ALIGN 4
 prCallRemoveSkillMenu:
+// Arguments: r0 = Unit, r1 = Parent 6C (can be 0)
+// Returns:   nothing
 {
 	#incbin "asm/CallMenuRemoveSkill.bin"
 	POIN pMenuDef_RemoveSkill
+	POIN p6CMenuWrapper
+
+ALIGN 4
+p6CMenuWrapper: // using a whole 6C for storing the unit struct
+	_6C_YIELD // To prevent ending the 6C immediately (allowing to block it with a menu child)
+	_6C_END   // End immediately after getting control back
 
 ALIGN 4
 pMenuDef_RemoveSkill:
@@ -158,28 +190,28 @@ UM_Separator
 
 ALIGN 4
 prMenuRemoveSkill_OnCancel:
-	#incbin "asm/MenuRemoveSkill_OnCancel.bin"
+	#incbin "asm/Menu/MenuRemoveSkill_OnCancel.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_Usability:
-	#incbin "asm/MenuRemoveSkillCommand_Usability.bin"
+	#incbin "asm/Menu/MenuRemoveSkillCommand_Usability.bin"
 	POIN (prGetSkillIdByIndex+1)
 
 ALIGN 4
 prMenuRemoveSkillCommand_ForgetEffect:
-	#incbin "asm/MenuRemoveSkillCommand_ForgetEffect.bin"
+	#incbin "asm/Menu/MenuRemoveSkillCommand_ForgetEffect.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_NoLearnEffect:
-	#incbin "asm/MenuRemoveSkillCommand_NoLearnEffect.bin"
+	#incbin "asm/Menu/MenuRemoveSkillCommand_NoLearnEffect.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_NoEffect:
-	#incbin "asm/MenuRemoveSkillCommand_NoEffect.bin"
+	#incbin "asm/Menu/MenuRemoveSkillCommand_NoEffect.bin"
 
 ALIGN 4
 prMenuRemoveSkillCommand_Draw:
-	#incbin "asm/MenuRemoveSkillCommand_Draw.bin"
+	#incbin "asm/Menu/MenuRemoveSkillCommand_Draw.bin"
 	POIN (prDrawSkillMenuCommand+1)
 	POIN (prGetSkillIdByIndex+1)
 
