@@ -193,6 +193,9 @@ HouseEvent:
 	
 LABEL 0
 	// end
+	
+	Text(HouseText)
+	
 	NoFade
 	ENDA
 	

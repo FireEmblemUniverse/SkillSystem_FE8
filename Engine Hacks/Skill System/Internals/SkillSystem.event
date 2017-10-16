@@ -34,8 +34,9 @@ SHORT 0 //nop the 0x200000
 ORG $76018
 jumpToHack(SkillLearner)
 
-ORG $3730
-jumpToHack(AlternateIconPopup)
+// now managed by Icon Rework (see Engine Hacks/IconRework) -Stan
+// ORG $3730
+// jumpToHack(AlternateIconPopup)
 
 ORG $75d64
 jumpToHack(AnimsOnPopupHack)
@@ -129,7 +130,8 @@ SkillLearner:
 POIN LevelUpSkillTable
 POIN SkillAdder
 
-AlternateIconPopup:
+// now managed by Icon Rework (see Engine Hacks/IconRework) -Stan
+// AlternateIconPopup:
 // #incbin alternateicon_3732.dmp
 // POIN SkillIcons
 
