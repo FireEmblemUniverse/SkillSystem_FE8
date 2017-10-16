@@ -1,9 +1,6 @@
 EphraimLordSkillList:
 // BYTE 1 OddRhythmID
-BYTE 10 BondID // I need to fill all of those slots
-BYTE 12 RightfulKingID
-BYTE 15 ShoveID
-BYTE 17 ElbowRoomID
+BYTE 10 BondID
 BYTE 20 AetherID
 BYTE 00 00
 ALIGN 4
@@ -20,7 +17,7 @@ EphraimGreatLordSkillList:
 BYTE 255 BondID
 BYTE 255 AetherID //255 means "automatically given to prepromotes"
 // BYTE 255 SmiteID
-BYTE 1 RallySpectrumID
+BYTE 5 RallySpectrumID
 BYTE 15 AxebreakerID
 BYTE 00 00
 ALIGN 4
