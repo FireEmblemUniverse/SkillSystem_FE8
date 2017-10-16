@@ -3,6 +3,35 @@
 
 // I'm sorry this took this long
 
+// Notes on things:
+/*
+	I changed the skill adding routine to set the short at 0202BCDE to (0x8000 | SkillID) when trying to learn a skill but the unit ran out of slots.
+	
+	Routines that are usable:
+	
+	(prCallRemoveSkillMenu+1)
+		call with parent 6C in r0 (0 works), will create the skill forgetting menu for active unit, and new skill id located at byte 0202BCDE.
+	
+	(prCheckForSkillForgetting+1)
+		call with parent 6C in r0 (0 works), will check if the top bit of short at 0202BCDE is set, and if set, will call (prCallRemoveSkillMenu+1). Returns 1 if the skill menu wasn't created, so it's suitable for usage with _6C_CALL_ROUTINE_2.
+	
+	(prCallSkillLearnedPopup+1)
+		call with parent 6C in r0 (0 works) this one is kinda bonus, since it doesn't have much todo with the menu itself. Calls a popup that displays "Learned <skill>", with skill being the one at 0202BCDE. As the routine above, it is suitable for use with _6C_CALL_ROUTINE_2 (returns 1 if no popup was created).
+	
+	(prLearnNewSkill+1)
+		call with skill index in r0, parent 6C in r1 (0 works, but may be a bad idea). Learns given skill to active unit, and displays popup & menu accordingly. Meant to work with things like skill learning through items or something.
+	
+	(ASMC_LearnNewSkill+1)
+		call through events with ASMC. Will learn to the active unit the skill of index in Slot 2
+		Ex:
+			SVAL 2 NiceThighsID
+			ASMC (ASMC_LearnNewSkill+1)
+	
+	(ASMC_HasSkill+1)
+		kinda bonus too, checks if active unit has skill in slot 2 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
+
+*/
+
 #include "_6CDefinitions.event"
 
 {
@@ -19,10 +48,10 @@ PUSH; ORG 0x59DB54
 	_6C_END
 POP
 
-// Promotion 6C Hook
-PUSH; ORG 0xB126FC
-	_6C_JUMP(_p6CFromPromotion6C)
-POP
+// Promotion 6C Hook (unused since no skill learning on promotion)
+// PUSH; ORG 0xB126FC
+	// _6C_JUMP(_p6CFromPromotion6C)
+// POP
 
 ALIGN 4
 _p6CFromBattle6C:
@@ -39,17 +68,61 @@ _p6CFromArena6C:
 	_6C_YIELD
 	_6C_END
 
+// ALIGN 4
+// _p6CFromPromotion6C:
+	// _6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
+	// _6C_END
+
+}
+
 ALIGN 4
-_p6CFromPromotion6C:
+ASMC_LearnNewSkill:
+	#incbin "asm/ASMC_LearnSkill.bin"
+	POIN (prLearnNewSkill+1)
+
+ALIGN 4
+ASMC_HasSkill:
+	#incbin "asm/ASMC_HasSkill.bin"
+	POIN (SkillTester+1)
+
+ALIGN 4
+prLearnNewSkill:
+{
+	#incbin "asm/LearnNewSkill.bin"
+	POIN p6C_NewSkillLearn
+	POIN (SkillAdder+1)
+
+p6C_NewSkillLearn:
+	_6C_SET_NAME(_psName)
+	_6C_CALL_ROUTINE_2(prCallSkillLearnedPopup+1)
 	_6C_CALL_ROUTINE_2(prCheckForSkillForgetting+1)
 	_6C_END
+	
+_psName:
+	String(SS_LearnNewSkill)
+	BYTE 0; ALIGN 4
+}
+
+ALIGN 4
+prCallSkillLearnedPopup:
+{
+	#incbin "asm/CallSkillLearnedPopup.bin"
+	POIN _pPopupDef
+	WORD 90 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
+
+ALIGN 4
+_pPopupDef: // Copied from the one in Internals
+	WORD 0x0C 0x5A // sound played is 5A
+	WORD 0x06 LearnedSkillText // text by id
+	WORD 0x0D 0x00 // run skill icon routine
+	WORD 0x06 0x01
+	WORD 0x00 0x00
+}
 
 ALIGN 4
 prCheckForSkillForgetting:
 	#incbin "asm/CheckForSkillForgetting.bin"
 	POIN (prCallRemoveSkillMenu+1)
-
-}
 
 ALIGN 4
 prCallRemoveSkillMenu:
@@ -60,7 +133,7 @@ prCallRemoveSkillMenu:
 ALIGN 4
 pMenuDef_RemoveSkill:
 	BYTE 1 1 0xE 0 // x, y, w, h
-	WORD 0       // unknown
+	WORD 0         // style
 	POIN pCommandDefs_RemoveSkill
 	WORD 0
 	WORD 0
@@ -82,17 +155,6 @@ pCommandDefs_RemoveSkill:
 	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
 	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoLearnEffect)
 UM_Separator
-	
-	// WORD 0
-	// SHORT 0 0 // text ids
-	// BYTE 0 0 // text color, ????
-	// SHORT 0 // ? (padding?)
-	// POIN (prMenuRemoveSkillCommand_Usability+1)
-	// POIN (prMenuRemoveSkillCommand_Draw+1)
-	// POIN (prMenuRemoveSkillCommand_Effect+1)
-	// WORD 0 // idle
-	// WORD 0 // hover
-	// WORD 0 // ?
 
 ALIGN 4
 prMenuRemoveSkill_OnCancel:
