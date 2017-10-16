@@ -7,27 +7,7 @@
 /*
 	I changed the skill adding routine to set the short at 0202BCDE to (0x8000 | SkillID) when trying to learn a skill but the unit ran out of slots.
 	
-	Routines that are usable to the outside:
-	
-	(prCallRemoveSkillMenu+1)
-		Arguments: r0 = Unit, r1 = Parent 6C (can be 0)
-		Returns:   nothing
-		Will create the skill forgetting menu for given unit, and new skill id located at byte 0202BCDE.
-	
-	(prCheckForSkillForgetting+1)
-		Arguments: r0 = Unit, r1 = Parent 6C
-		Returns:   r0 = 0 on success (menu is open and all)
-		Will check if the top bit of short at 0202BCDE is set, and if set, will call (prCallRemoveSkillMenu+1).
-	
-	(prCallSkillLearnedPopup+1)
-		Arguments: r0 = Parent 6C
-		Returns:   r0 = 0 on success (skill is displayed and all)
-		This one is kinda bonus, since it doesn't have much todo with the menu itself. Calls a popup that displays "Learned <skill>", with skill being the one at 0202BCDE. It is suitable for use with _6C_CALL_ROUTINE_2 (return values match).
-	
-	(prLearnNewSkill+1)
-		Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent 6C
-		Returns:   r0 = 6C (if you really need it)
-		Learns given skill to active unit, and displays popup & menu accordingly. Meant to work with things like skill learning through items or something.
+	Routines that are "public"/usable to the outside:
 	
 	(ASMC_LearnNewSkill+1)
 		call through events with ASMC. Will learn to the unit defined by slot 2 the skill of index in slot 1
@@ -37,8 +17,28 @@
 			ASMC (ASMC_LearnNewSkill+1)
 	
 	(ASMC_HasSkill+1)
-		kinda bonus too, checks if unit in slot 2 has skill in slot 1 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
+		kinda bonus, checks if unit in slot 2 has skill in slot 1 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
 
+	(prLearnNewSkill+1)
+		Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent 6C
+		Returns:   r0 = 6C (if you really need it)
+		Learns given skill to active unit, and displays popup & menu accordingly. Meant to work with things like skill learning through items or something.
+	
+	(prCheckForSkillForgetting+1)
+		Arguments: r0 = Unit, r1 = Parent 6C
+		Returns:   r0 = 0 on success (menu is open and all)
+		Will check if the top bit of short at 0202BCDE is set, and if set, will call (prCallRemoveSkillMenu+1).
+	
+	(prCallSkillLearnedPopup+1)
+		Arguments: r0 = Parent 6C
+		Returns:   r0 = 0 on success (skill is displayed and all)
+		This one is kinda bonus too, since it doesn't have much todo with the menu itself. Calls a popup that displays "Learned <skill>", with skill being the one at 0202BCDE. It is suitable for use with _6C_CALL_ROUTINE_2 (return values match).
+	
+	(prCallRemoveSkillMenu+1)
+		Arguments: r0 = Unit, r1 = Parent 6C (can be 0)
+		Returns:   nothing
+		Will create the skill forgetting menu for given unit, and new skill id located at byte 0202BCDE.
+	
 */
 
 #include "_6CDefinitions.event"
