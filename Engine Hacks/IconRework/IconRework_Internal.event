@@ -1,0 +1,67 @@
+#ifndef HAX_ICON_REWORK_INTERNAL
+#define HAX_ICON_REWORK_INTERNAL
+
+#ifndef _FE8_
+	ERROR this is for FE8 etc
+#endif
+
+#include "Extensions/Hack Installation.txt"
+#include "eastdlib.event"
+
+#ifndef FreeSpace
+	#define FreeSpace 0xB2A610
+	ORG FreeSpace
+#endif
+
+// You can define this beforehand if you really *need* to have more than 16 icon sheets (do you really tho?)
+#ifndef ICON_SHEET_COUNT
+	#define ICON_SHEET_COUNT 0x10
+#endif
+
+{
+PUSH
+	ORG 0x003650
+		replaceWithHack(prGetIconTileIndex)
+	
+	ORG 0x003584
+		replaceWithHack(prClearIcons)
+	
+	ORG 0x00370C
+		replaceWithHack(prClearSingleIcon)
+	
+	ORG 0x00372C
+		replaceWithHack(prLoadIconObjGfx)
+POP
+
+ALIGN 4
+prGetIconTileIndex:
+	#incbin "asm/GetIconTileIndex.bin"
+	POIN praIconGfxGetters
+
+ALIGN 4
+prClearIcons:
+	#incbin "asm/ClearIcons.bin"
+
+ALIGN 4
+prClearSingleIcon:
+	#incbin "asm/ClearIconGfx.bin"
+
+ALIGN 4
+prLoadIconObjGfx:
+	#incbin "asm/LoadIconObjGfx.bin"
+	POIN praIconGfxGetters
+}
+
+ALIGN 4
+prGetItemIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	WORD 0 // Will default to item icon sheet
+
+ALIGN 4
+praIconGfxGetters:
+	POIN (prGetItemIconGfx+1)
+	ORG (praIconGfxGetters + (4 * ICON_SHEET_COUNT))
+
+#define InjectIconGfxGetter(aSheetIndex, aprGfxGetter) "PUSH; ORG (praIconGfxGetters + (4*(aSheetIndex))); POIN (aprGfxGetter); POP"
+
+#endif // HAX_ICON_REWORK_INTERNAL

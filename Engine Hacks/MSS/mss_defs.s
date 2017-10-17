@@ -827,14 +827,36 @@
 
 @requires alternateicondraw
 .macro draw_skill_icon_at, tile_x, tile_y, number=0
-  @assumes icon number in r0 or else in number
-  .if \number
-    mov r0, #\number
-  .endif
-  ldr r4, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
-  mov     r1,r0      
-  mov     r2,#0x80
-  lsl     r2,r2,#0x7      
-  mov     r0,r4    
-  bl      DrawSkillIcon 
+	.if NoAltIconDraw
+		.if \number
+			mov r0, #\number
+		.endif
+		
+		@ r1 = 0x0100
+		mov r1, #1
+		lsl r1, #8
+		
+		@ r1 = [0x01][SkillIndex]
+		orr r1, r0
+		
+		@ r2 = 0x4000 (aka tiles have palette #4)
+		mov r2, #0x40
+		lsl r2, #8
+		
+		ldr r0, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
+		
+		blh DrawIcon
+	.else
+		@assumes icon number in r0 or else in number
+		.if \number
+			mov r0, #\number
+		.endif
+		
+		ldr r4, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
+		mov     r1,r0      
+		mov     r2,#0x80
+		lsl     r2,r2,#0x7      
+		mov     r0,r4    
+		bl      DrawSkillIcon 
+	.endif
 .endm

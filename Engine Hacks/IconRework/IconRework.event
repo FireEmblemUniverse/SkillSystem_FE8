@@ -1,0 +1,18 @@
+#ifndef HAX_ICON_REWORK
+#define HAX_ICON_REWORK
+
+#define ICON_SHEET_COUNT 2 // #0 for item icons & #1 for skill icons
+
+#include "IconRework_Internal.event"
+
+// SKILL ICONS SHEET
+{
+InjectIconGfxGetter(1, (prGetSlillIconGfx+1))
+
+ALIGN 4
+prGetSlillIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN SkillIcons
+}
+
+#endif // HAX_ICON_REWORK

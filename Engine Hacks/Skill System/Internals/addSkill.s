@@ -29,9 +29,19 @@ b True
 
 NextLoop:
 cmp r2, #3
-bge False
+bge SetForForgetting
 add r2, #1
 b LoopStart
+
+SetForForgetting:
+@ r1 = (0x8000 | Skill Index) (top bit set to denote it is indeed a skill to be learned)
+mov  r1, #0x80
+lsl  r1, #8
+orr  r1, r5
+
+@ store
+ldr  r0, =0x0202BCDE @ pExtraItemOrSkill, used by vanilla for when it tries to send an item to convoy
+strh r1, [r0]
 
 True:
 mov r0, #1
