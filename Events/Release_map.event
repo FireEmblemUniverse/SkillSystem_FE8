@@ -176,10 +176,30 @@ NoFade
 ENDA
 
 VillageEvent:
-VillageEventItem(VillageText, Village, Boots)
+	VillageEventItem(VillageText, Village, Boots)
 
 HouseEvent:
-HouseEvent(HouseText, HouseBG)
+	// Set parameters
+	SVAL r1 NiceThighsID
+	SVAL r2 (-1) // (-1) is active unit
+	
+	// Check if unit has skill
+	// If they have, goto label #0 (end)
+	ASMC (ASMC_HasSkill+1)
+	BNE 0 rC r0
+	
+	// Learn skill to unit
+	ASMC (ASMC_LearnNewSkill+1)
+	
+LABEL 0
+	// end
+	
+	Text(HouseText)
+	
+	NoFade
+	ENDA
+	
+	// HouseEvent(HouseText, HouseBG)
 
 FreezeAllEnemies:
 VeinActivation

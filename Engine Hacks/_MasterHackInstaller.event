@@ -11,6 +11,12 @@
 PUSH
   //Include essential fixes and autopatches
   #include "_FE8EssentialFixes.event"
+  
+  // Debug Startup Screen
+  #ifdef __DEBUG__
+    ORG 0x000AD8   // this is somewhere in the startup routine
+      BL(0x01C090) // Call the debug startup menu
+  #endif
 POP
 
 
@@ -134,7 +140,12 @@ POP
   #include "MSG/InstallCore.event"
   #include "MSG/InstallHelpers.event"
   
+  ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"
+  
+  ALIGN 4
+  #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
+  // #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
 
 ALIGN 4
 

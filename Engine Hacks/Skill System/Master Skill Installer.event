@@ -343,5 +343,7 @@ WORD SlowBurnID
 #include "Rally Skills/Rally Installer.event"
 
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
-#include "Stan Skills/ProperRangeGetters/ProperRangeGetters.event" // Bow Range Up
+// #include "Stan Skills/ProperRangeGetters/ProperRangeGetters.event" // Bow Range Up // Actually borken?
 #include "Post Combat Skills/Post Combat Skills Installer.event"
+
+#include "Skill Removal Menu/RemoveSkillMenu.event"
