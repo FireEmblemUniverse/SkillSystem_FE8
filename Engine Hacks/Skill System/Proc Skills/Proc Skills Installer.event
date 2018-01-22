@@ -73,14 +73,14 @@ POIN SkillTester
 WORD AetherID
 
 Proc_Counter:
-#incbin "proc_closecounter.dmp"
-// #incbin "proc_counter.dmp"
+// #incbin "proc_closecounter.dmp"
+#incbin "proc_counter.dmp"
 POIN SkillTester
 WORD CounterID
 
 Proc_CounterMagic:
-#incbin "proc_distantcounter.dmp"
-// #incbin "proc_countermagic.dmp"
+// #incbin "proc_distantcounter.dmp"
+#incbin "proc_countermagic.dmp"
 POIN SkillTester
 WORD CounterMagicID
 
