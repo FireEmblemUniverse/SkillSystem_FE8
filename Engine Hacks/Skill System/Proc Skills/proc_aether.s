@@ -71,12 +71,23 @@ ldrsh r0, [r7, r0]
 mov r1, #5
 ldsb r1, [r6, r1] @existing hp change
 add r0, r1
+
+@now r0 is total HP change - is this higher than the max HP?
+mov r2, #0x13
+ldrsb r2, [r4,r2] @curr hp
+mov r1, #0x12
+ldrsb r1, [r4,r1] @max hp
+sub r1, r2 @damage taken
+cmp r1, r0
+bge NoCap
+  @if hp will cap, set r0 to damage taken
+  mov r0, r1
+NoCap:
 strb r0, [r6, #5] @write hp change
 mov r2, #0x13
 ldrsb r2, [r4,r2] @curr hp
 add r0, r2 @new hp
 strb r0, [r4, #0x13]
-
 
 @adding the next round
 add     r6, #8 @double width battle buffer   
@@ -107,6 +118,10 @@ lsl r1, r0, #1
 add r0, r1
 
 NoCrit:
+cmp r0, #0x7f @damage cap of 127
+ble NotCap
+mov r0, #0x7f
+NotCap:
 strh r0, [r7, #4] @final damage
 
 End:

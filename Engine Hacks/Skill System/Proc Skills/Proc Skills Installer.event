@@ -14,7 +14,7 @@ ProcLoopParent:
 POIN Proc_Start 
 POIN DownWithArch
 POIN Proc_Sureshot Proc_Aegis Proc_Pavise Proc_Luna Proc_Sol Proc_Lethality Proc_Bane Proc_Moonbow //etc
-POIN Proc_Mercy Proc_Miracle Proc_Adept Proc_Astra Proc_Impale Proc_Colossus Proc_Ignis Proc_Aether Proc_Counter Proc_CounterMagic
+POIN Proc_Mercy Proc_Adept Proc_Astra Proc_Impale Proc_Colossus Proc_Ignis Proc_Aether Proc_Miracle Proc_Counter Proc_CounterMagic 
 POIN Proc_FlashyMode 
 POIN Chargeups Proc_Finish 0
 
@@ -73,12 +73,14 @@ POIN SkillTester
 WORD AetherID
 
 Proc_Counter:
-#incbin "proc_counter.dmp"
+#incbin "proc_closecounter.dmp"
+// #incbin "proc_counter.dmp"
 POIN SkillTester
 WORD CounterID
 
 Proc_CounterMagic:
-#incbin "proc_countermagic.dmp"
+#incbin "proc_distantcounter.dmp"
+// #incbin "proc_countermagic.dmp"
 POIN SkillTester
 WORD CounterMagicID
 

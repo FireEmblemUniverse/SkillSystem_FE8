@@ -32,15 +32,25 @@ cmp r0, #0x00
 beq End
 
 @check enemy name
+CheckName:
 ldr	r0,[r5]
 ldrh	r0,[r0]
-ldr r1,=#0x800A240
-mov lr, r1
-.short 0xf800
+ldr	r1,=#0x815D48C
+lsl	r0,#2
+add	r0,r1
 ldr	r0,[r0]
-ldr	r1,=#0x68637241
-cmp	r0,r1
-bne	End
+ldrb	r1,[r0]
+cmp	r1,#0x41
+bne	Done
+ldrb	r1,[r0,#1]
+cmp	r1,#0x72
+bne	Done
+ldrb	r1,[r0,#2]
+cmp	r1,#0x63
+bne	Done
+ldrb	r1,[r0,#3]
+cmp	r1,#0x68
+bne	Done
 
 @set lethality chance, just in case
 mov	r0,#0x6C

@@ -142,12 +142,12 @@ Wrath: If HP < 50%,[N]
 +20 critical rate.[X]
 
 ## SD_Counter
-Counter: Physical damage taken[N]
-at 1-2 range is reflected.[X]
+#Counter: Reflect physical damage[N]
+#when attacked at 1-2 range.[X]
 
 ## SD_Countermagic
-Countermagic: Magic damage taken[N]
-at 1-2 range is reflected.[X]
+Countermagic: Reflect magic damage[N]
+when attacked at 1-2 range.[X]
 
 ## SD_Miracle
 Miracle: Survive a lethal[N]
@@ -189,7 +189,7 @@ Dance: Refresh an ally unit[N]
 to let them act again.[X]
 
 ## SD_Lifetaker
-Lifetaker: Restore up to 50% HP after[N]
+Lifetaker: Restore up to 25% HP after[N]
 attacking and defeating an enemy.[X]
 
 ## SD_Galeforce
@@ -335,7 +335,8 @@ without keys or picks.[X]
 
 ## SD_Lunge
 Lunge: Swap places with the[N]
-opponent after combat.[X]
+opponent after combat.[N]
+(No effect if Move is --)[X]
 
 ## SD_Intimidate
 Intimidate: -10 Avoid to[N]
@@ -556,3 +557,39 @@ adjacent ally to its opposite side.[X]
 Swap: Allows unit to swap positions[N]
 with an adjacent ally.[X]
 
+## SD_BreathOfLife
+Breath of Life: After attacking,[N]
+allies in 2 tiles heal of 20% max HP.[X]
+
+## SD_Fury
+Fury: +2 Atk/Spd/Def/Res. Unit[N]
+takes 6 damage after combat.[X]
+
+## SD_Dazzle
+Dazzle: Opponents cannot[N]
+counterattack this unit.[X]
+
+## SD_TriAdept
+Triangle Adept: Doubles[N]
+weapon triangle effects.[X]
+
+## SD_Supply
+Supply: This unit has[N]
+access to the convoy.[X]
+
+## SD_RandomMug
+Quantum Visage: Face changes[N]
+every time it's looked at.[X]
+
+## SD_Trace
+Trace: During Battle, copies[N]
+the first Skill of the enemy.[X]
+
+## SD_Roll12
+1d12: Gain 1 of 12 random proc[N]
+Skills during battle.[N]
+(Proc % based on original skills).[X]
+
+## SD_IdentityProblems
+Identity Problems: This unit can't[N]
+decide on a name or face.[X]

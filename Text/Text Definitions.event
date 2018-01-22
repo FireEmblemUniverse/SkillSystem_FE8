@@ -175,3 +175,12 @@
 #define SD_Pivot 0x98d
 #define SD_Reposition 0x98e
 #define SD_Swap 0x98f
+#define SD_BreathOfLife 0x990
+#define SD_Fury 0x991
+#define SD_Dazzle 0x992
+#define SD_TriAdept 0x993
+#define SD_Supply 0x994
+#define SD_RandomMug 0x995
+#define SD_Trace 0x996
+#define SD_Roll12 0x997
+#define SD_IdentityProblems 0x998

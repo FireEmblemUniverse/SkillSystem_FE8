@@ -7,6 +7,10 @@ SkillIcons:
 #incext Png2Dmp "SkillIcons.png"
 PUSH
 
+//Dazzle (can't be countered)
+ORG 0x2c864
+jumpToHack(DazzleCheck)
+
 //Rightful X
 ORG $2a52e //modifies the 1RN roll skill to check for rightful skills
 SHORT 0x46C0
@@ -81,7 +85,7 @@ ORG $2c088
 jumpToHack(SealSkills)
 
 ORG $2c1f4
-jumpToHack(Armsthrift)
+// jumpToHack(Armsthrift)
 
 //remove critup ability (for critup skill)
 ORG $2AC4A
@@ -99,6 +103,11 @@ WORD LethalityID
 WORD BaneID
 ALIGN 4
 
+DazzleCheck:
+#incbin "Other Skills/dazzle.dmp"
+POIN SkillTester
+WORD DazzleID
+ALIGN 4
 
 FaireCheck: //added to fe8_calc_loop.event
 #incbin "Ross Skills/FaireCheck.dmp"
@@ -285,7 +294,6 @@ CriticalCheck:
 #incbin "Blade Skills/Critical.dmp"
 POIN SkillTester
 POIN CriticalIDList
-
 CriticalIDList:
 BYTE CriticalForceID KillingMachineID
 ALIGN 4
@@ -337,13 +345,28 @@ SlowBurn:
 POIN SkillTester
 WORD SlowBurnID
 
+Roll1d12:
+#incbin "Other Skills/roll12.dmp"
+POIN SkillTester
+WORD Roll12ID
+POIN _12SkillList
+ALIGN 4
+_12SkillList:
+BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
+ALIGN 4
+
+TraceSkill:
+#incbin "Other Skills/trace.dmp"
+POIN SkillTester
+WORD TraceID
+POIN Skill_Getter
+
+#include "Other Skills/RandomMugs.event"
+
 
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
 #include "Rally Skills/Rally Installer.event"
 
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
-// #include "Stan Skills/ProperRangeGetters/ProperRangeGetters.event" // Bow Range Up // Actually borken?
 #include "Post Combat Skills/Post Combat Skills Installer.event"
-
-#include "Skill Removal Menu/RemoveSkillMenu.event"

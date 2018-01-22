@@ -41,24 +41,31 @@ mov	r3, #0x02	@range
 .short	0xf800
 
 SavageBlowDamage:
-mov	r7, r5		@save defender for the event check
 mov	r4, r0		@number of units
 mov	r5, r1		@start of buffer
 mov	r6, #0x00	@counter
-
-cmp	r0, #0x01
-beq	CheckEvent	@if only opponent is left
 cmp	r0, #0x00
 beq	End
-b	Event
 @if not 0 go through the buffer in r1
 
-CheckEvent:
-ldrb	r1, [r7,#0x13]	@r1 = current hp
-cmp	r1, #0x00	@if opponent is the only enemy in range and is dead, skip the sound effect
-beq	Savage_loop
+CheckEventLoop:		@check if all units in range are dead (or have 1 hp) and if so do not play sound
+ldrb	r0, [r5,r6]
+add	r6,#1
+ldr	r2,=#0x8019430
+mov	lr, r2
+.short	0xf800
+ldrb	r0,[r0,#0x13]	@current hp
+mov	r1,#2
+neg	r1,r1
+and	r0,r1
+cmp	r0,#0
+bne	Event
+cmp	r6,r4
+beq	End
+b	CheckEventLoop
 
 Event:
+mov	r6, #0x00		@reset counter
 ldr	r0,=#0x800D07C		@event engine thingy
 mov	lr, r0
 ldr	r0, SavageBlowEvent	@this event is just "play some sound effects"

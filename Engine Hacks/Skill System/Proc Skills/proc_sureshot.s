@@ -53,11 +53,27 @@ orr     r0,r1                @ 0802B438 4308
 str     r0,[r6]                @ 0802B43A 6018   
 
 @and add 1.5x damage - this means it MUST go after the damage check...
-mov r0, #4
-ldrsh r0, [r7, r0]
-lsr     r1, r0, #1
-add     r0, r1
-strh    r0, [r7,#4] @1.5x damage
+ldrh r0, [r7, #6] @final mt
+lsl r0, #0x10
+asr r0, #0x10
+ldrh r1, [r7, #8] @final def
+lsl r1, #0x10
+asr r1, #0x10
+sub r0, r1 @calc damage
+lsr r1, r0, #1
+add r0, r1 @multiply by 1.5x
+
+@check for crit
+ldr     r2,[r6]
+mov r1, #0x1
+and r1, r2
+cmp r1, #0
+beq NoCrit
+lsl r1, r0, #1 @multiply by 3
+add r0, r1
+
+NoCrit:
+strh r0, [r7, #4] @final damage
 
 End:
 pop {r4-r7}

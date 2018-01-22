@@ -1,0 +1,323 @@
+    #define IdentityRamByte 0x202FFFF
+    
+    PUSH
+    ORG $8C634
+    jumpToHack(RandomMug1)
+    ORG $88680
+    jumpToHack(RandomMug2)
+    ORG $7898
+    jumpToHack(RandomMug3)
+    ORG $22BF6
+    SHORT 0x46C0
+    jumpToHack(RandomMug4)
+    ORG $9A950
+    jumpToHack(RandomMug5)
+    ORG $99EE0
+    jumpToHack(RandomMug6)
+    ORG $99530
+    jumpToHack(RandomMug7)
+    ORG $73DBC
+    jumpToHack(RandomMug8)
+    ORG $8E2FC
+    jumpToHack(RandomMug9)
+    ORG $2D7D8
+    jumpToHack(RandomMug10)
+    ORG $2D7F0
+    jumpToHack(RandomMug11)
+    ORG $9B9A0
+    jumpToHack(RandomMug12)
+    ORG $9B9BA
+    SHORT 0x1C19
+    jumpToHack(RandomMug13)
+    ORG $9AE8C
+    jumpToHack(PrepScreenIsDumb)
+    //ORG $98CC4
+    //jumpToHack(PrepScreenIsDumb2)
+    ORG $8C5F4
+    jumpToHack(IdentityProblems1)
+    ORG $86E4C
+    jumpToHack(IdentityProblems2)
+    ORG $365EC
+    jumpToHack(IdentityProblems3)
+    ORG $9A5F0
+    jumpToHack(IdentityProblems4)
+    ORG $9A97C
+    jumpToHack(IdentityProblems5)
+    ORG $9954C
+    jumpToHack(IdentityProblems6)
+    ORG $9A1DC
+    jumpToHack(IdentityProblems7)
+    ORG $5203C
+    jumpToHack(IdentityProblems8)
+    ORG $923A8
+    jumpToHack(IdentityProblems9)
+    ORG $9ECCE
+    SHORT 0x46C0
+    jumpToHack(IdentityProblems10)
+    ORG $8E240
+    jumpToHack(IdentityProblems11)
+    ORG $34984
+    jumpToHack(IdentityProblems12)
+    ORG $2D34C
+    jumpToHack(IdentityProblems13)
+    ORG $2D37C
+    jumpToHack(IdentityProblems14)
+    ORG $9B9F0
+    jumpToHack(IdentityProblems15)
+    ORG $9BA24
+    jumpToHack(IdentityProblems16)
+    POP
+
+    RandomMug1:
+    #incbin "RandomMug/RandomMug1.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug2:
+    #incbin "RandomMug/RandomMug2.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug3:
+    #incbin "RandomMug/RandomMug3.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug4:
+    #incbin "RandomMug/RandomMug4.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug5:
+    #incbin "RandomMug/RandomMug5.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug6:
+    #incbin "RandomMug/RandomMug6.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug7:
+    #incbin "RandomMug/RandomMug7.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug8:
+    #incbin "RandomMug/RandomMug8.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug9:
+    #incbin "RandomMug/RandomMug9.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug10:
+    #incbin "RandomMug/RandomMug10.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug11:
+    #incbin "RandomMug/RandomMug11.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug12:
+    #incbin "RandomMug/RandomMug12.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    RandomMug13:
+    #incbin "RandomMug/RandomMug13.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+    
+    PrepScreenIsDumb:
+    #incbin "RandomMug/PrepScreenIsDumb.dmp"
+    WORD IdentityRamByte
+    
+    PrepScreenIsDumb2:
+    #incbin "RandomMug/PrepScreenIsDumb2.dmp"
+    WORD IdentityRamByte
+    
+    IdentityProblems1:
+    #incbin "RandomMug/IdentityProblems1.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems2:
+    #incbin "RandomMug/IdentityProblems2.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems3:
+    #incbin "RandomMug/IdentityProblems3.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems4:
+    #incbin "RandomMug/IdentityProblems4.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems5:
+    #incbin "RandomMug/IdentityProblems5.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+        
+    IdentityProblems6:
+    #incbin "RandomMug/IdentityProblems6.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+
+    IdentityProblems7:
+    #incbin "RandomMug/IdentityProblems7.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems8:
+    #incbin "RandomMug/IdentityProblems8.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems9:
+    #incbin "RandomMug/IdentityProblems9.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems10:
+    #incbin "RandomMug/IdentityProblems10.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems11:
+    #incbin "RandomMug/IdentityProblems11.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems12:
+    #incbin "RandomMug/IdentityProblems12.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems13:
+    #incbin "RandomMug/IdentityProblems13.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems14:
+    #incbin "RandomMug/IdentityProblems14.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems15:
+    #incbin "RandomMug/IdentityProblems15.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    IdentityProblems16:
+    #incbin "RandomMug/IdentityProblems16.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
+    MugList: //List of mugs that mugs can be randomized to (the list has to have 100 entries)
+    //This list is used both for quantum visage and for the [0xF0][0xFF] text command thing
+    BYTE 0x02 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0C 0x0E 0x0F 0x10 0x11 0x13 0x14 0x16
+    BYTE 0x18 0x19 0x1A 0x1B 0x1C 0x1E 0x20 0x21 0x22 0x23 0x24 0x25 0x26 0x29 0x2A 0x2B
+    BYTE 0x2C 0x30 0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38 0x39 0x3A 0x3B 0x3C 0x3D 0x3E
+    BYTE 0x3F 0x40 0x42 0x43 0x44 0x46 0x48 0x49 0x4B 0x4C 0x4D 0x51 0x52 0x53 0x54 0x55
+    BYTE 0x56 0x6C 0x6D 0x6E
+    BYTE 0x02 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0C 0x0E 0x0F 0x10 0x11 0x13 0x14 0x16
+    BYTE 0x18 0x19 0x1A 0x1B 0x1C 0x1E 0x20 0x21 0x22 0x23 0x24 0x25 0x26 0x29 0x2A 0x2B
+    ALIGN 4
+    IdentityProblemsMugs: //List of mugs that identity problems can be randomized to (the list is 3 entries)
+    //This list is also used for the [0xE0][0xFF] text command
+    BYTE 0x0c 0x09 0x0a
+    ALIGN 2
+    IdentityProblemsNames: //Make sure the names match the mugs from the list above and whatnot
+    SHORT nameCamus nameZeke nameSirius
