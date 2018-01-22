@@ -144,6 +144,7 @@ AddSkillsOnLoad:
 POIN LevelUpSkillTable
 POIN SkillAdder
 POIN ChargeupTable
+POIN Skill_Getter
 
 RTextLoop:
 #incbin "rtextloop.dmp"
