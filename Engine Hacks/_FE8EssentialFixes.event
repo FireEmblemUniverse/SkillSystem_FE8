@@ -1,23 +1,38 @@
 //Essential Fixes for FE8
 //Install with Event Assembler
 PUSH
+
+//Fix MNC2 Freezing glitch
+  ORG $BD070
+  SHORT $E0B8
+
 //Set Default Options
   ORG $30d8a  //animations type 2
   SHORT $3306
   ORG $30da6  //Game/text speed Fast, Autocursor off
   SHORT $22d0
+  
+//Allow Visit from any tile
+  PUSH
+  ORG $23072
+  SHORT $e00d
+  POP
 
 //Break HP Cap for Players/NPCs (credit Solum)
-  ORG $181ee
-  SHORT $1c11
-  ORG $2bf4c
-  BYTE $7f
+  // ORG $181ee
+  // SHORT $1c11
+  // ORG $2bf4c
+  // BYTE $7f
 
 //skip hand axe wait for return
   ORG $514e
   SHORT 0
   ORG $58c90
   POIN $596cc
+
+//allow Wyvern Knights to triangle attack
+  ORG $2b168
+  SHORT 0
 
 //12 Tracks/16 Sounds Fix (credit Agro/Brendor)
   ORG $2900
@@ -80,6 +95,10 @@ PUSH
 //Mode Coefficient EXP fix (credit Vennobennu)
   ORG 0x2C474
   WORD 0
+
+//Skip Intro and Class Roll (otherwise pre-battle anims will crash this)
+  ORG $c63ad
+  BYTE $e0
 
 #include "Extensions/Hack Installation.txt"
 //Anti-Huffman Patch, by Hextator and Nintenlord
