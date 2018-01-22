@@ -151,7 +151,7 @@ mov r1,#0x10
 and r1,r0
 cmp r1,#0x10
 bne Nexty
-draw_charge_at 26, 13, colour=Green @ChargeGetter
+@ draw_charge_at 26, 13, colour=Green @ChargeGetter
 
 Nexty:
 

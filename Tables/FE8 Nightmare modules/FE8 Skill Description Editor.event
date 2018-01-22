@@ -1,6 +1,6 @@
 #define csvmacro004(arg000) "SHORT arg000 "
 
-#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\FE8_clean.gba" 0xe47180 SkillDescTable
+#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillDescTable
 
 ALIGN 4
 SkillDescTable:
