@@ -7,6 +7,9 @@ jumpToHack(ProcLoopParent)
 
 ORG $59064
 jumpToHack(SkillActivationAnims)
+
+ORG $590a8
+jumpToHack(SkillActivationAnims_defensive)
 POP
 
 ProcLoopParent:
@@ -132,6 +135,10 @@ Chargeups:
 
 SkillActivationAnims:
 #incbin "activationanims.dmp"
+POIN SkillAnimationPointerTable
+
+SkillActivationAnims_defensive:
+#incbin "activationanims_defensive.dmp"
 POIN SkillAnimationPointerTable
 
 LunaAnim:
