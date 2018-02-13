@@ -5,7 +5,7 @@ POIN Frames
 POIN TSAList
 POIN GraphicsList
 POIN PalettesList
-WORD 0x3d1 //sound id
+WORD 0xE7 //sound id
 
 Frames:    //SHORT image duration
 SHORT 0 5
