@@ -20,6 +20,10 @@ jumpToHack(RightfulCheck)
 ORG $1a4cc
 jumpToHack(AcrobatCheck)
 
+//LockTouch
+ORG $23E8C //ignore vanilla locktouch routine
+jumpToHack(LockTouch)
+
 //Pass
 ORG $800 //modifies movement ARM code
 WORD 0xE59FC000 0xE12FFF1C //ldr r12,Pass; bx r12
@@ -354,6 +358,11 @@ ALIGN 4
 _12SkillList:
 BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
 ALIGN 4
+
+LockTouch:
+#incbin "Kao Skills/LockTouch.dmp"
+POIN SkillTester
+WORD LockTouchID
 
 TraceSkill:
 #incbin "Other Skills/trace.dmp"
