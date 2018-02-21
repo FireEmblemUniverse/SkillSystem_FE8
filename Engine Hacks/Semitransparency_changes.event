@@ -1,4 +1,4 @@
-#ifdef inBLRange
+// #ifdef inBLRange
 
 PUSH
 
@@ -36,21 +36,21 @@ ORG $9fe54
 SHORT $A42
 
 //Supply
-ORG $9db02
-SHORT $2001 $210e $2202 $2308
-ORG $9d55c
-SHORT $2142 $7001 $210A $7041
+// ORG $9db02
+// SHORT $2001 $210e $2202 $2308
+// ORG $9d55c
+// SHORT $2142 $7001 $210A $7041
 
-//Leaving Supply/promote
-ORG $13bcc
-SHORT $2001 $210e $2202 $2300
-ORG $13bdc
-SHORT $2000 $2101 $2200 $2300
-ORG $13bea
-SHORT $2000 $2100 $2200 $2301
-ORG $13bf6
-SHORT $2046
-BL(SemiTransparency)
+// //Leaving Supply/promote
+// ORG $13bcc
+// SHORT $2001 $210e $2202 $2300
+// ORG $13bdc
+// SHORT $2000 $2101 $2200 $2300
+// ORG $13bea
+// SHORT $2000 $2100 $2200 $2301
+// ORG $13bf6
+// SHORT $2046
+// BL(SemiTransparency)
 
 //Got Item
 ORG $111c0
@@ -64,9 +64,9 @@ SHORT 0 0
 
 POP
 
-SemiTransparency:
-SHORT $4661 $313c $7008 $4770
+// SemiTransparency:
+// SHORT $4661 $313c $7008 $4770
 
-#else
-ERROR _file_ is not in BL Range
-#endif
+// #else
+// ERROR _file_ is not in BL Range
+// #endif
