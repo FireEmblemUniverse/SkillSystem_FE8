@@ -645,6 +645,20 @@ Conditional
    Parameters:
     Character
 
+  FE8:
+   CHECK_AT [Position X, Position Y] 
+
+   Parameters:
+    Position
+
+  FE8:
+   CHECK_INAREA Char [TopLeftPos 1, TopLeftPos 2] [Size 1, Size 2] 
+
+   Parameters:
+    Char
+    TopLeftPos
+    Size
+
 Convos
  Fade in or out
   FE6:
@@ -1761,6 +1775,12 @@ Memory manipulation
    Slots
 
  FE8:
+  SMOD Slots 
+
+  Parameters:
+   Slots
+
+ FE8:
   SAND Slots 
 
   Parameters:
@@ -1845,6 +1865,16 @@ Memory manipulation
    Base operand
 
 Miscellaneous
+ Display Movement Range
+  FE8:
+   SHOW_ATTACK_RANGE Char 
+
+   Parameters:
+    Char
+
+  FE8:
+   HIDE_ATTACK_RANGE 
+
  Misc
   FE8:
    RANDOMNUMBER *Maximum Number* 
@@ -2385,6 +2415,33 @@ Units
    Parameters:
     Character
 
+  FE8:
+   SET_ACTIVE Char 
+
+   Parameters:
+    Char
+
+  FE8:
+   RECLASS Char Class 
+
+   Parameters:
+    Char
+    Class
+
+  FE8:
+   RECLASS_FROMCHAR Char From 
+
+   Parameters:
+    Char
+    From
+
+  FE8:
+   SWITCH_CLASSES Char1 Char2 
+
+   Parameters:
+    Char1
+    Char2
+
  Disappear
   FE6:
    DISA Character 
@@ -2420,6 +2477,12 @@ Units
 
   FE8:
    CLEE Character 
+
+   Parameters:
+    Character
+
+  FE8:
+   INVIS Character 
 
    Parameters:
     Character
@@ -2503,6 +2566,16 @@ Units
     Attacker = Character ID of the attacker.
     Defender = Character ID of the defender.
     Unknown = Unknown
+
+  FE8:
+   FIG3 Attacker Defender Unknown 
+
+   Scripts the details of the next fight.
+
+   Parameters:
+    Attacker = Leave as 0
+    Defender = Leave as 0
+    Unknown = Unknown. Leave as 0
 
  Give Items
   FE8:
@@ -2647,6 +2720,34 @@ Units
    Parameters:
     Value1
 
+  FE8:
+   SPAWN_ALLY Char [Position X, Position Y] 
+
+   Parameters:
+    Char
+    Position
+
+  FE8:
+   SPAWN_NPC Char [Position X, Position Y] 
+
+   Parameters:
+    Char
+    Position
+
+  FE8:
+   SPAWN_ENEMY Char [Position X, Position Y] 
+
+   Parameters:
+    Char
+    Position
+
+  FE8:
+   SPAWN_CUTSCENE_ALLY Char [Position X, Position Y] 
+
+   Parameters:
+    Char
+    Position
+
  Moving
   FE6:
    MOVE [Old position X, Old position Y] [New position X, New position Y] 
@@ -2777,11 +2878,11 @@ Units
    UNIT *Char ID* *Class ID* *Leader char* *Misc data* [Loading position X, Loading position Y] [Starting position X, Starting position Y] [Items 1, Items 2, Items 3, Items 4] [AI 1, AI 2, AI 3, AI 4] 
    UNIT *Char ID* *Class ID* *Leader char* *Misc data* [Loading position X, Loading position Y] [Starting position X, Starting position Y] *Item 1* *Item 2* *Item 3* *Item 4* *AI 1* *AI 2* RecoveryAI DontMoveAI 
   FE8:
+   UNIT 
    UNIT *Char ID* *Class ID* *Leader char* *Misc data* [Loading position X, Loading position Y] Flags Byte1 *Data count* *REDA data pointer* [Items 1, Items 2, Items 3, Items 4] [AI 1, AI 2] RecoveryAI DontMoveAI 
    UNIT *Char ID* *Class ID* *Leader char* *Misc data* [Loading position X, Loading position Y] Flags Byte1 *Data count* *REDA data pointer* [Items 1, Items 2, Items 3, Items 4] [AI 1, AI 2, AI 3, AI 4] 
    UNIT *Char ID* *Class ID* *Leader char* *Misc data* [Loading position X, Loading position Y] Flags Byte1 *Data count* *REDA data pointer* Items AI 
    UNIT *Char ID* *Class ID* *Leader char* *Misc data* [Loading position X, Loading position Y] Flags Byte1 *Data count* *REDA data pointer* *Item 1* *Item 2* *Item 3* *Item 4* *AI 1* *AI 2* *AI 3* *AI 4* 
-   UNIT 
 
    Unit data that controls units that can be loaded to chapter maps.
    Parameterless version is the end of UNIT list.
@@ -2838,7 +2939,7 @@ Units
     New position = Position to move the unit to.
     Flags = Flags of the movement.
     Speed = Speed of the movement.
-    Rescuing character = Unit this unit is resquing. 0 if there is none.
+    Rescuing character = Unit this unit is rescuing. 0 if there is none.
     Delay = Amount of time to pass before executing this code.
     Unknown = Unknwon. Usually 0xFFFF.
 
@@ -3890,28 +3991,6 @@ _ExperimentalFE8
 
   Parameters:
    Value1
-
- FE8:
-  _0x3240 Unit *Space ??* 
-
-  Parameters:
-   Unit
-   Space ??
-
- FE8:
-  _0x3242 Value1 Value2 
-
-  Parameters:
-   Value1
-   Value2
-
- FE8:
-  _0x3640 Value1 Value2 Value3 
-
-  Parameters:
-   Value1
-   Value2
-   Value3
 
  FE8:
   _0x412F Value1 

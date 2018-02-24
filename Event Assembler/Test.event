@@ -1,10 +1,4 @@
-ASSERT 5
+#define test() "BYTE 5"
+test()
 
-ORG 10
-Label1:
-MESSAGE "After orging to 10 " currentOffset
-
-ORG Label1+5
-MESSAGE "After orging to my label " currentOffset
-
-ASSERT 10-currentOffset
+ERROR "I don't want output."

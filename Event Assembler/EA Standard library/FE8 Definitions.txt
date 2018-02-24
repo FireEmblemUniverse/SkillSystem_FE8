@@ -49,6 +49,7 @@
 #define Morva_Ch20 0x41
 #define Orson_Ch5x 0x42
 #define Valter_Ch15_ 0x43
+#define Valter_Ch15 0x43
 #define Selena_Ch10B_and_13B 0x44
 #define Valter_Prologue 0x45
 #define Breguet 0x46
@@ -62,6 +63,7 @@
 #define Binks 0x4E
 #define Pablo 0x4F
 #define Macdaire 0x50
+#define Maelduin_boss 0x50
 #define Aias 0x51
 #define Carlyle 0x52
 #define Caellach 0x53
@@ -225,8 +227,6 @@
 #define FallenPeer 0x7B
 #define Cyclops_2 0x7C
 #define ElderBael_2 0x7D
-#define Journeyman(2) 0x7E
-#define Pupil(2) 0x7F
 #define Journeyman_2 0x7E
 #define Pupil_2 0x7F
 
@@ -245,19 +245,27 @@
 #define Shamshir 0x0C
 #define KillingEdge 0x0D
 #define Armourslayer 0x0E
+#define Armorslayer 0x0E
 #define Wyrmslayer 0x0F
 #define LightBrand 0x10
+#define Lightbrand 0x10
 #define Runesword 0x11
 #define Lancereaver 0x12
 #define Longsword 0x13
+#define Zanbato 0x13
+#define Zanbatou 0x13
 #define IronLance 0x14
 #define SlimLance 0x15
 #define SteelLance 0x16
 #define SilverLance 0x17
 #define PoisonLance 0x18
+#define ToxicLance 0x18
+#define ToxinLance 0x18
 #define BraveLance 0x19
 #define KillerLance 0x1A
 #define Horseslayer 0x1B
+#define Ridersbane 0x1B
+#define Horsekiller 0x1B
 #define Javelin 0x1C
 #define Spear 0x1D
 #define Axereaver 0x1E
@@ -327,6 +335,7 @@
 #define Speedwings 0x5E
 #define GoddessIcon 0x5F
 #define Dragonshield 0x60
+#define Dracoshield 0x60
 #define Talisman 0x61
 #define Boots 0x62
 #define BodyRing 0x63
@@ -345,7 +354,9 @@
 #define Elixir 0x6D
 #define PureWater 0x6E
 #define Antidote 0x6F
+#define Antitoxin 0x6F
 #define Torch 0x70
+#define TorchItem 0x70
 #define DelphiShield 0x71
 #define MemberCard 0x72
 #define SilverCard 0x73
@@ -363,13 +374,17 @@
 #define ThorsIre 0x7F
 #define SetsLitany 0x80
 #define ShadowKiller 0x81
+#define Shadowkiller 0x81
 #define BrightLance 0x82
 #define FiendCleaver 0x83
+#define Fiendcleaver 0x83
 #define BeaconBow 0x84
 #define Sieglind 0x85
+#define Sieglinde 0x85
 #define BattleAxe 0x86
 #define Ivaldi 0x87
 #define MasterProof 0x88
+#define MasterSeal 0x88
 #define MetissTome 0x89
 #define HeavenSeal 0x8A
 #define SharpClaw 0x8B
@@ -379,41 +394,52 @@
 #define Naglfar 0x8F
 #define WretchedAir 0x90
 #define Audomra 0x91
+#define Audhulma 0x91
 #define Siegmund 0x92
 #define Garm 0x93
 #define Nidhogg 0x94
 #define HeavySpear 0x95
 #define ShortSpear 0x96
 #define ConquerorsProof 0x97
+#define OceanSeal 0x97
 #define MoonBracelet 0x98
+#define LunarBracelet 0x98
 #define SunBracelet 0x99
-#define 1G 0x9A
-#define 5G 0x9B
-#define 10G 0x9C
-#define 50G 0x9D
-#define 100G 0x9E
-#define 3000G 0x9F
-#define 5000G 0xA0
+#define SolarBracelet 0x99
+#define Item1G 0x9A
+#define Item5G 0x9B
+#define Item10G 0x9C
+#define Item50G 0x9D
+#define Item100G 0x9E
+#define Item3000G 0x9F
+#define Item5000G 0xA0
 #define WindSword 0xA1
 #define Vulnerary_2 0xA2
 #define Greennote 0xA3
 #define Rednote 0xA4
 #define Dance 0xA5
 #define Nightmare 0xA6
+#define NightmareStaff 0xA6
 #define DemonShard 0xA7
+#define DemonStone 0xA7
 #define DemonLight 0xA8
 #define Ravager 0xA9
 #define HolyDragonStone 0xAA
+#define DivineDragonStone 0xAA
+#define DragonStone 0xAA
+#define Dragonstone 0xAA
 #define DemonSurge 0xAB
 #define Shadowshot 0xAC
 #define RottenClaw 0xAD
 #define FetidClaw 0xAE
 #define PoisonClaw 0xAF
 #define LongPoisonClaw 0xB0
+#define LethalTalon 0xB0
 #define FireFang 0xB1
 #define HellFang 0xB2
 #define EvilEye 0xB3
 #define BloodyEye 0xB4
+#define CrimsonEye 0xB4
 #define Stone 0xB5
 #define Aircalibur 0xB6
 #define JunaFruit 0xB7
@@ -441,3 +467,10 @@
 #define rD 0xD
 #define r13 0xD
 #define QP 0xD	//QueuePointer
+
+#define ActiveUnit (-1)        // 0xFFFF
+#define UnitAtCoordsSlotB (-2) // 0xFFFE
+#define UnitInSlot2 (-3)       // 0xFFFD
+
+#define CurrentUnit ActiveUnit
+#define UnitAtCoords UnitAtCoordsSlotB

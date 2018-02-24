@@ -35,3 +35,23 @@ SET_SOMETHING, 0x342D, 4, -game:FE8 -indexMode:8
 #Removes unit completely if word 0x89A2C80 is found at region of $02024E68
 DISA_IF, 0x342E, 4, -game:FE8 -indexMode:8
 	Character, 2, 2
+
+#Sets unit as currently active unit (will make it accessible through char 0xFFFF, and more)
+SET_ACTIVE, 0x3820, 4, -game:FE8 -indexMode:8
+	Char, 2, 2
+
+#Changes Unit Class (weapon ranks, stats, etc stay the same)
+RECLASS, 0x3540, 8, -game:FE8 -indexMode:8
+	Char,  2, 2
+	Class, 4, 2
+
+#Changes Unit Class (class becomes default class for given char id)
+RECLASS_FROMCHAR, 0x3540, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	0x00, 4, 2, -fixed
+	From, 6, 2
+
+#Units switch classes... somewhat (the first unit will gain the *default* class of the second unit, while the second unit *will* get the class the first unit was in beforehand)
+SWITCH_CLASSES, 0x3541, 8, -game:FE8 -indexMode:8
+	Char1, 2, 2
+	Char2, 4, 2

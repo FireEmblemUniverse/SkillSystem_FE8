@@ -94,3 +94,23 @@ LOAD3, 0x2C42, 8, -game:FE8 -indexMode:8
 LOAD4, 0x2C43, 8, -game:FE8 -indexMode:8
  Value1, 2, 2
  0x0, 4, 4,  -fixed
+
+#Loads one Ally unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_ALLY, 0x3240, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+#Loads one NPC unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_NPC, 0x3241, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+#Loads one Enemy unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_ENEMY, 0x3242, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+#This unit will dissapear at the end of events (?)
+SPAWN_CUTSCENE_ALLY, 0x324F, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10

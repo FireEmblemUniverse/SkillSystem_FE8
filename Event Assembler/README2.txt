@@ -66,10 +66,13 @@ V 10.1
 -Added MNTS code for FE8 (returns to title screen)
 -Fixed Fe8Code assembling, which was produced by the disassembler.
 
-V 11.0
+V10.1.1
 -Added POIN2; it's just POIN but doesn't require word-alignment.
 -Fixed Hack Installation/setPointerTableEntry
 -Added #inctext for programs that output event code, rather than just binary.
+
+V 11.0
+-Changed #inctext to #inctevent. I recommnend the use of this name in the future because it's more intuitive.
 -Fixed bug where Core would hang if it got an invalid input file.
 -Added PROTECT (start) (end) to make a region write-protected.
 -Made Event assembler.exe look for .event files by default (over .txt)
@@ -80,6 +83,22 @@ V 11.0
 -Made disassembly work again; changed auto-adding of _0x codes to not mess up disassembly.
 -Changed disassemblies to use ASSERT for stronger protection over just MESSAGE-ing the currentOffset.
 -Changed scripts to take/output .event files by default.
+
+V11.0.1
+-Aliased #inctevent as #inctext for backwards compatability with V10.1.1
+
+V 11.1 (StanH_)
+-Added `-symOutput:<filename>` option, which outputs global labels to `<filename>` following the format `<name>=$<offset(hex)><newline>`
+-"Added" symbol Assignment logic (`<symName> = <value>`) ("Added" because most of the logic was already present, I basically just made it parse)
+-Tools invoked through directives (`#incext`, `#inctevent` & `#runext`) can now report errors via stderr (before they needed to print "ERROR: <err string>" to stdout)
+-`#runext` passes Tool's stdout to EA's
+-Added warning when redefining a symbol/label (within the same scope)
+-Various Fixes:
+ -Fixed `#inctext`/`#inctevent` not handling parameters with spaces properly
+ -Fixed IsDefined macro not working
+ -Fixed curly brackets crashing EA when directly after a label/statement
+ -Fixed repeatable codes without parameters crashing EA
+ -Fixed various crashes related to the expression/parameter parser
 
 -------------------
 Additional Credits:
