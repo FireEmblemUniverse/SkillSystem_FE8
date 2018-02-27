@@ -25,6 +25,15 @@
 @jumptohack from 8076018
 @now check if leveled up by comparing 0x9 to 0x70
 @ldr r0, [r4] @r0 is the battle data
+
+@This part is for the "Display Weapon Rank Gained" hack (Teq)
+@it writes weapon exp to ram, next to where the weapon type would be
+
+blh 	0x802C0B4
+ldr		r1,=#0x30005F4
+strb	r0,[r1,#0x2]
+ldr		r0,[r4]			@put things back
+
   push {r4}
 ldrb r1, [r0, #0x8] @current level
 mov r4, r1 @save the current level, we'll need it

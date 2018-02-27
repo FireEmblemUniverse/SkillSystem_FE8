@@ -1,5 +1,7 @@
 //Skill System replacing favouritism stat
 #include repointbuffer.event
+#include "FE8-Weapon Rank on Levelup/FE8-Weapon Rank on Levelup EA.txt"
+
 PUSH //let 203e884 + charnum*10 = skill area (bytes 1,2,3,4 NOT 0 tho)
 
 //This was done through trial and error.... 
