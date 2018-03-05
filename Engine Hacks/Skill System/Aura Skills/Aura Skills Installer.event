@@ -81,6 +81,11 @@ Charm:
 POIN AuraSkillCheck
 WORD CharmID
 
+Charisma:
+#incbin "Charisma.dmp"
+POIN AuraSkillCheck
+WORD CharismaID
+
 VoiceOfPeace:
 #incbin "VoiceOfPeace.dmp"
 POIN AuraSkillCheck
