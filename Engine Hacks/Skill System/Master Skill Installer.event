@@ -141,7 +141,7 @@ POIN SkillTester
 POIN BlowIDList
 
 BlowIDList:
-BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID
+BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID
 ALIGN 4
 
 DefendingCheck:
