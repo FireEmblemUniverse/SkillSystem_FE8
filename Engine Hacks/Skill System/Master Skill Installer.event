@@ -56,6 +56,7 @@ callHack_r3(Frenzy)
 ORG $1a258
 jumpToHack(Renewal)
 
+//Discipline
 ORG $2c13c
 callHack_r3(Discipline)
 
@@ -140,7 +141,7 @@ POIN SkillTester
 POIN BlowIDList
 
 BlowIDList:
-BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID
+BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID
 ALIGN 4
 
 DefendingCheck:

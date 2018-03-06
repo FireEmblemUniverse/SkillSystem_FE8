@@ -1,6 +1,7 @@
 EphraimLordSkillList:
 // BYTE 1 OddRhythmID
-BYTE 10 BondID
+//BYTE 10 BondID
+BYTE 10 HeroesDeathBlowID
 BYTE 20 AetherID
 BYTE 00 00
 ALIGN 4

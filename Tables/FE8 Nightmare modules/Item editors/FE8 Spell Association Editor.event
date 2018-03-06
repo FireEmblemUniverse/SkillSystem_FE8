@@ -1,6 +1,6 @@
 #define csvmacro016(arg000,arg001,arg002,arg003,arg004,arg005,arg006,arg007,arg008,arg009) "SHORT arg000 arg001 ;BYTE arg002 arg003 ;SHORT arg004 ;WORD arg005 ;BYTE arg006 arg007 arg008 arg009 "
 
-#inctext PFinder "C:\Users\Lou\Documents\GitHub\SkillSystem_FE8\FE8_clean.gba" 0x8afbd8 SpellAssociationTable
+#inctext PFinder "C:\Users\Owner\Documents\Emu_stuff\GB(A)\FE8\Patches\SkillSystem_FE8\FE8_clean.gba" 0x8afbd8 SpellAssociationTable
 
 ALIGN 4
 SpellAssociationTable:
