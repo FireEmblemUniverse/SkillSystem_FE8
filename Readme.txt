@@ -11,6 +11,7 @@ How to use:
 "Tables\FE8 Nightmare modules" has CSVs for editing the personal skills and class skills along with things like animations and other stuff.
 
 Credits:
+Circleseverywhere
 Monkeybard & Black Mage for most of the skill icons
 Tequila, Rossendale, StanH, Leonarth, Teraspark for skills
 Primefusion for the test map
