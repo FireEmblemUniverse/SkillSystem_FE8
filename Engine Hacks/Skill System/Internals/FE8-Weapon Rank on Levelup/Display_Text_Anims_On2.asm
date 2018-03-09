@@ -7,6 +7,7 @@ mov		r6,#0
 cmp		r0,#2
 bne		CopyText
 mov		r6,#1		@flag indicating we need to update the text later
+CopyText:
 ldr		r1,Func_A240
 mov		r14,r1
 .short	0xF800
