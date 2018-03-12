@@ -1,10 +1,18 @@
 
+#include "Skill System Options.event"
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
 #include "Battle Calculations.event" //battle calcs
 #include "charge_table.event"
 SkillIcons:
 #incext Png2Dmp "SkillIcons.png"
+//new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
+#ifdef __USE_DESCRIPTION_MACROS__
+#include "skill_descriptions.event"
+#endif
+#ifdef __USE_ICON_MACROS__
+#include "skill_icons.event
+#endif
 PUSH
 
 //Dazzle (can't be countered)

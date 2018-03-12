@@ -1,0 +1,21 @@
+I added a new way to swap skills in and out, there are two new files, skill_descriptions and skill_icons
+those files come with macros and all existing skills already done
+
+in the new options file you'll find some definitions that, when uncommented, will make the whole thing included
+they can work together with the csv and the skillicons.png, but will work on it's own without those as well
+I did it this way so people that are already in a project don't have to be bothered
+
+the objective is to provide an easy way to swap skills in and out for the future
+when we hit the cap getting a skill out will be as simple as defining it's id to 0xFF
+
+so
+REMEMBER:
+when adding a new skill, on top of adding the description in the csv and the icon in the skillicons.png
+add an image with the icon alone (and proper palette) to the Skill Icons folder, then use the macros in the
+corresponding files to set everything up
+
+ISSUES:
+we could probably use something that complains if two skills have the same id (and it's not 0xFF)
+also apparently characters can learn skills with id 0xFF which probably should not be a thing
+
+-- Leonarth
