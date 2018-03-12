@@ -28,7 +28,11 @@ POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
 POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm VoiceOfPeace Anathema LilysPoise Charisma
 POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple LightWeight
 POIN UpWithArch
+#ifdef __LETHALITY_LEVEL_BASED__
+POIN LethalitySkill Bane
+#else
 POIN LethalitySkill NonGBALethalitySkill Bane
+#endif
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 
