@@ -28,3 +28,7 @@ CLEN, 0x342B, 4, -game:FE8 -indexMode:8
 
 CLEE, 0x342C, 4, -game:FE8 -indexMode:8
 	Character, 2, 2
+
+#Makes the character invisible and intangible, but still alive.
+INVIS, 0x3420, 4, -game:FE8 -indexMode:8
+    Character, 2, 2

@@ -64,6 +64,11 @@ lsl r1, r0, #1
 add r0, r1
 
 NoCrit:
+
+cmp r0, #0x7f @damage cap of 127
+ble NotCap
+mov r0, #0x7f
+NotCap:
 strh r0, [r7, #4] @final damage
 
 End:

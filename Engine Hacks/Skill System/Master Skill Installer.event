@@ -1,11 +1,23 @@
 
+#include "Skill System Options.event"
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
 #include "Battle Calculations.event" //battle calcs
 #include "charge_table.event"
 SkillIcons:
 #incext Png2Dmp "SkillIcons.png"
+//new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
+#ifdef __USE_DESCRIPTION_MACROS__
+#include "skill_descriptions.event"
+#endif
+#ifdef __USE_ICON_MACROS__
+#include "skill_icons.event
+#endif
 PUSH
+
+//Dazzle (can't be countered)
+ORG 0x2c864
+jumpToHack(DazzleCheck)
 
 //Rightful X
 ORG $2a52e //modifies the 1RN roll skill to check for rightful skills
@@ -15,6 +27,10 @@ jumpToHack(RightfulCheck)
 //acrobat
 ORG $1a4cc
 jumpToHack(AcrobatCheck)
+
+//LockTouch
+ORG $23E8C //ignore vanilla locktouch routine
+jumpToHack(LockTouch)
 
 //Pass
 ORG $800 //modifies movement ARM code
@@ -48,6 +64,7 @@ callHack_r3(Frenzy)
 ORG $1a258
 jumpToHack(Renewal)
 
+//Discipline
 ORG $2c13c
 callHack_r3(Discipline)
 
@@ -81,7 +98,7 @@ ORG $2c088
 jumpToHack(SealSkills)
 
 ORG $2c1f4
-jumpToHack(Armsthrift)
+// jumpToHack(Armsthrift)
 
 //remove critup ability (for critup skill)
 ORG $2AC4A
@@ -99,6 +116,11 @@ WORD LethalityID
 WORD BaneID
 ALIGN 4
 
+DazzleCheck:
+#incbin "Other Skills/dazzle.dmp"
+POIN SkillTester
+WORD DazzleID
+ALIGN 4
 
 FaireCheck: //added to fe8_calc_loop.event
 #incbin "Ross Skills/FaireCheck.dmp"
@@ -127,7 +149,7 @@ POIN SkillTester
 POIN BlowIDList
 
 BlowIDList:
-BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID
+BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID
 ALIGN 4
 
 DefendingCheck:
@@ -285,7 +307,6 @@ CriticalCheck:
 #incbin "Blade Skills/Critical.dmp"
 POIN SkillTester
 POIN CriticalIDList
-
 CriticalIDList:
 BYTE CriticalForceID KillingMachineID
 ALIGN 4
@@ -337,13 +358,35 @@ SlowBurn:
 POIN SkillTester
 WORD SlowBurnID
 
+Roll1d12:
+#incbin "Other Skills/roll12.dmp"
+POIN SkillTester
+WORD Roll12ID
+POIN _12SkillList
+ALIGN 4
+_12SkillList:
+BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
+ALIGN 4
+
+LockTouch:
+#incbin "Kao Skills/LockTouch.dmp"
+POIN SkillTester
+WORD LockTouchID
+
+TraceSkill:
+#incbin "Other Skills/trace.dmp"
+POIN SkillTester
+WORD TraceID
+POIN Skill_Getter
+
+#include "Other Skills/RandomMugs.event"
+
 
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
 #include "Rally Skills/Rally Installer.event"
 
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
-// #include "Stan Skills/ProperRangeGetters/ProperRangeGetters.event" // Bow Range Up // Actually borken?
 #include "Post Combat Skills/Post Combat Skills Installer.event"
 
 #include "Skill Removal Menu/RemoveSkillMenu.event"

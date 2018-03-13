@@ -1,7 +1,7 @@
 .thumb
 @this hack takes r0 = character data in ram and returns a pointer to a 0-terminated list of skills (using the text buffer)
 @supports 1 personal, 1 class, 4 learned
-.set SkillsBuffer, 0x202b156 @0x202a6ac
+.set SkillsBuffer, 0x202b6d0 @0x202b156 @0x202a6ac
 .set ClassSkillTable, PersonalSkillTable+4
 .set LevelUpSkillTable, ClassSkillTable+4
 .set BWLTable, 0x203e884

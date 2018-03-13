@@ -36,6 +36,10 @@ SMUL, 0x0622, 4, -game:FE8 -indexMode:8
 SDIV, 0x0623, 4, -game:FE8 -indexMode:8
 	Slots, 2, 2
 
+#Modulo of values in slots X and Y
+SMOD, 0x0624, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
 #Binary AND of slots X and Y.
 SAND, 0x0625, 4, -game:FE8 -indexMode:8
 	Slots, 2, 2

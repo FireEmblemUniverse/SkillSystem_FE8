@@ -1,0 +1,87 @@
+//FE8 Display Weapon Rank on Level-up
+//By Tequila
+
+#ifdef _FE8_
+
+	#include "Extensions/Hack Installation.txt"
+	#include EAstdlib.event
+	#include "Tools/Tool Helpers.txt"
+	//#include "AntiHuffman_Patch.txt"
+	
+	#ifndef FreeSpace
+		#define FreeSpace 0xB2B000
+		ORG FreeSpace
+	#endif
+	
+	PUSH
+	
+	//Animations off
+	ORG $7A7C0
+	jumpToHack(Write_Weap_Exp_To_Ram)
+	
+	//Moved to popupdisplayroutines.event, since that's where the new table is
+	//ORG $10F5C+(4*0x5)
+	//POIN Display_Text1
+	
+	ORG $11090+(4*0x5)
+	POIN Display_Text2
+	
+	//The following has been incorporated into learnskill.s instead
+	//Animations on
+	//ORG $76010
+	//callHack_r3(Write_Exp_Anims_On)
+	
+	ORG $75D00
+	callHack_r3(Display_Text_Anims_On1)
+	
+	ORG $75E0E
+	SHORT 0x46C0
+	callHack_r3(Display_Text_Anims_On2)
+	
+	POP
+	
+	ALIGN 4
+	Write_Weap_Exp_To_Ram:
+	#incbin "Write_Exp_To_Ram.dmp"
+	
+	ALIGN 4
+	Display_Text1:
+	#incbin "Display_Text1.dmp"
+	POIN Custom_Message_Func
+	
+	ALIGN 4
+	Display_Text2:
+	#incbin "Display_Text2.dmp"
+	POIN Custom_Message_Func
+	
+	ALIGN 4
+	Custom_Message_Func:
+	#incbin "Custom_Message_Func.dmp"
+	POIN Wexp_Table
+	
+	ALIGN 4
+	Wexp_Table:
+	String(FEDCBAS) //the F should never be seen; if it is, that means there's an error
+	
+	ALIGN 4
+	TxtData0x2:
+	#incext ParseFile "0x2.txt"
+	setText(0x2,TxtData0x2)
+	
+	ALIGN 4
+	Write_Exp_Anims_On:
+	#incbin "Write_Exp_Anims_On.dmp"
+	
+	ALIGN 4
+	Display_Text_Anims_On1:
+	#incbin "Display_Text_Anims_On1.dmp"
+	POIN Custom_Message_Func
+	
+	ALIGN 4
+	Display_Text_Anims_On2:
+	#incbin "Display_Text_Anims_On2.dmp"
+	POIN Custom_Message_Func
+	
+#else
+	ERROR "You're not assembling FE8 events!"
+#endif

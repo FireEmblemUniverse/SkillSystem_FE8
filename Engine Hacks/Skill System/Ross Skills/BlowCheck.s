@@ -20,7 +20,7 @@ cmp r0, #0          @Check if unit has the corresponding Faire skill.
 bne SkillChecks
 SkillReturn:
 add     r4, #0x01
-cmp     r4, #0x09
+cmp     r4, #0x0A
 bne     CheckLoop
 b       EndProgram
 SkillChecks:
@@ -42,7 +42,13 @@ cmp     r4, #0x07
 beq     ChivalrySkill
 cmp     r4, #0x08
 beq     PragmaticSkill
+cmp		r4, #0x09
+beq		HeroesDeathSkill
 b SkillReturn
+EndProgram:		@I had to move this to stop out of range errors. - Darrman
+pop {r4-r7}
+pop {r0}
+bx r0
 DuelistsSkill:
 ldr     r0,=0x203A4EC       @Move attacker data into r0.
 add     r0,#0x62    @Move to the attacker's avoid.
@@ -56,7 +62,7 @@ ldr     r0,=0x203A4EC       @Move attacker data into r0.
 add     r0,#0x66    @Move to the attacker's crit.
 ldrh    r3,[r0]     @Load the attacker's crit into r3.
 add     r3,#0x14    @Add 20 to the attacker's crit.
-strh    r3,[r0]     @Store attacker avoid.
+strh    r3,[r0]     @Store attacker crit.
 b       SkillReturn
 DartingSkill:
 ldr     r0,=0x203A4EC       @Move attacker data into r0.
@@ -162,10 +168,13 @@ add     r3,#1    @Add 1 to the attacker's def.
 strh    r3,[r0]     @Store attacker def.
 b       SkillReturn
 
-EndProgram:
-pop {r4-r7}
-pop {r0}
-bx r0
+HeroesDeathSkill:
+ldr     r0,=0x203A4EC       @Move attacker data into r0.
+add     r0,#0x5A    @Move to the attacker's attack.
+ldrh    r3,[r0]     @Load the attacker's attack into r3.
+add     r3,#0x6    @Add 6 to the attacker's attack.
+strh    r3,[r0]     @Store attacker attack.
+b       SkillReturn	@Attacker's attack. Redundancy? Nah.
  
 .align
 .ltorg

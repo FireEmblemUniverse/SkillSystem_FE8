@@ -1,11 +1,11 @@
 #define csvmacro002(arg000) "BYTE arg000 "
 
-#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\FE8_clean.gba" 0xe47180 PersonalSkillTable
+#inctext PFinder "C:\Users\Owner\Documents\Emu_stuff\GB(A)\FE8\Patches\SkillSystem_FE8\FE8_clean.gba" 0xe47180 PersonalSkillTable
 
 ALIGN 4
 PersonalSkillTable:
 csvmacro002(0x0)
-csvmacro002(CharmID)
+csvmacro002(CharismaID)
 csvmacro002(SaviorID)
 csvmacro002(RallyDefID)
 csvmacro002(SealStrID)
@@ -37,13 +37,13 @@ csvmacro002(RepositionID)
 csvmacro002(DragonsBloodID)
 csvmacro002(VoiceOfPeaceID)
 csvmacro002(GambleID)
-csvmacro002(0x0)
+csvmacro002(TantivyID)
 csvmacro002(LilysPoiseID)
 csvmacro002(LunaID)
 csvmacro002(0x0)
 csvmacro002(0x0)
 csvmacro002(0x0)
-csvmacro002(0x0)
+csvmacro002(CharmID)
 csvmacro002(0x0)
 csvmacro002(0x0)
 csvmacro002(0x0)

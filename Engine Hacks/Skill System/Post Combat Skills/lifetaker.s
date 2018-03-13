@@ -35,9 +35,9 @@ mov	lr, r3
 cmp	r0,#0x00
 beq	End
 
-@killed enemy, then heal 50%hp
+@killed enemy, then heal 25%hp
 ldrb	r1, [r4,#0x12]	@r1=maxhp
-lsr	r0, r1, #0x01	@r0=maxhp/2
+lsr	r0, r1, #0x02	@r0=maxhp/4
 ldrb	r2, [r4,#0x13]	@r2=currhp
 @cmp	r1, r2		@check if hp is already max
 @beq	End

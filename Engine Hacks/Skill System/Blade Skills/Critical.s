@@ -14,7 +14,7 @@ cmp r0, #0          @Check if unit has the corresponding critical skill.
 bne SkillChecks
 SkillReturn:
 add     r4, #0x01
-cmp     r4, #0x03
+cmp     r4, #0x02
 bne     CheckLoop
 b       EndProgram
 SkillChecks:

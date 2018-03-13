@@ -18,11 +18,11 @@
 #define EA_STDLIB_VERSION_3_3
 
 /****************************************************************\
-Version 3.3 
+Version 3.3
 
 How to use EA standard library:
  Include this file, EAstdlib.event, to your code.
- Then use macro's and definitions you see in 
+ Then use macro's and definitions you see in
  EA Standard library folder.
 
 Changes:
@@ -46,7 +46,7 @@ V 1.5:
 -Added CursorFlash macros for FE6 and FE7
 -Added tutorial disabling macro. Define DISABLE_TUTORIALS
  before including this file to activate it. Define
- EMPTY_TUTORIAL_OFFSET before including this file to use 
+ EMPTY_TUTORIAL_OFFSET before including this file to use
  custom empty tutorial.
 -Added event pointer macro.
 -Added FE8 unit flag helpers.
@@ -70,7 +70,7 @@ _Added Weather definitions for all 3 GBA games.
 -Added battle data helpers.
 -Removed chapter pointer list helpers.
 V 2.1:
--Added more main code helpers, including some common 
+-Added more main code helpers, including some common
  events they point to.
 -Added numeric helpers.
 -Added FE7 and 8 World map backwards compability definitions.
@@ -119,7 +119,7 @@ V 2.6
 -Added ClearBrownBox for FE7 thanks to Arch.
 -Stole Ballista helpers and FE8 battle helpers from Camtech.
 V 2.7
--Changed FE7 and FE6 VillageEventItem and VillageEventMoney to match 
+-Changed FE7 and FE6 VillageEventItem and VillageEventMoney to match
  what the game uses.
 -Changed TileChange macro to fit new codes and added a warning.
 V 2.8
@@ -175,12 +175,12 @@ V 3.1
 -FE8: Fixed typo that made SOUN code be FADU code. (Thanks to MK404)
 -FE8: Added "Silent" in music definitions as 0x7FFF
 -FE8: Added GiveMoney(amount) macro to help with that.
--FE8: Added SVAL/SMOV aliases to SETVAL. Changed SLOTS_ADD to SADD and other assembly-like commands. 
+-FE8: Added SVAL/SMOV aliases to SETVAL. Changed SLOTS_ADD to SADD and other assembly-like commands.
 -FE8: Added TUTORIALTEXTBOXSTART and NOTIFICATIONTEXTBOXSTART
 -EAStdLib: Separated out conditional helps from Misc Helpers to Conditional Helpers
 -FE8: Changed TEX8 to BROWNBOXTEXT.
 -FE8: Added CLEAN and PREP codes. The macro is the way to go, but these will show up in disassembly.
--FE8: Added r0-r13/rD defintions for the setval slots. QP for QueuePointer 
+-FE8: Added r0-r13/rD defintions for the setval slots. QP for QueuePointer
 -FE8: Added SkirmishEvents for repointing of Skirmish Events, but I don't think we're ready to mess with this yet.
 -FE8: Added FlashWhite/FlashBlack macros.
 -FE8: Fixed ENIF not having a definition in backwards compatability for conditionals
@@ -194,6 +194,9 @@ V3.2
 
 V3.3
 -FE6,FE7: Added old definitions (spears, etc) through BACKWARDS_COMPATIBILITY.
+
+V3.4
+-FE8: Fixed bad definition of IFET (now is CHECK_EVENTID)
 
 \****************************************************************/
 

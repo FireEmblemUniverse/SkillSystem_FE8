@@ -13,14 +13,15 @@
 
 #ifdef _FE8_
 #define Text(text) "TEXTSTART; TEXTSHOW text; TEXTEND; REMA"
-#define Text(background,text) "_SETVAL 2 background; _SETVAL 3 text; CALL $9EE310"
+#define Text(background,text) "SETVAL 2 background; SETVAL 3 text; CALL $9EE310"
 #define SetBackground(background) "SVAL 2 background; CALL $9EE2E8" //EVBIT 0x8 = fade in?
 #define ClearBackground "CALL 0x9EE2C4"
 #define ClearBackgroundSmooth "FADI 0x10; ClearBackground"
 //#define SetBackground(background) "SETVAL 0x2 background; EVBIT_CHECK 0x8; REMOVEPORTRAITS; BACG 0xFFFF 0x0 0x0"
-#define CenterTutorialTextBox "_SETVAL 0xB 0xFFFFFFFF"
+#define CenterTutorialTextBox "SETVAL 0xB 0xFFFFFFFF"
 #define FlashWhite "FAWI 0x20; STAL 0x10; FAWU 0x20"
 #define FlashBlack "FADI 0x20; STAL 0x10; FADU 0x20"
+#define ShowCG(BGIndex) "SETVAL 0x2 BGIndex; REMOVEPORTRAITS; BACG 0xFFFF;"
 #endif
 
 

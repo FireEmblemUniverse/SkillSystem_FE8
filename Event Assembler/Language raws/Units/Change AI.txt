@@ -23,18 +23,18 @@ CHAI, 0x32, 12, -game:FE6 -indexMode:8
 #Chapters: 20A
 CHAI, 0x33, 12, -game:FE6 -indexMode:8
 ##Position of the unit whose AI to change.
-	Position, 4, 4, coordinates:2 -preferredBase:10
+	Position, 4, 4, -coordinates:2 -preferredBase:10
 	AI, 8, 4, -coordinate:4
 
 CHAI, 0x33, 12, -game:FE6 -indexMode:8
-	Position, 4, 4, coordinates:2 -preferredBase:10
+	Position, 4, 4, -coordinates:2 -preferredBase:10
 	AI 1, 8, 1
 	AI 2, 9, 1
 	AI 3, 10, 1
 	AI 4, 11, 1
 
 CHAI, 0x33, 12, -game:FE6 -indexMode:8
-	Position, 4, 4, coordinates:2 -preferredBase:10
+	Position, 4, 4, -coordinates:2 -preferredBase:10
 	AI, 8, 4
 
 

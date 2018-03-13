@@ -227,7 +227,7 @@
 #define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
 #define LevelUnchosenLord "ASMC 0x8659D"
 //#define WarpIn(unit, xcoord, ycoord) "SVAL 2 unit; _WARP 0xFFFF 0xFFFD [xcoord, ycoord]; CALL 0x9EE4F8"
-#define WarpIn(xfrom, yfrom, xcoord, ycoord) "SVAL 0xB (xfrom + (yfrom*0x10000)); _WARP 0xFFFE 0xFFFD [xcoord, ycoord]; CALL 0x9EE4F8"
+//#define WarpIn(xfrom, yfrom, xcoord, ycoord) "SVAL 0xB (xfrom + (yfrom*0x10000)); _WARP 0xFFFE 0xFFFD [xcoord, ycoord]; CALL 0x9EE4F8"
 #endif
 
 

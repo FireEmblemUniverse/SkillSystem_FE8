@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_SureShot001
+POIN TSA_SureShot002
+POIN TSA_SureShot003
+
+GraphicsList:
+POIN Graphics_SureShot001
+POIN Graphics_SureShot002
+POIN Graphics_SureShot003
+
+PalettesList:
+POIN Pal_SureShot001
+POIN Pal_SureShot002
+POIN Pal_SureShot003
+
+TSA_SureShot001:
+#incbin "SureShot001.map.bin"
+TSA_SureShot002:
+#incbin "SureShot002.map.bin"
+TSA_SureShot003:
+#incbin "SureShot003.map.bin"
+
+Graphics_SureShot001:
+#incbin "SureShot001.img.bin"
+Graphics_SureShot002:
+#incbin "SureShot002.img.bin"
+Graphics_SureShot003:
+#incbin "SureShot003.img.bin"
+
+Pal_SureShot001:
+#incbin "SureShot001.pal.bin"
+Pal_SureShot002:
+#incbin "SureShot002.pal.bin"
+Pal_SureShot003:
+#incbin "SureShot003.pal.bin"

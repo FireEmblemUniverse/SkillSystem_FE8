@@ -5,7 +5,11 @@
 push {r4-r7, lr} 
 mov        r4,r0
 add     r1,#0x50    @Move to the defending unit's weapon type.
-ldrb    r1,[r1]        @Load in the defending unit's weapon type.    
+ldrb    r1,[r1]        @Load in the defending unit's weapon type.   
+
+cmp r1, #0xff @if weapon type is ff, skip
+beq NoSkill
+
 ldr     r0,BreakerIDList    @Load in the list of Breaker Skills.
 ldrb     r1,[r0,r1]    @Load in the Breaker Skill corresponding to the equipped weapon.
 mov     r0,r4        @Store attacker data into r0 (for the purposes of SkillTester).

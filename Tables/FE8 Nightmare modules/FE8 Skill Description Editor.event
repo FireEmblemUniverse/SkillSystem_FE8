@@ -1,6 +1,6 @@
 #define csvmacro004(arg000) "SHORT arg000 "
 
-#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\FE8_clean.gba" 0xe47180 SkillDescTable
+#inctext PFinder "C:\Users\Owner\Documents\Emu_stuff\GB(A)\FE8\Patches\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillDescTable
 
 ALIGN 4
 SkillDescTable:
@@ -143,17 +143,17 @@ csvmacro004(SD_Despoil)
 csvmacro004(SD_Pivot)
 csvmacro004(SD_Reposition)
 csvmacro004(SD_Swap)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
-csvmacro004(0x0)
+csvmacro004(SD_BreathOfLife)
+csvmacro004(SD_Fury)
+csvmacro004(SD_Dazzle)
+csvmacro004(SD_TriAdept)
+csvmacro004(SD_Supply)
+csvmacro004(SD_Roll12)
+csvmacro004(SD_Trace)
+csvmacro004(SD_RandomMug)
+csvmacro004(SD_IdentityProblems)
+csvmacro004(SD_Charisma)
+csvmacro004(SD_HeroesDeathBlow)
 csvmacro004(0x0)
 csvmacro004(0x0)
 csvmacro004(0x0)

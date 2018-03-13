@@ -121,6 +121,6 @@
 #endif
 
 #ifdef _FE8_
-#define WorldMapPointerTable(id,offset) "PUSH; ORG 0x8B39EC+(4*id); POIN offset; POP"
-#define WorldMapIntroPointerTable(id,offset) "PUSH; ORG 0x8B3AD8+(4*id); POIN offset; POP"
+#define WorldMapPointerTable(id,offset) "PUSH; ORG 0x8B39F0+(4*id); POIN offset; POP"
+#define WorldMapIntroPointerTable(id,offset) "PUSH; ORG 0x8B3ADC+(4*id); POIN offset; POP"
 #endif

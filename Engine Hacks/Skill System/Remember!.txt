@@ -1,0 +1,11 @@
+If you're going to make new skills, there's a bunch of stuff you need to do.
+First, make sure it assembles correctly. Errors are bad, so fix them.
+After that, add your skill to an appropiate place in the Master Skill Installer.
+Should your skill not be covered under one of the sub-headings in Battle Calculations, add it there as well.
+A skill definition is important too, and that file doubles as the big skill list.
+If your skill's up and running, stick a big //DONE next to it.
+Giving your skill an icon and description won't stop it from working, but it won't look quite so nice without it.
+Otherwise, you'll get a glitchy icon and placeholder text.
+Don't forget to edit the skill description CSV so the game can see your description.
+If all goes well, your skill should function in the game!
+-Darrman

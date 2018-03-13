@@ -38,7 +38,7 @@ CHECK_ACTIVE, 0x2E21, 4, -game:FE8 -indexMode:8
 
 #Following commands check various things about a selected unit.
 #Like all unit-targeting commands in FE8, special inputs are:
-# 0xFFFF: checks active unit (currently selected for moving/attacking)
+# 0xFFFF: checks active unit (currently selected for moving/attacking, or set using SET_ACTIVE)
 # 0xFFFE: checks unit at coordinates stored to Memory slot 0xB
 # 0xFFFD: checks unit of ID stored to Memory slot 0x2
 
@@ -70,8 +70,20 @@ CHECK_ALLEGIANCE, 0x3325, 4, -game:FE8 -indexMode:8
 CHECK_COORDS, 0x3326, 4, -game:FE8 -indexMode:8
 	Character, 2, 2
 
+#Stores character class index into slot 0xC
 CHECK_CLASS, 0x3327, 4, -game:FE8 -indexMode:8
 	Character, 2, 2
 
+#Stores character luck into slot 0xC
 CHECK_LUCK, 0x3328, 4, -game:FE8 -indexMode:8
 	Character, 2, 2
+
+#Stores the char id of unit at given position into Slot 0xC (not really useful since most codes allowing for char ids allow for use slot B for position too, via 0xFFFE)
+CHECK_AT, 0x2E20, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+#Checks if given unit is in Area defined by Rect (X, Y, X+W, Y+H) and stores 0 (false) or 1 (true) to slot 0xC accordingly
+CHECK_INAREA, 0x3640, 8, -game:FE8 -indexMode:8
+	Char,       2, 2
+	TopLeftPos, 4, 2, -coordinates:2 -preferredBase:10
+	Size,       6, 2, -coordinates:2 -preferredBase:10

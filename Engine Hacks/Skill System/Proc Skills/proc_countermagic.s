@@ -98,7 +98,8 @@ ldrsb r0, [r4,r0] @curr hp
 cmp r2, r0
 blt NoKill
 sub r2, r0, #1 @can't actually kill
-add r3, #1
+@ add r3, #1
+neg r3,r2
 
 NoKill:
 neg r2, r2

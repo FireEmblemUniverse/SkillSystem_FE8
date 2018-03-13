@@ -18,6 +18,9 @@ cmp r0, #0x0
 beq no_Paragon1
  @double exp
  lsl r4, #1
+ cmp r4, #100
+ ble no_Paragon1
+  mov r4, #100
 no_Paragon1:
 mov r0, r4 @return the amount healed.
 pop {r4}

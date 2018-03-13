@@ -8,7 +8,8 @@ BYTE $C
 POP
 
 NewPopupRoutines:
-POIN $11054 $11018 $1102c $11040 $11000 $10fec $10ff8 $11058 $10fa8 $10fc8 $10f96 $10f8c
+//Display_Text1 is located in the "Weapon Rank on Levelup" hack; $10FEC else 
+POIN $11054 $11018 $1102c $11040 $11000 Display_Text1 $10ff8 $11058 $10fa8 $10fc8 $10f96 $10f8c
 POIN DrawSkillIcon
 
 DrawSkillIcon:

@@ -71,6 +71,7 @@ mov r1, #1
 orr r0, r1
 mov r1, r5 @skill to test
 mov r2, r6 @allegiance setting
+ldrb r3, [r4, #0xb] @current unit's deployment no
 bl unitcheckloop
 @now r0 is the number of units in range that match and r1 is the start of the buffer
 
@@ -91,6 +92,7 @@ push {r6}
 mov r7, r0 @routine to run
 mov r8, r1 @skill to test
 mov r9, r2 @allegiance
+mov r12, r3 @deployment no to ignore
 ldr r2, =0x202b256 @buffer to store deployment numbers of units with the skill
 mov r10, r2
 ldr r0, =0x202e4d4 @unit map
@@ -134,6 +136,10 @@ beq loc_24ef8
 cmp r0, #0
 beq loc_24ef8
     @if unit found, r0 is its deployment number.
+    lsl r0, #0x18
+    lsr r0, #0x18
+    cmp r0, r12
+    beq loc_24ef8
     mov r1, r10
     strb r0, [r1] @write to buffer
     add r1, #1

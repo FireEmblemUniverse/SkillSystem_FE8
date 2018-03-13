@@ -2,7 +2,7 @@
 TEX1, 7, 8, -game:FE6 -indexMode:8
 ##Text to show.
 	Text ID, 4, 2
-	
+
 TEXT, 7, 8, -game:FE6 -indexMode:8
 ##Text to show.
 	Text ID, 4, 2
@@ -73,7 +73,7 @@ TEX6, 0xA7, 12, -game:FE7 -indexMode:8
 ##Bubble type to use
 	Bubble type, 2, 2
 ##Position of the text. [0,0] is the center of the screen.
-	Text position, 4, 4, coordinates:2 -preferredBase:10
+	Text position, 4, 4, -coordinates:2 -preferredBase:10
 ##Text to show.
 	Text ID, 8, 2
 
@@ -82,7 +82,7 @@ TEX8, 0xD7, 12, -game:FE7 -indexMode:8
 ##Text to show.
 	Text ID, 4, 2
 ##Position of the text.
-	Text position, 8, 4, coordinates:2 -preferredBase:10
+	Text position, 8, 4, -coordinates:2 -preferredBase:10
 
 ##Shows text depending on whether tacticians
 ##gender is male or female.
@@ -155,19 +155,19 @@ NOTIFY, 0x3A40, 8, -game:FE8 -indexMode:8
 	Sound Effect, 4, 2
 #Always zero
 	Value3, 6, 2
-	
+
 
 BROWNBOXTEXT, 0x3A41, 8, -game:FE8 -indexMode:8
 	Text ID, 2, 2
-	Text position, 4, 4, coordinates:2 -preferredBase:10
-	
+	Text position, 4, 4, -coordinates:2 -preferredBase:10
+
 ##Starts the text showing.
 TEXTSTART, 0x1A20, 4, -game:FE8 -indexMode:8
 
 #The yellowish text box used for tutorials
 #Center with SETVAL 0xB 0xFFFFFFFF
 TUTORIALTEXTBOXSTART, 0x1A23, 4, -game:FE8 -indexMode:8
- 
+
 #This is the solo text box used in the final chapter with the Demon King speaking.
 #Set coordinates with SETVAL 0xB 0xXX00YY
 SOLOTEXTBOXSTART, 0x1A24, 4, -game:FE8 -indexMode:8

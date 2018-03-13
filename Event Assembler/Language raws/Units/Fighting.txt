@@ -144,3 +144,12 @@ FIG2, 0x3F41, 8, -game:FE8 -indexMode:8
 	Defender, 4, 2
 ##Unknown
 	Unknown, 6, 2
+
+##Scripts the details of the next fight.
+FIG3, 0x3F42, 8, -game:FE8 -indexMode:8
+##Leave as 0
+	Attacker, 2, 2
+##Leave as 0
+	Defender, 4, 2
+##Unknown. Leave as 0
+	Unknown, 6, 2
