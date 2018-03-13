@@ -51,6 +51,9 @@ ldr     r0,=#0xFFF80000                @ 0802B434 4804
 and     r0,r2                @ 0802B436 4010     
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018   
+ldrb    r0, SureShotID
+strb    r0,[r6,#4] @save the thing
+
 
 @and add 1.5x damage - this means it MUST go after the damage check...
 ldrh r0, [r7, #6] @final mt
