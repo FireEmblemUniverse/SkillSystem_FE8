@@ -69,12 +69,13 @@ SkillTesterOriginal: //does unit have X skill?
 POIN Skill_Getter
 
 SkillTester: //does enemy have Nihil? if so, does Nihil negate X skill?
-// MESSAGE nihilTester currentoffset
 #incbin nihilTester.dmp
 POIN SkillTesterOriginal
 WORD NihilID
 POIN Skill_Getter
 POIN NegatedSkills
+POIN SkillTester
+WORD CatchEmAllID
 
 NegatedSkills: //comment or uncomment skills to your liking, this should come with an updated list of skills that work with nihil and are meant to
 //Confirmed working and grouped by type for easier adding/removing from the NegatedSkills list

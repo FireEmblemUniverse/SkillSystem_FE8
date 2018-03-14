@@ -329,10 +329,6 @@ to damage dealt.[N]
 Life and Death: +10 to[N]
 damage dealt and taken.[X]
 
-## SD_HeroesLifeAndDeath
-Life and Death: Grants[N]
-+5 Atk/Mag/Spd, -5 Def/Res.[X]
-
 ## SD_LockTouch
 Locktouch: Can open locks[N]
 without keys or picks.[X]
@@ -604,4 +600,12 @@ to all allies within three tiles.[X]
 
 ## SD_HeroesDeathBlow
 Death Blow: +6 Attack[N]
-when initiaing battle.[X]
+when initiating battle.[X]
+
+## SD_HeroesLifeAndDeath
+Life and Death: Grants[N]
++5 Atk/Mag/Spd, -5 Def/Res.[X]
+
+## SD_CatchEmAll
+Catch 'Em All: Grants[N]
+the user every skill.[X]
