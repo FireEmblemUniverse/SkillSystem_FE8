@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pResistanceModifiers: // Resistance
-	POIN prAddUnitResistance prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod
+	POIN prAddUnitResistance prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus
 WORD 0
 
 prAddUnitResistance:
@@ -24,4 +24,7 @@ prRallyRes:
 	#incbin "_asm/RallyRes.bin"
 	WORD DebuffTable
 
+prLifeAndDeathMinus:
+_testSkill(HeroesLifeAndDeathID,0,5)
+	
 #endif // MODULAR_GETTER_RESISTANCE_EVENT
