@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pDefenseModifiers: // Defense
-	POIN prAddUnitDefense prDebuffDef prAddEquipDefense prRallyDef prLifeAndDeathMinus
+	POIN prAddUnitDefense prDebuffDef prAddEquipDefense prRallyDef prLifeAndDeathMinus prSkillFury
 WORD 0
 
 prAddUnitDefense:

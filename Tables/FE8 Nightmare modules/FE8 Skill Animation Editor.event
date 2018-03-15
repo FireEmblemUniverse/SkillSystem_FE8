@@ -1,6 +1,6 @@
 #define csvmacro003(arg000) "WORD arg000 "
 
-#inctext PFinder "C:\Users\Owner\Documents\Emu_stuff\GB(A)\FE8\Patches\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillAnimationPointerTable
+#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillAnimationPointerTable
 
 ALIGN 4
 SkillAnimationPointerTable:
@@ -9,7 +9,7 @@ csvmacro003(0)
 csvmacro003(0)
 csvmacro003(0)
 csvmacro003(0)
-csvmacro003(0)
+csvmacro003(SureShotAnim|IsPointer)
 csvmacro003(0)
 csvmacro003(0)
 csvmacro003(0)

@@ -751,3 +751,11 @@ TxtData0x99d:
 #incext ParseFile "_textentries\0x99d.txt"
 setText(0x99d,TxtData0x99d)
 
+TxtData0x99e:
+#incext ParseFile "_textentries\0x99e.txt"
+setText(0x99e,TxtData0x99e)
+
+TxtData0x99f:
+#incext ParseFile "_textentries\0x99f.txt"
+setText(0x99f,TxtData0x99f)
+

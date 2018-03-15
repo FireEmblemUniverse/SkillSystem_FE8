@@ -76,7 +76,7 @@
 #define SD_Desperation 0x92a
 #define SD_Wrath 0x92b
 #define SD_Counter 0x92c
-#define SD_Countermagic 0x92d
+#define SD_CounterMagic 0x92d
 #define SD_Miracle 0x92e
 #define SD_Swordfaire 0x92f
 #define SD_Lancefaire 0x930
@@ -150,9 +150,9 @@
 #define SD_Gamble 0x974
 #define SD_DragonsBlood 0x975
 #define SD_Personality 0x976
-#define SD_Quickdraw 0x977
-#define SD_Winddisciple 0x978
-#define SD_Strongriposte 0x979
+#define SD_QuickDraw 0x977
+#define SD_WindDisciple 0x978
+#define SD_StrongRiposte 0x979
 #define SD_Patience 0x97a
 #define SD_Pursuit 0x97b
 #define SD_LightWeight 0x97c
@@ -189,3 +189,5 @@
 #define SD_IdentityProblems 0x99b
 #define SD_Charisma 0x99c
 #define SD_HeroesDeathBlow 0x99d
+#define SD_HeroesLifeAndDeath 0x99e
+#define SD_CatchEmAll 0x99f

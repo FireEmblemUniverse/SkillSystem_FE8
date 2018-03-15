@@ -1,6 +1,6 @@
 #define csvmacro004(arg000) "SHORT arg000 "
 
-#inctext PFinder "C:\Users\Owner\Documents\Emu_stuff\GB(A)\FE8\Patches\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillDescTable
+#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillDescTable
 
 ALIGN 4
 SkillDescTable:
@@ -40,7 +40,7 @@ csvmacro004(SD_Vantage)
 csvmacro004(SD_Desperation)
 csvmacro004(SD_Wrath)
 csvmacro004(SD_Counter)
-csvmacro004(SD_Countermagic)
+csvmacro004(SD_CounterMagic)
 csvmacro004(SD_Miracle)
 csvmacro004(SD_Swordfaire)
 csvmacro004(SD_Lancefaire)
@@ -114,9 +114,9 @@ csvmacro004(SD_SealRes)
 csvmacro004(SD_DragonsBlood)
 csvmacro004(SD_Gamble)
 csvmacro004(SD_Personality)
-csvmacro004(SD_Quickdraw)
-csvmacro004(SD_Winddisciple)
-csvmacro004(SD_Strongriposte)
+csvmacro004(SD_QuickDraw)
+csvmacro004(SD_WindDisciple)
+csvmacro004(SD_StrongRiposte)
 csvmacro004(SD_Patience)
 csvmacro004(SD_Pursuit)
 csvmacro004(SD_LightWeight)
@@ -154,7 +154,7 @@ csvmacro004(SD_RandomMug)
 csvmacro004(SD_IdentityProblems)
 csvmacro004(SD_Charisma)
 csvmacro004(SD_HeroesDeathBlow)
-csvmacro004(0x0)
+csvmacro004(SD_HeroesLifeAndDeath)
 csvmacro004(0x0)
 csvmacro004(0x0)
 csvmacro004(0x0)
