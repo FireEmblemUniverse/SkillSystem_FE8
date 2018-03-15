@@ -450,3 +450,9 @@ ORG SkillIcon(CharismaID)
 
 ORG SkillIcon(HeroesDeathBlowID)
 #incext Png2Dmp "Skill Icons\HeroesDeathBlow.png"
+
+ORG SkillIcon(HeroesLifeAndDeathID)
+#incext Png2Dmp "Skill Icons\HeroesLifeAndDeath.png"
+
+ORG SkillIcon(CatchEmAllID)
+#incext Png2Dmp "Skill Icons\CatchEmAll.png"

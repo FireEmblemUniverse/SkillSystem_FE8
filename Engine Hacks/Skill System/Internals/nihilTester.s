@@ -8,8 +8,9 @@
 .equ NihilID, SkillTesterOriginal+4
 .equ Skill_Getter, NihilID+4
 .equ NegatedSkills, Skill_Getter+4
-.equ FreeByte, NegatedSkills+4
-
+.equ SkillTester, NegatedSkills+4
+.equ CatchEmAll, SkillTester+4
+.equ FreeByte, CatchEmAll+4
 .thumb
 
 push {r4-r7,lr}
@@ -73,6 +74,21 @@ mov	r6,#0xFF
 End:
 mov	r0,r7
 mov	r1,r6		@if the skill was negated r6 contains 0, if not it contains the skill we were testing and the skill tester will work as normal
+
+@check for catch em all
+ldr	r2,CatchEmAll
+cmp	r2,r1
+beq	End2	@do not want to loop forever
+ldr	r1,CatchEmAll
+ldr	r3,SkillTester
+mov	lr,r3
+.short	0xF800
+mov	r1,r6
+cmp	r0,#0
+beq	End2
+mov	r1,#0
+End2:
+mov	r0,r7
 ldr	r4,SkillTesterOriginal
 mov	lr,r4
 .short	0xF800
@@ -85,3 +101,5 @@ SkillTesterOriginal:
 @WORD NihilID
 @POIN Skill_Getter
 @POIN NegatedSkills
+@POIN SkillTester
+@WORD CatchEmAll

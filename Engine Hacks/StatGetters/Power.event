@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pPowerModifiers: // Power
-	POIN prAddUnitPower prDebuffStr prAddEquipPower prRallyStr
+	POIN prAddUnitPower prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus
 WORD 0
 
 prAddUnitPower:
@@ -20,5 +20,8 @@ prDebuffStr:
 prRallyStr:
 	#incbin "_asm/RallyStr.bin"
 	WORD DebuffTable
+
+prLifeAndDeathBonus:
+_testSkill(HeroesLifeAndDeathID,5,0)
 
 #endif // MODULAR_GETTER_POWER_EVENT

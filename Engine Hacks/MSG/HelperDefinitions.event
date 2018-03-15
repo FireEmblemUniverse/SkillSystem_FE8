@@ -10,6 +10,9 @@
 
 #include "CoreDefinitions.event"
 
+//don't know where else to place this
+#define _testSkill(skillid,addnmbr,subnmbr) "SHORT 0xB530 0x1C04 0x1C0D 0x1C28 0x2100+skillid 0x4B05 0x469E 0xF800 0x2800 0xD001 0x3400+addnmbr 0x3C00+subnmbr 0x1C20 0x1C29 0xBD30 0x0000; POIN SkillTester"
+
 #define prGetItemIdROMStruct 0x080177B0
 
 #define prGetItemHPBonus     0x080163F0
