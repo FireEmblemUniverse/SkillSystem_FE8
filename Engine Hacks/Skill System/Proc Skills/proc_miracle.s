@@ -26,7 +26,7 @@ ldrb r0, [r5,#0x12] @max hp
 ldrb r1, [r5,#0x13] @current hp
 lsr r0, #1 @max/2
 cmp r1, r0
-blt End
+ble End
 
 @check damage >= currhp
 mov r0, #4
