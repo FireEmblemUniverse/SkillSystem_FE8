@@ -19,10 +19,10 @@ int AuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
 		
 		if (!other)
 			continue;
-		
-		if (other == unit)
+
+		if (unit->index == i)
 			continue;
-		
+
 		if (!other->pCharacterData)
 			continue;
 
