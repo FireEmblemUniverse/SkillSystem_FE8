@@ -20,6 +20,9 @@ int AuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
 		if ((!other) || (other == unit))
 			continue;
 		
+		if (other->state & US_RESCUED)
+			continue;
+		
 		int distance = absolute(other->xPos - unit->xPos)
 		             + absolute(other->yPos - unit->yPos);
 		
