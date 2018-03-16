@@ -8,7 +8,30 @@
 .endm
 
 push    {r4-r7,r14}                @ 080523EC B5F0     
-mov     r5,r0                @ 080523EE 1C05     
+mov     r5,r0                @ 080523EE 1C05
+
+@fix heal 0 hp
+@check if staff
+ldr	r0,=#0x203A958
+mov	r6,#0x11
+ldrb	r0,[r0,r6]
+cmp	r0,#3
+bne	NoZeroHPHeal
+@check if 0 "damage"
+ldr	r0,=0x802ec18
+ldr	r0,[r0]		@203a608 - battle buffer pointer
+ldr	r0,[r0]
+sub	r0,#8
+ldrb	r0,[r0,#3]
+cmp	r0,#0
+bne	NoZeroHPHeal
+@stop hp depletion
+mov	r0,#1
+mov	r6,#0x58
+strb	r0,[r5,r6]
+NoZeroHPHeal:
+mov	r0,r5
+
 @ ldr     r4,=#0x2000000                @ 080523F0 4C27     
 ldr     r6,[r5,#0x60]    @0x5c for attacker's AIS           @ 080523F2 6E28     
 @ blh      IsRightToLeft                @ 080523F4 F007FEBA 
