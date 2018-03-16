@@ -1,12 +1,27 @@
 //Aura skills installer
 
 PUSH
-//things go here
-ORG 0x2B1AC //fix triangle attack
-    BYTE 0x02
+
+// things go here
+
+// Not needed anymore (we don't write the active unit to the range map anymore)
+// ORG 0x2B1AC // fix triangle attack
+//	BYTE 0x02
 
 POP
 
+// lyn/10
+ALIGN 4
+PUSH
+ORG (CURRENTOFFSET+$1); AuraSkillCheck:
+POP
+SHORT $B5F0 $B085 $9303 $4B2A $9302 $0013 $0007 $9101 $9200 $07DB $D501 $4B27 $9302 $2500 $002E $4A26 $00AB $58D4 $2C00 $D025 $42BC $D023 $6823 $2B00 $D020 $4B22 $68E2 $421A $D11C $7C3A $7C23 $1A9B $17DA $189B $4053 $7C79 $7C62 $1A52 $17D1 $1852 $404A $189B $9A03 $4293 $DC0C $9B00 $2B04 $D116 $9901 $0020 $4B16 $F000 $F82F $2800 $D002 $4B15 $559D $3601 $2380 $3501 $005B $429D $D1CF $2200 $0030 $4B10 $559A $B005 $BCF0 $BC02 $4708 $9B00 $2B04 $DCEF $9B02 $7AE1 $7AF8 $F000 $F815 $2202 $9B00 $4213 $D001 $4243 $4158 $2800 $D0E2 $E7D7
+BYTE $A5 $4D $02 $08 $8D $4D $02 $08 $D0 $A5 $59 $08 $2C $00 $01 $00
+POIN (SkillTester+1)
+WORD $0202B256 // gAuraUnitListOut : Unit allegiance list output
+SHORT $4718 $46C0
+
+/*
 ALIGN 4
 AuraSkillCheck:
 #incbin "AuraSkillCheck.dmp"
@@ -15,6 +30,7 @@ ALIGN 4
 AuraSkillTest:
 #incbin "AuraSkillTest.dmp"
 POIN SkillTester
+*/
 
 SpurStr: //checked in fe8_calc_loop
 #incbin "SpurStr.dmp"
