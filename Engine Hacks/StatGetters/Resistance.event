@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pResistanceModifiers: // Resistance
-	POIN prAddUnitResistance prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus
+	POIN prAddUnitResistance prDebuffRes prAddEquipResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury
 WORD 0
 
 prAddUnitResistance:

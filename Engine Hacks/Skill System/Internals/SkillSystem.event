@@ -24,8 +24,8 @@ ORG $a478c
 BYTE $70 $47
 ORG $a4a34
 BYTE $70 $47
-ORG $a4cfc
-BYTE $70 $47
+// ORG $a4cfc //breaks at credits
+// BYTE $70 $47
 
 ORG $a464c //only save 1 byte when dying (as opposed to 3)
 BYTE 1
