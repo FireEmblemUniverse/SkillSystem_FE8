@@ -41,19 +41,25 @@
 	
 */
 
-#include "_6CDefinitions.event"
+#include "Extensions/6CDefinitions.txt"
 
 {
 
 // Battle 6C Hook
 PUSH; ORG 0x59DB04
-	_6C_JUMP(_p6CFromBattle6C)
+	_6C_JUMP(_pProcFromBattleProc)
 	_6C_END
 POP
 
 // Arena 6C Hook
 PUSH; ORG 0x59DB54
-	_6C_JUMP(_p6CFromArena6C)
+	_6C_JUMP(_pProcFromArenaProc)
+	_6C_END
+POP
+
+// Misc Action (Steal, Dance, Staff, etc) 6C Hook
+PUSH; ORG 0x59BAC4
+	_6C_JUMP(_pProcFromMiscActionProc)
 	_6C_END
 POP
 
@@ -63,7 +69,7 @@ POP
 // POP
 
 ALIGN 4
-_p6CFromBattle6C:
+_pProcFromBattleProc:
 	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting+1)
 	_6C_CALL_ROUTINE_2(0x0328D0+1) // Handles Item Drop
 	_6C_CALL_ROUTINE(0x03286C+1) // idk
@@ -71,9 +77,17 @@ _p6CFromBattle6C:
 	_6C_END
 
 ALIGN 4
-_p6CFromArena6C:
+_pProcFromArenaProc:
 	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting+1)
 	_6C_CALL_ROUTINE(0x0329A0+1) // idk
+	_6C_YIELD
+	_6C_END
+
+ALIGN 4
+_pProcFromMiscActionProc:
+	_6C_SLEEP(1)
+	_6C_CALL_ROUTINE(0x02CC1C+1) // SaveInstigatorFromBattle
+	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting+1)
 	_6C_YIELD
 	_6C_END
 
