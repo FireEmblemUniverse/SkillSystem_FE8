@@ -17,10 +17,16 @@ int AuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
 	for (int i = 0; i < 0x100; ++i) {
 		Unit* other = gUnitLookup[i];
 		
-		if ((!other) || (other == unit))
+		if (!other)
 			continue;
 		
-		if (other->state & US_RESCUED)
+		if (other == unit)
+			continue;
+		
+		if (!other->pCharacterData)
+			continue;
+
+		if (other->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
 			continue;
 		
 		int distance = absolute(other->xPos - unit->xPos)
