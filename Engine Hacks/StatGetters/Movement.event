@@ -18,8 +18,9 @@ prSkillCelerity:
 		rAddConst(2)
 
 prNullifyIfGuardAI:
-	rIfUnitHasGuardAI
-		rConstant(0)
+	rIfUnitHasNotAllegience(UA_BLUE)
+		rIfUnitHasGuardAI
+			rConstant(0)
 
 prNullifyIfFreeze:
 	rIfUnitHasStatus(0x9)

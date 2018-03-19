@@ -53,8 +53,9 @@ bne End
 @astra effect starts here
 
 @write the damage, since we're skipping ahead
-ldrh    r3, [r7, #4]
-lsr     r3, #1 @damage halved
+mov     r2, #4
+ldrsh   r3, [r7, r2]
+asr     r3, #1 @damage halved
 strh    r3, [r7, #4]
 
 @ lsl     r3, #0x18
@@ -93,34 +94,14 @@ mov     r0, #4 @number of extra attacks
 strb    r0,[r4,#5]
 b End
 
-@ ldr     r0,=0x802b444    @pointer to the current round
-@ ldr     r0, [r0]          @current round pointer (usually 203a608)
-@ str     r6, [r0]         @update the current round! 
-
-@ mov r0, r4
-@ mov r1, r5
-@ @ blh recurse_round @call the entire loop again
-@ @ add r6, #0x18 @jump ahead
-@ ldr     r0,=0x802b444    @pointer to the current round
-@ ldr     r0, [r0]          @current round pointer (usually 203a608)
-@ ldr     r1, [r0] @current round
-@ ldrb    r2, [r1, #5] @number of things?
-@ @ str     r6, [r0]         @update the current round! 
-@ b End
-
 .ltorg
 
 AlreadyAstra:
 @write the damage, since we're skipping ahead
-ldrh    r3, [r7, #4]
-lsr     r3, #1 @damage halved
+mov     r2, #4
+ldrsh   r3, [r7, r2]
+asr     r3, #1 @damage halved
 strh    r3, [r7, #4]
-@ lsl     r3, #0x18
-@ ldr     r2, [r6]
-@ lsl     r2, #8
-@ lsr     r2, #8
-@ orr     r2, r3
-@ str     r2,[r6]
 
 ldrb    r0,[r6,#5] @attacks remaining
 sub     r0, #1
@@ -130,31 +111,11 @@ beq End
 add     r6, #8
 strb    r0,[r6,#5]
 
-@ ldr     r2,[r6]    
-@ lsl     r1,r2,#0xD                @ 0802B42C 0351     
-@ lsr     r1,r1,#0xD                @ 0802B42E 0B49     
-@ mov     r0, #0x40
-@ lsl     r0, #8           @0x4000, attacker skill activated
-@ orr     r1, r0
-@ ldr     r0,=#0xFFF80000                @ 0802B434 4804     
-@ and     r0,r2                @ 0802B436 4010     
-@ orr     r0,r1                @ 0802B438 4308  
 mov r0, #0   
 str     r0,[r6]                @ 0802B43A 6018 
 ldrb    r0, AstraID
 strb    r0,[r6,#4] @save the thing
 
-@ ldr     r0,=0x802b444    @pointer to the current round
-@ ldr     r0, [r0]          @current round pointer (usually 203a608)
-@ str     r6, [r0]         @update the current round! 
-
-@ mov r0, r4
-@ mov r1, r5
-@ blh recurse_round @call the entire loop again
-@ sub r6, #0x8
-@ ldr     r0,=0x802b444    @pointer to the current round
-@ ldr     r0, [r0]          @current round pointer (usually 203a608)
-@ str     r6, [r0]         @update the current round! 
 End:
 pop {r4-r7}
 pop {r15}
