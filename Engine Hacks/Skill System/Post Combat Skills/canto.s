@@ -4,6 +4,7 @@
   .short 0xf800
 .endm
 .equ CantoID, SkillTester+4
+.equ Option, CantoID+4
 .thumb
 push	{lr}
 @check if dead
@@ -46,7 +47,29 @@ and	r0, r1
 cmp	r0, #0x00
 bne	End
 
+@check for option and ability
+ldr	r0,Option
+cmp	r0,#0
+beq	HasSkill
+ldr	r0,[r4]		@load character data
+cmp	r0,#0x00	@just in case there's no pointer (was doing weird things with generics without this)
+beq	JumpLoad1
+ldr	r0,[r0,#0x28]	@load character abilities
+JumpLoad1:
+ldr	r1,[r4,#0x04]	@load class data
+cmp	r1,#0x00	@just in case there's no pointer
+beq	JumpLoad2
+ldr	r1,[r1,#0x28]	@load class abilities
+JumpLoad2:
+orr	r0,r1
+mov	r1,#2		@canto bit
+and	r0,r1
+cmp	r0,#2
+beq	CanCanto	@if the option is set and has the ability, skip skill check
+
+
 @check for skill
+HasSkill:
 mov	r0, r4
 ldr	r1, CantoID
 ldr	r3, SkillTester
@@ -55,6 +78,7 @@ mov	lr, r3
 cmp	r0,#0x00
 beq	End
 
+CanCanto:
 @if canto, unset 0x2 and set 0x40
 ldr	r0, [r4,#0x0C]	@status bitfield
 mov	r1, #0x02
@@ -84,3 +108,4 @@ bx	r0
 SkillTester:
 @POIN SkillTester
 @WORD CantoID
+@WORD Option

@@ -42,6 +42,7 @@ mov	r3, #0x02	@range
 
 SavageBlowDamage:
 mov	r4, r0		@number of units
+ldr	r1,=#0x202B256
 mov	r5, r1		@start of buffer
 mov	r6, #0x00	@counter
 cmp	r0, #0x00
@@ -55,11 +56,9 @@ ldr	r2,=#0x8019430
 mov	lr, r2
 .short	0xf800
 ldrb	r0,[r0,#0x13]	@current hp
-mov	r1,#2
-neg	r1,r1
-and	r0,r1
-cmp	r0,#0
-bne	Event
+mov	r1,#1
+cmp	r0,r1
+bhi	Event
 cmp	r6,r4
 beq	End
 b	CheckEventLoop

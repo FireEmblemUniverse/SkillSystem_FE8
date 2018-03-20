@@ -112,6 +112,10 @@ beq End_main
   add r4, #1
   b Main_loop
 End_main:
+@avoid skill forgetting issues after loading units that learn more than 4 skills
+mov	r0,#0
+ldr	r4,=#0x202BCDE
+strh	r0,[r4]
 pop {r4}
 
 @original

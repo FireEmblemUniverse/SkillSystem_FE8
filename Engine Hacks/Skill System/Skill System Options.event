@@ -1,6 +1,12 @@
+//if uncommented use the macros to write over the table and .png, location based on skill id
 //#define __USE_DESCRIPTION_MACROS__
 //#define __USE_ICON_MACROS__
 
+//if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
 //#define __GALEFORCE_AUTOSELECT__
-//#define __LETHALITY_LEVEL_BASED__
 
+//if uncommented lethality will work like it originally did in gba
+//#define __GBA_LETHALITY__
+
+//if set to false, only the skill will work, if set to true both the skill and the ability will work
+#define CantoWithAbility False

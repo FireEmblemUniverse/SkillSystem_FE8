@@ -78,6 +78,7 @@ Canto:
 #incbin "canto.dmp"
 POIN SkillTester
 WORD CantoID
+WORD CantoWithAbility
 
 CantoPlus:
 #incbin "cantoplus.dmp"

@@ -36,11 +36,20 @@ cmp	r0,#0x00
 beq	End
 
 @killed enemy, then heal 25%hp
-ldrb	r1, [r4,#0x12]	@r1=maxhp
-lsr	r0, r1, #0x02	@r0=maxhp/4
-ldrb	r2, [r4,#0x13]	@r2=currhp
-@cmp	r1, r2		@check if hp is already max
-@beq	End
+mov	r0,r4
+ldr	r3,=#0x8019190	@max hp getter
+mov	lr,r3
+.short	0xF800
+mov	r1,r0
+push	{r1}
+mov	r0,r4
+ldr	r3,=#0x8019150	@current hp getter
+mov	lr,r3
+.short	0xF800
+mov	r2,r0
+pop	{r1}
+cmp	r1, r2		@check if hp is already max
+beq	End
 add	r2, r0		@total healing
 cmp	r2, r1		@is the new hp higher than max?
 ble	StoreHP
