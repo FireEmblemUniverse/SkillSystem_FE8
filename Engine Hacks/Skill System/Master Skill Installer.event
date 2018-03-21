@@ -97,8 +97,8 @@ jumpToHack(LungeAI)
 ORG $2c088
 jumpToHack(SealSkills)
 
-ORG $2c1f4
-// jumpToHack(Armsthrift)
+ORG $2B7F8
+  jumpToHack(Armsthrift)
 
 //remove critup ability (for critup skill)
 ORG $2AC4A
@@ -318,7 +318,7 @@ WORD LethalityID
 
 Armsthrift:
 #incbin "Other Skills/Armsthrift.dmp"
-POIN SkillTester
+POIN SkillTester|1
 WORD ArmsthriftID
 
 CritUpSkill:
