@@ -42,6 +42,7 @@ mov	r3, #0x02	@range
 
 BreathOfLifeDamage:
 mov	r4, r0		@number of units
+ldr	r1,=#0x202B256
 mov	r5, r1		@start of buffer
 mov	r6, #0x00	@counter
 cmp	r0, #0x00

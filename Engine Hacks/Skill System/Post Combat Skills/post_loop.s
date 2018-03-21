@@ -66,7 +66,9 @@ add	r7, #0x04	@prepare next pointer
 b	Loop
 
 End:
-
+ldr	r0,=#0x203A4D4
+mov	r1,#0
+strb	r1,[r0]
 pop	{r0-r7}
 push	{r4}
 cmp	r0, #0x00
