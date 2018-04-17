@@ -27,20 +27,21 @@ cmp r0, #0
 beq NoDesperation
 
 @finally check if attacker doubles
-  @ ldr r2, [sp] @attacker data
-  @ ldr r3, [sp, #4] @defender data
-  @ mov r1, #0x5e
-  @ ldsh r0, [r3,r1] @defender AS
+  ldr r2, [sp] @attacker data
+  ldr r3, [sp, #4] @defender data
+  mov r1, #0x5e
+  ldsh r0, [r3,r1] @defender AS
   @ cmp r0, #0xfa @snag??
   @ beq NoDesperation
-  @ ldsh r1, [r2,r1] @attacker AS
-  @ sub r1, r0 @attacker - defender
-  @ cmp r1, #3
-  @ ble NoDesperation
+  ldsh r1, [r2,r1] @attacker AS
+  sub r1, r0 @attacker - defender
+  cmp r1, #3
+  ble NoDesperation
 ldr r0, =0x802af90 @can_double check
 mov lr, r0
 mov r0, sp
 add r1, sp, #4
+
 .short 0xf800
 cmp r0, #0
 beq NoDesperation
@@ -68,6 +69,19 @@ ldr r1, [sp, #4] @defender
 blh 0x802b018 @battle_oneround
 cmp r0, #0
 bne EndBattle
+
+@we don't care about the result, we just want to swap them back around if needed
+ldr r0, =0x802af90 @can_double check
+mov lr, r0
+mov r0, sp
+add r1, sp, #4 
+.short 0xf800
+
+ldr r0, =0x802af90 @can_double check
+mov lr, r0
+mov r1, sp
+add r0, sp, #4 
+.short 0xf800
 
 @finally the defender goes
 ldr r3, [r6]

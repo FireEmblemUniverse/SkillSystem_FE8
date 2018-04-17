@@ -91,7 +91,7 @@ str     r0,[r4]                @ 0802B43A 6018
 ldrb    r0, AstraID
 strb    r0,[r4,#4] @save the thing
 mov     r0, #4 @number of extra attacks
-strb    r0,[r4,#5]
+strb    r0,[r4,#6]
 b End
 
 .ltorg
@@ -103,13 +103,13 @@ ldrsh   r3, [r7, r2]
 asr     r3, #1 @damage halved
 strh    r3, [r7, #4]
 
-ldrb    r0,[r6,#5] @attacks remaining
+ldrb    r0,[r6,#6] @attacks remaining
 sub     r0, #1
 cmp r0, #0
 beq End
 
 add     r6, #8
-strb    r0,[r6,#5]
+strb    r0,[r6,#6]
 
 mov r0, #0   
 str     r0,[r6]                @ 0802B43A 6018 
