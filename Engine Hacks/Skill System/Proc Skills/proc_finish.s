@@ -24,6 +24,13 @@ cmp r0, #0
 bge OverDMGFloor
 mov r0, #0
 strh r0, [r7,r1] @damage is floored at 0
+strb r0, [r6, #5] @set hp change to 0 too
+ldr r1, [r6]
+mov r0, #0x80 @and unset the hp drain flag
+lsl r0, #1
+mvn r0, r0
+and r1, r0
+str r1, [r6]
 OverDMGFloor:
 mov r0, r4
 add r0, #0x48

@@ -17,7 +17,7 @@ lsl     r0,r0,#0xD                @ 0802B40C 0340
 lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
 mov r1, #0xC0 @skill flag
 lsl r1, #8 @0xC000
-add r1, #2 @miss
+add r1, #82 @miss OR devil
 tst r0, r1
 bne End
 @if another skill already activated, don't do anything
@@ -56,23 +56,23 @@ strb  r0, [r6,#4]
 @and recalculate damage with healing
 mov r0, #4
 ldrsh r0, [r7, r0]
+cmp r0, #0
+ble End @don't do anything
 mov r1, #5
 ldsb r1, [r6, r1] @existing hp change
 add r0, r1
 
-@cap/floors are handled elsewhere already so ignore this
-@@now r0 is total HP change - is this higher than the max HP?
-@mov r2, #0x13
-@ldrsb r2, [r4,r2] @curr hp
-@mov r1, #0x12
-@ldrsb r1, [r4,r1] @max hp
-@sub r1, r2 @damage taken
-@cmp r1, r0
-@bge NoCap
-@@if hp will cap, set r0 to damage taken
-@mov r0, r1
-@NoCap:
-
+@now r0 is total HP change - is this higher than the max HP?
+mov r2, #0x13
+ldrsb r2, [r4,r2] @curr hp
+mov r1, #0x12
+ldrsb r1, [r4,r1] @max hp
+sub r1, r2 @damage taken
+cmp r1, r0
+bge NoCap
+  @if hp will cap, set r0 to damage taken
+  mov r0, r1
+NoCap:
 strb r0, [r6, #5] @write hp change
 mov r2, #0x13
 ldrsb r2, [r4,r2] @curr hp
