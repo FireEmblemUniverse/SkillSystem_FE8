@@ -1,12 +1,21 @@
 @ vantage replace 802af7c
 .equ VantageID, SkillTester+4
+.equ VantagePlusID, VantageID+4
 .thumb
 push {r4-r7,r14}
 ldr r4, =0x203a4ec @atr
 ldr r5, =0x203a56c @dfr
 mov r6, r0 @place to store attacker
 mov r7, r1 @place to store defender
-@check for Vantage 
+@check for Vantage, Vantage+ 
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r5 @defender data
+ldr r1, VantagePlusID
+.short 0xF800
+cmp r0, #0
+bne VantagePlus
+
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r5 @defender data
@@ -46,6 +55,20 @@ eor r4,r5
 @ ldrb  r0, VantageID
 @ strb  r0, [r3,#4] 
 
+VantagePlus:
+eor r4,r5
+eor r5,r4
+eor r4,r5
+mov r1, #0x66
+mov r0, #0
+strh r0, [r4,r1]
+mov r1, #0x68
+mov r0, #0
+strh r0, [r4,r1]
+mov r1, #0x6A
+mov r0, #0
+strh r0, [r4,r1]
+
 Normal:
 str r4, [r6]
 str r5, [r7]
@@ -57,3 +80,4 @@ pop {r4-r7,r15}
 SkillTester:
 @POIN SkillTester
 @WORD VantageID
+@WORD VatnagePlusID
