@@ -456,3 +456,12 @@ ORG SkillIcon(HeroesLifeAndDeathID)
 
 ORG SkillIcon(CatchEmAllID)
 #incext Png2Dmp "Skill Icons\CatchEmAll.png"
+
+ORG SkillIcon(VantagePlusID)
+#incext Png2Dmp "Skill Icons\VantagePlus.png"
+
+ORG SkillIcon(HawkeyeID)
+#incext Png2Dmp "Skill Icons\Hawkeye.png"
+
+ORG SkillIcon(SolidarityID)
+#incext Png2Dmp "Skill Icons\Solidarity.png"
