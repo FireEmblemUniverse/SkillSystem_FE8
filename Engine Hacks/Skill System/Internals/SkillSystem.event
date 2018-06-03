@@ -80,7 +80,7 @@ WORD CatchEmAllID
 NegatedSkills: //comment or uncomment skills to your liking, this should come with an updated list of skills that work with nihil and are meant to
 //Confirmed working and grouped by type for easier adding/removing from the NegatedSkills list
 //please note that I have only tested one or two skills of each group so if there is any issue with any of them please let me know
-BYTE VantageID DesperationID WrathID//if hp < 50%
+BYTE VantageID VantagePlusID DesperationID WrathID//if hp < 50%
 BYTE SwordbreakerID LancebreakerID AxebreakerID BowbreakerID TomebreakerID//breaker
 BYTE SwordfaireID LancefaireID AxefaireID BowfaireID TomefaireID//faire
 BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID//blow
@@ -89,11 +89,11 @@ BYTE QuickDrawID//when initiating attack
 BYTE StrongRiposteID PatienceID PursuitID//when under attack
 BYTE CounterID CounterMagicID//counter
 BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID//Astra and friends aka Stat(/2)% activation
-BYTE MaleficAuraID VoiceOfPeaceID IntimidateID AnathemaID//auras that affect the one that makes them
+BYTE SolidarityID MaleficAuraID VoiceOfPeaceID IntimidateID AnathemaID//auras that affect the one that makes them
 BYTE LifetakerID GaleforceID DespoilID//after defeating enemy
 BYTE SavageBlowID//after combat, prevents activating but not effects if it was already activated
 BYTE SealStrID SealSklID SealSpdID SealLukID SealDefID SealResID//seal
-BYTE CritUpID WaryFighterID FrenzyID MiracleID LifeAndDeathID TantivyID FocusID FieryBloodID WindDiscipleID LightWeightID KillingMachineID CriticalForceID ChivalryID PragmaticID//other combat skills
+BYTE CritUpID WaryFighterID FrenzyID MiracleID LifeAndDeathID TantivyID FocusID FieryBloodID WindDiscipleID HawkeyeID LightWeightID KillingMachineID CriticalForceID ChivalryID PragmaticID//other combat skills
 BYTE MoonbowID//charge up skills, I don't really know how they work so I don't know if this prevents them from getting charge or lossing it or not, it does prevent moonbow from triggering
 BYTE DownWithArchID
 BYTE LuckySevenID OddRhythmID EvenRhythmID QuickBurnID SlowBurnID//turn based boosts

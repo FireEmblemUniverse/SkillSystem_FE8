@@ -133,3 +133,8 @@ UpWithArch:
 #incbin "UpWithArch.dmp"
 POIN AuraSkillCheck
 WORD UpWithArchID
+
+Solidarity:
+#incbin "Solidarity.dmp"
+POIN AuraSkillCheck
+WORD SolidarityID
