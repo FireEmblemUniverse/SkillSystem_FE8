@@ -13,8 +13,8 @@ How to use:
 Credits:
 Circleseverywhere
 Monkeybard & Black Mage for most of the skill icons
-Tequila, Rossendale, StanH, Leonarth, Teraspark for skills
+Tequila, Rossendale, StanH, Leonarth, Teraspark, sd9k, blademaster for skills
 Primefusion for the test map
 
 Known issues:
-- Devil effect and Counter do not work together
+- see issue page on github

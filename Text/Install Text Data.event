@@ -771,7 +771,3 @@ TxtData0x9a2:
 #incext ParseFile "_textentries\0x9a2.txt"
 setText(0x9a2,TxtData0x9a2)
 
-TxtData0x9a3:
-#incext ParseFile "_textentries\0x9a3.txt"
-setText(0x9a3,TxtData0x9a3)
-

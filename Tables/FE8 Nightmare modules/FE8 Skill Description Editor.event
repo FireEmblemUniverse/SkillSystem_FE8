@@ -1,6 +1,6 @@
 #define csvmacro004(arg000) "SHORT arg000 "
 
-#inctext PFinder "C:\Users\igau0\Desktop\Fire Emblem Editing\SkillSystem_FE8-master\FE8_clean.gba" 0xe47180 SkillDescTable
+#inctext PFinder "C:\Users\bovie_000\Desktop\Skills System\SkillSystem_FE8\FE8_clean.gba" 0xe47180 SkillDescTable
 
 ALIGN 4
 SkillDescTable:
@@ -155,10 +155,10 @@ csvmacro004(SD_IdentityProblems)
 csvmacro004(SD_Charisma)
 csvmacro004(SD_HeroesDeathBlow)
 csvmacro004(SD_HeroesLifeAndDeath)
-csvmacro004(SD_CatchEmAll)
-csvmacro004(SD_Vantage_Plus)
-csvmacro004(SD_Hawkeye)
-csvmacro004(SD_Solidarity)
+csvmacro004(0x0)
+csvmacro004(0x0)
+csvmacro004(0x0)
+csvmacro004(0x0)
 csvmacro004(0x0)
 csvmacro004(0x0)
 csvmacro004(0x0)
