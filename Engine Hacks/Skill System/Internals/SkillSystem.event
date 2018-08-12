@@ -97,6 +97,7 @@ BYTE CritUpID WaryFighterID FrenzyID MiracleID LifeAndDeathID TantivyID FocusID 
 BYTE MoonbowID//charge up skills, I don't really know how they work so I don't know if this prevents them from getting charge or lossing it or not, it does prevent moonbow from triggering
 BYTE DownWithArchID
 BYTE LuckySevenID OddRhythmID EvenRhythmID QuickBurnID SlowBurnID//turn based boosts
+BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID // Stance skills (add stats if under attack)
 /*
 //NOT WORKING (or they should not be affected by nihil)
 BYTE ProvokeID//this is kinda it's own thing really (works)
