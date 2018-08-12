@@ -13,7 +13,7 @@ How to use:
 Credits:
 Circleseverywhere
 Monkeybard & Black Mage for most of the skill icons
-Tequila, Rossendale, StanH, Leonarth, Teraspark, sd9k, Kao, blademaster for skills
+Tequila, Rossendale, StanH, Leonarth, Teraspark, sd9k, Kao, blademaster, Snakey1 for skills
 Primefusion for the test map
 
 Known issues:
