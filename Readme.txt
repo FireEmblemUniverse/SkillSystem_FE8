@@ -12,7 +12,7 @@ How to use:
 
 Credits:
 Circleseverywhere
-Monkeybard & Black Mage for most of the skill icons
+Monkeybard & Black Mage for most of the skill icons; Blaze for Stances skill icons
 Tequila, Rossendale, StanH, Leonarth, Teraspark, sd9k, Kao, blademaster, Snakey1 for skills
 Primefusion for the test map
 
