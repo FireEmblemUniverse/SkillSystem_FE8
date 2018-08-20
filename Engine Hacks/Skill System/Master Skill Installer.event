@@ -385,6 +385,11 @@ POIN SkillTester
 WORD TraceID
 POIN Skill_Getter
 
+#inctext lyn "Stances/Stances.elf"
+StanceSkillList:
+BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID
+ALIGN 4
+
 #include "Other Skills/RandomMugs.event"
 
 
