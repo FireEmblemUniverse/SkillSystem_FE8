@@ -40,7 +40,7 @@ cmp r0, #0
 beq End
 @if user has Adept, check for proc rate
 
-ldrb r0, [r4, #0x15] @speed stat as activation rate
+ldrb r0, [r4, #0x16] @speed stat as activation rate
 mov r1, r4 @skill user
 blh d100Result
 cmp r0, #1
