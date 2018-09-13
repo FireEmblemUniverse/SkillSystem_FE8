@@ -6,4 +6,8 @@ prHalveIfRescuing:
 		rIfUnitHasNotSkill(SaviorID)
 			rHalved
 
+prHalveIfCapturing:
+	#incbin "_asm/HalveIfCapturing.bin"
+	POIN Is_Capture_Set
+
 #endif // MODULAR_GETTER_COMMON_EVENT

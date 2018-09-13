@@ -618,6 +618,21 @@ even if attacked. Negates crits.[X]
 Hawkeye: User will[N]
 always hit the enemy.[X]
 
-##SD_Solidarity
+## SD_Solidarity
 Solidarity: Critical and Critical[N]
 Avoid +10 to adjacent allies.[X]
+
+## SD_Steal
+Steal: Unit can steal items.[X]
+
+## SD_StealPlus
+Steal+: Unit can steal unequipped[N]
+weapons and staffs if con>weight.[X]
+
+## SD_Capture
+Capture: Capture an enemy after[N]
+defeating it with reduced stats.[X]
+
+## SD_BlackMagic
+Black Magic: Skill% chance to[N]
+inflict a random status.[X]

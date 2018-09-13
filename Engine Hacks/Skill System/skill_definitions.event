@@ -42,7 +42,7 @@
 #define BowfaireID 41 //DONE
 #define TomefaireID 42 //DONE
 #define CritUpID 43 //display only
-#define SlayerID 44 //display only
+#define SlayerID 44 //DONE (and has a rework)
 #define SummonID 45 //display only
 #define DanceID 46 //display only
 #define LifetakerID 47 //DONE
@@ -62,7 +62,7 @@
 #define SpurDefID 61 //DONE
 #define SpurResID 62 //DONE
 #define NihilID 63 //DONE
-#define NullifyID 64
+#define NullifyID 64 //DONE
 #define ParagonID 65 //DONE
 #define ImpaleID 66 //DONE
 #define ColossusID 67 //DONE
@@ -83,8 +83,8 @@
 #define LockTouchID 82 //Display only
 #define LungeID 83 //DONE
 #define IntimidateID 84 //DONE
-#define OpportunistID 85
-#define TrampleID 86
+#define OpportunistID 85 //DONE
+#define TrampleID 86 //DONE
 #define CamaraderieID 87 //DONE
 #define ForeignPrincessID 88
 #define SavageBlowID 89 //DONE
@@ -94,7 +94,7 @@
 #define BondID 93 //DONE
 #define AnathemaID 94 //DONE
 #define LilysPoiseID 95 //DONE
-#define ExpertiseID 96
+#define ExpertiseID 96 //DONE
 #define CelerityID 97 //DONE
 #define FieryBloodID 98 //DONE
 #define ElbowRoomID 99 //DONE
@@ -140,7 +140,7 @@
 #define BreathOfLifeID 139 //DONE
 #define FuryID 140 //DONE
 #define DazzleID 141 //DONE
-#define TriAdeptID 142 //not done
+#define TriAdeptID 142 //DONE
 #define SupplyID 143 //Display only
 #define Roll12ID 144 //DONE
 #define TraceID 145 //DONE
@@ -153,3 +153,7 @@
 #define VantagePlusID 152 //DONE
 #define HawkeyeID 153 //wip
 #define SolidarityID 154 //DONE
+#define StealID 155 //DONE
+#define StealPlusID 156 //DONE
+#define CaptureID 157 //DONE
+#define BlackMagicID 158 //DONE

@@ -1,0 +1,170 @@
+//FE8 Nullify, with potential weapon effectiveness and Slayer overhaul
+//By Tequila
+
+#ifndef _FE8_
+    ERROR "You're not assembling to an FE8 ROM!"
+#endif
+
+#include EAStdlib.event
+#include "Extensions/Hack Installation.txt"
+
+#ifndef FreeSpace
+    #define FreeSpace 0xB2A610
+    ORG FreeSpace
+#endif
+
+#ifndef __SLAYER_AND_EFFECTIVENESS_REWORK__
+	//we merely add Slayer and Nullify checks as necessary
+	
+	PUSH
+	
+	//Slayer
+	ORG $16C8A
+	SHORT 0x46C0
+	callHack_r3(Normal_Slayer)
+	SHORT 0x2900 0xD000 //cmp r1,#0; beq nextLine
+	
+	//Weapon effectiveness
+	ORG $16BFA
+	SHORT 0x4D06 //ldr r5,=ItemTable
+	callHack_r1(Normal_Effectiveness)
+	SHORT 0x46C0 0x46C0 0x46C0
+	
+	POP
+	
+	ALIGN 4
+	Normal_Slayer:
+	#incbin "Normal_Slayer.dmp"
+	POIN SkillTester
+	WORD SlayerID NullifyID
+	
+	ALIGN 4
+	Normal_Effectiveness:
+	#incbin "Normal_Effectiveness.dmp"
+	POIN SkillTester
+	WORD NullifyID
+	
+#else
+	//OVERHAUL, BABY
+	
+	PUSH
+	
+	//Modify the part that multiplies weapon might for effective weapons and slayer
+	ORG $2AAEC
+	#incbin "Add_Weapon_Might.dmp"
+	
+	//slayer redux
+	ORG $16C88
+	jumpToHack(Redone_Slayer)
+	
+	//effectiveness redux
+	ORG $16BEC
+	jumpToHack(Redone_Effectiveness)
+	
+	POP
+	
+	ALIGN 4
+	Redone_Slayer:
+	#incbin "Redone_Slayer.dmp"
+	POIN SkillTester
+	WORD SlayerID
+	WORD NullifyID
+	POIN SlayerTable
+	
+	ALIGN 4
+	Redone_Effectiveness:
+	#incbin "Redone_Effectiveness.dmp"
+	POIN SkillTester
+	WORD NullifyID
+	
+	#define SlayerTableEntry(class_id, type_list, coefficient_times_2) "BYTE class_id coefficient_times_2; SHORT type_list"
+	ALIGN 4
+	SlayerTable:
+	SlayerTableEntry(Bishop, MonsterType, 6)
+	SlayerTableEntry(Bishop_F, MonsterType, 6)
+	SlayerTableEntry(Ranger_F, MonsterType, 6)
+	WORD 0 //terminator
+	
+	//Change existing effective items (class weaknesses are already part of the class data table)
+	#define ItemEffectivenessPtr(item_id, label_to_point_to) "PUSH; ORG ItemTable + 0x24*item_id + 0x10; POIN label_to_point_to; POP"
+	ItemEffectivenessPtr(Rapier, LordWeaponEffectiveness)
+	ItemEffectivenessPtr(Armorslayer, ArmorEffectiveness)
+	ItemEffectivenessPtr(Wyrmslayer, DragonEffectiveness)
+	ItemEffectivenessPtr(Zanbato, HorseEffectiveness)
+	ItemEffectivenessPtr(Horseslayer, HorseEffectiveness)
+	ItemEffectivenessPtr(Halberd, HorseEffectiveness)
+	ItemEffectivenessPtr(Hammer, ArmorEffectiveness)
+	ItemEffectivenessPtr(Swordslayer, SwordEffectiveness)
+	ItemEffectivenessPtr(IronBow, FlierEffectiveness)
+	ItemEffectivenessPtr(SteelBow, FlierEffectiveness)
+	ItemEffectivenessPtr(SilverBow, FlierEffectiveness)
+	ItemEffectivenessPtr(PoisonBow, FlierEffectiveness)
+	ItemEffectivenessPtr(KillerBow, FlierEffectiveness)
+	ItemEffectivenessPtr(BraveBow, FlierEffectiveness)
+	ItemEffectivenessPtr(ShortBow, FlierEffectiveness)
+	ItemEffectivenessPtr(Longbow, FlierEffectiveness)
+	ItemEffectivenessPtr(Ballista, FlierEffectiveness)
+	ItemEffectivenessPtr(IronBallista, FlierEffectiveness)
+	ItemEffectivenessPtr(KillerBallista, FlierEffectiveness)
+	ItemEffectivenessPtr(Excalibur, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(Luce, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(DragonAxe, DragonEffectiveness)
+	ItemEffectivenessPtr(Reginleif, LordWeaponEffectiveness)
+	ItemEffectivenessPtr(ShadowKiller, MonsterEffectiveness)
+	ItemEffectivenessPtr(BrightLance, MonsterEffectiveness)
+	ItemEffectivenessPtr(Fiendcleaver, MonsterEffectiveness)
+	ItemEffectivenessPtr(BeaconBow, FlierAndMonster1)
+	ItemEffectivenessPtr(Sieglinde, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(Ivaldi, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(DragonSpear, DragonEffectiveness)
+	ItemEffectivenessPtr(Vidofnir, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(Audhulma, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(Siegmund, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(Garm, SacredWeaponEffectiveness)
+	ItemEffectivenessPtr(Nidhogg, FlierAndMonster2)
+	ItemEffectivenessPtr(HeavySpear, ArmorEffectiveness)
+	ItemEffectivenessPtr(WindSword, FlierEffectiveness)
+	ItemEffectivenessPtr(Dragonstone, MonsterEffectiveness)
+	ItemEffectivenessPtr(Aircalibur, FlierEffectiveness)
+	
+	//Protector item (macro still works, even if it's wrongly named)
+	ItemEffectivenessPtr(DelphiShield, FlierProtection)
+	
+	#define SetWeaponEffectiveness(type_list, coefficient_times_2) "BYTE 0 coefficient_times_2; SHORT type_list"
+	LordWeaponEffectiveness:
+	SetWeaponEffectiveness(ArmorType|SwordType, 6)
+	WORD 0 //terminator
+	ArmorEffectiveness:
+	SetWeaponEffectiveness(ArmorType, 6)
+	WORD 0
+	HorseEffectiveness:
+	SetWeaponEffectiveness(HorseType, 6)
+	WORD 0
+	DragonEffectiveness:
+	SetWeaponEffectiveness(DragonType, 6)
+	WORD 0
+	FlierEffectiveness:
+	SetWeaponEffectiveness(FlierType, 6)
+	WORD 0
+	SwordEffectiveness:
+	SetWeaponEffectiveness(SwordType, 6)
+	WORD 0
+	MonsterEffectiveness:
+	SetWeaponEffectiveness(MonsterType, 6)
+	WORD 0
+	SacredWeaponEffectiveness:
+	SetWeaponEffectiveness(MonsterType, 4)
+	WORD 0
+	FlierAndMonster1: //Beacon bow
+	SetWeaponEffectiveness(FlierType|MonsterType, 6)
+	WORD 0
+	FlierAndMonster2: //Nidhogg
+	SetWeaponEffectiveness(FlierType, 6)
+	SetWeaponEffectiveness(MonsterType, 4)
+	WORD 0
+	
+	#define SetProtection(type_list) "SHORT 0 type_list"
+	FlierProtection:
+	SetProtection(FlierType)
+	
+#endif

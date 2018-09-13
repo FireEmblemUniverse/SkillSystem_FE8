@@ -34,6 +34,8 @@
 #define UM_RepositionDesc 0x54
 #define UM_Swap 0x55
 #define UM_SwapDesc 0x56
+#define UM_Capture 0x57
+#define UM_CaptureDesc 0x58
 #define HouseText 0x903
 #define VillageText 0x904
 #define DV1Desc 0x905
@@ -194,3 +196,7 @@
 #define SD_Vantage_Plus 0x9a0
 #define SD_Hawkeye 0x9a1
 #define SD_Solidarity 0x9a2
+#define SD_Steal 0x9a3
+#define SD_StealPlus 0x9a4
+#define SD_Capture 0x9a5
+#define SD_BlackMagic 0x9a6

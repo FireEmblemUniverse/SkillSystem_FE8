@@ -103,6 +103,11 @@ ORG $2B7F8
 //remove critup ability (for critup skill)
 ORG $2AC4A
 SHORT 0x46C0
+
+//Triangle Adept
+ORG $2C830
+jumpToHack(TriangleAdept)
+
 POP
 
 NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
@@ -309,6 +314,16 @@ LightWeight:
 POIN SkillTester
 WORD LightWeightID
 
+Trample:
+#incbin "Teq Skills/Trample.dmp"
+POIN SkillTester
+WORD TrampleID
+
+Opportunist:
+#incbin "Teq Skills/Opportunist.dmp"
+POIN SkillTester
+WORD OpportunistID
+
 CriticalCheck:
 #incbin "Blade Skills/Critical.dmp"
 POIN SkillTester
@@ -385,8 +400,15 @@ POIN SkillTester
 WORD TraceID
 POIN Skill_Getter
 
-#include "Other Skills/RandomMugs.event"
+TriangleAdept:
+#incbin "Teq Skills/TriangleAdept.dmp"
+POIN SkillTester
+WORD TriAdeptID
 
+#include "Other Skills/RandomMugs.event"
+#include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
+#include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
+#include "Teq Skills/FE8-Nullify/Nullify EA.txt"
 
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
