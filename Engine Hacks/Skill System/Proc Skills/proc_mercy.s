@@ -17,7 +17,7 @@ lsl     r0,r0,#0xD                @ 0802B40C 0340
 lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
 @ mov r1, #0xC0 @skill flag @it's a passive, regardless of skills
 @ lsl r1, #8 @0xC000
-add r1, #2 @miss
+mov r1, #2 @miss
 tst r0, r1
 bne End
 
@@ -28,18 +28,18 @@ bne End
 @ cmp r1, r0
 @ blt End
 
+@check for Mercy
+ldr r0, =MercyFlag
+ldrb r0, [r0]
+cmp r0, #4
+bne End
+
 @check damage >= currhp
 ldrb r1, [r5,#0x13] @current hp
 mov r0, #4
 ldrsh r0, [r7, r0]
 cmp r0, r1
 blt End @not gonna die
-
-@check for Mercy
-ldr r0, =MercyFlag
-ldrb r0, [r0]
-cmp r0, #4
-bne End
 
 @and set damage to currhp-1
 ldrb r0, [r5, #0x13] @currhp
