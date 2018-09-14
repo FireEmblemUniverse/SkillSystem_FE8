@@ -16,7 +16,8 @@ HPFramePointers:
 #include "ASM/HPFramePointers.txt"
 HPBars:
 //#incbin "ASM/Talk_Warning_Bars.dmp" //causes lag?
-#incbin "ASM/_warning_and_hpbars.dmp"
+//#incbin "ASM/_warning_and_hpbars.dmp" //still causes lag?
+#incbin "ASM/_Warning_and_HP_Bars.dmp"
 POIN HPFramePointers
 HPBarGraphic:
 #incext Png2Dmp "bin/Warning_and_HPGraphic - Copy.png" --lz77

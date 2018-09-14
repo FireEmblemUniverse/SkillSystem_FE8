@@ -672,3 +672,18 @@ when foe initiates battle.[X]
 Spectrum Stance: +2 attack,
 speed, defense, and resistance[NL]
 when foe initiates battle.[X]
+
+## SD_Steal
+Steal: Unit can steal items.[X]
+
+## SD_StealPlus
+Steal+: Unit can steal unequipped[N]
+weapons and staffs if con>weight.[X]
+
+## SD_Capture
+Capture: Capture an enemy after[N]
+defeating it with reduced stats.[X]
+
+## SD_BlackMagic
+Black Magic: Skill% chance to[N]
+inflict a random status.[X]

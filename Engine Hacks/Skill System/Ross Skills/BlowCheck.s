@@ -175,7 +175,7 @@ ldrh    r3,[r0]     @Load the attacker's attack into r3.
 add     r3,#0x6    @Add 6 to the attacker's attack.
 strh    r3,[r0]     @Store attacker attack.
 b       SkillReturn	@Attacker's attack. Redundancy? Nah.
- 
+
 .align
 .ltorg
 SkillTester:

@@ -4,12 +4,12 @@
 #include "_Common.event"
 
 pPowerModifiers: // Power
-	POIN prAddUnitPower prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury
+	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury
 WORD 0
 
 prAddUnitPower:
 	rAdd(rSByteAt(UNIT_POWER))
-
+	
 prAddEquipPower:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemPowBonus)))
 

@@ -4,12 +4,12 @@
 #include "_Common.event"
 
 pDefenseModifiers: // Defense
-	POIN prAddUnitDefense prDebuffDef prAddEquipDefense prRallyDef prLifeAndDeathMinus prSkillFury
+	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prRallyDef prLifeAndDeathMinus prSkillFury
 WORD 0
 
 prAddUnitDefense:
 	rAdd(rSByteAt(UNIT_DEFENSE))
-
+	
 prAddEquipDefense:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemDefBonus)))
 
