@@ -62,7 +62,7 @@ POP
   #include "ImprovedSoundMixer/SoundMixer.event"
 
   //Danger Zone (select button)
-  #include "DangerZone.event"
+  #include "DangerZone/DangerZone.event"
 
   //Event Writer ASMC
   #include "EventWriter.txt"
