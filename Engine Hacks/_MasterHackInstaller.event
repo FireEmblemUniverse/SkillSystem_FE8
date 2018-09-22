@@ -26,7 +26,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 #define inBLRange
 
   //Talk and Support don't end your turn
-  #include "ContemporaryTalkSupport.event"
+  #include "ContemporaryTalkSupport/ContemporaryTalkSupport.event"
 
   //menu semitransparency
   #include "Semitransparency_changes.event"
