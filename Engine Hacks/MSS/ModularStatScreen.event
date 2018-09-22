@@ -94,7 +94,20 @@
 
     ORG $17E98
       callHack_r3(New_Unit_Exp)
-      SHORT 0xE005  
+      SHORT 0xE005
+
+    ORG $087184
+
+      // This is Vanilla Stat Screen Page
+      // This is now free (because unused) space
+      // We'll use this for stuff that needs to
+      // be in BL range
+
+    RText_Page4_ladder:
+      // page 4 helptext hook
+      #incbin "asm/rtext_page4.dmp"
+      POIN RText_Page4
+
   POP
   
   ALIGN 4

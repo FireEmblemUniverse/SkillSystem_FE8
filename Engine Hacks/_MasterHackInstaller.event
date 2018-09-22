@@ -37,17 +37,9 @@ ORG FreeSpaceBLRange //defined in custom definitions
   //negative wt/crit
   #include "NegativeWStatDisplay/NegativeDisplay.event"
 
-  //Rescuees are drawn
-  // #include "RescueMapSprite.event"
-
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
   #incbin "Skill System/Internals/unset attack flag.dmp"
-
-  //page 4 helptext
-  RText_Page4_ladder:
-  #incbin "MSS/asm/rtext_page4.dmp"
-  POIN RText_Page4
 
 #undef inBLRange
 POP
@@ -88,44 +80,21 @@ POP
   //Stat Screens palette by allegiance
   // #include "StatScreenAllegiance.event"
 
-  //Allow Supply to be used in Prologue:
-  PUSH
-  ORG $23f6e //Access Supply
-  SHORT 0
-
-  ORG $31646 //send to supply
-  SHORT 0
-  POP
-
-  //Send list of items in Slot 1 to convoy
-  SendToConvoy:
-  #incbin "ASM/sendToConvoyASMC.dmp"
+  #include "Misc/PrologueSupply.event"
 
   //Chapter names as text
-  #include "fe8_chnames.event"
+  #include "TextChNames/TextChNames.event"
 
   //PC and Generic Music Hack (writes to e80000/e90000)
   // #include "PC_and_Generic_Music_FE8.event"
 
-  //Force enemies to rescue
-  ALIGN 4
-  RescueASMC:
-  #incbin "RescueEvent.dmp"
-  #define Rescue(frontx,fronty,backx,backy) "SVAL 0x1 (fronty*0x10000 + frontx); SVAL 0x2 (backy*0x10000 + backx); ASMC RescueASMC|1"
-
-  //Spawn new traps
-  ALIGN 4
-  LoadTrapsASMC:
-  #define AddTraps(pointer) "SVAL 1 pointer|0x8000000; ASMC LoadTrapsASMC|1"
-  #incbin "ASM/NewTrapInitializer.dmp"
+  #include "EventRescue/EventRescue.event"
+  #include "EventAddTraps/EventAddTraps.event"
+  #include "EventSendToConvoy/EventSendToConvoy.event"
 
   //Change Sick Status to Freeze
-  #include "Freeze.event"
-
-  //Freeze All ASMC
-  ALIGN 4
-  FreezeAllASMC:
-  #incbin "ASM/freezeall.dmp"
+  #include "Freeze/Freeze.event"
+  #include "Freeze/EventFreeze.event"
 
   ALIGN 4
   #include "Skill System/Master Skill Installer.event"
