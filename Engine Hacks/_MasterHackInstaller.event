@@ -40,9 +40,6 @@ ORG FreeSpaceBLRange //defined in custom definitions
   //Rescuees are drawn
   // #include "RescueMapSprite.event"
 
-  //Expanded Suspend + Debuffs
-  #include "Suspend_Debuffs.event"
-
   //Move and Con getters
   // #include "MovConGetters/FE8-Getters EA.txt"
 
@@ -87,6 +84,9 @@ POP
 
   //Modular Stat Screen
   #include "ModularStatScreen.event"
+
+  //Expanded Suspend + Debuffs
+  #include "SuspendDebuffs/SuspendDebuffs.event"
 
   //Stat Screens palette by allegiance
   // #include "StatScreenAllegiance.event"
