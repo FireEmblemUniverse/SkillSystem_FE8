@@ -9,6 +9,8 @@
 #ifdef _FE8_
 #ifdef inBLRange
 
+  {
+
   PUSH
     ORG $323c2
       BL(TalkFix)
@@ -24,6 +26,8 @@
   ALIGN 4
   SupportFix:
     #incbin "asm/SupportFix.dmp"
+
+  }
 
 #else // inBLRange
   ERROR Talk and Support hack must be installed within BL range
