@@ -65,7 +65,7 @@ POP
   #include "DangerZone/DangerZone.event"
 
   //Event Writer ASMC
-  #include "EventWriter.txt"
+  #include "EventWriter/EventWriter.event"
 
   //Casual Mode (based on Event ID 0xB0)
   #include "CasualMode.event"
