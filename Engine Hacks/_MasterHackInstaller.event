@@ -74,7 +74,7 @@ POP
   #include "MovementArrowHack/MovementArrowHack.event"
 
   //negative stat boosts
-  #include "NegativeStatBoosts.event"
+  #include "NegativeStatBoosts/NegativeStatBoosts.event"
 
   //Dragon Veins
   #include "DragonVeins.event"
