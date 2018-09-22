@@ -32,7 +32,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
   #include "Semitransparency_changes.event"
 
   //Hold L to toggle Anims
-  #include "LToggle.event"
+  #include "LToggle/LToggle.event"
 
   //negative wt/crit
   #include "NegativeDisplay.event"
