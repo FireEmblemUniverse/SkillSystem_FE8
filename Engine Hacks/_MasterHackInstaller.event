@@ -68,7 +68,7 @@ POP
   #include "EventWriter/EventWriter.event"
 
   //Casual Mode (based on Event ID 0xB0)
-  #include "CasualMode.event"
+  #include "CasualMode/CasualMode.event"
 
   //Movement Arrow doesn't update on allies
   #include "MovementArrowFix.event"
