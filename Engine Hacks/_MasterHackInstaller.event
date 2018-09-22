@@ -59,7 +59,7 @@ POP
   #include "HpBars/HpBars.event"
 
   //Improved Sound Mixer
-  #include "SoundMixer.txt"
+  #include "ImprovedSoundMixer/SoundMixer.event"
 
   //Danger Zone (select button)
   #include "DangerZone.event"
