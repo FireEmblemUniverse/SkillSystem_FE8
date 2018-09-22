@@ -71,7 +71,7 @@ POP
   #include "CasualMode/CasualMode.event"
 
   //Movement Arrow doesn't update on allies
-  #include "MovementArrowFix.event"
+  #include "MovementArrowHack/MovementArrowHack.event"
 
   //negative stat boosts
   #include "NegativeStatBoosts.event"
