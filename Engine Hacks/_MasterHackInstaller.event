@@ -46,7 +46,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 
   //page 4 helptext
   RText_Page4_ladder:
-  #incbin "MSS/rtext_page4.dmp"
+  #incbin "MSS/asm/rtext_page4.dmp"
   POIN RText_Page4
 
 #undef inBLRange
@@ -80,7 +80,7 @@ POP
   #include "DragonVeins/DragonVeins.event"
 
   //Modular Stat Screen
-  #include "ModularStatScreen.event"
+  #include "MSS/ModularStatScreen.event"
 
   //Expanded Suspend + Debuffs
   #include "SuspendDebuffs/SuspendDebuffs.event"
