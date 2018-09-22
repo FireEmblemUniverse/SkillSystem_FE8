@@ -40,9 +40,6 @@ ORG FreeSpaceBLRange //defined in custom definitions
   //Rescuees are drawn
   // #include "RescueMapSprite.event"
 
-  //Move and Con getters
-  // #include "MovConGetters/FE8-Getters EA.txt"
-
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
   #incbin "Skill System/Internals/unset attack flag.dmp"
@@ -59,7 +56,7 @@ POP
 //start of Free space
 
   //HP Bars (and effective weapon warning)
-  #include "HPbars.txt"
+  #include "HpBars/HpBars.event"
 
   //Improved Sound Mixer
   #include "SoundMixer.txt"
