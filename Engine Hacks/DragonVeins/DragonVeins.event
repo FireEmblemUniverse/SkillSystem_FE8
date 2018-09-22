@@ -64,11 +64,15 @@
   MESSAGE DVs installed to CURRENTOFFSET
 
   DrawingOffset_External:
-    #incbin "asm/DrawingDragonVein_Ext_A.dmp"
-    BYTE DragonVeinTrapID
-    #incbin "asm/DrawingDragonVein_Ext_B.dmp"
-    BYTE Vein_Map_Sprite_Number
-    #incbin "asm/DrawingDragonVein_Ext_C.dmp"
+    #incbin "asm/DrawingDragonVein_Ext.dmp"
+
+  PUSH // This is ugly, change this if you change asm/DrawingDragonVein_Ext.dmp
+    ORG DrawingOffset_External + $4
+      BYTE DragonVeinTrapID
+
+    ORG DrawingOffset_External + $10
+      BYTE Vein_Map_Sprite_Number
+  POP
 
   VeinInitialization:
     #incbin "asm/Initialize.dmp"
