@@ -28,9 +28,6 @@ ORG FreeSpaceBLRange //defined in custom definitions
   //Talk and Support don't end your turn
   #include "ContemporaryTalkSupport/ContemporaryTalkSupport.event"
 
-  //menu semitransparency
-  #include "Semitransparency_changes.event"
-
   //Hold L to toggle Anims
   #include "LToggle/LToggle.event"
 
@@ -78,7 +75,10 @@ POP
   #include "SuspendDebuffs/SuspendDebuffs.event"
 
   //Stat Screens palette by allegiance
-  // #include "StatScreenAllegiance.event"
+  // #include "StatScreenAllegiance/StatScreenAllegiance.event"
+
+  //menu semitransparency
+  #include "Misc/SemitransparencyChanges.event"
 
   #include "Misc/PrologueSupply.event"
 
@@ -86,7 +86,7 @@ POP
   #include "TextChNames/TextChNames.event"
 
   //PC and Generic Music Hack (writes to e80000/e90000)
-  // #include "PC_and_Generic_Music_FE8.event"
+  // #include "Misc/PCAndGenericMusic.event"
 
   #include "EventRescue/EventRescue.event"
   #include "EventAddTraps/EventAddTraps.event"
