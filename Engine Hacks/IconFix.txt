@@ -1,9 +1,0 @@
-//Item Icon Bugfix - Install to Free Space
-PUSH
-ORG 0x3656
-SHORT 0
-jumpToHack(ItemIconBugfix)
-POP
-ALIGN 4
-ItemIconBugfix:
-#incbin "ASM/IIBF_FE8.dmp"
