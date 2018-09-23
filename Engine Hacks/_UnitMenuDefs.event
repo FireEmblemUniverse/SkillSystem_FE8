@@ -1,3 +1,6 @@
+#ifndef UNIT_MENU_DEFINITIONS
+#define UNIT_MENU_DEFINITIONS
+
 #define MenuCommand(name,description,colour,usability,effect) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; WORD 0 0 0"
 #define MenuCommand(name,description,colour,usability,effect, unknown1, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1 unknown2"
 
@@ -38,3 +41,5 @@
 #define UM_Supply     "BYTE $9C $7D $0D $08 $8F $06 $D5 $06 $04 $69 $00 $00 $65 $3F $02 $08 $00 $00 $00 $00 $B9 $3F $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
 #define UM_Wait       "BYTE $94 $7D $0D $08 $95 $06 $BF $06 $00 $6B $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $39 $27 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
 #define UM_Separator  "WORD 0 0 0 0 0 0 0 0 0"
+
+#endif // UNIT_MENU_DEFINITIONS
