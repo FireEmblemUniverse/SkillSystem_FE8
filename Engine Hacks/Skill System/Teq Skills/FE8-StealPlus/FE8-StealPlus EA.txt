@@ -57,6 +57,8 @@ WORD StealPlusID
 	
 	ORG $3DB70
 	SHORT 0x2100 //mov r1,#0
+	ORG $3DC66
+	SHORT 0x2B00 //cmp r3,#0
 	
 	ORG $3DC0C
 	#incbin "Find_Most_Valuable_Item.dmp"
