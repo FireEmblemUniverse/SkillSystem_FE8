@@ -5,6 +5,9 @@
 
 pMaxHPModifiers: // Maximum HP
 	POIN prAddUnitMaxHP prHexingRodEffect prAddEquipHP
+	#ifdef __DebuffMinZero__
+	POIN prMinZero
+	#endif
 WORD 0
 
 prAddUnitMaxHP:

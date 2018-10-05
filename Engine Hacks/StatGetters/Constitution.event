@@ -5,6 +5,9 @@
 
 pConModifiers: // Consitition
 	POIN prAddUnitBaseCon prAddUnitConBonus
+	#ifdef __DebuffMinZero__
+	POIN prMinZero
+	#endif
 WORD 0
 
 prAddUnitBaseCon:

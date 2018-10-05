@@ -504,3 +504,22 @@ ORG SkillIcon(StealID)
 
 ORG SkillIcon(StealPlusID)
 #incext Png2Dmp "Skill Icons\StealPlus.png"
+
+ORG SkillIconOffset(FortressDefenseID)
+#incext Png2Dmp "Skill Icons\FortressDefense.png"
+
+ORG SkillIconOffset(FortressResistanceID)
+#incext Png2Dmp "Skill Icons\FortressResistance.png"
+
+ORG SkillIconOffset(ForesightID)
+#incext Png2Dmp "Skill Icons\Foresight.png"
+
+ORG SkillIconOffset(AxefaithID)
+#incext Png2Dmp "Skill Icons\Axefaith.png"
+
+ORG SkillIconOffset(ArmorMarchID)
+#incext Png2Dmp "Skill Icons\ArmorMarch.png"
+
+ORG SkillIconOffset(VigorDanceID)
+#incext Png2Dmp "Skill Icons\VigorDance.png"
+

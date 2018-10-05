@@ -5,7 +5,11 @@
 #include "Battle Calculations.event" //battle calcs
 #include "charge_table.event"
 SkillIcons:
+ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
+PUSH
+ORG SkillIcons
 #incext Png2Dmp "SkillIcons.png"
+POP
 //new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
 #ifdef __USE_DESCRIPTION_MACROS__
 #include "skill_descriptions.event"
@@ -107,6 +111,16 @@ SHORT 0x46C0
 //Triangle Adept
 ORG $2C830
 jumpToHack(TriangleAdept)
+
+//Inspiring Tune
+ORG $32364
+jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
+ORG $15428
+jumpToHack(VigorDanceReset) //unset it when the turn starts again
+
+//Armor March
+ORG $1538C
+jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
 
 POP
 
@@ -332,15 +346,22 @@ CriticalIDList:
 BYTE CriticalForceID KillingMachineID
 ALIGN 4
 
+AxefaithHit:
+#incbin "Blade Skills/Axefaith.dmp"
+POIN SkillTester
+WORD AxeFaithID
+
 LethalitySkill:
 #incbin "Other Skills/LethalitySkill.dmp"
 POIN SkillTester
 WORD LethalityID
 
 Armsthrift:
-#incbin "Other Skills/Armsthrift.dmp"
+AxeFaithArmsthrift:
+ArmsthriftAxeFaith:
+#incbin "Other Skills/armsthriftaxefaith.dmp"
 POIN SkillTester|1
-WORD ArmsthriftID
+WORD ArmsthriftID AxeFaithID
 
 CritUpSkill:
 #incbin "Other Skills/CritUpSkill.dmp"
@@ -409,6 +430,52 @@ TriangleAdept:
 #incbin "Teq Skills/TriangleAdept.dmp"
 POIN SkillTester
 WORD TriAdeptID
+
+#define VigorDanceBit "(8*7)+0" //8*byte + bit of the debuff table to use
+VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
+#incbin "Other Skills/vigordanceskill.dmp"
+POIN SkillTester
+WORD VigorDanceID
+WORD DebuffTable
+WORD VigorDanceBit
+WORD 8 //size of a debuff table entry
+
+VigorDanceCheck: //check if the bit is set and if so give the unit some stats
+#incbin "Other Skills/vigordancecheck.dmp"
+WORD DebuffTable
+WORD VigorDanceBit
+WORD 8 //size of a debuff table entry
+
+VigorDanceReset:
+#incbin "Other Skills/vigordancereset.dmp"
+WORD DebuffTable
+WORD VigorDanceBit
+WORD 8 //size of a debuff table entry
+
+#define ArmorMarchBit "(8*7)+1" //8*byte + bit of the debuff table to use
+ArmorMarchSkill: //set a bit in the debuff table's entry for the refreshed unit
+#incbin "Other Skills/armormarchskill.dmp"
+POIN AuraSkillCheck
+WORD ArmorMarchID
+WORD DebuffTable
+WORD ArmorMarchBit
+WORD 8 //size of a debuff table entry
+POIN SkillTester
+POIN ArmorMarchList //list of classes that should be affected by armor march
+
+#ifndef ArmorClasses
+#define ArmorClasses "Knight Knight_F General General_F GreatKnight GreatKnight_F"
+#endif
+ArmorMarchList:
+BYTE ArmorClasses 0
+ALIGN 4
+
+ArmorMarchCheck: //check if the bit is set and if so give the unit some stats
+#incbin "Other Skills/armormarchcheck.dmp"
+WORD DebuffTable
+WORD ArmorMarchBit
+WORD 8 //size of a debuff table entry
+WORD 2 //ammount of movement to grant
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

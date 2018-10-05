@@ -21,7 +21,7 @@ POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage//more damage
 POIN Proc_Astra	//astra should be the last one before the ones that set damage
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 POIN Proc_CapDamage	//check that damage is not over cap
-POIN Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise	//skills that set damage to 0 or lower it
+POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise	//skills that set damage to 0 or lower it
 POIN Proc_Sol Proc_AetherHeal	//skills that heal based on final damage
 //POIN Proc_Devil	//devil effect WIP
 POIN Proc_BlackMagic
@@ -53,6 +53,11 @@ POP
 ALIGN 4
 Proc_Devil:
 //#incbin "proc_devil.dmp"
+
+Proc_Foresight:
+#incbin "proc_foresight.dmp"
+POIN SkillTester
+WORD ForesightID
 
 Proc_Sureshot:
 #incbin "proc_sureshot.dmp"

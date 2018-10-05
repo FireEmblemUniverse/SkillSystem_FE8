@@ -41,7 +41,7 @@
 #define AxefaireID 40 //DONE
 #define BowfaireID 41 //DONE
 #define TomefaireID 42 //DONE
-#define CritUpID 43 //display only
+#define CritUpID 43 //DONE
 #define SlayerID 44 //DONE (and has a rework)
 #define SummonID 45 //display only
 #define DanceID 46 //display only
@@ -168,3 +168,10 @@
 #define StealPlusID 167 //DONE
 #define CaptureID 168 //DONE
 #define BlackMagicID 169 //DONE
+#define FortressDefenseID 170 //DONE
+#define FortressResistanceID 171 //DONE
+#define ForesightID 172 //DONE
+#define AxeFaithID 173 //DONE
+#define AxefaithID AxeFaithID //Alias
+#define ArmorMarchID 174 //DONE
+#define VigorDanceID 175 //DONE

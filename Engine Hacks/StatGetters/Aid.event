@@ -5,6 +5,9 @@
 
 pAidModifiers: // Aid
 	POIN prAddUnitFinalConstitution prSubstractOne prAdjustAidIfMounted
+	#ifdef __DebuffMinZero__
+	POIN prMinZero
+	#endif
 WORD 0
 
 prAddUnitFinalConstitution:

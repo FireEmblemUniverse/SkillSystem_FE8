@@ -5,6 +5,9 @@
 
 pSkillModifiers: // Skill
 	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prRallySkl
+	#ifdef __DebuffMinZero__
+	POIN prMinZero
+	#endif
 WORD 0
 
 prAddUnitSkill:
