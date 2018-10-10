@@ -4,7 +4,10 @@
 #include "_Common.event"
 
 pPowerModifiers: // Power
-	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury
+	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow
+	#ifdef __DebuffMinZero__
+	POIN prMinZero
+	#endif
 WORD 0
 
 prAddUnitPower:
@@ -27,5 +30,11 @@ _testSkill(HeroesLifeAndDeathID,5,0)
 prSkillFury:
   rIfUnitHasSkill(FuryID)
     rAddConst(2)
+    
+prFortressDefensePow:
+	_testSkill(FortressDefenseID,0,3)
+
+prFortressResistancePow:
+	_testSkill(FortressResistanceID,0,3)
 
 #endif // MODULAR_GETTER_POWER_EVENT

@@ -687,3 +687,29 @@ defeating it with reduced stats.[X]
 ## SD_BlackMagic
 Black Magic: Skill% chance to[N]
 inflict a random status.[X]
+
+## SD_FortressDefense
+Fortress Defense:[N]
++5 Def, -3 Atk/Mag[X]
+
+## SD_FortressResistance
+Fortress Resistance:[N]
++5 Res, -3 Atk/Mag[X]
+
+## SD_Foresight
+Foresight: Avoid the damage[N]
+from enemy Critical Hits and[N]
+Skill Activations.[X]
+
+## SD_Axefaith
+Axefaith: Axes can't lose durability, and[N]
+grants +Luck*1.5 Hit when wielding axes.[X]
+
+## SD_ArmorMarch
+Armor March: At start of turn, if unit[N]
+is adjacent to an armor ally, unit and[N]
+adjacent armor allies gain +2 Mov.[X]
+
+## SD_VigorDance
+Inspiring Tune: Refreshing a unit grants[N]
+them +2 Pow/Def until the next turn.[X]
