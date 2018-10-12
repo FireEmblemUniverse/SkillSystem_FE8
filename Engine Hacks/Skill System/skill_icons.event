@@ -523,3 +523,9 @@ ORG SkillIconOffset(ArmorMarchID)
 ORG SkillIconOffset(VigorDanceID)
 #incext Png2Dmp "Skill Icons\VigorDance.png"
 
+ORG SkillIconOffset(ForagerID)
+#incext Png2Dmp "Skill Icons\Forager.png"
+
+ORG SkillIconOffset(FullMetalBodyID)
+#incext Png2Dmp "Skill Icons\FullMetalBody.png"
+

@@ -210,7 +210,7 @@ Frenzy:
 POIN SkillTester
 WORD FrenzyID
 
-Renewal://combined healing skills
+Renewal: //combined healing skills
 #incbin "Other Skills/RenewalAmaterasu.dmp"
 POIN SkillTester
 WORD RenewalID
@@ -219,6 +219,12 @@ WORD AmaterasuID
 WORD CamaraderieID
 WORD ReliefID
 WORD BondID
+WORD ForagerID
+POIN ForagerList
+
+ForagerList: //A list of terrain IDs that activate Forager
+BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
+BYTE 0 //Terminator
 
 Discipline:
 #incbin "Other Skills/Discipline.dmp"
@@ -280,6 +286,7 @@ SealSkills:
 POIN SkillTester
 POIN SealSkillList
 WORD DebuffTable
+WORD FullMetalBodyID
 SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
 ALIGN 4
