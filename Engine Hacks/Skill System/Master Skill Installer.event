@@ -122,6 +122,10 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 ORG $1538C
 jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
 
+//Shadowgift and friends (only Lumina for now)
+ORG $16738
+jumpToHack(Shadowgift)
+
 POP
 
 NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
@@ -483,6 +487,14 @@ WORD DebuffTable
 WORD ArmorMarchBit
 WORD 8 //size of a debuff table entry
 WORD 2 //ammount of movement to grant
+
+Shadowgift:
+#incbin "Other Skills/shadowgift.dmp"
+POIN SkillTester
+WORD ShadowgiftID
+WORD LuminaID
+WORD ShadowgiftStaffOption
+WORD LuminaStaffOption
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

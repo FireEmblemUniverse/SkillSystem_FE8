@@ -529,3 +529,11 @@ ORG SkillIconOffset(ForagerID)
 ORG SkillIconOffset(FullMetalBodyID)
 #incext Png2Dmp "Skill Icons\FullMetalBody.png"
 
+ORG SkillIconOffset(LiquidOozeID)
+#incext Png2Dmp "Skill Icons\LiquidOoze.png"
+
+ORG SkillIconOffset(ShadowgiftID)
+#incext Png2Dmp "Skill Icons\Shadowgift.png"
+
+ORG SkillIconOffset(LuminaID)
+#incext Png2Dmp "Skill Icons\Lumina.png"
