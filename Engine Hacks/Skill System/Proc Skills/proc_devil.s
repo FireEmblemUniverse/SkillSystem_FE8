@@ -19,8 +19,6 @@ mov r1, #0x2 @miss
 tst r0, r1
 bne End	@if miss, don't do anything
 
-b	DEBUG
-
 @make sure attacker has devil weapon
 mov	r0,r4
 mov	r1,#0x4A    @Move to the attacker's weapon
@@ -54,43 +52,28 @@ lsl	r0,#0x18
 cmp	r0,#0
 beq	End	@if the roll fails we are safe
 
-DEBUG:
-
 @if we proc, set the offensive skill flag
 ldr     r2,[r6]    
 lsl     r1,r2,#0xD                @ 0802B42C 0351     
 lsr     r1,r1,#0xD                @ 0802B42E 0B49     
-	@mov     r0, #0x1
-	@lsl     r0, #8           @0x100, attacker skill activated and hp draining
-	
-mov	r0,#0x80
-	
+mov     r0, #0x40
+lsl     r0, #8		@0x4000, attacker skill activated
+add	r0,#0x80	@+ devil flag
 orr     r1, r0
 ldr     r0,=#0xFFF80000                @ 0802B434 4804     
 and     r0,r2                @ 0802B436 4010     
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018  
 
-@@and recalculate damage with healing
-@mov r0, #4
-@ldrsh r0, [r7, r0]
-@mov r1, #5
-@ldsb r1, [r6, r1] @existing hp change
-@sub	r1,r0
-@strb r1, [r6, #5] @write hp change
-@mov	r1,#1
-@strb r1, [r6, #3] @no damage
-@strh r1, [r7, #4] @final damage
-@
-@ldrb r1, [r4, #0x13]	@update hp
-@sub	r1,r0
-@cmp	r1,#0
-@bhi	NP
-@mov	r1,#0
-@NP:
-@strb r1, [r4, #0x13]
-
-
+mov r0, #4
+ldrsh r0, [r7, r0]	@damage being dealt
+ldrb r1, [r4, #0x13]	@update hp
+sub	r1,r0
+cmp	r1,#0x7F
+blo	NP
+mov	r1,#0
+NP:
+strb r1, [r4, #0x13]
 
 End:
 pop {r4-r7}
