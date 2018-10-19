@@ -58,6 +58,10 @@ POP
 ALIGN 4
 Proc_Devil:
 #incbin "proc_devil.dmp"
+POIN SkillTester
+WORD DevilsLuckID
+WORD DevilsPactID
+WORD DevilsWhimID
 
 Proc_Foresight:
 #incbin "proc_foresight.dmp"

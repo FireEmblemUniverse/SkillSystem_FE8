@@ -537,3 +537,12 @@ ORG SkillIconOffset(ShadowgiftID)
 
 ORG SkillIconOffset(LuminaID)
 #incext Png2Dmp "Skill Icons\Lumina.png"
+
+ORG SkillIconOffset(DevilsLuckID)
+#incext Png2Dmp "Skill Icons\DevilsLuck.png"
+
+ORG SkillIconOffset(DevilsPactID)
+#incext Png2Dmp "Skill Icons\DevilsPact.png"
+
+ORG SkillIconOffset(DevilsWhimID)
+#incext Png2Dmp "Skill Icons\DevilsWhim.png"
