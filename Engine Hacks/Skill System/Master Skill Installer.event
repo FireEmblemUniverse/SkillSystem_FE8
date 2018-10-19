@@ -122,6 +122,10 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 ORG $1538C
 jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
 
+//Shadowgift and friends (only Lumina for now)
+ORG $16738
+jumpToHack(Shadowgift)
+
 POP
 
 NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
@@ -210,7 +214,7 @@ Frenzy:
 POIN SkillTester
 WORD FrenzyID
 
-Renewal://combined healing skills
+Renewal: //combined healing skills
 #incbin "Other Skills/RenewalAmaterasu.dmp"
 POIN SkillTester
 WORD RenewalID
@@ -219,6 +223,12 @@ WORD AmaterasuID
 WORD CamaraderieID
 WORD ReliefID
 WORD BondID
+WORD ForagerID
+POIN ForagerList
+
+ForagerList: //A list of terrain IDs that activate Forager
+BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
+BYTE 0 //Terminator
 
 Discipline:
 #incbin "Other Skills/Discipline.dmp"
@@ -280,6 +290,7 @@ SealSkills:
 POIN SkillTester
 POIN SealSkillList
 WORD DebuffTable
+WORD FullMetalBodyID
 SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
 ALIGN 4
@@ -476,6 +487,14 @@ WORD DebuffTable
 WORD ArmorMarchBit
 WORD 8 //size of a debuff table entry
 WORD 2 //ammount of movement to grant
+
+Shadowgift:
+#incbin "Other Skills/shadowgift.dmp"
+POIN SkillTester
+WORD ShadowgiftID
+WORD LuminaID
+WORD ShadowgiftStaffOption
+WORD LuminaStaffOption
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

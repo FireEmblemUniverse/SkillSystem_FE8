@@ -5,6 +5,7 @@
   .short 0xf800
 .endm
 .equ AetherID, SkillTester+4
+.equ LiquidOozeID, AetherID+4
 .equ d100Result, 0x802a52c
 .equ recurse_round, 0x802b83c
 
@@ -41,13 +42,57 @@ and     r1, r0
 cmp	r1, r0
 bne	End
 
+@check liquid ooze
+mov	r0,r5
+ldr	r1,LiquidOozeID
+ldr	r3,SkillTester
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+beq	noOoze
+
+@take damage from healing
+mov r0, #4
+ldrsh r0, [r7, r0]
+cmp r0, #0
+ble End @don't do anything
+mov r1, #5
+ldsb r1, [r6, r1] @existing hp change
+sub	r0,r1,r0
+cmp	r0,#0x7F
+blo	checkCap
+neg	r1,r0
+mov r2, #0x13
+ldrsb r2, [r4,r2] @curr hp
+cmp	r1,r2
+blo	NoCap
+mov	r0,r2
+sub	r0,#1
+neg	r0,r0
+b	NoCap
+
+noOoze:
 @and recalculate damage with healing
 mov r0, #4
 ldrsh r0, [r7, r0]
+cmp r0, #0
+ble End @don't do anything
 mov r1, #5
 ldsb r1, [r6, r1] @existing hp change
 add r0, r1
 
+checkCap:
+@now r0 is total HP change - is this higher than the max HP?
+mov r2, #0x13
+ldrsb r2, [r4,r2] @curr hp
+mov r1, #0x12
+ldrsb r1, [r4,r1] @max hp
+sub r1, r2 @damage taken
+cmp r1, r0
+bge NoCap
+  @if hp will cap, set r0 to damage taken
+  mov r0, r1
+NoCap:
 strb r0, [r6, #5] @write hp change
 mov r2, #0x13
 ldrsb r2, [r4,r2] @curr hp
@@ -63,3 +108,4 @@ pop {r15}
 SkillTester:
 @POIN SkillTester
 @WORD AetherID
+@WORD LiquidOozeID

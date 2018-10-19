@@ -23,3 +23,7 @@
 
 //If commented, debuffs are allowed to take stats below zero
 #define __DebuffMinZero__
+
+//If true Shadowgift/Lumina will check for staff ranks when checking for highest magic rank
+#define ShadowgiftStaffOption False
+#define LuminaStaffOption True

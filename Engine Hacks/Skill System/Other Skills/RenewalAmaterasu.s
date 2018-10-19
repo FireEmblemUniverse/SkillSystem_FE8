@@ -5,6 +5,8 @@
 .equ CamaraderieID, AmaterasuID+4
 .equ ReliefID, CamaraderieID+4
 .equ BondID, ReliefID+4
+.equ ForagerID, BondID+4
+.equ ForagerList, ForagerID+4
 
 push {r4, lr}
 ldr r1, Some_Offset
@@ -102,13 +104,51 @@ add r4, #10 @heal 10% hp
 
 no_bond:
 
+@Now check for forager
+ldr	r0,SkillTester
+mov	lr,r0
+mov	r0,r5
+ldr	r1,ForagerID
+.short 0xf800
+cmp	r0,#0x0
+beq	no_forager
+
+@check the terrain the unit is on, compare it against the list
+ldrb	r0,[r5,#0x10]	@x coord of unit
+ldrb	r1,[r5,#0x11]	@y coord of unit
+lsl	r1,#2		@y times 4 since it's pointer
+ldr	r2,=0x202E4DC	@tile id map pointer
+ldr	r2,[r2]		@tile id map offset
+ldr	r2,[r2,r1]	@load pointer to y row
+ldrb	r0,[r2,r0]	@load x byte of the row, which gets us tile id
+ldr	r1,ForagerList
+ForagerLoop:
+ldrb	r2,[r1]
+cmp	r2,#0
+beq	no_forager
+cmp	r2,r0
+beq	yes_forager
+add	r1,#1
+b	ForagerLoop
+
+@if on correct terrain, heal 20%
+yes_forager:
+add	r4,#20
+
+no_forager:
+
 mov r0, r4 @return the amount healed.
 pop {r4}
 pop {r1}
 bx r1
+
 .align
 Some_Offset:
 .long 0x880C744
+
+.align
+.ltorg
+
 SkillTester:
 @POIN SkillTester
 @WORD RenewalID
@@ -117,3 +157,5 @@ SkillTester:
 @WORD CamaraderieID
 @WORD ReliefID
 @WORD BondID
+@WORD ForagerID
+@POIN ForagerList

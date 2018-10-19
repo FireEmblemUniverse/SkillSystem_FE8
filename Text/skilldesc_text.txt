@@ -713,3 +713,38 @@ adjacent armor allies gain +2 Mov.[X]
 ## SD_VigorDance
 Inspiring Tune: Refreshing a unit grants[N]
 them +2 Pow/Def until the next turn.[X]
+
+## SD_Forager
+Forager: Recover 20% HP each turn[N]
+if on a Plain, Forest or Mountain.[X]
+
+## SD_FullMetalBody
+Full Metal Body: This unit is[N]
+immune to all the Seal skills.[X]
+
+## SD_LiquidOoze
+Liquid Ooze: Attackers trying to gain HP[N]
+from attacking this unit lose it instead.[X]
+
+## SD_Shadowgift
+Shadowgift: Allows the user to use[N]
+Dark Magic. (Uses highest Magic Rank)[X]
+
+## SD_Lumina
+Lumina: Allows the user to use[N]
+Light Magic. (Uses highest Magic Rank)[X]
+
+## SD_DevilsLuck
+Devil's Luck: Immune to Devil Reversal.[N]
+Gives unit's Devil Reversal to the enemy.[N]
+(31-Luck % chance of Devil Reversal).[X]
+
+## SD_DevilsPact
+Devil's Pact: Immune to Devil Reversal.[N]
+Curses the enemy with Devil Reversal.[N]
+(31-Luck % chance of Devil Reversal).[X]
+
+## SD_DevilsWhim
+Devil's Whim: This unit is cursed, but[N]
+the curse spreads to the enemy as well.[N]
+(31-Luck % chance of Devil Reversal).[X]

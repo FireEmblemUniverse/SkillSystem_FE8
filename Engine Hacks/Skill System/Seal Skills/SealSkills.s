@@ -2,6 +2,7 @@
 .thumb
 .equ SealSkillList, SkillTester+4
 .equ ExtraDataLocation, SealSkillList+4
+.equ FullMetalBodyID, ExtraDataLocation+4
 .equ DebuffAmount, 6
 
 mov r1,r5
@@ -34,6 +35,14 @@ ApplySeals:
 ldr r4, SealSkillList
 mov r5, #0
 SealLoop:
+	@check for FullMetalBody
+	ldr	r1,FullMetalBodyID
+	mov	r0,r7
+	ldr	r2,SkillTester
+	mov	lr,r2
+	.short	0xf800
+	cmp	r0,#1
+	beq	OtherSide
   ldrb r1, [r4,r5] @nth skill
   mov r0, r6 @defender
   ldr r2, SkillTester
@@ -47,6 +56,14 @@ SealLoop:
     mov r2, r5 @nth seal
     bl ApplyDebuff
   OtherSide:
+	@check for FullMetalBody
+	ldr	r1,FullMetalBodyID
+	mov	r0,r6
+	ldr	r2,SkillTester
+	mov	lr,r2
+	.short	0xf800
+	cmp	r0,#1
+	beq	NextLoop
   ldrb r1, [r4,r5] @nth skill
   mov r0, r7 @attacker
   ldr r2, SkillTester
@@ -112,3 +129,4 @@ SkillTester:
 @POIN SkillTester
 @POIN SealSkillList (str/skl/spd/def/res/luk)
 @WORD ExtraDataLocation
+@WORD FullMetalBodyID

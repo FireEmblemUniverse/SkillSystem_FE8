@@ -23,7 +23,6 @@
     #include "Maps/Master Map Installer.event"
     
     MESSAGE Used free space ends at currentOffset
-    MESSAGE Proc_Counter
 #else
     ERROR You are not assembling FE8 events!
 #endif
