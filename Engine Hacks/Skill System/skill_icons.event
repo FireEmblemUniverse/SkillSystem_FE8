@@ -546,3 +546,7 @@ ORG SkillIconOffset(DevilsPactID)
 
 ORG SkillIconOffset(DevilsWhimID)
 #incext Png2Dmp "Skill Icons\DevilsWhim.png"
+
+ORG SkillIcon(PointBlankID) //make actual icon later
+#incext Png2Dmp "Skill Icons\0.png" //placeholder
+
