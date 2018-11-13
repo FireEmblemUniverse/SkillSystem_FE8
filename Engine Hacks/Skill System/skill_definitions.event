@@ -75,8 +75,8 @@
 #define RallyResID 74 //DONE
 #define RallyMovID 75 //DONE
 #define RallySpectrumID 76 //DONE
-#define BowRangeUpID 77
-#define StaffSavantID 78 //half done (mag/2 only)
+#define BowRangeUpID 77 //DONE
+#define StaffSavantID 78 //DONE
 #define LiveToServeID 79 //DONE
 #define IgnisID 80 //DONE
 #define LifeAndDeathID 81 //DONE
@@ -184,3 +184,4 @@
 #define DevilsLuckID 181 //DONE
 #define DevilsPactID 182 //DONE
 #define DevilsWhimID 183 //DONE
+#define PointBlankID 170 //DONE but still needs a skill icon
