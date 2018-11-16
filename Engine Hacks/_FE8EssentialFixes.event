@@ -9,7 +9,7 @@ BYTE 0x8
 //Make the Add trap data routine have a check to prevent writing past the limit
 ORG $2E2B8
 SHORT 0xB470 0x4C07 0x4D07 0x3408 0x42AC 0xD806 0x78A6 0x2E00 0xD1F9 0x7020 0x7061 0x70A2 0x70E3 0x1C20 0xBC70 0x4770 0xA60C 0x0203 0xA814 0x0203
-
+/*
 PUSH
 // healer ai fix; stop them from healing max hp units
 // changes bhi to bhs
@@ -19,7 +19,7 @@ PUSH
     ORG $3FE77
     BYTE 0xD2
 POP
-
+*/
 //Fix MNC2 Freezing glitch (breaks skirmishes!)
   ORG $BD070
   SHORT $E0B8
