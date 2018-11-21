@@ -26,8 +26,9 @@ POIN DefendingCheck
 POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
 POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
 POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma
-POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Hawkeye LightWeight
+POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Hawkeye LightWeight Trample Opportunist
 POIN UpWithArch
+POIN AxefaithHit
 POIN StancesASM
 #ifdef __GBA_LETHALITY__
 POIN LethalitySkill Bane
@@ -43,3 +44,5 @@ POIN 0
 rewriteRangeMap:
 #incbin "Internals/rewriteRangeMap.dmp"
 ALIGN 4
+
+

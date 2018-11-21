@@ -19,9 +19,12 @@ blt End
 ldr     r0,[r2]           @r0 = battle buffer                @ 0802B40A 6800     
 lsl     r0,r0,#0xD                @ 0802B40C 0340     
 lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
-mov r1, #2 @miss
-tst r0, r1
-bne End
+mov	r1,#0x82 @miss + devil
+and	r0,r1
+cmp	r0,#2
+beq	End
+cmp	r0,#0x80
+beq	End
 
 ldrh r0, [r7, #4] @final dmg
 lsl r0, #0x10

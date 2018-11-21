@@ -1,0 +1,17 @@
+#ifndef EVENT_FREEZE
+#define EVENT_FREEZE
+
+// Freeze all enemies ASMC.
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  ALIGN 4
+  FreezeAllASMC:
+    #incbin "asm/freezeall.dmp"
+
+#else // _FE8_
+  ERROR Freeze All ASMC hack is for FE8
+#endif // _FE8_
+
+#endif // EVENT_FREEZE

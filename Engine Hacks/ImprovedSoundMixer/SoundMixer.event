@@ -1,0 +1,32 @@
+#ifndef IMPROVED_SOUND_MIXER
+#define IMPROVED_SOUND_MIXER
+
+// Improved m4a Sound Mixer.
+// hack by ipatix, ported to EA and FE8 by circleseverywhere
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+    ORG $d01cc
+      POIN SoundMixer
+
+    ORG $d01d0
+      WORD $03006CB0 $04000218
+
+    ORG $cf53c
+      WORD $03006CB1
+  POP
+
+  ALIGN 4
+  SoundMixer:
+    #incbin "asm/SoundMain.dmp"
+
+  }
+
+#else // _FE8_
+  ERROR Improved Sound Mixer hack is for FE8
+#endif // _FE8_
+
+#endif // IMPROVED_SOUND_MIXER

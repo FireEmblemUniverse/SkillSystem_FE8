@@ -16,14 +16,15 @@ ProcLoopParent:
 #incbin "proc_loop.dmp"
 POIN Proc_Start	//start
 
+POIN Proc_Devil	//devil effect
 POIN Proc_Sureshot Proc_Luna Proc_Moonbow Proc_Adept	//skills that do damage and all that
 POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage//more damage
 POIN Proc_Astra	//astra should be the last one before the ones that set damage
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 POIN Proc_CapDamage	//check that damage is not over cap
-POIN Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise	//skills that set damage to 0 or lower it
-POIN Proc_Sol Proc_AetherHeal	//skills that heal based on final damage
-//POIN Proc_Devil	//devil effect WIP
+POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise	//skills that set damage to 0 or lower it
+POIN Proc_StealHP Proc_Sol Proc_AetherHeal	//skills that heal based on final damage
+POIN Proc_BlackMagic
 POIN Proc_Counter Proc_CounterMagic	//counters are last
 POIN Proc_FlashyMode
 POIN Proc_Finish 0	//end
@@ -33,6 +34,8 @@ POIN Proc_Finish 0	//end
 ALIGN 4
 Proc_Start:
 #incbin "proc_start.dmp"
+POIN SkillTester
+WORD ExpertiseID
 
 ALIGN 4
 Proc_Finish:
@@ -42,14 +45,33 @@ ALIGN 4
 Proc_CapDamage:	//actually the same as proc_finish
 #incbin "proc_capdamage.dmp"	//making a different file just in case one of the two needs tweaking
 
-PUSH
-ORG $2B69E	//remove original devil effect
-SHORT 0xE027	//always jump over it
+PUSH //skip hp substraction if devil effect
+ORG $2B69E
+SHORT 0xE00B
+ORG $2B6C4
+SHORT 0x4001
+SHORT 0x2900
+SHORT 0xD123
+SHORT 0xE011
 POP
 
 ALIGN 4
 Proc_Devil:
-//#incbin "proc_devil.dmp"
+#incbin "proc_devil.dmp"
+POIN SkillTester
+WORD DevilsLuckID
+WORD DevilsPactID
+WORD DevilsWhimID
+
+Proc_Foresight:
+#incbin "proc_foresight.dmp"
+POIN SkillTester
+WORD ForesightID
+
+Proc_StealHP:
+#incbin "proc_stealhp.dmp"
+POIN SkillTester
+WORD LiquidOozeID
 
 Proc_Sureshot:
 #incbin "proc_sureshot.dmp"
@@ -80,6 +102,7 @@ Proc_Sol:
 #incbin "proc_sol.dmp"
 POIN SkillTester
 WORD SolID
+WORD LiquidOozeID
 
 Proc_Luna:
 #incbin "proc_luna.dmp"
@@ -95,6 +118,7 @@ Proc_AetherHeal:
 #incbin "proc_aetherheal.dmp"
 POIN SkillTester
 WORD AetherID
+WORD LiquidOozeID
 
 Proc_AetherDamage:
 #incbin "proc_aetherdamage.dmp"
@@ -156,6 +180,39 @@ DownWithArch: //lethality if the enemies name starts with "Arch"
 POIN SkillTester
 WORD DownWithArchID
 
+Proc_BlackMagic:
+MESSAGE black magic code at CURRENTOFFSET
+#incbin "proc_blackmagic.dmp"
+POIN SkillTester
+WORD BlackMagicID
+POIN BlackMagicTable
+
+//Bytes are status id, percent chance
+//MAKE SURE THE PERCENTAGES SUM UP TO 100%
+BlackMagicTable:
+BYTE 1 25 //poison
+BYTE 2 25 //silence
+BYTE 3 25 //sleep
+BYTE 4 25 //berserk
+//BYTE 0xB 20 //petrify NOTE: As is, Petrify seems hardcoded to not double and will stop combat if it works. Which is neat and all, but if you're expecting to double and don't, that might piss people off instead
+
+//Poison blob only plays when poison effect is done (animations off)
+PUSH
+ORG $7A918
+callHack_r3(BlackMagic_AnimsOff)
+SHORT 0x2800 0xD005 //cmp r0,#0; beq End
+POP
+ALIGN 4
+BlackMagic_AnimsOff:
+#incbin "BlackMagic_AnimsOff.dmp"
+
+//When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
+//PUSH
+//ORG $58EB8
+//BYTE 0x8 //not exactly sure what this is, but it makes berserk palette only last for one round, rather than throughout, and this fixes it
+//Note to self: if poison bit is set in rounds data, 0x2000 is set at...somewhere, and that's later checked at 55342. 55350 = mov r1,#1; replace 1 with status id
+
+ALIGN 4
 Chargeups:
 #incbin "Chargeups.dmp"
 

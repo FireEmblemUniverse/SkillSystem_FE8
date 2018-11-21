@@ -1,0 +1,106 @@
+//FE8 Rogue Steal, player version
+//By Tequila
+
+#include EAstdlib.event
+#include "Extensions/Hack Installation.txt"
+
+#ifndef _FE8_
+	ERROR "You're not assembling FE8 events!"
+#endif
+
+#ifndef FreeSpace
+	#define FreeSpace 0xB2B000
+	ORG FreeSpace
+#endif
+
+PUSH
+
+ORG $17054
+jumpToHack(Rogue_Robbery)
+
+//Can this item be stolen
+ORG $2432A
+SHORT 0x0861 0x46C0 0x46C0 //lsr r1,r4,#1; nop; nop 
+
+//What color to make the items on the steal menu
+ORG $2435E
+SHORT 0x004C 0x341E 0x1824 0x8824 0x46C0 //lsl r4,r1,#1; add r4,#0x1E; add r4,r0; ldrh r4,[r4]; nop
+
+//Usability check
+ORG $25BCC
+SHORT 0x1C28 0x1C31 //mov r0,r5; mov r1,r6
+BL(0x17054)
+SHORT 0x2800 0xD00B 0x7C28 //cmp r0,#0; beq place; ldrb r0,[r5,#0x10]
+	
+//Target select menu
+ORG $34D9A
+SHORT 0x004E 0x9802 0x361E 0x1836 0x8836 0x46C0 //lsl r6,r1,#1; ldr r0,[sp,#8]; add r6,#0x1E; add r6,r0; ldrh r6,[r6]; nop
+
+POP
+
+ALIGN 4
+Rogue_Robbery:
+#incbin "FE8-Rogue Robbery.dmp"
+POIN prConGetter
+POIN SkillTester
+WORD StealPlusID
+
+//#ifndef prConGetter
+//	ALIGN 4
+//	prConGetter:
+//	BYTE $00 $B5 $41 $68 $11 $22 $89 $56 $02 $68 $13 $23 $D2 $56 $89 $18 $1A $22 $80 $56 $40 $18 $02 $BC $08 $47
+//#endif
+
+#ifdef __ENEMY_STEALING__
+
+	PUSH
+	
+	ORG $3DB70
+	SHORT 0x2100 //mov r1,#0
+	ORG $3DC66
+	SHORT 0x2B00 //cmp r3,#0
+	
+	ORG $3DC0C
+	#incbin "Find_Most_Valuable_Item.dmp"
+	POIN Most_Valuable_Item
+	
+	POP
+	
+	ALIGN 4
+	Most_Valuable_Item:
+	#incbin "Most_Valuable_Item.dmp"
+
+#endif
+
+//The following changes the checks for steal ability (0x4 of byte 1) to a check for either the Steal skill or Steal+
+#ifdef __STEAL_SKILL__
+	
+	PUSH
+	
+	//Steal menu option usability
+	ORG $24190
+	SHORT 0x6820 0 //ldr r0,[r4]; nop
+	callHack_r3(Can_Unit_Steal)
+	SHORT 0x2800 0xD00B 0x6822 0x68D0 0x2140 0x4208 //cmp r0,#0; beq RetFalse; ldr r2,[r4]; ldr r0,[r2,#0xC]; mov r1,#0x40; tst r0,r1
+	
+	//Some AI (NOTE: MUST DO CMP R0,#0 BEFORE RETURNING)
+	ORG $3D4C4
+	SHORT 0x1C18 0 //mov r0,r3; nop
+	callHack_r3(Can_Unit_Steal)
+	SHORT 0xD011 0x6830 //beq Somewhere; ldr r0,[r6]
+	
+	//Some other AI
+	ORG $3EE56
+	SHORT 0
+	callHack_r3(Can_Unit_Steal)
+	
+	POP
+	
+	ALIGN 4
+	Can_Unit_Steal:
+	#incbin "Can_Unit_Steal.dmp"
+	POIN SkillTester
+	WORD StealID
+	WORD StealPlusID
+	
+#endif

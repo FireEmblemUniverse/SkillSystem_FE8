@@ -498,3 +498,51 @@ ORG SkillIcon(WardingStanceID)
 
 ORG SkillIcon(SpectrumStanceID)
 #incext Png2Dmp "Skill Icons\Spectrum Stance.png"
+
+ORG SkillIcon(StealID)
+#incext Png2Dmp "Skill Icons\Steal.png"
+
+ORG SkillIcon(StealPlusID)
+#incext Png2Dmp "Skill Icons\StealPlus.png"
+
+ORG SkillIconOffset(FortressDefenseID)
+#incext Png2Dmp "Skill Icons\FortressDefense.png"
+
+ORG SkillIconOffset(FortressResistanceID)
+#incext Png2Dmp "Skill Icons\FortressResistance.png"
+
+ORG SkillIconOffset(ForesightID)
+#incext Png2Dmp "Skill Icons\Foresight.png"
+
+ORG SkillIconOffset(AxefaithID)
+#incext Png2Dmp "Skill Icons\Axefaith.png"
+
+ORG SkillIconOffset(ArmorMarchID)
+#incext Png2Dmp "Skill Icons\ArmorMarch.png"
+
+ORG SkillIconOffset(VigorDanceID)
+#incext Png2Dmp "Skill Icons\VigorDance.png"
+
+ORG SkillIconOffset(ForagerID)
+#incext Png2Dmp "Skill Icons\Forager.png"
+
+ORG SkillIconOffset(FullMetalBodyID)
+#incext Png2Dmp "Skill Icons\FullMetalBody.png"
+
+ORG SkillIconOffset(LiquidOozeID)
+#incext Png2Dmp "Skill Icons\LiquidOoze.png"
+
+ORG SkillIconOffset(ShadowgiftID)
+#incext Png2Dmp "Skill Icons\Shadowgift.png"
+
+ORG SkillIconOffset(LuminaID)
+#incext Png2Dmp "Skill Icons\Lumina.png"
+
+ORG SkillIconOffset(DevilsLuckID)
+#incext Png2Dmp "Skill Icons\DevilsLuck.png"
+
+ORG SkillIconOffset(DevilsPactID)
+#incext Png2Dmp "Skill Icons\DevilsPact.png"
+
+ORG SkillIconOffset(DevilsWhimID)
+#incext Png2Dmp "Skill Icons\DevilsWhim.png"

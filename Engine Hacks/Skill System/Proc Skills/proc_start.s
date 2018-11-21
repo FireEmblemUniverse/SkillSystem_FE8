@@ -57,11 +57,20 @@ cmp r0, #1
 bne End
 
 @if crit:
-mov r0, #4
-ldrsh r0, [r7, r0]
-lsl r1, r0, #1
-add r0, r1 @damagex3
-strh r0, [r7, #4] @final damage
+mov r0,r5		@defender
+ldr r1,ExpertiseID
+ldr r3,SkillTester
+mov	r14,r3
+.short 0xF800
+
+mov r1, #4
+ldrsh r1, [r7, r1]
+lsl r2, r1, #1
+cmp r0,#0
+bne StoreDamage
+add r2, r1 @damagex3
+StoreDamage:
+strh r2, [r7, #4] @final damage
 
 @set crit flag
 ldr     r2,[r6]    
@@ -79,3 +88,8 @@ str     r0,[r6]                @ 0802B43A 6018
 End:
 pop {r4-r7}
 pop {r15}
+
+.equ ExpertiseID, SkillTester+4
+.ltorg
+SkillTester:
+@

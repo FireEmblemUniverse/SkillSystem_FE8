@@ -19,6 +19,19 @@ beq ShowAnim
 b NoAnim2
 
 ShowAnim:
+@check if animation is set to 0xFF
+ldrh r0, [r7,#0xe] @nth round of combat
+sub r0, #1
+lsl r0, #3 @multiply by 8
+ldr     r1,=0x802aec4    @pointer to the base rounds
+ldr     r1, [r1]
+add r0, r1 @the nth round
+ldrb r0, [r0,#4] @skill number to show
+cmp	r0,#0xFF
+beq	NoAnim
+
+ldrh r1, [r7, #0x10]
+
 mov r0, r2
 orr r0, r1
 strh r0, [r7,#0x10]

@@ -6,4 +6,18 @@ prHalveIfRescuing:
 		rIfUnitHasNotSkill(SaviorID)
 			rHalved
 
+prHalveIfCapturing:
+	#incbin "_asm/HalveIfCapturing.bin"
+	POIN Is_Capture_Set
+	
+prMinZero:
+{
+	rIf(Check)
+	ConstantZero:
+	rConstant(0)
+
+	Check:
+	prCheckLessThan(ConstantZero)
+}
+
 #endif // MODULAR_GETTER_COMMON_EVENT

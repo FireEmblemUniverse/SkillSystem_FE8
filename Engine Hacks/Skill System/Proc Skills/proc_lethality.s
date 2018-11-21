@@ -84,8 +84,8 @@ and     r0,r2                @ 0802B436 4010
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018  
 
-ldrb  r0, LethalityID
-strb  r0, [r6,#4] 
+mov	r0,#0xFF	@no animation!
+strb	r0,[r6,#4]
 
 @if we proc, set the lethality flag
 ldr     r3,[r6]    
