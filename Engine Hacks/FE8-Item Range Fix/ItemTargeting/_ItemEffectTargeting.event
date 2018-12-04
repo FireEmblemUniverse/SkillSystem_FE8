@@ -1,9 +1,13 @@
 #ifndef StaffEffect_Targeting_Range
 	#define StaffEffect_Targeting_Range
-	#define CheckUnitsInRange 0x24EAC
-	#define CheckTilesInRange 0x24F18
-
+	#ifdef _FE8_
+		#define CheckUnitsInRange 0x24EAC
+		#define CheckTilesInRange 0x24F18
+	#endif
+	#include "SpecialRanges.event"
 	#define rfItemRangeSetup(TConditon, RangeBuilder) "SHORT 0xB500 0x4902; BL(RangeBuilder); SHORT 0xBC08 0x4718; POIN (TConditon | 1)"
+
+	ALIGN 4
 
 	Item_TURange: 
 	//build range that checks in units on selectable tiles meet condition
@@ -25,7 +29,8 @@
 	
 	GetItemRange:
 	#incbin "ItemRangeGetter.dmp"
-	POIN RangeSkillsCheck|1 //WORD 0x0
+	POIN RangeCalcGetter
+	POIN RangeSkillsCheck
 	
 	GetItemRangeM:
 	#incbin "ItemRangeGetterM.dmp"
