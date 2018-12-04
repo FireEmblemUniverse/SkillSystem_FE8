@@ -173,8 +173,17 @@
 	SHORT 0xB002
 	
 	ORG $16CC0 //Shows the correct range numbers when displaying an item's R-menu 
-	#incbin "R Button Range Display.dmp"
-	POIN Item_Table
+	jumpToHack(StatScreenRangeDisplay)
+	jumpToHack(ItemDescRangeDisplay)
+	MakeRangeText:
+	#incbin "MakeRangeText.dmp"
+	//#incbin "R Button Range Display.dmp"
+	//POIN Item_Table
+	
+	ORG $89CEC	//range text for weapons
+	BL($16CC8)
+	ORG $89D90	//range text for staves
+	BL($16CC8)
 	
 	ORG $1CC0A //When first selecting a unit, for weapons
 	BL(All_Weapons_All_Squares)
@@ -304,6 +313,15 @@ POP
 	#incbin "Weapon Attack.dmp"
 	
 	ALIGN 4
+	
+	StatScreenRangeDisplay:
+	#incbin "StatScreenRange.dmp"
+	POIN GetItemRangeM|1 MakeRangeText|1
+	
+	ItemDescRangeDisplay:
+	#incbin "Item R Button Range.dmp"
+	POIN RangeTextGetter|1 MakeRangeText|1
+	
 	/*
 	//####### RANGE WRITING STUFF ######
 	Usability_Routine_For_Non_Unlock: //push r14; mov r1,r5; bl somewhere; pop r0; bx r0 (r5 has item id/uses halfword)
