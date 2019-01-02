@@ -748,3 +748,27 @@ Curses the enemy with Devil Reversal.[N]
 Devil's Whim: This unit is cursed, but[N]
 the curse spreads to the enemy as well.[N]
 (31-Luck % chance of Devil Reversal).[X]
+
+## SD_Poison_Strike
+Poison Strike: Deals damage equal to[NL]
+20% of the enemy's max HP after[NL]
+battle this unit initiates.[X]
+
+## SD_Grisly_Wound
+Grisly Wound: Deals damage equal[NL]
+to 20% of the enemy's max[NL]
+HP after every battle.[X]
+
+## SD_Hex
+Hex: -15 avoid to all[NL]
+adjacent enemies.[X]
+
+## SD_Barricade
+Barricade: Damage taken is[NL]
+halved after first being struck.[X]
+
+## SD_BarricadePlus
+Barricade+: In combat, damage[NL]
+recieved equals half of the[NL]
+damage when struck last.[X]
+
