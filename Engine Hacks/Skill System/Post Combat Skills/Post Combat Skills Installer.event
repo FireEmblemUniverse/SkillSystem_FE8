@@ -20,7 +20,7 @@ PostCombatLoop:
 POIN PostCombatSkills
 
 PostCombatSkills: //I like having savage blow as the first one because it makes the activation sound play first
-POIN SavageBlow BreathOfLife Despoil Lifetaker Fury//lifetaker should probably go after any messages because it can mess with the palette a bit
+POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
 POIN Canto CantoPlus Galeforce //this order for canto and friends is the only one I tested
 WORD 0 //Terminator
 
@@ -38,6 +38,20 @@ POIN SkillTester
 WORD FuryID
 POIN FuryEvent
 #include "FuryEvent.event"
+ALIGN 4
+
+#inctext lyn "PoisonStrikeGrislyWound.elf"
+
+#ifdef __CheckDamageOnPoisonStrikeGrislyWound__
+	#inctext lyn "PoisonStrikeGrislyWoundExt.elf"
+#else
+	#inctext lyn "PoisonStrikeGrislyWoundExtNoCheck.elf"
+#endif
+
+PoisonStrikeIDLink:
+BYTE PoisonStrikeID
+GrislyWoundIDLink:
+BYTE GrislyWoundID
 ALIGN 4
 
 Despoil:
