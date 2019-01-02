@@ -547,6 +547,20 @@ ORG SkillIconOffset(DevilsPactID)
 ORG SkillIconOffset(DevilsWhimID)
 #incext Png2Dmp "Skill Icons\DevilsWhim.png"
 
+ORG SkillIconOffset(PoisonStrikeID)
+#incext Png2Dmp "Skill Icons\PoisonStrike.png"
+
+ORG SkillIconOffset(GrislyWoundID)
+#incext Png2Dmp "Skill Icons\GrislyWound.png"
+
+ORG SkillIconOffset(HexID)
+#incext Png2Dmp "Skill Icons\Hex.png"
+
+ORG SkillIconOffset(BarricadeID)
+#incext Png2Dmp "Skill Icons\Barricade.png"
+
+ORG SkillIconOffset(BarricadePlusID)
+#incext Png2Dmp "Skill Icons\BarricadePlus.png"
+
 ORG SkillIcon(PointBlankID) //make actual icon later
 #incext Png2Dmp "Skill Icons\0.png" //placeholder
-
