@@ -508,4 +508,6 @@ WORD LuminaStaffOption
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
 #include "Post Combat Skills/Post Combat Skills Installer.event"
 
+#include "Range Skills/RangeSkills.event"
+
 #include "Skill Removal Menu/RemoveSkillMenu.event"

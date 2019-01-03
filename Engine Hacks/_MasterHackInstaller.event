@@ -81,7 +81,10 @@ POP
   #include "Misc/SemitransparencyChanges.event"
 
   #include "Misc/PrologueSupply.event"
-
+  
+  //Item Range Fix
+  #include "FE8-Item Range Fix/FE8-Item Range EA.event"
+  
   //Chapter names as text
   #include "TextChNames/TextChNames.event"
 
