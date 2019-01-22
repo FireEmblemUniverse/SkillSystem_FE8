@@ -118,6 +118,16 @@ POP
   ORG $c63ad
   BYTE $e0
 
+// Fix proc names not being cleared (Stan)
+ORG $002C9E
+  SHORT $6129 $2026 $5429 $3002 $5429
+
+// Fix CAM1/CAMERA2 going out of bounds (Stan)
+ORG $015D52
+  BYTE 14
+ORG $015D66
+  BYTE 9
+
 #include "Extensions/Hack Installation.txt"
 //Anti-Huffman Patch, by Hextator and Nintenlord
 {
