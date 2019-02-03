@@ -498,6 +498,16 @@ WORD LuminaID
 WORD ShadowgiftStaffOption
 WORD LuminaStaffOption
 
+Perfectionist:
+#incbin "New Skills/Perfectionist.dmp"
+POIN SkillTester
+WORD PerfectionistID
+
+Puissance:
+#incbin "New Skills/Puissance.dmp"
+POIN SkillTester
+WORD PuissanceID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
