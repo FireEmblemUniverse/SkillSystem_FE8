@@ -18,7 +18,7 @@ lsl     r0,r0,#0xD                @ 0802B40C 0340
 lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
 mov r1, #0xC0 @skill flag
 lsl r1, #8 @0xC000
-add r1, #82 @miss OR devil
+add r1, #0x82 @miss OR devil
 tst r0, r1
 bne End
 @if another skill already activated, don't do anything
