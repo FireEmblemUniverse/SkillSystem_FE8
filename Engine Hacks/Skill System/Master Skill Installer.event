@@ -290,7 +290,9 @@ SealSkills:
 POIN SkillTester
 POIN SealSkillList
 WORD DebuffTable
+POIN ItemTable
 WORD FullMetalBodyID
+POIN WeaponDebuffTable
 SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
 ALIGN 4
