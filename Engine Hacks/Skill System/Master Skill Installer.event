@@ -159,7 +159,7 @@ BreakerCheck: //added to fe8_calc_loop.event
 #incbin "Ross Skills/BreakerCheck.dmp"
 POIN SkillTester
 POIN BreakerIDList
-WORD 50 // Hit/Avoid Bonus
+WORD 25 // Hit/Avoid Bonus
 ALIGN 4
 
 BreakerIDList:
