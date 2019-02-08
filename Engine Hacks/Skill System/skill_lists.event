@@ -1,62 +1,65 @@
 EphraimLordSkillList:
-// BYTE 1 OddRhythmID
-//BYTE 10 BondID
-BYTE 10 HeroesDeathBlowID
-BYTE 20 AetherID
+BYTE 5 WrathID
+BYTE 15 LancefaireID
 BYTE 00 00
 ALIGN 4
 
 EirikaLordSkillList:
-//BYTE 255 MoonbowID
-// BYTE 10 EvenRhythmID
-BYTE 10 RightfulKingID
-BYTE 20 BondID
+BYTE 5 BondID
+BYTE 15 SwordfaireID
 BYTE 00 00
 ALIGN 4
 
 EphraimGreatLordSkillList:
-BYTE 255 BondID
-BYTE 255 AetherID //255 means "automatically given to prepromotes"
-// BYTE 255 SmiteID
-BYTE 5 RallySpectrumID
+BYTE 255 WrathID
+BYTE 255 LancefaireID
+BYTE 5 RightfulKingID
 BYTE 15 AxebreakerID
 BYTE 00 00
 ALIGN 4
 
 EirikaGreatLordSkillList:
 BYTE 255 BondID
-BYTE 255 AetherID
-// BYTE 255 SmiteID
-BYTE 5 NihilID
+BYTE 255 SwordfaireID
+BYTE 5 CritUpID
 BYTE 15 LancebreakerID
 BYTE 00 00
 ALIGN 4
 
 CavalierSkillList:
-BYTE 1 DisciplineID
 BYTE 10 ElbowRoomID
 BYTE 00 00
 
-PaladinSkillList:
-BYTE 255 DisciplineID //learned if spawning
+CrusaderSkillList:
 BYTE 255 ElbowRoomID
-BYTE 5 RallySklID
+BYTE 5 IntimidateID
+BYTE 15 SavageBlowID
+BYTE 00 00
+
+WarKnightSkillList:
+BYTE 255 ElbowRoomID
+BYTE 5 SealDefID
+BYTE 15 RepositionID
+BYTE 00 00
+
+PaladinSkillList:
+BYTE 255 ElbowRoomID
+BYTE 5 SpurDefID
 BYTE 15 AegisID
 BYTE 00 00
 ALIGN 4
 
 KnightSkillList:
-BYTE 1 ProvokeID
-// BYTE 1 SlowBurnID
-BYTE 10 NaturalCoverID
+BYTE 5 RepositionID
+BYTE 10 FullMetalBodyID
 BYTE 00 00
 ALIGN 4
 
 GeneralSkillList:
-BYTE 255 ProvokeID
-BYTE 255 NaturalCoverID
+BYTE 255 RepositionID
+BYTE 255 FullMetalBodyID
 BYTE 5 WaryFighterID
-BYTE 15 PaviseID
+BYTE 15 LunaID
 BYTE 00 00
 ALIGN 4
 
@@ -67,16 +70,16 @@ BYTE 00 00
 ALIGN 4
 
 MercenarySkillList:
-BYTE 1 RallyStrID
-BYTE 10 SealSpdID
+BYTE 1 ArmsthriftID
+BYTE 10 SealLukID
 BYTE 00 00
 ALIGN 4
 
 HeroSkillList:
-BYTE 255 RallyStrID
-BYTE 255 SealSpdID
+BYTE 255 ArmsthriftID
+BYTE 255 SealLukID
 BYTE 5 SolID
-BYTE 15 AxebreakerID
+BYTE 15 SpectrumStanceID
 BYTE 00 00
 ALIGN 4
 
@@ -97,8 +100,8 @@ ALIGN 4
 AssassinSkillList:
 BYTE 255 AcrobatID
 BYTE 255 DespoilID
-BYTE 5 LifetakerID
-BYTE 15 PassID
+BYTE 5 DeathBlowID
+BYTE 15 LethalityID
 BYTE 00 00
 ALIGN 4
 
@@ -112,7 +115,7 @@ SniperSkillList:
 BYTE 255 CertainBlowID
 BYTE 255 SureShotID
 BYTE 5 BowfaireID
-BYTE 15 GaleforceID
+BYTE 15 BowRangeUpID
 BYTE 00 00
 ALIGN 4
 
@@ -131,15 +134,15 @@ ALIGN 4
 
 WyvernLordSkillList:
 BYTE 255 TantivyID
-BYTE 5 SavageBlowID
-BYTE 15 SwordbreakerID
+BYTE 5 NullifyID
+BYTE 10 WardingStanceID
 BYTE 00 00
 ALIGN 4
 
 WyvernKnightSkillList:
 BYTE 255 TantivyID
-BYTE 5 RallyMovID
-BYTE 15 LancefaireID
+BYTE 5 LifetakerID
+BYTE 15 ImpaleID
 BYTE 00 00
 ALIGN 4
 
@@ -160,7 +163,7 @@ ALIGN 4
 MageKnightSkillList:
 BYTE 255 AdeptID
 BYTE 255 FocusID
-BYTE 5 RallyResID
+BYTE 5 ElbowRoomID
 BYTE 15 QuickBurnID
 BYTE 00 00
 ALIGN 4
@@ -168,7 +171,8 @@ ALIGN 4
 BishopSkillList:
 BYTE 255 MiracleID
 BYTE 255 LiveToServeID
-BYTE 15 CounterMagicID
+BYTE 5 StaffSavantID
+BYTE 15 BreathOfLifeID
 BYTE 00 00
 ALIGN 4
 
@@ -197,16 +201,15 @@ ALIGN 4
 RogueSkillList:
 BYTE 255 DespoilID
 BYTE 255 AcrobatID
-BYTE 5 LungeID
+BYTE 5 LuckySevenID
 BYTE 15 CelerityID
 BYTE 00 00
 ALIGN 4
 
 GreatKnightSkillList:
-BYTE 255 ProvokeID
-BYTE 255 NaturalCoverID
-BYTE 5 LunaID
-BYTE 15 ArmoredBlowID
+BYTE 255 LungeID
+BYTE 255 ElbowRoomID
+BYTE 5 IntimidateID
 BYTE 00 00
 ALIGN 4
 
@@ -251,7 +254,7 @@ BYTE 00 00
 ALIGN 4
 
 MonkSkillList:
-BYTE 10 SpurSpdID
+BYTE 10 BracingStanceID
 BYTE 20 SealResID
 BYTE 00 00
 ALIGN 4
@@ -263,16 +266,16 @@ BYTE 00 00
 ALIGN 4
 
 PegKnightSkillList:
-BYTE 10 DartingBlowID
-BYTE 20 RallySpdID
+BYTE 10 ForagerID
+BYTE 20 WardingBlowID
 BYTE 00 00
 ALIGN 4
 
 FalcoknightSkillList:
-BYTE 255 DartingBlowID
-BYTE 255 RallySpdID
+BYTE 255 ForagerID
+BYTE 255 WardingBlowID
 BYTE 5 SaviorID
-BYTE 15 WardingBlowID
+BYTE 15 WindDiscipleID
 BYTE 00 00
 ALIGN 4
 
@@ -283,8 +286,8 @@ BYTE 00 00
 ALIGN 4
 
 TroubadourSkillList:
-BYTE 10 DemoiselleID
-BYTE 20 VoiceOfPeaceID
+BYTE 5 SupplyID
+BYTE 15 VoiceOfPeaceID
 BYTE 00 00
 ALIGN 4
 
