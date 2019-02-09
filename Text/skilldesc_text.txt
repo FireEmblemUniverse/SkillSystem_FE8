@@ -78,23 +78,23 @@ Discipline: Weapon experience[N]
 gains are doubled.[X]
 
 ## SD_Swordbreaker
-Swordbreaker: +25 Hit/Avo when[N]
+Swordbreaker: +50 Hit/Avo when[N]
 enemy has a sword equipped.[X]
 
 ## SD_Lancebreaker
-Lancebreaker: +25 Hit/Avo when[N]
+Lancebreaker: +50 Hit/Avo when[N]
 enemy has a lance equipped.[X]
 
 ## SD_Axebreaker
-Axebreaker: +25 Hit/Avo when[N]
+Axebreaker: +50 Hit/Avo when[N]
 enemy has an axe equipped.[X]
 
 ## SD_Bowbreaker
-Bowbreaker: +25 Hit/Avo when[N]
+Bowbreaker: +50 Hit/Avo when[N]
 enemy has a bow equipped.[X]
 
 ## SD_Tomebreaker
-Tomebreaker: +25 Hit/Avo when[N]
+Tomebreaker: +50 Hit/Avo when[N]
 enemy has a tome equipped.[X]
 
 ## SD_Aegis
@@ -118,7 +118,7 @@ Darting Blow: +5 Attack Speed[N]
 when initiating battle.[X]
 
 ## SD_WardingBlow
-Warding Blow: +10 Res[N]
+Warding Blow: +20 Res[N]
 when initiating battle.[X]
 
 ## SD_CertainBlow
@@ -262,14 +262,14 @@ from all effective attacks.[X]
 
 ## SD_Paragon
 Paragon: Experience gain[N]
-is increased by 50%.[X]
+is doubled.[X]
 
 ## SD_Impale
-Impale: Deal 2x damage after enemy defense.[N]
+Impale: Deal 4x damage.[N]
 (Skill % activation)[X]
 
 ## SD_Colossus
-Colossus: Deals +12 damage.[N]
+Colossus: Triples Strength.[N]
 (Skill % activation)[X]
 
 ## SD_RallyStr
@@ -347,7 +347,7 @@ Opportunist: +4 damage[N]
 if the foe cannot counter.[X]
 
 ## SD_Trample
-Trample: +3 damage to[N]
+Trample: +5 damage to[N]
 unmounted units.[X]
 
 ## SD_Camaraderie
@@ -407,27 +407,27 @@ when on terrain with effects.[X]
 
 ## SD_SealStr
 Seal Attack: Debuff opponent's Str/Mag[N]
-by 4 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealSkl
 Seal Skill: Debuff opponent's Skl[N]
-by 4 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealSpd
 Seal Speed: Debuff opponent's Spd[N]
-by 4 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealLuk
 Seal Luck: Debuff opponent's Luck[N]
-by 4 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealDef
 Seal Defense: Debuff opponent's Def[N]
-by 4 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealRes
 Seal Resistance: Debuff opponent's Res[N]
-by 4 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_Gamble
 Gamble: A reckless attack with[N]
