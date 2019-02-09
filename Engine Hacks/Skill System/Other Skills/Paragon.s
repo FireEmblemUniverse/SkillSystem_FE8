@@ -17,7 +17,7 @@ ldr r1, ParagonID
 cmp r0, #0x0
 beq no_Paragon1
  @double exp
- bl MultiplyExpR4
+ lsl r4, #1
  cmp r4, #100
  ble no_Paragon1
   mov r4, #100
@@ -46,7 +46,7 @@ ldr r1, ParagonID
 cmp r0, #0x0
 beq no_Paragon
  @double exp
- bl MultiplyExpR5
+ lsl r5, #1
  cmp r5, #100
  ble no_Paragon
   mov r5, #100
@@ -61,24 +61,6 @@ strb r0, [r1]
 @get the return value
 ldr r1, =0x802b96f
 bx r1
-
-MultiplyExpR4: @1.5x exp
-push {r0-r3}
-mov r0, r4
-mov r1, #2
-swi 0x6   @division
-add r4, r0
-pop {r0-r3}
-bx lr
-
-MultiplyExpR5: @1.5x exp
-push {r0-r3}
-mov r0, r5
-mov r1, #2
-swi 0x6   @division
-add r5, r0
-pop {r0-r3}
-bx lr
 
 .align
 .ltorg

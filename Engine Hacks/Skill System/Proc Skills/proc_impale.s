@@ -53,7 +53,7 @@ str     r0,[r6]                @ 0802B43A 6018
 ldrb  r0, ImpaleID
 strb  r0, [r6,#4] 
 
-@and make it a crit with 2x damage
+@and make it a crit with 4x damage
 ldrh r0, [r7, #6] @final mt
 lsl r0, #0x10
 asr r0, #0x10
@@ -61,7 +61,7 @@ ldrh r1, [r7, #8] @final def
 lsl r1, #0x10
 asr r1, #0x10
 sub r0, r1
-lsl r0, #1 @multiply by 2
+lsl r0, #2 @multiply by 4
 strh r0, [r7, #4] @final damage
 
 @set crit flag
