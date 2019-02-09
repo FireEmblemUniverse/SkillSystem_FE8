@@ -159,7 +159,7 @@ BreakerCheck: //added to fe8_calc_loop.event
 #incbin "Ross Skills/BreakerCheck.dmp"
 POIN SkillTester
 POIN BreakerIDList
-WORD 50 // Hit/Avoid Bonus
+WORD 25 // Hit/Avoid Bonus
 ALIGN 4
 
 BreakerIDList:
@@ -497,6 +497,16 @@ WORD ShadowgiftID
 WORD LuminaID
 WORD ShadowgiftStaffOption
 WORD LuminaStaffOption
+
+Perfectionist:
+#incbin "New Skills/Perfectionist.dmp"
+POIN SkillTester
+WORD PerfectionistID
+
+Puissance:
+#incbin "New Skills/Puissance.dmp"
+POIN SkillTester
+WORD PuissanceID
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

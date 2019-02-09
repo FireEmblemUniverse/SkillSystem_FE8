@@ -53,12 +53,11 @@ str     r0,[r6]                @ 0802B43A 6018
 ldrb  r0, ColossusID
 strb  r0, [r6,#4] 
 
-@and make it a crit with 4x damage
+@and add +12 damage
 ldrh r0, [r7, #6] @final mt
 lsl r0, #0x10
 asr r0, #0x10
-lsl r1, r0, #1
-add r0, r1 @multiply mt by 3
+add r0,#0xB @+12 damage
 ldrh r1, [r7, #8] @final def
 lsl r1, #0x10
 asr r1, #0x10
