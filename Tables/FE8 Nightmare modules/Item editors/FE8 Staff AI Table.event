@@ -1,5 +1,7 @@
 #define csvmacro018(arg000,arg001,arg002) "BYTE arg000 arg001 ;WORD arg002 "
 
+#inctext PFinder "C:\Users\bovie\Desktop\Skills System\SkillSystem_FE8\FE8_clean.gba" 0xd868c AI_StaffArray
+
 ALIGN 4
 AI_StaffArray:
 csvmacro018(0x4b,0x0 0x0 0x0,0x803fbb9)
