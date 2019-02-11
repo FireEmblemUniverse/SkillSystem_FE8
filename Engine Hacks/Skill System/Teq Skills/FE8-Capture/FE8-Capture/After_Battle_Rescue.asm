@@ -38,6 +38,7 @@ mov r7, r0
 
 ldrb	r0,[r4,#0x13]		@defender current hp
 cmp		r0,#0x0
+bne GoBack
 
 ldr		r0,Write_Rescue_Data
 mov		r14,r0
