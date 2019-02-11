@@ -102,10 +102,10 @@
 	#incbin "New_Weapon_Select.dmp"
 	POIN Is_Capture_Set Fill_Capture_Range_Map
 	
-	ALIGN 4
-	Show_Red_Squares:
-	#incbin "Show_Red_Squares.dmp"
-	POIN Is_Capture_Set
+    ALIGN 4
+    Show_Red_Squares:
+    #incbin "Show_Red_Squares.dmp"
+    POIN Is_Capture_Set All_Weapons_One_Square
 	
 	ALIGN 4
 	Is_Capture_Set:

@@ -919,3 +919,11 @@ TxtData0x9c5:
 #incext ParseFile "_textentries\0x9c5.txt"
 setText(0x9c5,TxtData0x9c5)
 
+TxtData0x9c6:
+#incext ParseFile "_textentries\0x9c6.txt"
+setText(0x9c6,TxtData0x9c6)
+
+TxtData0x9c7:
+#incext ParseFile "_textentries\0x9c7.txt"
+setText(0x9c7,TxtData0x9c7)
+
