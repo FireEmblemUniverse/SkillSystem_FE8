@@ -562,5 +562,11 @@ ORG SkillIconOffset(BarricadeID)
 ORG SkillIconOffset(BarricadePlusID)
 #incext Png2Dmp "Skill Icons\BarricadePlus.png"
 
-ORG SkillIcon(PointBlankID) //make actual icon later
-#incext Png2Dmp "Skill Icons\0.png" //placeholder
+ORG SkillIcon(PointBlankID)
+#incext Png2Dmp "Skill Icons\PointBlank.png"
+
+ORG SkillIcon(PerfectionistID)
+#incext Png2Dmp "Skill Icons\perfectionist.png"
+
+ORG SkillIcon(PuissanceID)
+#incext Png2Dmp "Skill Icons\BlankFrame.png"

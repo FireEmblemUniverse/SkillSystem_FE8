@@ -1,6 +1,6 @@
 #define csvmacro001(arg000) "WORD arg000 "
 
-#inctext PFinder "C:\Users\Lou\Documents\GitHub\SkillSystem_FE8\FE8_clean.gba" 0xe47180 LevelUpSkillTable
+#inctext PFinder "C:\Users\bovie\Desktop\Skills System\SkillSystem_FE8\FE8_clean.gba" 0xe47180 LevelUpSkillTable
 
 ALIGN 4
 LevelUpSkillTable:

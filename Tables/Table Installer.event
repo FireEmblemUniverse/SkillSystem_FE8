@@ -26,6 +26,8 @@
 
 #include "FE8 Nightmare modules\Class & Character editors\FE8 Walking Sounds Editor.event"
 
+#include "FE8 Nightmare modules\Item editors\FE8 Item AI Table.event"
+
 #include "FE8 Nightmare modules\Item editors\FE8 Item Editor.event"
 
 #include "FE8 Nightmare modules\Item editors\FE8 Item Effect Pointer Editor.event"
@@ -35,6 +37,8 @@
 #include "FE8 Nightmare modules\Item editors\FE8 Item Usability Pointer Editor.event"
 
 #include "FE8 Nightmare modules\Item editors\FE8 Spell Association Editor.event"
+
+#include "FE8 Nightmare modules\Item editors\FE8 Staff AI Table.event"
 
 #include "FE8 Nightmare modules\Item editors\Ocean Seal Promotion Editor.event"
 

@@ -21,7 +21,7 @@
 	
 	Item_TURangeBuilder:
 	#incbin "ItemRangeBuilder.dmp"
-	POIN GetItemRange|1 CheckUnitsInRange|1 FillRange|1
+	POIN GetItemRange|1 CheckUnitsInRange|1 FillRange|1 Is_Capture_Set|1
 	
 	Item_TTRangeBuilder:
 	#incbin "ItemRangeBuilder.dmp"
