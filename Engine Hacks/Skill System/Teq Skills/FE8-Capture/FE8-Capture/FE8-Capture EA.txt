@@ -105,7 +105,7 @@
 	ALIGN 4
 	Show_Red_Squares:
 	#incbin "Show_Red_Squares.dmp"
-	POIN Is_Capture_Set All_Weapons_One_Square
+	POIN Is_Capture_Set
 	
 	ALIGN 4
 	Is_Capture_Set:
