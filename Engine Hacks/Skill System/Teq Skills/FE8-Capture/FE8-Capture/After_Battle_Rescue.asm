@@ -38,13 +38,14 @@ mov r7, r0
 
 ldrb	r0,[r4,#0x13]		@defender current hp
 cmp		r0,#0x0
-bne GoBack
+bne NotDead
 
 ldr		r0,Write_Rescue_Data
 mov		r14,r0
 mov		r0,r5
 mov		r1,r7
 .short	0xF800
+NotDead:
 mov		r7,#0x0				@captured units don't drop anything
 GoBack:
 pop		{r0}
