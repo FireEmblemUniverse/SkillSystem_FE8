@@ -25,7 +25,7 @@
 	
 	Item_TTRangeBuilder:
 	#incbin "ItemRangeBuilder.dmp"
-	POIN GetItemRange|1 CheckTilesInRange|1 FillRange|1
+	POIN GetItemRange|1 CheckTilesInRange|1 FillRange|1 Is_Capture_Set|1
 	
 	GetItemRange:
 	#incbin "ItemRangeGetter.dmp"
