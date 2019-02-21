@@ -1,6 +1,15 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+*.event text
+*.txt   text
+*.s     text
+*.asm   text
+*.nmm   text
+*.csv   text
+*.bat   text
+*.log   text
+
 # Custom for Visual Studio
 *.cs     diff=csharp
 
