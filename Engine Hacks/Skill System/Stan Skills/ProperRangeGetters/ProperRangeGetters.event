@@ -6,7 +6,7 @@
 #endif
 
 #include "Extensions/Hack Installation.txt"
-#include "eastdlib.event"
+#include "EAstdlib.event"
 
 #ifndef FreeSpace
 	#define FreeSpace 0xB2A610

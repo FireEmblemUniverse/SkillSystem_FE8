@@ -1,7 +1,7 @@
 #ifndef MSG_INSTALL_HELPER_EVENT
 #define MSG_INSTALL_HELPER_EVENT
 
-#include "eastdlib.event"
+#include "EAstdlib.event"
 #include "Extensions/Hack Installation.txt"
 
 #ifndef _FE8_
