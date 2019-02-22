@@ -1,0 +1,63 @@
+##Turn based events that happen at a specific part of one or several turns.
+TURN, 2, 96, -priority:main -language:FE6:FE8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 16, 16, 
+##Pointer to an event that happens on the turns.
+	Event Pointer, 32, 32, -pointer 
+##Turns when the event happens. First coordinate is the first
+##turn the event happens on while the second is the first turn
+##the event stops happening. Event is is quaranteed to happen 
+##atleast once no matter what the second coordinate is.
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+##The turn moment where the event happens. 0 means at the beginning of 
+##player phase, while 8 means at the beginning of the enemy phase and
+##4 means at the beginning of the NPC phase.
+	TurnMoment, 84, 4
+
+##Turn based event that only happens on hard mode.
+TURN_HM, 0x3, 96, -game:FE6 -priority:main
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 16, 16, 
+##Pointer to an event that happens on the turns.
+	Event Pointer, 32, 32, -pointer 
+##Turns when the event happens. First coordinate is the first
+##turn the event happens on while the second is the first turn
+##the event stops happening. Event is is quaranteed to happen 
+##atleast once no matter what the second coordinate is.
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+##The turn moment where the event happens. 0 means at the beginning of 
+##player phase, while 8 means at the beginning of the enemy phase and
+##4 means at the beginning of the NPC phase.
+	TurnMoment, 84, 4
+
+TURN, 2, 128, -priority:main -language:FE7
+	ID, 16, 16, 
+	Event Pointer, 32, 32, -pointer 
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+	TurnMoment, 84, 4
+##Extra conditions for the event. 0 means no extra condition.
+	Extra, 96, 32
+
+TURN, 2, 128, -priority:main -language:FE7
+	ID, 16, 16, 
+	Event Pointer, 32, 32, -pointer 
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+	TurnMoment, 84, 4
+##Extra conditions for the event. 0 means no extra condition.
+	Extra1, 96, 8
+##Extra conditions for the event. 0 means no extra condition.
+	Extra2, 104, 8
+##Extra conditions for the event. 0 means no extra condition.
+	Extra3, 112, 8
+##Extra conditions for the event. 0 means no extra condition.
+	Extra4, 120, 8
+
+TURN, 0, 4, -priority:main -language:FE6:FE7 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed
+    
+TURN, 0, 4, -priority:main -language:FE8 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed

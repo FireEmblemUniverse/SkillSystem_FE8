@@ -1,0 +1,260 @@
+
+#Chapters: Prologue, 1, 2...
+_0x1, 0x1, 4, -game:FE7 -indexMode:8
+
+#Chapters: 1, 2, 3...
+_0x8, 0x8, 4, -game:FE7 -indexMode:8
+
+#Chapters: 6, 19x, 23, 15
+#Pointer to 14 text ID's, each 4 bytes
+_0x15, 0x15, 8, -game:FE7 -indexMode:8
+	Ptr, 4, 4, -pointer:unknown
+
+#Chapters: 13
+#Pointer to 14 text ID's
+_0x16, 0x16, 8, -game:FE7 -indexMode:8
+	Ptr, 4, 4, -pointer:unknown
+
+#Chapters: 13, 16, 21...
+#Pointer to 3 text ID's
+_0x17, 0x17, 8, -game:FE7 -indexMode:8
+	Value, 2, 2
+	Ptr, 4, 4, -pointer:unknown
+
+#Chapters: 26
+_0x21, 0x21, 4, -game:FE7 -indexMode:8
+
+#Chapters: 5, 6
+_MOVE0x2C, 0x2C, 16, -game:FE7 -indexMode:8
+	Character, 4, 1
+	Pointer, 8, 4, -pointer:moveManual
+	Pointer2, 12, 4, -pointer:moveManual
+
+#Chapters: 20
+_0x30, 0x30, 12, -game:FE7 -indexMode:8
+	Value, 4, 4
+	Position, 8, 4, -coordinates:2
+
+#Chapters: 6, 15, 17x...
+_0x33, 0x33, 8, -game:FE7 -indexMode:8
+	Pointer, 4, 4, -pointer:unit
+
+#Chapters: 20, 31x, F1, F2
+#only calls routine if 3nd lowest bit of 02024e94[0x5E] is 0.
+_ASM0x3F, 0x3F, 8, -game:FE7 -indexMode:8
+	ASM pointer, 4, 4, -pointer:ASM
+
+#Chapters: Prologue, 1, 2...
+#Checks value returned by ASM routine.
+_ASM0x42, 0x42, 8, -game:FE7 -indexMode:8
+	Ptr, 4, 4, -pointer:ASM
+
+#Chapters: 19, 28
+_IF0x4A, 0x4A, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+#Chapters: 9, 20, 24Lloyd, 28, F2
+_IF0x4B, 0x4B, 8, -game:FE7 -indexMode:8
+    Conditional ID, 4, 1
+
+#Chapters: Prologue, 1, 2...
+_IFTT2, 0x51, 8, -game:FE7 -indexMode:8
+	Stuff, 2, 1
+	Conditional ID, 4, 1
+
+#Chapters: 32
+#IF ASM returns 0, set Value to Event structure ptr + 0x56(2 bytes)
+_ASM0x59, 0x59, 8, -game:FE7 -indexMode:8
+	Value, 2, 2
+	ASM pointer, 4, 4, -pointer:ASM
+
+#Chapters: 5, 11E, 12...
+#IF ASM returns non 0, set Value to Event structure ptr + 0x56(2 bytes)
+_ASM0x5A, 0x5A, 8, -game:FE7 -indexMode:8
+	Value, 2, 2
+	Ptr, 4, 4, -pointer:ASM
+
+#Chapters: 7x, 28, F1, F2
+_0x61, 0x61,  4, -game:FE7 -indexMode:8
+	Value, 2, 2
+
+#Chapters: 29
+#Makes unit disappear until moved?
+_0x6E, 0x6E, 8, -game:FE7 -indexMode:8
+	Coordinates, 4, 4, -coordinates:2
+
+#Chapters: 2, 5, 6...
+#SoC: that locked out the start button/b button
+#changed the text speed to slow/normal
+_0x85, 0x85, 4, -game:FE7 -indexMode:8
+	Dunno, 2, 2
+
+#Chapters: 3, 6, 9...
+_FADU2, 0x86, 4, -game:FE7 -indexMode:8
+
+#Chapters: Prologue, 1, 2...
+#SoC: Locks out start and skip scene functions
+_0x87, 0x87, 4, -game:FE7 -indexMode:8
+
+#Fade out of black world map style?
+#Chapters: 2, 5, 6...
+_0x89, 0x89, 4, -game:FE7 -indexMode:8
+
+#Chapters: Prologue, 1, 2...
+#SoC:Enables start button crap again?
+_0x8A, 0x8A, 4, -game:FE7 -indexMode:8
+
+#Chapters: 1, 2
+_FADI2, 0x94, 4, -game:FE7 -indexMode:8
+
+#Chapters: 19, 20, 23, 23x, 29
+#Fade in?
+_0x95, 0x95, 16, -game:FE7 -indexMode:8
+	Value1, 4, 4
+	Value2, 8, 4
+	Value3, 12, 4
+
+#Chapters: 20, 28
+#Fade out?
+_0x96, 0x96, 16, -game:FE7 -indexMode:8
+	Value1, 4, 4
+	Value2, 8, 4
+	Value3, 12, 4
+
+#After every CALL code
+_0x9A, 0x9A, 4, -game:FE7 -indexMode:8
+
+#Chapters: Prologue, 1, 2...
+_0xA1, 0xA1, 8, -game:FE7 -indexMode:8
+	Value, 4, 4
+
+#Chapters: Prologue, 4
+_0xA2, 0xA2, 8, -game:FE7 -indexMode:8
+	Value, 4, 4, -pointer:battleData
+
+#Chapters: Prologue, 1, 2...
+_0xA3, 0xA3, 4, -game:FE7 -indexMode:8
+
+#Chapters: Prologue, 1, 2...
+_0xA4, 0xA4, 8, -game:FE7 -indexMode:8
+	Value, 4, 4
+
+#Chapters: Prologue, 1
+_0xA5, 0xA5, 8, -game:FE7 -indexMode:8
+	Value, 4, 4
+
+#Chapters: Prologue
+#_0xA5, 0xA5, 8, -game:FE7 -indexMode:8
+#	Value, 4, 4
+
+#Chapters: 1
+#Conditional text
+_0xA8, 0xA8, 16, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinates:2
+	Text 1, 8, 4
+	Text 2, 12, 4
+
+#Chapters: Prologue
+_0xAA, 0xAA, 4, -game:FE7 -indexMode:8
+
+#Chapters: Prologue, 1
+#Pointer to arrow coordinates?
+_0xAB, 0xAB, 8, -game:FE7 -indexMode:8
+	Pointer, 4, 4, -pointer:coordList
+
+#World maps: 1, 2, 3...
+_0xAD, 0xAD, 4, -game:FE7 -indexMode:8
+
+#World maps: 1, 2, 3...
+_0xAE, 0xAE, 4, -game:FE7 -indexMode:8
+
+#World maps: 11E, 23, 24
+_0xB6, 0xB6, 4, -game:FE7 -indexMode:8
+#	Value, 4, 4, -coordinates:2
+
+#World maps: 3
+_0xBE, 0xBE, 8, -game:FE7 -indexMode:8
+	Value, 4, 4
+
+#World maps: 3, 6, 8...
+_0xC1, 0xC1, 16, -game:FE7 -indexMode:8
+	Value, 4, 4, -coordinates:2 -preferredBase:10
+	Value, 8, 4
+	Value, 12, 4
+
+#World maps: 7x, 9, 11E, 27, 28
+_0xC2, 0xC2, 12, -game:FE7 -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+
+#World maps: 7x, 11E, 17
+_0xC3, 0xC3, 12, -game:FE7 -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+
+#World maps: 1, 2, 3...
+_0xCA, 0xCA, 4, -game:FE7 -indexMode:8
+
+#Chapters: Final2
+_0xDC, 0xDC, 8, -game:FE7 -indexMode:8
+	Value, 4, 4
+
+#Chapters: 32
+_LIGHTNING, 0xDD, 12, -game:FE7 -indexMode:8
+	Value, 4, 1
+	Value, 5, 1
+	Value, 6, 1
+	Value, 7, 1
+	Value, 8, 1
+	Value, 9, 1
+	Value, 10, 1
+	Value, 11, 1
+
+#Chapters: 29, F2
+_0xDE, 0xDE, 20, -game:FE7 -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+	Value, 12, 4, -coordinates:2
+	Value, 16, 4
+
+#Chapters: F2
+_0xDF, 0xDF, 12, -game:FE7 -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+
+#Chapters: 20, 32, F1, F2
+_0xE0, 0xE0, 16, -game:FE7 -indexMode:8
+	Value1, 4, 4
+	Value2, 8, 4
+	Value3, 12, 2
+	Value4, 14, 2
+
+#Chapters: 20, 32, F1, F2
+_0xE1, 0xE1, 4, -game:FE7 -indexMode:8
+
+#Chapters: 20, 32
+_0xE2, 0xE2, 4, -game:FE7 -indexMode:8
+
+#Data pointed (20):
+#4: 0?
+#4: Graphics pointer
+#4: pointer
+#4: ?
+#4: ?
+#Chapters: 11H, 20, 27, 28E, 30H, F2
+_0xE3, 0xE3, 12, -game:FE7 -indexMode:8
+	Ptr, 4, 4, -pointer:unknown
+	Location, 8, 4, -coordinates:2
+
+#Chapters: 11H, 20, 27, F2
+_0xE4, 0xE4, 4, -game:FE7 -indexMode:8
+
+#Chapters: 20
+#Palette pointers?
+_0xE5, 0xE5, 16, -game:FE7 -indexMode:8
+	Ptr1, 4, 4, -pointer:unknown
+	Ptr2, 8, 4, -pointer:unknown
+	Value, 12, 4
+
+#Chapters: 20
+_0xE6, 0xE6, 4, -game:FE7 -indexMode:8

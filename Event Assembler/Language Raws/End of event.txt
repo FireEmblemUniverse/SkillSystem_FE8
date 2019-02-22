@@ -1,0 +1,22 @@
+##Ends an event.
+ENDA, 6, 8, -game:FE6 -end -indexMode:8
+
+ENDA, 0xA, 8, -game:FE7 -end -indexMode:8
+
+ENDA, 0x120, 4, -game:FE8 -end -indexMode:8
+
+ENDB, 0x121, 4, -game:FE8 -end -indexMode:8
+
+##Ends the  starting event and goes to chapter
+##preparations screen.
+ENDB, 0xB, 8, -game:FE7 -end -indexMode:8
+
+##Ends the game
+THE_END, 0x3E, 8, -game:FE6 -indexMode:8
+	Value, 4, 4 
+#Used with 0x1 in game.
+
+THE_END, 0x82, 4, -game:FE7 -indexMode:8
+
+##Ends Lyn mode
+LYN_END, 0x83, 4, -game:FE7 -indexMode:8

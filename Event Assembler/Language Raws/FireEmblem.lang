@@ -1,0 +1,30 @@
+﻿
+language FE6 = 
+{
+	list types = {
+		character
+		class
+		Xposition
+		Yposition
+		turn
+		event
+		conditional
+		background
+		sound
+		text
+		weather
+		pointer
+	}
+	
+	function makePointer x = x + 0x8000000
+	function getOffset x = x - 0x8000000
+
+	structure pointerTable = {
+		POIN TurnBasedEvents
+		POIN CharacterBasedEvents
+		POIN LocationBasedEvents
+		POIN MiscBasedEvents
+		POIN EnemyUnits AllyUnits
+		POIN EndingScene
+	} 
+}

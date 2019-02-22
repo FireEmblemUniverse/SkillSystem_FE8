@@ -1,0 +1,16 @@
+
+##Event that happens when a unit lands on specific tiles.
+AREA, 0x0B, 12, -language:FE8:FE7:FE6 -priority:main -indexMode:8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 2, 2
+##Event to happen.
+	Event Pointer, 4, 4, -pointer
+##Topleft corner of the rectangle shaped area where the event is triggered.
+	Corner 1, 8, 2, -coordinates:2 -preferredBase:10
+##Bottom right corner of the area where the event is triggered.
+	Corner 2, 10, 2, -coordinates:2 -preferredBase:10
+
+AREA, 0, 4, -priority:main -language:FE8:FE7:FE6 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed

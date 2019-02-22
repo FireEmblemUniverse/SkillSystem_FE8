@@ -1,0 +1,77 @@
+##Fades in to dark.
+FADI, 0x43, 8, -game:FE6 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 4, 2, -preferredBase:10
+
+FADI, 0x8E, 4, -game:FE7 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FADI, 0x1721, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+
+##Fades out of dark.
+FADU, 0x44, 8, -game:FE6 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 4, 2, -preferredBase:10
+
+FADU, 0x8F, 4, -game:FE7 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FADU, 0x1720, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+
+##Fades into white.
+FAWI, 0x90, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+##Fades out of white.
+FAWU, 0x91, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+#Chapters: 21, 22
+FAWI, 0x45, 8, -game:FE6 -indexMode:8
+	Fade time, 4, 4
+
+#Chapters: 21, 22
+FAWU, 0x46, 8, -game:FE6 -indexMode:8
+	Fade time, 4, 4
+
+FAWU, 0x1722, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FAWI, 0x1723, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+##Fades in for large cutscene pictures.
+FADICG, 0xD6, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+##Fades out for large cutscene pictures.
+FADUCG, 0xD5, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+##Hides map and units.
+HIDEMAP, 0x92, 4, -game:FE7 -indexMode:8
+
+#Chapters: 21, 22
+HIDEMAP, 0x47, 4, -game:FE6 -indexMode:8
+
+
+##Shows map and units after HIDEMAP.
+SHOWMAP, 0x93, 4, -game:FE7 -indexMode:8
+
+#Chapters: 21, 22
+SHOWMAP, 0x48, 4, -game:FE6 -indexMode:8
+

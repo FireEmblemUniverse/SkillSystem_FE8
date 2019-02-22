@@ -1,0 +1,14 @@
+
+#Chapters: 13
+##Causes unit to die.
+KILL, 0x31, 8, -game:FE6 -indexMode:8
+##Character to kill.
+	Character, 4, 4
+
+
+KILL, 0x6D, 8, -game:FE7 -indexMode:8
+	Character, 4, 4
+
+KILL, 0x6C, 8, -game:FE7 -indexMode:8
+##Position of the character to kill.
+	Position of character, 4, 4, -coordinate:2 -preferredBase:10

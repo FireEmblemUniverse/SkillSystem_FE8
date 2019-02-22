@@ -1,0 +1,203 @@
+##Loads a map to use.
+LOADWM, 0xAC, 16, -game:FE7 -indexMode:8
+##The ID of the map to load.
+	Map to load, 4, 2
+##Position of the camera on the map after
+##it is loaded in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Way to load the map.
+	Way to load, 12, 2
+
+##Lights up an area on the world map.
+HIGHLIGHT, 0xB9, 16, -game:FE7 -indexMode:8
+##Area on the world map to light up.
+	Area to light up, 8, 1
+
+##Fade into a map.
+FADETOWM, 0xC8, 16, -game:FE7 -indexMode:8
+##Position on the map to fade to in pixels.
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+##Map to fade into.
+	Map to load, 8, 2
+	Unknown, 10, 2
+	Unknown2, 12, 4
+
+##Creates a flashing dot on the map.
+PLACEDOT, 0xBD, 20, -game:FE7 -indexMode:8
+##Map ID of the dot.
+	ID, 4, 1
+##Position of the dot on the world map in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Palette of the dot.
+	Palette, 12, 1
+
+##Rippling effect.
+RIPPLE, 0xC9, 8, -game:FE7 -indexMode:8
+##Position of the rippling effect on the world map.
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+
+
+#Draws a path on the world map of the given ID.
+#Path data starts at $8206674, and path graphical data is defined by data starting at $8A97FC4.
+WM_DRAWPATH, 0x9040, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	PathID, 4, 2
+	Value2, 6, 2
+
+#Silently draws a path on the world map.
+WM_DRAWPATH2, 0x9140, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	PathID, 4, 2
+	Value2, 6, 2
+
+#Removes a path of the given ID.
+WM_REMOVEPATH, 0x9240, 8, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	PathID, 4, 2
+	0, 6, 2, -fixed
+
+#Silently/instantly loads a world map location.
+#Used to load Border Mulan and the route not taken's locations
+WM_LOADLOCATION2, 0x9340, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+	Value2, 6, 2
+
+#Silently removes a world map location. Used to remove the old versions of Renvall and Jehanna Hall.
+WM_REMOVELOCATION, 0x9440, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+	Value2, 6, 2
+
+#Used to load the Tower of Valni, Lagdou Ruins and Melkaen coast.
+WM_LOADLOCATION3, 0x9540, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+	Value2, 6, 2
+
+#Also draws a path; used by Chapter 17 to draw the Mulan-Renais path.
+DRAWPATH3, 0x9640, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	PathID, 4, 2
+#Always zero
+	Value3, 6, 2
+
+#Creates next destination, with graphical effects; sets it as your next destination; also sets proper settings (skirmish number, etc...)
+WM_CREATENEXTDESTINATION, 0x9720, 4, -game:FE8 -indexMode:8
+
+#Sets location of next story chapter
+WM_SETDESTINATION, 0x9A40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+#Always zero
+	Value3, 6, 2
+
+#Highlights a country/region on the world map
+WM_HIGHLIGHT, 0xB840, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Region, 4, 2
+	Value2, 6, 2
+
+#Use these two commands in succession to remove a highlight.
+WM_HIGHLIGHTCLEAR1, 0xB940, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Region, 4, 2
+	Value2, 6, 2
+
+WM_HIGHLIGHTCLEAR2, 0xBA40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Region, 4, 2
+	Value2, 6, 2
+
+PLACEDOT, 0xBC60, 12, -game:FE8 -indexMode:8
+	Palette, 6, 1
+##Position of the dot.
+	Location ID, 8, 1
+##Special effect on the dot.
+	Special effect, 10, 1
+
+#These two commands together clear all dots, highlights, etc from the map
+WM_FXCLEAR1, 0xBD40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+WM_FXCLEAR2, 0xBE40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+
+
+#Chapters: 1
+##Zoom/nove to position in the larger world map.
+ZOOMTO, 0x4F, 8, -game:FE6 -indexMode:8
+##Position in pixels to move.
+	Coordinates, 4, 4, -coordinates:2 -preferredBase:10
+
+#Chapters: 16
+##Returns to larger world map.
+ZOOMOUT, 0x50, 4, -game:FE6 -indexMode:8
+
+#Chapters: Tutorial
+##Highlights a country on the world map.
+HIGHLIGHT, 0x5B, 8, -game:FE6 -indexMode:8
+##Object ID of the highlighting.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 2
+##ID of the country to highlight.
+	Country ID, 6, 2
+
+#Chapters: 1
+##Shows an arrow.
+SHOWARROW, 0x5A, 8, -game:FE6 -indexMode:8
+##Which arrow to show. All arrows are premade.
+	Arrow ID, 4, 2
+##Color of the arrow.
+	Color, 6, 2
+
+#Chapters: Tutorial
+##Places a highlighted dot on the world map.
+PLACEDOT, 0x5E, 16, -game:FE6 -indexMode:8
+##Map object ID of the dot.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position of the dot in pixels on the world map.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Color of the dot.
+	Color, 12, 4
+
+#Chapters: Tutorial
+##Removes a map object.
+REMOVE2, 0x5F, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4
+
+##Removes a map object.
+REMOVE1, 0x52, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4
+
+#Chapters: 1
+##Places a flag on the world map.
+PLACEFLAG, 0x60, 16, -game:FE6 -indexMode:8
+##Map ID of the flag.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position of the flag on the world map in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Color of the flag.
+	Flag color, 12, 4
+
+#Chapters: 16
+##Removes a map object.
+REMOVE4, 0x61, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4
+
+#Chapters: Tutorial
+##Removes map object
+REMOVE3, 0x63, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4

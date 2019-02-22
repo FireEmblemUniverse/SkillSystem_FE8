@@ -1,0 +1,29 @@
+##Moves to a chapter through save-dialog.
+MNCH, 0x3D, 8, -game:FE6 -indexMode:8
+##Chapter to move to.
+	Chapter ID, 4, 4
+
+MNCH, 0x81, 4, -game:FE7 -indexMode:8
+	Chapter ID, 2, 2
+
+MNCH, 0x2A21, 4, -game:FE8 -indexMode:8
+	Chapter ID, 2, 2
+
+##Moves to a chapter directly.
+MNC2, 0x2A22, 4, -game:FE8 -indexMode:8
+##Chapter to move to.
+	Chapter ID, 2, 2
+
+#Move to chapter directly.
+#Used by Valni,Lagdou and the Final chapters, Part 1.
+#MNC3 0xFFFF uses the Chapter ID loaded to Memory slot 0x2.
+MNC3, 0x2A23, 4, -game:FE8 -indexMode:8
+	Chapter ID, 2, 2
+
+#Used by Final chapters, part 2 with parameter 0.
+MNC4, 0x2A24, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+#Return to Title Screen
+MNTS, 0x2A20, 4, -game:FE8 -indexMode:8
+  Value1, 2, 2
