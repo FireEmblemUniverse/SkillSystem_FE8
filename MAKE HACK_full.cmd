@@ -16,7 +16,7 @@ set "target_ups=%~dp0SkillsTest.ups"
 @rem defining tools
 
 set "c2ea=%~dp0Tools\C2EA\c2ea"
-set "texp=%~dp0Tools\TextProcess\textprocess_v2"
+set "textprocess=%~dp0Tools\TextProcess\textprocess_v2"
 set "ups=%~dp0Tools\ups\ups"
 
 @rem set %~dp0 into a variable because batch is stupid and messes with it when using conditionals?
@@ -29,7 +29,7 @@ echo Copying ROM
 
 copy "%source_rom%" "%target_rom%"
 
-if /I NOT [%1]==[quick] (
+if /I not [%1]==[quick] (
 
   @rem only do the following if this isn't a make hack quick
 
@@ -43,7 +43,7 @@ if /I NOT [%1]==[quick] (
   echo Processing text
 
   cd "%base_dir%Text"
-  echo: | ("%texp%" text_buildfile.txt)
+  echo: | ("%textprocess%" text_buildfile.txt)
 
 )
 
@@ -53,7 +53,7 @@ echo Assembling
 cd "%base_dir%Event Assembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%"
 
-if /I NOT [%1]==[quick] (
+if /I not [%1]==[quick] (
 
   @rem only do the following if this isn't a make hack quick
 
@@ -61,7 +61,7 @@ if /I NOT [%1]==[quick] (
   echo Generating patch
 
   cd "%base_dir%"
-  %ups% diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
+  "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
 
 )
 
