@@ -50,4 +50,4 @@ fi
 echo "Assembling"
 
 cd "$base_dir/Event Assembler"
-mono Core.exe A FE8 "-output:$target_rom" "-input:$source_event"
+mono ColorzCore.exe A FE8 "-output:$target_rom" "-input:$source_event"

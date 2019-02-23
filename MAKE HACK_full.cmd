@@ -51,7 +51,7 @@ echo:
 echo Assembling
 
 cd "%base_dir%Event Assembler"
-Core A FE8 "-output:%target_rom%" "-input:%main_event%"
+ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%"
 
 if /I NOT [%1]==[quick] (
 
