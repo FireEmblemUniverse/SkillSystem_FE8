@@ -16,8 +16,9 @@ set "target_ups=%~dp0SkillsTest.ups"
 @rem defining tools
 
 set "c2ea=%~dp0Tools\C2EA\c2ea"
-set "textprocess=%~dp0Tools\TextProcess\textprocess_v2"
+set "textprocess=%~dp0Tools\TextProcess\text-process-classic"
 set "ups=%~dp0Tools\ups\ups"
+set "parsefile=%~dp0Event Assembler\Tools\ParseFile.exe"
 
 @rem set %~dp0 into a variable because batch is stupid and messes with it when using conditionals?
 
@@ -43,7 +44,7 @@ if /I not [%1]==[quick] (
   echo Processing text
 
   cd "%base_dir%Text"
-  echo: | ("%textprocess%" text_buildfile.txt)
+  echo: | ("%textprocess%" text_buildfile.txt --parser-exe "%parsefile%")
 
 )
 

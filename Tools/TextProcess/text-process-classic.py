@@ -38,7 +38,7 @@ class ParseFileError(Exception):
 		self.textEntry = textEntry
 		self.errDesc   = errDesc
 
-def generate_text_entries(lines):
+def generate_text_entries(lines, doTrace):
 	"""takes a compiled file and returns a list of individual text entries"""
 
 	result = []
@@ -66,7 +66,7 @@ def generate_text_entries(lines):
 
 				else:
 					currentStringId = int(match.group(1), base = 0)
-				
+
 				currentDefinition = match.group(2)
 				currentText = ""
 
@@ -76,15 +76,21 @@ def generate_text_entries(lines):
 			if l[-3:] == "[X]": # Line ends in [X] (end of text entry)
 				result.append(TextEntry(currentText, currentStringId, currentDefinition))
 
+				if doTrace:
+					print("TRACE: [generate_text_entries] read {}".format(result[-1].get_pretty_identifier()))
+
 				currentText       = None
 				currentDefinition = None
 
 	return result
 
-def preprocess(fileName, includeDepth = 0):
+def preprocess(fileName, doTrace, includeDepth = 0):
 	if includeDepth > 500:
 		print("Warning: #include depth exceeds 500. Check for circular inclusion.\nCurrent file: " + fileName)
 		return None
+
+	if doTrace:
+		print("TRACE: [preprocess] opening `{}`".format(fileName))
 
 	with open(fileName, 'r') as f:
 		for iLine, line in enumerate(f.readlines()):
@@ -101,7 +107,7 @@ def preprocess(fileName, includeDepth = 0):
 				if len(dirpath) > 0:
 					includee = os.path.join(dirpath, includee)
 
-				for otherLine in preprocess(includee, includeDepth+1):
+				for otherLine in preprocess(includee, doTrace, includeDepth+1):
 					yield otherLine
 
 			else:
@@ -141,7 +147,9 @@ def main(args):
 	argParse.add_argument('--installer', default = 'Install Text Data.event', help = 'name of the installer event file to produce')
 	argParse.add_argument('--definitions', default = 'Text Definitions.event', help = 'name of the definitions event file to produce')
 	argParse.add_argument('--parser-exe', default = None, help = 'name/path of the parser executable')
+	argParse.add_argument('--depends', default = None, nargs='*', help = 'files that text depends on (typically ParseDefinitions.txt)')
 	argParse.add_argument('--force-refresh', action = 'store_true', help = 'pass to forcefully refresh generated files')
+	argParse.add_argument('--verbose', action = 'store_true', help = 'print processing details to stdout')
 
 	arguments = argParse.parse_args(args)
 
@@ -149,7 +157,20 @@ def main(args):
 	outputPath    = arguments.installer
 	outputDefPath = arguments.definitions
 	parserExePath = arguments.parser_exe
-	forceRefresh  = arguments.force_refresh
+	forceRefresh  = True if arguments.force_refresh else False
+	verbose       = True if arguments.verbose else False
+
+	timeThreshold = 0.0
+
+	if not arguments.depends:
+		# Hacky thing to automatically depend on ParseDefinitions.txt if the parser is ParseFile
+
+		if parserExePath and "ParseFile" in parserExePath:
+			if os.path.exists("ParseDefinitions.txt"):
+				arguments.depends = ["ParseDefinitions.txt"]
+
+	if arguments.depends:
+		timeThreshold = max([os.path.getmtime(filename) for filename in arguments.depends])
 
 	sys.excepthook = show_exception_and_exit
 
@@ -161,6 +182,9 @@ def main(args):
 
 	# Read the entries
 
+	if verbose:
+		print("TRACE: [global] start reading input")
+
 	entryList = []
 
 	macroizedInputName = macroize_name(inputPath)
@@ -171,7 +195,7 @@ def main(args):
 		usedStringIds   = []
 		usedDefinitions = []
 
-		for entry in generate_text_entries(preprocess(inputPath)): # create separate files for each text entry
+		for entry in generate_text_entries(preprocess(inputPath, verbose), verbose): # create separate files for each text entry
 			if entry.stringId in usedStringIds:
 				print("WARNING: Duplicate entry for text Id {:03X}! (ignoring)".format(entry.stringId))
 
@@ -199,6 +223,9 @@ def main(args):
 
 	textFolder = os.path.join(cwd, ".TextEntries")
 
+	if verbose:
+		print("TRACE: [global] start generating output")
+
 	if not os.path.exists(textFolder):
 		os.mkdir(textFolder)
 
@@ -225,23 +252,35 @@ def main(args):
 				# As it would not have changed
 
 				textNeedsUpdate = True
+				textModifyTime = 0.0
 
 				if not forceRefresh:
 					if os.path.exists(textFileName):
+						textModifyTime = os.path.getmtime(textFileName)
+
 						with open(textFileName, 'r') as tf:
 							if str(tf.read()) == entry.text:
 								textNeedsUpdate = False
 
+					if textModifyTime < timeThreshold:
+						textNeedsUpdate = True
+
 				# Write text data
 
 				if textNeedsUpdate:
+					if verbose:
+						print("TRACE: [write] output `{}`".format(textFileName))
+
 					with open(textFileName, 'w') as tf:
 						tf.write(entry.text)
 
 				# Write parsed data if we have a parser
 
 				if hasParser:
-					if not os.path.exists(dataFileName) or textNeedsUpdate:
+					if not os.path.exists(dataFileName) or textNeedsUpdate or os.path.getmtime(dataFileName) < textModifyTime:
+						if verbose:
+							print("TRACE: [write] update `{}`".format(dataFileName))
+
 						generate_text_binary(parserExePath, entry, textFileName, dataFileName)
 
 				# Write include
