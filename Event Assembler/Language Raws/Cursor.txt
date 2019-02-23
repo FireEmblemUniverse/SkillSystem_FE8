@@ -1,0 +1,43 @@
+##Flashes cursor at position.
+CURF, 0x2C, 8, -game:FE6 -indexMode:8
+##Position to falsh cursor on.
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+CURF, 0x2D, 8, -game:FE6 -indexMode:8
+##Character to flash cursor on.
+	Character, 4, 2
+
+
+CURF, 0x66, 8, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+CURF, 0x67, 8, -game:FE7 -indexMode:8
+	Character, 4, 2
+
+##Move cursor.
+CUMO, 0x3B20, 4, -game:FE8 -indexMode:8
+##Position to move cursor to.
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+CUMO, 0x3B21, 4, -game:FE8 -indexMode:8
+##Character to move cursor on.
+	Character, 2, 2
+
+##Remove cursor.
+CURE, 0x3B22, 4, -game:FE8 -indexMode:8
+
+
+#Chapters: Tutorial
+CUMO, 0x2E, 8, -game:FE6 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+#Chapters: Tutorial
+CURE, 0x2F, 4, -game:FE6 -indexMode:8
+
+
+#Chapters: None 
+CUMO, 0x68, 8, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+#Chapters: None
+CURE, 0x69, 4, -game:FE7 -indexMode:8

@@ -1,0 +1,21 @@
+#Delays event execution until camera has finished moving
+WM_WAITFORCAM, 0x8920, 4, -game:FE8 -indexMode:8
+
+#Delays event execution until dots/highlights have finished
+WM_WAITFORFX, 0x9920, 4, -game:FE8 -indexMode:8
+
+#Don't execute more events until sprites have finished moving	
+WM_WAITFORSPRITES, 0xAC40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+#Always 0xFFFF
+	Value2, 4, 2
+#Always 0xFFFF
+	Value3, 6, 2
+
+WM_WAITFORTEXT, 0xB120, 4, -game:FE8 -indexMode:8
+
+#Delays event execution until highlights are cleared
+WM_WAITFORFXCLEAR1, 0xB520, 4, -game:FE8 -indexMode:8
+
+#Delays event execution until highlights are cleared
+WM_WAITFORFXCLEAR2, 0xB720, 4, -game:FE8 -indexMode:8

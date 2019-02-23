@@ -1,0 +1,7 @@
+
+#Shows movement & attack range for unit
+SHOW_ATTACK_RANGE, 0x3120, 4, -game:FE8 -indexMode:8
+	Char, 2, 2
+
+#Hides currently displayed movement & attack range
+HIDE_ATTACK_RANGE, 0x3121, 4, -game:FE8 -indexMode:8

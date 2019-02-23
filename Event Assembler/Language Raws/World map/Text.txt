@@ -1,0 +1,63 @@
+##Shows text on the world map.
+TEXTWM, 0xB3, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+##Put text box to the top.
+TEXTBOXTOTOP, 0xB5, 4, -game:FE7 -indexMode:8
+
+##Put text box to the bottom.
+TEXTBOXTOBOTTOM, 0xB4, 4, -game:FE7 -indexMode:8
+
+##Scroll text.
+SCRO, 0x14, 4, -game:FE7 -indexMode:8
+
+##Clears text from the box.
+REMOVETEXTBOX, 0xBC, 8, -game:FE7 -indexMode:8
+
+
+WM_SHOWTEXTWINDOW, 0xAF40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Speed, 4, 2
+	Speed/Fade, 6, 2
+
+#Applies the filigree/decoration to the text window.
+WM_TEXTDECORATE, 0xB320, 4, -game:FE8 -indexMode:8
+
+WM_TEXT, 0xC640, 8, -game:FE8 -indexMode:8
+	Text ID, 4, 2
+
+WM_TEXTSTART, 0xC720, 4, -game:FE8 -indexMode:8
+
+WM_REMOVETEXT, 0xC920, 4, -game:FE8 -indexMode:8
+
+#Chapters: Tutorial
+TEXTWM, 0x56, 8, -game:FE6 -indexMode:8
+	Text ID, 4, 4
+
+#Chapters: 1
+##Puts text box to bottom of the screen.
+TEXTBOXTOBOTTOM, 0x57, 4, -game:FE6 -indexMode:8
+
+#Chapters: 1
+#Puts text box to top of the screen.
+TEXTBOXTOTOP, 0x58, 4, -game:FE6 -indexMode:8
+
+#Chapters: Tutorial
+##Removes the text box on world map.
+REMOVETEXTBOX, 0x5D, 4, -game:FE6 -indexMode:8
+
+#Chapters: Tutorial, 1
+##Shows name of a place on the world map. 
+SHOWMAPTEXT, 0x62, 20, -game:FE6 -indexMode:8
+##Map object ID of the text.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position of the text on the world map in pixels.
+	Text position, 8, 4, -coordinates:2 -preferredBase:10
+##Which places name to show.
+	Place name ID, 12, 4
+##Style of the text.
+	Style, 16, 2
+##Color of the text.
+	Color, 18, 2

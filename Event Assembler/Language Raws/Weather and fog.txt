@@ -1,0 +1,30 @@
+##Changes vision distance.
+VCBF, 0x9E, 4, -game:FE7 -indexMode:8
+##Distance to change to.
+	Vision distance, 2, 1, -preferredBase:10
+
+##Changes vision distance.
+VCWF, 0x9D, 4, -game:FE7 -indexMode:8
+##Distance to change to.
+	Vision distance, 2, 1, -preferredBase:10
+
+VCWF, 0x2920, 4, -game:FE8 -indexMode:8
+	Vision distance, 2, 1, -preferredBase:10
+
+##Changes weather.
+WEA1, 0x9B, 4, -game:FE7 -indexMode:8
+##Weather type to change to.
+	Weather type ID, 2, 1
+
+WEA1, 0x2821, 4, -game:FE8 -indexMode:8
+	Weather type ID, 2, 1
+
+##Changes weather.
+WEA2, 0x9C, 4, -game:FE7 -indexMode:8
+##Weather type to change to.
+	Weather type ID, 2, 1
+
+
+#Chapters: 20A
+WEA1, 0x4C, 8, -game:FE6 -indexMode:8
+	Weather type ID, 4, 4

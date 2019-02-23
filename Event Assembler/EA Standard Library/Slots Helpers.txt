@@ -1,0 +1,4 @@
+#ifdef _FE8_
+    #define slotsParam(dest, param1, param2) "(param2<<8 | param1<<4 | dest)"
+    #define slotsParam(dest, src) "(src<<8 | dest<<4 | dest)"
+#endif

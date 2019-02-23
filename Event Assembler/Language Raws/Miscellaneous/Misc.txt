@@ -1,0 +1,4 @@
+#Generates a random number between 0 and the parameter
+#Result is stored to memory slot 0xC
+RANDOMNUMBER, 0x0420, 4, -game:FE8 -indexMode:8
+	Maximum Number, 2, 2

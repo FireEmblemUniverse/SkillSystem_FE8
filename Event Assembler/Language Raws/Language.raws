@@ -1,0 +1,120 @@
+Files:
+ All files with extension .txt in this folder or it's subfolder are 
+ included.
+ 
+
+Code:
+ Code syntax is the following:
+  CodeName, ID, Length, flags
+ If ID is 0, then it is ignored. If no Flags are used, last ',' 
+ can be left out. Code is then followed by 0 or more parameters
+ and ended with an empty line. If two codes have same names, they
+ must have either different amount of parameters or one or more
+ of the parameters must have different amount of dimensions.
+
+
+Parameter:
+ Each code has 0 or more parameters. Syntax is following:
+  ParameterName, Position, Length, flags
+ If no Flags are used, last ',' can be left out. The position must
+ be greater or equal than zero, or greater or equal than 2 if code
+ has an ID. The Sum of Position and Length must be smaller than
+ length of the code and the parameters can't use the same bits 
+ in code. There also must be white space before the ParameterName.
+
+
+Flags:
+ Flag syntax is one of these:
+  -flagName
+  -flagName:Value
+  -flagName:Value1:Value2:...
+  -flagName:ValueBeg-ValueEnd
+ Flags are separated by white space.
+
+
+Code flags:
+ language, game
+  Determines the language/game where code can be used. Current values
+  are: FE7, FE8, FE6. Multiple values can be specified.
+
+ priority
+  Affects where disassembly uses the code. Existing priorities are:
+  main, low, pointer, unit, moveManual, shopList, ballista, ASM,
+  battleData, reinforcementData and unknown.
+
+ repeatable
+  Means that the last parameter can be repeated and for every 
+  repetition a new code is made. Currently requires code to have
+  only one parameter.
+
+ unsafe
+  EA normally checks for things like parameter collisions and
+  other index errors. With this flag, you can bypass them.
+  Do not use unless you know what you are doing.
+
+ end
+  Means that the code ends disassembly of particular branch in 
+  chapter-wide disassembly or in disassembly to end. 
+
+ indexMode
+  Affect how many bits lengths and positions mean. 8 means lengths 
+  and positions are in bytes. Default is 1.
+
+ terminatingList
+  Means that the code is a variable length array of parameters which
+  ends in specified value. Requires for code to have only one parameter.
+
+ offsetMod
+  The modulus in which the beginning offset of the code has to be 0.
+  Default is 4. 
+
+ noAssembly
+  Forbids code from participating in assembly.
+
+ noDisassembly
+  Forbids code from participating in disassembly.
+
+
+Parameter flags:
+ pointer
+  Means that the parameter will automatically be to/from GBA pointer 
+  when assembling/disassembling. You can also specify the priority
+  of pointed code, which allows EA to disassemble the pointed code
+  in some disassembly modes.
+
+ coordinates, coordinate
+  Specifies the amount of coordinates in the parameter. If range of 
+  values is specified, the largest value is considered the real amount.
+  Unspecified parameters in assembly will default to 0. Default amount
+  of coordinates is 1.
+
+ preferredBase
+  Preferred number base of parameter upon disassembly. Allowed values 
+  are 2, 10 and 16. Default is 16.
+
+ fixed
+  Means that parameter is not used as input parameter and instead
+  the name of the parameter is intrepretted as number and applied 
+  to parameter position. Fixed parameters do not effect code
+  identification in assembly.
+
+ signed
+  Makes parameter handle values with highest bit as 1 as negative
+  numbers.
+
+
+Comments:
+ Lines that begin with # will be ignored.
+
+Doc comments:
+ Lines starting with ## are considered as documentation comments.
+ Codes that have doc-comments with them can get documentation 
+ automatically generated for it. Each ## line is added for the 
+ next code or parameter. Codes with same names will share their
+ doc-comments and so will their parameters with same names.
+ You can generate EA code documentation with LanguageRawsAnalyzer,
+ which comes with EA's source code. Run LanguageRawsAnalyzer from
+ command line with first parameter as the langauge raws folder,
+ the second parameter as the extension of the langauge raws files,
+ which is mostly .txt and the third parameter as file to write the
+ document to.

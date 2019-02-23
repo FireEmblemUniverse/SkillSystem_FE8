@@ -1,0 +1,94 @@
+
+##Branch if unit is not fielded.
+GOTO_IFNUF, 0x57, 12, -game:FE7 -indexMode:8
+	Unknown, 2, 2
+	Conditional ID, 4, 2
+##Character to check.
+	Character, 8, 2
+
+#Chapters: 3
+##Branch if character is active.
+GOTO_IFCA, 0x24, 12, -game:FE6 -indexMode:8
+	Conditional ID, 4, 4
+##Character to check.
+	Character, 8, 4
+
+##Branch if character is not active.
+GOTO_IFCNA, 0x4E, 12, -game:FE7 -indexMode:8
+	Unknown, 2, 2
+	Conditional ID, 4, 4
+##Character to check.
+	Character, 8, 2
+
+##Branch if character is living (not dead)
+GOTO_IFCL, 0x55, 16, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+##Character to check.
+	Character, 8, 2
+	0, 12, 2, -fixed
+
+GOTO_IFCL, 0x55, 16, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Character, 8, 2
+##Unknown parameter, usually 0.
+	Dunno, 12, 2
+
+#Stores the character ID of the "active" charcter (for villages, AREA events,etc) to memory slot 0xC.
+CHECK_ACTIVE, 0x2E21, 4, -game:FE8 -indexMode:8
+
+#Following commands check various things about a selected unit.
+#Like all unit-targeting commands in FE8, special inputs are:
+# 0xFFFF: checks active unit (currently selected for moving/attacking, or set using SET_ACTIVE)
+# 0xFFFE: checks unit at coordinates stored to Memory slot 0xB
+#         Note, conditionals may hang if there is no unit at this co-ord.
+#         It may be useful to use CHECK_AT with 0xFFFF.
+#         See the node above CHECK_ALLEGIANCE.
+# 0xFFFD: checks unit of ID stored to Memory slot 0x2
+
+#Results of these commands are stored to Memory Slot 0xC.
+#Returns true if this character exists anywhere, alive or dead.
+CHECK_EXISTS, 0x3320, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Returns status effect unit is experiencing, if any
+CHECK_STATUS, 0x3321, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHECK_ALIVE, 0x3322, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Also checks if the unit is alive
+CHECK_DEPLOYED, 0x3323, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Check if the active character has the same character ID as the parameter.
+CHECK_ACTIVEID, 0x3324, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Returns 0x0 for a player character, 0x2 for an enemy, 0x1 for Other team
+#Hangs if 0xFFFE mode is used and no character is at the coord.
+#Use CHECK_AT beforehand.
+CHECK_ALLEGIANCE, 0x3325, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Store the result to slot 0xC.
+CHECK_COORDS, 0x3326, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Stores character class index into slot 0xC
+CHECK_CLASS, 0x3327, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Stores character luck into slot 0xC
+CHECK_LUCK, 0x3328, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Stores the char id of unit at given position into Slot 0xC (not really useful since most codes allowing for char ids allow for use slot B for position too, via 0xFFFE)
+CHECK_AT, 0x2E20, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+#Checks if given unit is in Area defined by Rect (X, Y, X+W, Y+H) and stores 0 (false) or 1 (true) to slot 0xC accordingly
+CHECK_INAREA, 0x3640, 8, -game:FE8 -indexMode:8
+	Char,       2, 2
+	TopLeftPos, 4, 2, -coordinates:2 -preferredBase:10
+	Size,       6, 2, -coordinates:2 -preferredBase:10

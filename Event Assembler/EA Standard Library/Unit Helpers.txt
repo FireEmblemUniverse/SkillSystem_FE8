@@ -1,0 +1,247 @@
+//NoItems definition for... obvious.
+#ifdef _FE6_
+#define NoItems [0x00,0x00,0x00,0x00]
+#endif
+
+#ifdef _FE7_
+#define NoItems [0x00,0x00,0x00,0x00]
+#endif
+
+#ifdef _FE8_
+#define NoItems [0x00,0x00,0x00,0x00]
+#endif
+
+//Move manual helpers
+#ifdef _FE7_
+#define up 3
+#define down 2
+#define left 0
+#define right 1
+#define Up 3
+#define Down 2
+#define Left 0
+#define Right 1
+#define highlight(time) "9 time"
+#define notice 0xA
+#define speed(newSpeed) "0xC newSpeed"
+#endif
+
+#ifdef _FE8_
+#define up 3
+#define down 2
+#define left 0
+#define right 1
+#define Up 3
+#define Down 2
+#define Left 0
+#define Right 1
+#endif
+
+//Unit data level helpers
+#ifdef _FE6_
+#define Ally 0
+#define NPC 1
+#define Enemy 2
+#define Level(level,side,autoLevel) level*8+side*2+autoLevel
+#endif
+
+#ifdef _FE7_
+#define Predetermined 0x50
+#define Ally 0
+#define NPC 1
+#define Enemy 2
+#define Level(level,side,autoLevel) level*8+side*2+autoLevel
+#endif
+
+#ifdef _FE8_
+#define Predetermined 0x50
+#define Ally 0
+#define NPC 1
+#define Enemy 2
+#define Level(level,side,autoLevel) level*8+side*2+autoLevel
+#endif
+
+//Unit flags
+#ifdef _FE8_
+#define MonsterTemplate 1
+#define DropItem 2
+#define DunnoFlag1 4
+#define DunnoFlag2 8
+#endif
+
+//Unit condition helpers
+#ifdef _FE7_
+#define Visible 1
+#define GrayedOut 2
+#define OnAnotherUnit 4 //????
+#define Rescuing 0x10
+#define IsBeingResqued 0x20
+#define InBallista 0x800
+#define UsableOrSomething 0x10000
+#define MerlinusAndAthosOrSomething 0x400000
+
+#endif
+
+//Warp effect, under construction
+#ifdef _FE7_
+#define WarpIn(Char,Class,X,Y)	"WARP [X,Y] 1; LOEV Char Class [X,Y]; _ASM0x42 $20AB9"
+#define WarpIn(UnitPtr,X,Y)		"WARP [X,Y] 1; LOU1 UnitPtr; _ASM0x42 $20AB9"
+#define WarpOut(X,Y)			"WARP [X,Y] 0; DISA [X,Y]; _ASM0x42 $20AB9"
+#define WarpOut(Char)			"WARP Char  0; DISA Char; _ASM0x42 $20AB9"
+#endif
+
+#ifdef _FE8_
+#define WarpIn(Char,X,Y)		"_SETVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
+#define WarpOut(Char,X,Y)		"_SETVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
+#endif
+
+
+//For compability, time ignored
+#ifdef _FE6_
+#define FlashCursor(X,Y,time) "CUMO [X,Y]; STAL time; CURE"
+#define FlashCursor(character,time) "CURF character"
+#define FlashCursor(character) "CURF character"
+#endif
+
+//For compability, time ignored
+#ifdef _FE7_
+#define FlashCursor(X,Y,time) "CUMO [X,Y]; STAL time; CURE"
+#define FlashCursor(character,time) "CURF character"
+#define FlashCursor(character) "CURF character"
+#endif
+
+//CURF replacer for FE8
+#ifdef _FE8_
+#define FlashCursor(X,Y,time) "CUMO [X,Y]; STAL time; CURE"
+#define FlashCursor(character,time) "CUMO character; STAL time; CURE"
+#endif
+
+
+//Scripted battle helpers
+#ifdef _FE7_
+#define ScriptedBattle 0
+#define MapBattle 0x100
+#define AttackerStatsZero 0x10000 
+#define Uncontrolled 0x1000000
+#endif
+
+#ifdef _FE8_
+#define StartBattle                           "_SETVAL 0xD 0x0"
+#define NormalDamage(combatantNumber,damage)  "_SETVAL 1 combatantNumber+damage*0x100;            SAVETOQUEUE"
+#define CriticalHit(combatantNumber,damage)   "_SETVAL 1 combatantNumber+damage*0x100+0x00010000; SAVETOQUEUE"
+#define MissedAttack(combatantNumber,damage)  "_SETVAL 1 combatantNumber+damage*0x100+0x00020000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00040000; SAVETOQUEUE"
+#define Silencer(combatantNumber,damage)      "_SETVAL 1 combatantNumber+damage*0x100+0x00080000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00100000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00200000; SAVETOQUEUE"
+#define SureShot(combatantNumber,damage)      "_SETVAL 1 combatantNumber+damage*0x100+0x00400000; SAVETOQUEUE"
+#define Poison(combatantNumber,damage)        "_SETVAL 1 combatantNumber+damage*0x100+0x00400000; SAVETOQUEUE"
+#define DevilReversal(combatantNumber,damage) "_SETVAL 1 combatantNumber+damage*0x100+0x00800000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x01000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x02000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x04000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x08000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x10000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x20000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x40000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x80000000; SAVETOQUEUE"
+#define Pierce(combatantNumber,damage)        "_SETVAL 1 combatantNumber+damage*0x100+0xC0000000; SAVETOQUEUE"
+#define EndAttack                             "_SETVAL 1 0xFFFFFFFF;                              SAVETOQUEUE"
+#endif
+
+//Battle data helpers
+#ifdef _FE6_
+#define AttackerHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define AttackerCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define EndOfBattle 							 BLDT
+#endif
+
+#ifdef _FE7_
+#define AttackerHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define AttackerCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define AttackerSilencer(lastAttack,targetHP) 	"BLDT 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 lastAttack 0 0 0 0 0 0 0 targetHP"
+#define DefenderSilencer(lastAttack,targetHP) 	"BLDT 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 lastAttack 0 0 1 0 0 0 0 targetHP"
+#define EndOfBattle 							 BLDT
+#endif
+
+//Side changers
+#ifdef _FE7_
+#define TurnAlly(char) "CUSI char 0x00"
+#define TurnEnemy(char) "CUSI char 0xA7"
+#define TurnNPC(char) "CUSI char 0x47"
+#define BecomeAlly(Char)      "CUSI Char $00"
+#define BecomeEnemy(Char)     "CUSI Char $A7"
+#define BecomeNPC(Char)       "CUSI Char $47"
+#endif
+
+#ifdef _FE8_
+#define TurnAlly(char) "CUSA char"
+#define TurnEnemy(char) "CUSE char"
+#define TurnNPC(char) "CUSN char"
+#define BecomeAlly(char) "CUSA char"
+#define BecomeEnemy(char) "CUSE char"
+#define BecomeNPC(char) "CUSN char"
+#endif
+
+//Misc stuff
+#ifdef _FE6_
+#define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#define PromoteMainChar "ASMC 0x6D0E5"
+#endif
+
+#ifdef _FE7_
+#define Rescue(char,rescuer) "DISA char; ENUN; UNCM rescuer 0x10; STAL 0x10"
+#define Drop(UnitPtr,Rescuer) "LOU1 UnitPtr; ENUN; UNCR Rescuer 0x10; ENUN" //Reload character in new position.
+#define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#define UnitsInvisible "ASMC 0x7A939; ASMC 0x7A9D5"
+#define PromoteMainChar "ASMC 0x79AF5"
+#define UnitClear "ASMC $7A8B9"
+#define ClearAllUnits "ASMC 0x7A8B9"
+#define LevelMerlinus "ASMC 0x79B5D"
+#define FancyAssasinEntry(X,Y) "_0xE3 0xCB401C [X*0x10-1,Y*0x10-1]; SOUN 0x2F6"
+#define FancyThiefEntry(X,Y) "_0xE3 0xCAE5F8 [X*0x10-1,Y*0x10-1]; SOUN 0x2F6"
+#endif
+
+
+#ifdef _FE8_
+#define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#define LevelUnchosenLord "ASMC 0x8659D"
+//#define WarpIn(unit, xcoord, ycoord) "SVAL 2 unit; _WARP 0xFFFF 0xFFFD [xcoord, ycoord]; CALL 0x9EE4F8"
+//#define WarpIn(xfrom, yfrom, xcoord, ycoord) "SVAL 0xB (xfrom + (yfrom*0x10000)); _WARP 0xFFFE 0xFFFD [xcoord, ycoord]; CALL 0x9EE4F8"
+#endif
+
+
+
+//Death quotes by events macro
+#ifdef _FE7_
+#ifndef DQTableOffset
+#define DQTableOffset 0xC9F2EC
+#endif
+#ifndef BQTableOffset
+#define BQTableOffset 0xC9EDA0
+#endif
+
+#define DeathQuoteTable(index,Character,Chapter,TextPointer,EventPointer,TriggerID) "PUSH; ORG DQTableOffset+(16*index); BYTE Character Chapter 0x0 0x0; SHORT TextPointer 0x0; POIN EventPointer; BYTE TriggerID 0x0 0x0 0x0; POP"
+#define DeathQuoteTable(index,Character,TextPointer,EventPointer,TriggerID) "PUSH; ORG DQTableOffset+(16*index); BYTE Character 0x43 0x0 0x0; SHORT TextPointer 0x0; POIN EventPointer; BYTE TriggerID 0x0 0x0 0x0; POP"
+#define BattleQuoteTable(index,Character1,Character2,Chapter,TextPointer,EventPointer,ID) "PUSH; ORG BQTableOffset+(16*index); BYTE Character1 Character2 Chapter 0x0; SHORT TextPointer 0x0; POIN EventPointer; BYTE ID 0x0 0x0 0x0; POP"
+#endif
