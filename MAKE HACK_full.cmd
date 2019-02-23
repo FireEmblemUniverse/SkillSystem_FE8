@@ -19,41 +19,53 @@ set "c2ea=%~dp0Tools\C2EA\c2ea"
 set "texp=%~dp0Tools\TextProcess\textprocess_v2"
 set "ups=%~dp0Tools\ups\ups"
 
+@rem set %~dp0 into a variable because batch is stupid and messes with it when using conditionals?
+
+set "base_dir=%~dp0"
+
 @rem do the actual building
+
+echo Copying ROM
 
 copy "%source_rom%" "%target_rom%"
 
-if /I NOT "%1"==quick (
+if /I NOT [%1]==[quick] (
 
   @rem only do the following if this isn't a make hack quick
 
-  echo "Processing tables"
+  echo:
+  echo Processing tables
 
-  cd "%~dp0Tables"
+  cd "%base_dir%Tables"
   echo: | ("%c2ea%" "%source_rom%")
 
-  echo "Processing text"
+  echo:
+  echo Processing text
 
-  cd "%~dp0Text"
+  cd "%base_dir%Text"
   echo: | ("%texp%" text_buildfile.txt)
 
 )
 
-echo "Assembling"
+echo:
+echo Assembling
 
-cd "%~dp0Event Assembler"
-Core A FE8 "-output:%target_rom%" "-input:%~dp0ROM Buildfile.event"
+cd "%base_dir%Event Assembler"
+Core A FE8 "-output:%target_rom%" "-input:%main_event%"
 
-if /I NOT "%1"==quick (
+if /I NOT [%1]==[quick] (
 
   @rem only do the following if this isn't a make hack quick
 
-  echo "Generating patch"
+  echo:
+  echo Generating patch
 
-  cd "%~dp0"
+  cd "%base_dir%"
   %ups% diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
 
 )
 
-echo "Done!"
+echo:
+echo Done!
+
 pause
