@@ -72,7 +72,8 @@ POP
   #include "MSS/ModularStatScreen.event"
 
   //Expanded Suspend + Debuffs
-  #include "SuspendDebuffs/SuspendDebuffs.event"
+  #include "SuspendDebuffs/SuspendExpansion.event"
+  #include "SuspendDebuffs/Debuffs.event"
 
   //Stat Screens palette by allegiance
   // #include "StatScreenAllegiance/StatScreenAllegiance.event"
