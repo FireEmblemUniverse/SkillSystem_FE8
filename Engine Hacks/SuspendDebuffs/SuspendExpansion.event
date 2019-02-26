@@ -35,13 +35,13 @@
   saveHack:
     #incbin "asm/Expanded Suspend/SaveMoreBytesHack.dmp"
     WORD DebuffTable
-    WORD 0x900
+    WORD DebuffTableSize
 
   ALIGN 4
   loadHack:
     #incbin "asm/Expanded Suspend/LoadMoreBytesHack.dmp"
     WORD DebuffTable
-    WORD 0x900
+    WORD DebuffTableSize
 
   }
 
