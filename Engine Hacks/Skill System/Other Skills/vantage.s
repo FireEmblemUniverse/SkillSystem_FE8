@@ -33,9 +33,9 @@ ldsb r3, [r5,r3] @currhp
 cmp r3, r2
 bgt Normal
 @swap them
-eor r4,r5
-eor r5,r4
-eor r4,r5
+@eor r4,r5
+@eor r5,r4
+@eor r4,r5
 @if showing animation
 @ ldr     r0,=0x802b444    @pointer to the current round
 @ ldr     r0, [r0]          @current round pointer (usually 203a608)

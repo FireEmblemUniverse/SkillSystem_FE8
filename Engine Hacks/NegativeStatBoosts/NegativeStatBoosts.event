@@ -1,0 +1,37 @@
+#ifndef NEGATIVE_STAT_BOOSTS_DISPLAY
+#define NEGATIVE_STAT_BOOSTS_DISPLAY
+
+// Display Negative Stat Boosts correctly.
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+    ORG $4bf0
+      jumpToHack(NegStatBoosts)
+
+    ORG $5900b0 //minus sign position fix
+      WORD 0 0 0 $3ff0 $eaac $3ff0
+
+    ORG $86ae2 //drawing the bars
+      SHORT $46C0
+      jumpToHack(NegativeStatBars)
+  POP
+
+  ALIGN 4
+  NegStatBoosts:
+    #incbin "asm/negativestatboosts.dmp"
+
+  ALIGN 4
+  NegativeStatBars:
+    #incbin "asm/negativestatbar.dmp"
+
+  }
+
+#else // _FE8_
+  ERROR Negative Stat Boosts Display hack is for FE8
+#endif // _FE8_
+
+#endif // NEGATIVE_STAT_BOOSTS_DISPLAY

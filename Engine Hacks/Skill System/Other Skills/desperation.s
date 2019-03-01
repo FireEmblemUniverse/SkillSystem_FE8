@@ -11,6 +11,11 @@
 
 @check attacker's hp
 ldr r3, [sp]
+
+ldr r0, =0x203a4ec @no vantage + desp shenanigans, that's unfair lol
+cmp r3, r0
+bne NoDesperation 
+
 ldrb r0, [r3,#0x12] @max
 ldrb r1, [r3, #0x13] @curr
 lsr r0, #1
@@ -95,8 +100,10 @@ mov r0, r5
 and r0, r2
 orr r0, r1
 str r0, [r3]
-ldr r0, [sp, #4] @defender
-ldr r1, [sp] @attacker
+  ; ldr r0, [sp, #4] @defender
+  ; ldr r1, [sp] @attacker
+  ldr r1, [sp, #4] @defender
+  ldr r0, [sp] @attacker
 blh 0x802b018 @battle_oneround
 
 EndBattle:

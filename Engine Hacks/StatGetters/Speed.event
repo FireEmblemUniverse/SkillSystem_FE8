@@ -5,6 +5,9 @@
 
 pSpeedModifiers: // Speed
 	POIN prAddUnitSpeed prHalveIfRescuing prHalveIfCapturing prDebuffSpd prAddEquipSpeed prRallySpd prLifeAndDeathBonus prSkillFury
+	#ifdef __DebuffMinZero__
+	POIN prMinZero
+	#endif
 WORD 0
 
 prAddUnitSpeed:

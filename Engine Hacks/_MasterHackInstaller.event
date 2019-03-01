@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////
 
 #include "Extensions/Hack Installation.txt"
-#include "_UnitMenuDefs.txt"
+#include "_UnitMenuDefs.event"
 
 ////////////////////////////////SUPPORTING CHANGES
 PUSH
@@ -26,34 +26,17 @@ ORG FreeSpaceBLRange //defined in custom definitions
 #define inBLRange
 
   //Talk and Support don't end your turn
-  #include "ContemporaryTalkSupport.event"
-
-  //menu semitransparency
-  #include "Semitransparency_changes.event"
+  #include "ContemporaryTalkSupport/ContemporaryTalkSupport.event"
 
   //Hold L to toggle Anims
-  #include "LToggle.event"
+  #include "LToggle/LToggle.event"
 
   //negative wt/crit
-  #include "NegativeDisplay.event"
-
-  //Rescuees are drawn
-  // #include "RescueMapSprite.event"
-
-  //Expanded Suspend + Debuffs
-  #include "Suspend_Debuffs.event"
-
-  //Move and Con getters
-  // #include "MovConGetters/FE8-Getters EA.txt"
+  #include "NegativeWStatDisplay/NegativeDisplay.event"
 
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
   #incbin "Skill System/Internals/unset attack flag.dmp"
-
-  //page 4 helptext
-  RText_Page4_ladder:
-  #incbin "MSS/rtext_page4.dmp"
-  POIN RText_Page4
 
 #undef inBLRange
 POP
@@ -62,73 +45,59 @@ POP
 //start of Free space
 
   //HP Bars (and effective weapon warning)
-  #include "HPbars.txt"
+  #include "HpBars/HpBars.event"
 
   //Improved Sound Mixer
-  #include "SoundMixer.txt"
+  #include "ImprovedSoundMixer/SoundMixer.event"
 
   //Danger Zone (select button)
-  #include "DangerZone.event"
+  #include "DangerZone/DangerZone.event"
 
   //Event Writer ASMC
-  #include "EventWriter.txt"
+  #include "EventWriter/EventWriter.event"
 
   //Casual Mode (based on Event ID 0xB0)
-  #include "CasualMode.event"
+  #include "CasualMode/CasualMode.event"
 
   //Movement Arrow doesn't update on allies
-  #include "MovementArrowFix.event"
+  #include "MovementArrowHack/MovementArrowHack.event"
 
   //negative stat boosts
-  #include "NegativeStatBoosts.event"
+  #include "NegativeStatBoosts/NegativeStatBoosts.event"
 
   //Dragon Veins
-  #include "DragonVeins.event"
+  #include "DragonVeins/DragonVeins.event"
 
   //Modular Stat Screen
-  #include "ModularStatScreen.event"
+  #include "MSS/ModularStatScreen.event"
+
+  //Expanded Suspend + Debuffs
+  #include "SuspendDebuffs/SuspendDebuffs.event"
 
   //Stat Screens palette by allegiance
-  // #include "StatScreenAllegiance.event"
+  // #include "StatScreenAllegiance/StatScreenAllegiance.event"
 
-  //Allow Supply to be used in Prologue:
-  PUSH
-  ORG $23f6e //Access Supply
-  SHORT 0
+  //menu semitransparency
+  #include "Misc/SemitransparencyChanges.event"
 
-  ORG $31646 //send to supply
-  SHORT 0
-  POP
-
-  //Send list of items in Slot 1 to convoy
-  SendToConvoy:
-  #incbin "ASM/sendToConvoyASMC.dmp"
-
+  #include "Misc/PrologueSupply.event"
+  
+  //Item Range Fix
+  #include "FE8-Item Range Fix/FE8-Item Range EA.event"
+  
   //Chapter names as text
-  #include "fe8_chnames.event"
+  #include "TextChNames/TextChNames.event"
 
   //PC and Generic Music Hack (writes to e80000/e90000)
-  // #include "PC_and_Generic_Music_FE8.event"
+  // #include "Misc/PCAndGenericMusic.event"
 
-  //Force enemies to rescue
-  ALIGN 4
-  RescueASMC:
-  #incbin "RescueEvent.dmp"
-  #define Rescue(frontx,fronty,backx,backy) "SVAL 0x1 (fronty*0x10000 + frontx); SVAL 0x2 (backy*0x10000 + backx); ASMC RescueASMC|1"
-
-  //Spawn new traps
-  ALIGN 4
-  LoadTrapsASMC:
-  #define AddTraps(pointer) "SVAL 1 pointer|0x8000000; ASMC LoadTrapsASMC|1"
-  #incbin "ASM/NewTrapInitializer.dmp"
+  #include "EventRescue/EventRescue.event"
+  #include "EventAddTraps/EventAddTraps.event"
+  #include "EventSendToConvoy/EventSendToConvoy.event"
 
   //Change Sick Status to Freeze
-  #include "Freeze.event"
-
-  //Freeze All ASMC
-  ALIGN 4
-  FreezeAllASMC:
-  #incbin "ASM/freezeall.dmp"
+  #include "Freeze/Freeze.event"
+  #include "Freeze/EventFreeze.event"
 
   ALIGN 4
   #include "Skill System/Master Skill Installer.event"
@@ -147,86 +116,4 @@ POP
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
   // #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
 
-ALIGN 4
-
-
-  //Repoint Unit Menu
-  PUSH
-    ORG $59D1F8
-    POIN UnitMenuTable
-  POP
-
-  ALIGN 4         //Insert new commands where you want them to appear in the menu
-  UnitMenuTable:
-  //Use the macro MenuCommand(name,description,colour,usability,effect)
-  //Color options: NormalText, GrayText, BlueText, OrangeText, GreenText (flashes), BlackText
-  //MenuCommand(DualAtkTxtID,DualAtkDescId,0,DualAtkCheck,DualAtkSelected) 
-
-  PUSH
-    ORG $59d1f2   //Make the unit menu wider (to fit longer words)
-    BYTE 0x9
-    ORG $1d4fa
-    BYTE 01 //left x coord
-    ORG $1d4fc
-    BYTE $14 //right x coord
-  POP
-
-  UM_Seize
-  MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
-  // UM_Attack
-  MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
-  // UM_Attack_B
-  MenuCommand(0x67b, 0x6c0, NormalText, $24a28, AttackEffect, $22c31, $22c99)
-  //Lunge
-  MenuCommand(UM_Lunge, UM_LungeDesc, NormalText, LungeUsability, LungeEffect, $22c31, $22c99)
-  //mercy
-  MenuCommand(UM_Mercy, UM_MercyDesc, NormalText, MercyUsability, MercyEffect, $22c31, $22c99)
-  //gamble
-  MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect, $22c31, $22c99)
-  //capture
-  MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
-  UM_Staff
-  UM_Ride
-  UM_Exit
-  UM_Play
-  UM_Dance
-  UM_Steal
-  UM_Summon
-  UM_Summon_DK
-  UM_Pick
-
-  //Rally
-  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyUsability, RallyEffect)
-
-  // UM_Talk
-  MenuCommand(0x680, 0x6c9, GreenText, 0x23c81, 0x23cc5)
-  // UM_Support
-  MenuCommand(0x681, 0x6ca, GreenText, 0x23d15, 0x23d65)
-  UM_Visit
-  UM_Chest
-  UM_Door
-  UM_Armory
-  UM_Vendor
-  UM_Secret
-  UM_Arena
-  
-  // Shove & cie
-  MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, prShoveCommand_Usability,      prShoveCommand_Effect)
-  MenuCommand(UM_Smite,      UM_SmiteDesc,      NormalText, prSmiteCommand_Usability,      prSmiteCommand_Effect)
-  MenuCommand(UM_Pivot,      UM_PivotDesc,      NormalText, prPivotCommand_Usability,      prPivotCommand_Effect)
-  MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Usability, prRepositionCommand_Effect)
-  MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
-  
-  UM_Rescue
-  UM_Give
-  UM_Take
-  // MenuCommand(0x689, 0x6c5, 0, 0x228a4, RescueEffect) //rescue
-  // MenuCommand(UMText_Transfer,UMText_TransferDesc,GreenText,TransferUsability,TransferTarget) //transfer
-  // MenuCommand(UMText_Switch,UMText_SwitchDesc,GreenText,SwitchUsability,SwitchCommand)   //switch
-  UM_Drop
-
-  UM_Item
-  UM_Trade
-  UM_Supply
-  UM_Wait
-  UM_Separator 
+  #include "UnitMenu.event"
