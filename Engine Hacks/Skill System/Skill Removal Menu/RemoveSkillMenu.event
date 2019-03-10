@@ -19,6 +19,10 @@
 	(ASMC_HasSkill|1)
 		kinda bonus, checks if unit in slot 2 has skill in slot 1 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
 
+	(ASMC_ForgetSkill|1)
+		also bonus, has unit in slot 2 forget skill in slot 1 (slot C holds 1 if successful, 0 otherwise)
+		Doesn't display any kind of popup or anything
+
 	(prLearnNewSkill|1)
 		Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent proc
 		Returns:   r0 = proc (if you really need it)
@@ -112,6 +116,10 @@ ALIGN 4
 ASMC_HasSkill:
 	#incbin "asm/ASMC/ASMC_HasSkill.dmp"
 	POIN (SkillTester|1)
+
+ALIGN 4
+ASMC_ForgetSkill:
+	#incbin "asm/ASMC/ASMC_ForgetSkill.dmp"
 
 ALIGN 4
 prLearnNewSkill:
