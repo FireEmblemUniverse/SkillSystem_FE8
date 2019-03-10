@@ -1,0 +1,70 @@
+#ifndef HAX_POPR
+#define HAX_POPR
+
+// Popup rework
+// hack by StanH_
+
+#include "PopupReworkInternal.event"
+
+/*
+
+What the Popup Rework (PopR from here on out) *does*:
+- Makes Anims On & Anims Off battle popups use the same input format ("popup definitions", previously used only by Anims Off popups)
+- Allow you to define your own popup components relatively easily
+- Allow you to easily add popup displays to the end of a battle
+
+
+HOW TO MAKE POPUPS:
+	This isn't necessarily a PopR thing, as vanilla uses the same format, put may as well explain it anyway since this may be useful.
+
+	Popups are dictated through "popup definitions". Those are const data that define how a popup looks.
+
+	Basically, popup definitions are just a series of (id, argument) pair of words that define how the different popup components are layed out (id being the id of a component).
+
+	I have provided a "Extensions/PopupDefinitions.txt" file that defines all the vanilla components in a convenient macro format.
+
+	To display the popup in game, you need to either use one of the PopR battle popup tables (see below), or call FE8U:8011490 "CreatePopup" (params: pDefinition, time, styleId, parentProc).
+
+
+HOW TO ADD NEW BATTLE/PROMOTION POPUPS:
+	put PopRBattlePopup(Init Routine, Popup Def, Duration) in one of the tables below
+
+	The Init routine does two things: it returns 0 or 1 whether the popup should be displayed, and in case it should it is also responsible for setting up the necessary popup parameters (item, wrank, number, unit, etc). It doesn't take any parameters.
+
+	The Popup definition is defined as any other popup (See PopupDefinitions.event).
+
+	The Duration is the duration (in frames) the popup will be on screen. A duration of 0 means that the game will be waiting for user input (TODO: TEST THIS ON ANIMS-OFF).
+
+
+HOW TO ADD NEW POPUP COMPONENTS:
+	use PopRSetPopupCodeHandlers(Component Id, Component Definition Pointer)
+
+	The Component Definition is just a pair of function pointers:
+		+00 | int  getLength (struct PopupReworkProc* proc, u32 argument);
+		+04 | void display   (struct PopupReworkProc* proc, struct TextHandle* text, u32 argument);
+
+	A C struct decl for component definitions is provided in PopupRework.h (as PopupComponentType).
+
+	What "getLength" does is it returns the length of the component. This is called before any drawing is done to compute the size of the popup box and text.
+
+	What "display" does is display the component. This takes a text handle that can be used to append text or otherwise modify it, or to get the current x cursor to define other kinds of graphics.
+
+	The PopR proc comes with several potentially useful fields (see PopupRework.h and gbafe/popup.h). But perhaps the most useful one would be +4C | addIcon; which is a pointer to a function that can be used to add icons to the popup (params: PopR proc, icon index, X offset).
+
+	Components used by the vanilla Game range from 0 to C included. If you want to add more components then you want to go beyond that (unless you specifically want to replace a vanilla component).
+
+	There is space allocated for 0x10 Popup components by default, but you can change this value by defining POPR_COMPONENT_COUNT as the new number before including this file.
+
+*/
+
+#ifndef PopRDefinitions
+	#define PopRDefinitions
+
+	#define PopRSetPopupCodeHandlers(aCodeId, apDefinition) "PUSH; ORG (gPopupComponentTypes+4*(aCodeId)); POIN apDefinition; POP"
+
+	#define PopRBattlePopup(aprInit, apPopupDefinition, aDuration) "POIN (aprInit) (apPopupDefinition); WORD (aDuration)"
+	#define PopRBattlePopup(aprInit, apPopupDefinition)            "POIN (aprInit) (apPopupDefinition); WORD 0"
+	#define PopRBattlePopupEnd                                     "WORD 0 0 0"
+#endif // PopRDefinitions
+
+#endif // HAX_POPR

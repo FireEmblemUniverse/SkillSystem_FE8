@@ -1,0 +1,78 @@
+#ifndef POPUP_REWORK_HAX_EVENT
+#define POPUP_REWORK_HAX_EVENT
+
+#ifndef _FE8_
+	ERROR not FE8 etc
+#endif
+
+#include "EAstdlib.event"
+
+#include "Extensions/Hack Installation.txt"
+#include "Extensions/ProcDefinitions.txt"
+
+#ifndef FreeSpace
+	#define FreeSpace 0xB2A610
+	ORG FreeSpace
+#endif
+
+#ifndef POPR_COMPONENT_COUNT
+	#define POPR_COMPONENT_COUNT 0x10 // Little extra space because why not
+#endif
+
+#include "Src/PopRCore.lyn.event"
+#include "Src/PopRComponents.lyn.event"
+#include "Src/PopRAnimsOn.lyn.event"
+#include "Src/PopRAnimsOff.lyn.event"
+
+#include "Src/VanillaPopupInits.lyn.event"
+
+ALIGN 4
+gPopupComponentTypes:
+	WORD 0                               // 00: End (no component)
+	POIN gPopR_SpaceComponent            // 01: Space
+	POIN gPopR_ItemNameComponent         // 02: Item name
+	POIN gPopR_CArticleItemNameComponent // 03: Item name with capitalized article
+	POIN gPopR_LArticleItemNameComponent // 04: Item name with article
+	POIN gPopR_UnitNameComponent         // 05: Unit name
+	POIN gPopR_StringIdComponent         // 06: String from id
+	POIN gPopR_StringRawComponent        // 07: String from pointer
+	POIN gPopR_SetTextColorComponent     // 08: Modify text color
+	POIN gPopR_ItemIconComponent         // 09: Item icon
+	POIN gPopR_WTypeIconComponent        // 0A: WType icon
+	POIN gPopR_NumberComponent           // 0B: Number
+	POIN gPopR_SoundComponent            // 0C: Sound component
+
+	ORG (gPopupComponentTypes + 4*(POPR_COMPONENT_COUNT))
+
+#ifndef LynJumpDefined
+	#define LynJumpDefined
+	#define LynJump(aTarget) "WORD $46C04778 $E59FC000 $E12FFF1C; POIN aTarget; "
+#endif // LynJumpDefined
+
+PUSH
+	// For Anims-Off, since most of the rework is based off the vanilla Anims-Off variant of popups
+	// There is no need to replace those completely, we just need to put in some redirections
+
+	ORG 0x010F38
+		// Replace the length getter
+		LynJump(PopR_GetLength)
+
+	ORG 0x011270
+		// Replace the display routine
+		LynJump(PopR_AnimsOffDisplay)
+
+	// A re-do of my first ever hook into proc code :)
+	ORG 0x9A3600
+		// Replace the weapon broke/wrank got popup calls with construction of the anims off popup loop
+		PROC_NEW_CHILD_BLOCKING(gProc_PopR_AnimsOnWrapper)
+		PROC_JUMP(0x9A3620)
+
+	// For Anims-On, however, we replaced everything
+	// So all we need to do is redirect the initializer and everything else is in our stuff
+
+	ORG 0x075F18
+		LynJump(PopR_StartBattlePopups)
+
+POP
+
+#endif // POPUP_REWORK_HAX_EVENT
