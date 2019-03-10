@@ -2,12 +2,15 @@
 #define POPUPS
 
 PopRSetPopupCodeHandlers(0x0D, PopRSkillIconComponent)
+PopRSetPopupCodeHandlers(0x0E, PopRWeaponLevelComponent)
 
 ALIGN 4
 gBattlePopupTable:
 	// Vanilla
 	PopRBattlePopup(PopR_InitWeaponBroke, 0x592420, 96)
-	PopRBattlePopup(PopR_InitWRankUp,     0x592468, 96)
+
+	// Display new weapon level on WLevel-up
+	PopRBattlePopup(InitWeaponLevelUpPopup|1, WeaponRankUpPopup, 96)
 
 	// Skill system
 	PopRBattlePopup(InitLevelUpSkillPopup|1, SkillLearnedPopup, 96)
