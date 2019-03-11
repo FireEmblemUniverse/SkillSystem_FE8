@@ -1,22 +1,19 @@
-.thumb
-.include "_Definitions.h.s"
 
-.set EAL_prCheckForSkillForgetting, (EALiterals+0x00)
+	.thumb
 
-heho:
-	push {lr}
-	
+	.include "Definitions.inc"
+
+	lprCheckForSkillForgetting = EALiterals+0x00
+
+LearnNewSkill_CheckForget:
 	mov r1, r0
 	ldr r0, [r1, #0x2C] @ field 2C is Unit
-	
-	ldr  r3, EAL_prCheckForSkillForgetting
-	_blr r3
-	
-	pop {r1}
-	bx r1
 
-.ltorg
-.align
+	ldr r3, lprCheckForSkillForgetting
+	bx  r3
+
+	.pool
+	.align
 
 EALiterals:
 	@ POIN prCheckForSkillForgetting
