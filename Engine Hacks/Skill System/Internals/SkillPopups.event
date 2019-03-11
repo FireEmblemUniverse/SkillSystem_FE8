@@ -22,6 +22,11 @@ InitLevelUpSkillPopup:
 	POIN (GetUnitLevelSkills|1)
 	POIN (SkillAdder|1)
 
+InitPromotionSkillPopup:
+	#incbin "asm/InitPromotionSkillPopup.dmp"
+	POIN (GetUnitLevelSkills|1)
+	POIN (SkillAdder|1)
+
 ALIGN 4
 SkillLearnedPopup:
 	// Popup macros are defined in [PopupRework/]Extensions/PopupDefinitions.txt

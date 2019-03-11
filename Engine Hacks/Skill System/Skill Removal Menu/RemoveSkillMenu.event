@@ -68,9 +68,9 @@ PUSH; ORG 0x59BAC4
 POP
 
 // Promotion proc Hook (unused since no skill learning on promotion)
-// PUSH; ORG 0xB126FC
-	// _6C_JUMP(_pProc_FromPromotionProc)
-// POP
+PUSH; ORG 0xB126BC
+	_6C_JUMP(_pProc_FromPromotionProc)
+POP
 
 ALIGN 4
 _pProc_FromBattleProc:
@@ -95,15 +95,50 @@ _pProc_FromMiscActionProc:
 	_6C_YIELD
 	_6C_END
 
-// ALIGN 4
-// _pProc_FromPromotionProc:
-	// _6C_CALL_ROUTINE_2(prCheckForSkillForgetting|1)
-	// _6C_END
+ALIGN 4
+_pProc_FromPromotionProc:
+	_6C_NEW_CHILD_BLOCKING(_pProc_FromPromotionProc_SubProc)
+	_6C_CALL_ROUTINE(0x0CC698|1)
+	_6C_END
+
+ALIGN 4
+_pProc_FromPromotionProc_SubProc:
+	_6C_CALL_ROUTINE(_prPromotionInit|1)
+
+_6C_LABEL(0) // trainee promotion
+_6C_LABEL(1) // prep screen promotion
+	_6C_CALL_ROUTINE(_prPromotionPrepScreenSetup|1)
+
+	_6C_CALL_ROUTINE_2(_prPromotionCheck|1)
+
+	_6C_CALL_ROUTINE_ARG(0x0AE2F4|1, 0x40) // StartFadeOut(0x40)
+	_6C_WHILE_ROUTINE(0x0AE2B8|1) // FadeOutExists
+
+	_6C_GOTO(776)
+
+_6C_LABEL(2) // map promotion
+	_6C_CALL_ROUTINE_2(_prPromotionCheck|1)
+	_6C_GOTO(776)
+
+_6C_LABEL(776)
+	_6C_END
 
 ALIGN 4
 _prCheckForBattleSkillForgetting:
 	#incbin "asm/CheckForBattleSkillForgetting.dmp"
 	POIN (prCheckForSkillForgetting|1)
+
+ALIGN 4
+_prPromotionInit:
+	#incbin "asm/PromotionInit.dmp"
+
+ALIGN 4
+_prPromotionCheck:
+	#incbin "asm/PromotionCheck.dmp"
+	POIN (prCheckForSkillForgetting|1)
+
+_prPromotionPrepScreenSetup:
+	#incbin "asm/PromotionPrepScreenSetup.dmp"
 
 }
 
