@@ -19,7 +19,8 @@ PopRSkillIconDisplay:
 ALIGN 4
 InitLevelUpSkillPopup:
 	#incbin "asm/InitLevelUpSkillPopup.dmp"
-	POIN (BattleUnitLearnLevelSkill|1)
+	POIN (GetUnitLevelSkills|1)
+	POIN (SkillAdder|1)
 
 ALIGN 4
 SkillLearnedPopup:
