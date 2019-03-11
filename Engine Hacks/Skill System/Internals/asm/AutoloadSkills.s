@@ -1,42 +1,21 @@
 
 	.thumb
 
-	lGetUnitLevelSkills = EALiterals+0x00
-	lAddSkill           = EALiterals+0x04
+	lGetInitialSkillList = EALiterals+0x00
+	lAddSkill            = EALiterals+0x04
 
 AutoloadSkills:
 	@ Arguments: r0 = Unit
-	@ Returns:   r0 = Unit (because I can)
+	@ Returns:   r0 = Unit (for convenience)
 
-	push {r0-r1, r4-r5, lr} @ note: allocated 8 bytes on the stack by pushing r0-r1
+	push {r0-r3, r4-r5, lr} @ note: allocated 0x10 bytes on the stack by pushing r0-r3
 
 	mov r4, r0 @ var r4 = unit
 
-	ldr r3, lGetUnitLevelSkills
+	ldr r3, lGetInitialSkillList
 
-	@ implied     @ arg r0 = Unit
-	mov r1, #0xFF @ arg r1 = level (0xFF means on-load)
-	mov r2, sp    @ arg r2 = output buffer
-
-	bl BXR3
-
-	@ implied     @ ret r0 = output buffer
-
-	mov r1, r0 @ arg r1 = skill list
-	mov r0, r4 @ arg r0 = unit
-
-	bl AddSkills
-
-	mov r5, #0 @ var r5 = i = 0
-
-AutoloadSkills.lop:
-	add r5, #1 @ i++
-
-	ldr r3, lGetUnitLevelSkills
-
-	@ implied  @ arg r0 = unit
-	mov r1, r5 @ arg r1 = level
-	mov r2, sp @ arg r2 = output buffer
+	@ implied  @ arg r0 = Unit
+	mov r1, sp @ arg r2 = output buffer
 
 	bl BXR3
 
@@ -49,12 +28,8 @@ AutoloadSkills.lop:
 
 	@ implied  @ ret r0 = unit
 
-	ldrb r1, [r0, #8] @ r1 = unit->level
-
-	cmp r1, r5
-	bgt AutoloadSkills.lop @ continue until we reached unit's current level
-
-	pop {r1-r2, r4-r5} @ note: freed 8 bytes from the stack by popping into r1-r2
+	add sp, #0x10 @ free allocated space
+	pop {r4-r5}
 
 	pop {r1}
 	bx r1
@@ -91,6 +66,9 @@ AddSkills.end:
 BXR3:
 	bx r3
 
+	.pool
+	.align
+
 EALiterals:
-	@ POIN (GetUnitLevelSkills|1)
+	@ POIN (GetInitialSkillList|1)
 	@ POIN (AddSkill|1)

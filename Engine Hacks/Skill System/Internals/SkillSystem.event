@@ -58,11 +58,12 @@ ORG $18680
 jumpToHack(Unset_Attack_Flag_2)
 POP
 
-Skill_Getter: //gets a list of skills
-#incbin skillGetter.dmp
-POIN PersonalSkillTable
-POIN ClassSkillTable
-POIN LevelUpSkillTable
+ALIGN 4
+Skill_Getter: // gets a list of skills
+	#incbin "asm/GetSkills.dmp"
+	POIN PersonalSkillTable
+	POIN ClassSkillTable
+	POIN (GetInitialSkillList|1)
 
 SkillTesterOriginal: //does unit have X skill?
 #incbin skillTester.dmp
@@ -141,9 +142,15 @@ HookUnitLoading:
 
 ALIGN 4
 AutoloadSkills:
+	// TODO: maybe merge with HookUnitLoading?
 	#incbin "asm/AutoloadSkills.dmp"
-	POIN (GetUnitLevelSkills|1)
+	POIN (GetInitialSkillList|1)
 	POIN (SkillAdder|1)
+
+ALIGN 4
+GetInitialSkillList:
+	#incbin "asm/GetInitialSkillList.dmp"
+	POIN (GetUnitLevelSkills|1)
 
 ALIGN 4
 GetUnitLevelSkills:
