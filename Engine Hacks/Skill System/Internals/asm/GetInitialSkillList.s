@@ -58,17 +58,19 @@ AutoloadSkills.lop:
 
 	ldr r1, [sp, #8] @ r1 = output buffer
 
-AutoloadSkills.check_lop:
-	cmp r1, r6
-	beq AutoloadSkills.check_end @ no in list, add
+	@ Removing the following to try to reduce lag when checking generics
 
-	ldrb r2, [r1]
+@ AutoloadSkills.check_lop:
+@	cmp r1, r6
+@	beq AutoloadSkills.check_end @ no in list, add
 
-	cmp r2, r0
-	beq AutoloadSkills.continue @ yes in list, do not add
+@	ldrb r2, [r1]
 
-	add r1, #1
-	b AutoloadSkills.check_lop
+@	cmp r2, r0
+@	beq AutoloadSkills.continue @ yes in list, do not add
+
+@	add r1, #1
+@	b AutoloadSkills.check_lop
 
 AutoloadSkills.check_end:
 	strb r0, [r6]

@@ -4,8 +4,12 @@
 	@this hack takes r0 = character data in ram and returns a pointer to a 0-terminated list of skills (using the text buffer)
 	@supports 1 personal, 1 class, 4 learned
 
-	SkillsBuffer = 0x202B6D0 @ 0x202b156 @0x202a6ac
-	BWLTable     = 0x203E884
+	SkillsBuffer = 0x02026B90 @ 0x202b156 @0x202a6ac
+
+	SkillsUnitBuffer  = 0x02026BB0
+	SkillsCountBuffer = 0x02026BB4
+
+	BWLTable = 0x0203E884
 
 	lPersonalSkillTable  = EALiterals+0x00
 	lClassSkillTable     = EALiterals+0x04
@@ -14,6 +18,25 @@
 GetSkills:
 	@ Arguments: r0 = Unit
 	@ Returns:   r0 = address of skill buffer
+
+	@ We now save what unit is used by the current buffer so that we can reuse skill lists
+	@ This is in attempt to reduce lag.
+
+	ldr r1, =SkillsUnitBuffer
+	ldr r2, [r1]
+
+	cmp r0, r2
+	bne make_buffer
+
+return_in_buffer:
+	ldr r0, =SkillsBuffer
+	ldr r1, =SkillsCountBuffer
+	ldr r1, [r1]
+
+	bx lr
+
+make_buffer:
+	str r0, [r1]
 
 	push {r4-r7, lr}
 
@@ -86,6 +109,9 @@ end:
 	@ return
 	ldr r0, =SkillsBuffer
 	sub r1, r0 @number of skills
+
+	ldr r2, =SkillsCountBuffer
+	str r1, [r2]
 
 	pop {r4-r7}
 

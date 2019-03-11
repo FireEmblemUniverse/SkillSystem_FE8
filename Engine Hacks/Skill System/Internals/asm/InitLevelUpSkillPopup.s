@@ -59,7 +59,7 @@ TryLearnSkill:
 	ldrb r2, [r0, r2] @ r2 = battle unit initial level
 
 	cmp r1, r2
-	beq no_skill @ if level didn't change, no new skill
+	beq TryLearnSkill.no_skill @ if level didn't change, no new skill
 
 	mov r4, r0 @ var r4 = bu
 
