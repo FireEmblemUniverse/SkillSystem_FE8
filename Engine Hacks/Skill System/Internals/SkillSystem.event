@@ -155,8 +155,8 @@ GetInitialSkillList:
 ALIGN 4
 GetUnitLevelSkills:
 	#incbin "asm/GetUnitLevelSkills.dmp"
-	POIN LevelUpSkillTable
-	// POIN CharLevelUpSkillTable
+	POIN ClassLevelUpSkillTable
+	POIN CharLevelUpSkillTable
 
 RTextLoop:
 #incbin "rtextloop.dmp"

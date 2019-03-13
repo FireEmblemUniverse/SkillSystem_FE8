@@ -1,4 +1,4 @@
-INLINE LevelUpSkillTable,Skill Pointer
+INLINE ClassLevelUpSkillTable,Skill Pointer
 0x00 Separator/Nothing,0x0
 0x01 Ephraim Lord,EphraimLordSkillList|IsPointer
 0x02 Eirika Lord,EirikaLordSkillList|IsPointer
