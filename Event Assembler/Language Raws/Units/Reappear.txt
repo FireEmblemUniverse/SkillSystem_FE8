@@ -1,0 +1,18 @@
+
+##Makes a disappeared unit re-appear.
+##Requires the use of movement code afterwards.
+REPA, 0x6F, 8, -game:FE7 -indexMode:8
+##Character to re-appear.
+	Character, 4, 2
+
+REPA, 0x70, 8, -game:FE7 -indexMode:8
+##Position of the unit to re-appear.
+	Unit position, 4, 4, -coordinate:2 -preferredBase:10
+
+#Makes character visible again. Run this before loading an invisible unit!
+REVEAL, 0x3421, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Makes an invisible unit reappear with the summoning effect.
+RESUMM, 0x4320, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2

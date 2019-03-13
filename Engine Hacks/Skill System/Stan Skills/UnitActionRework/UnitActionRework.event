@@ -6,7 +6,7 @@
 #endif // _FE8_
 
 #include "Extensions/Hack Installation.txt"
-#include "eastdlib.event"
+#include "EAstdlib.event"
 
 PUSH; ORG 0x3200C	
 	replaceWithHack(prNewActionApplication)

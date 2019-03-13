@@ -1,0 +1,17 @@
+
+##Remove text bubbles, backgrounds and portraits
+##and returns to map.
+REMA, 5, 4, -game:FE6 -indexMode:8
+
+REMA, 9, 4, -game:FE7 -indexMode:8
+
+REMA, 0x1B22, 4, -game:FE8 -indexMode:8
+
+
+##Removes brown text-boxes.
+RETB, 0xD8, 4, -game:FE7 -indexMode:8
+
+
+##Remove text bubbles only.
+#Chapters: Prologue, 1, 2...
+REBU, 0x1E, 4, -game:FE7 -indexMode:8

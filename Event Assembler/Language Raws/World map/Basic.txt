@@ -1,0 +1,39 @@
+
+##Sets event execution to world map mode.
+#STARTWM, 0x1020, 4, -game:FE8 -indexMode:8
+#	1, 2, 1, -fixed
+
+#Chapters: Tutorial, 1, 2...
+##Execute ASM code in world map.
+ASMWORLDMAP, 0x4B, 8, -game:FE6 -indexMode:8
+##Offset of the ASM routine. Thumb routines
+##need to be added 1.
+	Pointer, 4, 4, -pointer:ASM
+
+#World maps: 1, 2, 3...
+ASMWORLDMAP, 0x99, 8, -game:FE7 -indexMode:8
+	Pointer, 4, 4, -pointer:ASM
+
+_SATURATE_COLORS, 0xAD40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always 0
+	Value3, 6, 2
+
+#All parameters 0
+WM_FADEOUT, 0xB240, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+WM_SHOWDRAWNMAP, 0xB460, 12, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	X, 4, 2
+	Y, 6, 2
+#0x10 gives all of Magvel map
+	Map, 8, 2
+#Always 0
+	Value5, 10, 2
+
+##Skips world map event
+SKIPWN, 0xC120, 4, -game:FE8 -indexMode:8

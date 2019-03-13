@@ -1,0 +1,103 @@
+
+#Stores value as a word to $030004B8 + (memory slot*4). Maximum memory slot is 0xD.
+#Memory slots are very important for fe8 events!
+#Memory slot 0x0 always has a value of zero - don't bother setting it otherwise.
+#Memory slot 0xB is where coordinates for many commands are read from.
+#Memory slot 0xC is where conditional values are stored - booleans, character IDs, gold count, etc
+#Memory slot 0xD indicates the size of a queue (see below); don't modify it with SETVAL
+SVAL, 0x0540, 8, -game:FE8 -indexMode:8
+#Aliases
+	Memory slot, 2, 2
+	Value to store, 4, 4
+SETVAL, 0x0540, 8, -game:FE8 -indexMode:8
+	Memory slot, 2, 2
+	Value to store, 4, 4
+SMOV, 0x0540, 8, -game:FE8 -indexMode:8
+	Memory slot, 2, 2
+	Value to store, 4, 4
+
+#0x062X series performs mathematical operations between memory slots.
+#Using macros for these is recommended.
+#Format for parameters is 0x0XYZ, where X and Y are the memory slots that supply the arguments for the equation,
+#and Z is the memory slot that the results are stored to.
+
+#This can be used to transfer a value from one slot to another; just use 0x0YZ as the parameter.
+SADD, 0x0620, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Subtracts value at X from value at Y.
+SSUB, 0x0621, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+SMUL, 0x0622, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Divides Y's value by X's value.
+SDIV, 0x0623, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Modulo of values in slots X and Y
+SMOD, 0x0624, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Binary AND of slots X and Y.
+SAND, 0x0625, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Inclusive OR of X and Y.
+SORR, 0x0626, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Exclusive OR of X and Y.
+SXOR, 0x0627, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Shifts value at slot Y left by X bits.
+SLSL, 0x0628, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+SLOTS_LEFTSHIFT, 0x0628, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+#Shifts value at slot Y right by X bits.
+SLSR, 0x0629, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+SLOTS_RIGHTSHIFT, 0x0629, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+
+#Shifts first value in queue to memory slot indicated and shifts the rest down. Used with SAVETOQUEUE.
+#Parameter controls which memory slot to store the first value to, usually 0x2 or 0xB.
+SLOTS_SETFROMQUEUE, 0x0722, 4, -game:FE8 -indexMode:8
+	Memory Slot, 2, 2
+
+
+#Stores word located at Memory slot 0x1 to location at $030004F0 + (4*number of words already stored there)
+#Register at $030004EC indicates how many words are stored.
+SAVETOQUEUE, 0x721, 4, -game:FE8 -indexMode:8
+
+#Stores word from any memory slot to the queue.
+STQFROMSLOT, 0x720, 4, -game:FE8 -indexMode:8
+	Memory Slot, 2, 2
+
+
+#These commands can initialize, add from, subtract, and store to memory slot 0xC
+#a counter value. Pretty useful.
+
+#Stores value in counter to memory slot 0xC.
+COUNTER_CHECK, 0x0F20, 4, -game:FE8 -indexMode:8
+	value1, 2, 2,
+
+COUNTER_SET, 0x0F21, 4, -game:FE8 -indexMode:8
+#Amount to bitshift left the counter value by. Usually zero.
+	Bitshift value, 2, 1
+	Counter value, 3, 1
+
+#Add and subtract value at counter by (Base operand)*(2^Bistshift Value).
+COUNTER_ADD, 0x0F22, 4, -game:FE8 -indexMode:8
+	Bitshift value, 2, 1
+	Base operand, 3, 1
+
+COUNTER_SUBTRACT, 0x0F23, 4, -game:FE8 -indexMode:8
+	Bitshift value, 2, 1
+	Base operand, 3, 1
+

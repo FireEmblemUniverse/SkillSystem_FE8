@@ -1,0 +1,111 @@
+
+##Location based events that happen when a unit is placed to
+##specified position and player selects the correct command from the menu.
+##Leaving Event pointer out and having ID as 3 causes the event to automatically
+##call the ending scene of the chapter.
+LOCA, 5, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 2, 2
+	1, 4, 4, -fixed
+##Position of the event on the map.
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+##Command in the menu to use.
+	Command, 10, 2
+
+LOCA, 5, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+	ID, 2, 2
+##Event to happen after the command has been chosen.
+	Event Pointer, 4, 4, -pointer
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+CHESRANDOM, 5, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+	ID, 2, 2
+##Pointer to the item/probability list for this chest.
+##The list is formatted as (Item ID,%chance) for each possible item and terminated by 00 00.
+##Chances for all items should add up to 100%.
+	Item List Pointer, 4, 4
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	20, 10, 2, -fixed
+
+
+##The location based event used for visiting villages.
+##A nearby map change happens automatically after this event.
+VILL, 6, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 2, 2
+##Event to happen after the command has been chosen.
+	Event Pointer, 4, 4, -pointer
+##Position of the event or in other words, village gate.
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+##Command in the menu to use. 
+	Command, 10, 2
+
+##Location based event that takes the player to a shop to buy items.
+SHOP, 0xA, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 2, 2
+##Pointer to SHLI code that has the items this shop sells.
+	Shop List Pointer, 4, 4, -pointer:shopList
+##Position of the event aka the position of the shop.
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+##Command in the menu to use. Also determines whether shop is
+##secret shop, armory or plain shop.
+	Command, 10, 2
+
+##Location based event that gives items or money and causes a map change.
+CHES, 7, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 2, 2
+##Chest data that determines both item and amount of money you get.
+	Chest data, 4, 4
+##Position of the event which is the position of the chest.
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+##Command in the menu to use.
+	Command, 10, 2
+
+##Location based event triggered by unit being placed near and choosing
+##the right command. Causes automatic map change if no Event pointer is 
+##specified. 
+DOOR, 8, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+##Event ID of the event. After the event ID has been used,
+##this event can't be invoked. Leaving this 0 will allow event to
+##whenever otherwise possible.
+	ID, 2, 2
+##Fixed parameter. If you read this, a bug!
+	1, 4, 4, -fixed
+##Position of the door.
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+##Command in the menu to use.
+	Command, 10, 2
+
+DOOR, 8, 12, -priority:main -language:FE8:FE7:FE6 -indexMode:8
+	ID, 2, 2
+##Event to happen after the command has been chosen. map change does not
+##automatically happen with if this parameter is used.
+	Event Pointer, 4, 4, -pointer
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+LOCA, 0, 4, -priority:main -language:FE8:FE7:FE6 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed
+
+VILL, 0, 4, -priority:main -language:FE8:FE7:FE6 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed
+
+SHOP, 0, 4, -priority:main -language:FE8:FE7:FE6 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed
+
+CHES, 0, 4, -priority:main -language:FE8:FE7:FE6 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed
+
+DOOR, 0, 4, -priority:main -language:FE8:FE7:FE6 -end -indexMode:8 -noDisassembly
+	0, 0, 4, -fixed

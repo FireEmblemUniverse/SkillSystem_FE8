@@ -1,0 +1,141 @@
+
+//Turn based event helpers
+#ifdef _FE6_
+#define TurnEventPlayer(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 0"
+#define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 0"
+#define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8"
+#define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 8"
+#define TurnEventNPC(eventID,pointer,turn) "TURN eventID pointer [startTurn, 0] 0x24 0x00"
+#define TurnEventNPC(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn +amountOfTurns-1] 0x24 0x00"
+#define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0"
+#define OpeningTurnEvent(pointer) "TURN 0x00 pointer [1,0] 0"
+#endif
+
+#ifdef _FE7_
+#define TurnEventPlayer(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 0 0"
+#define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 0 0"
+#define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8 0"
+#define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 8 0"
+#define TurnEventNPC(eventID,pointer,turn) "TURN eventID pointer [startTurn, 0] 0x24 0x00"
+#define TurnEventNPC(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn +amountOfTurns-1] 0x24 0x00"
+#define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0 0"
+#define OpeningTurnEvent(pointer) "TURN 0x00 pointer [1,0] 0 0"
+#endif
+
+#ifdef _FE8_
+#define TurnEventPlayer(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 0"
+#define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 0"
+#define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8"
+#define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 8"
+#define TurnEventNPC(eventID,pointer,turn) "TURN eventID pointer [startTurn, 0] 0x24 0x00"
+#define TurnEventNPC(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn +amountOfTurns-1] 0x24 0x00"
+#define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0"
+#define OpeningTurnEvent(pointer) "TURN 0x00 pointer [1,0] 0"
+#endif
+
+//Character based event helpers
+#ifdef _FE6_
+#define CharacterEvent(eventID,pointer,char1,char2) "CHAR eventID pointer [char1,char2]"
+#define CharacterEventBothWays(eventID,eventPtr,char1,char2) "CHAR eventID eventPtr [char1,char2]; CHAR eventID eventPtr [char2,char1]"
+#endif
+
+#ifdef _FE7_
+#define CharacterEvent(eventID,pointer,char1,char2) "CHAR eventID pointer [char1,char2] 0"
+#define CharacterEvent(eventID,pointer,char1,char2,afterID) "CHAR eventID pointer [char1,char2] 3+afterID*0x10000"
+#define CharacterEventBothWays(eventID,eventPtr,char1,char2) "CHAR eventID eventPtr [char1,char2] 0; CHAR eventID eventPtr [char2,char1] 0"
+#endif
+
+#ifdef _FE8_
+#define CharacterEvent(eventID,pointer,char1,char2) "CHAR eventID pointer [char1,char2] 0"
+#define CharacterEvent(eventID,pointer,char1,char2,afterID) "CHAR eventID pointer [char1,char2] 3+afterID*0x10000"
+#define CharacterEventBothWays(eventID,eventPtr,char1,char2) "CHAR eventID eventPtr [char1,char2] 0; CHAR eventID eventPtr [char2,char1] 0"
+#endif
+
+
+//Location based event helpers
+#ifdef _FE6_
+#define Village(eventID,offset,villX,villY)     "VILL eventID offset [villX,villY] 0xE; LOCA eventID [villX,villY-1] 0x1D"
+#define House(eventID,offset,villX,villY)       "LOCA eventID offset [villX,villY] 0xE"
+#define Armory(offset,shopX,shopY)              "SHOP 0 offset [shopX,shopY] 0x13"
+#define Vendor(offset,shopX,shopY)              "SHOP 0 offset [shopX,shopY] 0x14"
+#define SecretShop(offset,shopX,shopY)          "SHOP 0 offset [shopX,shopY] 0x15"
+#define Chest(item,chestX,chestY)               "CHES 0 item [chestX,chestY] 0x12"
+#define ChestMoney(amountOfMoney,chestX,villY)  "CHES 0 0x6F+amountOfMoney*0x10000 [chestX,chestY] 0x12"
+#define Door(doorX,doorY)                       "DOOR 0 [doorX,doorY] 0x10"
+#define Seize(seizeX,seizeY)                        "LOCA 3 [seizeX,seizeY] 0xF"
+#define Seize(eventID,offset,seizeX,seizeY)         "LOCA eventID offset [seizeX,seizeY] 0xF"
+#endif
+
+#ifdef _FE7_
+#define Village(eventID,offset,villX,villY)     "VILL eventID offset [villX,villY] 0xE; LOCA eventID [villX,villY-1] 0x1D"
+#define House(eventID,offset,villX,villY)       "LOCA eventID offset [villX,villY] 0xE"
+#define Armory(offset,shopX,shopY)              "SHOP 0 offset [shopX,shopY] 0x13"
+#define Vendor(offset,shopX,shopY)              "SHOP 0 offset [shopX,shopY] 0x14"
+#define SecretShop(offset,shopX,shopY)          "SHOP 0 offset [shopX,shopY] 0x15"
+#define Chest(item,chestX,chestY)               "CHES 0 item [chestX,chestY] 0x12"
+#define ChestMoney(amountOfMoney,chestX,villY)  "CHES 0 0x76+amountOfMoney*0x10000 [chestX,chestY] 0x12"
+#define Door(doorX,doorY)                       "DOOR 0 [doorX,doorY] 0x10"
+#define Seize(seizeX,seizeY)                        "LOCA 3 [seizeX,seizeY] 0xF"
+#define Seize(eventID,offset,seizeX,seizeY)         "LOCA eventID offset [seizeX,seizeY] 0xF"
+#endif
+
+#ifdef _FE8_
+#define Village(eventID,offset,villX,villY)     "VILL eventID offset [villX,villY] 0x10; LOCA eventID [villX,villY-1] 0x20"
+#define House(eventID,offset,villX,villY)       "LOCA eventID offset [villX,villY] 0x10"
+#define Armory(offset,shopX,shopY)              "SHOP 0 offset [shopX,shopY] 0x16"
+#define Vendor(offset,shopX,shopY)              "SHOP 0 offset [shopX,shopY] 0x17"
+#define SecretShop(offset,shopX,shopY)          "SHOP 0 offset [shopX,shopY] 0x18"
+#define Chest(item,chestX,chestY)               "CHES 0 item [chestX,chestY] 0x14"
+#define ChestMoney(amountOfMoney,chestX,chestY)     "CHES 0 0x77+amountOfMoney*0x10000 [chestX,chestY] 0x14"
+#define Door(doorX,doorY)                       "DOOR 0 [doorX,doorY] 0x12"
+#define Seize(seizeX,seizeY)                        "LOCA 3 [seizeX,seizeY] 0x11"
+#define Seize(eventID,offset,seizeX,seizeY)         "LOCA eventID offset [seizeX,seizeY] 0x11"
+#endif
+
+//Misc based event helpers
+#ifdef _FE6_
+#define CauseGameOverIfLordDies "AFEV 0 0x66AC6C 0x65"
+#define DefeatBoss(offset) "AFEV 0 offset 2"
+#define DefeatAll(event) "ASME 0 event 0x6C2F9"
+#endif
+
+#ifdef _FE7_
+#define CauseGameOverIfLordDies "AFEV 0 0xCA749C 0x65"
+#define DefeatBoss(offset) "AFEV 0 offset 2"
+#define DefeatAll(offset) "ASME 0 offset $79FE9"
+#endif
+
+#ifdef _FE8_
+#define CauseGameOverIfLordDies "AFEV 0 0x592104 0x65"
+#define DefeatBoss(offset) "AFEV 0 offset 2"
+#define DefeatAll(offset) "AFEV 0 offset 6"
+#define NoFade "EVBIT_T 0x7"
+#endif
+
+
+//Common events
+#ifdef _FE6_
+#define VillageEventItem(textID,background,item) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _0x40; ITGV item; ENDA"
+#define VillageEventMoney(textID,background,money) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _0x40; MONE money; ENDA"
+#define HouseEvent(textID,background) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; ENDA"
+#define ConvoEvent(textID) "MUSI; TEX1 textID; REMA; MUNO; ENDA"
+#define ReinforcementEvent(unitPtr) "LOU1 unitPtr; ENUN; ENDA"
+#endif
+
+#ifdef _FE7_
+#define VillageEventItem(textID,background,item) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _FADU2; SHOWMAP; ITGV item; ENDA"
+#define VillageEventMoney(textID,background,money) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _FADU2; SHOWMAP; MONE 0 money; ENDA"
+#define HouseEvent(textID,background) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; ENDA"
+#define ConvoEvent(textID) "MUSI; TEX1 textID; REMA; MUNO; ENDA"
+#define ReinforcementEvent(unitPtr) "LOU1 unitPtr; ENUN; ENDA"
+#endif
+
+#ifdef _FE8_
+#define VillageEventItem(textID,background,item) "MUSI; SMOV 0x2 background; SMOV 0x3 textID; CALL $9EE310; MUNO; CALL $591F40; SMOV 0x3 item; GIVEITEMTO 0xFFFF; EVBIT_T 0x7; ENDA"
+#define VillageEventMoney(textID,background,money) "MUSI; SMOV 0x2 background; SMOV 0x3 textID; CALL $9EE310; MUNO; CALL $591F40; SMOV 0x3 money; GIVEITEMTOMAIN 0; EVBIT_T 0x7; ENDA"
+#define HouseEvent(textID,background) "MUSI; SMOV 2 background; SMOV 3 textID; CALL $9EE310; MUNO; EVBIT_T 0x7; ENDA"
+#define ConvoEvent(textID) "MUSI; TEXTSTART; TEXTSHOW textID; TEXTEND; REMA; MUNO; EVBIT_T 0x7; ENDA"
+#define LoadReinforcements(unitPtr) "SMOV 0x2 (unitPtr|0x8000000); CALL $9EE274"
+#define ReinforcementEvent(unitPtr) "SMOV 0x2 (unitPtr|0x8000000); CALL $9EE274; EVBIT_T 0x7; ENDA"
+#define GiveMoney(amount) "SMOV 0x3 amount; GIVEITEMTOMAIN 0x0"
+#endif

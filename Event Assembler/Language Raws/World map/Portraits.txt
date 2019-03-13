@@ -1,0 +1,48 @@
+
+##Load portrait.
+SHOWPORTRAIT, 0xB1, 20, -game:FE7 -indexMode:8
+##ID of the portrait.
+	ID, 4, 1
+##Portrait to show.
+	Portrait ID, 8, 1
+##Position of the portrait on the screen in pixels.
+	Position, 12, 1, -preferredBase:10
+##Way to load the portrait to the screen.
+	Loading way, 13, 1
+##Time to wait before loading the portrait.
+	Delay, 16, 1, -preferredBase:10
+
+##Remove portrait.
+REMOVEPORTRAIT, 0xB2, 16, -game:FE7 -indexMode:8
+##ID of the portrait.
+	ID, 4, 1
+##Way to remove the portrait from the screen.
+	Removing way, 9, 1
+##Time to wait before removing the portrait.
+	Delay, 12, 1, -preferredBase:10
+
+
+WM_SHOWPORTRAIT, 0xC460, 12, -game:FE8 -indexMode:8
+	Portrait ID, 6, 1
+	Position, 8, 2, -preferredBase:10
+
+WM_CLEARPORTRAIT, 0xC540, 8, -game:FE8 -indexMode:8
+#Always 0
+	Value1, 2, 2
+#0x000 = no movement, no fade
+#0x100 = left
+#0x200,all else = right
+	Direction, 4, 2
+	Delay, 6, 2
+
+#Chapters: Tutorial
+##Shows a portrait
+SHOWPORTRAIT, 0x51, 16, -game:FE6 -indexMode:8
+##ID of the object on the world map.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position to show the portrait in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Poirtrait to show.
+	Portrait ID, 12, 4
+

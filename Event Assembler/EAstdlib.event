@@ -15,7 +15,10 @@
 //#define EA_STDLIB_VERSION_3_0 //Crazycolorz5's edits
 //#define EA_STDLIB_VERSION_3_1
 //#define EA_STDLIB_VERSION_3_2
-#define EA_STDLIB_VERSION_3_3
+//#define EA_STDLIB_VERSION_3_3
+//#define EA_STDLIB_VERSION_3_4
+//#define EA_STDLIB_VERSION_3_5
+#define EA_STDLIB_VERSION_3_6
 
 /****************************************************************\
 Version 3.3
@@ -197,6 +200,13 @@ V3.3
 
 V3.4
 -FE8: Fixed bad definition of IFET (now is CHECK_EVENTID)
+
+V3.5
+-FE8: Changed some definitions in FE8 Definitions.
+-FE8: Fixed VillageEventMoney definition and made GIVEITEMTO2 backwards compatible.
+
+V3.6:
+-FE8: Fixed GiveMoney definition, added _GIVEITEMTOMAIN to backwards compatibility.
 
 \****************************************************************/
 
