@@ -5,6 +5,7 @@
 /////////////////////////////////////////////////////////
 
 #include "Extensions/Hack Installation.txt"
+#include "PopupRework/Extensions/PopupDefinitions.txt"
 #include "_UnitMenuDefs.event"
 
 ////////////////////////////////SUPPORTING CHANGES
@@ -122,6 +123,8 @@ POP
   ALIGN 4
   #include "Skill System/Master Skill Installer.event"
 
+  #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
+
   ALIGN 4
   #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
 
@@ -134,6 +137,7 @@ POP
   
   ALIGN 4
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
-  // #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
+  #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
 
   #include "UnitMenu.event"
+  #include "Popups.event"
