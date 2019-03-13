@@ -128,6 +128,10 @@ ORG $015D52
 ORG $015D66
   BYTE 9
 
+// Don't draw portrait on item select menu if unit is generic (hypergammaspaces)
+ORG $22BE8
+  SHORT $6808 $88C0 $2800
+
 #include "Extensions/Hack Installation.txt"
 //Anti-Huffman Patch, by Hextator and Nintenlord
 {

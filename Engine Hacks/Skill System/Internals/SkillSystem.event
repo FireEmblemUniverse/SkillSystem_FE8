@@ -1,6 +1,6 @@
 //Skill System replacing favouritism stat
 #include repointbuffer.event
-#include "FE8-Weapon Rank on Levelup/FE8-Weapon Rank on Levelup EA.txt"
+// #include "FE8-Weapon Rank on Levelup/FE8-Weapon Rank on Levelup EA.txt"
 
 PUSH //let 203e884 + charnum*10 = skill area (bytes 1,2,3,4 NOT 0 tho)
 
@@ -33,18 +33,20 @@ BYTE 1
 ORG $a4140
 SHORT 0 //nop the 0x200000
 
-ORG $76018
-jumpToHack(SkillLearner)
+// now managed via InitLevelUpSkillPopup (see SkillPopups.event, Engine Hacks/Popups.event and Engine Hacks/PopupRework) -Stan
+// ORG $76018
+// jumpToHack(SkillLearner)
 
 // now managed by Icon Rework (see Engine Hacks/IconRework) -Stan
 // ORG $3730
 // jumpToHack(AlternateIconPopup)
 
-ORG $75d64
-jumpToHack(AnimsOnPopupHack)
+// now managed by Popup Rework (see Engine Hacks/Popups.event and Engine Hacks/PopupRework) -Stan
+// ORG $75d64
+// jumpToHack(AnimsOnPopupHack)
 
 ORG $17ef4
-jumpToHack(AddSkillsOnLoad)
+jumpToHack(HookUnitLoading)
 
 ORG $2B3EC
 jumpToHack(Rerun_Battle_Calcs)
@@ -56,11 +58,12 @@ ORG $18680
 jumpToHack(Unset_Attack_Flag_2)
 POP
 
-Skill_Getter: //gets a list of skills
-#incbin skillGetter.dmp
-POIN PersonalSkillTable
-POIN ClassSkillTable
-POIN LevelUpSkillTable
+ALIGN 4
+Skill_Getter: // gets a list of skills
+	#incbin "asm/GetSkills.dmp"
+	POIN PersonalSkillTable
+	POIN ClassSkillTable
+	POIN (GetInitialSkillList|1)
 
 SkillTesterOriginal: //does unit have X skill?
 #incbin skillTester.dmp
@@ -119,36 +122,41 @@ BYTE ForeignPrincessID
 BYTE 0x00//terminator
 ALIGN 4
 
+ALIGN 4
 SkillDescGetter: //given skill number, get description text ID
 #incbin skillDescGetter.dmp
 POIN SkillDescTable
 POIN Skill_Getter
 WORD SS_SkillsDefaultRText
 
+ALIGN 4
 SkillAdder: //given chardata in r0, skill in r1, add skill if possible
 #incbin addSkill.dmp
 
 ALIGN 4
-SkillLearner:
-#incbin learnskill.dmp
-POIN LevelUpSkillTable
-POIN SkillAdder
+HookUnitLoading:
+	#incbin "asm/HookUnitLoading.dmp"
+	POIN (AutoloadSkills|1)
+	// POIN (Skill_Getter|1)
+	// POIN ChargeupTable
 
-// now managed by Icon Rework (see Engine Hacks/IconRework) -Stan
-// AlternateIconPopup:
-// #incbin alternateicon_3732.dmp
-// POIN SkillIcons
+ALIGN 4
+AutoloadSkills:
+	// TODO: maybe merge with HookUnitLoading?
+	#incbin "asm/AutoloadSkills.dmp"
+	POIN (GetInitialSkillList|1)
+	POIN (SkillAdder|1)
 
-AnimsOnPopupHack:
-#incbin "animsonhack_75ca8.dmp"
-WORD LearnedSkillText
+ALIGN 4
+GetInitialSkillList:
+	#incbin "asm/GetInitialSkillList.dmp"
+	POIN (GetUnitLevelSkills|1)
 
-AddSkillsOnLoad:
-#incbin "unitloading.dmp"
-POIN LevelUpSkillTable
-POIN SkillAdder
-POIN ChargeupTable
-POIN Skill_Getter
+ALIGN 4
+GetUnitLevelSkills:
+	#incbin "asm/GetUnitLevelSkills.dmp"
+	POIN ClassLevelUpSkillTable
+	POIN CharLevelUpSkillTable
 
 RTextLoop:
 #incbin "rtextloop.dmp"
@@ -160,7 +168,5 @@ Rerun_Battle_Calcs:
 Unset_Attack_Flag_2:
 #incbin "clearAttackFlag.dmp"
 
-#include "level_popups.event"
-#include "map_anims_routines.event"
-#include "popupdisplayroutines.event"
+#include "SkillPopups.event"
 #include "HPHealing.event"
