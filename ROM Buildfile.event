@@ -6,9 +6,6 @@
 
     #include "repointedTextTable.event"
 
-    TextTable:
-    #incbin "Text/NewTextTable.dmp"
-
     //Text first for Text ID definitions
     #include "Text/Install Text Data.event"
     MESSAGE Used text space ends at currentOffset
