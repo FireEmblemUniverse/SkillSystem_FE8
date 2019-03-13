@@ -1,5 +1,4 @@
 
-#include "Skill System Options.event"
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
 #include "Battle Calculations.event" //battle calcs
@@ -11,10 +10,10 @@ ORG SkillIcons
 #incext Png2Dmp "SkillIcons.png"
 POP
 //new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
-#ifdef __USE_DESCRIPTION_MACROS__
+#ifdef SKILLS_USE_DESCRIPTION_MACROS
 #include "skill_descriptions.event"
 #endif
-#ifdef __USE_ICON_MACROS__
+#ifdef SKILLS_USE_ICON_MACROS
 #include "skill_icons.event"
 #endif
 PUSH
@@ -495,8 +494,8 @@ Shadowgift:
 POIN SkillTester
 WORD ShadowgiftID
 WORD LuminaID
-WORD ShadowgiftStaffOption
-WORD LuminaStaffOption
+WORD SHADOWGIFT_VIA_STAFF_RANK
+WORD LUMINA_VIA_STAFF_RANK
 
 Perfectionist:
 #incbin "New Skills/Perfectionist.dmp"

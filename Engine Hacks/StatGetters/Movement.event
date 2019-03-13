@@ -5,7 +5,7 @@
 
 pMovModifiers: // Movement
 	POIN prAddUnitBaseMov prAddUnitMovBonus prRallyMov prSkillCelerity prNullifyIfGuardAI ArmorMarchCheck prNullifyIfFreeze
-	#ifdef __DebuffMinZero__
+	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
 WORD 0
