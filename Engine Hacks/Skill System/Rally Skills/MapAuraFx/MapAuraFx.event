@@ -1,0 +1,9 @@
+#ifndef HAX_MAP_AURA_FX
+#define HAX_MAP_AURA_FX
+
+// Utility providing an interface for displaying cool aura on units
+// hack by Stan.
+
+#include "Src/MapAuraFx.lyn.event"
+
+#endif // HAX_MAP_AURA_FX
