@@ -1,0 +1,11 @@
+MESSAGE Searching for pointers to 0x15D48C
+PUSH
+MESSAGE Pointer changed at 0xa26c
+ORG 0xa26c
+POIN TextTable
+
+MESSAGE Pointer changed at 0xa2a0
+ORG 0xa2a0
+POIN TextTable
+
+POP
