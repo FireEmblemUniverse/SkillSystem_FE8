@@ -1,0 +1,57 @@
+##Causes unit condition to be turned on.
+UNCM, 0x72, 12, -game:FE7 -indexMode:8
+##Character whose condition to change.
+	Character, 4, 2
+##Condition to change.
+	Condition, 8, 4, -preferredBase:2
+
+##Reverses units condition.
+UNCR, 0x73, 12, -game:FE7 -indexMode:8
+##Character whose condition to change.
+	Character, 4, 2
+##Condition to change.
+	Condition, 8, 4, -preferredBase:2
+
+#Sets character's HP to value stored in memory slot 0x1.
+SET_HP, 0x3425, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Ends specified character's turn, greying them out
+SET_ENDTURN, 0x3426, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+
+#Checks value at Memory slot 0x1...If:
+#	0x0:Sets bit 0x8 in unit's flag word - kill unit
+#	0x1:Removes 'undeployed' flag from unit, bit 0x4
+#	0xFFFFFFFF: Checks bit 0x200000 in flag word; if set, set bit 0x8 death; if not set, unset bit 0x8
+SET_STATE, 0x3428, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Unknown - moves character..?
+SET_SOMETHING, 0x342D, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Removes unit completely if word 0x89A2C80 is found at region of $02024E68
+DISA_IF, 0x342E, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Sets unit as currently active unit (will make it accessible through char 0xFFFF, and more)
+SET_ACTIVE, 0x3820, 4, -game:FE8 -indexMode:8
+	Char, 2, 2
+
+#Changes Unit Class (weapon ranks, stats, etc stay the same)
+RECLASS, 0x3540, 8, -game:FE8 -indexMode:8
+	Char,  2, 2
+	Class, 4, 2
+
+#Changes Unit Class (class becomes default class for given char id)
+RECLASS_FROMCHAR, 0x3540, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	0x00, 4, 2, -fixed
+	From, 6, 2
+
+#Units switch classes... somewhat (the first unit will gain the *default* class of the second unit, while the second unit *will* get the class the first unit was in beforehand)
+SWITCH_CLASSES, 0x3541, 8, -game:FE8 -indexMode:8
+	Char1, 2, 2
+	Char2, 4, 2

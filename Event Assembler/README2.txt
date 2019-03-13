@@ -7,7 +7,7 @@ To respect Nintenlord's wishes, I(Crazycolorz5) will put what I need to say here
 FEU Tutorials:
 --------------
 
-Disassembly: 
+Disassembly:
 http://feuniverse.us/t/simple-event-editing-using-event-assembler/111
 
 Arch's Newest, Completest Tutorial on Events:
@@ -76,7 +76,7 @@ V 11.0
 -Fixed bug where Core would hang if it got an invalid input file.
 -Added PROTECT (start) (end) to make a region write-protected.
 -Made Event assembler.exe look for .event files by default (over .txt)
--Changed lexing/parsing. 
+-Changed lexing/parsing.
  -String literals now work (with MESSAGE and such)
  -Labels/Definitions come into scope for parameters properly.
  -Added ability for use of definitions in preprocessor calls.
@@ -87,7 +87,7 @@ V 11.0
 V11.0.1
 -Aliased #inctevent as #inctext for backwards compatability with V10.1.1
 
-V 11.1 (StanH_)
+V11.1 (StanH_)
 -Added `-symOutput:<filename>` option, which outputs global labels to `<filename>` following the format `<name>=$<offset(hex)><newline>`
 -"Added" symbol Assignment logic (`<symName> = <value>`) ("Added" because most of the logic was already present, I basically just made it parse)
 -Tools invoked through directives (`#incext`, `#inctevent` & `#runext`) can now report errors via stderr (before they needed to print "ERROR: <err string>" to stdout)
@@ -100,11 +100,21 @@ V 11.1 (StanH_)
  -Fixed repeatable codes without parameters crashing EA
  -Fixed various crashes related to the expression/parameter parser
 
+V11.1.1
+-Changed some EAStdlib definitions in FE7/FE8 to be compatable with ColorzCore. This is a breaking change.
+ - 5000G -> _5000G and other similar edits.
+
+V11.1.2
+- Fixed broken VillageEventMoney in FE8; added GIVEITEMTO2 to Backward Compatibility.
+
+V11.1.3
+- Fixed broken GiveMoney macro in FE8; added _GIVEITEMTOMAIN in Backward Compatibility.
+
 -------------------
 Additional Credits:
 -------------------
 
--Vennobennu/Venno, for identifying many FE8 codes, and 
+-Vennobennu/Venno, for identifying many FE8 codes, and
  making many of the codes that deal with the world map.
 -Gryz, for aiding a ton in all the AI research done on
  FE7, which was a boon in developing the new AI model.
@@ -113,7 +123,7 @@ Additional Credits:
  making several macros.
 -Camdar/CT075 and Zahlman, for inspiring a UNIX-like
  design for #incext.
- 
+
 -------------
 Future plans:
 -------------
@@ -126,12 +136,12 @@ Legal stuff:
 ------------
 Basically copy-pasted with a minor edit from the original README:
 
-This program and everything it comes with, referred 
-as product from now on, is delivered as is and 
+This program and everything it comes with, referred
+as product from now on, is delivered as is and
 has no warranty what so ever.
 You can modify, add and distribute the product in its entirety
-as you wish, but the origin of the product, that is, created 
-by Nintenlord, must not be misinterpreted by anyone and 
+as you wish, but the origin of the product, that is, created
+by Nintenlord, must not be misinterpreted by anyone and
 the README.txt file must remain unmodified.
-All money made with this product belongs to the original 
+All money made with this product belongs to the original
 creator, Nintenlord.

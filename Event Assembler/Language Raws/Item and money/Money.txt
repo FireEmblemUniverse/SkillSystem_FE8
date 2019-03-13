@@ -1,0 +1,9 @@
+##Gives money to the player.
+MONE, 0x5E, 8, -game:FE7 -indexMode:8
+##Determines the way money is given.
+	Village or cutscene, 2, 2
+##Amount of money to give.
+	Amount of money, 4, 2, -preferredBase:10
+
+MONE, 0x28, 8, -game:FE6 -indexMode:8
+	Amount of money, 4, 2, -preferredBase:10

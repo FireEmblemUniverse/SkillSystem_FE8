@@ -1,4 +1,0 @@
-#define test() "BYTE 5"
-test()
-
-ERROR "I don't want output."

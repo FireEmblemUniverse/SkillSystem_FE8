@@ -1,0 +1,93 @@
+##Unconditional GOTO (jump to LABEL *conditional ID*)
+GOTO, 0x1C, 8, -game:FE6 -indexMode:8
+	Conditional ID, 4, 2
+
+GOTO, 0x45, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+GOTO, 0x920, 4, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+
+##Labels (target for conditional branches)
+LABEL, 0x1B, 8, -game:FE6 -indexMode:8
+	Conditional ID, 4, 2
+
+LABEL, 0x44, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+LABEL, 0x820, 4, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+
+	
+##These commands store the results of their checks to memory slot 0xC.
+##Some are boolean checks, and others store ints.
+#
+##Checks for your mode; returns 0x1 for Prologue-C8, 0x2 for Eirika Mode, and 0x3 for Ephraim Mode.
+CHECK_MODE, 0x1920, 4, -game:FE8 -indexMode:8
+
+##Boolean check for Difficult Mode.
+CHECK_HARD, 0x1922, 4, -game:FE8 -indexMode:8
+
+##Stores current turn number to slot 0xC.
+CHECK_TURNS, 0x1923, 4, -game:FE8 -indexMode:8
+
+##Counts up number of enemies or NPCs on the map
+CHECK_ENEMIES, 0x1924, 4, -game:FE8 -indexMode:8
+
+CHECK_OTHERS, 0x1925, 4, -game:FE8 -indexMode:8
+
+##Checks to see if you are in a skirmish or dungeon. Used for the Retreat command.
+CHECK_SKIRMISH, 0x1926, 4, -game:FE8 -indexMode:8
+
+##Checks if tutorials are enabled (i.e. Easy Mode)
+CHECK_TUTORIAL, 0x1927, 4, -game:FE8 -indexMode:8
+
+##Stores your current amount of gold.
+CHECK_MONEY, 0x1928, 4, -game:FE8 -indexMode:8
+
+##Loads the Event ID associated with the current event to slot 0xC.
+CHECK_EVENTID, 0x1929, 4, -game:FE8 -indexMode:8
+
+##Checks your Mode byte; likely checks to see if you are in the postgame.
+CHECK_POSTGAME, 0x192A, 4, -game:FE8 -indexMode:8
+
+##Get's the Chapter Number associated with the map/location you're on.
+CHECK_CHAPTER_NUMBER, 0x1921, 4, -game:FE8 -indexMode:8
+
+## These commands compare two memory slots and branch to LABEL *conditional ID* if the condition is met
+#
+##Branch if equal
+BEQ, 0xC40, 8, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+	Memory Slot 1, 4, 2
+	Memory Slot 2, 6, 2
+
+##Branch if not equal
+BNE, 0xC41, 8, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+	Memory Slot 1, 4, 2
+	Memory Slot 2, 6, 2
+
+##Branch if greater than or equal
+BGE, 0xC42, 8, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+	Memory Slot 1, 4, 2
+	Memory Slot 2, 6, 2
+
+##Branch if greater than
+BGT, 0xC43, 8, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+	Memory Slot 1, 4, 2
+	Memory Slot 2, 6, 2
+
+##Branch if less than or equal
+BLE, 0xC44, 8, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+	Memory Slot 1, 4, 2
+	Memory Slot 2, 6, 2
+
+##Branch if less than
+BLT, 0xC45, 8, -game:FE8 -indexMode:8
+	Conditional ID, 2, 2
+	Memory Slot 1, 4, 2
+	Memory Slot 2, 6, 2

@@ -1,0 +1,43 @@
+#Shows backgrounds for text convos.
+##Shows background.
+BACG, 3, 8, -game:FE6 -indexMode:8
+##Background to show.
+	Background, 4, 2
+
+BACG, 5, 4, -game:FE7 -indexMode:8
+	Background, 2, 2
+
+#Removes bubbles and portraits
+#Bundled here because it must be called before BACG (there's a macro for this thankfully, in-game)
+REMOVEPORTRAITS, 0x1A21, 4, -game:FE8 -indexMode:8
+
+#Changes background to value in Slot 2
+BACG, 0x2140, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+#These two always 0?
+	0, 4, 2, -fixed
+	0, 6, 2, -fixed
+
+##Shows large cut-scene picture.
+SHCG, 0xD3, 4, -game:FE7 -indexMode:8
+##Cutscene picture to show.
+	Cutscene, 2, 2
+
+
+#Chapters: 1, 7, 10, F1
+##Fade out of cutscene to background
+FROMCGTOBG, 0xD9, 12, -game:FE7 -indexMode:8
+	Background, 4, 4
+	Value2, 8, 4
+
+#Chapters: 1, 2, 6...
+##Fade in to cutscene from background
+FROMBGTOCG, 0xDA, 12, -game:FE7 -indexMode:8
+	Cutscene, 4, 4
+	Value2, 8, 4
+
+#Chapters: 19xx, 23x, 29, 31, 32, 32x
+##Fade out of cutscene to map
+FROMCGTOMAP, 0xDB, 8, -game:FE7 -indexMode:8
+	Map position, 4, 2, -coordinates:2  -preferredBase:10
+

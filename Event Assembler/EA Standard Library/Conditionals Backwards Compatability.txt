@@ -1,0 +1,54 @@
+//included by default because this is such a big overhaul
+
+#ifndef NO_BACKWARDS_COMPATABILITY
+#ifdef _FE6_
+#define ELSE GOTO
+#define ENIF LABEL
+#define IFET GOTO_IFEF
+#define IFEF GOTO_IFET
+#define IFAT GOTO_IFAF
+#define IFAF GOTO_IFAT
+#define IFCNA GOTO_IFCA
+#endif
+
+
+#ifdef _FE7_
+#define ELSE GOTO
+#define ENIF LABEL
+#define IFEF GOTO_IFET
+#define IFET GOTO_IFEF
+#define IFHM GOTO_IFNHM
+#define IFEM GOTO_IFNEM
+#define IFYN GOTO_IFNO
+#define IFNY GOTO_IFYES
+#define IFTT GOTO_IFNTUTORIAL
+#define IFTU GOTO_IFTU
+#define IFAT GOTO_IFAF
+#define IFAF GOTO_IFAT
+#define IFUF GOTO_IFNUF
+#define IFCA GOTO_IFCNA
+#define IFCD GOTO_IFCL
+#endif
+
+
+#ifdef _FE8_
+#define ELSE GOTO
+#define ENIF LABEL
+#define IFEQ BNE
+#define IFNE BEQ
+#define IFGT BLE
+#define IFGE BLT
+#define IFLE BGT
+#define IFLT BGE
+#define IFEQUAL IFEQ
+#define IFNOTEQUAL IFNE
+#define IFGREATER IFGT
+#define IFGREATEREQUAL IFGE
+#define IFLESSEQUAL IFLE
+#define IFLESS IFLT
+#define IFET CHECK_EVENTID
+#define EVBIT_CHECK CHECK_EVBIT
+#endif
+
+
+#endif

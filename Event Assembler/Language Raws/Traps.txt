@@ -1,0 +1,52 @@
+##Ballista data.
+##Parameterles version ends a list of ballista data.
+BLST, 0, 6, -language:FE7:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	1, 0, 1, -fixed 
+##Position of the ballista
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+##Type of the ballista
+	Type, 3, 1
+
+BLST, 0, 1, -language:FE7:FE8 -unsafe -priority:ballista -end -indexMode:8 -offsetMod:1 -noDisassembly
+	0, 0, 1, -fixed 
+
+ENDTRAP, 0, 1, -language:FE7:FE8 -unsafe -priority:ballista -end -indexMode:8 -offsetMod:1
+	0, 0, 1, -fixed 
+
+##Fire trap.
+FIRE, 0, 6, -language:FE7:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	4, 0, 1, -fixed 
+##Position of the trap
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+##Type of the trap
+	Type, 3, 1
+##Size of the trap
+	Size, 4, 2, -coordinates:2 -preferredBase:10
+
+##Gas trap
+GAST, 0, 6, -language:FE7 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	5, 0, 1, -fixed 
+##Position of the trap
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+##Direction of the trap
+	Direction, 3, 1
+##Size of the trap
+	Size, 4, 2, -coordinates:2 -preferredBase:10
+
+
+ARROW, 0, 6, -language:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	7, 0, 1, -fixed 
+##Position of the trap
+	X coordinate, 1, 1, -coordinates:2 -preferredBase:10
+##Size of the trap
+	Size, 4, 2, -coordinates:2 -preferredBase:10
+
+##Gorgon egg
+EGG, 0, 6, -language:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	0xC, 0, 1, -fixed 
+##Position of the trap
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+##Direction of the trap
+	Unknown, 4, 1
+##Size of the trap
+	Unknown2, 5, 1

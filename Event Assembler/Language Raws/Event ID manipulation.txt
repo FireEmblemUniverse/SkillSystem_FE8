@@ -1,0 +1,51 @@
+
+#Chapters: 3, 6, 7...
+##Marks event ID used. 
+ENUT, 0x34, 8, -game:FE6 -indexMode:8
+##Event ID to make used.
+	Event ID, 4, 4
+
+##Makes event ID unused.
+#Chapters: 3, 5, 6...
+ENUF, 0x35, 8, -game:FE6 -indexMode:8
+	Event ID, 4, 4
+
+ENUT, 0x76, 4, -game:FE7 -indexMode:8
+##Event ID to make unused.
+	Event ID, 2, 2
+
+ENUF, 0x77, 4, -game:FE7 -indexMode:8
+	Event ID, 2, 2
+
+ENUT, 0x0229, 4, -game:FE8 -indexMode:8
+	EventID, 2, 2
+
+#Makes event of ID stored in Memory slot 2 used.
+ENUT_SLOT2, 0x0229, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+ENUF, 0x0221, 4, -game:FE8 -indexMode:8
+	EventID, 2, 2
+
+#Makes event ID stored in Memory slot 2 unused.
+ENUF_SLOT2, 0x0221, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+#Sets (param+1)th bit in event execution bitfield.
+#Parameter cannot be higher than 0xF.
+EVBIT_T, 0x0228, 4, -game:FE8 -indexMode:8
+	Bit, 2, 2
+
+#Clears (param+1)th bit in event execution bitfield.
+EVBIT_F, 0x0220, 4, -game:FE8 -indexMode:8
+	Bit, 2, 2
+
+#This command sets and clears multiple bits in the event execution bitfield.
+#What it does is indicated by the parameter.
+#	param 0x0: ANDS with 0xFFBF (FFDF,FFEF,FFBF), clearing bits 5-7
+#	param 0x1: ORRs with 0x70 (10,20,40), setting bits 5-7
+#	param 0x2: Sets bit 7, clears bits 5-6
+#	param 0x3: Sets bit 5, clears bits 6-7
+#	param 0x4: Sets bits 5-6, clears bit 7
+EVBIT_MODIFY, 0x1020, 4, -game:FE8 -indexMode:8
+	Operation to perform, 2, 2

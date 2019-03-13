@@ -272,7 +272,7 @@ LungeEffect:
 AttackEffect:
 #incbin "Teq Skills/Attack Effect.dmp"
 LungeAI:
-#incbin "Teq Skills/LungeAI.dmp"
+#incbin "Teq Skills/lungeAI.dmp"
 POIN SkillTester
 WORD LungeID
 LungeUpdate:
@@ -360,7 +360,7 @@ BYTE CriticalForceID KillingMachineID
 ALIGN 4
 
 AxefaithHit:
-#incbin "Blade Skills/Axefaith.dmp"
+#incbin "Blade Skills/AxeFaith.dmp"
 POIN SkillTester
 WORD AxeFaithID
 

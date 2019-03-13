@@ -1,0 +1,179 @@
+
+##Unit data that controls units that can be loaded to chapter maps.
+##Parameterless version is the end of UNIT list.
+UNIT, 0, 16, -game:FE6:FE7 -priority:unit -end -indexMode:8
+	0, 0, 4, -fixed
+	0, 4, 4, -fixed
+	0, 8, 4, -fixed
+	0, 12, 4, -fixed
+
+UNIT, 0, 16, -game:FE6:FE7 -priority:unit -indexMode:8
+##Character ID of the unit.
+	Char ID, 0, 1
+##Class ID of the unit.
+	Class ID, 1, 1
+##Leader character of this unit. Leader character
+##is usually either main lord or enemy boss.
+	Leader char, 2, 1
+##Level, side and autoleveling of the unit.
+	Misc data, 3, 1
+##Position to load this unit.
+	Loading position, 4, 2, -coordinate:2 -preferredBase:10
+##Position to move this unit to after loading.
+	Starting position,  6, 2, -coordinate:2 -preferredBase:10
+##Starting inventory of this unit.
+	Items, 8, 4, -coordinate:1-4
+##Starting AI of this unit.
+	AI, 12, 2, -coordinate:2-2
+	RecoveryAI, 14, 1
+	DontMoveAI, 15, 1
+
+UNIT, 0, 16, -game:FE6:FE7 -priority:unit -indexMode:8
+##Character ID of the unit.
+	Char ID, 0, 1
+##Class ID of the unit.
+	Class ID, 1, 1
+##Leader character of this unit. Leader character
+##is usually either main lord or enemy boss.
+	Leader char, 2, 1
+##Level, side and autoleveling of the unit.
+	Misc data, 3, 1
+##Position to load this unit.
+	Loading position, 4, 2, -coordinate:2 -preferredBase:10
+##Position to move this unit to after loading.
+	Starting position,  6, 2, -coordinate:2 -preferredBase:10
+##Starting inventory of this unit.
+	Items, 8, 4, -coordinate:1-4
+##Starting AI of this unit.
+	AI, 12, 4, -coordinate:1-4
+
+UNIT, 0, 16, -game:FE6:FE7 -priority:unit -indexMode:8
+	Char ID, 0, 1
+	Class ID, 1, 1
+	Leader char, 2, 1
+	Misc data, 3, 1
+	Loading position, 4, 2, -coordinate:2 -preferredBase:10
+	Starting position,  6, 2, -coordinate:2 -preferredBase:10
+##Starting inventory of this unit.
+	Item 1, 8, 1
+##Starting inventory of this unit.
+	Item 2, 9, 1
+##Starting inventory of this unit.
+	Item 3, 10, 1
+##Starting inventory of this unit.
+	Item 4, 11, 1
+##Starting AI of this unit.
+	AI 1, 12, 1
+##Starting AI of this unit.
+	AI 2, 13, 1
+##Starting AI of this unit.
+	RecoveryAI, 14, 1
+##Starting AI of this unit.
+	DontMoveAI, 15, 1
+
+UNIT, 0, 20, -game:FE8 -priority:unit -end -indexMode:8
+	0, 0, 4, -fixed
+	0, 4, 4, -fixed
+	0, 8, 4, -fixed
+	0, 12, 4, -fixed
+	0, 16, 4, -fixed
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	Char ID, 0, 8
+	Class ID, 8, 8
+	Leader char, 16, 8
+	Misc data, 24, 8
+	Loading position, 32, 12, -coordinate:2 -preferredBase:10
+##Controls other details about this unit, like item dropping
+##and how the unit data is intepretted.
+	Flags, 44, 4, -preferredBase:2
+##Uniknown. Usually 0.
+	Byte1, 48, 8
+##Amount of REDA codes to use when loading this unit.
+	Data count, 56, 8
+##Pointer to REDA data which controls units
+##movement after loading.
+	REDA data pointer, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 16, -coordinate:2-2
+	RecoveryAI, 144, 8
+	DontMoveAI, 152, 8
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	Char ID, 0, 8
+	Class ID, 8, 8
+	Leader char, 16, 8
+	Misc data, 24, 8
+	Loading position, 32, 12, -coordinate:2 -preferredBase:10
+##Controls other details about this unit, like item dropping
+##and how the unit data is intepretted.
+	Flags, 44, 4, -preferredBase:2
+##Uniknown. Usually 0.
+	Byte1, 48, 8
+##Amount of REDA codes to use when loading this unit.
+	Data count, 56, 8
+##Pointer to REDA data which controls units
+##movement after loading.
+	REDA data pointer, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 32, -coordinate:1-4
+
+
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	Char ID, 0, 8
+	Class ID, 8, 8
+	Leader char, 16, 8
+	Misc data, 24, 8
+	Loading position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 4, -preferredBase:2
+	Byte1, 48, 8
+	Data count, 56, 8
+	REDA data pointer, 64, 32, -pointer:reinforcementData
+	Items, 96, 32
+	AI, 128, 32
+
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	Char ID, 0, 8
+	Class ID, 8, 8
+	Leader char, 16, 8
+	Misc data, 24, 8
+	Loading position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 4, -preferredBase:2
+	Byte1, 48, 8
+	Data count, 56, 8
+	REDA data pointer, 64, 32, -pointer:reinforcementData
+	Item 1, 96, 8
+	Item 2, 104, 8
+	Item 3, 112, 8
+	Item 4, 120, 8
+	AI 1, 128, 8
+	AI 2, 136, 8
+	AI 3, 144, 8
+	AI 4, 152, 8
+
+
+
+##Controls how units move right after getting loaded to the map.
+REDA, 0, 64, -game:FE8 -priority:reinforcementData
+##Position to move the unit to.
+	New position, 0, 12, -coordinate:2 -preferredBase:10
+##Flags of the movement.
+	Flags, 12, 4, -preferredBase:2
+##Speed of the movement.
+	Speed, 16, 8
+##Unit this unit is rescuing. 0 if there is none.
+	Rescuing character, 24, 8
+	0xFFFF, 32, 16, -fixed
+##Amount of time to pass before executing this code.
+	Delay, 48, 8, -preferredBase:10
+
+REDA, 0, 64, -game:FE8 -priority:reinforcementData
+	New position, 0, 12, -coordinate:2 -preferredBase:10
+	Flags, 12, 4, -preferredBase:2
+	Speed, 16, 8
+	Rescuing character, 24, 8
+##Unknwon. Usually 0xFFFF.
+	Unknown, 32, 16
+	Delay, 48, 8, -preferredBase:10
