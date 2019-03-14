@@ -66,16 +66,16 @@ POIN $525a5
 WORD 0 0
 
 efxHPBarRoutine:
-#incbin "efxHPBar.dmp"
+#incbin "efxHpBar.dmp"
 
 efxHPBarParent:
-#incbin "efxHPBar_parent.dmp"
+#incbin "efxHpBar_parent.dmp"
 
 efxHPBarLiveParent:
-#incbin "efxHPBarLive_parent.dmp"
+#incbin "efxHpBarLive_parent.dmp"
 
 efxHPBarLiveRoutine:
-#incbin "efxHPBarLive.dmp"
+#incbin "efxHpBarLive.dmp"
 
 hpstealing_showanim:
 #incbin "hpstealing_showanim.dmp"

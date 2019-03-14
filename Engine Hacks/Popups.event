@@ -1,0 +1,37 @@
+#ifndef POPUPS
+#define POPUPS
+
+PopRSetPopupCodeHandlers(0x0D, PopRSkillIconComponent)
+PopRSetPopupCodeHandlers(0x0E, PopRWeaponLevelComponent)
+
+ALIGN 4
+gBattlePopupTable:
+	// Vanilla
+	PopRBattlePopup(PopR_InitWeaponBroke, 0x592420, 96)
+
+	// Display new weapon level on WLevel-up
+	PopRBattlePopup(InitWeaponLevelUpPopup|1, WeaponRankUpPopup, 96)
+
+	// Skill system
+	PopRBattlePopup(InitLevelUpSkillPopup|1, SkillLearnedPopup, 96)
+
+	PopRBattlePopupEnd
+
+ALIGN 4
+gPromotionPopupTable:
+	// Vanilla
+	PopRBattlePopup(PopR_InitSwordRankNew, gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitLanceRankNew, gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitAxeRankNew,   gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitBowRankNew,   gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitStaffRankNew, gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitAnimaRankNew, gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitLightRankNew, gPopup_PopR_NewWType, 96)
+	PopRBattlePopup(PopR_InitElderRankNew, gPopup_PopR_NewWType, 96)
+
+	// Skill system
+	PopRBattlePopup(InitPromotionSkillPopup|1, SkillLearnedPopup, 96)
+
+	PopRBattlePopupEnd
+
+#endif // POPUPS

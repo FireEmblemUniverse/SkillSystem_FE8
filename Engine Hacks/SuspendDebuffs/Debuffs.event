@@ -1,0 +1,89 @@
+#ifndef DEBUFFS_HACK
+#define DEBUFFS_HACK
+
+// Debuffs
+// hack by CrazyColorz5, with additions by circleseverywhere and Kirb
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+
+    ORG 0x17D7C // To zero out the additional data upon making a new unit.
+      gotoHackWithR3(Initialization)
+
+    ORG 0xA5808 // This is for loading a previously deployed unit for the first time on a map.
+      gotoHackWithR3(Reloading)
+
+    ORG 0x188A8 // This is for decreasing the debuffs each turn/ending rally
+      jumpToHack(PerTurn)
+
+    // prevent debuffs and loading issue (Kirb)
+
+    ORG 0xBA30
+      WORD 0x203ED40
+
+    ORG 0xBA54
+      WORD 0x203ED40
+
+    ORG 0xFA34
+      WORD 0x203ED40
+
+    ORG 0xD5B80
+      WORD 0x203ED40
+
+    // new stat getters
+    // see modular stat getters
+
+    // Weapons/Battle
+
+    ORG 0x2B54E
+      SHORT 0x46C0 // nop
+      jumpToHack(damagedThisTurn)
+
+    ORG 0x2B422
+      #incbin "asm/Debuffs/Set Hit This Turn.dmp"
+
+    // ORG 0x2C086
+      // SHORT 0x46C0 // nop
+      // jumpToHack(setDebuffs)
+
+    ORG 0x2C078
+      callHack_r3(setDebuffs)
+
+  POP
+
+  ALIGN 4
+  damagedThisTurn:
+    #incbin "asm/Debuffs/Set Damaged This Turn.dmp"
+
+  ALIGN 4
+  setDebuffs:
+    #incbin "asm/Debuffs/Set Debuffs.dmp"
+    WORD DebuffTable
+    POIN ItemTable
+    POIN WeaponDebuffTable
+
+  ALIGN 4
+  Initialization:
+    #incbin "asm/Debuffs/New Initializer.dmp"
+    WORD DebuffTable
+
+  ALIGN 4
+  Reloading:
+    #incbin "asm/Debuffs/New Reload.dmp"
+    WORD DebuffTable
+
+  ALIGN 4
+  PerTurn:
+    #incbin "asm/Debuffs/ProcessDebuffs.dmp"
+    WORD DebuffTable
+
+  }
+
+#else // _FE8_
+  ERROR Suspend Expansion and Debuff hack is for FE8
+#endif // _FE8_
+
+#endif // DEBUFFS_HACK
