@@ -7,6 +7,9 @@
 	RALLY_EFFECT_RANGE = 2
 
 	GetUnit = 0x08019430|1
+	StartProc = 0x08002C7C|1
+	FindProc = 0x08002E9C|1
+	EndProc = 0x08002D6C|1
 
 	gActiveUnit = 0x03004E50
 	gActionData = 0x0203A958
@@ -133,19 +136,12 @@ RallyCommandSwitchIn:
 
 	@ start map aura fx
 
-	ldr r3, =StartMapAuraFx
+	ldr r3, =StartProc
+
+	ldr r0, =RallyPreviewFxProc
+	mov r1, #3
+
 	bl  BXR3
-
-	ldr r0, =AddMapAuraFxUnit @ arg r0 = function
-	@ unused                  @ arg r1 = user argument
-
-	bl ForEachRalliedUnit
-
-	ldr r3, =SetMapAuraFxPalette
-
-	ldr r0, =gRallyPreviewPalette @ arg r0 = palette pointer
-
-	bl BXR3
 
 	mov r0, #0 @ no menu effect
 
@@ -160,8 +156,13 @@ RallyCommandSwitchOut:
 
 	@ end map aura fx
 
-	ldr r3, =EndMapAuraFx
+	ldr r0, =RallyPreviewFxProc
+
+	ldr r3, =FindProc
 	bl  BXR3
+
+	ldr r3, =EndProc
+	bl BXR3
 
 	mov r0, #0 @ no menu effect
 
@@ -275,6 +276,107 @@ ForEachRalliedUnit.lop:
 ForEachRalliedUnit.end:
 	pop {r1-r2, r4}
 
-	pop {r3}
+	pop {r1}
+	bx r1
+
+	.pool
+	.align
+
+	.type RallyPreviewFx_OnInit, function
+	.type RallyPreviewFx_OnLoop, function
+	.type RallyPreviewFx_OnEnd,  function
+
+RallyPreviewFxProc:
+	.word 1, RallyPreviewFxProc.name
+
+	.word 2, RallyPreviewFx_OnInit
+	.word 4, RallyPreviewFx_OnEnd
+	.word 3, RallyPreviewFx_OnLoop
+
+	.word 0, 0
+
+RallyPreviewFxProc.name:
+	.asciz "Rally Preview Fx"
+
+	.align
+
+RallyPreviewFx_OnInit:
+	push {lr}
+
+	mov r1, #0 @ timer (unneeded?)
+	str r1, [r0, #0x2C]
+
+	@ start map aura fx
+
+	ldr r3, =StartMapAuraFx
+	bl  BXR3
+
+	ldr r0, =AddMapAuraFxUnit @ arg r0 = function
+	@ unused                  @ arg r1 = user argument
+
+	bl ForEachRalliedUnit
+
+	@ set map aura fx palette
+
+	ldr r3, =SetMapAuraFxPalette
+
+	ldr r0, =gRallyPreviewPalette @ arg r0 = palette pointer
+
+	bl BXR3
+
+	bl RallyPreviewFx_OnLoop
+
+	pop {r1}
+	bx r1
+
+	.pool
+	.align
+
+RallyPreviewFx_OnLoop:
+	ldr r1, [r0, #0x2C]
+	add r1, #1
+	str r1, [r0, #0x2C]
+
+	mov r0, #31
+	and r0, r1 @ r0 = timer % 32
+
+	lsr r0, #1 @ r0 = (timer % 32) / 2
+
+	cmp r0, #8
+	ble 1f
+
+	mov r1, #0x10
+	sub r0, r1, r0
+
+1:
+	cmp r0, #6
+	bge 1f
+
+	cmp r0, #2
+	blt 2f
+
+	sub r0, #2
+	b 0f
+
+2:
+	mov r0, #0
+	b 0f
+
+1:
+	mov r0, #4
+
+0:
+	ldr r3, =SetMapAuraFxBlend
+
+	@ implied @ arg r0 = blend
+
+	bx r3
+
+	.pool
+	.align
+
+RallyPreviewFx_OnEnd:
+	ldr r3, =EndMapAuraFx
+
 BXR3:
 	bx r3
