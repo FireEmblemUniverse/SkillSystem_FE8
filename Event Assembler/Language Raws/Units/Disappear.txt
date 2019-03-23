@@ -1,0 +1,30 @@
+
+#Chapters: 2, 3, 5...
+##Removes character from the map.
+DISA, 0x30, 8, -game:FE6 -indexMode:8
+##Character to remove.
+	Character, 4, 4
+
+DISA, 0x6A, 8, -game:FE7 -indexMode:8
+##Position of the character to remove.
+	Position, 4, 4, -coordinates:2
+
+DISA, 0x6B, 8, -game:FE7 -indexMode:8
+	Character, 4, 2
+
+#Removes unit from party until next loaded. Used on Eirika/Ephraim at the lord split.
+REMU, 0x3420, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+DISA, 0x342F, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Clear all player/npc/enemy units from the map
+CLEA, 0x342A, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CLEN, 0x342B, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CLEE, 0x342C, 4, -game:FE8 -indexMode:8
+	Character, 2, 2

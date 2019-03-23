@@ -3,6 +3,9 @@
     #include "Custom Definitions.event"
 
     ORG FreeSpace
+
+    #include "repointedTextTable.event"
+
     //Text first for Text ID definitions
     #include "Text/Install Text Data.event"
     MESSAGE Used text space ends at currentOffset

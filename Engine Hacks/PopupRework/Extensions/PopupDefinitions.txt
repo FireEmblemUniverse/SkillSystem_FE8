@@ -1,0 +1,33 @@
+#ifndef POPUP_DEFINITIONS
+#define POPUP_DEFINITIONS
+
+#define Popup_End                 "WORD 0x00 0"
+#define Popup_Space(aSize)        "WORD 0x01 aSize"
+#define Popup_ItemName            "WORD 0x02 0"
+#define Popup_ItemNameWithArticle_Capitalized "WORD 0x03 0"
+#define Popup_ItemNameWithArticle "WORD 0x04 0"
+#define Popup_UnitName            "WORD 0x05 0"
+#define Popup_StringId(aTextId)   "WORD 0x06 aTextId"
+#define Popup_StringPtr(apsStr)   "WORD 0x07; POIN apsStr"
+#define Popup_SetColor(aColor)    "WORD 0x08 aColor"
+#define Popup_ItemIcon            "WORD 0x09 0"
+#define Popup_WTypeIcon           "WORD 0x0A 0"
+#define Popup_Number              "WORD 0x0B 0"
+#define Popup_SetSound(aSoundId)  "WORD 0x0C aSoundId"
+
+// Example (Actual example from the game)
+
+// ORG 0x592230
+	// Popup_SetSound(0x5A)
+	// Popup_SetColor(0)
+	// Popup_StringId(8) // "Got [X]"
+	// Popup_SetColor(2)
+	// Popup_ItemNameWithArticle
+	// Popup_Space(1)
+	// Popup_ItemIcon
+	// Popup_SetColor(0)
+	// Popup_Space(1)
+	// Popup_StringId(0x22) // ".[X]"
+	// Popup_End
+
+#endif // POPUP_DEFINITIONS

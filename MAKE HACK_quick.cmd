@@ -1,9 +1,5 @@
-cd %~dp0
 
-copy FE8_clean.gba SkillsTest.gba
+@rem using two scripts that do mostly the same thing is annoying to maintain tbh
+@rem so we let MAKE HACK_full do everything and do it slightly differently based on its argument
 
-cd "%~dp0Event Assembler"
-
-Core A FE8 "-output:%~dp0SkillsTest.gba" "-input:%~dp0ROM Buildfile.event"
-
-pause
+call "%~dp0MAKE HACK_full.cmd" quick
