@@ -53,10 +53,10 @@ TryLearnSkill:
 
 	push {r4, lr}
 
-	ldrb r1, [r0, #0x08] @ r1 = battle unit level
+	ldrb r2, [r0, #0x08] @ r1 = battle unit level
 
-	mov  r2, #0x70
-	ldrb r2, [r0, r2] @ r2 = battle unit initial level
+	mov  r1, #0x70
+	ldrb r1, [r0, r1] @ r2 = battle unit initial level
 
 	cmp r1, r2
 	beq TryLearnSkill.no_skill @ if level didn't change, no new skill
@@ -66,12 +66,14 @@ TryLearnSkill:
 	sub sp, #8 @ allocate buffer
 
 	ldr r3, lGetUnitLevelSkills
+	mov ip, r3
 
 	@ implied  @ arg r0 = (battle) unit
-	@ implied  @ arg r1 = level
-	mov r2, sp @ arg r2 = output buffer
+	@ implied  @ arg r1 = level from
+	@ implied  @ arg r2 = level to
+	mov r3, sp @ arg r3 = output buffer
 
-	bl BXR3
+	bl BXIP
 
 	@ implied  @ ret r0 = output buffer
 
@@ -108,6 +110,12 @@ TryLearnSkill.end:
 
 	pop {r1}
 	bx r1
+
+BXIP:
+	bx ip
+
+	.pool
+	.align
 
 EALiterals:
 	@ POIN (GetUnitLevelSkills|1)
