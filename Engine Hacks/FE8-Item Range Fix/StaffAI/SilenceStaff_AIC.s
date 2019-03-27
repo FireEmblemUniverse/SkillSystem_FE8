@@ -13,6 +13,9 @@
 	mov 	r5, r1
 	mov 	r6, r2
 	
+	cmp 	r5, r6
+	beq CantHit 	@stop unit from targeting itself
+	
 	mov 	r0, r6
 	ldr 	r3, AI_IfAlly
 	_blr 	r3
