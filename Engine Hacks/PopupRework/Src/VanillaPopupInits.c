@@ -34,14 +34,14 @@ POPR_INIT_WRANK_DECL(Elder, 7)
 
 int PopR_InitWRankUp(void) {
 	// Check Active Unit
-	if (BattleUnit_ShouldDisplayWRankUp(&gActiveBattleUnit)) {
-		SetPopupWType(gActiveBattleUnit.weaponType);
+	if (BattleUnit_ShouldDisplayWRankUp(&gBattleActor)) {
+		SetPopupWType(gBattleActor.weaponType);
 		return TRUE;
 	}
 
 	// Check Target Unit
-	if (BattleUnit_ShouldDisplayWRankUp(&gTargetBattleUnit)) {
-		SetPopupWType(gTargetBattleUnit.weaponType);
+	if (BattleUnit_ShouldDisplayWRankUp(&gBattleTarget)) {
+		SetPopupWType(gBattleTarget.weaponType);
 		return TRUE;
 	}
 
@@ -50,14 +50,14 @@ int PopR_InitWRankUp(void) {
 
 int PopR_InitWeaponBroke(void) {
 	// Check Active Unit
-	if (BattleUnit_ShouldDisplayWpnBroke(&gActiveBattleUnit)) {
-		SetPopupItem(gActiveBattleUnit.weaponBefore);
+	if (BattleUnit_ShouldDisplayWpnBroke(&gBattleActor)) {
+		SetPopupItem(gBattleActor.weaponBefore);
 		return TRUE;
 	}
 
 	// Check Target Unit
-	if (BattleUnit_ShouldDisplayWpnBroke(&gTargetBattleUnit)) {
-		SetPopupItem(gTargetBattleUnit.weaponBefore);
+	if (BattleUnit_ShouldDisplayWpnBroke(&gBattleTarget)) {
+		SetPopupItem(gBattleTarget.weaponBefore);
 		return TRUE;
 	}
 
