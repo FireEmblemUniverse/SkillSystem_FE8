@@ -35,11 +35,11 @@ const struct PopupComponentType gPopR_ItemNameComponent = {
 };
 
 static int PopRItemName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetItemNameString(gPopupItem));
+	return Text_GetStringTextWidth(GetItemName(gPopupItem));
 }
 
 static void PopRItemName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetItemNameString(gPopupItem));
+	Text_DrawString(text, GetItemName(gPopupItem));
 }
 
 // ================================================
@@ -55,11 +55,11 @@ const struct PopupComponentType gPopR_CArticleItemNameComponent = {
 };
 
 static int PopRCArticleItemName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetItemStringWithArticle(gPopupItem, TRUE));
+	return Text_GetStringTextWidth(GetItemNameWithArticle(gPopupItem, TRUE));
 }
 
 static void PopRCArticleItemName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetItemStringWithArticle(gPopupItem, TRUE));
+	Text_DrawString(text, GetItemNameWithArticle(gPopupItem, TRUE));
 }
 
 // ====================================
@@ -75,11 +75,11 @@ const struct PopupComponentType gPopR_LArticleItemNameComponent = {
 };
 
 static int PopRLArticleItemName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(GetItemStringWithArticle(gPopupItem, FALSE));
+	return Text_GetStringTextWidth(GetItemNameWithArticle(gPopupItem, FALSE));
 }
 
 static void PopRLArticleItemName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, GetItemStringWithArticle(gPopupItem, FALSE));
+	Text_DrawString(text, GetItemNameWithArticle(gPopupItem, FALSE));
 }
 
 // =======================
@@ -95,11 +95,11 @@ const struct PopupComponentType gPopR_UnitNameComponent = {
 };
 
 static int PopRUnitName_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(String_GetFromIndex(gpPopupUnit->pCharacterData->nameTextId));
+	return Text_GetStringTextWidth(GetStringFromIndex(gpPopupUnit->pCharacterData->nameTextId));
 }
 
 static void PopRUnitName_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, String_GetFromIndex(gpPopupUnit->pCharacterData->nameTextId));
+	Text_DrawString(text, GetStringFromIndex(gpPopupUnit->pCharacterData->nameTextId));
 }
 
 // ============================
@@ -115,11 +115,11 @@ const struct PopupComponentType gPopR_StringIdComponent = {
 };
 
 static int PopRStringId_GetLength(struct PopupReworkProc* proc, u32 argument) {
-	return GetStringTextWidth(String_GetFromIndex(argument));
+	return Text_GetStringTextWidth(GetStringFromIndex(argument));
 }
 
 static void PopRStringId_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	Text_AppendString(text, String_GetFromIndex(argument));
+	Text_DrawString(text, GetStringFromIndex(argument));
 }
 
 // =================================
@@ -136,12 +136,12 @@ const struct PopupComponentType gPopR_StringRawComponent = {
 
 static int PopRStringRaw_GetLength(struct PopupReworkProc* proc, u32 argument) {
 	const char* cstr = (const char*) (argument);
-	return GetStringTextWidth(cstr);
+	return Text_GetStringTextWidth(cstr);
 }
 
 static void PopRStringRaw_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
 	const char* cstr = (const char*) (argument);
-	Text_AppendString(text, cstr);
+	Text_DrawString(text, cstr);
 }
 
 // ===============================
@@ -217,7 +217,7 @@ static void PopRNumber_Display(struct PopupReworkProc* proc, struct TextHandle* 
 	char buf[0x10];
 
 	String_FromNumber(gPopupNumber, buf);
-	Text_AppendString(text, buf);
+	Text_DrawString(text, buf);
 }
 
 // =======================

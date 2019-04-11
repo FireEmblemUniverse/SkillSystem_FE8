@@ -13,10 +13,14 @@ push 	{r4-r7, lr}
 mov 	r4, r2
 mov 	r5, r1
 mov 	r6, r0
+
+cmp 	r5, r4		@stop unit from targeting itself
+beq CantHit
+
 ldrb 	r1, [r4,#0xA]
 mov 	r0, #0x1
 and 	r0, r1
-cmp 	r0, #0x0
+cmp 	r0, #0x0	@check if target unit is in recovery mode
 beq CantHit
 
 mov 	r0, r4

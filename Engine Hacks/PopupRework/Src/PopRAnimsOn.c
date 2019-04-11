@@ -39,7 +39,7 @@ static const struct ProcInstruction sProc_PopRAnimsOnPopup[] = {
 };
 
 static struct PopupReworkProc* PopR_StartAnimsOnPopup(const u32* definition, unsigned time, struct Proc* parent) {
-	struct PopupReworkAnimsOnProc* proc = (struct PopupReworkAnimsOnProc*) StartBlockingProc(
+	struct PopupReworkAnimsOnProc* proc = (struct PopupReworkAnimsOnProc*) ProcStartBlocking(
 		sProc_PopRAnimsOnPopup, parent
 	);
 
@@ -75,7 +75,8 @@ static void PopR_AnimsOnAddIcon(struct PopupReworkProc* proc, unsigned iconId, u
 static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 	static const unsigned BOX_GFX_TILE  = 0x100;
 	static const unsigned TEXT_GFX_TILE = 0x108;
-	static const unsigned COMMON_PAL    = 1;
+	static const unsigned TEXT_PAL      = 0;
+	static const unsigned BOX_PAL       = 1;
 	static void* const    BOX_GFX_VRAM  = (void*)(VRAM + BOX_GFX_TILE * 0x20);
 	static void* const    TEXT_GFX_VRAM = (void*)(VRAM + TEXT_GFX_TILE * 0x20);
 
@@ -87,13 +88,14 @@ static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 	proc->popr.pop.xTileReal = ((240 - (xTileSize+4)*8) / 2);
 	proc->popr.pop.yTileReal = 48;
 
-	Font_InitForUI(&gSomeFontStruct, TEXT_GFX_VRAM, TEXT_GFX_TILE, COMMON_PAL);
+	Text_InitFontExt(&gSomeFontStruct, TEXT_GFX_VRAM, TEXT_GFX_TILE, TEXT_PAL);
 	Font_SetDraw1DTileNoClear();
 
 	struct TextHandle text;
 	Text_InitClear(&text, xTileSize);
 
-	CopyToPaletteBuffer(gPal_BattlePopup, COMMON_PAL * 0x20, 0x20);
+	CopyToPaletteBuffer(gPal_BattlePopup, BOX_PAL * 0x20, 0x20);
+	gPaletteBuffer[0x10 * TEXT_PAL + 14] = gPaletteBuffer[0x10 * BOX_PAL + 14];
 
 	Decompress(gGfx_BattlePopup, BOX_GFX_VRAM);
 	Decompress(gGfx_BattlePopupTextBg, TEXT_GFX_VRAM);
@@ -104,6 +106,8 @@ static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 
 	Decompress(gTsa_BattlePopup, gSpellFxTsaBuffer);
 	MakeBattlePopupTileMapFromTSA(gBg1MapBuffer, xTileSize);
+
+	Text_Display(&text, BG_LOCATED_TILE(gBg1MapBuffer, 2, 1));
 
 	SetBgPosition(1, -proc->popr.pop.xTileReal, -proc->popr.pop.yTileReal);
 
@@ -116,7 +120,7 @@ static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 
 static void PopR_AnimsOnWait(struct PopupReworkAnimsOnProc* proc) {
 	if (proc->popr.pop.clock < 0) {
-		if (gKeyStatus.pressedKeys & A_BUTTON)
+		if (gKeyState.pressedKeys & KEY_BUTTON_A)
 			BreakProcLoop((struct Proc*) (proc));
 	} else {
 		if (proc->popr.pop.clock == 0)
@@ -158,7 +162,7 @@ PROC_LABEL(1),
 };
 
 void PopR_StartBattlePopups(void) {
-	struct AnimsOnWrapperProc* proc = (struct AnimsOnWrapperProc*) StartProc(sProc_PopR_AnimsOnWrapper, ROOT_PROC_3);
+	struct AnimsOnWrapperProc* proc = (struct AnimsOnWrapperProc*) ProcStart(sProc_PopR_AnimsOnWrapper, ROOT_PROC_3);
 
 	gpBattlePopupProc = (struct Proc*) (proc);
 	gBattlePopupEnded = FALSE;
@@ -178,12 +182,12 @@ static void PopR_AnimsOnWrapperLoop(struct AnimsOnWrapperProc* proc) {
 	const struct BattlePopupType type = *proc->itPop++;
 
 	if (!type.tryInit) {
-		GotoProcLabel((struct Proc*) (proc), 1);
+		ProcGoto((struct Proc*) (proc), 1);
 		return;
 	}
 
 	if (!type.tryInit()) {
-		GotoProcLabel((struct Proc*) (proc), 0);
+		ProcGoto((struct Proc*) (proc), 0);
 		return;
 	}
 

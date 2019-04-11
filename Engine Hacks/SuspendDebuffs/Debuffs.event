@@ -19,6 +19,12 @@
     ORG 0x188A8 // This is for decreasing the debuffs each turn/ending rally
       jumpToHack(PerTurn)
 
+    ORG 0x59A308 // Clear debuffs on chapter switch
+      WORD $0D; POIN MapMainClearProc
+
+    ORG 0x59191C // Clear debuffs on chapter switch
+      WORD $0D; POIN GameCtrlClearProc
+
     // prevent debuffs and loading issue (Kirb)
 
     ORG 0xBA30
@@ -80,7 +86,24 @@
     #incbin "asm/Debuffs/ProcessDebuffs.dmp"
     WORD DebuffTable
 
+  ALIGN 4
+  MapMainClearProc:
+    WORD $02; POIN (ClearDebuffs|1)
+    WORD $02 $80155C5
+    WORD $0D $859A310
+
+  ALIGN 4
+  GameCtrlClearProc:
+    WORD $02; POIN (ClearDebuffs|1)
+    WORD $02 $8009D99
+    WORD $0D $8591924
+
   }
+
+  ClearDebuffs:
+    #incbin "asm/Debuffs/ClearDebuffs.dmp"
+    WORD DebuffTable
+    WORD DebuffTableSize
 
 #else // _FE8_
   ERROR Suspend Expansion and Debuff hack is for FE8

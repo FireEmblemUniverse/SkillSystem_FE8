@@ -60,11 +60,11 @@ void PopR_AnimsOffDisplay(struct PopupReworkProc* proc) {
 
 	// Display text
 
-	Text_Draw(&text, BG_LOCATED_TILE(gBg0MapBuffer, xTile+1, yTile+1));
+	Text_Display(&text, BG_LOCATED_TILE(gBg0MapBuffer, xTile+1, yTile+1));
 
 	// Reset font
 
-	Font_InitDefault();
+	Text_InitFont();
 
 	// Play sound
 
@@ -98,7 +98,7 @@ static void PopR_AnimsOffAddIcon(struct PopupReworkProc* proc, unsigned iconId, 
 	// Make updater proc if it has not already
 
 	if (!pproc->pIconUpdater) {
-		pproc->pIconUpdater = (struct PopRAnimsOffIconUpdater*) StartProc(sProc_PopRAnimsOffIconUpdater, (struct Proc*)(pproc));
+		pproc->pIconUpdater = (struct PopRAnimsOffIconUpdater*) ProcStart(sProc_PopRAnimsOffIconUpdater, (struct Proc*)(pproc));
 
 		pproc->pIconUpdater->entries[0].iconId = -1;
 	}
@@ -136,7 +136,7 @@ static void PopR_AnimsOffAddIcon(struct PopupReworkProc* proc, unsigned iconId, 
 
 static void PopR_AnimsOffIconUpdaterLoop(struct PopRAnimsOffIconUpdater* proc) {
 	for (struct PopRIconEntry* entry = proc->entries; entry->iconId >= 0; ++entry)
-		PushToHiOAM(entry->xBase, entry->yBase, &gOAM_16x16Obj, entry->tileBase);
+		PushToHiOAM(entry->xBase, entry->yBase, &gObj_16x16, entry->tileBase);
 }
 
 struct AnimsOffWrapperProc {
@@ -169,12 +169,12 @@ static void PopR_AnimsOffWrapperLoop(struct AnimsOffWrapperProc* proc) {
 	const struct BattlePopupType type = *proc->itPop++;
 
 	if (!type.tryInit) {
-		GotoProcLabel((struct Proc*) (proc), 1);
+		ProcGoto((struct Proc*) (proc), 1);
 		return;
 	}
 
 	if (!type.tryInit()) {
-		GotoProcLabel((struct Proc*) (proc), 0);
+		ProcGoto((struct Proc*) (proc), 0);
 		return;
 	}
 
