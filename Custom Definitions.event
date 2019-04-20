@@ -16,6 +16,13 @@
 #define LunarBrace MoonBracelet
 #define SolarBrace SunBracelet
 
+// Attribute for defining items with passive stat bonuses
+#define PASSIVE_ITEM_BOOSTS_ATTR 0x00800000
+
+// this is for if you use the legacy way of define item attributes in your table (this is for byte 3)
+// (which is sadly what the included table also does TODO: fix that)
+#define PassiveBoosts 0x80
+
 #include "Engine Hacks/Skill System/skill_definitions.event"
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p

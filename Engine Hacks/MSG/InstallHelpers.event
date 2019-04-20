@@ -34,12 +34,15 @@ prCheckUnitAllegience:
 	SHORT 0xB500 0x7AC8 0x1C11 0x4B02 0x469E 0xF800 0xBC02 0x4708 0x4DA4 0x0802
 prGetItemROMStruct:
 {
-	rCallSequence(_prAndFF _prGetROMStructById)
+	rCallSequence(_GetSubject _And _GetItemData)
 
-_prAndFF:
+_GetSubject:
+	rWithSubject; rArgument
+
+_And:
 	rAndConst(0xFF)
 
-_prGetROMStructById:
+_GetItemData:
 	rCallOther(prGetItemIdROMStruct)
 }
 
