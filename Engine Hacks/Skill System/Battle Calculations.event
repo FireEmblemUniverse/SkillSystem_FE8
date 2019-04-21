@@ -30,7 +30,7 @@ POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfecti
 POIN UpWithArch
 POIN AxefaithHit
 POIN StancesASM
-#ifdef __GBA_LETHALITY__
+#ifdef ENABLE_GBA_LETHALITY
 POIN LethalitySkill Bane
 #else
 POIN LethalitySkill NonGBALethalitySkill Bane

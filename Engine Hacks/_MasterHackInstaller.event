@@ -6,6 +6,10 @@
 
 #include "Extensions/Hack Installation.txt"
 #include "PopupRework/Extensions/PopupDefinitions.txt"
+
+// hack configuration file
+#include "Config.event"
+
 #include "_UnitMenuDefs.event"
 
 ////////////////////////////////SUPPORTING CHANGES

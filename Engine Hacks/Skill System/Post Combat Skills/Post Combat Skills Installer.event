@@ -42,7 +42,7 @@ ALIGN 4
 
 #inctext lyn "PoisonStrikeGrislyWound.elf"
 
-#ifdef __CheckDamageOnPoisonStrikeGrislyWound__
+#ifdef RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
 	#inctext lyn "PoisonStrikeGrislyWoundExt.elf"
 #else
 	#inctext lyn "PoisonStrikeGrislyWoundExtNoCheck.elf"
@@ -92,7 +92,7 @@ Canto:
 #incbin "canto.dmp"
 POIN SkillTester
 WORD CantoID
-WORD CantoWithAbility
+WORD ENABLE_LEGACY_CANTO
 
 CantoPlus:
 #incbin "cantoplus.dmp"
@@ -101,7 +101,7 @@ WORD CantoPlusID
 
 PUSH //some changes to vanilla code to make everything work
 ORG $1D24C //check for canto, modified to just check for cantoing bit set
-#ifdef __GALEFORCE_AUTOSELECT__
+#ifdef ENABLE_GALEFORCE_AUTOSELECT
 SHORT 0x7B18 0x2102 0x4008 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0 0x2802 //galeforce autoselects unit
 #else
 SHORT 0x7b18 0x2102 0x4001 0x2902 0xd020 0x2140 0x4008 0x46c0 0x2800 //galeforce does not autoselect the unit

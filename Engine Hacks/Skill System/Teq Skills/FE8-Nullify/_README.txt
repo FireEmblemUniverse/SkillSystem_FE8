@@ -1,4 +1,4 @@
-If __SLAYER_AND_EFFECTIVENESS_REWORK__ is commented out (in Skill System Options.event), you can basically ignore the rest of this text.
+If ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK is commented out (in Skill System Options.event), you can basically ignore the rest of this text.
 
 If not commented, then this rework will come into play.
 Each class weakness/weapon effectiveness is now a "class type", a bit in a bitfield.
