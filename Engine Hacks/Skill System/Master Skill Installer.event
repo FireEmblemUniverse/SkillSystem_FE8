@@ -2,7 +2,7 @@
 #include "Skill System Options.event"
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
-#include "Battle Calculations.event" //battle calcs
+#include "BattleCalculations/BattleCalculations.event" //battle calcs
 #include "charge_table.event"
 SkillIcons:
 ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
