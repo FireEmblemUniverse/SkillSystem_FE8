@@ -6,7 +6,7 @@
 
 ALIGN 4
 BC_WrathSkill:
-	#incbin "Src/Wrath/Wrath.dmp"
+	#incbin "Src/Wrath.dmp"
 	POIN SkillTester
 	WORD WrathID
 

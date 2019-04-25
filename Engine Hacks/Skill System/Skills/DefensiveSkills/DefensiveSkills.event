@@ -1,5 +1,5 @@
-#ifndef DEFENSE_SKILLS
-#define DEFENSE_SKILLS
+#ifndef DEFENSIVE_SKILLS
+#define DEFENSIVE_SKILLS
 
 // various skills activating when defending for the Skill System
 // hack by Blademaster, ????
@@ -14,8 +14,8 @@ DefendingSkillIdList:
 
 ALIGN 4
 BC_DefenseSkills:
-	#incbin "Src/DefenseSkills/Defending.dmp"
+	#incbin "Src/Defending.dmp"
 	POIN SkillTester
 	POIN DefendingSkillIdList
 
-#endif // DEFENSE_SKILLS
+#endif // DEFENSIVE_SKILLS

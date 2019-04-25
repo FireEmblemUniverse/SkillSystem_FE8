@@ -13,7 +13,7 @@ FaireSkillIdList:
 
 ALIGN 4
 BC_FaireSkills:
-	#incbin "Src/FaireSkills/FaireCheck.dmp"
+	#incbin "Src/FaireCheck.dmp"
 	POIN SkillTester
 	POIN FaireSkillIdList
 

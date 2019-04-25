@@ -1,0 +1,13 @@
+#ifndef PUISSANCE_SKILL
+#define PUISSANCE_SKILL
+
+// Puissance skill for the Skill System
+// hack by Zeta
+
+ALIGN 4
+BC_PuissanceSkill:
+	#incbin "Src/Puissance.dmp"
+	POIN SkillTester
+	WORD PuissanceID
+
+#endif // PUISSANCE_SKILL

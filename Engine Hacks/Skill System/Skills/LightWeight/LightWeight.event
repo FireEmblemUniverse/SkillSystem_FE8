@@ -1,0 +1,13 @@
+#ifndef LIGHTWEIGHT_SKILL
+#define LIGHTWEIGHT_SKILL
+
+// Light Weight skill for the Skill System
+// hack by Blademaster
+
+ALIGN 4
+BC_LightWeightSkill:
+	#incbin "Src/LightWeight.dmp"
+	POIN SkillTester
+	WORD LightWeightID
+
+#endif // LIGHTWEIGHT_SKILL

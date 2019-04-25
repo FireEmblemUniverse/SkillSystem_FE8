@@ -1,0 +1,13 @@
+#ifndef TRAMPLE_SKILL
+#define TRAMPLE_SKILL
+
+// Trample skill for the Skill System
+// hack by Tequila
+
+ALIGN 4
+BC_TrampleSkill:
+	#incbin "Src/Trample.dmp"
+	POIN SkillTester
+	WORD TrampleID
+
+#endif // TRAMPLE_SKILL

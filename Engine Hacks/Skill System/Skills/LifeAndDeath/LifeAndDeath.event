@@ -1,0 +1,14 @@
+#ifndef LIFEANDDEATH_SKILL
+#define LIFEANDDEATH_SKILL
+
+// Life and Death skill for the Skill System
+// hack by ???
+
+// TODO: make more configurable
+
+BC_LifeAndDeathSkill:
+	#incbin "Src/LifeAndDeath.dmp"
+	POIN SkillTester
+	WORD LifeAndDeathID
+
+#endif // LIFEANDDEATH_SKILL

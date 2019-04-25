@@ -1,0 +1,13 @@
+#ifndef OPPORTUNIST_SKILL
+#define OPPORTUNIST_SKILL
+
+// Opportunist skill for the Skill System
+// hack by Tequila
+
+ALIGN 4
+BC_OpportunistSkill:
+	#incbin "Src/Opportunist.dmp"
+	POIN SkillTester
+	WORD OpportunistID
+
+#endif // OPPORTUNIST_SKILL

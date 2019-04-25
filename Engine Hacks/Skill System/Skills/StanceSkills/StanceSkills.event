@@ -1,0 +1,12 @@
+#ifndef STANCE_SKILLS
+#define STANCE_SKILLS
+
+// Stance skills for the Skill System
+// hack by Snakey1
+
+StanceSkillList:
+	BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID
+
+#inctext lyn "Src/Stances.elf"
+
+#endif // STANCE_SKILLS

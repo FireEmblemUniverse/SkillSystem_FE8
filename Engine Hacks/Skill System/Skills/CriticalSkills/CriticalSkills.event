@@ -1,0 +1,16 @@
+#ifndef CRITICAL_SKILLS
+#define CRITICAL_SKILLS
+
+// crit-modifying skills for the Skill System
+// hack by Blademaster
+
+CriticalSkillIdList:
+	BYTE CriticalForceID KillingMachineID
+
+ALIGN 4
+BC_CriticalModifierSkills:
+	#incbin "Src/Critical.dmp"
+	POIN SkillTester
+	POIN CriticalSkillIdList
+
+#endif // CRITICAL_SKILLS

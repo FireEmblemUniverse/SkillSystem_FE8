@@ -14,7 +14,7 @@ BlowSkillIdList:
 
 ALIGN 4
 BC_BlowSkills:
-	#incbin "Src/BlowSkills/BlowCheck.dmp"
+	#incbin "Src/BlowCheck.dmp"
 	POIN SkillTester
 	POIN BlowSkillIdList
 

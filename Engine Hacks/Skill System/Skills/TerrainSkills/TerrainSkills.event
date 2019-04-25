@@ -1,0 +1,21 @@
+#ifndef TERRAIN_SKILLS
+#define TERRAIN_SKILLS
+
+// battle skills that work based on terrain for the Skill System
+// hack by ???
+
+// TODO: maybe separate 'terrain' skills further
+
+ALIGN 4
+BC_ElbowRoomSkill:
+	#incbin "Src/ElbowRoom.dmp"
+	POIN SkillTester
+	WORD ElbowRoomID
+
+ALIGN 4
+BC_NaturalCoverSkill:
+	#incbin "Src/NaturalCover.dmp"
+	POIN SkillTester
+	WORD NaturalCoverID
+
+#endif // TERRAIN_SKILLS

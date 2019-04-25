@@ -1,0 +1,20 @@
+#ifndef BANE_SKILL
+#define BANE_SKILL
+
+// bane skill for the Skill System
+// hack by Leonarth(?)
+
+// skill/2% of leaving the enemy with 1hp if the normal damage would not have killed (bane is ignored if the unit has lethality)
+
+ALIGN 4
+BC_BaneSkill:
+	#incbin "Src/Bane.dmp"
+	POIN SkillTester
+#ifdef LethalityID
+	WORD LethalityID
+#else // LethalityID
+	WORD 0
+#endif // LethalityID
+	WORD BaneID
+
+#endif // BANE_SKILL

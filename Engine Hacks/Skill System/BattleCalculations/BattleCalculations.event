@@ -34,27 +34,42 @@ BtlLoopParent:
 	#incbin "Src/BattleCalcLoop.dmp"
 
 	POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+
+	// TODO: guard all of those with ifdefs
+
 	POIN BC_FaireSkills
 	POIN BC_BreakerSkills
 	POIN BC_BlowSkills
 	POIN BC_DefenseSkills
 	POIN BC_WrathSkill
 	POIN BC_LuckySevenSkill BC_OddRhythmSkill BC_EvenRhythmSkill BC_QuickBurnSkill BC_SlowBurnSkill
+	POIN BC_ElbowRoomSkill BC_NaturalCoverSkill
+	POIN BC_GambleSkill
+	POIN BC_FieryBloodSkill
+	POIN BC_LifeAndDeathSkill
+	POIN BC_WindDiscipleSkill
+	POIN BC_HawkeyeSkill
+	POIN BC_LightWeightSkill
+	POIN BC_PerfectionistSkill
+	POIN BC_PuissanceSkill
+	POIN BC_TrampleSkill
+	POIN BC_OpportunistSkill
+	POIN BC_AxefaithSkill
+	POIN BC_StanceSkills
+
 	POIN SpurStr SpurMag SpurSpd SpurDef SpurRes
-	POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex
-	POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist
-	POIN UpWithArch
-	POIN AxefaithHit
-	POIN StancesASM
+	POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex UpWithArch
+
+	// Because of how killing machine works, critical check should always be done after other crit-modifying skills
+	POIN BC_CriticalModifierSkills
 
 #ifdef __GBA_LETHALITY__
-	POIN LethalitySkill Bane
+	POIN BC_LethalitySkill
 #else
-	POIN LethalitySkill NonGBALethalitySkill Bane
+	POIN BC_LethalitySkill BC_NonGBALethalitySkill
 #endif
 
-	// Because of how killing machine works, critical check should always be done last
-	POIN CriticalCheck
+	POIN BC_BaneSkill
 
 	//add any new ones before here
 	WORD 0

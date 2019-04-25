@@ -1,7 +1,8 @@
 
 .thumb
-.global StancesASM
-.type StancesASM, %function
+
+.global BC_StanceSkills
+.type   BC_StanceSkills, function
 
 .macro blh to, reg
     ldr \reg, =\to
@@ -14,7 +15,7 @@ pop { r4 - r7 }
 pop { r3 }
 bx r3
 
-StancesASM:
+BC_StanceSkills:
 push { r4 - r7, lr }
 mov r4, r0
 mov r5, r1

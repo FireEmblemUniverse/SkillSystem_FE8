@@ -6,31 +6,31 @@
 
 ALIGN 4
 BC_LuckySevenSkill:
-	#incbin "Src/TurnSkills/LuckySeven.dmp"
+	#incbin "Src/LuckySeven.dmp"
 	POIN SkillTester
 	WORD LuckySevenID
 
 ALIGN 4
 BC_OddRhythmSkill:
-	#incbin "Src/TurnSkills/OddRhythm.dmp"
+	#incbin "Src/OddRhythm.dmp"
 	POIN SkillTester
 	WORD OddRhythmID
 
 ALIGN 4
 BC_EvenRhythmSkill:
-	#incbin "Src/TurnSkills/EvenRhythm.dmp"
+	#incbin "Src/EvenRhythm.dmp"
 	POIN SkillTester
 	WORD EvenRhythmID
 
 ALIGN 4
 BC_QuickBurnSkill:
-	#incbin "Src/TurnSkills/QuickBurn.dmp"
+	#incbin "Src/QuickBurn.dmp"
 	POIN SkillTester
 	WORD QuickBurnID
 
 ALIGN 4
 BC_SlowBurnSkill:
-	#incbin "Src/TurnSkills/SlowBurn.dmp"
+	#incbin "Src/SlowBurn.dmp"
 	POIN SkillTester
 	WORD SlowBurnID
 

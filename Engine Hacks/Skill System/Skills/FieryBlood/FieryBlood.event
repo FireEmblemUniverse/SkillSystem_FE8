@@ -1,0 +1,15 @@
+#ifndef FIERYBLOOD_SKILL
+#define FIERYBLOOD_SKILL
+
+// Fiery blood skill for the Skill System
+// hack by ???
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_FieryBloodSkill:
+	#incbin "Src/FieryBlood.dmp"
+	POIN SkillTester
+	WORD FieryBloodID
+
+#endif // FIERYBLOOD_SKILL

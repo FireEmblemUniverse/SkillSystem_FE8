@@ -2,7 +2,6 @@
 #include "Skill System Options.event"
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
-#include "BattleCalculations/BattleCalculations.event" //battle calcs
 #include "charge_table.event"
 SkillIcons:
 ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
@@ -128,16 +127,7 @@ jumpToHack(Shadowgift)
 
 POP
 
-NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
-#incbin "Other Skills/NonGBALethalitySkill.dmp" //if you decide to go with this please remember to change the skill definition to match the new effect
-ALIGN 4
-
-Bane: //skill/2% of leaving the enemy with 1hp if the normal damage would not have killed (bane is ignored if the unit has lethality)
-#incbin "Other Skills/Bane.dmp"
-POIN SkillTester
-WORD LethalityID
-WORD BaneID
-ALIGN 4
+#include "Skills/Bane/Bane.event"
 
 DazzleCheck:
 #incbin "Other Skills/dazzle.dmp"
@@ -145,10 +135,10 @@ POIN SkillTester
 WORD DazzleID
 ALIGN 4
 
-#include "BattleCalcSkills/FaireSkills.event"
-#include "BattleCalcSkills/BreakerSkills.event"
-#include "BattleCalcSkills/BlowSkills.event"
-#include "BattleCalcSkills/DefenseSkills.event"
+#include "Skills/FaireSkills/FaireSkills.event"
+#include "Skills/BreakerSkills/BreakerSkills.event"
+#include "Skills/BlowSkills/BlowSkills.event"
+#include "Skills/DefensiveSkills/DefensiveSkills.event"
 
 AcrobatCheck:
 #incbin "Teq Skills/Acrobat.dmp"
@@ -212,7 +202,7 @@ Desperation:
 POIN SkillTester
 WORD DesperationID
 
-#include "BattleCalcSkills/Wrath.event"
+#include "Skills/Wrath/Wrath.event"
 
 LiveToServe:
 #incbin "Other Skills/LiveToServe.dmp"
@@ -260,77 +250,18 @@ SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
 ALIGN 4
 
-ElbowRoom:
-#incbin "Other Skills/ElbowRoom.dmp"
-POIN SkillTester
-WORD ElbowRoomID
-
-NaturalCover:
-#incbin "Other Skills/NaturalCover.dmp"
-POIN SkillTester
-WORD NaturalCoverID
-
-GambleUsability:
-#incbin "Other Skills/Gamble Usability.dmp"
-POIN SkillTester
-WORD GambleID
-GambleEffect:
-#incbin "Other Skills/Gamble Effect.dmp"
-Gamble:
-#incbin "Other Skills/Gamble.dmp"
-
-FieryBlood:
-#incbin "Other Skills/FieryBlood.dmp"
-POIN SkillTester
-WORD FieryBloodID
-
-LifeAndDeath:
-#incbin "Other Skills/LifeAndDeath.dmp"
-POIN SkillTester
-WORD LifeAndDeathID
-
-WindDisciple:
-#incbin "Blade Skills/Winddisciple.dmp"
-POIN SkillTester
-WORD WindDiscipleID
-
-Hawkeye:
-#incbin "Blade Skills/Hawkeye.dmp"
-POIN SkillTester
-WORD HawkeyeID
-
-LightWeight:
-#incbin "Blade Skills/LightWeight.dmp"
-POIN SkillTester
-WORD LightWeightID
-
-Trample:
-#incbin "Teq Skills/Trample.dmp"
-POIN SkillTester
-WORD TrampleID
-
-Opportunist:
-#incbin "Teq Skills/Opportunist.dmp"
-POIN SkillTester
-WORD OpportunistID
-
-CriticalCheck:
-#incbin "Blade Skills/Critical.dmp"
-POIN SkillTester
-POIN CriticalIDList
-CriticalIDList:
-BYTE CriticalForceID KillingMachineID
-ALIGN 4
-
-AxefaithHit:
-#incbin "Blade Skills/AxeFaith.dmp"
-POIN SkillTester
-WORD AxeFaithID
-
-LethalitySkill:
-#incbin "Other Skills/LethalitySkill.dmp"
-POIN SkillTester
-WORD LethalityID
+#include "Skills/TerrainSkills/TerrainSkills.event"
+#include "Skills/Gamble/Gamble.event"
+#include "Skills/FieryBlood/FieryBlood.event"
+#include "Skills/LifeAndDeath/LifeAndDeath.event"
+#include "Skills/WindDisciple/WindDisciple.event"
+#include "Skills/Hawkeye/Hawkeye.event"
+#include "Skills/LightWeight/LightWeight.event"
+#include "Skills/Trample/Trample.event"
+#include "Skills/Opportunist/Opportunist.event"
+#include "Skills/CriticalSkills/CriticalSkills.event"
+#include "Skills/Axefaith/Axefaith.event"
+#include "Skills/Lethality/Lethality.event"
 
 Armsthrift:
 AxeFaithArmsthrift:
@@ -351,7 +282,7 @@ WORD RightfulArchID
 WORD RightfulKingID
 WORD RightfulGodID
 
-#include "BattleCalcSkills/TurnSkills.event"
+#include "Skills/TurnSkills/TurnSkills.event"
 
 Roll1d12:
 #incbin "Other Skills/roll12.dmp"
@@ -374,10 +305,7 @@ POIN SkillTester
 WORD TraceID
 POIN Skill_Getter
 
-#inctext lyn "Stances/Stances.elf"
-StanceSkillList:
-BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID
-ALIGN 4
+#include "Skills/StanceSkills/StanceSkills.event"
 
 TriangleAdept:
 #incbin "Teq Skills/TriangleAdept.dmp"
@@ -438,15 +366,8 @@ WORD LuminaID
 WORD ShadowgiftStaffOption
 WORD LuminaStaffOption
 
-Perfectionist:
-#incbin "New Skills/Perfectionist.dmp"
-POIN SkillTester
-WORD PerfectionistID
-
-Puissance:
-#incbin "New Skills/Puissance.dmp"
-POIN SkillTester
-WORD PuissanceID
+#include "Skills/Perfectionist/Perfectionist.event"
+#include "Skills/Puissance/Puissance.event"
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
@@ -456,6 +377,8 @@ WORD PuissanceID
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
 #include "Rally Skills/Rally Installer.event"
+
+#include "BattleCalculations/BattleCalculations.event"
 
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
 #include "Post Combat Skills/Post Combat Skills Installer.event"

@@ -1,0 +1,13 @@
+#ifndef HAWKEYE_SKILL
+#define HAWKEYE_SKILL
+
+// Hawkeye skill for the Skill System
+// hack by Blademaster
+
+ALIGN 4
+BC_HawkeyeSkill:
+	#incbin "Src/Hawkeye.dmp"
+	POIN SkillTester
+	WORD HawkeyeID
+
+#endif // HAWKEYE_SKILL

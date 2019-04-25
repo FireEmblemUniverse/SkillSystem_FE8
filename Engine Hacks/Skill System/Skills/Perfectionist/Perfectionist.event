@@ -1,0 +1,13 @@
+#ifndef PERFECTIONIST_SKILL
+#define PERFECTIONIST_SKILL
+
+// Perfectionist skill for the Skill System
+// hack by Zeta
+
+ALIGN 4
+BC_PerfectionistSkill:
+	#incbin "Src/Perfectionist.dmp"
+	POIN SkillTester
+	WORD PerfectionistID
+
+#endif // PERFECTIONIST_SKILL

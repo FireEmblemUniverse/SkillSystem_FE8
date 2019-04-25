@@ -11,7 +11,7 @@ BreakerSkillIdList:
 
 ALIGN 4
 BC_BreakerSkills:
-	#incbin "Src/BreakerSkills/BreakerCheck.dmp"
+	#incbin "Src/BreakerCheck.dmp"
 	POIN SkillTester
 	POIN BreakerSkillIdList
 	WORD 50 // NOTE: Hit/Avoid Bonus

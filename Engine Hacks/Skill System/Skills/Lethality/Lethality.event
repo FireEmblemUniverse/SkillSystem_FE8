@@ -1,0 +1,19 @@
+#ifndef LETHALITY_SKILL
+#define LETHALITY_SKILL
+
+// lethality/silencer as a skill for the Skill System
+// hack by ???/Leonarth
+
+// TODO: make BC_LethalitySkill and BC_NonGBALethalitySkill mutually exclusive (as opposed to BC_NonGBALethalitySkill bing an "addon")
+
+ALIGN 4
+BC_LethalitySkill:
+	#incbin "Src/LethalitySkill.dmp"
+	POIN SkillTester
+	WORD LethalityID
+
+ALIGN 4
+BC_NonGBALethalitySkill: // makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
+	#incbin "Src/NonGBALethalitySkill.dmp" //if you decide to go with this please remember to change the skill definition to match the new effect
+
+#endif // LETHALITY_SKILL

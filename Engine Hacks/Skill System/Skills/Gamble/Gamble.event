@@ -1,0 +1,24 @@
+#ifndef GAMBLE_SKILL
+#define GAMBLE_SKILL
+
+// Gamble command skill for the Skill System
+// hack by ???
+
+// TODO: make more configurable
+// TODO: better naming scheme for unit menu usability/effect routines
+
+ALIGN 4
+GambleUsability:
+	#incbin "Src/Gamble Usability.dmp"
+	POIN SkillTester
+	WORD GambleID
+
+ALIGN 4
+GambleEffect:
+	#incbin "Src/Gamble Effect.dmp"
+
+ALIGN 4
+BC_GambleSkill:
+	#incbin "Src/Gamble.dmp"
+
+#endif // GAMBLE_SKILL

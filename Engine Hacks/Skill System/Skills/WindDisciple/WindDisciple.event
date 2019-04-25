@@ -1,0 +1,12 @@
+#ifndef WINDDISCIPLE_SKILL
+#define WINDDISCIPLE_SKILL
+
+// Wind Disciple skill for the Skill System
+// hack by Blademaster
+
+BC_WindDiscipleSkill:
+	#incbin "Src/WindDisciple.dmp"
+	POIN SkillTester
+	WORD WindDiscipleID
+
+#endif // WINDDISCIPLE_SKILL
