@@ -1,0 +1,38 @@
+#ifndef VIGORDANCE_SKILL
+#define VIGORDANCE_SKILL
+
+// TODO: this is good do that for other stuff too
+#define VigorDanceBit "(8*7)+0" //8*byte + bit of the debuff table to use
+
+PUSH
+	// TODO: modular everything
+
+	ORG $32364
+		jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
+
+	ORG $15428
+		jumpToHack(VigorDanceReset) //unset it when the turn starts again
+
+POP
+
+VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
+	#incbin "Src/VigorDanceSkill.dmp"
+	POIN SkillTester
+	WORD VigorDanceID
+	WORD DebuffTable
+	WORD VigorDanceBit
+	WORD 8 //size of a debuff table entry
+
+VigorDanceCheck: //check if the bit is set and if so give the unit some stats
+	#incbin "Src/VigorDanceCheck.dmp"
+	WORD DebuffTable
+	WORD VigorDanceBit
+	WORD 8 //size of a debuff table entry
+
+VigorDanceReset:
+	#incbin "Src/VigorDanceReset.dmp"
+	WORD DebuffTable
+	WORD VigorDanceBit
+	WORD 8 //size of a debuff table entry
+
+#endif // VIGORDANCE_SKILL

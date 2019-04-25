@@ -1,0 +1,29 @@
+#ifndef SEAL_SKILLS
+#define SEAL_SKILLS
+
+// 'seal <stat>' skills for the Skill System
+// hack by ???
+
+// TODO: more modular things
+
+PUSH
+	// TODO: figure out if we can do this better
+
+	ORG $2C088
+		jumpToHack(SealSkillsHook)
+POP
+
+SealSkillIdList:
+	BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
+
+ALIGN 4
+SealSkillsHook:
+	#incbin "Src/SealSkills.dmp"
+	POIN SkillTester
+	POIN SealSkillIdList
+	WORD DebuffTable
+	POIN ItemTable
+	WORD FullMetalBodyID // TODO: maybe move this effect somewhere else?
+	POIN WeaponDebuffTable
+
+#endif // SEAL_SKILLS

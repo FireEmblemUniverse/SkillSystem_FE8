@@ -1,5 +1,5 @@
-#ifndef HAX_RALLIES
-#define HAX_RALLIES
+#ifndef RALLY_SKILLS
+#define RALLY_SKILLS
 
 // Rally based on debuffs by crazycolorz5
 // Rally skills by circleseverywhere (?)
@@ -7,8 +7,8 @@
 
 #include "MapAuraFx/MapAuraFx.event"
 
-#include "asm/Rally.lyn.event"
-#include "asm/RallyFx.lyn.event"
+#include "Src/Rally.lyn.event"
+#include "Src/RallyFx.lyn.event"
 
 RallySkillList: // rally mag isn't in this because no split assumed
 	BYTE RallyStrID
@@ -38,34 +38,34 @@ gpRallyDebuffsAddr:
 ALIGN 4
 gRallyPreviewPalette:
 gRallyGenericPalette:
-	#incext Png2Dmp "data/fx-preview.png" --palette-only
+	#incext Png2Dmp "Data/fx-preview.png" --palette-only
 
 ALIGN 4
 gRallyStrengthPalette:
-	#incext Png2Dmp "data/fx-strength.png" --palette-only
+	#incext Png2Dmp "Data/fx-strength.png" --palette-only
 
 ALIGN 4
 gRallySkillPalette:
-	#incext Png2Dmp "data/fx-skill.png" --palette-only
+	#incext Png2Dmp "Data/fx-skill.png" --palette-only
 
 ALIGN 4
 gRallySpeedPalette:
-	#incext Png2Dmp "data/fx-speed.png" --palette-only
+	#incext Png2Dmp "Data/fx-speed.png" --palette-only
 
 ALIGN 4
 gRallyDefensePalette:
-	#incext Png2Dmp "data/fx-defense.png" --palette-only
+	#incext Png2Dmp "Data/fx-defense.png" --palette-only
 
 ALIGN 4
 gRallyResistancePalette:
-	#incext Png2Dmp "data/fx-resistance.png" --palette-only
+	#incext Png2Dmp "Data/fx-resistance.png" --palette-only
 
 ALIGN 4
 gRallyLuckPalette:
-	#incext Png2Dmp "data/fx-luck.png" --palette-only
+	#incext Png2Dmp "Data/fx-luck.png" --palette-only
 
 ALIGN 4
 gRallyMovePalette:
-	#incext Png2Dmp "data/fx-move.png" --palette-only
+	#incext Png2Dmp "Data/fx-move.png" --palette-only
 
-#endif // HAX_RALLIES
+#endif // RALLY_SKILLS

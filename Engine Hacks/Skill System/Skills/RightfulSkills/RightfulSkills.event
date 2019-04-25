@@ -1,0 +1,23 @@
+#ifndef RIGHTFUL_SKILLS
+#define RIGHTFUL_SKILLS
+
+// 'rightful <x>' skills for the Skill System
+// hack by Leonarth
+
+PUSH
+	// TODO: modular everything
+
+	ORG $02A52E // modifies the 1RN roll skill to check for rightful skills
+		SHORT $46C0
+		jumpToHack(RightfulCheck)
+
+POP
+
+RightfulCheck:
+	#incbin "Src/RightfulCheck.dmp"
+	POIN SkillTester
+	WORD RightfulArchID
+	WORD RightfulKingID
+	WORD RightfulGodID
+
+#endif // RIGHTFUL_SKILLS

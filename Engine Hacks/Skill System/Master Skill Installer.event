@@ -22,18 +22,9 @@ PUSH
 ORG 0x2c864
 jumpToHack(DazzleCheck)
 
-//Rightful X
-ORG $2a52e //modifies the 1RN roll skill to check for rightful skills
-SHORT 0x46C0
-jumpToHack(RightfulCheck)
-
 //acrobat
 ORG $1a4cc
 jumpToHack(AcrobatCheck)
-
-//LockTouch
-ORG $23E8C //ignore vanilla locktouch routine
-jumpToHack(LockTouch)
 
 //Pass
 ORG $800 //modifies movement ARM code
@@ -87,43 +78,6 @@ jumpToHack(LiveToServe)
 //paragon
 ORG $2b960
 jumpToHack(Paragon)
-
-//lunge
-ORG $18744
-callHack_r3(Lunge)
-ORG $187b0
-jumpToHack(LungeUpdate)
-ORG $3a094
-jumpToHack(LungeAI)
-
-// //seal skills
-ORG $2c088
-jumpToHack(SealSkills)
-
-ORG $2B7F8
-  jumpToHack(Armsthrift)
-
-//remove critup ability (for critup skill)
-ORG $2AC4A
-SHORT 0x46C0
-
-//Triangle Adept
-ORG $2C830
-jumpToHack(TriangleAdept)
-
-//Inspiring Tune
-ORG $32364
-jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
-ORG $15428
-jumpToHack(VigorDanceReset) //unset it when the turn starts again
-
-//Armor March
-ORG $1538C
-jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
-
-//Shadowgift and friends (only Lumina for now)
-ORG $16738
-jumpToHack(Shadowgift)
 
 POP
 
@@ -214,42 +168,9 @@ Paragon:
 POIN SkillTester
 WORD ParagonID
 
-Lunge:
-#incbin "Teq Skills/lunge.dmp"
-LungeUsability:
-#incbin "Teq Skills/Lunge Usability.dmp"
-POIN SkillTester
-WORD LungeID
-LungeEffect:
-#incbin "Teq Skills/Lunge Effect.dmp"
-AttackEffect:
-#incbin "Teq Skills/Attack Effect.dmp"
-LungeAI:
-#incbin "Teq Skills/lungeAI.dmp"
-POIN SkillTester
-WORD LungeID
-LungeUpdate:
-#incbin "Teq Skills/lunge_updaterescuee.dmp"
-
-MercyUsability:
-#incbin "Teq Skills/Mercy Usability.dmp"
-POIN SkillTester
-WORD MercyID
-MercyEffect:
-#incbin "Teq Skills/Mercy Effect.dmp"
-
-SealSkills:
-#incbin "Seal Skills/SealSkills.dmp"
-POIN SkillTester
-POIN SealSkillList
-WORD DebuffTable
-POIN ItemTable
-WORD FullMetalBodyID
-POIN WeaponDebuffTable
-SealSkillList:
-BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
-ALIGN 4
-
+#include "Skills/Lunge/Lunge.event"
+#include "Skills/Mercy/Mercy.event"
+#include "Skills/SealSkills/SealSkills.event"
 #include "Skills/TerrainSkills/TerrainSkills.event"
 #include "Skills/Gamble/Gamble.event"
 #include "Skills/FieryBlood/FieryBlood.event"
@@ -262,121 +183,28 @@ ALIGN 4
 #include "Skills/CriticalSkills/CriticalSkills.event"
 #include "Skills/Axefaith/Axefaith.event"
 #include "Skills/Lethality/Lethality.event"
-
-Armsthrift:
-AxeFaithArmsthrift:
-ArmsthriftAxeFaith:
-#incbin "Other Skills/armsthriftaxefaith.dmp"
-POIN SkillTester|1
-WORD ArmsthriftID AxeFaithID
-
-CritUpSkill:
-#incbin "Other Skills/CritUpSkill.dmp"
-POIN SkillTester
-WORD CritUpID
-
-RightfulCheck:
-#incbin "Other Skills/RightfulCheck.dmp"
-POIN SkillTester
-WORD RightfulArchID
-WORD RightfulKingID
-WORD RightfulGodID
-
+#include "Skills/Armthrift/Armthrift.event"
+#include "Skills/CritUp/CritUp.event"
+#include "Skills/RightfulSkills/RightfulSkills.event"
 #include "Skills/TurnSkills/TurnSkills.event"
-
-Roll1d12:
-#incbin "Other Skills/roll12.dmp"
-POIN SkillTester
-WORD Roll12ID
-POIN _12SkillList
-ALIGN 4
-_12SkillList:
-BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
-ALIGN 4
-
-LockTouch:
-#incbin "Kao Skills/LockTouch.dmp"
-POIN SkillTester
-WORD LockTouchID
-
-TraceSkill:
-#incbin "Other Skills/trace.dmp"
-POIN SkillTester
-WORD TraceID
-POIN Skill_Getter
-
+#include "Skills/Roll1D12/Roll1D12.event" // TODO: fix this
+#include "Skills/Locktouch/Locktouch.event"
+#include "Skills/Trace/Trace.event" // TODO: fix this
 #include "Skills/StanceSkills/StanceSkills.event"
-
-TriangleAdept:
-#incbin "Teq Skills/TriangleAdept.dmp"
-POIN SkillTester
-WORD TriAdeptID
-
-#define VigorDanceBit "(8*7)+0" //8*byte + bit of the debuff table to use
-VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
-#incbin "Other Skills/vigordanceskill.dmp"
-POIN SkillTester
-WORD VigorDanceID
-WORD DebuffTable
-WORD VigorDanceBit
-WORD 8 //size of a debuff table entry
-
-VigorDanceCheck: //check if the bit is set and if so give the unit some stats
-#incbin "Other Skills/vigordancecheck.dmp"
-WORD DebuffTable
-WORD VigorDanceBit
-WORD 8 //size of a debuff table entry
-
-VigorDanceReset:
-#incbin "Other Skills/vigordancereset.dmp"
-WORD DebuffTable
-WORD VigorDanceBit
-WORD 8 //size of a debuff table entry
-
-#define ArmorMarchBit "(8*7)+1" //8*byte + bit of the debuff table to use
-ArmorMarchSkill: //set a bit in the debuff table's entry for the refreshed unit
-#incbin "Other Skills/armormarchskill.dmp"
-POIN AuraSkillCheck
-WORD ArmorMarchID
-WORD DebuffTable
-WORD ArmorMarchBit
-WORD 8 //size of a debuff table entry
-POIN SkillTester
-POIN ArmorMarchList //list of classes that should be affected by armor march
-
-#ifndef ArmorClasses
-#define ArmorClasses "Knight Knight_F General General_F GreatKnight GreatKnight_F"
-#endif
-ArmorMarchList:
-BYTE ArmorClasses 0
-ALIGN 4
-
-ArmorMarchCheck: //check if the bit is set and if so give the unit some stats
-#incbin "Other Skills/armormarchcheck.dmp"
-WORD DebuffTable
-WORD ArmorMarchBit
-WORD 8 //size of a debuff table entry
-WORD 2 //ammount of movement to grant
-
-Shadowgift:
-#incbin "Other Skills/shadowgift.dmp"
-POIN SkillTester
-WORD ShadowgiftID
-WORD LuminaID
-WORD ShadowgiftStaffOption
-WORD LuminaStaffOption
-
+#include "Skills/TriangleAdept/TriangleAdept.event"
+#include "Skills/VigorDance/VigorDance.event"
+#include "Skills/ArmorMarch/ArmorMarch.event"
+#include "Skills/Shadowgift/Shadowgift.event"
 #include "Skills/Perfectionist/Perfectionist.event"
 #include "Skills/Puissance/Puissance.event"
-
-#include "Other Skills/RandomMugs.event"
+#include "Skills/RandomMug/RandomMug.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
 #include "Teq Skills/FE8-Nullify/Nullify EA.txt"
 
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
-#include "Rally Skills/Rally Installer.event"
+#include "Skills/RallySkills/RallySkills.event"
 
 #include "BattleCalculations/BattleCalculations.event"
 

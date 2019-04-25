@@ -1,0 +1,24 @@
+#ifndef ARMTHRIFT_SKILL
+#define ARMTHRIFT_SKILL
+
+// Armthrift skill and Axefaith use-reducing effect for the Skill System
+// hack by Stan (Axefaith by 2wb)
+
+// TODO: decouple armthrift & axefaith
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2B7F8
+		jumpToHack(ArmsthriftHook)
+POP
+
+ArmsthriftHook:
+AxeFaithArmsthriftHook:
+ArmsthriftAxeFaithHook:
+	#incbin "Src/ArmsthriftAxeFaith.dmp"
+	POIN SkillTester|1
+	WORD ArmsthriftID
+	WORD AxeFaithID
+
+#endif // ARMTHRIFT_SKILL

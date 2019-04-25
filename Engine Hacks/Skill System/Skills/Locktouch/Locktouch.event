@@ -1,0 +1,19 @@
+#ifndef LOCKTOUCH_SKILL
+#define LOCKTOUCH_SKILL
+
+// Locktouch skill for the Skill System
+// hack by Kao
+
+PUSH
+	// TODO: modular everything
+
+	ORG $23E8C // ignore vanilla locktouch routine
+		jumpToHack(LocktouchHook)
+POP
+
+LocktouchHook:
+	#incbin "Src/LockTouch.dmp"
+	POIN SkillTester
+	WORD LockTouchID
+
+#endif // LOCKTOUCH_SKILL

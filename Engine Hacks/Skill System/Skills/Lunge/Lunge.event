@@ -1,0 +1,52 @@
+#ifndef LUNGE_SKILL
+#define LUNGE_SKILL
+
+// Lunge skill for the Skill System
+// hack by Tequila, ported to skill system by circleseverywhere
+
+// TODO: better naming scheme for menu command usability/effect
+// TODO: https://github.com/FireEmblemUniverse/SkillSystem_FE8/issues/25
+// TODO: decouple from whatever actually makes this work
+
+PUSH
+	// TODO: modular everything
+
+	ORG $18744
+		callHack_r3(Lunge)
+
+	ORG $187b0
+		jumpToHack(LungeUpdate)
+
+	ORG $3a094
+		jumpToHack(LungeAi)
+POP
+
+ALIGN 4
+Lunge:
+	#incbin "Src/Lunge.dmp"
+
+ALIGN 4
+LungeUsability:
+	#incbin "Src/Lunge Usability.dmp"
+	POIN SkillTester
+	WORD LungeID
+
+ALIGN 4
+LungeEffect:
+	#incbin "Src/Lunge Effect.dmp"
+
+ALIGN 4
+AttackEffect:
+	#incbin "Src/Attack Effect.dmp"
+
+ALIGN 4
+LungeAi:
+	#incbin "Src/LungeAi.dmp"
+	POIN SkillTester
+	WORD LungeID
+
+ALIGN 4
+LungeUpdate:
+	#incbin "Src/Lunge_UpdateRescuee.dmp"
+
+#endif // LUNGE_SKILL

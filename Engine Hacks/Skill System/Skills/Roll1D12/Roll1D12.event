@@ -1,0 +1,17 @@
+#ifndef ROLL1D12_SKILL
+#define ROLL1D12_SKILL
+
+// Roll 1D12 skill for the Skill System
+// hack by ???
+
+Roll1D12SkillIdList:
+	BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
+
+ALIGN 4
+Roll1D12Hook:
+	#incbin "Src/Roll12.dmp"
+	POIN SkillTester
+	WORD Roll12ID
+	POIN Roll1D12SkillIdList
+
+#endif // ROLL1D12_SKILL

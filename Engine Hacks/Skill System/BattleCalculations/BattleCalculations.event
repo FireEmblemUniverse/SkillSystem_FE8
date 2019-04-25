@@ -33,7 +33,7 @@ ALIGN 4
 BtlLoopParent:
 	#incbin "Src/BattleCalcLoop.dmp"
 
-	POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+	POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
 
 	// TODO: guard all of those with ifdefs
 
@@ -41,6 +41,7 @@ BtlLoopParent:
 	POIN BC_BreakerSkills
 	POIN BC_BlowSkills
 	POIN BC_DefenseSkills
+	POIN BC_CritUpSkill
 	POIN BC_WrathSkill
 	POIN BC_LuckySevenSkill BC_OddRhythmSkill BC_EvenRhythmSkill BC_QuickBurnSkill BC_SlowBurnSkill
 	POIN BC_ElbowRoomSkill BC_NaturalCoverSkill

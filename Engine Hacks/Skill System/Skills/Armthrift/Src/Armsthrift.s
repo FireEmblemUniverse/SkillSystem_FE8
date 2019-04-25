@@ -1,11 +1,12 @@
-.thumb
 
-GetItemAfterUse = 0x08016AEC+1
-RollBattleRN    = 0x0802A52C+1
-_ReturnLocation = 0x0802B828+1
+	.thumb
 
-LUnitHasSkill      = EALiterals+0x00
-LArmsthriftSkillID = EALiterals+0x04
+	GetItemAfterUse = 0x08016AEC+1
+	RollBattleRN    = 0x0802A52C+1
+	_ReturnLocation = 0x0802B828+1
+
+	LUnitHasSkill      = EALiterals+0x00
+	LArmsthriftSkillID = EALiterals+0x04
 
 @ Hook from 0802B7F8
 ArmsthriftHook:
@@ -72,8 +73,8 @@ End:
 BXR3:
 	bx  r3
 
-.ltorg
-.align
+	.ltorg
+	.align
 
 EALiterals:
 	@ POIN SkillTester|1

@@ -1,0 +1,44 @@
+#ifndef ARMORMARCH_SKILL
+#define ARMORMARCH_SKILL
+
+// Armor March skill for the Skill System
+// hack by Leonarth
+
+// TODO: this is good do that for other stuff too
+#define ArmorMarchBit "(8*7)+1" //8*byte + bit of the debuff table to use
+
+// NOTE: this, however, is a bit eh imo, may as well have users to edit the class list directly -Stan
+#ifndef ArmorClasses
+	#define ArmorClasses "Knight Knight_F General General_F GreatKnight GreatKnight_F"
+#endif
+
+PUSH
+	// TODO: modular everything
+
+	ORG $1538C // set or unest a bit in the debuff entries to give mov to units
+		jumpToHack(ArmorMarchSkill)
+POP
+
+ArmorMarchClassIdList:
+	BYTE ArmorClasses 0
+
+ALIGN 4
+ArmorMarchSkill: // set a bit in the debuff table's entry for the refreshed unit
+	#incbin "Src/ArmorMarchSkill.dmp"
+	POIN AuraSkillCheck
+	WORD ArmorMarchID
+	WORD DebuffTable
+	WORD ArmorMarchBit
+	WORD 8 // size of a debuff table entry
+	POIN SkillTester
+	POIN ArmorMarchClassIdList // list of classes that should be affected by armor march
+
+ALIGN 4
+ArmorMarchCheck: // check if the bit is set and if so give the unit some stats
+	#incbin "Src/ArmorMarchCheck.dmp"
+	WORD DebuffTable
+	WORD ArmorMarchBit
+	WORD 8 // size of a debuff table entry
+	WORD 2 // amount of movement to grant
+
+#endif // ARMORMARCH_SKILL

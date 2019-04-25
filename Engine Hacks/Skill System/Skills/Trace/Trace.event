@@ -1,0 +1,16 @@
+#ifndef TRACE_SKILL
+#define TRACE_SKILL
+
+// Trace skill for the Skill System
+// hack by circles(?)
+
+// TODO: make this work
+// TODO: modular everything
+
+TraceSkill:
+	#incbin "Src/Trace.dmp"
+	POIN SkillTester
+	WORD TraceID
+	POIN Skill_Getter
+
+#endif // TRACE_SKILL

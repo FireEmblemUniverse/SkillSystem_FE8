@@ -4,7 +4,8 @@
 // Axefaith skill for the Skill System
 // hack by 2wb
 
-// FIXME: this only installs the hit-modifying part of axefaith. TODO: add the use-reducing part too.
+// FIXME: this only installs the hit-modifying part of axefaith. TODO: add the use-reducing part too (still part of armthrift).
+// TODO: modular everything
 
 ALIGN 4
 BC_AxefaithSkill:

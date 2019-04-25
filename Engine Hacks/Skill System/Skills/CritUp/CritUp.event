@@ -1,0 +1,18 @@
+#ifndef CRITUP_SKILL
+#define CRITUP_SKILL
+
+// Crit up skill for the Skill System
+// hack by ???
+
+PUSH
+	ORG $2AC4A // disable hardcoded crit bonus
+		SHORT $46C0
+POP
+
+ALIGN 4
+BC_CritUpSkill:
+	#incbin "Src/CritUpSkill.dmp"
+	POIN SkillTester
+	WORD CritUpID
+
+#endif // CRITUP_SKILL
