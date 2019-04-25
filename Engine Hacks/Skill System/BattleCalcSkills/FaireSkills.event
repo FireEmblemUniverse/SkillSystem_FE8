@@ -1,0 +1,20 @@
+#ifndef FAIRE_SKILLS
+#define FAIRE_SKILLS
+
+// "[weapon]faire" skills for the Skill System
+// hack by Rossendale
+
+// Usage: Add BC_FaireSkills to the pointer list of the battle calc loop
+
+// TODO: maybe the ability to configure numbers more easily (from event instead of asm?)
+
+FaireSkillIdList:
+	BYTE SwordfaireID LancefaireID AxefaireID BowfaireID TomefaireID TomefaireID TomefaireID TomefaireID
+
+ALIGN 4
+BC_FaireSkills:
+	#incbin "Src/FaireSkills/FaireCheck.dmp"
+	POIN SkillTester
+	POIN FaireSkillIdList
+
+#endif // FAIRE_SKILLS

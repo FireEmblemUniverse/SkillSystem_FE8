@@ -1,0 +1,37 @@
+#ifndef TURN_SKILLS
+#define TURN_SKILLS
+
+// various skills with effects depending on turn number for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_LuckySevenSkill:
+	#incbin "Src/TurnSkills/LuckySeven.dmp"
+	POIN SkillTester
+	WORD LuckySevenID
+
+ALIGN 4
+BC_OddRhythmSkill:
+	#incbin "Src/TurnSkills/OddRhythm.dmp"
+	POIN SkillTester
+	WORD OddRhythmID
+
+ALIGN 4
+BC_EvenRhythmSkill:
+	#incbin "Src/TurnSkills/EvenRhythm.dmp"
+	POIN SkillTester
+	WORD EvenRhythmID
+
+ALIGN 4
+BC_QuickBurnSkill:
+	#incbin "Src/TurnSkills/QuickBurn.dmp"
+	POIN SkillTester
+	WORD QuickBurnID
+
+ALIGN 4
+BC_SlowBurnSkill:
+	#incbin "Src/TurnSkills/SlowBurn.dmp"
+	POIN SkillTester
+	WORD SlowBurnID
+
+#endif // TURN_SKILLS

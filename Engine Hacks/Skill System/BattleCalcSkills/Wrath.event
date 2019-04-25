@@ -1,0 +1,13 @@
+#ifndef WRATH_SKILL
+#define WRATH_SKILL
+
+// Wrath skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_WrathSkill:
+	#incbin "Src/Wrath/Wrath.dmp"
+	POIN SkillTester
+	WORD WrathID
+
+#endif // WRATH_SKILL

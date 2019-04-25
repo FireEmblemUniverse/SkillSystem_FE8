@@ -145,44 +145,10 @@ POIN SkillTester
 WORD DazzleID
 ALIGN 4
 
-FaireCheck: //added to fe8_calc_loop.event
-#incbin "Ross Skills/FaireCheck.dmp"
-POIN SkillTester
-POIN FaireIDList
-ALIGN 4
-
-FaireIDList:
-BYTE SwordfaireID LancefaireID AxefaireID BowfaireID TomefaireID TomefaireID TomefaireID TomefaireID
-ALIGN 4
-
-BreakerCheck: //added to fe8_calc_loop.event
-#incbin "Ross Skills/BreakerCheck.dmp"
-POIN SkillTester
-POIN BreakerIDList
-WORD 50 // Hit/Avoid Bonus
-ALIGN 4
-
-BreakerIDList:
-BYTE SwordbreakerID LancebreakerID AxebreakerID BowbreakerID TomebreakerID TomebreakerID TomebreakerID TomebreakerID
-ALIGN 4
-
-BlowCheck:
-#incbin "Ross Skills/BlowCheck.dmp"
-POIN SkillTester
-POIN BlowIDList
-
-BlowIDList:
-BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID
-ALIGN 4
-
-DefendingCheck:
-#incbin "Blade Skills/Defending.dmp"
-POIN SkillTester
-POIN DefendingIDList
-
-DefendingIDList:
-BYTE StrongRiposteID PatienceID PursuitID ChivalryID PragmaticID
-ALIGN 4
+#include "BattleCalcSkills/FaireSkills.event"
+#include "BattleCalcSkills/BreakerSkills.event"
+#include "BattleCalcSkills/BlowSkills.event"
+#include "BattleCalcSkills/DefenseSkills.event"
 
 AcrobatCheck:
 #incbin "Teq Skills/Acrobat.dmp"
@@ -246,10 +212,7 @@ Desperation:
 POIN SkillTester
 WORD DesperationID
 
-Wrath:
-#incbin "Other Skills/wrath.dmp"
-POIN SkillTester
-WORD WrathID
+#include "BattleCalcSkills/Wrath.event"
 
 LiveToServe:
 #incbin "Other Skills/LiveToServe.dmp"
@@ -388,30 +351,7 @@ WORD RightfulArchID
 WORD RightfulKingID
 WORD RightfulGodID
 
-LuckySeven:
-#incbin "Other Skills/LuckySeven.dmp"
-POIN SkillTester
-WORD LuckySevenID
-
-OddRhythm:
-#incbin "Other Skills/OddRhythm.dmp"
-POIN SkillTester
-WORD OddRhythmID
-
-EvenRhythm:
-#incbin "Other Skills/EvenRhythm.dmp"
-POIN SkillTester
-WORD EvenRhythmID
-
-QuickBurn:
-#incbin "Other Skills/QuickBurn.dmp"
-POIN SkillTester
-WORD QuickBurnID
-
-SlowBurn:
-#incbin "Other Skills/SlowBurn.dmp"
-POIN SkillTester
-WORD SlowBurnID
+#include "BattleCalcSkills/TurnSkills.event"
 
 Roll1d12:
 #incbin "Other Skills/roll12.dmp"

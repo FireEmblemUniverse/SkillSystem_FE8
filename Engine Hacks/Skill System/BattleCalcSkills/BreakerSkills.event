@@ -1,0 +1,19 @@
+#ifndef BREAKER_SKILLS
+#define BREAKER_SKILLS
+
+// "[weapon]breaker" skills for the Skill System
+// hack by Rossendale
+
+// Usage: Add BC_BreakerSkills to the pointer list of the battle calc loop
+
+BreakerSkillIdList:
+	BYTE SwordbreakerID LancebreakerID AxebreakerID BowbreakerID TomebreakerID TomebreakerID TomebreakerID TomebreakerID
+
+ALIGN 4
+BC_BreakerSkills:
+	#incbin "Src/BreakerSkills/BreakerCheck.dmp"
+	POIN SkillTester
+	POIN BreakerSkillIdList
+	WORD 50 // NOTE: Hit/Avoid Bonus
+
+#endif // BREAKER_SKILLS

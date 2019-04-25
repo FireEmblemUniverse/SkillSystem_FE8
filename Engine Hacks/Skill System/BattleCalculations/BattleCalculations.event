@@ -1,3 +1,7 @@
+#ifndef BATTLE_CALCULATIONS
+#define BATTLE_CALCULATIONS
+
+// battle calculations loop fe8
 
 #define BC_DefRes $2aa44
 #define BC_Power $2aabc
@@ -10,50 +14,53 @@
 #define BC_WRank $2ad54
 #define BC_Status $2ad90
 
-//battle calculations loop fe8
 #include "Extensions/Hack Installation.txt"
+
 PUSH
-ORG 0x2a95c
-jumpToHack(BtlLoopParent)
+	ORG 0x2a95c
+		jumpToHack(BtlLoopParent)
 
-ORG 0x2a3f8
-//rewrite range map
-jumpToHack(rewriteRangeMap)
+	ORG 0x2a3f8
+		//rewrite range map
+		jumpToHack(RewriteRangeMapHook)
 
-// ORG 0x2AFFE //make 0xc = cannot double
-// SHORT 0x280C 0xD005
+	// ORG 0x2AFFE //make 0xc = cannot double
+		// SHORT 0x280C 0xD005
 POP
 
 //under free space
 ALIGN 4
 BtlLoopParent:
-#incbin "Src/Core/FE8_calc_loop.dmp"
-BtlLoopTable:
-POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
-POIN FaireCheck
-POIN BreakerCheck
-POIN BlowCheck
-POIN DefendingCheck
-POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
-POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
-POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex
-POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist
-POIN UpWithArch
-POIN AxefaithHit
-POIN StancesASM
+	#incbin "Src/BattleCalcLoop.dmp"
+
+	POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+	POIN BC_FaireSkills
+	POIN BC_BreakerSkills
+	POIN BC_BlowSkills
+	POIN BC_DefenseSkills
+	POIN BC_WrathSkill
+	POIN BC_LuckySevenSkill BC_OddRhythmSkill BC_EvenRhythmSkill BC_QuickBurnSkill BC_SlowBurnSkill
+	POIN SpurStr SpurMag SpurSpd SpurDef SpurRes
+	POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex
+	POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist
+	POIN UpWithArch
+	POIN AxefaithHit
+	POIN StancesASM
+
 #ifdef __GBA_LETHALITY__
-POIN LethalitySkill Bane
+	POIN LethalitySkill Bane
 #else
-POIN LethalitySkill NonGBALethalitySkill Bane
+	POIN LethalitySkill NonGBALethalitySkill Bane
 #endif
-// Because of how killing machine works, critical check should always be done last
-POIN CriticalCheck
 
-//add any new ones before here
-POIN 0
+	// Because of how killing machine works, critical check should always be done last
+	POIN CriticalCheck
 
-rewriteRangeMap:
-#incbin "Src/Core/rewriteRangeMap.dmp"
+	//add any new ones before here
+	WORD 0
+
 ALIGN 4
+RewriteRangeMapHook:
+	#incbin "Src/RewriteRangeMap.dmp"
 
-
+#endif // BATTLE_CALCULATIONS

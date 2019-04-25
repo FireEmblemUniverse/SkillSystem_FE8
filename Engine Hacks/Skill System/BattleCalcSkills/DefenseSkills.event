@@ -1,0 +1,21 @@
+#ifndef DEFENSE_SKILLS
+#define DEFENSE_SKILLS
+
+// various skills activating when defending for the Skill System
+// hack by Blademaster, ????
+
+// Usage: Add BC_DefenseSkills to the pointer list of the battle calc loop
+
+// TODO: maybe separate skills further
+// TODO: maybe the ability to configure numbers more easily (from event instead of asm?)
+
+DefendingSkillIdList:
+	BYTE StrongRiposteID PatienceID PursuitID ChivalryID PragmaticID
+
+ALIGN 4
+BC_DefenseSkills:
+	#incbin "Src/DefenseSkills/Defending.dmp"
+	POIN SkillTester
+	POIN DefendingSkillIdList
+
+#endif // DEFENSE_SKILLS

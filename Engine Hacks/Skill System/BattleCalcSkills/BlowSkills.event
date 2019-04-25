@@ -1,0 +1,21 @@
+#ifndef BLOW_SKILLS
+#define BLOW_SKILLS
+
+// Blow skills and variants for the Skill System
+// hack by Rossendale, with additions by Darrman
+
+// Usage: Add BC_BlowSkills to the pointer list of the battle calc loop
+
+// TODO: maybe separate 'blow' skills further
+// TODO: maybe the ability to configure numbers more easily (from event instead of asm?)
+
+BlowSkillIdList:
+	BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID
+
+ALIGN 4
+BC_BlowSkills:
+	#incbin "Src/BlowSkills/BlowCheck.dmp"
+	POIN SkillTester
+	POIN BlowSkillIdList
+
+#endif // BLOW_SKILLS
