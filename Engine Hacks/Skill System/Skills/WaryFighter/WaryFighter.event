@@ -1,0 +1,16 @@
+#ifndef WARYFIGHTER_SKILL
+#define WARYFIGHTER_SKILL
+
+// Wary Fighter skill for the Skill System
+// hack by Tequila
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2AF90
+		#incbin "Src/WaryFighter.dmp"
+		POIN SkillTester
+		WORD WaryFighterID
+POP
+
+#endif // WARYFIGHTER_SKILL

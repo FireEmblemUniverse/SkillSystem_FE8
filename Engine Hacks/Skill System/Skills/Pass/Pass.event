@@ -1,0 +1,21 @@
+#ifndef PASS_SKILL
+#define PASS_SKILL
+
+// Pass skill for the Skill System
+// hack by Tequila
+
+PUSH
+	// TODO: modular everything
+
+	ORG $000800 // modifies movement ARM code
+		WORD 0xE59FC000 0xE12FFF1C // ldr ip, =PassCheck|1; bx r12
+		POIN PassCheck|1
+POP
+
+ALIGN 4
+PassCheck:
+	#incbin "Src/Pass.dmp"
+	POIN SkillTester
+	WORD PassID
+
+#endif // PASS_SKILL

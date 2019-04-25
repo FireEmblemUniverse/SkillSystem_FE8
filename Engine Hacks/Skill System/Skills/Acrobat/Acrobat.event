@@ -1,0 +1,20 @@
+#ifndef ACROBAT_SKILL
+#define ACROBAT_SKILL
+
+// Acrobat skill for the Skill System
+// hack by Tequila
+
+PUSH
+	// TODO: modular everything
+
+	ORG $1A4CC
+		jumpToHack(AcrobatCheck)
+POP
+
+ALIGN 4
+AcrobatCheck:
+	#incbin "Src/Acrobat.dmp"
+	POIN SkillTester
+	WORD AcrobatID
+
+#endif // ACROBAT_SKILL

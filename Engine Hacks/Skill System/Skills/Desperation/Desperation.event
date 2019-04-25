@@ -1,0 +1,20 @@
+#ifndef DESPERATION_SKILL
+#define DESPERATION_SKILL
+
+// Desperation skill for the Skill System
+// hack by circleseverywhere(?)
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2AF0A
+		SHORT $46C0
+		jumpToHack(DesperationHook)
+POP
+
+DesperationHook:
+	#incbin "Src/Desperation.dmp"
+	POIN SkillTester
+	WORD DesperationID
+
+#endif // DESPERATION_SKILL

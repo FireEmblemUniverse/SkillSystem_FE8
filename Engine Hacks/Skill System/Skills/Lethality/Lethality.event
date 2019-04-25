@@ -6,6 +6,11 @@
 
 // TODO: make BC_LethalitySkill and BC_NonGBALethalitySkill mutually exclusive (as opposed to BC_NonGBALethalitySkill bing an "addon")
 
+PUSH
+	ORG $2ACF8 // ignore the vanilla lethality routine
+		SHORT $4770 // bx lr
+POP
+
 ALIGN 4
 BC_LethalitySkill:
 	#incbin "Src/LethalitySkill.dmp"

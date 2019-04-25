@@ -1,0 +1,20 @@
+#ifndef DISCIPLINE_SKILL
+#define DISCIPLINE_SKILL
+
+// Discipline skill for the Skill System
+// hack by circleseverywhere(?)
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2C13C
+		callHack_r3(DisciplineHook)
+POP
+
+ALIGN 4
+DisciplineHook:
+	#incbin "Src/Discipline.dmp"
+	POIN SkillTester
+	WORD DisciplineID
+
+#endif // DISCIPLINE_SKILL

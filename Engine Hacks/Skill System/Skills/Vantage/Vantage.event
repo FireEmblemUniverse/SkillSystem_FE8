@@ -1,0 +1,20 @@
+#ifndef VANTAGE_SKILL
+#define VANTAGE_SKILL
+
+// Vantage and Vantage+ skills for the Skill System
+// hack by circleseverywhere(?)
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2AF7C
+		jumpToHack(VantageHook)
+POP
+
+VantageHook:
+	#incbin "Src/Vantage.dmp"
+	POIN SkillTester
+	WORD VantageID
+	WORD VantagePlusID
+
+#endif // VANTAGE_SKILL

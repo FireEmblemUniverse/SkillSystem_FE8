@@ -1,0 +1,19 @@
+#ifndef PROVOKE_SKILL
+#define PROVOKE_SKILL
+
+// Provoke skill for the Skill System
+// hack by Tequila
+
+PUSH
+	// TODO: modular everything
+
+	ORG $3DF78
+		jumpToHack(ProvokeHook)
+POP
+
+ProvokeHook:
+	#incbin "Src/Provoke.dmp"
+	POIN SkillTester
+	WORD ProvokeID
+
+#endif // PROVOKE_SKILL

@@ -1,0 +1,20 @@
+#ifndef DAZZLE_SKILL
+#define DAZZLE_SKILL
+
+// Dazzle skill for the Skill System
+// hack by circleseverywhere(?)
+
+PUSH
+	// TODO: modular everything
+
+	ORG 0x2C864
+		jumpToHack(DazzleCheck)
+POP
+
+ALIGN 4
+DazzleCheck:
+	#incbin "Src/Dazzle.dmp"
+	POIN SkillTester
+	WORD DazzleID
+
+#endif // DAZZLE_SKILL

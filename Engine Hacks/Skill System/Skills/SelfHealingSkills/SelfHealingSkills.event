@@ -1,0 +1,34 @@
+#ifndef SELFHEALING_SKILLS
+#define SELFHEALING_SKILLS
+
+// various skills that heal units at turn end for the Skill System
+// hack by ???
+
+// TODO: separate the skills that are in here (would require a supporting hack that could be categorized as modular)
+
+PUSH
+	// TODO: modular everything
+
+	ORG $01A258
+		jumpToHack(RenewalHook)
+POP
+
+ForagerList:
+	// A list of terrain IDs that activate Forager
+	BYTE 0x01 0x0C 0x11 // Plains, Forests and Mountains
+	BYTE 0x00 // End
+
+ALIGN 4
+RenewalHook: // combined healing skills
+	#incbin "Src/RenewalAmaterasu.dmp"
+	POIN SkillTester
+	WORD RenewalID
+	POIN AuraSkillCheck
+	WORD AmaterasuID
+	WORD CamaraderieID
+	WORD ReliefID
+	WORD BondID
+	WORD ForagerID
+	POIN ForagerList
+
+#endif // SELFHEALING_SKILLS

@@ -1,0 +1,19 @@
+#ifndef FRENZY_SKILL
+#define FRENZY_SKILL
+
+// Frenzy skill for the Skill System
+// hack by Tequila
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2AB4C
+		callHack_r3(FrenzyHook)
+POP
+
+FrenzyHook:
+	#incbin "Src/Frenzy.dmp"
+	POIN SkillTester
+	WORD FrenzyID
+
+#endif // FRENZY_SKILL

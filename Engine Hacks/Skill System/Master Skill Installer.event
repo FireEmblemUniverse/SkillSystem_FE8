@@ -3,171 +3,42 @@
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
 #include "charge_table.event"
+
+ALIGN 4
 SkillIcons:
-ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
-PUSH
-ORG SkillIcons
-#incext Png2Dmp "SkillIcons.png"
-POP
-//new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
+	#incext Png2Dmp "SkillIcons.png"
+	ORG 16*16/2*0xFF+SkillIcons // Allocate enough space for additional icons
+
+// new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
+// TODO: instead of having all macros in a single file have individual skill installers handle that
+
 #ifdef __USE_DESCRIPTION_MACROS__
-#include "skill_descriptions.event"
+	#include "skill_descriptions.event"
 #endif
+
 #ifdef __USE_ICON_MACROS__
-#include "skill_icons.event"
+	#include "skill_icons.event"
 #endif
-PUSH
-
-//Dazzle (can't be countered)
-ORG 0x2c864
-jumpToHack(DazzleCheck)
-
-//acrobat
-ORG $1a4cc
-jumpToHack(AcrobatCheck)
-
-//Pass
-ORG $800 //modifies movement ARM code
-WORD 0xE59FC000 0xE12FFF1C //ldr r12,Pass; bx r12
-POIN PassCheck|1
-
-// //Post combat skills
-// ORG $1D258
-// callHack_r1(PostCombatSkills)
-// SHORT 0x2800 0xD017 0xE006 //cmp r0,0; beq RetFalse; b NextPart
-
-//waryfighter
-ORG $2AF90
-#incbin "Teq Skills/Wary Fighter.dmp"
-POIN SkillTester
-WORD WaryFighterID
-
-//Provoke
-ORG $3DF78
-jumpToHack(Provoke)
-
-//LethalitySkill
-ORG $2ACF8  //ignore the vanilla lethality routine
-SHORT 0x4770
-
-//Frenzy
-ORG $2AB4C
-callHack_r3(Frenzy)
-
-//renewal
-ORG $1a258
-jumpToHack(Renewal)
-
-//Discipline
-ORG $2c13c
-callHack_r3(Discipline)
-
-//vantage
-ORG $2af7c
-jumpToHack(Vantage)
-
-//desperation
-ORG $2af0a
-SHORT 0
-jumpToHack(Desperation)
-
-//live to serve
-ORG $2ebd4
-jumpToHack(LiveToServe)
-
-//paragon
-ORG $2b960
-jumpToHack(Paragon)
-
-POP
 
 #include "Skills/Bane/Bane.event"
-
-DazzleCheck:
-#incbin "Other Skills/dazzle.dmp"
-POIN SkillTester
-WORD DazzleID
-ALIGN 4
-
+#include "Skills/Dazzle/Dazzle.event"
 #include "Skills/FaireSkills/FaireSkills.event"
 #include "Skills/BreakerSkills/BreakerSkills.event"
 #include "Skills/BlowSkills/BlowSkills.event"
 #include "Skills/DefensiveSkills/DefensiveSkills.event"
-
-AcrobatCheck:
-#incbin "Teq Skills/Acrobat.dmp"
-POIN SkillTester
-WORD AcrobatID
-
-PassCheck:
-#incbin "Teq Skills/Pass.dmp"
-POIN SkillTester
-WORD PassID
-
-// PostCombatSkills: //plus lifetaker
-// #incbin "Post Combat Skills/CantoPlus_Galeforce.dmp"
-// POIN SkillTester
-// WORD CantoPlusID
-// WORD CantoID
-// WORD GaleforceID
-// WORD LifetakerID
-// WORD SavageBlowID
-// POIN AuraSkillCheck
-
-Provoke:
-#incbin "Teq Skills/Provoke.dmp"
-POIN SkillTester
-WORD ProvokeID
-
-Frenzy:
-#incbin "Teq Skills/Frenzy.dmp"
-POIN SkillTester
-WORD FrenzyID
-
-Renewal: //combined healing skills
-#incbin "Other Skills/RenewalAmaterasu.dmp"
-POIN SkillTester
-WORD RenewalID
-POIN AuraSkillCheck
-WORD AmaterasuID
-WORD CamaraderieID
-WORD ReliefID
-WORD BondID
-WORD ForagerID
-POIN ForagerList
-
-ForagerList: //A list of terrain IDs that activate Forager
-BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
-BYTE 0 //Terminator
-
-Discipline:
-#incbin "Other Skills/Discipline.dmp"
-POIN SkillTester
-WORD DisciplineID
-
-Vantage:
-#incbin "Other Skills/vantage.dmp"
-POIN SkillTester
-WORD VantageID
-WORD VantagePlusID
-
-Desperation:
-#incbin "Other Skills/desperation.dmp"
-POIN SkillTester
-WORD DesperationID
-
+#include "Skills/Acrobat/Acrobat.event"
+#include "Skills/WaryFighter/WaryFighter.event"
+#include "Skills/Pass/Pass.event"
+#include "Post Combat Skills/Post Combat Skills Installer.event"
+#include "Skills/Provoke/Provoke.event"
+#include "Skills/Frenzy/Frenzy.event"
+#include "Skills/SelfHealingSkills/SelfHealingSkills.event"
+#include "Skills/Discipline/Discipline.event"
+#include "Skills/Vantage/Vantage.event"
+#include "Skills/Desperation/Desperation.event"
 #include "Skills/Wrath/Wrath.event"
-
-LiveToServe:
-#incbin "Other Skills/LiveToServe.dmp"
-POIN SkillTester
-WORD LiveToServeID
-
-Paragon:
-#incbin "Other Skills/Paragon.dmp"
-POIN SkillTester
-WORD ParagonID
-
+#include "Skills/LiveToServe/LiveToServe.event"
+#include "Skills/Paragon/Paragon.event"
 #include "Skills/Lunge/Lunge.event"
 #include "Skills/Mercy/Mercy.event"
 #include "Skills/SealSkills/SealSkills.event"
@@ -198,6 +69,7 @@ WORD ParagonID
 #include "Skills/Perfectionist/Perfectionist.event"
 #include "Skills/Puissance/Puissance.event"
 #include "Skills/RandomMug/RandomMug.event"
+
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
 #include "Teq Skills/FE8-Nullify/Nullify EA.txt"
@@ -209,7 +81,6 @@ WORD ParagonID
 #include "BattleCalculations/BattleCalculations.event"
 
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
-#include "Post Combat Skills/Post Combat Skills Installer.event"
 
 #include "Range Skills/RangeSkills.event"
 

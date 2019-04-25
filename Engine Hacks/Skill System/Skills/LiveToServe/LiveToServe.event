@@ -1,0 +1,20 @@
+#ifndef LIVETOSERVE_SKILL
+#define LIVETOSERVE_SKILL
+
+// Live to serve skill for the Skill System
+// hack by ???
+
+PUSH
+	// TODO: modular everything
+
+	ORG $2EBD4
+		jumpToHack(LiveToServeHook)
+POP
+
+ALIGN 4
+LiveToServeHook:
+	#incbin "Src/LiveToServe.dmp"
+	POIN SkillTester
+	WORD LiveToServeID
+
+#endif // LIVETOSERVE_SKILL
