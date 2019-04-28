@@ -603,3 +603,6 @@ ORG SkillIcon(MageSlayerID)
 
 ORG SkillIcon(KnightAspirantID)
 #incext Png2Dmp "Skill Icons\KnightAspirant.png"
+
+ORG SkillIcon(DisciplinePlusID)
+#incext Png2Dmp "Skill Icons\DisciplinePlus.png"
