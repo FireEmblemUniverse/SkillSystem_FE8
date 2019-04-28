@@ -568,5 +568,38 @@ ORG SkillIcon(PointBlankID)
 ORG SkillIcon(PerfectionistID)
 #incext Png2Dmp "Skill Icons\perfectionist.png"
 
-ORG SkillIcon(PuissanceID)
-#incext Png2Dmp "Skill Icons\BlankFrame.png"
+ORG SkillIcon(BattleVeteranID)
+#incext Png2Dmp "Skill Icons\BattleVeteran.png"
+
+ORG SkillIcon(HolyAuraID)
+#incext Png2Dmp "Skill Icons\HolyAura.png"
+
+ORG SkillIcon(SilentPrideID)
+#incext Png2Dmp "Skill Icons\SilentPride.png"
+
+ORG SkillIcon(LoyaltyID)
+#incext Png2Dmp "Skill Icons\Loyalty.png"
+
+ORG SkillIcon(ThunderstormID)
+#incext Png2Dmp "Skill Icons\Thunderstorm.png"
+
+ORG SkillIcon(OutriderID)
+#incext Png2Dmp "Skill Icons\Outrider.png"
+
+ORG SkillIcon(HeavyStrikesID)
+#incext Png2Dmp "Skill Icons\HeavyStrikes.png"
+
+ORG SkillIcon(ChargeID)
+#incext Png2Dmp "Skill Icons\Charge.png"
+
+ORG SkillIcon(InfiltratorID)
+#incext Png2Dmp "Skill Icons\Infiltrator.png"
+
+ORG SkillIcon(VanityID)
+#incext Png2Dmp "Skill Icons\Vanity.png"
+
+ORG SkillIcon(MageSlayerID)
+#incext Png2Dmp "Skill Icons\MageSlayer.png"
+
+ORG SkillIcon(KnightAspirantID)
+#incext Png2Dmp "Skill Icons\KnightAspirant.png"
