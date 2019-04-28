@@ -234,6 +234,7 @@ Discipline:
 #incbin "Other Skills/Discipline.dmp"
 POIN SkillTester
 WORD DisciplineID
+WORD DisciplinePlusID
 
 Vantage:
 #incbin "Other Skills/vantage.dmp"
