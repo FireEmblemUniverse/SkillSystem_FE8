@@ -42,17 +42,17 @@ TryLearnSkill:
 
 	push {r0-r1, r4, lr} @ note: pushing r0-r1 allocated 8 bytes on the stack
 
-	ldrb r1, [r0, #0x08] @ r1 = battle unit level
-
 	mov r4, r0 @ var r4 = bu
 
 	ldr r3, lGetUnitLevelSkills
+	mov ip, r3
 
 	@ implied  @ arg r0 = (battle) unit
-	@ implied  @ arg r1 = level
-	mov r2, sp @ arg r2 = output buffer
+	mov r1, #0 @ arg r1 = level from
+	mov r2, #1 @ arg r2 = level to
+	mov r3, sp @ arg r3 = output buffer
 
-	bl BXR3
+	bl BXIP
 
 	@ implied  @ ret r0 = output buffer
 
@@ -87,6 +87,12 @@ TryLearnSkill.end:
 
 	pop {r1}
 	bx r1
+
+BXIP:
+	bx ip
+
+	.pool
+	.align
 
 EALiterals:
 	@ POIN (GetUnitLevelSkills|1)
