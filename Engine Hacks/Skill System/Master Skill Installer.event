@@ -234,6 +234,7 @@ Discipline:
 #incbin "Other Skills/Discipline.dmp"
 POIN SkillTester
 WORD DisciplineID
+WORD DisciplinePlusID
 
 Vantage:
 #incbin "Other Skills/vantage.dmp"
@@ -507,6 +508,66 @@ Puissance:
 #incbin "New Skills/Puissance.dmp"
 POIN SkillTester
 WORD PuissanceID
+
+BattleVeteran:
+#incbin "SoA Skills/BattleVeteran.dmp"
+POIN SkillTester
+WORD BattleVeteranID
+
+HolyAura:
+#incbin "SoA Skills/HolyAura.dmp"
+POIN SkillTester
+WORD HolyAuraID
+
+SilentPride:
+#incbin "SoA Skills/SilentPride.dmp"
+POIN SkillTester
+WORD SilentPrideID
+
+Loyalty:
+#incbin "SoA Skills/Loyalty.dmp"
+POIN SkillTester
+WORD LoyaltyID
+
+Thunderstorm:
+#incbin "SoA Skills/Thunderstorm.dmp"
+POIN SkillTester
+WORD ThunderstormID
+
+Outrider:
+#incbin "SoA Skills/Outrider.dmp"
+POIN SkillTester
+WORD OutriderID
+
+HeavyStrikes:
+#incbin "SoA Skills/HeavyStrikes.dmp"
+POIN SkillTester
+WORD HeavyStrikesID
+
+Charge:
+#incbin "SoA Skills/Charge.dmp"
+POIN SkillTester
+WORD ChargeID
+
+Infiltrator:
+#incbin "SoA Skills/Infiltrator.dmp"
+POIN SkillTester
+WORD InfiltratorID
+
+Vanity:
+#incbin "SoA Skills/Vanity.dmp"
+POIN SkillTester
+WORD VanityID
+
+MageSlayer:
+#incbin "SoA Skills/MageSlayer.dmp"
+POIN SkillTester
+WORD VanityID
+
+KnightAspirant:
+#incbin "SoA Skills/KnightAspirant.dmp"
+POIN SkillTester
+WORD KnightAspirantID
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
