@@ -33,7 +33,8 @@ ALIGN 4
 BtlLoopParent:
 	#incbin "Src/BattleCalcLoop.dmp"
 
-	POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+	// Vanilla battle calculations
+	POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit BC_Dodge BC_Support BC_WRank BC_Status
 
 	// TODO: guard all of those with ifdefs
 
@@ -57,9 +58,10 @@ BtlLoopParent:
 	POIN BC_OpportunistSkill
 	POIN BC_AxefaithSkill
 	POIN BC_StanceSkills
+	POIN BC_SpurStrSkill BC_SpurMagSkill BC_SpurSpdSkill BC_SpurDefSkill BC_SpurResSkill
+	POIN BC_DemoiselleSkill BC_GentilhommeSkill
 
-	POIN SpurStr SpurMag SpurSpd SpurDef SpurRes
-	POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex UpWithArch
+	POIN MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex UpWithArch
 
 	// Because of how killing machine works, critical check should always be done after other crit-modifying skills
 	POIN BC_CriticalModifierSkills

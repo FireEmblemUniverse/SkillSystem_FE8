@@ -74,6 +74,8 @@ SkillIcons:
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
 #include "Teq Skills/FE8-Nullify/Nullify EA.txt"
 
+#include "Skills/SpurSkills/SpurSkills.event"
+#include "Skills/Demoiselle/Demoiselle.event"
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
 #include "Skills/RallySkills/RallySkills.event"

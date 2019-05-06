@@ -32,51 +32,6 @@ AuraSkillTest:
 POIN SkillTester
 */
 
-SpurStr: //checked in fe8_calc_loop
-#incbin "SpurStr.dmp"
-POIN AuraSkillCheck
-WORD SpurStrID
-
-SpurMag: //checked in fe8_calc_loop
-#incbin "SpurMag.dmp"
-POIN AuraSkillCheck
-WORD SpurMagID
-
-// SpurSkl: //checked in fe8_calc_loop
-// #incbin "SpurSkl.dmp"
-// POIN AuraSkillCheck
-// WORD SpurSklID
-
-SpurSpd: //checked in fe8_calc_loop
-#incbin "SpurSpd.dmp"
-POIN AuraSkillCheck
-WORD SpurSpdID
-
-// SpurLuk: //checked in fe8_calc_loop
-// #incbin "SpurLuk.dmp"
-// POIN AuraSkillCheck
-// WORD SpurLukID
-
-SpurDef: //checked in fe8_calc_loop
-#incbin "SpurDef.dmp"
-POIN AuraSkillCheck
-WORD SpurDefID
-
-SpurRes: //checked in fe8_calc_loop
-#incbin "SpurRes.dmp"
-POIN AuraSkillCheck
-WORD SpurResID
-
-Demoiselle:
-#incbin "Demoiselle.dmp"
-POIN AuraSkillCheck
-WORD DemoiselleID
-
-Gentilhomme:
-#incbin "Gentilhomme.dmp"
-POIN AuraSkillCheck
-WORD GentilhommeID
-
 MaleficAura:
 #incbin "MaleficAura.dmp"
 POIN AuraSkillCheck

@@ -1,0 +1,44 @@
+#ifndef SPUR_SKILLS
+#define SPUR_SKILLS
+
+// Spur skills for the Skill System
+// hack by ???
+
+// Usage: add BC_Spur<x>Skill to your battle calc list
+
+BC_SpurStrSkill:
+	#incbin "Src/SpurStr.dmp"
+	POIN AuraSkillCheck
+	WORD SpurStrID
+
+BC_SpurMagSkill:
+	#incbin "Src/SpurMag.dmp"
+	POIN AuraSkillCheck
+	WORD SpurMagID
+
+// BC_SpurSklSkill:
+	// #incbin "SpurSkl.dmp"
+	// POIN AuraSkillCheck
+	// WORD SpurSklID
+
+BC_SpurSpdSkill:
+	#incbin "Src/SpurSpd.dmp"
+	POIN AuraSkillCheck
+	WORD SpurSpdID
+
+// BC_SpurLukSkill:
+	// #incbin "SpurLuk.dmp"
+	// POIN AuraSkillCheck
+	// WORD SpurLukID
+
+BC_SpurDefSkill:
+	#incbin "Src/SpurDef.dmp"
+	POIN AuraSkillCheck
+	WORD SpurDefID
+
+BC_SpurResSkill:
+	#incbin "Src/SpurRes.dmp"
+	POIN AuraSkillCheck
+	WORD SpurResID
+
+#endif // SPUR_SKILLS

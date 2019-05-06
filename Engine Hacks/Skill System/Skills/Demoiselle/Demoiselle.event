@@ -1,0 +1,19 @@
+#ifndef DEMOISELLE_SKILL
+#define DEMOISELLE_SKILL
+
+// Demoiselle (and Gentilhomme) skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_DemoiselleSkill:
+	#incbin "Src/Demoiselle.dmp"
+	POIN AuraSkillCheck
+	WORD DemoiselleID
+
+ALIGN 4
+BC_GentilhommeSkill:
+	#incbin "Src/Gentilhomme.dmp"
+	POIN AuraSkillCheck
+	WORD GentilhommeID
+
+#endif // DEMOISELLE_SKILL
