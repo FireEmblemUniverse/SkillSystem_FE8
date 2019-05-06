@@ -10,7 +10,7 @@ void MSa_SaveChapterState(void* target, unsigned size) {
 }
 
 void MSa_LoadChapterState(void* source, unsigned size) {
-	gpReadSramFast(source, &gChapterData, size);
+	ReadSramFast(source, &gChapterData, size);
 	SetGameClock(gChapterData._u00);
 }
 
@@ -26,7 +26,7 @@ void MSa_SaveUnits(void* target, unsigned size) {
 
 		// Register it to be known
 		if (unit->pCharacterData)
-			GGM_SetCharacterKnown(unit->pCharacterData->number, &sgm);
+			SGM_SetCharacterKnown(unit->pCharacterData->number, &sgm);
 	}
 
 	SaveGeneralGameMetadata(&sgm);
@@ -42,15 +42,15 @@ void MSa_SaveBonusClaim(void* target, unsigned size) {
 }
 
 void MSa_LoadBonusClaim(void* source, unsigned size) {
-	gpReadSramFast(source, (void*)(0x0203EDB4), size);
+	ReadSramFast(source, (void*)(0x0203EDB4), size);
 }
 
 void MSa_SaveWMStuff(void* target, unsigned size) {
-	SaveWMStuff(target, &gSomeWMEventRelatedStruct);
+	SaveWMStuff(target, &gGMData);
 }
 
 void MSa_LoadWMStuff(void* source, unsigned size) {
-	LoadWMStuff(source, &gSomeWMEventRelatedStruct);
+	LoadWMStuff(source, &gGMData);
 }
 
 void MSa_SaveDungeonState(void* target, unsigned size) {
@@ -58,5 +58,5 @@ void MSa_SaveDungeonState(void* target, unsigned size) {
 }
 
 void MSa_LoadDungeonState(void* source, unsigned size) {
-	gpReadSramFast(source, (void*)(0x30017AC), size);
+	ReadSramFast(source, (void*)(0x30017AC), size);
 }
