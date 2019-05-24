@@ -18,6 +18,7 @@
 	.equ WRAMDisplay, 			0x08003870
 	.equ CurrentCharPtr, 		0x030044B0
 	.equ Can_Equip_Item, 		0x08016538
+	@ .equ Get_Unit_Max_Hp, TODO
 	.equ Get_Item_Crit, 		0x08017224
 	.equ Check_Effectiveness, 	0x08016A10
 	.equ Talk_Check, 			0x0806AF4C
@@ -37,6 +38,7 @@
 	.equ WRAMDisplay, 			0x08004388
 	.equ CurrentCharPtr,		0x03004690
 	.equ Can_Equip_Item, 		0x080161A4
+	@ .equ Get_Unit_Max_Hp, TODO
 	.equ Get_Item_Crit, 		0x08017328
 	.equ Check_Effectiveness, 	0x08016820
 	.equ Talk_Check, 			0x080789FC
@@ -56,6 +58,7 @@
 	.equ WRAMDisplay, 			0x08002BB8
 	.equ CurrentCharPtr,		0x03004E50
 	.equ Can_Equip_Item, 		0x08016574
+	.equ Get_Unit_Max_Hp,		0x08019190
 	.equ Get_Item_Crit, 		0x08017624
 	.equ Check_Effectiveness, 	0x08016BEC
 	.equ Slayer_Check, 			0x08016C88
@@ -113,13 +116,20 @@ str		r2,[sp,#0x8]			@sp+8 = y - y'
 ldr		r1,=#0x201
 str		r1,[sp,#0xC]			@constant to determine where things get drawn
 @Find out whether we even need to display an hp bar
-mov		r0,#current_hp
-ldsb	r0,[r4,r0]
-mov		r1,#maximum_hp
+.if FE8 == 1 @ TODO: other games
+	mov		r0, r4					@ arg r0 = Unit
+	ldr		r1, =Get_Unit_Max_Hp
+	mov		r14,r1
+	.short	0xF800
+.else
+	mov		r0,#maximum_hp
+	ldsb	r0,[r4,r0]
+.endif
+mov		r1,#current_hp
 ldsb	r1,[r4,r1]
 cmp		r0,r1
 beq		CheckIfSelected			@if hp is max, don't show the bar
-sub		r0,r1,r0				@r0 = damage
+sub		r0,r1					@r0 = damage
 mov		r2,#11
 mul		r0,r2
 swi		#6						@damage*11/maxHP
