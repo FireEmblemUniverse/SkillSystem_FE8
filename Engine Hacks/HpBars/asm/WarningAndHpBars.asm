@@ -78,7 +78,12 @@ add		sp,#-0x10
 @First, check if all this stuff is even enabled
 ldr		r0,=OptionByte2
 ldrb	r0,[r0]
+.if FE8 == 1
+mov		r1,#0x80
+.else
+@ NOTE: this is either the fe6-specific bit, or teq has added an extra setting in the original impl of this
 mov		r1,#0x20
+.endif
 tst		r0,r1
 beq		HpBars					@if bit isn't set, hp bars are on (at the very least)
 b		GoBack
