@@ -117,7 +117,7 @@ ldr		r1,=#0x201
 str		r1,[sp,#0xC]			@constant to determine where things get drawn
 @Find out whether we even need to display an hp bar
 .if FE8 == 1 @ TODO: other games
-	mov		r0, r4					@ arg r0 = Unit
+	mov		r0, r4				@ arg r0 = Unit
 	ldr		r1, =Get_Unit_Max_Hp
 	mov		r14,r1
 	.short	0xF800
@@ -125,13 +125,14 @@ str		r1,[sp,#0xC]			@constant to determine where things get drawn
 	mov		r0,#maximum_hp
 	ldsb	r0,[r4,r0]
 .endif
-mov		r1,#current_hp
-ldsb	r1,[r4,r1]
-cmp		r0,r1
-beq		CheckIfSelected			@if hp is max, don't show the bar
-sub		r0,r1					@r0 = damage
+mov		r2,#current_hp
+ldsb	r2,[r4,r2]
+cmp		r2,r0
+bge		CheckIfSelected			@if hp is max, don't show the bar
+mov		r1,r0 @ arg r1 = mhp
+sub		r0,r2
 mov		r2,#11
-mul		r0,r2
+mul		r0,r2 @ arg r0 = damage*11
 swi		#6						@damage*11/maxHP
 @Call the drawing routine
 ldr		r1,=WRAMDisplay
@@ -345,6 +346,7 @@ pop		{r0}
 bx		r0
 
 .ltorg
+.align
 
 WS_FrameData: @should be the OAM data
 .long 0x000f0001 @8x8 sprite
