@@ -112,7 +112,7 @@
 #define GetEnemyInHalfMoveRange "AI_Conditional(0x0803A0C1, 0x081D3B4C)" //Sets memory to 0 or 1 based on if the condition is met
 #define GetEnemyInCoefMovement(coefPointer) "AI_Conditional(0x0803A0C1, coefPointer)"
 #define GetLeaderHasEnemyInRange "AI_Conditional(0x0803A5BD, 0x0)"
-#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x0803A549, rectanglePointer) @Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb.
+#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x0803A549, rectanglePointer) /* Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb. */"
 //These all do not take the action.
 
 #define AI1PointerTable(entry, aipointer) "PUSH; ORG 0xB98994+(4*entry); POIN aipointer; POP"
