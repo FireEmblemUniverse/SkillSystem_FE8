@@ -1,0 +1,13 @@
+#ifndef UPWITHARCH_SKILL
+#define UPWITHARCH_SKILL
+
+// Up With Arch! skill for the Skill System
+// hack by Leonarth(?)
+
+ALIGN 4
+BC_UpWithArchSkill:
+	#incbin "Src/UpWithArch.dmp"
+	POIN AuraSkillCheck
+	WORD UpWithArchID
+
+#endif // UPWITHARCH_SKILL

@@ -1,0 +1,13 @@
+#ifndef MALEFICAURA_SKILL
+#define MALEFICAURA_SKILL
+
+// Malefic Aura skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_MaleficAuraSkill:
+	#incbin "Src/MaleficAura.dmp"
+	POIN AuraSkillCheck
+	WORD MaleficAuraID
+
+#endif // MALEFICAURA_SKILL

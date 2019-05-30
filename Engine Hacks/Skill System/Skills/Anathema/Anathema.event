@@ -1,0 +1,13 @@
+#ifndef ANATHEMA_SKILL
+#define ANATHEMA_SKILL
+
+// Anathema skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_AnathemaSkill:
+	#incbin "Src/Anathema.dmp"
+	POIN AuraSkillCheck
+	WORD AnathemaID
+
+#endif // ANATHEMA_SKILL

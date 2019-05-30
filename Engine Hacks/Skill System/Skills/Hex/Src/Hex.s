@@ -1,9 +1,9 @@
 
 .thumb
 
-.global Hex
-.type Hex, %function
-Hex: @r0, r1 are battle structs
+.global BC_HexSkill
+.type BC_HexSkill, %function
+BC_HexSkill: @r0, r1 are battle structs
 push { r4, r5, lr }
 mov r4, r0
 mov r5, r1

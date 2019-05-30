@@ -72,8 +72,19 @@ BtlLoopParent:
 	POIN BC_VanitySkill
 	POIN BC_MageSlayerSkill
 	POIN BC_KnightAspirantSkill
-
-	POIN MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex UpWithArch
+	POIN BC_MaleficAuraSkill
+	POIN BC_IntimidateSkill
+	POIN BC_InspirationSkill
+	POIN BC_CharmSkill
+	POIN BC_CharismaSkill
+	POIN BC_VoiceOfPeaceSkill
+	POIN BC_TantivySkill
+	POIN BC_FocusSkill
+	POIN BC_AnathemaSkill
+	POIN BC_HexSkill
+	POIN BC_LilysPoiseSkill
+	POIN BC_UpWithArchSkill
+	POIN BC_SolidaritySkill
 
 	// add any new battle calc funcs here
 

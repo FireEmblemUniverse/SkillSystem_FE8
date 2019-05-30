@@ -1,0 +1,13 @@
+#ifndef SOLIDARITY_SKILL
+#define SOLIDARITY_SKILL
+
+// Solidarity skill for the Skill System
+// hack by SD9k
+
+ALIGN 4
+BC_SolidaritySkill:
+	#incbin "Src/Solidarity.dmp"
+	POIN AuraSkillCheck
+	WORD SolidarityID
+
+#endif // SOLIDARITY_SKILL

@@ -1,0 +1,14 @@
+#ifndef FOCUS_SKILL
+#define FOCUS_SKILL
+
+// Focus skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_FocusSkill:
+	#incbin "Src/Focus.dmp"
+	POIN SkillTester
+	POIN AuraSkillCheck
+	WORD FocusID
+
+#endif // FOCUS_SKILL

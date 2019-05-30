@@ -1,0 +1,12 @@
+#ifndef HEX_SKILL
+#define HEX_SKILL
+
+// Hex skill for the Skill System
+// hack by Snakey1
+
+#include "Src/Hex.lyn.event"
+
+HexIDLink:
+	BYTE HexID
+
+#endif // HEX_SKILL

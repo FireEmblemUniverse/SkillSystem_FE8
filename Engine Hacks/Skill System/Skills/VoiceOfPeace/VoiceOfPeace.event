@@ -1,0 +1,13 @@
+#ifndef VOICEOFPEACE_SKILL
+#define VOICEOFPEACE_SKILL
+
+// Voice of peace skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_VoiceOfPeaceSkill:
+	#incbin "Src/VoiceOfPeace.dmp"
+	POIN AuraSkillCheck
+	WORD VoiceOfPeaceID
+
+#endif // VOICEOFPEACE_SKILL

@@ -1,0 +1,13 @@
+#ifndef INSPIRATION_SKILL
+#define INSPIRATION_SKILL
+
+// Inspiration skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_InspirationSkill:
+	#incbin "Src/Inspiration.dmp"
+	POIN AuraSkillCheck
+	WORD InspirationID
+
+#endif // INSPIRATION_SKILL

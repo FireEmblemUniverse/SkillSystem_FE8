@@ -1,0 +1,13 @@
+#ifndef INTIMIDATE_SKILL
+#define INTIMIDATE_SKILL
+
+// Intimidate skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_IntimidateSkill:
+	#incbin "Src/Intimidate.dmp"
+	POIN AuraSkillCheck
+	WORD IntimidateID
+
+#endif // INTIMIDATE_SKILL

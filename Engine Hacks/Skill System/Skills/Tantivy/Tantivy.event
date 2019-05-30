@@ -1,0 +1,14 @@
+#ifndef TANTIVY_SKILL
+#define TANTIVY_SKILL
+
+// Tantivy skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_TantivySkill:
+	#incbin "Src/Tantivy.dmp"
+	POIN SkillTester
+	POIN AuraSkillCheck
+	WORD TantivyID
+
+#endif // TANTIVY_SKILL

@@ -1,0 +1,13 @@
+#ifndef CHARISMA_SKILL
+#define CHARISMA_SKILL
+
+// Charisma skill for the Skill System
+// hack by Darrman
+
+ALIGN 4
+BC_CharismaSkill:
+	#incbin "Src/Charisma.dmp"
+	POIN AuraSkillCheck
+	WORD CharismaID
+
+#endif // CHARISMA_SKILL

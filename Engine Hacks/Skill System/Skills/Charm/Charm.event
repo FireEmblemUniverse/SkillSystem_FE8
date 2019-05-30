@@ -1,0 +1,13 @@
+#ifndef CHARM_SKILL
+#define CHARM_SKILL
+
+// Charisma skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_CharmSkill:
+	#incbin "Src/Charm.dmp"
+	POIN AuraSkillCheck
+	WORD CharmID
+
+#endif // CHARM_SKILL

@@ -1,0 +1,13 @@
+#ifndef LILYSPOISE_SKILL
+#define LILYSPOISE_SKILL
+
+// Lily's poise skill for the Skill System
+// hack by ???
+
+ALIGN 4
+BC_LilysPoiseSkill:
+	#incbin "Src/LilysPoise.dmp"
+	POIN AuraSkillCheck
+	WORD LilysPoiseID
+
+#endif // LILYSPOISE_SKILL
