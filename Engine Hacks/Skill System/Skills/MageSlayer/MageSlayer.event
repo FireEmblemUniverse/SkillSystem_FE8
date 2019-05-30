@@ -1,0 +1,16 @@
+#ifndef MAGESLAYER_SKILL
+#define MAGESLAYER_SKILL
+
+// Mage Slayer skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// FIXME: this uses shady part of class data
+// TODO: make more configurable
+
+ALIGN 4
+BC_MageSlayerSkill:
+	#incbin "Src/MageSlayer.dmp"
+	POIN SkillTester
+	WORD MageSlayerID
+
+#endif // MAGESLAYER_SKILL

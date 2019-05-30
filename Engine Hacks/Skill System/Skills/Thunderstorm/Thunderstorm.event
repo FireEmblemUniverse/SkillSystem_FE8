@@ -1,0 +1,15 @@
+#ifndef THUNDERSTORM_SKILL
+#define THUNDERSTORM_SKILL
+
+// Thunderstorm (Simple Roots?) skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_ThunderstormSkill:
+	#incbin "Src/Thunderstorm.dmp"
+	POIN SkillTester
+	WORD ThunderstormID
+
+#endif // THUNDERSTORM_SKILL

@@ -1,0 +1,15 @@
+#ifndef KNIGHTASPIRANT_SKILL
+#define KNIGHTASPIRANT_SKILL
+
+// Knight Aspirant skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_KnightAspirantSkill:
+	#incbin "Src/KnightAspirant.dmp"
+	POIN SkillTester
+	WORD KnightAspirantID
+
+#endif // KNIGHTASPIRANT_SKILL

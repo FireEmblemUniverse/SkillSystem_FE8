@@ -78,5 +78,6 @@ CharData:
 MovementPoin:
 .long 0x880bb96
 SkillTester:
-@Poin SkillTester
+@POIN SkillTester
+@POIN AuraSkillCheck
 @WORD LoyaltyID

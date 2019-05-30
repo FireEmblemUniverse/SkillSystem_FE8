@@ -1,0 +1,15 @@
+#ifndef SILENTPRIDE_SKILL
+#define SILENTPRIDE_SKILL
+
+// Silent pride skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_SilentPrideSkill:
+	#incbin "Src/SilentPride.dmp"
+	POIN SkillTester
+	WORD SilentPrideID
+
+#endif // SILENTPRIDE_SKILL

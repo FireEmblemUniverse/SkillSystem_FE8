@@ -1,0 +1,15 @@
+#ifndef LOYALTY_SKILL
+#define LOYALTY_SKILL
+
+// Loyalty skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+BC_LoyaltySkill:
+	#incbin "Src/Loyalty.dmp"
+	POIN SkillTester
+	POIN AuraSkillCheck
+	WORD LoyaltyID
+
+#endif // LOYALTY_SKILL

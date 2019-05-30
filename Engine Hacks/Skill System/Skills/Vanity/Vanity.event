@@ -1,0 +1,15 @@
+#ifndef VANITY_SKILL
+#define VANITY_SKILL
+
+// Vanity skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_VanitySkill:
+	#incbin "Src/Vanity.dmp"
+	POIN SkillTester
+	WORD VanityID
+
+#endif // VANITY_SKILL

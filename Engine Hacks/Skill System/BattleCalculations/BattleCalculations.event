@@ -3,6 +3,8 @@
 
 // battle calculations loop fe8
 
+#include "Extensions/Hack Installation.txt"
+
 #define BC_DefRes $2aa44
 #define BC_Power $2aabc
 #define BC_ASpd $2ab74
@@ -13,8 +15,6 @@
 #define BC_Support $2a9d0
 #define BC_WRank $2ad54
 #define BC_Status $2ad90
-
-#include "Extensions/Hack Installation.txt"
 
 PUSH
 	ORG 0x2a95c
@@ -60,14 +60,27 @@ BtlLoopParent:
 	POIN BC_StanceSkills
 	POIN BC_SpurStrSkill BC_SpurMagSkill BC_SpurSpdSkill BC_SpurDefSkill BC_SpurResSkill
 	POIN BC_DemoiselleSkill BC_GentilhommeSkill
+	POIN BC_BattleVeteranSkill
+	POIN BC_HolyAuraSkill
+	POIN BC_SilentPrideSkill
+	POIN BC_LoyaltySkill
+	POIN BC_ThunderstormSkill
+	POIN BC_OutriderSkill
+	POIN BC_HeavyStrikesSkill
+	POIN BC_ChargeSkill
+	POIN BC_InfiltratorSkill
+	POIN BC_VanitySkill
+	POIN BC_MageSlayerSkill
+	POIN BC_KnightAspirantSkill
 
-	POIN HolyAura MageSlayer Loyalty Infiltrator BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant
 	POIN MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex UpWithArch
+
+	// add any new battle calc funcs here
 
 	// Because of how killing machine works, critical check should always be done after other crit-modifying skills
 	POIN BC_CriticalModifierSkills
 
-#ifdef __GBA_LETHALITY__
+#ifdef ENABLE_GBA_LETHALITY
 	POIN BC_LethalitySkill
 #else
 	POIN BC_LethalitySkill BC_NonGBALethalitySkill
@@ -75,7 +88,6 @@ BtlLoopParent:
 
 	POIN BC_BaneSkill
 
-	//add any new ones before here
 	WORD 0
 
 ALIGN 4

@@ -1,0 +1,15 @@
+#ifndef BATTLEVETERAN_SKILL
+#define BATTLEVETERAN_SKILL
+
+// Battle veteran skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_BattleVeteranSkill:
+	#incbin "Src/BattleVeteran.dmp"
+	POIN SkillTester
+	WORD BattleVeteranID
+
+#endif // BATTLEVETERAN_SKILL

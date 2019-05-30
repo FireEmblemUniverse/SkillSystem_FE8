@@ -1,0 +1,16 @@
+#ifndef INFILTRATOR_SKILL
+#define INFILTRATOR_SKILL
+
+// Infiltrator skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_InfiltratorSkill:
+	#incbin "Src/Infiltrator.dmp"
+	POIN SkillTester
+	POIN AuraSkillCheck
+	WORD InfiltratorID
+
+#endif // INFILTRATOR_SKILL

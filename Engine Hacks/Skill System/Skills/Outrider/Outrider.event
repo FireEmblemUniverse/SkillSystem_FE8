@@ -1,0 +1,15 @@
+#ifndef OUTRIDER_SKILL
+#define OUTRIDER_SKILL
+
+// Outrider (Dominate?) skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_OutriderSkill:
+	#incbin "Src/Outrider.dmp"
+	POIN SkillTester
+	WORD OutriderID
+
+#endif // OUTRIDER_SKILL

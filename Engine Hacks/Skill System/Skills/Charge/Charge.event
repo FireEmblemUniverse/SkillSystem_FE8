@@ -1,0 +1,13 @@
+#ifndef CHARGE_SKILL
+#define CHARGE_SKILL
+
+// Charge skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+ALIGN 4
+BC_ChargeSkill:
+	#incbin "Src/Charge.dmp"
+	POIN SkillTester
+	WORD ChargeID
+
+#endif // CHARGE_SKILL

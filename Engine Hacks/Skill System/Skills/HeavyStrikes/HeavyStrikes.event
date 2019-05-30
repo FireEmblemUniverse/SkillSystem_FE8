@@ -1,0 +1,14 @@
+#ifndef HEAVYSTRIKES_SKILL
+#define HEAVYSTRIKES_SKILL
+
+// Heavy Strikes skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+ALIGN 4
+BC_HeavyStrikesSkill:
+	#incbin "Src/HeavyStrikes.dmp"
+	POIN SkillTester
+	POIN ItemTable
+	WORD HeavyStrikesID
+
+#endif // HEAVYSTRIKES_SKILL

@@ -1,0 +1,15 @@
+#ifndef HOLYAURA_SKILL
+#define HOLYAURA_SKILL
+
+// Holy Aura skill for the Skill System
+// hack by Datagne(?) (donated from SoA by InvdrZim)
+
+// TODO: make more configurable
+
+ALIGN 4
+BC_HolyAuraSkill:
+	#incbin "Src/HolyAura.dmp"
+	POIN SkillTester
+	WORD HolyAuraID
+
+#endif // HOLYAURA_SKILL

@@ -37,5 +37,6 @@ pop {r4-r7, r15}
 .align
 .ltorg
 SkillTester:
-@Poin SkillTester
+@POIN SkillTester
+@POIN ItemTable
 @WORD AnalyticID
