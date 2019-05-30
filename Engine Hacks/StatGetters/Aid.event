@@ -5,7 +5,7 @@
 
 pAidModifiers: // Aid
 	POIN prAddUnitFinalConstitution prSubstractOne prAdjustAidIfMounted
-	#ifdef __DebuffMinZero__
+	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
 WORD 0

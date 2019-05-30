@@ -61,6 +61,7 @@ BtlLoopParent:
 	POIN BC_SpurStrSkill BC_SpurMagSkill BC_SpurSpdSkill BC_SpurDefSkill BC_SpurResSkill
 	POIN BC_DemoiselleSkill BC_GentilhommeSkill
 
+	POIN HolyAura MageSlayer Loyalty Infiltrator BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant
 	POIN MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex UpWithArch
 
 	// Because of how killing machine works, critical check should always be done after other crit-modifying skills

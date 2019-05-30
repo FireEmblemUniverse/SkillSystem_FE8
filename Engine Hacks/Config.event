@@ -1,0 +1,55 @@
+#ifndef HAX_CONFIG
+#define HAX_CONFIG
+
+// This file holds configuration switches for all hacks shipped with the skill system
+
+// ==============================
+// = BUILD SYSTEM CONFIGURATION =
+// ==============================
+
+// if uncommented use the macros to write over the table and .png, location based on skill id
+// #define SKILLS_USE_DESCRIPTION_MACROS
+// #define SKILLS_USE_ICON_MACROS
+
+// ===================================
+// = HACK INSTALLATION CONFIGURATION =
+// ===================================
+
+// If commented, slayer and effectiveness will remain the same as they are in vanilla
+// Look at Skill System/Teq Skills/FE8-Nullify/_README.txt for the full ramifications of uncommenting this
+#define ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
+
+// If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
+// Enabling this *will* break saves, but allows for higher stats and other things.
+// #define USE_SAVE_EXPANSION
+
+// =================================
+// = SKILL BEHAVIOUR CONFIGURATION =
+// =================================
+
+// if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
+// #define ENABLE_GALEFORCE_AUTOSELECT
+
+// if uncommented lethality will work like it originally did in gba
+// #define ENABLE_GBA_LETHALITY
+
+// if set to false, only the skill will work, if set to true both the skill and the ability will work
+#define ENABLE_LEGACY_CANTO False
+
+// if commented, enemies with Steal+ will steal as normal in vanilla (ie, the skill will be pretty much useless
+#define ENABLE_AI_STEAL_PLUS
+
+// if commented, Steal will no longer be a skill, but a character ability, and Steal+ will require having regular steal
+#define ENABLE_STEAL_SKILL
+
+// If commented, debuffs are allowed to take stats below zero
+#define DEBUFFS_MIN_ZERO
+
+// If true Shadowgift/Lumina will check for staff ranks when checking for highest magic rank
+#define SHADOWGIFT_VIA_STAFF_RANK False
+#define LUMINA_VIA_STAFF_RANK True
+
+// If commented, Poison Strike and Grisly Wound will not check whether no damage was dealt before applying additional damage.
+#define RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
+
+#endif // HAX_CONFIG

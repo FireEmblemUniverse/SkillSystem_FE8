@@ -19,7 +19,7 @@ ShadowgiftHook:
 	POIN SkillTester
 	WORD ShadowgiftID
 	WORD LuminaID
-	WORD ShadowgiftStaffOption
-	WORD LuminaStaffOption
+	WORD SHADOWGIFT_VIA_STAFF_RANK
+	WORD LUMINA_VIA_STAFF_RANK
 
 #endif // SHADOWGIFT_SKILL

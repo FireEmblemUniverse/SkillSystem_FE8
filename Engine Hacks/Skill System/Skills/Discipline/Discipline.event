@@ -16,5 +16,6 @@ DisciplineHook:
 	#incbin "Src/Discipline.dmp"
 	POIN SkillTester
 	WORD DisciplineID
+	WORD DisciplinePlusID
 
 #endif // DISCIPLINE_SKILL

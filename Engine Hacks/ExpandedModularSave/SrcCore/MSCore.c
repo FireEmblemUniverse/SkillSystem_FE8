@@ -27,14 +27,14 @@ void MS_LoadChapterStateFromGameSave(unsigned slot, struct ChapterState* target)
 	void* const source = GetSaveSourceAddress(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_ChapterStateChunkId);
 
-	gpReadSramFast(source + chunk->offset, target, chunk->size);
+	ReadSramFast(source + chunk->offset, target, chunk->size);
 }
 
 void MS_LoadChapterStateFromSuspendSave(unsigned slot, struct ChapterState* target) {
 	void* const source = GetSaveSourceAddress(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindSuspendSaveChunk(gMS_ChapterStateChunkId);
 
-	gpReadSramFast(source + chunk->offset, target, chunk->size);
+	ReadSramFast(source + chunk->offset, target, chunk->size);
 }
 
 u32 MS_GetClaimFlagsFromGameSave(unsigned slot) {
@@ -43,7 +43,7 @@ u32 MS_GetClaimFlagsFromGameSave(unsigned slot) {
 	void* const source = GetSaveSourceAddress(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_ClaimFlagsChunkId);
 
-	gpReadSramFast(source + chunk->offset, &buf, 4);
+	ReadSramFast(source + chunk->offset, &buf, 4);
 
 	return buf;
 }
@@ -61,7 +61,7 @@ int MS_CheckEid8AFromGameSave(unsigned slot) {
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_PermanentEidsChunkId);
 
 	// TODO: fix this mess
-	gpReadSramFast(source + chunk->offset, gGenericBuffer, chunk->size);
+	ReadSramFast(source + chunk->offset, gGenericBuffer, chunk->size);
 	return ((u8(*)(unsigned eid, void* buf))(0x08083D34+1))(0x8A, gGenericBuffer);
 }
 
@@ -71,7 +71,7 @@ void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 
 	unsigned size = gSaveBlockTypeSizeLookup[SAVE_TYPE_GAME];
 
-	gpReadSramFast(source, gGenericBuffer, size);
+	ReadSramFast(source, gGenericBuffer, size);
 	WriteAndVerifySramFast(gGenericBuffer, target, size);
 
 	struct SaveBlockMetadata sbm;
@@ -147,6 +147,8 @@ void MS_SaveSuspend(unsigned slot) {
 	sbm.type   = SAVE_TYPE_SUSPEND;
 
 	SaveMetadata_Save(&sbm, slot);
+
+	gGameState._unk3C = FALSE; // TODO: figure out. This is set on resume. May be "no suspend since resume" flag
 }
 
 void MS_LoadSuspend(unsigned slot) {

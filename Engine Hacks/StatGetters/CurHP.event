@@ -7,7 +7,7 @@
 
 pCurHPModifiers: // Current HP
 	POIN prAddUnitCurHP prCapHPIfOverMax
-	#ifdef __DebuffMinZero__
+	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
 WORD 0

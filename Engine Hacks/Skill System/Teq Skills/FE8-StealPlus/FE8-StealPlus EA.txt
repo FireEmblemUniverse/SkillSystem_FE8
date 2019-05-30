@@ -51,7 +51,7 @@ WORD StealPlusID
 //	BYTE $00 $B5 $41 $68 $11 $22 $89 $56 $02 $68 $13 $23 $D2 $56 $89 $18 $1A $22 $80 $56 $40 $18 $02 $BC $08 $47
 //#endif
 
-#ifdef __ENEMY_STEALING__
+#ifdef ENABLE_AI_STEAL_PLUS
 
 	PUSH
 	
@@ -73,7 +73,7 @@ WORD StealPlusID
 #endif
 
 //The following changes the checks for steal ability (0x4 of byte 1) to a check for either the Steal skill or Steal+
-#ifdef __STEAL_SKILL__
+#ifdef ENABLE_STEAL_SKILL
 	
 	PUSH
 	
