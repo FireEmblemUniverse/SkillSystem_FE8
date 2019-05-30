@@ -1,5 +1,6 @@
 
 #include "Internals/SkillSystem.event"
+
 #include "skill_lists.event" //who learns what skills when
 #include "charge_table.event"
 
@@ -104,10 +105,10 @@ SkillIcons:
 #include "Skills/UpWithArch/UpWithArch.event"
 #include "Skills/Solidarity/Solidarity.event"
 
-#include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
 #include "Skills/RallySkills/RallySkills.event"
 
+#include "AuraCheck/AuraCheck.event"
 #include "BattleCalculations/BattleCalculations.event"
 
 #include "Stan Skills/HeroesMovement/HeroesMovement.event"
