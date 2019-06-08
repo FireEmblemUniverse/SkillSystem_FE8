@@ -77,6 +77,11 @@ Astra: 5 attacks at half damage.[N]
 Discipline: Weapon experience[N]
 gains are doubled.[X]
 
+## SD_DisciplinePlus
+Discipline+: Weapon experience[N]
+gains are doubled. Unit may[N]
+S-Rank multiple weapon types.[X]
+
 ## SD_Swordbreaker
 Swordbreaker: +50 Hit/Avo when[N]
 enemy has a sword equipped.[X]
@@ -783,3 +788,52 @@ user's HP is at maximum.[X]
 ## SD_Puissance
 Puissance: +3 Damage when the user's[N]
 Strength is higher than the enemy's.[X]
+
+## SD_BattleVeteran
+Battle Veteran: Gain +1 damage and[N]
++5% Hit per 10 levels unit has.[X]
+
+## SD_HolyAura
+Holy Aura: Gain +1 damage, +5% hit,[N]
++5% avoid, +5% crit when using light.[X]
+
+## SD_SilentPride
+Silent Pride: Gain 2 damage and take[N]
+-2 damage per 25% below max HP.[X]
+
+## SD_Loyalty
+Loyalty: When within 2 spaces of[N]
+a Lord, -3 damage taken, +15% hit.[X]
+
+## SD_Thunderstorm
+Thunderstorm: If weapon weight > enemy[N]
+W. Weight, +2 dmg, +15% hit, +5% crit.[X]
+
+## SD_Outrider
+Outrider: Take -1 damage and[N]
+gain +3% crit per space moved.[X]
+
+## SD_HeavyStrikes
+Heavy Strikes: Add weapon[N]
+weight to critical chance.[X]
+
+## SD_Charge
+Charge: Gain +1 damage for[N]
+every two squares moved.[X]
+
+## SD_Infiltrator
+Infiltrator: If within 2 spaces[N]
+of two or more enemies, gain +3[N]
+damage and +15% hit.[X]
+
+## SD_Vanity
+Vanity: Gain +2 Damage and +10 Hit[N]
+when fighting enemy at 2 range.[X]
+
+## SD_MageSlayer
+Mage Slayer: Gain +2 damage and +10%[N]
+crit when facing magical enemies.[X]
+
+## SD_KnightAspirant
+Knight Aspirant: When above 75%[N]
+health, +2 damage, +15% avoid.[X]

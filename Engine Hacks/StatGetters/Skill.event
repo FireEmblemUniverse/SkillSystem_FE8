@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pSkillModifiers: // Skill
-	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prRallySkl
+	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prItemPassiveSkl prRallySkl
 	#ifdef __DebuffMinZero__
 	POIN prMinZero
 	#endif
@@ -23,5 +23,8 @@ prDebuffSkl:
 prRallySkl:
 	#incbin "_asm/RallySkl.bin"
 	WORD DebuffTable
+
+prItemPassiveSkl:
+	rPassiveStatBoosts(STAT_SKILL)
 
 #endif // MODULAR_GETTER_SKILL_EVENT

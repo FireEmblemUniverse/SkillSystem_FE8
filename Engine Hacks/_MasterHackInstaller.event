@@ -6,6 +6,10 @@
 
 #include "Extensions/Hack Installation.txt"
 #include "PopupRework/Extensions/PopupDefinitions.txt"
+
+// hack configuration file
+#include "Config.event"
+
 #include "_UnitMenuDefs.event"
 
 ////////////////////////////////SUPPORTING CHANGES
@@ -128,10 +132,6 @@ POP
   ALIGN 4
   #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
 
-  ALIGN 4
-  #include "MSG/InstallCore.event"
-  #include "MSG/InstallHelpers.event"
-  
   ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"
   

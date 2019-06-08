@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pMaxHPModifiers: // Maximum HP
-	POIN prAddUnitMaxHP prHexingRodEffect prAddEquipHP
+	POIN prAddUnitMaxHP prHexingRodEffect prAddEquipHP prItemPassiveHp
 	#ifdef __DebuffMinZero__
 	POIN prMinZero
 	#endif
@@ -19,5 +19,8 @@ prAddEquipHP:
 prHexingRodEffect:
 	#incbin "_asm/HexingRod.bin"
 	WORD DebuffTable
+
+prItemPassiveHp:
+	rPassiveStatBoosts(STAT_HP)
 
 #endif // MODULAR_GETTER_MAXHP_EVENT

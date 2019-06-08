@@ -3,7 +3,8 @@
 
 #include "../MSG/InstallCore.event"
 #include "../MSG/InstallHelpers.event"
-#include "../MSG/Extentions/SkillSystem.event"
+#include "../MSG/Extensions/SkillSystem.event"
+#include "../MSG/Extensions/PassiveItemStatBonuses.event"
 
 #include "_Common.event"
 

@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pPowerModifiers: // Power
-	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow
+	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prItemPassivePow prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow
 	#ifdef __DebuffMinZero__
 	POIN prMinZero
 	#endif
@@ -25,16 +25,19 @@ prRallyStr:
 	WORD DebuffTable
 
 prLifeAndDeathBonus:
-_testSkill(HeroesLifeAndDeathID,5,0)
+	_testSkill(HeroesLifeAndDeathID,5,0)
 
 prSkillFury:
   rIfUnitHasSkill(FuryID)
     rAddConst(2)
-    
+
 prFortressDefensePow:
 	_testSkill(FortressDefenseID,0,3)
 
 prFortressResistancePow:
 	_testSkill(FortressResistanceID,0,3)
+
+prItemPassivePow:
+	rPassiveStatBoosts(STAT_POWER)
 
 #endif // MODULAR_GETTER_POWER_EVENT

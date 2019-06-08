@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pDefenseModifiers: // Defense
-	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef
+	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prItemPassiveDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef
 	#ifdef __DebuffMinZero__
 	POIN prMinZero
 	#endif
@@ -26,5 +26,8 @@ prRallyDef:
 	
 prFortressDefenseDef:
 	_testSkill(FortressDefenseID,5,0)
+
+prItemPassiveDefense:
+	rPassiveStatBoosts(STAT_DEFENSE)
 
 #endif // MODULAR_GETTER_DEFENSE_EVENT

@@ -1,5 +1,4 @@
 
-#include "Skill System Options.event"
 #include "Internals/SkillSystem.event"
 #include "skill_lists.event" //who learns what skills when
 #include "Battle Calculations.event" //battle calcs
@@ -11,10 +10,10 @@ ORG SkillIcons
 #incext Png2Dmp "SkillIcons.png"
 POP
 //new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
-#ifdef __USE_DESCRIPTION_MACROS__
+#ifdef SKILLS_USE_DESCRIPTION_MACROS
 #include "skill_descriptions.event"
 #endif
-#ifdef __USE_ICON_MACROS__
+#ifdef SKILLS_USE_ICON_MACROS
 #include "skill_icons.event"
 #endif
 PUSH
@@ -234,6 +233,7 @@ Discipline:
 #incbin "Other Skills/Discipline.dmp"
 POIN SkillTester
 WORD DisciplineID
+WORD DisciplinePlusID
 
 Vantage:
 #incbin "Other Skills/vantage.dmp"
@@ -495,8 +495,8 @@ Shadowgift:
 POIN SkillTester
 WORD ShadowgiftID
 WORD LuminaID
-WORD ShadowgiftStaffOption
-WORD LuminaStaffOption
+WORD SHADOWGIFT_VIA_STAFF_RANK
+WORD LUMINA_VIA_STAFF_RANK
 
 Perfectionist:
 #incbin "New Skills/Perfectionist.dmp"
@@ -507,6 +507,66 @@ Puissance:
 #incbin "New Skills/Puissance.dmp"
 POIN SkillTester
 WORD PuissanceID
+
+BattleVeteran:
+#incbin "SoA Skills/BattleVeteran.dmp"
+POIN SkillTester
+WORD BattleVeteranID
+
+HolyAura:
+#incbin "SoA Skills/HolyAura.dmp"
+POIN SkillTester
+WORD HolyAuraID
+
+SilentPride:
+#incbin "SoA Skills/SilentPride.dmp"
+POIN SkillTester
+WORD SilentPrideID
+
+Loyalty:
+#incbin "SoA Skills/Loyalty.dmp"
+POIN SkillTester
+WORD LoyaltyID
+
+Thunderstorm:
+#incbin "SoA Skills/Thunderstorm.dmp"
+POIN SkillTester
+WORD ThunderstormID
+
+Outrider:
+#incbin "SoA Skills/Outrider.dmp"
+POIN SkillTester
+WORD OutriderID
+
+HeavyStrikes:
+#incbin "SoA Skills/HeavyStrikes.dmp"
+POIN SkillTester
+WORD HeavyStrikesID
+
+Charge:
+#incbin "SoA Skills/Charge.dmp"
+POIN SkillTester
+WORD ChargeID
+
+Infiltrator:
+#incbin "SoA Skills/Infiltrator.dmp"
+POIN SkillTester
+WORD InfiltratorID
+
+Vanity:
+#incbin "SoA Skills/Vanity.dmp"
+POIN SkillTester
+WORD VanityID
+
+MageSlayer:
+#incbin "SoA Skills/MageSlayer.dmp"
+POIN SkillTester
+WORD VanityID
+
+KnightAspirant:
+#incbin "SoA Skills/KnightAspirant.dmp"
+POIN SkillTester
+WORD KnightAspirantID
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

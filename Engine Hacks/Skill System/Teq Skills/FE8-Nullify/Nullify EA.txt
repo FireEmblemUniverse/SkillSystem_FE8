@@ -13,7 +13,7 @@
     ORG FreeSpace
 #endif
 
-#ifndef __SLAYER_AND_EFFECTIVENESS_REWORK__
+#ifndef ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
 	//we merely add Slayer and Nullify checks as necessary
 	
 	PUSH

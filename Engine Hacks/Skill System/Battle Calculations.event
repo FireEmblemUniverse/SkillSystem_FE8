@@ -19,18 +19,18 @@ BtlLoopParent:
 #incbin "Internals/FE8_calc_loop.dmp"
 BtlLoopTable:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
-POIN FaireCheck
-POIN BreakerCheck
+POIN FaireCheck HolyAura
+POIN BreakerCheck MageSlayer
 POIN BlowCheck
 POIN DefendingCheck
 POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
 POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
-POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex
-POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist
+POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex Loyalty Infiltrator
+POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant
 POIN UpWithArch
 POIN AxefaithHit
 POIN StancesASM
-#ifdef __GBA_LETHALITY__
+#ifdef ENABLE_GBA_LETHALITY
 POIN LethalitySkill Bane
 #else
 POIN LethalitySkill NonGBALethalitySkill Bane
