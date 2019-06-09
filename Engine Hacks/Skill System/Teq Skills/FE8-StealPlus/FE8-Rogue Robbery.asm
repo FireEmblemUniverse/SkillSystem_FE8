@@ -4,6 +4,7 @@
 
 .equ SkillTester, Con_Getter+4
 .equ StealPlusID, SkillTester+4
+.equ WatchfulID, StealPlusID+4
 
 push	{r4-r7,r14}
 mov		r4,r0
@@ -52,6 +53,14 @@ mov		r14,r3
 .short	0xF800
 cmp		r0,r5
 blt		RetFalse		@if con < weight, no steal
+ldr		r0,=#0x3004E50	@current character
+ldr		r0,[r0]
+ldr		r1,WatchfulID
+ldr		r3,SkillTester
+mov		r14,r3
+.short	0xF800
+cmp		r0,#0
+beq		RetFalse
 RetTrue:
 mov		r0,#1
 b		GoBack

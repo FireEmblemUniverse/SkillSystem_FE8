@@ -44,6 +44,7 @@ Rogue_Robbery:
 POIN prConGetter
 POIN SkillTester
 WORD StealPlusID
+WORD WatchfulID
 
 //#ifndef prConGetter
 //	ALIGN 4
