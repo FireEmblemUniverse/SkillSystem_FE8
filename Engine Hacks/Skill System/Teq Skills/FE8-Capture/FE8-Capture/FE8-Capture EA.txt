@@ -87,6 +87,8 @@
 	ALIGN 4
 	Capture_Target_Check:
 	#incbin "Capture_Target_Check.dmp"
+	POIN SkillTester
+	WORD WatchfulID
 	
 	ALIGN 4
 	Capture_Effect_Func:
