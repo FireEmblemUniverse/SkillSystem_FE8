@@ -387,6 +387,7 @@ POIN SkillTester
 WORD RightfulArchID
 WORD RightfulKingID
 WORD RightfulGodID
+WORD HeroID
 
 LuckySeven:
 #incbin "Other Skills/LuckySeven.dmp"
