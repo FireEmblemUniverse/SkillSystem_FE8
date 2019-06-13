@@ -616,4 +616,8 @@ ORG SkillIcon(HeroID)
 ORG SkillIcon(BoonID)
 #incext Png2Dmp "Skill Icons\Boon.png"
 
+ORG SkillIcon(ReMoveID)
+#incext Png2Dmp "Skill Icons\ReMove.png"
 
+ORG SkillIcon(PowerstaffID)
+#incext Png2Dmp "Skill Icons\Powerstaff.png"
