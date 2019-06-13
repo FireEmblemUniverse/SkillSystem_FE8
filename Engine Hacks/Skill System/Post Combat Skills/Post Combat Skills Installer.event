@@ -103,6 +103,7 @@ ReMove:
 #incbin "remove.dmp"
 POIN SkillTester
 WORD ReMoveID
+POIN ReMoveEvent
 #include "ReMoveEvent.event"
 ALIGN 4
 
