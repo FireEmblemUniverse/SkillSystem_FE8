@@ -21,7 +21,7 @@ POIN PostCombatSkills
 
 PostCombatSkills: //I like having savage blow as the first one because it makes the activation sound play first
 POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
-POIN Canto CantoPlus Galeforce //this order for canto and friends is the only one I tested
+POIN Canto CantoPlus Galeforce ReMove //this order for canto and friends is the only one I tested
 WORD 0 //Terminator
 
 Lifetaker:
@@ -98,6 +98,13 @@ CantoPlus:
 #incbin "cantoplus.dmp"
 POIN SkillTester
 WORD CantoPlusID
+
+ReMove:
+#incbin "remove.dmp"
+POIN SkillTester
+WORD ReMoveID
+#include "ReMoveEvent.event"
+ALIGN 4
 
 PUSH //some changes to vanilla code to make everything work
 ORG $1D24C //check for canto, modified to just check for cantoing bit set
