@@ -1,6 +1,7 @@
 
 
 @ created by ~ipatix~
+@ revision 2.1
 
     /* globals */
 	.global	main_mixer
@@ -12,9 +13,11 @@
 	.equ	GAME_BPRE, 2
 	.equ	GAME_KWJ6, 3
 	.equ	GAME_AE7E, 4
+	.equ	GAME_BPRD, 5
+	.equ	GAME_BE8E, 6
 
     /* SELECT USED GAME HERE */
-	.equ	USED_GAME, GAME_AE7E		@ CHOOSE YOUR GAME
+	.equ	USED_GAME, GAME_BE8E		@ CHOOSE YOUR GAME
 
 	.equ	FRAME_LENGTH_5734, 0x60
 	.equ	FRAME_LENGTH_7884, 0x84	    @ THIS MODE IS NOT SUPPORTED BY THIS ENGINE BECAUSE IT DOESN'T USE AN 8 ALIGNED BUFFER LENGTH
@@ -37,6 +40,7 @@
 	.equ	BUFFER_IRAM_BPR, 0x030028E0
 	.equ	BUFFER_IRAM_KWJ, 0x03005840
 	.equ	BUFFER_IRAM_AE7, 0x03006D60	@ PUT THE WORKBUFFER ADDRESS FOR FIRE EMBLEM HERE!!!
+    .equ    BUFFER_IRAM_BE8, 0x03007510
 
     /* stack variables */
 	.equ	ARG_FRAME_LENGTH, 0x0       @ TODO actually use this variable
@@ -122,7 +126,18 @@
 	.equ	ALLOW_PAUSE, 1
 	.equ	DMA_FIX, 1
 	.equ	ENABLE_DECOMPRESSION, 1
-	.equ	PREVENT_CLIP, 0
+	.equ	PREVENT_CLIP, 1
+
+.endif
+@*********** IF ENGLISH POKEMON FIRE RED
+.if USED_GAME==GAME_BPRD
+
+	.equ	hq_buffer, BUFFER_IRAM_BPR
+	.equ	decoder_buffer_target, DECODER_BUFFER_BPR
+	.equ	ALLOW_PAUSE, 1
+	.equ	DMA_FIX, 1
+	.equ	ENABLE_DECOMPRESSION, 1
+	.equ	PREVENT_CLIP, 1
 
 .endif
 @*********** IF ENGLISH POKEMON EMERALD
@@ -158,7 +173,7 @@
 	.equ	PREVENT_CLIP, 1
 
 .endif
-@*********** IF US FIRE EMBLEM
+@*********** IF US FIRE EMBLEM (7)
 .if USED_GAME==GAME_AE7E
 
 	.equ	hq_buffer, BUFFER_IRAM_AE7
@@ -166,6 +181,19 @@
 	.equ	DMA_FIX, 0
 	.equ	ENABLE_DECOMPRESSION, 0
 	.equ	PREVENT_CLIP, 0
+
+.endif
+@*********** IF US FIRE EMBLEM : THE SACRED STONES
+.if USED_GAME==GAME_BE8E
+
+	@ FE8U support by circleseverywhere
+
+	.equ	hq_buffer, BUFFER_IRAM_BE8
+	.equ	ALLOW_PAUSE, 0
+	.equ	DMA_FIX, 0
+	.equ	ENABLE_DECOMPRESSION, 0
+	.equ	PREVENT_CLIP, 0
+
 .endif
 @***********
 
