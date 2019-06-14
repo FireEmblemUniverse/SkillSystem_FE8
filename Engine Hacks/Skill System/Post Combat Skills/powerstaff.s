@@ -23,16 +23,30 @@ mov	lr, r3
 cmp		r0,#0
 beq		End
 
-@check if status bitfield byte 4 bit 0x10 is set; if so, can't trigger again
+@check if already powerstaffed; if so can't trigger again
+ldr	r0, [r4,#0x0C]	@status bitfield
+mov	r1, #0x04
+lsl	r1, #0x08
+and	r0, r1
+cmp	r0, #0x00
+bne	End
+
 
 @check if last action was using a staff
+ldr r0,=#0x203A958
+ldrb r0,[r0,#0x11]
+mov r1,#0x3
+cmp r0,r1
+bne End
 
-
-@unset 0x2 and 0x40, set byte 4 bit 0x10, write to status
+@unset 0x2 and 0x40, set 0x400, write to status
 ldr	r0, [r4,#0x0C]	@status bitfield
 mov	r1, #0x42
 mvn	r1, r1
 and	r0, r1		@unset bits 0x42
+mov	r1, #0x04
+lsl	r1, #0x08
+orr	r0, r1
 str	r0, [r4,#0x0C]
 
 @add unit to the AI list so enemies act twice

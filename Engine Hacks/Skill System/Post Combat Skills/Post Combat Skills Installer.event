@@ -107,7 +107,6 @@ POIN ReMoveEvent
 #include "ReMoveEvent.event"
 ALIGN 4
 
-MESSAGE Powerstaff at currentOffset
 Powerstaff:
 #incbin "powerstaff.dmp"
 POIN SkillTester
