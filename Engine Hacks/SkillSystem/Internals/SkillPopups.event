@@ -1,0 +1,41 @@
+
+/*
+ * This file has provides the Skill System extension to PopupRework.
+ */
+
+ALIGN 4
+PopRSkillIconComponent:
+	POIN (PopRSkillIconLength|1)
+	POIN (PopRSkillIconDisplay|1)
+
+ALIGN 4
+PopRSkillIconLength:
+	#incbin "asm/PopRSkillIconLength.dmp"
+
+ALIGN 4
+PopRSkillIconDisplay:
+	#incbin "asm/PopRSkillIconDisplay.dmp"
+
+ALIGN 4
+InitLevelUpSkillPopup:
+	#incbin "asm/InitLevelUpSkillPopup.dmp"
+	POIN (GetUnitLevelSkills|1)
+	POIN (SkillAdder|1)
+
+InitPromotionSkillPopup:
+	#incbin "asm/InitPromotionSkillPopup.dmp"
+	POIN (GetUnitLevelSkills|1)
+	POIN (SkillAdder|1)
+
+ALIGN 4
+SkillLearnedPopup:
+	// Popup macros are defined in [PopupRework/]Extensions/PopupDefinitions.txt
+
+	Popup_SetSound(0x5A)
+
+	Popup_StringId(LearnedSkillText) // "Learned " or whatever
+	WORD 0xD 0                       // Skill icon component
+	// TODO: Skill name component?   //
+	Popup_StringId(1)                // Single space character
+
+	Popup_End

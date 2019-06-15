@@ -41,13 +41,16 @@ ORG FreeSpaceBLRange //defined in custom definitions
 
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
-  #incbin "Skill System/Internals/unset attack flag.dmp"
+  #incbin "SkillSystem/Internals/unset attack flag.dmp"
 
 #undef inBLRange
 POP
 
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 //start of Free space
+
+  //Calculation loops (used for conflicting hacks, formerly "Battle Calculations.event")
+  #include "Calculation Loops.event"
 
   //HP Bars (and effective weapon warning)
   #include "HpBars/HpBars.event"
@@ -95,7 +98,47 @@ POP
     #include "SuspendDebuffs/SuspendExpansion.event"
 
   #endif // USE_SAVE_EXPANSION
+  
+  // Anima Triangle
+  
+  #ifdef ENABLE_ANIMA_TRIANGLE
+  
+    #include "AnimaTriangle/AnimaTriangle.event"
+	
+  #endif // ENABLE_ANIMA_TRIANGLE
+  
+  // ModularEXP
+  
+  #ifdef ENABLE_MODULAR_EXP
+  
+    #include "ModularEXP/ModularEXP.event"
+	
+  #endif // ENABLE_MODULAR_EXP
+  
+  // PortraitSelectionASM
+  
+  #ifdef ENABLE_PORTRAIT_SELECTION
+  
+    #include "PortraitSelectASM/PortraitSelectionASM.event"
+	
+  #endif // ENABLE_PORTRAIT_SELECTION
+  
+  // Stairs
+  
+  #ifdef ENABLE_STAIRS
+  
+    #include "Stairs/Stairs.event"
 
+  #endif // ENABLE_STAIRS
+  
+  // Raid
+  
+  #ifdef ENABLE_RAID
+	
+	#include "Raid/Raid.event"
+	
+  #endif // ENABLE_RAID
+  
   // Debuffs
   #include "SuspendDebuffs/Debuffs.event"
 
@@ -125,7 +168,7 @@ POP
   #include "Freeze/EventFreeze.event"
 
   ALIGN 4
-  #include "Skill System/Master Skill Installer.event"
+  #include "SkillSystem/Master Skill Installer.event"
 
   #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
 

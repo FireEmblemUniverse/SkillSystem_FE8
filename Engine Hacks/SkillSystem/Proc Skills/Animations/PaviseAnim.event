@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate_defender.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0xE7 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Pavise001
+POIN TSA_Pavise002
+POIN TSA_Pavise003
+
+GraphicsList:
+POIN Graphics_Pavise001
+POIN Graphics_Pavise002
+POIN Graphics_Pavise003
+
+PalettesList:
+POIN Pal_Pavise001
+POIN Pal_Pavise002
+POIN Pal_Pavise003
+
+TSA_Pavise001:
+#incbin "Pavise001.map.bin"
+TSA_Pavise002:
+#incbin "Pavise002.map.bin"
+TSA_Pavise003:
+#incbin "Pavise003.map.bin"
+
+Graphics_Pavise001:
+#incbin "Pavise001.img.bin"
+Graphics_Pavise002:
+#incbin "Pavise002.img.bin"
+Graphics_Pavise003:
+#incbin "Pavise003.img.bin"
+
+Pal_Pavise001:
+#incbin "Pavise001.pal.bin"
+Pal_Pavise002:
+#incbin "Pavise002.pal.bin"
+Pal_Pavise003:
+#incbin "Pavise003.pal.bin"

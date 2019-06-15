@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Aether001
+POIN TSA_Aether002
+POIN TSA_Aether003
+
+GraphicsList:
+POIN Graphics_Aether001
+POIN Graphics_Aether002
+POIN Graphics_Aether003
+
+PalettesList:
+POIN Pal_Aether001
+POIN Pal_Aether002
+POIN Pal_Aether003
+
+TSA_Aether001:
+#incbin "Aether001.map.bin"
+TSA_Aether002:
+#incbin "Aether002.map.bin"
+TSA_Aether003:
+#incbin "Aether003.map.bin"
+
+Graphics_Aether001:
+#incbin "Aether001.img.bin"
+Graphics_Aether002:
+#incbin "Aether002.img.bin"
+Graphics_Aether003:
+#incbin "Aether003.img.bin"
+
+Pal_Aether001:
+#incbin "Aether001.pal.bin"
+Pal_Aether002:
+#incbin "Aether002.pal.bin"
+Pal_Aether003:
+#incbin "Aether003.pal.bin"

@@ -106,6 +106,15 @@ UnitMenuTable:
   // UM_Support
   MenuCommand(0x681, 0x6ca, GreenText, 0x23d15, 0x23d65)
   UM_Visit
+  
+  #ifdef ENABLE_RAID
+    MenuCommand(RaidNameText,RaidDescText,NormalText,RaidUsability,RaidEffect)
+  #endif // ENABLE_RAID
+  
+  #ifdef ENABLE_STAIRS
+	MenuCommand(StairsNameText,StairsDescText,GreenText,StairsUsability,StairsEffect)
+  #endif // ENABLE_STAIRS
+  
   UM_Chest
   UM_Door
   UM_Armory

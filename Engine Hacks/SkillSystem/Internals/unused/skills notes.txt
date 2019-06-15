@@ -1,0 +1,55 @@
+galeforce notes
+
+find where it checks if enemy died check byte 7b wexp multiplier or the exp formula.
+based on this don't set moved bit - or find an unused bit to mark "already galeforced"
+
+802b894 called when killing enemy - oh. it just checks the enemy hp lol
+
+counter notes - map sprites off:
+find where it reads the damage dealt/healed - 7a86c?
+somewhere it negates this too...
+80816c0 wants damage dealt
+
+
+desperation notes:
+so atm it calls battle_oneround, then flip, then check for doubling.
+NOW: after the first round, check for desperation and if so, check doubling and then call another round then flip and call the defender round. (otherwise return.)
+
+wrath:
+find a way to update the hit/crit/dmg numbers midbattle - look into sol stuff - 203e1ac stores battle stats and hp - where is this read?
+
+resolve:
+same as wrath
+
+lifetaker notes
+can i take advantage of renewal? or just silently update hp - use the check for 'unit killed' - ask bly?
+
+aura skill notes:
+find the support range checked at 80284e4 - finds the range between two units... somehow. (full routine at 8028434)
+make a tester routine: given a unit, a range, and a skill to test, is there a unit within range with this skill?
+also check the target adder for attacking.
+  required: run a test on all units in range?
+  unit map: 202e4d8
+
+Spur skills: just a 1-range aura skill tbh
+
+
+80251b4 grabs attack targets
+801766c grabs min range (bl at 80251Dc)
+8017684 grabs max range
+801b9a4 takes x, y, min, max in r0-r3
+  801aabc fills the range map
+puts 802517c in r0 and calls 8024eac
+  this seems to run 802517c for every unit in range?
+802517c is called with unit to check in r0
+  2033f3c contains unit whose range to check
+8024d8c checks if ally or npc?
+if not, add to target list basically
+
+
+live to serve notes:
+battle buffer written at 802eb98
+hp update routine at 8052a0c - efxhpbarliveparent lol - calls 85b968c efxhpbarlive
+8052ae4 each frame, cf 80523ec
+
+heal amount at 8016fb8.

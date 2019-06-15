@@ -1,0 +1,101 @@
+//battle calculations loop fe8
+#include "SkillSystem/Internals/BattleCalcDefinitions.event"
+#include "Extensions/Hack Installation.txt"
+
+
+	/* Pre-battle calculation loop */
+
+PUSH
+ORG 0x2a95c
+jumpToHack(BtlLoopParent)
+
+// ORG 0x2AFFE //make 0xc = cannot double
+// SHORT 0x280C 0xD005
+POP
+
+ALIGN 4
+BtlLoopParent:
+#incbin "SkillSystem/Internals/CalcLoops/FE8_battle_calc_loop.dmp"
+BtlLoopTable:
+POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+POIN FaireCheck HolyAura
+POIN BreakerCheck MageSlayer
+POIN BlowCheck
+POIN DefendingCheck
+POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
+POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
+POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex Loyalty Infiltrator
+POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant
+POIN UpWithArch
+POIN AxefaithHit
+POIN StancesASM
+#ifdef ENABLE_GBA_LETHALITY
+POIN LethalitySkill Bane
+#else
+POIN LethalitySkill NonGBALethalitySkill Bane
+#endif
+// Because of how killing machine works, critical check should always be done last
+POIN CriticalCheck
+
+//add any new ones before here
+POIN 0
+
+PUSH
+ORG 0x2a3f8
+//rewrite range map
+jumpToHack(rewriteRangeMap)
+POP
+
+rewriteRangeMap:
+#incbin "SkillSystem/Internals/rewriteRangeMap.dmp"
+ALIGN 4
+
+	/* Post-battle calculation loop*/
+
+PUSH
+ORG $1D308 //hook just before the check for misc event
+jumpToHack(PostCombatLoop)
+POP
+
+PostCombatLoop:
+#incbin "SkillSystem/Internals/CalcLoops/post_loop.dmp"
+POIN PostCombatSkills
+
+PostCombatSkills: //I like having savage blow as the first one because it makes the activation sound play first
+POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
+POIN Canto CantoPlus Galeforce //this order for canto and friends is the only one I tested
+WORD 0 //Terminator
+
+
+	/* WTA calculation loop*/
+
+#inctext lyn "SkillSystem/Internals/CalcLoops/WTACalcLoop.elf" "SkillSystem/Internals/CalcLoops/WTACalcLoopHook.elf"
+WTACalcFunctions:
+#ifdef ENABLE_ANIMA_TRIANGLE
+	POIN AnimaTriangle
+#endif // ENABLE_ANIMA_TRIANGLE
+POIN TriangleAdept
+WORD 0 // Terminator
+
+
+	/* EXP calculation loop */
+
+#inctext lyn "SkillSystem/Internals/CalcLoops/EXPCalcLoop.elf" "SkillSystem/Internals/CalcLoops/EXPCalcLoopHook.elf"
+EXPCalcFunctions:
+POIN Paragon
+#ifdef ENABLE_MODULAR_EXP
+	POIN ModularEXP
+#endif // ENABLE_MODULAR_EXP
+WORD 0 // Terminator
+
+
+	/* Mug loading calculation loop */
+
+#inctext lyn "SkillSystem/Internals/CalcLoops/MugLoadLoop.elf" "SkillSystem/Internals/CalcLoops/MugLoadLoopHook.elf"
+MugLoadingFunctions: // Each function will check for a passed in control code, returning a mug. If a mug is returned, all functions following will be ignored.
+//Earlier functions have higher priority.
+#ifdef ENABLE_PORTRAIT_SELECTION
+	POIN PortraitSelection
+#endif // ENABLE_PORTRAIT_SELECTION
+POIN RandomMug3 // Associated with Identity Problems
+WORD 0 // Terminator

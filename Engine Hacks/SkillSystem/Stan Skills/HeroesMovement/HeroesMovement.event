@@ -1,0 +1,70 @@
+#ifndef HAX_HEROES_MOVEMENTS_EVENT
+#define HAX_HEROES_MOVEMENTS_EVENT
+
+#ifndef _FE8_
+	ERROR HEROES MOVEMENT is for FE8
+#endif // _FE8_
+
+#include "Tools/Tool Helpers.txt"
+#include "../../../MSG/InstallHelpers.event"
+
+#define ACTION_MOVETARGET 0x23
+#define ACTION_MOVEACTIVE 0x24
+#define ACTION_SWAP       0x25
+#define ACTION_PUSH       0x26
+
+#define TEXT_BOTTOMHELP_PIVOT      0
+#define TEXT_BOTTOMHELP_REPOSITION 0
+#define TEXT_BOTTOMHELP_SWAP       0
+#define TEXT_BOTTOMHELP_SHOVE      0
+#define TEXT_BOTTOMHELP_SMITE      0
+
+prPivotCommand_Availability:
+	rGetWrapper // value defaults to 0 (False)
+		rIfUnitHasNotState(US_CANTOING)
+			rWithConstant(PivotID)
+				rCallExternal(SkillTester)
+
+prRepositionCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+			rWithConstant(RepositionID)
+				rCallExternal(SkillTester)
+
+prSwapCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+			rWithConstant(SwapID)
+				rCallExternal(SkillTester)
+
+prShoveCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+			rWithConstant(ShoveID)
+				rCallExternal(SkillTester)
+
+prSmiteCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+			rWithConstant(SmiteID)
+				rCallExternal(SkillTester)
+
+// checking for same allegiance
+prPivot_TargetLegality:
+prReposition_TargetLegality:
+prSwap_TargetLegality:
+	rGetWrapper // value defaults to 0 (False)
+		rWithSubject
+			rForActiveUnit
+				rIfUnitsAreAllied
+					rConstant(True)
+
+prShove_TargetLegality:
+prSmite_TargetLegality:
+    rGetWrapper // Defaults to 0
+        rIfUnitHasNotGuardAI
+            rConstant(True)
+
+#include "HeroesMovement_Internal.event"
+
+#endif // HAX_HEROES_MOVEMENTS_EVENT

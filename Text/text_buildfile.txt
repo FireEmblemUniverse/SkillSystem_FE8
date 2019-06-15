@@ -24,7 +24,7 @@ Learned  [X]
 [MidRight][LoadFace][CurrentPortrait]Nothing to see here.[A][X]
 
 ## VillageText
-[MidRight][LoadFace][CurrentPortrait]These look useful.[A][X]
+[MidRight][LoadFace][0xEE][0xEE]These look useful.[A][X]
 
 ## DV1Desc
 Freeze all enemies[N]
@@ -39,5 +39,23 @@ Sirius[X]
 
 ## nameZeke
 Zeke[X]
+
+## StairsNameText
+ Stairs[X]
+
+## StairsDescText
+Take this staircase to[NL]
+the connecting end.[X]
+
+## StairsBlockedText
+The staircase is blocked[NL]
+from the other side.[X]
+
+## RaidNameText
+ Raid[X]
+
+## RaidDescText
+Destroy this village[NL]
+for items and gold.[X]
 
 #include "skilldesc_text.txt"

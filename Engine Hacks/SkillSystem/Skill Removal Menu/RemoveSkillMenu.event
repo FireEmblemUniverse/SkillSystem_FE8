@@ -1,0 +1,294 @@
+#ifndef HAX_REMOVE_SKILL_MENU
+#define HAX_REMOVE_SKILL_MENU
+
+// I'm sorry this took this long
+
+// Things to know:
+/*
+	I changed the skill adding routine to set the short at 0202BCDE to (0x8000 | SkillID) when trying to learn a skill but the unit ran out of slots.
+
+	Routines that are "public"/usable to the outside:
+
+	(ASMC_LearnNewSkill|1)
+		call through events with ASMC. Will learn to the unit defined by slot 2 the skill of index in slot 1
+		Ex:
+			SVAL 1 NiceThighsID
+			SVAL 2 (-1) // (-1) is active unit
+			ASMC (ASMC_LearnNewSkill|1)
+
+	(ASMC_HasSkill|1)
+		kinda bonus, checks if unit in slot 2 has skill in slot 1 (result is stored in slot C as by convention). Best used in conjonction with the above ASMC, but may also have uses in other cases?
+
+	(ASMC_ForgetSkill|1)
+		also bonus, has unit in slot 2 forget skill in slot 1 (slot C holds 1 if successful, 0 otherwise)
+		Doesn't display any kind of popup or anything
+
+	(prLearnNewSkill|1)
+		Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent proc
+		Returns:   r0 = proc (if you really need it)
+		Learns given skill to active unit, and displays popup & menu accordingly. Meant to work with things like skill learning through items or something.
+
+	(prCheckForSkillForgetting|1)
+		Arguments: r0 = Unit, r1 = Parent proc
+		Returns:   r0 = 0 on success (menu is open and all)
+		Will check if the top bit of short at 0202BCDE is set, and if set, will call (prCallRemoveSkillMenu|1).
+
+	(prCallSkillLearnedPopup|1)
+		Arguments: r0 = Parent proc
+		Returns:   r0 = 0 on success (skill is displayed and all)
+		This one is kinda bonus too, since it doesn't have much todo with the menu itself. Calls a popup that displays "Learned <skill>", with skill being the one at 0202BCDE. It is suitable for use with _6C_CALL_ROUTINE_2 (return values match).
+
+	(prCallRemoveSkillMenu|1)
+		Arguments: r0 = Unit, r1 = Parent proc (can be 0)
+		Returns:   nothing
+		Will create the skill forgetting menu for given unit, and new skill id located at byte 0202BCDE.
+
+*/
+
+#include "Extensions/6CDefinitions.txt"
+
+{
+
+// Battle proc Hook
+PUSH; ORG 0x59DB04
+	_6C_JUMP(_pProc_FromBattleProc)
+	_6C_END
+POP
+
+// Arena proc Hook
+PUSH; ORG 0x59DB54
+	_6C_JUMP(_pProc_FromArenaProc)
+	_6C_END
+POP
+
+// Misc Action (Steal, Dance, Staff, etc) proc Hook
+PUSH; ORG 0x59BAC4
+	_6C_JUMP(_pProc_FromMiscActionProc)
+	_6C_END
+POP
+
+// Promotion proc Hook (unused since no skill learning on promotion)
+PUSH; ORG 0xB126BC
+	_6C_JUMP(_pProc_FromPromotionProc)
+POP
+
+ALIGN 4
+_pProc_FromBattleProc:
+	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
+	_6C_CALL_ROUTINE_2(0x0328D0|1) // Handles Item Drop
+	_6C_CALL_ROUTINE(0x03286C|1) // idk
+	_6C_YIELD
+	_6C_END
+
+ALIGN 4
+_pProc_FromArenaProc:
+	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
+	_6C_CALL_ROUTINE(0x0329A0|1) // idk
+	_6C_YIELD
+	_6C_END
+
+ALIGN 4
+_pProc_FromMiscActionProc:
+	_6C_SLEEP(1)
+	_6C_CALL_ROUTINE(0x02CC1C|1) // SaveInstigatorFromBattle
+	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
+	_6C_YIELD
+	_6C_END
+
+ALIGN 4
+_pProc_FromPromotionProc:
+	_6C_NEW_CHILD_BLOCKING(_pProc_FromPromotionProc_SubProc)
+	_6C_CALL_ROUTINE(0x0CC698|1)
+	_6C_END
+
+ALIGN 4
+_pProc_FromPromotionProc_SubProc:
+	_6C_CALL_ROUTINE(_prPromotionInit|1)
+
+_6C_LABEL(0) // trainee promotion
+_6C_LABEL(1) // prep screen promotion
+	_6C_CALL_ROUTINE(_prPromotionPrepScreenSetup|1)
+
+	_6C_CALL_ROUTINE_2(_prPromotionCheck|1)
+
+	_6C_CALL_ROUTINE_ARG(0x0AE2F4|1, 0x40) // StartFadeOut(0x40)
+	_6C_WHILE_ROUTINE(0x0AE2B8|1) // FadeOutExists
+
+	_6C_GOTO(776)
+
+_6C_LABEL(2) // map promotion
+	_6C_CALL_ROUTINE_2(_prPromotionCheck|1)
+	_6C_GOTO(776)
+
+_6C_LABEL(776)
+	_6C_END
+
+ALIGN 4
+_prCheckForBattleSkillForgetting:
+	#incbin "asm/CheckForBattleSkillForgetting.dmp"
+	POIN (prCheckForSkillForgetting|1)
+
+ALIGN 4
+_prPromotionInit:
+	#incbin "asm/PromotionInit.dmp"
+
+ALIGN 4
+_prPromotionCheck:
+	#incbin "asm/PromotionCheck.dmp"
+	POIN (prCheckForSkillForgetting|1)
+
+_prPromotionPrepScreenSetup:
+	#incbin "asm/PromotionPrepScreenSetup.dmp"
+
+}
+
+ALIGN 4
+ASMC_LearnNewSkill:
+	#incbin "asm/ASMC/ASMC_LearnSkill.dmp"
+	POIN (prLearnNewSkill|1)
+
+ALIGN 4
+ASMC_HasSkill:
+	#incbin "asm/ASMC/ASMC_HasSkill.dmp"
+	POIN (SkillTester|1)
+
+ALIGN 4
+ASMC_ForgetSkill:
+	#incbin "asm/ASMC/ASMC_ForgetSkill.dmp"
+
+ALIGN 4
+prLearnNewSkill:
+// Arguments: r0 = Unit, r1 = Skill Index, r2 = Parent proc
+// Returns:   r0 = proc (if you really need it)
+{
+	#incbin "asm/LearnNewSkill.dmp"
+	POIN pProc_NewSkillLearn
+	POIN (SkillAdder|1)
+
+pProc_NewSkillLearn:
+	_6C_SET_NAME(_psName)
+	_6C_CALL_ROUTINE_2(prCallSkillLearnedPopup|1)
+	_6C_CALL_ROUTINE_2(_prCheckForget|1)
+	_6C_END
+	
+_psName:
+	String(SS_LearnNewSkill)
+	BYTE 0; ALIGN 4
+
+_prCheckForget:
+	#incbin "asm/LearnNewSkill_CheckForget.dmp"
+	POIN (prCheckForSkillForgetting|1)
+}
+
+ALIGN 4
+prCallSkillLearnedPopup:
+// Arguments: r0 = Parent proc
+// Returns:   r0 = 0 on success (skill is displayed and all)
+{
+	#incbin "asm/CallSkillLearnedPopup.dmp"
+	POIN _pPopupDef
+	WORD 90 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
+
+ALIGN 4
+_pPopupDef: // Copied from the one in Internals
+	WORD 0x0C 0x5A // sound played is 5A
+	WORD 0x06 LearnedSkillText // text by id
+	WORD 0x0D 0x00 // run skill icon routine
+	WORD 0x06 0x01
+	WORD 0x00 0x00
+}
+
+ALIGN 4
+prCheckForSkillForgetting:
+// Arguments: r0 = Unit, r1 = Parent proc
+// Returns:   r0 = 0 on success (menu is open and all)
+	#incbin "asm/CheckForSkillForgetting.dmp"
+	POIN (prCallRemoveSkillMenu|1)
+
+ALIGN 4
+prCallRemoveSkillMenu:
+// Arguments: r0 = Unit, r1 = Parent proc (can be 0)
+// Returns:   nothing
+{
+	#incbin "asm/CallMenuRemoveSkill.dmp"
+	POIN pMenuDef_RemoveSkill
+	POIN pProc_MenuWrapper
+
+ALIGN 4
+pProc_MenuWrapper: // using a whole proc for storing the unit struct
+	_6C_YIELD // To prevent ending the proc immediately (allowing to block it with a menu child)
+	_6C_END   // End immediately after getting control back
+
+ALIGN 4
+pMenuDef_RemoveSkill:
+	BYTE 1 1 0xE 0 // x, y, w, h
+	WORD 0         // style
+	POIN pCommandDefs_RemoveSkill
+	WORD 0
+	WORD 0
+	WORD 0
+	POIN (prMenuRemoveSkill_OnCancel|1)
+	POIN (0x04F520|1)
+	POIN (prMenuRemoveSkill_OnHelp|1)
+
+// Usability, Draw, Effect
+#define MenuCommand_UDE(aprUsability, aprDraw, aprEffect) "WORD 0; SHORT 0 0; BYTE 0 0; SHORT 0; POIN ((aprUsability)|1) ((aprDraw)|1) ((aprEffect)|1); WORD 0 0 0"
+
+ALIGN 4
+pCommandDefs_RemoveSkill:
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_ForgetEffect)
+	MenuCommand_UDE(prMenuRemoveSkillCommand_Usability, prMenuRemoveSkillCommand_Draw, prMenuRemoveSkillCommand_NoLearnEffect)
+UM_Separator
+
+ALIGN 4
+prMenuRemoveSkill_OnCancel:
+	#incbin "asm/Menu/MenuRemoveSkill_OnCancel.dmp"
+
+ALIGN 4
+prMenuRemoveSkill_OnHelp:
+	#incbin "asm/Menu/MenuRemoveSkill_OnHelp.dmp"
+	POIN (prGetSkillIdByIndex|1)
+	POIN SkillDescTable
+
+ALIGN 4
+prMenuRemoveSkillCommand_Usability:
+	#incbin "asm/Menu/MenuRemoveSkillCommand_Usability.dmp"
+	POIN (prGetSkillIdByIndex|1)
+
+ALIGN 4
+prMenuRemoveSkillCommand_ForgetEffect:
+	#incbin "asm/Menu/MenuRemoveSkillCommand_ForgetEffect.dmp"
+
+ALIGN 4
+prMenuRemoveSkillCommand_NoLearnEffect:
+	#incbin "asm/Menu/MenuRemoveSkillCommand_NoLearnEffect.dmp"
+
+ALIGN 4
+prMenuRemoveSkillCommand_NoEffect:
+	#incbin "asm/Menu/MenuRemoveSkillCommand_NoEffect.dmp"
+
+ALIGN 4
+prMenuRemoveSkillCommand_Draw:
+	#incbin "asm/Menu/MenuRemoveSkillCommand_Draw.dmp"
+	POIN (prDrawSkillMenuCommand|1)
+	POIN (prGetSkillIdByIndex|1)
+
+ALIGN 4
+prDrawSkillMenuCommand:
+	#incbin "asm/DrawSkillMenuCommand.dmp"
+	POIN SkillDescTable
+
+ALIGN 4
+prGetSkillIdByIndex:
+	#incbin "asm/GetSkillIdByIndex.dmp"
+	POIN PersonalSkillTable
+	POIN ClassSkillTable
+
+}
+
+#endif // HAX_REMOVE_SKILL_MENU

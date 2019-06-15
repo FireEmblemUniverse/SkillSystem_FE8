@@ -1,0 +1,62 @@
+proc loop notes
+
+clear out dmg at 203a4d4+4 (displayed battle data)
+loop through each, passing in attacker r0 defender r1, current buffer location in r2
+each routine is expected to handle the battle buffer on its own
+
+
+buffer data
+Byte 0x0:
+  0x01 
+  0x02 Miss
+  0x04 
+  0x08 
+  0x10 Brave
+  0x20 
+  0x40 Poison
+  0x80 Devil
+Byte 0x1:
+  0x01 Steal HP
+  0x02 
+  0x04 Triangle attack
+  0x08 Lethality
+  0x10 
+  0x20 Petrified
+  0x40 Sure Shot
+  0x80 Great Shield
+Byte 0x2:
+  0x01 Pierce
+  0x02 
+  0x04 
+  0x08 End Battle
+  0x10 
+Byte 0x3 is damage dealt
+
+for each routine:
+push {r4-r7, lr}
+mov     r4, r0 @save attacker
+mov     r5, r1 @save defender
+mov     r6, r2 @save battle buffer location
+ldr     r0,[r6]           @r0 = battle buffer   
+lsl     r0,r0,#0xD
+lsr     r0,r0,#0xD        @Without damage data  
+...etc
+
+
+NEW BUFFER DATA:
+0x1 crit?
+0x2 miss
+0x10 brave/adept (second attack)
+0x40 psn
+0x80 devil
+0x100 steal hp
+0x400 triangle atk
+0x800 lethality
+0x1000 no counter??? (like petrify)
+0x2000 petrify
+0x4000 attacker skill activated
+0x8000 defender skill activated
+
+priority: if either attack or defender skill is activated, no others can be.
+the animation display will check defender first, then attacker - but it will only display one
+

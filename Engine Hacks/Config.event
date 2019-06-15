@@ -23,6 +23,29 @@
 // Enabling this *will* break saves, but allows for higher stats and other things.
 // #define USE_SAVE_EXPANSION
 
+// If uncommented, the Anima Triangle will be implemented.
+// Go to "AnimaTriangle/AnimaTriangle.event" to define your fire, thunder, and wind magic lists.
+// This patch normally conflicts with Tri-Adept, but installing here remedies this.
+// #define ENABLE_ANIMA_TRIANGLE
+
+// If uncomented, ModularEXP will be implemented.
+// Go to "ModularEXP/ModularEXP.event" and "Tables/FE8 Nightmare modules/Misc/Modular EXP Class Table.csv" to edit experience gains.
+// This patch normally conflicts with Paragon, but installing here remedies this.
+// #define ENABLE_MODULAR_EXP
+
+// If uncommented, PortraitSelectionASM will be implemented.
+// Go to "PortraitSelectionASM/PortraitSelectionASM.event" to configure your modular portrait options.
+// This patch normally conflitcs with Identity Problems and Random Mugs, but installing here remedies this.
+// #define ENABLE_PORTRAIT_SELECTION
+ 
+// If uncommented, StairsASM will be implemented.
+// This patch adds an entry to the Unit Menu, so installing here is necessary.
+// #define ENABLE_STAIRS
+
+// If uncommented, Raid will be implemented.
+// This patch adds an entry to the Unit Menu, so installing here is necessary.
+// #define ENABLE_RAID
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================

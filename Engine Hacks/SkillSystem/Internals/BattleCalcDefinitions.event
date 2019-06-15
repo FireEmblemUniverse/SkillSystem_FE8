@@ -1,0 +1,12 @@
+//Battle Calculation Routines FE8
+
+#define BC_DefRes $2aa44
+#define BC_Power $2aabc
+#define BC_ASpd $2ab74
+#define BC_Hit $2abac
+#define BC_Avo $2abe4
+#define BC_Crit $2ac18
+#define BC_Dodge $2ac54
+#define BC_Support $2a9d0
+#define BC_WRank $2ad54
+#define BC_Status $2ad90

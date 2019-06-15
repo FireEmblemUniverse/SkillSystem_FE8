@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate_defender.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Aegis001
+POIN TSA_Aegis002
+POIN TSA_Aegis003
+
+GraphicsList:
+POIN Graphics_Aegis001
+POIN Graphics_Aegis002
+POIN Graphics_Aegis003
+
+PalettesList:
+POIN Pal_Aegis001
+POIN Pal_Aegis002
+POIN Pal_Aegis003
+
+TSA_Aegis001:
+#incbin "Aegis001.map.bin"
+TSA_Aegis002:
+#incbin "Aegis002.map.bin"
+TSA_Aegis003:
+#incbin "Aegis003.map.bin"
+
+Graphics_Aegis001:
+#incbin "Aegis001.img.bin"
+Graphics_Aegis002:
+#incbin "Aegis002.img.bin"
+Graphics_Aegis003:
+#incbin "Aegis003.img.bin"
+
+Pal_Aegis001:
+#incbin "Aegis001.pal.bin"
+Pal_Aegis002:
+#incbin "Aegis002.pal.bin"
+Pal_Aegis003:
+#incbin "Aegis003.pal.bin"

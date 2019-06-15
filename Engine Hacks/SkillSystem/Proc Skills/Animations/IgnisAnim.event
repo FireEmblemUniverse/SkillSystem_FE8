@@ -1,0 +1,51 @@
+//Generated with Skill Animation Creator.
+
+#incbin skillanimtemplate.dmp
+POIN Frames
+POIN TSAList
+POIN GraphicsList
+POIN PalettesList
+WORD 0x3d1 //sound id
+
+Frames:    //SHORT image duration
+SHORT 0 5
+SHORT 1 10
+SHORT 2 15
+SHORT 0xFFFF
+ALIGN 4
+
+TSAList:
+POIN TSA_Ignis001
+POIN TSA_Ignis002
+POIN TSA_Ignis003
+
+GraphicsList:
+POIN Graphics_Ignis001
+POIN Graphics_Ignis002
+POIN Graphics_Ignis003
+
+PalettesList:
+POIN Pal_Ignis001
+POIN Pal_Ignis002
+POIN Pal_Ignis003
+
+TSA_Ignis001:
+#incbin "Ignis001.map.bin"
+TSA_Ignis002:
+#incbin "Ignis002.map.bin"
+TSA_Ignis003:
+#incbin "Ignis003.map.bin"
+
+Graphics_Ignis001:
+#incbin "Ignis001.img.bin"
+Graphics_Ignis002:
+#incbin "Ignis002.img.bin"
+Graphics_Ignis003:
+#incbin "Ignis003.img.bin"
+
+Pal_Ignis001:
+#incbin "Ignis001.pal.bin"
+Pal_Ignis002:
+#incbin "Ignis002.pal.bin"
+Pal_Ignis003:
+#incbin "Ignis003.pal.bin"
