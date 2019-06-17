@@ -606,3 +606,18 @@ ORG SkillIcon(KnightAspirantID)
 
 ORG SkillIcon(DisciplinePlusID)
 #incext Png2Dmp "Skill Icons\DisciplinePlus.png"
+
+ORG SkillIcon(WatchfulID)
+#incext Png2Dmp "Skill Icons\Watchful.png"
+
+ORG SkillIcon(HeroID)
+#incext Png2Dmp "Skill Icons\Hero.png"
+
+ORG SkillIcon(BoonID)
+#incext Png2Dmp "Skill Icons\Boon.png"
+
+ORG SkillIcon(ReMoveID)
+#incext Png2Dmp "Skill Icons\ReMove.png"
+
+ORG SkillIcon(PowerstaffID)
+#incext Png2Dmp "Skill Icons\Powerstaff.png"

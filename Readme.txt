@@ -14,7 +14,7 @@ Credits:
 Circleseverywhere
 Colorz for debuffs, freeze, and dragon veins 
 Monkeybard & Black Mage for most of the skill icons; Blaze for Stances skill icons
-Tequila, Rossendale, StanH, Leonarth, Teraspark, sd9k, Kao, blademaster, Snakey1 for skills
+Tequila, Rossendale, StanH, Leonarth, Teraspark, SD9k, Kao, blademaster, Snakey1, Sme for skills
 Primefusion for the test map
 
 Known issues:
