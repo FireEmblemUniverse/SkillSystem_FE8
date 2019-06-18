@@ -5,9 +5,9 @@
 MugLoadingFunctions: // Each function will check for a passed in control code, returning a mug. If a mug is returned, all functions following will be ignored.
 // If the function returns 0, the nothing will occur, and the next function will be checked.
 //Earlier functions have higher priority.
-#ifdef ENABLE_PORTRAIT_SELECTION
+#ifdef PORTRAIT_SELECTION
 	POIN PortraitSelection
-#endif // ENABLE_PORTRAIT_SELECTION
+#endif // PORTRAIT_SELECTION
 POIN RandomMug3 // Associated with Identity Problems
 WORD 0 // Terminator
 

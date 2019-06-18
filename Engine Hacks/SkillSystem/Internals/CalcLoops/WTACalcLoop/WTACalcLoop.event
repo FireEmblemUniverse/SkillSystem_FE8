@@ -3,9 +3,9 @@
 
 #inctext lyn "WTACalcLoop.elf" "WTACalcLoopHook.elf"
 WTACalcFunctions:
-#ifdef ENABLE_ANIMA_TRIANGLE
+#ifdef ANIMA_TRIANGLE
 	POIN AnimaTriangle
-#endif // ENABLE_ANIMA_TRIANGLE
+#endif // ANIMA_TRIANGLE
 POIN TriangleAdept
 WORD 0 // Terminator
 

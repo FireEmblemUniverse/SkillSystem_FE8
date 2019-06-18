@@ -4,9 +4,9 @@
 #inctext lyn "EXPCalcLoop.elf" "EXPCalcLoopHook.elf"
 EXPCalcFunctions:
 POIN Paragon
-#ifdef ENABLE_MODULAR_EXP
+#ifdef MODULAR_EXP
 	POIN ModularEXP
-#endif // ENABLE_MODULAR_EXP
+#endif // MODULAR_EXP
 WORD 0 // Terminator
 
 PROTECT 0x2B960 0x2B970
