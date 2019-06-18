@@ -47,3 +47,5 @@ POP
 ALIGN 4
 rewriteRangeMap:
 #incbin "rewriteRangeMap.dmp"
+
+PROTECT 0x2A95C 0x2A968

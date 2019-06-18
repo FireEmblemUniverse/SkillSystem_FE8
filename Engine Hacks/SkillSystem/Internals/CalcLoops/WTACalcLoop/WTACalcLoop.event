@@ -8,3 +8,5 @@ WTACalcFunctions:
 #endif // ENABLE_ANIMA_TRIANGLE
 POIN TriangleAdept
 WORD 0 // Terminator
+
+PROTECT 0x2C830 0x2C840

@@ -8,3 +8,5 @@ POIN Paragon
 	POIN ModularEXP
 #endif // ENABLE_MODULAR_EXP
 WORD 0 // Terminator
+
+PROTECT 0x2B960 0x2B970
