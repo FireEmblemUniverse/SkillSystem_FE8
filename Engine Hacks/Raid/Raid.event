@@ -1,7 +1,7 @@
 
-	#ifndef _RAID_
+	#ifndef RAID
 	
-		#define _RAID_
+		#define RAID
 		#define Raid(EventID,Pointer,Xcoord,Ycoord) "LOCA EventID Pointer [Xcoord,Ycoord] 0x21"
 		#define TileChange(X,Y) "SETVAL 0xB Coords(X,Y) ; TILECHANGE 0xFFFF"
 		#define Coords(xcoord,ycoord) "(ycoord<<16)|xcoord"
@@ -9,8 +9,4 @@
 		ALIGN 4
 		#inctext lyn "RaidCommand.elf"
 	
-	#else
-
-		WARNING "You are trying to install Raid multiple times. If you are using the Skill System, go to Engine Hacks/Config.event and install it there only."
-	
-	#endif // _RAID_	
+	#endif // RAID

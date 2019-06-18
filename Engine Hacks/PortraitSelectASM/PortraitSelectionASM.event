@@ -10,9 +10,5 @@
 	PortraitSelectionTable:
 	SHORT 0x0 0x0 0x0 0x0 0x0 0x0
 	
-#else
-	
-	ERROR "PortraitSelection conflict: Go to Engine Hacks/Config.event to install PortraitSelectionASM. Do not install externally."
-	
 #endif // PORTRAIT_SELECTION
 	

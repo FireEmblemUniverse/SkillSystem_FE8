@@ -10,9 +10,4 @@
 	ModularEXPChapterTable:
 	ModularEXPEntry(0,0,0,0,0)
 	
-#else
-
-	// They're trying to install another one already. Throw an error.
-	ERROR "Modular EXP conflict: Don't install externally. Go to Engine Hacks/Config.event and install it there."
-
 #endif // MODULAR_EXP

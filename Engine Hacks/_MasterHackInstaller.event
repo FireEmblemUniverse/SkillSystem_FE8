@@ -99,45 +99,28 @@ POP
 
   #endif // USE_SAVE_EXPANSION
   
-  // Anima Triangle
+  // If uncommented, the Anima Triangle will be implemented.
+  // Go to "AnimaTriangle/AnimaTriangle.event" to define your fire, thunder, and wind magic lists.
+  // This patch normally conflicts with Tri-Adept, but installing here remedies this.
+  // #include "AnimaTriangle/AnimaTriangle.event"
   
-  #ifdef ENABLE_ANIMA_TRIANGLE
+  // If uncomented, ModularEXP will be implemented.
+  // Go to "ModularEXP/ModularEXP.event" and "Tables/FE8 Nightmare modules/Misc/Modular EXP Class Table.csv" to edit experience gains.
+  // This patch normally conflicts with Paragon, but installing here remedies this.
+  // #include "ModularEXP/ModularEXP.event"
   
-    #include "AnimaTriangle/AnimaTriangle.event"
+  // If uncommented, PortraitSelectionASM will be implemented.
+  // Go to "PortraitSelectionASM/PortraitSelectionASM.event" to configure your modular portrait options.
+  // This patch normally conflitcs with Identity Problems and Random Mugs, but installing here remedies this.
+  // #include "PortraitSelectASM/PortraitSelectionASM.event"
 	
-  #endif // ENABLE_ANIMA_TRIANGLE
+  // If uncommented, StairsASM will be implemented.
+  // This patch adds an entry to the Unit Menu, so installing here is necessary.
+  // #include "Stairs/Stairs.event"
   
-  // ModularEXP
-  
-  #ifdef ENABLE_MODULAR_EXP
-  
-    #include "ModularEXP/ModularEXP.event"
-	
-  #endif // ENABLE_MODULAR_EXP
-  
-  // PortraitSelectionASM
-  
-  #ifdef ENABLE_PORTRAIT_SELECTION
-  
-    #include "PortraitSelectASM/PortraitSelectionASM.event"
-	
-  #endif // ENABLE_PORTRAIT_SELECTION
-  
-  // Stairs
-  
-  #ifdef ENABLE_STAIRS
-  
-    #include "Stairs/Stairs.event"
-
-  #endif // ENABLE_STAIRS
-  
-  // Raid
-  
-  #ifdef ENABLE_RAID
-	
-	#include "Raid/Raid.event"
-	
-  #endif // ENABLE_RAID
+  // If uncommented, Raid will be implemented.
+  // This patch adds an entry to the Unit Menu, so installing here is necessary.
+  // #include "Raid/Raid.event"
   
   // Debuffs
   #include "SuspendDebuffs/Debuffs.event"

@@ -33,10 +33,6 @@
 		jumpToHack(EndTurnFix)
 		POP
 	
-	#else
-	
-		ERROR "Stairs conflict: You are attempting to install StairsASM externally. Go to Engine Hacks/Config and install there."
-	
 	#endif // STAIRS_ASM
 	
 	/*
