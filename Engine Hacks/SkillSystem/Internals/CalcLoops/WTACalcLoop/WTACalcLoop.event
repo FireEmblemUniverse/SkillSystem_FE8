@@ -1,0 +1,10 @@
+
+	/* WTA calculation loop*/
+
+#inctext lyn "WTACalcLoop.elf" "WTACalcLoopHook.elf"
+WTACalcFunctions:
+#ifdef ENABLE_ANIMA_TRIANGLE
+	POIN AnimaTriangle
+#endif // ENABLE_ANIMA_TRIANGLE
+POIN TriangleAdept
+WORD 0 // Terminator

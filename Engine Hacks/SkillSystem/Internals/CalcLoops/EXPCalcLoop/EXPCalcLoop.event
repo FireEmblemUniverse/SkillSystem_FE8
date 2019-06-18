@@ -1,0 +1,10 @@
+
+	/* EXP calculation loop */
+
+#inctext lyn "EXPCalcLoop.elf" "EXPCalcLoopHook.elf"
+EXPCalcFunctions:
+POIN Paragon
+#ifdef ENABLE_MODULAR_EXP
+	POIN ModularEXP
+#endif // ENABLE_MODULAR_EXP
+WORD 0 // Terminator

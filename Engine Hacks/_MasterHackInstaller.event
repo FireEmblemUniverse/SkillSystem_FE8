@@ -50,7 +50,7 @@ POP
 //start of Free space
 
   //Calculation loops (used for conflicting hacks, formerly "Battle Calculations.event")
-  #include "Calculation Loops.event"
+  #include "SkillSystem/Internals/CalcLoops/Calculation Loops.event"
 
   //HP Bars (and effective weapon warning)
   #include "HpBars/HpBars.event"
