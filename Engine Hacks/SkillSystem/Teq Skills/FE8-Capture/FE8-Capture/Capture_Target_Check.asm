@@ -1,10 +1,18 @@
 .thumb
 .org 0x0
 
+.equ WatchfulID, SkillTester+4
+
 @checks if target unit is an enemy and can be rescued
 @r0=current target's data ptr
 push	{r4,r5,r14}
 mov		r4,r0
+ldr		r1,WatchfulID
+ldr		r3,SkillTester
+mov		r14,r3
+.short	0xF800
+cmp		r0,#1
+beq		GoBack 		@can't be captured if they have watchful
 ldr		r0,Comp_Allegiance_Func
 mov		r14,r0
 ldr		r0,TargetQueuePtr
@@ -43,3 +51,5 @@ Can_Rescue_Check:
 .long 0x0801831C
 Fill_Target_Queue:
 .long 0x0804F8BC
+SkillTester:
+@

@@ -116,6 +116,11 @@ jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give m
 ORG $16738
 jumpToHack(Shadowgift)
 
+//Boon and i guess anything else that may want to mess with status healing in the future
+ORG $188F6
+BYTE $40 $B4
+callHack_r6(Boon)
+
 POP
 
 NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
@@ -378,6 +383,7 @@ POIN SkillTester
 WORD RightfulArchID
 WORD RightfulKingID
 WORD RightfulGodID
+WORD HeroID
 
 LuckySeven:
 #incbin "Other Skills/LuckySeven.dmp"
@@ -558,6 +564,11 @@ KnightAspirant:
 #incbin "SoA Skills/KnightAspirant.dmp"
 POIN SkillTester
 WORD KnightAspirantID
+
+Boon:
+#incbin "Other Skills/Boon.dmp"
+POIN SkillTester
+WORD BoonID
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
