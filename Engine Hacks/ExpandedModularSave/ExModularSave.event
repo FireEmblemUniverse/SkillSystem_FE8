@@ -82,7 +82,11 @@ gSaveBlockTypeSizeLookup:
 #include "SrcCore/MSuFuncs.lyn.event" // Core suspend modules
 
 #include "SrcModules/Debuffs.lyn.event" // Debuffs module
-#include "SrcModules/SaveUnitExpanded.lyn.event" // Expanded save unit modules
+#ifndef USE_STRMAG_SPLIT
+	#include "SrcModules/SaveUnitExpanded.lyn.event" // Expanded save unit modules
+#else
+	#inctext lyn "SrcModules/SaveUnitExpandedStrmag.elf" // Str/Mag Split requires 2 opcode changes for saving/loading magic from 0x3A of the character struct.
+#endif // USE_STRMAG_SPLIT
 
 DebuffTablePointer: // required for debuffs module
 	WORD DebuffTable
