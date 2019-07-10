@@ -1,0 +1,19 @@
+//Credits: Teq for the original FE7 version and WIP FE7 Version
+
+#define Item_Usability 0x288B0
+#define Item_Effect 0x2FC90
+#define Mag_Booster_Item 0x5C
+#define Mag_Booster_Item_Usability_Ptr "Item_Usability+4*(Mag_Booster_Item-0x4B)"
+#define Mag_Booster_Item_Effect_Ptr "Item_Effect+4*(Mag_Booster_Item-0x4B)" 
+
+#include "Level Up\Installer.event"
+
+#include "Combat\Combat Calculations EA.event"
+
+#include "Unit Viewer\Unit Viewer EA.event"
+
+#include "Prep Screen and Mag Booster\Prep Screen EA.event"
+
+#include "Autolevelling and Saves\Autolevel and Save EA.event"
+
+#include "MagicSwordRework/MagicSwordRework.event"

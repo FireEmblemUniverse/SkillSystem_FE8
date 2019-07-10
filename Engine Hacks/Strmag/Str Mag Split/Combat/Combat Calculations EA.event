@@ -1,0 +1,85 @@
+//FE8 str/mag split combat calculations
+//By RobertFpy/Tequila
+
+#define MagGetter 0x191B8
+#ifdef _FE8_
+	
+	PUSH
+	
+	//Staff accuracy
+	ORG $2CCE2
+	BL(MagGetter)
+	
+	//Healing amount
+	ORG $17012
+	BL(MagGetter)
+	
+	//Staff range
+	ORG $18A32
+	BL(MagGetter)
+	SHORT 0x1C01 0xE004 //mov r1,r0; b 
+	
+	//Determine whether to add str or mag to damage(Conflict with frenzy skill)
+	ORG $2AB4C
+	callHack_r3(Str_Or_Mag_Damage)
+
+	//Update magic in battle struct
+	ORG $2A5BC
+	callHack_r3(Update_Magic)
+		
+	//Prevent arena display glitches
+	ORG $583E0
+	jumpToHack(Arena_Fix1)
+	ORG $58438
+	jumpToHack(Arena_Fix2)
+	ORG $58414
+	jumpToHack(Arena_Fix3)
+	ORG $5849C
+	jumpToHack(Arena_Fix4)
+	
+	POP
+	
+	ALIGN 4
+	Str_Or_Mag_Damage:
+	#incbin "Str or Mag Damage.dmp"
+	
+	ALIGN 4
+	SHORT 0
+	Arena_Fix1:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 0x2800 0x46C0 //lsl r0,#0x18; cmp r0, #0x00; nop
+	jumpToHack(0x583E8)
+	
+	ALIGN 4
+	Arena_Fix2:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 0x2800 //lsl r0,#0x18; cmp r0,#0x0
+	jumpToHack(0x58440)
+	
+	ALIGN 4
+	SHORT 0
+	Arena_Fix3:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 //lsl r0,#0x18
+	jumpToHack(0x5841A)
+	
+	ALIGN 4
+	SHORT 0
+	Arena_Fix4:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 0x2800 0x46C0 //lsl r0,#0x18; cmp r0,#0x00; nop
+	jumpToHack(0x584A4)
+	
+	ALIGN 4
+	Arena_Mage_Melee_Fix:
+	#incbin "Arena_Mage_Melee_Fix.dmp"
+	POIN ItemTable
+		
+	ALIGN 4
+	Update_Magic:
+	#incbin "Update Magic.dmp"
+	POIN MagGetter
+	
+	#else
+	ERROR "You're not assembling FE8 events!"
+#endif
