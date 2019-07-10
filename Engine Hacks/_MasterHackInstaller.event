@@ -89,7 +89,11 @@ POP
   #include "DragonVeins/DragonVeins.event"
 
   //Modular Stat Screen
-  #include "MSS/ModularStatScreen.event"
+  #ifndef USE_STRMAG_SPLIT
+	#include "MSS/ModularStatScreen.event"
+  #else
+    #include "MSS/ModularStatScreenStrmag.event"
+  #endif // USE_STRMAG_SPLIT
 
   // Save/Suspend Expansion
   #ifdef USE_SAVE_EXPANSION
