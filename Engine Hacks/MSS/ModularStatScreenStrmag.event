@@ -393,6 +393,17 @@ ST_HP3:
   RMenu(ST_Level3,0,0,0,0x6,0x88,0x544)
 POP
 
+//Remove glowy spinny circle thingy from stat screen
+
+PUSH
+ORG $88620
+POIN RemoveGlowy
+POP
+
+ALIGN 4
+RemoveGlowy:
+#incext Png2Dmp "RemoveGlowy.png" --lz77
+
 // POP
 #else // _FE8_
   ERROR Modular Stat Screen hack is for FE8

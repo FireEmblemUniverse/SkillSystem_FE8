@@ -8,9 +8,11 @@
 	#define prGetItemMagBonus    GetItemMagBonus
 	#define UNIT_MAGIC      0x3A // SByte
 	
+	PUSH
 	ORG 0x191B8
-			prGotoMagGetter:
-				jumpToHack(prMagGetter)
+		prGotoMagGetter:
+			jumpToHack(prMagGetter)
+	POP
 
 	prMagGetter:
 		SHORT 0xB500 0x4B04 0x469E 0x4B04 0x1C0A 0x1C01 0x2000 0xF800 0xBC02 0x4708; POIN prCallSequence pMagicModifiers
