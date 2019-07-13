@@ -292,7 +292,7 @@ POIN ItemTable
 WORD FullMetalBodyID
 POIN WeaponDebuffTable
 SealSkillList:
-BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
+BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID SealMagID
 ALIGN 4
 
 ElbowRoom:

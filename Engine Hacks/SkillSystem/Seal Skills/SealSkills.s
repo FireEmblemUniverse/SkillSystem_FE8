@@ -90,7 +90,7 @@ SealLoop:
     bl ApplyDebuff
   NextLoop:
   add r5, #1
-  cmp r5, #5
+  cmp r5, #6 @ Expanded to 6 to compensate for SealMag
   ble SealLoop
 
 End:
@@ -109,7 +109,22 @@ ldr r7, ExtraDataLocation
 ldrb r0, [r4, #0xB]
 lsl r0, #0x3        @8 bytes per unit
 add r7, r0          @r7 = &extra data
-
+@ Okay right here let's see if it's trying to apply a magic debuff
+cmp r6, #0x06
+bne ApplyDebuffNotMag
+	@ Magic works as the 5th byte in the DebuffTable. (RallyMag<<4)||MagDebuff
+	ldrb r0, [ r7, #0x05 ] @ Current extra magic byte
+	mov r1, #0x0F
+	and r0, r0, r1 @ r0 = isolated current debuff
+	cmp r0, r5
+	bge EndApplyDebuff
+	ldrb r0, [ r7, #0x05 ]
+	mov r1, #0xF0
+	and r0, r0, r1 @ r0 = all bits of extra magic byte EXCEPT the debuff
+	orr r0, r0, r5 @ r0 = new extra magic byte with updated debuff
+	strb r2, [ r7, #0x05 ]
+	b EndApplyDebuff
+ApplyDebuffNotMag:
 @now r7 has the location of the extra data, load up the appropriate debuff
 ldr r0, [r7]
 lsl r0, #8
@@ -120,7 +135,7 @@ mov r2, #0xf
 and r0, r2 @isolate the current debuff
 @ add r0, r5 @add the debuff amount
 cmp r0,r5 @check if debuff is larger than current
-bge End
+bge EndApplyDebuff @ Woah this used to be just a `bge End`. Jumped to a differen't routine's return
 mov r0, r5 @otherwise it will stack with itself
 cmp r0, #0xF
 ble NotCapped
@@ -135,6 +150,7 @@ and r3, r2 @stripped the thing
 lsl r0, r1
 orr r3, r0
 str r3, [r7]
+EndApplyDebuff:
 pop {r4-r7,pc}
 
 ApplyWeaponDebuffs:
