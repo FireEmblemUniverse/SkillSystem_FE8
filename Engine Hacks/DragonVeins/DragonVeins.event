@@ -124,11 +124,21 @@
 
   // public functions
   
+  #ifdef DRAGON_VEIN_SKILL_REQUIRED
   VeinUsability:
     #incbin "asm/Dragon Vein Usability.dmp"
     WORD DragonVeinTrapID
     POIN SkillTester
     WORD DragonsBloodID
+  #endif
+
+  #ifndef DRAGON_VEIN_SKILL_REQUIRED
+  VeinUsability:
+    #incbin "asm/Dragon Vein Usability NoSkill.dmp"
+    WORD DragonVeinTrapID
+    POIN SkillTester
+    WORD DragonsBloodID
+  #endif
 
   VeinEffect:
     #incbin "asm/Dragon Vein Execution.dmp"
