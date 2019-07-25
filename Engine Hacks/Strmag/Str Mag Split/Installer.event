@@ -1,8 +1,10 @@
-//Credits: Teq for the original FE7 version and WIP FE7 Version
+//Credits: Teq for the original FE7 version and WIP FE8 Version
 
 #define Item_Usability 0x288B0
 #define Item_Effect 0x2FC90
-#define Mag_Booster_Item 0x5C
+#ifndef SpiritDust
+	#define SpiritDust 0x5C // Energy Ring by default
+#endif
 #define Mag_Booster_Item_Usability_Ptr "Item_Usability+4*(Mag_Booster_Item-0x4B)"
 #define Mag_Booster_Item_Effect_Ptr "Item_Effect+4*(Mag_Booster_Item-0x4B)" 
 
