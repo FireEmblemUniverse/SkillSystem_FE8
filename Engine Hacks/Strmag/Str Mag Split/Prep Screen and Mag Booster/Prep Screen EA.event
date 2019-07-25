@@ -191,10 +191,10 @@
 	ORG $294E0
 	callHack_r3(Prep_Screen_Usability2)
 	
-	ORG ItemTable+(0x24*Mag_Booster_Item)+0xC //Stat booster pointer
+	ORG ItemTable+(0x24*SpiritDust)+0xC //Stat booster pointer
 	POIN Mag_Booster_Item_Ptr
 	
-	ORG ItemTable+(0x24*Mag_Booster_Item)+0x1E //Staff/use effect; without this, can't use the item outside prep screen
+	ORG ItemTable+(0x24*SpiritDust)+0x1E //Staff/use effect; without this, can't use the item outside prep screen
 	BYTE 0x11
 	
 	ORG Mag_Booster_Item_Usability_Ptr
@@ -275,7 +275,7 @@
 	
 	ALIGN 4
 	Mag_Booster_Item_Ptr:
-	BYTE 0x00 0x02 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x02 0x00 0x00
+	BYTE 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x02 0x00 0x00
 	
 #else
 	ERROR "You're not assembling FE8 events!"
