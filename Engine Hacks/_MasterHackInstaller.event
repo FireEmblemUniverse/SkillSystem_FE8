@@ -49,12 +49,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 	  #define USE_SAVE_EXPANSION // Force use of EMS with Str/Mag Split
 	#endif // USE_SAVE_EXPANSION
 	
-    //get item mag bonus
-    GetItemMagBonus:
-    #incbin "StatGetters/_asm/GetItemMagBonus.dmp"
-    POIN ItemTable
-	
-	#include "Strmag/_Master Asm Installer.event" // TODO: Only put in BL range as necessary.
+	#include "Strmag/BL Range.event"
   
   #endif // USE_STRMAG_SPLIT
 	
@@ -113,6 +108,12 @@ POP
     #include "SuspendDebuffs/SuspendExpansion.event"
 
   #endif // USE_SAVE_EXPANSION
+  
+  #ifdef USE_STRMAG_SPLIT
+  
+	#include "Strmag/_Master Asm Installer.event"
+	
+  #endif // USE_STRMAG_SPLIT
   
   // If uncommented, the Anima Triangle will be implemented.
   // Go to "AnimaTriangle/AnimaTriangle.event" to define your fire, thunder, and wind magic lists.
