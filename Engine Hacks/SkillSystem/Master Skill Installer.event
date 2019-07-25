@@ -58,12 +58,6 @@ jumpToHack(Provoke)
 ORG $2ACF8  //ignore the vanilla lethality routine
 SHORT 0x4770
 
-#ifndef USE_STRMAG_SPLIT
-	//Frenzy
-	ORG $2AB4C
-	callHack_r3(Frenzy) // Frenzy conficts with Str/Mag Split (Hopefully temporary)
-#endif // USE_STRMAG_SPLIT
-
 //renewal
 ORG $1a258
 jumpToHack(Renewal)
