@@ -22,6 +22,18 @@ ldr r6, [ r6 ]
 ldrb r0, [ r4, #0x0B ] @ Allegiance byte.
 lsl r0, r0, #0x03 @ Multipy by 8.
 add r6, r0, r6 @ r6 = this DebuffTable entry.
+
+@Mag/2 Debuff NOTE TO SELF: off of base only.
+ldr r2, [r6, #0x4]
+mov r1, #0x20
+and r2, r1
+cmp r2, #0x0
+beq noHalfMag
+lsr r2, r5, #0x1F
+add r5, r2
+asr r5, #0x1            @Signed divide by two.
+noHalfMag:
+
 ldrb r0, [ r6, #0x05 ]
 mov r1, #0x0F
 and r0, r0, r1 @ r0 = isolated debuff value.

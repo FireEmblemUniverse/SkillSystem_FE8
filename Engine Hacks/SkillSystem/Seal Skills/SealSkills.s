@@ -197,7 +197,25 @@ orr r1, r2
 strb r1, [r6, #0x4]
 
 magicHalvingDebuff:
-@TODO: Implement mag/2 debuffs
+ldrb r1, [r6, #0x4]
+mov r2, #0x20       @mag/2 for status data
+and r2, r1 
+cmp r2, #0x0
+beq checkHalveMagic
+@Mag was already  halved so unhalve it.
+mov r2, #0xCF
+and r1, r2
+strb r1, [r6, #0x4]
+b silverDebuff
+checkHalveMagic:
+mov r1, #0x40       @mag/2 for weapon debuff data.
+and r1, r0
+cmp r1, #0x0        @No mag/2 debuff
+beq silverDebuff
+ldrb r1, [r6, #0x4] @reload the debuff
+mov r2, #0x20       @set the mag/2 bit
+orr r1, r2
+strb r1, [r6, #0x4]
 
 silverDebuff:
 mov r1, #0x20
@@ -239,10 +257,10 @@ ldrb r0, [r2, r0]
 @r0 = debuff data.
 mov r1, #0x1F
 and r0, r1
-lsl r1, r0, #0x1
-add r1, r0          @Each entry is 0x3 bytes
+lsl r1, r0, #0x2 @Each entry is 0x4 bytes
 ldr r0, DebuffTableLocation
 add r0, r1          @r0 = offset in debuff table
+push { r0 }
 @construct the data
 ldrb r2, [r0, #0x2]
 lsl r2, #0x10
@@ -283,6 +301,22 @@ lsl r2, #0x18       @push into 4th byte
 and r2, r1
 orr r0, r2
 str r0, [r6]        @store new debuffs
+
+@ Time to handle mag weapon debuff. Mag is the 4th byte of the WeaponDebuffTable and the bottom 4 bits of the 5th byte of the RAM DebuffTable.
+pop { r0 } @ r0 = this entry of the WeaponDebuffTable.
+ldrb r0, [ r0, #0x03 ]
+mov r2, #0x0F
+and r0, r0, r2 @ Ensure only the bottom 4 bits are gotten.
+ldrb r1, [ r6, #0x05 ] @ r1 = current extra magic byte.
+and r1, r1, r2 @ Isolated current mag debuff.
+cmp r0, r1
+ble noHit @ No change if the current magic byte is greater than or equal to the one to apply.
+ldrb r1, [ r6, #0x05 ]
+mov r3, #0xF0
+and r1, r1, r3 @ Current mag byte without debuff.
+orr r0, r0, r1
+strb r0, [ r6, #0x05 ] @ Store new mag extra byte.
+
 noHit:
 pop {r4-r7}
 bx lr
