@@ -21,6 +21,7 @@
 
 // If uncommented, a full str/split will be implemented without replacing any stats
 // USE_SAVE_EXPANSION will be used even if commented
+// TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
 #define USE_STRMAG_SPLIT
 
 // If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
