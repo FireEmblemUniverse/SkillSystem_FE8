@@ -14,4 +14,13 @@
     #incbin "../StatGetters/_asm/GetItemMagBonus.dmp"
     POIN ItemTable
 	
+	//Spirit Dust item icon
+	#ifndef SpiritDustIcon
+		
+		#define SpiritDustIcon 0xAB
+		PUSH
+		ORG $5926F4 + ( SpiritDustIcon * 0x80 )
+		#incext Png2Dmp "SpiritDust.png"
+		POP
+	
 #endif // STR_MAG_MAIN
