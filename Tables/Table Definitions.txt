@@ -140,7 +140,14 @@
   #define endWTATable "BYTE 0xFF 0xFF"
 
   #define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
-  #define defWeaponDebuffs(str, skl, spd, luk, def, res) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4))"
+  #define defWeaponDebuffs(str, skl, spd, luk, def, res, mag) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4)) mag"
+
+  // Higher bit debuff definitions for use in the item table debuff table index byte
+  #define SilverDebuff 0x20
+  #define HalveMag 0x40 // Requires Str/Mag Split for functionality
+  #define HalveStr 0x80
+  // Use in conjunction with debuff table entry with orr operations
+    // (Debuff table entries max at 0x1F)
 
 // ######################################################################
 //Relating to Tequila's slayer/effectiveness rework
