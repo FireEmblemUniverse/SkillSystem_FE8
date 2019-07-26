@@ -5,8 +5,8 @@
 #ifndef SpiritDust
 	#define SpiritDust 0x5C // Energy Ring by default
 #endif
-#define Mag_Booster_Item_Usability_Ptr "Item_Usability+4*(Mag_Booster_Item-0x4B)"
-#define Mag_Booster_Item_Effect_Ptr "Item_Effect+4*(Mag_Booster_Item-0x4B)" 
+#define Mag_Booster_Item_Usability_Ptr "Item_Usability+4*(SpiritDust-0x4B)"
+#define Mag_Booster_Item_Effect_Ptr "Item_Effect+4*(SpiritDust-0x4B)" 
 
 #include "Level Up\Installer.event"
 
