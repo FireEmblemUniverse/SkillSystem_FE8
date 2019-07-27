@@ -1,8 +1,5 @@
 .thumb
 @draws the stat screen
-
-.set NoAltIconDraw, 1 @ 
-
 .include "mss_defs.s"
 .set SkillGetter, IconGraphic+4
 .set SkillTester, SkillGetter+4
@@ -154,7 +151,7 @@ mov r1,#0x10
 and r1,r0
 cmp r1,#0x10
 bne Nexty
-draw_charge_at 26, 13, colour=Green @ChargeGetter
+@ draw_charge_at 26, 13, colour=Green @ChargeGetter
 
 Nexty:
 
@@ -259,8 +256,7 @@ Const2_2028E70:
 
 .include "Get Talkee.asm"
 
-.ltorg
-IconGraphic:
+.include "alternateicondraw.s"
 @POIN SkillIcons at the end here
 @POIN SkillGetter after that
 @POIN SkillTester after THAT

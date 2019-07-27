@@ -87,7 +87,7 @@ POP
   #ifndef USE_STRMAG_SPLIT
 	#include "MSS/ModularStatScreen.event"
   #else
-    #include "MSS/ModularStatScreenStrmag.event"
+    #include "MSS/ModularStatScreenStrmag/ModularStatScreen.event"
   #endif // USE_STRMAG_SPLIT
 
   // Save/Suspend Expansion
