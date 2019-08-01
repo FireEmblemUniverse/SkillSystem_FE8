@@ -203,6 +203,14 @@
 	ORG Mag_Booster_Item_Effect_Ptr
 	POIN 0x2FF40
 	
+	ORG 0x2F8A4
+	SHORT 0x46C0 0x46C0 0x46C0 0x4902 ; BYTE SpiritDust 0x28 ; SHORT 0xD127 0x2514 0xE02B // nop ; nop ; nop ; ldr r1, =#0x0802F8B4 ; cmp r0, #(SpiritDust) ; bne #0x0802F900 ; mov r5, #0x14 ; b #0x0802F90C.
+		// Make Spirit Dust always use text ID 0x14 ("Magic increased").
+	ORG 0x2F8FC
+	SHORT 0x2513 0xE005 // mov r5, #0x13 ; b #0x0802F90C. Make Energy Ring always use text ID 0x13 ("Strength increased").
+	//ORG 0x2F900
+	SHORT 0x385B 0x0080 0x1840 0x6800 0x4687 0x46C0 // sub r0, r0, #0x5B ; lsl r0, r0, #0x02 ; add r0, r0, r1 ; ldr r0, [ r0 ] ; mov r15, r0 ; nop.
+		// Rewrite switch jump.
 	POP
 	
 	ALIGN 4
