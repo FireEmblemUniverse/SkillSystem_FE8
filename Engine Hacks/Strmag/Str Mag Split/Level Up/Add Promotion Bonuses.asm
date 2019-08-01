@@ -1,8 +1,8 @@
 .thumb
 .org 0x0
 
-@r4 has unit's class data ptr, r5 = ram char ptr
-ldrb	r2,[r0,#0x5]	@new class id
+@r4 has unit's new class data ptr, r5 = ram char ptr
+ldrb	r2,[r4,#0x4]	@new class id
 lsl		r2,#0x2
 ldr		r1,MagClassTable
 add		r2,r1
