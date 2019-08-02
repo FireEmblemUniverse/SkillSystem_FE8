@@ -6,24 +6,20 @@
 
 #ifdef _FE8_
 
-  {
-
-  PUSH
-    ORG $d01cc
-      POIN SoundMixer
-
-    ORG $d01d0
-      WORD $03006CB0 $04000218
-
-    ORG $cf53c
-      WORD $03006CB1
-  POP
+  #define SoundMixerRAM $03006CB0
 
   ALIGN 4
   SoundMixer:
     #incbin "asm/SoundMain.dmp"
 
-  }
+  PUSH
+    ORG $0D01CC
+      POIN SoundMixer
+      WORD SoundMixerRAM $04000218
+
+    ORG $0CF53C
+      WORD (SoundMixerRAM|1)
+  POP
 
 #else // _FE8_
   ERROR Improved Sound Mixer hack is for FE8
