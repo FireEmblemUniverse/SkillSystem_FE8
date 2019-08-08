@@ -1,0 +1,26 @@
+
+#ifndef STR_MAG_MAIN
+
+	#define STR_MAG_MAIN
+	
+	#include "Str Mag Split/Installer.event"
+	
+	#include "Chapter.event"
+	
+	#include "Suspend.event"
+	
+	//get item mag bonus
+    GetItemMagBonus:
+    #incbin "../StatGetters/_asm/GetItemMagBonus.dmp"
+    POIN ItemTable
+	
+	//Spirit Dust item icon
+	#ifndef SpiritDustIcon
+		
+		#define SpiritDustIcon 0xAB
+		PUSH
+		ORG $5926F4 + ( SpiritDustIcon * 0x80 )
+		#incext Png2Dmp "SpiritDust.png"
+		POP
+	
+#endif // STR_MAG_MAIN

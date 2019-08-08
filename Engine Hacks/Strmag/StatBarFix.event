@@ -1,0 +1,8 @@
+PUSH
+ORG 0x870F0
+BL(FixBarScaling)
+POP
+
+ALIGN 4
+FixBarScaling:
+#include "ASM\FixBars.event"

@@ -73,12 +73,22 @@
 	
 	POP
 	
+	#ifdef CAPTURE_SKILL_REQUIRED
 	ALIGN 4
 	Capture_Usability:
 	#incbin "Capture_Usability_Func.dmp"
 	POIN Fill_Capture_Range_Map SkillTester
 	WORD CaptureID
-	
+	#endif
+
+	#ifndef CAPTURE_SKILL_REQUIRED
+	ALIGN 4
+	Capture_Usability:
+	#incbin "Capture_Usability_Func_NoSkill.dmp"
+	POIN Fill_Capture_Range_Map SkillTester
+	WORD CaptureID
+	#endif
+
 	ALIGN 4
 	Fill_Capture_Range_Map:
 	#incbin "Fill_Capture_Range_Map.dmp"
