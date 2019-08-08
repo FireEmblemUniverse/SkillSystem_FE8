@@ -1,39 +1,50 @@
 .thumb
-.equ SimpleRootsID, SkillTester+4
+.equ ItemTable, SkillTester+4
+.equ ThunderstormID, ItemTable+4
+
+.equ gBattleData, 0x203A4D4
 
 push {r4-r7, lr}
 mov r4, r0 @atkr
 mov r5, r1 @dfdr
 
-mov r0,#0x1E
-ldrb r1,[r4,r0]
-ldrb r2,[r5,r0]
-sub r1,#0x1
-sub r2,#0x1
-mov r3,#36
-mul r1,r3
-mul r2,r3
-ldr r0,=0x8809B34
-add r0,r1
-mov r1,#28
-ldrb r1,[r0,r1]
-ldr r0,=0x8809B34
-add r0,r2
-mov r2,#28
-ldrb r2,[r0,r1]
-
-cmp r1,r2
-ble End
-
-
-@has SimpleRoots
+@has Thunderstorm
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4 @Attacker data
-ldr r1, SimpleRootsID
+ldr r1, ThunderstormID
 .short 0xf800
 cmp r0, #0
 beq End
+
+@make sure we're in combat (or combat prep)
+ldrb r3, =gBattleData
+ldrb r3, [r3]
+cmp r3, #4
+beq End
+
+@store attacker weight in r6
+mov r3,#0x4a
+ldrb r2,[r4,r3]
+mov r3,#36
+mul r2,r3
+ldr r3,ItemTable
+add r2,r3
+mov r3,#23
+ldrb r6,[r2,r3]
+
+@store defender weight in r7
+mov r3,#0x4a
+ldrb r2,[r5,r3]
+mov r3,#36
+mul r2,r3
+ldr r3,ItemTable
+add r2,r3
+mov r3,#23
+ldrb r7,[r2,r3]
+
+cmp r6, r7
+ble End
 
 @Add stuff
 mov r1, #0x5A
@@ -57,4 +68,5 @@ pop {r4-r7, r15}
 .ltorg
 SkillTester:
 @Poin SkillTester
-@WORD SimpleRootsID
+@POIN ItemTable
+@WORD ThunderstormID
