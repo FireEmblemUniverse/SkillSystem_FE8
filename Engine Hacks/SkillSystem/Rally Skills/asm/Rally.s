@@ -122,10 +122,18 @@ RallyCommandEffect.apply:
 
 	add  r3, r0
 
-	ldrb r0, [r3, #3]
+	ldrb r0, [r3, #3] @ Magic rally occupies the 9th bit which shouldn't affect regular behavior. (Really no #ifdef necessary)
 	orr  r0, r1
 	strb r0, [r3, #3]
-
+	
+	@ Special instructions for rally mag.
+	lsl r2, r1, #23 @ Remove all higher bits than the ninth.
+	lsr r2, r2, #31 @ Remove all lower bits than the ninth.
+	lsl r2, r2, #4 @ Align to match the magic byte in the extra data struct ((RallyMag<<4)||MagDebuff)
+	ldrb r0, [ r3, #5 ] @ Magic byte
+	orr r0, r2
+	strb r0, [ r3, #5 ]
+	
 	bx lr
 
 	.pool

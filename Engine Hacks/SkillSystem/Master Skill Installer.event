@@ -58,10 +58,6 @@ jumpToHack(Provoke)
 ORG $2ACF8  //ignore the vanilla lethality routine
 SHORT 0x4770
 
-//Frenzy
-ORG $2AB4C
-callHack_r3(Frenzy)
-
 //renewal
 ORG $1a258
 jumpToHack(Renewal)
@@ -290,7 +286,7 @@ POIN ItemTable
 WORD FullMetalBodyID
 POIN WeaponDebuffTable
 SealSkillList:
-BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
+BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID SealMagID
 ALIGN 4
 
 ElbowRoom:

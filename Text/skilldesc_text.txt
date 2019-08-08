@@ -411,7 +411,7 @@ Natural Cover: -3 damage taken[N]
 when on terrain with effects.[X]
 
 ## SD_SealStr
-Seal Attack: Debuff opponent's Str/Mag[N]
+Seal Strength: Debuff opponent's Str[N]
 by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealSkl
@@ -432,6 +432,10 @@ by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_SealRes
 Seal Resistance: Debuff opponent's Res[N]
+by 6 after combat. (Recover 1/turn)[X]
+
+## SD_SealMag
+Seal Magic: Debuff opponent's Mag[N]
 by 6 after combat. (Recover 1/turn)[X]
 
 ## SD_Gamble
@@ -695,11 +699,11 @@ inflict a random status.[X]
 
 ## SD_FortressDefense
 Fortress Defense:[N]
-+5 Def, -3 Atk/Mag[X]
++5 Def, -3 Str/Mag[X]
 
 ## SD_FortressResistance
 Fortress Resistance:[N]
-+5 Res, -3 Atk/Mag[X]
++5 Res, -3 Str/Mag[X]
 
 ## SD_Foresight
 Foresight: Avoid the damage[N]

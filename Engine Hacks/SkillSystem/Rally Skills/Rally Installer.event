@@ -19,6 +19,9 @@ RallySkillList: // rally mag isn't in this because no split assumed
 	BYTE RallyLukID
 	BYTE RallyMovID
 	BYTE RallySpectrumID
+	#ifdef USE_STRMAG_SPLIT
+		BYTE RallyMagID
+	#endif // USE_STRMAG_SPLIT
 	BYTE 0
 
 ALIGN 4
@@ -31,6 +34,9 @@ RallyFxPaletteLookup:
 	POIN gRallyLuckPalette       // Rally luck
 	POIN gRallyMovePalette       // Rally mov
 	POIN gRallyGenericPalette    // Rally spectrum
+	#ifdef USE_STRMAG_SPLIT
+		POIN gRallyMagicPalette // Rally mag
+	#endif // USE_STRMAG_SPLIT
 
 gpRallyDebuffsAddr:
 	WORD DebuffTable
@@ -67,5 +73,11 @@ gRallyLuckPalette:
 ALIGN 4
 gRallyMovePalette:
 	#incext Png2Dmp "data/fx-move.png" --palette-only
+	
+#ifdef USE_STRMAG_SPLIT
+	ALIGN 4
+	gRallyMagicPalette:
+		#incext Png2Dmp "data/fx-magic.png" --palette-only
+#endif // USE_STRMAG_SPLIT
 
 #endif // HAX_RALLIES

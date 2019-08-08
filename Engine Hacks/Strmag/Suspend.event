@@ -1,0 +1,34 @@
+/*
+Original Notes
+114C bytes starting from 2E78
+
+size of unit struct: 0x48
+Size of Player Units pool: 51 * 0x48 =  0xE58
+Size of Enemy Units pool: 50 * 0x48 = 0xE10
+Size of Npc Units pool: 10 * 0x48 = 0x2D0
+0xE58 + 0xE10 + 0x2D0 = 0x1F38
+
+Original Sizes:
+size of packed unit struct: 0x34
+Size of Player Units pool: 51 * 0x34 =  0xA5C
+Size of Enemy Units pool: 50 * 0x34 = 0xA28
+Size of Npc Units pool: 10 * 0x34 = 0x208
+0xA5C + 0xA28 + 0x208 = 0x168C
+
+So By Moving the debuffs into the old Unit Pool, we could save the entire unit struct, while still keeping debuffs.
+*/
+
+PUSH
+ORG 0xA5AB0
+gotoHackWithR3(SaveMoreUnitData)
+ORG 0xA5C5C
+gotoHackWithR3(LoadMoreUnitData)
+POP
+
+ALIGN 4
+SaveMoreUnitData:
+#include "ASM\SaveMoreUnitData.event"
+
+ALIGN 4
+LoadMoreUnitData:
+#include "ASM\LoadMoreUnitData.event"

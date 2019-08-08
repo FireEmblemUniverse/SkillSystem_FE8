@@ -621,3 +621,6 @@ ORG SkillIcon(ReMoveID)
 
 ORG SkillIcon(PowerstaffID)
 #incext Png2Dmp "Skill Icons\Powerstaff.png"
+
+ORG SkillIcon(SealMagID)
+#incext Png2Dmp "Skill Icons/SealMag.png"

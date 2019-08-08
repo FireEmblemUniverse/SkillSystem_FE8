@@ -90,7 +90,7 @@ SealLoop:
     bl ApplyDebuff
   NextLoop:
   add r5, #1
-  cmp r5, #5
+  cmp r5, #6 @ Expanded to 6 to compensate for SealMag
   ble SealLoop
 
 End:
@@ -109,7 +109,22 @@ ldr r7, ExtraDataLocation
 ldrb r0, [r4, #0xB]
 lsl r0, #0x3        @8 bytes per unit
 add r7, r0          @r7 = &extra data
-
+@ Okay right here let's see if it's trying to apply a magic debuff
+cmp r6, #0x06
+bne ApplyDebuffNotMag
+	@ Magic works as the 5th byte in the DebuffTable. (RallyMag<<4)||MagDebuff
+	ldrb r0, [ r7, #0x05 ] @ Current extra magic byte
+	mov r1, #0x0F
+	and r0, r0, r1 @ r0 = isolated current debuff
+	cmp r0, r5
+	bge EndApplyDebuff
+	ldrb r0, [ r7, #0x05 ]
+	mov r1, #0xF0
+	and r0, r0, r1 @ r0 = all bits of extra magic byte EXCEPT the debuff
+	orr r0, r0, r5 @ r0 = new extra magic byte with updated debuff
+	strb r2, [ r7, #0x05 ]
+	b EndApplyDebuff
+ApplyDebuffNotMag:
 @now r7 has the location of the extra data, load up the appropriate debuff
 ldr r0, [r7]
 lsl r0, #8
@@ -120,7 +135,7 @@ mov r2, #0xf
 and r0, r2 @isolate the current debuff
 @ add r0, r5 @add the debuff amount
 cmp r0,r5 @check if debuff is larger than current
-bge End
+bge EndApplyDebuff @ Woah this used to be just a `bge End`. Jumped to a differen't routine's return
 mov r0, r5 @otherwise it will stack with itself
 cmp r0, #0xF
 ble NotCapped
@@ -135,6 +150,7 @@ and r3, r2 @stripped the thing
 lsl r0, r1
 orr r3, r0
 str r3, [r7]
+EndApplyDebuff:
 pop {r4-r7,pc}
 
 ApplyWeaponDebuffs:
@@ -181,7 +197,25 @@ orr r1, r2
 strb r1, [r6, #0x4]
 
 magicHalvingDebuff:
-@TODO: Implement mag/2 debuffs
+ldrb r1, [r6, #0x4]
+mov r2, #0x20       @mag/2 for status data
+and r2, r1 
+cmp r2, #0x0
+beq checkHalveMagic
+@Mag was already  halved so unhalve it.
+mov r2, #0xCF
+and r1, r2
+strb r1, [r6, #0x4]
+b silverDebuff
+checkHalveMagic:
+mov r1, #0x40       @mag/2 for weapon debuff data.
+and r1, r0
+cmp r1, #0x0        @No mag/2 debuff
+beq silverDebuff
+ldrb r1, [r6, #0x4] @reload the debuff
+mov r2, #0x20       @set the mag/2 bit
+orr r1, r2
+strb r1, [r6, #0x4]
 
 silverDebuff:
 mov r1, #0x20
@@ -223,10 +257,10 @@ ldrb r0, [r2, r0]
 @r0 = debuff data.
 mov r1, #0x1F
 and r0, r1
-lsl r1, r0, #0x1
-add r1, r0          @Each entry is 0x3 bytes
+lsl r1, r0, #0x2 @Each entry is 0x4 bytes
 ldr r0, DebuffTableLocation
 add r0, r1          @r0 = offset in debuff table
+push { r0 }
 @construct the data
 ldrb r2, [r0, #0x2]
 lsl r2, #0x10
@@ -267,6 +301,22 @@ lsl r2, #0x18       @push into 4th byte
 and r2, r1
 orr r0, r2
 str r0, [r6]        @store new debuffs
+
+@ Time to handle mag weapon debuff. Mag is the 4th byte of the WeaponDebuffTable and the bottom 4 bits of the 5th byte of the RAM DebuffTable.
+pop { r0 } @ r0 = this entry of the WeaponDebuffTable.
+ldrb r0, [ r0, #0x03 ]
+mov r2, #0x0F
+and r0, r0, r2 @ Ensure only the bottom 4 bits are gotten.
+ldrb r1, [ r6, #0x05 ] @ r1 = current extra magic byte.
+and r1, r1, r2 @ Isolated current mag debuff.
+cmp r0, r1
+ble noHit @ No change if the current magic byte is greater than or equal to the one to apply.
+ldrb r1, [ r6, #0x05 ]
+mov r3, #0xF0
+and r1, r1, r3 @ Current mag byte without debuff.
+orr r0, r0, r1
+strb r0, [ r6, #0x05 ] @ Store new mag extra byte.
+
 noHit:
 pop {r4-r7}
 bx lr
