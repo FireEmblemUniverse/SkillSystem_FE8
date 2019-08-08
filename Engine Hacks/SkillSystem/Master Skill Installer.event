@@ -524,6 +524,7 @@ WORD LoyaltyID
 Thunderstorm:
 #incbin "SoA Skills/Thunderstorm.dmp"
 POIN SkillTester
+POIN ItemTable
 WORD ThunderstormID
 
 Outrider:
@@ -534,6 +535,7 @@ WORD OutriderID
 HeavyStrikes:
 #incbin "SoA Skills/HeavyStrikes.dmp"
 POIN SkillTester
+POIN ItemTable
 WORD HeavyStrikesID
 
 Charge:
@@ -544,6 +546,7 @@ WORD ChargeID
 Infiltrator:
 #incbin "SoA Skills/Infiltrator.dmp"
 POIN SkillTester
+POIN AuraSkillCheck
 WORD InfiltratorID
 
 Vanity:
@@ -554,7 +557,7 @@ WORD VanityID
 MageSlayer:
 #incbin "SoA Skills/MageSlayer.dmp"
 POIN SkillTester
-WORD VanityID
+WORD MageSlayerID
 
 KnightAspirant:
 #incbin "SoA Skills/KnightAspirant.dmp"
