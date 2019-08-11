@@ -195,6 +195,7 @@
     #incbin "asm/Growth Getters/Get_Luk_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
+  MESSAGE Extra Growth Boosts at currentOffset
   ALIGN 4
   Extra_Growth_Boosts:
     #incbin "asm/Growth Getters/Extra_Growth_Boosts.dmp"

@@ -4,7 +4,7 @@
 .equ Item_Table, Growth_Options+4
 .equ SkillTester, Item_Table+4
 .equ BlossomID, SkillTester+4
-.equ AptitudeID, SkillTester+4
+.equ AptitudeID, BlossomID+4
 @r0=battle struct or char data ptr, r1 = growth so far (from char data), r2=index in stat booster pointer of growth
 
 push	{r4-r7,r14}
@@ -73,8 +73,7 @@ ble		ScrollLoop
 
 @growth-boosting skills
 BlossomCheck:
-ldr		r0,[r4]
-ldrb	r0,[r0,#4]
+mov		r0,r4
 ldr		r1,BlossomID
 ldr		r2,SkillTester
 mov		r14,r2
@@ -86,8 +85,7 @@ BlossomEffect:
 lsl r5,#1 @growth x2
 
 AptitudeCheck:
-ldr		r0,[r4]
-ldrb	r0,[r0,#4]
+mov		r0,r4
 ldr		r1,AptitudeID
 ldr		r2,SkillTester
 mov		r14,r2
