@@ -20,13 +20,15 @@ lsr r4, r4, #0x01 @ Halve EXP if they have Blossom.
 cmp r4,#0
 bne End
 add r4,#1	
-nop
 
 End:
 mov r0, r4
 pop { r4 }
 pop { r1 }
 bx r1
+
+.ltorg
+.align
 
 SkillTester:
 @POIN SkillTester
