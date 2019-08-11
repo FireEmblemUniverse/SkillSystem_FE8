@@ -1,6 +1,6 @@
 
 .thumb
-
+.align
 .equ BlossomID, SkillTester+4
 
 Blossom: @this is just very slightly edited Paragon
@@ -15,7 +15,13 @@ mov lr, r2
 .short 0xF800
 cmp r0, #0x00
 beq End
-	lsr r4, r4, #0x01 @ Halve EXP if they have Blossom.
+	
+lsr r4, r4, #0x01 @ Halve EXP if they have Blossom.
+cmp r4,#0
+bne End
+add r4,#1	
+nop
+
 End:
 mov r0, r4
 pop { r4 }
