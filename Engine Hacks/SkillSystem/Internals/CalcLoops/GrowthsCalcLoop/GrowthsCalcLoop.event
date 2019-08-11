@@ -1,3 +1,0 @@
-//todo: create blossom (growths x2 but 1/2 exp gain) & aptitude (+20% to all growths)
-//we need to hook on where the game gets growth rates but before where it returns them, and then we can modify them here however many times we want before returning our edited values
-
