@@ -639,3 +639,9 @@ ORG SkillIcon(DriveDefID)
 
 ORG SkillIcon(DriveResID)
 #incext Png2Dmp "Skill Icons/DriveRes.png"
+
+ORG SkillIcon(BlossomID)
+#incext Png2Dmp "Skill Icons/Blossom.png"
+
+ORG SkillIcon(AptitudeID)
+#incext Png2Dmp "Skill Icons/Aptitude.png"
