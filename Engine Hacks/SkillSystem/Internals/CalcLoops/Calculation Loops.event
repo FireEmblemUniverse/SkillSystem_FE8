@@ -8,3 +8,7 @@
 #include "PreBattleCalcLoop/PreBattleCalcLoop.event"
 
 #include "WTACalcLoop/WTACalcLoop.event"
+
+#include "GrowthsCalcLoop/GrowthsCalcLoop.event"
+
+#include "WeaponLockCalcLoop/WeaponLockCalcLoop.event"
