@@ -13,7 +13,7 @@ How to use:
 Credits:
 Circleseverywhere
 Colorz for debuffs, freeze, and dragon veins 
-Monkeybard & Black Mage for most of the skill icons; Blaze for Stances skill icons; Pikmin1211 for miscellaneous icons
+Monkeybard & Black Mage for most of the skill icons; Blaze for Stances skill icons; vlak for Drive skill icons; Pikmin1211 for miscellaneous icons
 Tequila, Rossendale, StanH, Leonarth, Teraspark, SD9k, Kao, blademaster, Snakey1, Sme for skills
 Primefusion for the test map
 Str/Mag Split based off of Kirb's FE8 version which is based off of Tequila's FE7 version. RobertFPY, Pikmin1211, and Snakey1 for finalization
