@@ -175,6 +175,9 @@ POP
   #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
 
   ALIGN 4
+  #include "EscapeArrive/Escape Installer.event"
+
+  ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"
   
   ALIGN 4

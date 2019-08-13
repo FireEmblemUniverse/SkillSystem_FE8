@@ -37,7 +37,9 @@ Vendor(ShopItems,2,7)
 Armory(ArmoryItems,10,26)
 Village(0x8,VillageEvent,18,27)
 House(0,HouseEvent,6,24)
-Seize(10,2)
+Seize(9,24)
+Arrive(8,24)
+Escape(7,24)
 END_MAIN
 
 MiscBasedEvents:
