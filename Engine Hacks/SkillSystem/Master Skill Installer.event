@@ -58,10 +58,6 @@ jumpToHack(Provoke)
 ORG $2ACF8  //ignore the vanilla lethality routine
 SHORT 0x4770
 
-//Frenzy
-ORG $2AB4C
-callHack_r3(Frenzy)
-
 //renewal
 ORG $1a258
 jumpToHack(Renewal)
@@ -290,7 +286,7 @@ POIN ItemTable
 WORD FullMetalBodyID
 POIN WeaponDebuffTable
 SealSkillList:
-BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID
+BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID SealMagID
 ALIGN 4
 
 ElbowRoom:
@@ -528,6 +524,7 @@ WORD LoyaltyID
 Thunderstorm:
 #incbin "SoA Skills/Thunderstorm.dmp"
 POIN SkillTester
+POIN ItemTable
 WORD ThunderstormID
 
 Outrider:
@@ -538,6 +535,7 @@ WORD OutriderID
 HeavyStrikes:
 #incbin "SoA Skills/HeavyStrikes.dmp"
 POIN SkillTester
+POIN ItemTable
 WORD HeavyStrikesID
 
 Charge:
@@ -548,6 +546,7 @@ WORD ChargeID
 Infiltrator:
 #incbin "SoA Skills/Infiltrator.dmp"
 POIN SkillTester
+POIN AuraSkillCheck
 WORD InfiltratorID
 
 Vanity:
@@ -558,7 +557,7 @@ WORD VanityID
 MageSlayer:
 #incbin "SoA Skills/MageSlayer.dmp"
 POIN SkillTester
-WORD VanityID
+WORD MageSlayerID
 
 KnightAspirant:
 #incbin "SoA Skills/KnightAspirant.dmp"
@@ -569,6 +568,11 @@ Boon:
 #incbin "Other Skills/Boon.dmp"
 POIN SkillTester
 WORD BoonID
+
+Blossom:
+#incbin "Other Skills/BlossomExp.dmp"
+POIN SkillTester
+WORD BlossomID
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

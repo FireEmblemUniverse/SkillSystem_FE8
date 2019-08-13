@@ -143,3 +143,28 @@ Solidarity:
 #incbin "Solidarity.dmp"
 POIN AuraSkillCheck
 WORD SolidarityID
+
+DriveDef:
+#incbin "DriveDef.dmp"
+POIN AuraSkillCheck
+WORD DriveDefID
+
+DriveMag:
+#incbin "DriveMag.dmp"
+POIN AuraSkillCheck
+WORD DriveMagID
+
+DriveRes:
+#incbin "DriveRes.dmp"
+POIN AuraSkillCheck
+WORD DriveResID
+
+DriveSpd:
+#incbin "DriveSpd.dmp"
+POIN AuraSkillCheck
+WORD DriveSpdID
+
+DriveStr:
+#incbin "DriveStr.dmp"
+POIN AuraSkillCheck
+WORD DriveStrID

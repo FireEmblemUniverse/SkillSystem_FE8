@@ -83,8 +83,13 @@
 
   ALIGN 4
   PerTurn:
-    #incbin "asm/Debuffs/ProcessDebuffs.dmp"
-    WORD DebuffTable
+    #ifndef USE_STRMAG_SPLIT
+      #incbin "asm/Debuffs/ProcessDebuffs.dmp"
+      WORD DebuffTable
+	#else
+	  #incbin "asm/Debuffs/ProcessDebuffsMag.dmp"
+	  WORD DebuffTable
+	#endif // USE_STRMAG_SPLIT
 
   ALIGN 4
   MapMainClearProc:
