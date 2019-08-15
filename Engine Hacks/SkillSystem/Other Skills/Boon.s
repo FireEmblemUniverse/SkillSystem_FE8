@@ -25,10 +25,19 @@ DecrementStatusTimer: @the part of the vanilla function that the hook overwrites
 pop {r0-r3}
 lsr r0,r3,#4
 sub r0,#1
+cmp r0,#0
+bne KeepStatus
+strb r0,[r1]
+b GoBack
+KeepStatus:
 lsl r0,r0,#4
 orr r0,r2
 strb r0,[r1]
 b GoBack
+
+
+
+
 
 GoBack:
 ldrb r1,[r1]
