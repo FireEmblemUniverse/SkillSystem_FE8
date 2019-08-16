@@ -41,16 +41,16 @@ b GoBack
 
 GoBack:
 ldrb r1,[r1]
+mov r0,r12
 
-
-ldr r0,ReturnPoint
-bx r0
+ldr r2,ReturnPoint
+bx r2
 
 .ltorg
 .align 4
 
 ReturnPoint:
-.word 0x8018903
+.word 0x8018905
 SkillTester:
 @POIN SkillTester
 @WORD BoonID
