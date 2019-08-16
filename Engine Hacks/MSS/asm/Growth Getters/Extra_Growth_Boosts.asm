@@ -5,6 +5,8 @@
 .equ SkillTester, Item_Table+4
 .equ BlossomID, SkillTester+4
 .equ AptitudeID, BlossomID+4
+.equ HolyBloodTable, AptitudeID+4
+
 @r0=battle struct or char data ptr, r1 = growth so far (from char data), r2=index in stat booster pointer of growth
 
 push	{r4-r7,r14}
@@ -91,10 +93,26 @@ ldr		r2,SkillTester
 mov		r14,r2
 .short	0xF800
 cmp		r0,#1
-bne		GoBack
+bne		GetHolyBlood
 
 AptitudeEffect:
 add		r5,#20 @growth +20%
+
+
+GetHolyBlood:
+ldr r1,r4
+ldr r4,[r4]
+ldrb r4,[r4,#4]
+mov r0,#14
+mul r0,r1
+ldr r1,HolyBloodTable
+add r1,r0
+add r1,#4
+cmp r6,#6
+bgt GoBack
+add r1,r6
+ldrb r1,[r1]
+add r5,r1
 
 GoBack:
 mov		r1,r8

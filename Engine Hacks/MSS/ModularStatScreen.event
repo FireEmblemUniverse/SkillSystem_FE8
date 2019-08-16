@@ -204,6 +204,7 @@
 	POIN SkillTester
 	WORD BlossomID
 	WORD AptitudeID
+	POIN HolyBloodTable
 
   ALIGN 4
   Load_Page:
