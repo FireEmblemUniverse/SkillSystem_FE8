@@ -624,3 +624,24 @@ ORG SkillIcon(PowerstaffID)
 
 ORG SkillIcon(SealMagID)
 #incext Png2Dmp "Skill Icons/SealMag.png"
+
+ORG SkillIcon(DriveStrID)
+#incext Png2Dmp "Skill Icons/DriveStr.png"
+
+ORG SkillIcon(DriveMagID)
+#incext Png2Dmp "Skill Icons/DriveMag.png"
+
+ORG SkillIcon(DriveSpdID)
+#incext Png2Dmp "Skill Icons/DriveSpd.png"
+
+ORG SkillIcon(DriveDefID)
+#incext Png2Dmp "Skill Icons/DriveDef.png"
+
+ORG SkillIcon(DriveResID)
+#incext Png2Dmp "Skill Icons/DriveRes.png"
+
+ORG SkillIcon(BlossomID)
+#incext Png2Dmp "Skill Icons/Blossom.png"
+
+ORG SkillIcon(AptitudeID)
+#incext Png2Dmp "Skill Icons/Aptitude.png"
