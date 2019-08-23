@@ -569,6 +569,11 @@ Boon:
 POIN SkillTester
 WORD BoonID
 
+Blossom:
+#incbin "Other Skills/BlossomExp.dmp"
+POIN SkillTester
+WORD BlossomID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"

@@ -25,23 +25,32 @@ DecrementStatusTimer: @the part of the vanilla function that the hook overwrites
 pop {r0-r3}
 lsr r0,r3,#4
 sub r0,#1
+cmp r0,#0
+bne KeepStatus
+strb r0,[r1]
+b GoBack
+KeepStatus:
 lsl r0,r0,#4
 orr r0,r2
 strb r0,[r1]
 b GoBack
 
+
+
+
+
 GoBack:
 ldrb r1,[r1]
+mov r0,r12
 
-
-ldr r0,ReturnPoint
-bx r0
+ldr r2,ReturnPoint
+bx r2
 
 .ltorg
 .align 4
 
 ReturnPoint:
-.word 0x8018903
+.word 0x8018905
 SkillTester:
 @POIN SkillTester
 @WORD BoonID
