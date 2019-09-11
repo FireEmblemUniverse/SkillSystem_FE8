@@ -241,9 +241,11 @@
     WORD Growth_Options
 
   ALIGN 4
+/*
+  This has been moved to a CSV
   Class_Level_Cap_Table:
     #incbin "Display Growths Options/Class_Level_Cap_Table.dmp"
-
+*/
   ALIGN 4
   Enemy_Autolevel:
     #incbin "asm/Enemy_Autolevel.dmp"
