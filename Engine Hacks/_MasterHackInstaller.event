@@ -178,6 +178,9 @@ POP
   #include "EscapeArrive/Escape Installer.event"
 
   ALIGN 4
+  #include "SmeHax/HolyBlood/Getters.event"
+
+  ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"
   
   ALIGN 4
