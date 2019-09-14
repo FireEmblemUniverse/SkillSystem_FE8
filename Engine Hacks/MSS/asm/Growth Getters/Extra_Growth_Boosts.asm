@@ -125,7 +125,9 @@ mov r2,#20 @length of entry
 mul r0,r2
 add r1,r0 @start of entry in r1
 add r1,#4 @start of growth bonuses
-add r1,r6 @offset based on current stat being checked
+mov r0,r6
+sub r0,#0xA
+add r1,r0 @offset based on current stat being checked
 ldrb r0,[r1] @get modifier in r0
 cmp r3,#1
 bne NoMajorBloodMultiplier
