@@ -12,8 +12,10 @@ ldr r0, SS_BloodText
 draw_textID_at 17, 11 @Blood label text
 
 @pass in textid in r0
-blh HolyBloodNameGetter,r0
-draw_textID_at 17, 13, colour=White,
+ldr r0, HolyBloodNameGetter
+mov r14,r0
+.short 0xF800
+draw_textID_at 21, 11, colour=White, width=32
 
 page_end
 

@@ -11,14 +11,13 @@ push {r4-r7,r14}
 @r8 = current unit data
 mov r0,r8
 ldr r0,[r0]
-ldr r0,[r0]
 ldrb r0,[r0,#4] @r0= char ID
-ldr r1,=HolyBloodCharTable
+ldr r1,HolyBloodCharTable
 add r1,r0
-ldrb r1,[r0] @r0 = holy blood ID
+ldrb r0,[r1] @r0 = holy blood ID
 cmp r0,#0xFF
 beq BadEnd
-ldr r1,=HolyBloodCharTable
+ldr r1,HolyBloodTable
 mov r2,#20
 mul r0,r2
 add r1,r0 @r1=table entry start, which is name ID
@@ -35,4 +34,5 @@ pop {r1}
 bx r1
 
 .ltorg
+.align
 HolyBloodTable:
