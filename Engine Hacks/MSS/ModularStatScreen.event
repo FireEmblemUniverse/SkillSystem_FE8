@@ -205,6 +205,7 @@
 	WORD BlossomID
 	WORD AptitudeID
 	POIN HolyBloodTable
+	POIN HolyBloodCharacterTable
 
   ALIGN 4
   Load_Page:
