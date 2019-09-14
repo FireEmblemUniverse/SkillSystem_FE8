@@ -15,7 +15,7 @@ draw_textID_at 17, 11 @Blood label text
 ldr r0, HolyBloodNameGetter
 mov r14,r0
 .short 0xF800
-draw_textID_at 23, 11, colour=White, width=16
+draw_textID_at 23, 11, colour=Grey, width=16
 
 page_end
 
