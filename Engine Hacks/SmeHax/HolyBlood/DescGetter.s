@@ -8,10 +8,11 @@
 push {r4-r7,r14}
 
 @return current character's holy blood name in r0, or return 0xE0 (which is "--") if no blood
-@r8 = current unit data
-mov r0,r8
-ldr r0,[r0]
-ldrb r0,[r0,#4] @r0= char ID
+mov r1,r0
+ldr r0,=#0x2003BFC
+ldr r0,[r0,#0xC]
+ldr r0,[r0] 
+ldr r0,[r0,#4]@r0= char ID
 ldr r1,HolyBloodCharTable
 add r1,r0
 ldrb r0,[r1] @r0 = holy blood ID
