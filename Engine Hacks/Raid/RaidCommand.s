@@ -11,7 +11,7 @@
 .type   RaidUsability, %function
 
 RaidUsability:
-push { r4 - r6, r14 } @ 08023040
+push { r4 - r7, r14 } @ 08023040
 ldr r0, =#0x3004E50
 ldr r2, [ r0 ]
 ldr r1, [ r2, #0x4 ]
@@ -58,22 +58,26 @@ asr r6, r1, #0x18 @ r6 = current Y
 ldr r0, =0x0202BCF0
 ldrb r0, [ r0, #0x0E ] @ Current chapter ID
 blh 0x080346B0, r1 @ r0 = this chapter's events
-ldr r0, [ r0, #0x08 ] @ r0 = this chapter's location events
-sub r0, r0, #0x0C
+ldr r7, [ r0, #0x08 ] @ r7 = this chapter's location events
+sub r7, r7, #0x0C
 UsabilityLoop:
-add r0, r0, #0x0C
-ldrh r1, [ r0 ]
+add r7, r7, #0x0C
+ldrh r1, [ r7 ]
 cmp r1, #0x00
 beq End @ End false if no Raids were found.
-	ldrb r1, [ r0, #0x08 ]
+	ldrb r1, [ r7, #0x08 ]
 	cmp r1, r5
 	bne UsabilityLoop
-	ldrb r1, [ r0, #0x09 ]
+	ldrb r1, [ r7, #0x09 ]
 	cmp r1, r6
 	bne UsabilityLoop
-		ldrb r1, [ r0, #0x0A ]
+		ldrb r1, [ r7, #0x0A ]
 		cmp r1, #0x21
 		bne UsabilityLoop
+			ldrb r0, [ r7, #0x02 ]
+			blh 0x08083DA8, r1 @ Check event ID
+			cmp r0, #0x01
+			beq UsabilityLoop
 @ldr r3, =#0x8084078
 @mov lr, r3
 @.short 0xF800
@@ -94,7 +98,7 @@ b End3
 End:
 mov r0, #3
 End3:
-pop { r4 - r6 }
+pop { r4 - r7 }
 pop { r1 }
 bx r1
 
@@ -147,9 +151,7 @@ LoopStart:
 	
 @ LoopTrue:
 ldrb r0, [ r4, #0x02 ]
-blh 0x08083D80, r1
-mov lr, r1
-.short 0xF800 @ sets event ID
+blh 0x08083D80, r1 @ Sets new event ID
 ldr r0, [ r4, #0x04 ] @ Now r0 does
 mov r1, #0x00
 blh 0x0800D07C, r2
