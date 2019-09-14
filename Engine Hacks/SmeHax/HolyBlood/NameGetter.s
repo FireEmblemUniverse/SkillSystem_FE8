@@ -17,6 +17,8 @@ add r1,r0
 ldrb r0,[r1] @r0 = holy blood ID
 cmp r0,#0xFF
 beq BadEnd
+lsl r0,r0,#25
+lsr r0,r0,#25
 ldr r1,HolyBloodTable
 mov r2,#20
 mul r0,r2
