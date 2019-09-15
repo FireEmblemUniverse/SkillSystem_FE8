@@ -131,6 +131,8 @@
     WORD DragonVeinTrapID
     POIN SkillTester
     WORD DragonsBloodID
+	POIN HolyBloodTable
+	POIN HolyBloodCharacterTable
   #endif
 
   #ifndef DRAGON_VEIN_SKILL_REQUIRED

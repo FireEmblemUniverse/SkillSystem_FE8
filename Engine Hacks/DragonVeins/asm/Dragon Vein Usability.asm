@@ -1,6 +1,8 @@
 .thumb
 .equ SkillTester, DVTrapID+4
 .equ DragonsBloodID, SkillTester+4
+.equ HolyBloodTable, DragonsBloodID+4
+.equ HolyBloodCharTable, HolyBloodTable+4
 push    {r14}
 ldr     r0, CurrentUnit     @Active unit
 ldr     r2,[r0]
@@ -14,6 +16,28 @@ ldr     r2,[r0]
 @ and     r0,r1               @Lord skill
 @ cmp     r0,#0x0
 
+@holy blood check as alternative to dragon blood skill, but do both
+ldr     r0, CurrentUnit     @Active unit
+ldr r0,[r0] @char data in ram
+ldr r0,[r0] @char data in rom
+ldrb r0,[r0,#4] @char ID
+ldr r1,HolyBloodCharTable
+add r1,r0
+ldrb r0,[r1] @r0 = holy blood ID
+cmp r0,#0xFF
+beq BloodSkillCheck
+lsl r0,r0,#25
+lsr r0,r0,#25
+ldr r1,HolyBloodTable
+mov r3,#20
+mul r0,r3
+add r1,r0 @r1=table entry start, which is name ID
+add r1,#0xD
+ldrb r0,[r1] @r0=dragon vein boolean
+cmp r0,#1
+beq MiscChecks
+
+BloodSkillCheck:
 @check for DragonsBlood skill
 ldr r0, SkillTester
 mov lr, r0
@@ -23,6 +47,8 @@ ldr r1, DragonsBloodID
 cmp r0, #0
 
 beq     retFalse            @No
+
+MiscChecks:
 ldr     r0, CurrentUnit     @Active unit
 ldr     r2,[r0]
 ldr     r0,[r2,#0xC]        @Turn status
@@ -73,3 +99,5 @@ DVTrapID:
 @WORD DVTrapID
 @POIN SkillTester
 @WORD DragonsBloodID
+@POIN HolyBloodTable
+@POIN HolyBloodCharacterTable
