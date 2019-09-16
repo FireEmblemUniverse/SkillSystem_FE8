@@ -10,7 +10,7 @@ Holy blood initiation table (types, index is each def)
 +A - Lck growth modifier, 1 byte
 +B - Mag growth modifier, 1 byte (ignored if no strmag split)
 (growth modifiers are doubled for major blood)
-+C - Weapon type to raise level of, 1 byte (S if major, +1 from where it's currently at if minor; if >7, treated as none)
++C - Weapon type to raise level of, 1 byte (S if major, +1 from where it's currently at if minor; if >7, treated as none) (UNUSED)
 +D - Gives access to dragon veins (ignored if no dragon veins)
 +10 - Pointer to exclusive weapon list, 4 bytes (item ID list terminated by FF)
 
@@ -21,6 +21,5 @@ Todo:
 -growth modifiers in MSS //DONE
 -hook into weapon usability and do a check if they're on the list for the user's holy blood //needs weapon usability loop to not conflict with skill system
 -hook into dragon veins to add this check in addition to the skill check //DONE
--hook into unit loading to affect loaded weapon ranks //weapon rank is written to struct at 0x8017E82, investigate from there
 -integrate into MSS for name and desc display //DONE
 

@@ -38,8 +38,8 @@ mov r1,#0
 
 GoBack:
 pop {r4-r7}
-pop {r1}
-bx r1
+pop {r2}
+bx r2
 
 
 
