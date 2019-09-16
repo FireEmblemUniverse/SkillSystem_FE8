@@ -132,7 +132,6 @@
   MSS_page3:
     #incbin "asm/mss_page3_original.dmp"
 
-MESSAGE this one right here officer currentOffset
   ALIGN 4
   MSS_page4:
     #incbin "asm/mss_page4.dmp"
