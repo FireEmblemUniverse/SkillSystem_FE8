@@ -5,8 +5,17 @@ HolyBloodNameGetter:
 #incbin "NameGetter.dmp"
 POIN HolyBloodTable
 POIN HolyBloodCharacterTable
-MESSAGE descgetter currentOffset
+
 HolyBloodDescGetter:
 #incbin "DescGetter.dmp"
 POIN HolyBloodTable
 POIN HolyBloodCharacterTable
+
+//generic getter for all other uses
+
+HolyBloodGetter:
+#incbin "BloodGetter.dmp"
+POIN HolyBloodTable
+POIN HolyBloodCharacterTable
+
+
