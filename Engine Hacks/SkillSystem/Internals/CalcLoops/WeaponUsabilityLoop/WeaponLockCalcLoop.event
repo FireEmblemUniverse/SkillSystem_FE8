@@ -1,0 +1,30 @@
+PUSH
+ORG 0x16574
+#incbin "CanUnitWieldWeapon.dmp"
+POIN ItemTable
+POIN WLockLookupList
+POIN WeaponLockLoop
+POP
+//vanilla function size: 0x1DA
+//new function size: 0x110
+//saved: 202 bytes (this is 101 opcodes!!!!!!!)
+
+ALIGN 4
+WLockLookupList:
+BYTE 2 0x4 	3 0x4	//Monster Lock
+BYTE 2 0x8 	3 0x1 	//Weapon Lock 1
+BYTE 2 0x10 3 0x2	//Myrm Lock
+//BYTE 3 0x1	 	//Unusable (compare to something dumb)
+BYTE 3 0x4	4 0x10  //Eirika Lock
+BYTE 3 0x8 	4 0x20	//Ephraim Lock
+BYTE 3 0x10 4 0x40	//Lyn Lock
+BYTE 3 0x20 4 0x80	//Athos Lock
+WORD 0xFFFFFFFF 
+
+
+ALIGN 4
+WeaponLockLoop: //r4 = character pointer, r5 = item halfword, r6 = rank; functions return in r0 either true or false for whether or not the weapon may be used
+POIN Shadowgift 
+WORD 0
+
+
