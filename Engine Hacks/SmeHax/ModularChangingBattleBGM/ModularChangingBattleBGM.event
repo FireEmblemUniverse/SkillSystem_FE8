@@ -1,0 +1,16 @@
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG 0x72794
+jumpToHack(ModularChangingBattleBGM)
+POP
+
+ModularChangingBattleBGM:
+#incbin "ModularChangingBattleBGM.dmp"
+POIN ChangingBGMList
+
+ChangingBGMList:
+BYTE Fomortiis 0x55 //the vanilla one
+BYTE ONeill 0x30 //test
+BYTE 0xFF 0xFF //terminator
+
