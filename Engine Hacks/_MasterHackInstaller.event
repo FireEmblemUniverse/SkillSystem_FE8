@@ -187,6 +187,12 @@ POP
   #include "SmeHax/ModularChangingBattleBGM/ModularChangingBattleBGM.event"
   
   ALIGN 4
+  #include "MSR/MagicSwordRework.event"
+  
+  ALIGN 4
+  #include "MMB/MMB Installer.event"
+  
+  ALIGN 4
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
   #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
 

@@ -1,0 +1,42 @@
+
+#define MagicSwordEntry(itemID,weaponType,alwaysMagic,meleeBehavior,rangeBehavior) "BYTE itemID (weaponType<<4)|alwaysMagic (meleeBehavior<<4)|rangeBehavior"
+
+#define WeaponTypeAnima 5
+#define WeaponTypeLight 6
+#define WeaponTypeDark 7
+#define HitDef 0
+#define HitRes 1
+#define HitLower 2
+#define HitHigher 3
+
+
+ALIGN 4
+MESSAGE MSR at currentOffset
+MagicSwordRework:
+#incbin "MagicSwordRework.dmp"
+POIN MagicSwordList
+
+MagicSwordList:
+MagicSwordEntry(WindSword,WeaponTypeAnima,False,HitDef,HitRes)
+MagicSwordEntry(LightBrand,WeaponTypeLight,False,HitDef,HitRes)
+MagicSwordEntry(Runesword,WeaponTypeDark,True,HitRes,HitRes)
+
+BYTE 0 0 0 //terminator
+
+
+
+
+PUSH
+ORG 0x2A882
+BYTE $02 $4B $9E $46 $70 $47 $C0 $46 $C0 $46
+POIN MagicSwordRework|1
+
+ORG 0x2AA4E
+BYTE $68 $68 $C0 $46
+ORG 0x2AA6C
+BYTE $68 $68 $C0 $46
+ORG 0x2A8B8
+BYTE $68 $68 $C0 $46
+
+POP
+

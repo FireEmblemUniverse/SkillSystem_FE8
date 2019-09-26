@@ -1,0 +1,341 @@
+
+/*
+
+Comment out (by typing // before a line's #define) or delete module options you don't want.
+
+After each set of module options are definitions that you can use to adjust the module.
+
+*/
+
+// Some helper definitions:
+
+#define TextWhite  0
+#define TextGray   1
+#define TextBlue   2
+#define TextYellow 3
+#define TextGreen  4
+#define TextBlack  5
+
+// Tilemap modules
+
+	#define MMBStandardTilemap
+
+// Tilemap options
+
+	// In 8x8 pixel tiles
+	#define MMBHeight 7
+	#define MMBWidth 12
+	#define MMBTilemapPaletteIndex 3
+
+	ALIGN 4
+
+	MMBTilemap:
+	BYTE (MMBWidth - 1) (MMBHeight - 1) // Don't touch these
+
+	// Edit this as you see fit
+	// The tilemap is 'upside-down' with the bottom row being first
+	// and the top row being last
+
+SHORT $1B $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $20 // Row 7 (Bottom)
+SHORT $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E
+SHORT $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E
+SHORT $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E
+SHORT $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E
+SHORT $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E
+SHORT $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E // Row 1 (Top)
+
+	ALIGN 4
+
+// Unit name modules
+
+	#define MMBName
+	//#define MMBNameCentered
+	//#define MMBNameAffinityShifted
+
+// Unit name options
+
+	// Coordinates and widths are in 8x8 pixel tiles
+	#define MMBNameWidth 7
+	#define MMBNameColor TextBlack
+	#define MMBNameX 4
+	#define MMBNameY 1
+
+// Minimug modules
+
+	//#define MMBMinimug
+	#define MMBMinimugEnemyFlip
+
+// Minimug options
+
+	// Coordinates are in 8x8 pixel tiles
+	#define MMBMinimugX 0
+	#define MMBMinimugY 0
+	#define MMBMinimugTileIndexStart 0xF0
+	#define MMBMinimugPaletteIndex 4
+
+// Inventory modules
+
+	//#define MMBInventory
+	#define MMBEquippedWeapon
+	//#define MMBEquippedWeaponName // uses alt text
+	//#define MMBEquippedWeaponNameCentered // uses alt text
+	//#define MMBInventoryOrEquippedWeaponName // uses alt text
+	//#define MMBInventoryOrEquippedWeaponNameCentered // uses alt text
+	//#define MMBEquippedWeaponNameOnly // uses alt text
+	//#define MMBEquippedWeaponNameOnlyCentered // uses alt text
+
+// Inventory options
+
+	// Coordinates are in pixels
+	#define MMBInventoryX 76
+	#define MMBInventoryY 8
+	#define MMBInventoryTileIndex 0x300
+
+	// Used for item text
+	// Coordinates are in 8x8 pixel tiles
+	#define MMBInventoryTextX 7
+	#define MMBInventoryTextY 1
+	#define MMBAltTextWidth 7
+	#define MMBTextAltColor TextBlack
+
+// Combination modules
+
+	#define MMBHPStatus
+	//#define MMBDEFRES
+	//#define MMBAVODOD
+	//#define MMBHP
+
+
+// Combination options
+
+	// Coordinates are in 8x8 pixel tiles
+
+	// HP/Status options
+	#define MMBHPStatusX 4
+	#define MMBHPStatusY 3
+
+	// HP options
+	#define MMBHPX 1
+	#define MMBHPY 5
+
+	// DEF/RES options
+	//#define MMBDEFRESX 13
+	//#define MMBDEFRESY 3
+	//#define MMBDEFRESVRAMTile 0x10A
+	//#define MMBDEFRESPaletteIndex 2
+
+	// AVO/DOD options
+	//#define MMBAVODODX 13
+	//#define MMBAVODODY 4
+	//#define MMBAVODODVRAMTile 0x104
+	//#define MMBAVODODPaletteIndex 2
+
+// Bar modules
+
+	//#define MMBHPBar
+	//#define MMBHPBarStatus
+
+// Bar options
+
+	// Coordinates and widths are in 8x8 pixel tiles
+
+	// HP bar options
+	#define MMBHPBarX 5
+	#define MMBHPBarY 4
+	#define MMBHPBarTileWidth 7
+	#define MMBHPBarBase 0x1140
+
+// Affinity modules
+
+	//#define MMBAffinity
+
+// Affinity options
+
+	// Coordinates are in pixels
+
+	#define MMBAffinityX 40
+	#define MMBAffinityY 24
+	#define MMBAffinityTile 0x30A
+
+// Skills modules (requires skill system)
+
+	//#define MMBSkillsAlternate
+
+// Skills options
+
+	// Coordinates are in pixels
+
+	#define MMBSkillsX 120
+	#define MMBSkillsY 8
+	#define MMBSkillTile 0x30C
+
+// Number modules
+
+	#define MMBASNumber
+	#define MMBATKNumber
+	#define MMBAVONumber
+	//#define MMBCHRNumber // Useless without skill system
+	//#define MMBCRTNumber
+	#define MMBDEFNumber
+	//#define MMBDODNumber
+	#define MMBEXPNumber
+	#define MMBHITNumber
+	#define MMBLevelNumber
+	#define MMBRESNumber
+	//#define MMBRTGNumber
+
+// Number options
+
+	// Coordinates are in pixels
+	// Coordinates are for the rightmost digit
+
+	// AS Number
+	#define MMBASX 56
+	#define MMBASY 32
+
+	// ATK Number
+	#define MMBATKX 24
+	#define MMBATKY 32
+
+	// AVO Number
+	#define MMBAVOX 88
+	#define MMBAVOY 40
+
+	// CHR Number
+	#define MMBCHRX 96
+	#define MMBCHRY 16
+
+	// CRT Number
+	#define MMBCRTX 128
+	#define MMBCRTY 40
+
+	// DEF Number
+	#define MMBDEFX 24
+	#define MMBDEFY 40
+
+	// DOD Number
+	#define MMBDODX 128
+	#define MMBDODY 24
+
+	// EXP number
+	#define MMBEXPX 80
+	#define MMBEXPY 0
+
+	// HIT Number
+	#define MMBHITX 88
+	#define MMBHITY 32
+
+	// Level number
+	#define MMBLevelX 56
+	#define MMBLevelY 0
+
+	// RES number
+	#define MMBRESX 56
+	#define MMBRESY 40
+
+	// RTG number
+	#define MMBRTGX 103
+	#define MMBRTGY 48
+
+// Label modules
+
+	#define MMBASLabel
+	#define MMBATKLabel
+	#define MMBAVOLabel
+	//#define MMBCHRLabel
+	//#define MMBCRTLabel
+	#define MMBDEFLabel
+	//#define MMBDODLabel
+	#define MMBEXPLabel
+	#define MMBHITLabel
+	#define MMBLevelLabel
+	#define MMBRESLabel
+	//#define MMBRTGLabel
+
+// Label options
+
+	// Coordinates are in 8x8 pixel tiles
+
+	// AS label
+	#define MMBASLabelX 4
+	#define MMBASLabelY 4
+	#define MMBASLabelVRAMTile 0x100
+	#define MMBASLabelPaletteIndex 2
+	#define MMBASLabelTileCount 2
+
+	// ATK label
+	#define MMBATKLabelX 0
+	#define MMBATKLabelY 4
+	#define MMBATKLabelVRAMTile 0x102
+	#define MMBATKLabelPaletteIndex 2
+	#define MMBATKLabelTileCount 2
+
+	// AVO label
+	#define MMBAVOLabelX 8
+	#define MMBAVOLabelY 5
+	#define MMBAVOLabelVRAMTile 0x104
+	#define MMBAVOLabelPaletteIndex 2
+	#define MMBAVOLabelTileCount 2
+
+	// CHR label
+	#define MMBCHRLabelX 9
+	#define MMBCHRLabelY 2
+	#define MMBCHRLabelVRAMTile 0x106
+	#define MMBCHRLabelPaletteIndex 2
+	#define MMBCHRLabelTileCount 2
+
+	// CRT label
+	#define MMBCRTLabelX 13
+	#define MMBCRTLabelY 5
+	#define MMBCRTLabelVRAMTile 0x108
+	#define MMBCRTLabelPaletteIndex 2
+	#define MMBCRTLabelTileCount 2
+
+	// DEF label
+	#define MMBDEFLabelX 0
+	#define MMBDEFLabelY 5
+	#define MMBDEFLabelVRAMTile 0x10A
+	#define MMBDEFLabelPaletteIndex 2
+	#define MMBDEFLabelTileCount 2
+
+	// DOD label
+	#define MMBDODLabelX 13
+	#define MMBDODLabelY 3
+	#define MMBDODLabelVRAMTile 0x10C
+	#define MMBDODLabelPaletteIndex 2
+	#define MMBDODLabelTileCount 2
+
+	// EXP label
+	#define MMBEXPLabelX 8
+	#define MMBEXPLabelY 0
+	#define MMBEXPLabelVRAMTile 0x160
+	#define MMBEXPLabelPaletteIndex 2
+	#define MMBEXPLabelTileCount 2
+
+	// HIT label
+	#define MMBHITLabelX 8
+	#define MMBHITLabelY 4
+	#define MMBHITLabelVRAMTile 0x10E
+	#define MMBHITLabelPaletteIndex 2
+	#define MMBHITLabelTileCount 2
+
+	// Level label
+	#define MMBLevelLabelX 4
+	#define MMBLevelLabelY 0
+	#define MMBLevelLabelVRAMTile 0x162
+	#define MMBLevelLabelPaletteIndex 2
+	#define MMBLevelLabelTileCount 2
+
+	// RES label
+	#define MMBRESLabelX 4
+	#define MMBRESLabelY 5
+	#define MMBRESLabelVRAMTile 0x164
+	#define MMBRESLabelPaletteIndex 2
+	#define MMBRESLabelTileCount 2
+
+	// RTG label
+	#define MMBRTGLabelX 9
+	#define MMBRTGLabelY 6
+	#define MMBRTGLabelVRAMTile 0x166
+	#define MMBRTGLabelPaletteIndex 2
+	#define MMBRTGLabelTileCount 2
