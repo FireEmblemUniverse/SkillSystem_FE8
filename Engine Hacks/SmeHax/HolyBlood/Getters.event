@@ -11,11 +11,13 @@ HolyBloodDescGetter:
 POIN HolyBloodTable
 POIN HolyBloodCharacterTable
 
-//generic getter for all other uses
+//generic getter for all other uses; pass char ID in r0, returns table data pointer or 0 in r0 and major boolean in r1
 
 HolyBloodGetter:
 #incbin "BloodGetter.dmp"
 POIN HolyBloodTable
 POIN HolyBloodCharacterTable
 
-
+HolyBloodWeaponLocks:
+#incbin "WeaponLocks.dmp"
+POIN HolyBloodGetter
