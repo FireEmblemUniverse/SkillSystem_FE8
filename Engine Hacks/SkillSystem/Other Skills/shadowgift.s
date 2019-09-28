@@ -11,6 +11,9 @@ push	{r14}
 @r5 = item halfword
 @r6 = rank
 
+mov r4,r0
+mov r5,r1
+mov r6,r2
 
 mov r0,#0xFF
 and r0,r5
