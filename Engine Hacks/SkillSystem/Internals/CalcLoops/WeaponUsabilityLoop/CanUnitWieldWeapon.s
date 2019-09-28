@@ -38,7 +38,7 @@ ldr r0,=#0x003D3C00 @word to be &ed to the item ability word
 and r0,r2
 cmp r0,#0
 bne HasWeaponLocks
-b LockCheck7
+b IsUnitStatused
 
 HasWeaponLocks:
 
@@ -73,50 +73,26 @@ mov r3,r0 @r3= item ability word
 ldr r7,LookupList @r7= current lookup list position
 
 LoopStart:
-ldrb r0,[r7]
-cmp r0,#0xFF
-beq LockCheck7 @if we've reached the end, leave
+ldr r0,[r7]
+ldr r1,=#0xFFFFFFFF
+cmp r0,r1
+beq IsUnitStatused @if we've reached the end, leave
 
 @otherwise, check for our current lock on our current item
-cmp r0,#2
-beq ItemAbilityByte2
-b ItemAbilityByte3
-
-ItemAbilityByte2:
-ldrb r0,[r7,#1]
-lsl r0,r0,#8
-b TestItemAbilityByte
-
-ItemAbilityByte3:
-ldrb r0,[r7,#1]
-lsl r0,r0,#16
 
 TestItemAbilityByte:
 tst r0,r3 @if this returns true, then the current lock is not set on the weapon
 beq RestartLoop 
 
 @otherwise, check if the equivalent char/class ability bit is set
-ldrb r0,[r7,#2]
-cmp r0,#3
-beq CharClassAbilityByte3
-b CharClassAbilityByte4
-
-CharClassAbilityByte3:
-ldrb r0,[r7,#3]
-lsl r0,r6,#8
-lsr r0,r0,#24
-b TestCharClassAbilityByte
-
-CharClassAbilityByte4:
-ldrb r0,[r7,#3]
-lsl r0,r0,#24
+ldr r0,[r7,#4]
 
 TestCharClassAbilityByte:
 tst r0,r6
 beq CannotWield
 
 RestartLoop:
-add r7,#4
+add r7,#8
 b LoopStart
 
 
@@ -336,6 +312,9 @@ cmp	r0,r2
 bhs	ExitLoop
 
 @here we gonna put our external function loop
+mov r0,r4
+mov r1,r5
+mov r2,r6
 ldr r7,ExternalLoop
 ExternalLoopStart:
 ldr r0,[r7]
