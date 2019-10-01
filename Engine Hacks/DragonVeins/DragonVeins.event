@@ -62,8 +62,6 @@
       SHORT 0
   POP
 
-  MESSAGE DVs installed to CURRENTOFFSET
-
   DrawingOffset_External:
     #incbin "asm/DrawingDragonVein_Ext.dmp"
 
