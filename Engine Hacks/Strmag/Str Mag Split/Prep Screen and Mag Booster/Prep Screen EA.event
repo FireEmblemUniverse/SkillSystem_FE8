@@ -183,7 +183,7 @@
 	ORG $29F1E
 	BYTE 0x68
 	ORG $29F30
-	POIN Prep_Screen_Usability_Table
+	POIN PrepScreenUsabilityTable
 	
 	ORG $29464
 	callHack_r3(Prep_Screen_Usability1)
@@ -202,6 +202,9 @@
 	
 	ORG Mag_Booster_Item_Effect_Ptr
 	POIN 0x2FF40
+	
+	ORG Mag_Booster_Prep_Screen_Usability_Ptr
+	POIN 0x2A0D0
 	
 	ORG 0x2F8A4
 	SHORT 0x46C0 0x46C0 0x46C0 0x4902 ; BYTE SpiritDust 0x28 ; SHORT 0xD127 0x2514 0xE02B // nop ; nop ; nop ; ldr r1, =#0x0802F8B4 ; cmp r0, #(SpiritDust) ; bne #0x0802F900 ; mov r5, #0x14 ; b #0x0802F90C.
@@ -277,9 +280,9 @@
 	Prep_Screen_Usability2:
 	#incbin "Prep Screen Usability2.dmp"
 	
-	ALIGN 4
-	Prep_Screen_Usability_Table:
-	#incbin "Prep Screen Usability Table.dmp"
+	/*ALIGN 4
+	PrepScreenUsabilityTable:
+	#incbin "Prep Screen Usability Table.dmp"*/
 	
 	ALIGN 4
 	Mag_Booster_Item_Ptr:
