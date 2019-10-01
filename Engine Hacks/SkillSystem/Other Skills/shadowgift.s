@@ -5,6 +5,7 @@
 .equ ItemTable,LuminaStaffOption+4
 .thumb
 
+push	{r4-r6}
 push	{r14}
 
 @r4 = character pointer
@@ -83,6 +84,7 @@ True:
 mov	r0,#1
 
 End:
+pop {r4-r6}
 pop	{r1}
 bx	r1
 
