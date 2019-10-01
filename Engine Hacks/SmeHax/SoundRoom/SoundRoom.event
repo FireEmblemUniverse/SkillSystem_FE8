@@ -20,7 +20,7 @@
 //aee2e
 //aed22
 
-
+/*
 PUSH
 ORG 0xAED76
 BYTE 0x68
@@ -35,7 +35,34 @@ BYTE 0x68
 ORG 0xAF4B8
 SHORT 0x6800
 
-ORG 0xAD3B0 //ldrh r0,[r5,36h]
-SHORT 0x8EE8 //ldrh r0,[r5,68h] <--- this is an invalid op because can only store values up to 5 bits in this command
+ORG 0xAD39E
+//SHORT 0x46C0
+//callHack_r6(SoundRoomFix1)
 
 POP
+*/
+
+//.set prBottomHelpDisplay_New,    0x08035708 @ arguments: r0 = parent 6C, r1 = pointer to text IN BUFFER
+//.set prBottomHelpDisplay_EndAll, 0x08035748 @ none
+
+//looking for r0=0x78B
+
+
+//there's a bl at 80B006E, bl to 8035708 there?
+/*
+PUSH
+ORG 0xB006A
+SHORT 0x4802
+SHORT 0x1C29
+WORD 0xFB4BF785
+SHORT 0xE001
+WORD 0x20252F0
+POP
+
+
+
+
+ALIGN 4
+MESSAGE test currentOffset
+#incbin "SoundRoomFix1.dmp"
+*/
