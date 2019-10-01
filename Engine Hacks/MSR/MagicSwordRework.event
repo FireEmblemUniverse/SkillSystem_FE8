@@ -20,7 +20,6 @@ MagicSwordList:
 MagicSwordEntry(WindSword,WeaponTypeAnima,False,HitDef,HitRes)
 MagicSwordEntry(LightBrand,WeaponTypeLight,False,HitDef,HitRes)
 MagicSwordEntry(Runesword,WeaponTypeDark,True,HitRes,HitRes)
-
 BYTE 0 0 0 //terminator
 
 

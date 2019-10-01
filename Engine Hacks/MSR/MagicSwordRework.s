@@ -73,7 +73,14 @@ cmp r4,#0
 beq HitDef
 
 mov r0,r6
-add r0,#0x30 @get defender struct
+ldr r1,=#0x203A438
+cmp r1,r0
+beq Attacker
+sub r0,#0xC7
+b Poster
+Attacker:
+add r0,#0x30
+Poster:
 ldrb r1,[r0,#0x18] @enemy res
 ldrb r0,[r0,#0x17] @enemy def
 cmp r4,#2

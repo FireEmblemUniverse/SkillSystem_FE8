@@ -114,7 +114,7 @@ UNIT
 EnemyUnits:
 UNIT Fomortiis DemonKing 0 Level(1,Enemy,0) [6,20] 0x0 0x0 0x0 0x1 NoItems NeverMoveAI
 UNIT Morva_Ch20 0x3B 0x40 0xA5    [15,2] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
-UNIT ONeill Shaman 0x40 0xA5     [8,19] 0b 0x0 0x0 0x0 [Flux] AttackInRangeAI
+UNIT ONeill Mercenary 0x40 0xA5     [8,19] 0b 0x0 0x0 0x0 [IronSword] AttackInRangeAI
 UNIT Breguet Knight 0x40 0xA5     [5,18] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
 UNIT Bone Brigand 0x40 0xA5       [11,17] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
 UNIT Bazba Brigand 0x40 0xA5      [16,18] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
