@@ -312,15 +312,15 @@ cmp	r0,r2
 bhs	ExitLoop
 
 @here we gonna put our external function loop
+ldr r7,ExternalLoop
+ExternalLoopStart:
+ldr r3,[r7]
+cmp r3,#0
+beq ExitLoop
 mov r0,r4
 mov r1,r5
 mov r2,r6
-ldr r7,ExternalLoop
-ExternalLoopStart:
-ldr r0,[r7]
-cmp r0,#0
-beq ExitLoop
-mov lr,r0
+mov lr,r3
 .short 0xF800
 cmp r0,#0
 beq CannotWield
