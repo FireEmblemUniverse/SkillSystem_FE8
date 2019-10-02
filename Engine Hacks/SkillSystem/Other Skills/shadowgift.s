@@ -5,8 +5,7 @@
 .equ ItemTable,LuminaStaffOption+4
 .thumb
 
-push	{r4-r6}
-push	{r14}
+push	{r4-r6, r14}
 
 @r4 = character pointer
 @r5 = item halfword
