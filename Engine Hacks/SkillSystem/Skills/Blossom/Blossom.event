@@ -1,0 +1,9 @@
+#ifndef BLOSSOM_SKILL
+#define BLOSSOM_SKILL
+
+ExpC_BlossomSkill:
+	#incbin "Src/BlossomExp.dmp"
+	POIN SkillTester
+	WORD BlossomID
+
+#endif // BLOSSOM_SKILL

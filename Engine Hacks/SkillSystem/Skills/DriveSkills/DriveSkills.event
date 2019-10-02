@@ -1,0 +1,29 @@
+#ifndef DRIVE_SKILLS
+#define DRIVE_SKILLS
+
+BC_DriveDefSkill:
+	#incbin "Src/DriveDef.dmp"
+	POIN AuraSkillCheck
+	WORD DriveDefID
+
+BC_DriveMagSkill:
+	#incbin "Src/DriveMag.dmp"
+	POIN AuraSkillCheck
+	WORD DriveMagID
+
+BC_DriveResSkill:
+	#incbin "Src/DriveRes.dmp"
+	POIN AuraSkillCheck
+	WORD DriveResID
+
+BC_DriveSpdSkill:
+	#incbin "Src/DriveSpd.dmp"
+	POIN AuraSkillCheck
+	WORD DriveSpdID
+
+BC_DriveStrSkill:
+	#incbin "Src/DriveStr.dmp"
+	POIN AuraSkillCheck
+	WORD DriveStrID
+
+#endif // DRIVE_SKILLS

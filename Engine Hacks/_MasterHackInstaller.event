@@ -41,8 +41,18 @@ ORG FreeSpaceBLRange //defined in custom definitions
 
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
-  #incbin "Skill System/Internals/unset attack flag.dmp"
+  #incbin "SkillSystem/Internals/unset attack flag.dmp"
 
+  #ifdef USE_STRMAG_SPLIT
+    
+    #ifndef USE_SAVE_EXPANSION
+	  #define USE_SAVE_EXPANSION // Force use of EMS with Str/Mag Split
+	#endif // USE_SAVE_EXPANSION
+	
+	#include "Strmag/BL Range.event"
+  
+  #endif // USE_STRMAG_SPLIT
+	
 #undef inBLRange
 POP
 
@@ -74,10 +84,13 @@ POP
   #include "DragonVeins/DragonVeins.event"
 
   //Modular Stat Screen
-  #include "MSS/ModularStatScreen.event"
+  #ifndef USE_STRMAG_SPLIT
+	#include "MSS/ModularStatScreen.event"
+  #else
+    #include "MSS/ModularStatScreenStrmag/ModularStatScreen.event"
+  #endif // USE_STRMAG_SPLIT
 
   // Save/Suspend Expansion
-
   #ifdef USE_SAVE_EXPANSION
 
     // Use new EMS-based expansion
@@ -95,7 +108,36 @@ POP
     #include "SuspendDebuffs/SuspendExpansion.event"
 
   #endif // USE_SAVE_EXPANSION
-
+  
+  #ifdef USE_STRMAG_SPLIT
+  
+	#include "Strmag/_Master Asm Installer.event"
+	
+  #endif // USE_STRMAG_SPLIT
+  
+  // If uncommented, the Anima Triangle will be implemented.
+  // Go to "AnimaTriangle/AnimaTriangle.event" to define your fire, thunder, and wind magic lists.
+  // This patch normally conflicts with Tri-Adept, but installing here remedies this.
+  // #include "AnimaTriangle/AnimaTriangle.event"
+  
+  // If uncomented, ModularEXP will be implemented.
+  // Go to "ModularEXP/ModularEXP.event" and "Tables/FE8 Nightmare modules/Misc/Modular EXP Class Table.csv" to edit experience gains.
+  // This patch normally conflicts with Paragon, but installing here remedies this.
+  // #include "ModularEXP/ModularEXP.event"
+  
+  // If uncommented, PortraitSelectionASM will be implemented.
+  // Go to "PortraitSelectionASM/PortraitSelectionASM.event" to configure your modular portrait options.
+  // This patch normally conflitcs with Identity Problems and Random Mugs, but installing here remedies this.
+  // #include "PortraitSelectASM/PortraitSelectionASM.event"
+	
+  // If uncommented, StairsASM will be implemented.
+  // This patch adds an entry to the Unit Menu, so installing here is necessary.
+  // #include "Stairs/Stairs.event"
+  
+  // If uncommented, Raid will be implemented.
+  // This patch adds an entry to the Unit Menu, so installing here is necessary.
+  // #include "Raid/Raid.event"
+  
   // Debuffs
   #include "SuspendDebuffs/Debuffs.event"
 
@@ -125,7 +167,7 @@ POP
   #include "Freeze/EventFreeze.event"
 
   ALIGN 4
-  #include "Skill System/Master Skill Installer.event"
+  #include "SkillSystem/Master Skill Installer.event"
 
   #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
 
@@ -139,5 +181,8 @@ POP
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
   #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
 
+  //Calculation loops (used for conflicting hacks, formerly "Battle Calculations.event")
+  #include "SkillSystem/Internals/CalcLoops/Calculation Loops.event"
+  
   #include "UnitMenu.event"
   #include "Popups.event"

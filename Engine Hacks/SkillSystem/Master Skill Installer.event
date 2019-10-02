@@ -1,0 +1,120 @@
+
+#include "Internals/SkillSystem.event"
+
+#include "skill_lists.event" //who learns what skills when
+#include "charge_table.event"
+
+ALIGN 4
+SkillIcons:
+	#incext Png2Dmp "SkillIcons.png"
+	ORG 16*16/2*0xFF+SkillIcons // Allocate enough space for additional icons
+
+// new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
+// TODO: instead of having all macros in a single file have individual skill installers handle that
+
+#ifdef SKILLS_USE_DESCRIPTION_MACROS
+	#include "skill_descriptions.event"
+#endif
+
+#ifdef SKILLS_USE_ICON_MACROS
+	#include "skill_icons.event"
+#endif
+
+#include "Skills/Bane/Bane.event"
+#include "Skills/Dazzle/Dazzle.event"
+#include "Skills/FaireSkills/FaireSkills.event"
+#include "Skills/BreakerSkills/BreakerSkills.event"
+#include "Skills/BlowSkills/BlowSkills.event"
+#include "Skills/DefensiveSkills/DefensiveSkills.event"
+#include "Skills/Acrobat/Acrobat.event"
+#include "Skills/WaryFighter/WaryFighter.event"
+#include "Skills/Pass/Pass.event"
+
+#include "Skills/Provoke/Provoke.event"
+#include "Skills/Frenzy/Frenzy.event"
+#include "Skills/SelfHealingSkills/SelfHealingSkills.event"
+#include "Skills/Discipline/Discipline.event"
+#include "Skills/Vantage/Vantage.event"
+#include "Skills/Desperation/Desperation.event"
+#include "Skills/Wrath/Wrath.event"
+#include "Skills/LiveToServe/LiveToServe.event"
+#include "Skills/Paragon/Paragon.event"
+#include "Skills/Lunge/Lunge.event"
+#include "Skills/Mercy/Mercy.event"
+#include "Skills/SealSkills/SealSkills.event"
+#include "Skills/TerrainSkills/TerrainSkills.event"
+#include "Skills/Gamble/Gamble.event"
+#include "Skills/FieryBlood/FieryBlood.event"
+#include "Skills/LifeAndDeath/LifeAndDeath.event"
+#include "Skills/WindDisciple/WindDisciple.event"
+#include "Skills/Hawkeye/Hawkeye.event"
+#include "Skills/LightWeight/LightWeight.event"
+#include "Skills/Trample/Trample.event"
+#include "Skills/Opportunist/Opportunist.event"
+#include "Skills/CriticalSkills/CriticalSkills.event"
+#include "Skills/Axefaith/Axefaith.event"
+#include "Skills/Lethality/Lethality.event"
+#include "Skills/Armthrift/Armthrift.event"
+#include "Skills/CritUp/CritUp.event"
+#include "Skills/RightfulSkills/RightfulSkills.event"
+#include "Skills/TurnSkills/TurnSkills.event"
+#include "Skills/Roll1D12/Roll1D12.event" // TODO: fix this
+#include "Skills/Locktouch/Locktouch.event"
+#include "Skills/Trace/Trace.event" // TODO: fix this
+#include "Skills/StanceSkills/StanceSkills.event"
+#include "Skills/TriangleAdept/TriangleAdept.event"
+#include "Skills/VigorDance/VigorDance.event"
+#include "Skills/ArmorMarch/ArmorMarch.event"
+#include "Skills/Shadowgift/Shadowgift.event"
+#include "Skills/Perfectionist/Perfectionist.event"
+#include "Skills/Puissance/Puissance.event"
+#include "Skills/HolyAura/HolyAura.event"
+#include "Skills/BattleVeteran/BattleVeteran.event"
+#include "Skills/SilentPride/SilentPride.event"
+#include "Skills/Loyalty/Loyalty.event"
+#include "Skills/Thunderstorm/Thunderstorm.event"
+#include "Skills/Outrider/Outrider.event"
+#include "Skills/HeavyStrikes/HeavyStrikes.event"
+#include "Skills/Charge/Charge.event"
+#include "Skills/Infiltrator/Infiltrator.event"
+#include "Skills/Vanity/Vanity.event"
+#include "Skills/MageSlayer/MageSlayer.event" // TODO: fix this
+#include "Skills/KnightAspirant/KnightAspirant.event"
+#include "Skills/Boon/Boon.event"
+#include "Skills/Blossom/Blossom.event"
+
+#include "Skills/RandomMug/RandomMug.event"
+
+#include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
+#include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
+#include "Teq Skills/FE8-Nullify/Nullify EA.txt"
+
+#include "Skills/SpurSkills/SpurSkills.event"
+#include "Skills/DriveSkills/DriveSkills.event"
+#include "Skills/Demoiselle/Demoiselle.event"
+#include "Skills/MaleficAura/MaleficAura.event"
+#include "Skills/Intimidate/Intimidate.event"
+#include "Skills/Inspiration/Inspiration.event"
+#include "Skills/Charm/Charm.event"
+#include "Skills/Charisma/Charisma.event"
+#include "Skills/VoiceOfPeace/VoiceOfPeace.event"
+#include "Skills/Tantivy/Tantivy.event"
+#include "Skills/Focus/Focus.event"
+#include "Skills/Anathema/Anathema.event"
+#include "Skills/Hex/Hex.event"
+#include "Skills/LilysPoise/LilysPoise.event"
+#include "Skills/UpWithArch/UpWithArch.event"
+#include "Skills/Solidarity/Solidarity.event"
+
+#include "Post Combat Skills/Post Combat Skills Installer.event" // TODO: REORG
+#include "Proc Skills/Proc Skills Installer.event" // TODO: REORG
+
+#include "Skills/RallySkills/RallySkills.event"
+
+#include "AuraCheck/AuraCheck.event"
+
+#include "Stan Skills/HeroesMovement/HeroesMovement.event"
+
+#include "Range Skills/RangeSkills.event"
+
+#include "Skill Removal Menu/RemoveSkillMenu.event"

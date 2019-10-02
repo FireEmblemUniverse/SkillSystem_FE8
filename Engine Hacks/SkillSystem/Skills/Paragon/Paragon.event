@@ -1,0 +1,13 @@
+#ifndef PARAGON_SKILL
+#define PARAGON_SKILL
+
+// paragon skill for the Skill System
+// hack by ???
+
+ALIGN 4
+ExpC_ParagonSkill:
+	#incbin "Src/Paragon.dmp"
+	POIN SkillTester
+	WORD ParagonID
+
+#endif // PARAGON_SKILL

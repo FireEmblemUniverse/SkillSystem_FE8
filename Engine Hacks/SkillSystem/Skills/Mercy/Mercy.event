@@ -1,0 +1,21 @@
+#ifndef MERCY_SKILL
+#define MERCY_SKILL
+
+// Mercy skill for the Skill System
+// hack by Tequila, ported to skill system by circleseverywhere
+
+// TODO: better naming scheme for menu command usability/effect.
+// TODO: https://github.com/FireEmblemUniverse/SkillSystem_FE8/issues/29
+// TODO: decouple from whatever actually makes this work
+
+ALIGN 4
+MercyUsability:
+	#incbin "Src/MercyUsability.dmp"
+	POIN SkillTester
+	WORD MercyID
+
+ALIGN 4
+MercyEffect:
+	#incbin "Src/MercyEffect.dmp"
+
+#endif // MERCY_SKILL

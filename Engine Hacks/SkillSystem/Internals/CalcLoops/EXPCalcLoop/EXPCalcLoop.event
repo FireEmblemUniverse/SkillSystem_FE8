@@ -1,0 +1,16 @@
+
+	/* EXP calculation loop */
+
+#inctext lyn "EXPCalcLoop.elf" "EXPCalcLoopHook.elf"
+
+EXPCalcFunctions:
+	POIN ExpC_ParagonSkill
+	POIN ExpC_BlossomSkill
+
+#ifdef MODULAR_EXP
+	POIN ModularEXP
+#endif // MODULAR_EXP
+
+	WORD 0 // End
+
+PROTECT 0x2B960 0x2B970

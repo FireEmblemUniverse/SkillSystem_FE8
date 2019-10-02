@@ -1,0 +1,85 @@
+#ifndef RALLY_SKILLS
+#define RALLY_SKILLS
+
+// Rally based on debuffs by crazycolorz5
+// Rally skills by circleseverywhere (?)
+// Rewritten by StanH_ to include cool effects
+
+#include "MapAuraFx/MapAuraFx.event"
+
+#include "Src/Rally.lyn.event"
+#include "Src/RallyFx.lyn.event"
+
+RallySkillList: // rally mag isn't in this because no split assumed
+	BYTE RallyStrID
+	BYTE RallySklID
+	BYTE RallySpdID
+	BYTE RallyDefID
+	BYTE RallyResID
+	BYTE RallyLukID
+	BYTE RallyMovID
+	BYTE RallySpectrumID
+#ifdef USE_STRMAG_SPLIT
+	BYTE RallyMagID
+#endif // USE_STRMAG_SPLIT
+	BYTE 0 // end
+
+ALIGN 4
+RallyFxPaletteLookup:
+	POIN gRallyStrengthPalette   // Rally strength
+	POIN gRallySkillPalette      // Rally skill
+	POIN gRallySpeedPalette      // Rally speed
+	POIN gRallyDefensePalette    // Rally defense
+	POIN gRallyResistancePalette // Rally resistance
+	POIN gRallyLuckPalette       // Rally luck
+	POIN gRallyMovePalette       // Rally mov
+	POIN gRallyGenericPalette    // Rally spectrum
+#ifdef USE_STRMAG_SPLIT
+	POIN gRallyMagicPalette // Rally mag
+#endif // USE_STRMAG_SPLIT
+
+gpRallyDebuffsAddr:
+	WORD DebuffTable
+
+ALIGN 4
+gRallyPreviewPalette:
+gRallyGenericPalette:
+	#incext Png2Dmp "Data/fx-preview.png" --palette-only
+
+ALIGN 4
+gRallyStrengthPalette:
+	#incext Png2Dmp "Data/fx-strength.png" --palette-only
+
+ALIGN 4
+gRallySkillPalette:
+	#incext Png2Dmp "Data/fx-skill.png" --palette-only
+
+ALIGN 4
+gRallySpeedPalette:
+	#incext Png2Dmp "Data/fx-speed.png" --palette-only
+
+ALIGN 4
+gRallyDefensePalette:
+	#incext Png2Dmp "Data/fx-defense.png" --palette-only
+
+ALIGN 4
+gRallyResistancePalette:
+	#incext Png2Dmp "Data/fx-resistance.png" --palette-only
+
+ALIGN 4
+gRallyLuckPalette:
+	#incext Png2Dmp "Data/fx-luck.png" --palette-only
+
+ALIGN 4
+gRallyMovePalette:
+	#incext Png2Dmp "Data/fx-move.png" --palette-only
+	
+#ifdef USE_STRMAG_SPLIT
+
+ALIGN 4
+gRallyMagicPalette:
+	#incext Png2Dmp "Data/fx-magic.png" --palette-only
+
+#endif // USE_STRMAG_SPLIT
+
+#endif // RALLY_SKILLS

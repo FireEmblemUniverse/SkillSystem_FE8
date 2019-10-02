@@ -1,0 +1,15 @@
+#ifndef TRIANGLEADEPT_SKILL
+#define TRIANGLEADEPT_SKILL
+
+// Triangle Adept skill for the Skill System
+// hack by Tequila
+
+// Add to WTA loop
+
+ALIGN 4
+WtaC_TriangleAdeptSkill:
+	#incbin "Src/TriangleAdept.dmp"
+	POIN SkillTester
+	WORD TriAdeptID
+
+#endif // TRIANGLEADEPT_SKILL

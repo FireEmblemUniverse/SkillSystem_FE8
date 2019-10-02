@@ -1,0 +1,19 @@
+#ifndef BOON_SKILL
+#define BOON_SKILL
+
+PUSH
+	// TODO: modular everything
+
+	ORG $188F6 // Boon and i guess anything else that may want to mess with status healing in the future
+		SHORT $B440
+		callHack_r6(BoonHook)
+
+POP
+
+ALIGN 4
+BoonHook:
+	#incbin "Src/Boon.dmp"
+	POIN SkillTester
+	WORD BoonID
+
+#endif // BOON_SKILL

@@ -16,7 +16,8 @@
     #define Vein_Map_Sprite_Number 0x67 //Use the one after Light Rune for now
     #define DragonVeinSFXID 0x57
     #define DragonVeinTrapID 0x6
-    #define DragonVeinEffectTableOffset 0xF00000
+    DragonVeinEffectTableOffset:
+    WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
     #define VeinEffect(id, event) "PUSH; ORG DragonVeinEffectTableOffset + (4 * id); POIN event; POP"
 
@@ -124,11 +125,21 @@
 
   // public functions
   
+  #ifdef DRAGON_VEIN_SKILL_REQUIRED
   VeinUsability:
     #incbin "asm/Dragon Vein Usability.dmp"
     WORD DragonVeinTrapID
     POIN SkillTester
     WORD DragonsBloodID
+  #endif
+
+  #ifndef DRAGON_VEIN_SKILL_REQUIRED
+  VeinUsability:
+    #incbin "asm/Dragon Vein Usability NoSkill.dmp"
+    WORD DragonVeinTrapID
+    POIN SkillTester
+    WORD DragonsBloodID
+  #endif
 
   VeinEffect:
     #incbin "asm/Dragon Vein Execution.dmp"
