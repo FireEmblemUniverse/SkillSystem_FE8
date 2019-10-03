@@ -89,26 +89,8 @@ POP
   #else
     #include "MSS/ModularStatScreenStrmag/ModularStatScreen.event"
   #endif // USE_STRMAG_SPLIT
-
-  // Save/Suspend Expansion
-  #ifdef USE_SAVE_EXPANSION
-
-    // Use new EMS-based expansion
-
-    MESSAGE "Using EMS Save/Suspend Expansion"
-
-    #include "ExpandedModularSave/ExModularSave.event"
-
-  #else // USE_SAVE_EXPANSION
-
-    // Use legacy suspend expansion (for compatibility)
-
-    MESSAGE "Using Legacy Suspend Expansion"
-
-    #include "SuspendDebuffs/SuspendExpansion.event"
-
-  #endif // USE_SAVE_EXPANSION
   
+  // Strength/Magic Split
   #ifdef USE_STRMAG_SPLIT
   
 	#include "Strmag/_Master Asm Installer.event"
@@ -137,6 +119,10 @@ POP
   // If uncommented, Raid will be implemented.
   // This patch adds an entry to the Unit Menu, so installing here is necessary.
   // #include "Raid/Raid.event"
+  
+  // If uncommented, Escape-Arrive will be implemented.
+  // /this adds entries to the Unit Menu and normally conflicts with Lunge and Stairs. Install here to avoid the conflicts.
+   #include "Escape-Arrive/Escape Installer.event"
   
   // Debuffs
   #include "SuspendDebuffs/Debuffs.event"
@@ -186,3 +172,28 @@ POP
   
   #include "UnitMenu.event"
   #include "Popups.event"
+
+  #ifdef STAIRS_ASM
+    #ifndef USE_SAVE_EXPANSION
+	  #define USE_SAVE_EXPANSION // Force use of EMS with Stairs (for saving the stair debuff byte in suspend).
+	#endif // USE_SAVE_EXPANSION
+  #endif // STAIRS_ASM
+  
+  // Save/Suspend Expansion
+  #ifdef USE_SAVE_EXPANSION
+
+    // Use new EMS-based expansion
+
+    MESSAGE "Using EMS Save/Suspend Expansion"
+
+    #include "ExpandedModularSave/ExModularSave.event"
+
+  #else // USE_SAVE_EXPANSION
+
+    // Use legacy suspend expansion (for compatibility)
+
+    MESSAGE "Using Legacy Suspend Expansion"
+
+    #include "SuspendDebuffs/SuspendExpansion.event"
+
+  #endif // USE_SAVE_EXPANSION
