@@ -13,11 +13,17 @@ StairsUsability:
 push { r4 - r6, lr }
 @ First, I want to prevent someone using multiple stairs in one turn.
 ldr r0, =#0x03004E50
-ldr r0, [ r0 ]
+ldr r4, [ r0 ] @ Keep character struct in r4 for the time being.
 ldr r1, =CharacterStructStairByte
 ldrb r1, [ r1 ]
-ldrb r0, [ r0, r1 ] @ This should be 0 if no stairs were messed with this turn.
+ldrb r0, [ r4, r1 ] @ This should be 0 if no stairs were messed with this turn.
 cmp r0, #0x00
+bne EndFalseNoPop
+
+@ Also ensure that this unit isn't cantoing or rescuing.
+ldr r0, [ r4, #0x0C ]
+mov r1, #0x50 @ isRescuing||isCantoing.
+tst r0, r1
 bne EndFalseNoPop
 
 ldr r0, =#0x0202BCF0 @ Chapter data struct
@@ -68,27 +74,31 @@ ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 cmp r0, r5
 bne Skip2 @ If the X coordinates are different, then this isn't the same LOCA. Continue.
 cmp r1, r6
-beq BeginCheck4 @ If the X and Y coordinates are different, try again.
+beq BeginCheck4 @ If the X and Y coordinates are the same, try again.
 
 Skip2:
-@ Now I need to check if there's a unit at these matching coordinates
-ldr r2, =#0x0202BE4C
-sub r2, #0x48
-StartCharacterLoop:
-add r2, #0x48
-ldr r3, [ r2 ]
-cmp r3, #0x00 @ Check if this is the final entry in the character struct. If so, then no one's on that tile.
-beq EndTrue
-ldrb r3, [ r2, #0x10 ]
-cmp r0, r3
-bne StartCharacterLoop @ If not on the same X coordinate, loop back
-ldrb r3, [ r2, #0x11 ]
-cmp r1, r3
-bne StartCharacterLoop
+@ Now I need to check if there's a unit at these matching coordinates.
+@ Aaaahhhhh we can't use the unit map because it doesn't work in fog.
+mov r4, r0 @ r4 = X coord to check.
+mov r5, r1 @ r5 = Y coord to check.
+mov r6, #0x00 @ r6 = counter.
+StartGreyLoop:
+add r6, r6, #0x01
+cmp r6, #0xC0
+bge EndTrue @ No units found at these coordinates. Return usabile.
+mov r0, r6
+blh 0x08019430, r1 @ GetUnit. r0 = character struct to check.
+cmp r0, #0x00
+beq StartGreyLoop @ No character here.
+ldrb r1, [ r0, #0x10 ]
+cmp r1, r4
+bne StartGreyLoop @ X coords don't match.
+ldrb r1, [ r0, #0x11 ]
+cmp r1, r5
+bne StartGreyLoop @ Y coords don't match.
 
 @ If it's here, then the X coordinate is the same along with the Y. There's a unit on the other end, so return grey.
 @ EndGrey:
-
 mov r0, #2
 pop { r4 - r6 }
 pop { r1 }
@@ -179,27 +189,9 @@ ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 cmp r1, r6
 beq BeginCheck3
 
-@ldr r2, =#0x03004E50
-@ldr r2, [ r2 ] @ Pointer to current character struct
-@strb r0, [ r2, #0x10 ]
-@strb r1, [ r2, #0x11 ]
-
 Skip:
-@push { r0, r1 }
 ldr r4, =#0x03004E50
 ldr r4, [ r4 ]
-@mov r0, r4
-@blh #0x0802810C, r3 @ Stuff
-
-@blh #0x080790A4, r3 @ Ends unit movement
-
-@mov r0, r4
-@blh #0x08078464, r3 @ More movement stuff?
-
-@mov r0, r7
-@mov r1, #0x01
-@blh #0x08002F24, r3
-@pop { r0, r1 }
 ldr r2, =#0x0203A958
 strb r0, [ r2, #0x0E ]
 strb r1, [ r2, #0x0F ] @ Sets new coordinates in the action struct
@@ -212,12 +204,16 @@ strb r1, [ r4, #0x11 ]
 ldrb r2, [ r2, #0x10 ] @ Has squares moved.
 cmp r2, #0x00
 bne SquaresMoved
-mov r2, #0x7F
-
+	mov r2, #0x7F
+	
 SquaresMoved:
 ldr r1, =CharacterStructStairByte
 ldrb r1, [ r1 ]
 strb r2, [ r4, r1 ]
+
+ldr r0, =StairCameraEvent
+mov r1, #0x00
+blh #0x0800D07C, r2 @ Call event engine to take the camera to the other end of the stairs.
 
 mov r0, #0x17
 
@@ -228,7 +224,8 @@ bx r1
 
 .global FixWait2
 .type FixWait2, %function
-FixWait2: @ Autohook to 0x0801879A
+FixWait2: @ Incorporated into Post-Action calc loop.
+/*
 cmp r0, #0x00
 beq EndWaitFix2 @ From vanilla routine
 ldr r0, [ r6 ]
@@ -271,6 +268,36 @@ blh #0x0801849C, r1
 pop { r4 - r6 }
 pop { r0 }
 bx r0
+*/
+@ This function is now called by the Post-Action calc loop!
+@ r0 = character struct.
+@ Immediately end if there is no debuff or if their turn has already been extended (top bit is set.)
+
+@ The first time this is called, they JUST took the stairs. If so, upon entry, the top bit is NOT set, and the stair debuff byte is squares moved only.
+	@ Set the top bit of the stair debuff byte and refresh the unit.
+@ The second time this is called, they are performing an action AFTER taking the stairs. If so, upon entry, the top bit IS set, and bits below are the stair debuff byte.
+	@ Clear the stair debuff byte.
+ldr r3, =CharacterStructStairByte
+ldrb r3, [ r3 ]
+ldrb r1, [ r0, r3 ] @ Current stair debuff byte.
+cmp r1, #0x00
+beq EndFixWait2 @ Immediately end if no stair debuff is detected.
+mov r2, #0x80
+bic r2, r1
+cmp r2, #0x00
+beq EndFixWait2Store @ Fancy way of testing if the top bit is set and setting 0 if so.
+	@ They just took the stairs. Get the turn status bitfield and unset "Turn ended". Also set the top bit of the stair debuff while we're here.
+	mov r2, #0x00
+	strb r2, [ r0, #0x0C ] @ Unit is completely refreshed.
+	mov r2, #0x80
+	orr r2, r1, r2
+	cmp r2, #0xFF
+	bne EndFixWait2Store
+		mov r2, #0x80 @ Oh they didn't move. Let's just set to 0x80 which shows 0 mov debuff but has the top bit set.
+EndFixWait2Store:
+strb r2, [ r0, r3 ]
+EndFixWait2:
+bx lr
 
 .global StairsMoveDebuff
 .type StairsMoveDebuff, %function
@@ -305,9 +332,12 @@ push { lr } @ r0 = this stat, r1 = this character struct.
 ldr r2, =CharacterStructStairByte
 ldrb r2, [ r2 ]
 ldrb r2, [ r1, r2 ]
-lsl r2, r2, #25
-lsr r2, r2, #25 @ Remove the stair flag
-sub r0, r0, r2
+cmp r2, #0xFF
+beq EndStairsMoveDebuff
+	lsl r2, r2, #25
+	lsr r2, r2, #25 @ Remove the stair flag
+	sub r0, r0, r2
+EndStairsMoveDebuff:
 pop { pc }
 
 
