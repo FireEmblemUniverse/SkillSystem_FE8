@@ -1,0 +1,105 @@
+#ifndef UNIT_MENU
+#define UNIT_MENU
+
+#include "Extensions/Hack Installation.txt"
+#include "_UnitMenuDefs.event"
+
+PUSH
+  // Repoint Unit Menu
+
+  ORG $59D1F8
+    POIN UnitMenuTable
+
+  // Make the unit menu wider (to fit longer words)
+
+  ORG $59d1f2
+    BYTE 0x9 // width
+
+  ORG $1d4fa
+    BYTE $01 // left x coord (open 1)
+
+  ORG $1d4fc
+    BYTE $14 // right x coord (open 1)
+
+  ORG $1D44E
+    BYTE $01 // left x coord (open 2)
+
+  ORG $1D450
+    BYTE $14 // right x coord (open 2)
+
+  /*
+
+  Goddammit Teq (capture hooks here too)
+
+  ORG $22882
+    BYTE $01 // left x coord (go back 1)
+
+  ORG $22884
+    BYTE $14 // right x coord (go back 1)
+
+  */
+
+  ORG $22818
+    BYTE $01 // left x coord (go back 2)
+
+  ORG $2281A
+    BYTE $14 // right x coord (go back 2)
+
+  ORG $22772
+    BYTE $01 // left x coord (go back 3)
+
+  ORG $22774
+    BYTE $14 // right x coord (go back 3)
+
+  ORG $23660
+    BYTE $01 // left x coord (go back 4)
+
+  ORG $23662
+    BYTE $14 // right x coord (go back 4)
+
+POP
+
+ALIGN 4         //Insert new commands where you want them to appear in the menu
+UnitMenuTable:
+  //Use the macro MenuCommand(name,description,colour,usability,effect)
+  //Color options: NormalText, GrayText, BlueText, OrangeText, GreenText (flashes), BlackText
+  //MenuCommand(DualAtkTxtID,DualAtkDescId,0,DualAtkCheck,DualAtkSelected) 
+
+  MenuCommand(0x67A, 0x6CC, BlueText, $08022FDD, $8023021)
+  MenuCommand(ArriveName, ArriveDesc, BlueText, ArriveCheck|IsPointer, $8023021)
+  MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeLordUsability|IsPointer, $8023021)
+  MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeGeneralUsability|IsPointer, EscapeGeneralEffect|IsPointer)
+  
+  UM_Attack
+  UM_Attack_B
+  UM_Staff
+  UM_Ride
+  UM_Exit
+  UM_Play
+  UM_Dance
+  UM_Steal
+  UM_Summon
+  UM_Summon_DK
+  UM_Pick
+  UM_Talk
+  UM_Support
+  UM_Visit
+  UM_Chest
+  UM_Door
+  UM_Armory
+  UM_Vendor
+  UM_Secret
+  UM_Arena  
+  UM_Rescue
+  UM_Give
+  UM_Take
+  UM_Drop
+
+  UM_Item
+  UM_Trade
+  UM_Supply
+  UM_Wait
+
+  UM_Separator 
+
+#endif // UNIT_MENU
