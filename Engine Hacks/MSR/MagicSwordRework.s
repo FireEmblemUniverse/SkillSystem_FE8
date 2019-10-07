@@ -43,7 +43,7 @@ lsr r4,r4,#4
 
 mov r0,#0x1
 tst r3,r0
-bne SetWeaponType
+bne AtRange
 
 b TargetBehavior
 
@@ -53,6 +53,10 @@ AtRange:
 ldrb r0,[r5,#0x14] @halve str
 lsr r0,r0,#1
 strb r0,[r5,#0x14]
+
+mov r0,#0x1
+tst r3,r0
+bne SetWeaponType
 
 lsl r4,r4,#28
 lsr r4,r4,#28
