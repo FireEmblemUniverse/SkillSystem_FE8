@@ -14,7 +14,7 @@
     #define VeinDefinitions
 
     #define Vein_Map_Sprite_Number 0x67 //Use the one after Light Rune for now
-	#define Heal_Map_Sprite_Number 0x68 // DO THIS IDK WHAT TO DO YET
+	#define Heal_Map_Sprite_Number 0x68
     #define DragonVeinSFXID 0x57
     #define DragonVeinTrapID 0x6
     DragonVeinEffectTableOffset:
