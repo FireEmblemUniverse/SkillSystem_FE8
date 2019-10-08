@@ -1,5 +1,8 @@
-//name and desc getters for MSS
+//defs for testing
+#define IsMajor 0x80
+#define DonateBlood 0
 
+//name and desc getters for MSS
 
 HolyBloodNameGetter:
 #incbin "NameGetter.dmp"
@@ -18,6 +21,8 @@ HolyBloodGetter:
 POIN HolyBloodTable
 POIN HolyBloodCharacterTable
 
+//weapon usability loop function
+MESSAGE Blood Lock currentOffset
 HolyBloodWeaponLocks:
 #incbin "WeaponLocks.dmp"
 POIN HolyBloodGetter

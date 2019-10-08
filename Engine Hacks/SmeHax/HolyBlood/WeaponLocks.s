@@ -26,18 +26,9 @@ mov r3,r0 @r3=holy blood ID
 
 ldr r7,HolyBloodLocks
 
-LoopStart:
-ldrb r0,[r7]
-cmp r0,#0xFF
-beq RetTrue
-cmp r0,r5
-bne RestartLoop
-ldrb r0,[r7,#1]
+add r0,r7,r5
 cmp r0,r3
-bne RetFalse
-RestartLoop:
-add r7,#1
-b LoopStart
+beq RetTrue
 
 RetFalse:
 mov r0,#0
