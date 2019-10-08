@@ -82,8 +82,8 @@ jumpToHack(LiveToServe)
 //lunge
 ORG $18744
 callHack_r3(Lunge)
-ORG $187b0
-jumpToHack(LungeUpdate)
+//ORG $187b0
+//jumpToHack(LungeUpdate) // Integrated into post-action loop to resolve lunge/stairs/escape-arrive conflict
 ORG $3a094
 jumpToHack(LungeAI)
 
