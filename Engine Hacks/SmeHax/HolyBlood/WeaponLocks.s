@@ -1,3 +1,5 @@
+.thumb
+.align
 .macro blh to, reg
     ldr \reg, =\to
     mov lr, \reg
