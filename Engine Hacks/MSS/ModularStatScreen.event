@@ -137,6 +137,8 @@
     #incbin "asm/mss_page4.dmp"
 	WORD SS_BloodText
 	POIN HolyBloodNameGetter|1
+	WORD SS_BiorhythmText
+	POIN BiorhythmNameGetter|1
 
   ALIGN 4
   NewPageNameGraphic:

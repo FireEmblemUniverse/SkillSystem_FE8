@@ -1,0 +1,40 @@
+ALIGN 4
+Biorhythm:
+#incbin "Biorhythm.dmp"
+POIN BiorhythmTable
+WORD 1
+WORD 2
+WORD 3
+WORD 4
+WORD 5
+WORD 6
+WORD 7
+WORD 6
+WORD 5
+WORD 4
+WORD 3
+WORD 2
+
+ALIGN 4
+BiorhythmGetter: //takes char struct in r0
+#incbin "BiorhythmGetter.dmp"
+POIN BiorhythmTable
+
+MESSAGE bio currentOffset
+ALIGN 4
+BiorhythmNameGetter:
+#incbin "BiorhythmNameGetter.dmp"
+POIN BiorhythmGetter
+POIN BiorhythmTable
+POIN BiorhythmTextTable
+
+ALIGN 4
+BiorhythmTextTable:
+WORD SS_Biorhythm1
+WORD SS_Biorhythm2
+WORD SS_Biorhythm3
+WORD SS_Biorhythm4
+WORD SS_Biorhythm5
+WORD SS_Biorhythm6
+WORD SS_Biorhythm7
+
