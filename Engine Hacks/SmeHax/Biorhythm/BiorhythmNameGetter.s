@@ -11,8 +11,7 @@
 push {r4-r7,r14}
 
 @get active unit's struct in r0
-ldr r0,ActiveUnitPointer
-ldr r0,[r0]
+mov r0,r8
 
 @call biorhythm getter
 ldr r1,BiorhythmGetter

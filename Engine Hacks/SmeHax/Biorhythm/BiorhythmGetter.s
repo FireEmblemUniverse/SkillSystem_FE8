@@ -7,7 +7,6 @@ push {r4-r7,r14}
 @r0 is the attacker
 @r1 is the defender
 mov r5, r0 @attacker
-mov r6, r1 @defender
 
 
 @get unit ID in r0
@@ -37,7 +36,7 @@ add r1,r2 @add initial starting phase to above value
 mov r2,r1 @r2 isn't touched by the swi, so to maintain value in r1 we move it here
 push {r0,r1,r3} @some of this is redundant but these are the 3 registers the swi returns values to
 mov r0,r2 @numerator
-mov r1,#11 @denominator
+mov r1,#12 @denominator
 swi 0x6 @div
 mov r4,r1 @returns remainder (the number we need) in r1, move it to r4 so when we pop we don't lose it
 pop {r0,r1,r3} 

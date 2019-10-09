@@ -423,7 +423,10 @@
     RMenu(0,ST_Blood,ST_Name4,0,0x86,0x48,DonateURL)
 	
   ST_Blood:
-    RMenu(ST_Donate,0,ST_Name4,0,0x82,0x58,0x0,HolyBloodDescGetter)
+    RMenu(ST_Donate,ST_Bio,ST_Name4,0,0x82,0x58,0x0,HolyBloodDescGetter)
+  
+  ST_Bio:
+    RMenu(ST_Blood,0,ST_Class4,0,0x82,0x68,SS_BiorhythmRText)
 
 #else // _FE8_
   ERROR Modular Stat Screen hack is for FE8
