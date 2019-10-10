@@ -42,7 +42,8 @@
 	
 	ALIGN 4
 	New_Battle_Anims_Off_Graphics:
-	#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
+	//#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
+	#incbin "Anims_Off_Battle_Graphic New.dmp"
 	
 	ALIGN 4
 	New_Battle_Anims_Off_Right_TSA:
@@ -59,15 +60,18 @@
 	
 	ALIGN 4
 	Battle_Name_Graphics:
-	#incext Png2Dmp "New_Stat_Names.png" --lz77
+	//#incext Png2Dmp "New_Stat_Names.png" --lz77
+	#incbin "New_Stat_Names.dmp"
 	
 	ALIGN 4
 	Battle_Name_Palette:
-	#incext Png2Dmp "New_Stat_Names.png" --palette-only
+	//#incext Png2Dmp "New_Stat_Names.png" --palette-only
+	#incbin "New_Stat_Names_pal.dmp"
 	
 	ALIGN 4
 	New_Numbers:
-	#incext Png2Dmp "New_Numbers.png" --lz77
+	//#incext Png2Dmp "new_numbers.png" --lz77
+	#incbin "new_numbers.dmp"
 	
 #else
 	ERROR "You're not assembling FE8 events!"
