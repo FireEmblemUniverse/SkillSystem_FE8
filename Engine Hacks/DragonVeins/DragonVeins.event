@@ -99,11 +99,13 @@
     #incbin "asm/Initialize.dmp"
 
   VeinGraphics:
-  //#incbin "ASM/Dragon Vein/SparkleGraphic.dmp"
-  #incext Png2Dmp "asm/sparkle_final_4_Sheet.png" --lz77
+  //#incbin "asm/Dragon Vein/SparkleGraphic.dmp"
+  //#incext Png2Dmp "asm/sparkle_final_4_Sheet.png" --lz77
+  #incbin "asm/sparkle_final_4_Sheet.dmp"
 
   HealGraphics:
-  #incext Png2Dmp "asm/sparkle_final_4.png" --lz77
+  //#incext Png2Dmp "asm/sparkle_final_4.png" --lz77
+  #incbin "asm/sparkle_final_4.dmp"
 
   PUSH
     ORG $8cce4
