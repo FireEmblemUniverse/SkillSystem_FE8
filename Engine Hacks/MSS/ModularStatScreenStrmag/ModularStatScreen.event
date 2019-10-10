@@ -252,11 +252,14 @@
 	#incbin "asm/Write_Growths_To_Battle_Struct.dmp"
 	POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Mag_Growth Get_Luk_Growth
 	WORD Growth_Options
-	
-	ALIGN 4
-	Class_Level_Cap_Table:
-	#incbin "Display Growths Options/Class_Level_Cap_Table.dmp"
-	
+
+/*
+  This has been moved to a CSV
+  ALIGN 4
+  Class_Level_Cap_Table:
+  #incbin "Display Growths Options/Class_Level_Cap_Table.dmp"
+*/
+
 	ALIGN 4
 	Enemy_Autolevel:
 	#incbin "asm/Enemy_Autolevel.dmp"
