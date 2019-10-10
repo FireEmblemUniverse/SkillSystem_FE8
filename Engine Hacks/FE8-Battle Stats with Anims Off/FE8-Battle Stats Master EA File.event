@@ -71,7 +71,7 @@
 	ALIGN 4
 	New_Numbers:
 	//#incext Png2Dmp "new_numbers.png" --lz77
-	#incbin "New_Numbers.dmp"
+	#incbin "new_numbers.dmp"
 	
 // #else
 // 	ERROR "You're not assembling FE8 events!"
