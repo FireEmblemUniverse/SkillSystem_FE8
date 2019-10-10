@@ -103,7 +103,7 @@
   #incext Png2Dmp "asm/sparkle_final_4_Sheet.png" --lz77
 
   HealGraphics:
-  #incext png2dmp "asm/sparkle_final_4.png" --lz77
+  #incext Png2Dmp "asm/sparkle_final_4.png" --lz77
 
   PUSH
     ORG $8cce4
