@@ -82,6 +82,11 @@ POP
 
   //Dragon Veins
   #include "DragonVeins/DragonVeins.event"
+  
+  // If uncommented, Leadership Stars will be implemented.
+  // Go to LeadershipStars/LeadershipStars.event to edit settings
+  // #include "LeadershipStars/LeadershipStars.event"
+  
 
   //Modular Stat Screen
   #ifndef USE_STRMAG_SPLIT
