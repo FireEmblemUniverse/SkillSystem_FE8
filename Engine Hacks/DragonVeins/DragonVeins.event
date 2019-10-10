@@ -14,6 +14,7 @@
     #define VeinDefinitions
 
     #define Vein_Map_Sprite_Number 0x67 //Use the one after Light Rune for now
+	#define Heal_Map_Sprite_Number 0x68
     #define DragonVeinSFXID 0x57
     #define DragonVeinTrapID 0x6
     DragonVeinEffectTableOffset:
@@ -28,6 +29,11 @@
 
     // #define UMText_DV 0xd0
     // #define UMText_DVDesc 0xd1
+	
+	#define HealTileTrapID 0xC
+	#define HealTile(XX,YY,HealPercent) "BYTE HealTileTrapID XX YY 0x0 HealPercent 0x0"
+	#define HealTile(XX,YY,HealPercent,EventID) "BYTE HealTileTrapID XX YY 0x0 HealPercent EventID"
+	
   #endif
 
   #ifndef SongTableOffset
@@ -45,7 +51,7 @@
       #incbin "asm/DrawingDragonVein_1.dmp"
 
     ORG 0x2731C
-      POIN (DrawingOffset_External+0x1)
+      POIN (DrawingOffset_External|1)
 
     ORG 0x27332
       #incbin "asm/DrawingDragonVein_2.dmp"
@@ -57,13 +63,16 @@
       SHORT 0x0002
       SHORT 0x0000
       POIN VeinGraphics
+	ORG (0x8AF880+0x8*Heal_Map_Sprite_Number)
+	  SHORT 0x0002
+	  SHORT 0x0000
+	  POIN HealGraphics
 
     ORG $2e444 //prevent suspend from breaking the game
       SHORT 0
   POP
 
-  MESSAGE DVs installed to CURRENTOFFSET
-
+  /*
   DrawingOffset_External:
     #incbin "asm/DrawingDragonVein_Ext.dmp"
 
@@ -74,13 +83,27 @@
     ORG DrawingOffset_External + $10
       BYTE Vein_Map_Sprite_Number
   POP
-
+  */
+  ALIGN 4
+  #inctext lyn "asm/DragonVeinHealTileExt.elf"
+  DVTrapIDLink:
+  BYTE DragonVeinTrapID
+  HealTileTrapIDLink:
+  BYTE HealTileTrapID
+  DVMapSpriteIDLink:
+  BYTE Vein_Map_Sprite_Number
+  HealTileMapSpriteIDLink:
+  BYTE Heal_Map_Sprite_Number
+  
   VeinInitialization:
     #incbin "asm/Initialize.dmp"
 
   VeinGraphics:
-    #incext Png2Dmp "asm/sparkle_final_4_Sheet.png" --lz77
-    //#incbin "asm/Dragon Vein/SparkleGraphic.dmp"
+  //#incbin "ASM/Dragon Vein/SparkleGraphic.dmp"
+  #incext Png2Dmp "asm/sparkle_final_4_Sheet.png" --lz77
+
+  HealGraphics:
+  #incext Png2Dmp "asm/sparkle_final_4.png" --lz77
 
   PUSH
     ORG $8cce4

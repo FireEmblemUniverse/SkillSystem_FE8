@@ -861,3 +861,39 @@ another action at end of turn.[X]
 ##SD_Powerstaff
 Powerstaff: Get another action[N]
 after using a staff.[X]
+
+##SD_DriveStr
+Drive Strength: Allies within[N]
+2 spaces receive +4 strength.[X]
+
+##SD_DriveMag
+Drive Magic: Allies within[N]
+2 spaces receive +4 magic.[X]
+
+##SD_DriveSkl
+Drive Skill: Allies within[N]
+2 spaces receive +4 skill.[X]
+
+##SD_DriveSpd
+Drive Speed: Allies within[N]
+2 spaces receive +4 speed.[X]
+
+##SD_DriveLck
+Drive Luck: Allies within[N]
+2 spaces receive +4 luck.[X]
+
+##SD_DriveDef
+Drive Defense: Allies within[N]
+2 spaces receive +4 defense.[X]
+
+##SD_DriveRes
+Drive Resistance: Allies within[N]
+2 spaces receive +4 resistance.[X]
+
+##SD_Blossom
+Blossom: 2x growth rates,[N]
+but 1/2 exp gain.[X]
+
+##SD_Aptitude
+Aptitude: +20% to[N]
+all growth rates.[X]
