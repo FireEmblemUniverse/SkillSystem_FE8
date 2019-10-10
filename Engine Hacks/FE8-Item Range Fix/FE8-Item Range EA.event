@@ -267,7 +267,6 @@
 	Can_Attack_Target:
 	#incbin "Can Attack Target.dmp"
 	POIN GetItemRangeM|1
-	MESSAGE CURRENTOFFSET
 	//************** CAN BE WRITTEN TO WHEREVER IF YOU WANT THIS SPACE FOR OTHER ASSEMBLY STUFF *********************
 POP
 	ALIGN 4
@@ -292,7 +291,7 @@ POP
 	Return_Range_Bitfield:
 	#incbin "Return Range Bitfield.dmp"
 	POIN Get_Item_Range|1
-	MESSAGE "item range" CURRENTOFFSET
+	
 	ALIGN 4
 	Get_Item_Range:
 	#incbin "Get Item Range.dmp"
@@ -414,7 +413,7 @@ POP
 	LL_Entry(Barrier, 0x2601D)
 	LL_Entry(0, 0x25E29) //The catch-all, in case you add a custom staff and forget to update this table
 	*/
-	MESSAGE CURRENTOFFSET
+	
 #else
 	ERROR "You're not assembling FE7 events!"
 #endif

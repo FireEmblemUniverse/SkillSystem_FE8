@@ -3,7 +3,7 @@
 
 #inctext lyn "EXPCalcLoop.elf" "EXPCalcLoopHook.elf"
 EXPCalcFunctions:
-POIN Paragon
+POIN Paragon Blossom
 #ifdef MODULAR_EXP
 	POIN ModularEXP
 #endif // MODULAR_EXP

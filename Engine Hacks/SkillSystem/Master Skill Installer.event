@@ -108,10 +108,6 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 ORG $1538C
 jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
 
-//Shadowgift and friends (only Lumina for now)
-ORG $16738
-jumpToHack(Shadowgift)
-
 //Boon and i guess anything else that may want to mess with status healing in the future
 ORG $188F6
 BYTE $40 $B4
@@ -490,6 +486,7 @@ WORD ShadowgiftID
 WORD LuminaID
 WORD SHADOWGIFT_VIA_STAFF_RANK
 WORD LUMINA_VIA_STAFF_RANK
+POIN ItemTable
 
 Perfectionist:
 #incbin "New Skills/Perfectionist.dmp"
@@ -568,6 +565,11 @@ Boon:
 #incbin "Other Skills/Boon.dmp"
 POIN SkillTester
 WORD BoonID
+
+Blossom:
+#incbin "Other Skills/BlossomExp.dmp"
+POIN SkillTester
+WORD BlossomID
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"

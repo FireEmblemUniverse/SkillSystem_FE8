@@ -26,7 +26,6 @@
 			POIN AI_ItemArray
 			ORG $408C8
 			POIN AI_ItemArray + 0x4
-			MESSAGE "repointed ai item tables"
 	POP
 	#endif
 	

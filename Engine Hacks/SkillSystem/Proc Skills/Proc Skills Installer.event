@@ -186,7 +186,6 @@ POIN SkillTester
 WORD DownWithArchID
 
 Proc_BlackMagic:
-MESSAGE black magic code at CURRENTOFFSET
 #incbin "proc_blackmagic.dmp"
 POIN SkillTester
 WORD BlackMagicID
