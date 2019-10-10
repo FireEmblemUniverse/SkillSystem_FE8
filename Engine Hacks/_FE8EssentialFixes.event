@@ -132,6 +132,10 @@ ORG $015D66
 ORG $22BE8
   SHORT $6808 $88C0 $2800
 
+//Add a check for r0=0 in the decompression routine so that no$gba doesn't crash when trying to decompress something it shouldn't (Tequila)
+ORG $12F52
+  SHORT $2800 $D014 $22FA $0612 $1852 $4B0A $2501 $429A $D800 $2500 $4A09 $7803 $24F0 $4023 $08DB $195B $009B $18D2 $6812 $46C0 $46C0
+
 #include "Extensions/Hack Installation.txt"
 //Anti-Huffman Patch, by Hextator and Nintenlord
 {
