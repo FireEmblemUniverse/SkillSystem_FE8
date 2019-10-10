@@ -1,0 +1,69 @@
+EscapeEvent:
+CHECK_ACTIVE 
+SADD 0xC2
+ASMC RefEscapeTable|1		//Returns active unit's escape quote text ID in slot 2
+TEXTSTART
+TEXTSHOW 0xFFFF		//display text ID in slot 2
+TEXTEND
+REMA
+
+//Unit flees map
+ENUT 0x23
+CHECK_ACTIVE 
+SADD 0xC2
+//CALL Remove_Unit_Events		//Praise Teq
+ASMC 0x790A4|1		//Once again, praise Teq
+REMU 0xFFFD
+//ASMC CallWaitEffect|1		//call wait's command effect
+//ASMC DeselectUnitASMC|1
+//ASMC DeselectUnitASMC7743|1
+NoFade
+ENDA
+
+Remove_Unit_Events:
+CHECK_COORDS 0xFFFF
+SADD 0xCB                    //Move results into slot B
+//ASMC MakeFakeCurrentUnit|1		//Praise Teq
+//ASMC 0x790A4|1		//Once again, praise Teq
+//SET_SOMETHING 0xFFFE
+//DISA_IF 0xFFFE
+NoFade
+ENDA
+
+
+/* This is the part that makes them flee in a certain direction, disabled for the time being
+ASMC FleeDirectionCheck|1 //returns flee direction in memory slot 2 (1=left,2=up,3=right,4=down,5=no move)
+//check what direction was returned and act accordingly
+SVAL 3 1
+BNE 0 2 3
+	MOVE_1STEP 5 0xFFFF Left
+	//ASMC DeactivateUnit|1
+	REMU 0xFFFF
+	GOTO 4
+LABEL 0
+SVAL 3 2
+BNE 1 2 3
+	MOVE_1STEP 5 0xFFFF Up
+	//ASMC DeactivateUnit|1
+	REMU 0xFFFF
+	GOTO 4
+LABEL 1
+SVAL 3 3
+BNE 2 2 3
+	MOVE_1STEP 5 0xFFFF Right
+	//ASMC DeactivateUnit|1
+	REMU 0xFFFF
+	GOTO 4
+LABEL 2
+SVAL 3 4
+BNE 3 2 3
+	MOVE_1STEP 5 0xFFFF Down
+	//ASMC DeactivateUnit|1
+	REMU 0xFFFF
+	GOTO 4
+LABEL 3
+//ASMC DeactivateUnit|1
+REMU 0xFFFF
+LABEL 4
+*/
+
