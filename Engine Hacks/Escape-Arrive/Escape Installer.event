@@ -1,0 +1,54 @@
+
+#ifndef ESCAPE_ARRIVE
+
+	#define ESCAPE_ARRIVE
+	
+	ALIGN 4
+	RefEscapeTable:
+	#incbin "RefEscapeTable.dmp"
+	POIN EscapeQuoteTable
+
+	ALIGN 4
+	DeselectUnitForEscape:
+	#incbin "DeselectUnit.dmp"
+
+	ALIGN 4
+	#include "EscapeEvent.event"
+
+	ALIGN 4
+	ArriveCheck:
+	#incbin "ArriveCheck.dmp"
+
+	ALIGN 4
+	EscapeLordUsability:
+	#incbin "EscapeCheckLord.dmp"
+
+	ALIGN 4
+	EscapeGeneralUsability:
+	#incbin "EscapeCheckGeneral.dmp"
+
+	ALIGN 4
+	EscapeGeneralEffect:
+	#incbin "EscapeEffectGeneral.dmp"
+	POIN EscapeEvent
+
+	ALIGN 4
+	FinalEscapeThing:
+	#incbin "FinalEscapeHook.dmp"
+
+	
+	/* // Integrated into post-action calc loop.
+	PUSH
+	ORG 0x1879C//fixing the branch here
+	SHORT 0xD004
+	ORG 0x187A8
+	jumpToHack(FinalEscapeThing)
+	POP
+	*/
+	
+	#define Arrive(seizeX,seizeY) "LOCA 3 [seizeX,seizeY] 0x12"
+	#define Arrive(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x12"
+	#define Escape(seizeX,seizeY) "LOCA 3 [seizeX,seizeY] 0x13"
+	#define Escape(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x13"
+
+#endif // ESCAPE_ARRIVE

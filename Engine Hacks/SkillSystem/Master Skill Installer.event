@@ -82,8 +82,8 @@ jumpToHack(LiveToServe)
 //lunge
 ORG $18744
 callHack_r3(Lunge)
-ORG $187b0
-jumpToHack(LungeUpdate)
+//ORG $187b0
+//jumpToHack(LungeUpdate) // Integrated into post-action loop to resolve lunge/stairs/escape-arrive conflict
 ORG $3a094
 jumpToHack(LungeAI)
 
@@ -107,10 +107,6 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 //Armor March
 ORG $1538C
 jumpToHack(ArmorMarchSkill) //set or unest a bit in the debuff entries to give mov to units
-
-//Shadowgift and friends (only Lumina for now)
-ORG $16738
-jumpToHack(Shadowgift)
 
 //Boon and i guess anything else that may want to mess with status healing in the future
 ORG $188F6
@@ -205,22 +201,39 @@ Frenzy:
 POIN SkillTester
 WORD FrenzyID
 
-Renewal: //combined healing skills
-#incbin "Other Skills/RenewalAmaterasu.dmp"
-POIN SkillTester
-WORD RenewalID
-POIN AuraSkillCheck
-WORD AmaterasuID
-WORD CamaraderieID
-WORD ReliefID
-WORD BondID
-WORD ForagerID
-POIN ForagerList
+Renewal://combined healing skills
+//#incbin "Other Skills/RenewalAmaterasu.dmp"
+#inctext lyn "Other Skills/RenewalAmaterasu.elf"
+RenewalRenewalIDLink:
+BYTE RenewalID
+RenewalAmaterasuIDLink:
+BYTE AmaterasuID
+RenewalReliefIDLink:
+BYTE ReliefID
+RenewalBondIDLink:
+BYTE BondID
+RenewalCamaraderieIDLink:
+BYTE CamaraderieID
+RenewalHealTrapID:
+BYTE HealTileTrapID
+RenewalForagerIDLink:
+BYTE ForagerID
+//POIN SkillTester
+//WORD RenewalID
+//POIN AuraSkillCheck
+//WORD AmaterasuID
+//WORD CamaraderieID
+//WORD ReliefID
+//WORD BondID
+//WORD ForagerID
+//POIN ForagerList
 
+ALIGN 4
 ForagerList: //A list of terrain IDs that activate Forager
 BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
 BYTE 0 //Terminator
 
+ALIGN 4
 Discipline:
 #incbin "Other Skills/Discipline.dmp"
 POIN SkillTester
@@ -490,6 +503,7 @@ WORD ShadowgiftID
 WORD LuminaID
 WORD SHADOWGIFT_VIA_STAFF_RANK
 WORD LUMINA_VIA_STAFF_RANK
+POIN ItemTable
 
 Perfectionist:
 #incbin "New Skills/Perfectionist.dmp"
