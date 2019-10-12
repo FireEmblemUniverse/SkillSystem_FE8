@@ -415,7 +415,8 @@ POP
 
 ALIGN 4
 RemoveGlowy:
-#incext Png2Dmp "RemoveGlowy.png" --lz77
+//#incext Png2Dmp "RemoveGlowy.png" --lz77
+#incbin "RemoveGlowy.dmp"
 
 // POP
 #else // _FE8_
