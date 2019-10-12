@@ -1,7 +1,7 @@
 
 	/* Mug loading calculation loop */
 
-#inctext lyn "MugLoadLoop.elf" "MugLoadLoopHook.elf"
+#incbin "MugLoadLoop.lyn.event"
 MugLoadingFunctions: // Each function will check for a passed in control code, returning a mug. If a mug is returned, all functions following will be ignored.
 // If the function returns 0, the nothing will occur, and the next function will be checked.
 //Earlier functions have higher priority.

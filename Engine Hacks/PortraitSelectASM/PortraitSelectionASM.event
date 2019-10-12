@@ -3,7 +3,7 @@
 
 	#define PORTRAIT_SELECTION
 	ALIGN 4
-	#inctext lyn "SelectPortrait.elf" //"Definitions.elf"
+	#include "SelectPortrait.lyn.event" //"Definitions.elf"
 	
 	#define PortraitSelectionEntry(TruePortraitID,FalsePortraitID,EventIDPointerList,ControlCode) "POIN EventIDPointerList ; SHORT ControlCode TruePortraitID FalsePortraitID 0"
 	ALIGN 4
