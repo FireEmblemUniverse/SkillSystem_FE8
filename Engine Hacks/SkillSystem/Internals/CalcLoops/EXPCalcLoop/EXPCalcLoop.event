@@ -1,7 +1,7 @@
 
 	/* EXP calculation loop */
 
-#inctext lyn "EXPCalcLoop.elf" "EXPCalcLoopHook.elf"
+#include "EXPCalcLoop.lyn.event"
 EXPCalcFunctions:
 POIN Paragon Blossom
 #ifdef MODULAR_EXP

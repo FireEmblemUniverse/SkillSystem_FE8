@@ -157,7 +157,8 @@
 
   ALIGN 4
   NewPageNameGraphic:
-    #incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+    //#incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+    #incbin "asm/pagenamegraphic.dmp"
 
   ALIGN 4
   NewPageNameLayout:
@@ -415,7 +416,8 @@ POP
 
 ALIGN 4
 RemoveGlowy:
-#incext Png2Dmp "RemoveGlowy.png" --lz77
+//#incext Png2Dmp "RemoveGlowy.png" --lz77
+#incbin "RemoveGlowy.dmp"
 
 // POP
 #else // _FE8_

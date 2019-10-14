@@ -3,7 +3,7 @@
 	
 	#define MODULAR_EXP
 	ALIGN 4
-	#inctext lyn "ModularEXP.elf" "Hooks.elf" // Main hook removed because this will be in the EXPCalcLoop. ModularStaffEXP is untouched.
+	#include "ModularExp.lyn.event" // Main hook removed because this will be in the EXPCalcLoop. ModularStaffEXP is untouched.
 
 	ALIGN 4
 	#define ModularEXPEntry(Character,Chapter,EventID,Multiplier,Divisor) "BYTE Character Chapter EventID Multiplier Divisor 0x00 0x00 0x00"

@@ -6,7 +6,7 @@
 		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA StairID [X1,Y1] 0x22 ; LOCA StairID [X2,Y2] 0x22"
 		
 		ALIGN 4
-		#inctext lyn "Stairs.elf"// "Hooks.elf"
+		#include "Stairs.lyn.event"// "Hooks.elf"
 		ALIGN 4
 		StairErrorTextLocation:
 		SHORT StairsBlockedText
