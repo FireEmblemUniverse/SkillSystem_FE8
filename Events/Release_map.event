@@ -134,6 +134,7 @@ UNIT Aias GreatKnight 0x40 0xA5   [7,11] 0 0 0 0 [ShortSpear, SilverBlade, Silve
 UNIT Carlyle Swordmaster 0x40 0xA5 [10,9] 0 0 0 0 [WindSword] AttackInRangeAI
 UNIT Gheb Warrior 0x40 0xA5       [2,4] 0 0 0 0 [KillerAxe, KillerBow] NeverMoveAI
 UNIT Beran Ranger 0x40 0xA5       [17,14] 0 0 0 0 [Lancereaver, KillerBow, Longbow] AttackInRangeAI
+UNIT 128 Ranger 0x40 0xA5 [8,23] 0 0 0 0 NoItems NeverMoveAI
 UNIT
 
 Traps1:

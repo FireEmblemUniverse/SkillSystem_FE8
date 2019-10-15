@@ -196,7 +196,13 @@ POP
   #include "SmeHax/SoundRoom/SoundRoom.event"
   
   ALIGN 4
-  #include"SmeHax/Biorhythm/Biorhythm.event"
+  #include "SmeHax/Biorhythm/Biorhythm.event"
+  
+  ALIGN 4
+  #include "SmeHax/ModularDancerMusic/DancerMusic.event"
+  
+  ALIGN 4
+  #include "SmeHax/ModularAnimationForcer/AnimationForcer.event"
   
   ALIGN 4
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
