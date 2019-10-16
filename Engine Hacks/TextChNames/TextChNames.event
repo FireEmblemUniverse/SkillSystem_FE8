@@ -22,7 +22,8 @@
     POIN ChTable
 
   ChFont:
-    #incext Png2Dmp "bin/font.png" --lz77
+    //#incext Png2Dmp "bin/font.png" --lz77
+    #incbin "bin/font.dmp"
 
   ChTable:
     #incbin "bin/chartable.dmp"

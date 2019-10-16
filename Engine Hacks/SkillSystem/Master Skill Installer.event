@@ -202,8 +202,7 @@ POIN SkillTester
 WORD FrenzyID
 
 Renewal://combined healing skills
-//#incbin "Other Skills/RenewalAmaterasu.dmp"
-#inctext lyn "Other Skills/RenewalAmaterasu.elf"
+#include "Other Skills/RenewalAmaterasu.lyn.event"
 RenewalRenewalIDLink:
 BYTE RenewalID
 RenewalAmaterasuIDLink:
@@ -440,7 +439,7 @@ POIN SkillTester
 WORD TraceID
 POIN Skill_Getter
 
-#inctext lyn "Stances/Stances.elf"
+#include "Stances/Stances.lyn.event"
 StanceSkillList:
 BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID
 ALIGN 4

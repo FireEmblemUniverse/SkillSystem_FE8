@@ -86,15 +86,15 @@ gSaveBlockTypeSizeLookup:
 #ifdef USE_STRMAG_SPLIT
 	#ifdef STAIRS_ASM
 		MESSAGE EMS with strmag and Stair
-		#inctext lyn "SrcModules/SaveUnitExpandedStrmagStairs.elf" // Str/Mag and Stairs both require saving shenanigans.
+		#include "SrcModules/SaveUnitExpandedStrmagStairs.lyn.event" // Str/Mag and Stairs both require saving shenanigans.
 	#else
-		#inctext lyn "SrcModules/SaveUnitExpandedStrmag.elf" // Only Str/Mag split.
+		#include "SrcModules/SaveUnitExpandedStrmag.lyn.event" // Only Str/Mag split.
 	#endif // STAIRS_ASM
 #else
 	#ifdef STAIRS_ASM
-		#inctext lyn "SrcModules/SaveUnitExpandedStairs.elf" // Only StairsASM.
+		#include "SrcModules/SaveUnitExpandedStairs.lyn.event" // Only StairsASM.
 	#else
-		#inctext lyn "SrcModules/SaveUnitExpanded.elf" // Regular.
+		#include "SrcModules/SaveUnitExpanded.lyn.event" // Regular.
 	#endif // STAIRS_ASM
 #endif // USE_STRMAG_SPLIT
 

@@ -112,7 +112,11 @@
   
   ALIGN 4
   MSS_page1:
-    #incbin "asm/mss_page1_skills.dmp"
+    #ifdef LEADERSHIP_STARS
+        #incbin "asm/mss_page1_skills_leadership.dmp"
+    #else
+        #incbin "asm/mss_page1_skills.dmp"
+    #endif
     POIN SkillIcons
     POIN Skill_Getter
     POIN SkillTester
@@ -123,6 +127,9 @@
     WORD Growth_Options
     POIN Growth_Getter_Table
     POIN Get_Palette_Index
+    #ifdef LEADERSHIP_STARS
+        POIN GetLeadershipStarCount
+    #endif
   
   ALIGN 4
   MSS_page2:
@@ -138,7 +145,8 @@
 
   ALIGN 4
   NewPageNameGraphic:
-    #incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+    //#incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+    #incbin "asm/pagenamegraphic.dmp"
 
   ALIGN 4
   NewPageNameLayout:
@@ -361,7 +369,11 @@
     RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x28,0x550)
 
   ST_Affin:
-    RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,0x551)
+    #ifdef LEADERSHIP_STARS
+       RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,LeadRText)
+    #else
+       RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,0x551)
+    #endif
 
   ST_Cond:
     RMenu(ST_Affin,ST_Talk,ST_Luck,0,0xA6,0x48,0x552,ConditionGetter)

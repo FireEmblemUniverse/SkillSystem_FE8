@@ -16,7 +16,7 @@ prAddUnitMagic:
 prAddEquipMagic:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemMagBonus)))
 
-#inctext lyn "_asm/Mag.elf" // Contains prDebuffMag and prRallyMag
+#include "_asm/Mag.lyn.event" // Contains prDebuffMag and prRallyMag
 MagDebuffTableLink:
 WORD DebuffTable
 

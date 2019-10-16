@@ -85,7 +85,7 @@
   POP
   */
   ALIGN 4
-  #inctext lyn "asm/DragonVeinHealTileExt.elf"
+  #include "asm/DragonVeinHealTileExt.lyn.event"
   DVTrapIDLink:
   BYTE DragonVeinTrapID
   HealTileTrapIDLink:
