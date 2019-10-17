@@ -1,24 +1,31 @@
+  
 .equ ShadowgiftID, SkillTester+4
 .equ LuminaID, ShadowgiftID+4
 .equ ShadowgiftStaffOption, LuminaID+4
 .equ LuminaStaffOption, ShadowgiftStaffOption+4
+.equ ItemTable,LuminaStaffOption+4
 .thumb
 
 push	{r4-r6, r14}
 
-mov r4,r0   @r4 = character pointer
-mov	r5,r1	@item type
-mov	r6,r2	@rank
+@r4 = character pointer
+@r5 = item halfword
+@r6 = rank
 
-mov	r0,r4
-add	r0,#0x28
-add	r0,r1
-ldrb	r0,[r0]
-cmp	r0,r2
-bhs	True
+mov r4,r0
+mov r5,r1
+mov r6,r2
+
+mov r0,#0xFF
+and r0,r5
+mov r1,#0x24
+mul r0,r1
+ldr r1,ItemTable
+add r1,r0
+ldrb r2,[r1,#7]
 
 @shadowgift
-cmp	r5,#7	@if dark rank
+cmp	r2,#7	@if dark rank
 bne	noShadowgift
 mov	r0,r4
 ldr	r1,ShadowgiftID
@@ -44,7 +51,7 @@ bhs	True
 noShadowgift:
 
 @lumina
-cmp	r5,#6	@if light rank
+cmp	r2,#6	@if light rank
 bne	noLumina
 mov	r0,r4
 ldr	r1,LuminaID
@@ -77,7 +84,7 @@ True:
 mov	r0,#1
 
 End:
-pop	{r4-r6}
+pop {r4-r6}
 pop	{r1}
 bx	r1
 
