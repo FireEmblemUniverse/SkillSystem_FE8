@@ -1,0 +1,52 @@
+#ifndef FIX_WPN_RNK_GAIN
+#define FIX_WPN_RNK_GAIN
+
+// Makes it so that you cannot gain weapon ranks for weapons you don't have a rank in
+// Fixes Shadowgift/Lumina related glitches in the skill system
+// As well as the ECG/Evil Eye vanilla thing I guess
+// hack by Stan
+
+ALIGN 4
+FixWpnRnkHook:
+	WORD $5C382050 $5C383028 $D0032800 $5C382052 $47184B02 $42402001 $47184B01 $802C0FB $802C1AB
+
+PUSH
+
+	ORG $02C0F0
+		jumpToHack(FixWpnRnkHook)
+
+POP
+
+/* // Source:
+
+	.thumb
+
+FixWpnRnkHook:
+	@ STATE: r7 is a bu
+
+	mov  r0, #0x50 @ BattleUnit.wpnType
+	ldrb r0, [r7, r0]
+
+	add  r0, #0x28 @ BattleUnit.unit.wexp
+	ldrb r0, [r7, r0]
+
+	cmp r0, #0
+	beq no_gains
+
+	@ REPLACED
+	mov  r0, #0x52
+	ldrb r0, [r7, r0]
+
+	ldr r3, =0x0802C0FA+1
+	bx  r3
+
+no_gains:
+	mov r0, #1
+	neg r0, r0
+
+	ldr r3, =0x0802C1AA+1
+	bx  r3
+
+*/
+
+#endif // FIX_WPN_RNK_GAIN
