@@ -6,11 +6,7 @@
 
 push	{r4-r6, r14}
 
-mov r4,r0
-mov r5,r1
-mov r6,r2
-
-@r4 = character pointer
+mov r4,r0   @r4 = character pointer
 mov	r5,r1	@item type
 mov	r6,r2	@rank
 
