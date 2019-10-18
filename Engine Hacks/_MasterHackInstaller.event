@@ -153,6 +153,9 @@ POP
   #include "EventAddTraps/EventAddTraps.event"
   #include "EventSendToConvoy/EventSendToConvoy.event"
 
+  // Fix gaining wexp from weapons you don't have wexp in (for Shadowgift/Lumina)
+  #include "Misc/FixWpnRnk.event"
+
   //Change Sick Status to Freeze
   #include "Freeze/Freeze.event"
   #include "Freeze/EventFreeze.event"
