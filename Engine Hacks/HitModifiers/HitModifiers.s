@@ -71,7 +71,7 @@ add r0,r5
 mov r1,#4
 blh Thumb_Division_Func,r2 @divide r0 by 4
 cmp r0,r7
-blt RetFalse
+bgt RetFalse
 mov r0,#1
 b CheckEnd
 RetFalse:
