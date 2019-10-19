@@ -82,6 +82,11 @@ POP
 
   //Dragon Veins
   #include "DragonVeins/DragonVeins.event"
+  
+  // If uncommented, Leadership Stars will be implemented.
+  // Go to LeadershipStars/LeadershipStars.event to edit settings
+  // #include "LeadershipStars/LeadershipStars.event"
+  
 
   //Modular Stat Screen
   #ifndef USE_STRMAG_SPLIT
@@ -89,26 +94,8 @@ POP
   #else
     #include "MSS/ModularStatScreenStrmag/ModularStatScreen.event"
   #endif // USE_STRMAG_SPLIT
-
-  // Save/Suspend Expansion
-  #ifdef USE_SAVE_EXPANSION
-
-    // Use new EMS-based expansion
-
-    MESSAGE "Using EMS Save/Suspend Expansion"
-
-    #include "ExpandedModularSave/ExModularSave.event"
-
-  #else // USE_SAVE_EXPANSION
-
-    // Use legacy suspend expansion (for compatibility)
-
-    MESSAGE "Using Legacy Suspend Expansion"
-
-    #include "SuspendDebuffs/SuspendExpansion.event"
-
-  #endif // USE_SAVE_EXPANSION
   
+  // Strength/Magic Split
   #ifdef USE_STRMAG_SPLIT
   
 	#include "Strmag/_Master Asm Installer.event"
@@ -138,6 +125,10 @@ POP
   // This patch adds an entry to the Unit Menu, so installing here is necessary.
   // #include "Raid/Raid.event"
   
+  // If uncommented, Escape-Arrive will be implemented.
+  // /this adds entries to the Unit Menu and normally conflicts with Lunge and Stairs. Install here to avoid the conflicts.
+   #include "Escape-Arrive/Escape Installer.event"
+  
   // Debuffs
   #include "SuspendDebuffs/Debuffs.event"
 
@@ -161,6 +152,9 @@ POP
   #include "EventRescue/EventRescue.event"
   #include "EventAddTraps/EventAddTraps.event"
   #include "EventSendToConvoy/EventSendToConvoy.event"
+
+  // Fix gaining wexp from weapons you don't have wexp in (for Shadowgift/Lumina)
+  #include "Misc/FixWpnRnk.event"
 
   //Change Sick Status to Freeze
   #include "Freeze/Freeze.event"
@@ -213,3 +207,28 @@ POP
   
   #include "UnitMenu.event"
   #include "Popups.event"
+
+  #ifdef STAIRS_ASM
+    #ifndef USE_SAVE_EXPANSION
+	  #define USE_SAVE_EXPANSION // Force use of EMS with Stairs (for saving the stair debuff byte in suspend).
+	#endif // USE_SAVE_EXPANSION
+  #endif // STAIRS_ASM
+  
+  // Save/Suspend Expansion
+  #ifdef USE_SAVE_EXPANSION
+
+    // Use new EMS-based expansion
+
+    MESSAGE "Using EMS Save/Suspend Expansion"
+
+    #include "ExpandedModularSave/ExModularSave.event"
+
+  #else // USE_SAVE_EXPANSION
+
+    // Use legacy suspend expansion (for compatibility)
+
+    MESSAGE "Using Legacy Suspend Expansion"
+
+    #include "SuspendDebuffs/SuspendExpansion.event"
+
+  #endif // USE_SAVE_EXPANSION

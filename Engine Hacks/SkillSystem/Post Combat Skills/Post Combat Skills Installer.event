@@ -29,12 +29,12 @@ POIN FuryEvent
 #include "FuryEvent.event"
 ALIGN 4
 
-#inctext lyn "PoisonStrikeGrislyWound.elf"
+#include "PoisonStrikeGrislyWound.lyn.event"
 
 #ifdef RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
-	#inctext lyn "PoisonStrikeGrislyWoundExt.elf"
+	#include "PoisonStrikeGrislyWoundExt.lyn.event"
 #else
-	#inctext lyn "PoisonStrikeGrislyWoundExtNoCheck.elf"
+	#include "PoisonStrikeGrislyWoundExtNoCheck.lyn.event"
 #endif
 PoisonStrikeIDLink:
 BYTE PoisonStrikeID

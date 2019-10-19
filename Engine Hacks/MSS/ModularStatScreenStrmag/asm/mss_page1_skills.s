@@ -115,7 +115,7 @@ draw_textID_at 21, 5, textID=0x4f8 @aid
 draw_number_at 25, 5, 0x80189B8, 2 @aid getter
 draw_aid_icon_at 26, 5
 
-draw_trv_text_at 21, 7
+draw_status_text_at 21, 7
 
 draw_textID_at 21, 9, textID=0x4f1 @affin
 

@@ -1,7 +1,7 @@
 
 	/* WTA calculation loop*/
 
-#inctext lyn "WTACalcLoop.elf" "WTACalcLoopHook.elf"
+#include "WTACalcLoop.lyn.event"
 WTACalcFunctions:
 #ifdef ANIMA_TRIANGLE
 	POIN AnimaTriangle

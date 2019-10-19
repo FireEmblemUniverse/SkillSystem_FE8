@@ -49,7 +49,8 @@
 
   ALIGN 4
   HPBarGraphic:
-    #incext Png2Dmp "bin/WarningHpSheet.png" --lz77
+    //#incext Png2Dmp "bin/WarningHpSheet.png" --lz77
+    #incbin "bin/WarningHpSheet.dmp"
 
   }
 

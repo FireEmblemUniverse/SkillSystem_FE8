@@ -32,7 +32,7 @@ POIN Proc_Finish 0	//end
 //POIN Chargeups, chargeup not working? so I just removed them for now
 
 ALIGN 4
-#inctext lyn "proc_start.elf" // Barricade needs to write into proc start where damage is stored.
+#include "proc_start.lyn.event" // Barricade needs to write into proc start where damage is stored.
 ExpertiseIDLink:
 BYTE ExpertiseID
 BarricadeIDLink:
@@ -40,7 +40,7 @@ BYTE BarricadeID
 BarricadePlusIDLink:
 BYTE BarricadePlusID
 ALIGN 4
-#inctext lyn "BarricadeUnsetr11.elf" "BarricadeHook.elf" // Barricade uses r11 for various things through combat. This unsets it afterward.
+#include "BarricadeHook.lyn.event" // Barricade uses r11 for various things through combat. This unsets it afterward.
 
 ALIGN 4
 Proc_Finish:
@@ -186,7 +186,6 @@ POIN SkillTester
 WORD DownWithArchID
 
 Proc_BlackMagic:
-MESSAGE black magic code at CURRENTOFFSET
 #incbin "proc_blackmagic.dmp"
 POIN SkillTester
 WORD BlackMagicID

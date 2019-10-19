@@ -82,10 +82,20 @@ gSaveBlockTypeSizeLookup:
 #include "SrcCore/MSuFuncs.lyn.event" // Core suspend modules
 
 #include "SrcModules/Debuffs.lyn.event" // Debuffs module
-#ifndef USE_STRMAG_SPLIT
-	#include "SrcModules/SaveUnitExpanded.lyn.event" // Expanded save unit modules
+
+#ifdef USE_STRMAG_SPLIT
+	#ifdef STAIRS_ASM
+		MESSAGE EMS with strmag and Stair
+		#include "SrcModules/SaveUnitExpandedStrmagStairs.lyn.event" // Str/Mag and Stairs both require saving shenanigans.
+	#else
+		#include "SrcModules/SaveUnitExpandedStrmag.lyn.event" // Only Str/Mag split.
+	#endif // STAIRS_ASM
 #else
-	#inctext lyn "SrcModules/SaveUnitExpandedStrmag.elf" // Str/Mag Split requires 2 opcode changes for saving/loading magic from 0x3A of the character struct.
+	#ifdef STAIRS_ASM
+		#include "SrcModules/SaveUnitExpandedStairs.lyn.event" // Only StairsASM.
+	#else
+		#include "SrcModules/SaveUnitExpanded.lyn.event" // Regular.
+	#endif // STAIRS_ASM
 #endif // USE_STRMAG_SPLIT
 
 DebuffTablePointer: // required for debuffs module

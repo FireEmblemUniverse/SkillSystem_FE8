@@ -64,11 +64,14 @@ UnitMenuTable:
   //Use the macro MenuCommand(name,description,colour,usability,effect)
   //Color options: NormalText, GrayText, BlueText, OrangeText, GreenText (flashes), BlackText
   //MenuCommand(DualAtkTxtID,DualAtkDescId,0,DualAtkCheck,DualAtkSelected) 
-
-  MenuCommand(0x67A, 0x6CC, BlueText, $08022FDD, $8023021)
-  MenuCommand(ArriveName, ArriveDesc, BlueText, ArriveCheck|IsPointer, $8023021)
-  MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeLordUsability|IsPointer, $8023021)
-  MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeGeneralUsability|IsPointer, EscapeGeneralEffect|IsPointer)
+  
+  #ifdef ESCAPE_ARRIVE
+    MenuCommand(0x67A, 0x6CC, BlueText, $08022FDD, $8023021)
+    MenuCommand(ArriveName, ArriveDesc, BlueText, ArriveCheck|IsPointer, $8023021)
+    MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeLordUsability|IsPointer, $8023021)
+    MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeGeneralUsability|IsPointer, EscapeGeneralEffect|IsPointer)
+  #endif // ESCAPE_ARIVE
+  UM_Seize
   MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
   // UM_Attack
   MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags

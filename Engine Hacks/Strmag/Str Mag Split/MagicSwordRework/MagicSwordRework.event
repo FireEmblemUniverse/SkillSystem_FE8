@@ -20,7 +20,10 @@
 	POIN MagicSwordList
 
 	MagicSwordList:
-	MagicSwordEntry(0x09,WeaponTypeAnima,False,HitDef,HitRes)
+	//MagicSwordEntry(0x09,WeaponTypeAnima,False,HitDef,HitRes)
+	MagicSwordEntry(WindSword,WeaponTypeAnima,True,HitRes,HitRes)
+	MagicSwordEntry(LightBrand,WeaponTypeLight,True,HitRes,HitRes)
+	MagicSwordEntry(Runesword,WeaponTypeDark,True,HitRes,HitRes)
 	BYTE 0 0 0 //terminator
 
 
@@ -35,6 +38,14 @@
 	BYTE $68 $68 $C0 $46
 	ORG 0x2AA6C
 	BYTE $68 $68 $C0 $46
+	
+	ORG 0x2A8B8
+	BYTE $68 $68 $C0 $46
+
+	ORG $2ADCC // Remove runesword str/2 (now uses magic) and weird wind sword stuff.
+	SHORT 0x4770
+	ORG $2A4BC
+	SHORT 0xE009 // b #0x0802A4D2
 	POP
 	
 #endif
