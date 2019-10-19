@@ -7,6 +7,6 @@
 		#define Coords(xcoord,ycoord) "(ycoord<<16)|xcoord"
 		
 		ALIGN 4
-		#inctext lyn "RaidCommand.elf"
+		#include "RaidCommand.lyn.event"
 	
 	#endif // RAID

@@ -38,7 +38,7 @@ ldr r3,=#0x8084078
 mov r14,r3
 .short 0xF800
 mov r1,#0x03
-cmp r0,#0x12
+cmp r0,#0x19
 bne ReturnFalse
 
 mov r0,#1
