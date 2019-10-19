@@ -169,9 +169,6 @@ POP
   #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
 
   ALIGN 4
-  #include "EscapeArrive/Escape Installer.event"
-
-  ALIGN 4
   #include "SmeHax/HolyBlood/Getters.event"
 
   ALIGN 4
@@ -197,6 +194,9 @@ POP
   
   ALIGN 4
   #include "SmeHax/ModularAnimationForcer/AnimationForcer.event"
+  
+  ALIGN 4
+  #include "HitModifiers/HitModifiers.event"
   
   ALIGN 4
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons

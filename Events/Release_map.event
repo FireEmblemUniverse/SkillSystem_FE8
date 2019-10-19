@@ -37,9 +37,6 @@ Vendor(ShopItems,2,7)
 Armory(ArmoryItems,10,26)
 Village(0x8,VillageEvent,18,27)
 House(0,HouseEvent,6,24)
-Seize(9,24)
-Arrive(8,24)
-Escape(7,24)
 END_MAIN
 
 MiscBasedEvents:
@@ -149,6 +146,8 @@ ALIGN 4
 BeginningScene:
 ENUT 0x1 //no more boss quotes
 ENUT 0x2 //no more death quotes
+ENUT 0xED
+ENUT 0xEE
 LOAD1 0x1 EnemyUnits
 ENUN
 LOAD1 0x1 EnemyUnits2
