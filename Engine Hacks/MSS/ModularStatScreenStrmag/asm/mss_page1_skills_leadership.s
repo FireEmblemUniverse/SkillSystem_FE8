@@ -14,8 +14,7 @@
 .set Growth_Getters_Table, Display_Growths_options+4
 .set Get_Palette_Index, Growth_Getters_Table+4
 .set GetLeadershipStarCount, Get_Palette_Index+4
-.equ GetCharge, GetLeadershipStarCount+4
-.equ MagClassTable, GetCharge+4
+.equ MagClassTable, GetLeadershipStarCount+4
 
 page_start
 
