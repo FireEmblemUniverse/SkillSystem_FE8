@@ -10,7 +10,7 @@
 #define OrangeText 0x3
 #define GreenText 0x4
 #define BlackText 0x5
-
+//                                          name    desc    color           usability pointer               effect pointer   
 #define UM_Seize      "BYTE $9C $7E $0D $08 $7A $06 $CC $06 $00 $4E $00 $00 $DD $2F $02 $08 $00 $00 $00 $00 $21 $30 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
 #define UM_Attack     "BYTE $94 $7E $0D $08 $7B $06 $C0 $06 $00 $4F $00 $00 $AD $49 $02 $08 $00 $00 $00 $00 $31 $2B $02 $08 $00 $00 $00 $00 $31 $2C $02 $08 $99 $2C $02 $08"
 #define UM_Attack_B   "BYTE $94 $7E $0D $08 $7B $06 $C0 $06 $00 $50 $00 $00 $29 $4A $02 $08 $00 $00 $00 $00 $31 $2B $02 $08 $00 $00 $00 $00 $31 $2C $02 $08 $99 $2C $02 $08"
@@ -41,5 +41,5 @@
 #define UM_Supply     "BYTE $9C $7D $0D $08 $8F $06 $D5 $06 $04 $69 $00 $00 $65 $3F $02 $08 $00 $00 $00 $00 $B9 $3F $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
 #define UM_Wait       "BYTE $94 $7D $0D $08 $95 $06 $BF $06 $00 $6B $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $39 $27 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
 #define UM_Separator  "WORD 0 0 0 0 0 0 0 0 0"
-
+//                                          name    desc    color           usability pointer               effect pointer   
 #endif // UNIT_MENU_DEFINITIONS
