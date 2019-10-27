@@ -602,6 +602,11 @@ Vigilance:
 POIN SkillTester
 WORD PrescienceID
 
+prResolve:
+#incbin "Sme Skills/Resolve.dmp"
+POIN SkillTester
+WORD ResolveID
+
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
