@@ -648,3 +648,60 @@ ORG SkillIcon(BlossomID)
 
 ORG SkillIcon(AptitudeID)
 #incbin "Skill Icons/Aptitude.dmp"
+
+ORG SkillIcon(QuickRiposteID)
+#incbin "Skill Icons/QuickRiposte.dmp"
+
+ORG SkillIcon(ResolveID)
+#incbin "Skill Icons/Resolve.dmp"
+
+ORG SkillIcon(InsightID)
+#incbin "Skill Icons/Insight.dmp"
+
+ORG SkillIcon(VigilanceID)
+#incbin "Skill Icons/Vigilance.dmp"
+
+ORG SkillIcon(DauntID)
+#incbin "Skill Icons/Daunt.dmp"
+
+ORG SkillIcon(BloodTideID)
+#incbin "Skill Icons/BloodTide.dmp"
+
+ORG SkillIcon(WhitePoolID)
+#incbin "Skill Icons/WhitePool.dmp"
+
+ORG SkillIcon(NightTideID)
+#incbin "Skill Icons/NightTide.dmp"
+
+ORG SkillIcon(PrescienceID)
+#incbin "Skill Icons/Prescience.dmp"
+
+ORG SkillIcon(DefiantAvoID)
+#incbin "Skill Icons/DefiantAvo.dmp"
+
+ORG SkillIcon(DefiantCritID)
+#incbin "Skill Icons/DefiantCrit.dmp"
+
+ORG SkillIcon(DefiantStrID)
+#incbin "Skill Icons/DefiantStr.dmp"
+
+ORG SkillIcon(DefiantMagID)
+#incbin "Skill Icons/DefiantMag.dmp"
+
+ORG SkillIcon(DefiantSklID)
+#incbin "Skill Icons/DefiantSkl.dmp"
+
+ORG SkillIcon(DefiantSpdID)
+#incbin "Skill Icons/DefiantSpd.dmp"
+
+ORG SkillIcon(DefiantLckID)
+#incbin "Skill Icons/DefiantLck.dmp"
+
+ORG SkillIcon(DefiantDefID)
+#incbin "Skill Icons/DefiantDef.dmp"
+
+ORG SkillIcon(DefiantResID)
+#incbin "Skill Icons/DefiantRes.dmp"
+
+ORG SkillIcon(BargainID)
+#incbin "Skill Icons/Bargain.dmp"
