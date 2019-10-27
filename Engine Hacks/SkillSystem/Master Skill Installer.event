@@ -611,8 +611,10 @@ WORD ResolveID
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
 #include "Teq Skills/FE8-Nullify/Nullify EA.txt"
+
 #include "Sme Skills/Bargain.event"
 #include "Sme Skills/Defiant Skills.event"
+#include "Sme Skills/UnitMenu/UnitMenuSkills.event"
 
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"
