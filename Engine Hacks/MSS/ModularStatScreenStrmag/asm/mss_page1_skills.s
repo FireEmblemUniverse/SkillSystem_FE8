@@ -13,8 +13,7 @@
 .set Display_Growths_options, SS_TalkText+4
 .set Growth_Getters_Table, Display_Growths_options+4
 .set Get_Palette_Index, Growth_Getters_Table+4
-.equ GetCharge, Get_Palette_Index+4
-.equ MagClassTable, GetCharge+4
+.equ MagClassTable, Get_Palette_Index+4
 
 page_start
 

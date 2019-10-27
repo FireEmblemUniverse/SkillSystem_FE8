@@ -43,6 +43,7 @@ pop {r0}
 bx r0
 
 .align
+.ltorg
 SkillTester:
 @POIN SkillTester
 @POIN FaireIDList
