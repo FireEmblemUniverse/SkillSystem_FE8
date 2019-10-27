@@ -607,6 +607,15 @@ prResolve:
 POIN SkillTester
 WORD ResolveID
 
+DefiantAvo:
+#incbin "Sme Skills/DefiantAvo.dmp"
+POIN SkillTester
+WORD DefiantAvo
+
+DefiantCrit:
+#incbin "Sme Skills/DefiantCrit.dmp"
+POIN SkillTester
+WORD DefiantCrit
 
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
