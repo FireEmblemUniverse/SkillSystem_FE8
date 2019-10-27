@@ -168,3 +168,24 @@ DriveStr:
 #incbin "DriveStr.dmp"
 POIN AuraSkillCheck
 WORD DriveStrID
+
+Daunt:
+#incbin "Daunt.dmp"
+POIN AuraSkillCheck
+WORD DauntID
+
+BloodTide:
+#incbin "BloodTide.dmp"
+POIN AuraSkillCheck
+WORD BloodTideID
+
+WhitePool:
+#incbin "WhitePool.dmp"
+POIN AuraSkillCheck
+WORD WhitePoolID
+
+NightTide:
+#incbin "NightTide.dmp"
+POIN AuraSkillCheck
+WORD NightTideID
+
