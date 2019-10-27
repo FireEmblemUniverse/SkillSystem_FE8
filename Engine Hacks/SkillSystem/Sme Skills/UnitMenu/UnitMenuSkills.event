@@ -1,0 +1,17 @@
+//three new usability routines that include SkillTester for previously display-only skills; these skills should still be display-only on enemies
+
+NewDanceUsability:
+#incbin "NewDanceUsability.dmp"
+POIN SkillTester
+WORD DanceID
+
+NewSupplyUsability:
+#incbin "NewSupplyUsability.dmp"
+POIN SkillTester
+WORD SupplyID
+
+NewSummonUsability:
+#incbin "NewSummonUsability.dmp"
+POIN SkillTester
+WORD SummonID
+

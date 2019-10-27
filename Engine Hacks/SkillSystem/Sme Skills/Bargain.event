@@ -17,3 +17,4 @@ SilverCardList: //null-terminated list of item IDs to act as silver cards
 BYTE SilverCard
 BYTE 0
 
+ALIGN 4
