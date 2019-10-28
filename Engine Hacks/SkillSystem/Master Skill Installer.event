@@ -622,6 +622,11 @@ TowerShieldPlus:
 POIN SkillTester
 WORD TowerShieldPlusID
 
+VoidCurse:
+#incbin "Sme Skills/VoidCurse.dmp"
+POIN SkillTester
+WORD VoidCurseID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
