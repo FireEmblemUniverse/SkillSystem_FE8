@@ -5,6 +5,7 @@ ORG 16*16/2*0xFF+SkillIcons
 ALIGN 4
 #endif
 
+//Icon graphics are uncompressed
 #define SkillIcon(skillID) 16*16/2*skillID+SkillIcons
 
 ORG SkillIcon(AcrobatID)
@@ -650,76 +651,79 @@ ORG SkillIcon(AptitudeID)
 #incbin "Skill Icons/Aptitude.dmp"
 
 ORG SkillIcon(QuickRiposteID)
-#incbin "Skill Icons/QuickRiposte.dmp"
+#incext Png2Dmp "Skill Icons/QuickRiposte.png"
 
 ORG SkillIcon(ResolveID)
-#incbin "Skill Icons/Resolve.dmp"
+#incext Png2Dmp "Skill Icons/Resolve.png"
 
 ORG SkillIcon(InsightID)
-#incbin "Skill Icons/Insight.dmp"
+#incext Png2Dmp "Skill Icons/Insight.png"
 
 ORG SkillIcon(VigilanceID)
-#incbin "Skill Icons/Vigilance.dmp"
+#incext Png2Dmp "Skill Icons/Vigilance.png"
 
 ORG SkillIcon(DauntID)
-#incbin "Skill Icons/Daunt.dmp"
+#incext Png2Dmp "Skill Icons/Daunt.png"
 
 ORG SkillIcon(BloodTideID)
-#incbin "Skill Icons/BloodTide.dmp"
+#incext Png2Dmp "Skill Icons/BloodTide.png"
 
 ORG SkillIcon(WhitePoolID)
-#incbin "Skill Icons/WhitePool.dmp"
+#incext Png2Dmp "Skill Icons/WhitePool.png"
 
 ORG SkillIcon(NightTideID)
-#incbin "Skill Icons/NightTide.dmp"
+#incext Png2Dmp "Skill Icons/NightTide.png"
 
 ORG SkillIcon(PrescienceID)
-#incbin "Skill Icons/Prescience.dmp"
+#incext Png2Dmp "Skill Icons/Prescience.png"
 
 ORG SkillIcon(DefiantAvoID)
-#incbin "Skill Icons/DefiantAvo.dmp"
+#incext Png2Dmp "Skill Icons/DefiantAvo.png"
 
 ORG SkillIcon(DefiantCritID)
-#incbin "Skill Icons/DefiantCrit.dmp"
+#incext Png2Dmp "Skill Icons/DefiantCrit.png"
 
 ORG SkillIcon(DefiantStrID)
-#incbin "Skill Icons/DefiantStr.dmp"
+#incext Png2Dmp "Skill Icons/DefiantStr.png"
 
 ORG SkillIcon(DefiantMagID)
-#incbin "Skill Icons/DefiantMag.dmp"
+#incext Png2Dmp "Skill Icons/DefiantMag.png"
 
 ORG SkillIcon(DefiantSklID)
-#incbin "Skill Icons/DefiantSkl.dmp"
+#incext Png2Dmp "Skill Icons/DefiantSkl.png"
 
 ORG SkillIcon(DefiantSpdID)
-#incbin "Skill Icons/DefiantSpd.dmp"
+#incext Png2Dmp "Skill Icons/DefiantSpd.png"
 
 ORG SkillIcon(DefiantLckID)
-#incbin "Skill Icons/DefiantLck.dmp"
+#incext Png2Dmp "Skill Icons/DefiantLck.png"
 
 ORG SkillIcon(DefiantDefID)
-#incbin "Skill Icons/DefiantDef.dmp"
+#incext Png2Dmp "Skill Icons/DefiantDef.png"
 
 ORG SkillIcon(DefiantResID)
-#incbin "Skill Icons/DefiantRes.dmp"
+#incext Png2Dmp "Skill Icons/DefiantRes.png"
 
 ORG SkillIcon(BargainID)
-#incbin "Skill Icons/Bargain.dmp"
+#incext Png2Dmp "Skill Icons/Bargain.png"
 
 ORG SkillIcon(ShortShieldID)
-#incbin "Skill Icons/ShortShield.dmp"
+#incext Png2Dmp "Skill Icons/ShortShield.png"
 
 ORG SkillIcon(TowerShieldID)
-#incbin "Skill Icons/TowerShield.dmp"
+#incext Png2Dmp "Skill Icons/TowerShield.png"
 
 ORG SkillIcon(TowerShieldPlusID)
-#incbin "Skill Icons/TowerShieldPlus.dmp"
+#incext Png2Dmp "Skill Icons/TowerShieldPlus.png"
 
 ORG SkillIcon(VoidCurseID)
-#incbin "Skill Icons/VoidCurse.dmp"
+#incext Png2Dmp "Skill Icons/VoidCurse.png"
 
 ORG SkillIcon(IndoorFighterID)
-#incbin "Skill Icons/IndoorFighter.dmp"
+#incext Png2Dmp "Skill Icons/IndoorFighter.png"
 
 ORG SkillIcon(OutdoorFighterID)
-#incbin "Skill Icons/OutdoorFighter.dmp"
+#incext Png2Dmp "Skill Icons/OutdoorFighter.png"
+
+ORG SkillIcon(TomeRangeUpID)
+#incext Png2Dmp "Skill Icons/TomeRangeUp.png"
