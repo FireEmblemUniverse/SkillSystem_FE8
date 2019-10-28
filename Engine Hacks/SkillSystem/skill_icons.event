@@ -727,3 +727,9 @@ ORG SkillIcon(OutdoorFighterID)
 
 ORG SkillIcon(TomeRangeUpID)
 #incext Png2Dmp "Skill Icons/TomeRangeUp.png"
+
+ORG SkillIcon(AlertStanceID)
+#incext Png2Dmp "Skill Icons/AlertStance.png"
+
+ORG SkillIcon(AlertStancePlusID)
+#incext Png2Dmp "Skill Icons/AlertStancePlus.png"
