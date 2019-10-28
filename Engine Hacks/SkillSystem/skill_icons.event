@@ -717,3 +717,9 @@ ORG SkillIcon(TowerShieldPlusID)
 
 ORG SkillIcon(VoidCurseID)
 #incbin "Skill Icons/VoidCurse.dmp"
+
+ORG SkillIcon(IndoorFighterID)
+#incbin "Skill Icons/IndoorFighter.dmp"
+
+ORG SkillIcon(OutdoorFighterID)
+#incbin "Skill Icons/OutdoorFighter.dmp"

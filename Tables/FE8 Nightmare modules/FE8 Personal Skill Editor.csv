@@ -1,26 +1,26 @@
 INLINE PersonalSkillTable,Skill
 None,0x0
-Eirika,CharismaID
-Seth,SaviorID
-Gilliam,RallyDefID
-Franz,SealStrID
-Moulder,RallyResID
-Vanessa,SpurSpdID
-Ross,ParagonID
-Neimi,RallyLukID
-Colm,BargainID
-Garcia,ColossusID
-Innes,BowRangeUpID
-Lute,ParagonID
-Natasha,SealLukID
-Cormag,RallyStrID
-Ephraim,InspirationID
-Forde,SpurSpdID
-Kyle,SpurStrID
-Amelia,ParagonID
-Artur,FocusID
-Gerik,BondID
-Tethys,DemoiselleID
+Eirika,ResolveID
+Seth,DauntID
+Gilliam,DefiantAvoID
+Franz,DefiantCritID
+Moulder,DefiantStrID
+Vanessa,DefiantMagID
+Ross,DefiantSklID
+Neimi,DefiantSpdID
+Colm,DefiantLckID
+Garcia,DefiantDefID
+Innes,DefiantResID
+Lute,IndoorFighterID
+Natasha,OutdoorFighterID
+Cormag,0x0
+Ephraim,0x0
+Forde,0x0
+Kyle,0x0
+Amelia,0x0
+Artur,0x0
+Gerik,0x0
+Tethys,0x0
 Marisa,FocusID
 Saleh,SpurMagID
 Ewan,CelerityID
@@ -103,7 +103,7 @@ Hunter (Ch 16),0x0
 -0,0x0
 Brigand,0x0
 -0,0x0
-O'Neill (Prologue),CounterID
+O'Neill (Prologue),TowerShieldPlusID
 Glen (Cutscene),0x0
 Zonta (Ch 5x),0x0
 Vigarde (Ch 14B),RenewalID

@@ -18,7 +18,7 @@ mov r5, r1 @unit
 ldrb r0,[r5,#0x12]
 ldrb r1,[r5,#0x13]
 lsl r1,r1,#2
-cmp r0,r1
+cmp r1,r0
 bgt GoBack
 
 ldr r0, SkillTester
