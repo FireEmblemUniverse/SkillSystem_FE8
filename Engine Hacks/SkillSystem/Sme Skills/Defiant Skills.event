@@ -40,10 +40,12 @@ WORD DefiantResID
 DefiantAvo:
 #incbin "DefiantAvo.dmp"
 POIN SkillTester
-WORD DefiantAvo
+WORD DefiantAvoID
 
 DefiantCrit:
 #incbin "DefiantCrit.dmp"
 POIN SkillTester
-WORD DefiantCrit
+WORD DefiantCritID
+
+MESSAGE DefiantAvo DefiantCrit
 

@@ -15,15 +15,15 @@ push {r4-r7,lr}
 mov r4, r0
 mov r5, r1
 
-ldrb r1,[r4,#0x10] @r1=y pos
-ldrb r0,[r4,#0x11] @r0=x pos
-ldr r2,=gMapTerrain
-mov r3,#4
-mul r0,r3
-add r2,r0
-ldr r0,[r2]
-add r0,r1
-ldrb r6,[r0] @r6= current terrain
+ldrb r0,[r4,#0x10] @r0=x pos
+ldrb r1,[r4,#0x11] @r1=y pos
+ldr		r2,=gMapTerrain	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r6,[r2]			@load datum at those coordinates
 
 ldr r7,IndoorTerrainList
 LoopStart:
