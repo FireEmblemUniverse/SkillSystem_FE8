@@ -705,3 +705,13 @@ ORG SkillIcon(DefiantResID)
 
 ORG SkillIcon(BargainID)
 #incbin "Skill Icons/Bargain.dmp"
+
+ORG SkillIcon(ShortShieldID)
+#incbin "Skill Icons/ShortShield.dmp"
+
+ORG SkillIcon(TowerShieldID)
+#incbin "Skill Icons/TowerShield.dmp"
+
+ORG SkillIcon(TowerShieldPlusID)
+#incbin "Skill Icons/TowerShieldPlus.dmp"
+

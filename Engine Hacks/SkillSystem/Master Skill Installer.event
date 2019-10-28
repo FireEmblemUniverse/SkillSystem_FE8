@@ -607,6 +607,21 @@ prResolve:
 POIN SkillTester
 WORD ResolveID
 
+TowerShield:
+#incbin "Sme Skills/TowerShield.dmp"
+POIN SkillTester
+WORD TowerShieldID
+
+ShortShield:
+#incbin "Sme Skills/ShortShield.dmp"
+POIN SkillTester
+WORD ShortShieldID
+
+TowerShieldPlus:
+#incbin "Sme Skills/TowerShieldPlus.dmp"
+POIN SkillTester
+WORD TowerShieldPlusID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"

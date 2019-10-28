@@ -908,66 +908,78 @@ Resolve: When HP < 50%,[N]
 gain 1.5x Str, Skl, & Spd.[X]
 
 ##SD_Insight
-Hit +20.[X]
+Insight: Hit +20.[X]
 
 ##SD_Vigilance
-Avoid +20.[X]
+Vigilance: Avoid +20.[X]
 
 ##SD_Daunt
--5 Hit and Crit to all enemy[N]
-units in a 3-tile radius.[X]
+Daunt: -5 Hit and Crit to all[N]
+enemy units in a 3-tile radius.[X]
 
 ##SD_BloodTide
-Atk and Hit +5 to[N]
-adjacent allies.[X]
+Blood Tide: Atk and Hit +5[N]
+to adjacent allies.[X]
 
 ##SD_WhitePool
-Atk and AS +5 to[N]
-adjacent allies.[X]
+White Pool: Atk and AS +5[N]
+to adjacent allies.[X]
 
 ##SD_NightTide
-Def and Res +5 to[N]
-adjacent allies.[X]
+Night Tide: Def and Res +5[N]
+to adjacent allies.[X]
 
 ##SD_Prescience
-When initiating battle,[N]
-Hit and Avo +15.[X]
+Prescience: When initiating[N]
+battle, Hit and Avo +15.[X]
 
 ##SD_DefiantAvo
-When HP is 25% or lower,[N]
-gain +30 Avoid.[X]
+Deviant Avoid: When HP is 25%[N]
+or lower, gain +30 Avoid.[X]
 
 ##SD_DefiantCrit
-When HP is 25% or lower,[N]
-gain +30 Crit.[X]
+Defiant Crit: When HP is 25%[N]
+or lower, gain +30 Crit.[X]
 
 ##SD_DefiantStr
-When HP is 25% or lower,[N]
-gain +4 Strength.[X]
+Defiant Str: When HP is 25%[N]
+or lower, gain +4 Strength.[X]
 
 ##SD_DefiantMag
-When HP is 25% or lower,[N]
-gain +4 Magic.[X]
+Defiant Mag: When HP is 25%[N]
+or lower, gain +4 Magic.[X]
 
 ##SD_DefiantSkl
-When HP is 25% or lower,[N]
-gain +4 Skill.[X]
+Defiant Skl: When HP is 25%[N]
+[N]or lower, gain +4 Skill.[X]
 
 ##SD_DefiantSpd
-When HP is 25% or lower,[N]
-gain +4 Speed.[X]
+Defiant Spd: When HP is 25%[N]
+or lower, gain +4 Speed.[X]
 
 ##SD_DefiantLck
-When HP is 25% or lower,[N]
-gain +4 Luck.[X]
+Defiant Luck: When HP is 25%[N]
+or lower, gain +4 Luck.[X]
 
 ##SD_DefiantDef
-When HP is 25% or lower,[N]
-gain +4 Defense.[X]
+Defiant Def: When HP is 25%[N]
+or lower, gain +4 Defense.[X]
 
 ##SD_DefiantRes
-When HP is 25% or lower,[N]
-gain +4 Resistance.[X]
+Defiant Res: When HP is 25%[N]
+or lower, gain +4 Resistance.[X]
 
 ##SD_Bargain
-Halves prices in shops.[X]
+Bargain: Halves prices in shops.[X]
+
+##SD_ShortShield
+Short Shield: Gain 6 defense[N]
+against attacks recieved in melee.[X]
+
+##SD_TowerShield
+Tower Shield: Gain 6 defense[N]
+against attacks recieved at range.[X]
+
+##SD_TowerShieldPlus
+Tower Shield+: Take no damage[N]
+against attacks recieved at range.[X]
