@@ -181,9 +181,6 @@ POP
   #include "MSR/MagicSwordRework.event"
   
   ALIGN 4
-  #include "MMB/MMB Installer.event"
-  
-  ALIGN 4
   #include "SmeHax/SoundRoom/SoundRoom.event"
   
   ALIGN 4
