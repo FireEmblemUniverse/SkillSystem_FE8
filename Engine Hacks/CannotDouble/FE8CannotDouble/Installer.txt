@@ -1,4 +1,0 @@
-//Makes 0xC the cannot double effect
-
-ORG 0x2AFFE
-SHORT 0x280C 0xD005
