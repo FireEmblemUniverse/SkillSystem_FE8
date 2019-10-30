@@ -1,0 +1,76 @@
+0802AF90 B5F0     push    r4-r7,r14                               ;9  121
+0802AF92 1C04     mov     r4,r0                                   ;2  123	@Attacker?
+0802AF94 1C0F     mov     r7,r1                                   ;2  125	@Defender?
+0802AF96 480B     ldr     r0,=203A56Ch                            ;9  134	@Defender struct?
+0802AF98 1C02     mov     r2,r0                                   ;2  136
+0802AF9A 325E     add     r2,5Eh                                  ;2  138	@AS
+0802AF9C 2300     mov     r3,0h                                   ;2  140
+0802AF9E 5ED1     ldsh    r1,[r2,r3]                              ;7  147	@Load signed
+0802AFA0 1C06     mov     r6,r0                                   ;2  149	@Defender
+0802AFA2 29FA     cmp     r1,0FAh                                 ;2  151	@250 aspd?
+0802AFA4 DC34     bgt     802B010h                                ;8  159	@if over 250 aspd cannot double? lol
+0802AFA6 4808     ldr     r0,=203A4ECh                            ;9  168	@Attacker atruct.
+0802AFA8 1C01     mov     r1,r0                                   ;2  170	
+0802AFAA 315E     add     r1,5Eh                                  ;2  172	@Aspd
+0802AFAC 2500     mov     r5,0h                                   ;2  174
+0802AFAE 5F4B     ldsh    r3,[r1,r5]                              ;7  181	@r3 = attacker aspd
+0802AFB0 2100     mov     r1,0h                                   ;2  183
+0802AFB2 5E52     ldsh    r2,[r2,r1]                              ;4  187	@r2 = defender aspd
+0802AFB4 1A99     sub     r1,r3,r2                                ;2  189	@r1 = attacker - defender speed.
+0802AFB6 1C05     mov     r5,r0                                   ;2  191	@&Attacker
+0802AFB8 2900     cmp     r1,0h                                   ;2  193	@Who is faster?
+0802AFBA DB07     blt     802AFCCh                                ;8  201	@defender is faster
+0802AFBC 2903     cmp     r1,3h                                   ;2  203	@attacker is faster;doubling threshold
+0802AFBE DD27     ble     802B010h                                ;8  211	@No doubling
+0802AFC0 E007     b       802AFD2h                                ;8  219	@attacker is faster.
+0802AFC2 0000     lsl     r0,r0,0h                                ;2  221
+0802AFC4 A56C     add     r5,=802B178h                            ;2  223
+0802AFC6 0203     lsl     r3,r0,8h                                ;2  225
+0802AFC8 A4EC     add     r4,=802B37Ch                            ;2  227
+0802AFCA 0203     lsl     r3,r0,8h                                ;2  229
+0802AFCC 1AD0     sub     r0,r2,r3                                ;2  231	@defender is faster
+0802AFCE 2803     cmp     r0,3h                                   ;2  233
+0802AFD0 DD1E     ble     802B010h                                ;8  241
+0802AFD2 1C28     mov     r0,r5                                   ;2  243
+0802AFD4 305E     add     r0,5Eh                                  ;2  245
+0802AFD6 1C32     mov     r2,r6                                   ;2  247
+0802AFD8 325E     add     r2,5Eh                                  ;2  249
+0802AFDA 2300     mov     r3,0h                                   ;2  251
+0802AFDC 5EC1     ldsh    r1,[r0,r3]                              ;4  255
+0802AFDE 2300     mov     r3,0h                                   ;2  257
+0802AFE0 5ED0     ldsh    r0,[r2,r3]                              ;7  264
+0802AFE2 4281     cmp     r1,r0                                   ;2  266
+0802AFE4 DD02     ble     802AFECh                                ;8  274
+0802AFE6 6025     str     r5,[r4]                                 ;5  279
+0802AFE8 603E     str     r6,[r7]                                 ;5  284
+0802AFEA E001     b       802AFF0h                                ;8  292
+0802AFEC 6026     str     r6,[r4]                                 ;5  297
+0802AFEE 603D     str     r5,[r7]                                 ;5  302
+0802AFF0 6820     ldr     r0,[r4]                                 ;4  306
+0802AFF2 304A     add     r0,4Ah                                  ;2  308   @Pre battle weapon
+0802AFF4 8800     ldrh    r0,[r0]                                 ;4  312
+0802AFF6 F7ECFB95 bl      8017724h                                ;10 322   @Weapon ability
+0802AFFA 2803     cmp     r0,3h                                   ;2  324   @Eclipse.
+0802AFFC D008     beq     802B010h                                ;8  332   @nope.
+
+@ at 0x2AFFE
+.thumb
+cmp r0, #0xC    @Cannot double effect
+beq retFalse
+
+.org 0x10
+retFalse:
+
+0802AFFE 6820     ldr     r0,[r4]                                 ;4  336
+0802B000 3048     add     r0,48h                                  ;2  338   @Post battle weapon?
+0802B002 8800     ldrh    r0,[r0]                                 ;4  342
+0802B004 F7ECFA72 bl      80174ECh                                ;10 352   @Get ID
+0802B008 28B5     cmp     r0,0B5h                                 ;2  354   @Stone
+0802B00A D001     beq     802B010h                                ;8  362
+
+0802B00C 2001     mov     r0,1h                                   ;2  364
+0802B00E E000     b       802B012h                                ;8  372
+0802B010 2000     mov     r0,0h                                   ;2  374
+0802B012 BCF0     pop     r4-r7                                   ;21 395
+0802B014 BC02     pop     r1                                      ;9  404
+

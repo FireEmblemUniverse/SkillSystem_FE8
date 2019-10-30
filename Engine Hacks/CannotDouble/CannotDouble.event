@@ -1,0 +1,7 @@
+//Makes 0xC the cannot double effect
+/*
+ORG 0x2AFFE
+SHORT 0x280C 0xD005
+*/
+//Conflicts with Wary Fighter; can put this in the wary fighter routine, or turn that into a calc loop?
+//Also make this use weapon ability byte 3 bit 0x80
