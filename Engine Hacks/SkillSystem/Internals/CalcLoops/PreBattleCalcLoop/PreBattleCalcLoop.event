@@ -22,7 +22,10 @@ POIN BlowCheck
 POIN DefendingCheck
 #ifdef LEADERSHIP_STARS
   POIN LeadershipHook
-#endif
+#endif //LEADERSHIP_STARS
+#ifdef BIORHYTHM
+  POIN BiorhythmFunc
+#endif //BIORHYTHM
 POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
 POIN DriveStr DriveMag DriveSpd DriveDef DriveRes
 POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn

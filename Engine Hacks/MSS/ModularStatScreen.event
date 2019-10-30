@@ -114,9 +114,36 @@
   MSS_page1:
     #ifdef LEADERSHIP_STARS
         #incbin "asm/mss_page1_skills_leadership.dmp"
-    #else
-        #incbin "asm/mss_page1_skills.dmp"
-    #endif
+		POIN SkillIcons
+		POIN Skill_Getter
+		POIN SkillTester
+		WORD SaviorID
+		WORD CelerityID
+		WORD SS_SkillsText
+		WORD SS_TalkText
+		WORD Growth_Options
+		POIN Growth_Getter_Table
+		POIN Get_Palette_Index
+		POIN GetLeadershipStarCount
+	#endif //LEADERSHIP_STARS
+	
+	#ifdef BIORHYTHM
+		#incbin "asm/mss_page1_skills_biorhythm.dmp"
+		POIN SkillIcons
+		POIN Skill_Getter
+		POIN SkillTester
+		WORD SaviorID
+		WORD CelerityID
+		WORD SS_SkillsText
+		WORD SS_TalkText
+		WORD Growth_Options
+		POIN Growth_Getter_Table
+		POIN Get_Palette_Index		
+		WORD SS_BiorhythmText
+		POIN BiorhythmNameGetter
+	#endif //BIORHYTHM
+
+    #incbin "asm/mss_page1_skills.dmp"
     POIN SkillIcons
     POIN Skill_Getter
     POIN SkillTester
@@ -127,9 +154,8 @@
     WORD Growth_Options
     POIN Growth_Getter_Table
     POIN Get_Palette_Index
-    #ifdef LEADERSHIP_STARS
-        POIN GetLeadershipStarCount
-    #endif
+
+	
   
   ALIGN 4
   MSS_page2:
@@ -371,9 +397,12 @@
   ST_Affin:
     #ifdef LEADERSHIP_STARS
        RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,LeadRText)
-    #else
+    #endif //LEADERSHIP_STARS
+	#ifdef BIORHYTHM
+	   RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,SS_BiorhythmRText)
+	#endif //BIORHYTHM
        RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,0x551)
-    #endif
+    
 
   ST_Cond:
     RMenu(ST_Affin,ST_Talk,ST_Luck,0,0xA6,0x48,0x552,ConditionGetter)
