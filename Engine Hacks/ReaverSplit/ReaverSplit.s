@@ -57,12 +57,13 @@ ldr r0,[r4,#0x4C]
 ldr r1,=#0x00400000
 and r0,r1
 cmp r0,#0
-beq ReaverEffectBitSet
+beq DoubleWTAEffectBitSet
 ldr r0,[r5,#0x4C]
 and r0,r1
 cmp r0,#0
 bne Return
 
+DoubleWTAEffectBitSet:
 mov r0,r4
 add r0,#0x53
 ldrb r1,[r0]

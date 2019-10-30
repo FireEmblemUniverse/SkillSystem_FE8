@@ -167,10 +167,6 @@ POP
   //Makes weapon crit of 255 negate crits
   ALIGN 4
   #include "CannotCrit/CannotCrit.event"
-  
-  //Makes weapon ability 3 bit 0x40 disallow doubling
-  ALIGN 4
-  #include "CannotDouble/CannotDouble.event"
 
   ALIGN 4
   #include "SkillSystem/Master Skill Installer.event"
