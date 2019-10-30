@@ -17,6 +17,9 @@ WORD 1 //positive
 WORD 0 //neutral
 WORD 1 //negative
 WORD 3 //negative
+WORD TempestID
+WORD SerenityID
+POIN SkillTester
 
 ALIGN 4
 BiorhythmGetter: //takes char struct in r0

@@ -14,6 +14,9 @@
 .equ Value10, Value9+4
 .equ Value11, Value10+4
 .equ Value12, Value11+4
+.equ TempestID, Value12+4
+.equ SerenityID, TempestID+4
+.equ SkillTester, SerenityID+4
 
 push {r4-r7,r14}
 @goes in the battle loop.
@@ -103,6 +106,36 @@ b NegativeEffect
 
 
 NegativeEffect:
+push {r0}
+
+ldr		r1,SerenityID
+mov 	r0,r5
+ldr 	r3, SkillTester
+mov		r14,r3
+.short	0xF800
+cmp r0,#0
+beq NegTempestCheck
+pop {r0}
+lsr r0,#1
+b ApplyNegativeEffect
+
+NegTempestCheck:
+ldr		r1,TempestID
+mov 	r0,r5
+ldr 	r3, SkillTester
+mov		r14,r3
+.short	0xF800
+cmp r0,#0
+beq NegNoSkills
+pop {r0}
+lsl r0,#1
+b ApplyNegativeEffect
+
+NegNoSkills:
+pop {r0}
+
+ApplyNegativeEffect:
+
 mov r2, r5
 add     r2,#0x60    @Move to the attacker's hit.
 ldrh    r3,[r2]     @Load the attacker's hit into r3.
@@ -117,6 +150,35 @@ b GoBack
 
 
 PositiveEffect:
+push {r0}
+
+ldr		r1,SerenityID
+mov 	r0,r5
+ldr 	r3, SkillTester
+mov		r14,r3
+.short	0xF800
+cmp r0,#0
+beq PosTempestCheck
+pop {r0}
+lsr r0,#1
+b ApplyPositiveEffect
+
+PosTempestCheck:
+ldr		r1,TempestID
+mov 	r0,r5
+ldr 	r3, SkillTester
+mov		r14,r3
+.short	0xF800
+cmp r0,#0
+beq PosNoSkills
+pop {r0}
+lsl r0,#1
+b ApplyPositiveEffect
+
+PosNoSkills:
+pop {r0}
+
+ApplyPositiveEffect:
 mov r2, r5
 add     r2,#0x60    @Move to the attacker's hit.
 ldrh    r3,[r2]     @Load the attacker's hit into r3.

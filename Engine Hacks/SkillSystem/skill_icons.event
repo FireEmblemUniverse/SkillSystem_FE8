@@ -739,3 +739,9 @@ ORG SkillIcon(CoronaID)
 
 ORG SkillIcon(FlareID)
 #incext Png2Dmp "Skill Icons/Flare.png"
+
+ORG SkillIcon(TempestID)
+#incext Png2Dmp "Skill Icons/Tempest.png"
+
+ORG SkillIcon(SerenityID)
+#incext Png2Dmp "Skill Icons/Serenity.png"
