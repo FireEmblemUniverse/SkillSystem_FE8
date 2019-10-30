@@ -733,3 +733,9 @@ ORG SkillIcon(AlertStanceID)
 
 ORG SkillIcon(AlertStancePlusID)
 #incext Png2Dmp "Skill Icons/AlertStancePlus.png"
+
+ORG SkillIcon(CoronaID)
+#incext Png2Dmp "Skill Icons/Corona.png"
+
+ORG SkillIcon(FlareID)
+#incext Png2Dmp "Skill Icons/Flare.png"

@@ -18,7 +18,7 @@ POIN Proc_Start	//start
 
 POIN Proc_Devil	//devil effect
 POIN Proc_Sureshot Proc_Luna Proc_Moonbow Proc_Adept	//skills that do damage and all that
-POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage//more damage
+POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Flare //more damage
 POIN Proc_Astra	//astra should be the last one before the ones that set damage
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 POIN Proc_CapDamage	//check that damage is not over cap
@@ -209,6 +209,17 @@ POP
 ALIGN 4
 BlackMagic_AnimsOff:
 #incbin "BlackMagic_AnimsOff.dmp"
+
+Proc_Corona:
+#incbin "proc_corona.dmp"
+POIN SkillTester
+WORD CoronaID
+
+Proc_Flare:
+#incbin "proc_flare.dmp"
+POIN SkillTester
+WORD FlareID
+
 
 //When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
 //PUSH
