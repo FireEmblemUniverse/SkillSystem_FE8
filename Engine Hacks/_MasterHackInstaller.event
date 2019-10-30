@@ -159,6 +159,18 @@ POP
   //Change Sick Status to Freeze
   #include "Freeze/Freeze.event"
   #include "Freeze/EventFreeze.event"
+  
+  //Makes weapon ability 2 reaver bit just triangle reversal and weapon ability 3 bit 0x80 triple triangle effect
+  ALIGN 4
+  #include "ReaverSplit/ReaverSplit.event"
+  
+  //Makes weapon crit of 255 negate crits
+  ALIGN 4
+  #include "CannotCrit/CannotCrit.event"
+  
+  //Makes weapon ability 3 bit 0x40 disallow doubling
+  ALIGN 4
+  #include "CannotDouble/CannotDouble.event"
 
   ALIGN 4
   #include "SkillSystem/Master Skill Installer.event"
@@ -168,17 +180,6 @@ POP
   ALIGN 4
   #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
   
-  //Makes weapon ability 2 reaver bit just triangle reversal and weapon ability 3 bit 0x40 triple triangle effect
-  ALIGN 4
-  #include "ReaverSplit/ReaverSplit.event"
-  
-  //Makes weapon ability 3 bit 0x80 disallow crits
-  ALIGN 4
-  #include "CannotCrit/CannotCrit.event"
-  
-  ALIGN 4
-  #include "CannotDouble/CannotDouble.event"
-
   ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"
   

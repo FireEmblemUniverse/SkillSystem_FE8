@@ -1,7 +1,6 @@
 .thumb
 .align
 
-
 .global NegateCritWeapons
 .type NegateCritWeapons, %function
 NegateCritWeapons:
@@ -14,7 +13,12 @@ add r0,#0x4A
 ldrh r0,[r0] 
 mov r1,#0xFF
 and r0,r1
-
+mov r1,#36
+mul r0,r1
+ldr r1,=ItemTable
+add r1,r0
+ldrb r0,[r1,#0x18]
+cmp r0,#0xFF
 bne GoBack
 
 mov r0,r4
