@@ -169,7 +169,11 @@ Proc_FlashyMode:
 #incbin "proc__flashymode.dmp"
 
 Proc_Moonbow:
+#ifndef DISABLE_CHARGE
 #incbin "proc_moonbow.dmp"
+#else
+#incbin "proc_moonbowNoCharge.dmp"
+#endif
 POIN SkillTester
 WORD MoonbowID
 

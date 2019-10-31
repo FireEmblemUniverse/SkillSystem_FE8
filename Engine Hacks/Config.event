@@ -64,4 +64,7 @@
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
 
+// If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate.
+// #define DISABLE_CHARGE
+
 #endif // HAX_CONFIG
