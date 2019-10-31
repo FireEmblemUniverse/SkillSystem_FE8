@@ -1,9 +1,4 @@
-/*
-Separates the reaver weapons' effect into two
-Weapon Ability 2:
-0x01 Reverse Weapon Triangle 		//vanilla reaver bit
-0x02 Double Weapon Triangle Effect  //this is the disable hammerne bit? perhaps move this to one of the free bits in byte 3 (this was unused in FE7 so it was good when this was for FE7, needs to move now)
-*/
+//Original by Colorz, rewritten by Sme
 
 #inctext lyn "ReaverSplit.elf"
 
