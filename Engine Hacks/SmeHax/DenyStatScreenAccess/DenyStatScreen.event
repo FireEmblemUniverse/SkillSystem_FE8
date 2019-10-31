@@ -1,0 +1,23 @@
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG 0x1C928 
+jumpToHack(DenyStatScreen|1)
+ORG 0x879C4
+callHack_r0(DenyScrolling|1)
+POP
+
+DenyStatScreen: //function for determining if pressing R on a unit will take you to their stat screen
+#incbin "DenyStatScreen.dmp"
+POIN DenyStatScreenList
+
+DenyScrolling: //function for determining if you can scroll between stat screens to theirs
+#incbin "DenyScrolling.dmp"
+POIN DenyStatScreenList
+
+DenyStatScreenList: //null-terminated list of classes for whom you cannot open the stat screen
+BYTE GorgonEgg
+BYTE GorgonEgg_2
+BYTE 0
+

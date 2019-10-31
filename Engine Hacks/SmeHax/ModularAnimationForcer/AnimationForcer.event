@@ -1,0 +1,17 @@
+
+
+PUSH
+ORG 0x57BB4
+jumpToHack(AnimationForcer|1)
+POP
+
+ALIGN 4
+AnimationForcer:
+#incbin "AnimationForcer.dmp"
+POIN AnimationForcerList
+
+AnimationForcerList:
+BYTE Fomortiis
+BYTE ONeill
+BYTE 0 //terminator
+

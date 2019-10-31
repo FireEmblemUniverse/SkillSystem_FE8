@@ -1,0 +1,16 @@
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG 0x727FC
+jumpToHack(DancerMusic|1)
+POP
+
+DancerMusic:
+#incbin "DancerMusic.dmp"
+POIN DancerMusicList
+
+DancerMusicList: //null-terminated list of classes who use dancer music when initiating combat
+BYTE Dancer
+BYTE 0
+

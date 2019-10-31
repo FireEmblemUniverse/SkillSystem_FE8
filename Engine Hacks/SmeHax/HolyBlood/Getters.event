@@ -1,0 +1,34 @@
+//defs for testing
+#define IsMajor 0x80
+#define DonateBlood 0
+
+//name and desc getters for MSS
+
+ALIGN 4
+HolyBloodNameGetter:
+#incbin "NameGetter.dmp"
+POIN HolyBloodTable
+POIN HolyBloodCharacterTable
+
+ALIGN 4
+HolyBloodDescGetter:
+#incbin "DescGetter.dmp"
+POIN HolyBloodTable
+POIN HolyBloodCharacterTable
+
+//generic getter for all other uses; pass char ID in r0, returns table data pointer or 0 in r0 and major boolean in r1
+
+ALIGN 4
+HolyBloodGetter:
+#incbin "BloodGetter.dmp"
+POIN HolyBloodTable
+POIN HolyBloodCharacterTable
+
+//weapon usability loop function
+
+ALIGN 4
+MESSAGE Blood Lock currentOffset
+HolyBloodWeaponLocks:
+#incbin "WeaponLocks.dmp"
+POIN HolyBloodGetter
+POIN HolyBloodLocks

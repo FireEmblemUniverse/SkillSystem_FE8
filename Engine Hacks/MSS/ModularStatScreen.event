@@ -142,6 +142,10 @@
   ALIGN 4
   MSS_page4:
     #incbin "asm/mss_page4.dmp"
+	WORD SS_BloodText
+	POIN HolyBloodNameGetter|1
+	WORD SS_BiorhythmText
+	POIN BiorhythmNameGetter|1
 
   ALIGN 4
   NewPageNameGraphic:
@@ -212,6 +216,8 @@
 	POIN SkillTester
 	WORD BlossomID
 	WORD AptitudeID
+	POIN HolyBloodTable
+	POIN HolyBloodCharacterTable
 
   ALIGN 4
   Load_Page:
@@ -428,7 +434,13 @@
     RMenu(ST_Level4,0,0,ST_Donate,0x6,0x88,0x544)
 
   ST_Donate:
-    RMenu(0,0,ST_Name4,0,0x86,0x48,DonateURL)
+    RMenu(0,ST_Blood,ST_Name4,0,0x86,0x48,DonateURL)
+	
+  ST_Blood:
+    RMenu(ST_Donate,ST_Bio,ST_Name4,0,0x82,0x58,0x0,HolyBloodDescGetter)
+  
+  ST_Bio:
+    RMenu(ST_Blood,0,ST_Class4,0,0x82,0x68,SS_BiorhythmRText)
 
 #else // _FE8_
   ERROR Modular Stat Screen hack is for FE8

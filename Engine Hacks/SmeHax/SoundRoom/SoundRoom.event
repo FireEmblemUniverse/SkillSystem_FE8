@@ -1,0 +1,68 @@
+//0x78B
+//0x8A20E74
+
+//Sound Room Table is refed in function at 0x80AEC94 to get length of it
+
+//what is at 0x20250BA? this is where sound room length gets stored
+//it's proc-related, we'll need to get it storing and loading as something more than a byte so we'll need to break on its interaction
+//nothing in the space directly after it means we should be good to just store it as more than a byte and nothing else
+
+//stored as a byte at 0x80AED80 @strb r0,[r2]
+//loaded as a byte at 0x80AEE1C @ldrb r1,[r3]
+//loaded as a byte at 0x80AF4B8 @ldrb r0,[r0]
+//we need to change where it's being stored and read to 0x20250EC; free space in the proc pool and we can store a word there
+
+//aec9c
+//aed20
+//aedaa
+//aedcc
+//aecc6
+//aee2e
+//aed22
+
+/*
+PUSH
+ORG 0xAED76
+BYTE 0x68
+ORG 0xAED80
+SHORT 0x6010
+
+ORG 0xAEE1C
+SHORT 0x6819
+
+ORG 0xAF4B6
+BYTE 0x68
+ORG 0xAF4B8
+SHORT 0x6800
+
+ORG 0xAD39E
+//SHORT 0x46C0
+//callHack_r6(SoundRoomFix1)
+
+POP
+*/
+
+//.set prBottomHelpDisplay_New,    0x08035708 @ arguments: r0 = parent 6C, r1 = pointer to text IN BUFFER
+//.set prBottomHelpDisplay_EndAll, 0x08035748 @ none
+
+//looking for r0=0x78B
+
+
+//there's a bl at 80B006E, bl to 8035708 there?
+/*
+PUSH
+ORG 0xB006A
+SHORT 0x4802
+SHORT 0x1C29
+WORD 0xFB4BF785
+SHORT 0xE001
+WORD 0x20252F0
+POP
+
+
+
+
+ALIGN 4
+MESSAGE test currentOffset
+#incbin "SoundRoomFix1.dmp"
+*/
