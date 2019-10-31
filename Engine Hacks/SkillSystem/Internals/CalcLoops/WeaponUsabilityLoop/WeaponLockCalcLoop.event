@@ -6,8 +6,8 @@ POIN WLockLookupList
 POIN WeaponLockLoop
 POP
 //vanilla function size: 0x1DA
-//new function size: 0x118
-//saved: 194 bytes
+//new function size: 0x100
+//saved: 218 bytes
 
 ALIGN 4
 WLockLookupList:

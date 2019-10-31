@@ -5,9 +5,6 @@
 .equ SkillTester, Item_Table+4
 .equ BlossomID, SkillTester+4
 .equ AptitudeID, BlossomID+4
-.equ HolyBloodTable, AptitudeID+4
-.equ HolyBloodCharTable, HolyBloodTable+4
-
 @r0=battle struct or char data ptr, r1 = growth so far (from char data), r2=index in stat booster pointer of growth
 
 push	{r4-r7,r14}
@@ -94,46 +91,10 @@ ldr		r2,SkillTester
 mov		r14,r2
 .short	0xF800
 cmp		r0,#1
-bne		GetHolyBlood
+bne		GoBack
 
 AptitudeEffect:
 add		r5,#20 @growth +20%
-
-
-GetHolyBlood:
-mov r1,r4
-ldr r1,[r1]
-ldrb r1,[r1,#4] @get char ID in r1
-ldr r0,HolyBloodCharTable
-add r0,r1
-ldrb r0,[r0] @get holy blood ID
-cmp r0,#0xFF
-beq GoBack @if holy blood is 255, then no holy blood
-mov r1,#0x80
-tst r0,r1
-beq NoMajorBlood @here we check if it is major blood or not
-mov r3,#1
-b HolyBloodBonus
-
-NoMajorBlood:
-mov r3,#0
-HolyBloodBonus:
-lsl r0,r0,#25
-lsr r0,r0,#25 @clear bit 0x80 from the byte in r0
-ldr r1,HolyBloodTable @now we need our growth bonus
-mov r2,#20 @length of entry
-mul r0,r2
-add r1,r0 @start of entry in r1
-add r1,#4 @start of growth bonuses
-mov r0,r6
-sub r0,#0xA
-add r1,r0 @offset based on current stat being checked
-ldrb r0,[r1] @get modifier in r0
-cmp r3,#1
-bne NoMajorBloodMultiplier
-lsl r0,r0,#1 @multiply by 2
-NoMajorBloodMultiplier:
-add r5,r0
 
 GoBack:
 mov		r1,r8
