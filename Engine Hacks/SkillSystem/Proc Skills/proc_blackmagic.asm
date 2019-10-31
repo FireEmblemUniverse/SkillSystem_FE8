@@ -29,7 +29,7 @@ bne 	End			@if another skill already activated, don't do anything
 mov		r0,#0x6F
 ldsb	r0,[r5,r0]
 cmp		r0,#0
-bge		End			@if already inflicting a status, don't check for Black Magic
+bge		End			@if already inflicting a status, don't check for our skill
 
 mov		r0,r4
 ldr		r1,BlackMagicID

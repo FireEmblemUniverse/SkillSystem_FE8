@@ -210,16 +210,29 @@ ALIGN 4
 BlackMagic_AnimsOff:
 #incbin "BlackMagic_AnimsOff.dmp"
 
+ALIGN 4
 Proc_Corona:
 #incbin "proc_corona.dmp"
 POIN SkillTester
 WORD CoronaID
 
+ALIGN 4
 Proc_Flare:
 #incbin "proc_flare.dmp"
 POIN SkillTester
 WORD FlareID
 
+ALIGN 4
+Proc_Petrify:
+#incbin "proc_petrify.dmp"
+POIN SkillTester
+WORD PetrifyID
+
+ALIGN 4
+Proc_Enrage:
+#incbin "proc_enrage.dmp"
+POIN SkillTester
+WORD EnrageID
 
 //When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
 //PUSH

@@ -745,3 +745,9 @@ ORG SkillIcon(TempestID)
 
 ORG SkillIcon(SerenityID)
 #incext Png2Dmp "Skill Icons/Serenity.png"
+
+ORG SkillIcon(PetrifyID)
+#incext Png2Dmp "Skill Icons/Petrify.png"
+
+ORG SkillIcon(EnrageID)
+#incext Png2Dmp "Skill Icons/Enrage.png"
