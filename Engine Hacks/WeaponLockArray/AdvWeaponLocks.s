@@ -40,13 +40,13 @@ cmp r0,#1
 ble GetCharID
 
 GetClassID:
-ldr r1,[r6,#4]
-ldrb r3,[r1,#4]
+ldr r1,[r4,#4]
+ldrb r1,[r1,#4]
 b GetIDEnd
 
 GetCharID:
-ldr r1,[r6]
-ldrb r3,[r1,#4]
+ldr r1,[r4]
+ldrb r1,[r1,#4]
 
 GetIDEnd:
 push {r0} @first array byte, for later use
@@ -70,7 +70,7 @@ cmp r0,#1
 beq RetFalse
 cmp r0,#2
 beq RetTrue
-cmp r0,#2
+cmp r0,#3
 beq RetFalse
 
 LoopSuccess:

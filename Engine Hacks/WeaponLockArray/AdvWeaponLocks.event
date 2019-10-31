@@ -1,4 +1,4 @@
-//Original by Vennobennu, rewritten by Sme for skill system compatibility
+//Original by Vennobennu, rewritten by Sme for skill system/general buildfile compatibility
 
 //Make prf weapons defined via array with no wrank say "Prf" (untested, may conflict with other things/not work in general)
 PUSH
@@ -16,9 +16,9 @@ POP
 #define EndLockArray 0
 
 TestArray:
-BYTE HardCharLock
-BYTE Eirika
-BYTE Seth
+BYTE HardClassLock
+BYTE EirikaLord
+BYTE Rogue
 BYTE EndLockArray
 
 MESSAGE AdvWeaponLocks
