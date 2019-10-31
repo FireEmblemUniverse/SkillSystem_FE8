@@ -15,8 +15,7 @@ push {r4-r7,r14}
 mov r4,r0 @r4= char struct pointer
 mov r5,r1 @r5= item halfword
 cmp r5,#0
-bne HasAWeapon
-b CannotWield
+beq CannotWield
 
 HasAWeapon:
 mov r1,#0xFF
@@ -30,15 +29,13 @@ mov r0,#1
 and r0,r2 
 mov r3,r1 @r3 = item table offset
 cmp r0,#0 @check if the "is a weapon" bit is set
-bne IsAWeapon @if so, continue
-b CannotWield
+beq CannotWield @if so, continue
 
 IsAWeapon:
 ldr r0,=#0x003D3C00 @word to be &ed to the item ability word 
 and r0,r2
 cmp r0,#0
-bne HasWeaponLocks
-b IsUnitStatused
+beq IsUnitStatused
 
 HasWeaponLocks:
 
@@ -95,156 +92,6 @@ RestartLoop:
 add r7,#8
 b LoopStart
 
-
-@the original function here, commented out so you can see how ridiculous it is:
-
-@mov r0,#0x80
-@lsl r0,r0,#4
-@and r2,r0 @weapon ability word anded with 0x800
-@cmp r2,#0 @this is checking ephraim lock specifically?
-@beq HasValidLocksOrSomething
-@ldr r0,[r4]
-@ldr r1,[r4,#4]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1 @r0= combined character and class ability words
-@mov r1,#0x80
-@lsl r1,r1,#9
-@and r0,r1 @checking reaver effect bit?
-@cmp r0,#0
-@bne LockCheck2
-@b CannotWield
-
-@LockCheck2:
-@mov r1,#0xFF
-@and r1,r5
-@lsl r0,r1,#3
-@add r0,r1
-@lsl r0,r0,#2
-@add r0,r3
-@ldr r0,[r0,#8]
-@mov r1,#0x80
-@lsl r1,r1,#0xB
-@and r0,r1
-@cmp r0,#0
-@beq LockCheck3
-@ldr r0,[r4]
-@ldr r1,[r0,#0x28]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1
-@mov r1,#0x80
-@lsl r1,r1,#0x15
-@and r0,r1
-@cmp r0,#0
-@bne LockCheck3
-@b CannotWield
-
-@LockCheck3:
-@mov r1,#0xFF
-@and r1,r5
-@lsl r0,r1,#3
-@add r0,r1
-@lsl r0,r0,#2
-@add r0,r3
-@ldr r0,[r0,#8]
-@mov r1,#0x80
-@lsl r1,r1,#0xC
-@and r0,r1
-@cmp r0,#0
-@beq CannotWield
-@ldr r0,[r4]
-@ldr r1,[r4,#4]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1
-@mov r1,#0x80
-@lsl r1,r1,#0x16
-@and r0,r1
-@cmp r0,#0
-@beq LockCheck4
-@ldr r0,[r4]
-@ldr r1,[r4,#4]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1
-@mov r1,#0x80
-@lsl r1,r1,#0x17
-@and r0,r1
-@cmp r0,#0
-@beq CannotWield
-
-@LockCheck4:
-@mov r1,#0xFF
-@and r1,r5
-@lsl r0,r1,#3
-@add r0,r1
-@lsl r0,r0,#2
-@add r0,r3
-@ldr r0,[r0,#8]
-@mov r1,#0x80
-@lsl r1,r1,#0xE
-@and r0,r1
-@cmp r0,#0
-@beq LockCheck5
-@ldr r0,[r4]
-@ldr r1,[r4,#4]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1
-@cmp r0,#0
-@bge CannotWield
-
-@LockCheck5:
-@mov r1,#0xFF
-@and r1,r5
-@lsl r0,r1,#3
-@add r0,r1
-@lsl r0,r0,#2
-@add r0,r3
-@ldr r0,[r0,#8]
-@mov r1,#0x80
-@lsl r1,r1,#5
-@and r0,r1
-@cmp r0,#0
-@beq LockCheck6
-@ldr r0,[r4]
-@ldr r1,[r4,#4]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1
-@mov r1,#0x80
-@lsl r1,r1,#0xA
-@and r0,r1
-@cmp r0,#0
-@beq CannotWield
-
-@LockCheck6:
-@mov r0,#0xFF
-@and r0,r5
-@lsl r1,r0,#3
-@add r1,r0
-@lsl r1,r1,#2
-@add r1,r3
-@ldr r1,[r1,#8]
-@mov r0,#0x80
-@lsl r0,r0,#3
-@and r0,r1
-@cmp r0,#0
-@beq LockCheck7
-@ldr r0,[r4]
-@ldr r1,[r4,#4]
-@ldr r0,[r0,#0x28]
-@ldr r1,[r1,#0x28]
-@orr r0,r1
-@mov r1,#0x80
-@lsl r1,r1,#0xB
-@and r0,r1
-@cmp r0,#0
-@beq CannotWield
-@mov r0,#1
-@b 16748 //166CC
-
 .ltorg
 .align
 
@@ -269,7 +116,7 @@ mov r0,#0xF @status 0xF = stone
 and r0,r1 
 ldr r3,ItemTable 
 cmp r0,#3 
-bne DoesUnitHaveWRank
+bne PrepareExternalLoop
 mov r1,#0xFF
 and r1,r5
 lsl r0,r1,#3
@@ -280,7 +127,7 @@ ldr r0,[r0,#8]
 mov r1,#2
 and r0,r1
 cmp r0,#0
-beq DoesUnitHaveWRank
+beq PrepareExternalLoop
 
 CannotWield:
 mov r1,#0
@@ -289,27 +136,19 @@ b GoBack
 .ltorg
 .align
 
-DoesUnitHaveWRank:
+PrepareExternalLoop:
+@get weapon rank for item type and put it in r6, but don't do the "is your wrank high enough for this weapon" part
 mov r1,#0xFF
 and r1,r5
-lsl r0,r1,#3
+mov r0,#0x24
+mul r1,r0
+ldr r0,ItemTable
 add r0,r1
-lsl r0,r0,#2
-add r0,r3
-ldrb r2,[r0,#0x1C] @get weapon's required weapon level
-mov r1,#0xFF
-cmp r5,#0
-beq SkipWeaponTypeCheck
-ldrb r1,[r0,#7] @loads item's weapon type into r1
-SkipWeaponTypeCheck:
-mov	r6,r2	@rank
-mov	r7,r1	@item type
-mov	r0,r4
-add	r0,#0x28
-add	r0,r1
-ldrb	r0,[r0]
-cmp	r0,r2
-bhs	ExitLoop
+ldrb r1,[r0,#7] @weapon type
+mov r0,r4
+add r0,#0x28 @start of wranks
+add r0,r1 @proper wrank
+ldrb r6,[r0] @r6 = rank
 
 @here we gonna put our external function loop
 ldr r7,ExternalLoop
@@ -341,4 +180,4 @@ bx r1
 .align
 
 ItemTable:
-@POIN Shadowgift
+@POIN ItemTable

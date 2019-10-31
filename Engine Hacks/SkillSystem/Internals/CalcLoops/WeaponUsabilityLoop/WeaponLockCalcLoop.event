@@ -22,10 +22,19 @@ WORD 0x00100000 0x40000000  //Lyn Lock
 WORD 0x00200000 0x80000000  //Athos Lock
 WORD 0xFFFFFFFF 			//Terminator
 
+ALIGN 4
+DoesUnitHaveWRank: //because of how it works, this both needs to be in the external calc loop and contain lumina/shadowgift
+#incbin "DoesUnitHaveWRank.dmp"
+POIN ItemTable
+POIN SkillTester
+WORD ShadowgiftID
+WORD LuminaID
+WORD SHADOWGIFT_VIA_STAFF_RANK
+WORD LUMINA_VIA_STAFF_RANK
 
 ALIGN 4
 WeaponLockLoop: //r0 = character pointer, r1 = item halfword, r2 = rank; functions return in r0 either true or false for whether or not the weapon may be used
-POIN Shadowgift 
+POIN AdvWeaponLocks
+POIN DoesUnitHaveWRank //contains Lumina/Shadowgift
 WORD 0
-
 

@@ -167,6 +167,10 @@ POP
   //Makes weapon crit of 255 negate crits
   ALIGN 4
   #include "CannotCrit/CannotCrit.event"
+  
+  //Venno's array-based weapon locks
+  ALIGN 4
+  #include "WeaponLockArray/AdvWeaponLocks.event"
 
   ALIGN 4
   #include "SkillSystem/Master Skill Installer.event"

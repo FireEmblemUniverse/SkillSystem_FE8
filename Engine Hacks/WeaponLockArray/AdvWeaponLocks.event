@@ -9,3 +9,16 @@ POP
 
 #inctext lyn "AdvWeaponLocks.elf"
 
+#define SoftCharLock 0
+#define HardCharLock 1
+#define SoftClassLock 2
+#define HardClassLock 3
+#define EndLockArray 0
+
+TestArray:
+BYTE HardCharLock
+BYTE Eirika
+BYTE Seth
+BYTE EndLockArray
+
+MESSAGE AdvWeaponLocks
