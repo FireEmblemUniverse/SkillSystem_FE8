@@ -41,7 +41,7 @@ b GoBack
 
 GoBack:
 ldrb r1,[r1]
-mov r0,r12
+mov r0,#0xF0
 
 ldr r2,ReturnPoint
 bx r2

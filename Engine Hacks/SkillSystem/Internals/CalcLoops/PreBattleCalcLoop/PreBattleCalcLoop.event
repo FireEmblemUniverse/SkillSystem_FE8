@@ -45,7 +45,8 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 POIN TowerShieldPlus
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
-
+//This goes last, so that crit will always be set to 0 if set and never modified from there
+POIN NegateCritWeapons
 //add any new ones before here
 POIN 0
 

@@ -164,6 +164,18 @@ POP
   //Change Sick Status to Freeze
   #include "Freeze/Freeze.event"
   #include "Freeze/EventFreeze.event"
+  
+  //Makes weapon ability 2 reaver bit just triangle reversal and weapon ability 3 bit 0x80 triple triangle effect
+  ALIGN 4
+  #include "ReaverSplit/ReaverSplit.event"
+  
+  //Makes weapon crit of 255 negate crits
+  ALIGN 4
+  #include "CannotCrit/CannotCrit.event"
+  
+  //Venno's array-based weapon locks
+  ALIGN 4
+  #include "WeaponLockArray/AdvWeaponLocks.event"
 
   ALIGN 4
   #include "SkillSystem/Master Skill Installer.event"
@@ -172,7 +184,7 @@ POP
 
   ALIGN 4
   #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
-
+  
   ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"
   
