@@ -755,3 +755,9 @@ ORG SkillIcon(EnrageID)
 ORG SkillIcon(DeadeyeID)
 #incext Png2Dmp "Skill Icons/Deadeye.png"
 
+ORG SkillIcon(DragonFangID)
+#incext Png2Dmp "Skill Icons/DragonFang.png"
+
+ORG SkillIcon(FortuneID)
+#incext Png2Dmp "Skill Icons/Fortune.png"
+

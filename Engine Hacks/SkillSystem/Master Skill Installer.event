@@ -632,6 +632,11 @@ Deadeye:
 POIN SkillTester
 WORD DeadeyeID
 
+Fortune:
+#incbin "Sme Skills/Fortune.dmp"
+POIN SkillTester
+WORD FortuneID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
