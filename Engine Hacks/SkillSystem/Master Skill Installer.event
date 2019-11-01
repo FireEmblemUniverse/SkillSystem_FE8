@@ -627,6 +627,11 @@ VoidCurse:
 POIN SkillTester
 WORD VoidCurseID
 
+Deadeye:
+#incbin "Sme Skills/Deadeye.dmp"
+POIN SkillTester
+WORD DeadeyeID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
