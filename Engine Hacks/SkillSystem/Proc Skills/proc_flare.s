@@ -35,6 +35,23 @@ cmp r0, #0
 beq End
 @if user has sure shot, check for proc rate
 
+@check if we are hitting res with our attack
+mov r0,r4
+add r0,#0x4C
+ldr r2,[r0] @r0 = weapon ability word
+@is magic weapon: bit 0x00000002
+@is magic sword: bit 0x00000040
+@either mean we hit res
+mov r0,r2
+ldr r1,=#0x00000002
+and r0,r1
+cmp r0,r1
+beq NegateDefenses
+ldr r1,=0x00000040
+and r0,r1
+cmp r0,r1
+bne End
+
 ldrb r0, [r4, #0x15] @skill stat as activation rate
 mov r1, r4 @skill user
 blh d100Result
@@ -56,22 +73,6 @@ str     r0,[r6]                @ 0802B43A 6018
 ldrb  r0, CoronaID
 strb  r0, [r6,#4] 
 
-@check if we are hitting res with our attack
-mov r0,r4
-add r0,#0x4C
-ldr r2,[r0] @r0 = weapon ability word
-@is magic weapon: bit 0x00000002
-@is magic sword: bit 0x00000040
-@both mean we hit res
-mov r0,r2
-ldr r1,=#0x00000002
-and r0,r1
-cmp r0,r1
-beq NegateDefenses
-ldr r1,=0x00000040
-and r0,r1
-cmp r0,r1
-bne NoCrit
 
 NegateDefenses:
 
