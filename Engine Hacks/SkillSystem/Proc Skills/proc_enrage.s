@@ -6,8 +6,7 @@
   .short 0xf800
 .endm
 
-.equ BlackMagicID, SkillTester+4
-.equ BlackMagicTable, BlackMagicID+4
+.equ PetrifyID, SkillTester+4
 .equ d100Result, 0x802a52c
 .equ NextRN_100, 0x8000C64
 
@@ -29,10 +28,10 @@ bne 	End			@if another skill already activated, don't do anything
 mov		r0,#0x6F
 ldsb	r0,[r5,r0]
 cmp		r0,#0
-bge		End			@if already inflicting a status, don't check for our skill
+bge		End			@if already inflicting a status, don't check for ours
 
 mov		r0,r4
-ldr		r1,BlackMagicID
+ldr		r1,PetrifyID
 ldr		r3,SkillTester
 mov		r14,r3
 .short	0xF800
@@ -58,22 +57,12 @@ and     r0,r2                @ 0802B436 4010
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018  
 
-ldrb  r0, BlackMagicID
+ldrb  r0, PetrifyID
 strb  r0, [r6,#4]
 
-@now for the actual effect
-blh		NextRN_100
-ldr		r1,BlackMagicTable
-mov		r2,#0
-StatusLoop:
-ldrb	r3,[r1,#1]			@percentage
-add		r2,r3
-cmp		r0,r2
-blt		WriteStatus
-add		r1,#2
-b		StatusLoop
+
 WriteStatus:
-ldrb	r0,[r1]				@status
+mov		r0,#0x34 	@berserk ID
 mov		r1,#0x6F
 strb	r0,[r5,r1]
 

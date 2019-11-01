@@ -1007,3 +1007,37 @@ when defending.[X]
 ##SD_AlertStancePlus
 Alert Stance+: +30 Avo[N]
 when defending.[X]
+
+##SD_Corona
+Corona: Negate enemy resistance.[N]
+(Skill% activation)[X]
+
+##SD_Flare
+Flare: Halve enemy resistance.[N]
+(Skill% activation)[X]
+
+##SD_Tempest
+Tempest: Double biorhythm effects.[X]
+
+##SD_Serenity
+Serenity: Halve biorhythm effects.[X]
+
+##SD_Petrify
+Petrify: Inflict stone status.[N]
+(Skill% activation)[X]
+
+##SD_Enrage
+Enrage: Inflict berserk status.[N]
+(Skill% activation)[X]
+
+##SD_Deadeye
+Deadeye: Doubles hit rate.[N]
+Skill% chance to inflict sleep.[X]
+
+##SD_DragonFang
+Dragon Fang: 1.5x damage.[N]
+(Skill% activation)[X]
+
+##SD_Fortune
+Fortune: This unit[N]
+cannot be crit.[X]
