@@ -84,8 +84,13 @@ POP
   #include "DragonVeins/DragonVeins.event"
   
   // If uncommented, Leadership Stars will be implemented.
-  // Go to LeadershipStars/LeadershipStars.event to edit settings
+  // Go to LeadershipStars/LeadershipStars.event to edit settings.
   // #include "LeadershipStars/LeadershipStars.event"
+  
+  // If uncommented, Biorhythm will be implemented.
+  // Go to "Biorhythm/Biorhythm.event" to edit settings.
+  // This adds an entry to the Pre-Battle loop and edits the status screen. There is currently no stat screen template that contains both Leadership Stars and Biorhythm, but they do function in tandem if you wish to make one.
+  // #include "Biorhythm/Biorhythm.event"
   
 
   //Modular Stat Screen

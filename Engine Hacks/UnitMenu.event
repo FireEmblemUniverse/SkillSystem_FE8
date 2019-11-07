@@ -90,9 +90,15 @@ UnitMenuTable:
   UM_Ride
   UM_Exit
   UM_Play
-  UM_Dance
+  
+  //UM_Dance
+  MenuCommand(0x67E,0x6C2,NormalText,NewDanceUsability,0x231D0)
+
   UM_Steal
-  UM_Summon
+  
+  //UM_Summon
+  MenuCommand(0x693,0x6DD,NormalText,NewSummonUsability,0x244B8)
+  
   UM_Summon_DK
   UM_Pick
 
@@ -146,7 +152,10 @@ UnitMenuTable:
 
   UM_Item
   UM_Trade
-  UM_Supply
+  
+  //UM_Supply
+  MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+  
   UM_Wait
 
   UM_Separator 
