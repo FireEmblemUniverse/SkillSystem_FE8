@@ -1,0 +1,27 @@
+//bools for settings on these routines; only apply to checking the ability bits, not the rest of the vanilla functions
+
+#define AlsoUseVanillaDanceCheck False
+#define AlsoUseVanillaSupplyCheck False
+#define AlsoUseVanillaSummonCheck False
+
+
+//three new usability routines that include SkillTester for previously display-only skills; these skills should still be display-only on enemies
+
+NewDanceUsability:
+#incbin "NewDanceUsability.dmp"
+POIN SkillTester
+WORD DanceID
+WORD AlsoUseVanillaDanceCheck
+
+NewSupplyUsability:
+#incbin "NewSupplyUsability.dmp"
+POIN SkillTester
+WORD SupplyID
+WORD AlsoUseVanillaSupplyCheck
+
+NewSummonUsability:
+#incbin "NewSummonUsability.dmp"
+POIN SkillTester
+WORD SummonID
+WORD AlsoUseVanillaSummonCheck
+

@@ -2,11 +2,8 @@
 
 #include "EAstdlib.event"
 
-PUSH
-EventPointerTable(0x4, Map)
-EventPointerTable(0x6, MapChanges)
-POP
-
+SetChapterData(0,1,0,2,3,4,Map,0,0,6)
+EventPointerTable(6, MapChanges)
 Map:
 #incbin "SF Round 35_data.dmp"
 

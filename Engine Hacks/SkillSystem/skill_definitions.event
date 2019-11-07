@@ -1,4 +1,3 @@
-
 #define AcrobatID 1 //DONE
 #define PassID 2 //DONE
 #define CantoPlusID 3 //DONE
@@ -43,8 +42,8 @@
 #define TomefaireID 42 //DONE
 #define CritUpID 43 //DONE
 #define SlayerID 44 //DONE (and has a rework)
-#define SummonID 45 //display only
-#define DanceID 46 //display only
+#define SummonID 45 //DONE
+#define DanceID 46 //DONE
 #define LifetakerID 47 //DONE
 #define GaleforceID 48 //DONE
 #define RenewalID 49 //DONE
@@ -141,7 +140,7 @@
 #define FuryID 140 //DONE
 #define DazzleID 141 //DONE
 #define TriAdeptID 142 //DONE
-#define SupplyID 143 //Display only
+#define SupplyID 143 //DONE
 #define Roll12ID 144 //DONE
 #define TraceID 145 //DONE
 #define RandomMugID 146 //DONE
@@ -218,3 +217,40 @@
 #define DriveResID 215 //DONE
 #define BlossomID 216 //DONE
 #define AptitudeID 217 //DONE
+#define QuickRiposteID 218 //wip by ganzap
+#define ResolveID 219 //DONE
+#define InsightID 220 //DONE
+#define VigilanceID 221 //DONE
+#define DauntID 222 //DONE
+#define BloodTideID 223 //DONE
+#define WhitePoolID 224 //DONE
+#define NightTideID 225 //DONE
+#define PrescienceID 226 //DONE
+#define DefiantAvoID 227 //DONE
+#define DefiantCritID 228 //DONE
+#define DefiantStrID 229 //DONE
+#define DefiantMagID 230 //DONE
+#define DefiantSklID 231 //DONE
+#define DefiantSpdID 232 //DONE
+#define DefiantLckID 233 //DONE
+#define DefiantDefID 234 //DONE
+#define DefiantResID 235 //DONE
+#define BargainID 236 //DONE
+#define ShortShieldID 237 //DONE
+#define TowerShieldID 238 //DONE
+#define TowerShieldPlusID 239 //DONE
+#define VoidCurseID 240 //DONE
+#define IndoorFighterID 241 //DONE
+#define OutdoorFighterID 242 //DONE
+#define TomeRangeUpID 243 //DONE
+#define AlertStanceID 244 //DONE
+#define AlertStancePlusID 245 //DONE
+#define CoronaID 246 //DONE
+#define FlareID 247 //DONE
+#define TempestID 248 //DONE, requires Biorhythm @NEEDS ICON
+#define SerenityID 249 //DONE, requires Biorhythm @NEEDS ICON
+#define PetrifyID 250 //DONE
+#define EnrageID 251 //DONE
+#define DeadeyeID 252 //DONE @NEEDS ICON
+#define DragonFangID 253 //DONE
+#define FortuneID 254 //DONE

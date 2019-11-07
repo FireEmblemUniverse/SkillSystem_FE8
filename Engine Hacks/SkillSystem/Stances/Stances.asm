@@ -191,6 +191,25 @@ ldrh r0, [ r4, r1 ]
 add r0, #0x02 @ Add 2 def/res.
 strh r0, [ r4, r1 ]
 
+CheckAlertStance:
+bl CheckNextStance
+cmp r0, #0x00
+beq End
+mov r1, #0x62
+ldrh r0, [ r4, r1 ]
+add r0, #15 @ Add 15 avoid.
+strh r0, [ r4, r1 ]
+
+CheckAlertStancePlus:
+bl CheckNextStance
+cmp r0, #0x00
+beq End
+mov r1, #0x62
+ldrh r0, [ r4, r1 ]
+add r0, #30 @ Add 30 avoid.
+strh r0, [ r4, r1 ]
+
+
 End:
 pop { r4 - r7 }
 pop { r3 }
