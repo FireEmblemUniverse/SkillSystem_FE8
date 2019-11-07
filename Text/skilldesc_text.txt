@@ -846,54 +846,198 @@ health, +2 damage, +15% avoid.[X]
 Watchful: This unit cannot be[N]
 captured or stolen from.[X]
 
-##SD_Hero
+## SD_Hero
 Hero: +30% skill activation[N]
 rate when HP is below 50%.[X]
 
-##SD_Boon
+## SD_Boon
 Boon: Cure bad status effects[N]
 at the beginning of each turn.[X]
 
-##SD_ReMove
+## SD_ReMove
 Re-Move: Luck% chance to get[N]
 another action at end of turn.[X]
 
-##SD_Powerstaff
+## SD_Powerstaff
 Powerstaff: Get another action[N]
 after using a staff.[X]
 
-##SD_DriveStr
+## SD_DriveStr
 Drive Strength: Allies within[N]
 2 spaces receive +4 strength.[X]
 
-##SD_DriveMag
+## SD_DriveMag
 Drive Magic: Allies within[N]
 2 spaces receive +4 magic.[X]
 
-##SD_DriveSkl
+## SD_DriveSkl
 Drive Skill: Allies within[N]
 2 spaces receive +4 skill.[X]
 
-##SD_DriveSpd
+## SD_DriveSpd
 Drive Speed: Allies within[N]
 2 spaces receive +4 speed.[X]
 
-##SD_DriveLck
+## SD_DriveLck
 Drive Luck: Allies within[N]
 2 spaces receive +4 luck.[X]
 
-##SD_DriveDef
+## SD_DriveDef
 Drive Defense: Allies within[N]
 2 spaces receive +4 defense.[X]
 
-##SD_DriveRes
+## SD_DriveRes
 Drive Resistance: Allies within[N]
 2 spaces receive +4 resistance.[X]
 
-##SD_Blossom
+## SD_Blossom
 Blossom: 2x growth rates,[N]
 but 1/2 exp gain.[X]
 
-##SD_Aptitude
+## SD_Aptitude
 Aptitude: +20% to[N]
 all growth rates.[X]
+
+## SD_QuickRiposte
+Quick Riposte: If defending and[N]
+HP is 50% or higher, unit doubles[N]
+and attacker does not double.[X]
+
+## SD_Resolve
+Resolve: When HP < 50%,[N]
+gain 1.5x Str, Skl, & Spd.[X]
+
+## SD_Insight
+Insight: Hit +20.[X]
+
+## SD_Vigilance
+Vigilance: Avoid +20.[X]
+
+## SD_Daunt
+Daunt: -5 Hit and Crit to all[N]
+enemy units in a 3-tile radius.[X]
+
+## SD_BloodTide
+Blood Tide: Atk and Hit +5[N]
+to adjacent allies.[X]
+
+## SD_WhitePool
+White Pool: Atk and AS +5[N]
+to adjacent allies.[X]
+
+## SD_NightTide
+Night Tide: Def and Res +5[N]
+to adjacent allies.[X]
+
+## SD_Prescience
+Prescience: When initiating[N]
+battle, Hit and Avo +15.[X]
+
+## SD_DefiantAvo
+Deviant Avoid: When HP is 25%[N]
+or lower, gain +30 Avoid.[X]
+
+## SD_DefiantCrit
+Defiant Crit: When HP is 25%[N]
+or lower, gain +30 Crit.[X]
+
+## SD_DefiantStr
+Defiant Str: When HP is 25%[N]
+or lower, gain +4 Strength.[X]
+
+## SD_DefiantMag
+Defiant Mag: When HP is 25%[N]
+or lower, gain +4 Magic.[X]
+
+## SD_DefiantSkl
+Defiant Skl: When HP is 25%[N]
+[N]or lower, gain +4 Skill.[X]
+
+## SD_DefiantSpd
+Defiant Spd: When HP is 25%[N]
+or lower, gain +4 Speed.[X]
+
+## SD_DefiantLck
+Defiant Luck: When HP is 25%[N]
+or lower, gain +4 Luck.[X]
+
+## SD_DefiantDef
+Defiant Def: When HP is 25%[N]
+or lower, gain +4 Defense.[X]
+
+## SD_DefiantRes
+Defiant Res: When HP is 25%[N]
+or lower, gain +4 Resistance.[X]
+
+## SD_Bargain
+Bargain: Halves prices in shops.[X]
+
+## SD_ShortShield
+Short Shield: Gain 6 defense[N]
+against attacks recieved in melee.[X]
+
+## SD_TowerShield
+Tower Shield: Gain 6 defense[N]
+against attacks recieved at range.[X]
+
+## SD_TowerShieldPlus
+Tower Shield+: Take no damage[N]
+against attacks recieved at range.[X]
+
+## SD_VoidCurse
+Void Curse: This unit gives[N]
+no experience when defeated.[X]
+
+## SD_IndoorFighter
+Indoor Fighter: +10 Hit and[N]
+Avo when fighting indoors.[X]
+
+## SD_OutdoorFighter
+Outdoor Fighter: +10 Hit and[N]
+Avo when fighting outdoors.[X]
+
+## SD_TomeRangeUp
+Tome Range +1: Maximum range[N]
+of equipped tome is increased.[X]
+
+##SD_AlertStance
+Alert Stance: +15 Avo[N]
+when defending.[X]
+
+##SD_AlertStancePlus
+Alert Stance+: +30 Avo[N]
+when defending.[X]
+
+##SD_Corona
+Corona: Negate enemy resistance.[N]
+(Skill% activation)[X]
+
+##SD_Flare
+Flare: Halve enemy resistance.[N]
+(Skill% activation)[X]
+
+##SD_Tempest
+Tempest: Double biorhythm effects.[X]
+
+##SD_Serenity
+Serenity: Halve biorhythm effects.[X]
+
+##SD_Petrify
+Petrify: Inflict stone status.[N]
+(Skill% activation)[X]
+
+##SD_Enrage
+Enrage: Inflict berserk status.[N]
+(Skill% activation)[X]
+
+##SD_Deadeye
+Deadeye: Doubles hit rate.[N]
+Skill% chance to inflict sleep.[X]
+
+##SD_DragonFang
+Dragon Fang: 1.5x damage.[N]
+(Skill% activation)[X]
+
+##SD_Fortune
+Fortune: This unit[N]
+cannot be crit.[X]
