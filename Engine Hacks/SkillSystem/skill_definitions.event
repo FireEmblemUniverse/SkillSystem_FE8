@@ -1,256 +1,256 @@
-#define AcrobatID 1 //DONE
-#define PassID 2 //DONE
-#define CantoPlusID 3 //DONE
-#define WaryFighterID 4 //DONE
-#define SureShotID 5 //DONE
-#define ProvokeID 6 //DONE
-#define SaviorID 7 //DONE
-#define MercyID 8  //DONE
-#define FrenzyID 9 //DONE
-#define AdeptID 10 // DONE
-#define CantoID 11 //DONE
+#define AcrobatID 1 //DONE by Tequila
+#define PassID 2 //DONE by Tequila
+#define CantoPlusID 3 //DONE by Tequila
+#define WaryFighterID 4 //DONE by Tequila
+#define SureShotID 5 //DONE by ??? (Initial Commit)
+#define ProvokeID 6 //DONE by Tequila
+#define SaviorID 7 //DONE by ??? (Initial Commit)
+#define MercyID 8  //DONE by Tequila
+#define FrenzyID 9 //DONE by Tequila
+#define AdeptID 10 // DONE by ??? (Initial Commit)
+#define CantoID 11 //DONE by Tequila
 #define CunningID 12 //display only
-#define LethalityID 13 //DONE
-#define LunaID 14 //DONE
-#define SolID 15 //DONE
-#define AetherID 16 //DONE
-#define AstraID 17 // DONE
-#define DisciplineID 18 //DONE
-#define SwordbreakerID 19 //DONE
-#define LancebreakerID 20 //DONE
-#define AxebreakerID 21 //DONE
-#define BowbreakerID 22 //DONE
-#define TomebreakerID 23 //DONE
-#define AegisID 24 //DONE
-#define PaviseID 25 //DONE
-#define DuelistsBlowID 26 //DONE
-#define DeathBlowID 27 //DONE
-#define DartingBlowID 28 //DONE
-#define WardingBlowID 29 //DONE
-#define CertainBlowID 30 //DONE
-#define ArmoredBlowID 31 //DONE
-#define VantageID 32 //DONE
-#define DesperationID 33 //DONE
-#define WrathID 34 //DONE
-#define CounterID 35 //DONE
-#define CounterMagicID 36 //DONE
-#define MiracleID 37 //DONE
-#define SwordfaireID 38 //DONE
-#define LancefaireID 39 //DONE
-#define AxefaireID 40 //DONE
-#define BowfaireID 41 //DONE
-#define TomefaireID 42 //DONE
-#define CritUpID 43 //DONE
-#define SlayerID 44 //DONE (and has a rework)
-#define SummonID 45 //DONE
-#define DanceID 46 //DONE
-#define LifetakerID 47 //DONE
-#define GaleforceID 48 //DONE
-#define RenewalID 49 //DONE
-#define NiceThighsID 50 //DONE
-#define DemoiselleID 51 //DONE
-#define GentilhommeID 52 //DONE
-#define MaleficAuraID 53 //DONE
-#define InspirationID 54 //DONE
-#define CharmID 55 //DONE
-#define VoiceOfPeaceID 56 //DONE
-#define AmaterasuID 57 //DONE
-#define SpurStrID 58 //DONE
-#define SpurMagID 59 //DONE
-#define SpurSpdID 60 //DONE
-#define SpurDefID 61 //DONE
-#define SpurResID 62 //DONE
-#define NihilID 63 //DONE
-#define NullifyID 64 //DONE
-#define ParagonID 65 //DONE
-#define ImpaleID 66 //DONE
-#define ColossusID 67 //DONE
-#define RallyStrID 68 //DONE
-#define RallyMagID 69 // (requires str mag split)
-#define RallySklID 70 //DONE
-#define RallySpdID 71 //DONE
-#define RallyLukID 72 //DONE
-#define RallyDefID 73 //DONE
-#define RallyResID 74 //DONE
-#define RallyMovID 75 //DONE
-#define RallySpectrumID 76 //DONE
-#define BowRangeUpID 77 //DONE
-#define StaffSavantID 78 //DONE
-#define LiveToServeID 79 //DONE
-#define IgnisID 80 //DONE
-#define LifeAndDeathID 81 //DONE
-#define LockTouchID 82 //DONE
-#define LungeID 83 //DONE
-#define IntimidateID 84 //DONE
-#define OpportunistID 85 //DONE
-#define TrampleID 86 //DONE
-#define CamaraderieID 87 //DONE
-#define ForeignPrincessID 88
-#define SavageBlowID 89 //DONE
-#define ReliefID 90 //DONE
-#define TantivyID 91 //DONE
-#define FocusID 92 //DONE
-#define BondID 93 //DONE
-#define AnathemaID 94 //DONE
-#define LilysPoiseID 95 //DONE
-#define ExpertiseID 96 //DONE
-#define CelerityID 97 //DONE
-#define FieryBloodID 98 //DONE
-#define ElbowRoomID 99 //DONE
-#define NaturalCoverID 100 //DONE
-#define SealStrID 101 //DONE
-#define SealSklID 102 //DONE
-#define SealSpdID 103 //DONE
-#define SealLukID 104 //DONE
-#define SealDefID 105 //DONE
-#define SealResID 106 //DONE
-#define DragonsBloodID 107 //DONE
-#define GambleID 108 //DONE
-#define PersonalityID 109 //DONE
-#define QuickDrawID 110 //DONE
-#define WindDiscipleID 111 //DONE
-#define StrongRiposteID 112 //DONE
-#define PatienceID 113 //DONE
-#define PursuitID 114 //DONE
-#define LightWeightID 115 //DONE
-#define KillingMachineID 116 //DONE
-#define CriticalForceID 117 //DONE
-#define ChivalryID 118 //DONE
-#define PragmaticID 119 //DONE
-#define ArmsthriftID 120 //DONE
-#define MoonbowID 121 //DONE
-#define ShoveID 122 //DONE
-#define SmiteID 123 //DONE
-#define BaneID 124 //DONE
-#define DownWithArchID 125 //DONE
-#define UpWithArchID 126 //DONE
-#define RightfulArchID 127 //DONE
-#define RightfulKingID 128 //DONE
-#define RightfulGodID 129 //DONE
-#define LuckySevenID 130 //DONE
-#define OddRhythmID 131 //DONE
-#define EvenRhythmID 132 //DONE
-#define QuickBurnID 133 //DONE
-#define SlowBurnID 134 //DONE
-#define DespoilID 135//DONE
-#define PivotID 136 //DONE
-#define RepositionID 137 //DONE
-#define SwapID 138 //DONE
-#define BreathOfLifeID 139 //DONE
-#define FuryID 140 //DONE
-#define DazzleID 141 //DONE
-#define TriAdeptID 142 //DONE
-#define SupplyID 143 //DONE
-#define Roll12ID 144 //DONE
-#define TraceID 145 //DONE
-#define RandomMugID 146 //DONE
-#define IdentityProblemsID 147 //DONE
-#define CharismaID 148 //DONE
-#define HeroesDeathBlowID 149 //DONE
-#define HeroesLifeAndDeathID 150 //DONE
-#define CatchEmAllID 151 //DONE
-#define VantagePlusID 152 //DONE
-#define HawkeyeID 153 //wip
-#define SolidarityID 154 //DONE
-#define BracingStanceID 155 //DONE
-#define DartingStanceID 156 //DONE
-#define FierceStanceID 157 //DONE
-#define KestrelStanceID 158 //DONE
-#define MirrorStanceID 159 //DONE
-#define ReadyStanceID 160 //DONE
-#define SteadyStanceID 161 //DONE
-#define SturdyStanceID 162 //DONE
-#define SwiftStanceID 163 //DONE
-#define WardingStanceID 164 //DONE
-#define SpectrumStanceID 165 //DONE
-#define StealID 166 //DONE
-#define StealPlusID 167 //DONE
-#define CaptureID 168 //DONE
-#define BlackMagicID 169 //DONE
-#define FortressDefenseID 170 //DONE
-#define FortressResistanceID 171 //DONE
-#define ForesightID 172 //DONE
-#define AxeFaithID 173 //DONE
+#define LethalityID 13 //DONE by ??? (Initial Commit)
+#define LunaID 14 //DONE by ??? (Initial Commit)
+#define SolID 15 //DONE by ??? (Initial Commit)
+#define AetherID 16 //DONE by ??? (Initial Commit)
+#define AstraID 17 // DONE by ??? (Initial Commit)
+#define DisciplineID 18 //DONE by ??? (Initial Commit)
+#define SwordbreakerID 19 //DONE by Rossendale
+#define LancebreakerID 20 //DONE by Rossendale
+#define AxebreakerID 21 //DONE by Rossendale
+#define BowbreakerID 22 //DONE by Rossendale
+#define TomebreakerID 23 //DONE by Rossendale
+#define AegisID 24 //DONE by ??? (Initial Commit)
+#define PaviseID 25 //DONE by ??? (Initial Commit)
+#define DuelistsBlowID 26 //DONE by Rossendale
+#define DeathBlowID 27 //DONE by Rossendale
+#define DartingBlowID 28 //DONE by Rossendale
+#define WardingBlowID 29 //DONE by Rossendale
+#define CertainBlowID 30 //DONE by Rossendale
+#define ArmoredBlowID 31 //DONE by Rossendale
+#define VantageID 32 //DONE by ??? (Initial Commit)
+#define DesperationID 33 //DONE by ??? (Initial Commit)
+#define WrathID 34 //DONE by ??? (Initial Commit)
+#define CounterID 35 //DONE by ??? (Initial Commit)
+#define CounterMagicID 36 //DONE by ??? (Initial Commit)
+#define MiracleID 37 //DONE by ??? (Initial Commit)
+#define SwordfaireID 38 //DONE by ??? (Initial Commit)
+#define LancefaireID 39 //DONE by ??? (Initial Commit)
+#define AxefaireID 40 //DONE by ??? (Initial Commit)
+#define BowfaireID 41 //DONE by ??? (Initial Commit)
+#define TomefaireID 42 //DONE by ??? (Initial Commit)
+#define CritUpID 43 //DONE by ??? (Initial Commit)
+#define SlayerID 44 //DONE (and has a rework) by Tequila
+#define SummonID 45 //DONE by Sme
+#define DanceID 46 //DONE by Sme
+#define LifetakerID 47 //DONE by ??? (Initial Commit)
+#define GaleforceID 48 //DONE by ??? (Initial Commit)
+#define RenewalID 49 //DONE by ??? (Initial Commit)
+#define NiceThighsID 50 //DONE by ??? (Initial Commit)
+#define DemoiselleID 51 //DONE by ??? (Initial Commit)
+#define GentilhommeID 52 //DONE by ??? (Initial Commit)
+#define MaleficAuraID 53 //DONE by ??? (Initial Commit)
+#define InspirationID 54 //DONE by ??? (Initial Commit)
+#define CharmID 55 //DONE by ??? (Initial Commit)
+#define VoiceOfPeaceID 56 //DONE by ??? (Initial Commit)
+#define AmaterasuID 57 //DONE by ??? (Initial Commit)
+#define SpurStrID 58 //DONE by ??? (Initial Commit)
+#define SpurMagID 59 //DONE by ??? (Initial Commit)
+#define SpurSpdID 60 //DONE by ??? (Initial Commit)
+#define SpurDefID 61 //DONE by ??? (Initial Commit)
+#define SpurResID 62 //DONE by ??? (Initial Commit)
+#define NihilID 63 //DONE by ??? (Initial Commit)
+#define NullifyID 64 //DONE by ??? (Initial Commit)
+#define ParagonID 65 //DONE by ??? (Initial Commit)
+#define ImpaleID 66 //DONE by ??? (Initial Commit)
+#define ColossusID 67 //DONE by ??? (Initial Commit)
+#define RallyStrID 68 //DONE by ??? (Initial Commit)
+#define RallyMagID 69 //DONE (requires str mag split) by ??? (Initial Commit)
+#define RallySklID 70 //DONE by ??? (Initial Commit)
+#define RallySpdID 71 //DONE by ??? (Initial Commit)
+#define RallyLukID 72 //DONE by ??? (Initial Commit)
+#define RallyDefID 73 //DONE by ??? (Initial Commit)
+#define RallyResID 74 //DONE by ??? (Initial Commit)
+#define RallyMovID 75 //DONE by ??? (Initial Commit)
+#define RallySpectrumID 76 //DONE by ??? (Initial Commit)
+#define BowRangeUpID 77 //DONE by ??? (Initial Commit)
+#define StaffSavantID 78 //DONE by ??? (Initial Commit)
+#define LiveToServeID 79 //DONE by Leonarth & ??? (Initial Commit)
+#define IgnisID 80 //DONE by ??? (Initial Commit)
+#define LifeAndDeathID 81 //DONE by ??? (Initial Commit)
+#define LockTouchID 82 //DONE by Kao
+#define LungeID 83 //DONE by Tequila
+#define IntimidateID 84 //DONE by ??? (Initial Commit)
+#define OpportunistID 85 //DONE by Tequila
+#define TrampleID 86 //DONE by Tequila
+#define CamaraderieID 87 //DONE by ??? (Initial Commit)
+#define ForeignPrincessID 88 //wip
+#define SavageBlowID 89 //DONE by circleseverywhere
+#define ReliefID 90 //DONE by ??? (Initial Commit)
+#define TantivyID 91 //DONE by ??? (Initial Commit)
+#define FocusID 92 //DONE by ??? (Initial Commit)
+#define BondID 93 //DONE by ??? (Initial Commit)
+#define AnathemaID 94 //DONE by ??? (Initial Commit)
+#define LilysPoiseID 95 //DONE by ??? (Initial Commit)
+#define ExpertiseID 96 //DONE by ??? (Initial Commit)
+#define CelerityID 97 //DONE by ??? (Initial Commit)
+#define FieryBloodID 98 //DONE by ??? (Initial Commit)
+#define ElbowRoomID 99 //DONE by ??? (Initial Commit)
+#define NaturalCoverID 100 //DONE by ??? (Initial Commit)
+#define SealStrID 101 //DONE by ??? (Initial Commit)
+#define SealSklID 102 //DONE by ??? (Initial Commit)
+#define SealSpdID 103 //DONE by ??? (Initial Commit)
+#define SealLukID 104 //DONE by ??? (Initial Commit)
+#define SealDefID 105 //DONE by ??? (Initial Commit)
+#define SealResID 106 //DONE by ??? (Initial Commit)
+#define DragonsBloodID 107 //DONE by ??? (Initial Commit)
+#define GambleID 108 //DONE by ??? (Initial Commit)
+#define PersonalityID 109 //DONE by ??? (Initial Commit)
+#define QuickDrawID 110 //DONE by ??? (Initial Commit)
+#define WindDiscipleID 111 //DONE by ??? (Initial Commit)
+#define StrongRiposteID 112 //DONE by ??? (Initial Commit)
+#define PatienceID 113 //DONE by ??? (Initial Commit)
+#define PursuitID 114 //DONE by ??? (Initial Commit)
+#define LightWeightID 115 //DONE by ??? (Initial Commit)
+#define KillingMachineID 116 //DONE by ??? (Initial Commit)
+#define CriticalForceID 117 //DONE by ??? (Initial Commit)
+#define ChivalryID 118 //DONE by ??? (Initial Commit)
+#define PragmaticID 119 //DONE by ??? (Initial Commit)
+#define ArmsthriftID 120 //DONE by ??? (Initial Commit)
+#define MoonbowID 121 //DONE by ??? (Initial Commit)
+#define ShoveID 122 //DONE by StanH
+#define SmiteID 123 //DONE by StanH
+#define BaneID 124 //DONE by ??? (Initial Commit)
+#define DownWithArchID 125 //DONE by ??? (Initial Commit)
+#define UpWithArchID 126 //DONE by ??? (Initial Commit)
+#define RightfulArchID 127 //DONE by ??? (Initial Commit)
+#define RightfulKingID 128 //DONE by ??? (Initial Commit)
+#define RightfulGodID 129 //DONE by ??? (Initial Commit)
+#define LuckySevenID 130 //DONE by ??? (Initial Commit)
+#define OddRhythmID 131 //DONE by ??? (Initial Commit)
+#define EvenRhythmID 132 //DONE by ??? (Initial Commit)
+#define QuickBurnID 133 //DONE by ??? (Initial Commit)
+#define SlowBurnID 134 //DONE by ??? (Initial Commit)
+#define DespoilID 135//DONE by ??? (Initial Commit)
+#define PivotID 136 //DONE by StanH
+#define RepositionID 137 //DONE by StanH
+#define SwapID 138 //DONE by StanH
+#define BreathOfLifeID 139 //DONE by circleseverywhere
+#define FuryID 140 //DONE by circleseverywhere
+#define DazzleID 141 //DONE by circleseverywhere
+#define TriAdeptID 142 //DONE by Tequila
+#define SupplyID 143 //DONE by Sme
+#define Roll12ID 144 //DONE by circleseverywhere
+#define TraceID 145 //DONE by circleseverywhere
+#define RandomMugID 146 //DONE by circleseverywhere
+#define IdentityProblemsID 147 //DONE by circleseverywhere
+#define CharismaID 148 //DONE by Darrman
+#define HeroesDeathBlowID 149 //DONE by Darrman
+#define HeroesLifeAndDeathID 150 //DONE by Leonarth
+#define CatchEmAllID 151 //DONE by Leonarth
+#define VantagePlusID 152 //DONE by SD9k
+#define HawkeyeID 153 //DONE by SD9k
+#define SolidarityID 154 //DONE by SD9k
+#define BracingStanceID 155 //DONE by Snakey1
+#define DartingStanceID 156 //DONE by Snakey1
+#define FierceStanceID 157 //DONE by Snakey1
+#define KestrelStanceID 158 //DONE by Snakey1
+#define MirrorStanceID 159 //DONE by Snakey1
+#define ReadyStanceID 160 //DONE by Snakey1
+#define SteadyStanceID 161 //DONE by Snakey1
+#define SturdyStanceID 162 //DONE by Snakey1
+#define SwiftStanceID 163 //DONE by Snakey1
+#define WardingStanceID 164 //DONE by Snakey1
+#define SpectrumStanceID 165 //DONE by Snakey1
+#define StealID 166 //DONE by Tequila
+#define StealPlusID 167 //DONE by Tequila
+#define CaptureID 168 //DONE by Tequila
+#define BlackMagicID 169 //DONE by ??? (VBA2)
+#define FortressDefenseID 170 //DONE by ??? (VBA2)
+#define FortressResistanceID 171 //DONE by ??? (VBA2)
+#define ForesightID 172 //DONE by ??? (VBA2)
+#define AxeFaithID 173 //DONE by ??? (VBA2)
 #define AxefaithID AxeFaithID //Alias
-#define ArmorMarchID 174 //DONE
-#define VigorDanceID 175 //DONE
+#define ArmorMarchID 174 //DONE by ??? (VBA2)
+#define VigorDanceID 175 //DONE by ??? (VBA2)
 #define InspiringTuneID 175 //Alias
-#define ForagerID 176 //DONE
-#define FullMetalBodyID 177 //DONE
-#define LiquidOozeID 178 //DONE
-#define ShadowgiftID 179 //DONE
-#define LuminaID 180 //DONE
-#define DevilsLuckID 181 //DONE
-#define DevilsPactID 182 //DONE
-#define DevilsWhimID 183 //DONE
-#define PoisonStrikeID 184 //DONE
-#define GrislyWoundID 185 //DONE
-#define HexID 186 //DONE
-#define BarricadeID 187 //DONE
-#define BarricadePlusID 188 //DONE
-#define PointBlankID 189 //DONE
-#define PerfectionistID 190 //DONE
-#define PuissanceID 191 //DONE
-#define BattleVeteranID 192 //DONE
-#define HolyAuraID 193 //DONE
-#define SilentPrideID 194 //DONE
-#define LoyaltyID 195 //DONE
-#define ThunderstormID 196 //DONE
-#define OutriderID 197 //DONE
-#define HeavyStrikesID 198 //DONE
-#define ChargeID 199 //DONE
-#define InfiltratorID 200 //DONE
-#define VanityID 201 //DONE
-#define MageSlayerID 202 //DONE
-#define KnightAspirantID 203 //DONE
-#define DisciplinePlusID 204 //DONE
-#define WatchfulID 205 //DONE
-#define HeroID 206 //DONE
-#define BoonID 207 //DONE
-#define ReMoveID 208 //DONE
-#define PowerstaffID 209 //DONE
-#define SealMagID 210 //DONE
-#define DriveStrID 211 //DONE
-#define DriveMagID 212 //DONE
-#define DriveSpdID 213 //DONE
-#define DriveDefID 214 //DONE
-#define DriveResID 215 //DONE
-#define BlossomID 216 //DONE
-#define AptitudeID 217 //DONE
-#define QuickRiposteID 218 //wip by ganzap
-#define ResolveID 219 //DONE
-#define InsightID 220 //DONE
-#define VigilanceID 221 //DONE
-#define DauntID 222 //DONE
-#define BloodTideID 223 //DONE
-#define WhitePoolID 224 //DONE
-#define NightTideID 225 //DONE
-#define PrescienceID 226 //DONE
-#define DefiantAvoID 227 //DONE
-#define DefiantCritID 228 //DONE
-#define DefiantStrID 229 //DONE
-#define DefiantMagID 230 //DONE
-#define DefiantSklID 231 //DONE
-#define DefiantSpdID 232 //DONE
-#define DefiantLckID 233 //DONE
-#define DefiantDefID 234 //DONE
-#define DefiantResID 235 //DONE
-#define BargainID 236 //DONE
-#define ShortShieldID 237 //DONE
-#define TowerShieldID 238 //DONE
-#define TowerShieldPlusID 239 //DONE
-#define VoidCurseID 240 //DONE
-#define IndoorFighterID 241 //DONE
-#define OutdoorFighterID 242 //DONE
-#define TomeRangeUpID 243 //DONE
-#define AlertStanceID 244 //DONE
-#define AlertStancePlusID 245 //DONE
-#define CoronaID 246 //DONE
-#define FlareID 247 //DONE
-#define TempestID 248 //DONE, requires Biorhythm @NEEDS ICON
-#define SerenityID 249 //DONE, requires Biorhythm @NEEDS ICON
-#define PetrifyID 250 //DONE
-#define EnrageID 251 //DONE
-#define DeadeyeID 252 //DONE @NEEDS ICON
-#define DragonFangID 253 //DONE
-#define FortuneID 254 //DONE
+#define ForagerID 176 //DONE by Leonarth
+#define FullMetalBodyID 177 //DONE by Leonarth
+#define LiquidOozeID 178 //DONE by Leonarth
+#define ShadowgiftID 179 //DONE by Leonarth
+#define LuminaID 180 //DONE by Leonarth
+#define DevilsLuckID 181 //DONE by Leonarth
+#define DevilsPactID 182 //DONE by Leonarth
+#define DevilsWhimID 183 //DONE by Leonarth
+#define PoisonStrikeID 184 //DONE by Snakey1
+#define GrislyWoundID 185 //DONE by Snakey1
+#define HexID 186 //DONE by Snakey1
+#define BarricadeID 187 //DONE by Snakey1
+#define BarricadePlusID 188 //DONE by Snakey1
+#define PointBlankID 189 //DONE by Teraspark
+#define PerfectionistID 190 //DONE by Zeta
+#define PuissanceID 191 //DONE by Zeta
+#define BattleVeteranID 192 //DONE by ??? (SoA)
+#define HolyAuraID 193 //DONE by ??? (SoA)
+#define SilentPrideID 194 //DONE by ??? (SoA)
+#define LoyaltyID 195 //DONE by ??? (SoA)
+#define ThunderstormID 196 //DONE by ??? (SoA)
+#define OutriderID 197 //DONE by ??? (SoA)
+#define HeavyStrikesID 198 //DONE by ??? (SoA)
+#define ChargeID 199 //DONE by ??? (SoA)
+#define InfiltratorID 200 //DONE by ??? (SoA)
+#define VanityID 201 //DONE by ??? (SoA)
+#define MageSlayerID 202 //DONE by ??? (SoA)
+#define KnightAspirantID 203 //DONE by ??? (SoA)
+#define DisciplinePlusID 204 //DONE by Zeta
+#define WatchfulID 205 //DONE by Sme
+#define HeroID 206 //DONE by Sme
+#define BoonID 207 //DONE by Sme
+#define ReMoveID 208 //DONE by Sme
+#define PowerstaffID 209 //DONE by Sme
+#define SealMagID 210 //DONE by Snakey1
+#define DriveStrID 211 //DONE by Sme
+#define DriveMagID 212 //DONE by Sme
+#define DriveSpdID 213 //DONE by Sme
+#define DriveDefID 214 //DONE by Sme
+#define DriveResID 215 //DONE by Sme
+#define BlossomID 216 //DONE by Sme
+#define AptitudeID 217 //DONE by Sme
+#define QuickRiposteID 218 //wip by Ganzap
+#define ResolveID 219 //DONE by Sme
+#define InsightID 220 //DONE by Sme
+#define VigilanceID 221 //DONE by Sme
+#define DauntID 222 //DONE by Sme
+#define BloodTideID 223 //DONE by Sme
+#define WhitePoolID 224 //DONE by Sme
+#define NightTideID 225 //DONE by Sme
+#define PrescienceID 226 //DONE by Sme
+#define DefiantAvoID 227 //DONE by Sme
+#define DefiantCritID 228 //DONE by Sme
+#define DefiantStrID 229 //DONE by Sme
+#define DefiantMagID 230 //DONE by Sme
+#define DefiantSklID 231 //DONE by Sme
+#define DefiantSpdID 232 //DONE by Sme
+#define DefiantLckID 233 //DONE by Sme
+#define DefiantDefID 234 //DONE by Sme
+#define DefiantResID 235 //DONE by Sme
+#define BargainID 236 //DONE by Sme
+#define ShortShieldID 237 //DONE by Sme
+#define TowerShieldID 238 //DONE by Sme
+#define TowerShieldPlusID 239 //DONE by Sme
+#define VoidCurseID 240 //DONE by Sme
+#define IndoorFighterID 241 //DONE by Sme
+#define OutdoorFighterID 242 //DONE by Sme
+#define TomeRangeUpID 243 //DONE by Kirb
+#define AlertStanceID 244 //DONE by Sme
+#define AlertStancePlusID 245 //DONE by Sme
+#define CoronaID 246 //DONE by Sme
+#define FlareID 247 //DONE by Sme
+#define TempestID 248 //DONE (requires Biorhythm) by Sme
+#define SerenityID 249 //DONE (requires Biorhythm) by Sme
+#define PetrifyID 250 //DONE by Sme
+#define EnrageID 251 //DONE by Sme
+#define DeadeyeID 252 //DONE by Sme
+#define DragonFangID 253 //DONE by Sme
+#define FortuneID 254 //DONE by Sme
