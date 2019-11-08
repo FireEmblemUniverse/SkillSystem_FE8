@@ -71,7 +71,7 @@ WORD LiveToServeID
 
 ALIGN 4
 LockTouch:
-#incbin "LockTouch/LockTouch.dmp"
+#incbin "Locktouch/LockTouch.dmp"
 POIN SkillTester
 WORD LockTouchID
 
