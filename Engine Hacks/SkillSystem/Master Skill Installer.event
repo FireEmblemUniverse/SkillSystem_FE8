@@ -1,21 +1,4 @@
 
-#include "Internals/SkillSystem.event"
-#include "skill_lists.event" //who learns what skills when
-#include "charge_table.event"
-SkillIcons:
-ORG 16*16/2*0xFF+SkillIcons //give space to the icons installer
-PUSH
-ORG SkillIcons
-#incext Png2Dmp "SkillIcons.png"
-POP
-//new macros and lists for easy skill swapping, can be used as the same time as the csvs (but will write over them)
-#ifdef SKILLS_USE_DESCRIPTION_MACROS
-#include "skill_descriptions.event"
-#endif
-#ifdef SKILLS_USE_ICON_MACROS
-#include "skill_icons.event"
-#endif
-PUSH
 
 //Dazzle (can't be countered)
 ORG 0x2c864
@@ -656,4 +639,3 @@ WORD FortuneID
 
 #include "Range Skills/RangeSkills.event"
 
-#include "Skill Removal Menu/RemoveSkillMenu.event"
