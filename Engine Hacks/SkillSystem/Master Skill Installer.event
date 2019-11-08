@@ -441,7 +441,7 @@ POIN Skill_Getter
 
 #include "Stances/Stances.lyn.event"
 StanceSkillList:
-BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID
+BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID AlertStanceID AlertStancePlusID
 ALIGN 4
 
 TriangleAdept:
@@ -587,10 +587,65 @@ Blossom:
 POIN SkillTester
 WORD BlossomID
 
+Insight:
+#incbin "Sme Skills/Insight.dmp"
+POIN SkillTester
+WORD InsightID
+
+Prescience:
+#incbin "Sme Skills/Prescience.dmp"
+POIN SkillTester
+WORD PrescienceID
+
+Vigilance:
+#incbin "Sme Skills/Vigilance.dmp"
+POIN SkillTester
+WORD PrescienceID
+
+prResolve:
+#incbin "Sme Skills/Resolve.dmp"
+POIN SkillTester
+WORD ResolveID
+
+TowerShield:
+#incbin "Sme Skills/TowerShield.dmp"
+POIN SkillTester
+WORD TowerShieldID
+
+ShortShield:
+#incbin "Sme Skills/ShortShield.dmp"
+POIN SkillTester
+WORD ShortShieldID
+
+TowerShieldPlus:
+#incbin "Sme Skills/TowerShieldPlus.dmp"
+POIN SkillTester
+WORD TowerShieldPlusID
+
+VoidCurse:
+#incbin "Sme Skills/VoidCurse.dmp"
+POIN SkillTester
+WORD VoidCurseID
+
+Deadeye:
+#incbin "Sme Skills/Deadeye.dmp"
+POIN SkillTester
+WORD DeadeyeID
+
+Fortune:
+#incbin "Sme Skills/Fortune.dmp"
+POIN SkillTester
+WORD FortuneID
+
 #include "Other Skills/RandomMugs.event"
 #include "Teq Skills/FE8-StealPlus/FE8-StealPlus EA.txt"
 #include "Teq Skills/FE8-Capture/FE8-Capture Master EA File.txt"
 #include "Teq Skills/FE8-Nullify/Nullify EA.txt"
+
+#include "Sme Skills/Bargain.event"
+#include "Sme Skills/Defiant Skills.event"
+#include "Sme Skills/UnitMenu/UnitMenuSkills.event"
+#include "Sme Skills/DoorFighter.event"
 
 #include "Aura Skills/Aura Skills Installer.event"
 #include "Proc Skills/Proc Skills Installer.event"

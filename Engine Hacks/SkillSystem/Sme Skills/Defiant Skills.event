@@ -1,0 +1,49 @@
+//these all get installed in stat getter loops
+
+prDefiantStr:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantStrID
+
+prDefiantMag:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantMagID
+
+prDefiantSkl:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantSklID
+
+prDefiantSpd:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantSpdID
+
+prDefiantLck:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantLckID
+
+prDefiantDef:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantDefID
+
+prDefiantRes:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantResID
+
+//these two go in pre-battle loop
+
+DefiantAvo:
+#incbin "DefiantAvo.dmp"
+POIN SkillTester
+WORD DefiantAvoID
+
+DefiantCrit:
+#incbin "DefiantCrit.dmp"
+POIN SkillTester
+WORD DefiantCritID
+
