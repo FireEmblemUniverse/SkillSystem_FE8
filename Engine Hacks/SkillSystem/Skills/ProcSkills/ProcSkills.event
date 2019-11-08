@@ -13,7 +13,7 @@ jumpToHack(SkillActivationAnims_defensive)
 POP
 
 ProcLoopParent:
-#incbin "proc_loop.dmp"
+#incbin "ProcLoop/proc_loop.dmp"
 POIN Proc_Start	//start
 
 POIN Proc_Devil	//devil effect
@@ -32,7 +32,7 @@ POIN Proc_Finish 0	//end
 //POIN Chargeups, chargeup not working? so I just removed them for now
 
 ALIGN 4
-#include "proc_start.lyn.event" // Barricade needs to write into proc start where damage is stored.
+#include "ProcStart/proc_start.lyn.event" // Barricade needs to write into proc start where damage is stored.
 ExpertiseIDLink:
 BYTE ExpertiseID
 BarricadeIDLink:
@@ -40,15 +40,15 @@ BYTE BarricadeID
 BarricadePlusIDLink:
 BYTE BarricadePlusID
 ALIGN 4
-#include "BarricadeHook.lyn.event" // Barricade uses r11 for various things through combat. This unsets it afterward.
+#include "Barricade/BarricadeHook.lyn.event" // Barricade uses r11 for various things through combat. This unsets it afterward.
 
 ALIGN 4
 Proc_Finish:
-#incbin "proc_finish.dmp"
+#incbin "ProcFinish/proc_finish.dmp"
 
 ALIGN 4
 Proc_CapDamage:	//actually the same as proc_finish
-#incbin "proc_capdamage.dmp"	//making a different file just in case one of the two needs tweaking
+#incbin "CapDamage/proc_capdamage.dmp"	//making a different file just in case one of the two needs tweaking
 
 PUSH //skip hp substraction if devil effect
 ORG $2B69E
@@ -62,135 +62,135 @@ POP
 
 ALIGN 4
 Proc_Devil:
-#incbin "proc_devil.dmp"
+#incbin "Devil/proc_devil.dmp"
 POIN SkillTester
 WORD DevilsLuckID
 WORD DevilsPactID
 WORD DevilsWhimID
 
 Proc_Foresight:
-#incbin "proc_foresight.dmp"
+#incbin "Foresight/proc_foresight.dmp"
 POIN SkillTester
 WORD ForesightID
 
 Proc_StealHP:
-#incbin "proc_stealhp.dmp"
+#incbin "LifeSteal/proc_stealhp.dmp"
 POIN SkillTester
 WORD LiquidOozeID
 
 Proc_Sureshot:
-#incbin "proc_sureshot.dmp"
+#incbin "SureShot/proc_sureshot.dmp"
 POIN SkillTester
 WORD SureShotID
 
 Proc_Aegis:
-#incbin "proc_aegis.dmp"
+#incbin "Aegis/proc_aegis.dmp"
 POIN SkillTester
 WORD AegisID
 
 Proc_Adept:
-#incbin "proc_adept.dmp"
+#incbin "Adept/proc_adept.dmp"
 POIN SkillTester
 WORD AdeptID
 
 Proc_Astra:
-#incbin "proc_astra.dmp"
+#incbin "Astra/proc_astra.dmp"
 POIN SkillTester
 WORD AstraID
 
 Proc_Pavise:
-#incbin "proc_pavise.dmp"
+#incbin "Pavise/proc_pavise.dmp"
 POIN SkillTester
 WORD PaviseID
 
 Proc_Sol:
-#incbin "proc_sol.dmp"
+#incbin "Sol/proc_sol.dmp"
 POIN SkillTester
 WORD SolID
 WORD LiquidOozeID
 
 Proc_Luna:
-#incbin "proc_luna.dmp"
+#incbin "Luna/proc_luna.dmp"
 POIN SkillTester
 WORD LunaID
 
 Proc_Lethality:
-#incbin "proc_lethality.dmp"
+#incbin "Lethality/proc_lethality.dmp"
 POIN SkillTester
 WORD LethalityID
 
 Proc_AetherHeal:
-#incbin "proc_aetherheal.dmp"
+#incbin "Aether/proc_aetherheal.dmp"
 POIN SkillTester
 WORD AetherID
 WORD LiquidOozeID
 
 Proc_AetherDamage:
-#incbin "proc_aetherdamage.dmp"
+#incbin "Aether/proc_aetherdamage.dmp"
 POIN SkillTester
 WORD AetherID
 
 Proc_Counter:
 // #incbin "proc_closecounter.dmp"
-#incbin "proc_counter.dmp"
+#incbin "Counter/proc_counter.dmp"
 POIN SkillTester
 WORD CounterID
 
 Proc_CounterMagic:
 // #incbin "proc_distantcounter.dmp"
-#incbin "proc_countermagic.dmp"
+#incbin "Countermagic/proc_countermagic.dmp"
 POIN SkillTester
 WORD CounterMagicID
 
 Proc_Miracle:
-#incbin "proc_miracle.dmp"
+#incbin "Miracle/proc_miracle.dmp"
 POIN SkillTester
 WORD MiracleID
 
 Proc_Mercy:
-#incbin "proc_mercy.dmp"
+#incbin "Mercy/proc_mercy.dmp"
 
 Proc_Impale:
-#incbin "proc_impale.dmp"
+#incbin "Impale/proc_impale.dmp"
 POIN SkillTester
 WORD ImpaleID
 
 Proc_Colossus:
-#incbin "proc_colossus.dmp"
+#incbin "Colossus/proc_colossus.dmp"
 POIN SkillTester
 WORD ColossusID
 
 Proc_Ignis:
-#incbin "proc_ignis.dmp"
+#incbin "Ignis/proc_ignis.dmp"
 POIN SkillTester
 WORD IgnisID
 
 Proc_FlashyMode:
-#incbin "proc__flashymode.dmp"
+#incbin "FlashyMode/proc__flashymode.dmp"
 
 Proc_Moonbow:
 #ifndef DISABLE_CHARGE
-#incbin "proc_moonbow.dmp"
+#incbin "Moonbow/proc_moonbow.dmp"
 #else
-#incbin "proc_moonbowNoCharge.dmp"
+#incbin "Moonbow/proc_moonbowNoCharge.dmp"
 #endif
 POIN SkillTester
 WORD MoonbowID
 
 Proc_Bane: //Proc_Bane should always come after Proc_Lethality
-#incbin "proc_bane.dmp" //bane does not proc against counter because it was giving problems
+#incbin "Bane/proc_bane.dmp" //bane does not proc against counter because it was giving problems
 POIN SkillTester
 WORD CounterID
 WORD CounterMagicID
 WORD BaneID
 
 DownWithArch: //lethality if the enemies name starts with "Arch"
-#incbin "proc_downwitharch.dmp"
+#incbin "DownWithArch/proc_downwitharch.dmp"
 POIN SkillTester
 WORD DownWithArchID
 
 Proc_BlackMagic:
-#incbin "proc_blackmagic.dmp"
+#incbin "BlackMagic/proc_blackmagic.dmp"
 POIN SkillTester
 WORD BlackMagicID
 POIN BlackMagicTable
@@ -212,41 +212,41 @@ SHORT 0x2800 0xD005 //cmp r0,#0; beq End
 POP
 ALIGN 4
 BlackMagic_AnimsOff:
-#incbin "BlackMagic_AnimsOff.dmp"
+#incbin "BlackMagic/BlackMagic_AnimsOff.dmp"
 
 ALIGN 4
 Proc_Corona:
-#incbin "proc_corona.dmp"
+#incbin "Corona/proc_corona.dmp"
 POIN SkillTester
 WORD CoronaID
 
 ALIGN 4
 Proc_Flare:
-#incbin "proc_flare.dmp"
+#incbin "Flare/proc_flare.dmp"
 POIN SkillTester
 WORD FlareID
 
 ALIGN 4
 Proc_Petrify:
-#incbin "proc_petrify.dmp"
+#incbin "Petrify/proc_petrify.dmp"
 POIN SkillTester
 WORD PetrifyID
 
 ALIGN 4
 Proc_Enrage:
-#incbin "proc_enrage.dmp"
+#incbin "Enrage/proc_enrage.dmp"
 POIN SkillTester
 WORD EnrageID
 
 ALIGN 4
 Proc_Deadeye:
-#incbin "proc_deadeye.dmp"
+#incbin "Deadeye/proc_deadeye.dmp"
 POIN SkillTester
 WORD DeadeyeID
 
 ALIGN 4
 Proc_DragonFang:
-#incbin "proc_dragonfang.dmp"
+#incbin "DragonFang/proc_dragonfang.dmp"
 POIN SkillTester
 WORD DragonFangID
 
@@ -258,68 +258,8 @@ WORD DragonFangID
 
 ALIGN 4
 Chargeups:
-#incbin "Chargeups.dmp"
-
-SkillActivationAnims:
-#incbin "activationanims.dmp"
-POIN SkillAnimationPointerTable
-
-SkillActivationAnims_defensive:
-#incbin "activationanims_defensive.dmp"
-POIN SkillAnimationPointerTable
-
-LunaAnim:
-{
-#include "Animations/LunaAnim.event"
-}
-
-AstraAnim:
-{
-  #include "Animations/AstraAnim.event"
-}
-
-AdeptAnim:
-{
-  #include "Animations/AdeptAnim.event"
-}
-
-SolAnim:
-{
-  #include "Animations/SolAnim.event"
-}
-
-AetherAnim:
-{
-  #include "Animations/AetherAnim.event"
-}
+#incbin "Chargeups/Chargeups.dmp"
 
 
-ImpaleAnim:
-{
-  #include "Animations/ImpaleAnim.event"
-}
+#include "Animations/SkillAnimations.event"
 
-ColossusAnim:
-{
-  #include "Animations/ColossusAnim.event"
-}
-
-IgnisAnim:
-{
-  #include "Animations/IgnisAnim.event"
-}
-
-PaviseAnim:
-{
-  #include "Animations/PaviseAnim.event"
-}
-
-AegisAnim:
-{
-  #include "Animations/AegisAnim.event"
-}
-
-SureShotAnim:
-{
-  #include "Animations/SureShotAnim.event"
-}

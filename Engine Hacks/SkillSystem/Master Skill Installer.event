@@ -1,21 +1,4 @@
 
-
-
-
-
-//LethalitySkill
-ORG $2ACF8  //ignore the vanilla lethality routine
-SHORT 0x4770
-
-//remove critup ability (for critup skill)
-ORG $2AC4A
-SHORT 0x46C0
-
-
-
-
-POP
-
 NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
 #incbin "Other Skills/NonGBALethalitySkill.dmp" //if you decide to go with this please remember to change the skill definition to match the new effect
 ALIGN 4
@@ -26,8 +9,6 @@ POIN SkillTester
 WORD LethalityID
 WORD BaneID
 ALIGN 4
-
-
 
 FaireCheck: //added to fe8_calc_loop.event
 #incbin "Ross Skills/FaireCheck.dmp"
@@ -75,17 +56,10 @@ POIN SkillTester
 WORD FrenzyID
 
 
-
-
-
-
 Wrath:
 #incbin "Other Skills/wrath.dmp"
 POIN SkillTester
 WORD WrathID
-
-
-
 
 
 ElbowRoom:
@@ -156,13 +130,10 @@ POIN SkillTester
 WORD LethalityID
 
 
-
 CritUpSkill:
 #incbin "Other Skills/CritUpSkill.dmp"
 POIN SkillTester
 WORD CritUpID
-
-
 
 LuckySeven:
 #incbin "Other Skills/LuckySeven.dmp"
@@ -199,8 +170,6 @@ _12SkillList:
 BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID
 ALIGN 4
 
-
-
 TraceSkill:
 #incbin "Other Skills/trace.dmp"
 POIN SkillTester
@@ -212,13 +181,6 @@ StanceSkillList:
 BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID AlertStanceID AlertStancePlusID
 ALIGN 4
 
-
-
-
-
-
-//these two go in pre-battle loop
-
 DefiantAvo:
 #incbin "DefiantAvo.dmp"
 POIN SkillTester
@@ -228,9 +190,6 @@ DefiantCrit:
 #incbin "DefiantCrit.dmp"
 POIN SkillTester
 WORD DefiantCritID
-
-
-
 
 Perfectionist:
 #incbin "New Skills/Perfectionist.dmp"
@@ -284,8 +243,6 @@ Charge:
 POIN SkillTester
 WORD ChargeID
 
-
-
 Vanity:
 #incbin "SoA Skills/Vanity.dmp"
 POIN SkillTester
@@ -300,8 +257,6 @@ KnightAspirant:
 #incbin "SoA Skills/KnightAspirant.dmp"
 POIN SkillTester
 WORD KnightAspirantID
-
-
 
 
 Insight:
@@ -319,8 +274,6 @@ Vigilance:
 POIN SkillTester
 WORD PrescienceID
 
-
-
 TowerShield:
 #incbin "Sme Skills/TowerShield.dmp"
 POIN SkillTester
@@ -336,7 +289,6 @@ TowerShieldPlus:
 POIN SkillTester
 WORD TowerShieldPlusID
 
-
 Deadeye:
 #incbin "Sme Skills/Deadeye.dmp"
 POIN SkillTester
@@ -348,11 +300,6 @@ POIN SkillTester
 WORD FortuneID
 
 
-#include "Sme Skills/Bargain.event"
-
 #include "Sme Skills/DoorFighter.event"
 
-#include "Proc Skills/Proc Skills Installer.event"
-
 #include "Post Combat Skills/Post Combat Skills Installer.event"
-

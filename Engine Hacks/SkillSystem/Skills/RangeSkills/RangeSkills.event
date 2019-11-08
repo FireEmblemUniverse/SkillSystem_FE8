@@ -3,24 +3,24 @@
 //RangeSkill(0,0) used to terminate list
 ALIGN 4
 RangeSkillsCheck:
-#incbin "RangeSkillLoop.dmp"
+#incbin "RangeLoop/RangeSkillLoop.dmp"
 POIN SkillTester RangeSkillList
 
 ALIGN 4
 BowRangeBonus:
-#incbin "BowRange.dmp"
+#incbin "BowRange/BowRange.dmp"
 
 ALIGN 4
 StaffSavantBonus:
-#incbin "StaffSavant.dmp"
+#incbin "StaffSavant/StaffSavant.dmp"
 
 ALIGN 4
 PointBlankBonus:
-#incbin "PointBlank.dmp"
+#incbin "PointBlank/PointBlank.dmp"
 
 ALIGN 4
 TomeRangeBonus:
-#incbin "TomeRange.dmp"
+#incbin "TomeRange/TomeRange.dmp"
 
 ALIGN 4
 RangeSkillList:
