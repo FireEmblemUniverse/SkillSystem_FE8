@@ -160,6 +160,9 @@ POP
 
   // Fix gaining wexp from weapons you don't have wexp in (for Shadowgift/Lumina)
   #include "Misc/FixWpnRnk.event"
+  
+  //Unit Action Rework (required for movement skills)
+  #include "UnitActionRework/UnitActionRework.event"
 
   //Change Sick Status to Freeze
   #include "Freeze/Freeze.event"
