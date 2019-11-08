@@ -2,14 +2,14 @@ PUSH
 
 //Armsthrift
 ORG $2B7F8
-jumpToHack(Armsthrift)
+//jumpToHack(Armsthrift)
   
 //Dazzle (can't be countered)
-ORG 0x2c864
+ORG 0x2C864
 jumpToHack(DazzleCheck)
 
 //Desperation
-ORG $2af0a
+ORG $2AF0A
 SHORT 0
 jumpToHack(Desperation)
 

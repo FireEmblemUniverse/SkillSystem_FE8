@@ -5,7 +5,7 @@ ORG $3DF78
 jumpToHack(Provoke)
 
 //LungeAI
-ORG $3a094
+ORG $3A094
 jumpToHack(LungeAI)
 
 POP
