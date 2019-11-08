@@ -1,0 +1,293 @@
+
+ALIGN 4
+AxefaithHit:
+#incbin "AxeFaith/AxeFaith.dmp"
+POIN SkillTester
+WORD AxeFaithID
+
+ALIGN 4
+Bane: //skill/2% of leaving the enemy with 1hp if the normal damage would not have killed (bane is ignored if the unit has lethality)
+#incbin "Bane/Bane.dmp"
+POIN SkillTester
+WORD LethalityID
+WORD BaneID
+
+ALIGN 4
+BattleVeteran:
+#incbin "BattleVeteran/BattleVeteran.dmp"
+POIN SkillTester
+WORD BattleVeteranID
+
+#include "BlowSkills/BlowSkills.event"
+
+#include "BreakerSkills/BreakerSkills.event"
+
+ALIGN 4
+Charge:
+#incbin "Charge/Charge.dmp"
+POIN SkillTester
+WORD ChargeID
+
+#include "CriticalSkills/CriticalSkills.event"
+
+ALIGN 4
+CritUpSkill:
+#incbin "CritUp/CritUpSkill.dmp"
+POIN SkillTester
+WORD CritUpID
+
+ALIGN 4
+Deadeye:
+#incbin "Deadeye/Deadeye.dmp"
+POIN SkillTester
+WORD DeadeyeID
+
+#include "DefendingSkills/DefendingSkills.event"
+
+ALIGN 4
+DefiantAvo:
+#incbin "DefiantAvo/DefiantAvo.dmp"
+POIN SkillTester
+WORD DefiantAvoID
+
+ALIGN 4
+DefiantCrit:
+#incbin "DefiantCrit/DefiantCrit.dmp"
+POIN SkillTester
+WORD DefiantCritID
+
+#include "DoorFighter/DoorFighter.event"
+
+ALIGN 4
+ElbowRoom:
+#incbin "ElbowRoom/ElbowRoom.dmp"
+POIN SkillTester
+WORD ElbowRoomID
+
+ALIGN 4
+EvenRhythm:
+#incbin "EvenRhythm/EvenRhythm.dmp"
+POIN SkillTester
+WORD EvenRhythmID
+
+#include "FaireSkills/FaireSkills.event"
+
+ALIGN 4
+FieryBlood:
+#incbin "FieryBlood/FieryBlood.dmp"
+POIN SkillTester
+WORD FieryBloodID
+
+ALIGN 4
+Fortune:
+#incbin "Fortune/Fortune.dmp"
+POIN SkillTester
+WORD FortuneID
+
+ALIGN 4
+Frenzy:
+#incbin "Frenzy/Frenzy.dmp"
+POIN SkillTester
+WORD FrenzyID
+
+ALIGN 4
+Gamble:
+#incbin "Gamble/Gamble.dmp"
+
+ALIGN 4
+Hawkeye:
+#incbin "Hawkeye/Hawkeye.dmp"
+POIN SkillTester
+WORD HawkeyeID
+
+ALIGN 4
+HeavyStrikes:
+#incbin "HeavyStrikes/HeavyStrikes.dmp"
+POIN SkillTester
+POIN ItemTable
+WORD HeavyStrikesID
+
+ALIGN 4
+HolyAura:
+#incbin "HolyAura/HolyAura.dmp"
+POIN SkillTester
+WORD HolyAuraID
+
+ALIGN 4
+Insight:
+#incbin "Insight/Insight.dmp"
+POIN SkillTester
+WORD InsightID
+
+ALIGN 4
+KnightAspirant:
+#incbin "KnightAspirant/KnightAspirant.dmp"
+POIN SkillTester
+WORD KnightAspirantID
+
+ALIGN 4
+NonGBALethalitySkill: //makes lethality skill/x% (/2 by default, and halved on bosses) instead of crit/2%, include this in the battle calculations after LethalitySkill (do NOT remove LethalitySkill)
+#incbin "Lethality/NonGBALethalitySkill.dmp" //if you decide to go with this please remember to change the skill definition to match the new effect
+
+ALIGN 4
+LethalitySkill:
+#incbin "Lethality/LethalitySkill.dmp"
+POIN SkillTester
+WORD LethalityID
+
+ALIGN 4
+LifeAndDeath:
+#incbin "LifeAndDeath/LifeAndDeath.dmp"
+POIN SkillTester
+WORD LifeAndDeathID
+
+ALIGN 4
+LightWeight:
+#incbin "LightWeight/LightWeight.dmp"
+POIN SkillTester
+WORD LightWeightID
+
+ALIGN 4
+Loyalty:
+#incbin "Loyalty/Loyalty.dmp"
+POIN SkillTester
+WORD LoyaltyID
+
+ALIGN 4
+LuckySeven:
+#incbin "LuckySeven/LuckySeven.dmp"
+POIN SkillTester
+WORD LuckySevenID
+
+ALIGN 4
+MageSlayer:
+#incbin "MageSlayer/MageSlayer.dmp"
+POIN SkillTester
+WORD MageSlayerID
+
+ALIGN 4
+NaturalCover:
+#incbin "NaturalCover/NaturalCover.dmp"
+POIN SkillTester
+WORD NaturalCoverID
+
+ALIGN 4
+OddRhythm:
+#incbin "OddRhythm/OddRhythm.dmp"
+POIN SkillTester
+WORD OddRhythmID
+
+ALIGN 4
+Opportunist:
+#incbin "Opportunist/Opportunist.dmp"
+POIN SkillTester
+WORD OpportunistID
+
+ALIGN 4
+Outrider:
+#incbin "Outrider/Outrider.dmp"
+POIN SkillTester
+WORD OutriderID
+
+ALIGN 4
+Perfectionist:
+#incbin "Perfectionist/Perfectionist.dmp"
+POIN SkillTester
+WORD PerfectionistID
+
+ALIGN 4
+Prescience:
+#incbin "Prescience/Prescience.dmp"
+POIN SkillTester
+WORD PrescienceID
+
+ALIGN 4
+Puissance:
+#incbin "Puissance/Puissance.dmp"
+POIN SkillTester
+WORD PuissanceID
+
+ALIGN 4
+QuickBurn:
+#incbin "QuickBurn/QuickBurn.dmp"
+POIN SkillTester
+WORD QuickBurnID
+
+#include "Roll12/Roll12.event"
+
+ALIGN 4
+ShortShield:
+#incbin "ShortShield/ShortShield.dmp"
+POIN SkillTester
+WORD ShortShieldID
+
+ALIGN 4
+SilentPride:
+#incbin "SilentPride/SilentPride.dmp"
+POIN SkillTester
+WORD SilentPrideID
+
+ALIGN 4
+SlowBurn:
+#incbin "SlowBurn/SlowBurn.dmp"
+POIN SkillTester
+WORD SlowBurnID
+
+#include "StanceSkills/StanceSkills.event"
+
+ALIGN 4
+Thunderstorm:
+#incbin "Thunderstorm/Thunderstorm.dmp"
+POIN SkillTester
+POIN ItemTable
+WORD ThunderstormID
+
+ALIGN 4
+TowerShield:
+#incbin "TowerShield/TowerShield.dmp"
+POIN SkillTester
+WORD TowerShieldID
+
+ALIGN 4
+TowerShieldPlus:
+#incbin "TowerShieldPlus/TowerShieldPlus.dmp"
+POIN SkillTester
+WORD TowerShieldPlusID
+
+ALIGN 4
+TraceSkill:
+#incbin "Trace/trace.dmp"
+POIN SkillTester
+WORD TraceID
+POIN Skill_Getter
+
+ALIGN 4
+Trample:
+#incbin "Trample/Trample.dmp"
+POIN SkillTester
+WORD TrampleID
+
+ALIGN 4
+Vanity:
+#incbin "Vanity/Vanity.dmp"
+POIN SkillTester
+WORD VanityID
+
+ALIGN 4
+Vigilance:
+#incbin "Vigilance/Vigilance.dmp"
+POIN SkillTester
+WORD PrescienceID
+
+ALIGN 4
+WindDisciple:
+#incbin "WindDisciple/Winddisciple.dmp"
+POIN SkillTester
+WORD WindDiscipleID
+
+ALIGN 4
+Wrath:
+#incbin "Wrath/wrath.dmp"
+POIN SkillTester
+WORD WrathID
+

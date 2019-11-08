@@ -1,5 +1,8 @@
+
 //There is no place better to put these
+
 PUSH
+
 //LethalitySkill
 ORG $2ACF8  //ignore the vanilla lethality routine
 SHORT 0x4770
@@ -7,9 +10,8 @@ SHORT 0x4770
 //Remove critup ability (for critup skill)
 ORG $2AC4A
 SHORT 0x46C0
+
 POP
-
-
 
 #include "AISkills/AISkills.event"
 #include "AuraSkills/AuraSkills.event"

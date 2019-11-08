@@ -1,0 +1,11 @@
+
+ALIGN 4
+FaireCheck: //added to fe8_calc_loop.event
+#incbin "FaireCheck.dmp"
+POIN SkillTester
+POIN FaireIDList
+
+
+ALIGN 4
+FaireIDList:
+BYTE SwordfaireID LancefaireID AxefaireID BowfaireID TomefaireID TomefaireID TomefaireID TomefaireID

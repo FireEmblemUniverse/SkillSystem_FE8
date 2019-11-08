@@ -10,5 +10,11 @@ SET as="%startDir%arm-none-eabi-as"
 SET readelf="%startDir%arm-none-eabi-readelf"
 %readelf% -s "%~n1.elf" > "%~n1.symbols.log"
 
+@rem Extract raw assembly binary (text section) from elf
+SET objcopy="%startDir%arm-none-eabi-objcopy"
+%objcopy% -S "%~n1.elf" -O binary "%~n1.dmp"
+
+echo y | del "%~n1.elf"
+
 echo y | del "%~n1.symbols.log"
 pause

@@ -1,0 +1,11 @@
+ALIGN 4
+CriticalCheck:
+#incbin "Critical.dmp"
+POIN SkillTester
+POIN CriticalIDList
+
+ALIGN 4
+CriticalIDList:
+BYTE CriticalForceID KillingMachineID
+ALIGN 4
+

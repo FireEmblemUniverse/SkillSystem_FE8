@@ -198,6 +198,8 @@ POP
   
   #include "UnitMenu.event"
   #include "Popups.event"
+  
+  #include "SkillSystem/Internals/CalcLoops/CalcLoops.event"
 
   #ifdef STAIRS_ASM
     #ifndef USE_SAVE_EXPANSION

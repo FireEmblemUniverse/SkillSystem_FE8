@@ -1,17 +1,19 @@
 
+ALIGN 4
 IndoorFighter:
 #incbin "IndoorFighter.dmp"
 POIN SkillTester
 WORD IndoorFighterID
 POIN IndoorTerrainList
 
+ALIGN 4
 OutdoorFighter:
 #incbin "OutdoorFighter.dmp"
 POIN SkillTester
 WORD OutdoorFighterID
 POIN OutdoorTerrainList
 
-
+ALIGN 4
 IndoorTerrainList: //null terminator
 BYTE 24 25 27 28 29 30 31 32 33 34 46 60 61 
 BYTE 0
