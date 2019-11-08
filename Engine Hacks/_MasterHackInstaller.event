@@ -183,6 +183,7 @@ POP
   ALIGN 4
   #include "SkillSystem/Master Skill Installer.event"
 
+  ALIGN 4
   #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
 
   ALIGN 4
@@ -194,9 +195,6 @@ POP
   ALIGN 4
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
   #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
-
-  //Calculation loops (used for conflicting hacks, formerly "Battle Calculations.event")
-  #include "SkillSystem/Internals/CalcLoops/Calculation Loops.event"
   
   #include "UnitMenu.event"
   #include "Popups.event"
