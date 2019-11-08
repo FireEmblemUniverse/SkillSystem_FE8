@@ -1,10 +1,9 @@
 ALIGN 4
 SkillIcons:
-ORG SkillIcons+0x8000
-ALIGN 4
+
 
 //Icon graphics are uncompressed
-#define SkillIcon(skillID) 16*16/2*skillID+SkillIcons
+#define SkillIcon(skillID) "128*skillID+SkillIcons"
 
 ORG SkillIcon(AcrobatID)
 #incbin "SkillIcons/Acrobat.dmp"
@@ -750,6 +749,15 @@ ORG SkillIcon(PetrifyID)
 ORG SkillIcon(EnrageID)
 #incbin "SkillIcons/Enrage.dmp"
 
+ORG SkillIcon(PaviseID)
+#incbin "SkillIcons/Pavise.dmp"
+
+ORG SkillIcon(CaptureID)
+#incbin "SkillIcons/Capture.dmp"
+
+ORG SkillIcon(BlackMagicID)
+#incbin "SkillIcons/BlackMagic.dmp"
+
 ORG SkillIcon(DeadeyeID)
 #incbin "SkillIcons/Deadeye.dmp"
 
@@ -759,11 +767,5 @@ ORG SkillIcon(DragonFangID)
 ORG SkillIcon(FortuneID)
 #incbin "SkillIcons/Fortune.dmp"
 
-ORG SkillIcon(PaviseID)
-#incbin "SkillIcons/Pavise.dmp"
 
-ORG SkillIcon(CaptureID)
-#incbin "SkillIcons/Capture.dmp"
-
-ORG SkillIcon(BlackMagicID)
-#incbin "SkillIcons/BlackMagic.dmp"
+ORG SkillIcons+0x8000

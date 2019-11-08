@@ -37,8 +37,8 @@ PoisonStrikeIDLink:
 BYTE PoisonStrikeID
 GrislyWoundIDLink:
 BYTE GrislyWoundID
-ALIGN 4
 #include "PoisonStrikeGrislyWound/PSGWEvent.event"
+
 
 ALIGN 4
 Despoil:
