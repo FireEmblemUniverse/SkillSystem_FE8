@@ -1,0 +1,29 @@
+ALIGN 4
+SpurStr: 
+#incbin "SpurStr/SpurStr.dmp"
+POIN AuraSkillCheck
+WORD SpurStrID
+
+ALIGN 4
+SpurMag: 
+#incbin "SpurMag/SpurMag.dmp"
+POIN AuraSkillCheck
+WORD SpurMagID
+
+ALIGN 4
+SpurSpd: 
+#incbin "SpurSpd/SpurSpd.dmp"
+POIN AuraSkillCheck
+WORD SpurSpdID
+
+ALIGN 4
+SpurDef: 
+#incbin "SpurDef/SpurDef.dmp"
+POIN AuraSkillCheck
+WORD SpurDefID
+
+ALIGN 4
+SpurRes: 
+#incbin "SpurRes/SpurRes.dmp"
+POIN AuraSkillCheck
+WORD SpurResID

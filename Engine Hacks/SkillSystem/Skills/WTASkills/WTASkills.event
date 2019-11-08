@@ -1,0 +1,7 @@
+ALIGN 4
+TriangleAdept:
+#incbin "TriangleAdep/TriangleAdept.dmp"
+POIN SkillTester
+WORD TriAdeptID
+
+#include "WTACalcLoop/WTACalcLoop.event"

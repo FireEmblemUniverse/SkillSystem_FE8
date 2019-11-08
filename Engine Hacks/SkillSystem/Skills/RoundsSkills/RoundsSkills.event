@@ -1,0 +1,37 @@
+PUSH
+
+//Armsthrift
+ORG $2B7F8
+jumpToHack(Armsthrift)
+  
+//Dazzle (can't be countered)
+ORG 0x2c864
+jumpToHack(DazzleCheck)
+
+//Desperation
+ORG $2af0a
+SHORT 0
+jumpToHack(Desperation)
+
+POP
+
+ALIGN 4
+Armsthrift:
+AxeFaithArmsthrift:
+ArmsthriftAxeFaith:
+#incbin "Armsthrift/armsthriftaxefaith.dmp"
+POIN SkillTester
+WORD ArmsthriftID AxeFaithID
+
+ALIGN 4
+DazzleCheck:
+#incbin "Dazzle/dazzle.dmp"
+POIN SkillTester
+WORD DazzleID
+
+ALIGN 4
+Desperation:
+#incbin "Desperation/desperation.dmp"
+POIN SkillTester
+WORD DesperationID
+

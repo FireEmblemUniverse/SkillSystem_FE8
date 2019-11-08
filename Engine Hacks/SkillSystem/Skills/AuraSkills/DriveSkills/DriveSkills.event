@@ -1,0 +1,29 @@
+ALIGN 4
+DriveDef:
+#incbin "DriveDef/DriveDef.dmp"
+POIN AuraSkillCheck
+WORD DriveDefID
+
+ALIGN 4
+DriveMag:
+#incbin "DriveMag/DriveMag.dmp"
+POIN AuraSkillCheck
+WORD DriveMagID
+
+ALIGN 4
+DriveRes:
+#incbin "DriveRes/DriveRes.dmp"
+POIN AuraSkillCheck
+WORD DriveResID
+
+ALIGN 4
+DriveSpd:
+#incbin "DriveSpd/DriveSpd.dmp"
+POIN AuraSkillCheck
+WORD DriveSpdID
+
+ALIGN 4
+DriveStr:
+#incbin "DriveStr/DriveStr.dmp"
+POIN AuraSkillCheck
+WORD DriveStrID

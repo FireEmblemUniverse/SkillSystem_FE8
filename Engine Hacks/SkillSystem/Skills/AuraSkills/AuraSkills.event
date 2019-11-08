@@ -1,15 +1,5 @@
 //Aura skills installer
 
-PUSH
-
-// things go here
-
-// Not needed anymore (we don't write the active unit to the range map anymore)
-// ORG 0x2B1AC // fix triangle attack
-//	BYTE 0x02
-
-POP
-
 // lyn/10
 ALIGN 4
 PUSH
@@ -21,171 +11,131 @@ POIN (SkillTester|1)
 WORD $0202B256 // gAuraUnitListOut : Unit allegiance list output
 SHORT $4718 $46C0
 
-/*
+
+#include "SpurSkills/SpurSkills.event"
+
 ALIGN 4
-AuraSkillCheck:
-#incbin "AuraSkillCheck.dmp"
-POIN AuraSkillTest
-ALIGN 4
-AuraSkillTest:
-#incbin "AuraSkillTest.dmp"
-POIN SkillTester
-*/
-
-SpurStr: //checked in fe8_calc_loop
-#incbin "SpurStr.dmp"
-POIN AuraSkillCheck
-WORD SpurStrID
-
-SpurMag: //checked in fe8_calc_loop
-#incbin "SpurMag.dmp"
-POIN AuraSkillCheck
-WORD SpurMagID
-
-// SpurSkl: //checked in fe8_calc_loop
-// #incbin "SpurSkl.dmp"
-// POIN AuraSkillCheck
-// WORD SpurSklID
-
-SpurSpd: //checked in fe8_calc_loop
-#incbin "SpurSpd.dmp"
-POIN AuraSkillCheck
-WORD SpurSpdID
-
-// SpurLuk: //checked in fe8_calc_loop
-// #incbin "SpurLuk.dmp"
-// POIN AuraSkillCheck
-// WORD SpurLukID
-
-SpurDef: //checked in fe8_calc_loop
-#incbin "SpurDef.dmp"
-POIN AuraSkillCheck
-WORD SpurDefID
-
-SpurRes: //checked in fe8_calc_loop
-#incbin "SpurRes.dmp"
-POIN AuraSkillCheck
-WORD SpurResID
-
 Demoiselle:
-#incbin "Demoiselle.dmp"
+#incbin "Demoiselle/Demoiselle.dmp"
 POIN AuraSkillCheck
 WORD DemoiselleID
 
+ALIGN 4
 Gentilhomme:
-#incbin "Gentilhomme.dmp"
+#incbin "Gentilhomme/Gentilhomme.dmp"
 POIN AuraSkillCheck
 WORD GentilhommeID
 
+ALIGN 4
 MaleficAura:
-#incbin "MaleficAura.dmp"
+#incbin "MaleficAura/MaleficAura.dmp"
 POIN AuraSkillCheck
 WORD MaleficAuraID
 
+ALIGN 4
 Intimidate:
-#incbin "Intimidate.dmp"
+#incbin "Intimidate/Intimidate.dmp"
 POIN AuraSkillCheck
 WORD IntimidateID
 
+ALIGN 4
 Inspiration:
-#incbin "Inspiration.dmp"
+#incbin "Inspiration/Inspiration.dmp"
 POIN AuraSkillCheck
 WORD InspirationID
 
+ALIGN 4
 Charm:
-#incbin "Charm.dmp"
+#incbin "Charm/Charm.dmp"
 POIN AuraSkillCheck
 WORD CharmID
 
+ALIGN 4
 Charisma:
-#incbin "Charisma.dmp"
+#incbin "Charisma/Charisma.dmp"
 POIN AuraSkillCheck
 WORD CharismaID
 
+ALIGN 4
 VoiceOfPeace:
-#incbin "VoiceOfPeace.dmp"
+#incbin "VoiceOfPeace/VoiceOfPeace.dmp"
 POIN AuraSkillCheck
 WORD VoiceOfPeaceID
 
+ALIGN 4
 Tantivy:
-#incbin "Tantivy.dmp"
+#incbin "Tantivy/Tantivy.dmp"
 POIN SkillTester
 POIN AuraSkillCheck
 WORD TantivyID
 
+ALIGN 4
 Focus:
-#incbin "Focus.dmp"
+#incbin "Focus/Focus.dmp"
 POIN SkillTester
 POIN AuraSkillCheck
 WORD FocusID
 
+ALIGN 4
 Anathema:
-#incbin "Anathema.dmp"
+#incbin "Anathema/Anathema.dmp"
 POIN AuraSkillCheck
 WORD AnathemaID
 
-#include "Hex.lyn.event"
+ALIGN 4
+#include "Hex/Hex.lyn.event"
 HexIDLink:
 BYTE HexID
-ALIGN 4
 
+ALIGN 4
 LilysPoise:
-#incbin "LilysPoise.dmp"
+#incbin "LilysPoise/LilysPoise.dmp"
 POIN AuraSkillCheck
 WORD LilysPoiseID
 
+ALIGN 4
 UpWithArch:
-#incbin "UpWithArch.dmp"
+#incbin "UpWithArch/UpWithArch.dmp"
 POIN AuraSkillCheck
 WORD UpWithArchID
 
+ALIGN 4
 Solidarity:
-#incbin "Solidarity.dmp"
+#incbin "Solidarity/Solidarity.dmp"
 POIN AuraSkillCheck
 WORD SolidarityID
 
-DriveDef:
-#incbin "DriveDef.dmp"
-POIN AuraSkillCheck
-WORD DriveDefID
+#include "DriveSkills/DriveSkills.event"
 
-DriveMag:
-#incbin "DriveMag.dmp"
-POIN AuraSkillCheck
-WORD DriveMagID
-
-DriveRes:
-#incbin "DriveRes.dmp"
-POIN AuraSkillCheck
-WORD DriveResID
-
-DriveSpd:
-#incbin "DriveSpd.dmp"
-POIN AuraSkillCheck
-WORD DriveSpdID
-
-DriveStr:
-#incbin "DriveStr.dmp"
-POIN AuraSkillCheck
-WORD DriveStrID
-
+ALIGN 4
 Daunt:
-#incbin "Daunt.dmp"
+#incbin "Daunt/Daunt.dmp"
 POIN AuraSkillCheck
 WORD DauntID
 
+ALIGN 4
 BloodTide:
-#incbin "BloodTide.dmp"
+#incbin "BloodTide/BloodTide.dmp"
 POIN AuraSkillCheck
 WORD BloodTideID
 
+ALIGN 4
 WhitePool:
-#incbin "WhitePool.dmp"
+#incbin "WhitePool/WhitePool.dmp"
 POIN AuraSkillCheck
 WORD WhitePoolID
 
+ALIGN 4
 NightTide:
-#incbin "NightTide.dmp"
+#incbin "NightTide/NightTide.dmp"
 POIN AuraSkillCheck
 WORD NightTideID
 
+ALIGN 4
+Infiltrator:
+#incbin "Infiltrator/Infiltrator.dmp"
+POIN SkillTester
+POIN AuraSkillCheck
+WORD InfiltratorID
+
+#include "ArmorMarch/ArmorMarch.event"

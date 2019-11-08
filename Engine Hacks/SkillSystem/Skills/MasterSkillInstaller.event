@@ -1,8 +1,7 @@
+
 #include "AISkills/AISkills.event"
 #include "AuraSkills/AuraSkills.event"
 #include "DebuffSkills/DebuffSkills.event"
-#include "DevilSkills/DevilSkills.event"
-#include "DoublingSkills/DoublingSkills.event"
 #include "EffectivenessSkills/EffectivenessSkills.event"
 #include "EXPSkills/EXPSkills.event"
 #include "HPRestorationSkills/HPRestorationSkills.event"
@@ -14,9 +13,7 @@
 #include "ProcSkills/ProcSkills.event"
 #include "RallySkills/RallySkills.event"
 #include "RangeSkills/RangeSkills.event"
-#include "RightfulSkills/RightfulSkills.event"
 #include "RoundsSkills/RoundsSkills.event"
-#include "StaffSkills/StaffSkills.event"
 #include "StandaloneSkills/StandaloneSkills.event"
 #include "StatModifierSkills/StatModifierSkills.event"
 #include "UnitMenuSkills/UnitMenuSkills.event"
@@ -24,4 +21,3 @@
 #include "WTASkills/WTASkills.event"
 
 #include "charge_table.event"
-
