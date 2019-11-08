@@ -212,7 +212,7 @@ POP
 
     // Use new EMS-based expansion
 
-    MESSAGE "Using EMS Save/Suspend Expansion"
+    MESSAGE Using EMS Save Suspend Expansion
 
     #include "ExpandedModularSave/ExModularSave.event"
 
@@ -220,7 +220,7 @@ POP
 
     // Use legacy suspend expansion (for compatibility)
 
-    MESSAGE "Using Legacy Suspend Expansion"
+    MESSAGE Using Legacy Suspend Expansion
 
     #include "SuspendDebuffs/SuspendExpansion.event"
 
