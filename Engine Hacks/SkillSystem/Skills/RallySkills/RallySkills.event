@@ -1,0 +1,83 @@
+#ifndef HAX_RALLIES
+#define HAX_RALLIES
+
+// Rally based on debuffs by crazycolorz5
+// Rally skills by circleseverywhere (?)
+// Rewritten by StanH_ to include cool effects
+
+#include "MapAuraFx/MapAuraFx.event"
+
+#include "asm/Rally.lyn.event"
+#include "asm/RallyFx.lyn.event"
+
+RallySkillList: 
+	BYTE RallyStrID
+	BYTE RallySklID
+	BYTE RallySpdID
+	BYTE RallyDefID
+	BYTE RallyResID
+	BYTE RallyLukID
+	BYTE RallyMovID
+	BYTE RallySpectrumID
+	#ifdef USE_STRMAG_SPLIT
+		BYTE RallyMagID
+	#endif // USE_STRMAG_SPLIT
+	BYTE 0
+
+ALIGN 4
+RallyFxPaletteLookup:
+	POIN gRallyStrengthPalette   // Rally strength
+	POIN gRallySkillPalette      // Rally skill
+	POIN gRallySpeedPalette      // Rally speed
+	POIN gRallyDefensePalette    // Rally defense
+	POIN gRallyResistancePalette // Rally resistance
+	POIN gRallyLuckPalette       // Rally luck
+	POIN gRallyMovePalette       // Rally mov
+	POIN gRallyGenericPalette    // Rally spectrum
+	#ifdef USE_STRMAG_SPLIT
+		POIN gRallyMagicPalette // Rally mag
+	#endif // USE_STRMAG_SPLIT
+
+gpRallyDebuffsAddr:
+	WORD DebuffTable
+
+ALIGN 4
+gRallyPreviewPalette:
+gRallyGenericPalette:
+	#incext Png2Dmp "data/fx-preview.png" --palette-only
+
+ALIGN 4
+gRallyStrengthPalette:
+	#incext Png2Dmp "data/fx-strength.png" --palette-only
+
+ALIGN 4
+gRallySkillPalette:
+	#incext Png2Dmp "data/fx-skill.png" --palette-only
+
+ALIGN 4
+gRallySpeedPalette:
+	#incext Png2Dmp "data/fx-speed.png" --palette-only
+
+ALIGN 4
+gRallyDefensePalette:
+	#incext Png2Dmp "data/fx-defense.png" --palette-only
+
+ALIGN 4
+gRallyResistancePalette:
+	#incext Png2Dmp "data/fx-resistance.png" --palette-only
+
+ALIGN 4
+gRallyLuckPalette:
+	#incext Png2Dmp "data/fx-luck.png" --palette-only
+
+ALIGN 4
+gRallyMovePalette:
+	#incext Png2Dmp "data/fx-move.png" --palette-only
+	
+#ifdef USE_STRMAG_SPLIT
+	ALIGN 4
+	gRallyMagicPalette:
+		#incext Png2Dmp "data/fx-magic.png" --palette-only
+#endif // USE_STRMAG_SPLIT
+
+#endif // HAX_RALLIES
