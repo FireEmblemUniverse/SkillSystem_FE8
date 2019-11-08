@@ -242,6 +242,14 @@
 	SHORT 0x1C2A //mov r2,r5 (r5 has battle struct, but that should be fine)
 	BL(Can_Attack_Target)
 	
+	ORG $3AC6A
+	BL(GetItemRangeM_AIJump)
+	
+	ORG $3D8A4
+	BL(GetItemRangeM_AIJump)
+	SHORT 0x1C03 0x1C0C
+	B($3D8BA)
+	
 	//************** FREE SPACE IN BL RANGE, SO DON'T MOVE THIS IF YOU DON'T KNOW WHAT YOU'RE DOING *********************
 	
 	ORG $1ACBC // Writes the attackable squares for each square that can be moved to.
@@ -267,6 +275,12 @@
 	Can_Attack_Target:
 	#incbin "Can Attack Target.dmp"
 	POIN GetItemRangeM|1
+	
+	GetItemRangeM_AIJump:
+	SHORT 0x1C01 0x4803 0x6800 0x0
+	SHORT 0x4B00 0x4718
+	POIN GetItemRangeM|1
+	WORD 0x3004E50
 	//************** CAN BE WRITTEN TO WHEREVER IF YOU WANT THIS SPACE FOR OTHER ASSEMBLY STUFF *********************
 POP
 	ALIGN 4
