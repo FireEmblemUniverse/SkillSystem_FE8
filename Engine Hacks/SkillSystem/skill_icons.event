@@ -1,6 +1,6 @@
 ALIGN 4
 SkillIcons:
-ORG 16*16/2*0xFF+SkillIcons
+ORG SkillIcons+0x8000
 ALIGN 4
 
 //Icon graphics are uncompressed

@@ -125,5 +125,3 @@ ORG $39B98 //this sets 00040000 to the status bitfield thing for some reason on 
 SHORT 0x46C0
 POP
 
-#include "PostBattleCalcLoop/PostBattleCalcLoop.event"
-

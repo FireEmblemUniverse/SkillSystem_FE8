@@ -20,6 +20,6 @@ WORD AcrobatID
 
 ALIGN 4
 PassCheck:
-#incbin "Teq Skills/Pass.dmp"
+#incbin "Pass/Pass.dmp"
 POIN SkillTester
 WORD PassID

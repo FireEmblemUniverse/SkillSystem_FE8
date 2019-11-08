@@ -1,6 +1,6 @@
 #define SkillAnimation(SkillID,Animation) "ORG (SkillAnimationTable + (4*SkillID)); POIN Animation"
 ALIGN 4
-SkillAnimationPointerTable:
+SkillAnimationTable:
 
 SkillAnimation(SureShotID,SureShotAnim)
 SkillAnimation(AdeptID,AdeptAnim)

@@ -10,6 +10,6 @@ WORD 2 //amount of movement to grant
 #include "DefiantSkills/DefiantSkills.event"
 
 prResolve:
-#incbin "Sme Skills/Resolve.dmp"
+#incbin "Resolve/Resolve.dmp"
 POIN SkillTester
 WORD ResolveID

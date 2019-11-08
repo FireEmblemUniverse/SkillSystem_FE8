@@ -181,7 +181,7 @@ POP
   #include "WeaponLockArray/AdvWeaponLocks.event"
 
   ALIGN 4
-  #include "SkillSystem/Master Skill Installer.event"
+  #include "SkillSystem/SkillSystemInstaller.event"
 
   ALIGN 4
   #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"

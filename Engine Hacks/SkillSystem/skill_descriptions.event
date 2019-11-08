@@ -1,9 +1,7 @@
-#ifndef	SkillDescTable
+
 ALIGN 4
 SkillDescTable:
 ORG 2*0xFF+SkillDescTable
-ALIGN 4
-#endif
 
 #define SkillDescription(skillID,description) "PUSH; ORG 2*skillID+SkillDescTable; SHORT description; POP"
 
@@ -160,7 +158,7 @@ SkillDescription(HeroesLifeAndDeathID,SD_HeroesLifeAndDeath)
 SkillDescription(CatchEmAllID,SD_CatchEmAll)
 SkillDescription(VantagePlusID,SD_Vantage_Plus)
 SkillDescription(HawkeyeID,SD_Hawkeye)
-SkillDescription(LunaPlusID,SD_Luna_Plus)
+//SkillDescription(LunaPlusID,SD_Luna_Plus)
 SkillDescription(BracingStanceID,SD_Bracing_Stance)
 SkillDescription(DartingStanceID,SD_Darting_Stance)
 SkillDescription(FierceStanceID,SD_Fierce_Stance)
@@ -173,14 +171,13 @@ SkillDescription(SwiftStanceID,SD_Swift_Stance)
 SkillDescription(WardingStanceID,SD_Warding_Stance)
 SkillDescription(SpectrumStanceID,SD_Spectrum_Stance)
 SkillDescription(StealID, SD_Steal)
-SkillDescription(StealPlusID,SD_Steal_Plus)
+SkillDescription(StealPlusID,SD_StealPlus)
 SkillDescription(FortressDefenseID,SD_FortressDefense)
 SkillDescription(FortressResistanceID,SD_FortressResistance)
 SkillDescription(ForesightID,SD_Foresight)
 SkillDescription(AxefaithID,SD_Axefaith)
 SkillDescription(ArmorMarchID,SD_ArmorMarch)
 SkillDescription(VigorDanceID,SD_VigorDance)
-SkillDescription(StealPlusID,SD_Steal_Plus)
 SkillDescription(ForagerID,SD_Forager)
 SkillDescription(FullMetalBodyID,SD_FullMetalBody)
 SkillDescription(LiquidOozeID,SD_LiquidOoze)
@@ -200,8 +197,8 @@ SkillDescription(PuissanceID,SD_Puissance)
 SkillDescription(WatchfulID,SD_Watchful)
 SkillDescription(HeroID,SD_Hero)
 SkillDescription(BoonID,SD_Boon)
-SkillDecsription(ReMoveID,SD_ReMove)
-SkillDecsription(PowerstaffID,SD_Powerstaff)
+SkillDescription(ReMoveID,SD_ReMove)
+SkillDescription(PowerstaffID,SD_Powerstaff)
 SkillDescription(SealMagID,SD_SealMag)
 SkillDescription(DriveStrID,SD_DriveStr)
 SkillDescription(DriveMagID,SD_DriveMag)

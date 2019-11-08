@@ -8,7 +8,7 @@ POP
 
 ALIGN 4
 SealSkills:
-#incbin "Seal Skills/SealSkills.dmp"
+#incbin "SealSkills/SealSkills.dmp"
 POIN SkillTester
 POIN SealSkillList
 WORD DebuffTable
