@@ -1,7 +1,7 @@
 #ifdef _FE8_
     #include "EAstdlib.event"
     #include "Custom Definitions.event"
-	
+
     ORG FreeSpace
 
     #include "repointedTextTable.event"

@@ -1,0 +1,31 @@
+
+#define RangeSkill(SkillID, routine) "WORD SkillID; POIN routine"
+//RangeSkill(0,0) used to terminate list
+ALIGN 4
+RangeSkillsCheck:
+#incbin "RangeLoop/RangeSkillLoop.dmp"
+POIN SkillTester RangeSkillList
+
+ALIGN 4
+BowRangeBonus:
+#incbin "BowRange/BowRange.dmp"
+
+ALIGN 4
+StaffSavantBonus:
+#incbin "StaffSavant/StaffSavant.dmp"
+
+ALIGN 4
+PointBlankBonus:
+#incbin "PointBlank/PointBlank.dmp"
+
+ALIGN 4
+TomeRangeBonus:
+#incbin "TomeRange/TomeRange.dmp"
+
+ALIGN 4
+RangeSkillList:
+RangeSkill(BowRangeUpID, BowRangeBonus|1)
+RangeSkill(StaffSavantID, StaffSavantBonus|1)
+RangeSkill(PointBlankID, PointBlankBonus|1)
+RangeSkill(TomeRangeUpID, TomeRangeBonus|1)
+RangeSkill(0,0)	//End of list

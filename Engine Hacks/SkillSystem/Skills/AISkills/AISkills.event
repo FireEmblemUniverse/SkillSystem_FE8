@@ -1,0 +1,23 @@
+PUSH
+
+//Provoke
+ORG $3DF78
+jumpToHack(Provoke)
+
+//LungeAI
+ORG $3A094
+jumpToHack(LungeAI)
+
+POP
+
+ALIGN 4
+Provoke:
+#incbin "Provoke/Provoke.dmp"
+POIN SkillTester
+WORD ProvokeID
+
+ALIGN 4
+LungeAI:
+#incbin "LungeAI/lungeAI.dmp"
+POIN SkillTester
+WORD LungeID

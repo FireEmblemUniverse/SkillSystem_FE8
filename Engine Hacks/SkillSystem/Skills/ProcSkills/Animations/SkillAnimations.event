@@ -1,0 +1,75 @@
+ALIGN 4
+SkillActivationAnims:
+#incbin "AnimActivation/activationanims.dmp"
+POIN SkillAnimationTable
+
+ALIGN 4
+SkillActivationAnims_defensive:
+#incbin "AnimActivation/activationanims_defensive.dmp"
+POIN SkillAnimationTable
+
+ALIGN 4
+LunaAnim:
+{
+#include "Luna/LunaAnim.event"
+}
+
+ALIGN 4
+AstraAnim:
+{
+  #include "Astra/AstraAnim.event"
+}
+
+ALIGN 4
+AdeptAnim:
+{
+  #include "Adept/AdeptAnim.event"
+}
+
+ALIGN 4
+SolAnim:
+{
+  #include "Sol/SolAnim.event"
+}
+
+ALIGN 4
+AetherAnim:
+{
+  #include "Aether/AetherAnim.event"
+}
+
+ALIGN 4
+ImpaleAnim:
+{
+  #include "Impale/ImpaleAnim.event"
+}
+
+ALIGN 4
+ColossusAnim:
+{
+  #include "Colossus/ColossusAnim.event"
+}
+
+ALIGN 4
+IgnisAnim:
+{
+  #include "Ignis/IgnisAnim.event"
+}
+
+ALIGN 4
+PaviseAnim:
+{
+  #include "Pavise/PaviseAnim.event"
+}
+
+ALIGN 4
+AegisAnim:
+{
+  #include "Aegis/AegisAnim.event"
+}
+
+ALIGN 4
+SureShotAnim:
+{
+  #include "SureShot/SureShotAnim.event"
+}

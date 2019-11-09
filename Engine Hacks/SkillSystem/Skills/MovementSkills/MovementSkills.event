@@ -1,0 +1,25 @@
+PUSH
+
+//Acrobat
+ORG $1A4CC
+jumpToHack(AcrobatCheck)
+
+//Pass
+ORG $800 //modifies movement ARM code
+WORD 0xE59FC000 0xE12FFF1C //ldr r12,Pass; bx r12
+POIN PassCheck|1
+
+POP
+
+
+ALIGN 4
+AcrobatCheck:
+#incbin "Acrobat/Acrobat.dmp"
+POIN SkillTester
+WORD AcrobatID
+
+ALIGN 4
+PassCheck:
+#incbin "Pass/Pass.dmp"
+POIN SkillTester
+WORD PassID

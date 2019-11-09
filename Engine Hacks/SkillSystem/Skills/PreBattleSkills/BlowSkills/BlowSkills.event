@@ -1,0 +1,9 @@
+ALIGN 4
+BlowCheck:
+#incbin "BlowCheck.dmp"
+POIN SkillTester
+POIN BlowIDList
+
+ALIGN 4
+BlowIDList:
+BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID QuickDrawID ChivalryID PragmaticID HeroesDeathBlowID

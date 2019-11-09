@@ -1,0 +1,65 @@
+
+#define AlsoUseVanillaDanceCheck False
+#define AlsoUseVanillaSupplyCheck False
+#define AlsoUseVanillaSummonCheck False
+
+#include "Capture/Capture.event"
+
+#include "StealPlus/StealPlus.event"
+
+#include "HeroesMovement/HeroesMovement.event"
+
+ALIGN 4
+NewDanceUsability:
+#incbin "Dance/NewDanceUsability.dmp"
+POIN SkillTester
+WORD DanceID
+WORD AlsoUseVanillaDanceCheck
+
+ALIGN 4
+NewSupplyUsability:
+#incbin "Supply/NewSupplyUsability.dmp"
+POIN SkillTester
+WORD SupplyID
+WORD AlsoUseVanillaSupplyCheck
+
+ALIGN 4
+NewSummonUsability:
+#incbin "Summon/NewSummonUsability.dmp"
+POIN SkillTester
+WORD SummonID
+WORD AlsoUseVanillaSummonCheck
+
+ALIGN 4
+AttackEffect:
+#incbin "Attack/AttackEffect.dmp"
+
+ALIGN 4
+LungeUsability:
+#incbin "Lunge/LungeUsability.dmp"
+POIN SkillTester
+WORD LungeID
+
+ALIGN 4
+LungeEffect:
+#incbin "Lunge/LungeEffect.dmp"
+
+ALIGN 4
+GambleUsability:
+#incbin "Gamble/GambleUsability.dmp"
+POIN SkillTester
+WORD GambleID
+
+ALIGN 4
+GambleEffect:
+#incbin "Gamble/GambleEffect.dmp"
+
+ALIGN 4
+MercyUsability:
+#incbin "Mercy/MercyUsability.dmp"
+POIN SkillTester
+WORD MercyID
+
+ALIGN 4
+MercyEffect:
+#incbin "Mercy/MercyEffect.dmp"
