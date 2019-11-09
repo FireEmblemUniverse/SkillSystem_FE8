@@ -160,6 +160,9 @@ POP
 
   // Fix gaining wexp from weapons you don't have wexp in (for Shadowgift/Lumina)
   #include "Misc/FixWpnRnk.event"
+  
+  //Unit Action Rework (required for movement skills)
+  #include "UnitActionRework/UnitActionRework.event"
 
   //Change Sick Status to Freeze
   #include "Freeze/Freeze.event"
@@ -178,8 +181,9 @@ POP
   #include "WeaponLockArray/AdvWeaponLocks.event"
 
   ALIGN 4
-  #include "SkillSystem/Master Skill Installer.event"
+  #include "SkillSystem/SkillSystemInstaller.event"
 
+  ALIGN 4
   #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
 
   ALIGN 4
@@ -191,12 +195,11 @@ POP
   ALIGN 4
   #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
   #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
-
-  //Calculation loops (used for conflicting hacks, formerly "Battle Calculations.event")
-  #include "SkillSystem/Internals/CalcLoops/Calculation Loops.event"
   
   #include "UnitMenu.event"
   #include "Popups.event"
+  
+  #include "SkillSystem/Internals/CalcLoops/CalcLoops.event"
 
   #ifdef STAIRS_ASM
     #ifndef USE_SAVE_EXPANSION

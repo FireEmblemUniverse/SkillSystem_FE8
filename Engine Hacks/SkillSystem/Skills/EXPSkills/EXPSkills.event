@@ -1,0 +1,17 @@
+ALIGN 4
+Blossom:
+#incbin "Blossom/BlossomExp.dmp"
+POIN SkillTester
+WORD BlossomID
+
+ALIGN 4
+Paragon:
+#incbin "Paragon/Paragon.dmp"
+POIN SkillTester
+WORD ParagonID
+
+ALIGN 4
+VoidCurse:
+#incbin "VoidCurse/VoidCurse.dmp"
+POIN SkillTester
+WORD VoidCurseID

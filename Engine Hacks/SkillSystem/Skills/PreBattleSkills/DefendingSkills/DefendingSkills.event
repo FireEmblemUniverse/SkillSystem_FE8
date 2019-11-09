@@ -1,0 +1,11 @@
+
+ALIGN 4
+DefendingCheck:
+#incbin "Defending.dmp"
+POIN SkillTester
+POIN DefendingIDList
+
+ALIGN 4
+DefendingIDList:
+BYTE StrongRiposteID PatienceID PursuitID ChivalryID PragmaticID
+ALIGN 4

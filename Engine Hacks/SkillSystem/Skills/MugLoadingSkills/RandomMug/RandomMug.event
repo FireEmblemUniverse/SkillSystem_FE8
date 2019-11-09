@@ -1,0 +1,307 @@
+    #define IdentityRamByte 0x202FFFF
+    
+    PUSH
+    ORG $8C634
+    jumpToHack(RandomMug1)
+    ORG $88680
+    jumpToHack(RandomMug2)
+    //ORG $7898
+    //jumpToHack(RandomMug3) // Removed for the mug loading calculation loop
+    ORG $22BF6
+    SHORT 0x46C0
+    jumpToHack(RandomMug4)
+    ORG $9A950
+    jumpToHack(RandomMug5)
+    ORG $99EE0
+    jumpToHack(RandomMug6)
+    ORG $99530
+    jumpToHack(RandomMug7)
+    ORG $73DBC
+    jumpToHack(RandomMug8)
+    ORG $8E2FC
+    jumpToHack(RandomMug9)
+    ORG $2D7D8
+    jumpToHack(RandomMug10)
+    ORG $2D7F0
+    jumpToHack(RandomMug11)
+    ORG $9B9A0
+    jumpToHack(RandomMug12)
+    ORG $9B9BA
+    SHORT 0x1C19
+    jumpToHack(RandomMug13)
+    ORG $9AE8C
+    jumpToHack(PrepScreenIsDumb)
+    //ORG $98CC4
+    //jumpToHack(PrepScreenIsDumb2)
+    ORG $8C5F4
+    jumpToHack(IdentityProblems1)
+    ORG $86E4C
+    jumpToHack(IdentityProblems2)
+    ORG $365EC
+    jumpToHack(IdentityProblems3)
+    ORG $9A5F0
+    jumpToHack(IdentityProblems4)
+    ORG $9A97C
+    jumpToHack(IdentityProblems5)
+    ORG $9954C
+    jumpToHack(IdentityProblems6)
+    ORG $9A1DC
+    jumpToHack(IdentityProblems7)
+    ORG $5203C
+    jumpToHack(IdentityProblems8)
+    ORG $923A8
+    jumpToHack(IdentityProblems9)
+    ORG $9ECCE
+    SHORT 0x46C0
+    jumpToHack(IdentityProblems10)
+    ORG $8E240
+    jumpToHack(IdentityProblems11)
+    ORG $34984
+    jumpToHack(IdentityProblems12)
+    ORG $2D34C
+    jumpToHack(IdentityProblems13)
+    ORG $2D37C
+    jumpToHack(IdentityProblems14)
+    ORG $9B9F0
+    jumpToHack(IdentityProblems15)
+    ORG $9BA24
+    jumpToHack(IdentityProblems16)
+    POP
+	ALIGN 4
+    RandomMug1:
+    #incbin "RandomMug1.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+ 	ALIGN 4   
+    RandomMug2:
+    #incbin "RandomMug2.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug3:
+    #incbin "RandomMug3.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug4:
+    #incbin "RandomMug4.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug5:
+    #incbin "RandomMug5.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug6:
+    #incbin "RandomMug6.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug7:
+    #incbin "RandomMug7.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug8:
+    #incbin "RandomMug8.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug9:
+    #incbin "RandomMug9.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug10:
+    #incbin "RandomMug10.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug11:
+    #incbin "RandomMug11.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug12:
+    #incbin "RandomMug12.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    RandomMug13:
+    #incbin "RandomMug13.dmp"
+    POIN MugList
+    POIN SkillTester
+    WORD RandomMugID
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    POIN IdentityProblemsMugs
+	ALIGN 4    
+    PrepScreenIsDumb:
+    #incbin "PrepScreenIsDumb.dmp"
+    WORD IdentityRamByte
+	ALIGN 4    
+    PrepScreenIsDumb2:
+    #incbin "PrepScreenIsDumb2.dmp"
+    WORD IdentityRamByte
+	ALIGN 4    
+    IdentityProblems1:
+    #incbin "IdentityProblems1.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4    
+    IdentityProblems2:
+    #incbin "IdentityProblems2.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4    
+    IdentityProblems3:
+    #incbin "IdentityProblems3.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4    
+    IdentityProblems4:
+    #incbin "IdentityProblems4.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4    
+    IdentityProblems5:
+    #incbin "IdentityProblems5.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4        
+    IdentityProblems6:
+    #incbin "IdentityProblems6.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4
+    IdentityProblems7:
+    #incbin "IdentityProblems7.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+	ALIGN 4    
+    IdentityProblems8:
+    #incbin "IdentityProblems8.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems9:
+    #incbin "IdentityProblems9.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems10:
+    #incbin "IdentityProblems10.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems11:
+    #incbin "IdentityProblems11.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems12:
+    #incbin "IdentityProblems12.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems13:
+    #incbin "IdentityProblems13.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems14:
+    #incbin "IdentityProblems14.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems15:
+    #incbin "IdentityProblems15.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+ 	ALIGN 4   
+    IdentityProblems16:
+    #incbin "IdentityProblems16.dmp"
+    POIN IdentityProblemsNames
+    POIN SkillTester
+    WORD IdentityProblemsID
+    WORD IdentityRamByte
+    
