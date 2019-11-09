@@ -1,0 +1,40 @@
+
+#define SpecialRange(max,min,text,calc) "BYTE max min; SHORT text; POIN calc"
+//text is the text to display when viewing item stats, set to 0 to display the range as numbers instead
+//calc is a pointer to where you calcualte the special range
+#define SpecialRangeEnd "SHORT 0xFFFF 0 0 0"
+
+#ifdef _FE8_
+	#ifndef HalfMag_Text
+		#define HalfMag_Text 0x522
+	#endif
+	#ifndef Total_RangeText
+		#define Total_RangeText 0x52A
+	#endif
+#endif
+
+SpecialRangeTable:
+SpecialRange(0,1,HalfMag_Text,HalfMag_Range|1)
+SpecialRange(0xf,0xf,Total_RangeText, Total_Range|1)
+SpecialRangeEnd	//End of Table
+
+RangeCalcGetter:
+#include "RangeCalcGetter.lyn.event"
+//#incbin "RangeCalcGetter.dmp"
+POIN SpecialRangeTable
+RangeTextGetter:
+#include "RangeTextGetter.lyn.event"
+//#incbin "RangeTextGetter.dmp"
+POIN SpecialRangeTable
+
+HalfMag_Range:
+#include "RangeCalcs/HalfMag_Range.lyn.event"
+//#incbin "RangeCalcs/HalfMag_Range.dmp"
+	#ifdef _FE8_
+	POIN 0x18A1C
+	#endif
+
+Total_Range:
+SHORT 0x20FF 0x2100	//return 0xFF for total range
+SHORT 0x4770
+ALIGN 4

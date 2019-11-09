@@ -172,19 +172,6 @@
 	ORG $1ABA6
 	SHORT 0xB002
 	
-	ORG $16CC0 //Shows the correct range numbers when displaying an item's R-menu 
-	jumpToHack(StatScreenRangeDisplay)
-	jumpToHack(ItemDescRangeDisplay)
-	MakeRangeText:
-	#incbin "MakeRangeText.dmp"
-	//#incbin "R Button Range Display.dmp"
-	//POIN Item_Table
-	
-	ORG $89CEC	//range text for weapons
-	BL($16CC8)
-	ORG $89D90	//range text for staves
-	BL($16CC8)
-	
 	ORG $1CC0A //When first selecting a unit, for weapons
 	BL(All_Weapons_All_Squares)
 	
@@ -250,16 +237,33 @@
 	SHORT 0x1C03 0x1C0C
 	B($3D8BA)
 	
+	ORG $16CC0 //Shows the correct range numbers when displaying an item's R-menu 
+	jumpToHack(StatScreenRangeDisplay)
+	jumpToHack(ItemDescRangeDisplay)
+	MakeRangeText:
+	#include "RangeTextDisplay/MakeRangeText.lyn.event"
+	//#incbin "MakeRangeText.dmp"
+	
+	//#incbin "R Button Range Display.dmp"
+	//POIN Item_Table
+	
+	ORG $89CEC	//range text for weapons
+	BL($16CC8)
+	ORG $89D90	//range text for staves
+	BL($16CC8)
+	
 	//************** FREE SPACE IN BL RANGE, SO DON'T MOVE THIS IF YOU DON'T KNOW WHAT YOU'RE DOING *********************
 	
 	ORG $1ACBC // Writes the attackable squares for each square that can be moved to.
 	All_Weapons_All_Squares:
-	#incbin "All Weapons All Squares.dmp"
+	#include "RangeDisplay/All_Weapons_All_Squares.lyn.event"
+	//#incbin "All Weapons All Squares.dmp"
 	POIN All_Moveable_Squares|1
 	
 	ALIGN 4
 	All_Staffs_All_Squares:
-	#incbin "All Staffs All Squares.dmp"
+	#include "RangeDisplay/All_Staffs_All_Squares.lyn.event"
+	//#incbin "All Staffs All Squares.dmp"
 	POIN All_Moveable_Squares|1
 	ALIGN 4
 	/*
@@ -273,7 +277,8 @@
 	
 	ALIGN 4
 	Can_Attack_Target:
-	#incbin "Can Attack Target.dmp"
+	#include "RangeDisplay/CanAttackTarget.lyn.event"
+	//#incbin "Can Attack Target.dmp"
 	POIN GetItemRangeM|1
 	
 	GetItemRangeM_AIJump:
@@ -281,59 +286,70 @@
 	SHORT 0x4B00 0x4718
 	POIN GetItemRangeM|1
 	WORD 0x3004E50
+	
 	//************** CAN BE WRITTEN TO WHEREVER IF YOU WANT THIS SPACE FOR OTHER ASSEMBLY STUFF *********************
 POP
 	ALIGN 4
 	All_Weapons_One_Square:
-	#incbin "All Weapons One Square.dmp"
-	POIN Return_Range_Bitfield|1
-	POIN Write_Range|1
+	#include "RangeDisplay/All_Weapons_One_Square.lyn.event"
+	//#incbin "All Weapons One Square.dmp"
+	//POIN Return_Range_Bitfield|1
+	//POIN Write_Range|1
 	
 	ALIGN 4
 	All_Staffs_One_Square:
-	#incbin "All Staffs One Square.dmp"
-	POIN Return_Range_Bitfield|1
-	POIN Write_Range|1	
+	#include "RangeDisplay/All_Staffs_One_Square.lyn.event"
+	//#incbin "All Staffs One Square.dmp"
+	//POIN Return_Range_Bitfield|1
+	//POIN Write_Range|1	
 	
 	ALIGN 4
 	All_Moveable_Squares:
-	#incbin "All Moveable Squares.dmp" 
+	#include "RangeDisplay/All_Moveable_Squares.lyn.event"
+	//#incbin "All Moveable Squares.dmp" 
 	POIN Return_Range_Bitfield|1
 	POIN Write_Range|1
 	
 	ALIGN 4
 	Return_Range_Bitfield:
-	#incbin "Return Range Bitfield.dmp"
-	POIN Get_Item_Range|1
+	#include "RangeDisplay/ReturnRangeBitfield.lyn.event"
+	//#incbin "Return Range Bitfield.dmp"
+	//POIN Get_Item_Range|1
 	
 	ALIGN 4
 	Get_Item_Range:
-	#incbin "Get Item Range.dmp"
+	#include "RangeDisplay/Get_Item_Range.lyn.event"
+	//#incbin "Get Item Range.dmp"
 	POIN GetItemRangeM|1
 	
 	ALIGN 4
 	Write_Range:
-	#incbin "Write Range.dmp"
+	#include "RangeDisplay/Write_Range.lyn.event"
+	//#incbin "Write Range.dmp"
 	
 	ALIGN 4
 	Unknown_Function:
-	#incbin "Unknown Function.dmp"
-	POIN Return_Range_Bitfield|1
-	POIN Write_Range|1
+	#include "RangeDisplay/UnknownFunction.lyn.event"
+	//#incbin "Unknown Function.dmp"
+	//POIN Return_Range_Bitfield|1
+	//POIN Write_Range|1
 	
 	ALIGN 4
 	Weapon_Attack:
-	#incbin "Weapon Attack.dmp"
+	#include "RangeDisplay/Weapon_Attack.lyn.event"
+	//#incbin "RangeDisplay/Weapon_Attack.dmp"
 	
 	ALIGN 4
 	
 	StatScreenRangeDisplay:
-	#incbin "StatScreenRange.dmp"
-	POIN GetItemRangeM|1 MakeRangeText|1
+	#include "RangeTextDisplay/StatScreenRange.lyn.event"
+	//#incbin "StatScreenRange.dmp"
+	//POIN GetItemRangeM|1 MakeRangeText|1
 	
 	ItemDescRangeDisplay:
-	#incbin "Item R Button Range.dmp"
-	POIN RangeTextGetter|1 MakeRangeText|1
+	#include "RangeTextDisplay/Item_R_Button_Range.lyn.event"
+	//#incbin "Item R Button Range.dmp"
+	//POIN RangeTextGetter|1 MakeRangeText|1
 	
 	/*
 	//####### RANGE WRITING STUFF ######
@@ -377,7 +393,8 @@ POP
 	*/
 	ALIGN 4
 	Torch_Fix:
-		#incbin "Torch Fix.dmp"
+		#include "RangeDisplay/TorchFix.lyn.event"
+//		#incbin "Torch Fix.dmp"
 		POIN Item_TTRange|1
 		WORD 0x0	//Torch targeting condition
 	
@@ -429,5 +446,5 @@ POP
 	*/
 	
 #else
-	ERROR "You're not assembling FE7 events!"
+	ERROR "You're not assembling FE8 events!"
 #endif

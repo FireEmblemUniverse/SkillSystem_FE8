@@ -4,11 +4,17 @@
 		#define CheckUnitsInRange 0x24EAC
 		#define CheckTilesInRange 0x24F18
 	#endif
-	#include "SpecialRanges.event"
+	#include "SpecialRanges/SpecialRanges.event"
 	#define rfItemRangeSetup(TConditon, RangeBuilder) "SHORT 0xB500 0x4902; BL(RangeBuilder); SHORT 0xBC08 0x4718; POIN (TConditon | 1)"
 
 	ALIGN 4
-
+	#include "Item_TURange.lyn.event"
+	POIN FillRange|1
+	POIN Is_Capture_Set|1	//replace with 0 if not using capture or skill system
+	#include "Item_TTRange.lyn.event"
+	POIN FillRange|1
+	POIN Is_Capture_Set|1	//replace with 0 if not using capture or skill system
+	/*
 	Item_TURange: 
 	//build range that checks in units on selectable tiles meet condition
 	#incbin "ItemRangeSetup.dmp"
@@ -26,20 +32,23 @@
 	Item_TTRangeBuilder:
 	#incbin "ItemRangeBuilder.dmp"
 	POIN GetItemRange|1 CheckTilesInRange|1 FillRange|1 Is_Capture_Set|1
-	
+	*/
 	GetItemRange:
-	#incbin "ItemRangeGetter.dmp"
+	#include "ItemRangeGetter.lyn.event"
+	//#incbin "ItemRangeGetter.dmp"
 	POIN RangeCalcGetter
 	POIN RangeSkillsCheck
 	
-	GetItemRangeM:
-	#incbin "ItemRangeGetterM.dmp"
-	POIN GetItemRange|1
+	//GetItemRangeM:
+	#include "ItemRangeGetterM.lyn.event"
+	//#incbin "ItemRangeGetterM.dmp"
+	//POIN GetItemRange|1
 	
 	#ifndef BasicRange
 		#define BasicRange
 		FillRange:
-		#incbin "FillRange.dmp"
+		#include "FillRange.lyn.event"
+		//#incbin "FillRange.dmp"
 		POIN 0x1AABC|1
 	#endif
 #endif
