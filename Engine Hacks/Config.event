@@ -3,14 +3,6 @@
 
 // This file holds configuration switches for all hacks shipped with the skill system
 
-// ==============================
-// = BUILD SYSTEM CONFIGURATION =
-// ==============================
-
-// if uncommented use the macros to write over the table and .png, location based on skill id
-// #define SKILLS_USE_DESCRIPTION_MACROS
-// #define SKILLS_USE_ICON_MACROS
-
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
 // ===================================

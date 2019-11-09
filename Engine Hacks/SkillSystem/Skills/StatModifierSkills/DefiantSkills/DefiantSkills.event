@@ -1,0 +1,43 @@
+//these all get installed in stat getter loops
+
+ALIGN 4
+prDefiantStr:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantStrID
+
+ALIGN 4
+prDefiantMag:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantMagID
+
+ALIGN 4
+prDefiantSkl:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantSklID
+
+ALIGN 4
+prDefiantSpd:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantSpdID
+
+ALIGN 4
+prDefiantLck:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantLckID
+
+ALIGN 4
+prDefiantDef:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantDefID
+
+ALIGN 4
+prDefiantRes:
+#incbin "DefiantSkill.dmp"
+POIN SkillTester
+WORD DefiantResID

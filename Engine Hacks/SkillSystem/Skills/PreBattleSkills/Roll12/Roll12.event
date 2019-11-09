@@ -1,0 +1,11 @@
+
+ALIGN 4
+Roll1d12:
+#incbin "roll12.dmp"
+POIN SkillTester
+WORD Roll12ID
+POIN _12SkillList
+
+ALIGN 4
+_12SkillList:
+BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID

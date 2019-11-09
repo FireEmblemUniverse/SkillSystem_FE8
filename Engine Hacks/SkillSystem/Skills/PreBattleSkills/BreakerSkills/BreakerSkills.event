@@ -1,0 +1,11 @@
+ALIGN 4
+BreakerCheck: //added to fe8_calc_loop.event
+#incbin "BreakerCheck.dmp"
+POIN SkillTester
+POIN BreakerIDList
+WORD 50 // Hit/Avoid Bonus
+
+ALIGN 4
+BreakerIDList:
+BYTE SwordbreakerID LancebreakerID AxebreakerID BowbreakerID TomebreakerID TomebreakerID TomebreakerID TomebreakerID
+

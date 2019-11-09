@@ -1,0 +1,21 @@
+PUSH
+
+//Seal Skills
+ORG $2c088
+jumpToHack(SealSkills)
+
+POP
+
+ALIGN 4
+SealSkills:
+#incbin "SealSkills/SealSkills.dmp"
+POIN SkillTester
+POIN SealSkillList
+WORD DebuffTable
+POIN ItemTable
+WORD FullMetalBodyID
+POIN WeaponDebuffTable
+
+SealSkillList:
+BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID SealMagID
+ALIGN 4
