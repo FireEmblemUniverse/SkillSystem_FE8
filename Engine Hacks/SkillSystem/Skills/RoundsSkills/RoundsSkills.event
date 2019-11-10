@@ -31,7 +31,8 @@ WORD DazzleID
 
 ALIGN 4
 Desperation:
-#incbin "Desperation/desperation.dmp"
+#incbin "Desperation/DesperationAssassinate.dmp"
 POIN SkillTester
 WORD DesperationID
+WORD AssassinateID
 

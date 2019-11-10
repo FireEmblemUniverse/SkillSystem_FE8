@@ -1,6 +1,7 @@
 .thumb
 
 @desperation: if attacker under 50%hp, do follow up immediately
+@assassinate: When initiating battle at 1 range: +2 Damage, Double attacks occur before counter
 @hook at 802af0a with NOP+JumpToHack
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -8,19 +9,37 @@
   .short 0xf800
 .endm
 .equ DesperationID, SkillTester+4
+.equ AssassinateID, DesperationID+4
 
+@check range
+ldr r0,=#0x203A4D4 @battle stats
+ldrb r0,[r0,#2] @range
+cmp r0,#1
+bne CheckDesperation
+
+@now check if attacker has assassinate
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r5 @defender data
+ldr r1, AssassinateID
+.short 0xf800
+cmp r0, #0
+beq CheckDesperation
+b HasSkill
+
+CheckDesperation:
 @check attacker's hp
 ldr r3, [sp]
 
 ldr r0, =0x203a4ec @no vantage + desp shenanigans, that's unfair lol
 cmp r3, r0
-bne NoDesperation 
+bne NoSkill 
 
 ldrb r0, [r3,#0x12] @max
 ldrb r1, [r3, #0x13] @curr
 lsr r0, #1
 cmp r1, r0
-bgt NoDesperation
+bgt NoSkill
 
 @now check if attacker has desperation
 ldr r0, SkillTester
@@ -29,19 +48,20 @@ mov r0, r5 @defender data
 ldr r1, DesperationID
 .short 0xf800
 cmp r0, #0
-beq NoDesperation
+beq NoSkill
 
+HasSkill:
 @finally check if attacker doubles
   ldr r2, [sp] @attacker data
   ldr r3, [sp, #4] @defender data
   mov r1, #0x5e
   ldsh r0, [r3,r1] @defender AS
   @ cmp r0, #0xfa @snag??
-  @ beq NoDesperation
+  @ beq NoSkill
   ldsh r1, [r2,r1] @attacker AS
   sub r1, r0 @attacker - defender
   cmp r1, #3
-  ble NoDesperation
+  ble NoSkill
 ldr r0, =0x802af90 @can_double check
 mov lr, r0
 mov r0, sp
@@ -49,7 +69,7 @@ add r1, sp, #4
 
 .short 0xf800
 cmp r0, #0
-beq NoDesperation
+beq NoSkill
 
 Desperation:
 @attacker doubles
@@ -110,7 +130,7 @@ EndBattle:
 ldr r0, =0x802af51
 bx r0
 
-NoDesperation:
+NoSkill:
 ldr r3, [r6]
 ldr r2, [r3]
 lsl r1, r2, #0xd
@@ -129,3 +149,4 @@ bx r0
 SkillTester:
 @poin SkillTester
 @word DesperationID
+@word AssassinateID
