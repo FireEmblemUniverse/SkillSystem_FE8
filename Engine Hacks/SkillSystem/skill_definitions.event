@@ -501,6 +501,9 @@
 //Author Unknown (Initial Commit)
 #define QuickDrawID 110
 
+// Arcane Blade: When initiating battle at 1 range: Add 3+(Mag/2) to Hit and Crit.[X]
+//By Zeta
+#define ArcaneBladeID 255
 
 //Proc Skills
 
@@ -658,8 +661,11 @@
 #define DazzleID 141
 
 //Desperation: If HP < 50%, double attacks occur immediately.
-
 #define DesperationID 33 //DONE by ??? (Initial Commit)
+
+//Assassinate: When initiating battle at 1 range: +2 Damage, double attacks occur before counter.
+//By Zeta
+#define AssassinateID 255
 
 
 //Stat Modifier Skills
@@ -863,6 +869,9 @@
 //By Sme
 #define BargainID 236
 
+//Poise: +1 Move. Negates enemy hit bonus from weapon triangle advantage.
+//By Zeta
+#define PoiseID 255
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme

@@ -3,3 +3,9 @@ TriangleAdept:
 #incbin "TriangleAdept/TriangleAdept.dmp"
 POIN SkillTester
 WORD TriAdeptID
+
+ALIGN 4
+Poise:
+#incbin "Poise/Poise.dmp"
+POIN SkillTester
+WORD PoiseID

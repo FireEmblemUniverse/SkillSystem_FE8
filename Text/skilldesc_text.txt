@@ -1041,3 +1041,18 @@ Dragon Fang: 1.5x damage.[N]
 ##SD_Fortune
 Fortune: This unit[N]
 cannot be crit.[X]
+
+## SD_Assassinate
+Assassinate: When initiating battle[N]
+at 1 range: +2 Damage, double[N]
+attacks occur before counter.[X]
+
+## SD_ArcaneBlade
+Arcane Blade: When initiating battle[N]
+at 1 range: Add 3+(Mag/2) to Hit[N]
+and Crit[X]
+
+## SD_Poise
+Poise: +1 Move.[N]
+Negates enemy hit bonus from[N]
+weapon triangle advantage.[X]
