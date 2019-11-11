@@ -59,4 +59,7 @@
 // If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate.
 // #define DISABLE_CHARGE
 
+//If commented, Triangle Attack will use a skill check instead of a bitflag.
+#define VANILLA_TRIANGLE_ATTACK
+
 #endif // HAX_CONFIG

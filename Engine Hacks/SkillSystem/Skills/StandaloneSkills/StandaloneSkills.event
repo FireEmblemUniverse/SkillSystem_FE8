@@ -46,6 +46,12 @@ ORG $2AF90
 POIN SkillTester
 WORD WaryFighterID
 
+#ifndef VANILLA_TRIANGLE_ATTACK
+//Triangle Attack
+ORG $2B580
+callHack_r0(TriangleAttackSkill)
+#endif
+
 POP
 
 #include "Bargain/Bargain.event"
@@ -120,5 +126,8 @@ WORD DebuffTable
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
-
-
+ALIGN 4
+TriangleAttackSkill:
+#incbin "TriangleAttack/TriangleAttack.dmp"
+POIN SkillTester
+WORD TriangleAttackID

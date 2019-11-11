@@ -849,6 +849,10 @@
 #define TriAdeptID 142
 #define TriangleAdeptID TriAdeptID //Alias
 
+//Triangle Attack
+//By Sme
+#define TriangleAttackID 255
+
 //Inspiring Tune: Refreshing a unit grants them +2 Pow/Def until the next turn.
 //By Leonarth
 #define VigorDanceID 175
