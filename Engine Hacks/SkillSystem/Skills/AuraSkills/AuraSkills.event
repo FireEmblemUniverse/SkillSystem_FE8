@@ -139,3 +139,9 @@ POIN AuraSkillCheck
 WORD InfiltratorID
 
 #include "ArmorMarch/ArmorMarch.event"
+
+ALIGN 4
+BlueFlameAura:
+#incbin "BlueFlame/BlueFlame.dmp"
+POIN AuraCheck
+WORD BlueFlameID

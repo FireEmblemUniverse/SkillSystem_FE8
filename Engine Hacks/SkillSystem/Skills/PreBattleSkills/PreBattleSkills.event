@@ -302,3 +302,9 @@ ArcaneBlade:
 #incbin "ArcaneBlade/ArcaneBlade.dmp"
 POIN SkillTester
 WORD ArcaneBladeID
+
+ALIGN 4
+BlueFlame:
+#incbin "BlueFlame/BlueFlame.dmp"
+POIN SkillTester
+WORD BlueFlameID
