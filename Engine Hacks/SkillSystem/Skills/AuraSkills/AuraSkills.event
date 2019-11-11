@@ -143,5 +143,5 @@ WORD InfiltratorID
 ALIGN 4
 BlueFlameAura:
 #incbin "BlueFlame/BlueFlame.dmp"
-POIN AuraCheck
+POIN AuraSkillCheck
 WORD BlueFlameID
