@@ -637,11 +637,11 @@
 
 //Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
 //Author Unknown (Initial Commit)
-#define SureShotID 255
+#define SureShotID 5
 
 //Eclipse: Leave opponent with 1 HP. (Skill % activation)
 //By Sme
-#define EclipseID 5
+#define EclipseID 255
 
 
 //Range Skills
