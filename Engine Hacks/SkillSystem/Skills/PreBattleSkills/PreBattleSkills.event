@@ -291,3 +291,14 @@ Wrath:
 POIN SkillTester
 WORD WrathID
 
+ALIGN 4
+AssassinateDamageBonus:
+#incbin "AssassinateDamageBonus/AssassinateDamageBonus.dmp"
+POIN SkillTester
+WORD AssassinateID
+
+ALIGN 4
+ArcaneBlade:
+#incbin "ArcaneBlade/ArcaneBlade.dmp"
+POIN SkillTester
+WORD ArcaneBladeID

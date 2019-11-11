@@ -1,4 +1,6 @@
 .thumb
+.global ItemRangeGetter
+.type ItemRangeGetter, %function
 .set Item_MinRange, 0x0801766C
 .set Item_MaxRange, 0x08017684
 @.set HalfMagRange, 0x8018A1C
@@ -11,6 +13,7 @@
 	@r1= item id
 @retuns
 	@r0: min max range word
+ItemRangeGetter:
 push {r4-r6, r14}
 mov 	r4, r0
 mov 	r5, r1
