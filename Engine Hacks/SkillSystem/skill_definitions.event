@@ -709,6 +709,15 @@
 //By Leonarth
 #define HeroesLifeAndDeathID 150
 
+//Push Skills: When HP is full, gain +5 to the given stat.
+//By Sme
+#define PushStrID 255
+#define PushMagID 255
+#define PushSklID 255
+#define PushSpdID 255
+#define PushDefID 255
+#define PushResID 255
+
 
 //Unit Menu Skills
 

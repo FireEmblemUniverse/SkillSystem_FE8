@@ -13,3 +13,5 @@ prResolve:
 #incbin "Resolve/Resolve.dmp"
 POIN SkillTester
 WORD ResolveID
+
+#include "PushSkills/PushSkills.event"
