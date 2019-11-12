@@ -314,3 +314,5 @@ DoubleLion:
 #incbin "DoubleLion/DoubleLion.dmp"
 POIN SkillTester
 WORD DoubleLionID
+
+#include "Cultured/Cultured.event"

@@ -103,6 +103,7 @@ WORD PowerstaffID
 POIN PowerstaffEvent
 #include "Powerstaff/PowerstaffEvent.event"
 
+#include "Cultured/Cultured.event"
 
 PUSH //some changes to vanilla code to make everything work
 ORG $1D24C //check for canto, modified to just check for cantoing bit set

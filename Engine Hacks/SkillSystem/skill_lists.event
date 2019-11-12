@@ -1,6 +1,7 @@
 EphraimLordSkillList:
 // BYTE 1 OddRhythmID
 //BYTE 10 BondID
+BYTE 01 CulturedID
 BYTE 01 SupplyID
 BYTE 10 HeroesDeathBlowID
 BYTE 20 AetherID
@@ -10,6 +11,7 @@ ALIGN 4
 EirikaLordSkillList:
 //BYTE 255 MoonbowID
 // BYTE 10 EvenRhythmID
+BYTE 01 NiceThighsID
 BYTE 01 SupplyID
 BYTE 10 AetherID
 BYTE 20 BondID
