@@ -270,11 +270,11 @@
 
 //Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
 //By circleseverywhere
-#define SavageBlowID 255
+#define SavageBlowID 89
 
-//Cultured: If unit is adjacent to a unit with Nice Thighs, move twice and gain +4 Atk after an action. -50 hit against units with Nice Thighs.
+//Cultured: If unit attacks next to a unit with Nice Thighs, move again. -50 hit against units with Nice Thighs.
 //By Sme
-#define CulturedID 89
+#define CulturedID 255
 
 //Pre-Battle Skills
 
