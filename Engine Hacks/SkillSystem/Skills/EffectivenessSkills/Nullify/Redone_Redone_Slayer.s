@@ -14,6 +14,7 @@
 .equ SlayerClassType, NullifyID+4
 .equ SkybreakerID, SlayerClassType+4
 .equ SkybreakerClassType,SkybreakerID+4
+.equ ResourcefulID,SkybreakerClassType+4
 
 push	{r4-r6,r14}
 mov		r4,r0
@@ -65,11 +66,23 @@ mov		r14,r3
 .short	0xF800
 cmp		r0,#0
 bne		RetFalse
+
 mov		r0,#6
-b		GoBack
+mov		r6,r0
+ldr		r0,SkillTester
+mov		r14,r0
+mov		r0,r4
+ldr		r1,ResourcefulID	
+.short	0xF800
+cmp		r0,#0
+beq		GoBack
+lsl		r6,#1
+b 		GoBack
+
 RetFalse:
-mov		r0,#0
+mov		r6,#0
 GoBack:
+mov		r0,r6
 pop		{r4-r6}
 pop		{r1}
 bx		r1
