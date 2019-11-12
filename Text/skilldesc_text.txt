@@ -1000,45 +1000,45 @@ Avo when fighting outdoors.[X]
 Tome Range +1: Maximum range[N]
 of equipped tome is increased.[X]
 
-##SD_AlertStance
+## SD_AlertStance
 Alert Stance: +15 Avo[N]
 when defending.[X]
 
-##SD_AlertStancePlus
+## SD_AlertStancePlus
 Alert Stance+: +30 Avo[N]
 when defending.[X]
 
-##SD_Corona
+## SD_Corona
 Corona: Negate enemy resistance.[N]
 (Skill% activation)[X]
 
-##SD_Flare
+## SD_Flare
 Flare: Halve enemy resistance.[N]
 (Skill% activation)[X]
 
-##SD_Tempest
+## SD_Tempest
 Tempest: Double biorhythm effects.[X]
 
-##SD_Serenity
+## SD_Serenity
 Serenity: Halve biorhythm effects.[X]
 
-##SD_Petrify
+## SD_Petrify
 Petrify: Inflict stone status.[N]
 (Skill% activation)[X]
 
-##SD_Enrage
+## SD_Enrage
 Enrage: Inflict berserk status.[N]
 (Skill% activation)[X]
 
-##SD_Deadeye
+## SD_Deadeye
 Deadeye: Doubles hit rate.[N]
 Skill% chance to inflict sleep.[X]
 
-##SD_DragonFang
+## SD_DragonFang
 Dragon Fang: 1.5x damage.[N]
 (Skill% activation)[X]
 
-##SD_Fortune
+## SD_Fortune
 Fortune: This unit[N]
 cannot be crit.[X]
 
@@ -1057,3 +1057,47 @@ Poise: +1 Move.[N]
 Negates enemy hit bonus from[N]
 weapon triangle advantage.[X]
 
+## SD_BlueFlame
+Blue Flame: Attack +2. When[N]
+adjacent to an ally, Attack +4.[X]
+
+## SD_DoubleLion
+Double Lion: All weapons[N]
+are treated as brave.[X]
+
+## SD_Eclipse
+Eclipse: Leave opponent with 1 HP.[N]
+(Skill % activation)[X]
+
+## SD_TriangleAttack
+Triangle Attack: Allows this unit[N]
+to perform a triangle attack with[N]
+2 other units who have this skill.[X]
+
+## SD_PushStr
+Push Strength: When HP[N]
+is full, gain +5 strength.[X]
+
+## SD_PushMag
+Push Strength: When HP[N]
+is full, gain +5 magic.[X]
+
+## SD_PushSkl
+Push Strength: When HP[N]
+is full, gain +5 skill.[X]
+
+## SD_PushSpd
+Push Strength: When HP[N]
+is full, gain +5 speed.[X]
+
+## SD_PushDef
+Push Strength: When HP[N]
+is full, gain +5 defense.[X]
+
+## SD_PushRes
+Push Strength: When HP is[N]
+full, gain +5 resistance.[X]
+
+## SD_Skybreaker
+Skybreaker: Deal effective[N]
+damage to flying units.[X]

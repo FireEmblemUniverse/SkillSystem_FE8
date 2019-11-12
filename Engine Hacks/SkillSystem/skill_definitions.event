@@ -138,12 +138,16 @@
 //By Tequila
 #define SlayerID 44
 
+//Skybreaker: Deal effective damage to flying units.
+//By Sme
+#define SkybreakerID 65
+
 
 //EXP Skills
 
 //Paragon: Experience gain is doubled.
 //Author Unknown (Initial Commit)
-#define ParagonID 65
+#define ParagonID 255
 
 //Void Curse: This unit gives no experience when defeated.
 //By Sme

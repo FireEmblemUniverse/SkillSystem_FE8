@@ -55,7 +55,7 @@
 	
 	//slayer redux
 	ORG $16C88
-	jumpToHack(Redone_Slayer)
+	jumpToHack(Redone_Redone_Slayer)
 	
 	//effectiveness redux
 	ORG $16BEC
@@ -76,6 +76,18 @@
 	#incbin "Redone_Effectiveness.dmp"
 	POIN SkillTester
 	WORD NullifyID
+
+	ALIGN 4
+	Redone_Redone_Slayer:
+	#incbin "Redone_Redone_Slayer.dmp"
+	POIN SkillTester
+	WORD SlayerID
+	WORD NullifyID
+	WORD MonsterType
+	WORD SkybreakerID
+	WORD FlierType
+	
+	
 	
 #endif
 
