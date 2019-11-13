@@ -42,8 +42,9 @@
 	ORG 0x2A8B8
 	BYTE $68 $68 $C0 $46
 
-	ORG $2ADCC // Remove runesword str/2 (now uses magic) and weird wind sword stuff.
-	SHORT 0x4770
+	ORG $2ADDC // Remove runesword str/2 (now uses magic) and weird wind sword stuff.
+	SHORT 0xE055 // b #0x0802AE8A
+	
 	ORG $2A4BC
 	SHORT 0xE009 // b #0x0802A4D2
 	POP
