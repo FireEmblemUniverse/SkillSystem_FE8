@@ -729,6 +729,17 @@
 #define PushDefID 255
 #define PushResID 255
 
+//Lull Skills: Negate the effects of a rally for the given stat.
+//By Sme
+#define LullStrID 255
+#define LullMagID 255
+#define LullSklID 255
+#define LullSpdID 255
+#define LullLckID 255
+#define LullDefID 255
+#define LullResID 255
+#define LullSpectrumID 255
+
 
 //Unit Menu Skills
 
