@@ -325,3 +325,11 @@ WORD ThighdeologyID
 POIN AuraSkillCheck
 WORD NiceThighsID
 
+ALIGN 4
+Thotslayer:
+#incbin "Thotslayer/Thotslayer.dmp"
+POIN SkillTester
+WORD ThotslayerID
+WORD NiceThighsID
+WORD PersonalityID
+

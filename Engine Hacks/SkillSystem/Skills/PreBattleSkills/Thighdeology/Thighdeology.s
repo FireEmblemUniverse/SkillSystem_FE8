@@ -21,7 +21,7 @@ mov lr, r0
 mov r0, r4 @attacker
 ldr r1, NiceThighsID
 mov r2, #4 @all units
-mov r3, #2 @range
+mov r3, #3 @range
 .short 0xf800
 cmp r0, #0
 beq GoBack
