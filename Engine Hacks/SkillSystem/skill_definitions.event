@@ -220,6 +220,18 @@
 //By Tequila
 #define PassID 2
 
+//Keep Up: At start of turn, if unit is within 3 spaces of an ally with Canto or Canto+, unit gains +2 Mov.
+//By Sme
+#define KeepUpID 255
+
+//Indoor March: At start of turn, if unit is on indoor terrain, unit gains +2 Mov.
+//By Sme
+#define IndoorMarchID 255
+
+//Nature Rush: At start of turn, if unit is on natural terrain, unit gains +2 Mov.
+//By Sme
+#define NatureRushID 255
+
 
 //Mug-Loading Skills
 
