@@ -316,3 +316,12 @@ POIN SkillTester
 WORD DoubleLionID
 
 #include "Cultured/Cultured.event"
+
+ALIGN 4
+Thighdeology:
+#incbin "Thighdeology/Thighdeology.dmp"
+POIN SkillTester
+WORD ThighdeologyID
+POIN AuraSkillCheck
+WORD NiceThighsID
+
