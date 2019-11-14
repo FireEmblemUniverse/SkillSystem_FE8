@@ -1167,3 +1167,17 @@ with Nice Thighs or Personality.[X]
 Corrosion: Decrease durability[N]
 of enemy's weapon by User's level[N]
 (Skill/2% activation)[X]
+
+## SD_KeepUp
+Keep Up: If unit is within 3[N]
+spaces of an ally with Canto[N]
+or Canto+, unit gains +2 Mov.[X]
+
+## SD_IndoorMarch
+Indoor March: If unit is on[N]
+indoor terrain, unit gains +2 Mov.[X]
+
+## SD_NatureRush
+Nature Rush: If unit is on[N]
+rough terrain, unit gains +2 Mov.[X]
+
