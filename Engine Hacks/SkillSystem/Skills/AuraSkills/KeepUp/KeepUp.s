@@ -150,7 +150,7 @@ orr	r1,r2
 strb	r1,[r0]		@set the bit
 
 GoBack:
-pop	{r4-r6}
+pop	{r4-r7}
 pop	{r0}
 bx	r0
 
