@@ -11,22 +11,22 @@
 
 //Shade: Enemies are less likely to target this unit.
 //By Sme
-#define ShadeID 94
+#define ShadeID 255
 
 //Shade+: Enemies will not target this unit.
 //By Sme
-#define ShadePlusID 223
+#define ShadePlusID 255
 
 
 //Aura Skills
 
 //Anathema: -10 Avoid/Dodge to all enemies within 3 tiles.
 //Author Unknown (Initial Commit)
-#define AnathemaID 255
+#define AnathemaID 94
 
 //Blood Tide: Atk and Hit +5 to adjacent allies.
 //By Sme
-#define BloodTideID 255
+#define BloodTideID 223
 
 //Charisma: Grants +10 Hit/Avoid to all allies within three tiles.
 //By Darrman
