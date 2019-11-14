@@ -8,6 +8,10 @@ jumpToHack(Provoke)
 ORG $3A094
 jumpToHack(LungeAI)
 
+//Shade & Shade+
+ORG $3E154
+callHack_r1(Shade)
+
 POP
 
 ALIGN 4
@@ -21,3 +25,9 @@ LungeAI:
 #incbin "LungeAI/lungeAI.dmp"
 POIN SkillTester
 WORD LungeID
+
+ALIGN 4
+Shade:
+#incbin "Shade/Shade.dmp"
+POIN SkillTester
+WORD ShadeID
