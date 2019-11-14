@@ -955,6 +955,10 @@
 //By Zeta
 #define PoiseID 255
 
+//Amische: This unit's religion disallows them from using non-Iron weaponry.
+//By Sme
+#define AmischeID 255
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 248 //Requires Biorhythm
