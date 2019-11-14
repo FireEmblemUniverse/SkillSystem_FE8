@@ -1156,10 +1156,14 @@ Imbue: Heal HP equal to magic[N]
 at the start of each turn.[X]
 
 ## SD_Thighdeology
-If a unit within 3 tiles has Nice[N]
-Thighs, gain +2 Attack and +20 Hit.[X]
+Thighdeology: If a unit within 3 tiles has[N]
+Nice Thighs, gain +2 Attack and +20 Hit.[X]
 
 ## SD_Thotslayer
-+15 crit against units with[N]
-Nice Thighs or Personality.[X]
+Thotslayer: +15 crit against units[N]
+with Nice Thighs or Personality.[X]
 
+## SD_Corrosion
+Corrosion: Decrease durability[N]
+of enemy's weapon by User's level[N]
+(Skill/2% activation)[X]
