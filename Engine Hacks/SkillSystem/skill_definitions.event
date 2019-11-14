@@ -202,12 +202,15 @@
 //By Leonarth
 #define ForagerID 176
 
+//Imbue: Recover HP equal to Magic at the start of each turn.
+//By Sme
+#define ImbueID 1
 
 //Movement Skills
 
 //Acrobat: All traversable terrain costs 1 movement.
 //By Tequila
-#define AcrobatID 1
+#define AcrobatID 255
 
 //Armor March: At start of turn, if unit is adjacent to an armor ally, unit and adjacent armor allies gain +2 Mov.
 //By Leonarth
