@@ -38,7 +38,7 @@ mov r1, #0x01
 strb r1, [ r4, #0x13 ]
 PlayAttackerSound:
 ldr r0, =PSGWEvent
-mov r1, #0x00
+mov r1, #0x01
 blh 0x0800D07C, r2 @ Call event engine.
 EndInjureAttacker:
 pop { r0 }
@@ -75,7 +75,7 @@ mov r1, #0x01
 strb r1, [ r5, #0x13 ]
 PlayDefenderSound:
 ldr r0, =PSGWEvent
-mov r1, #0x00
+mov r1, #0x01
 blh 0x0800D07C, r2 @ Call event engine.
 EndInjureDefender:
 pop { r0 }
