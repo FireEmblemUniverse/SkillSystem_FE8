@@ -18,7 +18,7 @@ POIN Proc_Start	//start
 
 POIN Proc_Devil	//devil effect
 POIN Proc_Sureshot Proc_Luna Proc_Moonbow Proc_Adept Proc_DragonFang Proc_Eclipse	//skills that do damage and all that
-POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Flare //more damage
+POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Flare Proc_Glacies //more damage
 POIN Proc_Astra	//astra should be the last one before the ones that set damage
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 POIN Proc_CapDamage	//check that damage is not over cap
@@ -262,6 +262,12 @@ Proc_Corrosion:
 #incbin "Corrosion/proc_corrosion.dmp"
 POIN SkillTester
 WORD CorrosionID
+
+ALIGN 4
+Proc_Glacies:
+#incbin "Glacies/proc_glacies.dmp"
+POIN SkillTester
+WORD GlaciesID
 
 //When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
 //PUSH

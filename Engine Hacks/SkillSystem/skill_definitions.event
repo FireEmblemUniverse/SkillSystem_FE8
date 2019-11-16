@@ -684,10 +684,13 @@
 //By Sme
 #define EclipseID 255
 
-//Corrosion: Decrease durability of enemy's weapon by User's level (Skill/2% activation)
+//Corrosion: Decrease durability of enemy's weapon by User's level (Skill/2 % activation)
 //By Sme
 #define CorrosionID 255
 
+//Glacies: Add unit's Resistance to damage dealt. (Skill % activation)
+//By Sme
+#define GlaciesID 255
 
 //Range Skills
 
