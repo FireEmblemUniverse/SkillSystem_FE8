@@ -560,6 +560,20 @@
 //By Sme
 #define ThotslayerID 255
 
+//Skyguard: +4 defense against flying enemies if within 3 spaces of an ally flier.
+//By Sme
+#define SkyguardID 255
+
+//Horseguard: +4 defense against horseback enemies if within 3 spaces of an ally horse rider.
+//By Sme
+#define HorseguardID 255
+
+//Armorboost: +4 attack and defense against armored enemies if within 3 spaces of an armored ally.
+//By Sme
+#define ArmorboostID 255
+#define ArmorBoostID ArmorboostID //Alias
+
+
 //Proc Skills
 
 //Adept: Gain a consecutive attack. (Speed % activation)
@@ -569,7 +583,6 @@
 //Aegis: Nullify a magic attack. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define AegisID 24
-
 
 //Aether: First strike absorbs HP, second strike negates defenses. (Skill/2 % activation)
 //Author Unknown (Initial Commit)
