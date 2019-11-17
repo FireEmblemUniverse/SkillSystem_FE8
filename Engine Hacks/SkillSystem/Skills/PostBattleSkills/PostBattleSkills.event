@@ -105,6 +105,17 @@ POIN PowerstaffEvent
 
 #include "Cultured/Cultured.event"
 
+ALIGN 4
+Gridmaster:
+#incbin "Gridmaster/Gridmaster.dmp"
+POIN SkillTester
+WORD GridmasterID
+WORD ACTION_MOVETARGET
+WORD ACTION_MOVEACTIVE
+WORD ACTION_SWAP
+WORD ACTION_PUSH
+
+
 PUSH //some changes to vanilla code to make everything work
 ORG $1D24C //check for canto, modified to just check for cantoing bit set
 #ifdef ENABLE_GALEFORCE_AUTOSELECT

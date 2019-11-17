@@ -299,6 +299,11 @@
 //By Sme
 #define CulturedID 255
 
+//Gridmaster: Movement skills do not end your action.
+//By Sme
+#define GridmasterID 255
+
+
 //Pre-Battle Skills
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
