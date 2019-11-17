@@ -930,10 +930,15 @@
 //Author Unknown (Initial Commit)
 #define RightfulArchID 127
 
-//Triangle Adept: Doubles weapon triangle effects.
+//Triangle Adept: Doubles weapon triangle effects for this unit.
 //By Tequila
 #define TriAdeptID 142
 #define TriangleAdeptID TriAdeptID //Alias
+
+//Triangle Adept+: Doubles weapon triangle effects.
+//By Sme
+#define TriAdeptPlusID 255
+#define TriangleAdeptPlusID TriAdeptPlusID //Alias
 
 //Triangle Attack
 //By Sme

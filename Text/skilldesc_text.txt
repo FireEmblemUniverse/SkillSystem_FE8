@@ -579,8 +579,8 @@ Dazzle: Opponents cannot[N]
 counterattack this unit.[X]
 
 ## SD_TriAdept
-Triangle Adept: Doubles[N]
-weapon triangle effects.[X]
+Triangle Adept: Doubles weapon[N]
+triangle effects for this unit.[X]
 
 ## SD_Supply
 Supply: This unit has[N]
@@ -1208,4 +1208,6 @@ Armorboost: +4 attack and defense[N]
 against armored enemies if within[N]
 3 spaces of an armored ally.[X]
 
-
+## SD_TriAdeptPlus
+Triangle Adept+: Doubles[N]
+weapon triangle effects.[X]
