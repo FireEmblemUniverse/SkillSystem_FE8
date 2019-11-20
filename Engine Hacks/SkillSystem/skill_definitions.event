@@ -338,6 +338,10 @@
 //By Datagne
 #define ChargeID 199 
 
+//Charge+: If unit has used up all movement, gain brave effect.
+//By Sme
+#define ChargePlusID 255
+
 //Critical Force: Base critical is Skl * 1.5.
 //Author Unknown (Initial Commit)
 #define CriticalForceID 117

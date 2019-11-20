@@ -333,3 +333,9 @@ WORD ThotslayerID
 WORD NiceThighsID
 WORD PersonalityID
 
+ALIGN 4
+ChargePlus:
+#incbin "ChargePlus/ChargePlus.dmp"
+POIN SkillTester
+WORD ChargePlusID
+POIN prMovGetter

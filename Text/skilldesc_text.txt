@@ -1211,3 +1211,7 @@ against armored enemies if within[N]
 ## SD_TriAdeptPlus
 Triangle Adept+: Doubles[N]
 weapon triangle effects.[X]
+
+## SD_ChargePlus
+Charge+: If unit has used up[N]
+all movement, gain brave effect.[X]
