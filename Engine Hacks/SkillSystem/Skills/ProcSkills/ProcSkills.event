@@ -22,7 +22,7 @@ POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Fla
 POIN Proc_Astra	//astra should be the last one before the ones that set damage
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 POIN Proc_CapDamage	//check that damage is not over cap
-POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise	//skills that set damage to 0 or lower it
+POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise Proc_GreatShield 	//skills that set damage to 0 or lower it
 POIN Proc_StealHP Proc_Sol Proc_AetherHeal	//skills that heal based on final damage
 POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
 POIN Proc_Corrosion //skills that don't affect damage
@@ -268,6 +268,12 @@ Proc_Glacies:
 #incbin "Glacies/proc_glacies.dmp"
 POIN SkillTester
 WORD GlaciesID
+
+ALIGN 4
+Proc_GreatShield:
+#incbin "GreatShield/proc_greatshield.dmp"
+POIN SkillTester
+WORD GreatShieldID
 
 //When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
 //PUSH
