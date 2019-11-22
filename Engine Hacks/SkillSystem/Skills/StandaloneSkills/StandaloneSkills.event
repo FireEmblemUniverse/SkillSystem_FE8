@@ -45,6 +45,8 @@ ORG $2AF90
 #incbin "WaryFighter/WaryFighter.dmp"
 POIN SkillTester
 WORD WaryFighterID
+WORD QuickRiposteID
+WORD MoonlightID
 
 #ifndef VANILLA_TRIANGLE_ATTACK
 //Triangle Attack

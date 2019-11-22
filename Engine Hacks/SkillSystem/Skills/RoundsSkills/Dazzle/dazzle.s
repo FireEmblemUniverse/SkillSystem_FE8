@@ -1,5 +1,6 @@
 @802c874 checks uncounterable
 .equ DazzleID, SkillTester+4
+.equ MoonlightID, DazzleID+4
 @jumptohack at 802c864
 
 .thumb
@@ -22,7 +23,16 @@ mov r0, r4 @attacker data
 ldr r1, DazzleID
 .short 0xf800
 cmp r0, #0
-beq Normal
+bne Uncounterable
+
+@does ONLY the defender have moonlight?
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r5 @defender data
+ldr r1, MoonlightID
+.short 0xf800
+cmp r0, #0
+beq Normal @if not, we can counter
 
 
 Uncounterable:

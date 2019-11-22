@@ -882,6 +882,14 @@
 //By Tequila
 #define WaryFighterID 4
 
+//Quick Riposte: If defending with 50% HP or more, unit doubles and attacker does not.
+//By Ganzap & Sme
+#define QuickRiposteID 218
+
+//Moonlight: Cannot double, but opponent cannot counterattack.
+//By Sme
+#define MoonlightID 255
+
 //Savior: Can rescue without penalties.
 //Author Unknown (Initial Commit)
 #define SaviorID 7
@@ -1017,5 +1025,3 @@
 ///WIP Skills
 
 #define ForeignPrincessID 88
-#define QuickRiposteID 218
-
