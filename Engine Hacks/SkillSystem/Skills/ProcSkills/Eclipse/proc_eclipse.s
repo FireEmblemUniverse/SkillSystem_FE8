@@ -23,12 +23,6 @@ tst r0, r1
 bne End
 @if another skill already activated, don't do anything
 
-@check if we're already in astra
-ldrb r0, [r2, #4] @active skill
-@make sure no other skill is active
-cmp r0, #0
-bne End
-
 @get enemy HP after battle and current damage dealt and see if we'll kill anyhow
 mov r0,r5
 add r0,#0x72
@@ -36,7 +30,6 @@ ldrb r0,[r0]
 ldrb r1,[r7,#4]
 cmp r0,r1
 ble End
-
 
 @check for Eclipse proc
 ldr r0, SkillTester
@@ -54,8 +47,20 @@ blh d100Result
 cmp r0, #1
 bne End 
 
-ldrb r1, EclipseID @first mark Eclipse active
-strb r1, [r6,#4]
+@if we proc, set the offensive skill flag
+ldr     r2,[r6]    
+lsl     r1,r2,#0xD                @ 0802B42C 0351     
+lsr     r1,r1,#0xD                @ 0802B42E 0B49     
+mov     r0, #0x40
+lsl     r0, #8           @0x4000, attacker skill activated
+orr     r1, r0
+ldr     r0,=#0xFFF80000                @ 0802B434 4804     
+and     r0,r2                @ 0802B436 4010     
+orr     r0,r1                @ 0802B438 4308     
+str     r0,[r6]                @ 0802B43A 6018  
+
+ldrb  r0, EclipseID
+strb  r0, [r6,#4] 
 
 @if we proc, get enemy HP, subtract 1, and set as damage dealt 
 mov r0,r5

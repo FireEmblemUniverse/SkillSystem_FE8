@@ -338,10 +338,6 @@
 //By Datagne
 #define ChargeID 199 
 
-//Charge+: If unit has used up all movement, gain brave effect.
-//By Sme
-#define ChargePlusID 255
-
 //Critical Force: Base critical is Skl * 1.5.
 //Author Unknown (Initial Commit)
 #define CriticalForceID 117
@@ -564,19 +560,6 @@
 //By Sme
 #define ThotslayerID 255
 
-//Skyguard: +4 defense against flying enemies if within 3 spaces of an ally flier.
-//By Sme
-#define SkyguardID 255
-
-//Horseguard: +4 defense against horseback enemies if within 3 spaces of an ally horse rider.
-//By Sme
-#define HorseguardID 255
-
-//Armorboost: +4 attack and defense against armored enemies if within 3 spaces of an armored ally.
-//By Sme
-#define ArmorboostID 255
-#define ArmorBoostID ArmorboostID //Alias
-
 
 //Proc Skills
 
@@ -702,10 +685,6 @@
 //Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define SureShotID 5
-
-//Eclipse: Leave opponent with 1 HP. (Skill % activation)
-//By Sme
-#define EclipseID 255
 
 //Corrosion: Decrease durability of enemy's weapon by User's level (Skill/2 % activation)
 //By Sme
@@ -886,14 +865,6 @@
 //By Tequila
 #define WaryFighterID 4
 
-//Quick Riposte: If defending with 50% HP or more, unit doubles and attacker does not.
-//By Ganzap & Sme
-#define QuickRiposteID 218
-
-//Moonlight: Cannot double, but opponent cannot counterattack.
-//By Sme
-#define MoonlightID 255
-
 //Savior: Can rescue without penalties.
 //Author Unknown (Initial Commit)
 #define SaviorID 7
@@ -961,10 +932,6 @@
 #define TriAdeptPlusID 255
 #define TriangleAdeptPlusID TriAdeptPlusID //Alias
 
-//Triangle Attack
-//By Sme
-#define TriangleAttackID 255
-
 //Inspiring Tune: Refreshing a unit grants them +2 Pow/Def until the next turn.
 //By Leonarth
 #define VigorDanceID 175
@@ -1024,8 +991,17 @@
 #define Roll12ID 144
 #define TraceID 145
 #define CatchEmAllID 151
+#define TriangleAttackID 255
 
 
 ///WIP Skills
 
 #define ForeignPrincessID 88
+#define QuickRiposteID 218 
+#define EclipseID 255
+#define SkyguardID 255
+#define HorseguardID 255
+#define ArmorboostID 255
+#define ArmorBoostID ArmorboostID //Alias
+#define ChargePlusID 255
+#define MoonlightID 255

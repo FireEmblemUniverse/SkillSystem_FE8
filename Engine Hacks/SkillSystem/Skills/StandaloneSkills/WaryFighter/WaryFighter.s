@@ -1,6 +1,6 @@
 .thumb
 .equ origin, 0x2AF90
-.equ Get_Weapon_Effect, . + 0x17724 - origin
+.equ Get_Weapon_Effect, 0x8017724
 .equ WaryFighterID, SkillTester+4
 .equ QuickRiposteID, WaryFighterID+4
 .equ MoonlightID, QuickRiposteID+4
@@ -8,8 +8,6 @@
 @.org 0x2AF90
 @r0,r1 are stack pointers that will contain attacker and defender struct
 @returns a bool for can double
-
-push  {r4-r7,r14}
 
 mov   r4,r0
 mov   r7,r1
@@ -49,11 +47,13 @@ bge RetFalse @if so, we don't double
 
 MoonlightCheck:
 @does attacker have moonlight?
+ldr   r0,SkillTester
+mov   r14,r0
 mov   r0,r5
 ldr   r1,MoonlightID
 .short  0xF800
-cmp   r0,#0x0 @does the attacker?
-bne   RetFalse
+cmp   r0,#1
+beq   RetFalse
 
 mov   r3,#0x5E
 ldsh  r2,[r6,r3]    @defender's AS
@@ -84,7 +84,9 @@ Label1:
 ldr   r0,[r4]
 add   r0,#0x4A
 ldrh  r0,[r0]
-bl    Get_Weapon_Effect
+ldr   r1,=Get_Weapon_Effect
+mov   r14,r1
+.short 0xF800
 cmp   r0,#0x3
 beq   RetFalse      @can't double with Eclipse weapons (unless they're brave, but why would you do that?)
 
@@ -109,6 +111,7 @@ pop   {r4-r7}
 pop   {r1}
 bx    r1
 
+.ltorg
 .align
 DefenderStruct:
 .long 0x0203A56C

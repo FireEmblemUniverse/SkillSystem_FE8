@@ -1058,8 +1058,9 @@ Negates enemy hit bonus from[N]
 weapon triangle advantage.[X]
 
 ## SD_BlueFlame
-Blue Flame: Attack +2. When[N]
-adjacent to an ally, Attack +4.[X]
+Blue Flame: Attack +2 to this[N]
+unit. When adjacent to an ally[N]
+with this skill, gain Attack +2.[X]
 
 ## SD_DoubleLion
 Double Lion: All weapons[N]
@@ -1079,23 +1080,23 @@ Push Strength: When HP[N]
 is full, gain +5 strength.[X]
 
 ## SD_PushMag
-Push Strength: When HP[N]
+Push Magic: When HP[N]
 is full, gain +5 magic.[X]
 
 ## SD_PushSkl
-Push Strength: When HP[N]
+Push Skill: When HP[N]
 is full, gain +5 skill.[X]
 
 ## SD_PushSpd
-Push Strength: When HP[N]
+Push Speed: When HP[N]
 is full, gain +5 speed.[X]
 
 ## SD_PushDef
-Push Strength: When HP[N]
+Push Defense: When HP[N]
 is full, gain +5 defense.[X]
 
 ## SD_PushRes
-Push Strength: When HP is[N]
+Push Resistance: When HP is[N]
 full, gain +5 resistance.[X]
 
 ## SD_Skybreaker
@@ -1156,8 +1157,9 @@ Imbue: Heal HP equal to magic[N]
 at the start of each turn.[X]
 
 ## SD_Thighdeology
-Thighdeology: If a unit within 3 tiles has[N]
-Nice Thighs, gain +2 Attack and +20 Hit.[X]
+Thighdeology: If a unit within[N]
+3 tiles has Nice Thighs, gain[N]
++2 Attack and +20 Hit.[X]
 
 ## SD_Thotslayer
 Thotslayer: +15 crit against units[N]

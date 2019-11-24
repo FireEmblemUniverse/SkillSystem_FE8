@@ -1,7 +1,6 @@
 #define SkillAnimation(SkillID,Animation) "ORG (SkillAnimationTable + (4*SkillID)); POIN Animation"
 ALIGN 4
 SkillAnimationTable:
-ORG currentOffset+510
 
 SkillAnimation(SureShotID,SureShotAnim)
 SkillAnimation(AdeptID,AdeptAnim)
@@ -22,3 +21,8 @@ SkillAnimation(DeadeyeID,SureShotAnim)
 SkillAnimation(DragonFangID,SureShotAnim)
 SkillAnimation(EclipseID,SureShotAnim)
 SkillAnimation(CorrosionID,SureShotAnim)
+SkillAnimation(GlaciesID,IgnisAnim)
+SkillAnimation(GreatShieldID,PaviseAnim)
+SkillAnimation(VengeanceID,ImpaleAnim)
+
+ORG SkillAnimationTable+1024
