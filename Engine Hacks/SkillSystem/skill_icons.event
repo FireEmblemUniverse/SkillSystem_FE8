@@ -776,5 +776,106 @@ ORG SkillIcon(ArcaneBladeID)
 ORG SkillIcon(PoiseID)
 #incbin "SkillIcons/Poise.dmp"
 
+ORG SkillIcon(ResourcefulID)
+#incbin "SkillIcons/Resourceful.dmp"
+
+ORG SkillIcon(CulturedID)
+#incbin "SkillIcons/Cultured.dmp"
+
+ORG SkillIcon(SkybreakerID)
+#incbin "SkillIcons/Skybreaker.dmp"
+
+ORG SkillIcon(ShadeID)
+#incbin "SkillIcons/Shade.dmp"
+
+ORG SkillIcon(ShadePlusID)
+#incbin "SkillIcons/ShadePlus.dmp"
+
+ORG SkillIcon(BlueFlameID)
+#incbin "SkillIcons/BlueFlame.dmp"
+
+ORG SkillIcon(DoubleLionID)
+#incbin "SkillIcons/DoubleLion.dmp"
+
+ORG SkillIcon(PushStrID)
+#incbin "SkillIcons/PushStr.dmp"
+
+ORG SkillIcon(PushMagID)
+#incbin "SkillIcons/PushMag.dmp"
+
+ORG SkillIcon(PushSklID)
+#incbin "SkillIcons/PushSkl.dmp"
+
+ORG SkillIcon(PushSpdID)
+#incbin "SkillIcons/PushSpd.dmp"
+
+ORG SkillIcon(PushDefID)
+#incbin "SkillIcons/PushDef.dmp"
+
+ORG SkillIcon(PushResID)
+#incbin "SkillIcons/PushRes.dmp"
+
+ORG SkillIcon(LullStrID)
+#incbin "SkillIcons/LullStr.dmp"
+
+ORG SkillIcon(LullMagID)
+#incbin "SkillIcons/LullMag.dmp"
+
+ORG SkillIcon(LullSklID)
+#incbin "SkillIcons/LullSkl.dmp"
+
+ORG SkillIcon(LullSpdID)
+#incbin "SkillIcons/LullSpd.dmp"
+
+ORG SkillIcon(LullLckID)
+#incbin "SkillIcons/LullLck.dmp"
+
+ORG SkillIcon(LullResID)
+#incbin "SkillIcons/LullRes.dmp"
+
+ORG SkillIcon(LullDefID)
+#incbin "SkillIcons/LullDef.dmp"
+
+ORG SkillIcon(LullSpectrumID)
+#incbin "SkillIcons/LullSpectrum.dmp"
+
+ORG SkillIcon(ImbueID)
+#incbin "SkillIcons/Imbue.dmp"
+
+ORG SkillIcon(ThotslayerID)
+#incbin "SkillIcons/Thotslayer.dmp"
+
+ORG SkillIcon(ThighdeologyID)
+#incbin "SkillIcons/Thighdeology.dmp"
+
+ORG SkillIcon(CorrosionID)
+#incbin "SkillIcons/Corrosion.dmp"
+
+ORG SkillIcon(KeepUpID)
+#incbin "SkillIcons/KeepUp.dmp"
+
+ORG SkillIcon(IndoorMarchID)
+#incbin "SkillIcons/IndoorMarch.dmp"
+
+ORG SkillIcon(NatureRushID)
+#incbin "SkillIcons/NatureRush.dmp"
+
+ORG SkillIcon(AmischeID)
+#incbin "SkillIcons/Amische.dmp"
+
+ORG SkillIcon(GlaciesID)
+#incbin "SkillIcons/Glacies.dmp"
+
+ORG SkillIcon(GridmasterID)
+#incbin "SkillIcons/Gridmaster.dmp"
+
+ORG SkillIcon(TriangleAdeptPlusID)
+#incbin "SkillIcons/TriangleAdeptPlus.dmp"
+
+ORG SkillIcon(GreatShieldID)
+#incbin "SkillIcons/GreatShield.dmp"
+
+ORG SkillIcon(VengeanceID)
+#incbin "SkillIcons/Vengeance.dmp"
 
 ORG SkillIcons+0x8000
