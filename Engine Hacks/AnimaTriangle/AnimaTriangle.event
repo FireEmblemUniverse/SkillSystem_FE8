@@ -17,9 +17,5 @@
 	WindList:
 	BYTE Fimbulvetr WindSword /* Other tomes to be considered wind */ 0x00
 	
-#else
-	
-	// Uh oh. They're already trying to install one. Throw an error because it conflicts with Tri-Adept when externally installed.
-	ERROR "Anima Triangle conflict: In Engine Hacks/Config, enable Anima Triangle instead of externally installing."
 	
 #endif // ANIMA_TRIANGLE
