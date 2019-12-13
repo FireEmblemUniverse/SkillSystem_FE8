@@ -869,8 +869,8 @@ ORG SkillIcon(GlaciesID)
 ORG SkillIcon(GridmasterID)
 #incbin "SkillIcons/Gridmaster.dmp"
 
-ORG SkillIcon(TriangleAdeptPlusID)
-#incbin "SkillIcons/TriangleAdeptPlus.dmp"
+ORG SkillIcon(TriAdeptPlusID)
+#incbin "SkillIcons/TriangleAdeptB.dmp"
 
 ORG SkillIcon(GreatShieldID)
 #incbin "SkillIcons/GreatShield.dmp"
