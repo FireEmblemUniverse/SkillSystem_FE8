@@ -13,6 +13,7 @@
 #include "_UnitMenuDefs.event"
 
 ////////////////////////////////SUPPORTING CHANGES
+
 PUSH
   //Include essential fixes and autopatches
   #include "_FE8EssentialFixes.event"
@@ -24,8 +25,8 @@ PUSH
   #endif
 POP
 
-
 ////////////////////////////////FREE SPACE WITHIN BL RANGE
+
 PUSH
 ORG FreeSpaceBLRange //defined in custom definitions
 #define inBLRange
@@ -57,7 +58,6 @@ ORG FreeSpaceBLRange //defined in custom definitions
 POP
 
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
-//start of Free space
 
   //HP Bars (and effective weapon warning)
   #include "HpBars/HpBars.event"
@@ -77,18 +77,17 @@ POP
   //Movement Arrow doesn't update on allies
   #include "MovementArrowHack/MovementArrowHack.event"
 
-  //negative stat boosts
+  //Negative Stat Boosts
   #include "NegativeStatBoosts/NegativeStatBoosts.event"
 
   //Dragon Veins
   #include "DragonVeins/DragonVeins.event"
-  
 
+  //Leadership Stars
   #include "LeadershipStars/LeadershipStars.event"
   
- 
+  //Biorhythm
   #include "Biorhythm/Biorhythm.event"
-  
 
   //Modular Stat Screen
   #ifndef USE_STRMAG_SPLIT
@@ -122,13 +121,13 @@ POP
   //Escape-Arrive
   #include "Escape-Arrive/EscapeInstaller.event"
   
-  // Debuffs
+  //Debuffs
   #include "SuspendDebuffs/Debuffs.event"
 
   //Stat Screens palette by allegiance
   #include "StatScreenAllegiance/StatScreenAllegiance.event"
 
-  //menu semitransparency
+  //Menu Semitransparency
   #include "Misc/SemitransparencyChanges.event"
 
   //Supply available in prologue
@@ -137,7 +136,7 @@ POP
   //Item Range Fix
   #include "FE8-Item Range Fix/FE8-Item Range EA.event"
   
-  //Chapter names as text
+  //Chapter Names as Text
   #include "TextChNames/TextChNames.event"
 
   //PC and Generic Music Hack (writes to e80000/e90000)
@@ -157,15 +156,15 @@ POP
   #include "Freeze/Freeze.event"
   #include "Freeze/EventFreeze.event"
   
-  //Makes weapon ability 2 reaver bit just triangle reversal and weapon ability 3 bit 0x80 triple triangle effect
+  //Reaver Split
   ALIGN 4
   #include "ReaverSplit/ReaverSplit.event"
   
-  //Makes weapon crit of 255 negate crits
+  //Cannot Crit
   ALIGN 4
   #include "CannotCrit/CannotCrit.event"
   
-  //Venno's array-based weapon locks
+  //AdvWeaponLocks
   ALIGN 4
   #include "WeaponLockArray/AdvWeaponLocks.event"
 

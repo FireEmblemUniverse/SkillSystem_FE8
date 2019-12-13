@@ -61,6 +61,18 @@
 // There is currently no stat screen template that contains both Leadership Stars and Biorhythm, but they do function in tandem if you wish to make one.
 // #define BIORHYTHM
 
+//If uncommented, Reaver Split will be implemented.
+//Makes weapon ability 2 reaver bit just triangle reversal and weapon ability 3 bit 0x80 triple triangle effect.
+#define REAVER_SPLIT
+
+//If uncommented, Cannot Crit will be implemented.
+//Makes weapon crit of 255 negate crits.
+#define CANNOT_CRIT
+
+//If uncommented, AdvWeaponLocks will be implemented.
+//This is a rewrite of venno's array-based weapon locks.
+#define ADV_WEAPON_LOCKS
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
@@ -101,5 +113,13 @@
 
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
 #define VANILLA_TRIANGLE_ATTACK
+
+//If true, get 1/4 prices with both bargain and silver card simultaneously.
+#define DOES_BARGAIN_STACK False
+
+//If true, will use the vanilla check in addition to the skill check.
+#define ALSO_USE_VANILLA_DANCE_CHECK False
+#define ALSO_USE_VANILLA_SUPPLY_CHECK False
+#define ALSO_USE_VANILLA_SUMMON_CHECK False
 
 #endif // HAX_CONFIG
