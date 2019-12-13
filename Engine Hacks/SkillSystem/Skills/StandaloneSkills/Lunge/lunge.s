@@ -43,6 +43,29 @@ ldrb r2, [r0,r2] @AI byte 4
 cmp r2, #0x20 @Guard Tile?
 beq NotLunge
 
+@check if target tile is passable terrain
+mov r2,r0
+ldrb r0,[r2,#0x10]
+ldrb r1,[r2,#0x11]
+ldr		r2,=#0x202E4DC	@terrain map
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+@r0 = terrain ID of target tile
+@check our movement data at that index
+ldr        r1,[r6]                @attacker data
+ldr r1,[r1,#4] @class data pointer
+ldr r1,[r1,#0x38] @clear weather movement cost pointer; if we can't pass it in clear weather, we assume we can't pass it in any weather
+add r1,r0 @index of our terrain
+ldrb r0,[r1]
+cmp r0,#0xFF
+beq NotLunge
+
+
+
 ldr        r2,[r6]                @attacker data
 ldrb    r1,[r0,#0x10]        @defender x
 strb    r1,[r2,#0x10]
