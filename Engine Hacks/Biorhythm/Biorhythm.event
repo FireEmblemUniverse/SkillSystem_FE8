@@ -1,5 +1,5 @@
-#ifndef BIORHYTHM
-#define BIORHYTHM
+#ifdef BIORHYTHM
+
 
 ALIGN 4
 BiorhythmFunc:

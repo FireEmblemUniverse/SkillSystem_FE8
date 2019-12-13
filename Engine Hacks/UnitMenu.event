@@ -153,8 +153,8 @@ UnitMenuTable:
   UM_Item
   UM_Trade
   
-  //UM_Supply
-  MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+  UM_Supply
+  //MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
   
   UM_Wait
 

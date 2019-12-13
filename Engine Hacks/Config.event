@@ -21,6 +21,46 @@
 // Enabling this *will* break saves, but allows for higher stats and other things.
 // #define USE_SAVE_EXPANSION
 
+//If uncommented, will use allegiance-based statscreen palettes.
+// #define STATSCREEN_ALLEGIANCE
+
+// If uncommented, the Anima Triangle will be implemented.
+// Go to "AnimaTriangle/AnimaTriangle.event" to define your fire, thunder, and wind magic lists.
+// This patch normally conflicts with Tri-Adept, but installing here remedies this.
+// #define ANIMA_TRIANGLE
+
+// If uncomented, ModularEXP will be implemented.
+// Go to "ModularEXP/ModularEXP.event" and "Tables/FE8 Nightmare modules/Misc/Modular EXP Class Table.csv" to edit experience gains.
+// This patch normally conflicts with Paragon, but installing here remedies this.
+// #define MODULAR_EXP
+
+// If uncommented, PortraitSelectionASM will be implemented.
+// Go to "PortraitSelectionASM/PortraitSelectionASM.event" to configure your modular portrait options.
+// This patch normally conflitcs with Identity Problems and Random Mugs, but installing here remedies this.
+// #define PORTRAIT_SELECTION
+
+// If uncommented, StairsASM will be implemented.
+// This patch adds an entry to the Unit Menu, so installing here is necessary.
+// #define STAIRS_ASM
+
+// If uncommented, Raid will be implemented.
+// This patch adds an entry to the Unit Menu, so installing here is necessary.
+// #define RAID
+
+// If uncommented, Escape-Arrive will be implemented.
+// /this adds entries to the Unit Menu and normally conflicts with Lunge and Stairs. Install here to avoid the conflicts.
+// #define ESCAPE_ARRIVE
+
+// If uncommented, Leadership Stars will be implemented.
+// Go to LeadershipStars/LeadershipStars.event to edit settings.
+// #define LEADERSHIP_STARS
+
+// If uncommented, Biorhythm will be implemented.
+// Go to "Biorhythm/Biorhythm.event" to edit settings.
+// This adds an entry to the Pre-Battle loop and edits the status screen. 
+// There is currently no stat screen template that contains both Leadership Stars and Biorhythm, but they do function in tandem if you wish to make one.
+// #define BIORHYTHM
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
@@ -56,7 +96,7 @@
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
 
-// If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate.
+// If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate. This will not change Moonbow's description.
 // #define DISABLE_CHARGE
 
 //If commented, Triangle Attack will use a skill check instead of a bitflag.

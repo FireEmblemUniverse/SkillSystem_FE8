@@ -1,7 +1,7 @@
 
-#ifndef ESCAPE_ARRIVE
+#ifdef ESCAPE_ARRIVE
 
-	#define ESCAPE_ARRIVE
+	
 	
 	ALIGN 4
 	RefEscapeTable:

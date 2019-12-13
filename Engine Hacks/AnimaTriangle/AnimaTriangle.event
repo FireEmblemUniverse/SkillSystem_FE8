@@ -1,7 +1,7 @@
 
-#ifndef ANIMA_TRIANGLE
+#ifdef ANIMA_TRIANGLE
 
-	#define ANIMA_TRIANGLE
+	
 	ALIGN 4
 	#include "AnimaTriangle.lyn.event" // Don't autohook because we're going to use a calculation loop alongside anything else touching WTA (like Tri-Adept)
 

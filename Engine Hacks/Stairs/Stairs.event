@@ -1,7 +1,7 @@
 	
-	#ifndef STAIRS_ASM
+	#ifdef STAIRS_ASM
 	
-		#define STAIRS_ASM
+		
 		
 		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA StairID [X1,Y1] 0x22 ; LOCA StairID [X2,Y2] 0x22"
 		

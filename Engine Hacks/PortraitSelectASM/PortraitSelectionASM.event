@@ -1,7 +1,7 @@
 
-#ifndef PORTRAIT_SELECTION
+#ifdef PORTRAIT_SELECTION
 
-	#define PORTRAIT_SELECTION
+
 	ALIGN 4
 	#include "SelectPortrait.lyn.event" //"Definitions.elf"
 	
