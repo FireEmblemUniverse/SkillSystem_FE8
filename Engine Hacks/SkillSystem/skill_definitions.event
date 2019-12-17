@@ -9,6 +9,14 @@
 //By Tequila
 #define ProvokeID 6
 
+//Shade: Enemies are less likely to target this unit.
+//By Sme
+#define ShadeID 255
+
+//Shade+: Enemies will not target this unit.
+//By Sme
+#define ShadePlusID 255
+
 
 //Aura Skills
 
@@ -138,6 +146,14 @@
 //By Tequila
 #define SlayerID 44
 
+//Skybreaker: Deal effective damage to flying units.
+//By Sme
+#define SkybreakerID 255
+
+//Resourceful: Double effectiveness multiplier.
+//By Sme
+#define ResourcefulID 255
+
 
 //EXP Skills
 
@@ -186,6 +202,9 @@
 //By Leonarth
 #define ForagerID 176
 
+//Imbue: Recover HP equal to Magic at the start of each turn.
+//By Sme
+#define ImbueID 255
 
 //Movement Skills
 
@@ -200,6 +219,18 @@
 //Pass: Can move through enemy units.
 //By Tequila
 #define PassID 2
+
+//Keep Up: At start of turn, if unit is within 3 spaces of an ally with Canto or Canto+, unit gains +2 Mov.
+//By Sme
+#define KeepUpID 255
+
+//Indoor March: At start of turn, if unit is on indoor terrain, unit gains +2 Mov.
+//By Sme
+#define IndoorMarchID 255
+
+//Nature Rush: At start of turn, if unit is on natural terrain, unit gains +2 Mov.
+//By Sme
+#define NatureRushID 255
 
 
 //Mug-Loading Skills
@@ -263,6 +294,14 @@
 //Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
 //By circleseverywhere
 #define SavageBlowID 89
+
+//Cultured: If unit attacks next to a unit with Nice Thighs, move again. -50 hit against units with Nice Thighs.
+//By Sme
+#define CulturedID 255
+
+//Gridmaster: Movement skills do not end your action.
+//By Sme
+#define GridmasterID 255
 
 
 //Pre-Battle Skills
@@ -505,6 +544,23 @@
 //By Zeta
 #define ArcaneBladeID 255
 
+//Blue Flame: Attack +2. When adjacent to an ally, Attack +4.
+//By Sme
+#define BlueFlameID 255
+
+//Double Lion: All weapons are treated as brave.
+//By Sme
+#define DoubleLionID 255
+
+//Thighdeology: If a unit within 3 tiles has Nice Thighs, gain +2 Attack and +20 Hit.
+//By Sme
+#define ThighdeologyID 255
+
+//Thotslayer: +15 crit against units with Nice Thighs or Personality.
+//By Sme
+#define ThotslayerID 255
+
+
 //Proc Skills
 
 //Adept: Gain a consecutive attack. (Speed % activation)
@@ -514,7 +570,6 @@
 //Aegis: Nullify a magic attack. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define AegisID 24
-
 
 //Aether: First strike absorbs HP, second strike negates defenses. (Skill/2 % activation)
 //Author Unknown (Initial Commit)
@@ -541,6 +596,7 @@
 #define BlackMagicID 169
 
 //Colossus: Triples Strength. (Skill % activation)
+//Author Unknown (Initial Commit)
 #define ColossusID 67
 
 //Corona: Negate enemy resistance. (Skill% activation)
@@ -630,6 +686,21 @@
 //Author Unknown (Initial Commit)
 #define SureShotID 5
 
+//Corrosion: Decrease durability of enemy's weapon by User's level (Skill/2 % activation)
+//By Sme
+#define CorrosionID 255
+
+//Glacies: Add unit's Resistance to damage dealt. (Skill % activation)
+//By Sme
+#define GlaciesID 255
+
+//Great Shield: Negate all damage. (Defense % activation)
+//By Sme
+#define GreatShieldID 255
+
+//Vengeance: Add half of damage taken to damage dealt. (Skill % activation)
+//By Sme
+#define VengeanceID 255
 
 //Range Skills
 
@@ -695,6 +766,26 @@
 //Life and Death: Grants +5 Atk/Mag/Spd, -5 Def/Res.
 //By Leonarth
 #define HeroesLifeAndDeathID 150
+
+//Push Skills: When HP is full, gain +5 to the given stat.
+//By Sme
+#define PushStrID 255
+#define PushMagID 255
+#define PushSklID 255
+#define PushSpdID 255
+#define PushDefID 255
+#define PushResID 255
+
+//Lull Skills: Negate the effects of a rally for the given stat.
+//By Sme
+#define LullStrID 255
+#define LullMagID 255
+#define LullSklID 255
+#define LullSpdID 255
+#define LullLckID 255
+#define LullDefID 255
+#define LullResID 255
+#define LullSpectrumID 255
 
 
 //Unit Menu Skills
@@ -831,10 +922,15 @@
 //Author Unknown (Initial Commit)
 #define RightfulArchID 127
 
-//Triangle Adept: Doubles weapon triangle effects.
+//Triangle Adept: Doubles weapon triangle effects for this unit.
 //By Tequila
 #define TriAdeptID 142
 #define TriangleAdeptID TriAdeptID //Alias
+
+//Triangle Adept+: Doubles weapon triangle effects.
+//By Sme
+#define TriAdeptPlusID 255
+#define TriangleAdeptPlusID TriAdeptPlusID //Alias
 
 //Inspiring Tune: Refreshing a unit grants them +2 Pow/Def until the next turn.
 //By Leonarth
@@ -873,6 +969,10 @@
 //By Zeta
 #define PoiseID 255
 
+//Amische: This unit's religion disallows them from using non-Iron weaponry.
+//By Sme
+#define AmischeID 255
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 248 //Requires Biorhythm
@@ -891,10 +991,17 @@
 #define Roll12ID 144
 #define TraceID 145
 #define CatchEmAllID 151
+#define TriangleAttackID 255
 
 
 ///WIP Skills
 
 #define ForeignPrincessID 88
-#define QuickRiposteID 218
-
+#define QuickRiposteID 218 
+#define EclipseID 255
+#define SkyguardID 255
+#define HorseguardID 255
+#define ArmorboostID 255
+#define ArmorBoostID ArmorboostID //Alias
+#define ChargePlusID 255
+#define MoonlightID 255
