@@ -16,14 +16,25 @@ mov r1,#0x80
 lsl r1,#1
 and r0,r1
 cmp r0,#0
-beq ReaverEffectBitSet
+beq GoBack
 ldr r0,[r5,#0x4C]
 and r0,r1
 cmp r0,#0
-bne GoBack
+bne GoBack @do nothing if we both have it set
 
 ReaverEffectBitSet: @if reaver weapon, we invert our WTA stats (but don't double them!)
 mov r0,r4
+add r0,#0x53
+ldrb r1,[r0]
+neg r1,r1
+strb r1,[r0]
+add r0,#1
+ldrb r1,[r0]
+neg r1,r1
+strb r1,[r0]
+
+@also do it for defender
+mov r0,r5
 add r0,#0x53
 ldrb r1,[r0]
 neg r1,r1
@@ -51,19 +62,24 @@ DoubleWeaponTriangle:
 @r1=defender
 
 push {r4-r5,r14}
+mov r4,r0 @attacker
+mov r5,r1 @defender
 
 @load equipped item's weapon ability word
 ldr r0,[r4,#0x4C]
 ldr r1,=#0x00400000
 and r0,r1
 cmp r0,#0
-beq DoubleWTAEffectBitSet
+beq Return
+@check if defender has double WTA weapon too
 ldr r0,[r5,#0x4C]
+ldr r1,=#0x00400000
 and r0,r1
 cmp r0,#0
-bne Return
+bne Return @if they do, don't double WTA effect
 
-DoubleWTAEffectBitSet:
+@otherwise, we double just our effect (function is run twice)
+DoubleWTAEffectBitSet: 
 mov r0,r4
 add r0,#0x53
 ldrb r1,[r0]
@@ -73,6 +89,18 @@ add r0,#1
 ldrb r1,[r0]
 lsl r1,#1
 strb r1,[r0]
+
+mov r0,r5
+add r0,#0x53
+ldrb r1,[r0]
+lsl r1,#1
+strb r1,[r0]
+add r0,#1
+ldrb r1,[r0]
+lsl r1,#1
+strb r1,[r0]
+
+
 
 Return:
 pop {r4-r5}
