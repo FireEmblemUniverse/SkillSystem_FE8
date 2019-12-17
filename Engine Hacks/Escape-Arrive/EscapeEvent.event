@@ -8,12 +8,11 @@ TEXTEND
 REMA
 
 //Unit flees map
-ENUT 0x23
 CHECK_ACTIVE 
 SADD 0xC2
 //CALL Remove_Unit_Events		//Praise Teq
 ASMC 0x790A4|1		//Once again, praise Teq
-REMU 0xFFFD
+//REMU 0xFFFD
 //ASMC CallWaitEffect|1		//call wait's command effect
 //ASMC DeselectUnitASMC|1
 //ASMC DeselectUnitASMC7743|1
@@ -27,6 +26,20 @@ SADD 0xCB                    //Move results into slot B
 //ASMC 0x790A4|1		//Once again, praise Teq
 //SET_SOMETHING 0xFFFE
 //DISA_IF 0xFFFE
+NoFade
+ENDA
+
+ThraciaEscapeProcessor: //gets passed a char ID and a flag ID in the event queue
+SLOTS_SETFROMQUEUE 2
+CHECK_DEPLOYED (-3) //uses value in s2
+BEQ 776 0 0xC //go back if unit is not deployed
+REMU (-3) //otherwise, they got captured
+SLOTS_SETFROMQUEUE 2 //get global flag to set
+ENUT_SLOT2 //set flag
+GOTO 777 //skip the cleanup dequeue
+LABEL 776 //clear the queue so we don't fill it up doing this repeatedly
+SLOTS_SETFROMQUEUE 2
+LABEL 777
 NoFade
 ENDA
 

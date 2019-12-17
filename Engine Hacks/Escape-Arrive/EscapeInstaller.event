@@ -1,6 +1,6 @@
 
-#ifdef ESCAPE_ARRIVE
-
+#ifndef ESCAPE_ARRIVE
+#define ESCAPE_ARRIVE
 	
 	
 	ALIGN 4
@@ -50,5 +50,8 @@
 	#define Arrive(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x12"
 	#define Escape(seizeX,seizeY) "LOCA 3 [seizeX,seizeY] 0x13"
 	#define Escape(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x13"
+	
+	//This will set the given flag if the unit did not escape
+	#define EscapeCapturedCheck(charID,flagID) "SVAL 0xD 0; SVAL 1 charID; STQFROMSLOT 1; SVAL 1 flagID; STQFROMSLOT 1; CALL ThraciaEscapeProcessor"
 
 #endif // ESCAPE_ARRIVE
