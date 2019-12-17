@@ -73,6 +73,10 @@
 //This is a rewrite of venno's array-based weapon locks.
 #define ADV_WEAPON_LOCKS
 
+//If uncommented, Status-Inflicting Weapons will be implemented.
+//Setting weapon effect 0xD will apply the effect ID at +0x22.
+//#define STATUS_WEAPONS
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================

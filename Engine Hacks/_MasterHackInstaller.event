@@ -167,6 +167,10 @@ POP
   //AdvWeaponLocks
   ALIGN 4
   #include "WeaponLockArray/AdvWeaponLocks.event"
+  
+  //Status-Inflicting Weapons
+  ALIGN 4
+  #include "StatusWeapons/StatusWeapons.event"
 
   ALIGN 4
   #include "SkillSystem/SkillSystemInstaller.event"
