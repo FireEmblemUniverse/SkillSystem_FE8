@@ -6,7 +6,7 @@
 
 .equ gMapTerrain,0x202E4DC
 
-@inIndoor/outIndoor fighter func
+@indoor/outdoor fighter func
 
 push {r4-r7,lr}
 @goes in the battle loop.
@@ -14,6 +14,14 @@ push {r4-r7,lr}
 @r1 is the defender
 mov r4, r0
 mov r5, r1
+
+mov r0,r4
+ldr r1,SkillTester
+mov r14,r1
+ldr r1,IndoorFighterID
+.short 0xF800
+cmp r0,#0
+beq GoBack
 
 ldrb r0,[r4,#0x10] @r0=x pos
 ldrb r1,[r4,#0x11] @r1=y pos
