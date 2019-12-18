@@ -579,8 +579,8 @@ Dazzle: Opponents cannot[N]
 counterattack this unit.[X]
 
 ## SD_TriAdept
-Triangle Adept: Doubles[N]
-weapon triangle effects.[X]
+Triangle Adept: Doubles weapon[N]
+triangle effects for this unit.[X]
 
 ## SD_Supply
 Supply: This unit has[N]
@@ -1000,45 +1000,45 @@ Avo when fighting outdoors.[X]
 Tome Range +1: Maximum range[N]
 of equipped tome is increased.[X]
 
-##SD_AlertStance
+## SD_AlertStance
 Alert Stance: +15 Avo[N]
 when defending.[X]
 
-##SD_AlertStancePlus
+## SD_AlertStancePlus
 Alert Stance+: +30 Avo[N]
 when defending.[X]
 
-##SD_Corona
+## SD_Corona
 Corona: Negate enemy resistance.[N]
 (Skill% activation)[X]
 
-##SD_Flare
+## SD_Flare
 Flare: Halve enemy resistance.[N]
 (Skill% activation)[X]
 
-##SD_Tempest
+## SD_Tempest
 Tempest: Double biorhythm effects.[X]
 
-##SD_Serenity
+## SD_Serenity
 Serenity: Halve biorhythm effects.[X]
 
-##SD_Petrify
+## SD_Petrify
 Petrify: Inflict stone status.[N]
 (Skill% activation)[X]
 
-##SD_Enrage
+## SD_Enrage
 Enrage: Inflict berserk status.[N]
 (Skill% activation)[X]
 
-##SD_Deadeye
+## SD_Deadeye
 Deadeye: Doubles hit rate.[N]
 Skill% chance to inflict sleep.[X]
 
-##SD_DragonFang
+## SD_DragonFang
 Dragon Fang: 1.5x damage.[N]
 (Skill% activation)[X]
 
-##SD_Fortune
+## SD_Fortune
 Fortune: This unit[N]
 cannot be crit.[X]
 
@@ -1056,4 +1056,178 @@ and Crit[X]
 Poise: +1 Move.[N]
 Negates enemy hit bonus from[N]
 weapon triangle advantage.[X]
+
+## SD_BlueFlame
+Blue Flame: Attack +2 to this[N]
+unit. When adjacent to an ally[N]
+with this skill, gain Attack +2.[X]
+
+## SD_DoubleLion
+Double Lion: All weapons[N]
+are treated as brave.[X]
+
+## SD_Eclipse
+Eclipse: Leave opponent with 1 HP.[N]
+(Skill % activation)[X]
+
+## SD_TriangleAttack
+Triangle Attack: Allows this unit[N]
+to perform a triangle attack with[N]
+2 other units who have this skill.[X]
+
+## SD_PushStr
+Push Strength: When HP[N]
+is full, gain +5 strength.[X]
+
+## SD_PushMag
+Push Magic: When HP[N]
+is full, gain +5 magic.[X]
+
+## SD_PushSkl
+Push Skill: When HP[N]
+is full, gain +5 skill.[X]
+
+## SD_PushSpd
+Push Speed: When HP[N]
+is full, gain +5 speed.[X]
+
+## SD_PushDef
+Push Defense: When HP[N]
+is full, gain +5 defense.[X]
+
+## SD_PushRes
+Push Resistance: When HP is[N]
+full, gain +5 resistance.[X]
+
+## SD_Skybreaker
+Skybreaker: Deal effective[N]
+damage to flying units.[X]
+
+## SD_Resourceful
+Resourceful: Double bonus[N]
+effectiveness multipliers.[X]
+
+## SD_Cultured
+Cultured: If attacking next to a unit[N]
+with Nice Thighs, move again.[N]
+-50 hit against units with Nice Thighs.[X]
+
+## SD_LullStr
+Lull Str: Negates the effects of[N]
+rallies on opponent's strength.[X]
+
+## SD_LullMag
+Lull Mag: Negates the effects of[N]
+rallies on opponent's magic.[X]
+
+## SD_LullSkl
+Lull Skl: Negates the effects of[N]
+rallies on opponent's skill.[X]
+
+## SD_LullSpd
+Lull Spd: Negates the effects[N]
+of rallies on opponent's speed.[X]
+
+## SD_LullLck
+Lull Luck: Negates the effects[N]
+of rallies on opponent's luck.[X]
+
+## SD_LullDef
+Lull Def: Negates the effects of[N]
+rallies on opponent's defense.[X]
+
+## SD_LullRes
+Lull Res: Negates the effects of[N]
+rallies on opponent's resistance.[X]
+
+## SD_LullSpectrum
+Lull Spectrum: Negates the[N]
+effects of rallies on opponent.[X]
+
+## SD_Shade
+Shade: Enemies are less[N]
+likely to target this unit.[X]
+
+## SD_ShadePlus
+Shade+: Enemies won't[N]
+target this unit.[X]
+
+## SD_Imbue
+Imbue: Heal HP equal to magic[N]
+at the start of each turn.[X]
+
+## SD_Thighdeology
+Thighdeology: If a unit within[N]
+3 tiles has Nice Thighs, gain[N]
++2 Attack and +20 Hit.[X]
+
+## SD_Thotslayer
+Thotslayer: +15 crit against units[N]
+with Nice Thighs or Personality.[X]
+
+## SD_Corrosion
+Corrosion: Decrease durability[N]
+of enemy's weapon by User's level[N]
+(Skill/2% activation)[X]
+
+## SD_KeepUp
+Keep Up: If unit is within 3[N]
+spaces of an ally with Canto[N]
+or Canto+, unit gains +2 Mov.[X]
+
+## SD_IndoorMarch
+Indoor March: If unit is on[N]
+indoor terrain, unit gains +2 Mov.[X]
+
+## SD_NatureRush
+Nature Rush: If unit is on[N]
+rough terrain, unit gains +2 Mov.[X]
+
+## SD_Amische
+Amische: This unit's religion prevents[N]
+them from using non-Iron weaponry.[X]
+
+## SD_Glacies
+Glacies: Add unit's Resistance[N]
+to damage dealt. (Skill % activation)[X]
+
+## SD_Gridmaster
+Gridmaster: Movement skills[N]
+do not end your action.[X]
+
+## SD_Skyguard
+Skyguard: +4 defense against[N]
+flying enemies if within 3[N]
+spaces of an ally flier.[X]
+
+## SD_Horseguard
+Horseguard: +4 defense against[N]
+horseback enemies if within 3[N]
+spaces of an ally horse rider.[X]
+
+## SD_Armorboost
+Armorboost: +4 attack and defense[N]
+against armored enemies if within[N]
+3 spaces of an armored ally.[X]
+
+## SD_TriAdeptPlus
+Triangle Adept+: Doubles[N]
+weapon triangle effects.[X]
+
+## SD_ChargePlus
+Charge+: If unit has used up[N]
+all movement, gain brave effect.[X]
+
+## SD_GreatShield
+Great Shield: Negate all damage.[N]
+(Defense % activation)[X]
+
+## SD_Moonlight
+Moonlight: Cannot double but[N]
+opponent cannot counterattack.[X]
+
+## SD_Vengeance
+Vengeance: Add half of damage[N]
+taken to damage dealt.[N]
+(Skill % activation)[X]
 

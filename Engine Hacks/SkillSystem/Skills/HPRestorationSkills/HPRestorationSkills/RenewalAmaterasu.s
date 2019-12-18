@@ -205,6 +205,24 @@ add r4, r2, r4 @ Add to the main healing percentage.
 
 NoHealingTiles:
 
+@check for Imbue
+ldr	r0, =SkillTester
+mov	lr,r0
+mov	r0,r5
+ldr	r1, =RenewalImbueIDLink
+.short 0xf800
+cmp	r0,#0x0
+beq	NoImbue
+
+@add magic stat to r4
+mov r0,r5
+add r0,#0x3A
+ldrb r0,[r0]
+add r4,r0
+
+
+NoImbue:
+
 mov r0, r4 @return the amount healed.
 pop {r4 - r6}
 pop {r1}

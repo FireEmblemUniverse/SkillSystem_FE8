@@ -1,0 +1,27 @@
+//Lull skills will negate the effect of rallies on the opponent against the unit with the skill
+//Instead of going in stat getters, these go in pre-battle and affect the numbers post-calc with rallied stats to emulate negating the stat boosts (you can't check a defender when doing stat boost modifiers)
+
+ALIGN 4
+#inctext lyn "Lull.elf"
+
+LullDefIDLink:
+BYTE LullDefID
+LullLckIDLink:
+BYTE LullLckID
+LullResIDLink:
+BYTE LullResID
+LullSklIDLink:
+BYTE LullSklID
+LullSpdIDLink:
+BYTE LullSpdID
+LullStrIDLink:
+BYTE LullStrID
+LullSpectrumIDLink:
+BYTE LullSpectrumID
+LullMagIDLink:
+BYTE LullMagID
+LullDebuffTableLink:
+WORD DebuffTable
+
+
+

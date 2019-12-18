@@ -25,7 +25,7 @@ push	{r4-r6}
 mov	r4,#1
 unsetLoop:
 
-@unest the bit for this skill in the debuff table entry for the unit
+@unset the bit for this skill in the debuff table entry for the unit
 ldr	r0,DebuffTable
 mov	r1,r4
 ldr	r2,EntrySize
@@ -151,6 +151,7 @@ b	Set
 armorFound:
 mov	r6,#1
 
+
 Set:
 @set or unest the bit for this skill in the debuff table entry for the unit
 ldr	r0,DebuffTable
@@ -187,6 +188,7 @@ beq	End
 cmp	r4,#0xB3
 beq	End
 b	Loop
+
 
 End:
 pop	{r4-r6}

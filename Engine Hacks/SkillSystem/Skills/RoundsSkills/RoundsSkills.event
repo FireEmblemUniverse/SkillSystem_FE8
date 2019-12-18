@@ -28,6 +28,7 @@ DazzleCheck:
 #incbin "Dazzle/dazzle.dmp"
 POIN SkillTester
 WORD DazzleID
+WORD MoonlightID
 
 ALIGN 4
 Desperation:

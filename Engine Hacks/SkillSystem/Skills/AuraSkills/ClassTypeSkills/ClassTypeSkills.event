@@ -1,0 +1,23 @@
+ALIGN 4
+Armorboost:
+#incbin "Armorboost.dmp"
+POIN SkillTester
+POIN AuraSkillCheck
+WORD ArmorboostID
+WORD ArmorType
+
+ALIGN 4
+Horseguard:
+#incbin "Horseguard.dmp"
+POIN SkillTester
+POIN AuraSkillCheck
+WORD HorseguardID
+WORD Horseguard
+
+ALIGN 4
+Skyguard:
+#incbin "Skyguard.dmp"
+POIN SkillTester
+POIN AuraSkillCheck
+WORD SkyguardID
+WORD FlierType
