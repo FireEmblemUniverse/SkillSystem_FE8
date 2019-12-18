@@ -1,5 +1,5 @@
-#ifndef LTOGGLE_HACK
-#define LTOGGLE_HACK
+#ifdef LTOGGLE_HACK
+
 
 // Toggle Battle Animations On/Off by holding L.
 // Hack by circleseverywhere

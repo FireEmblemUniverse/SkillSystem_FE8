@@ -1,5 +1,5 @@
-#ifndef SEMITRANSPARENCY_CHANGES
-#define SEMITRANSPARENCY_CHANGES
+#ifdef SEMITRANSPARENCY_CHANGES
+
 
 // Makes some windows semitransparent.
 // Hack by circleseverywhere

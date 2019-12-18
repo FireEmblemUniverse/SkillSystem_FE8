@@ -1,5 +1,5 @@
-#ifndef IMPROVED_SOUND_MIXER
-#define IMPROVED_SOUND_MIXER
+#ifdef IMPROVED_SOUND_MIXER
+
 
 // Improved m4a Sound Mixer.
 // hack by ipatix, ported to EA and FE8 by circleseverywhere

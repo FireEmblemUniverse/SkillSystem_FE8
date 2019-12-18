@@ -1,6 +1,8 @@
 //FE8 Show battle stats when animations are off
 //By Tequila
 
+#ifdef BATTLE_STATS
+
 // #ifdef _FE8_
 	
 	#include "Extensions/Hack Installation.txt"
@@ -76,3 +78,6 @@
 // #else
 // 	ERROR "You're not assembling FE8 events!"
 // #endif
+
+#endif // BATTLE_STATS
+

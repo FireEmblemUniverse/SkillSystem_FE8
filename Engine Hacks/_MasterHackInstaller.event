@@ -82,6 +82,9 @@ POP
 
   //Dragon Veins
   #include "DragonVeins/DragonVeins.event"
+  
+  //Proper Range Getters
+  #include "ProperRangeGetters/ProperRangeGetters/ProperRangeGetters.event"
 
   //Leadership Stars
   #include "LeadershipStars/LeadershipStars.event"

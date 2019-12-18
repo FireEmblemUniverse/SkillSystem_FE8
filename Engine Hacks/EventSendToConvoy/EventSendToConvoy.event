@@ -1,5 +1,5 @@
-#ifndef EVENT_SEND_TO_CONVOY
-#define EVENT_SEND_TO_CONVOY
+#ifdef EVENT_SEND_TO_CONVOY
+
 
 // Send item in Event Slot 1 to convoy via ASMC.
 // Hack by circleseverywhere

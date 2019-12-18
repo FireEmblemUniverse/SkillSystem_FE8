@@ -1,5 +1,5 @@
-#ifndef NEGATIVE_WTCRIT_DISPLAY
-#define NEGATIVE_WTCRIT_DISPLAY
+#ifdef NEGATIVE_WTCRIT_DISPLAY
+
 
 // Negative Wt/Crit Display.
 // hack by circleseverywhere(?)

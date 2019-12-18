@@ -1,5 +1,5 @@
-#ifndef MOVEARROW_HACK
-#define MOVEARROW_HACK
+#ifdef MOVEARROW_HACK
+
 
 // Movement arrow changes that makes it possible to move to a tile when pressing A on an enemy unit.
 // hack by circleseverywhere

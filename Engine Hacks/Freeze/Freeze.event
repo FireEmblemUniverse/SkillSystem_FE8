@@ -1,5 +1,5 @@
-#ifndef FREEZE_HACK
-#define FREEZE_HACK
+#ifdef FREEZE_HACK
+
 
 // Freeze status.
 // Hack by CrazyColorz5

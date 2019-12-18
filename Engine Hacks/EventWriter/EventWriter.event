@@ -1,5 +1,5 @@
-#ifndef EVENT_WRITER
-#define EVENT_WRITER
+#ifdef EVENT_WRITER
+
 
 // ASMC for writing to arbitrary memory.
 // hack by circleseverywhere

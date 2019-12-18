@@ -1,5 +1,5 @@
-#ifndef CHARACTER_CHAPTER_SPECIFIC_BATTTLETHEMES
-#define CHARACTER_CHAPTER_SPECIFIC_BATTTLETHEMES
+#ifdef CHARACTER_CHAPTER_SPECIFIC_BATTTLETHEMES
+
 
 // Character and Chapter-specific battle themes.
 // Original FE7 hack by Camdar, ported to FE8 by circleseverywhere

@@ -1,5 +1,5 @@
-#ifndef EVENT_RESCUE
-#define EVENT_RESCUE
+#ifdef EVENT_RESCUE
+
 
 // Force enemies to rescue via ASMC
 // Hack by circleseverywhere

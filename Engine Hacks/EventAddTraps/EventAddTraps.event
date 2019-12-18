@@ -1,5 +1,5 @@
-#ifndef EVENT_ADD_TRAPS
-#define EVENT_ADD_TRAPS
+#ifdef EVENT_ADD_TRAPS
+
 
 // Spawn new traps through events.
 // Hack by circleseverywhere

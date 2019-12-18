@@ -1,5 +1,5 @@
-#ifndef CASUAL_MODE
-#define CASUAL_MODE
+#ifdef CASUAL_MODE
+
 
 // eid $B0 enables Casual Mode (fallen units come back next chapter).
 // hack by circleseverywhere

@@ -1,5 +1,5 @@
-#ifndef PROLOGUE_SUPPLY
-#define PROLOGUE_SUPPLY
+#ifdef PROLOGUE_SUPPLY
+
 
 // Allow usage of Supply command in prologue.
 // Hack by circleseverywhere

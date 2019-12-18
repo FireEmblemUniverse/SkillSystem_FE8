@@ -1,5 +1,5 @@
-#ifndef TEXT_CHAPTER_NAMES
-#define TEXT_CHAPTER_NAMES
+#ifdef TEXT_CHAPTER_NAMES
+
 
 // Chapter Names as Text.
 // Hack by circleseverywhere

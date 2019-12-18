@@ -1,5 +1,5 @@
-#ifndef WRANK_ON_LEVELUP
-#define WRANK_ON_LEVELUP
+#ifdef WRANK_ON_LEVELUP
+
 
 // Display new weapon rank on wrank up
 // Original hack by Tequila
