@@ -15,7 +15,7 @@
 	
 	//Display the stat names in their new position
 	ORG $9BF2E
-	#incbin "Prep Screen Stat Names.dmp"
+	#incbin "PrepScreenStatNames.dmp"
 	POIN Prep_Screen_Stat_Name_Table
 	SHORT 0xE072
 	
@@ -218,11 +218,11 @@
 	
 	ALIGN 4
 	Prep_Screen_Stat_Name_Table:
-	#incbin "Prep Screen Stat Name Table.dmp"
+	#incbin "PrepScreenStatNameTable.dmp"
 	
 	ALIGN 4
 	Prep_Screen_New_TSA: //IMG: A1D8D0 TSA: A1BAE4 PAL: A1D850
-	#incbin "New TSA.dmp"
+	#incbin "NewTSA.dmp"
 	POIN New_TSA
 	
 	ALIGN 4
@@ -231,17 +231,17 @@
 	
 	ALIGN 4
 	Prep_Screen_Mag_Number:
-	#incbin "Prep Screen Mag Number.dmp"
+	#incbin "PrepScreenMagNumber.dmp"
 	POIN MagGetter
 	POIN MagClassTable
 	
 	ALIGN 4
 	Prep_Screen_Mov_Number:
-	#incbin "Prep Screen Mov Number.dmp"
+	#incbin "PrepScreenMovNumber.dmp"
 	
 	ALIGN 4
 	Prep_Screen_Bars:
-	#incbin "Prep Screen Bars.dmp"
+	#incbin "PrepScreenBars.dmp"
 	POIN MagGetter
 	POIN MagClassTable
 	
@@ -251,21 +251,21 @@
 	
 	ALIGN 4
 	Mag_Stat_Booster_Incrementer:
-	#incbin "Mag Stat Booster Incrementer.dmp"
+	#incbin "MagStatBoosterIncrementer.dmp"
 	
 	ALIGN 4
 	Mag_Stat_Booster_Cap_Check:
-	#incbin "Mag Stat Booster Cap Check.dmp"
+	#incbin "MagStatBoosterCapCheck.dmp"
 	POIN MagClassTable
 	
 	ALIGN 4
 	Prep_Screen_Write_Old_Stats:
-	#incbin "Prep Screen Write Old Stats.dmp"
+	#incbin "PrepScreenWriteOldStats.dmp"
 	POIN MagGetter
 	
 	ALIGN  4
 	Prep_Screen_Write_New_Stats:
-	#incbin "Prep Screen Write New Stats.dmp"
+	#incbin "PrepScreenWriteNewStats.dmp"
 	POIN MagGetter
 	
 	ALIGN 4
@@ -274,11 +274,11 @@
 	
 	ALIGN 4
 	Prep_Screen_Usability1:
-	#incbin "Prep Screen Usability1.dmp"
+	#incbin "PrepScreenUsability1.dmp"
 	
 	ALIGN 4
 	Prep_Screen_Usability2:
-	#incbin "Prep Screen Usability2.dmp"
+	#incbin "PrepScreenUsability2.dmp"
 	
 	/*ALIGN 4
 	PrepScreenUsabilityTable:

@@ -34,7 +34,7 @@
 	
 	ALIGN 4
 	Arena_Mage_Melee_Fix:
-	#incbin "Str Mag Split/Combat/Arena_Mage_Melee_Fix.dmp"
+	#incbin "StrMagSplit/Combat/Arena_Mage_Melee_Fix.dmp"
 	POIN ItemTable
 
 #endif

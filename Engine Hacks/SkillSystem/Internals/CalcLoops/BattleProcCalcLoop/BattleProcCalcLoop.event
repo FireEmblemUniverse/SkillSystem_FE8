@@ -1,0 +1,70 @@
+//Battle procs loop; entries that do not contain skill tester calls have been moved here, along with the loop itself
+
+
+ProcLoopParent:
+#incbin "ProcLoop/proc_loop.dmp"
+POIN Proc_Start	//start
+
+POIN Proc_Devil	//devil effect
+POIN Proc_Sureshot Proc_Luna Proc_Moonbow Proc_Adept Proc_DragonFang Proc_Eclipse	//skills that do damage and all that
+POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Flare Proc_Glacies Proc_Vengeance //more damage
+POIN Proc_Astra	//astra should be the last one before the ones that set damage
+POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
+POIN Proc_CapDamage	//check that damage is not over cap
+POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise Proc_GreatShield 	//skills that set damage to 0 or lower it
+POIN Proc_StealHP Proc_Sol Proc_AetherHeal	//skills that heal based on final damage
+POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
+#ifdef STATUS_WEAPONS
+	POIN Proc_StatusWeapons
+#endif // STATUS_WEAPONS
+POIN Proc_Corrosion //skills that don't affect damage
+POIN Proc_Counter Proc_CounterMagic	//counters are last
+POIN Proc_FlashyMode
+POIN Proc_Finish 0	//end
+
+//POIN Chargeups, chargeup not working? so I just removed them for now
+
+ALIGN 4
+#include "ProcStart/proc_start.lyn.event" // Barricade needs to write into proc start where damage is stored.
+ExpertiseIDLink:
+BYTE ExpertiseID
+BarricadeIDLink:
+BYTE BarricadeID
+BarricadePlusIDLink:
+BYTE BarricadePlusID
+
+ALIGN 4
+Proc_Finish:
+#incbin "ProcFinish/proc_finish.dmp"
+
+ALIGN 4
+Proc_CapDamage:	//actually the same as proc_finish
+#incbin "CapDamage/proc_capdamage.dmp"	//making a different file just in case one of the two needs tweaking
+
+ALIGN 4
+Proc_FlashyMode:
+#incbin "FlashyMode/proc__flashymode.dmp"
+
+ALIGN 4
+Chargeups:
+#incbin "Chargeups/Chargeups.dmp"
+
+PUSH
+ORG $2b3ec
+jumpToHack(ProcLoopParent)
+
+ORG $59064
+jumpToHack(SkillActivationAnims)
+
+ORG $590a8
+jumpToHack(SkillActivationAnims_defensive)
+
+//skip hp substraction if devil effect
+ORG $2B69E
+SHORT 0xE00B
+ORG $2B6C4
+SHORT 0x4001
+SHORT 0x2900
+SHORT 0xD123
+SHORT 0xE011
+POP

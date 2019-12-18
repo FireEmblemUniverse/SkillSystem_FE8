@@ -152,7 +152,7 @@
   
   #ifdef DRAGON_VEIN_SKILL_REQUIRED
   VeinUsability:
-    #incbin "asm/Dragon Vein Usability.dmp"
+    #incbin "asm/DragonVeinUsability.dmp"
     WORD DragonVeinTrapID
     POIN SkillTester
     WORD DragonsBloodID
@@ -160,14 +160,14 @@
 
   #ifndef DRAGON_VEIN_SKILL_REQUIRED
   VeinUsability:
-    #incbin "asm/Dragon Vein Usability NoSkill.dmp"
+    #incbin "asm/DragonVeinUsabilityNoSkill.dmp"
     WORD DragonVeinTrapID
     POIN SkillTester
     WORD DragonsBloodID
   #endif
 
   VeinEffect:
-    #incbin "asm/Dragon Vein Execution.dmp"
+    #incbin "asm/DragonVeinExecution.dmp"
     POIN DragonVeinEffectTableOffset
 
 #else // _FE8_

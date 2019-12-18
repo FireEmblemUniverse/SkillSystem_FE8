@@ -1,0 +1,7 @@
+//Status Weapons: Applies the status byte (status + duration) defined at item table entry + 0x22 if weapon has effect (+0x1F) 0xD.
+
+#ifdef STATUS_WEAPONS
+
+  #include "StatusWeapons.lyn.event"
+
+#endif // STATUS_WEAPONS

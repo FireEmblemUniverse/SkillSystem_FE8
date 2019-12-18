@@ -63,7 +63,7 @@
 	
 	ALIGN 4
 	Unit_Viewer:
-	#incbin "Unit Viewer.dmp"
+	#incbin "UnitViewer.dmp"
 	POIN MagClassTable
 	
 #else

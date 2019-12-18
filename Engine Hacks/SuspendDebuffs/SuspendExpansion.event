@@ -33,13 +33,13 @@
 
   ALIGN 4
   saveHack:
-    #incbin "asm/Expanded Suspend/SaveMoreBytesHack.dmp"
+    #incbin "asm/ExpandedSuspend/SaveMoreBytesHack.dmp"
     WORD DebuffTable
     WORD DebuffTableSize
 
   ALIGN 4
   loadHack:
-    #incbin "asm/Expanded Suspend/LoadMoreBytesHack.dmp"
+    #incbin "asm/ExpandedSuspend/LoadMoreBytesHack.dmp"
     WORD DebuffTable
     WORD DebuffTableSize
 

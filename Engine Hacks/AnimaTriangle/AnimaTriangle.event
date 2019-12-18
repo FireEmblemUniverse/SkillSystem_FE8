@@ -1,7 +1,7 @@
 
-#ifndef ANIMA_TRIANGLE
+#ifdef ANIMA_TRIANGLE
 
-	#define ANIMA_TRIANGLE
+	
 	ALIGN 4
 	#include "AnimaTriangle.lyn.event" // Don't autohook because we're going to use a calculation loop alongside anything else touching WTA (like Tri-Adept)
 
@@ -17,9 +17,5 @@
 	WindList:
 	BYTE Fimbulvetr WindSword /* Other tomes to be considered wind */ 0x00
 	
-#else
-	
-	// Uh oh. They're already trying to install one. Throw an error because it conflicts with Tri-Adept when externally installed.
-	ERROR "Anima Triangle conflict: In Engine Hacks/Config, enable Anima Triangle instead of externally installing."
 	
 #endif // ANIMA_TRIANGLE

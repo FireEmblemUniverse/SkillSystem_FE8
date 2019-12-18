@@ -95,11 +95,21 @@ b	End
 doHeal:
 mov	r2,#4
 ldsh	r2,[r7,r2]	@damage
+
+mov r0,#0x13
+ldrb	r0,[r5,r0] @defender current HP
+cmp r2,r0
+bls NormalHealAmount
+
+mov r0,r2
+
+NormalHealAmount:
 mov	r0,#0x13
 ldrb	r0,[r4,r0]	@remaining hp
+add	r0,r2 @new hp; either r0 + damage or r0 + defender current hp
+
 mov	r1,#0x12
 ldrb	r1,[r4,r1]	@max hp
-add	r0,r2 @new hp
 cmp	r0,r1
 blo	notmaxed
 mov	r0,r1

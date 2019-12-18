@@ -1,7 +1,7 @@
 
-#ifndef ESCAPE_ARRIVE
+#ifdef ESCAPE_ARRIVE
 
-	#define ESCAPE_ARRIVE
+	#define LordMustEscapeLastFlag 0x128
 	
 	ALIGN 4
 	RefEscapeTable:
@@ -22,6 +22,7 @@
 	ALIGN 4
 	EscapeLordUsability:
 	#incbin "EscapeCheckLord.dmp"
+	WORD LordMustEscapeLastFlag
 
 	ALIGN 4
 	EscapeGeneralUsability:
@@ -30,6 +31,11 @@
 	ALIGN 4
 	EscapeGeneralEffect:
 	#incbin "EscapeEffectGeneral.dmp"
+	POIN EscapeEvent
+
+	ALIGN 4
+	EscapeLordEffect:
+	#incbin "EscapeEffectLord.dmp"
 	POIN EscapeEvent
 
 	ALIGN 4
@@ -50,5 +56,8 @@
 	#define Arrive(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x12"
 	#define Escape(seizeX,seizeY) "LOCA 3 [seizeX,seizeY] 0x13"
 	#define Escape(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x13"
+	
+	//This will set the given flag if the unit did not escape
+	#define EscapeCapturedCheck(charID,flagID) "SVAL 0xD 0; SVAL 1 charID; SENQUEUE 1; SVAL 1 flagID; SENQUEUE 1; CALL ThraciaEscapeProcessor"
 
 #endif // ESCAPE_ARRIVE

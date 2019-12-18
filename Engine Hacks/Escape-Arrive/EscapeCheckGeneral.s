@@ -46,12 +46,12 @@ cmp r0,#0x13
 bne ReturnFalse
 
 @Check for rescuing
-ldr r0,[r4]
-ldrb r0,[r0,#0xC]
-mov r1,#0x10
-and r0,r1
-cmp r0,#0x10
-beq ReturnFalse
+@ldr r0,[r4]
+@ldrb r0,[r0,#0xC]
+@mov r1,#0x10
+@and r0,r1
+@cmp r0,#0x10
+@beq ReturnFalse
 
 
 mov r0,#1

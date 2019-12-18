@@ -1,5 +1,5 @@
-#ifndef LEADERSHIP_STARS
-#define LEADERSHIP_STARS
+#ifdef LEADERSHIP_STARS
+
 
 #ifdef _FE8_
 
@@ -110,4 +110,4 @@ POIN LeadershipTable
   ERROR LEADERSHIP_STARS is for FE8
 #endif // _FE8_
 
-#endif // LEADERSHIPSTARS
+#endif // LEADERSHIP_STARS

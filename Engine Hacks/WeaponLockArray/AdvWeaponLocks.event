@@ -1,3 +1,6 @@
+
+#ifdef ADV_WEAPON_LOCKS
+
 //Original by Vennobennu, rewritten by Sme for skill system/general buildfile compatibility
 
 //Make prf weapons defined via array with no wrank say "Prf" (not thoroughly tested)
@@ -21,3 +24,4 @@ BYTE EirikaLord
 BYTE Rogue
 BYTE EndLockArray
 
+#endif // ADV_WEAPON_LOCKS

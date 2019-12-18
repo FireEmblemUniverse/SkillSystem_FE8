@@ -1,8 +1,4 @@
 
-#define AlsoUseVanillaDanceCheck False
-#define AlsoUseVanillaSupplyCheck False
-#define AlsoUseVanillaSummonCheck False
-
 #include "Capture/Capture.event"
 
 #include "StealPlus/StealPlus.event"
@@ -14,21 +10,21 @@ NewDanceUsability:
 #incbin "Dance/NewDanceUsability.dmp"
 POIN SkillTester
 WORD DanceID
-WORD AlsoUseVanillaDanceCheck
+WORD ALSO_USE_VANILLA_DANCE_CHECK
 
 ALIGN 4
 NewSupplyUsability:
 #incbin "Supply/NewSupplyUsability.dmp"
 POIN SkillTester
 WORD SupplyID
-WORD AlsoUseVanillaSupplyCheck
+WORD ALSO_USE_VANILLA_SUPPLY_CHECK
 
 ALIGN 4
 NewSummonUsability:
 #incbin "Summon/NewSummonUsability.dmp"
 POIN SkillTester
 WORD SummonID
-WORD AlsoUseVanillaSummonCheck
+WORD ALSO_USE_VANILLA_SUMMON_CHECK
 
 ALIGN 4
 AttackEffect:

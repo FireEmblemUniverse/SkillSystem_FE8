@@ -43,13 +43,16 @@ POIN LethalitySkill Bane
 #else
 POIN LethalitySkill NonGBALethalitySkill Bane
 #endif
+
+//add any new ones before here
+
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
-//This goes last, so that crit will always be set to 0 if set and never modified from there
-POIN NegateCritWeapons
-//add any new ones before here
+#ifdef CANNOT_CRIT
+	POIN NegateCritWeapons //This goes last, so that crit will always be set to 0 if set and never modified from there
+#endif // CANNOT_CRIT
 POIN 0
 
 PUSH
