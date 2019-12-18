@@ -99,7 +99,7 @@ POP
   // Strength/Magic Split
   #ifdef USE_STRMAG_SPLIT
   
-	#include "Strmag/_Master Asm Installer.event"
+	#include "Strmag/_MasterAsmInstaller.event"
 	
   #endif // USE_STRMAG_SPLIT
   
@@ -134,7 +134,7 @@ POP
   #include "Misc/PrologueSupply.event"
   
   //Item Range Fix
-  #include "FE8-Item Range Fix/FE8-Item Range EA.event"
+  #include "ItemRangeFix/ItemRangeFix.event"
   
   //Chapter Names as Text
   #include "TextChNames/TextChNames.event"
@@ -179,7 +179,7 @@ POP
   #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
 
   ALIGN 4
-  #include "FE8-Battle Stats with Anims Off/FE8-Battle Stats Master EA File.event"
+  #include "BattleStatsWithAnimsOff/FE8-BattleStats.event"
   
   ALIGN 4
   #include "StatGetters/_InstallStatGetters.event"

@@ -41,11 +41,11 @@
 	
 	ALIGN 4
 	Str_Or_Mag_Damage:
-	#incbin "Str or Mag Damage.dmp"
+	#incbin "StrorMagDamage.dmp"
 		
 	ALIGN 4
 	Update_Magic:
-	#incbin "Update Magic.dmp"
+	#incbin "UpdateMagic.dmp"
 	POIN MagGetter
 	
 	#else

@@ -15,7 +15,7 @@
   #define Trv_Icon_X 0xB8
   #define Trv_Icon_Y 0x2E
   
-  #include "Display Growths Options/Display Growths Options.txt"
+  #include "DisplayGrowthsOptions/DisplayGrowthsOptions.event"
  
   PUSH
     ORG 0x205b24 //24 for stat screen
@@ -292,11 +292,11 @@
 
   ALIGN 4
   Growth_Color_Table:
-    #include "Display Growths Options/Growth Colors Table.txt"
+    #include "DisplayGrowthsOptions/GrowthColorsTable.event"
 
   ALIGN 4
   New_Palettes:
-    #include "Display Growths Options/New Palette.txt"
+    #include "DisplayGrowthsOptions/NewPalette.event"
 
   ALIGN 4
   TxtData0x0D4B:
