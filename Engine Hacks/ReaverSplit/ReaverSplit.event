@@ -1,6 +1,3 @@
-
-#ifdef REAVER_SPLIT
-
 //Original by Colorz, rewritten by Sme
 
 #inctext lyn "ReaverSplit.elf"
@@ -10,4 +7,4 @@ ORG 0x2C770
 jumpToHack(ReverseWeaponTriangle)
 POP
 
-#endif // REAVER_SPLIT
+MESSAGE ReverseWeaponTriangle DoubleWeaponTriangle
