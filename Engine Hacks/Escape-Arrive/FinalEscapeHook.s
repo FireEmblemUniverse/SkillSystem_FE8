@@ -43,6 +43,11 @@ str	r1,[r0,#0xC]
 b End
 
 
+
+
+
+
+
 GoBack:
 pop {r0-r2}
 End:
@@ -74,5 +79,7 @@ beq End
 	mov r2,#0x8
 	orr r1,r2
 	str	r1,[r3,#0xC]
+	
+	
 End:
 bx lr
