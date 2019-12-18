@@ -196,43 +196,43 @@
 
   ALIGN 4
   Get_Hp_Growth:
-    #incbin "asm/Growth Getters/Get_Hp_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Hp_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Str_Growth:
-    #incbin "asm/Growth Getters/Get_Str_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Str_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Skl_Growth:
-    #incbin "asm/Growth Getters/Get_Skl_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Skl_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Spd_Growth:
-    #incbin "asm/Growth Getters/Get_Spd_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Spd_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Def_Growth:
-    #incbin "asm/Growth Getters/Get_Def_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Def_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Res_Growth:
-    #incbin "asm/Growth Getters/Get_Res_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Res_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   ALIGN 4
   Get_Luk_Growth:
-    #incbin "asm/Growth Getters/Get_Luk_Growth.dmp"
+    #incbin "asm/GrowthGetters/Get_Luk_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 
   //MESSAGE Extra Growth Boosts at currentOffset
   ALIGN 4
   Extra_Growth_Boosts:
-    #incbin "asm/Growth Getters/Extra_Growth_Boosts.dmp"
+    #incbin "asm/GrowthGetters/Extra_Growth_Boosts.dmp"
     WORD Growth_Options
     POIN ItemTable
 	POIN SkillTester

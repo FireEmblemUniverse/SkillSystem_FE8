@@ -50,7 +50,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 	  #define USE_SAVE_EXPANSION // Force use of EMS with Str/Mag Split
 	#endif // USE_SAVE_EXPANSION
 	
-	#include "Strmag/BL Range.event"
+	#include "Strmag/BLRange.event"
   
   #endif // USE_STRMAG_SPLIT
 	

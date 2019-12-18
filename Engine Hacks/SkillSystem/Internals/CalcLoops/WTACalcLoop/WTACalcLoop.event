@@ -8,7 +8,9 @@ WTACalcFunctions:
 #endif // ANIMA_TRIANGLE
 POIN TriangleAdept
 POIN Poise
-POIN DoubleWeaponTriangle
+#ifdef REAVER_SPLIT
+	POIN DoubleWeaponTriangle
+#endif // REAVER_SPLIT
 WORD 0 // Terminator
 
 PROTECT 0x2C830 0x2C840
