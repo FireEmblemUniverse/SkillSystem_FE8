@@ -2,18 +2,19 @@
 @ calls skill getter and checks if skill is in the list
 @ skill 0 is always true, skill FF is always false.
 
-@TODO: also check inventory for skill items?
+@ This version skips the check for equippable weapons to avoid causing an endless loop
 
 .thumb
 
 .set GetUnitEquippedItem, 0x8016B28
-.set ItemTable, SkillGetter+0x04
+.set GetUnitEquippedItemSlot, 0x8016B58
+@.set ItemTable, SkillGetter+0x04
 
-.macro _blh to, reg=r3
-	ldr \reg, =\to
-	mov lr, \reg
-	.short 0xF800
-.endm
+@arguments:
+	@r0 = unit data
+	@r1 = skill id
+@returns:
+	@r0 = true/false
 
 push {r4-r5,lr}
 @r0 has unit data
@@ -24,10 +25,10 @@ cmp r1, #0xFF
 beq False
 
 mov r4, r1 @skill to test
+bl Skill_Getter
 @ldr r1, SkillGetter
 @mov lr, r1
 @.short 0xf800
-bl Skill_Getter
 
 @now r0 is the buffer to loop through
 Loop:
@@ -43,30 +44,12 @@ TestPassiveItems:
 mov r0,r5
 mov r1,r4
 @mov r2,r6
-@mov r2, #0x1
-@neg r2, r2
+mov r2, #0x1
+neg r2, r2
 bl SkillItemCounter
 @return true if the skill was found at least once on a passive skill item
 cmp r0, #0x0
 bne True
-
-TestEquippedItem:
-mov r0,r5
-_blh GetUnitEquippedItem
-bl GetItemSkill
-@ldrh r0, [r5, #0x1E]
-@mov r1, #0xFF @get the item id
-@and r0, r1
-@cmp r0, #0
-@beq False
-@mov r1, #36 @size of the item table
-@mul r0, r1
-@ldr r1, ItemTable
-@add r0, r1 
-@mov r1, #35 @last byte in the item table
-@ldrb r0, [r0, r1]
-cmp r0, r4
-beq True
 
 False:
 mov r0, #0
@@ -78,5 +61,3 @@ pop {r4-r5, pc}
 
 .pool
 
-SkillGetter:
-@POIN SkillGetter

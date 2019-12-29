@@ -66,10 +66,12 @@ Skill_Getter: // gets a list of skills
 	POIN (GetInitialSkillList|1)
 
 SkillTesterOriginal: //does unit have X skill?
+#include "skillTester.lyn.event"
+/*
 #incbin skillTester.dmp
 POIN Skill_Getter
 POIN ItemTable
-
+*/
 SkillTester: //does enemy have Nihil? if so, does Nihil negate X skill?
 #incbin nihilTester.dmp
 POIN SkillTesterOriginal
@@ -77,6 +79,23 @@ WORD NihilID
 POIN Skill_Getter
 POIN NegatedSkills
 POIN SkillTester
+WORD CatchEmAllID
+
+//ability flag for passive item skills
+#define PASSIVE_ITEM_SKILL_ATTR 0x00800000
+GetItemSkill:
+#include "ItemSkillGetter.lyn.event"
+
+#include "skillItemCounter.lyn.event"
+WORD PASSIVE_ITEM_SKILL_ATTR
+
+//this version does not check for equipped weapons
+SkillTesterOriginal2:
+#include "skillTester2.lyn.event"
+SkillTester2:
+#include "nihilTester2.lyn.event"
+POIN NegatedSkills
+WORD NihilID
 WORD CatchEmAllID
 
 NegatedSkills: //comment or uncomment skills to your liking, this should come with an updated list of skills that work with nihil and are meant to
