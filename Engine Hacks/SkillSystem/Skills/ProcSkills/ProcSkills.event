@@ -17,14 +17,15 @@ ProcLoopParent:
 POIN Proc_Start	//start
 
 POIN Proc_Devil	//devil effect
-POIN Proc_Sureshot Proc_Luna Proc_Moonbow Proc_Adept Proc_DragonFang	//skills that do damage and all that
-POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Flare //more damage
+POIN Proc_Sureshot Proc_Luna Proc_Moonbow Proc_Adept Proc_DragonFang Proc_Eclipse	//skills that do damage and all that
+POIN Proc_Impale Proc_Colossus Proc_Ignis Proc_AetherDamage Proc_Corona Proc_Flare Proc_Glacies Proc_Vengeance //more damage
 POIN Proc_Astra	//astra should be the last one before the ones that set damage
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 POIN Proc_CapDamage	//check that damage is not over cap
-POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise	//skills that set damage to 0 or lower it
+POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise Proc_GreatShield 	//skills that set damage to 0 or lower it
 POIN Proc_StealHP Proc_Sol Proc_AetherHeal	//skills that heal based on final damage
-POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye
+POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
+POIN Proc_Corrosion //skills that don't affect damage
 POIN Proc_Counter Proc_CounterMagic	//counters are last
 POIN Proc_FlashyMode
 POIN Proc_Finish 0	//end
@@ -250,6 +251,36 @@ Proc_DragonFang:
 POIN SkillTester
 WORD DragonFangID
 
+ALIGN 4
+Proc_Eclipse:
+#incbin "Eclipse/proc_eclipse.dmp"
+POIN SkillTester
+WORD EclipseID
+
+ALIGN 4
+Proc_Corrosion:
+#incbin "Corrosion/proc_corrosion.dmp"
+POIN SkillTester
+WORD CorrosionID
+
+ALIGN 4
+Proc_Glacies:
+#incbin "Glacies/proc_glacies.dmp"
+POIN SkillTester
+WORD GlaciesID
+
+ALIGN 4
+Proc_GreatShield:
+#incbin "GreatShield/proc_greatshield.dmp"
+POIN SkillTester
+WORD GreatShieldID
+
+ALIGN 4
+Proc_Vengeance:
+#incbin "Vengeance/proc_vengeance.dmp"
+POIN SkillTester
+WORD VengeanceID
+
 //When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
 //PUSH
 //ORG $58EB8
@@ -262,4 +293,3 @@ Chargeups:
 
 
 #include "Animations/SkillAnimations.event"
-

@@ -139,3 +139,29 @@ POIN AuraSkillCheck
 WORD InfiltratorID
 
 #include "ArmorMarch/ArmorMarch.event"
+
+ALIGN 4
+BlueFlameAura:
+#incbin "BlueFlame/BlueFlame.dmp"
+POIN AuraSkillCheck
+WORD BlueFlameID
+
+ALIGN 4
+KeepUp:
+#incbin "KeepUp/KeepUp.dmp"
+POIN AuraSkillCheck
+WORD DebuffTable
+WORD ArmorMarchBit
+WORD 8 //size of debuff table entry
+POIN SkillTester
+POIN ArmorMarchList
+POIN IndoorTerrainList
+POIN ForagerList
+WORD KeepUpID
+WORD IndoorMarchID
+WORD NatureRushID
+WORD CantoID
+WORD CantoPlusID
+
+#include "ClassTypeSkills/ClassTypeSkills.event"
+

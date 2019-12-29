@@ -302,3 +302,40 @@ ArcaneBlade:
 #incbin "ArcaneBlade/ArcaneBlade.dmp"
 POIN SkillTester
 WORD ArcaneBladeID
+
+ALIGN 4
+BlueFlame:
+#incbin "BlueFlame/BlueFlame.dmp"
+POIN SkillTester
+WORD BlueFlameID
+
+ALIGN 4
+DoubleLion:
+#incbin "DoubleLion/DoubleLion.dmp"
+POIN SkillTester
+WORD DoubleLionID
+
+#include "Cultured/Cultured.event"
+
+ALIGN 4
+Thighdeology:
+#incbin "Thighdeology/Thighdeology.dmp"
+POIN SkillTester
+WORD ThighdeologyID
+POIN AuraSkillCheck
+WORD NiceThighsID
+
+ALIGN 4
+Thotslayer:
+#incbin "Thotslayer/Thotslayer.dmp"
+POIN SkillTester
+WORD ThotslayerID
+WORD NiceThighsID
+WORD PersonalityID
+
+ALIGN 4
+ChargePlus:
+#incbin "ChargePlus/ChargePlus.dmp"
+POIN SkillTester
+WORD ChargePlusID
+POIN prMovGetter

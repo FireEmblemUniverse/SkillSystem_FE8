@@ -1,4 +1,5 @@
 
+ALIGN 4
 Shadowgift: //Also includes Lumina
 #incbin "Shadowgift/shadowgift.dmp"
 POIN SkillTester
@@ -7,3 +8,16 @@ WORD LuminaID
 WORD SHADOWGIFT_VIA_STAFF_RANK
 WORD LUMINA_VIA_STAFF_RANK
 POIN ItemTable
+
+ALIGN 4
+Amische:
+#incbin "Amische/Amische.dmp"
+POIN SkillTester
+WORD AmischeID
+POIN IronWeaponsList
+
+ALIGN 4
+IronWeaponsList:
+BYTE IronSword IronLance IronAxe IronBow
+BYTE 0 //terminator
+ALIGN 4

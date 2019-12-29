@@ -1,0 +1,37 @@
+//these all get installed in stat getter loops
+
+ALIGN 4
+prPushStr:
+#incbin "PushSkill.dmp"
+POIN SkillTester
+WORD PushStrID
+
+ALIGN 4
+prPushMag:
+#incbin "PushSkill.dmp"
+POIN SkillTester
+WORD PushMagID
+
+ALIGN 4
+prPushSkl:
+#incbin "PushSkill.dmp"
+POIN SkillTester
+WORD PushSklID
+
+ALIGN 4
+prPushSpd:
+#incbin "PushSkill.dmp"
+POIN SkillTester
+WORD PushSpdID
+
+ALIGN 4
+prPushDef:
+#incbin "PushSkill.dmp"
+POIN SkillTester
+WORD PushDefID
+
+ALIGN 4
+prPushRes:
+#incbin "PushSkill.dmp"
+POIN SkillTester
+WORD PushResID

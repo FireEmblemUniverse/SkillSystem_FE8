@@ -21,6 +21,7 @@ POP
 #include "HPRestorationSkills/HPRestorationSkills.event"
 #include "MovementSkills/MovementSkills.event"
 #include "MugLoadingSkills/MugLoadingSkills.event"
+#include "UnitMenuSkills/UnitMenuSkills.event"
 #include "PostActionSkills/PostActionSkills.event"
 #include "PostBattleSkills/PostBattleSkills.event"
 #include "PreBattleSkills/PreBattleSkills.event"
@@ -30,7 +31,6 @@ POP
 #include "RoundsSkills/RoundsSkills.event"
 #include "StandaloneSkills/StandaloneSkills.event"
 #include "StatModifierSkills/StatModifierSkills.event"
-#include "UnitMenuSkills/UnitMenuSkills.event"
 #include "WeaponUsabilitySkills/WeaponUsabilitySkills.event"
 #include "WTASkills/WTASkills.event"
 

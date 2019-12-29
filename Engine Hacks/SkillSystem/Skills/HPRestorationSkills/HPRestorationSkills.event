@@ -8,7 +8,8 @@ POP
 
 ALIGN 4
 Renewal: //combined healing skills
-#include "HPRestorationSkills/RenewalAmaterasu.lyn.event"
+//#include "HPRestorationSkills/RenewalAmaterasu.lyn.event"
+#inctext lyn "HPRestorationSkills/RenewalAmaterasu.elf"
 RenewalRenewalIDLink:
 BYTE RenewalID
 RenewalAmaterasuIDLink:
@@ -23,6 +24,8 @@ RenewalHealTrapID:
 BYTE HealTileTrapID
 RenewalForagerIDLink:
 BYTE ForagerID
+RenewalImbueIDLink:
+BYTE ImbueID
 
 ALIGN 4
 ForagerList: //A list of terrain IDs that activate Forager
