@@ -50,7 +50,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 	  #define USE_SAVE_EXPANSION // Force use of EMS with Str/Mag Split
 	#endif // USE_SAVE_EXPANSION
 	
-	#include "ExternalHacks/Strmag/BLRange.event"
+	#include "ExternalHacks/StrMagSplitBLRange.event"
   
   #endif // USE_STRMAG_SPLIT
 	
@@ -96,13 +96,13 @@ POP
   #ifndef USE_STRMAG_SPLIT
 	#include "Necessary/MSS/ModularStatScreen.event"
   #else
-    #include "ExternalHacks/Strmag/ModularStatScreen/ModularStatScreen.event"
+    #include "ExternalHacks/StrMagSplitModularStatScreen/ModularStatScreen.event"
   #endif // USE_STRMAG_SPLIT
   
   // Strength/Magic Split
   #ifdef USE_STRMAG_SPLIT
   
-	#include "ExternalHacks/Strmag/_MasterAsmInstaller.event"
+	#include "ExternalHacks/StrMagSplit_MasterAsmInstaller.event"
 	
   #endif // USE_STRMAG_SPLIT
   
@@ -191,7 +191,7 @@ POP
   #ifndef USE_STRMAG_SPLIT
     #include "Necessary/GrowthGetters/GrowthGetters.event"
   #else
-    #include "ExternalHacks/Strmag/GrowthGetters/GrowthGetters.event"
+    #include "ExternalHacks/StrMagSplitGrowthGetters/GrowthGetters.event"
   #endif // USE_STRMAG_SPLIT
   
   ALIGN 4
