@@ -33,7 +33,7 @@
 	
 	ALIGN 4 //get item mag bonus
     GetItemMagBonus:
-    #incbin "../StatGetters/_asm/GetItemMagBonus.dmp"
+    #incbin "../../Necessary/StatGetters/_asm/GetItemMagBonus.dmp"
     POIN ItemTable
 	
 #endif // STR_MAG_MAIN
