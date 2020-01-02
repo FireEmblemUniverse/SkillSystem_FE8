@@ -21,6 +21,10 @@
 // Enabling this *will* break saves, but allows for higher stats and other things.
 // #define USE_SAVE_EXPANSION
 
+// If uncommented, the fourth page of the stat screen will include personal information on the character.
+// This information can be edited in the "Personal Data Editor.csv" file.
+#define ENABLE_PERSONAL_INFO
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================

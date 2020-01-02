@@ -95,6 +95,13 @@
     ORG $17E98
       callHack_r3(New_Unit_Exp)
       SHORT 0xE005
+	  
+	#ifdef ENABLE_PERSONAL_INFO
+	
+	  ORG $88690
+        jumpToHack(PageNumberCheck)	  
+		
+	#endif // ENABLE_PERSONAL_INFO
 
     ORG $087184
 
@@ -165,9 +172,34 @@
   MSS_page3:
     #incbin "asm/mss_page3_original.dmp"
 
-  ALIGN 4
-  MSS_page4:
-    #incbin "asm/mss_page4.dmp"
+  #ifdef ENABLE_PERSONAL_INFO
+  
+	ALIGN 4
+	MESSAGE page 4 at currentOffset
+	MSS_page4:
+      #incbin "asm/mss_page4_runa.dmp"
+	  MESSAGE page 4 ends at currentOffset
+	  POIN PersonalDataTable
+	  
+	ALIGN 4
+    PageNumberCheck:
+      #include "asm/mss_threepageconditional.lyn.event"
+	  POIN PersonalDataTable
+  
+  #else // ENABLE_PERSONAL_INFO
+  
+    ALIGN 4
+    MSS_page4:
+      #incbin "asm/mss_page4.dmp"
+	
+    ALIGN 4
+    TxtData0x0D4B:
+      String("Donate to Circles")
+      BYTE 0
+
+    setText(0x0D4B,TxtData0x0D4B)
+  
+  #endif // ENABLE_PERSONAL_INFO
 
   ALIGN 4
   NewPageNameGraphic:
@@ -297,13 +329,6 @@
   ALIGN 4
   New_Palettes:
     #include "Display Growths Options/New Palette.txt"
-
-  ALIGN 4
-  TxtData0x0D4B:
-    String("Donate to Circles")
-    BYTE 0
-
-  setText(0x0D4B,TxtData0x0D4B)
 
   /*
 
@@ -439,6 +464,39 @@
       RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc2)
   #endif
 
+#ifdef ENABLE_PERSONAL_INFO
+
+  RText_Page4:
+  
+  ST_Name4:
+    RMenu(0,ST_Class4,0,ST_Dislikes,0x18,0x50,0x0,NameDescGetter)
+
+  ST_Class4:
+    RMenu(ST_Name4,ST_Level4,0,ST_Age,0x6,0x68,0x6E8,ClassDescGetter)
+
+  ST_Level4:
+    RMenu(ST_Class4,ST_HP4,0,ST_Exp4,0x6,0x78,0x542)
+
+  ST_Exp4:
+    RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Age,0x26,0x78,0x543)
+
+  ST_HP4:
+    RMenu(ST_Level4,0,0,ST_Age,0x6,0x88,0x544)
+
+  ST_Likes:
+    RMenu(0,ST_Dislikes,ST_Name4,ST_Height,0x66,0x18,LikesDesc)
+	
+  ST_Dislikes:
+    RMenu(ST_Likes,ST_Age,ST_Name4,ST_Height,0x66,0x38,DislikesDesc)
+	
+  ST_Age:
+    RMenu(ST_Dislikes,0,ST_Class4,ST_Height,0x66,0x58,AgeDesc)
+	
+  ST_Height:
+    RMenu(ST_Dislikes,0,ST_Age,0,0xa6,0x58,HeightDesc)
+
+#else // ENABLE_PERSONAL_INFO
+
   RText_Page4:
 
   ST_Name4:
@@ -458,6 +516,8 @@
 
   ST_Donate:
     RMenu(0,0,ST_Name4,0,0x86,0x48,DonateURL)
+	
+#endif // ENABLE_PERSONAL_INFO
 
 #else // _FE8_
   ERROR Modular Stat Screen hack is for FE8
