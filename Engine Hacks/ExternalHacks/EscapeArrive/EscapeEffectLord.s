@@ -3,10 +3,11 @@
 
 push {r14}
 
+
 ldr	r0,=#0x800D07C		@event engine thingy
 mov	lr, r0
 ldr	r0, EscapeEvent	@the text part
-mov	r1, #0x01		@0x01 = wait for events
+mov	r1, #0x00		@0x01 = wait for events
 .short	0xF800
 
 @see if we're rescuing anyone
