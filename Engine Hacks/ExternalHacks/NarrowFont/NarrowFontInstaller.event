@@ -1,3 +1,10 @@
+#ifdef ENABLE_PERSONAL_INFO
+#ifndef NARROW_FONT
+#define NARROW_FONT
+#endif // NARROW_FONT
+#endif // PENABLE_PERSONAL_INFO
+
+#ifdef NARROW_FONT
 
 #ifdef _FE8_
 
@@ -31,4 +38,6 @@
 		
 #else
 	ERROR "Set EA to FE8 events!"
+#endif
+
 #endif

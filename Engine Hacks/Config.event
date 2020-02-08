@@ -136,8 +136,13 @@
 //Setting weapon effect 0xD will apply the effect ID at item data +0x22.
 // #define STATUS_WEAPONS
 
+//If uncommented, Narrow Font will be implemented.
+//This allows for setting narrower text in addition to standard text.
+// #define NARROW_FONT
+
 // If uncommented, the fourth page of the stat screen will include personal information on the character.
 // This information can be edited in the "Personal Data Editor.csv" file.
+// This will automatically enable Narrow Font.
 #define ENABLE_PERSONAL_INFO
 
 // =================================
