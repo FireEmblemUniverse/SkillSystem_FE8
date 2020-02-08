@@ -9,21 +9,33 @@
 #ifdef _FE8_
 
   #define Skl_Arrow_X 0x78
-  #define Skl_Arrow_Y 0x28
+  #define Skl_Arrow_Y 0x38
   #define Spd_Arrow_X 0x78
-  #define Spd_Arrow_Y 0x38
+  #define Spd_Arrow_Y 0x48
   #define Trv_Icon_X 0xB8
   #define Trv_Icon_Y 0x2E
   
   #include "DisplayGrowthsOptions/DisplayGrowthsOptions.event"
  
   PUSH
-    ORG 0x205b24 //24 for stat screen
-      POIN MSS_page1|1 MSS_page2|1 MSS_page3|1
+    #ifdef ENABLE_PERSONAL_INFO
+	
+      ORG 0x205b24 //24 for stat screen
+        POIN MSS_page1|1 MSS_page2|1 MSS_page3|1 MSS_page4|1
 
-    ORG $88690
-    BYTE 3 //make 3 pages
+      ORG $88690
+        BYTE 4 //make 4 pages
 
+	#else // ENABLE_PERSONAL_INFO
+	
+	  ORG 0x205b24 //24 for stat screen
+        POIN MSS_page1|1 MSS_page2|1 MSS_page3|1
+
+      ORG $88690
+        BYTE 3 //make 3 pages
+	
+	#endif // ENABLE_PERSONAL_INFO
+	
 	ORG 0x889F8
 	SHORT 0x0EB8
 	
@@ -113,6 +125,24 @@
     ORG $86ED4
       callHack_r3(HP_Name_Color)
 	  
+	#ifdef ENABLE_PERSONAL_INFO
+	
+      ORG $889f2  
+        SHORT $BD30
+        BL(RText_Page4_ladder) //this has to be in bl range somewhere
+		
+	  ORG $087184
+	
+        RText_Page4_ladder:
+          // page 4 helptext hook
+          #incbin "asm/rtext_page4.dmp"
+          POIN RText_Page4	
+		  
+      ORG $88690
+        jumpToHack(PageNumberCheck)	  
+	
+	#endif // ENABLE_PERSONAL_INFO
+	  
 	ORG $2BA28
   jumpToHack(Write_Growths_To_Battle_Struct)
 
@@ -154,6 +184,22 @@
   ALIGN 4
   MSS_page3:
     #incbin "asm/mss_page3_newranks.dmp"
+	
+  #ifdef ENABLE_PERSONAL_INFO
+  
+	ALIGN 4
+	MESSAGE page 4 at currentOffset
+	MSS_page4:
+      #incbin "asm/mss_page4_runa.dmp"
+	  MESSAGE page 4 ends at currentOffset
+	  POIN PersonalDataTable
+	  
+	ALIGN 4
+    PageNumberCheck:
+      #include "asm/mss_threepageconditional.lyn.event"
+	  POIN PersonalDataTable
+	  
+  #endif // ENABLE_PERSONAL_INFO
 
   ALIGN 4
   NewPageNameGraphic:
@@ -355,6 +401,40 @@ ST_Exp3:
 ST_HP3:
   RMenu(ST_Level3,0,0,0,0x6,0x88,0x544)
 POP
+
+ALIGN 4
+#ifdef ENABLE_PERSONAL_INFO
+
+  RText_Page4:
+  
+  ST_Name4:
+    RMenu(0,ST_Class4,0,ST_Dislikes,0x18,0x50,0x0,NameDescGetter)
+
+  ST_Class4:
+    RMenu(ST_Name4,ST_Level4,0,ST_Age,0x6,0x68,0x6E8,ClassDescGetter)
+
+  ST_Level4:
+    RMenu(ST_Class4,ST_HP4,0,ST_Exp4,0x6,0x78,0x542)
+
+  ST_Exp4:
+    RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Age,0x26,0x78,0x543)
+
+  ST_HP4:
+    RMenu(ST_Level4,0,0,ST_Age,0x6,0x88,0x544)
+
+  ST_Likes:
+    RMenu(0,ST_Dislikes,ST_Name4,ST_Height,0x66,0x18,LikesDesc)
+	
+  ST_Dislikes:
+    RMenu(ST_Likes,ST_Age,ST_Name4,ST_Height,0x66,0x38,DislikesDesc)
+	
+  ST_Age:
+    RMenu(ST_Dislikes,0,ST_Class4,ST_Height,0x66,0x58,AgeDesc)
+	
+  ST_Height:
+    RMenu(ST_Dislikes,0,ST_Age,0,0xa6,0x58,HeightDesc)
+	
+#endif // ENABLE_PERSONAL_INFO
 
 //Remove glowy spinny circle thingy from stat screen
 

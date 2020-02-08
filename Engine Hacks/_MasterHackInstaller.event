@@ -176,6 +176,13 @@ POP
   #include "ExternalHacks/StatusWeapons/StatusWeapons.event"
 
   ALIGN 4
+  #include "WeaponLockArray/AdvWeaponLocks.event"
+  
+  //Narrow Fonts by Scraiza
+  ALIGN 4
+  #include "NarrowFont/Narrowfont installer.event"
+
+  ALIGN 4
   #include "SkillSystem/SkillSystemInstaller.event"
 
   ALIGN 4
