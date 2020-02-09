@@ -15,7 +15,7 @@
 ldr  r0,[r5,#0x0C] @ r0 = character struct.
 ldr  r1,[r0]       @load character pointer
 ldrb r1,[r1,#0x4]  @load character number
-mov  r0,#16
+mov  r0,#12
 mul  r1,r0
 adr  r0,PersonalInfoTable  @load first like
 ldr  r0,[r0]
