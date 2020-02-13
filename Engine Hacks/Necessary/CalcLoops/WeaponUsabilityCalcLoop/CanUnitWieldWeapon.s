@@ -120,7 +120,7 @@ bne PrepareExternalLoop
 mov r1,#0xFF
 and r1,r5
 lsl r0,r1,#3
-and r0,r1
+add r0,r1
 lsl r0,r0,#2
 add r0,r3
 ldr r0,[r0,#8]
