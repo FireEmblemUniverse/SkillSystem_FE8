@@ -15,11 +15,11 @@
 ldr  r0,[r5,#0x0C] @ r0 = character struct.
 ldr  r1,[r0]       @load character pointer
 ldrb r1,[r1,#0x4]  @load character number
-mov  r0,#12
+mov  r0,#16
 mul  r1,r0
 adr  r0,PersonalInfoTable  @load first like
 ldr  r0,[r0]
-ldrb r0,[r0,r1]
+ldrh r0,[r0,r1]
 mov  r1, #0x04 @ 4 pages if there are supports to show.
 cmp  r0, #0x00
 bne NoSupportsStatScreen
