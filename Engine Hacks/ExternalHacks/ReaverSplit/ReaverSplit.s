@@ -16,7 +16,7 @@ mov r1,#0x80
 lsl r1,#1
 and r0,r1
 cmp r0,#0
-beq GoBack
+beq ReaverEffectBitSet
 ldr r0,[r5,#0x4C]
 and r0,r1
 cmp r0,#0
@@ -70,7 +70,7 @@ ldr r0,[r4,#0x4C]
 ldr r1,=#0x00400000
 and r0,r1
 cmp r0,#0
-beq Return
+beq DoubleWTAEffectBitSet
 @check if defender has double WTA weapon too
 ldr r0,[r5,#0x4C]
 ldr r1,=#0x00400000

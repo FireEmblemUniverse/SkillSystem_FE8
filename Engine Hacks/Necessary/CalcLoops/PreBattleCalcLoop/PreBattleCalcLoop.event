@@ -16,7 +16,7 @@ BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
 BtlLoopTable:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
-//POIN Lull //This is effectively a stat modifier routine, so it has to go first
+POIN Lull //This is effectively a stat modifier routine, so it has to go first
 POIN FaireCheck HolyAura
 POIN BreakerCheck MageSlayer
 POIN BlowCheck
