@@ -29,7 +29,8 @@ bne NoSupportsStatScreen
     cmp r0, #0x03
     bne NoSupportsStatScreen
         mov r0, #0x00
-        strb r0, [ r5 ] @ Move to page 1 instead of 4.
+        strb r0, [r5] @ Move to page 1 instead of 4.
+        str  r0, [r5, #0x14]
 NoSupportsStatScreen:
 strb r1, [ r5, #0x01 ]
 blh Text_InitFont, r1
