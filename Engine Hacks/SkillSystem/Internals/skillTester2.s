@@ -10,6 +10,13 @@
 .set GetUnitEquippedItemSlot, 0x8016B58
 @.set ItemTable, SkillGetter+0x04
 
+.macro _blr reg
+	mov lr, \reg
+	.short 0xF800
+.endm
+
+.equ PItemSkills, SkillGetter + 0x4
+
 @arguments:
 	@r0 = unit data
 	@r1 = skill id
@@ -25,8 +32,9 @@ cmp r1, #0xFF
 beq False
 
 mov r4, r1 @skill to test
-bl Skill_Getter
-@ldr r1, SkillGetter
+@bl Skill_Getter
+ldr r1, SkillGetter
+_blr r1
 @mov lr, r1
 @.short 0xf800
 
@@ -42,14 +50,19 @@ b Loop
 
 TestPassiveItems:
 mov r0,r5
-mov r1,r4
-@mov r2,r6
-mov r2, #0x1
-neg r2, r2
-bl SkillItemCounter
-@return true if the skill was found at least once on a passive skill item
-cmp r0, #0x0
-bne True
+ldr r3, PItemSkills
+_blr r3
+@now r0 is the buffer to loop through
+ItemLoop:
+ldrb r1, [r0]
+cmp r1, #0 @list is over, now test if the equipped item has a skill
+beq False
+cmp r1, r4
+beq True
+add r0, #1
+b ItemLoop
+
+@We don't check for the equipped weapon here
 
 False:
 mov r0, #0
@@ -61,3 +74,6 @@ pop {r4-r5, pc}
 
 .pool
 
+SkillGetter:
+@POIN SkillGetter
+@POIN GetItemSkillList

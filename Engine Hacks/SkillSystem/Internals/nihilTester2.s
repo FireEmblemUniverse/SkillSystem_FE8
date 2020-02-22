@@ -6,12 +6,18 @@
 @This version is meant for skills shadowgift to avoid endless looping
 .thumb
 
+.macro _blr reg
+	mov lr, \reg
+	.short 0xF800
+.endm
+
 .set BattleActingUnit, 0x0203A4EC @attacker
 .set BattleTargetUnit, 0x0203A56C @defender
 
-.equ NegatedSkills, OffsetList + 0x0
-.equ NihilID, OffsetList + 0x4
-.equ CatchEmAll, OffsetList + 0x8
+.equ SkillTesterOriginal2, OffsetList + 0x0
+.equ NegatedSkills, OffsetList + 0x4
+.equ NihilID, OffsetList + 0x8
+.equ CatchEmAll, OffsetList + 0xC
 
 @arguments:
 	@r0 = unit pointer
@@ -51,7 +57,9 @@ ldr 	r0,=#0x203A4EC	@prepare to get attacker skills
 
 GetSkills:
 ldr 	r1,NihilID
-bl SkillTesterOriginal2
+ldr 	r3, SkillTesterOriginal2
+_blr r3
+@bl SkillTesterOriginal2
 cmp 	r0, #0x0
 beq End @skip the rest if opponent does not have nihil
 
@@ -84,10 +92,16 @@ beq End2
 mov 	r1, #0x0
 End2:
 mov 	r0,r4
-bl SkillTesterOriginal2
+ldr 	r3, SkillTesterOriginal2
+_blr r3
+@bl SkillTesterOriginal2
 pop 	{r4-r5,pc}
 
 .align
 .ltorg
 
 OffsetList:
+@POIN SkillTesterOriginal2
+@POIN NegatedSkills
+@WORD NihilID
+@WORD CatchEmAllID
