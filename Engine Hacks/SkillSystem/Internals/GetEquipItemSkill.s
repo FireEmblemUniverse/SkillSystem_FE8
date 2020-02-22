@@ -55,7 +55,7 @@ mov 	r1, #RefreshEquip
 cmp r0,r1
 bne return
 
-mov 	r0,r6
+mov 	r0,r4
 ldr 	r1, =BattleActingUnit
 cmp 	r0,r1
 beq battle_struct_unit
@@ -93,8 +93,7 @@ _blr r3
 skip_skill:
 strb 	r0, [r6,#ISB_WeaponSkill]
 return:
-mov 	r0, r6
-ldrb 	r1, [r6,#ISB_WeaponSkill]
+ldrb 	r0, [r6,#ISB_WeaponSkill]
 pop 	{r4-r6}
 pop 	{r3}
 bx r3

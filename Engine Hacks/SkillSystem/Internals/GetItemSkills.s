@@ -73,6 +73,10 @@ add 	r6, #0x2
 cmp 	r6, #0x8
 bls skill_item_loop
 skill_item_loop_end:
+mov 	r0, #0x0
+add 	r1,r5,r7
+strb 	r0, [r1]
+
 mov 	r0,r7
 strb 	r0,[r5,#ISB_SkillCount]
 str 	r4, [r5,#ISB_UnitPoin]
