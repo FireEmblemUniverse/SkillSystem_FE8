@@ -73,7 +73,6 @@ GetItemSkill:
 #include "skillItemCounter.lyn.event"
 WORD PASSIVE_ITEM_SKILL_ATTR
 
-MESSAGE CURRENTOFFSET 
 #include "ItemSkillBuffer.lyn.event"
 WORD 0x2026BC0 //offest of item skill buffer's location
 

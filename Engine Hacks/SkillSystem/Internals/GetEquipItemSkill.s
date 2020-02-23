@@ -93,7 +93,6 @@ _blr r3
 skip_skill:
 strb 	r0, [r6,#ISB_WeaponSkill]
 return:
-ldrb 	r0, [r6,#ISB_WeaponSkill]
 pop 	{r4-r6}
 pop 	{r3}
 bx r3
