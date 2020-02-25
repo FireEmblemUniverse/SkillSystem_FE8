@@ -67,16 +67,16 @@ mov r5,r1 @defender
 
 @load equipped item's weapon ability word
 ldr r0,[r4,#0x4C]
-ldr r1,=#0x00400000
+ldr r1,=0x00400000
 and r0,r1
 cmp r0,#0
-beq DoubleWTAEffectBitSet
+bne DoubleWTAEffectBitSet
 @check if defender has double WTA weapon too
 ldr r0,[r5,#0x4C]
-ldr r1,=#0x00400000
+ldr r1,=0x00400000
 and r0,r1
 cmp r0,#0
-bne Return @if they do, don't double WTA effect
+beq Return @if they do, don't double WTA effect
 
 @otherwise, we double just our effect (function is run twice)
 DoubleWTAEffectBitSet: 

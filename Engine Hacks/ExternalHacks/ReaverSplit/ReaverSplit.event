@@ -3,7 +3,7 @@
 
 //Original by Colorz, rewritten by Sme
 
-#inctext lyn "ReaverSplit.elf"
+#include "ReaverSplit.lyn.event"
 
 PUSH
 ORG 0x2C770
