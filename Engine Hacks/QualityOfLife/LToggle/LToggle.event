@@ -1,0 +1,33 @@
+#ifdef LTOGGLE_HACK
+
+
+// Toggle Battle Animations On/Off by holding L.
+// Hack by circleseverywhere
+
+// include while in BL range, with inBLRange defined
+
+#ifdef _FE8_
+#ifdef inBLRange
+
+  {
+
+  PUSH
+    ORG $2caf2
+      BL(ToggleAnim)
+  POP
+
+  ALIGN 4
+  ToggleAnim:
+    #incbin "asm/LToggle.dmp"
+
+  }
+
+#else // inBLRange
+  ERROR LToggle hack must be installed within BL range
+#endif // inBLRange
+
+#else // _FE8_
+  ERROR LToggle hack is for FE8
+#endif // _FE8_
+
+#endif // LTOGGLE_HACK

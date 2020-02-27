@@ -1,0 +1,52 @@
+#ifndef SUSPEND_EXPANSION
+#define SUSPEND_EXPANSION
+
+// Suspend Expansion
+// hack by CrazyColorz5
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+
+    ORG 0xA6446 // Disable checksum check
+      SHORT 0x46C0 // nop
+
+    ORG 0xA6408 // Stop checksum calculation, as it loads all of the save data into RAM.
+      SHORT 0x4770
+
+    ORG 0xA30EC // Make all suspends to first slot.
+      WORD 0x000000D4
+
+    ORG 0xA2FE4 // Length of suspend data
+      WORD 0x00003EF0
+
+    ORG 0xA5B88
+      gotoHackWithR3(saveHack)
+
+    ORG 0xA5D2A
+      SHORT 0x46C0 // nop for alignment
+      gotoHackWithR3(loadHack)
+
+  POP
+
+  ALIGN 4
+  saveHack:
+    #incbin "asm/ExpandedSuspend/SaveMoreBytesHack.dmp"
+    WORD DebuffTable
+    WORD DebuffTableSize
+
+  ALIGN 4
+  loadHack:
+    #incbin "asm/ExpandedSuspend/LoadMoreBytesHack.dmp"
+    WORD DebuffTable
+    WORD DebuffTableSize
+
+  }
+
+#else // _FE8_
+  ERROR Suspend Expansion is for FE8
+#endif // _FE8_
+
+#endif // SUSPEND_EXPANSION

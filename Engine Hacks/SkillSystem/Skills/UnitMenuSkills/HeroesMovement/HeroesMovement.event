@@ -6,7 +6,7 @@
 #endif // _FE8_
 
 #include "Tools/Tool Helpers.txt"
-#include "../../../../MSG/InstallHelpers.event"
+#include "../../../../Necessary/MSG/InstallHelpers.event"
 
 #define ACTION_MOVETARGET 0x23
 #define ACTION_MOVEACTIVE 0x24

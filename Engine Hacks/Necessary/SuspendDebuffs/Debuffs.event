@@ -1,0 +1,117 @@
+#ifndef DEBUFFS_HACK
+#define DEBUFFS_HACK
+
+// Debuffs
+// hack by CrazyColorz5, with additions by circleseverywhere and Kirb
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+
+    ORG 0x17D7C // To zero out the additional data upon making a new unit.
+      gotoHackWithR3(Initialization)
+
+    ORG 0xA5808 // This is for loading a previously deployed unit for the first time on a map.
+      gotoHackWithR3(Reloading)
+
+    ORG 0x188A8 // This is for decreasing the debuffs each turn/ending rally
+      jumpToHack(PerTurn)
+
+    ORG 0x59A308 // Clear debuffs on chapter switch
+      WORD $0D; POIN MapMainClearProc
+
+    ORG 0x59191C // Clear debuffs on chapter switch
+      WORD $0D; POIN GameCtrlClearProc
+
+    // prevent debuffs and loading issue (Kirb)
+
+    ORG 0xBA30
+      WORD 0x203ED40
+
+    ORG 0xBA54
+      WORD 0x203ED40
+
+    ORG 0xFA34
+      WORD 0x203ED40
+
+    ORG 0xD5B80
+      WORD 0x203ED40
+
+    // new stat getters
+    // see modular stat getters
+
+    // Weapons/Battle
+
+    ORG 0x2B54E
+      SHORT 0x46C0 // nop
+      jumpToHack(damagedThisTurn)
+
+    ORG 0x2B422
+      #incbin "asm/Debuffs/SetHitThisTurn.dmp"
+
+    // ORG 0x2C086
+      // SHORT 0x46C0 // nop
+      // jumpToHack(setDebuffs)
+
+    ORG 0x2C078
+      callHack_r3(setDebuffs)
+
+  POP
+
+  ALIGN 4
+  damagedThisTurn:
+    #incbin "asm/Debuffs/SetDamagedThisTurn.dmp"
+
+  ALIGN 4
+  setDebuffs:
+    #incbin "asm/Debuffs/SetDebuffs.dmp"
+    WORD DebuffTable
+    POIN ItemTable
+    POIN WeaponDebuffTable
+
+  ALIGN 4
+  Initialization:
+    #incbin "asm/Debuffs/NewInitializer.dmp"
+    WORD DebuffTable
+
+  ALIGN 4
+  Reloading:
+    #incbin "asm/Debuffs/NewReload.dmp"
+    WORD DebuffTable
+
+  ALIGN 4
+  PerTurn:
+    #ifndef USE_STRMAG_SPLIT
+      #incbin "asm/Debuffs/ProcessDebuffs.dmp"
+      WORD DebuffTable
+	#else
+	  #incbin "asm/Debuffs/ProcessDebuffsMag.dmp"
+	  WORD DebuffTable
+	#endif // USE_STRMAG_SPLIT
+
+  ALIGN 4
+  MapMainClearProc:
+    WORD $02; POIN (ClearDebuffs|1)
+    WORD $02 $80155C5
+    WORD $0D $859A310
+
+  ALIGN 4
+  GameCtrlClearProc:
+    WORD $02; POIN (ClearDebuffs|1)
+    WORD $02 $8009D99
+    WORD $0D $8591924
+
+  }
+
+  ClearDebuffs:
+    #incbin "asm/Debuffs/ClearDebuffs.dmp"
+    WORD DebuffTable
+    WORD DebuffTableSize
+
+#else // _FE8_
+  ERROR Suspend Expansion and Debuff hack is for FE8
+#endif // _FE8_
+
+#endif // DEBUFFS_HACK

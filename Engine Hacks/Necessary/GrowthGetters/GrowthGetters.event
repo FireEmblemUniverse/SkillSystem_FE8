@@ -1,0 +1,50 @@
+
+  ALIGN 4
+  Growth_Getter_Table:
+    POIN Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
+
+  ALIGN 4
+  Get_Hp_Growth:
+    #incbin "Get_Hp_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  ALIGN 4
+  Get_Str_Growth:
+    #incbin "Get_Str_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  ALIGN 4
+  Get_Skl_Growth:
+    #incbin "Get_Skl_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  ALIGN 4
+  Get_Spd_Growth:
+    #incbin "Get_Spd_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  ALIGN 4
+  Get_Def_Growth:
+    #incbin "Get_Def_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  ALIGN 4
+  Get_Res_Growth:
+    #incbin "Get_Res_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  ALIGN 4
+  Get_Luk_Growth:
+    #incbin "Get_Luk_Growth.dmp"
+    POIN Extra_Growth_Boosts|1
+
+  //MESSAGE Extra Growth Boosts at currentOffset
+  ALIGN 4
+  Extra_Growth_Boosts:
+    #incbin "Extra_Growth_Boosts.dmp"
+    WORD Growth_Options
+    POIN ItemTable
+	POIN SkillTester
+	WORD BlossomID
+	WORD AptitudeID
+	

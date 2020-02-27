@@ -1,0 +1,43 @@
+//FE8 str/mag split autolevelling
+//By RobertFPY/Tequila
+
+#ifdef _FE8_
+
+	PUSH
+	
+	//Write bases to ram
+	ORG $17E5C
+	callHack_r3(Write_Bases_to_RAM)
+	/*
+	//Autolevel with character growths
+	ORG $18042
+	SHORT 0
+	callHack_r3(Char_Mag_Autolevel)
+	SHORT 0x46C0
+	*/
+	//Autolevel with class growths
+	ORG $1802C
+	callHack_r3(Class_Mag_Autolevel)
+	
+	POP
+	
+	ALIGN 4
+	Write_Bases_to_RAM:
+	#incbin "WriteBasestoRAM.dmp"
+	POIN MagCharTable
+	POIN MagClassTable
+	
+	ALIGN 4
+	Char_Mag_Autolevel:
+	#incbin "CharMagAutolevel.dmp"
+	POIN MagCharTable
+	
+	ALIGN 4
+	Class_Mag_Autolevel:
+	#incbin "ClassMagAutolevel.dmp"
+	POIN MagClassTable
+
+	
+#else
+	ERROR "You're not assembling FE8 events!"
+#endif

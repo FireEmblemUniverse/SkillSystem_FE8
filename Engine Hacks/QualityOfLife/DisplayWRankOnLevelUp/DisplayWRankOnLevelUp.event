@@ -1,0 +1,25 @@
+#ifdef WRANK_ON_LEVELUP
+
+
+// Display new weapon rank on wrank up
+// Original hack by Tequila
+// Rewrite for PopR by Stan
+
+// See Engine Hacks/Popups.event for usage
+
+#include "asm/DWROLU.lyn.event"
+
+ALIGN 4
+WeaponRankUpPopup:
+	// Popup macros are defined in [PopupRework/]Extensions/PopupDefinitions.txt
+
+	Popup_SetSound(0x5A)
+
+	Popup_StringId(1) // a space
+	Popup_WTypeIcon   // wtype icon
+	Popup_StringId(textWeaponRankIncreasedTo) // using definition to force error when missing
+	WORD 0x0E 0       // the new stuff!
+
+	Popup_End
+
+#endif // WRANK_ON_LEVELUP

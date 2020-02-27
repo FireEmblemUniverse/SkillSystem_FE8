@@ -1,9 +1,0 @@
-PUSH
-
-ORG $A00EB8
-#incbin "FE8_weaponranks_fix.dmp"
-
-ORG $889F8
-BYTE $B8 $0E $A0 $08
-
-POP

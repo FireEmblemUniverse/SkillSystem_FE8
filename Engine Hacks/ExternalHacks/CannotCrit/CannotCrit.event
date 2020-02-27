@@ -1,0 +1,9 @@
+#ifdef CANNOT_CRIT
+
+//Weapon Crit 0xFF = Cannot Crit by Sme
+
+
+ALIGN 4
+#inctext lyn "CannotCrit.elf"
+
+#endif // CANNOT_CRIT

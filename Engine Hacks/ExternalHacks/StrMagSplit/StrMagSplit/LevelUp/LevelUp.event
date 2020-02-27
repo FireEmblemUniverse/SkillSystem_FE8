@@ -1,0 +1,271 @@
+
+#define StatLocation(xPos, yPos) "SHORT (xPos & 0x1F) + (yPos << 5)"
+#define StatNameLevelUp(X,Y,NamePointer) "BYTE X Y 0 0 ; POIN NamePointer NamePointer"
+#ifdef ExpandedLevelUpScreen
+	#define LevelUpCounter 0x0A
+#else
+	#define LevelUpCounter 0x08
+#endif
+PUSH
+
+	//Function that adds promo bonuses to char data
+    ORG $2BDFA
+	SHORT 0
+    callHack_r3(Add_Promotion_Bonuses)
+	
+	//Change stats at 2020108 from shorts to bytes
+	//WRITES
+	ORG $7369A
+	#incbin "WritePromotoRAM.dmp"
+	SHORT 0xE012
+	
+	//LOADS
+	ORG $737D8
+	SHORT 0x1838 0x7801
+	ORG $738DA
+	SHORT 0x46C0 0x1820 0x7801 //nop; add r0,r4,r0; ldrb r1,[r0]
+	ORG $741F6
+	SHORT 0x46C0 0x19C3 0x781A //nop; add r3,r0,r7; ldrb r2,[r3]
+	ORG $74200
+	SHORT 0x7800 //ldrb r0,[r0]
+	ORG $7420C
+	SHORT 0x7018 //strb r0,[r3]
+	ORG $74264
+	SHORT 0x46C0 0x19C0 0x7800 //nop; add r0,r0,r7; ldrb r0,[r0]
+	
+	#ifdef ExpandedLevelUpScreen
+		//Change max counter from 8 to 0xA
+		ORG $737AE
+		BYTE 0x09
+		ORG $737F6
+		BYTE 0x09
+		ORG $741EC
+		BYTE 0x0A
+		ORG $7429A
+		BYTE 0x0A
+		ORG $742A2
+		BYTE 0x0A
+		
+		//Get original class name in right place
+		ORG $7381A
+		BYTE 0xA0
+		//Get 'LV' in right place
+		ORG $73848
+		BYTE 0xA8
+		//Get new level number in right place
+		ORG $73878
+		BYTE 0xAA
+		
+		//Make sure class and level changes occur in the right place
+		ORG $7393C
+		WORD 0x20176F0
+		ORG $7397C
+		WORD 0x2017700
+		ORG $737FC
+		BYTE 0x50
+		
+		//Remove the flipping effect
+		ORG $74890
+		SHORT 0x46C0
+		ORG $748A6
+		SHORT 0x46C0
+	#endif
+	
+	//Change placement of stats
+	ORG $73898
+	POIN StatLocationTable
+	ORG $73908
+	POIN StatLocationTable
+	ORG $74280
+	POIN StatLocationTable
+	
+	//Add new stat numbers (I hope)
+	ORG $7F1E0 //increase counter
+	BYTE LevelUpCounter
+	ORG $7ED4E //jump table to retrieve original stats counter
+	BYTE LevelUpCounter
+	ORG $7ED60
+	POIN Original_Stats_Jump_Table
+	
+	//When stats go up
+	ORG $7EC0C //jump table entry count
+	BYTE LevelUpCounter
+	ORG $7EC1C
+	POIN New_Stats_Jump_Table
+	ORG $7F3C0
+	BYTE LevelUpCounter
+	
+	//##### Growths: Animations on #####
+	#ifdef ExpandedLevelUpScreen
+		//Repoint TSA Graphics: 8035B0 (1054) Palette 803B10 TSA 8039E8 32x15
+		ORG $73D90
+		POIN NewLevelUpTsa
+	
+		//Shift the background upwards
+		ORG $73D98
+		WORD 0x20235A8
+	#endif
+	
+	ORG $73588
+	#incbin "WriteGrowthtoRamAnimOn.dmp"
+	SHORT 0xE096
+	
+	//Change list of stat text IDS
+	ORG $7373A
+	SHORT 0x46C0 0x46C0
+	ORG $7375C
+	POIN Promo_Stat_Name_Table
+	
+	ORG  0x2C268
+	callHack_r3(LevelUpWriteBackMag)
+	
+	//###### Growths: Animations off #####
+	#ifdef ExpandedLevelUpScreen
+		//Repoint TSA Graphics: 8035B0 (1054) Palette 803B10 TSA 8039E8 32x15
+		ORG $7EB8C
+		POIN NewLevelUpTsa
+	
+		//Shift things upward
+		ORG $7F33A
+		BYTE 0x18
+		ORG $7EAD0 //Load more rows
+		BYTE 0xFC
+		ORG $7F330 //lower portrait placement
+		jumpToHack(lowerportrait)
+	#endif
+	
+	//Add new stat names
+	ORG $7EBA0
+	POIN Growths_Anims_Off_Stat_Name_Table
+	ORG $7EC00
+	POIN Growths_Anims_Off_Stat_Name_Table
+	ORG $7F43C
+	POIN Growths_Anims_Off_Stat_Name_Table
+	
+	//Add mag boost in battle struct
+	ORG $2BB44
+	callHack_r3(Write_Mag_Growth)
+POP
+
+ALIGN 4
+#ifdef ExpandedLevelUpScreen
+	StatLocationTable:
+	StatLocation(2,9) //Hp
+	StatLocation(2,11) //Str
+	StatLocation(2,13) //Mag
+	StatLocation(2,15) //Skl
+	StatLocation(2,17) //Spd
+	StatLocation(10,9) //Lck
+	StatLocation(10,11) //Def
+	StatLocation(10,13) //Res
+	StatLocation(10,15) //Mov
+	StatLocation(10,17) //Con
+#else
+	StatLocationTable:
+	StatLocation(2,11) //Hp
+	StatLocation(2,13) //Str
+	StatLocation(2,15) //Mag
+	StatLocation(2,17) //Skl
+	StatLocation(10,11) //Spd
+	StatLocation(10,13) //Lck
+	StatLocation(10,15) //Def
+	StatLocation(10,17) //Res
+#endif
+#ifdef ExpandedLevelUpScreen
+	ALIGN 4
+	lowerportrait:
+	SHORT 0x2038
+	SHORT 0x1A40
+	SHORT 0x3118
+	SHORT 0x86D0
+	SHORT 0x2032
+	SHORT 0x5E21
+	jumpToHack(0x7F33A)
+#endif
+
+ALIGN 4
+#ifdef ExpandedLevelUpScreen
+	Growths_Anims_Off_Stat_Name_Table:
+	StatNameLevelUp(9,0,0xA01158) // Level
+	StatNameLevelUp(1,4,0xA01160) // HP
+	StatNameLevelUp(1,6,0xA01164) // Strength
+	StatNameLevelUp(1,8,0xA01168) // Magic
+	StatNameLevelUp(1,10,0xA0116C) // Skill
+	StatNameLevelUp(1,12,0xA01170) // Speed
+	StatNameLevelUp(9,4,0xA0117C) // Luck
+	StatNameLevelUp(9,6,0xA01174) // Defense
+	StatNameLevelUp(9,8,0xA01178) // Resistance
+	StatNameLevelUp(9,10,0xA01180) // Con
+	StatNameLevelUp(9,12,Mov_Text_ID_Pointer) // Mov
+	SHORT 0xFFFF
+#else
+	Growths_Anims_Off_Stat_Name_Table:
+	StatNameLevelUp(9,0,0xA01158) // Level
+	StatNameLevelUp(1,4,0xA01160) // HP
+	StatNameLevelUp(1,6,0xA01164) // Strength
+	StatNameLevelUp(1,8,0xA01168) // Magic
+	StatNameLevelUp(1,10,0xA0116C) // Skill
+	StatNameLevelUp(9,4,0xA01170) // Speed
+	StatNameLevelUp(9,6,0xA0117C) // Luck
+	StatNameLevelUp(9,8,0xA01174) // Defense
+	StatNameLevelUp(9,10,0xA01178) // Resistance
+	SHORT 0xFFFF
+#endif
+
+ALIGN 4
+Add_Promotion_Bonuses:
+#incbin "AddPromotionBonuses.dmp"
+POIN MagClassTable
+
+#ifdef ExpandedLevelUpScreen
+	ALIGN 4
+	NewLevelUpTsa:
+	#incext compress "NewLevelupTsaDecomp.dmp"
+#endif
+	
+ALIGN 4
+Original_Stats_Jump_Table:
+POIN 0x7ED88 0x7EDA4 0x7EDAA Get_Original_Magic 0x7EDB0 0x7EDB6 0x7EDBC 0x7EDC2 0x7EDC8
+#ifdef ExpandedLevelUpScreen
+	POIN Get_Original_Con Get_Original_Mov
+#endif
+
+ALIGN 4
+Get_Original_Magic:
+SHORT 0x203A 0x5610 0xBC30 0xBC02 0x4708 //mov r0,0x47; ldsb r0,[r2,r0]; pop r4-r5; pop r1; bx r1
+
+#ifdef ExpandedLevelUpScreen	
+	ALIGN 4
+	Get_Original_Con:
+	SHORT 0x6810 0x2113 0x5640 0x211A 0x5651 0x1840 0x6852 0x2111 0x5651 0x1840 0xBC30 0xBC02 0x4708
+		
+	ALIGN 4
+	Get_Original_Mov:
+	SHORT 0x6850 0x7C80 0x211D 0x5651 0x1840 0xBC30 0xBC02 0x4708
+#endif
+	
+ALIGN 4
+New_Stats_Jump_Table:
+POIN 0x7EC44 0x7EC48 0x7EC64 0x7ED0C 0x7EC80 0x7EC9C 0x7ECB8 0x7ECD4 0x7ECF0
+#ifdef ExpandedLevelUpScreen
+	POIN 0x7ED28 0x7ED28
+#endif
+
+ALIGN 4
+Promo_Stat_Name_Table:
+#incbin "PromoStatNameTable.dmp"
+POIN Mov_Text_ID_Pointer
+	
+ALIGN 4
+Write_Mag_Growth:
+#incbin "WriteMagGrowth.dmp"
+POIN MagCharTable
+POIN MagClassTable
+	
+ALIGN 4
+Mov_Text_ID_Pointer:
+WORD Mov_Text_ID
+
+ALIGN 4
+LevelUpWriteBackMag:
+#include "LevelUpWriteBackMag.event"

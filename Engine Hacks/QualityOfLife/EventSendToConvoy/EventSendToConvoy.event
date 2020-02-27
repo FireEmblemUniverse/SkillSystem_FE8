@@ -1,0 +1,17 @@
+#ifdef EVENT_SEND_TO_CONVOY
+
+
+// Send item in Event Slot 1 to convoy via ASMC.
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  ALIGN 4
+  SendToConvoy:
+    #incbin "asm/sendToConvoyASMC.dmp"
+
+#else // _FE8_
+  ERROR Send Item To Convoy ASMC hack is for FE8
+#endif // _FE8_
+
+#endif // EVENT_SEND_TO_CONVOY

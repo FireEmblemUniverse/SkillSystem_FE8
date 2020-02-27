@@ -1,0 +1,27 @@
+//Credits: Teq for the original FE7 version and WIP FE8 Version
+
+#ifndef ItemUsabilityTable
+	#define ItemUsabilityTable 0x288B0
+#endif // ItemUsabilityTable
+#ifndef ItemEffectTable
+	#define ItemEffectTable 0x2FC90
+#endif // ItemEffectTable
+#ifndef PrepScreenUsabilityTable
+	#define PrepScreenUsabilityTable 0x29F34
+#endif // PrepScreenUsabilityTable
+
+#define Mag_Booster_Item_Usability_Ptr "ItemUsabilityTable+4*(SpiritDust-0x4B)"
+#define Mag_Booster_Item_Effect_Ptr "ItemEffectTable+4*(SpiritDust-0x4B)" 
+#define Mag_Booster_Prep_Screen_Usability_Ptr "PrepScreenUsabilityTable+4*(SpiritDust-0x5B)"
+
+#include "LevelUp/LevelUp.event"
+
+#include "Combat/CombatCalculations.event"
+
+#include "UnitViewer/UnitViewer.event"
+
+#include "PrepScreenMagBooster/PrepScreen.event"
+
+#include "AutolevellingSaves/AutolevelSave.event"
+
+#include "MagicSwordRework/MagicSwordRework.event"

@@ -1,0 +1,37 @@
+#ifdef DANGER_ZONE
+
+
+// Enable Danger Zone display by pressing select.
+// hack by circleseverywhere
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+    ORG $1cad8
+      #incbin "asm/DZ_hook.dmp"
+
+    ORG $1caec
+      POIN DangerZone+1
+
+    ORG $1cf04
+      SHORT 0 $7804
+
+    ORG $1cf48
+      WORD $202be44
+  POP
+
+  ALIGN 4
+  DangerZone:
+    #incbin "asm/DangerZone.dmp"
+    // #incbin "ASM/dangerzone_sekrit.dmp" //for konami code
+    // POIN SecretEvent
+
+  }
+
+#else // _FE8_
+  ERROR DangerZone hack is for FE8
+#endif // _FE8_
+
+#endif // DANGER_ZONE

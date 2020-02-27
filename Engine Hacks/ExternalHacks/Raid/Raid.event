@@ -1,0 +1,12 @@
+
+	#ifdef RAID
+	
+		
+		#define Raid(EventID,Pointer,Xcoord,Ycoord) "LOCA EventID Pointer [Xcoord,Ycoord] 0x21"
+		#define TileChange(X,Y) "SETVAL 0xB Coords(X,Y) ; TILECHANGE 0xFFFF"
+		#define Coords(xcoord,ycoord) "(ycoord<<16)|xcoord"
+		
+		ALIGN 4
+		#include "RaidCommand.lyn.event"
+	
+	#endif // RAID
