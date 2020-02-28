@@ -1,0 +1,27 @@
+
+#ifdef ADV_WEAPON_LOCKS
+
+//Original by Vennobennu, rewritten by Sme for skill system/general buildfile compatibility
+
+//Make prf weapons defined via array with no wrank say "Prf" (not thoroughly tested)
+PUSH
+ORG 0x16DD8
+BYTE $00 $3C $3D $FF 
+POP
+
+
+#inctext lyn "AdvWeaponLocks.elf"
+
+#define SoftCharLock 0
+#define HardCharLock 1
+#define SoftClassLock 2
+#define HardClassLock 3
+#define EndLockArray 0
+
+TestArray:
+BYTE HardClassLock
+BYTE EirikaLord
+BYTE Rogue
+BYTE EndLockArray
+
+#endif // ADV_WEAPON_LOCKS

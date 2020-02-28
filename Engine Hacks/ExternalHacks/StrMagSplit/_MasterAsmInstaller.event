@@ -1,0 +1,39 @@
+
+#ifndef STR_MAG_MAIN
+
+	#define STR_MAG_MAIN
+	
+	// NOTE ON MAGIC SWORDS: TO MAKE MAGIC SWORDS USE MAGIC INSTEAD OF STRENGTH, SET THE "MAGIC DAMAGE" (0x2) BIT IN THE ITEM ABILITY BITFIELD.
+	
+	#ifndef SpiritDust
+		#define SpiritDust 0x5C // Energy Ring by default
+	#endif
+	
+	// If uncommented, a level up screen with an extra row to fit Mov and Con will be used.
+	// This level up screen, however, has some small graphical glitches.
+	// If left commented, the regular level up screen will be used with Mag and without Con. No graphical glitches.
+	// #define ExpandedLevelUpScreen
+	
+	//Spirit Dust item icon
+	#ifndef SpiritDustIcon
+		
+		#define SpiritDustIcon 0xAB
+		PUSH
+		ORG $5926F4 + ( SpiritDustIcon * 0x80 )
+		#incext Png2Dmp "SpiritDust.png"
+		POP
+	
+	#endif // SpiritDustIcon
+	
+	#include "StrMagSplit/Installer.event"
+	
+	//#include "Chapter.event"
+	
+	// #include "Suspend.event"
+	
+	ALIGN 4 //get item mag bonus
+    GetItemMagBonus:
+    #incbin "../../Necessary/StatGetters/_asm/GetItemMagBonus.dmp"
+    POIN ItemTable
+	
+#endif // STR_MAG_MAIN

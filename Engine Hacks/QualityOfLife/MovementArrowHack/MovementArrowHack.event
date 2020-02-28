@@ -1,0 +1,33 @@
+#ifdef MOVEARROW_HACK
+
+
+// Movement arrow changes that makes it possible to move to a tile when pressing A on an enemy unit.
+// hack by circleseverywhere
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+    ORG $32f0c
+      jumpToHack(ArrowFix)
+
+    ORG $1cdf8
+      POIN ArrowChecker
+  POP
+
+  ALIGN 4
+  ArrowFix:
+    #incbin "asm/MovementArrowFix.dmp"
+
+  ALIGN 4
+  ArrowChecker:
+    #incbin "asm/MovementArrowFix2.dmp"
+
+  }
+
+#else // _FE8_
+  ERROR Movement arrow hack is for FE8
+#endif // _FE8_
+
+#endif // MOVEARROW_HACK

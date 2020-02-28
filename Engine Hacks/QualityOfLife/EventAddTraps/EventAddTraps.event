@@ -1,0 +1,19 @@
+#ifdef EVENT_ADD_TRAPS
+
+
+// Spawn new traps through events.
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  #define AddTraps(pointer) "SVAL 1 ((pointer)|0x8000000); ASMC (LoadTrapsASMC|1)"
+
+  ALIGN 4
+  LoadTrapsASMC:
+    #incbin "asm/NewTrapInitializer.dmp"
+
+#else // _FE8_
+  ERROR Event AddTraps hack is for FE8
+#endif // _FE8_
+
+#endif // EVENT_ADD_TRAPS

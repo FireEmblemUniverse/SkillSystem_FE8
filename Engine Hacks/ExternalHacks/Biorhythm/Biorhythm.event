@@ -1,0 +1,51 @@
+#ifdef BIORHYTHM
+
+
+ALIGN 4
+BiorhythmFunc:
+#incbin "Biorhythm.dmp"
+POIN BiorhythmGetter
+WORD 5 //negative
+WORD 3 //negative
+WORD 1 //negative
+WORD 0 //neutral
+WORD 1 //positive
+WORD 3 //positive
+WORD 5 //positive
+WORD 3 //positive
+WORD 1 //positive
+WORD 0 //neutral
+WORD 1 //negative
+WORD 3 //negative
+WORD TempestID
+WORD SerenityID
+POIN SkillTester
+
+ALIGN 4
+BiorhythmGetter: //takes char struct in r0
+#incbin "BiorhythmGetter.dmp"
+POIN BiorhythmTable
+
+ALIGN 4
+BiorhythmNameGetter:
+#incbin "BiorhythmNameGetter.dmp"
+POIN BiorhythmGetter
+POIN BiorhythmTable
+POIN BiorhythmTextTable
+
+ALIGN 4
+BiorhythmTextTable:
+WORD SS_BiorhythmWorst
+WORD SS_BiorhythmBad
+WORD SS_BiorhythmPoor
+WORD SS_BiorhythmNeutral
+WORD SS_BiorhythmGood
+WORD SS_BiorhythmGreat
+WORD SS_BiorhythmBest
+WORD SS_BiorhythmGreat
+WORD SS_BiorhythmGood
+WORD SS_BiorhythmNeutral
+WORD SS_BiorhythmPoor
+WORD SS_BiorhythmBad
+
+#endif //BIORHYTHM

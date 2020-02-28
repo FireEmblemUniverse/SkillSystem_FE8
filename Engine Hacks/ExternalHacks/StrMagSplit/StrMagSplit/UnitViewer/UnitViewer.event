@@ -1,0 +1,71 @@
+//FE8 str/mag split unit viewer
+//By RobertFPY/Tequila
+
+#ifdef _FE8_
+	
+	PUSH
+	
+	//Text labels at the top
+	ORG $A17D7C
+	SHORT 0x04FE
+	ORG $A17D84
+	SHORT 0x0546
+	ORG $A17D8C
+	SHORT 0x04FF
+	ORG $A17D94
+	SHORT 0x0547
+	ORG $A17D9C
+	SHORT 0x04EC
+	ORG $A17DA4
+	SHORT 0x0548
+	ORG $A17DAC
+	SHORT 0x04ED
+	ORG $A17DB4
+	SHORT 0x0549
+	ORG $A17DBC
+	SHORT 0x04EE
+	ORG $A17DC4
+	SHORT 0x054A
+	ORG $A17DCC
+	SHORT 0x04EF
+	ORG $A17DD4
+	SHORT 0x054B
+	ORG $A17DDC
+	SHORT 0x04F0
+	ORG $A17DE4
+	SHORT 0x054C
+	
+	
+	//Shift skills over
+	ORG $9269C
+	BYTE 0x1E
+	ORG $926C6
+	BYTE 0x24
+	ORG $926F0
+	BYTE 0x2A
+	ORG $92714
+	BYTE 0x30
+	ORG $9273E
+	BYTE 0x36
+	
+	//Change place this pointer is loaded from
+	ORG $9266E
+	SHORT 0x493E
+	
+	//Add mag
+	ORG $92766
+	SHORT 0xE001
+	WORD 0x200D6E0
+	callHack_r3(Unit_Viewer)
+	SHORT 0xE225
+	
+	POP
+	
+	ALIGN 4
+	Unit_Viewer:
+	#incbin "UnitViewer.dmp"
+	POIN MagClassTable
+	
+#else
+	ERROR "You're not assembling FE7 events!"
+#endif

@@ -1,0 +1,40 @@
+
+#ifndef STRMAG_BL_RANGE
+
+	#define STRMAG_BL_RANGE
+
+	// #include "StatBarFix.event" // This actually isn't normally included?
+
+	ALIGN 4
+	SHORT 0
+	Arena_Fix1:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 0x2800 0x46C0 //lsl r0,#0x18; cmp r0, #0x00; nop
+	jumpToHack(0x583E8)
+	
+	ALIGN 4
+	Arena_Fix2:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 0x2800 //lsl r0,#0x18; cmp r0,#0x0
+	jumpToHack(0x58440)
+	
+	ALIGN 4
+	SHORT 0
+	Arena_Fix3:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 //lsl r0,#0x18
+	jumpToHack(0x5841A)
+	
+	ALIGN 4
+	SHORT 0
+	Arena_Fix4:
+	BL(Arena_Mage_Melee_Fix)
+	SHORT 0x0600 0x2800 0x46C0 //lsl r0,#0x18; cmp r0,#0x00; nop
+	jumpToHack(0x584A4)
+	
+	ALIGN 4
+	Arena_Mage_Melee_Fix:
+	#incbin "StrMagSplit/Combat/Arena_Mage_Melee_Fix.dmp"
+	POIN ItemTable
+
+#endif

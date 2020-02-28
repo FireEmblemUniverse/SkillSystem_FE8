@@ -1,4 +1,4 @@
-#define DoesBargainStack False //set this to true to get 1/4 prices with both bargain and silver card simultaneously
+
 
 ALIGN 4
 Bargain:
@@ -6,7 +6,7 @@ Bargain:
 POIN SkillTester
 WORD BargainID
 POIN SilverCardList
-WORD DoesBargainStack
+WORD DOES_BARGAIN_STACK
 
 
 SilverCardList: //null-terminated list of item IDs to act as silver cards
