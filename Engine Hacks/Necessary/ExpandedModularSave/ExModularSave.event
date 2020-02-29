@@ -194,10 +194,11 @@ gSuspendSaveChunks:
 	// Save Debuffs (TODO: maybe reduce size)
 	DeclSaveChunk($24A8, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
 
-	// ends at $2DA8
-	// free up to $2E78 ($D0 free bytes)
+	// Permanent eids (moved here because of a mistake in the previous allocation)
+	DeclSaveChunk($2DA8, $0019, $0A3150+1, $0A3198+1)
 
-	DeclSaveChunk($2DA8, $0019, $0A3150+1, $0A3198+1) // Permanent eids (moved here because of a mistake in the previous allocation)
+	// ends at $2DC1
+	// free up to $2E78 ($B7 free bytes)
 
 	DeclSaveChunk(0, 0, 0, MSu_LoadClaimFlagsFromParentSave) // Load Bonus Claim flags from parent save
 
