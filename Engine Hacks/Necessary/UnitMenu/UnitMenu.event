@@ -1,0 +1,163 @@
+#ifndef UNIT_MENU
+#define UNIT_MENU
+
+#include "Extensions/Hack Installation.txt"
+#include "_UnitMenuDefs.event"
+
+PUSH
+  // Repoint Unit Menu
+
+  ORG $59D1F8
+    POIN UnitMenuTable
+
+  // Make the unit menu wider (to fit longer words)
+
+  ORG $59d1f2
+    BYTE 0x9 // width
+
+  ORG $1d4fa
+    BYTE $01 // left x coord (open 1)
+
+  ORG $1d4fc
+    BYTE $14 // right x coord (open 1)
+
+  ORG $1D44E
+    BYTE $01 // left x coord (open 2)
+
+  ORG $1D450
+    BYTE $14 // right x coord (open 2)
+
+  /*
+
+  Goddammit Teq (capture hooks here too)
+
+  ORG $22882
+    BYTE $01 // left x coord (go back 1)
+
+  ORG $22884
+    BYTE $14 // right x coord (go back 1)
+
+  */
+
+  ORG $22818
+    BYTE $01 // left x coord (go back 2)
+
+  ORG $2281A
+    BYTE $14 // right x coord (go back 2)
+
+  ORG $22772
+    BYTE $01 // left x coord (go back 3)
+
+  ORG $22774
+    BYTE $14 // right x coord (go back 3)
+
+  ORG $23660
+    BYTE $01 // left x coord (go back 4)
+
+  ORG $23662
+    BYTE $14 // right x coord (go back 4)
+
+POP
+
+ALIGN 4         //Insert new commands where you want them to appear in the menu
+UnitMenuTable:
+  //Use the macro MenuCommand(name,description,colour,usability,effect)
+  //Color options: NormalText, GrayText, BlueText, OrangeText, GreenText (flashes), BlackText
+  //MenuCommand(DualAtkTxtID,DualAtkDescId,0,DualAtkCheck,DualAtkSelected) 
+  
+  
+  MenuCommand(0x67A, 0x6CC, BlueText, $22FDC, $23020)
+  // UM_Seize
+  #ifdef ESCAPE_ARRIVE
+    MenuCommand(ArriveName, ArriveDesc, BlueText, ArriveCheck, $23020)
+    MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeLordUsability, EscapeLordEffect)
+    MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeGeneralUsability, EscapeGeneralEffect)
+  #endif // ESCAPE_ARIVE
+  MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
+  // UM_Attack
+  MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
+  // UM_Attack_B
+  MenuCommand(0x67b, 0x6c0, NormalText, $24a28, AttackEffect, $22c31, $22c99)
+  //Lunge
+  MenuCommand(UM_Lunge, UM_LungeDesc, NormalText, LungeUsability, LungeEffect, $22c31, $22c99)
+  //mercy
+  MenuCommand(UM_Mercy, UM_MercyDesc, NormalText, MercyUsability, MercyEffect, $22c31, $22c99)
+  //gamble
+  MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect, $22c31, $22c99)
+  //capture
+  MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+  UM_Staff
+  UM_Ride
+  UM_Exit
+  UM_Play
+  
+  //UM_Dance
+  MenuCommand(0x67E,0x6C2,NormalText,NewDanceUsability,0x231D0)
+
+  UM_Steal
+  
+  //UM_Summon
+  MenuCommand(0x693,0x6DD,NormalText,NewSummonUsability,0x244B8)
+  
+  UM_Summon_DK
+  UM_Pick
+
+#ifdef HAX_RALLIES
+  // Rally preview conflicts with window semitransparency changes
+  // So we only add that in if it is disabled
+
+#ifdef SEMITRANSPARENCY_CHANGES
+  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyCommandUsability, RallyCommandEffect)
+#else
+  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyCommandUsability, RallyCommandEffect, RallyCommandSwitchIn, RallyCommandSwitchOut)
+#endif
+
+#endif // HAX_RALLIES
+
+  // UM_Talk
+  MenuCommand(0x680, 0x6c9, GreenText, 0x23c81, 0x23cc5)
+  // UM_Support
+  MenuCommand(0x681, 0x6ca, GreenText, 0x23d15, 0x23d65)
+  UM_Visit
+  
+  #ifdef RAID
+    MenuCommand(RaidNameText,RaidDescText,NormalText,RaidUsability,RaidEffect)
+  #endif // RAID
+  
+  #ifdef STAIRS_ASM
+	MenuCommand(StairsNameText,StairsDescText,GreenText,StairsUsability,StairsEffect)
+  #endif // STAIRS_ASM
+  
+  UM_Chest
+  UM_Door
+  UM_Armory
+  UM_Vendor
+  UM_Secret
+  UM_Arena
+  
+  // Shove & cie
+  MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, prShoveCommand_Usability,      prShoveCommand_Effect)
+  MenuCommand(UM_Smite,      UM_SmiteDesc,      NormalText, prSmiteCommand_Usability,      prSmiteCommand_Effect)
+  MenuCommand(UM_Pivot,      UM_PivotDesc,      NormalText, prPivotCommand_Usability,      prPivotCommand_Effect)
+  MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Usability, prRepositionCommand_Effect)
+  MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
+  
+  UM_Rescue
+  UM_Give
+  UM_Take
+  // MenuCommand(0x689, 0x6c5, 0, 0x228a4, RescueEffect) //rescue
+  // MenuCommand(UMText_Transfer,UMText_TransferDesc,GreenText,TransferUsability,TransferTarget) //transfer
+  // MenuCommand(UMText_Switch,UMText_SwitchDesc,GreenText,SwitchUsability,SwitchCommand)   //switch
+  UM_Drop
+
+  UM_Item
+  UM_Trade
+  
+  UM_Supply
+  //MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+  
+  UM_Wait
+
+  UM_Separator 
+
+#endif // UNIT_MENU

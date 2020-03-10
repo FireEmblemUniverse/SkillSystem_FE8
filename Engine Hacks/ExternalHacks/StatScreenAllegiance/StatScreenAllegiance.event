@@ -1,0 +1,26 @@
+#ifdef STATSCREEN_ALLEGIANCE
+
+
+// Statscreen palette based on allegiance
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  {
+
+  PUSH
+    ORG $8859c
+      jumpToHack(StatscreenAlleg)
+  POP
+
+  ALIGN 4
+  StatscreenAlleg:
+    #incbin "asm/statscreenAlleg.dmp"
+
+  }
+
+#else // _FE8_
+  ERROR Statscreen palette based on allegiance hack is for FE8
+#endif // _FE8_
+
+#endif // STATSCREEN_ALLEGIANCE

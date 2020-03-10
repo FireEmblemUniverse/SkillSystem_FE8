@@ -1,0 +1,21 @@
+#ifdef PROLOGUE_SUPPLY
+
+
+// Allow usage of Supply command in prologue.
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  PUSH
+    ORG $23f6e //Access Supply
+      SHORT $46C0
+
+    ORG $31646 //send to supply
+      SHORT $46C0
+  POP
+
+#else // _FE8_
+  ERROR Send Item To Convoy ASMC hack is for FE8
+#endif // _FE8_
+
+#endif // PROLOGUE_SUPPLY

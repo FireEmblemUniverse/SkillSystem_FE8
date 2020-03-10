@@ -8,11 +8,6 @@
 #include "EAstdlib.event"
 #include "Extensions/Hack Installation.txt"
 
-#ifndef FreeSpace
-    #define FreeSpace 0xB2A610
-    ORG FreeSpace
-#endif
-
 #ifndef ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
 	//we merely add Slayer and Nullify checks as necessary
 	

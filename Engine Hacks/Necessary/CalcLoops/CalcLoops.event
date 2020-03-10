@@ -1,0 +1,17 @@
+
+#include "EXPCalcLoop/EXPCalcLoop.event"
+
+#include "MugLoadingCalcLoop/MugLoadingCalcLoop.event"
+
+#include "PostActionCalcLoop/PostActionCalcLoop.event"
+
+#include "PostBattleCalcLoop/PostBattleCalcLoop.event"
+
+#include "PreBattleCalcLoop/PreBattleCalcLoop.event"
+
+#include "WeaponUsabilityCalcLoop/WeaponUsabilityCalcLoop.event"
+
+#include "WTACalcLoop/WTACalcLoop.event"
+
+#include "BattleProcCalcLoop/BattleProcCalcLoop.event"
+

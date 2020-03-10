@@ -1,0 +1,43 @@
+PUSH
+ORG 0x16574
+#incbin "CanUnitWieldWeapon.dmp"
+POIN ItemTable
+POIN WLockLookupList
+POIN WeaponLockLoop
+POP
+//vanilla function size: 0x1DA
+//new function size: 0x100
+//saved: 218 bytes
+
+ALIGN 4
+WLockLookupList:
+//WORD 0x003C1C00 0xF0070000
+WORD 0x00000400 0x00040000 	//Monster Lock
+WORD 0x00000800 0x00010000	//Roy Lock
+WORD 0x00001000 0x00020000	//Myrm Lock
+WORD 0x00010000 0x00000000  //Unusable
+WORD 0x00040000 0x10000000  //Eirika Lock
+WORD 0x00080000 0x20000000  //Ephraim Lock
+WORD 0x00100000 0x40000000  //Lyn Lock
+WORD 0x00200000 0x80000000  //Athos Lock
+WORD 0xFFFFFFFF 			//Terminator
+
+ALIGN 4
+DoesUnitHaveWRank: //because of how it works, this both needs to be in the external calc loop and contain lumina/shadowgift
+#incbin "DoesUnitHaveWRank.dmp"
+POIN ItemTable
+POIN SkillTester2	//changed to skilltester2 to avoid indirect recursion (endlessly looping routine calls)
+WORD ShadowgiftID
+WORD LuminaID
+WORD SHADOWGIFT_VIA_STAFF_RANK
+WORD LUMINA_VIA_STAFF_RANK
+
+ALIGN 4
+WeaponLockLoop: //r0 = character pointer, r1 = item halfword, r2 = rank; functions return in r0 either true or false for whether or not the weapon may be used
+#ifdef ADV_WEAPON_LOCKS
+	POIN AdvWeaponLocks 
+#endif // ADV_WEAPON_LOCKS
+POIN Amische
+POIN DoesUnitHaveWRank //contains Lumina/Shadowgift
+WORD 0
+

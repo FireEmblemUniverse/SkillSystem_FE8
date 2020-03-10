@@ -1,0 +1,37 @@
+#ifdef HAX_PROPER_RANGE_GETTERS_EVENT
+
+
+#ifndef _FE8_
+	ERROR PROPER RANGE GETTERS is for FE8
+#endif
+
+#include "Extensions/Hack Installation.txt"
+#include "EAstdlib.event"
+
+#ifndef FreeSpace
+	#define FreeSpace 0xB2A610
+	ORG FreeSpace
+#endif
+
+#include "ProperRangeGetters_Internal.event"
+
+// For both routines:
+
+// Arguments:
+	// r0 = Item Short
+	// r1 = Unit Struct
+// Returns:
+	// r0 = [Min|Max] Range
+
+ALIGN 4
+prMinRangeGetter:
+	#incbin "asm/GetMinRange.bin"
+
+ALIGN 4
+prMaxRangeGetter:
+	#incbin "asm/GetMaxRange.bin"
+	POIN (SkillTester+1)
+	WORD BowRangeUpID
+	WORD StaffSavantID // Not used yet
+
+#endif // HAX_PROPER_RANGE_GETTERS_EVENT

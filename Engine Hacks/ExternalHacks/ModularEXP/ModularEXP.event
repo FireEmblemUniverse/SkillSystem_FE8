@@ -1,0 +1,13 @@
+
+#ifdef MODULAR_EXP
+	
+
+	ALIGN 4
+	#include "ModularExp.lyn.event" // Main hook removed because this will be in the EXPCalcLoop. ModularStaffEXP is untouched.
+
+	ALIGN 4
+	#define ModularEXPEntry(Character,Chapter,EventID,Multiplier,Divisor) "BYTE Character Chapter EventID Multiplier Divisor 0x00 0x00 0x00"
+	ModularEXPChapterTable:
+	ModularEXPEntry(0,0,0,0,0)
+	
+#endif // MODULAR_EXP

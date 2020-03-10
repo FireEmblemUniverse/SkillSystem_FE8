@@ -614,7 +614,7 @@ beq GoBack
 	ldrb r1,[r1]
 	.short 0xF800
 	cmp r0,#0
-	beq noDefRally
+	beq GoBack
 
 	@check enemy for relevant lull skills
 	ldr r0,=SkillTester
@@ -624,7 +624,7 @@ beq GoBack
 	ldrb r1,[r1]
 	.short 0xF800
 	cmp r0,#0
-	beq noDefRally
+	beq GoBack
 
 	@we subtract 2 defense if neither magic bit is set on opponent's weapon (this works with or without strmag split)
 	mov r0,r5
@@ -633,7 +633,7 @@ beq GoBack
 	ldr r1,=#0x00000042
 	and r0,r1
 	cmp r0,#0
-	beq noDefRally
+	beq GoBack
 	
 	mov r0,r4
 	add r0,#0x5C @defense

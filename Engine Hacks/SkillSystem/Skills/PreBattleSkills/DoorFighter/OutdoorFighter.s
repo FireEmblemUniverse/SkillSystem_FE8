@@ -15,6 +15,14 @@ push {r4-r7,lr}
 mov r4, r0
 mov r5, r1
 
+mov r0,r4
+ldr r1,SkillTester
+mov r14,r1
+ldr r1,OutdoorFighterID
+.short 0xF800
+cmp r0,#0
+beq GoBack
+
 ldrb r0,[r4,#0x10] @r0=x pos
 ldrb r1,[r4,#0x11] @r1=y pos
 ldr		r2,=gMapTerrain	@Load the location in the table of tables of the map you want
