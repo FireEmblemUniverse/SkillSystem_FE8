@@ -1,0 +1,37 @@
+#ifdef TEXT_CHAPTER_NAMES
+
+
+// Chapter Names as Text.
+// Hack by circleseverywhere
+
+#ifdef _FE8_
+
+  {
+
+  #include "EAstdlib.event"
+  #include "Extensions/Hack Installation.txt"
+
+  PUSH
+    ORG $89624
+      jumpToHack(Chname)
+  POP
+
+  Chname:
+    #incbin "asm/fe8_chapter_names.dmp"
+    POIN ChFont
+    POIN ChTable
+
+  ChFont:
+    //#incext Png2Dmp "bin/font.png" --lz77
+    #incbin "bin/font.dmp"
+
+  ChTable:
+    #incbin "bin/chartable.dmp"
+
+  }
+
+#else // _FE8_
+  ERROR Chapter Names as Text hack is for FE8
+#endif // _FE8_
+
+#endif // TEXT_CHAPTER_NAMES

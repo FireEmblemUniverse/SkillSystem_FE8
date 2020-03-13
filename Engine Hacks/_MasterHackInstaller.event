@@ -5,12 +5,12 @@
 /////////////////////////////////////////////////////////
 
 #include "Extensions/Hack Installation.txt"
-#include "PopupRework/Extensions/PopupDefinitions.txt"
+#include "Necessary/PopupRework/Extensions/PopupDefinitions.txt"
 
 // hack configuration file
 #include "Config.event"
 
-#include "_UnitMenuDefs.event"
+#include "Necessary/UnitMenu/_UnitMenuDefs.event"
 
 ////////////////////////////////SUPPORTING CHANGES
 
@@ -32,13 +32,13 @@ ORG FreeSpaceBLRange //defined in custom definitions
 #define inBLRange
 
   //Talk and Support don't end your turn
-  #include "ContemporaryTalkSupport/ContemporaryTalkSupport.event"
+  #include "QualityOfLife/ContemporaryTalkSupport/ContemporaryTalkSupport.event"
 
   //Hold L to toggle Anims
-  #include "LToggle/LToggle.event"
+  #include "QualityOfLife/LToggle/LToggle.event"
 
   //negative wt/crit
-  #include "NegativeWStatDisplay/NegativeDisplay.event"
+  #include "QualityOfLife/NegativeWStatDisplay/NegativeDisplay.event"
 
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
@@ -50,7 +50,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 	  #define USE_SAVE_EXPANSION // Force use of EMS with Str/Mag Split
 	#endif // USE_SAVE_EXPANSION
 	
-	#include "Strmag/BLRange.event"
+	#include "ExternalHacks/StrMagSplit/BLRange.event"
   
   #endif // USE_STRMAG_SPLIT
 	
@@ -60,138 +60,152 @@ POP
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 
   //HP Bars (and effective weapon warning)
-  #include "HpBars/HpBars.event"
+  #include "QualityOfLife/HpBars/HpBars.event"
 
   //Improved Sound Mixer
-  #include "ImprovedSoundMixer/SoundMixer.event"
+  #include "QualityOfLife/ImprovedSoundMixer/SoundMixer.event"
 
   //Danger Zone (select button)
-  #include "DangerZone/DangerZone.event"
+  #include "QualityOfLife/DangerZone/DangerZone.event"
 
   //Event Writer ASMC
-  #include "EventWriter/EventWriter.event"
+  #include "QualityOfLife/EventWriter/EventWriter.event"
 
   //Casual Mode (based on Event ID 0xB0)
-  #include "CasualMode/CasualMode.event"
+  #include "QualityOfLife/CasualMode/CasualMode.event"
 
   //Movement Arrow doesn't update on allies
-  #include "MovementArrowHack/MovementArrowHack.event"
+  #include "QualityOfLife/MovementArrowHack/MovementArrowHack.event"
 
   //Negative Stat Boosts
-  #include "NegativeStatBoosts/NegativeStatBoosts.event"
+  #include "Necessary/NegativeStatBoosts/NegativeStatBoosts.event"
 
   //Dragon Veins
-  #include "DragonVeins/DragonVeins.event"
+  #include "ExternalHacks/DragonVeins/DragonVeins.event"
+  
+  //Proper Range Getters
+  #include "ExternalHacks/ProperRangeGetters/ProperRangeGetters/ProperRangeGetters.event"
 
   //Leadership Stars
-  #include "LeadershipStars/LeadershipStars.event"
+  #include "ExternalHacks/LeadershipStars/LeadershipStars.event"
   
   //Biorhythm
-  #include "Biorhythm/Biorhythm.event"
+  #include "ExternalHacks/Biorhythm/Biorhythm.event"
 
   //Modular Stat Screen
   #ifndef USE_STRMAG_SPLIT
-	#include "MSS/ModularStatScreen.event"
+	#include "Necessary/MSS/ModularStatScreen.event"
   #else
-    #include "MSS/ModularStatScreenStrmag/ModularStatScreen.event"
+    #include "ExternalHacks/StrMagSplit/ModularStatScreen/ModularStatScreen.event"
   #endif // USE_STRMAG_SPLIT
   
   // Strength/Magic Split
   #ifdef USE_STRMAG_SPLIT
   
-	#include "Strmag/_MasterAsmInstaller.event"
+	#include "ExternalHacks/StrMagSplit/_MasterAsmInstaller.event"
 	
   #endif // USE_STRMAG_SPLIT
   
   //Anima Triangle
-  #include "AnimaTriangle/AnimaTriangle.event"
+  #include "ExternalHacks/AnimaTriangle/AnimaTriangle.event"
   
   //Modular EXP
-  #include "ModularEXP/ModularEXP.event"
+  #include "ExternalHacks/ModularEXP/ModularEXP.event"
   
   //Portrait Selection
-  #include "PortraitSelectASM/PortraitSelectionASM.event"
+  #include "ExternalHacks/PortraitSelectASM/PortraitSelectionASM.event"
 	
   //Stairs
-  #include "Stairs/Stairs.event"
+  #include "ExternalHacks/Stairs/Stairs.event"
 
   //Raid
-  #include "Raid/Raid.event"
+  #include "ExternalHacks/Raid/Raid.event"
   
   //Escape-Arrive
-  #include "Escape-Arrive/EscapeInstaller.event"
+  #include "ExternalHacks/EscapeArrive/EscapeInstaller.event"
   
   //Debuffs
-  #include "SuspendDebuffs/Debuffs.event"
+  #include "Necessary/SuspendDebuffs/Debuffs.event"
 
   //Stat Screens palette by allegiance
-  #include "StatScreenAllegiance/StatScreenAllegiance.event"
+  #include "ExternalHacks/StatScreenAllegiance/StatScreenAllegiance.event"
 
   //Menu Semitransparency
-  #include "Misc/SemitransparencyChanges.event"
+  #include "QualityOfLife/SemitransparencyChanges.event"
 
   //Supply available in prologue
-  #include "Misc/PrologueSupply.event"
+  #include "QualityOfLife/PrologueSupply.event"
   
   //Item Range Fix
-  #include "ItemRangeFix/ItemRangeFix.event"
+  #include "Necessary/ItemRangeFix/ItemRangeFix.event"
   
   //Chapter Names as Text
-  #include "TextChNames/TextChNames.event"
+  #include "QualityOfLife/TextChNames/TextChNames.event"
 
   //PC and Generic Music Hack (writes to e80000/e90000)
-  // #include "Misc/PCAndGenericMusic.event"
+  #include "QualityOfLife/PCAndGenericMusic.event"
 
-  #include "EventRescue/EventRescue.event"
-  #include "EventAddTraps/EventAddTraps.event"
-  #include "EventSendToConvoy/EventSendToConvoy.event"
+  #include "QualityOfLife/EventRescue/EventRescue.event"
+  #include "QualityOfLife/EventAddTraps/EventAddTraps.event"
+  #include "QualityOfLife/EventSendToConvoy/EventSendToConvoy.event"
 
   // Fix gaining wexp from weapons you don't have wexp in (for Shadowgift/Lumina)
-  #include "Misc/FixWpnRnk.event"
+  #include "Necessary/FixWpnRnk.event"
   
   //Unit Action Rework (required for movement skills)
-  #include "UnitActionRework/UnitActionRework.event"
+  #include "Necessary/UnitActionRework/UnitActionRework.event"
 
   //Change Sick Status to Freeze
-  #include "Freeze/Freeze.event"
-  #include "Freeze/EventFreeze.event"
+  #include "ExternalHacks/Freeze/Freeze.event"
+  #include "ExternalHacks/Freeze/EventFreeze.event"
   
   //Reaver Split
   ALIGN 4
-  #include "ReaverSplit/ReaverSplit.event"
+  #include "ExternalHacks/ReaverSplit/ReaverSplit.event"
   
   //Cannot Crit
   ALIGN 4
-  #include "CannotCrit/CannotCrit.event"
+  #include "ExternalHacks/CannotCrit/CannotCrit.event"
   
   //AdvWeaponLocks
   ALIGN 4
-  #include "WeaponLockArray/AdvWeaponLocks.event"
+  #include "ExternalHacks/WeaponLockArray/AdvWeaponLocks.event"
   
   //Status-Inflicting Weapons
   ALIGN 4
-  #include "StatusWeapons/StatusWeapons.event"
+  #include "ExternalHacks/StatusWeapons/StatusWeapons.event"
+  
+  //Narrow Fonts by Scraiza
+  ALIGN 4
+  #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
 
   ALIGN 4
   #include "SkillSystem/SkillSystemInstaller.event"
 
   ALIGN 4
-  #include "DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
+  #include "QualityOfLife/DisplayWRankOnLevelUp/DisplayWRankOnLevelUp.event"
 
   ALIGN 4
-  #include "BattleStatsWithAnimsOff/FE8-BattleStats.event"
+  #include "QualityOfLife/BattleStatsWithAnimsOff/FE8-BattleStats.event"
   
   ALIGN 4
-  #include "StatGetters/_InstallStatGetters.event"
+  #include "Necessary/StatGetters/_InstallStatGetters.event"
+  
+  //Growth Getters
+  #ifndef USE_STRMAG_SPLIT
+    #include "Necessary/GrowthGetters/GrowthGetters.event"
+  #else
+    #include "ExternalHacks/StrMagSplit/GrowthGetters/GrowthGetters.event"
+  #endif // USE_STRMAG_SPLIT
   
   ALIGN 4
-  #include "IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
-  #include "PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
+  #include "Necessary/IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
+  #include "Necessary/PopupRework/PopupRework.event" // Allows to expand on vanilla popups by adding components
   
-  #include "UnitMenu.event"
-  #include "Popups.event"
+  #include "Necessary/UnitMenu/UnitMenu.event"
+  #include "Necessary/Popups.event"
   
-  #include "SkillSystem/Internals/CalcLoops/CalcLoops.event"
+  #include "Necessary/CalcLoops/CalcLoops.event"
 
   #ifdef STAIRS_ASM
     #ifndef USE_SAVE_EXPANSION
@@ -206,7 +220,7 @@ POP
 
     MESSAGE "Using EMS Save/Suspend Expansion"
 
-    #include "ExpandedModularSave/ExModularSave.event"
+    #include "Necessary/ExpandedModularSave/ExModularSave.event"
 
   #else // USE_SAVE_EXPANSION
 
@@ -214,6 +228,6 @@ POP
 
     MESSAGE "Using Legacy Suspend Expansion"
 
-    #include "SuspendDebuffs/SuspendExpansion.event"
+    #include "Necessary/SuspendDebuffs/SuspendExpansion.event"
 
   #endif // USE_SAVE_EXPANSION
