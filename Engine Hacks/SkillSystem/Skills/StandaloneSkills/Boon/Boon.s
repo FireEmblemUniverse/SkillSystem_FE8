@@ -3,10 +3,8 @@
 
 .equ BoonID,SkillTester+4
 
-pop {r6} @fix our funky thing to clear a register to hook with
-
 @check if you have boon
-push {r0-r3} @don't crucify me this is the easiest way to do this since every single register is in use here
+push {r1-r3} @don't crucify me this is the easiest way to do this since every single register is in use here
 mov r0,r4
 ldr	r1,BoonID
 ldr	r2,SkillTester
@@ -16,13 +14,13 @@ cmp	r0,#1
 bne DecrementStatusTimer @if you don't have Boon, do vanilla
 
 BoonEffect:
-pop {r0-r3}
+pop {r1-r3}
 mov r0,#0 @otherwise, status is over
 strb r0,[r1]
 b GoBack
 
 DecrementStatusTimer: @the part of the vanilla function that the hook overwrites and we return to after
-pop {r0-r3}
+pop {r1-r3}
 lsr r0,r3,#4
 sub r0,#1
 cmp r0,#0
