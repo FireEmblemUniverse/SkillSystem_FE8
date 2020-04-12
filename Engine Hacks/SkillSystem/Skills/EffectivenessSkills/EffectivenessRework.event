@@ -55,7 +55,7 @@ ItemEffectivenessPtr(DelphiShield, FlierProtection)
 
 #define SetWeaponEffectiveness(type_list, coefficient_times_2) "BYTE 0 coefficient_times_2; SHORT type_list"
 LordWeaponEffectiveness:
-SetWeaponEffectiveness(ArmorType|SwordType, 6)
+SetWeaponEffectiveness(ArmorType|HorseType, 6)
 WORD 0 //terminator
 ArmorEffectiveness:
 SetWeaponEffectiveness(ArmorType, 6)
