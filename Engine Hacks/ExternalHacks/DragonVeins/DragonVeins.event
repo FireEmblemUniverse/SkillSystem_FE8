@@ -30,7 +30,7 @@
     // #define UMText_DV 0xd0
     // #define UMText_DVDesc 0xd1
 	
-	#define HealTileTrapID 0xC
+	#define HealTileTrapID 0xE
 	#define HealTile(XX,YY,HealPercent) "BYTE HealTileTrapID XX YY 0x0 HealPercent 0x0"
 	#define HealTile(XX,YY,HealPercent,EventID) "BYTE HealTileTrapID XX YY 0x0 HealPercent EventID"
 	
