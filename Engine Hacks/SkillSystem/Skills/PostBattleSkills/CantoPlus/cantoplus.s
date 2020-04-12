@@ -20,6 +20,12 @@ ldrb  r1, [r4,#0x0B]  @allegiance byte of the character we are checking
 cmp r0, r1    @check if same character
 bne End
 
+@check if enemy or not
+ldrb r0, [r4,#0x0B]
+lsr r0,r0,#6
+cmp r0,#0 @only Canto+ if player unit
+bne End
+
 @check if moved all the squares
 ldr	r0,=#0x8019224	@mov getter
 mov	lr, r0
