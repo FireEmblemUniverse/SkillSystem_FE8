@@ -27,7 +27,18 @@ mov lr, r0
 mov r0, r4
 .short 0xf800
 
+
+
 ApplySeals:
+
+@check if either one of us are dead
+ldrb r0,[r5,#0x13]
+cmp r0,#0
+beq End
+ldrb r0,[r4,#0x13]
+cmp r0,#0
+beq End
+
 @first apply the weapon debuffs
 @r5 = attacker
 @r4 = defender
