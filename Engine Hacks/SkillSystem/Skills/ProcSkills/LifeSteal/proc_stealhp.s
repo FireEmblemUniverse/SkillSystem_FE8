@@ -101,7 +101,7 @@ ldrb	r0,[r5,r0] @defender current HP
 cmp r2,r0
 bls NormalHealAmount
 
-mov r0,r2
+mov r2,r0
 
 NormalHealAmount:
 mov	r0,#0x13
