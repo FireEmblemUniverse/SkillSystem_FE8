@@ -1,0 +1,11 @@
+//Fix hitrate displayed as signed, by 7743
+
+PUSH
+ORG $1E980
+jumpToHack(HIT_rate_unsingned_text)
+POP
+
+ALIGN 4
+HIT_rate_unsingned_text:
+#incbin "HIT_rate_unsingned_text.dmp"
+

@@ -178,6 +178,10 @@ POP
   //Narrow Fonts by Scraiza
   ALIGN 4
   #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
+  
+  //Fix Negative Hit Display
+  ALIGN 4
+  #include "Necessary/UnsignedHitRate/HIT_rate_unsingned_text.event"
 
   ALIGN 4
   #include "SkillSystem/SkillSystemInstaller.event"
