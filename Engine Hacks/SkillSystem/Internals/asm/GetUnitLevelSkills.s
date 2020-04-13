@@ -37,8 +37,9 @@ check_char_skill:
 
 	orr r4, r5 @ r4 = unit cattributes
 
-	lsl r4, #8
+
 	mov r5, #1
+	lsl r5, #8
 	and r5, r4 @ var r5 = 1 if promoted else 0
 
 	ldr r4, lCharLevelUpTable
