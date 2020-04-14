@@ -47,6 +47,12 @@
 	
 	ORG $2A4BC
 	SHORT 0xE009 // b #0x0802A4D2
+	
+	
+	//fix magic swords in magic seal, by 7743
+	ORG 0x022CC4
+	BYTE 0xf3 0xf7 0x44 0xfd
+	
 	POP
 	
 #endif
