@@ -287,6 +287,19 @@
 	POIN GetItemRangeM|1
 	WORD 0x3004E50
 	
+	ORG $23A14 //Ballista range display
+	SHORT 0x6820 0x1C29 	//get unit pointer and item id
+	callHack_r3(GetItemRangeM)
+	SHORT 0x1C03 0x1C0C
+	B($23A2C)
+	
+	ORG $25756 //Ballista target selection
+	SHORT 0x480C 0x6800 	//get unit pointer
+	SHORT 0x1C39 	//mov r1, r7 @get item
+	callHack_r3(GetItemRangeM)
+	SHORT 0x1C03 0x1C0C
+	B($2576E)
+	
 	//************** CAN BE WRITTEN TO WHEREVER IF YOU WANT THIS SPACE FOR OTHER ASSEMBLY STUFF *********************
 POP
 	ALIGN 4
