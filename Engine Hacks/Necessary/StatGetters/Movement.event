@@ -2,9 +2,9 @@
 #define MODULAR_GETTER_MOVEMENT_EVENT
 
 #include "_Common.event"
-
+ALIGN 4
 pMovModifiers: // Movement
-	POIN prAddUnitBaseMov prAddUnitMovBonus prRallyMov prSkillCelerity prSkillPoise prNullifyIfGuardAI prArmorMarchCheck 
+	POIN prAddUnitBaseMov prAddUnitMovBonus //prAddEquipMov prItemPassiveMov prRallyMov prSkillCelerity prSkillPoise prNullifyIfGuardAI prArmorMarchCheck 
 	#ifdef STAIRS_ASM
 	POIN StairsMoveDebuff-1
 	#endif
@@ -40,5 +40,14 @@ prNullifyIfFreeze:
 prRallyMov:
 	#incbin "_asm/RallyMov.bin"
 	WORD DebuffTable
+
+ALIGN 4
+prAddEquipMov:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemMovBonus)))
+	#include "_asm/GetItemMovBonus.lyn.event"
+
+ALIGN 4
+prItemPassiveMov:
+	rPassiveStatBoosts(STAT_MOV)
 
 #endif // MODULAR_GETTER_MOVEMENT_EVENT
