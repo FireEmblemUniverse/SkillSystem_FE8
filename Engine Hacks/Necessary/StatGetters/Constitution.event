@@ -29,5 +29,4 @@ prAddUnitConBonus:
 ALIGN 4
 prItemPassiveCon:
 	rPassiveStatBoosts(STAT_CON)
-MESSAGE prGetItemConBonus
 #endif // MODULAR_GETTER_CONSITUTION_EVENT
