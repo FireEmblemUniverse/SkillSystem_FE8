@@ -5,9 +5,23 @@
 .type prGetItemMovBonus, %function
 
 .equ STAT_MOV, 0x8
+.macro blh to, reg=r3
+	ldr \reg, =\to
+	mov lr, \reg
+	.short 0xF800
+.endm
+.equ GetUnitEquippedItem,0x8016B28
 
 prGetItemMovBonus:
-push {r14}
+push {r4-r7,r14}
+mov r4,r0 @unit
+mov r5,r1 @stat
+
+ldr r3,=GetUnitEquippedItem
+mov r14,r3
+mov r0,r4
+.short 0xF800
+
 mov r1,r0
 cmp r1,#0
 beq RetFalse
@@ -28,8 +42,13 @@ b GoBack
 
 RetStat:
 ldrb r0,[r0,#0x8]
+add r5,r0
 
 GoBack:
+mov r0,r4
+mov r1,r5
+
+pop {r4-r7}
 pop {r1}
 bx r1
 
