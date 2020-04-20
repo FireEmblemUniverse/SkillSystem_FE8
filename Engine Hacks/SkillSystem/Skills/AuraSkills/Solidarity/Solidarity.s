@@ -25,7 +25,7 @@ ldrh    r3,[r0]     @Load the attacker's avoid into r3.
 add     r3,#10    @subtract 10 from the attacker's avoid
 strh    r3,[r0]     @Store attacker avoid
 
-add r0, #6 @crit avoid
+add r0, #2 @crit avoid
 ldrh    r3,[r0]     @Load the attacker's avoid into r3.
 add     r3,#10    @subtract 10 from the attacker's avoid
 strh    r3,[r0]     @Store attacker avoid
