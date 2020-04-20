@@ -32,6 +32,7 @@ mov     lr, r2
 mov	r5, r0     @save vaue in r5 while we check for regular discipline
 ldr	r1, Skill_ID
 ldr     r2, SkillTester
+mov 	r0,r7
 mov	lr, r2
 .short     0xF800
 orr	r0, r5
