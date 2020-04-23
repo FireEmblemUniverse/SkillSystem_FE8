@@ -63,9 +63,10 @@ push {r4,r14}
 ldr r4,=#0x8023021 	@seize command effect
 mov r14,r4			@
 .short 0xF800		@blh
+mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 pop {r4}			@
-pop {r0}			@
-bx r0				@
+pop {r1}			@
+bx r1				@
 
 .ltorg
 .align
@@ -470,7 +471,7 @@ EndMap:
 ldr r0,=#0x8023021 @Seize command effect
 mov r14,r0
 .short 0xF800
-mov r0,#255
+mov r0,#0x94
 b RealGoBack
 
 GoBack:
@@ -480,7 +481,7 @@ mov r14,r0
 .short 0xF800
 cmp r0,#0
 beq EndMap
-mov r0,#255
+mov r0,#0x94
 
 RealGoBack:
 pop {r4-r7}
