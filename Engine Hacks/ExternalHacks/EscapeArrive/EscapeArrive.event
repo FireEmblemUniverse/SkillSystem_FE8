@@ -1,3 +1,5 @@
+#ifdef ESCAPE_ARRIVE
+
 #ifndef ESCAPE_ARRIVE_INSTALLED
 #define ESCAPE_ARRIVE_INSTALLED
 
@@ -54,3 +56,5 @@ POP
 #define EscapeCapturedCheck(charID,flagID) "SVAL 0xD 0; SVAL 1 charID; SENQUEUE 1; SVAL 1 flagID; SENQUEUE 1; CALL ThraciaEscapeProcessor"
 
 #endif // ESCAPE_ARRIVE_INSTALLED
+
+#endif // ESCAPE_ARRIVE
