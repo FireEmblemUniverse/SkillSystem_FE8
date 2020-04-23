@@ -122,7 +122,7 @@ POP
   #include "ExternalHacks/Raid/Raid.event"
   
   //Escape-Arrive
-  #include "ExternalHacks/EscapeArrive/EscapeInstaller.event"
+  #include "ExternalHacks/EscapeArrive/EscapeArrive.event"
   
   //Debuffs
   #include "Necessary/SuspendDebuffs/Debuffs.event"
