@@ -14,8 +14,8 @@
 
 prGetItemConBonus:
 push {r4-r7,r14}
-mov r4,r0 @unit
-mov r5,r1 @stat
+mov r4,r1 @unit
+mov r5,r0 @stat
 
 ldr r3,=GetUnitEquippedItem
 mov r14,r3
@@ -45,8 +45,8 @@ ldrb r0,[r0,#0x7]
 add r5,r0
 
 GoBack:
-mov r0,r4
-mov r1,r5
+mov r1,r4
+mov r0,r5
 
 pop {r4-r7}
 pop {r1}
