@@ -8,8 +8,8 @@ POP
 
 ALIGN 4
 Renewal: //combined healing skills
-//#include "HPRestorationSkills/RenewalAmaterasu.lyn.event"
-#inctext lyn "HPRestorationSkills/RenewalAmaterasu.elf"
+#include "HPRestorationSkills/RenewalAmaterasu.lyn.event"
+
 RenewalRenewalIDLink:
 BYTE RenewalID
 RenewalAmaterasuIDLink:
