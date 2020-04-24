@@ -6,8 +6,8 @@ jumpToHack(Bargain)
 
 //Boon
 ORG $188F6
-BYTE $40 $B4
-callHack_r6(Boon)
+BYTE 0x00 0x00
+BYTE 0x00 0x48 0x87 0x46; POIN (Boon|0x1)
 
 //Discipline
 ORG $2C13C
