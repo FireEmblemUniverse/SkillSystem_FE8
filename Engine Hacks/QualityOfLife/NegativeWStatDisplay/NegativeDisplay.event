@@ -1,30 +1,22 @@
 #ifdef NEGATIVE_WTCRIT_DISPLAY
 
-
 // Negative Wt/Crit Display.
-// hack by circleseverywhere(?)
-
-// include while in BL range, with inBLRange defined
+// hack by circleseverywhere, rewritten by stan
 
 #ifdef _FE8_
-#ifdef inBLRange
 
   {
 
   PUSH
-    ORG $4146
-      BL(NegDisplay)
+    ORG $089CFC
+      jumpToHack(DrawHelpBoxWeaponStats_Hook)
   POP
 
   ALIGN 4
-  NegDisplay:
+  DrawHelpBoxWeaponStats_Hook:
     #incbin "asm/NegativeDisplay.dmp"
 
   }
-
-#else // inBLRange
-  ERROR Negative WtCrit Display hack must be installed within BL range
-#endif // inBLRange
 
 #else // _FE8_
   ERROR Negative WtCrit Display hack is for FE8
