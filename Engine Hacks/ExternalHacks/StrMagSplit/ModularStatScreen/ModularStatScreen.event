@@ -334,7 +334,7 @@ ST_Str:
 ST_Mag:
   RMenu(ST_Str,ST_Skl,ST_Name,ST_Aid,0x66,0x28,0x547)
 ST_Skl:
-  RMenu(ST_Mag,ST_Spd,ST_Name,ST_Trv,0x66,0x38,0x548)
+  RMenu(ST_Mag,ST_Spd,ST_Name,ST_Cond,0x66,0x38,0x548)
 ST_Spd:
   RMenu(ST_Skl,ST_Luck,ST_Name,ST_Affin,0x66,0x48,0x549)
 ST_Luck:
@@ -353,14 +353,14 @@ ALIGN 4
 ST_Con:
   RMenu(PersonalDataRText,ST_Aid,ST_Str,0,0xA6,0x18,0x54e)
 ST_Aid:
-  RMenu(ST_Con,ST_Trv,ST_Mag,0,0xa6,0x28,0x54F)
-ST_Trv:
-  RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x38,0x550)
+  RMenu(ST_Con,ST_Cond,ST_Mag,0,0xa6,0x28,0x54F)
+ST_Cond:
+  RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x38,0x552,ConditionGetter)
 ST_Affin:
   #ifdef LEADERSHIP_STARS
-    RMenu(ST_Trv,ST_Talk,ST_Spd,0,0xa6,0x48,LeadRText)
+    RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xa6,0x48,LeadRText)
   #else
-    RMenu(ST_Trv,ST_Talk,ST_Spd,0,0xa6,0x48,0x551)
+    RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xa6,0x48,0x551)
   #endif
 //ST_Cond:
   //RMenu(ST_Affin,ST_Talk,ST_Spd,0,0xA6,0x48,0x552,ConditionGetter)
