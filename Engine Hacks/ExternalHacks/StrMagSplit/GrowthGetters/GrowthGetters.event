@@ -46,7 +46,9 @@
 	ALIGN 4
 	Extra_Growth_Boosts:
 	#incbin "Extra_Growth_Boosts.dmp"
-	WORD Growth_Options
-	POIN ItemTable
-	
+    WORD Growth_Options
+    POIN ItemTable
+	POIN SkillTester
+	WORD BlossomID
+	WORD AptitudeID
 	
