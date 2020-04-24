@@ -21,6 +21,14 @@ ldrb 	r1, [r6,#0x10]	@squares moved this turn
 cmp	r0, r1
 beq	End
 
+@check if flag 0x3 set; if so, cannot canto
+ldr r0,=#0x8083da8 @CheckEventId
+mov r14,r0
+mov r0,#3
+.short 0xF800
+cmp r0,#1
+beq End
+
 ldr	r1,=#0x8018BD8	@check if can move again
 mov	lr, r1
 .short	0xF800
