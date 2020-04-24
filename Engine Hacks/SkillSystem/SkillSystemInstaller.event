@@ -9,3 +9,6 @@
 
 #include "RemoveSkillMenu/RemoveSkillMenu.event"
 
+#ifdef __DEBUG__
+  #include "DebugSkillEdit/DebugSkillEdit.event"
+#endif

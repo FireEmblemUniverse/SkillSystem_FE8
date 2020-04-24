@@ -150,6 +150,10 @@ UnitMenuTable:
   // MenuCommand(UMText_Switch,UMText_SwitchDesc,GreenText,SwitchUsability,SwitchCommand)   //switch
   UM_Drop
 
+  #ifdef __DEBUG__
+    MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
+  #endif
+
   UM_Item
   UM_Trade
   
