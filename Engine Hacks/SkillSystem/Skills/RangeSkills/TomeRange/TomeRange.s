@@ -30,9 +30,17 @@ cmp 	r0, #BonusWeaponType3
 beq AddRange
 b End 	@ Not Matching weapon type
 AddRange:
-ldrh 	r0, [sp]
+mov 	r2, sp
+ldrh 	r0, [r2]
 add 	r0, r0, #MaxRangeBonus
-strh 	r0, [sp]
+
+@prevent the maximum range from going over 15
+cmp 	r0, #0xF
+bls NotOverMax
+mov 	r0, #0xF
+NotOverMax:
+strh 	r0, [r2]
+
 End:
 ldr 	r0, [sp]
 add 	sp, #0x4
