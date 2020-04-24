@@ -22,7 +22,7 @@ beq Done
 mov r0, r4
 add     r0,#0x60    @Move to the attacker's hit.
 ldrh    r3,[r0]     @Load the attacker's hit into r3.
-sub     r3,#10      @subtract 10 from the attacker's hit
+sub     r3,#5      @subtract 5 from the attacker's hit
 cmp 	r3,#0
 bgt		StoreHitAsIs
 mov 	r3,#0
@@ -31,7 +31,7 @@ strh    r3,[r0]     @Store attacker avoid
 
 add r0, #6 			@crit
 ldrh    r3,[r0]     @Load the attacker's crit into r3.
-sub     r3,#10    	@subtract 10 from the attacker's crit
+sub     r3,#5    	@subtract 5 from the attacker's crit
 cmp 	r3,#0
 bgt		StoreCritAsIs
 mov 	r3,#0
