@@ -218,21 +218,21 @@
 
   ALIGN 4
   Button_Branch:
-    #incbin "asm/Button Branch.dmp"
+    #incbin "asm/ButtonBranch.dmp"
 
   ALIGN 4
   Load_Page:
-    #incbin "asm/Load Page.dmp"
+    #incbin "asm/LoadPage.dmp"
     WORD Stat_Page_Ram_Loc
 
   ALIGN 4
   Store_Page:
-    #incbin "asm/Store Page.dmp"
+    #incbin "asm/StorePage.dmp"
     WORD Stat_Page_Ram_Loc
 
   ALIGN 4
   Rescue_Arrows:
-    #incbin "asm/Check Rescue Arrows.dmp"
+    #incbin "asm/CheckRescueArrows.dmp"
     POIN SkillTester
     WORD SaviorID
 
@@ -243,7 +243,7 @@
 
   ALIGN 4
   HP_Name_Color:
-    #incbin "asm/HP Name Color.dmp"
+    #incbin "asm/HPNameColor.dmp"
     POIN New_Palettes
     WORD Growth_Options
     POIN Get_Hp_Growth
