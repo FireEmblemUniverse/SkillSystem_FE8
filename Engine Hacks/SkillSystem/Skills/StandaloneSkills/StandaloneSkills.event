@@ -50,6 +50,10 @@ jumpToHack(WaryFighter)
 //callHack_r0(TriangleAttackSkill)
 #endif
 
+//ParagonMisc
+ORG $2C6CC
+callHack_r0(ParagonMisc)
+
 POP
 
 #include "Bargain/Bargain.event"
@@ -137,3 +141,7 @@ TriangleAttackSkill:
 #incbin "TriangleAttack/TriangleAttack.dmp"
 POIN SkillTester
 WORD TriangleAttackID
+
+#include "Paragon/ParagonMisc.lyn.event"
+ParagonIDLink:
+BYTE ParagonID
