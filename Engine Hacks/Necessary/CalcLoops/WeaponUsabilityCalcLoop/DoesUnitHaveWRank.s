@@ -26,8 +26,9 @@ ldr r1,ItemTable
 add r0,r1
 ldrb r0,[r0,#0x1C]
 cmp r0,r6
-ble RetTrue @if (item wrank < user wrank)
+ble RetTrue @if (item wrank <= user wrank)
 
+mov r6,r0
 mov r0,#0xFF
 and r0,r5
 mov r1,#0x24
