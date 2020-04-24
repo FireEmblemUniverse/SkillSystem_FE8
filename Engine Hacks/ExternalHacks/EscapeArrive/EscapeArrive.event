@@ -1,0 +1,60 @@
+#ifdef ESCAPE_ARRIVE
+
+#ifndef ESCAPE_ARRIVE_INSTALLED
+#define ESCAPE_ARRIVE_INSTALLED
+
+#define LordMustEscapeLastFlag 0x128
+#define AllUnitsMustEscapeFlag 0x129
+
+#include "UnitMenu.lyn.event"
+
+ALIGN 4
+LordMustEscapeLastFlagLink:
+SHORT LordMustEscapeLastFlag
+ALIGN 4
+AllUnitsMustEscapeFlagLink:
+SHORT AllUnitsMustEscapeFlag
+ALIGN 4
+LordMustEscapeLastTextIDLink:
+SHORT LordMustEscapeLastText
+
+ALIGN 4
+RefEscapeTable:
+#incbin "RefEscapeTable.dmp"
+POIN EscapeQuoteTable
+
+ALIGN 4
+FinalEscapeThing: //hooks with post-action calc loop
+#incbin "PostActionCorrection.dmp"
+
+#include "EscapeEvent.event"
+
+
+PUSH
+	//fix a jump table allowing for us to be separate map objects
+	ORG ($8410C + (4*0x19))
+	POIN $841AC
+	ORG ($8410C + (4*0x13))
+	POIN $841AC
+	
+	//make a game over not happen when the last player unit escapes
+	ORG 0x843F0
+	SHORT 0x46C0 0x46C0 0x2001
+	ORG 0x2EA34
+	SHORT 0x46C0
+	ORG 0x2EA3E
+	SHORT 0xE001
+POP
+
+
+#define Arrive(seizeX,seizeY) "LOCA 3 [seizeX,seizeY] 0x19"
+#define Arrive(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x12"
+#define Escape(seizeX,seizeY) "LOCA 3 [seizeX,seizeY] 0x13"
+#define Escape(eventID,offset,seizeX,seizeY) "LOCA eventID offset [seizeX,seizeY] 0x13"
+	
+//This will set the given flag if the unit did not escape
+#define EscapeCapturedCheck(charID,flagID) "SVAL 0xD 0; SVAL 1 charID; SENQUEUE 1; SVAL 1 flagID; SENQUEUE 1; CALL ThraciaEscapeProcessor"
+
+#endif // ESCAPE_ARRIVE_INSTALLED
+
+#endif // ESCAPE_ARRIVE
