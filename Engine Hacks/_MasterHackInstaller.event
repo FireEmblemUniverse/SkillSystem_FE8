@@ -42,7 +42,7 @@ ORG FreeSpaceBLRange //defined in custom definitions
 
   //clears the gamble/lunge/mercy when cancelling out of attack menu
   Unset_Attack_Flag:
-  #incbin "SkillSystem/Internals/unset attack flag.dmp"
+  #incbin "SkillSystem/Internals/unset_attack_flag.dmp"
 
   #ifdef USE_STRMAG_SPLIT
     
