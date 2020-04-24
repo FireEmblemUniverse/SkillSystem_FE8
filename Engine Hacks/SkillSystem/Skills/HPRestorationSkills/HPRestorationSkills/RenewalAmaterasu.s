@@ -125,6 +125,7 @@ ldr	r0, =SkillTester
 mov	lr,r0
 mov	r0,r5
 ldr	r1, =RenewalForagerIDLink
+ldrb r1,[r1]
 .short 0xf800
 cmp	r0,#0x0
 beq	no_forager
