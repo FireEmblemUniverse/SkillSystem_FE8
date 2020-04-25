@@ -44,7 +44,7 @@ DrawHelpBoxWeaponStats_Hook:
 		mov r2, #7 @ arg r2 = color
 		@ implied  @ arg r3 = number
 
-		bl InsertDrawSigNum
+		bl Text_InsertDrawSignedNumber
 
 	.endm
 
@@ -69,7 +69,10 @@ call_via_r3:
 
 	.pool
 
-InsertDrawSigNum:
+	.global Text_InsertDrawSignedNumber
+	.type   Text_InsertDrawSignedNumber, function
+
+Text_InsertDrawSignedNumber:
 	@ this is our new function that replaces Text_InsertDrawNumberOrBlank
 
 	@ arg r0 = text
@@ -90,17 +93,17 @@ InsertDrawSigNum:
 	bl call_via_r3
 
 	cmp r5, #0
-	beq InsertDrawSigNum.draw_zero
+	beq Text_InsertDrawSignedNumber.draw_zero
 
 	@ r6 = 1 if number is negative, r5 = abs(number)
 	@ it's surprise tools that will help us later
 
 	lsr r6, r5, #31
-	beq InsertDrawSigNum.lop
+	beq Text_InsertDrawSignedNumber.lop
 
 	neg r5, r5
 
-InsertDrawSigNum.lop:
+Text_InsertDrawSignedNumber.lop:
 	mov r0, r5  @ arg r0 = num
 	mov r1, #10 @ arg r1 = denom
 
@@ -126,12 +129,12 @@ InsertDrawSigNum.lop:
 	strb r0, [r4, #2]
 
 	cmp r5, #0
-	bne InsertDrawSigNum.lop
+	bne Text_InsertDrawSignedNumber.lop
 
 	@ Draw dash if number was negative
 
 	cmp r6, #0
-	beq InsertDrawSigNum.end
+	beq Text_InsertDrawSignedNumber.end
 
 	ldrb r0, [r4, #2]
 	add  r0, #3
@@ -147,10 +150,10 @@ InsertDrawSigNum.lop:
 
 	bl call_via_r3
 
-InsertDrawSigNum.end:
+Text_InsertDrawSignedNumber.end:
 	pop {r0, r4-r6, pc}
 
-InsertDrawSigNum.draw_zero:
+Text_InsertDrawSignedNumber.draw_zero:
 	ldr r3, =Text_DrawCharacter
 
 	mov r0, r4      @ arg r0 = text
@@ -158,7 +161,7 @@ InsertDrawSigNum.draw_zero:
 
 	bl call_via_r3
 
-	b InsertDrawSigNum.end
+	b Text_InsertDrawSignedNumber.end
 
 	.pool
 
