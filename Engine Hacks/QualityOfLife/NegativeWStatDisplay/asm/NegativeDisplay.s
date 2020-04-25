@@ -151,7 +151,10 @@ Text_InsertDrawSignedNumber.lop:
 	bl call_via_r3
 
 Text_InsertDrawSignedNumber.end:
-	pop {r0, r4-r6, pc}
+	pop {r0, r4-r6}
+
+	pop {r0}
+	bx r0
 
 Text_InsertDrawSignedNumber.draw_zero:
 	ldr r3, =Text_DrawCharacter
