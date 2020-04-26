@@ -5,7 +5,6 @@
 .equ SkillTester, Item_Table+4
 .equ BlossomID, SkillTester+4
 .equ AptitudeID, BlossomID+4
-
 @r0=battle struct or char data ptr, r1 = growth so far (from char data), r2=index in stat booster pointer of growth
 
 push	{r4-r7,r14}
@@ -96,8 +95,6 @@ bne		GoBack
 
 AptitudeEffect:
 add		r5,#20 @growth +20%
-
-
 
 GoBack:
 mov		r1,r8
