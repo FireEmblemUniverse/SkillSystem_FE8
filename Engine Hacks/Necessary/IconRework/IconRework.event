@@ -1,18 +1,33 @@
 #ifndef HAX_ICON_REWORK
 #define HAX_ICON_REWORK
 
-#define ICON_SHEET_COUNT 2 // #0 for item icons & #1 for skill icons
+#define ICON_SHEET_COUNT 5 // #0 for item icons & #1 for skill icons & #2 for affinity icons & #3 for mount type icons & #4 for weapon type icons
 
 #include "IconRework_Internal.event"
 
 // SKILL ICONS SHEET
 {
 InjectIconGfxGetter(1, (prGetSlillIconGfx+1))
+InjectIconGfxGetter(2, (prGetAffinityIconGfx+1))
+InjectIconGfxGetter(3, (prGetMountTypeIconGfx+1))
+InjectIconGfxGetter(4, (prGetWRankIconGfx+1))
 
 ALIGN 4
 prGetSlillIconGfx:
 	#incbin "asm/GetSheetIconGfx.bin"
 	POIN SkillIcons
+	
+prGetAffinityIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN AffinityIcons
+
+prGetMountTypeIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN MountTypeIcons
+
+prGetWRankIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN WRankIcons
 }
 
 #endif // HAX_ICON_REWORK
