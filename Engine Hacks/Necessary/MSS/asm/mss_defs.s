@@ -407,7 +407,9 @@
   ldr r1, [r2,#0x28]
   orr r0, r1
   blh 0x8018AF0 @takes ability bits and returns icon or -1
-  mov r1, r0
+  mov r1,#3 @sheet ID
+  lsl r1,r1,#8 @shifted 8 bits left
+  orr r1,r0
   mov r2, #0xA0
   lsl r2, #7
   ldr r0, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
@@ -497,7 +499,9 @@
   ldr r4, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
   mov r0, r8
   blh AffinityGetter
-  mov     r1,r0      
+  mov     r1,#2 @icon sheet ID
+  lsl     r1,r1,#8 @shifted 8 bits left
+  orr	  r1,r0 
   mov     r2,#0xA0       
   lsl     r2,r2,#0x7      
   mov     r0,r4    
