@@ -7,6 +7,12 @@
 .global AttackWrankDraw
 .type AttackWrankDraw, %function
 
+.global UnitAffinityDraw
+.type UnitAffinityDraw, %function
+
+.global UnitWrankDraw
+.type UnitWrankDraw, %function
+
 
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -64,3 +70,42 @@ bx r3
 
 .ltorg
 .align
+
+.equ ReturnPoint3,0x8092795
+
+UnitAffinityDraw:
+mov r0,r5
+add r0,#0x34
+
+mov r2,#2 @sheet ID
+lsl r2,r2,#8 @shifted 8 bits left
+orr r1,r2
+
+mov r2,#0xA0
+lsl r2,r2,#7
+
+ldr r3,=ReturnPoint3
+bx r3
+
+.ltorg
+.align
+
+
+.equ ReturnPoint4,0x8092205
+
+UnitWrankDraw:
+mov r2,#4 @sheet ID
+lsl r2,r2,#8 @shifted 8 bits left
+orr r1,r2
+
+mov r0,r4
+mov r2,#0xA0
+lsl r2,r2,#7
+
+ldr r3,=ReturnPoint4
+bx r3
+
+.ltorg
+.align
+
+

@@ -37,6 +37,12 @@ PUSH
 	
 	ORG $1EA10
 		jumpToHack(AttackWrankDraw)		
+		
+	ORG $9278C
+		jumpToHack(UnitAffinityDraw)
+	
+	ORG $921FC
+		jumpToHack(UnitWrankDraw)
 
 	ORG $286C6
 		SHORT 0x3801 //set affinity index
