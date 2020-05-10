@@ -14,6 +14,13 @@ PUSH
 	ORG $17518
 		jumpToHack(GetItemDescStringIndex)
 		
+	ORG $16A54
+		jumpToHack(NewItemNameGetter1)
+		
+	ORG $16874
+		jumpToHack(NewItemNameGetter2)
+		
+
 	//TODO:
 	//-unit menu
 	//-stat screen
