@@ -245,11 +245,10 @@ bne GoBack
 
 mov r0,r4
 lsr r0,r0,#8
-lsl r0,r0,#2
+lsl r0,r0,#1 @*2
 
 ldr r1,=SkillDescTable
 add r0,r1
-sub r0,#2 @table is 0-indexed
 ldrh r0,[r0]
 
 GoBack:
