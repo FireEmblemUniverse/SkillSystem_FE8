@@ -11,6 +11,7 @@ InjectIconGfxGetter(1, (prGetSlillIconGfx+1))
 InjectIconGfxGetter(2, (prGetAffinityIconGfx+1))
 InjectIconGfxGetter(3, (prGetMountTypeIconGfx+1))
 InjectIconGfxGetter(4, (prGetWRankIconGfx+1))
+InjectIconGfxGetter(5, (prGetSkillBookIconGfx+1))
 
 ALIGN 4
 prGetSlillIconGfx:
@@ -28,6 +29,11 @@ prGetMountTypeIconGfx:
 prGetWRankIconGfx:
 	#incbin "asm/GetSheetIconGfx.bin"
 	POIN WRankIcons
+
+prGetSkillBookIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN SkillIcons
+
 }
 
 #endif // HAX_ICON_REWORK
