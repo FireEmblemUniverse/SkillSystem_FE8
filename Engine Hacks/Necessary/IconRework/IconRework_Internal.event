@@ -43,6 +43,19 @@ PUSH
 	
 	ORG $921FC
 		jumpToHack(UnitWrankDraw)
+		
+	ORG $16AD4
+		jumpToHack(CheckIfSkillBookIcon)
+		
+	ORG $9A034
+		jumpToHack(CheckIfSkillBookIcon_Prep1)
+
+	ORG $9B7F4
+		jumpToHack(CheckIfSkillBookIcon_Prep2)
+
+	ORG $168C8
+		jumpToHack(CheckIfSkillBookIcon_Sell)
+
 
 	ORG $286C6
 		SHORT 0x3801 //set affinity index
@@ -77,6 +90,8 @@ prLoadIconObjGfx:
 	POIN praIconGfxGetters
 
 #include "asm/NewWrankDraw.lyn.event"
+
+#include "asm/SkillBookIconDraw.lyn.event"
 
 }
 
