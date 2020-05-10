@@ -1,7 +1,22 @@
 
 #include "MultiSkillScrolls.lyn.event"
+#include "ScrollNames.lyn.event"
 
 ALIGN 4
 SkillScrollMessageReturnLink:
 SHORT PrepScreenUseSkillScroll //this is a text ID
 
+PUSH 
+
+	ORG $174F8
+		jumpToHack(GetItemNameString)
+		
+	ORG $17518
+		jumpToHack(GetItemDescStringIndex)
+		
+	//TODO:
+	//-unit menu
+	//-stat screen
+	//-help text, probably everywhere
+
+POP
