@@ -13,6 +13,9 @@
 .global CheckIfSkillBookIcon_Sell
 .type CheckIfSkillBookIcon_Sell, %function
 
+.global CheckIfSkillBookIcon_Use
+.type CheckIfSkillBookIcon_Use, %function
+
 
 .equ ReturnPoint,0x8016ADD
 
@@ -135,3 +138,32 @@ bx r3
 .align
 
 
+.equ ReturnPoint5,0x809CD5D
+
+CheckIfSkillBookIcon_Use: @hook at 9CD54
+cmp r0,#0xFF
+bne VanillaIcon_Use
+
+ldr r0,[sp,#0x28] @item
+mov r1,#0xFF
+lsl r1,r1,#8
+and r0,r1
+lsr r0,r0,#8 @r0 = durability
+
+mov r1,#5 @skill book icon sheet ID
+lsl r1,r1,#8 @shifted 8 bits left
+orr r0,r1
+
+VanillaIcon_Use:
+mov r1,r0
+
+FinishFunc_Use:
+mov r2,#0x80
+lsl r2,r2,#7
+mov r0,r4
+
+ldr r3,=ReturnPoint5
+bx r3
+
+.ltorg
+.align

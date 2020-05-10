@@ -249,9 +249,11 @@ lsl r0,r0,#2
 
 ldr r1,=SkillDescTable
 add r0,r1
+sub r0,#2 @table is 0-indexed
 ldrh r0,[r0]
 
 GoBack:
+pop {r4}
 bx r14
 
 .ltorg

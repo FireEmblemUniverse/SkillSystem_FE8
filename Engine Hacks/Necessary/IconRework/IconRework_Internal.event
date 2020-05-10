@@ -55,6 +55,9 @@ PUSH
 
 	ORG $168C8
 		jumpToHack(CheckIfSkillBookIcon_Sell)
+		
+	ORG $9CD54
+		jumpToHack(CheckIfSkillBookIcon_Use)
 
 
 	ORG $286C6

@@ -1,10 +1,17 @@
 
 #include "MultiSkillScrolls.lyn.event"
 #include "ScrollNames.lyn.event"
+#include "ScrollDurability.lyn.event"
+
+#define SkillScroll BlackGem
 
 ALIGN 4
 SkillScrollMessageReturnLink:
 SHORT PrepScreenUseSkillScroll //this is a text ID
+
+ALIGN 4
+SkillScrollIDLink:
+BYTE SkillScroll
 
 PUSH 
 
@@ -19,11 +26,14 @@ PUSH
 		
 	ORG $16874
 		jumpToHack(NewItemNameGetter2)
+	
+	ORG $17594
+		jumpToHack(ScrollDurabilityGetter)
 		
-
-	//TODO:
-	//-unit menu
-	//-stat screen
-	//-help text, probably everywhere
+	ORG $16A8C
+		jumpToHack(ScrollDurabilityGetter_StatScreen)
+	
+	ORG $16894
+		jumpToHack(ScrollDurabilityGetter_UnitMenu)
 
 POP
