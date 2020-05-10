@@ -178,6 +178,9 @@ POP
   //Narrow Fonts by Scraiza
   ALIGN 4
   #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
+  
+  //Item Effect Revamp by Teraspark
+  #include "Necessary/ItemEffectRevamp/IERevamp_Installer.event"
 
   ALIGN 4
   #include "SkillSystem/SkillSystemInstaller.event"

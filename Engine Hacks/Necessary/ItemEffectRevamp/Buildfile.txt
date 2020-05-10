@@ -1,0 +1,17 @@
+#define FreeSpace $B30000
+ORG FreeSpace
+
+//#include "_ItemArrayMacros.txt"
+//#include "_FEditorAutoPatches.event"
+
+#define SpellAssociationTable 0x8afbd8
+
+#include "Table Installer.event"
+MESSAGE CURRENTOFFSET
+#include "IERevamp_Installer.event"
+
+//Might Vulnerary
+//#include "ItemEffects/MigVul_Setup.event"
+
+//#include "Might Staves/Might Heal Staves.event"
+MESSAGE Ends at CURRENTOFFSET

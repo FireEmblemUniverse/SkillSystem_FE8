@@ -1,0 +1,48 @@
+//Item Macros
+#ifndef ItemStatMacros
+	#define ItemStatMacros
+	
+	#ifdef _FE8_
+	//Item routines
+		#ifndef ItemTable
+		//	#define ItemTable 0x809B10 //Item Data Table Offset
+		#endif
+		#ifndef Item_GetID
+			#define Item_GetID 0x174EC
+		#endif
+		#ifndef Item_GetStat_WeaponType
+			#define Item_GetStat_WeaponType 0x17548
+		#endif
+		#ifndef Item_GetStat_EffectID
+			#define Item_GetStat_EffectID 0x1773C
+		#endif
+		#ifndef Item_GetStat_Might
+			#define Item_GetStat_Might 0x175DC
+		#endif
+		#ifndef Item_GetStat_Weight 
+			#define Item_GetStat_Weight 0x1760C
+		#endif
+		#ifndef Item_GetStat_Crit
+			#define Item_GetStat_Crit 0x17624
+		#endif
+		#ifndef Item_GetStat_WeaponRank 
+			#define Item_GetStat_WeaponRank 0x176B8
+		#endif
+		#ifndef Item_GetStat_WEXP 
+			#define Item_GetStat_WEXP 0x17798
+		#endif
+	#endif
+
+	#ifndef ITEM_STAT_EFFECTVALUE
+		#define ITEM_STAT_EFFECTVALUE
+		ALIGN 4
+		Item_GetStat_EPV:
+		#incbin "GetItemStat_EPV.dmp"
+		POIN ItemTable
+		
+	#endif
+
+	//Item Stat table Macros
+	#define SetItemMight(Item_ID, Might) "setTableByte(ItemTable, 0x24, Item_ID, 0x15, Might)"
+	#define SetItemUseID(Item_ID, Use_ID) "setTableByte(ItemTable, 0x24, Item_ID, 0x1E, Use_ID)"
+#endif

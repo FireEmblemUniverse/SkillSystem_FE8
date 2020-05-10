@@ -1,3 +1,4 @@
+
 #include "Internals/SkillSystem.event"
 
 #include "skill_lists.event" //who learns what skills when
@@ -12,3 +13,5 @@
 #ifdef __DEBUG__
   #include "DebugSkillEdit/DebugSkillEdit.event"
 #endif
+
+#include "SkillScrolls/SkillScrolls.event"
