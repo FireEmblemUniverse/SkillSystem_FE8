@@ -180,6 +180,9 @@
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
 
+//If commented, Heroes Movement skills will use class checks and will not require their respective skills.
+#define HEROES_MOVEMENT_SKILL_REQUIRED
+
 // If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate. This will not change Moonbow's description.
 // #define DISABLE_CHARGE
 
@@ -193,5 +196,6 @@
 #define ALSO_USE_VANILLA_DANCE_CHECK False
 #define ALSO_USE_VANILLA_SUPPLY_CHECK True
 #define ALSO_USE_VANILLA_SUMMON_CHECK False
+
 
 #endif // HAX_CONFIG
