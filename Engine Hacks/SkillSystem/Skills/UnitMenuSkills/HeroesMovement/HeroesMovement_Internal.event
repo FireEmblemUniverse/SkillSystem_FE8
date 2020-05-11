@@ -506,6 +506,10 @@ __psName:
 
 }
 
+#ifndef HEROES_MOVEMENT_SKILL_REQUIRED
+	#include "asm/ClassBasedUsabilities.lyn.event"
+#endif // HEROES_MOVEMENT_SKILL_REQUIRED
+
 SetUnitAction(ACTION_MOVETARGET, ActionRoutine(_prMoveTargetUnitAction+1))
 SetUnitAction(ACTION_MOVEACTIVE, ActionRoutine(_prMoveActiveUnitAction+1))
 SetUnitAction(ACTION_SWAP,       ActionRoutine(_prSwapAction+1))
@@ -515,3 +519,4 @@ SetUnitAction(ACTION_SWARP,		 ActionRoutine(_prSwapAction+1))
 ALIGN 4 // For good measure
 
 #endif // HAX_HEROES_MOVEMENT_INTERNAL_EVENT
+MESSAGE SwapClassCheck
