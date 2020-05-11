@@ -5,7 +5,7 @@
 ldr		r1,[r0]
 add		r1,#34
 ldrb	r1,[r1]		@luk growth
-mov		r2,#16		@index of luk boost
+mov		r2,#17		@index of luk boost
 ldr		r3,Extra_Growth_Boosts
 bx		r3
 
