@@ -94,7 +94,7 @@ POP
 
   //Modular Stat Screen
   #ifndef USE_STRMAG_SPLIT
-	#include "Necessary/MSS/ModularStatScreen.event"
+	#include "Necessary/ModularStatScreen/ModularStatScreen.event"
   #else
     #include "ExternalHacks/StrMagSplit/ModularStatScreen/ModularStatScreen.event"
   #endif // USE_STRMAG_SPLIT
