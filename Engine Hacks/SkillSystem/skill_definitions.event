@@ -852,11 +852,11 @@
 
 //Swarp: Allows unit to swap positions with a distant ally.
 //Be Sme
-#define SwarpID 166
+#define SwarpID 255
 
 //Steal: Unit can steal items.
 //By Tequila
-#define StealID 255
+#define StealID 166
 
 //Steal+: Unit can steal unequipped weapons and staves if con>weight.
 //By Tequila
