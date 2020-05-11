@@ -840,7 +840,7 @@
 
 //Pivot: Allows unit to move to the opposite side of an adjacent ally.
 //By StanH
-#define PivotID 136 //DONE by StanH
+#define PivotID 136
 
 //Reposition: Allows unit to pull an adjacent ally to its opposite side.
 //By StanH
@@ -850,9 +850,13 @@
 //By StanH
 #define SwapID 138
 
+//Swarp: Allows unit to swap positions with a distant ally.
+//Be Sme
+#define SwarpID 166
+
 //Steal: Unit can steal items.
 //By Tequila
-#define StealID 166
+#define StealID 255
 
 //Steal+: Unit can steal unequipped weapons and staves if con>weight.
 //By Tequila

@@ -140,6 +140,7 @@ UnitMenuTable:
   MenuCommand(UM_Pivot,      UM_PivotDesc,      NormalText, prPivotCommand_Usability,      prPivotCommand_Effect)
   MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Usability, prRepositionCommand_Effect)
   MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
+  MenuCommand(UM_Swarp,       UM_SwarpDesc,       NormalText, prSwarpCommand_Usability,       prSwarpCommand_Effect)
   
   UM_Rescue
   UM_Give
