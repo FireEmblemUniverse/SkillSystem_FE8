@@ -18,7 +18,7 @@ CMP r0,#0x0
 BEQ End
 
 two:
-LDRB r2, [r0,#0x9]
+LDRB r2, [r0,#0xA]
 LSL r2 ,r2 ,#0x18
 ASR r2 ,r2 ,#0x18
 
