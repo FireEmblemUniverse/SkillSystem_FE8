@@ -519,4 +519,3 @@ SetUnitAction(ACTION_SWARP,		 ActionRoutine(_prSwapAction+1))
 ALIGN 4 // For good measure
 
 #endif // HAX_HEROES_MOVEMENT_INTERNAL_EVENT
-MESSAGE SwapClassCheck

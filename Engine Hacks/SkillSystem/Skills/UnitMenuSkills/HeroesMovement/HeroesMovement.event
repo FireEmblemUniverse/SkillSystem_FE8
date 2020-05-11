@@ -116,27 +116,27 @@ prSmite_TargetLegality:
 #ifndef HEROES_MOVEMENT_SKILL_REQUIRED
 
 PivotClassList:
-BYTE EirikaLord
+BYTE EirikaLord EphraimLord 
 BYTE 0
 
 RepositionClassList:
-BYTE EirikaLord
+BYTE Mage Mage_F Sage Sage_F Monk Shaman Shaman_F Druid Druid_F
 BYTE 0
 
 SwapClassList:
-BYTE EirikaLord
+BYTE Cavalier Cavalier_F Paladin Paladin_F GreatKnight GreatKnight_F
 BYTE 0
 
 ShoveClassList:
-BYTE EirikaLord
+BYTE Mercenary Mercenary_F Fighter Brigand Pirate Berserker Warrior
 BYTE 0
 
 SmiteClassList:
-BYTE EirikaLord
+BYTE Knight Knight_F General General_F
 BYTE 0
 
 SwarpClassList:
-BYTE EirikaLord
+BYTE Priest Cleric Bishop Bishop_F Summoner Summoner_F
 BYTE 0
 
 #endif // HEROES_MOVEMENT_SKILL_REQUIRED
