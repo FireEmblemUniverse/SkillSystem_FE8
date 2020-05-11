@@ -129,8 +129,8 @@
 #define STAT_DEFENSE    0x04
 #define STAT_RESISTANCE 0x05
 #define STAT_LUCK       0x06
-#define STAT_CON        0x07
-#define STAT_MOV        0x08
+#define STAT_MOV        0x07
+#define STAT_CON        0x08
 
 // Class/Char Attribute Flags (comes straight from BOOTS)
 #define CA_NONE                  0x00000000
