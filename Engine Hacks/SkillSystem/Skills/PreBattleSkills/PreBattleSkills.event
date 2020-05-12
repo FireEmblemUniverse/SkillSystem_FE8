@@ -151,6 +151,7 @@ ALIGN 4
 Loyalty:
 #incbin "Loyalty/Loyalty.dmp"
 POIN SkillTester
+POIN AuraSkillCheck
 WORD LoyaltyID
 
 ALIGN 4
