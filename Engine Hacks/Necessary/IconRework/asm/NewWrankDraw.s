@@ -13,6 +13,9 @@
 .global UnitWrankDraw
 .type UnitWrankDraw, %function
 
+.global UnitSortWrankDraw
+.type UnitSortWrankDraw, %function
+
 
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -107,5 +110,27 @@ bx r3
 
 .ltorg
 .align
+
+
+
+.equ ReturnPoint5,0x80902BB
+
+UnitSortWrankDraw: @hook at 902B0
+
+mov r1,r6
+mov r0,#4 @sheet ID
+lsl r0,r0,#8 @shifted 8 bits left
+orr r1,r0
+mov r0,r10
+add r0,#8
+mov r2,#0xA0
+lsl r2,r2,#7
+
+ldr r3,=ReturnPoint5
+bx r3
+
+.ltorg
+.align
+
 
 
