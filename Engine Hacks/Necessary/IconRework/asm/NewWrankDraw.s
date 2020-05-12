@@ -16,6 +16,9 @@
 .global UnitSortWrankDraw
 .type UnitSortWrankDraw, %function
 
+.global RescueMountTypeDraw
+.type RescueMountTypeDraw, %function
+
 
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -132,5 +135,25 @@ bx r3
 .ltorg
 .align
 
+
+
+.equ ReturnPoint6,0x8034B01
+
+RescueMountTypeDraw: @hook at 34AF8
+
+mov r1,r0
+mov r0,#3 @icon sheet ID
+lsl r0,r0,#8 @shifted 8 bits left
+orr r1,r0
+
+mov r2,#0xA0
+lsl r2,r2,#7
+mov r0,r4
+
+ldr r3,=ReturnPoint6
+bx r3
+
+.ltorg
+.align
 
 

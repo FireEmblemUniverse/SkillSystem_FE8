@@ -46,6 +46,9 @@ PUSH
 		
 	ORG $902B0
 		jumpToHack(UnitSortWrankDraw)
+	
+	ORG $34AF8	
+		jumpToHack(RescueMountTypeDraw)
 
 	ORG $286C6
 		SHORT 0x3801 //set affinity index
