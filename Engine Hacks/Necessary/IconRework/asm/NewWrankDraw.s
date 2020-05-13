@@ -22,6 +22,9 @@
 .global SupportAffinityDraw
 .type SupportAffinityDraw, %function
 
+.global SupportSSAffinityDraw
+.type SupportSSAffinityDraw, %function
+
 
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -145,9 +148,9 @@ bx r3
 RescueMountTypeDraw: @hook at 34AF8
 
 mov r1,r0
-mov r0,#3 @icon sheet ID
-lsl r0,r0,#8 @shifted 8 bits left
-orr r1,r0
+mov r2,#3 @icon sheet ID
+lsl r2,r2,#8 @shifted 8 bits left
+orr r1,r2
 
 mov r2,#0xA0
 lsl r2,r2,#7
@@ -179,3 +182,27 @@ bx r3
 
 .ltorg
 .align
+
+
+.equ ReturnPoint8,0x8087711
+
+SupportSSAffinityDraw: @hook at 87708
+
+mov r1,r0
+mov r2,#0x7A
+sub r1,r2
+
+mov r0,#2 @sheet ID
+lsl r0,r0,#8 @shifted 8 bits left
+orr r1,r0
+
+mov r0,r5
+mov r2,#0xA0
+lsl r2,r2,#7
+
+ldr r3,=ReturnPoint8
+bx r3
+
+.ltorg
+.align
+

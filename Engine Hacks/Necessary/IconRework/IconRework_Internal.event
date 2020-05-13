@@ -52,7 +52,10 @@ PUSH
 		
 	ORG $A1D9C
 		jumpToHack(SupportAffinityDraw)
-		
+	
+	ORG $87708
+		jumpToHack(SupportSSAffinityDraw)
+	
 
 	ORG $286C6
 		SHORT 0x3801 //set affinity index
