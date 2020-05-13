@@ -189,7 +189,7 @@ const struct PopupComponentType gPopR_WTypeIconComponent = {
 };
 
 static void PopRWTypeIcon_Display(struct PopupReworkProc* proc, struct TextHandle* text, u32 argument) {
-	proc->addIcon(proc, (0x70 + gPopupWType), Text_GetXCursor(text));
+	proc->addIcon(proc, (0x400 | gPopupWType), Text_GetXCursor(text));
 	Text_Advance(text, 16);
 
 	LoadIconPalette(1, proc->pop.iconPalId);
