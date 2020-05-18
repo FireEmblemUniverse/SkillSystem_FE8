@@ -41,10 +41,7 @@ mov r14,r0
 ldr r0,=CombatArtsMenuDef
 .short 0xF800
 
-
-
-
-
+mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 pop {r1}
 bx r1
 
