@@ -39,10 +39,21 @@ MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect,
 //Capture
 MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
 
+#ifdef SEMITRANSPARENCY_CHANGES
+  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyCommandUsability, RallyCommandEffect)
+#else
+  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyCommandUsability, RallyCommandEffect, RallyCommandSwitchIn, RallyCommandSwitchOut)
+#endif
+
+// Shove & cie
+MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, prShoveCommand_Usability,      prShoveCommand_Effect)
+MenuCommand(UM_Smite,      UM_SmiteDesc,      NormalText, prSmiteCommand_Usability,      prSmiteCommand_Effect)
+MenuCommand(UM_Pivot,      UM_PivotDesc,      NormalText, prPivotCommand_Usability,      prPivotCommand_Effect)
+MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Usability, prRepositionCommand_Effect)
+MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
+
+
+
 UM_Separator 
-
-
-
-
 
 

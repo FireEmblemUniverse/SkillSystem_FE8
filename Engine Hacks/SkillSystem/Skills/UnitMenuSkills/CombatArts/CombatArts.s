@@ -14,12 +14,26 @@
 CombatArtsUsability:
 push {r4-r7,r14}
 
+@loop through all menu command usabilities looking for one that returns true
 
+ldr r4,=CombatArtsMenu
+add r4,#0xC @usability of first menu option
 
+LoopStart:
+ldr r0,[r4]
+cmp r0,#0
+beq RetFalse
+mov r14,r0
+.short 0xF800
+cmp r0,#1
+beq GoBack
+add r4,#36
+b LoopStart
 
+RetFalse:
+mov r0,#3
 
-
-
+GoBack:
 pop {r4-r7}
 pop {r1}
 bx r1
