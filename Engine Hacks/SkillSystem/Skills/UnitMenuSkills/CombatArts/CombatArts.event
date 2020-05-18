@@ -7,6 +7,13 @@
 //existing systems work for skills that are actually combat arts
 
 #include "CombatArts.lyn.event"
+#include "CombatArtsDurabilityCost.lyn.event"
+
+#define SetCombatArtCost(attackTypeID,durabilityCost) "PUSH; ORG (CombatArtCostTable+attackTypeID); BYTE durabilityCost; POP"
+
+ALIGN 4
+CombatArtCostTable:
+ORG currentOffset+256
 
 ALIGN 4
 CombatArtsMenuDef:
@@ -23,7 +30,12 @@ POIN 0x22861 //On B Press
 POIN 0x4f521 //On R Press
 POIN 0x4f459 //On Help Box
 
-
+SetCombatArtCost(0,0) //Attack
+SetCombatArtCost(1,0) //Rescue
+SetCombatArtCost(2,0) //Pair Up
+SetCombatArtCost(3,2) //Lunge
+SetCombatArtCost(4,2) //Mercy
+SetCombatArtCost(5,2) //Gamble
 
 ALIGN 4
 CombatArtsMenu:
@@ -53,7 +65,5 @@ MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Us
 MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
 
 
-
 UM_Separator 
-
 
