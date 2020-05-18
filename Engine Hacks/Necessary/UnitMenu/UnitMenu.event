@@ -12,7 +12,7 @@ PUSH
 
   // Make the unit menu wider (to fit longer words)
 
-  ORG $59d1f2
+  ORG $59d1f2 
     BYTE 0x9 // width
 
   ORG $1d4fa
@@ -77,14 +77,9 @@ UnitMenuTable:
   MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
   // UM_Attack_B
   MenuCommand(0x67b, 0x6c0, NormalText, $24a28, AttackEffect, $22c31, $22c99)
-  //Lunge
-  MenuCommand(UM_Lunge, UM_LungeDesc, NormalText, LungeUsability, LungeEffect, $22c31, $22c99)
-  //mercy
-  MenuCommand(UM_Mercy, UM_MercyDesc, NormalText, MercyUsability, MercyEffect, $22c31, $22c99)
-  //gamble
-  MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect, $22c31, $22c99)
-  //capture
-  MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+
+  //MenuCommand(UM_CombatArts, UM_CombatArtsDesc, NormalText, CombatArtsUsability, CombatArtsEffect, $22c31, $22c99)
+
   UM_Staff
   UM_Ride
   UM_Exit

@@ -6,13 +6,40 @@
 //submenu should exit back out to the unit menu
 //existing systems work for skills that are actually combat arts
 
+#include "CombatArts.lyn.event"
+
+ALIGN 4
+CombatArtsMenuDef:
+BYTE 1 //x coord
+BYTE 3 //y coord
+BYTE 9 //width
+BYTE 0 //height
+WORD 0 //Unknown
+POIN CombatArtsMenu //menu commands ptr
+WORD 0 //OnInit
+WORD 0 //OnEnd
+WORD 0 //Unknown
+POIN 0x22861 //On B Press
+POIN 0x4f521 //On R Press
+POIN 0x4f459 //On Help Box
+
 
 
 ALIGN 4
 CombatArtsMenu:
+//Lunge
+MenuCommand(UM_Lunge, UM_LungeDesc, NormalText, LungeUsability, LungeEffect, $22c31, $22c99)
 
+//Mercy
+MenuCommand(UM_Mercy, UM_MercyDesc, NormalText, MercyUsability, MercyEffect, $22c31, $22c99)
 
+//Gamble
+MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect, $22c31, $22c99)
 
+//Capture
+MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+
+UM_Separator 
 
 
 
