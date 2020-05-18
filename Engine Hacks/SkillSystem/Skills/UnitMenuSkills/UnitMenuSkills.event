@@ -59,3 +59,7 @@ WORD MercyID
 ALIGN 4
 MercyEffect:
 #incbin "Mercy/MercyEffect.dmp"
+
+
+#include "CombatArts/CombatArts.event"
+

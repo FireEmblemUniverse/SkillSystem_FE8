@@ -1,0 +1,21 @@
+//designate a new menu; will be a submenu of the unit menu
+//menu command for calling the new menu
+//usability on this is check a loop of all usabilities on the submenu
+//if any return true, then this also does
+//effect just calls the submenu
+//submenu should exit back out to the unit menu
+//existing systems work for skills that are actually combat arts
+
+
+
+ALIGN 4
+CombatArtsMenu:
+
+
+
+
+
+
+
+
+
