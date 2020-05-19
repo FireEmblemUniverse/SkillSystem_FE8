@@ -878,4 +878,8 @@ ORG SkillIcon(GreatShieldID)
 ORG SkillIcon(VengeanceID)
 #incbin "SkillIcons/Vengeance.dmp"
 
+ORG SkillIcon(EclipseID)
+#incbin "SkillIcons/Luna.dmp"
+
 ORG SkillIcons+0x8000
+

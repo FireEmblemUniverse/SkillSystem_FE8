@@ -643,6 +643,10 @@
 //By Sme
 #define DragonFangID 253
 
+//Eclipse: Leave opponent with 1 HP. (Skill % activation)
+//By Sme
+#define EclipseID 255
+
 //Enrage: Inflict berserk status. (Skill% activation)
 //By Sme
 #define EnrageID 251
@@ -1001,16 +1005,12 @@
 
 
 //Broken Skills
-
 #define Roll12ID 144
 #define TraceID 145
 #define TriangleAttackID 255
 
 
 ///WIP Skills
-
-
-#define EclipseID 255
 #define SkyguardID 255
 #define HorseguardID 255
 #define ArmorboostID 255
