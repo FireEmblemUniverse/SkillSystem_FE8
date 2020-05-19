@@ -116,6 +116,20 @@
 //By Sme
 #define WhitePoolID 224
 
+//Skyguard: +4 defense against flying enemies if within 3 spaces of an ally flier.
+//By Sme
+#define SkyguardID 12
+
+//Horseguard: +4 defense against horseback enemies if within 3 spaces of an ally horse rider.
+//By Sme
+#define HorseguardID 144
+
+//Armorboost: +4 attack and defense against armored enemies if within 3 spaces of an armored ally.
+//By Sme
+#define ArmorboostID 145
+#define ArmorBoostID ArmorboostID //Alias\
+
+
 
 //Debuff Skills
 
@@ -1008,21 +1022,14 @@
 
 //Display-Only Skills
 
-#define CunningID 12
+#define CunningID 255
 #define NiceThighsID 50
 #define PersonalityID 109
 
 
 //Broken Skills
-#define Roll12ID 144
-#define TraceID 145
+#define Roll12ID 255
+#define TraceID 255
 #define TriangleAttackID 255
-
-
-///WIP Skills
-#define SkyguardID 255
-#define HorseguardID 255
-#define ArmorboostID 255
-#define ArmorBoostID ArmorboostID //Alias
 
 
