@@ -340,3 +340,11 @@ ChargePlus:
 POIN SkillTester
 WORD ChargePlusID
 POIN prMovGetter
+
+ALIGN 4
+ForeignPrincess:
+#incbin "ForeignPrincess/ForeignPrincess.dmp"
+POIN SkillTester
+WORD ForeignPrincessID
+
+MESSAGE ForeignPrincess
