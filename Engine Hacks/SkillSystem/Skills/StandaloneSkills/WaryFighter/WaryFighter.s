@@ -105,6 +105,15 @@ ldr r0, CombatArtSetting
 cmp r0,#0
 beq RetTrue
 
+@are we the attacker?
+@compare first word at location in r4 to first word of attacker struct
+ldr r0,AttackerStruct
+ldr r0,[r0]
+ldr r1,[r4]
+ldr r1,[r1]
+cmp r0,r1
+bne RetTrue
+
 @is a combat art in use?
 ldr r0,=#0x0203F101
 ldrb r0,[r0]

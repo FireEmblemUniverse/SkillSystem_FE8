@@ -4,6 +4,9 @@
 @these use dmp/ea literals so they can be used repeatedly
 
 .equ SkillID, SkillTester+4
+.equ ArtID, SkillID+4
+.equ CombatArtCostTable, ArtID+4
+.equ CanUnitWieldWeapon,0x8016574
 
 CombatArtUsability:
 @true if unit has skill AND attack is available
@@ -24,10 +27,44 @@ ldr r2, SkillTester
 mov lr, r2
 .short 0xf800 @test if unit has the skill
 cmp r0, #0
-bne HasSkill
+bne UnitHasSkill
 b False
 
-HasSkill:
+UnitHasSkill:
+@check if active unit has enough durability with any weapon in their inventory
+ldr r0,ArtID
+ldr r1,CombatArtCostTable
+add r0,r1
+ldrb r5,[r0] @r5 = needed durability
+mov r6,r4
+add r6,#0x1E @r6 = start of items on active unit
+
+LoopStart:
+ldrh r1,[r6]
+cmp r1,#0
+beq False
+
+mov r0,r4
+ldr r2,=CanUnitWieldWeapon
+mov r14,r2
+.short 0xF800
+cmp r0,#0
+beq LoopRestart
+
+@check if durability is solid
+ldrh r1,[r6]
+lsr r1,r1,#8
+cmp r1,r5
+bge HasDurability
+
+LoopRestart:
+add r6,#2
+sub r3,r6,r4
+cmp r3,#10
+ble LoopStart
+
+
+HasDurability:
 @now check if can attack
 ldr r0, =0x80249ac @attack usability
 mov lr, r0
@@ -46,8 +83,9 @@ pop {r4-r7}
 pop {r1}
 bx r1
 
-.align
 .ltorg
+.align
+
 SkillTester:
 @POIN SkillTester
 @WORD GambleID

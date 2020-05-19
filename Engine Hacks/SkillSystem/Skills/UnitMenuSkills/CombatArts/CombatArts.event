@@ -107,12 +107,13 @@ UM_Separator
 
 
 
-
 ALIGN 4
 AdeptUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD AdeptID
+WORD 6 //Adept art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 AdeptEffect:
@@ -124,17 +125,22 @@ AetherUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD AetherID
+WORD 7 //Aether art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 AetherEffect:
 #incbin "CombatArtEffect.dmp"
 WORD 7 //Aether art ID
 
+
 ALIGN 4
 AstraUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD AstraID
+WORD 8 //Astra art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 AstraEffect:
@@ -146,6 +152,8 @@ DragonFangUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD DragonFangID
+WORD 9 //Dragon Fang art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 DragonFangEffect:
@@ -157,6 +165,8 @@ GlaciesUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD GlaciesID
+WORD 10 //Glacies art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 GlaciesEffect:
@@ -168,6 +178,8 @@ IgnisUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD IgnisID
+WORD 11 //Ignis art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 IgnisEffect:
@@ -179,6 +191,8 @@ LunaUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD LunaID
+WORD 12 //Luna art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 LunaEffect:
@@ -190,6 +204,8 @@ SolUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD SolID
+WORD 13 //Sol art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 SolEffect:
@@ -201,6 +217,8 @@ SureShotUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD SureShotID
+WORD 14 //Sure Shot art ID
+POIN CombatArtCostTable
 
 ALIGN 4
 SureShotEffect:
