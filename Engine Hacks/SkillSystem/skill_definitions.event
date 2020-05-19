@@ -751,6 +751,11 @@
 //By Zeta
 #define AssassinateID 255
 
+//Moonlight: Cannot double but opponent cannot counterattack.
+//By Sme
+#define MoonlightID 255
+
+
 
 //Stat Modifier Skills
 
@@ -1006,7 +1011,7 @@
 
 //Broken Skills
 #define Roll12ID 144
-#define TraceID 145
+#define TraceID 255
 #define TriangleAttackID 255
 
 
@@ -1015,5 +1020,5 @@
 #define HorseguardID 255
 #define ArmorboostID 255
 #define ArmorBoostID ArmorboostID //Alias
-#define ChargePlusID 255
-#define MoonlightID 255
+#define ChargePlusID 145
+
