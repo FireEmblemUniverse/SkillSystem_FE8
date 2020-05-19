@@ -338,6 +338,10 @@
 //By Datagne
 #define ChargeID 199 
 
+//Charge+: Charge+: If unit has used up all movement, gain brave effect.
+//By Sme
+#define ChargePlusID 255
+
 //Critical Force: Base critical is Skl * 1.5.
 //Author Unknown (Initial Commit)
 #define CriticalForceID 117
@@ -1011,7 +1015,7 @@
 
 //Broken Skills
 #define Roll12ID 144
-#define TraceID 255
+#define TraceID 145
 #define TriangleAttackID 255
 
 
@@ -1020,5 +1024,5 @@
 #define HorseguardID 255
 #define ArmorboostID 255
 #define ArmorBoostID ArmorboostID //Alias
-#define ChargePlusID 145
+
 
