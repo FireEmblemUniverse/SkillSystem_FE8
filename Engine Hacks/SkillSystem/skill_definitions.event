@@ -877,6 +877,10 @@
 //Author Unknown (Initial Commit)
 #define VantageID 32
 
+//Catch 'Em All: Grants the user every skill.
+//By Leonarth
+#define CatchEmAllID 151
+
 //Vantage+: User always attacks first, even if attacked. Negates crits.
 //By SD9k
 #define VantagePlusID 152
@@ -973,6 +977,7 @@
 //By Sme
 #define AmischeID 255
 
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 248 //Requires Biorhythm
@@ -990,7 +995,6 @@
 
 #define Roll12ID 144
 #define TraceID 145
-#define CatchEmAllID 151
 #define TriangleAttackID 255
 
 
