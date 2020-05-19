@@ -347,4 +347,9 @@ ForeignPrincess:
 POIN SkillTester
 WORD ForeignPrincessID
 
-MESSAGE ForeignPrincess
+ALIGN 4
+QuickRiposte:
+#incbin "QuickRiposte/QuickRiposte.dmp"
+POIN SkillTester
+WORD QuickRiposteID
+

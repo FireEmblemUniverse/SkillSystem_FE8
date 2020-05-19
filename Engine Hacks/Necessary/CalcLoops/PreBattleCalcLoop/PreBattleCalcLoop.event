@@ -46,6 +46,9 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 
 //add any new ones before here
 
+//quick riposte goes after everything that might touch AS
+POIN QuickRiposte
+
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 // Because of how killing machine works, critical check should always be done last

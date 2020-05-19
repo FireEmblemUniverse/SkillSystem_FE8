@@ -402,6 +402,10 @@
 //Author Unknown (Initial Commit)
 #define FieryBloodID 98
 
+//Foreign Princess: Foreign army units take -2/+2 damage dealt/taken.
+//By Sme
+#define ForeignPrincessID 88
+
 //Fortune: This unit cannot be crit.
 //By Sme
 #define FortuneID 254
@@ -473,6 +477,11 @@
 //Puissance: +3 Damage when the user's Strength is higher than the enemy's.
 //By Zeta
 #define PuissanceID 191
+
+//Quick Riposte: If defending and HP is 50% or higher, unit doubles and attacker does not double.
+//By Sme
+#define QuickRiposteID 218 
+
 
 //Quick/Slow Burn: Hit and Avoid bonus increasing or decreasing each turn, maximum +15.
 //Author Unknown (Initial Commit)
@@ -1000,8 +1009,7 @@
 
 ///WIP Skills
 
-#define ForeignPrincessID 88
-#define QuickRiposteID 218 
+
 #define EclipseID 255
 #define SkyguardID 255
 #define HorseguardID 255
