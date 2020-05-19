@@ -1,0 +1,56 @@
+
+ALIGN 4
+CombatArt_Adept:
+#incbin "Adept/proc_adept.dmp"
+POIN SkillTester
+WORD AdeptID
+
+ALIGN 4
+CombatArt_AetherDamage:
+#incbin "Aether/proc_aetherdamage.dmp"
+POIN SkillTester
+WORD AetherID
+
+ALIGN 4
+CombatArt_Astra:
+#incbin "Astra/proc_astra.dmp"
+POIN SkillTester
+WORD AstraID
+
+ALIGN 4
+CombatArt_DragonFang:
+#incbin "DragonFang/proc_dragonfang.dmp"
+POIN SkillTester
+WORD DragonFangID
+
+ALIGN 4
+CombatArt_Glacies:
+#incbin "Glacies/proc_glacies.dmp"
+POIN SkillTester
+WORD GlaciesID
+
+ALIGN 4
+CombatArt_Ignis:
+#incbin "Ignis/proc_ignis.dmp"
+POIN SkillTester
+WORD IgnisID
+
+ALIGN 4
+CombatArt_Luna:
+#incbin "Luna/proc_luna.dmp"
+POIN SkillTester
+WORD LunaID
+
+ALIGN 4
+CombatArt_Sol:
+#incbin "Sol/proc_sol.dmp"
+POIN SkillTester
+WORD SolID
+
+ALIGN 4
+CombatArt_SureShot:
+#incbin "SureShot/proc_sureshot.dmp"
+POIN SkillTester
+WORD SureShotID
+
+
