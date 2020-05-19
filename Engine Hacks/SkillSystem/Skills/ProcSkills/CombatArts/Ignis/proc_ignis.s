@@ -30,7 +30,7 @@ bne End
 @.short 0xf800
 ldr r0,=#0x0203F101
 ldrb r0,[r0]
-cmp r0, #0
+cmp r0, #11 @Ignis art ID
 bne End
 @if user has sure shot, check for proc rate
 

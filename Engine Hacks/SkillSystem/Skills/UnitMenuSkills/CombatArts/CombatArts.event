@@ -192,7 +192,7 @@ POIN SkillTester
 WORD SolID
 
 ALIGN 4
-AdeptEffect:
+SolEffect:
 #incbin "CombatArtEffect.dmp"
 WORD 13 //Sol art ID
 

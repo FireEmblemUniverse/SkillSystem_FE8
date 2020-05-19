@@ -65,6 +65,7 @@ POIN SkillTester
 WORD WaryFighterID
 WORD QuickRiposteID
 WORD MoonlightID
+WORD ARTS_HIT_ONCE
 
 ALIGN 4
 Boon:
