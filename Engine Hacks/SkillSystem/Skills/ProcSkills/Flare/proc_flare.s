@@ -46,17 +46,19 @@ mov r0,r2
 ldr r1,=#0x00000002
 and r0,r1
 cmp r0,r1
-beq NegateDefenses
+beq ActivateSkill
 ldr r1,=0x00000040
 and r0,r1
 cmp r0,r1
 bne End
 
+ActivateSkill:
 ldrb r0, [r4, #0x15] @skill stat as activation rate
 mov r1, r4 @skill user
 blh d100Result
 cmp r0, #1
 bne End
+
 
 @if we proc, set the offensive skill flag
 ldr     r2,[r6]    
