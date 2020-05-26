@@ -46,7 +46,21 @@ add r1,#1
 b Pivot_LoopStart
 
 Pivot_RetFalse:
-mov r0,#0
+@first, can we allow the skill to work?
+ldr r0,=UseSkillCheckSettingLink
+ldrb r0,[r0]
+cmp r0,#0
+beq Pivot_GoBack @if false, return false
+
+@otherwise, do we have the skill?
+mov r0,r4
+ldr r1,=SkillTester
+mov r14,r1
+ldr r1,=PivotIDLink
+ldrb r1,[r1]
+.short 0xF800
+cmp r0,#1
+beq Pivot_RetTrue
 b Pivot_GoBack
 
 Pivot_RetTrue:
@@ -86,8 +100,23 @@ add r1,#1
 b Reposition_LoopStart
 
 Reposition_RetFalse:
-mov r0,#0
+@first, can we allow the skill to work?
+ldr r0,=UseSkillCheckSettingLink
+ldrb r0,[r0]
+cmp r0,#0
+beq Reposition_GoBack @if false, return false
+
+@otherwise, do we have the skill?
+mov r0,r4
+ldr r1,=SkillTester
+mov r14,r1
+ldr r1,=RepositionIDLink
+ldrb r1,[r1]
+.short 0xF800
+cmp r0,#1
+beq Reposition_RetTrue
 b Reposition_GoBack
+
 
 Reposition_RetTrue:
 mov r0,#1
@@ -125,7 +154,21 @@ add r1,#1
 b Swap_LoopStart
 
 Swap_RetFalse:
-mov r0,#0
+@first, can we allow the skill to work?
+ldr r0,=UseSkillCheckSettingLink
+ldrb r0,[r0]
+cmp r0,#0
+beq Swap_GoBack @if false, return false
+
+@otherwise, do we have the skill?
+mov r0,r4
+ldr r1,=SkillTester
+mov r14,r1
+ldr r1,=SwapIDLink
+ldrb r1,[r1]
+.short 0xF800
+cmp r0,#1
+beq Swap_RetTrue
 b Swap_GoBack
 
 Swap_RetTrue:
@@ -164,7 +207,21 @@ add r1,#1
 b Shove_LoopStart
 
 Shove_RetFalse:
-mov r0,#0
+@first, can we allow the skill to work?
+ldr r0,=UseSkillCheckSettingLink
+ldrb r0,[r0]
+cmp r0,#0
+beq Shove_GoBack @if false, return false
+
+@otherwise, do we have the skill?
+mov r0,r4
+ldr r1,=SkillTester
+mov r14,r1
+ldr r1,=ShoveIDLink
+ldrb r1,[r1]
+.short 0xF800
+cmp r0,#1
+beq Shove_RetTrue
 b Shove_GoBack
 
 Shove_RetTrue:
@@ -203,7 +260,21 @@ add r1,#1
 b Smite_LoopStart
 
 Smite_RetFalse:
-mov r0,#0
+@first, can we allow the skill to work?
+ldr r0,=UseSkillCheckSettingLink
+ldrb r0,[r0]
+cmp r0,#0
+beq Smite_GoBack @if false, return false
+
+@otherwise, do we have the skill?
+mov r0,r4
+ldr r1,=SkillTester
+mov r14,r1
+ldr r1,=SmiteIDLink
+ldrb r1,[r1]
+.short 0xF800
+cmp r0,#1
+beq Smite_RetTrue
 b Smite_GoBack
 
 Smite_RetTrue:
@@ -242,7 +313,21 @@ add r1,#1
 b Swarp_LoopStart
 
 Swarp_RetFalse:
-mov r0,#0
+@first, can we allow the skill to work?
+ldr r0,=UseSkillCheckSettingLink
+ldrb r0,[r0]
+cmp r0,#0
+beq Swarp_GoBack @if false, return false
+
+@otherwise, do we have the skill?
+mov r0,r4
+ldr r1,=SkillTester
+mov r14,r1
+ldr r1,=SwarpIDLink
+ldrb r1,[r1]
+.short 0xF800
+cmp r0,#1
+beq Swarp_RetTrue
 b Swarp_GoBack
 
 Swarp_RetTrue:

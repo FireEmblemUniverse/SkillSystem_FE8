@@ -508,6 +508,22 @@ __psName:
 
 #ifndef HEROES_MOVEMENT_SKILL_REQUIRED
 	#include "asm/ClassBasedUsabilities.lyn.event"
+	//sub-setting for using both skill and class checks, so these need ID links
+	SwapIDLink:
+	BYTE SwapID
+	PivotIDLink:
+	BYTE PivotID
+	RepositionIDLink:
+	BYTE RepositionID
+	ShoveIDLink:
+	BYTE ShoveID
+	SmiteIDLink:
+	BYTE SmiteID
+	SwarpIDLink:
+	BYTE SwarpID
+	//also a link for the aforementioned setting
+	UseSkillCheckSettingLink:
+	BYTE ALSO_USE_MOVEMENT_SKILL_CHECK
 #endif // HEROES_MOVEMENT_SKILL_REQUIRED
 
 SetUnitAction(ACTION_MOVETARGET, ActionRoutine(_prMoveTargetUnitAction+1))

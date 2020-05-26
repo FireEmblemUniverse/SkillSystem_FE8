@@ -189,6 +189,10 @@
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
 #define VANILLA_TRIANGLE_ATTACK
 
+//If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
+#define ALSO_USE_MOVEMENT_SKILL_CHECK True
+
+
 //If true, get 1/4 prices with both bargain and silver card simultaneously.
 #define DOES_BARGAIN_STACK False
 
