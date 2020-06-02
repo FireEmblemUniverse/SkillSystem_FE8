@@ -98,7 +98,7 @@
   
     // Display growths hack
 
-    #ifdef Display_Growths_Toggle
+    #ifdef PRESS_SELECT_TO_VIEW_GROWTHS
       ORG $8888C
         BYTE 0x82
     #endif
@@ -380,7 +380,7 @@ ST_Skill5:
   RMenu(ST_Skill2,0,ST_Skill4,ST_Skill6,0xbe,0x88,4,RTextLoop,SkillDescGetter+16)
 ST_Skill6:
   RMenu(ST_Skill3,0,ST_Skill5,0,0xd6,0x88,5,RTextLoop,SkillDescGetter+20)
-#ifdef Display_Growths_Toggle
+#ifdef PRESS_SELECT_TO_VIEW_GROWTHS
   PersonalDataRText:
   RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc1)
 #else
