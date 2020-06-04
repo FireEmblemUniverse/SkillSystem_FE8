@@ -1,33 +1,15 @@
-PUSH
 
-//Renewal & friends
-ORG $1a258
-jumpToHack(Renewal)
+#include "Amaterasu/Amaterasu.lyn.event"
 
-POP
+#include "Camaraderie/Camaraderie.lyn.event"
 
-ALIGN 4
-Renewal: //combined healing skills
-#include "HPRestorationSkills/RenewalAmaterasu.lyn.event"
+#include "Forager/Forager.event"
 
-RenewalRenewalIDLink:
-BYTE RenewalID
-RenewalAmaterasuIDLink:
-BYTE AmaterasuID
-RenewalReliefIDLink:
-BYTE ReliefID
-RenewalBondIDLink:
-BYTE BondID
-RenewalCamaraderieIDLink:
-BYTE CamaraderieID
-RenewalHealTrapID:
-BYTE HealTileTrapID
-RenewalForagerIDLink:
-BYTE ForagerID
-RenewalImbueIDLink:
-BYTE ImbueID
+#include "HealTiles/HealTiles.event"
 
-ALIGN 4
-ForagerList: //A list of terrain IDs that activate Forager
-BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
-BYTE 0 //Terminator
+#include "Imbue/Imbue.event"
+
+#include "Relief/Relief.event"
+
+#include "Renewal/Renewal.event"
+

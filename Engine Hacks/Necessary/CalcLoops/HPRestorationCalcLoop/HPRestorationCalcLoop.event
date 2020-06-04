@@ -1,0 +1,17 @@
+
+#ifndef HP_RESTORATION_CALC_LOOP_INSTALLED
+#define HP_RESTORATION_CALC_LOOP_INSTALLED
+
+PUSH
+	ORG $1a258
+	jumpToHack(HPRestorationLoopFunc)
+POP
+
+ALIGN 4
+HPRestorationLoop: //for each, r0 = unit and r1 = current heal %; return modified heal % in r0
+POIN Renewal Relief Imbue Forager Camaraderie Amaterasu
+POIN HealTiles
+WORD 0 //terminator
+
+
+#endif // HP_RESTORATION_CALC_LOOP_INSTALLED
