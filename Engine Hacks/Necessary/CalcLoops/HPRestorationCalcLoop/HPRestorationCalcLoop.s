@@ -31,7 +31,7 @@ b LoopStart
 
 LoopExit:
 mov r0,r4 @return the amount healed
-pop {r4-r6}
+pop {r4-r7}
 pop {r1}
 bx r1
 
