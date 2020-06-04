@@ -33,7 +33,7 @@ ldr	r1, =ForagerList
 ForagerLoop:
 ldrb	r2,[r1]
 cmp	r2,#0
-beq	no_forager
+beq	GoBack
 cmp	r2,r0
 beq	yes_forager
 add	r1,#1

@@ -2,12 +2,12 @@
 .align
 
 
-.global Relief
-.type Relief, %function
+.global HealTiles
+.type HealTiles, %function
 
 
 
-Relief:
+HealTiles:
 push {r4-r6,r14}
 mov r4,r0 @r4 = unit
 mov r5,r1 @r5 = heal %
@@ -22,14 +22,14 @@ ldr r3, [ r0, #0x20 ] @ Pointer to trap data in r3.
 sub r3, #6
 ldrb r0, [ r4, #0x10 ] @ X coordinate of current unit in r0
 ldrb r1, [ r4, #0x11 ] @ Y coordinate of current unit in r1
-ldr r6, =RenewalHealTrapID
+ldr r6, =HealTrapIDLink
 ldrb r6, [ r6 ]
 
 BeginHealingTileLoop:
 add r3, #6
 ldrh r2, [ r3 ]
 cmp r2, #0x00
-beq NoHealingTiles @ If this is an ENDTRAP, end.
+beq GoBack @ If this is an ENDTRAP, end.
 ldrb r2, [ r3 ]
 cmp r2, r6
 bne BeginHealingTileLoop @ If this isn't an 0x23, loop back and try again.

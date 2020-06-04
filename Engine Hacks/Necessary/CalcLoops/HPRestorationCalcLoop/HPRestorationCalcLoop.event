@@ -3,9 +3,11 @@
 #define HP_RESTORATION_CALC_LOOP_INSTALLED
 
 PUSH
-	ORG $1a258
+	ORG $1A258
 	jumpToHack(HPRestorationLoopFunc)
 POP
+
+#include "HPRestorationCalcLoop.lyn.event"
 
 ALIGN 4
 HPRestorationLoop: //for each, r0 = unit and r1 = current heal %; return modified heal % in r0

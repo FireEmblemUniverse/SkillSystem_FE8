@@ -7,13 +7,13 @@
 
 #include "Forager/Forager.event"
 
-#include "HealTiles/HealTiles.event"
+#include "HealTiles/HealTiles.lyn.event"
 
-#include "Imbue/Imbue.event"
+#include "Imbue/Imbue.lyn.event"
 
-#include "Relief/Relief.event"
+#include "Relief/Relief.lyn.event"
 
-#include "Renewal/Renewal.event"
+#include "Renewal/Renewal.lyn.event"
 
 
 ALIGN 4
@@ -31,3 +31,5 @@ ReliefIDLink:
 BYTE ReliefID
 RenewalIDLink:
 BYTE RenewalID
+HealTrapIDLink:
+BYTE HealTileTrapID
