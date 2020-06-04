@@ -21,7 +21,31 @@ ldrb r1,[r1]
 cmp r0,#0
 beq GoBack
 
+@unit is in r4
+@get mag stat
+mov r0,r4
+add r0,#0x3A
+ldrb r0,[r0] @r0 = mag
 
+@multiply it by 100
+mov r1,#100
+mul r0,r1
+
+
+@divide it by MHP
+mov r1,r5
+ldrb r1,[r1,#0x12] @r1 = mhp
+
+@add MHP to dividend to make it round up
+add r0,r1
+@also add 1 here beyond that
+add r0,#1
+
+swi 0x6 @div [r0/r1]
+
+@r0 = div result
+@add it to r5
+add r5,r0
 
 GoBack:
 mov r0,r5
