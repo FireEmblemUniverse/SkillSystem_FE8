@@ -259,6 +259,9 @@
 //Amount for Metis Tome to boost growths by
 #define METIS_TOME_BOOST 5
 
+//If true, growths will be calculated as (char growth + class growth).
+#define USE_CHAR_AND_CLASS_GROWTHS False
+
 
 //The growth rate ranges for each stat color and the colors themselves can be edited in
 //Necessary/MSS/DisplayGrowthsOptions/GrowthColorsTable.event and NewPalette.event, respectively.
