@@ -961,9 +961,13 @@
 //By Sme
 #define BoonID 207
 
+//Synchronize: Statuses are also applied to the attacker.
+//By Sme
+#define SynchronizeID 236
+
 //Bargain: Halves prices in shops.
 //By Sme
-#define BargainID 236
+#define BargainID 255
 
 //Poise: +1 Move. Negates enemy hit bonus from weapon triangle advantage.
 //By Zeta
