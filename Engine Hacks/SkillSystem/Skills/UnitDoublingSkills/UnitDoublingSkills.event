@@ -1,0 +1,9 @@
+#include "WaryFighter/WaryFighter.lyn.event"
+
+#include "Moonlight/Moonlight.lyn.event"
+
+WaryFighterIDLink:
+BYTE WaryFighterID
+
+MoonlightIDLink:
+BYTE MoonlightID

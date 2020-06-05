@@ -40,10 +40,6 @@ jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
 ORG $15428
 jumpToHack(VigorDanceReset) //unset it when the turn starts again
 
-//Wary Fighter
-ORG $2AF94
-jumpToHack(WaryFighter)
-
 #ifndef VANILLA_TRIANGLE_ATTACK
 //Triangle Attack
 //ORG $2B580
@@ -57,14 +53,6 @@ callHack_r0(ParagonMisc)
 POP
 
 #include "Bargain/Bargain.event"
-
-ALIGN 4
-WaryFighter:
-#incbin "WaryFighter/WaryFighter.dmp"
-POIN SkillTester
-WORD WaryFighterID
-WORD QuickRiposteID
-WORD MoonlightID
 
 ALIGN 4
 Boon:
