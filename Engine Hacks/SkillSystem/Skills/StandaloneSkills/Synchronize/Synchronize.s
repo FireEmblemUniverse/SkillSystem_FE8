@@ -48,8 +48,8 @@ blt CheckDefender
 ldr r1,=DefenderUnit
 add r1,#0x6F
 ldrb r0,[r1]
-cmp r0,#0
-bge CheckDefender
+cmp r0,#0xFF
+bne CheckDefender
 
 @set defender status to attacker status
 strb r6,[r1]
