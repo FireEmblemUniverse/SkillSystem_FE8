@@ -30,7 +30,7 @@ ldr r5,[r1] @r5 = defender
 
 mov r6,r0
 mov r7,r1
-
+push {r6-r7}
 
 @do standard "can you double" check
 mov r3,#0x5E
@@ -53,8 +53,21 @@ ble SetASFalse
 SetASTrue: 
 ldr r4,=#0x203A4EC @attacker struct
 ldr r5,=#0x203A56C @defender struct
+mov r0,r4
+add r0,#0x5E
+ldrh r0,[r0]
+mov r1,r5
+add r1,#0x5E
+ldrh r1,[r1]
+cmp r0,r1
+blt SetASTrue_TargetDoubles
 str r4,[r6]
 str r5,[r7]
+b SetASTrue_End
+SetASTrue_TargetDoubles:
+str r4,[r7]
+str r5,[r6]
+SetASTrue_End:
 mov r6,#1
 b PrepLoop
 
@@ -89,13 +102,33 @@ b LoopStart
 
 LoopExit:
 mov r0,r6
+pop {r6-r7}
 b GoBack
 
 UnitCanDouble:
+pop {r6-r7}
+ldr r4,=#0x203A4EC @attacker struct
+ldr r5,=#0x203A56C @defender struct
+mov r0,r4
+add r0,#0x5E
+ldrh r0,[r0]
+mov r1,r5
+add r1,#0x5E
+ldrh r1,[r1]
+cmp r0,r1
+blt UnitCanDouble_TargetDoubles
+str r4,[r6]
+str r5,[r7]
+b UnitCanDouble_End
+UnitCanDouble_TargetDoubles:
+str r4,[r7]
+str r5,[r6]
+UnitCanDouble_End:
 mov r0,#1
 b GoBack
 
 UnitCannotDouble:
+pop {r6-r7}
 mov r0,#0
 
 GoBack:
