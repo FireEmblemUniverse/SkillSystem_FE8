@@ -39,7 +39,6 @@ GetEquipItemSkill:
 	@r0 = unit pointer
 @returns:
 	@r0 = equipped item skill id
-	@r1 = skill count
 
 push 	{r4-r6,lr}
 mov 	r4,r0
