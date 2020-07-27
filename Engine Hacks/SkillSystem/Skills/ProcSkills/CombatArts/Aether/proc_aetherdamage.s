@@ -52,6 +52,11 @@ bne End
 @cmp r0, #1
 @bne End
 
+@make sure this is the actual attacker kthx
+ldr r0,=#0x203A4EC
+cmp r0,r4
+bne End
+
 @if we proc, set the brave effect flag for the NEXT hit
 ldrb r1, AetherID @first mark Aether active
 strb r1, [r6,#4]

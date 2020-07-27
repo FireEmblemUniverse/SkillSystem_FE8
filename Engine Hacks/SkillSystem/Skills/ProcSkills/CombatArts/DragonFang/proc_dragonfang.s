@@ -43,6 +43,11 @@ bne End
 @cmp r0, #1
 @bne End
 
+@make sure this is the actual attacker kthx
+ldr r0,=#0x203A4EC
+cmp r0,r4
+bne End
+
 @if we proc, set the offensive skill flag
 ldr     r2,[r6]    
 lsl     r1,r2,#0xD                @ 0802B42C 0351     
