@@ -24,8 +24,10 @@ CanUnitDoubleCalcLoopFunc:
 @seems to be pointers to via stack
 @useful thing
 
-ldr r4,[r0] @r4 = attacker
-ldr r5,[r1] @r5 = defender
+@ldr r4,[r0] @r4 = attacker
+@ldr r5,[r1] @r5 = defender
+ldr r4,=#0x203A4EC @attacker struct
+ldr r5,=#0x203A56C @defender struct
 @keep the current true/false bool in r6
 
 mov r6,r0
