@@ -43,10 +43,10 @@ POP
   // BYTE $7f
 
 //skip hand axe wait for return
-  ORG $514e
-  SHORT 0
-  ORG $58c90
-  POIN $596cc
+  // ORG $514e
+  // SHORT 0
+  // ORG $58c90
+  // POIN $596cc
 
 //allow Wyvern Knights to triangle attack
   ORG $2b168
