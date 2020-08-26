@@ -244,7 +244,7 @@
 #define FIXED_GROWTHS_MODE False
 
 //ID of flag to use for fixed growths mode, if enabled
-#define FIXED_GROWTHS_FLAG_ID 0xB0
+#define FIXED_GROWTHS_FLAG_ID 0xEF
 
 //If true, passive growth boosters and metis tome will not affect growths in fixed growths mode.
 #define FIXED_GROWTHS_DONT_BOOST True
