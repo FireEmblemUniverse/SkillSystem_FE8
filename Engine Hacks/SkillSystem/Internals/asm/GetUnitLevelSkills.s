@@ -7,7 +7,6 @@
 	lCharLevelUpTable  = EALiterals+0x04
 
 	PROMOTION_LEVEL_MAX = 20
-	DEFAULT_EID = 0xEC
 
 GetUnitLevelSkills:
 	@ Arguments: r0 = Unit, r1 = level from, r2 = level to, r3 = output buffer
