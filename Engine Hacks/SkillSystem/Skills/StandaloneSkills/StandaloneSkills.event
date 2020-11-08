@@ -45,6 +45,10 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 ORG $2C6CC
 callHack_r0(ParagonMisc)
 
+//Synchronize
+ORG $2C214
+jumpToHack(Synchronize)
+
 POP
 
 #include "Bargain/Bargain.event"
@@ -119,3 +123,7 @@ WORD TriangleAttackID
 #include "Paragon/ParagonMisc.lyn.event"
 ParagonIDLink:
 BYTE ParagonID
+
+#include "Synchronize/Synchronize.lyn.event"
+SynchronizeIDLink:
+BYTE SynchronizeID

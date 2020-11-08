@@ -33,14 +33,14 @@ beq GoBack
 @get nearby units
 ldr	r0,AuraSkillCheck
 mov	lr,r0
-mov	r0,r5		@unit to check
-mov	r1,#0
-mov	r2,#0		@can_trade
+mov	r0,r4		@unit to check
+mov	r1,#0		@skill to check for
+mov	r2,#1		@only check allies
 mov	r3,#3		@range
 .short	0xf800
 
 @check if any nearby unit is correct class type
-ldr	r6,=#0x202B256	@bugger for the nearby units
+ldr	r6,=#0x202b256	@bugger for the nearby units
 LoopStart:
 ldrb	r0,[r6]
 cmp	r0,#0

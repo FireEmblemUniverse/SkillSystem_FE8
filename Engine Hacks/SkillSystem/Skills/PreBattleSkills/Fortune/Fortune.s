@@ -16,11 +16,26 @@ mov r0, r4
 ldr r1, FortuneID
 .short 0xf800
 cmp r0, #0
-beq GoBack
+beq CheckDefender
 
 @crit
 mov r0,r5
 add r0,#0x66 
+mov r3,#0
+strh r3,[r0]
+
+CheckDefender:
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r5
+ldr r1, FortuneID
+.short 0xf800
+cmp r0,#0
+beq GoBack
+
+@crit
+mov r0,r4
+add r0,#0x66
 mov r3,#0
 strh r3,[r0]
 
@@ -35,3 +50,4 @@ bx r0
 SkillTester:
 @POIN SkillTester
 @WORD FortuneID
+
