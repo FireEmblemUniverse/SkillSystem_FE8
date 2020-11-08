@@ -25,11 +25,6 @@ jumpToHack(LockTouch)
 ORG $18744
 callHack_r3(Lunge)
 
-//Rightful X
-ORG $2A52E //modifies the 1RN roll skill to check for rightful skills
-SHORT 0x46C0
-jumpToHack(RightfulCheck)
-
 //Vantage
 ORG $2Af7C
 jumpToHack(Vantage)
@@ -39,10 +34,6 @@ ORG $32364
 jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
 ORG $15428
 jumpToHack(VigorDanceReset) //unset it when the turn starts again
-
-//Wary Fighter
-ORG $2AF94
-jumpToHack(WaryFighter)
 
 #ifndef VANILLA_TRIANGLE_ATTACK
 //Triangle Attack
@@ -61,14 +52,6 @@ jumpToHack(Synchronize)
 POP
 
 #include "Bargain/Bargain.event"
-
-ALIGN 4
-WaryFighter:
-#incbin "WaryFighter/WaryFighter.dmp"
-POIN SkillTester
-WORD WaryFighterID
-WORD QuickRiposteID
-WORD MoonlightID
 
 ALIGN 4
 Boon:
@@ -98,15 +81,6 @@ WORD LockTouchID
 ALIGN 4
 Lunge:
 #incbin "Lunge/lunge.dmp"
-
-ALIGN 4
-RightfulCheck:
-#incbin "RightfulCheck/RightfulCheck.dmp"
-POIN SkillTester
-WORD RightfulArchID
-WORD RightfulKingID
-WORD RightfulGodID
-WORD HeroID
 
 ALIGN 4
 Vantage:

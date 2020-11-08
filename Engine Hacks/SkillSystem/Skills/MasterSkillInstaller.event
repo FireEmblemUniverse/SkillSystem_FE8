@@ -13,6 +13,7 @@ SHORT 0x46C0
 
 POP
 
+#include "ActivationRateSkills/ActivationRateSkills.event"
 #include "AISkills/AISkills.event"
 #include "AuraSkills/AuraSkills.event"
 #include "DebuffSkills/DebuffSkills.event"
@@ -21,6 +22,7 @@ POP
 #include "HPRestorationSkills/HPRestorationSkills.event"
 #include "MovementSkills/MovementSkills.event"
 #include "MugLoadingSkills/MugLoadingSkills.event"
+#include "UnitDoublingSkills/UnitDoublingSkills.event"
 #include "UnitMenuSkills/UnitMenuSkills.event"
 #include "PostActionSkills/PostActionSkills.event"
 #include "PostBattleSkills/PostBattleSkills.event"

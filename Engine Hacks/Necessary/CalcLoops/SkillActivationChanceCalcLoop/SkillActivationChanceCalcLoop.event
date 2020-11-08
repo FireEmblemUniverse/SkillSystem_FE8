@@ -1,0 +1,15 @@
+
+#include "SkillActivationChanceCalcLoop.lyn.event"
+
+PUSH
+ORG $2A52E //modifies the 1RN roll skill to check for rightful skills
+SHORT 0x46C0
+jumpToHack(SkillActivationChanceCalcLoopFunc)
+POP
+
+
+ALIGN 4
+SkillActivationChanceCalcLoop:
+POIN RightfulKing RightfulGod HeroSkill //skills
+POIN RightfulArch //has to go last!!
+WORD 0 //terminator
