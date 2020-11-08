@@ -1,4 +1,4 @@
-#define SkillAnimation(SkillID,Animation) "ORG (SkillAnimationTable + (4*SkillID)); POIN Animation"
+#define SkillAnimation(SkillID,Animation) " PUSH; ORG (SkillAnimationTable + (4*SkillID)); POIN Animation; POP"
 ALIGN 4
 SkillAnimationTable:
 

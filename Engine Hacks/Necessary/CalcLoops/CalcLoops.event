@@ -15,3 +15,9 @@
 
 #include "BattleProcCalcLoop/BattleProcCalcLoop.event"
 
+#include "CanUnitDoubleCalcLoop/CanUnitDoubleCalcLoop.event"
+
+#include "SkillActivationChanceCalcLoop/SkillActivationChanceCalcLoop.event"
+
+#include "HPRestorationCalcLoop/HPRestorationCalcLoop.event"
+

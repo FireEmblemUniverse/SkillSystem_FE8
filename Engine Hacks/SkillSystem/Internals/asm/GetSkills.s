@@ -46,6 +46,8 @@ make_buffer:
 	@ personal skill first, if any
 
 	ldr  r6, [r4]
+	cmp  r6, #0x00
+    beq  no_personal
 	ldrb r6, [r6, #0x04] @ var r6 = character id
 
 	ldr  r2, lPersonalSkillTable

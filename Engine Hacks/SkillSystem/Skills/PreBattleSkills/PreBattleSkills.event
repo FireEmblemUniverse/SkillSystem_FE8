@@ -151,6 +151,7 @@ ALIGN 4
 Loyalty:
 #incbin "Loyalty/Loyalty.dmp"
 POIN SkillTester
+POIN AuraSkillCheck
 WORD LoyaltyID
 
 ALIGN 4
@@ -339,3 +340,16 @@ ChargePlus:
 POIN SkillTester
 WORD ChargePlusID
 POIN prMovGetter
+
+ALIGN 4
+ForeignPrincess:
+#incbin "ForeignPrincess/ForeignPrincess.dmp"
+POIN SkillTester
+WORD ForeignPrincessID
+
+ALIGN 4
+QuickRiposte:
+#incbin "QuickRiposte/QuickRiposte.dmp"
+POIN SkillTester
+WORD QuickRiposteID
+

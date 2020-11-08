@@ -95,6 +95,20 @@ prSwapCommand_Effect:
 	POIN (_prSwap_MakeTargetList+1)
 	POIN _pSwapSelectorDefinition
 
+ALIGN 4
+prSwarpCommand_Usability:
+	#incbin "asm/TargetCommandUsability.bin"
+	POIN (_prSwarp_MakeTargetList+1)
+	POIN (prSwarpCommand_Availability+1)
+
+ALIGN 4
+prSwarpCommand_Effect:
+	#incbin "asm/TargetCommandEffect.bin"
+	POIN (_prSwarp_MakeTargetList+1)
+	POIN _pSwarpSelectorDefinition
+
+
+
 // PIVOT STUFF
 // -----------
 
@@ -220,6 +234,48 @@ _pSwapSelectorDefinition:
 	POIN (_prSwapSelection_OnSelection+1) // A Press
 	POIN 0x22749 // B Press (Generic Vanilla One that calls the unit menu back)
 	WORD 0 // idk (same)
+
+
+// SWARP STUFF
+// ----------
+
+ALIGN 4
+_prSwarpSelection_OnConstruction:
+	#incbin "asm/TargetSelection_OnConstruction.bin"
+	WORD TEXT_BOTTOMHELP_SWARP
+
+ALIGN 4
+_prSwarpSelection_OnChange:
+	#incbin "asm/SwarpSelection_OnChange.bin"
+
+ALIGN 4
+_prSwarpSelection_OnSelection:
+	#incbin "asm/SwarpSelection_OnSelection.bin"
+	WORD ACTION_SWARP
+
+ALIGN 4
+_prSwarp_MakeTargetList:
+	#incbin "asm/MakeMag2TargetList.bin"
+	POIN (prClearRangeMap+1)
+	POIN (_prSwarp_TargetCheck+1)
+
+ALIGN 4
+_prSwarp_TargetCheck:
+	#incbin "asm/Swarp_TargetCheck.bin"
+	POIN (prUnit_CanStandOnPosition+1)
+	POIN (prSwarp_TargetLegality+1)
+
+ALIGN 4
+_pSwarpSelectorDefinition:
+	POIN (_prSwarpSelection_OnConstruction+1) // Constructor
+	WORD 0 // Destructor
+	WORD 0 // idk (actually ik kinda, see my notes)
+	POIN (_prSwarpSelection_OnChange+1) // target change
+	WORD 0 // idk (same)
+	POIN (_prSwarpSelection_OnSelection+1) // A Press
+	POIN 0x22749 // B Press (Generic Vanilla One that calls the unit menu back)
+	WORD 0 // idk (same)
+
 
 // SHOVE STUFF
 // ----------
@@ -450,10 +506,31 @@ __psName:
 
 }
 
+#ifndef HEROES_MOVEMENT_SKILL_REQUIRED
+	#include "asm/ClassBasedUsabilities.lyn.event"
+	//sub-setting for using both skill and class checks, so these need ID links
+	SwapIDLink:
+	BYTE SwapID
+	PivotIDLink:
+	BYTE PivotID
+	RepositionIDLink:
+	BYTE RepositionID
+	ShoveIDLink:
+	BYTE ShoveID
+	SmiteIDLink:
+	BYTE SmiteID
+	SwarpIDLink:
+	BYTE SwarpID
+	//also a link for the aforementioned setting
+	UseSkillCheckSettingLink:
+	BYTE ALSO_USE_MOVEMENT_SKILL_CHECK
+#endif // HEROES_MOVEMENT_SKILL_REQUIRED
+
 SetUnitAction(ACTION_MOVETARGET, ActionRoutine(_prMoveTargetUnitAction+1))
 SetUnitAction(ACTION_MOVEACTIVE, ActionRoutine(_prMoveActiveUnitAction+1))
 SetUnitAction(ACTION_SWAP,       ActionRoutine(_prSwapAction+1))
 SetUnitAction(ACTION_PUSH,       ActionRoutine(_prPushAction+1))
+SetUnitAction(ACTION_SWARP,		 ActionRoutine(_prSwapAction+1))
 
 ALIGN 4 // For good measure
 
