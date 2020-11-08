@@ -8,6 +8,11 @@
 
 #include "CombatArts.lyn.event"
 #include "CombatArtsDurabilityCost.lyn.event"
+#include "CombatArtsRestrictDoubling.lyn.event"
+
+ALIGN 4
+CombatArtDoubleOptionLink:
+BYTE ARTS_HIT_ONCE
 
 #define SetCombatArtCost(attackTypeID,durabilityCost) "PUSH; ORG (CombatArtCostTable+attackTypeID); BYTE durabilityCost; POP"
 
