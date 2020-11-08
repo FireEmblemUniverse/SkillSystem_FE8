@@ -50,6 +50,12 @@ mov	r2,r0
 pop	{r1}
 cmp	r1, r2		@check if hp is already max
 beq	End
+
+
+@this used to just add curHP to curHP and set that as new curHP
+@make r0 = 1/4 maxHP
+lsr r0,r1,#2 @maxHP/4
+
 add	r2, r0		@total healing
 cmp	r2, r1		@is the new hp higher than max?
 ble	StoreHP

@@ -40,7 +40,7 @@ mul r3,r2
 add r5,r3
 mov r3,#0x4
 ldr r5,[r5,r3]
-ldrb r5,[r5,r3]
+ldrb r3,[r5,r3]
 cmp r3,#0x1
 beq Final
 cmp r3,#0x2
