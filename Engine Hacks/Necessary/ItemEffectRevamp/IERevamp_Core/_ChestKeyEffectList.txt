@@ -1,0 +1,6 @@
+//list of effect ids the ai will check for as chest keys
+BYTE 0x1E	//Chest Key
+BYTE 0x20	//Lockpick
+BYTE 0x26	//Master Key
+
+BYTE 0x0	//end of list

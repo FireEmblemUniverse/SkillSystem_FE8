@@ -1,0 +1,64 @@
+#by Teraspark
+#for FE8
+#This makes a separate table for item & staff effect anim association
+1
+FE8 Item Effect Animation Association Editor
+0xDEADBAC0
+56
+16
+FE8_Item_Effects.txt
+NULL
+
+Effect ID
+0
+2
+NDHU
+FE8 Item Effect IDs.txt
+
+No. of Chars to Display (1 or 2)
+2
+2
+NEDU
+NULL
+
+Ranged Animation to Use
+4
+1
+NDHU
+FE8_Ranged_Attack_Animations.txt
+
+Ranged Animation Enabled
+5
+1
+NDHU
+OnOff.txt
+
+For Item ID Only (set to 0x0 for any item)
+6
+2
+NDHU
+Item List.txt
+
+Alternate Pointer
+8
+4
+NEHU
+NULL
+
+Return to original position (map)
+12
+1
+NDHU
+Returning.txt
+
+Facing position (map)
+13
+1
+NDHU
+Facing.txt
+
+Enemy's flashing colour (map)
+14
+1
+NDHU
+Enemy flash.txt

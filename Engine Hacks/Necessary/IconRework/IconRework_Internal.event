@@ -43,7 +43,7 @@ PUSH
 	
 	ORG $921FC
 		jumpToHack(UnitWrankDraw)
-		
+
 	ORG $902B0
 		jumpToHack(UnitSortWrankDraw)
 	
@@ -55,7 +55,6 @@ PUSH
 	
 	ORG $87708
 		jumpToHack(SupportSSAffinityDraw)
-	
 
 	ORG $286C6
 		SHORT 0x3801 //set affinity index
@@ -70,6 +69,7 @@ PUSH
 		SHORT 0x2002 //set dragon icon index to 2		
 	
 POP
+
 
 ALIGN 4
 prGetIconTileIndex:

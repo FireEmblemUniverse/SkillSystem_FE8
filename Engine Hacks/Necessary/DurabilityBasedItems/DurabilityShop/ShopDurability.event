@@ -1,0 +1,15 @@
+PUSH
+ORG $16540
+jumpToHack(NewShopMakeItem)
+ORG $1763C
+jumpToHack(NewGetItemCost)
+POP
+
+#include "ShopDurability.lyn.event"
+
+ALIGN 4
+FixedPriceItemList:
+//BYTE IronSword
+BYTE 0
+
+
