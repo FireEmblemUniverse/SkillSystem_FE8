@@ -11,6 +11,7 @@
 .equ ACTION_MOVEACTIVE,ACTION_MOVETARGET+4
 .equ ACTION_SWAP,ACTION_MOVEACTIVE+4
 .equ ACTION_PUSH,ACTION_SWAP+4
+.equ ACTION_SWARP,ACTION_PUSH+4
 
 push	{lr}
 
@@ -40,6 +41,9 @@ ldr r1, ACTION_SWAP
 cmp r0,r1
 beq CheckMovement
 ldr r1, ACTION_PUSH
+cmp r0,r1
+beq CheckMovement
+ldr r1, ACTION_SWARP
 cmp r0,r1
 bne End
 

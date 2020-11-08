@@ -12,12 +12,16 @@
 #define ACTION_MOVEACTIVE 0x24
 #define ACTION_SWAP       0x25
 #define ACTION_PUSH       0x26
+#define ACTION_SWARP	  0x27
 
 #define TEXT_BOTTOMHELP_PIVOT      0
 #define TEXT_BOTTOMHELP_REPOSITION 0
 #define TEXT_BOTTOMHELP_SWAP       0
 #define TEXT_BOTTOMHELP_SHOVE      0
 #define TEXT_BOTTOMHELP_SMITE      0
+#define TEXT_BOTTOMHELP_SWARP	   0
+
+#ifdef HEROES_MOVEMENT_SKILL_REQUIRED
 
 prPivotCommand_Availability:
 	rGetWrapper // value defaults to 0 (False)
@@ -49,10 +53,54 @@ prSmiteCommand_Availability:
 			rWithConstant(SmiteID)
 				rCallExternal(SkillTester)
 
+prSwarpCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+			rWithConstant(SwarpID)
+				rCallExternal(SkillTester)
+				
+#else // HEROES_MOVEMENT_SKILL_REQUIRED
+ALIGN 4
+
+prPivotCommand_Availability:
+	rGetWrapper // value defaults to 0 (False)
+		rIfUnitHasNotState(US_CANTOING)
+			rCallExternal(PivotClassCheck-1)
+
+prRepositionCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+				rCallExternal(RepositionClassCheck-1)
+
+prSwapCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+				rCallExternal(SwapClassCheck-1)
+
+
+prShoveCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+				rCallExternal(ShoveClassCheck-1)
+
+prSmiteCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+				rCallExternal(SmiteClassCheck-1)
+
+prSwarpCommand_Availability:
+	rGetWrapper
+		rIfUnitHasNotState(US_CANTOING)
+				rCallExternal(SwarpClassCheck-1)
+
+#endif // HEROES_MOVEMENT_SKILL_REQUIRED
+
+
 // checking for same allegiance
 prPivot_TargetLegality:
 prReposition_TargetLegality:
 prSwap_TargetLegality:
+prSwarp_TargetLegality:
 	rGetWrapper // value defaults to 0 (False)
 		rWithSubject
 			rForActiveUnit
@@ -64,6 +112,35 @@ prSmite_TargetLegality:
     rGetWrapper // Defaults to 0
         rIfUnitHasNotGuardAI
             rConstant(True)
+		
+// class lists, if enabled
+#ifndef HEROES_MOVEMENT_SKILL_REQUIRED
+
+PivotClassList:
+BYTE EirikaLord EphraimLord 
+BYTE 0
+
+RepositionClassList:
+BYTE Mage Mage_F Sage Sage_F Monk Shaman Shaman_F Druid Druid_F
+BYTE 0
+
+SwapClassList:
+BYTE Cavalier Cavalier_F Paladin Paladin_F GreatKnight GreatKnight_F
+BYTE 0
+
+ShoveClassList:
+BYTE Mercenary Mercenary_F Fighter Brigand Pirate Berserker Warrior
+BYTE 0
+
+SmiteClassList:
+BYTE Knight Knight_F General General_F
+BYTE 0
+
+SwarpClassList:
+BYTE Priest Cleric Bishop Bishop_F Summoner Summoner_F
+BYTE 0
+
+#endif // HEROES_MOVEMENT_SKILL_REQUIRED
 
 #include "HeroesMovement_Internal.event"
 

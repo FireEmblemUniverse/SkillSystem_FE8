@@ -180,11 +180,18 @@
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
 
+//If commented, Heroes Movement skills will use class checks and will not require their respective skills. Configure lists for each skill in 'SkillSystem/Skills/UnitMenuSkills/HeroesMovement/HeroesMovement.event', at the bottom of the file.
+#define HEROES_MOVEMENT_SKILL_REQUIRED
+
 // If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate. This will not change Moonbow's description.
 // #define DISABLE_CHARGE
 
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
 #define VANILLA_TRIANGLE_ATTACK
+
+//If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
+#define ALSO_USE_MOVEMENT_SKILL_CHECK True
+
 
 //If true, get 1/4 prices with both bargain and silver card simultaneously.
 #define DOES_BARGAIN_STACK False
@@ -194,6 +201,7 @@
 #define ALSO_USE_VANILLA_SUPPLY_CHECK True
 #define ALSO_USE_VANILLA_SUMMON_CHECK False
 #define ALSO_USE_VANILLA_STEAL_CHECK True
+
 
 
 #endif // HAX_CONFIG
