@@ -1,0 +1,232 @@
+//designate a new menu; will be a submenu of the unit menu
+//menu command for calling the new menu
+//usability on this is check a loop of all usabilities on the submenu
+//if any return true, then this also does
+//effect just calls the submenu
+//submenu should exit back out to the unit menu
+//existing systems work for skills that are actually combat arts
+
+#include "CombatArts.lyn.event"
+#include "CombatArtsDurabilityCost.lyn.event"
+#include "CombatArtsRestrictDoubling.lyn.event"
+
+ALIGN 4
+CombatArtDoubleOptionLink:
+BYTE ARTS_HIT_ONCE
+
+#define SetCombatArtCost(attackTypeID,durabilityCost) "PUSH; ORG (CombatArtCostTable+attackTypeID); BYTE durabilityCost; POP"
+
+ALIGN 4
+CombatArtCostTable:
+ORG currentOffset+256
+
+ALIGN 4
+CombatArtsMenuDef:
+BYTE 1 //x coord
+BYTE 3 //y coord
+BYTE 9 //width
+BYTE 0 //height
+WORD 0 //Unknown
+POIN CombatArtsMenu //menu commands ptr
+WORD 0 //OnInit
+WORD 0 //OnEnd
+WORD 0 //Unknown
+POIN 0x22861 //On B Press
+POIN 0x4f521 //On R Press
+POIN 0x4f459 //On Help Box
+
+SetCombatArtCost(00,0) //Attack
+SetCombatArtCost(01,0) //Rescue
+SetCombatArtCost(02,0) //Pair Up
+SetCombatArtCost(03,2) //Lunge
+SetCombatArtCost(04,2) //Mercy
+SetCombatArtCost(05,2) //Gamble
+SetCombatArtCost(06,2) //Adept
+SetCombatArtCost(07,3) //Aether
+SetCombatArtCost(08,0) //Astra
+SetCombatArtCost(09,2) //Dragon Fang
+SetCombatArtCost(10,2) //Glacies
+SetCombatArtCost(11,2) //Ignis
+SetCombatArtCost(12,2) //Luna
+SetCombatArtCost(13,2) //Sol
+SetCombatArtCost(14,3) //Sure Shot
+
+ALIGN 4
+CombatArtsMenu:
+
+
+MenuCommand(UM_Adept, UM_AdeptDesc, NormalText, AdeptUsability, AdeptEffect, $22c31, $22c99)
+
+MenuCommand(UM_Aether, UM_AetherDesc, NormalText, AetherUsability, AetherEffect, $22c31, $22c99)
+
+MenuCommand(UM_Astra, UM_AstraDesc, NormalText, AstraUsability, AstraEffect, $22c31, $22c99)
+
+MenuCommand(UM_DragonFang, UM_DragonFangDesc, NormalText, DragonFangUsability, DragonFangEffect, $22c31, $22c99)
+
+MenuCommand(UM_Glacies, UM_GlaciesDesc, NormalText, GlaciesUsability, GlaciesEffect, $22c31, $22c99)
+
+MenuCommand(UM_Ignis, UM_IgnisDesc, NormalText, IgnisUsability, IgnisEffect, $22c31, $22c99)
+
+MenuCommand(UM_Luna, UM_LunaDesc, NormalText, LunaUsability, LunaEffect, $22c31, $22c99)
+
+MenuCommand(UM_Sol, UM_SolDesc, NormalText, SolUsability, SolEffect, $22c31, $22c99)
+
+MenuCommand(UM_SureShot, UM_SureShotDesc, NormalText, SureShotUsability, SureShotEffect, $22c31, $22c99)
+
+
+
+//Lunge
+MenuCommand(UM_Lunge, UM_LungeDesc, NormalText, LungeUsability, LungeEffect, $22c31, $22c99)
+
+//Mercy
+MenuCommand(UM_Mercy, UM_MercyDesc, NormalText, MercyUsability, MercyEffect, $22c31, $22c99)
+
+//Gamble
+MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect, $22c31, $22c99)
+
+//Capture
+MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+
+#ifdef HAX_RALLIES
+  // Rally preview conflicts with window semitransparency changes
+  // So we only add that in if it is disabled
+#ifdef SEMITRANSPARENCY_CHANGES
+  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyCommandUsability, RallyCommandEffect)
+#else
+  MenuCommand(UM_Rally, UM_RallyDesc, NormalText, RallyCommandUsability, RallyCommandEffect, RallyCommandSwitchIn, RallyCommandSwitchOut)
+#endif
+
+
+#endif // HAX_RALLIES
+
+// Shove & cie
+MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, prShoveCommand_Usability,      prShoveCommand_Effect)
+MenuCommand(UM_Smite,      UM_SmiteDesc,      NormalText, prSmiteCommand_Usability,      prSmiteCommand_Effect)
+MenuCommand(UM_Pivot,      UM_PivotDesc,      NormalText, prPivotCommand_Usability,      prPivotCommand_Effect)
+MenuCommand(UM_Reposition, UM_RepositionDesc, NormalText, prRepositionCommand_Usability, prRepositionCommand_Effect)
+MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
+
+
+UM_Separator 
+
+
+
+
+ALIGN 4
+AdeptUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD AdeptID
+WORD 6 //Adept art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+AdeptEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 6 //Adept art ID
+
+ALIGN 4
+AetherUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD AetherID
+WORD 7 //Aether art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+AetherEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 7 //Aether art ID
+
+
+ALIGN 4
+AstraUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD AstraID
+WORD 8 //Astra art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+AstraEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 8 //Astra art ID
+
+ALIGN 4
+DragonFangUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD DragonFangID
+WORD 9 //Dragon Fang art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+DragonFangEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 9 //Dragon Fang art ID
+
+ALIGN 4
+GlaciesUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD GlaciesID
+WORD 10 //Glacies art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+GlaciesEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 10 //Glacies art ID
+
+ALIGN 4
+IgnisUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD IgnisID
+WORD 11 //Ignis art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+IgnisEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 11 //Ignis art ID
+
+ALIGN 4
+LunaUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD LunaID
+WORD 12 //Luna art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+LunaEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 12 //Luna art ID
+
+ALIGN 4
+SolUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD SolID
+WORD 13 //Sol art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+SolEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 13 //Sol art ID
+
+ALIGN 4
+SureShotUsability:
+#incbin "CombatArtUsability.dmp"
+POIN SkillTester
+WORD SureShotID
+WORD 14 //Sure Shot art ID
+POIN CombatArtCostTable
+
+ALIGN 4
+SureShotEffect:
+#incbin "CombatArtEffect.dmp"
+WORD 14 //Sure Shot art ID
+

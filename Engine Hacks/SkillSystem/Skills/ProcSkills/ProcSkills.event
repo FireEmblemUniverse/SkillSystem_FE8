@@ -220,6 +220,8 @@ Proc_Vengeance:
 POIN SkillTester
 WORD VengeanceID
 
+#include "CombatArts/CombatArtProcSkills.event"
+
 //When animations are on, do the fancy palette swapping thing (pink for poison, etc) CURRENTLY DOESN'T WORK
 //PUSH
 //ORG $58EB8

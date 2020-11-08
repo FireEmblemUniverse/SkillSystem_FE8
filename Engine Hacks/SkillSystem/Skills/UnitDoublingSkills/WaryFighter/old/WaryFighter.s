@@ -4,6 +4,7 @@
 .equ WaryFighterID, SkillTester+4
 .equ QuickRiposteID, WaryFighterID+4
 .equ MoonlightID, QuickRiposteID+4
+.equ CombatArtSetting, MoonlightID+4
 
 @.org 0x2AF90
 @r0,r1 are stack pointers that will contain attacker and defender struct
@@ -81,6 +82,27 @@ add   r0,#0x48
 ldrb  r0,[r0]
 cmp   r0,#0xB5
 beq   RetFalse      @Stone can't double
+
+@are combat arts allowed to double?
+ldr r0, CombatArtSetting
+cmp r0,#0
+beq RetTrue
+
+@are we the attacker?
+@compare first word at location in r4 to first word of attacker struct
+ldr r0,AttackerStruct
+ldr r0,[r0]
+ldr r1,[r4]
+ldr r1,[r1]
+cmp r0,r1
+bne RetTrue
+
+@is a combat art in use?
+ldr r0,=#0x0203F101
+ldrb r0,[r0]
+cmp r0,#0
+bne RetFalse
+
 
 RetTrue:
 mov   r0,#0x1
