@@ -41,10 +41,10 @@ and r1,r2
 cmp r1,#0
 bne DoNotTarget
 
-@ldr r7,[sp,#0x24]
-@bx r7
+
 mov r0,r4
-blh IsUnitEnemyWithActiveUnit,r7
+ldr r7,[sp,#0x24]
+bl BXR7
 mov r1,r0
 cmp r1,#0
 beq DoNotTarget
@@ -55,6 +55,12 @@ ldr r1,=AITargetTrueReturn
 GoBack:
 bx r1
 
+
+.ltorg
+.align
+
+BXR7:
+bx r7
 
 .ltorg
 .align

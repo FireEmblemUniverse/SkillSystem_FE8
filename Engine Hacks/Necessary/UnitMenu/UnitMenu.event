@@ -145,8 +145,7 @@ UnitMenuTable:
   UM_Vendor
   UM_Secret
   UM_Arena
-  
-	
+  	
   #ifndef COMBAT_ARTS
 	// Shove & cie
 	MenuCommand(UM_Shove,      UM_ShoveDesc,      NormalText, prShoveCommand_Usability,      prShoveCommand_Effect)

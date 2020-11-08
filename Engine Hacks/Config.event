@@ -145,6 +145,7 @@
 // This will automatically enable Narrow Font.
 #define ENABLE_PERSONAL_INFO
 
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
@@ -180,11 +181,18 @@
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
 
+//If commented, Heroes Movement skills will use class checks and will not require their respective skills. Configure lists for each skill in 'SkillSystem/Skills/UnitMenuSkills/HeroesMovement/HeroesMovement.event', at the bottom of the file.
+#define HEROES_MOVEMENT_SKILL_REQUIRED
+
 // If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate. This will not change Moonbow's description.
 // #define DISABLE_CHARGE
 
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
 #define VANILLA_TRIANGLE_ATTACK
+
+//If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
+#define ALSO_USE_MOVEMENT_SKILL_CHECK True
+
 
 //If true, get 1/4 prices with both bargain and silver card simultaneously.
 #define DOES_BARGAIN_STACK False
@@ -202,5 +210,76 @@
 //If true, Combat Arts will not be allowed to hit more than once.
 #define ARTS_HIT_ONCE True
 
+//	Effectiveness skills coincide with a rework of the effectiveness system. 
+//	Weapon effectiveness by default is updated via macros in
+//	SkillSystem/Skills/EffectivenessSkills/EffectivenessRework.event.
+
+//	Forager uses an external list of terrain IDs for what is considered valid for healing.
+//	This list can be edited, and is located in
+//	SkillSystem/Skills/HPRestorationSkills/HPRestorationSkills.event.
+
+//	Quantum Visage pulls a mug ID from a list of 100 each time its effect is applied.
+//	The list of valid IDs can be edited, and is located in
+//	SkillSystem/Skills/MugLoadingSkills/MugLoadingSkills.event.
+
+//	Identity Problems swaps between 3 pairs of name IDs and mug IDs. 
+//	Each of these are external values, and can be changed in
+//	SkillSystem/Skills/MugLoadingSkills/MugLoadingSkills.event.
+
+//	Indoor & Outdoor Fighter use external lists of terrain IDs for what is considered indoor and outdoor terrain.
+//	These lists can be edited, and are located in
+//	Engine Hacks/SkillSystem/Skills/PreBattleSkills/DoorFighter/DoorFighter.event.
+
+//	Black Magic inflicts a random status pulled from an external list of statuses and the likelihood of their application.
+//	This list can be edited, and is located in
+//	SkillSystem/Skills/ProcSkills/ProcSkills.event.
+
+//	Bargain halves prices in shops, much like a Silver Card.
+//	It also includes a list of item IDs that are considered as valid Silver Cards, which can be edited in
+//	SkillSystem/Skills/StandaloneSkills/Bargain/Bargain.event.
+
+//	Amische disallows usage of any weapons not contained on a list.
+//	This list can be edited, and is located in
+//	SkillSystem/Skills/WeaponUsabilitySkills/WeaponUsabilitySkills.event.
+
+
+// ================================
+// = GROWTH DISPLAY CONFIGURATION =
+// ================================
+
+//If commented, growths will not be displayed by pressing Select.
+#define PRESS_SELECT_TO_VIEW_GROWTHS
+
+//If true, the stat colors for player units will reflect their growth in the stat.
+#define USE_STAT_COLORS True
+
+
+//If true, Fixed Growths mode will exist.
+#define FIXED_GROWTHS_MODE False
+
+//ID of flag to use for fixed growths mode, if enabled
+#define FIXED_GROWTHS_FLAG_ID 0xEF
+
+//If true, passive growth boosters and metis tome will not affect growths in fixed growths mode.
+#define FIXED_GROWTHS_DONT_BOOST True
+
+//If true, enemy/NPC autolevels will use fixed growths as well.
+#define ENEMY_NPC_FIXED_GROWTHS True
+
+
+//If true, the effects of multiple passive growth boosters can stack.
+#define STACKABLE_GROWTH_BOOSTS True
+
+//Amount for Metis Tome to boost growths by
+#define METIS_TOME_BOOST 5
+
+//If true, growths will be calculated as (char growth + class growth).
+#define USE_CHAR_AND_CLASS_GROWTHS False
+
+
+//The growth rate ranges for each stat color and the colors themselves can be edited in
+//Necessary/MSS/DisplayGrowthsOptions/GrowthColorsTable.event and NewPalette.event, respectively.
+//If you are using Str/Mag Split, these are instead located in
+//ExternalHacks/StrMagSplit/ModularStatScreen/DisplayGrowthsOptions.
 
 #endif // HAX_CONFIG

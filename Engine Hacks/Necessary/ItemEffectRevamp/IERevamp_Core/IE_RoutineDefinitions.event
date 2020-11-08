@@ -1,0 +1,179 @@
+#ifndef ItemEffectRoutineMacros
+	#ifdef _FE8_
+	#define ItemEffectRoutineMacros
+	
+		#ifndef RNCheck_Single
+			#define RNCheck_Single 0xCA0
+		//arguments: r0 = hit%
+		//check if hit% is less than or equal to the generated random number
+		//returns 1 if the RN (Random Number) is below hit%
+		//	returns 0 otherwise
+		#endif
+		
+		#ifndef RNCheck_Double
+			#define RNCheck_Double 0xCB8
+		//arguments: r0 = hit%
+		//returns 1 if the average of two RNs is below hit%;
+		//	returns 0 otherwise
+		#endif
+		
+	//Item Related Routines
+		#ifndef DecrementItemUses
+			#define DecrementItemUses 0x16AEC
+			//arguments: r0= item/uses short
+		#endif
+		
+		#ifndef IfUnitHasItem
+			#define IfUnitHasItem 0x1702C
+			/*
+			arguments
+				r0 = ram unit pointer
+				r1 = item id
+			check if item is in unit's inventory?
+			returns item slot of item
+				returning -1 (0xFFFFFFFF) means the item was not in the unit's inventory
+			*/
+		#endif
+		
+		#ifndef InflictStatusOnUnit
+			#define InflictStatusOnUnit 0x178F4
+		//arguments: r0 = unit pointer, r1 = status, r2 = turn duration
+		//inflicts a status (dancer ring effects, etc.) on the given unit for the given duration
+		#endif
+		
+		#ifndef RamUnitByID
+			#define RamUnitByID 0x19430
+		/*
+		arguments:
+			@r0 = unit deployment id
+		returns:
+			@r0 = unit pointer
+		*/
+		#endif
+		
+		#ifndef BActingUnitUpdate
+			#define BActingUnitUpdate 0x2CB24
+		/*@ arguments:
+			@r0 = unit pointer
+			@r1 = selected item slot
+		*/
+		#endif
+		
+		#ifndef BTargetUnitUpdate
+			#define BTargetUnitUpdate 0x2CBC8
+		/*@arguments:
+			@r0 = unit pointer
+		*/
+		#endif
+		
+		#define StartItemGraphics 0x2CA14
+		//arguments: none
+		//handles displaying graphics (weapon/staff animations, exp bar)
+
+		#define FinishItemBattleRound 0x2CC54
+		//arguments: r0 = proc (6C) pointer
+		//finish staff/item battle rounds
+		//called by item effects to update exp and item durability 
+		
+		#ifndef GetStatusStaffHitRate
+			#define GetStatusStaffHitRate 0x2CCDC
+		#endif
+		
+		#ifndef ChestCheck
+			#define ChestCheck 0x290FC
+		/*
+		arguments: r0 = unit pointer
+		check if the unit is on top of a closed chest tile with a CHEST event
+			
+		*/
+		#endif
+		
+		#ifndef DoorCheck
+			#define DoorCheck 0x29138
+		/*
+		arguments: r0 = unit pointer
+		check if unit is adjacent to a door tile with a DOOR event
+		*/
+		#endif
+		
+	//bl to bx jumps
+		#ifndef bl_to_bx_r0
+			#define bl_to_bx_r0 0xD18C0
+		#endif
+		
+		#ifndef bl_to_bx_r1
+			#define bl_to_bx_r1 0xD18C4
+		#endif
+		
+		#ifndef bl_to_bx_r2
+			#define bl_to_bx_r2 0xD18C8
+		#endif
+		
+		#ifndef bl_to_bx_r3
+			#define bl_to_bx_r3 0xD18CC
+		#endif
+		
+		#ifndef bl_to_bx_r4
+			#define bl_to_bx_r4 0xD18D0
+		#endif
+		
+		#ifndef bl_to_bx_r5
+			#define bl_to_bx_r5 0xD18D4
+		#endif
+		
+		#ifndef bl_to_bx_r6
+			#define bl_to_bx_r6 0xD18D8
+		#endif
+		
+		#ifndef bl_to_bx_r7
+			#define bl_to_bx_r7 0xD18DC
+		#endif
+		
+	//Relevant Ram Offsets
+		/*
+		#ifndef GameDataStruct
+			#define GameDataStruct
+		#endif
+		
+		#ifndef ChapterDataStruct 0x0202BCB0
+			#define ChapterDataStruct 0x0202BCF0
+		#endif
+		
+		#ifndef ActionStruct
+			#define ActionStruct 0x0203A958
+		#endif
+		
+		#ifndef SelectedUnit
+			#define SelectedUnit 0x02033F3C
+		#endif
+		
+		#ifndef ActiveUnit
+			#define ActiveUnit 0x03004E50
+		#endif
+		
+		#ifndef BattleActingUnit
+			#define BattleActingUnit 0x0203A4EC
+		#endif
+		
+		#ifndef BattleTargetUnit
+			#define BattleTargetUnit 0x0203A56C
+		#endif
+		
+		#ifndef pBattleRoundArray
+			#define pBattleRoundArray 0x0203A5EC
+		#endif
+		
+		#ifndef ppBattleCurrentRound
+			#define ppBattleCurrentRound 0x0203A608
+		#endif
+		*/
+		
+		/*
+		#ifndef 
+			#define 
+		#endif
+		
+		*/
+	#endif
+	
+#endif

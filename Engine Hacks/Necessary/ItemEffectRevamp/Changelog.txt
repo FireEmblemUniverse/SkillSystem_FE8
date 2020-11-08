@@ -1,0 +1,43 @@
+Item Effect Revamp by Teraspark of FEU (Fire Emblem Universe) Changelog
+v1.0
+- initial release, no prep screen support
+- might vulneraries(Migvul) added
+- might staves (MigStaff) added
+- master keys implemented
+- item effect ids documented
+v1.2 
+- healing staves base might set
+- custom promotion item support added
+v1.3
+- static vulnerary added
+v1.4
+-prep screen support added
+-custom statboosters implmented
+v1.5
+-staff AI support added
+-files reorganized into folders
+
+v1.6
+- master key ai support
+- custom lockpick ai support
+- custom door/chest key support
+- custom item AI support added
+- fixed error in staff ai not changing a pointer
+
+v1.7
+- converted all tables to nmm csvs
+- redid use effect id check to take up less space
+
+v1.8
+- changed spell association to put item & staff effects in a seperate table
+- started changing the hardcoded checks for status staves to check for item effects instead
+- make item effect spell association to be able to have item specific animations
+- dancer ring and status staff support
+	- the status effect given by these items is now controlled through the effect value byte
+	- for example, 0x53 inflicts silence (status effect 0x3) for 5 turns
+- redid promo items
+	- pointer to class list is now part of promotion item table
+
+intended features for future releases
+- i have yet to check for ai related status staff checks so there still may be another update coming
+- optimize stat booster text

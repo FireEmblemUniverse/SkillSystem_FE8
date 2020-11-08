@@ -1,0 +1,7 @@
+
+#include "Forager.lyn.event"
+
+ALIGN 4
+ForagerList: //A list of terrain IDs that activate Forager
+BYTE 0x01 0x0C 0x11 //Plains, Forests and Mountains
+BYTE 0 //Terminator

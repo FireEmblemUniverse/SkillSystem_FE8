@@ -1,0 +1,45 @@
+#ifndef ItemPointerTables
+	#define ItemPointerTables
+	
+	//Table Offsets
+	//Comment out definitions if moving tables INLINE
+	#ifdef _FE8_
+		/* these tables are removed in item effect revamp
+		#ifndef	IUArray
+			#define IUArray 0x288B0	//Item Usability Pointer Jump Table
+		#endif
+		#ifndef	IEArray
+			#define IEArray 0x2FC90	//Item Use Effect Pointer Jump Table
+		#endif
+		#ifndef	ITArray
+			#define ITArray 0x28E8C	//Item Targeting Pointer Jump Table
+		#endif
+		#ifndef PUArray
+			#define PUArray 0x29F34 //Prep Screen Item Usability Pointer Jump Table
+		#endif
+		*/
+		/*
+		#ifndef IBArray
+			#define IBArray 0xB3FF00 //jump table for items effects that display text when used (stat boosters and metis tome)
+		#endif
+		*/
+		#ifndef PromoItemTable
+			#define PromoItemTable 0x2921C //Promotion Item Usability Jump Table
+		#endif
+	#endif
+	//Item Use Effect Macros for manually updating tables
+	//*ignore these if using Item Effect Revamp*
+		#define SetIBPointer(Item_ID, pointer)	"setPointerTableEntry(IBArray, Item_ID, pointer)"
+		#define SetIUPointer(Item_ID, pointer)	"setPointerTableEntry(IUArray, Item_ID, pointer)"
+		#define SetIEPointer(Item_ID, pointer)	"setPointerTableEntry(IEArray, Item_ID, pointer)"
+		#define SetITPointer(Item_ID, pointer)	"setPointerTableEntry(ITArray, Item_ID, pointer)"
+		#define SetPUPointer(Item_ID, pointer)	"setPointerTableEntry(PUArray, Item_ID, pointer)"
+	
+	//Null Pointers for Item Effect Revamp Tables
+		#define IBNull 0x802F90C	//Items Effects with Box Display (Stat Boosters, Metis Tome)
+		#define IENull 0x802ff76	//Item Effect
+		#define IUNull 0x8028c04	//Item Usability
+		#define ITNull 0x802905c	//Item Targeting
+		#define PUNull 0x802a100	//Prepscreen Item Usability
+		//#define PromoNull 0x8029400	//Promotion Item Usability, i rewrote my stuff so this is no longer needed
+#endif
