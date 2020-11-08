@@ -43,21 +43,6 @@ PUSH
 	
 	ORG $921FC
 		jumpToHack(UnitWrankDraw)
-		
-	ORG $16AD4
-		jumpToHack(CheckIfSkillBookIcon)
-		
-	ORG $9A034
-		jumpToHack(CheckIfSkillBookIcon_Prep1)
-
-	ORG $9B7F4
-		jumpToHack(CheckIfSkillBookIcon_Prep2)
-
-	ORG $168C8
-		jumpToHack(CheckIfSkillBookIcon_Sell)
-		
-	ORG $9CD54
-		jumpToHack(CheckIfSkillBookIcon_Use)
 
 	ORG $902B0
 		jumpToHack(UnitSortWrankDraw)
@@ -105,8 +90,6 @@ prLoadIconObjGfx:
 	POIN praIconGfxGetters
 
 #include "asm/NewWrankDraw.lyn.event"
-
-#include "asm/SkillBookIconDraw.lyn.event"
 
 }
 

@@ -1,0 +1,98 @@
+#include "DurabilityChest/Installer.event"
+#include "DurabilityShop/ShopDurability.event"
+
+#include "ScrollNames.lyn.event"
+#include "ScrollDurability.lyn.event"
+#include "SkillBookIconDraw.lyn.event"
+
+PUSH 
+
+	ORG $174F8
+		jumpToHack(GetItemNameString)
+		
+	ORG $17518
+		jumpToHack(GetItemDescStringIndex)
+		
+	ORG $16A54
+		jumpToHack(NewItemNameGetter1)
+		
+	ORG $16874
+		jumpToHack(NewItemNameGetter2)
+	
+	ORG $17594
+		jumpToHack(ScrollDurabilityGetter)
+		
+	ORG $16A8C
+		jumpToHack(ScrollDurabilityGetter_StatScreen)
+	
+	ORG $16894
+		jumpToHack(ScrollDurabilityGetter_UnitMenu)
+
+	ORG $16AD4
+		jumpToHack(CheckIfSkillBookIcon)
+		
+	ORG $9A034
+		jumpToHack(CheckIfSkillBookIcon_Prep1)
+
+	ORG $9B7F4
+		jumpToHack(CheckIfSkillBookIcon_Prep2)
+
+	ORG $168C8
+		jumpToHack(CheckIfSkillBookIcon_Sell)
+		
+	ORG $9CD54
+		jumpToHack(CheckIfSkillBookIcon_Use)
+
+	ORG $17700
+		jumpToHack(CheckIfSkillBookIcon_Generic)
+
+	ORG $169BC
+		jumpToHack(NewItemNameGetter3)
+		
+	ORG $169F0
+		callHack_r0(ScrollDurabilityGetter_DropItem)
+		
+	ORG $16A14
+		jumpToHack(CheckIfSkillBookIcon_DropItem)
+
+POP
+
+
+//Lists for defining durability-based items
+//Each read from its specific place
+
+#define DurabilityTextEntry(textID,useColonTerminator,tablePointer) "SHORT textID useColonTerminator; POIN tablePointer"
+#define DurabilityTextEnd "WORD 0 0"
+#define DurabilityItem(itemID) "BYTE itemID"
+#define DurabilityItemEnd "BYTE 0"
+#define DurabilityIcon(itemID,iconSheetID) "BYTE itemID iconSheetID"
+#define DurabilityIconEnd "SHORT 0"
+
+
+ALIGN 4
+DurabilityBasedItemNameList: //used for item name
+DurabilityTextEntry(0xFFFF,True,SkillDescTable)
+DurabilityTextEnd
+
+ALIGN 4
+DurabilityBasedItemDescList: //used for item desc
+DurabilityTextEntry(0xFFFF,False,SkillDescTable)
+DurabilityTextEnd
+
+ALIGN 4
+DurabilityItemList: //used for durability
+DurabilityItem(SkillScroll)
+DurabilityItemEnd
+
+DurabilityBasedItemIconList: //used for icons
+DurabilityIcon(SkillScroll,5)
+DurabilityIconEnd
+
+/*
+checklist
+Y - Durability 
+Y - Name
+Y - Desc
+Y - Icon
+*/
+

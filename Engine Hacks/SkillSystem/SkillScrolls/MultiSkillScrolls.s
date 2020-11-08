@@ -79,7 +79,7 @@ bx r1
 
 MultiScrollEffect: @hybridized from some Tequila code
 
-@r4 = action struct, r5 = parent proc
+@r4 = action struct, r6 = parent proc
 
 push {r4-r7}
 

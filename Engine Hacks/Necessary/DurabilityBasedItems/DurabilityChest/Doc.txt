@@ -1,0 +1,27 @@
+
+IMPORTANT
+
+808398C - CheckCHES
+Puts chest LOCA event data on stack
+
+8084240 - 
+Gets item from stack
+
+8084278 -
+Checks for item 77 (gold probably)
+
+800D2D0 - CallSomeOtherEvents
+Puts the item in memslot 3 (passed in r1)
+
+80105A4 - Event37-GiveItem
+Gives the item from memslot 3 (using NewItemGot)
+
+8011554 - NewItemGot
+(r0 - proc pointer ram (591ac0 event engine) r1 - unit r2 - item)
+Uses 85922D0 (Procs_NewItemGotProc) (item placed at 2025148)
+
+8011538 - ItemGot_GotLeItem
+Get item durability and give to unit using HandleNewItemGetFromDrop
+
+801E098 - HandleNewItemGetFromDrop (r0 - unit r1 - item+durability)
+Give the item
