@@ -116,6 +116,20 @@
 //By Sme
 #define WhitePoolID 224
 
+//Skyguard: +4 defense against flying enemies if within 3 spaces of an ally flier.
+//By Sme
+#define SkyguardID 12
+
+//Horseguard: +4 defense against horseback enemies if within 3 spaces of an ally horse rider.
+//By Sme
+#define HorseguardID 144
+
+//Armorboost: +4 attack and defense against armored enemies if within 3 spaces of an armored ally.
+//By Sme
+#define ArmorboostID 145
+#define ArmorBoostID ArmorboostID //Alias\
+
+
 
 //Debuff Skills
 
@@ -338,6 +352,10 @@
 //By Datagne
 #define ChargeID 199 
 
+//Charge+: Charge+: If unit has used up all movement, gain brave effect.
+//By Sme
+#define ChargePlusID 255
+
 //Critical Force: Base critical is Skl * 1.5.
 //Author Unknown (Initial Commit)
 #define CriticalForceID 117
@@ -401,6 +419,10 @@
 //Fiery Blood: +4 damage when HP is not at max.
 //Author Unknown (Initial Commit)
 #define FieryBloodID 98
+
+//Foreign Princess: Foreign army units take -2/+2 damage dealt/taken.
+//By Sme
+#define ForeignPrincessID 88
 
 //Fortune: This unit cannot be crit.
 //By Sme
@@ -473,6 +495,11 @@
 //Puissance: +3 Damage when the user's Strength is higher than the enemy's.
 //By Zeta
 #define PuissanceID 191
+
+//Quick Riposte: If defending and HP is 50% or higher, unit doubles and attacker does not double.
+//By Sme
+#define QuickRiposteID 218 
+
 
 //Quick/Slow Burn: Hit and Avoid bonus increasing or decreasing each turn, maximum +15.
 //Author Unknown (Initial Commit)
@@ -634,6 +661,10 @@
 //By Sme
 #define DragonFangID 253
 
+//Eclipse: Leave opponent with 1 HP. (Skill % activation)
+//By Sme
+#define EclipseID 255
+
 //Enrage: Inflict berserk status. (Skill% activation)
 //By Sme
 #define EnrageID 251
@@ -737,6 +768,11 @@
 //Assassinate: When initiating battle at 1 range: +2 Damage, double attacks occur before counter.
 //By Zeta
 #define AssassinateID 255
+
+//Moonlight: Cannot double but opponent cannot counterattack.
+//By Sme
+#define MoonlightID 255
+
 
 
 //Stat Modifier Skills
@@ -877,6 +913,10 @@
 //Author Unknown (Initial Commit)
 #define VantageID 32
 
+//Catch 'Em All: Grants the user every skill.
+//By Leonarth
+#define CatchEmAllID 151
+
 //Vantage+: User always attacks first, even if attacked. Negates crits.
 //By SD9k
 #define VantagePlusID 152
@@ -973,6 +1013,7 @@
 //By Sme
 #define AmischeID 255
 
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 248 //Requires Biorhythm
@@ -981,27 +1022,14 @@
 
 //Display-Only Skills
 
-#define CunningID 12
+#define CunningID 255
 #define NiceThighsID 50
 #define PersonalityID 109
 
 
 //Broken Skills
-
-#define Roll12ID 144
-#define TraceID 145
-#define CatchEmAllID 151
+#define Roll12ID 255
+#define TraceID 255
 #define TriangleAttackID 255
 
 
-///WIP Skills
-
-#define ForeignPrincessID 88
-#define QuickRiposteID 218 
-#define EclipseID 255
-#define SkyguardID 255
-#define HorseguardID 255
-#define ArmorboostID 255
-#define ArmorBoostID ArmorboostID //Alias
-#define ChargePlusID 255
-#define MoonlightID 255
