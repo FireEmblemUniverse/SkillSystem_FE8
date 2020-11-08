@@ -29,23 +29,6 @@ ldr   r1,WaryFighterID
 cmp   r0,#0x0 @does the attacker?
 bne   RetFalse
 
-@does the defender have QR?
-ldr   r0,SkillTester
-mov   r14,r0
-mov   r0,r6
-ldr   r1,QuickRiposteID
-.short  0xF800
-cmp   r0,#0
-beq   MoonlightCheck
-
-@does the defender have half health or more?
-ldrb r0,[r6,#0x12] @max HP
-ldrb r1,[r6,#0x13] @cur HP
-lsr r0,#1 @divide by 2
-cmp r1,r0
-bge RetFalse @if so, we don't double
-
-MoonlightCheck:
 @does attacker have moonlight?
 ldr   r0,SkillTester
 mov   r14,r0
@@ -53,7 +36,7 @@ mov   r0,r5
 ldr   r1,MoonlightID
 .short  0xF800
 cmp   r0,#1
-beq   RetFalse
+beq   RetFalse @if so, we don't double
 
 mov   r3,#0x5E
 ldsh  r2,[r6,r3]    @defender's AS

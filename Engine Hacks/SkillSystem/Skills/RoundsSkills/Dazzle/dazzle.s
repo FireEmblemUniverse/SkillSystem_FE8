@@ -25,10 +25,10 @@ ldr r1, DazzleID
 cmp r0, #0
 bne Uncounterable
 
-@does ONLY the defender have moonlight?
+@does ONLY the attacker have moonlight?
 ldr r0, SkillTester
 mov lr, r0
-mov r0, r5 @defender data
+mov r0, r4 @attacker data
 ldr r1, MoonlightID
 .short 0xf800
 cmp r0, #0

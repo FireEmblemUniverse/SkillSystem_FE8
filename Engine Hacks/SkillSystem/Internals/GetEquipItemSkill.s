@@ -39,7 +39,6 @@ GetEquipItemSkill:
 	@r0 = unit pointer
 @returns:
 	@r0 = equipped item skill id
-	@r1 = skill count
 
 push 	{r4-r6,lr}
 mov 	r4,r0
@@ -82,7 +81,9 @@ beq skip_skill
 ldr 	r3, IsItemSkillPassive
 _blr r3
 @bl IsItemSkillPassive
-cmp 	r0, #0x0
+mov 	r1, r0
+mov 	r0, #0x0
+cmp 	r1, #0x0
 @return 0 if weapon has a passive skill
 @because the skill should already be in the buffer
 bne skip_skill

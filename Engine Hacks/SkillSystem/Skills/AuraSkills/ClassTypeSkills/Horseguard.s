@@ -33,9 +33,9 @@ beq GoBack
 @get nearby units
 ldr	r0,AuraSkillCheck
 mov	lr,r0
-mov	r0,r5		@unit to check
+mov	r0,r4		@unit to check
 mov	r1,#0
-mov	r2,#0		@can_trade
+mov	r2,#1		@are allied
 mov	r3,#3		@range
 .short	0xf800
 

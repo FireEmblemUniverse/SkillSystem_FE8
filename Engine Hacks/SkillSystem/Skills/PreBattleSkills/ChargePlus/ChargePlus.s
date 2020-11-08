@@ -5,7 +5,7 @@
 push {r4-r7, lr}
 ldr     r5,=0x203a4ec @attacker
 cmp     r0,r5
-bne     End
+bne     GoBack
 mov r4, r0 @atkr
 mov r5, r1 @dfdr
 
@@ -23,8 +23,10 @@ beq GoBack
 ldr r0,MovGetter
 mov r14,r0
 mov r0,r4
+mov r1,#0
 .short 0xF800
-@r0= unit's move
+@r0= unit's move *2 for some reason
+lsr r0,r0,#1 @r0 = unit's move
 
 @get unit's used up movement from action struct
 ldr r1,=0x203A958 @action struct
@@ -34,7 +36,7 @@ ldrb r1,[r1] @r1 = squares moved
 @get remaining move
 sub r0,r1
 cmp r0,#0 @see if we've moved as far as possible
-bne GoBack @if not, no bonus
+bgt GoBack @if not, no bonus
 
 @otherwise, set the brave flag on our weapon
 mov r0,r4
@@ -46,10 +48,13 @@ str r1,[r0]
 
 
 GoBack:
-pop {r4-r7, r15}
+pop {r4-r7}
+pop {r0}
+bx r0
 
-.align
 .ltorg
+.align
+
 
 SkillTester:
 @POIN SkillTester
