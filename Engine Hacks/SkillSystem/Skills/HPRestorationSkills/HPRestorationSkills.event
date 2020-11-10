@@ -7,8 +7,6 @@
 
 #include "Forager/Forager.event"
 
-#include "HealTiles/HealTiles.lyn.event"
-
 #include "Imbue/Imbue.lyn.event"
 
 #include "Relief/Relief.lyn.event"
@@ -31,5 +29,3 @@ ReliefIDLink:
 BYTE ReliefID
 RenewalIDLink:
 BYTE RenewalID
-HealTrapIDLink:
-BYTE HealTileTrapID

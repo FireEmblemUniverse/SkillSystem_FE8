@@ -80,8 +80,8 @@ POP
   //Negative Stat Boosts
   #include "Necessary/NegativeStatBoosts/NegativeStatBoosts.event"
 
-  //Dragon Veins
-  #include "ExternalHacks/DragonVeins/DragonVeins.event"
+  //Trap Rework (Dragon Veins & Heal Tiles)
+  #include "ExternalHacks/TrapRework/TrapRework.event"
   
   //Proper Range Getters
   #include "ExternalHacks/ProperRangeGetters/ProperRangeGetters/ProperRangeGetters.event"

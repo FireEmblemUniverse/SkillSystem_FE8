@@ -11,7 +11,9 @@
 
 EventPointerTable(0x7, PointerList)
 
+#ifdef DRAGON_VEINS
 VeinEffect(0, FreezeAllEnemies)
+#endif // DRAGON_VEINS
 
 PointerList:
 POIN TurnBasedEvents
@@ -134,7 +136,9 @@ UNIT Beran Ranger 0x40 0xA5       [17,14] 0 0 0 0 [Lancereaver, KillerBow, Longb
 UNIT
 
 Traps1:
+#ifdef DRAGON_VEINS
 Vein(9,23,0x0,DV1Desc) //freeze enemies
+#endif // DRAGON_VEINS
 ENDTRAP
 ALIGN 4
 
@@ -201,11 +205,13 @@ LABEL 0
 	
 	// HouseEvent(HouseText, HouseBG)
 
+#ifdef DRAGON_VEINS
 FreezeAllEnemies:
 VeinActivation
 ASMC FreezeAllASMC|1
 NoFade
 ENDA
+#endif // DRAGON_VEINS
 
 TalkEvent:
 Text(0xc0a)
