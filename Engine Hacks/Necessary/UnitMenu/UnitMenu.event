@@ -72,7 +72,11 @@ UnitMenuTable:
     MenuCommand(ArriveName, ArriveDesc, BlueText, ArriveCommandUsability, ArriveCommandEffect)
     MenuCommand(EscapeName, EscapeDesc, BlueText, EscapeCommandUsability, EscapeCommandEffect)
   #endif // ESCAPE_ARIVE
+  
+  #ifdef DRAGON_VEINS
   MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
+  #endif // DRAGON_VEINS
+  
   // UM_Attack
   MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
   // UM_Attack_B

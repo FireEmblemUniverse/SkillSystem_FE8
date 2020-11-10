@@ -1,0 +1,157 @@
+
+#ifndef TRAP_REWORK
+
+#ifdef DRAGON_VEINS
+	#define TRAP_REWORK
+#endif // DRAGON_VEINS
+
+#ifdef HEAL_TILES
+	#define TRAP_REWORK
+#endif // HEAL_TILES
+
+#endif // TRAP_REWORK
+
+#ifdef TRAP_REWORK
+
+#ifndef TRAP_REWORK_INSTALLED
+	#define TRAP_REWORK_INSTALLED
+
+	
+	//vanilla trap ID defs
+	#define BallistaTrapID 1
+	#define AttackableTerrainTrapID 2
+	#define MapChangesTrapID 3
+	#define FireTrapID 4
+	#define GasTrapID 5
+	#define UnusedMapChangesTrapID 6
+	#define ArrowTrapID 7
+	#define InstantFireTrapID 8
+	#define PossiblyUnusedTrapID 9
+	#define TorchStaffTrapID 10
+	#define MineTrapID 11
+	#define GorgonEggTrapID 12
+	#define LightRuneTrapID 13
+	
+	#define LightRuneTrapPaletteWord 0xFFFFB080
+	#define PlayerTrapPaletteWord 0xFFFFC080
+	#define EnemyTrapPaletteWord 0xFFFFD080
+	#define NPCTrapPaletteWord 0xFFFFE080
+	#define GreyTrapPaletteWord 0xFFFFF080
+	#define GrayTrapPaletteWord GreyTrapPaletteWord //language is dumb
+	
+	#define ExampleMapSpriteTrapID 0x10
+	#define ExampleMapSpriteID 0x66
+	
+	
+	#include "TrapRework_Internal.event"
+	
+	
+	//macro for setting event initializers
+	#define SetTrapEventInit(trapID,ptr) "PUSH; ORG TrapInitFromEventsJumpTable+(4*(trapID-1)); POIN ptr; POP"
+	
+	SetTrapEventInit(BallistaTrapID,$37894)
+	SetTrapEventInit(AttackableTerrainTrapID,$37900)
+	SetTrapEventInit(MapChangesTrapID,$37900)
+	SetTrapEventInit(FireTrapID,$378A0)
+	SetTrapEventInit(GasTrapID,$378AE)
+	SetTrapEventInit(UnusedMapChangesTrapID,0)
+	SetTrapEventInit(ArrowTrapID,$378E2)
+	SetTrapEventInit(InstantFireTrapID,$378C0)
+	SetTrapEventInit(PossiblyUnusedTrapID,$378CA)
+	SetTrapEventInit(TorchStaffTrapID,$37900)
+	SetTrapEventInit(MineTrapID,$378D6)
+	SetTrapEventInit(GorgonEggTrapID,$378EC)
+	SetTrapEventInit(LightRuneTrapID,0)
+	
+	
+	#define SetTrapMapSprite(trapID,mapSpriteID) "PUSH; ORG TrapMapSpriteTable+(trapID-1); BYTE mapSpriteID; POP"
+
+	
+	SetTrapMapSprite(BallistaTrapID,0) //ballista is a special case handled elsewhere
+	SetTrapMapSprite(AttackableTerrainTrapID,0)
+	SetTrapMapSprite(MapChangesTrapID,0)
+	SetTrapMapSprite(FireTrapID,0)
+	SetTrapMapSprite(GasTrapID,0)
+	SetTrapMapSprite(UnusedMapChangesTrapID,0)
+	SetTrapMapSprite(ArrowTrapID,0)
+	SetTrapMapSprite(InstantFireTrapID,0)
+	SetTrapMapSprite(PossiblyUnusedTrapID,0)
+	SetTrapMapSprite(TorchStaffTrapID,0)
+	SetTrapMapSprite(MineTrapID,0)
+	SetTrapMapSprite(GorgonEggTrapID,0)
+	SetTrapMapSprite(LightRuneTrapID,0x66) //light rune map sprite
+	
+	//Macro for setting unique cases on trap map sprites
+	#define SetTrapMapSpriteFunc(trapID,ptr) "PUSH; ORG (TrapMapSpriteFuncTable+((trapID-1)*4)); POIN ptr; POP"
+	//doesn't need to be one for ballistae, they're handled somewhere else
+	//THIS IS CURRENTLY UNIMPLEMENTED
+	
+
+	#define SetTrapMapSpritePalette(trapID,paletteWord) "PUSH; ORG TrapMapSpritePaletteTable+(4*(trapID-1)); WORD paletteWord; POP"
+	
+	SetTrapMapSpritePalette(LightRuneTrapID,LightRuneTrapPaletteWord)
+	
+	
+
+	//These 3 macros are all you need to define a new trap w/ map sprite
+	SetTrapEventInit(ExampleMapSpriteTrapID,TrapRework_GenericInitializer)
+	SetTrapMapSprite(ExampleMapSpriteTrapID,ExampleMapSpriteID) //thief map sprite
+	SetTrapMapSpritePalette(ExampleMapSpriteTrapID,NPCTrapPaletteWord)
+	
+	
+	//Use this macro in your events to place a map sprite trap
+	#define MapSpriteTrap(trapID,x,y) "BYTE trapID x y 0 0 0"	
+	
+	//Macros for checks/actions involving traps
+	#define AddTrap(trapID,x,y) "SVAL 1 trapID; SVAL 0xB (x|(y<<16)); ASMC AddTrapASMC"
+	#define RemoveTrapAtCoords(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
+	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
+	#define GetTrapExt1At(X,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
+	
+	
+	//Macro for setting traps as light sources (uses ext1 for vision range)
+	#define SetLightSourceTrap(trapID) "PUSH; ORG (TrapFogLightSourceTable+trapID); BYTE 1; POP"
+	
+	SetLightSourceTrap(TorchStaffTrapID)
+	
+	//Macro for setting traps as impassable, like light runes
+	#define SetImpassableTrap(trapID) "PUSH; ORG (TrapLightRuneImpassableTable+trapID); BYTE 1; POP"
+	
+	SetImpassableTrap(LightRuneTrapID)
+	
+	
+ 
+	
+
+	//Macro for settings pairs of terrain IDs & char IDs for breakable terrain
+	#define TrapBreakableTerrain(terrainID,charID,maxHP) "BYTE (terrainID-1) charID maxHP 0"
+	#define TrapBreakableTerrainListEnd "WORD 0"
+
+	//List for things that should be breakable
+	ALIGN 4
+	TrapBreakableTerrainList: 
+	TrapBreakableTerrain(0x34,0xFF,20) 		//Snag
+	TrapBreakableTerrain(0x1C,0xFE,0xFF) 	//Wall
+	TrapBreakableTerrainListEnd
+	
+
+	#include "Modules/DragonVeins/DragonVeins.event"
+	#include "Modules/HealTiles/HealTiles.event"
+	
+	//This is here to satiate a hardcoded requirement if heal tiles are not installed.
+	#ifndef HEAL_TILES
+	HealTileTrapIDLink:
+	WORD 0
+	#endif // HEAL_TILES
+	
+	//Tellius Torches are not included in this distribution,
+	//but there are references to it in the code still.
+	//This exists to satiate them, remove it if you add Tellius Torches.
+	TelliusTorchTrapIDLink:
+	TelliusTorchOffMapSpriteIDLink:
+	TelliusTorchOnMapSpriteIDLink:
+	WORD 0
+	
+#endif // TRAP_REWORK_INSTALLED
+
+#endif // TRAP_REWORK

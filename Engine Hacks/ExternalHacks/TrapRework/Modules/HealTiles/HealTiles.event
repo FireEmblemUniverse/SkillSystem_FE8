@@ -1,0 +1,43 @@
+
+//Heal Tiles by Snakey1
+//Converted to Trap Rework by Sme
+
+#ifdef HEAL_TILES
+
+#define HealMapSpriteID 0x68
+#define HealTilesTrapID 0xE
+#define HealTileTrapID HealTilesTrapID //aaaaa
+
+#define HealTile(XX,YY,HealPercent) "BYTE HealTileTrapID XX YY 0x0 HealPercent 0x0"
+#define HealTile(XX,YY,HealPercent,EventID) "BYTE HealTileTrapID XX YY 0x0 HealPercent EventID"
+
+HealTrapIDLink:
+HealTileTrapIDLink:
+BYTE HealTilesTrapID
+
+#include "HealTiles.lyn.event"
+
+
+SetTrapEventInit(HealTilesTrapID,$378EC)
+SetTrapMapSprite(HealTilesTrapID,HealMapSpriteID)
+SetTrapMapSpritePalette(HealTilesTrapID,EnemyTrapPaletteWord)
+SetTrapMapSpriteFunc(HealTilesTrapID,HealTiles_MapSpriteFunc)
+
+
+PUSH
+	ORG (0x8AF880+0x8*HealMapSpriteID)
+		SHORT 0x0002
+		SHORT 0x0000
+		POIN HealGraphics
+POP
+
+ALIGN 4
+HealGraphics:
+//#incext Png2Dmp "sparkle_final_4.png" --lz77
+#incbin "sparkle_final_4.dmp"
+
+//the part that actually does healing
+#include "HealTiles/HealTiles.lyn.event"
+
+#endif // HEAL_TILES
+	
