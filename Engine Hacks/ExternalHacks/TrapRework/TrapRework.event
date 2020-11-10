@@ -138,6 +138,12 @@
 	#include "Modules/DragonVeins/DragonVeins.event"
 	#include "Modules/HealTiles/HealTiles.event"
 	
+	//This is here to satiate a hardcoded requirement if heal tiles are not installed.
+	#ifndef HEAL_TILES
+	HealTileTrapIDLink:
+	WORD 0
+	#endif // HEAL_TILES
+	
 	//Tellius Torches are not included in this distribution,
 	//but there are references to it in the code still.
 	//This exists to satiate them, remove it if you add Tellius Torches.
