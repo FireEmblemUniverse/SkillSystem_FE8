@@ -1,7 +1,7 @@
 	
-	#ifndef STAIRS_ASM
+	#ifndef STAIRS_INSTALLED
 	
-		#define STAIRS_ASM
+		#define STAIRS_INSTALLED
 		
 		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA 0x00 StairID [X1,Y1] 0x22 ; LOCA 0x00 StairID [X2,Y2] 0x22"
 		#define Stairs(EventID,StairID,X1,Y1,X2,Y2) "LOCA EventID StairID [X1,Y1] 0x22 ; LOCA EventID StairID [X2,Y2] 0x22"
@@ -34,7 +34,7 @@
 		jumpToHack(EndTurnFix)
 		POP
 	
-	#endif // STAIRS_ASM
+	#endif // STAIRS_INSTALLED
 	
 	/*
 	//Repoint Unit Menu
