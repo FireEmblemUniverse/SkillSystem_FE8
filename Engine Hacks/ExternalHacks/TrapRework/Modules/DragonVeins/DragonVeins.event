@@ -87,19 +87,29 @@ DragonVeinVoicemap:
 DragonVeinWav:
   #incbin "bin/DragonVein_wav.dmp"
 
+#ifndef SongTableOffset
+    #define SongTableOffset 0x224470
+    #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+  #endif // SongTableOffset
+
 SongTable(DragonVeinSFXID,DragonVeinSFX,7)
 
+#ifdef DRAGON_VEIN_SKILL_REQUIRED
+  VeinUsability:
+    #incbin "asm/DragonVeinUsability.dmp"
+    WORD DragonVeinTrapID
+    POIN SkillTester
+    WORD DragonsBloodID
+  #endif
 
-
-
-
+  #ifndef DRAGON_VEIN_SKILL_REQUIRED
   VeinUsability:
     #incbin "asm/DragonVeinUsabilityNoSkill.dmp"
     WORD DragonVeinTrapID
-    WORD 0
-    WORD 0
-	POIN HolyBloodTable
-	POIN HolyBloodCharacterTable
+    POIN SkillTester
+    WORD DragonsBloodID
+  #endif
+
 
 
   VeinEffect:
