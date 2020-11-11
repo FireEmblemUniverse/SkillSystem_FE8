@@ -143,17 +143,18 @@ yes_class_skill:
 	cmp r3, #0     @0, vanilla behavior
 	beq write_class_skill
 
-	ldrb r0, [r7, #0xB] @allegiance
-	lsr r0, #0x6 @ top two bits are used for allegiance (0x00 for player, 0x40 for NPC, 0x80 for enemy)
-	cmp r0, #0x0
-	bne enemy_check
+	@ uses character id instead of allegiance, id>0x46 enemy
+	ldr r0, [r7, #0x00] @ r0 = unit character
+	ldrb r0, [r0, #0x04] @ r0 = unit character id
+	cmp r0, #0x46
+	bhi enemy_check
 
 	cmp r3, #1     @1, player only
 	beq write_class_skill
 
 	b continue_class_skill
 
-@includes green units
+@enemy & npc
 enemy_check:
 	cmp r3, #2     @2, enemy only
 	beq write_class_skill
