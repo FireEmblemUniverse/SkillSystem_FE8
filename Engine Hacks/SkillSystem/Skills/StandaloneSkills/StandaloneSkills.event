@@ -39,8 +39,8 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 //Triangle Attack
 ORG $2B57C
 jumpToHack(TriangleAttackSkill1)
-ORG $2B168
-jumpToHack(TriangleAttackSkill2)
+ORG $2B16C
+callHack_r1(TriangleAttackSkill2)
 
 #endif
 
