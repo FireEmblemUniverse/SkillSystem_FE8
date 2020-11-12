@@ -37,8 +37,11 @@ jumpToHack(VigorDanceReset) //unset it when the turn starts again
 
 #ifndef VANILLA_TRIANGLE_ATTACK
 //Triangle Attack
-//ORG $2B580
-//callHack_r0(TriangleAttackSkill)
+ORG $2B57C
+jumpToHack(TriangleAttackSkill1)
+ORG $2B168
+jumpToHack(TriangleAttackSkill2)
+
 #endif
 
 //ParagonMisc
@@ -114,12 +117,12 @@ WORD DebuffTable
 WORD VigorDanceBit
 WORD 8 //size of a debuff table entry
 
+#include "TriangleAttack/TriangleAttack.lyn.event"
 ALIGN 4
-TriangleAttackSkill:
-#incbin "TriangleAttack/TriangleAttack.dmp"
-POIN SkillTester
-WORD TriangleAttackID
+TriangleAttackIDLink:
+BYTE TriangleAttackID
 
+ALIGN 4
 #include "Paragon/ParagonMisc.lyn.event"
 ParagonIDLink:
 BYTE ParagonID
