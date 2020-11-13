@@ -195,7 +195,7 @@
 // #define DISABLE_CHARGE
 
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
-#define VANILLA_TRIANGLE_ATTACK
+//#define VANILLA_TRIANGLE_ATTACK
 
 //If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
 #define ALSO_USE_MOVEMENT_SKILL_CHECK True

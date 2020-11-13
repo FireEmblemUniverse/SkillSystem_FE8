@@ -1,36 +1,58 @@
 .thumb
-.equ TriangleAttackID, SkillTester+4
-.equ TrueReturnPoint, 0x802B593
-.equ FalseReturnPoint, 0x802B5ED
+.align
 
-@push {r4-r7, lr}
-@mov r4, r0 @attacker
-@mov r5, r1 @defender
+.global TriangleAttackSkill1
+.type TriangleAttackSkill1, %function
 
-push {r2-r3}
+.global TriangleAttackSkill2
+.type TriangleAttackSkill2, %function
 
-ldr r0, SkillTester
-mov lr, r0
-mov r0, r2 @attacker
-ldr r1, TriangleAttackID
-.short 0xf800
-cmp r0, #0
-beq RetFalse
 
-RetTrue:
-ldr r0,=TrueReturnPoint
-b GoBack
+TriangleAttackSkill1: @r3 hook at 2B57C
+mov r3,r1 @preserving initial function
+push {r2,r3}
+@r2 contains unit struct
+mov r0,r2
+ldr r1,=TriangleAttackIDLink
+ldrb r1,[r1]
+bl SkillTester
+cmp r0,#0
+beq TriAttack1_RetFalse
 
-RetFalse:
-ldr r0,=FalseReturnPoint
+ldr r0,=#0x802B593 @continue function
+b TriAttack1_GoBack
 
-GoBack:
-pop {r2-r3}
+TriAttack1_RetFalse:
+ldr r0,=#0x802B5ED @end function
+
+TriAttack1_GoBack:
+pop {r2,r3}
 bx r0
 
 .ltorg
 .align
 
-SkillTester:
-@Poin SkillTester
-@WORD TriangleAttackID
+
+TriangleAttackSkill2: @r3 hook at 2B16C
+@r2 contains unit struct
+mov r0,r2
+ldr r1,=TriangleAttackIDLink
+ldrb r1,[r1]
+bl SkillTester
+cmp r0,#0
+beq TriAttack2_RetFalse
+
+ldr r0,=#0x802B179 @continue check
+b TriAttack2_GoBack
+
+TriAttack2_RetFalse:
+ldr r0,=#0x802B19D @exit check
+
+TriAttack2_GoBack:
+mov r3,#0 @this is dumb but makes things work
+bx r0
+
+.ltorg
+.align
+
+
