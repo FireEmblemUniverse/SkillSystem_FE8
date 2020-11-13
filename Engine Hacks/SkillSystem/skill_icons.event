@@ -902,4 +902,8 @@ ORG SkillIcon(HorseguardID)
 ORG SkillIcon(ArmorboostID)
 #incbin "SkillIcons/EmptyFrame.dmp"
 
+ORG SkillIcon(TriangleAttackID)
+#incbin "SkillIcons/EmptyFrame.dmp"
+
 ORG SkillIcons+0x8000
+
