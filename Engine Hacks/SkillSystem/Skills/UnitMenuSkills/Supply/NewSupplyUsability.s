@@ -19,6 +19,14 @@
 .endm
 
 push {r4,r14}
+
+ldr r1, =gActiveUnit
+ldr r1, [r1]
+ldr r0, [r1, #0xC]
+mov r1, #0x40
+tst r0, r1
+bne ReturnFalse
+
 ldr r0, SkillTester
 mov lr, r0
 ldr r1, =gActiveUnit
