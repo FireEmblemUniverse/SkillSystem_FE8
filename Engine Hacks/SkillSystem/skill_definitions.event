@@ -763,7 +763,8 @@
 #define DazzleID 141
 
 //Desperation: If HP < 50%, double attacks occur immediately.
-#define DesperationID 33 //DONE by ??? (Initial Commit)
+//By ??? (Initial Commit)
+#define DesperationID 33 
 
 //Assassinate: When initiating battle at 1 range: +2 Damage, double attacks occur before counter.
 //By Zeta
@@ -1021,6 +1022,9 @@
 //By Sme
 #define AmischeID 255
 
+//Triangle Attack: Allows this unit to perform a triangle attack with 2 other units who have this skill.
+#define TriangleAttackID 255
+
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
@@ -1038,6 +1042,5 @@
 //Broken Skills
 #define Roll12ID 255
 #define TraceID 255
-#define TriangleAttackID 255
 
 

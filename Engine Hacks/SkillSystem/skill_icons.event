@@ -882,24 +882,28 @@ ORG SkillIcon(SynchronizeID)
 #incbin "SkillIcons/Synchronize.dmp"
 
 ORG SkillIcon(SwarpID)
-#incbin "SkillIcons/Swap.dmp"
+#incbin "SkillIcons/Swarp.dmp"
 
 ORG SkillIcon(EclipseID)
-#incbin "SkillIcons/Luna.dmp"
+#incbin "SkillIcons/Eclipse.dmp"
 
 ORG SkillIcon(MoonlightID)
-#incbin "SkillIcons/Luna.dmp"
+#incbin "SkillIcons/Moonlight.dmp"
 
 ORG SkillIcon(ChargePlusID)
-#incbin "SkillIcons/Charge.dmp"
+#incbin "SkillIcons/ChargePlus.dmp"
 
 ORG SkillIcon(SkyguardID)
-#incbin "SkillIcons/EmptyFrame.dmp"
+#incbin "SkillIcons/Skyguard.dmp"
 
 ORG SkillIcon(HorseguardID)
-#incbin "SkillIcons/EmptyFrame.dmp"
+#incbin "SkillIcons/Horseguard.dmp"
 
 ORG SkillIcon(ArmorboostID)
-#incbin "SkillIcons/EmptyFrame.dmp"
+#incbin "SkillIcons/Armorboost.dmp"
+
+ORG SkillIcon(TriangleAttackID)
+#incbin "SkillIcons/TriangleAttack.dmp"
 
 ORG SkillIcons+0x8000
+
