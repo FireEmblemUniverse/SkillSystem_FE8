@@ -12,6 +12,14 @@ mov r5, r1 @defender
 mov r6, r2 @battle buffer
 mov r7, r3 @battle data
 
+@is our equipped weapon unbreakable?
+mov r0,r4
+add r0,#0x4C
+mov r1,#0x8
+and r0,r1
+cmp r0,#0
+bne GoBack @if so, don't do durability loss
+
 @table indexed by attack type containing extra durability cost
 ldr r0,=CombatArtCostTable
 ldr r1,=#0x0203F101 @location of attack type byte 
@@ -45,6 +53,7 @@ NotNegative:
 orr r1,r2
 strh r1,[r4]
 
+GoBack:
 pop {r4-r7}
 pop {r0}
 bx r0
