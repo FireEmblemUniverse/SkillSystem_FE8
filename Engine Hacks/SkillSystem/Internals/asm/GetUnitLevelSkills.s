@@ -117,9 +117,15 @@ check_class_skill:
 
 lop_class_skill:
 	ldrb r3, [r4]
+	
+	cmp r2,#0xFF @if getting initial skill list, this is true
+	beq DontStripAllegiance
+	
 	mov r0, #0x1F @use last 5 bits for level, (0-31)
 	and r3, r3, r0
-
+	
+	
+	DontStripAllegiance:
 	cmp r3, #0
 	beq end_class_skill @ level 0 <=> end of list
 
@@ -138,6 +144,10 @@ continue_class_skill:
 
 yes_class_skill:
 	ldrb r3, [r4]
+	
+	cmp r2,#0xFF
+	beq write_class_skill
+	
 	lsr r3, r3, #5 @first 3 digits as options
 
 	cmp r3, #0     @0, vanilla behavior
