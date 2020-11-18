@@ -14,6 +14,10 @@ ldr r0,=#0x203A4EC @attacker struct
 cmp r0,r4
 bne GoBack @if not attacker, don't do
 
+ldr r1, [r5,#4] @class data ptr
+cmp r1, #0 @if 0, this is prep screen
+beq GoBack
+
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4
