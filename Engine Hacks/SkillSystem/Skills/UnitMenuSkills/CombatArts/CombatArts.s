@@ -53,6 +53,9 @@ push {r14}
 ldr r0,=StartMenuAdjusted
 mov r14,r0
 ldr r0,=CombatArtsMenuDef
+mov r1,#0
+mov r2,#0
+mov r3,#0
 .short 0xF800
 
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
