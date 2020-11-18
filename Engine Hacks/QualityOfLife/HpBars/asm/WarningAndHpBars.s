@@ -59,6 +59,7 @@
 	.equ CurrentCharPtr,		0x03004E50
 	.equ Can_Equip_Item, 		0x08016574
 	.equ Get_Unit_Max_Hp,		0x08019190
+	.equ Get_Unit_Cur_HP,		0x08019150
 	.equ Get_Item_Crit, 		0x08017624
 	.equ Check_Effectiveness, 	0x08016BEC
 	.equ Slayer_Check, 			0x08016C88
@@ -130,8 +131,21 @@ str		r1,[sp,#0xC]			@constant to determine where things get drawn
 	mov		r0,#maximum_hp
 	ldsb	r0,[r4,r0]
 .endif
-mov		r2,#current_hp
-ldsb	r2,[r4,r2]
+push {r7}
+mov		r7,r0
+.if FE8 == 1
+	mov r0,r4
+	ldr r1,=Get_Unit_Cur_HP
+	mov r14,r1
+	.short 0xF800
+.else
+mov		r0,#current_hp
+ldsb	r0,[r4,r0]
+.endif
+
+mov 	r2,r0
+mov 	r0,r7
+pop		{r7}
 cmp		r2,r0
 bge		CheckIfSelected			@if hp is max, don't show the bar
 mov		r1,r0 @ arg r1 = mhp
