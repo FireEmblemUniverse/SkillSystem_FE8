@@ -64,7 +64,7 @@ ldrb r0,[r3,#0x9] @y coord
 cmp r0,r6
 bne LoopRestart
 ldrh r0,[r3,#0x4] @item area
-cmp r0,#0
+cmp r0,#0x77
 beq RetIsGold @is a gold chest if this is empty
 b RetIsItem
 
