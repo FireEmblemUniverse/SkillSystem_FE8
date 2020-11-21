@@ -15,6 +15,7 @@ mov r7, r3 @battle data
 @is our equipped weapon unbreakable?
 mov r0,r4
 add r0,#0x4C
+ldr r0,[r0]
 mov r1,#0x8
 and r0,r1
 cmp r0,#0
