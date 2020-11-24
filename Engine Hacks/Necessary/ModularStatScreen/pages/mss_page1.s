@@ -2,6 +2,12 @@
 @draws the stat screen
 .include "mss_defs.s"
 
+.global MSS_page1
+.type MSS_page1, %function
+
+
+MSS_page1:
+
 page_start
 
 @draw str or mag
@@ -11,35 +17,19 @@ page_start
   beq     NotMag				
     @draw Mag at 13, 3. colour defaults to yellow.
     draw_textID_at 13, 3, 0x4ff
-    draw_str_bar_at 16, 3
     b       MagStrDone    
   NotMag:
     @draw Str at 13, 3
     draw_textID_at 13, 3, 0x4fe
-    draw_str_bar_at 16, 3
   MagStrDone:
+	draw_str_bar_at 16, 3
 
 @Draw skl
 draw_textID_at 13, 5, 0x4EC
 @draw spd
 draw_textID_at 13, 7, 0x4ED
 
-rescue_check @r0 = 10 if true, 0 if false
-cmp r0, #0
-beq NoRescue
-  @ check class ability for saviour
-  mov r0, r8 @ram
-  ldr r1, [r0,#4] @class
-  mov r0, #0x2A
-  ldrb r0, [r1, r0]
-  mov r1, #0x40 @bit for saviour
-  tst r0, r1
-  bne NoRescue @if saviour bit set, don't reduce
-
-  @halved if Rescue
-  draw_skl_reduced_bar_at 16, 5
-  draw_spd_reduced_bar_at 16, 7
-b RescueCheckEnd
+b NoRescue
 .ltorg
 NoRescue:
   draw_skl_bar_at 16, 5
@@ -56,7 +46,7 @@ draw_textID_at 13, 13, 0x4f0 @res
 draw_res_bar_at 16, 13
 
 draw_textID_at 13, 15, 0x4f6 @move
-draw_move_bar_at 16, 15
+draw_move_bar_with_getter_at 16, 15
 
 draw_textID_at 13, 17, 0x4f7 @con
 draw_con_bar_at 16, 17
@@ -70,6 +60,8 @@ draw_affinity_icon_at 24, 3
 
 draw_status_text_at 21, 5
 
+ldr r0,=TalkTextIDLink
+ldrh r0,[r0]
 draw_talk_text_at 21, 7
 
 b literalpoolskip

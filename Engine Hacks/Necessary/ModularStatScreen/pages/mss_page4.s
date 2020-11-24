@@ -3,6 +3,6 @@
 
 page_start
 
-draw_textID_at 17, 9, textid=0xd4b, width=16, colour=Green
+draw_textID_at 17, 9, 0xd4b, 16, Green
 
 page_end

@@ -112,11 +112,22 @@
 
     RText_Page4_ladder:
       // page 4 helptext hook
-      #incbin "pages/rtext_page4.dmp"
+      #incbin "asm/rtext_page4.dmp"
       POIN RText_Page4
 
   POP
   
+  ALIGN 4
+  TalkTextIDLink:
+  SHORT SS_TalkText
+  ALIGN 4
+  SkillsTextIDLink:
+  SHORT SS_SkillsText
+  ALIGN 4
+  Display_Growth_Options_Link:
+  WORD Growth_Options
+  
+  /*
   ALIGN 4
   MSS_page1:
     #ifdef LEADERSHIP_STARS
@@ -161,23 +172,26 @@
     WORD Growth_Options
     POIN Growth_Getter_Table
     POIN Get_Palette_Index
-
-	
+*/
+	#include "pages/mss_page1_skills.lyn.event"
+//  #include "pages/mss_page1_original.lyn.event"
+//  #include "pages/mss_page1.lyn.event"
+	MESSAGE MSS_page1
   
   ALIGN 4
   MSS_page2:
-    #incbin "pages/mss_page2_original.dmp"
+    #include "pages/mss_page2_original.lyn.event"
 
   ALIGN 4
   MSS_page3:
   
   #ifdef ONLY_SHOW_USED_RANKS
   
-	#incbin "pages/mss_page3_newranks.dmp"
+	#include "pages/mss_page3_newranks.lyn.event"
   
   #else // ONLY_SHOW_USED_RANKS
 	
-	#incbin "pages/mss_page3_original.dmp"
+	#include "pages/mss_page3_original.lyn.event"
   
   #endif  // ONLY_SHOW_USED_RANKS
   

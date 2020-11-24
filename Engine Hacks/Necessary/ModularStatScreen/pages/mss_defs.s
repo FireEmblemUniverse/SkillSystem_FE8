@@ -11,6 +11,7 @@
 .equ MagCheck, 0x8018A58
 .equ AidCheck, 0x80189B8
 .equ StrGetter, 0x80191b0
+.equ MagGetter, 0x80191b8
 .equ SklGetter, 0x80191d0
 .equ SpdGetter, 0x8019210
 .equ LuckGetter, 0x8019298
@@ -80,9 +81,66 @@
   strb r1, [r3, #4] @store width
   strb r2, [r3, #8] @assign the next one.
   .if \textID
+    ldr r0, =\textID @otherwise assume it's in r0
+  .endif
+  blh BufferText
+  mov r2, #0x0
+  str r2, [sp]
+  str r0, [sp, #4]
+  mov r2, #\colour @colour
+  .ifge \growth_func
+  ldr r1,[sp,#0xC]			@growth getters table
+  mov r0,#\growth_func-1
+  lsl r0,#2
+  ldr r1,[r1,r0]			@relevant growth getter function
+  mov r0,r8
+  mov r14,r1
+  .short 0xF800				@returns growth
+  mov r1,sp
+  add r1,#0x18
+  ldr r2,[sp,#0x14]			@growth options word and'd with 0x10, so non-zero if stat name color should reflect growth
+  ldr r3,=Get_Palette_Index
+  mov r14,r3
+  .short 0xF800	@given growth, returns palette index, and does some shenanigans
+  mov r2,r0
+  .endif
+  mov r0, r7
+  ldr r1, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
+  mov r3, #0
+  blh DrawText, r4
+  .ifge \growth_func
+  ldr r1,[sp,#0x14]
+  ldr r0,[sp,#0x18]
+  bl  Restore_Palette		@see that func for an explanation (mss_page1_skills)
+  .endif
+  add r7, #8
+.endm
+
+.macro draw_buffered_text, tile_x, tile_y, width=10, colour=3
+  mov r0, sp
+  mov r1, #\width
+  str r1, [r0]
+  mov r0, #0
+  ldr r1, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
+  mov r2, #\colour
+  mov r3, #0
+  blh DrawText, r4
+  bl  Restore_Palette
+.endm
+
+.macro draw_skillname_at tile_x, tile_y, textID=0, width=14, colour=3, growth_func=-1		@growth func is # of growth getter in growth_getters_table; 0=hp, 1=str, 2=skl, etc
+  mov r3, r7
+  mov r1, #\width
+  @r3 is current buffer location, r1 is width.
+  ldrh r2,[r3] @current number
+  add r2,r1 @for the next one.
+  strb r1, [r3, #4] @store width
+  strb r2, [r3, #8] @assign the next one.
+  .if \textID
     ldr r0, =#\textID @otherwise assume it's in r0
   .endif
   blh BufferText
+  bl GetSkillNameFromSkillDesc
   mov r2, #0x0
   str r2, [sp]
   str r0, [sp, #4]
@@ -117,7 +175,7 @@
   .endif
   add r7, #8
 .endm
-
+ 
 .macro draw_bar_at bar_x, bar_y, getter, offset, bar_id
   mov r0, r8
   blh      \getter
@@ -127,6 +185,25 @@
   str     r0,[sp]     
   ldr     r0,[r1,#0x4]  @class
   ldrb    r0,[r0,#\offset]  @stat cap
+  lsl     r0,r0,#0x18    
+  asr     r0,r0,#0x18    
+  str     r0,[sp,#0x4]    
+  mov     r0,#(\bar_id)     
+  mov     r1,#(\bar_x-11)
+  mov     r2,#(\bar_y-2)
+  blh      DrawBar, r4
+.endm
+
+.macro draw_bar_at_with_cap_getter bar_x, bar_y, statgetter, capgetter, offset, bar_id  
+  mov r0, r8
+  blh      \statgetter
+  mov r1, r8  
+  mov     r3, #\offset
+  ldsb    r3,[r1,r3]     
+  str     r0,[sp]     
+  ldr     r0,[r1,#0x4]  @class
+  ldrb    r0,[r0,#0x4]  @class id
+  blh		\capgetter
   lsl     r0,r0,#0x18    
   asr     r0,r0,#0x18    
   str     r0,[sp,#0x4]    
@@ -159,20 +236,42 @@
   draw_bar_at \bar_x, \bar_y, StrGetter, 0x14, 0
 .endm
 
+.macro draw_mag_bar_at, bar_x, bar_y
+  mov r0, r8
+  blh     MagGetter
+  mov r1, r8  
+  mov     r3,#0x3A
+  ldsb    r3,[r1,r3]     
+  str     r0,[sp]     
+  ldr     r0,[r1,#0x4]  @class
+  ldrb    r0,[r0,#0x4]  @class id
+  lsl	  r0,#0x2
+  ldr 	  r1,=MagClassTable
+  add	  r0,r1
+  ldrb	  r0,[r0,#0x2]
+  lsl     r0,r0,#0x18    
+  asr     r0,r0,#0x18
+  str     r0,[sp,#0x4]    
+  mov     r0,#0x1  
+  mov     r1,#(\bar_x-11)
+  mov     r2,#(\bar_y-2)
+  blh      DrawBar, r4
+.endm
+
 .macro draw_skl_bar_at, bar_x, bar_y
-  draw_bar_at \bar_x, \bar_y, SklGetter, 0x15, 1
+  draw_bar_at \bar_x, \bar_y, SklGetter, 0x15, 2
 .endm
 
 .macro draw_skl_reduced_bar_at, bar_x, bar_y @for rescuing
-  draw_halved_bar_at \bar_x, \bar_y, SklGetter, 0x15, 1
+  draw_halved_bar_at \bar_x, \bar_y, SklGetter, 0x15, 2
 .endm
 
 .macro draw_spd_bar_at, bar_x, bar_y
-  draw_bar_at \bar_x, \bar_y, SpdGetter, 0x16, 2
+  draw_bar_at \bar_x, \bar_y, SpdGetter, 0x16, 3
 .endm
 
 .macro draw_spd_reduced_bar_at, bar_x, bar_y @for rescuing
-  draw_halved_bar_at \bar_x, \bar_y, SpdGetter, 0x16, 2
+  draw_halved_bar_at \bar_x, \bar_y, SpdGetter, 0x16, 3
 .endm
 
 .macro draw_luck_bar_at, bar_x, bar_y
@@ -184,18 +283,18 @@
   str     r0,[sp]     
   mov r0, #0x1e  @cap is always 30
   str     r0,[sp,#0x4]    
-  mov     r0,#0x5     
+  mov     r0,#0x6   
   mov     r1,#(\bar_x-11)
   mov     r2,#(\bar_y-2)
   blh      DrawBar, r4
 .endm
 
 .macro draw_def_bar_at, bar_x, bar_y
-  draw_bar_at \bar_x, \bar_y, DefGetter, 0x17, 3
+  draw_bar_at \bar_x, \bar_y, DefGetter, 0x17, 4
 .endm
 
 .macro draw_res_bar_at, bar_x, bar_y
-  draw_bar_at \bar_x, \bar_y, ResGetter, 0x18, 4
+  draw_bar_at \bar_x, \bar_y, ResGetter, 0x18, 5
 .endm
 
 .macro draw_growth_at, bar_x, bar_y
@@ -271,7 +370,7 @@
   str r0, [sp] @final
   mov r6, #0xF
   str r6, [sp, #4]
-  mov     r0,#0x6      
+  mov     r0,#0x8    
   mov     r1,#(\bar_x-11)
   mov     r2,#(\bar_y-2)      
   blh DrawBar, r4
@@ -489,7 +588,7 @@
   cmp r2, #0
   beq NoStatusCount
   ldr r0, =(0x2003ca2+(0x20*2*\tile_y)+(2*\tile_x))
-  lsr r2, #4
+  lsr r2, #5
   mov r1, #0
   blh 0x8004be4
   NoStatusCount:
@@ -863,4 +962,62 @@
 		mov     r0,r4    
 		bl      DrawSkillIcon 
 	.endif
+.endm
+
+
+.macro draw_rating_icon_at, tile_x, tile_y, number=0
+	.if NoAltIconDraw
+		.if \number
+			mov r0, #\number
+		.endif
+		
+		@ r1 = 0x0100
+		mov r1, #1
+		lsl r1, #9
+		
+		@ r1 = [0x01][SkillIndex]
+		orr r1, r0
+		
+		@ r2 = 0x4000 (aka tiles have palette #4)
+		mov r2, #0x20
+		lsl r2, #8
+		
+		ldr r0, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
+		
+		blh DrawIcon
+	.else
+		@assumes icon number in r0 or else in number
+		.if \number
+			mov r0, #\number
+		.endif
+		
+		ldr r4, =(tile_origin+(0x20*2*\tile_y)+(2*\tile_x))
+		mov     r1,r0      
+		mov     r2,#0x80
+		lsl     r2,r2,#0x7      
+		mov     r0,r4    
+		bl      DrawSkillIcon 
+	.endif
+.endm
+
+.macro setup_menu
+ldr r0, =0x020234A8
+mov r1, #0
+blh #0x08001220+1 @FillBgMap
+ldr r0, =0xFFFFFFFF @-1
+blh #0x0804E0A8+1 @LoadUIWindowPalette
+.endm
+
+.macro draw_menu, tile_x, tile_y, width, height
+push {r4}
+sub sp, #4
+mov r0, #0
+str r0, [sp]
+mov r0, #\tile_x+0xC
+mov r1, #\tile_y+0x2
+mov r2, #\width
+mov r3, #\height
+blh #0x804E368+1, reg=r4 @MakeNewUiWindowTsa
+add sp, #4
+pop {r4}
 .endm
