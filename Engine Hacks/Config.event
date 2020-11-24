@@ -152,6 +152,9 @@
 // This will automatically enable Narrow Font.
 #define ENABLE_PERSONAL_INFO
 
+// If uncommented, the third page of the stat screen will only show weapon ranks that the unit has a rank in.
+#define ONLY_SHOW_USED_RANKS
+
 
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =

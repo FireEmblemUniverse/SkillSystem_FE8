@@ -112,7 +112,7 @@
 
     RText_Page4_ladder:
       // page 4 helptext hook
-      #incbin "asm/rtext_page4.dmp"
+      #incbin "pages/rtext_page4.dmp"
       POIN RText_Page4
 
   POP
@@ -120,7 +120,7 @@
   ALIGN 4
   MSS_page1:
     #ifdef LEADERSHIP_STARS
-        #incbin "asm/mss_page1_skills_leadership.dmp"
+        #incbin "pages/mss_page1_skills_leadership.dmp"
 		POIN SkillIcons
 		POIN Skill_Getter
 		POIN SkillTester
@@ -135,7 +135,7 @@
 	#endif //LEADERSHIP_STARS
 	
 	#ifdef BIORHYTHM
-		#incbin "asm/mss_page1_skills_biorhythm.dmp"
+		#incbin "pages/mss_page1_skills_biorhythm.dmp"
 		POIN SkillIcons
 		POIN Skill_Getter
 		POIN SkillTester
@@ -150,7 +150,7 @@
 		POIN BiorhythmNameGetter
 	#endif //BIORHYTHM
 
-    #incbin "asm/mss_page1_skills.dmp"
+    #incbin "pages/mss_page1_skills.dmp"
     POIN SkillIcons
     POIN Skill_Getter
     POIN SkillTester
@@ -166,17 +166,26 @@
   
   ALIGN 4
   MSS_page2:
-    #incbin "asm/mss_page2_original.dmp"
+    #incbin "pages/mss_page2_original.dmp"
 
   ALIGN 4
   MSS_page3:
-    #incbin "asm/mss_page3_original.dmp"
-
+  
+  #ifdef ONLY_SHOW_USED_RANKS
+  
+	#incbin "pages/mss_page3_newranks.dmp"
+  
+  #else // ONLY_SHOW_USED_RANKS
+	
+	#incbin "pages/mss_page3_original.dmp"
+  
+  #endif  // ONLY_SHOW_USED_RANKS
+  
   #ifdef ENABLE_PERSONAL_INFO
   
 	ALIGN 4
 	MSS_page4:
-      #incbin "asm/mss_page4_runa.dmp"
+      #incbin "pages/mss_page4_runa.dmp"
 	  POIN PersonalDataTable
 	  
 	ALIGN 4
@@ -188,7 +197,7 @@
   
     ALIGN 4
     MSS_page4:
-      #incbin "asm/mss_page4.dmp"
+      #incbin "pages/mss_page4.dmp"
 	
     ALIGN 4
     TxtData0x0D4B:
