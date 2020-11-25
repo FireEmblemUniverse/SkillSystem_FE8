@@ -1,6 +1,12 @@
 .thumb
 .include "mss_defs.s"
 
+.global MSS_page3
+.type MSS_page3, %function
+
+
+MSS_page3:
+
 page_start
 
 mov r0, r8

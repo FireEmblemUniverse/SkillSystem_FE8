@@ -160,7 +160,7 @@ startSkills:
 
 ldr r0,=SkillsTextIDLink
 ldrh r0, [r0]
-draw_textID_at 23, 13, colour=White @skills
+draw_textID_at 21, 13, colour=White @skills
 
 
 mov r0,r8

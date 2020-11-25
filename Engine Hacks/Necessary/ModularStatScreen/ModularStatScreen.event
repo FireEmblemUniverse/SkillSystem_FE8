@@ -126,57 +126,19 @@
   ALIGN 4
   Display_Growth_Options_Link:
   WORD Growth_Options
-  
-  /*
   ALIGN 4
-  MSS_page1:
-    #ifdef LEADERSHIP_STARS
-        #incbin "pages/mss_page1_skills_leadership.dmp"
-		POIN SkillIcons
-		POIN Skill_Getter
-		POIN SkillTester
-		WORD SaviorID
-		WORD CelerityID
-		WORD SS_SkillsText
-		WORD SS_TalkText
-		WORD Growth_Options
-		POIN Growth_Getter_Table
-		POIN Get_Palette_Index
-		POIN GetLeadershipStarCount
-	#endif //LEADERSHIP_STARS
-	
-	#ifdef BIORHYTHM
-		#incbin "pages/mss_page1_skills_biorhythm.dmp"
-		POIN SkillIcons
-		POIN Skill_Getter
-		POIN SkillTester
-		WORD SaviorID
-		WORD CelerityID
-		WORD SS_SkillsText
-		WORD SS_TalkText
-		WORD Growth_Options
-		POIN Growth_Getter_Table
-		POIN Get_Palette_Index		
-		WORD SS_BiorhythmText
-		POIN BiorhythmNameGetter
-	#endif //BIORHYTHM
-
-    #incbin "pages/mss_page1_skills.dmp"
-    POIN SkillIcons
-    POIN Skill_Getter
-    POIN SkillTester
-    WORD SaviorID
-    WORD CelerityID
-    WORD SS_SkillsText
-    WORD SS_TalkText
-    WORD Growth_Options
-    POIN Growth_Getter_Table
-    POIN Get_Palette_Index
-*/
-	#include "pages/mss_page1_skills.lyn.event"
-//  #include "pages/mss_page1_original.lyn.event"
-//  #include "pages/mss_page1.lyn.event"
-	MESSAGE MSS_page1
+  BiorhythmTextIDLink:
+  SHORT SS_BiorhythmText
+  
+  #ifdef LEADERSHIP_STARS
+	#include "pages/mss_page1_skills_leadership.lyn.event"
+  #else // LEADERSHIP_STARS
+    #ifdef BIORHYTHM
+	  #include "pages/mss_page1_skills_biorhythm.lyn.event"
+	#else // BIORHYTHM
+	  #include "pages/mss_page1_skills.lyn.event"
+	#endif // BIORHYTHM
+  #endif // LEADERSHIP_STARS
   
   ALIGN 4
   MSS_page2:
@@ -197,10 +159,7 @@
   
   #ifdef ENABLE_PERSONAL_INFO
   
-	ALIGN 4
-	MSS_page4:
-      #incbin "pages/mss_page4_runa.dmp"
-	  POIN PersonalDataTable
+      #include "pages/mss_page4_runa.lyn.event"
 	  
 	ALIGN 4
     PageNumberCheck:
@@ -209,9 +168,7 @@
   
   #else // ENABLE_PERSONAL_INFO
   
-    ALIGN 4
-    MSS_page4:
-      #incbin "pages/mss_page4.dmp"
+      #include "pages/mss_page4.lyn.event"
 	
     ALIGN 4
     TxtData0x0D4B:
@@ -221,7 +178,7 @@
     setText(0x0D4B,TxtData0x0D4B)
   
   #endif // ENABLE_PERSONAL_INFO
-
+MESSAGE MSS_page4
   ALIGN 4
   NewPageNameGraphic:
     //#incext Png2Dmp "asm/pagenamegraphic.png" --lz77
