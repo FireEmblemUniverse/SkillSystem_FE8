@@ -1,0 +1,17 @@
+#ifndef MSG_INJECT_HP_GETTERS_EVENT
+#define MSG_INJECT_HP_GETTERS_EVENT
+
+// some vanilla functions don't use HP getters (at least the healing one, possibly more) so this is to make it use them
+
+PUSH
+
+	ORG $193A4 //UnitTryHeal
+	SHORT $B570 $1C04 $1C0D
+	BYTE $FF $F7 $D1 $FE
+	SHORT $1C06 $1C20
+	BYTE $FF $F7 $ED $FE
+	SHORT $1C03 $1C30 $1940 $4298 $DD00 $1C18 $74E0 $BC70 $BC01 $4700
+
+POP
+
+#endif // MSG_INJECT_HP_GETTERS_EVENT
