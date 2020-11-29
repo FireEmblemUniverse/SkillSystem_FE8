@@ -220,6 +220,9 @@
 //If true, Combat Arts will not be allowed to hit more than once.
 #define ARTS_HIT_ONCE True
 
+//If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
+//  #define USE_LEGACY_SKILL_DEFAULTS
+
 //	Effectiveness skills coincide with a rework of the effectiveness system. 
 //	Weapon effectiveness by default is updated via macros in
 //	SkillSystem/Skills/EffectivenessSkills/EffectivenessRework.event.
