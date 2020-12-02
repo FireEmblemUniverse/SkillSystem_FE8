@@ -1142,7 +1142,7 @@ blh	0x8004B94	@DrawDecNumber
 DrawHP_End:
 .endm
 
-.macro draw_max_hp_at, tile_x, tile_y
+.macro draw_max_hp
 ldr	r0,[r7,#0xC]	@unit pointer
 blh	0x8019190	@GetUnitMaxHP
 cmp	r0,#0x63
