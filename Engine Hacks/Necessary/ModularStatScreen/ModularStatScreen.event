@@ -23,7 +23,7 @@
 
     ORG $88690
       BYTE 4 //make 4 pages
-
+	  
     ORG $88650
       POIN NewPageNameGraphic
 
@@ -82,9 +82,9 @@
       POIN PersonalDataRText
 
     // HP name color
-
-    ORG $86ED4
-      callHack_r3(HP_Name_Color)
+	// This now gets called from within the left stat screen page
+    //ORG $86ED4
+    //  callHack_r3(HP_Name_Color)
 
     ORG $2BA28
       jumpToHack(Write_Growths_To_Battle_Struct)
@@ -102,6 +102,9 @@
         jumpToHack(PageNumberCheck)	  
 		
 	#endif // ENABLE_PERSONAL_INFO
+
+	  ORG $86E44
+        jumpToHack(MSS_leftpage)
 
     ORG $087184
 
@@ -177,7 +180,7 @@
   #else // ENABLE_PERSONAL_INFO
   
       #include "pages/mss_page4.lyn.event"
-	
+		
     ALIGN 4
     TxtData0x0D4B:
       String("Donate to Circles")
@@ -186,6 +189,10 @@
     setText(0x0D4B,TxtData0x0D4B)
   
   #endif // ENABLE_PERSONAL_INFO
+  
+  
+  #include "pages/mss_leftstatscreen.lyn.event"
+  
 
   ALIGN 4
   NewPageNameGraphic:
