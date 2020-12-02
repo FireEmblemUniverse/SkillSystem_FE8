@@ -2,14 +2,6 @@
 //To disable a skill, define it as 255.
 //Skills are categorized broadly by where their effect is applied, in no particular order within each category.
 
-#ifdef SHOW_WARNING_MESSAGE
-	WARNING "Default skills have been reordered!"
-	WARNING "This will break existing save files made with old configs."
-	WARNING "Restore your old 'skill_definitions.event' if necessary to avoid any issues."
-	WARNING "To hide these warnings, comment out '#define SHOW_WARNING_MESSAGE' in 'Config.event'."
-#endif // SHOW_WARNING_MESSAGE
-
-
 //AI Skills
 
 //Provoke: Enemies are more likely to target this unit.
