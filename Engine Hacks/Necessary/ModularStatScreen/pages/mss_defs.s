@@ -1123,36 +1123,28 @@ blh	0x8004B94	@DrawDecNumber
 ldr	r0,[r7,#0xC]	@unit pointer
 blh	0x8019150	@GetUnitCurrentHP
 cmp	r0,#100
-blt	DrawHP
-@draw ?? for HP
-ldr	r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x446
-add	r0,r8
-mov	r1,#2
-mov	r2,#0x14
-mov	r3,#0x14
-blh	0x80045DC	@no idea, probably draw something
-b DrawHP_End
+ble	DrawHP
+mov r0,#0
+sub r0,#1
 DrawHP:
-ldr r4,=(0x20*2*\tile_y)+(2*\tile_x) 
+mov	r4,#0x89
+lsl	r4,#3
 add	r4,r8
+@ldr	r0,[r7,#0xC]	@unit pointer
+@blh	0x8019150	@GetUnitCurrentHP
 mov	r2,r0
 mov	r0,r4
 mov	r1,#2
 blh	0x8004B94	@DrawDecNumber
-DrawHP_End:
 .endm
 
 .macro draw_max_hp
 ldr	r0,[r7,#0xC]	@unit pointer
 blh	0x8019190	@GetUnitMaxHP
-cmp	r0,#0x63
-ble	DrawMaxHP
-ldr	r0,=#0x20230F4 @(???)
-mov	r1,#2
-mov	r2,#0x14
-mov	r3,#0x14
-blh	0x80045DC	@no idea, probably draw something
-b DrawMaxHP_End
+cmp	r0,#100
+blt	DrawMaxHP
+mov r0,#0
+sub r0,#1
 DrawMaxHP:
 ldr	r4,=#0x20230F6 @(???)
 mov	r2,r0
