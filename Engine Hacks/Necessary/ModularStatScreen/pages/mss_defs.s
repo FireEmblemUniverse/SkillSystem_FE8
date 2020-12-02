@@ -41,8 +41,10 @@
 .equ White, 0
 
 .macro blh to, reg=r3
+  push {\reg}
   ldr \reg, =\to
   mov lr, \reg
+  pop {\reg}
   .short 0xf800
 .endm
 
@@ -850,7 +852,7 @@
   @ mov r2, #0x8A
   @blh 0x80784f4
   @ str r0, [r4, #0x10]
-  blh 0x8086e44
+  blh 0x8086e44 @this is the left panel
   mov r0, #0
   str r0, [sp]
   mov r0, sp
@@ -1020,4 +1022,187 @@ mov r3, #\height
 blh #0x804E368+1, reg=r4 @MakeNewUiWindowTsa
 add sp, #4
 pop {r4}
+.endm
+
+
+.macro draw_character_name_at, tile_x, tile_y
+ldr	r0,[r7,#0xC]	@load unit's pointer
+ldr	r0,[r0]			@load character pointer
+ldrh	r0,[r0]		@load name
+blh	0x800A240		@GetStringFromIndex
+mov	r5,r0
+mov	r0,#0x30
+mov	r1,r5
+blh	0x8003F90		@GetStringTextCenteredPos
+mov	r6,r0
+
+mov	r0,r7
+add	r0,#0x18
+ldr	r1,=(0x20*2*\tile_y)+(2*\tile_x)
+add	r1,r8
+mov	r4,#0
+str	r4,[sp]
+str	r5,[sp,#4]
+mov	r2,#0
+mov	r3,r6
+add r3,#3
+blh	0x800443C	@DrawTextInline
+.endm
+
+.macro draw_class_name_at, tile_x, tile_y
+ldr	r0,[r7,#0xC]	@load unit's pointer
+ldr	r0,[r0,#4]	@load class pointer
+ldrh	r0,[r0]		@load class name
+blh	0x800A240	@GetStringFromIndex
+mov	r2,r7
+add	r2,#0x20
+ldr	r1,=(0x20*2*\tile_y)+(2*\tile_x) @#0x342
+add	r1,r8
+str	r4,[sp]
+str	r0,[sp,#4]
+mov	r0,r2
+mov	r2,#0
+mov	r3,#0
+blh	0x800443C	@DrawTextInline
+.endm
+
+.macro draw_lv_icon_at, tile_x, tile_y
+ldr	r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x3C2
+add	r0,r8
+mov	r1,#3
+mov	r2,#0x24
+mov	r3,#0x25
+blh	0x8004D5C	@no idea, probably draw something
+.endm
+
+.macro draw_exp_icon_at, tile_x, tile_y
+ldr	r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x3CA
+add	r0,r8
+mov	r1,#3
+mov	r2,#0x1D
+blh	0x8004B0C	@no idea, probably draw something
+.endm
+
+.macro draw_hp_icon_at, tile_x, tile_y
+ldr	r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x442
+add	r0,r8
+mov	r1,#3
+mov	r2,#0x22
+mov	r3,#0x23
+blh	0x8004D5C	@no idea, probably draw something
+.endm
+
+.macro draw_ui_slash_at, tile_x, tile_y
+ldr	r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x44A
+add	r0,r8
+mov	r1,#3
+mov	r2,#0x16
+blh	0x8004B0C	@no idea, probably draw something
+.endm
+
+.macro draw_level_at, tile_x, tile_y
+ldr r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0xF2
+add	r0,r8
+ldr	r1,[r7,#0xC]	@unit pointer
+mov	r2,#8
+ldrb	r2,[r1,r2]	@level
+mov	r1,#2
+blh	0x8004B94	@DrawDecNumber
+.endm
+
+.macro draw_exp_at, tile_x, tile_y
+ldr r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x3CE
+add	r0,r8
+ldr	r1,[r7,#0xC]	@unit pointer
+ldrb	r2,[r1,#9]	@exp
+mov	r1,#2
+blh	0x8004B94	@DrawDecNumber
+.endm
+
+.macro draw_hp_at, tile_x, tile_y
+ldr	r0,[r7,#0xC]	@unit pointer
+blh	0x8019150	@GetUnitCurrentHP
+cmp	r0,#100
+blt	DrawHP
+@draw ?? for HP
+ldr	r0,=(0x20*2*\tile_y)+(2*\tile_x) @#0x446
+add	r0,r8
+mov	r1,#2
+mov	r2,#0x14
+mov	r3,#0x14
+blh	0x80045DC	@no idea, probably draw something
+b DrawHP_End
+DrawHP:
+ldr r4,=(0x20*2*\tile_y)+(2*\tile_x) 
+add	r4,r8
+mov	r2,r0
+mov	r0,r4
+mov	r1,#2
+blh	0x8004B94	@DrawDecNumber
+DrawHP_End:
+.endm
+
+.macro draw_max_hp_at, tile_x, tile_y
+ldr	r0,[r7,#0xC]	@unit pointer
+blh	0x8019190	@GetUnitMaxHP
+cmp	r0,#0x63
+ble	DrawMaxHP
+ldr	r0,=#0x20230F4 @(???)
+mov	r1,#2
+mov	r2,#0x14
+mov	r3,#0x14
+blh	0x80045DC	@no idea, probably draw something
+b DrawMaxHP_End
+DrawMaxHP:
+ldr	r4,=#0x20230F6 @(???)
+mov	r2,r0
+mov	r0,r4
+mov	r1,#2
+blh	0x8004B94	@DrawDecNumber
+DrawMaxHP_End:
+.endm
+
+.macro leftpage_start
+  push    {r4-r7,r14}       @08087184 B570     
+  mov r7,r8
+  push {r7}
+  add     sp,#-0x50       @08087186 B094     
+  ldr r7, =TileBufferBase  @r7 contains the latest buffer. starts at 2003c2c.
+  ldr     r5,=StatScreenStruct
+  ldr     r0,[r5,#0xC]
+  mov r8, r0             @r8 contains the current unit's data
+  blh 0x8003c94
+  blh 0x8003578
+  blh 0x8086df0 @clear 2003c00 region
+  mov r0, #0
+  str r0, [sp]
+  mov r0, sp
+  ldr r1, =0x6001380
+  ldr r2, =0x1000a68
+  swi 0xC @clear vram
+  ldr	r7,=#0x2003BFC
+  ldr	r0,=#0x2022CA8	@text buffer probably
+  mov	r8,r0
+  mov	r1,#0
+  blh	0x8001220	@FillBgMap
+  ldr	r4,[r7,#0xC]	@load unit's pointer
+  mov	r0,r4
+  blh	0x8016B58	@get equipped item index?
+  mov	r1,r0
+  lsl	r1,#0x18
+  lsr	r1,#0x18
+  mov	r0,r4
+  blh	0x802A400	@SetupBattleStructFromUnitAndWeapon
+.endm
+
+.macro draw_left_affinity_icon_at, tileX, tileY
+ldr	r0,[r7,#0xC]	@load unit's pointer
+blh 0x80286BC @ AffinityGetter
+mov r1,#2
+lsl r1,#8
+orr r1,r0      
+mov r2,#0xA0       
+lsl r2,r2,#0x7     
+ldr r0, =(0x2022CA8+(0x20*2*\tileY)+(2*\tileX))
+blh 0x80036BC @DrawIcon 
 .endm
