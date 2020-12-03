@@ -44,6 +44,10 @@ POIN LethalitySkill Bane
 POIN LethalitySkill NonGBALethalitySkill Bane
 #endif
 
+#ifdef Modular_PreBattle_Skill
+	POIN ModularPreBattleSkill 
+#endif //ModularPreBattleSkill
+
 //add any new ones before here
 
 //quick riposte goes after everything that might touch AS
