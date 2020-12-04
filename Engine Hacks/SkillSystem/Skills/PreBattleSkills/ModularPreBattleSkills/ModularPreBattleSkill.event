@@ -1,0 +1,60 @@
+#include "ModularPreBattleSkill.lyn.event"
+
+// By Vesly
+// 
+// Allows you to edit basic combat arts via a table. 
+// (No need to edit this file. See ModularPreBattleTable.csv)
+// 
+// CBS = Character Battle Structure
+// It accepts inputs from the below lists.
+// Anything else has no effect & breaks from the loop.
+// The pre-battle loop doesn't seem to allow for anything outside the range of 0x5A-0x6C
+// So the byte list seems to be useless. 
+
+/*
+0x5A	Short	Attack
+0x5C	Short	Defense
+0x5E	Short	Attack Speed
+0x60	Short	Hit
+0x62	Short	Avoid
+0x64	Short	Battle Hit (Hit - enemy avoid)
+0x66	Short	Crit
+0x68	Short	Crit avoid
+0x6A	Short	Battle Crit (Crit - enemy crit avoid)
+0x6C	Short	Lethality chance (0x32 (50) if unit has lethality, 0x19 (25) if unit has lethality and enemy has boss flag, 0 if has lethality and enemy has no exp ability) (doesn't exist in FE6, so everything after this will be off by 4)
+*/
+
+SignedShortList: 
+	BYTE 0x48 0x4A 0x5A 0x5C 0x5E 0x60 0x62 0x64 0x66 0x68 0x6A 0x6C 0x00
+ALIGN 4
+
+SignedByteList:
+	BYTE 0x50 0x51 0x52 0x53 0x54 0x55 0x56 0x57 0x58 0x59 0x6E 0x71 0x72 0x73 0x74 0x75 0x76 0x77 0x78 0x79 0x7A 0x7B 0x7C 0x7D 0x7E 0x7F 0x00
+ALIGN 4
+
+/*
+SkillID 
+If a unit has this Skill, they will gain the effects you specify in the PreBattleSkillTable.
+0xFF applies to no skills.
+
+CmbArtID
+If an entry has a cmb art id, the effect will only take place when using that cmb art.
+0x00 makes the skill always have that effect.
+0xFF makes the skill never have any effect . 
+
+OperationX
+Accepts the following inputs:
+0 = Do nothing & break from loop
+1 = Addition
+2 = Subtracts unit's current value by specified amount
+3 = Fraction (4-bit): eg. 0x32 = multiply by 3, then divide by 2
+4 = LsFraction (4-bit): 0x32 = shift left by 3 (eg. multiply by 2^3=8), then right by 2 (divide by 4)
+5+ = Do nothing & break from loop
+
+ValueX
+Modifies the unit's battle stat by this value. 
+Final values that end up as >0x7F (#127) will become 127. 
+
+*/
+
+
