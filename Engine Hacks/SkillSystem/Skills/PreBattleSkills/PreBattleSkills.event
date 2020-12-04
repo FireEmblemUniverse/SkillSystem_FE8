@@ -353,7 +353,7 @@ QuickRiposte:
 POIN SkillTester
 WORD QuickRiposteID
 
-#ifdef Modular_PreBattle_Skill
+#ifdef MODULAR_PRE_BATTLE_SKILLS
 	ALIGN 4
 	#include "ModularPreBattleSkills/ModularPreBattleSkill.event"
-#endif //ModularPreBattleSkill
+#endif //MODULAR_PRE_BATTLE_SKILLS
