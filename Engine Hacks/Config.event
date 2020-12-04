@@ -225,7 +225,7 @@
 #define ARTS_HIT_ONCE True
 
 //If uncommented, ModularPreBattleSkill will be installed.
-#define Modular_PreBattle_Skill
+#define MODULAR_PRE_BATTLE_SKILLS
 
 //If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
 //  #define USE_LEGACY_SKILL_DEFAULTS
