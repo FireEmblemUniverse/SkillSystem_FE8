@@ -219,7 +219,7 @@
 
 //If uncommented, Combat Arts will be enabled.
 //This changes the behavior of most command skills and some proc skills such that they cost additional durability per hit and are selected from a submenu.
-#define COMBAT_ARTS
+// #define COMBAT_ARTS
 
 //If true, Combat Arts will not be allowed to hit more than once.
 #define ARTS_HIT_ONCE True
