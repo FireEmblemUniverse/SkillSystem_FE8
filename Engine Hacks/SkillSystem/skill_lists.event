@@ -1,3 +1,220 @@
+
+#ifndef USE_LEGACY_SKILL_DEFAULTS
+
+EphraimLordSkillList:
+BYTE 00 00
+ALIGN 4
+
+EirikaLordSkillList:
+BYTE 00 00
+ALIGN 4
+
+EphraimGreatLordSkillList:
+BYTE 1 SupplyID
+BYTE 00 00
+ALIGN 4
+
+EirikaGreatLordSkillList:
+BYTE 1 SupplyID
+BYTE 00 00
+ALIGN 4
+
+CavalierSkillList:
+BYTE 00 00
+
+PaladinSkillList:
+BYTE 00 00
+ALIGN 4
+
+KnightSkillList:
+BYTE 00 00
+ALIGN 4
+
+GeneralSkillList:
+BYTE 00 00
+ALIGN 4
+
+ThiefSkillList:
+BYTE 1 StealID
+BYTE 00 00
+ALIGN 4
+
+MercenarySkillList:
+BYTE 00 00
+ALIGN 4
+
+HeroSkillList:
+BYTE 00 00
+ALIGN 4
+
+MyrmidonSkillList:
+BYTE 00 00
+ALIGN 4
+
+SwordmasterSkillList:
+BYTE 00 00
+ALIGN 4
+
+AssassinSkillList:
+BYTE 255 StealID
+BYTE 1 LethalityID
+BYTE 00 00
+ALIGN 4
+
+ArcherSkillList:
+BYTE 00 00
+ALIGN 4
+
+SniperSkillList:
+BYTE 00 00
+ALIGN 4
+
+RangerSkillList:
+BYTE 00 00
+ALIGN 4
+
+WyvernRiderSkillList:
+BYTE 00 00
+ALIGN 4
+
+WyvernLordSkillList:
+BYTE 00 00
+ALIGN 4
+
+WyvernKnightSkillList:
+BYTE 1 LunaID
+BYTE 00 00
+ALIGN 4
+
+MageSkillList:
+BYTE 00 00
+ALIGN 4
+
+SageSkillList:
+BYTE 00 00
+ALIGN 4
+
+MageKnightSkillList:
+BYTE 00 00
+ALIGN 4
+
+BishopSkillList:
+BYTE 00 00
+ALIGN 4
+
+ShamanSkillList:
+BYTE 00 00
+ALIGN 4
+
+DruidSkillList:
+BYTE 00 00
+ALIGN 4
+
+SummonerSkillList:
+BYTE 00 00
+ALIGN 4
+
+RogueSkillList:
+BYTE 255 StealID
+BYTE 1 LocktouchID
+BYTE 00 00
+ALIGN 4
+
+GreatKnightSkillList:
+BYTE 00 00
+ALIGN 4
+
+ManaketeFSkillList:
+BYTE 00 00
+ALIGN 4
+
+FighterSkillList:
+BYTE 00 00
+ALIGN 4
+
+WarriorSkillList:
+BYTE 00 00
+ALIGN 4
+
+BrigandSkillList:
+BYTE 00 00
+ALIGN 4
+
+PirateSkillList:
+BYTE 00 00
+ALIGN 4
+
+BerserkerSkillList:
+BYTE 00 00
+ALIGN 4
+
+MonkSkillList:
+BYTE 00 00
+ALIGN 4
+
+PriestSkillList:
+BYTE 00 00
+ALIGN 4
+
+PegKnightSkillList:
+BYTE 00 00
+ALIGN 4
+
+FalcoknightSkillList:
+BYTE 00 00
+ALIGN 4
+
+ClericSkillList:
+BYTE 00 00
+ALIGN 4
+
+TroubadourSkillList:
+BYTE 00 00
+ALIGN 4
+
+ValkyrieSkillList:
+BYTE 00 00
+ALIGN 4
+
+DancerSkillList:
+BYTE 00 00
+ALIGN 4
+
+SoldierSkillList:
+BYTE 00 00
+ALIGN 4
+
+NecromancerSkillList:
+BYTE 00 00
+ALIGN 4
+
+FleetSkillList:
+BYTE 00 00
+ALIGN 4
+
+PhantomSkillList:
+BYTE 00 00
+ALIGN 4
+
+SuperJourneymanSkillList:
+BYTE 00 00
+ALIGN 4
+SuperPupilSkillList:
+BYTE 00 00
+ALIGN 4
+SuperRecruitSkillList:
+BYTE 00 00
+ALIGN 4
+ManaketeMSkillList:
+BYTE 00 00
+ALIGN 4
+
+DemonKingSkillList:
+BYTE 00 00
+ALIGN 4
+
+#else // USE_LEGACY_SKILL_DEFAULTS
+
 EphraimLordSkillList:
 // BYTE 1 OddRhythmID
 //BYTE 10 BondID
@@ -358,3 +575,5 @@ BYTE 255 ReliefID
 BYTE 255 AnathemaID
 BYTE 00 00
 ALIGN 4
+
+#endif // USE_LEGACY_SKILL_DEFAULTS

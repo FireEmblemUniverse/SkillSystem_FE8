@@ -12,6 +12,7 @@
 
 #include "3rdParty/InjectMovGetters.event"
 #include "3rdParty/InjectConGetters.event"
+#include "3rdParty/InjectHPGetters.event"
 #include "3rdParty/Comparators.event"
 
 PUSH

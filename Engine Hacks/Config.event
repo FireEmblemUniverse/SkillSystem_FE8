@@ -3,6 +3,10 @@
 
 // This file holds configuration switches for all hacks shipped with the skill system
 
+// If commented, the skill reorder warning will not be displayed.
+#define SHOW_SKILL_WARNING
+
+
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
 // ===================================
@@ -152,6 +156,9 @@
 // This will automatically enable Narrow Font.
 #define ENABLE_PERSONAL_INFO
 
+// If uncommented, the third page of the stat screen will only show weapon ranks that the unit has a rank in.
+#define ONLY_SHOW_USED_RANKS
+
 
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
@@ -216,6 +223,13 @@
 
 //If true, Combat Arts will not be allowed to hit more than once.
 #define ARTS_HIT_ONCE True
+
+//If uncommented, ModularPreBattleSkill will be installed.
+//This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
+#define MODULAR_PRE_BATTLE_SKILLS
+
+//If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
+//  #define USE_LEGACY_SKILL_DEFAULTS
 
 //	Effectiveness skills coincide with a rework of the effectiveness system. 
 //	Weapon effectiveness by default is updated via macros in
