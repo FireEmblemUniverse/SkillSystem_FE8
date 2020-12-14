@@ -107,7 +107,7 @@
     RMenu(ST_Cond,ST_Skills,ST_Def,0,0xA6,0x58,SS_TalkRText)
 
   ST_Skills:
-    RMenu(ST_Talk,ST_Skill1,ST_Res,0,0xb6,0x68,SS_SkillsRText)
+    RMenu(ST_Talk,ST_Skill1,ST_Res,0,0xA6,0x68,SS_SkillsRText)
 
   ST_Skill1:
     RMenu(ST_Skills,ST_Skill4,ST_Mov,ST_Skill2,0xa6,0x78,0,RTextLoop,SkillDescGetter)
@@ -189,7 +189,7 @@ ST_Affin:
 ST_Talk:
   RMenu(ST_Affin,ST_Skills,ST_Luck,0,0xA6,0x58,SS_TalkRText)
 ST_Skills:
-  RMenu(ST_Talk,ST_Skill1,ST_Def,0,0xb6,0x68,SS_SkillsRText)
+  RMenu(ST_Talk,ST_Skill1,ST_Def,0,0xA6,0x68,SS_SkillsRText)
 ST_Skill1:
   RMenu(ST_Skills,ST_Skill4,ST_Res,ST_Skill2,0xa6,0x78,0,RTextLoop,SkillDescGetter)
 ST_Skill2:

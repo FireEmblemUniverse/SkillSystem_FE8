@@ -224,6 +224,10 @@
 //If true, Combat Arts will not be allowed to hit more than once.
 #define ARTS_HIT_ONCE True
 
+//If uncommented, ModularPreBattleSkill will be installed.
+//This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
+#define MODULAR_PRE_BATTLE_SKILLS
+
 //If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
 //  #define USE_LEGACY_SKILL_DEFAULTS
 
