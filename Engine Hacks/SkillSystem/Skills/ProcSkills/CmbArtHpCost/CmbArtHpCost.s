@@ -20,8 +20,9 @@ mov r7, r3 @battle data
 
 ldr     r0,[r2]           @r0 = battle buffer                @ 0802B40A 6800     
 lsl     r0,r0,#0xD                @ 0802B40C 0340     
-lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
-mov r1, #0x82 @devil flag OR miss
+lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40    
+
+mov r1, #0x86 @devil flag OR miss OR injured self already
 tst r0, r1
 bne End
 @ @if another skill already activated, don't do anything
@@ -74,7 +75,8 @@ ldr     r2,[r6]
 lsl     r1,r2,#0xD                @ 0802B42C 0351     
 lsr     r1,r1,#0xD                @ 0802B42E 0B49     
 mov     r0, #0x1
-lsl     r0, #8           @0x100, hp drain/update
+lsl     r0, #8           
+add r0, #0x4		@0x100, hp drain/update, 0x04 injured self already
 orr     r1, r0
 
 @and unset the crit flag

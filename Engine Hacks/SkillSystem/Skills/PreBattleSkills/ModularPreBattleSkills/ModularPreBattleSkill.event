@@ -5,6 +5,10 @@
 // Allows you to edit basic combat arts via a table. 
 // (No need to edit this file. See ModularPreBattleTable.csv)
 // 
+// Hp Costs use byte 0x4 of the battle buffer, which I've named as: injured self already (CmbArt Hp Cost)
+// Follow-up attacks will not cost additional hp, but multi-hit skills will cost extra hp for each attack.
+// Giving Sol an hp cost will prevent it from healing. 
+//
 // CBS = Character Battle Structure
 // It accepts inputs from the below lists.
 // Anything else has no effect & breaks from the loop.
