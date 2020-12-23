@@ -37,6 +37,9 @@ bne End
 ldr r0,=#0x0203F101 	@cmb art checking?
 ldrb r0,[r0]
 
+cmp r0, #4
+blt End
+
 ldr r2, =ModularPreBattleTable
 mov r3, #0x0		@counter
 
