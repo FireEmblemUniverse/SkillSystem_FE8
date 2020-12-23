@@ -70,6 +70,9 @@ ldrsh r0, [r7, r0]
 cmp r0, #0
 ble End
 
+cmp r3, #0	@if hp cost is 0, don't make hp drain/reflect exactly 0
+beq End		@lol
+
 @if we proc, set the hp update flag
 ldr     r2,[r6]    
 lsl     r1,r2,#0xD                @ 0802B42C 0351     
