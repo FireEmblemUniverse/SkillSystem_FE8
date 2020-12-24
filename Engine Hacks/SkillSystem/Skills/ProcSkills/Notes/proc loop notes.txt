@@ -46,6 +46,7 @@ lsr     r0,r0,#0xD        @Without damage data
 NEW BUFFER DATA:
 0x1 crit?
 0x2 miss
+0x4 injured self already (CmbArt Hp Cost)
 0x10 brave/adept (second attack)
 0x40 psn
 0x80 devil
