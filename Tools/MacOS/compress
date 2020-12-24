@@ -1,0 +1,73 @@
+#!/usr/bin/env python2
+import sys
+
+READ_AHEAD_BUFFER_SIZE = 0x00000012
+SLIDING_WINDOW_SIZE = 0x00001000
+
+
+def length_of_match(data, x, y):
+    """Calculates the number of consecutive characters that are the same starting at x and y in data."""
+    for c in range(READ_AHEAD_BUFFER_SIZE):
+        if (y + c) >= len(data): return c
+        if data[x + c] != data[y + c]: return c
+    return READ_AHEAD_BUFFER_SIZE
+
+
+def search(data, position):
+    length = len(data)
+    results = []
+    assert position < length
+
+    if (position < 3) or ((length - position) < 3): return (0, 0)
+
+    result = (0, 0)
+    for i in range(max(0, position - SLIDING_WINDOW_SIZE), position - 1):
+        current = length_of_match(data, i, position)
+        if current >= result[0]: result = (current, position - i)
+
+    return result
+
+
+def blocks(data):
+    position = 0
+    while position < len(data):
+        compressionFlags = 0
+        temp = ''
+        for bit in (128, 64, 32, 16, 8, 4, 2, 1):
+            if position >= len(data): break
+
+            size, where = search(data, position)
+
+            if size > 2:
+                temp += chr((((size - 3) & 0xF) << 4) + (((where - 1) >> 8) & 0xF))
+                temp += chr((where - 1) & 0xFF)
+                position += size
+                compressionFlags |= bit
+            else:
+                temp += data[position]
+                position += 1
+
+        yield chr(compressionFlags) + temp
+
+
+def compress(data):
+    l = len(data)
+
+    result = ''.join(
+        ('\x10', chr(l & 0xff), chr((l >> 8) & 0xff), chr((l >> 16) & 0xff)) +
+        tuple(blocks(data))
+    )
+
+    return result + '\x00' * (-len(result) % 4)
+
+
+def main(filename):
+    with open(filename, 'rb') as f:
+        data = f.read()
+    data = compress(data)
+    # with open(filename, 'w') as f:
+    #    f.write(data)
+    print(data)
+
+
+main(sys.argv[1])
