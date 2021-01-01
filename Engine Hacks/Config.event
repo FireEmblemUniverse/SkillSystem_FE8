@@ -160,6 +160,9 @@
 #define ONLY_SHOW_USED_RANKS
 
 
+// If uncommented, Unlock staves will work on chests.
+//#define UNLOCK_WORKS_ON_CHESTS
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================

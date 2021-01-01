@@ -181,6 +181,9 @@ POP
   //Durability-Based Items, for Skill Scrolls
   #include "Necessary/DurabilityBasedItems/DurabilityBasedItems.event"
 
+  // Unlock working on chests
+  #include "ExternalHacks/UnlockChest/UnlockChest.event"
+  
   ALIGN 4
   #include "SkillSystem/SkillSystemInstaller.event"
 
