@@ -53,8 +53,10 @@ WORD BattleBufferAnimsOn1
 
 ORG $2b90a
 BYTE BattleBufferWidth
-ORG $2b91c
-BYTE BattleBufferWidth
+#ifndef GAIDEN_MAGIC // Gaiden Magic needs to hook here. -Snek
+	ORG $2b91c
+	BYTE BattleBufferWidth
+#endif // GAIDEN_MAGIC
 ORG $2aeb2
 BYTE BattleBufferWidth
 ORG $5881c
