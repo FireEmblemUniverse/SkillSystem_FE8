@@ -193,7 +193,7 @@ BNE label5
         MOV r0, #0x1
         STR r0, [r1, #0x0]   //gBattleAnimeCounter
 		label5:
-        LDR r0, =NewEfxHpBar
+        LDR r0, =NewEfxHPBar
         MOV r1, #0x3
         blh 0x08002C7C, r3   //New6C
         MOV r6 ,r0

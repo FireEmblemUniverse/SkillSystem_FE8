@@ -15,7 +15,7 @@
 .equ StartEFXStatusChange, 0x08055518
 .equ LoadFlashBG, 0x08053f10
 
-@.include "MissRelated.s"
+.include "MissRelated.s"
 
 .global SetUpBattleWeaponDataHack
 .type SetUpBattleWeaponDataHack, %function

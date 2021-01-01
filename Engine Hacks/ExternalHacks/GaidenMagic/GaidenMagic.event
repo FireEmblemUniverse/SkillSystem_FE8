@@ -68,13 +68,13 @@
 	ORG $62768
 	jumpToHack(SleepFix)
 	
-	/*ORG $552D2
+	ORG $552D2
 	SHORT $46C0 //nop
-	jumpToHack_r6(MakeHPEffectsWorkOnMiss)
+	SHORT 0x4E00 0x4730 ; POIN MakeHPEffectsWorkOnMiss|1 // jumpToHack_r6(MakeHPEffectsWorkOnMiss)
 
 	ORG $55496
 	SHORT $46C0 //nop
-	jumpToHack(MakeHPEffectsWorkOnMiss_Nos)*/
+	jumpToHack(MakeHPEffectsWorkOnMiss_Nos)
 	POP
 	
 	ALIGN 4
