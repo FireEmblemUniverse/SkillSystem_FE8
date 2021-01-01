@@ -4,7 +4,12 @@
 ALIGN 4
 RangeSkillsCheck:
 #incbin "RangeLoop/RangeSkillLoop.dmp"
-POIN SkillTester RangeSkillList
+#ifndef RANGE_SKILLS_CHECK_USES_SKILLTESTER2
+	POIN SkillTester
+#else
+	POIN SkillTester2
+#endif // RANGE_SKILLS_CHECK_USES_SKILLTESTER2
+POIN RangeSkillList
 
 ALIGN 4
 BowRangeBonus:
