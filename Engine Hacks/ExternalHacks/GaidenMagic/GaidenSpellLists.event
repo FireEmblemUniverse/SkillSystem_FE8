@@ -1,0 +1,22 @@
+
+#define GaidenList(character,pointer) "PUSH ; ORG SpellListTable + character * 4 ; POIN pointer ; POP"
+
+ALIGN 4
+SpellListTable: // Allocate space for the spell list pointer table.
+FILL 4*0xFF
+
+// Example usage of a spell list.
+	// Format is 0 0 terminated.
+	// Spells do not need to be ordered.
+	// First byte is the level at which the unit learns the spell. Set the top bit (add 0x80) to treat the spell as learned while promoted at that level.
+	// Second byte is the item ID for this spell. This can be anima, light, dark, or a staff!
+	// If GAIDEN_REQUIRES_WRANK in Config.event is uncommented, then a unit will still need weapon rank to weild the Gaiden spell.
+ALIGN 4
+EirikaSpellList:
+	BYTE 2 Fire
+	BYTE 3 Elfire
+	BYTE 4 Thunder
+	BYTE 5 Flux
+	BYTE 6 Mend
+	BYTE 0 0
+GaidenList(Eirika,EirikaSpellList) // This macro writes this entry to the spell list table.
