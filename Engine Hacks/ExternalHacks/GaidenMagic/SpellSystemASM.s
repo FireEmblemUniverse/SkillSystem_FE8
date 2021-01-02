@@ -15,7 +15,7 @@
 .equ StartEFXStatusChange, 0x08055518
 .equ LoadFlashBG, 0x08053f10
 
-.include "MissRelated.s"
+.include "MissRelated.s" @ Somewhat verbose functions associated with HP costs on miss.
 
 .global SetUpBattleWeaponDataHack
 .type SetUpBattleWeaponDataHack, %function
@@ -387,61 +387,6 @@ ldr r0, =0x08016895
 bx r0
 
 .ltorg
-
-.global GaidenIncrementRoundHack
-.type GaidenIncrementRoundHack, %function
-GaidenIncrementRoundHack: @ Autohook to 0x0802B918. Prevent incrementing gpCurrent round if we wouldn't have enough HP to cast this spell right now (and clear the current round).
-@ I think r4 has BattleUnit* attacker, and r5 has BattleUnit* defender for THIS round.
-mov r0, r4
-blh GetUnitEquippedWeaponSlot, r1
-cmp r0, #9 @ Value for "Using a Gaiden spell."
-bne IncrementRound @ Act normally if we're not even using Gaiden Magic.
-	@ We are using Gaiden Magic.
-	ldr r0, =UsingSpellMenu
-	ldrb r0, [ r0 ]
-	cmp r0, #0x00
-	beq IncrementNotUsingSpellMenu @ We are the defender.
-		ldr r0, =SelectedSpell
-		ldrb r1, [ r0 ]
-		b IncrementCheckHPCost
-	IncrementNotUsingSpellMenu:
-		mov r0, r4
-		bl GetFirstAttackSpell
-		mov r1, r0
-	IncrementCheckHPCost:
-	mov r6, r1 @ Keep that spell in r6 for later.
-	mov r0, r4
-	@ r1 already has the spell we want to check.
-	bl HasSufficientHP @ r0 has the boolean for whether we have enough HP right now.
-	@ The case for some other HP depleting thing existing is covered because those should also update the battle unit current HP field.
-	cmp r0, #0x00
-	beq DontIncrementRound @ If we don't have enough HP, don't increment normally.
-IncrementRound:
-	ldr r1, =gpCurrentRound
-	ldr r0, [ r1 ]
-	add r0, r0, #0x08
-	str r0, [ r1 ]
-	b EndIncrementRoundHack
-DontIncrementRound:
-	@ If we're here, we need to add back the HP that was lost. The spell we're using is still in r6.
-	mov r0, r6
-	bl GetSpellCost
-	mov r2, #0x13
-	ldsb r1, [ r4, r2 ] @ Signed HP because this might be negative.
-	add r1, r0, r1
-	strb r1, [ r4, r2 ]
-	@ We should clear out the round now.
-	mov r0, #0x00
-	ldr r1, =gpCurrentRound
-	ldr r1, [ r1 ]
-	str r0, [ r1 ]
-	str r0, [ r1, #0x04 ]
-EndIncrementRoundHack:
-mov r0, #0x00
-pop { r4 - r6 }
-pop { r1 }
-bx r1
-.ltorg
 
 @ Note from Snek: The following two functions are intended to help support HP cost animations in battle with status staves, hammerne, and restore,
 @	but neither I nor Gamma could get this to work. :(

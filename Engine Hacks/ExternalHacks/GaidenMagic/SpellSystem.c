@@ -149,14 +149,20 @@ void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattl
 
 void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
 {
-	// No HP cost on miss. First let's check for that.
-	int cost = GetSpellCost(unit->weapon);
-	
-	// Let's set the HP depletion bit.
-	buffer->attributes |= 0x100; // "HP drain" bit.
-	// Now let's subtract the cost from their HP. The check before gurantees they have enough HP to cast right now.
-	unit->unit.curHP -= cost;
-	buffer->damage -= cost;
+	if ( HasSufficientHP(&unit->unit,unit->weapon) )
+	{
+		int cost = GetSpellCost(unit->weapon);
+		// Let's set the HP depletion bit.
+		buffer->attributes |= BATTLE_HIT_ATTR_HPSTEAL; // "HP drain" bit.
+		// Now let's subtract the cost from their HP. The check before gurantees they have enough HP to cast right now.
+		unit->unit.curHP -= cost;
+		buffer->damage -= cost;
+	}
+	else
+	{
+		// I think the cleanest way to handle preventing rounds with insufficient HP is to set a bit for later.
+		buffer->attributes |= BATTLE_HIT_ATTR_5; // This bit is checked in an external hack I've made.
+	}
 }
 
 int InitGaidenSpellLearnPopup(void) // Responsible for returning a boolean for whether we should show a "spell learned" popup after battle and for setting it up.

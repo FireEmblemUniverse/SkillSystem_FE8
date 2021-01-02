@@ -76,5 +76,3 @@ SET_FUNC GaidenTargetSelectionBPressHack, (0x08022780+1)
 SET_FUNC GaidenMenuSpellCostHack, (0x08016884+1)
 
 SET_FUNC GaidenTargetSelectionCamWaitBPressHack, (0x08022844+1)
-
-SET_FUNC GaidenIncrementRoundHack, (0x0802B918+1)
