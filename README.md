@@ -19,10 +19,10 @@ of installation, such as FEBuilderGBA, are not officially supported.
 
 ## Basic Usage Notes
 
-- A list of completed skills can be found in `Engine Hacks\Skill System\skill_definitions.event`.
-- Several optional toggles (such as the STR/MAG split, save expansion, etc) can be found in `Engine Hacks/Config.event`.
+- Only 254 skills can be used at a time. To configure which skills are in use, use `Engine Hacks\Skill System\skill_definitions.event`. This also doubles as a list of all skills and their effects.
+- Several optional toggles for other assembly hacks (such as the STR/MAG split, save expansion, etc) as well as the configuration of the effects of various skills can be found in `Engine Hacks\Config.event`.
 - To customize skill learnsets (what skills learned, at what level), see `Engine Hacks\Skill System\Skill_lists.event`.
-- To customize things like personal skills, class skills, and other miscellaneous things, see the CSVs in `Tables\FE8 Nightmare modules`
+- To customize things like personal skills, class skills, and other miscellaneous things, see the CSVs in `Tables\FE8 Nightmare modules`.
 
 ## I found a bug! What can I do about it?
 
