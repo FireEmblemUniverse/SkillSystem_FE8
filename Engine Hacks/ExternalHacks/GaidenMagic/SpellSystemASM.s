@@ -15,7 +15,7 @@
 .equ StartEFXStatusChange, 0x08055518
 .equ LoadFlashBG, 0x08053f10
 
-.include "MissRelated.s" @ Somewhat verbose functions associated with HP costs on miss.
+@ .include "MissRelated.s" @ Somewhat verbose functions associated with HP costs on miss. I could not get these to work. -Snek
 
 .global SetUpBattleWeaponDataHack
 .type SetUpBattleWeaponDataHack, %function
@@ -387,7 +387,7 @@ ldr r0, =0x08016895
 bx r0
 
 .ltorg
-
+/*
 @ Note from Snek: The following two functions are intended to help support HP cost animations in battle with status staves, hammerne, and restore,
 @	but neither I nor Gamma could get this to work. :(
 .global SleepFix
@@ -422,5 +422,5 @@ blh LoadFlashBG, r3
 
 ldr r0, =0x080624E1
 bx r0
-
+*/
 .ltorg
