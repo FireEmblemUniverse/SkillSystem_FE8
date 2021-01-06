@@ -165,17 +165,9 @@
 // An example for stat screen display is in MSS page 4.
 //#define GAIDEN_MAGIC
 
-// If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
-// This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
-// Uncommenting this may hinder edge edge cases of range-based skills working as equipped weapon skills.
-// #define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
-
-#ifdef GAIDEN_MAGIC // Gaiden magic forces this flag to be on or else crashes occur.
-	#define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
-#endif // GAIDEN_MAGIC
-
 // If uncommented, Unlock staves will work on chests.
 //#define UNLOCK_WORKS_ON_CHESTS
+
 
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
@@ -224,7 +216,6 @@
 //If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
 #define ALSO_USE_MOVEMENT_SKILL_CHECK True
 
-
 //If true, get 1/4 prices with both bargain and silver card simultaneously.
 #define DOES_BARGAIN_STACK False
 
@@ -244,6 +235,11 @@
 //If uncommented, ModularPreBattleSkill will be installed.
 //This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
 #define MODULAR_PRE_BATTLE_SKILLS
+
+// If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
+// This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
+// Uncommenting this may hinder edge edge cases of range-based skills working as equipped weapon skills.
+// #define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
 
 //If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
 //  #define USE_LEGACY_SKILL_DEFAULTS
