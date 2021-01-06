@@ -163,10 +163,10 @@
 // Set spell lists in ExternalHacks/GaidenMagic/GaidenSpellLists.event.
 // Set spell HP costs in "Item editors/Gaiden Spell Cost Tables.csv"
 // An example for stat screen display is in MSS page 4.
-//#define GAIDEN_MAGIC
+// #define GAIDEN_MAGIC
 
 // If uncommented, Unlock staves will work on chests.
-//#define UNLOCK_WORKS_ON_CHESTS
+// #define UNLOCK_WORKS_ON_CHESTS
 
 
 // =================================
