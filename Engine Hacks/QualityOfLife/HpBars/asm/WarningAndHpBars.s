@@ -122,26 +122,26 @@ str		r2,[sp,#0x8]			@sp+8 = y - y'
 ldr		r1,=#0x201
 str		r1,[sp,#0xC]			@constant to determine where things get drawn
 @Find out whether we even need to display an hp bar
-.if FE8 == 1 @ TODO: other games
-	mov		r0, r4				@ arg r0 = Unit
-	ldr		r1, =Get_Unit_Max_Hp
-	mov		r14,r1
-	.short	0xF800
-.else
+@.if FE8 == 1 @ TODO: other games
+@	mov		r0, r4				@ arg r0 = Unit
+@	ldr		r1, =Get_Unit_Max_Hp
+@	mov		r14,r1
+@	.short	0xF800
+@.else
 	mov		r0,#maximum_hp
 	ldsb	r0,[r4,r0]
-.endif
+@.endif
 push {r7}
 mov		r7,r0
-.if FE8 == 1
-	mov r0,r4
-	ldr r1,=Get_Unit_Cur_HP
-	mov r14,r1
-	.short 0xF800
-.else
+@.if FE8 == 1
+@	mov r0,r4
+@	ldr r1,=Get_Unit_Cur_HP
+@	mov r14,r1
+@	.short 0xF800
+@.else
 mov		r0,#current_hp
 ldsb	r0,[r4,r0]
-.endif
+@.endif
 
 mov 	r2,r0
 mov 	r0,r7

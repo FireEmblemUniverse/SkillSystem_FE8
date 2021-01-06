@@ -25,6 +25,12 @@ cmp r0, #0x00
 beq CheckNextSkill
 b Preloop
 
+End:
+pop { r4 - r7 }
+pop { r3 }
+bx r3
+
+
 @r0, r1, r2 free
 @pre-loop set a counter
 
@@ -52,8 +58,7 @@ ldrb r1,[r2,#2]		@r1 now holds cmb art id
 cmp r0, r1 		@exit if not combat art ID
 beq LoopStart
 cmp r1, #0
-bne CheckNextSkill	@if cmb art id is 0, continue
-			@otherwise, we didn't match the skill we are checking, so break
+bne CheckNextSkill	@it must be that combat art, so we break
 
 LoopStart:
 	@Step 1. Break if we are done looping. 
@@ -85,10 +90,23 @@ ldr r0, =SignedShortList	@see ModularPreBattleSkill.event or Teq Doc battle stru
 ldrb r0,[r0,r3]			@r0 iterates through a list of values that are Shorts
 add r3, r3, #1
 cmp r0, #0		
-beq TryByteLoopInstead		@we reached the end of the list (cmp r0, #0)
+beq TryUnsignedShortInstead		@we reached the end of the list (cmp r0, #0)
 cmp r0, r1
 beq ItIsAShort
 b CheckIfShortLoop
+
+TryUnsignedShortInstead:
+mov r3, #0
+
+CheckIfUnsignedShortLoop:
+ldr r0, =UnsignedShortList
+ldrb r0,[r0,r3]		@r0 iterates through a list of values that are Bytes
+add r3, r3, #1
+cmp r0, #0
+beq TryByteLoopInstead 		@we reached the end of the list (cmp r0, #0)
+cmp r0, r1
+beq ItIsAnUnsignedShort
+b CheckIfUnsignedShortLoop
 
 TryByteLoopInstead:
 mov r3, #0
@@ -98,7 +116,7 @@ ldr r0, =SignedByteList
 ldrb r0,[r0,r3]		@r0 iterates through a list of values that are Bytes
 add r3, r3, #1
 cmp r0, #0
-beq CheckNextSkill	@invalid parameter given, so try next skill 
+beq CheckNextSkill	@end of list and invalid parameter given, so try next skill 
 cmp r0, r1
 beq ItIsAByte
 b CheckIfByteLoop
@@ -108,12 +126,15 @@ mov r3, #4
 ldrh r0,[r4,r1]		@
 b OperationToUse
 
+ItIsAnUnsignedShort:
+mov r3, #3
+ldrh r0,[r4,r1]		@
+b OperationToUse
+
 ItIsAByte:
 mov r3, #2
 ldrb r0,[r4,r1]		@
 b OperationToUse
-
-
 
 OperationToUse:
 add r6, r6, #1		@counter +1 (5, 8, B, E, 11, 14, etc.)
@@ -134,17 +155,15 @@ beq LsFraction		@4-bit: 0x32 = shift left by 3 (eg. multiply by 2^3=8), then rig
 mov r6, #0xFF
 b CheckNextSkill		@invalid operation, so end 
 
-
-
 Add:
 ldrb r1,[r2,r6]		@by this number 
 add r0,r1 		@
-b CheckCap
+b ChooseCap
 
 Sub:
 ldrb r1,[r2,r6]		@by this number 
 sub r0,r1 		@
-b CheckCap
+b ChooseCap
 
 LsFraction:
 ldrb r1,[r2,r6]		 
@@ -155,7 +174,7 @@ ldrb r1,[r2,r6]
 lsl r1, r1, #28		@Y0000000 
 lsr r1, r1, #28		@0000000Y // # of right shifts
 lsr r0,r1 		@shifted right
-b CheckCap
+b ChooseCap
 
 
 Fraction:
@@ -196,12 +215,21 @@ lsl r6, r6, #16		@r6r30000
 lsr r6, r6, #24		@000000r6 // 
 
 lsr r7, r7, #16		@000000r7
-b CheckCap
 
 
+ChooseCap:
+cmp r3, #3 		@was in UnsignedShortList
+bne CheckCap
+
+HigherCap:
+mov r1, #0xFF
+cmp r0, r1 @unsigned cap of 255
+ble NotCap
+mov r0, #0xFF
+b NotCap
 
 CheckCap:
-cmp r0, #0x7f @damage cap of 127
+cmp r0, #0x7f @signed cap of 127
 ble NotCap
 mov r0, #0x7f
 
@@ -212,6 +240,8 @@ ldrb r1,[r2,r6]		@r1 is now the 3x+1 entry of your table
 
 cmp r3, #2		
 beq StoreByte
+cmp r3, #3
+beq StoreShort
 cmp r3, #4
 beq StoreShort
 b LoopStart		@store nothing if not a byte or short somehow
@@ -226,10 +256,7 @@ strh r0, [r4, r1] 	@final value stored back in
 add r6, r6, #2		@counter +2 (6, 9, C, F, 12, 15, etc.)
 b LoopStart
 
-End:
-pop { r4 - r7 }
-pop { r3 }
-bx r3
+
 
 
 CheckSkill:
