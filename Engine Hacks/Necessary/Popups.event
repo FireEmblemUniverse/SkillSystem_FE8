@@ -14,7 +14,12 @@ gBattlePopupTable:
 
 	// Skill system
 	PopRBattlePopup(InitLevelUpSkillPopup|1, SkillLearnedPopup, 96)
-
+	
+	// Learning spells for Gaiden Magic.
+	#ifdef GAIDEN_MAGIC
+		PopRBattlePopup(InitGaidenSpellLearnPopup|1, NewGaidenSpellPopup, 96)
+	#endif // GAIDEN_MAGIC
+	
 	PopRBattlePopupEnd
 
 ALIGN 4

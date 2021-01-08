@@ -203,6 +203,9 @@ mov    r3, #0
 blh    DrawText, r4
 add    r7, #8
 
+@ Next let's draw Gaiden spells if the hack is installed.
+draw_gaiden_spells_at 13, 13, GaidenStatScreen @ GaidenStatScreen is a pointer to the routine, GaidenStatScreen.
+
 page_end
 
 .align

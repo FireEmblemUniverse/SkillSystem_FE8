@@ -53,8 +53,8 @@ WORD BattleBufferAnimsOn1
 
 ORG $2b90a
 BYTE BattleBufferWidth
-ORG $2b91c
-BYTE BattleBufferWidth
+//ORG $2b91c I replaced this part with a hack that doesn't increment gpRoundsData when a certain flag is set. -Snek
+//BYTE BattleBufferWidth
 ORG $2aeb2
 BYTE BattleBufferWidth
 ORG $5881c

@@ -323,11 +323,14 @@ POP
 	POIN Return_Range_Bitfield|1
 	POIN Write_Range|1
 	
-	ALIGN 4
-	Return_Range_Bitfield:
-	#include "RangeDisplay/ReturnRangeBitfield.lyn.event"
-	//#incbin "Return Range Bitfield.dmp"
-	//POIN Get_Item_Range|1
+	#ifndef GAIDEN_MAGIC
+		// This function gets rewritten by Gaiden Magic 2.0 to include getting range for usable spells. -Snek
+		ALIGN 4
+		Return_Range_Bitfield:
+		#include "RangeDisplay/ReturnRangeBitfield.lyn.event"
+		//#incbin "Return Range Bitfield.dmp"
+		//POIN Get_Item_Range|1
+	#endif // GAIDEN_MAGIC
 	
 	ALIGN 4
 	Get_Item_Range:
@@ -386,10 +389,12 @@ POP
 	BL(Unlock_Range)
 	SHORT 0xBC01 0x4700	
 	*/
-	Target_Routine_For_Fortify: //push r14; ldrb r1,[r4,#0x12]; lsl r1,r1,#0x1; add r1,#0x1E; add r1,r1,r0; ldrh r2,[r1]; bl somewhere; pop r0; bx r0 (r4+0x12 has inventory slot, r0 has char data)
-	SHORT 0xB500 0x7CA1 0x0049 0x311E 0x1809 0x880A
-	BL(HealStaff_RangeSetup)
-	SHORT 0xBC01 0x4700
+	#ifndef GAIDEN_MAGIC // Gaiden magic needs this sometimes not to refer to gActionData+0x12.
+		Target_Routine_For_Fortify: //push r14; ldrb r1,[r4,#0x12]; lsl r1,r1,#0x1; add r1,#0x1E; add r1,r1,r0; ldrh r2,[r1]; bl somewhere; pop r0; bx r0 (r4+0x12 has inventory slot, r0 has char data)
+		SHORT 0xB500 0x7CA1 0x0049 0x311E 0x1809 0x880A
+		BL(HealStaff_RangeSetup)
+		SHORT 0xBC01 0x4700
+	#endif // GAIDEN_MAGIC
 	/*
 	ALIGN 4
 	Non_Unlock_Range:
