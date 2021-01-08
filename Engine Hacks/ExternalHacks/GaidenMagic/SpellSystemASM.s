@@ -127,7 +127,7 @@ ActionFixUsingSpell:
 	ldr r0, =SelectedSpell
 	ldrb r0, [ r0 ]
 EndActionFix:
-ldr r1, =#0x0802FC67
+ldr r1, =#0x0802FC63
 bx r1
 .ltorg
 .global GaidenPreActionHack
