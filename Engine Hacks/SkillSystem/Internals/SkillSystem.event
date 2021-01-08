@@ -56,6 +56,9 @@ BL(Unset_Attack_Flag) //this is in masterhackinstaller
 
 ORG $18680
 jumpToHack(Unset_Attack_Flag_2)
+
+ORG $2B918
+jumpToHack(RemoveRoundHack)
 POP
 
 ALIGN 4

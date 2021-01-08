@@ -5,7 +5,7 @@
 
 .global RemoveRoundHack
 .type RemoveRoundHack, %function
-RemoveRoundHack: @ Autohook to 0x0802B918. If bit 5 in rounds data attributes is set, don't increment gpCurrentRound, and clear the round.
+RemoveRoundHack: @ jumpToHacked at 0x0802B918. If bit 5 in rounds data attributes is set, don't increment gpCurrentRound, and clear the round.
 @ I think r4 has BattleUnit* attacker, and r5 has BattleUnit* defender for THIS round.
 ldr r2, =gpCurrentRound
 ldr r1, [ r2 ] @ Pointer to the current round.
