@@ -69,7 +69,7 @@ mov r0, r5
 cmp r0, #0
 beq NotCapture
 	ldr r4, =0x00010001 @capture is always 1 range
-	b GotRange
+	b GotRangeC
 
 NotCapture:
 mov 	r0, r5
@@ -78,6 +78,20 @@ mov 	r1, r6
 @bl	Jump
 bl 	ItemRangeGetter
 mov 	r4, r0
+b GotRange
+
+GotRangeC:
+ldrb	r0, [r5, #0x10]
+ldrb	r1, [r5, #0x11]
+mov 	r2, r4
+ldr 	r3, DrawRange
+bl	Jump
+ldrb	r0, [r5, #0x10]
+ldrb	r1, [r5, #0x11]
+mov 	r2, r4
+ldr 	r3, DrawRange
+bl	Jump
+b End
 
 GotRange:
 ldrb	r0, [r5, #0x10]

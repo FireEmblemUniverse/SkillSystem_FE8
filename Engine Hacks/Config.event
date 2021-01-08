@@ -199,7 +199,7 @@
 #define RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
 
 // If commented, Capture will be a global command and will not require the Capture skill.
-#define CAPTURE_SKILL_REQUIRED
+// #define CAPTURE_SKILL_REQUIRED
 
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
