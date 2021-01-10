@@ -286,14 +286,14 @@ bne SkipStaffInventory
 	mov r1, #0x04
 	and r1, r0, r1
 	cmp r1, #0x00
-	beq StaffInventoryDontDecItem
+	beq StaffInventoryDecItem
 		mov r1, r4
 		add r1, r1, #0x7D
 		mov r0, #0x01
 		strb r0, [ r1 ]
 		ldrh r0, [ r5 ]
-	StaffInventoryDontDecItem:
-	ldr r1, =#0x0802CC9D
+	StaffInventoryDecItem:
+	ldr r1, =#0x0802CC9B
 	bx r1
 SkipStaffInventory:
 ldr r0, =#0x0802CCB3
