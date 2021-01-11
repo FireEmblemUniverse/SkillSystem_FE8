@@ -1,0 +1,19 @@
+
+// Incorporated by Snek, but credit Gamma for the code.
+#ifdef UNLOCK_WORKS_ON_CHESTS
+
+	ALIGN 4
+	TryAddToUnlockTargetList: // This replaces the function with the same name in the item range hack.
+	#incbin "TryAddToUnlockTargetList.dmp"
+
+	ALIGN 4
+	UnlockPostCombat:
+	#incbin "unlockafter.dmp"
+	WORD Unlock
+	#ifdef GAIDEN_MAGIC
+		WORD GaidenUsingSpellMenu GaidenSelectedSpell
+	#else
+		WORD 0 0
+	#endif
+
+#endif // UNLOCK_WORKS_ON_CHESTS

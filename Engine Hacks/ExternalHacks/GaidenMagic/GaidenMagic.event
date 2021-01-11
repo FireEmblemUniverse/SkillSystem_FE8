@@ -1,0 +1,146 @@
+
+#ifdef GAIDEN_MAGIC // 2.0 version by Snek based on original version by Hypergammaspaces.
+	
+	/* Notes on Gaiden Magic 2.0 behavior:
+		Adds 2 unit menu options: Black magic and White magic. Black magic has anima and dark spells, and White magic has light spells and staves.
+		Each of these opens an attack-menu-esque menu that allows you to choose a learned spell to attack with (or if it's a staff, use it).
+		Spell learning is based entirely on level: See GaidenSpellLists.event.
+		Units still need weapon rank to cast spells.
+		Each spell has an HP cost. During battle, the HP will be immediately taken from the caster upon casting. A spell may not be cast if the caster doesn't have enough HP.
+			Set HP costs per spell in "Item editors/Gaiden Spell Cost Table.csv."
+			A unit cannot kill themselves with a cast. A round will not occur if the attacker does not have enough HP.
+		All staves have been extensively tested for proper vanilla and Gaiden functionality.
+		The system is designed to work together with vanilla spells. All vanilla spells should function normally without HP costs when casted from inventory.
+		If a defending unit cannot counter with their first equippable weapon in inventory, they will automatically equip their first (attack) Gaiden spell.
+		Any Gaiden spells that miss cost no HP.
+		An example usage for stat screen display is in page 4 complete with R-Text.
+		
+		KNOWN ISSUES:
+			Status staff HP change does not display in battle (but the effect still applies correctly).
+			HP cost for a missed attack also does not display in battle (but the effect still applies).
+	*/
+	
+	#define GaidenUsingSpellMenu 0x0203F082
+	#define GaidenSelectedSpell 0x0203F080
+	
+	#include "GaidenMagic.lyn.event" // Compiled C.
+	
+	#include "SpellSystemASM.lyn.event" // Stuff not really suitable for C conversion.
+	
+	#include "GaidenSpellLists.event" // Go here to define per-character spell lists.
+	
+	ALIGN 4
+	gGaidenMagicUMErrorText:
+	SHORT GaidenMagicUMErrorText
+	gGaidenMagicSpellMenuErrorText:
+	SHORT GaidenMagicSpellMenuErrorText
+	gGaidenMagicHPCostText:
+	SHORT GaidenMagicHPCostText
+	
+	ALIGN 4
+	gCan_Attack_Target: // We do these to ensure the top bit is set.
+	POIN Can_Attack_Target|1
+	gGet_Item_Range:
+	POIN Get_Item_Range|1
+	gAll_Weapons_One_Square:
+	POIN All_Weapons_One_Square|1
+	gAll_Staffs_One_Square:
+	POIN All_Staffs_One_Square|1
+	gWrite_Range:
+	POIN Write_Range|1
+	gGetItemRangeM:
+	POIN GetItemRangeM|1
+	gHealStaff_RangeSetup:
+	POIN HealStaff_RangeSetup|1
+	
+	PUSH
+	ORG $2A774
+	POIN SetUpBattleWeaponDataSwitchRepoint
+	
+	ORG $59B654
+	POIN NewExitBattleForecast|1
+	
+	ORG $22C36
+	SHORT 0x2502 // Have the Return_Range_Bitfield call use slot -2.
+	
+	ORG $2CBB2
+	SHORT 0x46C0 0x46C0 // nop out the call to ClearRounds in SetupSubjectBattleUnitForStaff.
+	
+	/*
+	// I could not get the following four functions to work. Maybe I'll return to them another time. -Snek
+	//624D4 - Silence - start EFXHpBar. Thanks Gamma for these two.
+	ORG $624D4
+	jumpToHack(SilenceFix)
+	
+	//62768 - Sleep - startEFXHpBar.
+	ORG $62768
+	jumpToHack(SleepFix)
+	
+	ORG $552D2 // Credit Gamma for these as well.
+	SHORT $46C0 //nop
+	SHORT 0x4E00 0x4730 ; POIN MakeHPEffectsWorkOnMiss|1 // jumpToHack_r6(MakeHPEffectsWorkOnMiss)
+	
+	ORG $55496
+	SHORT $46C0 //nop
+	jumpToHack(MakeHPEffectsWorkOnMiss_Nos)*/
+	POP
+	
+	ALIGN 4
+	SetUpBattleWeaponDataSwitchRepoint:
+	POIN 0x0802A79C // Item is in inventory.
+	POIN 0x0802A79C
+	POIN 0x0802A79C
+	POIN 0x0802A79C
+	POIN 0x0802A79C
+	POIN 0x0802A7B0 // Item just added.
+	POIN 0x0802A7CC // Arena attacker.
+	POIN 0x0802A7EC // Arena defender.
+	POIN 0x0802A80C // Ballista.
+	POIN SetUpBattleWeaponDataForSpellMenu // For using a tome.
+	
+	// Temp until I get these functions written...
+	
+	#define MagicMenuCommand(optionNumber) "WORD $080D7CB8; SHORT 0; SHORT 0; BYTE 0 optionNumber 0 0; POIN (SpellUsability|1); POIN (SpellDrawingRoutine|1); POIN (SpellEffectRoutine|1); WORD 0; POIN (SpellOnHover|1); POIN (SpellOnUnhover|1)"
+	#define MagicMenuCommandEnd "WORD 0 0 0 0 0 0 0 0 0"
+
+	ALIGN 4
+	SpellSelectMenuDefs:
+	BYTE $01 $01 $0E $00
+	WORD $0
+	POIN MagicMenuCommandDefs
+	WORD $0 $0 $0
+	POIN MagicMenuBPress|1
+	WORD $0804F521
+	WORD $08024589
+
+	MagicMenuCommandDefs:
+		MagicMenuCommand($49)
+		MagicMenuCommand($4A)
+		MagicMenuCommand($4B)
+		MagicMenuCommand($4C)
+		MagicMenuCommand($4D)
+	MagicMenuCommandEnd
+
+	ALIGN 4
+	NewGaidenSpellPopup:
+	Popup_SetSound(0x5A)
+	Popup_SetColor(0)
+	Popup_StringPtr(GaidenPopupLearned)
+	Popup_SetColor(2)
+	Popup_ItemName
+	Popup_Space(1)
+	Popup_ItemIcon
+	Popup_StringId(0x22) // .[X]
+	Popup_End
+	
+	ALIGN 4
+	GaidenPopupLearned:
+	String("Learned ") ; BYTE 0
+
+#else
+
+	ALIGN 4
+	GaidenStatScreen: // Used for not drawing Gaiden spells if the hack isn't installed.
+	WORD 0
+
+#endif // GAIDEN_MAGIC

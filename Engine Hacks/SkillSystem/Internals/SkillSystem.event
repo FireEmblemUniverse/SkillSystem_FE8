@@ -56,6 +56,9 @@ BL(Unset_Attack_Flag) //this is in masterhackinstaller
 
 ORG $18680
 jumpToHack(Unset_Attack_Flag_2)
+
+ORG $2B918
+jumpToHack(RemoveRoundHack)
 POP
 
 ALIGN 4
@@ -207,6 +210,10 @@ Rerun_Battle_Calcs:
 
 Unset_Attack_Flag_2:
 #incbin "clearAttackFlag.dmp"
+
+#include "RemoveRound.lyn.event" // This hack makes bit 5 of rounds attributes cause the round not to occur. -Snek
+gBattleBufferWidth:
+BYTE BattleBufferWidth
 
 #include "SkillPopups.event"
 #include "HPHealing.event"
