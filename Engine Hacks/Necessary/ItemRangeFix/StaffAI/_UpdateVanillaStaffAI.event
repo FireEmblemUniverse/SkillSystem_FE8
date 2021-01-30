@@ -1,0 +1,43 @@
+#ifndef NewVanillaStaffAI
+	#define NewVanillaStaffAI
+	PUSH
+	//Update Vanilla staff ai
+	//Healing Staves (Heal, Mend, Recover)
+		ORG $3FBB8
+		StaffAI_TUnits(HealStaff_AIC)
+		ALIGN 4
+		HealStaff_AIC:
+		#incbin "VanillaStaves/HealStaff_AIC.dmp"
+		POIN $3C818|1
+		POIN StaffAI_Percentage|1
+		ORG $3FD30
+		StaffAI_TUnits(HealStaff_AIC)
+		
+		ORG $40164
+		StaffAI_TUnits(RestoreStaff_AIC)
+		ALIGN 4
+		RestoreStaff_AIC:
+		#incbin "VanillaStaves/RestoreStaff_AIC.dmp"
+		POIN $3C818|1
+		
+		ORG $40354
+		StaffAI_TUnits(SilenceStaff_AIC)
+		ALIGN 4
+		SilenceStaff_AIC:
+		#incbin "VanillaStaves/SilenceStaff_AIC.dmp"
+		POIN $3C818|1
+		
+		ORG $404E0
+		StaffAI_TUnits(SleepStaff_AIC)
+		SleepStaff_AIC:
+		#incbin "VanillaStaves/SleepStaff_AIC.dmp"
+		POIN $3C818|1
+		
+		ORG $3FF00
+		StaffAI_TAreas(FortifyStaff_AIC)
+		ALIGN 4
+		FortifyStaff_AIC:
+		#incbin "VanillaStaves/FortifyStaff_AIC.dmp"
+		POIN FillRange|1		
+	POP
+#endif
