@@ -31,18 +31,21 @@
 	
 	//placeholder movegetter used for testing replace with label to your thing
 	ALIGN 4
+	#include "_ItemAIRoutines.lyn.event"
+	
+	ALIGN 4
 	StaffAI_TargetUnits:
-	#incbin "StaffAI_TargetUnits.dmp"
+	#include "StaffAI_TargetUnits.lyn.event"
 	POIN prGotoMovGetter|1 GetItemRange|1 FillRange|1 //StaffAI_ItemRange
 	
 	ALIGN 4
 	StaffAI_TargetTiles:
-	#incbin "StaffAI_TargetTiles.dmp"
+	#include "StaffAI_TargetTiles.lyn.event"
 	POIN prGotoMovGetter|1 GetItemRange|1 FillRange|1 //StaffAI_ItemRange
 	
 	ALIGN 4
 	StaffAI_TargetAreas:
-	#incbin "StaffAI_TargetAreas.dmp"
+	#include "StaffAI_TargetAreas.lyn.event"
 	POIN GetItemRange|1
 	
 	ALIGN 4
