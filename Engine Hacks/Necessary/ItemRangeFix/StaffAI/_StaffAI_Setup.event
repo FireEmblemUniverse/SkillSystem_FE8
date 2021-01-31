@@ -36,12 +36,12 @@
 	ALIGN 4
 	StaffAI_TargetUnits:
 	#include "StaffAI_TargetUnits.lyn.event"
-	POIN prGotoMovGetter|1 GetItemRange|1 FillRange|1 //StaffAI_ItemRange
+	POIN prGotoMovGetter|1 GetItemRange|1 //FillRange|1 StaffAI_ItemRange
 	
 	ALIGN 4
 	StaffAI_TargetTiles:
 	#include "StaffAI_TargetTiles.lyn.event"
-	POIN prGotoMovGetter|1 GetItemRange|1 FillRange|1 //StaffAI_ItemRange
+	POIN prGotoMovGetter|1 GetItemRange|1 //FillRange|1 StaffAI_ItemRange
 	
 	ALIGN 4
 	StaffAI_TargetAreas:
@@ -49,16 +49,16 @@
 	POIN GetItemRange|1
 	
 	ALIGN 4
-	StaffAI_Percentage:
-	#incbin "Percentage.dmp"
+	GetUnitHPPercent:
+	#include "Percentage.lyn.event"
 	ALIGN 4
 	
-	#ifndef BasicRange
-		#define BasicRange
-		FillRange:
-		#incbin "FillRange.dmp"
-		POIN 0x1AABC|1
-	#endif
+	// #ifndef BasicRange
+		// #define BasicRange
+		// FillRange:
+		// #incbin "FillRange.dmp"
+		// POIN 0x1AABC|1
+	// #endif
 	
 	ALIGN 4
 	

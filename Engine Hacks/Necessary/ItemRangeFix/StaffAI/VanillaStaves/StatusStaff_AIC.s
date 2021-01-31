@@ -5,44 +5,44 @@
 	@r1= active unit
 	@r2= target unit
 	
-.set MaxPercent, 100	@target is healable if below this percent of hp
+.set MinHitRate, 0x0 @minimum accuracy against unit to target them
 .equ IsActiveUnitEnemy, OffsetList + 0x0
-.equ GetHpPercent, OffsetList + 0x4
 
+@default status staff targeting ai routine
 push 	{r4-r7, lr}
 mov 	r4, r2
 mov 	r5, r1
 mov 	r6, r0
-@check if target has recovery mode flag
-ldrb 	r1, [r4,#0xA]
-mov 	r0, #0x1
-and 	r0, r1
-cmp 	r0, #0x0
-beq CantHit
 
 mov 	r0, r4
 ldr 	r3, IsActiveUnitEnemy
 _blr 	r3
 @_blh 	AIAllegianceCheck
 cmp 	r0, #0x0
-bne CantHit
+beq CantHit
 
 mov 	r0, r4
-ldr 	r3, GetHpPercent
-_blr 	r3
-@_blh GetHpPercent
-mov 	r1, #MaxPercent
-cmp 	r0, r1
-bhs 	CantHit
-@set hp percentage as priority value
+mov 	r1, #0x30
+ldrb 	r1,[r0,r1]
+mov 	r0, #0xF
+and 	r0, r1
+cmp 	r0, #0x0	@check if target already has a status effect
+bne 	CantHit
+
+mov 	r0, r5
+mov 	r1, r4
+_blh GetStaffAccuracy
+cmp 	r0, #MinHitRate		@make sure hitrate is above minimum
+ble 	CantHit
+
+@set accuracy as priority value
+@add thing here later for priority skills (Provoke,Shade,Shade+,etc.)
 str 	r0, [r6,#spNewPriority]
 
 @compare priority
 ldr 	r1,[r6,#spPriority]
-cmp 	r1, #0x0
-blt 	Usable
 cmp 	r0,r1
-bgt 	CantHit
+blt CantHit
 
 Usable:
 mov 	r0, #0x3
