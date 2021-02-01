@@ -46,7 +46,7 @@
 	ALIGN 4
 	StaffAI_TargetAreas:
 	#include "StaffAI_TargetAreas.lyn.event"
-	POIN GetItemRange|1
+	POIN prGotoMovGetter|1 GetItemRange|1
 	
 	ALIGN 4
 	GetUnitHPPercent:

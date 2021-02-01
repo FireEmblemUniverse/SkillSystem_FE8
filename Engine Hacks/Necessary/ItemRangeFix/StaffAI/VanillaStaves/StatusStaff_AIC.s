@@ -9,7 +9,7 @@
 .equ IsActiveUnitEnemy, OffsetList + 0x0
 
 @default status staff targeting ai routine
-push 	{r4-r7, lr}
+push 	{r4-r6, lr}
 mov 	r4, r2
 mov 	r5, r1
 mov 	r6, r0
@@ -51,7 +51,7 @@ b End
 CantHit:
 mov 	r0, #0x0
 End:
-pop 	{r4-r7}
+pop 	{r4-r6}
 pop 	{r1}
 bx 	r1
 .ltorg

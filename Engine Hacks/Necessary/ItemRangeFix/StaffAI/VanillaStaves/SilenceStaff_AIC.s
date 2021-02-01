@@ -54,7 +54,7 @@ b End
 CantHit:
 mov 	r0, #0x0
 End:
-pop 	{r4-r7}
+pop 	{r4-r6}
 pop 	{r1}
 bx 	r1
 .ltorg

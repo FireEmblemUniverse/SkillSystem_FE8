@@ -21,9 +21,11 @@ mov 	r5, r3
 
 mov 	r0,r4
 mov 	r1,r5
-add 	r2, sp,#spItemRange
-mov 	r3, ItemAI_RangeBuilder
-_blr r3
+mov 	r2, #spItemRange
+add 	r2, r7, r2
+_blh ItemAI_RangeBuilder
+@ mov 	r3, ItemAI_RangeBuilder
+@ _blr r3
 _blh RecoveryModeUnitsInRange
 str 	r0, [r7, #spNewPriority]
 @make sure there are at least MinInRange targets to be usable

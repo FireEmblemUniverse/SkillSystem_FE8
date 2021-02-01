@@ -7,7 +7,7 @@
 	
 .equ AI_IfAlly, OffsetList + 0x0
 
-	push 	{r4-r7, lr}
+	push 	{r4-r6, lr}
 	mov 	r4, r0
 	mov 	r5, r1
 	mov 	r6, r2
@@ -37,7 +37,7 @@
 	CantHit:
 	mov 	r0, #0x0
 	End:
-	pop 	{r4-r7}
+	pop 	{r4-r6}
 	pop 	{r1}
 	bx 	r1
 .ltorg
