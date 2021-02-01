@@ -105,6 +105,8 @@ praIconGfxGetters:
 
 #define InjectIconGfxGetter(aSheetIndex, aprGfxGetter) "PUSH; ORG (praIconGfxGetters + (4*(aSheetIndex))); POIN (aprGfxGetter); POP"
 
+ORG (currentOffset+256)
+
 ALIGN 4
 AffinityIcons:
 #incext Png2Dmp "bin/AffinityIcons.png"
