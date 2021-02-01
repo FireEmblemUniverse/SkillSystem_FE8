@@ -189,11 +189,11 @@ HouseEvent:
 	
 	// Check if unit has skill
 	// If they have, goto label #0 (end)
-	ASMC (ASMC_HasSkill+1)
+	ASMC (ASMC_HasSkill|1)
 	BNE 0 rC r0
 	
 	// Learn skill to unit
-	ASMC (ASMC_LearnNewSkill+1)
+	ASMC (ASMC_LearnNewSkill|1)
 	
 LABEL 0
 	// end
