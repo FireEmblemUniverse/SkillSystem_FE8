@@ -1,0 +1,46 @@
+#ifndef NewVanillaStaffAI
+	#define NewVanillaStaffAI
+	PUSH
+	//Update Vanilla staff ai
+	//Healing Staves (Heal, Mend, Recover)
+		ORG $3FBB8
+		StaffAI_TUnits(HealStaff_AIC)
+		ALIGN 4
+		HealStaff_AIC:
+		#include "VanillaStaves/HealStaff_AIC.lyn.event"
+		POIN $3C818|1
+		POIN GetUnitHPPercent|1
+		//range is no longer hardcoded into the staff ai
+		//so physic will use the same routine
+		ORG $3FD30
+		StaffAI_TUnits(HealStaff_AIC)
+		
+		ORG $40164
+		StaffAI_TUnits(RestoreStaff_AIC)
+		ALIGN 4
+		RestoreStaff_AIC:
+		#include "VanillaStaves/RestoreStaff_AIC.lyn.event"
+		POIN $3C818|1
+		
+		ORG $40354
+		StaffAI_TUnits(SilenceStaff_AIC)
+		ALIGN 4
+		SilenceStaff_AIC:
+		#include "VanillaStaves/SilenceStaff_AIC.lyn.event"
+		POIN $3C818|1
+		
+		//Berserk and sleep share the same ai routine
+		ORG $404E0
+		StaffAI_TUnits(SleepStaff_AIC)
+		SleepStaff_AIC:
+		#include "VanillaStaves/StatusStaff_AIC.lyn.event"
+		POIN $3C818|1
+		
+		ORG $3FF00
+		StaffAI_TAreas(FortifyStaff_AIC)
+		ALIGN 4
+		FortifyStaff_AIC:
+		#include "VanillaStaves/FortifyStaff_AIC.lyn.event"
+		//POIN FillRange|1		
+	POP
+#endif
