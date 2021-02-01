@@ -1,0 +1,19 @@
+#ifdef PROMOTE_LEVELUP
+
+
+ALIGN 4
+PromoteOnLevelUp:
+#include "PromoteOnLevelUp.lyn.event"
+
+ALIGN 4
+		PromotionEvent:
+		CAM1 0xFFFF
+		//CUMO 0xFFFF
+		//STAL 0x01
+		//CURE
+		ASMC 0x080CCA15 //NewPromotion
+		ASMC 0x80790a5 //MU_EndAll //deselect unit
+		NoFade
+		ENDA
+
+#endif // PROMOTE_LEVELUP

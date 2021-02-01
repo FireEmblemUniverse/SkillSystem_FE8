@@ -10,9 +10,19 @@ POIN LungeUpdate
 #ifdef ESCAPE_ARRIVE
 	POIN FinalEscapeThing
 #endif // ESCAPE_ARRIVE
+
+
+#ifdef PROMOTE_LEVELUP
+POIN PromoteOnLevelUp
+#endif // PROMOTE_LEVELUP
+
 #ifdef GAIDEN_MAGIC
 	POIN GaidenZeroOutSpellVariables
 #endif // GAIDEN_MAGIC
+
+
+
+
 WORD 0
 
 PROTECT $1879A $187B4
