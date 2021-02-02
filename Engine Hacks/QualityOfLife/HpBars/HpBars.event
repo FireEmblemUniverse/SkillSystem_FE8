@@ -1,8 +1,7 @@
 #ifdef HP_BARS
 
-
 // HP Bars, Effectiveness warning icons and talk indicators.
-// hack by circleseverywhere, with additions by Tequila
+// hack by circleseverywhere, with additions by Tequila, lynified by hypergammaspaces
 
 #ifdef _FE8_
 
@@ -10,7 +9,9 @@
 
   PUSH
     ORG $276b4
-      jumpToHack(HPBars)
+      jumpToHack(HPBarsOnMapHack)
+	  
+	//Need to add SupportCheck as well as existing TalkCheck
 
     ORG $15690 // Change width of loaded image
       // BYTE $20
@@ -43,14 +44,23 @@
     POIN HPFrames+88
 
   ALIGN 4
-  HPBars:
-    #incbin "asm/WarningAndHpBars.dmp"
-    POIN HPFramePointers
+  HPBarsOnMapHack:
+    #include "asm/WarningAndHpBars.lyn.event"
 
   ALIGN 4
   HPBarGraphic:
-    //#incext Png2Dmp "bin/WarningHpSheet.png" --lz77
-    #incbin "bin/WarningHpSheet.dmp"
+    #incbin "bin/WarningHpSheet.dmp" 
+	
+  ALIGN 4
+  WS_FrameData: //should be the OAM data
+	WORD 0x000f0001 //8x8 sprite
+	WORD 0x087601ff //the tile is 0x76
+  Killer_FrameData:
+	WORD 0x000f0001
+	WORD 0x087701ff //tile #0x77
+  Talk_FrameData:
+	WORD 0x400f0001 //16x8 sprite
+	WORD 0x087001ee //tile #0x70
 
   }
 
