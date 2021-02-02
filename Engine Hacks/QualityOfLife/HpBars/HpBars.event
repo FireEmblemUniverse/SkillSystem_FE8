@@ -1,8 +1,7 @@
-#ifndef HP_BARS
-#define HP_BARS
+#ifdef HP_BARS
 
 // HP Bars, Effectiveness warning icons and talk indicators.
-// hack by circleseverywhere, with additions by Tequila
+// hack by circleseverywhere, with additions by Tequila, lynified by hypergammaspaces
 
 #ifdef _FE8_
 
