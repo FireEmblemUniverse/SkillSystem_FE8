@@ -7,7 +7,7 @@
 	ORG FreeSpace
 #endif
 
-#include "Extensions\Hack Installation.txt"
+#include "Extensions/Hack Installation.txt"
 #include "_ItemStatMacros.event"
 
 /*The item effect revamp changes to effect id

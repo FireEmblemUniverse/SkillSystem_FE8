@@ -15,6 +15,14 @@ EventPointerTable(0x7, PointerList)
 VeinEffect(0, FreezeAllEnemies)
 #endif // DRAGON_VEINS
 
+setText(0x160, NewChName)
+
+ALIGN 4
+NewChName:
+String("Boss Rush")
+BYTE 0
+
+ALIGN 4
 PointerList:
 POIN TurnBasedEvents
 POIN CharacterBasedEvents
