@@ -7,6 +7,10 @@
 #define SHOW_SKILL_WARNING
 
 
+// If commented, the test map will not be installed.
+#define USE_TEST_MAP
+
+
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
 // ===================================
