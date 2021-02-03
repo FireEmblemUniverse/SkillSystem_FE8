@@ -38,7 +38,7 @@ if /I not [%1]==[quick] (
   echo Processing tables
 
   cd "%base_dir%Tables"
-  echo: | ("%c2ea%" "%source_rom%")
+  echo: | ("%c2ea%" "%source_rom%" -installer "%base_dir%Tables/TableInstaller.event")
 
   echo:
   echo Processing text
