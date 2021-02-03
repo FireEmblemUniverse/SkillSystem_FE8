@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="20" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <properties>
+  <property name="Main" value=""/>
+ </properties>
+ <tileset firstgid="1" name="01003803" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="01000203.png" width="512" height="512"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="35">
+  <properties>
+   <property name="Anims1" value="0"/>
+   <property name="Anims2" value="0"/>
+   <property name="ChapterID" value="0"/>
+   <property name="Main" value=""/>
+   <property name="MapChangesID" value="6"/>
+   <property name="MapID" value="4"/>
+   <property name="ObjectType" value="1"/>
+   <property name="PaletteID" value="2"/>
+   <property name="TileConfig" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJx1lttrVUcUxvecTbzTc2I13vJkkaRWzPEGNZo3a42WVnOgYO3jUVPxUj2IPmhBoTR4iZrQP6A0UbSVVqO+ivQh7UMpapJaHwoVRJ9aaGMSFaHfx/qGvc5RH37MzJ6Zb9bMWrNmn84lSTfYnyZJBRRBf5Ikt/HtIsoO8CG+fQQ2gzLaeZQH0d8IDoE2cAHfJ2setc6BFmkWpLkHXAJ70d4HPpfedpUcQ90j4GNwOTGtIdTfRDmKsgdlb2pzuNZujOlG/Qw463TKsiXWt+asnIUx/6JeQnkX5QqUA6ntqd/ZMgh6wM/gXbAaHAJDATaiXJWzNm3i/KvggGytyLbpGDsjmN450BaMe6g3olwbTPdPMCxoWz3mz0xt76OycXlqdjyVXRNg3GmSx2jPdVrD8lU8C2pTj/vuwPcvNGZ+yMZTcwLtf1DeRdlao9ctrfcw/wq4o/3XjvOsAYfBW/QDmMM11dcESmCp8xltbkD9E6fR6GykxtdgE759h/J78F+wOUVpbpTer/S58wPP5w+OkR/mJeanX1D+Lf+/j7JLmpyzE1TAj+zHty1gPXgDvAOWgN/k4ymo7wBLQ3ZXLupulGRT3GfZtalDmzh/MrgGmrUW9fNpNucH6VWcf0nB+XqmYpo2NcueqFFQbOXTbFyLsyWOKyrufAztkk5eucLHKmMhxn8xzXJBRZR0R1hfpvZypxF9X+/ivkX3/YDGbNFdu5pm926F7nRvWn1O0e6CYnVI+WPA3fm4r2gD9zDL5S7217v1C8ptFY2J51dMq/2Z15mUNK5Fa8Y9dmh8UXpR/wM3v5hW+7eob73S8v1+31fUzzg+UWPTffjvTvLyGW1KbG2vs87Nq0vtHpwF7W4+88ULaJ6qie2vdKepezqx/m9czP+F+rfgjGK5S7mF9/tIMDufK9bOa1yX1m7Svh7kMjuO56x9WfeVmp1gTJqtwfLcKtRHg93JJgffpYegP2c5nmvGNm2n7kkw4jTJ0cTGlzXmgtY9hW8LpRmwh1vyO3MKz2ES6n05y0decx76R8Ci1HJKPK9Hib1FMY/1iYLixvu4wemtxviBYG9Gr3wfxzI3THN5qk8x1gzeBosVC3wH4lvxO+gJxoB8xP1/mVpuWAROhuoctwF97WBjarmW79jNJHtvoh4Zc/uLdrYrf8dvndD5jOuBZ06r1r4e2cc5wzrXn2DTVJ3HBuVwvvWPZe/sYP5oCOaLiRobrys2bwR7LwbVx/m7lcNXKmeXZdPsUP0e0sa2UG0n4TtFn4y5vfpzoH2ce89pPQGfhpfP0fMiZBp9zi+MHa41DhYE0/KxOP81uowZnuc2adP/9cpHPBvGafwPGXnFnWmV7oSzPZ7zdWnWKX+OyzetSWbfyGt0XwXnz4HOsZzlxf8Bx7NeUg==
+  </data>
+ </layer>
+ <layer id="2" name="VillageClose" width="20" height="35">
+  <properties>
+   <property name="Height" value="1"/>
+   <property name="ID" value="0"/>
+   <property name="Width" value="1"/>
+   <property name="X" value="18"/>
+   <property name="Y" value="27"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7CD8S1tDDlsCZYAAHTY+R7Q6ABGDACP
+  </data>
+ </layer>
+</map>
