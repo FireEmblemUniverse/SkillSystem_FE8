@@ -7,11 +7,11 @@
     #include "repointedTextTable.event"
 
     //Text first for Text ID definitions
-    #include "Text/Install Text Data.event"
+    #include "Text/InstallTextData.event"
     MESSAGE Used text space ends at currentOffset
 
     //CSV tables
-    #include "Tables/Table Installer.event"
+    #include "Tables/TableInstaller.event"
     MESSAGE Used table space ends at currentOffset
 
     //Engine Hacks
@@ -24,7 +24,7 @@
     #include "Events/WorldMapEvents.event"
 
     //Maps
-    #include "Maps/Master Map Installer.event"
+    #include "Maps/MasterMapInstaller.event"
     #endif // USE_TEST_MAP
 	
     MESSAGE Used free space ends at currentOffset
