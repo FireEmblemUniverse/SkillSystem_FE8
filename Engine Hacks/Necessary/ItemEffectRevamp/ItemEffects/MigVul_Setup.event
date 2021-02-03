@@ -7,7 +7,7 @@
 	ORG FreeSpace
 #endif
 
-#include "Extensions\Hack Installation.txt"
+#include "Extensions/Hack Installation.txt"
 
 ALIGN 4
 #ifdef _FE8_
@@ -31,7 +31,7 @@ ALIGN 4
 	ALIGN 4
 	
 /*
-	#include "..\_ItemStatMacros.event"
+	#include "../_ItemStatMacros.event"
 	#incbin "MigvulEffect.dmp"
 	POIN 0x2FF76 | 1 			//return address
 	POIN 0x2F380 | 1 			//restore hp routine

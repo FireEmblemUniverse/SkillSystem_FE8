@@ -12,10 +12,10 @@
 	#define ItemEffectRevamp
 #endif
 
-#include "Extensions\Hack Installation.txt"
+#include "Extensions/Hack Installation.txt"
 #include "IE_RoutineDefinitions.event"
 
-//#include "..\_ItemArrayMacros.txt"
+//#include "../_ItemArrayMacros.txt"
 
 #ifdef _FE8_
 	ALIGN 4
