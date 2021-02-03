@@ -9,7 +9,7 @@
 	#define ItemEffectRevamp
 #endif
 
-#include "Extensions\Hack Installation.txt"
+#include "Extensions/Hack Installation.txt"
 
 #ifdef _FE8_
 	#ifndef IDListCheck

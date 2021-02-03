@@ -12,8 +12,8 @@
 	#define ItemEffectRevamp
 #endif
 
-#include "Extensions\Hack Installation.txt"
-//#include "..\_ItemArrayMacros.txt"
+#include "Extensions/Hack Installation.txt"
+//#include "../_ItemArrayMacros.txt"
 
 #ifdef _FE8_
 	ALIGN 4
