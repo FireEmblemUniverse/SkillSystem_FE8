@@ -1,0 +1,203 @@
+
+##Event that happens after another event happens.
+AFEV, 1, 12, -game:FE8:FE7:FE7J:FE6 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Event ID to follow, 8, 2
+
+##Turn based events that happen at a specific part of one or several turns.
+TURN, 2, 96, -priority:main -game:FE6:FE8
+	ID, 16, 16, 
+	Event Pointer, 32, 32, -pointer 
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+	TurnMoment, 84, 4
+
+##Turn based event that only happens on hard mode.
+TURN_HM, 3, 96, -game:FE6 -priority:main
+	ID, 16, 16, 
+	Event Pointer, 32, 32, -pointer 
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+	TurnMoment, 84, 4
+
+TURN, 2, 128, -priority:main -game:FE7:FE7J
+	ID, 16, 16, 
+	Event Pointer, 32, 32, -pointer 
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+	TurnMoment, 84, 4
+	Extra, 96, 32
+
+TURN, 2, 128, -priority:main -game:FE7:FE7J
+	ID, 16, 16, 
+	Event Pointer, 32, 32, -pointer 
+	Turns, 64, 16, -coordinates:2 -preferredBase:10
+	TurnMoment, 84, 4
+	Extra1, 96, 8
+	Extra2, 104, 8
+	Extra3, 112, 8
+	Extra4, 120, 8
+
+##Event that happens when two characters land next to each
+##other and talk convo is selected.
+CHAR, 4, 12, -game:FE6 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Characters, 8, 2, -coordinates:2
+
+CHAR, 3, 16, -game:FE7:FE7J:FE8 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Characters, 8, 2, -coordinates:2
+	Extra, 12, 4
+
+CHAR, 3, 16, -game:FE7:FE7J:FE8 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Characters, 8, 2, -coordinates:2
+	Extra1, 12, 1
+	Extra2, 13, 1
+	Extra3, 14, 1
+	Extra4, 15, 1
+
+CHAR, 3, 16, -game:FE7:FE7J:FE8 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Character 1, 8, 1
+	Character 2, 9, 1
+	Extra, 12, 4
+
+CHAR, 3, 16, -game:FE7:FE7J:FE8 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Character 2, 8, 1
+	Character 2, 9, 1
+	Extra1, 12, 1
+	Extra2, 13, 1
+	Extra3, 14, 1
+	Extra4, 15, 1
+
+##Like normal CHAR, except the ASM routine must return true for
+##the Talk option to appear.
+CHARASM, 4, 16, -game:FE7:FE7J:FE8 -indexMode:8 -priority:main
+	Event ID, 2, 2
+	Event pointer, 4, 4, -pointer:none
+	Characters, 8, 2, -coordinates:2
+	ASM pointer, 12, 4, -pointer:ASM
+
+CHARASM, 4, 16, -game:FE7:FE7J:FE8 -indexMode:8 -priority:main
+	Event ID, 2, 2
+	Event pointer, 4, 4, -pointer:none
+	Character 1, 8, 1
+	Character 2, 9, 1
+	ASM pointer, 12, 4, -pointer:ASM
+
+##Location based events that happen when a unit is placed to
+##specified position and player selects the correct command from the menu.
+##Leaving Event pointer out and having ID as 3 causes the event to automatically
+##call the ending scene of the chapter.
+LOCA, 5, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	1, 4, 4, -fixed
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+LOCA, 5, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+CHESRANDOM, 5, 12, -priority:main -game:FE8 -indexMode:8
+	ID, 2, 2
+	Item List Pointer, 4, 4
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	20, 10, 2, -fixed
+
+##The location based event used for visiting villages.
+##A nearby map change happens automatically after this event.
+VILL, 6, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+##Location based event that gives items or money and causes a map change.
+CHES, 7, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	Chest data, 4, 4
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+##Location based event triggered by unit being placed near and choosing
+##the right command. Causes automatic map change if no Event pointer is 
+##specified. 
+DOOR, 8, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	1, 4, 4, -fixed
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+DOOR, 8, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+##Location based event that takes the player to a shop to buy items.
+SHOP, 10, 12, -priority:main -game:FE8:FE7:FE7J:FE6 -indexMode:8
+	ID, 2, 2
+	Shop List Pointer, 4, 4, -pointer:shopList
+	Position, 8, 2, -coordinates:2 -preferredBase:10
+	Command, 10, 2
+
+##Event that happens when a unit lands on specific tiles.
+AREA, 11, 12, -game:FE8:FE7:FE7J:FE6 -priority:main -indexMode:8
+	ID, 2, 2
+	Event Pointer, 4, 4, -pointer
+	Corner 1, 8, 2, -coordinates:2 -preferredBase:10
+	Corner 2, 10, 2, -coordinates:2 -preferredBase:10
+
+ASME, 13, 12, -game:FE6 -indexMode:8 -priority:main
+	Event ID, 2, 2
+	Pointer to event, 4, 4, -pointer:none
+	ASM pointer, 8, 4, -pointer:ASM
+
+##Event that only happens if the ASM routine returns true.
+ASME, 14, 12, -game:FE7:FE7J:FE8 -priority:main -indexMode:8
+	Event ID, 2, 2
+	Pointer to event, 4, 4, -pointer
+	ASM Pointer, 8, 4, -pointer
+
+EVENT_UNKNOWN_15, 15, 16, -priority:main -game:FE7:FE7J:FE8 -indexMode:8
+	ID, 2, 2 
+	Event Pointer, 4, 4, -pointer:coordList
+	Event Pointer2, 8, 4, -pointer
+	id2, 12, 4
+	
+EVENT_UNKNOWN_16, 16, 16, -priority:main -game:FE7:FE7J:FE8 -indexMode:8
+	ID, 2, 2 
+	Event Pointer, 4, 4, -pointer:coordList
+	Event Pointer2, 8, 4, -pointer
+	id2, 12, 4
+
+## End of main code list.
+END_MAIN, 0, 4, -priority:main -game:FE6:FE8:FE7:FE7J -end -indexMode:8
+
+AREA, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+AFEV, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+CHAR, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+CHARASM, 0, 4, -priority:main -game:FE7:FE7J:FE8 -end -indexMode:8 -noDisassembly
+
+LOCA, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+VILL, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+SHOP, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+CHES, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+DOOR, 0, 4, -priority:main -game:FE8:FE7:FE7J:FE6 -end -indexMode:8 -noDisassembly
+
+TURN, 0, 4, -priority:main -game:FE6:FE7:FE7J:FE8 -end -indexMode:8 -noDisassembly

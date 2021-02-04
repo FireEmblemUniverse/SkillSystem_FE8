@@ -1,0 +1,65 @@
+
+STAL, 0x02, 4, -game:FE7 -repeatable -indexMode:8
+	Time to stall, 2, 2, -preferredBase:10
+
+#Chapters: 2, 10, 20...
+##Stalling used in CG cutscenes
+CGSTAL, 0x04, 4, -game:FE7 -indexMode:8
+##Amount of time to stall
+	Stall time, 2, 2, -preferredBase:10
+
+##Moves chapter out of the blackness in the beginning.
+##Whether the blackness is there in the first place
+##is controlled by Chapter Data Editor.
+OOBB, 0xC, 4, -game:FE7 -indexMode:8
+
+##Makes the B button locked (not able to be used to skip convos?)
+LCKB, 0x87, 4, -game:FE7 -indexMode:8
+
+##Makes the start button locked
+LCKS, 0x89, 4, -game:FE7 -indexMode:8
+
+##Unlocks the B and start button.
+ULCK, 0x8A, 4, -game:FE7 -indexMode:8
+
+##Makes player unable to use start to skip the event.
+NEVENTS, 0x8C, 4, -game:FE7 -indexMode:8
+
+##Makes player unable to skip convo with B button.
+NCONVOS, 0x8D, 4, -game:FE7 -indexMode:8
+
+FADI, 0x8E, 4, -game:FE7 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FADU, 0x8F, 4, -game:FE7 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+##Fades into white.
+FAWI, 0x90, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+##Fades out of white.
+FAWU, 0x91, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+##Hides map and units.
+HIDEMAP, 0x92, 4, -game:FE7 -indexMode:8
+
+##Shows map and units after HIDEMAP.
+SHOWMAP, 0x93, 4, -game:FE7 -indexMode:8
+
+##Fades out for large cutscene pictures.
+FADUCG, 0xD5, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10
+
+##Fades in for large cutscene pictures.
+FADICG, 0xD6, 4, -game:FE7 -indexMode:8
+##Amount of frames to use for fading.
+##Larger value means slower fading.
+	Fade time, 2, 2, -preferredBase:10

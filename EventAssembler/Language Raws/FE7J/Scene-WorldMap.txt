@@ -1,0 +1,45 @@
+ASMWORLDMAP,0x97, 8, -game:FE7J -indexMode:8
+	Pointer, 4, 4, -pointer:ASM
+LOADWM,0xad, 16, -game:FE7J -indexMode:8
+	Map to load, 4, 2
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+	Way to load, 12, 2
+SHOWPORTRAIT,0xb2, 20, -game:FE7J -indexMode:8
+	ID, 4, 1
+	Portrait ID, 8, 1
+	Position, 12, 1, -preferredBase:10
+	Loading way, 13, 1
+	Delay, 16, 1, -preferredBase:10
+REMOVEPORTRAIT,0xb3, 16, -game:FE7J -indexMode:8
+	ID, 4, 1
+	Removing way, 9, 1
+	Delay, 12, 1, -preferredBase:10
+TEXTWM,0xb4, 8, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+TEXTBOXTOBOTTOM,0xb5, 4, -game:FE7J -indexMode:8
+TEXTBOXTOTOP,0xb6, 4, -game:FE7J -indexMode:8
+PUTSPRITE,0xb8, 20, -game:FE7J -indexMode:8
+	ID, 4, 2
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+	Class, 12, 1
+	Sprite properties, 13, 1
+	In-class ID, 14, 1
+	Unknown, 15, 1
+	Unknown2, 16, 4
+REMSPRITE,0xb9, 12, -game:FE7J -indexMode:8
+	ID, 4, 2
+	Value, 8, 4
+HIGHLIGHT,0xba, 16, -game:FE7J -indexMode:8
+	Area to light up, 8, 1
+REMOVETEXTBOX,0xbd, 8, -game:FE7J -indexMode:8
+PLACEDOT,0xbe, 20, -game:FE7J -indexMode:8
+	ID, 4, 1
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+	Palette, 12, 1
+FADETOWM,0xc9, 16, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+	Map to load, 8, 2
+	Unknown, 10, 2
+	Unknown2, 12, 4
+RIPPLE,0xca, 8, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10

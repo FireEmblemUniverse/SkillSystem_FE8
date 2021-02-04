@@ -1,0 +1,69 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Gets the current game mode (0: Prologue, 1: Eirika, 2: Ephraim)
+CHECK_MODE, 0x1920, 4, -game:FE8 -indexMode:8
+
+## Gets the Chapter Number associated with the map/location you're on.
+CHECK_CHAPTERID, 0x1921, 4, -game:FE8 -indexMode:8
+
+## Boolean check for Difficult Mode.
+CHECK_ISHARD, 0x1922, 4, -game:FE8 -indexMode:8
+
+## Stores current turn number to slot 0xC.
+CHECK_TURNNUMBER, 0x1923, 4, -game:FE8 -indexMode:8
+
+## Counts up number of enemies on the map
+CHECK_COUNT_RED, 0x1924, 4, -game:FE8 -indexMode:8
+
+## Counts up number of NPCs on the map
+CHECK_COUNT_GREEN, 0x1925, 4, -game:FE8 -indexMode:8
+
+## Gets 1 if you are in a skirmish or dungeon. Used for the Retreat command.
+CHECK_ISSKIRMISH, 0x1926, 4, -game:FE8 -indexMode:8
+
+## Gets 1 if tutorials are enabled (i.e. Easy Mode)
+CHECK_ISTUTORIAL, 0x1927, 4, -game:FE8 -indexMode:8
+
+## Gets the amount of money the player has
+CHECK_MONEY, 0x1928, 4, -game:FE8 -indexMode:8
+
+## Loads the Event ID associated with the current event to slot 0xC.
+CHECK_ACTIVE_FLAG, 0x1929, 4, -game:FE8 -indexMode:8
+
+## Checks your Mode byte; likely checks to see if you are in the postgame.
+CHECK_ISPOSTGAME, 0x192A, 4, -game:FE8 -indexMode:8
+
+DISABLEOPTIONS, 0x3D20, 4, -game:FE8 -indexMode:8
+	OptionBits, 2, 2, -preferredBase:2
+
+DISABLEWEAPONS, 0x3D21, 4, -game:FE8 -indexMode:8
+	WeaponBits, 2, 2, -preferredBase:2
+
+PREPSCREEN, 0x3E20, 4, -game:FE8 -indexMode:8
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+CHECK_CHAPTER_NUMBER, 0x1921, 4, -game:FE8 -indexMode:8
+
+CHECK_HARD, 0x1922, 4, -game:FE8 -indexMode:8
+
+CHECK_TURNS, 0x1923, 4, -game:FE8 -indexMode:8
+
+CHECK_ENEMIES, 0x1924, 4, -game:FE8 -indexMode:8
+
+CHECK_OTHERS, 0x1925, 4, -game:FE8 -indexMode:8
+
+CHECK_SKIRMISH, 0x1926, 4, -game:FE8 -indexMode:8
+
+CHECK_TUTORIAL, 0x1927, 4, -game:FE8 -indexMode:8
+
+CHECK_EVENTID, 0x1929, 4, -game:FE8 -indexMode:8
+
+CHECK_POSTGAME, 0x192A, 4, -game:FE8 -indexMode:8
+
+PREP, 0x3E20, 4, -game:FE8 -indexMode:8

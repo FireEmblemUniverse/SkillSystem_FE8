@@ -78,7 +78,9 @@
 
 
 #ifdef _FE7_
+#ifndef _FE7J_
 #define ConditionalGoto(constant, comparator, label) "ConditionalGoto_Memory(constant, comparator, label, 0x0203A972)"
+#endif
 #define SeekTile(xLoc,yLoc) "BYTE 0x0C xLoc 0xFF yLoc; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
 //Takes action. Does not advance the AI state until you're AT the tile.
 //Note that the AI also won't attack anything while using this to seek.
@@ -95,6 +97,7 @@
 
 #define Label(label) "BYTE 0x1B 0x00 0xFF label; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
 
+#ifndef _FE7J_
 //Routine AIs
 #define HeadTowardsTile(defined_location) "Routine_AI(0x0803AA41, defined_location)"
 //location is a pointer to a location
@@ -112,13 +115,38 @@
 #define GetEnemyInHalfMoveRange "AI_Conditional(0x0803A0C1, 0x081D3B4C)" //Sets memory to 0 or 1 based on if the condition is met
 #define GetEnemyInCoefMovement(coefPointer) "AI_Conditional(0x0803A0C1, coefPointer)"
 #define GetLeaderHasEnemyInRange "AI_Conditional(0x0803A5BD, 0x0)"
-#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x0803A549, rectanglePointer) /* Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb. */"
+#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x0803A549, rectanglePointer) /* Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb.*/"
 //These all do not take the action.
 
 #define AI1PointerTable(entry, aipointer) "PUSH; ORG 0xB98994+(4*entry); POIN aipointer; POP"
 #define AI2PointerTable(entry, aipointer) "PUSH; ORG 0xB98908+(4*entry); POIN aipointer; POP"
 #endif
+#endif
 
+#ifdef _FE7J_
+//Routine AIs
+#define HeadTowardsTile(defined_location) "Routine_AI(0x803AEF5, defined_location)"
+//location is a pointer to a location
+//takes the action.
+//0x081D3B58 => ?
+//#define TryToHealAlliesUnderHalfHP "Routine_AI(0x803ACDD, 0x081D3B58)"
+#define TryToHealAlliesUnderHPPercent(percentPointer) "Routine_AI(0x803ACDD, pecentPointer)"
+//0x081D3B5C => ?
+//#define TryToOpenLocks "Rotuine_AI(0x803AD29, 0x081D3B5C)"
+#define MoveIfLeaderHasEnemyInRange "Routine_AI(0x803AC7D, 0x0)"
+#define InitiateTalk(charsPointer) "Routine_AI(0x803AA41, charsPointer)"
+//charsPointer is a pointer a list of two characters (initiator then talked to) (bytepacked). Requres MoveTowardsIfOutOfRange to work.
+
+//Condition Checks
+#define GetAI2State "AI_Conditional(0x89A80308, 0x00000000)" //Gets the PC for AI2 into memory (the 0x46 byte of the unit struct)
+//0x081D3B48 => ?
+//#define GetEnemyInDoubleMoveRange "AI_Conditional(0x803A575, 0x081D3B48)"
+//0x081D3B4C => ?
+//#define GetEnemyInHalfMoveRange "AI_Conditional(0x803A575, 0x081D3B4C)" //Sets memory to 0 or 1 based on if the condition is met
+#define GetEnemyInCoefMovement(coefPointer) "AI_Conditional(0x803A575, coefPointer)"
+#define GetLeaderHasEnemyInRange "AI_Conditional(0x803AA71, 0x0)"
+#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x803A9FD, rectanglePointer) /* Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb.*/"
+#endif
 
 
 

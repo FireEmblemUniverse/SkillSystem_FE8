@@ -1,0 +1,210 @@
+
+//AI helpers
+
+//No new AI for FE6 yet.
+#ifdef _FE6_
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define AttackInRange		[0x00,0x03,0x09,0x00]
+#endif
+
+#ifdef OLD_AI
+#ifdef _FE7_
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define PursueWithoutHeed 	[0x00,0x02,0x02,0x00]
+#define GuardTile 			[0x03,0x03,0x09,0x20]
+#define Guard 				[0x00,0x03,0x00,0x20]
+#define AttackInRange 		[0x00,0x03,0x09,0x00]
+#define DestroyVillages 	[0x00,0x04,0x01,0x00]
+#define HealUnits 			[0x0E,0x04,0x00,0x00]
+#define StealFromUnits 		[0x10,0x05,0x09,0x00]
+#define StealFromChests 	[0x06,0x05,0x09,0x00]
+#define TalkToLord 			[0x06,0x0B,0x0A,0x00]
+#define AttackWall 			[0x00,0x1B,0x01,0x00]
+#define SeizeThrone 		[0x00,0x1E,0x00,0x00]
+#endif
+
+#ifdef _FE8_
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define SummonMonsters 		[0x14,0x03,0x09,0x00]
+#endif
+
+#else
+
+#ifdef _FE7_
+
+//AI1 helpers
+#define AttackInRange				0x00
+#define AttackInRange80Chance		0x01
+#define AttackInRange50Chance		0x02
+#define AttackInPlace				0x03
+#define AttackInPlace80Chance		0x04
+#define AttackInPlace50Chance		0x05
+#define NoAI1						0x06
+#define DoNotAttackNino				0x07 //default Nino
+#define DoNotAttack_firstTarget		0x07
+#ifndef _FE7J_
+#define defineFirstTarget(characterID) "PUSH; ORG 0xB979E8; WORD characterID; POP"
+#endif
+#define DoNotAttack_secondTarget	0x08
+#ifndef _FE7J_
+#define defineSecondTarget(characterID) "PUSH; ORG 0xB97A58; WORD characterID; POP"
+#endif
+#define DoNotAttack_thirdTarget		0x09
+#ifndef _FE7J_
+#define defineThirdTarget(characterID) "PUSH; ORG 0xB970F6; WORD characterID; POP"
+#endif
+#define OnlyAttackOneCharacter 		0x0A
+#ifndef _FE7J_
+#define defineOnlyAttackOneCharacterTarget(characterID) "PUSH; ORG 0xB97AC0; WORD characterID; POP"
+#endif
+//0xB is an empty AI slot
+#define AttackIfClose				0x0C
+#define MoveWithLeader				0x0D
+#define HealInjuredAllies			0x0E
+#define HealAllies					0x0E //Alias
+#define AlternateStavesAndAttackWithoutMoving 0xF
+#define ThiefActionThenEscape		0x10
+#define OpenDoors					0x11
+#define DoNotAttack_four			0x12
+#define DoNotAttack_five			0x13
+
+//AI2 helpers
+#define Pursue						0x00
+#define DoNotMove					0x03
+#define DontMove					0x03
+#define NoAI2						0x03
+#define BrigandMove					0x04
+#define EscapingThiefMove			0x05
+#define RandomMovement				0x07
+#define PursueOnceApproached		0x06
+#define IfNoActionCHAI0_0			0x0A
+#define TalkToLord					0x0B
+#define Escape						0x0C
+#define MoveToMerlinus				0x0D
+#define MoveToEliwood				0x0E
+#define MoveToHector				0x0F
+#define MoveToNils					0x10
+#define MoveToZephiel				0x11
+//#define DelayedThiefMove			0x12 //Not sure on what this does yet.
+#define MoveTo03_13					0x13
+#define MoveTo18_13					0x14
+#define MoveTo10_24					0x15
+#define MoveTo08_02					0x16
+#define MoveTo06_02					0x17
+#define MoveTo06_09					0x19
+#define MoveTo0605					0x1A
+#define AttackWalls					0x1B
+#define PursueThroughWalls			0x1C
+#define MoveTo15_17					0x1D
+#define MoveTo05_02					0x1E
+#define DelayedBrigandMove			0x1F
+#define DelayedPursue				0x20
+//0x21 and 0x22 are repeated move to Eliwood/Hector
+
+//AI3 helpers
+#define NormalRecovery				0x00
+#define DefaultRecovery				0x00
+#define LowRecovery					0x01
+#define AlmostNoRecovery			0x02
+#define CautiousRecovery			0x03
+#define NoRecovery					0x04
+
+#define Normal						0x00
+#define Reckless					0x01
+#define WithoutHeed					0x02
+#define Cautious					0x03
+
+
+//AI4 helpers
+#define DefaultAI4					0x00
+#define GuardTile					0x20
+
+//I won't include these by default.
+//#define VennoDrop 0x40
+//#define DoNotMoveAndVennoDrop 0x60
+
+#define NoAI 				[0x00,0x00,0x00,0x00]	//Included only for backwards compatability
+#define PursueWithoutHeedAI			[0x00,0x00,0x04,0x00]	//Depriciated because 4-tuple AI is depriciated.
+#define DefaultAI					[0x00,0x00]
+#define DoNothing					[0x06,0x03]
+#define GuardTileAI					[0x03,0x03]
+#define AttackInRangeAI				[0x00,0x03]
+#define ChaseOnceApproachedAI		[0x00,0x06]
+#define HealUnits					[0x0E,0x03]
+#define BrigandAI					[0x06,0x04]
+#define StealingThiefAI				[0x10,0x05]
+#define LootingThiefAI				[0x06,0x05]
+//#define DelayedThiefAI				[0x06,0x12]
+#define DelayedBrigandAI			[0x06,0x1F]
+#define AttackWallAI				[0x00,0x1B]
+#define AttackOnlyWallsAI			[0x06,0x1B]
+#define MoveWithLeaderAI			[0x0D,0x03]
+#endif
+
+#ifdef _FE8_
+//AI1 helpers
+#define AttackInRange				0x00
+#define AttackInRange80Chance		0x01
+#define AttackInRange50Chance		0x02
+#define AttackInPlace				0x03
+#define AttackInPlace80Chance		0x04
+#define AttackInPlace50Chance		0x05
+#define NoAI1						0x06
+#define DoNotAttackNatasha			0x07
+
+#define AttackIfClose				0x0C
+#define MoveWithLeader				0x0D
+#define HealInjuredAllies			0x0E
+#define HealAllies					0x0E //Alias
+#define AlternateStavesAndAttackWithoutMoving 0xF
+#define ThiefActionThenEscape		0x10
+#define OpenDoors					0x11
+#define DemonKingAction				0x14
+
+//AI2 helpers
+#define Pursue						0x00
+#define NoAI2						0x03
+#define DoNotMove					0x03
+#define DontMove					0x03
+#define BrigandMove					0x04
+
+#define RossMovementAI				0x0A
+
+//AI3 helpers
+#define NormalRecovery				0x00
+#define DefaultRecovery				0x00
+#define LowRecovery					0x01
+#define AlmostNoRecovery			0x02
+#define CautiousRecovery			0x03
+#define NoRecovery					0x04
+
+#define Normal						0x00
+#define Reckless					0x01
+#define WithoutHeed					0x02
+#define Cautious					0x03
+
+
+//AI4 helpers
+#define DefaultAI4					0x00
+#define GuardTile					0x20
+
+
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define PursueWithoutHeedAI			[0x00,0x00,0x04,0x00]	//Depriciated because 4-tuple AI is depriciated.
+#define DefaultAI					[0x00,0x00]
+#define DoNothing					[0x06,0x03]
+#define GuardTileAI					[0x03,0x03]
+#define AttackInRangeAI				[0x00,0x03]
+#define ChaseOnceApproachedAI		[0x00,0x06]
+#define HealUnits					[0x0E,0x03]
+#define BrigandAI					[0x06,0x04]
+#define StealingThiefAI				[0x10,0x05]
+#define LootingThiefAI				[0x06,0x05]
+//#define DelayedBrigandAI			[0x06,0x1F] //Commented out because not confirmed in FE8 yet.
+//#define AttackWallAI				[0x00,0x1B]
+#define MoveWithLeaderAI			[0x0D,0x03]
+#define NeverMoveAI         [0x03,0x03,0x04,0x20]
+#define DemonKingAI					[0x14,0x03]
+#endif
+
+#endif

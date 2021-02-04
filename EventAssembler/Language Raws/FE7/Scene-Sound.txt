@@ -1,0 +1,26 @@
+
+MUSC, 0x78, 4, -game:FE7 -indexMode:8
+	Music ID, 2, 2
+
+MUSS, 0x79, 4, -game:FE7 -indexMode:8
+	Music ID, 2, 2
+
+#Chapters: 1, 2, 3...
+MURE, 0x7A, 4, -game:FE7 -indexMode:8
+	Fade out speed, 2, 2
+	
+##Plays music simultaneously with the first; second parameter is fade in speed for both, larger is slower.
+MUSM, 0x7B, 8, -game:FE7 -indexMode:8
+	Music ID, 2, 2
+	Fade in speed, 4, 1
+	0, 5, 3, -fixed
+
+MUEN, 0x7C, 4, -game:FE7 -indexMode:8
+	Fade out time, 2, 2, -preferredBase:10
+
+MUSI, 0x7D, 4, -game:FE7 -indexMode:8
+
+MUNO, 0x7E, 4, -game:FE7 -indexMode:8
+
+SOUN, 0x7F, 4, -game:FE7 -indexMode:8
+	Music ID, 2, 2

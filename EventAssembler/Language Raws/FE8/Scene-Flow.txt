@@ -1,0 +1,128 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Does nothing
+NOP, 0x0020, 4, -game:FE8 -indexMode:8
+
+## Ends scene and return to calling scene (if any).
+END, 0x0120, 4, -game:FE8 -end -indexMode:8
+
+## [END Alias] Ends scene and return to calling scene (if any).
+RET, 0x0120, 4, -game:FE8 -end -indexMode:8
+
+## Ends scene without returning to calling scene.
+TERMINATE, 0x0121, 4, -game:FE8 -end -indexMode:8
+
+## Marks location of label.
+LABEL, 0x0820, 4, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+
+## Jump to label.
+GOTO, 0x0920, 4, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+
+## Call event scene.
+CALL, 0x0A40, 8, -game:FE8 -indexMode:8
+	SceneOffset, 4, 4, -pointer:none
+
+## Call event scene in slot 2.
+CALL_S2, 0x0A40, 8, -game:FE8 -indexMode:8
+	0xFFFFFFFF, 4, 4, -fixed
+
+## Jump to label if slot values are equal
+BEQ, 0x0C40, 8, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+	SlotLeft, 4, 2
+	SlotRight, 6, 2
+
+## Jump to label if slot values are not equal
+BNE, 0x0C41, 8, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+	SlotLeft, 4, 2
+	SlotRight, 6, 2
+
+## Jump to label if left is greater or equal to right
+BGE, 0x0C42, 8, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+	SlotLeft, 4, 2
+	SlotRight, 6, 2
+
+## Jump to label if left is greater than right
+BGT, 0x0C43, 8, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+	SlotLeft, 4, 2
+	SlotRight, 6, 2
+
+## Jump to label if left is lesser or equal to right
+BLE, 0x0C44, 8, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+	SlotLeft, 4, 2
+	SlotRight, 6, 2
+
+## Jump to label if left is lesser than right
+BLT, 0x0C45, 8, -game:FE8 -indexMode:8
+	LabelId, 2, 2
+	SlotLeft, 4, 2
+	SlotRight, 6, 2
+
+## Calls native/ASM function (arg r0 = event engine proc)
+ASMC, 0x0D40, 8, -game:FE8 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+
+## Return to title screen
+GOTO_TITLE, 0x2A20, 4, -game:FE8 -indexMode:8
+
+## Go to world map and call given chapter's WM intro scene
+GOTO_CHAPTER, 0x2A21, 4, -game:FE8 -indexMode:8
+	ChapterId, 2, 2
+
+## Go to given chapter.
+## WARNING: may require preparation in order to not consider the chapter as skirmish.
+GOTO_CHAPTER_NOWM, 0x2A22, 4, -game:FE8 -indexMode:8
+	ChapterId, 2, 2
+
+## Go to given chapter without prompting for a save.
+## WARNING: may require preparation in order to not consider the chapter as skirmish.
+GOTO_CHAPTER_NOSAVE, 0x2A23, 4, -game:FE8 -indexMode:8
+	ChapterId, 2, 2
+
+## Go to save screen, and then plays epilogue events corresponding to current mode
+GOTO_EPILOGUE, 0x2A24, 4, -game:FE8 -indexMode:8
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+## Ends scene and return to calling scene (if any).
+ENDA, 0x0120, 4, -game:FE8 -end -indexMode:8
+
+## Ends scene without returning to calling scene.
+ENDB, 0x0121, 4, -game:FE8 -end -indexMode:8
+
+## Strictly the same as ASMC
+ASMC2, 0x0D41, 8, -game:FE8 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+
+## Return to title screen
+MNTS, 0x2A20, 4, -game:FE8 -indexMode:8
+  Value1, 2, 2
+
+## Go to world map and call given chapter's WM intro scene
+MNCH, 0x2A21, 4, -game:FE8 -indexMode:8
+	Chapter ID, 2, 2
+
+## Go to given chapter.
+## WARNING: may require preparation in order to not consider the chapter as skirmish.
+MNC2, 0x2A22, 4, -game:FE8 -indexMode:8
+	Chapter ID, 2, 2
+
+## Go to given chapter without prompting for a save.
+## WARNING: may require preparation in order to not consider the chapter as skirmish.
+MNC3, 0x2A23, 4, -game:FE8 -indexMode:8
+	Chapter ID, 2, 2
+
+## Go to save screen, and then plays epilogue events corresponding to current mode
+MNC4, 0x2A24, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2

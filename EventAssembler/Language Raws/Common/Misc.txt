@@ -1,0 +1,58 @@
+
+## Move manual which controls movement of a unit.
+MOMA, 0, 1, -game:FE6:FE7:FE7J -indexMode:8 -terminatingList:04 -end -priority:moveManual -offsetMod:1
+	Action, 0, 1
+
+## List of items used by a shop.
+SHLI, 0, 0, -game:FE6:FE7:FE7J:FE8 -indexMode:8 -terminatingList:00 -end -priority:shopList -offsetMod:1
+	Item, 0, 2
+
+##Controls individual attack in battle. For parameters
+##that are in a form of a question, 1 means yet and 0 means no.
+##Parameters with ? are unsure.
+BLDT, 0, 32, -game:FE6:FE7:FE7J -priority:battleData -indexMode:1
+##If the attack is critical.
+	Critical, 0, 1, -preferredBase:2
+##If the attack misses.
+	Miss, 1, 1, -preferredBase:2
+	Dunno, 2, 1, -preferredBase:2
+	Start next attack immediately, 3, 1, -preferredBase:2
+##If the next attack is by the same character.
+	Next Attack by same, 4, 1, -preferredBase:2
+	Dunno, 5, 1, -preferredBase:2
+##If the attack poisons the opponent.
+	Poison, 6, 1, -preferredBase:2
+##If the attack damages the unit attacking.
+	Devil Axe reversal, 7, 1, -preferredBase:2
+##If the attack resotores HP.
+	HP Restoring?, 8, 1, -preferredBase:2
+##If the attack halves HP.
+	HP Halving?, 9, 1, -preferredBase:2
+	Dunno, 10, 1, -preferredBase:2
+##If the attack is silencer. (FE7:FE7J only)
+	Silencer, 11, 1, -preferredBase:2
+	Dunno, 12, 1, -preferredBase:2
+	Dunno, 13, 1, -preferredBase:2
+	Dunno, 14, 1, -preferredBase:2
+	Dunno, 15, 1, -preferredBase:2
+##If the attack is the last in battle.
+	Last attack, 16, 1, -preferredBase:2
+	Dunno, 17, 1, -preferredBase:2
+	Dunno, 18, 1, -preferredBase:2
+##If the defender is the one attacking instead of attacker.
+	Defender Attacks, 19, 1, -preferredBase:2
+	Dunno, 20, 1, -preferredBase:2
+	Dunno, 21, 1, -preferredBase:2
+	Dunno, 22, 1, -preferredBase:2
+##End of battle.
+	End of battle, 23, 1, -preferredBase:2
+##Damage the attack does.
+	Damage, 24, 8, -preferredBase:10
+
+BLDT, 0, 4, -game:FE6:FE7:FE7J -indexMode:8 -priority:battleData -end
+	0x800000, 0, 4, -fixed
+
+COORDS, 0, 4, -priority:coordList -game:FE7:FE7J -indexMode:8
+	Position, 0, 2, -coordinates:2 -preferredBase:10
+
+ENDCOORDS, 0xFF, 4, -priority:coordList -game:FE7:FE7J -indexMode:8 -end

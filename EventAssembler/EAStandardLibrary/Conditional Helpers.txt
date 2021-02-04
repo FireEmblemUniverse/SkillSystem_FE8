@@ -1,0 +1,23 @@
+
+//Conditional helpers
+#ifdef _FE7_
+#ifndef _FE7J_
+#define IfPlayerPhase(conditionID) "IFAT conditionID 0x7A2F1"
+#define PlayerPhase 0x7A2F1
+#define IfUnitLucky(conditionID) "IFAT conditionID 0x7D2B1"
+#define UnitLucky 0x7D2B1
+//#define IF(conditionID) "IFAF conditionID 0x7D3F9"
+#endif
+#endif
+
+#ifdef _FE7J_
+#define IfPlayerPhase(conditionID) "IFAT conditionID 0x7AD65"
+#define PlayerPhase 0x7AD65
+#define IfUnitLucky(conditionID) "IFAT conditionID 0x7DEC1"
+#define UnitLucky 0x7DEC1
+#endif
+
+#ifdef _FE8_
+#define IfYesSelectedGoto(label) "SVAL 0x7 0x1; BEQ label 0xC 0x7"
+#define IfNoSelectedGoto(label) "SVAL 0x7 0x1; BNE label 0xC 0x7 //If not yes; could be B pressed"
+#endif

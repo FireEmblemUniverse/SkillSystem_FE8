@@ -1,0 +1,381 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Sets amount of units to load for next load
+LOADCONFIG_COUNT, 0x2B20, 4, -game:FE8 -indexMode:8
+	UnitCount, 2, 2
+
+## Sets proportion of units marked as being loaded at random position to actually be loaded at random position for next load.
+LOADCONFIG_RANDOM_POS_PROPORTION, 0x2B21, 4, -game:FE8 -indexMode:8
+	Chance, 2, 2
+
+## Disable defined movements ("REDAs") for next load.
+LOADCONFIG_DISABLE_DEFINED_MOVEMENT, 0x2B22, 4, -game:FE8 -indexMode:8
+
+## Load a group of units
+LOAD, 0x2C40, 8, -game:FE8 -indexMode:8 
+	Restriction, 2, 2
+	Units, 4, 4, -pointer:unit
+
+## Load a group of units (address in s2)
+LOAD_S2, 0x2C40, 8, -game:FE8 -indexMode:8 
+	Restriction, 2, 2
+	0xFFFFFFFF, 4, 4, -fixed
+
+## Load a group of units. Loaded units will dissapear when the event engine ends.
+LOAD_CUTSCENE, 0x2C41, 8, -game:FE8 -indexMode:8
+	Units, 4, 4, -pointer:unit
+
+## Load a group of units (address in s2). Loaded units will dissapear when the event engine ends.
+LOAD_CUTSCENE_S2, 0x2C41, 8, -game:FE8 -indexMode:8
+	0xFFFFFFFF, 4, 4, -fixed
+
+## Load a group of units. Loaded units get replaced with the player's currently deployed unit list.
+LOAD_DEPLOYED, 0x2C42, 8, -game:FE8 -indexMode:8
+	Restriction, 2, 2
+	Units, 4, 4, -pointer:unit
+
+## Load a group of units (address in s2). Loaded units get replaced with the player's currently deployed unit list.
+LOAD_DEPLOYED_S2, 0x2C42, 8, -game:FE8 -indexMode:8
+	Restriction, 2, 2
+	0xFFFFFFFF, 4, 4, -fixed
+
+## Load active skirmish enemy group.
+LOAD_SKIRMISH, 0x2C43, 8, -game:FE8 -indexMode:8
+	Restriction, 2, 2
+
+UNIT_COLORS, 0x2D20, 32, -game:FE8
+	NewBlue,  16, 4, -preferredBase:10
+	NewRed,   20, 4, -preferredBase:10
+	NewGreen, 24, 4, -preferredBase:10
+
+#Stores the char id of unit at given position into Slot 0xC (not really useful since most codes allowing for char ids allow for use slot B for position too, via 0xFFFE)
+CHECK_AT, 0x2E20, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+#Stores the character ID of the "active" charcter (for villages, AREA events,etc) to memory slot 0xC.
+CHECK_ACTIVE, 0x2E21, 4, -game:FE8 -indexMode:8
+
+MOVE, 0x2F40, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+	CharId, 4, 2
+	Position, 6, 2, -coordinate:2 -preferredBase:10
+
+MOVE_ONTO, 0x2F41, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+	CharId, 4, 2
+	TargetCharId, 6, 2
+
+MOVE_DEFINED, 0x2F43, 8, -game:FE8 -indexMode:8
+	CharId, 4, 2
+
+MOVE_CLOSEST, 0x2F48, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+	CharId, 4, 2
+	Position, 6, 2, -coordinate:2 -preferredBase:10
+
+MOVE_NEXTTO, 0x2F49, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+	CharId, 4, 2
+	TargetCharId, 6, 2
+
+MOVE_1STEP_CLOSEST, 0x2F4A, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+	CharId, 4, 2
+	Direction, 6, 2, -preferredBase:10
+
+MOVE_DEFINED_CLOSEST, 0x2F4B, 8, -game:FE8 -indexMode:8
+	CharId, 4, 2
+
+ENUN, 0x3020, 4, -game:FE8 -indexMode:8
+
+## Shows movement & attack range for unit
+SHOW_MOVERANGE, 0x3120, 4, -game:FE8 -indexMode:8
+	Char, 2, 2
+
+## Hides currently displayed movement & attack range
+HIDE_MOVERANGE, 0x3121, 4, -game:FE8 -indexMode:8
+
+## Loads one Ally unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_ALLY, 0x3240, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+## Loads one NPC unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_NPC, 0x3241, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+## Loads one Enemy unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_ENEMY, 0x3242, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+## This unit will dissapear at the end of events (?)
+SPAWN_CUTSCENE_ALLY, 0x324F, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+CHECK_EXISTS, 0x3320, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_BUGGED, 0x3321, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_ISALIVE, 0x3322, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_ISDEPLOYED, 0x3323, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_ISACTIVE, 0x3324, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_FACTION, 0x3325, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_COORDS, 0x3326, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_CLASS, 0x3327, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+CHECK_LUCK, 0x3328, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+HIDEUNIT, 0x3420, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+SHOWUNIT, 0x3421, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+FACTION_BLUE, 0x3422, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+FACTION_GREEN, 0x3423, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+FACTION_RED, 0x3424, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+SET_HP, 0x3425, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+SET_HASMOVED, 0x3426, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+SET_HASMOVED_AI, 0x3427, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+SET_DEPLOYED, 0x3428, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+REMOVEALL_BLUE, 0x342A, 4, -game:FE8 -indexMode:8
+
+REMOVEALL_GREEN, 0x342B, 4, -game:FE8 -indexMode:8
+
+REMOVEALL_RED, 0x342C, 4, -game:FE8 -indexMode:8
+
+KILL, 0x342D, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+AWAIT_KILL, 0x342E, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+REMOVEUNIT, 0x342F, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+#Changes Unit Class (weapon ranks, stats, etc stay the same)
+RECLASS, 0x3540, 8, -game:FE8 -indexMode:8
+	Char,  2, 2
+	Class, 4, 2
+
+#Changes Unit Class (class becomes default class for given char id)
+RECLASS_FROMCHAR, 0x3540, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	0x00, 4, 2, -fixed
+	From, 6, 2
+
+#Units switch classes... somewhat (the first unit will gain the *default* class of the second unit, while the second unit *will* get the class the first unit was in beforehand)
+SWITCH_CLASSES, 0x3541, 8, -game:FE8 -indexMode:8
+	Char1, 2, 2
+	Char2, 4, 2
+
+## Checks if given unit is in Area defined by Rect (X, Y, X+W, Y+H) and stores 0 (false) or 1 (true) to slot 0xC accordingly
+CHECK_ISINAREA, 0x3640, 8, -game:FE8 -indexMode:8
+	CharId,     2, 2
+	TopLeftPos, 4, 2, -coordinates:2 -preferredBase:10
+	Size,       6, 2, -coordinates:2 -preferredBase:10
+
+GIVEITEM, 0x3720, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+GIVEMONEY, 0x3721, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+TAKEMONEY, 0x3722, 4, -game:FE8 -indexMode:8
+
+## Sets unit as currently active unit (will make it accessible through char 0xFFFF, and more)
+SET_ACTIVE, 0x3820, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+SET_AI, 0x3920, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+SET_AI, 0x3921, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+SET_AI_SB, 0x3921, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+FIGHT, 0x3F40, 8, -game:FE8 -indexMode:8
+	AttackCharId, 2, 2
+	DefendCharId, 4, 2
+	WeaponId,     6, 1
+	IsBallista,   7, 1
+
+FIGHT_MAP, 0x3F41, 8, -game:FE8 -indexMode:8
+	AttackCharId, 2, 2
+	DefendCharId, 4, 2
+	WeaponId,     6, 1
+	IsBallista,   7, 1
+
+FIGHT_SCRIPT, 0x3F42, 8, -game:FE8 -indexMode:8
+
+PROMOTE, 0x4040, 8, -game:FE8 -indexMode:8
+	Character, 2, 2
+	Class, 4, 2
+	Item, 6, 2
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+LOAD1, 0x2C40, 8, -game:FE8 -indexMode:8 
+	Dunno, 2, 2
+	Pointer, 4, 4, -pointer:unit
+
+LOAD2, 0x2C41, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Pointer, 4, 4, -pointer:unit
+
+LOAD3, 0x2C42, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Pointer, 4, 4, -pointer:unit
+
+LOAD4, 0x2C43, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	0x0, 4, 4,  -fixed
+
+MOVEONTO, 0x2F41, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2
+	Mover, 4, 2
+	Target Character, 6, 2
+
+MOVE_1STEP, 0x2F42, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2
+	Character, 4, 2
+	Direction, 6, 2
+
+MOVEFORCED, 0x2F43, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Character, 4, 2
+	Value3, 6, 2
+
+SHOW_ATTACK_RANGE, 0x3120, 4, -game:FE8 -indexMode:8
+	Char, 2, 2
+
+HIDE_ATTACK_RANGE, 0x3121, 4, -game:FE8 -indexMode:8
+
+CHECK_STATUS, 0x3321, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHECK_ALIVE, 0x3322, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHECK_DEPLOYED, 0x3323, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHECK_ACTIVEID, 0x3324, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHECK_ALLEGIANCE, 0x3325, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+REMU, 0x3420, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+REVEAL, 0x3421, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CUSA, 0x3422, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CUSN, 0x3423, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CUSE, 0x3424, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+SET_ENDTURN, 0x3426, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+SET_STATE, 0x3428, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CLEA, 0x342A, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CLEN, 0x342B, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CLEE, 0x342C, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+SET_SOMETHING, 0x342D, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+DISA_IF, 0x342E, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+DISA, 0x342F, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHECK_INAREA, 0x3640, 8, -game:FE8 -indexMode:8
+	Char,       2, 2
+	TopLeftPos, 4, 2, -coordinates:2 -preferredBase:10
+	Size,       6, 2, -coordinates:2 -preferredBase:10
+
+GIVEITEMTO, 0x3720, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+GIVEITEMTOMAIN, 0x3721, 4, -game:FE8 -indexMode:8
+	Village or cutscene, 2, 2
+
+GIVETOSLOT3, 0x3722, 4, -game:FE8 -indexMode:8
+
+CHAI, 0x3920, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+CHAI, 0x3921, 4, -game:FE8 -indexMode:8
+	Coordinates, 2, 2, -coordinate:2 -preferredBase:10
+
+CHAI2, 0x3921, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+FIG1, 0x3F40, 8, -game:FE8 -indexMode:8
+	Attacker, 2, 2
+	Defender, 4, 2
+	Unknown, 6, 2
+
+FIG2, 0x3F41, 8, -game:FE8 -indexMode:8
+	Attacker, 2, 2
+	Defender, 4, 2
+	Unknown, 6, 2
+
+PROM, 0x4040, 8, -game:FE8 -indexMode:8
+	Character, 2, 2
+	Class, 4, 2
+	Item, 6, 2

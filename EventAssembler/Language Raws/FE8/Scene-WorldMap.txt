@@ -1,0 +1,283 @@
+
+# NOTE: World map raws haven't been updated in a while
+# So there are no recommended vs. compat raws here, all are kind of in the "compat" category
+
+WM_SETCAM, 0x8340, 8, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	X-coordinate, 4, 2
+	Y-coordinate, 6, 2
+
+#Parameters always zero
+WM_CENTERCAMONLORD, 0x8540, 8, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	0, 4, 2, -fixed
+	0, 6, 2, -fixed
+
+#Coordinates of 0xFFFF set coords to next destination
+WM_MOVECAM, 0x8680, 16, -game:FE8 -indexMode:8
+	val1, 2, 2
+	X, 4, 2
+	Y, 6, 2
+	val2, 8, 2
+	Speed, 10, 2
+	Delay, 12, 2
+	val3, 14, 2
+
+#For coords, 0xFFFF uses current location
+WM_MOVECAMTO, 0x8780, 16, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	StartX, 4, 2
+	StartY, 6, 2
+	LocationID, 8, 2
+	Speed, 10, 2
+	Delay, 12, 2
+	0, 14, 2, -fixed
+
+#Delays event execution until camera has finished moving
+WM_WAITFORCAM, 0x8920, 4, -game:FE8 -indexMode:8
+
+#Draws a path on the world map of the given ID.
+#Path data starts at $8206674, and path graphical data is defined by data starting at $8A97FC4.
+WM_DRAWPATH, 0x9040, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	PathID, 4, 2
+	Value2, 6, 2
+
+#Silently draws a path on the world map.
+WM_DRAWPATH2, 0x9140, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	PathID, 4, 2
+	Value2, 6, 2
+
+#Removes a path of the given ID.
+WM_REMOVEPATH, 0x9240, 8, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	PathID, 4, 2
+	0, 6, 2, -fixed
+
+#Silently/instantly loads a world map location.
+#Used to load Border Mulan and the route not taken's locations
+WM_LOADLOCATION2, 0x9340, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+	Value2, 6, 2
+
+#Silently removes a world map location. Used to remove the old versions of Renvall and Jehanna Hall.
+WM_REMOVELOCATION, 0x9440, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+	Value2, 6, 2
+
+#Used to load the Tower of Valni, Lagdou Ruins and Melkaen coast.
+WM_LOADLOCATION3, 0x9540, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+	Value2, 6, 2
+
+#Also draws a path; used by Chapter 17 to draw the Mulan-Renais path.
+DRAWPATH3, 0x9640, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	PathID, 4, 2
+#Always zero
+	Value3, 6, 2
+
+#Creates next destination, with graphical effects; sets it as your next destination; also sets proper settings (skirmish number, etc...)
+WM_CREATENEXTDESTINATION, 0x9720, 4, -game:FE8 -indexMode:8
+
+#Delays event execution until dots/highlights have finished
+WM_WAITFORFX, 0x9920, 4, -game:FE8 -indexMode:8
+
+#Sets location of next story chapter
+WM_SETDESTINATION, 0x9A40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	LocationID, 4, 2
+#Always zero
+	Value3, 6, 2
+
+PUTSPRITE, 0x9E60, 12, -game:FE8 -indexMode:8
+	ID, 4, 2
+	Class, 6, 1
+##Colour of the sprite.
+	Allegiance, 8, 1
+##Unknown.
+	Dunno, 10, 2
+
+REMSPRITE, 0xA040, 8, -game:FE8 -indexMode:8
+	ID, 4, 2
+
+WM_MAKELORDVISIBLE, 0xA140, 8, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	Value1, 4, 2
+	0, 6, 2, -fixed
+
+#All parameters 0; useful because lord is always top layer for sprites
+WM_MAKELORDDISAPPEAR, 0xA240, 8, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+	0, 4, 2, -fixed
+	0, 6, 2, -fixed
+
+WM_FADEINSPRITE, 0xA340, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2 
+
+WM_FADEOUTSPRITE, 0xA440, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2  
+
+WM_WAITFORSPRITELOAD, 0xA520, 4, -game:FE8 -indexMode:8
+
+WM_PUTSPRITE, 0xA760, 12, -game:FE8 -indexMode:8
+	ID, 2, 2
+	ClassID, 4, 2
+	Allegiance, 6, 2
+	X, 8, 2
+	Y, 10, 2
+
+WM_PUTMOVINGSPRITE, 0xA8C0, 24, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	ClassID, 4, 2
+	Acceleration, 6, 2
+	Start X, 8, 2
+	Start Y, 10, 2
+	End X, 12, 2
+	End Y, 14, 2
+	Time, 16, 2
+	Flags, 18, 2
+#Flags are: 0x1 = don't disappear until overwritten, 0x3 = Fade to black at ending position
+	Delay, 20, 2
+#Always 0
+	Value11, 22, 2
+		
+WM_MOVESPRITETO, 0xA980, 16, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+	Value4, 8, 2
+	Location ID, 10, 2
+	Time, 12, 2
+	Delay, 14, 2
+
+#Don't execute more events until sprites have finished moving	
+WM_WAITFORSPRITES, 0xAC40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+#Always 0xFFFF
+	Value2, 4, 2
+#Always 0xFFFF
+	Value3, 6, 2
+
+_SATURATE_COLORS, 0xAD40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always 0
+	Value3, 6, 2
+
+WM_SHOWTEXTWINDOW, 0xAF40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Speed, 4, 2
+	Speed/Fade, 6, 2
+
+WM_WAITFORTEXT, 0xB120, 4, -game:FE8 -indexMode:8
+
+#All parameters 0
+WM_FADEOUT, 0xB240, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+#Applies the filigree/decoration to the text window.
+WM_TEXTDECORATE, 0xB320, 4, -game:FE8 -indexMode:8
+
+WM_SHOWDRAWNMAP, 0xB460, 12, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	X, 4, 2
+	Y, 6, 2
+#0x10 gives all of Magvel map
+	Map, 8, 2
+#Always 0
+	Value5, 10, 2
+
+#Delays event execution until highlights are cleared
+WM_WAITFORFXCLEAR1, 0xB520, 4, -game:FE8 -indexMode:8
+
+#Used for the zoomed-out Magvel image
+WM_MOVECAM2, 0xB680, 16, -game:FE8 -indexMode:8
+#Always zero
+	Value1, 2, 2
+	Starting X, 4, 2
+	Starting Y, 6, 2
+	Ending X, 8, 2
+	Ending Y, 10, 2
+	Speed, 12, 2
+	Delay, 14, 2
+
+#Delays event execution until highlights are cleared
+WM_WAITFORFXCLEAR2, 0xB720, 4, -game:FE8 -indexMode:8
+
+#Highlights a country/region on the world map
+WM_HIGHLIGHT, 0xB840, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Region, 4, 2
+	Value2, 6, 2
+
+#Use these two commands in succession to remove a highlight.
+WM_HIGHLIGHTCLEAR1, 0xB940, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Region, 4, 2
+	Value2, 6, 2
+
+WM_HIGHLIGHTCLEAR2, 0xBA40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Region, 4, 2
+	Value2, 6, 2
+
+PLACEDOT, 0xBC60, 12, -game:FE8 -indexMode:8
+	Palette, 6, 1
+##Position of the dot.
+	Location ID, 8, 1
+##Special effect on the dot.
+	Special effect, 10, 1
+
+#These two commands together clear all dots, highlights, etc from the map
+WM_FXCLEAR1, 0xBD40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+WM_FXCLEAR2, 0xBE40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+##Skips world map event
+SKIPWN, 0xC120, 4, -game:FE8 -indexMode:8
+
+WM_SPAWNLORD, 0xC360, 12, -game:FE8 -indexMode:8
+#Always 0
+	Value1, 2, 2
+	Value2, 4, 2
+	Character ID, 6, 2
+	World map location, 8, 2
+#Always 0
+	Value5, 10, 2
+
+WM_SHOWPORTRAIT, 0xC460, 12, -game:FE8 -indexMode:8
+	Portrait ID, 6, 1
+	Position, 8, 2, -preferredBase:10
+
+WM_CLEARPORTRAIT, 0xC540, 8, -game:FE8 -indexMode:8
+#Always 0
+	Value1, 2, 2
+#0x000 = no movement, no fade
+#0x100 = left
+#0x200,all else = right
+	Direction, 4, 2
+	Delay, 6, 2
+
+WM_TEXT, 0xC640, 8, -game:FE8 -indexMode:8
+	Text ID, 4, 2
+
+WM_TEXTSTART, 0xC720, 4, -game:FE8 -indexMode:8
+
+WM_REMOVETEXT, 0xC920, 4, -game:FE8 -indexMode:8

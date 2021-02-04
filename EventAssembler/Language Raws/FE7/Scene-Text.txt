@@ -1,0 +1,167 @@
+
+BACG, 0x5, 4, -game:FE7 -indexMode:8
+	Background, 2, 2
+
+REMA, 0x9, 4, -game:FE7 -indexMode:8
+
+#Rename at some point.
+TEX1, 0xD, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+TEXT, 0xD, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+##Shows text.
+TEX2, 0xE, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+MORETEXT, 0x11, 8, -game:FE7 -indexMode:8
+	Text ID, 4, 2
+
+##Shows text depending on the mode.
+TEXTIFEM, 0xF, 12, -game:FE7 -indexMode:8
+##Text to show if Eliwood mode.
+	Text ID 1, 4, 2
+##Text to show if Hector mode.
+	Text ID 2, 8, 2
+
+#Chapters: 13x, 16
+##Continues showing text depending on the mode
+##without resetting portaits and text bubbles.
+MORETEXTIFEM, 0x12, 12, -game:FE7 -indexMode:8
+##Text to show if Eliwood mode.
+	Text ID 1, 4, 2
+##Text to show if Hector mode.
+	Text ID 2, 8, 2
+
+##Scroll text.
+SCRO, 0x14, 4, -game:FE7 -indexMode:8
+
+##Shows text depending on whether tacticians
+##gender is male or female.
+TEXTIFTACTF, 0x18, 12, -game:FE7 -indexMode:8
+##Text to show if tactician is male.
+	Text ID 1, 4, 2
+##Text to show if tactician is female.
+	Text ID 2, 8, 2
+
+##Shows text depending on whether tacticians
+##gender is male or female without resetting
+##portaits and text bubbles.
+MORETEXTIFTACTF, 0x19, 12, -game:FE7 -indexMode:8
+##Text to show if tactician is male.
+	Text ID 1, 4, 2
+##Text to show if tactician is female.
+	Text ID 2, 8, 2
+
+##Shows text depending on whether event ID
+##is used or not.
+TEXTIFEVENTID, 0x1A, 16, -game:FE7 -indexMode:8
+##Event ID to check.
+	Event ID, 4, 1
+##Text to show if event ID is used.
+	Text ID 1, 8, 2
+##Text to show if event ID is unused.
+	Text ID 2, 12, 2
+
+##Shows text depending on whether event ID
+##is used or not without resetting
+##portaits and text bubbles.
+MORETEXTIFEVENTID, 0x1B, 16, -game:FE7 -indexMode:8
+##Event ID to check.
+	Event ID, 4, 4
+##Text to show if event ID is used.
+	Text ID 1, 8, 2
+##Text to show if event ID is unused.
+	Text ID 2, 12, 2
+
+##Shows text depending on the return value
+##of the ASM routine.
+TEXTIFASM, 0x1C, 16, -game:FE7 -indexMode:8
+##Offset of the ASM routine to call. Return value
+##determines which text to show. Thumb routines need
+##to be added one.
+	ASM offset, 4, 4, -pointer:ASM
+##Text to show if routine returns 0.
+	Text ID 1, 8, 2
+##Text to show if routine returns 1.
+	Text ID 2, 12, 2
+
+##Shows text depending on the return value
+##of the ASM routine without resetting
+##portaits and text bubbles.
+MORETEXTIFASM, 0x1D, 16, -game:FE7 -indexMode:8
+##Offset of the ASM routine to call. Return value
+##determines which text to show. Thumb routines need
+##to be added one.
+	ASM offset, 4, 4, -pointer:ASM
+##Text to show if routine returns 0.
+	Text ID 1, 8, 2
+##Text to show if routine returns 1.
+	Text ID 2, 12, 2
+
+##Removes brown text-boxes.
+RETB, 0xD8, 4, -game:FE7 -indexMode:8
+
+##Remove text bubbles only.
+#Chapters: Prologue, 1, 2...
+REBU, 0x1E, 4, -game:FE7 -indexMode:8
+
+##Shows text with specific bubble type and position.
+TEX6, 0xA7, 12, -game:FE7 -indexMode:8
+##Bubble type to use
+	Bubble type, 2, 2
+##Position of the text. [0,0] is the center of the screen.
+	Text position, 4, 4, -coordinates:2 -preferredBase:10
+##Text to show.
+	Text ID, 8, 2
+
+##Shows text.
+TEXTCG, 0xCF, 12, -game:FE7 -indexMode:8 -noDisassembly
+##Text to show.
+	Text ID, 4, 2
+	1, 8, 1, -fixed
+
+TEXTCG, 0xCF, 12, -game:FE7 -indexMode:8
+	Text ID, 4, 2
+##Unknown, usually 1.
+	CG Value, 8, 1
+
+#Only after other cutscene texts
+#Chapters: 2, 6, 16...
+MORETEXTCG, 0xD1, 12, -game:FE7 -indexMode:8
+	Text ID, 4, 4
+#Usually 1
+	CG Value, 8, 4
+
+##Shows large cut-scene picture.
+SHCG, 0xD3, 4, -game:FE7 -indexMode:8
+##Cutscene picture to show.
+	Cutscene, 2, 2
+
+##Shows text.
+TEX8, 0xD7, 12, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+##Position of the text.
+	Text position, 8, 4, -coordinates:2 -preferredBase:10
+
+#Chapters: 1, 7, 10, F1
+##Fade out of cutscene to background
+FROMCGTOBG, 0xD9, 12, -game:FE7 -indexMode:8
+	Background, 4, 4
+	Value2, 8, 4
+
+#Chapters: 1, 2, 6...
+##Fade in to cutscene from background
+FROMBGTOCG, 0xDA, 12, -game:FE7 -indexMode:8
+	Cutscene, 4, 4
+	Value2, 8, 4
+
+#Chapters: 19xx, 23x, 29, 31, 32, 32x
+##Fade out of cutscene to map
+FROMCGTOMAP, 0xDB, 8, -game:FE7 -indexMode:8
+	Map position, 4, 2, -coordinates:2  -preferredBase:10

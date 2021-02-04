@@ -1,0 +1,57 @@
+ENDA,0xa, 8, -game:FE7J -end -indexMode:8
+ENDB,0xb, 8, -game:FE7J -end -indexMode:8
+ASMC,0x3c, 8, -game:FE7J -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+LABEL,0x42, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO,0x43, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO_IFAT,0x46, 12, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM
+GOTO_IFAF,0x47, 12, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM
+GOTO_IFET,0x4a, 12, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	Event ID, 8, 2
+GOTO_IFEF,0x4b, 12, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	Event ID, 8, 2
+GOTO_IFCNA,0x4c, 12, -game:FE7J -indexMode:8
+	Unknown, 2, 2
+	Conditional ID, 4, 4
+	Character, 8, 2
+GOTO_IFNHM,0x4d, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO_IFNEM,0x4e, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO_IFNO,0x50, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO_IFYES,0x51, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO_IFNTUTORIAL,0x52, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+GOTO_IFCL,0x53, 16, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	Character, 8, 2
+	0, 12, 2, -fixed
+GOTO_IFCL,0x53, 16, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	Character, 8, 2
+	Dunno, 12, 2
+GOTO_IFTU,0x54, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+	Turn, 2, 2, -preferredBase:10
+GOTO_IFNUF,0x55, 12, -game:FE7J -indexMode:8
+	Unknown, 2, 2
+	Conditional ID, 4, 2
+	Character, 8, 2
+JUMP,0x56, 8, -game:FE7J -indexMode:8
+	Event pointer, 4, 4, -pointer:none
+MNCH,0x7f, 4, -game:FE7J -indexMode:8
+	Chapter ID, 2, 2
+THE_END,0x80, 4, -game:FE7J -indexMode:8
+LYN_END,0x81, 4, -game:FE7J -indexMode:8
+CALL,0xcc, 8, -game:FE7J -indexMode:8
+	Event pointer, 4, 4, -pointer:none

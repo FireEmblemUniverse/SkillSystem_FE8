@@ -1,0 +1,132 @@
+
+#ifdef _FE6_
+#define StartWorldMap "WORD $41; ASMWORLDMAP 0x93121; WORD $4D $0; STAL 42; WORD $42"
+#define EndWorldMap "STAL 60; WORD $39 $4 $4E; STAL 0; ASMC 0x9345D; WORD $0"
+
+#define RedArrow 0 
+#define BlueArrow 1
+
+#define RedFlag 0
+#define BlueFlag 1
+
+/*
+#define Style 0
+#define  1
+#define  2
+#define  3
+*/
+
+#define GrayYellow 0
+#define Purple 1
+
+#define WesternIslandsArea 0
+#define SacaeArea 1
+#define NabataArea 2
+#define LyciaArea 3
+#define BernArea 4
+#define IliaArea 5
+#define EtruriaArea 6
+#define NoArea 7
+
+#define KingdomOfEtruriaText 0
+#define KingdomOfBernText 1
+#define LyciaText 2
+#define IliaText 3
+#define MissurText 4
+#define FiberniaText 5
+#define NabataText 6
+#define KaftiText 7
+#define CaledoniaText 8
+#define DiaText 9
+#define SacaeText 10
+#define PheraeText 13
+#define BernText 14
+#define PhestosText 15
+#define EburacumText 16
+#define SieneText 17
+#define RemiText 18
+#define TarasText 19
+#define EdinaText 20
+#define EdessaText 21
+#define AlesiaText 22
+#define TerinaText 23
+#define OstiaText 24
+#define CalachText 25
+#define CarrhaeText 26
+#define ThriaText 27
+#define AraphenText 28
+#define JutesText 29
+#define RegiaText 30
+#define BulgarText 31
+#define AquleiaText 32
+#define ArmaghText 33
+#define LausText 34
+#define GlitchText 35
+
+#define WesternIslandsText 0
+
+#endif
+
+#ifdef _FE7_
+#ifndef _FE7J_
+#define WorldMapPointerTable(id,offset) "PUSH; ORG 0xC9CDA4+(4*id); POIN offset; POP"
+
+#define StartWorldMap(Map, X, Y, LoadWay) "_0x87; ASMWORLDMAP 0xB5631; LOADWM Map [X,Y] LoadWay; STAL 16; _0x89; STAL 136"
+#endif
+#define EndWorldMap "_0xCA; MUEN 4; _0xAD; _0xAE; STAL 60; WORD $0"
+
+#ifdef _FE7J_
+#define StartWorldMap(Map, X, Y, LoadWay) "_0x87; ASMWORLDMAP 0xB6451; LOADWM Map [X,Y] LoadWay; STAL 16; _0x89; STAL 136"
+#endif
+
+//World maps
+#define FullWorldMap 0x0
+#define LyciaBernSacaeMap 0x1
+#define NabataDesertMap 0x2
+
+//Map loading ways
+#define LoadDunno 0x2
+#define LoadTheatrical 0xC //Two bits set, break to what?
+#define LoadPlayMusic 0x10
+#define LoadNormal 0x20
+#define LoadSlow 0x40
+
+//Portrait loading and removing
+#define PortraitFacesLeft 0
+#define PortraitMoveLeft 1
+#define PortraitMoveRight 2
+#define PortraitFacesRight 4
+#define PortraitDunno 8
+
+//Sprite properties
+#define AllySprite 0x00
+#define FastSprite 0x10
+#define EnemySprite 0x20
+#define NPCSprite 0x40
+#define GraySprite 0x60
+#define CameraFollowSprite 0x80
+
+//Dot properties
+#define RedDot 0x0
+#define BlueDot 0x1
+#define HoleDot 0x2
+#define DarkBlueDullDot 0x3
+#define DarkBlueNoBorderDot 0x4
+
+//Areas
+#define LyciaArea 0x0
+#define IliaArea 0x1
+#define EtruiaArea 0x2
+#define WesternIslesArea 0x3
+#define BernArea 0x4
+#define SacaeArea 0x5
+#define NabataDesertArea 0x6
+#define DreadIsleArea 0x7
+#define AreaNearPheraeArea 0x8
+
+#endif
+
+#ifdef _FE8_
+#define WorldMapPointerTable(id,offset) "PUSH; ORG 0x8B39F0+(4*id); POIN offset; POP"
+#define WorldMapIntroPointerTable(id,offset) "PUSH; ORG 0x8B3ADC+(4*id); POIN offset; POP"
+#endif
