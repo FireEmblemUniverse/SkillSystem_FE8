@@ -8,7 +8,7 @@
 
 set "source_rom=%~dp0FE8_clean.gba"
 
-set "main_event=%~dp0ROM Buildfile.event"
+set "main_event=%~dp0ROMBuildfile.event"
 
 set "target_rom=%~dp0SkillsTest.gba"
 set "target_ups=%~dp0SkillsTest.ups"
@@ -58,7 +58,7 @@ if /I not [%1]==[quick] (
 echo:
 echo Assembling
 
-cd "%base_dir%Event Assembler"
+cd "%base_dir%EventAssembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%"
 
 if /I not [%1]==[quick] (
