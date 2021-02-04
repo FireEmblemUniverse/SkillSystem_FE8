@@ -21,13 +21,13 @@
 
 
 //Weapon Ranks
-#define NoRank 0x0
-#define ERank 0x1
-#define DRank 0x1F
-#define CRank 0x47
-#define BRank 0x79
-#define ARank 0xB5
-#define SRank 0xFB
+#define NoRank 0
+#define ERank 1
+#define DRank 31
+#define CRank 71
+#define BRank 121
+#define ARank 181
+#define SRank 251
 
 //Weapon Ability
 #define IsWeapon 0x00000001
@@ -46,11 +46,11 @@
 #define WeaponLock2 0x00002000
 #define NegateFlyingEffectiveness 0x00004000
 #define NegateCriticals 0x00008000
-#define CannotUse 0x0010000
-#define NegateDef 0x0020000
+#define CannotUse 0x00010000
+#define NegateDef 0x00020000
 #ifdef _FE8_
-  #define EirikaLock 0x0040000
-  #define EphraimLock 0x0080000
+  #define EirikaLock 0x00040000
+  #define EphraimLock 0x00080000
   #define WeaponLock3 0x00100000
   #define WeaponLock4 0x00200000
 #endif
