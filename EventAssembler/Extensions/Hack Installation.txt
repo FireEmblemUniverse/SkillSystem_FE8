@@ -25,6 +25,7 @@
 #endif
 
 #ifdef _FE7_
+#ifndef _FE7J_
 	#define callHack_r0(offset) "SHORT 0x4801; BL(0xBFC4C); SHORT 0xE001; POIN (offset|0x1)"
 	#define callHack_r1(offset) "SHORT 0x4901; BL(0xBFC50); SHORT 0xE001; POIN (offset|0x1)"
 	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xBFC54); SHORT 0xE001; POIN (offset|0x1)"
@@ -33,6 +34,18 @@
 	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xBFC60); SHORT 0xE001; POIN (offset|0x1)"
 	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xBFC64); SHORT 0xE001; POIN (offset|0x1)"
 	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xBFC68); SHORT 0xE001; POIN (offset|0x1)"
+#endif
+#endif
+
+#ifdef _FE7J_
+	#define callHack_r0(offset) "SHORT 0x4801; BL(0xC0790); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r1(offset) "SHORT 0x4901; BL(0xC0794); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xC0798); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xC079C); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r4(offset) "SHORT 0x4C01; BL(0xC07A0); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xC07A4); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xC07A8); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xC07AC); SHORT 0xE001; POIN (offset|0x1)"
 #endif
 
 #ifdef _FE6_

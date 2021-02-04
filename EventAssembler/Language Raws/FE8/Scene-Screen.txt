@@ -1,0 +1,94 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Stall for x frames
+STAL, 0x0E20, 4, -game:FE8 -indexMode:8
+	Amount, 2, 2, -preferredBase:10
+
+## Stall for x frames (skippable with B)
+STAL_SKIP, 0x0E21, 4, -game:FE8 -indexMode:8
+	Amount, 2, 2, -preferredBase:10
+
+## Stall for x frames (sped up if A is held or fast game speed)
+STAL_FAST, 0x0E22, 4, -game:FE8 -indexMode:8
+	Amount, 2, 2, -preferredBase:10
+
+## Stall for x frames (combines behavior of STALL_SKIP and STALL_FAST)
+STAL_SKIP_FAST, 0x0E23, 4, -game:FE8 -indexMode:8
+	Amount, 2, 2, -preferredBase:10
+
+## This Configures what the player is allowed to skip or not
+##  - param 0: everything is allowed
+##  - param 1: nothing is allowed
+##  - param 2: no text fast-forwarding
+##  - param 3: no scene-skipping
+##  - param 4: no scene-skipping, no text-skipping (text fast-forwarding still allowed)
+CONFIG_SKIP, 0x1020, 4, -game:FE8 -indexMode:8
+	Config, 2, 2, -preferredBase:10
+
+## Sets Key ignore mask 
+IGNORE_KEYS, 0x1120, 4, -game:FE8 -indexMode:8
+	KeyMask, 2, 2, -preferredBase:2
+
+FADEOUT, 0x1720, 4, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+
+FADEIN, 0x1721, 4, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+
+FADEOUT_WHITE, 0x1722, 4, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+
+FADEIN_WHITE, 0x1723, 4, -game:FE8 -indexMode:8
+	Speed, 2, 2, -preferredBase:10
+
+COLORFADE_INIT, 0x1860, 12, -game:FE8 -indexMode:8
+
+COLORFADE_TERM, 0x1861, 12, -game:FE8 -indexMode:8
+
+COLORFADE_FADE, 0x1862, 12, -game:FE8 -indexMode:8
+	Target, 2,  2, -preferredBase:10 -coordinates:2
+	Speed,  4,  2, -preferredBase:10
+	Red,    6,  2, -preferredBase:10
+	Green,  8,  2, -preferredBase:10
+	Blue,   10, 2, -preferredBase:10
+
+CLEAN, 0x2220, 4, -game:FE8 -indexMode:8
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+STAL2, 0x0E22, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+STAL3, 0x0E23, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+EVBIT_MODIFY, 0x1020, 4, -game:FE8 -indexMode:8
+	Operation to perform, 2, 2
+
+FADU, 0x1720, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FADI, 0x1721, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FAWU, 0x1722, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+FAWI, 0x1723, 4, -game:FE8 -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+
+STARTFADE, 0x1860, 12, -game:FE8 -indexMode:8
+
+ENDFADE, 0x1861, 12, -game:FE8 -indexMode:8
+
+FADECOLORS, 0x1862, 12, -game:FE8 -indexMode:8
+	Target, 2, 2
+	Speed, 4, 2
+	Red, 6, 2
+	Green, 8, 2
+	Blue, 10, 2

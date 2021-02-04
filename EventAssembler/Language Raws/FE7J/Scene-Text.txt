@@ -1,0 +1,68 @@
+BACG,0x5, 4, -game:FE7J -indexMode:8
+	Background, 2, 2
+REMA,0x9, 4, -game:FE7J -indexMode:8
+TEX1,0xd, 8, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+TEXT,0xd, 8, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+TEX2,0xe, 8, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+MORETEXT,0x11, 8, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+TEXTIFEM,0xf, 12, -game:FE7J -indexMode:8
+	Text ID 1, 4, 2
+	Text ID 2, 8, 2
+MORETEXTIFEM,0x12, 12, -game:FE7J -indexMode:8
+	Text ID 1, 4, 2
+	Text ID 2, 8, 2
+SCRO,0x14, 4, -game:FE7J -indexMode:8
+TEXTIFTACTF,0x17, 12, -game:FE7J -indexMode:8
+	Text ID 1, 4, 2
+	Text ID 2, 8, 2
+MORETEXTIFTACTF,0x18, 12, -game:FE7J -indexMode:8
+	Text ID 1, 4, 2
+	Text ID 2, 8, 2
+TEXTIFEVENTID,0x18, 16, -game:FE7J -indexMode:8
+	Event ID, 4, 1
+	Text ID 1, 8, 2
+	Text ID 2, 12, 2
+MORETEXTIFEVENTID,0x19, 16, -game:FE7J -indexMode:8
+	Event ID, 4, 4
+	Text ID 1, 8, 2
+	Text ID 2, 12, 2
+TEXTIFASM,0x1a, 16, -game:FE7J -indexMode:8
+	ASM offset, 4, 4, -pointer:ASM
+	Text ID 1, 8, 2
+	Text ID 2, 12, 2
+MORETEXTIFASM,0x1b, 16, -game:FE7J -indexMode:8
+	ASM offset, 4, 4, -pointer:ASM
+	Text ID 1, 8, 2
+	Text ID 2, 12, 2
+RETB,0xdb, 4, -game:FE7J -indexMode:8
+REBU,0x1c, 4, -game:FE7J -indexMode:8
+TEX6,0xa5, 12, -game:FE7J -indexMode:8
+	Bubble type, 2, 2
+	Text position, 4, 4, -coordinates:2 -preferredBase:10
+	Text ID, 8, 2
+TEXTCG,0xd2, 12, -game:FE7J -indexMode:8 -noDisassembly
+	Text ID, 4, 2
+	1, 8, 1, -fixed
+TEXTCG,0xd2, 12, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+	CG Value, 8, 1
+MORETEXTCG,0xd4, 12, -game:FE7J -indexMode:8
+	Text ID, 4, 4
+	CG Value, 8, 4
+SHCG,0xd6, 4, -game:FE7J -indexMode:8
+	Cutscene, 2, 2
+TEX8,0xda, 12, -game:FE7J -indexMode:8
+	Text ID, 4, 2
+	Text position, 8, 4, -coordinates:2 -preferredBase:10
+FROMCGTOBG,0xdd, 12, -game:FE7J -indexMode:8
+	Background, 4, 4
+	Value2, 8, 4
+FROMBGTOCG,0xde, 12, -game:FE7J -indexMode:8
+	Cutscene, 4, 4
+	Value2, 8, 4
+FROMCGTOMAP,0xdf, 8, -game:FE7J -indexMode:8
+	Map position, 4, 2, -coordinates:2  -preferredBase:10

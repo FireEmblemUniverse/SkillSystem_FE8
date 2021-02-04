@@ -1,0 +1,123 @@
+_0x1,0x1, 4, -game:FE7J -indexMode:8
+_0x8,0x8, 4, -game:FE7J -indexMode:8
+_0x15,0x15, 8, -game:FE7J -indexMode:8
+	Ptr, 4, 4, -pointer:unknown
+_0x16,0x16, 8, -game:FE7J -indexMode:8
+	Ptr, 4, 4, -pointer:unknown
+_0x17,0x17, 8, -game:FE7J -indexMode:8
+	Value, 2, 2
+	Ptr, 4, 4, -pointer:unknown
+_0x21,0x1f, 4, -game:FE7J -indexMode:8
+_MOVE0x2C,0x2a, 16, -game:FE7J -indexMode:8
+	Character, 4, 1
+	Pointer, 8, 4, -pointer:moveManual
+	Pointer2, 12, 4, -pointer:moveManual
+_0x30,0x2e, 12, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Position, 8, 4, -coordinates:2
+_0x33,0x31, 8, -game:FE7J -indexMode:8
+	Pointer, 4, 4, -pointer:unit
+_ASM0x3F,0x3d, 8, -game:FE7J -indexMode:8
+	ASM pointer, 4, 4, -pointer:ASM
+_ASM0x42,0x40, 8, -game:FE7J -indexMode:8
+	Ptr, 4, 4, -pointer:ASM
+_IF0x4A,0x48, 8, -game:FE7J -indexMode:8
+	Conditional ID, 4, 2
+_IF0x4B,0x49, 8, -game:FE7J -indexMode:8
+    Conditional ID, 4, 1
+_IFTT2,0x4f, 8, -game:FE7J -indexMode:8
+	Stuff, 2, 1
+	Conditional ID, 4, 1
+_ASM0x59,0x57, 8, -game:FE7J -indexMode:8
+	Value, 2, 2
+	ASM pointer, 4, 4, -pointer:ASM
+_ASM0x5A,0x58, 8, -game:FE7J -indexMode:8
+	Value, 2, 2
+	Ptr, 4, 4, -pointer:ASM
+_0x61,0x5f,  4, -game:FE7J -indexMode:8
+	Value, 2, 2
+_0x6E,0x6c, 8, -game:FE7J -indexMode:8
+	Coordinates, 4, 4, -coordinates:2
+_0x85,0x83, 4, -game:FE7J -indexMode:8
+	Dunno, 2, 2
+_FADU2,0x84, 4, -game:FE7J -indexMode:8
+_0x87,0x85, 4, -game:FE7J -indexMode:8
+_0x89,0x87, 4, -game:FE7J -indexMode:8
+_0x8A,0x88, 4, -game:FE7J -indexMode:8
+_FADI2,0x92, 4, -game:FE7J -indexMode:8
+_0x95,0x93, 16, -game:FE7J -indexMode:8
+	Value1, 4, 4
+	Value2, 8, 4
+	Value3, 12, 4
+_0x96,0x94, 16, -game:FE7J -indexMode:8
+	Value1, 4, 4
+	Value2, 8, 4
+	Value3, 12, 4
+_0x9A,0x98, 4, -game:FE7J -indexMode:8
+_0xA1,0x9f, 8, -game:FE7J -indexMode:8
+	Value, 4, 4
+_0xA2,0xa0, 8, -game:FE7J -indexMode:8
+	Value, 4, 4, -pointer:battleData
+_0xA3,0xa1, 4, -game:FE7J -indexMode:8
+_0xA4,0xa2, 8, -game:FE7J -indexMode:8
+	Value, 4, 4
+_0xA5,0xa3, 8, -game:FE7J -indexMode:8
+	Value, 4, 4
+_0xA8,0xa6, 16, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2
+	Text 1, 8, 4
+	Text 2, 12, 4
+_0xAA,0xab, 4, -game:FE7J -indexMode:8
+_0xAB,0xac, 8, -game:FE7J -indexMode:8
+	Pointer, 4, 4, -pointer:coordList
+_0xAD,0xae, 4, -game:FE7J -indexMode:8
+_0xAE,0xaf, 4, -game:FE7J -indexMode:8
+_0xB6,0xb7, 4, -game:FE7J -indexMode:8
+_0xBE,0xbf, 8, -game:FE7J -indexMode:8
+	Value, 4, 4
+_0xC1,0xc2, 16, -game:FE7J -indexMode:8
+	Value, 4, 4, -coordinates:2 -preferredBase:10
+	Value, 8, 4
+	Value, 12, 4
+_0xC2,0xc3, 12, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+_0xC3,0xc4, 12, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+_0xCA,0xcb, 4, -game:FE7J -indexMode:8
+_0xDC,0xe0, 8, -game:FE7J -indexMode:8
+	Value, 4, 4
+_LIGHTNING,0xe1, 12, -game:FE7J -indexMode:8
+	Value, 4, 1
+	Value, 5, 1
+	Value, 6, 1
+	Value, 7, 1
+	Value, 8, 1
+	Value, 9, 1
+	Value, 10, 1
+	Value, 11, 1
+_0xDE,0xe2, 20, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+	Value, 12, 4, -coordinates:2
+	Value, 16, 4
+_0xDF,0xe3, 12, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Value, 8, 4
+_0xE0,0xe4, 16, -game:FE7J -indexMode:8
+	Value1, 4, 4
+	Value2, 8, 4
+	Value3, 12, 2
+	Value4, 14, 2
+_0xE1,0xe6, 4, -game:FE7J -indexMode:8
+_0xE2,0xe4, 4, -game:FE7J -indexMode:8
+_0xE3,0xe8, 12, -game:FE7J -indexMode:8
+	Ptr, 4, 4, -pointer:unknown
+	Location, 8, 4, -coordinates:2
+_0xE4,0xe9, 4, -game:FE7J -indexMode:8
+_0xE5,0xea, 16, -game:FE7J -indexMode:8
+	Ptr1, 4, 4, -pointer:unknown
+	Ptr2, 8, 4, -pointer:unknown
+	Value, 12, 4
+_0xE6,0xeb, 4, -game:FE7J -indexMode:8

@@ -16,16 +16,14 @@
 //#define EA_STDLIB_VERSION_3_1
 //#define EA_STDLIB_VERSION_3_2
 //#define EA_STDLIB_VERSION_3_3
-//#define EA_STDLIB_VERSION_3_4
-//#define EA_STDLIB_VERSION_3_5
-#define EA_STDLIB_VERSION_3_6
+#define EA_STDLIB_VERSION_3_4
 
 /****************************************************************\
-Version 3.3
+Version 3.4 
 
 How to use EA standard library:
  Include this file, EAstdlib.event, to your code.
- Then use macro's and definitions you see in
+ Then use macro's and definitions you see in 
  EA Standard library folder.
 
 Changes:
@@ -49,7 +47,7 @@ V 1.5:
 -Added CursorFlash macros for FE6 and FE7
 -Added tutorial disabling macro. Define DISABLE_TUTORIALS
  before including this file to activate it. Define
- EMPTY_TUTORIAL_OFFSET before including this file to use
+ EMPTY_TUTORIAL_OFFSET before including this file to use 
  custom empty tutorial.
 -Added event pointer macro.
 -Added FE8 unit flag helpers.
@@ -73,7 +71,7 @@ _Added Weather definitions for all 3 GBA games.
 -Added battle data helpers.
 -Removed chapter pointer list helpers.
 V 2.1:
--Added more main code helpers, including some common
+-Added more main code helpers, including some common 
  events they point to.
 -Added numeric helpers.
 -Added FE7 and 8 World map backwards compability definitions.
@@ -122,7 +120,7 @@ V 2.6
 -Added ClearBrownBox for FE7 thanks to Arch.
 -Stole Ballista helpers and FE8 battle helpers from Camtech.
 V 2.7
--Changed FE7 and FE6 VillageEventItem and VillageEventMoney to match
+-Changed FE7 and FE6 VillageEventItem and VillageEventMoney to match 
  what the game uses.
 -Changed TileChange macro to fit new codes and added a warning.
 V 2.8
@@ -178,12 +176,12 @@ V 3.1
 -FE8: Fixed typo that made SOUN code be FADU code. (Thanks to MK404)
 -FE8: Added "Silent" in music definitions as 0x7FFF
 -FE8: Added GiveMoney(amount) macro to help with that.
--FE8: Added SVAL/SMOV aliases to SETVAL. Changed SLOTS_ADD to SADD and other assembly-like commands.
+-FE8: Added SVAL/SMOV aliases to SETVAL. Changed SLOTS_ADD to SADD and other assembly-like commands. 
 -FE8: Added TUTORIALTEXTBOXSTART and NOTIFICATIONTEXTBOXSTART
 -EAStdLib: Separated out conditional helps from Misc Helpers to Conditional Helpers
 -FE8: Changed TEX8 to BROWNBOXTEXT.
 -FE8: Added CLEAN and PREP codes. The macro is the way to go, but these will show up in disassembly.
--FE8: Added r0-r13/rD defintions for the setval slots. QP for QueuePointer
+-FE8: Added r0-r13/rD defintions for the setval slots. QP for QueuePointer 
 -FE8: Added SkirmishEvents for repointing of Skirmish Events, but I don't think we're ready to mess with this yet.
 -FE8: Added FlashWhite/FlashBlack macros.
 -FE8: Fixed ENIF not having a definition in backwards compatability for conditionals
@@ -199,76 +197,74 @@ V3.3
 -FE6,FE7: Added old definitions (spears, etc) through BACKWARDS_COMPATIBILITY.
 
 V3.4
--FE8: Fixed bad definition of IFET (now is CHECK_EVENTID)
-
-V3.5
--FE8: Changed some definitions in FE8 Definitions.
--FE8: Fixed VillageEventMoney definition and made GIVEITEMTO2 backwards compatible.
-
-V3.6:
--FE8: Fixed GiveMoney definition, added _GIVEITEMTOMAIN to backwards compatibility.
+-FE7J: First commit.
 
 \****************************************************************/
 
-#include "EA Standard Library/Boolean Logic.txt"
+#ifdef _FE7J_
+#define _FE7_
+#endif
 
-#include "EA Standard Library/Numeric Helpers.txt"
+#include "EAStandardLibrary/Boolean Logic.txt"
 
-#include "EA Standard Library/Unit Helpers.txt"
+#include "EAStandardLibrary/Numeric Helpers.txt"
 
-#include "EA Standard Library/AI Helpers.txt"
+#include "EAStandardLibrary/Unit Helpers.txt"
 
-#include "EA Standard Library/World Map Helpers.txt"
+#include "EAStandardLibrary/AI Helpers.txt"
 
-#include "EA Standard Library/Weather Definitions.txt"
+#include "EAStandardLibrary/World Map Helpers.txt"
 
-#include "EA Standard Library/Chapter Structure Helpers.txt"
+#include "EAStandardLibrary/Weather Definitions.txt"
 
-#include "EA Standard Library/Main Code Helpers.txt"
+#include "EAStandardLibrary/Chapter Structure Helpers.txt"
 
-#include "EA Standard Library/Misc Helpers.txt"
+#include "EAStandardLibrary/Main Code Helpers.txt"
 
-#include "EA Standard Library/Convo Background Definitions.txt"
+#include "EAStandardLibrary/Misc Helpers.txt"
 
-#include "EA Standard Library/Chapter Definitions.txt"
+#include "EAStandardLibrary/Convo Background Definitions.txt"
 
-#include "EA Standard Library/Music Definitions.txt"
+#include "EAStandardLibrary/Music Definitions.txt"
 
-#include "EA Standard Library/End Of Chapter Helpers.txt"
+#include "EAStandardLibrary/End Of Chapter Helpers.txt"
 
-#include "EA Standard Library/Convo Helpers.txt"
+#include "EAStandardLibrary/Convo Helpers.txt"
 
-#include "EA Standard Library/Tile Changes.txt"
+#include "EAStandardLibrary/Tile Changes.txt"
 
-#include "EA Standard Library/Trap Helpers.txt"
+#include "EAStandardLibrary/Trap Helpers.txt"
 
-#include "EA Standard Library/Escape Point.txt"
+#include "EAStandardLibrary/Escape Point.txt"
 
-#include "EA Standard Library/Conditional Helpers.txt"
+#include "EAStandardLibrary/Conditional Helpers.txt"
 
-#include "EA Standard Library/Slots Helpers.txt"
+#include "EAStandardLibrary/Slots Helpers.txt"
 
-#include "EA Standard Library/Conditionals Backwards Compatability.txt"
+#include "EAStandardLibrary/Conditionals Backwards Compatability.txt"
 
-#include "EA Standard Library/Animation Setters.txt"
+#include "EAStandardLibrary/Animation Setters.txt"
 
 #ifdef BACKWARDS_COMPATIBILITY
-#include "EA Standard Library/Backward Compatibility.txt"
+#include "EAStandardLibrary/Backward Compatibility.txt"
 #endif
+
+#ifndef EA_STDLIB_STRICT
+#include "EAStandardLibrary/Code Aliases.txt"
+#endif // EA_STDLIB_STRICT
 
 #ifdef _FE7_
 #ifdef DISABLE_TUTORIALS
-#include "EA Standard Library/FE7 Tutorial Disabler.txt"
+#include "EAStandardLibrary/FE7 Tutorial Disabler.txt"
 #endif
 #endif
-
 
 #ifdef _FE6_
 #ifndef _NO_FE6_DEFINITIONS_
 #ifdef BACKWARDS_COMPATIBILITY
-#include "EA Standard Library/FE6 Definitions_Old.txt"
+#include "EAStandardLibrary/FE6 Definitions_Old.txt"
 #else
-#include "EA Standard Library/FE6 Definitions.txt"
+#include "EAStandardLibrary/FE6 Definitions.txt"
 #endif
 #endif
 #endif
@@ -276,9 +272,9 @@ V3.6:
 #ifdef _FE7_
 #ifndef _NO_FE7_DEFINITIONS_
 #ifdef BACKWARDS_COMPATIBILITY
-#include "EA Standard Library/FE7 Definitions_Old.txt"
+#include "EAStandardLibrary/FE7 Definitions_Old.txt"
 #else
-#include "EA Standard Library/FE7 Definitions.txt"
+#include "EAStandardLibrary/FE7 Definitions.txt"
 #endif
 #endif
 #endif
@@ -286,7 +282,7 @@ V3.6:
 
 #ifdef _FE8_
 #ifndef _NO_FE8_DEFINITIONS_
-#include "EA Standard Library/FE8 Definitions.txt"
+#include "EAStandardLibrary/FE8 Definitions.txt"
 #endif
 #endif
 

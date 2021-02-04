@@ -1,0 +1,100 @@
+
+#World maps: 1, 2, 3...
+ASMWORLDMAP, 0x99, 8, -game:FE7 -indexMode:8
+	Pointer, 4, 4, -pointer:ASM
+
+##Loads a map to use.
+LOADWM, 0xAC, 16, -game:FE7 -indexMode:8
+##The ID of the map to load.
+	Map to load, 4, 2
+##Position of the camera on the map after
+##it is loaded in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Way to load the map.
+	Way to load, 12, 2
+
+##Load portrait.
+SHOWPORTRAIT, 0xB1, 20, -game:FE7 -indexMode:8
+##ID of the portrait.
+	ID, 4, 1
+##Portrait to show.
+	Portrait ID, 8, 1
+##Position of the portrait on the screen in pixels.
+	Position, 12, 1, -preferredBase:10
+##Way to load the portrait to the screen.
+	Loading way, 13, 1
+##Time to wait before loading the portrait.
+	Delay, 16, 1, -preferredBase:10
+
+##Remove portrait.
+REMOVEPORTRAIT, 0xB2, 16, -game:FE7 -indexMode:8
+##ID of the portrait.
+	ID, 4, 1
+##Way to remove the portrait from the screen.
+	Removing way, 9, 1
+##Time to wait before removing the portrait.
+	Delay, 12, 1, -preferredBase:10
+
+##Shows text on the world map.
+TEXTWM, 0xB3, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+##Put text box to the bottom.
+TEXTBOXTOBOTTOM, 0xB4, 4, -game:FE7 -indexMode:8
+
+##Put text box to the top.
+TEXTBOXTOTOP, 0xB5, 4, -game:FE7 -indexMode:8
+
+##Places or moves a map sprite.
+PUTSPRITE, 0xB7, 20, -game:FE7 -indexMode:8
+##ID of the sprite.
+	ID, 4, 2
+##Position of the sprite on the world map in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Class of the sprite.
+	Class, 12, 1
+##Sprite colour, walking speed and whether camera follows it.
+	Sprite properties, 13, 1
+##ID that separates srpites with same class.
+	In-class ID, 14, 1
+	Unknown, 15, 1
+	Unknown2, 16, 4
+
+##Removes a map sprite.
+REMSPRITE, 0xB8, 12, -game:FE7 -indexMode:8
+##ID of the sprite.
+	ID, 4, 2
+##unknown.
+	Value, 8, 4
+
+##Lights up an area on the world map.
+HIGHLIGHT, 0xB9, 16, -game:FE7 -indexMode:8
+##Area on the world map to light up.
+	Area to light up, 8, 1
+
+##Clears text from the box.
+REMOVETEXTBOX, 0xBC, 8, -game:FE7 -indexMode:8
+
+##Creates a flashing dot on the map.
+PLACEDOT, 0xBD, 20, -game:FE7 -indexMode:8
+##Map ID of the dot.
+	ID, 4, 1
+##Position of the dot on the world map in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Palette of the dot.
+	Palette, 12, 1
+
+##Fade into a map.
+FADETOWM, 0xC8, 16, -game:FE7 -indexMode:8
+##Position on the map to fade to in pixels.
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+##Map to fade into.
+	Map to load, 8, 2
+	Unknown, 10, 2
+	Unknown2, 12, 4
+
+##Rippling effect.
+RIPPLE, 0xC9, 8, -game:FE7 -indexMode:8
+##Position of the rippling effect on the world map.
+	Position, 4, 4, -coordinates:2 -preferredBase:10

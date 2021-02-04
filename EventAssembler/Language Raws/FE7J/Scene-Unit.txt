@@ -1,0 +1,138 @@
+MOVE,0x21, 12, -game:FE7J -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+MOVE,0x22, 16, -game:FE7J -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+	Speed, 12, 4, -preferredBase:10
+MOVE,0x23, 12, -game:FE7J -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	Move manual pointer, 8, 4, -pointer:moveManual
+MOVE,0x24, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+MOVE,0x25, 16, -game:FE7J -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+	Speed, 12, 4, -preferredBase:10
+MOVE,0x26, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Move manual pointer, 8, 4, -pointer:moveManual
+MOVENEXTTO,0x27, 12, -game:FE7J -indexMode:8
+	Character to move, 4, 4
+	Character to move to, 8, 4
+MOVEMAINC,0x28, 8, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10 -signed
+MOVE,0x29, 16, -game:FE7J -indexMode:8
+	Character, 4, 1
+	Speed, 6, 1
+	New position, 8, 4, -coordinates:2 -preferredBase:10 -signed
+	Move manual pointer, 12, 4, -pointer:moveManual
+REPOS,0x2c, 12, -game:FE7J -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+REPOS,0x2d, 12, -game:FE7J -indexMode:8
+	Character, 4, 4
+	New position, 8, 4, -coordinates:2 -preferredBase:10 -signed
+LOU1,0x30, 8, -game:FE7J -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+LOUFILTERED,0x32, 12, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Pointer, 8, 4, -pointer:unit
+LOUMODE1,0x33, 20, -game:FE7J -indexMode:8
+	ENM Unit pointer, 4, 4, -pointer:unit
+	EHM Unit pointer, 8, 4, -pointer:unit
+	HNM Unit pointer, 12, 4, -pointer:unit
+	HHM Unit pointer, 16, 4, -pointer:unit
+LOU2,0x34, 8, -game:FE7J -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+LOUFILTERED2,0x35, 12, -game:FE7J -indexMode:8
+	Value, 4, 4
+	Pointer, 8, 4, -pointer:unit
+LOUMODE2,0x36, 20, -game:FE7J -indexMode:8
+	ENM Unit pointer, 4, 4, -pointer:unit
+	EHM Unit pointer, 8, 4, -pointer:unit
+	HNM Unit pointer, 12, 4, -pointer:unit
+	HHM Unit pointer, 16, 4, -pointer:unit
+LOEV,0x37, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Class, 6, 2
+	Position, 8, 4, -coordinate:2 -preferredBase:10
+LOADSINGLEUNIT,0x37, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Class, 6, 2
+	Position, 8, 4, -coordinate:2 -preferredBase:10
+ENUN,0x39, 4, -game:FE7J -indexMode:8
+ITGV,0x59, 8, -game:FE7J -indexMode:8
+	Item, 4, 2
+ITGC,0x5a, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Item, 8, 2
+ITGM,0x5b, 8, -game:FE7J -indexMode:8
+	Item, 4, 2
+MONE,0x5c, 8, -game:FE7J -indexMode:8
+	Village or cutscene, 2, 2
+	Amount of money, 4, 2, -preferredBase:10
+CUSI,0x63, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Affiliation, 8, 2
+DISA,0x68, 8, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2
+DISA,0x69, 8, -game:FE7J -indexMode:8
+	Character, 4, 2
+KILL,0x6a, 8, -game:FE7J -indexMode:8
+	Position of character, 4, 4, -coordinate:2 -preferredBase:10
+KILL,0x6b, 8, -game:FE7J -indexMode:8
+	Character, 4, 4
+REPA,0x6d, 8, -game:FE7J -indexMode:8
+	Character, 4, 2
+REPA,0x6e, 8, -game:FE7J -indexMode:8
+	Unit position, 4, 4, -coordinate:2 -preferredBase:10
+UNCM,0x70, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Condition, 8, 4, -preferredBase:2
+UNCR,0x71, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	Condition, 8, 4, -preferredBase:2
+CHAI,0x72, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	AI, 8, 4, -coordinate:4
+CHAI,0x72, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	AI 1, 8, 1
+	AI 2, 9, 1
+	AI 3, 10, 1
+	AI 4, 11, 1
+CHAI,0x72, 12, -game:FE7J -indexMode:8
+	Character, 4, 2
+	AI, 8, 4
+CHAI,0x73, 12, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinate:2 -preferredBase:10
+	AI, 8, 4, -coordinate:4
+CHAI,0x73, 12, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinate:2 -preferredBase:10
+	AI 1, 8, 1
+	AI 2, 9, 1
+	AI 3, 10, 1
+	AI 4, 11, 1
+CHAI,0x73, 12, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinate:2 -preferredBase:10
+	AI, 8, 4
+FIGH,0x95, 20, -game:FE7J -indexMode:8
+	Attacker, 4, 2
+	Defender, 8, 2
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter 1, 16, 1
+	Battle parameter 2, 17, 1
+	Battle parameter 3, 18, 1
+	Battle parameter 4, 19, 1
+FIGH,0x95, 20, -game:FE7J -indexMode:8
+	Attacker, 4, 2
+	Defender, 8, 2
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter, 16, 4, -coordinate:4
+FIGH,0x95, 20, -game:FE7J -indexMode:8
+	Attacker, 4, 2
+	Defender, 8, 2
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter, 16, 4

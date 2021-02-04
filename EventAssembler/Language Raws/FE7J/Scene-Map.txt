@@ -1,0 +1,39 @@
+CAM2,0x1d, 4, -game:FE7J -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+CAM1,0x1e, 4, -game:FE7J -indexMode:8
+	Character, 2, 2
+CAM1,0x20, 4, -game:FE7J -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+CMON,0x3a, 4, -game:FE7J -indexMode:8
+CMOF,0x3b, 4, -game:FE7J -indexMode:8
+MAC1,0x5d, 32, -game:FE7J
+	Map change ID, 16, 8
+	Apply or remove, 28, 4
+MACC,0x5e, 4, -game:FE7J -indexMode:8
+	Position, 2, 2, -coordinates:2
+MAC2,0x60, 4, -game:FE7J -indexMode:8
+	Map change ID, 2, 1
+	Unknown, 3, 1
+MACE,0x61, 4, -game:FE7J -indexMode:8
+	Value, 2, 2
+MAC3,0x62, 4, -game:FE7J -indexMode:8
+	Map change ID, 2, 1
+	Unknown, 3, 1
+CURF,0x64, 8, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+CURF,0x65, 8, -game:FE7J -indexMode:8
+	Character, 4, 2
+CUMO,0x66, 8, -game:FE7J -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+CURE,0x67, 4, -game:FE7J -indexMode:8
+LOMA,0x82, 16, -game:FE7J -indexMode:8
+	Chapter ID, 4, 2
+	Position, 8, 8, -coordinate:2 -preferredBase:10
+VCBF,0x9c, 4, -game:FE7J -indexMode:8
+	Vision distance, 2, 1, -preferredBase:10
+VCWF,0x9b, 4, -game:FE7J -indexMode:8
+	Vision distance, 2, 1, -preferredBase:10
+WEA1,0x99, 4, -game:FE7J -indexMode:8
+	Weather type ID, 2, 1
+WEA2,0x9a, 4, -game:FE7J -indexMode:8
+	Weather type ID, 2, 1

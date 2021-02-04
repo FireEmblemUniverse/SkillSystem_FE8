@@ -1,0 +1,38 @@
+
+//Fallen text loaders
+#ifdef _FE7_
+#ifndef _FE7J_
+#define ShowLynModeFallenText "CALL $CC0928; _0x9A"
+
+//For Eliwood and Hector modes
+#define ShowFallenText "CALL $CC0C14; _0x9A"
+#endif
+#endif
+
+//Game ending helpers
+#ifdef _FE7_
+#ifndef _FE7J_
+#define LynModeEnding "ENUT 0x83; LYN_END; _0x1; ASMC 0xB85D5; STAL 0; STAL 0"
+#define TheEnd "FADI 2; HIDEMAP; ASMC 0x7A8B9; THE_END; _0x1"
+#define RunCharacterEndings "CALL 0x08CC0F3C"
+#endif
+#endif
+
+#ifdef _FE7J_
+#define TheEnd "FADI 2; HIDEMAP; ASMC 0x7B32D; THE_END; _0x1"
+#endif
+
+//Basic moving to a chapter.
+//Do not use with gaidens.
+#ifdef _FE6_
+#define MoveToChapter(chapter) "STAL 64; MNCH chapter; STAL 1; _0x1"
+#endif
+
+#ifdef _FE7_
+#define MoveToChapter(chapter) "FADI 4; HIDEMAP; BACG 0x5B; MNCH chapter; STAL 1; _0x1"
+#endif
+
+#ifdef _FE8_
+//Shockingly, FE8 does this the simplest way.
+#define MoveToChapter(chapter) "MNCH chapter"
+#endif

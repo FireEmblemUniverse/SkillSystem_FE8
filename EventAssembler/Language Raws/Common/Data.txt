@@ -1,0 +1,21 @@
+
+BYTE, 0, 1, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:1
+	Val, 0, 1
+
+SHORT, 0, 2, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:2
+	Val, 0, 2
+
+WORD, 0, 4, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:4
+	Val, 0, 4
+
+POIN, 0, 4, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:pointer -indexMode:8
+	Offset, 0, 4, -pointer:unknown
+
+SHORT2, 0, 2, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:1
+	Val, 0, 2
+
+WORD2, 0, 4, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:1
+	Val, 0, 4
+
+POIN2, 0, 4, -game:any:FE6:FE7:FE7J:FE8 -repeatable -priority:pointer -indexMode:8 -offsetMod:1
+	Offset, 0, 4, -pointer:unknown

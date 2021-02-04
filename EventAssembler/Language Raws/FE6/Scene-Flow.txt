@@ -1,0 +1,59 @@
+
+##Ends an event.
+ENDA, 6, 8, -game:FE6 -end -indexMode:8
+
+##Code that calls ASM routine in events.
+ASMC, 0x17, 8, -game:FE6 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+
+##Labels (target for conditional branches)
+LABEL, 0x1B, 8, -game:FE6 -indexMode:8
+	Conditional ID, 4, 2
+
+##Unconditional GOTO (jump to LABEL *conditional ID*)
+GOTO, 0x1C, 8, -game:FE6 -indexMode:8
+	Conditional ID, 4, 2
+
+#Chapters: 1, 2, 4...
+##Branch is ASM routine returns nonzero
+GOTO_IFAT, 0x1F, 12, -game:FE6 -indexMode:8
+	Conditional ID, 4, 4
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+##Branch if ASM routine returns 0.
+GOTO_IFAF, 0x20, 12, -game:FE6 -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+#Chapters: 4, 7, 9...
+##Branches if Event ID is true
+GOTO_IFET, 0x22, 12, -game:FE6 -indexMode:8
+##Evend ID to check.
+	Event ID, 4, 4
+	Value, 8, 4
+
+#Chapter: 11A
+##Branches if Event ID is false
+GOTO_IFEF, 0x23, 12, -game:FE6 -indexMode:8
+##Evend ID to check.
+	Event ID, 4, 4
+	Value, 8, 4
+
+#Chapters: 3
+##Branch if character is active.
+GOTO_IFCA, 0x24, 12, -game:FE6 -indexMode:8
+	Conditional ID, 4, 4
+##Character to check.
+	Character, 8, 4
+
+#Chapters: None
+JUMP, 0x25, 8, -game:FE6 -indexMode:8
+	Event pointer, 4, 4, -pointer:none
+
+##Moves to a chapter through save-dialog.
+MNCH, 0x3D, 8, -game:FE6 -indexMode:8
+	Chapter ID, 4, 4
+
+##Ends the game
+THE_END, 0x3E, 8, -game:FE6 -indexMode:8
+	Value, 4, 4 

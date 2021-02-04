@@ -1,0 +1,121 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Sets active text mode
+TEXTMODE, 0, 32, -game:FE8
+	TextMode, 0, 4, -preferredBase:10
+	0x1A2, 4, 12, -fixed
+
+## Displays text given active text mode
+TEXT, 0x1B20, 4, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+
+## Displays text given active text mode. Assumes a text was previously displayed.
+MORETEXT, 0x1B21, 4, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+
+## Clears text-related things.
+TEXTCLEAR, 0x1B22, 4, -game:FE8 -indexMode:8
+
+## Continues displaying text after it was suspended.
+TEXTCONT, 0x1C20, 4, -game:FE8 -indexMode:8
+
+## Waits for displayed text to end.
+TEXTEND, 0x1D20, 4, -game:FE8 -indexMode:8
+
+## Puts face (portrait) on screen
+FACE_SHOW, 0, 32, -game:FE8
+	0x1E2,    4,  12, -fixed
+	FaceSlot, 0,  4, -preferredBase:10
+	FaceId,   16, 16
+
+## Moves face (portrait) on screen
+FACE_MOVE, 0x1F20, 4, -game:FE8 -indexMode:8
+	FromFaceSlot, 2, 1, -preferredBase:10
+	ToFaceSlot,   3, 1, -preferredBase:10
+
+## Closes text boxes.
+TEXTCLOSE, 0x2020, 4, -game:FE8 -indexMode:8
+
+## Displays background given active text type.
+BACKGROUND, 0x2140, 8, -game:FE8 -indexMode:8
+	BackgroundId, 2, 2
+
+## Change background given active and target text type.
+BACKGROUND_CHANGE, 0x2141, 8, -game:FE8 -indexMode:8
+	BackgroundId,   2, 2
+	TargetTextType, 4, 2, -preferredBase:10
+	Speed,          6, 2, -preferredBase:10
+
+## Fades background to a flat color
+BACKGROUND_TOCOLOR, 0x2142, 8, -game:FE8 -indexMode:8
+	BackgroundId, 2, 2
+	SourceColor,  4, 2
+	Speed,        6, 2, -preferredBase:10
+
+## Fades background from a flat color
+BACKGROUND_FROMCOLOR, 0x2143, 8, -game:FE8 -indexMode:8
+	SourceColor,  4, 2
+	Speed,        6, 2, -preferredBase:10
+
+## Displays text as popup and play sound.
+POPUP, 0x3A40, 8, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+	SongId, 4, 2
+
+## Displays text as brown box at position.
+BROWNBOX, 0x3A41, 8, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+	Position, 6, 2, -coordinates:2 -preferredBase:10
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+## Sets active text mode to 0 (dialogue without background)
+TEXTSTART, 0x1A20, 4, -game:FE8 -indexMode:8
+
+## Sets active text mode to 1 (dialogue with background)
+REMOVEPORTRAITS, 0x1A21, 4, -game:FE8 -indexMode:8
+
+## Sets active text mode to 2 (text on CG background)
+CGTEXTSTART, 0x1A22, 4, -game:FE8 -indexMode:8
+
+## Sets active text mode to 3 (yellow text message box)
+TUTORIALTEXTBOXSTART, 0x1A23, 4, -game:FE8 -indexMode:8
+
+## Sets active text mode to 4 (single text bubble without portraits)
+SOLOTEXTBOXSTART, 0x1A24, 4, -game:FE8 -indexMode:8
+
+## Displays text given active text mode
+TEXTSHOW, 0x1B20, 4, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+
+## Displays text given active text mode. Assumes a text was previously displayed.
+TEXTSHOW2, 0x1B21, 4, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+
+## Clears text-related things.
+REMA, 0x1B22, 4, -game:FE8 -indexMode:8
+
+## Displays background given active text type.
+BACG, 0x2140, 8, -game:FE8 -indexMode:8
+	BackgroundId, 2, 2
+
+## Displays text as popup and play sound.
+NOTIFY, 0x3A40, 8, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+	SongId, 4, 2
+	Unused, 6, 2
+
+## Displays text as brown box at position.
+BROWNBOXTEXT, 0x3A41, 8, -game:FE8 -indexMode:8
+	Text ID, 2, 2
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+
+## Bugged variant of BROWNBOX used in the vanilla game.
+BROWNBOX_BUGGED, 0x3A41, 8, -game:FE8 -indexMode:8
+	MsgId, 2, 2
+	Position, 4, 4, -coordinates:2 -preferredBase:10

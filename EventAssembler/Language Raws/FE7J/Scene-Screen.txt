@@ -1,0 +1,24 @@
+STAL,0x2, 4, -game:FE7J -repeatable -indexMode:8
+	Time to stall, 2, 2, -preferredBase:10
+CGSTAL,0x4, 4, -game:FE7J -indexMode:8
+	Stall time, 2, 2, -preferredBase:10
+OOBB,0xc, 4, -game:FE7J -indexMode:8
+LCKB,0x85, 4, -game:FE7J -indexMode:8
+LCKS,0x87, 4, -game:FE7J -indexMode:8
+ULCK,0x88, 4, -game:FE7J -indexMode:8
+NEVENTS,0x8a, 4, -game:FE7J -indexMode:8
+NCONVOS,0x8b, 4, -game:FE7J -indexMode:8
+FADI,0x8c, 4, -game:FE7J -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+FADU,0x8d, 4, -game:FE7J -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+FAWI,0x8e, 4, -game:FE7J -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+FAWU,0x8f, 4, -game:FE7J -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+HIDEMAP,0x90, 4, -game:FE7J -indexMode:8
+SHOWMAP,0x91, 4, -game:FE7J -indexMode:8
+FADUCG,0xd8, 4, -game:FE7J -indexMode:8
+	Fade time, 2, 2, -preferredBase:10
+FADICG,0xd9, 4, -game:FE7J -indexMode:8
+	Fade time, 2, 2, -preferredBase:10

@@ -1,0 +1,64 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+WARPOUT, 0x4120, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+WARPIN, 0x4121, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+WARPOUT_SB, 0x4120, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+WARPIN_SB, 0x4121, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+ENDWARP, 0x412F, 4, -game:FE8 -indexMode:8
+
+EARTHQUAKE, 0x4220, 4, -game:FE8 -indexMode:8
+	ShakeDirection, 2, 1, -preferredBase:10
+	PlaySoundBool,  3, 1, -preferredBase:10
+
+## Displays summoning animation on the given character
+SUMMONUNIT, 0x4320, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+## Displays sacred stone breaking animation on the given character
+BREAKSTONE, 0x4420, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+#Makes a glowing X underneath the character.
+GLOWINGCROSS, 0x4520, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+GLOWINGCROSS_END, 0x452F, 4, -game:FE8 -indexMode:8
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+WARP_OUT, 0x4120, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+WARP_IN, 0x4121, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+EARTHQUAKE_START, 0x4220, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+EARTHQUAKE_END, 0x422F, 4, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+
+RESUMM, 0x4320, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+GLOWING_CROSS, 0x4520, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+END_GLOWING_CROSS, 0x452F, 4, -game:FE8 -indexMode:8
+	0, 2, 2, -fixed
+
+BREAKING_SACRED_STONE, 0x4420, 4, -game:FE8 -indexMode:8
+	Character, 2, 2

@@ -1,0 +1,135 @@
+
+
+//Chapter data pointer list editing
+#ifdef _FE6_
+#define EventPointerListOffset 0x664398
+#define EventPointerTable(id,offset) "PUSH; ORG EventPointerListOffset+(4*id); POIN offset; POP"
+#endif
+
+#ifdef _FE7_
+#ifndef _FE7J_
+#define EventPointerListOffset 0xC9C9C8
+#define EventPointerTable(id,offset) "PUSH; ORG EventPointerListOffset+(4*id); POIN offset; POP"
+#endif
+#endif
+
+#ifdef _FE8_
+#define EventPointerListOffset 0x8B363C
+#define EventPointerTable(id,offset) "PUSH; ORG EventPointerListOffset+(4*id); POIN offset; POP"
+#define SkirmishEvents(offset) "PUSH; ORG 0x1540C; POIN offset; POP"
+#endif
+
+
+//Go to preparations screen
+#ifdef _FE7_
+#define GotoPrepScreen "ENDB"
+#endif
+
+#ifdef _FE8_
+#define GotoPrepScreen "CALL $591FD8; ENDA"
+#endif
+
+
+//Event ID's with special meanings
+#ifdef _FE6_
+#define NoID 0
+#define BossQuoteID 1
+#define BossDeathQuoteID 2 
+#define SiezeID 3
+#define GameOverID 0x65
+#define CathConvo1 0x67
+#define CathConvo2 0x68
+#define CathConvo3 0x69
+#define IliaSacaeRouteID 0x6B
+#define CathRecruited 0x70
+#endif
+
+#ifdef _FE7_
+#define NoID 0
+#define BossQuoteID 1
+#define BossDeathQuoteID 2 
+#define SiezeID 3
+#define UseSecondaryMusicID 4
+#define GameOverID 0x65
+/*
+66
+67
+68
+69
+*/
+#define Ch13xBeatID 0x6A
+#define Ch17xBeatID 0x6B
+#define Ch19xBeatID 0x6C
+#define Ch23xBeatID 0x6D
+#define Ch28xBeatID 0x6E
+/*
+6F 31x/32x beat?
+*/
+#define LloydOrLinusID 0x70
+#define DorcasDeadID 0x71
+#define WilDeadID 0x72
+#define LuciusDeadID 0x73
+#define SerraDeadID 0x74
+#define ErkDeadID 0x75
+#define KentVisited 0x76
+#define SainDeadID 0x77
+#define RathDeadID 0x78
+#define FlorinaDeadID 0x79
+#define MatthewDeadID 0x7A
+#define NilsDeadID 0x7B
+#define WallaceDeadID 0x7C
+#define PentDeadID 0x7D
+/*
+7E
+7F
+*/
+#define AthosDeadID 0x80
+#define HawkeyeDeadID 0x81
+#define JaffarDeadID 0x82
+#define LynModePassedID 0x83
+/*
+84
+85
+*/
+#define Ch19xxBeatID 0x86
+#define PentHeavenSealReceivedID 0x87
+#define DartDeadID 0x88
+#define VaidaDeadID 0x89
+#define PentXLouiseC 0x8A
+#define PentXLouiseB 0x8B
+#define FioraTriAttackConvoID 0x8C
+#define FarinaTriAttackConvoID 0x8D
+#define FlorinaTriAttackConvoID 0x8E
+/*
+8F
+90 Other triangle attack IDs?
+91
+*/
+#define OswinDeadID 0x92
+#define KarelDeadID 0x93
+#define NinoDeadID 0x94
+#define BartreDeadID 0x95
+#define KarlaDeadID 0x96
+#define AnnaVisited 0x97
+/*
+98
+99
+*/
+#define HeavenSealPentID 0x9A
+#define MerlinusJoined 0x9B
+/*
+9C
+*/
+#define SomeoneSemiImportantDiedID 0x9D //Only in internal use
+#endif
+
+#ifdef _FE8_
+#define NoID 0
+#define BossQuoteID 1
+#define BossDeathQuoteID 2 
+#define SeizeID 3
+#define SiezeID 3
+#define DefeatAllID 6
+#define GameOverID 0x65
+#endif
+

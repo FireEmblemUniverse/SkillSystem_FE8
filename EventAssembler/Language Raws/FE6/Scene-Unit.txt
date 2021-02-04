@@ -1,0 +1,118 @@
+
+##Moves a unit on chapter map.
+MOVE, 0x0D, 12, -game:FE6 -indexMode:8
+	Old position, 4, 4, -coordinates:2
+	New position, 8, 4, -coordinates:2
+
+MOVE, 0x0F, 12, -game:FE6 -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+MOVE, 0x10, 12, -game:FE6 -indexMode:8
+	Character, 4, 4
+	Move manual pointer, 8, 4, -pointer:moveManual
+
+##Move character next to another character.
+MOVENEXTTO, 0x11, 12, -game:FE6 -indexMode:8
+	Character to move, 4, 4
+	Character to move to, 8, 4
+
+##Loads units.
+LOU1, 0x12, 8, -game:FE6 -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+
+##Loads units.
+LOU2, 0x13, 8, -game:FE6 -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+
+##Makes game wait until movement, loading and other 
+##unit changing events end.
+ENUN, 0x14, 4, -game:FE6 -indexMode:8
+
+##Gives item to the current character, like
+##in villages.
+ITGV, 0x26, 8, -game:FE6 -indexMode:8
+	Item, 4, 2
+
+ITGC, 0x27, 12, -game:FE6 -indexMode:8
+	Character, 4, 4
+	Item, 8, 4
+
+MONE, 0x28, 8, -game:FE6 -indexMode:8
+	Amount of money, 4, 2, -preferredBase:10
+
+##Changes units affiliation.
+CUSI, 0x2B, 12, -game:FE6 -indexMode:8
+##Character whose affiliation to change.
+	Character, 4, 2
+##Affiliation to change to.
+	Affiliation, 8, 2
+
+#Chapters: 2, 3, 5...
+##Removes character from the map.
+DISA, 0x30, 8, -game:FE6 -indexMode:8
+##Character to remove.
+	Character, 4, 4
+
+##Causes unit to die.
+KILL, 0x31, 8, -game:FE6 -indexMode:8
+	Character, 4, 4
+##Changes the AI of a unit.
+CHAI, 0x32, 12, -game:FE6 -indexMode:8
+##Character whose AI to change.
+	Character, 4, 2
+##Changes AI.
+	AI, 8, 4, -coordinate:4
+
+CHAI, 0x32, 12, -game:FE6 -indexMode:8
+	Character, 4, 2
+##Changes AI.
+	AI 1, 8, 1
+##Changes AI.
+	AI 2, 9, 1
+##Changes AI.
+	AI 3, 10, 1
+##Changes AI.
+	AI 4, 11, 1
+
+CHAI, 0x32, 12, -game:FE6 -indexMode:8
+	Character, 4, 2
+	AI, 8, 4
+
+CHAI, 0x33, 12, -game:FE6 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+	AI, 8, 4, -coordinate:4
+
+CHAI, 0x33, 12, -game:FE6 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+	AI 1, 8, 1
+	AI 2, 9, 1
+	AI 3, 10, 1
+	AI 4, 11, 1
+
+CHAI, 0x33, 12, -game:FE6 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10
+	AI, 8, 4
+
+##Causes a battle between 2 units.
+FIGH, 0x49, 20, -game:FE6 -indexMode:8
+	Attacker, 4, 4
+	Defender, 8, 4
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter 1, 16, 1
+	Battle parameter 2, 17, 1
+	Battle parameter 3, 18, 1
+	Battle parameter 4, 19, 1
+
+FIGH, 0x49, 20, -game:FE6 -indexMode:8
+	Attacker, 4, 4
+	Defender, 8, 4
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter, 16, 4, -coordinate:4
+
+FIGH, 0x49, 20, -game:FE6 -indexMode:8
+	Attacker, 4, 4
+	Defender, 8, 4
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter, 16, 4
+

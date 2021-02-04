@@ -1,0 +1,21 @@
+
+##Shows background.
+BACG, 0x03, 8, -game:FE6 -indexMode:8
+	Background, 4, 2
+
+##Remove text bubbles, backgrounds and portraits
+##and returns to map.
+REMA, 0x05, 4, -game:FE6 -indexMode:8
+
+##Shows text normally.
+TEX1, 0x07, 8, -game:FE6 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+TEXT, 0x07, 8, -game:FE6 -indexMode:8
+	Text ID, 4, 2
+
+##Continues showing text without resetting
+##portaits and text bubbles.
+MORETEXT, 0x08, 8, -game:FE6 -indexMode:8
+	Text ID, 4, 4

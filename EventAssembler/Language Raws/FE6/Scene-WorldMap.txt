@@ -1,0 +1,121 @@
+
+#Chapters: Tutorial, 1, 2...
+##Execute ASM code in world map.
+ASMWORLDMAP, 0x4B, 8, -game:FE6 -indexMode:8
+##Offset of the ASM routine. Thumb routines
+##need to be added 1.
+	Pointer, 4, 4, -pointer:ASM
+
+#Chapters: 1
+##Zoom/nove to position in the larger world map.
+ZOOMTO, 0x4F, 8, -game:FE6 -indexMode:8
+##Position in pixels to move.
+	Coordinates, 4, 4, -coordinates:2 -preferredBase:10
+
+#Chapters: 16
+##Returns to larger world map.
+ZOOMOUT, 0x50, 4, -game:FE6 -indexMode:8
+
+#Chapters: Tutorial
+##Shows a portrait
+SHOWPORTRAIT, 0x51, 16, -game:FE6 -indexMode:8
+##ID of the object on the world map.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position to show the portrait in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Poirtrait to show.
+	Portrait ID, 12, 4
+
+##Removes a map object.
+REMOVE1, 0x52, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4
+
+#Chapters: Tutorial
+TEXTWM, 0x56, 8, -game:FE6 -indexMode:8
+	Text ID, 4, 4
+
+#Chapters: 1
+##Puts text box to bottom of the screen.
+TEXTBOXTOBOTTOM, 0x57, 4, -game:FE6 -indexMode:8
+
+#Chapters: 1
+#Puts text box to top of the screen.
+TEXTBOXTOTOP, 0x58, 4, -game:FE6 -indexMode:8
+
+#Chapters: 1
+##Shows an arrow.
+SHOWARROW, 0x5A, 8, -game:FE6 -indexMode:8
+##Which arrow to show. All arrows are premade.
+	Arrow ID, 4, 2
+##Color of the arrow.
+	Color, 6, 2
+
+#Chapters: Tutorial
+##Highlights a country on the world map.
+HIGHLIGHT, 0x5B, 8, -game:FE6 -indexMode:8
+##Object ID of the highlighting.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 2
+##ID of the country to highlight.
+	Country ID, 6, 2
+
+#Chapters: Tutorial
+##Removes the text box on world map.
+REMOVETEXTBOX, 0x5D, 4, -game:FE6 -indexMode:8
+
+#Chapters: Tutorial
+##Places a highlighted dot on the world map.
+PLACEDOT, 0x5E, 16, -game:FE6 -indexMode:8
+##Map object ID of the dot.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position of the dot in pixels on the world map.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Color of the dot.
+	Color, 12, 4
+
+#Chapters: Tutorial
+##Removes a map object.
+REMOVE2, 0x5F, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4
+
+#Chapters: 1
+##Places a flag on the world map.
+PLACEFLAG, 0x60, 16, -game:FE6 -indexMode:8
+##Map ID of the flag.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position of the flag on the world map in pixels.
+	Position, 8, 4, -coordinates:2 -preferredBase:10
+##Color of the flag.
+	Flag color, 12, 4
+
+#Chapters: 16
+##Removes a map object.
+REMOVE4, 0x61, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4
+
+#Chapters: Tutorial, 1
+##Shows name of a place on the world map. 
+SHOWMAPTEXT, 0x62, 20, -game:FE6 -indexMode:8
+##Map object ID of the text.
+##All items shown at once must have an unique ID.
+	Map object ID, 4, 4
+##Position of the text on the world map in pixels.
+	Text position, 8, 4, -coordinates:2 -preferredBase:10
+##Which places name to show.
+	Place name ID, 12, 4
+##Style of the text.
+	Style, 16, 2
+##Color of the text.
+	Color, 18, 2
+
+#Chapters: Tutorial
+##Removes map object
+REMOVE3, 0x63, 8, -game:FE6 -indexMode:8
+##Map object to remove.
+	Map object ID, 4, 4

@@ -1,0 +1,77 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Sets BGM.
+MUSIC, 0x1220, 4, -game:FE8 -indexMode:8
+	SongId, 2, 2
+
+## Fades to BGM at given speed.
+MUSIC, 0, 32, -game:FE8
+	0x132, 4,  12, -fixed
+	SongId, 16, 16
+	Speed,  0,  4, -preferredBase:10
+
+## Replace BGM with another song temporarily
+MUSIC_REPLACE, 0x1420, 4, -game:FE8 -indexMode:8
+	SongId, 2, 2
+
+## Restore replaced BGM.
+MUSIC_RESTORE, 0x1421, 4, -game:FE8 -indexMode:8
+	Delay, 2, 2, -preferredBase:10
+
+## Make BGM quieter.
+MUSIC_QUIET_T, 0x1520, 4, -game:FE8 -indexMode:8
+
+## Restore BGM volume to normal.
+MUSIC_QUIET_F, 0x1521, 4, -game:FE8 -indexMode:8
+
+## Play an arbitrary sound/song.
+SOUND, 0x1620, 4, -game:FE8 -indexMode:8
+	SongId, 2, 2
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+MUSC, 0x1220, 4, -game:FE8 -indexMode:8
+	Music ID, 2, 2
+
+##Changes music.
+#MUS3, 0x1320, 8, -game:FE8 -indexMode:8
+##Music to change to.
+#	Music ID, 4, 2
+
+#Changes music to the given value?
+#Game always uses it with 0x7FFF (silence)
+MUSCFAST, 0x1322, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+#Another change music
+#Longer fade out time than 1322
+MUSCMID, 0x1324, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+#ANOTHER change music?
+#Even longer fadeout?
+MUSCSLOW, 0x1326, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+MUSS, 0x1420, 4, -game:FE8 -indexMode:8
+	Music ID, 2, 2
+
+MURE, 0x1421, 4, -game:FE8 -indexMode:8
+	Fade out speed, 2, 2
+
+MUSI, 0x1520, 4, -game:FE8 -indexMode:8
+
+MUNO, 0x1521, 4, -game:FE8 -indexMode:8
+
+SOUN, 0x1620, 4, -game:FE8 -indexMode:8
+	Music ID, 2, 2
+
+#Sudden Music Change and doesn't unlock in sound room
+#Doesn't unlock the track in sound room.
+SUDDENMUS, 0x1620, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
