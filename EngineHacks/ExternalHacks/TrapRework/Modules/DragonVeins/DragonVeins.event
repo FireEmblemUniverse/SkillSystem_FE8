@@ -13,9 +13,6 @@
 #define Vein(XX,YY,EffectID, TextID) "BYTE DragonVeinTrapID XX YY EffectID; SHORT TextID"
 #define VeinActivation "EARTHQUAKE_START 0x0; MUSS DragonVeinSFXID; STAL 0x20; FlashWhite; STAL 0xC0; EARTHQUAKE_END; MURE 0x06; STAL 0x40"
 
-
-SetImpassableTrap(DragonVeinTrapID)
-
 SetTrapEventInit(DragonVeinTrapID,VeinInitialization)
 SetTrapMapSprite(DragonVeinTrapID,VeinMapSpriteID)
 SetTrapMapSpritePalette(DragonVeinTrapID,PlayerTrapPaletteWord)
