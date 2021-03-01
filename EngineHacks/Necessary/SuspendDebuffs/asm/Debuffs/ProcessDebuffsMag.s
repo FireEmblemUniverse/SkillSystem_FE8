@@ -22,10 +22,14 @@ add     r3,#0x31
 strb r0, [r3]
 
 @Now the debuffs
-ldr r3, debuffTable
-ldrb r2, [r4, #0xB] @Deployment number
-lsl r2, #0x3
-add r3, r2
+ldr r3, GetUnitDebuffs
+mov r0,r4
+bl BXR3
+mov r3,r0
+@ ldr r3, debuffTable
+@ ldrb r2, [r4, #0xB] @Deployment number
+@ lsl r2, #0x3
+@ add r3, r2
 ldr r2, [r3]
 mov r0, #0x0
 
@@ -75,10 +79,11 @@ strb r0, [ r3, #0x05 ]
 
 @no need to do anything
 ldr r3, ReturnLocation
+BXR3:
 bx r3
 
 .align
 ReturnLocation:
     .long 0x80188E1
-debuffTable:
+GetUnitDebuffs:
     @Handled by installer

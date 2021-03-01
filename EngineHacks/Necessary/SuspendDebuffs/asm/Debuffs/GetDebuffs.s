@@ -14,6 +14,7 @@ ldr r0,[r1,r0]
 @ cmp r0,#0x0
 @ beq End
 
+@remove the two top bits of the deployment number byte
 mov r1,#0x3f
 and r1,r2
 

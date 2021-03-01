@@ -83,30 +83,30 @@ TeamDebuffTables:
 
   ALIGN 4
   setDebuffs:
-    #incbin "asm/Debuffs/SetDebuffs.dmp"
-    WORD DebuffTable
+    #include "asm/Debuffs/SetDebuffs.lyn.event"
+    POIN GetDebuffs|1
     POIN ItemTable
     POIN WeaponDebuffTable
 
   ALIGN 4
   Initialization:
-    #incbin "asm/Debuffs/NewInitializer.dmp"
-    WORD DebuffTable
+    #include "asm/Debuffs/NewInitializer.lyn.event"
+    POIN GetDebuffs|1
 
   ALIGN 4
   Reloading:
-    #incbin "asm/Debuffs/NewReload.dmp"
-    WORD DebuffTable
+    #include "asm/Debuffs/NewReload.lyn.event"
+    POIN GetDebuffs|1
 
   ALIGN 4
   PerTurn:
     #ifndef USE_STRMAG_SPLIT
-      #incbin "asm/Debuffs/ProcessDebuffs.dmp"
-      WORD DebuffTable
-	#else
-	  #incbin "asm/Debuffs/ProcessDebuffsMag.dmp"
-	  WORD DebuffTable
-	#endif // USE_STRMAG_SPLIT
+      #include "asm/Debuffs/ProcessDebuffs.lyn.event"
+      POIN GetDebuffs|1
+    #else
+      #include "asm/Debuffs/ProcessDebuffsMag.lyn.event"
+      POIN GetDebuffs|1
+    #endif // USE_STRMAG_SPLIT
 
   ALIGN 4
   MapMainClearProc:
@@ -123,14 +123,13 @@ TeamDebuffTables:
   }
 
   ClearDebuffs:
-    #incbin "asm/Debuffs/ClearDebuffs.dmp"
+    #include "asm/Debuffs/ClearDebuffs.lyn.event"
     WORD DebuffTable
     WORD DebuffTableSize
 
   GetDebuffs:
     #include "asm/Debuffs/GetDebuffs.lyn.event"
     POIN TeamDebuffTables
-MESSAGE Debuff Table Split at GetDebuffs
 
 #else // _FE8_
   ERROR Suspend Expansion and Debuff hack is for FE8
