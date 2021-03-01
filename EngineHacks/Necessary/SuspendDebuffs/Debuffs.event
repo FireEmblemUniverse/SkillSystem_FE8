@@ -6,6 +6,23 @@
 
 #ifdef _FE8_
 
+TeamDebuffTables:
+  {
+  #define MaxPlayerUnits 62+1
+  #define MaxEnemyUnits 50+1
+  #define MaxGreenUnits 20+1
+  
+  #define PUDebuffTable DebuffTable
+  #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*8)"
+  #define GUDebuffTable "EUDebuffTable + (MaxEnemyUnits*8)"
+  #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*8)"
+  ALIGN 4
+  WORD PUDebuffTable
+  WORD EUDebuffTable
+  WORD GUDebuffTable
+  WORD OUDebuffTable
+  }
+  
   {
 
   PUSH
@@ -109,6 +126,11 @@
     #incbin "asm/Debuffs/ClearDebuffs.dmp"
     WORD DebuffTable
     WORD DebuffTableSize
+
+  GetDebuffs:
+    #include "asm/Debuffs/GetDebuffs.lyn.event"
+    POIN TeamDebuffTables
+MESSAGE Debuff Table Split at GetDebuffs
 
 #else // _FE8_
   ERROR Suspend Expansion and Debuff hack is for FE8
