@@ -17,12 +17,12 @@ prAddEquipSpeed:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSpdBonus)))
 
 prDebuffSpd:
-	#incbin "_asm/DebuffSpd.bin"
-	WORD DebuffTable
+	#include "_asm/DebuffSpd.lyn.event"
+	POIN GetDebuffs|1
 
 prRallySpd:
-	#incbin "_asm/RallySpd.bin"
-	WORD DebuffTable
+	#include "_asm/RallySpd.lyn.event"
+	POIN GetDebuffs|1
 
 prItemPassiveSpeed:
 	rPassiveStatBoosts(STAT_SPEED)

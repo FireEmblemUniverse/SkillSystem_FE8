@@ -38,8 +38,8 @@ prNullifyIfFreeze:
 		rConstant(0)
 
 prRallyMov:
-	#incbin "_asm/RallyMov.bin"
-	WORD DebuffTable
+	#include "_asm/RallyMov.lyn.event"
+	POIN GetDebuffs|1
 
 ALIGN 4
 prAddEquipMov:

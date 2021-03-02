@@ -17,12 +17,12 @@ prAddEquipLuck:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemLckBonus)))
 
 prDebuffLck:
-	#incbin "_asm/DebuffLck.bin"
-	WORD DebuffTable
+	#include "_asm/DebuffLck.lyn.event"
+	POIN GetDebuffs|1
 
 prRallyLck:
-	#incbin "_asm/RallyLck.bin"
-	WORD DebuffTable
+	#include "_asm/RallyLck.lyn.event"
+	POIN GetDebuffs|1
 
 prItemPassiveLuck:
 	rPassiveStatBoosts(STAT_LUCK)

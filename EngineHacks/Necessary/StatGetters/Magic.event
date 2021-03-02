@@ -18,7 +18,7 @@ prAddEquipMagic:
 
 #include "_asm/Mag.lyn.event" // Contains prDebuffMag and prRallyMag
 MagDebuffTableLink:
-WORD DebuffTable
+POIN GetDebuffs|1
 
 prItemPassiveMag:
 	rPassiveStatBoosts(0x09)
