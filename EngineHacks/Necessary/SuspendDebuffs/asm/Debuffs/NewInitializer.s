@@ -11,6 +11,7 @@ mov lr,r3
 @ lsl r1, #0x3                @*8
 @ add r0, r1
 @ mov r1, #0x00
+mov r1, #0x0
 str r1, [r0]                @Clear out the first eight bytes
 str r1, [r0, #0x4]
 

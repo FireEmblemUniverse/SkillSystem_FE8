@@ -29,7 +29,7 @@ bx r2
 .align
 ApplyDebuffs:
 @First apply own debuffs
-push {r4-r7}
+push {r4-r7,lr}
 mov r4, r0          @r4 = one to update
 mov r5, r1          @r5 = other
 
@@ -161,7 +161,8 @@ orr r0, r2
 str r0, [r6]        @store new debuffs
 noHit:
 pop {r4-r7}
-bx lr
+pop {r0}
+bx r0
 
 .align
 EALiterals:

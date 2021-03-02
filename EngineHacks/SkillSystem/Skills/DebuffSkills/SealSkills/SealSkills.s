@@ -1,14 +1,14 @@
 @hook at 802c088 with jumptohack
 .thumb
 .equ SealSkillList, SkillTester+4
-.equ ExtraDataLocation, SealSkillList+4
-.equ ItemTableLocation, ExtraDataLocation+4 @dont forget to add this to the master skill installer
+.equ ExtraUnitData, SealSkillList+4
+.equ ItemTableLocation, ExtraUnitData+4 @dont forget to add this to the master skill installer
 .equ FullMetalBodyID, ItemTableLocation+4
 .equ DebuffTableLocation, FullMetalBodyID+4
 .equ DebuffAmount, 6
 
 mov r1,r5
-ldr r3, =0x802c1ec
+ldr r3, =0x802c1ec @UpdateUnitFromBattleUnit
 mov lr, r3
 .short 0xf800
 cmp r6, #0
@@ -16,13 +16,13 @@ beq loc_2c0a4
 
 mov r0, r6
 mov r1, r4
-ldr r3, =0x802c1ec
+ldr r3, =0x802c1ec @UpdateUnitFromBattleUnit
 mov lr, r3
 .short 0xf800
 b ApplySeals
 
 loc_2c0a4:
-ldr r0, =0x802c984
+ldr r0, =0x802c984 @SaveSnagWallFromBattle
 mov lr, r0
 mov r0, r4
 .short 0xf800
@@ -116,10 +116,13 @@ push {r4-r7, lr}
 mov r4, r0
 mov r5, r1
 mov r6, r2
-ldr r7, ExtraDataLocation
-ldrb r0, [r4, #0xB]
-lsl r0, #0x3        @8 bytes per unit
-add r7, r0          @r7 = &extra data
+ldr r3, ExtraUnitData
+bl BXR3
+mov r7,r0
+@ ldr r7, ExtraDataLocation
+@ ldrb r0, [r4, #0xB]
+@ lsl r0, #0x3        @8 bytes per unit
+@ add r7, r0          @r7 = &extra data
 @ Okay right here let's see if it's trying to apply a magic debuff
 cmp r6, #0x06
 bne ApplyDebuffNotMag
@@ -166,14 +169,17 @@ pop {r4-r7,pc}
 
 ApplyWeaponDebuffs:
 @First apply own debuffs
-push {r4-r7}
+push {r4-r7,lr}
 mov r4, r0          @r4 = one to update
 mov r5, r1          @r5 = other
 
-ldr r6, ExtraDataLocation
-ldrb r0, [r4, #0xB]
-lsl r0, #0x3        @8 bytes per unit
-add r6, r0          @r6 = &extra data
+ldr r3, ExtraUnitData
+bl BXR3
+mov r6, r0
+@ ldr r6, ExtraDataLocation
+@ ldrb r0, [r4, #0xB]
+@ lsl r0, #0x3        @8 bytes per unit
+@ add r6, r0          @r6 = &extra data
 
 mov r0, #0x48       @Equipped item after battle
 ldrh r0, [r4, r0]   
@@ -330,12 +336,16 @@ strb r0, [ r6, #0x05 ] @ Store new mag extra byte.
 
 noHit:
 pop {r4-r7}
-bx lr
+pop {r3}
+BXR3:
+bx r3
 
 .align
 .ltorg
 SkillTester:
 @POIN SkillTester
 @POIN SealSkillList (str/skl/spd/def/res/luk)
-@WORD ExtraDataLocation
+@POIN ExtraUnitData
+@POIN ItemTableLocation
 @WORD FullMetalBodyID
+@POIN DebuffTableLocation
