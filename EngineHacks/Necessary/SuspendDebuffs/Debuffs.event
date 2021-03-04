@@ -6,6 +6,23 @@
 
 #ifdef _FE8_
 
+TeamDebuffTables:
+  {
+  #define MaxPlayerUnits 62+1
+  #define MaxEnemyUnits 50+1
+  #define MaxGreenUnits 20+1
+  
+  #define PUDebuffTable DebuffTable
+  #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*8)"
+  #define GUDebuffTable "EUDebuffTable + (MaxEnemyUnits*8)"
+  #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*8)"
+  ALIGN 4
+  WORD PUDebuffTable
+  WORD EUDebuffTable
+  WORD GUDebuffTable
+  WORD OUDebuffTable
+  }
+  
   {
 
   PUSH
@@ -66,30 +83,30 @@
 
   ALIGN 4
   setDebuffs:
-    #incbin "asm/Debuffs/SetDebuffs.dmp"
-    WORD DebuffTable
+    #include "asm/Debuffs/SetDebuffs.lyn.event"
+    POIN GetDebuffs|1
     POIN ItemTable
     POIN WeaponDebuffTable
 
   ALIGN 4
   Initialization:
-    #incbin "asm/Debuffs/NewInitializer.dmp"
-    WORD DebuffTable
+    #include "asm/Debuffs/NewInitializer.lyn.event"
+    POIN GetDebuffs|1
 
   ALIGN 4
   Reloading:
-    #incbin "asm/Debuffs/NewReload.dmp"
-    WORD DebuffTable
+    #include "asm/Debuffs/NewReload.lyn.event"
+    POIN GetDebuffs|1
 
   ALIGN 4
   PerTurn:
     #ifndef USE_STRMAG_SPLIT
-      #incbin "asm/Debuffs/ProcessDebuffs.dmp"
-      WORD DebuffTable
-	#else
-	  #incbin "asm/Debuffs/ProcessDebuffsMag.dmp"
-	  WORD DebuffTable
-	#endif // USE_STRMAG_SPLIT
+      #include "asm/Debuffs/ProcessDebuffs.lyn.event"
+      POIN GetDebuffs|1
+    #else
+      #include "asm/Debuffs/ProcessDebuffsMag.lyn.event"
+      POIN GetDebuffs|1
+    #endif // USE_STRMAG_SPLIT
 
   ALIGN 4
   MapMainClearProc:
@@ -106,9 +123,13 @@
   }
 
   ClearDebuffs:
-    #incbin "asm/Debuffs/ClearDebuffs.dmp"
+    #include "asm/Debuffs/ClearDebuffs.lyn.event"
     WORD DebuffTable
     WORD DebuffTableSize
+
+  GetDebuffs:
+    #include "asm/Debuffs/GetDebuffs.lyn.event"
+    POIN TeamDebuffTables
 
 #else // _FE8_
   ERROR Suspend Expansion and Debuff hack is for FE8

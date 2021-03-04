@@ -8,10 +8,10 @@ POP
 
 ALIGN 4
 SealSkills:
-#incbin "SealSkills/SealSkills.dmp"
+#include "SealSkills/SealSkills.lyn.event"
 POIN SkillTester
 POIN SealSkillList
-WORD DebuffTable
+POIN GetDebuffs|1
 POIN ItemTable
 WORD FullMetalBodyID
 POIN WeaponDebuffTable

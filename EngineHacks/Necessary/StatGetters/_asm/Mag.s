@@ -16,12 +16,17 @@ prDebuffMag:
 push { r4 - r6, lr }
 mov r5, r0 @ Stat
 mov r4, r1 @ Unit ... @ Are the comments for the other debuff functions wrong...?
+
+mov r0,r4
 ldr r6, =MagDebuffTableLink
 ldr r6, [ r6 ]
-@ Get the magic debuff from the bottom 4 bits of byte 5 of the debuff table.
-ldrb r0, [ r4, #0x0B ] @ Allegiance byte.
-lsl r0, r0, #0x03 @ Multipy by 8.
-add r6, r0, r6 @ r6 = this DebuffTable entry.
+mov lr, r6
+.short 0xF800
+mov r6, r0
+@ @ Get the magic debuff from the bottom 4 bits of byte 5 of the debuff table.
+@ ldrb r0, [ r4, #0x0B ] @ Allegiance byte.
+@ lsl r0, r0, #0x03 @ Multipy by 8.
+@ add r6, r0, r6 @ r6 = this DebuffTable entry.
 
 @Mag/2 Debuff NOTE TO SELF: off of base only.
 ldr r2, [r6, #0x4]
@@ -47,11 +52,15 @@ prRallyMag:
 push { r4 - r6, lr }
 mov r5, r0 @ Stat
 mov r4, r1 @ Unit
+mov r0,r4
 ldr r6, =MagDebuffTableLink
 ldr r6, [ r6 ]
-ldrb r0, [ r4, #0x0B ] @ Allegiance byte.
-lsl r0, r0, #0x03 @ Multipy by 8.
-add r6, r0, r6 @ r6 = this DebuffTable entry.
+mov lr, r6
+.short 0xF800
+mov r6, r0
+@ ldrb r0, [ r4, #0x0B ] @ Allegiance byte.
+@ lsl r0, r0, #0x03 @ Multipy by 8.
+@ add r6, r0, r6 @ r6 = this DebuffTable entry.
 @ Rally mag is at the 5th byte at the 5th bit
 ldrb r0, [ r6, #0x05 ]
 mov r1, #0x10 @ 10000b
