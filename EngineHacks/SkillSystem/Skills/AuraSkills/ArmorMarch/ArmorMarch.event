@@ -20,7 +20,7 @@ POIN AuraSkillCheck
 WORD ArmorMarchID
 POIN GetDebuffs // WORD DebuffTable
 WORD ArmorMarchBit
-WORD 8 //size of a debuff table entry
+// WORD 8 //size of a debuff table entry
 POIN SkillTester
 POIN ArmorMarchList //list of classes that should be affected by armor march
 POIN IndoorTerrainList

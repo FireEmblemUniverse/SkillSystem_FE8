@@ -1,8 +1,7 @@
 .equ ArmorMarchID, AuraSkillCheck+4
 .equ DebuffTable, ArmorMarchID+4
 .equ ArmorMarchBit, DebuffTable+4
-.equ EntrySize, ArmorMarchBit+4
-.equ SkillTester, EntrySize+4
+.equ SkillTester, ArmorMarchBit+4
 .equ ArmorMarchList, SkillTester+4
 .thumb
 
@@ -222,6 +221,5 @@ AuraSkillCheck:
 @WORD ArmorMarchID
 @POIN DebuffTable
 @WORD ArmorMarchBit
-@WORD EntrySize
 @POIN SkillTester
 @POIN ArmorMarchList
