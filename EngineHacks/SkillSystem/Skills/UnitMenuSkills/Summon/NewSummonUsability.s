@@ -7,7 +7,6 @@
 .equ gActiveUnit,0x3004E50
 .equ ListSummonTargets,0x8025CA5
 .equ GetTargetListSize,0x804FD29
-.equ gSummonCharIdConfig_maybe,0x895F5A4
 .equ GetUnit,0x8019431
 
 .macro blh to, reg=r3
@@ -37,6 +36,9 @@ beq ReturnFalse
 
 
 @vanilla summon flag check
+ldr r5,=gActiveUnit
+ldr r2,[r5]
+
 ldr r0,[r2]
 ldr r1,[r2,#4]
 ldr r0,[r0,#0x28]
@@ -64,11 +66,12 @@ cmp r0,#0
 beq ReturnFalse
 
 @summon char ID config check
-ldr r4,=#0xFFFF
+ldr r4,=0xFFFF
 mov r2,#0
 ldr r0,[r5]
 ldr r0,[r0]
-ldr r1,=gSummonCharIdConfig_maybe
+ldr r1,=0x0802442C
+ldr r1,[r1]   @Get SummonTable
 ldrb r0,[r0,#4]
 mov r3,r1
 ldrb r1,[r3]
@@ -84,7 +87,7 @@ b GoBack
 .ltorg
 
 AltRetTrueCondition:
-ldr r0,=#0xFFFEFFF3
+ldr r0,=0xFFFEFFF3
 and r1,r0
 str r1,[r2,#0xC]
 b ReturnTrue
@@ -118,7 +121,9 @@ b ReturnFalse
 ExistingPhantomCheck:
 mov r4,#1
 lsl r1,#1
-ldr r0,=#0x895F5A5
+ldr r0,=0x0802442C
+ldr r0,[r0]   @Get SummonTable
+add r0,#0x1   @SummonTable+1
 add r5,r1,r0
 GetSummonUnit:
 mov r0,r4
@@ -136,7 +141,7 @@ ldrb r1,[r5]
 cmp r0,r1
 bne CheckNextUnit
 ldr r1,[r2,#0xC]
-ldr r0,=#0x1000C
+ldr r0,=0x1000C
 and r0,r1
 cmp r0,#0
 bne AltRetTrueCondition
