@@ -8,7 +8,7 @@
 SkillActivationChanceCalcLoopFunc: @ r0 is chance, r1 is user
 push {r4-r6}
 mov r4,r0 @r4 = chance
-mov r5,r0 @r5 = user
+mov r5,r1 @r5 = user
 
 cmp r1,#0
 beq GoBack
@@ -22,7 +22,7 @@ mov r14,r0
 mov r0,r4
 mov r1,r5
 .short 0xF800
-mov r5,r0
+mov r4,r0
 add r6,#4
 b LoopStart
 
