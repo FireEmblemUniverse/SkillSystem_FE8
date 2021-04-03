@@ -1,0 +1,118 @@
+
+#ifdef DRAGON_VEINS
+
+//Dragon Veins by Crazycolorz5 with additions from circleseverywhere
+//Converted to Trap Rework by Sme
+
+#define VeinMapSpriteID 0x67
+#define DragonVeinSFXID 0x57
+#define DragonVeinTrapID 0x6
+
+#define VeinEffect(id, event) "PUSH; ORG DragonVeinEffectTableOffset + (4 * id); POIN event; POP"
+#define Vein(XX,YY,EffectID) "BYTE DragonVeinTrapID XX YY EffectID 0x0 0x0"
+#define Vein(XX,YY,EffectID, TextID) "BYTE DragonVeinTrapID XX YY EffectID; SHORT TextID"
+#define VeinActivation "EARTHQUAKE_START 0x0; MUSS DragonVeinSFXID; STAL 0x20; FlashWhite; STAL 0xC0; EARTHQUAKE_END; MURE 0x06; STAL 0x40"
+
+SetTrapEventInit(DragonVeinTrapID,VeinInitialization)
+SetTrapMapSprite(DragonVeinTrapID,VeinMapSpriteID)
+SetTrapMapSpritePalette(DragonVeinTrapID,PlayerTrapPaletteWord)
+
+ALIGN 4
+DragonVeinEffectTableOffset:
+ORG currentOffset+(256*4)
+
+
+//install map sprite
+PUSH
+	ORG (0x8AF880+0x8*VeinMapSpriteID)
+      SHORT 0x0002
+      SHORT 0x0000
+      POIN VeinGraphics
+    ORG $2e444 //prevent suspend from breaking the game
+      SHORT 0
+POP
+
+
+ALIGN 4
+VeinInitialization:
+#incbin "asm/Initialize.dmp"
+
+ALIGN 4
+VeinGraphics:
+#incbin "bin/sparkle_final_4_Sheet.dmp"
+
+
+PUSH
+  ORG $8cce4
+    jumpToHack(VeinTextBox)
+
+  ORG $8c360
+    jumpToHack(VeinHPFix)
+
+  ORG $8c51c
+    jumpToHack(VeinHPFix2)
+POP
+
+ALIGN 4
+VeinHPFix:
+  #incbin "asm/hpfix.dmp"
+
+ALIGN 4
+VeinHPFix2:
+  #incbin "asm/hpfix2.dmp"
+
+ALIGN 4
+VeinTextBox:
+  #incbin "asm/dv_display.dmp"
+
+
+
+ALIGN 4
+DragonVeinSFXData:
+  #incbin "bin/DragonVeinSFX.dmp"
+
+DragonVeinSFX:
+  WORD $1 //Dunno what this is, but leave it
+  POIN DragonVeinVoicemap
+  POIN DragonVeinSFXData
+
+DragonVeinVoicemap:
+  WORD $3c00
+  POIN DragonVeinWav
+  WORD $FF00FF
+
+DragonVeinWav:
+  #incbin "bin/DragonVein_wav.dmp"
+
+#ifndef SongTableOffset
+    #define SongTableOffset 0x224470
+    #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+  #endif // SongTableOffset
+
+SongTable(DragonVeinSFXID,DragonVeinSFX,7)
+
+#ifdef DRAGON_VEIN_SKILL_REQUIRED
+  VeinUsability:
+    #incbin "asm/DragonVeinUsability.dmp"
+    WORD DragonVeinTrapID
+    POIN SkillTester
+    WORD DragonsBloodID
+  #endif
+
+  #ifndef DRAGON_VEIN_SKILL_REQUIRED
+  VeinUsability:
+    #incbin "asm/DragonVeinUsabilityNoSkill.dmp"
+    WORD DragonVeinTrapID
+    POIN SkillTester
+    WORD DragonsBloodID
+  #endif
+
+
+
+  VeinEffect:
+    #incbin "asm/DragonVeinExecution.dmp"
+    POIN DragonVeinEffectTableOffset
+
+
+#endif // DRAGON_VEINS
+

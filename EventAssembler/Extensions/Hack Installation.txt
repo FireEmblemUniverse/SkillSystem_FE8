@@ -1,0 +1,76 @@
+#ifndef HACK_INSTALLATION
+#define HACK_INSTALLATION
+
+#define B(pointer) "SHORT ((((pointer - CURRENTOFFSET - 4) >> 1)&0x7ff)|0xE000)"
+#define BLRange(pointer) "((pointer - CURRENTOFFSET - 4)>>1)"
+#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
+
+//#define AlignWithNop "MESSAGE attempting alignwithnop; Switch((currentOffset>>1)&0x1+1, "BYTE 0x00 0x00")"
+
+//These all must be 4-aligned
+//New names
+//Takes 0x14 bytes
+#define replaceWithHack(offset) "BYTE 0x10 0xB5 0x03 0x4C 0x00 0xF0 0x03 0xF8 0x10 0xBC 0x02 0xBC 0x08 0x47 0x20 0x47; POIN (offset|0x1)"
+
+//Takes 0xC bytes
+#ifdef _FE8_
+	#define callHack_r0(offset) "SHORT 0x4801; BL(0xD18C0); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r1(offset) "SHORT 0x4901; BL(0xD18C4); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xD18C8); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xD18CC); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r4(offset) "SHORT 0x4C01; BL(0xD18D0); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xD18D4); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xD18D8); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xD18DC); SHORT 0xE001; POIN (offset|0x1)"
+#endif
+
+#ifdef _FE7_
+#ifndef _FE7J_
+	#define callHack_r0(offset) "SHORT 0x4801; BL(0xBFC4C); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r1(offset) "SHORT 0x4901; BL(0xBFC50); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xBFC54); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xBFC58); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r4(offset) "SHORT 0x4C01; BL(0xBFC5C); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xBFC60); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xBFC64); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xBFC68); SHORT 0xE001; POIN (offset|0x1)"
+#endif
+#endif
+
+#ifdef _FE7J_
+	#define callHack_r0(offset) "SHORT 0x4801; BL(0xC0790); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r1(offset) "SHORT 0x4901; BL(0xC0794); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xC0798); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xC079C); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r4(offset) "SHORT 0x4C01; BL(0xC07A0); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xC07A4); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xC07A8); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xC07AC); SHORT 0xE001; POIN (offset|0x1)"
+#endif
+
+#ifdef _FE6_
+	#define callHack_r0(offset) "SHORT 0x4801; BL(0x9DF10); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r1(offset) "SHORT 0x4901; BL(0x9DF14); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r2(offset) "SHORT 0x4A01; BL(0x9DF18); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0x9DF1C); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r4(offset) "SHORT 0x4C01; BL(0x9DF20); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r5(offset) "SHORT 0x4D01; BL(0x9DF24); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r6(offset) "SHORT 0x4E01; BL(0x9DF28); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r7(offset) "SHORT 0x4F01; BL(0x9DF2C); SHORT 0xE001; POIN (offset|0x1)"
+#endif
+
+//Takes 0x8 bytes
+#define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+
+//Old names
+#define gotoHack(offset) "replaceWithHack(offset)"
+#define gotoHackWithR3(offset) "callHack_r3(offset)"
+
+#define setTableByte(tableOffset, entrySize, entryNumber, entryOffset, byte) "ORG (tableOffset+entrySize*entryNumber+entryOffset); BYTE byte"
+#define setTableShort(tableOffset, entrySize, entryNumber, entryOffset, short) "ORG (tableOffset+entrySize*entryNumber+entryOffset); SHORT short"
+#define setTableWord(tableOffset, entrySize, entryNumber, entryOffset, word) "ORG (tableOffset+entrySize*entryNumber+entryOffset); WORD word"
+#define setTablePointer(tableOffset, entrySize, entryNumber, entryOffset, poin) "ORG (tableOffset+entrySize*entryNumber+entryOffset); POIN poin"
+
+#define setPointerTableEntry(tableOffset, entryNumber, poin) "setTablePointer(tableOffset, 0x4, entryNumber, 0x0, poin)"
+
+#endif

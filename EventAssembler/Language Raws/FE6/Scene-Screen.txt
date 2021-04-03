@@ -1,0 +1,25 @@
+
+##Halts event execution for a while.
+##Things like unit movement, animations
+##and others continue normally while stalled.
+STAL, 0x02, 8, -game:FE6 -repeatable -indexMode:8
+	Time to stall, 4, 4, -preferredBase:10
+
+##Fades in to dark.
+FADI, 0x43, 8, -game:FE6 -indexMode:8
+	Fade time, 4, 2, -preferredBase:10
+
+##Fades out of dark.
+FADU, 0x44, 8, -game:FE6 -indexMode:8
+	Fade time, 4, 2, -preferredBase:10
+
+FAWI, 0x45, 8, -game:FE6 -indexMode:8
+	Fade time, 4, 4
+
+FAWU, 0x46, 8, -game:FE6 -indexMode:8
+	Fade time, 4, 4
+
+HIDEMAP, 0x47, 4, -game:FE6 -indexMode:8
+
+SHOWMAP, 0x48, 4, -game:FE6 -indexMode:8
+

@@ -1,0 +1,177 @@
+//ifndef guards
+#ifndef TABLE_DEFINITIONS
+
+#define TABLE_DEFINITIONS
+
+#ifndef CharacterTable
+    #define CharacterTable 0x803D30
+#endif
+#ifndef ClassTable
+  #define ClassTable 0x807110
+#endif
+#ifndef ItemTable
+  #define ItemTable 0x809B10
+#endif
+#ifndef DebuffTable
+  #define DebuffTable 0x203f100
+#endif
+//#ifndef PersonalMusicTable
+  //#define PersonalMusicTable 0x758a60
+//#endif
+
+
+//Weapon Ranks
+#define NoRank 0
+#define ERank 1
+#define DRank 31
+#define CRank 71
+#define BRank 121
+#define ARank 181
+#define SRank 251
+
+//Weapon Ability
+#define IsWeapon 0x00000001
+#define IsMagic 0x00000002
+#define IsStaff 0x00000004
+#define Indestructible 0x00000008
+#define Unsellable 0x00000010
+#define IsBrave 0x00000020
+#define MagicDamage 0x00000040
+#define Uncounterable 0x00000080
+#define ReverseTriangle 0x00000100
+#define CannotRepair 0x00000200
+#define MonsterWeapon 0x00000400
+#define WeaponLock1 0x00000800
+#define SwordmasterLock 0x00001000
+#define WeaponLock2 0x00002000
+#define NegateFlyingEffectiveness 0x00004000
+#define NegateCriticals 0x00008000
+#define CannotUse 0x00010000
+#define NegateDef 0x00020000
+#ifdef _FE8_
+  #define EirikaLock 0x00040000
+  #define EphraimLock 0x00080000
+  #define WeaponLock3 0x00100000
+  #define WeaponLock4 0x00200000
+#endif
+#ifdef _FE7_
+  #define EliwoodLock 0x00040000
+  #define HectorLock 0x00080000
+  #define LynLock 0x00100000
+  #define AthosLock 0x00200000
+#endif
+
+// Weapon Effect
+#define NoEffect 0x0
+#define PoisonEffect 0x1
+#define NosferatuEffect 0x2
+#define EclipseEffect 0x3
+#define DevilEffect 0x4
+#define StoneEffect 0x5
+#define CannotDoubleEffect 0xC
+
+//Character/Class Ability
+#define MountedAid 0x00000001
+#define HasCanto 0x00000002
+#define Steal 0x00000004
+#define CanUseLockpick 0x00000008
+#define CanDance 0x00000010
+#define CanPlay 0x00000020
+#define CritBoost 0x00000040
+#define UseBallista 0x00000080
+#define IsPromoted 0x00000100
+#define IsSupply 0x00000200
+#define HorseIcon 0x00000400
+#define DragonIcon 0x00000800
+#define PegIcon 0x00001000
+#define IsLord 0x00002000
+#define IsFemale 0x00004000
+#define IsBoss 0x00008000
+#define SwordmasterUnlock 0x00020000
+#define UseMonsterWeapons 0x00040000
+#ifdef _FE7_
+  #define Morph 0x00080000
+#endif
+#ifdef _FE8_
+  #define TraineeLevelCap 0x00080000
+#endif
+#define CannotControl 0x00100000
+#define TriangleAttack 0x00200000
+#define TriangleAttack2 0x00400000
+#define DecrementIDAfterLoad 0x00800000
+#define GiveNoExp 0x01000000
+#define Lethality 0x02000000
+#define IsMagicSeal 0x04000000
+#ifdef _FE7_
+  #define DropLastItem 0x08000000
+  #define UnlockEliwood 0x10000000
+  #define UnlockHector 0x20000000
+  #define UnlockLyn 0x40000000
+  #define UnlockAthos 0x80000000
+#endif
+#ifdef _FE8_
+  #define Summoning 0x08000000
+  #define UnlockEirika 0x10000000
+  #define UnlockEphraim 0x20000000
+  #define UnlockLock3 0x40000000
+  #define UnlockLock4 0x80000000
+#endif
+
+// Affinity
+#define NoAffinity 0
+#define FireAffinity 1
+#define ThunderAffinity 2
+#define WindAffinity 3
+#define IceAffinity 4
+#define DarkAffinity 5
+#define LightAffinity 6
+#define AnimaAffinity 7
+
+#define negateByte(byte) "0x100-byte"
+#define IsPointer 0x8000000
+
+  #define defWTAAdvantage(attackingType, defendingType) "BYTE attackingType defendingType"//"BYTE attackingType defendingType 0x0F 0x01"
+  #define defWTADisadvantage(attackingType, defendingType) "BYTE defendingType attackingType" //"BYTE attackingType defendingType 0xF1 0xFF"
+  #define endWTATable "BYTE 0xFF 0xFF"
+
+  #define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
+  #define defWeaponDebuffs(str, skl, spd, luk, def, res, mag) "BYTE (str|(skl<<4)) (spd|(def<<4)) (res|(luk<<4)) mag"
+
+  // Higher bit debuff definitions for use in the item table debuff table index byte
+  #define SilverDebuff 0x20
+  #define HalveMag 0x40 // Requires Str/Mag Split for functionality
+  #define HalveStr 0x80
+  // Use in conjunction with debuff table entry with orr operations
+    // (Debuff table entries max at 0x1F)
+
+// ######################################################################
+//Relating to Tequila's slayer/effectiveness rework
+//Used in the class editor and item editor tables
+//To understand how this works, check out Engine Hacks/Skill System/Teq Skills/FE8-Nullify/_README.txt
+#define ArmorType	0x01
+#define HorseType	0x02
+#define FlierType	0x04
+#define DragonType	0x08
+#define MonsterType	0x10
+#define SwordType	0x20
+
+//Status Effects
+#define NoStatusID 0
+#define PoisonStatusID 1
+#define SleepStatusID 2
+#define SilenceStatusID 3
+#define BerserkStatusID 4
+#define AtkRingStatusID 5
+#define DefRingStatusID 6
+#define CritRingStatusID 7
+#define AvoRingStatusID 8
+#define SickStatusID 9
+#define PetrifyStatusID 13
+
+//for setting what status effect 
+//status staves will give 
+#define ItemStatus(StatusID,Duration) "StatusID | (Duration << 4)"
+
+#endif
+
+#include "ExternalTables.event"

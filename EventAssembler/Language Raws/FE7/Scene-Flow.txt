@@ -1,0 +1,99 @@
+
+ENDA, 0x0A, 8, -game:FE7 -end -indexMode:8
+
+## Ends the starting event and goes to chapter
+## preparations screen.
+ENDB, 0x0B, 8, -game:FE7 -end -indexMode:8
+
+ASMC, 0x3E, 8, -game:FE7 -repeatable -indexMode:8
+	Offset, 4, 4, -pointer:ASM
+
+LABEL, 0x44, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+GOTO, 0x45, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+GOTO_IFAT, 0x48, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+GOTO_IFAF, 0x49, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	ASM routine pointer, 8, 4, -pointer:ASM
+
+GOTO_IFET, 0x4C, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Event ID, 8, 2
+
+GOTO_IFEF, 0x4D, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Event ID, 8, 2
+
+## Branch if character is not active.
+GOTO_IFCNA, 0x4E, 12, -game:FE7 -indexMode:8
+	Unknown, 2, 2
+	Conditional ID, 4, 4
+	Character, 8, 2
+
+## Branches if not hector mode
+GOTO_IFNHM, 0x4F, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+## Branches if not eliwood mode
+GOTO_IFNEM, 0x50, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+## Executes events if based on previous convos
+## Yes/No choice.
+GOTO_IFNO, 0x52, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+## Executes events if based on previous convos
+## Yes/No choice.
+GOTO_IFYES, 0x53, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+## Jumps if not tutorial mode
+GOTO_IFNTUTORIAL, 0x54, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+## Branch if character is living (not dead)
+GOTO_IFCL, 0x55, 16, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Character, 8, 2
+	0, 12, 2, -fixed
+
+GOTO_IFCL, 0x55, 16, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Character, 8, 2
+	Dunno, 12, 2
+
+## Branches if it's given turn or after
+GOTO_IFTU, 0x56, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Turn, 2, 2, -preferredBase:10
+
+##Branch if unit is not fielded.
+GOTO_IFNUF, 0x57, 12, -game:FE7 -indexMode:8
+	Unknown, 2, 2
+	Conditional ID, 4, 2
+	Character, 8, 2
+
+## Makes event execution move to offset,
+## but not return after executing it.
+JUMP, 0x58, 8, -game:FE7 -indexMode:8
+	Event pointer, 4, 4, -pointer:none	
+
+MNCH, 0x81, 4, -game:FE7 -indexMode:8
+	Chapter ID, 2, 2
+
+THE_END, 0x82, 4, -game:FE7 -indexMode:8
+
+## Ends Lyn mode
+LYN_END, 0x83, 4, -game:FE7 -indexMode:8
+
+## Makes event execution move to offset,
+## then return back after executing the event.
+CALL, 0xCB, 8, -game:FE7 -indexMode:8
+	Event pointer, 4, 4, -pointer:none

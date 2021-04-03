@@ -1,0 +1,18 @@
+
+#include "CanUnitDoubleCalcLoop.lyn.event"
+
+PUSH
+ORG $2AF94
+jumpToHack(CanUnitDoubleCalcLoopFunc)
+POP
+
+DoublingThresholdLink:
+BYTE AS_DOUBLING_THRESHOLD
+
+ALIGN 4
+CanUnitDoubleCalcLoop: //r0 = attacker unit ptr, r1 = defender unit ptr, r2 = AS check result; return 0 for forcing unable to double, 1 for forcing able to double, 2 for keeping AS result/no change
+POIN IsDefenderSnag IsAttackerEclipsing IsAttackerUsingStone //vanilla checks externalized to here
+POIN IsAttackerWeaponUnableToDouble //makes weapon effect 0xC make it unable to double
+POIN WaryFighter MoonlightDoublingFunc //skills
+POIN CombatArtsRestrictDoubling
+WORD 0 //terminator

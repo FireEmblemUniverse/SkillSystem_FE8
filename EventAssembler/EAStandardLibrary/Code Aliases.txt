@@ -1,0 +1,48 @@
+/*
+
+This file contains alias definitions for various raws.
+It won't be included if EA_STDLIB_STRICT is defined.
+
+*/
+
+#ifdef _FE7_
+
+// noskip
+#define NSSP NEVENTS
+#define NCSP NCONVOS
+
+#endif // _FE7_
+
+#ifdef _FE8_
+
+// old slot value setters
+#define SETVAL SVAL
+#define SMOV SVAL
+
+// alt/old slot operations
+#define SLOTS_ADD SADD
+#define SLOTS_SUB SSUB
+#define SLOTS_MUL SMUL
+#define SLOTS_DIV SDIV
+#define SLOTS_AND SAND
+#define SLOTS_ORR SORR
+#define SLOTS_XOR SXOR
+#define SLOTS_LEFTSHIFT SLSL
+#define SLOTS_RIGHTSHIFT SLSR
+
+// old slot queue manipulators
+#define SLOTS_SETFROMQUEUE SDEQUEUE
+#define SAVETOQUEUE SENQUEUE
+#define STQFROMSLOT SENQUEUE
+
+// FE6/7-friendly branch aliases
+#define GOTO_IFNE BNE
+#define GOTO_IFEQ BEQ
+#define GOTO_IFLE BLE
+#define GOTO_IFLT BLT
+#define GOTO_IFGT BGT
+#define GOTO_IFGE BGE
+
+#define INVIS REMU
+
+#endif // _FE8_

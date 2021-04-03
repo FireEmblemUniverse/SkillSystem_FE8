@@ -1,0 +1,119 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+HIDEMAP, 0x2320, 4, -game:FE8 -indexMode:8
+
+SHOWMAP, 0x2420, 4, -game:FE8 -indexMode:8
+
+LOADMAP, 0x2520, 4, -game:FE8 -indexMode:8
+	ChapterId, 2, 2, -preferredBase:10
+
+## Moves camera such that given position is visible
+CAMERA, 0x2620, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+## Moves camera such that given character is visible
+CAMERA, 0x2621, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+## Moves camera such that position in sB is visible
+CAMERA_SB, 0x2620, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Centers camera on given position
+CAMERA_CENTERED, 0x2628, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+## Centers camera on given character
+CAMERA_CENTERED, 0x2629, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+## Centers camera on position in sB
+CAMERA_CENTERED_SB, 0x2628, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+TILECHANGE, 0x2720, 4, -game:FE8 -indexMode:8
+	MapChangeId, 2, 2, -preferredBase:10
+
+TILEREVERT, 0x2721, 4, -game:FE8 -indexMode:8
+	MapChangeId, 2, 2, -preferredBase:10
+
+WEATHER, 0x2820, 4, -game:FE8 -indexMode:8
+	WeatherId, 2, 2, -preferredBase:10
+
+FOGVISION, 0x2920, 4, -game:FE8 -indexMode:8
+	Vision, 2, 2, -preferredBase:10
+
+## Display cursor sprite on given position
+CURSOR, 0x3B20, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+## Display cursor sprite on position in sB
+CUSOR_SB, 0x3B20, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Display cursor sprite on unit corresponding to given character
+CURSOR, 0x3B21, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+## Removes every displayed cursor sprites
+REMOVE_CURSORS, 0x3B22, 4, -game:FE8 -indexMode:8
+
+## Display flashing cursor sprite on given position
+CURSOR_FLASHING, 0x3B24, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+## Display flashing cursor sprite on position in sB
+CURSOR_FLASHING_SB, 0x3B24, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Display flashing cursor sprite on unit corresponding to given character
+CURSOR_FLASHING, 0x3B25, 4, -game:FE8 -indexMode:8
+	CharId, 2, 2
+
+## Gets player cursor position in sC
+CHECK_CURSOR, 0x3C20, 4, -game:FE8 -indexMode:8
+
+## Sets player cursor position
+SET_CURSOR, 0x3C21, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+## Sets player cursor position to value of sB
+SET_CURSOR_SB, 0x3C21, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+LOMA, 0x2520, 4, -game:FE8 -indexMode:8
+	Chapter ID, 2, 1
+
+CAM1, 0x2628, 4, -game:FE8 -indexMode:8
+	Position, 2, 2, -coordinates:2 -preferredBase:10
+
+CAM1, 0x2621, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+TILEREVERSE, 0x2721, 4, -game:FE8 -indexMode:8
+	MapChangeId, 2, 2, -preferredBase:10
+
+WEA1, 0x2821, 4, -game:FE8 -indexMode:8
+	Weather type ID, 2, 1
+
+VCWF, 0x2920, 4, -game:FE8 -indexMode:8
+	Vision distance, 2, 1, -preferredBase:10
+
+##Move cursor.
+CUMO, 0x3B20, 4, -game:FE8 -indexMode:8
+##Position to move cursor to.
+	Position, 2, 2, -coordinate:2 -preferredBase:10
+
+CUMO, 0x3B21, 4, -game:FE8 -indexMode:8
+##Character to move cursor on.
+	Character, 2, 2
+
+##Remove cursor.
+CURE, 0x3B22, 4, -game:FE8 -indexMode:8

@@ -1,0 +1,44 @@
+//Escape Point Macro
+#ifdef _FE7_
+
+#ifndef _FE7J_
+
+#ifndef EscapePointTableOffset
+#define EscapePointTableOffset 0xB97100
+#endif
+
+#ifndef NPCEscapePointTableOffset
+#define NPCEscapePointTableOffset 0xB971C0
+#endif
+
+#endif
+
+#endif
+
+
+#ifdef _FE8_
+
+#ifndef EscapePointTableOffset
+#define EscapePointTableOffset 0x5A8188
+#endif
+
+#ifndef NPCEscapePointTableOffset
+#define NPCEscapePointTableOffset 0x5A828C
+#endif
+
+#endif
+
+
+#define MoveLeft 0x0
+#define MoveRight 0x1
+#define MoveDown 0x2
+#define MoveUp 0x3
+#define NoMove 0x5
+
+#define TerminateEscapePoints "WORD 0xFF"
+#define EscapePointEnd "WORD 0xFF"
+
+#define EscapePoint(xLoc, yLoc, exitAnimation) "BYTE xLoc yLoc exitAnimation 0x00"
+
+#define EscapePointPointerTable(entry, pointer) "PUSH; ORG EscapePointTableOffset+(4*entry); POIN pointer; POP"
+#define NPCEscapePointPointerTable(entry, pointer) "PUSH; ORG NPCEscapePointTableOffset+(4*entry); POIN pointer; POP"

@@ -1,0 +1,34 @@
+#define FreeSpace 0xb2a610
+#define FreeSpaceBLRange 0x1c1ec0
+
+#define ChapterTileset(chapter, object, palette, config) "PUSH; ORG 0x8b0890 + (148* chapter) + 4; SHORT object; BYTE palette config; POP"
+#define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
+
+#ifndef ItemTable
+  #define ItemTable 0x809B10
+#endif
+
+#ifndef DebuffTable
+  #define DebuffTable     0x0203F100
+  #define DebuffTableSize 0x00000440
+#endif
+
+#define LunarBrace MoonBracelet
+#define SolarBrace SunBracelet
+
+// Attribute for defining items with passive stat bonuses
+#define PASSIVE_ITEM_BOOSTS_ATTR 0x00800000
+
+// this is for if you use the legacy way of define item attributes in your table (this is for byte 3)
+#define PassiveBoosts 0x80
+
+#define StatBonus(HPB,StrB,MagB,SklB,SpdB,DefB,ResB,LckB,MovB,ConB) "BYTE HPB StrB SklB SpdB DefB ResB LckB MovB ConB MagB 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0"
+
+#define GrowthBonus(HPB,StrB,MagB,SklB,SpdB,DefB,ResB,LckB) "BYTE 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 HPB StrB SklB SpdB DefB ResB LckB MagB 0x0 0x0"
+
+//item ID for skill scroll
+#define SkillScroll 0xBC
+
+#include "EngineHacks/SkillSystem/skill_definitions.event"
+
+// #define __DEBUG__ // Uncomment to get the Debug startup menu :p

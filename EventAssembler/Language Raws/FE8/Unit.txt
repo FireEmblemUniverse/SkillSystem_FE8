@@ -1,0 +1,183 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+# full unit
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 32, -coordinate:1-4
+
+# no reda
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 32, -coordinate:1-4
+
+# no leader
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 32, -coordinate:1-4
+
+# no ai
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+
+# no reda, no leader
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	Items, 96, 32, -coordinate:1-4
+
+# no reda, no ai
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	Items, 96, 32, -coordinate:1-4
+
+# no leader, no ai
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+
+# no reda, no leader, no ai
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags, 44, 12, -preferredBase:2
+	Items, 96, 32, -coordinate:1-4
+
+UNIT, 0, 20, -game:FE8 -priority:unit -end -indexMode:8
+
+ENDUNIT, 0, 20, -game:FE8 -priority:unit -end -indexMode:8
+
+# full reda
+REDA, 0, 64, -game:FE8 -priority:reinforcementData
+	Position, 0, 12, -coordinate:2 -preferredBase:10
+	Flags, 12, 4, -preferredBase:2
+	Speed, 16, 8
+	Rescuing, 24, 8
+	Unknown, 32, 16
+	Delay, 48, 8, -preferredBase:10
+
+# no unknown
+REDA, 0, 64, -game:FE8 -priority:reinforcementData
+	Position, 0, 12, -coordinate:2 -preferredBase:10
+	Flags, 12, 4, -preferredBase:2
+	Speed, 16, 8
+	Rescuing, 24, 8
+	0xFFFF, 32, 16, -fixed
+	Delay, 48, 8, -preferredBase:10
+
+# position only
+REDA, 0, 64, -game:FE8 -priority:reinforcementData
+	Position, 0, 12, -coordinate:2 -preferredBase:10
+	0xFFFF, 32, 16, -fixed
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags1, 44, 4, -preferredBase:2
+	Flags2, 48, 8
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 32, -coordinate:1-4
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags1, 44, 4, -preferredBase:2
+	Flags2, 48, 8
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32, -coordinate:1-4
+	AI, 128, 16, -coordinate:2-2
+	RecoveryAI, 144, 8
+	DontMoveAI, 152, 8
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags1, 44, 4, -preferredBase:2
+	Flags2, 48, 8
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Items, 96, 32
+	AI, 128, 32
+
+UNIT, 0, 160, -game:FE8 -priority:unit
+	CharId, 0, 8
+	ClassId, 8, 8
+	LeaderId, 16, 8
+	LevelAllAuto, 24, 8
+	Position, 32, 12, -coordinate:2 -preferredBase:10
+	Flags1, 44, 4, -preferredBase:2
+	Flags2, 48, 8
+	RedaCount, 56, 8
+	RedaOffset, 64, 32, -pointer:reinforcementData
+	Item1, 96, 8
+	Item2, 104, 8
+	Item3, 112, 8
+	Item4, 120, 8
+	AI1, 128, 8
+	AI2, 136, 8
+	AI3, 144, 8
+	AI4, 152, 8

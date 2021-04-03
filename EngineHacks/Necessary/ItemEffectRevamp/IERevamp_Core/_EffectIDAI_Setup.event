@@ -1,0 +1,90 @@
+#include "Extensions/Hack Installation.txt"
+//#include "../_ItemArrayMacros.txt"
+
+	#ifndef IDListCheck
+		#define IDListCheck
+		IDListLoop:
+		#incbin "ItemEffect_ListCheck.dmp"
+		POIN Item_GetStat_EffectID | 1
+	#endif
+
+#ifdef _FE8_
+	ALIGN 4
+	//Chest Key Item Check
+	PUSH
+		ORG 0x3B9D0
+		callHack_r3(ChestKeyCheck)
+		SHORT 0x2800	//cmp r0, 0x00
+		//skip to end if no id
+		SHORT (BLRange($3B9F8) & 0xFF) | 0xD000 	//beq
+		SHORT 0x2820	//cmp r0, 0x20
+		SHORT (BLRange($3B9B8) & 0xFF) | 0xD100 	//bne
+	POP
+	
+	ALIGN 4
+	
+	ChestKeyCheck:
+	SHORT 0xB500 //push r14
+	SHORT 0x1C20 // mov r0,r4
+	SHORT 0x4902	//ldr r1
+	BL(IDListLoop)
+	SHORT 0xBC02 0x4708 //pop r1; bx r1
+	ALIGN 4
+	POIN ChestKeyList
+	
+	//Healing Item Check
+	PUSH
+		ORG $3E730
+		SHORT 0x1C20 // mov r0,r4
+		SHORT 0x0
+		callHack_r3(HealingItemCheck)
+		SHORT 0x2800 	//cmp r0, 0x0
+		SHORT (BLRange($3E7C0) & 0xFF) | 0xD000 	//beq
+	POP
+	
+	HealingItemCheck:
+	SHORT 0xB500 //push r14
+	SHORT 0x4902	//ldr r1
+	BL(IDListLoop)
+	SHORT 0xBC02 0x4708 //pop r1; bx r1
+	ALIGN 4
+	POIN HealingItemList
+	
+	//Staff AI stuff
+	PUSH
+	//repoint table
+		ORG $3F9FE
+		BL(Item_GetStat_EffectID)
+		
+		ORG 0x3FA3C
+		POIN AI_StaffArray
+		
+		ORG 0x3FAE0
+		POIN AI_StaffArray + 0x4
+		
+	POP
+	
+	//Other Items AI
+	PUSH
+	
+	ORG $407F8
+		BL(Item_GetStat_EffectID)
+		ORG $40820
+		POIN AI_ItemArray
+		ORG $40840
+		POIN AI_ItemArray
+		ORG $408C8
+		POIN AI_ItemArray + 0x4
+	
+	POP
+	
+	ALIGN 4
+	ChestKeyList:
+	#include "_ChestKeyEffectList.txt"
+	
+	HealingItemList:
+	#include "_HealItemEffectList.txt"
+	
+#else
+	ERROR "This is for FE8 only"
+#endif

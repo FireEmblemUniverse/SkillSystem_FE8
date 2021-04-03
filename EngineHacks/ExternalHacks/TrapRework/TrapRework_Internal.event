@@ -1,0 +1,129 @@
+
+	#include "Extensions/ProcDefinitions.txt"
+
+	#include "asm/TrapRework.lyn.event"	
+	
+	PUSH
+		ORG $27318
+		jumpToHack(TrapRework_MapSpriteDisplay)
+		ORG $27332
+		SHORT 0xBC01 // pop {r0}
+		ORG $27338
+		SHORT 0xBC02 // pop {r1}
+	POP
+	
+	
+	
+	PUSH
+		ORG $37852
+		BYTE 0xFD //max valid trap ID -1 when loading from events; to prevent reading garbage data, but the list terminator already prevents this (0xFF is the list terminator's ID, so it doesn't get to count)
+		
+		ORG $37860
+		POIN TrapInitFromEventsJumpTable
+		
+	
+		ORG $1A174
+		jumpToHack(TrapRework_NewRefreshTrapFogVision)
+		
+		
+		ORG $59A2B4 //MapMain "call new child proc TerrainHealLoop"
+		POIN NewTerrainHealLoopProc
+	
+		ORG $02e470
+		jumpToHack(TrapRework_NewUpdateAllLightRunes)	
+	POP
+	
+	ALIGN 4
+	NewTerrainHealLoopProc:
+		PROC_CALL_ROUTINE(TrapRework_NewUpdateAllLightRunes|1)	
+		PROC_CALL_ROUTINE($8035E21) 
+	
+	PROC_LABEL(0)
+		PROC_CALL_ROUTINE($8035E51)
+		PROC_CALL_ROUTINE($8035ED9)
+		PROC_YIELD
+
+		PROC_CALL_ROUTINE($8035EFD)
+		PROC_YIELD
+
+		PROC_CALL_ROUTINE($8035F41)
+
+	PROC_LABEL(1)
+		PROC_CALL_ROUTINE($8035F6D)
+		PROC_GOTO(0)
+	PROC_END
+	
+	
+	
+	
+	/*
+	//install example map sprite
+	PUSH
+		ORG (0x8AF880+0x8*ExampleMapSpriteID)
+			SHORT 0x0002
+			SHORT 0x0000
+			POIN ExampleMapSpriteGraphics
+	POP
+	*/
+	
+	ALIGN 4
+	ExampleMapSpriteGraphics:
+	#incext Png2Dmp "bin/Sigil.png" --lz77
+	
+	
+	ALIGN 4
+	TrapInitFromEventsJumpTable: //functions here get the pointer to trap data in  events in r5(!)
+	LoadTrapJumpTable: //index is (trapID-1)
+	ORG (currentOffset + (256*4))
+	
+	ALIGN 4
+	TrapMapSpriteTable: //0 = no map sprite, 0xFF = variable map sprite for ballista
+	ORG (currentOffset + (256*1))
+	
+	ALIGN 4
+	TrapMapSpriteFuncTable: //if non-zero, gets run in place of uncritically passing the ID from the table
+	ORG (currentOffset + (256*4))
+	
+	ALIGN 4
+	TrapMapSpritePaletteTable: //definitely not a separate table because I forgot about it :P
+	ORG (currentOffset + (256*4)) //this will come with definitions for each palette you probably want to use
+	
+	ALIGN 4
+	TrapFogLightSourceTable: //ext1 is read as strength of light source
+	ORG (currentOffset + (256*1))
+
+	ALIGN 4
+	TrapLightRuneImpassableTable:
+	ORG (currentOffset + (256*1))
+
+
+	#include "asm/TrapRework_BreakableTerrain.lyn.event"
+
+	//breakables things
+	PUSH
+
+		ORG $2E3A8
+		jumpToHack(TrapRework_NewAddBreakables)
+
+		ORG $250BC
+		jumpToHack(TrapRework_NewTryAddTrapsToTargetList)
+
+		ORG $2C910
+		jumpToHack(TrapRework_MakeSnagTargetAdder)
+
+		ORG $81784
+		jumpToHack(TrapRework_DoNewBreakAnim)
+
+		ORG $7B374
+		jumpToHack(TrapRework_DoNewHideMapSprite)
+
+		ORG $57C20
+		SHORT 0x4A00 //ldr r2,=value just below
+		SHORT 0x4710 //bx r2
+		POIN TrapRework_NewForceMapAnimsForTrap
+
+		ORG $8CA3C
+		jumpToHack(TrapRework_NewTerrainHPDisplay) 
+	POP
+
+

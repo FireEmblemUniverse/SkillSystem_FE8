@@ -1,0 +1,334 @@
+#ifndef HAX_CONFIG
+#define HAX_CONFIG
+
+// This file holds configuration switches for all hacks shipped with the skill system
+
+// =========================
+// = GENERAL CONFIGURATION =
+// =========================
+
+// If commented, the skill reorder warning will not be displayed.
+#define SHOW_SKILL_WARNING
+
+// If commented, the test map will not be installed.
+#define USE_TEST_MAP
+
+// The amount of attack speed needed to double an opponent.
+#define AS_DOUBLING_THRESHOLD 3
+
+
+
+// ===================================
+// = HACK INSTALLATION CONFIGURATION =
+// ===================================
+
+// If commented, slayer and effectiveness will remain the same as they are in vanilla
+// Look at SkillSystem/Skills/EffectivenessSkills/Nullify/_README.txt for the full ramifications of uncommenting this
+#define ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
+
+// If uncommented, a full str/split will be implemented without replacing any stats
+// USE_SAVE_EXPANSION will be used even if commented
+// TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
+// Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
+// #define USE_STRMAG_SPLIT
+
+// If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
+// Enabling this *will* break saves, but allows for higher stats and other things.
+// #define USE_SAVE_EXPANSION
+
+//If uncommented, will enable Battle Stats with Animations Off.
+#define BATTLE_STATS
+
+//If uncommented, will enable Casual Mode (set by flag 0xE0).
+#define CASUAL_MODE
+
+//If uncommented, will enable Contemporary Talk & Support.
+#define CONTEMPORARY_TALK_SUPPORT
+
+//If uncommented, will enable Danger Zone.
+#define DANGER_ZONE
+
+//If uncommented, will enable Display Weapon Rank on Level Up.
+#define WRANK_ON_LEVELUP
+
+//If uncommented, will use Trap Rework.
+//This is automatically used if Dragon Veins or Heal Tiles are uncommented.
+#define TRAP_REWORK
+
+//If uncommented, will enable Dragon Veins.
+#define DRAGON_VEINS
+
+//If uncommented, will enable Heal Tiles.
+#define HEAL_TILES
+
+//If uncommented, will enable event ASMCs for adding traps, rescuing units, and sending items to the convoy respectively.
+#define EVENT_ADD_TRAPS
+#define EVENT_RESCUE
+#define EVENT_SEND_TO_CONVOY
+
+//If uncommented, will enable Event Writer.
+#define EVENT_WRITER
+
+//If uncommented, will enable Freeze.
+#define FREEZE_HACK
+
+//If uncommented, will enable HP Bars.
+#define HP_BARS
+
+//If uncommented, will enable Improved Sound Mixer.
+#define IMPROVED_SOUND_MIXER
+
+//If uncommented, will enable L-Toggle Animations.
+#define LTOGGLE_HACK
+
+//If uncommented, will enable Menu Semitransparency.
+#define SEMITRANSPARENCY_CHANGES
+
+//If uncommented, will enable use of Supply during the prologue.
+#define PROLOGUE_SUPPLY
+
+//If uncommented, will enable PC and Generic Music.
+//#define CHARACTER_CHAPTER_SPECIFIC_BATTTLETHEMES
+
+//If uncommented, will enable the Movement Arrow Hack.
+#define MOVEARROW_HACK
+
+//If uncommented, will enable Negative Weapon Wt/Crit Display.
+#define NEGATIVE_WTCRIT_DISPLAY
+
+//If uncommented, will enable Chapter Names as Text.
+#define TEXT_CHAPTER_NAMES
+
+//If uncommented, will enable Proper Range Getters.
+//#define HAX_PROPER_RANGE_GETTERS_EVENT
+
+//If uncommented, will use allegiance-based statscreen palettes.
+// #define STATSCREEN_ALLEGIANCE
+
+// If uncommented, the Anima Triangle will be implemented.
+// Go to "AnimaTriangle/AnimaTriangle.event" to define your fire, thunder, and wind magic lists.
+// This patch normally conflicts with Tri-Adept, but installing here remedies this.
+// #define ANIMA_TRIANGLE
+
+// If uncomented, ModularEXP will be implemented.
+// Go to "ModularEXP/ModularEXP.event" and "Tables/FE8 Nightmare modules/Misc/Modular EXP Class Table.csv" to edit experience gains.
+// This patch normally conflicts with Paragon, but installing here remedies this.
+// #define MODULAR_EXP
+
+// If uncommented, PortraitSelectionASM will be implemented.
+// Go to "PortraitSelectionASM/PortraitSelectionASM.event" to configure your modular portrait options.
+// This patch normally conflitcs with Identity Problems and Random Mugs, but installing here remedies this.
+// #define PORTRAIT_SELECTION
+
+// If uncommented, StairsASM will be implemented.
+// This patch adds an entry to the Unit Menu, so installing here is necessary.
+// #define STAIRS_ASM
+
+// If uncommented, Raid will be implemented.
+// This patch adds an entry to the Unit Menu, so installing here is necessary.
+// #define RAID
+
+// If uncommented, Escape-Arrive will be implemented.
+// /this adds entries to the Unit Menu and normally conflicts with Lunge and Stairs. Install here to avoid the conflicts.
+// #define ESCAPE_ARRIVE
+
+// If uncommented, Leadership Stars will be implemented.
+// Go to LeadershipStars/LeadershipStars.event to edit settings.
+// #define LEADERSHIP_STARS
+
+// If uncommented, Biorhythm will be implemented.
+// Go to "Biorhythm/Biorhythm.event" to edit settings.
+// This adds an entry to the Pre-Battle loop and edits the status screen. 
+// There is currently no stat screen template that contains both Leadership Stars and Biorhythm, but they do function in tandem if you wish to make one.
+// #define BIORHYTHM
+
+//If uncommented, Reaver Split will be implemented.
+//Makes weapon ability 2 reaver bit just triangle reversal and weapon ability 3 bit 0x80 triple triangle effect.
+// #define REAVER_SPLIT
+
+//If uncommented, Cannot Crit will be implemented.
+//Makes weapon crit of 255 negate crits.
+// #define CANNOT_CRIT
+
+//If uncommented, AdvWeaponLocks will be implemented.
+//This is a rewrite of venno's array-based weapon locks.
+// #define ADV_WEAPON_LOCKS
+
+//If uncommented, Status-Inflicting Weapons will be implemented.
+//Setting weapon effect 0xD will apply the effect ID at item data +0x22.
+// #define STATUS_WEAPONS
+
+//If uncommented, Narrow Font will be implemented.
+//This allows for setting narrower text in addition to standard text.
+// #define NARROW_FONT
+
+// If uncommented, the fourth page of the stat screen will include personal information on the character.
+// This information can be edited in the "Personal Data Editor.csv" file.
+// This will automatically enable Narrow Font.
+#define ENABLE_PERSONAL_INFO
+
+// If uncommented, the third page of the stat screen will only show weapon ranks that the unit has a rank in.
+#define ONLY_SHOW_USED_RANKS
+
+// If uncommented, Gaiden Magic 2.0 will be enabled.
+// Set spell lists in ExternalHacks/GaidenMagic/GaidenSpellLists.event.
+// Set spell HP costs in "Item editors/Gaiden Spell Cost Tables.csv"
+// An example for stat screen display is in MSS page 4.
+// #define GAIDEN_MAGIC
+
+// If uncommented, Unlock staves will work on chests.
+// #define UNLOCK_WORKS_ON_CHESTS
+
+// If uncommented, units can promote after acting when at or above the specified levels.
+// (By default, all classes promote at level 255.) 
+// #define PROMOTE_LEVELUP
+
+
+// =================================
+// = SKILL BEHAVIOUR CONFIGURATION =
+// =================================
+
+// if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
+// #define ENABLE_GALEFORCE_AUTOSELECT
+
+// if uncommented lethality will work like it originally did in gba
+// #define ENABLE_GBA_LETHALITY
+
+// if set to false, only the skill will work, if set to true both the skill and the ability will work
+#define ENABLE_LEGACY_CANTO False
+
+// if commented, enemies with Steal+ will steal as normal in vanilla (ie, the skill will be pretty much useless
+#define ENABLE_AI_STEAL_PLUS
+
+// if commented, Steal will no longer be a skill, but a character ability, and Steal+ will require having regular steal
+#define ENABLE_STEAL_SKILL
+
+// If commented, debuffs are allowed to take stats below zero
+#define DEBUFFS_MIN_ZERO
+
+// If true Shadowgift/Lumina will check for staff ranks when checking for highest magic rank
+#define SHADOWGIFT_VIA_STAFF_RANK False
+#define LUMINA_VIA_STAFF_RANK True
+
+// If commented, Poison Strike and Grisly Wound will not check whether no damage was dealt before applying additional damage.
+#define RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
+
+// If commented, Capture will be a global command and will not require the Capture skill.
+// #define CAPTURE_SKILL_REQUIRED
+
+// If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
+#define DRAGON_VEIN_SKILL_REQUIRED
+
+//If commented, Heroes Movement skills will use class checks and will not require their respective skills. Configure lists for each skill in 'SkillSystem/Skills/UnitMenuSkills/HeroesMovement/HeroesMovement.event', at the bottom of the file.
+#define HEROES_MOVEMENT_SKILL_REQUIRED
+
+// If uncommented, the Charge mechanic will be disabled and Moonbow will use a skill% activation rate. This will not change Moonbow's description.
+// #define DISABLE_CHARGE
+
+//If commented, Triangle Attack will use a skill check instead of a bitflag.
+//#define VANILLA_TRIANGLE_ATTACK
+
+//If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
+#define ALSO_USE_MOVEMENT_SKILL_CHECK True
+
+//If true, get 1/4 prices with both bargain and silver card simultaneously.
+#define DOES_BARGAIN_STACK False
+
+//If true, will use the vanilla check in addition to the skill check.
+#define ALSO_USE_VANILLA_DANCE_CHECK False
+#define ALSO_USE_VANILLA_SUPPLY_CHECK True
+#define ALSO_USE_VANILLA_SUMMON_CHECK False
+#define ALSO_USE_VANILLA_STEAL_CHECK True
+
+//If uncommented, Combat Arts will be enabled.
+//This changes the behavior of most command skills and some proc skills such that they cost additional durability per hit and are selected from a submenu.
+// #define COMBAT_ARTS
+
+//If true, Combat Arts will not be allowed to hit more than once.
+#define ARTS_HIT_ONCE True
+
+//If uncommented, ModularPreBattleSkill will be installed.
+//This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
+#define MODULAR_PRE_BATTLE_SKILLS
+
+// If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
+// This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
+// Uncommenting this may hinder edge edge cases of range-based skills working as equipped weapon skills.
+// #define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
+
+//If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
+//  #define USE_LEGACY_SKILL_DEFAULTS
+
+//	Effectiveness skills coincide with a rework of the effectiveness system. 
+//	Weapon effectiveness by default is updated via macros in
+//	SkillSystem/Skills/EffectivenessSkills/EffectivenessRework.event.
+
+//	Forager uses an external list of terrain IDs for what is considered valid for healing.
+//	This list can be edited, and is located in
+//	SkillSystem/Skills/HPRestorationSkills/HPRestorationSkills.event.
+
+//	Quantum Visage pulls a mug ID from a list of 100 each time its effect is applied.
+//	The list of valid IDs can be edited, and is located in
+//	SkillSystem/Skills/MugLoadingSkills/MugLoadingSkills.event.
+
+//	Identity Problems swaps between 3 pairs of name IDs and mug IDs. 
+//	Each of these are external values, and can be changed in
+//	SkillSystem/Skills/MugLoadingSkills/MugLoadingSkills.event.
+
+//	Indoor & Outdoor Fighter use external lists of terrain IDs for what is considered indoor and outdoor terrain.
+//	These lists can be edited, and are located in
+//	Engine Hacks/SkillSystem/Skills/PreBattleSkills/DoorFighter/DoorFighter.event.
+
+//	Black Magic inflicts a random status pulled from an external list of statuses and the likelihood of their application.
+//	This list can be edited, and is located in
+//	SkillSystem/Skills/ProcSkills/ProcSkills.event.
+
+//	Bargain halves prices in shops, much like a Silver Card.
+//	It also includes a list of item IDs that are considered as valid Silver Cards, which can be edited in
+//	SkillSystem/Skills/StandaloneSkills/Bargain/Bargain.event.
+
+//	Amische disallows usage of any weapons not contained on a list.
+//	This list can be edited, and is located in
+//	SkillSystem/Skills/WeaponUsabilitySkills/WeaponUsabilitySkills.event.
+
+
+// ================================
+// = GROWTH DISPLAY CONFIGURATION =
+// ================================
+
+//If commented, growths will not be displayed by pressing Select.
+#define PRESS_SELECT_TO_VIEW_GROWTHS
+
+//If true, the stat colors for player units will reflect their growth in the stat.
+#define USE_STAT_COLORS True
+
+
+//If true, Fixed Growths mode will exist.
+#define FIXED_GROWTHS_MODE False
+
+//ID of flag to use for fixed growths mode, if enabled
+#define FIXED_GROWTHS_FLAG_ID 0xEF
+
+//If true, passive growth boosters and metis tome will not affect growths in fixed growths mode.
+#define FIXED_GROWTHS_DONT_BOOST True
+
+//If true, enemy/NPC autolevels will use fixed growths as well.
+#define ENEMY_NPC_FIXED_GROWTHS True
+
+
+//If true, the effects of multiple passive growth boosters can stack.
+#define STACKABLE_GROWTH_BOOSTS True
+
+//Amount for Metis Tome to boost growths by
+#define METIS_TOME_BOOST 5
+
+//If true, growths will be calculated as (char growth + class growth).
+#define USE_CHAR_AND_CLASS_GROWTHS False
+
+
+//The growth rate ranges for each stat color and the colors themselves can be edited in
+//Necessary/MSS/DisplayGrowthsOptions/GrowthColorsTable.event and NewPalette.event, respectively.
+//If you are using Str/Mag Split, these are instead located in
+//ExternalHacks/StrMagSplit/ModularStatScreen/DisplayGrowthsOptions.
+
+#endif // HAX_CONFIG

@@ -1,0 +1,41 @@
+#ifndef SELFHEALINGITEMS
+	#define SELFHEALINGITEMS
+	#include "Extensions/Hack Installation.txt"
+	
+	ALIGN 4
+/*	SelfHealanim:
+//	_6C_CALL_ROUTINE(0x802CA15)
+	_6C_CALL_ROUTINE(0x8081279)	//change from normal to active map sprite
+	_6C_SLEEP(0x1E)
+	_6C_CALL_ROUTINE(0x8081B41)
+	_6C_SLEEP(0x1E)
+	_6C_CALL_ROUTINE(0x808161D)
+	_6C_SLEEP(0x1E)
+	_6C_LOOP_ROUTINE(0x8081915)
+	_6C_SLEEP(0xA)
+	_6C_CALL_ROUTINE(0x808129D)	//revert from active to normal map sprite
+	_6C_SLEEP(0x1E)
+	_6C_END
+*/
+	ALIGN 4
+	//plays whatever animation is set for item 0x6C (vulnerary)
+	SelfHealingItem:
+		#incbin "SelfHealing.dmp"
+	
+	#define SelfHealing_Effect(healcalc) "SHORT 0x4902 0x4A03; jumpToHack(SelfHealingItem); POIN healcalc|1"
+	
+	HealCalc_ItemMight:
+		#incbin "HealCalc_ItemMight.dmp"
+	
+	HealCalc_ItemEPV:
+		#incbin "HealCalc_ItemStat.dmp"
+		POIN Item_GetStat_EPV
+	
+	IE_SelfHealing:
+	SelfHealing_Effect(HealCalc_ItemEPV)
+	
+	IE_SelfHeal_ByMight:
+	SelfHealing_Effect(HealCalc_ItemMight)
+	
+	MESSAGE CURRENTOFFSET "place"
+#endif

@@ -1,0 +1,70 @@
+#ifndef _StaffAITemplate
+	#define _StaffAITemplate
+	/* comment out if using the nightmare csvs
+	#ifndef AI_ItemArray
+		#define AI_ItemArray 0xD86F4
+	#endif
+	#ifndef AI_StaffArray
+		#define AI_StaffArray 0xD868C
+	#endif
+	*/
+
+	//macros for manually updating ai tables
+	#define SetItemAI(index, Item_ID, pointer) "PUSH; ORG (AI_ItemArray + (index * 8)); WORD Item_ID; POIN pointer; POP;"
+	#define SetStaffAI(index, Item_ID, pointer) "PUSH; ORG (AI_StaffArray + (index * 8)); WORD Item_ID; POIN pointer; POP;"
+	
+	#ifndef ItemEffectRevamp
+	PUSH
+		//repoint ai item tables
+			ORG $3FA3C
+			POIN AI_StaffArray
+			ORG $3FAE0
+			POIN AI_StaffArray + 0x4
+			ORG $40820
+			POIN AI_ItemArray
+			ORG $40840
+			POIN AI_ItemArray
+			ORG $408C8
+			POIN AI_ItemArray + 0x4
+	POP
+	#endif
+	
+	//placeholder movegetter used for testing replace with label to your thing
+	ALIGN 4
+	#include "_ItemAIRoutines.lyn.event"
+	
+	ALIGN 4
+	StaffAI_TargetUnits:
+	#include "StaffAI_TargetUnits.lyn.event"
+	POIN prGotoMovGetter|1 GetItemRange|1 //FillRange|1 StaffAI_ItemRange
+	
+	ALIGN 4
+	StaffAI_TargetTiles:
+	#include "StaffAI_TargetTiles.lyn.event"
+	POIN prGotoMovGetter|1 GetItemRange|1 //FillRange|1 StaffAI_ItemRange
+	
+	ALIGN 4
+	StaffAI_TargetAreas:
+	#include "StaffAI_TargetAreas.lyn.event"
+	POIN prGotoMovGetter|1 GetItemRange|1
+	
+	ALIGN 4
+	GetUnitHPPercent:
+	#include "Percentage.lyn.event"
+	ALIGN 4
+	
+	// #ifndef BasicRange
+		// #define BasicRange
+		// FillRange:
+		// #incbin "FillRange.dmp"
+		// POIN 0x1AABC|1
+	// #endif
+	
+	ALIGN 4
+	
+	#define StaffAI_TUnits(condition) "SHORT 0x4900 0xE001; POIN condition; jumpToHack(StaffAI_TargetUnits)"
+	#define StaffAI_TTiles(condition) "SHORT 0x4900 0xE001; POIN condition; jumpToHack(StaffAI_TargetTiles)"
+	#define StaffAI_TAreas(condition) "SHORT 0x4900 0xE001; POIN condition; jumpToHack(StaffAI_TargetAreas)"
+	
+	#include "_UpdateVanillaStaffAI.event"
+#endif

@@ -1,0 +1,33 @@
+EXTERNAL DATA STRUCT / "DEBUFF TABLE" (203F100)
+
++0x00    Byte    Lower nybble is str debuff, upper nybble is skl debuff
++0x01    Byte    Lower nybble is spd debuff, upper nybble is def debuff
++0x02    Byte    Lower nybble is res debuff, upper nybble is lck debuff
++0x03    Byte    Rally bitfield:
+        +0x01    Rally Str
+        +0x02    Rally Skl
+        +0x04    Rally Spd
+        +0x08    Rally Def
+        +0x10    Rally Res
+        +0x20    Rally Lck
+        +0x40    Rally Mov
+        +0x80    Rally Spectrum
++0x04    Byte    Lower 5 bits are silver debuff (str & skl), rest is a bitfield:
+        +0x20    Half Mag
+        +0x40    Half Str
+        +0x80    Half MHP (Hexing Rod)
++0x05    Byte    Lower nybble is mag debuff, rest is a bitfield:
+        +0x10    Rally Mag
+        +0x20    UNUSED
+        +0x40    UNUSED
+        +0x80    UNUSED
++0x06    Byte    UNUSED
++0x07    Byte    Bitfield:
+        +0x01    Vigor Dance (+2 str/mag/def)
+        +0x02    Armor March (+2 mov)
+        +0x04    UNUSED
+        +0x08    UNUSED
+        +0x10    UNUSED
+        +0x20    UNUSED
+        +0x40    UNUSED
+        +0x80    UNUSED

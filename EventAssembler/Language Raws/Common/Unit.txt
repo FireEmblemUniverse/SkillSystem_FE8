@@ -1,0 +1,85 @@
+
+# Those UNITs only apply to FE6 and FE7
+# For FE8 UNITs, see FE8/Unit.txt
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+# full unit
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -indexMode:8
+	CharId, 0, 1
+	ClassId, 1, 1
+	LeaderId, 2, 1
+	LevelAllAuto, 3, 1
+	LoadPosition, 4, 2, -coordinate:2 -preferredBase:10
+	StartPosition, 6, 2, -coordinate:2 -preferredBase:10
+	Items, 8, 4, -coordinate:1-4
+	AI, 12, 4, -coordinate:1-4
+
+# no leader
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -indexMode:8
+	CharId, 0, 1
+	ClassId, 1, 1
+	LevelAllAuto, 3, 1
+	LoadPosition, 4, 2, -coordinate:2 -preferredBase:10
+	StartPosition, 6, 2, -coordinate:2 -preferredBase:10
+	Items, 8, 4, -coordinate:1-4
+	AI, 12, 4, -coordinate:1-4
+
+# no ai
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -indexMode:8
+	CharId, 0, 1
+	ClassId, 1, 1
+	LeaderId, 2, 1
+	LevelAllAuto, 3, 1
+	LoadPosition, 4, 2, -coordinate:2 -preferredBase:10
+	StartPosition, 6, 2, -coordinate:2 -preferredBase:10
+	Items, 8, 4, -coordinate:1-4
+
+# no leader, no ai
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -indexMode:8
+	CharId, 0, 1
+	ClassId, 1, 1
+	LevelAllAuto, 3, 1
+	LoadPosition, 4, 2, -coordinate:2 -preferredBase:10
+	StartPosition, 6, 2, -coordinate:2 -preferredBase:10
+	Items, 8, 4, -coordinate:1-4
+
+## Unit data that controls units that can be loaded to chapter maps.
+## Parameterless version is the end of UNIT list.
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -end -indexMode:8
+
+ENDUNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -end -indexMode:8
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -indexMode:8
+	Char ID, 0, 1
+	Class ID, 1, 1
+	Leader char, 2, 1
+	Misc data, 3, 1
+	Loading position, 4, 2, -coordinate:2 -preferredBase:10
+	Starting position,  6, 2, -coordinate:2 -preferredBase:10
+	Items, 8, 4, -coordinate:1-4
+	AI, 12, 2, -coordinate:2-2
+	RecoveryAI, 14, 1
+	DontMoveAI, 15, 1
+
+UNIT, 0, 16, -game:FE6:FE7:FE7J -priority:unit -indexMode:8
+	Char ID, 0, 1
+	Class ID, 1, 1
+	Leader char, 2, 1
+	Misc data, 3, 1
+	Loading position, 4, 2, -coordinate:2 -preferredBase:10
+	Starting position,  6, 2, -coordinate:2 -preferredBase:10
+	Item 1, 8, 1
+	Item 2, 9, 1
+	Item 3, 10, 1
+	Item 4, 11, 1
+	AI 1, 12, 1
+	AI 2, 13, 1
+	RecoveryAI, 14, 1
+	DontMoveAI, 15, 1

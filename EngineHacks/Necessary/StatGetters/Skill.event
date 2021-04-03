@@ -1,0 +1,30 @@
+#ifndef MODULAR_GETTER_SKILL_EVENT
+#define MODULAR_GETTER_SKILL_EVENT
+
+#include "_Common.event"
+
+pSkillModifiers: // Skill
+	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prItemPassiveSkl prRallySkl prResolve prDefiantSkl prPushSkl
+	#ifdef DEBUFFS_MIN_ZERO
+	POIN prMinZero
+	#endif
+WORD 0
+
+prAddUnitSkill:
+	rAdd(rSByteAt(UNIT_SKILL))
+
+prAddEquipSkill:
+	rAdd(rForUnitEquipped(rCallExternal(prGetItemSklBonus)))
+
+prDebuffSkl:
+	#include "_asm/DebuffSkl.lyn.event"
+	POIN GetDebuffs|1
+
+prRallySkl:
+	#include "_asm/RallySkl.lyn.event"
+	POIN GetDebuffs|1
+
+prItemPassiveSkl:
+	rPassiveStatBoosts(STAT_SKILL)
+
+#endif // MODULAR_GETTER_SKILL_EVENT

@@ -1,0 +1,45 @@
+
+#include "Extensions/Hack Installation.txt"
+
+//#include "_ItemArrayMacros.txt"
+
+#ifdef _FE8_
+	ALIGN 4
+	/*
+	#ifndef LockpickCheckASM
+		#define LockpickCheckASM
+		LockpickCheck:
+		#incbin "LockpickCheck.dmp"
+	#endif
+	*/
+	#ifndef Inventory_IEIDCheck_ASM
+		#define Inventory_IEIDCheck_ASM
+		Inventory_EIDCheck:
+		#incbin "Inventory_ItemEffect_Check.dmp"
+		POIN Item_GetStat_EffectID
+	#endif
+	
+	ALIGN 4
+	//Master Key stuff Here
+	
+	MasterKeyUsability:
+	SHORT 0x1C20
+	BL(MasterKeyUseCheck)
+	SHORT 0xBC30 0xBC02 0x4708
+	//jumpToHack($28BFE)
+	MasterKeyUseCheck:
+	#include "MasterKey_Usability.event"
+	//#incbin "MasterKey_Usability.dmp"
+	
+	PUSH
+		//Update Door and Chest commands to check for item effect ids instead of item ids
+		ORG $18A9C
+		#include "KeyCommand_ItemCheck.event"
+		Inventory_EIDCheck_Jump:
+		jumpToHack(Inventory_EIDCheck)
+		//ORG $288A8
+		//throwing more stuff in the space where the item effect tables used to be
+	POP 
+#else
+	ERROR "This is for FE8 only"
+#endif

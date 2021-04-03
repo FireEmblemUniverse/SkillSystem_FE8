@@ -1,0 +1,241 @@
+
+# ====================
+# = RECOMMENDED RAWS =
+# ====================
+
+## Clears given evbit
+EVBIT_F, 0x0220, 4, -game:FE8 -indexMode:8
+	Bit, 2, 2
+
+## Sets given evbit
+EVBIT_T, 0x0228, 4, -game:FE8 -indexMode:8
+	Bit, 2, 2
+
+## Clears given flag
+FLAG_F, 0x0221, 4, -game:FE8 -indexMode:8
+	Flag, 2, 2, -preferredBase:10
+
+## Clears flag in s2
+FLAG_F_S2, 0x0221, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Sets given flag
+FLAG_T, 0x0229, 4, -game:FE8 -indexMode:8
+	Flag, 2, 2, -preferredBase:10
+
+## Sets flag in s2
+FLAG_T_S2, 0x0229, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Gets evbit state in sC
+CHECK_EVBIT, 0x0320, 4, -game:FE8 -indexMode:8
+	Bit, 2, 2
+
+## Gets flag state in sC
+CHECK_FLAG, 0x0321, 4, -game:FE8 -indexMode:8
+	Flag, 2, 2, -preferredBase:10
+
+## Gets random number between 0 and Max in sC
+CHECK_RAND, 0x0420, 4, -game:FE8 -indexMode:8
+	Max, 2, 2, -preferredBase:10
+
+# - EVENT SLOTS -
+# One of the best features of FE8 eventing
+# Allows you to set, get and manipulate temporary values
+# There are 14 of them
+# the first one (s0) holds a constant 0 and the last 3 (sB, sC, sD) often having special meaning.
+# Those are not kept between events and suspends (unlike eids or counters).
+# Many codes can read from them (usually s1, s2, s3 or sB) which is where those are most useful.
+
+## Sets slot value
+SVAL, 0x0540, 8, -game:FE8 -indexMode:8
+	Slot, 2, 2
+	Value, 4, 4
+
+## Sets slot value to an address
+SPTR, 0x0540, 8, -game:FE8 -indexMode:8
+	Slot, 2, 2
+	Offset, 4, 4, -pointer
+
+## Sets slot value to a set of coordinates
+SCOORD, 0x540, 8, -game:FE8 -indexMode:8
+	Slot, 2, 2
+	Coords, 4, 4, -coordinates:2 -preferredBase:10
+
+## Add slot values
+SADD, 0x0620, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Substract slot values
+SSUB, 0x0621, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Multiply slot values
+SMUL, 0x0622, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Divide slot values
+SDIV, 0x0623, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Modulus (?) slot values
+SMOD, 0x0624, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Bitwise And slot values
+SAND, 0x0625, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Bitwise Or slot values
+SORR, 0x0626, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Bitwise Exclusive Or slot values
+SXOR, 0x0627, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Bitwise Left shift slot values
+SLSL, 0x0628, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+## Bitwise Right shift slot values
+SLSR, 0x0629, 32, -game:FE8
+	SlotDest, 16, 4
+	SlotLeft, 20, 4
+	SlotRight, 24, 4
+
+# - EVENT SLOT QUEUE -
+# Those codes operate on the event slot queue.
+# It can be used with several event codes
+# typicially when you need to declare some kind of list
+# Like slots, the event queue is temporary and isn't kept between events and suspends.
+
+## Enqueues given slot value
+SENQUEUE, 0x0720, 4, -game:FE8 -indexMode:8
+	SlotIndex, 2, 2
+
+## Enqueues slot 1 value
+SENQUEUE, 0x0721, 4, -game:FE8 -indexMode:8
+
+## Dequeues value into given slot
+SDEQUEUE, 0x0722, 4, -game:FE8 -indexMode:8
+	SlotIndex, 2, 2
+
+# - EVENT COUNTERS -
+# A very underrated component of FE8 eventing
+# Those "counters" can be used to store small values (from 0 to 15)
+# Unlike slots, those are kept between events and suspends (same as local eids).
+# There is a total of 8 counters.
+
+## Get value of given counter into slot C
+COUNTER_CHECK, 0x0F20, 4, -game:FE8 -indexMode:8
+	Id, 2, 1
+
+## Sets value of given counter (range: 0-15)
+COUNTER_SET, 0x0F21, 4, -game:FE8 -indexMode:8
+	Id, 2, 1
+	Value, 3, 1
+
+## Increments value of given counter (max 15, won't overflow)
+COUNTER_INC, 0x0F22, 4, -game:FE8 -indexMode:8
+	Id, 2, 1
+
+## Decrements value of given counter (min 0, won't underflow)
+COUNTER_DEC, 0x0F23, 4, -game:FE8 -indexMode:8
+	Id, 2, 1
+
+# ======================
+# = COMPATIBILITY RAWS =
+# ======================
+
+## Clears given flag
+ENUF, 0x0221, 4, -game:FE8 -indexMode:8
+	Flag, 2, 2
+
+## Clears flag in s2
+ENUF_SLOT2, 0x0221, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Sets given flag
+ENUT, 0x0229, 4, -game:FE8 -indexMode:8
+	Flag, 2, 2
+
+## Sets flag in s2
+ENUT_SLOT2, 0x0229, 4, -game:FE8 -indexMode:8
+	0xFFFF, 2, 2, -fixed
+
+## Gets flag state in sC
+CHECK_EVENTID, 0x0321, 4, -game:FE8 -indexMode:8
+	Flag, 2, 2
+
+## Gets random number between 0 and Max in sC
+RANDOMNUMBER, 0x0420, 4, -game:FE8 -indexMode:8
+	Maximum Number, 2, 2
+
+# Add slot values (compat format)
+SADD, 0x0620, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Substract slot values (compat format)
+SSUB, 0x0621, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Multiply slot values (compat format)
+SMUL, 0x0622, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Divide slot values (compat format)
+SDIV, 0x0623, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Modulus (?) slot values (compat format)
+SMOD, 0x0624, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Bitwise And slot values (compat format)
+SAND, 0x0625, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Bitwise Or slot values (compat format)
+SORR, 0x0626, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Bitwise Exclusive Or slot values (compat format)
+SXOR, 0x0627, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Bitwise Left shift slot values (compat format)
+SLSL, 0x0628, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Bitwise Right shift slot values (compat format)
+SLSR, 0x0629, 4, -game:FE8 -indexMode:8
+	Slots, 2, 2
+
+# Provided for compat, but does not work as intended (use COUNTER_INC instead)
+COUNTER_ADD, 0x0F22, 4, -game:FE8 -indexMode:8
+	Id, 2, 1
+	Unused, 3, 1
+
+# Provided for compat, but does not work as intended (use COUNTER_DEC instead)
+COUNTER_SUBTRACT, 0x0F23, 4, -game:FE8 -indexMode:8
+	Id, 2, 1
+	Unused, 3, 1

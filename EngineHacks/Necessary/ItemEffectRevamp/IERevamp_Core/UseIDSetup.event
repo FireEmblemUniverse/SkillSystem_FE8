@@ -1,0 +1,107 @@
+//Currently FE8 Only
+//v1.7
+
+#ifndef FreeSpace
+	#ifdef _FE8_
+		#define FreeSpace $B30000
+	#endif
+	ORG FreeSpace
+#endif
+
+#ifndef ItemEffectRevamp
+	#define ItemEffectRevamp
+#endif
+
+#include "Extensions/Hack Installation.txt"
+//#include "../_ItemArrayMacros.txt"
+
+#ifdef _FE8_
+	ALIGN 4
+	MESSAGE "Applying Item Effect Revamp..."
+	
+	
+	EffectJumpTable:
+	SHORT 0x4B03	//ldr r3, Item_GetStat_EffectID
+	BL(IEIDJump)
+	SHORT 0x4B01	//ldr r3, ItemEffectTable
+	B(EIDJump)
+	IEIDJump:
+	SHORT 0x4718	//bx r3
+	POIN IERevampTable
+	POIN Item_GetStat_EffectID | 1
+	
+	/*
+	Label:
+	SHORT 0x4A00	//ldr r2
+	B(EIDJump)
+	POIN 
+	*/
+	
+	EIDJump:
+	SHORT 0x2110	//mov r1, 0x10	@table length
+	SHORT 0x4348	//mul r0,r1
+	SHORT 0x1880	//add r0, r0, r2
+	SHORT 0x18C0	//add r0, r0, r3
+	SHORT 0x6800	//ldr r0, [r0]
+	SHORT 0x4687	//mov r15, r0
+	
+	PUSH
+		ORG $28896	//Item Usability
+		//BL(Item_GetStat_EffectID)
+		SHORT 0x2200
+		jumpToHack(EffectJumpTable)
+		
+		ORG $28E72	//Item Effect Targeting
+		//BL(Item_GetStat_EffectID)
+		SHORT 0x2208
+		jumpToHack(EffectJumpTable)
+		
+		ORG $2FC62	//Item Use Effect
+		//BL(Item_GetStat_EffectID)
+		ORG $2FC72
+		SHORT 0x220C
+		jumpToHack(EffectJumpTable)
+		
+		ORG $29F18	//Prescreen Item Usability
+		//BL(Item_GetStat_EffectID)
+		SHORT 0x2204 0x0
+		jumpToHack(EffectJumpTable)
+		
+		//Items Effects with Box Display (Stat Boosters, Metis Tome)
+		ORG $2F81C
+		BL(Item_GetStat_EffectID)
+		B($2F8AA)	//IB Jump 
+		SHORT 0x0
+		
+		ORG $2F89E
+		SHORT 0x1C28	//mov r0,r5
+		B($2F90E)		//to end of routine
+		
+		//ORG $2F9A2
+		//IB_NULL case
+		//#define IBNull "IB_NULL | 0x8000000"
+		//SHORT 0x1C28	//mov r0,r5
+		//B($2F90E)		//to end of routine
+		
+		ORG $2F90C
+		B($2F83A)
+		
+		ORG $2F8B4
+		POIN IBArray
+		
+	
+	POP
+	
+#else
+	ERROR "This is for FE8 only"
+#endif
+/*
+
++ Redo item effect tables
+* optimize prep screen item effects
++ convert all tables to csvs
+	-revise macros to make sure they still work afterwards
++ redo everything to use vanilla effect id getter to save space
+* optimize thing for door/chest commands
++ redo master key with actual effort this time
+*/

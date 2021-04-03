@@ -1,0 +1,27 @@
+##Changes music.
+#Was MUS1
+MUSC, 0x36, 8, -game:FE6 -indexMode:8
+	Music ID, 4, 2
+
+##Changes music while saving the previous song
+##so you can restore it with MURE.
+MUSS, 0x37, 8, -game:FE6 -indexMode:8
+	Music ID, 4, 2
+
+##Returns to previous music after MUS2.
+MURE, 0x38, 4, -game:FE6 -indexMode:8
+
+#Chapters: 2, 22, 24
+##Fade out music.
+MUEN, 0x39, 8, -game:FE6 -indexMode:8
+	Fade out time, 4, 4, -preferredBase:10
+
+##Makes music quieter.
+MUSI, 0x3A, 4, -game:FE6 -indexMode:8
+
+##Makes music normal after MUSI.
+MUNO, 0x3B, 4, -game:FE6 -indexMode:8
+
+##Play sound effect.
+SOUN, 0x3C, 8, -game:FE6 -indexMode:8
+	Music ID, 4, 4

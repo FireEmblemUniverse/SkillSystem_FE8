@@ -1,0 +1,46 @@
+
+ENDTRAP, 0, 1, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -end -indexMode:8 -offsetMod:1
+
+BLST, 0, 6, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	1, 0, 1, -fixed 
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+	Type, 3, 1
+
+##Fire trap
+FIRE, 0, 6, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	4, 0, 1, -fixed 
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+	TimerStart, 4, 1
+	TimerRepeat, 5, 1
+
+##Gas trap
+GAST, 0, 6, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	5, 0, 1, -fixed 
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+	Direction, 3, 1
+	TimerStart, 4, 1
+	TimerRepeat, 5, 1
+
+##Vertical arrow
+ARROW, 0, 6, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	7, 0, 1, -fixed 
+	X coordinate, 1, 1, -coordinates:2 -preferredBase:10
+	TimerStart, 4, 1
+	TimerRepeat, 5, 1
+
+##Instant fire
+FIRE2, 0, 6, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	8, 0, 1, -fixed 
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+	
+##Mine
+MINE, 0, 6, -game:FE7:FE7J:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	11, 0, 1, -fixed 
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+
+##Gorgon egg
+EGG, 0, 6, -game:FE8 -unsafe -priority:ballista -indexMode:8 -offsetMod:1
+	12, 0, 1, -fixed 
+	Position, 1, 2, -coordinates:2 -preferredBase:10
+	StartHatching, 3, 1
+	StartingLevel, 4, 1

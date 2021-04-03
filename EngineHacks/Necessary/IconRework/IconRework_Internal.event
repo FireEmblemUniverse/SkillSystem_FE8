@@ -1,0 +1,122 @@
+#ifndef HAX_ICON_REWORK_INTERNAL
+#define HAX_ICON_REWORK_INTERNAL
+
+#ifndef _FE8_
+	ERROR this is for FE8 etc
+#endif
+
+#include "Extensions/Hack Installation.txt"
+#include "EAstdlib.event"
+
+#ifndef FreeSpace
+	#define FreeSpace 0xB2A610
+	ORG FreeSpace
+#endif
+
+// You can define this beforehand if you really *need* to have more than 16 icon sheets (do you really tho?)
+#ifndef ICON_SHEET_COUNT
+	#define ICON_SHEET_COUNT 0x10
+#endif
+
+{
+PUSH
+	ORG 0x003650
+		replaceWithHack(prGetIconTileIndex)
+	
+	ORG 0x003584
+		replaceWithHack(prClearIcons)
+	
+	ORG 0x00370C
+		replaceWithHack(prClearSingleIcon)
+	
+	ORG 0x00372C
+		replaceWithHack(prLoadIconObjGfx)
+
+	ORG $8779C
+		jumpToHack(NewWrankIconGetter)
+	
+	ORG $1EA10
+		jumpToHack(AttackWrankDraw)		
+		
+	ORG $9278C
+		jumpToHack(UnitAffinityDraw)
+	
+	ORG $921FC
+		jumpToHack(UnitWrankDraw)
+
+	ORG $902B0
+		jumpToHack(UnitSortWrankDraw)
+	
+	ORG $34AF8	
+		jumpToHack(RescueMountTypeDraw)
+		
+	ORG $A1D9C
+		jumpToHack(SupportAffinityDraw)
+	
+	ORG $87708
+		jumpToHack(SupportSSAffinityDraw)
+
+	ORG $286C6
+		SHORT 0x3801 //set affinity index
+	
+	ORG $18AFE
+		SHORT 0x2000 //set horse icon index to 0
+	
+	ORG $18B0C
+		SHORT 0x2001 //set peg icon index to 1
+	
+	ORG $18B20
+		SHORT 0x2002 //set dragon icon index to 2		
+	
+POP
+
+
+ALIGN 4
+prGetIconTileIndex:
+	#incbin "asm/GetIconTileIndex.bin"
+	POIN praIconGfxGetters
+
+ALIGN 4
+prClearIcons:
+	#incbin "asm/ClearIcons.bin"
+
+ALIGN 4
+prClearSingleIcon:
+	#incbin "asm/ClearIconGfx.bin"
+
+ALIGN 4
+prLoadIconObjGfx:
+	#incbin "asm/LoadIconObjGfx.bin"
+	POIN praIconGfxGetters
+
+#include "asm/NewWrankDraw.lyn.event"
+
+}
+
+ALIGN 4
+prGetItemIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	WORD 0 // Will default to item icon sheet
+	
+ALIGN 4
+praIconGfxGetters:
+	POIN (prGetItemIconGfx+1)
+	ORG (praIconGfxGetters + (4 * ICON_SHEET_COUNT))
+
+#define InjectIconGfxGetter(aSheetIndex, aprGfxGetter) "PUSH; ORG (praIconGfxGetters + (4*(aSheetIndex))); POIN (aprGfxGetter); POP"
+
+ORG (currentOffset+256)
+
+ALIGN 4
+AffinityIcons:
+#incext Png2Dmp "bin/AffinityIcons.png"
+
+ALIGN 4
+MountTypeIcons:
+#incext Png2Dmp "bin/MountTypeIcons.png"
+
+ALIGN 4
+WRankIcons:
+#incext Png2Dmp "bin/WRankIcons.png"
+
+#endif // HAX_ICON_REWORK_INTERNAL

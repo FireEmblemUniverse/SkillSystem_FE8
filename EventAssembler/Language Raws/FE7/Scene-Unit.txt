@@ -1,0 +1,199 @@
+
+MOVE, 0x23, 12, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+MOVE, 0x24, 16, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+##Speed in which the unit moves in.
+	Speed, 12, 4, -preferredBase:10
+
+MOVE, 0x25, 12, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	Move manual pointer, 8, 4, -pointer:moveManual
+
+MOVE, 0x26, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+MOVE, 0x27, 16, -game:FE7 -indexMode:8
+	Character, 4, 2
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+	Speed, 12, 4, -preferredBase:10
+
+MOVE, 0x28, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Move manual pointer, 8, 4, -pointer:moveManual
+
+MOVENEXTTO, 0x29, 12, -game:FE7 -indexMode:8
+	Character to move, 4, 4
+	Character to move to, 8, 4
+
+##Move main character.
+MOVEMAINC, 0x2A, 8, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinates:2 -preferredBase:10 -signed
+
+MOVE, 0x2B, 16, -game:FE7 -indexMode:8
+	Character, 4, 1
+	Speed, 6, 1
+	New position, 8, 4, -coordinates:2 -preferredBase:10 -signed
+	Move manual pointer, 12, 4, -pointer:moveManual
+
+##Move unit witout showing movement animations.
+REPOS, 0x2E, 12, -game:FE7 -indexMode:8
+	Old position, 4, 4, -coordinate:2 -preferredBase:10 -signed
+	New position, 8, 4, -coordinate:2 -preferredBase:10 -signed
+
+REPOS, 0x2F, 12, -game:FE7 -indexMode:8
+	Character, 4, 4
+	New position, 8, 4, -coordinates:2 -preferredBase:10 -signed
+
+LOU1, 0x32, 8, -game:FE7 -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+
+##Loads units if the filter allows it.
+LOUFILTERED, 0x34, 12, -game:FE7 -indexMode:8
+	Value, 4, 4 
+	Pointer, 8, 4, -pointer:unit
+
+##Loads separate unit on separate modes.
+LOUMODE1, 0x35, 20, -game:FE7 -indexMode:8
+	ENM Unit pointer, 4, 4, -pointer:unit
+	EHM Unit pointer, 8, 4, -pointer:unit
+	HNM Unit pointer, 12, 4, -pointer:unit
+	HHM Unit pointer, 16, 4, -pointer:unit
+
+LOU2, 0x36, 8, -game:FE7 -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+
+##Loads units if the filter allows it.
+LOUFILTERED2, 0x37, 12, -game:FE7 -indexMode:8
+	Value, 4, 4 
+	Pointer, 8, 4, -pointer:unit
+
+##Loads separate unit on separate modes.
+LOUMODE2, 0x38, 20, -game:FE7 -indexMode:8
+	ENM Unit pointer, 4, 4, -pointer:unit
+	EHM Unit pointer, 8, 4, -pointer:unit
+	HNM Unit pointer, 12, 4, -pointer:unit
+	HHM Unit pointer, 16, 4, -pointer:unit
+
+##Loads a unit.
+LOEV, 0x39, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Class, 6, 2
+	Position, 8, 4, -coordinate:2 -preferredBase:10
+
+##Alias of LOEV
+LOADSINGLEUNIT, 0x39, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Class, 6, 2
+	Position, 8, 4, -coordinate:2 -preferredBase:10
+
+ENUN, 0x3B, 4, -game:FE7 -indexMode:8
+
+ITGV, 0x5B, 8, -game:FE7 -indexMode:8
+	Item, 4, 2
+
+ITGC, 0x5C, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Item, 8, 2
+
+##Give item to the main character.
+ITGM, 0x5D, 8, -game:FE7 -indexMode:8
+	Item, 4, 2
+
+##Gives money to the player.
+MONE, 0x5E, 8, -game:FE7 -indexMode:8
+	Village or cutscene, 2, 2
+	Amount of money, 4, 2, -preferredBase:10
+
+CUSI, 0x65, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Affiliation, 8, 2
+
+DISA, 0x6A, 8, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinates:2
+
+DISA, 0x6B, 8, -game:FE7 -indexMode:8
+	Character, 4, 2
+
+KILL, 0x6C, 8, -game:FE7 -indexMode:8
+	Position of character, 4, 4, -coordinate:2 -preferredBase:10
+
+KILL, 0x6D, 8, -game:FE7 -indexMode:8
+	Character, 4, 4
+
+##Makes a disappeared unit re-appear.
+##Requires the use of movement code afterwards.
+REPA, 0x6F, 8, -game:FE7 -indexMode:8
+	Character, 4, 2
+
+REPA, 0x70, 8, -game:FE7 -indexMode:8
+	Unit position, 4, 4, -coordinate:2 -preferredBase:10
+
+##Causes unit condition to be turned on.
+UNCM, 0x72, 12, -game:FE7 -indexMode:8
+##Character whose condition to change.
+	Character, 4, 2
+##Condition to change.
+	Condition, 8, 4, -preferredBase:2
+
+##Reverses units condition.
+UNCR, 0x73, 12, -game:FE7 -indexMode:8
+##Character whose condition to change.
+	Character, 4, 2
+##Condition to change.
+	Condition, 8, 4, -preferredBase:2
+
+CHAI, 0x74, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	AI, 8, 4, -coordinate:4
+
+CHAI, 0x74, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	AI 1, 8, 1
+	AI 2, 9, 1
+	AI 3, 10, 1
+	AI 4, 11, 1
+
+CHAI, 0x74, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	AI, 8, 4
+
+CHAI, 0x75, 12, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinate:2 -preferredBase:10
+	AI, 8, 4, -coordinate:4
+
+CHAI, 0x75, 12, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinate:2 -preferredBase:10
+	AI 1, 8, 1
+	AI 2, 9, 1
+	AI 3, 10, 1
+	AI 4, 11, 1
+
+CHAI, 0x75, 12, -game:FE7 -indexMode:8
+	Position, 4, 4, -coordinate:2 -preferredBase:10
+	AI, 8, 4
+
+FIGH, 0x97, 20, -game:FE7 -indexMode:8
+	Attacker, 4, 2
+	Defender, 8, 2
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter 1, 16, 1
+	Battle parameter 2, 17, 1
+	Battle parameter 3, 18, 1
+	Battle parameter 4, 19, 1
+
+FIGH, 0x97, 20, -game:FE7 -indexMode:8
+	Attacker, 4, 2
+	Defender, 8, 2
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter, 16, 4, -coordinate:4
+
+FIGH, 0x97, 20, -game:FE7 -indexMode:8
+	Attacker, 4, 2
+	Defender, 8, 2
+	Battle data pointer, 12, 4, -pointer:battleData
+	Battle parameter, 16, 4

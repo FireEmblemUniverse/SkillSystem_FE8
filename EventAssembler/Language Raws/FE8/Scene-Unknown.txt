@@ -1,0 +1,116 @@
+_MUSICSOMETHING, 0x1321, 4, -game:FE8 -indexMode:8
+	Something, 2, 2, -preferredBase:10 -signed
+
+_WARP, 0x2F48, 8, -game:FE8 -indexMode:8
+	Unknown1, 2, 2
+	Unknown2, 4, 2
+	Position, 6, 2, -coordinates:2 -preferredBase:10
+
+#Music related codes?
+#Cuts off music instantly and hangs
+#Used to be commented out MUS3
+_0x1320, 0x1320, 8, -game:FE8 -indexMode:8
+#Music to change to.
+	Music ID, 4, 2
+
+_0x1A22, 0x1A22, 4, -game:FE8 -indexMode:8
+
+_0x1A25, 0x1A25, 4, -game:FE8 -indexMode:8
+
+#Shows backgrounds?
+
+_0x2141, 0x2141, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+#Another change music?
+#Sounds the same as 1326
+_0x1328, 0x1328, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+_0x2B20, 0x2B20, 4, -game:FE8 -indexMode:8
+#In ruins. Called before loading units?
+
+_0x2B21, 0x2B21, 4, -game:FE8 -indexMode:8
+#In ruins after a randomization routine
+
+_0x2B22, 0x2B22, 4, -game:FE8 -indexMode:8
+#Called before loading units sometimes?
+
+#Changes displayed color of all player units (resets upon going into a menu).
+_0x2D20, 0x2D20, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+#0x2 is red
+#0x3 is other
+#0x4 is gold
+
+_0x412F, 0x412F, 4, -game:FE8 -indexMode:8
+	Value1, 2, 2
+
+
+#World map codes
+
+#Something involving Skirmishes?? Save screen loops? Upon reset Skirmishes happen?
+_0x8440, 0x8440, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always zero
+	Value3, 6, 2
+
+
+_0x8880, 0x8880, 16, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+	Value4, 8, 2
+	Value5, 10, 2
+#Always zero
+	Value6, 12, 2
+#Always zero
+	Value7, 14, 2
+
+
+_0x9B40, 0x9B40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always zero
+	Value3, 6, 2
+
+_0x9D40, 0x9D40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always zero
+	Value3, 6, 2
+
+_0xA640, 0xA640, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+	Value3, 6, 2
+
+_0xAA40, 0xAA40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always 0
+	Value3, 6, 2
+
+_0xAB40, 0xAB40, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Value2, 4, 2
+#Always 0
+	Value3, 6, 2
+
+_0xC220, 0xC220, 4, -game:FE8 -indexMode:8
+
+#Uni condition codes
+#Can hang the game, don't use this
+_0x3427, 0x3427, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Stores parameter to $03000010.
+STORETOSOMETHING, 0x1120, 4, -game:FE8 -indexMode:8
+	Value to store, 2, 2
+
+#Something to do with coordinates..?
+#Has to do with location?
+#CHECK_SOMETHING, 0x1921, 4, -game:FE8 -indexMode:8

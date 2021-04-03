@@ -1,0 +1,35 @@
+#ifndef HAX_6C_DEFINITIONS_EVENT
+#define HAX_6C_DEFINITIONS_EVENT
+
+#include "ProcDefinitions.txt"
+
+#define _6C_END                PROC_END
+#define _6C_SET_NAME           PROC_SET_NAME
+#define _6C_CALL_ROUTINE       PROC_CALL_ROUTINE
+#define _6C_LOOP_ROUTINE       PROC_LOOP_ROUTINE
+#define _6C_SET_DESTRUCTOR     PROC_SET_DESTRUCTOR
+#define _6C_NEW_CHILD          PROC_NEW_CHILD
+#define _6C_NEW_CHILD_BLOCKING PROC_NEW_CHILD_BLOCKING
+#define _6C_NEW_MAIN_BUGGED    PROC_NEW_MAIN_BUGGED
+#define _6C_WHILE_EXISTS       PROC_WHILE_EXISTS
+#define _6C_END_ALL            PROC_END_ALL
+#define _6C_BREAK_ALL_LOOP     PROC_BREAK_ALL_LOOP
+#define _6C_LABEL              PROC_LABEL
+#define _6C_GOTO               PROC_GOTO
+#define _6C_JUMP               PROC_JUMP
+#define _6C_SLEEP              PROC_SLEEP
+#define _6C_SET_MARK           PROC_SET_MARK
+#define _6C_BLOCK              PROC_BLOCK
+#define _6C_END_IF_DUPLICATE   PROC_END_IF_DUPLICATE
+#define _6C_SET_BIT4           PROC_SET_BIT4
+#define _6C_13                 PROC_13
+#define _6C_WHILE_ROUTINE      PROC_WHILE_ROUTINE
+#define _6C_15                 PROC_15
+#define _6C_CALL_ROUTINE_2     PROC_CALL_ROUTINE_2
+#define _6C_END_DUPLICATES     PROC_END_DUPLICATES
+#define _6C_CALL_ROUTINE_ARG   PROC_CALL_ROUTINE_ARG
+#define _6C_19                 PROC_19
+
+#define _6C_YEILD              PROC_YEILD
+
+#endif // HAX_6C_DEFINITIONS_EVENT

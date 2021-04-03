@@ -1,0 +1,16 @@
+MUSC,0x76, 4, -game:FE7J -indexMode:8
+	Music ID, 2, 2
+MUSS,0x77, 4, -game:FE7J -indexMode:8
+	Music ID, 2, 2
+MURE,0x78, 4, -game:FE7J -indexMode:8
+	Fade out speed, 2, 2
+MUSM,0x79, 8, -game:FE7J -indexMode:8
+	Music ID, 2, 2
+	Fade in speed, 4, 1
+	0, 5, 3, -fixed
+MUEN,0x7a, 4, -game:FE7J -indexMode:8
+	Fade out time, 2, 2, -preferredBase:10
+MUSI,0x7b, 4, -game:FE7J -indexMode:8
+MUNO,0x7c, 4, -game:FE7J -indexMode:8
+SOUN,0x7d, 4, -game:FE7J -indexMode:8
+	Music ID, 2, 2

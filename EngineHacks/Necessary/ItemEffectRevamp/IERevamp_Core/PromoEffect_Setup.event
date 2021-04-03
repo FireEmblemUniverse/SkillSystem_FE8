@@ -1,0 +1,78 @@
+#ifndef FreeSpace
+	#ifdef _FE8_
+		#define FreeSpace $B30000
+	#endif
+	ORG FreeSpace
+#endif
+
+#ifndef ItemEffectRevamp
+	#define ItemEffectRevamp
+#endif
+
+#include "Extensions/Hack Installation.txt"
+
+#ifdef _FE8_
+	#ifndef IDListCheck
+		#define IDListCheck
+		IDListLoop:
+		#incbin "ItemEffect_ListCheck.dmp"
+		POIN Item_GetStat_EffectID | 1
+	#endif
+	
+	ALIGN 4
+	
+	PrepPromoEffectCheck:
+	SHORT 0xB500 //push r14
+	SHORT 0x4902	//ldr r1
+	BL(IDListLoop)
+	SHORT 0xBC02 0x4708 //pop r1; bx r1
+	ALIGN 4
+	POIN PromoEffectList
+	
+	PromoLevelCheck:
+	#incbin "PromoCheck.dmp"
+	POIN PromoItem_LevelCheck
+	
+	PromoLordCheck:
+	#incbin "PromoCheck_FlagSkip.dmp"
+	BYTE 0x0 0x20 0x0 0x0	//character/class ability bits to compare against
+	POIN PromoItem_LevelCheck
+	
+	PromoItem_LevelCheck:
+	#incbin "PromotionLevelCheck.dmp"
+	POIN Item_GetStat_EPV
+	
+	PromoEffectList:
+	#include "_PromotionEffectList.txt"
+	
+	PUSH
+		ORG $291A8
+		#incbin "PromoItemUsability.dmp"
+		POIN Item_GetStat_EffectID
+		POIN PromoItemTable
+		
+		//Prep Screen Promotion Item Usage
+		ORG $9CB38
+		SHORT 0xB530 	//push r4-r5, r14
+		
+		ORG $9CB4C
+		//check if juna fruit effect
+		SHORT 0x1C05	//mov r5, r0
+		BL(Item_GetStat_EffectID)
+		SHORT 0x2836	//cmp r0, 0x36	@check if juna fruit
+		SHORT (BLRange($9CB98) & 0xFF) | 0xD000 	//beq
+		
+		//check if promo item effect
+		SHORT 0x1C28	//mov r0, r5
+		callHack_r3(PrepPromoEffectCheck)
+		SHORT 0x2800	//cmp r0, 0x0
+		SHORT (BLRange($9CBA0) & 0xFF) | 0xD000 	//beq
+		B($9CB78)
+		
+		ORG $9CBA0
+		SHORT 0xBC30	//pop r4-r5
+	POP
+	
+#else
+	ERROR "FE8 only"
+#endif

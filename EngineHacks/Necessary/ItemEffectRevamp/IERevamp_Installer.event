@@ -1,0 +1,44 @@
+//Currently FE8 only
+
+#ifndef FreeSpace	//write hack at this offset if assebmling from this file
+	#ifdef _FE8_
+		#define FreeSpace 0xB40000
+	#endif
+	ORG FreeSpace
+#endif
+
+#include "Extensions/Hack Installation.txt"
+#include "_ItemStatMacros.event"
+
+/*The item effect revamp changes to effect id
+of item 0x79, the 5 use chest key, into master key,
+ which opens both doors and chests
+If you want to change it back into a normal,
+change the item effect id from 0x26 to 0x1e
+(the effect id of the 1 use chest key)
+*/
+
+ALIGN 4
+#ifndef ItemEffectRevamp
+	#define ItemEffectRevamp
+
+	#define IER_setItemEffect(effectid,usability,prepscreen_usability,targeting,effect) "PUSH; ORG IERevampTable + (effectid * 0x10); POIN usability prepscreen_usability targeting effect; POP"
+
+	#ifdef _FE8_
+		#include "IERevamp_Core/_UseIDSetup.event" 	//still need to find and fix all mini jump tables
+		#include "IERevamp_Core/_EffectIDAI_Setup.event"
+		//Promo Items
+		#include "IERevamp_Core/_PromoEffect_Setup.event"
+		//StaffMight
+		
+		//Might Vulnerary
+		//#include "ItemEffects/MigVul_Setup.event"
+		
+		//Update Items
+		PUSH
+			SetItemUseID(0x8C, 0x37)	//give Latona an item effect id
+		POP
+	#else
+		ERROR "This is for FE8 only"
+	#endif
+#endif

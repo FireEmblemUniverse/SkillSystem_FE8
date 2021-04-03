@@ -1,0 +1,29 @@
+
+//#define RealTrap Lucius
+
+#ifdef _FE7_
+#define Ballista(XX,YY) "BLST [XX,YY] 0x34"
+#define NormalBallista(XX,YY) "BLST [XX,YY] 0x34"
+#define IronBallista(XX,YY) "BLST [XX,YY] 0x35"
+#define KillerBallista(XX,YY) "BLST [XX,YY] 0x36 "
+
+#define FireTrap(XX,YY) "FIRE [XX,YY] 0x0 [1,1]"
+#define GasTrap(XX,YY,direction) "GAST [XX,YY] direction [1,1]"
+#define PoisonTrap(XX,YY,direction) "GAST [XX,YY] direction [1,1]"
+
+#endif
+
+#ifdef _FE8_
+#define NormalBallista(XX,YY) "BLST [XX,YY] 0x34"
+#define IronBallista(XX,YY) "BLST [XX,YY] 0x35"
+#define KillerBallista(XX,YY) "BLST [XX,YY] 0x36 "
+
+#define FireTrap(XX,YY,startTurn,repeatTimer) "FIRE [XX,YY] startTurn repeatTimer"
+#define GasTrap(XX,YY,direction,startTurn,repeatTimer) "GAST [XX,YY] direction startTurn repeatTimer"
+#define PoisonTrap(XX,YY,direction,startTurn,repeatTimer) "GAST [XX,YY] direction startTurn repeatTimer"
+#define ArrowTrap(XX,YY,startTurn,repeatTimer) "ARROW [XX,YY] startTurn repeatTimer"
+#define InstantFireTrap(XX,YY) "FIRE2 [XX,YY]"
+#define MineTrap(XX,YY) "MINE [XX,YY]"
+#define GorgonEggTrap(XX,YY,startTurn,level) "EGG [XX,YY] startTurn level"
+
+#endif

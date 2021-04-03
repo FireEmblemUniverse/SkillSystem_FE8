@@ -1,0 +1,48 @@
+#ifdef _FE8_
+
+#define slotsParam(dest, param1, param2) "(param2<<8 | param1<<4 | dest)"
+#define slotsParam(dest, src) "(src<<8 | dest<<4 | dest)"
+
+#define r0 0
+#define r1 1
+#define r2 2
+#define r3 3
+#define r4 4
+#define r5 5
+#define r6 6
+#define r7 7
+#define r8 8
+#define r9 9
+#define rA 10
+#define r10 10
+#define rB 11
+#define r11 11
+#define rC 12
+#define r12 12
+#define rD 13
+#define r13 13
+#define QP 13 // QueuePointer
+
+#define s0 0
+#define s1 1
+#define s2 2
+#define s3 3
+#define s4 4
+#define s5 5
+#define s6 6
+#define s7 7
+#define s8 8
+#define s9 9
+#define sA $A
+#define sB $B
+#define sC $C
+#define sD $D
+
+#define ActiveUnit (-1)
+#define UnitAtCoordsSlotB (-2)
+#define UnitInSlot2 (-3)
+
+#define CurrentUnit ActiveUnit
+#define UnitAtCoords UnitAtCoordsSlotB
+
+#endif
