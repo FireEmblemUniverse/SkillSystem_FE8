@@ -5,3 +5,51 @@ defWeaponDebuffs(2,0,0,0,3,3,0) //0x2: Iron Shuriken debuff.
 defWeaponDebuffs(3,0,0,0,4,4,0) //0x3: Steel Shuriken debuff.
 defWeaponDebuffs(0,0,4,0,4,4,0) //0x4: Silver Shuriken debuff.
 defWeaponDebuffs(4,0,4,0,4,4,0) //0x5: Pebble debuff.
+
+//list of effect ids used by promotion items
+//this is the list for promo items that are usable on the prep screen
+#ifndef Promotion_IEList
+	 #define Promotion_IEList
+	PromoEffectList:
+	BYTE	0x19	//Hero Crest
+	BYTE	0x1A	//Knight Crest
+	BYTE	0x1B	//Orion's Bolt
+	BYTE	0x1C	//Elysian Whip
+	BYTE	0x1D	//Guiding Ring
+	BYTE	0x2D	//Master Seal
+	BYTE	0x2F	//Heaven Seal
+	BYTE	0x30	//Ocean Seal
+	BYTE	0x31	//Lunar Brace
+	BYTE	0x32	//Solar Brace
+
+	BYTE 0x0	//end of list
+#endif
+
+#ifndef ChestKey_IEList
+	#define ChestKey_IEList
+
+	ChestKeyEffectList:
+	//list of effect ids the ai will check for as chest keys
+	BYTE 0x1E	//Chest Key
+	BYTE 0x20	//Lockpick
+	BYTE 0x26	//Master Key
+
+	BYTE 0x0	//end of list
+#endif
+
+#ifndef SelfHealingIEList
+	#define SelfHealingIEList
+	/*
+	The order of this list doesn't matter, priority is determinded by the order of the healing items in the unit's inventory
+	For example, if the unit's inventory is [IronSword, Vulnerary, Elixir] the unit will use the vulnerary first when 
+	trying to heal even though the elixir restores more. might try to mess with this at a later date but this is how the ai behaves in vanilla
+	*/
+
+	SelfHealItemEffectList:
+	//List of healing items effects usable by the AI
+	BYTE 0x21	//Heal 10 hp effect (Vulnerary)
+	BYTE 0x22	//Heal all hp effect (Eilxir)
+	BYTE 0x33	//Heal based on value in item data(new effect)
+
+	BYTE 0x0	//end of list
+#endif

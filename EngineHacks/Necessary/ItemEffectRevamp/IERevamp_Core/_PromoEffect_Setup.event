@@ -34,7 +34,7 @@
 	ALIGN 4
 	POIN PromoEffectList
 	
-	PromoEffectList:
+	// PromoEffectList:
 	#include "_PromotionEffectList.txt"
 	
 	PUSH
