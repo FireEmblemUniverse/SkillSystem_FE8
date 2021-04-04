@@ -22,7 +22,7 @@
 	ALIGN 4
 	
 	PromoLordCheck:
-	#include "PromoCheck_FlagSkip.event"
+	#include "PromoCheck_FlagSkip.lyn.event"
 	BYTE 0x0 0x20 0x0 0x0	//character/class ability bits to compare against
 	//POIN PromoItem_LevelCheck
 	
@@ -39,7 +39,7 @@
 	
 	PUSH
 		ORG $291A8
-		#include "PromoItemUsability.event"
+		#include "PromoItemUsability.lyn.event"
 		POIN PromotionItemTable
 		
 		//Prep Screen Promotion Item Usage

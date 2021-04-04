@@ -90,7 +90,7 @@
 		SHORT 0x468F	//mov 	r15, r1
 		B($2F90E)
 		
-		#include "GetStatBoosterText.event"
+		#include "GetStatBoosterText.lyn.event"
 		
 		//BL(Item_GetStat_EffectID)
 		//B($2F8AA)	//IB Jump 
@@ -114,14 +114,14 @@
 	*/
 	//change checks for status staves to check for the effect ids instead
 	ORG $2F010	//$2F082
-		#include "StatusStaffEffect.event"
+		#include "StatusStaffEffect.lyn.event"
 		
 	//change checks for dancer rings to check for the effect id instead
 	ORG $2FBBC	//$2FBEA
 	#ifndef DancerRingRefresh
-		#include "DancerRingEffect.event"
+		#include "DancerRingEffect.lyn.event"
 	#else
-		#include "DancerRingEffect_Refresh.event"
+		#include "DancerRingEffect_Refresh.lyn.event"
 	#endif //DancerRingRefresh
 		
 	//change part that updates status effect on BattleTargetUnit
@@ -135,7 +135,7 @@
 		B($5802E)	//skip loop since the getter is called insead
 		//might overwrite the loop with something else later
 	ORG $78214
-		#include "ItemAnimAssociation_p1.event"
+		#include "ItemAnimAssociation_p1.lyn.event"
 		POIN SpellAssociationTable UseEffectAnimTable
 	
 	//for use space where tables used to be to put stuff in bl range
@@ -164,9 +164,9 @@
 		jumpToHack(Item_GetStat_EPV)
 
 		ALIGN 4
-		#include "ItemAnimAssociation_p2.event"
-		#include "ItemAnimAssociation_p3.event"
-		#include "LockpickCheck.event"
+		#include "ItemAnimAssociation_p2.lyn.event"
+		#include "ItemAnimAssociation_p3.lyn.event"
+		#include "LockpickCheck.lyn.event"
 	POP
 	
 	#include "_KeyCommandsFix.event"
