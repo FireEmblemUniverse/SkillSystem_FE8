@@ -136,7 +136,7 @@
 		//might overwrite the loop with something else later
 	ORG $78214
 		#include "ItemAnimAssociation_p1.lyn.event"
-		POIN SpellAssociationTable UseEffectAnimTable
+		POIN UseEffectAnimTable SpellAssociationTable
 	
 	//for use space where tables used to be to put stuff in bl range
 	ORG $28E80 //$288A8
