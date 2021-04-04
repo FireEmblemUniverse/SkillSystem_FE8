@@ -18,7 +18,7 @@ set "target_ups=%~dp0SkillsTest.ups"
 set "c2ea=%~dp0Tools\C2EA\c2ea"
 set "textprocess=%~dp0Tools\TextProcess\text-process-classic"
 set "ups=%~dp0Tools\ups\ups"
-set "parsefile=%~dp0Event Assembler\Tools\ParseFile.exe"
+set "parsefile=%~dp0EventAssembler\Tools\ParseFile.exe"
 set "tmx2ea=%~dp0Tools\tmx2ea\tmx2ea"
 
 @rem set %~dp0 into a variable because batch is stupid and messes with it when using conditionals?

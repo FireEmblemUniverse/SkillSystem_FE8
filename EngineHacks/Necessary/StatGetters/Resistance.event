@@ -20,12 +20,12 @@ prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current p
 	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))
 
 prDebuffRes:
-	#incbin "_asm/DebuffRes.bin"
-	WORD DebuffTable
+	#include "_asm/DebuffRes.lyn.event"
+	POIN GetDebuffs|1
 
 prRallyRes:
-	#incbin "_asm/RallyRes.bin"
-	WORD DebuffTable
+	#include "_asm/RallyRes.lyn.event"
+	POIN GetDebuffs|1
 
 prLifeAndDeathMinus:
 _testSkill(HeroesLifeAndDeathID,0,5)

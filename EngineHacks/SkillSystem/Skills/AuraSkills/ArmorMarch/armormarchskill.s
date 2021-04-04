@@ -1,16 +1,22 @@
 .equ ArmorMarchID, AuraSkillCheck+4
 .equ DebuffTable, ArmorMarchID+4
 .equ ArmorMarchBit, DebuffTable+4
-.equ EntrySize, ArmorMarchBit+4
-.equ SkillTester, EntrySize+4
+.equ SkillTester, ArmorMarchBit+4
 .equ ArmorMarchList, SkillTester+4
 .thumb
+
+.set gChapterData,                 0x0202BCF0
+.set GetUnit,                      0x08019430
+	@ arguments:
+		@r0 = unit deployment id
+	@returns:
+		@r0 = unit pointer
 
 @my really ugly hook
 push	{lr}
 ldr	r1,=#0x8015395
 mov	lr,r1
-ldr	r2,=#0x202BCF0
+ldr	r2,=gChapterData
 ldrb	r0,[r2,#0xF]
 mov	r1,pc
 add	r1,#7
@@ -26,11 +32,17 @@ mov	r4,#1
 unsetLoop:
 
 @unset the bit for this skill in the debuff table entry for the unit
-ldr	r0,DebuffTable
-mov	r1,r4
-ldr	r2,EntrySize
-mul	r1,r2
-add	r0,r1		@debuff table entry for this unit
+mov r0,r4
+ldr r2,=GetUnit
+mov lr,r2
+.short 0xf800
+ldr	r2,DebuffTable
+mov lr,r2
+.short 0xf800
+@ mov	r1,r4
+@ ldr	r2,EntrySize
+@ mul	r1,r2
+@ add	r0,r1		@debuff table entry for this unit
 push	{r0}
 ldr	r0,ArmorMarchBit
 mov	r1,#8
@@ -50,13 +62,13 @@ beq	allUnset
 b	unsetLoop
 
 allUnset:
-ldr	r2,=#0x202BCF0
+ldr	r2,=gChapterData
 ldrb	r4,[r2,#0xF]	@phase
 add	r4,#1
 
 Loop:
 mov	r0,r4
-ldr	r1,=#0x8019430	@get char data
+ldr	r1,=GetUnit	@get char data
 mov	lr,r1
 .short	0xf800
 mov	r5,r0		@r5 = pointer to unit in ram
@@ -125,7 +137,7 @@ checkArmorsLoop:
 ldrb	r0,[r6]
 cmp	r0,#0
 beq	noArmors
-ldr	r1,=#0x8019430	@get char data
+ldr	r1,=GetUnit	@get char data
 mov	lr,r1
 .short	0xf800		@r0 = pointer to unit in ram
 mov	r3,r0
@@ -154,11 +166,18 @@ mov	r6,#1
 
 Set:
 @set or unest the bit for this skill in the debuff table entry for the unit
-ldr	r0,DebuffTable
-mov	r1,r4
-ldr	r2,EntrySize
-mul	r1,r2
-add	r0,r1		@debuff table entry for this unit
+mov r0,r4
+ldr r2,=GetUnit
+mov lr,r2
+.short 0xf800
+ldr	r2,DebuffTable
+mov lr,r2
+.short 0xf800
+@ ldr	r0,DebuffTable
+@ mov	r1,r4
+@ ldr	r2,EntrySize
+@ mul	r1,r2
+@ add	r0,r1		@debuff table entry for this unit
 push	{r0}
 ldr	r0,ArmorMarchBit
 mov	r1,#8
@@ -202,6 +221,5 @@ AuraSkillCheck:
 @WORD ArmorMarchID
 @POIN DebuffTable
 @WORD ArmorMarchBit
-@WORD EntrySize
 @POIN SkillTester
 @POIN ArmorMarchList

@@ -4,11 +4,13 @@
 .equ EntrySize, VigorDanceBit+4
 .thumb
 
+.set gActionData,            0x0203A958
+
 push	{r0,r4}
 mov	r4,r0		@unit being refreshed
 
 @get the dancer character data
-ldr	r0,=#0x203A958	@action struct
+ldr	r0,=gActionData	@action struct
 ldrb	r0,[r0,#0xC]	@dancer's allegiance byte
 ldr	r1,=#0x8019430	@get char data
 mov	lr,r1
@@ -23,11 +25,15 @@ cmp	r0,#0
 beq	End
 
 @set the bit for this skill in the debuff table entry for the refreshed unit
-ldr	r0,DebuffTable
-ldrb	r1,[r4,#0xB]	@allegiance byte of refreshed unit
-ldr	r2,EntrySize
-mul	r1,r2
-add	r0,r1		@debuff table entry for this unit
+mov	r0,r4
+ldr	r1,DebuffTable
+mov lr,r1
+.short 0xf800
+@ ldr	r0,DebuffTable
+@ ldrb	r1,[r4,#0xB]	@allegiance byte of refreshed unit
+@ ldr	r2,EntrySize
+@ mul	r1,r2
+@ add	r0,r1		@debuff table entry for this unit
 push	{r0}
 ldr	r0,VigorDanceBit
 mov	r1,#8

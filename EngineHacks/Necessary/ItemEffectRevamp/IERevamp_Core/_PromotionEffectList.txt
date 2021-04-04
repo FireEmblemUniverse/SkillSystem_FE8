@@ -1,18 +1,21 @@
 //list of effect ids used by promotion items
 //this is the list for promo items that are usable on the prep screen
-//PromoEffectList:
-BYTE	0x19	//Hero Crest
-BYTE	0x1A	//Knight Crest
-BYTE	0x1B	//Orion's Bolt
-BYTE	0x1C	//Elysian Whip
-BYTE	0x1D	//Guiding Ring
-BYTE	0x2D	//Master Seal
-BYTE	0x2F	//Heaven Seal
-BYTE	0x30	//Ocean Seal
-BYTE	0x31	//Lunar Brace
-BYTE	0x32	//Solar Brace
+#ifndef Promotion_IEList
+	 #define Promotion_IEList
+	PromoEffectList:
+	BYTE	0x19	//Hero Crest
+	BYTE	0x1A	//Knight Crest
+	BYTE	0x1B	//Orion's Bolt
+	BYTE	0x1C	//Elysian Whip
+	BYTE	0x1D	//Guiding Ring
+	BYTE	0x2D	//Master Seal
+	BYTE	0x2F	//Heaven Seal
+	BYTE	0x30	//Ocean Seal
+	BYTE	0x31	//Lunar Brace
+	BYTE	0x32	//Solar Brace
 
-BYTE 0x0	//end of list
+	BYTE 0x0	//end of list
+#endif
 
 /*
 #ifndef IER_PromotionItemTable

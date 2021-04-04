@@ -1,19 +1,25 @@
 .thumb
 
-.macro blh to, reg=r3
-	ldr \reg, =\to
+.macro blh2 to, reg=r3
+	ldr \reg, \to
 	mov lr, \reg
 	.short 0xF800
 .endm
 
-AddRallyStr:
+GetDebuffs = EALiterals+0x0
+
+AddDebuffSkl:
 push {r4-r6, lr}
-mov r5, r0 @unit
-mov r4, r1 @stat
-ldr r6, EALiterals
-ldrb r1, [r4 ,#0xB]     @Deployment number
-lsl r1, r1, #0x3    @*8
-add r6, r1          @r0 = *debuff data
+mov r5, r0 @stat
+mov r4, r1 @unit
+mov r0,r4
+blh2 GetDebuffs
+mov r6,r0
+@ ldr r6, EALiterals
+@ ldrb r1, [r4 ,#0xB]     @Deployment number
+@ lsl r1, r1, #0x3    @*8
+@ add r6, r1          @r0 = *debuff data
+
 @Now get the debuff
 @Skill debuff is LO nibble of 0th byte
 ldr r0, [r6]
@@ -39,4 +45,4 @@ pop {r4-r6,pc}
 .align
 
 EALiterals:
-@POIN DebuffTable
+@POIN GetDebuffs

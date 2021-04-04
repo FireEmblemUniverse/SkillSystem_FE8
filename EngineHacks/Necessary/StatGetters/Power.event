@@ -17,12 +17,12 @@ prAddEquipPower:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemPowBonus)))
 
 prDebuffStr:
-	#incbin "_asm/DebuffStr.bin"
-	WORD DebuffTable
+	#include "_asm/DebuffStr.lyn.event"
+	POIN GetDebuffs|1
 
 prRallyStr:
-	#incbin "_asm/RallyStr.bin"
-	WORD DebuffTable
+	#include "_asm/RallyStr.lyn.event"
+	POIN GetDebuffs|1
 
 prLifeAndDeathBonus:
 	_testSkill(HeroesLifeAndDeathID,5,0)

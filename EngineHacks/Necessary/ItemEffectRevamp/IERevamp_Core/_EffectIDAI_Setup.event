@@ -30,7 +30,7 @@
 	BL(IDListLoop)
 	SHORT 0xBC02 0x4708 //pop r1; bx r1
 	ALIGN 4
-	POIN ChestKeyList
+	POIN ChestKeyEffectList
 	
 	//Healing Item Check
 	PUSH
@@ -48,7 +48,7 @@
 	BL(IDListLoop)
 	SHORT 0xBC02 0x4708 //pop r1; bx r1
 	ALIGN 4
-	POIN HealingItemList
+	POIN SelfHealItemEffectList
 	
 	//Staff AI stuff
 	PUSH
@@ -79,10 +79,12 @@
 	POP
 	
 	ALIGN 4
-	ChestKeyList:
-	#include "_ChestKeyEffectList.txt"
 	
-	HealingItemList:
+	//Default Lists
+	
+	// ChestKeyEffectList:
+	#include "_ChestKeyEffectList.txt"
+	// SelfHealItemEffectList:
 	#include "_HealItemEffectList.txt"
 	
 #else

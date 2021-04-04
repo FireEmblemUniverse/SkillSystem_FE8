@@ -17,12 +17,12 @@ prAddEquipSkill:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSklBonus)))
 
 prDebuffSkl:
-	#incbin "_asm/DebuffSkl.bin"
-	WORD DebuffTable
+	#include "_asm/DebuffSkl.lyn.event"
+	POIN GetDebuffs|1
 
 prRallySkl:
-	#incbin "_asm/RallySkl.bin"
-	WORD DebuffTable
+	#include "_asm/RallySkl.lyn.event"
+	POIN GetDebuffs|1
 
 prItemPassiveSkl:
 	rPassiveStatBoosts(STAT_SKILL)

@@ -114,27 +114,37 @@ RallyCommandEffect:
 RallyCommandEffect.apply:
 	@ args: r0 = unit, r1 = rally bits
 
-	ldr  r3, =gpRallyDebuffsAddr
-	ldr  r3, [r3]
+	push {r4,lr}
+	mov r4,r1
 
-	ldrb r0, [r0, #0x0B] @ r0 = unit index
-	lsl  r0, #3          @ r0 = unit index * 8
+	@ ldr  r3, =gpRallyDebuffsAddr
+	@ ldr  r3, [r3]
 
-	add  r3, r0
+	@ ldrb r0, [r0, #0x0B] @ r0 = unit index
+	@ lsl  r0, #3          @ r0 = unit index * 8
+
+	@ add  r3, r0
+
+	ldr  r3, =GetDebuffs
+	mov lr, r3
+	.short 0xF800
+	mov r3, r0
 
 	ldrb r0, [r3, #3] @ Magic rally occupies the 9th bit which shouldn't affect regular behavior. (Really no #ifdef necessary)
-	orr  r0, r1
+	orr  r0, r4
 	strb r0, [r3, #3]
 	
 	@ Special instructions for rally mag.
-	lsl r2, r1, #23 @ Remove all higher bits than the ninth.
+	lsl r2, r4, #23 @ Remove all higher bits than the ninth.
 	lsr r2, r2, #31 @ Remove all lower bits than the ninth.
 	lsl r2, r2, #4 @ Align to match the magic byte in the extra data struct ((RallyMag<<4)||MagDebuff)
 	ldrb r0, [ r3, #5 ] @ Magic byte
 	orr r0, r2
 	strb r0, [ r3, #5 ]
 	
-	bx lr
+	pop {r4}
+	pop {r0}
+	bx r0
 
 	.pool
 	.align

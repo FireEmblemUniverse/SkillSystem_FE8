@@ -96,26 +96,26 @@ WORD VantagePlusID
 
 ALIGN 4
 VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
-#incbin "VigorDance/vigordanceskill.dmp"
+#include "VigorDance/vigordanceskill.lyn.event"
 POIN SkillTester
 WORD VigorDanceID
-WORD DebuffTable
+POIN GetDebuffs // WORD DebuffTable
 WORD VigorDanceBit
-WORD 8 //size of a debuff table entry
+// WORD 8 //size of a debuff table entry
 
 ALIGN 4
 VigorDanceCheck: //check if the bit is set and if so give the unit some stats
-#incbin "VigorDance/vigordancecheck.dmp"
-WORD DebuffTable
+#include "VigorDance/vigordancecheck.lyn.event"
+POIN GetDebuffs // WORD DebuffTable
 WORD VigorDanceBit
-WORD 8 //size of a debuff table entry
+// WORD 8 //size of a debuff table entry
 
 ALIGN 4
 VigorDanceReset:
-#incbin "VigorDance/vigordancereset.dmp"
-WORD DebuffTable
+#include "VigorDance/vigordancereset.lyn.event"
+POIN GetDebuffs // WORD DebuffTable
 WORD VigorDanceBit
-WORD 8 //size of a debuff table entry
+// WORD 8 //size of a debuff table entry
 
 #include "TriangleAttack/TriangleAttack.lyn.event"
 ALIGN 4
