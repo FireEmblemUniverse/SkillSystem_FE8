@@ -28,13 +28,13 @@
 	SHORT 0xBC30 0xBC02 0x4708
 	//jumpToHack($28BFE)
 	MasterKeyUseCheck:
-	#include "MasterKey_Usability.event"
+	#include "MasterKey_Usability.lyn.event"
 	//#incbin "MasterKey_Usability.dmp"
 	
 	PUSH
 		//Update Door and Chest commands to check for item effect ids instead of item ids
 		ORG $18A9C
-		#include "KeyCommand_ItemCheck.event"
+		#include "KeyCommand_ItemCheck.lyn.event"
 		Inventory_EIDCheck_Jump:
 		jumpToHack(Inventory_EIDCheck)
 		//ORG $288A8
