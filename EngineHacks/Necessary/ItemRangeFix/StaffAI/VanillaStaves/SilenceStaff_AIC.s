@@ -14,6 +14,9 @@ mov 	r4, r2
 mov 	r5, r1
 mov 	r6, r0
 
+cmp 	r5, r6
+beq CantHit 	@stop unit from targeting itself
+
 mov 	r0, r4
 ldr 	r3, IsActiveUnitEnemy
 _blr 	r3
