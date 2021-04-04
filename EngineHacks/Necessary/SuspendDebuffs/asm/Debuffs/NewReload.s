@@ -8,9 +8,9 @@ mov     r0,r4
 ldr     r3,GetDebuffs
 mov     lr,r3
 .short 0xF800
-mov     r1,#0x0
-str     r1,[r0]
-str     r1,[r0,#0x4]
+mov     r3,#0x0
+str     r3,[r0]
+str     r3,[r0,#0x4]
 pop     {r0-r1}
 
 @ ldr r2, AdditionalDataTable
@@ -27,8 +27,8 @@ mov     r5,#0x1
 and     r0,r5
 lsl     r0,r0,#0x4
 orr     r0,r1
-pop     {r3}
-bx r3
+pop     {r2}
+bx r2
 @ bx lr
 
 @ AdditionalDataTable:
