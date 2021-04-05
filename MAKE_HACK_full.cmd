@@ -47,11 +47,6 @@ if /I not [%1]==[quick] (
   cd "%base_dir%Text"
   echo: | ("%textprocess%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
 
-  echo:
-  echo Processing maps
-
-  cd "%base_dir%Maps"
-  echo: | ("%tmx2ea%" -s -O "MasterMapInstaller.event")
 
 )
 

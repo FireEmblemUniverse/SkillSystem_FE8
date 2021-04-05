@@ -1,0 +1,298 @@
+PUSH
+ORG 0x19900
+POIN TileConfigPLIST
+
+ORG 0x19968
+POIN ObjTypePalettePLIST
+
+ORG 0x1999C
+POIN ObjTypePalettePLIST
+
+ORG 0x30134
+POIN TileAnimPLIST
+
+ORG 0x30C78
+POIN TileAnimPLIST
+
+ORG 0x34680
+POIN MapPLIST
+
+ORG 0x346AC
+POIN MapChangesPLIST
+
+ORG 0xB3018
+POIN MapChangesPLIST
+
+ORG 0xC66E8
+POIN MapChangesPLIST
+
+POP
+
+
+ALIGN 4
+
+    MESSAGE tile config plist space starts at currentOffset
+
+TileConfigPLIST:
+ORG TileConfigPLIST + (0x4 * 0xFF)
+
+
+    MESSAGE tile config plist space starts at currentOffset
+
+ObjTypePalettePLIST:
+ORG ObjTypePalettePLIST + (0x4 * 0xFF)
+
+TileAnimPLIST:
+ORG TileAnimPLIST + (0x4 * 0xFF)
+
+MapPLIST:
+ORG MapPLIST + (0x4 * 0xFF)
+
+MapChangesPLIST:
+ORG MapChangesPLIST + (0x4 * 0xFF)
+
+
+#define TileConfigPointerTable(aId, apointer) "PUSH; ORG TileConfigPLIST+(0x4 * aId); POIN apointer; POP"
+// Confchip_config
+
+#define ObjTypePalettePointerTable(aId, apointer) "PUSH; ORG ObjTypePalettePLIST+(0x4 * aId); POIN apointer; POP"
+// 
+
+
+#define TileAnimPointerTable(aId, apointer) "PUSH; ORG TileAnimPLIST+(0x4 * aId); POIN apointer; POP"
+
+//Map_Pointer_Table and ConfChangesPointerTable ? 
+
+#define Map_Pointer_Table(aId, apointer) "PUSH; ORG MapPLIST+(4*aId); POIN apointer; POP"
+#define MapChangesPointerTable(aId, apointer) "PUSH; ORG MapChangesPLIST+(0x4 * aId); POIN apointer; POP"
+
+// OBJECT and PALETTE share numbers,
+// tile config, Conf pointer, tile anim 1/2, and Conf changes are all separate
+
+
+
+
+
+
+
+
+
+// -------------------------------TILE CONFIG-------------------------------
+
+
+#define OaksLabConf 0
+#define PalletTownConf 1
+#define Route1Conf 2
+#define ViridianCityConf 3
+#define Route2SConf 4
+#define ViridianForestSConf 5
+#define ViridianForestNConf 6
+#define Route2NConf 7
+#define PewterCityConf 8
+#define PewterGymConf 9
+#define Route3WConf 10
+#define Route3MConf 11
+#define Route3EConf 12
+#define Route4WConf 13
+#define MtMoonB1SConf 14
+#define MtMoonB1NConf 15
+#define MtMoonB2Conf 16
+#define MtMoonB3NEConf 17
+#define MtMoonB3EConf 18
+#define MtMoonB3WConf 19
+#define MtMoonB3MConf 20
+#define MtMoonB3MidConf 20
+
+#define Route4MConf 21
+#define Route4EConf 22
+#define CeruleanCityConf 23
+#define CeruleanGymConf 24
+#define Route24Conf 25
+#define Route25Conf 26
+
+
+TileConfigPointerTable(OaksLabConf, OaksLabConfigData)
+TileConfigPointerTable(PalletTownConf, PalletTownConfigData)
+TileConfigPointerTable(Route1Conf, Route1ConfigData)
+TileConfigPointerTable(ViridianCityConf, ViridianCityConfigData)
+TileConfigPointerTable(Route2SConf, Route2SConfigData)
+TileConfigPointerTable(ViridianForestSConf, ViridianForestSConfigData)
+TileConfigPointerTable(ViridianForestNConf, ViridianForestNConfigData)
+TileConfigPointerTable(Route2NConf, Route2NConfigData)
+TileConfigPointerTable(PewterCityConf, PewterCityConfigData)
+TileConfigPointerTable(PewterGymConf, PewterGymConfigData)
+TileConfigPointerTable(Route3WConf, Route3WConfigData)
+TileConfigPointerTable(Route3MConf, Route3MConfigData)
+TileConfigPointerTable(Route3EConf, Route3EConfigData)
+TileConfigPointerTable(Route4WConf, Route4WConfigData)
+TileConfigPointerTable(MtMoonB1SConf, MtMoonB1SConfigData)
+TileConfigPointerTable(MtMoonB1NConf, MtMoonB1NConfigData)
+TileConfigPointerTable(MtMoonB2Conf, MtMoonB2ConfigData)
+TileConfigPointerTable(MtMoonB3NEConf, MtMoonB3NEConfigData)
+TileConfigPointerTable(MtMoonB3EConf, MtMoonB3EConfigData)
+TileConfigPointerTable(MtMoonB3WConf, MtMoonB3WConfigData)
+TileConfigPointerTable(MtMoonB3MConf, MtMoonB3MConfigData)
+TileConfigPointerTable(Route4MConf, Route4MConfigData)
+TileConfigPointerTable(Route4EConf, Route4EConfigData)
+TileConfigPointerTable(CeruleanCityConf, CeruleanCityConfigData)
+TileConfigPointerTable(CeruleanGymConf, CeruleanGymConfigData)
+TileConfigPointerTable(Route24Conf, Route24ConfigData)
+TileConfigPointerTable(Route25Conf, Route25ConfigData)
+
+
+// 0 1 2 3 4 5 etc. 
+
+
+// -------------------------------OBJ TYPE-------------------------------
+
+#define OaksLabObj 0
+#define PalletTownObj 2
+#define Route1Obj 4
+#define ViridianCityObj 6
+#define Route2SObj 8
+#define ViridianForestSObj 10
+#define ViridianForestNObj 12
+#define Route2NObj 14
+#define PewterCityObj 16
+#define PewterGymObj 18
+#define Route3WObj 20
+#define Route3MObj 22
+#define Route3EObj 24
+#define Route4WObj 26
+#define MtMoonB1SObj 28
+#define MtMoonB1NObj 30
+#define MtMoonB2Obj 32
+#define MtMoonB3NEObj 34
+#define MtMoonB3EObj 36
+#define MtMoonB3WObj 38
+#define MtMoonB3MObj 40
+#define MtMoonB3MidObj 40
+
+
+#define Route4MObj 42
+#define Route4EObj 44
+#define CeruleanCityObj 46
+#define CeruleanGymObj 48
+#define Route24Obj 50
+#define Route25Obj 52
+
+
+ObjTypePalettePointerTable(OaksLabObj, OaksLabObjData)
+ObjTypePalettePointerTable(PalletTownObj, PalletTownObjData)
+ObjTypePalettePointerTable(Route1Obj, Route1ObjData)
+ObjTypePalettePointerTable(ViridianCityObj, ViridianCityObjData)
+ObjTypePalettePointerTable(Route2SObj, Route2SObjData)
+ObjTypePalettePointerTable(ViridianForestSObj, ViridianForestSObjData)
+ObjTypePalettePointerTable(ViridianForestNObj, ViridianForestNObjData)
+ObjTypePalettePointerTable(Route2NObj, Route2NObjData)
+ObjTypePalettePointerTable(PewterCityObj, PewterCityObjData)
+ObjTypePalettePointerTable(PewterGymObj, PewterGymObjData)
+ObjTypePalettePointerTable(Route3WObj, Route3WObjData)
+ObjTypePalettePointerTable(Route3MObj, Route3MObjData)
+ObjTypePalettePointerTable(Route3EObj, Route3EObjData)
+ObjTypePalettePointerTable(Route4WObj, Route4WObjData)
+ObjTypePalettePointerTable(MtMoonB1SObj, MtMoonB1SObjData)
+ObjTypePalettePointerTable(MtMoonB1NObj, MtMoonB1NObjData)
+ObjTypePalettePointerTable(MtMoonB2Obj, MtMoonB2ObjData)
+ObjTypePalettePointerTable(MtMoonB3NEObj, MtMoonB3NEObjData)
+ObjTypePalettePointerTable(MtMoonB3EObj, MtMoonB3EObjData)
+ObjTypePalettePointerTable(MtMoonB3WObj, MtMoonB3WObjData)
+ObjTypePalettePointerTable(MtMoonB3MObj, MtMoonB3MObjData)
+ObjTypePalettePointerTable(Route4MObj, Route4MObjData)
+ObjTypePalettePointerTable(Route4EObj, Route4EObjData)
+ObjTypePalettePointerTable(CeruleanCityObj, CeruleanCityObjData)
+ObjTypePalettePointerTable(CeruleanGymObj, CeruleanGymObjData)
+ObjTypePalettePointerTable(Route24Obj, Route24ObjData)
+ObjTypePalettePointerTable(Route25Obj, Route25ObjData)
+
+
+
+// -------------------------------Palette-------------------------------
+
+#define OaksLabPal 1
+#define PalletTownPal 3
+#define Route1Pal 5
+#define ViridianCityPal 7
+#define Route2SPal 9
+#define ViridianForestSPal 11
+#define ViridianForestNPal 13
+#define Route2NPal 15
+#define PewterCityPal 17
+#define PewterGymPal 19
+#define Route3WPal 21
+#define Route3MPal 23
+#define Route3EPal 25
+#define Route4WPal 27
+#define MtMoonB1SPal 29
+#define MtMoonB1NPal 31
+#define MtMoonB2Pal 33
+#define MtMoonB3NEPal 35
+#define MtMoonB3EPal 37
+#define MtMoonB3WPal 39
+#define MtMoonB3MPal 41
+
+#define MtMoonB3MidPal 41
+
+#define Route4MPal 43
+#define Route4EPal 45
+#define CeruleanCityPal 47
+#define CeruleanGymPal 49
+#define Route24Pal 51
+#define Route25Pal 53
+
+
+
+ObjTypePalettePointerTable(OaksLabPal, OaksLabPalData)
+ObjTypePalettePointerTable(PalletTownPal, PalletTownPalData)
+ObjTypePalettePointerTable(Route1Pal, Route1PalData)
+ObjTypePalettePointerTable(ViridianCityPal, ViridianCityPalData)
+ObjTypePalettePointerTable(Route2SPal, Route2SPalData)
+ObjTypePalettePointerTable(ViridianForestSPal, ViridianForestSPalData)
+ObjTypePalettePointerTable(ViridianForestNPal, ViridianForestNPalData)
+ObjTypePalettePointerTable(Route2NPal, Route2NPalData)
+ObjTypePalettePointerTable(PewterCityPal, PewterCityPalData)
+ObjTypePalettePointerTable(PewterGymPal, PewterGymPalData)
+ObjTypePalettePointerTable(Route3WPal, Route3WPalData)
+ObjTypePalettePointerTable(Route3MPal, Route3MPalData)
+ObjTypePalettePointerTable(Route3EPal, Route3EPalData)
+ObjTypePalettePointerTable(Route4WPal, Route4WPalData)
+ObjTypePalettePointerTable(MtMoonB1SPal, MtMoonB1SPalData)
+ObjTypePalettePointerTable(MtMoonB1NPal, MtMoonB1NPalData)
+ObjTypePalettePointerTable(MtMoonB2Pal, MtMoonB2PalData)
+ObjTypePalettePointerTable(MtMoonB3NEPal, MtMoonB3NEPalData)
+ObjTypePalettePointerTable(MtMoonB3EPal, MtMoonB3EPalData)
+ObjTypePalettePointerTable(MtMoonB3WPal, MtMoonB3WPalData)
+ObjTypePalettePointerTable(MtMoonB3MPal, MtMoonB3MPalData)
+ObjTypePalettePointerTable(Route4MPal, Route4MPalData)
+ObjTypePalettePointerTable(Route4EPal, Route4EPalData)
+ObjTypePalettePointerTable(CeruleanCityPal, CeruleanCityPalData)
+ObjTypePalettePointerTable(CeruleanGymPal, CeruleanGymPalData)
+ObjTypePalettePointerTable(Route24Pal, Route24PalData)
+ObjTypePalettePointerTable(Route25Pal, Route25PalData)
+
+
+
+// -------------------------------Tile Anims-------------------------------
+
+#define ConfAnimsTiles(duration, tileSize, imgPointer) "SHORT duration tileSize; POIN imgPointer"
+
+//<property name="Anims" value="WaterAnimation"/>
+
+//#define CaveTileAnims 1
+//TileAnimPointerTable(CaveTileAnims, CaveTileAnimsData)
+
+TileAnimPointerTable(5, 0x59D498)
+TileAnimPointerTable(0x12, 0x0859D568)
+TileAnimPointerTable(0x1C, 0x0859D6F8)
+TileAnimPointerTable(0x54, 0x0859D800)
+TileAnimPointerTable(0x7D, 0x0859D678)
+TileAnimPointerTable(0xD3, 0x0859D520)
+
+#include "pallet to pewter.event"
+
+
+
+
+#include "MasterMapInstaller.event"
+
+

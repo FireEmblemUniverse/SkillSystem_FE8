@@ -9,7 +9,7 @@
 //                                                //
 ////////////////////////////////////////////////////
 
-EventPointerTable(0x7, PointerList)
+//EventPointerTable(0x7, PointerList)
 
 #ifdef DRAGON_VEINS
 VeinEffect(0, FreezeAllEnemies)
@@ -19,11 +19,49 @@ setText(0x160, NewChName)
 
 ALIGN 4
 NewChName:
-String("Boss Rush")
+String("Pallet Town")
 BYTE 0
 
+#define EventsInPalletTownData $01
+
+#define EventsInRoute1Data $0B
+
+
+EventPointerTable(OaksLabCh,ThisChapter)
+EventPointerTable(PalletTownCh,ThisChapter)
+EventPointerTable(Route1Ch,ThisChapter)
+EventPointerTable(ViridianCityCh,ThisChapter)
+EventPointerTable(Route2SCh,ThisChapter)
+EventPointerTable(ViridianForestSCh,ThisChapter)
+EventPointerTable(ViridianForestNCh,ThisChapter)
+EventPointerTable(Route2NCh,ThisChapter)
+EventPointerTable(PewterCityCh,ThisChapter)
+EventPointerTable(PewterGymCh,ThisChapter)
+EventPointerTable(Route3WCh,ThisChapter)
+EventPointerTable(Route3MCh,ThisChapter)
+EventPointerTable(Route3ECh,ThisChapter)
+EventPointerTable(Route4WCh,ThisChapter)
+EventPointerTable(MtMoonB1SCh,ThisChapter)
+EventPointerTable(MtMoonB1NCh,ThisChapter)
+EventPointerTable(MtMoonB2Ch,ThisChapter)
+EventPointerTable(MtMoonB3NECh,ThisChapter)
+EventPointerTable(MtMoonB3ECh,ThisChapter)
+EventPointerTable(MtMoonB3WCh,ThisChapter)
+EventPointerTable(MtMoonB3MidCh,ThisChapter)
+EventPointerTable(Route4MCh,ThisChapter)
+EventPointerTable(Route4ECh,ThisChapter)
+EventPointerTable(CeruleanCityCh,ThisChapter)
+EventPointerTable(CeruleanGymCh,ThisChapter)
+EventPointerTable(Route24Ch,ThisChapter)
+EventPointerTable(Route25Ch,ThisChapter)
+
+
+
+//EventPointerTable(EventsInRoute1Data,ThisChapter)
+
+
 ALIGN 4
-PointerList:
+ThisChapter:
 POIN TurnBasedEvents
 POIN CharacterBasedEvents
 POIN LocationBasedEvents
