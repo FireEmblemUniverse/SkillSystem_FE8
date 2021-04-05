@@ -18,6 +18,10 @@
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
 
+    //Patches
+    #include "Patches/PatchesInstaller.event"
+    MESSAGE Used patch space ends at currentOffset
+
     //Maps
     #include "Maps/SplitPList.event"
 

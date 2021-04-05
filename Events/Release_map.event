@@ -193,6 +193,9 @@ ENDTRAP
 ALIGN 4
 
 BeginningScene:
+SVAL 1 1
+SVAL 2 8
+ASMC SetUnitState
 ENUT 0x1 //no more boss quotes
 ENUT 0x2 //no more death quotes
 LOAD1 0x1 EnemyUnits

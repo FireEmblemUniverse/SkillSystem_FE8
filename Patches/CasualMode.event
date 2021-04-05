@@ -1,0 +1,12 @@
+
+//Even if the player unit dies while the global flag 0xB0 is set to ON, it will be automatically restored in the next chapter.
+//Patch name:CasualMode(Ver Flag 0xB0)  @FE8U
+//Author / Source:circleseverywhere
+
+PUSH 
+
+ORG 0x18418 
+BYTE 0x00 0x4B 0x18 0x47
+
+
+POP
