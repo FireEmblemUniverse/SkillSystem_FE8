@@ -19,7 +19,7 @@
     MESSAGE Used hax space ends at currentOffset
 
     //Patches
-    #include "Patches/PatchesInstaller.event"
+    #include "Patches/An_Installer_of_Patches.event"
     MESSAGE Used patch space ends at currentOffset
 
     //Maps

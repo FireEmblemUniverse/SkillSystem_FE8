@@ -1,0 +1,4 @@
+PUSH  //makes antitoxins cure all status ailments by MintX
+ORG 0x290EE
+SHORT 0x2800 0xD001
+POP
