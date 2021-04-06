@@ -532,14 +532,18 @@
 
 .macro draw_talk_text_at, tile_x, tile_y, colour=Blue
   draw_textID_at \tile_x, \tile_y, width=9 @ideally you want a diff id.
+  blh 0x8042e98, r4 @CheckLinkArenaBit
   mov r4, r7
   sub r4, #8
+  cmp r0,#1
+  beq DidntFindAPerson
   mov r0, r8
   ldr   r0,[r0]
   ldrb  r0,[r0,#0x4]    @char byte
   bl GetTalkee
   cmp   r0,#0x0
   bne   FoundAPerson
+  DidntFindAPerson:
   ldr   r1,=0x7f7f7f @---[X]
   ldr   r0,=0x202a6ac @text buffer
   str   r1,[r0]
