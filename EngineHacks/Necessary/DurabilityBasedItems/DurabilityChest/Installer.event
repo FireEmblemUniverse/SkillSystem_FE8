@@ -14,6 +14,7 @@ CheckCHES:
 ALIGN 4
 ItemGot_GotLeItem:
 #incbin "ItemGot_GotLeItem.dmp"
+WORD DROPPED_ITEM_DURABILITY
 
 ALIGN 4
 GiveItemWithDurability:

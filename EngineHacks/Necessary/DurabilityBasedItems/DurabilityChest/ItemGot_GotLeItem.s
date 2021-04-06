@@ -28,6 +28,12 @@ strb r1, [r2] // zero it back out
 b HandleDrop
 
 GetMaxDurability:
+ldr r1,DroppedItemDurabilityOption
+cmp r1,#1
+beq DoNotKeepDurability
+lsl r0,r0,#24
+lsr r0,r0,#24
+DoNotKeepDurability:
 blh GetMaxDurabilityFromItemID
 
 HandleDrop:
@@ -42,3 +48,6 @@ bx r0
 
 .ltorg
 .align
+
+DroppedItemDurabilityOption:
+@WORD DROPPED_ITEM_DURABILITY

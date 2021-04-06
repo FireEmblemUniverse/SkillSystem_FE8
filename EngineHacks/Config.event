@@ -16,7 +16,8 @@
 // The amount of attack speed needed to double an opponent.
 #define AS_DOUBLING_THRESHOLD 3
 
-
+// If true, dropped items will retain their durability.
+#define DROPPED_ITEM_DURABILITY False
 
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
