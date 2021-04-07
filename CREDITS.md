@@ -19,6 +19,7 @@ adding yourself!
 - Kirb
 - Sme
 - Ganzap
+- Mikey Seregon
 
 # Other
 
