@@ -1,0 +1,36 @@
+
+#ifndef SUPPORT_REWORK_DEFS
+	#define SUPPORT_REWORK_DEFS
+	
+	// This can be no greater than 7. Start at level 0, count up until you reach the highest level,
+		// and fill out the SupportLevelNameTable accordingly. Supports will not be raised higher than this amount.
+	#define MaxSupportLevelVal 7
+	
+	// You can define your own support levels here. These are just examples.
+	#define CSupport 0
+	#define CPSupport 1
+	#define BMSupport 2
+	#define BSupport 3
+	#define BPSupport 4
+	#define AMSupport 5
+	#define ASupport 6
+	#define APSupport 7
+	
+	// Macros for directly controlling support data. "Popup" parameter is a boolean for should we show a popup a la "Support level increased to X."?
+	#define AddSupport(Character1,Character2,Level,Popup) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; SVAL 0x3 Level ; SVAL 0x4 Popup ; ASMC CallAddSupport|1"
+	#define AddSupport(Character1,Character2,Popup) "AddSupport(Character1,Character2,0,Popup)"
+	#define SetSupport(Character1,Character2,Level,Popup) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; SVAL 0x3 Level ; SVAL 0x4 Popup ; ASMC CallSetSupport|1"
+	#define SetSupport(Character1,Character2,Level) "SetSupport(Character1,Character2,Level,0)" // This'll probably rarely be used with a popup, so I'll include this.
+	#define ClearSupport(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallClearSupport|1"
+	#define IncreaseSupport(Character1,Character2,Popup) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; SVAL 0x3 Popup ; ASMC CallIncreaseSupport|1"
+	#define GetSupportLevel(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallClearSupport|1" // Returns the level for this support in slot 0xC. 0xFF for none found.
+	
+	// Support convos for use in CharacterBasedEvents.
+	#define SupportConvo(Level,Character1,Character2,Text) "SHORT 0x04 Level Text 0x00 ; BYTE Character1 Character2 0x00 0x00 ; POIN CHARSupportConvoUsability|1" // This is the same as CHARASM Level Text [Character1, Character2] CHARSupportConvoUsability|1 
+	#define SupportEvent(Level,Character1,Character2,EventPointer) "SHORT 0x04 Level ; POIN EventPointer ; BYTE Character1 Character2 0x00 0x00 ; POIN CHARSupportConvoUsability|1"
+	// Not using CHARASM because for some reason in raws it's disallowed for FE8.
+	
+	// For use in the BaseConversationTable
+	#define baseSupport(Character1,Character2,Level) "characters(Character1,Character2) ; supportLevel(Level) ; usability(SupportBaseConvoUsability|1) ; textGetter(SupportBaseConvoMenuTextGetter|1) ; event(BaseConvoSupportReworkEvent)"
+	
+#endif

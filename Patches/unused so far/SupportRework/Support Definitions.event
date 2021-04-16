@@ -1,0 +1,24 @@
+
+#ifndef SUPPORT_REWORK_DEFS
+	#define SUPPORT_REWORK_DEFS
+	#define AddSupport(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallAddSupport|1"
+	#define AddSupportNoPopup(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallAddSupportNoPopup|1"
+	#define IncreaseSupport(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallIncreaseSupport|1"
+	#define IncreaseSupportNoPopup(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallIncreaseSupportNoPopup|1"
+	#define SetSupport(Character1,Character2,Level) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; SVAL 0x3 Level ; ASMC CallSetSupport|1"
+	#define ClearSupport(Character1,Character2) "SVAL 0x1 Character1 ; SVAL 0x2 Character2 ; ASMC CallClearSupport|1"
+	#define CSupport 1
+	#define BSupport 2
+	#define ASupport 3
+	#define Csupport CSupport
+	#define Bsupport BSupport
+	#define Asupport ASupport
+	#define SupportConvo(Level,Character1,Character2,Text) "SHORT 0x04 Level Text 0x00 ; BYTE Character1 Character2 0x00 0x00 ; POIN SupportReturnFalse|1" // This is the same as CHARASM Level Text [Character1, Character2] SupportReturnFalse|1 
+	#define SupportEvent(Level,Character1,Character2,EventPointer) "SHORT 0x04 Level ; POIN EventPointer ; BYTE Character1 Character2 0x00 0x00 ; POIN SupportReturnFalse|1"
+	// Not using CHARASM because for some reason in raws it's disallowed for FE8.
+	
+	#define EventMenuCommand(aTextId,Usability,Effect) "WORD 0; SHORT aTextId 0; WORD 0; POIN (Usability|1); WORD 0; POIN (Effect|1); WORD 0 0 0"
+	#ifndef EventMenuCommandEnd
+		#define EventMenuCommandEnd "WORD 0 0 0 0 0 0 0 0 0"
+	#endif
+#endif

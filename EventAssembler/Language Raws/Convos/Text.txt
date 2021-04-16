@@ -1,0 +1,189 @@
+##Shows text normally.
+TEX1, 7, 8, -game:FE6 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+TEXT, 7, 8, -game:FE6 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+#Chapters: 1, 2, 8...
+##Continues showing text without resetting
+##portaits and text bubbles.
+MORETEXT, 0x8, 8, -game:FE6 -indexMode:8
+##Text to show.
+	Text ID, 4, 4
+
+
+#Rename at some point.
+TEX1, 0xD, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+TEXT, 0xD, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+##Shows text.
+TEX2, 0xE, 8, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+
+MORETEXT, 0x11, 8, -game:FE7 -indexMode:8
+	Text ID, 4, 2
+
+##Shows text depending on the mode.
+TEXTIFEM, 0xF, 12, -game:FE7 -indexMode:8
+##Text to show if Eliwood mode.
+	Text ID 1, 4, 2
+##Text to show if Hector mode.
+	Text ID 2, 8, 2
+
+#Chapters: 13x, 16
+##Continues showing text depending on the mode
+##without resetting portaits and text bubbles.
+MORETEXTIFEM, 0x12, 12, -game:FE7 -indexMode:8
+##Text to show if Eliwood mode.
+	Text ID 1, 4, 2
+##Text to show if Hector mode.
+	Text ID 2, 8, 2
+
+##Shows text.
+TEXTCG, 0xCF, 12, -game:FE7 -indexMode:8 -noDisassembly
+##Text to show.
+	Text ID, 4, 2
+	1, 8, 1, -fixed
+
+TEXTCG, 0xCF, 12, -game:FE7 -indexMode:8
+	Text ID, 4, 2
+##Unknown, usually 1.
+	CG Value, 8, 1
+
+
+#Only after other cutscene texts
+#Chapters: 2, 6, 16...
+MORETEXTCG, 0xD1, 12, -game:FE7 -indexMode:8
+	Text ID, 4, 4
+#Usually 1
+	CG Value, 8, 4
+
+
+##Shows text with specific bubble type and position.
+TEX6, 0xA7, 12, -game:FE7 -indexMode:8
+##Bubble type to use
+	Bubble type, 2, 2
+##Position of the text. [0,0] is the center of the screen.
+	Text position, 4, 4, -coordinates:2 -preferredBase:10
+##Text to show.
+	Text ID, 8, 2
+
+##Shows text.
+TEX8, 0xD7, 12, -game:FE7 -indexMode:8
+##Text to show.
+	Text ID, 4, 2
+##Position of the text.
+	Text position, 8, 4, -coordinates:2 -preferredBase:10
+
+##Shows text depending on whether tacticians
+##gender is male or female.
+TEXTIFTACTF, 0x18, 12, -game:FE7 -indexMode:8
+##Text to show if tactician is male.
+	Text ID 1, 4, 2
+##Text to show if tactician is female.
+	Text ID 2, 8, 2
+
+##Shows text depending on whether tacticians
+##gender is male or female without resetting
+##portaits and text bubbles.
+MORETEXTIFTACTF, 0x19, 12, -game:FE7 -indexMode:8
+##Text to show if tactician is male.
+	Text ID 1, 4, 2
+##Text to show if tactician is female.
+	Text ID 2, 8, 2
+
+##Shows text depending on whether event ID
+##is used or not.
+TEXTIFEVENTID, 0x1A, 16, -game:FE7 -indexMode:8
+##Event ID to check.
+	Event ID, 4, 1
+##Text to show if event ID is used.
+	Text ID 1, 8, 2
+##Text to show if event ID is unused.
+	Text ID 2, 12, 2
+
+##Shows text depending on whether event ID
+##is used or not without resetting
+##portaits and text bubbles.
+MORETEXTIFEVENTID, 0x1B, 16, -game:FE7 -indexMode:8
+##Event ID to check.
+	Event ID, 4, 4
+##Text to show if event ID is used.
+	Text ID 1, 8, 2
+##Text to show if event ID is unused.
+	Text ID 2, 12, 2
+
+##Shows text depending on the return value
+##of the ASM routine.
+TEXTIFASM, 0x1C, 16, -game:FE7 -indexMode:8
+##Offset of the ASM routine to call. Return value
+##determines which text to show. Thumb routines need
+##to be added one.
+	ASM offset, 4, 4, -pointer:ASM
+##Text to show if routine returns 0.
+	Text ID 1, 8, 2
+##Text to show if routine returns 1.
+	Text ID 2, 12, 2
+
+##Shows text depending on the return value
+##of the ASM routine without resetting
+##portaits and text bubbles.
+MORETEXTIFASM, 0x1D, 16, -game:FE7 -indexMode:8
+##Offset of the ASM routine to call. Return value
+##determines which text to show. Thumb routines need
+##to be added one.
+	ASM offset, 4, 4, -pointer:ASM
+##Text to show if routine returns 0.
+	Text ID 1, 8, 2
+##Text to show if routine returns 1.
+	Text ID 2, 12, 2
+
+
+#Brings up a box similar to getting an item, having an item stolen, weapon braeking, weapon rank level up, etc
+NOTIFY, 0x3A40, 8, -game:FE8 -indexMode:8
+	Text ID, 2, 2
+#Sound effect (or music track) to play
+	Sound Effect, 4, 2
+#Always zero
+	Value3, 6, 2
+
+
+BROWNBOXTEXT, 0x3A41, 8, -game:FE8 -indexMode:8
+	Text ID, 2, 2
+	Text position, 4, 4, -coordinates:2 -preferredBase:10
+
+##Starts the text showing.
+TEXTSTART, 0x1A20, 4, -game:FE8 -indexMode:8
+
+#The yellowish text box used for tutorials
+#Center with SETVAL 0xB 0xFFFFFFFF
+TUTORIALTEXTBOXSTART, 0x1A23, 4, -game:FE8 -indexMode:8
+
+#This is the solo text box used in the final chapter with the Demon King speaking.
+#Set coordinates with SETVAL 0xB 0xXX00YY
+SOLOTEXTBOXSTART, 0x1A24, 4, -game:FE8 -indexMode:8
+
+##Shows text after TEXTSTART.
+#Parameter 0xFFFF displays text pointed to by value in Memory slot 0x2
+TEXTSHOW, 0x1B20, 4, -game:FE8 -indexMode:8
+##Text to show.
+	Text ID, 2, 2
+
+#Same as TEXTSHOW
+TEXTSHOW2, 0x1B21, 4, -game:FE8 -indexMode:8
+	Text ID, 2, 2
+
+##Shows more text after TEXTSHOW.
+TEXTCONT, 0x1C20, 4, -game:FE8 -indexMode:8
+
+##Ends text showing started by TEXTSTART.
+TEXTEND, 0x1D20, 4, -game:FE8 -indexMode:8

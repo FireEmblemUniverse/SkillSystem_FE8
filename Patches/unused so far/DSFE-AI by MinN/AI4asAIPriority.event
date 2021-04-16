@@ -1,0 +1,10 @@
+PUSH
+ORG $3993C
+jumpToHack(AI4asAIPriority)
+POP
+
+ALIGN 4
+AI4asAIPriority:
+#incbin "AI4asAIPriority.dmp"
+
+

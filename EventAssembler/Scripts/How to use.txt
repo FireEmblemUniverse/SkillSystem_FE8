@@ -1,0 +1,17 @@
+﻿Disassembly scripts:
+Drag a ROM file to the correct script. Wait until the script 
+ends executing. All the chapters will be disassembled to the 
+same folderwhere your ROM is.
+
+Assembly scripts:
+After disassembling, drag a ROM file in the same folder as the
+disassebled scripts to the correct script. Wait until the script 
+ends executing. All the chapters will be assembled to the ROM 
+which you dragged into the script. Note that the ROM you assemble 
+the events to desn't have to be the same as the one you 
+disassembled them from, though it has to have the same game in it.
+
+Assemble FE6/7/8 ROM:
+This script assumes that your ROM buildfile is called "ROM Buildfile.txt"
+and is in the same folder as the ROM. Drag the ROM onto the appropriate
+script.

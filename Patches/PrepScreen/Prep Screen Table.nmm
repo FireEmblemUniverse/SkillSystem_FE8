@@ -1,0 +1,52 @@
+#FE8 Prep Screen Table by Snakey1 (Requires rework ASM!)
+#
+
+1
+FE8 Prep Screen Table by Snakey1 (Requires rework ASM!)
+0xDEADBEEF
+255
+20
+NULL
+NULL
+
+ID
+0
+2
+NEDU
+NULL
+
+Name Text
+2
+2
+NEHU
+NULL
+
+Usability (Whether to display)
+4
+4
+NEHU
+NULL
+
+Usability (Greyed out if false)
+8
+4
+NEHU
+NULL
+
+Desc text
+12
+2
+NEHU
+NULL
+
+Greyed out desc text
+14
+2
+NEHU
+NULL
+
+Effect
+16
+4
+NEHU
+NULL

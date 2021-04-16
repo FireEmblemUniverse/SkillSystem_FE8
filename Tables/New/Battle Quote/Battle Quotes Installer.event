@@ -1,0 +1,47 @@
+#define BattleQuote(arg000,arg001,arg002,arg003) "BYTE arg000 0x0 arg001 0x0 arg002 0x0 0x1 0x0 ;SHORT arg003 ;BYTE 0x0 0x0 0x0 0x0 0x0 0x0 "
+#define BattleQuoteFlag(flag,arg000,arg001,arg002,arg003) "BYTE arg000 0x0 arg001 0x0 arg002 0x0 flag 0x0 ;SHORT arg003 ;BYTE 0x0 0x0 0x0 0x0 0x0 0x0 "
+#define BothWayBattleQuote(arg000,arg001,arg002,arg003) "BattleQuote(arg000,arg001,arg002,arg003);BattleQuote(arg001,arg000,arg002,arg003)"
+#define BothWayBattleQuoteFlag(flag,arg000,arg001,arg002,arg003) "BattleQuoteFlag(flag,arg000,arg001,arg002,arg003);BattleQuoteFlag(flag,arg001,arg000,arg002,arg003)"
+#define EndQuote "BYTE 0xff 0xff"
+
+ALIGN 4
+BattleQuoteTable:
+
+// Prologue
+
+// Ch 1
+BothWayBattleQuoteFlag(0x1, 0x0, Eirika, Ch1, 0x9DF)
+
+// Ch2
+
+// Ch3
+
+// Ch4
+
+// Ch5
+
+// Ch7
+
+// Ch8
+
+// Ch9
+
+// Ch10
+
+// Ch11
+
+// Ch12
+
+// Ch14
+
+// Ch15
+
+
+EndQuote
+
+
+// Repoint per estendere le battle quote!!!
+PUSH
+ORG $846AC
+POIN BattleQuoteTable
+POP

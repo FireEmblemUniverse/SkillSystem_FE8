@@ -1,0 +1,22 @@
+
+#ifndef ConvoTableDefs
+	#define ConvoTableDefs
+
+	#define Chapter(chapter) "ORG BaseConvoTable + BaseConvoSize*8*chapter - BaseConvoSize"
+	#define Entry "ORG CURRENTOFFSET + BaseConvoSize ; PUSH ; ORG CURRENTOFFSET + 31 ; BYTE 1 ; POP" // Used by the engine to check if this entry exists.
+
+	#define characters(character1,character2) "PUSH ; BYTE character1 character2 ; POP" // For future use with Support Rework. Currently does nothing.
+	#define bg(background) "PUSH ; ORG CURRENTOFFSET + 2 ; BYTE background ; POP" // Required for each entry.
+	#define supportLevel(level) "PUSH ; ORG CURRENTOFFSET + 3 ; BYTE level ; POP" // Also for integration with Support Rework. Currently does nothing.
+	#define usability(ptr) "PUSH ; ORG CURRENTOFFSET + 4 ; POIN ptr ; POP" // ASM usability pointer. Will add this extra condition on top of whether this convo has already been viewed.
+	#define event(event) "PUSH ; ORG CURRENTOFFSET + 8 ; POIN event ; POP" // Optional event to run instead of the generic event.
+	#define name(textID) "PUSH ; ORG CURRENTOFFSET + 12 ; SHORT textID ; POP" // Text ID title to display for this base conversation.
+	#define music(songID) "PUSH ; ORG CURRENTOFFSET + 14 ; SHORT songID ; POP" // Music to play during this conversation. If none is specified, MUSI/MUNO will be used.
+	#define textGetter(ptr) "PUSH ; ORG CURRENTOFFSET + 16 ; POIN ptr ; POP" // Optional text getter routine if no title is defined.
+	#define text(textID) "PUSH ; ORG CURRENTOFFSET + 20 ; SHORT textID ; POP" // Text to show for this base convo. This is REQUIRED without a custom event.
+	#define item(itemID,giveTo) "PUSH ; ORG CURRENTOFFSET + 22 ; BYTE itemID giveTo ; POP" // Item to give to a character. If this character doesn't exist, no effect.
+	#define unit(unitPtr) "PUSH ; ORG CURRENTOFFSET + 24 ; POIN unitPtr ; POP" // Unit pointer for units to add to the party.
+	#define eventID(eventID) "PUSH ; ORG CURRENTOFFSET + 28 ; SHORT eventID ; POP" // Event ID tied to this convo. Same behavior as vanilla events. By default 0.
+	#define importance(val) "PUSH ; ORG CURRENTOFFSET + 30 ; BYTE val ; POP" // Number of exclamation marks to show at the right side of the entry.
+	// +31 is claimed by the engine.
+#endif // ConvoTableDefs

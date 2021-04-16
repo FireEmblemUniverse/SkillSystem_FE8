@@ -1,0 +1,9 @@
+#include "AnyUnitHasItem.lyn.event"
+#include "AnyUnitHasWeapon.lyn.event"
+
+#include "TakeItemAll.lyn.event"
+#include "TakeUnitItem.lyn.event"
+#include "TakeUnitOneItem.lyn.event"
+
+
+#include "UnitHasItem.lyn.event"

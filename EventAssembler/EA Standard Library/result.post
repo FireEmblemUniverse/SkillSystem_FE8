@@ -1,0 +1,2894 @@
+[Spoiler=Backward Compatibility] 
+#define Empty " "
+
+#ifdef _FE7_
+#define IFEV IFEF
+#define TEX5 TEXTCG
+
+//Old world map codes
+
+#define PTBU TEXTBOXTOTOP
+#define PTBD TEXTBOXTOBOTTOM
+#define CTEW REMOVETEXTBOX
+#define LOPR SHOWPORTRAIT
+#define REPR REMOVEPORTRAIT
+#define LWMA LOADWM
+#define FAMA FADETOWM
+#define LWMC HIGHLIGHT
+#define FLDT PLACEDOT
+#define SWMD STARTWM
+#define REPL RIPPLE
+#define CMSP PUTSPRITE
+#define RMSP REMSPRITE
+
+#endif
+
+#ifdef _FE8_
+
+//IFCD replacement
+#define IfCharacterDead(char, condID) "_SETVAL 2 char; _SETCONDITION condID 0xC 2"
+
+//IFCA replacement
+#define IfCharacterActive(char, condID) "_SETVAL 7 char; _SETCONDITION condID 0xC 7"
+
+//MONE replacement
+#define GiveMoney(vill, amount) "_SETVAL 3 amount; _GIVEITEMTOMAIN vill"
+
+//ITGC replacement
+#define GiveItemToCharacter(char, item) "_SETVAL 3 item; _GIVEITEMTO char"
+
+//ITGV replacement
+#define GiveItemToCurrent(item) "_SETVAL 3 item; _GIVEITEMTO 0xFFFF"
+
+//ITGM replacement
+#define GiveItemToMain(item) "_SETVAL 3 item; _GIVEITEMTOMAIN 0"
+
+//CMDS replacement
+#define BattleStart "_SETVAL 0xD 0"
+
+//CMDL replacement
+#define BattleCommand(command) "_SETVAL 1 command; _SAVEFORBATTLE"
+
+#define Frantz Franz
+
+#endif[/Spoiler]
+[Spoiler=Boolean Logic] 
+#define False 0
+#define True 1
+#define Neg(boolean) (1+boolean)%2
+#define And(boolean1,boolean2) boolean1&boolean2
+#define Or(boolean1,boolean2) boolean1|boolean2
+#define Xor(boolean1,boolean2) boolean1^boolean2
+#define Eqv(boolean1,boolean2) (boolean1&boolean2)|(Neg(boolean1)&Neg(boolean2))
+#define Imp(boolean1,boolean2) Neg(boolean1)|boolean2
+#define If(ifwhat,oh,doh) "Switch(ifwhat+1,doh,oh)"
+#define IfNot(ifwhat,oh,doh) "Switch(Neg(ifwhat)+1,doh,oh)"[/Spoiler]
+[Spoiler=Chapter Definitions] 
+//Chapter ID definitions.
+#ifdef _FE6_
+
+#define Tutorial 0x00
+#define Ch1 0x01
+#define Ch2 0x02
+#define Ch3 0x03
+#define Ch4 0x04
+#define Ch5 0x05
+#define Ch6 0x06
+#define Ch7 0x07
+#define Ch8 0x08
+#define Ch9 0x09
+#define Ch10Lalum 0x0A
+#define Ch11Lalum 0x0B
+#define Ch12 0x0C
+#define Ch13 0x0D
+#define Ch14 0x0E
+#define Ch15 0x0F
+#define Ch16 0x10
+#define Ch17Ilia 0x11
+#define Ch18Ilia 0x12
+#define Ch19Ilia 0x13
+#define Ch20Ilia 0x14
+#define Ch21 0x15
+#define Ch22 0x16
+#define Ch23 0x17
+#define Ch24 0x18
+#define ChFinal 0x19
+#define Ch10Elfin 0x1A
+#define Ch11Elfin 0x1B
+#define Ch17Sacae 0x1C
+#define Ch18Sacae 0x1D
+#define Ch19Sacae 0x1E
+#define Ch20Sacae 0x1F
+#define Ch8X 0x20
+#define Ch12X 0x21
+#define Ch14X 0x22
+#define Ch16X 0x23
+#define Ch20XIlia 0x24
+#define Ch20XSacae 0x25
+#define Ch21X 0x26
+#define LinkArena 0x27
+#define TrialMap1 0x28
+#define TrialMap2 0x29
+#define TrialMap3 0x2A
+#define TrialMap4 0x2B
+#define TrialMap5 0x2C
+
+#endif
+
+
+#ifdef _FE7_
+
+#define Prologue 0x00
+#define Ch1 0x01
+#define Ch2 0x02
+#define Ch3 0x03
+#define Ch4 0x04
+#define Ch5 0x05
+#define Ch6 0x06
+#define Ch7 0x07
+#define Ch7x 0x08
+#define Ch8 0x09
+#define Ch9 0x0A
+#define Ch10 0x0B
+#define Ch11_E 0x0C
+#define Ch11_H 0x0D
+#define Ch12 0x0E
+#define Ch13 0x0F
+#define Ch13x 0x10
+#define Ch14 0x11
+#define Ch15 0x12
+#define Ch16 0x13
+#define Ch17 0x14
+#define Ch17x 0x15
+#define Ch18 0x16
+#define Ch19 0x17
+#define Ch19x 0x18
+#define Ch19xpt2 0x19
+#define Ch20 0x1A
+#define Ch21 0x1B
+#define Ch22 0x1C
+#define Ch23 0x1D
+#define Ch23x 0x1E
+#define Ch24_Lloyd 0x1F
+#define Ch24_Linus 0x20
+#define Ch25_H 0x21
+#define Ch26 0x22
+#define Ch27_Kenneth 0x23
+#define Ch27_Jerme 0x24
+#define Ch28 0x25
+#define Ch28x 0x26
+#define Ch29 0x27
+#define Ch28_E 0x28
+#define Ch30_H 0x29
+#define Ch31 0x2A
+#define Ch31x 0x2B
+#define Ch32 0x2C
+#define Ch32x_H 0x2D
+#define Final_pt1 0x2E
+#define Final_pt2 0x2F
+
+#endif
+
+
+#ifdef _FE8_
+
+#define Prologue 0x00
+#define Ch1 0x01
+#define Ch2 0x02
+#define Ch3 0x03
+#define Ch4 0x04
+#define ZahaWoods 0x04
+#define Ch5x 0x05
+#define Ch5 0x06
+#define Ch6 0x07
+#define AdlasPlains 0x07
+#define Ch7 0x08
+#define Ch8 0x09
+#define Ch9Eirika 0x0A
+#define Ch10Eirika 0x0B
+#define TerasPlateau 0x0B
+#define Ch12Eirika 0x0C
+#define Ch13Eirika 0x0D
+#define Ch14Eirika 0x0E
+#define Ch15Eirika 0x0F
+#define Ch16Eirika 0x10
+#define Ch17Eirika 0x11
+#define NarubeRiver 0x11
+#define Ch18Eirika 0x12
+#define NelerasPeak 0x12
+#define Ch19Eirika 0x13
+#define Ch20Eirika 0x14
+#define FinalCh1Eirika 0x15
+#define FinalCh2Erika 0x16
+#define Ch9Ephraim 0x17
+#define Ch10Ephraim 0x18
+#define Bethroen 0x18
+#define Ch12Ephraim 0x19
+#define Ch13Ephraim 0x1A
+#define Za_abadulMarsh 0x1A
+#define Ch14Ephraim 0x1B
+#define Ch15Ephraim 0x1C
+#define Ch16Ephraim 0x1D
+#define Ch17Ephraim 0x1E
+#define NarubeRiver2 0x1E
+#define Ch18Ephraim 0x1F
+#define NelerasPeak2 0x1F
+#define Ch19Ephraim 0x20
+#define Ch20Ephraim 0x21
+#define FinalCh1Ephraim 0x22
+#define FinalCh2Ephraim 0x23
+#define TowerofValni1 0x24
+#define TowerofValni2 0x25
+#define TowerofValni3 0x26
+#define TowerofValni4 0x27
+#define TowerofValni5 0x28
+#define TowerofValni6 0x29
+#define TowerofValni7 0x2A
+#define TowerofValni8 0x2B
+#define TowerofValni8Clone 0x2C
+#define TowerofValni8Clone2 0x2D
+#define LagdouRuins1 0x2E
+#define LagdouRuins2 0x2F
+#define LagdouRuins3 0x30
+#define LagdouRuins4 0x31
+#define LagdouRuins5 0x32
+#define LagdouRuins6 0x33
+#define LagdouRuins7 0x34
+#define LagdouRuins8 0x35
+#define LagdouRuins9 0x36
+#define LagdouRuins10 0x37
+#define Lordssplitup 0x38
+#define MelkaenCoast 0x39
+#define LinkArena 0x3A
+#define TheInterestingMap 0x3B
+#define Debugmap 0x3C
+#define Ch11Eirika 0x3D
+#define Ch11Ephraim 0x3E
+#define Gradocastle 0x3F
+#define Renaiscastle 0x40
+#define CaerPelyn 0x41
+#define Renaisthrone 0x42
+#define Renaisaudience 0x43
+#define Renvalgate 0x44
+#define Gradoborders 0x45
+#define Gradoprison 0x46
+#define Gradoshrine_Past 0x47
+#define Renaisshrine 0x48
+#define Somepath 0x49
+#define Somebuilding 0x4A
+#define Anothershrine 0x4B
+#define Anotherpath 0x4C
+#define Gradoshrine_Present 0x4D
+#define Ch5town_Past 0x4E
+
+#endif
+[/Spoiler]
+[Spoiler=Chapter Structure Helpers] 
+
+
+//Chapter data pointer list editing
+#ifdef _FE6_
+#define EventPointerListOffset 0x664398
+#define EventPointerTable(id,offset) "ORG EventPointerListOffset+(4*id); POIN offset"
+#endif
+
+#ifdef _FE7_
+#define EventPointerListOffset 0xC9C9C8
+#define EventPointerTable(id,offset) "ORG EventPointerListOffset+(4*id); POIN offset"
+#endif
+
+#ifdef _FE8_
+#define EventPointerListOffset 0x8B363C
+#define EventPointerTable(id,offset) "ORG EventPointerListOffset+(4*id); POIN offset"
+#endif
+
+
+//Go to preparations screen
+#ifdef _FE7_
+#define GotoPrepScreen "ENDB"
+#endif
+
+#ifdef _FE8_
+#define GotoPrepScreen "CALL $591FD8; ENDA"
+#endif
+
+
+//Event ID's with special meanings
+#ifdef _FE6_
+#define NoID 0
+#define BossQuoteID 1
+#define BossDeathQuoteID 2 
+#define SiezeID 3
+#define GameOverID 0x65
+#define CathConvo1 0x67
+#define CathConvo2 0x68
+#define CathConvo3 0x69
+#define IliaSacaeRouteID 0x6B
+#define CathRecruited 0x70
+#endif
+
+#ifdef _FE7_
+#define NoID 0
+#define BossQuoteID 1
+#define BossDeathQuoteID 2 
+#define SiezeID 3
+#define UseSecondaryMusicID 4
+#define GameOverID 0x65
+/*
+66
+67
+68
+69
+*/
+#define Ch13xBeatID 0x6A
+#define Ch17xBeatID 0x6B
+#define Ch19xBeatID 0x6C
+#define Ch23xBeatID 0x6D
+#define Ch28xBeatID 0x6E
+/*
+6F 31x/32x beat?
+*/
+#define LloydOrLinusID 0x70
+#define DorcasDeadID 0x71
+#define WilDeadID 0x72
+#define LuciusDeadID 0x73
+#define SerraDeadID 0x74
+#define ErkDeadID 0x75
+#define KentVisited 0x76
+#define SainDeadID 0x77
+#define RathDeadID 0x78
+#define FlorinaDeadID 0x79
+#define MatthewDeadID 0x7A
+#define NilsDeadID 0x7B
+#define WallaceDeadID 0x7C
+#define PentDeadID 0x7D
+/*
+7E
+7F
+*/
+#define AthosDeadID 0x80
+#define HawkeyeDeadID 0x81
+#define JaffarDeadID 0x82
+#define LynModePassedID 0x83
+/*
+84
+85
+*/
+#define Ch19xxBeatID 0x86
+#define PentHeavenSealReceivedID 0x87
+#define DartDeadID 0x88
+#define VaidaDeadID 0x89
+#define PentXLouiseC 0x8A
+#define PentXLouiseB 0x8B
+#define FioraTriAttackConvoID 0x8C
+#define FarinaTriAttackConvoID 0x8D
+#define FlorinaTriAttackConvoID 0x8E
+/*
+8F
+90 Other triangle attack IDs?
+91
+*/
+#define OswinDeadID 0x92
+#define KarelDeadID 0x93
+#define NinoDeadID 0x94
+#define BartreDeadID 0x95
+#define KarlaDeadID 0x96
+#define AnnaVisited 0x97
+/*
+98
+99
+*/
+#define HeavenSealPentID 0x9A
+#define MerlinusJoined 0x9B
+/*
+9C
+*/
+#define SomeoneSemiImportantDiedID 0x9D //Only in internal use
+#endif
+
+#ifdef _FE8_
+#define NoID 0
+#define BossQuoteID 1
+#define BossDeathQuoteID 2 
+#define SiezeID 3
+#define DefeatAllID 6
+#define GameOverID 0x65
+#endif
+
+[/Spoiler]
+[Spoiler=Convo Background Definitions] 
+#ifdef _FE7_
+
+#define LynTentBackground 0x00
+#define Housewithfireplace 0x01
+#define VillageGarden 0x02
+#define VillageGardenNight 0x03
+#define RoadToVillage 0x04
+#define RoadToVillageNight 0x05
+#define RoadToVillageSunset 0x06
+#define RoadToVillagePartialDark 0x07
+#define RoadToVillageLighter 0x08
+#define DestroyedVillage 0x09
+#define SeaPort 0x0A
+#define Ship 0x0B
+#define RockyOceanCoast 0x0C
+#define BadonInn 0x0D
+#define OutsideBernCaelinCastle 0x0E
+#define OutsideAraphenCastle 0x0F
+
+#define InsideCastle 0x10
+#define InsideCastleDarker 0x11
+#define CastleRoom 0x12
+#define CastleRoomDark 0x13
+#define CastleRoomBern 0x14
+#define CastleHall 0x15
+#define CastleHallDarkPurple 0x16
+
+#define CastleGardenCaelin 0x17
+#define CastleGardenBern 0x18
+#define CastleHallwayDoor 0x19
+#define CastleHallwayDoorDarkPurple 0x1A
+
+#define Cell 0x1B
+
+#define ForestEdge 0x1C
+#define PlainsHills 0x1D
+#define PlainsHillsSunset 0x1E
+#define PlainsHillsNight 0x1F
+#define PlainsHillsFoggy 0x20
+#define PlainsHillsMoreFoggy 0x21
+
+#define Plains 0x22
+
+#define ForestAndMountain 0x23
+#define ForestAndMountainPartDarker 0x24
+#define ForestAndMountainFog 0x25
+#define ForestAndMountainSunset 0x26
+#define ForestAndMountainNight 0x27
+#define ForestAndMountainLighter 0x28
+#define ForestAndMountainLighter2 0x29
+
+#define Forest 0x2A
+#define Forest2 0x2B
+
+#define ValorForest 0x2C
+#define ValorForestCornerLight 0x2D
+#define ValorForestFoggy 0x2E
+
+#define City 0x2F
+#define CityGolden 0x30
+#define CityGate 0x31
+#define CityGateSunset 0x32
+#define CityGateDarker 0x33
+#define CityGate2 0x34
+
+#define InnWithBeds 0x35
+
+#define OutsideFortressBrown 0x36
+#define OutsideFortressGray 0x37
+#define OutsideFortressBrownNight 0x38
+#define OutsideFortressBrown2 0x39
+#define OutsideFortressGray2 0x3A
+#define OutsideFortressBrown3 0x3B
+
+#define InsideCastle2 0x3C
+#define InsideCastlePurple 0x3D
+#define InsideCastleSunset 0x3E
+
+#define OutsideAbandonedFortress 0x3F
+#define OutsideAbandonedFortressSunset 0x40
+#define OutsideAbandonedFortressFoggy 0x41
+
+#define InsideAbandonedFortressBrown 0x42
+#define InsideAbandonedFortressDark 0x43
+
+#define DragonsGateChamberBrown 0x44
+#define DragonsGateChamberGreen 0x45
+
+#define DungeonHallwayBrown 0x46
+#define DungeonHallwayBlue 0x47
+#define DungeonHallwayGreen 0x48
+
+#define ShrineAlter 0x49
+#define AthosShrineAlter 0x4A
+#define AthosShrineAlterDarker 0x4B
+
+#define ShrineHallway 0x4C
+#define ShrineHallwayDarker 0x4D
+#define ShrineHallwayPurple 0x4E
+#define ShrineAlter2Brown 0x4F
+#define ShrineAlter2Golden 0x50
+
+#define Desert 0x51
+#define DesertSunset 0x52
+#define DragonsGateGreen 0x53
+#define DragonsGateNight 0x54
+#define FirePit 0x55
+#define ShrineAlter3 0x56
+#define Cave 0x57
+#define ShrineAlter4 0x58
+#define Sky 0x59
+#define Camp 0x5A
+#define Black 0x5B
+#define DragonsGateCloseUp 0x5C
+#define DragonsGateCloseUpLighter 0x5D
+#define ToBeContinued 0x5E
+#define GameOverBackground 0x5F
+
+#endif
+
+#ifdef _FE8_
+
+#define HouseBG 0x00
+#define Salehs_House 0x01
+#define Village 0x02
+#define Outside_Village_Day 0x03
+#define Outside_Village_Evening 0x04
+#define Town_Day 0x05
+#define Town_Past 0x06
+#define Harbor 0x07
+#define Ship 0x08
+#define Inn 0x09
+#define Castle_Hall 0x0A
+#define Castle_Hall_Night 0x0B
+#define Castle_Hall_2 0x0C
+#define Castle_Hall_2_Past 0x0D
+#define Castle_Room 0x0E
+#define Castle_Room_Past 0x0F
+#define Castle_Hall_3 0x10
+#define Castle_Hall_3_Night 0x11
+#define Castle_Hall_4 0x12
+#define Castle_Garden 0x13
+#define Castle_Garden_Past 0x14
+#define Castle_Outside 0x15
+#define Castle_Outside_Past 0x16
+#define Prison_Cell 0x17
+#define Plain 0x18
+#define Plain_Evening 0x19
+#define Plain_Fog 0x1A
+#define Plain_2 0x1B
+#define Plain_3 0x1C
+#define Woodland 0x1D
+#define Woodland_Fog 0x1E
+#define Woodland_Evening 0x1F
+#define Woodland_Night 0x20
+#define Riverside 0x21
+#define Forest 0x22
+#define Forest_2 0x23
+#define Town_Gate 0x24
+#define Fort_Outside 0x25
+#define Fort 0x26
+#define Fort_Evening 0x27
+#define Fort_Ruins 0x28
+#define Fort_Ruins_Outside 0x29
+#define Fort_2 0x2A
+#define Fort_2_Burning 0x2B
+#define Shrine 0x2C
+#define Shrine_lighter 0x2D
+#define Shrine_2 0x2E
+#define Shrine_3 0x2F
+#define Desert 0x30
+#define Forest_Dense 0x31
+#define Volcano 0x32
+#define Temple_Gate 0x33
+#define Temple_Ruins_Inside 0x34
+#define Black 0x35
+
+#endif[/Spoiler]
+[Spoiler=Convo Helpers] 
+
+//Show text with background and return to map
+#ifdef _FE6_
+#define Text(text) "TEX1 text; REMA"
+#define Text(background,text) "FADI 0x10; HIDEMAP; BACG background; FADU 0x10; SHOWMAP; TEX1 text; REMA"
+#endif
+
+#ifdef _FE7_
+#define Text(text) "TEX1 text; REMA"
+#define Text(background,text) "FADI 0x10; HIDEMAP; BACG background; FADU 0x10; SHOWMAP; TEX1 text; REMA"
+#define ClearBrownBox "_ASM0x42 0x83181"
+#endif
+
+#ifdef _FE8_
+#define Text(text) "TEXTSTART; TEXTSHOW text; TEXTEND; REMA"
+#define Text(background,text) "_SETVAL 2 background; _SETVAL 3 text; CALL $9EE310"
+#endif
+
+
+//Smooth changing to CG
+#ifdef _FE7_
+#define ChangeToCutScene(cutscene) "FADICG 0x10; HIDEMAP; SHCG cutscene; FADUCG 0x10; SHOWMAP"
+#endif
+
+//Shows text on a scroll
+#ifdef _FE7_
+#define ScrollText(textID) "TEX6 7 [0,0] textID; _ASM0x42 $83181; _0x89"
+#endif[/Spoiler]
+[Spoiler=End Of Chapter Helpers] 
+
+//Fallen text loaders
+#ifdef _FE7_
+#define ShowLynModeFallenText "CALL $CC0928; _0x9A"
+
+//For Eliwood and Hector modes
+#define ShowFallenText "CALL $CC0C14; _0x9A"
+#endif
+
+//Game ending helpers
+#ifdef _FE7_
+#define LynModeEnding "ENUT 0x83; LYN_END; _0x1; ASMC 0xB85D5; STAL 0; STAL 0; ENDA;"
+#define TheEnd "FADI 2; HIDEMAP; ASMC 0x7A8B9; THE_END; _0x1"
+#endif
+
+
+//Basic moving to a chapter.
+//Do not use with gaidens.
+#ifdef _FE6_
+#define MoveToChapter(chapter) "STAL 64; MNCH chapter; STAL 1; _0x1; ENDA"
+#endif
+
+#ifdef _FE7_
+#define MoveToChapter(chapter) "FADI 4; HIDEMAP; BACG 0x5B; MNCH chapter; STAL 1; _0x1; ENDA"
+#endif
+
+#ifdef _FE8_
+//Shockingly, FE8 does this the simplest way.
+#define MoveToChapter(chapter) "MNCH chapter; ENDA"
+#endif
+
+
+//Gaidens, under construction
+/*
+#ifdef _FE7_
+#define GaidenHelper(ifcode, condID, elseID, askingText, nextCH, gaidenCH) "ifcode; FADI 4; HIDEMAP; _0x87; BACG 0x5B; FADU 128; SHOWMAP; STAL 2; ASMC 0x15591; TEX6 0x7 [0,0] askingText; _ASM0x42 0x83181; _0x89; IFYN 0x21; MNCH gaidenCH; STAL 1; _0x1; ELSE elseID; ENIF condID; FADI 4; HIDEMAP; BACG 0x5B; ENIF 0x21; MNCH nextCH; STAL 1; _0x1; ENIF elseID; ENDA"
+
+#define FreeGaiden(askingText, nextCH, gaidenCH) "FADI 4; HIDEMAP; _0x87; BACG 0x5B; FADU 128; SHOWMAP; STAL 2; ASMC 0x15591; TEX6 0x7 [0,0] askingText; _ASM0x42 0x83181; _0x89; IFYN 0x21; MNCH gaidenCH; STAL 1; _0x1; FADI 4; HIDEMAP; BACG 0x5B; ENIF 0x21; MNCH nextCH; STAL 1; _0x1; ENIF 0x22; ENDA"
+#define TurnGaiden(turn, askingText, nextCH, gaidenCH) "GaidenHelper(IFTU 0x20 turn, 0x20, 0x22, askingText, nextCH, gaidenCH)"
+#define EventIDGaiden(eventID, askingText, nextCH, gaidenCH) "GaidenHelper(IFEF 0x20 eventID, 0x20, 0x22, askingText, nextCH, gaidenCH)"
+#endif
+*/[/Spoiler]
+[Spoiler=FE6 Definitions] 
+//Characters
+#define Roy 0x01
+#define Clarine 0x02
+#define Fa 0x03
+#define Shin 0x04
+#define Sue 0x05
+#define Dayan 0x06
+#define Dayan_NPC 0x07
+#define Barth 0x08
+#define Bors 0x09
+#define Wendy 0x0A
+#define Douglas 0x0B
+#define Douglas_Enemy 0x0C
+#define Wolt 0x0D
+#define Dorothy 0x0E
+#define Klein 0x0F
+#define Saul 0x10
+#define Ellen 0x11
+#define Yodel 0x12
+#define Yodel_NPC 0x13
+#define Chad 0x14
+#define Karel 0x15
+#define Fir 0x16
+#define Rutger 0x17
+#define Dieck 0x18
+#define Oujay 0x19
+#define Garret 0x1A
+#define Alen 0x1B
+#define Lance 0x1C
+#define Percival 0x1D
+#define Igrene 0x1E
+#define Marcus 0x1F
+#define Ashtol 0x20
+#define Wade 0x21
+#define Lot 0x22
+#define Bartre 0x23
+#define Bartre_NPC 0x24
+#define Lugh 0x25
+#define Lilina 0x26
+#define Hugh 0x27
+#define Niime 0x28
+#define Niime_NPC 0x29
+#define Rei 0x2A
+#define Lalum 0x2B
+#define Junno 0x2C
+#define Junno_NPC 0x2D
+#define Tate 0x2E
+#define Tate_Enemy 0x2F
+#define Tate_NPC 0x30
+#define Thany 0x31
+#define Zeiss 0x32
+#define Gale 0x33
+#define Elfin 0x34
+#define Cath 0x35
+#define Sophia 0x36
+#define Miledy 0x37
+#define Gonzales_RouteA 0x38
+#define Gonzales_RouteB 0x39
+#define Noah 0x3A
+#define Treck 0x3B
+#define Zealot 0x3C
+#define Echidna 0x3D
+#define Echidna_NPC 0x3E
+#define Cecilia 0x3F
+#define Geese 0x40
+#define Geese_NPC 0x41
+#define Merlinus 0x42
+#define Eliwood 0x43
+#define Guinevere 0x44
+#define Damas 0x4A
+#define Rude 0x4B
+#define Slater 0x4C
+#define Erik 0x4D
+#define Dory 0x4E
+#define Wagner 0x4F
+#define Devias 0x50
+#define Reigans 0x51
+#define Scott 0x52
+#define Nord 0x53
+#define William 0x54
+#define Flear 0x55
+#define Oro 0x56
+#define Robert 0x57
+#define Ain 0x58
+#define Narshan 0x59
+#define Randy 0x5A
+#define Maggie 0x5B
+#define Rose 0x5C
+#define Reath 0x5D
+#define Alcard 0x5E
+#define Martel 0x5F
+#define Sigune 0x60
+#define Roartz 0x61
+#define Murdock 0x62
+#define Brenya 0x63
+#define Zephiel 0x64
+#define Idoun_Shaman 0x65
+#define Idoun_Dragon 0x66
+#define Jahn 0x67
+#define Zeke 0x68
+#define Monke 0x69
+#define Kel 0x6A
+#define Henning 0xB5
+#define Scollin 0xB6
+#define Grero 0xB8
+#define Ohtz 0xB9
+#define Dick 0xBA
+#define Thoril 0xBE
+#define Brakul 0xBF
+#define Kudoka 0xC0
+#define Maral 0xC1
+#define Kabul 0xC2
+#define Chan 0xC3
+#define Perith 0xC4
+#define Windam 0xC6
+#define Morgan 0xC8
+#define Hector 0xCF
+#define Bors_Training 0xD0
+#define Wall 0xE2
+
+//Classes
+#define RoyLord 0x01
+#define Mercenary 0x02
+#define Mercenary_F 0x03
+#define Hero 0x04
+#define Hero_F 0x05
+#define Swordfighter 0x06
+#define Swordfighter_F 0x07
+#define Swordmaster 0x08
+#define Swordmaster_F 0x09
+#define Axefighter 0x0A
+#define Warrior 0x0B
+#define ArmourKnight 0x0C
+#define ArmourKnight_F 0x0D
+#define General 0x0E
+#define General_F 0x0F
+#define Archer 0x10
+#define Archer_F 0x11
+#define Sniper 0x12
+#define Sniper_F 0x13
+#define Priest 0x14
+#define Sister 0x15
+#define Bishop 0x16
+#define Bishop_F 0x17
+#define Mage 0x18
+#define Mage_F 0x19
+#define Sage 0x1A
+#define Sage_F 0x1B
+#define Shaman 0x1C
+#define Shaman_F 0x1D
+#define Druid 0x1E
+#define Druid_F 0x1F
+#define Socialknight 0x20
+#define Socialknight_F 0x21
+#define Paladin 0x22
+#define Paladin_F 0x23
+#define Troubadour 0x24
+#define Valkyrie 0x25
+#define Nomad 0x26
+#define Nomad_F 0x27
+#define NomadTrooper 0x28
+#define NomadTrooper_F 0x29
+#define PegasusKnight 0x2A
+#define FalconKnight 0x2B
+#define DragonKnight 0x2C
+#define DragonKnight_F 0x2D
+#define DragonMaster 0x2E
+#define DragonMaster_F 0x2F
+#define Soldier 0x30
+#define MountainThief 0x31
+#define Pirate 0x32
+#define Berserker 0x33
+#define Thief 0x34
+#define Thief_F 0x35
+#define Bard 0x36
+#define Dancer 0x37
+#define Mamkute 0x38
+#define Mamkute_F 0x39
+#define FireDragon 0x3A
+#define DivineDragon 0x3B
+#define MagicDragon 0x3C
+#define King 0x3D
+#define Civilian 0x3E
+#define Civilian_F 0x3F
+#define Child 0x40
+#define Child_F 0x41
+#define Storage 0x42
+#define RoyMasterLord 0x43
+#define ArcheronLongArch 0x44
+#define ArcheronIronArch 0x45
+#define ArcheronKillerArch 0x46
+#define EmptyLongArch 0x47
+#define EmptyIronArch 0x48
+#define EmptyKillerArch 0x49
+#define DisarmedSniper 0x4A
+#define DisarmedSniper_F 0x4B
+
+//Items
+#define IronSword 0x01
+#define IronBlade 0x02
+#define SteelSword 0x03
+#define SilverSword 0x04
+#define SlimSword 0x05
+#define PoisonSword 0x06
+#define BraveSword 0x07
+#define LightSword 0x08
+#define Durandal 0x09
+#define ArmourKiller 0x0A
+#define Rapier 0x0B
+#define KillingEdge 0x0C
+#define Lancereaver 0x0D
+#define WoDao 0x0E
+#define SwordofSeals 0x0F
+#define IronSpear 0x10
+#define SteelSpear 0x11
+#define SilverSpear 0x12
+#define ThinSpear 0x13
+#define PoisonSpear 0x14
+#define BraveSpear 0x15
+#define Javelin 0x16
+#define Maltae 0x17
+#define HorseKiller 0x18
+#define KillerSpear 0x19
+#define Axereaver 0x1A
+#define IronAxe 0x1B
+#define SteelAxe 0x1C
+#define SilverAxe 0x1D
+#define PoisonAxe 0x1E
+#define BraveAxe 0x1F
+#define HandAxe 0x20
+#define Armads 0x21
+#define Hammer 0x22
+#define KillerAxe 0x23
+#define Swordreaver 0x24
+#define DevilAxe 0x25
+#define Halberd 0x26
+#define IronBow 0x27
+#define SteelBow 0x28
+#define SilverBow 0x29
+#define PoisonBow 0x2A
+#define KillerBow 0x2B
+#define BraveBow 0x2C
+#define ShortBow 0x2D
+#define LongBow 0x2E
+#define Miugre 0x2F
+#define LongArch 0x30
+#define IronArch 0x31
+#define KillerArch 0x32
+#define Fire 0x33
+#define Thunder 0x34
+#define Fimbulwinter 0x35
+#define Elfire 0x36
+#define Aircalibur 0x37
+#define Nosferatu 0x38
+#define Bolting 0x39
+#define Forblaze 0x3A
+#define Lightning 0x3B
+#define Divine 0x3C
+#define Purge 0x3D
+#define Aureola 0x3E
+#define Miru 0x3F
+#define Rizziah 0x40
+#define Eclipse 0x41
+#define Apocalypse 0x42
+#define Heal 0x43
+#define Mend 0x44
+#define Recover 0x45
+#define Physic 0x46
+#define Fortify 0x47
+#define Warp 0x48
+#define Rescue 0x49
+#define Rest 0x4A
+#define Silence 0x4B
+#define Sleep 0x4C
+#define TorchStaff 0x4D
+#define Hammerne 0x4E
+#define Watch 0x4F
+#define Berserk 0x50
+#define Unlock 0x51
+#define MagicShield 0x52
+#define FireDragonStone 0x53
+#define DivineDragonStone 0x54
+#define MagicDragonStone 0x55
+#define SecretBook 0x56
+#define GoddessStatue 0x57
+#define AngelRobe 0x58
+#define DragonShield 0x59
+#define EnergyRing 0x5A
+#define SpeedWing 0x5B
+#define Talisman 0x5C
+#define Boots 0x5D
+#define BodyRing 0x5E
+#define HeroCrest 0x5F
+#define KnightCrest 0x60
+#define OrionsBolt 0x61
+#define ElysianWhip 0x62
+#define GuidingRing 0x63
+#define ChestKey 0x64
+#define DoorKey 0x65
+#define BridgeKey 0x66
+#define Lockpick 0x67
+#define Vulnerary 0x68
+#define Elixir 0x69
+#define HolyWater 0x6A
+#define Torch 0x6B
+#define Antitoxin 0x6C
+#define MemberCard 0x6D
+#define SilverCard 0x6E
+#define Gold 0x6F
+#define BlessingofDarkness 0x70
+#define Exaccus 0x71
+#define SteelBlade 0x72
+#define SilverBlade 0x73
+#define AlsSword 0x74
+#define GantosSpear 0x75
+#define TienasStaff 0x76
+#define HolyMaiden 0x77
+#define Wyrmslayer 0x78
+#define WhiteGem 0x79
+#define BlueGem 0x7A
+#define RedGem 0x7B
+#define DelphiShield 0x7C
+#define RuneSword 0x7D
+#define Spear 0x7E
+#define Tomahawk 0x7F
+[/Spoiler]
+[Spoiler=FE7 Definitions] 
+//Characters
+#define Eliwood 0x01
+#define Hector 0x02
+#define Lyn_t 0x03
+#define Raven 0x04
+#define Geitz 0x05
+#define Guy 0x06
+#define Karel 0x07
+#define Dorcas 0x08
+#define Bartre 0x09
+#define Citizen 0x0A
+#define Oswin 0x0B
+#define Fargus 0x0C
+#define Wil_t 0x0D
+#define Rebecca 0x0E
+#define Louise 0x0F
+#define Lucius 0x10
+#define Serra 0x11
+#define Renault 0x12
+#define Erk 0x13
+#define Nino 0x14
+#define Pent 0x15
+#define Canas 0x16
+#define Kent_t 0x17
+#define Sain_t 0x18
+#define Lowen 0x19
+#define Marcus 0x1A
+#define Priscilla 0x1B
+#define Rath_t 0x1C
+#define Florina_t 0x1D
+#define Fiora 0x1E
+#define Farina 0x1F
+#define Heath 0x20
+#define Vaida 0x21
+#define Hawkeye 0x22
+#define Matthew 0x23
+#define Jaffar 0x24
+#define Ninian 0x25
+#define Nils 0x26
+#define Athos 0x27
+#define Merlinus 0x28
+#define Nils_Final_Chapter 0x29
+#define Uther 0x2A
+#define Vaida_Boss 0x2B
+#define Wallace 0x2C
+#define Lyn 0x2D
+#define Wil 0x2E
+#define Kent 0x2F
+#define Sain 0x30
+#define Florina 0x31
+#define Rath 0x32
+#define Dart 0x33
+#define Isadora 0x34
+#define Elenora 0x35
+#define Legault 0x36
+#define Karla 0x37
+#define Harken 0x38
+#define Leila 0x39
+#define Bramimond 0x3A
+#define Kishuna 0x3B
+#define Groznyi 0x3C
+#define Wire 0x3D
+#define Bandit 0x3E
+#define Zagan 0x3F
+#define Boies 0x40
+#define Puzon 0x41
+#define Santals 0x43
+#define Nergal 0x44
+#define Erik 0x45
+#define Sealen 0x46
+#define Bauker 0x47
+#define Bernard 0x48
+#define Damian 0x49
+#define Zoldam 0x4A
+#define Uhai 0x4B
+#define Aion 0x4C
+#define Darin 0x4D
+#define Cameron 0x4E
+#define Oleg 0x4F
+#define Eubans 0x50
+#define Ursula 0x51
+#define Paul 0x53
+#define Jasmine 0x54
+#define MorphJerme 0x56
+#define Pascal 0x57
+#define Kenneth 0x58
+#define Jerme 0x59
+#define Maxime 0x5A
+#define Sonia 0x5B
+#define Teodor 0x5C
+#define Georg 0x5D
+#define Kaim 0x5E
+#define Merc 0x5F
+#define Denning 0x60
+#define Bern 0x61
+#define Lloyd_FFO 0x63
+#define Linus_FFO 0x64
+#define Lloyd_CoD 0x65
+#define Linus_CoD 0x66
+#define Zephiel 0x7A
+#define Elbert 0x7B
+#define Brendan 0x84
+#define Limstella 0x85
+#define Dragon 0x86
+#define Batta 0x87
+#define Zugu 0x89
+#define Glass 0x8D
+#define Migal 0x8E
+#define Carjiga 0x94
+#define Bug 0x99
+#define Natalie 0x9E
+#define Bool 0x9F
+#define Heintz 0xA6
+#define Beyard 0xAD
+#define Yogi 0xB6
+#define Eagler 0xBE
+#define Lundgren 0xC5
+#define Tactician 0xCD
+#define MorphLloyd 0xF4
+#define MorphLinus 0xF5
+#define MorphBrendan 0xF6
+#define MorphUhai 0xF7
+#define MorphUrsula 0xF8
+#define MorphKenneth 0xF9
+#define MorphDarin 0xFA
+#define Wall 0xFC
+#define Snag 0xFD
+
+//Classes
+#define EliwoodLord 0x01
+#define LynLord 0x02
+#define HectorLord 0x03
+#define KnightLord 0x07
+#define BladeLord 0x08
+#define GreatLord 0x09
+#define Mercenary 0x0A
+#define Mercenary_F 0x0B
+#define Hero 0x0C
+#define Hero_F 0x0D
+#define Myrmidon 0x0E
+#define Myrmidon_F 0x0F
+#define Swordmaster 0x10
+#define Swordmaster_F 0x11
+#define Fighter 0x12
+#define Warrior 0x13
+#define Knight 0x14
+#define Knight_F 0x15
+#define General 0x16
+#define General_F 0x17
+#define Archer 0x18
+#define Archer_F 0x19
+#define Sniper 0x1A
+#define Sniper_F 0x1B
+#define Monk 0x1C
+#define Cleric 0x1D
+#define Bishop 0x1E
+#define Bishop_F 0x1F
+#define Mage 0x20
+#define Mage_F 0x21
+#define Sage 0x22
+#define Sage_F 0x23
+#define Shaman 0x24
+#define Shaman_F 0x25
+#define Druid 0x26
+#define Druid_F 0x27
+#define Cavalier 0x28
+#define Cavalier_F 0x29
+#define Paladin 0x2A
+#define Paladin_F 0x2B
+#define Troubadour 0x2C
+#define Valkyrie 0x2D
+#define Nomad 0x2E
+#define Nomad_F 0x2F
+#define NomadTrooper 0x30
+#define NomadTrooper_F 0x31
+#define PegasusKnight 0x32
+#define FalcoKnight 0x33
+#define WyvernKnight 0x34
+#define WyvernKnight_F 0x35
+#define WyvernLord 0x36
+#define WyvernLord_F 0x37
+#define Soldier 0x38
+#define Brigand 0x39
+#define Pirate 0x3A
+#define Berserker 0x3B
+#define Thief 0x3C
+#define Thief_F 0x3D
+#define Assassin 0x3E
+#define Civilian 0x3F
+#define Dancer 0x40
+#define Bard 0x41
+#define Archsage 0x42
+#define MagicSeal 0x43
+#define Transporter 0x44
+#define DarkDruid 0x45
+#define FireDragon 0x46
+#define Civilian_2 0x47
+#define Civilian_2_F 0x48
+#define Child 0x49
+#define Brammimond 0x4A
+#define Peer 0x4B
+#define Peer_F 0x4C
+#define Prince 0x4D
+#define Queen 0x4E
+#define HungLeila 0x4F
+#define Corsair 0x50
+#define Prince_Tactician 0x51
+#define FallenPrince 0x52
+#define Princefacingupward 0x53
+#define FallenNinian 0x54
+#define FallenIceDragon 0x55
+#define FallenWarrior 0x56
+#define Child_2 0x57
+#define Child_2_F 0x58
+#define TransporterHorse 0x59
+#define UberSage 0x5A
+#define ArcherinBallista 0x5B
+#define ArcherinIronBallista 0x5C
+#define ArcherinKillerBallista 0x5D
+#define EmptyBallista 0x5E
+#define EmptyIronBallista 0x5F
+#define EmptyKillerBallista 0x60
+
+//Items
+#define IronSword 0x01
+#define SlimSword 0x02
+#define SteelSword 0x03
+#define SilverSword 0x04
+#define IronBlade 0x05
+#define SteelBlade 0x06
+#define SilverBlade 0x07
+#define PoisonSword 0x08
+#define Rapier 0x09
+#define ManiKatti 0x0A
+#define BraveSword 0x0B
+#define WoDao 0x0C
+#define KillingEdge 0x0D
+#define Armourslayer 0x0E
+#define Wyrmslayer 0x0F
+#define LightBrand 0x10
+#define RuneSword 0x11
+#define LanceReaver 0x12
+#define LongSword 0x13
+#define IronSpear 0x14
+#define SlimSpear 0x15
+#define SteelSpear 0x16
+#define SilverSpear 0x17
+#define PoisonSpear 0x18
+#define BraveSpear 0x19
+#define KillerLance 0x1A
+#define HorseSlayer 0x1B
+#define Javelin 0x1C
+#define Spear 0x1D
+#define AxeReaver 0x1E
+#define IronAxe 0x1F
+#define SteelAxe 0x20
+#define SilverAxe 0x21
+#define PoisonAxe 0x22
+#define BraveAxe 0x23
+#define KillerAxe 0x24
+#define Halberd 0x25
+#define Hammer 0x26
+#define DevilAxe 0x27
+#define HandAxe 0x28
+#define Tomahawk 0x29
+#define SwordReaver 0x2A
+#define SwordSlayer 0x2B
+#define IronBow 0x2C
+#define SteelBow 0x2D
+#define SilverBow 0x2E
+#define PoisonBow 0x2F
+#define KillerBow 0x30
+#define BraveBow 0x31
+#define ShortBow 0x32
+#define Longbow 0x33
+#define Ballista 0x34
+#define IronBallista 0x35
+#define KillerBallista 0x36
+#define Fire 0x37
+#define Thunder 0x38
+#define Elfire 0x39
+#define Bolting 0x3A
+#define Fimbulvetr 0x3B
+#define Forblaze 0x3C
+#define Excalibur 0x3D
+#define Lightning 0x3E
+#define Shine 0x3F
+#define Divine 0x40
+#define Purge 0x41
+#define Aura 0x42
+#define Luce 0x43
+#define Flux 0x44
+#define Luna 0x45
+#define Nosferatu 0x46
+#define Eclipse 0x47
+#define Fenrir 0x48
+#define Gespenst 0x49
+#define Heal 0x4A
+#define Mend 0x4B
+#define Recover 0x4C
+#define Physic 0x4D
+#define Fortify 0x4E
+#define Restore 0x4F
+#define Silence 0x50
+#define Sleep 0x51
+#define Berserk 0x52
+#define Warp 0x53
+#define Rescue 0x54
+#define TorchStaff 0x55
+#define Hammerne 0x56
+#define Unlock 0x57
+#define Barrier 0x58
+#define DragonAxe 0x59
+#define AngelicRobe 0x5A
+#define EnergyRing 0x5B
+#define SecretBook 0x5C
+#define Speedwings 0x5D
+#define GoddessIcon 0x5E
+#define DragonShield 0x5F
+#define Talisman 0x60
+#define Boots 0x61
+#define BodyRing 0x62
+#define HerosCrest 0x63
+#define KnightsCrest 0x64
+#define OrionsBolt 0x65
+#define ElysianWhip 0x66
+#define GuidingRing 0x67
+#define ChestKey 0x68
+#define DoorKey 0x69
+#define LockPick 0x6A
+#define Vulnerary 0x6B
+#define Elixir 0x6C
+#define PureWater 0x6D
+#define Antitoxin 0x6E
+#define Torch 0x6F
+#define DelphiShield 0x70
+#define MemberCard 0x71
+#define SilverCard 0x72
+#define WhiteGem 0x73
+#define BlueGem 0x74
+#define RedGem 0x75
+#define Gold 0x76
+#define UberSpear 0x77
+#define ChestKey_5 0x78
+#define Mine 0x79
+#define LightRune 0x7A
+#define IronRune 0x7B
+#define FillasMight 0x7C
+#define NinissGrace 0x7D
+#define ThorsIre 0x7E
+#define SetsLitany 0x7F
+#define EmblemSword 0x80
+#define EmblemSpear 0x81
+#define EmblemAxe 0x82
+#define EmblemBow 0x83
+#define Durandal 0x84
+#define Armads 0x85
+#define Aureola 0x86
+#define EarthSeal 0x87
+#define AfasDrops 0x88
+#define HeavenSeal 0x89
+#define EmblemSeal 0x8A
+#define FellContract 0x8B
+#define SolKatti 0x8C
+#define WolfBeil 0x8D
+#define Ereshkigal 0x8E
+#define FlameTongue 0x8F
+#define RegalBlade 0x90
+#define RexHasta 0x91
+#define Basilikos 0x92
+#define Rienfleche 0x93
+#define HeavySpear 0x94
+#define ShortSpear 0x95
+#define OceanSeal 0x96
+#define 3000G 0x97
+#define 5000G 0x98
+#define WindSword 0x99
+[/Spoiler]
+[Spoiler=FE7 Tutorial Disabler] 
+#ifndef EMPTY_TUTORIAL_OFFSET
+#define EMPTY_TUTORIAL_OFFSET 0xB4
+#endif
+
+MESSAGE "Tutorials disabled."
+ORG 0xC9EA2C
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+POIN EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET EMPTY_TUTORIAL_OFFSET
+[/Spoiler]
+[Spoiler=FE8 Definitions] 
+//Characters
+#define Eirika 0x01
+#define Seth 0x02
+#define Gilliam 0x03
+#define Franz 0x04
+#define Moulder 0x05
+#define Vanessa 0x06
+#define Ross 0x07
+#define Neimi 0x08
+#define Colm 0x09
+#define Garcia 0x0A
+#define Innes 0x0B
+#define Lute 0x0C
+#define Natasha 0x0D
+#define Cougar 0x0E
+#define Ephraim 0x0F
+#define Forde 0x10
+#define Kyle 0x11
+#define Amelia 0x12
+#define Artur 0x13
+#define Gerik 0x14
+#define Tethys 0x15
+#define Marisa 0x16
+#define Saleh 0x17
+#define Ewan 0x18
+#define LArachel 0x19
+#define Dozla 0x1A
+#define Rennac 0x1C
+#define Duessel 0x1D
+#define Myrrh 0x1E
+#define Knoll 0x1F
+#define Joshua 0x20
+#define Syrene 0x21
+#define Tana 0x22
+#define LyonCC 0x23
+#define OrsonCC 0x24
+#define GlenCC 0x25
+#define SelenaCC 0x26
+#define ValterCC 0x27
+#define RievCC 0x28
+#define CaellachCC 0x29
+#define FadoCC 0x2A
+#define IsmaireCC 0x2B
+#define HaydenCC 0x2C
+#define LyonSummon 0x3B
+#define KnollSummon 0x3E
+#define EvanSummon 0x3F
+#define Lyon_Ch17 0x40
+#define Morva_Ch20 0x41
+#define Orson_Ch5x 0x42
+#define Valter_Ch15_ 0x43
+#define Selena_Ch10B_and_13B 0x44
+#define Valter_Prologue 0x45
+#define Breguet 0x46
+#define Bone 0x47
+#define Bazba 0x48
+#define Entombed_boss 0x49
+#define Saar 0x4A
+#define Novala 0x4B
+#define Murray 0x4C
+#define Tirado 0x4D
+#define Binks 0x4E
+#define Pablo 0x4F
+#define Macdaire 0x50
+#define Aias 0x51
+#define Carlyle 0x52
+#define Caellach 0x53
+#define Pablo_2 0x54
+#define Gorgon_boss 0x56
+#define Riev 0x57
+#define Gheb 0x5A
+#define Beran 0x5B
+#define Cyclops_boss 0x5C
+#define Wight_boss 0x5D
+#define Deathgoyle_boss 0x5E
+#define Bandit 0x66
+#define ONeill 0x68
+#define Glen 0x69
+#define Zonta 0x6A
+#define Vigarde 0x6B
+#define Lyon_Final 0x6C
+#define Orson_Boss 0x6D
+#define Fomortiis 0xBE
+#define Fado 0xC5
+#define Hayden 0xC7
+#define Mansel 0xC8
+#define Klimt 0xC9
+#define Dara 0xCA
+#define Ismaire 0xCB
+#define PegasusMessenger 0xCC
+#define RiverFolkChild_F 0xF4
+#define RiverFolk_F 0xF5
+#define RiverFolk 0xF6
+#define RiverFolk_F_2 0xF7
+#define RiverFolkChild 0xF8
+#define RenaisCivilianChild_F 0xF9
+#define RenaisCivilian 0xFA
+#define RenaisCivilian_F 0xFB
+#define OldCivilian 0xFC
+#define Wall 0xFE
+#define Snag 0xFF
+
+//Classes
+#define EphraimLord 0x01
+#define EirikaLord 0x02
+#define EphraimMasterLord 0x03
+#define EirikaMasterLord 0x04
+#define Cavalier 0x05
+#define Cavalier_F 0x06
+#define Paladin 0x07
+#define Paladin_F 0x08
+#define Knight 0x09
+#define Knight_F 0x0A
+#define General 0x0B
+#define General_F 0x0C
+#define Thief 0x0D
+#define Manakete 0x0E
+#define Mercenary 0x0F
+#define Mercenary_F 0x10
+#define Hero 0x11
+#define Hero_F 0x12
+#define Myrmidon 0x13
+#define Myrmidon_F 0x14
+#define Swordmaster 0x15
+#define Swordmaster_F 0x16
+#define Assassin 0x17
+#define Assassin_F 0x18
+#define Archer 0x19
+#define Archer_F 0x1A
+#define Sniper 0x1B
+#define Sniper_F 0x1C
+#define Ranger 0x1D
+#define Ranger_F 0x1E
+#define WywernRider 0x1F
+#define WywernRider_F 0x20
+#define WywernLord 0x21
+#define WywernLord_F 0x22
+#define WyvernKnight 0x23
+#define WyvernKnight_F 0x24
+#define Mage 0x25
+#define Mage_F 0x26
+#define Sage 0x27
+#define Sage_F 0x28
+#define MageKnight 0x29
+#define MageKnight_F 0x2A
+#define Bishop 0x2B
+#define Bishop_F 0x2C
+#define Shaman 0x2D
+#define Shaman_F 0x2E
+#define Druid 0x2F
+#define Druid_F 0x30
+#define Summoner 0x31
+#define Summoner_F 0x32
+#define Rogue 0x33
+#define GorgonEgg 0x34
+#define GreatKnight 0x35
+#define GreatKnight_F 0x36
+#define Recruit_2 0x37
+#define Journeyma_3 0x38
+#define Pupil_3 0x39
+#define Recruit_3 0x3A
+#define Manakete_2 0x3B
+#define Manakete_2_F 0x3C
+#define Journeyman_1 0x3D
+#define Pupil_1 0x3E
+#define Fighter 0x3F
+#define Warrior 0x40
+#define Brigand 0x41
+#define Pirate 0x42
+#define Berserker 0x43
+#define Monk 0x44
+#define Priest 0x45
+#define Bard 0x46
+#define Recruit_1 0x47
+#define PegasusKnight 0x48
+#define FalcoKnight 0x49
+#define Cleric 0x4A
+#define Troubadour 0x4B
+#define Valkyrie 0x4C
+#define Dancer 0x4D
+#define Soldier 0x4E
+#define Necromancer 0x4F
+#define Fleet 0x50
+#define GhostFighter 0x51
+#define Renevant 0x52
+#define Entombed 0x53
+#define Bonewalker 0x54
+#define Bonewalker_Bow 0x55
+#define Wight 0x56
+#define Wight_Bow 0x57
+#define Bael 0x58
+#define ElderBael 0x59
+#define Cyclops 0x5A
+#define Mauthedoog 0x5B
+#define Gwyllgi 0x5C
+#define Tarvos 0x5D
+#define Maelduin 0x5E
+#define Mogall 0x5F
+#define ArchMogall 0x60
+#define Gorgon 0x61
+#define GorgonEgg_2 0x62
+#define Gargoyle 0x63
+#define Deathgoyle 0x64
+#define DracoZombie 0x65
+#define DemonKing 0x66
+#define ArcheronBallista 0x67
+#define ArcheronIronBallista 0x68
+#define ArcheronKillerBallista 0x69
+#define EmptyBallista 0x6A
+#define EmptyIronBallista 0x6B
+#define EmptyKillerBallista 0x6C
+#define Civilian 0x6D
+#define Civilian_F 0x6E
+#define Civilian_2 0x6F
+#define Civilian_F_2 0x70
+#define Civilian_3 0x71
+#define Civilian_F_3 0x72
+#define Peer 0x73
+#define Queen 0x74
+#define Prince 0x75
+#define Queen_2 0x76
+#define FallenPrince 0x78
+#define Tent 0x79
+#define Pontifex 0x7A
+#define FallenPeer 0x7B
+#define Cyclops_2 0x7C
+#define ElderBael_2 0x7D
+#define Journeyman(2) 0x7E
+#define Pupil(2) 0x7F
+
+//Items
+#define IronSword 0x01
+#define SlimSword 0x02
+#define SteelSword 0x03
+#define SilverSword 0x04
+#define IronBlade 0x05
+#define SteelBlade 0x06
+#define SilverBlade 0x07
+#define PoisonSword 0x08
+#define Rapier 0x09
+#define ManiKatti 0x0A
+#define BraveSword 0x0B
+#define Shamshir 0x0C
+#define KillingEdge 0x0D
+#define Armourslayer 0x0E
+#define Wyrmslayer 0x0F
+#define LightBrand 0x10
+#define RuneSword 0x11
+#define Lancereaver 0x12
+#define LongSword 0x13
+#define IronLance 0x14
+#define SlimLance 0x15
+#define SteelLance 0x16
+#define SilverLance 0x17
+#define PoisonLance 0x18
+#define BraveLance 0x19
+#define KillerLance 0x1A
+#define HorseKiller 0x1B
+#define Javelin 0x1C
+#define Spear 0x1D
+#define Axereaver 0x1E
+#define IronAxe 0x1F
+#define SteelAxe 0x20
+#define SilverAxe 0x21
+#define PoisonAxe 0x22
+#define BraveAxe 0x23
+#define KillerAxe 0x24
+#define Halberd 0x25
+#define Hammer 0x26
+#define DevilAxe 0x27
+#define HandAxe 0x28
+#define Tomahawk 0x29
+#define Swordreaver 0x2A
+#define Swordslayer 0x2B
+#define Hatchet 0x2C
+#define IronBow 0x2D
+#define SteelBow 0x2E
+#define SilverBow 0x2F
+#define PoisonBow 0x30
+#define KillerBow 0x31
+#define BraveBow 0x32
+#define ShortBow 0x33
+#define LongBow 0x34
+#define Ballista 0x35
+#define IronBallista 0x36
+#define KillerBallista 0x37
+#define Fire 0x38
+#define Thunder 0x39
+#define Elfire 0x3A
+#define Thunderstorm 0x3B
+#define Fimbulvetr 0x3C
+#define Forblaze 0x3D
+#define Excalibur 0x3E
+#define Lightning 0x3F
+#define Shine 0x40
+#define Divine 0x41
+#define Purge 0x42
+#define Aura 0x43
+#define Luce 0x44
+#define Flux 0x45
+#define Luna 0x46
+#define Nosferatu 0x47
+#define Eclipse 0x48
+#define Fenrir 0x49
+#define Gleipnir 0x4A
+#define Heal 0x4B
+#define Mend 0x4C
+#define Recover 0x4D
+#define Physic 0x4E
+#define Fortify 0x4F
+#define Restore 0x50
+#define Silence 0x51
+#define Sleep 0x52
+#define Berserk 0x53
+#define Warp 0x54
+#define Rescue 0x55
+#define TorchStaff 0x56
+#define Hammerne 0x57
+#define Unlock 0x58
+#define MagicShield 0x59
+#define DragonAxe 0x5A
+#define AngelicRobe 0x5B
+#define EnergyRing 0x5C
+#define SecretBook 0x5D
+#define Speedwings 0x5E
+#define GoddessIcon 0x5F
+#define Dragonshield 0x60
+#define Talisman 0x61
+#define Boots 0x62
+#define BodyRing 0x63
+#define HeroCrest 0x64
+#define KnightCrest 0x65
+#define OrionsBolt 0x66
+#define ElysianWhip 0x67
+#define GuidingRing 0x68
+#define ChestKey 0x69
+#define DoorKey 0x6A
+#define Lockpick 0x6B
+#define Vulnerary 0x6C
+#define Elixir 0x6D
+#define HolyWater 0x6E
+#define Antidote 0x6F
+#define Torch 0x70
+#define FreeShield 0x71
+#define MemberCard 0x72
+#define SilverCard 0x73
+#define WhiteGem 0x74
+#define BlueGem 0x75
+#define RedGem 0x76
+#define Gold 0x77
+#define Reginleif 0x78
+#define ChestKey_5 0x79
+#define Mine 0x7A
+#define LightRune 0x7B
+#define HopronShield 0x7C
+#define FillasMight 0x7D
+#define NinissGrace 0x7E
+#define ThorsIre 0x7F
+#define SetsLitany 0x80
+#define ShadowKiller 0x81
+#define BrightLance 0x82
+#define FiendCleaver 0x83
+#define BeaconBow 0x84
+#define Sieglind 0x85
+#define BattleAxe 0x86
+#define Ivaldi 0x87
+#define MasterProof 0x88
+#define MetissTome 0x89
+#define HeavenSeal 0x8A
+#define SharpClaw 0x8B
+#define Latona 0x8C
+#define DragonSpear 0x8D
+#define Vidofnir 0x8E
+#define Naglfal 0x8F
+#define WretchedAir 0x90
+#define Audomra 0x91
+#define Siegmund 0x92
+#define Garm 0x93
+#define Nidhogg 0x94
+#define HeavySpear 0x95
+#define ShortSpear 0x96
+#define ConquerorsProof 0x97
+#define MoonBracelet 0x98
+#define SunBracelet 0x99
+#define 1G 0x9A
+#define 5G 0x9B
+#define 10G 0x9C
+#define 50G 0x9D
+#define 100G 0x9E
+#define 3000G 0x9F
+#define 5000G 0xA0
+#define WindSword 0xA1
+#define Vulnerary_2 0xA2
+#define Greennote 0xA3
+#define Rednote 0xA4
+#define Dance 0xA5
+#define Nightmare 0xA6
+#define DemonShard 0xA7
+#define DemonLight 0xA8
+#define Ravager 0xA9
+#define HolyDragonStone 0xAA
+#define DemonSurge 0xAB
+#define Shadowshot 0xAC
+#define RottenClaw 0xAD
+#define FetidClaw 0xAE
+#define PoisonClaw 0xAF
+#define LongPoisonClaw 0xB0
+#define FireFang 0xB1
+#define HellFang 0xB2
+#define EvilEye 0xB3
+#define BloodyEye 0xB4
+#define Stone 0xB5
+#define Aircalibur 0xB6
+#define JunaFruit 0xB7
+#define 150G 0xB8
+#define 200G 0xB9
+#define BlackGem 0xBA
+#define GoldGem 0xBB
+[/Spoiler]
+[Spoiler=Main Code Helpers] 
+
+//Turn based event helpers
+#ifdef _FE6_
+#define TurnEventPlayer(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 0"
+#define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns+1] 0"
+#define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8"
+#define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns+1] 8"
+#define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0"
+#endif
+
+#ifdef _FE7_
+#define TurnEventPlayer(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 0 0"
+#define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns+1] 0 0"
+#define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8 0"
+#define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns+1] 8 0"
+#define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0"
+#endif
+
+#ifdef _FE8_
+#define TurnEventPlayer(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 0"
+#define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns+1] 0"
+#define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8"
+#define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns+1] 8"
+#define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0"
+#endif
+
+//Character based event helpers
+#ifdef _FE6_
+#define CharacterEvent(eventID,pointer,char1,char2) "CHAR eventID pointer [char1,char2]"
+#define CharacterEventBothWays(eventID,eventPtr,char1,char2) "CHAR eventID eventPtr [char1,char2]; CHAR eventID eventPtr [char2,char1]"
+#endif
+
+#ifdef _FE7_
+#define CharacterEvent(eventID,pointer,char1,char2) "CHAR eventID pointer [char1,char2] 0"
+#define CharacterEvent(eventID,pointer,char1,char2,afterID) "CHAR eventID pointer [char1,char2] 3+afterID*0x10000"
+#define CharacterEventBothWays(eventID,eventPtr,char1,char2) "CHAR eventID eventPtr [char1,char2] 0; CHAR eventID eventPtr [char2,char1] 0"
+#endif
+
+#ifdef _FE8_
+#define CharacterEvent(eventID,pointer,char1,char2) "CHAR eventID pointer [char1,char2] 0"
+#define CharacterEvent(eventID,pointer,char1,char2,afterID) "CHAR eventID pointer [char1,char2] 3+afterID*0x10000"
+#define CharacterEventBothWays(eventID,eventPtr,char1,char2) "CHAR eventID eventPtr [char1,char2] 0; CHAR eventID eventPtr [char2,char1] 0"
+#endif
+
+
+//Location based event helpers
+#ifdef _FE6_
+#define Village(eventID,offset,X,Y) 	"VILL eventID offset [X,Y] 0xE; LOCA eventID [X,Y-1] 0x1D"
+#define House(eventID,offset,X,Y) 		"LOCA eventID offset [X,Y] 0xE"
+#define Armory(offset,X,Y) 				"SHOP 0 offset [X,Y] 0x13"
+#define Vendor(offset,X,Y) 				"SHOP 0 offset [X,Y] 0x14"
+#define SecretShop(offset,X,Y) 			"SHOP 0 offset [X,Y] 0x15"
+#define Chest(item,X,Y) 				"CHES 0 item [X,Y] 0x12"
+#define ChestMoney(amountOfMoney,X,Y) 	"CHES 0 0x6F+amountOfMoney*0x10000 [X,Y] 0x12"
+#define Door(X,Y) 						"DOOR 0 [X,Y] 0x10"
+#define Seize(X,Y) 						"LOCA 3 [X,Y] 0xF"
+#define Seize(eventID,offset,X,Y) 		"LOCA eventID offset [X,Y] 0xF"
+#endif
+
+#ifdef _FE7_
+#define Village(eventID,offset,X,Y) 	"VILL eventID offset [X,Y] 0xE; LOCA eventID [X,Y-1] 0x1D"
+#define House(eventID,offset,X,Y) 		"LOCA eventID offset [X,Y] 0xE"
+#define Armory(offset,X,Y) 				"SHOP 0 offset [X,Y] 0x13"
+#define Vendor(offset,X,Y) 				"SHOP 0 offset [X,Y] 0x14"
+#define SecretShop(offset,X,Y) 			"SHOP 0 offset [X,Y] 0x15"
+#define Chest(item,X,Y) 				"CHES 0 item [X,Y] 0x12"
+#define ChestMoney(amountOfMoney,X,Y) 	"CHES 0 0x76+amountOfMoney*0x10000 [X,Y] 0x12"
+#define Door(X,Y) 						"DOOR 0 [X,Y] 0x10"
+#define Seize(X,Y) 						"LOCA 3 [X,Y] 0xF"
+#define Seize(eventID,offset,X,Y) 		"LOCA eventID offset [X,Y] 0xF"
+#endif
+
+#ifdef _FE8_
+#define Village(eventID,offset,X,Y) 	"VILL eventID offset [X,Y] 0x10; LOCA eventID [X,Y-1] 0x20"
+#define House(eventID,offset,X,Y) 		"LOCA eventID offset [X,Y] 0x10"
+#define Armory(offset,X,Y) 				"SHOP 0 offset [X,Y] 0x16"
+#define Vendor(offset,X,Y) 				"SHOP 0 offset [X,Y] 0x17"
+#define SecretShop(offset,X,Y) 			"SHOP 0 offset [X,Y] 0x18"
+#define Chest(item,X,Y) 				"CHES 0 item [X,Y] 0x14"
+#define ChestMoney(amountOfMoney,X,Y) 	"CHES 0 0x77+amountOfMoney*0x10000 [X,Y] 0x14"
+#define Door(X,Y) 						"DOOR 0 [X,Y] 0x12"
+#define Seize(X,Y) 						"LOCA 3 [X,Y] 0x11"
+#define Seize(eventID,offset,X,Y) 		"LOCA eventID offset [X,Y] 0x11"
+#endif
+
+
+//Misc based event helpers
+#ifdef _FE6_
+#define CauseGameOverIfLordDies "AFEV 0 0x66AC6C 0x65"
+#define DefeatBoss(offset) "AFEV 0 offset 2"
+#define DefeatAll(event) "ASME 0 event 0x6C2F9"
+#endif
+
+#ifdef _FE7_
+#define CauseGameOverIfLordDies "AFEV 0 0xCA749C 0x65"
+#define DefeatBoss(offset) "AFEV 0 offset 2"
+#define DefeatAll(offset) "ASME 0 offset $79FE9"
+#endif
+
+#ifdef _FE8_
+#define CauseGameOverIfLordDies "AFEV 0 0x592104 0x65"
+#define DefeatBoss(offset) "AFEV 0 offset 2"
+#define DefeatAll(offset) "AFEV 0 offset 6"
+#endif
+
+
+//Common events
+#ifdef _FE6_
+#define VillageEventItem(textID,background,item) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _0x40; ITGV item; ENDA"
+#define VillageEventMoney(textID,background,money) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _0x40; MONE money; ENDA"
+#define HouseEvent(textID,background) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; ENDA"
+#define ConvoEvent(textID) "MUSI; TEX1 textID; REMA; MUNO; ENDA"
+#define ReinforcementEvent(unitPtr) "LOU1 unitPtr; ENUN; ENDA"
+#endif
+
+#ifdef _FE7_
+#define VillageEventItem(textID,background,item) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _FADU2; SHOWMAP; ITGV item; ENDA"
+#define VillageEventMoney(textID,background,money) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; _FADU2; SHOWMAP; MONE 0 money; ENDA"
+#define HouseEvent(textID,background) "MUSI; FADI 16; HIDEMAP; BACG background; FADU 16; SHOWMAP; TEX1 textID; REMA; MUNO; ENDA"
+#define ConvoEvent(textID) "MUSI; TEX1 textID; REMA; MUNO; ENDA"
+#define ReinforcementEvent(unitPtr) "LOU1 unitPtr; ENUN; ENDA"
+#endif
+
+#ifdef _FE8_
+#define VillageEventItem(textID,background,item) "MUSI; _SETVAL 0x2 background; _SETVAL 0x3 textID; CALL $9EE31C; MUNO; CALL $591F40; _SETVAL 0x3 item; _GIVEITEMTO 0xFFFF; _0x0228 0x7; ENDA"
+#define VillageEventMoney(textID,background,money) "MUSI; _SETVAL 0x2 background; _SETVAL 0x3 textID; CALL $9EE31C; MUNO; CALL $591F40; _SETVAL 0x3 money; _GIVEITEMTO2 0; _0x0228 0x7; ENDA"
+#define HouseEvent(textID,background) "MUSI; _SETVAL 2 background; _SETVAL 3 textID; CALL $9EE31C; MUNO; _0x0228 0x7; ENDA"
+#define ConvoEvent(textID) "MUSI; TEXTSTART; TEXTSHOW textID; TEXTEND; REMA; MUNO; _0x0228 0x7; ENDA"
+#define ReinforcementEvent(unitPtr) "_SETVAL 0x2 (unitPtr|0x8000000); CALL $9EE290; _0x0228 0x7; ENDA"
+#endif[/Spoiler]
+[Spoiler=Misc Helpers] 
+
+//Causes game over
+//FE6 doesn't have CALL, so JUMP is used instead
+#ifdef _FE6_
+#define GameOver "JUMP 0x66AC6C"
+#endif
+
+#ifdef _FE7_
+#define GameOver "CALL 0xCA749C"
+#endif
+
+#ifdef _FE8_
+#define GameOver "CALL 0x592104"
+#endif
+
+//Special effects
+#ifdef _FE7_
+#define QuintessenceEffect "ASMC 0x7D711; STAL 0x3C; ASMC 0x7D7B5; STAL 0x3C; ASMC 0x6CCB9; ASMC 0x7D771"
+#define Rumble "ASMC $7D645"
+//#define EndRumble "ASMC "
+#endif
+
+//Conditional helpers
+#ifdef _FE7_
+#define IfPlayerPhase(conditionID) "IFAT conditionID 0x7A2F1"
+#define IfUnitLucky(conditionID) "IFAT conditionID 0x7D2B1"
+//#define IF(conditionID) "IFAF conditionID 0x7D3F9"
+#endif[/Spoiler]
+[Spoiler=Music Definitions] 
+//Music and sound definitions.
+
+#ifdef _FE6_
+
+#define None 0x00
+#define FireEmblemMainTheme 0x01
+#define DeeroftheMainland 0x02
+#define Frontier 0x03
+#define PolarRegion 0x04
+#define LandofDragons 0x05
+#define SanctuaryofDragons 0x06
+#define LegendaryInheritance 0x07
+#define FEGaidenCPMap 0x08
+#define MessengerfromtheDarkness 0x09
+#define BeyondtheSky 0x0A
+#define WillofOne 0x0B
+#define WithintheGreatNature 0x0C
+#define BeneathNewLight 0x0D
+#define PathoftheDivineGenerals 0x0E
+#define ScarsoftheScouring 0x0F
+#define FEGaidenPlayerMap 0x10
+#define ShadowApproaches 0x11
+#define BindingTies 0x12
+#define WinningRoad 0x13
+#define PoemofBreeze 0x14
+#define TheLastDragon 0x15
+#define FighttoTomorrow 0x16
+#define IntheNameofBern 0x17
+#define BattleforWhoseSake 0x18
+#define ShamanintheDark 0x19
+#define Curing 0x1A
+#define Healing 0x1B
+#define TotheHeights 0x1C
+#define Nothing 0x1D
+#define Charge 0x1E
+#define ReclaimtheCapital 0x1F
+#define UnseenEnemy 0x20
+#define FinalChapter 0x21
+#define PreparetoCharge 0x22
+#define AnUnexpectedCaller 0x23
+#define whentheRushComes 0x24
+#define InvisibleThread 0x25
+#define DistantUtopia 0x26
+#define Triumph 0x27
+#define IntotheShadowofTriumph 0x28
+#define ShamanofDarkness 0x29
+#define TheKingofBern 0x2A
+#define PrincessofFate 0x2B
+#define Suspicious 0x2C
+#define Dignity 0x2D
+#define Melancholy 0x2E
+#define TimeofSadness 0x31
+#define CathMusic 0x32
+#define JoinUs 0x33
+#define Epilogue 0x34
+#define Results 0x35
+#define AftertheWar 0x36
+#define GameOverMusic 0x37
+#define ShopMusic 0x38
+#define Arena_Entrance 0x39
+#define Arena_Battle 0x3A
+#define HappinessAbounds 0x3B
+#define MainThemeMotif 0x3C
+#define ShockI 0x3D
+#define ShockII 0x3E
+#define Talking 0x3F
+#define CaptivatingDance 0x40
+#define AnotherLalumdancetheme 0x41
+#define Prelude 0x42
+#define EternalWind 0x43
+#define TheBeginning 0x44
+#define Deathofcharacter 0x45
+#define Arenavictory 0x46
+#define Attack 0x48
+#define Reveng 0x49
+#define Itemget 0x5A
+#define Levelup 0x5B
+#define ItemBreak 0x5C
+#define Turnchange 0x73
+#define Warpsoundsoft 0x7F
+#define Something 0x80
+#define Growdcheering 0x81
+#define Restoresound 0x82
+#define Silencesound1 0x83
+#define Silencesound2 0x84
+#define Sleepsound 0x85
+#define Staffsound1 0x86
+#define Berserksound 0x87
+#define Staffsound2 0x88
+#define Healsound 0x89
+#define Mendsound 0x8A
+#define Recoversound 0x8B
+#define Fortifysound 0x8C
+#define Hammnernesound 0x8D
+#define Growdcheering2 0x8E
+#define Growdcheering3 0x8F
+#define Chapteropening1 0x90
+#define Chapteropening2 0x91
+#define Walkingsound 0x96
+#define Horsesound 0x9A
+#define Wywernsound 0xA0
+#define Armorsound 0xA2
+#define Pegasussound 0xA6
+#define Staffsound3 0xA8
+
+#endif
+
+
+#ifdef _FE7_
+
+#define Notapplicable 0xFFFF
+#define Nothing 0x0000
+#define PreciousThings 0x0001
+#define Companions 0x0002
+#define FriendshipandAdventure 0x0003
+#define DragonsGateII 0x0004
+#define ScarsoftheScouring 0x0005
+#define RaiseYourSpirits 0x0006
+#define ShadowApproaches 0x0007
+#define BindingTies 0x0008
+#define WinningRoad 0x0009
+#define DistantTravels 0x000A
+#define InescapableFate 0x000B
+#define EnemiesAppear 0x000C
+#define TheMessenger 0x000D
+#define DarknessComes 0x000E
+#define NabatasWanderingMessenger 0x000F
+#define DragonsGateI 0x0010
+#define LegendaryInheritance 0x0011
+#define Raid 0x0012
+#define MessengerfromtheDarkness 0x0013
+#define VictoryNow 0x0014
+#define RisetotheChallenge 0x0015
+#define SoftlywithGrace 0x0016
+#define EverythingintotheDark 0x0017
+#define CampaignofFire 0x0018
+#define Healing 0x0019
+#define Curing 0x001A
+#define TotheHeights 0x001B
+#define Blessingofthe8GeneralsI 0x001C
+#define ReceivetheBlessingsofWater 0x001D
+#define RidetheWind 0x001E
+#define Strike 0x001F
+#define Safeguard 0x0020
+#define Requiem 0x0021
+#define LandofSwirlingSands 0x0022
+#define TheKingdomofBern 0x0023
+#define Bern_AMothersWish 0x0024
+#define AHintofThingstoCome 0x0025
+#define RoadofTrials 0x0026
+#define DestinyEnlacedbyFear 0x0027
+#define Results 0x0029
+#define TreasuredHope 0x002A
+#define GameOverMusic 0x002B
+#define WithinSadness 0x002C
+#define ArenaVictory 0x002D
+#define ArenaTactics 0x002E
+#define WindsAcrossthePlains 0x0030
+#define AnUnexpectedCaller 0x0032
+#define WhentheRushComes 0x0033
+#define TheCogsofFate 0x0034
+#define ShockingTruthI 0x0035
+#define ShockingTruthII 0x0036
+#define TheEightGenerals 0x0037
+#define Triumph 0x0038
+#define IntheShadowofTriumph 0x0039
+#define Reminiscence 0x003A
+#define NergalsWrath 0x003B
+#define TheArchsageAthos 0x003C
+#define OneHeart_EliwoodsTheme 0x003D
+#define Loyalty_HectorsTheme 0x003E
+#define GirlofthePlains_LynsTheme 0x003F
+#define FinalFarewell 0x0040
+#define GoingMyWay 0x0041
+#define TogetherWeRide 0x0042
+#define AKnightsOath 0x0043
+#define HappinessAbounds 0x0044
+#define MainThemeArrangement 0x0045
+#define Shop 0x0046
+#define ArenaEntrance 0x0047
+#define ArenaBattle 0x0048
+#define PreparetoCharge 0x0049
+#define CalamityBringer_NergalsTheme 0x004A
+#define LighttoTomorrow 0x004B
+#define MerchantMerlinus 0x004C
+#define Armory 0x004D
+#define ShipsandHomes 0x004E
+#define SilentGround 0x004F
+#define BlackFang 0x0050
+#define RecollectionofaPetal 0x0051
+#define WhatComesfromDarkness 0x0052
+#define Stratagem 0x0053
+#define LynsDesire 0x0054
+#define EyesofSorrow 0x0056
+#define UnshakableFaith 0x0057
+#define TheGrievingHeart 0x0058
+#define FireEmblemTheme 0x005A
+#define FireEmblemTheme_looped 0x005B
+#define Opening_HistoryUnveiled 0x005C
+#define DistantUtopia 0x005D
+#define FortuneTelling 0x005E
+#define FireEmblemTheme_withintro 0x005F
+#define ChapterDisplayhumming 0x0060
+#define ChapterDisplay 0x0061
+#define WaterDropletintheOpening 0x0062
+#define SwordSoundintheOpening 0x0063
+#define WhatComesfromDarkness2 0x0064
+#define BlackFang2 0x0065
+#define GoingMyWay2 0x0066
+#define Safeguard2 0x0067
+#define ShatteredLife 0x0068
+#define Anguish 0x0069
+#define RespiteinBattle 0x006A
+#define TheInn 0x006B
+#define Blessingofthe8GeneralsII 0x006E
+#define CampaignofFire_nointro 0x006F
+#define BeneathaNewLight 0x0070
+#define ThePathtoGreatness 0x0071
+#define IntheNameofBern 0x0072
+#define LegendofAthos 0x0073
+#define AvoidedFate 0x0074
+#define LegendoftheGodDragon 0x0075
+#define RoyalPalaceofSilezha 0x0076
+#define Avoidedfatebeginning 0x0077
+#define Avoidedfatemiddle 0x0078
+#define Avoidedfateend 0x0079
+#define Droplet 0x0080
+#define Crowdcheering 0x0081
+#define Reststaff_map 0x0082
+#define Silencestaff_map 0x0083
+#define Sleepstaff_map 0x0085
+#define Hammernestaff_map 0x0086
+#define Berserkstaff_map 0x0087
+#define Weirdsound_Watchstaff 0x0088
+#define Livestaff 0x0089
+#define Relivestaff 0x008A
+#define Recoverstaff 0x008B
+#define Reservestaff 0x008C
+#define Recoveryfromastatuseffect_longer 0x008D
+#define Crowdcheering_softer 0x008E
+#define Crowdcheeringthenstops 0x008F
+#define FE6Chapteropeninghumming 0x0090
+#define FE6Chapteropening 0x0091
+#define Footsteps 0x0093
+#define Footsteps2 0x0094
+#define Footsteps3 0x0095
+#define Footsteps4 0x0096
+#define Footsteps5 0x0097
+#define Footsteps6 0x0098
+#define Footsteps7 0x0099
+#define Footsteps8 0x009A
+#define Horsetrot 0x009B
+#define Horsetrot2 0x009C
+#define Horsetrot3 0x009D
+#define Horsetrot4 0x009E
+#define Horsetrot5 0x009F
+#define Armourwalk 0x00A0
+#define Armourwalk2 0x00A1
+#define Armourwalk3 0x00A2
+#define Armourwalk4 0x00A3
+#define Armourwalk5 0x00A4
+#define Armourwalk6 0x00A5
+#define Pegasusflying 0x00A6
+#define Pegasusflying2 0x00A7
+#define Recoveryfromastatuseffect 0x00AA
+#define Rockexploding 0x00AB
+#define Captivefallingfromdeadholder 0x00AC
+#define DestroyedwallOrSnag 0x00AF
+#define AttackingwallOrSnag 0x00B0
+#define Unlockingdoor 0x00B
+#define TorchSound 0x00B3
+#define Warping 0x00B4
+#define Warpend 0x00B5
+#define PureWaterSound 0x00B6
+#define Poisonsound 0x00B7
+#define Goldchanging 0x00B9
+#define Poisonvent 0x00BA
+#define Watertilegoingunder 0x00BD
+#define Watertilecomingup 0x00BE
+#define Firetile 0x00BF
+#define GBAversionofZelda_OoTfutureHyruleCastlewinds 0x00C7
+#define Smallplunk 0x00C8
+#define Lightplunk 0x00C9
+#define Largeplunk 0x00CA
+#define Eliwoodcriticalswordswing 0x00CB
+#define Tap 0x00CC
+#define Lowplunk 0x00CD
+#define Swordunsheathing 0x00CE
+#define Swordunsheathing2 0x00CF
+#define Ballistafire 0x00D0
+#define Creaking 0x00D1
+#define Hit_map 0x00D2
+#define Hit2_map 0x00D3
+#define Hit3_map 0x00D4
+#define Kill_map 0x00D5
+#define Death_map 0x00D6
+#define Miss_realtime 0x00D7
+#define Crumbling 0x00D8
+#define Mamkutetransform 0x00DC
+#define Mamkutede_transform 0x00DD
+#define Mamkuteyowl 0x00DE
+#define Mamkuteroar 0x00DF
+#define Armourtrianglealliesstriking 0x00E2
+#define FireDragondeathroar 0x00E3
+#define FireDragondeathroar2 0x00E5
+#define Mamkutetransformgrowl 0x00E6
+#define Brigandbattlecry 0x00E7
+#define Axefalling 0x00EA
+#define Axerising 0x00EB
+#define DancePlayeffect 0x00EF
+#define Divineweaponshine 0x00F0
+#define Firecharge 0x00F1
+#define Fireshoot 0x00F2
+#define Thunderstormstatic 0x00F4
+#define Thunderstormstrike 0x00F5
+#define Shamancharging 0x00F6
+#define Weirdrumbling 0x00F7
+#define Weirdrumbling2 0x00F8
+#define Berserkstaff_realtime 0x00F9
+#define Silencestaffcharging_realtime 0x00FA
+#define Silencestaffforming_realtime 0x00FB
+#define Reststaff_realtime 0x00FD
+#define Purgeflash 0x00FE
+#define Purgeflash2 0x00FF
+#define Purgecharging 0x0100
+#define Purgestrike 0x0101
+#define Aureolalightexplosion_short 0x0102
+#define Hammernestaff_realtime 0x0103
+#define Fluxcharging 0x010A
+#define Livestaff2 0x010E
+#define Livestaff3 0x010F
+#define Relivestaff2 0x0110
+#define Relivestaff3 0x0111
+#define Recoverstaff2 0x0112
+#define Recoverstaff3 0x0113
+#define Reservestaff_realtime 0x0114
+#define Thunderstormsparks 0x0119
+#define Thunderstormstrike2 0x011A
+#define Sleepcharging_realtime 0x011B
+#define Sleepactivating_realtime 0x011C
+#define Rumbling 0x011D
+#define Somekindofwind 0x011E
+#define Weirdchargingsound 0x011F
+#define Lightningcharging 0x0120
+#define Lightningstrike 0x0121
+#define Fimbulvetrwind 0x0122
+#define Fimbulvetrice 0x0123
+#define Nosferatusymbol 0x0124
+#define Nosferatudrain 0x0125
+#define Nosferatuheal 0x0126
+#define Divinecharging 0x0127
+#define Divinefalling 0x0128
+#define Divinestrike 0x0129
+#define Divinestrike2 0x012A
+#define Aureolalightbombfalling 0x012B
+#define Aureolalightexplosion 0x012C
+#define Softstep 0x014E
+#define Softstep2 0x014F
+#define Softstep3 0x0150
+#define Softstep4 0x0151
+#define Softstep5 0x0154
+#define Softstep6 0x0155
+#define Softstep7 0x0156
+#define Softstep8 0x0157
+#define Softstep9 0x0158
+#define Therestofhigh01justseemstobesoftsteps 0x0159
+#define Shineattack 0x02BC
+#define Lunasymbol 0x02BD
+#define Lunahitting 0x02BE
+#define Excaliburforming 0x02BF
+#define Excaliburcutting 0x02C0
+#define Auraflash 0x02C1
+#define Auragoingup 0x02C2
+#define Aurastrike 0x02C3
+#define Luceflash 0x02C4
+#define Lucecharging 0x02C5
+#define Luceflowing 0x02C6
+#define Gespenstsymbol 0x02C7
+#define Gespenstclouds 0x02C8
+#define Gespenststrike 0x02C9
+#define Forblazecharging 0x02CA
+#define Forblazerising 0x02CB
+#define Weirdcharging 0x02CC
+#define Weirdglitterysound 0x02CD
+#define Nodamage 0x02CE
+#define Weirdpatsound 0x02CF
+#define Eliwoodsswordshining 0x02D0
+#define Eliwoodshorseneighing 0x02D1
+#define Weirdflamingsound 0x02D2
+#define Dancing 0x02D3
+#define Playing 0x02D4
+#define Dancing_map 0x02D5
+#define Playing_map 0x02D6
+#define Snagfalling 0x02D7
+#define Weirdchargingsound2 0x02D8
+#define Thud 0x02D9
+#define Swordunsheathing3 0x02DA
+#define Bizarrethreesoundeffects 0x02DB
+#define Arefwhistlewhatsthisdoinghere 0x02DC
+#define Glitterysound 0x02DD
+#define Shinesound 0x02DE
+#define Shinesound2 0x02DF
+#define Firedragonwalkingsound 0x02E0
+#define Eclipsestriking 0x02E1
+#define Eclipsestriking_shorter 0x02E2
+#define DarkDruidcharging 0x02E3
+#define DarkDruidchargingthencritical 0x02E8
+#define Magicshine 0x02E9
+#define Magicshinelong 0x02EA
+#define Magicshinelonger 0x02EB
+#define Magicshinelongerstill 0x02EC
+#define Magicshinelongest 0x02ED
+#define Quintessencegathering 0x02EE
+#define Ninianressurrection 0x02EF
+#define RumblingattheDragonsGate 0x02F0
+#define Dragonsscreaming 0x02F1
+#define FireDragondying 0x02F2
+#define FireDragondying2 0x02F3
+#define Nodamage2 0x02F4
+#define High_pitcheddragonyell 0x02F5
+#define Softstep10 0x02F6
+#define Druidcriticalcharge 0x02F7
+#define Sagecriticalconjuration 0x02F8
+#define Swishsound 0x02F9
+#define Icysound 0x02FA
+#define FireDragonattacking 0x02FB
+#define DragonsattackingAthos 0x02FC
+#define Ereshkigalcharging 0x02FD
+#define Ereshkigalstrike 0x02FE
+#define Swooshsound 0x02FF
+
+#define Birdschirping 0x03A4
+#define Storm_LowPitch 0x03A6
+#define BubblingThunder 0x03A8
+#define CricketsChirping 0x03A9
+#define RollingWaves 0x03AA
+#define WavesOnRocks 0x03AC
+#define Storm_HighPitch 0x03AE
+#define MagicalNoises 0x03B1
+#define CricketsChirping2 0x03B8
+#endif
+
+
+#ifdef _FE8_
+
+#define Nothing 0x00
+#define The_Valiant 0x01
+#define Main_Theme 0x02
+#define PrologueMusic 0x03
+#define The_Beginning 0x04
+#define Treasured_Memories 0x05
+#define Grim_Journey 0x06
+#define Ties_of_Friendship 0x07
+#define Ray_of_Hope 0x08
+#define Distant_Roads 0x09
+#define Rise_Above 0x0A
+#define Follow_Me 0x0B
+#define Determination 0x0C
+#define Truth_Despair_and_Hope 0x0D
+#define Land_o_fPromise 0x0E
+#define Binding_Vow 0x0F
+#define Grasping_at_Victory 0x10
+#define Shadows_Approach 0x11
+#define Confront_the_Past 0x12
+#define Shadow_of_the_Enemy 0x13
+#define Assault 0x14
+#define From_the_Darkness 0x15
+#define Twisted_ShadowsA 0x16
+#define Twisted_ShadowsB 0x17
+#define Envoy_from_the_Dark 0x18
+#define Attack 0x19
+#define Defense 0x1A
+#define The_Battle_t_Be_Won 0x1B
+#define Powerful_Foe 0x1C
+#define The_Princes_Despair 0x1D
+#define Return_of_the_DemonKing 0x1E
+#define Sacred_Strength 0x1F
+#define TethysTheme 0x20
+#define Healing 0x21
+#define Curing 0x22
+#define To_a_Higher_Place 0x23
+#define Advance 0x24
+#define Tension 0x25
+#define Raid 0x26
+#define Reunion 0x27
+#define Indignation 0x28
+#define Sorrow 0x29
+#define Laughter 0x2A
+#define Legacy 0x2B
+#define LyonTheme 0x2C
+#define Lost_Heart 0x2D
+#define Solve_the_Riddle 0x2E
+#define Lights_in_the_Dark 0x2F
+#define Comrades 0x30
+#define Victory 0x31
+#define Into_the_Shadow_of_Victory 0x32
+#define Main_Theme_Reprise 0x33
+#define Combat_Preparation 0x34
+#define Shops 0x35
+#define Armories 0x36
+#define Bonds 0x37
+#define Colosseum_Entrance 0x38
+#define In_the_Colosseum 0x39
+#define Colosseum_Victory 0x3A
+#define Colosseum_Defeat 0x3B
+#define Victory_SongA 0x3C
+#define Victory_SongB 0x3D
+#define Game_Over 0x3E
+#define In_Sorrows_Shroud 0x3F
+#define Records 0x40
+#define Victory_and_the_Future 0x41
+#define Fly_with_the_Breeze 0x42
+#define Fire_Emblem_Theme_nointro 0x43
+#define Lyon_OrganArrangement 0x44
+#define The_Final_Battle 0x45
+#define Epilogue 0x46
+
+#endif[/Spoiler]
+[Spoiler=Numeric Helpers] 
+#define IsPositive(x)  "Switch(Signum(x)+2,0,0,1)"
+#define IsNegative(x)  "Switch(Signum(x)+2,1,0,0)"
+#define IsZero(x)      "Switch(Signum(x)+2,0,1,0)"
+#define Abs(x)         "Signum(x)*x"
+#define IsEqual(x,y)   "IsZero(x-y)"
+#define IsGreater(x,y) "IsPositive(x-y)"
+#define IsSmaller(x,y) "IsNegative(x-y)"
+[/Spoiler]
+[Spoiler=Tile Changes] 
+
+//Tile change macro
+#ifdef _FE6_
+#define TileMap(TCN,X1,X2,L1,L2,TilePointer) "BYTE TCN X1 X2 L1 L2 0 0 0; POIN TilePointer"
+#define TileMapEnd "WORD 0xFF 0 0"
+#endif
+#ifdef _FE7_
+#define TileMap(TCN,X1,X2,L1,L2,TilePointer) "BYTE TCN X1 X2 L1 L2 0 0 0; POIN TilePointer"
+#define TileMapEnd "WORD 0xFF 0 0"
+#endif
+#ifdef _FE8_
+#define TileMap(TCN,X1,X2,L1,L2,TilePointer) "BYTE TCN X1 X2 L1 L2 0 0 0; POIN TilePointer"
+#define TileMapEnd "WORD 0xFF 0 0"
+#endif[/Spoiler]
+[Spoiler=Trap Helpers] 
+
+//#define RealTrap Lucius
+
+#ifdef _FE7_
+#define NormalBallista(XX,YY) "BLST 0x34 [XX,YY]"
+#define IronBallista(XX,YY) "BLST 0x35 [XX,YY]"
+#define KillerBallista(XX,YY) "BLST 0x36 [XX,YY]"
+#endif
+
+#ifdef _FE8_
+#define NormalBallista(XX,YY) "BLST 0x34 [XX,YY]"
+#define IronBallista(XX,YY) "BLST 0x35 [XX,YY]"
+#define KillerBallista(XX,YY) "BLST 0x36 [XX,YY]"
+#endif
+[/Spoiler]
+[Spoiler=Unit Helpers] 
+
+//Move manual helpers
+#ifdef _FE7_
+#define up 3
+#define down 2
+#define left 0
+#define right 1
+#define highlight(time) "9 time"
+#define notice 0xA
+#define speed(newSpeed) "0xC newSpeed"
+#endif
+
+
+//Unit data level helpers
+#ifdef _FE6_
+#define Ally 0
+#define NPC 1
+#define Enemy 2
+#define Level(level,side,autoLevel) level*8+side*2+autoLevel
+#endif
+
+#ifdef _FE7_
+#define Predetermined 0x50
+#define Ally 0
+#define NPC 1
+#define Enemy 2
+#define Level(level,side,autoLevel) level*8+side*2+autoLevel
+#endif
+
+#ifdef _FE8_
+#define Predetermined 0x50
+#define Ally 0
+#define NPC 1
+#define Enemy 2
+#define Level(level,side,autoLevel) level*8+side*2+autoLevel
+#endif
+
+//Unit flags
+#ifdef _FE8_
+#define MonsterTemplate 1
+#define DropItem 2
+#define DunnoFlag1 4
+#define DunnoFlag2 8
+#endif
+
+//Unit condition helpers
+#ifdef _FE7_
+#define Visible 1
+#define GrayedOut 2
+#define OnAnotherUnit 4 //????
+#define Rescuing 0x10
+#define IsBeingResqued 0x20
+#define InBallista 0x800
+#define UsableOrSomething 0x10000
+#define MerlinusAndAthosOrSomething 0x400000
+
+#endif
+
+//Warp effect, under construction
+#ifdef _FE7_
+#define WarpIn(Char,Class,X,Y)	"WARP [X,Y] 1; LOEV Char Class [X,Y]; _ASM0x42 $20AB9"
+#define WarpIn(UnitPtr,X,Y)		"WARP [X,Y] 1; LOU1 UnitPtr; _ASM0x42 $20AB9"
+#define WarpOut(X,Y)			"WARP [X,Y] 0; DISA [X,Y]; _ASM0x42 $20AB9"
+#define WarpOut(Char)			"WARP Char  0; DISA Char; _ASM0x42 $20AB9"
+#endif
+
+#ifdef _FE8_
+#define WarpIn(Char,X,Y)		"_SETVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
+#define WarpOut(Char,X,Y)		"_SETVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
+#endif
+
+
+//For compability, time ignored
+#ifdef _FE6_
+#define FlashCursor(X,Y,time) "CUMO [X,Y]; STAL time; CURE"
+#define FlashCursor(character,time) "CURF character"
+#endif
+
+//For compability, time ignored
+#ifdef _FE7_
+#define FlashCursor(X,Y,time) "CUMO [X,Y]; STAL time; CURE"
+#define FlashCursor(character,time) "CURF character"
+#endif
+
+//CURF replacer for FE8
+#ifdef _FE8_
+#define FlashCursor(X,Y,time) "CUMO [X,Y]; STAL time; CURE"
+#define FlashCursor(character,time) "CUMO character; STAL time; CURE"
+#endif
+
+
+//Scripted battle helpers
+#ifdef _FE7_
+#define ScriptedBattle 0
+#define MapBattle 0x100
+#define AttackerStatsZero 0x10000 
+#define Uncontrolled 0x1000000
+#endif
+
+#ifdef _FE8_
+#define StartBattle                           "_SETVAL 0xD 0x0"
+#define NormalDamage(combatantNumber,damage)  "_SETVAL 1 combatantNumber+damage*0x100;            _SAVEFORBATTLE"
+#define CriticalHit(combatantNumber,damage)   "_SETVAL 1 combatantNumber+damage*0x100+0x00010000; _SAVEFORBATTLE"
+#define MissedAttack(combatantNumber,damage)  "_SETVAL 1 combatantNumber+damage*0x100+0x00020000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00040000; _SAVEFORBATTLE"
+#define Silencer(combatantNumber,damage)      "_SETVAL 1 combatantNumber+damage*0x100+0x00080000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00100000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00200000; _SAVEFORBATTLE"
+#define SureShot(combatantNumber,damage)      "_SETVAL 1 combatantNumber+damage*0x100+0x00400000; _SAVEFORBATTLE"
+#define Poison(combatantNumber,damage)        "_SETVAL 1 combatantNumber+damage*0x100+0x00400000; _SAVEFORBATTLE"
+#define DevilReversal(combatantNumber,damage) "_SETVAL 1 combatantNumber+damage*0x100+0x00800000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x01000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x02000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x04000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x08000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x10000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x20000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x40000000; _SAVEFORBATTLE"
+//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x80000000; _SAVEFORBATTLE"
+#define Pierce(combatantNumber,damage)        "_SETVAL 1 combatantNumber+damage*0x100+0xC0000000; _SAVEFORBATTLE"
+#define EndAttack                             "_SETVAL 1 0xFFFFFFFF;                              _SAVEFORBATTLE"
+#endif
+
+//Battle data helpers
+#ifdef _FE6_
+#define AttackerHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define AttackerCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define EndOfBattle 							 BLDT
+#endif
+
+#ifdef _FE7_
+#define AttackerHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHit(damage,lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderPoison(damage,lastAttack) 		"BLDT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderHurtItself(damage,lastAttack) 	"BLDT 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderMiss(lastAttack) 				"BLDT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define AttackerCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 damage"
+#define DefenderCritical(damage,lastAttack) 	"BLDT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 damage"
+#define AttackerNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 0 0 0 0 0 0"
+#define DefenderNoDamage(lastAttack) 			"BLDT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lastAttack 0 0 1 0 0 0 0 0"
+#define AttackerSilencer(lastAttack,targetHP) 	"BLDT 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 lastAttack 0 0 0 0 0 0 0 targetHP"
+#define DefenderSilencer(lastAttack,targetHP) 	"BLDT 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 lastAttack 0 0 1 0 0 0 0 targetHP"
+#define EndOfBattle 							 BLDT
+#endif
+
+
+
+
+//AI helpers
+#ifdef _FE6_
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define AttackInRange		[0x00,0x03,0x09,0x00]
+#endif
+
+#ifdef _FE7_
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define PursueWithoutHeed 	[0x00,0x02,0x02,0x00]
+#define GuardTile 			[0x03,0x03,0x09,0x20]
+#define Guard 				[0x00,0x03,0x00,0x20]
+#define AttackInRange 		[0x00,0x03,0x09,0x00]
+#define DestroyVillages 	[0x00,0x04,0x01,0x00]
+#define HealUnits 			[0x0F,0x04,0x00,0x00]
+#define StealFromUnits 		[0x10,0x05,0x09,0x00]
+#define StealFromChests 	[0x06,0x05,0x09,0x00]
+#define TalkToLord 			[0x06,0x0B,0x0A,0x00]
+#define AttackWall 			[0x00,0x1B,0x01,0x00]
+#define SeizeThrone 		[0x00,0x1E,0x00,0x00]
+#endif
+
+#ifdef _FE8_
+#define NoAI 				[0x00,0x00,0x00,0x00]
+#define SummonMonsters 		[0x14,0x03,0x09,0x00]
+#endif
+
+//Side changers
+#ifdef _FE7_
+#define TurnAlly(char) "CUSI char 0x00"
+#define TurnEnemy(char) "CUSI char 0xA7"
+#define TurnNPC(char) "CUSI char 0x47"
+#endif
+
+#ifdef _FE8_
+#define TurnAlly(char) "CUSA char"
+#define TurnEnemy(char) "CUSE char"
+#define TurnNPC(char) "CUSN char"
+#endif
+
+//Misc stuff
+#ifdef _FE6_
+#define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#define PromoteMainChar "ASMC 0x6D0E5"
+#endif
+
+#ifdef _FE7_
+#define Rescue(char,rescuer) "DISA char; ENUN; UNCM rescuer 0x10; STAL 0x10"
+#define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#define UnitsInvisible "ASMC 0x7A939; ASMC 0x7A9D5"
+#define PromoteMainChar "ASMC 0x79AF5"
+#define UnitClear "ASMC $7A8B9"
+#define LevelMerlinus "ASMC 0x79B5D"
+#define FancyAssasinEntry(X,Y) "_0xE3 0xCB401C [X*0x10-1,Y*0x10-1]; SOUN 0x2F6"
+#define FancyThiefEntry(X,Y) "_0xE3 0xCAE5F8 [X*0x10-1,Y*0x10-1]; SOUN 0x2F6"
+#endif
+
+
+#ifdef _FE8_
+#define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#endif[/Spoiler]
+[Spoiler=Weather Definitions] 
+
+#ifdef _FE6_
+#define Clear 0
+#define Snow 1 
+#define SnowStorm 2
+#define BlueBackground 3
+#define Rain 4
+#define Flames 5
+#define SandStorm 6
+#define Clouds 7
+#endif
+
+#ifdef _FE7_
+#define Clear 0
+#define Snow 1 
+#define SnowStorm 2
+#define BlueBackground 3
+#define Rain 4
+#define Flames 5
+#define SandStorm 6
+#define Clouds 7
+#endif
+
+#ifdef _FE8_
+#define Clear 0
+#define Snow 1 
+#define SnowStorm 2
+#define BlueBackground 3
+#define Rain 4
+#define Flames 5
+#define SandStorm 6
+#define Clouds 7
+#endif[/Spoiler]
+[Spoiler=World Map Helpers] 
+
+#ifdef _FE6_
+#define StartWorldMap "WORD $41; ASMWORLDMAP 0x93121; WORD $4D $0; STAL 42; WORD $42"
+#define EndWorldMap "STAL 60; WORD $39 $4 $4E; STAL 0; ASMC 0x9345D; WORD $0"
+
+#define RedArrow 0 
+#define BlueArrow 1
+
+#define RedFlag 0
+#define BlueFlag 1
+
+#define Style 0
+#define  1
+#define  2
+#define  3
+
+#define GrayYellow 0
+#define Purple 1
+
+#define WesternIslandsArea 0
+#define SacaeArea 1
+#define NabataArea 2
+#define LyciaArea 3
+#define BernArea 4
+#define IliaArea 5
+#define EtruriaArea 6
+#define NoArea 7
+
+#define KingdomOfEtruriaText 0
+#define KingdomOfBernText 1
+#define LyciaText 2
+#define IliaText 3
+#define MissurText 4
+#define FiberniaText 5
+#define NabataText 6
+#define KaftiText 7
+#define CaledoniaText 8
+#define DiaText 9
+#define SacaeText 10
+#define PheraeText 13
+#define BernText 14
+#define PhestosText 15
+#define EburacumText 16
+#define SieneText 17
+#define RemiText 18
+#define TarasText 19
+#define EdinaText 20
+#define EdessaText 21
+#define AlesiaText 22
+#define TerinaText 23
+#define OstiaText 24
+#define CalachText 25
+#define CarrhaeText 26
+#define ThriaText 27
+#define AraphenText 28
+#define JutesText 29
+#define RegiaText 30
+#define BulgarText 31
+#define AquleiaText 32
+#define ArmaghText 33
+#define LausText 34
+#define GlitchText 35
+
+#define WesternIslandsText 0
+
+#endif
+
+#ifdef _FE7_
+#define WorldMapPointerTable(id,offset) "ORG 0xC9CDA4+(4*id); POIN offset"
+
+#define StartWorldMap(Map, X, Y, LoadWay) "_0x87; ASMWORLDMAP 0xB5631; LOADWM Map [X,Y] LoadWay; STAL 16; _0x89; STAL 136"
+#define EndWorldMap "_0xCA; MUEN 4; _0xAD; _0xAE; STAL 60; WORD $0"
+
+//World maps
+#define FullWorldMap 0x0
+#define LyciaBernSacaeMap 0x1
+#define NabataDesertMap 0x2
+
+//Map loading ways
+#define LoadDunno 0x2
+#define LoadTheatrical 0xC //Two bits set, break to what?
+#define LoadPlayMusic 0x10
+#define LoadNormal 0x20
+#define LoadSlow 0x40
+
+//Portrait loading and removing
+#define PortraitFacesLeft 0
+#define PortraitMoveLeft 1
+#define PortraitMoveRight 2
+#define PortraitFacesRight 4
+#define PortraitDunno 8
+
+//Sprite properties
+#define AllySprite 0x00
+#define FastSprite 0x10
+#define EnemySprite 0x20
+#define NPCSprite 0x40
+#define GraySprite 0x60
+#define CameraFollowSprite 0x80
+
+//Dot properties
+#define RedDot 0x0
+#define BlueDot 0x1
+#define HoleDot 0x2
+#define DarkBlueDullDot 0x3
+#define DarkBlueNoBorderDot 0x4
+
+//Areas
+#define LyciaArea 0x0
+#define IliaArea 0x1
+#define EtruiaArea 0x2
+#define WesternIslesArea 0x3
+#define BernArea 0x4
+#define SacaeArea 0x5
+#define NabataDesertArea 0x6
+#define DreadIsleArea 0x7
+#define AreaNearPheraeArea 0x8
+
+#endif
+
+#ifdef _FE8_
+#define WorldMapPointerTable(id,offset) "ORG 0x8B39EC+(4*id); POIN offset"
+#endif
+[/Spoiler]

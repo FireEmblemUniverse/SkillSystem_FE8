@@ -1,0 +1,25 @@
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+ALIGN 4
+SimpleEscape:
+#incbin "ASMC_SimpleEscape.dmp"
+
+#define EveryoneEscape(TEXTTABLE) "BYTE 0x40 0x05 0x01 0x00 0x00 0x00 0x00 0x00 0x40 0x05 0x02 0x00 ; WORD TEXTTABLE ; BYTE 0x40 0x0D 0x00 0x00 ; POIN SimpleEscape|1;"
+
+#define LastOneEscape(TEXTTABLE, UNIT, TEXT) "BYTE 0x40 0x05 0x01 0x00 0x01 0x00 0x00 0x00 0x40 0x05 0x02 0x00 ; WORD TEXTTABLE ; BYTE 0x40 0x05 0x03 0x00 UNIT 0x00 0x00 0x00 0x40 0x05 0x4 0x00 ; SHORT TEXT ; BYTE 0x00 0x00 0x40 0x0D 0x00 0x00 ; POIN SimpleEscape|1;"
+
+#define EscapeUnit(TEXTTABLE, UNIT) "BYTE 0x40 0x05 0x01 0x00 0x02 0x00 0x00 0x00 0x40 0x05 0x02 0x00 ; WORD TEXTTABLE ; BYTE 0x40 0x05 0x03 0x00 UNIT 0x00 0x00 0x00 0x40 0x0D 0x00 0x00 ; POIN SimpleEscape|1;"
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif
+/*
+EVENTSCRIPT:1.en=400501000000000040050200XXXXXXXX400D0000{$L1:ASMC_SimpleEscape.dmp}	Stage cleared when everyone Escape[XX:POINTER_UNITSSHORTTEXT:Units dialogue]	Simple Escape Command
+
+EVENTSCRIPT:2.en=400501000100000040050200XXXXXXXX40050300YY00000040050400ZZZZ0000400D0000{$L1:ASMC_SimpleEscape.dmp}	Stage cleared when everyone Escape[YY:UNIT:The last unit to Escape][ZZ:TEXT:text when refusing to escape][XX:POINTER_UNITSSHORTTEXT:Units dialogue]	Simple Escape Command
+
+EVENTSCRIPT:3.en=400501000200000040050200XXXXXXXX40050300YY000000400D0000{$L1:ASMC_SimpleEscape.dmp}	Stage cleared when specific unit escape like FE9[YY:UNIT:Unit][XX:POINTER_UNITSSHORTTEXT:Units dialogue]	Simple Escape Command
+*/

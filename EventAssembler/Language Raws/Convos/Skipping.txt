@@ -1,0 +1,21 @@
+##Makes the B button locked (not able to be used to skip convos?)
+LCKB, 0x87, 4, -game:FE7 -indexMode:8
+
+##Makes the start button locked
+LCKS, 0x89, 4, -game:FE7 -indexMode:8
+
+##Unlocks the B and start button.
+ULCK, 0x8A, 4, -game:FE7 -indexMode:8
+
+##Makes player unable to use start to skip the event.
+NEVENTS, 0x8C, 4, -game:FE7 -indexMode:8
+
+#Alias
+NSSP, 0x8C, 4, -game:FE7 -indexMode:8
+
+##Makes player unable to skip convo with B button.
+NCONVOS, 0x8D, 4, -game:FE7 -indexMode:8
+
+#Alias
+
+NCSP, 0x8D, 4, -game:FE7 -indexMode:8

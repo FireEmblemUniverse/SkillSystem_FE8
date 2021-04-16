@@ -1,0 +1,21 @@
+Byte 16 -Always Zero
+17,18 - ???
+
+Byte 35,36 - 09 00 for Prologue; unused?
+37,38 - Always FF; unused?
+
+Bytes 39,40 - 0B 00 during playable chapters, FF FF otherwise.
+
+Bytes 41,42 - Always FF FF, but checked at start of chapter anyway - compared with FFFF and 7F00
+
+43-50 ??someting at 0801943A
+51-61
+
+
+62-67 - Nothing?
+
+
+08034618
+r1: chapter #
+
+0x08587988 - something there?

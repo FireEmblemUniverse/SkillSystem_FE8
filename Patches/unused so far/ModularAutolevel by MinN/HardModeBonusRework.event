@@ -1,0 +1,30 @@
+
+// apply different mode bonus on different stats and modes
+
+PUSH
+ORG $180E8
+jumpToHack(HMBRework)
+
+ORG $180E4
+SHORT 0x1C00 // bypass negative check
+
+ORG $180D4
+SHORT 0x1C00 // bypass 0 check
+POP
+
+#ifdef USE_STRMAG_SPLIT
+
+ALIGN 4
+HMBRework:
+#incbin "HardModeBonusReworkWithStrMag.dmp"
+POIN ModularAutolevelTable
+POIN MagClassTable
+
+#else
+
+ALIGN 4
+HMBRework:
+#incbin "HardModeBonusReworkWithoutStrMag.dmp"
+POIN ModularAutolevelTable
+
+#endif

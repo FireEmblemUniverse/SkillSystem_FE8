@@ -1,0 +1,9 @@
+
+#ifndef CHAR_ASM_HACK
+	#define CHAR_ASM_HACK
+	
+	// Makes it so that a CHARASM usability routine that returns 2 immediately makes that talk event return usable.
+	ALIGN 4
+	#include "CHARASM.lyn.event"
+	
+#endif // CHAR_ASM_HACK

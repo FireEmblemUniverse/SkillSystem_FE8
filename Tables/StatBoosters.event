@@ -1,0 +1,53 @@
+// 
+
+ALIGN 4
+Mag2Bonuses:
+StatBonus(0,0,0,0,0,2,0,0,0,0)
+
+ALIGN 4
+SteelShieldBonuses:
+StatBonus(0,0,0,(-1),(-1),4,0,0,0,(-1))
+
+ALIGN 4
+CrystalShieldBonuses:
+StatBonus(0,0,0,0,0,0,3,0,0,0)
+
+ALIGN 4
+RedBeerBonuses:
+StatBonus(0,1,0,0,0,0,0,0,0,0)
+
+ALIGN 4
+FireRingBonuses:
+StatBonus(0,2,0,0,0,0,0,0,0,0)
+
+ALIGN 4
+WindRingBonuses:
+StatBonus(0,0,0,0,2,0,0,0,0,0)
+
+ALIGN 4
+SkillRingBonuses:
+StatBonus(0,0,0,3,0,0,0,0,0,0)
+
+ALIGN 4
+LuckyCharmBonuses:
+StatBonus(0,0,0,0,0,0,0,5,0,0)
+
+ALIGN 4
+AngelRingBonuses:
+StatBonus(0,0,0,0,0,0,0,3,0,0)
+
+ALIGN 4
+CrimsonBonuses:
+StatBonus(0,0,0,0,0,2,2,0,0,0)
+
+/*
+ALIGN 4
+ShieldBonuses
+StatBonus(0,0,0,0,0,0,0,0,0,0)
+StatBonus(0,0,0,0,0,2,0,0,0,0) 
+StatBonus(0,0,0,0,0,4,0,0,0,0)
+
+#define Nothing  0x0
+#define LeatherShield 0x2
+#define SteelShield 0x3
+*/

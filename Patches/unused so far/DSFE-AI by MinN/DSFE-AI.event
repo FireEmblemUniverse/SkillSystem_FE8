@@ -1,0 +1,54 @@
+PUSH
+
+//DamageAI
+ORG $3DF38
+jumpToHack(DSDamageAI)
+
+//DamageTakenAI
+ORG $3E0B8
+jumpToHack(DSDamageTakenAI)
+
+//TargetHPAI
+ORG $3DF94
+SHORT 0x2000 0x4770     // return 0
+
+//AllyRangeAI
+ORG $3DFBC
+SHORT 0x2000 0x4770     // return 0
+
+//TargetClassAI?
+ORG $3E068
+SHORT 0x2000 0x4770     // return 0
+
+//TileDangerAI        //
+ORG $3E114
+SHORT 0x2000 0x4770   // return 0
+
+// SelfHPAI
+ORG $3E150
+SHORT 0x2000 0x4770     // return 0
+
+// turn count         //
+ORG $3E09C
+SHORT 0x2000 0x4770   // return 0
+POP
+
+#ifdef ProvokeID
+
+ALIGN 4
+DSDamageAI:
+#incbin "DSDamageAI.dmp"
+POIN SkillTester
+WORD ProvokeID
+
+#else
+
+ALIGN 4
+DSDamageAI:
+#incbin "DDSDamageAI-NoSkills.dmp"
+
+#endif
+
+ALIGN 4
+DSDamageTakenAI:
+#incbin "DSDamageTakenAI.dmp"

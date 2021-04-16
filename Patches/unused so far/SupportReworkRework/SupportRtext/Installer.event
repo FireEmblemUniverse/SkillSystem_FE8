@@ -1,0 +1,169 @@
+//Add this to your ModularStatScreen installer.
+
+#ifdef _FE8_
+
+PUSH
+  
+  //This is set up with having support info on page 4 in mind. Feel free to modify if keeping them on page 3
+  
+  ORG $889d0
+  SHORT $e010 //Temporary r-text fix to prevent freezing
+  ORG $889f2  
+  SHORT $BD30
+  BL(RText_Page4_ladder) //this has to be in bl range somewhere
+ 
+  
+  ORG $087184
+
+      // This is Vanilla Stat Screen Page
+      // This is now free (because unused) space
+      // We'll use this for stuff that needs to
+      // be in BL range
+
+    RText_Page4_ladder:
+      // page 4 helptext hook
+      #incbin "rtext_page4.dmp"
+      POIN RText_Page4
+  
+	//Moving support text around
+	ORG $876A4
+	BYTE $01 //how many lines down to move from top
+
+	ORG $876CE
+	BYTE $40 //allocating more space for support names
+
+	ORG $87784
+	WORD $02003D2E //scoot stuff to the left - was 02003D34
+	//End moving support text around
+
+
+
+	//Stuff for making custom R-text box labels for support bonuses
+	ORG $892D4
+	jumpToHack(NewBoxType) //allocates a new R-text box type (4) for supports
+
+	ORG $89336
+	SHORT $DB03 //change BNE 0x03 to BLT 0x03
+
+	ORG $891D4
+	SHORT $DA12 //change BEQ 0x03 to BGE 0x03
+
+	ORG $88F50 //copies unit1, unit2 and support level to the R-text draw proc
+	jumpToHack(PassSupportDataToRTextHandler)
+
+	ORG $89F70 //draws labels for "Atk/Def/Crit/Hit/Avo/CEv" like in the item R-text
+	jumpToHack(DrawRTextStatLabelsForSupport)
+
+	ORG $89FD8 //fills in number values for the support bonuses
+	jumpToHack(DrawRTextStatValuesForSupport)
+	//end support R-text box label hacks
+
+POP
+
+MSS_page4:
+  #incbin "mss_page4.dmp"
+  ALIGN 4
+
+//Macros and stuff, remove if you have these defined already
+
+#define RMenu(up,down,left,right,xcoord,ycoord,TID) "POIN up down left right;BYTE xcoord ycoord; SHORT TID; WORD 0 0;"
+#define RMenu(up,down,left,right,xcoord,ycoord,TID,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT TID; POIN 0 Getter|1"
+#define RMenu(up,down,left,right,xcoord,ycoord,SlotID,Looper,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT SlotID; POIN Looper|1 Getter|1"
+
+#define NameDescGetter 0x88bd5
+#define ClassDescGetter 0x88c01
+
+/*stat screen R menu is at 8a00b38
+find by breaking on key press while R menu open
+
+Each entry is 6 words
+  Pointer 1 (data to go to when Up is pressed)
+  POinter 2 (down)
+  POinter 3 (left)
+  Pointer 4 (right)
+  x,y,Txtid/SlotID (byte, byte, short)
+  Getter or Looper func pointer
+  (Getter func if previous func was Looper, 0 otherwise)
+
+example
+
+SP_Name:
+WORD 0
+POIN SP_Class
+WORD 0
+POIN SP_Support_1
+BYTE 0x18
+BYTE 0x50
+SHORT 0
+WORD 0
+*/
+
+//Page4 stuff
+//These first five should not be edited, they're the same as the other statscreen pages
+RText_Page4:
+SP_Name:
+  RMenu(0,SP_Class,0,SP_Support_1,0x18,0x50,0x0,NameDescGetter)
+SP_Class:
+  RMenu(SP_Name,SP_Level,0,SP_Support_1,0x6,0x68,0x6E8,ClassDescGetter)
+SP_Level:
+  RMenu(SP_Class,SP_HP,0,SP_Exp,0x6,0x78,0x542)
+SP_Exp:
+  RMenu(SP_Class,SP_HP,SP_Level,SP_Support_1,0x26,0x78,0x543)
+SP_HP:
+  RMenu(SP_Level,0,0,SP_Support_1,0x6,0x88,0x544)
+  
+//Below here is customizable
+//X/Y values are relative to the "moving supports around" edits above, will need to be changed if you're keeping them on page 3
+
+SP_Support_1:
+  RMenu(0, SP_Support_2, SP_Name, 0, 0x66, 0x18, 0x00, SupportScreenRtextLooper, SupportScreenRtextGetter)
+SP_Support_2:
+  RMenu(SP_Support_1, SP_Support_3, SP_Name, 0, 0x66, 0x28, 0x0001, SupportScreenRtextLooper, SupportScreenRtextGetter)
+SP_Support_3:
+  RMenu(SP_Support_2, SP_Support_4, SP_Name, 0, 0x66, 0x38, 0x0002, SupportScreenRtextLooper, SupportScreenRtextGetter)
+SP_Support_4:
+  RMenu(SP_Support_3, SP_Support_5, SP_Name, 0, 0x66, 0x48, 0x0003, SupportScreenRtextLooper, SupportScreenRtextGetter)
+SP_Support_5:
+  RMenu(SP_Support_4, SP_HP, SP_Class, SP_Exp, 0x66, 0x58, 0x0004, SupportScreenRtextLooper, SupportScreenRtextGetter)
+//SP_Support_6:
+  //RMenu(SP_Support_5, SP_Support_7, SP_Exp, 0, 0x66, 0x68, 0x0005, SupportScreenRtextLooper, SupportScreenRtextGetter)
+//SP_Support_7:
+  //RMenu(SP_Support_6, 0, SP_HP, 0, 0x66, 0x78, 0x0006, SupportScreenRtextLooper, SupportScreenRtextGetter)
+
+//Put new stuff for Spells down here.
+
+SupportScreenRtextGetter:
+#incbin "GetSupportRtext.dmp"
+ALIGN 4
+SupportScreenRtextLooper:
+#incbin "LoopSupportRtext.dmp"
+ALIGN 4
+
+Hack892D4:
+#incbin "892d4.dmp"
+ALIGN 4
+
+PassSupportDataToRtextHandler:
+#incbin "PassSupportDataToRtextHandler.dmp"
+ALIGN 4
+
+DrawRtextStatLabelsForSupport:
+#incbin "DrawRtextStatLabelsForSupport.dmp"
+ALIGN 4
+
+
+//The below 2 are meant to work with Snek's Support Rework.
+//If using vanilla supports, change "POIN SupportReworkBonusTable" to POIN $8B05F8 vor the vanilla affinity bonuses, and change the GetBonusesFromTable function to match how FE8U:080285B0 calculates them.
+DrawRtextStatValuesForSupport:
+#incbin "DrawRtextStatValuesForSupport.dmp"
+POIN SupportReworkBonusTable
+ALIGN 4
+
+Page4Supports:
+#incbin "SupportsPage4.dmp"
+
+// POP
+#endif
+
+
+

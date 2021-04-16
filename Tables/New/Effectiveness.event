@@ -1,0 +1,40 @@
+
+ALIGN 16
+ArmorEffectiveness:
+BYTE LanceKnight Knight_F General General_F GreatKnight GreatKnight_F AxeKnight SwordKnight 0x0 0x0 0x0 0x0
+
+ALIGN 16
+HorseEffectiveness:
+BYTE LanceCavalier Cavalier_F Paladin Paladin_F Ranger Ranger_F MageKnight MageKnight_F Troubadour Valkyrie GreatKnight GreatKnight_F AxeCavalier SwordCavalier  0x0 0x0 0x0 0x0
+
+ALIGN 16
+ArmorHorseEffectiveness:
+BYTE LanceKnight Knight_F General General_F GreatKnight GreatKnight_F LanceCavalier Cavalier_F Paladin Paladin_F Ranger Ranger_F MageKnight MageKnight_F Troubadour Valkyrie SwordCavalier AxeCavalier 0x0 0x0 0x0 0x0
+
+ALIGN 16
+FlierEffectiveness:
+BYTE PegasusKnight FalcoKnight WyvernRider WyvernRider_F WyvernLord WyvernLord_F WyvernKnight WyvernKnight_F 0x0 0x0 0x0 0x0
+
+ALIGN 16
+PegasusEffectiveness:
+BYTE PegasusKnight FalcoKnight 0x0 0x0 0x0 0x0
+
+ALIGN 16
+WyvernEffectiveness:
+BYTE WyvernRider WyvernRider_F WyvernLord WyvernLord_F WyvernKnight WyvernKnight_F 0x0 0x0 0x0 0x0
+
+ALIGN 16
+SwordEffectiveness:
+BYTE Thief Mercenary Mercenary_F Hero Hero_F Myrmidon Myrmidon_F Swordmaster Swordmaster_F Assassin Assassin_F Rogue 0x0 0x0 0x0 0x0
+
+ALIGN 16
+LanceEffectiveness:
+BYTE 0x0 0x0 0x0 0x0
+
+ALIGN 16
+AxeEffectiveness:
+BYTE 0x0 0x0 0x0 0x0
+
+ALIGN 16
+MageEffectiveness:
+BYTE Mage Mage_F Sage Sage_F MageKnight MageKnight_F Bishop Bishop_F Shaman Shaman_F Druid Druid_F Summoner Summoner_F Monk Troubadour Valkyrie 0x0 0x0 0x0 0x0

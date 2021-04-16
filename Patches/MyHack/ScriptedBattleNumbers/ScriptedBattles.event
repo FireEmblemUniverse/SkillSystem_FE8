@@ -1,0 +1,11 @@
+
+#ifndef ScriptedBattlesHax
+	#define ScriptedBattlesHax
+	
+	#define SetScriptedBattle(AtkHit,AtkDmg,AtkCrt,DefHit,DefDmg,DefCrt) "SVAL 0x2 (AtkHit|DefHit<<16) ; SVAL 0x3 (AtkDmg|DefDmg<<16) ; SVAL 0x4 (AtkCrt|DefCrt<<16)"
+	#define SetBattleNumbers(AtkHit,AtkDmg,AtkCrt,DefHit,DefDmg,DefCrt) "SetScriptedBattle(AtkHit,AtkDmg,AtkCrt,DefHit,DefDmg,DefCrt)"
+	
+	ALIGN 4
+	#include "ScriptedBattles.lyn.event"
+	
+#endif // ScriptedBattlesHax

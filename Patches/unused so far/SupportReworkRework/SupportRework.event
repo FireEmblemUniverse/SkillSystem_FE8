@@ -1,0 +1,146 @@
+
+#ifdef _FE8_
+
+	#ifndef SUPPORT_REWORK
+		#define SUPPORT_REWORK
+		
+		#include "SupportReworkDefinitions.event" // This can be included earlier in your buildfile if necessary.
+		
+		#include "MasterCalculations.lyn.event" // Compiled C code.
+		
+		// TODO: Integrate the contents of this file here with your own MSS stuff.
+		#include "StatScreenStuff.event" // Praise Hypergammaspaces! Installation stuff for R text on support stat screen display and other stat screen drawing stuff.
+		
+		#include "SupportReworkBonusTable.event" // Go here to define your individual support bonuses.
+		
+		// 2 required hacks for functionality. (3 if you count Base Convos using the prep screen hack.)
+		#include "CBaseConvos/BaseConvos.event" // Just comment this line if you don't care about base conversations.
+		
+		#include "CHARASM/CHARASM.event" // If a CHARASM function returns 2, the convo is useable independent of other fields. Used for making suppor convos appear with talk bubbles.
+		
+		
+		ALIGN 4
+		SupportLevelNameTable: // Each entry is a pointer to a string. i.e. A, B, B+, whatever. Indexed by level from 0 to 7.
+		// Any fields higher than the defined max support will never be referenced, so they can just not exist or be null.
+		POIN CSupportName // 0
+		POIN CPlusSupportName // 1
+		POIN BMinusSupportName // 2
+		POIN BSupportName // 3
+		POIN BPlusSupportName // 4
+		POIN AMinusSupportName // 5
+		POIN ASupportName // 6
+		POIN APlusSupportName // 7
+		
+		CSupportName: // Change these to your heart's desire along with the table!
+		String("C") ; BYTE 0x00
+		CPlusSupportName:
+		String("C+") ; BYTE 0x00
+		BMinusSupportName:
+		String("B-") ; BYTE 0x00
+		BSupportName:
+		String("B") ; BYTE 0x00
+		BPlusSupportName:
+		String("B+") ; BYTE 0x00
+		AMinusSupportName:
+		String("A-") ; BYTE 0x00
+		ASupportName:
+		String("A") ; BYTE 0x00
+		APlusSupportName:
+		String("A+") ; BYTE 0x00
+		
+		ALIGN 4
+		SupportConvoEvents: // This is called when viewing a support (talk) convo.
+		EVBIT_T 0x4
+		MUSI
+		TEXTSTART
+		TEXTSHOW -1 // Shows text in slot 0x2.
+		TEXTEND
+		REMA
+		SADD 0x032 // Move slot 0x3 into 0x2
+		ASMC CallIncreaseSupport|1
+		MUNO
+		NoFade
+		ENDA
+		
+		BaseConvoSupportReworkEvent:
+		EVBIT_T 0x4
+		
+		CALL $9EE2E8 // Sets the background of index in slot 0x2.
+		BEQ 0x1 0x0 0x4
+			SADD 0x042 // Move slot 0x4 into 0x2.
+			MUSC 0xFFFF
+			GOTO 0x2
+		LABEL 0x1
+			MUSI // No music ID to play. Just make the support music quieter.
+		LABEL 0x2
+		
+		SADD 0x032 // Move slot 0x3 into 0x2.
+		TEXTSTART
+		TEXTSHOW -1 // Shows text in slot 0x2.
+		TEXTEND
+		REMA
+		
+		BEQ 0x3 0x0 0x5
+			SADD 0x053 // Move slot 0x5 into 0x3. Item.
+			SADD 0x062 // Move slot 0x6 into 0x2. Character.
+			CHECK_EXISTS 0xFFFD
+			BEQ 0x3 0x0 0xC
+				GIVEITEMTO 0xFFFD // Give the item in slot 0x5 to the character in slot 0x6.
+		LABEL 0x3
+		
+		BEQ 0x4 0x0 0x8
+		BEQ 0x4 0x0 0x9
+			SADD 0x081 // Move slot 0x8 into 0x1. Character1.
+			SADD 0x092 // Move slot 0x9 into 0x2. Character2.
+			SVAL 0x3 0x1 // Boolean true for a popup.
+			ASMC CallIncreaseSupport|1
+		LABEL 0x4
+		
+		FADI 0x5
+		CLEAN
+		BEQ 0x0 0x0 0x7
+			SADD 0x072 // Move slot 0x7 into 0x2.
+			LOAD_SLOT1 0x1 // LOLWUT this actually loads from slot 0x2!
+			ENUN
+		LABEL 0x0
+		SVAL 0xB 0x1 // Used by the base support proc to see if the events are finished running.
+		NoFade
+		ENDA
+		
+		ASSERT 7 - MaxSupportLevelVal // This gives an error if they tried to define a max level above 7.
+		MaxSupportLevel:
+		BYTE MaxSupportLevelVal
+		
+		ALIGN 4
+		SupportPopupDefinitions:
+		WORD 0x0C 0x5A // Play sound 0x5A
+		WORD 0x07 ; POIN SupportIncreasedText // Show "Support level increased to ".
+		WORD 0x07 0x0203EFC0 // Show string at 0x0203EFC0.
+		WORD 0x06 0x22 // Show "." at the end.
+		WORD 0x00 0x00 // End
+		
+		SupportIncreasedText:
+		String("Support level increased to ") ; BYTE 0x00
+		
+		PUSH // Don't ask me why the vanilla function literally starts the array at 1. I- yeah I'm changing that.
+		ORG $2A9F8
+		SHORT 0x7821 // ldrb r1, [ r4 ].
+		ORG $2AA02
+		SHORT 0x7861 // ldrb r1, [ r4, #0x01 ].
+		ORG $2AA0C
+		SHORT 0x78A1 // ldrb r1, [ r4, #0x02 ].
+		ORG $2AA1A
+		SHORT 0x78E2 // ldrb r2, [ r4, #0x03 ]. Let's swap around the registers because why not? Thanks, IS's compiler...
+		ORG $2AA24
+		SHORT 0x7922 // ldrb r2, [ r4, #0x04 ].
+		ORG $2AA2E
+		SHORT 0x7964 // ldrb r4, [ r4, #0x05 ].
+		POP
+		
+	#endif // SUPPORT_REWORK
+
+#else
+
+	ERROR "Support rework is for FE8 only!"
+	
+#endif // __FE8__

@@ -22,6 +22,12 @@
     #include "Patches/An_Installer_of_Patches.event"
     MESSAGE Used patch space ends at currentOffset
 
+	//Repointed things
+	#include "Repoint/ClassRepoint.event"
+
+	//Graphics
+	#include "Graphics/GraphicsInstaller.event"
+
     //Maps
     #include "Maps/SplitPList.event"
 

@@ -1,0 +1,19 @@
+
+// Unhardcodes the item IDs used in the unit menu usability/effect routines for opening doors and chests.
+
+#include "DoorsAndChests.lyn.event"
+
+#define DoorTerrainID 0x1E
+#define ChestTerrainID 0x21
+
+ALIGN 4
+#define TerrainUse(TerrainID,UsableItem,Usability) "BYTE TerrainID UsableItem 0 0 ; POIN Usability"
+gTerrainUses: // List of entries linking a terrain ID to something that opens it.
+TerrainUse(DoorTerrainID,Lockpick,DoorsAndChestsIsThief)
+TerrainUse(DoorTerrainID,DoorKey,0)
+TerrainUse(DoorTerrainID,DoorKey_5,0) // EXAMPLE: Making a 5-use door key while preserving 1-use door keys.
+									// Note: To make it work in item use as well, you need to update the new item's usability and effect pointers!
+TerrainUse(ChestTerrainID,Lockpick,DoorsAndChestsIsThief)
+TerrainUse(ChestTerrainID,ChestKey,0)
+TerrainUse(ChestTerrainID,ChestKey_5,0)
+TerrainUse(0,0,0)

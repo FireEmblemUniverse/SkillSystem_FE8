@@ -1,0 +1,9 @@
+MOVIMM, 0, 16, -game:FE6:FE7:FE8 -offsetMod:2
+	dest, 8, 3
+	src, 0, 8
+	4, 11, 5, -fixed
+
+MOV, 0, 16, -game:FE6:FE7:FE8 -offsetMod:2
+	dest, 0, 3
+	src, 3, 3
+	112, 6, 10, -fixed

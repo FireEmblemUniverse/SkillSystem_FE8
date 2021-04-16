@@ -1,0 +1,31 @@
+
+Symbol table '.symtab' contains 28 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 SECTION LOCAL  DEFAULT    1 
+     2: 00000000     0 SECTION LOCAL  DEFAULT    2 
+     3: 00000000     0 SECTION LOCAL  DEFAULT    3 
+     4: 0801756c     0 NOTYPE  LOCAL  DEFAULT  ABS GetItemAttributes
+     5: 08017548     0 NOTYPE  LOCAL  DEFAULT  ABS GetItemWType
+     6: 08016b8c     0 NOTYPE  LOCAL  DEFAULT  ABS IsItemCoveringRange
+     7: 00000000     0 NOTYPE  LOCAL  DEFAULT    1 $t
+     8: 00000002     0 NOTYPE  LOCAL  DEFAULT    1 CheckCurrentWeapon
+     9: 000000a4     0 NOTYPE  LOCAL  DEFAULT    1 Tera_Can_Attack_Target_Fu
+    10: 00000010     0 NOTYPE  LOCAL  DEFAULT    1 $d
+    11: 00000012     0 NOTYPE  LOCAL  DEFAULT    1 $t
+    12: 0000002e     0 NOTYPE  LOCAL  DEFAULT    1 CheckNextWeapon
+    13: 0000008a     0 NOTYPE  LOCAL  DEFAULT    1 StatusChecks
+    14: 0000001e     0 NOTYPE  LOCAL  DEFAULT    1 CantCounter
+    15: 00000048     0 NOTYPE  LOCAL  DEFAULT    1 $d
+    16: 0000004a     0 NOTYPE  LOCAL  DEFAULT    1 $t
+    17: 0000004e     0 NOTYPE  LOCAL  DEFAULT    1 StoreSuccessfulWeaponFind
+    18: 00000074     0 NOTYPE  LOCAL  DEFAULT    1 $d
+    19: 00000076     0 NOTYPE  LOCAL  DEFAULT    1 $t
+    20: 00000082     0 NOTYPE  LOCAL  DEFAULT    1 $d
+    21: 00000084     0 NOTYPE  LOCAL  DEFAULT    1 $t
+    22: 00000094     0 NOTYPE  LOCAL  DEFAULT    1 $d
+    23: 00000000     0 SECTION LOCAL  DEFAULT    6 
+    24: 00000000     0 SECTION LOCAL  DEFAULT    8 
+    25: 00000000     0 SECTION LOCAL  DEFAULT    4 
+    26: 00000000     0 SECTION LOCAL  DEFAULT    9 
+    27: 00000000     0 SECTION LOCAL  DEFAULT   11 

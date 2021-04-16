@@ -1,0 +1,30 @@
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+
+ORG $1c928
+jumpToHack(NewCanUnitShowStatusScreen)
+
+ORG $879D0
+SHORT 0x4900 0x4708 // jumpToHackr1
+POIN NewScrollCheck + 1
+
+POP
+
+ALIGN 4
+NewCanUnitShowStatusScreen:
+#incbin "CanShowUnitStatusScreen.dmp"
+POIN StatusScreenTable
+
+ALIGN 4
+NewScrollCheck:
+#incbin "CanUnitBeScrolledTo.dmp"
+POIN StatusScreenTable
+
+ALIGN 4
+StatusScreenTable:
+#incbin "BlankTable.dmp"
+
+#define CannotShowStatusScreen(unitid) "PUSH; ORG StatusScreenTable + unitid; BYTE 0x1; POP"
+
+CannotShowStatusScreen(0x1)

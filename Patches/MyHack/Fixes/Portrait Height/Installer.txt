@@ -1,0 +1,122 @@
+//// Portrait Upshift Edit(or?)
+// This table determines whether or not to upshift a portrait 
+// (see the topic)
+// Anything but zero means the portrait will be upwards shifted
+// (or if you prefer "zero means the portrait will be downshifted" idk)
+
+// If you use character portraits past ID 0x71 for R-selectable units,
+// you should probably feed this a free space location.
+// (and by "should probably" i mean "if you leave this inline the code
+// after it will get overwritten or be read from and give the wrong values")
+
+PUSH
+//remember to uncomment this if you need to expand the table!
+
+	ORG 0x5C24
+	BYTE $01 $49 $08 $5C $70 $47 $C0 46
+	
+	//.thumb
+	//@.org 0x5C24
+	//@This routine is passed Portrait Number
+	//ldr r1, ShiftPortraitTable
+	//ldrb r0, [r1, r0]
+	//bx r14
+	//.align
+	//ShiftPortraitTable:
+
+	ALIGN 4
+	POIN PortraitShiftEdit
+
+POP
+//this too!
+
+ALIGN 4
+PortraitShiftEdit:
+//Needs bytes of free space equal to the highest Portrait Number that you use.
+
+//The default table is duplicated below.
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07
+//Invalid, Placeholder Mug (the ? guy), Eirika, EirikaEyesClosed, Seth, Gilliam, Franz, Moulder
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F
+//Vanessa, Ross, Neimi, NeimiEyesClosed, Colm, ColmEyesClosed, Garcia, Innes
+
+//the first 16, 0x00 through 0x0F, all return 0
+
+
+//0x10 through 0x1F
+BYTE 0 0 0 0 0 0 0 0 
+//Portrait ID 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17
+//Lute, Natasha, NatashaEyesClosed, Cormag, Ephraim, EphraimEyesClosed, Forde, FordeEyesClosed
+
+BYTE 0 0 0 0 0 0 0 0 
+//Portrait ID 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F
+//Kyle, Amelia, Artur, Gerik, Tethys, TethysEyesClosed, Marisa, MarisaEyesClosed
+
+//0x20 through 0x26
+BYTE 0 0 0 0 0 0 0
+//Portrait ID 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26
+//Saleh, Ewan, L'Arachel, Dozla, Rennac, Duessel, Myrrh
+
+//after 0x26 it's all 0
+BYTE 0
+//Portrait ID 0x27
+//MyrrhEyesClosed
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F
+//MyrrhDragonWings, Knoll, Joshua, Syrene, Tana, EirikaFlashback, EphraimFlashback, KnollFlashback
+
+//(these have all been padding bytes, just filling to the end of the routine.)
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37
+//O'Neill, Breguet, Bone, Bazba, Saar, Zonta, Novala, Murray
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F
+//Tirado, Binks, Pablo, Aias, Carlyle, Gheb, Beran, Selena
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47
+//VigardeDead, VigardeAlive, Valter, Caellach, OrsonTraitor, Orson, Lyon, LyonEyesClosed
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x48, 0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F
+//Riev, Morva, LyonDemonKing, Glen, Ch5 Brigand, Unknown(???), VigardeFlashback?, VigardeFlashbackEyesClosed?
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57
+//LyonFlashback, Fado, Hayden, Mansel, Klimt, Dara, Ismaire, IsmaireEyesClosed
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x58, 0x59, 0x5A, 0x5B, 0x5C, 0x5D, 0x5E, 0x5F
+//FatVillagerBushyMustacheBrownHair, ShrivelledOldManPurpleRobe, ManBrownHair, SkinnyManBlondish, VillagerBrownHairBlueOutfit, VillagerOrangeHairBrownOutfitFreckles, YoungBoyBlondishHairBlueOutfitFreckles, ShrivelledOldWomanMaroonCloakBlueShirt
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67
+//WomanBrownHairInBunGreenCapeAndClothes, GirlTwinBraidBrownHairFrecklesBlueshirt, GirlGreyhairRedShirt, YoungGirlBrownPigtailsPinkShirt, Anna, Armorer, Vendor-er/Aimee, Arena Manager 
+
+BYTE 0 0 0 0 0 0 0 0
+//Portrait ID 0x68, 0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E
+//Anna SecretShop, FrelianMessenger, BlueSoldier, RedSoldier, PurpleONeill, OrangeONeill, NovalaAgain?, GreenSoldier, PurpleSoldier
+
+BYTE 0 0
+//Portrait 0x71 - WhiteSoldier; 0x72 Myrmidon Class Card
+
+//0x72 - Myrmidon Class Card
+//I'm skipping over the rest of the Class Cards: 
+//They don't go to this routine at all.
+//0xAA - Demon King Class Card
+
+//0xAB - Supply Minimug
+//0xAC - Copy of the Placeholder Mug
+//Only these last two mugs would get affected by this edit, 
+//and they shouldn't be used as normal portraits anyway; 
+//so as long as you have <0x71 unique portraits you can leave this inline.
+
+//Edit this if you repoint!
+//MESSAGE Better be 0x5CA2 and it is... currentOffset

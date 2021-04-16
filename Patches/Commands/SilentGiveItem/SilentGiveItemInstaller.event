@@ -1,0 +1,29 @@
+MESSAGE CurrentOffset asdf
+#include "SilentGiveItem.lyn.event"
+MESSAGE CurrentOffset asdf2
+
+
+
+
+
+//#define SilentGiveItem1(Unit, Item) "SVAL 1 Unit; SVAL 2 Item; ASMC SilentGiveItem"
+
+//#define SilentGiveItem1(UnitIDx, ItemIDx) "BYTE 0x40 0x0D; UnitIDx; ItemIDx; SilentGiveItem"
+
+#define SilentGiveItem2 "ASMC SilentGiveItem"
+
+
+
+//400DXXYY{$L1:SilentGiveItem.dmp}	
+
+//[XX:UNIT:ユニット][YY:ITEM:アイテム]ユニットにアイテムを密かにアイテムを渡す	{ITEM}
+
+//#define SetAllUnitStatus(unitID,statusOffset,statusValue) "SVAL 1 unitID; SVAL 2 0; SVAL 3 0; SVAL 4 0xFF; 
+//SVAL 0xA statusOffset; SVAL 0xB statusValue; ASMC Set_All_Status_Hack|1"
+
+
+
+//EVENTSCRIPT:2.en=40050100XXXX000040050200YYYY000040050300ZZZZ000040050400WWWW000040050A00VVVV000040050B00TTTTTTTT400D0000{$L1:set_status_param_all.dmp}    Set ALL Unit's [VV:RAM_UNIT_PARAM:Status] to [TT:RAM_UNIT_VALUE:NewValue] If Cond conditions[XXXX:UNIT:CheckUnit 00=ANY][YYYY:CLASS:CheckClass 00=ANY][ZZZZ:ITEM:CheckItem 00=ANY][WWWW:WMAPAFFILIATION:FF=ANY]    {UNITPERSOLNAL}
+
+//#define SetAllUnitStatus(unitID,statusOffset,statusValue) "BYTE $40 $05 $01 $00 ; SHORT unitID; BYTE $00 $00 $40 $05 $02 $00 $00 $00 $00 $00 $40 $05 $03 $00 $00 $00 $00 $00 $40 $05 $04 $00 $00 $00 $00 $00 $40 $05 $0A $00; SHORT statusOffset; BYTE $00 $00 $40 $05 $0B $00; WORD statusValue; BYTE $40 $0D $00 $00; POIN Set_All_Status_Hack|1"
+

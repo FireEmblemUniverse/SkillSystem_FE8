@@ -1,0 +1,29 @@
+
+#ifndef EVENT_PARAMETER_HAX
+	#define EVENT_PARAMETER_HAX
+	
+	#ifndef GetPlayerLeaderUnitID
+		#define GetPlayerLeaderUnitID $33258
+	#endif
+	
+	// Compiled C source.
+	ALIGN 4
+	#include "EventParameters.lyn.event"
+	
+	#define EventParameter(key,function) "WORD key ; POIN function|1"
+	
+	ALIGN 4
+	EventParameterTable:
+	// These mimick vanilla behavior. Each takes the key as a parameter and should return a character struct pointer.
+	EventParameter(0,EventParametersGetLeader) // Gets the party leader via $33258.
+	EventParameter(-1,EventParameterGetActive) // Get current unit.
+	EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
+	EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
+	
+	// Custom ones can go here.
+	//EventParameter(-4,EventParameterGetUnit) // Get the first character struct. Uncomment for this functional test entry.
+	
+	WORD 0 0 // Terminator.
+	
+	
+#endif // EVENT_PARAMETER_HAX

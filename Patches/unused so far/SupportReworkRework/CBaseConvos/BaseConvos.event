@@ -1,0 +1,159 @@
+
+#ifdef _FE8_
+	#ifndef BASE_CONVOS
+		#define BASE_CONVOS
+		
+		// Compiled C code.
+		#include "BaseConvos.lyn.event"
+		
+		#include "BaseConvoTable.event"
+		
+		#include "PrepScreen/PrepScreen.event" // Required to make the prep screen usability work.
+		
+		ALIGN 4
+		gBaseConvoSelectConvoText:
+		SHORT BaseConvoSelectConvoText
+		
+		// Default events called by the "Support" menu command.
+		ALIGN 4
+		CallBaseConvoEvents:
+		EVBIT_T 0x4
+		
+		CALL $9EE2E8 // Sets the background of index in slot 0x2.
+		BEQ 0x1 0x0 0x4
+			SADD 0x042 // Move slot 0x4 into 0x2.
+			MUSC 0xFFFF
+			GOTO 0x2
+		LABEL 0x1
+			MUSI // No music ID to play. Just make the support music quieter.
+		LABEL 0x2
+		
+		SADD 0x032 // Move slot 0x3 into 0x2.
+		TEXTSTART
+		TEXTSHOW -1 // Shows text in slot 0x2.
+		TEXTEND
+		REMA
+		
+		BEQ 0x3 0x0 0x5
+			REMOVEPORTRAITS
+			SADD 0x053 // Move slot 0x5 into 0x3. Item.
+			SADD 0x062 // Move slot 0x6 into 0x2. Character.
+			CHECK_EXISTS 0xFFFD
+			BEQ 0x3 0x0 0xC
+				GIVEITEMTO 0xFFFD // Give the item in slot 0x5 to the character in slot 0x6.
+		LABEL 0x3
+		
+		FADI 0x5
+		CLEAN
+		BEQ 0x0 0x0 0x7
+			SADD 0x072 // Move slot 0x7 into 0x2.
+			LOAD_SLOT1 0x1 // LOLWUT this actually loads from slot 0x2!
+			ENUN
+		LABEL 0x0
+		SVAL 0xB 0x1 // Used by the base support proc to see if the events are finished running.
+		NoFade
+		ENDA
+		
+		// Default 8 text IDs consumed for the "lord split" menu.
+		// Alternatively, these can be defined before installation (including by defining a blank entry through textprocess).
+		#ifndef BaseConvoTextID1
+			#define BaseConvoTextID1 0x2D
+		#endif
+		#ifndef BaseConvoTextID2
+			#define BaseConvoTextID2 0x2E
+		#endif
+		#ifndef BaseConvoTextID3
+			#define BaseConvoTextID3 0x2F
+		#endif
+		#ifndef BaseConvoTextID4
+			#define BaseConvoTextID4 0x30
+		#endif
+		#ifndef BaseConvoTextID5
+			#define BaseConvoTextID5 0x31
+		#endif
+		#ifndef BaseConvoTextID6
+			#define BaseConvoTextID6 0x32
+		#endif
+		#ifndef BaseConvoTextID7
+			#define BaseConvoTextID7 0x33
+		#endif
+		#ifndef BaseConvoTextID8
+			#define BaseConvoTextID8 0x34
+		#endif
+		
+		#define EventMenuCommand(aTextId,Usability,Effect) "WORD 0; SHORT aTextId 0; WORD 0; POIN (Usability|1); WORD 0; POIN (Effect|1); WORD 0 0 0"
+		#ifndef EventMenuCommandEnd
+			#define EventMenuCommandEnd "WORD 0 0 0 0 0 0 0 0 0"
+		#endif
+		
+		BaseConvoMenuCommands:
+			EventMenuCommand(BaseConvoTextID1,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID2,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID3,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID4,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID5,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID6,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID7,BaseConvoMenuUsability,BaseConvoMenuEffect)
+			EventMenuCommand(BaseConvoTextID8,BaseConvoMenuUsability,BaseConvoMenuEffect)
+		EventMenuCommandEnd
+		
+		#include "ProcDefinitions.event"
+		
+		ALIGN 4
+		BaseConvoProcMenu: // This is the proc that is called to build the prep screen support screen.
+		PROC_SLEEP(0) // Buffer
+		PROC_SET_NAME(BaseConvoProcName) // Debug proc name.
+		PROC_CALL_ROUTINE(SetupBaseConvoProc) // Initialize etc.
+		PROC_SET_DESTRUCTOR(BaseConvoProcDestructor)
+		PROC_LABEL(0)
+			//PROC_SLEEP(8)
+			PROC_CALL_ROUTINE(FillBaseMenuUsability) // Fill the usability bitfield for the 8 possible menu options.
+			PROC_CALL_ROUTINE(SetScrollingBackground) // The vanilla support screen is constructed at 0x080A1270.
+				// Apparently this also clears leftover menu graphics from the prep screen.
+			PROC_CALL_ROUTINE(DisplayBottomText)
+			PROC_CALL_ROUTINE(0x08013D8D) // Fade out from black.
+			PROC_LOOP_ROUTINE(0x08014069) // Wait for fade out.
+			PROC_CALL_ROUTINE(BuildBaseConvoMenuGeometry)
+			PROC_CALL_ROUTINE(BuildBaseConvoMenuText)
+			
+			PROC_CALL_ROUTINE(CallBaseSupportMenu)
+			PROC_WHILE_ROUTINE(EnsureSelection) // Wait for a selection.
+				// If we're here, a selection was made.
+				PROC_CALL_ROUTINE(0x08013CD1) // StartFadeIntoBlack.
+				PROC_LOOP_ROUTINE(0x08014069) // Wait for fade out.
+				PROC_CALL_ROUTINE(SetUpConvo)
+				PROC_CALL_ROUTINE(CallConversation)
+				PROC_LABEL(1) // Jumped to on B press.
+				PROC_WHILE_ROUTINE(CheckToEnd) // Is the proc finsihed? Also handles waiting for a fade on B press to destruct the menu proc.
+		PROC_END
+		
+		ALIGN 4
+		BaseConvoProcName: // Debug name for our custom proc.
+		String("BaseConvos")
+		
+		PUSH
+		ORG $A1980
+		POIN BaseConvoProcMenu // Call our custom proc instead of the vanila support viewer proc.
+		
+		ORG (TextTable+(4*BaseConvoTextID1))
+		WORD 0x8203EFC0
+		ORG (TextTable+(4*BaseConvoTextID2))
+		WORD 0x8203EFC0+40
+		ORG (TextTable+(4*BaseConvoTextID3))
+		WORD 0x8203EFC0+80
+		ORG (TextTable+(4*BaseConvoTextID4))
+		WORD 0x8203EFC0+120
+		ORG (TextTable+(4*BaseConvoTextID5))
+		WORD 0x8203EFC0+160
+		ORG (TextTable+(4*BaseConvoTextID6))
+		WORD 0x8203EFC0+200
+		ORG (TextTable+(4*BaseConvoTextID7))
+		WORD 0x8203EFC0+240
+		ORG (TextTable+(4*BaseConvoTextID8))
+		WORD 0x8203EFC0+280
+		POP
+		
+	#endif // BASE_CONVOS
+#else
+	ERROR Base Supports are for FE8 only!
+#endif

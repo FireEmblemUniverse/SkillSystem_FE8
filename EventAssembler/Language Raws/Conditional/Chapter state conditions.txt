@@ -1,0 +1,65 @@
+
+#Chapter: 11A
+##Branches if Event ID is false
+GOTO_IFEF, 0x23, 12, -game:FE6 -indexMode:8
+##Evend ID to check.
+	Event ID, 4, 4
+	Value, 8, 4
+
+GOTO_IFEF, 0x4D, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Event ID, 8, 2
+
+
+#Chapters: 4, 7, 9...
+##Branches if Event ID is true
+GOTO_IFET, 0x22, 12, -game:FE6 -indexMode:8
+##Evend ID to check.
+	Event ID, 4, 4
+	Value, 8, 4
+
+GOTO_IFET, 0x4C, 12, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+	Event ID, 8, 2
+
+
+##Branches if not hector mode
+GOTO_IFNHM, 0x4F, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+##Branches if not eliwood mode
+GOTO_IFNEM, 0x50, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+##Executes events if based on previous convos
+##Yes/No choice.
+GOTO_IFNO, 0x52, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+##Executes events if based on previous convos
+##Yes/No choice.
+GOTO_IFYES, 0x53, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+
+##Jumps if not tutorial mode
+GOTO_IFNTUTORIAL, 0x54, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+
+##Branches if it's given turn or after
+GOTO_IFTU, 0x56, 8, -game:FE7 -indexMode:8
+	Conditional ID, 4, 2
+##Turn to check.
+	Turn, 2, 2, -preferredBase:10
+
+#Checks if Event ID is set. A parameter of 0xFFFF will check the Event ID associated with the current event.
+#Result (0 or 1) is stored to memory slot 0xC.
+CHECK_EVENTID, 0x0321, 4, -game:FE8 -indexMode:8
+	EventID, 2, 2
+
+#Checks for (parameter)th bit set in event execution bitfield.
+#Stores 0x1 to memory slot 0xC if the bit is set, and stores 0x0 otherwise.
+#Parameter cannot be higher than 0xF.
+CHECK_EVBIT, 0x0320, 4, -game:FE8 -indexMode:8
+	Bit, 2, 2
+

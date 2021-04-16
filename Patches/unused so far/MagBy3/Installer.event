@@ -1,0 +1,16 @@
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG $18A1C
+jumpToHack(GetUnitMagBy3Range)
+POP
+
+ALIGN 4
+GetUnitMagBy3Range:
+#incbin "GetUnitMagBy3Range.dmp"
+#ifdef USE_STRMAG_SPLIT
+POIN 0x191B8 + 1 // get unit mag
+#endif
+#ifndef USE_STRMAG_SPLIT
+POIN 0x191B0 + 1 // get unit pow
+#endif

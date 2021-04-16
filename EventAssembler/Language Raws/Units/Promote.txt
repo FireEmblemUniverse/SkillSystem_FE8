@@ -1,0 +1,9 @@
+
+##Promotes a unit.
+PROM, 0x4040, 8, -game:FE8 -indexMode:8
+##Character to promote.
+	Character, 2, 2
+##Class to promote the unit to.
+	Class, 4, 2
+##Promotion item
+	Item, 6, 2

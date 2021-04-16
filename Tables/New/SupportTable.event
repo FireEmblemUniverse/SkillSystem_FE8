@@ -1,0 +1,12 @@
+#define SupportCompatibility(fC,sC,tC,frC,ftC,sxC,svC) "BYTE fC sC tC frC ftC sxC svC"
+#define SupportInitialValues(fCi,sCi,tCi,frCi,ftCi,sxCi,svCi) "BYTE fCi sCi tCi frCi ftCi sxCi svCi"
+#define SupportGrowths(fCg,sCg,tCg,frCg,ftCg,sxCg,svCg) "BYTE fCg sCg tCg frCg ftCg sxCg svCg"
+
+ALIGN 4
+
+NausicaaSupport:
+SupportCompatibility(Gadriel,Kairs,Calliope,0x0,0x0,0x0,0x0)
+SupportInitialValues(0,0,0,0,0,0,0)
+SupportGrowths(0,0,0,0,0,0,0)
+BYTE 0x3 //number of partners
+BYTE 0x0 0x0 //separator

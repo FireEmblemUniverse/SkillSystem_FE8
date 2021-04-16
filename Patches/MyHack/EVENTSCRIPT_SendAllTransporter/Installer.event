@@ -1,0 +1,16 @@
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
+ALIGN 4
+SendAllTransporter:
+#incbin "SendAllTransporter.dmp" //HINT=ASM
+
+
+#define SendAllTransporter(UNIT) "BYTE 0x40 0x0D UNIT 0x00 ; POIN SendAllTransporter|1;"
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif

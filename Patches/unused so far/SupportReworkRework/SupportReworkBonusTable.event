@@ -1,0 +1,28 @@
+
+#ifndef SUPPORT_REWORK_BONUS_TABLE
+
+	#define SUPPORT_REWORK_BONUS_TABLE
+	ALIGN 4
+	SupportBonusTable: // This is a terminated list of associations between 2 characters and what bonuses they get at what levels.
+	ORG CURRENTOFFSET - (2 + 7 * 6) // Because defining a new entry increments already.
+	{
+	#define entry(char1,char2) "ORG CURRENTOFFSET + (2 + 7 * 6) ; PUSH ; BYTE char1 char2 ; POP" // Don't touch these.
+	#define support(level,atk,def,hit,avd,crt,dge) "PUSH ; ORG CURRENTOFFSET + (2 + level * 6) ; BYTE atk def hit avd crt dge ; POP"
+	
+	// Your new entries go in here. As many as you like. This is non-indexed.
+	/*entry(Arc,Luke) // Example bonus entries.
+		support(CSupport,0,1,5,10,0,0)
+		support(BSupport,1,1,5,10,0,0)
+		support(ASupport,1,2,10,10,0,5)
+	entry(0xFF,Arc)
+		support(CSupport,1,0,10,0,0,0)
+		support(BSupport,1,2,10,5,0,0)
+		support(ASupport,2,1,10,5,5,0)
+	entry(Elanil,Finoc)
+		support(CSupport,0,1,0,5,0,0)
+		support(BSupport,1,1,5,10,0,5)
+		support(ASupport,1,2,10,10,0,5)*/
+	entry(0,0) // Terminator
+	}
+
+#endif // SUPPORT_REWORK_BONUS_TABLE

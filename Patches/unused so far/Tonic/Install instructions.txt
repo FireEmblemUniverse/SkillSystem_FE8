@@ -1,0 +1,56 @@
+- Include Tonics.event
+
+- For each stat in MSG (EngineHacks/Necessary/StatGetters) add prStatTonicBonus using the macro
+
+example for strength (power)
+
+add prStrTonicBonus to pPowerModifiers
+
+underneath add
+
+prStrTonicBonus:
+rTonicBonus(STAT_POWER)
+
+- Add a new item icon sheet (EngineHacks/Necessary/IconRework)
+
+add 1 to ICON_SHEET_COUNT
+
+add InjectIconGfxGetter(X, (prGetTonicIconGfx+1)) to the list (X being the last sheet id + 1)
+
+underneath add
+
+prGetTonicIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN TonicIcons
+
+- Add Tonics to the durability items (EngineHacks/Necessary/DurabilityBasedItems)
+
+add DurabilityItem(Tonic) to DurabilityItemList
+
+add DurabilityIcon(Tonic,X) to DurabilityBasedItemIconList (using X as the same icon sheet id as from before)
+
+you can also add unique name and description text here, the table order is
+HP / Str / Skl / Spd / Def / Res / Luck / Mag / Rainbow
+
+- Include TonicUseTextBox in the text buildfile
+
+## TonicUseBoxText
+Stat increased.[X]
+
+- Include tonics in EMS (EngineHacks/Necessary/ExpandedModularSave/ExModularSave.event)
+
+at the end of gSuspendSaveChunks, after the last entry, add
+
+DeclSaveChunk(X, TonicTableSize, SUD_SaveTonic, SUD_LoadTonic)
+
+with X being the last entry's address + the last entry's size (at the time of writing, $2DA8 + $0019)
+
+- Customization
+
+TonicStatBonus defines the bonus to non-HP stats provided by tonics
+
+TonicHPBonus defines the bonus to HP provided by tonics
+
+TonicEffectID defines the IER table index (by default it is the skill scroll id + 1)
+
+TonicChapterExclusionTable defines a table of chapter IDs where tonic bonuses arent cleared. Useful for "base" chapters and the like. The table is terminated by 0xFF.

@@ -1,0 +1,48 @@
+﻿//Made by markyjoe1990 of Youtube for FE7
+//Modified by Nintenlord
+//Modified further by Arch for FE6
+//Modified even further by Nintenlord
+
+#include EAstdlib.event
+
+EventPointerTable(EventTableID,ThisChapter)
+
+
+ORG StartOffset
+ThisChapter:
+POIN Turn_events
+POIN Character_events 
+POIN Location_events
+POIN Misc_events
+POIN Bad Good
+POIN Ending_event
+
+Bad:
+UNIT
+
+Good:
+UNIT
+
+Turn_events:
+OpeningTurnEvent(Opening_event)
+END_MAIN
+
+Character_events:
+END_MAIN
+
+Location_events:
+END_MAIN
+
+Misc_events:
+CauseGameOverIfLordDies
+END_MAIN
+
+Opening_event:
+ENDA
+
+Ending_event:
+MoveToChapter(NextChapter)
+ENDA
+
+MESSAGE Events end at offset CURRENTOFFSET
+//The map for this chapter is at offset: ????????

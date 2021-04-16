@@ -1,0 +1,116 @@
+##Loads units.
+LOU1, 0x12, 8, -game:FE6 -repeatable -indexMode:8
+##Pointer to UNIT codes to load.
+	Unit pointer, 4, 4, -pointer:unit
+
+##Loads units.
+LOU2, 0x13, 8, -game:FE6 -repeatable -indexMode:8
+##Pointer to UNIT codes to load.
+	Unit pointer, 4, 4, -pointer:unit
+
+
+LOU1, 0x32, 8, -game:FE7 -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+
+##Loads separate unit on separate modes.
+LOUMODE1, 0x35, 20, -game:FE7 -indexMode:8
+##Units to load in Eliwood Normal mode.
+	ENM Unit pointer, 4, 4, -pointer:unit
+##Units to load in Eliwood Hard mode.
+	EHM Unit pointer, 8, 4, -pointer:unit
+##Units to load in Hector Normal mode.
+	HNM Unit pointer, 12, 4, -pointer:unit
+##Units to load in Hector Hard mode.
+	HHM Unit pointer, 16, 4, -pointer:unit
+
+
+LOU2, 0x36, 8, -game:FE7 -repeatable -indexMode:8
+	Unit pointer, 4, 4, -pointer:unit
+
+##Loads separate unit on separate modes.
+LOUMODE2, 0x38, 20, -game:FE7 -indexMode:8
+##Units to load in Eliwood Normal mode.
+	ENM Unit pointer, 4, 4, -pointer:unit
+##Units to load in Eliwood Hard mode.
+	EHM Unit pointer, 8, 4, -pointer:unit
+##Units to load in Hector Normal mode.
+	HNM Unit pointer, 12, 4, -pointer:unit
+##Units to load in Hector Hard mode.
+	HHM Unit pointer, 16, 4, -pointer:unit
+
+##Loads a unit.
+LOEV, 0x39, 12, -game:FE7 -indexMode:8
+##Character to load.
+	Character, 4, 2
+##Class of the unit to load.
+	Class, 6, 2
+##Position to load the unit to.
+	Position, 8, 4, -coordinate:2 -preferredBase:10
+	
+##Alias of LOEV
+LOADSINGLEUNIT, 0x39, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Class, 6, 2
+	Position, 8, 4, -coordinate:2 -preferredBase:10
+
+#Chapters: 11E, 11H, 12...
+#Value > 0xFFFF => Hard mode only
+#Lowest byte = Mode, 01 = Lyn, 02 = Eliwood, 03 = Hector
+##Loads units if the filter allows it.
+LOUFILTERED, 0x34, 12, -game:FE7 -indexMode:8
+##Filter value.
+	Value, 4, 4 
+##Pointer to UNIT codes to load.
+	Pointer, 8, 4, -pointer:unit
+
+#Chapters: 13
+##Loads units if the filter allows it.
+LOUFILTERED2, 0x37, 12, -game:FE7 -indexMode:8
+##Filter value.
+	Value, 4, 4 
+##Pointer to UNIT codes to load.
+	Pointer, 8, 4, -pointer:unit
+
+LOAD1, 0x2C40, 8, -game:FE8 -indexMode:8 
+	Dunno, 2, 2
+	Pointer, 4, 4, -pointer:unit
+
+#Used for reinforcement loading
+#Pointer to unit data read from Memory Slot 0x1.
+LOAD_SLOT1, 0x2C40, 8, -game:FE8 -indexMode:8 
+	Dunno, 2, 2
+	0xFFFFFFFF, 4, 4, -fixed
+
+#Loads units, but if the loaded units has not been loaded and initialized before, it'll disappear when the turn starts. Loaded dead units as the class they were when they died.
+LOAD2, 0x2C41, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Pointer, 4, 4, -pointer:unit
+
+#Loads units only in the order that they are in your party, without regard to the actual units specified in the UNIT commands
+LOAD3, 0x2C42, 8, -game:FE8 -indexMode:8
+	Value1, 2, 2
+	Pointer, 4, 4, -pointer:unit
+
+LOAD4, 0x2C43, 8, -game:FE8 -indexMode:8
+ Value1, 2, 2
+ 0x0, 4, 4,  -fixed
+
+#Loads one Ally unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_ALLY, 0x3240, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+#Loads one NPC unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_NPC, 0x3241, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+#Loads one Enemy unit with it's default parameters (will set the "drop last item" flag)
+SPAWN_ENEMY, 0x3242, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10
+
+#This unit will dissapear at the end of events (?)
+SPAWN_CUTSCENE_ALLY, 0x324F, 8, -game:FE8 -indexMode:8
+	Char, 2, 2
+	Position, 4, 2, -coordinates:2 -preferredBase:10

@@ -1,0 +1,85 @@
+@passed in ??? from r0
+
+08005C24 B500     push    r14                                     ;5  192
+@push link register
+08005C26 3810     sub     r0,10h                                  ;2  194
+08005C28 2816     cmp     r0,16h                                  ;2  196
+08005C2A D837     bhi     8005C9Ch                                ;8  204
+@ -> branch if r0 is greater than 0x16 ((0x26 before the subtraction)), if the number is unsigned (so if passed 0x0A, which becomes FFFFFFFE, it'll become super huge and thus be greater than that value.)
+@ --> returns zero
+
+@Pulls up the proper entry in the jump table; which is right after this point
+	08005C2C 0080     lsl     r0,r0,2h                                ;2  206
+	08005C2E 4902     ldr     r1,=8005C3Ch                            ;9  215
+	08005C30 1840     add     r0,r0,r1                                ;2  217
+	08005C32 6800     ldr     r0,[r0]                                 ;4  221
+@jumps to a spot in the jump table
+	08005C34 4687     mov     r15,r0                                  ;2  223
+
+	08005C36 0000     lsl     r0,r0,0h                                ;2  225
+@padding
+
+	08005C38 5C3C     ldrb    r4,[r7,r0]                              ;4  229
+	08005C3A 0800     lsr     r0,r0,20h                               ;2  231
+@literal
+
+@jump table. These routines return 1 or 0. Every single one of them.
+	08005C3C 5C98     ldrb    r0,[r3,r2]                              ;4  235
+	08005C3E 0800     lsr     r0,r0,20h                               ;2  237
+	08005C40 5C9C     ldrb    r4,[r3,r2]                              ;4  241
+	08005C42 0800     lsr     r0,r0,20h                               ;2  243
+	08005C44 5C9C     ldrb    r4,[r3,r2]                              ;4  247
+	08005C46 0800     lsr     r0,r0,20h                               ;2  249
+	08005C48 5C9C     ldrb    r4,[r3,r2]                              ;4  253
+	08005C4A 0800     lsr     r0,r0,20h                               ;2  255
+	08005C4C 5C9C     ldrb    r4,[r3,r2]                              ;4  259
+	08005C4E 0800     lsr     r0,r0,20h                               ;2  261
+	08005C50 5C9C     ldrb    r4,[r3,r2]                              ;4  265
+	08005C52 0800     lsr     r0,r0,20h                               ;2  267
+	08005C54 5C9C     ldrb    r4,[r3,r2]                              ;4  271
+	08005C56 0800     lsr     r0,r0,20h                               ;2  273
+	08005C58 5C9C     ldrb    r4,[r3,r2]                              ;4  277
+	08005C5A 0800     lsr     r0,r0,20h                               ;2  279
+
+	08005C5C 5C9C     ldrb    r4,[r3,r2]                              ;4  283
+	08005C5E 0800     lsr     r0,r0,20h                               ;2  285
+	08005C60 5C98     ldrb    r0,[r3,r2]                              ;4  289
+	08005C62 0800     lsr     r0,r0,20h                               ;2  291
+	08005C64 5C9C     ldrb    r4,[r3,r2]                              ;4  295
+	08005C66 0800     lsr     r0,r0,20h                               ;2  297
+	08005C68 5C9C     ldrb    r4,[r3,r2]                              ;4  301
+	08005C6A 0800     lsr     r0,r0,20h                               ;2  303
+	08005C6C 5C9C     ldrb    r4,[r3,r2]                              ;4  307
+	08005C6E 0800     lsr     r0,r0,20h                               ;2  309
+	08005C70 5C9C     ldrb    r4,[r3,r2]                              ;4  313
+	08005C72 0800     lsr     r0,r0,20h                               ;2  315
+	08005C74 5C9C     ldrb    r4,[r3,r2]                              ;4  319
+	08005C76 0800     lsr     r0,r0,20h                               ;2  321
+	08005C78 5C9C     ldrb    r4,[r3,r2]                              ;4  325
+	08005C7A 0800     lsr     r0,r0,20h                               ;2  327
+
+	08005C7C 5C9C     ldrb    r4,[r3,r2]                              ;4  331
+	08005C7E 0800     lsr     r0,r0,20h                               ;2  333
+	08005C80 5C98     ldrb    r0,[r3,r2]                              ;4  337
+	08005C82 0800     lsr     r0,r0,20h                               ;2  339
+	08005C84 5C9C     ldrb    r4,[r3,r2]                              ;4  343
+	08005C86 0800     lsr     r0,r0,20h                               ;2  345
+	08005C88 5C98     ldrb    r0,[r3,r2]                              ;4  349
+	08005C8A 0800     lsr     r0,r0,20h                               ;2  351
+	08005C8C 5C9C     ldrb    r4,[r3,r2]                              ;4  355
+	08005C8E 0800     lsr     r0,r0,20h                               ;2  357
+	08005C90 5C9C     ldrb    r4,[r3,r2]                              ;4  361
+	08005C92 0800     lsr     r0,r0,20h                               ;2  363
+	08005C94 5C98     ldrb    r0,[r3,r2]                              ;4  367
+	08005C96 0800     lsr     r0,r0,20h                               ;2  369
+
+@return 1
+08005C98 2001     mov     r0,1h                                   ;2  371
+08005C9A E000     b       8005C9Eh                                ;8  379
+
+@return 0
+08005C9C 2000     mov     r0,0h                                   ;2  381
+
+08005C9E BC02     pop     r1                                      ;9  390
+08005CA0 4708     bx      r1                                      ;8  398
+@pops link register.

@@ -1,0 +1,7 @@
+#define IsPositive(x)  "Switch(Signum(x)+2,0,0,1)"
+#define IsNegative(x)  "Switch(Signum(x)+2,1,0,0)"
+#define IsZero(x)      "Switch(Signum(x)+2,0,1,0)"
+#define Abs(x)         "Signum(x)*x"
+#define IsEqual(x,y)   "IsZero(x-y)"
+#define IsGreater(x,y) "IsPositive(x-y)"
+#define IsSmaller(x,y) "IsNegative(x-y)"

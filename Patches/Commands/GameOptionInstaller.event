@@ -1,0 +1,7 @@
+#include "ASMC_GetGameOption.lyn.event"
+#include "ASMC_SetGameOption.lyn.event"
+
+//#define SetGameOption(Option, Boolean) "BYTE SVAL 2 Option Boolean 0x00 0x00 ; POIN SetGameOption|1"
+#define SetGameOption(Option, Boolean) "BYTE 0x40 0x0D 0x02 0x00 Option Boolean 0x00 0x00 ; POIN SetGameOption|1"
+
+//"BYTE 0x40 0x0D UNITID Status ; POIN get_status_param|1; BYTE 0x40 0x05 0x02 0x00 ; WORD Value ; BYTE 0x20 0x06 0xC2 0x02 0x40 0x0D UNITID Status ; POIN set_status_param_Install|1;"

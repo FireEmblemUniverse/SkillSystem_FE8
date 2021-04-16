@@ -1,0 +1,10 @@
+#define False 0
+#define True 1
+#define Neg(boolean) (1+boolean)%2
+#define And(boolean1,boolean2) boolean1&boolean2
+#define Or(boolean1,boolean2) boolean1|boolean2
+#define Xor(boolean1,boolean2) boolean1^boolean2
+#define Eqv(boolean1,boolean2) (boolean1&boolean2)|(Neg(boolean1)&Neg(boolean2))
+#define Imp(boolean1,boolean2) Neg(boolean1)|boolean2
+#define If(ifwhat,oh,doh) "Switch(ifwhat+1,doh,oh)"
+#define IfNot(ifwhat,oh,doh) "Switch(Neg(ifwhat)+1,doh,oh)"

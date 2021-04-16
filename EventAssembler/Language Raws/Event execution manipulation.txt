@@ -1,0 +1,22 @@
+##Makes event execution move to offset,
+##then return back after executing the event.
+CALL, 0xA40, 8, -game:FE8 -indexMode:8
+##Event to execute.
+	Event pointer, 4, 4, -pointer:none
+	
+CALL, 0xA40, 8, -game:FE8 -indexMode:8
+##Event to execute.
+	Event pointer, 4, 4
+
+CALL, 0xCB, 8, -game:FE7 -indexMode:8
+	Event pointer, 4, 4, -pointer:none
+
+##Makes event execution move to offset,
+##but not return after executing it.
+JUMP, 0x58, 8, -game:FE7 -indexMode:8
+##Event to execute.
+	Event pointer, 4, 4, -pointer:none	
+
+#Chapters: None
+JUMP, 0x25, 8, -game:FE6 -indexMode:8
+	Event pointer, 4, 4, -pointer:none

@@ -1,0 +1,48 @@
+ALIGN 4
+c0p:
+#incbin "c0p.bin"
+
+ALIGN 4
+c1p:
+#incbin "c1p.bin"
+
+ALIGN 4
+c2p:
+#incbin "c2p.bin"
+
+PUSH
+
+ORG 0x965E2
+B(0x96656)
+
+ORG 0x965E4
+jumpToHack_r0(c0p)
+
+ORG 0x341C4
+BL(0x965E4)
+
+ORG 0x965DC
+BL(0x965E4)
+
+ORG 0xAEB54
+BL(0x965E4)
+
+ORG 0xA1960
+BL(0x965E4)
+
+ORG 0xB1CF0
+jumpToHack_r0(c1p)
+
+ORG 0xB1D0A
+B(0xB24A2)
+
+ORG 0xB1D0C
+jumpToHack_r0(c2p)
+
+ORG 0x9CCD6
+BL(0xB1D0C)
+
+ORG 0xCC6B6
+BL(0xB1D0C)
+
+POP

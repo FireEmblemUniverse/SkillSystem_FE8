@@ -1,0 +1,94 @@
+#ifndef CHAPTEROBJECTIVE
+#define CHAPTEROBJECTIVE
+
+#ifdef _FE8_
+
+// ChangeChapterObjective. Hack by Zeta/Gilgamesh
+// Requires lyn
+// Made with FE-CLIB (https://github.com/StanHash/FE-CLib) 
+// Allows changing chapter objectives mid chapter (they're stored as trap data)
+// Just do SetChapterObjectiveText(shortdescription, longdescription)
+// Free to use/modify
+
+#include "Extensions/Hack Installation.txt"
+
+#define SetChapterObjectiveText(textid, textid2) "SVAL 0x1 textid; SVAL 0x2 textid2; ASMC SetChapterObjective"
+#define SetTurnLimitText(turnLimit) "SVAL 0x1 turnLimit; ASMC SetChapterTurnLimit"
+#define CHECK_TURNLIMIT "ASMC CheckTurnLimit"
+
+// lyn output of SetChapterObjective.c
+ALIGN 4
+PUSH
+ORG CURRENTOFFSET+$1;FindTrapByID:
+ORG CURRENTOFFSET+$28;SetChapterObjective:
+ORG CURRENTOFFSET+$34;GetChapterObjective:
+ORG CURRENTOFFSET+$40;SetChapterTurnLimit:
+ORG CURRENTOFFSET+$34;GetChapterTurnLimit:
+ORG CURRENTOFFSET+$30;CheckTurnLimit:
+POP
+SHORT $4908 $2300 $A $B510 $788C $4284 $D104 $DB $18D0 $BC10 $BC02 $4708 $3301 $3108 $2B40 $D1F3 $2000 $E7F6
+BYTE $14 $A6 $3 $2
+SHORT $20EF $B510 $F7FF $FFE8 $1E03 $D107 $21FF $22EF $8 $4C06 $F000 $F872 $1E03 $D004 $4A04 $6851 $6892 $8099 $80DA $BC10 $BC01 $4700
+BYTE $B9 $E2 $2 $8 $B8 $4 $0 $3
+SHORT $B510 $4 $20EF $F7FF $FFCD $2800 $D10E $4B0A $7B9A $2394 $4909 $4353 $2C00 $D005 $3388 $18C9 $8808 $BC10 $BC02 $4708 $338A $E7F8 $1D01 $2C00 $D0F6 $1D81 $E7F4 $46C0
+BYTE $F0 $BC $2 $2 $90 $8 $8B $8
+SHORT $20EE $B510 $F7FF $FFAE $1E03 $D107 $21FF $22EE $8 $4C06 $F000 $F838 $1E03 $D003 $4A04 $6852 $3301 $77DA $BC10 $BC01 $4700 $46C0
+BYTE $B9 $E2 $2 $8 $B8 $4 $0 $3
+SHORT $20EE $B510 $F7FF $FF94 $3 $3320 $2800 $D106 $4B05 $7B9A $2394 $4353 $4A04 $338D $189B $7818 $BC10 $BC02 $4708 $46C0
+BYTE $F0 $BC $2 $2 $90 $8 $8B $8
+SHORT $B510 $F7FF $FFE5 $4B05 $7C1A $2300 $4282 $415B $4A03 $6313 $BC10 $BC01 $4700 $46C0
+BYTE $F0 $BC $2 $2 $B8 $4 $0 $3
+SHORT $4720 $46C0
+
+
+
+// hooks to use my functions instead of vanilla
+ALIGN 4
+ReadObjective:
+//#inctext lyn "ReadObjective.elf"
+#include "ReadObjective.lyn.event"
+
+ALIGN 4
+ReadPrepScreenObjective:
+//#inctext lyn "ReadPrepScreenObjective.elf"
+#include "ReadPrepScreenObjective.lyn.event"
+
+ALIGN 4
+ReadStatusScreenObjective:
+//#inctext lyn "ReadStatusScreenObjective.elf"
+#include "ReadStatusScreenObjective.lyn.event"
+
+ALIGN 4
+DisplayIfLastTurnHook:
+//#inctext lyn "DisplayLastTurnHook.elf"
+#include "DisplayLastTurnHook.lyn.event"
+
+ALIGN 4
+DisplayTurnLimitHook:
+//#inctext lyn "DisplayTurnLimitHook.elf"
+#include "DisplayTurnLimitHook.lyn.event"
+
+
+PUSH
+ORG 0x8D2D8
+jumpToHack(ReadObjective)
+
+ORG 0x95A90
+jumpToHack(ReadPrepScreenObjective)
+
+ORG 0x8E538
+jumpToHack(ReadStatusScreenObjective)
+
+ORG 0x8D3C0
+jumpToHack(DisplayIfLastTurnHook)
+
+ORG 0x8D434
+jumpToHack(DisplayTurnLimitHook)
+POP
+
+
+#else // _FE8_
+  ERROR ChangeChapterObjective is for FE8
+#endif // _FE8_
+
+#endif // CHAPTEROBJECTIVE

@@ -1,0 +1,26 @@
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+ALIGN 4
+set_status_param_Install:
+#incbin "set_status_param.dmp" //HINT=ASM
+//POIN get_status_param
+
+
+ALIGN 4
+get_status_param:
+#incbin "get_status_param.dmp"
+
+//#define AddStatus(UNITID, Status, Value) "BYTE 0x40 0x0D UNITID Status ; POIN get_status_param|1; BYTE 0x40 0x05 0x02 0x00 Value 0x20 0x06 0xC2 0x02 0x40 0x0D UNITID Status ; POIN set_status_param_Install|1;" 
+
+#define AddStatus(UNITID, Status, Value) "BYTE 0x40 0x0D UNITID Status ; POIN get_status_param|1; BYTE 0x40 0x05 0x02 0x00 ; WORD Value ; BYTE 0x20 0x06 0xC2 0x02 0x40 0x0D UNITID Status ; POIN set_status_param_Install|1;"
+
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif
+
+
+//EVENTSCRIPT:7.en=400DXXYY{$L1:get_status_param.dmp}40050200VVVVVVVV2006C202400DXXYY{$L1:set_status_param.dmp}	Add [XX:UNIT:Unit]'s [YY:RAM_UNIT_PARAM:Status] By [VV::Increase value]	{UNITPERSOLNAL}

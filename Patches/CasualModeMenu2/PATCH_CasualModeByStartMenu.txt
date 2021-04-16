@@ -1,0 +1,20 @@
+NAME=カジュアルモード(ゲーム開始時にメニュー)(Installer)
+TYPE=EA
+TAG=#ENGINE
+
+//既に適応されたかどうか
+PATCHED_IF:0x30DAC=0x00 0x4B 0x18 0x47
+
+EA=CasualModeInstaller.event
+EXTENDS:0x1100=TEXT
+
+INFO=最初から始める時に、難易度選択の後にカジュアルモード選択の画面を表示します。
+
+AUTHOR=HyperGammaSpaces
+EVENTSCRIPT:1=400D0000{$L1:ASMC_CheckCasual.dmp}	カジュアルモード判定命令	{COND}
+EVENTSCRIPT:1.en=400D0000{$L1:ASMC_CheckCasual.dmp}	CheckCasual	{COND}
+EVENTSCRIPT:1.zh=400D0000{$L1:ASMC_CheckCasual.dmp}	CheckCasual	{COND}
+NAME.en=Casual mode (menu at game start) (Installer).
+INFO.en=When starting from the beginning, the casual mode selection screen is displayed after the difficulty level selection.
+NAME.zh=休闲模式（游戏开始时的菜单）（安装程序）。
+INFO.zh=从头开始时，在选择难度等级后会显示休闲模式选择屏幕。

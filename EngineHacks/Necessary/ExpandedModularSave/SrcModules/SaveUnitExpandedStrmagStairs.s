@@ -214,6 +214,12 @@ PackGameSaveUnit.lop_supports:
 	sub r5, #1
 	bge PackGameSaveUnit.lop_supports
 
+		@added this
+	ldrb r3, [r1, #0x08] @ r3 = Unit->level
+	mov r4, #0x1D
+	strb r3, [r0, r4] @ GameSaveUnit->level = Unit->support partner 7
+		@done adding
+
 	@ ITEMS
 
 	@ Okay so here we're going to be sneaky
@@ -393,6 +399,14 @@ UnpackGameSaveUnit.lop_supports:
 
 	sub r3, #1
 	bge UnpackGameSaveUnit.lop_supports
+
+@added this
+	mov r1, #0x1D
+	ldrb r2, [r5, r1] @ r2 = GameSaveUnit->support partner 7
+	strb r2, [r4, #0x08] @ Unit->dark wexp = GameSaveUnit->Level
+	mov r2, #0
+	strb r2, [r5, r1] @ r2 = GameSaveUnit->support partner 7
+		@done adding
 
 	@ ITEMS
 

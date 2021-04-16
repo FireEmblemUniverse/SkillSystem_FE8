@@ -1,0 +1,74 @@
+
+// Custom
+#define TonicStatBonus 2
+#define TonicHPBonus 5
+#define TonicEffectID 0x30
+
+ALIGN 4
+TonicChapterExclusionTable:
+BYTE 0xFF
+
+ALIGN 4
+TonicIcons:
+#incbin "TonicIcons.dmp"
+
+// No Touchy
+#define HPTonic 1
+#define StrTonic 2
+#define SklTonic 3
+#define SpdTonic 4
+#define DefTonic 5
+#define ResTonic 6
+#define LuckTonic 7
+#define MagTonic 8
+#define RainbowTonic 9
+
+#include "Tonic.lyn.event"
+
+#define TonicEffect TonicEffectLadder
+#define TonicUsability TonicUsabilityLadder
+#define TonicTargetting 0x2905C
+#define TonicPrepScreenUsability TonicPrepScreenUsabilityFunc
+#define TonicPrepScreenEffect TonicPrepScreenEffectFunc
+
+PUSH
+	ORG IERevampTable + (TonicEffectID * 16)
+	POIN TonicUsability TonicPrepScreenUsability TonicTargetting TonicEffect
+	ORG IBArray + (TonicEffectID * 4)
+	POIN TonicPrepScreenEffect
+POP
+
+ALIGN 4
+TonicTablePointer:
+POIN TonicTableWord
+TonicTableWord:
+WORD TonicTable
+TonicTableSizePointer:
+POIN TonicTableSizeWord
+TonicTableSizeWord:
+WORD TonicTableSize
+
+ALIGN 4
+TonicStatBonusWord:
+WORD TonicStatBonus
+TonicStatBonusPointer:
+POIN TonicStatBonusWord
+TonicHPBonusWord:
+WORD TonicHPBonus
+TonicHPBonusPointer:
+POIN TonicHPBonusWord
+
+ALIGN 4
+TonicChapterExclusionTablePointer:
+POIN TonicChapterExclusionTable
+
+ALIGN 4
+TonicUseBoxTextPointer:
+POIN TonicUseBoxTextWord
+TonicUseBoxTextWord:
+WORD TonicUseBoxText
+
+PUSH
+	ORG 0xA4354
+	jumpToHack(ClearTonicTableHook)
+POP

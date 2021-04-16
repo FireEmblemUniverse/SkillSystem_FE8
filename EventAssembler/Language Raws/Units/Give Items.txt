@@ -1,0 +1,10 @@
+#Give item of ID stored in Memory slot 0x1.
+GIVETO, 0x3720, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+#Give an item to the main lord.
+GIVETOMAIN, 0x3721, 4, -game:FE8 -indexMode:8
+	Village or cutscene, 2, 2
+
+#Gives Item in slot 0x1 to character of ID in slot 0x3
+GIVETOSLOT3, 0x3722, 4, -game:FE8 -indexMode:8

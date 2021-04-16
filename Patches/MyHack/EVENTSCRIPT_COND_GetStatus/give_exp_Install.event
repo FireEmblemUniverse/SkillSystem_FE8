@@ -1,0 +1,11 @@
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
+
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif

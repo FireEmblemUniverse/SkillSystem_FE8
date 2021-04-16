@@ -1,0 +1,60 @@
+
+#include "Fixes/ExpandedClassTable/Class Expansion.event"
+
+#include "Fixes/FE8-Walking Sounds Fix/FE8-Walking Sounds EA.event"
+
+#include "Fixes/Terrain/Terrain.event"
+
+#include "Fixes/Map Sprite/Fix.event"
+
+#include "Fixes/New CHAI/New CHAI.event"
+
+#include "Fixes/Portrait Height/Installer.txt"
+
+#include "Fixes/Thracia Trade/Installer.event"
+
+#include "Fixes/Monster Weapon/Installer.event"
+
+#include "Fixes/Chapter 5x/Installer.event"
+
+//#include "Fixes/MultiSupplyUnits/Installer.event"
+
+//#include "Fixes/SeizeFix/SeizeFix.event"
+
+#include "Fixes/FillAIDangerMap/FillAIDangerMap.event"
+
+#include "Fixes/Allow 254 generic minimugs/Allow 254 generic minimugs.event"
+
+#include "Fixes/Link Arena/Installer.event"
+
+#include "Fixes/Event/Installer.event"
+
+#include "MusicPatch/MasterInstaller.event"
+
+#include "Mug_exceed/EA.txt"
+
+#include "EVENTSCRIPT_give_exp 20191015/give_exp_Install.event"
+
+#include "EVENTSCRIPT_COND_GetStatus/Installer.event"
+
+#include "EVENTSCRIPT_COND_ITEM/Installer.event"
+
+#include "EVENTSCRIPT_SendAllTransporter/Installer.event"
+
+#include "EVENTSCRIPT_ChangeEdition/Installer.event"
+
+//#include "MoreShops/MoreShops.event"
+
+#include "FreeMovement/FreeMovement.event"
+
+#include "FreeMovement/MakeShopASMC.lyn.event"
+
+#include "Staff/MasterInstaller.event"
+
+#include "ScriptedBattleNumbers/ScriptedBattles.event"
+
+#include "FE8-Convoy_Partition_and_Item_Combining/FE8-Convoy_Stuff_EA.event"
+
+#include "HpBars/HpBars.event"
+
+#include "SmallASM.event"

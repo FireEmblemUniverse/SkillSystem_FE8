@@ -1,0 +1,12 @@
+
+// modifies promoted enemies' autoleveing per chapter, keep in mind default is 20
+
+PUSH
+ORG $37B48
+jumpToHack(PromotedAutolevelFunction)
+POP
+
+ALIGN 4
+PromotedAutolevelFunction:
+#incbin "PromotedAutolevel.dmp"
+POIN ModularAutolevelTable

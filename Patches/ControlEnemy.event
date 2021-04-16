@@ -1,0 +1,5 @@
+//control enemy
+PUSH
+ORG 0x1545A
+BYTE 0x0A 0xE0
+POP

@@ -1,20 +1,65 @@
-#include "CasualMode.event"
+//#include "CasualMode.event"
 #include "SetUnitState.lyn.event"
+#include "EventParameters/EventParameters.event"
+#include "GroupAI/GroupAI.event"
 
+#include "EscapeArrive/EscapeMenu/EA.txt"
+
+
+
+// misc QoL
+#include "FillAIRangeMap Fix/FillAIDangerMap.event"
+#include "TutorialDisabler.event"
 #include "Less Annoying Fog/Less Annoying Fog Installer.event"
+#include "PrepScreen/PrepScreen.event"
+
+#include "SkipOpening.event"
+#include "DifficultySelection.event"
+
+
+#include "ControlEnemy.event"
+#include "AutosaveKiller.event"
+//#include "CasualModeMenu2/CasualModeInstaller.event"
 
 
 
 
 
 
+// Commands
+#include "Commands/GameOptionInstaller.event"
+
+#include "Commands/CallMenu.lyn.event"
+#include "Commands/EffectCallMenu.lyn.event"
+
+#include "Commands/CHAI_all/CHAI_all_installer.event"
+
+#include "Commands/CH_allegiance_all/change_allegiance_all_installer.event"
+#include "Commands/BadStatus/BadStatusInstaller.event"
+
+#include "Commands/CountInRange/CountInRangeInstaller.event"
+#include "Commands/CheckGold/CheckGoldInstaller.event"
+#include "Commands/Item/ItemInstaller.event"
+#include "Commands/DropUnit/DropUnitInstaller.event"
+#include "Commands/GetHeldKeys/GetHeldKeysInstaller.event"
+#include "Commands/GetUnitDistance/GetUnitDistanceInstaller.event"
+
+#include "Commands/MemSlotString/MemSlotStringInstaller.event"
+#include "Commands/RepoUnit/RepoUnitInstaller.event"
+//#include "Commands/RescueUnit/RescueUnitInstaller.event"
+#include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
+
+#include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event"
+
+
+#include "EmotionBubble/Show_map_emotion_install.event"
 
 
 #include "256 colors Title background Installer/titlebackgroundinstaller.event"
 
 
 
-
+#include "MyHack/_Master Hack Installer.event"
 
 
 

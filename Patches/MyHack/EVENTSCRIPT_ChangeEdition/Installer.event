@@ -1,0 +1,16 @@
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
+ALIGN 4
+ChangeEditionASM:
+#incbin "ASMC_ChangeEdition.dmp" //HINT=ASM
+
+
+#define ChangeEdition(EDITION) "BYTE 0x40 0x0D EDITION 0x00 ; POIN ChangeEditionASM|1;"
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif

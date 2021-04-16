@@ -1,0 +1,89 @@
+#define Empty " "
+
+#ifdef _FE6_
+#define MUS1 MUSC
+#define MUS2 MUSS
+#define MUS3 MUSM
+#endif
+
+#ifdef _FE7_
+#define IFEV IFEF
+#define TEX5 TEXTCG
+
+//Old world map codes
+
+#define PTBU TEXTBOXTOTOP
+#define PTBD TEXTBOXTOBOTTOM
+#define CTEW REMOVETEXTBOX
+#define LOPR SHOWPORTRAIT
+#define REPR REMOVEPORTRAIT
+#define LWMA LOADWM
+#define FAMA FADETOWM
+#define LWMC HIGHLIGHT
+#define FLDT PLACEDOT
+#define SWMD STARTWM
+#define REPL RIPPLE
+#define CMSP PUTSPRITE
+#define RMSP REMSPRITE
+
+#define MUS1 MUSC
+#define MUS2 MUSS
+#define MUS3 MUSM
+#endif
+
+#ifdef _FE8_
+
+//IFCD replacement
+#define IfCharacterDead(char, condID) "_SETVAL 2 char; BEQ condID 0xC 2"
+
+//IFCA replacement
+#define IfCharacterActive(char, condID) "_SETVAL 7 char; BEQ condID 0xC 7"
+
+//MONE replacement
+#define GiveMoney(vill, amount) "_SETVAL 3 amount; GIVEITEMTOMAIN vill"
+
+//ITGC replacement
+#define GiveItemToCharacter(char, item) "_SETVAL 3 item; GIVEITEMTO char"
+
+//ITGV replacement
+#define GiveItemToCurrent(item) "_SETVAL 3 item; GIVEITEMTO 0xFFFF"
+
+//ITGM replacement
+#define GiveItemToMain(item) "_SETVAL 3 item; GIVEITEMTOMAIN 0"
+
+//CMDS replacement
+#define BattleStart "_SETVAL 0xD 0"
+
+//CMDL replacement
+#define BattleCommand(command) "_SETVAL 1 command; _SAVEFORBATTLE"
+
+#define Frantz Franz
+
+#define _SAVEFORBATTLE SAVETOQUEUE
+
+#define MUS1 MUSC
+#define MUS2 MUSS
+
+#define _SETVAL SVAL
+
+#define SLOTS_ADD SADD
+#define SLOTS_SUB SSUB
+#define SLOTS_MUL SMUL
+#define SLOTS_DIV SDIV
+#define SLOTS_AND SAND
+#define SLOTS_ORR SORR
+#define SLOTS_XOR SXOR
+
+#define TEX8 BROWNBOXTEXT
+
+//All experimental codes that were replaced
+
+//#define MUSCFAST _0x1322
+
+#define _LOAD1 LOAD1
+#define _MOVE MOVE
+#define _GIVEITEMTO GIVEITEMTO
+#define GIVEITEMTO2 GIVEITEMTOMAIN
+#define _GIVEITEMTOMAIN GIVEITEMTOMAIN
+
+#endif

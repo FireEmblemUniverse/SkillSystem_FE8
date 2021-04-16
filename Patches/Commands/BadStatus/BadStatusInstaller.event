@@ -1,0 +1,15 @@
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
+ALIGN 4
+change_bad_status2:
+#incbin "change_bad_status2.dmp" 
+
+#define BadStatus(UNIT, BADSTATUS) "BYTE 0x40 0x0D UNIT BADSTATUS ; POIN change_bad_status2|1;"
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif

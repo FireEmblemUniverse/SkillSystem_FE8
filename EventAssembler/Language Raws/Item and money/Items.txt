@@ -1,0 +1,37 @@
+#Chapters: 10A
+##Gives item to a character.
+ITGC, 0x27, 12, -game:FE6 -indexMode:8
+##Character to give item.
+	Character, 4, 4
+##Item to give to the character.
+	Item, 8, 4	
+
+ITGC, 0x5C, 12, -game:FE7 -indexMode:8
+	Character, 4, 2
+	Item, 8, 2
+
+##Give item to the main character.
+ITGM, 0x5D, 8, -game:FE7 -indexMode:8
+##Item to give to the main character.
+	Item, 4, 2
+
+
+##Gives item to the current character, like
+##in villages.
+ITGV, 0x26, 8, -game:FE6 -indexMode:8
+##Item to give to the current character.
+	Item, 4, 2
+
+ITGV, 0x5B, 8, -game:FE7 -indexMode:8
+	Item, 4, 2
+
+##List of items used by a shop.
+SHLI, 0, 0, -game:FE6:FE7:FE8 -indexMode:8 -terminatingList:00 -end -priority:shopList -offsetMod:1
+##Item for sale on the shop.
+	Item, 0, 2
+	
+GIVEITEMTO, 0x3720, 4, -game:FE8 -indexMode:8
+	Character, 2, 2
+
+GIVEITEMTOMAIN, 0x3721, 4, -game:FE8 -indexMode:8
+	Village or cutscene, 2, 2
