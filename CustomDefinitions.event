@@ -19,6 +19,9 @@
         #define ChapterDataTableEntSize 148
     #endif
 
+//csv complains about lack of definition if not installing this 
+#define PrepScreenSaveGreyUsability 0
+#define PrepScreenReturnFalse 0
 
 #define StandingMapSpriteTable NewStandingMapSpriteTable
 #define MovingMapSpriteTable NewMovingMapSpriteTable

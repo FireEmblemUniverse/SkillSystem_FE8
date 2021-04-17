@@ -296,7 +296,8 @@ ENDA
 TalkEvent:
 //SilentGiveItem1
 //SilentGiveItem1(Seth, Rapier)
-SilentGiveItem2
+//SilentGiveItem2
+//TakeItemAll(SilverLance)
 Text(0x9DD)
 NoFade
 ENDA

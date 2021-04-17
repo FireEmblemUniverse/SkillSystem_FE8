@@ -1,5 +1,9 @@
 
 #ifndef PREP_SCREEN_HAX
+
+#undef PrepScreenSaveGreyUsability
+#undef PrepScreenReturnFalse
+
 	#define PREP_SCREEN_HAX
 	
 	// Be sure to have the Prep Screen Table CSV!

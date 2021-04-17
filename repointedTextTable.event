@@ -2,11 +2,12 @@
 // Include this in *before* text (and *before* Tool Helpers)
 
 #define TextTable NewTextTable // define to not conflict with Tool Helpers
-#define MaxTextEntries 0x1000
+#define MaxTextEntries 0x176F
 
 ALIGN 4
 TextTable:
-  #incbin "Text/NewTextTable.dmp"
+  //#incbin "Text/NewTextTable.dmp"
+  #incbin "Text/PokemblemTextTable.dmp"
   ORG TextTable + (MaxTextEntries) * 4
 
 PUSH

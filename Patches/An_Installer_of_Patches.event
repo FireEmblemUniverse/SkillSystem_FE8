@@ -14,7 +14,7 @@
 #include "PrepScreen/PrepScreen.event"
 
 #include "SkipOpening.event"
-#include "DifficultySelection.event"
+//#include "DifficultySelection.event"
 
 
 #include "ControlEnemy.event"
@@ -44,10 +44,25 @@
 #include "Commands/GetHeldKeys/GetHeldKeysInstaller.event"
 #include "Commands/GetUnitDistance/GetUnitDistanceInstaller.event"
 
+
+
+
+
+#include "Commands/GiveExp/GiveExpInstaller.event" //done 
+
+
 #include "Commands/MemSlotString/MemSlotStringInstaller.event"
 #include "Commands/RepoUnit/RepoUnitInstaller.event"
-//#include "Commands/RescueUnit/RescueUnitInstaller.event"
+#include "Commands/RescueUnit/RescueUnitInstaller.event"
+
+#include "Commands/SendAll/SendAllInstaller.event"
+#include "Commands/SetStatus/SetStatusInstaller.event"
+
+
 #include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
+
+#include "Commands/SwapEirikaEphraimMode/SwapEirikaEphraimModeInstaller.event" //done 
+
 
 #include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event"
 

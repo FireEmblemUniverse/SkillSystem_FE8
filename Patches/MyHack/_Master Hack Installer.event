@@ -17,6 +17,8 @@
 
 #include "Fixes/Chapter 5x/Installer.event"
 
+
+
 //#include "Fixes/MultiSupplyUnits/Installer.event"
 
 //#include "Fixes/SeizeFix/SeizeFix.event"
@@ -33,21 +35,13 @@
 
 #include "Mug_exceed/EA.txt"
 
-#include "EVENTSCRIPT_give_exp 20191015/give_exp_Install.event"
-
-#include "EVENTSCRIPT_COND_GetStatus/Installer.event"
-
-#include "EVENTSCRIPT_COND_ITEM/Installer.event"
-
-#include "EVENTSCRIPT_SendAllTransporter/Installer.event"
-
-#include "EVENTSCRIPT_ChangeEdition/Installer.event"
-
 //#include "MoreShops/MoreShops.event"
+
 
 #include "FreeMovement/FreeMovement.event"
 
 #include "FreeMovement/MakeShopASMC.lyn.event"
+
 
 #include "Staff/MasterInstaller.event"
 
@@ -55,6 +49,8 @@
 
 #include "FE8-Convoy_Partition_and_Item_Combining/FE8-Convoy_Stuff_EA.event"
 
-#include "HpBars/HpBars.event"
+//#include "HpBars/HpBars.event"
+//prevents new game for some reason 
 
 #include "SmallASM.event"
+

@@ -1427,16 +1427,22 @@ m151Standing:
 
 //SYSTEM PALETTES 
 
-//ORG $59EE20
-//#incbin "SMS/player.png" --palette-only
+PUSH
 
+ORG $59EE20
+#incbin "Palette/all_five_pal.dmp"
+
+// Using the generated _pal.dmp outputs 512 bytes instead of 32
+// this is inline, so I copied them into one .dmp
+
+/*
 //enemy
 //ORG $59EE40
-//#incbin "SMS/enemy.png" --palette-only
+//#incbin "1_pal.png"
 
 //npc
 //ORG $59EE60
-//#incbin "SMS/npc.png" --palette-only
+//#incbin "1_pal.png"
 
 //grey
 //ORG $59EE80
@@ -1445,8 +1451,10 @@ m151Standing:
 //fourth
 //ORG $59EEA0
 //#incbin "SMS/fourth.png" --palette-only
+*/
 
 
+POP
 
 
 
