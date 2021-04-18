@@ -1,0 +1,18 @@
+
+#ifndef MODULAR_SUPPLY
+
+	#define MODULAR_SUPPLY
+	
+	ALIGN 4
+	#include "SupplyUsability.lyn.event"
+	
+	ALIGN 4
+	NormalSupplyList:
+	BYTE 0x01 0x00
+	
+	//ALIGN 4
+	SupplyUsabilityPhantomIDLink:
+	BYTE 0xFE
+	//BYTE Phantom
+	
+#endif // MODULAR_SUPPLY

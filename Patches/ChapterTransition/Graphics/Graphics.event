@@ -1,0 +1,13 @@
+// Graphics
+  
+// VersusBG
+ALIGN 4
+VersusBGPalette:
+#incbin "VersusBG/VersusBGPalettes.dmp"
+ALIGN 4
+VersusBG:
+//#incext Png2Dmp "VersusBG/VersusBG.png" --lz77
+#incbin "VersusBG/VersusBG.dmp"
+
+// Area BGs
+#include "AreaBG/AreaBG.event"

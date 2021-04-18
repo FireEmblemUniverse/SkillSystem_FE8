@@ -1,6 +1,9 @@
 This is a pre-processed dump of Pokemblem.gba's text.
 Many things get overwritten afterwards. 
 
+
+
+
 Find:
 \[([0123456789ABCDEF]{2,4})\]\r\n
 Replace:
@@ -32,4 +35,10 @@ This let me export text from febuilder for use in a buildfile
 WinMerge filter:
 ^(?!.*\[NL\]).*$
 to copy over [NL] from textdump.txt to PokemblemTextDump.txt 
+
+\# 0x([0123456789ABCDEF]{4})\r\n\[X\]
+
+# 0x1760
+[X]
+
 

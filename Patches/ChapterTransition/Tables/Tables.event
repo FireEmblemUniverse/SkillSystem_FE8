@@ -1,0 +1,16 @@
+// Tables
+
+// Skip intro for these chapters
+ALIGN 4
+SkipIntroTable:
+#incbin "SkipIntro/SkipIntroTable.dmp"
+
+
+// VSBGPalettes
+ALIGN 4
+VSBGPaletteTable:
+#incbin "VSBGPaletteTables/Example1.dmp"
+
+
+// Area Images
+#include "AreaBG/AreaBGTable.event"

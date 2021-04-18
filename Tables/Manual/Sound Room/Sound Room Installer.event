@@ -1,0 +1,110 @@
+#define SoundRoomEntry(songid,length,name) "WORD songid length 0 name"
+#define SoundRoomTerminator "WORD 0xFFFFFFFF 0 0 0"
+
+ALIGN 4
+NewSoundRoom:
+//#incbin "SoundRoomVanilla.bin"
+
+// new entries here
+SoundRoomEntry(Route_209,0,Route209Name)
+SoundRoomEntry(A_Sunny_Path,0,ASunnyPathName)
+SoundRoomEntry(Investigation,0,InvestigationName)
+SoundRoomEntry(Toccata_and_Doom,0,ToccataAndDoomName)
+SoundRoomEntry(Knight_Errand,0,KnightErrandName)
+SoundRoomEntry(Splash_HDN,0,SplashHDNName)
+SoundRoomEntry(At_Dooms_Gate,0,AtDoomsGateName)
+SoundRoomEntry(Taisen_4,0,Taisen4Name)
+SoundRoomEntry(Sky_Event,0,SkyEventName)
+SoundRoomEntry(Brian_Heal_Us,0,BrianHealUsName)
+SoundRoomEntry(Tricksters_Lament,0,TrickstersLamentName)
+SoundRoomEntry(Miniboss_PM,0,MinibossPMName)
+SoundRoomEntry(Were_Rangers,0,WereRangersName)
+SoundRoomEntry(Army_A,0,ArmyAName)
+SoundRoomEntry(Story_Langrisser,0,StoryLangrisserName)
+SoundRoomEntry(Eldigan_the_Lionheart,0,EldiganTheLionheartName)
+SoundRoomEntry(Fateful_Showdown,0,FatefulShowdownName)
+SoundRoomEntry(Lonely_Town,0,LonelyTownName)
+SoundRoomEntry(Trial_Phoenix_Wright,0,TrialPhoenixWrightName)
+SoundRoomEntry(Redial_Bomberman,0,RedialBombermanName)
+SoundRoomEntry(Underground_Lair,0,UndergroundLairName)
+SoundRoomEntry(The_World_is_Trembling,0,TheWorldIsTremblingName)
+SoundRoomEntry(Train_Rush,0,TrainRushName)
+SoundRoomEntry(Frantic_Factory,0,FranticFactoryName)
+SoundRoomEntry(Mr_Bear,0,MrBearName)
+SoundRoomEntry(Cap_on_Nappers,0,CapOnNappersName)
+SoundRoomEntry(Battle_in_the_Abandoned_Church,0,BattleInTheAbandonedChurchName)
+SoundRoomEntry(Green_Garden_Night,0,GreenGardenNightName)
+SoundRoomEntry(Battle_FFTA,0,BattleFFTAName)
+SoundRoomEntry(Where_the_Wind_Rustles,0,WhereTheWindRustlesName)
+SoundRoomEntry(Deserted_Chateau,0,DesertedChateauName)
+SoundRoomEntry(Enemy_Message_3,0,EnemyMessage3Name)
+SoundRoomEntry(Shop_Prep_Langrisser_2,0,ShopPrepLangrisser2Name)
+SoundRoomEntry(Blaster_Master_Stage_1,0,BlasterMasterStage1Name)
+SoundRoomEntry(Boss_Pikmin_2,0,BossPikmin2Name)
+SoundRoomEntry(Attack_Shining_Force,0,AttackShiningForceName)
+SoundRoomEntry(Battle_1_Elona,0,Battle1ElonaName)
+SoundRoomEntry(Encounter_MGS,0,EncounterMGSName)
+SoundRoomEntry(Dark_Labyrinth,0,DarkLabyrinthName)
+SoundRoomEntry(The_Army_of_Leif,0,TheArmyOfLeifName)
+SoundRoomEntry(Boss_Madou_Monogatari,0,BossMadouMonogatariName)
+SoundRoomEntry(Old_Familiar_Scent,0,OldFamiliarScentName)
+SoundRoomEntry(Beloved_Tomboyish_Girl,0,BelovedTomboyishGirlName)
+SoundRoomEntry(Hiryu_No_Ken_2,0,HiryuNoKen2Name)
+SoundRoomEntry(Battle_Tales_of_Phantasia,0,BattleTalesOfPhantasiaName)
+SoundRoomEntry(Jin_Tekken_3,0,JinTekken3Name)
+SoundRoomEntry(JENOVA_FF7,0,JENOVAFF7Name)
+SoundRoomEntry(Boss_FE5,0,BossFE5Name)
+SoundRoomEntry(I_TRY_OUT,0,ITRYOUTName)
+SoundRoomEntry(Inheritor_of_the_Light,0,InheritorOfTheLightName)
+SoundRoomEntry(Sea_Shanty_2,0,SeaShanty2Name)
+SoundRoomEntry(Tubba_Blubba,0,TubbaBlubbaName)
+SoundRoomEntry(Pub_FFTA,0,PubFFTAName)
+SoundRoomEntry(Stage_1_Crystal_Palace,0,Stage1CrystalPalaceName)
+SoundRoomEntry(Army_of_Verdane,0,ArmyOfVerdaneName)
+SoundRoomEntry(Durant_Sortie,0,DurantSortieName)
+SoundRoomEntry(Decisive_Battle,0,DecisiveBattleName)
+SoundRoomEntry(Like_a_Glint_of_Light,0,LikeAGlintOfLightName)
+SoundRoomEntry(Stronger_Monsters,0,StrongerMonstersName)
+SoundRoomEntry(Fillmore_Actraiser,0,FillmoreActraiserName)
+SoundRoomEntry(Searching_for_Enemies,0,SearchingForEnemiesName)
+SoundRoomEntry(Rebelstar_BGM_1,0,RebelstarBGM1Name)
+SoundRoomEntry(Accursed_Combat,0,AccursedCombatName)
+SoundRoomEntry(Resolution_Berwick,0,ResolutionBerwickName)
+SoundRoomEntry(Legend_Theme,0,LegendThemeName)
+SoundRoomEntry(For_the_Commanders,0,ForTheCommandersName)
+SoundRoomEntry(General_Guy,0,GeneralGuyName)
+SoundRoomEntry(On_the_Hunt,0,OnTheHuntName)
+SoundRoomEntry(TRS_Prep,0,TRSPrepName)
+SoundRoomEntry(Battle_FFL2,0,BattleFFL2Name)
+SoundRoomEntry(Self_Discipline,0,SelfDisciplineName)
+SoundRoomEntry(Grits_Theme,0,GritsThemeName)
+SoundRoomEntry(Earthbound_Rudras,0,EarthboundName)
+SoundRoomEntry(Kindred_Cry,0,KindredCryName)
+SoundRoomEntry(The_Fragrance_of_Black_Coffee,0,TheFragranceOfBlackCoffeeName)
+SoundRoomEntry(Rolling_Dice,0,RollingDiceName)
+SoundRoomTerminator
+
+PUSH
+ORG 0x1BC14   
+POIN NewSoundRoom
+ORG 0x1BCC4
+POIN NewSoundRoom
+ORG 0xAECA8
+POIN NewSoundRoom
+ORG 0xAECD0
+POIN NewSoundRoom
+ORG 0xAED2C
+POIN NewSoundRoom
+ORG 0xAEEBC
+POIN NewSoundRoom
+ORG 0xAF438
+POIN NewSoundRoom
+ORG 0xAF830
+POIN NewSoundRoom
+ORG 0xAFE30
+POIN NewSoundRoom
+ORG 0xB0080
+POIN NewSoundRoom
+ORG 0xB042C
+POIN NewSoundRoom
+POP

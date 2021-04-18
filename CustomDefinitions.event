@@ -8,6 +8,13 @@
 #define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
 
 
+
+
+
+
+
+
+
 #define ItemTable NewItemTable 
 #undef ClassTable 
 #define ClassTable NewClassTable
@@ -55,11 +62,88 @@
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p
 
+//mov costs & bonuses 
+#define NormMovORG 0x80b808
+#define NormRainMovORG 0x80bc59
+#define NormSnowMovORG 0x80c069
+#define NormAvoBonORG 0x80c479
+#define NormDefBonORG 0x80c4ba
+#define NormResBonORG 0x80c4fb
+
+#define FlierMovORG 0x80bb96
+#define FlierRainMovORG 0x80bfe7
+#define FlierSnowMovORG 0x80c3f7
+#define FlierAvoBonORG 0x80c53c
+#define FlierDefBonORG 0x80c57d
+#define FlierResBonORG 0x80c5be			
+
+#define SwimmerMovORG 0x80b90c
+#define SwimmerRainMovORG 0x80bd5d
+#define SwimmerSnowMovORG 0x80c16d
+#define SwimmerAvoBonORG 0x80c479
+#define SwimmerDefBonORG 0x80c4ba
+#define SwimmerResBonORG 0x80c4fb
+
+#define TerrainHealingORG 0x80C744
+#define TerrainRecoverStatusORG 0x80C785
+
+
+#define NormMov 0x880b808
+#define NormRainMov 0x880bc59
+#define NormSnowMov 0x880c069
+#define NormAvoBon 0x880c479
+#define NormDefBon 0x880c4ba
+#define NormResBon 0x880c4fb
+
+#define FlierMov 0x880bb96
+#define FlierRainMov 0x880bfe7
+#define FlierSnowMov 0x880c3f7
+#define FlierAvoBon 0x880c53c
+#define FlierDefBon 0x880c57d
+#define FlierResBon 0x880c5be			
+
+#define SwimmerMov 0x880b90c
+#define SwimmerRainMov 0x880bd5d
+#define SwimmerSnowMov 0x880c16d
+#define SwimmerAvoBon 0x880c479
+#define SwimmerDefBon 0x880c4ba
+#define SwimmerResBon 0x880c4fb
+
+#define TerrainHealing	0x80C744
+#define TerrainRecoverStatus 0x880C785
+
+/*
+//mov costs & bonuses 
+#define NormMov 0x880b808
+#define NormRainMov 0x880bc59
+#define NormSnowMov 0x880c069
+#define NormAvoBon 0x880c479
+#define NormDefBon 0x880c4ba
+#define NormResBon 0x880c4fb
+
+#define FlierMov 0x880bb96
+#define FlierRainMov 0x880bfe7
+#define FlierSnowMov 0x880c3f7
+#define FlierAvoBon 0x880c53c
+#define FlierDefBon 0x880c57d
+#define FlierResBon 0x880c5be			
+
+#define SwimmerMov 0x880b90c
+#define SwimmerRainMov 0x880bd5d
+#define SwimmerSnowMov 0x880c16d
+#define SwimmerAvoBon 0x880c479
+#define SwimmerDefBon 0x880c4ba
+#define SwimmerResBon 0x880c4fb
+
+#define TerrainHealing	0x880C744
+#define TerrainRecoverStatus 0x880C785
+*/
+
 #define jumpToHack_r0(offset) "SHORT 0x4800 0x4700 ; POIN (offset|1)"
 #define jumpToHack_r1(offset) "SHORT 0x4900 0x4708 ; POIN (offset|1)"
 #define jumpToHack_r2(offset) "SHORT 0x4A00 0x4710 ; POIN (offset|1)"
 #define jumpToHack_r3(offset) "SHORT 0x4B00 0x4718 ; POIN (offset|1)"
 
-
+#include "Enumerate/ItemListPokemon.event"
 
 

@@ -1,0 +1,70 @@
+// Area BGs
+// Palettes corresponding to the images are handled in Tables/AreaBGTable.event
+
+
+// Images
+// Victory Road Afternoon
+ALIGN 4
+Pallet:
+//#incext Png2Dmp "Pallet.png" --lz77
+#incbin "Pallet.dmp"
+
+ALIGN 4
+Route1:
+//#incext Png2Dmp "VictoryRoadAft.png" --lz77
+#incbin "Route 1.dmp"
+
+ALIGN 4
+viridiancity:
+#incbin "viridiancity.dmp"
+
+ALIGN 4
+Route2s:
+#incbin "route 2s.dmp"
+
+ALIGN 4
+viridianforest:
+#incbin "viridianforest.dmp"
+
+ALIGN 4
+Route2n:
+#incbin "route 2n.dmp"
+
+ALIGN 4
+Pewter:
+#incbin "Pewter.dmp"
+
+ALIGN 4
+pewtergym:
+#incbin "pewter gym.dmp"
+
+ALIGN 4
+Route3:
+#incbin "route 3.dmp"
+
+ALIGN 4
+Pokecenter:
+#incbin "pokecenter.dmp"
+
+ALIGN 4
+mtmoon:
+#incbin "mt moon.dmp"
+
+ALIGN 4
+route4new:
+#incbin "route4new.dmp"
+
+ALIGN 4
+route4e:
+#incbin "route 4E.dmp"
+
+ALIGN 4
+cerulean:
+#incbin "Cerulean city2.dmp"
+
+ALIGN 4
+route24:
+#incbin "route 24.dmp"
+
+
+

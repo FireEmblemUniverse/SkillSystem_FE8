@@ -1,0 +1,38 @@
+// Changes the MNC3 chapterintro screen
+#ifndef _FE8_
+    ERROR "You're not assembling to an FE8 ROM!"
+#endif
+
+#include "Extensions/Hack Installation.txt"
+#include "EAstdlib.event"
+
+#ifndef FreeSpace
+	#define FreeSpace 0x1000000
+	ORG FreeSpace
+#endif
+{
+  // Variables
+  // ID which will be used for the Intro song
+  #define IntroSfx 0x318
+  // Amount of time it takes for the next map sprite to be drawn after the previous
+  #define TimePerUnit 0xC
+  // Flag. If set, intro will be skipped.
+  #define SkipIntroFlag 0x83
+  
+
+	PUSH
+    
+    // Repoint the chapter intro process
+    //ORG 0x59A31C          // MNC3
+    ORG 0x15540           // MNC2
+    POIN Proc_ChIntro
+    
+	POP
+  
+  #include "Defs/ProcDefinitions.event"
+  #include "Procs/Procs.event"
+  #include "Graphics/Graphics.event"
+  #include "Tables/Tables.event"
+  #include "Music/music installer.event"
+}
+

@@ -1,0 +1,32 @@
+#define BossBGMEntry(UnitId,SongId) "BYTE UnitId 0 0 0; SHORT SongId 0"
+#define BossBGMTerminator "BYTE 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF"
+
+ALIGN 4
+BossBGMTable:
+BossBGMEntry(Batta,Miniboss_PM)
+BossBGMEntry(Derek_Boss,Fateful_Showdown)
+BossBGMEntry(Kekh,Miniboss_PM)
+BossBGMEntry(Vergil,Fateful_Showdown)
+BossBGMEntry(ONeill,Miniboss_PM)
+BossBGMEntry(Novala,Battle_in_the_Abandoned_Church)
+BossBGMEntry(Todoroki,Fateful_Showdown)
+BossBGMEntry(Monster_Boss,Battle_in_the_Abandoned_Church)
+BossBGMEntry(Schezo_Boss,Boss_Madou_Monogatari)
+BossBGMEntry(Tim,Miniboss_PM)
+BossBGMEntry(Bit,Miniboss_PM)
+BossBGMEntry(Gromell,Fateful_Showdown)
+BossBGMEntry(Raydrik,Boss_FE5)
+BossBGMEntry(Cedwick,Stronger_Monsters)
+BossBGMEntry(Dark_Marlen,Battle_in_the_Abandoned_Church)
+BossBGMEntry(Zane,Accursed_Combat)
+BossBGMEntry(Viridian,Stronger_Monsters)
+BossBGMEntry(Hyde,Stronger_Monsters)
+BossBGMEntry(Jedah,Battle_in_the_Abandoned_Church)
+BossBGMTerminator
+
+PUSH
+
+ORG $72908
+POIN BossBGMTable
+
+POP

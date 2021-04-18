@@ -1,0 +1,68 @@
+#define BattleQuote(arg000,arg001,arg002,arg003) "BYTE arg000 0x0 arg001 0x0 arg002 0x0 0x1 0x0 ;SHORT arg003 ;BYTE 0x0 0x0 0x0 0x0 0x0 0x0 "
+#define BattleQuoteFlag(flag,arg000,arg001,arg002,arg003) "BYTE arg000 0x0 arg001 0x0 arg002 0x0 flag 0x0 ;SHORT arg003 ;BYTE 0x0 0x0 0x0 0x0 0x0 0x0 "
+#define TwoWayBattleQuote(arg000,arg001,arg002,arg003) "BattleQuote(arg000,arg001,arg002,arg003);BattleQuote(arg001,arg000,arg002,arg003)"
+#define TwoWayBattleQuoteFlag(flag,arg000,arg001,arg002,arg003) "BattleQuoteFlag(flag,arg000,arg001,arg002,arg003);BattleQuoteFlag(flag,arg001,arg000,arg002,arg003)"
+#define EndQuote "BYTE 0xff 0xff"
+
+ALIGN 4
+BattleQuoteTable:
+
+// Prologue
+TwoWayBattleQuote(0x0,Batta,Prologue,PrologueBattaBattle)
+
+// Ch 1
+TwoWayBattleQuote(0x0,Derek,Ch1,Ch1DerekBattle)
+TwoWayBattleQuoteFlag(0xD,0x0,Kekh,Ch1,Ch1KekhBattle)
+
+// Ch2
+TwoWayBattleQuote(0x0,Batta,Ch2,Ch2BattaBattle)
+TwoWayBattleQuoteFlag(0xD,0x0,ONeill,Ch2,Ch2ONeillBattle)
+
+// Ch3
+TwoWayBattleQuote(0x0,Novala,Ch3,Ch3NovalaBattle)
+
+// Ch4
+TwoWayBattleQuote(0x0,Todoroki,Ch4,Ch4TodorokiBattle)
+TwoWayBattleQuoteFlag(0xF,0x0,Derek,Ch4,Ch4DerekBattle)
+
+// Ch5
+TwoWayBattleQuote(0x0,Batta,5,Ch5BattaBattle)
+TwoWayBattleQuoteFlag(0xC,0x0,ONeill,5,Ch5ONeillBattle)
+TwoWayBattleQuoteFlag(0xD,0x0,Kekh,5,Ch5KekhBattle)
+
+// Ch7
+TwoWayBattleQuote(0x0,Derek_Boss,7,Ch7DerekBattle)
+TwoWayBattleQuoteFlag(0xD,0x0,Schezo,7,Ch7SchezoBattle)
+
+// Ch8
+TwoWayBattleQuote(0x0,Tim,8,Ch8TimBattle)
+TwoWayBattleQuoteFlag(0xE,0x0,Bit,8,Ch8BitBattle)
+
+// Ch9
+TwoWayBattleQuote(0x0,Raydrik,9,Ch9RaydrikBattle)
+TwoWayBattleQuoteFlag(0xD,0x0,Vergil,9,Ch9VergilBattle)
+TwoWayBattleQuoteFlag(0xE,0x0,Gromell,9,Ch9GromellBattle)
+
+// Ch10
+TwoWayBattleQuote(0x0,Todoroki,10,Ch10TodorokiBattle)
+
+// Ch11
+TwoWayBattleQuote(0x0,Cedwick,11,Ch11CedwickBattle)
+
+// Ch12
+TwoWayBattleQuote(0x0,Dark_Marlen,12,Ch12DarkMarlenBattle)
+
+// Ch14
+TwoWayBattleQuote(0x0,Viridian,14,TestDialogue)
+TwoWayBattleQuoteFlag(0xD,0x0,Cedwick,14,TestDialogue)
+
+// Ch15
+TwoWayBattleQuoteFlag(0xF,0x0,Hyde,15,TestDialogue)
+
+
+EndQuote
+
+PUSH
+ORG $846AC
+POIN BattleQuoteTable
+POP

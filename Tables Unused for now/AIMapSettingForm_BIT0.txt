@@ -1,0 +1,257 @@
+256
+0x00 None
+0x01 Enable Door key
+0x02 Enable Lockpick
+0x03 Enable Door key,Enable Lockpick
+0x04 Enable Antitoxin
+0x05 Enable Door key,Enable Antitoxin
+0x06 Enable Lockpick,Enable Antitoxin
+0x07 Enable Door key,Enable Lockpick,Enable Antitoxin
+0x08 ?
+0x09 Enable Door key,?
+0x0A Enable Lockpick,?
+0x0B Enable Door key,Enable Lockpick,?
+0x0C Enable Antitoxin,?
+0x0D Enable Door key,Enable Antitoxin,?
+0x0E Enable Lockpick,Enable Antitoxin,?
+0x0F Enable Door key,Enable Lockpick,Enable Antitoxin,?
+0x10 ?
+0x11 Enable Door key,?
+0x12 Enable Lockpick,?
+0x13 Enable Door key,Enable Lockpick,?
+0x14 Enable Antitoxin,?
+0x15 Enable Door key,Enable Antitoxin,?
+0x16 Enable Lockpick,Enable Antitoxin,?
+0x17 Enable Door key,Enable Lockpick,Enable Antitoxin,?
+0x18 ?,?
+0x19 Enable Door key,?,?
+0x1A Enable Lockpick,?,?
+0x1B Enable Door key,Enable Lockpick,?,?
+0x1C Enable Antitoxin,?,?
+0x1D Enable Door key,Enable Antitoxin,?,?
+0x1E Enable Lockpick,Enable Antitoxin,?,?
+0x1F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x20 ?
+0x21 Enable Door key,?
+0x22 Enable Lockpick,?
+0x23 Enable Door key,Enable Lockpick,?
+0x24 Enable Antitoxin,?
+0x25 Enable Door key,Enable Antitoxin,?
+0x26 Enable Lockpick,Enable Antitoxin,?
+0x27 Enable Door key,Enable Lockpick,Enable Antitoxin,?
+0x28 ?,?
+0x29 Enable Door key,?,?
+0x2A Enable Lockpick,?,?
+0x2B Enable Door key,Enable Lockpick,?,?
+0x2C Enable Antitoxin,?,?
+0x2D Enable Door key,Enable Antitoxin,?,?
+0x2E Enable Lockpick,Enable Antitoxin,?,?
+0x2F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x30 ?,?
+0x31 Enable Door key,?,?
+0x32 Enable Lockpick,?,?
+0x33 Enable Door key,Enable Lockpick,?,?
+0x34 Enable Antitoxin,?,?
+0x35 Enable Door key,Enable Antitoxin,?,?
+0x36 Enable Lockpick,Enable Antitoxin,?,?
+0x37 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x38 ?,?,?
+0x39 Enable Door key,?,?,?
+0x3A Enable Lockpick,?,?,?
+0x3B Enable Door key,Enable Lockpick,?,?,?
+0x3C Enable Antitoxin,?,?,?
+0x3D Enable Door key,Enable Antitoxin,?,?,?
+0x3E Enable Lockpick,Enable Antitoxin,?,?,?
+0x3F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0x40 ?
+0x41 Enable Door key,?
+0x42 Enable Lockpick,?
+0x43 Enable Door key,Enable Lockpick,?
+0x44 Enable Antitoxin,?
+0x45 Enable Door key,Enable Antitoxin,?
+0x46 Enable Lockpick,Enable Antitoxin,?
+0x47 Enable Door key,Enable Lockpick,Enable Antitoxin,?
+0x48 ?,?
+0x49 Enable Door key,?,?
+0x4A Enable Lockpick,?,?
+0x4B Enable Door key,Enable Lockpick,?,?
+0x4C Enable Antitoxin,?,?
+0x4D Enable Door key,Enable Antitoxin,?,?
+0x4E Enable Lockpick,Enable Antitoxin,?,?
+0x4F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x50 ?,?
+0x51 Enable Door key,?,?
+0x52 Enable Lockpick,?,?
+0x53 Enable Door key,Enable Lockpick,?,?
+0x54 Enable Antitoxin,?,?
+0x55 Enable Door key,Enable Antitoxin,?,?
+0x56 Enable Lockpick,Enable Antitoxin,?,?
+0x57 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x58 ?,?,?
+0x59 Enable Door key,?,?,?
+0x5A Enable Lockpick,?,?,?
+0x5B Enable Door key,Enable Lockpick,?,?,?
+0x5C Enable Antitoxin,?,?,?
+0x5D Enable Door key,Enable Antitoxin,?,?,?
+0x5E Enable Lockpick,Enable Antitoxin,?,?,?
+0x5F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0x60 ?,?
+0x61 Enable Door key,?,?
+0x62 Enable Lockpick,?,?
+0x63 Enable Door key,Enable Lockpick,?,?
+0x64 Enable Antitoxin,?,?
+0x65 Enable Door key,Enable Antitoxin,?,?
+0x66 Enable Lockpick,Enable Antitoxin,?,?
+0x67 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x68 ?,?,?
+0x69 Enable Door key,?,?,?
+0x6A Enable Lockpick,?,?,?
+0x6B Enable Door key,Enable Lockpick,?,?,?
+0x6C Enable Antitoxin,?,?,?
+0x6D Enable Door key,Enable Antitoxin,?,?,?
+0x6E Enable Lockpick,Enable Antitoxin,?,?,?
+0x6F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0x70 ?,?,?
+0x71 Enable Door key,?,?,?
+0x72 Enable Lockpick,?,?,?
+0x73 Enable Door key,Enable Lockpick,?,?,?
+0x74 Enable Antitoxin,?,?,?
+0x75 Enable Door key,Enable Antitoxin,?,?,?
+0x76 Enable Lockpick,Enable Antitoxin,?,?,?
+0x77 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0x78 ?,?,?,?
+0x79 Enable Door key,?,?,?,?
+0x7A Enable Lockpick,?,?,?,?
+0x7B Enable Door key,Enable Lockpick,?,?,?,?
+0x7C Enable Antitoxin,?,?,?,?
+0x7D Enable Door key,Enable Antitoxin,?,?,?,?
+0x7E Enable Lockpick,Enable Antitoxin,?,?,?,?
+0x7F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?,?
+0x80 ?
+0x81 Enable Door key,?
+0x82 Enable Lockpick,?
+0x83 Enable Door key,Enable Lockpick,?
+0x84 Enable Antitoxin,?
+0x85 Enable Door key,Enable Antitoxin,?
+0x86 Enable Lockpick,Enable Antitoxin,?
+0x87 Enable Door key,Enable Lockpick,Enable Antitoxin,?
+0x88 ?,?
+0x89 Enable Door key,?,?
+0x8A Enable Lockpick,?,?
+0x8B Enable Door key,Enable Lockpick,?,?
+0x8C Enable Antitoxin,?,?
+0x8D Enable Door key,Enable Antitoxin,?,?
+0x8E Enable Lockpick,Enable Antitoxin,?,?
+0x8F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x90 ?,?
+0x91 Enable Door key,?,?
+0x92 Enable Lockpick,?,?
+0x93 Enable Door key,Enable Lockpick,?,?
+0x94 Enable Antitoxin,?,?
+0x95 Enable Door key,Enable Antitoxin,?,?
+0x96 Enable Lockpick,Enable Antitoxin,?,?
+0x97 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0x98 ?,?,?
+0x99 Enable Door key,?,?,?
+0x9A Enable Lockpick,?,?,?
+0x9B Enable Door key,Enable Lockpick,?,?,?
+0x9C Enable Antitoxin,?,?,?
+0x9D Enable Door key,Enable Antitoxin,?,?,?
+0x9E Enable Lockpick,Enable Antitoxin,?,?,?
+0x9F Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0xA0 ?,?
+0xA1 Enable Door key,?,?
+0xA2 Enable Lockpick,?,?
+0xA3 Enable Door key,Enable Lockpick,?,?
+0xA4 Enable Antitoxin,?,?
+0xA5 Enable Door key,Enable Antitoxin,?,?
+0xA6 Enable Lockpick,Enable Antitoxin,?,?
+0xA7 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0xA8 ?,?,?
+0xA9 Enable Door key,?,?,?
+0xAA Enable Lockpick,?,?,?
+0xAB Enable Door key,Enable Lockpick,?,?,?
+0xAC Enable Antitoxin,?,?,?
+0xAD Enable Door key,Enable Antitoxin,?,?,?
+0xAE Enable Lockpick,Enable Antitoxin,?,?,?
+0xAF Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0xB0 ?,?,?
+0xB1 Enable Door key,?,?,?
+0xB2 Enable Lockpick,?,?,?
+0xB3 Enable Door key,Enable Lockpick,?,?,?
+0xB4 Enable Antitoxin,?,?,?
+0xB5 Enable Door key,Enable Antitoxin,?,?,?
+0xB6 Enable Lockpick,Enable Antitoxin,?,?,?
+0xB7 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0xB8 ?,?,?,?
+0xB9 Enable Door key,?,?,?,?
+0xBA Enable Lockpick,?,?,?,?
+0xBB Enable Door key,Enable Lockpick,?,?,?,?
+0xBC Enable Antitoxin,?,?,?,?
+0xBD Enable Door key,Enable Antitoxin,?,?,?,?
+0xBE Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xBF Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xC0 ?,?
+0xC1 Enable Door key,?,?
+0xC2 Enable Lockpick,?,?
+0xC3 Enable Door key,Enable Lockpick,?,?
+0xC4 Enable Antitoxin,?,?
+0xC5 Enable Door key,Enable Antitoxin,?,?
+0xC6 Enable Lockpick,Enable Antitoxin,?,?
+0xC7 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?
+0xC8 ?,?,?
+0xC9 Enable Door key,?,?,?
+0xCA Enable Lockpick,?,?,?
+0xCB Enable Door key,Enable Lockpick,?,?,?
+0xCC Enable Antitoxin,?,?,?
+0xCD Enable Door key,Enable Antitoxin,?,?,?
+0xCE Enable Lockpick,Enable Antitoxin,?,?,?
+0xCF Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0xD0 ?,?,?
+0xD1 Enable Door key,?,?,?
+0xD2 Enable Lockpick,?,?,?
+0xD3 Enable Door key,Enable Lockpick,?,?,?
+0xD4 Enable Antitoxin,?,?,?
+0xD5 Enable Door key,Enable Antitoxin,?,?,?
+0xD6 Enable Lockpick,Enable Antitoxin,?,?,?
+0xD7 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0xD8 ?,?,?,?
+0xD9 Enable Door key,?,?,?,?
+0xDA Enable Lockpick,?,?,?,?
+0xDB Enable Door key,Enable Lockpick,?,?,?,?
+0xDC Enable Antitoxin,?,?,?,?
+0xDD Enable Door key,Enable Antitoxin,?,?,?,?
+0xDE Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xDF Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xE0 ?,?,?
+0xE1 Enable Door key,?,?,?
+0xE2 Enable Lockpick,?,?,?
+0xE3 Enable Door key,Enable Lockpick,?,?,?
+0xE4 Enable Antitoxin,?,?,?
+0xE5 Enable Door key,Enable Antitoxin,?,?,?
+0xE6 Enable Lockpick,Enable Antitoxin,?,?,?
+0xE7 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?
+0xE8 ?,?,?,?
+0xE9 Enable Door key,?,?,?,?
+0xEA Enable Lockpick,?,?,?,?
+0xEB Enable Door key,Enable Lockpick,?,?,?,?
+0xEC Enable Antitoxin,?,?,?,?
+0xED Enable Door key,Enable Antitoxin,?,?,?,?
+0xEE Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xEF Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xF0 ?,?,?,?
+0xF1 Enable Door key,?,?,?,?
+0xF2 Enable Lockpick,?,?,?,?
+0xF3 Enable Door key,Enable Lockpick,?,?,?,?
+0xF4 Enable Antitoxin,?,?,?,?
+0xF5 Enable Door key,Enable Antitoxin,?,?,?,?
+0xF6 Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xF7 Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?,?
+0xF8 ?,?,?,?,?
+0xF9 Enable Door key,?,?,?,?,?
+0xFA Enable Lockpick,?,?,?,?,?
+0xFB Enable Door key,Enable Lockpick,?,?,?,?,?
+0xFC Enable Antitoxin,?,?,?,?,?
+0xFD Enable Door key,Enable Antitoxin,?,?,?,?,?
+0xFE Enable Lockpick,Enable Antitoxin,?,?,?,?,?
+0xFF Enable Door key,Enable Lockpick,Enable Antitoxin,?,?,?,?,?

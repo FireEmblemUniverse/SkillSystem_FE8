@@ -1,0 +1,17 @@
+PUSH
+
+//save only at specified chapter 
+
+ORG 0x9DEF
+BYTE 0xD1 //BEQ -> BNE (so now we only save when moving to castle frelia)
+
+
+ORG 0x9DEC 
+BYTE 0x3C //chapter to save at 
+
+//Kill PrepareBlankTile patch by 7743 (fixes a minor graphical glitch)
+ORG 0x35728
+BYTE 0x00 0x00 0x00 0x00
+
+POP
+

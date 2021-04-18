@@ -1,11 +1,26 @@
+
+
 //#include "CasualMode.event"
 #include "SetUnitState.lyn.event"
 #include "EventParameters/EventParameters.event"
 #include "GroupAI/GroupAI.event"
 
+#include "MNC2Edit/MNC2EditInstaller.event"
+
 #include "EscapeArrive/EscapeMenu/EA.txt"
 
+#include "FreeMovement/FreeMovement.event"
 
+#include "FreeMovement/MakeShopASMC.lyn.event"
+
+
+// */
+
+#include "ModularSupply/ModularSupplyInstaller.event"
+// /*
+
+
+#include "ChapterTransition/ChapterTransitionInstaller.event"
 
 // misc QoL
 #include "FillAIRangeMap Fix/FillAIDangerMap.event"
@@ -74,7 +89,7 @@
 
 
 
-#include "MyHack/_Master Hack Installer.event"
+//#include "MyHack/_Master Hack Installer.event"
 
 
 

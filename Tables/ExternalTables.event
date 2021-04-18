@@ -6,6 +6,5 @@ defWeaponDebuffs(3,0,0,0,4,4,0) //0x3: Steel Shuriken debuff.
 defWeaponDebuffs(0,0,4,0,4,4,0) //0x4: Silver Shuriken debuff.
 defWeaponDebuffs(4,0,4,0,4,4,0) //0x5: Pebble debuff.
 
-#include "New/Minimug/Minimug Table.event"
-#include "New/Battle Quote/Battle Quotes Installer.event"
-#include "New/Death Quote/Death Quotes Installer.event"
+
+#include "Manual/Movement Costs.event"

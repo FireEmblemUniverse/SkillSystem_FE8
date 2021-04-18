@@ -3,88 +3,177 @@
 #define SlayerTableEntry(class_id, type_list, coefficient_times_2) "BYTE class_id coefficient_times_2; SHORT type_list"
 ALIGN 4
 SlayerTable:
-SlayerTableEntry(Bishop, MonsterType, 6)
-SlayerTableEntry(Bishop_F, MonsterType, 6)
-SlayerTableEntry(Ranger_F, MonsterType, 6)
+//SlayerTableEntry(Bishop, MonsterType, 6)
+
 WORD 0 //terminator
 
 //Change existing effective items (class weaknesses are already part of the class data table)
 #define ItemEffectivenessPtr(item_id, label_to_point_to) "PUSH; ORG ItemTable + 0x24*item_id + 0x10; POIN label_to_point_to; POP"
-ItemEffectivenessPtr(Rapier, LordWeaponEffectiveness)
-ItemEffectivenessPtr(Armorslayer, ArmorEffectiveness)
-ItemEffectivenessPtr(Wyrmslayer, DragonEffectiveness)
-ItemEffectivenessPtr(Zanbato, HorseEffectiveness)
-ItemEffectivenessPtr(Horseslayer, HorseEffectiveness)
-ItemEffectivenessPtr(Halberd, HorseEffectiveness)
-ItemEffectivenessPtr(Hammer, ArmorEffectiveness)
-ItemEffectivenessPtr(Swordslayer, SwordEffectiveness)
-ItemEffectivenessPtr(IronBow, FlierEffectiveness)
-ItemEffectivenessPtr(SteelBow, FlierEffectiveness)
-ItemEffectivenessPtr(SilverBow, FlierEffectiveness)
-ItemEffectivenessPtr(PoisonBow, FlierEffectiveness)
-ItemEffectivenessPtr(KillerBow, FlierEffectiveness)
-ItemEffectivenessPtr(BraveBow, FlierEffectiveness)
-ItemEffectivenessPtr(ShortBow, FlierEffectiveness)
-ItemEffectivenessPtr(Longbow, FlierEffectiveness)
-ItemEffectivenessPtr(Ballista, FlierEffectiveness)
-ItemEffectivenessPtr(IronBallista, FlierEffectiveness)
-ItemEffectivenessPtr(KillerBallista, FlierEffectiveness)
-ItemEffectivenessPtr(Excalibur, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(Luce, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(DragonAxe, DragonEffectiveness)
-ItemEffectivenessPtr(Reginleif, LordWeaponEffectiveness)
-ItemEffectivenessPtr(ShadowKiller, MonsterEffectiveness)
-ItemEffectivenessPtr(BrightLance, MonsterEffectiveness)
-ItemEffectivenessPtr(Fiendcleaver, MonsterEffectiveness)
-ItemEffectivenessPtr(BeaconBow, FlierAndMonster1)
-ItemEffectivenessPtr(Sieglinde, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(Ivaldi, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(DragonSpear, DragonEffectiveness)
-ItemEffectivenessPtr(Vidofnir, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(Audhulma, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(Siegmund, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(Garm, SacredWeaponEffectiveness)
-ItemEffectivenessPtr(Nidhogg, FlierAndMonster2)
-ItemEffectivenessPtr(HeavySpear, ArmorEffectiveness)
-ItemEffectivenessPtr(WindSword, FlierEffectiveness)
-ItemEffectivenessPtr(Dragonstone, MonsterEffectiveness)
-ItemEffectivenessPtr(Aircalibur, FlierEffectiveness)
+
+
+ItemEffectivenessPtr(Tackle, NormalAdv)
+ItemEffectivenessPtr(Ember, FireAdv)
+ItemEffectivenessPtr(Bubble, WaterAdv)
+ItemEffectivenessPtr(Absorb, GrassAdv)
+ItemEffectivenessPtr(Thunder, ElectricAdv)
+ItemEffectivenessPtr(Blizzard, IceAdv)
+ItemEffectivenessPtr(Submission, FightingAdv)
+ItemEffectivenessPtr(Acid, PoisonAdv)
+ItemEffectivenessPtr(Dig, GroundAdv)
+ItemEffectivenessPtr(Peck, FlyingAdv)
+ItemEffectivenessPtr(Psychic, PsychicAdv)
+ItemEffectivenessPtr(Rollout, RockAdv)
+ItemEffectivenessPtr(Lick, GhostAdv)
+ItemEffectivenessPtr(Outrage, DragonAdv)
+ItemEffectivenessPtr(Megahorn, BugAdv)
+
+
 
 //Protector item (macro still works, even if it's wrongly named)
 ItemEffectivenessPtr(DelphiShield, FlierProtection)
 
 #define SetWeaponEffectiveness(type_list, coefficient_times_2) "BYTE 0 coefficient_times_2; SHORT type_list"
-LordWeaponEffectiveness:
-SetWeaponEffectiveness(ArmorType|HorseType, 6)
-WORD 0 //terminator
-ArmorEffectiveness:
-SetWeaponEffectiveness(ArmorType, 6)
+
+//typings 
+#define FireType 0x01
+#define WaterType 0x02
+#define ElectricType 0x04
+#define FightingType 0x08
+#define PoisonType 0x10
+#define GroundType 0x20
+#define FlyingType 0x40
+#define RockType 0x80 
+
+#define GhostType 0x100
+#define NormalType 0x200
+#define DragonType 0x400
+#define GrassType 0x800
+#define IceType 0x1000
+#define SteelType 0x2000
+#define PsychicType 0x4000 
+#define BugType 0x8000
+
+//unused
+#define DarkType 0x100000
+#define FairyType 0x200000
+
+
+#define Immune 0x01 
+#define NoIdeaWhatThisIs 0x02
+#define SupEff 0x04
+#define Resist 0x07
+
+
+NormalAdv:
+SetWeaponEffectiveness(GhostType, Immune)
+SetWeaponEffectiveness(SteelType|RockType, Resist)
 WORD 0
-HorseEffectiveness:
-SetWeaponEffectiveness(HorseType, 6)
+
+FireAdv:
+SetWeaponEffectiveness(DragonType|FireType|RockType|WaterType, Resist)
+SetWeaponEffectiveness(BugType|SteelType|IceType|GrassType, SupEff)
 WORD 0
-DragonEffectiveness:
-SetWeaponEffectiveness(DragonType, 6)
+
+
+WaterAdv:
+SetWeaponEffectiveness(DragonType|GrassType|WaterType, Resist)
+SetWeaponEffectiveness(FireType|GroundType|RockType, SupEff)
 WORD 0
-FlierEffectiveness:
-SetWeaponEffectiveness(FlierType, 6)
+
+BugAdv:
+SetWeaponEffectiveness(GrassType|PsychicType, Resist)
+SetWeaponEffectiveness(FightingType|FireType|FlyingType|GhostType|PoisonType|SteelType, SupEff)
 WORD 0
-SwordEffectiveness:
-SetWeaponEffectiveness(SwordType, 6)
+
+
+
+DragonAdv:
+SetWeaponEffectiveness(SteelType, Resist)
+SetWeaponEffectiveness(DragonType, SupEff)
 WORD 0
-MonsterEffectiveness:
-SetWeaponEffectiveness(MonsterType, 6)
+
+ElectricAdv:
+SetWeaponEffectiveness(GroundType, Immune)
+SetWeaponEffectiveness(ElectricType|DragonType|GrassType|GroundType, Resist)
+SetWeaponEffectiveness(FlyingType|WaterType, SupEff)
 WORD 0
-SacredWeaponEffectiveness:
-SetWeaponEffectiveness(MonsterType, 4)
+
+
+
+
+FightingAdv:
+SetWeaponEffectiveness(GhostType, Immune)
+SetWeaponEffectiveness(BugType|GhostType|FlyingType|PoisonType|PsychicType, Resist)
+SetWeaponEffectiveness(IceType|NormalType|RockType|SteelType, SupEff)
 WORD 0
-FlierAndMonster1: //Beacon bow
-SetWeaponEffectiveness(FlierType|MonsterType, 6)
+
+
+FlyingAdv:
+SetWeaponEffectiveness(ElectricType|RockType|SteelType, Resist)
+SetWeaponEffectiveness(BugType|FightingType|GrassType, SupEff)
 WORD 0
-FlierAndMonster2: //Nidhogg
-SetWeaponEffectiveness(FlierType, 6)
-SetWeaponEffectiveness(MonsterType, 4)
+
+GhostAdv:
+SetWeaponEffectiveness(NormalType, Immune)
+SetWeaponEffectiveness(GhostType|PsychicType, SupEff)	
 WORD 0
+
+GrassAdv:
+SetWeaponEffectiveness(BugType|DragonType|FireType|FlyingType|GrassType|PoisonType|SteelType, Resist)
+SetWeaponEffectiveness(GroundType|RockType|WaterType, SupEff)
+WORD 0
+
+GroundAdv:
+SetWeaponEffectiveness(FlyingType, Immune)
+SetWeaponEffectiveness(BugType|FlyingType|GrassType, Resist)
+SetWeaponEffectiveness(ElectricType|FireType|PoisonType|RockType|SteelType, SupEff)
+WORD 0
+
+IceAdv:
+SetWeaponEffectiveness(FireType|IceType|SteelType|WaterType, Resist)
+SetWeaponEffectiveness(DragonType|FlyingType|GrassType|GroundType, SupEff)
+WORD 0
+
+
+
+PoisonAdv:
+SetWeaponEffectiveness(SteelType, Immune)
+SetWeaponEffectiveness(GhostType|GroundType|PoisonType|RockType|SteelType, Resist)
+SetWeaponEffectiveness(GrassType, SupEff)
+WORD 0
+
+PsychicAdv:
+SetWeaponEffectiveness(PsychicType|SteelType, Resist)
+SetWeaponEffectiveness(FightingType|PoisonType, SupEff)
+WORD 0
+
+RockAdv:
+SetWeaponEffectiveness(FightingType|GroundType|SteelType, Resist)
+SetWeaponEffectiveness(BugType|FireType|FlyingType|IceType, SupEff)
+
+WORD 0
+
+SteelAdv:
+SetWeaponEffectiveness(ElectricType|FireType|SteelType|WaterType, Resist)
+SetWeaponEffectiveness(IceType|RockType, SupEff)
+WORD 0
+
+
+DarkAdv:
+SetWeaponEffectiveness(FightingType|FairyType, Resist)
+SetWeaponEffectiveness(GhostType|PsychicType|DarkType, SupEff)
+WORD 0
+
+FairyAdv:
+SetWeaponEffectiveness(FireType|PoisonType|SteelType, Resist)
+SetWeaponEffectiveness(DragonType|FightingType|DarkType, SupEff)
+WORD 0
+
+
+
+
+
+
 
 #define SetProtection(type_list) "SHORT 0 type_list"
 FlierProtection:

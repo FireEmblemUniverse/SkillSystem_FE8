@@ -1,5 +1,5 @@
 
-#include "Fixes/ExpandedClassTable/Class Expansion.event"
+//#include "Fixes/ExpandedClassTable/Class Expansion.event"
 
 #include "Fixes/FE8-Walking Sounds Fix/FE8-Walking Sounds EA.event"
 
@@ -25,7 +25,8 @@
 
 #include "Fixes/FillAIDangerMap/FillAIDangerMap.event"
 
-#include "Fixes/Allow 254 generic minimugs/Allow 254 generic minimugs.event"
+//deleted minimug table by mistake? 
+//#include "Fixes/Allow 254 generic minimugs/Allow 254 generic minimugs.event"
 
 #include "Fixes/Link Arena/Installer.event"
 
@@ -38,9 +39,6 @@
 //#include "MoreShops/MoreShops.event"
 
 
-#include "FreeMovement/FreeMovement.event"
-
-#include "FreeMovement/MakeShopASMC.lyn.event"
 
 
 #include "Staff/MasterInstaller.event"

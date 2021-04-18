@@ -1,0 +1,22 @@
+// Area BGs
+// Palettes corresponding to the images are handled in Tables/AreaBGTable.event
+
+
+// Images
+// Victory Road Afternoon
+ALIGN 4
+VictoryBG:
+#incext Png2Dmp "VictoryRoadAft.png" --lz77
+//#incbin "VictoryRoadAft.dmp"
+
+// National Park Afternoon
+ALIGN 4
+ParkBG:
+#incext Png2Dmp "NationalParkAft.png" --lz77
+//#incbin "NationalParkAft.dmp"
+
+// Ilex Forest Morning
+ALIGN 4
+IlexBG:
+#incext Png2Dmp "IlexForestMor.png" --lz77
+//#incbin "IlexForestMor.dmp"

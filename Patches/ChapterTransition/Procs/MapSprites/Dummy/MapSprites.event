@@ -1,0 +1,8 @@
+// Set up Map Sprites
+// Dummy child holds the second batch of units
+PROC_NEW_CHILD(Proc_Dummy)
+PROC_SLEEP(0x1)
+PROC_CALL_ROUTINE(Init_MapSprites+0x1)
+// Draw Map Sprites
+PROC_LOOP_ROUTINE(Loop_MapSprites+0x1)
+PROC_END

@@ -1,0 +1,437 @@
+
+ALIGN 4
+
+AlexisAnim:
+StaffAnim(AlexisStaff)
+AnimaAnim(AlexisMagic)
+LightAnim(AlexisMagic)
+UnarmedAnim(AlexisMagic)
+WORD 0x0 0x0
+
+ArmoredWyvernLordAnim:
+SwordAnim(ArmoredWyvernLordSword)
+LanceAnim(ArmoredWyvernLordLance)
+AxeAnim(ArmoredWyvernLordAxe)
+HandAxeAnim(ArmoredWyvernLordHandAxe)
+BowAnim(ArmoredWyvernLordBow)
+UnarmedAnim(ArmoredWyvernLordUnarmed)
+WORD 0x0 0x0
+
+AssassinFAnim:
+SwordAnim(AssassinFSword)
+UnarmedAnim(AssassinFUnarmed)
+WORD 0x0 0x0
+
+BasileusAnim:
+AxeAnim(BasileusAxe)
+HandAxeAnim(BasileusHandAxe)
+UnarmedAnim(BasileusUnarmed)
+WORD 0x0 0x0
+
+BattleSageAnim:
+SwordAnim(BattleSageSword)
+AnimaAnim(BattleSageMagic)
+DarkAnim(BattleSageMagic)
+UnarmedAnim(BattleSageMagic)
+WORD 0x0 0x0
+
+BattleSageFAnim:
+SwordAnim(BattleSageFSword)
+AnimaAnim(BattleSageFMagic)
+DarkAnim(BattleSageFMagic)
+UnarmedAnim(BattleSageFMagic)
+WORD 0x0 0x0
+
+ChampionMAnim:
+SwordAnim(ChampionMSword)
+AxeAnim(ChampionMAxe)
+HandAxeAnim(ChampionMHandAxe)
+UnarmedAnim(ChampionMUnarmed)
+WORD 0x0 0x0
+
+ChampionFAnim:
+SwordAnim(ChampionFSword)
+AxeAnim(ChampionFAxe)
+HandAxeAnim(ChampionFHandAxe)
+UnarmedAnim(ChampionFUnarmed)
+WORD 0x0 0x0
+
+CommanderAnim:
+SwordAnim(CommanderSword)
+SpearAnim(CommanderLance)
+AxeAnim(CommanderAxe)
+HandAxeAnim(CommanderHandAxe)
+UnarmedAnim(CommanderUnarmed)
+WORD 0x0 0x0
+
+DarkKnightAnim:
+SwordAnim(DarkKnightSword)
+AnimaAnim(DarkKnightMagic) // See note on dread fighter.
+DarkAnim(DarkKnightMagic)
+UnarmedAnim(DarkKnightMagic)
+WORD 0x0 0x0
+
+DreadFighterMAnim:
+SwordAnim(DreadFighterMSword)
+AnimaAnim(DreadFighterMMagic) // To display correctly in the promotion preview if the spellsword has anima equiped. Will lose anima on promo.
+DarkAnim(DreadFighterMMagic)
+UnarmedAnim(DreadFighterMUnarmed)
+WORD 0x0 0x0
+
+DreadFighterFAnim:
+SwordAnim(DreadFighterFSword)
+AnimaAnim(DreadFighterFMagic)
+DarkAnim(DreadFighterFMagic)
+UnarmedAnim(DreadFighterFUnarmed)
+WORD 0x0 0x0
+
+EdgySwordmasterAnim:
+SwordAnim(EdgySwordmasterSword)
+UnarmedAnim(EdgySwordmasterSword)
+//UnarmedAnim(EdgySwordmasterUnarmed)
+WORD 0x0 0x0
+
+EmperorAnim:
+SwordAnim(EmperorSword)
+UnarmedAnim(EmperorUnarmed)
+WORD 0x0 0x0
+
+ExecutionerAnim:
+SwordAnim(ExecutionerSword)
+DarkAnim(ExecutionerMagic)
+UnarmedAnim(ExecutionerUnarmed)
+WORD 0x0 0x0
+
+GaidenSageAnim:
+StaffAnim(GaidenSageStaff)
+AnimaAnim(GaidenSageMagic)
+LightAnim(GaidenSageMagic)
+UnarmedAnim(GaidenSageMagic)
+WORD 0x0 0x0
+
+GladiatorAnim:
+SwordAnim(GladiatorSword)
+AxeAnim(GladiatorAxe)
+HandAxeAnim(GladiatorHandAxe)
+UnarmedAnim(GladiatorUnarmed)
+WORD 0x0 0x0
+
+GrandPaladinAnim:
+SwordAnim(GrandPaladinSword)
+SpearAnim(GrandPaladinLance)
+AxeAnim(GrandPaladinAxe)
+HandAxeAnim(GrandPaladinHandAxe)
+UnarmedAnim(GrandPaladinUnarmed)
+WORD 0x0 0x0
+
+HalberdierAnim:
+SpearAnim(HalberdierSpear)
+UnarmedAnim(HalberdierUnarmed)
+WORD 0x0 0x0
+
+HarbingerAnim:
+SwordAnim(HarbingerSword)
+AxeAnim(HarbingerAxe)
+HandAxeAnim(HarbingerHandAxe)
+AnimaAnim(HarbingerMagic)
+DarkAnim(HarbingerMagic)
+UnarmedAnim(HarbingerUnarmed)
+WORD 0x0 0x0
+
+HectorAnim:
+SwordAnim(HectorSword)
+LanceAnim(HectorLance)
+AxeAnim(HectorAxe)
+HandAxeAnim(HectorHandAxe)
+UnarmedAnim(HectorUnarmed)
+WORD 0x0 0x0
+
+HeroFAnim:
+SwordAnim(HeroFSword)
+AxeAnim(HeroFAxe)
+HandAxeAnim(HeroFHandAxe)
+UnarmedAnim(HeroFUnarmed)
+WORD 0x0 0x0
+
+HolySageAnim:
+LightAnim(HolySageMagic)
+DarkAnim(HolySageMagic)
+StaffAnim(HolySageStaff)
+UnarmedAnim(HolySageMagic)
+WORD 0x0 0x0
+
+ImpalerMAnim:
+SpearAnim(ImpalerMLance)
+UnarmedAnim(ImpalerMUnarmed)
+WORD 0x0 0x0
+
+ImpalerFAnim:
+SpearAnim(ImpalerFLance)
+UnarmedAnim(ImpalerFUnarmed)
+WORD 0x0 0x0
+
+IzukAnim:
+AnimaAnim(IzukMagic)
+DarkAnim(IzukMagic)
+UnarmedAnim(IzukMagic)
+WORD 0x0 0x0
+
+JacketHeroAnim:
+SwordAnim(JacketHeroSword)
+AxeAnim(JacketHeroAxe)
+HandAxeAnim(JacketHeroHandAxe)
+UnarmedAnim(JacketHeroUnarmed)
+WORD 0x0 0x0
+
+KnightAnim:
+LanceAnim(KnightLance)
+AxeAnim(KnightAxe)
+HandAxeAnim(KnightHandAxe)
+UnarmedAnim(KnightUnarmed)
+WORD 0x0 0x0
+
+MageKnightMAnim:
+SwordAnim(MageKnightMSword)
+StaffAnim(MageKnightMStaff)
+AnimaAnim(MageKnightMMagic)
+UnarmedAnim(MageKnightMMagic)
+WORD 0x0 0x0
+
+MageKnightFAnim:
+SwordAnim(MageKnightFSword)
+StaffAnim(MageKnightFStaff)
+AnimaAnim(MageKnightFMagic)
+UnarmedAnim(MageKnightFMagic)
+WORD 0x0 0x0
+
+MagusMAnim:
+StaffAnim(MagusMStaff)
+AnimaAnim(MagusMMagic)
+LightAnim(MagusMMagic)
+UnarmedAnim(MagusMMagic)
+WORD 0x0 0x0
+
+MagusFAnim:
+StaffAnim(MagusFStaff)
+AnimaAnim(MagusFMagic)
+LightAnim(MagusFMagic)
+UnarmedAnim(MagusFMagic)
+WORD 0x0 0x0
+
+MaligKnightAnim:
+AxeAnim(MaligKnightAxe)
+HandAxeAnim(MaligKnightHandAxe)
+AnimaAnim(MaligKnightMagic)
+DarkAnim(MaligKnightMagic)
+UnarmedAnim(MaligKnightMagic)
+WORD 0x0 0x0
+
+MarksmanMAnim:
+BowAnim(MarksmanMBow)
+UnarmedAnim(MarksmanMUnarmed)
+WORD 0x0 0x0
+
+MarksmanFAnim:
+BowAnim(MarksmanFBow)
+UnarmedAnim(MarksmanFUnarmed)
+WORD 0x0 0x0
+
+MasterKnightAnim:
+SwordAnim(MasterKnightSword)
+SpearAnim(MasterKnightLance)
+AxeAnim(MasterKnightAxe)
+HandAxeAnim(MasterKnightHandAxe)
+UnarmedAnim(MasterKnightUnarmed)
+WORD 0x0 0x0
+
+MatriarchAnim:
+StaffAnim(MatriarchStaff)
+LightAnim(MatriarchMagic)
+UnarmedAnim(MatriarchMagic)
+WORD 0x0 0x0
+
+MercenaryFAnim:
+SwordAnim(MercenaryFSword)
+UnarmedAnim(MercenaryFUnarmed)
+WORD 0x0 0x0
+
+MistlainAnim:
+AnimaAnim(MistlainMagic)
+UnarmedAnim(MistlainMagic)
+WORD 0x0 0x0
+
+MonkMAnim:
+StaffAnim(MonkStaff)
+LightAnim(MonkMagic)
+UnarmedAnim(MonkMagic)
+WORD 0x0 0x0
+
+MonkFAnim:
+StaffAnim(MonkFStaff)
+LightAnim(MonkFMagic)
+UnarmedAnim(MonkFMagic)
+WORD 0x0 0x0
+
+MountedBrigandAnim:
+AxeAnim(MountedBrigandAxe)
+HandAxeAnim(MountedBrigandHandAxe)
+BowAnim(MountedBrigandBow)
+UnarmedAnim(MountedBrigandUnarmed)
+WORD 0x0 0x0
+
+MurielSageAnim:
+AnimaAnim(MurielSageMagic)
+LightAnim(MurielSageMagic)
+UnarmedAnim(MurielSageMagic)
+WORD 0x0 0x0
+
+PatriarchAnim:
+StaffAnim(PatriarchStaff)
+AnimaAnim(PatriarchMagic)
+LightAnim(PatriarchMagic)
+UnarmedAnim(PatriarchMagic)
+WORD 0x0 0x0
+
+PhantomAnim:
+AxeAnim(PhantomAxe)
+HandAxeAnim(PhantomHandAxe)
+UnarmedAnim(PhantomUnarmed)
+WORD 0x0 0x0
+
+PirateAnim:
+AxeAnim(PirateAxe)
+HandAxeAnim(PirateHandAxe)
+UnarmedAnim(PirateUnarmed)
+WORD 0x0 0x0
+
+SentinelAnim:
+SwordAnim(SentinelSword)
+SpearAnim(SentinelLance)
+AxeAnim(SentinelAxe)
+HandAxeAnim(SentinelHandAxe)
+UnarmedAnim(SentinelUnarmed)
+WORD 0x0 0x0
+
+SentinelFAnim:
+SwordAnim(SentinelFSword)
+SpearAnim(SentinelFLance)
+AxeAnim(SentinelFAxe)
+HandAxeAnim(SentinelFHandAxe)
+UnarmedAnim(SentinelFUnarmed)
+WORD 0x0 0x0
+
+SeraphKnightAnim:
+SpearAnim(SeraphKnightSpear)
+StaffAnim(SeraphKnightStaff)
+AnimaAnim(SeraphKnightMagic)
+UnarmedAnim(SeraphKnightMagic)
+WORD 0x0 0x0
+
+ServiusAnim:
+SwordAnim(ServiusSword)
+UnarmedAnim(ServiusUnarmed)
+WORD 0x0 0x0
+
+ShadeKnightMAnim:
+DarkAnim(ShadeKnightMMagic)
+StaffAnim(ShadeKnightMStaff)
+UnarmedAnim(ShadeKnightMMagic)
+WORD 0x0 0x0
+
+ShadeKnightFAnim:
+DarkAnim(ShadeKnightFMagic)
+StaffAnim(ShadeKnightFStaff)
+UnarmedAnim(ShadeKnightFMagic)
+WORD 0x0 0x0
+
+ShamanMAnim:
+DarkAnim(ShamanMagic)
+UnarmedAnim(ShamanMagic)
+WORD 0x0 0x0
+
+ShamanFAnim:
+DarkAnim(ShamanFMagic)
+UnarmedAnim(ShamanFMagic)
+WORD 0x0 0x0
+
+SpearHeroAnim:
+SwordAnim(0x0D)
+SpearAnim(SpearHeroSpear)
+AxeAnim(0x0E)
+HandAxeAnim(0x0F)
+UnarmedAnim(0x10)
+WORD 0x0 0x0
+
+SpellswordMAnim:
+SwordAnim(SpellswordMSword)
+AnimaAnim(SpellswordMSword)
+DarkAnim(SpellswordMSword)
+UnarmedAnim(SpellswordMUnarmed)
+WORD 0x0 0x0
+
+SpellswordFAnim:
+SwordAnim(SpellswordFSword)
+AnimaAnim(SpellswordFSword)
+DarkAnim(SpellswordFSword)
+UnarmedAnim(SpellswordFUnarmed)
+WORD 0x0 0x0
+
+StrategistAnim:
+SwordAnim(MaximusBattleSageSword)
+AnimaAnim(MaximusBattleSageSword)
+UnarmedAnim(MaximusBattleSageUnarmed)
+WORD 0x0 0x0
+
+SummonerFAnim:
+DarkAnim(SummonerFMagic)
+StaffAnim(SummonerFStaff)
+UnarmedAnim(SummonerFMagic)
+WORD 0x0 0x0
+
+TruebladeMAnim:
+SwordAnim(TruebladeMSword)
+UnarmedAnim(TruebladeMUnarmed)
+WORD 0x0 0x0
+
+TruebladeFAnim:
+SwordAnim(TruebladeFSword)
+UnarmedAnim(TruebladeFUnarmed)
+WORD 0x0 0x0
+
+TruerbladeAnim:
+SwordAnim(TruerbladeSword)
+UnarmedAnim(TruerbladeUnarmed)
+WORD 0x0 0x0
+
+ValkyrieAnim:
+StaffAnim(ValkyrieStaff)
+AnimaAnim(ValkyrieMagic)
+LightAnim(ValkyrieMagic)
+UnarmedAnim(ValkyrieMagic)
+WORD 0x0 0x0
+
+WarlockAnim:
+AxeAnim(WarlockAxe)
+HandAxeAnim(WarlockHandAxe)
+StaffAnim(WarlockStaff)
+UnarmedAnim(WarlockUnarmed)
+WORD 0x0 0x0
+
+WilSniperAnim:
+BowAnim(WilSniperBow)
+WORD 0x0
+
+WyvernGeneralAnim:
+SwordAnim(ArmoredWyvernLordSword)
+LanceAnim(ArmoredWyvernLordLance)
+AxeAnim(ArmoredWyvernLordAxe)
+HandAxeAnim(ArmoredWyvernLordHandAxe)
+BowAnim(ArmoredWyvernLordBow)
+UnarmedAnim(ArmoredWyvernLordUnarmed)
+WORD 0x0 0x0
+
+XeximAnim:
+SwordAnim(XeximSword)
+BowAnim(XeximBow)
+UnarmedAnim(XeximUnarmed)
+WORD 0x0 0x0

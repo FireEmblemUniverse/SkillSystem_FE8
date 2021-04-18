@@ -1,0 +1,219 @@
+//#define HandAxeAnim(Animation) "BYTE HandAxe 0x00 ; SHORT Animation ; BYTE Tomahawk 0x00 ; SHORT Animation ; BYTE Hatchet 0x00 ; SHORT Animation ; BYTE ShortAxe 0x00; SHORT Animation ; BYTE BoltAxe 0x0 ; SHORT Animation ; BYTE Francisca 0x0 ; SHORT Animation"
+//#define HandaxeAnim(Animation) "HandAxeAnim(Animation)"
+#define SetAnimation(ClassID,Animation) "PUSH; ORG (NewClassTable + 0x34 + (ClassID * 84)); POIN Animation; POP"
+
+// Redo Hand Axe Animations
+
+#define _NewHandAxe_General
+#define _NewHandAxe_GeneralF
+#define _NewHandAxe_Hero
+//#define _NewHandAxe_HeroF
+#define _NewHandAxe_GreatKnight
+#define _NewHandAxe_GreatKnightF
+#define _NewHandAxe_Journeyman1
+#define _NewHandAxe_Journeyman2
+#define _NewHandAxe_Journeyman3
+#define _NewHandAxe_Fighter
+#define _NewHandAxe_Warrior
+#define _NewHandAxe_Brigand
+#define _NewHandAxe_Pirate
+#define _NewHandAxe_Berserker
+#define _NewHandAxe_Cyclops
+#define _NewHandAxe_Cyclops2
+#define _NewHandAxe_Tarvos
+#define _NewHandAxe_Maelduin
+
+ALIGN 4
+
+#ifdef _NewHandAxe_General
+	NewHandAxeGeneralAnim:
+	SwordAnim(GeneralSwordAnim)
+	LanceAnim(GeneralLanceAnim)
+	AxeAnim(GeneralAxeAnim)
+	HandAxeAnim(GeneralHandaxeAnim)
+	UnarmedAnim(GeneralUnarmedAnim)
+	EndAnim
+
+	SetAnimation(General,NewHandAxeGeneralAnim)
+#endif
+
+#ifdef _NewHandAxe_GeneralF
+	NewHandAxeGeneralFAnim:
+	SwordAnim(GeneralFSwordAnim)
+	LanceAnim(GeneralFLanceAnim)
+	AxeAnim(GeneralFAxeAnim)
+	HandAxeAnim(GeneralFHandaxeAnim)
+	UnarmedAnim(GeneralFUnarmedAnim)
+	EndAnim
+
+	SetAnimation(General_F,NewHandAxeGeneralFAnim)
+#endif
+
+#ifdef _NewHandAxe_Hero
+	NewHandAxeHeroAnim:
+	SwordAnim(HeroSwordAnim)
+	AxeAnim(HeroAxeAnim)
+	HandAxeAnim(HeroHandaxeAnim)
+	UnarmedAnim(HeroUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Hero,NewHandAxeHeroAnim)
+#endif
+
+#ifdef _NewHandAxe_HeroF
+	NewHandAxeHeroFAnim:
+	SwordAnim(HeroSwordAnim)
+	AxeAnim(HeroAxeAnim)
+	HandAxeAnim(HeroHandaxeAnim)
+	UnarmedAnim(HeroUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Hero_F,NewHandAxeHeroFAnim)
+#endif
+
+#ifdef _NewHandAxe_GreatKnight
+	NewHandAxeGreatKnightAnim:
+	SwordAnim(GreatKnightSwordAnim)
+	LanceAnim(GreatKnightLanceAnim)
+	AxeAnim(GreatKnightAxeAnim)
+	HandAxeAnim(GreatKnightHandaxeAnim)
+	UnarmedAnim(GreatKnightUnarmedAnim)
+	EndAnim
+
+	SetAnimation(GreatKnight,NewHandAxeGreatKnightAnim)
+#endif
+
+#ifdef _NewHandAxe_GreatKnightF
+	NewHandAxeGreatKnightFAnim:
+	SwordAnim(GreatKnightFSwordAnim)
+	LanceAnim(GreatKnightFLanceAnim)
+	AxeAnim(GreatKnightFAxeAnim)
+	HandAxeAnim(GreatKnightFHandaxeAnim)
+	UnarmedAnim(GreatKnightFUnarmedAnim)
+	EndAnim
+
+	SetAnimation(GreatKnight_F,NewHandAxeGreatKnightFAnim)
+#endif
+
+#ifdef _NewHandAxe_Journeyman1
+	NewHandAxeJourneyman1Anim:
+	AxeAnim(JourneymanAxeAnim)
+	HandAxeAnim(JourneymanHandaxeAnim)
+	UnarmedAnim(JourneymanUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Journeyman_1,NewHandAxeJourneyman1Anim)
+#endif
+
+#ifdef _NewHandAxe_Journeyman2
+	NewHandAxeJourneyman2Anim:
+	AxeAnim(JourneymanAxeAnim)
+	HandAxeAnim(JourneymanHandaxeAnim)
+	UnarmedAnim(JourneymanUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Journeyman_2,NewHandAxeJourneyman2Anim)
+#endif
+
+#ifdef _NewHandAxe_Journeyman3
+	NewHandAxeJourneyman3Anim:
+	AxeAnim(JourneymanAxeAnim)
+	HandAxeAnim(JourneymanHandaxeAnim)
+	UnarmedAnim(JourneymanUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Journeyman_3,NewHandAxeJourneyman3Anim)
+#endif
+
+#ifdef _NewHandAxe_Fighter
+	NewHandAxeFighterAnim:
+	AxeAnim(FighterAxeAnim)
+	HandAxeAnim(FighterHandaxeAnim)
+	UnarmedAnim(FighterUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Fighter,NewHandAxeFighterAnim)
+#endif
+
+#ifdef _NewHandAxe_Warrior
+	NewHandAxeWarriorAnim:
+	AxeAnim(WarriorAxeAnim)
+	HandAxeAnim(WarriorHandaxeAnim)
+	BowAnim(WarriorBowAnim)
+	UnarmedAnim(WarriorUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Warrior,NewHandAxeWarriorAnim)
+#endif
+
+#ifdef _NewHandAxe_Brigand
+	NewHandAxeBrigandAnim:
+	AxeAnim(BrigandAxeAnim)
+	HandAxeAnim(BrigandHandaxeAnim)
+	UnarmedAnim(BrigandUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Brigand,NewHandAxeBrigandAnim)
+#endif
+
+#ifdef _NewHandAxe_Pirate
+	NewHandAxePirateAnim:
+	AxeAnim(PirateAxeAnim)
+	HandAxeAnim(PirateHandaxeAnim)
+	UnarmedAnim(PirateUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Pirate,NewHandAxePirateAnim)
+#endif
+
+#ifdef _NewHandAxe_Berserker
+	NewHandAxeBerserkerAnim:
+	AxeAnim(BerserkerAxeAnim)
+	HandAxeAnim(BerserkerHandaxeAnim)
+	UnarmedAnim(BerserkerUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Berserker,NewHandAxeBerserkerAnim)
+#endif
+
+#ifdef _NewHandAxe_Cyclops
+	NewHandAxeCyclopsAnim:
+	AxeAnim(CyclopsAxeAnim)
+	HandAxeAnim(CyclopsHandaxeAnim)
+	UnarmedAnim(CyclopsUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Cyclops,NewHandAxeCyclopsAnim)
+#endif
+
+#ifdef _NewHandAxe_Cyclops2
+	NewHandAxeCyclops2Anim:
+	AxeAnim(CyclopsAxeAnim)
+	HandAxeAnim(CyclopsHandaxeAnim)
+	UnarmedAnim(CyclopsUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Cyclops_2,NewHandAxeCyclops2Anim)
+#endif
+
+#ifdef _NewHandAxe_Tarvos
+	NewHandAxeTarvosAnim:
+	AxeAnim(TarvosAxeAnim)
+	HandAxeAnim(TarvosHandaxeAnim)
+	UnarmedAnim(TarvosUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Tarvos,NewHandAxeTarvosAnim)
+#endif
+
+#ifdef _NewHandAxe_Maelduin
+	NewHandAxeMaelduinAnim:
+	AxeAnim(MaelduinAxeAnim)
+	HandAxeAnim(MaelduinHandaxeAnim)
+	UnarmedAnim(MaelduinUnarmedAnim)
+	EndAnim
+
+	SetAnimation(Maelduin,NewHandAxeMaelduinAnim)
+#endif
+
+//#define SetAnimation(ClassID,Animation) "PUSH; ORG ClassTable + 0x34 + (ClassID * 84); WORD Animation; POP"

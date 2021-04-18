@@ -1,0 +1,103 @@
+#define _C2EA_Supply_Usability(arg000) "WORD arg000 "
+
+PUSH
+ORG $39797C
+POIN SupplyUsabilityTable
+ORG $781DBC
+POIN SupplyUsabilityTable
+ORG $8F112C
+POIN SupplyUsabilityTable
+ORG $8F116C
+POIN SupplyUsabilityTable
+ORG $A18E20
+POIN SupplyUsabilityTable
+ORG $AC1C4C
+POIN SupplyUsabilityTable
+ORG $C89C90
+POIN SupplyUsabilityTable
+ORG $FE14D8
+POIN SupplyUsabilityTable
+ORG $FE200C
+POIN SupplyUsabilityTable
+POP
+ALIGN 4
+SupplyUsabilityTable:
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(Part1SupplyList|IsPointer)
+_C2EA_Supply_Usability(Part1SupplyList|IsPointer)
+_C2EA_Supply_Usability(Part1SupplyList|IsPointer)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(Part2SupplyList|IsPointer)
+_C2EA_Supply_Usability(Part2SupplyList|IsPointer)
+_C2EA_Supply_Usability(Part2SupplyList|IsPointer)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)
+_C2EA_Supply_Usability(0x00)

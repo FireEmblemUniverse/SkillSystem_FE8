@@ -1,0 +1,517 @@
+//This is an installer for the instrument map, which is a series of pointers pointing to various instruments.
+//If you are using this, there is no need to also install the native instrument map (NIMAP); this installer replaces it.
+//The premiere feature of this installer, aside from making everything modular and allowing easy installation of custom
+//samples, is the ability to have key splits, i.e. instruments that play different samples depending on the pitch.
+//This results in a noticeable quality increase in instruments such as string ensembles, where previously there were
+//separate instrument slots using samples meant for low, mid, high, etc notes.
+
+//The main types of voices (instruments) you'll be concerning yourself with are Direct, Multi, and Drum.
+//Square1, Square2, Wave, and Noise are typically used by GBA games in combination with a handful of Direct samples
+//to make music, but the Fire Emblem games' sound engine is arranged in such a way that music uses Direct
+//(that is, streamed audio) samples for all of its instruments, with only one square wave/noise/etc able to be played at once.
+//For this reason, Square, Wave, and Noise are usually only used for sound effects, and I have included commands for
+//them for this reason as well as for completion's sake. Don't try to use them in music; sfx such as menu blips will cut them off.
+
+//The instruments that now use key splits are: 0, 19, 48, 49, 52, 56, 68, 71, 73, 103, 105.
+
+#ifdef _FE8_
+
+#include "drumfix_fe8.event"
+//Recommended if using vanilla drums. Don't use the drum fix if you're customising the drum tables yourself; it will overwrite your pointers.
+
+//16 Tracks/12 Sounds Fix (credit: Agro/Brendor)
+PUSH
+ORG $2900
+  SHORT $e00c
+ORG $2924
+  SHORT $280c $d00e $200c
+ORG $22440c
+  BYTE $10
+ORG $224414
+  SHORT $67b0 $0300 $0010
+POP
+
+//macro definitions for setting the song table
+#ifndef SongTableOffset
+  #define SongTableOffset  0x224470
+#endif
+
+#ifndef SongTable 
+  #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+#endif 
+  
+#define BattleMusicGroup 0
+#define MapMusicGroup 1
+#define SFXGroup 6
+#define voicegroup000 MusicVoices
+//Uncomment the above line if you want to add the default voicegroup name in .s files as a synonym for your main voice table
+#define VoicegroupOffset 0x207470
+//Uncomment the above if you want to use a static offset for your voice tables' location
+
+//songs
+{
+SongTable(IntroSfx,ChapterIntro0,0)
+#include "songs/ChapterIntro0.event"
+}
+
+//installation of ipatix's sound mixer. Essential if you want to use GS synths; also makes most music sound better by reducing background noise.
+
+PUSH
+ORG $d01d0
+BYTE 0xb0 0x6c 0x00 0x03 0x18 0x02
+ORG $CF53C
+BYTE 0xb1 0x6c 0x00 0x03
+ORG $D01CC
+POIN Sound_Mixer_Dump
+POP
+ALIGN 4
+
+Sound_Mixer_Dump:
+#incbin SoundMixer.bin
+
+//voice table entry definitions
+  #define VoiceDirect(VoiceTable,VoiceIndex,BaseNote,Address,FixedFreq,IsForcedPan,Pan,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $00+FixedFreq*0x8 BaseNote $00 IsForcedPan*Pan; POIN Address; BYTE EnvAtk EnvDec EnvSus EnvRel"
+  #define VoiceSquare1(VoiceTable,VoiceIndex,DutyCycle,NoteOffWithNoise,SweepTime,SweepShift,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $01+NoteOffWithNoise*8 $3c $00 SweepTime+SweepShift DutyCycle $00 $00 $00 EnvAtk EnvDec EnvSus EnvRel" 
+  #define VoiceSquare2(VoiceTable,VoiceIndex,DutyCycle,NoteOffWithNoise,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $02+NoteOffWithNoise*8 $3c $00 $00 DutyCycle $00 $00 $00 EnvAtk EnvDec EnvSus EnvRel" 
+  #define VoiceWave(VoiceTable,VoiceIndex,WaveData,NoteOffWithNoise,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $03+NoteOffWithNoise*8 $3c $00 $00; POIN WaveData; BYTE EnvAtk EnvDec EnvSus EnvRel"
+  #define VoiceNoise(VoiceTable,VoiceIndex,NoisePattern,NoteOffWithNoise,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $04+NoteOffWithNoise*8 $3c $00 $00 NoisePattern $00 $00 $00 EnvAtk EnvDec EnvSus EnvRel"
+  #define VoiceMulti(VoiceTable,VoiceIndex,MultiSampleTable,NoteChart) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $40 $3c $00 $00; POIN MultiSampleTable; POIN NoteChart"
+  #define VoiceDrum(VoiceTable,VoiceIndex,DrumTable) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $80 $3c $00 $00; POIN DrumTable; BYTE $00 $00 $00 $00"
+  #define VoiceDummy(VoiceTable,VoiceIndex) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $01 $3c $00 $00 $02 $00 $00 $00 $00 $00 $0f $00" 
+//VoiceDummy is for quick demarcation of unused/empty instrument slots
+
+//Explanation of parameters:
+//VoiceTable: the voice table you are writing to. Your instrument map is a voice table; multi instruments and drum instruments also get their own respective table for their own set of samples. This parameter is mainly a precaution against tables overwriting one another.
+//VoiceIndex: the slot in the voice table for this instrument (for example, 0 is typically used for the acoustic grand piano). 0x0 thru 0x7f correspond to instruments 0 thru 127.
+//BaseNote: the base note. I recommend always using 0x3c (middle C) because I don't think GBA FE supports other notes. Left the option just in case.
+//Address: the location of the sample. If you're using a custom sample, this will be a label pointing EA to the data for your sample which will be written to the rom.
+//If you just want to use a vanilla sample, you can just use its vanilla address instead of using a label.
+//FixedFreq: fixes the frequency of the note so it cannot change in pitch. Typically used for drums. 0x10 =on; 0x0 =off.
+//IsForcedPan: whether or not the note should be forced to a certain L/R balance. Typically used for drums. 0x1 =on; 0x0 =off.
+//Pan: how far left or right to pan the sample if you turned on IsForcedPan. 0x00 =off. 0x80 =0 (all the way left); 0xff =127 (all the way right).
+//DutyCycle: the ratio of a square wave's segments, which will change its sound. 0x0 is 12,5%; 0x1 is 25%; 0x2 is 50%; 0x3 is 75%.
+//NoteOffWithNoise: the note will be cut off by noise. Used very rarely in sound effects. 0x0 =off; 0x1 =on.
+//SweepTime: how long it takes a square wave to sweep from one pitch to another. Sometimes used in sound effects (think weird magic sounds). Must be a multiple of 0x10. 00: disable. 0x10: 7,8ms. 0x20: 15,6ms. 0x30: 23,4ms 0x40: 31,3ms. 0x50: 39,1ms. 0x60: 46,9ms. 0x70: 54,7ms.
+//SweepShift: how many bits the wave should be sweeped in pitch. 0x0 or 0x8: disable. 0x1 thru 0x7: add 2 thru 8 bits. 0x9 thru 0xf: subtract 2 thru 8 bits.
+//WaveData: a pointer to a 16-byte chart determining the pattern of the wave. 0 thru f determines the amplitude (y co-ordinate) of the wave, with 7-8 being 0 dB.
+//example: 0011223468abcdeeffeeddcb97543211 makes sort of a sine wave. ffffffffffffffff0000000000000000 is a square wave.
+//NoisePattern: how many samples are used to generate the noise. 0x0: 32768 samples; 0x1: 256 samples.
+//MultiSampleTable: a pointer to another instrument table for your multi instrument to use for its samples.
+//NoteChart: a label pointing to included data for the note chart, a series of bytes that say which notes should play which samples.
+//DrumTable: a pointer to another instrument table for your drums to use.
+//Envelope information:
+//EnvAtk: Attack, or how long it takes for the instrument to go from zero to full volume when a note starts to be played. Higher values are faster.
+//EnvDec: Decay, or how quickly the note loses volume after the attack. Higher values are longer. 0x0 to make the sample not decay at all.
+//EnvSus: Sustain, or what level of volume the note should rest at after the attack and decay but while the note is still playing. Higher values are louder. 0xff is the maximum for samples; 0xf is the maximum for waves and noise.
+//EnvRel: Release, or how long it takes for the note to drop to zero volume after it is no longer being played. Higher values are longer.
+
+//voice tables
+
+//Just for reference, the note indicated after the name of each instrument is the base note. If your music is sounding
+//grating on the ears or inaudible, make sure your samples aren't straying too far from their base notes. Multi-sample
+//instruments will have a range instead of a single note. C3 is middle C (Anvil Studio refers to middle C as C5 or C4,
+//depending on your settings). A number in parentheses (e.g. +1) indicates the sample being an octave higher or lower
+//than expected (e.g. a C3 with instrument 80 (square lead) sounds like a C4).
+
+//MESSAGE Main voice table begins at CURRENTOFFSET
+//Uncomment the above line if you want to know where exactly the installer is writing the voice table every time.
+//This is useful to ascertain the table location when using GBAMusRiper to make a soundfont.
+
+MusicVoices:
+//0 acoustic grand - G2-C4
+VoiceMulti(MusicVoices,0x0,PianoTable,PianoChart)
+//1 bright acoustic - C4
+VoiceDirect(MusicVoices,0x1,0x3c,0x02A8068,0x0,0x0,0x0,0xff,0xfc,0x40,0xd0)
+//2 acoustic bass - C1
+VoiceDirect(MusicVoices,0x2,0x3c,0x029918C,0x0,0x0,0x0,0xff,0xfc,0x70,0xa5)
+//3
+VoiceDummy(MusicVoices,0x3)
+//4 electric piano 1 - C4
+VoiceDirect(MusicVoices,0x4,0x3c,0x02BB7F4,0x0,0x0,0x0,0xff,0xfd,0x0,0xcc)
+//5 electric piano 2 (used in item-get jingle) - C3
+VoiceDirect(MusicVoices,0x5,0x3c,0x02CF3B0,0x0,0x0,0x0,0xff,0xfe,0x0,0xd0)
+//6 harpsichord - C2
+VoiceDirect(MusicVoices,0x6,0x3c,0x028F524,0x0,0x0,0x0,0xff,0xf9,0x0,0xb0)
+//7 harpsichord w/ loop - C2
+VoiceDirect(MusicVoices,0x7,0x3c,0x028F524,0x0,0x0,0x0,0xff,0xf5,0xa0,0xa0)
+//8 celesta - C4
+VoiceDirect(MusicVoices,0x8,0x3c,0x04C4758,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//9
+VoiceDummy(MusicVoices,0x9)
+//10 music box - C4
+VoiceDirect(MusicVoices,0xa,0x3c,0x02C0D0C,0x0,0x0,0x0,0xff,0x0,0xff,0xe0)
+//11 vibraphone (same sample as celesta? recommend use 8 instead) - C4
+VoiceDirect(MusicVoices,0xb,0x3c,0x04C4758C,0x0,0x0,0x0,0xff,0xf0,0x0,0xcc)
+//12
+VoiceDummy(MusicVoices,0xc)
+//13 xylophone - C3
+VoiceDirect(MusicVoices,0xd,0x3c,0x029ED58,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+//14 tubular bells - C3
+VoiceDirect(MusicVoices,0xe,0x3c,0x02263B4,0x0,0x0,0x0,0xff,0xfb,0x0,0xd0)
+//15 dulcimer - G2
+VoiceDirect(MusicVoices,0xf,0x3c,0x04D60BC,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//16
+VoiceDummy(MusicVoices,0x10)
+//17
+VoiceDummy(MusicVoices,0x11)
+//18 rock organ - C4 (-1)
+VoiceDirect(MusicVoices,0x12,0x3c,0x02B235C,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+//19 church organ - C3-C4
+VoiceMulti(MusicVoices,0x13,OrganTable,C3toC4Chart)
+//20 church organ (kept for compatibility purposes; use 19 instead) - C4
+VoiceDirect(MusicVoices,0x14,0x3c,0x0293544,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//21 accordion - G2
+VoiceDirect(MusicVoices,0x15,0x3c,0x02AC868,0x0,0x0,0x0,0x40,0x0,0xff,0xa0)
+//22
+VoiceDummy(MusicVoices,22)
+//23 some kind of woodwind (not an accordion) - C4
+VoiceDirect(MusicVoices,0x17,0x3c,0x04D5A44,0x0,0x0,0x0,0x40,0x0,0xff,0xc0)
+//24 pizzicato (same as 45) - C4
+VoiceDirect(MusicVoices,0x18,0x3c,0x0281974,0x0,0x0,0x0,0xff,0xfa,0x0,0xc0)
+//25
+VoiceDummy(MusicVoices,0x19)
+//26
+VoiceDummy(MusicVoices,0x1a)
+//27
+VoiceDummy(MusicVoices,0x1b)
+//28 elec guitar muted - C2
+VoiceDirect(MusicVoices,0x1c,0x3c,0x04C3630,0x0,0x0,0x0,0xff,0xfa,0xc8,0xa0)
+//29 low electric piano (if you want a lead guitar, try 103 or 104) - C2
+VoiceDirect(MusicVoices,0x1d,0x3c,0x02AE988,0x0,0x0,0x0,0xff,0xfb,0x0,0xa0)
+//30 distort guitar (for low, chord-sounding notes) - C2
+VoiceDirect(MusicVoices,0x1e,0x3c,0x04C8ED4,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//31 guitar slide (Powerful Foe) - C3
+VoiceDirect(MusicVoices,0x1f,0x3c,0x04CE300,0x0,0x0,0x0,0xff,0x0,0xff,0xcc)
+//32 wave bass - C2 (-1)
+VoiceDirect(MusicVoices,0x20,0x3c,0x02962B0,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//33 elec bass (finger) - C2 (-1)
+VoiceDirect(MusicVoices,0x21,0x3c,0x0227988,0x0,0x0,0x0,0x80,0x0,0xff,0xc0)
+//34 elec bass (pick) - C2 (-1)
+VoiceDirect(MusicVoices,0x22,0x3c,0x0227988,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+//35 wave bass (slower attack) - C2 (-1)
+VoiceDirect(MusicVoices,0x23,0x3c,0x02962B0,0x0,0x0,0x0,0x60,0x0,0xff,0x90)
+//36 slap bass - C2 (-1)
+VoiceDirect(MusicVoices,0x24,0x3c,0x02AC224,0x0,0x0,0x0,0xff,0xfb,0x80,0xa5)
+//37
+VoiceDummy(MusicVoices,0x25)
+//38 synth bass 1 - C1
+VoiceDirect(MusicVoices,0x26,0x3c,0x04CD8AC,0x0,0x0,0x0,0xff,0xeb,0x60,0xa5)
+//39 synth bass 2 - C2 (-1)
+VoiceDirect(MusicVoices,0x27,0x3c,0x0289978,0x0,0x0,0x0,0xff,0xf8,0x60,0xa5)
+//40 strings2 c3 (kept for compatibility purposes; use 49 instead) - C3
+VoiceDirect(MusicVoices,0x28,0x3c,0x022B4DC,0x0,0x0,0x0,0xc0,0x0,0xff,0xa0)
+//41 strings2 c4 (kept for compatibility purposes; use 49 instead) - C4
+VoiceDirect(MusicVoices,0x29,0x3c,0x0233650,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//42 strings2 c5 (kept for compatibility purposes; use 49 instead) - C5
+VoiceDirect(MusicVoices,0x2a,0x3c,0x02A0690,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//43
+VoiceDummy(MusicVoices,0x2b)
+//44
+VoiceDummy(MusicVoices,0x2c)
+//45 pizzicato - C3
+VoiceDirect(MusicVoices,0x2d,0x3c,0x0281974,0x0,0x0,0x0,0xff,0xf0,0x80,0xd0)
+//46 orchestral strings (harp) - C3
+VoiceDirect(MusicVoices,0x2e,0x3c,0x022807C,0x0,0x0,0x0,0xff,0xf5,0x0,0xe0)
+//47 timpani - G2
+VoiceDirect(MusicVoices,0x2f,0x3c,0x0228C7C,0x0,0x0,0x0,0xff,0xfa,0x0,0xd0)
+//48 strings1 - C1-C4
+VoiceMulti(MusicVoices,0x30,Strings1Table,C1toC4Chart)
+//49 strings2 - C3-C5
+VoiceMulti(MusicVoices,0x31,Strings2Table,C3toC5Chart)
+//50 strings1 c1 (kept for compatibility purposes; use 48 instead) (if you are looking for synthstrings, try 105) - C1
+VoiceDirect(MusicVoices,0x32,0x3c,0x0247AE8,0x0,0x0,0x0,0x64,0x0,0xff,0xa0)
+//51 strings1 c2 (kept for compatibility purposes; use 48 instead) (if you are looking for synthstrings, try 105) - C2
+VoiceDirect(MusicVoices,0x33,0x3c,0x02367A8,0x0,0x0,0x0,0x80,0x0,0xff,0xa0)
+//52 choir aah - C3-C4
+VoiceMulti(MusicVoices,0x34,ChoirTable,C3toC4Chart)
+//53
+VoiceDummy(MusicVoices,0x35)
+//54 choir aah c4 (kept for compatibility purposes; use 52 instead) - C4
+VoiceDirect(MusicVoices,0x36,0x3c,0x028CD70,0x0,0x0,0x0,0x32,0x0,0xff,0xd0)
+//55
+VoiceDummy(MusicVoices,0x37)
+//56 trumpet - C4-C5
+VoiceMulti(MusicVoices,0x38,TrumpetTable,C4toC5Chart)
+//57 trombone - C3
+VoiceDirect(MusicVoices,0x39,0x3c,0x0274F48,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//58 tuba - C3
+VoiceDirect(MusicVoices,0x3a,0x3c,0x028B404,0x0,0x0,0x0,0x80,0x0,0xff,0xc0)
+//59 muted trumpet - C4
+VoiceDirect(MusicVoices,0x3b,0x3c,0x04D8188,0x0,0x0,0x0,0xa0,0x0,0xff,0x96)
+//60 French horn - C3
+VoiceDirect(MusicVoices,0x3c,0x3c,0x0287CC4,0x0,0x0,0x0,0xa0,0x0,0xff,0x96)
+//61 brass section (a quintessential brass lead) - C3
+VoiceDirect(MusicVoices,0x3d,0x3c,0x02B3F54,0x0,0x0,0x0,0xa0,0x0,0xff,0xa5)
+//62 synthbrass1 - C3 (-1)
+VoiceDirect(MusicVoices,0x3e,0x3c,0x025305C,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//63 synthbrass2 (kept for compatibility purposes; use 104 instead) - C2
+VoiceDirect(MusicVoices,0x3f,0x3c,0x02595BC,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//64 some kind of bassoon - C3
+VoiceDirect(MusicVoices,0x40,0x3c,0x0280AF0,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//65 "arng" trumpet (Into the Shadow of Victory) - C3
+VoiceDirect(MusicVoices,0x41,0x3c,0x024BBAC,0x0,0x0,0x0,0xff,0x0,0xff,0xd0)
+//66 trombone 2 (Shadow of the Enemy) - C3
+VoiceDirect(MusicVoices,0x42,0x3c,0x0265DDC,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//67 English horn or oboe (shorter sample than 69) - C3
+VoiceDirect(MusicVoices,0x43,0x3c,0x0296E54,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//68 oboe - C3-C4
+VoiceMulti(MusicVoices,0x44,OboeTable,C3toC4Chart)
+//69 oboe c3 (use 68 instead) - C3
+VoiceDirect(MusicVoices,0x45,0x3c,0x04C4F6C,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//70 bassoon (use 71 instead) - C2
+VoiceDirect(MusicVoices,0x46,0x3c,0x02A7AA8,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+//71 clarinet - C2-C4
+VoiceMulti(MusicVoices,0x47,ClarinetTable,C2toC4Chart)
+//72
+VoiceDummy(MusicVoices,0x48)
+//73 flute - C4-C5
+VoiceMulti(MusicVoices,0x49,FluteTable,C4toC5Chart)
+//74 recorder (use 73 instead) - C4
+VoiceDirect(MusicVoices,0x4a,0x3c,0x04D373C,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//75 pan flute - C4
+VoiceDirect(MusicVoices,0x4b,0x3c,0x04D9314,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//76 pan flute with lower attack (recommend use 75 instead) - C4
+VoiceDirect(MusicVoices,0x4c,0x3c,0x04D9314,0x0,0x0,0x0,0x30,0xfe,0x0,0xd0)
+//77 ocarina (shifted one octave up) - C4 (+1)
+VoiceDirect(MusicVoices,0x4d,0x3c,0x04BE7C0,0x0,0x0,0x0,0x30,0xfe,0x0,0x80)
+//78 clarinet c3 (use 71 instead) - C3
+VoiceDirect(MusicVoices,0x4e,0x3c,0x0280AF0,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//79 ocarina - C4
+VoiceDirect(MusicVoices,0x4f,0x3c,0x02ADD3C,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//80 lead (square) - C3 (+1)
+VoiceDirect(MusicVoices,0x50,0x3c,0x02BA464,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//81 lead (sawtooth) (not very audible; recommend use GS saw instead) - C3
+VoiceDirect(MusicVoices,0x51,0x3c,0x02CAC80,0x0,0x0,0x0,0xff,0x0,0xff,0x40)
+//82 gs triangle - not vanilla, but included with installer by default
+VoiceDirect(MusicVoices,0x52,0x3c,GSTriangle,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//VoiceDummy(MusicVoices,0x52)
+//83 gs saw - not vanilla, but included with installer by default
+VoiceDirect(MusicVoices,0x53,0x3c,GSSaw,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//VoiceDummy(MusicVoices,0x53)
+//84
+VoiceDummy(MusicVoices,0x54)
+//85 choir aah c4 (use 52 instead) - C4
+VoiceDirect(MusicVoices,0x55,0x3c,0x028CD70,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//86 a slightly shorter version of the trombone (use 57 instead) - C3
+VoiceDirect(MusicVoices,0x56,0x3c,0x02A1728,0x0,0x0,0x0,0x80,0x0,0xff,0xa5)
+//87 gs dance - not vanilla, but included with installer by default
+VoiceDirect(MusicVoices,0x57,0x3c,GSDance,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//VoiceDummy(MusicVoices,0x57)
+//88 pad (synthbrass2) - C2
+VoiceDirect(MusicVoices,0x58,0x3c,0x02595BC,0x0,0x0,0x0,0x8,0xfe,0x0,0xe0)
+//89 pad (voice) - C4
+VoiceDirect(MusicVoices,0x59,0x3c,0x028CD70,0x0,0x0,0x0,0x7,0xff,0x0,0xe0)
+//90 muted trumpet (kept for compatibility purposes; use 59 instead) - C4
+VoiceDirect(MusicVoices,0x5a,0x3c,0x04D8188,0x0,0x0,0x0,0xa0,0x0,0xff,0x96)
+//91 pad (choir) - C4
+VoiceDirect(MusicVoices,0x5b,0x3c,0x028DDD0,0x0,0x0,0x0,0x8,0xfe,0x0,0xe0)
+//92 pad (bowed) - C4
+VoiceDirect(MusicVoices,0x5c,0x3c,0x02BB7F4,0x0,0x0,0x0,0x9,0xff,0x0,0xe0)
+//93 pad (brass) - C3
+VoiceDirect(MusicVoices,0x5d,0x3c,0x02B3F54,0x0,0x0,0x0,0x7,0xff,0x0,0xe0)
+//94 pad (halo) - C4
+VoiceDirect(MusicVoices,0x5e,0x3c,0x04BF480,0x0,0x0,0x0,0x5,0xff,0x0,0xf0)
+//95 pad (square lead) - C3 (+1)
+VoiceDirect(MusicVoices,0x5f,0x3c,0x02BA464,0x0,0x0,0x0,0x8,0xff,0x30,0xe0)
+//96
+VoiceDummy(MusicVoices,0x60)
+//97
+VoiceDummy(MusicVoices,0x61)
+//98 tuba (kept for compatibility purposes; use 58 instead) - C3
+VoiceDirect(MusicVoices,0x62,0x3c,0x02BA464,0x0,0x0,0x0,0x40,0x0,0xff,0xd0)
+//99 atmosphere (dulcimer sample with lower attack) - C2
+VoiceDirect(MusicVoices,0x63,0x3c,0x04D60BC,0x0,0x0,0x0,0x40,0xff,0x0,0xe0)
+//100 brightness - C4
+VoiceDirect(MusicVoices,0x64,0x3c,0x04BF480,0x0,0x0,0x0,0xff,0xfc,0x40,0xe0)
+//101 brass section 2 (Advance) - C3
+VoiceDirect(MusicVoices,0x65,0x3c,0x026CFD0,0x0,0x0,0x0,0x80,0x0,0xff,0xa5)
+//102 trombone 2 (kept for compatibility purposes; use 66 instead) - C3
+VoiceDirect(MusicVoices,0x66,0x3c,0x0265DDC,0x0,0x0,0x0,0x40,0x0,0xff,0xd0)
+//103 synth lead guitar (good overdrive guitar replacement) - C2
+VoiceDirect(MusicVoices,0x67,0x3c,0x04C0120,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//104 synthbrass - C2-C3
+VoiceMulti(MusicVoices,0x68,SynthleadTable,C2toC3Chart)
+//105 synthstrings (if you are looking for real synthstrings, here they are) - C3-C4
+VoiceMulti(MusicVoices,0x69,SynthstringsTable,C3toC4Chart)
+//106 synthstrings c4 (kept for compatibility purposes; use 105 instead) - C4
+VoiceDirect(MusicVoices,0x6a,0x3c,0x04D1AD4,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//107 strings1 c4 (kept for compatibility purposes; use 48 instead) - C4
+VoiceDirect(MusicVoices,0x6b,0x3c,0x04D4684,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//108 strings1 c4 (107, but has a delayed onset, like the violinist swipes the bow back and forward an extra time) - C4
+VoiceDirect(MusicVoices,0x6c,0x3c,0x0243A54,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+//109 strings1 c3 and c4 at the same time (you can use this so your string instrument only uses one note where it would normally use two) - C4
+VoiceDirect(MusicVoices,0x6d,0x3c,0x023B5FC,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//110 kept for compatibility purposes; use 109 instead - C4
+VoiceDirect(MusicVoices,0x6e,0x3c,0x023B5FC,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//111 "receiving the legendary weapon" cutscene ambience - C3
+VoiceDirect(MusicVoices,0x6f,0x3c,0x029A1EC,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+//112 sleigh bell (this is the acoustic bass drum for both 124 and 127, but with the sleigh bell here you can free up that drum slot to have both types of bass drum in one drumset) - C3
+VoiceDirect(MusicVoices,0x70,0x3c,0x05016D8,0x0,0x0,0x0,0xff,0xfc,0x0,0xe0)
+//113 GS square 50 - not vanilla, but included with installer by default
+VoiceDirect(MusicVoices,0x71,0x3c,GSSquare50,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//114 GS square 25 - not vanilla, but included with installer by default
+VoiceDirect(MusicVoices,0x72,0x3c,GSSquare25,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//115 GS square 12,5 - not vanilla, but included with installer by default
+VoiceDirect(MusicVoices,0x73,0x3c,GSSquare12p5,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+//116 melodic bass drum - C3
+VoiceDirect(MusicVoices,0x74,0x3c,0x0502CB4,0x0,0x0,0x0,0xff,0xfc,0x0,0xc0)
+//117 melodic tom (12's high mid tom) - C3
+VoiceDirect(MusicVoices,0x75,0x3c,0x0507D60,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//118 reverse cymbal (slow onset, same sample as 124's "Chinese cymbal") - C3
+VoiceDirect(MusicVoices,0x76,0x3c,0x04E7244,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//119 reverse cymbal (fast onset, same sample as 124's "ride bell". similar sound to 124's crash cymbal 2) - C3
+VoiceDirect(MusicVoices,0x77,0x3c,0x04F27CC,0x0,0x0,0x0,0xff,0x0,0xff,0xd0)
+//120
+VoiceDummy(MusicVoices,0x78)
+//121 drum kit
+VoiceDrum(MusicVoices,0x79,0x02231F0)
+//122 drum kit (duplicate of 127)
+VoiceDrum(MusicVoices,0x7a,0x0222FB0)
+//123 drum kit
+VoiceDrum(MusicVoices,0x7b,0x02226B0)
+//124 drum kit (rock band-ish; recommended for if you have a modern-style constant drum beat in the background)
+VoiceDrum(MusicVoices,0x7c,0x02228F0)
+//125 white noise
+VoiceDirect(MusicVoices,0x7d,0x3c,0x0516680,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//126 applause (fun to use as a background-noise special effect at lower or higher pitches, but also used in stuff like the FE8 arena entrance theme)
+VoiceDirect(MusicVoices,0x7e,0x3c,0x02AF0B0,0x0,0x0,0x0,0xff,0x0,0xff,0xa0)
+//127 drum kit (marching band-ish; recommended for if your drums mostly play flourishes, like drum rolls and cymbals)
+VoiceDrum(MusicVoices,0x7f,0x0222FB0)
+
+ORG MusicVoices+0x600
+
+//multi sample tables
+
+PianoTable:
+VoiceDirect(PianoTable,0x0,0x3c,0x0512AB8,0x0,0x0,0x0,0xff,0xfb,0x0,0xd0)
+VoiceDirect(PianoTable,0x1,0x3c,0x02A8068,0x0,0x0,0x0,0xff,0xfa,0x0,0xe4)
+VoiceDirect(PianoTable,0x2,0x3c,0x02A8068,0x0,0x0,0x0,0xff,0xf8,0x0,0xf0)
+ORG PianoTable+0x0c*3 //table size =3. Replace the 3 with however many entries your table has.
+
+OrganTable:
+VoiceDirect(OrganTable,0x0,0x3c,0x02903C8,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+VoiceDirect(OrganTable,0x1,0x3c,0x0293544,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+ORG OrganTable+0x0c*2
+
+Strings1Table:
+VoiceDirect(Strings1Table,0x0,0x3c,0x0247AE8,0x0,0x0,0x0,0x70,0x0,0xff,0x90)
+VoiceDirect(Strings1Table,0x1,0x3c,0x02367A8,0x0,0x0,0x0,0x90,0x0,0xff,0xc0)
+VoiceDirect(Strings1Table,0x2,0x3c,0x023F698,0x0,0x0,0x0,0xb0,0x0,0xff,0xc0)
+VoiceDirect(Strings1Table,0x3,0x3c,0x04D4684,0x0,0x0,0x0,0xff,0x0,0xff,0xd0)
+ORG Strings1Table+0x0c*4
+
+Strings2Table:
+VoiceDirect(Strings2Table,0x0,0x3c,0x022B4DC,0x0,0x0,0x0,0x80,0x0,0xff,0xa0)
+VoiceDirect(Strings2Table,0x1,0x3c,0x0233650,0x0,0x0,0x0,0x80,0x0,0xff,0xb0)
+VoiceDirect(Strings2Table,0x2,0x3c,0x02A0690,0x0,0x0,0x0,0xff,0x0,0xff,0xd0)
+ORG Strings2Table+0x0c*3
+
+ChoirTable:
+VoiceDirect(ChoirTable,0x0,0x3c,0x028DDD0,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+VoiceDirect(ChoirTable,0x1,0x3c,0x028CD70,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+ORG ChoirTable+0x0c*2
+
+TrumpetTable:
+VoiceDirect(TrumpetTable,0x0,0x3c,0x02CBE8C,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+VoiceDirect(TrumpetTable,0x1,0x3c,0x02CD7F4,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+ORG TrumpetTable+0x0c*2
+
+OboeTable:
+VoiceDirect(OboeTable,0x0,0x3c,0x04C4F6C,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+VoiceDirect(OboeTable,0x1,0x3c,0x027BBD0,0x0,0x0,0x0,0xff,0x0,0xff,0x80)
+ORG OboeTable+0x0c*2
+
+ClarinetTable:
+VoiceDirect(ClarinetTable,0x0,0x3c,0x02A7AA8,0x0,0x0,0x0,0xb0,0x0,0xff,0xb0)
+VoiceDirect(ClarinetTable,0x1,0x3c,0x0280AF0,0x0,0x0,0x0,0xd0,0x0,0xff,0xb0)
+VoiceDirect(ClarinetTable,0x2,0x3c,0x027E28C,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+ORG ClarinetTable+0x0c*3
+
+FluteTable:
+VoiceDirect(FluteTable,0x0,0x3c,0x04D373C,0x0,0x0,0x0,0xb0,0x0,0xff,0xb0)
+VoiceDirect(FluteTable,0x1,0x3c,0x027E640,0x0,0x0,0x0,0xd0,0x0,0xff,0xb0)
+ORG FluteTable+0x0c*2
+
+SynthleadTable:
+VoiceDirect(SynthleadTable,0x0,0x3c,0x02595BC,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+VoiceDirect(SynthleadTable,0x1,0x3c,0x0261150,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
+ORG SynthleadTable+0x0c*2
+
+SynthstringsTable:
+VoiceDirect(SynthstringsTable,0x0,0x3c,0x0281DD0,0x0,0x0,0x0,0xff,0x0,0xff,0xb0)
+VoiceDirect(SynthstringsTable,0x1,0x3c,0x04D1AD4,0x0,0x0,0x0,0xff,0x0,0xff,0xc0)
+ORG SynthstringsTable+0x0c*2
+
+
+//note charts
+
+//Note: if you don't want yet another file to include for each chart, you can just use BYTE commands to "write out" the charts.
+//for example: BYTE $00 $00 $00 $00 $00 $01 $01 $01 $02 $02 $02 etc. You can just copy and paste the bytes from the
+//note chart files included if you don't get it, or look at the readme for an example. Each byte is a note on the proverbial piano,
+//so you're telling the game "this instrument should use sample 0 for notes x thru y, sample 1 for y thru z, etc.
+
+PianoChart:
+ALIGN 4
+#incbin "note charts/notechart-piano.dmp"
+
+C1toC4Chart:
+ALIGN 4
+#incbin "note charts/notechart-c1toc4.dmp"
+
+C2toC3Chart:
+ALIGN 4
+#incbin "note charts/notechart-c2toc3.dmp"
+
+C2toC4Chart:
+ALIGN 4
+#incbin "note charts/notechart-c2toc4.dmp"
+
+C3toC4Chart:
+ALIGN 4
+#incbin "note charts/notechart-c3toc4.dmp"
+
+C3toC5Chart:
+ALIGN 4
+#incbin "note charts/notechart-c3toc5.dmp"
+
+C4toC5Chart:
+ALIGN 4
+#incbin "note charts/notechart-c4toc5.dmp"
+
+//sample data
+
+//"GS" instruments refer to the synth instruments used in Golden Sun, which can be used in your FE mod given you have ipatix's sound mixer installed.
+//The triangle and bass wave do not have any customiseable parameters, but you can use GSSquareMacro to make a square wave with custom parameters.
+//These samples are useful for emulating the sound of many GBA games, which use square waves alongside Direct samples to make their music.
+//Since using square waves in music is off limits in GBA FE because square waves are already used for sound effects, you can "cheat" by using these GS synths as if they were regular samples.
+//Refer to the readme for more information.
+
+GSTriangle:
+BYTE $00 $00 $00 $40 $20 $89 $05 $01 $00 $00 $00 $00 $00 $00 $00 $00 $80 $02 $00 $00
+
+GSSaw:
+BYTE $00 $00 $00 $40 $20 $89 $05 $01 $00 $00 $00 $00 $00 $00 $00 $00 $80 $01 $00 $00
+
+#define GSSquareMacro(InitialDutyCycle,CycleSpeed,CycleAmplitude,CycleOffset) "BYTE $00 $00 $00 $40 $20 $89 $05 $01 $00 $00 $00 $00 $00 $00 $00 $00 $80 $00 InitialDutyCycle CycleSpeed CycleAmplitude CycleOffset $00 $00"
+
+GSDance:
+GSSquareMacro(0x10,0xf0,0xe0,0x80)
+
+//GSDanceBass:
+//GSSquareMacro(0x60,0x20,0x30,0x80)
+
+GSSquare50:
+GSSquareMacro(0x80,0xf0,0x0,0x80)
+
+GSSquare25:
+GSSquareMacro(0x40,0xf0,0x10,0x80)
+
+GSSquare12p5:
+GSSquareMacro(0x20,0xf0,0x20,0x80)
+
+//SampleHeader macro for .sb samples converted from .wav
+#define SampleHeader(IsSampleLooped,SamplePitchAdjustment,SampleLoopPoint,SampleLength) "BYTE $00 $00 $00 IsSampleLooped*0x40; WORD SamplePitchAdjustment; WORD SampleLoopPoint; WORD SampleLength"
+
+#else
+ERROR You are not assembling FE8 events!
+#endif

@@ -1,0 +1,80 @@
+INLINE SupplyUsabilityTable,Pointer
+00 Prologue,0x00
+01 Ch 1,0x00
+02 Ch 2,Part1SupplyList|IsPointer
+03 Ch 3,Part1SupplyList|IsPointer
+04 Ch 4/Zaha Woods,Part1SupplyList|IsPointer
+05 Ch 5x,0x00
+06 Ch 5,0x00
+07 Ch 6/Adlas Plains,Part2SupplyList|IsPointer
+08 Ch 7,Part2SupplyList|IsPointer
+09 Ch 8,Part2SupplyList|IsPointer
+0A Ch 9 Eirika,0x00
+0B Ch 10 Eirika/Teras Plateau,0x00
+0C Ch 12 Eirika,0x00
+0D Ch 13 Eirika,0x00
+0E Ch 14 Eirika,0x00
+0F Ch 15 Eirika,0x00
+10 Ch 16 Eirika,0x00
+11 Ch 17 Eirika/Narube River,0x00
+12 Ch 18 Eirika/Neleras Peak,0x00
+13 Ch 19 Eirika,0x00
+14 Ch 20 Eirika,0x00
+15 Final Ch 1 Eirika,0x00
+16 Final Ch 2 Erika,0x00
+17 Ch 9 Ephraim,0x00
+18 Ch 10 Ephraim/Bethroen,0x00
+19 Ch 12 Ephraim,0x00
+1A Ch 13 Ephraim/Za'abadul Marsh,0x00
+1B Ch 14 Ephraim,0x00
+1C Ch 15 Ephraim,0x00
+1D Ch 16 Ephraim,0x00
+1E Ch 17 Ephraim/Narube River,0x00
+1F Ch 18 Ephraim/Neleras Peak,0x00
+20 Ch 19 Ephraim,0x00
+21 Ch 20 Ephraim,0x00
+22 Final Ch 1 Ephraim,0x00
+23 Final Ch 2 Ephraim,0x00
+24 Tower of Valni 1,0x00
+25 Tower of Valni 2,0x00
+26 Tower of Valni 3,0x00
+27 Tower of Valni 4,0x00
+28 Tower of Valni 5,0x00
+29 Tower of Valni 6,0x00
+2A Tower of Valni 7,0x00
+2B Tower of Valni 8,0x00
+2C Tower of Valni 8 (Cutscene),0x00
+2D Tower of Valni 8 (Cutscene 2),0x00
+2E Lagdou Ruins 1,0x00
+2F Lagdou Ruins 2,0x00
+30 Lagdou Ruins 3,0x00
+31 Lagdou Ruins 4,0x00
+32 Lagdou Ruins 5,0x00
+33 Lagdou Ruins 6,0x00
+34 Lagdou Ruins 7,0x00
+35 Lagdou Ruins 8,0x00
+36 Lagdou Ruins 9,0x00
+37 Lagdou Ruins 10,0x00
+38 Lords split up (glitchy map),0x00
+39 Melkaen Coast,0x00
+3A Link Arena,0x00
+3B The interesting map...,0x00
+3C Debug map,0x00
+3D Ch 11 Eirika,0x00
+3E Ch 11 Ephraim,0x00
+3F Grado castle,0x00
+40 Renais castle,0x00
+41 Caer Pelyn,0x00
+42 Renais throne,0x00
+43 Renais audience,0x00
+44 Renval gate,0x00
+45 Grado borders,0x00
+46 Grado prison,0x00
+47 Grado shrine (Past),0x00
+48 Renais shrine,0x00
+49 Some path,0x00
+4A Some building,0x00
+4B Another shrine,0x00
+4C Another path,0x00
+4D Grado shrine (Present),0x00
+4E Ch 5 town (Past),0x00

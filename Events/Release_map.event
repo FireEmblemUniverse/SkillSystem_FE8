@@ -233,22 +233,27 @@ LOAD1 0x0 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep s
 ENUN
 LOAD1 0x0 Units2
 ENUN
+CHECK_EVENTID 0x83
+BEQ 0x63 0xC 0x0
 LOAD1 0x0 MoreUnits
 ENUN
-// FADI 10
-// MOVE 0 Carlyle [7,10]
-// ENUN
-//   StartBattle //scripted fight setup
-//   MissedAttack(0,0) //Seth misses
-//   NormalDamage(1,0) //Valter hits
-//   EndAttack
-// FIG1 Carlyle Aias 0
-// STAL 60
-// FADU 10
 //GotoPrepScreen
+EnableFreeMovement
+LABEL 0x63
 NoFade
 ENDA
 
+TalkEvent:
+//SilentGiveItem1
+//SilentGiveItem1(Seth, Rapier)
+//SilentGiveItem2
+//TakeItemAll(SilverLance)
+//Text(0x9DD)
+ENUT 0x83
+MNC2 0
+
+NoFade
+ENDA
 
 
 EndingScene:
@@ -293,14 +298,7 @@ NoFade
 ENDA
 #endif // DRAGON_VEINS
 
-TalkEvent:
-//SilentGiveItem1
-//SilentGiveItem1(Seth, Rapier)
-//SilentGiveItem2
-//TakeItemAll(SilverLance)
-Text(0x9DD)
-NoFade
-ENDA
+
 
 ShopItems:
 SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir

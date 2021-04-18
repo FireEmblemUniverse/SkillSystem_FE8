@@ -3,6 +3,16 @@
 
 #define TABLE_DEFINITIONS
 
+/*
+#ifndef SoundRoomTable
+	#define SoundRoomTable 0xA20E74
+#endif
+
+#ifndef SoundTable
+	#define SoundTable 0x224470
+#endif
+*/
+
 #ifndef CharacterTable
     #define CharacterTable 0x803D30
 #endif
@@ -151,7 +161,7 @@
 #define ArmorType	0x01
 #define HorseType	0x02
 #define FlierType	0x04
-#define DragonType	0x08
+//#define DragonType	0x08
 #define MonsterType	0x10
 #define SwordType	0x20
 

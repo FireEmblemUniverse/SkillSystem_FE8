@@ -1,0 +1,87 @@
+// Procs and proc routines
+
+ALIGN 4
+Proc_ChIntro:
+#include "ChIntro/ChIntro.event"
+    ALIGN 4
+    GetAreaBG:
+    #include "ChIntro/GetAreaBG.lyn.event"
+    ALIGN 4
+    GetAreaBGPalette:
+    #include "ChIntro/GetAreaBGPalette.lyn.event"
+  ALIGN 4
+  SkipIntroCheck:
+  #include "ChIntro/SkipIntroCheck.lyn.event"
+  ALIGN 4
+  Init_AreaBG:
+  #include "ChIntro/Init_AreaBG.lyn.event"
+  ALIGN 4
+  PlaySfx:
+  #include "ChIntro/PlaySfx.lyn.event"
+  ALIGN 4
+  Init_BGSeg1:
+  #include "ChIntro/Init_BGSeg1.lyn.event"
+  ALIGN 4
+  Init_BGSeg2:
+  #include "ChIntro/Init_BGSeg2.lyn.event"
+  ALIGN 4
+  Init_Title:
+  #include "ChIntro/Init_Title.lyn.event"
+  ALIGN 4
+  Loop_Title:
+  #include "ChIntro/Loop_Title.lyn.event"
+  ALIGN 4
+  End_Seg2:
+  #include "ChIntro/End_Seg2.lyn.event"
+  ALIGN 4
+  FadeOutSfx:
+  #include "ChIntro/FadeOutSfx.lyn.event"
+  ALIGN 4
+  InitBattleMapBG:
+  #include "ChIntro/Init_BattleMapBG.lyn.event"
+  ALIGN 4
+  Loop_FadeIn:
+  #include "ChIntro/Loop_FadeIn.lyn.event"
+  ALIGN 4
+  Loop_FadeOut:
+  #include "ChIntro/Loop_FadeOut.lyn.event"
+  
+
+ALIGN 4
+Proc_ScrollVersusBG:
+#include "VersusBG/ScrollVersusBG.event"
+    ALIGN 4
+    GetVSBGPalIndex:
+    #include "VersusBG/GetVSBGPalIndex.lyn.event"
+  ALIGN 4
+  Init_VersusBG:
+  #include "VersusBG/Init_VersusBG.lyn.event"
+  ALIGN 4
+  Loop_ScrollInVersusBG:
+  #include "VersusBG/Loop_ScrollInVersusBG.lyn.event"
+  ALIGN 4
+  Loop_ScrollVersusBG:
+  #include "VersusBG/Loop_ScrollVersusBG.lyn.event"
+  
+
+ALIGN 4
+Proc_MapSprites:
+#include "MapSprites/MapSprites.event"
+  ALIGN 4
+  Proc_Dummy:
+  #include "MapSprites/Dummy/Dummy.event"
+  ALIGN 4
+  Init_MapSprites:
+  #include "MapSprites/Init_MapSprites.lyn.event"
+  ALIGN 4
+  Loop_MapSprites:
+  #include "MapSprites/Loop_MapSprites.lyn.event"
+    ALIGN 4
+    VRAMupdate:
+    #include "MapSprites/VRAMupdate.lyn.event"
+    ALIGN 4
+    DrawUnitCheck:
+    #include "MapSprites/DrawUnitCheck.lyn.event"
+    ALIGN 4
+    CalcMov:
+    #include "MapSprites/CalculateMovement.lyn.event"

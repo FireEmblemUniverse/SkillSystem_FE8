@@ -1,0 +1,40 @@
+
+ALIGN 16
+ArmorEffectiveness:
+BYTE Knight Knight_F General General_F GreatKnight GreatKnight_F Baron Knight2 Sentinel SentinelF Hector MasterKnightM MasterKnightF 0x0 0x0 0x0 0x0
+
+ALIGN 16
+HorseEffectiveness:
+BYTE Cavalier Cavalier_F Paladin Paladin_F Ranger Ranger_F MageKnight MageKnight_F Troubadour Valkyrie DarkKnightM DarkKnightF MasterKnightM MasterKnightF CavalierM2 CavalierF2 GreatKnight GreatKnight_F MountedBrigand GrandPaladin ShadeKnightM ShadeKnightF 0x0 0x0 0x0 0x0
+
+ALIGN 16
+ArmorHorseEffectiveness:
+BYTE Knight Knight_F General General_F GreatKnight GreatKnight_F Baron Knight2 Sentinel SentinelF Hector Cavalier Cavalier_F Paladin Paladin_F Ranger Ranger_F MageKnight MageKnight_F Troubadour Valkyrie DarkKnightM DarkKnightF MasterKnightM MasterKnightF CavalierM2 CavalierF2 MountedBrigand GrandPaladin ShadeKnightM ShadeKnightF 0x0 0x0 0x0 0x0
+
+ALIGN 16
+FlierEffectiveness:
+BYTE PegasusKnight FalcoKnight PegasusKnight2 BlackFalcoknight WyvernRider WyvernRider_F WyvernLord WyvernLord_F WyvernKnight WyvernKnight_F WyvernRider2 WyvernGeneral ArmoredWyvernLord MaligKnight 0x0 0x0 0x0 0x0
+
+ALIGN 16
+PegasusEffectiveness:
+BYTE PegasusKnight FalcoKnight PegasusKnight2 BlackFalcoknight 0x0 0x0 0x0 0x0
+
+ALIGN 16
+WyvernEffectiveness:
+BYTE WyvernRider WyvernRider_F WyvernLord WyvernLord_F WyvernKnight WyvernKnight_F WyvernRider2 WyvernGeneral ArmoredWyvernLord MaligKnight 0x0 0x0 0x0 0x0
+
+ALIGN 16
+SwordEffectiveness:
+BYTE Thief Mercenary Mercenary_F Hero Hero_F Myrmidon Myrmidon_F Swordmaster Swordmaster_F Assassin Assassin_F Rogue ChampionM ChampionF MercenaryM2 MercenaryF2 MyrmidonM2 MyrmidonF2 JacketHero Hector Truerblade ServiusClass EdgySwordmaster ChampionF SpellswordM SpellswordF DreadFighterM DreadFighterF BattleSageM BattleSageF Strategist SpellswordM2 SpellswordF2 Executioner TruebladeM TruebladeF 0x0 0x0 0x0 0x0
+
+ALIGN 16
+LanceEffectiveness:
+BYTE Knight Knight_F General General_F PegasusKnight FalcoKnight PegasusKnight2 BlackFalcoknight WyvernRider WyvernRider_F WyvernLord WyvernLord_F WyvernKnight WyvernKnight_F WyvernRider2 Soldier ImpalerM ImpalerF Baron Knight2 SoldierM2 SoldierF2 Halberdier Sentinel SentinelF 0x0 0x0 0x0 0x0
+
+ALIGN 16
+AxeEffectiveness:
+BYTE Hero Hero_F Fighter Warrior Brigand Pirate Berserker ChampionM ChampionF Warlock Gladiator Fighter2 Brigand2 Pirate2 JacketHero Gladiator MountedBrigand MaligKnight 0x0 0x0 0x0 0x0
+
+ALIGN 16
+MageEffectiveness:
+BYTE Mage Mage_F Sage Sage_F MageKnight MageKnight_F Bishop Bishop_F Shaman Shaman_F Druid Druid_F Summoner Summoner_F Monk Troubadour Valkyrie Patriarch Matriarch DarkKnightM DarkKnightF Magus MagusF MageM2 MageF2 ShamanM2 ShamanF2 MonkM2 MonkF2 GaidenSage IzukClass ShadeKnightM ShadeKnightF SpellswordM SpellswordF SpellswordM2 SpellswordF2 BattleSageM BattleSageF DreadFighterM DreadFighterF 0x0 0x0 0x0 0x0
