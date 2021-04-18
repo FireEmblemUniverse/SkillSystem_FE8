@@ -238,7 +238,7 @@ BEQ 0x63 0xC 0x0
 LOAD1 0x0 MoreUnits
 ENUN
 //GotoPrepScreen
-EnableFreeMovement
+//EnableFreeMovement
 LABEL 0x63
 NoFade
 ENDA
