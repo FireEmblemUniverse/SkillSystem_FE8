@@ -6,6 +6,13 @@
 push  {r4-r7,r14}
 mov   r5, r1
 
+@ Disable BG3
+ldr   r2, =gpDISPCNTbuffer
+ldrb  r3, [r2, #0x1]
+mov   r1, #0xF7
+and   r3, r1
+strb  r3, [r2, #0x1]
+
 @ Check if flag is set
 ldr   r4, =CheckFlag
 bl    GOTO_R4

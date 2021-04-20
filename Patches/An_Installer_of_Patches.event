@@ -1,4 +1,3 @@
-/*
 
 //#include "CasualMode.event"
 #include "SetUnitState.lyn.event"
@@ -14,7 +13,7 @@
 #include "FreeMovement/MakeShopASMC.lyn.event"
 
 
-*/
+
 
 #include "ModularSupply/ModularSupplyInstaller.event"
 
@@ -22,7 +21,7 @@
 
 #include "ChapterTransition/ChapterTransitionInstaller.event"
 
-/*
+
 
 // misc QoL
 #include "FillAIRangeMap Fix/FillAIDangerMap.event"
@@ -91,12 +90,10 @@
 
 
 
-//#include "MyHack/_Master Hack Installer.event"
+#include "MyHack/_Master Hack Installer.event"
 
 
 
-
-*/
 
 
 

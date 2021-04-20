@@ -2,8 +2,7 @@
 #define EndForceDeploy "SHORT 0xFFFF 0x00"
 
 ForceDeployList:
-ForceDeployEntry(Sanders,0xFF)
-ForceDeployEntry(Donnalen,0xFF)
+ForceDeployEntry(Eirika,0xFD)
 EndForceDeploy
 
 PUSH

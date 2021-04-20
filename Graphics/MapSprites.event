@@ -3,7 +3,7 @@
 PUSH
 
 #define SetSMS(index, size, graphics) "ORG NewStandingMapSpriteTable + (index)*8 + 2; BYTE size 0; POIN graphics"
-SetSMS($00, 2, m150Standing) //EphraimLord to Mewtwo
+//SetSMS($00, 2, m150Standing) //EphraimLord to Mewtwo
 /*
 
 SetSMS($01, 2, m1Standing)   //EirikaLord to Bulbasaur
@@ -174,11 +174,13 @@ SetSMS($97, 2, m151Standing)
 //i think duplicates need to be ignored.. eg. 7 and 8 paladin both use the same image address 
 
 #define SetMMS(index, graphics, another_ptr) "ORG NewMovingMapSpriteTable + (index-1)*8; POIN graphics another_ptr"
-SetMMS($01, r150Moving, $81fd028)
-SetMMS($02, r1Moving, $81fd028)
-SetMMS($03, r2Moving, $81fd028)
-SetMMS($04, r3Moving, $81fd028)
-SetMMS($05, r4Moving, $81E4EA4) 
+
+
+//SetMMS($01, r150Moving, $81fd028)
+//SetMMS($02, r1Moving, $81fd028)
+//SetMMS($03, r2Moving, $81fd028)
+//SetMMS($04, r3Moving, $81fd028)
+//SetMMS($05, r4Moving, $81E4EA4) 
 
 //todo: add the rest of the moving sprites
 

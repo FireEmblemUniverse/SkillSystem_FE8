@@ -8,97 +8,12 @@ ALIGN 4
 DeathQuoteTable:
 
 // Prologue
-ChapterDeathQuote(Batta,Prologue,DefeatBossFlag,PrologueBattaDeath)
-
-// Ch1
-ChapterDeathQuote(Derek_Boss,Ch1,DefeatBossFlag,Ch1DerekDeath)
-ChapterDeathQuote(Kekh,Ch1,0x0,Ch1KekhDeath)
-
-// Ch2
-ChapterDeathQuote(PriestUnit,Ch2,GameOverFlag,Ch2PriestDeath)
-ChapterDeathQuote(Batta,Ch2,0x9,Ch2BattaDeath)
-ChapterDeathQuote(ONeill,Ch2,0xA,Ch2ONeillDeath)
-
-// Ch3
-ChapterDeathQuote(Novala,Ch3,0x0,Ch3NovalaDeath)
-
-// Ch4
-ChapterDeathQuote(Todoroki,Ch4,0x0,Ch4TodorokiDeath)
-ChapterDeathQuote(Derek_Boss,Ch4,0x0,Ch4DerekDeath)
-ChapterDeathQuote(Eevster_NPC,Ch4,GameOverFlag,Ch4EevsterDeath)
-
-// Ch5
-ChapterDeathQuote(Batta,5,0x0,Ch5BattaDeath)
-ChapterDeathQuote(ONeill,5,0x0,Ch5ONeillDeath)
-ChapterDeathQuote(Kekh,5,0x0,Ch5KekhDeath)
-
-// Ch6
-ChapterDeathQuote(Monster_Boss,6,DefeatBossFlag,0x0)
-ChapterDeathQuote(Vergil,6,0x0,Ch6VergilDeath)
-
-// Ch7
-ChapterDeathQuote(Imperial,7,0xA,0x0)
-ChapterDeathQuote(Schezo_Boss,7,0x0,Ch7SchezoDeath)
-ChapterDeathQuote(Derek_Boss,7,0x0,Ch7DerekDeath)
-
-// Ch8
-ChapterDeathQuote(Tim,8,0xB,Ch8TimDeath)
-ChapterDeathQuote(Bit,8,0xC,Ch8BitDeath)
-
-// Ch9
-ChapterDeathQuote(Raydrik,9,0x0,Ch9RaydrikDeath)
-ChapterDeathQuote(Vergil,9,0x0,Ch9VergilDeath)
-ChapterDeathQuote(Gromell,9,0x0,Ch9GromellDeath)
-
-// Ch10
-ChapterDeathQuote(Imperial_Tent,10,0x9,0x0)
-ChapterDeathQuote(Todoroki,10,0x0,Ch10TodorokiDeath)
-
-// Ch11
-ChapterDeathQuote(Cedwick,11,DefeatBossFlag,Ch11CedwickDeath)
-
-// Ch12
-ChapterDeathQuote(Dark_Marlen,12,DefeatBossFlag,Ch12DarkMarlenDeath)
-
-// Ch13
-ChapterDeathQuote(Zane,13,0xA,TestDialogue)
-
-// Ch14
-ChapterDeathQuote(Viridian,14,0x0,TestDialogue)
-ChapterDeathQuote(Cedwick,14,0x0,TestDialogue)
-
-// Ch15
-ChapterDeathQuote(Hyde,15,DefeatBossFlag,TestDialogue)
+//ChapterDeathQuote(Eirika,Prologue,DefeatBossFlag,PrologueBattaDeath)
+ChapterDeathQuote(Eirika,0x0,0x00,0x00)
 
 // Always
-AlwaysDeathQuote(Sanders,GameOverFlag,SandersDeath)
-AlwaysDeathQuote(Finn,0x0,FinnDeath)
-AlwaysDeathQuote(Scott,0x0,ScottDeath)
-AlwaysDeathQuote(Marisa,0x0,MarisaDeath)
-AlwaysDeathQuote(Renge,0x0,RengeDeath)
-AlwaysDeathQuote(Oskar,0x0,OskarDeath)
-AlwaysDeathQuote(Blanc,0x0,BlancDeath)
-AlwaysDeathQuote(Wolt,0x0,WoltDeath)
-AlwaysDeathQuote(Arden,0x0,ArdenDeath)
-AlwaysDeathQuote(Sayori,0x0,SayoriDeath)
-AlwaysDeathQuote(Wrys,0x0,WrysDeath)
-AlwaysDeathQuote(Neptune,0x0,NeptuneDeath)
-AlwaysDeathQuote(Wilbell,0x0,WilbellDeath)
-AlwaysDeathQuote(Brian,0x0,BrianDeath)
-AlwaysDeathQuote(Otaku,0x0,OtakuDeath)
-AlwaysDeathQuote(Gohard,0x0,GohardDeath)
-AlwaysDeathQuote(Yandahl,0x0,YandahlDeath)
-AlwaysDeathQuote(Milanor,0x0,MilanorDeath)
-AlwaysDeathQuote(Guts,0x0,GutsDeath)
-AlwaysDeathQuote(Kohaku,0x0,KohakuDeath)
-AlwaysDeathQuote(Ky,0x0,KyDeath)
-AlwaysDeathQuote(Eevster,0x0,EevsterDeath)
-AlwaysDeathQuote(Derek,0x0,DerekDeath)
-AlwaysDeathQuote(Arle,0x0,ArleDeath)
-AlwaysDeathQuote(Jason,0x0,JasonDeath)
+//AlwaysDeathQuote(Sanders,GameOverFlag,SandersDeath)
 
-AlwaysDeathQuote(Donnalen,GameOverFlag,TestDialogue)
-AlwaysDeathQuote(Devvy,GameOverFlag,TestDialogue)
 EndQuote
 
 PUSH

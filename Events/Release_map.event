@@ -29,9 +29,9 @@ MemSlotMsg:
 String("[G][A]")
 BYTE 0
 
-#define EventsInPalletTownData $01
-
-#define EventsInRoute1Data $0B
+//#define EventsInPalletTownData $07
+//EventPointerTable(EventsInRoute1Data,ThisChapter)
+//#define EventsInRoute1Data $0B
 
 
 EventPointerTable(OaksLabCh,ThisChapter)
@@ -64,7 +64,6 @@ EventPointerTable(Route25Ch,ThisChapter)
 
 
 
-//EventPointerTable(EventsInRoute1Data,ThisChapter)
 
 
 ALIGN 4
@@ -233,12 +232,16 @@ LOAD1 0x0 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep s
 ENUN
 LOAD1 0x0 Units2
 ENUN
+
+//\r\n0\r\n\r\nNEHU\r\nNULL\r\n\r\n\r\n
+//EnableFreeMovement
+
 CHECK_EVENTID 0x83
 BEQ 0x63 0xC 0x0
 LOAD1 0x0 MoreUnits
 ENUN
 //GotoPrepScreen
-//EnableFreeMovement
+
 LABEL 0x63
 NoFade
 ENDA

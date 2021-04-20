@@ -7,4 +7,5 @@ defWeaponDebuffs(0,0,4,0,4,4,0) //0x4: Silver Shuriken debuff.
 defWeaponDebuffs(4,0,4,0,4,4,0) //0x5: Pebble debuff.
 
 
-#include "Manual/Movement Costs.event"
+
+#include "Manual/_Master Manual Table Installer.event"
