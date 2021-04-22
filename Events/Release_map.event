@@ -22,12 +22,7 @@ NewChName:
 String("Pallet Town")
 BYTE 0
 
-setText(0x9DD, MemSlotMsg)
 
-ALIGN 4
-MemSlotMsg:
-String("[G][A]")
-BYTE 0
 
 //#define EventsInPalletTownData $07
 //EventPointerTable(EventsInRoute1Data,ThisChapter)
@@ -96,6 +91,7 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
+AFEV 0 TalkEvent 0
 END_MAIN
 
 Dunno1:
@@ -176,11 +172,11 @@ UNIT
 */
 
 EnemyUnits:
-UNIT Morva_Ch20 0x3B 0x40 0xA5    [0,1] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
+UNIT Morva_Ch20 0x3B 0x40 0xA5    [8,7] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
+UNIT ONeill Fighter 0x40 0xA5     [8,14] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
 UNIT
 
 /*
-UNIT ONeill Fighter 0x40 0xA5     [8,19] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
 UNIT Breguet Knight 0x40 0xA5     [5,18] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
 UNIT Bone Brigand 0x40 0xA5       [11,17] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
 UNIT Bazba Brigand 0x40 0xA5      [16,18] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
@@ -194,7 +190,7 @@ UNIT
 */
 
 EnemyUnits2:
-UNIT Vigarde General 0x40 0xA5    [0,2] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
+UNIT Vigarde General 0x40 0xA5    [3,3] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
 UNIT
 
 /*
@@ -251,10 +247,20 @@ TalkEvent:
 //SilentGiveItem1(Seth, Rapier)
 //SilentGiveItem2
 //TakeItemAll(SilverLance)
-//Text(0x9DD)
-ENUT 0x83
-MNC2 0
 
+
+LABEL 0
+SVAL rC 0x0 
+CHECK_COORDS 0x0103
+SADD rB rC r0 
+//MemSlotToString(rB)
+//ASMC GetNthUnit 
+//ASMC CheckInDanger
+//SADD r2 rC r0
+SVAL r1 0x4
+//ASMC GetNthUnitID
+
+Text(0x9DD)
 NoFade
 ENDA
 

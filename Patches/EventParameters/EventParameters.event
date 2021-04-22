@@ -9,6 +9,7 @@
 	// Compiled C source.
 	ALIGN 4
 	#include "EventParameters.lyn.event"
+	#include "GetNthUnitInstaller.event"
 	
 	#define EventParameter(key,function) "WORD key ; POIN function|1"
 	
@@ -20,6 +21,12 @@
 	EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
 	EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
 	
+	EventParameter(0x0101,Get1stUnit)
+	EventParameter(0x0102,Get2ndUnit)
+	EventParameter(0x0103,Get3rdUnit)
+	EventParameter(0x0104,Get4thUnit)
+	EventParameter(0x0105,Get5thUnit)
+	EventParameter(0x0106,Get6thUnit)
 	// Custom ones can go here.
 	//EventParameter(-4,EventParameterGetUnit) // Get the first character struct. Uncomment for this functional test entry.
 	

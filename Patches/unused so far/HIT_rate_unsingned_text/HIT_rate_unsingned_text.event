@@ -1,0 +1,18 @@
+//HITレートだけは、signedでは桁が足りないので、unsignedで出力する必要がある.
+//しかしながら、SkillSystemsが既存の関数を乗っ取って signed に書き換えているので、
+//別途、制作する必要がある.
+
+#ifndef jumpToHack
+//Takes 0x8 bytes
+#define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+#endif
+
+PUSH
+ORG $1E980
+jumpToHack(HIT_rate_unsingned_text)
+POP
+
+
+ALIGN 4
+HIT_rate_unsingned_text:
+#incbin "HIT_rate_unsingned_text.dmp"

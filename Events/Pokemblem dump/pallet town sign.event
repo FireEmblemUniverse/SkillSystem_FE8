@@ -1,0 +1,24 @@
+
+////////////////////////////////////////////////////
+//                                                //
+// Disassembled with Nintenlord's Event Assembler //
+// Version: 11.1.0.0                              //
+// Game: FE8                                      //
+// File: fe8_pokemblem.event_assembler.gba        //
+// Offset: $142F7EC                               //
+//                                                //
+////////////////////////////////////////////////////
+
+
+
+ORG $142F7EC
+CUMO [9,11]
+TUTORIALTEXTBOXSTART
+SVAL 0xB 0xFFFFFFFF
+TEXTSHOW 0x9F5
+TEXTEND
+REMA
+CURE
+EVBIT_T 0x7
+ENDA
+

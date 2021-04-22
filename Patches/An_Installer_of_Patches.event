@@ -4,6 +4,7 @@
 #include "EventParameters/EventParameters.event"
 #include "GroupAI/GroupAI.event"
 
+#include "FixedDamageWeapons/FixedDamageWeaponsInstaller.event"
 
 
 #include "EscapeArrive/EscapeMenu/EA.txt"
@@ -37,12 +38,28 @@
 #include "AutosaveKiller.event"
 //#include "CasualModeMenu2/CasualModeInstaller.event"
 
+/*
+	mov r0, #0
+	ldr r1, =MemorySlot3
+	str r0, [r1]
+	@[0x30004C4]!!?
+	
+	mov r1, #0x34 
+blh DivisionRoutine @ 0x080D18FC
 
 
+*/
 
 
+//	@ldsh r0, [ r4, r1 ] @ Character ID. Load signed in case 0xFFFF and co were passed in.
+//@blh GetUnitByEventParameter, r1 @ r0 = character struct.
+	
 
 // Commands
+
+#include "Commands/GetNthUnit/GetNthUnitInstaller.event"
+#include "Commands/CheckInDanger/CheckInDangerInstaller.event"
+
 #include "Commands/GameOptionInstaller.event"
 
 #include "Commands/CallMenu.lyn.event"
@@ -90,7 +107,7 @@
 
 
 
-#include "MyHack/_Master Hack Installer.event"
+//#include "MyHack/_Master Hack Installer.event"
 
 
 

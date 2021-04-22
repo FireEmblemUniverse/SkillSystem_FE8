@@ -21,6 +21,9 @@ POIN FaireCheck HolyAura
 POIN BreakerCheck MageSlayer
 POIN BlowCheck
 POIN DefendingCheck
+
+POIN FixedDamageWeapons
+
 #ifdef LEADERSHIP_STARS
   POIN LeadershipHook
 #endif //LEADERSHIP_STARS

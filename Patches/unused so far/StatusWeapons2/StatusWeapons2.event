@@ -1,0 +1,17 @@
+#ifndef __Proc_StatusWeapons2__
+#define __Proc_StatusWeapons2__
+
+ALIGN 4
+Proc_StatusWeapons2:
+#incbin "StatusWeapons2.dmp"
+
+ALIGN 4
+StopCounter:
+#incbin "stopCounter.dmp"
+
+PUSH
+ORG 0x2B8E0
+jumpToHack(StopCounter)
+POP
+
+#endif //__Proc_StatusWeapons2__

@@ -1,1 +1,15 @@
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
 #include "MemSlotString.lyn.event"
+
+#define MemSlotToString(SlotID) "BYTE 0x40 0x0D; BYTE SlotID; BYTE 0x00; POIN MemSlotString|1"
+//#define LoseItem(ITEM) "BYTE 0x40 0x0D ; SHORT ITEM ; POIN item_collect|1;"
+
+
+//#define SilentGiveItem1(UnitIDx, ItemIDx) "BYTE 0x40 0x0D; UnitIDx; ItemIDx; SilentGiveItem"
+
+//EVENTSCRIPT:1=400DYY00{$L1:ASMC_MemorySlotToString.dmp}	[YY:MEMORYSLOT:メモリスロット]の値を文字列に変換
+
