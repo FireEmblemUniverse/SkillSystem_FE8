@@ -27,6 +27,20 @@
 	EventParameter(0x0104,Get4thUnit)
 	EventParameter(0x0105,Get5thUnit)
 	EventParameter(0x0106,Get6thUnit)
+	
+	EventParameter(0x0201,Get1stFreeUnit)
+	EventParameter(0x0202,Get2ndFreeUnit)
+	EventParameter(0x0203,Get3rdFreeUnit)
+	EventParameter(0x0204,Get4thFreeUnit)
+	EventParameter(0x0205,Get5thFreeUnit)
+	EventParameter(0x0206,Get6thFreeUnit)
+	
+	
+	
+	
+	
+	
+	
 	// Custom ones can go here.
 	//EventParameter(-4,EventParameterGetUnit) // Get the first character struct. Uncomment for this functional test entry.
 	

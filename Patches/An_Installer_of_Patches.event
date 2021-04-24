@@ -25,6 +25,7 @@
 
 
 // misc QoL
+#include "BugFixes/BugFixesInstaller.event" 
 #include "FillAIRangeMap Fix/FillAIDangerMap.event"
 #include "TutorialDisabler.event"
 #include "Less Annoying Fog/Less Annoying Fog Installer.event"
@@ -57,6 +58,7 @@ blh DivisionRoutine @ 0x080D18FC
 
 // Commands
 
+#include "Commands/UNCMv2/UNCMv2Installer.event"
 #include "Commands/GetNthUnit/GetNthUnitInstaller.event"
 #include "Commands/CheckInDanger/CheckInDangerInstaller.event"
 

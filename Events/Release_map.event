@@ -250,9 +250,17 @@ TalkEvent:
 
 
 LABEL 0
-SVAL rC 0x0 
-CHECK_COORDS 0x0103
-SADD rB rC r0 
+
+
+
+//SVAL r1 0x0102 	//2nd possible player unit 
+//SVAL r3 0x2		//Moved
+//ASMC UNCM
+UNCM(0x102, 0x42, 0x01)
+
+
+//CHECK_COORDS 0x0201
+//SADD rB rC r0 
 //MemSlotToString(rB)
 //ASMC GetNthUnit 
 //ASMC CheckInDanger
@@ -261,6 +269,9 @@ SVAL r1 0x4
 //ASMC GetNthUnitID
 
 Text(0x9DD)
+UNCF(0x103, 0x20)
+UNCR(0x102, 0x40)
+
 NoFade
 ENDA
 

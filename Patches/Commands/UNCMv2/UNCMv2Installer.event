@@ -1,0 +1,22 @@
+#include "UNCMv2.lyn.event"
+
+
+
+
+
+//#define UNCM(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCM"
+#define UNCR(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCR"
+#define UNCF(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCF"
+
+//#define UNCM(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCM"
+#define UNCM(UnitID, StatusW, Test) "SVAL 1 UnitID; SVAL 2 StatusW; BYTE 0x40 0x0D Test 0x00; POIN UNCM"
+
+
+
+//#define MemSlotToString(SlotID) "BYTE 0x40 0x0D; BYTE SlotID; BYTE 0x00; POIN MemSlotString|1"
+//#define GiveEXP(xcoord, ycoord, EXP) "SVAL 0xB Coords(xcoord,ycoord); BYTE 0x4B 0x0D 0x0 EXP ; POIN give_exp_Install|1"
+
+
+//#define SilentGiveItem1(Unit, Item) "SVAL 1 Unit; SVAL 2 Item; ASMC SilentGiveItem"
+
+

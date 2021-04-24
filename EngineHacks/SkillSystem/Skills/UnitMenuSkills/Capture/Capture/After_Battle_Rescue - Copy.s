@@ -38,43 +38,23 @@
 	ldrb	r0,[r4,#0x13]		@is defender dead?
 	cmp		r0,#0x0
 	bne End
-	
-	
-	
-	@r4=defender 
-	@if defender dead and captured:
-	
+
+	@if defender dead and capturing:
+
 	ldrb	r7,[r4,#0xB]		@defender allegiance
 	ldr		r0,Get_Unit_Data
 	mov		r14,r0
 	mov		r0,r7
 	.short	0xF800
 	mov r7, r0
-	
+
 	ldr		r0,Write_Rescue_Data
 	mov		r14,r0
 	mov		r0,r5
 	mov		r1,r7
 	.short	0xF800
-
 	
-	
-	mov 	r0, #0 			@make into player maybe?
-	@strb	r0,[r5,#0x1B] @allegiance byte 
-	strb	r0,[r4,#0x1B] @allegiance byte 
-
-	
-	ldrb 	r0, [r4, #0xC]
-	mov		r1,#0x08 @remove 'Dead' flag 
-	mvn		r1,r1
-	and		r0,r1
-	str		r0, [r4, #0xC]
-
-	mov 	r0, #5
-	strb 	r0,[r4,#0x13]	@give defender 5 hp 
-	
-	mov 	r7, #0 @captured do not drop items 
-
+	mov		r7,#0x0				@captured units don't drop anything
 	b End
 
 NotCapture:

@@ -12,36 +12,34 @@
 	.equ GetUnitByEventParameter, 0x0800BC50
 
 
-	.global Get4thUnit
-	.type   Get4thUnit, function
+	.global Get1stFreeUnit
+	.type   Get1stFreeUnit, function
 
-Get4thUnit:
+Get1stFreeUnit:
 	push {r4-r7, lr}	
 
 mov r4,#1 @ current deployment id
 mov r5,#0 @ counter
 
-mov r6, #4
+mov r6, #1
 
 LoopThroughUnits:
 mov r0,r4
 blh GetUnit @ 19430
-cmp r0,#0
+mov r1, r0 
+mov r0, #0
+cmp r1,#0
 beq NextUnit
-ldr r3,[r0]
+ldr r3,[r1]
 cmp r3,#0
 beq NextUnit
-ldr r1,[r0,#0xC] @ condition word
-mov r2,#0xC @ benched/dead
-tst r1,r2
+ldr r3,[r1,#0xC] @ condition word
+mov r2,#0x4F @ hide/moved/dead/undeployed/cantoing 
+tst r3,r2
 bne NextUnit
 @ if you got here, unit exists and is not dead or undeployed, so go ham
 @r0 is Ram Unit Struct 
-
-@ldr r1, [r0] @r1 is Rom Character Pointer 
-@ldrb r2, [r1, #4] @Unit ID 
-@ldr r3, =MemorySlot 
-@str r2, [r3, #4*0x0A]
+mov r0, r1 
 
 add r5,#1
 cmp r5,r6

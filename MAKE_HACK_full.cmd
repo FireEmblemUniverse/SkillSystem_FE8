@@ -10,7 +10,7 @@ set "source_rom=%~dp0FE8_clean.gba"
 
 set "main_event=%~dp0ROMBuildfile.event"
 
-set "target_rom=%~dp0FEHack.gba"
+set "target_rom=%~dp0FE8Hack.gba"
 set "target_ups=%~dp0MyHack.ups"
 
 @rem defining tools
