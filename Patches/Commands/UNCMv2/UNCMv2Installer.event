@@ -8,8 +8,8 @@
 #define UNCR(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCR"
 #define UNCF(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCF"
 
-//#define UNCM(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCM"
-#define UNCM(UnitID, StatusW, Test) "SVAL 1 UnitID; SVAL 2 StatusW; BYTE 0x40 0x0D Test 0x00; POIN UNCM"
+#define UNCM(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCM"
+//#define UNCM(UnitID, StatusW, Test) "SVAL 1 UnitID; SVAL 2 StatusW; BYTE 0x40 0x0D Test 0x00; POIN UNCM"
 
 
 

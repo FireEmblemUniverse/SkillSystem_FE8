@@ -1,7 +1,9 @@
 
 //#include "CasualMode.event"
 #include "SetUnitState.lyn.event"
-#include "EventParameters/EventParameters.event"
+
+//#include "EventParameters/EventParameters.event"
+
 #include "GroupAI/GroupAI.event"
 
 #include "FixedDamageWeapons/FixedDamageWeaponsInstaller.event"

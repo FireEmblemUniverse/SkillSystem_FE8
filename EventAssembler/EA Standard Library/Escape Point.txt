@@ -1,12 +1,16 @@
 //Escape Point Macro
 #ifdef _FE7_
 
+#ifndef _FE7J_
+
 #ifndef EscapePointTableOffset
 #define EscapePointTableOffset 0xB97100
 #endif
 
 #ifndef NPCEscapePointTableOffset
 #define NPCEscapePointTableOffset 0xB971C0
+#endif
+
 #endif
 
 #endif

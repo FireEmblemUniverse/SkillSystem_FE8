@@ -69,6 +69,16 @@
 #define DunnoFlag2 8
 #endif
 
+#ifdef _FE8_
+
+// LOAD parameters
+
+#define LoadAlive    0
+#define LoadAll      1
+#define LoadCutscene 2
+
+#endif
+
 //Unit condition helpers
 #ifdef _FE7_
 #define Visible 1
@@ -84,15 +94,17 @@
 
 //Warp effect, under construction
 #ifdef _FE7_
+#ifndef _FE7J_
 #define WarpIn(Char,Class,X,Y)	"WARP [X,Y] 1; LOEV Char Class [X,Y]; _ASM0x42 $20AB9"
 #define WarpIn(UnitPtr,X,Y)		"WARP [X,Y] 1; LOU1 UnitPtr; _ASM0x42 $20AB9"
 #define WarpOut(X,Y)			"WARP [X,Y] 0; DISA [X,Y]; _ASM0x42 $20AB9"
 #define WarpOut(Char)			"WARP Char  0; DISA Char; _ASM0x42 $20AB9"
 #endif
+#endif
 
 #ifdef _FE8_
-#define WarpIn(Char,X,Y)		"_SETVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
-#define WarpOut(Char,X,Y)		"_SETVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
+#define WarpIn(Char,X,Y)		"SVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
+#define WarpOut(Char,X,Y)		"SVAL 2 Char; _WARP -1 -3 [X,Y]; CALL $9EE4F8"
 #endif
 
 
@@ -126,27 +138,27 @@
 #endif
 
 #ifdef _FE8_
-#define StartBattle                           "_SETVAL 0xD 0x0"
-#define NormalDamage(combatantNumber,damage)  "_SETVAL 1 combatantNumber+damage*0x100;            SAVETOQUEUE"
-#define CriticalHit(combatantNumber,damage)   "_SETVAL 1 combatantNumber+damage*0x100+0x00010000; SAVETOQUEUE"
-#define MissedAttack(combatantNumber,damage)  "_SETVAL 1 combatantNumber+damage*0x100+0x00020000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00040000; SAVETOQUEUE"
-#define Silencer(combatantNumber,damage)      "_SETVAL 1 combatantNumber+damage*0x100+0x00080000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00100000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x00200000; SAVETOQUEUE"
-#define SureShot(combatantNumber,damage)      "_SETVAL 1 combatantNumber+damage*0x100+0x00400000; SAVETOQUEUE"
-#define Poison(combatantNumber,damage)        "_SETVAL 1 combatantNumber+damage*0x100+0x00400000; SAVETOQUEUE"
-#define DevilReversal(combatantNumber,damage) "_SETVAL 1 combatantNumber+damage*0x100+0x00800000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x01000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x02000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x04000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x08000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x10000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x20000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x40000000; SAVETOQUEUE"
-//#define Unknown(combatantNumber,damage)     "_SETVAL 1 combatantNumber+damage*0x100+0x80000000; SAVETOQUEUE"
-#define Pierce(combatantNumber,damage)        "_SETVAL 1 combatantNumber+damage*0x100+0xC0000000; SAVETOQUEUE"
-#define EndAttack                             "_SETVAL 1 0xFFFFFFFF;                              SAVETOQUEUE"
+#define StartBattle                           "SVAL 0xD 0x0"
+#define NormalDamage(combatantNumber,damage)  "SVAL 1 combatantNumber+damage*0x100;            SAVETOQUEUE"
+#define CriticalHit(combatantNumber,damage)   "SVAL 1 combatantNumber+damage*0x100+0x00010000; SAVETOQUEUE"
+#define MissedAttack(combatantNumber,damage)  "SVAL 1 combatantNumber+damage*0x100+0x00020000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x00040000; SAVETOQUEUE"
+#define Silencer(combatantNumber,damage)      "SVAL 1 combatantNumber+damage*0x100+0x00080000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x00100000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x00200000; SAVETOQUEUE"
+#define SureShot(combatantNumber,damage)      "SVAL 1 combatantNumber+damage*0x100+0x00400000; SAVETOQUEUE"
+#define Poison(combatantNumber,damage)        "SVAL 1 combatantNumber+damage*0x100+0x00400000; SAVETOQUEUE"
+#define DevilReversal(combatantNumber,damage) "SVAL 1 combatantNumber+damage*0x100+0x00800000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x01000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x02000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x04000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x08000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x10000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x20000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x40000000; SAVETOQUEUE"
+//#define Unknown(combatantNumber,damage)     "SVAL 1 combatantNumber+damage*0x100+0x80000000; SAVETOQUEUE"
+#define Pierce(combatantNumber,damage)        "SVAL 1 combatantNumber+damage*0x100+0xC0000000; SAVETOQUEUE"
+#define EndAttack                             "SVAL 1 0xFFFFFFFF;                              SAVETOQUEUE"
 #endif
 
 //Battle data helpers
@@ -213,15 +225,24 @@
 #define Rescue(char,rescuer) "DISA char; ENUN; UNCM rescuer 0x10; STAL 0x10"
 #define Drop(UnitPtr,Rescuer) "LOU1 UnitPtr; ENUN; UNCR Rescuer 0x10; ENUN" //Reload character in new position.
 #define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
+#ifndef _FE7J_
 #define UnitsInvisible "ASMC 0x7A939; ASMC 0x7A9D5"
 #define PromoteMainChar "ASMC 0x79AF5"
 #define UnitClear "ASMC $7A8B9"
 #define ClearAllUnits "ASMC 0x7A8B9"
 #define LevelMerlinus "ASMC 0x79B5D"
+#endif
 #define FancyAssasinEntry(X,Y) "_0xE3 0xCB401C [X*0x10-1,Y*0x10-1]; SOUN 0x2F6"
 #define FancyThiefEntry(X,Y) "_0xE3 0xCAE5F8 [X*0x10-1,Y*0x10-1]; SOUN 0x2F6"
 #endif
 
+#ifdef _FE7J_
+#define UnitsInvisible "ASMC 0x7B3AD; ASMC 0x7B449"
+#define PromoteMainChar "ASMC 0x7A569"
+#define UnitClear "ASMC $7B32D"
+#define ClearAllUnits "ASMC 0x7B32D"
+#define LevelMerlinus "ASMC 0x7A5D1"
+#endif
 
 #ifdef _FE8_
 #define MoveOff(char,X,Y) "MOVE char [X,Y]; ENUN; DISA char"
@@ -234,11 +255,13 @@
 
 //Death quotes by events macro
 #ifdef _FE7_
+#ifndef _FE7J_
 #ifndef DQTableOffset
 #define DQTableOffset 0xC9F2EC
 #endif
 #ifndef BQTableOffset
 #define BQTableOffset 0xC9EDA0
+#endif
 #endif
 
 #define DeathQuoteTable(index,Character,Chapter,TextPointer,EventPointer,TriggerID) "PUSH; ORG DQTableOffset+(16*index); BYTE Character Chapter 0x0 0x0; SHORT TextPointer 0x0; POIN EventPointer; BYTE TriggerID 0x0 0x0 0x0; POP"

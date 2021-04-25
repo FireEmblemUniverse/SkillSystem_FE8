@@ -55,11 +55,11 @@ UNIT, 0, 160, -game:FE8 -priority:unit
 UNIT, 0, 160, -game:FE8 -priority:unit
 	CharId, 0, 8
 	ClassId, 8, 8
-	LeaderId, 16, 8
 	LevelAllAuto, 24, 8
 	Position, 32, 12, -coordinate:2 -preferredBase:10
 	Flags, 44, 12, -preferredBase:2
 	Items, 96, 32, -coordinate:1-4
+	AI, 128, 32, -coordinate:1-4
 
 # no reda, no ai
 UNIT, 0, 160, -game:FE8 -priority:unit

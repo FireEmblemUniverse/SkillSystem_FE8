@@ -78,7 +78,7 @@ TurnBasedEvents:
 END_MAIN
 
 CharacterBasedEvents:
-CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)
+//CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)
 END_MAIN
 
 LocationBasedEvents:
@@ -256,7 +256,7 @@ LABEL 0
 //SVAL r1 0x0102 	//2nd possible player unit 
 //SVAL r3 0x2		//Moved
 //ASMC UNCM
-UNCM(0x102, 0x42, 0x01)
+//UNCM(0x102, 0x42, 0x01)
 
 
 //CHECK_COORDS 0x0201
@@ -265,12 +265,23 @@ UNCM(0x102, 0x42, 0x01)
 //ASMC GetNthUnit 
 //ASMC CheckInDanger
 //SADD r2 rC r0
-SVAL r1 0x4
 //ASMC GetNthUnitID
+/*
+SVAL r2 0x2 
+SCOORD rB [5, 6]
+CUSE(0xFFFD)
 
+SCOORD rB [5, 7]
+SVAL r2 0xF 
+UNCM(0xFFFD, 0x0D)
+*/
+
+SCOORD rB [5, 7]
+//SetBadStatus(0xFFFE, 0x55)
+GetUnitStatus(0x02, LanceExp)
+SADD r6 rC r0 
 Text(0x9DD)
-UNCF(0x103, 0x20)
-UNCR(0x102, 0x40)
+
 
 NoFade
 ENDA

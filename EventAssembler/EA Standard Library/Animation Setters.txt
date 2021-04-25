@@ -4,7 +4,9 @@
     #define ClassTable 0x807110
   #endif
   #ifdef _FE7_
+  #ifndef _FE7J_
     #define ClassTable 0xBE015C
+  #endif
   #endif
   //FE6 not supported as the macro is different
 #endif

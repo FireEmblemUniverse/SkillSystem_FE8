@@ -3,12 +3,22 @@
 #include "EAstdlib.event"
 #include "Extensions/Hack Installation.txt"
 
+#include "SetBadStatus.lyn.event"
 
+
+#define SetBadStatus(UnitID, StatusByte) "SVAL 1 UnitID; SVAL 3 StatusByte; ASMC SetBadStatus"
+
+
+
+
+/*
 ALIGN 4
 change_bad_status2:
 #incbin "change_bad_status2.dmp" 
 
 #define BadStatus(UNIT, BADSTATUS) "BYTE 0x40 0x0D UNIT BADSTATUS ; POIN change_bad_status2|1;"
+
+*/
 
 #else
     ERROR This version of Selection Quotes is for FE8!

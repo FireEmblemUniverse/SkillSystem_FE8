@@ -70,8 +70,6 @@ BLT, 0x0C45, 8, -game:FE8 -indexMode:8
 ## Calls native/ASM function (arg r0 = event engine proc)
 ASMC, 0x0D40, 8, -game:FE8 -repeatable -indexMode:8
 	Offset, 4, 4, -pointer:ASM
-	
-
 
 ## Return to title screen
 GOTO_TITLE, 0x2A20, 4, -game:FE8 -indexMode:8

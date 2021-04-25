@@ -27,8 +27,8 @@
 #define TurnEventPlayer(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 0"
 #define TurnEventEnemy(eventID,pointer,turn) "TURN eventID pointer [turn, 0] 8"
 #define TurnEventEnemy(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn+amountOfTurns-1] 8"
-#define TurnEventNPC(eventID,pointer,turn) "TURN eventID pointer [startTurn, 0] 0x24 0x00"
-#define TurnEventNPC(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn +amountOfTurns-1] 0x24 0x00"
+#define TurnEventNPC(eventID,pointer,turn) "TURN eventID pointer [startTurn, 0] 0x4"
+#define TurnEventNPC(eventID,pointer,startTurn,amountOfTurns) "TURN eventID pointer [startTurn, startTurn +amountOfTurns-1] 0x4"
 #define Survive(pointer,endturn) "TURN 0x00 pointer [endturn, 0] 0"
 #define OpeningTurnEvent(pointer) "TURN 0x00 pointer [1,0] 0"
 #endif
@@ -100,9 +100,18 @@
 #endif
 
 #ifdef _FE7_
+#ifndef _FE7J_
 #define CauseGameOverIfLordDies "AFEV 0 0xCA749C 0x65"
+#endif
 #define DefeatBoss(offset) "AFEV 0 offset 2"
+#ifndef _FE7J_
 #define DefeatAll(offset) "ASME 0 offset $79FE9"
+#endif
+#endif
+
+#ifdef _FE7J_
+#define CauseGameOverIfLordDies "AFEV 0 0xD6F71C 0x65"
+#define DefeatAll(offset) "ASME 0 offset $7AA5D"
 #endif
 
 #ifdef _FE8_
