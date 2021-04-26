@@ -14,16 +14,16 @@
 	.equ MemorySlot, 0x30004B8 
 	.equ GetUnitByEventParameter, 0x0800BC51
 	
-	.global GetUnitStatus
-	.type   GetUnitStatus, function
+	.global SetUnitStatus
+	.type   SetUnitStatus, function
 
-GetUnitStatus:
+SetUnitStatus:
 	push	{r4-r7,lr}
 
 
 
 	ldr		r7, =MemorySlot 
-	ldr 	r4, [r7, #4*0x03]	@What status do we get?
+	ldr 	r4, [r7, #4*0x03]	@What status do we set?
 	
 	ldr 	r0, [r7, #4*0x01]	@What unit are we examining?
 	blh 	GetUnitByEventParameter
@@ -31,7 +31,10 @@ GetUnitStatus:
 	cmp 	r5, #0x0
 	beq 	Error
 	
-
+	ldr 	r3, [r7, #4*0x05]	@What value are we storing? 
+		
+	
+								@How much data do we store? 
 	ldr 	r6, [r7, #4*0x04]	@LowerNibble, UpperNibble, Byte, Short, or WORD ? 
 	mov 	r1, #0x60
 	cmp		r4, r1 
@@ -51,26 +54,26 @@ GetUnitStatus:
 	b 		Error 
 	
 	LowerNibble:
-	ldrb 	r0, [r5, r4] 
-	mov  r2,#0xf
-	and  r0, r2
+	mov  	r2,#0xf
+	and  	r3, r2
+	strb 	r3, [r5, r4] 
 	b 		Return
 	
 	UpperNibble:
-	ldrb 	r0, [r5, r4] 
-	lsr  r0, #0x4      @ >>4
+	lsr  	r3, #0x4      @ >>4
+	strb 	r3, [r5, r4] 
 	b 		Return	
 
 	Byte:
-	ldrb 	r0, [r5, r4] 
+	strb 	r3, [r5, r4] 
 	b 		Return	
 	
 	Short: 
-	ldrh 	r0, [r5, r4] 
+	strh 	r3, [r5, r4] 
 	b 		Return	
 	
 	Word: 
-	ldr 	r0, [r5, r4] 
+	str 	r3, [r5, r4] 
 	b 		Return	
 
 
@@ -78,12 +81,11 @@ GetUnitStatus:
 Error:
 	mov r0, #0
 	str	r0, [r7, #4*0x0C]
-	b Term 
 
 Return:
-@	ldr	r2, =0x030004B0  @メモリスロット0
-	str	r0, [r7, #4*0x0C]  @MemorySlotC
-	
+	blh  0x0801a1f4   @RefreshFogAndUnitMaps
+	blh  0x080271a0   @SMS_UpdateFromGameData
+	blh  0x08019c3c   @UpdateGameTilesGraphics
 Term:
 	pop {r4-r7}
 	pop	{pc}

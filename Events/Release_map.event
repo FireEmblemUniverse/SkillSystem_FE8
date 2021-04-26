@@ -278,7 +278,11 @@ UNCM(0xFFFD, 0x0D)
 
 SCOORD rB [5, 7]
 //SetBadStatus(0xFFFE, 0x55)
-GetUnitStatus(0x02, LanceExp)
+SetUnitStatusAll(0x02, SwordExp, 0x32)
+SetUnitStatusAll(0x02, Strength, 12)
+SetUnitStatusAll(0x0F, Item1, Rapier)
+MemSlotToString(rA)
+
 SADD r6 rC r0 
 Text(0x9DD)
 
