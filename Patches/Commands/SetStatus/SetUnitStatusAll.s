@@ -49,54 +49,57 @@ SetUnitStatusAll:
 	mov 	r3, r0 		@ 
 	
 	ldr 	r1,[r3,#0xC] @ condition word
-	mov 	r2,#0xC @ benched/dead
+	
+    ldr		r0, =MemorySlot 
+	ldr 	r2, [r0, #4*0x06]	@if unit state matches, ignore them
+	@mov 	r2,#0xC @ 
 	tst 	r1,r2
 	bne 	NextUnit
 	@ if you got here, unit exists and is not dead or undeployed, so go ham
 
 
-
-
-
 check_affiliation:
+ldr     r0, =MemorySlot
+ldrb    r1,[r0,#0x07 * 4] @MemorySlot7 (affiliation) 
+cmp     r1,#0xFF          @FF=ANY
+beq     affiliation_match
 
-ldr r3,[r4,#0x04 * 4] @MemorySlot4 (affiliation) 
-cmp r3,#0xFF          @FF=ANY
-beq affiliation_match
+ldrb    r2, [r3, #0xb]    @unitram->affiliation
 
-ldrb r2, [r0, #0xb]    @unitram->affiliation
+cmp     r1, #0x00
+beq     check_affiliation_player
 
-cmp r3,#0x01          @01=Enemy
-beq check_affiliation_enemy
+cmp     r1, #0x01          @01=Enemy
+beq     check_affiliation_enemy
 
-cmp r3,#0x02          @02=NPC
-beq check_affiliation_npc
+cmp     r1, #0x02          @02=NPC
+beq     check_affiliation_npc
 
 check_affiliation_player: @00=Player
-                          @Player that did misconfiguration is treated as Player.
+
 cmp r2,#0x40          @if (unit->affiliation >= 0x40){ cotinue; }
-bge next_loop
+bge NextUnit
 b   affiliation_match
 
 check_affiliation_npc:
 cmp r2,#0x40          @if (unit->affiliation < 0x40 || unit->affiliation >= 0x80){ cotinue; }
 blt next_loop
 cmp r2,#0x80
-bge next_loop
+bge NextUnit
 b   affiliation_match
 
 check_affiliation_enemy:
 cmp r2,#0x80          @if (unit->affiliation < 0x80){ cotinue; }
-blt next_loop
+blt NextUnit
 @b   affiliation_match
 
 
 affiliation_match:
 found:
 
-	bl Update
+	@bl Update
 
-b   next_loop
+ldr     r1, [
 
 
 
