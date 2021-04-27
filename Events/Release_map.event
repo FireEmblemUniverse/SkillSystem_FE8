@@ -278,11 +278,13 @@ UNCM(0xFFFD, 0x0D)
 
 SCOORD rB [5, 7]
 //SetBadStatus(0xFFFE, 0x55)
-SetUnitStatusAll(0x02, SwordExp, 0x32)
-SetUnitStatusAll(0x02, Strength, 12)
-SetUnitStatusAll(0x0F, Item1, Rapier)
-MemSlotToString(rA)
+SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0)
+//SetUnitStatusAll(0x016A, BadStatusType, 0x51, 0x0C, 0, 0, 0, 0)
+//SetUnitStatusAll(0x016A, BadStatusTurn, 0x96, 0x0C, 0, 0, 0, 0)
 
+//SetUnitStatusAll(0x026A, Item1, Rapier, 0x0C, Enemy, 0, 19,19,20,20)
+//MemSlotToString(rA)
+//TestSVALThing(5, 10)
 SADD r6 rC r0 
 Text(0x9DD)
 

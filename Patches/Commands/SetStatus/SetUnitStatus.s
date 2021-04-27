@@ -54,15 +54,26 @@ SetUnitStatus:
 	b 		Error 
 	
 	LowerNibble:
-	mov  	r2,#0xf
-	and  	r3, r2
-	strb 	r3, [r5, r4] 
-	b 		Return
+	mov 	r2, r3 
+	mov 	r1, #0xF0 
+	bic 	r2, r2, r1
+	ldrb 	r0, [r5, r4] 
+	mov 	r1, #0x0F 
+	bic 	r0, r0, r1
+
+	add 	r0, r2
+	strb 	r0, [r5, r4] 
+	b 		Return 	
 	
 	UpperNibble:
-	lsr  	r3, #0x4      @ >>4
-	strb 	r3, [r5, r4] 
-	b 		Return	
+	ldrb 	r0, [r5,r4]    @  
+	mov  	r1,#0x0F
+	and  	r1,r0
+	mov 	r0, #0xF0
+	and 	r0, r3 
+	orr  	r0,r1
+	strb 	r0, [r5,r4]
+	b 		Return
 
 	Byte:
 	strb 	r3, [r5, r4] 

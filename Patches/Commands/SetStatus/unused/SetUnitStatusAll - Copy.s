@@ -69,9 +69,6 @@ SetUnitStatusAll:
 	
     ldr		r0, =MemorySlot 
 	ldr 	r2, [r0, #4*0x06]	@if unit state matches, ignore them
-	cmp 	r2, #0xFF 
-	beq 	check_affiliation
-	
 	@mov 	r2,#0xC @ 
 	tst 	r1,r2
 	bne 	NextUnit
@@ -121,11 +118,6 @@ SetUnitStatusAll:
 	ldr		r2, =MemorySlot 
 	ldr 	r1, [r2, #4*0x01]	@valid unit ID 
 
-	cmp 	r1, #0
-	beq 	CheckClass 	@00=ANY 
-	cmp 	r1, #0xFF
-	beq 	CheckClass @0xFF=ANY 
-
 	ldr 	r0, [ r3 ] @ r0 now has your ROM character data pointer.
 	ldrb 	r2, [ r0, #0x04 ] @ r2 now has your character ID.
 	
@@ -154,9 +146,6 @@ SetUnitStatusAll:
 	ldrb 	r2, [ r0, #0x04 ] @ r2 now has your class ID.
 	cmp 	r1, #0
 	beq 	CheckRange 	@00=ANY 
-	cmp 	r1, #0xFF
-	beq 	CheckRange @0xFF=ANY 
-	
 	lsr 	r0, r1, #8 
 	cmp 	r0, #0 
 	beq 	Check_exact_class_match 
@@ -194,8 +183,6 @@ Term:
 	ldr 	r0,[r2,#0x04*9] @MemorySlot9 (end range) 
 	cmp 	r0,#0x0           @00=ANY
 	beq 	CheckItem
-	cmp		r0, #0xFF
-	beq		CheckItem 
 		
 	ldrb 	r1, [r3, #0x10]    @unitram->x
 	mov 	r0, #0x04*9+3
@@ -231,8 +218,6 @@ Term:
 	ldr 	r2,[r0, r1]  @MemorySlotA (ItemID)
 	cmp 	r2,#0x00
 	beq 	item_match 
-	cmp 	r2, #0xFF 
-	beq 	item_match 
 	
 	ldrb 	r1, [r3, #0x1e]    @unitram->item1
 	cmp  	r1, r2
@@ -261,6 +246,7 @@ Term:
 	item_match:
 	
 	mov 	r2, r4 
+	@lsr 	r2, #8 		@What status? 
 	ldr 	r0, =MemorySlot 
 	ldrb 	r6, [r0, #4*0x04]	@LowerNibble, UpperNibble, Byte, Short, or WORD ? 
 	mov 	r1, r6 
@@ -285,20 +271,55 @@ Term:
 	@r0 = value, r1 = free, r2 = what status, r3 = unit, r4 = status, r6= type of byte, r5 = value, r7 = deployment id 
 	
 	LowerNibble:
+	ldr 	r1, =MemorySlot 
+	str 	r0, [r1, #4*0x02] @Store to s2 as break point: [0x30004C0]!! 
+	
+	
+	ldrb 	r0, [r3, r4] 
+	lsr  	r0, #0x4      @ >>4
+	lsl 	r0, #0x4 
+	
+	
 	mov 	r2, r5 
 	mov 	r1, #0xF0 
 	bic 	r2, r2, r1
 	
 	
-	ldrb 	r0, [r3, r4] 
-	mov 	r1, #0x0F 
-	bic 	r0, r0, r1
+	@ldrb 	r0, [r3, r4] 
+	@mov 	r1, #0x0F 
+	@bic 	r0, r0, r1
 
 	add 	r0, r2
+	
+	
+	
+	@ldrb 	r0, [r3, r4] 
+	
+	@mov  	r1, #0xF0
+	@and  	r1, r0 
+	
+	@mov 	r0, #0x0F
+	@and 	r0, r5 
+	
+	@36 
+	@lsl 	r0, #4 
+	@lsr 	r1, #4 
+	
+	
+	@lsl 	r0, #28 
+	@lsr 	r0, #28 
+
+
+	@orr 	r0, r1 
+	
 	strb 	r0, [r3, r4] 
 	b 		NextUnit	
 	
 	UpperNibble:
+	ldr 	r1, =MemorySlot 
+	str 	r0, [r1, #4*0x02] @Store to s2 as break point: [0x30004C0]!! 
+	
+	
 	ldrb 	r0, [r3,r4]    @  
 	mov  	r1,#0x0F
 	and  	r1,r0

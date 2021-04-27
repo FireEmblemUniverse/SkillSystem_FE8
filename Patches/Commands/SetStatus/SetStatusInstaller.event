@@ -9,7 +9,41 @@
 #include "SetUnitStatusAll.lyn.event"
 
 
+// 
+/* 
+Example usages: 
 
+GetUnitStatus(Eirika, Strength) 
+
+SetUnitStatus(Seth,Item1,SilverSword) 
+
+SetUnitStatusAll(Eirika*0x100+Ephraim , CurrentHP        , 12, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)  
+SetUnitStatusAll(0x010F				, 0x13; SVAL 4 0x03, 12, 0xFF    , 0xFF   , 0xFF    , 0xFF    , 0xFF   )  
+// Affects unit IDs 0x01 - 0x0F and sets their current hp to 12 
+
+SetUnitStatusAll(AnyUnit, SwordExp, 181, 0x02, AnyArmy, AnyClass, AnyRange, AnyItem)
+// Affects any unit that has moved that turn (state 0x02) and sets their SwordExp to 181 (A rank) 
+
+
+SetUnitStatusAll(Any, Level, 3, AnyDeployed, NPCArmy, 0x191E, AnyRange, IronBow) 
+// Affects NPC units from class ID 0x19 (Archer) to 0x1E (RangerF) that are holding IronBows and sets their level to 3 
+
+SetUnitStatusAll(0xAABD, MovBonus, 6, AnyDeployed, EnemyArmy, 0x5266, Area(1,3,12,15), AnyItem) 
+// Affects Enemy units from 0xAA to 0xBD ("Monster") that are classes 0x52 - 0x66 (Revenant - Demon King) in area 1x3y to 12x15y and sets their MovBonus to 6. 
+
+
+
+*/ 
+
+#define AnyDeployed "0xFF" 
+#define AnyArmy "0xFF" 
+#define AnyClass "0xFF" 
+#define AnyRange "0xFF" 
+#define AnyItem "0xFF" 
+
+#define PlayerArmy "0x00"
+#define EnemyArmy "0x01" 
+#define NPCArmy "0x02" 
 
 
 #define GetUnitStatus(UnitId, StatusDefinition) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; ASMC GetUnitStatus"
@@ -17,17 +51,30 @@
 
 #define GetUnitStatus(UnitId, StatusB, TypeByteShortWord) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; ASMC GetUnitStatus"
 
+
+
+
 #define SetUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC SetUnitStatus"
 #define SetUnitStatus(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatus"
 
-#define SetUnitStatusAll(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC SetUnitStatusAll"
-#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatusAll"
+#define Area(LowerX, LowerY, UpperX, UpperY) "LowerX*0x1000000+LowerY*0x10000+UpperX*0x100+UpperY"
+#define Range(LowerX, LowerY, UpperX, UpperY) "LowerX*0x1000000+LowerY*0x10000+UpperX*0x100+UpperY"
+
+
+#define SetUnitStatusAll(UnitId, StatusDefinition, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC SetUnitStatusAll"
+
+//#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value, State, Faction, ClassID, LowerX, LowerY, UpperX, UpperY, ItemID) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value;  SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 LowerX*0x1000000+LowerY*0x10000+UpperX*0x100+UpperY; SVAL 10 ItemID; ASMC SetUnitStatusAll"
+#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value, State, Faction, ClassID, Range, ItemID) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value;  SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC SetUnitStatusAll"
+
+//#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatusAll"
+//#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatusAll"
+//#define SetUnitStatusAll(UnitId, StatusDefinition, Value, State, Faction) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; ASMC SetUnitStatusAll"
 
 
 // These definitions are for convenience 
 // In GetUnitStatus, SVAL 4 is Nibble/Byte/Short/Word, so we define that here for ease of use 
 
-
+#define Any "0xFF"
 
 
 #define UnitPointer "0x00; SVAL 4 0x05"
@@ -83,8 +130,8 @@
 #define DarkExp 		"0x2F; SVAL 4 0x03"
 
 #define BadStatus 			"0x30; SVAL 4 0x03"
-#define BadStatusTurn 		"0x30; SVAL 4 0x01"
-#define BadStatusType 		"0x30; SVAL 4 0x02"
+#define BadStatusType 		"0x30; SVAL 4 0x01"
+#define BadStatusTurn 		"0x30; SVAL 4 0x02"
 #define HolyWaterTorch 	"0x31; SVAL 4 0x03"
 #define Support1 			"0x32; SVAL 4 0x03"
 #define Support2 			"0x33; SVAL 4 0x03"
