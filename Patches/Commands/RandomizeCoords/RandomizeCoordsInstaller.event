@@ -1,0 +1,8 @@
+#include "RandomizeCoords.lyn.event"
+
+
+
+#define RandomizeCoords(TerrainType, RangeOfEnemyUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfEnemyUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeCoords" 
+
+
+

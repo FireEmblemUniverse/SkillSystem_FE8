@@ -37,8 +37,8 @@
     #include "Maps/SplitPList.event"
 
     //Events
-    #include "Events/Release_map.event"
-    #include "Events/WorldMapEvents.event"
+	#include "Events/EventsInstaller.event"
+    #include "Events/WorldMap/WorldMapEvents.event"
 	
     MESSAGE Used free space ends at currentOffset
 #else

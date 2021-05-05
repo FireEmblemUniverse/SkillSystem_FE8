@@ -15,11 +15,11 @@
 VeinEffect(0, FreezeAllEnemies)
 #endif // DRAGON_VEINS
 
-setText(0x160, NewChName)
+setText(0x162, NewChName)
 
 ALIGN 4
 NewChName:
-String("Pallet Town")
+String("Route One")
 BYTE 0
 
 
@@ -29,33 +29,9 @@ BYTE 0
 //#define EventsInRoute1Data $0B
 
 
-EventPointerTable(OaksLabCh,ThisChapter)
-EventPointerTable(PalletTownCh,ThisChapter)
+
 EventPointerTable(Route1Ch,ThisChapter)
-EventPointerTable(ViridianCityCh,ThisChapter)
-EventPointerTable(Route2SCh,ThisChapter)
-EventPointerTable(ViridianForestSCh,ThisChapter)
-EventPointerTable(ViridianForestNCh,ThisChapter)
-EventPointerTable(Route2NCh,ThisChapter)
-EventPointerTable(PewterCityCh,ThisChapter)
-EventPointerTable(PewterGymCh,ThisChapter)
-EventPointerTable(Route3WCh,ThisChapter)
-EventPointerTable(Route3MCh,ThisChapter)
-EventPointerTable(Route3ECh,ThisChapter)
-EventPointerTable(Route4WCh,ThisChapter)
-EventPointerTable(MtMoonB1SCh,ThisChapter)
-EventPointerTable(MtMoonB1NCh,ThisChapter)
-EventPointerTable(MtMoonB2Ch,ThisChapter)
-EventPointerTable(MtMoonB3NECh,ThisChapter)
-EventPointerTable(MtMoonB3ECh,ThisChapter)
-EventPointerTable(MtMoonB3WCh,ThisChapter)
-EventPointerTable(MtMoonB3MidCh,ThisChapter)
-EventPointerTable(Route4MCh,ThisChapter)
-EventPointerTable(Route4ECh,ThisChapter)
-EventPointerTable(CeruleanCityCh,ThisChapter)
-EventPointerTable(CeruleanGymCh,ThisChapter)
-EventPointerTable(Route24Ch,ThisChapter)
-EventPointerTable(Route25Ch,ThisChapter)
+
 
 
 
@@ -90,7 +66,7 @@ Seize(10,2)
 END_MAIN
 
 MiscBasedEvents:
-CauseGameOverIfLordDies
+//CauseGameOverIfLordDies
 AFEV 0 TalkEvent 0
 END_MAIN
 
@@ -107,9 +83,9 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  0x2 0x1 0xA1   [5,5] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
-UNIT Ephraim  0x1 0x1 0xA1  [5,6] 0b 0x0 0x0 0x0 [0x14,0x99,0x88,0x0] [0x0,0x0,0x0,0x0]
-UNIT Seth  0x7 0x1 0xA1     [5,7] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  0x2 0x1 0xA1   [18,6] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
+UNIT Ephraim  0x1 0x1 0xA1  [20,6] 0b 0x0 0x0 0x0 [0x14,0x99,0x88,0x0] [0x0,0x0,0x0,0x0]
+UNIT Seth  0x7 0x1 0xA1     [16,6] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 /*
@@ -131,7 +107,7 @@ UNIT
 */
 
 Units2:
-UNIT Amelia Cavalier_F 0x1 0xA1   [6,5] 0b 0x0 0x0 0x0 [0x14,0x65,0x88,0x0] [0x0,0x0,0x0,0x0]
+UNIT Amelia Cavalier_F 0x1 0xA1   [18,7] 0b 0x0 0x0 0x0 [0x14,0x65,0x88,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 /*
@@ -172,35 +148,36 @@ UNIT
 */
 
 EnemyUnits:
-UNIT Morva_Ch20 0x3B 0x40 0xA5    [8,7] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
-UNIT ONeill Fighter 0x40 0xA5     [8,14] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
-UNIT
+UNIT 0xF2 0x3B 0x40 0xA5    [20,9] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
+UNIT ONeill Fighter 0x40 0xA5     [18,9] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
 
-/*
-UNIT Breguet Knight 0x40 0xA5     [5,18] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
-UNIT Bone Brigand 0x40 0xA5       [11,17] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
-UNIT Bazba Brigand 0x40 0xA5      [16,18] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
-UNIT Saar Knight 0x40 0xA5        [8,15] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
-UNIT Novala Shaman 0x40 0xA5      [12,13] 0 0 0 0 [Nosferatu] AttackInRangeAI
-UNIT Murray Cavalier 0x40 0xA5    [3,13] 0 0 0 0 [SteelSword, Javelin] AttackInRangeAI
-UNIT Tirado General 0x40 0xA5     [16,9] 0 0 0 0 [SilverLance, Javelin] AttackInRangeAI
+
+
+UNIT Breguet Knight 0x40 0xA5     [11,8] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
+UNIT Bone Brigand 0x40 0xA5       [12,8] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
+UNIT Bazba Brigand 0x40 0xA5      [13,9] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
+UNIT Saar Knight 0x40 0xA5        [14,9] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
+UNIT Novala Shaman 0x40 0xA5      [15,10] 0 0 0 0 [Nosferatu] AttackInRangeAI
+UNIT Murray Cavalier 0x40 0xA5    [16,10] 0 0 0 0 [SteelSword, Javelin] AttackInRangeAI
+UNIT Tirado General 0x40 0xA5     [16,11] 0 0 0 0 [SilverLance, Javelin] AttackInRangeAI
 UNIT Binks Warrior 0x40 0xA5      [1,10] 0 0 0 0 [SteelAxe, SteelBow] AttackInRangeAI
 UNIT Pablo Sage 0x40 0xA5         [5,11] 0 0 0 0 [Elfire, Purge] AttackInRangeAI
 UNIT
+/*
 */
 
 EnemyUnits2:
-UNIT Vigarde General 0x40 0xA5    [3,3] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
-UNIT
-
-/*
+UNIT Vigarde General 0x40 0xA5    [16,9] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
 UNIT Cyclops_boss Cyclops 0x40 0xA5       [9,4] 0 0 0 0 [BattleAxe, Tomahawk] AttackInRangeAI
 UNIT Cyclops_boss Cyclops 0x40 0xA5       [11,4] 0 0 0 0 [BattleAxe, Tomahawk] AttackInRangeAI
+UNIT
+/*
 UNIT Aias GreatKnight 0x40 0xA5   [7,11] 0 0 0 0 [ShortSpear, SilverBlade, SilverAxe] AttackInRangeAI
 UNIT Carlyle Swordmaster 0x40 0xA5 [10,9] 0 0 0 0 [WindSword] AttackInRangeAI
 UNIT Gheb Warrior 0x40 0xA5       [2,4] 0 0 0 0 [KillerAxe, KillerBow] NeverMoveAI
 UNIT Beran Ranger 0x40 0xA5       [17,14] 0 0 0 0 [Lancereaver, KillerBow, Longbow] AttackInRangeAI
 UNIT
+
 */
 
 Traps1:
@@ -276,9 +253,19 @@ SVAL r2 0xF
 UNCM(0xFFFD, 0x0D)
 */
 
-SCOORD rB [5, 7]
+SVAL r9 Area(8,4,23,12)
+//SVAL r4 0xC //Forest 
+//SVAL r8 Area(10,5,21,10) //@coords to check units 
+//SVAL r9 Area(10,3,21,12)
+//ASMC RandomizeCoords
+
+RandomizeCoords(0xC, Area(10,5,21,10), Area(10,3,21,12)) 
+
+
+UNCR(0xFFFF,0x42)
+//SCOORD rB [5, 7]
 //SetBadStatus(0xFFFE, 0x55)
-SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0)
+//SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0)
 //SetUnitStatusAll(0x016A, BadStatusType, 0x51, 0x0C, 0, 0, 0, 0)
 //SetUnitStatusAll(0x016A, BadStatusTurn, 0x96, 0x0C, 0, 0, 0, 0)
 
@@ -286,7 +273,7 @@ SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0
 //MemSlotToString(rA)
 //TestSVALThing(5, 10)
 SADD r6 rC r0 
-Text(0x9DD)
+//Text(0x9DD)
 
 
 NoFade

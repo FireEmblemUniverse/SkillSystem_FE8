@@ -11,4 +11,12 @@
   #include "WM2_Prologue.event"
 }
 ALIGN 4
+
+PUSH//Skip very begining world map
+ORG $A39768
+EVBIT_MODIFY 0x1
+SKIPWN
+ENDA
+POP
+
 // #include "EpilogueEvents.event"

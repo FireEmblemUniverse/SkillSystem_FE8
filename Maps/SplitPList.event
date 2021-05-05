@@ -80,7 +80,7 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 // -------------------------------TILE CONFIG-------------------------------
 
 
-#define OaksLabConf 0
+#define OaksLabConf 27
 #define PalletTownConf 1
 #define Route1Conf 2
 #define ViridianCityConf 3
@@ -109,7 +109,7 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 #define CeruleanGymConf 24
 #define Route24Conf 25
 #define Route25Conf 26
-
+//#define OaksLabConf 27
 
 TileConfigPointerTable(OaksLabConf, OaksLabConfigData)
 TileConfigPointerTable(PalletTownConf, PalletTownConfigData)
@@ -145,7 +145,7 @@ TileConfigPointerTable(Route25Conf, Route25ConfigData)
 
 // -------------------------------OBJ TYPE-------------------------------
 
-#define OaksLabObj 0
+#define OaksLabObj 54
 #define PalletTownObj 2
 #define Route1Obj 4
 #define ViridianCityObj 6
@@ -175,6 +175,7 @@ TileConfigPointerTable(Route25Conf, Route25ConfigData)
 #define CeruleanGymObj 48
 #define Route24Obj 50
 #define Route25Obj 52
+//#define OaksLabObj 54
 
 
 ObjTypePalettePointerTable(OaksLabObj, OaksLabObjData)

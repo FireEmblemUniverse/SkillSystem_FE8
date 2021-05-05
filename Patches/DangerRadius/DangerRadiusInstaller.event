@@ -1,0 +1,142 @@
+// FE8 FogDR.
+// Make fog function as danger radius.
+// This patch uses one byte of RAM at 0x0300 0006.
+// Make sure this byte is not already in use by a different patch.
+// This patch uses the 7th lsb from byte ENEMY Unit struct+#0x32 as DR-bit.
+// Make sure this bit is not already in use by a different patch,
+// or change which bit in Unit struct can be used instead in files:
+// DisplayIconFogDR, InitializeFogDR, UpdateFogDR, AddExtraCheckFogDR,
+// and all files in the RemoveDRFromUnit directory.
+// ALLIES' and PLAYER UNITS' Unit struct are not repurposed.
+#ifndef _FE8_
+    ERROR "You're not assembling to an FE8 ROM!"
+#endif
+#include "Extensions/Hack Installation.txt"
+#include "evro/EventRoutines.event"
+
+PUSH
+
+	ORG $1CAD8
+	#incbin "asm/DR_hook.dmp"
+
+	ORG $1CAEC
+	POIN DangerRadius+1
+
+	ORG $1CF04
+	SHORT 0 $7804
+
+	ORG $1CF48
+	WORD $202BE44
+
+	ORG 0x1AACC // Hook in MapAddInRange to distinguish between DR-caller and other callers.
+	callHack_r4(CalcFogDR)
+	
+	ORG 0x226FA // Hook to InitializeFogDR, updates DR.
+	SHORT 0x46C0
+	callHack_r0(InitializeFogDR)
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+
+	ORG 0x1CCD4 // Disable displaydanger jingle, its in a function that's used to update danger radius, instead of a function that's only called upon pressing select.
+	callHack_r0(FOWCheck1)
+	SHORT 0x2101 // We also check whether to skip DisplayMoveRangeGraphics.
+	SHORT 0x4208 // Using the return value of this hook.
+	SHORT 0xD017 // Which is the FogVision byte of ChapterData.
+
+	ORG 0x19B40 // Invert fog tile marks: 0: nofog, 1: fog.
+	callHack_r1(FOWCheck2)
+	SHORT 0x46C0
+
+	ORG 0x1A20A // Hook to UpdateFogDR.
+	SHORT 0x46C0
+	callHack_r0(UpdateFogDR)
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+	SHORT 0x46C0
+
+	ORG 0x2793E
+	SHORT 0x46C0
+	callHack_r0(DisplayIcon)
+
+	ORG 0x1D484 // Updates DR after moving a unit and before committing to an action.
+	callHack_r2(UpdateFogDRMove)
+	
+	ORG 0x1B86C
+	callHack_r0(AddExtraCheckFogDR)
+	
+	ORG 0x27564
+	callHack_r0(AddExtraCheckFogDR2)
+	SHORT 0x46C0
+	
+	ORG 0x32808 // Unset Unit's DR-bit and decrement DRCounter if DR was set. Animated battle.
+	callHack_r1(RemoveDRFromDeadUnit)
+	
+	ORG 0x18400 // Unset Unit's DR-bit and decrement DRCounter if DR was set. Map battle. This overwrites a hook to a capture related mechanic, which has been implemented in this function instead.
+	callHack_r1(RemoveDRFromDeadUnit2)
+	
+	ORG 0x177FC
+	callHack_r0(RemoveDRFromClearedUnit)
+
+POP
+
+ALIGN 4
+DangerRadius:
+#incbin "asm/DangerRadius.dmp"
+
+ALIGN 4
+CalcFogDR:
+#incbin "asm/CalcFogDR.dmp"
+
+ALIGN 4
+InitializeFogDR:
+#incbin "asm/InitializeFogDR.dmp"
+
+ALIGN 4
+UpdateFogDR:
+#incbin "asm/UpdateFogDR.dmp"
+
+ALIGN 4
+UpdateFogDRMove:
+#incbin "asm/UpdateFogDRMove.dmp"
+
+ALIGN 4
+DisplayIcon:
+#incbin "asm/DisplayIconFogDR.dmp"
+
+ALIGN 4
+AddExtraCheckFogDR:
+#incbin "asm/AddExtraCheckFogDR.dmp"
+
+ALIGN 4
+AddExtraCheckFogDR2:
+#incbin "asm/AddExtraCheckFogDR2.dmp"
+
+ALIGN 4
+RemoveDRFromDeadUnit:
+#incbin "asm/RemoveDRFromUnit/RemoveDRFromDeadUnit.dmp"
+
+ALIGN 4
+RemoveDRFromDeadUnit2:
+#incbin "asm/RemoveDRFromUnit/RemoveDRFromDeadUnit2.dmp"
+
+ALIGN 4
+RemoveDRFromClearedUnit:
+#incbin "asm/RemoveDRFromUnit/RemoveDRFromClearedUnit.dmp"
+
+ALIGN 4
+FOWCheck1:
+#incbin "asm/FOWChecks/FOWCheck1.dmp"
+
+ALIGN 4
+FOWCheck2:
+#incbin "asm/FOWChecks/FOWCheck2.dmp"

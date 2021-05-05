@@ -1,0 +1,14 @@
+#define YesChapters 0x1 
+
+//#ifdef YesChapters
+	{
+		#include "Debug_Room.event" 
+	}
+//#endif //
+
+//#ifdef YesChapters
+	{
+		#include "Route_One.event" 
+	}
+//#endif //
+

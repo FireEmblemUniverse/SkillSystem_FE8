@@ -16,7 +16,7 @@
 #include "FreeMovement/MakeShopASMC.lyn.event"
 
 
-
+#include "DangerRadius/DangerRadiusInstaller.event" 
 
 #include "ModularSupply/ModularSupplyInstaller.event"
 
@@ -24,11 +24,16 @@
 
 #include "ChapterTransition/ChapterTransitionInstaller.event"
 
+#include "RNGRandomizer/RNGRandomizerInstaller.event"
 
 
 // misc QoL
 #include "BugFixes/BugFixesInstaller.event" 
-#include "FillAIRangeMap Fix/FillAIDangerMap.event"
+
+
+//#include "FillAIRangeMap Fix/FillAIDangerMap.event"
+
+
 #include "TutorialDisabler.event"
 #include "Less Annoying Fog/Less Annoying Fog Installer.event"
 #include "PrepScreen/PrepScreen.event"
@@ -59,6 +64,8 @@ blh DivisionRoutine @ 0x080D18FC
 	
 
 // Commands
+#include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
+
 
 #include "Commands/UNCMv2/UNCMv2Installer.event"
 #include "Commands/GetNthUnit/GetNthUnitInstaller.event"

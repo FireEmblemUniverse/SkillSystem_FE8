@@ -8,8 +8,8 @@ PalletTownObjData:
 ALIGN 4
     MESSAGE pallet town pal data space starts at currentOffset
 PalletTownPalData:
-#incext Png2Dmp "Tilesets/PalletTownObj.png" --palette-only 
-//#incbin "Tilesets/PalletTownObj_pal.dmp"
+//#incext Png2Dmp "Tilesets/PalletTownObj.png" --palette-only 
+#incbin "Tilesets/PalletTownObj_pal.dmp"
 
 ALIGN 4
     MESSAGE pallet town config data space starts at currentOffset
@@ -25,8 +25,8 @@ Route1ObjData:
 
 ALIGN 4
 Route1PalData:
-#incext Png2Dmp "Tilesets/Route1Obj.png" --palette-only 
-//#incbin "Tilesets/Route1TownObj.dmp"
+//#incext Png2Dmp "Tilesets/Route1Obj.png" --palette-only 
+#incbin "Tilesets/Route1Obj_pal.dmp"
 
 ALIGN 4
 Route1ConfigData:
