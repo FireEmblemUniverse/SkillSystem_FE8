@@ -1,0 +1,9 @@
+ALIGN 4
+ElementBoostCheck:
+#incbin "ElementBoost.dmp"
+POIN SkillTester
+POIN ElementBoostIDList
+
+ALIGN 4
+ElementBoostIDList:
+BYTE FireBoostID WindBoostID EarthBoostID WaterBoostID

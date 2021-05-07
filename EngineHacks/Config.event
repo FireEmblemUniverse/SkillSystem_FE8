@@ -1,7 +1,7 @@
 #ifndef HAX_CONFIG
 #define HAX_CONFIG
 
-// This file holds configuration switches for all hacks shipped with the skill system
+// This file holds configuration switches for all hacks shipped with the skill system.
 
 // =========================
 // = GENERAL CONFIGURATION =
@@ -16,7 +16,8 @@
 // The amount of attack speed needed to double an opponent.
 #define AS_DOUBLING_THRESHOLD 3
 
-
+// If true, dropped items will retain their durability.
+#define DROPPED_ITEM_DURABILITY False
 
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
@@ -214,7 +215,7 @@
 #define RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
 
 // If commented, Capture will be a global command and will not require the Capture skill.
-// #define CAPTURE_SKILL_REQUIRED
+#define CAPTURE_SKILL_REQUIRED
 
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED
@@ -231,7 +232,7 @@
 //If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
 #define ALSO_USE_MOVEMENT_SKILL_CHECK True
 
-//If true, get 1/4 prices with both bargain and silver card simultaneously.
+//If true, get 1/4 prices with both Bargain and Silver Card simultaneously.
 #define DOES_BARGAIN_STACK False
 
 //If true, will use the vanilla check in addition to the skill check.
@@ -302,7 +303,6 @@
 //If true, the stat colors for player units will reflect their growth in the stat.
 #define USE_STAT_COLORS True
 
-
 //If true, Fixed Growths mode will exist.
 #define FIXED_GROWTHS_MODE False
 
@@ -315,7 +315,6 @@
 //If true, enemy/NPC autolevels will use fixed growths as well.
 #define ENEMY_NPC_FIXED_GROWTHS True
 
-
 //If true, the effects of multiple passive growth boosters can stack.
 #define STACKABLE_GROWTH_BOOSTS True
 
@@ -324,7 +323,6 @@
 
 //If true, growths will be calculated as (char growth + class growth).
 #define USE_CHAR_AND_CLASS_GROWTHS False
-
 
 //The growth rate ranges for each stat color and the colors themselves can be edited in
 //Necessary/MSS/DisplayGrowthsOptions/GrowthColorsTable.event and NewPalette.event, respectively.

@@ -586,6 +586,30 @@
 //By Sme
 #define ThotslayerID 188
 
+//Heavy Blade: +4 Damage/-2 Attack Speed when unit’s Con. is bigger than the enemy.
+//By Mikey Seregon
+#define HeavyBladeID 255
+
+//Dancing Blade: +4 Attack Speed/-2 Damage when unit’s Con. is lower than the enemy.
+//By Mikey Seregon
+#define DancingBladeID 255
+
+//Fire Boost: Grants +6 Attack if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+#define FireBoostID 255
+
+//Wind Boost: Grants +6 Attack Speed if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+#define WindBoostID 255
+
+//Earth Boost: Grants +6 Defense if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+#define EarthBoostID 255
+
+//Water Boost: Grants +6 Resistance if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+#define WaterBoostID 255
+
 
 //Proc Skills
 

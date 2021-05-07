@@ -3,6 +3,11 @@ ORG $16540
 jumpToHack(NewShopMakeItem)
 ORG $1763C
 jumpToHack(NewGetItemCost)
+
+//fixes hammerne
+ORG $2F2E6
+SHORT 0x7800 // ldrh r0,[r0] --> ldrb r0,[r0]
+
 POP
 
 #include "ShopDurability.lyn.event"
@@ -11,5 +16,4 @@ ALIGN 4
 FixedPriceItemList:
 BYTE SkillScroll
 BYTE 0
-
 
