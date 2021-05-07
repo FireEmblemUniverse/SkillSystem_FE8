@@ -14,7 +14,7 @@
 	
     #include "Text/InstallTextData.event"
     MESSAGE Used text space ends at currentOffset
-
+	
     //CSV tables
     #include "Tables/TableInstaller.event"
     MESSAGE Used table space ends at currentOffset
@@ -24,8 +24,22 @@
     MESSAGE Used hax space ends at currentOffset
 
     //Patches
-    #include "Patches/An_Installer_of_Patches.event"
-    MESSAGE Used patch space ends at currentOffset
+	#define InstallPatches 
+	#ifdef InstallPatches 
+		#include "Patches/An_Installer_of_Patches.event"
+	#endif 
+	
+	#ifndef ENABLE_FixedDamageWeapons
+		#include "Patches/FixedDamageWeapons/FixedDamageWeaponsInstaller.event" 
+	#endif 
+	#ifndef MODULAR_SUPPLY
+		#include "Patches/ModularSupply/ModularSupplyInstaller.event" 
+	#endif 
+	
+	MESSAGE Used patch space ends at currentOffset
+	
+	
+
 
 	//Repointed things
 	//#include "Repoint/ClassRepoint.event"

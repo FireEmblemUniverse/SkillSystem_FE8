@@ -1,0 +1,19 @@
+
+#define StatBarMaxLength 60
+
+PUSH
+
+
+ORG 0x87132 
+BYTE StatBarMaxLength
+ORG 0x87142
+BYTE StatBarMaxLength
+ORG 0x870FE
+BYTE StatBarMaxLength
+ORG 0x87102
+BYTE StatBarMaxLength
+
+
+
+POP 
+

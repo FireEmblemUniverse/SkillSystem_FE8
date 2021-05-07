@@ -1,4 +1,6 @@
 
+#include "StatBarLength.event" 
+
 //#include "CasualMode.event"
 #include "SetUnitState.lyn.event"
 
@@ -16,7 +18,10 @@
 #include "FreeMovement/MakeShopASMC.lyn.event"
 
 
+
+
 #include "DangerRadius/DangerRadiusInstaller.event" 
+
 
 #include "ModularSupply/ModularSupplyInstaller.event"
 
@@ -24,14 +29,15 @@
 
 #include "ChapterTransition/ChapterTransitionInstaller.event"
 
-#include "RNGRandomizer/RNGRandomizerInstaller.event"
+
+//#include "RNGRandomizer/RNGRandomizerInstaller.event" /this broke suspend for some reason 
 
 
 // misc QoL
 #include "BugFixes/BugFixesInstaller.event" 
 
 
-//#include "FillAIRangeMap Fix/FillAIDangerMap.event"
+#include "FillAIRangeMapFix/FillAIDangerMap.event"
 
 
 #include "TutorialDisabler.event"
@@ -42,21 +48,15 @@
 //#include "DifficultySelection.event"
 
 
-#include "ControlEnemy.event"
+//#include "ControlEnemy.event"
 #include "AutosaveKiller.event"
+
+
 //#include "CasualModeMenu2/CasualModeInstaller.event"
 
-/*
-	mov r0, #0
-	ldr r1, =MemorySlot3
-	str r0, [r1]
-	@[0x30004C4]!!?
-	
-	mov r1, #0x34 
-blh DivisionRoutine @ 0x080D18FC
 
 
-*/
+
 
 
 //	@ldsh r0, [ r4, r1 ] @ Character ID. Load signed in case 0xFFFF and co were passed in.

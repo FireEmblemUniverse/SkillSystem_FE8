@@ -280,7 +280,7 @@ SVAL r2 0xF
 UNCM(0xFFFD, 0x0D)
 */
 
-SetAllDangerRadius
+//SetAllDangerRadius
 
 //SCOORD rB [5, 7]
 //SetBadStatus(0xFFFE, 0x55)

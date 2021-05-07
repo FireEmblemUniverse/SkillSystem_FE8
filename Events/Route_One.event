@@ -253,7 +253,7 @@ SVAL r2 0xF
 UNCM(0xFFFD, 0x0D)
 */
 
-SVAL r1 254
+SVAL r1 32
 ASMC AutoLevelUnits
 //SVAL r9 Area(8,4,23,12)
 //SVAL r4 0xC //Forest 
