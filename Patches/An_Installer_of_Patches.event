@@ -65,6 +65,7 @@ blh DivisionRoutine @ 0x080D18FC
 
 // Commands
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
+#include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
 
 
 #include "Commands/UNCMv2/UNCMv2Installer.event"

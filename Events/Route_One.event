@@ -148,7 +148,7 @@ UNIT
 */
 
 EnemyUnits:
-UNIT 0xF2 0x3B 0x40 0xA5    [20,9] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0x10 0x3B 0x40 0xA5    [20,9] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
 UNIT ONeill Fighter 0x40 0xA5     [18,9] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
 
 
@@ -253,16 +253,18 @@ SVAL r2 0xF
 UNCM(0xFFFD, 0x0D)
 */
 
-SVAL r9 Area(8,4,23,12)
+SVAL r1 254
+ASMC AutoLevelUnits
+//SVAL r9 Area(8,4,23,12)
 //SVAL r4 0xC //Forest 
 //SVAL r8 Area(10,5,21,10) //@coords to check units 
 //SVAL r9 Area(10,3,21,12)
 //ASMC RandomizeCoords
 
-RandomizeCoords(0xC, Area(10,5,21,10), Area(10,3,21,12)) 
+//RandomizeCoords(0xC, Area(10,5,21,10), Area(10,3,21,12)) 
 
 
-UNCR(0xFFFF,0x42)
+//UNCR(0xFFFF,0x42)
 //SCOORD rB [5, 7]
 //SetBadStatus(0xFFFE, 0x55)
 //SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0)
