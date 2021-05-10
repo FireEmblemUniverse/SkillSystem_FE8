@@ -157,7 +157,7 @@
 
 //Slayer: Deal effective damage to monster units.
 //By Tequila
-#define SlayerID 7
+#define SlayerID 255
 
 //Skybreaker: Deal effective damage to flying units.
 //By Sme
@@ -552,7 +552,7 @@
 
 //Vigilance: Avoid +20.
 //By Sme
-#define VigilanceID 255
+#define VigilanceID 7
 
 //Wind Disciple: +10 Hit and Avoid when HP is not at max.
 //Author Unknown (Initial Commit)

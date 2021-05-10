@@ -23,6 +23,7 @@ CavalierSkillList:
 BYTE 00 00
 
 PaladinSkillList:
+BYTE 1 VigilanceID
 BYTE 00 00
 ALIGN 4
 

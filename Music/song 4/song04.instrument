@@ -1,0 +1,11 @@
+80	00	00	00	@SELF+0	00	00	00	00	//00 DrumPart
+0A	3C	00	00	03	00	00	00	00	01	07	01	//01 Square Wave (silent petit noise)
+0A	3C	00	00	02	00	00	00	00	01	07	01	//02 Square Wave (silent petit noise)
+00	3C	00	00	song040x03.DirectSound.bin	FF	00	C1	7F	//03 DirectSound
+00	3C	00	00	song040x04.DirectSound.bin	FF	00	C1	7F	//04 DirectSound
+00	3C	00	00	song040x05.DirectSound.bin	FF	00	C1	7F	//05 DirectSound
+40	00	00	00	@SELF+0	song040x06.Multi.keys.bin		//06 Multi Sample
+0B	3C	00	00	song040x07.Wave.bin	00	07	0F	02	//07 Wave Memory
+00	3C	00	00	song040x08.DirectSound.bin	FF	F6	00	E2	//08 DirectSound
+09	3C	00	00	03	00	00	00	00	01	07	01	//09 Square Wave (silent petit noise)
+09	3C	00	00	02	00	00	00	00	01	07	01	//0A Square Wave (silent petit noise)

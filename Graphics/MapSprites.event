@@ -807,6 +807,17 @@ r151Moving:
 #incbin "MMS/r151.dmp"
 
 
+ALIGN 4
+GrassMoving:
+#incbin "More MMS/Grass.dmp"
+
+ALIGN 4
+BlankMoving:
+#incbin "More MMS/Blank.dmp"
+
+ALIGN 4
+CrobatMoving:
+#incbin "More MMS/Crobat.dmp"
 
 
 
@@ -1424,6 +1435,101 @@ m150Standing:
 ALIGN 4
 m151Standing:
 #incbin "SMS/151.dmp"
+
+
+
+
+
+
+ALIGN 4
+CutBushStanding:
+#incbin "More SMS/CutBush.dmp"
+
+ALIGN 4
+RocketAStanding:
+#incbin "More SMS/RocketA.dmp"
+
+ALIGN 4
+BurrowStanding:
+#incbin "More SMS/Burrow.dmp"
+
+ALIGN 4
+GrassStanding:
+#incbin "More SMS/Grass.dmp"
+
+ALIGN 4
+SignStanding:
+#incbin "More SMS/Sign.dmp"
+
+
+ALIGN 4
+RockSmashStanding:
+#incbin "More SMS/RockSmash.dmp"
+
+ALIGN 4
+StrengthBoulderStanding:
+#incbin "More SMS/StrengthBoulder.dmp"
+
+ALIGN 4
+FlowersStanding:
+#incbin "More SMS/Flowers.dmp"
+
+
+
+ALIGN 4
+RocketBStanding:
+#incbin "More SMS/RocketB.dmp"
+
+ALIGN 4
+GaryStanding:
+#incbin "More SMS/Gary.dmp"
+
+ALIGN 4
+PlatformStanding:
+#incbin "More SMS/Platform.dmp"
+
+
+ALIGN 4
+OpenBallStanding:
+#incbin "More SMS/OpenBall.dmp"
+
+ALIGN 4
+RedPokeballStanding:
+#incbin "More SMS/RedPokeball.dmp"
+
+ALIGN 4
+GoldPokeballStanding:
+#incbin "More SMS/GoldPokeball.dmp"
+
+ALIGN 4
+SavePointStanding:
+#incbin "More SMS/SavePoint.dmp"
+
+ALIGN 4
+BlankStanding:
+#incbin "More SMS/Blank.dmp"
+
+ALIGN 4
+BugCatcherStanding:
+#incbin "More SMS/BugCatcher.dmp"
+
+ALIGN 4
+FighterStanding:
+#incbin "More SMS/Fighter.dmp"
+
+ALIGN 4
+HikerStanding:
+#incbin "More SMS/Hiker.dmp"
+
+ALIGN 4
+RocketCStanding:
+#incbin "More SMS/RocketC.dmp"
+
+ALIGN 4
+CrobatStanding:
+#incbin "More SMS/Crobat.dmp"
+
+
 
 
 

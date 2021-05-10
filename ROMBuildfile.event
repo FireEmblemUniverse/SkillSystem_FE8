@@ -23,6 +23,8 @@
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
 
+	#include "Music/MusicInstaller.event"
+
     //Patches
 	#define InstallPatches 
 	#ifdef InstallPatches 
