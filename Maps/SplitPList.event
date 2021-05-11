@@ -31,13 +31,13 @@ POP
 
 ALIGN 4
 
-    MESSAGE tile config plist space starts at currentOffset
+    //MESSAGE tile config plist space starts at currentOffset
 
 TileConfigPLIST:
 ORG TileConfigPLIST + (0x4 * 0xFF)
 
 
-    MESSAGE tile config plist space starts at currentOffset
+    //MESSAGE tile config plist space starts at currentOffset
 
 ObjTypePalettePLIST:
 ORG ObjTypePalettePLIST + (0x4 * 0xFF)

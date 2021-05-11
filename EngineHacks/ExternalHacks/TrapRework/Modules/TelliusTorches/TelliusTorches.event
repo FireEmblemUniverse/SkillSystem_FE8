@@ -1,0 +1,63 @@
+#ifndef TELLIUS_TORCHES_INSTALLED
+	#define TELLIUS_TORCHES_INSTALLED
+	
+	//The way this works:
+	//Trap ID is defined here
+	//The current vision range is defined in ext1 (+0x3)
+	//The vision range when turn on is defined in ext2 (+0x4)
+	//Unlike torch staff traps, these do not lose their vision over time
+	
+	#define TelliusTorchTrapID 0xF //just sequentially after what i'm aware of being used by other hacks already
+	#define TelliusTorchOffMapSpriteID 0x69
+	#define TelliusTorchOnMapSpriteID 0x6A
+	
+
+
+	SetTrapEventInit(TelliusTorchTrapID,TelliusTorchInitialization)
+	SetTrapMapSprite(TelliusTorchTrapID,TelliusTorchOnMapSpriteID)
+	SetTrapMapSpritePalette(TelliusTorchTrapID,EnemyTrapPaletteWord)	
+	SetLightSourceTrap(TelliusTorchTrapID)
+	SetImpassableTrap(TelliusTorchTrapID)
+	SetTrapMapSpriteFunc(TelliusTorchTrapID,TelliusTorchMapSpriteFunc)
+
+		
+	ALIGN 4
+	TelliusTorchTrapIDLink:
+	BYTE TelliusTorchTrapID
+	TelliusTorchOffMapSpriteIDLink:
+	BYTE TelliusTorchOffMapSpriteID
+	TelliusTorchOnMapSpriteIDLink:
+	BYTE TelliusTorchOnMapSpriteID
+	
+	#include "TelliusTorches.lyn.event"
+		
+	ALIGN 4
+	LitTorchTrapGfx: //torch map sprites by L95
+	#incext Png2Dmp "lit_torch.png" --lz77
+	
+	ALIGN 4
+	UnlitTorchTrapGfx:
+	#incext Png2Dmp "unlit_torch.png" --lz77
+	
+	
+	PUSH
+		ORG (0x8AF880+0x8*TelliusTorchOnMapSpriteID)
+        SHORT 0x0002
+        SHORT 0x0000
+		POIN LitTorchTrapGfx
+	
+		ORG (0x8AF880+0x8*TelliusTorchOffMapSpriteID)
+        SHORT 0x0002
+        SHORT 0x0000
+		POIN UnlitTorchTrapGfx
+	
+	POP
+	
+
+	//macros for usage, starting in the off or on positions
+	#define TelliusTorchOff(x,y,visionRange) "BYTE TelliusTorchTrapID x y 0 visionRange 0"
+	#define TelliusTorchOn(x,y,visionRange) "BYTE TelliusTorchTrapID x y visionRange visionRange 0"
+	
+	
+#endif // TELLIUS_TORCHES_INSTALLED
+

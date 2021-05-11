@@ -1,6 +1,6 @@
-MESSAGE CurrentOffset asdf
+//MESSAGE CurrentOffset asdf
 #include "SilentGiveItem.lyn.event"
-MESSAGE CurrentOffset asdf2
+//MESSAGE CurrentOffset asdf2
 
 
 
@@ -10,7 +10,7 @@ MESSAGE CurrentOffset asdf2
 
 //#define SilentGiveItem1(UnitIDx, ItemIDx) "BYTE 0x40 0x0D; UnitIDx; ItemIDx; SilentGiveItem"
 
-#define SilentGiveItem2 "ASMC SilentGiveItem"
+//#define SilentGiveItem2 "ASMC SilentGiveItem"
 
 
 

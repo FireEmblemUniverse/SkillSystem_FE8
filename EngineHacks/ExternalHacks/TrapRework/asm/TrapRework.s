@@ -54,12 +54,36 @@ mov r2,r0 @r2 = trap ID
 
 
 @add special cases here for your traps, if needed
+@check to display as normal, hide on completion, or display sprite from 0x04 byte of trap 
+mov r1, #0x10		@custom traps 0x10 - 0x1F to use 0x3 as completion flag / hidden sprite on compl.
+cmp r2, r1
+blt HealTiles
+mov r1, #0x20 		@custom traps 0x20 and greater to use 0x3 as req'd flag and 0x4 as sprite 
+cmp r2, r1
+bge SpriteToDisplay
+
+HiddenSprite:		@completion flag
+ldrb r0,[r4,#0x3]	@XX 0x01 YY 0x02 completion flag 0x03 to not display, etc. 
+push {r2}
+blh CheckEventId,r1
+pop {r2}
+cmp r0,#0
+bne End
+b GeneralTrapMapSpriteCase
+
+SpriteToDisplay:
+mov r0, #0
+ldrb r0,[r4,#0x4]	@0x04 Sprite to display 
+cmp r0, #0
+beq End			@if no sprite to display, then display nothing 
+b TrapMapSpriteCheck 	@XX 0x01 YY 0x02 usability flag 0x03 sprite to display 0x04 event 0x05
+
+HealTiles:
 @ex. heal tiles
 ldr r1,=HealTileTrapIDLink
 ldrb r1,[r1]
 cmp r2,r1
 bne TorchOnOffCheck
-
 ldrb r0,[r4,#0x7]
 push {r2}
 blh CheckEventId,r1
@@ -263,7 +287,7 @@ bx r0
 
 
 
-
+@based on NullAllLightRunesTerrain at address 2EB50
 
 TrapRework_NewUpdateAllLightRunes:
 push {r4,r14}

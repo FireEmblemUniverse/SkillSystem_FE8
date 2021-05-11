@@ -1,0 +1,44 @@
+
+
+
+
+Item traps - 
+0x3 Completion Flag
+0x4 Item
+0x5 EventTableEntry 
+
+Hide Self
+Cannot walk on (mostly) 
+
+
+NPC traps - 
+0x3 Required flag (0x00 = always)
+0x4 Sprite to display 
+0x5 EventTableEntry 
+
+Do not hide self 
+Cannot walk on
+
+
+Cut bush / Rock Smash / 
+0x3 Required flag 
+0x4 Sprite to display 
+0x5 EventTableEntry 
+
+Delete Self 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,17 +1,19 @@
 
-#ifdef DRAGON_VEINS
 
 //Dragon Veins by Crazycolorz5 with additions from circleseverywhere
 //Converted to Trap Rework by Sme
 
 #define VeinMapSpriteID 0x67
 #define DragonVeinSFXID 0x57
-#define DragonVeinTrapID 0x6
+#define DragonVeinTrapID 0xD
 
 #define VeinEffect(id, event) "PUSH; ORG DragonVeinEffectTableOffset + (4 * id); POIN event; POP"
 #define Vein(XX,YY,EffectID) "BYTE DragonVeinTrapID XX YY EffectID 0x0 0x0"
 #define Vein(XX,YY,EffectID, TextID) "BYTE DragonVeinTrapID XX YY EffectID; SHORT TextID"
 #define VeinActivation "EARTHQUAKE_START 0x0; MUSS DragonVeinSFXID; STAL 0x20; FlashWhite; STAL 0xC0; EARTHQUAKE_END; MURE 0x06; STAL 0x40"
+
+
+
 
 SetTrapEventInit(DragonVeinTrapID,VeinInitialization)
 SetTrapMapSprite(DragonVeinTrapID,VeinMapSpriteID)
@@ -113,6 +115,7 @@ SongTable(DragonVeinSFXID,DragonVeinSFX,7)
     #incbin "asm/DragonVeinExecution.dmp"
     POIN DragonVeinEffectTableOffset
 
+	//#include "PokemblemTraps.event"
 
-#endif // DRAGON_VEINS
+
 

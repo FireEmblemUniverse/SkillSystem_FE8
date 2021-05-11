@@ -1,8 +1,9 @@
-
+#ifndef HEAL_TILES_INSTALLED
+	#define HEAL_TILES_INSTALLED
 //Heal Tiles by Snakey1
 //Converted to Trap Rework by Sme
 
-#ifdef HEAL_TILES
+
 
 #define HealMapSpriteID 0x68
 #define HealTilesTrapID 0xE
@@ -39,5 +40,5 @@ HealGraphics:
 //the part that actually does healing
 #include "HealTiles/HealTiles.lyn.event"
 
-#endif // HEAL_TILES
-	
+
+#endif

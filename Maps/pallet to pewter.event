@@ -1,18 +1,18 @@
 
 ALIGN 4
-    MESSAGE pallet town obj data space starts at currentOffset
+    //MESSAGE pallet town obj data space starts at currentOffset
 PalletTownObjData:
 //#incext Png2Dmp "Tilesets/PalletTownObj.png" --lz77
 #incbin "Tilesets/PalletTownObj.dmp"
 
 ALIGN 4
-    MESSAGE pallet town pal data space starts at currentOffset
+    //MESSAGE pallet town pal data space starts at currentOffset
 PalletTownPalData:
 //#incext Png2Dmp "Tilesets/PalletTownObj.png" --palette-only 
 #incbin "Tilesets/PalletTownObj_pal.dmp"
 
 ALIGN 4
-    MESSAGE pallet town config data space starts at currentOffset
+    //MESSAGE pallet town config data space starts at currentOffset
 PalletTownConfigData:
 //#incext compress "Tilesets/PalletTown.mapchip_config"
 #incbin "Tilesets/PalletTown_comp.dmp"
