@@ -1,3 +1,5 @@
 // By Tequila, Vesly 
 
 #include "GetNthUnit.lyn.event"
+
+#define GetNthUnit(UnitID) "SVAL 1 UnitID; ASMC GetNthUnit" 

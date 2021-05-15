@@ -68,8 +68,6 @@ POP
   //Danger Zone (select button)
   #include "QualityOfLife/DangerZone/DangerZone.event"
 
-  //Event Writer ASMC
-  #include "QualityOfLife/EventWriter/EventWriter.event"
 
   //Casual Mode (based on Event ID 0xB0)
   #include "QualityOfLife/CasualMode/CasualMode.event"

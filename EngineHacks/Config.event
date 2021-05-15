@@ -63,9 +63,6 @@
 #define EVENT_RESCUE
 #define EVENT_SEND_TO_CONVOY
 
-//If uncommented, will enable Event Writer.
-#define EVENT_WRITER
-
 //If uncommented, will enable Freeze.
 #define FREEZE_HACK
 

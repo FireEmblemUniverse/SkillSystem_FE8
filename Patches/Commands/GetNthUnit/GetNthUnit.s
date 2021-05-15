@@ -15,10 +15,10 @@
 	.equ MemorySlot3,0x30004C4    @item ID to give @[0x30004C4]!!?
 	.equ DivisionRoutine, 0x080D18FC
 
-	.global GetNthUnitID
-	.type   GetNthUnitID, function
+	.global GetNthUnit
+	.type   GetNthUnit, function
 
-GetNthUnitID:
+GetNthUnit:
 	push {r4-r7, lr}	
 
 mov r4,#1 @ deployment id

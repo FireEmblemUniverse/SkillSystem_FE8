@@ -14,8 +14,6 @@ Learned  [X]
 
 #include "statscreen_text.txt"
 
-#include "unitmenu_text.txt"
-
 #0xd4c LikesText
 #first text ID in the free block
 Likes:[X]
@@ -28,6 +26,8 @@ Height:[X]
 
 #0xd4f AgeText
 Age:[X]
+
+#include "unitmenu_text.txt"
 
 ## HouseText
 #first text ID in the free block
@@ -110,16 +110,30 @@ to cast this spell.[X]
 Cost[X]
 
 ## PrepScreenUseSkillScroll
+# this iterates automatically, so if the last one with a fixed address is 0x1500, the first free is 1501 
  Skill learned[X]
 
-## SkillScrollDesc
+#include "Dialogue.txt"
+#include "Characters.txt"
+#include "Items.txt"
+
+
+#0x1500 SkillScrollDesc
 A scroll that teaches[N]
 a skill when used.[X]
 
-# 0x09DD
-[OpenMidRight][LoadFace][0x01][OpenMidRight][G][A][X]
+
+
+
+
+
+
+
 
 #include "skilldesc_text.txt"
 
 #include "unitinfo_text.txt"
 #include "ChapterTitles.txt"
+
+
+

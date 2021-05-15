@@ -1,10 +1,11 @@
 
+
 #include "StatBarLength.event" 
 
 //#include "CasualMode.event"
 #include "SetUnitState.lyn.event"
 
-//#include "EventParameters/EventParameters.event"
+#include "EventParameters/EventParameters.event"
 
 #include "GroupAI/GroupAI.event"
 
@@ -66,6 +67,9 @@
 // Commands
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
 #include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
+
+
+#include "Commands/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
 
 
 #include "Commands/UNCMv2/UNCMv2Installer.event"

@@ -1,4 +1,6 @@
-#define YesChapters 0x1 
+#define DebugMode 0x1 
+
+#include "ChTransition.event" 
 
 //#ifdef YesChapters
 	{
@@ -6,9 +8,9 @@
 	}
 //#endif //
 
-//#ifdef YesChapters
-	{
-		#include "Route_One.event" 
-	}
-//#endif //
+
+{
+	#include "Route_One.event" 
+}
+
 

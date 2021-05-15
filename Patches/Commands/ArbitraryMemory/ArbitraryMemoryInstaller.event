@@ -1,0 +1,55 @@
+#ifndef EVENT_WRITER
+#define EVENT_WRITER
+
+/* 
+030017A0    @DUNGEON_STRUCT_STRUCT    gDungeonState    {U}
+030017ac    @DUNGEON_STRUCT_STRUCT    gBeforeDungeonState    {U}
+030017B8    gDungeonSomething00    {U}
+030017BC    gDungeonSomething04    {U}
+030017C0    gDungeonSomething08    {U}
+030017C4    gDungeonType    00=Tower 01=Ruins    {U}
+
+@DUNGEON_STRUCT_STRUCT@00    short    GetExps
+@DUNGEON_STRUCT_STRUCT@02    byte    DeployUnits
+@DUNGEON_STRUCT_STRUCT@03    byte    ClearTurns
+@DUNGEON_STRUCT_STRUCT@04    short    Unk4
+@DUNGEON_STRUCT_STRUCT@06    short    DefeatsCount
+@DUNGEON_STRUCT_STRUCT@09    byte    Unk9
+@DUNGEON_STRUCT_STRUCT@0A    byte    UnkA
+@DUNGEON_STRUCT_STRUCT@0B    byte    UnkB
+
+
+
+*/
+
+
+
+
+
+// ASMC for writing to arbitrary memory.
+// hack by circleseverywhere
+
+#ifdef _FE8_
+
+  #define Write_Word(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x0; ASMC EventWriter|1"
+  #define Write_Short(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x1; ASMC EventWriter|1"
+  #define Write_Byte(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x2; ASMC EventWriter|1"
+  	
+	#define Read_Word(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x0; ASMC EventReader|1"
+	#define Read_Short(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x1; ASMC EventReader|1"
+	#define Read_Byte(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x2; ASMC EventReader|1"
+
+
+  ALIGN 4
+  EventReader:
+    #incbin "eventreader.dmp"
+
+  ALIGN 4
+  EventWriter:
+    #incbin "eventwriter.dmp"
+
+#else // _FE8_
+  ERROR Event Writer hack is for FE8
+#endif // _FE8_
+
+#endif // EVENT_WRITER
