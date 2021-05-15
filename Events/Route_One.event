@@ -232,13 +232,13 @@ UNCM(0xFFFD, 0x0D)
 //MemSlotToString(rA)
 //TestSVALThing(5, 10)
 SVAL r2 2 
-GetUnitStatus(0xFFFD, Strength)
+GetUnitStatus(0xFFFB, Strength)
  
 SADD r6 rC r0 
 MemSlotToString(r6)
 Text(0x9DD)
 
-SVAL r2 2 
+SVAL r2 1
 GetUnitStatus(0xFFFC, Strength)
  
 SADD r6 rC r0 

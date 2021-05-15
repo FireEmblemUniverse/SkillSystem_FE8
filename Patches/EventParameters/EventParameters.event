@@ -13,7 +13,7 @@
 	
 	#include "GetNthUnitInstaller.event"
 	#include "GetNthUnit/GetFFFDs2Unit.lyn.event" 
-	#include "GetNthUnit/GetActiveUnit.lyn.event" 
+	#include "GetNthUnit/CustomGetActiveUnit.lyn.event" 
 	
 	#define EventParameter(key,function) "WORD key ; POIN function|1"
 	
@@ -26,7 +26,7 @@
 	EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
 	
 	
-	//EventParameter(0xFFFF,GetActiveUnit) // Get current unit.
+	EventParameter(0xFFFB,CustomGetActiveUnit) // Get current unit.
 
 	EventParameter(0xFFFC,GetFFFDs2Unit) // Get unit in memory slot 0x2.
 

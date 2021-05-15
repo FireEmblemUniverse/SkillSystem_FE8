@@ -9,18 +9,19 @@
 	.equ MemorySlot, 0x30004B8 
 	.equ GetUnit, 0x8019430
 	.equ GetUnitByEventParameter, 0x0800BC50
-	.equ GetActiveUnit, 0x3004E50 
+	.equ GetActiveUnitPointer, 0x3004E50 
 
 
-	.global GetActiveUnit
-	.type   GetActiveUnit, function
+	.global CustomGetActiveUnit
+	.type   CustomGetActiveUnit, function
 
-GetActiveUnit:
+CustomGetActiveUnit:
 	push {r4-r7, lr}	
 
 mov r4,#1 @ current deployment id
-ldr r0, =GetActiveUnit
+ldr r0, =GetActiveUnitPointer
 ldr r1, [r0] @active unit pointer 
+ldr r1, [r1] 
 ldrb r5, [r1, #4] @active unit ID 
 
 
