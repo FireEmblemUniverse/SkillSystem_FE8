@@ -96,6 +96,11 @@ MOVE_1STEP, 0x2F42, 8, -game:FE8 -indexMode:8
 	Speed, 2, 2
 	Character, 4, 2
 	Direction, 6, 2
+	
+MOVENEXTTO, 0x2F49, 8, -game:FE8 -indexMode:8
+	Speed, 2, 2
+	Mover, 4, 2
+	Target Character, 6, 2
 
 
 

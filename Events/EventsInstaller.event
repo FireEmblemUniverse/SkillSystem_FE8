@@ -1,5 +1,7 @@
 #define DebugMode 0x1 
 
+#include "UnitAndClassDefinitions.event"
+#include "REDAHelpers.event" 
 #include "ChTransition.event" 
 
 //#ifdef YesChapters

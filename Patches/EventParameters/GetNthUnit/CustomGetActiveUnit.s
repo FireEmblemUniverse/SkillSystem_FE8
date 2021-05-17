@@ -42,6 +42,7 @@ NextUnit:
 add r4,#1
 cmp r4,#0xAF
 ble LoopThroughUnits
+mov r0, #0
 
 Exit:
 pop {r4-r7}

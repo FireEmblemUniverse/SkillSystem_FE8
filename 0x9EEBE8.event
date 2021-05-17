@@ -1,0 +1,51 @@
+
+////////////////////////////////////////////////////
+//                                                //
+// Disassembled with Nintenlord's Event Assembler //
+// Version: 11.1.0.0                              //
+// Game: FE8                                      //
+// File: FE8Hack.event_assembler.gba              //
+// Offset: $9EEBE8                                //
+//                                                //
+////////////////////////////////////////////////////
+
+
+
+ORG $9EEBE8
+CALL 0x9EECBC
+SVAL 0x2 0x89EF1BC
+CALL 0x9EE0C0
+CHECK_TUTORIAL
+BNE 0x0 0xC 0x0
+ASMC 0xCF461
+LABEL 0x0
+ENUT 0x8
+CLEA 0x0
+SVAL 0x1 0xD
+SET_HP 0x2
+CUMO 0x1
+STAL 60
+CURE
+MUSI
+SVAL 0x2 0x1D
+SVAL 0x3 0x90D
+CALL 0x9EE310
+MUNO
+MOVE 0x18 0x2 [4,4]
+ENUN
+CUMO 0x2
+STAL 60
+CURE
+TEXTSTART
+TEXTSHOW 0x90E
+TEXTEND
+REMA
+SVAL 0x2 0x89EF27C
+CALL 0x9EE0C0
+_WARP 0x0 0x1 [4,5]
+ENUN
+CALL 0x9EF060
+CALL 0x9EF0A4
+EVBIT_T 0x7
+ENDA
+

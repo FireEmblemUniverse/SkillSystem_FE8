@@ -68,6 +68,7 @@
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
 #include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
 
+#include "Commands/HealAllUnits.lyn.event" 
 
 #include "Commands/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
 

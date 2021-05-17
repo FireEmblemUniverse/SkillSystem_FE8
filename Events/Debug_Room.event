@@ -231,7 +231,9 @@ LOAD1 0x0 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep s
 ENUN
 LOAD1 0x0 Units2
 ENUN
-
+Write_Byte(0x05, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(0x06, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 //\r\n0\r\n\r\nNEHU\r\nNULL\r\n\r\n\r\n
 //EnableFreeMovement
 

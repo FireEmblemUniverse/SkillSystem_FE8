@@ -4,5 +4,7 @@
 
 #define RandomizeCoords(TerrainType, RangeOfEnemyUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfEnemyUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeCoords" 
 
+#define Grass 0x0C 
+#define Ground 0x01 
 
 

@@ -33,8 +33,8 @@ beq NextUnit
 ldr r3,[r1]
 cmp r3,#0
 beq NextUnit
+ldr r3,[r1,#0xC] @ condition word
 mov r2,#0x4F @ hide/moved/dead/undeployed/cantoing 
-mov r2,#0xC @ benched/dead
 tst r3,r2
 bne NextUnit
 @ if you got here, unit exists and is not dead or undeployed, so go ham

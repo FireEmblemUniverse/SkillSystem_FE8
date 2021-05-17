@@ -11,6 +11,8 @@
 #include "GetUnitStatus.lyn.event"
 #include "SetUnitStatus.lyn.event"
 #include "SetUnitStatusAll.lyn.event"
+#include "OnAllUnitState.lyn.event"
+#include "OffAllUnitState.lyn.event"
 
 
 // 
@@ -64,6 +66,8 @@ SetUnitStatusAll(0xAABD, MovBonus, 6, AnyDeployed, EnemyArmy, 0x5266, Area(1,3,1
 #define Area(LowerX, LowerY, UpperX, UpperY) "LowerX*0x1000000+LowerY*0x10000+UpperX*0x100+UpperY"
 #define Range(LowerX, LowerY, UpperX, UpperY) "LowerX*0x1000000+LowerY*0x10000+UpperX*0x100+UpperY"
 
+#define OnAllUnitState(UnitId, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC OnAllUnitState"
+#define OffAllUnitState(UnitId, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC OffAllUnitState"
 
 #define SetUnitStatusAll(UnitId, StatusDefinition, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC SetUnitStatusAll"
 
@@ -79,6 +83,46 @@ SetUnitStatusAll(0xAABD, MovBonus, 6, AnyDeployed, EnemyArmy, 0x5266, Area(1,3,1
 // In GetUnitStatus, SVAL 4 is Nibble/Byte/Short/Word, so we define that here for ease of use 
 
 #define Any "0xFF"
+
+
+#define Hide 0x1 
+#define Acted 0x2 
+#define Dead 0x4 
+#define Undeployed 0x8 
+#define RescuingUnit 0x10 
+#define Rescued 0x20 
+#define Cantoing 0x40 
+#define UnderRoof 0x80 
+
+#define ShowMovementSquares 0x100 
+#define HideInLinkArena 0x200 
+#define UnknownAIRelated 0x400 
+#define RidingBallista 0x800 
+#define WillDropItem 0x1000 
+#define GrowthBonus 0x2000 
+#define SoloAnim1 0x4000 
+#define SoloAnim2 0x8000 
+
+#define Escaped 0x10000 
+#define UsedInSuperArena1 0x20000 
+#define UsedInSuperArena2 0x40000 
+#define SuperArena 0x80000 
+#define PreviouslyUndeployedA 0x100000 
+#define PreviouslyUndeployedB 0x200000 
+#define UnknownUnitCreation 0x400000
+#define NextPortrait 0x800000
+
+#define ShakeMapSprite 0x1000000
+#define Undeployable 0x2000000
+#define Captured 0x4000000 //also used in remu
+#define LinkArenaPalette 0x8000000
+#define Unknown35 0x10000000
+#define Unknown36 0x20000000
+#define Unknown37 0x40000000
+#define Unknown38 0x80000000 //7743's summon 
+#define InParty 0x40000000
+#define Fainted 0x80000000
+
 
 
 #define UnitPointer "0x00; SVAL 4 0x05"

@@ -13,7 +13,9 @@
 	
 	#include "GetNthUnitInstaller.event"
 	#include "GetNthUnit/GetFFFDs2Unit.lyn.event" 
+	#include "GetNthUnit/GetFFFEsBCoordsUnit.lyn.event" 
 	#include "GetNthUnit/CustomGetActiveUnit.lyn.event" 
+	#include "GetNthUnit/GetEnemyFFFCsBCoordsUnit.lyn.event" 
 	
 	#define EventParameter(key,function) "WORD key ; POIN function|1"
 	
@@ -21,24 +23,25 @@
 	EventParameterTable:
 	// These mimick vanilla behavior. Each takes the key as a parameter and should return a character struct pointer.
 	EventParameter(0,EventParametersGetLeader) // Gets the party leader via $33258.
-	EventParameter(-1,EventParameterGetActive) // Get current unit.
-	EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
-	EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
+	//EventParameter(-1,EventParameterGetActive) // Get current unit.
+	//EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
+	//EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
 	
 	
-	EventParameter(0xFFFB,CustomGetActiveUnit) // Get current unit.
+	EventParameter(0xFFFF,CustomGetActiveUnit) // Get current unit.
+	EventParameter(0xFFFE,GetFFFEsBCoordsUnit) // Get sB coords unit.
+	EventParameter(0xFFFD,GetFFFDs2Unit) // Get unit in memory slot 0x2.
+	EventParameter(0xFFFC,GetEnemyFFFCsBCoordsUnit) // Get enemy in sB coords, even if dead 
 
-	EventParameter(0xFFFC,GetFFFDs2Unit) // Get unit in memory slot 0x2.
-
 	
-	EventParameter(0x0101,Get1stUnit)
+	EventParameter(0x0101,Get1stUnit) //Get 1st player unit 
 	EventParameter(0x0102,Get2ndUnit)
 	EventParameter(0x0103,Get3rdUnit)
 	EventParameter(0x0104,Get4thUnit)
 	EventParameter(0x0105,Get5thUnit)
 	EventParameter(0x0106,Get6thUnit)
 	
-	EventParameter(0x0201,Get1stFreeUnit)
+	EventParameter(0x0201,Get1stFreeUnit) //Get 1st player unit that hasn't acted this turn 
 	EventParameter(0x0202,Get2ndFreeUnit)
 	EventParameter(0x0203,Get3rdFreeUnit)
 	EventParameter(0x0204,Get4thFreeUnit)

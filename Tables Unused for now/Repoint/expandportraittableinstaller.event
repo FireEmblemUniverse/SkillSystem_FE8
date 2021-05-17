@@ -1,0 +1,20 @@
+#undef PortraitTable
+#define PortraitTable ExpandedPortraitTable
+#define MaxPortraitEntries 0x200
+
+ALIGN 4
+
+ExpandedPortraitTable:
+#incbin "expandportraittable.bin"
+        ORG ExpandedPortraitTable + (MaxPortraitEntries * 28)
+
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG ExpandedPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0x00000000; BYTE mouthX mouthY eyeX eyeY; WORD 0x01; POP"
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY, eyeControl) "PUSH; ORG ExpandedPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0x00000000; BYTE mouthX mouthY eyeX eyeY; WORD eyeControl; POP"
+#define setCardEntry(cardEntry,cardLocation,cardPaletteLocation) "PUSH; ORG PortraitTable+cardEntry*0x1C; POIN 0 0 cardPaletteLocation 0 cardLocation; POP"
+
+PUSH
+ORG $5524
+POIN ExpandedPortraitTable
+POP
+
+PROTECT ExpandedPortraitTable

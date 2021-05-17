@@ -1,15 +1,4 @@
-
-////////////////////////////////////////////////////
-//                                                //
-// Disassembled with Nintenlord's Event Assembler //
-// Version: 11.0.0.0                              //
-// Game: FE8                                      //
-// File: FE8_clean.gba                            //
-// Offset: $9EC66C                                //
-//                                                //
-////////////////////////////////////////////////////
-
-//EventPointerTable(0x7, PointerList)
+EventPointerTable(Route1Ch,ThisChapter)
 
 #ifdef DRAGON_VEINS
 VeinEffect(0, FreezeAllEnemies)
@@ -23,14 +12,6 @@ String("Route One")
 BYTE 0
 
 
-
-//#define EventsInPalletTownData $07
-//EventPointerTable(EventsInRoute1Data,ThisChapter)
-//#define EventsInRoute1Data $0B
-
-
-
-EventPointerTable(Route1Ch,ThisChapter)
 
 
 
@@ -58,18 +39,28 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
+/*
 Vendor(ShopItems,2,7)
 Armory(ArmoryItems,10,26)
 Village(0x8,VillageEvent,18,27)
 House(0,HouseEvent,6,24)
 Seize(10,2)
+*/
 END_MAIN
 
 MiscBasedEvents:
-//CauseGameOverIfLordDies
-AFEV 0 ToPallet 0
-AFEV 0 TalkEvent 0
+CauseGameOverIfLordDies
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToViridian [10,0] [13,0] 
+AREA 0 ToPallet [12,39] [13,39] 
 END_MAIN
+
+ToPallet:
+ChapterTransition(PalletTownCh, 8, 5)
+
+ToViridian:
+ChapterTransition(ViridianCityCh, 19, 38)
 
 Dunno1:
 END_MAIN
@@ -86,61 +77,35 @@ END_MAIN
 
 
 
-
-
-
-
-
-
-ToPallet:
-//Read_Short(CoordsNewArea)
-SADD r2 rC r0 
-//MemSlotToString(r2)
-//Text(0x9DD)
-SVAL r8 0
-//Write_Short(0x0803, CoordsNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//CALL ChTransition 
-NoFade
-ENDA 
-
-
-Units1:
+Units1: //only used for a pointless POIN at start 
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
 
-EnemyUnits:
-UNIT 0x10 0x3B 0x40 0xA5    [20,9] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
-UNIT ONeill Fighter 0x40 0xA5     [18,9] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
+EnemyUnitsA:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b				 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
 
-
-
-UNIT Breguet Knight 0x40 0xA5     [11,8] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
-UNIT Bone Brigand 0x40 0xA5       [12,8] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
-UNIT Bazba Brigand 0x40 0xA5      [13,9] 0 0 0 0 [SteelAxe, HandAxe] AttackInRangeAI
-UNIT Saar Knight 0x40 0xA5        [14,9] 0 0 0 0 [SteelLance, Javelin] AttackInRangeAI
-UNIT Novala Shaman 0x40 0xA5      [15,10] 0 0 0 0 [Nosferatu] AttackInRangeAI
-UNIT Murray Cavalier 0x40 0xA5    [16,10] 0 0 0 0 [SteelSword, Javelin] AttackInRangeAI
-UNIT Tirado General 0x40 0xA5     [16,11] 0 0 0 0 [SilverLance, Javelin] AttackInRangeAI
-UNIT Binks Warrior 0x40 0xA5      [1,10] 0 0 0 0 [SteelAxe, SteelBow] AttackInRangeAI
-UNIT Pablo Sage 0x40 0xA5         [5,11] 0 0 0 0 [Elfire, Purge] AttackInRangeAI
-UNIT
-/*
-*/
-
-EnemyUnits2:
-UNIT Vigarde General 0x40 0xA5    [16,9] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
-UNIT Cyclops_boss Cyclops 0x40 0xA5       [9,4] 0 0 0 0 [BattleAxe, Tomahawk] AttackInRangeAI
-UNIT Cyclops_boss Cyclops 0x40 0xA5       [11,4] 0 0 0 0 [BattleAxe, Tomahawk] AttackInRangeAI
-UNIT
-/*
-UNIT Aias GreatKnight 0x40 0xA5   [7,11] 0 0 0 0 [ShortSpear, SilverBlade, SilverAxe] AttackInRangeAI
-UNIT Carlyle Swordmaster 0x40 0xA5 [10,9] 0 0 0 0 [WindSword] AttackInRangeAI
-UNIT Gheb Warrior 0x40 0xA5       [2,4] 0 0 0 0 [KillerAxe, KillerBow] NeverMoveAI
-UNIT Beran Ranger 0x40 0xA5       [17,14] 0 0 0 0 [Lancereaver, KillerBow, Longbow] AttackInRangeAI
+EnemyUnitsB:
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
 UNIT
 
-*/
+EnemyUnitsC:
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,5] 001b	0x0 0x01 REDA0R5 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+UNIT 
+
+EnemyUnitsD:
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+UNIT
+
 
 Traps1:
 #ifdef DRAGON_VEINS
@@ -154,105 +119,32 @@ ENDTRAP
 ALIGN 4
 
 BeginningScene:
-//SVAL 1 1
-//SVAL 2 8
-//ASMC SetUnitState
-ENUT 0x1 //no more boss quotes
-ENUT 0x2 //no more death quotes
-LOAD1 0x1 EnemyUnits
+LOAD1 0x1 EnemyUnitsA
 ENUN
-LOAD1 0x1 EnemyUnits2
+RandomizeCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
+LOAD1 0x1 EnemyUnitsB
 ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(16,13,21,17)) //upper mid 
+LOAD1 0x1 EnemyUnitsC
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
+LOAD1 0x1 EnemyUnitsD
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,25))  //lower 
+OffAllUnitState(0x01FF, WillDropItem, 0, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
 CALL LoadAndPlacePlayers 
-
-//\r\n0\r\n\r\nNEHU\r\nNULL\r\n\r\n\r\n
-//EnableFreeMovement
-
-CHECK_EVENTID 0x83
-BEQ 0x63 0xC 0x0
-//GotoPrepScreen
 
 LABEL 0x63
 NoFade
 ENDA
 
 TalkEvent:
-//SilentGiveItem1
-//SilentGiveItem1(Seth, Rapier)
-//SilentGiveItem2
-//TakeItemAll(SilverLance)
 
-
-LABEL 0
-
-
-
-//SVAL r1 0x0102 	//2nd possible player unit 
-//SVAL r3 0x2		//Moved
-//ASMC UNCM
-//UNCM(0x102, 0x42, 0x01)
-
-
-//CHECK_COORDS 0x0201
-//SADD rB rC r0 
-//MemSlotToString(rB)
-//ASMC GetNthUnit 
-//ASMC CheckInDanger
-//SADD r2 rC r0
-//ASMC GetNthUnitID
-/*
-SVAL r2 0x2 
-SCOORD rB [5, 6]
-CUSE(0xFFFD)
-
-SCOORD rB [5, 7]
-SVAL r2 0xF 
-UNCM(0xFFFD, 0x0D)
-*/
-
-//SVAL r1 32
-//ASMC AutoLevelUnits
-//SVAL r9 Area(8,4,23,12)
-//SVAL r4 0xC //Forest 
-//SVAL r8 Area(10,5,21,10) //@coords to check units 
-//SVAL r9 Area(10,3,21,12)
-//ASMC RandomizeCoords
-
-//RandomizeCoords(0xC, Area(10,5,21,10), Area(10,3,21,12)) 
-
-
-//UNCR(0xFFFF,0x42)
-//SCOORD rB [5, 7]
-//SetBadStatus(0xFFFE, 0x55)
-//SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0)
-//SetUnitStatusAll(0x016A, BadStatusType, 0x51, 0x0C, 0, 0, 0, 0)
-//SetUnitStatusAll(0x016A, BadStatusTurn, 0x96, 0x0C, 0, 0, 0, 0)
-
-//SetUnitStatusAll(0x026A, Item1, Rapier, 0x0C, Enemy, 0, 19,19,20,20)
-//MemSlotToString(rA)
-//TestSVALThing(5, 10)
-SVAL r2 2 
-GetUnitStatus(0xFFFB, Strength)
- 
-SADD r6 rC r0 
-MemSlotToString(r6)
-Text(0x9DD)
-
-SVAL r2 1
-GetUnitStatus(0xFFFC, Strength)
- 
-SADD r6 rC r0 
-MemSlotToString(r6)
-Text(0x9DD)
 NoFade
-ENDA
+ENDA 
 
 
-EndingScene:
-ASMC 0x85C71 0x381F5 0x37CF9 //show records screen
-STAL 120
-EVBIT_F 0x2
-MNTS 0x1 //return to title screen
+EndingScene: //Unused but must exist 
 NoFade
 ENDA
 
