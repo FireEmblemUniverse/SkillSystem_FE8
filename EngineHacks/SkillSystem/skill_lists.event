@@ -6,6 +6,12 @@ BYTE 00 00
 ALIGN 4
 
 EirikaLordSkillList:
+BYTE 1 LunaID
+BYTE 1 SolID
+BYTE 1 CounterID 
+BYTE 1 PassID
+BYTE 1 AetherID
+BYTE 1 AstraID
 BYTE 00 00
 ALIGN 4
 

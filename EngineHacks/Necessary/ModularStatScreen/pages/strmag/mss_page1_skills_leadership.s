@@ -45,7 +45,7 @@ mov		r1,r8
 ldrb	r1,[r1,#0xB]
 mov		r2,#0xC0
 tst		r1,r2
-beq		Label2
+b		Label2 @always display growths 
 ldrb	r1,[r0]
 mov		r2,#0xFE
 and		r1,r2
@@ -99,9 +99,10 @@ draw_textID_at 21, 3, textID=0x4f7 @con
 draw_con_bar_with_getter_at 24, 3
 
 
-draw_textID_at 21, 5, textID=0x4f8 @aid
-draw_number_at 25, 5, 0x80189B8, 2 @aid getter
-draw_aid_icon_at 26, 5
+@ no aid shown 
+@draw_textID_at 21, 5, textID=0x4f8 @aid
+@draw_number_at 25, 5, 0x80189B8, 2 @aid getter
+@draw_aid_icon_at 26, 5
 
 draw_status_text_at 21, 7
 

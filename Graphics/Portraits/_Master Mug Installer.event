@@ -1,0 +1,1213 @@
+// setMugEntry(UnitMugID, UnitMugData, MouthX, MouthY, EyeX, EyeY)
+#define setMugEntryExtend(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY, extend1X, extend1Y, extend2X, extend2Y)"PUSH; ORG PortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE extend1X extend1Y extend2X extend2Y; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
+
+// ALIGN 16 %[name|stripspecial]%Data: // %[national_dex|zeropad]%#incbin "Dmp/%[national_dex]%_mug.dmp" #incbin "Dmp/%[national_dex]%_frames.dmp" #incbin "Dmp/%[national_dex]%_palette.dmp" #incbin "Dmp/%[national_dex]%_minimug.dmp" setMugEntry(%[national_dex]%, %[name|stripspecial]%Data, 9, 9, 9, 9)
+// https://www.dragonflycave.com/resources/pokemon-list-generator?format=ALIGN+16+%3Cbr%3E%25%5Bname%7Cstripspecial%5D%25Data%3A+%2F%2F+%25%5Bnational_dex%7Czeropad%5D%25%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_mug.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_frames.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_palette.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_minimug.dmp%22+%3Cbr%3EsetMugEntry%28%23%25%5Bnational_dex%5D%25%2C+%25%5Bname%7Cstripspecial%5D%25Data%2C+9%2C+9%2C+9%2C+9%29%3Cbr%3E&linebreaks=1&gens=1&order=national
+
+ALIGN 16 
+BulbasaurData: // 001
+#incbin "Dmp/1_mug.dmp" 
+#incbin "Dmp/1_frames.dmp" 
+#incbin "Dmp/1_palette.dmp" 
+#incbin "Dmp/1_minimug.dmp" 
+setMugEntry(1, BulbasaurData, 9, 9, 9, 9)
+
+ALIGN 16 
+IvysaurData: // 002
+#incbin "Dmp/2_mug.dmp" 
+#incbin "Dmp/2_frames.dmp" 
+#incbin "Dmp/2_palette.dmp" 
+#incbin "Dmp/2_minimug.dmp" 
+setMugEntry(2, IvysaurData, 9, 9, 9, 9)
+
+ALIGN 16 
+VenusaurData: // 003
+#incbin "Dmp/3_mug.dmp" 
+#incbin "Dmp/3_frames.dmp" 
+#incbin "Dmp/3_palette.dmp" 
+#incbin "Dmp/3_minimug.dmp" 
+setMugEntry(3, VenusaurData, 9, 9, 9, 9)
+
+ALIGN 16 
+CharmanderData: // 004
+#incbin "Dmp/4_mug.dmp" 
+#incbin "Dmp/4_frames.dmp" 
+#incbin "Dmp/4_palette.dmp" 
+#incbin "Dmp/4_minimug.dmp" 
+setMugEntry(4, CharmanderData, 9, 9, 9, 9)
+
+ALIGN 16 
+CharmeleonData: // 005
+#incbin "Dmp/5_mug.dmp" 
+#incbin "Dmp/5_frames.dmp" 
+#incbin "Dmp/5_palette.dmp" 
+#incbin "Dmp/5_minimug.dmp" 
+setMugEntry(5, CharmeleonData, 9, 9, 9, 9)
+
+ALIGN 16 
+CharizardData: // 006
+#incbin "Dmp/6_mug.dmp" 
+#incbin "Dmp/6_frames.dmp" 
+#incbin "Dmp/6_palette.dmp" 
+#incbin "Dmp/6_minimug.dmp" 
+setMugEntry(6, CharizardData, 9, 9, 9, 9)
+
+ALIGN 16 
+SquirtleData: // 007
+#incbin "Dmp/7_mug.dmp" 
+#incbin "Dmp/7_frames.dmp" 
+#incbin "Dmp/7_palette.dmp" 
+#incbin "Dmp/7_minimug.dmp" 
+setMugEntry(7, SquirtleData, 9, 9, 9, 9)
+
+ALIGN 16 
+WartortleData: // 008
+#incbin "Dmp/8_mug.dmp" 
+#incbin "Dmp/8_frames.dmp" 
+#incbin "Dmp/8_palette.dmp" 
+#incbin "Dmp/8_minimug.dmp" 
+setMugEntry(8, WartortleData, 9, 9, 9, 9)
+
+ALIGN 16 
+BlastoiseData: // 009
+#incbin "Dmp/9_mug.dmp" 
+#incbin "Dmp/9_frames.dmp" 
+#incbin "Dmp/9_palette.dmp" 
+#incbin "Dmp/9_minimug.dmp" 
+setMugEntry(9, BlastoiseData, 9, 9, 9, 9)
+
+ALIGN 16 
+CaterpieData: // 010
+#incbin "Dmp/10_mug.dmp" 
+#incbin "Dmp/10_frames.dmp" 
+#incbin "Dmp/10_palette.dmp" 
+#incbin "Dmp/10_minimug.dmp" 
+setMugEntry(10, CaterpieData, 9, 9, 9, 9)
+
+ALIGN 16 
+MetapodData: // 011
+#incbin "Dmp/11_mug.dmp" 
+#incbin "Dmp/11_frames.dmp" 
+#incbin "Dmp/11_palette.dmp" 
+#incbin "Dmp/11_minimug.dmp" 
+setMugEntry(11, MetapodData, 9, 9, 9, 9)
+
+ALIGN 16 
+ButterfreeData: // 012
+#incbin "Dmp/12_mug.dmp" 
+#incbin "Dmp/12_frames.dmp" 
+#incbin "Dmp/12_palette.dmp" 
+#incbin "Dmp/12_minimug.dmp" 
+setMugEntry(12, ButterfreeData, 9, 9, 9, 9)
+
+ALIGN 16 
+WeedleData: // 013
+#incbin "Dmp/13_mug.dmp" 
+#incbin "Dmp/13_frames.dmp" 
+#incbin "Dmp/13_palette.dmp" 
+#incbin "Dmp/13_minimug.dmp" 
+setMugEntry(13, WeedleData, 9, 9, 9, 9)
+
+ALIGN 16 
+KakunaData: // 014
+#incbin "Dmp/14_mug.dmp" 
+#incbin "Dmp/14_frames.dmp" 
+#incbin "Dmp/14_palette.dmp" 
+#incbin "Dmp/14_minimug.dmp" 
+setMugEntry(14, KakunaData, 9, 9, 9, 9)
+
+ALIGN 16 
+BeedrillData: // 015
+#incbin "Dmp/15_mug.dmp" 
+#incbin "Dmp/15_frames.dmp" 
+#incbin "Dmp/15_palette.dmp" 
+#incbin "Dmp/15_minimug.dmp" 
+setMugEntry(15, BeedrillData, 9, 9, 9, 9)
+
+ALIGN 16 
+PidgeyData: // 016
+#incbin "Dmp/16_mug.dmp" 
+#incbin "Dmp/16_frames.dmp" 
+#incbin "Dmp/16_palette.dmp" 
+#incbin "Dmp/16_minimug.dmp" 
+setMugEntry(16, PidgeyData, 9, 9, 9, 9)
+
+ALIGN 16 
+PidgeottoData: // 017
+#incbin "Dmp/17_mug.dmp" 
+#incbin "Dmp/17_frames.dmp" 
+#incbin "Dmp/17_palette.dmp" 
+#incbin "Dmp/17_minimug.dmp" 
+setMugEntry(17, PidgeottoData, 9, 9, 9, 9)
+
+ALIGN 16 
+PidgeotData: // 018
+#incbin "Dmp/18_mug.dmp" 
+#incbin "Dmp/18_frames.dmp" 
+#incbin "Dmp/18_palette.dmp" 
+#incbin "Dmp/18_minimug.dmp" 
+setMugEntry(18, PidgeotData, 9, 9, 9, 9)
+
+ALIGN 16 
+RattataData: // 019
+#incbin "Dmp/19_mug.dmp" 
+#incbin "Dmp/19_frames.dmp" 
+#incbin "Dmp/19_palette.dmp" 
+#incbin "Dmp/19_minimug.dmp" 
+setMugEntry(19, RattataData, 9, 9, 9, 9)
+
+ALIGN 16 
+RaticateData: // 020
+#incbin "Dmp/20_mug.dmp" 
+#incbin "Dmp/20_frames.dmp" 
+#incbin "Dmp/20_palette.dmp" 
+#incbin "Dmp/20_minimug.dmp" 
+setMugEntry(20, RaticateData, 9, 9, 9, 9)
+
+ALIGN 16 
+SpearowData: // 021
+#incbin "Dmp/21_mug.dmp" 
+#incbin "Dmp/21_frames.dmp" 
+#incbin "Dmp/21_palette.dmp" 
+#incbin "Dmp/21_minimug.dmp" 
+setMugEntry(21, SpearowData, 9, 9, 9, 9)
+
+ALIGN 16 
+FearowData: // 022
+#incbin "Dmp/22_mug.dmp" 
+#incbin "Dmp/22_frames.dmp" 
+#incbin "Dmp/22_palette.dmp" 
+#incbin "Dmp/22_minimug.dmp" 
+setMugEntry(22, FearowData, 9, 9, 9, 9)
+
+ALIGN 16 
+EkansData: // 023
+#incbin "Dmp/23_mug.dmp" 
+#incbin "Dmp/23_frames.dmp" 
+#incbin "Dmp/23_palette.dmp" 
+#incbin "Dmp/23_minimug.dmp" 
+setMugEntry(23, EkansData, 9, 9, 9, 9)
+
+ALIGN 16 
+ArbokData: // 024
+#incbin "Dmp/24_mug.dmp" 
+#incbin "Dmp/24_frames.dmp" 
+#incbin "Dmp/24_palette.dmp" 
+#incbin "Dmp/24_minimug.dmp" 
+setMugEntry(24, ArbokData, 9, 9, 9, 9)
+
+ALIGN 16 
+PikachuData: // 025
+#incbin "Dmp/25_mug.dmp" 
+#incbin "Dmp/25_frames.dmp" 
+#incbin "Dmp/25_palette.dmp" 
+#incbin "Dmp/25_minimug.dmp" 
+setMugEntry(25, PikachuData, 9, 9, 9, 9)
+
+ALIGN 16 
+RaichuData: // 026
+#incbin "Dmp/26_mug.dmp" 
+#incbin "Dmp/26_frames.dmp" 
+#incbin "Dmp/26_palette.dmp" 
+#incbin "Dmp/26_minimug.dmp" 
+setMugEntry(26, RaichuData, 9, 9, 9, 9)
+
+ALIGN 16 
+SandshrewData: // 027
+#incbin "Dmp/27_mug.dmp" 
+#incbin "Dmp/27_frames.dmp" 
+#incbin "Dmp/27_palette.dmp" 
+#incbin "Dmp/27_minimug.dmp" 
+setMugEntry(27, SandshrewData, 9, 9, 9, 9)
+
+ALIGN 16 
+SandslashData: // 028
+#incbin "Dmp/28_mug.dmp" 
+#incbin "Dmp/28_frames.dmp" 
+#incbin "Dmp/28_palette.dmp" 
+#incbin "Dmp/28_minimug.dmp" 
+setMugEntry(28, SandslashData, 9, 9, 9, 9)
+
+ALIGN 16 
+NidoranfData: // 029
+#incbin "Dmp/29_mug.dmp" 
+#incbin "Dmp/29_frames.dmp" 
+#incbin "Dmp/29_palette.dmp" 
+#incbin "Dmp/29_minimug.dmp" 
+setMugEntry(29, NidoranfData, 9, 9, 9, 9)
+
+ALIGN 16 
+NidorinaData: // 030
+#incbin "Dmp/30_mug.dmp" 
+#incbin "Dmp/30_frames.dmp" 
+#incbin "Dmp/30_palette.dmp" 
+#incbin "Dmp/30_minimug.dmp" 
+setMugEntry(30, NidorinaData, 9, 9, 9, 9)
+
+ALIGN 16 
+NidoqueenData: // 031
+#incbin "Dmp/31_mug.dmp" 
+#incbin "Dmp/31_frames.dmp" 
+#incbin "Dmp/31_palette.dmp" 
+#incbin "Dmp/31_minimug.dmp" 
+setMugEntry(31, NidoqueenData, 9, 9, 9, 9)
+
+ALIGN 16 
+NidoranmData: // 032
+#incbin "Dmp/32_mug.dmp" 
+#incbin "Dmp/32_frames.dmp" 
+#incbin "Dmp/32_palette.dmp" 
+#incbin "Dmp/32_minimug.dmp" 
+setMugEntry(32, NidoranmData, 9, 9, 9, 9)
+
+ALIGN 16 
+NidorinoData: // 033
+#incbin "Dmp/33_mug.dmp" 
+#incbin "Dmp/33_frames.dmp" 
+#incbin "Dmp/33_palette.dmp" 
+#incbin "Dmp/33_minimug.dmp" 
+setMugEntry(33, NidorinoData, 9, 9, 9, 9)
+
+ALIGN 16 
+NidokingData: // 034
+#incbin "Dmp/34_mug.dmp" 
+#incbin "Dmp/34_frames.dmp" 
+#incbin "Dmp/34_palette.dmp" 
+#incbin "Dmp/34_minimug.dmp" 
+setMugEntry(34, NidokingData, 9, 9, 9, 9)
+
+ALIGN 16 
+ClefairyData: // 035
+#incbin "Dmp/35_mug.dmp" 
+#incbin "Dmp/35_frames.dmp" 
+#incbin "Dmp/35_palette.dmp" 
+#incbin "Dmp/35_minimug.dmp" 
+setMugEntry(35, ClefairyData, 9, 9, 9, 9)
+
+ALIGN 16 
+ClefableData: // 036
+#incbin "Dmp/36_mug.dmp" 
+#incbin "Dmp/36_frames.dmp" 
+#incbin "Dmp/36_palette.dmp" 
+#incbin "Dmp/36_minimug.dmp" 
+setMugEntry(36, ClefableData, 9, 9, 9, 9)
+
+ALIGN 16 
+VulpixData: // 037
+#incbin "Dmp/37_mug.dmp" 
+#incbin "Dmp/37_frames.dmp" 
+#incbin "Dmp/37_palette.dmp" 
+#incbin "Dmp/37_minimug.dmp" 
+setMugEntry(37, VulpixData, 9, 9, 9, 9)
+
+ALIGN 16 
+NinetalesData: // 038
+#incbin "Dmp/38_mug.dmp" 
+#incbin "Dmp/38_frames.dmp" 
+#incbin "Dmp/38_palette.dmp" 
+#incbin "Dmp/38_minimug.dmp" 
+setMugEntry(38, NinetalesData, 9, 9, 9, 9)
+
+ALIGN 16 
+JigglypuffData: // 039
+#incbin "Dmp/39_mug.dmp" 
+#incbin "Dmp/39_frames.dmp" 
+#incbin "Dmp/39_palette.dmp" 
+#incbin "Dmp/39_minimug.dmp" 
+setMugEntry(39, JigglypuffData, 9, 9, 9, 9)
+
+ALIGN 16 
+WigglytuffData: // 040
+#incbin "Dmp/40_mug.dmp" 
+#incbin "Dmp/40_frames.dmp" 
+#incbin "Dmp/40_palette.dmp" 
+#incbin "Dmp/40_minimug.dmp" 
+setMugEntry(40, WigglytuffData, 9, 9, 9, 9)
+
+ALIGN 16 
+ZubatData: // 041
+#incbin "Dmp/41_mug.dmp" 
+#incbin "Dmp/41_frames.dmp" 
+#incbin "Dmp/41_palette.dmp" 
+#incbin "Dmp/41_minimug.dmp" 
+setMugEntry(41, ZubatData, 9, 9, 9, 9)
+
+ALIGN 16 
+GolbatData: // 042
+#incbin "Dmp/42_mug.dmp" 
+#incbin "Dmp/42_frames.dmp" 
+#incbin "Dmp/42_palette.dmp" 
+#incbin "Dmp/42_minimug.dmp" 
+setMugEntry(42, GolbatData, 9, 9, 9, 9)
+
+ALIGN 16 
+OddishData: // 043
+#incbin "Dmp/43_mug.dmp" 
+#incbin "Dmp/43_frames.dmp" 
+#incbin "Dmp/43_palette.dmp" 
+#incbin "Dmp/43_minimug.dmp" 
+setMugEntry(43, OddishData, 9, 9, 9, 9)
+
+ALIGN 16 
+GloomData: // 044
+#incbin "Dmp/44_mug.dmp" 
+#incbin "Dmp/44_frames.dmp" 
+#incbin "Dmp/44_palette.dmp" 
+#incbin "Dmp/44_minimug.dmp" 
+setMugEntry(44, GloomData, 9, 9, 9, 9)
+
+ALIGN 16 
+VileplumeData: // 045
+#incbin "Dmp/45_mug.dmp" 
+#incbin "Dmp/45_frames.dmp" 
+#incbin "Dmp/45_palette.dmp" 
+#incbin "Dmp/45_minimug.dmp" 
+setMugEntry(45, VileplumeData, 9, 9, 9, 9)
+
+ALIGN 16 
+ParasData: // 046
+#incbin "Dmp/46_mug.dmp" 
+#incbin "Dmp/46_frames.dmp" 
+#incbin "Dmp/46_palette.dmp" 
+#incbin "Dmp/46_minimug.dmp" 
+setMugEntry(46, ParasData, 9, 9, 9, 9)
+
+ALIGN 16 
+ParasectData: // 047
+#incbin "Dmp/47_mug.dmp" 
+#incbin "Dmp/47_frames.dmp" 
+#incbin "Dmp/47_palette.dmp" 
+#incbin "Dmp/47_minimug.dmp" 
+setMugEntry(47, ParasectData, 9, 9, 9, 9)
+
+ALIGN 16 
+VenonatData: // 048
+#incbin "Dmp/48_mug.dmp" 
+#incbin "Dmp/48_frames.dmp" 
+#incbin "Dmp/48_palette.dmp" 
+#incbin "Dmp/48_minimug.dmp" 
+setMugEntry(48, VenonatData, 9, 9, 9, 9)
+
+ALIGN 16 
+VenomothData: // 049
+#incbin "Dmp/49_mug.dmp" 
+#incbin "Dmp/49_frames.dmp" 
+#incbin "Dmp/49_palette.dmp" 
+#incbin "Dmp/49_minimug.dmp" 
+setMugEntry(49, VenomothData, 9, 9, 9, 9)
+
+ALIGN 16 
+DiglettData: // 050
+#incbin "Dmp/50_mug.dmp" 
+#incbin "Dmp/50_frames.dmp" 
+#incbin "Dmp/50_palette.dmp" 
+#incbin "Dmp/50_minimug.dmp" 
+setMugEntry(50, DiglettData, 9, 9, 9, 9)
+
+ALIGN 16 
+DugtrioData: // 051
+#incbin "Dmp/51_mug.dmp" 
+#incbin "Dmp/51_frames.dmp" 
+#incbin "Dmp/51_palette.dmp" 
+#incbin "Dmp/51_minimug.dmp" 
+setMugEntry(51, DugtrioData, 9, 9, 9, 9)
+
+ALIGN 16 
+MeowthData: // 052
+#incbin "Dmp/52_mug.dmp" 
+#incbin "Dmp/52_frames.dmp" 
+#incbin "Dmp/52_palette.dmp" 
+#incbin "Dmp/52_minimug.dmp" 
+setMugEntry(52, MeowthData, 9, 9, 9, 9)
+
+ALIGN 16 
+PersianData: // 053
+#incbin "Dmp/53_mug.dmp" 
+#incbin "Dmp/53_frames.dmp" 
+#incbin "Dmp/53_palette.dmp" 
+#incbin "Dmp/53_minimug.dmp" 
+setMugEntry(53, PersianData, 9, 9, 9, 9)
+
+ALIGN 16 
+PsyduckData: // 054
+#incbin "Dmp/54_mug.dmp" 
+#incbin "Dmp/54_frames.dmp" 
+#incbin "Dmp/54_palette.dmp" 
+#incbin "Dmp/54_minimug.dmp" 
+setMugEntry(54, PsyduckData, 9, 9, 9, 9)
+
+ALIGN 16 
+GolduckData: // 055
+#incbin "Dmp/55_mug.dmp" 
+#incbin "Dmp/55_frames.dmp" 
+#incbin "Dmp/55_palette.dmp" 
+#incbin "Dmp/55_minimug.dmp" 
+setMugEntry(55, GolduckData, 9, 9, 9, 9)
+
+ALIGN 16 
+MankeyData: // 056
+#incbin "Dmp/56_mug.dmp" 
+#incbin "Dmp/56_frames.dmp" 
+#incbin "Dmp/56_palette.dmp" 
+#incbin "Dmp/56_minimug.dmp" 
+setMugEntry(56, MankeyData, 9, 9, 9, 9)
+
+ALIGN 16 
+PrimeapeData: // 057
+#incbin "Dmp/57_mug.dmp" 
+#incbin "Dmp/57_frames.dmp" 
+#incbin "Dmp/57_palette.dmp" 
+#incbin "Dmp/57_minimug.dmp" 
+setMugEntry(57, PrimeapeData, 9, 9, 9, 9)
+
+ALIGN 16 
+GrowlitheData: // 058
+#incbin "Dmp/58_mug.dmp" 
+#incbin "Dmp/58_frames.dmp" 
+#incbin "Dmp/58_palette.dmp" 
+#incbin "Dmp/58_minimug.dmp" 
+setMugEntry(58, GrowlitheData, 9, 9, 9, 9)
+
+ALIGN 16 
+ArcanineData: // 059
+#incbin "Dmp/59_mug.dmp" 
+#incbin "Dmp/59_frames.dmp" 
+#incbin "Dmp/59_palette.dmp" 
+#incbin "Dmp/59_minimug.dmp" 
+setMugEntry(59, ArcanineData, 9, 9, 9, 9)
+
+ALIGN 16 
+PoliwagData: // 060
+#incbin "Dmp/60_mug.dmp" 
+#incbin "Dmp/60_frames.dmp" 
+#incbin "Dmp/60_palette.dmp" 
+#incbin "Dmp/60_minimug.dmp" 
+setMugEntry(60, PoliwagData, 9, 9, 9, 9)
+
+ALIGN 16 
+PoliwhirlData: // 061
+#incbin "Dmp/61_mug.dmp" 
+#incbin "Dmp/61_frames.dmp" 
+#incbin "Dmp/61_palette.dmp" 
+#incbin "Dmp/61_minimug.dmp" 
+setMugEntry(61, PoliwhirlData, 9, 9, 9, 9)
+
+ALIGN 16 
+PoliwrathData: // 062
+#incbin "Dmp/62_mug.dmp" 
+#incbin "Dmp/62_frames.dmp" 
+#incbin "Dmp/62_palette.dmp" 
+#incbin "Dmp/62_minimug.dmp" 
+setMugEntry(62, PoliwrathData, 9, 9, 9, 9)
+
+ALIGN 16 
+AbraData: // 063
+#incbin "Dmp/63_mug.dmp" 
+#incbin "Dmp/63_frames.dmp" 
+#incbin "Dmp/63_palette.dmp" 
+#incbin "Dmp/63_minimug.dmp" 
+setMugEntry(63, AbraData, 9, 9, 9, 9)
+
+ALIGN 16 
+KadabraData: // 064
+#incbin "Dmp/64_mug.dmp" 
+#incbin "Dmp/64_frames.dmp" 
+#incbin "Dmp/64_palette.dmp" 
+#incbin "Dmp/64_minimug.dmp" 
+setMugEntry(64, KadabraData, 9, 9, 9, 9)
+
+ALIGN 16 
+AlakazamData: // 065
+#incbin "Dmp/65_mug.dmp" 
+#incbin "Dmp/65_frames.dmp" 
+#incbin "Dmp/65_palette.dmp" 
+#incbin "Dmp/65_minimug.dmp" 
+setMugEntry(65, AlakazamData, 9, 9, 9, 9)
+
+ALIGN 16 
+MachopData: // 066
+#incbin "Dmp/66_mug.dmp" 
+#incbin "Dmp/66_frames.dmp" 
+#incbin "Dmp/66_palette.dmp" 
+#incbin "Dmp/66_minimug.dmp" 
+setMugEntry(66, MachopData, 9, 9, 9, 9)
+
+ALIGN 16 
+MachokeData: // 067
+#incbin "Dmp/67_mug.dmp" 
+#incbin "Dmp/67_frames.dmp" 
+#incbin "Dmp/67_palette.dmp" 
+#incbin "Dmp/67_minimug.dmp" 
+setMugEntry(67, MachokeData, 9, 9, 9, 9)
+
+ALIGN 16 
+MachampData: // 068
+#incbin "Dmp/68_mug.dmp" 
+#incbin "Dmp/68_frames.dmp" 
+#incbin "Dmp/68_palette.dmp" 
+#incbin "Dmp/68_minimug.dmp" 
+setMugEntry(68, MachampData, 9, 9, 9, 9)
+
+ALIGN 16 
+BellsproutData: // 069
+#incbin "Dmp/69_mug.dmp" 
+#incbin "Dmp/69_frames.dmp" 
+#incbin "Dmp/69_palette.dmp" 
+#incbin "Dmp/69_minimug.dmp" 
+setMugEntry(69, BellsproutData, 9, 9, 9, 9)
+
+ALIGN 16 
+WeepinbellData: // 070
+#incbin "Dmp/70_mug.dmp" 
+#incbin "Dmp/70_frames.dmp" 
+#incbin "Dmp/70_palette.dmp" 
+#incbin "Dmp/70_minimug.dmp" 
+setMugEntry(70, WeepinbellData, 9, 9, 9, 9)
+
+ALIGN 16 
+VictreebelData: // 071
+#incbin "Dmp/71_mug.dmp" 
+#incbin "Dmp/71_frames.dmp" 
+#incbin "Dmp/71_palette.dmp" 
+#incbin "Dmp/71_minimug.dmp" 
+setMugEntry(71, VictreebelData, 9, 9, 9, 9)
+
+ALIGN 16 
+TentacoolData: // 072
+#incbin "Dmp/72_mug.dmp" 
+#incbin "Dmp/72_frames.dmp" 
+#incbin "Dmp/72_palette.dmp" 
+#incbin "Dmp/72_minimug.dmp" 
+setMugEntry(72, TentacoolData, 9, 9, 9, 9)
+
+ALIGN 16 
+TentacruelData: // 073
+#incbin "Dmp/73_mug.dmp" 
+#incbin "Dmp/73_frames.dmp" 
+#incbin "Dmp/73_palette.dmp" 
+#incbin "Dmp/73_minimug.dmp" 
+setMugEntry(73, TentacruelData, 9, 9, 9, 9)
+
+ALIGN 16 
+GeodudeData: // 074
+#incbin "Dmp/74_mug.dmp" 
+#incbin "Dmp/74_frames.dmp" 
+#incbin "Dmp/74_palette.dmp" 
+#incbin "Dmp/74_minimug.dmp" 
+setMugEntry(74, GeodudeData, 9, 9, 9, 9)
+
+ALIGN 16 
+GravelerData: // 075
+#incbin "Dmp/75_mug.dmp" 
+#incbin "Dmp/75_frames.dmp" 
+#incbin "Dmp/75_palette.dmp" 
+#incbin "Dmp/75_minimug.dmp" 
+setMugEntry(75, GravelerData, 9, 9, 9, 9)
+
+ALIGN 16 
+GolemData: // 076
+#incbin "Dmp/76_mug.dmp" 
+#incbin "Dmp/76_frames.dmp" 
+#incbin "Dmp/76_palette.dmp" 
+#incbin "Dmp/76_minimug.dmp" 
+setMugEntry(76, GolemData, 9, 9, 9, 9)
+
+ALIGN 16 
+PonytaData: // 077
+#incbin "Dmp/77_mug.dmp" 
+#incbin "Dmp/77_frames.dmp" 
+#incbin "Dmp/77_palette.dmp" 
+#incbin "Dmp/77_minimug.dmp" 
+setMugEntry(77, PonytaData, 9, 9, 9, 9)
+
+ALIGN 16 
+RapidashData: // 078
+#incbin "Dmp/78_mug.dmp" 
+#incbin "Dmp/78_frames.dmp" 
+#incbin "Dmp/78_palette.dmp" 
+#incbin "Dmp/78_minimug.dmp" 
+setMugEntry(78, RapidashData, 9, 9, 9, 9)
+
+ALIGN 16 
+SlowpokeData: // 079
+#incbin "Dmp/79_mug.dmp" 
+#incbin "Dmp/79_frames.dmp" 
+#incbin "Dmp/79_palette.dmp" 
+#incbin "Dmp/79_minimug.dmp" 
+setMugEntry(79, SlowpokeData, 9, 9, 9, 9)
+
+ALIGN 16 
+SlowbroData: // 080
+#incbin "Dmp/80_mug.dmp" 
+#incbin "Dmp/80_frames.dmp" 
+#incbin "Dmp/80_palette.dmp" 
+#incbin "Dmp/80_minimug.dmp" 
+setMugEntry(80, SlowbroData, 9, 9, 9, 9)
+
+ALIGN 16 
+MagnemiteData: // 081
+#incbin "Dmp/81_mug.dmp" 
+#incbin "Dmp/81_frames.dmp" 
+#incbin "Dmp/81_palette.dmp" 
+#incbin "Dmp/81_minimug.dmp" 
+setMugEntry(81, MagnemiteData, 9, 9, 9, 9)
+
+ALIGN 16 
+MagnetonData: // 082
+#incbin "Dmp/82_mug.dmp" 
+#incbin "Dmp/82_frames.dmp" 
+#incbin "Dmp/82_palette.dmp" 
+#incbin "Dmp/82_minimug.dmp" 
+setMugEntry(82, MagnetonData, 9, 9, 9, 9)
+
+ALIGN 16 
+FarfetchdData: // 083
+#incbin "Dmp/83_mug.dmp" 
+#incbin "Dmp/83_frames.dmp" 
+#incbin "Dmp/83_palette.dmp" 
+#incbin "Dmp/83_minimug.dmp" 
+setMugEntry(83, FarfetchdData, 9, 9, 9, 9)
+
+ALIGN 16 
+DoduoData: // 084
+#incbin "Dmp/84_mug.dmp" 
+#incbin "Dmp/84_frames.dmp" 
+#incbin "Dmp/84_palette.dmp" 
+#incbin "Dmp/84_minimug.dmp" 
+setMugEntry(84, DoduoData, 9, 9, 9, 9)
+
+ALIGN 16 
+DodrioData: // 085
+#incbin "Dmp/85_mug.dmp" 
+#incbin "Dmp/85_frames.dmp" 
+#incbin "Dmp/85_palette.dmp" 
+#incbin "Dmp/85_minimug.dmp" 
+setMugEntry(85, DodrioData, 9, 9, 9, 9)
+
+ALIGN 16 
+SeelData: // 086
+#incbin "Dmp/86_mug.dmp" 
+#incbin "Dmp/86_frames.dmp" 
+#incbin "Dmp/86_palette.dmp" 
+#incbin "Dmp/86_minimug.dmp" 
+setMugEntry(86, SeelData, 9, 9, 9, 9)
+
+ALIGN 16 
+DewgongData: // 087
+#incbin "Dmp/87_mug.dmp" 
+#incbin "Dmp/87_frames.dmp" 
+#incbin "Dmp/87_palette.dmp" 
+#incbin "Dmp/87_minimug.dmp" 
+setMugEntry(87, DewgongData, 9, 9, 9, 9)
+
+ALIGN 16 
+GrimerData: // 088
+#incbin "Dmp/88_mug.dmp" 
+#incbin "Dmp/88_frames.dmp" 
+#incbin "Dmp/88_palette.dmp" 
+#incbin "Dmp/88_minimug.dmp" 
+setMugEntry(88, GrimerData, 9, 9, 9, 9)
+
+ALIGN 16 
+MukData: // 089
+#incbin "Dmp/89_mug.dmp" 
+#incbin "Dmp/89_frames.dmp" 
+#incbin "Dmp/89_palette.dmp" 
+#incbin "Dmp/89_minimug.dmp" 
+setMugEntry(89, MukData, 9, 9, 9, 9)
+
+ALIGN 16 
+ShellderData: // 090
+#incbin "Dmp/90_mug.dmp" 
+#incbin "Dmp/90_frames.dmp" 
+#incbin "Dmp/90_palette.dmp" 
+#incbin "Dmp/90_minimug.dmp" 
+setMugEntry(90, ShellderData, 9, 9, 9, 9)
+
+ALIGN 16 
+CloysterData: // 091
+#incbin "Dmp/91_mug.dmp" 
+#incbin "Dmp/91_frames.dmp" 
+#incbin "Dmp/91_palette.dmp" 
+#incbin "Dmp/91_minimug.dmp" 
+setMugEntry(91, CloysterData, 9, 9, 9, 9)
+
+ALIGN 16 
+GastlyData: // 092
+#incbin "Dmp/92_mug.dmp" 
+#incbin "Dmp/92_frames.dmp" 
+#incbin "Dmp/92_palette.dmp" 
+#incbin "Dmp/92_minimug.dmp" 
+setMugEntry(92, GastlyData, 9, 9, 9, 9)
+
+ALIGN 16 
+HaunterData: // 093
+#incbin "Dmp/93_mug.dmp" 
+#incbin "Dmp/93_frames.dmp" 
+#incbin "Dmp/93_palette.dmp" 
+#incbin "Dmp/93_minimug.dmp" 
+setMugEntry(93, HaunterData, 9, 9, 9, 9)
+
+ALIGN 16 
+GengarData: // 094
+#incbin "Dmp/94_mug.dmp" 
+#incbin "Dmp/94_frames.dmp" 
+#incbin "Dmp/94_palette.dmp" 
+#incbin "Dmp/94_minimug.dmp" 
+setMugEntry(94, GengarData, 9, 9, 9, 9)
+
+ALIGN 16 
+OnixData: // 095
+#incbin "Dmp/95_mug.dmp" 
+#incbin "Dmp/95_frames.dmp" 
+#incbin "Dmp/95_palette.dmp" 
+#incbin "Dmp/95_minimug.dmp" 
+setMugEntry(95, OnixData, 9, 9, 9, 9)
+
+ALIGN 16 
+DrowzeeData: // 096
+#incbin "Dmp/96_mug.dmp" 
+#incbin "Dmp/96_frames.dmp" 
+#incbin "Dmp/96_palette.dmp" 
+#incbin "Dmp/96_minimug.dmp" 
+setMugEntry(96, DrowzeeData, 9, 9, 9, 9)
+
+ALIGN 16 
+HypnoData: // 097
+#incbin "Dmp/97_mug.dmp" 
+#incbin "Dmp/97_frames.dmp" 
+#incbin "Dmp/97_palette.dmp" 
+#incbin "Dmp/97_minimug.dmp" 
+setMugEntry(97, HypnoData, 9, 9, 9, 9)
+
+ALIGN 16 
+KrabbyData: // 098
+#incbin "Dmp/98_mug.dmp" 
+#incbin "Dmp/98_frames.dmp" 
+#incbin "Dmp/98_palette.dmp" 
+#incbin "Dmp/98_minimug.dmp" 
+setMugEntry(98, KrabbyData, 9, 9, 9, 9)
+
+ALIGN 16 
+KinglerData: // 099
+#incbin "Dmp/99_mug.dmp" 
+#incbin "Dmp/99_frames.dmp" 
+#incbin "Dmp/99_palette.dmp" 
+#incbin "Dmp/99_minimug.dmp" 
+setMugEntry(99, KinglerData, 9, 9, 9, 9)
+
+ALIGN 16 
+VoltorbData: // 100
+#incbin "Dmp/100_mug.dmp" 
+#incbin "Dmp/100_frames.dmp" 
+#incbin "Dmp/100_palette.dmp" 
+#incbin "Dmp/100_minimug.dmp" 
+setMugEntry(100, VoltorbData, 9, 9, 9, 9)
+
+ALIGN 16 
+ElectrodeData: // 101
+#incbin "Dmp/101_mug.dmp" 
+#incbin "Dmp/101_frames.dmp" 
+#incbin "Dmp/101_palette.dmp" 
+#incbin "Dmp/101_minimug.dmp" 
+setMugEntry(101, ElectrodeData, 9, 9, 9, 9)
+
+ALIGN 16 
+ExeggcuteData: // 102
+#incbin "Dmp/102_mug.dmp" 
+#incbin "Dmp/102_frames.dmp" 
+#incbin "Dmp/102_palette.dmp" 
+#incbin "Dmp/102_minimug.dmp" 
+setMugEntry(102, ExeggcuteData, 9, 9, 9, 9)
+
+ALIGN 16 
+ExeggutorData: // 103
+#incbin "Dmp/103_mug.dmp" 
+#incbin "Dmp/103_frames.dmp" 
+#incbin "Dmp/103_palette.dmp" 
+#incbin "Dmp/103_minimug.dmp" 
+setMugEntry(103, ExeggutorData, 9, 9, 9, 9)
+
+ALIGN 16 
+CuboneData: // 104
+#incbin "Dmp/104_mug.dmp" 
+#incbin "Dmp/104_frames.dmp" 
+#incbin "Dmp/104_palette.dmp" 
+#incbin "Dmp/104_minimug.dmp" 
+setMugEntry(104, CuboneData, 9, 9, 9, 9)
+
+ALIGN 16 
+MarowakData: // 105
+#incbin "Dmp/105_mug.dmp" 
+#incbin "Dmp/105_frames.dmp" 
+#incbin "Dmp/105_palette.dmp" 
+#incbin "Dmp/105_minimug.dmp" 
+setMugEntry(105, MarowakData, 9, 9, 9, 9)
+
+ALIGN 16 
+HitmonleeData: // 106
+#incbin "Dmp/106_mug.dmp" 
+#incbin "Dmp/106_frames.dmp" 
+#incbin "Dmp/106_palette.dmp" 
+#incbin "Dmp/106_minimug.dmp" 
+setMugEntry(106, HitmonleeData, 9, 9, 9, 9)
+
+ALIGN 16 
+HitmonchanData: // 107
+#incbin "Dmp/107_mug.dmp" 
+#incbin "Dmp/107_frames.dmp" 
+#incbin "Dmp/107_palette.dmp" 
+#incbin "Dmp/107_minimug.dmp" 
+setMugEntry(107, HitmonchanData, 9, 9, 9, 9)
+
+ALIGN 16 
+LickitungData: // 108
+#incbin "Dmp/108_mug.dmp" 
+#incbin "Dmp/108_frames.dmp" 
+#incbin "Dmp/108_palette.dmp" 
+#incbin "Dmp/108_minimug.dmp" 
+setMugEntry(108, LickitungData, 9, 9, 9, 9)
+
+ALIGN 16 
+KoffingData: // 109
+#incbin "Dmp/109_mug.dmp" 
+#incbin "Dmp/109_frames.dmp" 
+#incbin "Dmp/109_palette.dmp" 
+#incbin "Dmp/109_minimug.dmp" 
+setMugEntry(109, KoffingData, 9, 9, 9, 9)
+
+ALIGN 16 
+WeezingData: // 110
+#incbin "Dmp/110_mug.dmp" 
+#incbin "Dmp/110_frames.dmp" 
+#incbin "Dmp/110_palette.dmp" 
+#incbin "Dmp/110_minimug.dmp" 
+setMugEntry(110, WeezingData, 9, 9, 9, 9)
+
+ALIGN 16 
+RhyhornData: // 111
+#incbin "Dmp/111_mug.dmp" 
+#incbin "Dmp/111_frames.dmp" 
+#incbin "Dmp/111_palette.dmp" 
+#incbin "Dmp/111_minimug.dmp" 
+setMugEntry(111, RhyhornData, 9, 9, 9, 9)
+
+ALIGN 16 
+RhydonData: // 112
+#incbin "Dmp/112_mug.dmp" 
+#incbin "Dmp/112_frames.dmp" 
+#incbin "Dmp/112_palette.dmp" 
+#incbin "Dmp/112_minimug.dmp" 
+setMugEntry(112, RhydonData, 9, 9, 9, 9)
+
+ALIGN 16 
+ChanseyData: // 113
+#incbin "Dmp/113_mug.dmp" 
+#incbin "Dmp/113_frames.dmp" 
+#incbin "Dmp/113_palette.dmp" 
+#incbin "Dmp/113_minimug.dmp" 
+setMugEntry(113, ChanseyData, 9, 9, 9, 9)
+
+ALIGN 16 
+TangelaData: // 114
+#incbin "Dmp/114_mug.dmp" 
+#incbin "Dmp/114_frames.dmp" 
+#incbin "Dmp/114_palette.dmp" 
+#incbin "Dmp/114_minimug.dmp" 
+setMugEntry(114, TangelaData, 9, 9, 9, 9)
+
+ALIGN 16 
+KangaskhanData: // 115
+#incbin "Dmp/115_mug.dmp" 
+#incbin "Dmp/115_frames.dmp" 
+#incbin "Dmp/115_palette.dmp" 
+#incbin "Dmp/115_minimug.dmp" 
+setMugEntry(115, KangaskhanData, 9, 9, 9, 9)
+
+ALIGN 16 
+HorseaData: // 116
+#incbin "Dmp/116_mug.dmp" 
+#incbin "Dmp/116_frames.dmp" 
+#incbin "Dmp/116_palette.dmp" 
+#incbin "Dmp/116_minimug.dmp" 
+setMugEntry(116, HorseaData, 9, 9, 9, 9)
+
+ALIGN 16 
+SeadraData: // 117
+#incbin "Dmp/117_mug.dmp" 
+#incbin "Dmp/117_frames.dmp" 
+#incbin "Dmp/117_palette.dmp" 
+#incbin "Dmp/117_minimug.dmp" 
+setMugEntry(117, SeadraData, 9, 9, 9, 9)
+
+ALIGN 16 
+GoldeenData: // 118
+#incbin "Dmp/118_mug.dmp" 
+#incbin "Dmp/118_frames.dmp" 
+#incbin "Dmp/118_palette.dmp" 
+#incbin "Dmp/118_minimug.dmp" 
+setMugEntry(118, GoldeenData, 9, 9, 9, 9)
+
+ALIGN 16 
+SeakingData: // 119
+#incbin "Dmp/119_mug.dmp" 
+#incbin "Dmp/119_frames.dmp" 
+#incbin "Dmp/119_palette.dmp" 
+#incbin "Dmp/119_minimug.dmp" 
+setMugEntry(119, SeakingData, 9, 9, 9, 9)
+
+ALIGN 16 
+StaryuData: // 120
+#incbin "Dmp/120_mug.dmp" 
+#incbin "Dmp/120_frames.dmp" 
+#incbin "Dmp/120_palette.dmp" 
+#incbin "Dmp/120_minimug.dmp" 
+setMugEntry(120, StaryuData, 9, 9, 9, 9)
+
+ALIGN 16 
+StarmieData: // 121
+#incbin "Dmp/121_mug.dmp" 
+#incbin "Dmp/121_frames.dmp" 
+#incbin "Dmp/121_palette.dmp" 
+#incbin "Dmp/121_minimug.dmp" 
+setMugEntry(121, StarmieData, 9, 9, 9, 9)
+
+ALIGN 16 
+MrMimeData: // 122
+#incbin "Dmp/122_mug.dmp" 
+#incbin "Dmp/122_frames.dmp" 
+#incbin "Dmp/122_palette.dmp" 
+#incbin "Dmp/122_minimug.dmp" 
+setMugEntry(122, MrMimeData, 9, 9, 9, 9)
+
+ALIGN 16 
+ScytherData: // 123
+#incbin "Dmp/123_mug.dmp" 
+#incbin "Dmp/123_frames.dmp" 
+#incbin "Dmp/123_palette.dmp" 
+#incbin "Dmp/123_minimug.dmp" 
+setMugEntry(123, ScytherData, 9, 9, 9, 9)
+
+ALIGN 16 
+JynxData: // 124
+#incbin "Dmp/124_mug.dmp" 
+#incbin "Dmp/124_frames.dmp" 
+#incbin "Dmp/124_palette.dmp" 
+#incbin "Dmp/124_minimug.dmp" 
+setMugEntry(124, JynxData, 9, 9, 9, 9)
+
+ALIGN 16 
+ElectabuzzData: // 125
+#incbin "Dmp/125_mug.dmp" 
+#incbin "Dmp/125_frames.dmp" 
+#incbin "Dmp/125_palette.dmp" 
+#incbin "Dmp/125_minimug.dmp" 
+setMugEntry(125, ElectabuzzData, 9, 9, 9, 9)
+
+ALIGN 16 
+MagmarData: // 126
+#incbin "Dmp/126_mug.dmp" 
+#incbin "Dmp/126_frames.dmp" 
+#incbin "Dmp/126_palette.dmp" 
+#incbin "Dmp/126_minimug.dmp" 
+setMugEntry(126, MagmarData, 9, 9, 9, 9)
+
+ALIGN 16 
+PinsirData: // 127
+#incbin "Dmp/127_mug.dmp" 
+#incbin "Dmp/127_frames.dmp" 
+#incbin "Dmp/127_palette.dmp" 
+#incbin "Dmp/127_minimug.dmp" 
+setMugEntry(127, PinsirData, 9, 9, 9, 9)
+
+ALIGN 16 
+TaurosData: // 128
+#incbin "Dmp/128_mug.dmp" 
+#incbin "Dmp/128_frames.dmp" 
+#incbin "Dmp/128_palette.dmp" 
+#incbin "Dmp/128_minimug.dmp" 
+setMugEntry(128, TaurosData, 9, 9, 9, 9)
+
+ALIGN 16 
+MagikarpData: // 129
+#incbin "Dmp/129_mug.dmp" 
+#incbin "Dmp/129_frames.dmp" 
+#incbin "Dmp/129_palette.dmp" 
+#incbin "Dmp/129_minimug.dmp" 
+setMugEntry(129, MagikarpData, 9, 9, 9, 9)
+
+ALIGN 16 
+GyaradosData: // 130
+#incbin "Dmp/130_mug.dmp" 
+#incbin "Dmp/130_frames.dmp" 
+#incbin "Dmp/130_palette.dmp" 
+#incbin "Dmp/130_minimug.dmp" 
+setMugEntry(130, GyaradosData, 9, 9, 9, 9)
+
+ALIGN 16 
+LaprasData: // 131
+#incbin "Dmp/131_mug.dmp" 
+#incbin "Dmp/131_frames.dmp" 
+#incbin "Dmp/131_palette.dmp" 
+#incbin "Dmp/131_minimug.dmp" 
+setMugEntry(131, LaprasData, 9, 9, 9, 9)
+
+ALIGN 16 
+DittoData: // 132
+#incbin "Dmp/132_mug.dmp" 
+#incbin "Dmp/132_frames.dmp" 
+#incbin "Dmp/132_palette.dmp" 
+#incbin "Dmp/132_minimug.dmp" 
+setMugEntry(132, DittoData, 9, 9, 9, 9)
+
+ALIGN 16 
+EeveeData: // 133
+#incbin "Dmp/133_mug.dmp" 
+#incbin "Dmp/133_frames.dmp" 
+#incbin "Dmp/133_palette.dmp" 
+#incbin "Dmp/133_minimug.dmp" 
+setMugEntry(133, EeveeData, 9, 9, 9, 9)
+
+ALIGN 16 
+VaporeonData: // 134
+#incbin "Dmp/134_mug.dmp" 
+#incbin "Dmp/134_frames.dmp" 
+#incbin "Dmp/134_palette.dmp" 
+#incbin "Dmp/134_minimug.dmp" 
+setMugEntry(134, VaporeonData, 9, 9, 9, 9)
+
+ALIGN 16 
+JolteonData: // 135
+#incbin "Dmp/135_mug.dmp" 
+#incbin "Dmp/135_frames.dmp" 
+#incbin "Dmp/135_palette.dmp" 
+#incbin "Dmp/135_minimug.dmp" 
+setMugEntry(135, JolteonData, 9, 9, 9, 9)
+
+ALIGN 16 
+FlareonData: // 136
+#incbin "Dmp/136_mug.dmp" 
+#incbin "Dmp/136_frames.dmp" 
+#incbin "Dmp/136_palette.dmp" 
+#incbin "Dmp/136_minimug.dmp" 
+setMugEntry(136, FlareonData, 9, 9, 9, 9)
+
+ALIGN 16 
+PorygonData: // 137
+#incbin "Dmp/137_mug.dmp" 
+#incbin "Dmp/137_frames.dmp" 
+#incbin "Dmp/137_palette.dmp" 
+#incbin "Dmp/137_minimug.dmp" 
+setMugEntry(137, PorygonData, 9, 9, 9, 9)
+
+ALIGN 16 
+OmanyteData: // 138
+#incbin "Dmp/138_mug.dmp" 
+#incbin "Dmp/138_frames.dmp" 
+#incbin "Dmp/138_palette.dmp" 
+#incbin "Dmp/138_minimug.dmp" 
+setMugEntry(138, OmanyteData, 9, 9, 9, 9)
+
+ALIGN 16 
+OmastarData: // 139
+#incbin "Dmp/139_mug.dmp" 
+#incbin "Dmp/139_frames.dmp" 
+#incbin "Dmp/139_palette.dmp" 
+#incbin "Dmp/139_minimug.dmp" 
+setMugEntry(139, OmastarData, 9, 9, 9, 9)
+
+ALIGN 16 
+KabutoData: // 140
+#incbin "Dmp/140_mug.dmp" 
+#incbin "Dmp/140_frames.dmp" 
+#incbin "Dmp/140_palette.dmp" 
+#incbin "Dmp/140_minimug.dmp" 
+setMugEntry(140, KabutoData, 9, 9, 9, 9)
+
+ALIGN 16 
+KabutopsData: // 141
+#incbin "Dmp/141_mug.dmp" 
+#incbin "Dmp/141_frames.dmp" 
+#incbin "Dmp/141_palette.dmp" 
+#incbin "Dmp/141_minimug.dmp" 
+setMugEntry(141, KabutopsData, 9, 9, 9, 9)
+
+ALIGN 16 
+AerodactylData: // 142
+#incbin "Dmp/142_mug.dmp" 
+#incbin "Dmp/142_frames.dmp" 
+#incbin "Dmp/142_palette.dmp" 
+#incbin "Dmp/142_minimug.dmp" 
+setMugEntry(142, AerodactylData, 9, 9, 9, 9)
+
+ALIGN 16 
+SnorlaxData: // 143
+#incbin "Dmp/143_mug.dmp" 
+#incbin "Dmp/143_frames.dmp" 
+#incbin "Dmp/143_palette.dmp" 
+#incbin "Dmp/143_minimug.dmp" 
+setMugEntry(143, SnorlaxData, 9, 9, 9, 9)
+
+ALIGN 16 
+ArticunoData: // 144
+#incbin "Dmp/144_mug.dmp" 
+#incbin "Dmp/144_frames.dmp" 
+#incbin "Dmp/144_palette.dmp" 
+#incbin "Dmp/144_minimug.dmp" 
+setMugEntry(144, ArticunoData, 9, 9, 9, 9)
+
+ALIGN 16 
+ZapdosData: // 145
+#incbin "Dmp/145_mug.dmp" 
+#incbin "Dmp/145_frames.dmp" 
+#incbin "Dmp/145_palette.dmp" 
+#incbin "Dmp/145_minimug.dmp" 
+setMugEntry(145, ZapdosData, 9, 9, 9, 9)
+
+ALIGN 16 
+MoltresData: // 146
+#incbin "Dmp/146_mug.dmp" 
+#incbin "Dmp/146_frames.dmp" 
+#incbin "Dmp/146_palette.dmp" 
+#incbin "Dmp/146_minimug.dmp" 
+setMugEntry(146, MoltresData, 9, 9, 9, 9)
+
+ALIGN 16 
+DratiniData: // 147
+#incbin "Dmp/147_mug.dmp" 
+#incbin "Dmp/147_frames.dmp" 
+#incbin "Dmp/147_palette.dmp" 
+#incbin "Dmp/147_minimug.dmp" 
+setMugEntry(147, DratiniData, 9, 9, 9, 9)
+
+ALIGN 16 
+DragonairData: // 148
+#incbin "Dmp/148_mug.dmp" 
+#incbin "Dmp/148_frames.dmp" 
+#incbin "Dmp/148_palette.dmp" 
+#incbin "Dmp/148_minimug.dmp" 
+setMugEntry(148, DragonairData, 9, 9, 9, 9)
+
+ALIGN 16 
+DragoniteData: // 149
+#incbin "Dmp/149_mug.dmp" 
+#incbin "Dmp/149_frames.dmp" 
+#incbin "Dmp/149_palette.dmp" 
+#incbin "Dmp/149_minimug.dmp" 
+setMugEntry(149, DragoniteData, 9, 9, 9, 9)
+
+ALIGN 16 
+MewtwoData: // 150
+#incbin "Dmp/150_mug.dmp" 
+#incbin "Dmp/150_frames.dmp" 
+#incbin "Dmp/150_palette.dmp" 
+#incbin "Dmp/150_minimug.dmp" 
+setMugEntry(150, MewtwoData, 9, 9, 9, 9)
+
+ALIGN 16 
+MewData: // 151
+#incbin "Dmp/151_mug.dmp" 
+#incbin "Dmp/151_frames.dmp" 
+#incbin "Dmp/151_palette.dmp" 
+#incbin "Dmp/151_minimug.dmp" 
+setMugEntry(151, MewData, 9, 9, 9, 9)

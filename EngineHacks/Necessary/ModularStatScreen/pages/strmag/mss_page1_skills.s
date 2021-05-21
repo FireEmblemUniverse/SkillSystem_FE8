@@ -22,18 +22,25 @@ mov		r1,r8
 ldrb	r1,[r1,#0xB]
 mov		r2,#0xC0
 tst		r1,r2
-beq		IsPlayerUnit
+b		IsPlayerUnit @always show growth colours 
 mov		r0,#0
 IsPlayerUnit:
 str		r0,[sp,#0x14]
 
+@str, mag, spd, def 
+@ skill, luck, con, res 
+@ move+cond 
+
 draw_textID_at 13, 3, textID=0x4fe, growth_func=2 @str
 draw_textID_at 13, 5, textID=0x4ff, growth_func=3 @mag
-draw_textID_at 13, 7, textID=0x4EC, growth_func=4 @skl
-draw_textID_at 13, 9, textID=0x4ED, growth_func=5 @spd
-draw_textID_at 13, 11, textID=0x4ee, growth_func=6 @luck
-draw_textID_at 13, 13, textID=0x4ef, growth_func=7 @def
-draw_textID_at 13, 15, textID=0x4f0, growth_func=8 @res
+draw_textID_at 13, 7, textID=0x4ef, growth_func=7 @def
+draw_textID_at 13, 9, textID=0x4f0, growth_func=8 @res
+
+draw_textID_at 21, 5, textID=0x4ED, growth_func=5 @spd
+draw_textID_at 21, 7, textID=0x4EC, growth_func=4 @skl
+@draw_textID_at 13, 9, textID=0x4ED, growth_func=5 @spd
+draw_textID_at 21, 9, textID=0x4ee, growth_func=6 @luck
+
 
 b 	NoRescue
 .ltorg 
@@ -49,12 +56,12 @@ beq		Label2
 ldrb	r1,[r0]
 mov		r2,#0xFE
 and		r1,r2
-strb	r1,[r0]			@don't display enemy growths
+@strb	r1,[r0]			@don't display enemy growths
 Label2:
 ldrb	r0,[r0]
 mov		r1,#1
 tst		r0,r1
-beq		ShowStats
+beq		ShowStats @always show growths 
 b		ShowGrowths
 
 ShowStats:
@@ -65,28 +72,39 @@ ShowGrowths:
 ldr		r0,[sp,#0xC]
 ldr		r0,[r0,#4]		@str growth getter
 draw_growth_at 18, 3
+
 ldr		r0,[sp,#0xC]
 ldr		r0,[r0,#8]		@mag growth getter
 draw_growth_at 18, 5
-ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#12]		@skl growth getter
-draw_growth_at 18, 7
-ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#16]		@spd growth getter
-draw_growth_at 18, 9
-ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#20]		@luk growth getter
-draw_growth_at 18, 11
+
 ldr		r0,[sp,#0xC]
 ldr		r0,[r0,#24]		@def growth getter
-draw_growth_at 18, 13
+draw_growth_at 18, 7
+
 ldr		r0,[sp,#0xC]
 ldr		r0,[r0,#28]		@res growth getter
-draw_growth_at 18, 15
+draw_growth_at 18, 9
+
+
+ldr		r0,[sp,#0xC]
+ldr		r0,[r0,#16]		@spd growth getter
+draw_growth_at 26, 5
+
+ldr		r0,[sp,#0xC]
+ldr		r0,[r0,#12]		@skl growth getter
+draw_growth_at 26, 7
+
+ldr		r0,[sp,#0xC]
+ldr		r0,[r0,#20]		@luk growth getter
+draw_growth_at 26, 9
+
+
+
 ldr		r0,[sp,#0xC]
 ldr		r0,[r0]			@hp growth getter (not displaying because there's no room atm)
-draw_growth_at 18, 17
-draw_textID_at 13, 17, textID=0x4E9, growth_func=1 @hp name
+draw_growth_at 26, 3
+
+draw_textID_at 21, 3, textID=0x4E9, growth_func=1 @hp name
 b		NextColumn
 .ltorg
 
@@ -95,28 +113,28 @@ b		ShowStats3
 
 NextColumn:
 
-draw_textID_at 21, 3, textID=0x4f7 @con
-draw_con_bar_with_getter_at 24, 3
+draw_textID_at 13, 11, textID=0x4f7 @con
+draw_con_bar_with_getter_at 16, 11
 
 
-draw_textID_at 21, 5, textID=0x4f8 @aid
-draw_number_at 25, 5, 0x80189B8, 2 @aid getter
-draw_aid_icon_at 26, 5
+@draw_textID_at 21, 5, textID=0x4f8 @aid
+@draw_number_at 25, 5, 0x80189B8, 2 @aid getter
+@draw_aid_icon_at 26, 5
 
-draw_status_text_at 21, 7
+draw_status_text_at 21, 11
 
-draw_textID_at 21, 9, textID=0x4f1 @affin
+@draw_textID_at 21, 9, textID=0x4f1 @affin
 
-draw_affinity_icon_at 24, 9
+@draw_affinity_icon_at 24, 9
 
 
 ldr r0,=TalkTextIDLink
 ldrh r0,[r0]
-draw_talk_text_at 21, 11
+@draw_talk_text_at 21, 11
 
 ldr r0,=SkillsTextIDLink
 ldrh r0, [r0]
-draw_textID_at 21, 13, colour=White @skills
+draw_textID_at 19, 13, colour=White @skills
 
 Nexty:
 
@@ -126,13 +144,16 @@ b skipliterals
 ShowStats3:
 draw_str_bar_at 16, 3
 draw_mag_bar_at 16, 5
-draw_skl_bar_at 16, 7
-draw_spd_bar_at 16, 9
-draw_luck_bar_at 16, 11
-draw_def_bar_at 16, 13
-draw_res_bar_at 16, 15
-draw_textID_at 13, 17, 0x4f6 @move
-draw_move_bar_with_getter_at 16, 17
+
+draw_def_bar_at 16, 7
+draw_res_bar_at 16, 9
+
+draw_spd_bar_at 24, 5
+draw_skl_bar_at 24, 7
+draw_luck_bar_at 24, 9
+
+draw_textID_at 21, 3, 0x4f6 @move
+draw_move_bar_with_getter_at 24, 3
 
 b		NextColumn
 .ltorg
@@ -150,32 +171,35 @@ mov r6, r0
 ldrb r0, [r6] 
 cmp r0, #0
 beq SkillEnd
-draw_skill_icon_at 21, 15
+@draw_skill_icon_at 13, 15
+draw_skill_icon_at 15, 15
 
 ldrb r0, [r6,#1]
 cmp r0, #0
 beq SkillEnd
-draw_skill_icon_at 24, 15
+draw_skill_icon_at 18, 15
 
 ldrb r0, [r6, #2]
 cmp r0, #0
 beq SkillEnd
-draw_skill_icon_at 27, 15
+draw_skill_icon_at 21, 15
 
 ldrb r0, [r6, #3]
 cmp r0, #0
 beq SkillEnd
-draw_skill_icon_at 21, 17
+draw_skill_icon_at 24, 15
 
 ldrb r0, [r6, #4]
 cmp r0, #0
 beq SkillEnd
-draw_skill_icon_at 24, 17
+draw_skill_icon_at 17, 17
 
 ldrb r0, [r6, #5]
 cmp r0, #0
 beq SkillEnd
-draw_skill_icon_at 27, 17
+draw_skill_icon_at 22, 17
+
+@default: 21,15 - 27,15 & 21, 17 - 27,17 
 
 SkillEnd:
 

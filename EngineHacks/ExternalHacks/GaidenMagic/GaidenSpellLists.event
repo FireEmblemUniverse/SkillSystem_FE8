@@ -13,10 +13,27 @@ FILL 4*0xFF
 	// If GAIDEN_REQUIRES_WRANK in Config.event is uncommented, then a unit will still need weapon rank to weild the Gaiden spell.
 ALIGN 4
 EirikaSpellList:
-	BYTE 2 Fire
-	BYTE 3 Elfire
-	BYTE 4 Thunder
-	BYTE 5 Flux
-	BYTE 6 Mend
+	BYTE 1 Fire
+	BYTE 1 Elfire
+	BYTE 1 Thunder
+	BYTE 1 Flux
+	BYTE 1 Mend
+	BYTE 1 IronSword
+	BYTE 1 IronLance
+	BYTE 1 SteelSword
+	BYTE 1 SteelLance
+	BYTE 1 IronAxe
+	BYTE 1 IronBow
+	BYTE 1 SteelLance
+	BYTE 1 SteelBow
+	BYTE 1 KillingEdge
+	BYTE 1 KillerLance
+	BYTE 1 Tackle
+	//BYTE 1 WaterGun
+	//BYTE 1 Ember
+	//BYTE 1 Thundershock
+	//BYTE 1 KillerAxe
+	//BYTE 1 KillerBow
+	
 	BYTE 0 0
 GaidenList(Eirika,EirikaSpellList) // This macro writes this entry to the spell list table.

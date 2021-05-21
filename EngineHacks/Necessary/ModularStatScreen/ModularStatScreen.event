@@ -22,7 +22,7 @@
       POIN MSS_page1|1 MSS_page2|1 MSS_page3|1 MSS_page4|1
 
     ORG $88690
-      BYTE 2 //make 2 pages
+      BYTE 3 //make 3 pages
 	  
     ORG $88650
       POIN NewPageNameGraphic
@@ -160,11 +160,12 @@
   
   #ifdef ONLY_SHOW_USED_RANKS
   
-	#include "pages/mss_page3_newranks.lyn.event"
+  #include "pages/pokemblem_mss_page3.lyn.event"
+	//#include "pages/mss_page3_newranks.lyn.event"
   
   #else // ONLY_SHOW_USED_RANKS
 	
-	#include "pages/mss_page3_original.lyn.event"
+	//#include "pages/mss_page3_original.lyn.event"
   
   #endif  // ONLY_SHOW_USED_RANKS
   
@@ -183,7 +184,7 @@
 		
     ALIGN 4
     TxtData0x0D4B:
-      String("Donate to Circles")
+      String("Debug Error")
       BYTE 0
 
     setText(0x0D4B,TxtData0x0D4B)

@@ -1,0 +1,314 @@
+  /*
+
+  stat screen R menu is at 8a00b38
+  find by breaking on key press while R menu open
+
+  Each entry is 6 words
+  Pointer 1 (up)
+  POinter 2 (down)
+  POinter 3 (left)
+  Pointer 4 (right)
+  x,y,Txtid
+  Zero
+  (Optional Pointer for alternate text routine)
+
+  ST_Name:
+  WORD 0
+  POIN ST_Class
+  WORD 0
+  POIN ST_Luck
+  BYTE 0x18
+  BYTE 0x50
+  SHORT 0
+  WORD 0
+
+  */
+
+  //#include "EAstdlib.event"
+
+  #define RMenu(up,down,left,right,xcoord,ycoord,TID) "POIN up down left right;BYTE xcoord ycoord; SHORT TID; WORD 0 0;"
+  #define RMenu(up,down,left,right,xcoord,ycoord,TID,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT TID; POIN 0 Getter|1"
+  #define RMenu(up,down,left,right,xcoord,ycoord,SlotID,Looper,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT SlotID; POIN Looper|1 Getter|1"
+
+  #define NameDescGetter 0x88bd5
+  #define ClassDescGetter 0x88c01
+  #define ConditionGetter 0x88a2d
+  #define StrMagGetter 0x88b09
+
+
+  #ifndef USE_STRMAG_SPLIT
+
+  PUSH // R menu
+    ORG 0xa00b38
+
+    ST_Name:
+      RMenu(0,ST_Class,0,ST_Luck,0x18,0x50,0x0,NameDescGetter)
+
+    ST_Class:
+      RMenu(ST_Name,ST_Level,0,ST_Res,0x6,0x68,0x6E8,ClassDescGetter)
+
+    ST_Level:
+      RMenu(ST_Class,ST_HP,0,ST_Exp,0x6,0x78,0x542)
+
+    ST_Exp:
+      RMenu(ST_Class,ST_HP,ST_Level,ST_Mov,0x26,0x78,0x543)
+
+    ST_HP:
+      RMenu(ST_Level,0,0,ST_Con,0x6,0x88,0x544)
+
+    ST_Str:
+      RMenu(PersonalDataRText,ST_Skl,ST_Name,ST_Aid,0x66,0x18,0x546,StrMagGetter)
+
+    ST_Skl:
+      RMenu(ST_Str,ST_Spd,ST_Name,ST_Trv,0x66,0x28,0x548)
+
+    ST_Spd:
+      RMenu(ST_Skl,ST_Luck,ST_Name,ST_Affin,0x66,0x38,0x549)
+
+    ST_Luck:
+      RMenu(ST_Spd,ST_Def,ST_Name,ST_Cond,0x66,0x48,0x54a)
+
+    ST_Def:
+      RMenu(ST_Luck,ST_Res,ST_Class,ST_Talk,0x66,0x58,0x54b)
+
+    ST_Res:
+      RMenu(ST_Def,ST_Mov,ST_Exp,ST_Skills,0x66,0x68,0x54c)
+
+    ST_Mov:
+      RMenu(ST_Res,ST_Con,ST_Exp,ST_Skill1,0x66,0x78,0x54d)
+
+    ST_Con:
+      RMenu(ST_Mov,0,ST_HP,ST_Skill4,0x66,0x88,0x54e)
+  POP
+  
+  //the rest of these are here because space
+  
+  ALIGN 4
+  ST_Aid:
+    RMenu(PersonalDataRText,ST_Trv,ST_Str,0,0xa6,0x18,0x54F)
+  
+  ST_Trv:
+    RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x28,0x550)
+
+  ST_Affin:
+    #ifdef LEADERSHIP_STARS
+       RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,LeadRText)
+    #endif //LEADERSHIP_STARS
+	#ifdef BIORHYTHM
+	   RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,SS_BiorhythmRText)
+	#endif //BIORHYTHM
+       RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,0x551)
+    
+
+  ST_Cond:
+    RMenu(ST_Affin,ST_Talk,ST_Luck,0,0xA6,0x48,0x552,ConditionGetter)
+
+  ST_Talk:
+    RMenu(ST_Cond,ST_Skills,ST_Def,0,0xA6,0x58,SS_TalkRText)
+
+  ST_Skills:
+    RMenu(ST_Talk,ST_Skill1,ST_Res,0,0xA6,0x68,SS_SkillsRText)
+
+  ST_Skill1:
+    RMenu(ST_Skills,ST_Skill4,ST_Mov,ST_Skill2,0xa6,0x78,0,RTextLoop,SkillDescGetter)
+
+  ST_Skill2:
+    RMenu(ST_Skills,ST_Skill5,ST_Skill1,ST_Skill3,0xbe,0x78,1,RTextLoop,SkillDescGetter+4)
+
+  ST_Skill3:
+    RMenu(ST_Skills,ST_Skill6,ST_Skill2,0,0xd6,0x78,2,RTextLoop,SkillDescGetter+8)
+
+  ST_Skill4:
+    RMenu(ST_Skill1,0,ST_Con,ST_Skill5,0xa6,0x88,3,RTextLoop,SkillDescGetter+12)
+
+  ST_Skill5:
+    RMenu(ST_Skill2,0,ST_Skill4,ST_Skill6,0xbe,0x88,4,RTextLoop,SkillDescGetter+16)
+
+  ST_Skill6:
+    RMenu(ST_Skill3,0,ST_Skill5,0,0xd6,0x88,5,RTextLoop,SkillDescGetter+20)
+
+  #ifdef PRESS_SELECT_TO_VIEW_GROWTHS
+    PersonalDataRText:
+      RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc1)
+  #else
+    PersonalDataRText:
+      RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc2)
+  #endif
+  
+#else // USE_STRMAG_SPLIT
+  
+  
+  PUSH // R menu
+ORG 0xa00b38
+ST_Name:
+  RMenu(0,ST_Class,0,ST_Luck,0x18,0x50,0x0,NameDescGetter)
+ST_Class:
+  RMenu(ST_Name,ST_Level,0,ST_Def,0x6,0x68,0x6E8,ClassDescGetter)
+ST_Level:
+  RMenu(ST_Class,ST_HP,0,ST_Exp,0x6,0x78,0x542)
+ST_Exp:
+  RMenu(ST_Class,ST_HP,ST_Level,ST_Res,0x26,0x78,0x543)
+ST_HP:
+  RMenu(ST_Level,0,0,ST_Mov,0x6,0x88,0x544)
+
+ST_Str:
+  RMenu(PersonalDataRText,ST_Mag,ST_Name,ST_Con,0x66,0x18,0x546)
+ST_Mag:
+  RMenu(ST_Str,ST_Skl,ST_Name,ST_Aid,0x66,0x28,0x547)
+ST_Skl:
+  RMenu(ST_Mag,ST_Spd,ST_Name,ST_Cond,0x66,0x38,0x548)
+ST_Spd:
+  RMenu(ST_Skl,ST_Luck,ST_Name,ST_Affin,0x66,0x48,0x549)
+ST_Luck:
+  RMenu(ST_Spd,ST_Def,ST_Name,ST_Talk,0x66,0x58,0x54a)
+ST_Def:
+  RMenu(ST_Luck,ST_Res,ST_Class,ST_Skills,0x66,0x68,0x54b)
+ST_Res:
+  RMenu(ST_Def,ST_Mov,ST_Exp,ST_Skill1,0x66,0x78,0x54c)
+ST_Mov:
+  RMenu(ST_Res,ST_Con,ST_Exp,ST_Skill1,0x66,0x88,0x54d)
+POP
+
+//the rest of these are here because space
+ALIGN 4
+
+ST_Con:
+  RMenu(PersonalDataRText,ST_Aid,ST_Str,0,0xA6,0x18,0x54e)
+ST_Aid:
+  RMenu(ST_Con,ST_Cond,ST_Mag,0,0xa6,0x28,0x54F)
+ST_Cond:
+  RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x38,0x552,ConditionGetter)
+ST_Affin:
+  #ifdef LEADERSHIP_STARS
+    RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xa6,0x48,LeadRText)
+  #else
+    RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xa6,0x48,0x551)
+  #endif
+//ST_Cond:
+  //RMenu(ST_Affin,ST_Talk,ST_Spd,0,0xA6,0x48,0x552,ConditionGetter)
+ST_Talk:
+  RMenu(ST_Affin,ST_Skills,ST_Luck,0,0xA6,0x58,SS_TalkRText)
+ST_Skills:
+  RMenu(ST_Talk,ST_Skill1,ST_Def,0,0xA6,0x68,SS_SkillsRText)
+ST_Skill1:
+  RMenu(ST_Skills,ST_Skill4,ST_Res,ST_Skill2,0xa6,0x78,0,RTextLoop,SkillDescGetter)
+ST_Skill2:
+  RMenu(ST_Skills,ST_Skill5,ST_Skill1,ST_Skill3,0xbe,0x78,1,RTextLoop,SkillDescGetter+4)
+ST_Skill3:
+  RMenu(ST_Skills,ST_Skill6,ST_Skill2,0,0xd6,0x78,2,RTextLoop,SkillDescGetter+8)
+ST_Skill4:
+  RMenu(ST_Skill1,0,ST_Mov,ST_Skill5,0xa6,0x88,3,RTextLoop,SkillDescGetter+12)
+ST_Skill5:
+  RMenu(ST_Skill2,0,ST_Skill4,ST_Skill6,0xbe,0x88,4,RTextLoop,SkillDescGetter+16)
+ST_Skill6:
+  RMenu(ST_Skill3,0,ST_Skill5,0,0xd6,0x88,5,RTextLoop,SkillDescGetter+20)
+#ifdef PRESS_SELECT_TO_VIEW_GROWTHS
+  PersonalDataRText:
+  RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc1)
+#else
+  PersonalDataRText:
+  RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc2)
+#endif
+  
+  
+#endif // USE_STRMAG_SPLIT
+  
+  
+
+#ifdef ENABLE_PERSONAL_INFO
+
+    RText_Page4:
+  
+  ST_Name4:
+    RMenu(0,ST_Class4,0,ST_Dislikes,0x18,0x50,0x0,NameDescGetter)
+
+  ST_Class4:
+	#ifdef GAIDEN_MAGIC
+	  RMenu(ST_Name4,ST_Level4,0,ST_Spell1,0x6,0x68,0x6E8,ClassDescGetter)
+	#else
+	  RMenu(ST_Name4,ST_Level4,0,0,0x6,0x68,0x6E8,ClassDescGetter)
+	#endif
+
+  ST_Level4:
+    RMenu(ST_Class4,ST_HP4,0,ST_Exp4,0x6,0x78,0x542)
+
+  ST_Exp4:
+	#ifdef GAIDEN_MAGIC
+      RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Spell3,0x26,0x78,0x543)
+    #else
+	  RMenu(ST_Class4,ST_HP4,0,0,0x26,0x78,0x543)
+	#endif
+
+  ST_HP4:
+	#ifdef GAIDEN_MAGIC
+      RMenu(ST_Level4,0,0,ST_Spell5,0x6,0x88,0x544)
+	#else
+	  RMenu(ST_Level4,0,0,0,0x6,0x88,0x544)
+	#endif
+
+  ST_Likes:
+    RMenu(0,ST_Dislikes,ST_Name4,ST_Height,0x66,0x18,LikesDesc)
+	
+  ST_Dislikes:
+    RMenu(ST_Likes,ST_Age,ST_Name4,ST_Height,0x66,0x38,DislikesDesc)
+	
+  ST_Age:
+	#ifdef GAIDEN_MAGIC
+	  RMenu(ST_Dislikes,ST_Spell1,ST_Class4,ST_Height,0x66,0x58,AgeDesc)
+	#else
+	  RMenu(ST_Dislikes,0,ST_Class4,ST_Height,0x66,0x58,AgeDesc)
+	#endif
+	
+  ST_Height:
+	#ifdef GAIDEN_MAGIC
+      RMenu(ST_Dislikes,ST_Spell2,ST_Age,0,0xa6,0x58,HeightDesc)
+    #else
+	  RMenu(ST_Dislikes,0,ST_Age,0,0xa6,0x58,HeightDesc)
+	#endif
+
+#else // ENABLE_PERSONAL_INFO
+
+  RText_Page4:
+
+  ST_Name4:
+    RMenu(0,ST_Class4,0,ST_Donate,0x18,0x50,0x0,NameDescGetter)
+
+  ST_Class4:
+    RMenu(ST_Name4,ST_Level4,0,ST_Donate,0x6,0x68,0x6E8,ClassDescGetter)
+
+  ST_Level4:
+    RMenu(ST_Class4,ST_HP4,0,ST_Exp4,0x6,0x78,0x542)
+
+  ST_Exp4:
+    RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Donate,0x26,0x78,0x543)
+
+  ST_HP4:
+    RMenu(ST_Level4,0,0,ST_Donate,0x6,0x88,0x544)
+
+  ST_Donate:
+    RMenu(0,0,ST_Name4,0,0x86,0x48,DonateURL)
+	
+#endif // ENABLE_PERSONAL_INFO
+
+#ifdef GAIDEN_MAGIC
+  #ifdef ENABLE_PERSONAL_INFO
+    ST_Spell1:
+      RMenu(ST_Age,ST_Spell3,ST_Class4,ST_Spell2,0x66,0x68,0,GaidenRTextLooper,GaidenRTextGetter)
+    ST_Spell2:
+      RMenu(ST_Height,ST_Spell4,ST_Spell1,0,0xA6,0x68,1,GaidenRTextLooper,GaidenRTextGetter)
+  #else
+    ST_Spell1:
+      RMenu(0,ST_Spell3,ST_Class4,ST_Spell2,0x66,0x68,0,GaidenRTextLooper,GaidenRTextGetter)
+    ST_Spell2:
+      RMenu(0,ST_Spell4,ST_Spell1,0,0xA6,0x68,1,GaidenRTextLooper,GaidenRTextGetter)
+  #endif // ENABLE_PERSONAL_INFO
+  ST_Spell3:
+    RMenu(ST_Spell1,ST_Spell5,ST_Exp4,ST_Spell4,0x66,0x78,2,GaidenRTextLooper,GaidenRTextGetter)
+  ST_Spell4:
+    RMenu(ST_Spell2,ST_Spell6,ST_Spell3,0,0xA6,0x78,3,GaidenRTextLooper,GaidenRTextGetter)
+  ST_Spell5:
+    RMenu(ST_Spell3,0,ST_HP4,ST_Spell6,0x66,0x88,4,GaidenRTextLooper,GaidenRTextGetter)
+  ST_Spell6:
+    RMenu(ST_Spell4,0,ST_Spell5,0,0xA6,0x88,5,GaidenRTextLooper,GaidenRTextGetter)
+	
+#endif // GAIDEN_MAGIC
