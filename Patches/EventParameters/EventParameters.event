@@ -17,21 +17,24 @@
 	#include "GetNthUnit/CustomGetActiveUnit.lyn.event" 
 	#include "GetNthUnit/GetEnemyFFFCsBCoordsUnit.lyn.event" 
 	
+	ALIGN 4
 	#define EventParameter(key,function) "WORD key ; POIN function|1"
 	
 	ALIGN 4
 	EventParameterTable:
 	// These mimick vanilla behavior. Each takes the key as a parameter and should return a character struct pointer.
 	EventParameter(0,EventParametersGetLeader) // Gets the party leader via $33258.
-	//EventParameter(-1,EventParameterGetActive) // Get current unit.
-	//EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
-	//EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
+	EventParameter(-1,EventParameterGetActive) // Get current unit.
+	EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
+	EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.
 	
 	
-	EventParameter(0xFFFF,CustomGetActiveUnit) // Get current unit.
-	EventParameter(0xFFFE,GetFFFEsBCoordsUnit) // Get sB coords unit.
-	EventParameter(0xFFFD,GetFFFDs2Unit) // Get unit in memory slot 0x2.
-	EventParameter(0xFFFC,GetEnemyFFFCsBCoordsUnit) // Get enemy in sB coords, even if dead 
+
+	// You must use negatives for values above 0x7FFF 
+	EventParameter(0x7FFF,CustomGetActiveUnit) // Get current unit.
+	EventParameter(0x7FFE,GetFFFEsBCoordsUnit) // Get sB coords unit.
+	EventParameter(0x7FFD,GetFFFDs2Unit) // Get unit in memory slot 0x2.
+	EventParameter(0x7FFC,GetEnemyFFFCsBCoordsUnit) // Get enemy in sB coords, even if dead 
 
 	
 	EventParameter(0x0101,Get1stUnit) //Get 1st player unit 

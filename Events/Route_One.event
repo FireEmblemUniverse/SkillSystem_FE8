@@ -52,6 +52,7 @@ MiscBasedEvents:
 CauseGameOverIfLordDies
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 RefreshUnitsEvent 0 
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
 END_MAIN
@@ -61,6 +62,11 @@ ChapterTransition(PalletTownCh, 8, 5)
 
 ToViridian:
 ChapterTransition(ViridianCityCh, 19, 38)
+
+RefreshUnitsEvent:
+CALL RefreshIfNotInDanger
+NoFade
+ENDA 
 
 Dunno1:
 END_MAIN
@@ -107,10 +113,25 @@ UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 
 UNIT
 
 
+GenericEffect(2, ToViridian) 
+GenericDisappearEffect(2, TalkEvent) 
+
 Traps1:
-#ifdef DRAGON_VEINS
-Vein(9,23,0x0,DV1Desc) //freeze enemies
-#endif // DRAGON_VEINS
+Flower(3,3)
+CutBush(4,2)
+RockSmash(3,2)
+StrengthBoulder(4,3)
+OpenPokeball(8,3)
+
+RedPokeballT(2,4, 0x01)
+GoldPokeballT(4,4, 0x66, Gust) 
+
+Sign(6,4, 2)
+
+
+Flower(8,4)
+
+
 ENDTRAP
 ALIGN 4
 
@@ -139,7 +160,7 @@ NoFade
 ENDA
 
 TalkEvent:
-
+Text(0x9DD) 
 NoFade
 ENDA 
 

@@ -47,6 +47,11 @@
 
 ObtainItemInitialization:
 
+ldrb r0, [r5, #0x3]     @Completion flag
+blh CheckEventId 
+cmp r0, #1 
+beq ReturnPoint @if completion flag is true, then we do not spawn this trap :-) 
+
 @r5 = pointer to trap data in events
 ldrb r0,[r5,#1] @x coord
 ldrb r1,[r5,#2] @y coord

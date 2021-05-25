@@ -12,28 +12,20 @@ FILL 4*0xFF
 	// Second byte is the item ID for this spell. This can be anima, light, dark, or a staff!
 	// If GAIDEN_REQUIRES_WRANK in Config.event is uncommented, then a unit will still need weapon rank to weild the Gaiden spell.
 ALIGN 4
-EirikaSpellList:
-	BYTE 1 Fire
-	BYTE 1 Elfire
-	BYTE 1 Thunder
-	BYTE 1 Flux
+EirikaSpellList: //up to 16 fit on the page 
+	BYTE 1 SandAttack
+	BYTE 1 Growl
+	BYTE 1 Scratch
+	BYTE 1 TailWhip
 	BYTE 1 Mend
-	BYTE 1 IronSword
-	BYTE 1 IronLance
-	BYTE 1 SteelSword
-	BYTE 1 SteelLance
-	BYTE 1 IronAxe
-	BYTE 1 IronBow
-	BYTE 1 SteelLance
-	BYTE 1 SteelBow
-	BYTE 1 KillingEdge
-	BYTE 1 KillerLance
-	BYTE 1 Tackle
-	//BYTE 1 WaterGun
-	//BYTE 1 Ember
-	//BYTE 1 Thundershock
-	//BYTE 1 KillerAxe
-	//BYTE 1 KillerBow
-	
+	BYTE 1 Bubble
+	BYTE 1 WaterGun
+	BYTE 1 Ember
+	BYTE 1 Thundershock
+	BYTE 1 Magnitude
+	BYTE 1 RockThrow
+	BYTE 1 Heal
+	BYTE 1 Sleep
+	BYTE 1 Flamethrower	
 	BYTE 0 0
 GaidenList(Eirika,EirikaSpellList) // This macro writes this entry to the spell list table.

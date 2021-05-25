@@ -1,0 +1,32 @@
+#define GrassMMS 0x7C 
+#define BlankMMS 0x7F
+#define CrobatMMS 0xD9 
+
+
+
+#define CutBushSMS 0x5E 
+#define RockSmashSMS 0x5F 
+#define StrengthBoulderSMS 0x60 
+//#define 0x0
+//#define 0x0
+//#define 0x0
+#define BurrowSMS 0x64 
+#define GrassSMS 0x65 
+#define SignSMS 0x66 
+#define FlowerSMS 0x67 
+#define PlatformSMS 0x68 
+#define BlankSMS 0x69 
+#define SavePointSMS 0x6A 
+#define OpenBallSMS 0x6B
+#define RedPokeballSMS 0x6C 
+#define GoldPokeballSMS 0x6D 
+//#define 0x0
+#define GarySMS 0x6F 
+#define RocketASMS 0x70 
+#define RocketBSMS 0x71 
+#define RocketCSMS 0x72 
+#define BugCatcherSMS 0x73 
+#define FighterSMS 0x74 
+#define HikerSMS 0x75 
+
+

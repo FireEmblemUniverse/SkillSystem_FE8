@@ -15,6 +15,48 @@
 #define Player6UnitID 			0x30017b8 
 
 
+RefreshIfNotInDanger:
+CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+SADD r5 rC r0 
+MemSlotToString(r5)
+Text(0x9DD) 
+SADD rC r5 r0 
+BEQ 10 rC r0 
+GOTO 63 
+
+CHECK_COORDS 0x102
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+BEQ 10 rC r0 
+
+CHECK_COORDS 0x103
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+BEQ 10 rC r0 
+
+CHECK_COORDS 0x104
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+BEQ 10 rC r0 
+
+CHECK_COORDS 0x105
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+BEQ 10 rC r0 
+
+CHECK_COORDS 0x106
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+BEQ 10 rC r0 
+GOTO 63 
+Label 10 
+UNCR(0x7FFF, 0x42)
+LABEL 63 
+NoFade
+ENDA 
+
 ConvertToMemSlotBCoord: //unused 
 SVAL rB 0x10000 
 Read_Byte(YCoordNewArea)
@@ -60,15 +102,15 @@ ASMC SetUnitStatus
 Text(0x9DD)
 ENUN 			// move 1st unit instantly to value in CoordsNewArea 
 
-MOVEONTO 	0xFFFF 0x102 0x101 //hold this coordinate for now because MoveNextTo is stupid 
+MOVEONTO 	0x7FFF 0x102 0x101 //hold this coordinate for now because MoveNextTo is stupid 
 
 
-MOVENEXTTO 0xFFFF 0x0103 0x0101
-MOVENEXTTO 0xFFFF 0x0104 0x0101
+MOVENEXTTO 0x7FFF 0x0103 0x0101
+MOVENEXTTO 0x7FFF 0x0104 0x0101
 ENUN 
-MOVENEXTTO 0xFFFF 0x0105 0x0101
-MOVENEXTTO 0xFFFF 0x0106 0x0101
-MOVENEXTTO 0xFFFF 0x0102 0x0102 //free up P1's coord  
+MOVENEXTTO 0x7FFF 0x0105 0x0101
+MOVENEXTTO 0x7FFF 0x0106 0x0101
+MOVENEXTTO 0x7FFF 0x0102 0x0102 //free up P1's coord  
 
 ENUN 
 UNCR(0x0101, 0x0D)

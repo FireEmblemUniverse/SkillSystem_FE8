@@ -19,22 +19,30 @@
 	#define LightRuneTrapID 13
 
 
-	
 	#define RedPokeballItemID 16	//respawnable item 
 	#define GoldPokeballItemID 17	//non-respawnable item
 	#define HiddenPokeballItemID 18	//invisible item 
+	
+	#define OpenPokeballItemID 48	//blocks but cannot interact 
+	
+	#define ObstacleID 48 
+	#define DisplayOnlyID 64 
+	#define FlowerTrapID 	65
+	
+	
 			// 0x1A flowers 
 
-	#define BlueWaitID 32		//Wait
-	#define CutBushID 33		//Cut
-	#define RockSmashID 34		//Smash
-	#define StrengthBoulderID 35	//Push
-	#define BreakableFloorID 36	//Step
-	#define HoleID 37 		//Jump
-	#define BoulderReceptacleID 38	//place boulder into
-	#define SpawnGenericID 39	//Yell-into
-	#define FoodID 40		//Eat
 
+	#define CutBushID 32		//Cut
+	#define RockSmashID 33		//Smash
+	#define StrengthBoulderID 34	//Push
+	#define BreakableFloorID 35	//Step
+	#define HoleID 36 		//Jump
+	#define BoulderReceptacleID 37	//place boulder into
+	#define SpawnGenericID 38	//Yell-into
+	#define FoodID 39		//Eat
+	#define BlueWaitID 40		//Wait
+	
 	#define GenericID 48		//Interact
 	#define NPCTalkID 49		//Talk
 
@@ -51,7 +59,10 @@
 	#define Placeholder23ID 23	//respawnable item 
 	#define Placeholder24ID 24	//respawnable item 
 	#define Placeholder25ID 25	//respawnable item 
+	
+
 	#define Placeholder26ID 26	//respawnable item 
+	
 	#define Placeholder27ID 27	//respawnable item 
 	#define Placeholder28ID 28	//respawnable item 
 	#define Placeholder29ID 29	//respawnable item 
@@ -121,10 +132,14 @@
 	SetTrapMapSprite(LightRuneTrapID,0x66) //light rune map sprite
 
 
+	
+	SetTrapMapSprite(RedPokeballItemID,RedPokeballSMS)
+	SetTrapMapSprite(GoldPokeballItemID,GoldPokeballSMS)
+	SetTrapMapSprite(OpenPokeballItemID,OpenBallSMS)
 
-	SetTrapMapSprite(CutBushID,0x6A)
-	SetTrapMapSprite(RockSmashID,0x70)
-	SetTrapMapSprite(StrengthBoulderID,0x71)
+	SetTrapMapSprite(CutBushID,CutBushSMS)
+	SetTrapMapSprite(RockSmashID,RockSmashSMS)
+	SetTrapMapSprite(StrengthBoulderID,StrengthBoulderSMS)
 	SetTrapMapSprite(BreakableFloorID,0x72)
 	SetTrapMapSprite(HoleID,0x73)
 	SetTrapMapSprite(BoulderReceptacleID,0x74)
@@ -142,6 +157,9 @@
 	SetTrapMapSprite(Placeholder24ID,0x78)
 	SetTrapMapSprite(Placeholder25ID,0x79)
 	SetTrapMapSprite(Placeholder26ID,0x7A) //0x1A flowers (display only)
+	
+
+	
 	SetTrapMapSprite(Placeholder27ID,0x7B)
 	SetTrapMapSprite(Placeholder28ID,0x7C)
 	SetTrapMapSprite(Placeholder29ID,0x7D)
@@ -168,7 +186,8 @@
 	SetTrapMapSprite(61,0x79)
 	SetTrapMapSprite(62,0x7A)
 	SetTrapMapSprite(63,0x7B)
-
+	SetTrapMapSprite(64,0x7A)
+	SetTrapMapSprite(65,0x7B)
 
 
 
@@ -232,7 +251,8 @@
 	SetTrapMapSpritePalette(61,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(62,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(63,NPCTrapPaletteWord)
-
+	SetTrapMapSpritePalette(64,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(65,NPCTrapPaletteWord)
 	
 	
 
@@ -295,7 +315,9 @@
 	SetImpassableTrap(Placeholder45ID)
 	SetImpassableTrap(Placeholder46ID)
 	SetImpassableTrap(Placeholder47ID)
-
+	SetImpassableTrap(48)
+	SetImpassableTrap(49)
+	SetImpassableTrap(50)
 	SetImpassableTrap(51)
 	SetImpassableTrap(52)
 	SetImpassableTrap(53)

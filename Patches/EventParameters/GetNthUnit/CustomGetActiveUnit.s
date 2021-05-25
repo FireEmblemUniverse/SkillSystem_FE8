@@ -10,15 +10,21 @@
 	.equ GetUnit, 0x8019430
 	.equ GetUnitByEventParameter, 0x0800BC50
 	.equ GetActiveUnitPointer, 0x3004E50 
+	.equ MemorySlot3,0x30004C4   
 
 
 	.global CustomGetActiveUnit
 	.type   CustomGetActiveUnit, function
 
 CustomGetActiveUnit:
-	push {r4-r7, lr}	
+	push {lr}
 
-mov r4,#1 @ current deployment id
+ldr r0, =GetActiveUnitPointer
+ldr r0, [r0] 
+b Exit 
+
+	push {r4-r7, lr}
+	mov r4,#1 @ current deployment id
 ldr r0, =GetActiveUnitPointer
 ldr r1, [r0] @active unit pointer 
 ldr r1, [r1] 
@@ -42,12 +48,15 @@ NextUnit:
 add r4,#1
 cmp r4,#0xAF
 ble LoopThroughUnits
-mov r0, #0
+@mov r0, #0
+OldExit:
+pop {r4-r7}
 
 Exit:
-pop {r4-r7}
 pop {r1}
 bx r1
+
+.align 4
 
 .ltorg
 

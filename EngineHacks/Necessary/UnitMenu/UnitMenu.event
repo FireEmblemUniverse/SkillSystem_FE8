@@ -77,6 +77,58 @@ UnitMenuTable:
   MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
   #endif // DRAGON_VEINS
   
+//Disappear after use
+  //UM_Cut
+  MenuCommand(0x11C7,0x11C8,BlueText, GenericTrapDisappearUsability0x20, GenericTrapDisappearEffect)
+  //UM_RockSmash
+  MenuCommand(0x11C9,0x11CA,BlueText, GenericTrapDisappearUsability0x21, GenericTrapDisappearEffect)
+  //UM_Strength
+  MenuCommand(0x11CB,0x11CC,BlueText, GenericTrapDisappearUsability0x22, GenericTrapDisappearEffect)
+  //UM_Step-on
+  MenuCommand(0x11CD,0x11CE,BlueText, GenericTrapDisappearUsability0x23, GenericTrapDisappearEffect)
+
+  //UM_Jump
+  MenuCommand(0x11D4,0x11D5,BlueText, GenericTrapDisappearUsability0x24, GenericTrapDisappearEffect)
+  //UM_Eat
+  MenuCommand(0x11D6,0x11D7,BlueText, GenericTrapDisappearUsability0x25, GenericTrapDisappearEffect)
+
+  //UM_Interact_Disappear
+  MenuCommand(0x11DA,0x11DB,BlueText, GenericTrapDisappearUsability0x26, GenericTrapDisappearEffect)
+
+//dummy entries to get the address 
+  //UM_Jump
+  MenuCommand(0x11D4,0x11D5,BlueText, GenericTrapDisappearUsability0x27, GenericTrapDisappearEffect)
+  //UM_Eat
+  MenuCommand(0x11D6,0x11D7,BlueText, GenericTrapDisappearUsability0x28, GenericTrapDisappearEffect)
+
+  //UM_Interact_Disappear
+  MenuCommand(0x11DA,0x11DB,BlueText, GenericTrapDisappearUsability0x29, GenericTrapDisappearEffect)
+
+//Does not disappear
+
+  MenuCommand(0x11D8, 0x11D9, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
+  MenuCommand(0x11DA, 0x11DB, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact
+  MenuCommand(0x11DC, 0x11DD, GreenText, GenericTrapUsability0x32, GenericTrapEffect) //GreenTalk
+  MenuCommand(0x11DC, 0x11DD, NormalText, GenericTrapUsability0x33, GenericTrapEffect) //Talk
+  MenuCommand(0x11DE, 0x11DF, NormalText, GenericTrapUsability0x34, GenericTrapEffect) //Attack
+  MenuCommand(0x11E1, 0x11E2, BlueText, GenericTrapUsability0x35, GenericTrapEffect) //Enter
+  MenuCommand(0x11E3, 0x11E4, BlueText, GenericTrapUsability0x36, GenericTrapEffect) //Exit
+  MenuCommand(0x11E5, 0x11E6, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
+  MenuCommand(0x11E7, 0x11E8, NormalText, GenericTrapUsability0x38, GenericTrapEffect) //Read
+  MenuCommand(0x11E9, 0x11EA, NormalText, GenericTrapUsability0x39, GenericTrapEffect) //Examine
+
+//Obtain Item
+
+  MenuCommand(0x11EB, 0x11EC, GreenText, ObtainItemUsability0x10, ObtainItemEffect) //Take
+  MenuCommand(0x11ED, 0x11EE, GreenText, ObtainItemUsability0x11, ObtainItemEffect) //Pickup
+  MenuCommand(0x11EF, 0x11F0, GreenText, ObtainItemUsability0x12, ObtainItemEffect) //Examine
+//dummy ones 
+  MenuCommand(0x11EB, 0x11EC, GreenText, ObtainItemUsability0x13, ObtainItemEffect) //Take
+  MenuCommand(0x11ED, 0x11EE, GreenText, ObtainItemUsability0x14, ObtainItemEffect) //Pickup
+  MenuCommand(0x11EF, 0x11F0, GreenText, ObtainItemUsability0x15, ObtainItemEffect) //Examine
+  
+  
+  
   // UM_Attack
   MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
   // UM_Attack_B

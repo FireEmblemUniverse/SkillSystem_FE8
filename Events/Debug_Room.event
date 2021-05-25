@@ -231,8 +231,8 @@ LOAD1 0x0 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep s
 ENUN
 LOAD1 0x0 Units2
 ENUN
-Write_Byte(0x05, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(0x06, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(0x04, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(0x04, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 //\r\n0\r\n\r\nNEHU\r\nNULL\r\n\r\n\r\n
 //EnableFreeMovement
@@ -244,7 +244,7 @@ ENUN
 //GotoPrepScreen
 
 LABEL 0x63
-MNC2 Route1Ch 
+//MNC2 Route1Ch 
 NoFade
 ENDA
 
@@ -265,12 +265,16 @@ LABEL 0
 //UNCM(0x102, 0x42, 0x01)
 
 
-//CHECK_COORDS 0x0201
-//SADD rB rC r0 
+CHECK_COORDS 0x01
+SADD rB rC r0 
+//Text(0x9DD)
 //MemSlotToString(rB)
-//ASMC GetNthUnit 
-//ASMC CheckInDanger
-//SADD r2 rC r0
+
+ASMC CheckUnitIsInDanger
+SADD r2 rC r0
+MemSlotToString(r2)
+Text(0x9DD)
+UNCR(0x7FFF, 0x42)
 //ASMC GetNthUnitID
 /*
 SVAL r2 0x2 
@@ -294,7 +298,7 @@ UNCM(0xFFFD, 0x0D)
 //MemSlotToString(rA)
 //TestSVALThing(5, 10)
 SADD r6 rC r0 
-Text(0x9DD)
+//Text(0x9DD)
 
 
 NoFade

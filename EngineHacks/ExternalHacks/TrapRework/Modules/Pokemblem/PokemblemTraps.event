@@ -1,9 +1,9 @@
 
 //0x30 - 0x39 usable //"Interact"
 
-//0x10 - 0x19 obtain item //"Take"
-//0x20 - 0x29 generictrap disappear // "Interact"
-//other - display only 
+//0x10 - 0x19 obtain item //"Take" or #16 - 31 
+//0x20 - 0x29 generictrap disappear // "Interact" or 32 - 47 
+//other - display only or 64+ 
 
 
 	#define CustomTrapID 50 //just sequentially after what i'm aware of being used by other hacks already
@@ -60,6 +60,8 @@
 	SetTrapEventInit(NPCTalkID,GenericTrapInitialization)
 	SetTrapEventInit(CustomTrapID,GenericTrapInitialization)
 	
+	SetTrapEventInit(FlowerTrapID,GenericTrapInitialization)
+	
 	SetTrapEventInit(51,GenericTrapInitialization)
 	SetTrapEventInit(52,GenericTrapInitialization)
 	SetTrapEventInit(53,GenericTrapInitialization)
@@ -73,8 +75,8 @@
 	SetTrapEventInit(61,GenericTrapInitialization)
 	SetTrapEventInit(62,GenericTrapInitialization)
 	SetTrapEventInit(63,GenericTrapInitialization)
-
-
+	SetTrapEventInit(64,GenericTrapInitialization)
+	SetTrapEventInit(65,GenericTrapInitialization)
 
 //my script for usability / effect
 
@@ -94,6 +96,57 @@
 #define ObtainEffect(id, event) "PUSH; ORG ObtainItemEventTableOffset + (4 * id); POIN event; POP"
 #define ObtainItem(XX,YY,CompletionFlag, ItemID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID 0x0"
 #define ObtainItem(XX,YY,CompletionFlag, ItemID, EffectID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID EffectID"
+
+
+	//#define FlowerSMS 0x7A 
+	//#define FlowerTrapID 65 
+	// Display only 
+#define Flower(XX,YY) "BYTE FlowerTrapID XX YY 0x0 FlowerSMS 0x0"
+
+
+
+// Display + block your path 
+#define OpenPokeball(XX,YY) "BYTE OpenPokeballItemID XX YY 0x0 OpenBallSMS 0x0"
+#define Sign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 SignSMS EventIndex"
+
+
+// NPCs 
+#define Gary(XX,YY) "BYTE ObstacleID XX YY 0x0 GarySMS 0x0"
+#define RocketA(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 RocketASMS EventIndex"
+#define RocketB(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 RocketBSMS EventIndex"
+#define RocketC(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 RocketCSMS EventIndex"
+#define BugCatcher(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 BugCatcherSMS EventIndex"
+#define Fighter(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 FighterSMS EventIndex"
+#define Hiker(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 HikerSMS EventIndex"
+
+
+
+// HMs 
+#define CutHmFlag 0x66 
+#define RockSmashFlag 0x20
+#define StrengthBoulderFlag 0x21
+
+#define CutBush(XX,YY) "BYTE CutBushID XX YY CutHmFlag CutBushSMS 0x0"
+#define CutBushEffect(XX,YY, EffectID) "BYTE CutBushID XX YY CutHmFlag CutBushSMS EffectID"
+
+#define RockSmash(XX,YY) "BYTE RockSmashID XX YY RockSmashFlag RockSmashSMS 0x0"
+#define RockSmashEffect(XX,YY, EffectID) "BYTE RockSmashID XX YY RockSmashFlag RockSmashSMS EffectID"
+
+#define StrengthBoulder(XX,YY) "BYTE StrengthBoulderID XX YY StrengthBoulderFlag StrengthBoulderSMS 0x0"
+#define StrengthBoulderEffect(XX,YY, EffectIndex) "BYTE StrengthBoulderID XX YY StrengthBoulderFlag StrengthBoulderSMS EffectIndex"
+
+
+// Items 
+#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
+#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
+
+#define RedPokeballT(XX,YY, ItemID) "BYTE RedPokeballItemID XX YY 0x0 ItemID 0x0"
+#define GoldPokeballT(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY Flag ItemID 0x0"
+
+
+
+
+
 
 /*
 #define ObtainRareItem(XX,YY,CompletionFlag, ItemID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID 0x0"
@@ -144,8 +197,8 @@ POIN GenericTrapDisappearTableOffset
 
 
 
-	SetTrapMapSprite(RedPokeballItemID,0x65)
-	SetTrapMapSprite(GoldPokeballItemID,0x66)
+	SetTrapMapSprite(RedPokeballItemID,RedPokeballSMS)
+	SetTrapMapSprite(GoldPokeballItemID,GoldPokeballSMS)
 	SetTrapMapSprite(HiddenPokeballItemID,0)
 
 	SetTrapMapSpritePalette(RedPokeballItemID,NPCTrapPaletteWord)
@@ -163,8 +216,8 @@ POIN GenericTrapDisappearTableOffset
 //add to unit menu to make usable 
 //ObtainItemEffect:
 #include "asm/ObtainItem.lyn.event"
-POIN GenericTrapDisappearTableOffset //making an febuilder patch easier by doing this 
-//POIN ObtainItemEventTableOffset
+//POIN GenericTrapDisappearTableOffset //making an febuilder patch easier by doing this 
+POIN ObtainItemEventTableOffset
 WORD RedPokeballItemID
 POIN GiveItemEvent
 
