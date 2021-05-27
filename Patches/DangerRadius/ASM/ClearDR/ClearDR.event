@@ -1,0 +1,54 @@
+// Clear units-related asm insertion
+
+PUSH
+
+  // Clear DR-bit from unit that
+  // died after animated battle.
+  ORG 0x32808 
+  callHack_r1(ClearDR1)
+    
+  // Clear DR-bit from unit that
+  // died after map battle.
+  ORG 0x18400
+  callHack_r0(ClearDR2)
+  SHORT 0xE00E
+  PROTECT 0x18400 CURRENTOFFSET
+    
+  // Clear DRCountByte when
+  // all units are cleared.
+  ORG 0x177C8
+  callHack_r0(ClearDR3)
+  SHORT 0xE008
+  
+  // Unit is cleared from Unit RAM.
+  ORG 0x177F8
+  callHack_r1(ClearDR4)
+  SHORT 0xE003
+  
+  // Unit switches allegiance.
+  ORG 0x18436
+  SHORT 0x46C0
+  callHack_r2(ClearDR5)
+  SHORT 0x1C04 0x46C0
+
+POP
+
+ALIGN 4
+ClearDR1:
+#include "ClearDR1.lyn.event"
+
+ALIGN 4
+ClearDR2:
+#include "ClearDR2.lyn.event"
+
+ALIGN 4
+ClearDR3:
+#include "ClearDR3.lyn.event"
+
+ALIGN 4
+ClearDR4:
+#include "ClearDR4.lyn.event"
+
+ALIGN 4
+ClearDR5:
+#include "ClearDR5.lyn.event"
