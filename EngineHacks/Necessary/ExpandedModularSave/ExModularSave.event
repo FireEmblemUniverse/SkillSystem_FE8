@@ -73,7 +73,7 @@ gSaveBlockTypeSizeLookup:
 #define EMS_CHUNK_EIDS_PERMANENT 6
 #define EMS_CHUNK_BONUSCLAIMDATA 7
 #define EMS_CHUNK_WMDATA         8
-
+#define EMS_CHUNK_POKE 9
 // ===========
 // = MODULES =
 // ===========
@@ -142,7 +142,8 @@ gGameSaveChunks:
 	DeclSaveChunk($0680, $0AA8, ESU_SaveGameUnits, ESU_LoadGameUnits, EMS_CHUNK_SAVEUNITS)
 
 	// $1128
-
+	//DeclSaveChunk($1128, $0118, ESU_SavePokeRam, ESU_LoadPokeRam, EMS_CHUNK_POKE)
+//$1240 - $1344 free
 	// free up to $1344
 
 	DeclSaveChunkEnd
@@ -188,9 +189,10 @@ gSuspendSaveChunks:
 	// Save 50 red units (50 * 0x38 = $0AF0)
 	DeclSaveChunk($1558, $0AF0, ESU_SaveRedSuspendUnits,    ESU_LoadRedSuspendUnits)
 
-	// Save 20 green units (20 * 0x38 = $0460)
-	DeclSaveChunk($2048, $0460, ESU_SaveGreenSuspendUnits,  ESU_LoadGreenSuspendUnits)
-
+	// Save 20 green units (20 * 0x38 = $0460) //15
+	DeclSaveChunk($2048, $0348, ESU_SaveGreenSuspendUnits,  ESU_LoadGreenSuspendUnits)
+	// $118 or #270 bytes of ram 
+// DeclSaveChunk($2390, $0118, ESU_SavePokeRam, ESU_LoadPokeRam) 
 	// Save Debuffs (TODO: maybe reduce size)
 	DeclSaveChunk($24A8, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
 
