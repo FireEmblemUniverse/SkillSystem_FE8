@@ -11,9 +11,7 @@
 
 //EventPointerTable(0x7, PointerList)
 
-#ifdef DRAGON_VEINS
-VeinEffect(0, FreezeAllEnemies)
-#endif // DRAGON_VEINS
+
 
 setText(0x160, NewChName)
 
@@ -207,9 +205,6 @@ UNIT
 */
 
 Traps1:
-#ifdef DRAGON_VEINS
-Vein(9,23,0x0,DV1Desc) //freeze enemies
-#endif // DRAGON_VEINS
 ENDTRAP
 ALIGN 4
 
@@ -244,7 +239,7 @@ ENUN
 //GotoPrepScreen
 
 LABEL 0x63
-//MNC2 Route1Ch 
+MNC2 Route1Ch 
 NoFade
 ENDA
 
@@ -269,12 +264,9 @@ CHECK_COORDS 0x01
 SADD rB rC r0 
 //Text(0x9DD)
 //MemSlotToString(rB)
-
-ASMC CheckUnitIsInDanger
-SADD r2 rC r0
-MemSlotToString(r2)
-Text(0x9DD)
-UNCR(0x7FFF, 0x42)
+//CALL RefreshIfSafe
+CALL RefreshIfNotInDanger
+//UNCR(0x7FFF, 0x42)
 //ASMC GetNthUnitID
 /*
 SVAL r2 0x2 

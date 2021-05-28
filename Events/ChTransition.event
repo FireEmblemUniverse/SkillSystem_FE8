@@ -14,45 +14,85 @@
 #define Player5UnitID 			0x30017b7 
 #define Player6UnitID 			0x30017b8 
 
+RefreshIfSafe:
+ASMC CheckAnyoneInDanger
+NoFade 
+ENDA 
 
 RefreshIfNotInDanger:
+CHECK_EVENTID 1 
+BNE 63 rC r0 // if flag is ON,  skip everything 
 CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+ASMC CheckUnitIsInDanger
+BEQ 10 rC r0 
+GOTO 62 
+
+
+SVAL rC 1 
+CHECK_COORDS 0x101
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger
 SADD r5 rC r0 
 MemSlotToString(r5)
-Text(0x9DD) 
+//Text(0x9DD) 
 SADD rC r5 r0 
-BEQ 10 rC r0 
-GOTO 63 
 
+//if 1st player is not in danger, keep looking
+//if 2nd player does not exist, refresh active 
+// if 2nd.. keep looking 
+// if any ARE in danger, go to label 63 
+// if last player is not in danger, refresh 
+
+// 
+BNE 63 rC r0 
+
+SVAL rC 0 
+CHECK_CLASS 0x102 
+BEQ 10 rC r0 
 CHECK_COORDS 0x102
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger
-BEQ 10 rC r0 
+BNE 63 rC r0 
+//GOTO 63 
 
+SVAL rC 0 
+CHECK_CLASS 0x103
+BEQ 10 rC r0 
 CHECK_COORDS 0x103
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger
-BEQ 10 rC r0 
+BNE 63 rC r0 
 
+SVAL rC 0 
+CHECK_CLASS 0x104 
+BEQ 10 rC r0 
 CHECK_COORDS 0x104
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger
-BEQ 10 rC r0 
+BNE 63 rC r0 
 
+SVAL rC 0 
+CHECK_CLASS 0x105 
+BEQ 10 rC r0 
 CHECK_COORDS 0x105
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger
-BEQ 10 rC r0 
+BNE 63 rC r0 
 
+SVAL rC 0 
+CHECK_CLASS 0x106
+BEQ 10 rC r0 
 CHECK_COORDS 0x106
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger
-BEQ 10 rC r0 
+BNE 63 rC r0 
 GOTO 63 
 Label 10 
 UNCR(0x7FFF, 0x42)
+GOTO 63
+LABEL 62 
+ENUT 1 
 LABEL 63 
 NoFade
 ENDA 

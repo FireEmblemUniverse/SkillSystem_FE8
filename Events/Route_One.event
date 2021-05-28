@@ -1,8 +1,6 @@
 EventPointerTable(Route1Ch,ThisChapter)
 
-#ifdef DRAGON_VEINS
-VeinEffect(0, FreezeAllEnemies)
-#endif // DRAGON_VEINS
+
 
 setText(0x162, NewChName)
 
@@ -122,16 +120,10 @@ CutBush(4,2)
 RockSmash(3,2)
 StrengthBoulder(4,3)
 OpenPokeball(8,3)
-
 RedPokeballT(2,4, 0x01)
 GoldPokeballT(4,4, 0x66, Gust) 
-
 Sign(6,4, 2)
-
-
 Flower(8,4)
-
-
 ENDTRAP
 ALIGN 4
 
@@ -195,13 +187,7 @@ LABEL 0
 	
 	// HouseEvent(HouseText, HouseBG)
 
-#ifdef DRAGON_VEINS
-FreezeAllEnemies:
-VeinActivation
-ASMC FreezeAllASMC|1
-NoFade
-ENDA
-#endif // DRAGON_VEINS
+
 
 
 
