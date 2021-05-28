@@ -1,20 +1,9 @@
 EventPointerTable(Route1Ch,ThisChapter)
-
-
-
 setText(0x162, NewChName)
-
 ALIGN 4
 NewChName:
 String("Route One")
 BYTE 0
-
-
-
-
-
-
-
 
 ALIGN 4
 ThisChapter:
@@ -66,25 +55,135 @@ CALL RefreshIfNotInDanger
 NoFade
 ENDA 
 
+
+
+
+
+
+
+
+
+GenericEffect(2, ToViridian) 
+GenericDisappearEffect(2, TalkEvent) 
+
+Traps1:
+CutBush(4,2)
+RockSmash(3,2)
+StrengthBoulder(4,3)
+OpenPokeball(8,3)
+RedPokeballT(2,4, 0x01)
+GoldPokeballT(4,4, 0x66, Gust) 
+Sign(6,4, 2)
+
+
+Flower(19,2)
+Flower(21,2)
+Flower(3,6)
+Flower(5,6)
+Flower(7,6)
+Flower(2,7)
+Flower(4,7)
+Flower(6,7)
+Flower(3,8)
+Flower(5,8)
+Flower(7,8)
+Flower(2,9)
+Flower(4,9)
+Flower(6,9)
+Flower(3,11)
+Flower(2,12)
+Flower(3,13)
+Flower(19,18)
+Flower(21,18)
+Flower(18,19)
+Flower(20,19)
+Flower(3,27)
+Flower(5,27)
+Flower(2,28)
+Flower(4,28)
+Flower(10,34)
+Flower(9,35)
+Flower(20,34)
+Flower(21,35)
+ENDTRAP
+ALIGN 4
+
+
+
+
+TalkEvent:
+Text(0x9DD) 
+NoFade
+ENDA 
+
+VillageEvent:
+	VillageEventItem(VillageText, Village, Boots)
+
+HouseEvent:
+	// Set parameters
+	SVAL r1 NiceThighsID
+	SVAL r2 (-1) // (-1) is active unit
+	// Check if unit has skill
+	// If they have, goto label #0 (end)
+	ASMC (ASMC_HasSkill|1)
+	BNE 0 rC r0
+	// Learn skill to unit
+	ASMC (ASMC_LearnNewSkill|1)
+LABEL 0
+	Text(HouseText)	
+	NoFade
+	ENDA
+	
+
+BeginningScene:
+LOAD1 0x1 EnemyUnitsA
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
+LOAD1 0x1 EnemyUnitsB
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(16,13,21,17)) //upper mid 
+LOAD1 0x1 EnemyUnitsC
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
+LOAD1 0x1 EnemyUnitsD
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,25))  //lower 
+OffAllUnitState(0x01FF, WillDropItem, 0, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
+CALL LoadAndPlacePlayers 
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
 Dunno1:
 END_MAIN
-
 Dunno2:
 END_MAIN
-
 Dunno3:
 END_MAIN
-
 Tutorial:
 END_MAIN
-
-
-
+Traps2:
+ENDTRAP
+ALIGN 4
 
 Units1: //only used for a pointless POIN at start 
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
-
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
@@ -109,92 +208,3 @@ UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
 UNIT
-
-
-GenericEffect(2, ToViridian) 
-GenericDisappearEffect(2, TalkEvent) 
-
-Traps1:
-Flower(3,3)
-CutBush(4,2)
-RockSmash(3,2)
-StrengthBoulder(4,3)
-OpenPokeball(8,3)
-RedPokeballT(2,4, 0x01)
-GoldPokeballT(4,4, 0x66, Gust) 
-Sign(6,4, 2)
-Flower(8,4)
-ENDTRAP
-ALIGN 4
-
-Traps2:
-ENDTRAP
-ALIGN 4
-
-BeginningScene:
-LOAD1 0x1 EnemyUnitsA
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
-LOAD1 0x1 EnemyUnitsB
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(16,13,21,17)) //upper mid 
-LOAD1 0x1 EnemyUnitsC
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
-LOAD1 0x1 EnemyUnitsD
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,25))  //lower 
-OffAllUnitState(0x01FF, WillDropItem, 0, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-CALL LoadAndPlacePlayers 
-
-LABEL 0x63
-NoFade
-ENDA
-
-TalkEvent:
-Text(0x9DD) 
-NoFade
-ENDA 
-
-
-EndingScene: //Unused but must exist 
-NoFade
-ENDA
-
-VillageEvent:
-	VillageEventItem(VillageText, Village, Boots)
-
-HouseEvent:
-	// Set parameters
-	SVAL r1 NiceThighsID
-	SVAL r2 (-1) // (-1) is active unit
-	
-	// Check if unit has skill
-	// If they have, goto label #0 (end)
-	ASMC (ASMC_HasSkill|1)
-	BNE 0 rC r0
-	
-	// Learn skill to unit
-	ASMC (ASMC_LearnNewSkill|1)
-	
-LABEL 0
-	// end
-	
-	Text(HouseText)
-	
-	NoFade
-	ENDA
-	
-	// HouseEvent(HouseText, HouseBG)
-
-
-
-
-
-ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
-ALIGN 4
-
-ArmoryItems:
-SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
-ALIGN 4

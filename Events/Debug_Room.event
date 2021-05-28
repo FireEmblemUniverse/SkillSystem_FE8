@@ -264,7 +264,6 @@ CHECK_COORDS 0x01
 SADD rB rC r0 
 //Text(0x9DD)
 //MemSlotToString(rB)
-//CALL RefreshIfSafe
 CALL RefreshIfNotInDanger
 //UNCR(0x7FFF, 0x42)
 //ASMC GetNthUnitID
