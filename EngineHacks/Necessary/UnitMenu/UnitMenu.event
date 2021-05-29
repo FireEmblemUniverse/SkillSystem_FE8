@@ -125,7 +125,7 @@ UnitMenuTable:
 //dummy ones 
   MenuCommand(0x11EB, 0x11EC, GreenText, ObtainItemUsability0x13, ObtainItemEffect) //Take
   MenuCommand(0x11ED, 0x11EE, GreenText, ObtainItemUsability0x14, ObtainItemEffect) //Pickup
-  MenuCommand(0x11EF, 0x11F0, GreenText, ObtainItemUsability0x15, ObtainItemEffect) //Examine
+  MenuCommand(0x11EF, 0x11F0, GreenText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Examine
   
   
   

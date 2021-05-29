@@ -25,8 +25,8 @@
 		ORG $1A174
 		jumpToHack(TrapRework_NewRefreshTrapFogVision)
 	
-		//ORG $02e470 //Sme's address 
-		//jumpToHack(TrapRework_NewUpdateAllLightRunes)
+		ORG $02e470 //Sme's address 
+		jumpToHack(TrapRework_NewUpdateAllLightRunes)
 		
 		ORG $59A2B4 //MapMain "call new child proc TerrainHealLoop"
 		POIN TerrainHealLoopMyVersion 

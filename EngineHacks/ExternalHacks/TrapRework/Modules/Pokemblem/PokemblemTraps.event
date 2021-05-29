@@ -24,7 +24,8 @@
 	SetTrapEventInit(HiddenPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder19ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder20ID,ObtainItemInitialization)
-	SetTrapEventInit(Placeholder21ID,ObtainItemInitialization)
+	SetTrapEventInit(CoinsID,ObtainCoinsInitialization)
+		//SetTrapEventInit(CoinsID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder22ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder23ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder24ID,ObtainItemInitialization)
@@ -94,9 +95,11 @@
 
 
 #define ObtainEffect(id, event) "PUSH; ORG ObtainItemEventTableOffset + (4 * id); POIN event; POP"
-#define ObtainItem(XX,YY,CompletionFlag, ItemID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID 0x0"
-#define ObtainItem(XX,YY,CompletionFlag, ItemID, EffectID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID EffectID"
+//#define ObtainItem(XX,YY,CompletionFlag, ItemID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID 0x0"
+//#define ObtainItem(XX,YY,CompletionFlag, ItemID, EffectID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID EffectID"
 
+#define ObtainItem(XX,YY,CompletionFlag, ItemID) "BYTE RedPokeballItemID XX YY; SHORT CompletionFlag; BYTE ItemID"
+#define ObtainGold(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
 
 	//#define FlowerSMS 0x7A 
 	//#define FlowerTrapID 65 
@@ -137,11 +140,12 @@
 
 
 // Items 
-#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
-#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
+//#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
+//#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 
-#define RedPokeballT(XX,YY, ItemID) "BYTE RedPokeballItemID XX YY 0x0 ItemID 0x0"
-#define GoldPokeballT(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY Flag ItemID 0x0"
+#define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID; SHORT Flag+0x100"
+#define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID; SHORT Flag+0x100"
+#define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
 
 
 
@@ -184,14 +188,14 @@ POIN GenericTrapDisappearTableOffset
 
 
 // 		Pokeball items 
-
+/*
 #define RedPokeball(XX,YY,EffectID) "BYTE CustomTrapID XX YY EffectID 0x0 0x0"
 #define RedPokeball(XX,YY,EffectID, TextID) "BYTE CustomTrapID XX YY EffectID; SHORT TextID"
 #define GoldPokeball(XX,YY,EffectID) "BYTE CustomTrapID XX YY EffectID 0x0 0x0"
 #define GoldPokeball(XX,YY,EffectID, TextID) "BYTE CustomTrapID XX YY EffectID; SHORT TextID"
 #define HiddenPokeball(XX,YY,EffectID) "BYTE CustomTrapID XX YY EffectID 0x0 0x0"
 #define HiddenPokeball(XX,YY,EffectID, TextID) "BYTE CustomTrapID XX YY EffectID; SHORT TextID"
-
+*/
 
 
 
@@ -200,14 +204,17 @@ POIN GenericTrapDisappearTableOffset
 	SetTrapMapSprite(RedPokeballItemID,RedPokeballSMS)
 	SetTrapMapSprite(GoldPokeballItemID,GoldPokeballSMS)
 	SetTrapMapSprite(HiddenPokeballItemID,0)
+	SetTrapMapSprite(CoinsID,CoinsSMS)
 
 	SetTrapMapSpritePalette(RedPokeballItemID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(GoldPokeballItemID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(HiddenPokeballItemID,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(CoinsID,NPCTrapPaletteWord)
+
 
 	SetImpassableTrap(RedPokeballItemID)
 	SetImpassableTrap(GoldPokeballItemID)
-	//SetImpassableTrap(HiddenPokeballItemID)
+	SetImpassableTrap(CoinsID)
 
 
 
@@ -221,7 +228,8 @@ POIN ObtainItemEventTableOffset
 WORD RedPokeballItemID
 POIN GiveItemEvent
 
-
+ALIGN 4
+#include "asm/ObtainCoins.lyn.event"
 
 #include "GiveItemEvent.event"
 

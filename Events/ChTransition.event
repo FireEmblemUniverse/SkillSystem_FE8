@@ -14,6 +14,7 @@
 #define Player5UnitID 			0x30017b7 
 #define Player6UnitID 			0x30017b8 
 
+#define RamFlags 0x203F548 //0x448 after debuff table 
 
 
 RefreshIfNotInDanger:
@@ -75,7 +76,7 @@ SVAL r1 0x0101 //1st player unit
 SVAL r3 0x11 	// Y coord 
 SVAL r4 0x03 	// Byte
 ASMC SetUnitStatus
-Text(0x9DD)
+//Text(0x9DD)
 ENUN 			// move 1st unit instantly to value in CoordsNewArea 
 
 MOVEONTO 	0x7FFF 0x102 0x101 //hold this coordinate for now because MoveNextTo is stupid 
@@ -90,7 +91,7 @@ MOVENEXTTO 0x7FFF 0x0102 0x0102 //free up P1's coord
 
 ENUN 
 UNCR(0x0101, 0x0D)
-Text(0x9DD)
+//Text(0x9DD)
 
 //MOVE 
 NoFade

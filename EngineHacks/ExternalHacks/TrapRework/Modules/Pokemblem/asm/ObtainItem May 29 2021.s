@@ -14,7 +14,8 @@
 .type ObtainItemUsability0x13, %function
 .global ObtainItemUsability0x14
 .type ObtainItemUsability0x14, %function
-
+.global ObtainItemUsability0x15
+.type ObtainItemUsability0x15, %function
 
 
 
@@ -38,20 +39,16 @@
 .equ MemorySlot0,0x30004B8
 .equ MemorySlot3,0x30004C4	@item ID to give @[0x30004C4]!
 .equ GetTrapAt,0x802e1f0
-
-
 .equ CheckEventId,0x8083da8
-
 .equ SetFlag, 0x8083D80
-
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
 @.equ GiveItemEvent, ObtainItemID+4
 
 ObtainItemInitialization:
-mov r0, #0x4
-ldrh r0, [r5, r0]     @Completion flag
-blh CheckNewFlag
+
+ldrb r0, [r5, #0x3]     @Completion flag
+blh CheckEventId 
 cmp r0, #1 
 beq ReturnPoint @if completion flag is true, then we do not spawn this trap :-) 
 
@@ -61,7 +58,7 @@ ldrb r1,[r5,#2] @y coord
 ldrb r2,[r5] @trap ID
 blh SpawnTrap @returns pointer to trap data in RAM
 
-@give it our data
+@give it our vision range data 
 ldrb r1,[r5,#3] @save byte 0x3
 strb r1,[r0,#3] 
 ldrb r1,[r5,#4] @save byte 0x4
@@ -269,7 +266,10 @@ ObtainItemUsability0x14:
 push {r4,r7,r14}
 mov r7, #0x14
 b ObtainItemUsability
-
+ObtainItemUsability0x15:
+push {r4,r7,r14}
+mov r7, #0x15
+b ObtainItemUsability
 
 
 
@@ -283,9 +283,9 @@ mov r4, r0  @&The DV
 cmp r0,#0
 beq Usability_RetFalse
 
-mov r0, #0x4 
-ldrh r0, [r4, r0]     @Completion flag
-blh CheckNewFlag
+
+ldrb r0, [r4, #0x3]     @Completion flag
+blh CheckEventId
 cmp r0, #0
 bne Usability_RetFalse
 
@@ -330,20 +330,20 @@ bl GetAdjacentTrap
 mov r4, r0  @&The DV
 
 @turn on completion flag 
-mov r0, #0x04			
-ldrh r0, [r4, r0]     @Completion flag
+mov r0, #0			@empty it first 
+ldrb r0, [r4, #0x3]     @Completion flag
 cmp r0, #0
 beq ItemToGive
-blh SetNewFlag
+blh SetFlag
 
 ItemToGive:
 mov r2, #0			@empty it first 
 ldr r1,=MemorySlot3
 str r2,[r1]		@overwrite s3 with 0
 
-ldrb r2, [r4, #0x3]     @item id
+ldrb r2, [r4, #0x4]     @item id
 cmp r2, #0
-beq DeleteTrap
+beq EventTime
 
 
 ldr r1,=MemorySlot3
@@ -354,7 +354,7 @@ mov	r1, #0x01		@0x01 = wait for events
 ldr r3, ExecuteEvent
 bl goto_r3
 
-b DeleteTrap
+@b DeleteTrap
 
 EventTime:
 mov r1, #0

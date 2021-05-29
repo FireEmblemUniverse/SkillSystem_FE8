@@ -1,29 +1,20 @@
 .thumb
-.align
+.align 
 
-.global ObtainItemInitialization
-.type ObtainItemInitialization, %function
+.global ObtainCoinsInitialization
+.type ObtainCoinsInitialization, %function
 
-.global ObtainItemUsability0x10
-.type ObtainItemUsability0x10, %function
-.global ObtainItemUsability0x11
-.type ObtainItemUsability0x11, %function
-.global ObtainItemUsability0x12
-.type ObtainItemUsability0x12, %function
-.global ObtainItemUsability0x13
-.type ObtainItemUsability0x13, %function
-.global ObtainItemUsability0x14
-.type ObtainItemUsability0x14, %function
+.global ObtainCoinsUsability0x15
+.type ObtainCoinsUsability0x15, %function
 
 
 
 
+.global ObtainCoinsEffect
+.type ObtainCoinsEffect, %function
 
-.global ObtainItemEffect
-.type ObtainItemEffect, %function
-
-.global ObtainItemSpriteFunc
-.type ObtainItemSpriteFunc, %function
+.global ObtainCoinsSpriteFunc
+.type ObtainCoinsSpriteFunc, %function
 
 
 .macro blh to, reg=r3
@@ -46,11 +37,11 @@
 
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
-@.equ GiveItemEvent, ObtainItemID+4
+@.equ GiveCoinsEvent, ObtainCoinsID+4
 
-ObtainItemInitialization:
-mov r0, #0x4
-ldrh r0, [r5, r0]     @Completion flag
+ObtainCoinsInitialization:
+mov r0, #0x3
+ldrb r0, [r5, r0]     @Completion flag
 blh CheckNewFlag
 cmp r0, #1 
 beq ReturnPoint @if completion flag is true, then we do not spawn this trap :-) 
@@ -249,32 +240,16 @@ bx r1
 .ltorg
 .align
 
-ObtainItemUsability0x10:
+
+ObtainCoinsUsability0x15:
 push {r4,r7,r14}
-mov r7, #0x10
-b ObtainItemUsability
-ObtainItemUsability0x11:
-push {r4,r7,r14}
-mov r7, #0x11
-b ObtainItemUsability
-ObtainItemUsability0x12:
-push {r4,r7,r14}
-mov r7, #0x12
-b ObtainItemUsability
-ObtainItemUsability0x13:
-push {r4,r7,r14}
-mov r7, #0x13
-b ObtainItemUsability
-ObtainItemUsability0x14:
-push {r4,r7,r14}
-mov r7, #0x14
-b ObtainItemUsability
+mov r7, #0x15
+b ObtainCoinsUsability
 
 
 
 
-
-ObtainItemUsability:
+ObtainCoinsUsability:
 ldr r4,=#0x3004E50
 ldr r0,[r4]
 bl GetAdjacentTrapIndividual
@@ -283,8 +258,8 @@ mov r4, r0  @&The DV
 cmp r0,#0
 beq Usability_RetFalse
 
-mov r0, #0x4 
-ldrh r0, [r4, r0]     @Completion flag
+mov r0, #0x3 
+ldrb r0, [r4, r0]     @Completion flag
 blh CheckNewFlag
 cmp r0, #0
 bne Usability_RetFalse
@@ -317,7 +292,7 @@ bx r1
 
 
 
-ObtainItemEffect:
+ObtainCoinsEffect:
 push {r4, lr}
 @Basically the execute event routine.
 
@@ -330,8 +305,8 @@ bl GetAdjacentTrap
 mov r4, r0  @&The DV
 
 @turn on completion flag 
-mov r0, #0x04			
-ldrh r0, [r4, r0]     @Completion flag
+mov r0, #0x03			
+ldrb r0, [r4, r0]     @Completion flag
 cmp r0, #0
 beq ItemToGive
 blh SetNewFlag
@@ -341,15 +316,17 @@ mov r2, #0			@empty it first
 ldr r1,=MemorySlot3
 str r2,[r1]		@overwrite s3 with 0
 
-ldrb r2, [r4, #0x3]     @item id
+mov r1, #0x4 
+ldrh r2, [r4, r1]     @gold amount 
+ldr r1,=MemorySlot3
 cmp r2, #0
-beq DeleteTrap
+beq DeleteTrap 
 
 
 ldr r1,=MemorySlot3
-strb r2,[r1]		@overwrite s3 
+strh r2,[r1]		@overwrite s3 
 
-ldr	r0, =GiveItemEvent	@this event gives item found in byte 0x4 of the trap
+ldr	r0, =GiveCoinsEvent	@this event gives item found in byte 0x4 of the trap
 mov	r1, #0x01		@0x01 = wait for events
 ldr r3, ExecuteEvent
 bl goto_r3
@@ -401,7 +378,7 @@ bx r3
 
 
 .ltorg
-.align
+.align 
 
 ExecuteEvent:
 	.long 0x800D07D @AF5D

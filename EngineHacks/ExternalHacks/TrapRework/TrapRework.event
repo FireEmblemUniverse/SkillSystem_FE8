@@ -22,7 +22,7 @@
 	#define RedPokeballItemID 16	//respawnable item 
 	#define GoldPokeballItemID 17	//non-respawnable item
 	#define HiddenPokeballItemID 18	//invisible item 
-	
+	#define CoinsID 21 // 
 	#define OpenPokeballItemID 48	//blocks but cannot interact 
 	
 	#define ObstacleID 48 
@@ -54,7 +54,7 @@
 
 	#define Placeholder19ID 19	//respawnable item 
 	#define Placeholder20ID 20	//respawnable item 
-	#define Placeholder21ID 21	//respawnable item 
+	//#define Placeholder21ID 21	//respawnable item 
 	#define Placeholder22ID 22	//respawnable item 
 	#define Placeholder23ID 23	//respawnable item 
 	#define Placeholder24ID 24	//respawnable item 
@@ -135,6 +135,7 @@
 	
 	SetTrapMapSprite(RedPokeballItemID,RedPokeballSMS)
 	SetTrapMapSprite(GoldPokeballItemID,GoldPokeballSMS)
+	SetTrapMapSprite(HiddenPokeballItemID,GoldPokeballSMS)
 	SetTrapMapSprite(OpenPokeballItemID,OpenBallSMS)
 
 	SetTrapMapSprite(CutBushID,CutBushSMS)
@@ -151,7 +152,7 @@
 
 	SetTrapMapSprite(Placeholder19ID,0x6C) //burrow
 	SetTrapMapSprite(Placeholder20ID,0x6D) //grass
-	SetTrapMapSprite(Placeholder21ID,0x6E) //placeholder
+	SetTrapMapSprite(CoinsID,CoinsSMS) //coins
 	SetTrapMapSprite(Placeholder22ID,0x6F) //placeholder
 	SetTrapMapSprite(Placeholder23ID,0x77)
 	SetTrapMapSprite(Placeholder24ID,0x78)
@@ -216,10 +217,14 @@
 	SetTrapMapSpritePalette(BlueWaitID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(GenericID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(NPCTalkID,NPCTrapPaletteWord)
+	
+	SetTrapMapSpritePalette(HiddenPokeballItemID,NPCTrapPaletteWord)
 
 	SetTrapMapSpritePalette(Placeholder19ID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(Placeholder20ID,NPCTrapPaletteWord)
-	SetTrapMapSpritePalette(Placeholder21ID,NPCTrapPaletteWord)
+	
+	SetTrapMapSpritePalette(CoinsID,NPCTrapPaletteWord)
+	
 	SetTrapMapSpritePalette(Placeholder22ID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(Placeholder23ID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(Placeholder24ID,NPCTrapPaletteWord)
@@ -297,7 +302,7 @@
 
 	SetImpassableTrap(Placeholder19ID)
 	SetImpassableTrap(Placeholder20ID)
-	SetImpassableTrap(Placeholder21ID)
+	//SetImpassableTrap(Placeholder21ID)
 	SetImpassableTrap(Placeholder22ID)
 	SetImpassableTrap(Placeholder23ID)
 	SetImpassableTrap(Placeholder24ID)

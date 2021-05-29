@@ -51,29 +51,50 @@ ToViridian:
 ChapterTransition(ViridianCityCh, 19, 38)
 
 RefreshUnitsEvent:
+Read_Byte(RamFlags)
+SADD r5 rC r0 
+MemSlotToString(r5)
+//Text(0x9DD) 
+
+//Write_Byte(23, RamFlags) //202E204 //202E4D4 (FE8)
+//Read_Byte(RamFlags)
+SADD r5 rC r0 
+MemSlotToString(r5)
+//Text(0x9DD) 
+
 CALL RefreshIfNotInDanger
 NoFade
 ENDA 
-
-
-
-
-
-
-
 
 
 GenericEffect(2, ToViridian) 
 GenericDisappearEffect(2, TalkEvent) 
 
 Traps1:
+CoinsTrap(12,1,3,43)
+
 CutBush(4,2)
 RockSmash(3,2)
 StrengthBoulder(4,3)
-OpenPokeball(8,3)
-RedPokeballT(2,4, 0x01)
-GoldPokeballT(4,4, 0x66, Gust) 
-Sign(6,4, 2)
+
+
+RedPokeballTrap(2,4, 0x01, 0x01)
+GoldPokeballTrap(6,1, 500, Gust) 
+GoldPokeballTrap(8,1, 1, Gust) 
+GoldPokeballTrap(10,1, 2, Gust) 
+GoldPokeballTrap(6,3, 3, Gust) 
+GoldPokeballTrap(8,3, 4, Gust) 
+GoldPokeballTrap(10,3, 5, Gust) 
+
+GoldPokeballTrap(6,5, 6, Gust) 
+GoldPokeballTrap(8,5, 7, Gust) 
+GoldPokeballTrap(10,5, 8, Gust) 
+GoldPokeballTrap(12,5, 9, Gust) 
+
+
+
+//OpenPokeball(8,3)
+Sign(1,4, 2)
 
 
 Flower(19,2)
@@ -136,6 +157,8 @@ LABEL 0
 	
 
 BeginningScene:
+//LOAD1 0x1 NPCUnits 
+//ENUN 
 LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
@@ -207,4 +230,25 @@ EnemyUnitsD:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+UNIT
+
+NPCUnits:
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+																									
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+																									
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+
 UNIT

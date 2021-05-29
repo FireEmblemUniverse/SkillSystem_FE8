@@ -142,7 +142,7 @@ gGameSaveChunks:
 	DeclSaveChunk($0680, $0AA8, ESU_SaveGameUnits, ESU_LoadGameUnits, EMS_CHUNK_SAVEUNITS)
 
 	// $1128
-	//DeclSaveChunk($1128, $0118, ESU_SavePokeRam, ESU_LoadPokeRam, EMS_CHUNK_POKE)
+	DeclSaveChunk($1128, $0118, StorePokeRamToSaveFile, LoadPokeRamFromSaveFile, EMS_CHUNK_POKE)
 //$1240 - $1344 free
 	// free up to $1344
 
@@ -191,8 +191,12 @@ gSuspendSaveChunks:
 
 	// Save 20 green units (20 * 0x38 = $0460) //15
 	DeclSaveChunk($2048, $0348, ESU_SaveGreenSuspendUnits,  ESU_LoadGreenSuspendUnits)
+	
+	
 	// $118 or #270 bytes of ram 
-// DeclSaveChunk($2390, $0118, ESU_SavePokeRam, ESU_LoadPokeRam) 
+    DeclSaveChunk($2390, $0118, SavePokeSuspend, LoadPokeSuspend) 
+	
+	
 	// Save Debuffs (TODO: maybe reduce size)
 	DeclSaveChunk($24A8, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
 
@@ -209,7 +213,8 @@ gSuspendSaveChunks:
 // ===================================
 // = MODULAR EXPANDED SAVE INTERNALS =
 // ===================================
-
+#include "SrcModules/PokeSram.lyn.event"
+#include "NewFlag.lyn.event" 
 #include "ExModularSaveInternals.event"
 
 #endif // EXPANDED_MODULAR_SAVE

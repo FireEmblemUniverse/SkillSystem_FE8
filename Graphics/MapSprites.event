@@ -1530,7 +1530,9 @@ ALIGN 4
 CrobatStanding:
 #incbin "More SMS/Crobat.dmp"
 
-
+ALIGN 4
+CoinsStanding:
+#incbin "More SMS/Coins.dmp"
 
 
 
