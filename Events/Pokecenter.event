@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+
+BeginningScene:
+
+
+
+LOAD1 0x0 Units1 
+ENUN 
+GotoPrepScreen
+
+LABEL 0x63
+NoFade
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4

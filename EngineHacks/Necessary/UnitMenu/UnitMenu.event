@@ -120,12 +120,15 @@ UnitMenuTable:
 //Obtain Item
 
   MenuCommand(0x11EB, 0x11EC, GreenText, ObtainItemUsability0x10, ObtainItemEffect) //Take
-  MenuCommand(0x11ED, 0x11EE, GreenText, ObtainItemUsability0x11, ObtainItemEffect) //Pickup
+  MenuCommand(0x11EB, 0x11EC, GreenText, ObtainItemUsability0x11, ObtainItemEffect) //Take (Gold pokeball) 
   MenuCommand(0x11EF, 0x11F0, GreenText, ObtainItemUsability0x12, ObtainItemEffect) //Examine
 //dummy ones 
   MenuCommand(0x11EB, 0x11EC, GreenText, ObtainItemUsability0x13, ObtainItemEffect) //Take
   MenuCommand(0x11ED, 0x11EE, GreenText, ObtainItemUsability0x14, ObtainItemEffect) //Pickup
-  MenuCommand(0x11EF, 0x11F0, GreenText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Examine
+  MenuCommand(0x11EB, 0x11EC, GreenText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
+  
+  //Pickup 11ED 11EE 
+  //Examine 11EF 11F0 
   
   
   

@@ -51,6 +51,7 @@ ToViridian:
 ChapterTransition(ViridianCityCh, 19, 38)
 
 RefreshUnitsEvent:
+
 Read_Byte(RamFlags)
 SADD r5 rC r0 
 MemSlotToString(r5)
@@ -71,7 +72,7 @@ GenericEffect(2, ToViridian)
 GenericDisappearEffect(2, TalkEvent) 
 
 Traps1:
-CoinsTrap(12,1,3,43)
+CoinsTrap(8,2,3,65535)
 
 CutBush(4,2)
 RockSmash(3,2)
@@ -80,10 +81,10 @@ StrengthBoulder(4,3)
 
 RedPokeballTrap(2,4, 0x01, 0x01)
 GoldPokeballTrap(6,1, 500, Gust) 
-GoldPokeballTrap(8,1, 1, Gust) 
+//GoldPokeballTrap(8,1, 1, Gust) 
 GoldPokeballTrap(10,1, 2, Gust) 
 GoldPokeballTrap(6,3, 3, Gust) 
-GoldPokeballTrap(8,3, 4, Gust) 
+//GoldPokeballTrap(8,3, 4, Gust) 
 GoldPokeballTrap(10,3, 5, Gust) 
 
 GoldPokeballTrap(6,5, 6, Gust) 
@@ -173,6 +174,8 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,25))  //lower 
 OffAllUnitState(0x01FF, WillDropItem, 0, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
 CALL LoadAndPlacePlayers 
+
+
 
 LABEL 0x63
 NoFade

@@ -1,3 +1,12 @@
-//Direct ASM Editor  (ToolASMEditForm) 2021-05-25 9:06:55 PM
-ORG $07A620
-BYTE  $00 $20;
+//Patches Set whether transporter can be used for each map(Installer) (PatchForm) Set whether transporter can be used for each map(Installer)2021-05-31 8:42:58 AM
+ORG $023F66
+BYTE  $00 $00 $00 $4B $18 $47 $DD $BE $23 $09;
+ORG $031644
+BYTE  $00 $4B $18 $47 $31 $BF $23 $09;
+//Move to extended area  (MoveToFreeSapceForm) =Move to extended area FE8Hack.gba 2021-05-31 8:43:26 AM
+ORG $0123BF4C
+BYTE  $02 $02 $02 $02 $02 $00 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02 $02;
+ORG $0123BF2C
+BYTE  $4C $BF $23 $09;
+ORG $0123BF48
+BYTE  $4C $BF $23 $09;

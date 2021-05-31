@@ -22,3 +22,4 @@ if exist "Definitions.s" (
 )
 
 echo y | del "%~n1.elf"
+@pause

@@ -222,24 +222,52 @@ LOAD1 0x1 EnemyUnits
 ENUN
 LOAD1 0x1 EnemyUnits2
 ENUN
-LOAD1 0x0 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
 ENUN
-LOAD1 0x0 Units2
+LOAD1 0x1 Units2
 ENUN
+GotoPrepScreen
 Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
-//\r\n0\r\n\r\nNEHU\r\nNULL\r\n\r\n\r\n
-//EnableFreeMovement
-//Write_Byte(4, RamFlags) //test
-CHECK_EVENTID 0x83
-BEQ 0x63 0xC 0x0
-LOAD1 0x0 MoreUnits
-ENUN
-//GotoPrepScreen
+
+
+SupplyItem(Tackle)
+SupplyItem(LowKick)  
+SupplyItem(Ember) 
+SupplyItem(WaterGun)
+SupplyItem(Thundershock) 
+SupplyItem(Absorb) 
+SupplyItem(Lick)
+SupplyItem(Psychic) 
+
+SilentGiveItem(Eirika, LowKick)
+
+
+// 1755C ->  8098086 & 88: LSLS & LSRS by 18h 
+
+// 1755C -> 980D0: LSLS & LSRS by 18h 
+
+//1663A ? [0902374F]?
+
+//ror r0,r0, #0x04
+//lsr r0, r0, #0x1C 
+
+//lsl r0,r0,#0x1C //0700 0f00
+//lsr r0,r0,0x1C
+
+/*
+SupplyItem(Vulnerary) 
+SupplyItem(Vulnerary) 
+SupplyItem(Vulnerary) 
+SupplyItem(Vulnerary) 
+*/ //[0902374F]?
+
+
+
 
 LABEL 0x63
-MNC2 Route1Ch 
+//MNC2 Route1Ch 
 NoFade
 ENDA
 

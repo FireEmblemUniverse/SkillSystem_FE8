@@ -6,7 +6,8 @@
 
 
 
-//#define SilentGiveItem1(Unit, Item) "SVAL 1 Unit; SVAL 2 Item; ASMC SilentGiveItem"
+#define SilentGiveItem(Unit, Item) "SVAL 1 Unit; SVAL 3 Item; ASMC SilentGiveItem"
+#define SupplyItem(Item) "SVAL 3 Item; ASMC SupplyItem"
 
 //#define SilentGiveItem1(UnitIDx, ItemIDx) "BYTE 0x40 0x0D; UnitIDx; ItemIDx; SilentGiveItem"
 

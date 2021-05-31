@@ -1,0 +1,70 @@
+PUSH
+
+//Chop off the first digit when viewing items in supply 
+//Eg. 0x21 becomes 0x01 and will show up with lances. 
+//AUTHOR=Vesly
+
+ORG 0x98086
+BYTE 0x00 0x07 0x00 0x0F
+
+ORG 0x980D0
+BYTE 0x00 0x07 0x00 0x0F
+
+POP 
+
+// Examine items past 0x0D fix 
+// Author = Sme
+PUSH
+ORG $16E28
+SHORT 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0
+SHORT 0x0080
+SHORT 0x1840
+ORG $16E4C
+POIN WeaponTypeTextIDArray
+POP
+
+ALIGN 4
+WeaponTypeTextIDArray:
+WORD NormalTypeText    
+WORD ElectricTypeText    
+WORD WaterTypeText    
+WORD FireTypeText    
+WORD StaffTypeText
+WORD GrassTypeText
+WORD GroundTypeText
+WORD PsychicTypeText 
+WORD 0x505 // nothing should use this 0x08 
+WORD ItemTypeText
+WORD 0x505 // nothing should use this 0x0A
+WORD 0x505 // nothing should use this 0x0B
+WORD 0x505 // nothing should use this 0x0C
+WORD 0x505 // nothing should use this 0x0D
+WORD 0x505 // nothing should use this 0x0E
+WORD 0x505 // nothing should use this 0x0F
+WORD FightingTypeText 
+WORD SteelTypeText 
+WORD IceTypeText 
+WORD FlyingTypeText 
+WORD FairyTypeText 
+WORD PoisonTypeText 
+WORD RockTypeText 
+WORD GhostTypeText 
+WORD 0x505 // nothing should use this 0x18 
+WORD 0x505 // nothing should use this 0x19
+WORD 0x505 // nothing should use this 0x1A 
+WORD 0x505 // nothing should use this 0x1B
+WORD 0x505 // nothing should use this 0x1C 
+WORD 0x505 // nothing should use this 0x1D 
+WORD 0x505 // nothing should use this 0x1E 
+WORD 0x505 // nothing should use this 0x1F
+WORD 0x505 // nothing should use this 0x20
+WORD 0x505 // nothing should use this 0x21
+WORD 0x505 // nothing should use this 0x22
+WORD DragonTypeText
+WORD 0x505 // nothing should use this 0x24
+WORD BugTypeText 
+WORD 0x505 // nothing should use this 0x26
+WORD DarkTypeText //0x27 
+WORD 0x505 // nothing should use this 0x28
+WORD 0x505 // nothing should use this 0x29
+WORD 0x0    //Terminator just in case ?
