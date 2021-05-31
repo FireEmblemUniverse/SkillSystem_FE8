@@ -13,6 +13,12 @@ ldr r1, [r5,#4] @class data ptr
 cmp r1, #0 @if 0, this is stat screen
 beq End
 
+@not broken movement map
+ldr r0,=0x203a968
+ldrb r0,[r0]
+cmp r0,#0xFF
+beq End
+
 @has Charge
 ldr r0, SkillTester
 mov lr, r0
