@@ -1,0 +1,7 @@
+Use Usenti
+
+Instructions:
+Open your tile in usenti, make sure the palette is ordered from brightest to darkest like in the game, and that you are using the first color for the background
+Select "Image", then "Export"
+When it asks you for a name be sure to add .bin, otherwise you'll get a text file (the .img will add itself so just add the .bin)
+For the exporting options you want only the GFX box selected, the mode set to bitmap (GBA) and the depth to 2bpp 

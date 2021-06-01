@@ -1,0 +1,188 @@
+//ASCII / straight-lookup only (FE8U)
+//Don't use 0x00-0x1F slots, used for dialogue functions
+//[0x80] is also unusable (forced - character), might be more
+
+Sglyph_0:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x4 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif0.img.bin"
+
+Sglyph_1:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif1.img.bin"
+
+Sglyph_2:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif2.img.bin"
+
+Sglyph_3:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif3.img.bin"
+
+Sglyph_4:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif4.img.bin"
+
+Sglyph_5:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif5.img.bin"
+
+Sglyph_6:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif6.img.bin"
+
+Sglyph_7:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif7.img.bin"
+
+Sglyph_8:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif8.img.bin"
+
+Sglyph_9:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serif9.img.bin"
+
+Sglyph_Colon:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x2 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifcolon.img.bin"
+
+Sglyph_Dot:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x2 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifdot.img.bin"
+
+Sglyph_Comma:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x2 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifcomma.img.bin"
+
+Sglyph_Minus:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x4 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifminus.img.bin"
+
+Sglyph_Plus:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x4 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifplus.img.bin"
+
+Sglyph_Slash:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x4 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifslash.img.bin"
+
+Sglyph_LParen:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x4 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "seriflparen.img.bin"
+
+Sglyph_RParen:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x4 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifrparen.img.bin"
+
+Sglyph_SingleQuote:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x3 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifsquote.img.bin"
+
+Sglyph_DoubleQuote:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "serifdquote.img.bin"
+
+
+tGlyphEntry(0xC1, Sglyph_1)
+tGlyphEntry(0xC2, Sglyph_2)
+tGlyphEntry(0xC3, Sglyph_3)
+tGlyphEntry(0xC4, Sglyph_4)
+tGlyphEntry(0xC5, Sglyph_5)
+tGlyphEntry(0xC6, Sglyph_6)
+tGlyphEntry(0xC7, Sglyph_7)
+tGlyphEntry(0xC8, Sglyph_8)
+tGlyphEntry(0xC9, Sglyph_9)
+tGlyphEntry(0xCA, Sglyph_Dot)
+tGlyphEntry(0xCB, Sglyph_Comma)
+tGlyphEntry(0xCC, Sglyph_Colon)
+tGlyphEntry(0xCD, Sglyph_Plus)
+tGlyphEntry(0xCE, Sglyph_Minus)
+tGlyphEntry(0xCF, Sglyph_Slash)
+tGlyphEntry(0xD0, Sglyph_LParen)
+tGlyphEntry(0xD1, Sglyph_RParen)
+
+tGlyphEntry(0xD4, Sglyph_SingleQuote)
+tGlyphEntry(0xD5, Sglyph_DoubleQuote)
+
+
+

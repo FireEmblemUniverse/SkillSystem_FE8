@@ -1,0 +1,633 @@
+
+
+
+# 0x11D0
+sfx[X]
+# 0x11D1
+open ball[X]
+# 0x11D2
+pokeball[X]
+# 0x11D3
+blank[X]
+
+# 0x11E0
+sfx unit[X]
+
+
+# 0x1000 BulbasaurNameText
+Bulbasaur[X]
+# 0x1001
+Typing: [Grass] [Poison][NL]
+Weak to: [Fire] [Ice] [Flying] [Psychic] [NL]
+Resists: [Grass] [Water] [Electric] [Fighting] [Poison] [Ground] [Bug] [X]
+# 0x1002
+Ivysaur[X]
+# 0x1003
+Typing: [Grass] [Poison][NL]
+Weak to: [Fire] [Ice] [Flying] [Psychic] [NL]
+Resists: [Grass] [Water] [Electric] [Fighting] [Poison] [Ground] [Bug] [X]
+# 0x1004
+Venusaur[X]
+# 0x1005
+Grass/Poison. [NL]
+Weak: FIRE, ICE, FLY, PSY[NL]
+Res: GRA, WTR, ELC, FIT, POI, GRD, BUG[X]
+# 0x1006
+Charmander[X]
+# 0x1007
+Typing: [Fire] [NL]
+Weak to: [Water] [Ground] [Rock] [NL]
+Resists: [Bug] [Fire] [Grass] [Ice] [X]
+# 0x1008
+Charmeleon[X]
+
+# 0x100A
+Charizard[X]
+# 0x100B
+Typing: [Fire] [Flying] [NL]
+Weak to: [Rock] [Water] [Electric] [NL]
+Resists: [Bug] [Fire] [Grass] [Ice] [Fighting] [Ground] [X]
+# 0x100C
+Squirtle[X]
+# 0x100D
+Typing: [Water] [NL]
+Weak to: [Electric] [Grass] [NL]
+Resists: [Fire] [Ice] [Water] [X]
+# 0x100E
+Wartortle[X]
+# 0x100F
+Typing: 
+Weak to: 
+Resists: [X]
+# 0x1010
+Blastoise[X]
+
+# 0x1012
+Caterpie[X]
+# 0x1013
+Typing: [Bug] [NL]
+Weak to: [Fire] [Flying] [Rock] [NL]
+Resists: [Fighting] [Grass] [Ground] [X]
+# 0x1014
+Metapod[X]
+
+# 0x1016
+Butterfree[X]
+# 0x1017
+Typing: [Bug] [Flying] [NL]
+Weak to: [Fire] [Flying] [Rock] [Electric] [Ice] [NL]
+Resists: [Fighting] [Grass] [Bug] [Ground] [X]
+# 0x1018
+Weedle[X]
+# 0x1019
+Typing: [Bug] [Poison] [NL]
+Weak to: [Fire] [Flying] [Rock] [Psychic] [NL]
+Resists: [Fighting] [Grass] [Ground] [Bug] [Poison] [X]
+# 0x101A
+Kakuna[X]
+
+# 0x101C
+Beedrill[X]
+
+# 0x101E
+Pidgey[X]
+# 0x101F
+Typing: [Normal] [Flying] [NL]
+Weak to: [Electric] [Ice] [Rock] [NL]
+Resists: [Bug] [Fighting] [Grass] [Ground] [Ghost] [X]
+# 0x1020
+Pigeotto[X]
+
+# 0x1022
+Pidgeot[X]
+
+# 0x1024
+Rattata[X]
+# 0x1025
+Typing: [Normal] [NL]
+Weak to: [Fighting]  [NL]
+Resists: [Ghost] [X]
+# 0x1026
+Raticate[X]
+
+# 0x1028
+Spearow[X]
+
+# 0x102A
+Fearow[X]
+
+# 0x102C
+Ekans[X]
+# 0x102D
+Typing: [Poison] [NL]
+Weak to: [Ground] [Psychic] [NL]
+Resists: [Bug] [Fighting] [Grass] [Poison] [X]
+# 0x102E
+Arbok[X]
+
+# 0x1030
+Pikachu[X]
+# 0x1031
+Typing: [Electric] [NL]
+Weak to: [Ground] [NL]
+Resists: [Electric] [Flying] [X]
+# 0x1032
+Raichu[X]
+
+# 0x1034
+Sandshrew[X]
+# 0x1035
+Typing: [Ground] [NL]
+Weak to: [Grass] [Ice] [Water] [NL]
+Resists: [Poison] [Rock] [Electric] [X]
+# 0x1036
+Sandslash[X]
+
+# 0x1038
+Nidoran-F[X]
+
+# 0x103A
+Nidorina[X]
+
+# 0x103C
+Nidoqueen[X]
+# 0x103D
+Typing: [Poison] [Ground] [NL]
+Weak to: [Ground] [Psychic] [Ice] [Water] [NL]
+Resists: [Bug] [Fighting] [Grass] [Poison] [Rock] [Electric] [X]
+# 0x103E
+Nidoran-M[X]
+
+# 0x1040
+Nidorino[X]
+
+# 0x1042
+Nidoking[X]
+
+# 0x1044
+Clefairy[X]
+
+# 0x1046
+Clefable[X]
+
+# 0x1048
+Vulpix[X]
+
+# 0x104A
+Ninetales[X]
+
+# 0x104C
+Jigglypuff[X]
+
+# 0x104E
+Wigglytuff[X]
+
+# 0x1050
+Zubat[X]
+# 0x1051
+Typing: [Poison] [Flying] [NL]
+Weak to: [Psychic] [Electric] [Ice] [Rock] [NL]
+Resists: [Bug] [Fighting] [Grass] [Poison] [Ground] [X]
+# 0x1052
+Golbat[X]
+
+# 0x1054
+Oddish[X]
+
+# 0x1056
+Gloom[X]
+
+# 0x1058
+Vileplume[X]
+
+# 0x105A
+Paras[X]
+# 0x105B
+Typing: [Bug] [Grass] [NL]
+Weak to: [Fire] [Flying] [Rock] [Bug] [Ice] [Poison] [NL]
+Resists: [Fighting] [Grass] [Ground] [Electric] [Water] [X]
+# 0x105C
+Parasect[X]
+
+# 0x105E
+Venonat[X]
+# 0x105F
+Typing: [Bug] [Poison] [NL]
+Weak to: [Fire] [Flying] [Rock] [Psychic] [NL]
+Resists: [Fighting] [Grass] [Ground] [Bug] [Poison] [X]
+# 0x1060
+Venomoth[X]
+
+# 0x1062
+Diglett[X]
+
+# 0x1064
+Dugtrio[X]
+
+# 0x1066
+Meowth[X]
+
+# 0x1068
+Persian[X]
+
+# 0x106A
+Psyduck[X]
+
+# 0x106C
+Golduck[X]
+
+# 0x106E
+Mankey[X]
+# 0x106F
+Typing: [Fighting] [NL]
+Weak to: [Flying] [Psychic] [NL]
+Resists: [Bug] [Rock] [X]
+# 0x1070
+Primeape[X]
+
+# 0x1072
+Growlithe[X]
+
+# 0x1074
+Arcanine[X]
+
+# 0x1076
+Poliwag[X]
+
+# 0x1078
+Poliwhirl[X]
+
+# 0x107A
+Poliwrath[X]
+# 0x107B
+Typing: [Water] [Fighting] [NL]
+Weak to: [Electric] [Grass] [Flying] [Psychic] [NL]
+Resists: [Fire] [Ice] [Water] [Bug] [Rock] [X]
+# 0x107C
+Abra[X]
+# 0x107D
+Typing: [Psychic] [NL]
+Weak to: [Bug] [Ghost] [NL]
+Resists: [Fighting] [Psychic] [X]
+# 0x107E
+Kadabra[X]
+
+# 0x1080
+Alakazam[X]
+
+# 0x1082
+Machop[X]
+
+# 0x1084
+Machoke[X]
+
+# 0x1086
+Machamp[X]
+
+# 0x1088
+Bellsprout[X]
+
+# 0x108A
+Weepinbell[X]
+
+# 0x108C
+Victreebel[X]
+
+# 0x108E
+Tentacool[X]
+# 0x108F
+Typing: [Water] [Poison] [NL]
+Weak to: [Electric] [Ground] [Psychic] [NL]
+Resists: [Fire] [Ice] [Water] [Bug] [Fighting] [Grass] [Poison] [X]
+# 0x1090
+Tentacruel[X]
+
+# 0x1092
+Geodude[X]
+# 0x1093
+Typing: [Rock] [Ground] [NL]
+Weak to: [Fighting] [Grass] [Ground] [Water] [Ice] [NL]
+Resists: [Fire] [Flying] [Normal] [Poison] [Rock] [Electric] [X]
+# 0x1094
+Graveller[X]
+
+# 0x1096
+Golem[X]
+
+# 0x1098
+Ponyta[X]
+
+# 0x109A
+Rapidash[X]
+
+# 0x109C
+Slowpoke[X]
+
+# 0x109E
+Slowbro[X]
+# 0x109F
+Typing: [Water] [Psychic] [NL]
+Weak to: [Electric] [Grass] [Bug] [Ghost] [NL]
+Resists: [Fire] [Ice] [Water] [Fighting] [Psychic] [X]
+# 0x10A0
+Magnemite[X]
+# 0x10A1
+Typing: [Electric] / [Steel][NL]
+Weak to: [Ground] [Fighting] [Fire] Resists: [Rock] [Psychic][NL]
+[Electric] [Flying] [Normal] [Bug] [Dragon] [Grass] [Ice] [Flying] [Poison][X]
+# 0x10A2
+Magneton[X]
+
+# 0x10A4
+Farfetch'd[X]
+
+# 0x10A6
+Doduo[X]
+
+# 0x10A8
+Dodrio[X]
+
+# 0x10AA
+Seel[X]
+# 0x10AB
+Typing: [Water] [Ice] [NL]
+Weak to: [Electric] [Grass] [Fighting] [Rock] [NL]
+Resists: [Fire] [Ice] [Water] [X]
+# 0x10AC
+Dewgong[X]
+
+# 0x10AE
+Grimer[X]
+
+# 0x10B0
+Muk[X]
+
+# 0x10B2
+Shellder[X]
+
+# 0x10B4
+Cloyster[X]
+
+# 0x10B6
+Gastly[X]
+# 0x10B7
+Typing: [Ghost] [Poison] [NL]
+Weak to: [Ghost] [Ground] [Psychic] [NL]
+Resists: [Bug] [Poison] [Fighting] [Normal] [X]
+# 0x10B8
+Haunter[X]
+
+# 0x10BA
+Gengar[X]
+
+# 0x10BC
+Onix[X]
+
+# 0x10BE
+Drowzee[X]
+
+# 0x10C0
+Hypno[X]
+
+# 0x10C2
+Krabby[X]
+
+# 0x10C4
+Kingler[X]
+
+# 0x10C6
+Voltorb[X]
+
+# 0x10C8
+Electrode[X]
+
+# 0x10CA
+Exeggcute[X]
+# 0x10CB
+Typing: [Grass] [Psychic] [NL]
+Weak to: [Bug] [Fire] [Flying] [Ice] [Poison] [Ghost] [NL]
+Resists: [Electric] [Grass] [Ground] [Water] [Fighting] [Psychic] [X]
+# 0x10CC
+Exeggutor[X]
+
+# 0x10CE
+Cubone[X]
+
+# 0x10D0
+Marowak[X]
+
+# 0x10D2
+Hitmonlee[X]
+
+# 0x10D4
+Hitmonchan[X]
+
+# 0x10D6
+Lickitung[X]
+
+# 0x10D8
+Koffing[X]
+
+# 0x10DA
+Weezing[X]
+
+# 0x10DC
+Rhyhorn[X]
+
+# 0x10DE
+Rhydon[X]
+
+# 0x10E0
+Chansey[X]
+
+# 0x10E2
+Tangela[X]
+# 0x10E3
+Typing: [Grass] [NL]
+Weak to: [Bug] [Fire] [Flying] [Ice] [Poison]  [NL]
+Resists: [Electric] [Grass] [Ground] [Water] [X]
+# 0x10E4
+Kangaskhan[X]
+
+# 0x10E6
+Horsea[X]
+
+# 0x10E8
+Seadra[X]
+
+# 0x10EA
+Goldeen[X]
+
+# 0x10EC
+Seaking[X]
+
+# 0x10EE
+Staryu[X]
+
+
+# 0x12AA
+Magmar[X]
+
+# 0x12AC
+Pinsir[X]
+
+# 0x12AE
+Tauros[X]
+
+# 0x12B0
+Magikarp[X]
+
+# 0x12B2
+Gyarados[X]
+# 0x12B3
+Typing: [Water] [Flying] [NL]
+Weak to: [Electric] [Rock] [NL]
+Resists: [Fire] [Ice] [Water] [Bug] [Fighting] [Grass] [Ground] [X]
+# 0x12B4
+Lapras[X]
+
+# 0x12B6
+Ditto[X]
+
+# 0x12B8
+Eevee[X]
+
+# 0x12BA
+Vaporeon[X]
+
+# 0x12BC
+Jolteon[X]
+
+# 0x12BE
+Flareon[X]
+
+# 0x12C0
+Porygon[X]
+
+# 0x12C2
+Omanyte[X]
+# 0x12C3
+Typing: [Water] [Rock] [NL]
+Weak to: [Electric] [Grass] [Fighting] [Ground] [NL]
+Resists: [Fire] [Ice] [Water] [Flying] [Normal] [Poison] [X]
+# 0x12C4
+Omastar[X]
+
+# 0x12C6
+Kabuto[X]
+
+# 0x12C8
+Kabutops[X]
+
+# 0x12CA
+Aerodactyl[X]
+# 0x12CB
+Typing: [Rock] [Flying][NL]
+Weak to: [Water] [Electric] [Ice] [Rock] [NL]
+Res: [Fire] [Flying] [Normal] [Poison] [Bug] [Fighting] [Grass] [Ground] [X]
+# 0x12CC
+Snorlax[X]
+# 0x12CD
+Typing: 
+Weak to: 
+Resists: [X]
+# 0x12CE
+Articuno[X]
+# 0x12CF
+Typing: [Ice] [Flying] [NL]
+Weak to: [Fire] [Rock] [Electric] [NL]
+Resists: [Bug] [Fighting] [Grass] [Ground] [Ice] [X]
+# 0x12D0
+Zapdos[X]
+# 0x12D1
+Typing: [Electric] [Flying] [NL]
+Weak to: [Ice] [Rock] [NL]
+Resists: [Electric] [Flying] [Bug] [Fighting] [Grass] [Ground] [X]
+# 0x12D2
+Moltres[X]
+# 0x12D3
+Typing: [Fire] [Flying] [NL]
+Weak to: [Rock] [Water] [Electric] [NL]
+Resists: [Bug] [Fire] [Grass] [Ice] [Fighting] [Ground] [X]
+# 0x12D4
+Dratini[X]
+# 0x12D5
+Typing: [Dragon] [NL]
+Weak to: [Ice] [Dragon] [NL]
+Resists: [Electric] [Fire] [Grass] [Water] [X]
+# 0x12D6
+Dragonair[X]
+
+# 0x12D8
+Dragonite[X]
+# 0x12D9
+Typing: [Dragon] [Flying] [NL]
+Weak to: [Ice] [Dragon] [Rock] [NL]
+Resists: [Electric] [Fire] [Grass] [Water] [Bug] [Fighting] [Ground] [X]
+# 0x12DA
+Mewtwo[X]
+
+# 0x12DC
+Mew[X]
+
+
+
+# 0x1300
+Treeko[X]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 0x1312
+Crobat[X]
+
+
+
+
+
+
+
+
+
+
+
+# 0x131E
+Placeholders[X]
+
+# 0x1320
+Starmie[X]
+
+# 0x1322
+Mr. Mime[X]
+
+# 0x1324
+Scyther[X]
+
+# 0x1326
+Jynx[X]
+# 0x1327
+Typing: [Ice] [Psychic] [NL]
+Weak to: [Fire] [Rock] [Bug] [Ghost] [NL]
+Resists: [Fighting] [Psychic] [Ice] [X]
+# 0x1328
+Electabuzz[X]
+
+
+
+
+
+
+

@@ -216,6 +216,17 @@ BeginningScene:
 //SVAL 1 1
 //SVAL 2 8
 //ASMC SetUnitState
+SupplyItem(Tackle)
+SupplyItem(LowKick)  
+SupplyItem(Ember) 
+SupplyItem(WaterGun)
+SupplyItem(Thundershock) 
+SupplyItem(Absorb) 
+SupplyItem(Lick)
+SupplyItem(Psychic) 
+
+SilentGiveItem(Eirika, LowKick)
+
 ENUT 0x1 //no more boss quotes
 ENUT 0x2 //no more death quotes
 LOAD1 0x1 EnemyUnits
@@ -232,16 +243,7 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
-SupplyItem(Tackle)
-SupplyItem(LowKick)  
-SupplyItem(Ember) 
-SupplyItem(WaterGun)
-SupplyItem(Thundershock) 
-SupplyItem(Absorb) 
-SupplyItem(Lick)
-SupplyItem(Psychic) 
 
-SilentGiveItem(Eirika, LowKick)
 
 
 // 1755C ->  8098086 & 88: LSLS & LSRS by 18h 

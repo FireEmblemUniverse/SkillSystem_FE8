@@ -170,6 +170,8 @@ BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "z.img.bin"
 
+
+/*
 Sglyph_anima:
 WORD 0x00000000 //empty pointer (no Shift-JIS)
 BYTE 0x00 //empty code-page # (no Shift-JIS)
@@ -178,6 +180,7 @@ BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "anima.img.bin"
 
+/*
 Sglyph_armor:
 WORD 0x00000000 //empty pointer (no Shift-JIS)
 BYTE 0x00 //empty code-page # (no Shift-JIS)
@@ -185,6 +188,7 @@ BYTE 0xF //character width
 BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "armor.img.bin"
+*/
 
 Sglyph_axe:
 WORD 0x00000000 //empty pointer (no Shift-JIS)
@@ -273,11 +277,46 @@ BYTE 0x2 //character width
 BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "shortspace.img.bin"
+*/
 
-tGlyphEntry(0x7C, Sglyph_armor)
-tGlyphEntry(0x7B, Sglyph_horse)
-tGlyphEntry(0x7D, Sglyph_flier)
-tGlyphEntry(0x7F, Sglyph_dragon)
+
+Sglyph_rock:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/rock.img.bin"
+
+Sglyph_water:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/water.img.bin"
+
+Sglyph_psychic:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/psychic.img.bin"
+
+Sglyph_poison:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/poison.img.bin"
+
+
+tGlyphEntry(0x7C, Sglyph_rock)
+tGlyphEntry(0x7B, Sglyph_water)
+tGlyphEntry(0x7D, Sglyph_psychic)
+tGlyphEntry(0x7F, Sglyph_poison)
 tGlyphEntry(0x81, Sglyph_a)
 tGlyphEntry(0x82, Sglyph_b)
 tGlyphEntry(0x83, Sglyph_c)
@@ -299,17 +338,121 @@ tGlyphEntry(0x97, Sglyph_v)
 tGlyphEntry(0x98, Sglyph_x)
 tGlyphEntry(0x99, Sglyph_y)
 tGlyphEntry(0x9A, Sglyph_z)
-tGlyphEntry(0xB3, Sglyph_sword)
-tGlyphEntry(0xB4, Sglyph_lance)
-tGlyphEntry(0xB5, Sglyph_axe)
-tGlyphEntry(0xB6, Sglyph_bow)
-tGlyphEntry(0xB7, Sglyph_light)
-tGlyphEntry(0xB8, Sglyph_anima)
-tGlyphEntry(0xB9, Sglyph_dark)
-tGlyphEntry(0xBA, Sglyph_staff)
-tGlyphEntry(0xBC, Sglyph_shortspace)
+tGlyphEntry(0xB3, Sglyph_bug)
+tGlyphEntry(0xB4, Sglyph_normal)
+tGlyphEntry(0xB5, Sglyph_ice)
+tGlyphEntry(0xB6, Sglyph_ground)
+tGlyphEntry(0xB7, Sglyph_grass)
+tGlyphEntry(0xB8, Sglyph_ghost)
+tGlyphEntry(0xB9, Sglyph_flying)
+tGlyphEntry(0xBA, Sglyph_fire)
+tGlyphEntry(0xBC, Sglyph_fighting)
+tGlyphEntry(0xC0, Sglyph_steel) //C0, D2, and D3 added 
+tGlyphEntry(0xD2, Sglyph_electric)
+tGlyphEntry(0xD3, Sglyph_dragon)
+
+Sglyph_bug:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/bug.img.bin"
+
+Sglyph_normal:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/normal.img.bin"
 
 
 
+Sglyph_ice:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/ice.img.bin"
+
+
+Sglyph_ground:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/ground.img.bin"
+
+Sglyph_grass:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x17 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/grass.img.bin"
+
+Sglyph_ghost:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/ghost.img.bin"
+
+Sglyph_flying:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/flying.img.bin"
+
+Sglyph_fire:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/fire.img.bin"
+
+Sglyph_fighting:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/fighting.img.bin"
+
+Sglyph_steel:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/steel.img.bin"
+
+
+Sglyph_electric:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/electric.img.bin"
+
+Sglyph_dragon:
+WORD 0x00000000 //empty pointer (no Shift-JIS)
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width (17) 
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokemontypes/dragon.img.bin"
+
+
+
+// nothing = dark, steel, or fairy 
 
 

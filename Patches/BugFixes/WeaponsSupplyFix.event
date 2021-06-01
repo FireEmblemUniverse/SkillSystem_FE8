@@ -25,14 +25,14 @@ POP
 
 ALIGN 4
 WeaponTypeTextIDArray:
-WORD NormalTypeText    
-WORD ElectricTypeText    
-WORD WaterTypeText    
-WORD FireTypeText    
+WORD NormalTypeText   //yes 
+WORD ElectricTypeText    //yes
+WORD WaterTypeText    //yes
+WORD FireTypeText    //yes
 WORD StaffTypeText
-WORD GrassTypeText
-WORD GroundTypeText
-WORD PsychicTypeText 
+WORD GrassTypeText //yes
+WORD GroundTypeText //yes
+WORD PsychicTypeText //yes
 WORD 0x505 // nothing should use this 0x08 
 WORD ItemTypeText
 WORD 0x505 // nothing should use this 0x0A
@@ -41,14 +41,14 @@ WORD 0x505 // nothing should use this 0x0C
 WORD 0x505 // nothing should use this 0x0D
 WORD 0x505 // nothing should use this 0x0E
 WORD 0x505 // nothing should use this 0x0F
-WORD FightingTypeText 
+WORD FightingTypeText //yes
 WORD SteelTypeText 
-WORD IceTypeText 
-WORD FlyingTypeText 
+WORD IceTypeText //yes
+WORD FlyingTypeText //yes
 WORD FairyTypeText 
-WORD PoisonTypeText 
-WORD RockTypeText 
-WORD GhostTypeText 
+WORD PoisonTypeText //yes
+WORD RockTypeText //yes
+WORD GhostTypeText //yes
 WORD 0x505 // nothing should use this 0x18 
 WORD 0x505 // nothing should use this 0x19
 WORD 0x505 // nothing should use this 0x1A 
@@ -60,11 +60,12 @@ WORD 0x505 // nothing should use this 0x1F
 WORD 0x505 // nothing should use this 0x20
 WORD 0x505 // nothing should use this 0x21
 WORD 0x505 // nothing should use this 0x22
-WORD DragonTypeText
+WORD DragonTypeText//yes
 WORD 0x505 // nothing should use this 0x24
-WORD BugTypeText 
+WORD BugTypeText //yes
 WORD 0x505 // nothing should use this 0x26
-WORD DarkTypeText //0x27 
+WORD DarkTypeText 
+//0x27 
 WORD 0x505 // nothing should use this 0x28
 WORD 0x505 // nothing should use this 0x29
 WORD 0x0    //Terminator just in case ?

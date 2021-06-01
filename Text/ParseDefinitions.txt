@@ -46,6 +46,27 @@
 [......v.] = [FarRight]
 [.......v] = [FarFarRight]
 
+
+
+[Rock] = [0x7C]
+[Water] = [0x7B]
+[Psychic] = [0x7D]
+[Poison] = [0x7F]
+[Bug] = [0xB3]
+[Normal] = [0xB4]
+[Ice] = [0xB5]
+[Ground] = [0xB6]
+[Grass] = [0xB7]
+[Ghost] = [0xB8]
+[Flying] = [0xB9]
+[Fire] = [0xBA]
+[Fighting] = [0xBC]
+[Steel] = [0xC0]
+[Electric] = [0xD2]
+[Dragon] = [0xD3]
+
+
+
 [CurrentPortrait] = [0xFF][0xFF]
 
 [LoadInnes] = [LoadFace][0xf][0x1]

@@ -29,11 +29,11 @@
 	#define mGlyphEntry(mGlyphEntry,mGlyphLoc) "PUSH; ORG menuGlyphTable+mGlyphEntry*0x04; POIN mGlyphLoc; POP"
 	#define tGlyphEntry(tGlyphEntry,tGlyphLoc) "PUSH; ORG tGlyphTable+tGlyphEntry*0x04; POIN tGlyphLoc; POP"
 
-	#include "SerifLowercase/LowercaseSerif.txt" // includes text bubble icons and short space
+	#include "SerifLowercase/LowercaseSerif.txt" // Pokemon type icons added here 
 	#include "SerifUppercase/UppercaseSerif.txt"
 	#include "MenuLowercase/LowercaseMenu.txt"
 	#include "MenuUppercase/UppercaseMenu.txt"	
-		
+	#include "NarrowFontExtension/SerifExtension.txt" 
 		
 		
 #else
