@@ -1,14 +1,19 @@
 
-#define PREP_SCREEN_HAX
+
+//#define PREP_SCREEN_HAX
+
+
 
 #ifndef PREP_SCREEN_HAX
 
-#undef PrepScreenSaveGreyUsability
-#undef PrepScreenReturnFalse
+//nvm defining it early broke it 
+// so we don't define and undef it 
+//#undef PrepScreenSaveGreyUsability
+//#undef PrepScreenReturnFalse
 
 	#define PREP_SCREEN_HAX
 	
 	// Be sure to have the Prep Screen Table CSV!
 	#include "PrepScreen.lyn.event"
-	
+	#include "disable_prep/Installer.event"
 #endif

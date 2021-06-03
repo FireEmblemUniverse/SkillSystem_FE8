@@ -17,7 +17,7 @@
   // Amount of time it takes for the next map sprite to be drawn after the previous
   #define TimePerUnit 0xC
   // Flag. If set, intro will be skipped.
-  #define SkipIntroFlag 0x83
+  //#define SkipIntroFlag 0x83
   
 
 	PUSH

@@ -1,4 +1,4 @@
-
+.align 4
 .thumb
 
 .macro blh to, reg

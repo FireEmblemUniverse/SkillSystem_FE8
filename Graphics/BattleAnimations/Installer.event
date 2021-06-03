@@ -1,0 +1,66 @@
+#define classAnim(classID,animPointer) "ORG classTable +classID*(72) + 48; WORD $08000000 + animPointer"
+
+
+#define  NormalAnim    0
+#define  ElectricAnim   1 
+#define  WaterAnim    2
+#define  FireAnim    3
+#define  StaffAnim 4
+#define  GrassAnim 5
+#define  GroundAnim 6
+#define  PsychicAnim 7
+
+
+#define  ItemAnim 9
+
+#define  FightingAnim 0x10 
+#define  SteelAnim 0x11
+#define  IceAnim 0x12
+#define  FlyingAnim 0x13
+#define  FairyAnim 0x14
+#define  PoisonAnim 0x15
+#define  RockAnim 0x16
+#define  GhostAnim 0x17
+
+
+#define  DragonAnim 0x23 
+
+#define  BugAnim 0x24 
+
+#define  DarkAnim 0x27
+
+#define weaponTypeAnim(weaponType, ID) "BYTE weaponType 1; SHORT ID;"
+#define weaponAnim(weaponID, ID) "BYTE weaponID 0; SHORT ID;"
+#define weaponAnimEnd "WORD 0"
+
+ALIGN 4
+
+animAnyClass:
+weaponAnim(0x28,$09) //Hand axe 
+weaponTypeAnim(ItemAnim,$09)
+weaponTypeAnim(NormalAnim,$09)
+weaponTypeAnim(ElectricAnim,$09)
+weaponTypeAnim(WaterAnim,$09)
+weaponTypeAnim(FireAnim,$09)
+weaponTypeAnim(StaffAnim,$09)
+weaponTypeAnim(GrassAnim,$09)
+weaponTypeAnim(GroundAnim,$09)
+weaponTypeAnim(PsychicAnim,$09)
+weaponTypeAnim(FightingAnim,$09)
+weaponTypeAnim(SteelAnim,$09)
+weaponTypeAnim(IceAnim,$09)
+weaponTypeAnim(FlyingAnim,$09)
+weaponTypeAnim(FairyAnim,$09)
+weaponTypeAnim(PoisonAnim,$09)
+weaponTypeAnim(RockAnim,$09)
+weaponTypeAnim(GhostAnim,$09)
+weaponTypeAnim(DragonAnim,$09)
+weaponTypeAnim(BugAnim,$09)
+weaponTypeAnim(DarkAnim,$09)
+weaponAnimEnd
+
+
+#define AnimTableEntry(index) "ORG ClassAnimTable + ((index-1) * 0x20)"
+
+#include "_Master Animation Installer.event"
+#include "handaxs_wildcard/Installer.event"

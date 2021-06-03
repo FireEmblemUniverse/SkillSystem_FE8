@@ -41,7 +41,6 @@ AutoLevelUnits:
 @ r6 as valid terrain types 
 
 ldr r0, =MemorySlot 
-
 mov r6, #0x80 
 ldr r7, [r0, #4*0x01] @r7 / s1 as number of levels 
 @mov r7, #21 
@@ -59,6 +58,36 @@ mov r2,#0xC @ benched/dead
 tst r1,r2
 bne NextUnit
 mov r5, r0 @unit to autolevel 
+
+
+ldr		r2, =MemorySlot @
+ldr 	r1, [r2, #4*0x04]	@valid unit ID 
+
+@str r1, [r2, #4*0x05] @ [0x30004CC]!!? break point test 
+
+cmp 	r1, #0
+beq 	Start 	@00=ANY 
+cmp 	r1, #0xFF
+beq 	Start @0xFF=ANY 
+
+ldrb 	r2, [ r3, #0x04 ] @ r2 now has your character ID.
+lsr 	r0, r1, #0x8 
+cmp 	r0, #0 
+beq 	Check_exact_unit_match 
+
+cmp 	r2, r0 @ current unit ID, unit id lower bound 
+blt 	NextUnit 
+lsl 	r0, r1, #24 
+lsr 	r0, #24 
+cmp 	r2, r0 
+bgt 	NextUnit 
+b 		Start
+
+Check_exact_unit_match: 
+cmp 	r1, r2 
+bne 	NextUnit 
+
+
 b Start
 
 
@@ -88,6 +117,12 @@ mov r1, #99
 StoreCurrentHp:
 strb r1, [r5, #0x13] @current hp 
 
+IncreaseShownLevel:
+ldr r0, =MemorySlot 
+ldr r0, [r0, #4*0x03] 
+cmp r0, #0 
+beq LevelStrength 
+
 ldrb r1, [r5, #0x08] @Level 
 add r1, r1, r7 
 cmp r1, #100
@@ -96,6 +131,9 @@ mov r1, #100
 StoreLevel:
 strb r1, [r5, #0x08] 
 
+
+
+LevelStrength:
 mov r0, r5
 blh Get_Str_Growth
 

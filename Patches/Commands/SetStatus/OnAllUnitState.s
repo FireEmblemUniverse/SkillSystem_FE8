@@ -71,7 +71,8 @@ OnAllUnitState:
 	beq 	check_affiliation
 	
 	@mov 	r2,#0xC @ 
-	tst 	r1,r2
+	and 	r1, r2 
+	cmp 	r1, #0 
 	beq 	NextUnit
 	@ if you got here, unit exists and is not dead or undeployed, so go ham
 

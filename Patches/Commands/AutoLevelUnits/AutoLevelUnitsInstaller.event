@@ -2,7 +2,7 @@
 
 
 
-#define AutoLevelUnits(Levels) "SVAL 1 Levels; ASMC RandomizeCoords" 
+#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; ASMC AutoLevelUnits" 
 
 
 

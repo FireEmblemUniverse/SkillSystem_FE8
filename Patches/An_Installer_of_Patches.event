@@ -1,3 +1,12 @@
+
+
+
+#include "PrepScreen/PrepScreen.event"
+
+
+
+
+
 #include "DangerRadius/FogDR.event" 
 
 #include "StatBarLength.event" 
@@ -45,7 +54,6 @@
 
 #include "TutorialDisabler.event"
 #include "Less Annoying Fog/Less Annoying Fog Installer.event"
-#include "PrepScreen/PrepScreen.event"
 
 #include "SkipOpening.event"
 //#include "DifficultySelection.event"
@@ -60,17 +68,16 @@
 
 
 
-
-
-//	@ldsh r0, [ r4, r1 ] @ Character ID. Load signed in case 0xFFFF and co were passed in.
-//@blh GetUnitByEventParameter, r1 @ r0 = character struct.
-	
-
 // Commands
+#include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
+#include "Commands/MemSlotString/MemSlotStringInstaller.event"
+#include "Commands/SetStatus/SetStatusInstaller.event"
+
+
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
 #include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
 
-#include "Commands/HealAllUnits.lyn.event" 
+
 
 #include "Commands/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
 
@@ -79,6 +86,8 @@
 #include "Commands/GetNthUnit/GetNthUnitInstaller.event"
 #include "Commands/CheckInDanger/CheckInDangerInstaller.event"
 
+// Less used commands 
+#include "Commands/HealAllUnits.lyn.event" 
 #include "Commands/GameOptionInstaller.event"
 
 #include "Commands/CallMenu.lyn.event"
@@ -95,41 +104,22 @@
 #include "Commands/DropUnit/DropUnitInstaller.event"
 #include "Commands/GetHeldKeys/GetHeldKeysInstaller.event"
 #include "Commands/GetUnitDistance/GetUnitDistanceInstaller.event"
-
-
-
-
-
 #include "Commands/GiveExp/GiveExpInstaller.event" //done 
-
-
-#include "Commands/MemSlotString/MemSlotStringInstaller.event"
 #include "Commands/RepoUnit/RepoUnitInstaller.event"
 #include "Commands/RescueUnit/RescueUnitInstaller.event"
-
 #include "Commands/SendAll/SendAllInstaller.event"
-#include "Commands/SetStatus/SetStatusInstaller.event"
-
-
-#include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
-
 #include "Commands/SwapEirikaEphraimMode/SwapEirikaEphraimModeInstaller.event" //done 
-
-
 #include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event"
 
 
-#include "EmotionBubble/Show_map_emotion_install.event"
+
+//#include "EmotionBubble/Show_map_emotion_install.event"
 
 
 
 
 
 //#include "MyHack/_Master Hack Installer.event"
-
-
-
-
 
 
 

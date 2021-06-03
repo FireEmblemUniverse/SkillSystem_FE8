@@ -71,8 +71,10 @@ OffAllUnitState:
 	beq 	check_affiliation
 	
 	@mov 	r2,#0xC @ 
-	tst 	r1,r2
-	beq 	NextUnit
+	and 	r1, r2 
+	cmp 	r1, #0 
+	beq 	NextUnit 
+	
 	@ if you got here, unit exists and is not dead or undeployed, so go ham
 
 
@@ -261,7 +263,9 @@ Term:
 	mov 	r0, r5 		@move value into r0 
 	
 	ldr 	r1, [r3, r4] 
-	bic 	r0, r1 @bic 
+
+	
+	eor 	r0, r1 
 	str 	r0, [r3, r4] 
 	b 		NextUnit
 

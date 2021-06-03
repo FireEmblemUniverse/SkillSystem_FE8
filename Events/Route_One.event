@@ -172,7 +172,19 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid
 LOAD1 0x1 EnemyUnitsD
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,25))  //lower 
-OffAllUnitState(0x01FF, WillDropItem, 0, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
+
+OnAllUnitState(Ephraim, Undeployed|Hide, Any, PlayerArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
+
+SetUnitStatusAll(AnyUnit, Strength, 15, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
+
+//OnAllUnitState(Any, WillDropItem, 0xFF, AnyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
+
+//OnAllUnitState(Any, WillDropItem|Acted, 0xFF, EnemyArmy, AnyClass, AnyRange, Tackle) //Wilds to not drop items 
+//OffAllUnitState(Any, Acted|WillDropItem, Escaped|WillDropItem|Acted, EnemyArmy, AnyClass, AnyRange, TailWhip) //Wilds to not drop items 
+
+AutoLevelUnits(35, 0, 0x0199) 
+
 CALL LoadAndPlacePlayers 
 
 
@@ -220,19 +232,19 @@ UNIT
 
 EnemyUnitsB:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
 UNIT
 
 EnemyUnitsC:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,5] 001b	0x0 0x01 REDA0R5 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
 UNIT 
 
 EnemyUnitsD:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
 UNIT
 
 NPCUnits:

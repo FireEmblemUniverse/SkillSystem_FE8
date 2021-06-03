@@ -10,7 +10,9 @@
 
 
 
-
+#ifndef ClassAnimTable
+    #define ClassAnimTable (0xc00008-0x20)
+#endif
 
 
 
@@ -26,8 +28,9 @@
     #endif
 
 //csv complains about lack of definition if not installing this 
-#define PrepScreenSaveGreyUsability 0
-#define PrepScreenReturnFalse 0
+// nvm this breaks the prep screen 
+//#define PrepScreenSaveGreyUsability 0
+//#define PrepScreenReturnFalse 0
 
 #define StandingMapSpriteTable NewStandingMapSpriteTable
 #define MovingMapSpriteTable NewMovingMapSpriteTable
@@ -60,6 +63,36 @@
 #include "EngineHacks/SkillSystem/skill_definitions.event"
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p
+
+// Vanilla Flag Definitions 
+
+#define GameOverEID 0x65 
+#define HideObjectiveFlag 0x66 
+#define CreatureCampaignUnitFlag 0x67 // - 0x70 
+
+#define TriangleAttackBattleQuoteFlag 0x7F //0x80 0x81 
+#define DKMusicFlag 0x82 
+
+#define HideUnitIconsFlag 0x84 
+
+#define WorldMapSomethingFlag 0x88 
+#define WordMapInitialized 0x89 
+#define FreliaFlag 0x8A 
+
+
+//Added 
+
+#define SkipIntroFlag 0x83
+
+
+
+
+
+
+
+
+
+
 
 //mov costs & bonuses 
 #define NormMovORG 0x80b808

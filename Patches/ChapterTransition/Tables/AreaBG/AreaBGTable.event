@@ -1,6 +1,7 @@
 // Area BGs
 ALIGN 4
 AreaBGTable:
+POIN Route3 //Oak's lab 
 POIN Pallet
 POIN Route1
 POIN viridiancity
@@ -10,7 +11,7 @@ POIN viridianforest
 POIN Route2n
 POIN Pewter
 POIN pewtergym
-POIN Route3
+
 POIN Route3
 POIN Route3
 POIN Route3
@@ -73,6 +74,7 @@ POIN Pokecenter
 // Palettes
 ALIGN 4
 AreaBGPalettes:
+#incbin "../../Graphics/AreaBG/route 3_pal_pal.dmp" //oaks lab
 #incbin "../../Graphics/AreaBG/Pallet_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/Route 1_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/viridiancity_pal_pal.dmp"
@@ -82,7 +84,7 @@ AreaBGPalettes:
 #incbin "../../Graphics/AreaBG/Route 2n_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/Pewter_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/Pewter gym_pal_pal.dmp"
-#incbin "../../Graphics/AreaBG/route 3_pal_pal.dmp" //oaks lab
+
 #incbin "../../Graphics/AreaBG/route 3_pal_pal.dmp" //dummy
 #incbin "../../Graphics/AreaBG/route 3_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/route 3_pal_pal.dmp"

@@ -73,6 +73,10 @@ SetUnitStatusAll:
 	beq 	check_affiliation
 	
 	@mov 	r2,#0xC @ 
+	@and 	r1, r2 
+	@cmp 	r1, #0 
+	@beq 	NextUnit 
+	
 	tst 	r1,r2
 	bne 	NextUnit
 	@ if you got here, unit exists and is not dead or undeployed, so go ham

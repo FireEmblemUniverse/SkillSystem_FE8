@@ -216,6 +216,9 @@ BeginningScene:
 //SVAL 1 1
 //SVAL 2 8
 //ASMC SetUnitState
+ENUF SkipIntroFlag
+
+
 SupplyItem(Tackle)
 SupplyItem(LowKick)  
 SupplyItem(Ember) 
@@ -237,7 +240,7 @@ LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep s
 ENUN
 LOAD1 0x1 Units2
 ENUN
-GotoPrepScreen
+//GotoPrepScreen
 Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
@@ -269,7 +272,9 @@ SupplyItem(Vulnerary)
 
 
 LABEL 0x63
-//MNC2 Route1Ch 
+//GotoPrepScreen 
+
+MNC2 Route1Ch 
 NoFade
 ENDA
 
