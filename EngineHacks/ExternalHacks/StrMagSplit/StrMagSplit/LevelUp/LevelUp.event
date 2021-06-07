@@ -142,9 +142,9 @@ PUSH
 	ORG $7F43C
 	POIN Growths_Anims_Off_Stat_Name_Table
 	
-	//Add mag boost in battle struct
+	/*//Add mag boost in battle struct // This has been incorporated into MSS -> Write_Growths_To_Battle_Struct. - Snek
 	ORG $2BB44
-	callHack_r3(Write_Mag_Growth)
+	callHack_r3(Write_Mag_Growth)*/
 POP
 
 ALIGN 4
@@ -256,11 +256,11 @@ Promo_Stat_Name_Table:
 #incbin "PromoStatNameTable.dmp"
 POIN Mov_Text_ID_Pointer
 	
-ALIGN 4
+/*ALIGN 4 // See note on this code's hook.
 Write_Mag_Growth:
 #incbin "WriteMagGrowth.dmp"
 POIN MagCharTable
-POIN MagClassTable
+POIN MagClassTable*/
 	
 ALIGN 4
 Mov_Text_ID_Pointer:
