@@ -247,7 +247,13 @@
   ALIGN 4
   Write_Growths_To_Battle_Struct:
     #incbin "asm/Write_Growths_To_Battle_Struct.dmp"
-    POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
+        POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth
+	#ifdef USE_STRMAG_SPLIT
+		POIN Get_Mag_Growth
+	#else
+		WORD 0 // Code in this function treats 0 here as strmag not installed and does nothing.
+	#endif // USE_STRMAG_SPLIT
+	POIN Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
     WORD Growth_Options
 
   ALIGN 4
