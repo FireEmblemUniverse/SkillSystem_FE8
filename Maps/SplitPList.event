@@ -72,44 +72,9 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 
 
 
-
-
-
-
-
 // -------------------------------TILE CONFIG-------------------------------
 
-
-#define OaksLabConf 27
-#define PalletTownConf 1
-#define Route1Conf 2
-#define ViridianCityConf 3
-#define Route2SConf 4
-#define ViridianForestSConf 5
-#define ViridianForestNConf 6
-#define Route2NConf 7
-#define PewterCityConf 8
-#define PewterGymConf 9
-#define Route3WConf 10
-#define Route3MConf 11
-#define Route3EConf 12
-#define Route4WConf 13
-#define MtMoonB1SConf 14
-#define MtMoonB1NConf 15
-#define MtMoonB2Conf 16
-#define MtMoonB3NEConf 17
-#define MtMoonB3EConf 18
-#define MtMoonB3WConf 19
-#define MtMoonB3MConf 20
-#define MtMoonB3MidConf 20
-
-#define Route4MConf 21
-#define Route4EConf 22
-#define CeruleanCityConf 23
-#define CeruleanGymConf 24
-#define Route24Conf 25
-#define Route25Conf 26
-//#define OaksLabConf 27
+#include "Definitions/TileConfigDefinitions.enu.event"
 
 TileConfigPointerTable(OaksLabConf, OaksLabConfigData)
 TileConfigPointerTable(PalletTownConf, PalletTownConfigData)
@@ -139,44 +104,52 @@ TileConfigPointerTable(CeruleanGymConf, CeruleanGymConfigData)
 TileConfigPointerTable(Route24Conf, Route24ConfigData)
 TileConfigPointerTable(Route25Conf, Route25ConfigData)
 
+TileConfigPointerTable(CeladonCityConf, CeladonCityConfigData)
+TileConfigPointerTable(CeladonGymConf, CeladonGymConfigData)
+TileConfigPointerTable(VermillionCityConf, VermillionCityConfigData)
+TileConfigPointerTable(VermillionGymConf,VermillionGymConfigData)
+TileConfigPointerTable(LavendarCityConf,LavendarCityConfigData)
+TileConfigPointerTable(SaffronCityConf,SaffronCityConfigData)
+TileConfigPointerTable(SaffronGymConf,SaffronGymConfigData)
+TileConfigPointerTable(FuschiaGymConf,FuschiaGymConfigData)
+TileConfigPointerTable(FuschiaCityConf,FuschiaCityConfigData)
+TileConfigPointerTable(CinnabarIslandConf,CinnabarIslandConfigData)
+TileConfigPointerTable(CinnabarGymConf,CinnabarGymConfigData)
+TileConfigPointerTable(Route5Conf,Route5ConfigData)
+TileConfigPointerTable(Route6Conf,Route6ConfigData)
+TileConfigPointerTable(Route7Conf,Route7ConfigData)
+TileConfigPointerTable(Route8Conf,Route8ConfigData)
+TileConfigPointerTable(Route9Conf,Route9ConfigData)
+TileConfigPointerTable(Route10nConf,Route10nConfigData)
+TileConfigPointerTable(Route10sConf,Route10sConfigData)
+TileConfigPointerTable(Route11Conf,Route11ConfigData)
+TileConfigPointerTable(Route12Conf,Route12ConfigData)
+TileConfigPointerTable(Route13Conf,Route13ConfigData)
+TileConfigPointerTable(Route14Conf,Route14ConfigData)
+TileConfigPointerTable(Route15Conf,Route15ConfigData)
+TileConfigPointerTable(Route16Conf,Route16ConfigData)
+TileConfigPointerTable(Route17nConf,Route17nConfigData)
+TileConfigPointerTable(Route17sConf,Route17sConfigData)
+TileConfigPointerTable(Route18Conf,Route18ConfigData)
+TileConfigPointerTable(Route19Conf,Route19ConfigData)
+TileConfigPointerTable(Route20Conf,Route20ConfigData)
+TileConfigPointerTable(Route21Conf,Route21ConfigData)
+TileConfigPointerTable(Route22Conf,Route22ConfigData)
+TileConfigPointerTable(Route23nConf,Route23nConfigData)
+TileConfigPointerTable(Route23sConf,Route23sConfigData)
+
+
+
+
+
+
 
 // 0 1 2 3 4 5 etc. 
 
 
 // -------------------------------OBJ TYPE-------------------------------
 
-#define OaksLabObj 54
-#define PalletTownObj 2
-#define Route1Obj 4
-#define ViridianCityObj 6
-#define Route2SObj 8
-#define ViridianForestSObj 10
-#define ViridianForestNObj 12
-#define Route2NObj 14
-#define PewterCityObj 16
-#define PewterGymObj 18
-#define Route3WObj 20
-#define Route3MObj 22
-#define Route3EObj 24
-#define Route4WObj 26
-#define MtMoonB1SObj 28
-#define MtMoonB1NObj 30
-#define MtMoonB2Obj 32
-#define MtMoonB3NEObj 34
-#define MtMoonB3EObj 36
-#define MtMoonB3WObj 38
-#define MtMoonB3MObj 40
-#define MtMoonB3MidObj 40
-
-
-#define Route4MObj 42
-#define Route4EObj 44
-#define CeruleanCityObj 46
-#define CeruleanGymObj 48
-#define Route24Obj 50
-#define Route25Obj 52
-//#define OaksLabObj 54
-
+#include "Definitions/ObjectPaletteDefinitions.enu.event"
 
 ObjTypePalettePointerTable(OaksLabObj, OaksLabObjData)
 ObjTypePalettePointerTable(PalletTownObj, PalletTownObjData)
@@ -206,42 +179,42 @@ ObjTypePalettePointerTable(CeruleanGymObj, CeruleanGymObjData)
 ObjTypePalettePointerTable(Route24Obj, Route24ObjData)
 ObjTypePalettePointerTable(Route25Obj, Route25ObjData)
 
+ObjTypePalettePointerTable(CeladonCityObj, CeladonCityObjData)
+ObjTypePalettePointerTable(CeladonGymObj, CeladonGymObjData)
+ObjTypePalettePointerTable(VermillionCityObj, VermillionCityObjData)
+ObjTypePalettePointerTable(VermillionGymObj,VermillionGymObjData)
+ObjTypePalettePointerTable(LavendarCityObj,LavendarCityObjData)
+ObjTypePalettePointerTable(SaffronCityObj,SaffronCityObjData)
+ObjTypePalettePointerTable(SaffronGymObj,SaffronGymObjData)
+ObjTypePalettePointerTable(FuschiaGymObj,FuschiaGymObjData)
+ObjTypePalettePointerTable(FuschiaCityObj,FuschiaCityObjData)
+ObjTypePalettePointerTable(CinnabarIslandObj,CinnabarIslandObjData)
+ObjTypePalettePointerTable(CinnabarGymObj,CinnabarGymObjData)
+ObjTypePalettePointerTable(Route5Obj,Route5ObjData)
+ObjTypePalettePointerTable(Route6Obj,Route6ObjData)
+ObjTypePalettePointerTable(Route7Obj,Route7ObjData)
+ObjTypePalettePointerTable(Route8Obj,Route8ObjData)
+ObjTypePalettePointerTable(Route9Obj,Route9ObjData)
+ObjTypePalettePointerTable(Route10nObj,Route10nObjData)
+ObjTypePalettePointerTable(Route10sObj,Route10sObjData)
+ObjTypePalettePointerTable(Route11Obj,Route11ObjData)
+ObjTypePalettePointerTable(Route12Obj,Route12ObjData)
+ObjTypePalettePointerTable(Route13Obj,Route13ObjData)
+ObjTypePalettePointerTable(Route14Obj,Route14ObjData)
+ObjTypePalettePointerTable(Route15Obj,Route15ObjData)
+ObjTypePalettePointerTable(Route16Obj,Route16ObjData)
+ObjTypePalettePointerTable(Route17nObj,Route17nObjData)
+ObjTypePalettePointerTable(Route17sObj,Route17sObjData)
+ObjTypePalettePointerTable(Route18Obj,Route18ObjData)
+ObjTypePalettePointerTable(Route19Obj,Route19ObjData)
+ObjTypePalettePointerTable(Route20Obj,Route20ObjData)
+ObjTypePalettePointerTable(Route21Obj,Route21ObjData)
+ObjTypePalettePointerTable(Route22Obj,Route22ObjData)
+ObjTypePalettePointerTable(Route23nObj,Route23nObjData)
+ObjTypePalettePointerTable(Route23sObj,Route23sObjData)
 
 
 // -------------------------------Palette-------------------------------
-
-#define OaksLabPal 1
-#define PalletTownPal 3
-#define Route1Pal 5
-#define ViridianCityPal 7
-#define Route2SPal 9
-#define ViridianForestSPal 11
-#define ViridianForestNPal 13
-#define Route2NPal 15
-#define PewterCityPal 17
-#define PewterGymPal 19
-#define Route3WPal 21
-#define Route3MPal 23
-#define Route3EPal 25
-#define Route4WPal 27
-#define MtMoonB1SPal 29
-#define MtMoonB1NPal 31
-#define MtMoonB2Pal 33
-#define MtMoonB3NEPal 35
-#define MtMoonB3EPal 37
-#define MtMoonB3WPal 39
-#define MtMoonB3MPal 41
-
-#define MtMoonB3MidPal 41
-
-#define Route4MPal 43
-#define Route4EPal 45
-#define CeruleanCityPal 47
-#define CeruleanGymPal 49
-#define Route24Pal 51
-#define Route25Pal 53
-
-
 
 ObjTypePalettePointerTable(OaksLabPal, OaksLabPalData)
 ObjTypePalettePointerTable(PalletTownPal, PalletTownPalData)
@@ -271,6 +244,39 @@ ObjTypePalettePointerTable(CeruleanGymPal, CeruleanGymPalData)
 ObjTypePalettePointerTable(Route24Pal, Route24PalData)
 ObjTypePalettePointerTable(Route25Pal, Route25PalData)
 
+ObjTypePalettePointerTable(CeladonCityPal, CeladonCityPalData)
+ObjTypePalettePointerTable(CeladonGymPal, CeladonGymPalData)
+ObjTypePalettePointerTable(VermillionCityPal, VermillionCityPalData)
+ObjTypePalettePointerTable(VermillionGymPal,VermillionGymPalData)
+ObjTypePalettePointerTable(LavendarCityPal,LavendarCityPalData)
+ObjTypePalettePointerTable(SaffronCityPal,SaffronCityPalData)
+ObjTypePalettePointerTable(SaffronGymPal,SaffronGymPalData)
+ObjTypePalettePointerTable(FuschiaGymPal,FuschiaGymPalData)
+ObjTypePalettePointerTable(FuschiaCityPal,FuschiaCityPalData)
+ObjTypePalettePointerTable(CinnabarIslandPal,CinnabarIslandPalData)
+ObjTypePalettePointerTable(CinnabarGymPal,CinnabarGymPalData)
+ObjTypePalettePointerTable(Route5Pal,Route5PalData)
+ObjTypePalettePointerTable(Route6Pal,Route6PalData)
+ObjTypePalettePointerTable(Route7Pal,Route7PalData)
+ObjTypePalettePointerTable(Route8Pal,Route8PalData)
+ObjTypePalettePointerTable(Route9Pal,Route9PalData)
+ObjTypePalettePointerTable(Route10nPal,Route10nPalData)
+ObjTypePalettePointerTable(Route10sPal,Route10sPalData)
+ObjTypePalettePointerTable(Route11Pal,Route11PalData)
+ObjTypePalettePointerTable(Route12Pal,Route12PalData)
+ObjTypePalettePointerTable(Route13Pal,Route13PalData)
+ObjTypePalettePointerTable(Route14Pal,Route14PalData)
+ObjTypePalettePointerTable(Route15Pal,Route15PalData)
+ObjTypePalettePointerTable(Route16Pal,Route16PalData)
+ObjTypePalettePointerTable(Route17nPal,Route17nPalData)
+ObjTypePalettePointerTable(Route17sPal,Route17sPalData)
+ObjTypePalettePointerTable(Route18Pal,Route18PalData)
+ObjTypePalettePointerTable(Route19Pal,Route19PalData)
+ObjTypePalettePointerTable(Route20Pal,Route20PalData)
+ObjTypePalettePointerTable(Route21Pal,Route21PalData)
+ObjTypePalettePointerTable(Route22Pal,Route22PalData)
+ObjTypePalettePointerTable(Route23nPal,Route23nPalData)
+ObjTypePalettePointerTable(Route23sPal,Route23sPalData)
 
 
 // -------------------------------Tile Anims-------------------------------
@@ -282,6 +288,8 @@ ObjTypePalettePointerTable(Route25Pal, Route25PalData)
 //#define CaveTileAnims 1
 //TileAnimPointerTable(CaveTileAnims, CaveTileAnimsData)
 
+//#include "Tilesets/Cave/CaveAnimsInstaller.event"
+
 TileAnimPointerTable(5, 0x59D498)
 TileAnimPointerTable(0x12, 0x0859D568)
 TileAnimPointerTable(0x1C, 0x0859D6F8)
@@ -289,7 +297,31 @@ TileAnimPointerTable(0x54, 0x0859D800)
 TileAnimPointerTable(0x7D, 0x0859D678)
 TileAnimPointerTable(0xD3, 0x0859D520)
 
-#include "pallet to pewter.event"
+
+// ------------------------------- CHAPTER ------------------------------------    
+
+#include "Definitions/ChapterDefinitions.enu.event" 
+
+
+
+
+
+
+
+// ------------------------------- MAP ----------------------------
+
+
+#include "Definitions/MapDefinitions.enu.event" 
+
+
+// ------------------------------- MAP CHANGES ----------------------------
+
+//#define PalletTownMapChanges 1
+//#define Route1MapChanges 2
+
+
+
+#include "IncbinData.event"
 
 
 
