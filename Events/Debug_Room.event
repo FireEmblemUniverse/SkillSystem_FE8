@@ -273,7 +273,7 @@ SupplyItem(Vulnerary)
 
 LABEL 0x63
 //GotoPrepScreen 
-
+ENUT SkipIntroFlag
 MNC2 Route1Ch 
 NoFade
 ENDA

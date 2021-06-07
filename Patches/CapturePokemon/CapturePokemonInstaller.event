@@ -1,0 +1,45 @@
+ALIGN 4
+PCBoxFullEvent:
+CAM1 0xFFFF
+WARP_IN
+STAL 0x32
+Text(0xA18)
+NoFade
+ENDA
+
+
+#include "CapturePokemon.lyn.event"
+
+#define PokeballGraphic 0x13 
+#define OpenPokeballGraphic 0x14 
+#define MonsterFaceGraphic 0x15
+#define EmoticonSlotB(Graphic) "BYTE $4B $0D $00 Graphic; POIN Show_map_emotion_Install|1"
+
+ALIGN 4
+CapturePokemonEvent:
+// s2 is unit id of newly captured unit 
+// sB is coords of existing unit 
+EVBIT_MODIFY 1
+CUSA 0x7FFD //enemy to player 
+EmoticonSlotB(OpenPokeballGraphic)
+
+STAL 0x32 
+EmoticonSlotB(PokeballGraphic)
+
+STAL 0x32 
+//Text(0xA17)
+MOVENEXTTO 7 0x7FFD 0x7FFE 
+ENUN 
+EVBIT_MODIFY 0
+NoFade
+ENDA
+
+
+
+
+
+
+
+
+
+

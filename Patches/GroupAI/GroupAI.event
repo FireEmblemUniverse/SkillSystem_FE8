@@ -1,4 +1,6 @@
 //Make sure to add GroupAI to SkillSystem_FE8-master\Engine Hacks\Necessary\CalcLoops\PostBattleCalcLoop\PostBattleCalcLoop.event
+
+//this defines it
 ALIGN 4
 GroupAI:
 #incbin "GroupAI.dmp"

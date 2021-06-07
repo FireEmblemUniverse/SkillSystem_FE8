@@ -1,6 +1,7 @@
-#include "MapSprites.event"
+#include "MapSprites/MapSprites.event"
 #include "Portraits/_Master Mug Installer.event"
 #include "Title Screen/Title Screen.event"
 #include "StatScreen/Installer.event"
 #include "WepIcons/Installer.event"
 #include "BattleAnimations/Installer.event"
+#include "MapEmoticon/EmoticonInstaller.event" 

@@ -1,0 +1,139 @@
+#ifdef _FE8_
+//Author = 7743, Kenpuku 
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
+// This one is defined in Root\Patches\CapturePokemon\CapturePokemonInstaller 
+//#define EmoticonSlotB(Graphic) "BYTE $4B $0D $00 Graphic; POIN Show_map_emotion_Install|1"
+
+//#define PokeballGraphic 0x13 
+//#define OpenPokeballGraphic 0x14 
+//#define MonsterFaceGraphic 0x15
+
+
+ALIGN 4
+Show_map_emotion_Install:
+#incbin "Show_map_emotion.dmp"
+POIN Show_map_emotion_Table
+
+ALIGN 4
+Show_map_emotion_Show_without_SE:
+#incbin "Show_map_emotion_Show_without_SE.dmp"
+
+ALIGN 4
+Show_map_emotion_Destructor:
+#incbin "Show_map_emotion_Destructor.dmp"
+
+ALIGN 4
+Show_map_emotion_Proc_without_SE:
+BYTE $02 $00 $00 $00; POIN Show_map_emotion_Show_without_SE+1;   //Call Routine
+BYTE $03 $00 $00 $00; WORD 0x08078B08+1 //Set Loop routine And Yield
+BYTE $03 $00 $00 $00; POIN Show_map_emotion_Destructor+1 //Set Loop routine And Yield
+BYTE $00 $00 $00 $00 $00 $00 $00 $00 //Deletes self
+
+emotion01_umm:
+#incbin "png/01_umm_7743.png.dmp"	//HINT=BIN
+
+emotion02_heart:
+#incbin "png/02_heart_kenpuku.png.dmp"	//HINT=BIN
+
+emotion03_nazo:
+#incbin "png/03_anger_kenpuku.png.dmp"	//HINT=BIN
+
+emotion04_cold_sweat:
+#incbin "png/04_cold_sweat_kenpuku.png.dmp"	//HINT=BIN
+
+emotion05_failed:
+#incbin "png/05_failed_kenpuku.png.dmp"	//HINT=BIN
+
+emotion06_hatena:
+#incbin "png/06_hatena_kenpuku.png.dmp"	//HINT=BIN
+
+emotion07_inspiration:
+#incbin "png/07_inspiration_kenpuku.png.dmp"	//HINT=BIN
+
+emotion08_lucky:
+#incbin "png/08_lucky_kenpuku.png.dmp"	//HINT=BIN
+
+emotion09_tenten:
+#incbin "png/09_tenten_kenpuku.png.dmp"	//HINT=BIN
+
+emotion10_zzz:
+#incbin "png/10_zzz_kenpuku.png.dmp"	//HINT=BIN
+
+emotion11_waiwai:
+#incbin "png/11_waiwai_kenpuku.png.dmp"	//HINT=BIN
+
+emotion12_age:
+#incbin "png/12_age_kenpuku.png.dmp"	//HINT=BIN
+
+emotion13_sage:
+#incbin "png/13_sage_kenpuku.png.dmp"	//HINT=BIN
+emotion14_blush:
+#incbin "png/14_blush_kenpuku.png.dmp"	//HINT=BIN
+
+emotion15_gaan:
+#incbin "png/15_gaan_kenpuku.png.dmp"	//HINT=BIN
+
+emotion16_dollmark:
+#incbin "png/16_dollmark_kenpuku.png.dmp"	//HINT=BIN
+
+emotion17_beer:
+#incbin "png/17_beer_kenpuku.png.dmp"	//HINT=BIN
+
+emotion18_pokeball:
+#incbin "png/openpokeball.dmp"	//HINT=BIN
+
+emotion19_openball:
+#incbin "png/closedpokeball.dmp"	//HINT=BIN
+
+emotion20_monsterface:
+#incbin "png/monsterface.dmp"	//HINT=BIN
+
+
+
+#define AP_Address_We_are_using 0x089A8EF8
+
+ALIGN 4
+Show_map_emotion_Table:
+WORD 0x089ADD4C 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00   //0=!?}?[?N??
+POIN emotion01_umm; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion02_heart; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion03_nazo; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion04_cold_sweat; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion05_failed; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion06_hatena; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion07_inspiration; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion08_lucky; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion09_tenten; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion10_zzz; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion11_waiwai; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion12_age; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion13_sage; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion14_blush; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion15_gaan; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion16_dollmark; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion17_beer; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion18_pokeball; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion19_openball; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion20_monsterface; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+
+
+
+
+
+WORD 0 0 0 0
+//struct {
+//	void*	image  32*8,  2*8
+//	void*   ROMTS
+//	void*	Procs
+//  ushort  Music
+//  ushort  padding
+//} //sizeof()==16 DisplayFogThingMaybe 
+
+
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif

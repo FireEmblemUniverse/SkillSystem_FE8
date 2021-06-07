@@ -40,7 +40,7 @@ bne NextUnit
 @ if you got here, unit exists and is not dead or undeployed, so go ham
 @r0 is Ram Unit Struct 
 mov r0, r1 
-
+b End_LoopThroughUnits
 add r5,#1
 cmp r5,r6
 bge End_LoopThroughUnits
@@ -48,6 +48,7 @@ NextUnit:
 add r4,#1
 cmp r4,#0x3F
 ble LoopThroughUnits
+mov r0, #0 
 End_LoopThroughUnits:
 pop {r4-r7}
 pop {r1}
