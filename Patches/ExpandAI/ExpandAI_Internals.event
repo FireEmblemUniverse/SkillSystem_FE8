@@ -1,0 +1,75 @@
+#ifndef MoveTowardsOpponentsEvenWhenBlocked
+	#include "AI Assembly.txt" //Found in "Root/EventAssembler/Extensions/AI Assembly.txt" 
+#endif 
+
+
+PUSH 
+ORG 0x5A91E4
+POIN NewAI1Table
+
+ORG 0x5A91D8
+POIN NewAI2Table
+
+POP 
+
+// vanilla ones 
+//#define AI1PointerTable(entry, aipointer) "PUSH; ORG 0x5A9184+(4*entry); POIN aipointer; POP"
+//#define AI2PointerTable(entry, aipointer) "PUSH; ORG 0x5A9138+(4*entry); POIN aipointer; POP"
+// expanded 
+#define NewAI1Entry(entry, aipointer) "PUSH; ORG NewAI1Table+(4*entry); POIN aipointer|IsPointer; POP" 
+#define AITerminator "BYTE  $FF $FF $FF $FF" //Unnecessary Terminator? This is what FEB uses 
+#define NewAI2Entry(entry, aipointer) "PUSH; ORG NewAI2Table+(4*entry); POIN aipointer|IsPointer; POP" 
+
+ALIGN 4 
+NewAI1Table:
+ORG (currentOffset + (256*4))
+AITerminator
+
+ALIGN 4 
+NewAI2Table:
+ORG (currentOffset + (256*4))
+AITerminator
+
+// Vanilla AI 1 entries 
+NewAI1Entry(0, 0x085A8870)
+NewAI1Entry(1, 0x085A8890)
+NewAI1Entry(2, 0x085A88B0)
+NewAI1Entry(3, 0x085A88D0)
+NewAI1Entry(4, 0x085A88F0)
+NewAI1Entry(5, 0x085A8910)
+NewAI1Entry(6, 0x085A8930)
+NewAI1Entry(7, 0x085A8A04)
+NewAI1Entry(8, 0x085A8B40)
+NewAI1Entry(9, 0x085A8B80)
+NewAI1Entry(10, 0x085A8BA0)
+NewAI1Entry(11, 0x085A8BE0)
+NewAI1Entry(12, 0x085A8C00)
+NewAI1Entry(13, 0x085A8C70)
+NewAI1Entry(14, 0x085A8F90)
+NewAI1Entry(15, 0x085A8FB0)
+NewAI1Entry(16, 0x085A8FE0)
+NewAI1Entry(17, 0x085A9040)
+NewAI1Entry(18, 0x085A8A2C)
+NewAI1Entry(19, 0x085A8A50)
+NewAI1Entry(20, 0x085A8A7C)
+
+// Vanilla AI 2 entries 
+NewAI2Entry(0, 0x085A8410)
+NewAI2Entry(1, 0x085A84B0)
+NewAI2Entry(2, 0x085A84D0)
+NewAI2Entry(3, 0x085A84F0)
+NewAI2Entry(4, 0x085A8510)
+NewAI2Entry(5, 0x085A8540)
+NewAI2Entry(6, 0x085A8620)
+NewAI2Entry(7, 0x085A8690)
+NewAI2Entry(8, 0x085A85D0)
+NewAI2Entry(9, 0x085A8790)
+NewAI2Entry(10, 0x085A8E00)
+NewAI2Entry(11, 0x085A8EB0)
+NewAI2Entry(12, 0x085A8570)
+NewAI2Entry(13, 0x085A8810)
+NewAI2Entry(14, 0x085A9060)
+NewAI2Entry(15, 0x085A8430)
+NewAI2Entry(16, 0x085A90C8)
+NewAI2Entry(17, 0x085A8480)
+NewAI2Entry(18, 0x085A8450)

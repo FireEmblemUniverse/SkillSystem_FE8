@@ -265,8 +265,14 @@ Term:
 	ldr 	r1, [r3, r4] 
 
 	
-	eor 	r0, r1 
-	str 	r0, [r3, r4] 
+	@//eor 	r0, r1 @this flips the switch 
+	
+	@neg 	r0, #0xFF 
+	@and 	r0, r1 
+	
+	bic 	r1, r0 
+	
+	str 	r1, [r3, r4] 
 	b 		NextUnit
 
 

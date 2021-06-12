@@ -1,0 +1,26 @@
+#include "ExpandAI_Internals.event"
+// Expands AI1 and AI2 lists to 255 entries 
+// Add new ones here 
+
+// AI 1 list 
+// Vanilla entries take up 0 - 20 
+NewAI1Entry(21, TestAI1)
+
+// AI 2 list
+// Vanilla entries take up 0 - 18
+NewAI2Entry(19, TestAI2)
+
+
+// New entries 
+ALIGN 4 
+TestAI1:
+ActionInRange
+Goto(0) //Exit / terminator ? 
+WORD 0 //not needed? lol 
+
+
+ALIGN 4 
+TestAI2:
+MoveTowardsOpponents
+Goto(0) //Exit / terminator ? 
+WORD 0 //not needed? lol 

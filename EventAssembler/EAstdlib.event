@@ -245,6 +245,8 @@ V3.4
 
 #include "EA Standard Library/Animation Setters.txt"
 
+#include "Extensions/AI Assembly.txt" 
+
 #ifdef BACKWARDS_COMPATIBILITY
 #include "EA Standard Library/Backward Compatibility.txt"
 #endif

@@ -33,6 +33,77 @@ GlobalTurnEvent:
 NoFade
 ENDA 
 
+
+#define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, TurnToOccur, FrequencyInTurns) "SVAL r5 UnitGroup; SVAL r6 TurnToOccur+5; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements; NoFade; ENDA"
+
+
+/*
+"SVAL r5 UnitGroup; 
+SVAL r6 TurnToOccur    +5     ; 
+SVAL r7 FrequencyInTurns; 
+SVAL r2 BushUnitID; 
+SVAL r8 NumberOfEnemies; "
+
+When loaded, set their AI2 counter to 5 
+Each turn, this increments by +1 
+
+
+If AI2 counter is 1 less than TurnToOccur, display angry face at coords +10000 (1y below) 
+
+If AI2 counter is equal or greater than TurnToOccur, load unit r8 times 
+
+
+
+*/
+
+
+
+LoadReinforcements:
+CHECK_COORDS 0x7FFD 
+SADD rB rC r0 
+
+GetUnitStatus(0x7FFD, AI2Counter)
+SADD rA rC r0 
+
+SVAL r1 1 
+SSUB r4 r6 r1  //r4 is now TurnToOccur - 1 
+
+// Restore health 
+
+BNE 0 r4 rA 
+	//Display scary face at +1y coord below 
+	
+	SVAL r1 0x10000 
+	SADD rB rB r1 
+	EmoticonSlotB(MonsterFaceGraphic)
+	SSUB rB rB r1 //
+
+	GOTO 20 
+Label 0 
+BLT 1 rA r6 
+		//Load units 
+	SADD r2 r5 r0 
+	LOAD_S2 0 -1 //Load unit group provided earlier 
+	ENUN 
+	
+	
+	//GetUnitStatus(0x7FFD, AI2_Counter) 
+	SSUB r5 rA r7 //sub by frequency 
+	SetUnitStatus(0x7FFD, AI2Counter) //uses r5 as Value 
+
+	GOTO 0x63  
+Label 1 
+
+Label 20 
+
+
+
+Label 0x63 
+NoFade
+ENDA 
+
+
+
 VisitPokecenter:
 
 CHECK_COORDS 0x7FFF
@@ -98,8 +169,11 @@ LoadAndPlacePlayers:
 //EVBIT_T 0x2 //Scene skipping 
 //FADU -1 
 //FADI -1 
-Call CheckDeployed 
-Call PlacePlayers 
+
+CALL CheckDeployed 
+
+CALL PlacePlayers 
+
 NoFade
 ENDA
 
@@ -120,7 +194,6 @@ SVAL r1 0xFD //1st player unit
 SVAL r3 0x11 	// Y coord 
 SVAL r4 0x03 	// Byte
 ASMC SetUnitStatus
-//Text(0x9D6)
 ENUN 			// move 1st unit instantly to value in CoordsNewArea 
 
 // speed, unit, destination unit 

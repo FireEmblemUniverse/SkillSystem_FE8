@@ -1,0 +1,188 @@
+//This is for AI Byte1 programming.
+
+#define defLocation(xLoc,yLoc) "BYTE xLoc yLoc 0x00 0x00"
+#define defCharacter(character) "SHORT character 0x0"
+#define defCharacters(char1, char2) "SHORT char1 char2 0x0; ALIGN 4"
+#define defHPPercent(percent) "BYTE 0x64 percent 0x00 0x00"
+#define defRectangle(upperLeftX, upperLeftY, lowerRightX, lowerRightY) "BYTE upperLeftX upperLeftY lowerRightX lowerRightY"
+#define defMovementCoefficient(coef) "BYTE (coef*0x10) 0x01 0x00 0x00"
+//#define endList "ALIGN 4"
+
+#define ConditionalGoto_Memory(constant, comparator, label, memoryLocation) "BYTE 0x00 comparator 0xFF label; WORD constant; WORD memoryLocation; WORD 0x00000000"
+
+#define GotoIfTrue(label) "ConditionalGoto(0, LT, label)"
+
+#define LT 0x00
+#define LE 0x01
+#define EQ 0x02
+#define GE 0x03
+#define GT 0x04
+#define NE 0x05
+
+#define Routine_AI(routine, paramPointer) "BYTE 0x01 0x00 0xFF 0x00; WORD 0x00000000; POIN routine; POIN paramPointer"
+#define AI_Conditional(routine, pointer) "BYTE 0x01 0x00 0xFF 0x00; WORD 0x00000000; POIN routine; POIN pointer"
+
+#define ChangeAI(AI1, AI2) "BYTE 0x02 AI1 AI2 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Does not take action.
+//0xFF indicates that that AI byte should not be changed.
+
+#define Goto(label) "BYTE 0x03 0x00 0xFF label; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+#define LoopAI "Goto(0)"
+
+#define AttackOnly(character) "BYTE 0x04 0x64 0xFF 0x00; WORD character; WORD 0x00000000; WORD 0x00000000"
+//Takes action.
+//If the character ID is deployed, this unit will ONLY attack that character, despite who else might be in range.
+
+#define ActionInRange "BYTE 0x05 0x64 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000" //Attacks in range
+#define ActionInRangeExcept(charPointer) "BYTE 0x05 0x64 0xFF 0x00; WORD 0x00000000; WORD charPointer; WORD 0x00000000" //Won't attack the character(s) specified.
+#define ActionInRangeChance(percent) "BYTE 0x05 percent 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action.
+
+#define Nop "BYTE 0x06 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action.
+
+#define ActionWithoutMoving "BYTE 0x07 0x64 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+#define ActionWIthoutMovingChance(percent) "BYTE 0x07 percent 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action.
+
+#define MoveTowardsIfOutOfRange(charID) "BYTE 0x0D 0x00 0xFF 0x00; WORD charID; WORD 0x00000000; WORD 0x00000000"
+//Used in conjunction with []#define InitiateTalk(charsPointer) "RoutineAI(0x0803A58D, charsPointer)"]
+//Sets memory to: 
+//0x2 if target is in range (this itself does no action)
+//0x4 if target is not deployed
+//0x3 or 0x1 otherwise(?)
+//If target is in range, seems to indicate the location of the target for a subsequent InitateTalk?
+
+#define Nop_2 "BYTE 0x0E 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Does nothing?
+
+//Experimental - Not used in vanilla FE7
+#define RunAway "BYTE 0x11 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+
+
+#define MoveTowardsOpponents "BYTE 0x12 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+#define MoveTowardsOpponentsExcept(characterListPointer) "BYTE 0x12 0x00 0xFF 0x00; WORD 0x00000000; POIN characterListPointer; WORD 0x00000000"
+//Takes action.
+
+#define MoveTowardsOpponentsEvenWhenBlocked "BYTE 0x13 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action.
+//TODO: try setting a character list in the third pointer
+
+#define RandomMove "BYTE 0x16 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+
+#define HeadToEscape "BYTE 0x17 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action; does not advance the AI.
+
+#define SeekWalls "BYTE 0x18 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+
+
+
+#ifdef _FE7_
+#ifndef _FE7J_
+#define ConditionalGoto(constant, comparator, label) "ConditionalGoto_Memory(constant, comparator, label, 0x0203A972)"
+#endif
+#define SeekTile(xLoc,yLoc) "BYTE 0x0C xLoc 0xFF yLoc; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action. Does not advance the AI state until you're AT the tile.
+//Note that the AI also won't attack anything while using this to seek.
+
+#define SeekAndTalkThenOtherwise(convoChars, target, startLabel, thenLabel, otherwiseLabel) "MoveTowardsIfOutOfRange(target); ConditionalGoto(4,EQ,otherwiseLabel); ConditionalGoto(2,NE,startLabel); InitiateTalk(convoChars); Goto(thenLabel)"
+//convoChars is a list of 2 bytes of the characters. First the initiator, then the talk-to person.
+//target is the actual targetted character
+//startLabel is a label right before this command.
+//thenLabel is a label number to GOTO after they talk.
+//otherwiseLabel is a label number to GOTO if the one to look for is not deployed.
+
+#define DestroyVillagesAction "BYTE 0x10 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Takes action; does not advance the AI until all villages are destroyed (?).
+
+#define Label(label) "BYTE 0x1B 0x00 0xFF label; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+
+#ifndef _FE7J_
+//Routine AIs
+#define HeadTowardsTile(defined_location) "Routine_AI(0x0803AA41, defined_location)"
+//location is a pointer to a location
+//takes the action.
+#define TryToHealAlliesUnderHalfHP "Routine_AI(0x0803A829, 0x081D3B58)"
+#define TryToHealAlliesUnderHPPercent(percentPointer) "Routine_AI(0x0803A829, pecentPointer)"
+#define TryToOpenLocks "Rotuine_AI(0x0803A875, 0x081D3B5C)"
+#define MoveIfLeaderHasEnemyInRange "Routine_AI(0x0803A7C9, 0x0)"
+#define InitiateTalk(charsPointer) "Routine_AI(0x0803A58D, charsPointer)"
+//charsPointer is a pointer a list of two characters (initiator then talked to) (bytepacked). Requres MoveTowardsIfOutOfRange to work.
+
+//Condition Checks
+#define GetAI2State "AI_Conditional(0xD5A30308, 0x00000000)" //Gets the PC for AI2 into memory (the 0x46 byte of the unit struct)
+#define GetEnemyInDoubleMoveRange "AI_Conditional(0x0803A0C1, 0x081D3B48)"
+#define GetEnemyInHalfMoveRange "AI_Conditional(0x0803A0C1, 0x081D3B4C)" //Sets memory to 0 or 1 based on if the condition is met
+#define GetEnemyInCoefMovement(coefPointer) "AI_Conditional(0x0803A0C1, coefPointer)"
+#define GetLeaderHasEnemyInRange "AI_Conditional(0x0803A5BD, 0x0)"
+#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x0803A549, rectanglePointer) /* Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb.*/"
+//These all do not take the action.
+
+#define AI1PointerTable(entry, aipointer) "PUSH; ORG 0xB98994+(4*entry); POIN aipointer; POP"
+#define AI2PointerTable(entry, aipointer) "PUSH; ORG 0xB98908+(4*entry); POIN aipointer; POP"
+#endif
+#endif
+
+#ifdef _FE7J_
+//Routine AIs
+#define HeadTowardsTile(defined_location) "Routine_AI(0x803AEF5, defined_location)"
+//location is a pointer to a location
+//takes the action.
+//0x081D3B58 => ?
+//#define TryToHealAlliesUnderHalfHP "Routine_AI(0x803ACDD, 0x081D3B58)"
+#define TryToHealAlliesUnderHPPercent(percentPointer) "Routine_AI(0x803ACDD, pecentPointer)"
+//0x081D3B5C => ?
+//#define TryToOpenLocks "Rotuine_AI(0x803AD29, 0x081D3B5C)"
+#define MoveIfLeaderHasEnemyInRange "Routine_AI(0x803AC7D, 0x0)"
+#define InitiateTalk(charsPointer) "Routine_AI(0x803AA41, charsPointer)"
+//charsPointer is a pointer a list of two characters (initiator then talked to) (bytepacked). Requres MoveTowardsIfOutOfRange to work.
+
+//Condition Checks
+#define GetAI2State "AI_Conditional(0x89A80308, 0x00000000)" //Gets the PC for AI2 into memory (the 0x46 byte of the unit struct)
+//0x081D3B48 => ?
+//#define GetEnemyInDoubleMoveRange "AI_Conditional(0x803A575, 0x081D3B48)"
+//0x081D3B4C => ?
+//#define GetEnemyInHalfMoveRange "AI_Conditional(0x803A575, 0x081D3B4C)" //Sets memory to 0 or 1 based on if the condition is met
+#define GetEnemyInCoefMovement(coefPointer) "AI_Conditional(0x803A575, coefPointer)"
+#define GetLeaderHasEnemyInRange "AI_Conditional(0x803AA71, 0x0)"
+#define GetIsInRectangle(rectanglePointer) "AI_Conditional(0x803A9FD, rectanglePointer) /* Routine checks whether the unit is within a rectangle specified by the data at the pointer. Data should be formatted as X1 Y1 X2 Y2, but IntSys is dumb.*/"
+#endif
+
+
+
+#ifdef _FE8_
+
+#define ConditionalGoto(constant, comparator, label) "ConditionalGoto_Memory(constant, comparator, label, 0x0203AA8A)"
+
+#define Label(label) "BYTE 0x1C 0x00 0xFF label; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+//Changed from FE7
+
+
+#define NightmarePathfinding "AI_Conditional(0x080411F9, 0x085A8A70)"
+#define UseNightmare "Routine_AI(0x080413CD, 0x0)" //Uses AoE Nightmare
+
+#define SummonUnitsPathfinding "AI_Conditional(0x08041405, 0x085A8A74)"
+#define SummonUnits "Routine_AI(0x08041585, 0x0)"
+
+#define TryToSummonUnitsElse(label) "SummonUnitsPathfinding; ConditionalGoto(0, EQ, label); SummonUnits"
+//First part is a can-summon and a pathfinding thing. Second part goes through with the summon
+#define TryToUseNightmareElse(label) "NightmarePathfinding; ConditionalGoto(0, EQ, label); Nightmare"
+//Crashes if no items(or just weapons?) in inventory.
+
+#define TryToHealAlliesUnderHalfHP "Routine_AI(0x0803F791, 0x080D8670)"
+#define TryToHealAlliesUnderHPPercent(percentPointer) "Routine_AI(0x0803F791, pecentPointer)"
+#define TryToOpenLocksOrSteal "Routine_AI(0x0803F7DD, 0x080D8674)"
+
+#define GetEnemyInHalfMoveRange "AI_Conditional(0x0803F019, 0x080D8668)"
+#define GetEnemyInCoefMovement(coefPointer) "AI_Conditional(0x0803F019, coefPointer)"
+
+
+
+
+
+
+
+#define AI1PointerTable(entry, aipointer) "PUSH; ORG 0x5A9184+(4*entry); POIN aipointer; POP"
+#define AI2PointerTable(entry, aipointer) "PUSH; ORG 0x5A9138+(4*entry); POIN aipointer; POP"
+#endif
+

@@ -253,7 +253,17 @@ BeginningScene:
 //SVAL 2 8
 //ASMC SetUnitState
 ENUF SkipIntroFlag
+Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
+
+LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+ENUN
+LOAD1 0x1 Units2
+ENUN
+
+GOTO 0x63 
 
 SupplyItem(Tackle)
 SupplyItem(LowKick)  
@@ -272,10 +282,7 @@ LOAD1 0x1 EnemyUnits
 ENUN
 LOAD1 0x1 EnemyUnits2
 ENUN
-LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
-ENUN
-LOAD1 0x1 Units2
-ENUN
+
 //GotoPrepScreen
 Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -283,22 +290,6 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
-
-
-
-
-
-// 1755C ->  8098086 & 88: LSLS & LSRS by 18h 
-
-// 1755C -> 980D0: LSLS & LSRS by 18h 
-
-//1663A ? [0902374F]?
-
-//ror r0,r0, #0x04
-//lsr r0, r0, #0x1C 
-
-//lsl r0,r0,#0x1C //0700 0f00
-//lsr r0,r0,0x1C
 
 /*
 SupplyItem(Vulnerary) 
@@ -314,8 +305,8 @@ LABEL 0x63
 //GotoPrepScreen 
 ENUT SkipIntroFlag
 //MNC2 PokecenterCh 
-//MNC2 Route1Ch 
-MNC2 PalletTownCh 
+MNC2 Route1Ch 
+//MNC2 PalletTownCh 
 NoFade
 ENDA
 
