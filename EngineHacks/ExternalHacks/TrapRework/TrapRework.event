@@ -26,6 +26,13 @@
 	#define OpenPokeballItemID 48	//blocks but cannot interact 
 	
 	#define ObstacleID 48 
+	
+	#define SaveID 58 //0x3a
+	#define SaveCostID 59
+	#define EnterID 60
+	#define Exit2ID 61
+
+	
 	#define DisplayOnlyID 64 
 	#define FlowerTrapID 	65
 	
@@ -131,7 +138,10 @@
 	SetTrapMapSprite(GorgonEggTrapID,0)
 	SetTrapMapSprite(LightRuneTrapID,0x66) //light rune map sprite
 
-
+	SetTrapMapSprite(SaveID,SavePointSMS)
+	SetTrapMapSprite(SaveCostID,BlankSMS)
+	SetTrapMapSprite(EnterID,BlankSMS)
+	SetTrapMapSprite(Exit2ID,BlankSMS)
 	
 	SetTrapMapSprite(RedPokeballItemID,RedPokeballSMS)
 	SetTrapMapSprite(GoldPokeballItemID,GoldPokeballSMS)
@@ -181,10 +191,7 @@
 	SetTrapMapSprite(55,0x73)
 	SetTrapMapSprite(56,0x74)
 	SetTrapMapSprite(57,0x75)
-	SetTrapMapSprite(58,0x76)
-	SetTrapMapSprite(59,0x77)
-	SetTrapMapSprite(60,0x78)
-	SetTrapMapSprite(61,0x79)
+
 	SetTrapMapSprite(62,0x7A)
 	SetTrapMapSprite(63,0x7B)
 	SetTrapMapSprite(64,0x7A)
@@ -332,6 +339,9 @@
 	SetImpassableTrap(57)
 	SetImpassableTrap(58)
 	SetImpassableTrap(59)
+	SetImpassableTrap(60)
+	SetImpassableTrap(61)
+
 
 
 
@@ -344,7 +354,7 @@
 	TrapBreakableTerrainList: 
 	TrapBreakableTerrain(0x34,0xFF,20) 		//Snag
 	TrapBreakableTerrain(0x1C,0xFE,0xFF) 	//Wall
-	TrapBreakableTerrain(0x1F,0xFC,40) 		//Door
+	TrapBreakableTerrain(0x0C,0xFC,15) 		//Door
 	TrapBreakableTerrainListEnd
 	
 

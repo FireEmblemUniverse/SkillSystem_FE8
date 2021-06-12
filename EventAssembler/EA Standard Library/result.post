@@ -289,7 +289,7 @@
 #endif
 
 #ifdef _FE8_
-#define GotoPrepScreen "CALL $591FD8; ENDA"
+#define GotoPrepScreen "CALL $591FD8"
 #endif
 
 

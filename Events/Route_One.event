@@ -19,13 +19,17 @@ POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
 TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
 END_MAIN
 
 CharacterBasedEvents:
-//CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 END_MAIN
 
+
+
 LocationBasedEvents:
+
 /*
 Vendor(ShopItems,2,7)
 Armory(ArmoryItems,10,26)
@@ -37,6 +41,7 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshUnitsEvent 0 
@@ -67,11 +72,12 @@ CALL RefreshIfNotInDanger
 NoFade
 ENDA 
 
-
-GenericEffect(2, ToViridian) 
-GenericDisappearEffect(2, TalkEvent) 
+GenericEffect(1, VisitPokecenter) 
+GenericEffect(2, VisitPokecenter) 
+//GenericDisappearEffect(2, TalkEvent) 
 
 Traps1:
+
 CoinsTrap(8,2,3,65535)
 
 CutBush(4,2)
@@ -95,8 +101,10 @@ GoldPokeballTrap(12,5, 9, Gust)
 
 
 //OpenPokeball(8,3)
-Sign(1,4, 2)
+Sign(8,4, 2)
 
+Save(10,4)
+SaveCost(13,4) 
 
 Flower(19,2)
 Flower(21,2)
@@ -133,31 +141,11 @@ ALIGN 4
 
 
 
-TalkEvent:
-Text(0x9DD) 
-NoFade
-ENDA 
 
-VillageEvent:
-	VillageEventItem(VillageText, Village, Boots)
-
-HouseEvent:
-	// Set parameters
-	SVAL r1 NiceThighsID
-	SVAL r2 (-1) // (-1) is active unit
-	// Check if unit has skill
-	// If they have, goto label #0 (end)
-	ASMC (ASMC_HasSkill|1)
-	BNE 0 rC r0
-	// Learn skill to unit
-	ASMC (ASMC_LearnNewSkill|1)
-LABEL 0
-	Text(HouseText)	
-	NoFade
-	ENDA
 	
 
 BeginningScene:
+CALL GlobalBeginningScene
 //LOAD1 0x1 NPCUnits 
 //ENUN 
 LOAD1 0x1 EnemyUnitsA
@@ -275,3 +263,28 @@ UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
 
 UNIT
+
+
+
+TalkEvent:
+Text(0x9DD) 
+NoFade
+ENDA 
+
+VillageEvent:
+	VillageEventItem(VillageText, Village, Boots)
+
+HouseEvent:
+	// Set parameters
+	SVAL r1 NiceThighsID
+	SVAL r2 (-1) // (-1) is active unit
+	// Check if unit has skill
+	// If they have, goto label #0 (end)
+	ASMC (ASMC_HasSkill|1)
+	BNE 0 rC r0
+	// Learn skill to unit
+	ASMC (ASMC_LearnNewSkill|1)
+LABEL 0
+	Text(HouseText)	
+	NoFade
+	ENDA

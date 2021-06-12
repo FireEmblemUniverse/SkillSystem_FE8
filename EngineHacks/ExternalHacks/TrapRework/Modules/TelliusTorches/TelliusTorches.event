@@ -33,12 +33,12 @@
 		
 	ALIGN 4
 	LitTorchTrapGfx: //torch map sprites by L95
-	#incext Png2Dmp "lit_torch.png" --lz77
+	#incbin "lit_torch.dmp" 
 	
 	ALIGN 4
 	UnlitTorchTrapGfx:
-	#incext Png2Dmp "unlit_torch.png" --lz77
-	
+	#incbin "unlit_torch.dmp" 
+
 	
 	PUSH
 		ORG (0x8AF880+0x8*TelliusTorchOnMapSpriteID)

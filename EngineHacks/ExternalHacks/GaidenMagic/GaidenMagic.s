@@ -116,6 +116,7 @@ IncorporateNewRange:
 	.code	16
 	.thumb_func
 	.fpu softvfp
+	.global GaidenMagicUMEffectExt
 	.type	GaidenMagicUMEffectExt, %function
 GaidenMagicUMEffectExt:
 	@ Function supports interworking.

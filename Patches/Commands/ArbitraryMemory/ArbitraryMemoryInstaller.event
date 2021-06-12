@@ -34,7 +34,10 @@
   #define Write_Word(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x0; ASMC EventWriter|1"
   #define Write_Short(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x1; ASMC EventWriter|1"
   #define Write_Byte(value,offset) "SETVAL 0x2 value; SETVAL 0x3 offset; SETVAL 0x4 0x2; ASMC EventWriter|1"
+  #define Write_Byte(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x2; ASMC EventWriter|1"
   	
+	
+	
 	#define Read_Word(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x0; ASMC EventReader|1"
 	#define Read_Short(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x1; ASMC EventReader|1"
 	#define Read_Byte(offset) "SETVAL 0x3 offset; SETVAL 0x4 0x2; ASMC EventReader|1"

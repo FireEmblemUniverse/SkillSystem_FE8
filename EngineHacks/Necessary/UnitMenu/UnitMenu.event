@@ -109,6 +109,15 @@ UnitMenuTable:
 
 //Does not disappear
 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x50, DisplayTextEffect) //Examine 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x51, DisplayTextEffect) //Examine 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect) //Read 
+  MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect) //Talk 
+
+  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5A, EnterTextEffect) //Enter  
+  
+
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
   MenuCommand(UM_Interact, UM_InteractDesc, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, GenericTrapUsability0x32, GenericTrapEffect) //GreenTalk
@@ -119,6 +128,10 @@ UnitMenuTable:
   MenuCommand(UM_Confirm, UM_ConfirmDesc, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
   MenuCommand(UM_Read, UM_ReadDesc, NormalText, GenericTrapUsability0x38, GenericTrapEffect) //Read
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x39, GenericTrapEffect) //Examine
+  MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Save
+  MenuCommand(UM_Use, UM_UseDesc, GreenText, GenericTrapUsability0x3B, GenericTrapEffect) //Use
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, GenericTrapUsability0x3C, GenericTrapEffect) //Enter
+  MenuCommand(UM_Exit2, UM_Exit2Desc, GreenText, GenericTrapUsability0x3D, GenericTrapEffect) //Exit
 
 //Obtain Item
 

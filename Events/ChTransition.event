@@ -16,6 +16,34 @@
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
+GlobalAfev:
+NoFade
+ENDA 
+
+GlobalTalkEvent:
+NoFade
+ENDA 
+
+GlobalBeginningScene:
+SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+NoFade 
+ENDA 
+
+GlobalTurnEvent:
+NoFade
+ENDA 
+
+VisitPokecenter:
+
+CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+CALL ConvertFromMemSlotBCoord
+CHECK_CHAPTER_NUMBER
+SADD r2 rC r0 
+Write_Byte(CurrentChapter)
+
+MNC2 PokecenterCh 
+END 
 
 RefreshIfNotInDanger:
 CHECK_EVENTID 1 
@@ -40,6 +68,18 @@ Read_Byte(YCoordNewArea)
 SMUL rB rC rB 
 Read_Byte(XCoordNewArea)
 SADD rB rC rB 
+NoFade
+ENDA 
+
+ConvertFromMemSlotBCoord:
+SVAL rC 0x10000 
+SMOD r2 rB rC  
+Write_Byte(XCoordNewArea)
+SVAL rC 0x10000
+SDIV r2 rB rC 
+Write_Byte(YCoordNewArea) 
+NoFade
+ENDA 
 
 
 ChTransition: 
@@ -55,6 +95,9 @@ NoFade
 ENDA 
 
 LoadAndPlacePlayers:
+//EVBIT_T 0x2 //Scene skipping 
+//FADU -1 
+//FADI -1 
 Call CheckDeployed 
 Call PlacePlayers 
 NoFade
@@ -63,33 +106,38 @@ ENDA
 
 PlacePlayers:
 SET_ACTIVE 0
+SPAWN_NPC 0xFD [0,0]
 Read_Byte(XCoordNewArea)
 SADD r5 rC r0 
-SVAL r1 0x0101 //1st player unit 
+SVAL r1 0xFD //1st player unit 
 SVAL r3 0x10  	// X coord 
 SVAL r4 0x03 	// Byte 
 ASMC SetUnitStatus 
 
 Read_Byte(YCoordNewArea)
 SADD r5 rC r0 
-SVAL r1 0x0101 //1st player unit 
+SVAL r1 0xFD //1st player unit 
 SVAL r3 0x11 	// Y coord 
 SVAL r4 0x03 	// Byte
 ASMC SetUnitStatus
-//Text(0x9DD)
+//Text(0x9D6)
 ENUN 			// move 1st unit instantly to value in CoordsNewArea 
 
-MOVEONTO 	0x7FFF 0x102 0x101 //hold this coordinate for now because MoveNextTo is stupid 
+// speed, unit, destination unit 
+MOVEONTO 	0xFFFF 0x101 0xFD //hold this coordinate for now because MoveNextTo is stupid 
+MOVENEXTTO 	0xFFFF 0x102 0xFD 
 
-
-MOVENEXTTO 0x7FFF 0x0103 0x0101
-MOVENEXTTO 0x7FFF 0x0104 0x0101
+MOVENEXTTO 0xFFFF 0x0103 0xFD
+MOVENEXTTO 0xFFFF 0x0104 0xFD
 ENUN 
-MOVENEXTTO 0x7FFF 0x0105 0x0101
-MOVENEXTTO 0x7FFF 0x0106 0x0101
-MOVENEXTTO 0x7FFF 0x0102 0x0102 //free up P1's coord  
+
+MOVENEXTTO 0xFFFF 0x0105 0xFD
+MOVENEXTTO 0xFFFF 0x0106 0xFD
+//MOVENEXTTO 0xFFFF 0x0102 0x0102 //free up P1's coord  
 
 ENUN 
+CAM1 0xFD 
+DISA 0xFD 
 UNCR(0x0101, 0x0D)
 //Text(0x9DD)
 

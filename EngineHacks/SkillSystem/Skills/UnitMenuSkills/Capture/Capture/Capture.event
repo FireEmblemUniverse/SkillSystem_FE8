@@ -83,6 +83,7 @@
 	POIN SkillTester
 	WORD WatchfulID
 	
+	//#include "Capture_Effect_Func_Vesly.lyn.event"
 	ALIGN 4
 	Capture_Effect_Func:
 	#incbin "Capture_Effect_Func.dmp"
@@ -140,9 +141,13 @@
 	
 	ALIGN 4
 	Blank_Portrait:
-	#incext PortraitFormatter "blank_portrait.png"
+	//#incext PortraitFormatter "blank_portrait.png"
+	#incbin "blank_portrait.dmp"
 	setMugEntry(0x1, Blank_Portrait, 3, 5, 3, 3)
 	
+	ALIGN 4
+	Nonsense_entry:
+	WORD 0 0
 #else
 	ERROR "You're not assembling FE8 events!"
 #endif

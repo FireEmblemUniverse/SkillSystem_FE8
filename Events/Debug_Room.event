@@ -27,7 +27,7 @@ BYTE 0
 EventPointerTable(OaksLabCh,ThisChapter)
 
 
-EventPointerTable(PalletTownCh,ThisChapter)
+
 
 
 //EventPointerTable(Route1Ch,ThisChapter)
@@ -91,6 +91,7 @@ EventPointerTable(Route21Ch             ,ThisChapter)
 EventPointerTable(Route22Ch             ,ThisChapter)
 EventPointerTable(Route23nCh            ,ThisChapter)
 EventPointerTable(Route23sCh            ,ThisChapter)
+//EventPointerTable(PokecenterCh            ,ThisChapter)
 
 
 
@@ -278,6 +279,9 @@ ENUN
 //GotoPrepScreen
 Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
@@ -309,7 +313,9 @@ SupplyItem(Vulnerary)
 LABEL 0x63
 //GotoPrepScreen 
 ENUT SkipIntroFlag
-MNC2 Route1Ch 
+//MNC2 PokecenterCh 
+//MNC2 Route1Ch 
+MNC2 PalletTownCh 
 NoFade
 ENDA
 

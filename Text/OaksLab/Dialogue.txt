@@ -1,22 +1,37 @@
+## SetNameTest
+Mewtwo[NL]
+Placeholder text[NL]
+is being used.[A]
+[X]
+
+
+
+## RetreatCenter 
+Retreat to last Pokecenter?
+[No][X]
+
 # 0x09D5
 Retreat to Pewter city?
 [No][X]
 # 0x09D6
 Proceed to next area?
 [Yes][X]
-# 0x09D7
-[OpenMidRight][LoadFace][0x104][OpenMidRight]Hmm, let me rate your Pokedex...[.....]
-...[....]   ...[....]   ...[....][A]
-Oh wait, I never gave you one![A][....]
-Thing is, I gave my last one to Gary.
-He is my grandson, afterall.[A]
+
+
+## EnterOaksLabText
+[OpenMidRight][LoadFace][0x104][OpenMidRight]Hmm, let me rate your Pokedex...[.....][NL]
+...[....]   ...[....]   ...[....][A][NL]
+Oh wait, I never gave you one![A][....][NL]
+Thing is, I gave my last one to Gary.[NL]
+He is my grandson, afterall.[A][NL]
 I knew you'd understand.[A][2NL]
-What? How will you track your collection?[....]
+What? How will you track your collection?[....][NL]
 Welp,[....] beats me.[A][LoadOverworldFaces]
 ...fine. You have a number of Pokemon.
 (Hey, one is a number too.)[A]
 Keep up the hard work.[A][X]
-# 0x09D8
+
+## EnterGaryHouseText
 You find a world map!
 ...but it is all scribbled over.[A]
 You decide to leave it.[A][X]
@@ -108,20 +123,20 @@ This is our turf, now.[A][2NL]
 Quick, form a [ToggleRed]line of defense[ToggleRed]![A][X]
 
 
-# 0x09F3
+## RedHouseText
 [Tact]'s house.[A][X]
 
-# 0x09F4
+## GaryHouseText
 Gary's house.[A][X]
 
-# 0x09F5
+## PalletTownText
 Pallet Town.[A][X]
 
-# 0x09F6
+## ResearchLabText
 Oak's Research Lab.[A][X]
 
-# 0x09F7
-Save by visiting home or a Pokecenter.
+## PalletTrainerTipsText 
+Save by visiting home or a Pokecenter.[NL]
             -Trainer's Tips[A][X]
 			
 # 0x09F8

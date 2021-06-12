@@ -9,7 +9,7 @@
 #define StrengthBoulderSMS 0x60 
 //#define 0x0
 //#define 0x0
-//#define 0x0
+#define Sign2SMS 0x63 
 #define BurrowSMS 0x64 
 #define GrassSMS 0x65 
 #define SignSMS 0x66 

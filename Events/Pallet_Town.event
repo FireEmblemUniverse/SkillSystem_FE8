@@ -1,0 +1,199 @@
+EventPointerTable(PalletTownCh,ThisChapter)
+setText(0x161, NewChName)
+ALIGN 4
+NewChName:
+String("Pallet Town")
+BYTE 0
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 RefreshUnitsEvent 0 
+AREA 0 ToRoute21 [0,0] [0,0] 
+AREA 0 ToRoute1 [12,0] [13,0] 
+END_MAIN
+
+ToRoute21:
+ChapterTransition(Route21Ch, 0, 0)
+
+ToRoute1:
+ChapterTransition(Route1Ch, 19, 34)
+
+RefreshUnitsEvent:
+
+Read_Byte(RamFlags)
+SADD r5 rC r0 
+MemSlotToString(r5)
+//Text(0x9DD) 
+
+//Write_Byte(23, RamFlags) //202E204 //202E4D4 (FE8)
+//Read_Byte(RamFlags)
+SADD r5 rC r0 
+MemSlotToString(r5)
+//Text(0x9DD) 
+
+CALL RefreshIfNotInDanger
+NoFade
+ENDA 
+
+
+GenericEffect(2, TalkEvent) 
+GenericDisappearEffect(2, TalkEvent) 
+
+
+
+VisitGaryHouse:
+
+TutText(EnterGaryHouseText)
+NoFade 
+ENDA 
+
+LocationBasedEvents:
+
+
+House(0,VisitPokecenter,5,7) 
+House(0,VisitGaryHouse,15,7) //gary's house 
+//House(0,VisitPokecenter,16,13) //oak's lab 
+/*
+Vendor(ShopItems,2,7)
+Armory(ArmoryItems,10,26)
+
+Village(0x8,VillageEvent,18,27)
+House(0,HouseEvent,6,24)
+Seize(10,2)
+*/
+END_MAIN
+
+Traps1:
+//CoinsTrap(8,2,3,65535)
+
+EnterTrap(16,13, EnterOaksLabText) 
+EnterTrap(15,7, EnterOaksLabText) 
+
+BlankExamineTrap(4,7,RedHouseText)
+BlankExamineTrap(13,7,GaryHouseText)
+
+SignTrap(5,14, PalletTrainerTipsText)
+Sign2Trap(9, 11, PalletTownText) 
+
+
+Sign2Trap(16,16, ResearchLabText)
+
+//CoinsTrap(13,15, 4, 0x0609)
+
+CutBush(6,19)
+CutBush(11,19)
+
+
+RedPokeballTrap(4,4, 0x01, Vulnerary)
+
+//sprites: 
+
+
+
+Flower(5,12)
+Flower(6,12)
+Flower(7,12)
+Flower(8,12)
+Flower(5,13)
+Flower(6,13)
+Flower(7,13)
+Flower(8,13)
+
+ENDTRAP
+ALIGN 4
+
+
+
+
+
+	
+
+BeginningScene:
+CALL LoadAndPlacePlayers 
+CALL GlobalBeginningScene
+LABEL 0x63
+END
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+TalkEvent:
+Text(0x9DD) 
+NoFade
+ENDA 
+
+VillageEvent:
+	VillageEventItem(VillageText, Village, Boots)
+
+HouseEvent:
+	// Set parameters
+	SVAL r1 NiceThighsID
+	SVAL r2 (-1) // (-1) is active unit
+	// Check if unit has skill
+	// If they have, goto label #0 (end)
+	ASMC (ASMC_HasSkill|1)
+	BNE 0 rC r0
+	// Learn skill to unit
+	ASMC (ASMC_LearnNewSkill|1)
+LABEL 0
+	Text(HouseText)	
+	NoFade
+	ENDA

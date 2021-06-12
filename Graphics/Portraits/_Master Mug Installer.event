@@ -10,7 +10,7 @@ BulbasaurData: // 001
 #incbin "Dmp/1_frames.dmp" 
 #incbin "Dmp/1_palette.dmp" 
 #incbin "Dmp/1_minimug.dmp" 
-setMugEntry(1, BulbasaurData, 9, 9, 9, 9)
+setMugEntry(152, BulbasaurData, 9, 9, 9, 9)
 
 ALIGN 16 
 IvysaurData: // 002

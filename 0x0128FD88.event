@@ -1,0 +1,29 @@
+
+////////////////////////////////////////////////////
+//                                                //
+// Disassembled with Nintenlord's Event Assembler //
+// Version: 11.1.0.0                              //
+// Game: FE8                                      //
+// File: FE8Hack.event_assembler.gba              //
+// Offset: $128FD88                               //
+//                                                //
+////////////////////////////////////////////////////
+
+
+
+ORG $128FD88
+TEXTSTART
+SVAL 0x2 0x35
+CALL 0x9EE2E8
+_0x1A22
+MOVIMM 0x1 0x42
+SHORT 0x3
+WORD 0x20000
+TEXTSHOW 0x9D6
+TEXTEND
+REMA
+CLEAN
+LABEL 0x63
+EVBIT_T 0x7
+ENDA
+

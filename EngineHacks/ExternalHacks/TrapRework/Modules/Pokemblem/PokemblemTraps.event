@@ -76,9 +76,13 @@
 	SetTrapEventInit(61,GenericTrapInitialization)
 	SetTrapEventInit(62,GenericTrapInitialization)
 	SetTrapEventInit(63,GenericTrapInitialization)
+	
+	
 	SetTrapEventInit(64,GenericTrapInitialization)
 	SetTrapEventInit(65,GenericTrapInitialization)
-
+	SetTrapEventInit(66,GenericTrapInitialization)
+	SetTrapEventInit(67,GenericTrapInitialization)
+	SetTrapEventInit(68,GenericTrapInitialization)
 //my script for usability / effect
 
 
@@ -108,10 +112,60 @@
 
 
 
+
+#define SignTrapID 80 //0x50 
+SetTrapEventInit(SignTrapID,DisplayTextInitialization)
+SetTrapMapSprite(SignTrapID,SignSMS)
+SetTrapMapSpritePalette(SignTrapID,NPCTrapPaletteWord)
+SetImpassableTrap(SignTrapID)
+
+
+#define Sign2TrapID 81 //0x51 
+SetTrapEventInit(Sign2TrapID,DisplayTextInitialization)
+SetTrapMapSprite(Sign2TrapID,Sign2SMS)
+SetTrapMapSpritePalette(Sign2TrapID,NPCTrapPaletteWord)
+SetImpassableTrap(Sign2TrapID)
+
+#define BlankExamineID 82 //0x52
+SetTrapEventInit(BlankExamineID,DisplayTextInitialization)
+SetTrapMapSprite(BlankExamineID,BlankSMS)
+SetTrapMapSpritePalette(BlankExamineID,NPCTrapPaletteWord)
+SetImpassableTrap(BlankExamineID)
+
+#define BlankTalkID 83 //0x52
+SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
+SetTrapMapSprite(BlankTalkID,BlankSMS)
+SetTrapMapSpritePalette(BlankTalkID,NPCTrapPaletteWord)
+SetImpassableTrap(BlankTalkID)
+
+// same but not adjacent: on instead 
+#define BlankEnterID 90 //0x5A 
+SetTrapEventInit(BlankEnterID,EnterTextInitialization)
+SetTrapMapSprite(BlankEnterID,BlankSMS)
+SetTrapMapSpritePalette(BlankEnterID,NPCTrapPaletteWord)
+//SetImpassableTrap(BlankEnterID)
+
+#define EnterTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankEnterID XX YY CompletionFlag; SHORT TextID"
+#define EnterTrap(XX,YY, TextID) "BYTE BlankEnterID XX YY 0x0; SHORT TextID"
+
+
+#define SignTrap(XX,YY,CompletionFlag, TextID) "BYTE SignTrapID XX YY CompletionFlag; SHORT TextID"
+#define SignTrap(XX,YY, TextID) "BYTE SignTrapID XX YY 0x0; SHORT TextID"
+
+#define Sign2Trap(XX,YY,CompletionFlag, TextID) "BYTE Sign2TrapID XX YY CompletionFlag; SHORT TextID"
+#define Sign2Trap(XX,YY, TextID) "BYTE Sign2TrapID XX YY 0x0; SHORT TextID"
+
+#define BlankExamineTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankExamineID XX YY CompletionFlag; SHORT TextID"
+#define BlankExamineTrap(XX,YY, TextID) "BYTE BlankExamineID XX YY 0x0; SHORT TextID"
+
+
 // Display + block your path 
 #define OpenPokeball(XX,YY) "BYTE OpenPokeballItemID XX YY 0x0 OpenBallSMS 0x0"
 #define Sign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 SignSMS EventIndex"
+#define Save(XX,YY) "BYTE SaveID XX YY 0x0 BlankSMS 1"
+#define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 2"
 
+//#define Enter(XX,YY) 
 
 // NPCs 
 #define Gary(XX,YY) "BYTE ObstacleID XX YY 0x0 GarySMS 0x0"
@@ -231,5 +285,8 @@ POIN GiveItemEvent
 ALIGN 4
 #include "asm/ObtainCoins.lyn.event"
 
-#include "GiveItemEvent.event"
+#include "asm/DisplayText.lyn.event" 
+#include "asm/EnterText.lyn.event"
 
+#include "GiveItemEvent.event"
+#include "ShowTextEvent.event"

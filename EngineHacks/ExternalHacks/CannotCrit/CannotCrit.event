@@ -4,6 +4,6 @@
 
 
 ALIGN 4
-#inctext lyn "CannotCrit.elf"
+#include "CannotCrit.lyn.event"
 
 #endif // CANNOT_CRIT

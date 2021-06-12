@@ -1,0 +1,150 @@
+Search "#incext" (50 hits in 20 files)
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\StrMagSplit\StrMagSplit\LevelUp\LevelUp.event (1 hit)
+	Line 223: 	//#incext compress "NewLevelupTsaDecomp.dmp"
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\TrapRework\Modules\HealTiles\HealTiles.event (1 hit)
+	Line 37: //#incext Png2Dmp "sparkle_final_4.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\Necessary\ModularStatScreen\ModularStatScreen.event (1 hit)
+	Line 200:     //#incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\QualityOfLife\BattleStatsWithAnimsOff\FE8-BattleStats.event (4 hits)
+	Line 47: 	//#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
+	Line 65: 	//#incext Png2Dmp "New_Stat_Names.png" --lz77
+	Line 70: 	//#incext Png2Dmp "New_Stat_Names.png" --palette-only
+	Line 75: 	//#incext Png2Dmp "new_numbers.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\QualityOfLife\BattleStatsWithAnimsOff\FE8-BattleStatsMasterEAFile.txt (4 hits)
+	Line 45: 	//#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
+	Line 63: 	//#incext Png2Dmp "New_Stat_Names.png" --lz77
+	Line 68: 	//#incext Png2Dmp "New_Stat_Names.png" --palette-only
+	Line 73: 	//#incext Png2Dmp "new_numbers.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\QualityOfLife\TextChNames\TextChNames.event (1 hit)
+	Line 25:     //#incext Png2Dmp "bin/font.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\SkillSystem\Skills\UnitMenuSkills\Capture\Capture\Capture.event (1 hit)
+	Line 143: 	//#incext PortraitFormatter "blank_portrait.png"
+  C:\Users\David\Desktop\Buildfile\EventAssembler\README2.txt (4 hits)
+	Line 50: -Added #incext; Searches Tools folder for the name of the tool provided,
+	Line 59: -Fixed bugs with #incext
+	Line 93: -Tools invoked through directives (`#incext`, `#inctevent` & `#runext`) can now report errors via stderr (before they needed to print "ERROR: <err string>" to stdout)
+	Line 125:  design for #incext.
+  C:\Users\David\Desktop\Buildfile\EventAssembler\Tools\README.txt (2 hits)
+	Line 2: #incext <name of tool> <params to get passed to the tool>
+	Line 8: Parses a text file. Definitions should be placed in the working directory (i.e. same directory that calls #incext).
+  C:\Users\David\Desktop\Buildfile\Graphics\Title Screen\256 cols\titlebackgroundinstaller.event (2 hits)
+	Line 8: 	//#incext compress "titlebackgroundimage.img.bin"
+	Line 14: 	//#incext png2dmp "titlebackgroundimage.png" --palette-only
+  C:\Users\David\Desktop\Buildfile\Maps\IncbinData.event (5 hits)
+	Line 5: //#incext Png2Dmp "Tilesets/PalletTownObj.png" --lz77
+	Line 11: //#incext Png2Dmp "Tilesets/PalletTownObj.png" --palette-only 
+	Line 17: //#incext compress "Tilesets/PalletTown.mapchip_config"
+	Line 23: //#incext Png2Dmp "Tilesets/Route1Obj.png" --lz77
+	Line 28: //#incext Png2Dmp "Tilesets/Route1Obj.png" --palette-only 
+  C:\Users\David\Desktop\Buildfile\Maps\Incext to remove.txt (12 hits)
+	Line 1: Search "#incext" (54 hits in 24 files)
+	Line 3: 	Line 223: 	#incext compress "NewLevelupTsaDecomp.dmp"
+	Line 6: 	Line 47: 	#incext Png2Dmp "data/fx-preview.png" --palette-only
+	Line 7: 	Line 51: 	#incext Png2Dmp "data/fx-strength.png" --palette-only
+	Line 8: 	Line 55: 	#incext Png2Dmp "data/fx-skill.png" --palette-only
+	Line 9: 	Line 59: 	#incext Png2Dmp "data/fx-speed.png" --palette-only
+	Line 10: 	Line 63: 	#incext Png2Dmp "data/fx-defense.png" --palette-only
+	Line 11: 	Line 67: 	#incext Png2Dmp "data/fx-resistance.png" --palette-only
+	Line 12: 	Line 71: 	#incext Png2Dmp "data/fx-luck.png" --palette-only
+	Line 13: 	Line 75: 	#incext Png2Dmp "data/fx-move.png" --palette-only
+	Line 14: 	Line 80: 		#incext Png2Dmp "data/fx-magic.png" --palette-only
+	Line 16: 	Line 143: 	#incext PortraitFormatter "blank_portrait.png"
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Chapter Screen README.txt (1 hit)
+	Line 64:     ChapterID Y just put POIN X as entry number Y in table one, and #incbin or #incext the corresponding 
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Graphics\AreaBG\AreaBG.event (2 hits)
+	Line 9: //#incext Png2Dmp "Pallet.png" --lz77
+	Line 14: //#incext Png2Dmp "VictoryRoadAft.png" --lz77
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Graphics\AreaBG\backup\AreaBG.event (3 hits)
+	Line 9: #incext Png2Dmp "VictoryRoadAft.png" --lz77
+	Line 15: #incext Png2Dmp "NationalParkAft.png" --lz77
+	Line 21: #incext Png2Dmp "IlexForestMor.png" --lz77
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Graphics\Graphics.event (1 hit)
+	Line 9: //#incext Png2Dmp "VersusBG/VersusBG.png" --lz77
+  C:\Users\David\Desktop\Buildfile\Patches\MyHack\FE8-Convoy_Partition_and_Item_Combining\FE8-Convoy_Stuff_EA.event (2 hits)
+	Line 209: //#incext Png2Dmp "Combine.png" --lz77
+	Line 214: //#incext Png2Dmp "Combine.png" --palette-only
+  C:\Users\David\Desktop\Buildfile\Tools\MacOS\textprocess (1 hit)
+	Line 126:                 f.write('#incext ParseFile "'+ os.path.join(subdirectory, textID + ".txt") +'"\n')
+  C:\Users\David\Desktop\Buildfile\Tools\TextProcess\text-process-classic unused.py (1 hit)
+	Line 293: 					f.write('#incext ParseFile "{}"\n'.format(os.path.relpath(textFileName, os.path.dirname(outputPath))))
+  C:\Users\David\Desktop\Buildfile\Tools\TextProcess\textprocess-classic.py (1 hit)
+	Line 431: 					f.write('#incext ParseFile "{}"\n'.format(os.path.relpath(textFileName, os.path.dirname(outputPath))))
+Search "#incext" (54 hits in 24 files)
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\StrMagSplit\StrMagSplit\LevelUp\LevelUp.event (1 hit)
+	Line 223: 	#incext compress "NewLevelupTsaDecomp.dmp"
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\StrMagSplit\_MasterAsmInstaller.event (1 hit)
+	Line 23: 		#incext Png2Dmp "SpiritDust.png"
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\TrapRework\Modules\HealTiles\HealTiles.event (1 hit)
+	Line 37: //#incext Png2Dmp "sparkle_final_4.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\TrapRework\Modules\TelliusTorches\TelliusTorches.event (2 hits)
+	Line 36: 	#incext Png2Dmp "lit_torch.png" --lz77
+	Line 40: 	#incext Png2Dmp "unlit_torch.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\ExternalHacks\TrapRework\TrapRework_Internal.event (1 hit)
+	Line 79: 	#incext Png2Dmp "bin/Sigil.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\Necessary\IconRework\IconRework_Internal.event (3 hits)
+	Line 112: #incext Png2Dmp "bin/AffinityIcons.png"
+	Line 116: #incext Png2Dmp "bin/MountTypeIcons.png"
+	Line 120: #incext Png2Dmp "bin/WRankIcons.png"
+  C:\Users\David\Desktop\Buildfile\EngineHacks\Necessary\ModularStatScreen\ModularStatScreen.event (1 hit)
+	Line 200:     //#incext Png2Dmp "asm/pagenamegraphic.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\QualityOfLife\BattleStatsWithAnimsOff\FE8-BattleStats.event (4 hits)
+	Line 47: 	//#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
+	Line 65: 	//#incext Png2Dmp "New_Stat_Names.png" --lz77
+	Line 70: 	//#incext Png2Dmp "New_Stat_Names.png" --palette-only
+	Line 75: 	//#incext Png2Dmp "new_numbers.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\QualityOfLife\BattleStatsWithAnimsOff\FE8-BattleStatsMasterEAFile.txt (4 hits)
+	Line 45: 	//#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
+	Line 63: 	//#incext Png2Dmp "New_Stat_Names.png" --lz77
+	Line 68: 	//#incext Png2Dmp "New_Stat_Names.png" --palette-only
+	Line 73: 	//#incext Png2Dmp "new_numbers.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\QualityOfLife\TextChNames\TextChNames.event (1 hit)
+	Line 25:     //#incext Png2Dmp "bin/font.png" --lz77
+  C:\Users\David\Desktop\Buildfile\EngineHacks\SkillSystem\Skills\RallySkills\RallySkills.event (9 hits)
+	Line 47: 	#incext Png2Dmp "data/fx-preview.png" --palette-only
+	Line 51: 	#incext Png2Dmp "data/fx-strength.png" --palette-only
+	Line 55: 	#incext Png2Dmp "data/fx-skill.png" --palette-only
+	Line 59: 	#incext Png2Dmp "data/fx-speed.png" --palette-only
+	Line 63: 	#incext Png2Dmp "data/fx-defense.png" --palette-only
+	Line 67: 	#incext Png2Dmp "data/fx-resistance.png" --palette-only
+	Line 71: 	#incext Png2Dmp "data/fx-luck.png" --palette-only
+	Line 75: 	#incext Png2Dmp "data/fx-move.png" --palette-only
+	Line 80: 		#incext Png2Dmp "data/fx-magic.png" --palette-only
+  C:\Users\David\Desktop\Buildfile\EngineHacks\SkillSystem\Skills\UnitMenuSkills\Capture\Capture\Capture.event (1 hit)
+	Line 143: 	#incext PortraitFormatter "blank_portrait.png"
+  C:\Users\David\Desktop\Buildfile\EventAssembler\README2.txt (4 hits)
+	Line 50: -Added #incext; Searches Tools folder for the name of the tool provided,
+	Line 59: -Fixed bugs with #incext
+	Line 93: -Tools invoked through directives (`#incext`, `#inctevent` & `#runext`) can now report errors via stderr (before they needed to print "ERROR: <err string>" to stdout)
+	Line 125:  design for #incext.
+  C:\Users\David\Desktop\Buildfile\EventAssembler\Tools\README.txt (2 hits)
+	Line 2: #incext <name of tool> <params to get passed to the tool>
+	Line 8: Parses a text file. Definitions should be placed in the working directory (i.e. same directory that calls #incext).
+  C:\Users\David\Desktop\Buildfile\Graphics\Title Screen\256 cols\titlebackgroundinstaller.event (2 hits)
+	Line 8: 	//#incext compress "titlebackgroundimage.img.bin"
+	Line 14: 	//#incext png2dmp "titlebackgroundimage.png" --palette-only
+  C:\Users\David\Desktop\Buildfile\Maps\IncbinData.event (5 hits)
+	Line 5: //#incext Png2Dmp "Tilesets/PalletTownObj.png" --lz77
+	Line 11: //#incext Png2Dmp "Tilesets/PalletTownObj.png" --palette-only 
+	Line 17: //#incext compress "Tilesets/PalletTown.mapchip_config"
+	Line 23: //#incext Png2Dmp "Tilesets/Route1Obj.png" --lz77
+	Line 28: //#incext Png2Dmp "Tilesets/Route1Obj.png" --palette-only 
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Chapter Screen README.txt (1 hit)
+	Line 64:     ChapterID Y just put POIN X as entry number Y in table one, and #incbin or #incext the corresponding 
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Graphics\AreaBG\AreaBG.event (2 hits)
+	Line 9: //#incext Png2Dmp "Pallet.png" --lz77
+	Line 14: //#incext Png2Dmp "VictoryRoadAft.png" --lz77
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Graphics\AreaBG\backup\AreaBG.event (3 hits)
+	Line 9: #incext Png2Dmp "VictoryRoadAft.png" --lz77
+	Line 15: #incext Png2Dmp "NationalParkAft.png" --lz77
+	Line 21: #incext Png2Dmp "IlexForestMor.png" --lz77
+  C:\Users\David\Desktop\Buildfile\Patches\ChapterTransition\Graphics\Graphics.event (1 hit)
+	Line 9: //#incext Png2Dmp "VersusBG/VersusBG.png" --lz77
+  C:\Users\David\Desktop\Buildfile\Patches\MyHack\FE8-Convoy_Partition_and_Item_Combining\FE8-Convoy_Stuff_EA.event (2 hits)
+	Line 209: //#incext Png2Dmp "Combine.png" --lz77
+	Line 214: //#incext Png2Dmp "Combine.png" --palette-only
+  C:\Users\David\Desktop\Buildfile\Tools\MacOS\textprocess (1 hit)
+	Line 126:                 f.write('#incext ParseFile "'+ os.path.join(subdirectory, textID + ".txt") +'"\n')
+  C:\Users\David\Desktop\Buildfile\Tools\TextProcess\text-process-classic unused.py (1 hit)
+	Line 293: 					f.write('#incext ParseFile "{}"\n'.format(os.path.relpath(textFileName, os.path.dirname(outputPath))))
+  C:\Users\David\Desktop\Buildfile\Tools\TextProcess\textprocess-classic.py (1 hit)
+	Line 431: 					f.write('#incext ParseFile "{}"\n'.format(os.path.relpath(textFileName, os.path.dirname(outputPath))))

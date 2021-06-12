@@ -28,7 +28,14 @@
 .type GenericTrapUsability0x38, %function
 .global GenericTrapUsability0x39
 .type GenericTrapUsability0x39, %function
-
+.global GenericTrapUsability0x3A
+.type GenericTrapUsability0x3A, %function
+.global GenericTrapUsability0x3B
+.type GenericTrapUsability0x3B, %function
+.global GenericTrapUsability0x3C
+.type GenericTrapUsability0x3C, %function
+.global GenericTrapUsability0x3D
+.type GenericTrapUsability0x3D, %function
 
 
 
@@ -315,6 +322,25 @@ push {r4,r7,r14}
 mov r7, #0x39
 b GenericTrapUsability
 
+GenericTrapUsability0x3A:
+push {r4,r7,r14}
+mov r7, #0x39
+b GenericTrapUsability
+
+GenericTrapUsability0x3B:
+push {r4,r7,r14}
+mov r7, #0x39
+b GenericTrapUsability
+
+GenericTrapUsability0x3C:
+push {r4,r7,r14}
+mov r7, #0x39
+b GenericTrapUsability
+
+GenericTrapUsability0x3D:
+push {r4,r7,r14}
+mov r7, #0x39
+b GenericTrapUsability
 
 
 

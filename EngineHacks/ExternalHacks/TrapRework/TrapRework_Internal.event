@@ -76,8 +76,7 @@ ALIGN 4
 	POP
 	*/
 	ExampleMapSpriteGraphics:
-	#incext Png2Dmp "bin/Sigil.png" --lz77
-	
+	#incbin "bin/Sigil.dmp" 
 	
 	ALIGN 4
 	TrapInitFromEventsJumpTable: //functions here get the pointer to trap data in  events in r5(!)

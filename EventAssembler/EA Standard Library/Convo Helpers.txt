@@ -18,7 +18,13 @@
 #endif
 
 #ifdef _FE8_
+#define ShowCG(BGIndex) "SVAL 0x2 BGIndex; REMOVEPORTRAITS; BACG 0xFFFF;"
+
 #define Text(text) "TEXTSTART; TEXTSHOW text; TEXTEND; REMA"
+#define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
+#define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
+#define CGText(text, BGIndex) "FlashBlack; ShowCG(BGIndex); CGTEXTSTART; TEXTSHOW text; TEXTEND; REMA; ClearBackgroundSmooth"
+
 #define Text(background,text) "SVAL 2 background; SVAL 3 text; CALL $9EE310"
 #define ShowText(id) "TEXTSHOW id; TEXTEND"
 #define StartText(id) "TEXTSTART; ShowText(id)"
@@ -29,7 +35,7 @@
 #define CenterTutorialTextBox "SVAL 0xB 0xFFFFFFFF"
 #define FlashWhite "FAWI 0x20; STAL 0x10; FAWU 0x20"
 #define FlashBlack "FADI 0x20; STAL 0x10; FADU 0x20"
-#define ShowCG(BGIndex) "SVAL 0x2 BGIndex; REMOVEPORTRAITS; BACG 0xFFFF;"
+
 #endif
 
 

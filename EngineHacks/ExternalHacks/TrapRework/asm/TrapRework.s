@@ -58,6 +58,9 @@ mov r2,r0 @r2 = trap ID
 mov r1, #0x10		@custom traps 0x10 - 0x1F to use 0x3 as completion flag / hidden sprite on compl.
 cmp r2, r1
 blt HealTiles
+mov r1, #0x50 
+cmp r2, r1 
+bge HealTiles 
 mov r1, #0x20 		@custom traps 0x20 and greater to use 0x3 as req'd flag and 0x4 as sprite 
 cmp r2, r1
 bge SpriteToDisplay
@@ -298,7 +301,7 @@ cmp r0,#0
 beq LightRunes_GoBack
 
 ldr r4,=gMapTerrain
-mov r3,#0
+mov r3,#0x2C @ terrain type 
 
 LightRunes_LoopStart:
 ldrb r0,[r2,#2]

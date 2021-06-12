@@ -1,0 +1,37 @@
+
+
+
+#define CGTextFadeIn(TextID, CGID) "SADD r3 r2 r0; TEXTSTART; SVAL 0x2 0x35; CALL 0x9EE2E8; _0x1A22; MOVIMM 0x1 0x42; SHORT CGID; WORD 0x20000; SADD r2 r3 r0; TEXTSHOW TextID; TEXTEND; REMA; FADI 0x32; CLEAN "
+#define NewCGText(TextID, CGID) "SADD r3 r2 r0; TEXTSTART; SVAL 0x2 0x35; EVBIT_F 8; CALL 0x9EE2E8; _0x1A22; BACG CGID; SADD r2 r3 r0; TEXTSHOW TextID; TEXTEND; REMA; FADI 0x32; CLEAN "
+
+//no BGs
+// Text shares space with sprites, so it uses HIDEMAP to hide units 
+// We need to use SHOWMAP at the end. There is a small graphical glitch 
+// if sprites were under the textbox. Fading to black before using SHOWMAP solves this issue 
+#define CGTextFadeOut(TextID) "_0x1A22; TEXTSHOW TextID; TEXTEND; REMA; FADI 0xFF; CLEAN; SHOWMAP; FADU 0xFF"
+#define NewCGText(TextID) "_0x1A22; TEXTSHOW TextID; TEXTEND; REMA; SHOWMAP"
+
+//#define TestCGText(TextID) "_0x1A22; SHOWMAP; TEXTSHOW TextID; TEXTEND; REMA"
+
+//[SetName]test[NL] 
+// about 10 chars max 
+// must be even number of chars or padded with [.] 
+
+// Text, TutText, WallText, CGText 
+
+TutTextEvent:
+TutText(-1)
+NoFade 
+ENDA 
+
+WallTextEvent:
+WallText(-1) 
+NoFade 
+ENDA 
+
+ShowTextEvent:
+NewCGText(-1) 
+//TestCGText(-1, 2)
+NoFade
+ENDA 
+

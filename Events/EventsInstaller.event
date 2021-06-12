@@ -1,5 +1,6 @@
 #define DebugMode 0x1 
 
+#include "Definitions.event"
 #include "UnitAndClassDefinitions.event"
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
@@ -10,9 +11,14 @@
 	}
 //#endif //
 
-
 {
-	#include "Route_One.event" 
+#include "Pallet_Town.event"
 }
 
+{
+#include "Route_One.event" 
+}
+{
+#include "Pokecenter.event"
+}
 

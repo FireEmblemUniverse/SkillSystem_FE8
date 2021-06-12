@@ -1462,6 +1462,9 @@ ALIGN 4
 SignStanding:
 #incbin "More SMS/Sign.dmp"
 
+ALIGN 4
+Sign2Standing:
+#incbin "More SMS/Sign2.dmp"
 
 ALIGN 4
 RockSmashStanding:
