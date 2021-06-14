@@ -24,9 +24,11 @@ TurnEventPlayer(0,Route1ReinEvent,0,255)
 
 END_MAIN
 
-//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, TurnToOccur, FrequencyInTurns)
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 Route1ReinEvent:
-Reinforce(0xF0, 2, Route1Rein, 3, 2) 
+Reinforce(0xF0, 2, Route1Rein, 1, 3) 
+Reinforce(0xF1, 1, Route1Rein, 4, 1) 
+Reinforce(0xF2, 3, Route1Rein, 3, 4) 
 NoFade 
 ENDA 
 
@@ -158,8 +160,8 @@ CALL GlobalBeginningScene
 
 CALL LoadAndPlacePlayers 
 
-MOVE -1 Eirika [13,2] 
-ENUN 
+//MOVE -1 Eirika [13,2] 
+//ENUN 
 
 //LOAD1 0x1 NPCUnits 
 //ENUN 
@@ -193,9 +195,12 @@ AutoLevelUnits(1, True, 0x0199)
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 
-//SetUnitStatus(0xF0, AI2Counter, 5)
+SetUnitStatus(0xF0, AI2Counter, 5)
 SetUnitStatus(0xF1, AI2Counter, 5)
 SetUnitStatus(0xF2, AI2Counter, 5)
+SetUnitStatus(0xF0, CurrentHP, 1)
+SetUnitStatus(0xF1, CurrentHP, 1)
+SetUnitStatus(0xF2, CurrentHP, 1)
 
 
 
@@ -235,30 +240,30 @@ UNIT
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b				 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b				 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
 EnemyUnitsB:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
 EnemyUnitsC:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,5] 001b	0x0 0x01 REDA0R5 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,5] 001b	0x0 0x01 REDA0R5 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsD:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] DoNothing 
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI 
 UNIT
 
 EnemyTrainersA:
-UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 NPCUnits:

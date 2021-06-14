@@ -4,23 +4,105 @@
 
 // AI 1 list 
 // Vanilla entries take up 0 - 20 
-NewAI1Entry(21, TestAI1)
+NewAI1Entry(21, DoNothingAI1)
+NewAI1Entry(22, AttackIfEnemyInRange)
+NewAI1Entry(23, AttackIfEnemyInRange)
+NewAI1Entry(24, AttackIfEnemyInRange)
+NewAI1Entry(25, AttackIfEnemyInRange)
 
 // AI 2 list
 // Vanilla entries take up 0 - 18
-NewAI2Entry(19, TestAI2)
+NewAI2Entry(21, DoNothingAI2)
+NewAI2Entry(22, Within_2_Safest_Zoning_AI2)
+NewAI2Entry(23, Safest_Zoning_AI2)
+NewAI2Entry(24, Less_Safe_Zoning_AI2)
+NewAI2Entry(25, BeedrilAI_2)
 
+#define SafeZoneAI2 23 
+#define BushAI [21,21]
+#define WithinTwoZoningAI [22,22]
+#define SafeZoningAI [23,23]
+#define LessSafeZoningAI [24,24]
+#define ZoningAI [24,24]
+#define BeedrilAI [25,25]
+
+ALIGN 4
+Safest_Zoning_AI2:
+SafestMoveTowardsOpponents 
+Goto(0)
+
+ALIGN 4
+Less_Safe_Zoning_AI2:
+LessSafeMoveTowardsOpponents
+Goto(0)
+
+ALIGN 4
+AttackIfEnemyInRange:
+ActionInRange
+Goto(0)
+
+ALIGN 4
+DoNothingAI1: 
+Nop_2
+Goto(0)
+
+// This has a whole bunch of Nops so that AI_2_Counter will increment 
+ALIGN 4
+DoNothingAI2:
+Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop 
+Goto(0)
 
 // New entries 
-ALIGN 4 
-TestAI1:
-ActionInRange
-Goto(0) //Exit / terminator ? 
-WORD 0 //not needed? lol 
+
+#define MoveToCoordRoutine 0x0803F9A9
+#define WithinTwoActionsRoutine 0x0803F019 
+
+// Curly brackets { } keep Locat_X as defined only within the brackets 
+ALIGN 4
+BeedrilAI_2:
+{ ; Routine_AI(MoveToCoordRoutine, Locat_1) 
+	Routine_AI(MoveToCoordRoutine, Locat_2) 
+	Routine_AI(MoveToCoordRoutine, Locat_3) 
+	Routine_AI(MoveToCoordRoutine, Locat_4) 
+	Routine_AI(MoveToCoordRoutine, Locat_5) 
+	Routine_AI(MoveToCoordRoutine, Locat_6) 
+
+Goto(0)
+
+ALIGN 4; Locat_1: 
+defLocation(18,11)
+ALIGN 4; Locat_2: 
+defLocation(15,15) 
+ALIGN 4; Locat_3: 
+defLocation(16,21)
+ALIGN 4; Locat_4: 
+defLocation(23,21) 
+ALIGN 4; Locat_5: 
+defLocation(25,17)
+ALIGN 4; Locat_6: 
+defLocation(25,11) ; }
 
 
-ALIGN 4 
-TestAI2:
-MoveTowardsOpponents
-Goto(0) //Exit / terminator ? 
-WORD 0 //not needed? lol 
+ALIGN 4
+Within_2_Safest_Zoning_AI2:
+{ ; Routine_AI(WithinTwoActionsRoutine, DoNotAttackTheseUnits) 
+GotoIfLT(1)
+Nop 
+Goto(0)
+Label(1)
+ChangeAI(0xFF, SafeZoneAI2)
+Goto(1)
+
+
+ALIGN 4
+DoNotAttackTheseUnits:
+SHORT Eirika
+SHORT Seth
+SHORT Ephraim
+BYTE 0 //byte + align as terminator
+ALIGN 4 ; } 
+
+
+
+
+

@@ -1,0 +1,26 @@
+Using GBA Graphics Editor 
+
+Open a .gba rom 
+Palette control (Ctrl+p) -> 8 bit graphics 
+
+Image control (Ctrl+i) -> Set img size: 64w 20h 
+Import bitmap 
+Unselect "Abort if new graphics are bigger" 
+Browse -> Select your image 
+
+Palette control -> 4 bit graphics 
+Image control -> Save as bitmap (eg imagename_8bit.png 
+Drag processed image onto "assemble to lz77 and palette.bat"
+#incbin the resulting .dmps 
+
+
+
+
+
+
+
+
+
+
+
+

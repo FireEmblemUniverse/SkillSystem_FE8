@@ -109,6 +109,9 @@ IMPLEMENTATION DETAILS
     or 'Split in Two'. You should now see the noisystretch image I mentioned before. Export this image. 
     This image will be used as the actual image for the Area Background.
     
+	
+	
+	
     Now all you have to do is to include (by incext or incbin) the palette image and the noisystretch 
     image, and the AreaBG should hopefully appear properly. You don't have to save changes in the FE8U ROM.
   

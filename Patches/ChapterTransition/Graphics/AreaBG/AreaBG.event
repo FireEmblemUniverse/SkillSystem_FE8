@@ -13,6 +13,8 @@ ALIGN 4
 Route1:
 //#incext Png2Dmp "VictoryRoadAft.png" --lz77
 #incbin "Route 1.dmp"
+//#incbin "IlexForestTest_8bit.dmp"
+
 
 ALIGN 4
 viridiancity:

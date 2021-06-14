@@ -12,20 +12,54 @@ FILL 4*0xFF
 	// Second byte is the item ID for this spell. This can be anima, light, dark, or a staff!
 	// If GAIDEN_REQUIRES_WRANK in Config.event is uncommented, then a unit will still need weapon rank to weild the Gaiden spell.
 ALIGN 4
-EirikaSpellList: //up to 16 fit on the page 
+PidgeyLearnset: //up to 16 fit on the page 
+	BYTE 1 Absorb
 	BYTE 1 SandAttack
-	BYTE 1 Growl
+	//BYTE 1 Growl
 	BYTE 1 Scratch
 	BYTE 1 TailWhip
 	BYTE 1 Mend
+	BYTE 0 0 
+
+ALIGN 4
+PikachuLearnset: 
+	BYTE 1 Absorb
+	BYTE 1 Thundershock
+	BYTE 0 0 
+
+ALIGN 4
+SquirtleLearnset: 
+	BYTE 1 Absorb
 	BYTE 1 Bubble
 	BYTE 1 WaterGun
+	BYTE 0 0 
+
+ALIGN 4
+CharmanderLearnset: 
 	BYTE 1 Ember
-	BYTE 1 Thundershock
-	BYTE 1 Magnitude
+	BYTE 1 Absorb
+	//BYTE 1 Magnitude
 	BYTE 1 RockThrow
 	BYTE 1 Heal
-	BYTE 1 Sleep
+	//BYTE 1 Sleep
 	BYTE 1 Flamethrower	
 	BYTE 0 0
-GaidenList(Eirika,EirikaSpellList) // This macro writes this entry to the spell list table.
+	
+ALIGN 4
+	
+	
+	
+	
+GaidenList(BulbasaurID,PidgeyLearnset)	
+GaidenList(CharmanderID,CharmanderLearnset) // This macro writes this entry to the spell list table.
+GaidenList(SquirtleID,SquirtleLearnset)
+GaidenList(EeveeID,PikachuLearnset)
+GaidenList(PikachuID,PidgeyLearnset)
+
+
+
+
+
+
+
+

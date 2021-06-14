@@ -76,6 +76,9 @@ ALIGN 4
 AreaBGPalettes:
 #incbin "../../Graphics/AreaBG/route 3_pal_pal.dmp" //oaks lab
 #incbin "../../Graphics/AreaBG/Pallet_pal_pal.dmp"
+//#incbin "../../Graphics/AreaBG/IlexForestTest_8bit_pal.dmp"
+
+
 #incbin "../../Graphics/AreaBG/Route 1_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/viridiancity_pal_pal.dmp"
 #incbin "../../Graphics/AreaBG/Route 2s_pal_pal.dmp"

@@ -12,6 +12,15 @@
 
 #define GotoIfTrue(label) "ConditionalGoto(0, LT, label)"
 
+#define SafestMoveTowardsOpponents "BYTE 0x12 0x00 0x00 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+#define LessSafeMoveTowardsOpponents "BYTE 0x12 0x00 0x08 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+#define GotoIfLT(label) "ConditionalGoto(0, LT, label)"
+#define GotoIfGT(label) "ConditionalGoto(0, GT, label)"
+
+
+
+
+
 #define LT 0x00
 #define LE 0x01
 #define EQ 0x02
@@ -39,7 +48,7 @@
 //Takes action.
 
 #define Nop "BYTE 0x06 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
-//Takes action.
+//AI1: does nothing.
 
 #define ActionWithoutMoving "BYTE 0x07 0x64 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
 #define ActionWIthoutMovingChance(percent) "BYTE 0x07 percent 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
@@ -54,7 +63,7 @@
 //If target is in range, seems to indicate the location of the target for a subsequent InitateTalk?
 
 #define Nop_2 "BYTE 0x0E 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
-//Does nothing?
+//AI2: Does nothing?
 
 //Experimental - Not used in vanilla FE7
 #define RunAway "BYTE 0x11 0x00 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"

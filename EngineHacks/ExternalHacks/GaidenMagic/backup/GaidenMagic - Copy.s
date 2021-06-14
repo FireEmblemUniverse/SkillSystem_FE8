@@ -492,15 +492,6 @@ GetSpellType:
 @ SpellSystem.c:280: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
 	movs	r2, #2	@ tmp118,
 	movs	r3, r0	@ tmp127, tmp127
-	
-	@added this part 
-	movs r0, #0x2 @white magic 
-	cmp r3, #4 
-	beq .L48 
-	movs r0, #0x1 @black magic 
-	b 	.L48
-	@ done adding 
-	
 @ SpellSystem.c:280: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
 	movs	r0, #1	@ <retval>,
 @ SpellSystem.c:280: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
@@ -541,14 +532,6 @@ SpellsGetterForLevel:
 	movs	r6, #8	@ unitLevel,
 @ SpellSystem.c:8: {
 	str	r1, [sp]	@ tmp153, %sfp
-	
-	
-	@added - copy unit ram pointer into r4 
-	ldr r4, [r0, #0x4] @Pointer to class 
-	
-	
-	
-	
 	str	r2, [sp, #4]	@ tmp154, %sfp
 @ SpellSystem.c:10: 	int unitLevel = unit->level;
 	ldrsb	r6, [r0, r6]	@ unitLevel,* unitLevel
@@ -563,17 +546,8 @@ SpellsGetterForLevel:
 @ SpellSystem.c:11: 	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
 	adds	r6, r6, #80	@ unitLevel,
 .L55:
-
-
-
-	@added 
-	ldrb r3, [r4, #0x4] @Class ID 
-	
-	
-	
-	
 @ SpellSystem.c:13: 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
-	@ldrb	r3, [r2, #4]	@ tmp144,
+	ldrb	r3, [r2, #4]	@ tmp144,
 @ SpellSystem.c:13: 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
 	ldr	r2, .L69	@ tmp143,
 	lsls	r3, r3, #2	@ tmp145, tmp144,
