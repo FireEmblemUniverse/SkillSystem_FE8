@@ -11,11 +11,14 @@
 	#include "EventParameters.lyn.event"
 	// 
 	
-	#include "GetNthUnitInstaller.event"
+
 	#include "GetNthUnit/GetFFFDs2Unit.lyn.event" 
 	#include "GetNthUnit/GetFFFEsBCoordsUnit.lyn.event" 
 	#include "GetNthUnit/CustomGetActiveUnit.lyn.event" 
 	#include "GetNthUnit/GetEnemyFFFCsBCoordsUnit.lyn.event" 
+	#include "GetNthUnit/GetXthUnit.lyn.event"
+	#include "GetNthUnit/GetXthFreeUnit.lyn.event"
+	#include "GetNthUnit/GetXthFreeNonActiveUnit.lyn.event"
 	
 	ALIGN 4
 	#define EventParameter(key,function) "WORD key ; POIN function|1"
@@ -51,7 +54,12 @@
 	EventParameter(0x0205,Get5thFreeUnit)
 	EventParameter(0x0206,Get6thFreeUnit)
 	
-	
+	EventParameter(0x0301,Get1stFreeNonActiveUnit) //Get 1st player unit that hasn't acted this turn 
+	EventParameter(0x0302,Get2ndFreeNonActiveUnit)
+	EventParameter(0x0303,Get3rdFreeNonActiveUnit)
+	EventParameter(0x0304,Get4thFreeNonActiveUnit)
+	EventParameter(0x0305,Get5thFreeNonActiveUnit)
+	EventParameter(0x0306,Get6thFreeNonActiveUnit)
 	
 	
 	

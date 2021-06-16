@@ -89,25 +89,21 @@ GenericEffect(2, VisitPokecenter)
 
 Traps1:
 
-CoinsTrap(8,2,3,65535)
+CoinsTrap(20,34,1,250)
 
 CutBush(4,2)
 RockSmash(3,2)
 StrengthBoulder(4,3)
 
 
-RedPokeballTrap(2,4, 0x01, 0x01)
-GoldPokeballTrap(6,1, 500, Gust) 
-//GoldPokeballTrap(8,1, 1, Gust) 
-GoldPokeballTrap(10,1, 2, Gust) 
-GoldPokeballTrap(6,3, 3, Gust) 
-//GoldPokeballTrap(8,3, 4, Gust) 
-GoldPokeballTrap(10,3, 5, Gust) 
+RedPokeballTrap(18,25, 1, Vulnerary)
 
-GoldPokeballTrap(6,5, 6, Gust) 
-GoldPokeballTrap(8,5, 7, Gust) 
-GoldPokeballTrap(10,5, 8, Gust) 
-GoldPokeballTrap(12,5, 9, Gust) 
+GoldPokeballTrap(14,13, 2, Gust) 
+//GoldPokeballTrap(6,1, 500, Gust) 
+
+
+SignBTrap(14,2, 0x8, 0x0) //no extra text 
+SignATrap(13,34, 0x8, SignsFastTravel)
 
 
 
@@ -240,25 +236,25 @@ UNIT
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b				 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
 EnemyUnitsB:
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
 EnemyUnitsC:
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,5] 001b	0x0 0x01 REDA0R5 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,5] 001b	0x0 0x01 REDA0R5 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsD:
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI 
 UNIT
 

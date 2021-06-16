@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="39" height="20">
   <properties>
-   <property name="Anims1" value="0"/>
+   <property name="Anims1" value="WaterAnimations"/>
    <property name="ChapterID" value="Route4ECh"/>
    <property name="Main" value=""/>
    <property name="MapID" value="Route4EMap"/>

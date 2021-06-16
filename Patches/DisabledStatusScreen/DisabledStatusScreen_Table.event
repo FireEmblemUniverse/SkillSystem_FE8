@@ -1,0 +1,7 @@
+
+DisabledStatusScreen_Table:
+BYTE 0x62 //Gorgon egg 
+BYTE 0x34 //Gorgon egg 
+BYTE BushID sfxID openballID pokeballredID pokeballgoldID
+BYTE 0x00 // Terminator 
+ALIGN 4 

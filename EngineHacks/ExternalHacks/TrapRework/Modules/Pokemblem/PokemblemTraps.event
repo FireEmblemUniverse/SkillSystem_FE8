@@ -145,6 +145,23 @@ SetTrapMapSprite(BlankEnterID,BlankSMS)
 SetTrapMapSpritePalette(BlankEnterID,NPCTrapPaletteWord)
 //SetImpassableTrap(BlankEnterID)
 
+
+#define TeleportSignAID 96 //0x60 
+SetTrapEventInit(TeleportSignAID,TeleportSignInitialization)
+SetTrapMapSprite(TeleportSignAID,Sign2SMS)
+SetTrapMapSpritePalette(TeleportSignAID,NPCTrapPaletteWord)
+SetImpassableTrap(TeleportSignAID)
+
+#define TeleportSignBID 97 //0x61 
+SetTrapEventInit(TeleportSignBID,TeleportSignInitialization)
+SetTrapMapSprite(TeleportSignBID,Sign2SMS)
+SetTrapMapSpritePalette(TeleportSignBID,NPCTrapPaletteWord)
+SetImpassableTrap(TeleportSignBID)
+
+#define SignATrap(XX,YY,Flag, TextID) "BYTE TeleportSignAID XX YY Flag+0x100; SHORT TextID"
+#define SignBTrap(XX,YY,Flag, TextID) "BYTE TeleportSignBID XX YY Flag+0x100; SHORT TextID"
+
+
 #define EnterTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankEnterID XX YY CompletionFlag; SHORT TextID"
 #define EnterTrap(XX,YY, TextID) "BYTE BlankEnterID XX YY 0x0; SHORT TextID"
 
@@ -197,8 +214,8 @@ SetTrapMapSpritePalette(BlankEnterID,NPCTrapPaletteWord)
 //#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 //#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 
-#define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID; SHORT Flag+0x100"
-#define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID; SHORT Flag+0x100"
+#define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID; SHORT Flag+0x180"
+#define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID; SHORT Flag+0x180"
 #define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
 
 
@@ -285,6 +302,7 @@ POIN GiveItemEvent
 ALIGN 4
 #include "asm/ObtainCoins.lyn.event"
 
+#include "asm/TeleportSign.lyn.event"
 #include "asm/DisplayText.lyn.event" 
 #include "asm/EnterText.lyn.event"
 

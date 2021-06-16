@@ -1,0 +1,14 @@
+
+#include "MultiSpellScrolls.lyn.event"
+
+#include "LearnSpell/LearnSpell_Installer.event" 
+
+
+ALIGN 4
+SkillScrollMessageReturnLink:
+SHORT PrepScreenUseSkillScroll //this is a text ID
+
+ALIGN 4
+SpellScrollIDLink:
+BYTE SpellScroll
+

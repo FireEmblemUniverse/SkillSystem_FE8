@@ -25,6 +25,9 @@
 
 	#include "Music/MusicInstaller.event"
 
+    //Maps
+    #include "Maps/SplitPList.event"
+
     //Patches
 	#define InstallPatches 
 	#ifdef InstallPatches 
@@ -49,8 +52,7 @@
 	//Graphics
 	#include "Graphics/GraphicsInstaller.event"
 
-    //Maps
-    #include "Maps/SplitPList.event"
+
 
     //Events
 	#include "Events/EventsInstaller.event"

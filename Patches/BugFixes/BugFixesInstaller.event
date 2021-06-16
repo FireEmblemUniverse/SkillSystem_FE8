@@ -1,5 +1,16 @@
 PUSH
 
+// Level does not decrease with Promotion
+//  by 7743 
+
+ORG 0x2BE70 
+BYTE 0x00 0x00 0x00 0x00
+
+ORG 0x736DA 
+BYTE 0x18 0x7A
+
+
+
 //AUTHOR=7743
 
 //Prevent Freeze For Camera Event 0x26.
@@ -31,6 +42,15 @@ ORG $0B65FE
 BYTE  $00 $00 $00 $4C $A7 $46 
 POIN CGFix 
 //j umpToHack(CGFix)
+
+
+// Remove portrait from promotion screen by Tequila 
+ORG $073DD0 
+BYTE $C0 $46 $C0 $46 
+
+
+
+
 
 POP 
 

@@ -91,22 +91,21 @@ This unit must escape last.[X]
 Mov[X]
 
 ## UM_GaidenBlackMagic
- B. Magic[X]
+ Attack[X]
 
 ## UM_GaidenWhiteMagic
- W. Magic[X]
+ Debuff[X]
 
 ## UM_GaidenMagicDesc
-Spend HP to cast spells[NL]
-this unit has learned.[X]
+Attack an enemy.[X]
 
 ## GaidenMagicUMErrorText
 You don't have enough HP[NL]
-to cast any spells.[X]
+to use any moves.[X]
 
 ## GaidenMagicSpellMenuErrorText
 You don't have enough HP[NL]
-to cast this spell.[X]
+to use this attack.[X]
 
 ## GaidenMagicHPCostText
 Cost[X]

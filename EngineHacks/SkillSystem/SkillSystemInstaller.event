@@ -15,7 +15,7 @@
 #endif
 
 #include "SkillScrolls/SkillScrolls.event"
-
+#include "GaidenSpellScrolls/SpellScrolls.event"
 
 #ifdef SHOW_SKILL_WARNING
 	WARNING "Default skills have been reordered!"

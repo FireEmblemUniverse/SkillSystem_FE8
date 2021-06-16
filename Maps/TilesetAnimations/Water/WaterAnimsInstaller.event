@@ -1,0 +1,36 @@
+ALIGN 4
+WaterTilesetAnimation:
+ConfAnimsTiles(32,0x400,Water1)
+ConfAnimsTiles(32,0x400,Water2)
+ConfAnimsTiles(32,0x400,Water3)
+ConfAnimsTiles(32,0x400,Water4)
+ConfAnimsTiles(32,0x400,Water5)
+ConfAnimsTiles(32,0x400,Water6)
+ConfAnimsTiles(32,0x400,Water7)
+ConfAnimsTiles(32,0x400,Water8)
+WORD 0x00 0x00
+
+ALIGN 4
+Water1: // None of these are compressed
+#incbin "anims_000.dmp"
+ALIGN 4
+Water2:
+#incbin "anims_001.dmp"
+ALIGN 4
+Water3:
+#incbin "anims_002.dmp"
+ALIGN 4
+Water4:
+#incbin "anims_003.dmp"
+ALIGN 4
+Water5:
+#incbin "anims_004.dmp"
+ALIGN 4
+Water6:
+#incbin "anims_005.dmp"
+ALIGN 4
+Water7:
+#incbin "anims_006.dmp"
+ALIGN 4
+Water8:
+#incbin "anims_007.dmp"

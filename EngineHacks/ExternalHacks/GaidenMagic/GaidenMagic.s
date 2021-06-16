@@ -544,8 +544,8 @@ SpellsGetterForLevel:
 	
 	
 	@added - copy unit ram pointer into r4 
-	ldr r4, [r0, #0x4] @Pointer to class 
-	
+	@ldr r4, [r0, #0x4] @Pointer to class 
+	movs r4, r0 
 	
 	
 	
@@ -562,9 +562,40 @@ SpellsGetterForLevel:
 	bpl	.L55		@,
 @ SpellSystem.c:11: 	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
 	adds	r6, r6, #80	@ unitLevel,
+	
 .L55:
 
+	@ Get address of unit at +0x28 - 0x2F (Sword -> Dark wexp) 
+	@ Set counter to X 
+	
+	ldr		r2, .L69	@ tmp143,
 
+	ldr		r7, .L69+4	@ <retval>,
+	movs	r5, r7	@ currBuffer, <retval>
+	
+	@b 	Continue 
+	
+	movs 	r0, #0x28 
+	@r0, r0, r3 are free I think, maybe r1 
+	LearnedSpellsLoop: 
+	cmp 	r0, #0x2F 
+	@bge 	.L56 
+	bgt 	Continue 
+	
+	ldrb 	r3, [r4, r0] @Nth wexp 
+	adds 	r0, r0, #1 
+	cmp 	r3, #0 
+
+	beq 	LearnedSpellsLoop
+	strb	r3, [r5]	@ _15, *currBuffer_22
+	adds 	r5, r5, #1 
+	b 		LearnedSpellsLoop
+	
+	
+	Continue:
+	@movs r7, r5 
+	@movs r4, r0 
+	ldr r4, [r4, #0x4] @Pointer to class 
 
 	@added 
 	ldrb r3, [r4, #0x4] @Class ID 
@@ -575,12 +606,18 @@ SpellsGetterForLevel:
 @ SpellSystem.c:13: 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
 	@ldrb	r3, [r2, #4]	@ tmp144,
 @ SpellSystem.c:13: 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
-	ldr	r2, .L69	@ tmp143,
+
+	
+	
+	@ldr	r7, .L69+4	@ <retval>, @Vesly commented out 
+	
 	lsls	r3, r3, #2	@ tmp145, tmp144,
-	ldr	r7, .L69+4	@ <retval>,
+	
 	ldr	r4, [r3, r2]	@ ROMList, SpellListTable[_9]
 @ SpellSystem.c:12: 	u8* currBuffer = SpellsBuffer;
-	movs	r5, r7	@ currBuffer, <retval>
+
+	@movs	r5, r7	@ currBuffer, <retval> @Vesly commented out 
+	
 @ SpellSystem.c:14: 	if ( ROMList )
 	cmp	r4, #0	@ ROMList,
 	beq	.L56		@,

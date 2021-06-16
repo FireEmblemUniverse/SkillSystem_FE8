@@ -1,6 +1,8 @@
 #ifndef UNIT_MENU
 #define UNIT_MENU
 
+#include "CallCommand.lyn.event" 
+
 #include "Extensions/Hack Installation.txt"
 #include "_UnitMenuDefs.event"
 
@@ -77,8 +79,8 @@ UnitMenuTable:
   MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
   #endif // DRAGON_VEINS
   
-  //UM_Call, UM_CallDesc 
-  //UM_Rest, UM_RestDesc 
+  
+
   
 //Disappear after use
   //UM_Cut
@@ -117,6 +119,8 @@ UnitMenuTable:
   
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5A, EnterTextEffect) //Enter  
   
+  MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
+  MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine
 
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
   MenuCommand(UM_Interact, UM_InteractDesc, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact
@@ -147,12 +151,10 @@ UnitMenuTable:
   //Examine 11EF 11F0 
   
   
-  	//Capture
-	MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
 
   
   // UM_Attack
-  MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
+  //MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
   // UM_Attack_B
   MenuCommand(0x67b, 0x6c0, NormalText, $24a28, AttackEffect, $22c31, $22c99)
   
@@ -237,6 +239,10 @@ UnitMenuTable:
 	MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
   #endif // COMBAT_ARTS
   
+    	//Capture
+	MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+
+  
   UM_Rescue
   UM_Give
   UM_Take
@@ -250,6 +256,11 @@ UnitMenuTable:
   #endif
 
   UM_Item
+  
+    //UM_Call, UM_CallDesc 
+    MenuCommand(UM_Call, UM_CallDesc, GreenText, CallCommandUsability, CallCommandEffect)
+  //UM_Rest, UM_RestDesc 
+  
   UM_Trade
   
   //UM_Supply

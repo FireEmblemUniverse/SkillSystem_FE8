@@ -30,6 +30,7 @@ NoFade
 ENDA 
 
 GlobalTurnEvent:
+ENUF 1 // Can 'Call' again 
 NoFade
 ENDA 
 
@@ -257,6 +258,8 @@ NoFade
 ENDA 
 
 
+
+
 ChTransition: 
 EVBIT_MODIFY 4
 SVAL r7 1 
@@ -281,6 +284,38 @@ CALL PlacePlayers
 NoFade
 ENDA
 
+
+FastTravelEvent:
+TutText(KnowledgeArea)
+SET_ACTIVE 0
+SADD rB r3 r0 
+SPAWN_NPC 0xFD [-1,-1] 
+
+EVBIT_T 2 // Scene skipping 
+MOVENEXTTO 0xFFFF 0x7FFF 0x7FFE 
+ENUN 
+CAM1 0xFD 
+DISA 0xFD 
+UNCR(0x7FFF, 0x42) 
+CHECK_COORDS 0x7FFF 
+SADD rB rC r0 
+SET_CURSOR_SB
+
+EVBIT_F 2
+NoFade 
+ENDA 
+
+CallCommandEvent:
+ENUT 1 // Battle flag / Used 'Call' this turn 
+MOVENEXTTO 	0xFFFF 0x301 0x7FFF
+MOVENEXTTO 	0xFFFF 0x302 0x7FFF
+MOVENEXTTO		0xFFFF 0x0303 0x7FFF
+ENUN 
+MOVENEXTTO 0xFFFF 0x0304 0x7FFF
+MOVENEXTTO 0xFFFF 0x0305 0x7FFF
+ENUN 
+NoFade
+ENDA 
 
 PlacePlayers:
 SET_ACTIVE 0

@@ -1,9 +1,12 @@
+ALIGN 4
 #include "DurabilityChest/Installer.event"
 #include "DurabilityShop/ShopDurability.event"
 
 #include "ScrollNames.lyn.event"
 #include "ScrollDurability.lyn.event"
 #include "SkillBookIconDraw.lyn.event"
+#include "ItemDescTable.event" 
+
 
 PUSH 
 
@@ -64,29 +67,34 @@ POP
 #define DurabilityTextEntry(textID,useColonTerminator,tablePointer) "SHORT textID useColonTerminator; POIN tablePointer"
 #define DurabilityTextEnd "WORD 0 0"
 #define DurabilityItem(itemID) "BYTE itemID"
-#define DurabilityItemEnd "BYTE 0"
+#define DurabilityItemEnd "ALIGN 4; BYTE 0"
 #define DurabilityIcon(itemID,iconSheetID) "BYTE itemID iconSheetID"
-#define DurabilityIconEnd "SHORT 0"
+#define DurabilityIconEnd "ALIGN 4; SHORT 0"
 
 
 ALIGN 4
 DurabilityBasedItemNameList: //used for item name
 DurabilityTextEntry(0xFFFF,True,SkillDescTable)
+DurabilityTextEntry(0xFFFE,True,ItemDescTable)
 DurabilityTextEnd
 
 ALIGN 4
 DurabilityBasedItemDescList: //used for item desc
 DurabilityTextEntry(0xFFFF,False,SkillDescTable)
+DurabilityTextEntry(0xFFFE,False,ItemDescTable)
 DurabilityTextEnd
 
 ALIGN 4
 DurabilityItemList: //used for durability
 DurabilityItem(SkillScroll)
+DurabilityItem(SpellScroll)
 DurabilityItemEnd
 
 DurabilityBasedItemIconList: //used for icons
 DurabilityIcon(SkillScroll,5)
+DurabilityIcon(SpellScroll,0)
 DurabilityIconEnd
+ALIGN 4
 
 /*
 checklist

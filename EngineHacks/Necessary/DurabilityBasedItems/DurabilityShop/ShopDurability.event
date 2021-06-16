@@ -10,6 +10,7 @@ POP
 ALIGN 4
 FixedPriceItemList:
 BYTE SkillScroll
+BYTE SpellScroll
 BYTE 0
 
 

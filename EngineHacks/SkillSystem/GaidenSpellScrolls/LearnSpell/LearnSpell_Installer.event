@@ -1,0 +1,68 @@
+
+
+
+
+#include "LearnSpell.lyn.event" 
+
+
+
+ALIGN 4
+prLearnNewSpell:
+// Arguments: r0 = Unit, r1 = Spell Index, r2 = Parent proc
+// Returns:   r0 = proc (if you really need it)
+{  
+	#incbin "LearnSpellSetup.dmp" 
+	POIN pProc_NewSpellLearn
+	POIN (LearnNewSpell|1)
+
+ALIGN 4 
+pProc_NewSpellLearn:
+	_6C_SET_NAME(_psName)
+	_6C_CALL_ROUTINE_2(prCallSpellLearnedPopup|1)
+	//_6C_CALL_ROUTINE_2(_prCheckForget|1)
+	_6C_END
+	
+_psName:
+	String(SS_LearnNewSpell)
+	BYTE 0; ALIGN 4
+
+_prCheckForget:
+	//#incbin "asm/LearnNewSpell_CheckForget.dmp"
+	//POIN (prCheckForSpellForgetting|1)
+}
+
+
+
+ALIGN 4
+prCallSpellLearnedPopup:
+// Arguments: r0 = Parent proc
+// Returns:   r0 = 0 on success (Spell is displayed and all)
+{
+	#incbin "CallSpellLearnedPopup.dmp"
+	POIN _pPopupDef
+	WORD 90 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
+
+ALIGN 4
+_pPopupDef: // Copied from the one in Internals
+// Details in EngineHacks\Necessary\PopupRework
+	WORD 0x0C 0x5A // sound played is 5A
+	WORD 0x06 LearnedSpellText // text by id
+	//WORD 0x0D 0x00 // run Spell icon routine // #define PROC_JUMP(ap6CCode) "SHORT 0x0D 0; POIN ap6CCode"
+	WORD 0x02 0x00 // Item text ? 
+	WORD 0x06 0x01 //#define PROC_NEW_CHILD_BLOCKING(ap6CChild)    "SHORT 0x06 1; POIN ap6CChild"
+	WORD 0x00 0x00
+}
+
+// To make replacing / forgetting skills possible with a menu, you need to copy all of this stuff: 
+//Buildfile\EngineHacks\SkillSystem\RemoveSkillMenu
+
+// It looks like a lot to do, so I think I'll leave it be for the time being. 
+
+/*
+ALIGN 4
+prCheckForSpellForgetting:
+// Arguments: r0 = Unit, r1 = Parent proc
+// Returns:   r0 = 0 on success (menu is open and all)
+	#incbin "CheckForSpellForgetting.dmp"
+	POIN (prCallRemoveSpellMenu|1)
+*/

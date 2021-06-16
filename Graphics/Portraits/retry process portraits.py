@@ -15,8 +15,11 @@ for entry in dir_entries:
         #im = im.convert("RGBA")
 #version with white background
         transparent_col = (15,15,15) #(25,219,61)
-        im_greenbg = Image.composite(im, Image.new('RGB', im.size, transparent_col), im).quantize(15) #white bg 
-        im_whitebg = im_greenbg
+        im_contrast = ImageEnhance.Contrast(im).enhance(0.5)
+        im_brightness = ImageEnhance.Brightness(im_contrast).enhance(1.2)
+        
+        im_greenbg = Image.composite(im_brightness, Image.new('RGB', im.size, transparent_col), im_contrast) #white bg 
+        im_whitebg = im_greenbg.quantize(15)
         #im_whitebg = Image.alpha_composite(im, im).quantize(15) #white bg 
         
         
@@ -27,15 +30,22 @@ for entry in dir_entries:
         minimug_offset = (96,16)
         resize_minimug = (32,32) 
 
-        im_a_test = Image.composite(im, Image.new('RGB', im.size, transparent_col), im)#.quantize(15)
+        im_a_test = Image.composite(im_brightness, Image.new('RGB', im.size, transparent_col), im)#.quantize(15)
         im_a_test = im_a_test.resize(resize_value, Image.BICUBIC).quantize(15)
         
+
+        minimug = ImageEnhance.Contrast(im).enhance(0.6).convert('RGBA')
+        minimug = ImageEnhance.Brightness(minimug).enhance(1.2)
+
+        minimug = Image.composite(minimug, Image.new('RGB', minimug.size, transparent_col), minimug) #white bg 
+        
+        minimug = minimug.resize(resize_minimug, Image.BICUBIC).quantize(15)
+
         im = im_whitebg
         im = im.resize(resize_value, Image.BICUBIC).quantize(15)
         im = im.convert('RGBA')
-        minimug = im_greenbg.resize(resize_minimug, Image.BICUBIC).quantize(15)
         
-        
+        # .filter(ImageFilter.BLUR)
         im_whitebg = Image.new("RGBA", resize2, 0)
         im_whitebg.paste(im, offset)
         im_white = ImageEnhance.Brightness(im).enhance(0.5)
