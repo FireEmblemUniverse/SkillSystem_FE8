@@ -44,7 +44,7 @@ cmp r2, #0x20 @Guard Tile?
 beq NotLunge
 
 @check if target tile is passable terrain
-push {r3}
+
 mov r3,r0
 ldrb r0,[r3,#0x10]
 ldrb r1,[r3,#0x11]
@@ -66,7 +66,7 @@ cmp r0,#0xFF
 beq NotLunge
 
 mov r0,r3
-pop {r3}
+
 
 ldr        r2,[r6]                @attacker data
 ldrb    r1,[r0,#0x10]        @defender x
