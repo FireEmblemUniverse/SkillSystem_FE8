@@ -49,8 +49,12 @@
 @.equ GiveItemEvent, ObtainItemID+4
 
 ObtainItemInitialization:
-mov r0, #0x4
-ldrh r0, [r5, r0]     @Completion flag
+mov r0, #0
+ldrb r0, [r5, #4]     @Completion flag
+ldrb r1, =ObtainItemFlagOffset 
+lsl r1, #3 @8 flags per byte 
+add r0, r1 
+
 blh CheckNewFlag
 cmp r0, #1 
 beq ReturnPoint @if completion flag is true, then we do not spawn this trap :-) 
@@ -273,7 +277,8 @@ b ObtainItemUsability
 
 
 
-
+	.equ NewFlagsRam, 0x203F548
+	
 ObtainItemUsability:
 ldr r4,=#0x3004E50
 ldr r0,[r4]
@@ -283,8 +288,19 @@ mov r4, r0  @&The DV
 cmp r0,#0
 beq Usability_RetFalse
 
-mov r0, #0x4 
-ldrh r0, [r4, r0]     @Completion flag
+
+	ldr 	r3, =NewFlagsRam
+		ldrb	r1, [r3] @[0x203F548..0x203F648]!!?
+	strb 	r1, [r3] @ [0x203F548]!! 
+
+
+
+mov r0, #0
+ldrb r0, [r4, #4]     @Completion flag
+ldrb r1, =ObtainItemFlagOffset 
+lsl r1, #3 @8 flags per byte 
+add r0, r1 
+
 blh CheckNewFlag
 cmp r0, #0
 bne Usability_RetFalse
@@ -330,10 +346,13 @@ bl GetAdjacentTrap
 mov r4, r0  @&The DV
 
 @turn on completion flag 
-mov r0, #0x04			
-ldrh r0, [r4, r0]     @Completion flag
+mov r0, #0
+ldrb r0, [r4, #4]     @Completion flag
 cmp r0, #0
 beq ItemToGive
+ldrb r1, =ObtainItemFlagOffset 
+lsl r1, #3 @8 flags per byte 
+add r0, r1 
 blh SetNewFlag
 
 ItemToGive:

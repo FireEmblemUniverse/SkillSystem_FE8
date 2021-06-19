@@ -1,6 +1,8 @@
 ALIGN 4
 GiveItemEvent:
 CAM1 0xFFFF
+EVBIT_F 0x2 
+
 GIVEITEMTO 0x7FFF
 Label 0x63 
 NoFade

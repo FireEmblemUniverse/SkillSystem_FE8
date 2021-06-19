@@ -70,15 +70,18 @@ GenericDisappearEffect(2, TalkEvent)
 
 
 VisitGaryHouse:
-
-TutText(EnterGaryHouseText)
+//SetUnitStatus(0x7FFF, CurrentHP, 3) 
+UseVulnerary(0x7FFF) 
+//STAL 110 
+//TutText(EnterGaryHouseText)
 NoFade 
 ENDA 
 
 LocationBasedEvents:
 
 
-House(0,VisitPokecenter,5,7) 
+House(0,VisitPokecenter,6,7) 
+
 House(0,VisitGaryHouse,15,7) //gary's house 
 //House(0,VisitPokecenter,16,13) //oak's lab 
 /*
@@ -93,9 +96,24 @@ END_MAIN
 
 Traps1:
 //CoinsTrap(8,2,3,65535)
+//RedPokeballTrap(5,9, 1, Vulnerary)
+//GoldPokeballTrap(3,9, 2, Gust) 
+//SkillScrollTrap(7,9, 1, AcrobatID)
+
+SpellScrollTrap(3,9, 1, Ember)
+SpellScrollTrap(5,9, 2, Bubble)
+SpellScrollTrap(7,9, 3, Absorb)
+
+SpellScrollTrap(9,9, 4, Thundershock)
+
+SignBTrap(14,4, 0x8, 0x0) //no extra text 
+SignATrap(9,4, 0x8, SignsFastTravel)
+
+
 
 EnterTrap(16,13, EnterOaksLabText) 
-EnterTrap(15,7, EnterOaksLabText) 
+
+
 
 BlankExamineTrap(4,7,RedHouseText)
 BlankExamineTrap(13,7,GaryHouseText)

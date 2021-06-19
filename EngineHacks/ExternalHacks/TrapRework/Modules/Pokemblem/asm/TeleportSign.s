@@ -259,6 +259,10 @@ b Usability_RetTrue
 
 mov r0, #0x3 
 ldrb r0, [r4, r0]     @Completion flag
+ldr r1, =SignAreaFlagOffset 
+lsl r1, #3 @8 flags per byte 
+add r0, r1 
+
 blh CheckNewFlag
 cmp r0, #0
 bne Usability_RetFalse
@@ -303,8 +307,12 @@ mov r4, r0  @&The DV
 @turn on completion flag 
 mov r0, #0x03			
 ldrb r0, [r4, r0]     @Completion flag
+
 cmp r0, #0
 beq TextToShow
+ldr r1, =ObtainSpellFlagOffset 
+lsl r1, #3 @8 flags per byte 
+add r0, r1 
 blh SetNewFlag
 
 b TeleportSignEffect
@@ -350,6 +358,10 @@ SkipFirstMsg:
 
 
 ldrb r0, [r4, #0x3]     @Completion flag
+ldr r1, =ObtainSpellFlagOffset 
+lsl r1, #3 @8 flags per byte 
+add r0, r1 
+
 blh CheckNewFlag
 cmp r0, #0 
 beq Continue 

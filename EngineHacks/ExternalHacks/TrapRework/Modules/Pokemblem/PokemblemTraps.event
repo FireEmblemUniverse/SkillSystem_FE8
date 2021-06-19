@@ -158,8 +158,21 @@ SetTrapMapSprite(TeleportSignBID,Sign2SMS)
 SetTrapMapSpritePalette(TeleportSignBID,NPCTrapPaletteWord)
 SetImpassableTrap(TeleportSignBID)
 
-#define SignATrap(XX,YY,Flag, TextID) "BYTE TeleportSignAID XX YY Flag+0x100; SHORT TextID"
-#define SignBTrap(XX,YY,Flag, TextID) "BYTE TeleportSignBID XX YY Flag+0x100; SHORT TextID"
+
+#define ObtainSkillID 106 //0x6A 
+SetTrapEventInit(ObtainSkillID,ObtainSkillInitialization)
+SetTrapMapSprite(ObtainSkillID,GoldPokeballSMS)
+SetTrapMapSpritePalette(ObtainSkillID,NPCTrapPaletteWord)
+SetImpassableTrap(ObtainSkillID)
+
+#define ObtainSpellID 107 //0x6B 
+SetTrapEventInit(ObtainSpellID,ObtainSpellInitialization)
+SetTrapMapSprite(ObtainSpellID,GoldPokeballSMS)
+SetTrapMapSpritePalette(ObtainSpellID,NPCTrapPaletteWord)
+SetImpassableTrap(ObtainSpellID)
+
+
+
 
 
 #define EnterTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankEnterID XX YY CompletionFlag; SHORT TextID"
@@ -214,11 +227,25 @@ SetImpassableTrap(TeleportSignBID)
 //#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 //#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 
-#define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID; SHORT Flag+0x180"
-#define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID; SHORT Flag+0x180"
+// 
+#define SignAreaFlagOffset 0x20 
+#define ObtainSpellFlagOffset 0x40 
+#define ObtainSkillFlagOffset 0x60 
+#define ObtainItemFlagOffset 0x80 
+
 #define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
+#define SignATrap(XX,YY,Flag, TextID) "BYTE TeleportSignAID XX YY Flag; SHORT TextID"
+#define SignBTrap(XX,YY,Flag, TextID) "BYTE TeleportSignBID XX YY Flag; SHORT TextID"
 
-
+#define SkillScrollTrap(XX,YY, Flag, SkillID) "BYTE ObtainSkillID XX YY Flag SkillScroll SkillID" 
+#define SpellScrollTrap(XX,YY, Flag, SpellID) "BYTE ObtainSpellID XX YY Flag SpellScroll SpellID" // 2nd last byte is ItemID defined in custom definitions in root  
+#define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID Flag 0x0"
+#define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID Flag 0x0"
+// Coins is first 256 flags 
+// Then signs / completion of areas is +0x20 
+// Then Spells as +0x40 
+// Then Skills as +0x60 
+// Then Items as +0x80 and can go indefinitely 
 
 
 
@@ -301,6 +328,8 @@ POIN GiveItemEvent
 
 ALIGN 4
 #include "asm/ObtainCoins.lyn.event"
+
+#include "asm/ObtainScroll.lyn.event" 
 
 #include "asm/TeleportSign.lyn.event"
 #include "asm/DisplayText.lyn.event" 

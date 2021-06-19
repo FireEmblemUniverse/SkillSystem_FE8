@@ -86,10 +86,13 @@
 #include "Commands/SetStatus/SetStatusInstaller.event"
 
 
+
+
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
 #include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
 
 
+#include "Commands/UseVulnerary/UseVulneraryInstaller.event" 
 
 #include "Commands/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
 

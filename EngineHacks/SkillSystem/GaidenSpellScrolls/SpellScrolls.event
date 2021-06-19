@@ -4,11 +4,43 @@
 #include "LearnSpell/LearnSpell_Installer.event" 
 
 
-ALIGN 4
-SkillScrollMessageReturnLink:
-SHORT PrepScreenUseSkillScroll //this is a text ID
+
+
+
+#define NormalWepType 	0 
+#define ElectricWepType 	1 
+#define WaterWepType 		2 
+#define FireWepType 		3 
+#define GrassWepType 		5
+#define GroundWepType 	6
+#define PsychicWepType 	7 
+
+#define FightingWepType 	0x10 
+#define IceWepType 		0x11
+#define PoisonWepType 	0x15
+
+#define FlyingWepType 	0x13
+#define RockWepType 		0x16
+#define GhostWepType 		0x17
+#define DragonWepType 	0x23
+#define BugWepType 		0x25
+#define DarkWepType 		0x27
+#define SteelWepType 		0x9F // Dunno lol 
+
+
+#include "UsabilityByType.lyn.event"
+
+//ALIGN 4
+//SkillScrollMessageReturnLink:
+//SHORT PrepScreenUseSkillScroll //this is a text ID
 
 ALIGN 4
 SpellScrollIDLink:
 BYTE SpellScroll
+
+ALIGN 4
+TMLearnSetTable:
+
+
+WORD 0 
 

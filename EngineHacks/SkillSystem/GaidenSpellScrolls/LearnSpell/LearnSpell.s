@@ -52,6 +52,9 @@ strh r1, [r0]
 b False 
 
 True:
+
+@blh  0x08019c3c   @UpdateGameTilesGraphics
+
 mov r0, #1
 b End
 

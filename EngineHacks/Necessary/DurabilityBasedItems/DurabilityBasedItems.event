@@ -75,7 +75,7 @@ POP
 ALIGN 4
 DurabilityBasedItemNameList: //used for item name
 DurabilityTextEntry(0xFFFF,True,SkillDescTable)
-DurabilityTextEntry(0xFFFE,True,ItemDescTable)
+DurabilityTextEntry(0xFFFE,True,ItemNameTable)
 DurabilityTextEnd
 
 ALIGN 4
@@ -90,9 +90,10 @@ DurabilityItem(SkillScroll)
 DurabilityItem(SpellScroll)
 DurabilityItemEnd
 
+ALIGN 4
 DurabilityBasedItemIconList: //used for icons
 DurabilityIcon(SkillScroll,5)
-DurabilityIcon(SpellScroll,0)
+//DurabilityIcon(SpellScroll,0) // 0 is regular item icons 
 DurabilityIconEnd
 ALIGN 4
 

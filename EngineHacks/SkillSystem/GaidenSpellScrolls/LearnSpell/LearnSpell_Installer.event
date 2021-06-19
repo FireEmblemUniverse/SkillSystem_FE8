@@ -40,7 +40,7 @@ prCallSpellLearnedPopup:
 {
 	#incbin "CallSpellLearnedPopup.dmp"
 	POIN _pPopupDef
-	WORD 90 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
+	WORD 50 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
 
 ALIGN 4
 _pPopupDef: // Copied from the one in Internals

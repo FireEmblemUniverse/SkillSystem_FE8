@@ -44,8 +44,8 @@
   #define DebuffTableSize 0x00000440
 #endif
 
-#define LunarBrace MoonBracelet
-#define SolarBrace SunBracelet
+#define LunarBrace 0x98
+#define SolarBrace 0x99
 
 // Attribute for defining items with passive stat bonuses
 #define PASSIVE_ITEM_BOOSTS_ATTR 0x00800000

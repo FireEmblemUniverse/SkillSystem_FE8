@@ -52,11 +52,11 @@ BulbasaurLearnset:
 ALIGN 4
 	
 	
-GaidenList(BulbasaurID,BulbasaurLearnset)	
-GaidenList(CharmanderID,CharmanderLearnset) // This macro writes this entry to the spell list table.
-GaidenList(SquirtleID,SquirtleLearnset)
+//GaidenList(BulbasaurID,BulbasaurLearnset)	
+//GaidenList(CharmanderID,CharmanderLearnset) // This macro writes this entry to the spell list table.
+//GaidenList(SquirtleID,SquirtleLearnset)
 GaidenList(EeveeID,PikachuLearnset)
-GaidenList(PikachuID,PidgeyLearnset)
+//GaidenList(PikachuID,PidgeyLearnset)
 
 
 

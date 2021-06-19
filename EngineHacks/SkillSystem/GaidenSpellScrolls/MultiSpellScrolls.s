@@ -43,33 +43,17 @@ bx r1
 
 
 MultiSpellScrollUsability:
-@get skill ID from item durability in r1
-ldr r0,=#0x203A958 @action struct
-ldrb r0,[r0,#0x12] @inventory slot number (0-4)
-lsl r0,r0,#1 @size of item data is 2 bytes
-mov r1,r4 @take character struct
-add r1,#0x1E @start of inventory
-add r1,r0 @at the proper inventory slot
-ldrh r1,[r1] @get item halfword
-lsr r1,r1,#8 @shift 8 bits right, deleting the item ID and getting the durability, which is the skill ID
+lsr r1, r5, #8 @ get the durability of the item
 
-cmp r1, #0 
-beq ReturnFalse 
+mov r0, r4 
+blh UsabilityByType
+
+b GoBack
 
 mov r0, #1 @always usable 
 b GoBack 
 
-mov r0,r4
 
-ldr 	r3, =SkillTester @r0 = char ID, r1 = skill ID; returns true/false in r0
-mov 	lr, r3
-.short 	0xF800
-cmp r0,#1
-beq ReturnFalse
-
-
-mov r0,#1
-b GoBack
 
 ReturnFalse:
 mov r0,#0

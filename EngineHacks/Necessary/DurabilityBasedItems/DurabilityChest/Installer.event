@@ -19,7 +19,12 @@ ALIGN 4
 GiveItemWithDurability:
 #incbin "GiveItemWithDurability.dmp"
 
+
+
 #define DurabilityChest(item,durability,chestX,chestY) "CHES 0 item|(durability<<8) [chestX,chestY] 0x14"
+
+//#define GiveItemWithDurability(Item,Durability,Character) "SVAL 0xC Durability; ASMC GiveItemWithDurability|1; CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO Character; ASMC 0x801A174|1"
+// What is the point of the ASMC to store sC into 0x203FFFF ? 
 
 #define GiveItemWithDurability(Item,Durability,Character) "SVAL 0xC Durability; ASMC GiveItemWithDurability|1; CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO Character"
 

@@ -121,6 +121,10 @@ UnitMenuTable:
   
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine
+  
+  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainSkillUsability0x6A, ObtainSkillEffect) //Take
+  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainSpellUsability0x6B, ObtainSpellEffect) //Take (Gold pokeball) 
+  
 
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
   MenuCommand(UM_Interact, UM_InteractDesc, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact

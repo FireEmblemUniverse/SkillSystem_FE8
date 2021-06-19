@@ -44,14 +44,9 @@ bx r1
 
 MultiScrollUsability:
 @get skill ID from item durability in r1
-ldr r0,=#0x203A958 @action struct
-ldrb r0,[r0,#0x12] @inventory slot number (0-4)
-lsl r0,r0,#1 @size of item data is 2 bytes
-mov r1,r4 @take character struct
-add r1,#0x1E @start of inventory
-add r1,r0 @at the proper inventory slot
-ldrh r1,[r1] @get item halfword
-lsr r1,r1,#8 @shift 8 bits right, deleting the item ID and getting the durability, which is the skill ID
+
+
+lsr r1, r5, #0x08 @ get the durability of the item
 
 mov r0,r4
 
@@ -61,6 +56,7 @@ mov 	lr, r3
 cmp r0,#1
 beq ReturnFalse
 
+ReturnTrue:
 mov r0,#1
 b GoBack
 
@@ -178,5 +174,4 @@ bx r1
 
 .ltorg
 .align
-
 
