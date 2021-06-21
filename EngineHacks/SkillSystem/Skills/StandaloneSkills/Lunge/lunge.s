@@ -44,9 +44,10 @@ cmp r2, #0x20 @Guard Tile?
 beq NotLunge
 
 @check if target tile is passable terrain
-mov r2,r0
-ldrb r0,[r2,#0x10]
-ldrb r1,[r2,#0x11]
+
+mov r3,r0
+ldrb r0,[r3,#0x10]
+ldrb r1,[r3,#0x11]
 ldr		r2,=#0x202E4DC	@terrain map
 ldr		r2,[r2]			@Offset of map's table of row pointers
 lsl		r1,#0x2			@multiply y coordinate by 4
@@ -64,6 +65,7 @@ ldrb r0,[r1]
 cmp r0,#0xFF
 beq NotLunge
 
+mov r0,r3
 
 
 ldr        r2,[r6]                @attacker data

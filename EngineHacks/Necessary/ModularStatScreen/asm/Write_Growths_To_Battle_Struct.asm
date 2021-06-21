@@ -4,12 +4,13 @@
 @setting up the literal pool
 .equ Get_Hp_Growth, Class_Level_Cap_Table+4
 .equ Get_Str_Growth, Class_Level_Cap_Table+8
-.equ Get_Skl_Growth, Class_Level_Cap_Table+12
-.equ Get_Spd_Growth, Class_Level_Cap_Table+16
-.equ Get_Def_Growth, Class_Level_Cap_Table+20
-.equ Get_Res_Growth, Class_Level_Cap_Table+24
-.equ Get_Luk_Growth, Class_Level_Cap_Table+28
-.equ Growth_Options, Class_Level_Cap_Table+32
+.equ Get_Mag_Growth, Class_Level_Cap_Table+12 @ If strmag split isn't installed, this will be 0, and code inserted in here will do nothing.
+.equ Get_Skl_Growth, Class_Level_Cap_Table+16
+.equ Get_Spd_Growth, Class_Level_Cap_Table+20
+.equ Get_Def_Growth, Class_Level_Cap_Table+24
+.equ Get_Res_Growth, Class_Level_Cap_Table+28
+.equ Get_Luk_Growth, Class_Level_Cap_Table+32
+.equ Growth_Options, Class_Level_Cap_Table+36
 
 @jumped here from 2BA28
 @r0=battle struct of person who's levelling up
@@ -94,6 +95,27 @@ mov		r14,r6
 .short	0xF800
 mov		r1,r7
 add		r1,#0x74
+strb	r0,[r1]
+add		r5,r0
+cmp		r4,#0x0
+beq		MagGrowth
+cmp		r5,#0x0
+beq		MagGrowth
+b		CheckCaps
+
+@ I'm adding Magic growth into this function to remedy the 0 magic growth bug. -Snek
+@ This will do nothing if str/mag isn't enabled.
+MagGrowth:
+ldr		r0,Get_Mag_Growth
+cmp		r0,#0x00
+beq		SklGrowth @ If Get_Mag_Growth is 0, str/mag isn't enabled.
+mov		r14,r0
+mov		r0,r7
+.short	0xF800
+mov		r14,r6
+.short	0xF800
+mov		r1,r7
+add		r1,#0x7A
 strb	r0,[r1]
 add		r5,r0
 cmp		r4,#0x0
@@ -182,11 +204,14 @@ add		r1,#0x79
 strb	r0,[r1]
 add		r5,r0
 cmp		r5,#0x0
-bne		CheckCaps
+bne		CheckCapsLadder
 cmp		r4,#0x0
-bne		CheckCaps
+bne		CheckCapsLadder
 mov		r4,#0x1
 b		HpGrowth
+
+CheckCapsLadder:
+b CheckCaps
 
 @End of normal growths routine
 FixedGrowths:
@@ -231,7 +256,23 @@ mov		r0,r7
 add		r0,#0x74
 strb	r1,[r0]
 
-@Skl
+@Mag, do nothing if Get_Mag_Growth is 0 yeah yeah. - Snek
+ldr		r0,Get_Mag_Growth
+cmp		r0,#0x00
+beq		FixedSklGrowth
+mov		r14,r0
+mov		r0,r7
+.short	0xF800
+mov		r4,r0
+mul		r0,r6
+bl		DivideBy100
+add		r0,r4
+bl		DivideBy100
+mov		r0,r7
+add		r0,#0x7A
+strb	r1,[r0]
+
+FixedSklGrowth:
 ldr		r0,Get_Skl_Growth
 mov		r14,r0
 mov		r0,r7

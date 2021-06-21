@@ -29,6 +29,8 @@ pop {r4-r7}
 pop {r0}
 bx r0
 
+.ltorg
+.align
 
 SkillTester:
 @POIN SkillTester
