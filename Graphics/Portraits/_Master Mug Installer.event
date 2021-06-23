@@ -5,6 +5,84 @@
 // https://www.dragonflycave.com/resources/pokemon-list-generator?format=ALIGN+16+%3Cbr%3E%25%5Bname%7Cstripspecial%5D%25Data%3A+%2F%2F+%25%5Bnational_dex%7Czeropad%5D%25%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_mug.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_frames.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_palette.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_minimug.dmp%22+%3Cbr%3EsetMugEntry%28%23%25%5Bnational_dex%5D%25%2C+%25%5Bname%7Cstripspecial%5D%25Data%2C+9%2C+9%2C+9%2C+9%29%3Cbr%3E&linebreaks=1&gens=1&order=national
 
 ALIGN 16 
+OakData: // 001
+#incbin "Dmp/Oak_mug.dmp" 
+#incbin "Dmp/Oak_frames.dmp" 
+#incbin "Dmp/Oak_palette.dmp" 
+#incbin "Dmp/Oak_minimug.dmp" 
+setMugEntry(153, OakData, 9, 9, 9, 9)
+
+ALIGN 16 
+GaryPointData: // 001
+#incbin "Dmp/GaryPoint_mug.dmp" 
+#incbin "Dmp/GaryPoint_frames.dmp" 
+#incbin "Dmp/GaryPoint_palette.dmp" 
+#incbin "Dmp/GaryPoint_minimug.dmp" 
+setMugEntry(154, GaryPointData, 9, 9, 9, 9)
+
+ALIGN 16 
+GaryShrugData: // 001
+#incbin "Dmp/GaryShrug_mug.dmp" 
+#incbin "Dmp/GaryShrug_frames.dmp" 
+#incbin "Dmp/GaryShrug_palette.dmp" 
+#incbin "Dmp/GaryShrug_minimug.dmp" 
+setMugEntry(155, GaryShrugData, 9, 9, 9, 9)
+
+
+ALIGN 16 
+GaryBattleData: // 001
+#incbin "Dmp/GaryBattle_mug.dmp" 
+#incbin "Dmp/GaryBattle_frames.dmp" 
+#incbin "Dmp/GaryBattle_palette.dmp" 
+#incbin "Dmp/GaryBattle_minimug.dmp" 
+setMugEntry(156, GaryBattleData, 9, 9, 9, 9)
+
+
+ALIGN 16 
+BirdkeeperData: // 001
+#incbin "Dmp/Birdkeeper_mug.dmp" 
+#incbin "Dmp/Birdkeeper_frames.dmp" 
+#incbin "Dmp/Birdkeeper_palette.dmp" 
+#incbin "Dmp/Birdkeeper_minimug.dmp" 
+setMugEntry(157, BirdkeeperData, 9, 9, 9, 9)
+
+
+ALIGN 16 
+BrockData: // 001
+#incbin "Dmp/Brock_mug.dmp" 
+#incbin "Dmp/Brock_frames.dmp" 
+#incbin "Dmp/Brock_palette.dmp" 
+#incbin "Dmp/Brock_minimug.dmp" 
+setMugEntry(158, BrockData, 9, 9, 9, 9)
+
+
+ALIGN 16 
+MistyData: // 001
+#incbin "Dmp/Misty_mug.dmp" 
+#incbin "Dmp/Misty_frames.dmp" 
+#incbin "Dmp/Misty_palette.dmp" 
+#incbin "Dmp/Misty_minimug.dmp" 
+setMugEntry(159, MistyData, 9, 9, 9, 9)
+
+
+ALIGN 16 
+DexData: // 001
+#incbin "Dmp/Dex_mug.dmp" 
+#incbin "Dmp/Dex_frames.dmp" 
+#incbin "Dmp/Dex_palette.dmp" 
+#incbin "Dmp/Dex_minimug.dmp" 
+setMugEntry(160, DexData, 9, 9, 9, 9)
+
+
+
+
+
+
+
+
+
+
+ALIGN 16 
 BulbasaurData: // 001
 #incbin "Dmp/1_mug.dmp" 
 #incbin "Dmp/1_frames.dmp" 

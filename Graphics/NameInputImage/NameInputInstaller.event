@@ -1,0 +1,36 @@
+PUSH 
+
+ORG $0447DC
+POIN NameInputImage
+ORG $04579C
+POIN NameInputImage
+ORG $045ECC
+POIN NameInputImage
+ORG $046978
+POIN NameInputImage
+ORG $046AB8
+POIN NameInputImage
+ORG $0471CC
+POIN NameInputImage
+ORG $04752C
+POIN NameInputImage
+ORG $0478F8
+POIN NameInputImage
+ORG $043AD4
+POIN NameInputImage
+
+// Tbh not sure what this part does 
+// I commented it out and it didn't make an immediately noticable difference so whatever 
+
+//ORG $A1BD00
+//BYTE  $55 $53 $B5 $63 $FF $7F $F2 $4E $4E $3E $EC $31 $69 $25 $00 $00 $F9 $6F $FD $7F $B6 $6B $53 $5F $AF $4E $2D $3E $AA $31 $00 $00;
+//Patches Network arena and Name Input Screen (PatchForm) =Network arena and Name Input Screen 2021-06-21 9:08:27 AM
+
+//ORG $043AF0
+//BYTE  $00 $BD $A1 $08;
+
+POP 
+
+ALIGN 4 
+NameInputImage: 
+#incbin "NameInputScreenImage.dmp" 

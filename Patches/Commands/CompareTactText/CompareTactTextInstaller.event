@@ -1,0 +1,11 @@
+
+#define CompareTactText(TextID) "BYTE $40 $0D; SHORT TextID; POIN CompareTactTextASMC|1|IsPointer" 
+
+
+
+ALIGN 4 
+CompareTactTextASMC:
+#incbin "CompareTactText.dmp"
+
+
+

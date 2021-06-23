@@ -1,0 +1,30 @@
+#include "CallMenu.lyn.event"
+#include "EffectCallMenu.lyn.event" 
+
+
+#define EventMenuCommand(aTextId) "WORD 0; SHORT aTextId 0; WORD 0; POIN (0x04F448|1); WORD 0; POIN (EffectCallMenu|1); WORD 0 0 0"
+#define EventMenuCommandEnd "WORD 0 0 0 0 0 0 0 0 0"
+
+// Well, this thing looks silly, but oh well 
+
+ALIGN 4
+CallStarterMenu:
+SHORT 0xB510 0x1C04 0x4B10 0x469E 0xF800 0x4A10 0x7850 0x2101 0x4308 0x2102 0x4308 0x2104 0x4308 0x2108 0x4308 0x2110 0x4308 0x7050 0x2000 0x4B0A 0x469E 0xF800 0x4B09 0x469E 0xF800 0x4B09 0x469E 0xF800 0x4809 0x1C21 0x4B07 0x469E 0xF800 0xBC10 0xBC01 0x4700 0xE884 0x0804 0x3080 0x0300 0x3D38 0x0800 0x43A8 0x0800 0xEB68 0x0804 0xEBC8 0x0804
+POIN StarterMenuDefs
+
+
+ALIGN 4
+StarterMenuDefs:
+	BYTE 6 8 18 0           // Geomerty, order: X, Y, Width, Height (Height doesn't matter)
+	WORD 1                  // style (change it if u want)
+	POIN StarterMenu //pCommandDefinition // Command Definitions
+	WORD 0 0 0 0 0 0        // No routines to handle B press/R press/construction/etc
+	
+
+ALIGN 4
+StarterMenu:
+	EventMenuCommand(BulbasaurChoice)
+	EventMenuCommand(CharmanderChoice)
+	EventMenuCommand(SquirtleChoice)
+EventMenuCommandEnd
+	

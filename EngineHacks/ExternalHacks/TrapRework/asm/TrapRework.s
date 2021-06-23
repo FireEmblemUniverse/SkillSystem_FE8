@@ -7,6 +7,9 @@
 .global AddTrapASMC
 .type AddTrapASMC, %function
 
+.global AnimLightRuneASMC
+.type AnimLightRuneASMC, %function
+
 .global RemoveTrapAtCoordsASMC
 .type RemoveTrapAtCoordsASMC, %function
 
@@ -175,6 +178,40 @@ lsr r1,r1,#16 @r1 = y coord
 lsl r0,r0,#16
 lsr r0,r0,#16 @r0 = x coord
 blh AddTrap
+pop {r0}
+bx r0
+
+.ltorg
+.align
+
+
+AnimLightRuneASMC: @memory slot 1 = trap ID, memory slot B = coords
+push {r14}
+
+ldr r0,=MemorySlot1
+ldr r2,[r0] @r2 = trap ID
+ldr r1,=MemorySlotB
+ldr r0,[r1]
+ldr r1,[r1]
+lsr r1,r1,#16 @r1 = y coord
+lsl r0,r0,#16
+lsr r0,r0,#16 @r0 = x coord
+blh AddTrap 
+
+
+ldr r3,=MemorySlot1
+ldr r3,[r3] @r2 = trap ID
+ldr r2,=MemorySlotB
+ldr r1,[r2]
+ldr r2,[r2]
+lsr r2,r2,#16 @r1 = y coord
+lsl r1,r1,#16
+lsr r1,r1,#16 @r0 = x coord
+
+mov r0, #0x1
+blh	0x08021684+1             @FE8U BeginLightRuneMapAnim
+
+
 pop {r0}
 bx r0
 

@@ -1,0 +1,1255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Generic="System.Collections.Generic">
+  <Asset Type="Generic:Dictionary[int,FEXNA_Library.Data_Terrain]">
+    <!-- 0: Debug -->
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <Id>0</Id>
+        <Name>--</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>0</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 1: Plains -->
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <Id>1</Id>
+        <Name>Plains</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>2 2 2 3 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>1</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 2: Road -->
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <Id>2</Id>
+        <Name>Road</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Plains</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>64</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 3: Village -->
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <Id>3</Id>
+        <Name>Village</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>2</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 4: Closed Village -->
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <Id>4</Id>
+        <Name>Village</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename>Village</Platform_Rename>
+        <Background_Rename>Village</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>2</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 5: House -->
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <Id>5</Id>
+        <Name>House</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Village</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>2</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 6: Armory -->
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <Id>6</Id>
+        <Name>Armory</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Village</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>3</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 7: Vendor -->
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <Id>7</Id>
+        <Name>Vendor</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Village</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>3</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 8: Arena -->
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <Id>8</Id>
+        <Name>Arena</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Village</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>4</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 10: Fort -->
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <Id>10</Id>
+        <Name>Fort</Name>
+        <Avoid>20</Avoid>
+        <Def>2</Def>
+        <Res>2</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>2 2 2 2 1</Item>
+          <Item>2 2 2 2 2</Item>
+          <Item>2 2 2 2 1</Item>
+        </Move_Costs>
+        <Heal>20 1</Heal>
+        <Minimap>5</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 11: Castle Gate -->
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <Id>11</Id>
+        <Name>Gate</Name>
+        <Avoid>20</Avoid>
+        <Def>2</Def>
+        <Res>2</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Fort</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal>10 1</Heal>
+        <Minimap>6</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 12: Forest -->
+    <Item>
+      <Key>12</Key>
+      <Value>
+        <Id>12</Id>
+        <Name>Forest</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>1</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>2 2 2 3 1</Item>
+          <Item>2 2 2 3 2</Item>
+          <Item>2 2 2 3 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>8</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 13: Thicket -->
+    <Item>
+      <Key>13</Key>
+      <Value>
+        <Id>13</Id>
+        <Name>Thicket</Name>
+        <Avoid>30</Avoid>
+        <Def>2</Def>
+        <Res>2</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>1</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>9</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 14: Sand -->
+    <Item>
+      <Key>14</Key>
+      <Value>
+        <Id>14</Id>
+        <Name>Sand</Name>
+        <Avoid>5</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>4</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Sea</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>10</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 15: Desert -->
+    <Item>
+      <Key>15</Key>
+      <Value>
+        <Id>15</Id>
+        <Name>Desert</Name>
+        <Avoid>5</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>4</Step_Sound_Group> <!-- //Yeti -->
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 2 3 4 1</Item>
+          <Item>1 2 3 4 2</Item>
+          <Item>1 2 3 4 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>0</Minimap> <!-- //Yeti -->
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 16: River -->
+    <Item>
+      <Key>16</Key>
+      <Value>
+        <Id>16</Id>
+        <Name>River</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>2</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>1</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>5 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>5 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>80</Minimap>
+        <Minimap_Group>0 16 21 22</Minimap_Group>
+      </Value>
+    </Item>
+    <!-- 17: Hill -->
+    <Item>
+      <Key>17</Key>
+      <Value>
+        <Id>17</Id>
+        <Name>Hill</Name>
+        <Avoid>30</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>4 3 -1 6 1</Item>
+          <Item>5 4 -1 7 2</Item>
+          <Item>3 4 -1 6 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>11</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 18: Peak -->
+    <Item>
+      <Key>18</Key>
+      <Value>
+        <Id>18</Id>
+        <Name>Peak</Name>
+        <Avoid>40</Avoid>
+        <Def>2</Def>
+        <Res>2</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>3</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>20</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 19: Bridge -->
+    <Item>
+      <Key>19</Key>
+      <Value>
+        <Id>19</Id>
+        <Name>Bridge</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>5</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>River</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>16</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 21: Sea -->
+    <Item>
+      <Key>21</Key>
+      <Value>
+        <Id>21</Id>
+        <Name>Sea</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>2</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>1</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>48</Minimap>
+        <Minimap_Group>0 21 54 61</Minimap_Group>
+      </Value>
+    </Item>
+    <!-- 22: Lake -->
+    <Item>
+      <Key>22</Key>
+      <Value>
+        <Id>22</Id>
+        <Name>Lake</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>2</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>1</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>48</Minimap>
+        <Minimap_Group>0 22</Minimap_Group>
+      </Value>
+    </Item>
+    <!-- 23: Floor -->
+    <Item>
+      <Key>23</Key>
+      <Value>
+        <Id>23</Id>
+        <Name>Floor</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>12</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 25: Fence -->
+    <Item>
+      <Key>25</Key>
+      <Value>
+        <Id>25</Id>
+        <Name>Fence</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 26: Wall -->
+    <Item>
+      <Key>26</Key>
+      <Value>
+        <Id>26</Id>
+        <Name>Wall</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 27: Weak Wall -->
+    <Item>
+      <Key>27</Key>
+      <Value>
+        <Id>27</Id>
+        <Name>Wall</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 29: Pillar -->
+    <Item>
+      <Key>29</Key>
+      <Value>
+        <Id>29</Id>
+        <Name>Pillar</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>2 2 2 3 1</Item>
+          <Item>2 2 2 3 1</Item>
+          <Item>2 2 2 3 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>13</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 30: Door -->
+    <Item>
+      <Key>30</Key>
+      <Value>
+        <Id>30</Id>
+        <Name>Door</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename>Floor</Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>7</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 31: Throne -->
+    <Item>
+      <Key>31</Key>
+      <Value>
+        <Id>31</Id>
+        <Name>Throne</Name>
+        <Avoid>20</Avoid>
+        <Def>2</Def>
+        <Res>2</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal>10 1</Heal>
+        <Minimap>14</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 32: Opened Chest -->
+    <Item>
+      <Key>32</Key>
+      <Value>
+        <Id>32</Id>
+        <Name>Chest</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>15</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 33: Chest -->
+    <Item>
+      <Key>33</Key>
+      <Value>
+        <Id>33</Id>
+        <Name>Chest</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>15</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 34: Roof -->
+    <Item>
+      <Key>34</Key>
+      <Value>
+        <Id>34</Id>
+        <Name>Roof</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename>Floor</Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 35: Fort Gate -->
+    <Item>
+      <Key>35</Key>
+      <Value>
+        <Id>35</Id>
+        <Name>Gate</Name>
+        <Avoid>20</Avoid>
+        <Def>2</Def>
+        <Res>2</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename>Gate(Fort)</Platform_Rename>
+        <Background_Rename>Fort</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal>10 1</Heal>
+        <Minimap>6</Minimap> <!-- //Yeti -->
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 37: Ruins -->
+    <Item>
+      <Key>37</Key>
+      <Value>
+        <Id>37</Id>
+        <Name>Ruins</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>2 2 2 2 1</Item>
+          <Item>3 3 3 4 2</Item>
+          <Item>2 2 2 2 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>26</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 38: Cliff -->
+    <Item>
+      <Key>38</Key>
+      <Value>
+        <Id>38</Id>
+        <Name>Cliff</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>3</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Cliff</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>96</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 44: Castle (-) -->
+    <Item>
+      <Key>44</Key>
+      <Value>
+        <Id>44</Id>
+        <Name>--</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename>Gate</Platform_Rename>
+        <Background_Rename>Fort</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 45: Stairs -->
+    <Item>
+      <Key>45</Key>
+      <Value>
+        <Id>45</Id>
+        <Name>Stairs</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename>Floor</Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>17</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 46: Village (-) -->
+    <Item>
+      <Key>46</Key>
+      <Value>
+        <Id>46</Id>
+        <Name>--</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename>Village</Platform_Rename>
+        <Background_Rename>Village</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 51: Snag -->
+    <Item>
+      <Key>51</Key>
+      <Value>
+        <Id>51</Id>
+        <Name>Snag</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>8</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 52: Snag Bridge -->
+    <Item>
+      <Key>52</Key>
+      <Value>
+        <Id>52</Id>
+        <Name>Bridge</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group> <!-- //Yeti -->
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>River</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>2 2 2 3 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>16</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 53: Sky -->
+    <Item>
+      <Key>53</Key>
+      <Value>
+        <Id>53</Id>
+        <Name>Sky</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group> <!-- //Yeti -->
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>48</Minimap> <!-- //Yeti -->
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 54: Deeps -->
+    <Item>
+      <Key>54</Key>
+      <Value>
+        <Id>54</Id>
+        <Name>Deeps</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>2</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>1</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>48</Minimap>
+        <Minimap_Group>0 21 54 61</Minimap_Group>
+      </Value>
+    </Item>
+    <!-- 55: Visitable Ruins -->
+    <Item>
+      <Key>55</Key>
+      <Value>
+        <Id>55</Id>
+        <Name>Ruins</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename>Village</Platform_Rename>
+        <Background_Rename>Ruins(Visit)</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>6</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 56: Inn -->
+    <Item>
+      <Key>56</Key>
+      <Value>
+        <Id>56</Id>
+        <Name>Inn</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>2</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 57: Barrel -->
+    <Item>
+      <Key>57</Key>
+      <Value>
+        <Id>57</Id>
+        <Name>Barrel</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 60: Water -->
+    <Item>
+      <Key>60</Key>
+      <Value>
+        <Id>60</Id>
+        <Name>Water</Name>
+        <Avoid>10</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>2</Step_Sound_Group>
+        <Platform_Rename>Lake</Platform_Rename>
+        <Background_Rename>Lake</Background_Rename>
+        <Dust_Type>1</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>63</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 61: Gunnel -->
+    <Item>
+      <Key>61</Key>
+      <Value>
+        <Id>61</Id>
+        <Name>Gunnel</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>3</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 1</Item>
+          <Item>-1 -1 -1 -1 2</Item>
+          <Item>-1 -1 -1 -1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 62: Deck -->
+    <Item>
+      <Key>62</Key>
+      <Value>
+        <Id>62</Id>
+        <Name>Deck</Name>
+        <Avoid>0</Avoid>
+        <Def>0</Def>
+        <Res>0</Res>
+        <Stats_Visible>true</Stats_Visible>
+        <Step_Sound_Group>6</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>1 1 1 1 1</Item>
+          <Item>1 1 1 1 2</Item>
+          <Item>1 1 1 1 1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>12</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 63: Brace -->
+    <Item>
+      <Key>63</Key>
+      <Value>
+        <Id>63</Id>
+        <Name>Brace</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 64: Mast -->
+    <Item>
+      <Key>64</Key>
+      <Value>
+        <Id>64</Id>
+        <Name>Mast</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename></Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>false</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+    <!-- 65: Crenel -->
+    <Item>
+      <Key>65</Key>
+      <Value>
+        <Id>65</Id>
+        <Name>Crenel</Name>
+        <Avoid>20</Avoid>
+        <Def>1</Def>
+        <Res>1</Res>
+        <Stats_Visible>false</Stats_Visible>
+        <Step_Sound_Group>0</Step_Sound_Group>
+        <Platform_Rename></Platform_Rename>
+        <Background_Rename>Floor</Background_Rename>
+        <Dust_Type>0</Dust_Type>
+        <Fire_Through>true</Fire_Through>
+        <Move_Costs>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+          <Item>-1 -1 -1 -1 -1</Item>
+        </Move_Costs>
+        <Heal Null="true" />
+        <Minimap>32</Minimap>
+        <Minimap_Group />
+      </Value>
+    </Item>
+  </Asset>
+</XnaContent>

@@ -1,0 +1,452 @@
+EventPointerTable(OaksLabCh,ThisChapter)
+setText(0x160, NewChName)
+ALIGN 4
+NewChName:
+String("Oak")
+BYTE 0
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+
+/*
+Vendor(ShopItems,2,7)
+Armory(ArmoryItems,10,26)
+Village(0x8,VillageEvent,18,27)
+House(0,HouseEvent,6,24)
+Seize(10,2)
+*/
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+END_MAIN
+
+
+
+Traps1:
+
+RedPokeballTrap(9,5, 0, Vulnerary)
+RedPokeballTrap(10,5, 0, Vulnerary)
+RedPokeballTrap(11,5, 0, Vulnerary)
+
+//OpenPokeball(9,5)
+//OpenPokeball(10,5)
+//OpenPokeball(11,5)
+ENDTRAP
+ALIGN 4
+
+
+
+
+StuffInCommon:
+Text(GaryTakesBothText)
+SVAL rB 0x90006 
+CALL CamSlotB
+RemoveTrapAtCoords(9,5)
+RemoveTrapAtCoords(10,5)
+RemoveTrapAtCoords(11,5)
+AddTrap(RedPokeballItemID, 9,5)
+AddTrap(RedPokeballItemID, 10,5)
+AddTrap(RedPokeballItemID, 11,5)
+
+NoFade 
+ENDA 
+	
+
+
+BeginningScene:
+
+//FADU 44 
+MUSCFAST 0x16 // Intro 
+EVBIT_MODIFY 3 // Dialogue skipping & fast-forwarding allowed 
+CALL NameInputEvent
+CAM1 [8,11]
+FADU 44 
+Text(WhosTheKidText)
+SVAL r7 0 
+ASMC CallStarterMenu|1
+BNE 0 rC r7 
+
+	CALL StuffInCommon
+	SCOORD rB [6,9]
+	SVAL r2 UnitLeftCharmanderEnemy|IsPointer
+	CALL SendOutPkmnSlotB
+	SCOORD rB [8,9]
+	SVAL r2 UnitRightSquirtleEnemy|IsPointer
+	CALL SendOutPkmnSlotB
+	SCOORD rB [7,12]
+	SVAL r2 UnitBulbasaurPlayer|IsPointer
+
+
+	GOTO 2 
+
+Label 0 
+SVAL r7 1 
+BNE 1 rC r7 
+
+	CALL StuffInCommon
+	SCOORD rB [6,9]
+	SVAL r2 UnitLeftSquirtleEnemy|IsPointer
+	CALL SendOutPkmnSlotB
+	SCOORD rB [8,9]
+	SVAL r2 UnitRightBulbasaurEnemy|IsPointer
+	CALL SendOutPkmnSlotB
+	SCOORD rB [7,12]
+	SVAL r2 UnitCharmanderPlayer|IsPointer
+	GOTO 2 
+
+Label 1 
+
+SVAL r7 2 
+BNE 2 rC r7 
+	CALL StuffInCommon
+	SCOORD rB [6,9]
+	SVAL r2 UnitLeftBulbasaurEnemy|IsPointer
+	CALL SendOutPkmnSlotB
+	SCOORD rB [8,9]
+	SVAL r2 UnitRightCharmanderEnemy|IsPointer
+	CALL SendOutPkmnSlotB
+	SCOORD rB [7,12]
+	SVAL r2 UnitSquirtlePlayer|IsPointer
+
+
+Label 2 
+
+SADD rA rB r0 
+STAL 25
+TutText(UhOhText)
+SADD rB rA r0 
+CALL SendOutPkmnSlotB
+
+CHECK_CLASS 0xA0 // Starter choice 
+SADD r4 rC r0 
+Write_Byte(GaryStarterClass)
+
+UNCR(2, Hide) 
+EVBIT_MODIFY 0
+
+SupplyItem(SuperPotion)
+SupplyItem(SuperPotion)
+SupplyItem(SuperPotion)
+SupplyItem(SuperPotion)
+SupplyItem(SuperPotion)
+
+
+
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+
+
+
+
+
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1:
+//UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Ephraim  SquirtleID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Seth  CharmanderID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT
+
+EnemyUnitsA:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
+
+
+
+
+
+EnemyTrainersA:
+//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT
+
+NPCUnits:
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+
+UNIT
+
+NameInputEvent:
+
+// Name input screen 
+REMOVEPORTRAITS
+ASMC2 0x48281
+CLEAN
+// Name input screen 
+//FADI 12 
+//CLEAN 
+//FADU 12 
+
+
+SVAL 0x7 0x1
+CompareTactText(AName)
+BNE 0 rC r7
+Text(SpeedRunnerText)
+SVAL r2 UnitsA|IsPointer 
+GOTO 200
+Label 0
+
+CompareTactText(JesterName)BNE 1 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsJester|IsPointerGOTO 200Label 1
+CompareTactText(DarkName)BNE 2 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsDark|IsPointerGOTO 200Label 2
+CompareTactText(HiroName)BNE 3 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsHiro|IsPointerGOTO 200Label 3
+CompareTactText(N426Name)BNE 4 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsN426|IsPointerGOTO 200Label 4
+CompareTactText(ZoramineName)BNE 5 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsZoramine|IsPointerGOTO 200Label 5
+CompareTactText(PandanName)BNE 6 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsPandan|IsPointerGOTO 200Label 6
+CompareTactText(DerName)BNE 7 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsDer|IsPointerGOTO 200Label 7
+CompareTactText(AshName)BNE 8 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsAsh|IsPointerGOTO 200Label 8
+CompareTactText(RedName)BNE 9 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsRed|IsPointerGOTO 200Label 9
+CompareTactText(LanceName)BNE 10 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsLance|IsPointerGOTO 200Label 10
+CompareTactText(BrockName)BNE 11 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsBrock|IsPointerGOTO 200Label 11
+CompareTactText(MistyName)BNE 12 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsMisty|IsPointerGOTO 200Label 12
+CompareTactText(GaryName)BNE 13 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsGary|IsPointerGOTO 200Label 13
+CompareTactText(bpatName)BNE 14 rC r7CALL PlaytesterCommonMessageSVAL r2 Unitsbpat|IsPointerGOTO 200Label 14
+CompareTactText(VeslyName)BNE 15 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsVesly|IsPointerGOTO 200Label 15
+CompareTactText(ZaimName)BNE 16 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsZaim|IsPointerGOTO 200Label 16
+CompareTactText(AriadnaName)BNE 17 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsAriadna|IsPointerGOTO 200Label 17
+CompareTactText(ScubName)
+BNE 18 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsScub|IsPointer
+GOTO 200
+Label 18
+GOTO 0x63 
+
+
+Label 200 
+FADU 12 
+LOAD_S2 1 
+ENUN 
+
+Label 0x63 
+NoFade 
+ENDA 
+
+PlaytesterCommonMessage:
+Text(PlaytesterMessage)
+NoFade 
+ENDA 
+
+
+
+
+ALIGN 4
+#define StarterUnitParameters "0x1 Level(5,Ally,True) [7,12] 0b 0x0 REDA7R12 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+
+
+
+ALIGN 4 
+UnitBulbasaurPlayer: 
+UNIT 0x01  BulbasaurID StarterUnitParameters
+UNIT
+
+ALIGN 4 
+UnitCharmanderPlayer: 
+UNIT 0x01  CharmanderID StarterUnitParameters
+UNIT
+
+ALIGN 4 
+UnitSquirtlePlayer: 
+UNIT 0x01  SquirtleID StarterUnitParameters
+UNIT
+
+
+
+
+ALIGN 4 
+#define GaryOakLabLeftUnitParameters "0x1 Level(1,Enemy,True) [6,9] 0b 0x0 REDA6R9 [Tackle,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+ALIGN 4 
+#define GaryOakLabRightUnitParameters "0x1 Level(1,Enemy,True) [8,9] 0b 0x0 REDA8R9 [Tackle,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+
+ALIGN 4 
+UnitLeftBulbasaurEnemy: 
+UNIT 0xA0  BulbasaurID GaryOakLabLeftUnitParameters
+UNIT
+
+ALIGN 4 
+UnitLeftCharmanderEnemy: 
+UNIT 0xA0  CharmanderID GaryOakLabLeftUnitParameters
+UNIT
+
+ALIGN 4 
+UnitLeftSquirtleEnemy: 
+UNIT 0xA0  SquirtleID GaryOakLabLeftUnitParameters
+UNIT
+
+
+ALIGN 4 
+UnitRightBulbasaurEnemy: 
+UNIT 0xA1  BulbasaurID GaryOakLabRightUnitParameters
+UNIT
+
+ALIGN 4 
+UnitRightCharmanderEnemy: 
+UNIT 0xA1  CharmanderID GaryOakLabRightUnitParameters
+UNIT
+
+ALIGN 4 
+UnitRightSquirtleEnemy: 
+UNIT 0xA1  SquirtleID GaryOakLabRightUnitParameters
+UNIT
+
+
+
+
+ALIGN 4
+#define BonusUnitParameters "0x1 Level(5,Ally,True) [7,7] 0b 0x1 REDA7R10 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+
+
+
+
+
+
+
+ALIGN 4 
+UnitsA: 
+UNIT 0x02  EeveeID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsPandan: 
+UNIT 0x02  TangelaID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsDer: 
+UNIT 0x02 EeveeID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsAsh: 
+UNIT 0x02  PikachuID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsRed: 
+UNIT 0x02  PikachuID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsLance: 
+UNIT 0x02  DratiniID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsMisty: 
+UNIT 0x02  StaryuID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsGary: 
+UNIT 0x02  MagikarpID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+Unitsbpat: 
+UNIT 0x02  ZubatID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsVesly: 
+UNIT 0x02  GrimerID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsZaim: 
+UNIT 0x02  SlowpokeID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsAriadna: 
+UNIT 0x02  NidoranMID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsScub: 
+UNIT 0x02 KrabbyID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsZoramine: 
+UNIT 0x02  MagnemiteID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsN426: 
+UNIT 0x02 CuboneID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsHiro: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsDark: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsJester: 
+UNIT 0x02 MagikarpID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsBrock: 
+UNIT 0x02 GeodudeID BonusUnitParameters
+UNIT

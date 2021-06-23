@@ -219,7 +219,8 @@ SADD r2 rC r0
 Write_Byte(CurrentChapter)
 
 MNC2 PokecenterCh 
-END 
+NoFade 
+ENDA 
 
 RefreshIfNotInDanger:
 CHECK_EVENTID 1 
@@ -283,6 +284,30 @@ CALL PlacePlayers
 
 NoFade
 ENDA
+
+CamSlotB:
+SPAWN_NPC 0xFD [-1, -1] 
+CAM1 0x7FFE 
+DISA 0xFD 
+NoFade 
+ENDA 
+
+SendOutPkmnSlotB:
+EmoticonSlotB(PokeballGraphic)
+STAL 14 
+EmoticonSlotB(OpenPokeballGraphic)
+STAL 18
+LOAD_S2 1
+ENUN 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+STAL 22 
+RemoveTrap 
+
+DISA 0xFC 
+NoFade 
+ENDA 
+
 
 
 FastTravelEvent:

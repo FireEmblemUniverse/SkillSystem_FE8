@@ -1,79 +1,64 @@
-00 Prologue
-01 Ch 1
-02 Ch 2
-03 Ch 3
-04 Ch 4/Zaha Woods
-05 Ch 5x
-06 Ch 5
-07 Ch 6/Adlas Plains
-08 Ch 7
-09 Ch 8
-0A Ch 9 Eirika
-0B Ch 10 Eirika/Teras Plateau
-0C Ch 12 Eirika
-0D Ch 13 Eirika
-0E Ch 14 Eirika
-0F Ch 15 Eirika
-10 Ch 16 Eirika
-11 Ch 17 Eirika/Narube River
-12 Ch 18 Eirika/Neleras Peak
-13 Ch 19 Eirika
-14 Ch 20 Eirika
-15 Final Ch 1 Eirika
-16 Final Ch 2 Erika
-17 Ch 9 Ephraim
-18 Ch 10 Ephraim/Bethroen
-19 Ch 12 Ephraim
-1A Ch 13 Ephraim/Za'abadul Marsh
-1B Ch 14 Ephraim
-1C Ch 15 Ephraim
-1D Ch 16 Ephraim
-1E Ch 17 Ephraim/Narube River
-1F Ch 18 Ephraim/Neleras Peak
-20 Ch 19 Ephraim
-21 Ch 20 Ephraim
-22 Final Ch 1 Ephraim
-23 Final Ch 2 Ephraim
-24 Tower of Valni 1
-25 Tower of Valni 2
-26 Tower of Valni 3
-27 Tower of Valni 4
-28 Tower of Valni 5
-29 Tower of Valni 6
-2A Tower of Valni 7
-2B Tower of Valni 8
-2C Tower of Valni 8 (Cutscene)
-2D Tower of Valni 8 (Cutscene 2)
-2E Lagdou Ruins 1
-2F Lagdou Ruins 2
-30 Lagdou Ruins 3
-31 Lagdou Ruins 4
-32 Lagdou Ruins 5
-33 Lagdou Ruins 6
-34 Lagdou Ruins 7
-35 Lagdou Ruins 8
-36 Lagdou Ruins 9
-37 Lagdou Ruins 10
-38 Lords split up (glitchy map)
-39 Melkaen Coast
-3A Link Arena
-3B The interesting map...
-3C Debug map
-3D Ch 11 Eirika
-3E Ch 11 Ephraim
-3F Grado castle
-40 Renais castle
-41 Caer Pelyn
-42 Renais throne
-43 Renais audience
-44 Renval gate
-45 Grado borders
-46 Grado prison
-47 Grado shrine (Past)
-48 Renais shrine
-49 Some path
-4A Some building
-4B Another shrine
-4C Another path
-4D Grado shrine (Present)
-4E Ch 5 town (Past)
+
+ OaksLabCh 0x0
+ PalletTownCh 0x1
+ Route1Ch 0x2
+ ViridianCityCh 0x3
+ Route2SCh 0x4
+ ViridianForestSCh 0x5
+ ViridianForestNCh 0x6
+ Route2NCh 0x7
+ PewterCityCh 0x8
+ PewterGymCh 0x9
+ Route3WCh 0xA
+ Route3MCh 0xB
+ Route3ECh 0xC
+ Route4WCh 0xD
+ MtMoonB1SCh 0xE
+ MtMoonB1NCh 0xF
+ MtMoonB2Ch 0x10
+ MtMoonB3NECh 0x11
+ MtMoonB3ECh 0x12
+ MtMoonB3WCh 0x13
+ MtMoonB3MidCh 0x14
+ Route4MCh 0x15
+ Route4ECh 0x16
+ CeruleanCityCh 0x17
+ CeruleanGymCh 0x18
+ Route24Ch 0x19
+ Route25Ch 0x1A
+ Route5Ch 0x1B
+ Route6Ch 0x1C
+ VermillionCityCh 0x1D
+ VermillionGymCh 0x1E
+ Route11Ch 0x1F
+ Route9wCh 0x20
+ Route9eCh 0x21
+ Route10nCh 0x22
+ Route10sCh 0x23
+ LavendarCityCh 0x24
+ Route12Ch 0x25
+ Route13Ch 0x26
+ Route14Ch 0x27
+ Route15Ch 0x28
+ FuschiaCityCh 0x29
+ FuschiaGymCh 0x2A
+ Route18Ch 0x2B
+ Route17sCh 0x2C
+ Route17nCh 0x2D
+ Route16Ch 0x2E
+ CeladonCityCh 0x2F
+ CeladonGymCh 0x30
+ Route7Ch 0x31
+ Route8Ch 0x32
+ SaffronCityCh 0x33
+ SaffronGymCh 0x34
+ Route19Ch 0x35
+ Route20Ch 0x36
+ CinnabarIslandCh 0x37
+ PokecenterCh 0x38
+ CinnabarGymCh 0x39
+ Route21Ch 0x3A
+ ViridianGymCh 0x3B
+ Route22Ch 0x3C
+ Route23sCh 0x3D
+ Route23nCh 0x3E

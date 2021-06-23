@@ -158,7 +158,8 @@ BeginningScene:
 CALL LoadAndPlacePlayers 
 CALL GlobalBeginningScene
 LABEL 0x63
-END
+NoFade 
+ENDA 
 
 
 

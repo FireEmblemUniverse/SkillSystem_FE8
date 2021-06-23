@@ -85,7 +85,7 @@
 #include "Commands/MemSlotString/MemSlotStringInstaller.event"
 #include "Commands/SetStatus/SetStatusInstaller.event"
 
-
+#include "Commands/CompareTactText/CompareTactTextInstaller.event" 
 
 
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
@@ -105,8 +105,7 @@
 #include "Commands/HealAllUnits.lyn.event" 
 #include "Commands/GameOptionInstaller.event"
 
-#include "Commands/CallMenu.lyn.event"
-#include "Commands/EffectCallMenu.lyn.event"
+#include "Commands/LordSplitMenu/Installer.event" 
 
 #include "Commands/CHAI_all/CHAI_all_installer.event"
 

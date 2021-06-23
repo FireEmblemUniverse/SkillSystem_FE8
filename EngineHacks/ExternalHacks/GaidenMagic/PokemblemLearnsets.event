@@ -1,0 +1,318 @@
+
+ALIGN 4
+BulbasaurLearnset:
+// BYTE Level Move 
+BYTE 1 Tackle  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
+BYTE 5 Absorb 12 HighJumpKick 
+BYTE 0 0 // Goes at the end of each learnset 
+	ALIGN 4
+IvysaurLearnset:BYTEBYTE 0 0ALIGN 4
+VenusaurLearnset:BYTEBYTE 0 0ALIGN 4
+CharmanderLearnset:BYTEBYTE 0 0ALIGN 4
+CharmeleonLearnset:BYTEBYTE 0 0ALIGN 4
+CharizardLearnset:BYTEBYTE 0 0ALIGN 4
+SquirtleLearnset:BYTEBYTE 0 0ALIGN 4
+WartortleLearnset:BYTEBYTE 0 0ALIGN 4
+BlastoiseLearnset:BYTEBYTE 0 0ALIGN 4
+CaterpieLearnset:BYTEBYTE 0 0ALIGN 4
+MetapodLearnset:BYTEBYTE 0 0ALIGN 4
+ButterfreeLearnset:BYTEBYTE 0 0ALIGN 4
+WeedleLearnset:BYTEBYTE 0 0ALIGN 4
+KakunaLearnset:BYTEBYTE 0 0ALIGN 4
+BeedrillLearnset:BYTEBYTE 0 0ALIGN 4
+PLearnset:BYTEBYTE 0 0ALIGN 4geyLearnset:BYTEBYTE 0 0ALIGN 4
+PigeottoLearnset:BYTEBYTE 0 0ALIGN 4
+PLearnset:BYTEBYTE 0 0ALIGN 4geotLearnset:BYTEBYTE 0 0ALIGN 4
+RattataLearnset:BYTEBYTE 0 0ALIGN 4
+RaticateLearnset:BYTEBYTE 0 0ALIGN 4
+SpearowLearnset:BYTEBYTE 0 0ALIGN 4
+FearowLearnset:BYTEBYTE 0 0ALIGN 4
+EkansLearnset:BYTEBYTE 0 0ALIGN 4
+ArbokLearnset:BYTEBYTE 0 0ALIGN 4
+PikachuLearnset:BYTEBYTE 0 0ALIGN 4
+RaichuLearnset:BYTEBYTE 0 0ALIGN 4
+SandshrewLearnset:BYTEBYTE 0 0ALIGN 4
+SandslashLearnset:BYTEBYTE 0 0ALIGN 4
+NLearnset:BYTEBYTE 0 0ALIGN 4oranFLearnset:BYTEBYTE 0 0ALIGN 4
+NLearnset:BYTEBYTE 0 0ALIGN 4orinaLearnset:BYTEBYTE 0 0ALIGN 4
+NLearnset:BYTEBYTE 0 0ALIGN 4oqueenLearnset:BYTEBYTE 0 0ALIGN 4
+NLearnset:BYTEBYTE 0 0ALIGN 4oranMLearnset:BYTEBYTE 0 0ALIGN 4
+NLearnset:BYTEBYTE 0 0ALIGN 4orinoLearnset:BYTEBYTE 0 0ALIGN 4
+NLearnset:BYTEBYTE 0 0ALIGN 4okingLearnset:BYTEBYTE 0 0ALIGN 4
+ClefairyLearnset:BYTEBYTE 0 0ALIGN 4
+ClefableLearnset:BYTEBYTE 0 0ALIGN 4
+VulpixLearnset:BYTEBYTE 0 0ALIGN 4
+NinetalesLearnset:BYTEBYTE 0 0ALIGN 4
+JigglypuffLearnset:BYTEBYTE 0 0ALIGN 4
+WigglytuffLearnset:BYTEBYTE 0 0ALIGN 4
+ZubatLearnset:BYTEBYTE 0 0ALIGN 4
+GolbatLearnset:BYTEBYTE 0 0ALIGN 4
+OddishLearnset:BYTEBYTE 0 0ALIGN 4
+GloomLearnset:BYTEBYTE 0 0ALIGN 4
+VileplumeLearnset:BYTEBYTE 0 0ALIGN 4
+ParasLearnset:BYTEBYTE 0 0ALIGN 4
+ParasectLearnset:BYTEBYTE 0 0ALIGN 4
+VenonatLearnset:BYTEBYTE 0 0ALIGN 4
+VenomothLearnset:BYTEBYTE 0 0ALIGN 4
+DiglettLearnset:BYTEBYTE 0 0ALIGN 4
+DugtrioLearnset:BYTEBYTE 0 0ALIGN 4
+MeowthLearnset:BYTEBYTE 0 0ALIGN 4
+PersianLearnset:BYTEBYTE 0 0ALIGN 4
+PsyduckLearnset:BYTEBYTE 0 0ALIGN 4
+GolduckLearnset:BYTEBYTE 0 0ALIGN 4
+MankeyLearnset:BYTEBYTE 0 0ALIGN 4
+PrimeapeLearnset:BYTEBYTE 0 0ALIGN 4
+GrowlitheLearnset:BYTEBYTE 0 0ALIGN 4
+ArcanineLearnset:BYTEBYTE 0 0ALIGN 4
+PoliwagLearnset:BYTEBYTE 0 0ALIGN 4
+PoliwhirlLearnset:BYTEBYTE 0 0ALIGN 4
+PoliwrathLearnset:BYTEBYTE 0 0ALIGN 4
+AbraLearnset:BYTEBYTE 0 0ALIGN 4
+KadabraLearnset:BYTEBYTE 0 0ALIGN 4
+AlakazamLearnset:BYTEBYTE 0 0ALIGN 4
+MachopLearnset:BYTEBYTE 0 0ALIGN 4
+MachokeLearnset:BYTEBYTE 0 0ALIGN 4
+MachampLearnset:BYTEBYTE 0 0ALIGN 4
+BellsproutLearnset:BYTEBYTE 0 0ALIGN 4
+WeepinbellLearnset:BYTEBYTE 0 0ALIGN 4
+VictreebelLearnset:BYTEBYTE 0 0ALIGN 4
+TentacoolLearnset:BYTEBYTE 0 0ALIGN 4
+TentacruelLearnset:BYTEBYTE 0 0ALIGN 4
+GeodudeLearnset:BYTEBYTE 0 0ALIGN 4
+GravellerLearnset:BYTEBYTE 0 0ALIGN 4
+GolemLearnset:BYTEBYTE 0 0ALIGN 4
+PonytaLearnset:BYTEBYTE 0 0ALIGN 4
+RapLearnset:BYTEBYTE 0 0ALIGN 4ashLearnset:BYTEBYTE 0 0ALIGN 4
+SlowpokeLearnset:BYTEBYTE 0 0ALIGN 4
+SlowbroLearnset:BYTEBYTE 0 0ALIGN 4
+MagnemiteLearnset:BYTEBYTE 0 0ALIGN 4
+MagnetonLearnset:BYTEBYTE 0 0ALIGN 4
+FarfetchdLearnset:BYTEBYTE 0 0ALIGN 4
+DoduoLearnset:BYTEBYTE 0 0ALIGN 4
+DodrioLearnset:BYTEBYTE 0 0ALIGN 4
+SeelLearnset:BYTEBYTE 0 0ALIGN 4
+DewgongLearnset:BYTEBYTE 0 0ALIGN 4
+GrimerLearnset:BYTEBYTE 0 0ALIGN 4
+MukLearnset:BYTEBYTE 0 0ALIGN 4
+ShellderLearnset:BYTEBYTE 0 0ALIGN 4
+CloysterLearnset:BYTEBYTE 0 0ALIGN 4
+GastlyLearnset:BYTEBYTE 0 0ALIGN 4
+HaunterLearnset:BYTEBYTE 0 0ALIGN 4
+GengarLearnset:BYTEBYTE 0 0ALIGN 4
+OnixLearnset:BYTEBYTE 0 0ALIGN 4
+DrowzeeLearnset:BYTEBYTE 0 0ALIGN 4
+HypnoLearnset:BYTEBYTE 0 0ALIGN 4
+KrabbyLearnset:BYTEBYTE 0 0ALIGN 4
+KinglerLearnset:BYTEBYTE 0 0ALIGN 4
+VoltorbLearnset:BYTEBYTE 0 0ALIGN 4
+ElectrodeLearnset:BYTEBYTE 0 0ALIGN 4
+ExeggcuteLearnset:BYTEBYTE 0 0ALIGN 4
+ExeggutorLearnset:BYTEBYTE 0 0ALIGN 4
+CuboneLearnset:BYTEBYTE 0 0ALIGN 4
+MarowakLearnset:BYTEBYTE 0 0ALIGN 4
+HitmonleeLearnset:BYTEBYTE 0 0ALIGN 4
+HitmonchanLearnset:BYTEBYTE 0 0ALIGN 4
+LickitungLearnset:BYTEBYTE 0 0ALIGN 4
+KoffingLearnset:BYTEBYTE 0 0ALIGN 4
+WeezingLearnset:BYTEBYTE 0 0ALIGN 4
+RhyhornLearnset:BYTEBYTE 0 0ALIGN 4
+RhydonLearnset:BYTEBYTE 0 0ALIGN 4
+ChanseyLearnset:BYTEBYTE 0 0ALIGN 4
+TangelaLearnset:BYTEBYTE 0 0ALIGN 4
+KangaskhanLearnset:BYTEBYTE 0 0ALIGN 4
+HorseaLearnset:BYTEBYTE 0 0ALIGN 4
+SeadraLearnset:BYTEBYTE 0 0ALIGN 4
+GoldeenLearnset:BYTEBYTE 0 0ALIGN 4
+SeakingLearnset:BYTEBYTE 0 0ALIGN 4
+StaryuLearnset:BYTEBYTE 0 0ALIGN 4
+StarmieLearnset:BYTEBYTE 0 0ALIGN 4
+MrMimeLearnset:BYTEBYTE 0 0ALIGN 4
+ScytherLearnset:BYTEBYTE 0 0ALIGN 4
+JynxLearnset:BYTEBYTE 0 0ALIGN 4
+ElectabuzzLearnset:BYTEBYTE 0 0ALIGN 4
+MagmarLearnset:BYTEBYTE 0 0ALIGN 4
+PinsirLearnset:BYTEBYTE 0 0ALIGN 4
+TaurosLearnset:BYTEBYTE 0 0ALIGN 4
+MagikarpLearnset:BYTEBYTE 0 0ALIGN 4
+GyaradosLearnset:BYTEBYTE 0 0ALIGN 4
+LaprasLearnset:BYTEBYTE 0 0ALIGN 4
+DittoLearnset:BYTEBYTE 0 0ALIGN 4
+EeveeLearnset:BYTEBYTE 0 0ALIGN 4
+VaporeonLearnset:BYTEBYTE 0 0ALIGN 4
+JolteonLearnset:BYTEBYTE 0 0ALIGN 4
+FlareonLearnset:BYTEBYTE 0 0ALIGN 4
+PorygonLearnset:BYTEBYTE 0 0ALIGN 4
+OmanyteLearnset:BYTEBYTE 0 0ALIGN 4
+OmastarLearnset:BYTEBYTE 0 0ALIGN 4
+KabutoLearnset:BYTEBYTE 0 0ALIGN 4
+KabutopsLearnset:BYTEBYTE 0 0ALIGN 4
+AerodactylLearnset:BYTEBYTE 0 0ALIGN 4
+SnorlaxLearnset:BYTEBYTE 0 0ALIGN 4
+ArticunoLearnset:BYTEBYTE 0 0ALIGN 4
+ZapdosLearnset:BYTEBYTE 0 0ALIGN 4
+MoltresLearnset:BYTEBYTE 0 0ALIGN 4
+DratiniLearnset:BYTEBYTE 0 0ALIGN 4
+DragonairLearnset:BYTEBYTE 0 0ALIGN 4
+DragoniteLearnset:BYTEBYTE 0 0ALIGN 4
+MewtwoLearnset:BYTEBYTE 0 0ALIGN 4
+MewLearnset:BYTEBYTE 0 0ALIGN 4
+
+
+
+
+
+
+
+// Stuff for Vesly 
+
+GaidenList(BulbasaurID,BulbasaurLearnset)
+GaidenList(IvysaurID,IvysaurLearnset)
+GaidenList(VenusaurID,VenusaurLearnset)
+GaidenList(CharmanderID,CharmanderLearnset)
+GaidenList(CharmeleonID,CharmeleonLearnset)
+GaidenList(CharizardID,CharizardLearnset)
+GaidenList(SquirtleID,SquirtleLearnset)
+GaidenList(WartortleID,WartortleLearnset)
+GaidenList(BlastoiseID,BlastoiseLearnset)
+GaidenList(CaterpieID,CaterpieLearnset)
+GaidenList(MetapodID,MetapodLearnset)
+GaidenList(ButterfreeID,ButterfreeLearnset)
+GaidenList(WeedleID,WeedleLearnset)
+GaidenList(KakunaID,KakunaLearnset)
+GaidenList(BeedrillID,BeedrillLearnset)
+GaidenList(PidgeyID,PidgeyLearnset)
+GaidenList(PigeottoID,PigeottoLearnset)
+GaidenList(PidgeotID,PidgeotLearnset)
+GaidenList(RattataID,RattataLearnset)
+GaidenList(RaticateID,RaticateLearnset)
+GaidenList(SpearowID,SpearowLearnset)
+GaidenList(FearowID,FearowLearnset)
+GaidenList(EkansID,EkansLearnset)
+GaidenList(ArbokID,ArbokLearnset)
+GaidenList(PikachuID,PikachuLearnset)
+GaidenList(RaichuID,RaichuLearnset)
+GaidenList(SandshrewID,SandshrewLearnset)
+GaidenList(SandslashID,SandslashLearnset)
+GaidenList(NidoranFID,NidoranFLearnset)
+GaidenList(NidorinaID,NidorinaLearnset)
+GaidenList(NidoqueenID,NidoqueenLearnset)
+GaidenList(NidoranMID,NidoranMLearnset)
+GaidenList(NidorinoID,NidorinoLearnset)
+GaidenList(NidokingID,NidokingLearnset)
+GaidenList(ClefairyID,ClefairyLearnset)
+GaidenList(ClefableID,ClefableLearnset)
+GaidenList(VulpixID,VulpixLearnset)
+GaidenList(NinetalesID,NinetalesLearnset)
+GaidenList(JigglypuffID,JigglypuffLearnset)
+GaidenList(WigglytuffID,WigglytuffLearnset)
+GaidenList(ZubatID,ZubatLearnset)
+GaidenList(GolbatID,GolbatLearnset)
+GaidenList(OddishID,OddishLearnset)
+GaidenList(GloomID,GloomLearnset)
+GaidenList(VileplumeID,VileplumeLearnset)
+GaidenList(ParasID,ParasLearnset)
+GaidenList(ParasectID,ParasectLearnset)
+GaidenList(VenonatID,VenonatLearnset)
+GaidenList(VenomothID,VenomothLearnset)
+GaidenList(DiglettID,DiglettLearnset)
+GaidenList(DugtrioID,DugtrioLearnset)
+GaidenList(MeowthID,MeowthLearnset)
+GaidenList(PersianID,PersianLearnset)
+GaidenList(PsyduckID,PsyduckLearnset)
+GaidenList(GolduckID,GolduckLearnset)
+GaidenList(MankeyID,MankeyLearnset)
+GaidenList(PrimeapeID,PrimeapeLearnset)
+GaidenList(GrowlitheID,GrowlitheLearnset)
+GaidenList(ArcanineID,ArcanineLearnset)
+GaidenList(PoliwagID,PoliwagLearnset)
+GaidenList(PoliwhirlID,PoliwhirlLearnset)
+GaidenList(PoliwrathID,PoliwrathLearnset)
+GaidenList(AbraID,AbraLearnset)
+GaidenList(KadabraID,KadabraLearnset)
+GaidenList(AlakazamID,AlakazamLearnset)
+GaidenList(MachopID,MachopLearnset)
+GaidenList(MachokeID,MachokeLearnset)
+GaidenList(MachampID,MachampLearnset)
+GaidenList(BellsproutID,BellsproutLearnset)
+GaidenList(WeepinbellID,WeepinbellLearnset)
+GaidenList(VictreebelID,VictreebelLearnset)
+GaidenList(TentacoolID,TentacoolLearnset)
+GaidenList(TentacruelID,TentacruelLearnset)
+GaidenList(GeodudeID,GeodudeLearnset)
+GaidenList(GravellerID,GravellerLearnset)
+GaidenList(GolemID,GolemLearnset)
+GaidenList(PonytaID,PonytaLearnset)
+GaidenList(RapidashID,RapidashLearnset)
+GaidenList(SlowpokeID,SlowpokeLearnset)
+GaidenList(SlowbroID,SlowbroLearnset)
+GaidenList(MagnemiteID,MagnemiteLearnset)
+GaidenList(MagnetonID,MagnetonLearnset)
+GaidenList(FarfetchdID,FarfetchdLearnset)
+GaidenList(DoduoID,DoduoLearnset)
+GaidenList(DodrioID,DodrioLearnset)
+GaidenList(SeelID,SeelLearnset)
+GaidenList(DewgongID,DewgongLearnset)
+GaidenList(GrimerID,GrimerLearnset)
+GaidenList(MukID,MukLearnset)
+GaidenList(ShellderID,ShellderLearnset)
+GaidenList(CloysterID,CloysterLearnset)
+GaidenList(GastlyID,GastlyLearnset)
+GaidenList(HaunterID,HaunterLearnset)
+GaidenList(GengarID,GengarLearnset)
+GaidenList(OnixID,OnixLearnset)
+GaidenList(DrowzeeID,DrowzeeLearnset)
+GaidenList(HypnoID,HypnoLearnset)
+GaidenList(KrabbyID,KrabbyLearnset)
+GaidenList(KinglerID,KinglerLearnset)
+GaidenList(VoltorbID,VoltorbLearnset)
+GaidenList(ElectrodeID,ElectrodeLearnset)
+GaidenList(ExeggcuteID,ExeggcuteLearnset)
+GaidenList(ExeggutorID,ExeggutorLearnset)
+GaidenList(CuboneID,CuboneLearnset)
+GaidenList(MarowakID,MarowakLearnset)
+GaidenList(HitmonleeID,HitmonleeLearnset)
+GaidenList(HitmonchanID,HitmonchanLearnset)
+GaidenList(LickitungID,LickitungLearnset)
+GaidenList(KoffingID,KoffingLearnset)
+GaidenList(WeezingID,WeezingLearnset)
+GaidenList(RhyhornID,RhyhornLearnset)
+GaidenList(RhydonID,RhydonLearnset)
+GaidenList(ChanseyID,ChanseyLearnset)
+GaidenList(TangelaID,TangelaLearnset)
+GaidenList(KangaskhanID,KangaskhanLearnset)
+GaidenList(HorseaID,HorseaLearnset)
+GaidenList(SeadraID,SeadraLearnset)
+GaidenList(GoldeenID,GoldeenLearnset)
+GaidenList(SeakingID,SeakingLearnset)
+GaidenList(StaryuID,StaryuLearnset)
+GaidenList(StarmieID,StarmieLearnset)
+GaidenList(MrMimeID,MrMimeLearnset)
+GaidenList(ScytherID,ScytherLearnset)
+GaidenList(JynxID,JynxLearnset)
+GaidenList(ElectabuzzID,ElectabuzzLearnset)
+GaidenList(MagmarID,MagmarLearnset)
+GaidenList(PinsirID,PinsirLearnset)
+GaidenList(TaurosID,TaurosLearnset)
+GaidenList(MagikarpID,MagikarpLearnset)
+GaidenList(GyaradosID,GyaradosLearnset)
+GaidenList(LaprasID,LaprasLearnset)
+GaidenList(DittoID,DittoLearnset)
+GaidenList(EeveeID,EeveeLearnset)
+GaidenList(VaporeonID,VaporeonLearnset)
+GaidenList(JolteonID,JolteonLearnset)
+GaidenList(FlareonID,FlareonLearnset)
+GaidenList(PorygonID,PorygonLearnset)
+GaidenList(OmanyteID,OmanyteLearnset)
+GaidenList(OmastarID,OmastarLearnset)
+GaidenList(KabutoID,KabutoLearnset)
+GaidenList(KabutopsID,KabutopsLearnset)
+GaidenList(AerodactylID,AerodactylLearnset)
+GaidenList(SnorlaxID,SnorlaxLearnset)
+GaidenList(ArticunoID,ArticunoLearnset)
+GaidenList(ZapdosID,ZapdosLearnset)
+GaidenList(MoltresID,MoltresLearnset)
+GaidenList(DratiniID,DratiniLearnset)
+GaidenList(DragonairID,DragonairLearnset)
+GaidenList(DragoniteID,DragoniteLearnset)
+GaidenList(MewtwoID,MewtwoLearnset)
+GaidenList(MewID,MewLearnset)

@@ -7,8 +7,9 @@
 // This one is defined in Root\Patches\CapturePokemon\CapturePokemonInstaller 
 //#define EmoticonSlotB(Graphic) "BYTE $4B $0D $00 Graphic; POIN Show_map_emotion_Install|1"
 
-//#define PokeballGraphic 0x12
-//#define OpenPokeballGraphic 0x13 
+//#define OpenPokeballGraphic 0x12
+//#define PokeballGraphic 0x13
+
 //#define MonsterFaceGraphic 0x14
 
 

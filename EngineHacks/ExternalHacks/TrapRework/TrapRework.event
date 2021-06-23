@@ -279,7 +279,21 @@
 	
 	//Macros for checks/actions involving traps
 	#define AddTrap(trapID,x,y) "SVAL 1 trapID; SVAL 0xB (x|(y<<16)); ASMC AddTrapASMC"
+	#define AddTrap(trapID) "SVAL 1 trapID; ASMC AddTrapASMC"
+	#define AddAnimTrap(trapID) "SVAL 1 trapID; ASMC AnimLightRuneASMC" //; ASMC RemoveTrapAtCoordsASMC"
+	
+	
+	
+	//BYTE $40 0D 0D $01 // $01 is animated 
+	
+
+//400D0DUU{$L1:AddTrap.dmp}	Add Trap-LightRune[XX:MAPX:X][YY:MAPY:Y][UU:BOOL:IsAnime]	{MAP}
+	
+	
+	
+	
 	#define RemoveTrapAtCoords(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
+	#define RemoveTrap "ASMC RemoveTrapAtCoordsASMC"
 	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
 	#define GetTrapExt1At(X,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
 	

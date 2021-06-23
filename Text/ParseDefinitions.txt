@@ -47,6 +47,21 @@
 [.......v] = [FarFarRight]
 
 
+[LoadOak] = [LoadFace][0x99][0x1]
+[LoadGaryPoint] = [LoadFace][0x9A][0x1]
+[LoadGaryShrug] = [LoadFace][0x9B][0x1]
+[LoadGaryBattle] = [LoadFace][0x9C][0x1]
+[LoadBirdkeeper] = [LoadFace][0x9D][0x1]
+[LoadBrock] = [LoadFace][0x9E][0x1]
+[LoadMisty] = [LoadFace][0x9F][0x1]
+[LoadDex] = [LoadFace][0xA0][0x1]
+
+
+
+
+
+
+
 
 [Rock] = [0x7C]
 [Water] = [0x7B]
