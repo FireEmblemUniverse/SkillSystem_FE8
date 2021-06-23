@@ -4,5 +4,5 @@
 
 SetChapterData(CinnabarIslandCh,CinnabarIslandObj,0,CinnabarIslandPal,CinnabarIslandConf,CinnabarIslandMap,Map,0,0,0)
 Map:
-#incbin "cinnabar_data.dmp"
+#incbin "Cinnabar_data.dmp"
 Map_Pointer_Table(CinnabarIslandMap,Map)

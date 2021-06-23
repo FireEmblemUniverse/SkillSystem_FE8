@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="24" height="27" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="cinnabar tileset" tilewidth="16" tileheight="16">
-  <image source="cinnabar tileset" trans="ffffff"/>
+  <image source="../Tilesets for tmx (unreferenced)/Cinnabar" trans="ffffff"/>
  </tileset>
  <layer name="Tile Layer 1" width="24" height="27">
   <properties>

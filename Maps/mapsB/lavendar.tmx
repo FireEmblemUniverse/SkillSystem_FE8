@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="24" height="50" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="lavendar processed" tilewidth="16" tileheight="16">
-  <image source="lavendar processed" trans="ffffff"/>
+  <image source="../Tilesets for tmx (unreferenced)/Lavendar" trans="ffffff"/>
  </tileset>
  <layer name="Tile Layer 1" width="24" height="50">
   <properties>

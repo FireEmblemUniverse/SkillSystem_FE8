@@ -6,12 +6,12 @@
  <layer name="Tile Layer 1" width="20" height="16">
   <properties>
    <property name="Anims1" value="0"/>
-   <property name="ChapterID" value="MtMoonB3MidCh"/>
+   <property name="ChapterID" value="MtMoonB3MCh"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="MtMoonB3MidMap"/>
-   <property name="ObjectType" value="MtMoonB3MidObj"/>
-   <property name="PaletteID" value="MtMoonB3MidPal"/>
-   <property name="TileConfig" value="MtMoonB3MidConf"/>
+   <property name="MapID" value="MtMoonB3MMap"/>
+   <property name="ObjectType" value="MtMoonB3MObj"/>
+   <property name="PaletteID" value="MtMoonB3MPal"/>
+   <property name="TileConfig" value="MtMoonB3MConf"/>
   </properties>
   <data>
   <tile gid="717"/>

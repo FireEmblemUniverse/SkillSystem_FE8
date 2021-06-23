@@ -4,5 +4,5 @@
 
 SetChapterData(SaffronCityCh,SaffronCityObj,0,SaffronCityPal,SaffronCityConf,SaffronCityMap,Map,0,0,0)
 Map:
-#incbin "saffron_data.dmp"
+#incbin "Saffron_data.dmp"
 Map_Pointer_Table(SaffronCityMap,Map)

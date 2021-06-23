@@ -94,107 +94,113 @@
 #include "maps\viridian forest south.event"
 }
 {
-#include "mapsB\7th gym.event"
+#include "mapsB\Celadon.event"
 }
 {
-#include "mapsB\8th gym.event"
+#include "mapsB\CeladonGym.event"
 }
 {
-#include "mapsB\celadon.event"
+#include "mapsB\Cinnabar.event"
 }
 {
-#include "mapsB\cinnabar.event"
+#include "mapsB\CinnabarGym.event"
 }
 {
-#include "mapsB\fuschia city compressed.event"
+#include "mapsB\Fuschia.event"
 }
 {
-#include "mapsB\gym 3.event"
+#include "mapsB\FuschiaGym.event"
 }
 {
-#include "mapsB\gym 4.event"
+#include "mapsB\Lavendar.event"
 }
 {
-#include "mapsB\koga gym.event"
+#include "mapsB\Route10.event"
 }
 {
-#include "mapsB\lavendar.event"
+#include "mapsB\Route11.event"
 }
 {
-#include "mapsB\route 10.event"
+#include "mapsB\Route12N.event"
 }
 {
-#include "mapsB\route 10s.event"
+#include "mapsB\Route12S.event"
 }
 {
-#include "mapsB\route 11.event"
+#include "mapsB\Route13.event"
 }
 {
-#include "mapsB\route 12.event"
+#include "mapsB\Route14.event"
 }
 {
-#include "mapsB\route 13.event"
+#include "mapsB\Route15.event"
 }
 {
-#include "mapsB\route 14.event"
+#include "mapsB\Route16.event"
 }
 {
-#include "mapsB\route 15.event"
+#include "mapsB\Route17N.event"
 }
 {
-#include "mapsB\route 16.event"
+#include "mapsB\Route17S.event"
 }
 {
-#include "mapsB\route 17 north.event"
+#include "mapsB\Route18.event"
 }
 {
-#include "mapsB\route 17 south.event"
+#include "mapsB\Route19.event"
 }
 {
-#include "mapsB\route 18.event"
+#include "mapsB\Route20E.event"
 }
 {
-#include "mapsB\route 19.event"
+#include "mapsB\Route20W.event"
 }
 {
-#include "mapsB\route 20.event"
+#include "mapsB\Route21.event"
 }
 {
-#include "mapsB\route 21.event"
+#include "mapsB\Route22.event"
 }
 {
-#include "mapsB\route 22.event"
+#include "mapsB\Route23M.event"
 }
 {
-#include "mapsB\route 23 north.event"
+#include "mapsB\Route23N.event"
 }
 {
-#include "mapsB\route 23 south.event"
+#include "mapsB\Route23S.event"
 }
 {
-#include "mapsB\route 5.event"
+#include "mapsB\Route5.event"
 }
 {
-#include "mapsB\route 6.event"
+#include "mapsB\Route6.event"
 }
 {
-#include "mapsB\route 7.event"
+#include "mapsB\Route7.event"
 }
 {
-#include "mapsB\route 8.event"
+#include "mapsB\Route8.event"
 }
 {
-#include "mapsB\route 9e.event"
+#include "mapsB\Route9E.event"
 }
 {
-#include "mapsB\route 9w.event"
+#include "mapsB\Route9W.event"
 }
 {
-#include "mapsB\sabrina gym.event"
+#include "mapsB\Saffron.event"
 }
 {
-#include "mapsB\saffron.event"
+#include "mapsB\SaffronGym.event"
 }
 {
-#include "mapsB\vermillion city compressed.event"
+#include "mapsB\VermillionCity.event"
+}
+{
+#include "mapsB\VermillionGym.event"
+}
+{
+#include "mapsB\ViridianGym.event"
 }

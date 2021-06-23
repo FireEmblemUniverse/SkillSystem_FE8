@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(Route24Ch,Route24Obj,0,Route24Pal,Route24Conf,Route24Map,Map,0,0,0)
+SetChapterData(Route24Ch,Route24Obj,0,Route24Pal,Route24Conf,Route24Map,Map,WaterAnimations,0,0)
 Map:
 #incbin "route 24_data.dmp"
 Map_Pointer_Table(Route24Map,Map)

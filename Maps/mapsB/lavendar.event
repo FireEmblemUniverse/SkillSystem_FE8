@@ -4,5 +4,5 @@
 
 SetChapterData(LavendarCityCh,LavendarCityObj,0,LavendarCityPal,LavendarCityConf,LavendarCityMap,Map,0,0,0)
 Map:
-#incbin "lavendar_data.dmp"
+#incbin "Lavendar_data.dmp"
 Map_Pointer_Table(LavendarCityMap,Map)

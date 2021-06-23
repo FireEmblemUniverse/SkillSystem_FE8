@@ -4,5 +4,5 @@
 
 SetChapterData(CeladonCityCh,CeladonCityObj,0,CeladonCityPal,CeladonCityConf,CeladonCityMap,Map,0,0,0)
 Map:
-#incbin "celadon_data.dmp"
+#incbin "Celadon_data.dmp"
 Map_Pointer_Table(CeladonCityMap,Map)
