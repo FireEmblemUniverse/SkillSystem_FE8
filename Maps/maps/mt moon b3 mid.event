@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(MtMoonB3MidCh,MtMoonB3MidObj,0,MtMoonB3MidPal,MtMoonB3MidConf,MtMoonB3MidMap,Map,0,0,0)
+SetChapterData(MtMoonB3MCh,MtMoonB3MObj,0,MtMoonB3MPal,MtMoonB3MConf,MtMoonB3MMap,Map,0,0,0)
 Map:
 #incbin "mt moon b3 mid_data.dmp"
-Map_Pointer_Table(MtMoonB3MidMap,Map)
+Map_Pointer_Table(MtMoonB3MMap,Map)

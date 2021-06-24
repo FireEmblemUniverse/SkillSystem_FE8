@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="24" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="route 23 north tileset" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="../Tilesets for tmx (unreferenced)/Route23N" trans="ffffff"/>
+  <image source="../Tilesets for tmx (unreferenced)/Route23N" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="24" height="60">
   <properties>
@@ -1434,19 +1434,19 @@
    <tile gid="3"/>
    <tile gid="296"/>
    <tile gid="102"/>
-   <tile gid="133"/>
+   <tile gid="109"/>
    <tile gid="134"/>
-   <tile gid="135"/>
+   <tile gid="129"/>
    <tile gid="75"/>
    <tile gid="102"/>
    <tile gid="75"/>
    <tile gid="296"/>
    <tile gid="296"/>
    <tile gid="296"/>
-   <tile gid="299"/>
-   <tile gid="299"/>
-   <tile gid="299"/>
-   <tile gid="299"/>
+   <tile gid="101"/>
+   <tile gid="296"/>
+   <tile gid="296"/>
+   <tile gid="296"/>
    <tile gid="101"/>
    <tile gid="102"/>
    <tile gid="296"/>
