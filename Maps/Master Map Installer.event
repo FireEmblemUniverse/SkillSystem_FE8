@@ -16,25 +16,13 @@
 #include "maps\cerulean gym.event"
 }
 {
-#include "maps\mt moon b1 - n.event"
+#include "maps\MtMoonB1.event"
 }
 {
-#include "maps\mt moon b1 - s.event"
+#include "maps\MtMoonB2.event"
 }
 {
-#include "maps\mt moon b2.event"
-}
-{
-#include "maps\mt moon b3 e.event"
-}
-{
-#include "maps\mt moon b3 mid.event"
-}
-{
-#include "maps\mt moon b3 ne.event"
-}
-{
-#include "maps\mt moon b3 w.event"
+#include "maps\MtMoonB3.event"
 }
 {
 #include "maps\oaks lab.event"
@@ -85,13 +73,13 @@
 #include "maps\route 4w.event"
 }
 {
-#include "maps\viridian city.event"
-}
-{
 #include "maps\viridian forest north.event"
 }
 {
 #include "maps\viridian forest south.event"
+}
+{
+#include "maps\ViridianCity.event"
 }
 {
 #include "mapsB\Celadon.event"
@@ -106,6 +94,9 @@
 #include "mapsB\CinnabarGym.event"
 }
 {
+#include "mapsB\DiglettsCave.event"
+}
+{
 #include "mapsB\Fuschia.event"
 }
 {
@@ -113,6 +104,27 @@
 }
 {
 #include "mapsB\Lavendar.event"
+}
+{
+#include "mapsB\PokemonTower1.event"
+}
+{
+#include "mapsB\PokemonTower2.event"
+}
+{
+#include "mapsB\PokemonTower3.event"
+}
+{
+#include "mapsB\PokemonTower4.event"
+}
+{
+#include "mapsB\PokemonTower5.event"
+}
+{
+#include "mapsB\RockTunnelB1.event"
+}
+{
+#include "mapsB\RockTunnelB2.event"
 }
 {
 #include "mapsB\Route10.event"
@@ -193,7 +205,13 @@
 #include "mapsB\Saffron.event"
 }
 {
+#include "mapsB\SaffronDojo.event"
+}
+{
 #include "mapsB\SaffronGym.event"
+}
+{
+#include "mapsB\SSAnne.event"
 }
 {
 #include "mapsB\VermillionCity.event"

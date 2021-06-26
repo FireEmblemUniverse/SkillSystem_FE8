@@ -9,9 +9,9 @@
    <property name="ChapterID" value="Route9eCh"/>
    <property name="Main" value=""/>
    <property name="MapID" value="Route9eMap"/>
-   <property name="ObjectType" value="Route9eObj"/>
-   <property name="PaletteID" value="Route9ePal"/>
-   <property name="TileConfig" value="Route9eConf"/>
+   <property name="ObjectType" value="Route9Obj"/>
+   <property name="PaletteID" value="Route9Pal"/>
+   <property name="TileConfig" value="Route9Conf"/>
   </properties>
   <data>
    <tile gid="44"/>

@@ -1,0 +1,206 @@
+﻿*********************************************
+***               Hot Keys                ***
+*********************************************
+The hotkeys are visible once you click on the menus, right behind the description.
+
+Here we'll quickly explain most frequently needed hot keys.
+
+Map view:
+------------
+Left mouse button			=> Draw current block / Stamp.
+Middle mouse button			=> Fill tool, replace all connected blocks of the same type with the actual Block.
+Right mouse button 			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Draw current block.
+Ctrl/Strg + Middle mouse button		=> Fill tool, replace allblocks of the same type with the actual Block. (also not connected Blocks.)
+Ctrl/Strg + Right mouse button		=> Select big block/Stamp, on click and select, the selected area will be shown in a new window.
+
+
+Map view - Block palette:
+-------------------------
+Left mouse button			=> Select hovered block as current.
+Middle mouse button			=> Select hovered block as current.
+Right mouse button			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Select hovered block as current.
+Ctrl/Strg + Middle mouse button		=> Select hovered block as current.
+Ctrl/Strg + Right mouse button		=> Select big block/stamp, on click and select, the selected area will be shown in a new window.
+
+
+Movement permissions:
+-----------------
+Left mouse button			=> Draw current block.
+Middle mouse button			=> Fill tool, replace all connected blocks of the same type with another.
+Right mouse button			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Draw current block.
+Ctrl/Strg + Middle mouse button		=> Fill tool, replace all connected blocks of the same type with another.
+Ctrl/Strg + Right mouse button		=> Select hovered block as current.
+
+
+Movement permission palette:
+---------------------------------
+Left mouse button			=> Select hovered block as current.
+Middle mouse button			=> Select hovered block as current.
+Right mouse button			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Select hovered block as current.
+Ctrl/Strg + Middle mouse button		=> Select hovered block as current.
+Ctrl/Strg + Right mouse button		=> Select hovered block as current.
+
+
+Event view:
+--------------
+Left mouse button			=> Select top event on position/move
+Middle mouse button			=> Select top event on position (no moving)
+Right mouse button			=> Select lowest event on position/move
+
+Ctrl/Strg + Left mouse button		=> Select top event on position/move
+Ctrl/Strg + Middle mouse button		=> Select top event on position (no moving)
+Ctrl/Strg + Right mouse button		=> Select lowest event on position/move
+
+Left mouse button double click		=> Select top event on position and open in script editor
+Middle mouse button double click	=> Select top event on position and open in script editor
+Right mouse button double click		=> Select lowest event on position and open in script editor
+
+
+
+**************************************
+***    Zawartość plików ".ini"     ***
+**************************************
+AdvanceMap.ini:
+--------------- 
+Ten plik został kompletnie zmieniony.
+Teraz każdy język posiada swoje własne ustawienia.
+W przyszłości każda gra będzie posiadała swoje własne ustawienia.
+Ostatnie, lecz nie ostatnie, każdy offset jest przechowywany za pomocą wzoru.
+
+Przykład:
+[MapBankHeader]
+art=pointer
+nach=80180068890B091808687047
+spiele=BPR,BPG,BPE,AXP,AXV
+
+To znaczy, że za bajtem "nach" będzie podążał pointer od nagłówka mapy. 
+Te opcje znajdują się pod linią "spiele".
+
+
+Przykład 2:
+[PokemonNamen]
+inkSprache=1
+art=pointer
+vor=30B50025084CC8F7
+spiele=AXPJ,AXVJ,AXPE,AXVE
+
+[PokemonNamen2]
+art=pointer
+position=$000144
+spiele=BPR,BPG,BPE,AXP,AXV
+
+To są 2 wyjścia. w pierwszym, wszystkie poarametry językowe są ustawione w "spiele"- , ponieważ "inkSprache" jest ustawione na 1.
+Also we have the pointer to the at point "vor" described Bytes.
+Ponieważ nie we wszystkich grach można wykożystać pierwsze wyjście, jest drugie wyjście, które zostało użyte do wszystkich gier.
+W drugim wyjściu, pointer znajduje się na swojej pozycji w "position" zmiennie.
+
+
+Wartości hex'owe zawsze mają przed sobą znak "$"!
+
+
+Main.ini
+--------
+Tu są zamieszczone wszystkie zarządzenia odpowiadające mapom.
+Wszystko jest zapisane w poniższym formacie:
+
+[<Foldername>]
+1=<Bank>.<map>
+2=<Bank>.<map>
+3=<Bank>.<map>
+4=<Bank>.<map>
+5=<Bank>.<map>
+...
+
+Przykład:
+[0]
+1=0.0
+2=0.1
+3=0.2
+...
+
+[1]
+1=1.0
+...
+
+Nazwy folderów możesz sobie zmieniać dowoli;
+
+Są pewne wyjątki:
+[<nazwa folderu>]
+1=<etykieta>
+2=<etykieta>
+...
+Po więcej musisz zerknąć do Maps.ini
+
+
+Maps.ini
+--------
+Tu znajduje się spis map, ale tylko tych które są zapisane w Main.ini .
+[<Bank>.<map>]
+Name=<etykieta>
+
+[0.0]
+Name=PETALBURG CITY
+
+[1.0]
+Name=Route 101
+
+Ważne:
+Tu znajdzeisz tylko atrybuty 'name'.
+Wyjściowym jest "[0.0]" jeżeli jego zabraknie żadna mapa nie zadziała!
+Offsety już nie są używane w tej wersji więc możesz je zmienić.
+
+Wyjątek:
+Tutaj etykieta do offset'u z stopki mapy musi być zadeklarowana.
+Bez tego offset się nie załaduje.
+
+[<etykieta od Main.ini>]
+Name=<etykieta>
+<Dokładna etykieta gry>=<Offset>
+
+
+Przykład:
+[UNKNOWN45] 
+POKEMON SAPPAXPD=$2CA960 
+name=Insel?
+
+
+Tilesets.ini
+------------
+Tileset-builder jest nowszy od wersji ver. 1.30.
+Teraz możesz zmieniać numery klocków z tymi z innych tileset'ów (pierwszy tileset to 0)
+Jeżeli tlieset jest w wyższej części zmianie ulegnie 200 klocków.
+
+[1]
+Blocks=$90
+
+...
+
+[24]
+Blocks=$87
+
+
+Sprachen.ini
+------------
+Wszystkie języki są zapisane w pewien sposób.
+Przykład:
+[Sprachen]
+1=Deutsch
+2=English
+
+w pod-folderze "Ini/Sprachen" możesz znaleźć <nazwa języka>.ini-file, gdzie są przechowywane teksty.
+Możesz dodać tyle języków, ile dusza zapragnie, ale musisz uważać na "EndNutzer Vertrag".
+"EndNutzer Vertrag" musi być prztłumaczone, a żeby to zrobic musisz wysłać do mnie ten język a ja go zamieszczę.
+Jak długo tego nie zrbisz, tak długo ten język nie będzie dostępny ....
+Możesz zmieniać języki w "Settings"->"Language".
+
+w czasie pierwszego startu AdvanceMap'a, możesz wybrać język.
+
+Pliki GehDaten.ini/AufgabenDaten.ini i inne są zaliczone w pliki nowego języka.

@@ -61,96 +61,18 @@ CeruleanGymConfigData:
 
 
 ALIGN 4
-MtMoonB1NObjData:
-#incbin "Tilesets/MtMoonB1NObj.dmp"
+MtMoonObjData:
+#incbin "Tilesets/MtMoonObj.dmp"
 
 ALIGN 4
-MtMoonB1NPalData: 
-#incbin "Tilesets/MtMoonB1NObj_pal.dmp"
+MtMoonPalData: 
+#incbin "Tilesets/MtMoonObj_pal.dmp"
 
 ALIGN 4
-MtMoonB1NConfigData:
-#incbin "Tilesets/MtMoonB1N_comp.dmp"
+MtMoonConfigData:
+#incbin "Tilesets/MtMoon_comp.dmp"
 
 
-ALIGN 4
-MtMoonB1SObjData:
-#incbin "Tilesets/MtMoonB1SObj.dmp"
-
-ALIGN 4
-MtMoonB1SPalData: 
-#incbin "Tilesets/MtMoonB1SObj_pal.dmp"
-
-ALIGN 4
-MtMoonB1SConfigData:
-#incbin "Tilesets/MtMoonB1S_comp.dmp"
-
-
-ALIGN 4
-MtMoonB2ObjData:
-#incbin "Tilesets/MtMoonB2Obj.dmp"
-
-ALIGN 4
-MtMoonB2PalData: 
-#incbin "Tilesets/MtMoonB2Obj_pal.dmp"
-
-ALIGN 4
-MtMoonB2ConfigData:
-#incbin "Tilesets/MtMoonB2_comp.dmp"
-
-
-
-ALIGN 4
-MtMoonB3EObjData:
-#incbin "Tilesets/MtMoonB3EObj.dmp"
-
-ALIGN 4
-MtMoonB3EPalData: 
-#incbin "Tilesets/MtMoonB3EObj_pal.dmp"
-
-ALIGN 4
-MtMoonB3EConfigData:
-#incbin "Tilesets/MtMoonB3E_comp.dmp"
-
-
-ALIGN 4
-MtMoonB3NEObjData:
-#incbin "Tilesets/MtMoonB3NeObj.dmp"
-
-ALIGN 4
-MtMoonB3NEPalData: 
-#incbin "Tilesets/MtMoonB3NeObj_pal.dmp"
-
-ALIGN 4
-MtMoonB3NEConfigData:
-#incbin "Tilesets/MtMoonB3Ne_comp.dmp"
-
-
-ALIGN 4
-MtMoonB3WObjData:
-#incbin "Tilesets/MtMoonB3WObj.dmp"
-
-ALIGN 4
-MtMoonB3WPalData: 
-#incbin "Tilesets/MtMoonB3WObj_pal.dmp"
-
-ALIGN 4
-MtMoonB3WConfigData:
-#incbin "Tilesets/MtMoonB3W_comp.dmp"
-
-
-
-ALIGN 4
-MtMoonB3MObjData:
-#incbin "Tilesets/MtMoonB3WObj.dmp"
-
-ALIGN 4
-MtMoonB3MPalData: 
-#incbin "Tilesets/MtMoonB3WObj_pal.dmp"
-
-ALIGN 4
-MtMoonB3MConfigData:
-#incbin "Tilesets/MtMoonB3W_comp.dmp"
 
 
 

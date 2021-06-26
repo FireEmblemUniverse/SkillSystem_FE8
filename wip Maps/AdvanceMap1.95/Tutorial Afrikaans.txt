@@ -1,0 +1,208 @@
+﻿*********************************************
+***               Hot Keys                ***
+*********************************************
+The hotkeys are visible once you click on the menus, right behind the description.
+
+Here we'll quickly explain most frequently needed hot keys.
+
+Map view:
+------------
+Left mouse button			=> Draw current block / Stamp.
+Middle mouse button			=> Fill tool, replace all connected blocks of the same type with the actual Block.
+Right mouse button 			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Draw current block.
+Ctrl/Strg + Middle mouse button		=> Fill tool, replace allblocks of the same type with the actual Block. (also not connected Blocks.)
+Ctrl/Strg + Right mouse button		=> Select big block/Stamp, on click and select, the selected area will be shown in a new window.
+
+
+Map view - Block palette:
+-------------------------
+Left mouse button			=> Select hovered block as current.
+Middle mouse button			=> Select hovered block as current.
+Right mouse button			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Select hovered block as current.
+Ctrl/Strg + Middle mouse button		=> Select hovered block as current.
+Ctrl/Strg + Right mouse button		=> Select big block/stamp, on click and select, the selected area will be shown in a new window.
+
+
+Movement permissions:
+-----------------
+Left mouse button			=> Draw current block.
+Middle mouse button			=> Fill tool, replace all connected blocks of the same type with another.
+Right mouse button			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Draw current block.
+Ctrl/Strg + Middle mouse button		=> Fill tool, replace all connected blocks of the same type with another.
+Ctrl/Strg + Right mouse button		=> Select hovered block as current.
+
+
+Movement permission palette:
+---------------------------------
+Left mouse button			=> Select hovered block as current.
+Middle mouse button			=> Select hovered block as current.
+Right mouse button			=> Select hovered block as current.
+
+Ctrl/Strg + Left mouse button		=> Select hovered block as current.
+Ctrl/Strg + Middle mouse button		=> Select hovered block as current.
+Ctrl/Strg + Right mouse button		=> Select hovered block as current.
+
+
+Event view:
+--------------
+Left mouse button			=> Select top event on position/move
+Middle mouse button			=> Select top event on position (no moving)
+Right mouse button			=> Select lowest event on position/move
+
+Ctrl/Strg + Left mouse button		=> Select top event on position/move
+Ctrl/Strg + Middle mouse button		=> Select top event on position (no moving)
+Ctrl/Strg + Right mouse button		=> Select lowest event on position/move
+
+Left mouse button double click		=> Select top event on position and open in script editor
+Middle mouse button double click	=> Select top event on position and open in script editor
+Right mouse button double click		=> Select lowest event on position and open in script editor
+
+
+
+********************************
+***     Inhoud van Inis      ***
+********************************
+AdvanceMap.ini:
+--------------- 
+Die hele INI was oorgedoen.
+Elke taal het nou sy eie spesifieke stellings.
+Sommige speletjies het ook spesefieke stellings.
+Alle spruite is volgens 'n patroon gestoor.
+
+Voorbeeld:
+[Landkaartlokasievatekopper]
+art=wyser
+nach=80180068890B091808687047
+spiele=BPR,BPG,BPE,AXP,AXV
+
+Dit beteken dat na die grepe, na "nach" is die wyser na die Landkaartvatekopper die opvolgende. Die begin by "08"
+Die fomaat gaan vir al die speletjies wat onder "spiele" verskyn.
+
+
+Voorbeeld 2:
+[PokemonNamen]
+inkSprache=1
+art=pointer
+vor=30B50025084CC8F7
+spiele=AXPJ,AXVJ,AXPE,AXVE
+
+[PokemonNamen2]
+art=pointer
+position=$000144
+spiele=BPR,BPG,BPE,AXP,AXV
+
+Hier verskyn 2 inskrywings. In die eerste, verskyn al die taal parameters in die "spiele" lys, want "inkSprache" is na 1 gestel.
+Ons het ook 'n wyser na die data by "vor". Onthou, alle wysers begin met "08" vir die versioene.
+Omdat die eerste inskrywing nie kompleet is nie, is daar 'n tweede inskrywing wat vir al die versioene gebruik sal word.
+Na die tweede inskrywing, sal die wyser gevind word in die posisie gestel in die "position" veranderlike.
+
+
+Hexgetalle moet altyd 'n "$" as 'n voorsetsel hê!
+
+
+Main.ini
+--------
+Hier verskyn die ordes met die ooreenstemmende landkaarte.
+Many new orders can be produced at will.
+The format is as follows:
+
+[<Vouernaam>]
+1=<Lokasie>.<Landkaart>
+2=<Lokasie>.<Landkaart>
+3=<Lokasie>.<Landkaart>
+4=<Lokasie>.<Landkaart>
+5=<Lokasie>.<Landkaart>
+...
+
+Voorbeeld:
+[0]
+1=0.0
+2=0.1
+3=0.2
+...
+
+[1]
+1=1.0
+...
+
+Jy mag die vouername verander;
+
+BEHALWE:
+[<Vouernaam>]
+1=<Etiket>
+2=<Etiket>
+...
+Vir ander voorbeelde, sien Maps.ini
+
+
+Maps.ini
+--------
+Hier verskyn slegs die landkaarte wat in Main.ini verskyn.
+[<Lokasie>.<Landkaart>]
+Naam=<Etiket>
+
+[0.0]
+Name=PETALBURG CITY
+
+[1.0]
+Name=Route 101
+
+BELANGRIK:
+Hier moet jy slegs die "Etiket" verander!!
+Die hoofskrif "[0.0]" verwys na die lokasie van die landkaartvatekopper, as die verander word
+sal die landkaarte nie meer werk nie!
+Die spruite word nie meer in die versie gebruik nie. Hulle kan maar in die dokument gelos word.
+
+BEHALWE:
+Al die versies van die speletjie waar die presiese spruit as die landkaartstapper gegee moet word.
+Die sonder 'n spruit sal nie gelaai word nie.
+
+[<Etiket van Main.ini>]
+Naam=<Etiket>
+<Presiese Speletjiesetiket>=<Spruit>
+
+
+Voorbeeld:
+[UNKNOWN45] 
+POKEMON SAPPAXPD=$2CA960 
+name=Insel?
+
+
+Teëlstelle.ini
+------------
+Die teëlstelbouer is nuut van versie 1.30.
+Jy kan hier, as jy wil, die getal Teëls 'n teëlstel bevat verander. Die eerste teëlstel is 0.
+As die teëlstel in die opper gedeelte is, het die altyd 200 blokke.
+
+[1]
+Blocks=$90
+
+...
+
+[24]
+Blocks=$87
+
+
+Sprachen.ini
+------------
+Hier verskyn al die beskikbare tale.
+Voorbeeld:
+[Sprachen]
+1=Deutsch
+2=English
+
+In die subvouer "Ini/Sprachen" kan jy 'n <Languagename>.ini-leêr vind, waarin al die tekste verskyn.
+Jy kan baie ander tale insit, maar jy moet dan die "EndNutzer Vertrag" ook vertaal.
+Stuur dit dan vir my per e-pos sodat ek dit kan kodeer.
+Die taal wat jy ingesit het sal dan eers beskikbaar word.
+Jy kan die taal verander by "Stellings"->"Taal".
+
+By die eerste gebruik van AdvanceMap, kan jy die taal kies.
+
+Die lêre GehDaten.ini/AufgabenDaten.ini en die ander is by die nuwe taallêre ingesluit.

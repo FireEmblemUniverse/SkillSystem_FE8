@@ -55,6 +55,7 @@ EscapePointEntry(Route3ECh, 21, 0, 0x00) //0D, Ch13, Route, 3, E
 EscapePointEntry(Route4WCh, 19, 5, 0x00) //0E, Ch14, Route, 4
 EscapePointEntry(Route4WCh, 11, 19, 0x00) //0E, Ch14, Route, 4
 EscapePointEntry(Route4WCh, 12, 19, 0x00) //0E, Ch14, Route, 4
+/*
 EscapePointEntry(MtMoonB1SCh, 17, 17, 0x00) //0F, Ch15, Mt, Moon, B1, -, S
 EscapePointEntry(MtMoonB1SCh, 23, 0, 0x00) //0F, Ch15, Mt, Moon, B1, -, S
 EscapePointEntry(MtMoonB1SCh, 24, 0, 0x00) //0F, Ch15, Mt, Moon, B1, -, S
@@ -89,6 +90,7 @@ EscapePointEntry(MtMoonB3WCh, 5, 10, 0x00) //14, Ch20, Mt, Moon, B3, -, W
 EscapePointEntry(MtMoonB3WCh, 21, 37, 0x00) //14, Ch20, Mt, Moon, B3, -, W
 EscapePointEntry(MtMoonB3WCh, 21, 38, 0x00) //14, Ch20, Mt, Moon, B3, -, W
 EscapePointEntry(MtMoonB3MCh, 5, 9, 0x00) //15, Ch21, M[_t], M[_o][_o][_n], B3, -, ?
+*/
 EscapePointEntry(Route4MCh, 6, 5, 0x00) //16, Ch21x, Route, 4, W
 EscapePointEntry(Route4MCh, 43, 12, 0x00) //16, Ch21x, Route, 4, W
 EscapePointEntry(Route4MCh, 43, 9, 0x00) //16, Ch21x, Route, 4, W

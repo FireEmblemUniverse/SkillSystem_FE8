@@ -1,0 +1,251 @@
+﻿*********************************************
+***          Tastenkombinationen          ***
+*********************************************
+Im Menü sind jeweils die Tastenkombinationen für den entsprechenden Menüpunkt Sichtbar.
+
+In den folgenden Kapiteln werden die verschiedenen Möglichkeiten beim editieren der Map aufgezeigt.
+
+
+Map Ansicht:
+------------
+Linke Maustaste		=> Aktueller Block zeichnen / Stempel einfügen
+Mittlere Maustaste	=> Füllwerkzeug, alle zusammenhängenden Blöcke mit dem aktuellen Block ersetzen.
+Rechte Maustaste	=> Block unter Maus als aktueller Block auswählen
+
+Ctrl/Strg + Linke Maustaste	=> Nicht speziell, Aktueller Block zeichnen
+Ctrl/Strg + Mittlere Maustaste	=> Füllwerkzeug, alle gleichen Blocks auf der Map(Auch nicht zusammenhängende) mit dem aktuellen Block ersetzen
+Ctrl/Strg + Rechte Maustaste	=> Grosser Block auswählen, beim klicken und fahren sieht man ein neues Fenster in dem der “Stempel“ Block angezeigt wird.
+
+
+Map Ansicht BlockPalette:
+-------------------------
+Linke Maustaste		=> Block unter Maus als aktueller Block auswählen
+Mittlere Maustaste	=> Block unter Maus als aktueller Block auswählen
+Rechte Maustaste	=> Block unter Maus als aktueller Block auswählen
+
+Ctrl/Strg + Linke Maustaste	=> Block unter Maus als aktueller Block auswählen
+Ctrl/Strg + Mittlere Maustaste	=> Block unter Maus als aktueller Block auswählen
+Ctrl/Strg + Rechte Maustaste	=> Grosser Block auswählen, beim klicken und fahren sieht man ein neues Fenster in dem der “Stempel“ Block angezeigt wird.
+
+
+Gehdaten Ansicht:
+-----------------
+Linke Maustaste		=> Aktueller GehDatenBlock zeichnen
+Mittlere Maustaste	=> Füllwerkzeug, alle zusammenhängenden GehDatenBlöcke mit dem aktuellen GehDatenBlock ersetzen.
+Rechte Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+
+Ctrl/Strg + Linke Maustaste	=> Nicht speziell, Aktueller GehDatenBlock zeichnen
+Ctrl/Strg + Mittlere Maustaste	=> Füllwerkzeug, alle gleichen GehDatenBlocks auf der Map(Auch nicht zusammenhängende) mit dem aktuellen GehDatenBlock ersetzen
+Ctrl/Strg + Rechte Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+
+
+Gehdaten Ansicht GehdatenPalette:
+---------------------------------
+Linke Maustaste		=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+Mittlere Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+Rechte Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+
+Ctrl/Strg + Linke Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+Ctrl/Strg + Mittlere Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+Ctrl/Strg + Rechte Maustaste	=> GehDatenBlock unter Maus als aktueller GehDatenBlock auswählen
+
+
+Event Ansicht:
+--------------
+Linke Maustaste		=> Auswahl des obersten Events an dieser Stelle/verschieben
+Mittlere Maustaste	=> Auswahl des obersten Events an dieser Stelle nicht verschieben
+Rechte Maustaste	=> Auswahl des untersten Events an dieser Stelle/verschieben
+
+Ctrl/Strg + Linke Maustaste	=> Auswahl des obersten Events an dieser Stelle/verschieben
+Ctrl/Strg + Mittlere Maustaste	=> Auswahl des obersten Events an dieser Stelle nicht verschieben
+Ctrl/Strg + Rechte Maustaste	=> Auswahl des untersten Events an dieser Stelle/verschieben
+
+Linke Maustaste doppelklick	=> Auswahl des obersten Events an dieser Stelle und öffnen des Scriptes im Externen Programm
+Mittlere Maustaste doppelklick	=> Auswahl des obersten Events an dieser Stelle und öffnen des Scriptes im Externen Programm
+Rechte Maustaste doppelklick	=> Auswahl des untersten Events an dieser Stelle und öffnen des Scriptes im Externen Programm
+
+
+*********************************************
+***    AdvanceMapError Berschreibungen    ***
+*********************************************
+
+AdvanceMapError(1): Try to read at pos 0! Please contakt luhopoke@gmail.com
+Er versucht an Position 0 im Rom daten zu lesen. (-> nicht erlaubt)
+
+AdvanceMapError(2): Cannot read bytes behind end of file! Please contakt luhopoke@gmail.com
+Er versucht nach dem Dateiende im Rom daten zu lesen. (-> nicht möglich)
+
+AdvanceMapError(3): Cannot change bytes at pos 0! Please contakt luhopoke@gmail.com
+Er versucht an Position 0 daten ins rom zu schreiben. (-> nicht erlaubt)
+
+AdvanceMapError(4): Cannot change bytes behind end of file! Please contakt luhopoke@gmail.com
+Er versucht nach dem Dateiende ins rom zu schreiben. (-> nicht möglich)
+
+AdvanceMapError(5): The value at $XXXXXX is not a Pointer! Please contakt luhopoke@gmail.com
+Der Wert am angegebenen Offset sollte ein Pointer sein, ist es aber nicht. (-> fehlerhafte Daten)
+
+AdvanceMapError(6): Try to read more than 1023 Bytes a time! Please contakt luhopoke@gmail.com
+Er versucht mit einer Speziellen Funktion mehr als 1023 Bytes zu lesen, das ist mit der funktion aber nicht möglich. (-> Bug in AdvanceMap)
+
+AdvanceMapError(7): Try to save more than 1023 Bytes a time! Please contakt luhopoke@gmail.com
+Er versucht mit einer Speziellen Funktion mehr als 1023 Bytes zu Schreiben, das ist mit der funktion aber nicht möglich. (-> Bug in AdvanceMap)
+
+AdvanceMapError(8): Cannot read XX Bytes in a Array with the size of YY! Have read as much as possible. Please contakt luhopoke@gmail.com
+Er versucht Count Bytes in ein Array zu laden das nur anz gross ist.  (-> Bug in AdvanceMap)
+
+AdvanceMapError(9): Pleace Extract the gba file from your zip/rar archive and open the gba file.
+Der Benutzer versucht eine zip oder rar datei zu öffnen. Das geht aber nicht. Der Benutzer wird aufgefordert die gba datei zu entpacken. (-> Benutzer macht was falsch^^)
+
+AdvanceMapError(10): Cannot handle more then 60 MapNumbers per WorldMap. Please contakt luhopoke@gmail.com
+Fehler im Weltkarten editor. Für die noch inaktive Funktion "Weltkarten-Nr. zuordnen" (bei fr/lg). (-> wenn die bei jemandem Auftritt, muss ich der Weltkarten Edi etwas umprograammieren. Das sollte aber nicht geschehen^^)
+
+AdvanceMapError(11): The File could not be open.
+Wenn die Datei zum importieren von Daten nicht geöffnet werden kann.
+
+AdvanceMapError(12): Unknown Rom Type! This Rom cannot be edited with Advancemap.
+Die geöffnete Rom Datei ist kein unterstütztes Spiel. Es können nur die Pokemon Spiele der Advance Generation bearbeitet werden.
+
+
+*********************************************
+***            Inhalt der inis            ***
+*********************************************
+
+AdvanceMap.ini:
+--------------- 
+Dise ini wurde komplet überarbeitet.
+Nun steht für jede Sprache Sprachspezifische einstellungen.
+Weiter gibt es für jedes Spiel R/S/E/FR/LG ein paar Speilspezifiesche einstellungen.
+Und zum Schluss ist jeder benötigete Offset anhand eines Musters gespeichert.
+
+Beispiel:
+[MapBankHeader]
+art=pointer
+nach=80180068890B091808687047
+spiele=BPR,BPG,BPE,AXP,AXV
+
+Dies Bedeutet das nach den Bytes hinter "nach" der Pointer auf den MapHeader folgt.
+Die Einstellungen gelten für alle Spiele welche unter "spiele" aufgelistetsind.
+
+
+Beispiel2;
+[PokemonNamen]
+inkSprache=1
+art=pointer
+vor=30B50025084CC8F7
+spiele=AXPJ,AXVJ,AXPE,AXVE
+
+[PokemonNamen2]
+art=pointer
+position=$000144
+spiele=BPR,BPG,BPE,AXP,AXV
+
+Hier hat es 2 Einträge. Beim 1. werden in der "spiele"- Auflistung die Sprachabkürzung inbgriffen, weil "inkSprache" auf 1 gesetzt wurde.
+Zudem ist hier der Pointer vor den unter "vor" beschriebenen Bytes.
+Da mit diesem Eintrag nicht alle Spiele abgedekt sind, gibt es einen 2. Eintrag für diesen Offset welche für die andere Spiele gültig ist.
+Nach dem 2.Eintrag befindet sich der Pointer an der unter "position" angegebenen Stelle im Rom.
+
+
+Bei Hex Werten muss ein "$" davor stehen!
+
+
+Main.ini
+--------
+Hier sind die Ordner mit den entsprechenden Maps aufgelistet.
+Es können beliebig Viele neue Ordner erstelt werden.
+Der Aufbau sieht so aus:
+
+[<OrdnerName>]
+1=<Bank>.<map>
+2=<Bank>.<map>
+3=<Bank>.<map>
+4=<Bank>.<map>
+5=<Bank>.<map>
+...
+
+Beispiel:
+[0]
+1=0.0
+2=0.1
+3=0.2
+...
+
+[1]
+1=1.0
+...
+
+Die Ordnernamen dürfen frei geändert werden;
+
+Es gibt Ausnahmen in diesem Aufbau:
+[<OrdnerName>]
+1=<Frei wählbare Bezeihnung>
+2=<Frei wählbare Bezeihnung>
+...
+Genaueres dazu unter Maps.ini
+
+
+Maps.ini
+--------
+Hier sind die Maps aufgelistet, es erscheinen nur die,
+welche in der liste der Ordner vorkommen.
+[<Bank>.<map>]
+Name=<Beschriftung>
+
+[0.0]
+Name=PETALBURG CITY
+
+[1.0]
+Name=Route 101
+
+Wichtig:
+Hier sollte man nur die 'Name'- Eigenschaft ändern.
+Die Namensgebung des Eintrages "[0.0]" bezieht sich auf die Position im Mapheader,
+wird dies geändert, funktionieren diese Maps nicht mehr!
+
+Die Ausnahmen:
+Hier muss für ALLE Spielversionw, in allen Sprachen der Genaue Offset der Daten (MapFooder) angegeben werden.
+Bei denen welchen Kein Offset angegeben wird, kann die map nicht geladen werden.
+
+[<Frei wählbare Bezeihnung aus der Main.ini>]
+Name=<Beschriftung>
+<Genaue Spielbezeichnung>=<Offset>
+
+
+Beispiel:
+[UNKNOWN45] 
+POKEMON SAPPAXPD=$2CA960 
+name=Insel?
+
+
+Tilesets.ini
+------------
+Die Tileset-Bilder werden ab der ver 1.30 aus dem spiel geladen.
+Optional kann hier zu jedem Tileset(erstes Tileset ist 0) stehen wie viele Blocks es hat "Blocks=$90".
+Es werden dann auch nur soviele Blöcke aus dem Spiel geladen, das spart Arbeitsspeicher.
+Wenn sich ein Tileset im oberen Teil befindet, hat es automatisch $200 Blöcke(bzw. $280 in fr/lg).
+
+[1]
+Blocks=$90
+
+...
+
+[24]
+Blocks=$87
+
+
+Sprachen.ini
+------------
+Darin sind alle Sprachen aufgelistet, die zur verfügung stehen.
+Beispiel:
+[Sprachen]
+1=Deutsch
+2=English
+
+Im UnterOrdner "Ini/Sprachen" hat es dann eine <Sprachbezeichnung>.ini-Datei, in welcher die Texte stehen.
+Es können beliebig viele andere Sprachen hinzugefügt werden, beachten sie aber den "EndNutzer Vertrag".
+Der "EndNutzer Vertrag" muss auch übersetzt werden und aschliessend mir zugeschickt, damit ich ihn Codiert ablegen kann.
+Bevor ich dies getan habe, ich die Sprache nicht verfügbar....
+Die Sprache ist unter "Einstellungen"->"Sprache" auswählbar.
+
+Die Sprache die bei Ihnen Verwendet wird, können Sie beim ersten start von AdvanceMap festlegen.
+
+Die Dateien GehDaten.ini/AufgabenDaten.ini und andere wurden direkt in die Neue Sprachen ini's integriert.
