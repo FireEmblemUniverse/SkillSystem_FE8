@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="15" height="15" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="1D001E1F" tilewidth="16" tileheight="16">
-  <image source="1D001E1F.png" trans="ffffff"/>
+  <image source="../TilesetPreviews/1D001E1F.png" trans="ffffff"/>
  </tileset>
  <layer name="Tile Layer 1" width="15" height="15">
   <properties>
@@ -9,9 +9,9 @@
    <property name="ChapterID" value="PokecenterCh"/>
    <property name="Main" value=""/>
    <property name="MapID" value="PokecenterMap"/>
-   <property name="ObjectType" value="PokecenterObj"/>
-   <property name="PaletteID" value="PokecenterPal"/>
-   <property name="TileConfig" value="PokecenterConf"/>
+   <property name="ObjectType" value="OaksLabObj"/>
+   <property name="PaletteID" value="OaksLabPal"/>
+   <property name="TileConfig" value="OaksLabConf"/>
   </properties>
   <data>
   <tile gid="418"/>

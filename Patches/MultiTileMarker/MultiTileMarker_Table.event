@@ -6,20 +6,22 @@
 
 //	Map	X	Y	HasEnemyClass(0=ANY)	Judgment flag(0=Any)	W6
 MultiTileMarker_Table:
-EscapePointEntry(PalletTownCh, 12, 0, 0x00) //00, , Pallet, Town
-EscapePointEntry(PalletTownCh, 13, 0, 0x00) //00, , Pallet, Town
-EscapePointEntry(PalletTownCh, 9, 19, 0x90) //00, , Pallet, Town
-EscapePointEntry(PalletTownCh, 8, 19, 0x90) //00, , Pallet, Town
+EscapePointEntry(PalletCh, 12, 0, 0x00) //00, , Pallet, Town
+EscapePointEntry(PalletCh, 13, 0, 0x00) //00, , Pallet, Town
+EscapePointEntry(PalletCh, 9, 19, 0x90) //00, , Pallet, Town
+EscapePointEntry(PalletCh, 8, 19, 0x90) //00, , Pallet, Town
+
+
 EscapePointEntry(Route1Ch, 13, 39, 0x00) //01, Ch1, Route, 1
 EscapePointEntry(Route1Ch, 12, 39, 0x00) //01, Ch1, Route, 1
 EscapePointEntry(Route1Ch, 12, 0, 0x00) //01, Ch1, Route, 1
 EscapePointEntry(Route1Ch, 11, 0, 0x00) //01, Ch1, Route, 1
-EscapePointEntry(ViridianCityCh, 19, 38, 0x00) //02, Ch2, Viridian, City
-EscapePointEntry(ViridianCityCh, 20, 38, 0x00) //02, Ch2, Viridian, City
-EscapePointEntry(ViridianCityCh, 0, 17, 0x00) //02, Ch2, Viridian, City
-EscapePointEntry(ViridianCityCh, 16, 0, 0x00) //02, Ch2, Viridian, City
-EscapePointEntry(ViridianCityCh, 17, 0, 0x00) //02, Ch2, Viridian, City
-EscapePointEntry(ViridianCityCh, 18, 0, 0x00) //02, Ch2, Viridian, City
+EscapePointEntry(ViridianCh, 19, 38, 0x00) //02, Ch2, Viridian, City
+EscapePointEntry(ViridianCh, 20, 38, 0x00) //02, Ch2, Viridian, City
+EscapePointEntry(ViridianCh, 0, 17, 0x00) //02, Ch2, Viridian, City
+EscapePointEntry(ViridianCh, 16, 0, 0x00) //02, Ch2, Viridian, City
+EscapePointEntry(ViridianCh, 17, 0, 0x00) //02, Ch2, Viridian, City
+EscapePointEntry(ViridianCh, 18, 0, 0x00) //02, Ch2, Viridian, City
 EscapePointEntry(Route2SCh, 10, 38, 0x00) //03, Ch3, Route, 2
 EscapePointEntry(Route2SCh, 9, 38, 0x00) //03, Ch3, Route, 2
 EscapePointEntry(Route2SCh, 11, 38, 0x00) //03, Ch3, Route, 2
@@ -41,8 +43,8 @@ EscapePointEntry(Route2NCh, 10, 0, 0x00) //06, Ch5, Route, 2
 EscapePointEntry(Route2NCh, 17, 11, 0xA4) //06, Ch5, Route, 2
 EscapePointEntry(Route2NCh, 19, 41, 0xA4) //06, Ch5, Route, 2
 EscapePointEntry(Route2NCh, 18, 41, 0xA4) //06, Ch5, Route, 2
-EscapePointEntry(PewterCityCh, 19, 37, 0x00) //07, Ch6, Pewter, City
-EscapePointEntry(PewterCityCh, 39, 20, 0x00) //07, Ch6, Pewter, City
+EscapePointEntry(PewterCh, 19, 37, 0x00) //07, Ch6, Pewter, City
+EscapePointEntry(PewterCh, 39, 20, 0x00) //07, Ch6, Pewter, City
 EscapePointEntry(Route3WCh, 0, 10, 0x00) //0B, Ch10, Route, 3, W
 EscapePointEntry(Route3WCh, 0, 11, 0x00) //0B, Ch10, Route, 3, W
 EscapePointEntry(Route3WCh, 30, 4, 0x00) //0B, Ch10, Route, 3, W
@@ -55,7 +57,9 @@ EscapePointEntry(Route3ECh, 21, 0, 0x00) //0D, Ch13, Route, 3, E
 EscapePointEntry(Route4WCh, 19, 5, 0x00) //0E, Ch14, Route, 4
 EscapePointEntry(Route4WCh, 11, 19, 0x00) //0E, Ch14, Route, 4
 EscapePointEntry(Route4WCh, 12, 19, 0x00) //0E, Ch14, Route, 4
+
 /*
+
 EscapePointEntry(MtMoonB1SCh, 17, 17, 0x00) //0F, Ch15, Mt, Moon, B1, -, S
 EscapePointEntry(MtMoonB1SCh, 23, 0, 0x00) //0F, Ch15, Mt, Moon, B1, -, S
 EscapePointEntry(MtMoonB1SCh, 24, 0, 0x00) //0F, Ch15, Mt, Moon, B1, -, S
@@ -90,7 +94,7 @@ EscapePointEntry(MtMoonB3WCh, 5, 10, 0x00) //14, Ch20, Mt, Moon, B3, -, W
 EscapePointEntry(MtMoonB3WCh, 21, 37, 0x00) //14, Ch20, Mt, Moon, B3, -, W
 EscapePointEntry(MtMoonB3WCh, 21, 38, 0x00) //14, Ch20, Mt, Moon, B3, -, W
 EscapePointEntry(MtMoonB3MCh, 5, 9, 0x00) //15, Ch21, M[_t], M[_o][_o][_n], B3, -, ?
-*/
+
 EscapePointEntry(Route4MCh, 6, 5, 0x00) //16, Ch21x, Route, 4, W
 EscapePointEntry(Route4MCh, 43, 12, 0x00) //16, Ch21x, Route, 4, W
 EscapePointEntry(Route4MCh, 43, 9, 0x00) //16, Ch21x, Route, 4, W
@@ -118,6 +122,7 @@ EscapePointEntry(Route25Ch, 0, 8, 0x00) //1B, Ch14, Route, 25
 EscapePointEntry(Route25Ch, 0, 4, 0x00) //1B, Ch14, Route, 25
 EscapePointEntry(Route25Ch, 0, 11, 0x00) //1B, Ch14, Route, 25
 EscapePointEntry(Route25Ch, 49, 4, 0x9A) //1B, Ch14, Route, 25
+*/
 
 BYTE 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF    // term
 ALIGN 4 

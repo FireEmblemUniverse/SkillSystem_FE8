@@ -61,10 +61,10 @@ AREA 0 ToPallet [12,39] [13,39]
 END_MAIN
 
 ToPallet:
-ChapterTransition(PalletTownCh, 12, 1)
+ChapterTransition(PalletCh, 12, 1)
 
 ToViridian:
-ChapterTransition(ViridianCityCh, 19, 38)
+ChapterTransition(ViridianCh, 19, 38)
 
 RefreshUnitsEvent:
 

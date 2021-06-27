@@ -1,4 +1,4 @@
-EventPointerTable(PalletTownCh,ThisChapter)
+EventPointerTable(PalletCh,ThisChapter)
 setText(0x161, NewChName)
 ALIGN 4
 NewChName:

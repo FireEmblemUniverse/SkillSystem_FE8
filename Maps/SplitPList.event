@@ -74,196 +74,18 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 
 // -------------------------------TILE CONFIG-------------------------------
 
-#include "Definitions/TileConfigDefinitions.enu.event"
-
-TileConfigPointerTable(PokecenterConf, OaksLabConfigData)
-TileConfigPointerTable(OaksLabConf, OaksLabConfigData)
-TileConfigPointerTable(PalletTownConf, PalletTownConfigData)
-TileConfigPointerTable(Route1Conf, Route1ConfigData)
-TileConfigPointerTable(ViridianCityConf, ViridianCityConfigData)
-TileConfigPointerTable(Route2SConf, Route2SConfigData)
-TileConfigPointerTable(ViridianForestSConf, ViridianForestSConfigData)
-TileConfigPointerTable(ViridianForestNConf, ViridianForestNConfigData)
-TileConfigPointerTable(Route2NConf, Route2NConfigData)
-TileConfigPointerTable(PewterCityConf, PewterCityConfigData)
-TileConfigPointerTable(PewterGymConf, PewterGymConfigData)
-TileConfigPointerTable(Route3WConf, Route3WConfigData)
-TileConfigPointerTable(Route3MConf, Route3MConfigData)
-TileConfigPointerTable(Route3EConf, Route3EConfigData)
-TileConfigPointerTable(Route4WConf, Route4WConfigData)
-TileConfigPointerTable(MtMoonConf, MtMoonConfigData)
-TileConfigPointerTable(Route4MConf, Route4MConfigData)
-TileConfigPointerTable(Route4EConf, Route4EConfigData)
-TileConfigPointerTable(CeruleanCityConf, CeruleanCityConfigData)
-TileConfigPointerTable(CeruleanGymConf, CeruleanGymConfigData)
-TileConfigPointerTable(Route24Conf, Route24ConfigData)
-TileConfigPointerTable(Route25Conf, Route25ConfigData)
-
-// Safari zone - captain arcane 
-
-TileConfigPointerTable(CeladonCityConf, CeladonCityConfigData)
-TileConfigPointerTable(CeladonGymConf, CeladonGymConfigData)
-TileConfigPointerTable(VermillionCityConf, VermillionCityConfigData)
-TileConfigPointerTable(VermillionGymConf,VermillionGymConfigData)
-TileConfigPointerTable(LavendarCityConf,LavendarCityConfigData)
-TileConfigPointerTable(SaffronCityConf,SaffronCityConfigData)
-TileConfigPointerTable(SaffronGymConf,SaffronGymConfigData)
-TileConfigPointerTable(FuschiaGymConf,FuschiaGymConfigData)
-TileConfigPointerTable(FuschiaCityConf,FuschiaCityConfigData)
-TileConfigPointerTable(CinnabarIslandConf,CinnabarIslandConfigData)
-TileConfigPointerTable(CinnabarGymConf,CinnabarGymConfigData)
-TileConfigPointerTable(Route5Conf,Route5ConfigData)
-TileConfigPointerTable(Route6Conf,Route6ConfigData)
-TileConfigPointerTable(Route7Conf,Route7ConfigData)
-TileConfigPointerTable(Route8Conf,Route8ConfigData)
-TileConfigPointerTable(Route9Conf,Route9ConfigData)
-TileConfigPointerTable(Route10Conf,Route10ConfigData)
-TileConfigPointerTable(Route11Conf,Route11ConfigData)
-TileConfigPointerTable(Route12Conf,Route12ConfigData)
-TileConfigPointerTable(Route13Conf,Route13ConfigData)
-TileConfigPointerTable(Route14Conf,Route14ConfigData)
-TileConfigPointerTable(Route15Conf,Route15ConfigData)
-TileConfigPointerTable(Route16Conf,Route16ConfigData)
-TileConfigPointerTable(Route17nConf,Route17nConfigData)
-TileConfigPointerTable(Route17sConf,Route17sConfigData)
-TileConfigPointerTable(Route18Conf,Route18ConfigData)
-TileConfigPointerTable(Route19Conf,Route19ConfigData)
-TileConfigPointerTable(Route20Conf,Route20ConfigData)
-TileConfigPointerTable(Route21Conf,Route21ConfigData)
-TileConfigPointerTable(ViridianGymConf, ViridianGymConfigData)
-TileConfigPointerTable(Route22Conf,Route22ConfigData)
-TileConfigPointerTable(Route23nConf,Route23nConfigData)
-TileConfigPointerTable(Route23sConf,Route23sConfigData)
-
-
-
-
-
-
-
-// 0 1 2 3 4 5 etc. 
-
+#include "Defs/ConfDefinitions.enu.event"
 
 // -------------------------------OBJ TYPE-------------------------------
 
-#include "Definitions/ObjectPaletteDefinitions.enu.event"
+#include "Defs/ObjPalDefinitions.enu.event"
 
-ObjTypePalettePointerTable(PokecenterObj, OaksLabObjData)
-ObjTypePalettePointerTable(OaksLabObj, OaksLabObjData)
-ObjTypePalettePointerTable(PalletTownObj, PalletTownObjData)
-ObjTypePalettePointerTable(Route1Obj, Route1ObjData)
-ObjTypePalettePointerTable(ViridianCityObj, ViridianCityObjData)
-ObjTypePalettePointerTable(Route2SObj, Route2SObjData)
-ObjTypePalettePointerTable(ViridianForestSObj, ViridianForestSObjData)
-ObjTypePalettePointerTable(ViridianForestNObj, ViridianForestNObjData)
-ObjTypePalettePointerTable(Route2NObj, Route2NObjData)
-ObjTypePalettePointerTable(PewterCityObj, PewterCityObjData)
-ObjTypePalettePointerTable(PewterGymObj, PewterGymObjData)
-ObjTypePalettePointerTable(Route3WObj, Route3WObjData)
-ObjTypePalettePointerTable(Route3MObj, Route3MObjData)
-ObjTypePalettePointerTable(Route3EObj, Route3EObjData)
-ObjTypePalettePointerTable(Route4WObj, Route4WObjData)
-ObjTypePalettePointerTable(MtMoonObj, MtMoonObjData)
-ObjTypePalettePointerTable(Route4MObj, Route4MObjData)
-ObjTypePalettePointerTable(Route4EObj, Route4EObjData)
-ObjTypePalettePointerTable(CeruleanCityObj, CeruleanCityObjData)
-ObjTypePalettePointerTable(CeruleanGymObj, CeruleanGymObjData)
-ObjTypePalettePointerTable(Route24Obj, Route24ObjData)
-ObjTypePalettePointerTable(Route25Obj, Route25ObjData)
 
-ObjTypePalettePointerTable(CeladonCityObj, CeladonCityObjData)
-ObjTypePalettePointerTable(CeladonGymObj, CeladonGymObjData)
-ObjTypePalettePointerTable(VermillionCityObj, VermillionCityObjData)
-ObjTypePalettePointerTable(VermillionGymObj,VermillionGymObjData)
-ObjTypePalettePointerTable(LavendarCityObj,LavendarCityObjData)
-ObjTypePalettePointerTable(SaffronCityObj,SaffronCityObjData)
-ObjTypePalettePointerTable(SaffronGymObj,SaffronGymObjData)
-ObjTypePalettePointerTable(FuschiaGymObj,FuschiaGymObjData)
-ObjTypePalettePointerTable(FuschiaCityObj,FuschiaCityObjData)
-ObjTypePalettePointerTable(CinnabarIslandObj,CinnabarIslandObjData)
-ObjTypePalettePointerTable(CinnabarGymObj,CinnabarGymObjData)
-ObjTypePalettePointerTable(Route5Obj,Route5ObjData)
-ObjTypePalettePointerTable(Route6Obj,Route6ObjData)
-ObjTypePalettePointerTable(Route7Obj,Route7ObjData)
-ObjTypePalettePointerTable(Route8Obj,Route8ObjData)
-ObjTypePalettePointerTable(Route9Obj,Route9ObjData)
-ObjTypePalettePointerTable(Route10Obj,Route10ObjData)
-ObjTypePalettePointerTable(Route11Obj,Route11ObjData)
-ObjTypePalettePointerTable(Route12Obj,Route12ObjData)
-ObjTypePalettePointerTable(Route13Obj,Route13ObjData)
-ObjTypePalettePointerTable(Route14Obj,Route14ObjData)
-ObjTypePalettePointerTable(Route15Obj,Route15ObjData)
-ObjTypePalettePointerTable(Route16Obj,Route16ObjData)
-ObjTypePalettePointerTable(Route17nObj,Route17nObjData)
-ObjTypePalettePointerTable(Route17sObj,Route17sObjData)
-ObjTypePalettePointerTable(Route18Obj,Route18ObjData)
-ObjTypePalettePointerTable(Route19Obj,Route19ObjData)
-ObjTypePalettePointerTable(Route20Obj,Route20ObjData)
-ObjTypePalettePointerTable(Route21Obj,Route21ObjData)
-ObjTypePalettePointerTable(ViridianGymObj, ViridianGymObjData)
-ObjTypePalettePointerTable(Route22Obj,Route22ObjData)
-ObjTypePalettePointerTable(Route23nObj,Route23nObjData)
-ObjTypePalettePointerTable(Route23sObj,Route23sObjData)
 
 
 // -------------------------------Palette-------------------------------
 
-ObjTypePalettePointerTable(PokecenterPal, OaksLabPalData)
-ObjTypePalettePointerTable(OaksLabPal, OaksLabPalData)
-ObjTypePalettePointerTable(PalletTownPal, PalletTownPalData)
-ObjTypePalettePointerTable(Route1Pal, Route1PalData)
-ObjTypePalettePointerTable(ViridianCityPal, ViridianCityPalData)
-ObjTypePalettePointerTable(Route2SPal, Route2SPalData)
-ObjTypePalettePointerTable(ViridianForestSPal, ViridianForestSPalData)
-ObjTypePalettePointerTable(ViridianForestNPal, ViridianForestNPalData)
-ObjTypePalettePointerTable(Route2NPal, Route2NPalData)
-ObjTypePalettePointerTable(PewterCityPal, PewterCityPalData)
-ObjTypePalettePointerTable(PewterGymPal, PewterGymPalData)
-ObjTypePalettePointerTable(Route3WPal, Route3WPalData)
-ObjTypePalettePointerTable(Route3MPal, Route3MPalData)
-ObjTypePalettePointerTable(Route3EPal, Route3EPalData)
-ObjTypePalettePointerTable(Route4WPal, Route4WPalData)
-ObjTypePalettePointerTable(MtMoonPal, MtMoonPalData)
-ObjTypePalettePointerTable(Route4MPal, Route4MPalData)
-ObjTypePalettePointerTable(Route4EPal, Route4EPalData)
-ObjTypePalettePointerTable(CeruleanCityPal, CeruleanCityPalData)
-ObjTypePalettePointerTable(CeruleanGymPal, CeruleanGymPalData)
-ObjTypePalettePointerTable(Route24Pal, Route24PalData)
-ObjTypePalettePointerTable(Route25Pal, Route25PalData)
 
-ObjTypePalettePointerTable(CeladonCityPal, CeladonCityPalData)
-ObjTypePalettePointerTable(CeladonGymPal, CeladonGymPalData)
-ObjTypePalettePointerTable(VermillionCityPal, VermillionCityPalData)
-ObjTypePalettePointerTable(VermillionGymPal,VermillionGymPalData)
-ObjTypePalettePointerTable(LavendarCityPal,LavendarCityPalData)
-ObjTypePalettePointerTable(SaffronCityPal,SaffronCityPalData)
-ObjTypePalettePointerTable(SaffronGymPal,SaffronGymPalData)
-ObjTypePalettePointerTable(FuschiaGymPal,FuschiaGymPalData)
-ObjTypePalettePointerTable(FuschiaCityPal,FuschiaCityPalData)
-ObjTypePalettePointerTable(CinnabarIslandPal,CinnabarIslandPalData)
-ObjTypePalettePointerTable(CinnabarGymPal,CinnabarGymPalData)
-ObjTypePalettePointerTable(Route5Pal,Route5PalData)
-ObjTypePalettePointerTable(Route6Pal,Route6PalData)
-ObjTypePalettePointerTable(Route7Pal,Route7PalData)
-ObjTypePalettePointerTable(Route8Pal,Route8PalData)
-ObjTypePalettePointerTable(Route9Pal,Route9PalData)
-ObjTypePalettePointerTable(Route10Pal,Route10PalData)
-ObjTypePalettePointerTable(Route11Pal,Route11PalData)
-ObjTypePalettePointerTable(Route12Pal,Route12PalData)
-ObjTypePalettePointerTable(Route13Pal,Route13PalData)
-ObjTypePalettePointerTable(Route14Pal,Route14PalData)
-ObjTypePalettePointerTable(Route15Pal,Route15PalData)
-ObjTypePalettePointerTable(Route16Pal,Route16PalData)
-ObjTypePalettePointerTable(Route17nPal,Route17nPalData)
-ObjTypePalettePointerTable(Route17sPal,Route17sPalData)
-ObjTypePalettePointerTable(Route18Pal,Route18PalData)
-ObjTypePalettePointerTable(Route19Pal,Route19PalData)
-ObjTypePalettePointerTable(Route20Pal,Route20PalData)
-ObjTypePalettePointerTable(Route21Pal,Route21PalData)
-ObjTypePalettePointerTable(ViridianGymPal, ViridianGymPalData)
-ObjTypePalettePointerTable(Route22Pal,Route22PalData)
-ObjTypePalettePointerTable(Route23nPal,Route23nPalData)
-ObjTypePalettePointerTable(Route23sPal,Route23sPalData)
 
 
 // -------------------------------Tile Anims-------------------------------
@@ -289,7 +111,7 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 
 // ------------------------------- CHAPTER ------------------------------------    
 
-#include "Definitions/ChapterDefinitions.enu.event" 
+#include "Defs/ChDefinitions.enu.event" 
 
 
 
@@ -300,7 +122,7 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 // ------------------------------- MAP ----------------------------
 
 
-#include "Definitions/MapDefinitions.enu.event" 
+#include "Defs/MapDefinitions.enu.event" 
 
 
 // ------------------------------- MAP CHANGES ----------------------------
@@ -310,9 +132,9 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 
 
 
-#include "IncbinData.event"
+#include "GeneratedInstaller.event"
 
-
+ALIGN 4
 
 
 #include "Master Map Installer.event"

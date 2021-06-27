@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(PokecenterCh,PokecenterObj,0,PokecenterPal,PokecenterConf,PokecenterMap,Map,0,0,0)
+SetChapterData(PokecenterCh,OaksLabObj,0,OaksLabPal,OaksLabConf,PokecenterMap,Map,0,0,0)
 Map:
 #incbin "Pokecenter_data.dmp"
 Map_Pointer_Table(PokecenterMap,Map)
