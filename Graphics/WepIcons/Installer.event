@@ -1,14 +1,23 @@
-//Icons at $5926F4
-//Palette at $5996F4
-
 #include "Icon Definitions.event"
-
-
-//#include "External Sheets/External Icons.event"
 
 ALIGN 4
 NewItemIcons:
+// Sheet with all icons goes here 
 #incbin "Icon Sheet.dmp"
+// Fill(0x100) // you could do this instead of the full sheet 
+
+#define ItemIconEntry(ItemID) "ORG NewItemIcons + (ItemID*128)"
+
+PUSH 
+// Individual Icons go here
+//ItemIconEntry(IronSword)
+//#incbin "Individual_Icons/BugType.dmp"
+
+
+// End of icons 
+POP 
+
+
 
 PUSH
 ORG $36B4

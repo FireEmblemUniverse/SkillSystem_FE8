@@ -80,8 +80,12 @@ for obj_file in glob.glob("ConfObj/*.png"):
        f.write("{}PalData:\r".format(obj_file.rstrip()))
        f.write("#incbin \"dmp/{}_pal.dmp\"\r\r".format(obj_file.rstrip()))
 
-##import subprocess
-##subprocess.run(["ls", "-l"])
+##import sys, subprocess
+## p = subprocess.Popen('Defs/ObjPalDefinitions.txt', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+##subprocess.call(["Defs/Enumerate.bat", "Defs/ObjPalDefinitions.txt"])
+##pid = subprocess.Popen([sys.executable, "Defs/ObjPalDefinitions.txt"]) # Call subprocess
+##subprocess.Popen(["Defs/ObjPalDefinitions.txt", "Defs/ObjPalDefinitions.txt"] + sys.argv[1:])
+## subprocess.run(["Defs/Enumerate.bat", "Defs/ObjPalDefinitions.txt"])
 
 ## ObjTypePalettePointerTable(PokecenterObj, OaksLabObjData)
 ## TileConfigPointerTable(PokecenterConf, OaksLabConfigData)

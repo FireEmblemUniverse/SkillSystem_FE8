@@ -3,15 +3,26 @@
 #define EscapePointEntry(ChapterID, XCoord, YCoord, ReqFlag) "BYTE ChapterID XCoord YCoord 0x0; SHORT ReqFlag 0x00" 
 
 
+// current chapter MultiTileMarker_Table 
+#define EscapeTileStart "PUSH; ORG MultiTileMarker_Table + (ChapterID*16*8)" 
+#define EscapeTileEntry(XCoord, YCoord) "BYTE ChapterID XCoord YCoord 0x0; SHORT 0x00 0x00" 
+#define EscapeTileEnd POP
+
+
+
+
+
+
+
+
 
 //	Map	X	Y	HasEnemyClass(0=ANY)	Judgment flag(0=Any)	W6
+ALIGN 4 
 MultiTileMarker_Table:
-EscapePointEntry(PalletCh, 12, 0, 0x00) //00, , Pallet, Town
-EscapePointEntry(PalletCh, 13, 0, 0x00) //00, , Pallet, Town
-EscapePointEntry(PalletCh, 9, 19, 0x90) //00, , Pallet, Town
-EscapePointEntry(PalletCh, 8, 19, 0x90) //00, , Pallet, Town
+FILL(0x80*16*8) // 128 chapters with up to 16 entries each 
 
 
+/*
 EscapePointEntry(Route1Ch, 13, 39, 0x00) //01, Ch1, Route, 1
 EscapePointEntry(Route1Ch, 12, 39, 0x00) //01, Ch1, Route, 1
 EscapePointEntry(Route1Ch, 12, 0, 0x00) //01, Ch1, Route, 1
@@ -57,6 +68,8 @@ EscapePointEntry(Route3ECh, 21, 0, 0x00) //0D, Ch13, Route, 3, E
 EscapePointEntry(Route4WCh, 19, 5, 0x00) //0E, Ch14, Route, 4
 EscapePointEntry(Route4WCh, 11, 19, 0x00) //0E, Ch14, Route, 4
 EscapePointEntry(Route4WCh, 12, 19, 0x00) //0E, Ch14, Route, 4
+*/
+
 
 /*
 

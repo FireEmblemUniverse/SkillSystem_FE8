@@ -1,0 +1,79 @@
+// normal: replace #define  with blank  
+ // regex: find: 0x*.. 
+ // replace with blank
+ // extended: find Ch\r 
+ // replace with \r
+ // ([A-Z,a-z])\w+
+ // ##$0ChText\r$0[X]\r\r
+
+OaksLabChText
+PalletChText
+Route1ChText
+ViridianChText
+Route2SChText
+ViridianForestSChText
+ViridianForestNChText
+Route2NChText
+PewterChText
+PewterGymChText
+Route3WChText
+Route3MChText
+Route3EChText
+Route4WChText
+MtMoonB1ChText
+MtMoonB2ChText
+MtMoonB3ChText
+Route4MChText
+Route4EChText
+CeruleanChText
+CeruleanGymChText
+Route24ChText
+Route25ChText
+Route5ChText
+Route6ChText
+VermillionChText
+VermillionGymChText
+SSAnneChText
+DiglettsCaveChText
+Route11ChText
+Route9WChText
+Route9EChText
+Route10ChText
+RockTunnelB1ChText
+RockTunnelB2ChText
+LavendarChText
+Route8ChText
+PokemonTowerF1ChText
+PokemonTowerF2ChText
+PokemonTowerF3ChText
+PokemonTowerF4ChText
+PokemonTowerF5ChText
+Route12NChText
+Route12SChText
+Route13ChText
+Route14ChText
+Route15ChText
+FuschiaChText
+FuschiaGymChText
+Route18ChText
+Route17SChText
+Route17NChText
+Route16ChText
+CeladonChText
+CeladonGymChText
+Route7ChText
+SaffronChText
+SaffronDojoChText
+SaffronGymChText
+Route19ChText
+Route20EChText
+Route20WChText
+CinnabarChText
+CinnabarGymChText
+Route21ChText
+ViridianGymChText
+Route22ChText
+Route23SChText
+Route23MChText
+Route23NChText
+PokecenterChText

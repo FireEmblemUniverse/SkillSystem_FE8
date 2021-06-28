@@ -2,8 +2,8 @@
 // 0x38 
 //#define PokecenterCh 0x38 
 
-EventPointerTable(PokecenterCh,ThisChapter)
-setText(0x198, NewChName)
+EventPointerTable(PokecenterCh+4,ThisChapter)
+
 ALIGN 4
 NewChName:
 String("Pokecenter")

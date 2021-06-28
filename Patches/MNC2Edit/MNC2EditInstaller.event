@@ -7,7 +7,7 @@ BYTE 0xD1 //BEQ -> BNE (so now we only save when moving to castle frelia)
 
 
 ORG 0x9DEC 
-BYTE 0x38 //chapter to save at 
+BYTE PokecenterCh //chapter to save at 
 
 //Kill PrepareBlankTile patch by 7743 (fixes a minor graphical glitch)
 ORG 0x35728
