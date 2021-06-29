@@ -42,6 +42,7 @@ END_MAIN
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
+AFEV 0x3 EndingScene 0x6 // Defeat all enemies 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 END_MAIN
@@ -84,6 +85,11 @@ BeginningScene:
 //FADU 44 
 MUSCFAST 0x16 // Intro 
 EVBIT_MODIFY 3 // Dialogue skipping & fast-forwarding allowed 
+EVBIT_F 2 
+FADU 44 
+Text(WhosTheKidText)
+
+
 CALL NameInputEvent
 CAM1 [8,11]
 FADU 44 
@@ -174,8 +180,8 @@ ArmoryItems:
 SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
 ALIGN 4
 
-EndingScene: //Unused but must exist 
-
+EndingScene: //Generally Unused but must exist 
+MNC2 PalletCh 
 
 
 
@@ -286,7 +292,7 @@ ENDA
 
 
 ALIGN 4
-#define StarterUnitParameters "0x1 Level(5,Ally,True) [7,12] 0b 0x0 REDA7R12 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+#define StarterUnitParameters "0x1 Level(5,Ally,True) [7,12] 0b 0x0 REDA7R12 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
 
 
 
@@ -348,7 +354,7 @@ UNIT
 
 
 ALIGN 4
-#define BonusUnitParameters "0x1 Level(5,Ally,True) [7,7] 0b 0x1 REDA7R10 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+#define BonusUnitParameters "0x1 Level(5,Ally,True) [7,7] 0b 0x1 REDA7R10 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
 
 
 

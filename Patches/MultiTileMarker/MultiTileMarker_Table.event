@@ -19,7 +19,9 @@
 //	Map	X	Y	HasEnemyClass(0=ANY)	Judgment flag(0=Any)	W6
 ALIGN 4 
 MultiTileMarker_Table:
-FILL(0x80*16*8) // 128 chapters with up to 16 entries each 
+FILL 0x80*8*8 0x9F // 128 chapters with up to 8 entries each 
+// all 0s puts them in ch 0, while all FFs terminates 
+// therefore we place them all in ch 0x9F for now
 
 
 /*

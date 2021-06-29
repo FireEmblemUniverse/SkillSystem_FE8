@@ -59,6 +59,12 @@ add r3, #1 @start at #0x1E
 strb r0, [r5, r3]
 cmp r3, #0x27 
 ble WipeInventoryLoop
+
+mov r0, #0x1 
+lsl r0, #8 
+add r0, #1  
+mov r3, #0x1E 
+strh r0, [r5, r3] @give unit the auto attack weapon when captured 
 	
 @remove rescuee/er for player & enemy 
 mov r0, #0
