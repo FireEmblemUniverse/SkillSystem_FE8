@@ -24,6 +24,11 @@ TutText(-1)
 NoFade 
 ENDA 
 
+TextEvent:
+Text(-1)
+NoFade 
+ENDA 
+
 WallTextEvent:
 WallText(-1) 
 NoFade 

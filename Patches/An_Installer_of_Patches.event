@@ -81,49 +81,7 @@
 
 
 // Commands
-#include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
-#include "Commands/MemSlotString/MemSlotStringInstaller.event"
-#include "Commands/SetStatus/SetStatusInstaller.event"
 
-#include "Commands/CompareTactText/CompareTactTextInstaller.event" 
-
-
-#include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
-#include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
-
-
-#include "Commands/UseVulnerary/UseVulneraryInstaller.event" 
-
-#include "Commands/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
-
-
-#include "Commands/UNCMv2/UNCMv2Installer.event"
-#include "Commands/GetNthUnit/GetNthUnitInstaller.event"
-#include "Commands/CheckInDanger/CheckInDangerInstaller.event"
-
-// Less used commands 
-#include "Commands/HealAllUnits.lyn.event" 
-#include "Commands/GameOptionInstaller.event"
-
-#include "Commands/LordSplitMenu/Installer.event" 
-
-#include "Commands/CHAI_all/CHAI_all_installer.event"
-
-#include "Commands/CH_allegiance_all/change_allegiance_all_installer.event"
-#include "Commands/BadStatus/BadStatusInstaller.event"
-
-#include "Commands/CountInRange/CountInRangeInstaller.event"
-#include "Commands/CheckGold/CheckGoldInstaller.event"
-#include "Commands/Item/ItemInstaller.event"
-#include "Commands/DropUnit/DropUnitInstaller.event"
-#include "Commands/GetHeldKeys/GetHeldKeysInstaller.event"
-#include "Commands/GetUnitDistance/GetUnitDistanceInstaller.event"
-#include "Commands/GiveExp/GiveExpInstaller.event" //done 
-#include "Commands/RepoUnit/RepoUnitInstaller.event"
-#include "Commands/RescueUnit/RescueUnitInstaller.event"
-#include "Commands/SendAll/SendAllInstaller.event"
-#include "Commands/SwapEirikaEphraimMode/SwapEirikaEphraimModeInstaller.event" //done 
-#include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event"
 
 
 

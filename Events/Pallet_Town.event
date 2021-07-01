@@ -79,8 +79,12 @@ GenericDisappearEffect(2, TalkEvent)
 
 
 VisitGaryHouse:
-//SetUnitStatus(0x7FFF, CurrentHP, 3) 
-UseVulnerary(0x7FFF) 
+CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
+//SupplyItemWithDurability(Vulnerary,1)
+//SupplyItemWithDurability(Vulnerary,1)
+
+
+//UseVulnerary(0x7FFF) 
 //STAL 110 
 //TutText(EnterGaryHouseText)
 NoFade 
@@ -118,7 +122,7 @@ SpellScrollTrap(9,9, 4, Thundershock)
 SignBTrap(14,4, 0x8, 0x0) //no extra text 
 SignATrap(9,4, 0x8, SignsFastTravel)
 
-
+BerryTree(10,4,12)
 
 EnterTrap(16,13, EnterOaksLabText) 
 
@@ -166,6 +170,11 @@ ALIGN 4
 BeginningScene:
 CALL LoadAndPlacePlayers 
 CALL GlobalBeginningScene
+SetUnitStatusAll(Any, CurrentHP, 1, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+SetUnitStatus(Seth, MaxHP, 60)
+MOVE 0xFFFF Eirika [15,7] 
+MOVE 0xFFFF Ephraim [12,14]
+ENUN 
 LABEL 0x63
 NoFade 
 ENDA 

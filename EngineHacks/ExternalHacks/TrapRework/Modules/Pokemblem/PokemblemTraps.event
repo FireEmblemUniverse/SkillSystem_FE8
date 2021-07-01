@@ -139,11 +139,26 @@ SetTrapMapSpritePalette(BlankTalkID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankTalkID)
 
 // same but not adjacent: on instead 
-#define BlankEnterID 90 //0x5A 
+#define BlankCGEnterID 90 //0x5A 
+SetTrapEventInit(BlankCGEnterID,EnterTextInitialization)
+SetTrapMapSprite(BlankCGEnterID,BlankSMS)
+SetTrapMapSpritePalette(BlankCGEnterID,NPCTrapPaletteWord)
+//SetImpassableTrap(BlankEnterID)
+
+#define BlankEnterID 91 //0x5A 
 SetTrapEventInit(BlankEnterID,EnterTextInitialization)
 SetTrapMapSprite(BlankEnterID,BlankSMS)
 SetTrapMapSpritePalette(BlankEnterID,NPCTrapPaletteWord)
-//SetImpassableTrap(BlankEnterID)
+
+#define BlankTutEnterID 92 //0x5A 
+SetTrapEventInit(BlankTutEnterID,EnterTextInitialization)
+SetTrapMapSprite(BlankTutEnterID,BlankSMS)
+SetTrapMapSpritePalette(BlankTutEnterID,NPCTrapPaletteWord)
+
+#define BlankWallEnterID 93 //0x5A 
+SetTrapEventInit(BlankWallEnterID,EnterTextInitialization)
+SetTrapMapSprite(BlankWallEnterID,BlankSMS)
+SetTrapMapSpritePalette(BlankWallEnterID,NPCTrapPaletteWord)
 
 
 #define TeleportSignAID 96 //0x60 
@@ -172,11 +187,27 @@ SetTrapMapSpritePalette(ObtainSpellID,NPCTrapPaletteWord)
 SetImpassableTrap(ObtainSpellID)
 
 
+#define BerryTreeID 112 //0x70
+SetTrapEventInit(BerryTreeID,BerryTreeInitialization)
+SetTrapMapSprite(BerryTreeID,BerryTreeSMS)
+SetTrapMapSpritePalette(BerryTreeID,NPCTrapPaletteWord)
+SetImpassableTrap(BerryTreeID)
+
+#define BerryTree(XX,YY,BerriesCounter) "BYTE BerryTreeID XX YY BerriesCounter; SHORT 0x0"
 
 
+#define EnterCGTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankCGEnterID XX YY CompletionFlag; SHORT TextID"
+#define EnterCGTrap(XX,YY, TextID) "BYTE BlankCGEnterID XX YY 0x0; SHORT TextID"
 
 #define EnterTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankEnterID XX YY CompletionFlag; SHORT TextID"
 #define EnterTrap(XX,YY, TextID) "BYTE BlankEnterID XX YY 0x0; SHORT TextID"
+
+#define EnterTutTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankTutEnterID XX YY CompletionFlag; SHORT TextID"
+#define EnterTutTrap(XX,YY, TextID) "BYTE BlankTutEnterID XX YY 0x0; SHORT TextID"
+
+#define EnterWallTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankWallEnterID XX YY CompletionFlag; SHORT TextID"
+#define EnterWallTrap(XX,YY, TextID) "BYTE BlankWallEnterID XX YY 0x0; SHORT TextID"
+
 
 
 #define SignTrap(XX,YY,CompletionFlag, TextID) "BYTE SignTrapID XX YY CompletionFlag; SHORT TextID"
@@ -328,7 +359,7 @@ POIN GiveItemEvent
 
 ALIGN 4
 #include "asm/ObtainCoins.lyn.event"
-
+#include "asm/BerryTree.lyn.event"
 #include "asm/ObtainScroll.lyn.event" 
 
 #include "asm/TeleportSign.lyn.event"

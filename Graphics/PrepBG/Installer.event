@@ -1,0 +1,21 @@
+
+
+PUSH 
+
+ORG $02008C
+POIN PrepBG 
+ORG $020088
+POIN PrepPal 
+
+POP 
+
+PrepBG:
+#incbin "PrepBG.dmp"
+
+PrepPal:
+#incbin "PrepBG_pal.dmp"
+
+
+
+
+

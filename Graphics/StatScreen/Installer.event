@@ -36,7 +36,7 @@ StatScreenTSA:
 
 ALIGN 4
 NewBattlePlat:
-#incbin "Dmp/Platform.dmp"
+#incbin "Png/pagenamegraphic.dmp"
 
 ALIGN 4
 NewEquipWindow:

@@ -20,12 +20,19 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventNPC(8,OaksPikachuEvent,1,1) 
 END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 END_MAIN
 
+OaksPikachuEvent:
+Text(OakJustOneText)
+LOAD1 1 OaksPikachuUnit
+ENUN 
+NoFade 
+ENDA 
 
 
 LocationBasedEvents:
@@ -71,9 +78,9 @@ CALL CamSlotB
 RemoveTrapAtCoords(9,5)
 RemoveTrapAtCoords(10,5)
 RemoveTrapAtCoords(11,5)
-AddTrap(RedPokeballItemID, 9,5)
-AddTrap(RedPokeballItemID, 10,5)
-AddTrap(RedPokeballItemID, 11,5)
+AddTrap(OpenPokeballItemID, 9,5)
+AddTrap(OpenPokeballItemID, 10,5)
+AddTrap(OpenPokeballItemID, 11,5)
 
 NoFade 
 ENDA 
@@ -85,11 +92,6 @@ BeginningScene:
 //FADU 44 
 MUSCFAST 0x16 // Intro 
 EVBIT_MODIFY 3 // Dialogue skipping & fast-forwarding allowed 
-EVBIT_F 2 
-FADU 44 
-Text(WhosTheKidText)
-
-
 CALL NameInputEvent
 CAM1 [8,11]
 FADU 44 
@@ -181,10 +183,20 @@ SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
 ALIGN 4
 
 EndingScene: //Generally Unused but must exist 
+
+MUSC 0x10 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+Text(FirstGaryDefeat)
+Text(OakFirstGaryDefeat)
+SVAL r3 2500 
+GIVETOMAIN 0
+_MUSICSOMETHING 0x7FFF 
+SOUN 0x19
+FADI 3 
+Write_Byte(16, XCoordNewArea)    
+Write_Byte(13, YCoordNewArea)    
+
 MNC2 PalletCh 
-
-
-
 
 NoFade
 ENDA
@@ -223,9 +235,9 @@ EnemyTrainersA:
 //UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
-NPCUnits:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
 
+OaksPikachuUnit:
+UNIT OaksPikachu PikachuID 0x0 Level(5, NPC, 1)   [8,3] 0b 0x0 0x01 REDA8R3 [Thundershock,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 NameInputEvent:
@@ -292,7 +304,7 @@ ENDA
 
 
 ALIGN 4
-#define StarterUnitParameters "0x1 Level(5,Ally,True) [7,12] 0b 0x0 REDA7R12 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+#define StarterUnitParameters "0x1 Level(5,Ally,True) [7,12] 0b 0x0 REDA7R12 [0x1,Vulnerary,0x0,0x0] [0x0,0x0,0x0,0x0]"
 
 
 

@@ -117,7 +117,18 @@ UnitMenuTable:
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect) //Talk 
 
   
-  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5A, EnterTextEffect) //Enter  
+  MenuCommand(UM_PickBerry, UM_PickBerryDesc, NormalText, BerryTreeUsability, PickBerryTreeEffect) //Enter  
+//  ## UM_EatBerry
+// Eat[X]
+//## UM_EatBerryDesc
+//Eat from the tree.[X]
+  
+  
+  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5A, EnterTextEffect0x5A) //Enter  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5B, EnterTextEffect0x5B) //Enter  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5C, EnterTextEffect0x5C) //Enter  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5D, EnterTextEffect0x5D) //Enter  
   
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine

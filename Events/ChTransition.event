@@ -13,6 +13,7 @@
 #define Player4UnitID 			0x30017b6 
 #define Player5UnitID 			0x30017b7 
 #define Player6UnitID 			0x30017b8 
+#define BerryDurabilityToggleRam 			0x30017b9 
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
@@ -31,6 +32,7 @@ ENDA
 
 GlobalTurnEvent:
 ENUF 1 // Can 'Call' again 
+SetNearbyDangerRadius
 NoFade
 ENDA 
 

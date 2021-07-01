@@ -9,14 +9,25 @@
 
 .global EnterTextUsability0x5B
 .type EnterTextUsability0x5B, %function
+.global EnterTextUsability0x5C
+.type EnterTextUsability0x5C, %function
+
+.global EnterTextUsability0x5D
+.type EnterTextUsability0x5D, %function
 
 
 
 
 
 
-.global EnterTextEffect
-.type EnterTextEffect, %function
+.global EnterTextEffect0x5A
+.type EnterTextEffect0x5A, %function
+.global EnterTextEffect0x5B
+.type EnterTextEffect0x5B, %function
+.global EnterTextEffect0x5C
+.type EnterTextEffect0x5C, %function
+.global EnterTextEffect0x5D
+.type EnterTextEffect0x5D, %function
 
 
 .macro blh to, reg=r3
@@ -143,6 +154,14 @@ EnterTextUsability0x5B:
 push {r4,r7,r14}
 mov r7, #0x5B
 b EnterTextUsability
+EnterTextUsability0x5C:
+push {r4,r7,r14}
+mov r7, #0x5C
+b EnterTextUsability
+EnterTextUsability0x5D:
+push {r4,r7,r14}
+mov r7, #0x5D
+b EnterTextUsability
 
 
 
@@ -195,8 +214,28 @@ bx r1
 
 
 
+EnterTextEffect0x5A:
+push {r4-r5, lr}
+mov r5, #0x1
+b EnterTextEffect
+
+EnterTextEffect0x5B:
+push {r4-r5, lr}
+mov r5, #0x2
+b EnterTextEffect
+
+EnterTextEffect0x5C:
+push {r4-r5, lr}
+mov r5, #0x3
+b EnterTextEffect
+
+EnterTextEffect0x5D:
+push {r4-r5, lr}
+mov r5, #0x4
+b EnterTextEffect
+
+
 EnterTextEffect:
-push {r4, lr}
 @Basically the execute event routine.
 
 @But first, we need to find the event associated with this location.
@@ -226,7 +265,31 @@ beq Continue
 ldr r1,=MemorySlot2
 str r2,[r1]		@overwrite s2
 
-ldr	r0, =TutTextEvent	@this event gives item found in byte 0x4 of the trap
+
+cmp r5, #1 
+beq CGText 
+cmp r5, #2
+beq RegText 
+cmp r5, #3 
+beq TutText 
+cmp r5, #4 
+beq WallText 
+b Continue 
+
+CGText:
+ldr r0, =ShowTextEvent
+b DoTheEvent
+
+WallText:
+ldr r0, =WallTextEvent
+b DoTheEvent
+RegText:
+ldr r0, =TextEvent
+b DoTheEvent
+TutText:
+ldr	r0, =TutTextEvent	
+
+DoTheEvent:
 mov	r1, #0x01		@0x01 = wait for events
 ldr r3, ExecuteEvent
 bl goto_r3
@@ -247,7 +310,7 @@ strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 
-pop {r4}
+pop {r4-r5}
 pop {r3}
 goto_r3:
 bx r3

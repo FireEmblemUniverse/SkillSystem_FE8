@@ -52,7 +52,7 @@ EventPointerTable(LavendarCh                       ,ThisChapter)
 EventPointerTable(MtMoonB1Ch                       ,ThisChapter)
 EventPointerTable(MtMoonB2Ch                       ,ThisChapter)
 EventPointerTable(MtMoonB3Ch                       ,ThisChapter)
-//EventPointerTable(OaksLabCh                        ,ThisChapter)
+EventPointerTable(OaksLabCh                        ,ThisChapter)
 EventPointerTable(PalletCh                         ,ThisChapter)
 EventPointerTable(PewterCh                         ,ThisChapter)
 EventPointerTable(PewterGymCh                      ,ThisChapter)
@@ -206,6 +206,11 @@ Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 
 Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+//Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
@@ -217,6 +222,16 @@ ENUN
 //GiveItemWithDurability(SpellScroll,Absorb,Eirika)
 
 //SilentGiveItem(Eirika, LowKick)
+SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+
+//CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Seth, Vulnerary, 1)
+//SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+//SilentGiveItem(Eirika, SuperPotion3)
+//SilentGiveItem(Eirika, SuperPotion4)
+
+//SilentGiveItem(Eirika, Elixir)
 
 SupplyItem(Tackle)
 SupplyItem(LowKick)  

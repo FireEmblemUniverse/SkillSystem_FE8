@@ -28,7 +28,6 @@ GiveItemWithDurability:
 
 #define GiveItemWithDurability(Item,Durability,Character) "SVAL 0xC Durability; ASMC GiveItemWithDurability|1; CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO Character"
 
-
 PUSH
 ORG $D2F8
 POIN NewChestGiveItemEvent

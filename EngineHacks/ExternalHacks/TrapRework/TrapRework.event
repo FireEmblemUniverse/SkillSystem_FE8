@@ -23,7 +23,7 @@
 	#define GoldPokeballItemID 17	//non-respawnable item
 	#define HiddenPokeballItemID 18	//invisible item 
 	#define CoinsID 21 // 
-	#define OpenPokeballItemID 48	//blocks but cannot interact 
+	#define OpenPokeballItemID 89	//blocks but cannot interact 
 	
 	#define ObstacleID 48 
 	
@@ -272,6 +272,9 @@
 	SetTrapEventInit(ExampleMapSpriteTrapID,TrapRework_GenericInitializer)
 	SetTrapMapSprite(ExampleMapSpriteTrapID,ExampleMapSpriteID) //thief map sprite
 	SetTrapMapSpritePalette(ExampleMapSpriteTrapID,NPCTrapPaletteWord)
+	
+	SetTrapMapSpritePalette(OpenPokeballItemID,NPCTrapPaletteWord)
+	SetTrapEventInit(OpenPokeballItemID,TrapRework_GenericInitializer)
 	
 	
 	//Use this macro in your events to place a map sprite trap

@@ -30,16 +30,16 @@ Proceed to next area?[NL]
 
 
 ## EnterOaksLabText
-[OpenMidRight][LoadFace][0x104][OpenMidRight]Hmm, let me rate your Pokedex...[.....][NL]
+[OpenMidRight][LoadOak][OpenMidRight]Hmm, let me rate your Pokedex...[.....][NL]
 ...[....]   ...[....]   ...[....][A][NL]
 Oh wait, I never gave you one![A][....][NL]
 Thing is, I gave my last one to Gary.[NL]
 He is my grandson, afterall.[A][NL]
-I knew you'd understand.[A][2NL]
+I knew you'd understand.[A][NL][NL]
 What? How will you track your collection?[....][NL]
-Welp,[....] beats me.[A][LoadOverworldFaces]
-...fine. You have a number of Pokemon.
-(Hey, one is a number too.)[A]
+Welp,[....] beats me.[A][LoadOverworldFaces][NL]
+...fine. You have a number of Pokemon.[NL]
+(Hey, one is a number too.)[A][NL]
 Keep up the hard work.[A][X]
 
 ## EnterGaryHouseText
@@ -58,15 +58,15 @@ Continue South?[NL]
 [Yes][X]
 
 # 0x09DD
-[OpenMidRight][LoadFace][0x01][OpenMidRight][G][A][X]
+[OpenMidRight][LoadBlankFace][OpenMidRight][G][A][X]
 
 # 0x09DE
 Continue North?
 [Yes][X]
 # 0x09DF
-[OpenMidLeft][LoadFace][0x135][OpenMidLeft]Do you truly think you can take[.]
-us with those numbers?[A]
-Imbecile! You'll learn the
+[OpenMidLeft][LoadFace][0x135][OpenMidLeft]Do you truly think you can take[.][NL]
+us with those numbers?[A][NL]
+Imbecile! You'll learn the[NL]
 error of your ways![.][A][X]
 # 0x09E0
 It seems you can't go here yet.[A][X]
@@ -81,12 +81,12 @@ Your party is completely full.[A][X]
 
 
 # 0x09E9
-[OpenMidRight][LoadFace][0x104][OpenRight]There's no running from a Trainer![A][X]
+[OpenMidRight][LoadOak][OpenRight]There's no running from a Trainer![A][X]
 
 # 0x09EA
-[OpenMidLeft][LoadFace][0x105][OpenMidLeft]Hah, I wondered when
-you'd show up.[A]
-I've already caught 4 Pokemon!
+[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hah, I wondered when[NL]
+you'd show up.[A][NL]
+I've already caught 4 Pokemon![NL]
 How many have you caught?[A][X]
 
 # 0x09EB
@@ -102,16 +102,16 @@ You drop your remaining credits.[A][X]
 Pokecenter up ahead.[A][X]
 
 # 0x09EF
-[OpenMidLeft][LoadFace][0x106][OpenMidLeft]Whatever, man.
+[OpenMidLeft][LoadGaryShrug][OpenMidLeft]Whatever, man.[NL]
 I was goin' easy on ya.[A][X]
 
 # 0x09F0
-Big Pokemon can catch little ones.
+Big Pokemon can catch little ones.[NL]
           - Trainer's Tips[A][X]
 		  
 # 0x09F1
-[OpenMidLeft][LoadFace][0x108][OpenMidLeft]We won't let anyone through!
-This is our turf, now.[A][2NL]
+[OpenMidLeft][LoadBirdkeeper][OpenMidLeft]We won't let anyone through![NL]
+This is our turf, now.[A][NL][NL]
 Quick, form a [ToggleRed]line of defense[ToggleRed]![A][X]
 
 
@@ -132,14 +132,14 @@ Save by visiting home or a Pokecenter.[NL]
             -Trainer's Tips[A][X]
 			
 # 0x09F8
-Manage your party at a Pokecenter.
+Manage your party at a Pokecenter.[NL]
           - Trainer's Tips[A][X]
 		  
 # 0x09F9
 Viridian City.[A][X]
 # 0x09FA
-You can carry up to 6 Pokemon
-with you at once.
+You can carry up to 6 Pokemon[NL]
+with you at once.[NL]
             - Trainer's Tips.[A][X]
 			
 # 0x09FB
@@ -153,89 +153,89 @@ Viridian Forest.[A][X]
 Route 2.[A][X]
 
 # 0x09FE
-Hold DOWN after WAIT to
-quickly jump down ledges.
+Hold DOWN after WAIT to[NL]
+quickly jump down ledges.[NL]
       - Trainer's Tips.[A][X]
 	  
 # 0x09FF
-Some [ToggleRed]SIGNS[ToggleRed] allow
-for fast travel.
+Some [ToggleRed]SIGNS[ToggleRed] allow[NL]
+for fast travel.[NL]
  - Trainer's Tips.[A][X]
  
 # 0x0A00
-Some enemies will [ToggleRed]ZONE[ToggleRed]
-you out, avoiding combat.
+Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
+you out, avoiding combat.[NL]
         - Trainer's Tips.[A][X]
 		
 # 0x0A01
-The gym here's been
-closed quite a while.[A]
-Shouldn't the league
+The gym here's been[NL]
+closed quite a while.[A][NL]
+Shouldn't the league[NL]
 appoint somebody new?[A][X]
 
 # 0x0A02
-HMM? Whatcha doin' bargin'
-up in here like ya own the place?[A]
-This is private property!
+HMM? Whatcha doin' bargin'[NL]
+up in here like ya own the place?[A][NL]
+This is private property![NL]
 Let me sip my coffee in peace.[A][X]
 
 # 0x0A03
-At times, DangerRadius will
-pop up automatically.[A]
-Open the MENU to 
+At times, DangerRadius will[NL]
+pop up automatically.[A][NL]
+Open the MENU to [NL]
 disable this.[A][X]
 
 # 0x0A04
-Use [ToggleRed]SELECT[ToggleRed] on a unit
-to toggle DangerRadius.[A]
-At times, DangerRadius will
+Use [ToggleRed]SELECT[ToggleRed] on a unit[NL]
+to toggle DangerRadius.[A][NL]
+At times, DangerRadius will[NL]
 pop up automatically.[A][X]
 
 # 0x0A05
-This Museum is where we
-study evolution based on fossils.[A]
-What? You've seen Pokemon evolve?[A]
-Don't be absurd!
-Evolution takes millions of years.[.....]
+This Museum is where we[NL]
+study evolution based on fossils.[A][NL]
+What? You've seen Pokemon evolve?[A][NL]
+Don't be absurd![NL]
+Evolution takes millions of years.[.....][NL]
 You're thinking of [ToggleRed]Metamorphosis.[A][X]
 # 0x0A06
-It's empty.[A][.....][2NL]
-Why[.....] are we 
-breaking
-in,[.....] again?[A]
-After [.....]searching[.....]
-for [.....]what[.....] feels[.....]
-like[.....] days,[A]
-you[.....][.....] finally 
-scavenge
+It's empty.[A][.....][NL][NL]
+Why[.....] are we [NL]
+breaking[NL]
+in,[.....] again?[A][NL]
+After [.....]searching[.....][NL]
+for [.....]what[.....] feels[.....][NL]
+like[.....] days,[A][NL]
+you[.....][.....] finally [NL]
+scavenge[NL]
 some coins.[A][X]
 
 # 0x0A07
-I'll trade my Haunter 
-if you bring me a Mewtwo.[A][2NL]
-Haha, I'm just messin'
-with you. I don't even
+I'll trade my Haunter [NL]
+if you bring me a Mewtwo.[A][NL][NL]
+Haha, I'm just messin'[NL]
+with you. I don't even[NL]
 have a Haunter.[A][X]
 
 # 0x0A09
 Pewter Museum.[A][X]
 
 # 0x0A0B
-Repels reduce the amount
+Repels reduce the amount[NL]
 of wild Pokemon found.[A][X]
 
 # 0x0A0C
-Pewter Gym.
+Pewter Gym.[NL]
 Rock-type Pokemon.[A][X]
 
 # 0x0A0D
-[OpenMidRight][LoadFace][0x109][OpenMidRight]I believe in rock hard
-defense and determination![A]
-That's why my pokemon are
-all the rock-type.[A][CloseSpeechSlow][LoadOverworldFaces]
-Hmm? What about my Nidoran,
-Sandshrew, and Vulpix?[A]
-Those don't count.[A][CloseSpeechSlow][LoadOverworldFaces][OpenMidRight][MoveLeft][OpenLeft]There there, sweetie.
+[OpenMidRight][LoadBrock][OpenMidRight]I believe in rock hard[NL]
+defense and determination![A][NL]
+That's why my pokemon are[NL]
+all the rock-type.[A][CloseSpeechSlow][LoadOverworldFaces][NL]
+Hmm? What about my Nidoran,[NL]
+Sandshrew, and Vulpix?[A][NL]
+Those don't count.[A][CloseSpeechSlow][LoadOverworldFaces][OpenMidRight][MoveLeft][OpenLeft]There there, sweetie.[NL]
 Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight][OpenMidRight]Ahem. Let's battle![A][X]
 # 0x0A0E
 The city of Boulders.[A][X]
@@ -243,64 +243,55 @@ The city of Boulders.[A][X]
 # 0x0A0F
 Under development.[A][X]
 
-# 0x0A10
-[OpenMidLeft][LoadFace][0x105][OpenMidLeft]That wasn't fair!
-You two teamed up on me![A]
-Tcch... losers.[A][OpenMidLeft][0x0011][OpenMidLeft][....][X]
 
-# 0x0A11
-[OpenMidRight][LoadFace][0x104][OpenMidRight]Sorry about him.
-He's a real brat.[A]
-Ah, parenting.[A][CloseSpeechSlow][OpenMidRight][MoveRight][OpenRight]Oh! Speaking of.
-Your mother left this for you.[A][X]
 
 # 0x0A12
-You hear a rustling
+You hear a rustling[NL]
 in the burrow.[A][X]
 
 # 0x0A13
-[OpenMidRight][LoadFace][0x109][OpenMidRight]As proof of your victory, 
-here's the BOULDERBADGE![A]
-Wear it proud, knowing
-you've completed my gym.[A]
-The others won't be
+[OpenMidRight][LoadBrock][OpenMidRight]As proof of your victory, [NL]
+here's the BOULDERBADGE![A][NL]
+Wear it proud, knowing[NL]
+you've completed my gym.[A][NL]
+The others won't be[NL]
 quite so easy.[A][X]
 
 # 0x0A14
-You cannot call your party
+You cannot call your party[NL]
 so soon after attacking.[A][X]
 
 # 0x0A15
-You can only rest
+You can only rest[NL]
 at the start of the turn.[A][X]
 
 # 0x0A16
-You can only call your
+You can only call your[NL]
 party once per turn.[A][X]
 
 # 0x0A17
-[OpenLeft][LoadFace][0x10A][OpenLeft][FastPrint]Pokemon captured.
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Pokemon captured.[NL]
 [ToggleRed]300 credits[ToggleRed] consumed.[LoadOverworldFaces][X]
 
 # 0x0A18
-[OpenLeft][LoadFace][0x10A][OpenLeft][FastPrint]Insufficient funds.[A][X]
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[A][X]
 
 # 0x0A19
-[OpenLeft][LoadFace][0x10A][OpenLeft][FastPrint]Napping sequence observed.
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Napping sequence observed.[NL]
 [ToggleRed]100 credits[ToggleRed] consumed.[A][X]
 
 # 0x0A1A
 Mt. Moon[A][X]
 
 # 0x0A1B
-Will you release this Pokemon?
+Will you release this Pokemon?[NL]
 [No][X]
 
 # 0x0A1C
 Goodbye![A][X]
 
 # 0x0A1D
-You cry into the burrow,
+You cry into the burrow,[NL]
 frightening the inhabitants.[A][X]
 
 # 0x0A1E
@@ -316,12 +307,12 @@ Better keep them.[A][X]
 Let the Pokemon free.[X]
 
 # 0x0A22
-[OpenRight][LoadFace][0x101][OpenRight]Hello, there![A]
-Have I got a deal for you![A][LoadOverworldFaces]
-[2NL]I'll let you have
-a swell MAGIKARP[A]
-for just 500 Credits![A][2NL]
-What do you say?
+[OpenRight][LoadBlankFace][OpenRight]Hello, there![A][NL]
+Have I got a deal for you![A][LoadOverworldFaces][NL][NL]
+I'll let you have[NL]
+a swell MAGIKARP[A][NL]
+for just 500 Credits![A][NL][NL]
+What do you say?[NL]
 [No][X]
 
 # 0x0A23
@@ -331,32 +322,32 @@ What do you say?
 [OpenRight]Tcch, what a waste of time.[A][X]
 
 # 0x0A25
-A Pokemon was
+A Pokemon was[NL]
 sent to the PC.[A][X]
 
 # 0x0A26
-[OpenMidRight][LoadFace][0x107][OpenMidRight]I ain't got time for the likes of you.
-I'll see ya in Cerulean, loser![A]
-This is the end of the demo.
+[OpenMidRight][LoadGaryShrug][OpenMidRight]I ain't got time for the likes of you.[NL]
+I'll see ya in Cerulean, loser![A][NL]
+This is the end of the demo.[NL]
 Smell ya later.[A][X]
 
 # 0x0A27
-[OpenRight][LoadFace][0x101][OpenRight]Have you seen a Gastly yet?[A][X]
+[OpenRight][LoadBlankFace][OpenRight]Have you seen a Gastly yet?[A][X]
 # 0x0A28
-[OpenMidLeft][LoadFace][0x104][OpenMidLeft]Debug mode?
+[OpenMidLeft][LoadOak][OpenMidLeft]Debug mode?[NL]
 [No][X]
 # 0x0A29
 The door is locked.[A][X]
 
 # 0x0A2A
-There's a Pokemaniac who
-lives just up north of here.[A]
-We're safer off that way,
-if you ask me.[A] Who knows
+There's a Pokemaniac who[NL]
+lives just up north of here.[A][NL]
+We're safer off that way,[NL]
+if you ask me.[A] Who knows[NL]
 what he gets up to?[A][X]
 
 # 0x0A2B
-South: Underground Pass,
+South: Underground Pass,[NL]
 Saffron City.[A][X]
 
 # 0x0A2C
@@ -366,85 +357,85 @@ Fancy Bike Shop[A][X]
 Cerulean City[A][X]
 
 # 0x0A2E
-Cerulean Gym.
+Cerulean Gym.[NL]
 Water-type Pokemon.[A][X]
 # 0x0A2F
-Scram, kid![A][2NL]
-More content? This is it!
-27 chapters long.[A] 
-Don't believe me? 
-Count each area yourself.[A]
-I'll keep standing here 
-until the next release.[A]
-If you like the hack,
+Scram, kid![A][NL][NL]
+More content? This is it![NL]
+27 chapters long.[A] [NL]
+Don't believe me? [NL]
+Count each area yourself.[A][NL]
+I'll keep standing here [NL]
+until the next release.[A][NL]
+If you like the hack,[NL]
 please join the discord.[A][X]
 
 # 0x0A30
-You want a bike?
-That'll be 1,000,000 credits.[A]
-What?
-You ain't got it?[A]
+You want a bike?[NL]
+That'll be 1,000,000 credits.[A][NL]
+What?[NL]
+You ain't got it?[A][NL]
 Haha, get lost, kid.[A][X]
 # 0x0A31
-[OpenMidLeft][LoadFace][0x110][OpenMidLeft]Ack! Washed away![A] Welp,
-I guess you've earned this.[A]
-The CASCADEBADGE is a
-symbol of your victory.[A]
-Show it off - you've 
-completed this demo.[A]
-What? You want more?[A]
-Join the discord to help
+[OpenMidLeft][LoadMisty][OpenMidLeft]Ack! Washed away![A] Welp,[NL]
+I guess you've earned this.[A][NL]
+The CASCADEBADGE is a[NL]
+symbol of your victory.[A][NL]
+Show it off - you've [NL]
+completed this demo.[A][NL]
+What? You want more?[A][NL]
+Join the discord to help[NL]
 playtest upcoming content.[A][X]
 
 # 0x0A32
-[OpenMidRight][LoadFace][0x110][OpenMidRight]My policy is an all-out offensive
-with water-type Pokemon![A]
-If you want to turn pro, you should 
-come up with your own strategy.[A]
-Hm? You're interested in a 
-monotype team as well?[A]
-That's a bad idea.[A] 
-What'll happen when some loser
-decides to catch 6 Pikachu?[A]
-Still can't believe I lost...[A][2NL]
-Enough chatter! My Pokemon
-will wash you away![A][X]
+[OpenMidRight][LoadMisty][OpenMidRight]My policy is an all-out offensive[NL]
+with water-type Pokemon![A][NL]
+If you want to turn pro, you should [NL]
+come up with your own strategy.[A][NL]
+Hm? You're interested in a [NL]
+monotype team as well?[A][NL]
+That's a bad idea.[A] [NL]
+What'll happen when some loser[NL]
+decides to catch 6 Pikachu?[A][NL]
+Still can't believe I lost...[A][NL][NL]
+Enough chatter! My Pokemon[NL]
+will scrub the floor with you![A][X]
 
 # 0x0A33
-[OpenMidRight][LoadFace][0x106][OpenMidRight]Tcch. I coulda won.
-These rules are cheap.[A]
-I already beat Misty, y'kno.[A]
-She didn't stand a chance
-against my team of Pikachu.[A]
+[OpenMidRight][LoadGaryShrug][OpenMidRight]Tcch. I coulda won.[NL]
+These rules are cheap.[A][NL]
+I already beat Misty, y'kno.[A][NL]
+She didn't stand a chance[NL]
+against my team of Pikachu.[A][NL]
 Smell ya later, loser.[A][X]
 
 # 0x0A34
-[OpenMidRight][LoadFace][0x105][OpenMidRight]Hey! It's you![A]
-I kicked your ass back
-in Viridian.[A]
-Hm? What are you 
-blabbering about.[A]
-I have some steam
+[OpenMidRight][LoadGaryPoint][OpenMidRight]Hey! It's you![A][NL]
+I kicked your ass back[NL]
+in Viridian.[A][NL]
+Hm? What are you [NL]
+blabbering about.[A][NL]
+I have some steam[NL]
 to blow off. Let's go![A][X]
 
 # 0x0A35
-[OpenLeft][LoadFace][0x10A][OpenLeft][FastPrint]Save for [LoadOverworldFaces] credits?
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [LoadOverworldFaces] credits?[NL]
 [Yes][X]
 
 # 0x0A36
-[OpenLeft][LoadFace][0x10A][OpenLeft][FastPrint]Insufficient funds.
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[NL]
 Requires 500+ credits.[A][X]
 
 # 0x0A37
-My name's Bill.
-Here, take this.[A][2NL][CloseSpeechFast]
+My name's Bill.[NL]
+Here, take this.[A][NL][NL][CloseSpeechFast]
 OBTAINED SS. ANNE TICKET.[A][X]
 
 # 0x0A38
-[OpenMidLeft][LoadFace][0x104][OpenMidLeft]On Nuzlocke mode, fainted 
-Pokemon are gone for good.[A]
-In it, you may only capture 34
-Pokemon throughout the game.[A]
-It is not the recommended game mode.[A][2NL]
-Will you try Nuzlocke mode?
+[OpenMidLeft][LoadOak][OpenMidLeft]On Nuzlocke mode, fainted [NL]
+Pokemon are gone for good.[A][NL]
+In it, you may only capture 34[NL]
+Pokemon throughout the game.[A][NL]
+It is not the recommended game mode.[A][NL][NL]
+Will you try Nuzlocke mode?[NL]
 [No][X]
