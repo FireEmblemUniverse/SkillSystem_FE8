@@ -1,7 +1,0 @@
-#include "CombineGiveItemWithDurability.lyn.event"
-
-//#define CombineGiveItemWithDurability(UnitID, Item,Durability) "GetUnitStatus(UnitID, 0x1E, 0x04); SADD r6 rC r0; SVAL r5 0; SVAL r3 0x1E; ASMC SetUnitStatus ; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID ; SVAL 1 UnitID; SVAL r3 Item; SVAL r4 Durability; ASMC CombineGiveItemWithDurability"
-
-//#define CombineGiveItemWithDurability(Item,Durability,UnitID) " GetUnitStatus(UnitID, 0x1E, 0x04); SADD r6 rC r0; SVAL r5 0; ASMC SetUnitStatus; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID ; SVAL 1 UnitID; SVAL r3 Item; SVAL r4 Durability; ASMC CombineItemWithDurability; SVAL r1 UnitID; SVAL r3 0x1E; SVAL r4 0x04; SADD r5 r6 r0; ASMC SetUnitStatus "
-//CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO Character ; NoFade ; ENDA 
-
