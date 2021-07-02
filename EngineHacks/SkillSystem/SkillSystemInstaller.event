@@ -1,7 +1,12 @@
 
 #include "Internals/SkillSystem.event"
 
+#ifndef USE_LEGACY_SKILL_DEFAULTS
 #include "skill_lists.event" //who learns what skills when
+#else // USE_LEGACY_SKILL_DEFAULTS
+#include "skill_lists_old.event"
+#endif // USE_LEGACY_SKILL_DEFAULTS
+
 #include "skill_descriptions.event"
 #include "skill_icons.event"
 #include "skill_animations.event"

@@ -848,7 +848,8 @@
 .macro clear_buffers
   blh 0x8003c94
   blh 0x8003578
-  blh 0x8086df0 @clear 2003c00 region
+  @blh 0x8086df0 @clear 2003c00 region
+  blh DontBlinkLeft
   @blh 0x80790a4
   @ ldr r4, =StatScreenStruct
   @ ldr r0, [r4, #0xc]
@@ -1169,26 +1170,27 @@ DrawMaxHP_End:
   mov r8, r0             @r8 contains the current unit's data
   blh 0x8003c94
   blh 0x8003578
-  blh 0x8086df0 @clear 2003c00 region
+  @blh 0x8086df0 @clear 2003c00 region
+  blh DontBlinkLeft
   mov r0, #0
   str r0, [sp]
   mov r0, sp
   ldr r1, =0x6001380
   ldr r2, =0x1000a68
   swi 0xC @clear vram
-  ldr	r7,=#0x2003BFC
-  ldr	r0,=#0x2022CA8	@text buffer probably
-  mov	r8,r0
-  mov	r1,#0
-  blh	0x8001220	@FillBgMap
-  ldr	r4,[r7,#0xC]	@load unit's pointer
-  mov	r0,r4
-  blh	0x8016B58	@get equipped item index?
-  mov	r1,r0
-  lsl	r1,#0x18
-  lsr	r1,#0x18
-  mov	r0,r4
-  blh	0x802A400	@SetupBattleStructFromUnitAndWeapon
+  ldr    r7,=0x2003BFC
+  ldr    r0,=0x2022CA8    @text buffer probably
+  mov    r8,r0
+  mov    r1,#0
+  blh    0x8001220    @FillBgMap
+  ldr    r4,[r7,#0xC]    @load unit's pointer
+  mov    r0,r4
+  blh    0x8016B58    @get equipped item index?
+  mov    r1,r0
+  lsl    r1,#0x18
+  lsr    r1,#0x18
+  mov    r0,r4
+  blh    0x802A400    @SetupBattleStructFromUnitAndWeapon
 .endm
 
 .macro draw_left_affinity_icon_at, tileX, tileY
