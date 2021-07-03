@@ -88,7 +88,7 @@ ENDA
 
 
 BeginningScene:
-
+ENUT CasualModeFlag
 //FADU 44 
 MUSCFAST 0x16 // Intro 
 EVBIT_MODIFY 3 // Dialogue skipping & fast-forwarding allowed 

@@ -1,5 +1,3 @@
-#define ChapterTransition(DestChapter, DestX, DestY) "SVAL r8 DestChapter; Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); CALL ChTransition; NoFade; ENDA" 
-
 
 
 // Monster Classes 

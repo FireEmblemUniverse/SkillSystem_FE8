@@ -1,0 +1,201 @@
+#define ChapterID ViridianCh
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+Vendor(ShopItems,30,19)
+/*
+
+Armory(ArmoryItems,10,26)
+Village(0x8,VillageEvent,18,27)
+House(0,HouseEvent,6,24)
+Seize(10,2)
+*/
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToRoute2S [15,0] [19,0] 
+AREA 0 ToRoute1 [18,37] [21,37] 
+AREA 0 ToRoute22 [0,16] [0,18] 
+END_MAIN
+
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(16,0) 
+EscapeTileEntry(18,0) 
+EscapeTileEntry(0,17) 
+EscapeTileEntry(19,37) 
+EscapeTileEntry(20,37) 
+EscapeTileTerminator ; } 
+
+ToRoute1:
+ChapterTransition(Route1Ch, 12, 0)
+
+ToRoute2S:
+TutText(ClosedAreaText)
+NoFade 
+ENDA 
+//ChapterTransition(Route2SCh, 10, 38)
+
+ToRoute22:
+ChapterTransition(Route22Ch, 47, 8)
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+
+SignTrap(15,17, ViridianCityText)
+BlankExamineTrap(26,10, ViridianGymText)
+EnterTutTrap(30,10, DoorLockedText) // Gym 
+EnterTutTrap(21,11, ViridianUpperHouseText) 
+EnterTutTrap(21,18, ViridianGrumpyManText) 
+Save(23,25) // 1N of Pokecenter - you can save while adjacent 
+//SaveCost(24,26)
+CutBush(13,5)
+
+
+//CoinsTrap(9,29,ChapterID*2,450)
+CoinsTrap(26,14,(ChapterID*2)+1,600)
+SpellScrollTrap(12,5, (ChapterID*2)+1, LeechLife)
+RockSmash(11,23)
+SpellScrollTrap(9,29, (ChapterID*2), Bubble)
+
+
+StrengthBoulder(5,16)
+StrengthBoulder(6,17)
+StrengthBoulder(5,18)
+
+//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+SignBTrap(19,1, ChapterID, 0x0) //no extra text 
+SignATrap(16,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+
+
+Flower(35,13)
+Flower(34,14)
+Flower(33,13)
+Flower(32,14)
+Flower(22,31)
+Flower(24,31)
+Flower(26,31)
+Flower(30,31)
+Flower(32,31)
+Flower(34,31)
+
+Flower(28,23)
+Flower(30,23)
+Flower(29,24)
+Flower(31,24)
+Flower(28,25)
+Flower(30,25)
+Flower(29,26)
+Flower(31,26)
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL CityBeginningScene
+CALL LoadAndPlacePlayers 
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+ALIGN 4
+ShopItems:
+BYTE SuperPotion 0
+BYTE SpellScroll Tackle SpellScroll Ember SpellScroll WaterGun  SpellScroll LeafFlurry
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
+
+
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+TalkEvent:
+Text(0x9DD) 
+NoFade
+ENDA 
+
+VillageEvent:
+	VillageEventItem(VillageText, Village, Boots)
+
+HouseEvent:
+	// Set parameters
+	SVAL r1 NiceThighsID
+	SVAL r2 (-1) // (-1) is active unit
+	// Check if unit has skill
+	// If they have, goto label #0 (end)
+	ASMC (ASMC_HasSkill|1)
+	BNE 0 rC r0
+	// Learn skill to unit
+	ASMC (ASMC_LearnNewSkill|1)
+LABEL 0
+	Text(HouseText)	
+	NoFade
+	ENDA
+	
+#undef ChapterID

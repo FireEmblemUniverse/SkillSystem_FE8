@@ -24,7 +24,7 @@ ldr r0, [r0]
 b Exit 
 
 	push {r4-r7, lr}
-	mov r4,#1 @ current deployment id
+	mov r4,#0 @ current deployment id
 ldr r0, =GetActiveUnitPointer
 ldr r1, [r0] @active unit pointer 
 ldr r1, [r1] 

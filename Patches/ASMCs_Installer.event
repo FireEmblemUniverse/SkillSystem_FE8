@@ -4,7 +4,6 @@
 
 #include "Commands/CompareTactText/CompareTactTextInstaller.event" 
 
-#include "Commands/SilentGiveItem/CombineGiveItemInstaller.event"
 
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
 #include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
@@ -41,4 +40,7 @@
 #include "Commands/RescueUnit/RescueUnitInstaller.event"
 #include "Commands/SendAll/SendAllInstaller.event"
 #include "Commands/SwapEirikaEphraimMode/SwapEirikaEphraimModeInstaller.event" //done 
-#include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event"
+
+
+//#include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event" // This requires some set up
+// Atm, it makes every chapter display as Seize lol

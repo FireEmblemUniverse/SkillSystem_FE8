@@ -26,17 +26,26 @@
   mov lr, r3
   .short 0xf800
 .endm
-
+.equ MemorySlot, 0x30004B8 
+.equ gChapterDataAddress, 0x202BCF0
 
 @r4	gChapterData
 @r5
 
 push {r6,r7}
 
-mov r0, #0xe
-ldrb r6, [r4, r0]      @ gChapterData->MapID
+ldr 	r1, =MemorySlot 
+str 	r0, [r1, #4*0x08] @Store to s2 as break point: [0x30004D8]!!
 
+mov r0, #0xe
+ldr r3, =gChapterDataAddress
+ldrb r6, [r3, r0]      @ gChapterData->MapID
+
+lsl r1, r6, #2 @ 4 bytes per entry 
 ldr r7, Table
+add r7, r1 @r1  @ [Table, ChapterIndexPOIN]
+ldr r7, [r7] @ [ Specific Chapter's table]
+
 sub r7, #0x8
 loop:
 add r7, #0x8

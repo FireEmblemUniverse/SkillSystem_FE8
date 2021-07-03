@@ -71,10 +71,17 @@ bl    GOTO_R4
 cmp   r0, #0x0
 beq   L3
 
+
   @ Check if enemy
   mov   r1, #0x80
   tst   r1, r5
   beq   L3
+  
+	VeslyAddedCheck: @ Don't do DR for unit IDs greater or equal to 0xF0
+	ldr   r1, [r0] @Unit pointer 
+	ldrb  r1, [r1, #4] @Unit ID 
+	cmp   r1, #0xF0
+	bge   L3
   
     @ Unit is enemy, flip DR bit
     @ and increment/decrement DR counter

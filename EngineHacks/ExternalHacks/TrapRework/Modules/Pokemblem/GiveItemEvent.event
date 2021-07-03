@@ -19,9 +19,7 @@ ENDA
 ALIGN 4
 PickBerryEvent:
 CAM1 0xFFFF
-EVBIT_F 0x2 
-SVAL r3 Vulnerary
-GIVEITEMTO 0x7FFF
+CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
 Label 0x63 
 NoFade
 ENDA

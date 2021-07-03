@@ -1,13 +1,32 @@
+#define TenMTMEntries "POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry; POIN DefaultMTMEntry"
+#define HundredForty_MTMEntries "TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries; TenMTMEntries"
+
+// There must be an entry for every chapter, so they all point to a terminator of WORD 0xFFFFFFFF 0xFFFFFFFF by default. 
+
+ALIGN 4 
+MultiTileMarker_Table:
+HundredForty_MTMEntries
+
+
+ALIGN 4
+DefaultMTMEntry: 
+WORD 0xFFFFFFFF 0xFFFFFFFF
+
+
+#define MultiTileEntry(ChapterID) "PUSH; ORG MultiTileMarker_Table + (ChapterID*4); POIN TileMarkers; POP; ALIGN 4; TileMarkers:" // POIN CurrentOffset+4
+
+
+
+
 
 #define EscapePointEntry(ChapterID, XCoord, YCoord, EnemyClass, ReqFlag) "BYTE ChapterID XCoord YCoord EnemyClass; SHORT ReqFlag 0x00" 
 #define EscapePointEntry(ChapterID, XCoord, YCoord, ReqFlag) "BYTE ChapterID XCoord YCoord 0x0; SHORT ReqFlag 0x00" 
 
 
 // current chapter MultiTileMarker_Table 
-#define EscapeTileStart "PUSH; ORG MultiTileMarker_Table + (ChapterID*16*8)" 
+#define EscapeTileEntry(ChapterID, XCoord, YCoord) "BYTE ChapterID XCoord YCoord 0x0; SHORT 0x00 0x00" 
 #define EscapeTileEntry(XCoord, YCoord) "BYTE ChapterID XCoord YCoord 0x0; SHORT 0x00 0x00" 
-#define EscapeTileEnd POP
-
+#define EscapeTileTerminator "BYTE $FF $FF $FF $FF $FF $FF $FF $FF"
 
 
 
@@ -17,9 +36,9 @@
 
 
 //	Map	X	Y	HasEnemyClass(0=ANY)	Judgment flag(0=Any)	W6
-ALIGN 4 
-MultiTileMarker_Table:
-FILL 0x80*8*4 0xFF // 128 chapters with up to 8 entries each 
+//ALIGN 4 
+//MultiTileMarker_Table:
+//FILL 0x80*8*4 0xFF // 128 chapters with up to 8 entries each 
 // all 0s puts them in ch 0, while all FFs terminates 
 // therefore we place them all in ch 0x9F for now
 

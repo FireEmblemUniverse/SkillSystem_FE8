@@ -36,6 +36,11 @@ Loop:
     ldr   r1, [r0]
     cmp   r1, #0x0
     beq   NextIteration
+	
+	ldr   r1, [r0] @Unit pointer 
+	ldrb  r1, [r1, #4] @Unit ID 
+    cmp   r1, #0xF0
+    bge   NextIteration
     
       @ Check if DR-bit already set.
       ldrb  r1, [r0, r5]

@@ -575,15 +575,33 @@ SpellsGetterForLevel:
 	
 	@b 	Continue 
 	
-	movs 	r0, #0x28 
+	
+@movs r3, #0x02 
+@strb r3, [r5]
+@adds r5, #1 
+@movs r3, #0x03 
+@strb r3, [r5]
+@adds r5, #1 
+@movs r3, #0 
+@str r3, [r5]
+@@movs r7, r5
+@
+@b .L56 
+	
+	
+	
+	
+	@adds 	r5, r5, #1 
+	movs 	r0, #0x27 
 	@r0, r0, r3 are free I think, maybe r1 
 	LearnedSpellsLoop: 
-	cmp 	r0, #0x2F 
+	adds 	r0, r0, #1 
+	cmp 	r0, #0x2E 
 	@bge 	.L56 
-	bgt 	Continue 
+	bge 	Continue 
 	
 	ldrb 	r3, [r4, r0] @Nth wexp 
-	adds 	r0, r0, #1 
+
 	cmp 	r3, #0 
 
 	beq 	LearnedSpellsLoop

@@ -224,7 +224,7 @@ SetImpassableTrap(BerryTreeID)
 #define OpenPokeball(XX,YY) "BYTE OpenPokeballItemID XX YY 0x0 OpenBallSMS 0x0"
 #define Sign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 SignSMS EventIndex"
 #define Save(XX,YY) "BYTE SaveID XX YY 0x0 BlankSMS 1"
-#define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 2"
+#define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 1"
 
 //#define Enter(XX,YY) 
 

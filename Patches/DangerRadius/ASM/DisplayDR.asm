@@ -26,8 +26,15 @@ bne   L1
     lsr   r2, #0x5
     ldrb  r3, [r0, r1]
     tst   r3, r2
-    bne   L2
+    beq   DRNotSet
     
+	VeslyAddedCheck: @ Don't do DR for unit IDs greater or equal to 0xF0
+	ldr   r1, [r0] @Unit pointer 
+	ldrb  r1, [r1, #4] @Unit ID 
+	cmp   r1, #0xF0
+	blt   L2
+		
+	DRNotSet:
       @ DR-bit not set,
       @ Return to next iteration.
       ldr   r1, =0x801B931

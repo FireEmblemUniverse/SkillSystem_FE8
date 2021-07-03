@@ -135,11 +135,11 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-Vendor(ShopItems,2,7)
-Armory(ArmoryItems,10,26)
-Village(0x8,VillageEvent,18,27)
-House(0,HouseEvent,6,24)
-Seize(10,2)
+//Vendor(ShopItems,2,7)
+//Armory(ArmoryItems,10,26)
+//Village(0x8,VillageEvent,18,27)
+//House(0,HouseEvent,6,24)
+//Seize(10,2)
 END_MAIN
 
 MiscBasedEvents:
@@ -199,7 +199,7 @@ ENDTRAP
 ALIGN 4
 
 BeginningScene:
-
+ENUT CasualModeFlag
 ENUF SkipIntroFlag
 Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -207,6 +207,8 @@ Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
+Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(29, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
@@ -222,12 +224,13 @@ ENUN
 //GiveItemWithDurability(SpellScroll,Absorb,Eirika)
 
 //SilentGiveItem(Eirika, LowKick)
-SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
-SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+
+//SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+//SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
-SilentGiveItemWithDurability(Seth, Vulnerary, 1)
-//SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+
+
 //SilentGiveItem(Eirika, SuperPotion3)
 //SilentGiveItem(Eirika, SuperPotion4)
 
@@ -262,6 +265,7 @@ Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
+
 /*
 SupplyItem(Vulnerary) 
 SupplyItem(Vulnerary) 
@@ -276,8 +280,8 @@ LABEL 0x63
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
 //MNC2 PokecenterCh 
-//MNC2 Route1Ch 
-MNC2 PalletCh 
+MNC2 Route1Ch 
+//MNC2 ViridianCh
 NoFade
 ENDA
 

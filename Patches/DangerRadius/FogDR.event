@@ -34,7 +34,7 @@
 
 // Enable/Disable all DR if select is pressed while
 // hovering over a non-enemy unit or an empty tile.
-#define NonEnemySELECT AllDR
+#define NonEnemySELECT NearbyDR
 
 // If there are more than this amount of tiles between
 // enemy and nearest ally or NPC, don't mark this enemy, when

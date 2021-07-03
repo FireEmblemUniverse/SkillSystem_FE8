@@ -125,7 +125,7 @@ cmp r1, r2
 bge CheckA 
 b ReturnA
 CheckA:
-mov r2, #0x39
+mov r2, #0x3D
 cmp r1, r2
 blt RetTrap
 
@@ -144,7 +144,7 @@ cmp r1, r2
 bge CheckB 
 b ReturnB
 CheckB:
-mov r2, #0x39
+mov r2, #0x3D
 cmp r1, r2
 blt RetTrap
 
@@ -163,7 +163,7 @@ cmp r1, r2
 bge CheckC 
 b ReturnC
 CheckC:
-mov r2, #0x39
+mov r2, #0x3D
 cmp r1, r2
 blt RetTrap
 ReturnC:
@@ -181,7 +181,7 @@ cmp r1, r2
 bge CheckD 
 b ReturnD
 CheckD:
-mov r2, #0x39
+mov r2, #0x3D
 cmp r1, r2
 blt RetTrap
 
@@ -324,22 +324,22 @@ b GenericTrapUsability
 
 GenericTrapUsability0x3A:
 push {r4,r7,r14}
-mov r7, #0x39
+mov r7, #0x3A
 b GenericTrapUsability
 
 GenericTrapUsability0x3B:
 push {r4,r7,r14}
-mov r7, #0x39
+mov r7, #0x3B
 b GenericTrapUsability
 
 GenericTrapUsability0x3C:
 push {r4,r7,r14}
-mov r7, #0x39
+mov r7, #0x3C
 b GenericTrapUsability
 
 GenericTrapUsability0x3D:
 push {r4,r7,r14}
-mov r7, #0x39
+mov r7, #0x3D
 b GenericTrapUsability
 
 
@@ -427,6 +427,7 @@ beq DeleteTrap
 
 @At this point, r0 should be the pointer to the event to execute.
 AlwaysEvent:
+mov r1, #1 
 ldr r3, ExecuteEvent
 bl goto_r3
 

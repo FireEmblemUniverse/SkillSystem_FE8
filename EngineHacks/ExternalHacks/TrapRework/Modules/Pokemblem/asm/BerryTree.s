@@ -62,18 +62,49 @@ ReturnPoint:
 ldr r3,=Init_ReturnPoint
 bx r3
 
+.global GrassAutoHeal
+.type GrassAutoHeal, %function
+
+// We'd need to know Frequency to make this work, so I haven't bothered yet 
+GrassAutoHeal:
+push {r4-r5,r14}
+mov r4,r0 @r4 = unit
+mov r5,r1 @r5 = heal %
+ldr r3, [r4] @ Char pointer 
+ldrb r2, [r3, #4] @Char ID 
+cmp r2, #0xF0 
+blt Exit
+mov r3, #0x12 
+ldrb r0, [r4, r3] @ MaxHP 
+mov r3, #0x13 
+ldrb r1, [r4, r3] @ CurrentHP 
+
+
+
+Exit: 
+mov r0, r5 
+pop {r4-r5}
+pop {r1}
+bx r1 
+
 
 BerryTreeHealEffect:
 push {r4-r5,r14}
 mov r4,r0 @r4 = unit
 mov r5,r1 @r5 = heal %
+ldr r2, [r4] @ Char pointer 
+ldrb r2, [r2, #4] @Char ID 
+cmp r2, #0xF0 
+bge NoHeal 		@ Do not heal bushes etc. 
+
 bl GetAdjacentTrap 
 mov r3, r0 
 
 
 cmp r0, #0
 beq NoHeal
- 
+
+
 ldrb r0, [r3, #0x3]     @ # of berries 
 cmp r0, #0 
 beq NoHeal 
@@ -86,9 +117,7 @@ ldrb r1, [r4, r2]
 cmp r1, r0 
 bge NoHeal
 
-ldrb r2, [r3, #0x3]     @ # of berries 
-sub r2, #1 
-strb r2, [r3, #0x3] @ take away a berry 
+
 @ need percentage of health to heal 
 @ r0 = mult 
 @ r1 = div 
@@ -106,6 +135,32 @@ blh #0x080D18FC @ Div routine
 add r0, #1 @ for beneficial rounding 
 AddTo_r5:
 add r5, r0 @approx 10 hp restoration from berry tree 
+
+ldr r2, = #0x30017b9 @ BerryDurabilityToggleRam
+ldrb r1, [r2]
+cmp r1, #0 
+beq SetBitA
+
+
+UnsetBitB:
+mov r0, #0 
+b StoreBitA
+
+SetBitA:
+mov r0, #1 
+b StoreBitA
+
+
+
+StoreBitA:
+strb r0, [r2] 
+cmp r0, #0
+bne NoHeal
+
+ldrb r2, [r3, #0x3]     @ # of berries 
+sub r2, #1 
+strb r2, [r3, #0x3] @ take away a berry 
+
 
 NoHeal:
 mov r0, r5 

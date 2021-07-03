@@ -1,9 +1,5 @@
-EventPointerTable(Route1Ch,ThisChapter)
-setText(0x162, NewChName)
-ALIGN 4
-NewChName:
-String("Route One")
-BYTE 0
+#define ChapterID Route1Ch
+EventPointerTable(ChapterID,ThisChapter)
 
 ALIGN 4
 ThisChapter:
@@ -40,7 +36,6 @@ END_MAIN
 
 
 LocationBasedEvents:
-
 /*
 Vendor(ShopItems,2,7)
 Armory(ArmoryItems,10,26)
@@ -55,63 +50,56 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshUnitsEvent 0 
+AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
 END_MAIN
+
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(11,0) 
+EscapeTileEntry(12,0) 
+EscapeTileEntry(12,39) 
+EscapeTileEntry(13,39) 
+EscapeTileTerminator ; } 
 
 ToPallet:
 ChapterTransition(PalletCh, 12, 1)
 
 ToViridian:
-ChapterTransition(ViridianCh, 19, 38)
+ChapterTransition(ViridianCh, 19, 37)
 
-RefreshUnitsEvent:
 
-Read_Byte(RamFlags)
-SADD r5 rC r0 
-MemSlotToString(r5)
-//Text(0x9DD) 
-
-//Write_Byte(23, RamFlags) //202E204 //202E4D4 (FE8)
-//Read_Byte(RamFlags)
-SADD r5 rC r0 
-MemSlotToString(r5)
-//Text(0x9DD) 
-
-CALL RefreshIfNotInDanger
-NoFade
-ENDA 
-
-GenericEffect(1, VisitPokecenter) 
-GenericEffect(2, VisitPokecenter) 
-//GenericDisappearEffect(2, TalkEvent) 
-
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
 Traps1:
+CoinsTrap(8,19,ChapterID*2,250)
+CoinsTrap(20,35,(ChapterID*2)+1,250)
 
-CoinsTrap(20,34,1,250)
+//CutBush(4,2)
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
 
-CutBush(4,2)
-RockSmash(3,2)
-StrengthBoulder(4,3)
+RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
+SignBTrap(14,2, ChapterID, 0x0) //no extra text 
+SignATrap(13,34, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-RedPokeballTrap(18,25, 1, Vulnerary)
-
-GoldPokeballTrap(14,13, 2, Gust) 
-//GoldPokeballTrap(6,1, 500, Gust) 
-
-
-SignBTrap(14,2, 0x8, 0x0) //no extra text 
-SignATrap(13,34, 0x8, SignsFastTravel)
-
-SkillScrollTrap(15,11, 1, AcrobatID)
-SpellScrollTrap(17,11, 1, Ember)
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
-Sign(8,4, 2)
+//Sign(8,4, 2)
 
-Save(10,4)
-SaveCost(13,4) 
+//Save(10,4)
+SaveCost(12,17) 
+
+
+BerryTree(20,2,5)
+BerryTree(16,15,5)
+BerryTree(15,25,5)
+
 
 Flower(19,2)
 Flower(21,2)
@@ -146,21 +134,10 @@ ENDTRAP
 ALIGN 4
 
 
-
-
-
-	
-
 BeginningScene:
 CALL GlobalBeginningScene
-
 CALL LoadAndPlacePlayers 
 
-//MOVE -1 Eirika [13,2] 
-//ENUN 
-
-//LOAD1 0x1 NPCUnits 
-//ENUN 
 LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
@@ -172,24 +149,15 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,25))  //lower 
-
-
-
-//OnAllUnitState(Ephraim, Undeployed|Hide, Any, PlayerArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-
-//SetUnitStatusAll(AnyUnit, Strength, 15, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //lower 
 OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-
-//OnAllUnitState(Any, WillDropItem, 0xFF, AnyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-
-//OnAllUnitState(Any, WillDropItem|Acted, 0xFF, EnemyArmy, AnyClass, AnyRange, Tackle) //Wilds to not drop items 
-//OffAllUnitState(Any, Acted|WillDropItem, Escaped|WillDropItem|Acted, EnemyArmy, AnyClass, AnyRange, TailWhip) //Wilds to not drop items 
-
-AutoLevelUnits(1, True, 0x0199) 
+AutoLevelUnits(1, True, 0x508F) // Wilds  
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+AutoLevelUnits(5, True, 0x90FF) // Trainers given +5 visible levels 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
 
 SetUnitStatus(0xF0, AI2Counter, 5)
 SetUnitStatus(0xF1, AI2Counter, 5)
@@ -197,9 +165,6 @@ SetUnitStatus(0xF2, AI2Counter, 5)
 SetUnitStatus(0xF0, CurrentHP, 1)
 SetUnitStatus(0xF1, CurrentHP, 1)
 SetUnitStatus(0xF2, CurrentHP, 1)
-
-
-
 LABEL 0x63
 NoFade
 ENDA
@@ -310,3 +275,5 @@ LABEL 0
 	Text(HouseText)	
 	NoFade
 	ENDA
+	
+#undef ChapterID

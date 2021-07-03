@@ -17,19 +17,7 @@
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
-GenericEffect(0, TestCase) // This doesn't work so whatever 
-GenericEffect(1, TestCase) // This doesn't work so whatever 
-GenericEffect(2, TestCase) // This doesn't work so whatever 
-GenericEffect(3, TestCase) // This doesn't work so whatever 
-
-GenericDisappearEffect(2, VisitPokecenter) // This doesn't work so whatever 
-GenericEffect(1, VisitPokecenter) // This doesn't work so whatever 
-
-TestCase:
-Text(0x9d5)
-CALL VisitPokecenter
-NoFade 
-ENDA 
+GenericEffect(1, VisitPokecenter) 
 
 GenericAutolevelEvent:
 // Check difficulty 
@@ -51,13 +39,8 @@ GlobalTalkEvent:
 NoFade
 ENDA 
 
-CityBeginningScene:
-SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
-NoFade 
-ENDA 
-
 GlobalBeginningScene:
-SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 NoFade 
 ENDA 
 
@@ -142,14 +125,7 @@ SADD r9 rC r3  //Add MaxHP+(Freq-1)
 SDIV r9 r9 r7 // MaxHP / Freq (rounded up) 
 GetUnitStatus(0x7FFD, CurrentHP) //s1, s3, s4 
 SADD r5 rC r9 
-
-
-
 SetUnitStatus(0x7FFD, CurrentHP) // Set to heal 
-
-
-
-
 //SADD r5 r5 r9 //for rounding  
 GetUnitStatus(0x7FFD, MaxHP) //s1, s3, s4 
 // MaxHP / Freq (rounded down) 

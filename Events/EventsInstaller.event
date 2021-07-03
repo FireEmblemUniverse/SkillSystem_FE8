@@ -16,6 +16,11 @@
 {
 #include "Route_One.event" 
 }
+
+{
+#include "Viridian_City.event"
+}
+
 {
 #include "Pokecenter.event"
 }

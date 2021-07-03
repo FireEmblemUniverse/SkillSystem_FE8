@@ -1,9 +1,6 @@
 EventPointerTable(PalletCh,ThisChapter)
-setText(0x161, NewChName)
-ALIGN 4
-NewChName:
-String("Pallet Town")
-BYTE 0
+
+#define ChapterID PalletCh
 
 ALIGN 4
 ThisChapter:
@@ -40,20 +37,19 @@ AREA 0 ToRoute21 [0,0] [0,0]
 AREA 0 ToRoute1 [12,0] [13,0] 
 END_MAIN
 
-{ ; #define ChapterID PalletCh 
-EscapeTileStart
+
+{ ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(12,0) 
 EscapeTileEntry(13,0) 
 EscapeTileEntry(9,19) 
 EscapeTileEntry(8,19) 
-EscapeTileEnd ; }
+EscapeTileTerminator ; } 
 
 
 ToRoute21:
 ChapterTransition(Route21Ch, 0, 0)
-
 ToRoute1:
-ChapterTransition(Route1Ch, 19, 34)
+ChapterTransition(Route1Ch, 13, 39)
 
 RefreshUnitsEvent:
 
@@ -73,13 +69,12 @@ NoFade
 ENDA 
 
 
-GenericEffect(2, TalkEvent) 
-GenericDisappearEffect(2, TalkEvent) 
+
 
 
 
 VisitGaryHouse:
-CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
+//CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
 //SupplyItemWithDurability(Vulnerary,1)
 //SupplyItemWithDurability(Vulnerary,1)
 
@@ -115,14 +110,12 @@ Traps1:
 
 SpellScrollTrap(3,9, 1, Ember)
 SpellScrollTrap(5,9, 2, Bubble)
-SpellScrollTrap(7,9, 3, Absorb)
 
-SpellScrollTrap(9,9, 4, Thundershock)
 
-SignBTrap(14,4, 0x8, 0x0) //no extra text 
-SignATrap(9,4, 0x8, SignsFastTravel)
+//SignBTrap(14,4, 0x8, 0x0) //no extra text 
+//SignATrap(9,4, 0x8, SignsFastTravel)
 
-BerryTree(10,4,12)
+//BerryTree(10,4,5)
 
 EnterTrap(16,13, EnterOaksLabText) 
 
@@ -170,11 +163,12 @@ ALIGN 4
 BeginningScene:
 CALL LoadAndPlacePlayers 
 CALL GlobalBeginningScene
-SetUnitStatusAll(Any, CurrentHP, 1, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
-SetUnitStatus(Seth, MaxHP, 60)
-MOVE 0xFFFF Eirika [15,7] 
-MOVE 0xFFFF Ephraim [12,14]
-ENUN 
+CALL CityBeginningScene
+//SetUnitStatusAll(Any, CurrentHP, 1, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+//SetUnitStatus(Seth, MaxHP, 60)
+//MOVE 0xFFFF Eirika [12,1] 
+//MOVE 0xFFFF Ephraim [12,14]
+//ENUN 
 LABEL 0x63
 NoFade 
 ENDA 
@@ -234,3 +228,5 @@ LABEL 0
 	Text(HouseText)	
 	NoFade
 	ENDA
+	
+#undef ChapterID 

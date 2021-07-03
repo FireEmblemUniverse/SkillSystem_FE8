@@ -1,9 +1,7 @@
 // Tables
 
 // Skip intro for these chapters
-ALIGN 4
-SkipIntroTable:
-#incbin "SkipIntro/SkipIntroTable.dmp"
+#include "SkipIntro/SkipIntroTable.event"
 
 
 // VSBGPalettes
