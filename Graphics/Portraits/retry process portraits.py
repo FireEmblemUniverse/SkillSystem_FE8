@@ -14,9 +14,9 @@ for entry in dir_entries:
         #im = ImageEnhance.Brightness(im).enhance(0.5)
         #im = im.convert("RGBA")
 #version with white background
-        transparent_col = (15,15,15) #(25,219,61)
-        im_contrast = ImageEnhance.Contrast(im).enhance(0.5)
-        im_brightness = ImageEnhance.Brightness(im_contrast).enhance(1.2)
+        transparent_col = (30,30,30) #(25,219,61)
+        im_contrast = ImageEnhance.Contrast(im).enhance(0.35) #0.5
+        im_brightness = ImageEnhance.Brightness(im_contrast).enhance(1.5) #1.2
         
         im_greenbg = Image.composite(im_brightness, Image.new('RGB', im.size, transparent_col), im_contrast) #white bg 
         im_whitebg = im_greenbg.quantize(15)

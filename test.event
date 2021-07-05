@@ -1,6 +1,0 @@
-//Patches Display 10-Divided CG (PatchForm) Display 10-Divided CG2021-06-10 4:22:11 PM
-ORG $0128FD58
-BYTE  $2C $1C $45 $46 $E0 $B4 $81 $46 $0F $1C $90 $46 $9A $46 $20 $1C $38 $30 $00 $68 $86 $78 $0C $20 $46 $43 $C0 $46 $01 $48 $36 $18 $01 $48 $87 $46 $EC $CC $A3 $08 $12 $66 $0B $08;
-ORG $0B65FE
-BYTE  $00 $00 $00 $4C	$A7 $46	 $58 $FD $28 $09;
-

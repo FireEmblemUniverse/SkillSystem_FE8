@@ -1,9 +1,9 @@
 
-#define GaidenList(character,pointer) "PUSH ; ORG SpellListTable + character * 4 ; POIN pointer ; POP"
+#define GaidenList(pokemon,pointer) "PUSH ; ORG SpellListTable + (pokemon * 4) ; POIN pointer ; POP"
 
 ALIGN 4
 SpellListTable: // Allocate space for the spell list pointer table.
-FILL 4*0xFF
+FILL 16*0xFF
 
 
 #include "PokemblemLearnsets.event" 

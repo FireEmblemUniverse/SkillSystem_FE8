@@ -64,6 +64,36 @@ Wall[X]
 # 0x1DF
 Wall[X]
 
+# 0x900
+Retreat to Pewter city?
+[No][X]
+
+## GuideMenuEffectivenessTitleText
+Dmg Mdfy[X]
+
+## GuideMenuEffectivenessHeaderText
+Effective Dmg[X]
+
+## GuideMenuEffectivenessSubHeaderText
+Super Effectiveness[X]
+
+## GuideMenuEffectivenessBodyText
+Super effective attacks[NL]
+deal MT*2 + 3 damage.[X]
+
+## GuideMenuResistTitleText
+Dmg Mdfy[X]
+
+## GuideMenuResistHeaderText
+Ineffective Dmg[X]
+
+## GuideMenuResistSubHeaderText
+Resistance[X]
+
+## GuideMenuResistBodyText
+Resisted attacks[NL]
+deal 5 less damage.[X]
+
 ## SetNameTest
 Mewtwo[NL]
 Placeholder text[NL]

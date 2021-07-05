@@ -6,6 +6,7 @@
 #include "skill_icons.event"
 #include "skill_animations.event"
 
+#include "ReplaceMovesMenu/DebugSkillEdit.event"
 #include "Skills/MasterSkillInstaller.event"
 
 #include "RemoveSkillMenu/RemoveSkillMenu.event"
@@ -13,7 +14,7 @@
 #ifdef __DEBUG__
   #include "DebugSkillEdit/DebugSkillEdit.event"
 #endif
-
+  #include "DebugSkillEdit/DebugSkillEdit.event"
 #include "SkillScrolls/SkillScrolls.event"
 #include "GaidenSpellScrolls/SpellScrolls.event"
 

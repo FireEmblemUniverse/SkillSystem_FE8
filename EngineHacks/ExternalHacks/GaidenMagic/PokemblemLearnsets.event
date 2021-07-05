@@ -2,7 +2,7 @@
 ALIGN 4
 BulbasaurLearnset:
 // BYTE Level Move 
-BYTE 0 0 // Goes at the end of each learnset 
+BYTE 1 Tackle // Goes at the end of each learnset 
 BYTE 1 Scratch  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
 BYTE 5 Absorb 
 BYTE 0 0 // Goes at the end of each learnset 

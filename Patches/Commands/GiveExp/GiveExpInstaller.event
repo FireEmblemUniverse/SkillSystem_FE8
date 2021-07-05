@@ -16,7 +16,7 @@ event_proc_bin:
 #incbin "event_fe8u.bin" //HINT=PROCS
 
 #define GiveEXP(UNITID, EXP) "BYTE 0x40 0x0D UNITID EXP ; POIN give_exp_Install|1;"
-#define GiveEXPcurrentUnit(EXP) "BYTE 0x4F 0x0D 0x00 EXP ; POIN give_exp_Install|1;"
+#define GiveEXPCurrentUnit(EXP) "BYTE 0x4F 0x0D 0x00 EXP ; POIN give_exp_Install|1;"
 #define GiveEXP(xcoord, ycoord, EXP) "SVAL 0xB Coords(xcoord,ycoord); BYTE 0x4B 0x0D 0x0 EXP ; POIN give_exp_Install|1"
 
 #else

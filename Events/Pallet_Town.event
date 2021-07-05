@@ -164,15 +164,16 @@ BeginningScene:
 CALL LoadAndPlacePlayers 
 CALL GlobalBeginningScene
 CALL CityBeginningScene
+LABEL 0x63
+NoFade 
+ENDA 
+
+
 //SetUnitStatusAll(Any, CurrentHP, 1, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 //SetUnitStatus(Seth, MaxHP, 60)
 //MOVE 0xFFFF Eirika [12,1] 
 //MOVE 0xFFFF Ephraim [12,14]
 //ENUN 
-LABEL 0x63
-NoFade 
-ENDA 
-
 
 
 ShopItems:

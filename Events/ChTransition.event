@@ -23,19 +23,21 @@ GenericEffect(2, TestCase) // This doesn't work so whatever
 GenericEffect(3, TestCase) // This doesn't work so whatever 
 
 GenericDisappearEffect(2, VisitPokecenter) // This doesn't work so whatever 
-GenericEffect(1, VisitPokecenter) // This doesn't work so whatever 
+//GenericEffect(1, VisitPokecenter) // This doesn't work so whatever 
 
 TestCase:
-Text(0x9d5)
-CALL VisitPokecenter
+
+
+//GiveEXPCurrentUnit(100)
+//CALL VisitPokecenter
 NoFade 
 ENDA 
 
 GenericAutolevelEvent:
 // Check difficulty 
-AutoLevelUnits(1, False, 0x90FF) // Not wilds given +1 invisible levels 
-AutoLevelUnits(6, False, 0x90FF) // Not wilds given +6 invisible levels 
-AutoLevelUnits(11, False, 0x90FF) // Not wilds given +11 invisible levels 
+AutoLevelUnits(1, False, 0x90EF) // Not wilds given +1 invisible levels 
+AutoLevelUnits(6, False, 0x90EF) // Not wilds given +6 invisible levels 
+AutoLevelUnits(11, False, 0x90EF) // Not wilds given +11 invisible levels 
 
 NoFade 
 ENDA 

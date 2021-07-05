@@ -58,7 +58,7 @@ WipeInventoryLoop:
 add r3, #1 @start at #0x1E 
 strb r0, [r5, r3]
 cmp r3, #0x27 
-ble WipeInventoryLoop
+blt WipeInventoryLoop
 
 mov r0, #0x1 
 lsl r0, #8 
@@ -182,7 +182,7 @@ str r0, [r1, #4*0x05] @[30004CC]!!
 
 mov	r3, #0x00
 ldrb	r0, [r4,#0x11]		@load y coordinate of character
-lsl	r0, #0x10
+lsl	r0, #16
 add	r3, r0
 ldrb	r0, [r4,#0x10]		@load x coordinate of character
 add	r3, r0

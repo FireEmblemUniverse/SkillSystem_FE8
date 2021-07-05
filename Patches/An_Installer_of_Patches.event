@@ -12,13 +12,14 @@
 #include "DisabledStatusScreen/DisabledStatusScreen.event" 
 
 
-
-
-
-
-
-
 #include "DangerRadius/FogDR.event" 
+#include "MultiTileMarker/MultiTileMarker_Install.event"
+
+
+
+
+
+#include "GuideMenu/GuideMenu.event"
 
 #include "StatBarLength.event" 
 
@@ -41,7 +42,7 @@
 #include "FatesExp/Installer.event"
 
 
-#include "MultiTileMarker/MultiTileMarker_Install.event"
+
 
 
 

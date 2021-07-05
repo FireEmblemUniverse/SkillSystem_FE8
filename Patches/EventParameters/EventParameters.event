@@ -38,7 +38,7 @@
 	EventParameter(0x7FFE,GetFFFEsBCoordsUnit) // Get sB coords unit.
 	EventParameter(0x7FFD,GetFFFDs2Unit) // Get unit in memory slot 0x2.
 	EventParameter(0x7FFC,GetEnemyFFFCsBCoordsUnit) // Get enemy in sB coords, even if dead 
-
+	//EventParameter(0x7FFB,GetEnemyFFFBs2Unit) // Get enemy in sB coords, even if dead 
 	
 	EventParameter(0x0101,Get1stUnit) //Get 1st player unit 
 	EventParameter(0x0102,Get2ndUnit)

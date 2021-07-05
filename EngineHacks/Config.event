@@ -13,7 +13,7 @@
 // The amount of attack speed needed to double an opponent.
 #define AS_DOUBLING_THRESHOLD 0x0A
 
-
+//#define __DEBUG__ True 
 
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
@@ -242,14 +242,14 @@
 
 //If uncommented, Combat Arts will be enabled.
 //This changes the behavior of most command skills and some proc skills such that they cost additional durability per hit and are selected from a submenu.
-#define COMBAT_ARTS
+//#define COMBAT_ARTS
 
 //If true, Combat Arts will not be allowed to hit more than once.
 #define ARTS_HIT_ONCE True
 
 //If uncommented, ModularPreBattleSkill will be installed.
 //This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
-#define MODULAR_PRE_BATTLE_SKILLS
+//#define MODULAR_PRE_BATTLE_SKILLS
 
 // If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
 // This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.

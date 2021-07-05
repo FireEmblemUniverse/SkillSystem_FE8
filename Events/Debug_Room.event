@@ -207,8 +207,8 @@ Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(29, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(18, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
