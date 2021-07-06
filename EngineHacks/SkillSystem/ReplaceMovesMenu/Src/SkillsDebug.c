@@ -26,16 +26,22 @@ extern const u16 SkillDescTable[];
 
 
 #define Icons_Spacing 0
-#define item_name_offset 20
+#define item_name_offset 16
 #define item_y_offset 8
+
+#define new_item_name_offset 56
+#define new_item_icon_offset 11
+#define new_item_desc_offset 56
 
 #define menu_tile_X 1
 #define menu_tile_Y 0
-#define menu_Length 18
+#define menu_Length 28
 
 #define item_menu_tile_X 13
 #define item_menu_tile_Y 0
 #define item_menu_Length 16
+
+
 
 #define portrait_pos_a 144 
 #define portrait_pos_b 16 
@@ -100,9 +106,13 @@ void UnitClearBlankSkills(struct Unit* unit)
 }
 
 
-static void SkillListCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command);
 static void SkillListCommandDraw_2(struct MenuProc* menu, struct MenuCommandProc* command);
 static void SkillListCommandDraw_3(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_4(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_5(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_6(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_7(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_8(struct MenuProc* menu, struct MenuCommandProc* command);
 
 static void NewMoveDetailsDraw(struct MenuProc* menu, struct MenuCommandProc* command);
 
@@ -115,6 +125,7 @@ static int SkillListCommandSelect(struct MenuProc* menu, struct MenuCommandProc*
 static int RemoveSkillCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command);
 
 static void ReplaceSkillCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command);
+
 static int ReplaceSkillCommandIdle(struct MenuProc* menu, struct MenuCommandProc* command);
 static int ReplaceSkillCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command);
 
@@ -168,21 +179,6 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 
     },
 
-    {
-        .isAvailable = MenuCommandAlwaysUsable,
-
-        .rawName = " Forget Move",
-        .onEffect = RemoveSkillCommandSelect,
-    },
-
-    {
-		.isAvailable = MenuCommandAlwaysUsable,
-
-        .onDraw = SkillListCommandDraw,
-        .onEffect = ReplaceSkillCommandSelect,
-        /*.onIdle = SkillListCommandIdle,
-        .onEffect = ReplaceSkillCommandSelect,*/
-    },
 	
     {
 		.isAvailable = MenuCommandAlwaysUsable,
@@ -197,25 +193,46 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
         .onDraw = SkillListCommandDraw_3,
         .onEffect = ReplaceSkillCommandSelect,
     },
+	
+    /*{
+        .isAvailable = MenuCommandAlwaysUsable,
+
+        .rawName = " Forget Move",
+        .onEffect = RemoveSkillCommandSelect,
+    },*/
+	
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = SkillListCommandDraw_3,
+        .onDraw = SkillListCommandDraw_4,
         .onEffect = ReplaceSkillCommandSelect,
     },
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = SkillListCommandDraw_3,
+        .onDraw = SkillListCommandDraw_5,
         .onEffect = ReplaceSkillCommandSelect,
     },
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = SkillListCommandDraw_3,
+        .onDraw = SkillListCommandDraw_6,
 
     },
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
 
+        .onDraw = SkillListCommandDraw_7,
+
+    },
+	
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+
+        .onDraw = SkillListCommandDraw_8,
+
+    },
+	
     {} // END
 };
 
@@ -293,7 +310,7 @@ int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* co
 	
 	/*StartMenuChild(&Menu_ItemDetails, (void*) proc);*/
 
-    StartFace(0, GetUnitPortraitId(proc->unit), portrait_pos_a, portrait_pos_b, 3);
+    /*StartFace(0, GetUnitPortraitId(proc->unit), portrait_pos_a, portrait_pos_b, 3);*/
 
     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
@@ -305,7 +322,7 @@ static void SkillListCommandDrawIdle(struct MenuCommandProc* command)
 
     if (proc->skillsUpdated)
     {
-        SkillListCommandDraw(menu, command);
+        SkillListCommandDraw_2(menu, command);
         EnableBgSyncByMask(BG0_SYNC_BIT);
 
         proc->skillsUpdated = FALSE;
@@ -335,37 +352,6 @@ static void SkillListCommandDrawIdle(struct MenuCommandProc* command)
 
 
 
-
-static void SkillListCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command)
-{
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-
-    u8* const moves = UnitGetMoveList(proc->unit);
-
-    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-
-    Text_Clear(&command->text);
-
-    if (UnitCountSkills(proc->unit) == 0)
-    {
-        Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
-        Text_DrawString(&command->text, " No Moves");
-    }
-
-    Text_Display(&command->text, out);
-
-    LoadIconPalettes(4); /* Icon palette */
-
-    int i = 0;
-	if (IsMove(moves[i])) {
-		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); /* The icons       */ 
-		Text_SetXCursor(&command->text, item_name_offset);
-		Text_DrawString(&command->text, GetItemName(moves[i])); 
-		}
-
-    /* command->onCycle = (void*) SkillListCommandDrawIdle; */
-}
-
 static void SkillListCommandDraw_2(struct MenuProc* menu, struct MenuCommandProc* command)
 {
     struct SkillDebugProc* const proc = (void*) menu->parent;
@@ -376,11 +362,17 @@ static void SkillListCommandDraw_2(struct MenuProc* menu, struct MenuCommandProc
 
     Text_Clear(&command->text);
 
-    Text_Display(&command->text, out);
-
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); 
+	Text_Display(&command->text, out); 
+	Text_SetXCursor(&command->text, 0);
+	
     LoadIconPalettes(4); /* Icon palette */
 
-    int i = 2;
+
+
+    int i = 1;
 	if (IsMove(moves[i])) {
 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); /* The icons       */ 
 		Text_SetXCursor(&command->text, item_name_offset);
@@ -391,6 +383,7 @@ static void SkillListCommandDraw_2(struct MenuProc* menu, struct MenuCommandProc
 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 		Text_DrawString(&command->text, " No Move");
 	}
+
 }
 
 static void SkillListCommandDraw_3(struct MenuProc* menu, struct MenuCommandProc* command)
@@ -402,9 +395,14 @@ static void SkillListCommandDraw_3(struct MenuProc* menu, struct MenuCommandProc
     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 
     Text_Clear(&command->text);
-
-    Text_Display(&command->text, out);
-
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_GOLD);
+    /*Text_DrawString(&command->text, GetStringFromIndex(GetItemType(proc->skillReplacement))); */
+	Text_DrawString(&command->text, GetItemDisplayRangeString(proc->skillReplacement)); 
+	
+	
+	Text_Display(&command->text, out); 
+	Text_SetXCursor(&command->text, 0);
     LoadIconPalettes(4); /* Icon palette */
 
     int i = 2;
@@ -417,11 +415,167 @@ static void SkillListCommandDraw_3(struct MenuProc* menu, struct MenuCommandProc
 	else {
 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 		Text_DrawString(&command->text, " No Move");
+		}
+
+}
+
+static void SkillListCommandDraw_4(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
+
+    u8* const moves = UnitGetMoveList(proc->unit);
+
+    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+
+	
+    Text_Clear(&command->text);
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_GOLD);
+	Text_DrawString(&command->text, GetStringFromIndex(GetItemMight(proc->skillReplacement))); 
+	/*Text_DrawString(&command->text, GetStringFromIndex(GetItemHit(proc->skillReplacement))); 
+	Text_DrawString(&command->text, GetStringFromIndex(GetItemCrit(proc->skillReplacement))); */
+	Text_Display(&command->text, out); 
+	Text_SetXCursor(&command->text, 0);	
+
+    LoadIconPalettes(4); /* Icon palette */
+
+    int i = 3;
+	if (IsMove(moves[i])) {
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+		Text_SetXCursor(&command->text, item_name_offset);
+		/*Text_Advance(&command->text, item_y_offset*(i+1));*/
+		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		}
+	else {
+		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+		Text_DrawString(&command->text, " No Move");
+		}
+
+}
+
+static void SkillListCommandDraw_5(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
+
+    u8* const moves = UnitGetMoveList(proc->unit);
+
+    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+
+	
+    Text_Clear(&command->text);
+
+
+    LoadIconPalettes(4); /* Icon palette */
+
+    int i = 4;
+	if (IsMove(moves[i])) {
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+		Text_SetXCursor(&command->text, item_name_offset);
+		/*Text_Advance(&command->text, item_y_offset*(i+1));*/
+		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		}
+	else {
+		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+		Text_DrawString(&command->text, " No Move");
+	}
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); 
+	Text_Display(&command->text, out); 
+}
+
+static void SkillListCommandDraw_6(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
+
+    u8* const moves = UnitGetMoveList(proc->unit);
+
+    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+
+	
+    Text_Clear(&command->text);
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); 
+	Text_Display(&command->text, out); 
+	Text_SetXCursor(&command->text, 0);
+
+    LoadIconPalettes(4); /* Icon palette */
+
+    int i = 5;
+	if (IsMove(moves[i])) {
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+		Text_SetXCursor(&command->text, item_name_offset);
+		/*Text_Advance(&command->text, item_y_offset*(i+1));*/
+		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		}
+	else {
+		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+		Text_DrawString(&command->text, " No Move");
 	}
 }
 
+static void SkillListCommandDraw_7(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
 
+    u8* const moves = UnitGetMoveList(proc->unit);
 
+    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+
+	
+    Text_Clear(&command->text);
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); 
+	Text_Display(&command->text, out); 
+	Text_SetXCursor(&command->text, 0);
+
+    LoadIconPalettes(4); /* Icon palette */
+
+    int i = 6;
+	if (IsMove(moves[i])) {
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+		Text_SetXCursor(&command->text, item_name_offset);
+		/*Text_Advance(&command->text, item_y_offset*(i+1));*/
+		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		}
+	else {
+		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+		Text_DrawString(&command->text, " No Move");
+	}
+}
+
+static void SkillListCommandDraw_8(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
+
+    u8* const moves = UnitGetMoveList(proc->unit);
+
+    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+
+	
+    Text_Clear(&command->text);
+
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); 
+	Text_Display(&command->text, out); 
+	Text_SetXCursor(&command->text, 0);
+    LoadIconPalettes(4); /* Icon palette */
+
+    int i = 7;
+	if (IsMove(moves[i])) {
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+		Text_SetXCursor(&command->text, item_name_offset);
+		/*Text_Advance(&command->text, item_y_offset*(i+1));*/
+		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		}
+	else {
+		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+		Text_DrawString(&command->text, " No Move");
+		}
+}
 
 
 static int SkillListCommandIdle(struct MenuProc* menu, struct MenuCommandProc* command)
@@ -467,25 +621,50 @@ static int RemoveSkillCommandSelect(struct MenuProc* menu, struct MenuCommandPro
 static void ReplaceSkillCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command)
 {
     struct SkillDebugProc* const proc = (void*) menu->parent;
-
+    u8* const moves = UnitGetMoveList(proc->unit);
     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 
     Text_Clear(&command->text);
+	
+	Text_SetXCursor(&command->text, new_item_desc_offset);
+	Text_SetColorId(&command->text, TEXT_COLOR_GREEN);
+    Text_DrawString(&command->text, "Learn ");
+	Text_Display(&command->text, out); 
 
-    Text_DrawString(&command->text, " Learn");
+	Text_SetXCursor(&command->text, new_item_desc_offset+new_item_name_offset);
+    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+    Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
+	Text_Display(&command->text, out); 
 
+/*
     Text_SetXCursor(&command->text, 58);
     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-    /*Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); */
-	
-    Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); /* We want GetItemDescId to be made into a Char so we can display it? */ 
 
-    Text_Display(&command->text, out);
+    Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
+
+    Text_Display(&command->text, out); 
+	*/
+	
+
 
     DrawIcon(
-        out + TILEMAP_INDEX(5, 0), /* Bottom left offset of icon to give the unit         */ 
+        out + TILEMAP_INDEX(new_item_icon_offset, 0), /* Bottom left offset of icon to give the unit         */ 
         GetItemIconId(proc->skillReplacement), TILEREF(0, 4)); /* Palette? */ 
+		
+	LoadIconPalettes(4); /* Icon palette */
+	int i = 0;
+	if (IsMove(moves[i])) {
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); /* The icons       */ 
+		Text_SetXCursor(&command->text, item_name_offset);
+		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		}
+    else {
+		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+		Text_DrawString(&command->text, " No Move");
+	}
 }
+
+
 
 static int ReplaceSkillCommandIdle(struct MenuProc* menu, struct MenuCommandProc* command)
 {
