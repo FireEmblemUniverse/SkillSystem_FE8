@@ -25,19 +25,19 @@ extern const u16 SkillDescTable[];
 */
 
 
-#define Icons_Spacing 0
+#define Icons_Spacing 2
 #define item_name_offset 20
 #define item_y_offset 8
 
 #define menu_tile_X 1
 #define menu_tile_Y 0
-#define menu_Length 18
+#define menu_Length 12
 
 #define item_menu_tile_X 13
 #define item_menu_tile_Y 0
 #define item_menu_Length 16
 
-#define portrait_pos_a 144 
+#define portrait_pos_a 72 
 #define portrait_pos_b 16 
 
 
@@ -48,7 +48,10 @@ char* GetItemName(int item);
 static
 u8* UnitGetMoveList(struct Unit* unit)
 {
-	return unit->ranks; 
+	/* extern u8 unit+ranks[8];
+		return unitRanks + (unit); // (unit)->pCharacterData->number - 1)*/ 
+	/*u8 unitRanks[] = unit->ranks[];*/
+	return unit->ranks; /*+ (unit); */    
 }
 
 static
@@ -60,7 +63,7 @@ int IsMove(int moveId)
     if (moveId == 255)
         return FALSE;
 
-    return !!GetItemDescId(moveId); /* GetItemDescId() */ 
+    return !!SkillDescTable[moveId]; /* GetItemDescId() */ 
 }
 
 
@@ -133,6 +136,33 @@ struct SkillDebugProc
 
 
 
+static
+int IsValidMove(int moveId)
+{
+    if (moveId == 0)
+        return FALSE;
+
+    if (moveId == 255)
+        return FALSE;
+
+    return TRUE; 
+}
+
+static int IsMenuAvailable(struct MenuProc* menu, struct MenuCommandProc* command);
+
+static int IsMenuAvailable(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
+
+	IsValidMove(proc->skillSelected); 
+
+    return ME_PLAY_BEEP;
+}
+
+
+
+
+
 
 
 static const struct ProcInstruction Proc_SkillDebug[] =
@@ -145,27 +175,27 @@ static const struct ProcInstruction Proc_SkillDebug[] =
     PROC_END,
 };
 
-/*
 static const struct MenuCommandDefinition MenuCommands_ItemDetails[] =
 {
 	{
         .isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = NewMoveDetailsDraw,
+        /*.onIdle = ReplaceSkillCommandIdle,
+        .onEffect = ReplaceSkillCommandSelect,*/
     },
 	
 	{}
 };
-*/
 
 static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 {
     {
         .isAvailable = MenuCommandAlwaysUsable,
-        .onEffect = SkillListCommandSelect,
+
         .onDraw = ReplaceSkillCommandDraw,
         .onIdle = ReplaceSkillCommandIdle,
-
+        .onEffect = ReplaceSkillCommandSelect,
     },
 
     {
@@ -179,42 +209,58 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw,
-        .onEffect = ReplaceSkillCommandSelect,
+        .onEffect = SkillListCommandSelect,
         /*.onIdle = SkillListCommandIdle,
-        .onEffect = ReplaceSkillCommandSelect,*/
+        .onEffect = SkillListCommandSelect,*/
     },
 	
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_2,
-        .onEffect = ReplaceSkillCommandSelect,
+        .onEffect = SkillListCommandSelect,
     },
 	
     {
 		.isAvailable = MenuCommandAlwaysUsable,
+		/*.isAvailable = IsMenuAvailable,*/
 
         .onDraw = SkillListCommandDraw_3,
-        .onEffect = ReplaceSkillCommandSelect,
+        .onEffect = SkillListCommandSelect,
     },
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+		/*.isAvailable = IsMenuAvailable,*/
+
+        .onDraw = SkillListCommandDraw_3,
+        .onEffect = SkillListCommandSelect,
+    },
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+		/*.isAvailable = IsMenuAvailable,*/
+
+        .onDraw = SkillListCommandDraw_3,
+        .onEffect = SkillListCommandSelect,
+    },
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+		/*.isAvailable = IsMenuAvailable,*/
+
+        .onDraw = SkillListCommandDraw_3,
+        .onEffect = SkillListCommandSelect,
+    },
+	/*
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_3,
-        .onEffect = ReplaceSkillCommandSelect,
+        .onEffect = SkillListCommandSelect,
     },
     {
 		.isAvailable = MenuCommandAlwaysUsable,
-
         .onDraw = SkillListCommandDraw_3,
-        .onEffect = ReplaceSkillCommandSelect,
-    },
-    {
-		.isAvailable = MenuCommandAlwaysUsable,
-
-        .onDraw = SkillListCommandDraw_3,
-
-    },
+        .onEffect = SkillListCommandSelect,
+    }, */
 
     {} // END
 };
@@ -228,18 +274,14 @@ static void NewMoveDetailsDraw(struct MenuProc* menu, struct MenuCommandProc* co
 
     Text_Clear(&command->text);
 
-    Text_DrawString(&command->text, " Learn");
+    /*Text_DrawString(&command->text, " Learn");*/
 
 
 
-    
+    Text_SetXCursor(&command->text, 158); 
 	
     Text_SetColorId(&command->text, TEXT_COLOR_NORMAL);
-	Text_DrawString(&command->text, " asdf");
-	
-    /*Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement))); 
-	Text_SetXCursor(&command->text, 158); 
-	*/
+    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(proc->skillReplacement)));
 	
 
     Text_Display(&command->text, out);
@@ -264,7 +306,6 @@ static const struct MenuDefinition Menu_SkillDebug =
     .onBPress = (void*) (0x08022860+1), // FIXME
 };
 
-/*
 static const struct MenuDefinition Menu_ItemDetails =
 {
     .geometry = { item_menu_tile_X, item_menu_tile_Y, item_menu_Length },
@@ -273,7 +314,6 @@ static const struct MenuDefinition Menu_ItemDetails =
     .onEnd = SkillDebugMenuEnd,
     .onBPress = (void*) (0x08022860+1), // FIXME
 };
-*/
 
 
 int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command)
@@ -286,12 +326,7 @@ int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* co
     proc->skillReplacement = 1; // assumes skill #1 is valid
 
     StartMenuChild(&Menu_SkillDebug, (void*) proc);
-	
-	u8* const moves = UnitGetMoveList(proc->unit);
-	
-
-	
-	/*StartMenuChild(&Menu_ItemDetails, (void*) proc);*/
+	StartMenuChild(&Menu_ItemDetails, (void*) proc);
 
     StartFace(0, GetUnitPortraitId(proc->unit), portrait_pos_a, portrait_pos_b, 3);
 
