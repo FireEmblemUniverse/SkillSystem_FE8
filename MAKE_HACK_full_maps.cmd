@@ -47,21 +47,23 @@ if /I not [%1]==[quick] (
   cd "%base_dir%Text"
   echo: | ("%textprocess%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
 
+
   echo:
   echo Processing maps
 
   cd "%base_dir%Maps"
   echo: | ("%tmx2ea%" -s "MasterMapInstaller.event")
-
 )
 
 echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
-ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" --nocash-sym 
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times"
 type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
+SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
+copy "%~dp0FE8Hack.sym" %destDir%
+
 
 if /I not [%1]==[quick] (
 
@@ -75,8 +77,7 @@ if /I not [%1]==[quick] (
 
 )
 
-SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
-copy "%~dp0FE8Hack.sym" %destDir%
+
 
 echo:
 echo Done!
