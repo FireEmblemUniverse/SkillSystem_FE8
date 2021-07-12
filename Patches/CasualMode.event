@@ -9,4 +9,15 @@ ORG 0x18418
 BYTE 0x00 0x4B 0x18 0x47
 
 
-POP
+POP 
+
+/*
+// By 7743 
+// Allow having 0 playable units as a valid gamestate 
+// By default, this should cause a game over on any turn 
+COMBO=Default|OFF|Patched: Invalid game over|ONN
+DETERMINATION_ADDRESS=0x019024
+
+OFF:0x019024=0x18 0x1C
+ONN:0x019024=0x01 0x20
+*/ 

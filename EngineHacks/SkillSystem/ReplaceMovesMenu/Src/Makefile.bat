@@ -1,6 +1,7 @@
 @echo off
 
-make "SkillsDebug.lyn.event"
+make "SkillsDebug.s"
+make "SkillsDebug.lyn.event" 
 
 
 

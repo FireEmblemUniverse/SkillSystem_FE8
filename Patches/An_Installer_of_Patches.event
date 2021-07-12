@@ -6,6 +6,7 @@
 #include "EventParameters/EventParameters.event"
 
 #include "MMB/Installers/MMBInstallerVesly.event"
+#include "AutosaveKiller.event"
 
 #include "PreventTrade/Installer.event"
 
@@ -23,7 +24,10 @@
 
 #include "StatBarLength.event" 
 
-#include "CasualMode.event"
+// #include "CasualMode.event"
+// DangerRadius conflicts, so edit ClearDR2.asm as needed 
+
+
 #include "SetUnitState.lyn.event"
 
 
@@ -73,7 +77,7 @@
 
 
 //#include "ControlEnemy.event"
-#include "AutosaveKiller.event"
+
 
 
 //#include "CasualModeMenu2/CasualModeInstaller.event"

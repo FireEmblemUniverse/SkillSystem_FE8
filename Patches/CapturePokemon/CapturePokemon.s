@@ -98,10 +98,12 @@ strb 	r0,[r5,#0x13]
 
 
 
-mov r3, #0x10 @counter 
+mov r3, #0x01 @counter 
 
 LoopThroughUnits:
 mov r0, r3 
+cmp r3, #40
+bgt End 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
 push {r3} 
 blh GetUnitByEventParameter @ 0x0800BC51
 pop {r3} 
@@ -110,8 +112,8 @@ pop {r3}
 cmp r0,#0
 bne NextUnit
 
-@ turn into first free player unit id from 0x10 - 0x3F 
-mov r1, #0x34
+@ turn into first free player unit id from 0x01 - 0x35 
+mov r1, #0x34 @ Size of each char entry in char table 
 mov r0, r3 
 mul r0, r1
 ldr r1, =#0x8803D30 @unit 0 in char table

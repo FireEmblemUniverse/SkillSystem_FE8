@@ -120,9 +120,10 @@ Retreat to last Pokecenter?[NL]
 ## ViridianGymText
 Viridian Gym[A][X]
 
-# 0x09D5
-Retreat to Pewter city?
-[No][X]
+## LearnMoveText
+Learn the new move?[NL]
+[Yes][X]
+
 ## ProceedAreaText
 Proceed to next area?[NL]
 [Yes][X]
@@ -150,8 +151,9 @@ Do you forfeit?[NL]
 [Yes][X]
 # 0x09DA
 Under development.[A][X]
-# 0x09DB
-[FastPrint]Loading units... [X]
+## GiveUpLearnMoveText
+Give up on new move?[NL]
+[Yes][X]
 # 0x09DC
 Continue South?[NL]
 [Yes][X]

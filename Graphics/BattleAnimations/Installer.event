@@ -36,27 +36,27 @@
 ALIGN 4
 
 animAnyClass:
-weaponAnim(0x28,$09) //Hand axe 
-weaponTypeAnim(ItemAnim,$09)
-weaponTypeAnim(NormalAnim,$09)
-weaponTypeAnim(ElectricAnim,$09)
-weaponTypeAnim(WaterAnim,$09)
-weaponTypeAnim(FireAnim,$09)
-weaponTypeAnim(StaffAnim,$09)
-weaponTypeAnim(GrassAnim,$09)
-weaponTypeAnim(GroundAnim,$09)
-weaponTypeAnim(PsychicAnim,$09)
-weaponTypeAnim(FightingAnim,$09)
-weaponTypeAnim(SteelAnim,$09)
-weaponTypeAnim(IceAnim,$09)
-weaponTypeAnim(FlyingAnim,$09)
-weaponTypeAnim(FairyAnim,$09)
-weaponTypeAnim(PoisonAnim,$09)
-weaponTypeAnim(RockAnim,$09)
-weaponTypeAnim(GhostAnim,$09)
-weaponTypeAnim(DragonAnim,$09)
-weaponTypeAnim(BugAnim,$09)
-weaponTypeAnim(DarkAnim,$09)
+weaponAnim(0x28,$01) //Hand axe 
+weaponTypeAnim(ItemAnim,$01)
+weaponTypeAnim(NormalAnim,$01)
+weaponTypeAnim(ElectricAnim,$01)
+weaponTypeAnim(WaterAnim,$01)
+weaponTypeAnim(FireAnim,$01)
+weaponTypeAnim(StaffAnim,$01)
+weaponTypeAnim(GrassAnim,$01)
+weaponTypeAnim(GroundAnim,$01)
+weaponTypeAnim(PsychicAnim,$01)
+weaponTypeAnim(FightingAnim,$01)
+weaponTypeAnim(SteelAnim,$01)
+weaponTypeAnim(IceAnim,$01)
+weaponTypeAnim(FlyingAnim,$01)
+weaponTypeAnim(FairyAnim,$01)
+weaponTypeAnim(PoisonAnim,$01)
+weaponTypeAnim(RockAnim,$01)
+weaponTypeAnim(GhostAnim,$01)
+weaponTypeAnim(DragonAnim,$01)
+weaponTypeAnim(BugAnim,$01)
+weaponTypeAnim(DarkAnim,$01)
 weaponAnimEnd
 
 

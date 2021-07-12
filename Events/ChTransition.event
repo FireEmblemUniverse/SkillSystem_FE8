@@ -14,6 +14,9 @@
 #define Player5UnitID 			0x30017b7 
 #define Player6UnitID 			0x30017b8 
 #define BerryDurabilityToggleRam 			0x30017b9 
+#define ReturnTMRam 			0x30017ba
+#define UnitPointerRam 0x30017BC // - BF
+#define NextFree 0x30017C0 
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
@@ -28,8 +31,8 @@ GenericDisappearEffect(2, VisitPokecenter) // This doesn't work so whatever
 TestCase:
 
 
-//GiveEXPCurrentUnit(100)
-//CALL VisitPokecenter
+//GiveEXP(0x7FFF, 90)
+CALL VisitPokecenter
 NoFade 
 ENDA 
 
@@ -39,6 +42,21 @@ AutoLevelUnits(1, False, 0x90EF) // Not wilds given +1 invisible levels
 AutoLevelUnits(6, False, 0x90EF) // Not wilds given +6 invisible levels 
 AutoLevelUnits(11, False, 0x90EF) // Not wilds given +11 invisible levels 
 
+NoFade 
+ENDA 
+
+ALIGN 4
+CheckIfNoPlayerUnits:
+// For some reason there's no game over when all units are dead/undeployed anymore 
+// I don't know why. I tried searching in files for 0x18F and 0x190 where the routine seems 
+// to be at 19240, but found nothing. See the feb patch if this behaviour is desired. 
+// This just turns on the game over flag if there are no player units 
+SVAL rC 0xFF 
+GetUnitStatus(0x101, Level)
+SVAL r1 0xFF 
+BNE 0 rC r1 
+ENUT 0x65 
+LABEL 0 
 NoFade 
 ENDA 
 
@@ -65,7 +83,9 @@ ENDA
 
 GlobalTurnEvent:
 ENUF 1 // Can 'Call' again 
+#ifdef DRUnitBitMask
 SetNearbyDangerRadius
+#endif 
 NoFade
 ENDA 
 
@@ -348,7 +368,7 @@ EmoticonSlotB(PokeballGraphic)
 STAL 14 
 EmoticonSlotB(OpenPokeballGraphic)
 STAL 18
-LOAD_S2 1
+LOAD_S2 1 // No restriction: always load 
 ENUN 
 SPAWN_NPC 0xFC [-1,-1] 
 AddAnimTrap(LightRuneTrapID)

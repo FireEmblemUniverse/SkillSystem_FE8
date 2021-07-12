@@ -310,7 +310,7 @@ ldrb r0, [r4, r0]     @Completion flag
 
 cmp r0, #0
 beq TextToShow
-ldr r1, =ObtainSpellFlagOffset 
+ldr r1, =SignAreaFlagOffset
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 blh SetNewFlag
@@ -358,7 +358,7 @@ SkipFirstMsg:
 
 
 ldrb r0, [r4, #0x3]     @Completion flag
-ldr r1, =ObtainSpellFlagOffset 
+ldr r1, =SignAreaFlagOffset 
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 

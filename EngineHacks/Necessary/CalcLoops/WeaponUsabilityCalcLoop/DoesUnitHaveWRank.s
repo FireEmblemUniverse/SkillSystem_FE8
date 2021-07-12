@@ -15,7 +15,7 @@ push {r4-r7,r14}
 mov r4,r0 @character pointer
 mov r5,r1 @item halfword
 mov r6,r2 @rank
-
+b RetTrue
 @get item's wrank requirement
 mov r0,r5
 mov r1,#0xFF

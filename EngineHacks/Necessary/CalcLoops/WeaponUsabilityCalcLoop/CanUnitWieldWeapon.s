@@ -16,6 +16,7 @@ mov r4,r0 @r4= char struct pointer
 mov r5,r1 @r5= item halfword
 cmp r5,#0
 beq CannotWield
+b ExitLoop
 
 HasAWeapon:
 mov r1,#0xFF

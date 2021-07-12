@@ -35,8 +35,9 @@ MiscBasedEvents:
 CauseGameOverIfLordDies
 END_MAIN
 
-BeginningScene:
-LOAD1 0x0 Units1 
+BeginningScene:		// Since our party is so small and you can release/delete units, only LOAD3 works here 
+					// Otherwise it'll spawn Seth if you have no P-02
+LOAD3 0x0 Units1 // Do not load dead / non-existent units 
 ENUN 
 
 //ENUT SkipIntroFlag

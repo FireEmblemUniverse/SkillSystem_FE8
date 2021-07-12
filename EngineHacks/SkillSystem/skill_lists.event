@@ -1,11 +1,11 @@
 
 // Level SkillID 
 EphraimLordSkillList:
+//BYTE 06 AcrobatID
 BYTE 00 00
 ALIGN 4
 
 EirikaLordSkillList:
-BYTE 00 00
 BYTE 00 00
 BYTE 00 00 
 BYTE 00 00

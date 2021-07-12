@@ -20,7 +20,7 @@
     MESSAGE Used table space ends at currentOffset
 
 	#include "Patches/ASMCs_Installer.event"
-
+	#include "Patches/DebugCommand/Debug.lyn.event"
     //Engine Hacks
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
@@ -62,6 +62,7 @@
     //Events
 	#include "Events/EventsInstaller.event"
     #include "Events/WorldMap/WorldMapEvents.event"
+	#include "A_Debug_Command.event"
 	
     MESSAGE Used free space ends at currentOffset
 #else

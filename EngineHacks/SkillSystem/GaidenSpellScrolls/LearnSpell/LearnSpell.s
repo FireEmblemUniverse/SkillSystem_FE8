@@ -26,7 +26,7 @@ mov r2, #0x28
 
 FindEmptyWEXPLoop:
 cmp r2, #0x2F 
-bgt SetForForgetting 
+bge SetForForgetting 
 add r2, #1 
 ldrb r0, [r4, r2]
 cmp r0, #0 
@@ -45,9 +45,11 @@ mov  r1, #0x80
 lsl  r1, #8
 orr  r1, r5
 
+mov r1, r5
+
 @ store
 ldr  r0, =0x0202BCDE @ pExtraItemOrSkill, used by vanilla for when it tries to send an item to convoy
-strh r1, [r0]
+@strh r1, [r0]
 
 b False 
 
@@ -61,10 +63,14 @@ b End
 False: @ No spell learned 
 mov r0, #0
 
+
+
 End:
+mov r1, r4 @ Ram unit 
+mov r2, r5 @ Spell to learn 
 pop {r4-r5}
-pop {r1}
-bx r1
+pop {r3}
+bx r3
 
 
 .ltorg 

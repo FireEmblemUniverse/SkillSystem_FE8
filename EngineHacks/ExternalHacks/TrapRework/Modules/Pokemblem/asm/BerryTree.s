@@ -89,23 +89,28 @@ bx r1
 
 
 BerryTreeHealEffect:
-push {r4-r5,r14}
+push {r4-r6,r14}
 mov r4,r0 @r4 = unit
 mov r5,r1 @r5 = heal %
+mov r5, #50
+ldr r2, =MemorySlot0 
+str r0, [r2, #4*0x08] @ @[0x30004D8]!!
+b NoHeal
+
 ldr r2, [r4] @ Char pointer 
 ldrb r2, [r2, #4] @Char ID 
 cmp r2, #0xF0 
 bge NoHeal 		@ Do not heal bushes etc. 
 
 bl GetAdjacentTrap 
-mov r3, r0 
+mov r6, r0 
 
 
 cmp r0, #0
 beq NoHeal
 
 
-ldrb r0, [r3, #0x3]     @ # of berries 
+ldrb r0, [r6, #0x3]     @ # of berries 
 cmp r0, #0 
 beq NoHeal 
 
@@ -153,18 +158,18 @@ b StoreBitA
 
 
 StoreBitA:
-strb r0, [r2] 
+@strb r0, [r2] 
 cmp r0, #0
 bne NoHeal
 
-ldrb r2, [r3, #0x3]     @ # of berries 
+ldrb r2, [r6, #0x3]     @ # of berries 
 sub r2, #1 
-strb r2, [r3, #0x3] @ take away a berry 
+@strb r2, [r6, #0x3] @ take away a berry 
 
 
 NoHeal:
 mov r0, r5 
-pop {r4-r5}
+pop {r4-r6}
 pop {r1}
 bx r1 
 

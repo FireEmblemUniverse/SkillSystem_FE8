@@ -615,9 +615,9 @@ b .L56
 	@r0, r0, r3 are free I think, maybe r1 
 	LearnedSpellsLoop: 
 	adds 	r0, r0, #1 
-	cmp 	r0, #0x2E 
+	cmp 	r0, #0x2F 
 	@bge 	.L56 
-	bge 	Continue 
+	bgt 	Continue 
 	
 	ldrb 	r3, [r4, r0] @Nth wexp 
 

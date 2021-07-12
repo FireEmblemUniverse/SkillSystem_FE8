@@ -1,10 +1,4 @@
 @経験値の取得
-@
-@40 0D [UNIT] [ADDEXP] [ASM+1]
-@41 0D 00 [ADDEXP] [ASM+1]  (Load SVAL1 ID)
-@4B 0D 00 [ADDEXP] [ASM+1]  (Load SVALB coord)
-@4F 0D 00 [ADDEXP] [ASM+1]  (Current)
-@
 @Author 7743   Effect Logic: aera
 @
 @
@@ -17,50 +11,16 @@
 @
 @
 .thumb
-	push	{r4,r5,r6,lr}
-
+	push	{r4,r5,r6,lr}     @ Event parameter in memory slot 0x1, EXP to grant in slot 0x2. Keep the unit in r4 and the EXP to give in r6.
 	mov  r5, r0               @Current Procs
-	ldr  r4, [r0, #0x38]      @イベント命令にアクセスらしい [r0,#0x38] でイベント命令が書いてあるアドレスの場所へ
-
-	ldrb r0, [r4, #0x0]       @引数0 [FLAG]
-	ldrb r6, [r4, #0x3]       @引数2  give exp
-
-	mov  r1,#0xf
-	and  r0,r1
-
-	cmp  r0,#0x1
-	beq  GetUnitInfoBySVAL1
-	cmp  r0,#0xB
-	beq  GetUnitInfoByCoord
-	cmp  r0,#0xF
-	beq  GetUnitInfoByCurrent
-
-	ldrb r0, [r4, #0x2]       @引数1 [UNIT]
-	b   GetUnitInfo
-
-GetUnitInfoByCurrent:
-@	ldr  r0,=#0x03004DF0      @操作中のユニット {J}
-	ldr  r0,=#0x03004E50      @操作中のユニット {U}
-	ldr  r0,[r0]
-	b   CheckUnitInfo
-
-GetUnitInfoBySVAL1:
-	ldr  r0,=#0xFFFFFFFF
-	b   GetUnitInfo
-
-GetUnitInfoByCoord:
-	ldr  r0,=#0xFFFFFFFE
-	@b   GetUnitInfo
-
-GetUnitInfo:
-@	blh  0x0800bf3c           @UNITIDの解決 GetUnitStructFromEventParameter	{J}
-	blh  0x0800bc50           @UNITIDの解決 GetUnitStructFromEventParameter	{U}
-	                          @RAM UNIT POINTERの取得
-CheckUnitInfo:
-	cmp  r0,#0x00
-	beq  Term                 @取得できなかったら終了
-
-
+	
+	ldr r0, =#0x30004B8     @ gMemorySlot.
+	ldr r6, [ r0, #4*0x03 ]   @ Get EXP from memory slot 0x3.
+	mov r1, #0x04
+    ldsh r0, [ r0, r1 ]  @ Get the event parameter from slot 0x1.
+    blh 0x800BC50           @ GetUnitStructFromEventParameter
+    mov r4, r0	
+	
 Change:
 	mov  r4, r0            @ram unit pointer
 
@@ -201,7 +161,7 @@ effect:
 @	blh     0x0807dc48     @SetupMapBattleAnim	{J}
 	blh     0x0807b900     @SetupMapBattleAnim	{U}
 
-	ldr	r0, event_procs
+	ldr	r0, =give_exp_proc
 @		mov	r1, #0x3                     @これではダメ
 @		blh     0x08002bcc     @New6C    @これではダメ
 	mov	r1, r4
@@ -211,5 +171,3 @@ effect:
 	pop	{r4,pc}
 
 .ltorg
-.align
-event_procs:

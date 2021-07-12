@@ -1,11 +1,14 @@
+// [0203A534]?!!
+// 8035812 
+
 #define NormalTypeWep 0x00
-#define FightingTypeWep 0x10
+#define FightingTypeWep 0x20
 
 #define ElectricTypeWep 0x01
-#define SteelTypeWep 0x11 
+#define SteelTypeWep 0x21 
 
 #define WaterTypeWep 0x02
-#define IceTypeWep 0x12
+#define IceTypeWep 0x22
 
 #define FireTypeWep 0x03
 #define FlyingTypeWep 0x13

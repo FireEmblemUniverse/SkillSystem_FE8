@@ -34,8 +34,7 @@
 
 push {r6,r7}
 
-ldr 	r1, =MemorySlot 
-str 	r0, [r1, #4*0x08] @Store to s2 as break point: [0x30004D8]!!
+
 
 mov r0, #0xe
 ldr r3, =gChapterDataAddress

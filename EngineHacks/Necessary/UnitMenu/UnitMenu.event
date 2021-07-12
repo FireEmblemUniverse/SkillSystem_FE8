@@ -67,7 +67,8 @@ UnitMenuTable:
   //Color options: NormalText, GrayText, BlueText, OrangeText, GreenText (flashes), BlackText
   //MenuCommand(DualAtkTxtID,DualAtkDescId,0,DualAtkCheck,DualAtkSelected) 
   
-      MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
+      //MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
+    MenuCommand(EscapeName, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
 	
   
   MenuCommand(0x67A, 0x6CC, BlueText, $22FDC, $23020)
@@ -179,7 +180,7 @@ UnitMenuTable:
   
   #ifdef GAIDEN_MAGIC
 	MenuCommand(UM_GaidenBlackMagic,UM_GaidenMagicDesc,NormalText,GaidenBlackMagicUMUsability,GaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
-	MenuCommand(UM_GaidenWhiteMagic,UM_GaidenMagicDesc,NormalText,GaidenWhiteMagicUMUsability,GaidenWhiteMagicUMEffect,GaidenWhiteMagicUMHover,GaidenMagicUMUnhover)
+	//MenuCommand(UM_GaidenWhiteMagic,UM_GaidenMagicDesc,NormalText,GaidenWhiteMagicUMUsability,GaidenWhiteMagicUMEffect,GaidenWhiteMagicUMHover,GaidenMagicUMUnhover)
   #endif // GAIDEN_MAGIC
   #ifdef COMBAT_ARTS
 	MenuCommand(UM_CombatArts, UM_CombatArtsDesc, NormalText, CombatArtsUsability, CombatArtsEffect, $22c31, $22c99)

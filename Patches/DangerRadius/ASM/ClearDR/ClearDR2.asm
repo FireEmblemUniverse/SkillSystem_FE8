@@ -82,13 +82,14 @@ beq   ClearUnitPointer
 
 
 KillUnit:
+// check if flag is on or not lol 
 ldr   r0, [r2, #0xC]
-mov   r1, #0x5
+mov   r1, #0x9 		@ prev 0x05 for dead, 0x09 is undeployed 
 orr   r0, r1
 str   r0, [r2, #0xC]
 mov   r0, r2
-ldr   r4, =ClearUnitSupports
-bl    GOTO_R4
+@ldr   r4, =ClearUnitSupports	@ No need to clear on casual mode 
+@bl    GOTO_R4
 b     Return
 
   ClearUnitPointer:

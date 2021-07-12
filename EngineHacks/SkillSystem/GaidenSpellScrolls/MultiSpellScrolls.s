@@ -12,7 +12,7 @@
 .equ FillBgMap, 0x08001221
 .equ EnableBgSyncByIndex, 0x08001FBD
 .equ UnitDecreaseItemUse, 0x08018995
-
+.equ ReturnTMRam,			0x30017ba
 
 
 .global MultiSpellScrollPrepUsability
@@ -100,6 +100,9 @@ strh r0,[r2] @store 0x0000 to the item entry in question, thus removing it
 mov r0,r4 @r0 = char struct
 blh RemoveUnitBlankItems,r3 @move everything else up
 
+ldr r3, =ReturnTMRam
+mov r1, #1
+strb r1, [r3] @ Return TM when 'no' is selected 
 
 mov r0,r4 @r0 = char
 mov r2,r6 @r2 = parent proc
@@ -132,6 +135,10 @@ MultiSpellScrollPrepEffect:
 @r4 = unit pointer
 @r6 = item used
 @r7 = item slot
+
+ldr r3, =ReturnTMRam
+mov r1, #1
+strb r1, [r3] @ Return TM when 'no' is selected 
 
 mov r0,r4 @r0 = char
 

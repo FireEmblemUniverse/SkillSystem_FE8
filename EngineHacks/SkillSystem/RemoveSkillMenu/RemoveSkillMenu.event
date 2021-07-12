@@ -75,6 +75,7 @@ POP
 ALIGN 4
 _pProc_FromBattleProc:
 	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
+	_6C_CALL_ROUTINE_2(CheckLearnNewSpellLevelUp|1)
 	_6C_CALL_ROUTINE_2(0x0328D0|1) // Handles Item Drop
 	_6C_CALL_ROUTINE(0x03286C|1) // idk
 	_6C_YIELD
@@ -83,6 +84,7 @@ _pProc_FromBattleProc:
 ALIGN 4
 _pProc_FromArenaProc:
 	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
+	_6C_CALL_ROUTINE_2(CheckLearnNewSpellLevelUp|1)
 	_6C_CALL_ROUTINE(0x0329A0|1) // idk
 	_6C_YIELD
 	_6C_END
@@ -92,6 +94,7 @@ _pProc_FromMiscActionProc:
 	_6C_SLEEP(1)
 	_6C_CALL_ROUTINE(0x02CC1C|1) // SaveInstigatorFromBattle
 	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
+	_6C_CALL_ROUTINE_2(CheckLearnNewSpellLevelUp|1)
 	_6C_YIELD
 	_6C_END
 
@@ -225,8 +228,8 @@ pMenuDef_RemoveSkill:
 	WORD 0         // style
 	POIN pCommandDefs_RemoveSkill
 	WORD 0
-	WORD 0
-	WORD 0
+	WORD 0				// Last part of the header 
+	WORD 0				// Where unit struct is stored to in the asm 
 	POIN (prMenuRemoveSkill_OnCancel|1)
 	POIN (0x04F520|1)
 	POIN (prMenuRemoveSkill_OnHelp|1)

@@ -39,6 +39,9 @@
   //#define ItemTable 0x809B10
 //#endif
 
+//#define MoveListTable 1 
+
+
 #ifndef DebuffTable
   #define DebuffTable     0x0203F100
   #define DebuffTableSize 0x00000440

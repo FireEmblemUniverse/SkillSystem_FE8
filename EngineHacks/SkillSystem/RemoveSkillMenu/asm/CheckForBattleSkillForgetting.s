@@ -9,7 +9,6 @@ CheckForBattleSkillForgetting:
 	push {r4, lr}
 
 	mov r4, r0 @ var r4 = Battle/Arena proc
-
 check_acting:
 	ldr r0, =pBattleUnitInstiagator
 
@@ -54,8 +53,8 @@ no:
 end:
 	pop {r4}
 
-	pop {r1}
-	bx r1
+	pop {r2}
+	bx r2
 
 	.pool
 	.align

@@ -6,7 +6,8 @@
 
 // Add the following to your unit menu
 // MenuCommand(<name id>, <desc id>, OrangeText, $04F449, SkillDebugCommand_OnSelect)
-
+#include "Src/PostMenu.event"
+#include "Src/ReturnTM.lyn.event"
 #include "Src/SkillsDebug.lyn.event"
 
 #endif // DEBUG_SKILL_EDIT_INCLUDED

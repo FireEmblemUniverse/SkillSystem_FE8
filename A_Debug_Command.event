@@ -1,0 +1,16 @@
+// [0203A534]?
+// 3007D38 - 09077BDC prCallSequence and 092A590C animAnyClass are non-vanilla addresses in stack 
+// lr: 8019C73 at end 
+// lr 
+// Disabled status screen ???? 
+
+ALIGN 4
+DebugCommandEvent:
+
+
+//RemoveTrap(16,15)
+//AddTrap(LightRuneTrapID,16,15)
+
+
+NoFade 
+ENDA 

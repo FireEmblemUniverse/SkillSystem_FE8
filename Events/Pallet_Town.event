@@ -37,14 +37,14 @@ AREA 0 ToRoute21 [0,0] [0,0]
 AREA 0 ToRoute1 [12,0] [13,0] 
 END_MAIN
 
-
+#ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(12,0) 
 EscapeTileEntry(13,0) 
 EscapeTileEntry(9,19) 
 EscapeTileEntry(8,19) 
 EscapeTileTerminator ; } 
-
+#endif 
 
 ToRoute21:
 ChapterTransition(Route21Ch, 0, 0)

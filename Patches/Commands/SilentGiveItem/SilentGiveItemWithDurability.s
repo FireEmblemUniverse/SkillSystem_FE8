@@ -10,6 +10,17 @@
 	.equ MemorySlot, 0x30004B8 
 	.equ GetUnitByEventParameter, 0x0800BC51
 	.equ RemoveUnitBlankItems,0x8017984
+	
+.global unitRamSilentGiveItemWithDurability
+.type unitRamSilentGiveItemWithDurability, function
+unitRamSilentGiveItemWithDurability:
+	push	{r4-r7,lr}
+	ldr r3, =MemorySlot
+	ldr r0, [r3, #4*0x01] @Unit
+	ldr r4, [r3, #4*0x03] @ Item ID to combine with 
+	ldr r5, [r3, #4*0x04] @ Durability to add 
+	b Continue
+	
 
 .global SupplyItemWithDurability
 .type SupplyItemWithDurability, function 
@@ -29,7 +40,8 @@ SilentGiveItemWithDurability:
 	ldr r4, [r3, #4*0x03] @ Item ID to combine with 
 	ldr r5, [r3, #4*0x04] @ Durability to add 
 	
-	blh  GetUnitByEventParameter        
+	blh  GetUnitByEventParameter    
+	Continue:
 	cmp  r0,#0x00
 	beq  Term                
 	mov  r7,r0              @ Valid unit 

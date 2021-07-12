@@ -225,7 +225,9 @@ ENUN
 
 //SilentGiveItem(Eirika, LowKick)
 
-//SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
+SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
+SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
 //SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)

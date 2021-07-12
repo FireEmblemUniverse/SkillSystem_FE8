@@ -3,17 +3,74 @@
 #define EndDeathQuote "BYTE 0xff 0xff 0x0 0x0 0x0 0x0 ;SHORT 0x0 ;WORD 0x0 "
 #define DefeatBossFlag 0x2
 #define GameOverFlag 0x65
+#define CheckNoPlayersDeathQuote(UnitID) "BYTE UnitID 0x0 0xff 0xff 0x00 0x00; SHORT 0x00; WORD CheckIfNoPlayerUnits|IsPointer" 
 
 ALIGN 4
 DeathQuoteTable:
-
-// Prologue
-//ChapterDeathQuote(Eirika,Prologue,DefeatBossFlag,PrologueBattaDeath)
-ChapterDeathQuote(Eirika,0x0,0x00,0x00)
-
-// Always
-//AlwaysDeathQuote(Sanders,GameOverFlag,SandersDeath)
-
+CheckNoPlayersDeathQuote(0x01 )
+CheckNoPlayersDeathQuote(0x02 )
+CheckNoPlayersDeathQuote(0x03 )
+CheckNoPlayersDeathQuote(0x04 )
+CheckNoPlayersDeathQuote(0x05 )
+CheckNoPlayersDeathQuote(0x06 )
+CheckNoPlayersDeathQuote(0x07 )
+CheckNoPlayersDeathQuote(0x08 )
+CheckNoPlayersDeathQuote(0x09 )
+CheckNoPlayersDeathQuote(0x0A )
+CheckNoPlayersDeathQuote(0x0B )
+CheckNoPlayersDeathQuote(0x0C )
+CheckNoPlayersDeathQuote(0x0D )
+CheckNoPlayersDeathQuote(0x0E )
+CheckNoPlayersDeathQuote(0x0F )
+CheckNoPlayersDeathQuote(0x10 )
+CheckNoPlayersDeathQuote(0x11 )
+CheckNoPlayersDeathQuote(0x12 )
+CheckNoPlayersDeathQuote(0x13 )
+CheckNoPlayersDeathQuote(0x14 )
+CheckNoPlayersDeathQuote(0x15 )
+CheckNoPlayersDeathQuote(0x16 )
+CheckNoPlayersDeathQuote(0x17 )
+CheckNoPlayersDeathQuote(0x18 )
+CheckNoPlayersDeathQuote(0x19 )
+CheckNoPlayersDeathQuote(0x1A )
+CheckNoPlayersDeathQuote(0x1B )
+CheckNoPlayersDeathQuote(0x1C )
+CheckNoPlayersDeathQuote(0x1D )
+CheckNoPlayersDeathQuote(0x1E )
+CheckNoPlayersDeathQuote(0x1F )
+CheckNoPlayersDeathQuote(0x20 )
+CheckNoPlayersDeathQuote(0x21 )
+CheckNoPlayersDeathQuote(0x22 )
+CheckNoPlayersDeathQuote(0x23 )
+CheckNoPlayersDeathQuote(0x24 )
+CheckNoPlayersDeathQuote(0x25 )
+CheckNoPlayersDeathQuote(0x26 )
+CheckNoPlayersDeathQuote(0x27 )
+CheckNoPlayersDeathQuote(0x28 )
+CheckNoPlayersDeathQuote(0x29 )
+CheckNoPlayersDeathQuote(0x2A )
+CheckNoPlayersDeathQuote(0x2B )
+CheckNoPlayersDeathQuote(0x2C )
+CheckNoPlayersDeathQuote(0x2D )
+CheckNoPlayersDeathQuote(0x2E )
+CheckNoPlayersDeathQuote(0x2F )
+CheckNoPlayersDeathQuote(0x30 )
+CheckNoPlayersDeathQuote(0x31 )
+CheckNoPlayersDeathQuote(0x32 )
+CheckNoPlayersDeathQuote(0x33 )
+CheckNoPlayersDeathQuote(0x34 )
+CheckNoPlayersDeathQuote(0x35 )
+CheckNoPlayersDeathQuote(0x36 )
+CheckNoPlayersDeathQuote(0x37 )
+CheckNoPlayersDeathQuote(0x38 )
+CheckNoPlayersDeathQuote(0x39 )
+CheckNoPlayersDeathQuote(0x3A )
+CheckNoPlayersDeathQuote(0x3B )
+CheckNoPlayersDeathQuote(0x3C )
+CheckNoPlayersDeathQuote(0x3D )
+CheckNoPlayersDeathQuote(0x3E )
+CheckNoPlayersDeathQuote(0x3F )
+CheckNoPlayersDeathQuote(0x40 )
 EndQuote
 
 PUSH

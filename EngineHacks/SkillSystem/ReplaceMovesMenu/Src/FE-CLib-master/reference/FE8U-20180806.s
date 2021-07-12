@@ -11,6 +11,9 @@
 	.set    \name, \value
 .endm
 
+SET_DATA gVeslyUnit, 0x30017BC
+SET_DATA gVeslySkill, 0x0202BCDE
+
 SET_ABS_FUNC GlobalIRQHandler, 0x80000FC
 SET_ABS_FUNC ARM_ClearOAMBuffer, 0x8000304
 SET_ABS_FUNC ARM_ComputeChecksum, 0x8000360

@@ -1,5 +1,7 @@
 #ifdef _FE8_
 
+#define MultiTileMarker_Installer True 
+
 #include "EAstdlib.event"
 #include "Extensions/Hack Installation.txt"
 

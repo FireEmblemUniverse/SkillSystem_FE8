@@ -22,9 +22,9 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 Route1ReinEvent:
-Reinforce(0xF0, 2, Route1Rein, 1, 3) 
-Reinforce(0xF1, 1, Route1Rein, 4, 1) 
-Reinforce(0xF2, 3, Route1Rein, 3, 4) 
+Reinforce(0xF0, 1, Route1Rein, 4, 4) // Top 
+Reinforce(0xF1, 1, Route1Rein, 3, 3) // Middle 
+Reinforce(0xF2, 1, Route1Rein, 1, 3) // Bottom 
 NoFade 
 ENDA 
 
@@ -54,13 +54,14 @@ AFEV 0 RefreshIfNotInDanger 0
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
 END_MAIN
-
+#ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(11,0) 
 EscapeTileEntry(12,0) 
 EscapeTileEntry(12,39) 
 EscapeTileEntry(13,39) 
 EscapeTileTerminator ; } 
+#endif 
 
 ToPallet:
 ChapterTransition(PalletCh, 12, 1)
@@ -201,7 +202,7 @@ UNIT
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
@@ -224,7 +225,7 @@ UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0
 UNIT
 
 EnemyTrainersA:
-//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
 UNIT
 
 NPCUnits:
@@ -249,7 +250,7 @@ UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0
 UNIT
 
 Route1Rein:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 

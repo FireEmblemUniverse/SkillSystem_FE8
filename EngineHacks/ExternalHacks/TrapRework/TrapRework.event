@@ -296,6 +296,8 @@
 	
 	
 	#define RemoveTrapAtCoords(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
+	#define RemoveTrap(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
+	
 	#define RemoveTrap "ASMC RemoveTrapAtCoordsASMC"
 	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
 	#define GetTrapExt1At(X,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"

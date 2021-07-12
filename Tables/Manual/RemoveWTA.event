@@ -1,0 +1,10 @@
+PUSH
+
+//Move to extended area  (MoveToFreeSapceForm) =Move to extended area FE8Hack.gba 2021-07-12 9:10:04 AM
+ORG $59BA98
+BYTE  $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+//Weapon Triangle  (ItemWeaponTriangleForm) @00 Sword -> 01 Lance2021-07-12 9:10:20 AM
+ORG $59BA90
+BYTE  $09 $0C $F1 $FF;
+
+POP 

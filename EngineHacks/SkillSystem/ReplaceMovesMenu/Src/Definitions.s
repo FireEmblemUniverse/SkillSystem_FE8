@@ -1,7 +1,7 @@
 
 .include "FE-CLib-master/reference/FE8U-20190316.s"
 
-@ Vanilla function declarations:
+//@ Vanilla function declarations:
 
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
 
@@ -26,7 +26,12 @@ SET_FUNC RTextLeft, (0x080893B4+1)
 SET_FUNC RTextRight, (0x080893E4+1)
 
 
-@ Data declarations:
+
+
+//@ Data declarations:
+
+SET_DATA gVeslyUnit, 0x30017BC
+SET_DATA gVeslySkill, 0x0202BCDE
 
 SET_DATA SpellsBuffer, 0x202B6D0
 
@@ -45,7 +50,7 @@ SET_DATA gBG0MapBuffer, 0x02022CA8
 SET_DATA gpCurrentRound, 0x0203A608
 
 
-@ Autohooks:
+//@ Autohooks:
 
 SET_FUNC NewGetUnitEquippedWeapon, (0x08016B28+1)
 

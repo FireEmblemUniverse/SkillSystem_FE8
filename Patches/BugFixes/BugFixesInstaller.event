@@ -9,10 +9,27 @@ BYTE 0x00 0x00 0x00 0x00
 ORG 0x736DA 
 BYTE 0x18 0x7A
 
+// Battle anims off - always use portrait id 1 (for leveling up)
+// by Tequila  
+ORG 0x7F264 
+BYTE 0x01 0x21 
+
+
+// Disable sound room by Aera 
+ORG 0x0AB920
+BYTE 0x00 0x00 0x00 0x20
+
+// Disable Link Arena, Map and Transfer options.
+// Credit to Aera.
+  ORG 0xAB917
+  BYTE 0xE0
+  ORG 0xAB94D
+  BYTE 0xE0
+  ORG 0xAB95F
+  BYTE 0xE0
 
 
 //AUTHOR=7743
-
 //Prevent Freeze For Camera Event 0x26.
 ORG 0xF25C 
 BYTE 0x00 0x20
