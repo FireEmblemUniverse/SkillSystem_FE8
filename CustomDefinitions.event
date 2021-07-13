@@ -1,14 +1,14 @@
 //#define FreeSpace 0xb2a610
 //#define FreeSpaceBLRange 0x1c1ec0
 
-#define FreeSpace 0x01000000
+#define FreeSpace 0x01081420
 #define FreeSpaceBLRange 0x1c1ec0
 
 #define ChapterTileset(chapter, object, palette, config) "PUSH; ORG 0x8b0890 + (148* chapter) + 4; SHORT object; BYTE palette config; POP"
 #define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
 
-
-
+// title screen area 
+		//PROTECT $C5724 $C579F
 
 #ifndef ClassAnimTable
     #define ClassAnimTable (0xc00008-0x20)

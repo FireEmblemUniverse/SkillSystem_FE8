@@ -1,6 +1,7 @@
-#include "Default/ChapterTitles.txt"
-
-#include "default/default.txt" 
+#include "Vanilla/ChapterTitles.txt"
+#include "Vanilla/Songs.txt"
+#include "Vanilla/Shops.txt"
+#include "Vanilla/default.txt" 
 
 
 #include "ClassesCharsItems/Characters.txt"

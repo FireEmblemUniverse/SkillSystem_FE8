@@ -92,10 +92,7 @@ BerryTreeHealEffect:
 push {r4-r6,r14}
 mov r4,r0 @r4 = unit
 mov r5,r1 @r5 = heal %
-mov r5, #50
-ldr r2, =MemorySlot0 
-str r0, [r2, #4*0x08] @ @[0x30004D8]!!
-b NoHeal
+
 
 ldr r2, [r4] @ Char pointer 
 ldrb r2, [r2, #4] @Char ID 

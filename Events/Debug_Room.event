@@ -198,8 +198,11 @@ Traps2:
 ENDTRAP
 ALIGN 4
 
+#define DebugModeFlag 0xAF 
+
 BeginningScene:
 ENUT CasualModeFlag
+ENUT DebugModeFlag
 ENUF SkipIntroFlag
 Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 

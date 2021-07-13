@@ -51,10 +51,12 @@ CheckIfNoPlayerUnits:
 // I don't know why. I tried searching in files for 0x18F and 0x190 where the routine seems 
 // to be at 19240, but found nothing. See the feb patch if this behaviour is desired. 
 // This just turns on the game over flag if there are no player units 
-SVAL rC 0xFF 
-GetUnitStatus(0x101, Level)
-SVAL r1 0xFF 
-BNE 0 rC r1 
+SVAL rC 0x0 
+
+CHECK_CLASS 0x102 // Can still check dying unit, but since they're dying 
+					// we check if there's 2 or more units in the party. 
+					// If it's your only unit, game over. 
+BNE 0 rC r0 
 ENUT 0x65 
 LABEL 0 
 NoFade 
@@ -64,6 +66,7 @@ ENDA
 GlobalAfev:
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
+				// 		Eg. if not player, ENDB 
 NoFade
 ENDA 
 

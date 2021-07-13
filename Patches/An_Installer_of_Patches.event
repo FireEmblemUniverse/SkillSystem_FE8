@@ -15,6 +15,9 @@
 
 #include "DangerRadius/FogDR.event" 
 #include "MultiTileMarker/MultiTileMarker_Install.event"
+#include "FixedDamageWeapons/FixedDamageWeaponsInstaller.event"
+
+#include "BugFixes/BugFixesInstaller.event" 
 
 
 
@@ -34,14 +37,14 @@
 
 #include "GroupAI/GroupAI.event"
 
-#include "FixedDamageWeapons/FixedDamageWeaponsInstaller.event"
+
 
 
 #include "EscapeArrive/EscapeMenu/EA.txt"
 
-#include "FreeMovement/FreeMovement.event"
+//#include "FreeMovement/FreeMovement.event"
 
-#include "FreeMovement/MakeShopASMC.lyn.event"
+//#include "FreeMovement/MakeShopASMC.lyn.event"
 
 #include "FatesExp/Installer.event"
 
@@ -63,14 +66,16 @@
 
 
 // misc QoL
-#include "BugFixes/BugFixesInstaller.event" 
 
 
-#include "FillAIRangeMapFix/FillAIDangerMap.event"
+
+//#include "FillAIRangeMapFix/FillAIDangerMap.event"
 
 
 #include "TutorialDisabler.event"
-#include "Less Annoying Fog/Less Annoying Fog Installer.event"
+
+// Conflicts and I don't use fog anyway 
+//#include "Less Annoying Fog/Less Annoying Fog Installer.event"
 
 #include "SkipOpening.event"
 #include "DifficultySelection.event"

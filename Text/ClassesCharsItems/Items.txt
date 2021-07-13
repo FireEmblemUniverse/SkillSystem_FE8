@@ -69,7 +69,7 @@ Explosion[X]
 # 0x0361
 Flash[X]
 # 0x0362
-Fury (magic)[X]
+Fury [X]
 # 0x0363
 Glare[X]
 # 0x0364
@@ -80,15 +80,15 @@ Growth[X]
 Vine Whip[X]
 # 0x0367
 Haze[X]
-# 0x0368
+# 0x0368 *
 Double Kick[X]
-# 0x0369
+# 0x0369 *
 Guillotine[X]
 # 0x036A
 Headbutt[X]
-# 0x036B
+# 0x036B *
 Horn Attack[X]
-# 0x036C
+# 0x036C *
 Horn Drill[X]
 # 0x036D
 Hyper Beam[X]
@@ -130,7 +130,7 @@ Rage[X]
 Recover[X]
 # 0x0380
 Roar[X]
-# 0x0381
+# 0x0381 *
 Sand-Attack[X]
 # 0x0382
 Scratch[X]
@@ -187,7 +187,7 @@ Low Kick[X]
 # 0x039C
 Nightmare[.][X]
 # 0x039D
-T[0x0088][0x0096][0x008B][0x0084][0x0085][0x008F][0x00AD][0x0088][0x008C][0x0083][0x008A][X]
+Thundershock[X]
 # 0x039E
 Acid[X]
 # 0x039F

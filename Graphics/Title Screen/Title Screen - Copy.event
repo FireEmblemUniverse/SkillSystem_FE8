@@ -1,0 +1,19 @@
+
+ALIGN 4
+GameLogo:
+#incbin "Dmp/Logo.dmp"
+
+ALIGN 4
+GameTitle:
+#incbin "Dmp/EmptyScroll.dmp"
+
+PUSH
+ORG 0xC5808
+POIN GameLogo
+
+ORG 0xC5830
+POIN GameTitle
+POP
+
+
+#include "256 cols/titlebackgroundinstaller.event"

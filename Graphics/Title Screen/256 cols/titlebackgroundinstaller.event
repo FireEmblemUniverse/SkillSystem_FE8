@@ -26,6 +26,7 @@
 	
 	//make an alternative option to just skip the problematic part?
 	
+
 	
 	PUSH
 	//draw our thing instead of the regular background
@@ -33,7 +34,8 @@
 	//skip a bunch of stuff
 	ORG $C5738; SHORT 0xE030
 	ORG $C57A8; SHORT 0xE048
-	ORG $C579E; SHORT 0x46C0
+	ORG $C579E; SHORT 0x46C0 
+
 	//ORG $C5894; SHORT 0x46C0
 	//ORG $C625E; SHORT 0x46C0 0x46C0
 	POP

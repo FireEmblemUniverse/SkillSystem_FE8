@@ -1,6 +1,9 @@
 #ifdef _FE8_
     #include "EAstdlib.event"
     #include "CustomDefinitions.event"
+	
+	ORG 0x01000000
+	#include "Music/FEBuilder_Pokemblem_Music_Dump.event"
 //PROTECT $25224
     ORG FreeSpace
 
