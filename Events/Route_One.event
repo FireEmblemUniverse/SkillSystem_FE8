@@ -159,13 +159,8 @@ ENUN
 AutoLevelUnits(5, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
+CALL SetBushHpEvent
 
-SetUnitStatus(0xF0, AI2Counter, 5)
-SetUnitStatus(0xF1, AI2Counter, 5)
-SetUnitStatus(0xF2, AI2Counter, 5)
-SetUnitStatus(0xF0, CurrentHP, 1)
-SetUnitStatus(0xF1, CurrentHP, 1)
-SetUnitStatus(0xF2, CurrentHP, 1)
 LABEL 0x63
 NoFade
 ENDA

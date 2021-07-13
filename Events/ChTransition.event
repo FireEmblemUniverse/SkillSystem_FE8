@@ -38,12 +38,38 @@ ENDA
 
 GenericAutolevelEvent:
 // Check difficulty 
-AutoLevelUnits(1, False, 0x90EF) // Not wilds given +1 invisible levels 
-AutoLevelUnits(6, False, 0x90EF) // Not wilds given +6 invisible levels 
-AutoLevelUnits(11, False, 0x90EF) // Not wilds given +11 invisible levels 
-
+CHECK_TUTORIAL
+BEQ 0 rC r0 
+AutoLevelUnits(1, False, 0x90EF) // Not wilds given +1 invisible levels on easy 
+GOTO 0x63 
+LABEL 0 
+CHECK_HARD 
+BEQ 1 rC r0 
+AutoLevelUnits(11, False, 0x90EF) // Not wilds given +11 invisible levels on hard 
+GOTO 0x63 
+LABEL 1 
+AutoLevelUnits(6, False, 0x90EF) // Not wilds given +6 invisible levels on normal 
+LABEL 0x63 
 NoFade 
 ENDA 
+
+ALIGN 4
+SetBushHpEvent:
+// Terminates when no unit is found 
+SVAL r2 0xEF 
+SVAL r1 1 
+LABEL 0 // Loop Start 
+SADD r2 r2 r1 // current unit ID in r2 / counter 
+CHECK_EXISTS 0xF0 
+BEQ 0x63 rC r0 
+SetUnitStatus(0x7FFD, AI2Counter, 5)
+SetUnitStatus(0x7FFD, CurrentHP, 1)
+GOTO 0 
+LABEL 0x63 
+NoFade 
+ENDA 
+
+
 
 ALIGN 4
 CheckIfNoPlayerUnits:
@@ -58,6 +84,7 @@ CHECK_CLASS 0x102 // Can still check dying unit, but since they're dying
 					// If it's your only unit, game over. 
 BNE 0 rC r0 
 ENUT 0x65 
+ASMC 0xD391
 LABEL 0 
 NoFade 
 ENDA 
