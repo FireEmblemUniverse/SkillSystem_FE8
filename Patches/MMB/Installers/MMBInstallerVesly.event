@@ -40,20 +40,34 @@ After each set of module options are definitions that you can use to adjust the 
 	ALIGN 4
 
 	MMBTilemap:
-	BYTE (MMBWidth - 1) (MMBHeight - 1) // Don't touch these
+	BYTE (MMBWidth-1) (MMBHeight-1) // Don't touch these
+	
+	//MMBTilemap:
+	//BYTE (MMBWidth - 1) (MMBHeight - 1) // Don't touch these
 
 	// Edit this as you see fit
 	// The tilemap is 'upside-down' with the bottom row being first
 	// and the top row being last
 
-	SHORT $1A $1B $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $1D $1E $1F // Rows 8 (Bottom)
-	SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 7
-	SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 6
-	SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 5
-	SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $55 // Rows 4
-	SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $53 // Rows 3
-	SHORT $17 $18 $19 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $51 // Rows 2
-	SHORT $10 $11 $12 $13 $03 $03 $03 $03 $03 $03 $03 $03 $03 $03 $04 $05 // Rows 1 (Top)
+	//SHORT $1A $1B $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $1D $1E $1F // Rows 8 (Bottom)
+	//SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 7
+	//SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 6
+	//SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 5
+	//SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $55 // Rows 4
+	//SHORT $0B $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $53 // Rows 3
+	//SHORT $17 $18 $19 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $51 // Rows 2
+	//SHORT $10 $11 $12 $13 $03 $03 $03 $03 $03 $03 $03 $03 $03 $03 $04 $05 // Rows 1 (Top)
+
+// |0x400 is vertical flip, while |0x800 is horizontal flip 
+// but horizontal flip doesn't seem to work for some reason 
+	SHORT $00 $1B $1B $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $1D $1E $1F // Rows 8 (Bottom)
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 7
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 6
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 5
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $55 // Rows 4
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $53 // Rows 3
+	SHORT $00 $0E $0E $19 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $51 // Rows 2
+	SHORT $00 $0413 $11 $12 $13 $03 $03 $03 $03 $03 $03 $03 $03 $03 $04 $05 // Rows 1 (Top)
 
 	ALIGN 4
 
