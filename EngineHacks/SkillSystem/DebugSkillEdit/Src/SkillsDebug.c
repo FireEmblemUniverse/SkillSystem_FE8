@@ -1,7 +1,10 @@
 
-#include "gbafe.h"
+#include "FE-CLib-master/include/gbafe.h"
 
 enum { UNIT_SKILL_COUNT = 4 };
+#define BG_SYNC_BIT(aBg) (1 << (aBg))
+enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
+
 
 #define SKILL_ICON(aSkillId) ((1 << 8) + (aSkillId))
 

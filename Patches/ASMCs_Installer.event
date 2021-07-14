@@ -1,3 +1,5 @@
+
+#include "Commands/CallCommand/CallCommand.lyn.event"
 #include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
 #include "Commands/MemSlotString/MemSlotStringInstaller.event"
 #include "Commands/SetStatus/SetStatusInstaller.event"

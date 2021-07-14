@@ -57,10 +57,11 @@ ALIGN 4
 SetBushHpEvent:
 // Terminates when no unit is found 
 SVAL r2 0xEF 
-SVAL r1 1 
+SVAL r6 1 
 LABEL 0 // Loop Start 
-SADD r2 r2 r1 // current unit ID in r2 / counter 
-CHECK_EXISTS 0xF0 
+// SVAL rC 0 
+SADD r2 r2 r6 // current unit ID in r2 / counter 
+CHECK_EXISTS 0x7FFD 
 BEQ 0x63 rC r0 
 SetUnitStatus(0x7FFD, AI2Counter, 5)
 SetUnitStatus(0x7FFD, CurrentHP, 1)

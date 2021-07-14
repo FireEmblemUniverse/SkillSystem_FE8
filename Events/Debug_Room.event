@@ -213,8 +213,8 @@ Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(18, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(42, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(42, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -289,8 +289,8 @@ LABEL 0x63
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
 //MNC2 PokecenterCh 
-//MNC2 Route1Ch 
-MNC2 ViridianForestSCh
+MNC2 Route1Ch 
+//MNC2 ViridianForestSCh
 //MNC2 ViridianCh
 NoFade
 ENDA
