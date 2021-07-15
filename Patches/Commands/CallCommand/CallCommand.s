@@ -93,22 +93,17 @@ blh  0x080271a0   @SMS_UpdateFromGameData
 blh  0x08019c3c   @UpdateGameTilesGraphics
 
 
-@ ldr r3, =0x20255BB @ Idk if this was used at all 
+@ ldr r3, =0x20255BB @ Idk if this was used at all but this is what r3 
+					@ was when I broke in the vanilla function 
 ldr r0, =0x2025594 @ Idk, some ram location I guess 
-str r6, [r0, #0x2C] @ Eirika's unit struct
+str r6, [r0, #0x2C] @ Rescuee's unit struct
 mov r1, r0 
 add r1, #0x30 
 mov r2, r0
 add r2, #0x34 
-
-
-@ldr r0, =MemorySlot
-@str r0, [r0, #4*0x08] @ [0x30004D8]!!
-mov r0, r7 @ Seth's ram unit struct pointer 
+mov r0, r7 @ Rescuer's ram unit struct pointer 
 
 blh GetUnitDropLocation @ 184E0 
-
-
 ldr r0, =0x2025594 @ Idk, some ram location I guess 
 ldr r1, [r0, #0x30] @ X
 ldr r2, [r0, #0x34] @ Y 
