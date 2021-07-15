@@ -13,8 +13,8 @@ strb	r0,[r5,#0x1B] @allegiance byte
 strb	r0,[r4,#0x1B] @allegiance byte 
 
 
-@strb	r6,[r4,#0x10]
-@strb	r7,[r4,#0x11]
+strb	r6,[r4,#0x10]
+strb	r7,[r4,#0x11]
 
 ldrb	r0,[r4,#0x13]
 cmp		r0,#0x0

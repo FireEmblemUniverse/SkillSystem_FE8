@@ -4,56 +4,78 @@ import os
 import libimagequant as liq
 import png 
 
-dir_entries = scandir('raw/')
+directory = 'test batch/'
+directory = 'raw/'
+resize_portrait = (60,60)
+portrait_border_offset = (16,8)
+portrait_offset = (18,10)
+minimug_offset = (96,16)
+minimug_border_offset = (96,16)
+resize_minimug = (32,32)
+enable_portrait_bg = False 
+enable_portrait_border = False
+enable_minimug_border = True
+
+
+dir_entries = scandir(directory)
 for entry in dir_entries:
     if entry.is_file():
         info = entry.stat()
         print(f'{entry.name}')
 
 #step 1: open & resize image
-        im = Image.open(f"raw/{entry.name}")
-        if os.path.isfile(f"raw/minimugs/{entry.name}"):
-            im_mini = Image.open(f"raw/minimugs/{entry.name}")
+        
+        portrait_filename = directory + (f"{entry.name}")
+        minimug_filename = directory + "minimugs/" + (f"{entry.name}")
+        
+        im = Image.open(portrait_filename)
+        if os.path.isfile(minimug_filename):
+            im_mini = Image.open(minimug_filename)
         else:
             im_mini = im
 
 
 
-        resize_value = (60,67)
-        resize_value = (64,64)
-        #resize_value = (32,32)
-        offset = (16,4)
-        offset = (16,8)
-        #offset = (32,19)
-        minimug_offset = (96,16)
-        resize_minimug = (32,32) 
-
         mug = im
-        #mug = ImageEnhance.Contrast(im).enhance(0.6).convert('RGBA')
+        mug = ImageEnhance.Contrast(im).enhance(1.2)#.convert('RGBA')
         #mug = ImageEnhance.Brightness(mug).enhance(1.2)
 
 
-        mug = mug.resize(resize_value, Image.BICUBIC)#.quantize(16)
+        mug = mug.resize(resize_portrait, Image.LANCZOS) # NEAREST, BILINEAR, BICUBIC, LANCZOS 
         
 
         #minimug = ImageEnhance.Contrast(im).enhance(0.6).convert('RGBA')
         #minimug = ImageEnhance.Brightness(minimug).enhance(1.2)
         minimug = im_mini
 
-        minimug = minimug.resize(resize_minimug, Image.BICUBIC)#.quantize(16)
+        minimug = minimug.resize(resize_minimug, Image.BICUBIC)
 
 
         
         im_por_temp = Image.open("portrait template.png")
 
-        im_mask = Image.open("small portrait template.png").convert('L')
+        im_mask = Image.open("small portrait template.png")#.convert('L')
 
         im5 = Image.new("RGBA", im_por_temp.size)
+        portrait_border = Image.open("portrait border.png")
+        minimug_border = Image.open("minimug border.png")
 
-        im5.paste(mug, offset)
+        if enable_portrait_bg:
+            im5.paste(im_mask, portrait_border_offset, im_mask)# This gives each portrait a white BG 
 
 
-        im5.paste(minimug, minimug_offset)#.quantize(16)
+        im5.paste(mug, portrait_offset, mug)
+
+        if enable_portrait_border:
+            im5.paste(portrait_border, portrait_border_offset, portrait_border)
+        
+        #output = im5
+
+
+        im5.paste(minimug, minimug_offset, minimug)#.quantize(16)
+        if enable_minimug_border:
+            im5.paste(minimug_border, minimug_border_offset, minimug_border)
+
 
         img = im5
 
@@ -61,7 +83,7 @@ for entry in dir_entries:
 
 
 
-        img2 = png.Reader(f"raw/{entry.name}")
+        img2 = png.Reader(portrait_filename)
         width, height, data, info = img2.read_flat()
 
         input_image = attr.create_rgba(img.tobytes(), img.width, img.height, info.get('gamma', 0))
@@ -79,10 +101,23 @@ for entry in dir_entries:
             palette_data.append(color.g)
             palette_data.append(color.b)
             #palette_data.append(color.a)
+        # If index 0/1/2 is all white, then we don't adjust it
+        # Usually index 0/1/2 is the transparent bg colour 
+        if (palette_data[0] == 255):
+            if palette_data[1] == 255:
+                if palette_data[2] == 255:
+                    break
+        else:
+            palette_data[0] = 0
+            palette_data[1] = 255
+            palette_data[2] = 0
+
         out_img.putpalette(palette_data)
+        
+        
 
 
-        im5 = out_img.quantize(16)
+        im5 = out_img#.quantize(16)
 
         im5.save(f"Png/{entry.name}", quality=100, optimize=True)
 
