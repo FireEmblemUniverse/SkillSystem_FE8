@@ -15,6 +15,7 @@ resize_minimug = (32,32)
 enable_portrait_bg = False 
 enable_portrait_border = False
 enable_minimug_border = True
+mug_contrast = 0.8
 
 
 dir_entries = scandir(directory)
@@ -32,12 +33,12 @@ for entry in dir_entries:
         if os.path.isfile(minimug_filename):
             im_mini = Image.open(minimug_filename)
         else:
-            im_mini = im
+            im_mini = ImageEnhance.Contrast(im).enhance(mug_contrast)
 
 
 
         mug = im
-        mug = ImageEnhance.Contrast(im).enhance(1.2)#.convert('RGBA')
+        mug = ImageEnhance.Contrast(im).enhance(mug_contrast)#.convert('RGBA')
         #mug = ImageEnhance.Brightness(mug).enhance(1.2)
 
 
