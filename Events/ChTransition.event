@@ -95,6 +95,7 @@ GlobalAfev:
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 				// 		Eg. if not player, ENDB 
+		CALL RefreshIfNotInDanger
 NoFade
 ENDA 
 
@@ -316,9 +317,6 @@ NoFade
 ENDA 
 
 RefreshIfNotInDanger:
-SVAL r2 0 // Player allegiance 
-CALL 0x89EE1B8 // When matching allegiance stops in range 
-
 CHECK_EVENTID 1 
 BNE 63 rC r0 // if flag is ON,  skip everything 
 CHECK_COORDS 0x7FFF

@@ -7,6 +7,7 @@
 	gMapRange = 0x0202E4E4
 
 @.equ MemorySlot3,0x30004C4    @item ID to give @[0x30004C4]!!?
+@RefreshFogAndUnitMaps, 0x0801A1F5 
 
 	BmMapFill = 0x080197E4+1
 	FillRangeMapForDangerZone = 0x0801B810+1

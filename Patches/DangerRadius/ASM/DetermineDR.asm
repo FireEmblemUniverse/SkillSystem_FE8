@@ -14,13 +14,19 @@
 @   else
 @     Return
 .thumb
-
+	.equ MemorySlot,0x30004B8
+	
 push  {r4-r7,r14}
 mov   r4, r8
 mov   r5, r9
 mov   r6, r10
 mov   r7, r11
 push  {r4-r7}
+
+
+
+
+
 ldr   r0, =DRUnitByte
 lsl   r0, #0x5
 lsr   r0, #0x5
@@ -98,8 +104,8 @@ beq   L3
       ldr   r0, =FogMap
       ldr   r0, [r0]
       mov   r1, #0x0
-      ldr   r4, =ClearMapWith
-      bl    GOTO_R4
+      @ldr   r4, =ClearMapWith @ Is this not blh'd to in InitializeDR ? 
+      @bl    GOTO_R4
       mov   r0, #0x1
       neg   r0, r0
       
@@ -108,7 +114,7 @@ beq   L3
     ldrb  r2, [r1]
     add   r2, r0
     strb  r2, [r1]
-    bl    InitializeDR
+    bl    InitializeDR @ Vesly commented out 
     b     L2
 
 L3:

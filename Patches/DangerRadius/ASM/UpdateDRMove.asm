@@ -10,7 +10,7 @@ ldr   r5, [r5]
 mov   r0, r5
 ldr   r4, =ApplyUnitMovement
 bl    GOTO_R4
-
+@b NoDR
 
 @ Check for FOW.
 ldr   r0, =ChapterData
@@ -19,6 +19,7 @@ cmp   r0, #0x0
 bne   NoDR
 
   @ Update DR mid-action.
+  @ RefreshFogAndUnitMaps is hooked to do DetermineDR and InitializeDR etc. 
   ldr   r4, =RefreshFogAndUnitMaps
   bl    GOTO_R4
 

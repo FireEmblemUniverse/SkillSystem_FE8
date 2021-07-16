@@ -47,7 +47,7 @@ ldr		r2,[r2]			@Now we're at the beginning of the row data
 add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@load datum at those coordinates
 push {r0}
-mov r0, #0x00 @ Forest 
+mov r0, #0x00 @ -- tile
 strb r0, [r2] 
 @blh RefreshTerrainMap
 

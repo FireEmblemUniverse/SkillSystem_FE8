@@ -1,7 +1,7 @@
 @ Hook at RefreshFogAndUnitMaps.
 @ Updates the danger radius.
 .thumb
-
+	.equ MemorySlot,0x30004B8
 push {r4-r7,r14}
 mov   r4, r8
 mov   r5, r9
@@ -9,6 +9,44 @@ mov   r6, r10
 mov   r7, r11
 push  {r4-r7}
 
+ldr   r0, =ActiveUnit
+ldr   r0, [r0]
+ldrb r0, [r0, #0x0B] 
+lsr r0, #5 @ only want top two bits 
+cmp r0, #0
+bne ResetRamBit @ NPC / Enemy 
+
+ldr r2, =0x203A958 @ Action taken this turn 
+ldrb r1, [r2, #0x11] @ Action taken this turn 
+cmp r1, #0 @ No action taken yet so do DR stuff 
+beq ResetRamBit 
+
+ldr r2, =#0x30017ba @ ReturnTMRam 
+ldrb r1, [r2]
+cmp r1, #0 
+bne OnlyRefreshVanillaStuff
+add r1, #1 
+strb r1, [r2] 
+b DR 
+
+OnlyRefreshVanillaStuff:
+
+ldr   r4, =UpdateTrapFogVision
+bl    GOTO_R4
+ldr   r4, =UpdateUnitMapAndVision
+bl    GOTO_R4
+ldr   r4, =UpdateTrapHiddenStates
+bl    GOTO_R4
+
+b Return
+
+ResetRamBit:
+ldr r2, =#0x30017ba @ ReturnTMRam 
+mov r0, #0 
+strb r0, [r2] 
+
+@ Not using FOW so skip 
+b DR @ Vesly
 
 @ Check for FOW.
 ldr   r0, =ChapterData
@@ -33,6 +71,9 @@ beq   DR
 @ Check whether we should update Danger Radius or not.
 @ Is DR active?
 DR:
+ldr r0, =MemorySlot
+str r0, [r0, #4*0x08] @ [0x30004D8]!!
+
 ldr   r0, =DRCountByte
 lsl   r0, #0x5
 lsr   r5, r0, #0x5
@@ -40,7 +81,9 @@ ldrb  r2, [r5]
 cmp   r2, #0x0
 beq   NoDR
 
+
   @ Are we on playerphase?
+  @ If not, turn off DR 
   ldr   r2, =ChapterData
   ldrb  r2, [r2, #0xF]
   cmp   r2, #0x0
@@ -48,6 +91,7 @@ beq   NoDR
     
     @ None of the above.
     b     L1
+
 
 NoDR:
 @ Danger Radius not active/We're not playerphase/No enemies present.
@@ -68,6 +112,8 @@ mvn   r0, r0
 mov   r8, r0
 
 Loop:
+
+
   mov   r0, r6
   ldr   r4, =GetUnitStruct
   bl    GOTO_R4
@@ -98,12 +144,17 @@ bl    GOTO_R4
 L1:
 @ Previously overwritten.
 @ Fog is either present or not present.
-ldr   r4, =UpdateTrapFogVision
-bl    GOTO_R4
+@ Not using fog so sure 
+@ldr   r4, =UpdateTrapFogVision
+@bl    GOTO_R4
 ldr   r4, =UpdateUnitMapAndVision
 bl    GOTO_R4
 ldr   r4, =UpdateTrapHiddenStates
 bl    GOTO_R4
+
+@ Active unit isn't on the gMapUnit map, so this puts them there 
+@ Eg. without this part, it will display as if the enemy can walk through 
+@ you whenever you select anywhere 
 
 @ Re-add active unit to gMapUnit to update DR during movement.
 @ Check if there is an active unit.
@@ -184,6 +235,7 @@ ldr   r4, =UpdateUnitMapAndVision
 bl    GOTO_R4
 ldr   r4, =UpdateTrapHiddenStates
 bl    GOTO_R4
+
 
 
 Return:

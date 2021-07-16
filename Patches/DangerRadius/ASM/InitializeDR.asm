@@ -15,6 +15,7 @@ mov   r5, r6
 add   r5, #0x3E
 strb  r1, [r5]
 
+b L1 @ Vesly not using FOW 
 @ Check for FOW.
 ldr   r0, =ChapterData
 ldrb  r0, [r0, #0xD]

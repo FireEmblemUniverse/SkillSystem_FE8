@@ -56,6 +56,7 @@ PUSH
   ORG 0x1A20C
 	callHack_r0(UpdateDR)
 	SHORT 0xE008
+
   
   // Update DR after moving a unit
   // and before committing to an action.

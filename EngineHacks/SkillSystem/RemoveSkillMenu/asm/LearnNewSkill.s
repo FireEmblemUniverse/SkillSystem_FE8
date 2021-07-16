@@ -30,14 +30,10 @@ LearnNewSkill:
 
 	@ Call proc
 	ldr r0, lpProcLearnNewSkill
-
 	cmp r5, #0
 	bne blocking
-
 	mov r1, #3
-
 	_blh pr6C_New
-
 	b end
 
 blocking:

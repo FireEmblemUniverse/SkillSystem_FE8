@@ -142,18 +142,12 @@ ldr r2, = #0x30017b9 @ BerryDurabilityToggleRam
 ldrb r1, [r2]
 cmp r1, #0 
 beq SetBitA
-
-
 UnsetBitB:
 mov r0, #0 
 b StoreBitA
-
 SetBitA:
 mov r0, #1 
 b StoreBitA
-
-
-
 StoreBitA:
 @strb r0, [r2] 
 cmp r0, #0
@@ -161,7 +155,7 @@ bne NoHeal
 
 ldrb r2, [r6, #0x3]     @ # of berries 
 sub r2, #1 
-@strb r2, [r6, #0x3] @ take away a berry 
+strb r2, [r6, #0x3] @ take away a berry 
 
 
 NoHeal:
@@ -222,18 +216,11 @@ ldr r2, = #0x30017b9 @ BerryDurabilityToggleRam
 ldrb r1, [r2]
 cmp r1, #0 
 beq SetBit
-
-
 UnsetBit:
 mov r0, #0 
 b StoreBit
-
 SetBit:
 mov r0, #1 
-b StoreBit
-
-
-
 StoreBit:
 strb r0, [r2] 
 cmp r0, #0
