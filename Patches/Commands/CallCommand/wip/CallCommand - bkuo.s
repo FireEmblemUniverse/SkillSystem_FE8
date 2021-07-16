@@ -46,11 +46,6 @@ add		r2,r1			@so that we can get the correct row pointer
 ldr		r2,[r2]			@Now we're at the beginning of the row data
 add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@load datum at those coordinates
-
-ldrb r1, [r3, #0x1B] @ Current unit's rescued Deployment byte 
-lsl r0, #8 
-add r0, r1 
-
 push {r0}
 mov r0, #0x00 @ -- tile
 strb r0, [r2] 
@@ -82,15 +77,10 @@ mov r6, r0
 
 ldr r2, =CurrentUnit 
 ldr r2, [r2] @ Current unit ram struct pointer 
-
-push {r5}
-ldrb r0, [r6, #0x0B] @ Deployment byte 
-strb r0, [r2, #0x1B]
-mov r5, r0 @ Store whoever is being rescued lol 
-
-ldrb r0, [r2, #0x0B] @ Deployment byte 
-strb r0, [r6, #0x1B] @ 
-
+@ldrb r0, [r2, #0x0B] @ Deployment byte 
+@strb r0, [r6, #0x1B] @ 
+@ldrb r0, [r6, #0x0B] @ Deployment byte 
+@strb r0, [r2, #0x1B]
 @
 @
 @mov r1, #0x1D @ Rescuing someone, dead 
@@ -131,29 +121,21 @@ Continue:
 
 mov r7, r0 @ Proc pointer 
 
-@ldr r3, =CurrentUnit
-@ldr r3, [r3] @ Rescuer's ram unit struct pointer 
-
-str r6, [r0, #0x2C] @ First arg: Rescuee's unit struct [202BE94]
+str r6, [r0, #0x2C] @ First arg: Rescuee's unit struct
 mov r1, r0 
 add r1, #0x30 
 mov r2, r0
 add r2, #0x34 
 
 ldr r0, =CurrentUnit
-ldr r0, [r0] @ Rescuer's ram unit struct pointer [202BE4C]
+ldr r0, [r0] @ Rescuer's ram unit struct pointer 
 
 blh GetUnitDropLocation @ 184E0 
 mov r0, r7
 ldr r1, [r0, #0x30] @ X
 ldr r2, [r0, #0x34] @ Y 
 strb r1, [r6, #0x10] @ X
-strb r2, [r6, #0x11] @ Y
-
-
-strb r5, [r6, #0x1B] @ Deployment byte 
-pop {r5}
-
+strb r2, [r6, #0x11] @ Y 
 b LoopThroughFirst5Units
 	
 	@ 
@@ -181,13 +163,8 @@ ldr		r2,[r2]			@Now we're at the beginning of the row data
 add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@load datum at those coordinates
 pop {r0}
-
-lsr r1, r0, #8
-strb r1, [r2] @ Terrain restored 
-lsl r0, #24 
-lsr r0, #24 
-strb r0, [r3, #0x1B] @ Rescuer/ee restored 
-
+@mov r0, #0x00 @ Forest 
+strb r0, [r2] 
 
 
 	blh  0x0801a1f4   @RefreshFogAndUnitMaps
