@@ -1,4 +1,6 @@
 
+
+
 #include "ExpandAI/ExpandAI.event"
 #include "PrepScreen/PrepScreen.event"
 #include "CapturePokemon/CapturePokemonInstaller.event" 
@@ -20,6 +22,7 @@
 #include "BugFixes/BugFixesInstaller.event" 
 
 
+#include "VanillaFormulae/Installer.event" 
 
 
 

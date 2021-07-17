@@ -338,6 +338,11 @@ tGlyphEntry(0x97, Sglyph_v)
 tGlyphEntry(0x98, Sglyph_x)
 tGlyphEntry(0x99, Sglyph_y)
 tGlyphEntry(0x9A, Sglyph_z)
+
+//tGlyphEntry(0xB0, UpSglyph_x)
+//tGlyphEntry(0xB1, UpSglyph_y)
+//tGlyphEntry(0xB2, UpSglyph_z)
+
 tGlyphEntry(0xB3, Sglyph_bug)
 tGlyphEntry(0xB4, Sglyph_normal)
 tGlyphEntry(0xB5, Sglyph_ice)

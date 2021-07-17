@@ -23,13 +23,14 @@ ldsb	r1,[r4,r1]
 .short	0xF800
 cmp		r0,#0x0
 bne		GoBack
-mov		r0,r5
-ldr		r1,Can_Rescue_Check
-mov		r14,r1
-mov		r1,r4
-.short	0xF800
-cmp		r0,#0x0
-beq		GoBack				@can't capture if you can't rescue
+@ Vesly commented out so con is ignored 
+@mov		r0,r5
+@ldr		r1,Can_Rescue_Check
+@mov		r14,r1
+@mov		r1,r4
+@.short	0xF800
+@cmp		r0,#0x0
+@beq		GoBack				@can't capture if you can't rescue
 ldr		r0,Fill_Target_Queue
 mov		r14,r0
 ldrb	r0,[r4,#0x10]

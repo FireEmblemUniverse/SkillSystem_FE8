@@ -97,36 +97,36 @@ INLINE ClassLevelUpSkillTable,Skill Pointer
 0x5F Mogall,0x0
 0x60 Arch Mogall,0x0
 0x61 Gorgon,0x0
-0x62 Gorgon Egg,0x0
-0x63 Gargoyle,0x0
-0x64 Deathgoyle,0x0
-0x65 Dracozombie,0x0
-0x66 Demon King,0x0
-0x67 Archer on Ballista,0x0
-0x68 Archer on Iron Ballista,0x0
-0x69 Archer on Killer Ballista,0x0
-0x6A Ballista,0x0
-0x6B Iron Ballista,0x0
-0x6C Killer Ballista,0x0
-0x6D Civilian,0x0
-0x6E Civilian (F),0x0
-0x6F Civilian,0x0
-0x70 Civilian (F),0x0
-0x71 Civilian,0x0
-0x72 Civilian (F),0x0
-0x73 Peer,0x0
-0x74 Queen,0x0
-0x75 Prince,0x0
-0x76 Queen,0x0
-0x77 (empty),0x0
-0x78 Fallen Prince,0x0
-0x79 Tent,0x0
-0x7A Pontifex,0x0
-0x7B Fallen Peer,0x0
-0x7C Cyclops 2,0x0
-0x7D Elder Bael 2,0x0
-0x7E Journeyman (2),0x0
--,0x0
+0x62 Gorgon Egg,NPCObjectSkillList|IsPointer
+0x63 Gargoyle,NPCObjectSkillList|IsPointer
+0x64 Deathgoyle,NPCObjectSkillList|IsPointer
+0x65 Dracozombie,NPCObjectSkillList|IsPointer
+0x66 Demon King,NPCObjectSkillList|IsPointer
+0x67 Archer on Ballista,NPCObjectSkillList|IsPointer
+0x68 Archer on Iron Ballista,NPCObjectSkillList|IsPointer
+0x69 Archer on Killer Ballista,NPCObjectSkillList|IsPointer
+0x6A Ballista,NPCObjectSkillList|IsPointer
+0x6B Iron Ballista,NPCObjectSkillList|IsPointer
+0x6C Killer Ballista,NPCObjectSkillList|IsPointer
+0x6D Civilian,NPCObjectSkillList|IsPointer
+0x6E Civilian (F),NPCObjectSkillList|IsPointer
+0x6F Civilian,NPCObjectSkillList|IsPointer
+0x70 Civilian (F),NPCObjectSkillList|IsPointer
+0x71 Civilian,NPCObjectSkillList|IsPointer
+0x72 Civilian (F),NPCObjectSkillList|IsPointer
+0x73 Peer,NPCObjectSkillList|IsPointer
+0x74 Queen,NPCObjectSkillList|IsPointer
+0x75 Prince,NPCObjectSkillList|IsPointer
+0x76 Queen,NPCObjectSkillList|IsPointer
+0x77 (empty),NPCObjectSkillList|IsPointer
+0x78 Fallen Prince,NPCObjectSkillList|IsPointer
+0x79 Tent,NPCObjectSkillList|IsPointer
+0x7A Pontifex,NPCObjectSkillList|IsPointer
+0x7B Fallen Peer,NPCObjectSkillList|IsPointer
+0x7C Cyclops 2,NPCObjectSkillList|IsPointer
+0x7D Elder Bael 2,NPCObjectSkillList|IsPointer
+0x7E Journeyman (2),NPCObjectSkillList|IsPointer
+-,NPCObjectSkillList|IsPointer
 -,0x0
 -,0x0
 -,0x0

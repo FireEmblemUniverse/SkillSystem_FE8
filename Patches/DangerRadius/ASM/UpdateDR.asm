@@ -71,8 +71,6 @@ beq   DR
 @ Check whether we should update Danger Radius or not.
 @ Is DR active?
 DR:
-ldr r0, =MemorySlot
-str r0, [r0, #4*0x08] @ [0x30004D8]!!
 
 ldr   r0, =DRCountByte
 lsl   r0, #0x5

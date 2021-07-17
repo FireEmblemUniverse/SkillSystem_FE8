@@ -1,0 +1,27 @@
+// Hit rate & avoid formula by bpat 
+// > this does hit = 2.5*skill + 0.5*luck and avo = spd + 2*luck
+// made hitrate do skill*4 + 0.5*luck now 
+
+// I could instead do something like.. 
+// Weapon accuracy + ((wep acc * ((skill*2)+1)) / 100) + skill + (luk/2)
+
+
+
+
+PUSH 
+
+ORG $2ABB8
+jumpToHack(HitRateLabel)
+
+//ORG $2ABE8
+//jumpToHack(AvoidLabel)
+
+POP
+
+ALIGN 4
+HitRateLabel:
+#incbin "hitratehack.dmp"
+
+ALIGN 4
+AvoidLabel:
+#incbin "avoidhack.dmp"

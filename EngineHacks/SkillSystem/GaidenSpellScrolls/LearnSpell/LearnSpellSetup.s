@@ -90,6 +90,9 @@ end:
 @Store to s7 as break point: [0x30004D4]!!
 	.equ MemorySlot, 0x30004B8 
 exit:
+	@ cba making this work properly via storing to the proc fields 
+	@ so we're storing it to s6 and s7 instead
+	@ oh well 
 	ldr r1, =MemorySlot
 	str r2, [r1, #4*0x07]
 	str r3, [r1, #4*0x06]

@@ -25,7 +25,7 @@ mov r5, r1
 mov r2, #0x28 
 
 FindEmptyWEXPLoop:
-cmp r2, #0x2F 
+cmp r2, #0x2C @ We use first 5 ranks only 
 bge SetForForgetting 
 add r2, #1 
 ldrb r0, [r4, r2]

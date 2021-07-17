@@ -160,8 +160,7 @@ Tutorial:
 END_MAIN
 
 Units1:
-//UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x98,0x88,0x0] [0x0,0x0,0x0,0x0]
-UNIT Eirika  ButterfreeID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT Ephraim  BeedrillID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT Seth  GyaradosID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
@@ -213,8 +212,8 @@ Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(18, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -289,9 +288,9 @@ LABEL 0x63
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
 //MNC2 PokecenterCh 
-//MNC2 Route1Ch 
+MNC2 Route1Ch 
 //MNC2 ViridianForestSCh
-MNC2 ViridianCh
+//MNC2 ViridianCh
 NoFade
 ENDA
 

@@ -73,7 +73,7 @@ SkillListCommandSelect:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-@ SkillsDebug.c:851: }
+@ SkillsDebug.c:824: }
 	movs	r0, #0	@,
 	@ sp needed	@
 	bx	lr
@@ -89,23 +89,23 @@ MoveCommandSelect:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-@ SkillsDebug.c:920: 	*MemorySlot5 = proc->move_hovering; 
+@ SkillsDebug.c:893: 	*MemorySlot5 = proc->move_hovering; 
 	ldr	r3, [r0, #20]	@ menu_3(D)->parent, menu_3(D)->parent
-@ SkillsDebug.c:952: }
+@ SkillsDebug.c:925: }
 	@ sp needed	@
-@ SkillsDebug.c:920: 	*MemorySlot5 = proc->move_hovering; 
+@ SkillsDebug.c:893: 	*MemorySlot5 = proc->move_hovering; 
 	ldr	r2, [r3, #60]	@ _1, proc_4->move_hovering
-@ SkillsDebug.c:920: 	*MemorySlot5 = proc->move_hovering; 
+@ SkillsDebug.c:893: 	*MemorySlot5 = proc->move_hovering; 
 	ldr	r3, .L3	@ tmp119,
 	str	r2, [r3]	@ _1, MEM[(int *)50332876B]
-@ SkillsDebug.c:924: 	*MemorySlot6 = 1; // TRUE 
+@ SkillsDebug.c:897: 	*MemorySlot6 = 1; // TRUE 
 	movs	r2, #1	@ tmp121,
 	ldr	r3, .L3+4	@ tmp120,
-@ SkillsDebug.c:952: }
+@ SkillsDebug.c:925: }
 	movs	r0, #23	@,
-@ SkillsDebug.c:924: 	*MemorySlot6 = 1; // TRUE 
+@ SkillsDebug.c:897: 	*MemorySlot6 = 1; // TRUE 
 	str	r2, [r3]	@ tmp121, MEM[(int *)50332880B]
-@ SkillsDebug.c:952: }
+@ SkillsDebug.c:925: }
 	bx	lr
 .L4:
 	.align	2
@@ -124,14 +124,14 @@ SkillDebugMenuEnd:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SkillsDebug.c:1107:     EndFaceById(0);
+@ SkillsDebug.c:1080:     EndFaceById(0);
 	movs	r0, #0	@,
-@ SkillsDebug.c:1108: }
+@ SkillsDebug.c:1081: }
 	@ sp needed	@
-@ SkillsDebug.c:1107:     EndFaceById(0);
+@ SkillsDebug.c:1080:     EndFaceById(0);
 	ldr	r3, .L6	@ tmp114,
 	bl	.L8		@
-@ SkillsDebug.c:1108: }
+@ SkillsDebug.c:1081: }
 	pop	{r4}
 	pop	{r0}
 	bx	r0
@@ -145,53 +145,53 @@ SkillDebugMenuEnd:
 	.code	16
 	.thumb_func
 	.fpu softvfp
-	.type	List_8_Idle, %function
-List_8_Idle:
+	.type	List_5_Idle, %function
+List_5_Idle:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:521:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:445:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:523: 	if (proc->move_hovering != 7)
+@ SkillsDebug.c:447: 	if (proc->move_hovering != 4)
 	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:520: {
+@ SkillsDebug.c:444: {
 	push	{r4, lr}	@
-@ SkillsDebug.c:522:     u8* const moves = UnitGetMoveList(proc->unit);	
+@ SkillsDebug.c:446:     u8* const moves = UnitGetMoveList(proc->unit);		
 	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:520: {
+@ SkillsDebug.c:444: {
 	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:523: 	if (proc->move_hovering != 7)
-	cmp	r1, #7	@ tmp154,
+@ SkillsDebug.c:447: 	if (proc->move_hovering != 4)
+	cmp	r1, #4	@ tmp154,
 	beq	.L10		@,
-@ SkillsDebug.c:525: 		proc->hover_move_Updated = TRUE;
+@ SkillsDebug.c:449: 		proc->hover_move_Updated = TRUE;
 	movs	r1, #1	@ tmp130,
 	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:526: 		proc->move_hovering = 7;
-	adds	r1, r1, #6	@ tmp131,
+@ SkillsDebug.c:450: 		proc->move_hovering = 4;
+	adds	r1, r1, #3	@ tmp131,
 	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
 .L10:
-@ SkillsDebug.c:528: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+@ SkillsDebug.c:452: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldr	r1, .L18	@ tmp132,
-@ SkillsDebug.c:528: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+@ SkillsDebug.c:452: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldrh	r1, [r1, #6]	@ tmp134,
 	lsls	r1, r1, #23	@ tmp153, tmp134,
 	bpl	.L11		@,
-@ SkillsDebug.c:529: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:453: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
 	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
 	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:529: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:453: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldrb	r0, [r3]	@ *_6, *_6
 	ldr	r3, .L18+4	@ tmp146,
 	bl	.L8		@
-@ SkillsDebug.c:529: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:453: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	lsls	r1, r0, #16	@ tmp147, tmp152,
 	ldr	r3, .L18+8	@ tmp149,
 	movs	r0, r4	@, menu
 	lsrs	r1, r1, #16	@ tmp147, tmp147,
 	bl	.L8		@
 .L11:
-@ SkillsDebug.c:532: }
+@ SkillsDebug.c:456: }
 	@ sp needed	@
 	movs	r0, #0	@,
 	pop	{r4}
@@ -200,198 +200,6 @@ List_8_Idle:
 .L19:
 	.align	2
 .L18:
-	.word	gKeyState
-	.word	GetItemDescId
-	.word	MenuCallHelpBox
-	.size	List_8_Idle, .-List_8_Idle
-	.align	1
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	List_7_Idle, %function
-List_7_Idle:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:506:     struct SkillDebugProc* const proc = (void*) menu->parent;
-	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:508: 	if (proc->move_hovering != 6)
-	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:505: {
-	push	{r4, lr}	@
-@ SkillsDebug.c:507:     u8* const moves = UnitGetMoveList(proc->unit);	
-	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:505: {
-	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:508: 	if (proc->move_hovering != 6)
-	cmp	r1, #6	@ tmp154,
-	beq	.L21		@,
-@ SkillsDebug.c:510: 		proc->hover_move_Updated = TRUE;
-	movs	r1, #1	@ tmp130,
-	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:511: 		proc->move_hovering = 6;
-	adds	r1, r1, #5	@ tmp131,
-	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
-.L21:
-@ SkillsDebug.c:513: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L29	@ tmp132,
-@ SkillsDebug.c:513: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldrh	r1, [r1, #6]	@ tmp134,
-	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L22		@,
-@ SkillsDebug.c:514: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
-	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
-	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:514: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L29+4	@ tmp146,
-	bl	.L8		@
-@ SkillsDebug.c:514: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L29+8	@ tmp149,
-	movs	r0, r4	@, menu
-	lsrs	r1, r1, #16	@ tmp147, tmp147,
-	bl	.L8		@
-.L22:
-@ SkillsDebug.c:517: }
-	@ sp needed	@
-	movs	r0, #0	@,
-	pop	{r4}
-	pop	{r1}
-	bx	r1
-.L30:
-	.align	2
-.L29:
-	.word	gKeyState
-	.word	GetItemDescId
-	.word	MenuCallHelpBox
-	.size	List_7_Idle, .-List_7_Idle
-	.align	1
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	List_6_Idle, %function
-List_6_Idle:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:487:     struct SkillDebugProc* const proc = (void*) menu->parent;
-	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:489: 	if (proc->move_hovering != 5)
-	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:486: {
-	push	{r4, lr}	@
-@ SkillsDebug.c:488:     u8* const moves = UnitGetMoveList(proc->unit);	
-	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:486: {
-	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:489: 	if (proc->move_hovering != 5)
-	cmp	r1, #5	@ tmp154,
-	beq	.L32		@,
-@ SkillsDebug.c:491: 		proc->hover_move_Updated = TRUE;
-	movs	r1, #1	@ tmp130,
-	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:492: 		proc->move_hovering = 5;
-	adds	r1, r1, #4	@ tmp131,
-	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
-.L32:
-@ SkillsDebug.c:495: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L40	@ tmp132,
-@ SkillsDebug.c:495: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldrh	r1, [r1, #6]	@ tmp134,
-	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L33		@,
-@ SkillsDebug.c:496: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
-	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
-	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:496: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L40+4	@ tmp146,
-	bl	.L8		@
-@ SkillsDebug.c:496: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L40+8	@ tmp149,
-	movs	r0, r4	@, menu
-	lsrs	r1, r1, #16	@ tmp147, tmp147,
-	bl	.L8		@
-.L33:
-@ SkillsDebug.c:501: }
-	@ sp needed	@
-	movs	r0, #0	@,
-	pop	{r4}
-	pop	{r1}
-	bx	r1
-.L41:
-	.align	2
-.L40:
-	.word	gKeyState
-	.word	GetItemDescId
-	.word	MenuCallHelpBox
-	.size	List_6_Idle, .-List_6_Idle
-	.align	1
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	List_5_Idle, %function
-List_5_Idle:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:472:     struct SkillDebugProc* const proc = (void*) menu->parent;
-	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:474: 	if (proc->move_hovering != 4)
-	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:471: {
-	push	{r4, lr}	@
-@ SkillsDebug.c:473:     u8* const moves = UnitGetMoveList(proc->unit);		
-	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:471: {
-	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:474: 	if (proc->move_hovering != 4)
-	cmp	r1, #4	@ tmp154,
-	beq	.L43		@,
-@ SkillsDebug.c:476: 		proc->hover_move_Updated = TRUE;
-	movs	r1, #1	@ tmp130,
-	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:477: 		proc->move_hovering = 4;
-	adds	r1, r1, #3	@ tmp131,
-	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
-.L43:
-@ SkillsDebug.c:479: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L51	@ tmp132,
-@ SkillsDebug.c:479: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldrh	r1, [r1, #6]	@ tmp134,
-	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L44		@,
-@ SkillsDebug.c:480: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
-	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
-	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:480: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L51+4	@ tmp146,
-	bl	.L8		@
-@ SkillsDebug.c:480: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L51+8	@ tmp149,
-	movs	r0, r4	@, menu
-	lsrs	r1, r1, #16	@ tmp147, tmp147,
-	bl	.L8		@
-.L44:
-@ SkillsDebug.c:483: }
-	@ sp needed	@
-	movs	r0, #0	@,
-	pop	{r4}
-	pop	{r1}
-	bx	r1
-.L52:
-	.align	2
-.L51:
 	.word	gKeyState
 	.word	GetItemDescId
 	.word	MenuCallHelpBox
@@ -406,56 +214,56 @@ List_4_Idle:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:456:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:429:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:458: 	if (proc->move_hovering != 3)
+@ SkillsDebug.c:431: 	if (proc->move_hovering != 3)
 	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:455: {
+@ SkillsDebug.c:428: {
 	push	{r4, lr}	@
-@ SkillsDebug.c:457:     u8* const moves = UnitGetMoveList(proc->unit);		
+@ SkillsDebug.c:430:     u8* const moves = UnitGetMoveList(proc->unit);		
 	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:455: {
+@ SkillsDebug.c:428: {
 	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:458: 	if (proc->move_hovering != 3)
+@ SkillsDebug.c:431: 	if (proc->move_hovering != 3)
 	cmp	r1, #3	@ tmp154,
-	beq	.L54		@,
-@ SkillsDebug.c:460: 		proc->hover_move_Updated = TRUE;
+	beq	.L21		@,
+@ SkillsDebug.c:433: 		proc->hover_move_Updated = TRUE;
 	movs	r1, #1	@ tmp130,
 	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:461: 		proc->move_hovering = 3;
+@ SkillsDebug.c:434: 		proc->move_hovering = 3;
 	adds	r1, r1, #2	@ tmp131,
 	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
-.L54:
-@ SkillsDebug.c:464: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L62	@ tmp132,
-@ SkillsDebug.c:464: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+.L21:
+@ SkillsDebug.c:437: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+	ldr	r1, .L29	@ tmp132,
+@ SkillsDebug.c:437: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldrh	r1, [r1, #6]	@ tmp134,
 	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L55		@,
-@ SkillsDebug.c:465: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+	bpl	.L22		@,
+@ SkillsDebug.c:438: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
 	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
 	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:465: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:438: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L62+4	@ tmp146,
+	ldr	r3, .L29+4	@ tmp146,
 	bl	.L8		@
-@ SkillsDebug.c:465: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:438: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L62+8	@ tmp149,
+	ldr	r3, .L29+8	@ tmp149,
 	movs	r0, r4	@, menu
 	lsrs	r1, r1, #16	@ tmp147, tmp147,
 	bl	.L8		@
-.L55:
-@ SkillsDebug.c:468: }
+.L22:
+@ SkillsDebug.c:441: }
 	@ sp needed	@
 	movs	r0, #0	@,
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L63:
+.L30:
 	.align	2
-.L62:
+.L29:
 	.word	gKeyState
 	.word	GetItemDescId
 	.word	MenuCallHelpBox
@@ -470,56 +278,56 @@ List_3_Idle:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:438:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:411:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:440: 	if (proc->move_hovering != 2)
+@ SkillsDebug.c:413: 	if (proc->move_hovering != 2)
 	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:437: {
+@ SkillsDebug.c:410: {
 	push	{r4, lr}	@
-@ SkillsDebug.c:439:     u8* const moves = UnitGetMoveList(proc->unit);		
+@ SkillsDebug.c:412:     u8* const moves = UnitGetMoveList(proc->unit);		
 	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:437: {
+@ SkillsDebug.c:410: {
 	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:440: 	if (proc->move_hovering != 2)
+@ SkillsDebug.c:413: 	if (proc->move_hovering != 2)
 	cmp	r1, #2	@ tmp154,
-	beq	.L65		@,
-@ SkillsDebug.c:442: 		proc->hover_move_Updated = TRUE;
+	beq	.L32		@,
+@ SkillsDebug.c:415: 		proc->hover_move_Updated = TRUE;
 	movs	r1, #1	@ tmp130,
 	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:443: 		proc->move_hovering = 2;
+@ SkillsDebug.c:416: 		proc->move_hovering = 2;
 	adds	r1, r1, r1	@ tmp131, tmp131,
 	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
-.L65:
-@ SkillsDebug.c:445: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L73	@ tmp132,
-@ SkillsDebug.c:445: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+.L32:
+@ SkillsDebug.c:418: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+	ldr	r1, .L40	@ tmp132,
+@ SkillsDebug.c:418: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldrh	r1, [r1, #6]	@ tmp134,
 	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L66		@,
-@ SkillsDebug.c:446: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+	bpl	.L33		@,
+@ SkillsDebug.c:419: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
 	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
 	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:446: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:419: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L73+4	@ tmp146,
+	ldr	r3, .L40+4	@ tmp146,
 	bl	.L8		@
-@ SkillsDebug.c:446: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:419: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L73+8	@ tmp149,
+	ldr	r3, .L40+8	@ tmp149,
 	movs	r0, r4	@, menu
 	lsrs	r1, r1, #16	@ tmp147, tmp147,
 	bl	.L8		@
-.L66:
-@ SkillsDebug.c:452: }
+.L33:
+@ SkillsDebug.c:425: }
 	@ sp needed	@
 	movs	r0, #0	@,
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L74:
+.L41:
 	.align	2
-.L73:
+.L40:
 	.word	gKeyState
 	.word	GetItemDescId
 	.word	MenuCallHelpBox
@@ -534,55 +342,55 @@ List_2_Idle:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:422:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:395:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:424: 	if (proc->move_hovering != 1)
+@ SkillsDebug.c:397: 	if (proc->move_hovering != 1)
 	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:421: {
+@ SkillsDebug.c:394: {
 	push	{r4, lr}	@
-@ SkillsDebug.c:423:     u8* const moves = UnitGetMoveList(proc->unit);		
+@ SkillsDebug.c:396:     u8* const moves = UnitGetMoveList(proc->unit);		
 	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:421: {
+@ SkillsDebug.c:394: {
 	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:424: 	if (proc->move_hovering != 1)
+@ SkillsDebug.c:397: 	if (proc->move_hovering != 1)
 	cmp	r1, #1	@ tmp154,
-	beq	.L76		@,
-@ SkillsDebug.c:426: 		proc->hover_move_Updated = TRUE;
+	beq	.L43		@,
+@ SkillsDebug.c:399: 		proc->hover_move_Updated = TRUE;
 	movs	r1, #1	@ tmp130,
 	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:427: 		proc->move_hovering = 1;
+@ SkillsDebug.c:400: 		proc->move_hovering = 1;
 	str	r1, [r2, #60]	@ tmp130, proc_15->move_hovering
-.L76:
-@ SkillsDebug.c:430: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L84	@ tmp132,
-@ SkillsDebug.c:430: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+.L43:
+@ SkillsDebug.c:403: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+	ldr	r1, .L51	@ tmp132,
+@ SkillsDebug.c:403: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldrh	r1, [r1, #6]	@ tmp134,
 	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L77		@,
-@ SkillsDebug.c:431: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+	bpl	.L44		@,
+@ SkillsDebug.c:404: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
 	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
 	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:431: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:404: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L84+4	@ tmp146,
+	ldr	r3, .L51+4	@ tmp146,
 	bl	.L8		@
-@ SkillsDebug.c:431: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:404: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L84+8	@ tmp149,
+	ldr	r3, .L51+8	@ tmp149,
 	movs	r0, r4	@, menu
 	lsrs	r1, r1, #16	@ tmp147, tmp147,
 	bl	.L8		@
-.L77:
-@ SkillsDebug.c:434: }
+.L44:
+@ SkillsDebug.c:407: }
 	@ sp needed	@
 	movs	r0, #0	@,
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L85:
+.L52:
 	.align	2
-.L84:
+.L51:
 	.word	gKeyState
 	.word	GetItemDescId
 	.word	MenuCallHelpBox
@@ -597,56 +405,56 @@ List_1_Idle:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SkillsDebug.c:405:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:378:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	ldr	r2, [r0, #20]	@ proc, menu_14(D)->parent
-@ SkillsDebug.c:407: 	if (proc->move_hovering != 0)
+@ SkillsDebug.c:380: 	if (proc->move_hovering != 0)
 	ldr	r1, [r2, #60]	@ tmp154, proc_15->move_hovering
-@ SkillsDebug.c:404: {
+@ SkillsDebug.c:377: {
 	push	{r4, lr}	@
-@ SkillsDebug.c:406:     u8* const moves = UnitGetMoveList(proc->unit);		
+@ SkillsDebug.c:379:     u8* const moves = UnitGetMoveList(proc->unit);		
 	ldr	r3, [r2, #44]	@ _1, proc_15->unit
-@ SkillsDebug.c:404: {
+@ SkillsDebug.c:377: {
 	movs	r4, r0	@ menu, tmp151
-@ SkillsDebug.c:407: 	if (proc->move_hovering != 0)
+@ SkillsDebug.c:380: 	if (proc->move_hovering != 0)
 	cmp	r1, #0	@ tmp154,
-	beq	.L87		@,
-@ SkillsDebug.c:409: 		proc->hover_move_Updated = TRUE;
+	beq	.L54		@,
+@ SkillsDebug.c:382: 		proc->hover_move_Updated = TRUE;
 	movs	r1, #1	@ tmp130,
 	str	r1, [r2, #56]	@ tmp130, proc_15->hover_move_Updated
-@ SkillsDebug.c:410: 		proc->move_hovering = 0;
+@ SkillsDebug.c:383: 		proc->move_hovering = 0;
 	movs	r1, #0	@ tmp131,
 	str	r1, [r2, #60]	@ tmp131, proc_15->move_hovering
-.L87:
-@ SkillsDebug.c:413: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r1, .L95	@ tmp132,
-@ SkillsDebug.c:413: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+.L54:
+@ SkillsDebug.c:386: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+	ldr	r1, .L62	@ tmp132,
+@ SkillsDebug.c:386: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldrh	r1, [r1, #6]	@ tmp134,
 	lsls	r1, r1, #23	@ tmp153, tmp134,
-	bpl	.L88		@,
-@ SkillsDebug.c:414: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+	bpl	.L55		@,
+@ SkillsDebug.c:387: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldr	r2, [r2, #60]	@ proc_15->move_hovering, proc_15->move_hovering
 	adds	r3, r3, r2	@ tmp141, _1, proc_15->move_hovering
 	adds	r3, r3, #40	@ tmp144,
-@ SkillsDebug.c:414: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:387: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	ldrb	r0, [r3]	@ *_6, *_6
-	ldr	r3, .L95+4	@ tmp146,
+	ldr	r3, .L62+4	@ tmp146,
 	bl	.L8		@
-@ SkillsDebug.c:414: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+@ SkillsDebug.c:387: 		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
 	lsls	r1, r0, #16	@ tmp147, tmp152,
-	ldr	r3, .L95+8	@ tmp149,
+	ldr	r3, .L62+8	@ tmp149,
 	movs	r0, r4	@, menu
 	lsrs	r1, r1, #16	@ tmp147, tmp147,
 	bl	.L8		@
-.L88:
-@ SkillsDebug.c:417: }
+.L55:
+@ SkillsDebug.c:390: }
 	@ sp needed	@
 	movs	r0, #0	@,
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L96:
+.L63:
 	.align	2
-.L95:
+.L62:
 	.word	gKeyState
 	.word	GetItemDescId
 	.word	MenuCallHelpBox
@@ -662,43 +470,43 @@ List_0_Idle:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SkillsDebug.c:396: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-	ldr	r3, .L102	@ tmp123,
-@ SkillsDebug.c:396: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+@ SkillsDebug.c:369: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+	ldr	r3, .L69	@ tmp123,
+@ SkillsDebug.c:369: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	ldrh	r3, [r3, #6]	@ tmp125,
-@ SkillsDebug.c:393: {
+@ SkillsDebug.c:366: {
 	movs	r4, r0	@ menu, tmp138
-@ SkillsDebug.c:396: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+@ SkillsDebug.c:369: 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
 	lsls	r3, r3, #23	@ tmp140, tmp125,
-	bpl	.L98		@,
-@ SkillsDebug.c:397: 		MenuCallHelpBox(menu, GetItemDescId(proc->skillReplacement));
+	bpl	.L65		@,
+@ SkillsDebug.c:370: 		MenuCallHelpBox(menu, GetItemDescId(proc->skillReplacement));
 	ldr	r3, [r0, #20]	@ tmp142, menu_8(D)->parent
 	movs	r0, #42	@ tmp132,
 	ldrsh	r0, [r3, r0]	@ tmp132, tmp142, tmp132
-	ldr	r3, .L102+4	@ tmp133,
+	ldr	r3, .L69+4	@ tmp133,
 	bl	.L8		@
-@ SkillsDebug.c:397: 		MenuCallHelpBox(menu, GetItemDescId(proc->skillReplacement));
+@ SkillsDebug.c:370: 		MenuCallHelpBox(menu, GetItemDescId(proc->skillReplacement));
 	lsls	r1, r0, #16	@ tmp134, tmp139,
-	ldr	r3, .L102+8	@ tmp136,
+	ldr	r3, .L69+8	@ tmp136,
 	movs	r0, r4	@, menu
 	lsrs	r1, r1, #16	@ tmp134, tmp134,
 	bl	.L8		@
-.L98:
-@ SkillsDebug.c:400: }
+.L65:
+@ SkillsDebug.c:373: }
 	@ sp needed	@
 	movs	r0, #0	@,
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L103:
+.L70:
 	.align	2
-.L102:
+.L69:
 	.word	gKeyState
 	.word	GetItemDescId
 	.word	MenuCallHelpBox
 	.size	List_0_Idle, .-List_0_Idle
 	.section	.rodata.str1.1,"aMS",%progbits,1
-.LC32:
+.LC23:
 	.ascii	"Learn \000"
 	.text
 	.align	1
@@ -712,106 +520,106 @@ ReplaceSkillCommandDraw:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:1002:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:975:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	ldr	r3, [r0, #20]	@ proc, menu_18(D)->parent
-@ SkillsDebug.c:1035: }
+@ SkillsDebug.c:1008: }
 	@ sp needed	@
-@ SkillsDebug.c:1002:     struct SkillDebugProc* const proc = (void*) menu->parent;
+@ SkillsDebug.c:975:     struct SkillDebugProc* const proc = (void*) menu->parent;
 	str	r3, [sp, #4]	@ proc, %sfp
-@ SkillsDebug.c:1004:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:977:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r0, [r1, #42]	@ tmp135,
 	ldrh	r5, [r1, #44]	@ tmp133,
-@ SkillsDebug.c:1006:     Text_Clear(&command->text);
+@ SkillsDebug.c:979:     Text_Clear(&command->text);
 	adds	r1, r1, #52	@ command,
 	movs	r4, r1	@ _9, command
-@ SkillsDebug.c:1004:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:977:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #5	@ tmp134, tmp133,
 	adds	r5, r5, r0	@ tmp136, tmp134, tmp135
-@ SkillsDebug.c:1004:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r0, .L105	@ tmp138,
-@ SkillsDebug.c:1004:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:977:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r0, .L72	@ tmp138,
+@ SkillsDebug.c:977:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #1	@ tmp137, tmp136,
-@ SkillsDebug.c:1004:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:977:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	adds	r5, r5, r0	@ out, tmp137, tmp138
-@ SkillsDebug.c:1006:     Text_Clear(&command->text);
-	ldr	r3, .L105+4	@ tmp139,
+@ SkillsDebug.c:979:     Text_Clear(&command->text);
+	ldr	r3, .L72+4	@ tmp139,
 	movs	r0, r1	@, _9
 	bl	.L8		@
-@ SkillsDebug.c:1008: 	Text_SetXCursor(&command->text, new_item_desc_offset);
-	ldr	r7, .L105+8	@ tmp140,
+@ SkillsDebug.c:981: 	Text_SetXCursor(&command->text, new_item_desc_offset);
+	ldr	r7, .L72+8	@ tmp140,
 	movs	r1, #72	@,
 	movs	r0, r4	@, _9
-	bl	.L107		@
-@ SkillsDebug.c:1009: 	Text_SetColorId(&command->text, TEXT_COLOR_GREEN);
-	ldr	r6, .L105+12	@ tmp141,
+	bl	.L74		@
+@ SkillsDebug.c:982: 	Text_SetColorId(&command->text, TEXT_COLOR_GREEN);
+	ldr	r6, .L72+12	@ tmp141,
 	movs	r1, #4	@,
 	movs	r0, r4	@, _9
-	bl	.L108		@
-@ SkillsDebug.c:1010:     Text_DrawString(&command->text, "Learn ");
+	bl	.L75		@
+@ SkillsDebug.c:983:     Text_DrawString(&command->text, "Learn ");
 	movs	r0, r4	@, _9
-	ldr	r1, .L105+16	@,
-	ldr	r3, .L105+20	@ tmp166,
+	ldr	r1, .L72+16	@,
+	ldr	r3, .L72+20	@ tmp166,
 	bl	.L8		@
-@ SkillsDebug.c:1011: 	Text_Display(&command->text, out); 
+@ SkillsDebug.c:984: 	Text_Display(&command->text, out); 
 	movs	r1, r5	@, out
-	ldr	r3, .L105+24	@ tmp168,
+	ldr	r3, .L72+24	@ tmp168,
 	movs	r0, r4	@, _9
 	bl	.L8		@
-@ SkillsDebug.c:1013: 	Text_SetXCursor(&command->text, new_item_desc_offset+new_item_name_offset);
+@ SkillsDebug.c:986: 	Text_SetXCursor(&command->text, new_item_desc_offset+new_item_name_offset);
 	movs	r1, #120	@,
 	movs	r0, r4	@, _9
-	bl	.L107		@
-@ SkillsDebug.c:1014:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+	bl	.L74		@
+@ SkillsDebug.c:987:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
 	movs	r0, r4	@, _9
-	bl	.L108		@
-@ SkillsDebug.c:1015:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
+	bl	.L75		@
+@ SkillsDebug.c:988:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
 	ldr	r3, [sp, #4]	@ proc, %sfp
 	movs	r0, #42	@ tmp147,
 	ldrsh	r0, [r3, r0]	@ tmp147, proc, tmp147
-	ldr	r3, .L105+28	@ tmp148,
+	ldr	r3, .L72+28	@ tmp148,
 	bl	.L8		@
-@ SkillsDebug.c:1015:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
-	ldr	r3, .L105+20	@ tmp171,
-@ SkillsDebug.c:1015:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
+@ SkillsDebug.c:988:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
+	ldr	r3, .L72+20	@ tmp171,
+@ SkillsDebug.c:988:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
 	movs	r1, r0	@ _12, tmp159
-@ SkillsDebug.c:1015:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
+@ SkillsDebug.c:988:     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
 	movs	r0, r4	@, _9
 	bl	.L8		@
-@ SkillsDebug.c:1016: 	Text_Display(&command->text, out); 
+@ SkillsDebug.c:989: 	Text_Display(&command->text, out); 
 	movs	r1, r5	@, out
 	movs	r0, r4	@, _9
-	ldr	r3, .L105+24	@ tmp173,
+	ldr	r3, .L72+24	@ tmp173,
 	bl	.L8		@
-@ SkillsDebug.c:1028: 	LoadIconPalettes(4); 
+@ SkillsDebug.c:1001: 	LoadIconPalettes(4); 
 	movs	r0, #4	@,
-	ldr	r3, .L105+32	@ tmp151,
+	ldr	r3, .L72+32	@ tmp151,
 	bl	.L8		@
-@ SkillsDebug.c:1029:     DrawIcon(
+@ SkillsDebug.c:1002:     DrawIcon(
 	ldr	r3, [sp, #4]	@ proc, %sfp
 	movs	r0, #42	@ tmp152,
 	ldrsh	r0, [r3, r0]	@ tmp152, proc, tmp152
-	ldr	r3, .L105+36	@ tmp153,
+	ldr	r3, .L72+36	@ tmp153,
 	bl	.L8		@
 	movs	r2, #128	@ tmp161,
 	movs	r1, r0	@ _16, tmp160
 	movs	r0, r5	@ out, out
-	ldr	r3, .L105+40	@ tmp156,
+	ldr	r3, .L72+40	@ tmp156,
 	adds	r0, r0, #26	@ out,
 	lsls	r2, r2, #7	@, tmp161,
 	bl	.L8		@
-@ SkillsDebug.c:1035: }
+@ SkillsDebug.c:1008: }
 	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L106:
+.L73:
 	.align	2
-.L105:
+.L72:
 	.word	gBg0MapBuffer
 	.word	Text_Clear
 	.word	Text_SetXCursor
 	.word	Text_SetColorId
-	.word	.LC32
+	.word	.LC23
 	.word	Text_DrawString
 	.word	Text_Display
 	.word	GetItemName
@@ -832,455 +640,32 @@ IsMove:
 	push	{r4, lr}	@
 @ SkillsDebug.c:87:     if (moveId == 0)
 	cmp	r0, #0	@ moveId,
-	beq	.L110		@,
+	beq	.L77		@,
 @ SkillsDebug.c:90:     if (moveId == 255)
 	cmp	r0, #255	@ moveId,
-	beq	.L111		@,
+	beq	.L78		@,
 @ SkillsDebug.c:93:     return GetItemDescId(moveId);
-	ldr	r3, .L115	@ tmp115,
+	ldr	r3, .L82	@ tmp115,
 	bl	.L8		@
-.L110:
+.L77:
 @ SkillsDebug.c:94: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L111:
+.L78:
 @ SkillsDebug.c:88:         return FALSE;
 	movs	r0, #0	@ moveId,
-	b	.L110		@
-.L116:
+	b	.L77		@
+.L83:
 	.align	2
-.L115:
+.L82:
 	.word	GetItemDescId
 	.size	IsMove, .-IsMove
 	.section	.rodata.str1.1
-.LC53:
+.LC44:
 	.ascii	" No Move\000"
 	.text
-	.align	1
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	SkillListCommandDraw_8, %function
-SkillListCommandDraw_8:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:792:     u8* const moves = UnitGetMoveList(proc->unit);
-	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:794:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:792:     u8* const moves = UnitGetMoveList(proc->unit);
-	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:794:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:797:     Text_Clear(&command->text);
-	adds	r1, r1, #52	@ command,
-	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:794:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	lsls	r5, r5, #5	@ tmp142, tmp141,
-	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:794:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L121	@ tmp146,
-@ SkillsDebug.c:794:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:797:     Text_Clear(&command->text);
-	movs	r0, r1	@, _10
-@ SkillsDebug.c:794:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:797:     Text_Clear(&command->text);
-	ldr	r3, .L121+4	@ tmp147,
-	bl	.L8		@
-@ SkillsDebug.c:799: 	Text_SetXCursor(&command->text, new_item_desc_offset);
-	movs	r1, #72	@,
-	ldr	r7, .L121+8	@ tmp148,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:801:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	adds	r6, r6, #47	@ tmp152,
-@ SkillsDebug.c:800:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-	movs	r1, #2	@,
-	ldr	r3, .L121+12	@ tmp191,
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:801:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L121+16	@ tmp154,
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 47B], MEM[(u8 *)_1 + 47B]
-	bl	.L8		@
-	ldr	r3, .L121+20	@ tmp155,
-	bl	.L8		@
-@ SkillsDebug.c:801:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L121+24	@ tmp193,
-@ SkillsDebug.c:801:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:801:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:802: 	Text_Display(&command->text, out); 
-	ldr	r3, .L121+28	@ tmp157,
-	movs	r1, r5	@, out
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:803: 	Text_SetXCursor(&command->text, 0);
-	movs	r1, #0	@,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:804:     LoadIconPalettes(4); /* Icon palette */
-	movs	r0, #4	@,
-	ldr	r3, .L121+32	@ tmp159,
-	bl	.L8		@
-@ SkillsDebug.c:807: 	if (IsMove(moves[i])) {
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 47B], MEM[(u8 *)_1 + 47B]
-	bl	IsMove		@
-@ SkillsDebug.c:807: 	if (IsMove(moves[i])) {
-	cmp	r0, #0	@ tmp186,
-	beq	.L118		@,
-@ SkillsDebug.c:808: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L121+36	@ tmp168,
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 47B], MEM[(u8 *)_1 + 47B]
-	bl	.L8		@
-	movs	r2, #128	@,
-	movs	r1, r0	@ _20, tmp187
-	lsls	r2, r2, #7	@,,
-	ldr	r3, .L121+40	@ tmp170,
-	movs	r0, r5	@, out
-	bl	.L8		@
-@ SkillsDebug.c:809: 		Text_SetXCursor(&command->text, item_name_offset);
-	movs	r1, #16	@,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:810: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-	movs	r1, #2	@,
-	ldr	r3, .L121+12	@ tmp195,
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:811: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 47B], MEM[(u8 *)_1 + 47B]
-	ldr	r3, .L121+44	@ tmp177,
-	bl	.L8		@
-	movs	r1, r0	@ _23, tmp188
-.L120:
-@ SkillsDebug.c:817: }
-	@ sp needed	@
-@ SkillsDebug.c:815: 		Text_DrawString(&command->text, " No Move");
-	movs	r0, r4	@, _10
-	ldr	r3, .L121+24	@ tmp201,
-	bl	.L8		@
-@ SkillsDebug.c:817: }
-	pop	{r3, r4, r5, r6, r7}
-	pop	{r0}
-	bx	r0
-.L118:
-@ SkillsDebug.c:814: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
-	movs	r1, #1	@,
-	movs	r0, r4	@, _10
-	ldr	r3, .L121+12	@ tmp199,
-	bl	.L8		@
-@ SkillsDebug.c:815: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L121+48	@,
-	b	.L120		@
-.L122:
-	.align	2
-.L121:
-	.word	gBg0MapBuffer
-	.word	Text_Clear
-	.word	Text_SetXCursor
-	.word	Text_SetColorId
-	.word	GetItemDescId
-	.word	GetStringFromIndex
-	.word	Text_DrawString
-	.word	Text_Display
-	.word	LoadIconPalettes
-	.word	GetItemIconId
-	.word	DrawIcon
-	.word	GetItemName
-	.word	.LC53
-	.size	SkillListCommandDraw_8, .-SkillListCommandDraw_8
-	.align	1
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	SkillListCommandDraw_7, %function
-SkillListCommandDraw_7:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:761:     u8* const moves = UnitGetMoveList(proc->unit);
-	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:763:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:761:     u8* const moves = UnitGetMoveList(proc->unit);
-	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:763:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:766:     Text_Clear(&command->text);
-	adds	r1, r1, #52	@ command,
-	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:763:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	lsls	r5, r5, #5	@ tmp142, tmp141,
-	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:763:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L127	@ tmp146,
-@ SkillsDebug.c:763:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:766:     Text_Clear(&command->text);
-	movs	r0, r1	@, _10
-@ SkillsDebug.c:763:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:766:     Text_Clear(&command->text);
-	ldr	r3, .L127+4	@ tmp147,
-	bl	.L8		@
-@ SkillsDebug.c:767: 	Text_SetXCursor(&command->text, new_item_desc_offset);
-	movs	r1, #72	@,
-	ldr	r7, .L127+8	@ tmp148,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:769:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	adds	r6, r6, #46	@ tmp152,
-@ SkillsDebug.c:768:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-	movs	r1, #2	@,
-	ldr	r3, .L127+12	@ tmp191,
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:769:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L127+16	@ tmp154,
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 46B], MEM[(u8 *)_1 + 46B]
-	bl	.L8		@
-	ldr	r3, .L127+20	@ tmp155,
-	bl	.L8		@
-@ SkillsDebug.c:769:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L127+24	@ tmp193,
-@ SkillsDebug.c:769:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:769:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:770: 	Text_Display(&command->text, out); 
-	ldr	r3, .L127+28	@ tmp157,
-	movs	r1, r5	@, out
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:771: 	Text_SetXCursor(&command->text, 0);
-	movs	r1, #0	@,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:773:     LoadIconPalettes(4); /* Icon palette */
-	movs	r0, #4	@,
-	ldr	r3, .L127+32	@ tmp159,
-	bl	.L8		@
-@ SkillsDebug.c:776: 	if (IsMove(moves[i])) {
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 46B], MEM[(u8 *)_1 + 46B]
-	bl	IsMove		@
-@ SkillsDebug.c:776: 	if (IsMove(moves[i])) {
-	cmp	r0, #0	@ tmp186,
-	beq	.L124		@,
-@ SkillsDebug.c:777: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L127+36	@ tmp168,
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 46B], MEM[(u8 *)_1 + 46B]
-	bl	.L8		@
-	movs	r2, #128	@,
-	movs	r1, r0	@ _20, tmp187
-	lsls	r2, r2, #7	@,,
-	ldr	r3, .L127+40	@ tmp170,
-	movs	r0, r5	@, out
-	bl	.L8		@
-@ SkillsDebug.c:778: 		Text_SetXCursor(&command->text, item_name_offset);
-	movs	r1, #16	@,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:779: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-	movs	r1, #2	@,
-	ldr	r3, .L127+12	@ tmp195,
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:780: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 46B], MEM[(u8 *)_1 + 46B]
-	ldr	r3, .L127+44	@ tmp177,
-	bl	.L8		@
-	movs	r1, r0	@ _23, tmp188
-.L126:
-@ SkillsDebug.c:786: }
-	@ sp needed	@
-@ SkillsDebug.c:784: 		Text_DrawString(&command->text, " No Move");
-	movs	r0, r4	@, _10
-	ldr	r3, .L127+24	@ tmp201,
-	bl	.L8		@
-@ SkillsDebug.c:786: }
-	pop	{r3, r4, r5, r6, r7}
-	pop	{r0}
-	bx	r0
-.L124:
-@ SkillsDebug.c:783: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
-	movs	r1, #1	@,
-	movs	r0, r4	@, _10
-	ldr	r3, .L127+12	@ tmp199,
-	bl	.L8		@
-@ SkillsDebug.c:784: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L127+48	@,
-	b	.L126		@
-.L128:
-	.align	2
-.L127:
-	.word	gBg0MapBuffer
-	.word	Text_Clear
-	.word	Text_SetXCursor
-	.word	Text_SetColorId
-	.word	GetItemDescId
-	.word	GetStringFromIndex
-	.word	Text_DrawString
-	.word	Text_Display
-	.word	LoadIconPalettes
-	.word	GetItemIconId
-	.word	DrawIcon
-	.word	GetItemName
-	.word	.LC53
-	.size	SkillListCommandDraw_7, .-SkillListCommandDraw_7
-	.align	1
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	SkillListCommandDraw_6, %function
-SkillListCommandDraw_6:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:730:     u8* const moves = UnitGetMoveList(proc->unit);
-	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:732:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:730:     u8* const moves = UnitGetMoveList(proc->unit);
-	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:732:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:735:     Text_Clear(&command->text);
-	adds	r1, r1, #52	@ command,
-	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:732:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	lsls	r5, r5, #5	@ tmp142, tmp141,
-	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:732:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L133	@ tmp146,
-@ SkillsDebug.c:732:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:735:     Text_Clear(&command->text);
-	movs	r0, r1	@, _10
-@ SkillsDebug.c:732:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:735:     Text_Clear(&command->text);
-	ldr	r3, .L133+4	@ tmp147,
-	bl	.L8		@
-@ SkillsDebug.c:736: 	Text_SetXCursor(&command->text, new_item_desc_offset);
-	movs	r1, #72	@,
-	ldr	r7, .L133+8	@ tmp148,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:738:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	adds	r6, r6, #45	@ tmp152,
-@ SkillsDebug.c:737:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-	movs	r1, #2	@,
-	ldr	r3, .L133+12	@ tmp191,
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:738:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L133+16	@ tmp154,
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 45B], MEM[(u8 *)_1 + 45B]
-	bl	.L8		@
-	ldr	r3, .L133+20	@ tmp155,
-	bl	.L8		@
-@ SkillsDebug.c:738:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L133+24	@ tmp193,
-@ SkillsDebug.c:738:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:738:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:739: 	Text_Display(&command->text, out); 
-	ldr	r3, .L133+28	@ tmp157,
-	movs	r1, r5	@, out
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:740: 	Text_SetXCursor(&command->text, 0);
-	movs	r1, #0	@,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:742:     LoadIconPalettes(4); /* Icon palette */
-	movs	r0, #4	@,
-	ldr	r3, .L133+32	@ tmp159,
-	bl	.L8		@
-@ SkillsDebug.c:745: 	if (IsMove(moves[i])) {
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 45B], MEM[(u8 *)_1 + 45B]
-	bl	IsMove		@
-@ SkillsDebug.c:745: 	if (IsMove(moves[i])) {
-	cmp	r0, #0	@ tmp186,
-	beq	.L130		@,
-@ SkillsDebug.c:746: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L133+36	@ tmp168,
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 45B], MEM[(u8 *)_1 + 45B]
-	bl	.L8		@
-	movs	r2, #128	@,
-	movs	r1, r0	@ _20, tmp187
-	lsls	r2, r2, #7	@,,
-	ldr	r3, .L133+40	@ tmp170,
-	movs	r0, r5	@, out
-	bl	.L8		@
-@ SkillsDebug.c:747: 		Text_SetXCursor(&command->text, item_name_offset);
-	movs	r1, #16	@,
-	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:748: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-	movs	r1, #2	@,
-	ldr	r3, .L133+12	@ tmp195,
-	movs	r0, r4	@, _10
-	bl	.L8		@
-@ SkillsDebug.c:749: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
-	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 45B], MEM[(u8 *)_1 + 45B]
-	ldr	r3, .L133+44	@ tmp177,
-	bl	.L8		@
-	movs	r1, r0	@ _23, tmp188
-.L132:
-@ SkillsDebug.c:755: }
-	@ sp needed	@
-@ SkillsDebug.c:753: 		Text_DrawString(&command->text, " No Move");
-	movs	r0, r4	@, _10
-	ldr	r3, .L133+24	@ tmp201,
-	bl	.L8		@
-@ SkillsDebug.c:755: }
-	pop	{r3, r4, r5, r6, r7}
-	pop	{r0}
-	bx	r0
-.L130:
-@ SkillsDebug.c:752: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
-	movs	r1, #1	@,
-	movs	r0, r4	@, _10
-	ldr	r3, .L133+12	@ tmp199,
-	bl	.L8		@
-@ SkillsDebug.c:753: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L133+48	@,
-	b	.L132		@
-.L134:
-	.align	2
-.L133:
-	.word	gBg0MapBuffer
-	.word	Text_Clear
-	.word	Text_SetXCursor
-	.word	Text_SetColorId
-	.word	GetItemDescId
-	.word	GetStringFromIndex
-	.word	Text_DrawString
-	.word	Text_Display
-	.word	LoadIconPalettes
-	.word	GetItemIconId
-	.word	DrawIcon
-	.word	GetItemName
-	.word	.LC53
-	.size	SkillListCommandDraw_6, .-SkillListCommandDraw_6
 	.align	1
 	.syntax unified
 	.code	16
@@ -1292,122 +677,122 @@ SkillListCommandDraw_5:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:698:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:671:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:700:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:673:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:698:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:671:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:700:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:673:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:703:     Text_Clear(&command->text);
+@ SkillsDebug.c:676:     Text_Clear(&command->text);
 	adds	r1, r1, #52	@ command,
 	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:700:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:673:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #5	@ tmp142, tmp141,
 	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:700:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L139	@ tmp146,
-@ SkillsDebug.c:700:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:673:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, .L88	@ tmp146,
+@ SkillsDebug.c:673:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:703:     Text_Clear(&command->text);
+@ SkillsDebug.c:676:     Text_Clear(&command->text);
 	movs	r0, r1	@, _10
-@ SkillsDebug.c:700:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:673:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:703:     Text_Clear(&command->text);
-	ldr	r3, .L139+4	@ tmp147,
+@ SkillsDebug.c:676:     Text_Clear(&command->text);
+	ldr	r3, .L88+4	@ tmp147,
 	bl	.L8		@
-@ SkillsDebug.c:704: 	Text_SetXCursor(&command->text, new_item_desc_offset);
+@ SkillsDebug.c:677: 	Text_SetXCursor(&command->text, new_item_desc_offset);
 	movs	r1, #72	@,
-	ldr	r7, .L139+8	@ tmp148,
+	ldr	r7, .L88+8	@ tmp148,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:706:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	bl	.L74		@
+@ SkillsDebug.c:679:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	adds	r6, r6, #44	@ tmp152,
-@ SkillsDebug.c:705:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+@ SkillsDebug.c:678:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L139+12	@ tmp191,
+	ldr	r3, .L88+12	@ tmp191,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:706:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L139+16	@ tmp154,
+@ SkillsDebug.c:679:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L88+16	@ tmp154,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 44B], MEM[(u8 *)_1 + 44B]
 	bl	.L8		@
-	ldr	r3, .L139+20	@ tmp155,
+	ldr	r3, .L88+20	@ tmp155,
 	bl	.L8		@
-@ SkillsDebug.c:706:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L139+24	@ tmp193,
-@ SkillsDebug.c:706:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:679:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L88+24	@ tmp193,
+@ SkillsDebug.c:679:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:706:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:679:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:707: 	Text_Display(&command->text, out); 
-	ldr	r3, .L139+28	@ tmp157,
+@ SkillsDebug.c:680: 	Text_Display(&command->text, out); 
+	ldr	r3, .L88+28	@ tmp157,
 	movs	r1, r5	@, out
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:708: 	Text_SetXCursor(&command->text, 0);
+@ SkillsDebug.c:681: 	Text_SetXCursor(&command->text, 0);
 	movs	r1, #0	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:710:     LoadIconPalettes(4); /* Icon palette */
+	bl	.L74		@
+@ SkillsDebug.c:683:     LoadIconPalettes(4); /* Icon palette */
 	movs	r0, #4	@,
-	ldr	r3, .L139+32	@ tmp159,
+	ldr	r3, .L88+32	@ tmp159,
 	bl	.L8		@
-@ SkillsDebug.c:713: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:686: 	if (IsMove(moves[i])) {
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 44B], MEM[(u8 *)_1 + 44B]
 	bl	IsMove		@
-@ SkillsDebug.c:713: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:686: 	if (IsMove(moves[i])) {
 	cmp	r0, #0	@ tmp186,
-	beq	.L136		@,
-@ SkillsDebug.c:714: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L139+36	@ tmp168,
+	beq	.L85		@,
+@ SkillsDebug.c:687: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+	ldr	r3, .L88+36	@ tmp168,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 44B], MEM[(u8 *)_1 + 44B]
 	bl	.L8		@
 	movs	r2, #128	@,
 	movs	r1, r0	@ _20, tmp187
 	lsls	r2, r2, #7	@,,
-	ldr	r3, .L139+40	@ tmp170,
+	ldr	r3, .L88+40	@ tmp170,
 	movs	r0, r5	@, out
 	bl	.L8		@
-@ SkillsDebug.c:715: 		Text_SetXCursor(&command->text, item_name_offset);
+@ SkillsDebug.c:688: 		Text_SetXCursor(&command->text, item_name_offset);
 	movs	r1, #16	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:716: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+	bl	.L74		@
+@ SkillsDebug.c:689: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L139+12	@ tmp195,
+	ldr	r3, .L88+12	@ tmp195,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:717: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
+@ SkillsDebug.c:690: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 44B], MEM[(u8 *)_1 + 44B]
-	ldr	r3, .L139+44	@ tmp177,
+	ldr	r3, .L88+44	@ tmp177,
 	bl	.L8		@
 	movs	r1, r0	@ _23, tmp188
-.L138:
-@ SkillsDebug.c:724: }
+.L87:
+@ SkillsDebug.c:697: }
 	@ sp needed	@
-@ SkillsDebug.c:721: 		Text_DrawString(&command->text, " No Move");
+@ SkillsDebug.c:694: 		Text_DrawString(&command->text, " No Move");
 	movs	r0, r4	@, _10
-	ldr	r3, .L139+24	@ tmp201,
+	ldr	r3, .L88+24	@ tmp201,
 	bl	.L8		@
-@ SkillsDebug.c:724: }
+@ SkillsDebug.c:697: }
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L136:
-@ SkillsDebug.c:720: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+.L85:
+@ SkillsDebug.c:693: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 	movs	r1, #1	@,
 	movs	r0, r4	@, _10
-	ldr	r3, .L139+12	@ tmp199,
+	ldr	r3, .L88+12	@ tmp199,
 	bl	.L8		@
-@ SkillsDebug.c:721: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L139+48	@,
-	b	.L138		@
-.L140:
+@ SkillsDebug.c:694: 		Text_DrawString(&command->text, " No Move");
+	ldr	r1, .L88+48	@,
+	b	.L87		@
+.L89:
 	.align	2
-.L139:
+.L88:
 	.word	gBg0MapBuffer
 	.word	Text_Clear
 	.word	Text_SetXCursor
@@ -1420,7 +805,7 @@ SkillListCommandDraw_5:
 	.word	GetItemIconId
 	.word	DrawIcon
 	.word	GetItemName
-	.word	.LC53
+	.word	.LC44
 	.size	SkillListCommandDraw_5, .-SkillListCommandDraw_5
 	.align	1
 	.syntax unified
@@ -1433,122 +818,122 @@ SkillListCommandDraw_4:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:661:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:634:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:663:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:636:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:661:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:634:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:663:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:636:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:666:     Text_Clear(&command->text);
+@ SkillsDebug.c:639:     Text_Clear(&command->text);
 	adds	r1, r1, #52	@ command,
 	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:663:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:636:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #5	@ tmp142, tmp141,
 	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:663:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L145	@ tmp146,
-@ SkillsDebug.c:663:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:636:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, .L94	@ tmp146,
+@ SkillsDebug.c:636:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:666:     Text_Clear(&command->text);
+@ SkillsDebug.c:639:     Text_Clear(&command->text);
 	movs	r0, r1	@, _10
-@ SkillsDebug.c:663:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:636:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:666:     Text_Clear(&command->text);
-	ldr	r3, .L145+4	@ tmp147,
+@ SkillsDebug.c:639:     Text_Clear(&command->text);
+	ldr	r3, .L94+4	@ tmp147,
 	bl	.L8		@
-@ SkillsDebug.c:667: 	Text_SetXCursor(&command->text, new_item_desc_offset);
+@ SkillsDebug.c:640: 	Text_SetXCursor(&command->text, new_item_desc_offset);
 	movs	r1, #72	@,
-	ldr	r7, .L145+8	@ tmp148,
+	ldr	r7, .L94+8	@ tmp148,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:669:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	bl	.L74		@
+@ SkillsDebug.c:642:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	adds	r6, r6, #43	@ tmp152,
-@ SkillsDebug.c:668:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+@ SkillsDebug.c:641:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L145+12	@ tmp191,
+	ldr	r3, .L94+12	@ tmp191,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:669:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L145+16	@ tmp154,
+@ SkillsDebug.c:642:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L94+16	@ tmp154,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 43B], MEM[(u8 *)_1 + 43B]
 	bl	.L8		@
-	ldr	r3, .L145+20	@ tmp155,
+	ldr	r3, .L94+20	@ tmp155,
 	bl	.L8		@
-@ SkillsDebug.c:669:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L145+24	@ tmp193,
-@ SkillsDebug.c:669:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:642:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L94+24	@ tmp193,
+@ SkillsDebug.c:642:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:669:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:642:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:670: 	Text_Display(&command->text, out); 
-	ldr	r3, .L145+28	@ tmp157,
+@ SkillsDebug.c:643: 	Text_Display(&command->text, out); 
+	ldr	r3, .L94+28	@ tmp157,
 	movs	r1, r5	@, out
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:671: 	Text_SetXCursor(&command->text, 0);
+@ SkillsDebug.c:644: 	Text_SetXCursor(&command->text, 0);
 	movs	r1, #0	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:673:     LoadIconPalettes(4); /* Icon palette */
+	bl	.L74		@
+@ SkillsDebug.c:646:     LoadIconPalettes(4); /* Icon palette */
 	movs	r0, #4	@,
-	ldr	r3, .L145+32	@ tmp159,
+	ldr	r3, .L94+32	@ tmp159,
 	bl	.L8		@
-@ SkillsDebug.c:676: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:649: 	if (IsMove(moves[i])) {
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 43B], MEM[(u8 *)_1 + 43B]
 	bl	IsMove		@
-@ SkillsDebug.c:676: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:649: 	if (IsMove(moves[i])) {
 	cmp	r0, #0	@ tmp186,
-	beq	.L142		@,
-@ SkillsDebug.c:677: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L145+36	@ tmp168,
+	beq	.L91		@,
+@ SkillsDebug.c:650: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+	ldr	r3, .L94+36	@ tmp168,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 43B], MEM[(u8 *)_1 + 43B]
 	bl	.L8		@
 	movs	r2, #128	@,
 	movs	r1, r0	@ _20, tmp187
 	lsls	r2, r2, #7	@,,
-	ldr	r3, .L145+40	@ tmp170,
+	ldr	r3, .L94+40	@ tmp170,
 	movs	r0, r5	@, out
 	bl	.L8		@
-@ SkillsDebug.c:678: 		Text_SetXCursor(&command->text, item_name_offset);
+@ SkillsDebug.c:651: 		Text_SetXCursor(&command->text, item_name_offset);
 	movs	r1, #16	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:679: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+	bl	.L74		@
+@ SkillsDebug.c:652: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L145+12	@ tmp195,
+	ldr	r3, .L94+12	@ tmp195,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:680: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
+@ SkillsDebug.c:653: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 43B], MEM[(u8 *)_1 + 43B]
-	ldr	r3, .L145+44	@ tmp177,
+	ldr	r3, .L94+44	@ tmp177,
 	bl	.L8		@
 	movs	r1, r0	@ _23, tmp188
-.L144:
-@ SkillsDebug.c:687: }
+.L93:
+@ SkillsDebug.c:660: }
 	@ sp needed	@
-@ SkillsDebug.c:684: 		Text_DrawString(&command->text, " No Move");
+@ SkillsDebug.c:657: 		Text_DrawString(&command->text, " No Move");
 	movs	r0, r4	@, _10
-	ldr	r3, .L145+24	@ tmp201,
+	ldr	r3, .L94+24	@ tmp201,
 	bl	.L8		@
-@ SkillsDebug.c:687: }
+@ SkillsDebug.c:660: }
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L142:
-@ SkillsDebug.c:683: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+.L91:
+@ SkillsDebug.c:656: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 	movs	r1, #1	@,
 	movs	r0, r4	@, _10
-	ldr	r3, .L145+12	@ tmp199,
+	ldr	r3, .L94+12	@ tmp199,
 	bl	.L8		@
-@ SkillsDebug.c:684: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L145+48	@,
-	b	.L144		@
-.L146:
+@ SkillsDebug.c:657: 		Text_DrawString(&command->text, " No Move");
+	ldr	r1, .L94+48	@,
+	b	.L93		@
+.L95:
 	.align	2
-.L145:
+.L94:
 	.word	gBg0MapBuffer
 	.word	Text_Clear
 	.word	Text_SetXCursor
@@ -1561,7 +946,7 @@ SkillListCommandDraw_4:
 	.word	GetItemIconId
 	.word	DrawIcon
 	.word	GetItemName
-	.word	.LC53
+	.word	.LC44
 	.size	SkillListCommandDraw_4, .-SkillListCommandDraw_4
 	.align	1
 	.syntax unified
@@ -1574,122 +959,122 @@ SkillListCommandDraw_3:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:630:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:603:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:632:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:605:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:630:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:603:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:632:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:605:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:634:     Text_Clear(&command->text);
+@ SkillsDebug.c:607:     Text_Clear(&command->text);
 	adds	r1, r1, #52	@ command,
 	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:632:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:605:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #5	@ tmp142, tmp141,
 	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:632:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L151	@ tmp146,
-@ SkillsDebug.c:632:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:605:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, .L100	@ tmp146,
+@ SkillsDebug.c:605:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:634:     Text_Clear(&command->text);
+@ SkillsDebug.c:607:     Text_Clear(&command->text);
 	movs	r0, r1	@, _10
-@ SkillsDebug.c:632:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:605:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:634:     Text_Clear(&command->text);
-	ldr	r3, .L151+4	@ tmp147,
+@ SkillsDebug.c:607:     Text_Clear(&command->text);
+	ldr	r3, .L100+4	@ tmp147,
 	bl	.L8		@
-@ SkillsDebug.c:635: 	Text_SetXCursor(&command->text, new_item_desc_offset);
+@ SkillsDebug.c:608: 	Text_SetXCursor(&command->text, new_item_desc_offset);
 	movs	r1, #72	@,
-	ldr	r7, .L151+8	@ tmp148,
+	ldr	r7, .L100+8	@ tmp148,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:637:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	bl	.L74		@
+@ SkillsDebug.c:610:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	adds	r6, r6, #42	@ tmp152,
-@ SkillsDebug.c:636:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+@ SkillsDebug.c:609:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L151+12	@ tmp191,
+	ldr	r3, .L100+12	@ tmp191,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:637:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L151+16	@ tmp154,
+@ SkillsDebug.c:610:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L100+16	@ tmp154,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 42B], MEM[(u8 *)_1 + 42B]
 	bl	.L8		@
-	ldr	r3, .L151+20	@ tmp155,
+	ldr	r3, .L100+20	@ tmp155,
 	bl	.L8		@
-@ SkillsDebug.c:637:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L151+24	@ tmp193,
-@ SkillsDebug.c:637:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:610:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L100+24	@ tmp193,
+@ SkillsDebug.c:610:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:637:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:610:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:638: 	Text_Display(&command->text, out); 
-	ldr	r3, .L151+28	@ tmp157,
+@ SkillsDebug.c:611: 	Text_Display(&command->text, out); 
+	ldr	r3, .L100+28	@ tmp157,
 	movs	r1, r5	@, out
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:639: 	Text_SetXCursor(&command->text, 0);
+@ SkillsDebug.c:612: 	Text_SetXCursor(&command->text, 0);
 	movs	r1, #0	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:641:     LoadIconPalettes(4); /* Icon palette */
+	bl	.L74		@
+@ SkillsDebug.c:614:     LoadIconPalettes(4); /* Icon palette */
 	movs	r0, #4	@,
-	ldr	r3, .L151+32	@ tmp159,
+	ldr	r3, .L100+32	@ tmp159,
 	bl	.L8		@
-@ SkillsDebug.c:644: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:617: 	if (IsMove(moves[i])) {
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 42B], MEM[(u8 *)_1 + 42B]
 	bl	IsMove		@
-@ SkillsDebug.c:644: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:617: 	if (IsMove(moves[i])) {
 	cmp	r0, #0	@ tmp186,
-	beq	.L148		@,
-@ SkillsDebug.c:645: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L151+36	@ tmp168,
+	beq	.L97		@,
+@ SkillsDebug.c:618: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+	ldr	r3, .L100+36	@ tmp168,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 42B], MEM[(u8 *)_1 + 42B]
 	bl	.L8		@
 	movs	r2, #128	@,
 	movs	r1, r0	@ _20, tmp187
 	lsls	r2, r2, #7	@,,
-	ldr	r3, .L151+40	@ tmp170,
+	ldr	r3, .L100+40	@ tmp170,
 	movs	r0, r5	@, out
 	bl	.L8		@
-@ SkillsDebug.c:646: 		Text_SetXCursor(&command->text, item_name_offset);
+@ SkillsDebug.c:619: 		Text_SetXCursor(&command->text, item_name_offset);
 	movs	r1, #16	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:647: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+	bl	.L74		@
+@ SkillsDebug.c:620: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L151+12	@ tmp195,
+	ldr	r3, .L100+12	@ tmp195,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:648: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
+@ SkillsDebug.c:621: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 42B], MEM[(u8 *)_1 + 42B]
-	ldr	r3, .L151+44	@ tmp177,
+	ldr	r3, .L100+44	@ tmp177,
 	bl	.L8		@
 	movs	r1, r0	@ _23, tmp188
-.L150:
-@ SkillsDebug.c:655: }
+.L99:
+@ SkillsDebug.c:628: }
 	@ sp needed	@
-@ SkillsDebug.c:652: 		Text_DrawString(&command->text, " No Move");
+@ SkillsDebug.c:625: 		Text_DrawString(&command->text, " No Move");
 	movs	r0, r4	@, _10
-	ldr	r3, .L151+24	@ tmp201,
+	ldr	r3, .L100+24	@ tmp201,
 	bl	.L8		@
-@ SkillsDebug.c:655: }
+@ SkillsDebug.c:628: }
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L148:
-@ SkillsDebug.c:651: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+.L97:
+@ SkillsDebug.c:624: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 	movs	r1, #1	@,
 	movs	r0, r4	@, _10
-	ldr	r3, .L151+12	@ tmp199,
+	ldr	r3, .L100+12	@ tmp199,
 	bl	.L8		@
-@ SkillsDebug.c:652: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L151+48	@,
-	b	.L150		@
-.L152:
+@ SkillsDebug.c:625: 		Text_DrawString(&command->text, " No Move");
+	ldr	r1, .L100+48	@,
+	b	.L99		@
+.L101:
 	.align	2
-.L151:
+.L100:
 	.word	gBg0MapBuffer
 	.word	Text_Clear
 	.word	Text_SetXCursor
@@ -1702,7 +1087,7 @@ SkillListCommandDraw_3:
 	.word	GetItemIconId
 	.word	DrawIcon
 	.word	GetItemName
-	.word	.LC53
+	.word	.LC44
 	.size	SkillListCommandDraw_3, .-SkillListCommandDraw_3
 	.align	1
 	.syntax unified
@@ -1715,122 +1100,122 @@ SkillListCommandDraw_2:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:599:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:572:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:601:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:574:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:599:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:572:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:601:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:574:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:603:     Text_Clear(&command->text);
+@ SkillsDebug.c:576:     Text_Clear(&command->text);
 	adds	r1, r1, #52	@ command,
 	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:601:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:574:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #5	@ tmp142, tmp141,
 	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:601:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L157	@ tmp146,
-@ SkillsDebug.c:601:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:574:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, .L106	@ tmp146,
+@ SkillsDebug.c:574:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:603:     Text_Clear(&command->text);
+@ SkillsDebug.c:576:     Text_Clear(&command->text);
 	movs	r0, r1	@, _10
-@ SkillsDebug.c:601:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:574:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:603:     Text_Clear(&command->text);
-	ldr	r3, .L157+4	@ tmp147,
+@ SkillsDebug.c:576:     Text_Clear(&command->text);
+	ldr	r3, .L106+4	@ tmp147,
 	bl	.L8		@
-@ SkillsDebug.c:604: 	Text_SetXCursor(&command->text, new_item_desc_offset);
+@ SkillsDebug.c:577: 	Text_SetXCursor(&command->text, new_item_desc_offset);
 	movs	r1, #72	@,
-	ldr	r7, .L157+8	@ tmp148,
+	ldr	r7, .L106+8	@ tmp148,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:606:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	bl	.L74		@
+@ SkillsDebug.c:579:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	adds	r6, r6, #41	@ tmp152,
-@ SkillsDebug.c:605:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+@ SkillsDebug.c:578:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L157+12	@ tmp191,
+	ldr	r3, .L106+12	@ tmp191,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:606:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L157+16	@ tmp154,
+@ SkillsDebug.c:579:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L106+16	@ tmp154,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 41B], MEM[(u8 *)_1 + 41B]
 	bl	.L8		@
-	ldr	r3, .L157+20	@ tmp155,
+	ldr	r3, .L106+20	@ tmp155,
 	bl	.L8		@
-@ SkillsDebug.c:606:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L157+24	@ tmp193,
-@ SkillsDebug.c:606:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:579:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L106+24	@ tmp193,
+@ SkillsDebug.c:579:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:606:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:579:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:607: 	Text_Display(&command->text, out); 
-	ldr	r3, .L157+28	@ tmp157,
+@ SkillsDebug.c:580: 	Text_Display(&command->text, out); 
+	ldr	r3, .L106+28	@ tmp157,
 	movs	r1, r5	@, out
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:608: 	Text_SetXCursor(&command->text, 0);
+@ SkillsDebug.c:581: 	Text_SetXCursor(&command->text, 0);
 	movs	r1, #0	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:610:     LoadIconPalettes(4); /* Icon palette */
+	bl	.L74		@
+@ SkillsDebug.c:583:     LoadIconPalettes(4); /* Icon palette */
 	movs	r0, #4	@,
-	ldr	r3, .L157+32	@ tmp159,
+	ldr	r3, .L106+32	@ tmp159,
 	bl	.L8		@
-@ SkillsDebug.c:613: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:586: 	if (IsMove(moves[i])) {
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 41B], MEM[(u8 *)_1 + 41B]
 	bl	IsMove		@
-@ SkillsDebug.c:613: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:586: 	if (IsMove(moves[i])) {
 	cmp	r0, #0	@ tmp186,
-	beq	.L154		@,
-@ SkillsDebug.c:614: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L157+36	@ tmp168,
+	beq	.L103		@,
+@ SkillsDebug.c:587: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+	ldr	r3, .L106+36	@ tmp168,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 41B], MEM[(u8 *)_1 + 41B]
 	bl	.L8		@
 	movs	r2, #128	@,
 	movs	r1, r0	@ _20, tmp187
 	lsls	r2, r2, #7	@,,
-	ldr	r3, .L157+40	@ tmp170,
+	ldr	r3, .L106+40	@ tmp170,
 	movs	r0, r5	@, out
 	bl	.L8		@
-@ SkillsDebug.c:615: 		Text_SetXCursor(&command->text, item_name_offset);
+@ SkillsDebug.c:588: 		Text_SetXCursor(&command->text, item_name_offset);
 	movs	r1, #16	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:616: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+	bl	.L74		@
+@ SkillsDebug.c:589: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L157+12	@ tmp195,
+	ldr	r3, .L106+12	@ tmp195,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:617: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
+@ SkillsDebug.c:590: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 41B], MEM[(u8 *)_1 + 41B]
-	ldr	r3, .L157+44	@ tmp177,
+	ldr	r3, .L106+44	@ tmp177,
 	bl	.L8		@
 	movs	r1, r0	@ _23, tmp188
-.L156:
-@ SkillsDebug.c:624: }
+.L105:
+@ SkillsDebug.c:597: }
 	@ sp needed	@
-@ SkillsDebug.c:621: 		Text_DrawString(&command->text, " No Move");
+@ SkillsDebug.c:594: 		Text_DrawString(&command->text, " No Move");
 	movs	r0, r4	@, _10
-	ldr	r3, .L157+24	@ tmp201,
+	ldr	r3, .L106+24	@ tmp201,
 	bl	.L8		@
-@ SkillsDebug.c:624: }
+@ SkillsDebug.c:597: }
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L154:
-@ SkillsDebug.c:620: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+.L103:
+@ SkillsDebug.c:593: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 	movs	r1, #1	@,
 	movs	r0, r4	@, _10
-	ldr	r3, .L157+12	@ tmp199,
+	ldr	r3, .L106+12	@ tmp199,
 	bl	.L8		@
-@ SkillsDebug.c:621: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L157+48	@,
-	b	.L156		@
-.L158:
+@ SkillsDebug.c:594: 		Text_DrawString(&command->text, " No Move");
+	ldr	r1, .L106+48	@,
+	b	.L105		@
+.L107:
 	.align	2
-.L157:
+.L106:
 	.word	gBg0MapBuffer
 	.word	Text_Clear
 	.word	Text_SetXCursor
@@ -1843,7 +1228,7 @@ SkillListCommandDraw_2:
 	.word	GetItemIconId
 	.word	DrawIcon
 	.word	GetItemName
-	.word	.LC53
+	.word	.LC44
 	.size	SkillListCommandDraw_2, .-SkillListCommandDraw_2
 	.align	1
 	.syntax unified
@@ -1856,122 +1241,122 @@ SkillListCommandDraw_1:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ SkillsDebug.c:569:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:542:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r3, [r0, #20]	@ menu_26(D)->parent, menu_26(D)->parent
-@ SkillsDebug.c:571:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:544:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r5, [r1, #44]	@ tmp141,
-@ SkillsDebug.c:569:     u8* const moves = UnitGetMoveList(proc->unit);
+@ SkillsDebug.c:542:     u8* const moves = UnitGetMoveList(proc->unit);
 	ldr	r6, [r3, #44]	@ _1, proc_27->unit
-@ SkillsDebug.c:571:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:544:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	ldrh	r3, [r1, #42]	@ tmp143,
-@ SkillsDebug.c:573:     Text_Clear(&command->text);
+@ SkillsDebug.c:546:     Text_Clear(&command->text);
 	adds	r1, r1, #52	@ command,
 	movs	r4, r1	@ _10, command
-@ SkillsDebug.c:571:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:544:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #5	@ tmp142, tmp141,
 	adds	r5, r5, r3	@ tmp144, tmp142, tmp143
-@ SkillsDebug.c:571:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L163	@ tmp146,
-@ SkillsDebug.c:571:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:544:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, .L112	@ tmp146,
+@ SkillsDebug.c:544:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r5, r5, #1	@ tmp145, tmp144,
-@ SkillsDebug.c:573:     Text_Clear(&command->text);
+@ SkillsDebug.c:546:     Text_Clear(&command->text);
 	movs	r0, r1	@, _10
-@ SkillsDebug.c:571:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ SkillsDebug.c:544:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	adds	r5, r5, r3	@ out, tmp145, tmp146
-@ SkillsDebug.c:573:     Text_Clear(&command->text);
-	ldr	r3, .L163+4	@ tmp147,
+@ SkillsDebug.c:546:     Text_Clear(&command->text);
+	ldr	r3, .L112+4	@ tmp147,
 	bl	.L8		@
-@ SkillsDebug.c:574: 	Text_SetXCursor(&command->text, new_item_desc_offset);
+@ SkillsDebug.c:547: 	Text_SetXCursor(&command->text, new_item_desc_offset);
 	movs	r1, #72	@,
-	ldr	r7, .L163+8	@ tmp148,
+	ldr	r7, .L112+8	@ tmp148,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:576:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	bl	.L74		@
+@ SkillsDebug.c:549:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	adds	r6, r6, #40	@ tmp152,
-@ SkillsDebug.c:575:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+@ SkillsDebug.c:548:     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L163+12	@ tmp191,
+	ldr	r3, .L112+12	@ tmp191,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:576:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L163+16	@ tmp154,
+@ SkillsDebug.c:549:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L112+16	@ tmp154,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 40B], MEM[(u8 *)_1 + 40B]
 	bl	.L8		@
-	ldr	r3, .L163+20	@ tmp155,
+	ldr	r3, .L112+20	@ tmp155,
 	bl	.L8		@
-@ SkillsDebug.c:576:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	ldr	r3, .L163+24	@ tmp193,
-@ SkillsDebug.c:576:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:549:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+	ldr	r3, .L112+24	@ tmp193,
+@ SkillsDebug.c:549:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r1, r0	@ _14, tmp185
-@ SkillsDebug.c:576:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
+@ SkillsDebug.c:549:     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:577: 	Text_Display(&command->text, out); 
-	ldr	r3, .L163+28	@ tmp157,
+@ SkillsDebug.c:550: 	Text_Display(&command->text, out); 
+	ldr	r3, .L112+28	@ tmp157,
 	movs	r1, r5	@, out
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:578: 	Text_SetXCursor(&command->text, 0);
+@ SkillsDebug.c:551: 	Text_SetXCursor(&command->text, 0);
 	movs	r1, #0	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:580:     LoadIconPalettes(4); /* Icon palette */
+	bl	.L74		@
+@ SkillsDebug.c:553:     LoadIconPalettes(4); /* Icon palette */
 	movs	r0, #4	@,
-	ldr	r3, .L163+32	@ tmp159,
+	ldr	r3, .L112+32	@ tmp159,
 	bl	.L8		@
-@ SkillsDebug.c:582: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:555: 	if (IsMove(moves[i])) {
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 40B], MEM[(u8 *)_1 + 40B]
 	bl	IsMove		@
-@ SkillsDebug.c:582: 	if (IsMove(moves[i])) {
+@ SkillsDebug.c:555: 	if (IsMove(moves[i])) {
 	cmp	r0, #0	@ tmp186,
-	beq	.L160		@,
-@ SkillsDebug.c:583: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-	ldr	r3, .L163+36	@ tmp168,
+	beq	.L109		@,
+@ SkillsDebug.c:556: 		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
+	ldr	r3, .L112+36	@ tmp168,
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 40B], MEM[(u8 *)_1 + 40B]
 	bl	.L8		@
 	movs	r2, #128	@,
 	movs	r1, r0	@ _20, tmp187
 	lsls	r2, r2, #7	@,,
-	ldr	r3, .L163+40	@ tmp170,
+	ldr	r3, .L112+40	@ tmp170,
 	movs	r0, r5	@, out
 	bl	.L8		@
-@ SkillsDebug.c:584: 		Text_SetXCursor(&command->text, item_name_offset);
+@ SkillsDebug.c:557: 		Text_SetXCursor(&command->text, item_name_offset);
 	movs	r1, #16	@,
 	movs	r0, r4	@, _10
-	bl	.L107		@
-@ SkillsDebug.c:585: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
+	bl	.L74		@
+@ SkillsDebug.c:558: 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 	movs	r1, #2	@,
-	ldr	r3, .L163+12	@ tmp195,
+	ldr	r3, .L112+12	@ tmp195,
 	movs	r0, r4	@, _10
 	bl	.L8		@
-@ SkillsDebug.c:586: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
+@ SkillsDebug.c:559: 		Text_DrawString(&command->text, GetItemName(moves[i])); 
 	ldrb	r0, [r6]	@ MEM[(u8 *)_1 + 40B], MEM[(u8 *)_1 + 40B]
-	ldr	r3, .L163+44	@ tmp177,
+	ldr	r3, .L112+44	@ tmp177,
 	bl	.L8		@
 	movs	r1, r0	@ _23, tmp188
-.L162:
-@ SkillsDebug.c:593: }
+.L111:
+@ SkillsDebug.c:566: }
 	@ sp needed	@
-@ SkillsDebug.c:590: 		Text_DrawString(&command->text, " No Move");
+@ SkillsDebug.c:563: 		Text_DrawString(&command->text, " No Move");
 	movs	r0, r4	@, _10
-	ldr	r3, .L163+24	@ tmp201,
+	ldr	r3, .L112+24	@ tmp201,
 	bl	.L8		@
-@ SkillsDebug.c:593: }
+@ SkillsDebug.c:566: }
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L160:
-@ SkillsDebug.c:589: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
+.L109:
+@ SkillsDebug.c:562: 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 	movs	r1, #1	@,
 	movs	r0, r4	@, _10
-	ldr	r3, .L163+12	@ tmp199,
+	ldr	r3, .L112+12	@ tmp199,
 	bl	.L8		@
-@ SkillsDebug.c:590: 		Text_DrawString(&command->text, " No Move");
-	ldr	r1, .L163+48	@,
-	b	.L162		@
-.L164:
+@ SkillsDebug.c:563: 		Text_DrawString(&command->text, " No Move");
+	ldr	r1, .L112+48	@,
+	b	.L111		@
+.L113:
 	.align	2
-.L163:
+.L112:
 	.word	gBg0MapBuffer
 	.word	Text_Clear
 	.word	Text_SetXCursor
@@ -1984,7 +1369,7 @@ SkillListCommandDraw_1:
 	.word	GetItemIconId
 	.word	DrawIcon
 	.word	GetItemName
-	.word	.LC53
+	.word	.LC44
 	.size	SkillListCommandDraw_1, .-SkillListCommandDraw_1
 	.align	1
 	.global	SkillDebugCommand_OnSelect
@@ -1998,67 +1383,67 @@ SkillDebugCommand_OnSelect:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SkillsDebug.c:361:     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
-	ldr	r4, .L166	@ tmp122,
-@ SkillsDebug.c:390: }
+@ SkillsDebug.c:334:     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
+	ldr	r4, .L115	@ tmp122,
+@ SkillsDebug.c:363: }
 	@ sp needed	@
-@ SkillsDebug.c:361:     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
+@ SkillsDebug.c:334:     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
 	movs	r1, #3	@,
 	movs	r0, r4	@, tmp122
-	ldr	r3, .L166+4	@ tmp123,
+	ldr	r3, .L115+4	@ tmp123,
 	bl	.L8		@
-@ SkillsDebug.c:366: 	proc->skillReplacement = *gVeslySkill; // Short 
-	ldr	r3, .L166+8	@ tmp124,
+@ SkillsDebug.c:339: 	proc->skillReplacement = *gVeslySkill; // Short 
+	ldr	r3, .L115+8	@ tmp124,
 	movs	r2, #0	@ tmp146,
 	ldrsh	r3, [r3, r2]	@ _2, tmp124, tmp146
-@ SkillsDebug.c:367:     proc->unit = (struct Unit*) *gVeslyUnit; // Struct UnitRamPointer 
-	ldr	r2, .L166+12	@ tmp130,
+@ SkillsDebug.c:340:     proc->unit = (struct Unit*) *gVeslyUnit; // Struct UnitRamPointer 
+	ldr	r2, .L115+12	@ tmp130,
 	ldr	r2, [r2]	@ _3, MEM[(int *)50337724B]
-@ SkillsDebug.c:366: 	proc->skillReplacement = *gVeslySkill; // Short 
+@ SkillsDebug.c:339: 	proc->skillReplacement = *gVeslySkill; // Short 
 	strh	r3, [r0, #42]	@ _2, proc_8->skillReplacement
-@ SkillsDebug.c:367:     proc->unit = (struct Unit*) *gVeslyUnit; // Struct UnitRamPointer 
+@ SkillsDebug.c:340:     proc->unit = (struct Unit*) *gVeslyUnit; // Struct UnitRamPointer 
 	str	r2, [r0, #44]	@ _3, proc_8->unit
-@ SkillsDebug.c:361:     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
+@ SkillsDebug.c:334:     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
 	movs	r1, r0	@ proc, tmp145
-@ SkillsDebug.c:374: 	*MemorySlot1 = proc->unit; 
-	ldr	r0, .L166+16	@ tmp131,
+@ SkillsDebug.c:347: 	*MemorySlot1 = proc->unit; 
+	ldr	r0, .L115+16	@ tmp131,
 	str	r2, [r0]	@ _3, MEM[(int *)50332860B]
-@ SkillsDebug.c:375: 	*MemorySlot3 = 0xF8;
+@ SkillsDebug.c:348: 	*MemorySlot3 = 0xF8;
 	movs	r0, #248	@ tmp133,
-	ldr	r2, .L166+20	@ tmp132,
+	ldr	r2, .L115+20	@ tmp132,
 	str	r0, [r2]	@ tmp133, MEM[(int *)50332868B]
-@ SkillsDebug.c:376: 	*MemorySlot4 = proc->skillReplacement; 
-	ldr	r2, .L166+24	@ tmp134,
-@ SkillsDebug.c:388:     StartMenuChild(&Menu_SkillDebug, (void*) proc);
+@ SkillsDebug.c:349: 	*MemorySlot4 = proc->skillReplacement; 
+	ldr	r2, .L115+24	@ tmp134,
+@ SkillsDebug.c:361:     StartMenuChild(&Menu_SkillDebug, (void*) proc);
 	movs	r0, r4	@ tmp122, tmp122
-@ SkillsDebug.c:376: 	*MemorySlot4 = proc->skillReplacement; 
+@ SkillsDebug.c:349: 	*MemorySlot4 = proc->skillReplacement; 
 	str	r3, [r2]	@ _2, MEM[(int *)50332872B]
-@ SkillsDebug.c:379: 	*MemorySlot6 = 0; // TRUE 
+@ SkillsDebug.c:352: 	*MemorySlot6 = 0; // TRUE 
 	movs	r3, #0	@ tmp136,
-	ldr	r2, .L166+28	@ tmp135,
-@ SkillsDebug.c:388:     StartMenuChild(&Menu_SkillDebug, (void*) proc);
+	ldr	r2, .L115+28	@ tmp135,
+@ SkillsDebug.c:361:     StartMenuChild(&Menu_SkillDebug, (void*) proc);
 	adds	r0, r0, #40	@ tmp122,
-@ SkillsDebug.c:379: 	*MemorySlot6 = 0; // TRUE 
+@ SkillsDebug.c:352: 	*MemorySlot6 = 0; // TRUE 
 	str	r3, [r2]	@ tmp136, MEM[(int *)50332880B]
-@ SkillsDebug.c:382:     proc->movesUpdated = FALSE;
+@ SkillsDebug.c:355:     proc->movesUpdated = FALSE;
 	str	r3, [r1, #48]	@ tmp136, proc_8->movesUpdated
-@ SkillsDebug.c:383:     proc->skillSelected = 0;
+@ SkillsDebug.c:356:     proc->skillSelected = 0;
 	str	r3, [r1, #52]	@ tmp136, proc_8->skillSelected
-@ SkillsDebug.c:386: 	proc->hover_move_Updated = FALSE; 
+@ SkillsDebug.c:359: 	proc->hover_move_Updated = FALSE; 
 	str	r3, [r1, #56]	@ tmp136, proc_8->hover_move_Updated
-@ SkillsDebug.c:387: 	proc->move_hovering = 0;
+@ SkillsDebug.c:360: 	proc->move_hovering = 0;
 	str	r3, [r1, #60]	@ tmp136, proc_8->move_hovering
-@ SkillsDebug.c:388:     StartMenuChild(&Menu_SkillDebug, (void*) proc);
-	ldr	r3, .L166+32	@ tmp143,
+@ SkillsDebug.c:361:     StartMenuChild(&Menu_SkillDebug, (void*) proc);
+	ldr	r3, .L115+32	@ tmp143,
 	bl	.L8		@
-@ SkillsDebug.c:390: }
+@ SkillsDebug.c:363: }
 	movs	r0, #23	@,
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L167:
+.L116:
 	.align	2
-.L166:
+.L115:
 	.word	.LANCHOR0
 	.word	ProcStart
 	.word	33733854
@@ -2126,7 +1511,7 @@ Menu_SkillDebug:
 	.word	BPressForgetOldMoveMenu
 	.space	8
 	.type	MenuCommands_SkillDebug, %object
-	.size	MenuCommands_SkillDebug, 360
+	.size	MenuCommands_SkillDebug, 252
 MenuCommands_SkillDebug:
 @ isAvailable:
 	.space	12
@@ -2188,36 +1573,6 @@ MenuCommands_SkillDebug:
 @ onIdle:
 	.word	List_5_Idle
 	.space	8
-@ isAvailable:
-	.space	12
-	.word	MenuCommandAlwaysUsable
-@ onDraw:
-	.word	SkillListCommandDraw_6
-@ onEffect:
-	.word	MoveCommandSelect
-@ onIdle:
-	.word	List_6_Idle
-	.space	8
-@ isAvailable:
-	.space	12
-	.word	MenuCommandAlwaysUsable
-@ onDraw:
-	.word	SkillListCommandDraw_7
-@ onEffect:
-	.word	MoveCommandSelect
-@ onIdle:
-	.word	List_7_Idle
-	.space	8
-@ isAvailable:
-	.space	12
-	.word	MenuCommandAlwaysUsable
-@ onDraw:
-	.word	SkillListCommandDraw_8
-@ onEffect:
-	.word	MoveCommandSelect
-@ onIdle:
-	.word	List_8_Idle
-	.space	8
 	.space	36
 	.ident	"GCC: (devkitARM release 54) 10.1.0"
 	.text
@@ -2225,7 +1580,7 @@ MenuCommands_SkillDebug:
 	.align	1
 .L8:
 	bx	r3
-.L108:
+.L75:
 	bx	r6
-.L107:
+.L74:
 	bx	r7

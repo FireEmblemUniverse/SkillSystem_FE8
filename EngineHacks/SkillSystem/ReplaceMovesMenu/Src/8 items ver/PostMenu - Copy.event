@@ -1,0 +1,57 @@
+ALIGN 4
+LearningNewMoveEvent:
+EVBIT_MODIFY 4 
+SVAL r9 1
+TutText(LearnMoveText)
+BNE 0 rC r9 
+// Selected "yes" 
+//ASMC 0x8022861 // This was in the SkillDebugMenu as a routine to call at the end 
+// I haven't looked into what it does, but it's probably graphics/gamestate related 
+//ASMC 0x80311a9 // ReloadGameCoreGraphics
+ASMC ReplaceMove
+
+GOTO 0x63 
+LABEL 0 
+//ASMC 0x80311a9 // ReloadGameCoreGraphics is the one we want here 
+
+ASMC SkillDebugCommand_OnSelect
+LABEL 0x63 
+EVBIT_MODIFY 4 
+NoFade
+ENDA 
+
+ALIGN 4
+ExitedNewMoveMenuEvent: 
+
+EVBIT_MODIFY 4 
+SVAL r9 1
+TutText(GiveUpLearnMoveText)
+BNE 0 rC r9 
+// Selected "yes" 
+//ASMC 0x8022861 // This was in the SkillDebugMenu as a routine to call at the end 
+// I haven't looked into what it does, but it's probably graphics/gamestate related 
+//ASMC 0x80311a9 // ReloadGameCoreGraphics
+ASMC ReturnTMIfUnused
+GOTO 0x63 
+LABEL 0 
+//ASMC 0x80311a9 // ReloadGameCoreGraphics is the one we want here 
+// Selected "no" 
+ASMC SkillDebugCommand_OnSelect
+LABEL 0x63 
+EVBIT_MODIFY 4 
+
+
+
+
+
+
+
+
+//ASMC 0x8022861 // This was in the SkillDebugMenu as a routine to call at the end 
+// I haven't looked into what it does, but it's probably graphics/gamestate related 
+
+NoFade
+ENDA 
+
+
+

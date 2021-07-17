@@ -301,7 +301,16 @@ Label 0x63
 NoFade
 ENDA 
 
+#define Halt "CALL StopHere"
+#define Break "CALL StopHere"
+#define Stop "CALL StopHere"
 
+StopHere:
+EVBIT_F 2 
+FADI 1 
+Text(DebugTextHere)
+NoFade 
+ENDA 
 
 VisitPokecenter:
 

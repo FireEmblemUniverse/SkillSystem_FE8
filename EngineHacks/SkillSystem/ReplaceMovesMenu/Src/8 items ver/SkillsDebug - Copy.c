@@ -134,6 +134,9 @@ static void SkillListCommandDraw_2(struct MenuProc* menu, struct MenuCommandProc
 static void SkillListCommandDraw_3(struct MenuProc* menu, struct MenuCommandProc* command);
 static void SkillListCommandDraw_4(struct MenuProc* menu, struct MenuCommandProc* command);
 static void SkillListCommandDraw_5(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_6(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_7(struct MenuProc* menu, struct MenuCommandProc* command);
+static void SkillListCommandDraw_8(struct MenuProc* menu, struct MenuCommandProc* command);
 
 static void NewMoveDetailsDraw(struct MenuProc* menu, struct MenuCommandProc* command);
 static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command);
@@ -145,6 +148,9 @@ static int List_2_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
 static int List_3_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
 static int List_4_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
 static int List_5_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
+static int List_6_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
+static int List_7_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
+static int List_8_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
 
 static int SkillListCommandIdle(struct MenuProc* menu, struct MenuCommandProc* command);
 static int SkillListCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command);
@@ -275,7 +281,28 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 		.onIdle = List_5_Idle,
         .onEffect = MoveCommandSelect,
     },
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+        .onDraw = SkillListCommandDraw_6,
+		.onIdle = List_6_Idle,
+        .onEffect = MoveCommandSelect,
 
+    },
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+        .onDraw = SkillListCommandDraw_7,
+		.onIdle = List_7_Idle,
+        .onEffect = MoveCommandSelect,
+
+    },
+	
+    {
+		.isAvailable = MenuCommandAlwaysUsable,
+        .onDraw = SkillListCommandDraw_8,
+		.onIdle = List_8_Idle,
+        .onEffect = MoveCommandSelect,
+
+    },
 	
     {} // END
 };
