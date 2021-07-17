@@ -70,7 +70,7 @@ POP
   ORG $794ee
   SHORT 0
 
-//Skip H&S screen
+//Skip H&S screen (credit Circles)
   ORG $CC20C
   SHORT 0
 
