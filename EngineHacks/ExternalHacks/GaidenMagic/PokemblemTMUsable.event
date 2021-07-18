@@ -1,323 +1,0 @@
-
-
-// They can automatically use moves that are of their type. 
-// Therefore, Absorb is redundant here 
-ALIGN 4
-BulbasaurTMs:
-// BYTE Move 
-BYTE Tackle Absorb // They can all be on one line, or separate lines 
-BYTE HighJumpKick 
-BYTE 0 // Goes at the end of each learnset 
-
-ALIGN 4
-IvysaurTMs:BYTEBYTE 0ALIGN 4
-VenusaurTMs:BYTEBYTE 0ALIGN 4
-CharmanderTMs:BYTEBYTE 0ALIGN 4
-CharmeleonTMs:BYTEBYTE 0ALIGN 4
-CharizardTMs:BYTEBYTE 0ALIGN 4
-SquirtleTMs:BYTEBYTE 0ALIGN 4
-WartortleTMs:BYTEBYTE 0ALIGN 4
-BlastoiseTMs:BYTEBYTE 0ALIGN 4
-CaterpieTMs:BYTEBYTE 0ALIGN 4
-MetapodTMs:BYTEBYTE 0ALIGN 4
-ButterfreeTMs:BYTEBYTE 0ALIGN 4
-WeedleTMs:BYTEBYTE 0ALIGN 4
-KakunaTMs:BYTEBYTE 0ALIGN 4
-BeedrillTMs:BYTEBYTE 0ALIGN 4
-PTMs:BYTEBYTE 0ALIGN 4geyTMs:BYTEBYTE 0ALIGN 4
-PigeottoTMs:BYTEBYTE 0ALIGN 4
-PTMs:BYTEBYTE 0ALIGN 4geotTMs:BYTEBYTE 0ALIGN 4
-RattataTMs:BYTEBYTE 0ALIGN 4
-RaticateTMs:BYTEBYTE 0ALIGN 4
-SpearowTMs:BYTEBYTE 0ALIGN 4
-FearowTMs:BYTEBYTE 0ALIGN 4
-EkansTMs:BYTEBYTE 0ALIGN 4
-ArbokTMs:BYTEBYTE 0ALIGN 4
-PikachuTMs:BYTEBYTE 0ALIGN 4
-RaichuTMs:BYTEBYTE 0ALIGN 4
-SandshrewTMs:BYTEBYTE 0ALIGN 4
-SandslashTMs:BYTEBYTE 0ALIGN 4
-NTMs:BYTEBYTE 0ALIGN 4oranFTMs:BYTEBYTE 0ALIGN 4
-NTMs:BYTEBYTE 0ALIGN 4orinaTMs:BYTEBYTE 0ALIGN 4
-NTMs:BYTEBYTE 0ALIGN 4oqueenTMs:BYTEBYTE 0ALIGN 4
-NTMs:BYTEBYTE 0ALIGN 4oranMTMs:BYTEBYTE 0ALIGN 4
-NTMs:BYTEBYTE 0ALIGN 4orinoTMs:BYTEBYTE 0ALIGN 4
-NTMs:BYTEBYTE 0ALIGN 4okingTMs:BYTEBYTE 0ALIGN 4
-ClefairyTMs:BYTEBYTE 0ALIGN 4
-ClefableTMs:BYTEBYTE 0ALIGN 4
-VulpixTMs:BYTEBYTE 0ALIGN 4
-NinetalesTMs:BYTEBYTE 0ALIGN 4
-JigglypuffTMs:BYTEBYTE 0ALIGN 4
-WigglytuffTMs:BYTEBYTE 0ALIGN 4
-ZubatTMs:BYTEBYTE 0ALIGN 4
-GolbatTMs:BYTEBYTE 0ALIGN 4
-OddishTMs:BYTEBYTE 0ALIGN 4
-GloomTMs:BYTEBYTE 0ALIGN 4
-VileplumeTMs:BYTEBYTE 0ALIGN 4
-ParasTMs:BYTEBYTE 0ALIGN 4
-ParasectTMs:BYTEBYTE 0ALIGN 4
-VenonatTMs:BYTEBYTE 0ALIGN 4
-VenomothTMs:BYTEBYTE 0ALIGN 4
-DiglettTMs:BYTEBYTE 0ALIGN 4
-DugtrioTMs:BYTEBYTE 0ALIGN 4
-MeowthTMs:BYTEBYTE 0ALIGN 4
-PersianTMs:BYTEBYTE 0ALIGN 4
-PsyduckTMs:BYTEBYTE 0ALIGN 4
-GolduckTMs:BYTEBYTE 0ALIGN 4
-MankeyTMs:BYTEBYTE 0ALIGN 4
-PrimeapeTMs:BYTEBYTE 0ALIGN 4
-GrowlitheTMs:BYTEBYTE 0ALIGN 4
-ArcanineTMs:BYTEBYTE 0ALIGN 4
-PoliwagTMs:BYTEBYTE 0ALIGN 4
-PoliwhirlTMs:BYTEBYTE 0ALIGN 4
-PoliwrathTMs:BYTEBYTE 0ALIGN 4
-AbraTMs:BYTEBYTE 0ALIGN 4
-KadabraTMs:BYTEBYTE 0ALIGN 4
-AlakazamTMs:BYTEBYTE 0ALIGN 4
-MachopTMs:BYTEBYTE 0ALIGN 4
-MachokeTMs:BYTEBYTE 0ALIGN 4
-MachampTMs:BYTEBYTE 0ALIGN 4
-BellsproutTMs:BYTEBYTE 0ALIGN 4
-WeepinbellTMs:BYTEBYTE 0ALIGN 4
-VictreebelTMs:BYTEBYTE 0ALIGN 4
-TentacoolTMs:BYTEBYTE 0ALIGN 4
-TentacruelTMs:BYTEBYTE 0ALIGN 4
-GeodudeTMs:BYTEBYTE 0ALIGN 4
-GravellerTMs:BYTEBYTE 0ALIGN 4
-GolemTMs:BYTEBYTE 0ALIGN 4
-PonytaTMs:BYTEBYTE 0ALIGN 4
-RapTMs:BYTEBYTE 0ALIGN 4ashTMs:BYTEBYTE 0ALIGN 4
-SlowpokeTMs:BYTEBYTE 0ALIGN 4
-SlowbroTMs:BYTEBYTE 0ALIGN 4
-MagnemiteTMs:BYTEBYTE 0ALIGN 4
-MagnetonTMs:BYTEBYTE 0ALIGN 4
-FarfetchdTMs:BYTEBYTE 0ALIGN 4
-DoduoTMs:BYTEBYTE 0ALIGN 4
-DodrioTMs:BYTEBYTE 0ALIGN 4
-SeelTMs:BYTEBYTE 0ALIGN 4
-DewgongTMs:BYTEBYTE 0ALIGN 4
-GrimerTMs:BYTEBYTE 0ALIGN 4
-MukTMs:BYTEBYTE 0ALIGN 4
-ShellderTMs:BYTEBYTE 0ALIGN 4
-CloysterTMs:BYTEBYTE 0ALIGN 4
-GastlyTMs:BYTEBYTE 0ALIGN 4
-HaunterTMs:BYTEBYTE 0ALIGN 4
-GengarTMs:BYTEBYTE 0ALIGN 4
-OnixTMs:BYTEBYTE 0ALIGN 4
-DrowzeeTMs:BYTEBYTE 0ALIGN 4
-HypnoTMs:BYTEBYTE 0ALIGN 4
-KrabbyTMs:BYTEBYTE 0ALIGN 4
-KinglerTMs:BYTEBYTE 0ALIGN 4
-VoltorbTMs:BYTEBYTE 0ALIGN 4
-ElectrodeTMs:BYTEBYTE 0ALIGN 4
-ExeggcuteTMs:BYTEBYTE 0ALIGN 4
-ExeggutorTMs:BYTEBYTE 0ALIGN 4
-CuboneTMs:BYTEBYTE 0ALIGN 4
-MarowakTMs:BYTEBYTE 0ALIGN 4
-HitmonleeTMs:BYTEBYTE 0ALIGN 4
-HitmonchanTMs:BYTEBYTE 0ALIGN 4
-LickitungTMs:BYTEBYTE 0ALIGN 4
-KoffingTMs:BYTEBYTE 0ALIGN 4
-WeezingTMs:BYTEBYTE 0ALIGN 4
-RhyhornTMs:BYTEBYTE 0ALIGN 4
-RhydonTMs:BYTEBYTE 0ALIGN 4
-ChanseyTMs:BYTEBYTE 0ALIGN 4
-TangelaTMs:BYTEBYTE 0ALIGN 4
-KangaskhanTMs:BYTEBYTE 0ALIGN 4
-HorseaTMs:BYTEBYTE 0ALIGN 4
-SeadraTMs:BYTEBYTE 0ALIGN 4
-GoldeenTMs:BYTEBYTE 0ALIGN 4
-SeakingTMs:BYTEBYTE 0ALIGN 4
-StaryuTMs:BYTEBYTE 0ALIGN 4
-StarmieTMs:BYTEBYTE 0ALIGN 4
-MrMimeTMs:BYTEBYTE 0ALIGN 4
-ScytherTMs:BYTEBYTE 0ALIGN 4
-JynxTMs:BYTEBYTE 0ALIGN 4
-ElectabuzzTMs:BYTEBYTE 0ALIGN 4
-MagmarTMs:BYTEBYTE 0ALIGN 4
-PinsirTMs:BYTEBYTE 0ALIGN 4
-TaurosTMs:BYTEBYTE 0ALIGN 4
-MagikarpTMs:BYTEBYTE 0ALIGN 4
-GyaradosTMs:BYTEBYTE 0ALIGN 4
-LaprasTMs:BYTEBYTE 0ALIGN 4
-DittoTMs:BYTEBYTE 0ALIGN 4
-EeveeTMs:BYTEBYTE 0ALIGN 4
-VaporeonTMs:BYTEBYTE 0ALIGN 4
-JolteonTMs:BYTEBYTE 0ALIGN 4
-FlareonTMs:BYTEBYTE 0ALIGN 4
-PorygonTMs:BYTEBYTE 0ALIGN 4
-OmanyteTMs:BYTEBYTE 0ALIGN 4
-OmastarTMs:BYTEBYTE 0ALIGN 4
-KabutoTMs:BYTEBYTE 0ALIGN 4
-KabutopsTMs:BYTEBYTE 0ALIGN 4
-AerodactylTMs:BYTEBYTE 0ALIGN 4
-SnorlaxTMs:BYTEBYTE 0ALIGN 4
-ArticunoTMs:BYTEBYTE 0ALIGN 4
-ZapdosTMs:BYTEBYTE 0ALIGN 4
-MoltresTMs:BYTEBYTE 0ALIGN 4
-DratiniTMs:BYTEBYTE 0ALIGN 4
-DragonairTMs:BYTEBYTE 0ALIGN 4
-DragoniteTMs:BYTEBYTE 0ALIGN 4
-MewtwoTMs:BYTEBYTE 0ALIGN 4
-MewTMs:BYTEBYTE 0
-
-
-// Stuff for Vesly 
-#define TMList(ClassID,pointer) "PUSH ; ORG TMListTable + ClassID * 4 ; POIN pointer ; POP"
-
-
-ALIGN 4
-TMListTable: // Allocate space for the spell list pointer table.
-FILL 4*0xFF
-ALIGN 4
-TMList(BulbasaurID,BulbasaurTMs)
-TMList(IvysaurID,IvysaurTMs)
-TMList(VenusaurID,VenusaurTMs)
-TMList(CharmanderID,CharmanderTMs)
-TMList(CharmeleonID,CharmeleonTMs)
-TMList(CharizardID,CharizardTMs)
-TMList(SquirtleID,SquirtleTMs)
-TMList(WartortleID,WartortleTMs)
-TMList(BlastoiseID,BlastoiseTMs)
-TMList(CaterpieID,CaterpieTMs)
-TMList(MetapodID,MetapodTMs)
-TMList(ButterfreeID,ButterfreeTMs)
-TMList(WeedleID,WeedleTMs)
-TMList(KakunaID,KakunaTMs)
-TMList(BeedrillID,BeedrillTMs)
-TMList(PidgeyID,PidgeyTMs)
-TMList(PigeottoID,PigeottoTMs)
-TMList(PidgeotID,PidgeotTMs)
-TMList(RattataID,RattataTMs)
-TMList(RaticateID,RaticateTMs)
-TMList(SpearowID,SpearowTMs)
-TMList(FearowID,FearowTMs)
-TMList(EkansID,EkansTMs)
-TMList(ArbokID,ArbokTMs)
-TMList(PikachuID,PikachuTMs)
-TMList(RaichuID,RaichuTMs)
-TMList(SandshrewID,SandshrewTMs)
-TMList(SandslashID,SandslashTMs)
-TMList(NidoranFID,NidoranFTMs)
-TMList(NidorinaID,NidorinaTMs)
-TMList(NidoqueenID,NidoqueenTMs)
-TMList(NidoranMID,NidoranMTMs)
-TMList(NidorinoID,NidorinoTMs)
-TMList(NidokingID,NidokingTMs)
-TMList(ClefairyID,ClefairyTMs)
-TMList(ClefableID,ClefableTMs)
-TMList(VulpixID,VulpixTMs)
-TMList(NinetalesID,NinetalesTMs)
-TMList(JigglypuffID,JigglypuffTMs)
-TMList(WigglytuffID,WigglytuffTMs)
-TMList(ZubatID,ZubatTMs)
-TMList(GolbatID,GolbatTMs)
-TMList(OddishID,OddishTMs)
-TMList(GloomID,GloomTMs)
-TMList(VileplumeID,VileplumeTMs)
-TMList(ParasID,ParasTMs)
-TMList(ParasectID,ParasectTMs)
-TMList(VenonatID,VenonatTMs)
-TMList(VenomothID,VenomothTMs)
-TMList(DiglettID,DiglettTMs)
-TMList(DugtrioID,DugtrioTMs)
-TMList(MeowthID,MeowthTMs)
-TMList(PersianID,PersianTMs)
-TMList(PsyduckID,PsyduckTMs)
-TMList(GolduckID,GolduckTMs)
-TMList(MankeyID,MankeyTMs)
-TMList(PrimeapeID,PrimeapeTMs)
-TMList(GrowlitheID,GrowlitheTMs)
-TMList(ArcanineID,ArcanineTMs)
-TMList(PoliwagID,PoliwagTMs)
-TMList(PoliwhirlID,PoliwhirlTMs)
-TMList(PoliwrathID,PoliwrathTMs)
-TMList(AbraID,AbraTMs)
-TMList(KadabraID,KadabraTMs)
-TMList(AlakazamID,AlakazamTMs)
-TMList(MachopID,MachopTMs)
-TMList(MachokeID,MachokeTMs)
-TMList(MachampID,MachampTMs)
-TMList(BellsproutID,BellsproutTMs)
-TMList(WeepinbellID,WeepinbellTMs)
-TMList(VictreebelID,VictreebelTMs)
-TMList(TentacoolID,TentacoolTMs)
-TMList(TentacruelID,TentacruelTMs)
-TMList(GeodudeID,GeodudeTMs)
-TMList(GravellerID,GravellerTMs)
-TMList(GolemID,GolemTMs)
-TMList(PonytaID,PonytaTMs)
-TMList(RapidashID,RapidashTMs)
-TMList(SlowpokeID,SlowpokeTMs)
-TMList(SlowbroID,SlowbroTMs)
-TMList(MagnemiteID,MagnemiteTMs)
-TMList(MagnetonID,MagnetonTMs)
-TMList(FarfetchdID,FarfetchdTMs)
-TMList(DoduoID,DoduoTMs)
-TMList(DodrioID,DodrioTMs)
-TMList(SeelID,SeelTMs)
-TMList(DewgongID,DewgongTMs)
-TMList(GrimerID,GrimerTMs)
-TMList(MukID,MukTMs)
-TMList(ShellderID,ShellderTMs)
-TMList(CloysterID,CloysterTMs)
-TMList(GastlyID,GastlyTMs)
-TMList(HaunterID,HaunterTMs)
-TMList(GengarID,GengarTMs)
-TMList(OnixID,OnixTMs)
-TMList(DrowzeeID,DrowzeeTMs)
-TMList(HypnoID,HypnoTMs)
-TMList(KrabbyID,KrabbyTMs)
-TMList(KinglerID,KinglerTMs)
-TMList(VoltorbID,VoltorbTMs)
-TMList(ElectrodeID,ElectrodeTMs)
-TMList(ExeggcuteID,ExeggcuteTMs)
-TMList(ExeggutorID,ExeggutorTMs)
-TMList(CuboneID,CuboneTMs)
-TMList(MarowakID,MarowakTMs)
-TMList(HitmonleeID,HitmonleeTMs)
-TMList(HitmonchanID,HitmonchanTMs)
-TMList(LickitungID,LickitungTMs)
-TMList(KoffingID,KoffingTMs)
-TMList(WeezingID,WeezingTMs)
-TMList(RhyhornID,RhyhornTMs)
-TMList(RhydonID,RhydonTMs)
-TMList(ChanseyID,ChanseyTMs)
-TMList(TangelaID,TangelaTMs)
-TMList(KangaskhanID,KangaskhanTMs)
-TMList(HorseaID,HorseaTMs)
-TMList(SeadraID,SeadraTMs)
-TMList(GoldeenID,GoldeenTMs)
-TMList(SeakingID,SeakingTMs)
-TMList(StaryuID,StaryuTMs)
-TMList(StarmieID,StarmieTMs)
-TMList(MrMimeID,MrMimeTMs)
-TMList(ScytherID,ScytherTMs)
-TMList(JynxID,JynxTMs)
-TMList(ElectabuzzID,ElectabuzzTMs)
-TMList(MagmarID,MagmarTMs)
-TMList(PinsirID,PinsirTMs)
-TMList(TaurosID,TaurosTMs)
-TMList(MagikarpID,MagikarpTMs)
-TMList(GyaradosID,GyaradosTMs)
-TMList(LaprasID,LaprasTMs)
-TMList(DittoID,DittoTMs)
-TMList(EeveeID,EeveeTMs)
-TMList(VaporeonID,VaporeonTMs)
-TMList(JolteonID,JolteonTMs)
-TMList(FlareonID,FlareonTMs)
-TMList(PorygonID,PorygonTMs)
-TMList(OmanyteID,OmanyteTMs)
-TMList(OmastarID,OmastarTMs)
-TMList(KabutoID,KabutoTMs)
-TMList(KabutopsID,KabutopsTMs)
-TMList(AerodactylID,AerodactylTMs)
-TMList(SnorlaxID,SnorlaxTMs)
-TMList(ArticunoID,ArticunoTMs)
-TMList(ZapdosID,ZapdosTMs)
-TMList(MoltresID,MoltresTMs)
-TMList(DratiniID,DratiniTMs)
-TMList(DragonairID,DragonairTMs)
-TMList(DragoniteID,DragoniteTMs)
-TMList(MewtwoID,MewtwoTMs)
-TMList(MewID,MewTMs)

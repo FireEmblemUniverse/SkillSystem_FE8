@@ -20,6 +20,8 @@
 			HP cost for a missed attack also does not display in battle (but the effect still applies).
 	*/
 	
+
+	
 	#define GaidenUsingSpellMenu 0x0203F082
 	#define GaidenSelectedSpell 0x0203F080
 	

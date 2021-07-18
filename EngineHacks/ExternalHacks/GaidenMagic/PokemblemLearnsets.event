@@ -23,10 +23,19 @@ ButterfreeLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 WeedleLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 KakunaLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 BeedrillLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
-PidgeyLearnset:BYTE 3 GustBYTE 0 0ALIGN 4
-PigeottoLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
+PidgeyLearnset:BYTE 1 Tackle
+BYTE 2 SandAttack
+BYTE 2 Gust 
+BYTE 2 Ember 
+BYTE 2 Bubble 
+BYTE 2 FireBlast
+BYTE 1 Growl
+BYTE 9 TakeDown 
+BYTE 11 MegaPunch BYTE 0 0ALIGN 4
+PidgeottoLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 PidgeotLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
-RattataLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
+RattataLearnset:BYTE 1 TailWhip
+BYTE 1 GustBYTE 0 0ALIGN 4
 RaticateLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 SpearowLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 FearowLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
@@ -158,10 +167,7 @@ DratiniLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 DragonairLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 DragoniteLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
 MewtwoLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
-MewLearnset:BYTE 0 0//BYTE 0 0ALIGN 4
-EmptyLearnset:
-BYTE 0 0
-BYTE 0 0 
+MewLearnset:BYTE 0 0//BYTE 0 0
 
 ALIGN 4 
 
@@ -188,7 +194,7 @@ GaidenList(WeedleID,WeedleLearnset)
 GaidenList(KakunaID,KakunaLearnset)
 GaidenList(BeedrillID,BeedrillLearnset)
 GaidenList(PidgeyID,PidgeyLearnset)
-GaidenList(PigeottoID,PigeottoLearnset)
+GaidenList(PidgeottoID,PidgeottoLearnset)
 GaidenList(PidgeotID,PidgeotLearnset)
 GaidenList(RattataID,RattataLearnset)
 GaidenList(RaticateID,RaticateLearnset)

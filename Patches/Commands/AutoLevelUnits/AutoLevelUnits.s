@@ -245,6 +245,8 @@ strb r0, [r5, r2]
 
 mov r0, r5 
 blh CheckCaps 
+mov r0, r5 
+blh AutolevelSpells
 b NextUnit 
 
 

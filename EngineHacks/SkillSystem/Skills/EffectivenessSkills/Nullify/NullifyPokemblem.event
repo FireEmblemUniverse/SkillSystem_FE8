@@ -1,0 +1,99 @@
+//FE8 Nullify, with potential weapon effectiveness and Slayer overhaul
+//By Tequila
+
+#ifndef _FE8_
+    ERROR "You're not assembling to an FE8 ROM!"
+#endif
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+#ifndef FreeSpace
+    #define FreeSpace 0xB2A610
+    ORG FreeSpace
+#endif
+
+#ifndef ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
+	//we merely add Slayer and Nullify checks as necessary
+	
+	PUSH
+	
+	//Slayer
+	ORG $16C8A
+	SHORT 0x46C0
+	callHack_r3(Normal_Slayer)
+	SHORT 0x2900 0xD000 //cmp r1,#0; beq nextLine
+	
+	//Weapon effectiveness
+	ORG $16BFA
+	SHORT 0x4D06 //ldr r5,=ItemTable
+	callHack_r1(Normal_Effectiveness)
+	SHORT 0x46C0 0x46C0 0x46C0
+	
+	POP
+	
+	ALIGN 4
+	Normal_Slayer:
+	#incbin "Normal_Slayer.dmp"
+	POIN SkillTester
+	WORD SlayerID NullifyID
+	
+	ALIGN 4
+	Normal_Effectiveness:
+	#incbin "Normal_Effectiveness.dmp"
+	POIN SkillTester
+	WORD NullifyID
+	
+#else
+	//OVERHAUL, BABY
+	
+	PUSH
+	
+	//Modify the part that multiplies weapon might for effective weapons and slayer
+	ORG $2AAEC
+	callHack_r3(Add_Weapon_Might) //0xC bytes
+	SHORT 0xE027
+
+	//slayer redux
+	ORG $16C88
+	jumpToHack(Redone_Redone_Slayer)
+	
+	//effectiveness redux
+	ORG $16BEC
+	jumpToHack(Redone_Effectiveness)
+	
+	POP
+	
+	ALIGN 4
+	Add_Weapon_Might:
+	#incbin "Add_Weapon_Might_Pokemblem.dmp"
+
+
+	ALIGN 4
+	Redone_Slayer:
+	#incbin "Redone_Slayer.dmp"
+	POIN SkillTester
+	WORD SlayerID
+	WORD NullifyID
+	POIN SlayerTable
+	
+	ALIGN 4
+	Redone_Effectiveness:
+	#incbin "Redone_Effectiveness.dmp"
+	POIN SkillTester
+	WORD NullifyID
+
+	ALIGN 4
+	Redone_Redone_Slayer:
+	#incbin "Redone_Redone_Slayer.dmp"
+	POIN SkillTester
+	WORD SlayerID
+	WORD NullifyID
+	WORD MonsterType
+	WORD SkybreakerID
+	WORD FlierType
+	WORD ResourcefulID
+	
+	
+#endif
+

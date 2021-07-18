@@ -10,7 +10,9 @@ WORD 0 //terminator
 //Change existing effective items (class weaknesses are already part of the class data table)
 #define ItemEffectivenessPtr(item_id, label_to_point_to) "PUSH; ORG ItemTable + 0x24*item_id + 0x10; POIN label_to_point_to; POP"
 
-
+// Since they're very repetitive, I just pasted the pointers into the item table 
+// Seems quicker with so many entries 
+/*
 ItemEffectivenessPtr(Tackle, NormalAdv)
 ItemEffectivenessPtr(Ember, FireAdv)
 ItemEffectivenessPtr(Bubble, WaterAdv)
@@ -26,7 +28,7 @@ ItemEffectivenessPtr(Rollout, RockAdv)
 ItemEffectivenessPtr(Lick, GhostAdv)
 ItemEffectivenessPtr(Outrage, DragonAdv)
 ItemEffectivenessPtr(Megahorn, BugAdv)
-
+*/ 
 
 
 //Protector item (macro still works, even if it's wrongly named)

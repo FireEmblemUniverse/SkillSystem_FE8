@@ -1,0 +1,951 @@
+
+// Ruroini set the ones so far 
+// Thanks!! 
+
+// They can automatically use moves that are of their type. 
+// Therefore, Absorb is redundant here 
+//ALIGN 4
+//BulbasaurTMs:
+// BYTE Move 
+//BYTE Tackle Absorb // They can all be on one line, or separate lines 
+//BYTE HighJumpKick 
+//BYTE 0 // Goes at the end of each learnset 
+
+
+ALIGN 4
+BulbasaurTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+IvysaurTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+VenusaurTMs:
+BYTE Roar Rest BulkUp Constrict Cut Headbutt BodySlam DoubleEdge
+BYTE Slam TakeDown EarthPower Leer Tackle
+BYTE 0
+
+ALIGN 4
+CharmanderTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+CharmeleonTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+CharizardTMs:
+BYTE TailWhip Growl Roar DragonDance Scratch Pound Rage Tackle
+BYTE Headbutt MegaKick Slash DragonClaw
+BYTE 0
+
+ALIGN 4
+SquirtleTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+WartortleTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+BlastoiseTMs:
+BYTE Growl Leer Rest Withdraw BulkUp Haze MegaPunch Headbutt BodySlam
+BYTE DoubleEdge TakeDown IcePunch
+BYTE 0
+
+ALIGN 4
+CaterpieTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MetapodTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ButterfreeTMs:
+BYTE Flash SleepPowder ConfuseRay MagicalLeaf PoisonPowder Confusion
+BYTE 0
+
+ALIGN 4
+WeedleTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KakunaTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+BeedrillTMs:
+BYTE SwordsDance Rage Cut Slash PoisonJab PoisonSting
+BYTE 0
+
+ALIGN 4
+PidgeyTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PidgeottoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PidgeotTMs:
+BYTE SandAttack Rest Agility Tackle QuickAttack TakeDown
+BYTE Twister UTurn
+BYTE 0
+
+ALIGN 4
+RattataTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+RaticateTMs:
+BYTE Glare TailWhip SandAttack Rest Dig Lick BugBite
+BYTE 0
+
+ALIGN 4
+SpearowTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+FearowTMs:
+BYTE Leer SwordsDance Rage Swift Submission UTurn
+BYTE 0
+
+ALIGN 4
+EkansTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ArbokTMs:
+BYTE Glare Growl Leer SandAttack BulkUp Constrict Bind Submission Dig
+BYTE Lick LeechLife
+BYTE 0
+
+ALIGN 4
+PikachuTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+RaichuTMs:
+BYTE Flash TailWhip Agility QuickAttack Dig BugBite Thunderwave
+BYTE 0
+
+ALIGN 4
+SandshrewTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+SandslashTMs:
+BYTE Leer Covet CrushClaw Slash Thrash KarateChop PoisonJab PoisonSting
+BYTE RockSlide XScissor
+BYTE 0
+
+ALIGN 4
+NidoranFTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+NidorinaTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+NidoqueenTMs:
+BYTE BulkUp Roar Rest MegaPunch Doubleslap CometPunch HyperBeam
+BYTE FireBlast Guillotine RockThrow Snarl
+BYTE 0
+
+ALIGN 4
+NidoranMTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+NidorinoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+NidokingTMs:
+BYTE BulkUp Roar Rest DoubleHit MegaKick CometPunch DoubleEdge
+BYTE HornDrill FireBlast RockThrow Megahorn
+BYTE 0
+
+ALIGN 4
+ClefairyTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ClefableTMs:
+BYTE LovelyKiss Sing Hypnosis Amnesia LightScreen Reflect Minimize
+BYTE Rest Metronome Covet TriAttack Swift
+BYTE 0
+
+ALIGN 4
+VulpixTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+NinetalesTMs:
+BYTE TailWhip Growl Hypnosis ConfuseRay Headbutt TriAttack Psychic
+BYTE 0
+
+ALIGN 4
+JigglypuffTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+WigglytuffTMs:
+BYTE LovelyKiss Sing Amnesia Minimize Metronome Doubleslap Slam
+BYTE MagicalLeaf Confusion
+BYTE 0
+
+ALIGN 4
+ZubatTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GolbatTMs:
+BYTE ConfuseRay Covet Confusion ShadowBall
+BYTE 0
+
+ALIGN 4
+OddishTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GloomTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+VileplumeTMs:
+BYTE SleepPowder PoisonPowder Barrage Psybeam
+BYTE 0
+
+ALIGN 4
+ParasTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ParasectTMs:
+BYTE SleepPowder LightScreen Slash
+BYTE 0
+
+ALIGN 4
+VenonatTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+VenomothTMs:
+BYTE PoisonPowder Hypnosis LightScreen Haze Gust MirrorMove Confusion
+BYTE ShadowBall
+BYTE 0
+
+ALIGN 4
+DiglettTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DugtrioTMs:
+BYTE SandAttack Agility SwordsDance Covet QuickAttack TakeDown
+BYTE Sandstorm RockTomb RockThrow
+BYTE 0
+
+ALIGN 4
+MeowthTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PersianTMs:
+BYTE SandAttack TailWhip ConfuseRay Roar SwordsDance Covet PayDay
+BYTE Submission Counter Lick Snarl
+BYTE 0
+
+ALIGN 4
+PsyduckTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GolduckTMs:
+BYTE Hypnosis BulkUp Minimize Amnesia Pound Swift KarateChop //BoneClub
+BYTE Psychic ShadowPunch
+BYTE 0
+
+ALIGN 4
+MankeyTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PrimeapeTMs:
+BYTE BulkUp Rest Pound MegaPunch BodySlam Earthquake MirrorMove
+BYTE RockThrow RockSlide Snarl
+BYTE 0
+
+ALIGN 4
+GrowlitheTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ArcanineTMs:
+BYTE Glare Roar DragonDance DoubleEdge TakeDown Submission Snarl
+BYTE SolarBeam
+BYTE 0
+
+ALIGN 4
+PoliwagTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PoliwhirlTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PoliwrathTMs:
+BYTE Reflect BulkUp Haze DoubleHit CometPunch Headbutt Thrash IcePunch
+BYTE 0
+
+ALIGN 4
+AbraTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KadabraTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+AlakazamTMs:
+BYTE Flash LightScreen Teleport Metronome FireBlast IceBeam Thunderbolt
+BYTE MirrorMove ShadowBall TriAttack
+BYTE 0
+
+ALIGN 4
+MachopTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MachokeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MachampTMs:
+BYTE Growl Glare BulkUp MegaPunch CometPunch RockSlide RockThrow ShadowPunch Snarl
+BYTE 0
+
+ALIGN 4
+BellsproutTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+WeepinbellTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+VictreebelTMs:
+BYTE PoisonPowder SleepPowder Cut
+BYTE 0
+
+ALIGN 4
+TentacoolTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+TentacruelTMs:
+BYTE ConfuseRay LightScreen Reflect Bind Constrict Barrage
+BYTE 0
+
+ALIGN 4
+GeodudeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GravellerTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GolemTMs:
+BYTE Pound MegaPunch DoubleEdge Explosion KarateChop SeismicToss
+BYTE 0
+
+ALIGN 4
+PonytaTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+RapidashTMs:
+BYTE SandAttack Agility Tackle MegaKick TakeDown DoubleKick
+BYTE 0
+
+ALIGN 4
+SlowpokeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+SlowbroTMs:
+BYTE Hypnosis Amnesia Rest Haze Metronome Scratch Doubleslap IceBeam
+BYTE Lick
+BYTE 0
+
+ALIGN 4
+MagnemiteTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MagnetonTMs:
+BYTE Flash Thunderwave LightScreen Reflect TriAttack Explosion SignalBeam
+BYTE 0
+
+ALIGN 4
+FarfetchdTMs:
+BYTE SandAttack Leer Agility SwordsDance Covet QuickAttack Swift
+BYTE 0
+
+ALIGN 4
+DoduoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DodrioTMs:
+BYTE SandAttack SwordsDance Agility DoubleHit CrushClaw FuryCutter
+BYTE 0
+
+ALIGN 4
+SeelTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DewgongTMs:
+BYTE Reflect Amnesia Doubleslap Headbutt BodySlam
+BYTE 0
+
+ALIGN 4
+GrimerTMs:
+BYTE Constrict
+BYTE 0
+
+ALIGN 4
+MukTMs:
+BYTE PoisonPowder Growl Minimize Amnesia Growth Constrict Bind Rage
+BYTE Absorb Lick LeechLife
+BYTE 0
+
+ALIGN 4
+ShellderTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+CloysterTMs:
+BYTE Thunderwave ConfuseRay LightScreen Reflect Withdraw Haze Bind
+BYTE Barrage Swift Clamp AuroraBeam
+BYTE 0
+
+ALIGN 4
+GastlyTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+HaunterTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GengarTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+OnixTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DrowzeeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+HypnoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KrabbyTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KinglerTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+VoltorbTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ElectrodeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ExeggcuteTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ExeggutorTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+CuboneTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MarowakTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+HitmonleeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+HitmonchanTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+LickitungTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KoffingTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+WeezingTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+RhyhornTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+RhydonTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ChanseyTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+TangelaTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KangaskhanTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+HorseaTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+SeadraTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GoldeenTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+SeakingTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+StaryuTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+StarmieTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MrMimeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ScytherTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+JynxTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ElectabuzzTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MagmarTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PinsirTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+TaurosTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MagikarpTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+GyaradosTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+LaprasTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DittoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+EeveeTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+VaporeonTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+JolteonTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+FlareonTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+PorygonTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+OmanyteTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+OmastarTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KabutoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+KabutopsTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+AerodactylTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+SnorlaxTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ArticunoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+ZapdosTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MoltresTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DratiniTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DragonairTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+DragoniteTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MewtwoTMs:
+BYTE 0
+BYTE 0
+
+ALIGN 4
+MewTMs:
+BYTE 0
+BYTE 0
+
+
+
+// Stuff for Vesly 
+#define TMList(ClassID,pointer) "PUSH ; ORG TMListTable + ClassID * 4 ; POIN pointer ; POP"
+
+
+ALIGN 4
+TMListTable: // Allocate space for the spell list pointer table.
+FILL 4*0xFF
+
+ALIGN 4
+TMList(BulbasaurID,BulbasaurTMs)
+TMList(IvysaurID,IvysaurTMs)
+TMList(VenusaurID,VenusaurTMs)
+TMList(CharmanderID,CharmanderTMs)
+TMList(CharmeleonID,CharmeleonTMs)
+TMList(CharizardID,CharizardTMs)
+TMList(SquirtleID,SquirtleTMs)
+TMList(WartortleID,WartortleTMs)
+TMList(BlastoiseID,BlastoiseTMs)
+TMList(CaterpieID,CaterpieTMs)
+TMList(MetapodID,MetapodTMs)
+TMList(ButterfreeID,ButterfreeTMs)
+TMList(WeedleID,WeedleTMs)
+TMList(KakunaID,KakunaTMs)
+TMList(BeedrillID,BeedrillTMs)
+TMList(PidgeyID,PidgeyTMs)
+TMList(PidgeottoID,PidgeottoTMs)
+TMList(PidgeotID,PidgeotTMs)
+TMList(RattataID,RattataTMs)
+TMList(RaticateID,RaticateTMs)
+TMList(SpearowID,SpearowTMs)
+TMList(FearowID,FearowTMs)
+TMList(EkansID,EkansTMs)
+TMList(ArbokID,ArbokTMs)
+TMList(PikachuID,PikachuTMs)
+TMList(RaichuID,RaichuTMs)
+TMList(SandshrewID,SandshrewTMs)
+TMList(SandslashID,SandslashTMs)
+TMList(NidoranFID,NidoranFTMs)
+TMList(NidorinaID,NidorinaTMs)
+TMList(NidoqueenID,NidoqueenTMs)
+TMList(NidoranMID,NidoranMTMs)
+TMList(NidorinoID,NidorinoTMs)
+TMList(NidokingID,NidokingTMs)
+TMList(ClefairyID,ClefairyTMs)
+TMList(ClefableID,ClefableTMs)
+TMList(VulpixID,VulpixTMs)
+TMList(NinetalesID,NinetalesTMs)
+TMList(JigglypuffID,JigglypuffTMs)
+TMList(WigglytuffID,WigglytuffTMs)
+TMList(ZubatID,ZubatTMs)
+TMList(GolbatID,GolbatTMs)
+TMList(OddishID,OddishTMs)
+TMList(GloomID,GloomTMs)
+TMList(VileplumeID,VileplumeTMs)
+TMList(ParasID,ParasTMs)
+TMList(ParasectID,ParasectTMs)
+TMList(VenonatID,VenonatTMs)
+TMList(VenomothID,VenomothTMs)
+TMList(DiglettID,DiglettTMs)
+TMList(DugtrioID,DugtrioTMs)
+TMList(MeowthID,MeowthTMs)
+TMList(PersianID,PersianTMs)
+TMList(PsyduckID,PsyduckTMs)
+TMList(GolduckID,GolduckTMs)
+TMList(MankeyID,MankeyTMs)
+TMList(PrimeapeID,PrimeapeTMs)
+TMList(GrowlitheID,GrowlitheTMs)
+TMList(ArcanineID,ArcanineTMs)
+TMList(PoliwagID,PoliwagTMs)
+TMList(PoliwhirlID,PoliwhirlTMs)
+TMList(PoliwrathID,PoliwrathTMs)
+TMList(AbraID,AbraTMs)
+TMList(KadabraID,KadabraTMs)
+TMList(AlakazamID,AlakazamTMs)
+TMList(MachopID,MachopTMs)
+TMList(MachokeID,MachokeTMs)
+TMList(MachampID,MachampTMs)
+TMList(BellsproutID,BellsproutTMs)
+TMList(WeepinbellID,WeepinbellTMs)
+TMList(VictreebelID,VictreebelTMs)
+TMList(TentacoolID,TentacoolTMs)
+TMList(TentacruelID,TentacruelTMs)
+TMList(GeodudeID,GeodudeTMs)
+TMList(GravellerID,GravellerTMs)
+TMList(GolemID,GolemTMs)
+TMList(PonytaID,PonytaTMs)
+TMList(RapidashID,RapidashTMs)
+TMList(SlowpokeID,SlowpokeTMs)
+TMList(SlowbroID,SlowbroTMs)
+TMList(MagnemiteID,MagnemiteTMs)
+TMList(MagnetonID,MagnetonTMs)
+TMList(FarfetchdID,FarfetchdTMs)
+TMList(DoduoID,DoduoTMs)
+TMList(DodrioID,DodrioTMs)
+TMList(SeelID,SeelTMs)
+TMList(DewgongID,DewgongTMs)
+TMList(GrimerID,GrimerTMs)
+TMList(MukID,MukTMs)
+TMList(ShellderID,ShellderTMs)
+TMList(CloysterID,CloysterTMs)
+TMList(GastlyID,GastlyTMs)
+TMList(HaunterID,HaunterTMs)
+TMList(GengarID,GengarTMs)
+TMList(OnixID,OnixTMs)
+TMList(DrowzeeID,DrowzeeTMs)
+TMList(HypnoID,HypnoTMs)
+TMList(KrabbyID,KrabbyTMs)
+TMList(KinglerID,KinglerTMs)
+TMList(VoltorbID,VoltorbTMs)
+TMList(ElectrodeID,ElectrodeTMs)
+TMList(ExeggcuteID,ExeggcuteTMs)
+TMList(ExeggutorID,ExeggutorTMs)
+TMList(CuboneID,CuboneTMs)
+TMList(MarowakID,MarowakTMs)
+TMList(HitmonleeID,HitmonleeTMs)
+TMList(HitmonchanID,HitmonchanTMs)
+TMList(LickitungID,LickitungTMs)
+TMList(KoffingID,KoffingTMs)
+TMList(WeezingID,WeezingTMs)
+TMList(RhyhornID,RhyhornTMs)
+TMList(RhydonID,RhydonTMs)
+TMList(ChanseyID,ChanseyTMs)
+TMList(TangelaID,TangelaTMs)
+TMList(KangaskhanID,KangaskhanTMs)
+TMList(HorseaID,HorseaTMs)
+TMList(SeadraID,SeadraTMs)
+TMList(GoldeenID,GoldeenTMs)
+TMList(SeakingID,SeakingTMs)
+TMList(StaryuID,StaryuTMs)
+TMList(StarmieID,StarmieTMs)
+TMList(MrMimeID,MrMimeTMs)
+TMList(ScytherID,ScytherTMs)
+TMList(JynxID,JynxTMs)
+TMList(ElectabuzzID,ElectabuzzTMs)
+TMList(MagmarID,MagmarTMs)
+TMList(PinsirID,PinsirTMs)
+TMList(TaurosID,TaurosTMs)
+TMList(MagikarpID,MagikarpTMs)
+TMList(GyaradosID,GyaradosTMs)
+TMList(LaprasID,LaprasTMs)
+TMList(DittoID,DittoTMs)
+TMList(EeveeID,EeveeTMs)
+TMList(VaporeonID,VaporeonTMs)
+TMList(JolteonID,JolteonTMs)
+TMList(FlareonID,FlareonTMs)
+TMList(PorygonID,PorygonTMs)
+TMList(OmanyteID,OmanyteTMs)
+TMList(OmastarID,OmastarTMs)
+TMList(KabutoID,KabutoTMs)
+TMList(KabutopsID,KabutopsTMs)
+TMList(AerodactylID,AerodactylTMs)
+TMList(SnorlaxID,SnorlaxTMs)
+TMList(ArticunoID,ArticunoTMs)
+TMList(ZapdosID,ZapdosTMs)
+TMList(MoltresID,MoltresTMs)
+TMList(DratiniID,DratiniTMs)
+TMList(DragonairID,DragonairTMs)
+TMList(DragoniteID,DragoniteTMs)
+TMList(MewtwoID,MewtwoTMs)
+TMList(MewID,MewTMs)

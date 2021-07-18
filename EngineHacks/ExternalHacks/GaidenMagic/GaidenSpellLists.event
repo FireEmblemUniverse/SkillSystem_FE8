@@ -2,30 +2,36 @@
 #define GaidenList(pokemon,pointer) "PUSH ; ORG MoveListTable + (pokemon * 4) ; POIN pointer ; POP"
 //#define SpellList(pokemon,pointer) "PUSH ; ORG SpellListTable + (pokemon * 4) ; POIN pointer ; POP"
 
-ALIGN 4
-MoveListTable: // Allocate space for the spell list pointer table.
-FILL 16*0xFF
-
-
-
-
-
-
-#include "PokemblemLearnsets.event" 
-#define EmptyLearnset_16 "POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset"
-#define EmptyLearnset_256 "EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16"
-
 
 // This one is now unused, but must exist for Gaiden Magic 
 // I decided to have them learn moves on levelup to be stored in ram
 ALIGN 4
 SpellListTable: // Allocate space for the spell list pointer table.
+
+FILL 16*0xFF
+
+
+
+#include "AutolevelSpells.lyn.event"
+
+ALIGN 4
+EmptyLearnset:
+BYTE 0 0
+BYTE 0 0 
+
+
+#define EmptyLearnset_16 "POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset; POIN EmptyLearnset"
+#define EmptyLearnset_256 "EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16; EmptyLearnset_16"
+
+ALIGN 4
+MoveListTable: // Allocate space for the spell list pointer table.
 EmptyLearnset_256
 EmptyLearnset_256
 EmptyLearnset_256
 EmptyLearnset_256
 
-
+//#include "PokemblemTMUsable.event" now in "\EngineHacks\SkillSystem\GaidenSpellScrolls"
+#include "PokemblemLearnsets.event" 
 
 
 // Example usage of a spell list.
