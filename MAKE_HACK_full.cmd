@@ -58,18 +58,12 @@ type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
 SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
 copy /y "%~dp0FE8Hack.sym" %destDir%\comment_.txt
 
+echo:
+echo Generating patch
 
-if /I not [%1]==[quick] (
+cd "%base_dir%"
+"%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
 
-  @rem only do the following if this isn't a make hack quick
-
-  echo:
-  echo Generating patch
-
-  cd "%base_dir%"
-  "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
-
-)
 
 
 

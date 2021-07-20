@@ -1,79 +1,79 @@
 INLINE GaidenSpellCostTable,Spell Cost
-Nothing,0
-Iron Sword,1
-Slim Sword,1
-Steel Sword,1
-Silver Sword,1
-Iron Blade,1
-Steel Blade,1
-Silver Blade,1
-Poison Sword,1
-Rapier,1
-Siegfried (Mani Katti),1
-Brave Sword,1
-Shamshir,1
-Killing Edge,1
-Armorslayer,1
-Wyrmslayer,1
-Light Brand,1
-Runesword,1
-Lancereaver,1
-Zanbato,1
-Iron Lance,1
-Slim Lance,1
-Steel Lance,1
-Silver Lance,1
-Toxin Lance,1
-Brave Lance,1
-Killer Lance,1
-Horseslayer,1
-Javelin,1
-Spear,1
-Axereaver,1
-Iron Axe,1
-Steel Axe,1
-Silver Axe,1
-Poison Axe,1
-Brave Axe,1
-Killer Axe,1
-Halberd,1
-Hammer,1
-Devil Axe,1
-Hand Axe,1
-Tomahawk,1
-Swordreaver,1
-Swordslayer,1
-Hatchet,1
-Iron Bow,1
-Steel Bow,1
-Silver Bow,1
-Poison Bow,1
-Killer Bow,1
-Brave Bow,1
-Short Bow,1
-Longbow,1
-Ballista,1
-Iron Ballista,1
-Killer Ballista,1
-Fire,1
-Thunder,1
-Elfire,1
-Bolting,1
-Fimbulvetr,1
-Binding Blade(Forblaze),1
-Excalibur,1
-Lightning,1
-Shine,1
-Divine,1
-Purge,1
-Aura,1
-Luce (DUMMY),1
-Flux,1
-Luna,1
-Nosferatu,1
-Eclipse,1
-Fenrir,1
-Gleipnir,1
+0,0
+Resv.,1
+Barrage,1
+Bind,1
+Body Slam,1
+Comet Punch,1
+Constrict,1
+Covet,1
+Crush Claw,1
+Cut,1
+Doubleslap,1
+Double Hit,1
+Double Edge,1
+Egg Bomb,1
+Explosion,1
+Flash,1
+Fury (magic),1
+Glare,1
+Growl,1
+Growth,1
+Guillotine,1
+Headbutt,1
+Horn Attack,1
+Horn Drill,1
+Hyper Beam,1
+Hyper Fang,1
+Leer,1
+Lovely Kiss,1
+Mega Kick,1
+Mega Punch,1
+Metronome,1
+Minimize,1
+Pay Day,1
+Pound,1
+Quick Attack,1
+Rage,1
+Recover,1
+Roar,1
+Sand-Attack,1
+Scratch,1
+Sing,1
+Slam,1
+Slash,1
+Splash,1
+Attack Pulse,1
+Super Fang,1
+Swift,1
+Swords Dance,1
+Tackle,1
+Tail Whip,1
+Take Down,1
+Thrash,1
+Tri Attack,1
+Ember,1
+Fire Punch,1
+Flame Wheel,1
+Scorch,1
+Flamethrower,1
+Fire Spin,1
+Fire Blast,1
+Sacred Fire,1
+Bubble,1
+Water Gun,1
+Clamp,1
+Crabhammer,1
+Bubble Beam,1
+Hydro Pump,1
+Surf,1
+Waterfall,1
+Withdraw,1
+Absorb,1
+Leech Seed,1
+Mega Drain,1
+Petal Dance,1
+Leaf Flurry,1
 Heal,1
 Mend,1
 Recover,1
@@ -90,29 +90,29 @@ Hammerne,1
 Unlock,1
 Barrier,1
 Dragon Axe,1
-Angelic Robe,1
-Energy Ring,1
-Secret Book,1
-Speedwings,1
-Goddess Icon,1
-Dragonshield,1
-Talisman,1
-Swiftsoles,1
-Body Ring,1
-Hero Crest,1
-Knight Crest,1
-Orion's Bolt,1
-Elysian Whip,1
-Guiding Ring,1
+HP Up,1
+Protein,1
+Secret Tonic,1
+Carbos,1
+Luck,1
+Iron,1
+Zinc,1
+Calcium,1
+Bulk Up,1
+Moon Stone,1
+Link Stone,1
+Thunder Stone,1
+Leaf Stone,1
+Water Stone,1
 Chest Key,1
 Door Key,1
 Lockpick,1
-Vulnerary,1
-Elixir,1
+Berry,1
+Max Potion,1
 Pure Water,1
-Antitoxin,1
+Full Heal,1
 Torch,1
-Filli Shield,1
+Fili Shield,1
 Member Card,1
 Silver Card,1
 White Gem,1
@@ -120,88 +120,138 @@ Blue Gem,1
 Red Gem,1
 Gold,1
 Reginleif,1
-Chest Key (5),1
-Mine (DUMMY),1
-Light Rune (DUMMY),1
+Chest Key,1
+Dummy,1
+Dummy,1
 Hoplon Guard,1
-Filla's Might (DUMMY),1
-Ninis's Grace (DUMMY),1
-Thor's Ire (DUMMY),1
-Set's Litany (DUMMY),1
-Shadowkiller,1
-Bright Lance,1
-Fiendcleaver,1
-Beacon Bow,1
-Sieglinde,1
-Battle Axe,1
-Ivaldi,1
-Master Seal,1
+Dummy,1
+Dummy,1
+Dummy,1
+Dummy,1
+Leaf Blade,1
+Sleep Powder,1
+Solar Beam,1
+Razor Leaf,1
+Vine Whip,1
+Thunder,1
+Thunder Punch,1
+Sacred Stone,1
 Metis's Tome,1
-Heaven Seal (DUMMY),1
-Sharp Claw,1
+Dummy,1
+T[_h][_u][_n][_d][_e][_r][_S][_h][_o][_c][_k],1
 Latona,1
-Dragonspear,1
-Vidofnir,1
-Naglfar,1
-Wretched Air,1
-Audhulma,1
-Siegmund,1
-Garm,1
-Nidhogg,1
-Heavy Lance,1
-Short Spear,1
-Ocean Seal,1
+Thunderbolt,1
+Volt Tackle,1
+Aurora Beam,1
+Blizzard,1
+Haze,1
+Ice Beam,1
+Ice Punch,1
+Avalanche,1
+Karate Chop,1
+Counter,1
+Fire Stone,1
 Lunar Brace,1
 Solar Brace,1
-1G,1
-5G,1
-10G,1
-50G,1
-100G,1
-3000G,1
-5000G,1
-Wind Sword,1
-Vulnerary,1
-Vulnerary (green note),1
-Vulnerary (red note),1
+100 Credits,1
+250 Credits,1
+500 Credits,1
+1000 Credits,1
+250 Credits,1
+"3,000 Credits",1
+"5,000 Credits",1
+Double Kick,1
+Potion,1
+Super Potion,1
+Hyper Potion,1
 Dance,1
 Nightmare,1
-Demon Stone (DUMMY),1
-Demon Light,1
-Ravager,1
-Dragonstone,1
-Demon Surge,1
-Shadowshot,1
-Rotten Claw,1
-Fetid Claw,1
-Poison Claw,1
-Lethal Talon,1
-Fiery Fang,1
-Hellfang,1
-Evil Eye,1
-Crimson Eye,1
+Hi Jump Kick,1
+Jump Kick,1
+Low Kick,1
+Rolling Kick,1
+Seismic Toss,1
+Submission,1
+Acid,1
+Poison Gas,1
+Poison Powder,1
+Poison Sting,1
+Sludge,1
+Smog,1
+Poison Jab,1
+Toxic,1
 Stone,1
-Aircalibur,1
-Juna Fruit,1
-150G,1
-200G,1
+Dig,1
+Rare Candy,1
+150 Credits,1
+200 Credits,1
 Black Gem,1
 Gold Gem,1
-0xc2,1
-0xc3,1
-0xc4,1
-0xc5,1
-0xc6,1
-0xc7,1
-0xc2,1
-0xc3,1
-0xc4,1
-0xc5,1
-0xc6,1
-0xc7,1
-0xc8,1
-0xc9,1
-0xca,1
-0xcb,1
-0xcc,1
-0xcd,1
+Bonemerang,1
+Earthquake,1
+Dig,1
+Magnitude,1
+Earth Power,1
+Drill Peck,1
+Fly,1
+Gust,1
+Peck,1
+Sky Attack,1
+Mirror Move,1
+Wing Attack,1
+Agility,1
+Amnesia,1
+Barrier,1
+Confusion,1
+Dream Eater,1
+Hypnosis,1
+Light Screen,1
+Reflect,1
+Psybeam,1
+Psychic,1
+Rest,1
+Teleport,1
+Rock Slide,1
+Rock Throw,1
+Ancientpower,1
+Rock Tomb,1
+Rollout,1
+Sandstorm,1
+Confuse Ray,1
+Lick,1
+Night Shade,1
+Nightmare,1
+Shadow Ball,1
+Shadow Punch,1
+Dragon Claw,1
+Dragon Dance,1
+Dragon Rage,1
+Dragonbreath,1
+Outrage,1
+Twister,1
+Bug Bite,1
+Bug Buzz,1
+Fury Cutter,1
+Leech Life,1
+Megahorn,1
+Pin Missile,1
+Signal Beam,1
+String Shot,1
+U-Turn,1
+X-Scissor,1
+asdf,1
+asdf,1
+T[_h][_u][_n][_d][_e][_r] W[_a][_v][_e],1
+Magical Leaf,1
+Spark,1
+Snarl,1
+Guard,1
+SkillScroll,1
+SpellScroll,1
+asdf,1
+asdf,1
+asdf,1
+asdf,1
+asdf,1
+asdf,1
+asdf,1

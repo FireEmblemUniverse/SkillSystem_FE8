@@ -125,6 +125,7 @@
 
 	ALIGN 4
 	NewGaidenSpellPopup:
+	
 	Popup_SetSound(0x5A)
 	Popup_SetColor(0)
 	Popup_StringPtr(GaidenPopupLearned)
@@ -133,6 +134,7 @@
 	Popup_Space(1)
 	Popup_ItemIcon
 	Popup_StringId(0x22) // .[X]
+	
 	Popup_End
 	
 	ALIGN 4

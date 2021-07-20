@@ -141,6 +141,9 @@
 
 #ifdef _FE8_
 #define VillageEventItem(textID,background,item) "MUSI; SMOV 0x2 background; SMOV 0x3 textID; CALL $9EE310; MUNO; CALL $591F40; SMOV 0x3 item; GIVEITEMTO 0xFFFF; EVBIT_T 0x7; ENDA"
+//#define VillageEvent(textID,background) "MUSI; SMOV 0x2 background; SMOV 0x3 textID; CALL $9EE310; MUNO; CALL $591F40; EVBIT_T 0x7; ENDA"
+#define VillageEvent(textID,background) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO; CALL $9EE2C4; EVBIT_T 0x7; ENDA"
+
 #define VillageEventMoney(textID,background,money) "MUSI; SMOV 0x2 background; SMOV 0x3 textID; CALL $9EE310; MUNO; CALL $591F40; SMOV 0x3 money; GIVEITEMTOMAIN 0; EVBIT_T 0x7; ENDA"
 #define HouseEvent(textID,background) "MUSI; SMOV 2 background; SMOV 3 textID; CALL $9EE310; MUNO; EVBIT_T 0x7; ENDA"
 #define ConvoEvent(textID) "MUSI; TEXTSTART; TEXTSHOW textID; TEXTEND; REMA; MUNO; EVBIT_T 0x7; ENDA"

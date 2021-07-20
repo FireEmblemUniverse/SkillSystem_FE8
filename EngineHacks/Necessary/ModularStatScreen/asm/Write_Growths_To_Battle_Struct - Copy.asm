@@ -79,19 +79,11 @@ mov		r1,r7
 add		r1,#0x73
 strb	r0,[r1]			@ store the hp growth to (battle struct+0x73), which will then be read later for the level-up display
 add		r5,r0			@ add r0 (level-up number) to r5 (counter) and store it in r5 (this is equal to add r5,r5,r0)
-@mov 	r11, r11
-cmp 	r4, #6 		@ checking if the flag has been set
-blt		StrGrowth		@ if not, go to the next growth
- @ Vesly added: if it's less than 2 stats that have leveled up, then we keep trying 
-cmp		r5,#0x2			@ if flag is set, check whether a stat proc'd yet
-blt		StrGrowth		@ if no stat proc'd, go to next growth
+cmp		r4,#0x0			@ checking if the flag has been set
+beq		StrGrowth		@ if not, go to the next growth
+cmp		r5,#0x0			@ if flag is set, check whether a stat proc'd yet
+beq		StrGrowth		@ if no stat proc'd, go to next growth
 b		CheckCaps		@ if flag is set and stat proc'd, make sure the level-up did not go over the cap
-
-@ First time through r4 is 0. After an iteration, it'll be 1 and we won't try again 
-@ r5 is only checked during the 2nd iteration. 
-@ 
-
-
 
 StrGrowth:
 ldr		r0,Get_Str_Growth
@@ -103,12 +95,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x74
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		SklGrowth
-cmp		r5,#0x2	
-blt		SklGrowth
+cmp		r4,#0x0
+beq		SklGrowth
+cmp		r5,#0x0
+beq		SklGrowth
 b		CheckCaps
 
 SklGrowth:
@@ -121,12 +112,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x75
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		SpdGrowth
-cmp		r5,#0x2
-blt		SpdGrowth
+cmp		r4,#0x0
+beq		SpdGrowth
+cmp		r5,#0x0
+beq		SpdGrowth
 b		CheckCaps 
 
 SpdGrowth:
@@ -139,12 +129,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x76
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		DefGrowth
-cmp		r5,#0x2
-blt		DefGrowth
+cmp		r4,#0x0
+beq		DefGrowth
+cmp		r5,#0x0
+beq		DefGrowth
 b		CheckCaps
 
 DefGrowth:
@@ -157,12 +146,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x77
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		ResGrowth
-cmp		r5,#0x2
-blt		ResGrowth
+cmp		r4,#0x0
+beq		ResGrowth
+cmp		r5,#0x0
+beq		ResGrowth
 b		CheckCaps
 
 ResGrowth:
@@ -175,12 +163,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x78
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		LukGrowth
-cmp		r5,#0x2
-blt		LukGrowth
+cmp		r4,#0x0
+beq		LukGrowth
+cmp		r5,#0x0
+beq		LukGrowth
 b		CheckCaps
 
 LukGrowth:
@@ -194,16 +181,12 @@ mov		r1,r7
 add		r1,#0x79
 strb	r0,[r1]
 add		r5,r0
-@mov 	r11, r11
-cmp		r5,#0x2
-bge		CheckCaps
-add 	r4, #1 
-@ At the end of each iteration, we break if at least 2 stats leveled up 
-				@ If 0 or 1 stats did, we do an entire iteration again 
-				@ Therefore, 1 of your stats might sometimes raise by 2 :-) 
-cmp 	r4, #6 @ We will try up to 6 times 
-blt 	HpGrowth 
-b 		CheckCaps 
+cmp		r5,#0x0
+bne		CheckCaps
+cmp		r4,#0x0
+bne		CheckCaps
+mov		r4,#0x1
+b		HpGrowth
 
 @End of normal growths routine
 FixedGrowths:

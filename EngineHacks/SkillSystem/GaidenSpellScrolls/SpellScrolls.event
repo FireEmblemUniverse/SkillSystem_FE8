@@ -29,7 +29,7 @@
 
 
 #include "UsabilityByType.lyn.event"
-#include "PokemblemTMUsable.event" 
+
 
 //ALIGN 4
 //SkillScrollMessageReturnLink:
@@ -40,8 +40,8 @@ SpellScrollIDLink:
 BYTE SpellScroll
 
 ALIGN 4
-TMLearnSetTable:
-
+//TMListTable:
+#include "PokemblemTMUsable.event"
 
 WORD 0 
 

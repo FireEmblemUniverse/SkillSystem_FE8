@@ -1,0 +1,19 @@
+
+// This breaks level ups sometimes to give +2 in a bunch of stats oops 
+// Probably some important scratch register was clobbered 
+
+/*
+PUSH
+
+ORG $2B9A0
+
+jumpToHack(NewLevelUpRework)
+
+POP
+
+#include "NewLevelUpRework.lyn.event" 
+
+*/
+
+
+

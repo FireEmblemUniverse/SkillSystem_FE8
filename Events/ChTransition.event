@@ -15,6 +15,7 @@
 #define Player6UnitID 			0x30017b8 
 #define BerryDurabilityToggleRam 			0x30017b9 
 #define ReturnTMRam 			0x30017ba
+#define DRSingleRam 			0x30017bb
 #define UnitPointerRam 0x30017BC // - BF
 #define NextFree 0x30017C0 
 
@@ -31,8 +32,8 @@ GenericDisappearEffect(2, VisitPokecenter) // This doesn't work so whatever
 TestCase:
 
 
-//GiveEXP(0x7FFF, 90)
-CALL VisitPokecenter
+GiveEXP(0x7FFF, 100)
+//CALL VisitPokecenter
 NoFade 
 ENDA 
 
@@ -114,10 +115,15 @@ NoFade
 ENDA 
 
 GlobalTurnEvent:
-ENUF 1 // Can 'Call' again 
+CHECK_EVENTID 9 
+BNE 0 rC r0 
+ENUF 1 // Auto refresh if not in danger 
+LABEL 0 
+ENUF 9 // 1 turn until auto refresh again 
 #ifdef DRUnitBitMask
 SetNearbyDangerRadius
 #endif 
+ENUF 8 // Can 'Call' again 
 NoFade
 ENDA 
 
@@ -338,6 +344,7 @@ UNCR(0x7FFF, 0x42)
 GOTO 63
 LABEL 62 
 ENUT 1 
+ENUT 9
 LABEL 63 
 NoFade
 ENDA 

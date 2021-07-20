@@ -105,4 +105,19 @@ blh  0x80311a8 		@ReloadGameCoreGraphics
 pop {r1}
 bx r1 
 
+.global ClearSpellLearnedRam
+.type ClearSpellLearnedRam, function 
+ClearSpellLearnedRam:
+push {lr} 
+mov r1, #0 
+ldr  r0, =0x0202BCDE @ pExtraItemOrSkill
+strh r1, [r0] 
+ldr r0, =0x30017ba @ ReturnTMRam
+strb r1, [r0] 
+
+
+pop {r1}
+bx r1 
+
+
 

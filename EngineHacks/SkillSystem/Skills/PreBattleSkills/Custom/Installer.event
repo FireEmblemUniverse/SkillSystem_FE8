@@ -1,0 +1,16 @@
+#include "WeakChipDmg.lyn.event"
+#include "Piercing.lyn.event"
+
+ALIGN 4
+ChipDamageWeaponList:
+BYTE Constrict Flash Growl Leer SandAttack TailWhip Snarl 
+BYTE 0x0 //terminator
+ALIGN 4 
+
+
+
+
+
+
+
+

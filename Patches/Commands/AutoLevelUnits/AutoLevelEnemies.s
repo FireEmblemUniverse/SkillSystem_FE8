@@ -41,7 +41,7 @@ AutoLevelUnits:
 @ r6 as valid terrain types 
 
 ldr r0, =MemorySlot 
-mov r6, #0x0 
+mov r6, #0x80 
 ldr r7, [r0, #4*0x01] @r7 / s1 as number of levels 
 @mov r7, #21 
 
@@ -58,6 +58,7 @@ mov r2,#0xC @ benched/dead
 @tst r1,r2
 @bne NextUnit
 mov r5, r0 @unit to autolevel 
+blh AutolevelSpells
 
 ldr		r2, =MemorySlot @
 ldr 	r1, [r2, #4*0x04]	@valid unit ID 
@@ -244,8 +245,8 @@ strb r0, [r5, r2]
 mov r0, r5 
 blh CheckCaps 
 mov r0, r5 
-
-blh AutolevelSpells
+@mov r11, r11
+@blh AutolevelSpells
 b NextUnit 
 
 

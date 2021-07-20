@@ -22,14 +22,24 @@ LearnSpellSetup:
 	mov r5, r2 @ var r5 = Parent proc
 	mov r6, r1 @ var r6 = spell index 
 
+	b Continue 
 	@ Store new Spell (without bit set)
-	ldr  r3, =pExtraItemOrSkill
+	cmp r1, #0 
+	bne Continue @ No spell to learn so exit 
+	ldr r0, =pExtraItemOrSkill
+	strh r1, [r0] @ Set to 0 
+	b exit 
+	
+	
+	Continue:
+	ldr r3, =pExtraItemOrSkill
 	strh r1, [r3]
 
 	@ Actually learn new Spell (will set bit if forgetting is needed)
 	mov r0, r4
-	ldr r3, =pUnitStructRam
-	str r0, [r3] 
+	ldr r3, =pUnitStructRam @ Save unit struct to ram because I am lazy 
+	str r0, [r3] 			@ Usually people save this to the proc 0x2C+ field 
+							@ I tried that but I couldn't get it to work oh well 
 
 	ldr r3, LearnNewSpell
 	mov lr, r3

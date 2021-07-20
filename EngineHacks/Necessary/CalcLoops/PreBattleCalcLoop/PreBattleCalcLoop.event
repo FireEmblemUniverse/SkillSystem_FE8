@@ -1,3 +1,4 @@
+#include "MinimumDamage.lyn.event"
 
 #include "BattleCalcDefinitions.event"
 
@@ -30,6 +31,7 @@ POIN FixedDamageWeapons
 #ifdef BIORHYTHM
   POIN BiorhythmFunc
 #endif //BIORHYTHM
+
 POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
 POIN DriveStr DriveMag DriveSpd DriveDef DriveRes
 POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
@@ -54,9 +56,12 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 
 //quick riposte goes after everything that might touch AS
 POIN QuickRiposte
+POIN Piercing
+POIN WeakChipDmg
 
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
+POIN MinimumDamage
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT

@@ -3,7 +3,8 @@
 
 ALIGN 4
 FixedDamageWeaponList:
-BYTE Constrict Flash Growl Leer SandAttack TailWhip Snarl
+BYTE 0x0
+//BYTE Constrict Flash Growl Leer SandAttack TailWhip Snarl // Using a skill now instead 
 BYTE 0x0 //terminator
 
 

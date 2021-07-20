@@ -88,6 +88,8 @@ ALIGN 12
 WORD 0xFFFFFFFF // Febuilder terminator 
 
 
+#define GaryHouseBG 56 
+#define ViridianForestBG 57 
 // Or new entries go here if you want to put the index number at the start :-) 
 BGEntry(56, LoserWorldMap_img, LoserWorldMap_tsa, LoserWorldMap_pal)
 BGEntry(57, ViridianForestBG_img, ViridianForestBG_tsa, ViridianForestBG_pal)

@@ -7,6 +7,7 @@
 .endm
 
 	.equ CheckEventId,0x8083da8
+	.equ SetEventId, 0x8083d80 
 	.equ MemorySlot,0x30004B8
 	.equ CurrentUnit, 0x3004E50
 	.equ EventEngine, 0x800D07C
@@ -31,6 +32,8 @@ mov r7, r0 @ Parent Proc ? Idk I don't use this
 
 mov r4,#0 @ current deployment id
 mov r5,#0 @ counter
+mov r0, #8 @ Cannot call 
+blh SetEventId
 
 @ 202E4DC	Terrain map (tile id)
 @ We need to make our current tile terrain that cannot be crossed 
@@ -224,7 +227,7 @@ CallCommandUsability:
 push {lr}
 
 
-mov r0, #1 @ Flag that prevents call 
+mov r0, #8 @ Flag that prevents call 
 blh CheckEventId
 cmp r0, #0 
 bne Usability_False

@@ -23,7 +23,7 @@ push	{r4-r6,lr}
 	
 	@ with r0 as unit struct, set their first 5 wexp values to the moves they've "learned" 
 	mov r4, r0 @ Unit 
-	mov r11, r11
+	@mov r11, r11
 	ldr r1, [r0, #4] @ Class pointer 
 	ldrb r2, [r1, #4] @ Class ID 
 	lsl r2, #2 @ *4 as each pointer is WORD length 

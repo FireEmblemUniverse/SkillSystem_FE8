@@ -4,7 +4,7 @@
 	.include "Definitions.inc"
 
 	pExtraItemOrSkill = 0x0202BCDE
-
+	.equ ReturnTMRam,			0x30017ba
 	prNewPopup        = 0x08011474|1
 	prSetPopupShort   = 0x0801145C|1
 
@@ -19,6 +19,8 @@ CallSkillLearnedPopup:
 
 	@ Save proc for later
 	mov r4, r0
+
+
 
 	@ Load Skill index short
 	ldr  r3, =pExtraItemOrSkill

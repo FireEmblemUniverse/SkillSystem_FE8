@@ -29,6 +29,12 @@ BYTE 0x00 0x00 0x00 0x20
   BYTE 0xE0
 
 
+// Fix ASMC2 during scene-skipping 
+// By 7743 
+ORG 0xDB26 
+BYTE 0x00 0x00 
+
+
 //AUTHOR=7743
 //Prevent Freeze For Camera Event 0x26.
 ORG 0xF25C 

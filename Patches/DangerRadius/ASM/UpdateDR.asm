@@ -21,7 +21,7 @@ ldrb r1, [r2, #0x11] @ Action taken this turn
 cmp r1, #0 @ No action taken yet so do DR stuff 
 beq ResetRamBit 
 
-ldr r2, =#0x30017ba @ ReturnTMRam 
+ldr r2, =#0x30017bb @ DRSingleRam
 ldrb r1, [r2]
 cmp r1, #0 
 bne OnlyRefreshVanillaStuff
@@ -41,7 +41,7 @@ bl    GOTO_R4
 b Return
 
 ResetRamBit:
-ldr r2, =#0x30017ba @ ReturnTMRam 
+ldr r2, =#0x30017bb @ DRSingleRam
 mov r0, #0 
 strb r0, [r2] 
 

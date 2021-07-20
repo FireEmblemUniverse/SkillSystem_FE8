@@ -37,11 +37,18 @@
 
 //Daunt: -5 Hit and Crit to all enemy units in a 3-tile radius.
 //By Sme
-#define DauntID 202
+#define DauntID 255
+
+// Ignore half of enemy def/res 
+// By Vesly 
+#define PiercingID 202 
+
+// Deal half of str/mag & ignore half of enemy def 
+#define WeakChipDmgID 200
 
 //Demoiselle: Male allies within 2 tiles receive -2 damage.
 //Author Unknown (Initial Commit)
-#define DemoiselleID 200
+#define DemoiselleID 255
 
 //Drive Skills: Allies within 2 spaces receive +4 to their respective stat.
 //By Sme
