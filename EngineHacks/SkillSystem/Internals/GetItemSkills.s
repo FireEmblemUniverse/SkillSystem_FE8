@@ -28,6 +28,7 @@
 .equ GetItemSkillBuffer, OffsetList + 0x0
 .equ GetItemPassiveSkill, OffsetList + 0x4
 .equ ResetEquipItemSkill, OffsetList + 0x8
+.equ AccessorySkillGetter, OffsetList + 0xC
 
 @arguments:
 	@r0 = unit pointer
@@ -64,7 +65,22 @@ ldr r3, GetItemPassiveSkill
 _blr r3
 @bl GetItemPassiveSkill
 cmp 	r0,#0x0
-beq reloop
+bne 	Continue
+@ Vesly - I added this for Accessories 
+@ It seems to work but I think it gets ran 5x instead of just 1x 
+@ whatever 
+ldr r3, AccessorySkillGetter
+lsl r2, r3, #8 @ chop off |0x08000000
+cmp r2, #0 
+beq reloop 
+mov r0, r4
+_blr r3 
+@mov r0, #87
+cmp 	r0,#0x0
+beq 	reloop
+
+
+Continue:
 add 	r1,r5,r7
 strb 	r0, [r1]
 add 	r7, #0x1

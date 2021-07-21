@@ -1,0 +1,140 @@
+#include "Defs.event"
+
+#ifdef ACCESSORIES_AND_FORGING
+#define INSTALL_ACCESSORIES 
+
+// [0x203F100..0x203F540]!!
+
+#define Faith 0x4 
+
+/*PUSH
+// No ideas where else to put this so I put it here
+// Changes the staff check to check for the Faith weapon type rather than wtype 0x4
+ORG 0x23A7E
+BYTE Faith
+
+ORG 0x23BA4
+BYTE Faith
+
+ORG 0x89DAC
+SHORT 0x50A
+POP*/
+
+#define gItemData NewItemTable 
+
+#include "asm/Forging.lyn.event"
+ALIGN 4
+
+
+#ifdef INSTALL_ACCESSORIES
+#include "asm/Accessories.lyn.event"
+#endif 
+//MESSAGE Arcana Shield at ComputeArcanaShieldAttackReduction
+
+ALIGN 4
+CannotEquipAccessoryText:
+SHORT CannotEquipAccessoryTextID
+
+PUSH
+ORG $59D120
+POIN ItemMenuTable
+POP
+
+
+ALIGN 4
+#define ForgeBonuses(itemId, mtBonus, hitBonus, critBonus) "BYTE itemId mtBonus hitBonus critBonus"
+gForgeBonusLookupTable:
+ForgeBonuses(IronSword, 1, 10, 0)
+ForgeBonuses(SteelSword, 2, 5, 0)
+WORD 0
+WORD 0
+//ForgeBonuses(IronSword, 1, 10, 0)
+//ForgeBonuses(KillingEdge, 0, 20, 20)
+WORD 0
+
+#define AccessoryLocks(accessoryId, levelLock, typeOfLock, accessoryClassLocks, userCheckFunction) "BYTE accessoryId levelLock typeOfLock 0; POIN accessoryClassLocks userCheckFunction"
+#define AL_MOUNTED 1
+#define AL_FOOTLOCKED 2
+#define AL_FLYING 3
+#define AL_LORD 4
+ALIGN 4
+gAccessoryLocksLookupTable:
+//AccessoryLocks(RenewalRing, 0, 0, AL_LORD, 0)
+//AccessoryLocks(RenewalRing, 0, 0, ClassListEquip, 0)
+AccessoryLocks(RenewalRing, 0, 0, MagicClassesList, 0)
+WORD 0
+
+// Class Types not defined by Class Attributes
+
+ALIGN 4
+#ifndef ArmorClasses
+#define ArmorClasses "General GreatKnight"
+#endif
+ArmoredClassesList:
+BYTE ArmorClasses 0 // ArmorClasses defined in Master Skill Installer
+
+ALIGN 4
+ClassListEquip:
+BYTE BulbasaurID RattataID 0
+
+ALIGN 4
+#define MagicClasses "BulbasaurID Mage Mage_F Sage Sage_F MageKnight MageKnight_F Priest Cleric Bishop Bishop_F Troubadour Monk"
+MagicClassesList:
+BYTE MagicClasses 0
+
+#define ForgableItem(itemId, additionalDescriptionTextID, priceForUpgrade, otherItemID, requiredMaterialItemID, priceForTransformation) "SHORT itemId additionalDescriptionTextID priceForUpgrade otherItemID requiredMaterialItemID priceForTransformation"
+ALIGN 4
+gForgableItems:
+//ForgableItem(IronSword, "Requires mythril to turn into quick sword", 500, QuickSword, Mythril, 1000)
+WORD 0 0 0
+
+ALIGN 4
+ItemMenuTable:
+IM_Use
+#ifdef INSTALL_ACCESSORIES
+MenuCommand(0x697, 0, GreenText, EquipAccessoryUsability|1, EquipAccessoryEffect|1)
+MenuCommand(IM_UnequipAccessory, 0, GreenText, UnequipAccessoryUsability|1, UnequipAccessoryEffect|1)
+#endif 
+IM_Equip
+IM_Trade
+IM_Discard
+IM_Separator
+
+ALIGN 4
+ASMC_GiveUnitExp:
+#incbin "asm\give_exp.dmp"
+POIN event_proc_bin
+
+ALIGN 4
+event_proc_bin:
+#incbin "asm\event_fe8u.bin" //HINT=PROCS
+
+ALIGN 4
+ExpShareEvent:
+WORD 0xA000D4B; POIN ASMC_GiveUnitExp|1
+NoFade
+ENDA
+
+//MESSAGE Give Unit Exp ASMC_GiveUnitExp
+
+ALIGN 4
+AE_ExpShareID:
+BYTE AE_ExpShare
+
+ALIGN 4
+AE_PursuitRingID:
+BYTE AE_PursuitRing
+
+ALIGN 4
+AE_ArcanaShieldID:
+BYTE AE_ArcanaShield
+
+ALIGN 4
+AE_WhetstoneID:
+BYTE AE_Whetstone
+
+ALIGN 4
+AE_AngelRingID:
+BYTE AE_AngelRing
+
+#endif 

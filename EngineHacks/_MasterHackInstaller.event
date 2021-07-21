@@ -214,6 +214,9 @@ POP
   #include "Necessary/UnitMenu/UnitMenu.event"
   #include "Necessary/Popups.event"
   
+  // This should be before calc loops because of the follow-up attack accessory 
+  #include "ExternalHacks/AccessoriesAndForging/Installer.event"
+  
   #include "Necessary/CalcLoops/CalcLoops.event"
 
   #ifdef STAIRS_ASM

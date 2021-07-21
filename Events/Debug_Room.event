@@ -160,9 +160,9 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,Tackle,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT Ephraim  PidgeyID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT Seth  RattataID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Ephraim  PidgeyID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Seth  RattataID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
@@ -209,8 +209,8 @@ Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(22, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(23, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -229,11 +229,28 @@ ENUN
 
 //GiveItemWithDurability(SpellScroll,Absorb,Eirika)
 
-//SilentGiveItem(Eirika, LowKick)
 
-SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
-SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
-SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
+SilentGiveItemWithDurability(Eirika, RenewalRing, 1) //|0x40)
+SilentGiveItemWithDurability(Eirika, Cloak, 1) //|0x40)
+SilentGiveItemWithDurability(Seth, Blackbelt, 1) 
+SilentGiveItemWithDurability(Seth, Eviolite, 1) 
+SilentGiveItemWithDurability(Ephraim, RenewalRing, 1) 
+SilentGiveItemWithDurability(Ephraim, QuickClaw, 1) 
+SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80) 
+
+
+
+
+
+
+
+
+
+
+
+//SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
+//SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
+//SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
 //SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)

@@ -5,6 +5,9 @@
 
 pSkillModifiers: // Skill
 	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prItemPassiveSkl prRallySkl prResolve prDefiantSkl prPushSkl
+	#ifdef ACCESSORIES_AND_FORGING
+		POIN prAddAccessorySkill
+	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -15,6 +18,10 @@ prAddUnitSkill:
 
 prAddEquipSkill:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSklBonus)))
+
+prAddAccessorySkill:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemSklBonus)))
+
 
 prDebuffSkl:
 	#include "_asm/DebuffSkl.lyn.event"

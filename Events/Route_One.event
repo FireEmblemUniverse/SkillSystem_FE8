@@ -161,7 +161,12 @@ AutoLevelUnits(5, True, 0x90EF) // Trainers given +5 visible levels
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 CALL SetBushHpEvent
-
+MOVE 65535 Eirika [14,24]
+ENUN
+//SetUnitStatus(Eirika, CurrentHP, 0x05)
+SetUnitStatus(Seth, CurrentHP, 0x05)
+SetUnitStatus(Ephraim, CurrentHP, 0x05)
+SetUnitStatus(Amelia, CurrentHP, 0x05)
 LABEL 0x63
 NoFade
 ENDA

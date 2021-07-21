@@ -2,6 +2,123 @@
 // Items use ^ for narrowfont I guess, while classes use * 
 ## DebugTextHere
  Debug[A][X]
+ 
+ 
+## WiseGlassesNameText
+Wise Glasses[X]
+
+## WiseGlassesDescText
+Grants Mag+2[X]
+
+## WiseGlassesUseDesc
+Grants Mag+2[X]
+
+
+ ## EvioliteNameText
+Eviolite[X]
+
+## EvioliteDescText
+Grants Def/Res+2[X]
+
+## EvioliteUseDesc
+Grants Def/Res+2[X]
+
+
+## BlackbeltNameText
+Blackbelt[X]
+
+## BlackbeltDescText
+Grants Str+3[X]
+
+## BlackbeltUseDesc
+Grants Str+3[X]
+ 
+ 
+## CloakNameText
+Cloak[X]
+
+## CloakDescText
+Grants Shade+: Enemies[N]
+won't target this unit.[X]
+
+## CloakUseDesc
+Grants Shade+: Enemies[N]
+won't target this unit.[X]
+ 
+ 
+## QuickClawNameText
+Quick Claw[X]
+
+## QuickClawDescText
+Grants Spd+5[X]
+
+## QuickClawUseDesc
+Grants Spd+5[X]
+ 
+## RenewalRingNameText
+Renewal Ring[X]
+
+## RenewalRingDescText
+Grants Renewal: Heal[N]
+30% HP each turn.[X]
+
+## RenewalRingUseDesc
+Grants Renewal: Heal[N]
+30% HP each turn.[X]
+ 
+ 
+## ExpShareNameText
+Exp. Share[X]
+
+## ExpShareDescText
+Grants Exp. to adjacent[NL]
+units after battle.[X]
+
+## ExpShareUseDesc
+Gives EXP to adjacent[N]
+allies after combat.[X]
+
+## PursuitRingNameText
+Pursuit Ring[X]
+
+## PursuitRingDescText
+Reduces the amount of AS required[N]
+to double an enemy from 4 to 1.[X]
+
+## PursuitRingUseDesc
+1 AS to double[X]
+
+## ArcanaShieldNameText
+Arcana Shield[X]
+
+## ArcanaShieldDescText
+Reduces all magical damage[N]
+received by 25%.[X]
+
+## ArcanaShieldUseDesc
+-25% magic damage[N]
+received[X]
+
+## WhetstoneNameText
+Whetstone[X]
+
+## WhetstoneDescText
+Effective weapons have a 4x[N]
+multiplier on might.[X]
+
+## WhetstoneUseDesc
+Effectiveness x4[X]
+
+## AngelRingNameText
+Angel Ring[X]
+
+## AngelRingDescText
+All level up gains are doubled.[N]
++1 becomes +2, +2 becomes +4.[X]
+
+## AngelRingUseDesc
+Double stat gains[X]
+ 
 
 # 0x1234
  Super Potion[X]

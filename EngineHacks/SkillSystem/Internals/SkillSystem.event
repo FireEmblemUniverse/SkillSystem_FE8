@@ -84,6 +84,12 @@ ItemSkill_Getter:
 POIN GetItemSkillBuffer
 POIN GetItemPassiveSkill
 POIN ResetEquipItemSkill
+#ifdef ACCESSORIES_AND_FORGING
+	POIN AccessorySkillGetter
+#endif 
+#ifndef ACCESSORIES_AND_FORGING
+WORD 0 
+#endif 
 
 EquipSkill_Getter: //Returns the equipped weapon's skill
 #include "GetEquipItemSkill.lyn.event"
@@ -91,10 +97,13 @@ POIN ItemSkill_Getter
 POIN IsItemSkillPassive
 POIN GetItemSkill
 
+
 SkillTesterOriginal: //does unit have X skill?
 #include "skillTester.lyn.event"
 POIN Skill_Getter
-POIN ItemSkill_Getter EquipSkill_Getter
+POIN ItemSkill_Getter 
+POIN EquipSkill_Getter
+
 /*
 #incbin skillTester.dmp
 POIN Skill_Getter
@@ -114,6 +123,7 @@ WORD CatchEmAllID
 SkillTesterOriginal2:
 #include "skillTester2.lyn.event"
 POIN Skill_Getter ItemSkill_Getter
+
 
 SkillTester2:
 #include "nihilTester2.lyn.event"

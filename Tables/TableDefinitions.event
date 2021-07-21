@@ -32,6 +32,9 @@
   //#define PersonalMusicTable 0x758a60
 //#endif
 
+#define StaffType 0x4 
+#define ItemType 0x9 
+
 
 //Weapon Ranks
 #define NoRank 0
@@ -42,37 +45,42 @@
 #define ARank 181
 #define SRank 251
 
-//Weapon Ability
-#define IsWeapon 0x00000001
-#define IsMagic 0x00000002
-#define IsStaff 0x00000004
-#define Indestructible 0x00000008
-#define Unsellable 0x00000010
-#define IsBrave 0x00000020
-#define MagicDamage 0x00000040
-#define Uncounterable 0x00000080
-#define ReverseTriangle 0x00000100
-#define CannotRepair 0x00000200
-#define MonsterWeapon 0x00000400
-#define WeaponLock1 0x00000800
-#define SwordmasterLock 0x00001000
-#define WeaponLock2 0x00002000
-#define NegateFlyingEffectiveness 0x00004000
-#define NegateCriticals 0x00008000
-#define CannotUse 0x00010000
-#define NegateDef 0x00020000
-#ifdef _FE8_
-  #define EirikaLock 0x00040000
-  #define EphraimLock 0x00080000
-  #define WeaponLock3 0x00100000
-  #define WeaponLock4 0x00200000
-#endif
-#ifdef _FE7_
-  #define EliwoodLock 0x00040000
-  #define HectorLock 0x00080000
-  #define LynLock 0x00100000
-  #define AthosLock 0x00200000
-#endif
+//Weapon Ability 1 definitions:
+#define IsWeapon 0x1
+#define IsMagic 0x2
+#define IsStaff 0x4
+#define Indestructible 0x8
+#define Unsellable 0x10
+#define IsBrave 0x20
+#define MagicDamage 0x40
+#define Uncounterable 0x80
+
+//Weapon Ability 2 definitions:
+#define ReverseTriangle 0x1
+#define CannotRepair 0x2
+#define MonsterWeapon 0x4
+#define WeaponLock1 0x8
+#define SwordmasterLock 0x10
+#define WeaponLock2 0x20
+#define NegateFlyingEffectiveness 0x40
+#define NegateCriticals 0x80
+
+
+//Weapon Ability 3 definitions:
+#define CannotUse 0x1
+#define NegateDef 0x2
+#define EirikaLock 0x4
+#define EphraimLock 0x8
+#define WeaponLock3 0x10
+#define WeaponLock4 0x20
+#define IsAccessory 0x40
+#define PassiveBoosts 0x80 // These use the same def... 
+// Best not use the one below 
+#define Accessory_DepleteUsesOnDefense 0x80
+
+// Weapon ability 4 definitions: 
+// All free ? 
+
 
 // Weapon Effect
 #define NoEffect 0x0

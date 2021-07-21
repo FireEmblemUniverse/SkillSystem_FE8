@@ -5,6 +5,9 @@
 
 pMaxHPModifiers: // Maximum HP
 	POIN prAddUnitMaxHP prHexingRodEffect prAddEquipHP prItemPassiveHp
+	#ifdef ACCESSORIES_AND_FORGING
+		POIN prAddAccessoryHP
+	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -15,6 +18,10 @@ prAddUnitMaxHP:
 
 prAddEquipHP:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemHPBonus)))
+
+prAddAccessoryHP:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemHPBonus)))
+
 
 prHexingRodEffect:
 	#incbin "_asm/HexingRod.bin"

@@ -1,0 +1,31 @@
+#ifndef MSG_EXT_ACCESSORY_EVENT
+#define MSG_EXT_ACCESSORY_EVENT
+
+#ifndef _FE8_
+	ERROR _file_ should be assembled for FE8
+#endif // _FE8_
+
+#ifndef SKILLSYSTEM_ACCESSORY_EFFECT_TESTER
+	#define SKILLSYSTEM_ACCESSORY_EFFECT_TESTER AccessoryEffectTester
+#endif
+
+
+MSG_prCheckUnitAccessoryEffect: // Wraps SkillTester for MSG
+	rCallExternal(SKILLSYSTEM_ACCESSORY_EFFECT_TESTER - 1)
+
+#define rIfUnitHasAccessoryEffect(aEffectId)            "rWithConstant(aEffectId); rIf(MSG_prCheckUnitAccessoryEffect)"
+#define rIfUnitHasAccessoryEffect(aEffectId, arNext)    "rIfUnitHasAccessoryEffect(aEffectId); arNext"
+#define rIfUnitHasNotAccessoryEffect(aEffectId)         "rWithConstant(aEffectId); rIfNot(MSG_prCheckUnitAccessoryEffect)"
+#define rIfUnitHasNotAccessoryEffect(aEffectId, arNext) "rIfUnitHasNotAccessoryEffect(aEffectId); arNext"
+
+#define rForUnitEquippedAccessory        	"rForResultOfExt((EquippedAccessoryGetter-1))"
+#define rForUnitEquippedAccessory(arNext) 	"rForResultOfExt((EquippedAccessoryGetter-1)); arNext"
+
+//ALIGN 4
+//GetItemMovBonus:
+//#include "../../StatGetters/_asm/GetItemMovBonus.lyn.event"
+//POIN ItemTable
+
+#define prGetItemMovBonus GetItemMovBonus
+
+#endif // MSG_EXT_ACCESSORY_EVENT

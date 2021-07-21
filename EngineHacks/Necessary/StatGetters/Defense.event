@@ -5,6 +5,9 @@
 
 pDefenseModifiers: // Defense
 	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prItemPassiveDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef prDefiantDef prPushDef
+	#ifdef ACCESSORIES_AND_FORGING
+		POIN prAddAccessoryDefense
+	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -15,6 +18,9 @@ prAddUnitDefense:
 	
 prAddEquipDefense:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemDefBonus)))
+
+prAddAccessoryDefense:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemDefBonus)))
 
 prDebuffDef:
 	#include "_asm/DebuffDef.lyn.event"

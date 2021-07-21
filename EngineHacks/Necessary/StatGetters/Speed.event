@@ -5,6 +5,9 @@
 
 pSpeedModifiers: // Speed
 	POIN prAddUnitSpeed prHalveIfRescuing prHalveIfCapturing prDebuffSpd prAddEquipSpeed prItemPassiveSpeed prRallySpd prLifeAndDeathBonus prSkillFury prResolve prDefiantSpd prPushSpd
+	#ifdef ACCESSORIES_AND_FORGING
+		POIN prAddAccessorySpeed
+	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -15,6 +18,10 @@ prAddUnitSpeed:
 
 prAddEquipSpeed:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSpdBonus)))
+
+prAddAccessorySpeed:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemSpdBonus)))
+
 
 prDebuffSpd:
 	#include "_asm/DebuffSpd.lyn.event"

@@ -5,6 +5,9 @@
 
 pLuckModifiers: // Luck
 	POIN prAddUnitLuck prHalveIfCapturing prDebuffLck prAddEquipLuck prItemPassiveLuck prRallyLck prDefiantLck
+	#ifdef ACCESSORIES_AND_FORGING
+		POIN prAddAccessoryLuck
+	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -15,6 +18,10 @@ prAddUnitLuck:
 
 prAddEquipLuck:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemLckBonus)))
+
+prAddAccessoryLuck:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemLckBonus)))
+
 
 prDebuffLck:
 	#include "_asm/DebuffLck.lyn.event"

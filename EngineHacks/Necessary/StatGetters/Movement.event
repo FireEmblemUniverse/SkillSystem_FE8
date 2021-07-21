@@ -5,6 +5,11 @@
 ALIGN 4
 pMovModifiers: // Movement
 	POIN prAddUnitBaseMov prAddUnitMovBonus (prGetItemMovBonus-1) prItemPassiveMov prRallyMov prSkillCelerity prSkillPoise prNullifyIfGuardAI prArmorMarchCheck 
+	#ifdef ACCESSORIES_AND_FORGING
+		// This doesn't work out of the box and I cba to debug it 
+		// So accessories cannot grant movement bonuses 
+		//POIN prAddAccessoryMovement
+	#endif 
 	#ifdef STAIRS_ASM
 	POIN StairsMoveDebuff-1
 	#endif
@@ -49,5 +54,10 @@ prAddEquipMov:
 ALIGN 4
 prItemPassiveMov:
 	rPassiveStatBoosts(STAT_MOV)
+
+ALIGN 4
+prAddAccessoryMovement:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemMovBonus)))
+	
 
 #endif // MODULAR_GETTER_MOVEMENT_EVENT

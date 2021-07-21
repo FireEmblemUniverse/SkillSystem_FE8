@@ -5,6 +5,9 @@
 
 pResistanceModifiers: // Resistance
 	POIN prAddUnitResistance prHalveIfCapturing prDebuffRes prAddEquipResistance prItemPassiveResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury prFortressResistanceRes prDefiantRes prPushRes
+	#ifdef ACCESSORIES_AND_FORGING
+		POIN prAddAccessoryResistance
+	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -15,6 +18,10 @@ prAddUnitResistance:
 
 prAddEquipResistance:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemResBonus)))
+
+prAddAccessoryResistance:
+	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemResBonus)))
+
 
 prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current pure water/barrier bonus duration
 	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))

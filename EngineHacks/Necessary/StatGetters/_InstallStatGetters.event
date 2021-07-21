@@ -5,6 +5,11 @@
 #include "../MSG/InstallHelpers.event"
 #include "../MSG/Extensions/SkillSystem.event"
 #include "../MSG/Extensions/PassiveItemStatBonuses.event"
+#ifdef ACCESSORIES_AND_FORGING
+	#include "../MSG/Extensions/Accessory.event"
+#endif 
+
+
 #ifdef USE_STRMAG_SPLIT
 	#include "../MSG/Extensions/Strmag.event"
 #endif // USE_STRMAG_SPLIT
