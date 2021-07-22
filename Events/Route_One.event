@@ -87,8 +87,8 @@ RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 SignBTrap(14,2, ChapterID, 0x0) //no extra text 
 SignATrap(13,34, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
-//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+//SkillScrollTrap(15,21, ChapterID*2, 0xB7)
+//SpellScrollTrap(17,21, (ChapterID*2)+1, 0xB7)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

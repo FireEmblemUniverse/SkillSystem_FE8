@@ -1,18 +1,21 @@
-#include "Icon Definitions.event"
+//#include "Icon Definitions.event"
+// Included in custom definitions so it'll come before our tables, now 
 
 ALIGN 4
 NewItemIcons:
 // Sheet with all icons goes here 
 #incbin "Icon Sheet.dmp"
-// Fill(0x100) // you could do this instead of the full sheet 
+// Fill(0x100*128) // you could do this instead of the full sheet if every icon will be an individual image 
 
 #define ItemIconEntry(ItemID) "ORG NewItemIcons + (ItemID*128)"
 
 PUSH 
 // Individual Icons go here
-//ItemIconEntry(IronSword)
-//#incbin "Individual_Icons/BugType.dmp"
+ItemIconEntry(BlackbeltIcon)
+#incbin "Individual_Icons/BugType.dmp"
 
+ItemIconEntry(BerryIcon)
+#incbin "Individual_Icons/BugType.dmp"
 
 // End of icons 
 POP 

@@ -227,11 +227,13 @@ ENUN
 LOAD1 0x1 Units2
 ENUN
 
-//GiveItemWithDurability(SpellScroll,Absorb,Eirika)
+SilentGiveItemWithDurability(Eirika, SpellScroll,LeafFlurry)
+SilentGiveItemWithDurability(Eirika, SkillScroll,AcrobatID)
+SilentGiveItemWithDurability(Eirika, Tackle,0x01)
+SilentGiveItemWithDurability(Eirika, Berry,0x04)
 
-
-SilentGiveItemWithDurability(Eirika, RenewalRing, 1) //|0x40)
-SilentGiveItemWithDurability(Eirika, Cloak, 1) //|0x40)
+//SilentGiveItemWithDurability(Eirika, RenewalRing, 1) //|0x40)
+SilentGiveItemWithDurability(Eirika, Blackbelt, 1) //|0x40) // Cloak 
 SilentGiveItemWithDurability(Seth, Blackbelt, 1) 
 SilentGiveItemWithDurability(Seth, Eviolite, 1) 
 SilentGiveItemWithDurability(Ephraim, RenewalRing, 1) 

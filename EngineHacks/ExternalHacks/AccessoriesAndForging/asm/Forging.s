@@ -62,57 +62,8 @@
 
 	.text
 	.align	1
-	.global	GetItemForgeBonuses
-	.arch armv4t
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	GetItemForgeBonuses, %function
-GetItemForgeBonuses:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-@ Forging.c:10: 	for(int i = 0; gForgeBonusLookupTable[i].itemId != 0; i++) {
-	movs	r2, #0	@ i,
-@ Forging.c:9: const ItemForgeBonuses *GetItemForgeBonuses(int itemIndex) {
-	push	{r4, r5, lr}	@
-@ Forging.c:11: 		if(gForgeBonusLookupTable[i].itemId == ITEM_INDEX(itemIndex)) return gForgeBonusLookupTable + i;
-	lsls	r3, r0, #24	@ tmp128, tmp129,
-@ Forging.c:10: 	for(int i = 0; gForgeBonusLookupTable[i].itemId != 0; i++) {
-	ldr	r4, .L6	@ tmp125,
-@ Forging.c:11: 		if(gForgeBonusLookupTable[i].itemId == ITEM_INDEX(itemIndex)) return gForgeBonusLookupTable + i;
-	lsrs	r3, r3, #24	@ tmp128, tmp128,
-.L2:
-	lsls	r1, r2, #2	@ _14, i,
-@ Forging.c:10: 	for(int i = 0; gForgeBonusLookupTable[i].itemId != 0; i++) {
-	ldrb	r0, [r4, r1]	@ _6, MEM[symbol: gForgeBonusLookupTable, index: _14, offset: 0B]
-	adds	r5, r1, r4	@ tmp124, _14, tmp125
-@ Forging.c:10: 	for(int i = 0; gForgeBonusLookupTable[i].itemId != 0; i++) {
-	cmp	r0, #0	@ _6,
-	beq	.L1		@,
-@ Forging.c:11: 		if(gForgeBonusLookupTable[i].itemId == ITEM_INDEX(itemIndex)) return gForgeBonusLookupTable + i;
-	cmp	r0, r3	@ _6, tmp128
-	bne	.L3		@,
-@ Forging.c:11: 		if(gForgeBonusLookupTable[i].itemId == ITEM_INDEX(itemIndex)) return gForgeBonusLookupTable + i;
-	movs	r0, r5	@ <retval>, tmp124
-.L1:
-@ Forging.c:14: }
-	@ sp needed	@
-	pop	{r4, r5}
-	pop	{r1}
-	bx	r1
-.L3:
-@ Forging.c:10: 	for(int i = 0; gForgeBonusLookupTable[i].itemId != 0; i++) {
-	adds	r2, r2, #1	@ i,
-	b	.L2		@
-.L7:
-	.align	2
-.L6:
-	.word	gForgeBonusLookupTable
-	.size	GetItemForgeBonuses, .-GetItemForgeBonuses
-	.align	1
 	.global	GetItemUses
+	.arch armv4t
 	.syntax unified
 	.code	16
 	.thumb_func
@@ -123,36 +74,32 @@ GetItemUses:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ Forging.c:23:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
-	ldr	r3, .L11	@ tmp118,
-@ Forging.c:22: int GetItemUses(int item) {
+@ Forging.c:27:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+	ldr	r3, .L4	@ tmp118,
+@ Forging.c:26: int GetItemUses(int item) {
 	movs	r4, r0	@ item, tmp124
-@ Forging.c:23:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
-	bl	.L13		@
+@ Forging.c:27:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+	bl	.L6		@
 	movs	r3, r0	@ tmp125,
-@ Forging.c:24:         return 0xFF;
+@ Forging.c:28:         return 0xFF;
 	movs	r0, #255	@ <retval>,
-@ Forging.c:23:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+@ Forging.c:27:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
 	lsls	r3, r3, #28	@ tmp126, tmp125,
-	bmi	.L8		@,
-@ Forging.c:26:         return ITEM_USES(item);
+	bmi	.L1		@,
+@ Forging.c:30:         return ITEM_USES(item);
 	lsls	r4, r4, #18	@ tmp122, item,
 	lsrs	r0, r4, #26	@ <retval>, tmp122,
-.L8:
-@ Forging.c:27: }
+.L1:
+@ Forging.c:31: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L12:
+.L5:
 	.align	2
-.L11:
+.L4:
 	.word	GetItemAttributes
 	.size	GetItemUses, .-GetItemUses
-	.section	.rodata.str1.1,"aMS",%progbits,1
-.LC6:
-	.ascii	"+\000"
-	.text
 	.align	1
 	.global	DrawItemMenuLine
 	.syntax unified
@@ -165,136 +112,129 @@ DrawItemMenuLine:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ Forging.c:61: void DrawItemMenuLine(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
-	movs	r5, r0	@ text, tmp160
-@ Forging.c:63: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
-	ldr	r7, .L35	@ tmp133,
+@ Forging.c:65: void DrawItemMenuLine(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
+	movs	r5, r0	@ text, tmp173
+@ Forging.c:67: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	ldr	r7, .L25	@ tmp136,
 	movs	r0, r1	@, item
-@ Forging.c:61: void DrawItemMenuLine(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
-	movs	r6, r3	@ mapOut, tmp163
-	movs	r4, r1	@ item, tmp161
-	str	r2, [sp, #4]	@ tmp162, %sfp
-@ Forging.c:63: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
-	bl	.L37		@
-@ Forging.c:66: 	if(!isUsable && !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
-	ldr	r3, [sp, #4]	@ isUsable, %sfp
-	cmp	r3, #0	@ isUsable,
-	bne	.L15		@,
-@ Forging.c:66: 	if(!isUsable && !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
-	movs	r2, #1	@ textColor,
-@ Forging.c:66: 	if(!isUsable && !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
-	lsls	r3, r0, #9	@ tmp174, _1,
-	bpl	.L16		@,
-.L15:
-@ Forging.c:67: 	else if(ITEM_FORGED(item)) textColor = TEXT_COLOR_BLUE;
-	movs	r3, #128	@ tmp136,
-	movs	r2, r4	@ textColor, item
-	lsls	r3, r3, #7	@ tmp136, tmp136,
-	ands	r2, r3	@ textColor, tmp136
-@ Forging.c:67: 	else if(ITEM_FORGED(item)) textColor = TEXT_COLOR_BLUE;
-	tst	r4, r3	@ item, tmp136
-	beq	.L16		@,
-@ Forging.c:67: 	else if(ITEM_FORGED(item)) textColor = TEXT_COLOR_BLUE;
-	movs	r2, #2	@ textColor,
-.L16:
-@ Forging.c:68: 	if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
-	asrs	r3, r4, #15	@ tmp137, item,
-@ Forging.c:68: 	if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
-	beq	.L17		@,
-@ Forging.c:68: 	if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
-	movs	r2, #3	@ textColor,
-.L17:
-@ Forging.c:70: 	Text_SetParameters(text, 0, textColor);
+@ Forging.c:65: void DrawItemMenuLine(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
+	movs	r6, r3	@ mapOut, tmp176
+	str	r2, [sp, #4]	@ tmp175, %sfp
+	movs	r4, r1	@ item, tmp174
+@ Forging.c:67: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	bl	.L27		@
+@ Forging.c:67: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	movs	r3, #128	@ tmp137,
+	movs	r2, r0	@ isItemAnAccessory, tmp177
+	lsls	r3, r3, #15	@ tmp137, tmp137,
+	ands	r2, r3	@ isItemAnAccessory, tmp137
+@ Forging.c:69: 	if (isItemAnAccessory) { // Vesly added 
+	tst	r0, r3	@ tmp177, tmp137
+	beq	.L8		@,
+@ Forging.c:74: 		if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
+	asrs	r2, r4, #15	@ isItemAnAccessory, item,
+@ Forging.c:74: 		if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
+	beq	.L8		@,
+@ Forging.c:74: 		if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
+	movs	r2, #3	@ isItemAnAccessory,
+.L8:
+@ Forging.c:77: 	Text_SetParameters(text, 0, textColor);
 	movs	r1, #0	@,
-	ldr	r3, .L35+4	@ tmp138,
 	movs	r0, r5	@, text
-	bl	.L13		@
-@ Forging.c:73:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L35+8	@ tmp139,
+	ldr	r3, .L25+4	@ tmp138,
+	bl	.L6		@
+@ Forging.c:80: 	Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L25+8	@ tmp139,
 	movs	r0, r4	@, item
-	bl	.L13		@
-@ Forging.c:73:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L35+12	@ tmp179,
-@ Forging.c:73:     Text_DrawString(text, GetItemName(item));
-	movs	r1, r0	@ _5, tmp165
-@ Forging.c:73:     Text_DrawString(text, GetItemName(item));
+	bl	.L6		@
+@ Forging.c:80: 	Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L25+12	@ tmp140,
+@ Forging.c:80: 	Text_DrawString(text, GetItemName(item));
+	movs	r1, r0	@ _4, tmp178
+@ Forging.c:80: 	Text_DrawString(text, GetItemName(item));
 	movs	r0, r5	@, text
-	bl	.L13		@
-@ Forging.c:74: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
-	lsls	r3, r4, #17	@ tmp175, item,
-	bpl	.L18		@,
-@ Forging.c:74: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
+	bl	.L6		@
+@ Forging.c:83: 	Text_Display(text, mapOut + 2);
 	movs	r0, r5	@, text
-	ldr	r1, .L35+16	@,
-	ldr	r3, .L35+12	@ tmp181,
-	bl	.L13		@
-.L18:
-@ Forging.c:76:     Text_Display(text, mapOut + 2);
-	movs	r0, r5	@, text
-	ldr	r3, .L35+20	@ tmp146,
-	adds	r1, r6, #4	@ tmp145, mapOut,
-	bl	.L13		@
-@ Forging.c:78: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	ldr	r3, .L25+16	@ tmp142,
+	adds	r1, r6, #4	@ tmp141, mapOut,
+	bl	.L6		@
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
 	movs	r0, r4	@, item
-	bl	.L37		@
-@ Forging.c:78: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
-	lsls	r3, r0, #9	@ tmp176, tmp166,
-	bmi	.L19		@,
-.L21:
-@ Forging.c:78: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	bl	.L27		@
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	movs	r5, #1	@ iftmp.0_18,
+	lsls	r3, r0, #9	@ tmp188, tmp179,
+	bpl	.L9		@,
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	movs	r0, r4	@, item
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	movs	r5, #192	@ tmp148,
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	bl	.L27		@
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	lsls	r5, r5, #17	@ tmp148, tmp148,
+	ands	r5, r0	@ tmp147, tmp180
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	subs	r3, r5, #1	@ tmp151, tmp147
+	sbcs	r5, r5, r3	@ iftmp.0_18, tmp147, tmp151
+.L9:
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	movs	r0, r4	@, item
+	ldr	r3, .L25+20	@ tmp152,
+	bl	.L6		@
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	cmp	r0, #254	@ tmp181,
+	beq	.L10		@,
+	cmp	r5, #0	@ iftmp.0_18,
+	beq	.L10		@,
+@ Forging.c:85: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
 	movs	r0, r4	@, item
 	ldr	r5, [sp, #4]	@ isUsable, %sfp
 	bl	GetItemUses		@
-	subs	r3, r5, #1	@ tmp159, isUsable
-	sbcs	r5, r5, r3	@ isUsable, isUsable, tmp159
-	movs	r2, r0	@ _13, tmp167
-	movs	r0, r6	@ _12, mapOut
-	adds	r5, r5, #1	@ iftmp.1_17,
-	movs	r1, r5	@, iftmp.1_17
-	ldr	r3, .L35+24	@ tmp153,
-	adds	r0, r0, #22	@ _12,
-	bl	.L13		@
-.L22:
-@ Forging.c:81: }
+	subs	r3, r5, #1	@ tmp172, isUsable
+	sbcs	r5, r5, r3	@ isUsable, isUsable, tmp172
+	movs	r2, r0	@ _15, tmp182
+	movs	r0, r6	@ _14, mapOut
+	adds	r5, r5, #1	@ iftmp.1_19,
+	movs	r1, r5	@, iftmp.1_19
+	ldr	r3, .L25+24	@ tmp165,
+	adds	r0, r0, #22	@ _14,
+	bl	.L6		@
+.L10:
+@ Forging.c:89: }
 	@ sp needed	@
-@ Forging.c:80:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
+@ Forging.c:87: 	DrawIcon(mapOut, GetItemIconId(item), 0x4000);
 	movs	r0, r4	@, item
-	ldr	r3, .L35+28	@ tmp154,
-	bl	.L13		@
+	ldr	r3, .L25+28	@ tmp166,
+	bl	.L6		@
 	movs	r2, #128	@,
-	movs	r1, r0	@ _14, tmp169
-	ldr	r3, .L35+32	@ tmp156,
+	movs	r1, r0	@ _16, tmp183
+	ldr	r3, .L25+32	@ tmp168,
 	movs	r0, r6	@, mapOut
 	lsls	r2, r2, #7	@,,
-	bl	.L13		@
-@ Forging.c:81: }
+	bl	.L6		@
+@ Forging.c:89: }
 	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L19:
-@ Forging.c:78: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
-	movs	r0, r4	@, item
-	bl	.L37		@
-@ Forging.c:78: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
-	movs	r3, #192	@ tmp152,
-	lsls	r3, r3, #17	@ tmp152, tmp152,
-@ Forging.c:78: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
-	tst	r0, r3	@ tmp168, tmp152
-	bne	.L21		@,
-	b	.L22		@
-.L36:
+.L26:
 	.align	2
-.L35:
+.L25:
 	.word	GetItemAttributes
 	.word	Text_SetParameters
 	.word	GetItemName
 	.word	Text_DrawString
-	.word	.LC6
 	.word	Text_Display
+	.word	GetItemMight
 	.word	DrawUiNumberOrDoubleDashes
 	.word	GetItemIconId
 	.word	DrawIcon
 	.size	DrawItemMenuLine, .-DrawItemMenuLine
+	.section	.rodata.str1.1,"aMS",%progbits,1
+.LC14:
+	.ascii	"+\000"
+	.text
 	.align	1
 	.global	DrawItemMenuLineLong
 	.syntax unified
@@ -307,149 +247,148 @@ DrawItemMenuLineLong:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ Forging.c:83: void DrawItemMenuLineLong(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
-	movs	r6, r0	@ text, tmp173
-@ Forging.c:85: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
-	ldr	r7, .L60	@ tmp138,
+@ Forging.c:91: void DrawItemMenuLineLong(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
+	movs	r6, r0	@ text, tmp191
+@ Forging.c:93: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	ldr	r7, .L50	@ tmp142,
 	movs	r0, r1	@, item
-@ Forging.c:83: void DrawItemMenuLineLong(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
-	movs	r5, r3	@ mapOut, tmp176
-	movs	r4, r1	@ item, tmp174
-	str	r2, [sp, #4]	@ tmp175, %sfp
-@ Forging.c:85: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
-	bl	.L37		@
-@ Forging.c:88: 	if(!isUsable && !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
-	ldr	r3, [sp, #4]	@ isUsable, %sfp
-	cmp	r3, #0	@ isUsable,
-	bne	.L39		@,
-@ Forging.c:88: 	if(!isUsable && !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
-	movs	r2, #1	@ textColor,
-@ Forging.c:88: 	if(!isUsable && !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
-	lsls	r3, r0, #9	@ tmp190, _1,
-	bpl	.L40		@,
-.L39:
-@ Forging.c:89: 	else if(ITEM_FORGED(item)) textColor = TEXT_COLOR_BLUE;
-	movs	r3, #128	@ tmp141,
-	movs	r2, r4	@ textColor, item
-	lsls	r3, r3, #7	@ tmp141, tmp141,
-	ands	r2, r3	@ textColor, tmp141
-@ Forging.c:89: 	else if(ITEM_FORGED(item)) textColor = TEXT_COLOR_BLUE;
-	tst	r4, r3	@ item, tmp141
-	beq	.L40		@,
-@ Forging.c:89: 	else if(ITEM_FORGED(item)) textColor = TEXT_COLOR_BLUE;
-	movs	r2, #2	@ textColor,
-.L40:
-@ Forging.c:90: 	if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
-	asrs	r3, r4, #15	@ tmp142, item,
-@ Forging.c:90: 	if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
-	beq	.L41		@,
-@ Forging.c:90: 	if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
-	movs	r2, #3	@ textColor,
-.L41:
-@ Forging.c:92:     Text_SetParameters(text, 0, textColor);
+@ Forging.c:91: void DrawItemMenuLineLong(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
+	movs	r5, r3	@ mapOut, tmp194
+	str	r2, [sp, #4]	@ tmp193, %sfp
+	movs	r4, r1	@ item, tmp192
+@ Forging.c:93: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	bl	.L27		@
+@ Forging.c:93: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	movs	r3, #128	@ tmp143,
+	movs	r2, r0	@ isItemAnAccessory, tmp195
+	lsls	r3, r3, #15	@ tmp143, tmp143,
+	ands	r2, r3	@ isItemAnAccessory, tmp143
+@ Forging.c:97: 	if (isItemAnAccessory) { // Vesly added 
+	tst	r0, r3	@ tmp195, tmp143
+	beq	.L29		@,
+@ Forging.c:100: 		if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
+	asrs	r2, r4, #15	@ isItemAnAccessory, item,
+@ Forging.c:100: 		if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
+	beq	.L29		@,
+@ Forging.c:100: 		if(ITEM_EQUIPPED(item)) textColor = TEXT_COLOR_GOLD;
+	movs	r2, #3	@ isItemAnAccessory,
+.L29:
+@ Forging.c:102: 	Text_SetParameters(text, 0, textColor);
 	movs	r1, #0	@,
-	ldr	r3, .L60+4	@ tmp143,
+	ldr	r3, .L50+4	@ tmp144,
 	movs	r0, r6	@, text
-	bl	.L13		@
-@ Forging.c:94:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L60+8	@ tmp144,
+	bl	.L6		@
+@ Forging.c:104: 	Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L50+8	@ tmp145,
 	movs	r0, r4	@, item
-	bl	.L13		@
-@ Forging.c:94:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L60+12	@ tmp195,
-@ Forging.c:94:     Text_DrawString(text, GetItemName(item));
-	movs	r1, r0	@ _5, tmp178
-@ Forging.c:94:     Text_DrawString(text, GetItemName(item));
+	bl	.L6		@
+@ Forging.c:104: 	Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L50+12	@ tmp212,
+@ Forging.c:104: 	Text_DrawString(text, GetItemName(item));
+	movs	r1, r0	@ _4, tmp196
+@ Forging.c:104: 	Text_DrawString(text, GetItemName(item));
 	movs	r0, r6	@, text
-	bl	.L13		@
-@ Forging.c:95: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
-	lsls	r3, r4, #17	@ tmp191, item,
-	bpl	.L42		@,
-@ Forging.c:95: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
+	bl	.L6		@
+@ Forging.c:105: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
+	lsls	r3, r4, #17	@ tmp209, item,
+	bpl	.L30		@,
+@ Forging.c:105: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
 	movs	r0, r6	@, text
-	ldr	r1, .L60+16	@,
-	ldr	r3, .L60+12	@ tmp197,
-	bl	.L13		@
-.L42:
-@ Forging.c:97:     Text_Display(text, mapOut + 2);
+	ldr	r1, .L50+16	@,
+	ldr	r3, .L50+12	@ tmp214,
+	bl	.L6		@
+.L30:
+@ Forging.c:107: 	Text_Display(text, mapOut + 2);
 	movs	r0, r6	@, text
-	ldr	r3, .L60+20	@ tmp151,
-	adds	r1, r5, #4	@ tmp150, mapOut,
-	bl	.L13		@
-@ Forging.c:99: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
+	ldr	r3, .L50+20	@ tmp152,
+	adds	r1, r5, #4	@ tmp151, mapOut,
+	bl	.L6		@
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
 	movs	r0, r4	@, item
-	bl	.L37		@
-@ Forging.c:99: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	lsls	r3, r0, #9	@ tmp192, tmp179,
-	bmi	.L43		@,
-.L46:
-@ Forging.c:100: 		DrawUiNumberOrDoubleDashes(mapOut + 10, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	bl	.L27		@
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r6, #1	@ iftmp.2_24,
+	lsls	r3, r0, #9	@ tmp210, tmp197,
+	bpl	.L31		@,
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
 	movs	r0, r4	@, item
-	ldr	r6, [sp, #4]	@ tmp171, %sfp
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r6, #192	@ tmp158,
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	bl	.L27		@
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	lsls	r6, r6, #17	@ tmp158, tmp158,
+	ands	r6, r0	@ tmp157, tmp198
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	subs	r3, r6, #1	@ tmp161, tmp157
+	sbcs	r6, r6, r3	@ iftmp.2_24, tmp157, tmp161
+.L31:
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r0, r4	@, item
+	ldr	r3, .L50+24	@ tmp162,
+	bl	.L6		@
+@ Forging.c:109: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	cmp	r0, #254	@ tmp199,
+	beq	.L32		@,
+	cmp	r6, #0	@ iftmp.2_24,
+	beq	.L32		@,
+@ Forging.c:110: 		DrawUiNumberOrDoubleDashes(mapOut + 10, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	movs	r0, r4	@, item
+	ldr	r6, [sp, #4]	@ tmp189, %sfp
 	bl	GetItemUses		@
-	subs	r3, r6, #1	@ tmp172, tmp171
-	sbcs	r6, r6, r3	@ tmp171, tmp171, tmp172
-	movs	r2, r0	@ _13, tmp180
-	movs	r0, r5	@ _12, mapOut
-	adds	r6, r6, #1	@ iftmp.2_22,
-	movs	r1, r6	@, iftmp.2_22
-	ldr	r7, .L60+24	@ tmp158,
-	adds	r0, r0, #20	@ _12,
-	bl	.L37		@
-@ Forging.c:101: 		DrawUiNumberOrDoubleDashes(mapOut + 13, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemMaxUses(item));
-	ldr	r3, .L60+28	@ tmp159,
+	subs	r3, r6, #1	@ tmp190, tmp189
+	sbcs	r6, r6, r3	@ tmp189, tmp189, tmp190
+	movs	r2, r0	@ _16, tmp200
+	movs	r0, r5	@ _15, mapOut
+	adds	r6, r6, #1	@ iftmp.3_25,
+	movs	r1, r6	@, iftmp.3_25
+	ldr	r7, .L50+28	@ tmp175,
+	adds	r0, r0, #20	@ _15,
+	bl	.L27		@
+@ Forging.c:111: 		DrawUiNumberOrDoubleDashes(mapOut + 13, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemMaxUses(item));
+	ldr	r3, .L50+32	@ tmp176,
 	movs	r0, r4	@, item
-	bl	.L13		@
-	movs	r2, r0	@ _15, tmp181
-	movs	r0, r5	@ tmp160, mapOut
-	movs	r1, r6	@, iftmp.2_22
-	adds	r0, r0, #26	@ tmp160,
-	bl	.L37		@
-@ Forging.c:102: 		DrawSpecialUiChar(mapOut + 11, isUsable ? TEXT_COLOR_NORMAL : TEXT_COLOR_GRAY, 0x16); // draw special character?
+	bl	.L6		@
+	movs	r2, r0	@ _18, tmp201
+	movs	r0, r5	@ tmp177, mapOut
+	movs	r1, r6	@, iftmp.3_25
+	adds	r0, r0, #26	@ tmp177,
+	bl	.L27		@
+@ Forging.c:112: 		DrawSpecialUiChar(mapOut + 11, isUsable ? TEXT_COLOR_NORMAL : TEXT_COLOR_GRAY, 0x16); // draw special character?
 	movs	r2, #22	@,
 	ldr	r1, [sp, #4]	@ isUsable, %sfp
-	adds	r0, r5, r2	@ tmp165, tmp165,
-	rsbs	r3, r1, #0	@ tmp164, isUsable
-	adcs	r1, r1, r3	@ isUsable, isUsable, tmp164
-	ldr	r3, .L60+32	@ tmp166,
-	bl	.L13		@
-.L47:
-@ Forging.c:106: }
+	adds	r0, r5, r2	@ tmp182, tmp182,
+	rsbs	r3, r1, #0	@ tmp181, isUsable
+	adcs	r1, r1, r3	@ isUsable, isUsable, tmp181
+	ldr	r3, .L50+36	@ tmp183,
+	bl	.L6		@
+.L32:
+@ Forging.c:118: }
 	@ sp needed	@
-@ Forging.c:105:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
+@ Forging.c:117:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
 	movs	r0, r4	@, item
-	ldr	r3, .L60+36	@ tmp167,
-	bl	.L13		@
+	ldr	r3, .L50+40	@ tmp184,
+	bl	.L6		@
 	movs	r2, #128	@,
-	movs	r1, r0	@ _19, tmp183
-	ldr	r3, .L60+40	@ tmp169,
+	movs	r1, r0	@ _22, tmp202
+	ldr	r3, .L50+44	@ tmp186,
 	movs	r0, r5	@, mapOut
 	lsls	r2, r2, #7	@,,
-	bl	.L13		@
-@ Forging.c:106: }
+	bl	.L6		@
+@ Forging.c:118: }
 	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L43:
-@ Forging.c:99: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	movs	r0, r4	@, item
-	bl	.L37		@
-@ Forging.c:99: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	movs	r3, #192	@ tmp157,
-	lsls	r3, r3, #17	@ tmp157, tmp157,
-@ Forging.c:99: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	tst	r0, r3	@ tmp182, tmp157
-	bne	.L46		@,
-	b	.L47		@
-.L61:
+.L51:
 	.align	2
-.L60:
+.L50:
 	.word	GetItemAttributes
 	.word	Text_SetParameters
 	.word	GetItemName
 	.word	Text_DrawString
-	.word	.LC6
+	.word	.LC14
 	.word	Text_Display
+	.word	GetItemMight
 	.word	DrawUiNumberOrDoubleDashes
 	.word	GetItemMaxUses
 	.word	DrawSpecialUiChar
@@ -465,101 +404,108 @@ DrawItemMenuLineLong:
 	.type	DrawItemMenuLineNoColor, %function
 DrawItemMenuLineNoColor:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
+	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r3, r4, r5, r6, r7, lr}	@
-@ Forging.c:108: void DrawItemMenuLineNoColor(struct TextHandle* text, int item, u16* mapOut) {
-	movs	r4, r1	@ item, tmp149
-@ Forging.c:109:     Text_SetXCursor(text, 0);
-	ldr	r3, .L70	@ tmp127,
+	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
+@ Forging.c:120: void DrawItemMenuLineNoColor(struct TextHandle* text, int item, u16* mapOut) {
+	movs	r4, r1	@ item, tmp167
+@ Forging.c:121:     Text_SetXCursor(text, 0);
+	ldr	r3, .L63	@ tmp132,
 	movs	r1, #0	@,
-@ Forging.c:108: void DrawItemMenuLineNoColor(struct TextHandle* text, int item, u16* mapOut) {
-	movs	r5, r0	@ text, tmp148
-	movs	r6, r2	@ mapOut, tmp150
-@ Forging.c:109:     Text_SetXCursor(text, 0);
-	bl	.L13		@
-@ Forging.c:110:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L70+4	@ tmp128,
+@ Forging.c:120: void DrawItemMenuLineNoColor(struct TextHandle* text, int item, u16* mapOut) {
+	movs	r6, r2	@ mapOut, tmp168
+	movs	r5, r0	@ text, tmp166
+@ Forging.c:121:     Text_SetXCursor(text, 0);
+	bl	.L6		@
+@ Forging.c:122:     Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L63+4	@ tmp133,
 	movs	r0, r4	@, item
-	bl	.L13		@
-@ Forging.c:110:     Text_DrawString(text, GetItemName(item));
-	ldr	r7, .L70+8	@ tmp129,
-@ Forging.c:110:     Text_DrawString(text, GetItemName(item));
-	movs	r1, r0	@ _1, tmp151
-@ Forging.c:110:     Text_DrawString(text, GetItemName(item));
+	bl	.L6		@
+@ Forging.c:122:     Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L63+8	@ tmp134,
+@ Forging.c:122:     Text_DrawString(text, GetItemName(item));
+	movs	r1, r0	@ _1, tmp169
+@ Forging.c:122:     Text_DrawString(text, GetItemName(item));
 	movs	r0, r5	@, text
-	bl	.L37		@
-@ Forging.c:111: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
-	lsls	r3, r4, #17	@ tmp160, item,
-	bpl	.L63		@,
-@ Forging.c:111: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
-	movs	r0, r5	@, text
-	ldr	r1, .L70+12	@,
-	bl	.L37		@
-.L63:
-@ Forging.c:113:     Text_Display(text, mapOut + 2);
-	movs	r0, r5	@, text
-	ldr	r3, .L70+16	@ tmp135,
-	adds	r1, r6, #4	@ tmp134, mapOut,
-	bl	.L13		@
-@ Forging.c:115: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
+	bl	.L6		@
+@ Forging.c:123: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	ldr	r7, .L63+12	@ tmp135,
 	movs	r0, r4	@, item
-	ldr	r7, .L70+20	@ tmp136,
-	bl	.L37		@
-@ Forging.c:115: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	lsls	r3, r0, #9	@ tmp161, tmp152,
-	bmi	.L64		@,
-.L66:
-@ Forging.c:116: 		DrawSpecialUiChar(mapOut + 11, Text_GetColorId(text), GetItemUses(item));
-	ldr	r3, .L70+24	@ tmp139,
+	bl	.L27		@
+@ Forging.c:124:     Text_Display(text, mapOut + 2);
+	ldr	r3, .L63+16	@ tmp137,
 	movs	r0, r5	@, text
-	bl	.L13		@
-	movs	r5, r0	@ _9, tmp153
+	adds	r1, r6, #4	@ tmp136, mapOut,
+	bl	.L6		@
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r0, r4	@, item
+	bl	.L27		@
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r3, #1	@ iftmp.5_15,
+	str	r3, [sp, #4]	@ iftmp.5_15, %sfp
+	lsls	r3, r0, #9	@ tmp179, tmp170,
+	bpl	.L53		@,
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r0, r4	@, item
+	bl	.L27		@
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r3, #192	@ tmp143,
+	lsls	r3, r3, #17	@ tmp143, tmp143,
+	ands	r0, r3	@ tmp142, tmp143
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	subs	r3, r0, #1	@ tmp146, tmp142
+	sbcs	r0, r0, r3	@ tmp142, tmp142, tmp146
+	str	r0, [sp, #4]	@ tmp142, %sfp
+.L53:
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r0, r4	@, item
+	ldr	r3, .L63+20	@ tmp147,
+	bl	.L6		@
+@ Forging.c:126: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	cmp	r0, #254	@ tmp172,
+	beq	.L54		@,
+	ldr	r3, [sp, #4]	@ iftmp.5_15, %sfp
+	cmp	r3, #0	@ iftmp.5_15,
+	beq	.L54		@,
+@ Forging.c:127: 		DrawSpecialUiChar(mapOut + 11, Text_GetColorId(text), GetItemUses(item));
+	ldr	r3, .L63+24	@ tmp160,
+	movs	r0, r5	@, text
+	bl	.L6		@
+	movs	r5, r0	@ _12, tmp173
 	movs	r0, r4	@, item
 	bl	GetItemUses		@
-	movs	r2, r0	@ _10, tmp154
-	movs	r0, r6	@ tmp140, mapOut
-	movs	r1, r5	@, _9
-	ldr	r3, .L70+28	@ tmp141,
-	adds	r0, r0, #22	@ tmp140,
-	bl	.L13		@
-.L65:
-@ Forging.c:120: }
+	movs	r2, r0	@ _13, tmp174
+	movs	r0, r6	@ tmp161, mapOut
+	movs	r1, r5	@, _12
+	ldr	r3, .L63+28	@ tmp162,
+	adds	r0, r0, #22	@ tmp161,
+	bl	.L6		@
+.L54:
+@ Forging.c:131: }
 	@ sp needed	@
-@ Forging.c:119:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
+@ Forging.c:130:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
 	movs	r0, r4	@, item
-	ldr	r3, .L70+32	@ tmp145,
-	bl	.L13		@
+	ldr	r3, .L63+32	@ tmp163,
+	bl	.L6		@
 	movs	r2, #128	@,
-	movs	r1, r0	@ _11, tmp156
-	ldr	r3, .L70+36	@ tmp147,
+	movs	r1, r0	@ _14, tmp175
+	ldr	r3, .L63+36	@ tmp165,
 	movs	r0, r6	@, mapOut
 	lsls	r2, r2, #7	@,,
-	bl	.L13		@
-@ Forging.c:120: }
-	pop	{r3, r4, r5, r6, r7}
+	bl	.L6		@
+@ Forging.c:131: }
+	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
 .L64:
-@ Forging.c:115: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	movs	r0, r4	@, item
-	bl	.L37		@
-@ Forging.c:115: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	movs	r3, #192	@ tmp144,
-	lsls	r3, r3, #17	@ tmp144, tmp144,
-@ Forging.c:115: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	tst	r0, r3	@ tmp155, tmp144
-	bne	.L66		@,
-	b	.L65		@
-.L71:
 	.align	2
-.L70:
+.L63:
 	.word	Text_SetXCursor
 	.word	GetItemName
 	.word	Text_DrawString
-	.word	.LC6
-	.word	Text_Display
 	.word	GetItemAttributes
+	.word	Text_Display
+	.word	GetItemMight
 	.word	Text_GetColorId
 	.word	DrawSpecialUiChar
 	.word	GetItemIconId
@@ -577,163 +523,152 @@ DrawItemStatScreenLine:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ Forging.c:122: void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u16* mapOut) {
-	movs	r6, r0	@ text, tmp171
-	movs	r4, r1	@ item, tmp172
-@ Forging.c:124: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+@ Forging.c:133: void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u16* mapOut) {
+	movs	r7, r0	@ text, tmp192
+	movs	r6, r3	@ mapOut, tmp195
+@ Forging.c:135: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
 	movs	r0, r1	@, item
-@ Forging.c:122: void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u16* mapOut) {
-	movs	r7, r3	@ mapOut, tmp174
-@ Forging.c:124: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
-	ldr	r3, .L93	@ tmp188,
-@ Forging.c:122: void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u16* mapOut) {
-	movs	r5, r2	@ nameColor, tmp173
-@ Forging.c:124: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
-	bl	.L13		@
-@ Forging.c:126:     Text_Clear(text);
-	ldr	r3, .L93+4	@ tmp135,
-	movs	r0, r6	@, text
-	bl	.L13		@
-@ Forging.c:129: 	if(ITEM_FORGED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_BLUE;
-	movs	r3, #128	@ tmp136,
-	movs	r2, r4	@ _1, item
-	lsls	r3, r3, #7	@ tmp136, tmp136,
-	ands	r2, r3	@ _1, tmp136
-	movs	r1, r5	@ color, nameColor
-	str	r2, [sp, #4]	@ _1, %sfp
-@ Forging.c:129: 	if(ITEM_FORGED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_BLUE;
-	tst	r4, r3	@ item, tmp136
-	beq	.L73		@,
-@ Forging.c:129: 	if(ITEM_FORGED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_BLUE;
-	cmp	r5, #4	@ nameColor,
-	beq	.L73		@,
-@ Forging.c:129: 	if(ITEM_FORGED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_BLUE;
-	movs	r1, #2	@ color,
-.L73:
-@ Forging.c:130: 	if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
-	asrs	r3, r4, #15	@ tmp137, item,
-@ Forging.c:130: 	if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
-	beq	.L74		@,
-@ Forging.c:130: 	if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
-	cmp	r5, #4	@ nameColor,
-	beq	.L74		@,
-@ Forging.c:130: 	if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
-	movs	r1, #3	@ color,
-.L74:
-@ Forging.c:131:     Text_SetColorId(text, color);
-	ldr	r3, .L93+8	@ tmp138,
-	movs	r0, r6	@, text
-	bl	.L13		@
-@ Forging.c:133:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L93+12	@ tmp139,
-	movs	r0, r4	@, item
-	bl	.L13		@
-@ Forging.c:133:     Text_DrawString(text, GetItemName(item));
-	ldr	r3, .L93+16	@ tmp191,
-@ Forging.c:133:     Text_DrawString(text, GetItemName(item));
-	movs	r1, r0	@ _3, tmp175
-@ Forging.c:133:     Text_DrawString(text, GetItemName(item));
-	movs	r0, r6	@, text
-	bl	.L13		@
-@ Forging.c:134: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
+	ldr	r3, .L84	@ tmp211,
+@ Forging.c:133: void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u16* mapOut) {
+	movs	r4, r1	@ item, tmp193
+	movs	r5, r2	@ nameColor, tmp194
+@ Forging.c:135: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	bl	.L6		@
+@ Forging.c:137:     Text_Clear(text);
+	ldr	r3, .L84+4	@ tmp143,
+@ Forging.c:135: 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
+	str	r0, [sp, #4]	@ tmp196, %sfp
+@ Forging.c:137:     Text_Clear(text);
+	movs	r0, r7	@, text
+	bl	.L6		@
+@ Forging.c:140: 	if (isItemAnAccessory) { // Vesly 
 	ldr	r3, [sp, #4]	@ _1, %sfp
-	cmp	r3, #0	@ _1,
-	beq	.L75		@,
-@ Forging.c:134: 	if(ITEM_FORGED(item)) Text_DrawString(text, "+");
-	movs	r0, r6	@, text
-	ldr	r1, .L93+20	@,
-	ldr	r3, .L93+16	@ tmp194,
-	bl	.L13		@
-.L75:
-@ Forging.c:136: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	ldr	r3, .L93	@ tmp196,
+	movs	r1, r5	@ color, nameColor
+	lsls	r3, r3, #9	@ tmp209, _1,
+	bpl	.L66		@,
+@ Forging.c:142: 		if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
+	asrs	r3, r4, #15	@ tmp146, item,
+@ Forging.c:142: 		if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
+	beq	.L66		@,
+@ Forging.c:142: 		if(ITEM_EQUIPPED(item) && nameColor != TEXT_COLOR_GREEN) color = TEXT_COLOR_GOLD;
+	subs	r1, r5, #4	@ tmp190, nameColor,
+	rsbs	r3, r1, #0	@ tmp191, tmp190
+	adcs	r1, r1, r3	@ tmp189, tmp190, tmp191
+	adds	r1, r1, #3	@ color,
+.L66:
+@ Forging.c:144:     Text_SetColorId(text, color);
+	ldr	r3, .L84+8	@ tmp147,
+	movs	r0, r7	@, text
+	bl	.L6		@
+@ Forging.c:146:     Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L84+12	@ tmp148,
 	movs	r0, r4	@, item
-	bl	.L13		@
-@ Forging.c:136: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	lsls	r3, r0, #9	@ tmp187, tmp176,
-	bmi	.L76		@,
-.L78:
-@ Forging.c:138: 		DrawSpecialUiChar(mapOut + 12, color, 0x16);
-	movs	r0, r7	@ tmp150, mapOut
-@ Forging.c:137: 		color = (nameColor == TEXT_COLOR_GRAY) ? TEXT_COLOR_GRAY : TEXT_COLOR_NORMAL;
-	subs	r1, r5, #1	@ tmp148, nameColor,
-	rsbs	r3, r1, #0	@ tmp149, tmp148
-	adcs	r1, r1, r3	@ color, tmp148, tmp149
-@ Forging.c:138: 		DrawSpecialUiChar(mapOut + 12, color, 0x16);
+	bl	.L6		@
+@ Forging.c:146:     Text_DrawString(text, GetItemName(item));
+	ldr	r3, .L84+16	@ tmp149,
+@ Forging.c:146:     Text_DrawString(text, GetItemName(item));
+	movs	r1, r0	@ _4, tmp197
+@ Forging.c:146:     Text_DrawString(text, GetItemName(item));
+	movs	r0, r7	@, text
+	bl	.L6		@
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	ldr	r3, .L84	@ tmp214,
+	movs	r0, r4	@, item
+	bl	.L6		@
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r3, #1	@ iftmp.6_22,
+	str	r3, [sp, #4]	@ iftmp.6_22, %sfp
+	lsls	r3, r0, #9	@ tmp210, tmp198,
+	bpl	.L67		@,
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	ldr	r3, .L84	@ tmp217,
+	movs	r0, r4	@, item
+	bl	.L6		@
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r3, #192	@ tmp155,
+	lsls	r3, r3, #17	@ tmp155, tmp155,
+	ands	r0, r3	@ tmp154, tmp155
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	subs	r3, r0, #1	@ tmp158, tmp154
+	sbcs	r0, r0, r3	@ tmp154, tmp154, tmp158
+	str	r0, [sp, #4]	@ tmp154, %sfp
+.L67:
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	movs	r0, r4	@, item
+	ldr	r3, .L84+20	@ tmp159,
+	bl	.L6		@
+@ Forging.c:149: 	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	cmp	r0, #254	@ tmp200,
+	beq	.L68		@,
+	ldr	r3, [sp, #4]	@ iftmp.6_22, %sfp
+	cmp	r3, #0	@ iftmp.6_22,
+	beq	.L68		@,
+@ Forging.c:151: 		DrawSpecialUiChar(mapOut + 12, color, 0x16);
+	movs	r0, r6	@ tmp176, mapOut
+@ Forging.c:150: 		color = (nameColor == TEXT_COLOR_GRAY) ? TEXT_COLOR_GRAY : TEXT_COLOR_NORMAL;
+	subs	r1, r5, #1	@ tmp174, nameColor,
+	rsbs	r3, r1, #0	@ tmp175, tmp174
+	adcs	r1, r1, r3	@ color, tmp174, tmp175
+@ Forging.c:151: 		DrawSpecialUiChar(mapOut + 12, color, 0x16);
 	movs	r2, #22	@,
-	ldr	r3, .L93+24	@ tmp151,
-	adds	r0, r0, #24	@ tmp150,
-	bl	.L13		@
-@ Forging.c:140: 		color = (nameColor != TEXT_COLOR_GRAY) ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY;
+	ldr	r3, .L84+24	@ tmp177,
+	adds	r0, r0, #24	@ tmp176,
+	bl	.L6		@
+@ Forging.c:153: 		color = (nameColor != TEXT_COLOR_GRAY) ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY;
 	cmp	r5, #1	@ nameColor,
-	bne	.L82		@,
-.L77:
-@ Forging.c:141: 		DrawUiNumberOrDoubleDashes(mapOut + 11, color, GetItemUses(item));
+	beq	.L69		@,
+	movs	r5, #2	@ nameColor,
+.L69:
+@ Forging.c:154: 		DrawUiNumberOrDoubleDashes(mapOut + 11, color, GetItemUses(item));
 	movs	r0, r4	@, item
 	bl	GetItemUses		@
-	movs	r2, r0	@ _11, tmp178
-	movs	r0, r7	@ tmp155, mapOut
+	movs	r2, r0	@ _16, tmp201
+	movs	r0, r6	@ tmp178, mapOut
 	movs	r1, r5	@, nameColor
-	ldr	r3, .L93+28	@ tmp202,
-	adds	r0, r0, #22	@ tmp155,
-	bl	.L13		@
-@ Forging.c:142: 		DrawUiNumberOrDoubleDashes(mapOut + 14, color, GetItemMaxUses(item));
+	ldr	r3, .L84+28	@ tmp223,
+	adds	r0, r0, #22	@ tmp178,
+	bl	.L6		@
+@ Forging.c:155: 		DrawUiNumberOrDoubleDashes(mapOut + 14, color, GetItemMaxUses(item));
+	ldr	r3, .L84+32	@ tmp180,
 	movs	r0, r4	@, item
-	ldr	r3, .L93+32	@ tmp157,
-	bl	.L13		@
-	movs	r2, r0	@ _13, tmp179
-	movs	r0, r7	@ tmp158, mapOut
+	bl	.L6		@
+	movs	r2, r0	@ _18, tmp202
+	movs	r0, r6	@ tmp181, mapOut
 	movs	r1, r5	@, nameColor
-	ldr	r3, .L93+28	@ tmp205,
-	adds	r0, r0, #28	@ tmp158,
-	bl	.L13		@
-	b	.L79		@
-.L76:
-@ Forging.c:136: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	ldr	r3, .L93	@ tmp199,
-	movs	r0, r4	@, item
-	bl	.L13		@
-@ Forging.c:136: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	movs	r3, #192	@ tmp154,
-	lsls	r3, r3, #17	@ tmp154, tmp154,
-@ Forging.c:136: 	if (!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) {
-	tst	r0, r3	@ tmp177, tmp154
-	bne	.L78		@,
-.L79:
-@ Forging.c:147: }
+	ldr	r3, .L84+28	@ tmp226,
+	adds	r0, r0, #28	@ tmp181,
+	bl	.L6		@
+.L68:
+@ Forging.c:160: }
 	@ sp needed	@
-@ Forging.c:144:     Text_Display(text, mapOut + 2);
-	adds	r1, r7, #4	@ tmp160, mapOut,
-	movs	r0, r6	@, text
-	ldr	r3, .L93+36	@ tmp161,
-	bl	.L13		@
-@ Forging.c:146:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
+@ Forging.c:157:     Text_Display(text, mapOut + 2);
+	adds	r1, r6, #4	@ tmp183, mapOut,
+	movs	r0, r7	@, text
+	ldr	r3, .L84+36	@ tmp184,
+	bl	.L6		@
+@ Forging.c:159:     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
 	movs	r0, r4	@, item
-	ldr	r3, .L93+40	@ tmp162,
-	bl	.L13		@
+	ldr	r3, .L84+40	@ tmp185,
+	bl	.L6		@
 	movs	r2, #128	@,
-	movs	r1, r0	@ _15, tmp180
-	ldr	r3, .L93+44	@ tmp164,
-	movs	r0, r7	@, mapOut
+	movs	r1, r0	@ _20, tmp203
+	ldr	r3, .L84+44	@ tmp187,
+	movs	r0, r6	@, mapOut
 	lsls	r2, r2, #7	@,,
-	bl	.L13		@
-@ Forging.c:147: }
+	bl	.L6		@
+@ Forging.c:160: }
 	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L82:
-@ Forging.c:140: 		color = (nameColor != TEXT_COLOR_GRAY) ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY;
-	movs	r5, #2	@ nameColor,
-	b	.L77		@
-.L94:
+.L85:
 	.align	2
-.L93:
+.L84:
 	.word	GetItemAttributes
 	.word	Text_Clear
 	.word	Text_SetColorId
 	.word	GetItemName
 	.word	Text_DrawString
-	.word	.LC6
+	.word	GetItemMight
 	.word	DrawSpecialUiChar
 	.word	DrawUiNumberOrDoubleDashes
 	.word	GetItemMaxUses
@@ -753,100 +688,46 @@ GetItemAfterUse:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ Forging.c:150:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
-	ldr	r3, .L100	@ tmp120,
-@ Forging.c:149: u16 GetItemAfterUse(int item) {
+@ Forging.c:163:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+	ldr	r3, .L91	@ tmp120,
+@ Forging.c:162: u16 GetItemAfterUse(int item) {
 	movs	r4, r0	@ item, tmp129
-@ Forging.c:150:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
-	bl	.L13		@
-@ Forging.c:150:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+@ Forging.c:163:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+	bl	.L6		@
+@ Forging.c:163:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
 	lsls	r3, r0, #28	@ tmp131, tmp130,
-	bpl	.L96		@,
-.L99:
-@ Forging.c:158:     return item; // return used item
+	bpl	.L87		@,
+.L90:
+@ Forging.c:171:     return item; // return used item
 	lsls	r0, r4, #16	@ <retval>, item,
 	lsrs	r0, r0, #16	@ <retval>, <retval>,
-	b	.L97		@
-.L96:
-@ Forging.c:153:     item -= (1 << 8); // lose one use
+	b	.L88		@
+.L87:
+@ Forging.c:166:     item -= (1 << 8); // lose one use
 	subs	r4, r4, #1	@ item,
 	subs	r4, r4, #255	@ item,
-@ Forging.c:155:     if (ITEM_USES(item) < 1)
+@ Forging.c:168:     if (ITEM_USES(item) < 1)
 	lsls	r3, r4, #18	@ tmp126, item,
 	lsrs	r3, r3, #26	@ tmp125, tmp126,
-@ Forging.c:156:         return 0; // return no item if uses < 0
+@ Forging.c:169:         return 0; // return no item if uses < 0
 	subs	r0, r3, #0	@ <retval>, tmp125,
-@ Forging.c:155:     if (ITEM_USES(item) < 1)
-	bne	.L99		@,
-.L97:
-@ Forging.c:159: }
+@ Forging.c:168:     if (ITEM_USES(item) < 1)
+	bne	.L90		@,
+.L88:
+@ Forging.c:172: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L101:
+.L92:
 	.align	2
-.L100:
+.L91:
 	.word	GetItemAttributes
 	.size	GetItemAfterUse, .-GetItemAfterUse
-	.align	1
-	.global	ForgeActiveUnitEquippedWeaponASMC
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	ForgeActiveUnitEquippedWeaponASMC, %function
-ForgeActiveUnitEquippedWeaponASMC:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r4, r5, r6, lr}	@
-@ Forging.c:196: 	int item = GetUnitEquippedWeapon(gActiveUnit);
-	ldr	r4, .L107	@ tmp120,
-	ldr	r3, .L107+4	@ tmp121,
-	ldr	r0, [r4]	@, gActiveUnit
-	bl	.L13		@
-	subs	r5, r0, #0	@ item, tmp132,
-@ Forging.c:197: 	if(item) {
-	beq	.L102		@,
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	ldr	r4, [r4]	@ gActiveUnit.6_4, gActiveUnit
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	ldr	r3, .L107+8	@ tmp123,
-	movs	r0, r4	@, gActiveUnit.6_4
-	bl	.L13		@
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	movs	r3, r0	@ tmp133, tmp133
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	movs	r0, #128	@ tmp130,
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	adds	r3, r3, #12	@ tmp133,
-	lsls	r3, r3, #1	@ tmp125, tmp124,
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	lsls	r0, r0, #7	@ tmp130, tmp130,
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	adds	r3, r4, r3	@ tmp126, gActiveUnit.6_4, tmp125
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	orrs	r5, r0	@ tmp129, tmp130
-@ Forging.c:198: 		gActiveUnit->items[GetUnitEquippedWeaponSlot(gActiveUnit)] = (item | 0x4000);
-	strh	r5, [r3, #6]	@ tmp129, gActiveUnit.6_4->items
-.L102:
-@ Forging.c:200: }
-	@ sp needed	@
-	pop	{r4, r5, r6}
-	pop	{r0}
-	bx	r0
-.L108:
-	.align	2
-.L107:
-	.word	gActiveUnit
-	.word	GetUnitEquippedWeapon
-	.word	GetUnitEquippedWeaponSlot
-	.size	ForgeActiveUnitEquippedWeaponASMC, .-ForgeActiveUnitEquippedWeaponASMC
 	.ident	"GCC: (devkitARM release 54) 10.1.0"
 	.code 16
 	.align	1
-.L13:
+.L6:
 	bx	r3
-.L37:
+.L27:
 	bx	r7

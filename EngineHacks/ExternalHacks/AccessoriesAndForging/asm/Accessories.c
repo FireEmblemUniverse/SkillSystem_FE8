@@ -6,6 +6,7 @@
 #define ITEM_FORGED(aItem) (((aItem) >> 14) & 0x1)
 #define ITEM_EQUIPPED(aItem) ((aItem) >> 15)
 
+
 #define BATTLEUNIT_FACTION(aUnit) ((aUnit)->unit.index & 0xC0)
 
 int CanUnitUseAccessory(u16 accessory, struct Unit *unit) {
@@ -57,6 +58,7 @@ int CanUnitUseAccessory(u16 accessory, struct Unit *unit) {
 }
 
 int EquipAccessoryUsability() {
+	int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY;
 	if ((GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY) && !(ITEM_EQUIPPED(gActiveUnit->items[gActionData.itemSlotIndex]))) {
 		if(CanUnitUseAccessory(gActiveUnit->items[gActionData.itemSlotIndex], gActiveUnit)) return 1; else return 2;
 	}		
@@ -64,41 +66,57 @@ int EquipAccessoryUsability() {
 }
 
 int UnequipAccessoryUsability() {
-	if(ITEM_EQUIPPED(gActiveUnit->items[gActionData.itemSlotIndex])) return 1;
-	else return 3;
+	int isItemAnAccessory = (GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY);
+	if (isItemAnAccessory) {
+		if(ITEM_EQUIPPED(gActiveUnit->items[gActionData.itemSlotIndex])) return 1;
+	} 
+	return 3;
 }
 
 int EquipAccessoryEffect(void *CurrentMenuProc) {
+
 	if (!CanUnitUseAccessory(gActiveUnit->items[gActionData.itemSlotIndex], gActiveUnit)) { 
 		MenuCallHelpBox(CurrentMenuProc, CannotEquipAccessoryText);
 		return 0x8;
 	}
 	for(int i = 0; i < 5; i++) {
-		if(ITEM_EQUIPPED(gActiveUnit->items[i])) gActiveUnit->items[i] &= 0x7FFF;
+		int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[i]) & IA_ACCESSORY;
+		if (isItemAnAccessory) { 
+			if(ITEM_EQUIPPED(gActiveUnit->items[i])) gActiveUnit->items[i] &= 0x7FFF;
+		}
 	}
+	//int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY;
 	gActiveUnit->items[gActionData.itemSlotIndex] |= (1 << 15);
 	return CancelMenu(CurrentMenuProc);
 }
 
 int UnequipAccessoryEffect(void *CurrentMenuProc) {
 	for(int i = 0; i < 5; i++) {
-		if(ITEM_EQUIPPED(gActiveUnit->items[i])) gActiveUnit->items[i] &= 0x7FFF;
+		int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[i]) & IA_ACCESSORY;
+		if (isItemAnAccessory) { 
+			if(ITEM_EQUIPPED(gActiveUnit->items[i])) gActiveUnit->items[i] &= 0x7FFF; // & isItemAnAccessory
+		}
 	}
 	return CancelMenu(CurrentMenuProc);
 }
 
 int EquippedAccessoryGetter(struct Unit *unit) {
 		int itemId;
+
 	if(!unit) return 0; // if no unit return no accessory effect
 	for(int i = 0; i < 5; i++) {
-		if(ITEM_EQUIPPED(unit->items[i])) return ITEM_INDEX(unit->items[i]);
+		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
+		if (isItemAnAccessory) {
+			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_INDEX(unit->items[i]); // & isItemAnAccessory
+		}
 	}
 	return 0; // if no equipped item return nothing
 }
 
 void DepleteEquippedAccessoryUse(struct Unit *unit) {
 	for(int i = 0; i < 5; i++) {
-		if(ITEM_EQUIPPED(unit->items[i])) { // i is the id of the equipped accessory
+		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
+		if(ITEM_EQUIPPED(unit->items[i]) & isItemAnAccessory) { // i is the id of the equipped accessory
 			if (ITEM_USES(unit->items[i]) - 1 == 0) {
 				if (i == 4) unit->items[5] = 0; // if the item is the last in inventory, clear that
 				else { // else shift every item's placement by 1
@@ -192,7 +210,7 @@ s8 BattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** o
     return TRUE;
 }
 */
-
+/*
 void ComputePrecisionRingHitBoost(struct BattleUnit* bu) {
 	if(AccessoryEffectTester(&bu->unit, 5)) 
 		bu->battleHitRate += 10;
@@ -202,6 +220,7 @@ void ComputeArcanaShieldAttackReduction(struct BattleUnit* attacker, struct Batt
 	if (IsWeaponMagic(ITEM_INDEX(attacker->weapon)) && AccessoryEffectTester(&defender->unit, AE_ArcanaShieldID)) 
 		attacker->battleAttack = attacker->battleAttack - ((attacker->battleAttack - defender->battleDefense)/4);
 }
+*/
 /*
 void ComputeBattleUnitAttack(struct BattleUnit* attacker, struct BattleUnit* defender) {
     short attack;

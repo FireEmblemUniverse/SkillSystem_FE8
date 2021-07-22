@@ -105,7 +105,7 @@
 #define ChestKey2 0x69
 #define DoorKey2 0x6A
 #define Lockpick2 0x6B
-#define SuperPotion 0x6C
+#define Berry 0x6C
 #define MaxPotion 0x6D
 #define PureWater2 0x6E
 #define FullHeal 0x6F
@@ -159,9 +159,9 @@
 #define Gold3000x 0x9F
 #define Gold5000x 0xA0
 #define DoubleKick 0xA1
-#define SuperPotion2 0xA2
-#define SuperPotion3 0xA3
-#define SuperPotion4 0xA4
+#define Potion 0xA2
+#define SuperPotion 0xA3
+#define HyperPotion 0xA4
 #define Dance2 0xA5
 #define Nightmare2 0xA6
 #define HiJumpKick 0xA7
