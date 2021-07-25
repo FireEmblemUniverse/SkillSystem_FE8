@@ -26,10 +26,13 @@ mov r6, r8
 push { r6, r7 }
 mov r5, r0
 mov r3, r1
-@mov r0, #0x1
-@neg r0, r0
-@cmp r3, r0
-@bne EnemyExists
+
+
+mov r0, #0x1 	@ 
+neg r0, r0  	@ These 4 lines were commented out for some reason by Snek 
+cmp r3, r0		@ but they cause an AI bug where they always use their last inv wep 
+bne EnemyExists @ so I uncommented them - Vesly 
+
 	CheckWeaponSlot:
 	mov r0, r5
 	blh GetUnitEquippedWeaponSlot, r1
@@ -59,6 +62,7 @@ bhi NoWeapon
 NoWeapon:
 	@ This was a jump to FinalCase, but it seems the exact same as vanilla (with the exception of mov r0, #0xFF and mov r0, #0xFE, but that could be a typo?
 	@ We're just gonna jump to vanilla.
+	@ldr r0,  =#0x802A80D 
 	ldr r0, =#0x802A831
 	bx r0
 

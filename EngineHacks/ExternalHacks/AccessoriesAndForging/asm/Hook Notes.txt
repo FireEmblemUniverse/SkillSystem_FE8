@@ -1,0 +1,39 @@
+Originally it would conflict with GaidenMagic, but I took out 
+the stuff that hooked to the same addresses. 
+
+See below for original uses: 
+
+
+SET_FUNC NewGetUnitEquippedWeapon, (0x08016B28+1)
+
+SET_FUNC NewGetUnitEquippedWeaponSlot, (0x08016B58+1)
+
+SET_FUNC NewMenuRText, (0x08024588+1)
+
+SET_FUNC NewGetUnitUseFlags, (0x08018B28+1)
+
+
+PUSH
+ORG $16b28
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewGetUnitEquippedWeapon
+POP
+PUSH
+ORG $16b58
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewGetUnitEquippedWeaponSlot
+POP
+PUSH
+ORG $24588
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewMenuRText
+POP
+PUSH
+ORG $18b28
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewGetUnitUseFlags
+POP

@@ -42,7 +42,8 @@ BYTE 11 MegaPunch BYTE 0 0ALIGN 4
 PidgeottoLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
 PidgeotLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
 RattataLearnset:
-BYTE 1 Tackle BYTE 1 TailWhipBYTE 0 0ALIGN 4
+BYTE 1 TailWhip
+BYTE 1 Tackle BYTE 0 0ALIGN 4
 RaticateLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
 SpearowLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
 FearowLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4

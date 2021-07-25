@@ -12,10 +12,10 @@ NewItemIcons:
 PUSH 
 // Individual Icons go here
 ItemIconEntry(BlackbeltIcon)
-#incbin "Individual_Icons/BugType.dmp"
+#incbin "Individual_Icons/BlackbeltbyGabrielKnight.dmp"
 
 ItemIconEntry(BerryIcon)
-#incbin "Individual_Icons/BugType.dmp"
+#incbin "Individual_Icons/BerrybyN426.dmp"
 
 // End of icons 
 POP 

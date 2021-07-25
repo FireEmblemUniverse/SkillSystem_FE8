@@ -227,19 +227,20 @@ ENUN
 LOAD1 0x1 Units2
 ENUN
 
+/*
 SilentGiveItemWithDurability(Eirika, SpellScroll,LeafFlurry)
 SilentGiveItemWithDurability(Eirika, SkillScroll,AcrobatID)
 SilentGiveItemWithDurability(Eirika, Tackle,0x01)
 SilentGiveItemWithDurability(Eirika, Berry,0x04)
 
-//SilentGiveItemWithDurability(Eirika, RenewalRing, 1) //|0x40)
-SilentGiveItemWithDurability(Eirika, Blackbelt, 1) //|0x40) // Cloak 
+
+SilentGiveItemWithDurability(Eirika, MuscleBand, 1) //|0x40) // Cloak 
 SilentGiveItemWithDurability(Seth, Blackbelt, 1) 
 SilentGiveItemWithDurability(Seth, Eviolite, 1) 
 SilentGiveItemWithDurability(Ephraim, RenewalRing, 1) 
 SilentGiveItemWithDurability(Ephraim, QuickClaw, 1) 
 SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80) 
-
+*/ 
 
 
 
@@ -305,7 +306,9 @@ SupplyItem(Vulnerary)
 
 LABEL 0x63
 
-AutoLevelUnits(0, True, 0x1FF) // all 
+//AutoLevelUnits(0, True, 0x1FF) // all 
+
+
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
 //MNC2 PalletCh 

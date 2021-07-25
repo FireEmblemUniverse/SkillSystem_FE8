@@ -1,6 +1,8 @@
 
 #ifdef GAIDEN_MAGIC // 2.0 version by Snek based on original version by Hypergammaspaces.
 	
+#include "GetVanillaEquipped.lyn.event"	
+
 	/* Notes on Gaiden Magic 2.0 behavior:
 		Adds 2 unit menu options: Black magic and White magic. Black magic has anima and dark spells, and White magic has light spells and staves.
 		Each of these opens an attack-menu-esque menu that allows you to choose a learned spell to attack with (or if it's a staff, use it).

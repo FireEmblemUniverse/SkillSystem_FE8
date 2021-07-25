@@ -1,3 +1,5 @@
+
+
 PUSH
 
 //Provoke
@@ -19,6 +21,8 @@ ORG $3C824
 SHORT 0x0E00
 
 POP
+
+
 
 ALIGN 4
 Provoke:

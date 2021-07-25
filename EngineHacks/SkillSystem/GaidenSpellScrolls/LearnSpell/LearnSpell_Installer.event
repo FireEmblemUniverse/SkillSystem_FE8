@@ -49,7 +49,12 @@ prCallSpellLearnedPopup:
 // Returns:   r0 = 0 on success (Spell is displayed and all)
 {
 	#incbin "CallSpellLearnedPopup.dmp"
+	#ifdef GAIDEN_MAGIC
 	POIN NewGaidenSpellPopup //_pPopupDef
+	#endif
+	#ifndef GAIDEN_MAGIC
+	POIN _pPopupDef
+	#endif
 	WORD 50 // time (in frames) the popup stays up (I think if you put -1 it will wait for user input)
 
 ALIGN 4

@@ -7,7 +7,10 @@
 
 ALIGN 4
 EmptyLearnset1:
-BYTE 0 0
+BYTE 0 0 
+BYTE 0 0 
+BYTE 1 Scratch
+BYTE 1 TailWhip
 BYTE 0 0 
 
 

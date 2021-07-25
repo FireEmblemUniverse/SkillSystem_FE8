@@ -1,0 +1,46 @@
+
+// 39898 - GetUnitAiAttackPriority
+// Incomplete
+// Goal - Makes enemy ai use wexp as their weapons instead of their inv 
+/*
+ALIGN 4 
+TestTable:
+BYTE SandAttack 0xFF  
+BYTE 0x00 0x00 
+ALIGN 4 
+
+AIWeaponsHack:
+#include "AIWeaponsHack.lyn.event"
+
+PUSH 
+ORG 0x398A0 
+jumpToHack(AIWeaponsHack)
+
+POP 
+*/
+
+/*
+PUSH 
+ORG 0x398A2 
+SHORT 0x2029 // mov r0, #0x28 
+
+ORG 0x398A8 
+SHORT 0x5C2C // ldrb r4, [r5, r0] 
+
+ORG 0x39908 
+SHORT 0x0031 // LSL r1, r6, #0 // Free line potentially 
+
+ORG 0x3990C 
+SHORT 0x3029 // add r0, #0x28 
+SHORT 0x1980 // add r0, r6 (I think r6 is a counter)
+SHORT 0x7804 // ldrb r4, [r0] 
+
+POP 
+*/
+
+
+
+
+
+
+

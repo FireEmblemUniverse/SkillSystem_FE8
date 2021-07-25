@@ -45,38 +45,6 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 	return SpellsBuffer;
 }
 
-
-int GetValidSpellSlotToAttackWith(Unit* unit, u8* spells)
-{
-	int spell = GetFirstAttackSpell(unit);
-	for ( int i = 0 ; i < 5 ; i++ )
-	// Loop through all spells in wexp and attack with one 
-	{
-		if ( CanUnitUseWeapon(unit,spells[i]) )
-		{
-			// Loop until we find one that we can attack in range with, akin to dynamic equip 
-			if ( gCan_Attack_Target(spells[i],gBattleStats.range,unit) ) { return (spells[i] ? 9 : i); } // return (spells[i] ? 9 : i);
-		}
-	}
-	return ( spell ? 9 : -1 ); // no spell works // return ( spell ? 9 : -1 );
-}
-
-
-int GetValidSpellToAttackWith(Unit* unit, u8* spells)
-{
-	int spell = GetFirstAttackSpell(unit);
-	for ( int i = 0 ; i < 5 ; i++ )
-	// Loop through all spells in wexp and attack with one 
-	{
-		if ( CanUnitUseWeapon(unit,spells[i]) )
-		{
-			// Loop until we find one that we can attack in range with, akin to dynamic equip 
-			if ( gCan_Attack_Target(spells[i],gBattleStats.range,unit) ) { return (spells[i] ? spell|0xFF00 : 0); } // valid spell 
-		}
-	}
-	return ( spell ? spell|0xFF00 : -1 ); // No spell works 
-}
-
 /* Intended behavior:
 	First, check if we're using the spell menu.
 		If so, return the selected spell. Otherwise, vanilla.
@@ -86,13 +54,9 @@ int GetValidSpellToAttackWith(Unit* unit, u8* spells)
 		If defending, check if there is a usable weapon in inventory we can counter with.
 			If so, vanilla. If not, return the first gaiden spell whether it's usable or not.
 */
-
 int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 {
-// Vanilla behaviour 
 	int vanillaEquipped = GetVanillaEquipped(unit);
-	return vanillaEquipped;
-	
 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	{
 		// It is our phase.
@@ -117,41 +81,23 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 			return ( spell ? spell|0xFF00 : 0 );
 		}
 		else { return vanillaEquipped; }
-		// not sure what this would do, didn't seem to work for enemy phase 
-		//u8* spells = SpellsGetter(unit, 1);
-		//return GetValidSpellToAttackWith(unit, spells);
 	}
 }
 
-
-
-
 int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 {
-// Vanilla behaviour 
-	for ( int i = 0 ; i < 5 ; i++ )
-		{
-			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
-		}
-	return -1;
-	// Vanilla behaviour 
-	
-	
-	
-	int spell = GetFirstAttackSpell(unit);
 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { 
 		if (!(unit->index & 0xC0)) { //If a player unit is using the spell menu, return using Gaiden magic.
 				return 9;
 		}
 	}
-	//int spell = GetFirstAttackSpell(unit);
-	//u8* SpellsGetter(unit, 1) // non-staff
-	u8* spells = SpellsGetter(unit, 1);
-	
+	int spell = GetFirstAttackSpell(unit);
 	// This function appears only to be called in simulated and real battles (and on the stat screen)?
 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
 	{
+	
 
+		
 		if ((unit->index & 0xC0)) { // Enemy is attacking or counter attacking 
 			// If we're here this is a real or simulated battle, and the enemy is the attacker or defender. See if we can use what would be the equipped weapon.
 			for ( int i = 0 ; i < 5 ; i++ )
@@ -163,7 +109,8 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 					if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
 				}
 			}
-			return GetValidSpellSlotToAttackWith(unit, spells);
+			if ( gCan_Attack_Target( spell ,gBattleStats.range,unit) ) { return ( spell ? 9 : 0 ); }
+			else { return ( spell ? 9 : -1 ); } 
 			
 		} 
 
@@ -177,7 +124,8 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 				if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
 			}
 		}
-		return GetValidSpellSlotToAttackWith(unit, spells);
+		if ( gCan_Attack_Target( spell ,gBattleStats.range,unit) ) { return ( spell ? 9 : 0 ); }
+		else { return ( spell ? 9 : -1 ); } 
 	}
 	else
 	{
@@ -190,8 +138,6 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 	}
 	return -1;
 }
-
-
 
 // On return, bit 1 set has weapon use, bit 2 set has staff use. I know this is used for deciding what squares to display in range display.
 u32 NewGetUnitUseFlags(Unit* unit) // Autohook to 0x08018B28.
@@ -225,8 +171,6 @@ u32 NewGetUnitUseFlags(Unit* unit) // Autohook to 0x08018B28.
 	}
 	return ret;
 }
-
-
 
 // Called by the Skill System's proc loop alongside counter skills. If this is a gaiden spell, set the HP drain bit and write how much HP to drain.
 void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattleHit* buffer, BattleStats* battleData)
@@ -344,7 +288,7 @@ int GetNthUsableSpell(Unit* unit, int n, int type)
 	}
 	return -1;
 }
-/*
+
 static int GetVanillaEquipped(Unit* unit)
 {
 	for ( int i = 0 ; i < 5 ; i++ )
@@ -353,7 +297,6 @@ static int GetVanillaEquipped(Unit* unit)
 	}
 	return 0;
 }
-*/
 
 int DoesUnitKnowSpell(Unit* unit, u8 spell)
 {

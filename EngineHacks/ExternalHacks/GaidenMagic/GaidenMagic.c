@@ -54,6 +54,15 @@ struct RTextProc
 	u16 textID, type, direction; // 0x4C.
 };
 
+
+
+
+
+extern int GetVanillaEquipped(Unit* unit); // 
+
+
+
+
 extern SpellList* SpellListTable[0xFF]; // Entirely different from vanilla Spell Association Table. Just indexed by character ID, points to a ROM spell list.
 extern const MenuDefinition SpellSelectMenuDefs;
 extern u8 SpellsBuffer[10]; // 0x202B6D0. Undocced RAM. Just a temporary buffer it seems.
@@ -64,6 +73,8 @@ extern u16 gPopupItem; // 0x030005F4.
 extern u16 StatScreenBufferMap[32][32]; // 0x02003C94.
 extern u16 gBG0MapBuffer[32][32]; // 0x02022CA8.
 extern Unit* gpStatScreenUnit; // 0x02003BC08.
+
+
 
 extern u16 gGaidenMagicHPCostText;
 extern u16 gGaidenMagicUMErrorText;
@@ -124,7 +135,13 @@ int CanCastSpellNow(Unit* unit, int spell);
 int CanCastSpell(Unit* unit, int spell);
 int CanUseAttackSpellsNow(Unit* unit, int type);
 int GetNthUsableSpell(Unit* unit, int n, int type);
-static int GetVanillaEquipped(Unit* unit);
+
+
+
+//static int GetVanillaEquipped(Unit* unit);
+
+
+
 int DoesUnitKnowSpell(Unit* unit, u8 spell);
 int GetSpellType(int spell);
 int GetSpellCost(int spell);

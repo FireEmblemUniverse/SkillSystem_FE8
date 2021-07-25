@@ -1,0 +1,176 @@
+
+
+08039898 GetUnitAiAttackPriority
+08039938 .thumb
+08039938 GetUnitAiPriority
+080399b0 .thumb
+[0202D022]?
+39898
+
+PUSH
+ORG $16b28
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewGetUnitEquippedWeapon
+POP
+PUSH
+ORG $16b58
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewGetUnitEquippedWeaponSlot
+POP
+
+
+
+
+//Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
+TantivyID 
+
+//Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
+//Author Unknown (Initial Commit)
+#define ReliefID 90
+
+
+
+//Canto: Can move again after certain actions.
+//By Tequila
+#define CantoID 1
+
+
+
+
+//Crit Boost: +15 critical rate.
+//Author Unknown (Initial Commit)
+#define CritUpID 3
+#define CritBoostID CritUpID //Alias
+
+//Strong Riposte: When under attack, damage +3.
+//Author Unknown (Initial Commit)
+#define StrongRiposteID 231
+
+//Patience: When under attack, avoid +10.
+//Author Unknown (Initial Commit)
+#define PatienceID 172
+
+//Pursuit: When under attack, attack speed +2.
+//Author Unknown (Initial Commit)
+#define PursuitID 177
+
+
+//Insight: Hit +20.
+//By Sme
+#define InsightID 171
+
+
+
+//Perfectionist: +15 Hit/Avoid when user's HP is at maximum.
+//By Zeta
+#define PerfectionistID 226
+
+//Prescience: When initiating battle, Hit and Avo +15.
+//By Sme
+#define PrescienceID 243
+
+
+Venom Ring 
+//Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
+//By Snakey1
+#define PoisonStrikeID 126
+
+// Wary Ring 
+Present from Brock 
+//Wary Fighter: Unit cannot double or be doubled.
+//By Tequila
+#define WaryFighterID 111
+
+// Life Ring 
+Present from Misty 
+//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
+//By circleseverywhere
+#define BreathOfLifeID 123
+
+
+// Surge Ring // blood?
+Present from Lt Surge 
+//Life and Death: Grants +5 Atk/Mag/Spd, -5 Def/Res.
+//By Leonarth
+#define HeroesLifeAndDeathID 154
+
+// Toxic Ring
+Present from Koga
+//Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
+//By circleseverywhere
+#define SavageBlowID 125
+
+//Grisly Wound: Deals damage equal to 20% of the enemy's max HP after every battle.
+//By Snakey1
+#define GrislyWoundID 127
+
+
+
+// Blossom Ring 
+Present from Erika 
+//Blossom: 2x growth rates, but 1/2 exp gain.
+//By Sme
+#define BlossomID 52
+
+or 
+//Voice of Peace: Enemies within 2 tiles deal -2 damage.
+//Author Unknown (Initial Commit)
+#define VoiceOfPeaceID 210
+
+//Amaterasu: Allies within 2 tiles recover 20% HP each turn.
+//Author Unknown (Initial Commit)
+#define AmaterasuID 93
+
+//Renewal: Restore 30% of max HP at the start of each turn.
+//Author Unknown (Initial Commit)
+#define RenewalID 87
+
+Sabrina 
+Psychic Ring / Hoplon Guard 
+//Fortune: This unit cannot be crit.
+//By Sme
+#define FortuneID 220
+
+
+or 
+//Charm: Allies within 2 tiles deal +2 damage.
+//Author Unknown (Initial Commit)
+#define CharmID 189
+
+
+Blaine 
+
+
+Giovanni 
+//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
+//By circleseverywhere
+#define FuryID 128
+
+Silph Scope ? 
+//Hawkeye: User will always hit the enemy.
+//By SD9k
+#define HawkeyeID 221
+
+
+Galeforce 
+Rival on the way to Indigo League 
+
+
+
+
+
+//Savior: Can rescue without penalties.
+//Author Unknown (Initial Commit)
+#define SaviorID 107
+
+
+
+
+
+
+
+
+
+

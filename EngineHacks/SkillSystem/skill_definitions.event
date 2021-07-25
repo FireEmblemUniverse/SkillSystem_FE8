@@ -368,7 +368,7 @@
 
 //Killing Machine: Total critical rate is doubled.
 //Author Unknown (Initial Commit)
-#define KillingMachineID 172
+#define KillingMachineID 255
 
 //Crit Boost: +15 critical rate.
 //Author Unknown (Initial Commit)
@@ -381,7 +381,7 @@
 
 //Patience: When under attack, avoid +10.
 //Author Unknown (Initial Commit)
-#define PatienceID 255
+#define PatienceID 172
 
 //Pursuit: When under attack, attack speed +2.
 //Author Unknown (Initial Commit)
@@ -448,11 +448,11 @@
 
 //Holy Aura: Gain +1 damage, +5% hit, +5% avoid, +5% crit when using light.
 //By Datagne
-#define HolyAuraID 171
+#define HolyAuraID 255
 
 //Insight: Hit +20.
 //By Sme
-#define InsightID 255
+#define InsightID 171
 
 //Knight Aspirant: When above 75% health, +2 damage, +15% avoid.
 //By Datagne

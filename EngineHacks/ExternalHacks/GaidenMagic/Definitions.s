@@ -28,7 +28,7 @@ SET_FUNC RTextRight, (0x080893E4+1)
 
 @ Data declarations:
 
-SET_DATA SpellsBuffer, 0x202B6D0
+SET_DATA SpellsBuffer, 0x202B6D1 // D0 before 
 
 SET_DATA SelectedSpell, 0x0203F080
 
