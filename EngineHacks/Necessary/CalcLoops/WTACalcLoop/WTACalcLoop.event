@@ -10,6 +10,7 @@ POIN TriangleAdept
 POIN Poise
 #ifdef REAVER_SPLIT
 	POIN DoubleWeaponTriangle
+
 #endif // REAVER_SPLIT
 WORD 0 // Terminator
 

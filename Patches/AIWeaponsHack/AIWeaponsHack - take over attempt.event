@@ -1,0 +1,51 @@
+
+// 39898 - GetUnitAiAttackPriority
+// Incomplete
+// Goal - Makes enemy ai use wexp as their weapons instead of their inv 
+#include "AIWeaponsHack.lyn.event"
+///*
+
+ALIGN 4 
+
+
+
+PUSH 
+
+// Tell AI that first item slot has TailWhip in it lol 
+ORG 0x3D56A 
+SHORT 0x25FF 0x022d 0x3531
+
+
+//ORG 0x3D56E  // This alone didn't work 
+//SHORT 0x46C0 // Nop out branch if no item in slot 0 
+
+//ORG 0x3D58C 
+//SHORT 0x46C0 // Nop out branch if no item in slot 0 
+
+ORG 0x2ACD0 
+jumpToHack_r0(AIWeaponsHackP0)
+
+
+ORG 0x398A0 
+jumpToHack_r0(AIWeaponsHackP1)
+
+
+ORG 0x39908 
+jumpToHack_r0(AIWeaponsHackP2)
+
+
+
+ORG 0x2A79C
+jumpToHack_r1(AIWeaponsHackP3)
+
+POP 
+
+
+
+
+
+
+
+
+
+

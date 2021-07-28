@@ -1,4 +1,10 @@
 #define ChapterID Route1Ch
+#define GenericA UnitViridianForestSouthWild
+#define GenericB UnitViridianForestSouthTrainer
+#define ClassA ClassRouteOneWildA
+#define ClassB ClassRouteOneWildB
+#define WildLvl 3 
+#define TrainerL 6 
 EventPointerTable(ChapterID,ThisChapter)
 
 ALIGN 4
@@ -152,21 +158,16 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid
 LOAD1 0x1 EnemyUnitsD
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //lower 
-OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-AutoLevelUnits(1, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
-AutoLevelUnits(5, True, 0x90EF) // Trainers given +5 visible levels 
+AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 CALL SetBushHpEvent
-MOVE 65535 Eirika [14,24]
-ENUN
-//SetUnitStatus(Eirika, CurrentHP, 0x05)
-SetUnitStatus(Seth, CurrentHP, 0x05)
-SetUnitStatus(Ephraim, CurrentHP, 0x05)
-SetUnitStatus(Amelia, CurrentHP, 0x05)
+
+
 LABEL 0x63
 NoFade
 ENDA
@@ -213,31 +214,9 @@ UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0
 UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
-/*
-EnemyUnitsA:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 0b 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 0b 0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,2] 0b 0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
-////UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 
-
-EnemyUnitsB:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 0b 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 0b 0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,2] 0b 0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT
-*/
-
-
-
-
 EnemyUnitsC:
-UNIT UnitRouteOneWild RattataID 0x0 Level(2, Enemy, 1)   [0,4] 0b	0x0 0x01 REDA0R4 [SandAttack,TailWhip,Growl,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild RattataID 0x0 Level(1, Enemy, 1)   [0,5] 0b	0x0 0x01 REDA0R5 [SandAttack,TailWhip,Growl,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [1,4] 001b	0x0 0x01 REDA1R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -253,23 +232,6 @@ UNIT
 
 NPCUnits:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-																									
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-																									
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-
 UNIT
 
 Route1Rein:
@@ -277,27 +239,11 @@ UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0
 UNIT 
 
 
-TalkEvent:
-Text(0x9DD) 
-NoFade
-ENDA 
-
-VillageEvent:
-	VillageEventItem(VillageText, Village, Boots)
-
-HouseEvent:
-	// Set parameters
-	SVAL r1 NiceThighsID
-	SVAL r2 (-1) // (-1) is active unit
-	// Check if unit has skill
-	// If they have, goto label #0 (end)
-	ASMC (ASMC_HasSkill|1)
-	BNE 0 rC r0
-	// Learn skill to unit
-	ASMC (ASMC_LearnNewSkill|1)
-LABEL 0
-	Text(HouseText)	
-	NoFade
-	ENDA
 	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
 #undef ChapterID

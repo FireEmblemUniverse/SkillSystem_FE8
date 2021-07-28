@@ -19,11 +19,19 @@
 	.type   AutolevelSpells, function
 
 AutolevelSpells:
-push	{r4-r6,lr}
+push	{r4-r7,lr}
 	
 	@ with r0 as unit struct, set their first 5 wexp values to the moves they've "learned" 
 	mov r4, r0 @ Unit 
+	ldrb r7, [r4, #0x0B] @ Allegiance 
+	lsr r7, #6 @ only need top two bits 
 	@mov r11, r11
+	ldrh r0, [r4, #0x1E] @ inv slot 1
+	cmp r0, #0 
+	beq Start
+	mov r7, #0 @ Do not give moves if they had something in inventory slot 1 
+	Start:
+
 	ldr r1, [r0, #4] @ Class pointer 
 	ldrb r2, [r1, #4] @ Class ID 
 	lsl r2, #2 @ *4 as each pointer is WORD length 
@@ -38,8 +46,9 @@ push	{r4-r6,lr}
 	cmp r0, #0 
 	bne Find_terminator_offset_loop
 	
+	@mov r11, r11 
 	ldrb r6, [r4, #8] @ Unit's level 
-	mov r3, #0x28 @ Start of WEXP 
+	mov r3, #0x0 @ Wexp / inv offset 
 		@ r1, r2, r3, r4, r5, and r6 are used 
 		@ r0 is scratch 
 	mov r2, #0 @ Start of table 
@@ -53,16 +62,45 @@ push	{r4-r6,lr}
 	bgt LearnSpellLoop @ We are too low level 
 	add r0, r1, #1 
 	ldrb r0, [r5, r0] @ Spell to learn 
-	cmp r3, #0x2D @ We've already learned 5 moves, so end 
+	cmp r3, #5 @ We've already learned 5 moves, so end 
 	bge End 
+	add r3, #0x28 
+	strb r0, [r4, r3] 
+	sub r3, #0x27 @ add 1 
+	
+	
+	cmp r7, #0 
+	beq LearnSpellLoop 
+	@mov r11, r11
+	sub r7, r3, #1 
+	push {r3}
+	lsl r7, r7, #1 @ 2 bytes per weapon 
+	add r7, #0x1C @ weapon inv slot - 2 
+	mov r3, r7 
+	FindFreeInventorySpaceLoop:
+	add r3, #2 
+	cmp r3, #0x28 
+	bge BreakFindFreeInventorySpaceLoop
+	ldrh r7, [r4, r3] 
+	cmp r7, #0 
+	bne FindFreeInventorySpaceLoop
+	@ We found free inventory, so store 
+	strb r0, [r4, r3] 
+	mov r0, #0x9 @ 9 durability i guess 
 	add r3, #1 
 	strb r0, [r4, r3] 
+	mov r7, #2 @ non zero value 
+	pop {r3}
+	b LearnSpellLoop
+	BreakFindFreeInventorySpaceLoop:
+	mov r7, #0 @ Inv full 
+	pop {r3}
 	b LearnSpellLoop
 
 	
 	End: 
 
 	
-pop {r4-r6}
+pop {r4-r7}
 pop {r1}
 bx r1 

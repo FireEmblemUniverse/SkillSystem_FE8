@@ -62,20 +62,15 @@ cd "%base_dir%EventAssembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times"
 type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
 SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
-copy "%~dp0FE8Hack.sym" %destDir%
+copy /y "%~dp0FE8Hack.sym" %destDir%\comment_.txt
 
 
-if /I not [%1]==[quick] (
-
-  @rem only do the following if this isn't a make hack quick
 
   echo:
   echo Generating patch
 
   cd "%base_dir%"
   "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
-
-)
 
 
 

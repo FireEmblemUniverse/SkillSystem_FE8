@@ -667,7 +667,7 @@ A malefic [X]
 # 0x044B
 A low blow. Str+2.[X]
 # 0x044C
-Lulls all enemies within range
+Lulls all enemies within range[NL]
 into a deep slumber.[X]
 # 0x044D
 A weak jolt of electricity. Mag+2.[X]
@@ -743,175 +743,175 @@ A powerful, venomous jab. Str+3.[X]
 # 0x0470
 Long-range dark magic bolt.[.][X]
 # 0x0471
-Restores HP to a
+Restores HP to a[NL]
 nearby ally.[X]
 # 0x0472
-Restores many HP to allies
+Restores many HP to allies[NL]
 in adjacent spaces.[.][X]
 # 0x0473
-Restores all HP to allies[.]
+Restores all HP to allies[.][NL]
 in adjacent spaces.[.][X]
 # 0x0474
-Restores HP to allies[.]
+Restores HP to allies[.][NL]
 at a distance.[X]
 # 0x0475
-Restores all HP to allies[.]
+Restores all HP to allies[.][NL]
 nearby.[.][X]
 # 0x0476
-Returns allies to normal
+Returns allies to normal[NL]
 condition. (Cures sleep, etc.)[X]
 # 0x0477
-Halts all enemy magic[.]
+Halts all enemy magic[.][NL]
 for several turns.[X]
 # 0x0478
-Puts enemies to sleep for[.]
+Puts enemies to sleep for[.][NL]
 several turns.[X]
 # 0x0479
-Sends enemies into a
+Sends enemies into a[NL]
 berserker rage.[.][X]
 # 0x047A
-Moves allies in adjacent
+Moves allies in adjacent[NL]
 spaces instantly elsewhere.[.][X]
 # 0x047B
-Moves allies from distant[.]
+Moves allies from distant[.][NL]
 spaces to adjacent ones.[X]
 # 0x047C
-Lights an area. The light[.]
+Lights an area. The light[.][NL]
 grows weaker each turn.[.][X]
 # 0x047D
-Restores an adjacent ally's[.]
+Restores an adjacent ally's[.][NL]
 weapons to new condition.[.][X]
 # 0x047E
-Unlocks doors, even from
+Unlocks doors, even from[NL]
 a distance.[.][X]
 # 0x047F
-Increases magic resistance
+Increases magic resistance[NL]
 of adjacent allies briefly.[.][X]
 # 0x0480
-A Sacred Twin staff. The
+A Sacred Twin staff. The[NL]
 ancient Staff of Latona.[X]
 # 0x0481
-A dance that allows[.]
+A dance that allows[.][NL]
 allies to move again.[.][X]
 # 0x0482
-A song that allows
+A song that allows[NL]
 allies to move again.[.][X]
 # 0x0483
-Increases HP by a max of
+Increases HP by a max of[NL]
 5 points. Vanishes after use.[.][X]
 # 0x0484
-Increases Str by[.]
+Increases Str by[.][NL]
 2 points. Vanishes after use.[.][X]
 # 0x0485
-Increases stats by 2 points.
+Increases stats by 2 points.[NL]
 Vanishes after use.[.][X]
 # 0x0486
-Increases speed by
+Increases speed by[NL]
 2 points. Vanishes after use.[.][X]
 # 0x0487
-Increases luck by[.]
+Increases luck by[.][NL]
 2 points. Vanishes after use.[.][X]
 # 0x0488
-Increases defense by
+Increases defense by[NL]
 2 points. Vanishes after use.[.][X]
 # 0x0489
-Increases resistance by[.]
+Increases resistance by[.][NL]
 1 point. Vanishes after use.[.][X]
 # 0x048A
-Increases SpA by[.]
+Increases SpA by[.][NL]
 2 points. Vanishes after use.[.][X]
 # 0x048B
-Increases constitution by[.]
+Increases constitution by[.][NL]
 2 points. Vanishes after use.[.][X]
 # 0x048C
-For Clefairy, Jigglypuff, Nidorina,
+For Clefairy, Jigglypuff, Nidorina,[NL]
 and Nidorino.[X]
 # 0x048D
-For Kadabra, Machoke,
+For Kadabra, Machoke,[NL]
 Haunter, and Graveller.[X]
 # 0x048E
-For Pikachu
+For Pikachu[NL]
 and Eevee.[X]
 # 0x048F
-For Weepinbell,
+For Weepinbell,[NL]
 Gloom, and Exeggcute.[X]
 # 0x0490
-For Poliwhirl, Shellder,
+For Poliwhirl, Shellder,[NL]
 Staryu, and Eevee.[X]
 # 0x0491
 Opens chests.[.][X]
 # 0x0492
-Opens doors in
+Opens doors in[NL]
 adjacent spaces.[X]
 # 0x0493
-Opens doors and chests.[.]
+Opens doors and chests.[.][NL]
 Usable only by thieves.[.][X]
 # 0x0494
-Use to restore
+Use to restore[NL]
 15 health.[X]
 # 0x0495
-A powerful solution that
+A powerful solution that[NL]
 restores all HP.[X]
 # 0x0496
-A draught that boosts Res.
+A draught that boosts Res.[NL]
 Grows weaker each turn.[.][X]
 # 0x0497
-A medicinal solution that[.]
+A medicinal solution that[.][NL]
 cures poison.[.][X]
 # 0x0498
-A staff with burning pitch.[.]
+A staff with burning pitch.[.][NL]
 Grows dimmer each turn.[.][X]
 # 0x0499
-An amulet that protects fliers
+An amulet that protects fliers[NL]
 from arrows.[X]
 # 0x049A
-If someone with this card[.]
+If someone with this card[.][NL]
 stops in a suspicious space...[X]
 # 0x049B
-A special card that reduces[.]
+A special card that reduces[.][NL]
 the cost of all items by half.[X]
 # 0x049C
-A valuable gemstone worth[.]
+A valuable gemstone worth[.][NL]
 20,000 gold.[X]
 # 0x049D
-A valuable gemstone worth[.]
+A valuable gemstone worth[.][NL]
 15,000 gold.[X]
 # 0x049E
-A valuable gemstone worth[.]
+A valuable gemstone worth[.][NL]
 10,000 gold.[X]
 # 0x049F
-A rare gemstone worth[.]
+A rare gemstone worth[.][NL]
 5,000 gold.[.][X]
 # 0x04A0
-An uncommon gemstone
+An uncommon gemstone[NL]
 worth 2,500 gold.[.][X]
 # 0x04A1
 A bag full of money.[X]
 # 0x04A2
-A trap that damages units[.]
+A trap that damages units[.][NL]
 that step on it.[X]
 # 0x04A3
-A device that blocks units
+A device that blocks units[NL]
 from entering spaces.[.][X]
 # 0x04A4
-A device that negates[.]
+A device that negates[.][NL]
 enemy critical attacks.[.][X]
 # 0x04A5
 Evolve certain Pokemon with this.[X]
 # 0x04A6
-Gives a little treat to the[.]
+Gives a little treat to the[.][NL]
 unit that uses it.[X]
 # 0x04A7
-For Vulpix, Growlithe,
+For Vulpix, Growlithe,[NL]
 or Eevee.[X]
 # 0x04A8
-For use by Eirika,
+For use by Eirika,[NL]
 princess of Renais.[.][X]
 # 0x04A9
-For use by Ephraim,[.]
+For use by Ephraim,[.][NL]
 prince of Renais.[.][X]
 # 0x04AA
-Use this to lower your
+Use this to lower your[NL]
 level by 1 and farm exp.[X]
 # 0x04AB
 DUMMY[.][X]
@@ -928,53 +928,53 @@ Restores more HP.[.][X]
 # 0x04B1
 Restores all HP.[X]
 # 0x04B2
-Restores HP to
+Restores HP to[NL]
 distant allies.[.][X]
 # 0x04B3
-Restores HP to all
+Restores HP to all[NL]
 allies in one area.[.][X]
 # 0x04B4
-Restores allies to
+Restores allies to[NL]
 normal status.[X]
 # 0x04B5
 Blocks enemy magic.[.][X]
 # 0x04B6
 Puts enemies to sleep.[X]
 # 0x04B7
-Drives enemies to[.]
-attack wildly in a
+Drives enemies to[.][NL]
+attack wildly in a[NL]
 frenzy of rage.[.][X]
 # 0x04B8
-Warps allies to[.]
+Warps allies to[.][NL]
 other spaces.[.][X]
 # 0x04B9
-Warps allies to a[.]
-space adjacent to[.]
+Warps allies to a[.][NL]
+space adjacent to[.][NL]
 the staff wielder.[X]
 # 0x04BA
 Lights up an area.[X]
 # 0x04BB
-Restores items to[.]
+Restores items to[.][NL]
 new condition.[X]
 # 0x04BC
 Opens doors.[X]
 # 0x04BD
 Raises resistance.[X]
 # 0x04BE
-Restores all HP as
+Restores all HP as[NL]
 well as allies' status.[.][X]
 # 0x04BF
-Allows allies[.]
+Allows allies[.][NL]
 to move again.[X]
 # 0x04C0
-Allows allies[.]
+Allows allies[.][NL]
 to move again.[X]
 # 0x04C1
 Raises Max HP.[X]
 # 0x04C2
 Raises strength.[X]
 # 0x04C3
-Raises most stats 
+Raises most stats[NL]
 by 2 points.[X]
 # 0x04C4
 Raises speed.[.][X]
@@ -989,29 +989,29 @@ Raises Special Attack.[X]
 # 0x04C9
 Raises constitution.[X]
 # 0x04CA
-Use this on Clefairy, 
-Jigglypuff, Nidorina,
+Use this on Clefairy,[NL] 
+Jigglypuff, Nidorina,[NL]
 or Nidorino.
 [X]
 # 0x04CB
-Use this on Kadabra, 
-Machoke, Haunter, 
+Use this on Kadabra,[NL] 
+Machoke, Haunter,[NL]
 or Graveller.[X]
 # 0x04CC
-Use this on Pikachu
+Use this on Pikachu[NL]
 or Eevee.[X]
 # 0x04CD
-Use this on Weepinbell,
+Use this on Weepinbell,[NL]
 Gloom, or Exeggcute.[X]
 # 0x04CE
-Use this on Poliwhirl, 
+Use this on Poliwhirl,[NL] 
 Shellder, Staryu, or Eevee.[X]
 # 0x04CF
 Opens chests.[.][X]
 # 0x04D0
 Opens doors.[X]
 # 0x04D1
-Universal lockpicks[.]
+Universal lockpicks[.][NL]
 designed for thieves.[.][X]
 # 0x04D2
 Restores 15 HP.[.][X]
@@ -1028,36 +1028,36 @@ Lights an area.[.][X]
 Protects airborne[.]
 units from bows.[X]
 # 0x04D8
-Grants access to
+Grants access to[NL]
 secret shops.[.][X]
 # 0x04D9
-Reduces the cost
+Reduces the cost[NL]
 of items.[.][X]
 # 0x04DA
  [.][X]
 # 0x04DB
-Units that enter
-spaces where these
+Units that enter[NL]
+spaces where these[NL]
 are take damage.[X]
 # 0x04DC
-Units cannot enter
-spaces where these
+Units cannot enter[NL]
+spaces where these[NL]
 have been placed.[.][X]
 # 0x04DD
-Negates enemies'
+Negates enemies'[NL]
 critical attacks.[.][X]
 # 0x04DE
-Use this on a Pokemon
-that does not evolve
+Use this on a Pokemon[NL]
+that does not evolve[NL]
 by leveling up.[X]
 # 0x04DF
-Give this to a
+Give this to a[NL]
 unit you like.[X]
 # 0x04E0
-Use this on Vulpix, 
+Use this on Vulpix,[NL] 
 Growlithe, or Eevee.[X]
 # 0x04E1
-Have Eirika use this
+Have Eirika use this[NL]
 when she's ready.[.][X]
 # 0x04E2
 Have Ephraim use this[.]

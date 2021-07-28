@@ -27,23 +27,17 @@ push { r6, r7 }
 mov r5, r0
 mov r3, r1
 
-CheckWeaponSlot:
-push {r3} 
-@mov r0, r5
-blh GetUnitEquippedWeaponSlot, r1
-pop {r3} 
-cmp r0, #9 
-beq OverwriteR3
-mov r1, #0x1 	@ 
-neg r1, r1  	@ These 4 lines were commented out for some reason by Snek 
-cmp r3, r1		@ but they cause an AI bug where they always use their last inv wep 
-bne EnemyExists @ so I uncommented them - Vesly 	
-OverwriteR3:
-mov r3, r0
+
+mov r0, #0x1 	@ 
+neg r0, r0  	@ These 4 lines were commented out for some reason by Snek 
+cmp r3, r0		@ but they cause an AI bug where they always use their last inv wep 
+bne EnemyExists @ so I uncommented them - Vesly 
+
+	CheckWeaponSlot:
+	mov r0, r5
+	blh GetUnitEquippedWeaponSlot, r1
+	mov r3, r0
 EnemyExists:
-
-
-
 ldr r0, [ r5, #0xC ]
 mov r1, #0x80
 lsl r1, r1, #0x4

@@ -29,10 +29,8 @@ CheckUnitIsInDanger:
 	bl bxr3
 
 	ldr r3, =gEventSlot
-	str r0, [r3, #4*0x04] @[0x30004C8]!!?
-	
-	
 	ldr r2, [r3, #4*0x0B]
+	@mov r11, r11
 
 	lsr r1, r2, #16 @ r1 = slotB.y
 	lsl r0, r2, #24

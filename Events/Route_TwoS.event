@@ -1,0 +1,206 @@
+#define ChapterID Route2SCh
+#define GenericA UnitViridianForestSouthWild
+#define GenericB UnitViridianForestSouthTrainer
+#define ClassA ClassRouteOneWildA
+#define ClassB ClassRouteOneWildB
+#define WildLvl 3 
+#define TrainerL 6 
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(0,Route2SReinEvent,0,255)
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+Route2SReinEvent:
+Reinforce(0xF0, 1, Route2SRein, 4, 4) // Top 
+NoFade 
+ENDA 
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToViridianForestS [5,10] [6,10] 
+AREA 0 ToViridian [7,36] [11,36] 
+AREA 0 ToRoute2N [18,5] [19,5] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(5,10) 
+EscapeTileEntry(6,10) 
+EscapeTileEntry(8,36) 
+EscapeTileEntry(10,36) 
+EscapeTileEntry(18,5) 
+EscapeTileEntry(19,5) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToRoute2N:
+ChapterTransition(ViridianForestSCh, 12, 1)
+
+ToViridianForestS:
+ChapterTransition(ViridianForestSCh, 12, 1)
+
+ToViridian:
+ChapterTransition(ViridianCh, 19, 37)
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(8,19,ChapterID*2,250)
+//CoinsTrap(20,35,(ChapterID*2)+1,250)
+
+CutBush(15,26)
+CutBush(16,21)
+
+
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+
+RedPokeballTrap(21,31, ChapterID*2, Vulnerary)
+//GoldPokeballTrap(17,20, (ChapterID*2)+1, Gust) 
+
+SignBTrap(8,11, ChapterID, 0x0) //no extra text 
+SignATrap(10,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(15,21, ChapterID*2, 0xB7)
+SpellScrollTrap(17,20, (ChapterID*2)+1, 0xB7)
+//OpenPokeball(8,3)
+//Sign(8,4, 2)
+
+//Save(10,4)
+//SaveCost(12,17) 
+
+
+BerryTree(2,22,5)
+
+
+Flower(3,12)
+Flower(2,13)
+Flower(2,16)
+Flower(2,18)
+Flower(2,20)
+Flower(16,22)
+Flower(16,24)
+Flower(17,23)
+Flower(21,23)
+Flower(20,24)
+Flower(21,25)
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+ 
+LOAD1 0x1 EnemyUnitsA
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(6,15,12,19)) //top patch 
+
+AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+
+LOAD1 0x1 EnemyTrainersA
+ENUN 
+AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+CALL SetBushHpEvent
+MOVE 65535 Eirika [9,23]
+ENUN
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+EnemyUnitsA:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+EnemyTrainersA:
+//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+UNIT
+
+NPCUnits:
+UNIT UnitRouteOneWild ClassA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT
+
+Route2SRein:
+UNIT UnitRouteOneWild ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT 
+
+
+	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

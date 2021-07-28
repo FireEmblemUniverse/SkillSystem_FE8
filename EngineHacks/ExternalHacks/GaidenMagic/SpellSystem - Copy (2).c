@@ -59,7 +59,7 @@ int GetValidSpellSlotToAttackWith(Unit* unit, u8* spells)
 			// Loop until we find one that we can attack in range with, akin to dynamic equip 
 			if ( gCan_Attack_Target(spells[i]|0xFF00,gBattleStats.range,unit) ) 
 			{ 
-				return ( i ) ; 
+				return i; 
 			}
 		}
 		else { break; }  
@@ -132,12 +132,12 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 {
 // Vanilla behaviour 
 	int vanillaEquipped = GetVanillaEquipped(unit);
-	//return vanillaEquipped;
+	return vanillaEquipped;
 	
-	//u8* spells = SpellsGetter(unit, 1);
+	u8* spells = SpellsGetter(unit, 1);
 	//return 0xFF30; // Always equipped with tackle I guess? lol 
 	
-	//return GetValidSpellToAttackWith(unit, spells);
+	return GetValidSpellToAttackWith(unit, spells);
 	
 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	{
@@ -149,46 +149,25 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 			if ( unit->index == gBattleTarget.unit.index && GetItemType(SelectedSpell) == ITYPE_STAFF )
 			{
 				return vanillaEquipped;
-			} 
-			else 
-			{
-				//
-			
-			// Reorder the list of spells for the player to have 
-			// the most recent one at the top 
-				if ( unit->ranks[0] != SelectedSpell) 
-				{ 
-					int PreviousSelection = unit->ranks[0]; // save 
-					for ( int i = 1 ; i < 5 ; i++ ) 
-					{ 	
-						if (unit->ranks[i] == SelectedSpell) 
-						{
-						unit->ranks[i] = PreviousSelection;
-						unit->ranks[0] = SelectedSpell;
-						}
-					}
-				
-				} 
-				// if [0] equals SelectedSpell -> do nothing 
-				// if [1] equals selected spell -> swap [0] and [1] 
-
-				
-				return SelectedSpell|0xFF00; 
-			}
+			} else { return SelectedSpell|0xFF00; }
 		}
 	}
-	//if ( unit->index & 0xC0 ) { return vanillaEquipped; }
 	else
 	{
 		// It is not our phase.
 		// Well, all the logic is in NewGetUnitEquippedWeaponSlot. Why not get the slot then return that item, checking for case 9 (Gaiden magic)?
-
-		//if ( GetUnitEquippedWeaponSlot(unit) == 9 )
-		//{
+		if ( GetUnitEquippedWeaponSlot(unit) == 9 )
+		{
 			// We're not using the spell menu, but we're still using Gaiden magic. We must be trying to counter with it.
-		int spell = GetFirstAttackSpell(unit);
-		return ( spell ? spell|0xFF00 : 0 );
-		//}
+			int spell = GetFirstAttackSpell(unit);
+			return ( spell ? spell|0xFF00 : 0 );
+		}
+		//else { return vanillaEquipped; }
+		
+		
+		// not sure what this would do, didn't seem to work for enemy phase 
+		//u8* spells = SpellsGetter(unit, 1);
+		return GetValidSpellToAttackWith(unit, spells);
 	}
 }
 
@@ -200,64 +179,34 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 {
 // Vanilla behaviour 
 
-/*
 	for ( int i = 0 ; i < 5 ; i++ )
 		{
 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
 		}
 	return -1;
-*/
 
-	int spell = GetFirstAttackSpell(unit);
-		// enemy ai 
-		// this: (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) means not stat screen 
-	if ( !(UsingSpellMenu) && unit->index != gBattleTarget.unit.index && (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) ) { 
-		for ( int i = 0 ; i < 5 ; i++ )
-		// Loop through all weapons in inventory and attack with one 
-		{
-			if ( CanUnitUseWeapon(unit,unit->items[i]) )
-			{
-				// This would be the equipped weapon. If we can't counter with this, then we should return the first Gaiden (attack) spell.
-				if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
-			}
-			else { break; } 
-		}
-		return -1; 
-		//return ( spell ? 9 : 0 ); // -1; // stat screen 
-	} 
-	
-
-	//If a player unit is using the spell menu, return using Gaiden magic.
-	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) && !(unit->index & 0xC0) ) { 
-
-		return 9;
-	}
-	
-	
-	
+	// Vanilla behaviour 
+	//return 1; - this worked! 
+	u8* spells = SpellsGetter(unit, 1);
 	//return 0;
-	//return GetValidSpellSlotToAttackWith(unit, spells);
+	return GetValidSpellSlotToAttackWith(unit, spells);
 	
-	if ( unit->index & 0xC0 ) {
-		for ( int i = 0 ; i < 5 ; i++ )
-			{
-				if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
-			}
-		return -1;
+	
+	int spell = GetFirstAttackSpell(unit);
+	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { 
+		if (!(unit->index & 0xC0)) { //If a player unit is using the spell menu, return using Gaiden magic.
+				return 9;
+		}
 	}
-
 	//int spell = GetFirstAttackSpell(unit);
-	if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); } // Always counter attack with first spell. Also used in stat screen by players. 
+	//u8* SpellsGetter(unit, 1) // non-staff
 	
-	/*
 	// This function appears only to be called in simulated and real battles (and on the stat screen)?
 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
 	{
-		if ((unit->index & 0xC0)) { // Enemy is counter attacking 
-		
-		
-			//return GetValidSpellSlotToAttackWith(unit, spells);
-			// If we're here this is a real or simulated battle, and the enemy is the attacker. See if we can use what would be the equipped weapon.
+
+		if ((unit->index & 0xC0)) { // Enemy is attacking or counter attacking 
+			// If we're here this is a real or simulated battle, and the enemy is the attacker or defender. See if we can use what would be the equipped weapon.
 			for ( int i = 0 ; i < 5 ; i++ )
 			// Loop through all weapons in inventory and attack with one 
 			{
@@ -266,21 +215,13 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 					// This would be the equipped weapon. If we can't counter with this, then we should return the first Gaiden (attack) spell.
 					if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
 				}
-				else { break; } 
 			}
 			//return ( spell ? 9 : 0 ); // Always attack with first spell 
-		}
-			//int spell = GetFirstAttackSpell(unit);
-	
+			return GetValidSpellSlotToAttackWith(unit, spells);
+			
+		} 
 
 		// If we're here this is a real or simulated battle, and we're the defender. See if we can use what would be the equipped weapon.
-		
-		return ( spell ? 9 : 0 ); // Always counter attack with first spell 
-		//u8* spells = SpellsGetter(unit, 1);
-		//return GetValidSpellSlotToAttackWith(unit, spells);
-		
-		// vanilla equipped weapons for player to counter with 
-		
 		for ( int i = 0 ; i < 5 ; i++ )
 		// Loop through all weapons in inventory and attack with one 
 		{
@@ -290,31 +231,18 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 				if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
 			}
 		}
-		*/
-	/*
+		//return ( spell ? 9 : 0 ); // Always attack with first spell 
+		return GetValidSpellSlotToAttackWith(unit, spells);
 	}
-
-	
-	
-
-	
-
-	// Stat screen ?
+	else
 	{
-		//if (!(unit->index & 0xC0))
-
-		if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); }
-		
-		//for ( int i = 0 ; i < 5 ; i++ )
-		//{
-		//	if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
-		//	else { break; } 
+		for ( int i = 0 ; i < 5 ; i++ )
+		{
+			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
 			
-		//}
-		
+		}
+		if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); }
 	}
-	*/
-	
 	return -1;
 }
 

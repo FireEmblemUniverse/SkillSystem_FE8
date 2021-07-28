@@ -32,8 +32,41 @@ mov r7, r0 @ Parent Proc ? Idk I don't use this
 
 mov r4,#0 @ current deployment id
 mov r5,#0 @ counter
+
+
+
+mov r0, #1 @ Battle 
+blh CheckEventId
+cmp r0, #0 
+bne SetNoCallFlag 
+
+mov r0, #9 @ 1 turn til battle 
+blh CheckEventId 
+cmp r0, #0 
+bne SetNoCallFlag
+
+ldr r3, =CurrentUnit
+ldr r3, [r3] @ Ram address 
+ldrb r0, [r3, #0x11] @Y 
+lsl r0, #16 @ --XX---- 
+ldrb r1, [r3, #0x10] @ X
+add r0, r1 
+ldr r6, =MemorySlot
+str r0, [r6, #0x0B*4] @ SlotB is used in CheckInDanger 
+
+blh CheckUnitIsInDanger
+add r6, #0xC*4 @ SlotC 
+ldr r0, [r6] 
+cmp r0, #0 
+bne SetNoCallFlag
+
+b Start 
+
+SetNoCallFlag: 
 mov r0, #8 @ Cannot call 
 blh SetEventId
+
+Start: 
 
 @ 202E4DC	Terrain map (tile id)
 @ We need to make our current tile terrain that cannot be crossed 
@@ -232,6 +265,10 @@ blh CheckEventId
 cmp r0, #0 
 bne Usability_False
 
+mov r0, #85 @ Flag that prevents call 
+blh CheckEventId
+cmp r0, #0 
+bne Usability_False
 
 blh Get2ndFreeUnit
 cmp r0, #0 

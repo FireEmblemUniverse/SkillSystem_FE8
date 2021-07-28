@@ -1,15 +1,13 @@
 .thumb 
-.align 4 
+
+.global AIWeaponsHackP0
+.type AIWeaponsHackP0, %function 
 .global AIWeaponsHackP1
 .type AIWeaponsHackP1, %function 
 @ in 0x39898 
 
-
-.equ WepRamLocat, 0x30017C0 
 @ p1 and p2 are in 0x39898 and just cycle through your weapons to decide to attack or not 
 @ I don't think it decides which weapon to use here 
-
-
 
 @ [0203A50C..203a513]? @ Inventory slots 2-5 for battle actor 
 @ in 2AC90 "ComputeCrit" there's 2ACDA 
@@ -20,82 +18,35 @@
 @ 2ACDA 
 @ 2ACDA 
 
+.align 4 
+AIWeaponsHackP0:
+mov r1, r4 @ Inventory slot index 
+mov r0, r6 
+add r0, #0x28 
+ldrb r0, [r0, r1] 
+mov r1, #0x0A 
+lsl r1, #8 
+add r0, r1 @ 0xA durability << 8 | item 
+cmp r0, #0 
+ldr r1, =0x802ACDD @ return point 
+bx r1 
+
+.align 4 
+
 AIWeaponsHackP1:
 mov r7, #0 
 
 mov r8, r7 @ also 0 
 mov r6, #0x0 
-mov r0, #0x0 @ Counter 
-mov r1, #0xA @ 10 durability 
-ldr r3, =WepRamLocat
-lsl r1, #8 
-ReplaceInventoryLoop:
-add r0, #0x28 @ unit wexp offset 
-ldrb r4, [r5, r0] @ wexp of slot 
-sub r0, #0x28 
-cmp r4, #0
-beq BreakLoop
+mov r0, #0x28 @Unit wexp 
+ldrb r4, [r5, r0] 
+mov r0, #0xA @ 10 durability 
+lsl r0, #8 
 
-cmp r0, #0x6 
-bge BreakLoop
-lsl r0, #1 @ weps are shorts so the offset must be too 
-add r0, #0x1E
-ldrh r2, [r5, r0] 
-strh r2, [r3, r0] @ Store weps in ram  
- 
-add r4, r1 
-strh r4, [r5, r0]
-sub r0, #0x1E
-lsr r0, #1 
-
-add r0, #1 
-b ReplaceInventoryLoop
-
-BreakLoop:
+add r4, r0 
 
 
-
-ldrh r4, [r5, #0x20] @inv slot 2 
-cmp r4, #0x0 
-
-ldr r0, =0x80398AD @ A few lines into GetUnitAIAttackPriority 
-bx r0 
-
-
-
-@ 80398ED 
-
-
-
-
-
-@ 8039c00 ClearAiDecision 
-@08039c20 AiSetDecision
-@08039c64 .thumb
-@08039c64 AiUpdateDecision
-@08039cac .thumb
-
-@ maybe in AiTryDoOffensive at 3D450
-@ 80398A0 - AIWeaponsHackP1 give weps 
-@ 803D5E4 - only reached by valid units 
-.align 4 
-.global RestoreInventoryAfterBattle
-.type RestoreInventoryAfterBattle, %function 
-RestoreInventoryAfterBattle:
-push {lr} 
-	@r4 = attacker, r5 = defender, r6 = action struct 
-@ r4 = attack struct, r5 = defense struct.
-@ Assumed parameters for all functions: r0 = attack struct, r1 = defense struct.	
-mov r3, #0x28 
-mov r2, #0x35 @ Ember 
-strb r2, [r0, r3] 
-	
-
-pop {r1}
-bx r1 
-
-
-
+@strh r4, [r5, #0x20]
 @ldrh r4, [r5, #0x20] @ I think this only works if we look at the 2nd inv item 
 					@ Maybe the first item is probably found via GetEquippedWep ? 
 					@ We could take it over here to store the strongest four spells 
@@ -112,7 +63,10 @@ bx r1
 					@ aggh I guess we add an exception for that, too 
 					@ if player phase and current unit is berserked 
 					@ otherwise, only for enemy on enemy phase 
+cmp r4, #0x0 
 
+ldr r0, =0x80398AD @ A few lines into GetUnitAIAttackPriority 
+bx r0 
 
 .align 4 
 .global AIWeaponsHackP2

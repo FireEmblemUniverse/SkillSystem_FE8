@@ -14,10 +14,12 @@
 #define Player5UnitID 			0x30017b7 
 #define Player6UnitID 			0x30017b8 
 #define BerryDurabilityToggleRam 			0x30017b9 
-#define ReturnTMRam 			0x30017ba
+
+#define ReturnTMRam 			0x30017ba // Also used for enemy AI 
 #define DRSingleRam 			0x30017bb
 #define UnitPointerRam 0x30017BC // - BF
-#define NextFree 0x30017C0 
+#define WepRamLocat 0x30017C0 
+
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
@@ -36,6 +38,24 @@ GiveEXP(0x7FFF, 100)
 //CALL VisitPokecenter
 NoFade 
 ENDA 
+
+InitiateCutscene:
+CHECK_EVENTID -1 // Flag in s2 
+BNE 0x63 rC r0 // End if flag is on 
+ENUT PlayableCutsceneFlag // Prevent "Call" 
+
+
+LABEL 0x63 
+NoFade 
+ENDA 
+
+// Range event that checks if the cutscene should be completed 
+// 
+
+
+
+
+
 
 GenericAutolevelEvent:
 // Check difficulty 
