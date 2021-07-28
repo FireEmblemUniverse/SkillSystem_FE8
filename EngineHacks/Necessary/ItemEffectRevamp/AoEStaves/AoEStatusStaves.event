@@ -1,0 +1,23 @@
+//uses itemrangefix and itemeffectrevamp
+
+ALIGN 4
+
+AoEStatusStaffTargeting:
+SHORT 0x1C28 0x1C22 0x4904 0x4B03 0x469E 0xF800
+jumpToHack($29062)
+POIN $29CA0
+POIN AoEStatusStaff_RangeSetup|1
+
+AoEStatusStaffUsability:
+SHORT 0x1C20 0x1C2A 0x4906 0x4B05
+SHORT 0x469E 0xF800 0x2800 0xD000 0x2001 0x46C0
+jumpToHack($28BFE)
+POIN $29068
+POIN AoEStatusStaff_RangeSetup|1
+
+AoEStatusStaff_RangeSetup:
+	rfItemRangeSetup(0x25EFC|1,Item_TURange)
+	
+ApplyStaffStatusAfterBattle:
+#include "ApplyItemStatusToAllTargets.lyn.event"
+POIN AoEStatusStaff_RangeSetup|1 Item_GetStat_EPV

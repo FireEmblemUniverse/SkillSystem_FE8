@@ -33,6 +33,9 @@ ALIGN 4
 		
 		//Might Vulnerary
 		//#include "ItemEffects/MigVul_Setup.event"
+
+		//AoE Status Staves
+		#include "AoEStaves/AoEStatusStaves.event"
 /*		
 		PUSH
 		ORG $2FF78
