@@ -21,33 +21,6 @@
 	ALIGN 4
 	//MESSAGE Applying Item Effect Revamp
 	
-	/*
-	EffectJumpTable:
-	//SHORT 0x4B03	//ldr r3, Item_GetStat_EffectID
-	//BL(IEIDJump)
-	//SHORT 0x4B01	//ldr r3, IERevampTable
-	SHORT 0x4B00
-	B(EIDJump)
-	IEIDJump:
-	//SHORT 0x4718	//bx r3
-	POIN IERevampTable
-	//POIN Item_GetStat_EffectID | 1
-	*/
-	/*
-	Label:
-	SHORT 0x4A00	//ldr r2
-	B(EIDJump)
-	POIN 
-	*/
-	/*
-	EIDJump:
-	SHORT 0x2110	//mov r1, 0x10	@table length
-	SHORT 0x4348	//mul r0,r1
-	SHORT 0x1880	//add r0, r0, r2
-	SHORT 0x18C0	//add r0, r0, r3
-	SHORT 0x6800	//ldr r0, [r0]
-	SHORT 0x4687	//mov r15, r0
-	*/
 	PUSH
 		ORG $28896	//Item Usability
 		BL(Item_GetStat_EffectID)
@@ -142,7 +115,7 @@
 	ORG $28E80 //$288A8
 		EffectJumpTable:
 		SHORT 0x4B03	//ldr r3, Item_GetStat_EffectID
-		SHORT 0x2210	//mov r2, #0x10
+		SHORT 0x2214	//mov r2, #0x14
 		SHORT 0x4350	//mul r0,r2
 		SHORT 0x1840	//add r0, r0, r1
 		SHORT 0x18C0	//add r0, r0, r3
