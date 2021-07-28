@@ -97,6 +97,11 @@
 		#include "DancerRingEffect_Refresh.lyn.event"
 	#endif //DancerRingRefresh
 		
+	ORG $2FF78
+	SHORT 0x2800
+	SHORT 0xD012
+	ORG $2FF88; POIN ItemEffectAfterAnimProc
+	
 	//change part that updates status effect on BattleTargetUnit
 	ORG $30038
 		SHORT 0x3030 0x7001 //add 	r0,0x30; strb 	r1,[r0]
@@ -141,6 +146,16 @@
 		#include "ItemAnimAssociation_p3.lyn.event"
 		#include "LockpickCheck.lyn.event"
 	POP
+	
+	IEAfterBattle:
+	#include "ItemEffectAfterBattle.lyn.event"
+	POIN EffectJumpTable
+	#include "Extensions/ProcDefinitions.txt"
+	
+	ItemEffectAfterAnimProc:
+	PROC_SLEEP(0x1)
+	PROC_CALL_ROUTINE(IEAfterBattle|1)
+	PROC_END
 	
 	#include "_KeyCommandsFix.event"
 #else
