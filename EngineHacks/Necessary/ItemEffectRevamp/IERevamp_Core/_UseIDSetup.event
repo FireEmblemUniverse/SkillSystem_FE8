@@ -103,8 +103,13 @@
 	ORG $2FF88; POIN ItemEffectAfterAnimProc
 	
 	//change part that updates status effect on BattleTargetUnit
-	ORG $30038
-		SHORT 0x3030 0x7001 //add 	r0,0x30; strb 	r1,[r0]
+	ORG $3001C
+	SHORT $B530 $480A $1C04 $346F $2000 $5625 $2D00 $D00B $4807 $7B40
+	BL($19430)
+	SHORT $210F $112A $400A $4029
+	BL($178F4)
+	SHORT $20FF $7001 $BC30 $BD00
+	BYTE $6C $A5 $3 $2 $58 $A9 $3 $2
 		
 	//set up a separate animation association table for item effects
 	ORG $5800C
