@@ -10,10 +10,13 @@
 	.type   MinimumDamage, function
 
 MinimumDamage:
-push {r4-r7,lr}
+push {r4-r5,lr}
 @goes in the battle loop.
 @r0/r4 is the attacker battle struct 
 @r1/r5 is the defender battle struct 
+mov r4, r0
+mov r5, r1
+
 
 mov r3, #0x5A @ Atk 
 ldrh r0, [r4, r3]
@@ -27,8 +30,10 @@ add r0, r1
 strh r0, [r4, r3] @ Store 
 
 GoBack:
-pop {r4-r7}
-pop {r0}
-bx r0
+mov r0, r4
+mov r1, r5
+pop {r4-r5}
+pop {r3}
+bx r3
 
 .align
