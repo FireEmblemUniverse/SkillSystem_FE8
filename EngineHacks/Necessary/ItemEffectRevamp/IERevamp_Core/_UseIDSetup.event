@@ -21,33 +21,6 @@
 	ALIGN 4
 	//MESSAGE Applying Item Effect Revamp
 	
-	/*
-	EffectJumpTable:
-	//SHORT 0x4B03	//ldr r3, Item_GetStat_EffectID
-	//BL(IEIDJump)
-	//SHORT 0x4B01	//ldr r3, IERevampTable
-	SHORT 0x4B00
-	B(EIDJump)
-	IEIDJump:
-	//SHORT 0x4718	//bx r3
-	POIN IERevampTable
-	//POIN Item_GetStat_EffectID | 1
-	*/
-	/*
-	Label:
-	SHORT 0x4A00	//ldr r2
-	B(EIDJump)
-	POIN 
-	*/
-	/*
-	EIDJump:
-	SHORT 0x2110	//mov r1, 0x10	@table length
-	SHORT 0x4348	//mul r0,r1
-	SHORT 0x1880	//add r0, r0, r2
-	SHORT 0x18C0	//add r0, r0, r3
-	SHORT 0x6800	//ldr r0, [r0]
-	SHORT 0x4687	//mov r15, r0
-	*/
 	PUSH
 		ORG $28896	//Item Usability
 		BL(Item_GetStat_EffectID)
@@ -124,9 +97,19 @@
 		#include "DancerRingEffect_Refresh.lyn.event"
 	#endif //DancerRingRefresh
 		
+	ORG $2FF78
+	SHORT 0x2800
+	SHORT 0xD012
+	ORG $2FF88; POIN ItemEffectAfterAnimProc
+	
 	//change part that updates status effect on BattleTargetUnit
-	ORG $30038
-		SHORT 0x3030 0x7001 //add 	r0,0x30; strb 	r1,[r0]
+	ORG $3001C
+	SHORT $B530 $480A $1C04 $346F $2000 $5625 $2D00 $D00B $4807 $7B40
+	BL($19430)
+	SHORT $210F $112A $400A $4029
+	BL($178F4)
+	SHORT $20FF $7001 $BC30 $BD00
+	BYTE $6C $A5 $3 $2 $58 $A9 $3 $2
 		
 	//set up a separate animation association table for item effects
 	ORG $5800C
@@ -142,7 +125,7 @@
 	ORG $28E80 //$288A8
 		EffectJumpTable:
 		SHORT 0x4B03	//ldr r3, Item_GetStat_EffectID
-		SHORT 0x2210	//mov r2, #0x10
+		SHORT 0x2214	//mov r2, #0x14
 		SHORT 0x4350	//mul r0,r2
 		SHORT 0x1840	//add r0, r0, r1
 		SHORT 0x18C0	//add r0, r0, r3
@@ -168,6 +151,17 @@
 		#include "ItemAnimAssociation_p3.lyn.event"
 		#include "LockpickCheck.lyn.event"
 	POP
+	
+	IEAfterBattle:
+	#include "ItemEffectAfterBattle.lyn.event"
+	POIN EffectJumpTable
+	#include "Extensions/ProcDefinitions.txt"
+	
+	ItemEffectAfterAnimProc:
+	PROC_SLEEP(0x1)
+	PROC_CALL_ROUTINE($3001C|1)
+	PROC_CALL_ROUTINE(IEAfterBattle|1)
+	PROC_END
 	
 	#include "_KeyCommandsFix.event"
 #else
