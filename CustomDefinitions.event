@@ -92,7 +92,7 @@
 
 #define SkipIntroFlag 0x83
 #define PlayableCutsceneFlag 0x85 
-
+#define RefreshActiveUnitFlag 0x86 
 
 
 

@@ -9,6 +9,8 @@ ALIGN 4
 CheckGaleforce: //decides if the unit should be cantoing or not
 #incbin "Galeforce/checkgaleforce.dmp"
 
+
+
 ALIGN 4
 Lifetaker:
 #incbin "Lifetaker/lifetaker.dmp"

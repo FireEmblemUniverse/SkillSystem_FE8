@@ -29,15 +29,15 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,Route1ReinEvent,0,255)
+TurnEventPlayer(0,ReinforcementEvent,0,255)
 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-Route1ReinEvent:
-Reinforce(0xF0, 1, Route1Rein, 4, 4) // Top 
-Reinforce(0xF1, 1, Route1Rein, 3, 3) // Middle 
-Reinforce(0xF2, 1, Route1Rein, 1, 3) // Bottom 
+ReinforcementEvent:
+Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
+Reinforce(0xF1, 1, ReinforcementUnits, 3, 3) // Middle 
+Reinforce(0xF2, 1, ReinforcementUnits, 1, 3) // Bottom 
 NoFade 
 ENDA 
 
@@ -57,7 +57,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute2S [28,28] [28,28] 
 AREA 0 ToViridianForestN_A [42,0] [43,0] 
 AREA 0 ToViridianForestN_B [35,0] [38,0] 
@@ -122,6 +122,7 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
+///*
 LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(30,4,38,25)) //ne patch 
@@ -149,7 +150,7 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 
 
 CALL SetBushHpEvent
-
+//*/
 LABEL 0x63
 NoFade
 ENDA
@@ -167,12 +168,17 @@ ALIGN 4
 EndingScene: //Unused but must exist 
 NoFade
 ENDA
-
+// 804f449 always true 
 Dunno1:
+//SHORT 0xE;SHORT 0; POIN 0; POIN UsableTrueTest
+//AFEV 0 TeleportActiveUnitPrepEvent 0 // This activates when you select the unit
 END_MAIN
 Dunno2:
+//AFEV 0 TeleportActiveUnitEvent 0 // This activates when you select the tile, but only 
+// if the chapter has an AFEV in Dunno2
 END_MAIN
 Dunno3:
+//AFEV 0 RefreshActiveUnitEvent 0 
 END_MAIN
 Tutorial:
 END_MAIN
@@ -188,6 +194,7 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -206,10 +213,12 @@ UNIT
 EnemyUnitsD:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 EnemyUnitsE:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [2,0] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 EnemyTrainersA:
@@ -218,7 +227,7 @@ UNIT
 
 
 
-Route1Rein:
+ReinforcementUnits:
 UNIT GenericA ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 

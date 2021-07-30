@@ -34,7 +34,8 @@ prSkillPoise:
 		rAddConst(1)
 
 prNullifyIfGuardAI:
-	rIfUnitHasNotAllegience(UA_BLUE)
+	//rIfUnitHasNotAllegience(UA_BLUE) // I want to always null movement if ai4 = 0x20 
+	
 		rIfUnitHasGuardAI
 			rConstant(0)
 

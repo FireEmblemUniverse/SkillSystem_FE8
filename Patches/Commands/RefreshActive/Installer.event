@@ -1,0 +1,31 @@
+#include EAstdlib.event
+#include "Extensions/Hack Installation.txt"
+
+#include "DebugPlaceUnits.lyn.event"
+
+PUSH 
+// This part hooks PlayerPhase_InitUnitMovementSelect at 801CC1C 
+// If global flag 0xAA is ON, it will not display movement/attack range when
+// a unit is selected 
+ORG 0x1CC24 
+callHack_r3(DecideToHideActiveUnitRangeDisplay) 
+
+// This hooks CheckEventDefinitions at 8082EC4
+// If we're checking for "when player has decided to move" 
+// in which r4 will be =0x3007D98, do our thing 
+ORG 0x82EEC 
+callHack_r1(InsertEventOnTileSelect)
+
+POP 
+
+
+
+
+
+SetNoActiveUnitEvent:
+SET_ACTIVE 0
+// FEBuilder didn't recognize the code
+WORD 0xFFFF3C21 // SET_CURSOR_SB
+EVBIT_T 7 // FEBuilder didn't recognize NoFade either 
+ENDA 
+

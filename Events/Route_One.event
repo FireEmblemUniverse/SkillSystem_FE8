@@ -22,15 +22,15 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,Route1ReinEvent,0,255)
+TurnEventPlayer(0,ReinforcementEvent,0,255)
 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-Route1ReinEvent:
-Reinforce(0xF0, 1, Route1Rein, 4, 4) // Top 
-Reinforce(0xF1, 1, Route1Rein, 3, 3) // Middle 
-Reinforce(0xF2, 1, Route1Rein, 1, 3) // Bottom 
+ReinforcementEvent:
+Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
+Reinforce(0xF1, 1, ReinforcementUnits, 3, 3) // Middle 
+Reinforce(0xF2, 1, ReinforcementUnits, 1, 3) // Bottom 
 NoFade 
 ENDA 
 
@@ -234,7 +234,7 @@ NPCUnits:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
-Route1Rein:
+ReinforcementUnits:
 UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 

@@ -52,9 +52,33 @@ ENDA
 // Range event that checks if the cutscene should be completed 
 // 
 
+TeleportActiveUnitPrepEvent:
+//SET_ACTIVE 0
 
+NoFade 
+ENDA 
 
+TeleportActiveUnitEvent:
+//EVBIT_F 9 // Don't follow moving units 
+//HIDE_ATTACK_RANGE
+CHECK_CURSOR 
+ASMC TeleportActiveUnit2 
+//ENUN 
+//ASMC 0x80790a5 //MU_EndAll //deselect unit
+//CHECK_CURSOR 
+//SADD rB rC r0 
+//SET_ACTIVE 0
+//SET_CURSOR_SB
+//CAM1 -2 
+//SET_ACTIVE -2 // Unit in coords 
+NoFade 
+ENDA 
 
+RefreshActiveUnitEvent:
+CHECK_CURSOR 
+ASMC RefreshActiveUnit 
+NoFade 
+ENDA 
 
 
 GenericAutolevelEvent:
@@ -116,7 +140,7 @@ GlobalAfev:
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 				// 		Eg. if not player, ENDB 
-		CALL RefreshIfNotInDanger
+		//CALL RefreshIfNotInDanger
 NoFade
 ENDA 
 

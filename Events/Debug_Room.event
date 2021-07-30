@@ -209,8 +209,8 @@ Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(23, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(23, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -305,7 +305,8 @@ SupplyItem(Vulnerary)
 
 
 LABEL 0x63
-
+ENUT RefreshActiveUnitFlag
+ENUT 0xAA
 AutoLevelUnits(0, True, 0x1FF) // all 
 
 
@@ -314,8 +315,8 @@ AutoLevelUnits(0, True, 0x1FF) // all
 //MNC2 PalletCh 
 //MNC2 PokecenterCh 
 //MNC2 Route1Ch 
-MNC2 Route2SCh
-//MNC2 ViridianForestSCh
+//MNC2 Route2SCh
+MNC2 ViridianForestSCh
 //MNC2 ViridianCh
 NoFade
 ENDA

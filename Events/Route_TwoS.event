@@ -25,13 +25,13 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,Route2SReinEvent,0,255)
+TurnEventPlayer(0,ReinforcementEvent,0,255)
 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-Route2SReinEvent:
-Reinforce(0xF0, 1, Route2SRein, 4, 4) // Top 
+ReinforcementEvent:
+Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
 NoFade 
 ENDA 
 
@@ -66,13 +66,13 @@ EscapeTileTerminator ; }
 #endif 
 
 ToRoute2N:
-ChapterTransition(ViridianForestSCh, 12, 1)
+ChapterTransition(ViridianForestSCh, 19, 41)
 
 ToViridianForestS:
-ChapterTransition(ViridianForestSCh, 12, 1)
+ChapterTransition(ViridianForestSCh, 28, 28)
 
 ToViridian:
-ChapterTransition(ViridianCh, 19, 37)
+ChapterTransition(ViridianCh, 17, 0)
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -191,7 +191,7 @@ NPCUnits:
 UNIT UnitRouteOneWild ClassA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
-Route2SRein:
+ReinforcementUnits:
 UNIT UnitRouteOneWild ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 

@@ -191,7 +191,7 @@
 // =================================
 
 // if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
-// #define ENABLE_GALEFORCE_AUTOSELECT
+#define ENABLE_GALEFORCE_AUTOSELECT
 
 // if uncommented lethality will work like it originally did in gba
 // #define ENABLE_GBA_LETHALITY
