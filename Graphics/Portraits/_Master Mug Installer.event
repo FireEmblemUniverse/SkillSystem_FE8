@@ -65,18 +65,68 @@ MistyData: // 001
 setMugEntry(159, MistyData, 9, 9, 9, 9)
 
 
+// Reserved 
 ALIGN 16 
 DexData: // 001
 #incbin "Dmp/Dex_mug.dmp" 
 #incbin "Dmp/Dex_frames.dmp" 
 #incbin "Dmp/Dex_palette.dmp" 
 #incbin "Dmp/Dex_minimug.dmp" 
-setMugEntry(160, DexData, 9, 9, 9, 9)
+setMugEntry(100, DexData, 9, 9, 9, 9)
+
+ALIGN 16 
+ShopkeeperData: // 001
+#incbin "Dmp/Shopkeeper_by_Zaim_mug.dmp" 
+#incbin "Dmp/Shopkeeper_by_Zaim_frames.dmp" 
+#incbin "Dmp/Shopkeeper_by_Zaim_palette.dmp" 
+#incbin "Dmp/Shopkeeper_by_Zaim_minimug.dmp" 
+setMugEntry(101, ShopkeeperData, 19, 19, 19, 19)
+setMugEntry(102, ShopkeeperData, 19, 19, 19, 19)
+setMugEntry(103, ShopkeeperData, 19, 19, 19, 19)
+setMugEntry(104, ShopkeeperData, 19, 19, 19, 19)
 
 
 
 
+ALIGN 16 
+VoltorbData: // 100
+#incbin "Dmp/100_mug.dmp" 
+#incbin "Dmp/100_frames.dmp" 
+#incbin "Dmp/100_palette.dmp" 
+#incbin "Dmp/100_minimug.dmp" 
+setMugEntry(160, VoltorbData, 9, 9, 9, 9)
 
+ALIGN 16 
+ElectrodeData: // 101
+#incbin "Dmp/101_mug.dmp" 
+#incbin "Dmp/101_frames.dmp" 
+#incbin "Dmp/101_palette.dmp" 
+#incbin "Dmp/101_minimug.dmp" 
+setMugEntry(161, ElectrodeData, 9, 9, 9, 9)
+
+ALIGN 16 
+ExeggcuteData: // 102
+#incbin "Dmp/102_mug.dmp" 
+#incbin "Dmp/102_frames.dmp" 
+#incbin "Dmp/102_palette.dmp" 
+#incbin "Dmp/102_minimug.dmp" 
+setMugEntry(162, ExeggcuteData, 9, 9, 9, 9)
+
+ALIGN 16 
+ExeggutorData: // 103
+#incbin "Dmp/103_mug.dmp" 
+#incbin "Dmp/103_frames.dmp" 
+#incbin "Dmp/103_palette.dmp" 
+#incbin "Dmp/103_minimug.dmp" 
+setMugEntry(163, ExeggutorData, 9, 9, 9, 9)
+
+ALIGN 16 
+CuboneData: // 104
+#incbin "Dmp/104_mug.dmp" 
+#incbin "Dmp/104_frames.dmp" 
+#incbin "Dmp/104_palette.dmp" 
+#incbin "Dmp/104_minimug.dmp" 
+setMugEntry(164, CuboneData, 9, 9, 9, 9)
 
 
 
@@ -874,45 +924,7 @@ KinglerData: // 099
 #incbin "Dmp/99_minimug.dmp" 
 setMugEntry(99, KinglerData, 9, 9, 9, 9)
 
-ALIGN 16 
-VoltorbData: // 100
-#incbin "Dmp/100_mug.dmp" 
-#incbin "Dmp/100_frames.dmp" 
-#incbin "Dmp/100_palette.dmp" 
-#incbin "Dmp/100_minimug.dmp" 
-setMugEntry(100, VoltorbData, 9, 9, 9, 9)
 
-ALIGN 16 
-ElectrodeData: // 101
-#incbin "Dmp/101_mug.dmp" 
-#incbin "Dmp/101_frames.dmp" 
-#incbin "Dmp/101_palette.dmp" 
-#incbin "Dmp/101_minimug.dmp" 
-setMugEntry(101, ElectrodeData, 9, 9, 9, 9)
-
-ALIGN 16 
-ExeggcuteData: // 102
-#incbin "Dmp/102_mug.dmp" 
-#incbin "Dmp/102_frames.dmp" 
-#incbin "Dmp/102_palette.dmp" 
-#incbin "Dmp/102_minimug.dmp" 
-setMugEntry(102, ExeggcuteData, 9, 9, 9, 9)
-
-ALIGN 16 
-ExeggutorData: // 103
-#incbin "Dmp/103_mug.dmp" 
-#incbin "Dmp/103_frames.dmp" 
-#incbin "Dmp/103_palette.dmp" 
-#incbin "Dmp/103_minimug.dmp" 
-setMugEntry(103, ExeggutorData, 9, 9, 9, 9)
-
-ALIGN 16 
-CuboneData: // 104
-#incbin "Dmp/104_mug.dmp" 
-#incbin "Dmp/104_frames.dmp" 
-#incbin "Dmp/104_palette.dmp" 
-#incbin "Dmp/104_minimug.dmp" 
-setMugEntry(104, CuboneData, 9, 9, 9, 9)
 
 ALIGN 16 
 MarowakData: // 105

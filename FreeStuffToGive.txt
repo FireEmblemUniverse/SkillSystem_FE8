@@ -1,26 +1,5 @@
 
 
-08039898 GetUnitAiAttackPriority
-08039938 .thumb
-08039938 GetUnitAiPriority
-080399b0 .thumb
-[0202D022]?
-39898
-
-PUSH
-ORG $16b28
-ALIGN 4
-WORD $46C04778 $E59FC000 $E12FFF1C
-POIN NewGetUnitEquippedWeapon
-POP
-PUSH
-ORG $16b58
-ALIGN 4
-WORD $46C04778 $E59FC000 $E12FFF1C
-POIN NewGetUnitEquippedWeaponSlot
-POP
-
-
 
 
 //Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.

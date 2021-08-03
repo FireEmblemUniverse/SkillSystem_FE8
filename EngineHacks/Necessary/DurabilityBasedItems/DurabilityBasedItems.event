@@ -1,3 +1,4 @@
+
 ALIGN 4
 #include "DurabilityChest/Installer.event"
 #include "DurabilityShop/ShopDurability.event"
@@ -61,6 +62,41 @@ PUSH
 POP
 
 
+/*
+	PROTECT $174F8
+		
+	PROTECT $17518
+		
+	PROTECT $16A54
+		
+	PROTECT $16874
+	
+	PROTECT $17594
+
+		
+	PROTECT $16A8C
+
+	PROTECT $16894
+
+	PROTECT $16AD4
+
+	PROTECT $9A034
+
+	PROTECT $9B7F4
+
+	PROTECT $168C8
+
+	PROTECT $9CD54
+
+	PROTECT $17700
+
+	PROTECT $169BC
+
+	PROTECT $169F0
+
+	PROTECT $16A14
+*/
+
 //Lists for defining durability-based items
 //Each read from its specific place
 
@@ -96,6 +132,8 @@ DurabilityIcon(SkillScroll,5)
 //DurabilityIcon(SpellScroll,0) // 0 is regular item icons 
 DurabilityIconEnd
 ALIGN 4
+
+
 
 /*
 checklist

@@ -25,14 +25,21 @@
 #include "ViridianForestS.event"
 }
 
+{
+#include "ViridianForestN.event"
+}
 
 {
 #include "Route_TwoS.event" 
 }
 
+{
+//#include "Pewter_City.event"
+}
 
-
-
+{
+//#include "Pewter_Gym.event"
+}
 
 
 

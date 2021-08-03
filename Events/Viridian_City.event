@@ -63,10 +63,10 @@ ToRoute1:
 ChapterTransition(Route1Ch, 12, 0)
 
 ToRoute2S:
-TutText(ClosedAreaText)
-NoFade 
-ENDA 
-//ChapterTransition(Route2SCh, 10, 38)
+ChapterTransition(Route2SCh, 10, 38)
+//TutText(ClosedAreaText)
+//NoFade 
+//ENDA 
 
 ToRoute22:
 ChapterTransition(Route22Ch, 47, 8)
@@ -83,7 +83,7 @@ BlankExamineTrap(26,10, ViridianGymText)
 EnterTutTrap(30,10, DoorLockedText) // Gym 
 EnterTutTrap(21,11, ViridianUpperHouseText) 
 EnterTutTrap(21,18, ViridianGrumpyManText) 
-Save(23,25) // 1N of Pokecenter - you can save while adjacent 
+Save(23,24) // 1N of Pokecenter - you can save while adjacent 
 //SaveCost(24,26)
 CutBush(13,5)
 
@@ -143,9 +143,13 @@ NoFade
 ENDA
 
 
+
 ALIGN 4
 ShopItems:
-BYTE SuperPotion 0
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+//BYTE SuperPotion 12
+//BYTE SkillScroll AcrobatID 
 BYTE SpellScroll Tackle SpellScroll Ember SpellScroll WaterGun  SpellScroll LeafFlurry
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion

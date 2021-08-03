@@ -56,9 +56,10 @@ ALIGN 4
 prItemPassiveMov:
 	rPassiveStatBoosts(STAT_MOV)
 
+	#ifdef ACCESSORIES_AND_FORGING
 ALIGN 4
 prAddAccessoryMovement:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemMovBonus)))
-	
+	#endif 	
 
 #endif // MODULAR_GETTER_MOVEMENT_EVENT

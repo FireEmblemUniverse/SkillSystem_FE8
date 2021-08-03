@@ -19,9 +19,10 @@ prAddUnitLuck:
 prAddEquipLuck:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemLckBonus)))
 
+	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryLuck:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemLckBonus)))
-
+	#endif 
 
 prDebuffLck:
 	#include "_asm/DebuffLck.lyn.event"

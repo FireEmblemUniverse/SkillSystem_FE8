@@ -19,7 +19,18 @@
 @     Clear UnitPointer
 .thumb
 
+
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
+
 push  {r4-r7,r14}
+mov r5, r2 @ Unit 
+blh TrainerDeathFlags
+mov r2, r5 
+
 ldr   r0, =DRUnitByte
 lsl   r0, #0x5
 lsr   r5, r0, #0x5

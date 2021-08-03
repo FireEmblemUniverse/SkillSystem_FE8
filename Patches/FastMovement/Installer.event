@@ -1,0 +1,101 @@
+#include EAstdlib.event
+#include "Extensions/Hack Installation.txt"
+
+#include "DebugPlaceUnits.lyn.event"
+#include "FastMovement.lyn.event"
+
+
+#define INSTALL_CHAPTER_MENU_TOGGLE_COMMAND
+// If uncommented, this will take over your 
+// chapter menu to add a new entry! 
+
+//#define TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
+// This makes the Chapter Menu command "Toy Box"
+// that toggles whether to freely place units or not 
+// only show up if flag 0xAB is ON 
+// If you comment this out, the menu command will 
+// always appear (assuming you installed the menu command
+// in the first place) 
+
+
+
+
+PUSH 
+// This part hooks PlayerPhase_InitUnitMovementSelect at 801CC1C 
+// If global flag 0xAA is ON, it will not display movement/attack range when
+// a unit is selected 
+ORG 0x1CC24 
+callHack_r3(DecideToHideActiveUnitRangeDisplay) 
+
+// This hooks CheckEventDefinitions at 8082EC4
+// If we're checking for "when player has decided to move" 
+// in which r4 will be =0x3007D98, do our thing 
+ORG 0x82EEC 
+callHack_r1(InsertEventOnTileSelect)
+
+POP 
+
+
+ALIGN 4
+ASMC_MuCtr_CreateWithReda_Event:
+//ASMC ASMC_MuCtr_CreateWithReda
+NoFade 
+ENDA 
+
+ALIGN 4 
+asdfqwerevent:
+UNCR(0x7FFF, 0x01) // unhide sms 
+
+
+NoFade 
+ENDA 
+
+
+
+ALIGN 4 
+SetNoActiveUnitEvent:
+SET_ACTIVE 0
+// FEBuilder didn't recognize the code
+WORD 0xFFFF3C21 // SET_CURSOR_SB
+EVBIT_T 7 // FEBuilder didn't recognize NoFade either 
+ENDA 
+
+#ifdef INSTALL_CHAPTER_MENU_TOGGLE_COMMAND 
+
+	PUSH 
+	ORG 0x59D21C  // Chapter Menu
+	POIN ChapterMenu
+
+	POP 
+
+
+	#ifndef setText 
+		#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset | 0x80000000); POP" 
+	#endif 
+	setText(0x9B7, PlaceUnitsText) // These are from the tutorial, I think?
+	setText(0x9B8, PlaceUnitsHelpText)
+
+
+	// When inserting this via febuilder it will display the quotation marks 
+	// I don't know how to fix this here, sorry 
+	ALIGN 4
+	PlaceUnitsText:
+	String(" Toy Box") // [0x20] would be used as a space prefix for menus, but doesn't seem to work  
+	BYTE 0
+
+
+
+	// Colorz core requires quotation marks for the String() function 
+	// while nintenlord's core will display the quotation marks ingame 
+	ALIGN 4
+	PlaceUnitsHelpText:
+	String("Freely place units.")
+	BYTE 0
+
+	ALIGN 4
+	ChapterMenu:
+	#include "ChapterMenu.event"
+
+
+
+#endif 

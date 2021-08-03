@@ -2,6 +2,9 @@
 //#include "AIWeaponsHack/AIWeaponsHack.event"
 
 
+
+#include "TrainerDeathFlags/Installer.event"
+
 #include "ExpandAI/ExpandAI.event"
 #include "PrepScreen/PrepScreen.event"
 #include "CapturePokemon/CapturePokemonInstaller.event" 
@@ -15,6 +18,9 @@
 
 #include "DisabledStatusScreen/DisabledStatusScreen.event" 
 
+//#include "FreeMovement/FreeMovement.event"
+
+#include "FastMovement/Installer.event"
 
 #include "DangerRadius/FogDR.event" 
 #include "MultiTileMarker/MultiTileMarker_Install.event"
@@ -46,7 +52,7 @@
 
 #include "EscapeArrive/EscapeMenu/EA.txt"
 
-//#include "FreeMovement/FreeMovement.event"
+
 
 //#include "FreeMovement/MakeShopASMC.lyn.event"
 

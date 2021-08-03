@@ -2,7 +2,72 @@
 
 #include eastdlib.event
 
-SetChapterData(ViridianForestNCh,ViridianForestNObj,0,ViridianForestNPal,ViridianForestNConf,ViridianForestNMap,Map,0,0,0)
+SetChapterData(ViridianForestNCh,ViridianForestNObj,0,ViridianForestNPal,ViridianForestNConf,ViridianForestNMap,Map,0,0,120)
+MapChangesPointerTable(120, MapChanges)
 Map:
 #incbin "ViridianForestN_data.dmp"
+
+MapChanges:
+TileMap(1,36,22,1,1,Snag1)
+TileMap(1,35,23,1,1,Snag2)
+TileMap(1,34,22,1,1,Snag3)
+TileMap(1,32,21,1,1,Snag4)
+TileMap(1,31,22,1,1,Snag5)
+TileMap(1,35,17,1,1,Snag6)
+TileMap(1,32,17,1,1,Snag7)
+TileMap(1,35,13,1,1,Snag8)
+TileMap(1,26,5,1,1,Snag9)
+TileMap(1,18,20,1,1,Snag10)
+TileMap(1,16,20,1,1,Snag11)
+TileMap(1,11,24,1,1,Snag12)
+TileMapEnd
+
+Snag1:
+SHORT 0xa48 
+ALIGN 4
+
+Snag2:
+SHORT 0xa48 0x7c4 
+ALIGN 4
+
+Snag3:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag4:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag5:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag6:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag7:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag8:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag9:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag10:
+SHORT 0x7c4 0xa48 
+ALIGN 4
+
+Snag11:
+SHORT 0x7c4 0x7c4 0xa48 
+ALIGN 4
+
+Snag12:
+SHORT 0x4b8 0x7c4 0xa48 0x7c4 
+ALIGN 4
+
 Map_Pointer_Table(ViridianForestNMap,Map)

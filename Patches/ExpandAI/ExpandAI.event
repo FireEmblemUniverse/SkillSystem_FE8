@@ -24,7 +24,7 @@ NewAI2Entry(25, BeedrilAI_2)
 #define SafeZoningAI [23,23]
 #define LessSafeZoningAI [24,24]
 #define ZoningAI [24,24]
-#define BeedrilAI [25,25]
+#define BeedrillAI [25,25]
 
 ALIGN 4
 Safest_Zoning_AI2:

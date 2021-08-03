@@ -19,9 +19,10 @@ prAddUnitResistance:
 prAddEquipResistance:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemResBonus)))
 
+	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryResistance:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemResBonus)))
-
+	#endif 
 
 prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current pure water/barrier bonus duration
 	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))

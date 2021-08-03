@@ -33,72 +33,17 @@
 
 .equ DisplayActiveUnitEffectRange, 0x0801cc7c 
 
-.align 4 
-	.global DecideToHideActiveUnitRangeDisplay
-	.type   DecideToHideActiveUnitRangeDisplay, function
-
-DecideToHideActiveUnitRangeDisplay:
-push {lr} 
-ldrb r1, [r5, #4] @ Copied vanilla code 
-mov r0, #2 
-orr r0, r1 
-strb r0, [r5, #4] 
-ldr r4, =CurrentUnit @ Copied vanilla code
-
-mov r0, #0xAA @ Flag used 
-blh CheckEventId 
-cmp r0, #0 
-bne SkipDisplayingRange
-
-ldr r0, [r4] @ Copied vanilla code
-blh DisplayActiveUnitEffectRange
-SkipDisplayingRange:
-
-
-pop {r3}
-bx r3 
-
-
-.align 4
-@ Hooks CheckEventDefinitions at 8082EC4
-	.global InsertEventOnTileSelect
-	.type   InsertEventOnTileSelect, function
-InsertEventOnTileSelect:
-
-push {lr} 
-lsl r0, r5, #3 
-add r0, r7 
-ldr r1, [r0] 
-mov r0, r4  
-bl BXR1 
-
-@ 3007D98
-@ this seems to be the ram address used 
-@ when Dunno2 / "When player has selected coordinate to move to" is hit 
-ldr r3, =0x3007D98 
-cmp r4, r3 
-bne SkipTeleportActiveUnit 
-blh TeleportActiveUnit
-
-SkipTeleportActiveUnit:
-cmp r0, #1 
-
-pop {r1}
-BXR1:
-bx r1 
-
-
 .equ MuCtr_CreateWithReda,0x800FEF5 @r0 = char struct, target x coord, target y coord
 .align 4 
-	.global TeleportActiveUnit
-	.type   TeleportActiveUnit, function
-TeleportActiveUnit:
+	.global FastMoveUnit
+	.type   FastMoveUnit, function
+FastMoveUnit:
 	push {r4-r7, lr} 
 
 @ 10850 CheckCursor 
 mov r7, r0 
 
-mov r0, #0xAA @ Flag used 
+mov r0, #0xAC @ Flag used 
 blh CheckEventId 
 cmp r0, #0 
 beq End
@@ -127,11 +72,13 @@ ldr r3, =MemorySlot
 strh r4, [r3, #4*0x0B+0] @ XX
 strh r5, [r3, #4*0x0B+2] @ YY 
 
-ldr r0, =SetNoActiveUnitEvent
-mov r1, #1 @ Wait for events 
-blh EventEngine 
 
-b End
+
+@ldr r0, =SetNoActiveUnitEvent
+@mov r1, #1 @ Wait for events 
+@blh EventEngine 
+
+@b End
 
 
 @ Stuff below here might be useful if you want to not use SET_ACTIVE 
@@ -171,6 +118,79 @@ strb	r0, [r3,#0x10]	@clear steps taken this turn
 
 
 
+ldr r3, =MemorySlot
+str r6, [r3, #4*0x01] @ s1 as unit ram *pointer*
+mov r0, #4*0x0B+0
+strb r4, [r3, r0] @ sB as Target XX 
+mov r0, #4*0x0B+2
+strb r5, [r3, r0] @ sB as Target YY 
+
+
+ldr r0, =ASMC_MuCtr_CreateWithReda_Event
+mov r1, #1 @ Wait for events 
+blh EventEngine 
+
+@@ From Sme's FreeMovement Hack 
+@@ I guess this allocates space 
+@sub sp,#0x1C
+@mov r0,#0
+@str r0,[sp]
+@str r0,[sp,#0x4]
+@str r0,[sp,#0x8]
+@str r0,[sp,#0xC]
+@str r0,[sp,#0x10]
+@str r0,[sp,#0x14]
+@str r0,[sp,#0x18]
+@str r0,[sp,#0x1C]
+@@ And these are the parameters 
+@mov r0,r6 @ Unit 
+@mov r1,r4 @ Target XX 
+@mov r2,r5 @ Target YY 
+@mov r3,#0 @redundant some of the time but not always
+@@ Note that walking through impassible terrain will crash the game with this sometimes 
+@@ That's why we already updated our coordinate to this location 
+@@ This only updates the MMS sprite to be in the correct place. 
+@@ I don't know a different way to do that. 
+@blh MuCtr_CreateWithReda
+@add sp,#0x1C
+
+@make the camera follow your movement
+mov r0,#0
+mov r1,r4
+mov r2,r5
+blh EnsureCameraOntoPosition
+
+
+bl RunMiscBasedEvents
+
+blh 0x8027A40 @ Reset map sprite hover timer ? 
+
+
+blh  0x0801a1f4   @RefreshFogAndUnitMaps 
+blh  0x080271a0   @SMS_UpdateFromGameData
+@blh  0x08019c3c   @UpdateGameTilesGraphics
+
+@ldr r0, =SetNoActiveUnitEvent
+@mov r1, #1 @ Wait for events 
+@blh EventEngine 
+
+b End
+
+End:
+mov r0, r7 
+
+pop {r4-r7}
+pop {r1}
+bx r1
+
+
+
+	.global ASMC_MuCtr_CreateWithReda
+	.type   ASMC_MuCtr_CreateWithReda, function
+
+ASMC_MuCtr_CreateWithReda:
+push {lr}
+
 
 
 @ From Sme's FreeMovement Hack 
@@ -186,9 +206,13 @@ str r0,[sp,#0x14]
 str r0,[sp,#0x18]
 str r0,[sp,#0x1C]
 @ And these are the parameters 
-mov r0,r6 @ Unit 
-mov r1,r4 @ Target XX 
-mov r2,r5 @ Target YY 
+ldr r3, =MemorySlot
+
+mov r0, #4*0x0B+0
+ldrb r1, [r3, r0] @ sB as Target XX 
+mov r0, #4*0x0B+2
+ldrb r2, [r3, r0] @ sB as Target YY 
+ldr r0, [r3, #4*0x01] @ s1 as unit ram *pointer*
 mov r3,#0 @redundant some of the time but not always
 @ Note that walking through impassible terrain will crash the game with this sometimes 
 @ That's why we already updated our coordinate to this location 
@@ -197,26 +221,60 @@ mov r3,#0 @redundant some of the time but not always
 blh MuCtr_CreateWithReda
 add sp,#0x1C
 
-@make the camera follow your movement
-mov r0,#0
-mov r1,r4
-mov r2,r5
-blh EnsureCameraOntoPosition
-
-blh 0x8027A40 @ Reset map sprite hover timer ? 
+pop {r0} 
+bx r0 
 
 
-blh  0x0801a1f4   @RefreshFogAndUnitMaps 
-blh  0x080271a0   @SMS_UpdateFromGameData
-@blh  0x08019c3c   @UpdateGameTilesGraphics
-
-End:
-mov r0, r7 
-
-pop {r4-r7}
-pop {r1}
-bx r1
 
 
+
+
+.equ UnsetEventId, 0x8083d94
+
+.equ gChapterData,0x0202bcf0
+.equ GetChapterEventDataPointer,0x080346b1
+.equ CheckEventDefinition,0x08082ec5
+.equ ClearActiveEventRegistry,0x080845a5
+.equ CallEventDefinition,0x08082e81
+.equ CheckNextEventDefinition,0x08082f29
+.equ RunLocationEvents,0x080840C5
+
+
+RunMiscBasedEvents:
+push {r4-r5,r14}
+sub sp,#0x1C
+mov r4,r0
+mov r5,r1
+ldr r0,=gChapterData
+ldrb r0,[r0,#0xE]
+blh GetChapterEventDataPointer
+ldr r0,[r0,#0xC]
+str r0,[sp]
+mov r1,sp
+strb r4,[r1,#0x18]
+strb r5,[r1,#0x19]
+mov r0,r13
+blh CheckEventDefinition
+cmp r0,#0
+beq ExitMiscBasedLoop
+blh ClearActiveEventRegistry
+EventCallLoop:
+mov r0,r13
+mov r1,#1
+blh CallEventDefinition
+mov r0,r13
+blh CheckNextEventDefinition
+cmp r0,#0
+bne EventCallLoop
+
+ExitMiscBasedLoop:
+add sp,#0x1C
+
+pop {r4-r5}
+pop {r0}
+bx r0
+
+.ltorg
+.align
 
 

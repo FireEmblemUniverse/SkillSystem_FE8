@@ -19,9 +19,10 @@ prAddUnitSpeed:
 prAddEquipSpeed:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSpdBonus)))
 
+	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessorySpeed:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemSpdBonus)))
-
+	#endif 
 
 prDebuffSpd:
 	#include "_asm/DebuffSpd.lyn.event"

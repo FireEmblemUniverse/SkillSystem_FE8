@@ -19,9 +19,10 @@ prAddUnitSkill:
 prAddEquipSkill:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemSklBonus)))
 
+	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessorySkill:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemSklBonus)))
-
+	#endif 
 
 prDebuffSkl:
 	#include "_asm/DebuffSkl.lyn.event"

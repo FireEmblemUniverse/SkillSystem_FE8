@@ -206,8 +206,8 @@ ENUF SkipIntroFlag
 Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(23, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -215,11 +215,11 @@ Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-//Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(30, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(19, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
-SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
+//SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
 LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
@@ -254,7 +254,8 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
 //SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
-//SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
 
@@ -305,9 +306,12 @@ SupplyItem(Vulnerary)
 
 
 LABEL 0x63
-ENUT RefreshActiveUnitFlag
-ENUT 0xAA
-AutoLevelUnits(0, True, 0x1FF) // all 
+SVAL r3 12500 
+GIVETOMAIN 0
+
+
+ENUT 0xAC
+AutoLevelUnits(35, True, 0x120) // all 
 
 
 //GotoPrepScreen 

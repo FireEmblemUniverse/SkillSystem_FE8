@@ -19,9 +19,10 @@ prAddUnitPower:
 prAddEquipPower:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemPowBonus)))
 
+	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryPower:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemPowBonus)))
-
+	#endif 
 
 prDebuffStr:
 	#include "_asm/DebuffStr.lyn.event"

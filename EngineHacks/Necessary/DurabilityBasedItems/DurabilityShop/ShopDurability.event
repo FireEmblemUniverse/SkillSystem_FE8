@@ -5,6 +5,9 @@ ORG $1763C
 jumpToHack(NewGetItemCost)
 POP
 
+//PROTECT $16540 
+//PROTECT $1763C
+
 #include "ShopDurability.lyn.event"
 
 ALIGN 4

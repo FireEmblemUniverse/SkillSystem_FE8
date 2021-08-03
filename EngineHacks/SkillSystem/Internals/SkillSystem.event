@@ -91,6 +91,7 @@ POIN ResetEquipItemSkill
 WORD 0 
 #endif 
 
+
 EquipSkill_Getter: //Returns the equipped weapon's skill
 #include "GetEquipItemSkill.lyn.event"
 POIN ItemSkill_Getter
@@ -101,8 +102,7 @@ POIN GetItemSkill
 SkillTesterOriginal: //does unit have X skill?
 #include "skillTester.lyn.event"
 POIN Skill_Getter
-POIN ItemSkill_Getter 
-POIN EquipSkill_Getter
+POIN ItemSkill_Getter EquipSkill_Getter
 
 /*
 #incbin skillTester.dmp

@@ -63,8 +63,16 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 
 //Map_Pointer_Table and ConfChangesPointerTable ? 
 
+
+
 #define Map_Pointer_Table(aId, apointer) "PUSH; ORG MapPLIST+(4*aId); POIN apointer; POP"
+
+// By default, TMX2EA generates this: 
+//EventPointerTable(ViridianForestNCh, MapChanges)
+// but we want it to make this instead: 
 #define MapChangesPointerTable(aId, apointer) "PUSH; ORG MapChangesPLIST+(0x4 * aId); POIN apointer; POP"
+
+
 
 // OBJECT and PALETTE share numbers,
 // tile config, Conf pointer, tile anim 1/2, and Conf changes are all separate
@@ -126,6 +134,16 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 
 
 // ------------------------------- MAP CHANGES ----------------------------
+
+// #define MapChangesPointerTable(aId, apointer) "PUSH; ORG MapChangesPLIST+(0x4 * aId); POIN apointer; POP"
+
+// to do: make this part of the automation 
+// they just need to be put in the definitions automation part 
+// functionally, it doesn't really matter what numbers they have 
+// so you could probably just do WhicheverCh and it'd work fine 
+#define ViridianForestNMapChanges 120 
+
+
 
 //#define PalletTownMapChanges 1
 //#define Route1MapChanges 2

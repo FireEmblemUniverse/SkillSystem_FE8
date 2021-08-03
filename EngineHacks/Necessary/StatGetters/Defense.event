@@ -19,9 +19,11 @@ prAddUnitDefense:
 prAddEquipDefense:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemDefBonus)))
 
+	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryDefense:
 	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemDefBonus)))
-
+	#endif 
+	
 prDebuffDef:
 	#include "_asm/DebuffDef.lyn.event"
 	POIN GetDebuffs|1

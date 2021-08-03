@@ -23,17 +23,15 @@
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
-GenericEffect(0, TestCase) // This doesn't work so whatever 
-GenericEffect(1, TestCase) // This doesn't work so whatever 
-GenericEffect(2, TestCase) // This doesn't work so whatever 
-GenericEffect(3, TestCase) // This doesn't work so whatever 
+GenericEffect(0, TestCase) // This does work 
+GenericEffect(1, VisitPokecenter) // 
+GenericEffect(2, VisitPokecenter) // 
+GenericEffect(3, TestCase) // 
 
-GenericDisappearEffect(2, VisitPokecenter) // This doesn't work so whatever 
-//GenericEffect(1, VisitPokecenter) // This doesn't work so whatever 
+GenericDisappearEffect(2, VisitPokecenter) //
+//GenericEffect(1, VisitPokecenter) // 
 
 TestCase:
-
-
 GiveEXP(0x7FFF, 100)
 //CALL VisitPokecenter
 NoFade 
@@ -59,24 +57,13 @@ NoFade
 ENDA 
 
 TeleportActiveUnitEvent:
-//EVBIT_F 9 // Don't follow moving units 
-//HIDE_ATTACK_RANGE
-CHECK_CURSOR 
-ASMC TeleportActiveUnit2 
-//ENUN 
-//ASMC 0x80790a5 //MU_EndAll //deselect unit
-//CHECK_CURSOR 
-//SADD rB rC r0 
-//SET_ACTIVE 0
-//SET_CURSOR_SB
-//CAM1 -2 
-//SET_ACTIVE -2 // Unit in coords 
+
 NoFade 
 ENDA 
 
 RefreshActiveUnitEvent:
-CHECK_CURSOR 
-ASMC RefreshActiveUnit 
+UNCR(0x7FFF, 0x42)
+//ASMC RefreshActiveUnit 
 NoFade 
 ENDA 
 
@@ -95,6 +82,7 @@ GOTO 0x63
 LABEL 1 
 AutoLevelUnits(6, False, 0x90EF) // Not wilds given +6 invisible levels on normal 
 LABEL 0x63 
+ASMC RemoveFoughtTrainers
 NoFade 
 ENDA 
 
@@ -130,17 +118,19 @@ CHECK_CLASS 0x102 // Can still check dying unit, but since they're dying
 					// If it's your only unit, game over. 
 BNE 0 rC r0 
 ENUT 0x65 
-ASMC 0xD391
+ASMC 0xD391 // Game over ASMC 
 LABEL 0 
 NoFade 
 ENDA 
 
 
 GlobalAfev:
+ReplenishDurability(0x7FFF)
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 				// 		Eg. if not player, ENDB 
 		//CALL RefreshIfNotInDanger
+		CALL RefreshActiveUnitEvent
 NoFade
 ENDA 
 

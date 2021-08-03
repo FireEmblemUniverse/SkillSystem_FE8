@@ -263,6 +263,8 @@ SetImpassableTrap(BerryTreeID)
 #define ObtainSpellFlagOffset 0x40 
 #define ObtainSkillFlagOffset 0x60 
 #define ObtainItemFlagOffset 0x80 
+#define TrainerDefeatedFlagOffset 0xA0 
+
 
 #define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
 #define SignATrap(XX,YY,Flag, TextID) "BYTE TeleportSignAID XX YY Flag; SHORT TextID"
