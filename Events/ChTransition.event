@@ -134,7 +134,6 @@ GlobalAfev:
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 				// 		Eg. if not player, ENDB 
-		CALL RefreshIfNotInDanger
 		//CALL RefreshActiveUnitEvent
 NoFade
 ENDA 

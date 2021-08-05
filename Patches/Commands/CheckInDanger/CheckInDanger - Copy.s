@@ -17,21 +17,11 @@
 
 CheckUnitIsInDanger:
 	push {lr}
-	mov r11, r11
-	@mov r0, #1 @ True 
-	@b AlwaysTrue
-	@b Test2
-	@b Test
-	ldr r1, =0x30017bb
-	mov r0, #1 
-	strb r0, [r1] @ Do not do DR stuff 
-	
+	@mov r11, r11
 	ldr r3, =FillRangeMapForDangerZone
 	mov r0, #0 @ arg r0 = staff range?
 	bl bxr3
-	@b Test2
 
-	Test:
 	ldr r3, =BmMapFill 
 	ldr r0, =gMapMovement @ arg r0 = gMapMovement
 	ldr r0, [r0]
@@ -39,7 +29,6 @@ CheckUnitIsInDanger:
 	neg r1, r1            @ arg r1 = -1
 	bl bxr3
 
-	Test2:
 	ldr r3, =gEventSlot
 	ldr r2, [r3, #4*0x0B]
 	@mov r11, r11
@@ -49,7 +38,6 @@ CheckUnitIsInDanger:
 	lsr r0, #24 @ r0 = slotB.x
 	
 ldr		r2,=gMapRange	@Load the location in the table of tables of the map you want
-
 ldr		r2,[r2]			@Offset of map's table of row pointers
 lsl		r1,#0x2			@multiply y coordinate by 4
 add		r2,r1			@so that we can get the correct row pointer
@@ -57,12 +45,17 @@ ldr		r2,[r2]			@Now we're at the beginning of the row data
 add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@load datum at those coordinates
 
-	AlwaysTrue:
-	str r0, [r3, #4*0x0C]
+
+	@ldr r0, =gMapRange
+	@ldr r0, [r0]
+	@lsl r2, #2
+	@add r0, r2 
+	@ldr r0, [r0] 
+	@add r0, r1 
+	@ldrb r0, [r0]
 	
-	ldr r1, =0x30017bb
-	mov r0, #0 
-	strb r0, [r1] @ Do DR stuff again 
+@mov r11, r11
+	str r0, [r3, #4*0x0C]
 
 	pop {r3}
 bxr3:	bx r3

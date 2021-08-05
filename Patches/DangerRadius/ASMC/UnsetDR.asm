@@ -42,10 +42,7 @@ beq		L1
     strb  r0, [r7]
     
 L1:
-ldr		r4, =RefreshFogAndUnitMaps
-bl		GOTO_R4
-ldr		r4, =UpdateGameTilesGraphics
-bl    GOTO_R4
+bl    InitializeDR
 
 
 pop   {r4-r7}

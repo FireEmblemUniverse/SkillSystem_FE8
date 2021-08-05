@@ -1,6 +1,5 @@
 @ Replaces MapMenuCommand_DangerZoneUnusedEffect.
 @ No need to return anything; We're not used as menu command.
-@ Called by either DetermineDR or RefreshFogAndUnitMaps.
 .thumb
 
 push	{r4-r7,r14}
@@ -15,7 +14,6 @@ mov   r5, r6
 add   r5, #0x3E
 strb  r1, [r5]
 
-b L1 @ Vesly not using FOW 
 @ Check for FOW.
 ldr   r0, =ChapterData
 ldrb  r0, [r0, #0xD]
@@ -45,6 +43,11 @@ L1:
   strb  r0, [r6, #0x4]
   
   @ Apply Fog.
+  ldr   r0, =FogMap
+  ldr   r0, [r0]
+  mov   r1, #0x0
+  ldr   r4, =ClearMapWith
+  bl    GOTO_R4
   ldrb  r1, [r5]
   mov   r0, #0x1
   and   r0, r1

@@ -23,12 +23,6 @@ bne   Return
   mov   r1, #0x40
   tst   r0, r1
   bne   Return
-  
-    @ Do not display icon if unit ID 0xF0 or greater.
-  ldr 	r1, [r4] 
-  ldrb  r0, [r1, #0x4]
-  cmp 	r0, #0xF0 
-  bge   Return
 
     @ Check whether DR-bit is set.
     ldrb  r0, [r4, r6]

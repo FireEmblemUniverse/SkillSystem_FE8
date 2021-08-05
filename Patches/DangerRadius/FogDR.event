@@ -41,7 +41,7 @@
 //  - using SetNearbyDR ASMC.
 //  - pressing select whilst no DR is set and NonEnemySELECT
 //    is set to NearbyDR.
-#define NearbyTiles 12
+#define NearbyTiles 10
 
 // Set to True if you have Modular Stat Getters active.
 // Set to False otherwise.
@@ -58,7 +58,6 @@ PUSH
   
 POP
 
-#include "ASM/ASM.event"
 #include "Graphics/Graphics.event"
-}
+#include "ASM/ASM.event"
 #include "ASMC/ASMC.event"

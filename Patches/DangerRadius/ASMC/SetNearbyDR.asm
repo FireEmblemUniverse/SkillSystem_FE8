@@ -36,11 +36,6 @@ Loop:
     ldr   r1, [r0]
     cmp   r1, #0x0
     beq   NextIteration
-	
-	ldr   r1, [r0] @Unit pointer 
-	ldrb  r1, [r1, #4] @Unit ID 
-    cmp   r1, #0xF0
-    bge   NextIteration
     
       @ Check if DR-bit already set.
       ldrb  r1, [r0, r5]
@@ -122,10 +117,7 @@ lsr   r0, #0x5
 mov   r1, r9
 strb  r1, [r0]            @ Reset DRCountByte.
 
-ldr   r2, =RefreshFogAndUnitMaps
-bl    GOTO_R2
-ldr		r2, =UpdateGameTilesGraphics
-bl    GOTO_R2
+bl    InitializeDR
 
 
 pop   {r4-r7}

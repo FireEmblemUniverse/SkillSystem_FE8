@@ -2,7 +2,6 @@
 @ to determine whether or not to display this unit's Danger Radius.
 .thumb
 
-
 @ Check for FOW.
 ldr   r1, =ChapterData
 ldrb  r1, [r1,#0xD]
@@ -11,11 +10,21 @@ bne   L1
 
   @ Check if we're called by DangerRadius
   @ Or something else (like CheckInDanger ASMC)
-  ldr   r1, =GameState
-  ldrb  r1, [r1, #0x4]
-  mov   r2, #0x8
-  tst   r1, r2
-  beq   L2
+  @mov r11, r11
+  @ldr   r1, =GameState
+  @ldrb  r1, [r1, #0x4]
+  @mov   r2, #0x8
+  @tst   r1, r2
+  @bne   Continue 
+  @mov r11, r11 
+  @b L2 
+  ldr r1, =0x30017bb
+  ldrb r1, [r1] 
+  cmp r1, #0 
+  beq Continue 
+  b L2 
+  
+   Continue:
 
     @ Check if Unit's DR-bit is set.
     ldr   r1, =DRUnitByte
@@ -27,6 +36,7 @@ bne   L1
     ldrb  r3, [r0, r1]
     tst   r3, r2
     beq   DRNotSet
+    bne   L2
     
 	VeslyAddedCheck: @ Don't do DR for unit IDs greater or equal to 0xF0
 	ldr   r1, [r0] @Unit pointer 

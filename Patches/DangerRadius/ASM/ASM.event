@@ -7,6 +7,20 @@
 
 PUSH
 
+  // Clear DR when player phase ends.
+  ORG 0x59A274
+  POIN EndDR|1
+  
+  // Recalc DR when unit commits to an action.
+  ORG 0x1D380
+  callHack_r2(ActionCommitDR)
+  SHORT 0x46C0
+  
+  // Recalc DR when unit cancels an action.
+  ORG 0x1D014
+  callHack_r3(ActionCancelDR)
+  SHORT 0xE009
+
   // DetermineDR Hook.
 	ORG 0x1CAD4
   callHack_r0(DRHook)
@@ -36,6 +50,15 @@ PUSH
   jumpToHack_r0(InvertFog)
   SHORT 0x1C22
   
+  // Don't refresh fog if no FOW and other certain circumstances.
+  ORG 0x1A1F4
+  WORD 0xE0052001 0x49102000 0x29007B49 0x2001D000
+  jumpToHack(RefreshFog)
+  ORG 0x59AB04
+  WORD 0x801A1F9
+  ORG 0x1CEA0
+  BYTE 0xAB
+  
   // Hooked in ApplyStuffToRangeMaps.
   // Makes DR display in fog
   // if there's no FOW.
@@ -51,20 +74,26 @@ PUSH
   SHORT 0x1C22 0x1C2B
 	callHack_r0(DisplayMarker)
 	SHORT 0x1C01
-
-  // RefreshFogAndUnitMaps now also updates DR.
-  ORG 0x1A20C
-	callHack_r0(UpdateDR)
-	SHORT 0xE008
-
   
   // Update DR after moving a unit
   // and before committing to an action.
-  ORG 0x1D484
+  ORG 0x1D47C
 	callHack_r0(UpdateDRMove)
   SHORT 0x46C0
   
 POP
+
+ALIGN 4
+EndDR:
+#include "EndDR.lyn.event"
+
+ALIGN 4
+ActionCommitDR:
+#include "ActionCommitDR.lyn.event"
+
+ALIGN 4
+ActionCancelDR:
+#include "ActionCancelDR.lyn.event"
 
 ALIGN 4
 DRHook:
@@ -73,10 +102,6 @@ DRHook:
 ALIGN 4
 DetermineDR:
 #include "DetermineDR.lyn.event"
-
-ALIGN 4
-InitializeDR:
-#include "InitializeDR.lyn.event"
 
 ALIGN 4
 DisplayIcon:
@@ -91,6 +116,10 @@ InvertFog:
 #include "InvertFog.lyn.event"
 
 ALIGN 4
+RefreshFog:
+#include "RefreshFog.lyn.event"
+
+ALIGN 4
 DisplayDR:
 #include "DisplayDR.lyn.event"
 
@@ -99,9 +128,9 @@ DisplayMarker:
 #include "DisplayMarker.lyn.event"
 
 ALIGN 4
-UpdateDR:
-#include "UpdateDR.lyn.event"
-
-ALIGN 4
 UpdateDRMove:
 #include "UpdateDRMove.lyn.event"
+}
+ALIGN 4
+InitializeDR:
+#include "InitializeDR.lyn.event"

@@ -133,6 +133,18 @@ CONCLUDING
     is this specific return address to know whether you were called by some function, because if so your 
     behaviour changes).
   I won't have to lose sleep over knowing there're people using my poorly implemented patch anymore.
+  
+  July 23rd 2021.
+    - Turns out there was still a visual error when hovering over a player unit and activating DangerZone 
+    during FOW. Considering the exact circumstances that need to happen for this bug to display (I mean, I 
+    don't even use FOW), I can see how it slipped under the radar. That's fixed now.
+    - Vesly pointed out to me that danger radius was being recalculated unnecessarily. That's rectified now. 
+    Hopefully this'll reduce lag, although it'll be by a factor of two, maybe three, at most.
+    - I was considering buffering the fogmap when units take partial actions, but decided against it, 
+    considering I'd have to allocate about 0x800 bytes in RAM to fit a map, and it'd only save a 
+    recalculation when cancelling a partial action.
+    - Changed ClearDR2. It no longer replaces the entire routine it hooks in. This should make it compatible 
+    with Gamma's CasualModeMenu, https://feuniverse.us/t/hypergammaspaces-assorted-asm/4085/10
 
 
 CREDITS

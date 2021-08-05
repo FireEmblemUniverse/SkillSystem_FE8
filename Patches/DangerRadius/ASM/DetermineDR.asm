@@ -14,17 +14,13 @@
 @   else
 @     Return
 .thumb
-	.equ MemorySlot,0x30004B8
-	
+
 push  {r4-r7,r14}
 mov   r4, r8
 mov   r5, r9
 mov   r6, r10
 mov   r7, r11
 push  {r4-r7}
-
-
-
 
 
 ldr   r0, =DRUnitByte
@@ -54,8 +50,16 @@ beq   L1
   @ FOW
   ldr   r4, =DeletePlayerPhaseInterface6Cs
   bl    GOTO_R4
+  ldr   r2, =GameState
+  ldr   r4, =0x8027ACB
+  bl    L5
+  L5:
+  mov   r0, #0xA
+  add   r14, r0
+  push  {r4, r14}
+  bl    GOTO_R4                   @ This draw SMS instead of MMS.
   bl    InitializeDR
-  b     L2
+  b     Return
 L1:
 
 
@@ -77,13 +81,12 @@ bl    GOTO_R4
 cmp   r0, #0x0
 beq   L3
 
-
   @ Check if enemy
   mov   r1, #0x80
   tst   r1, r5
   beq   L3
   
-	VeslyAddedCheck: @ Don't do DR for unit IDs greater or equal to 0xF0
+  VeslyAddedCheck: @ Don't do DR for unit IDs greater or equal to 0xF0
 	ldr   r1, [r0] @Unit pointer 
 	ldrb  r1, [r1, #4] @Unit ID 
 	cmp   r1, #0xF0
@@ -104,8 +107,8 @@ beq   L3
       ldr   r0, =FogMap
       ldr   r0, [r0]
       mov   r1, #0x0
-      @ldr   r4, =ClearMapWith @ Is this not blh'd to in InitializeDR ? 
-      @bl    GOTO_R4
+      ldr   r4, =ClearMapWith
+      bl    GOTO_R4
       mov   r0, #0x1
       neg   r0, r0
       
@@ -114,7 +117,7 @@ beq   L3
     ldrb  r2, [r1]
     add   r2, r0
     strb  r2, [r1]
-    bl    InitializeDR @ Vesly commented out 
+    bl    InitializeDR
     b     L2
 
 L3:

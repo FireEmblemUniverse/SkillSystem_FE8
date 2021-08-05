@@ -43,10 +43,7 @@ lsr   r0, #0x5
 mov   r1, #0x0
 strb  r1, [r0]            @ Reset DRCountByte.
 
-ldr   r4, =RefreshFogAndUnitMaps
-bl    GOTO_R4
-ldr		r4, =UpdateGameTilesGraphics
-bl    GOTO_R4
+bl    InitializeDR
 
 
 pop   {r4-r7}
