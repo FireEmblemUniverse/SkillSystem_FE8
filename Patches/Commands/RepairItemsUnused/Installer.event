@@ -1,0 +1,52 @@
+
+
+
+ALIGN 4 
+ComputeRepairCost:
+#incbin "ComputeRepairCost.dmp"
+
+
+ALIGN 4 
+RepairItemsForACost:
+#incbin "RepairItems.dmp"
+
+
+ALIGN 4 
+ExampleEvent:
+ASMC ComputeRepairCost|1 
+// This returns the cost to repair your weapons in memory slot C 
+SADD r1 rC r0
+MemSlotToString(r1) // See the patch: Convert Memory Slot to String 
+EVBIT_MODIFY 4 // No scene skipping 
+SVAL r7 1 
+EVBIT_F 2 
+TEXTSTART 
+// You'll have to do text yourself. Here's an example, though. 
+//[OpenLeft][LoadFace][0x164][OpenLeft] // Anna 
+//Want your weapons repaired?[A][Clear]
+//That'll be [G] gold.
+//[Yes]
+TEXTSHOW 0x8FE // Do you want to quit? [Yes] 
+//0x8B5 // How does [G] gold sound to you? [Yes] 
+TEXTEND 
+REMA 
+BNE 0x63 rC r7
+
+// We only got here if they selected yes 
+
+ASMC ComputeRepairCost|1 
+SADD r1 rC r0
+// You could put some arbitrary value here in memory slot 1 
+// if you want to charge them a different price 
+ASMC RepairItemsForACost|1 
+// If they don't have enough money then we don't actually repair anything 
+// This returns 0 in slot C if they were too broke 
+
+LABEL 0x63 
+EVBIT_MODIFY 0
+NoFade 
+ENDA 
+
+
+
+

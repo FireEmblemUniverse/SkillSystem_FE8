@@ -1,6 +1,5 @@
 #define DebugMode 0x1 
 
-#include "Definitions.event"
 #include "UnitAndClassDefinitions.event"
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
@@ -20,6 +19,9 @@
 {
 #include "Viridian_City.event"
 }
+{
+#include "Route_TwoS.event" 
+}
 
 {
 #include "ViridianForestS.event"
@@ -30,15 +32,15 @@
 }
 
 {
-#include "Route_TwoS.event" 
+#include "Route_TwoN.event" 
 }
 
 {
-//#include "Pewter_City.event"
+#include "Pewter_City.event"
 }
 
 {
-//#include "Pewter_Gym.event"
+#include "Pewter_Gym.event"
 }
 
 

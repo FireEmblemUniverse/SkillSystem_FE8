@@ -2,18 +2,18 @@
 
 // Monster Classes 
 #define ClassPalletTownWild 0x0
-#define ClassRouteOneWildA 0x1
-#define ClassRouteOneWildB 0x2
-#define ClassRouteTwoSouthWildA 0x3
-#define ClassRouteTwoSouthWildB 0x4
-#define ClassViridianForestSouthWildA 0x5
-#define ClassViridianForestSouthWildB 0x6
-#define ClassViridianForestNorthWildA 0x7
-#define ClassViridianForestNorthWildB 0x8
-#define ClassRouteTwoNorthWildA 0x9
-#define ClassRouteTwoNorthWildB 0xA
-#define ClassRouteThreeWildA 0xB
-#define ClassRouteThreeWildB 0xC
+#define ClassRoute1WildA 0x1
+#define ClassRoute1WildB 0x2
+#define ClassRoute2ShWildA 0x3
+#define ClassRoute2SWildB 0x4
+#define ClassViridianForestSWildA 0x5
+#define ClassViridianForestSWildB 0x6
+#define ClassViridianForestNWildA 0x7
+#define ClassViridianForestNWildB 0x8
+#define ClassRoute2NWildA 0x9
+#define ClassRoute2NWildB 0xA
+#define ClassRoute3WildA 0xB
+#define ClassRoute3WildB 0xC
 #define ClassMtMoonB1S 0xD
 #define ClassMtMoonB1N 0xE
 #define ClassMtMoonB2A 0xF
@@ -23,8 +23,8 @@
 #define ClassMtMoonB3M 0x13
 #define ClassMtMoonB3W 0x14
 #define ClassMtMoonCommon 0x15
-#define ClassRouteFourWildA 0x16
-#define ClassRouteFourWildB 0x17
+#define ClassRoute4WildA 0x16
+#define ClassRoute4WildB 0x17
 #define ClassCeruleanCityA 0x18
 #define ClassCeruleanCityB 0x19
 #define ClassCeruleanGymA 0x1A
@@ -40,20 +40,24 @@
 
 
 //Enemy unit IDs 
+// Wilds are 0x50 - 0x8F 
+// Trainers are 0x90 - 0xBD & 0xC0 - 0xCF I guess 
+// 0xBE is Formotiis iirc 
+
 #define OaksPikachu 0x4F
 #define UnitPalletTownWild 0x50
-#define UnitRouteOneWild 0x51
-#define UnitRouteOneTrainer 0x52
-#define UnitRouteTwoSouthWild 0x53
-#define UnitRouteTwoSouthTrainer 0x54
-#define UnitViridianForestSouthWild 0x55
-#define UnitViridianForestSouthTrainer 0x56
-#define UnitViridianForestNorthWild 0x57
-#define UnitViridianForestNorthTrainer 0x58
-#define UnitRouteTwoNorthWild 0x59
-#define UnitRouteTwoNorthTrainer 0x5A
-#define UnitRouteThreeWild 0x5B
-#define UnitRouteThreeTrainer 0x5C
+#define UnitRoute1Wild 0x51
+#define UnitRoute1Trainer 0x90
+#define UnitRoute2SWild 0x53
+#define UnitRoute2STrainer 0x94
+#define UnitViridianForestSWild 0x55
+#define UnitViridianForestSTrainer 0x96
+#define UnitViridianForestNWild 0x57
+#define UnitViridianForestNTrainer 0x98
+#define UnitRoute2NWild 0x59
+#define UnitRoute2NTrainer 0x9A
+#define UnitRoute3Wild 0x5B
+#define UnitRoute3Trainer 0x9C
 #define UnitMtMoonB1S 0x5D
 #define UnitMtMoonB1N 0x5E
 #define UnitMtMoonB2A 0x5F
@@ -63,17 +67,17 @@
 #define UnitMtMoonB3M 0x63
 #define UnitMtMoonB3W 0x64
 #define UnitMtMoonCommon 0x65
-#define UnitRouteFourWild 0x66
-#define UnitRouteFourTrainer 0x67
+#define UnitRoute4Wild 0x66
+#define UnitRoute4Trainer 0xA7
 #define UnitCeruleanCityA 0x68
 #define UnitCeruleanCityB 0x69
 #define UnitCeruleanGymA 0x6A
 #define UnitCeruleanGymB 0x6B
 #define UnitRoute24Wild 0x6C
-#define UnitRoute24Trainer 0x6D
+#define UnitRoute24Trainer 0xAD
 #define UnitRoute24WaterA 0x6E
 #define UnitRoute24WaterB 0x6F
 #define UnitRoute25Wild 0x70
-#define UnitRoute25Trainer 0x71
+#define UnitRoute25Trainer 0xB1
 #define UnitRoute25WaterA 0x72
 #define UnitRoute25WaterB 0x73

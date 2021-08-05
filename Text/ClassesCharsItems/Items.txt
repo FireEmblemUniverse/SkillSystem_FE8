@@ -252,7 +252,7 @@ Minimize[X]
 Pay Day[X]
 # 0x037C
 Pound[X]
-# 0x037D
+# 0x037D ^
 Quick Attack[X]
 # 0x037E
 Rage[X]
@@ -316,15 +316,15 @@ Jump Kick[X]
 Low Kick[X]
 # 0x039C
 Nightmare[.][X]
-# 0x039D
+# 0x039D ^
 Thundershock[X]
 # 0x039E
 Acid[X]
-# 0x039F
+# 0x039F ^
 Poison Gas[X]
-# 0x03A0
+# 0x03A0 ^
 Poison Powder[X]
-# 0x03A1
+# 0x03A1 ^
 Poison Sting[X]
 # 0x03A2
 Sludge[X]
@@ -332,17 +332,17 @@ Sludge[X]
 Smog[X]
 # 0x03A4
 Leaf Blade[X]
-# 0x03A5
+# 0x03A5 ^
 Sleep Powder[X]
-# 0x03A6
+# 0x03A6 ^
 Solar Beam[X]
-# 0x03A7
+# 0x03A7 ^
 Razor Leaf[X]
-# 0x03A8
+# 0x03A8 ^
 Emblem Seal[.][X]
 # 0x03A9
 Scorch[X]
-# 0x03AA
+# 0x03AA ^
 Flamethrower[X]
 # 0x03AB
 Fire Spin[X]
@@ -350,7 +350,7 @@ Fire Spin[X]
 Bone Club[X]
 # 0x03AD
 Fire Blast[X]
-# 0x03AE
+# 0x03AE ^
 Sacred Fire[X]
 # 0x03AF
 Water Gun[X]
@@ -358,27 +358,27 @@ Water Gun[X]
 Clamp[X]
 # 0x03B1
 Crabhammer[X]
-# 0x03B2
+# 0x03B2 ^
 Bubble Beam[X]
-# 0x03B3
+# 0x03B3 ^
 Hydro Pump[X]
 # 0x03B4
 Surf[X]
-# 0x03B5
+# 0x03B5 ^
 Thunder Punch[X]
 # 0x03B6
 Withdraw[X]
 # 0x03B7
 Absorb[X]
-# 0x03B8
+# 0x03B8 ^
 Leech Seed[X]
-# 0x03B9
+# 0x03B9 ^
 Mega Drain[X]
 # 0x03BA
 Petal Dance[X]
-# 0x03BB
+# 0x03BB ^
 Leaf Flurry[X]
-# 0x03BC
+# 0x03BC ^
 Aurora Beam[X]
 # 0x03BD
 Dig[X]
@@ -448,7 +448,7 @@ Bulk Up[X]
 Moon Stone[X]
 # 0x03DE
 Link Stone[X]
-# 0x03DF
+# 0x03DF ^
 Thunder Stone[X]
 # 0x03E0
 Leaf Stone[X]
@@ -460,7 +460,7 @@ Chest Key[.][X]
 Door Key[X]
 # 0x03E4
 Lockpick[X]
-# 0x03E5
+# 0x03E5 ^
 Super Potion[.][X]
 # 0x03E6
 Max Potion[X]
@@ -501,23 +501,23 @@ Lunar Brace[.][X]
 # 0x03F8
 Solar Brace[.][X]
 # 0x03F9
-100 Credits[X]
+100 Gold[X]
 # 0x03FA
-250 Credits[X]
+250 Gold[X]
 # 0x03FB
-500 Credits[X]
+500 Gold[X]
 # 0x03FC
-1000 Credits[X]
+1000 Gold[X]
 # 0x03FD
-250 Credits[X]
+250 Gold[X]
 # 0x03FE
-150 Credits[X]
+150 Gold[X]
 # 0x03FF
-200 Credits[X]
+200 Gold[X]
 # 0x0400
-3,000 Credits[X]
+3,000 Gold[X]
 # 0x0401
-5,000 Credits[X]
+5,000 Gold[X]
 # 0x0402
 Rare Candy[X]
 # 0x0403

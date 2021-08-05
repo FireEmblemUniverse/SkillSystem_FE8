@@ -17,11 +17,10 @@ push {r4-r5,lr}
 mov r4, r0
 mov r5, r1
 
-
 @check attacker weapon's item ID
 mov r2, #0 @ First time through loop 
 mov r0,r4
-add r0,#0x48
+add r0,#0x4A
 ldrh r0,[r0]
 mov r1,#0xFF
 and r0,r1 @r0 = item ID
@@ -43,7 +42,7 @@ cmp r2, #0
 bne LoopEnd 
 mov r2, #1 @ Second time through loop 
 mov r0,r5
-add r0,#0x48
+add r0,#0x4A
 ldrh r0,[r0]
 mov r1,#0xFF
 and r0,r1 @r0 = item ID
@@ -70,11 +69,14 @@ mov r0, r1
 
 StrHigher:
 
+@mov r11, r11 
+
 @r0 has Battle attack 
-add r2, r0, #3 @ Round up 
-lsr r2, r2, #4 @ 1/8th 
+add r2, r0, #7 @ Ceiling up 
+lsr r2, #3 @ 1/8th 
 add r2, r2 @ 2/8 
 add r2, r2 @ 3/8 
+mov r0, r2 
  
 @add r0, #3 @ For rounding 
 @lsr r0, #2 @ 1/4 of Str or Mag 

@@ -3,7 +3,7 @@
 
 ALIGN 4
 FixedDamageWeaponList:
-BYTE 0x0
+BYTE 0x0 // Unused now 
 //BYTE Constrict Flash Growl Leer SandAttack TailWhip Snarl // Using a skill now instead 
 BYTE 0x0 //terminator
 

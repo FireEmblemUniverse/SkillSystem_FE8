@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="10001112" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/ViridianForestNTileset" trans="ffffff" width="512" height="512"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="47" height="33" locked="1">
+ <layer id="1" name="Tile Layer 1" width="47" height="33">
   <properties>
    <property name="Anims1" value="0"/>
    <property name="ChapterID" value="ViridianForestNCh"/>
@@ -598,7 +598,7 @@
    <tile gid="436"/>
    <tile gid="437"/>
    <tile gid="438"/>
-   <tile gid="455"/>
+   <tile gid="466"/>
    <tile gid="456"/>
    <tile gid="457"/>
    <tile gid="458"/>
@@ -1445,7 +1445,7 @@
    <tile gid="342"/>
    <tile gid="984"/>
    <tile gid="1014"/>
-   <tile gid="982"/>
+   <tile gid="466"/>
    <tile gid="1014"/>
    <tile gid="984"/>
    <tile gid="1019"/>
@@ -3130,7 +3130,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Snag2" width="47" height="33">
+ <layer id="3" name="Snag2" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -4209,7 +4209,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="659"/>
+   <tile gid="754"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4569,7 +4569,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
+   <tile gid="595"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4692,7 +4692,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Snag3" width="47" height="33">
+ <layer id="4" name="Snag3" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -6254,7 +6254,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="Snag4" width="47" height="33">
+ <layer id="5" name="Snag4" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -7816,7 +7816,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Snag5" width="47" height="33">
+ <layer id="3" name="Snag5" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -9378,7 +9378,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Snag6" width="47" height="33">
+ <layer id="4" name="Snag6" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -10940,7 +10940,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="Snag7" width="47" height="33">
+ <layer id="5" name="Snag7" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -12502,7 +12502,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="6" name="Snag8" width="47" height="33">
+ <layer id="6" name="Snag8" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -14064,7 +14064,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="7" name="Snag9" width="47" height="33">
+ <layer id="7" name="Snag9" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -15626,7 +15626,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="8" name="Snag10" width="47" height="33">
+ <layer id="8" name="Snag10" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -17188,7 +17188,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="9" name="Snag11" width="47" height="33">
+ <layer id="9" name="Snag11" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>
@@ -18750,7 +18750,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="10" name="Snag12" width="47" height="33">
+ <layer id="10" name="Snag12" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="1"/>

@@ -13,10 +13,12 @@ bne		Magic		@IsMagicSword?
 
 mov 	r0,#0x50	@weaponType
 ldrb	r0,[r4,r0]
-cmp		r0,#0xB		@B=Monster's weapon
-beq		IsStr
-cmp		r0,#0x4		@0=sword 1=lance 2=axs 3=bow
-blt		IsStr		@IsPhysicalWeapon? 4=staff 5=anima ... 0xff = staff(when alone)
+cmp		r0,#0x4		@4 = Staff 
+beq		Magic
+b 		IsStr 
+
+@cmp		r0,#0x4		@0=sword 1=lance 2=axs 3=bow
+@blt		IsStr		@IsPhysicalWeapon? 4=staff 5=anima ... 0xff = staff(when alone)
 
 Magic:
 mov		r7,#0x3A

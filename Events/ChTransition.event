@@ -61,7 +61,7 @@ TeleportActiveUnitEvent:
 NoFade 
 ENDA 
 
-RefreshActiveUnitEvent:
+RefreshActive:
 UNCR(0x7FFF, 0x42)
 //ASMC RefreshActiveUnit 
 NoFade 
@@ -103,7 +103,12 @@ LABEL 0x63
 NoFade 
 ENDA 
 
-
+// CALL ClosedArea
+ALIGN 4 
+ClosedArea:
+TutText(ClosedAreaText)
+NoFade 
+ENDB 
 
 ALIGN 4
 CheckIfNoPlayerUnits:
@@ -125,12 +130,12 @@ ENDA
 
 
 GlobalAfev:
-ReplenishDurability(0x7FFF)
+//ReplenishDurability(0x7FFF)
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 				// 		Eg. if not player, ENDB 
-		//CALL RefreshIfNotInDanger
-		CALL RefreshActiveUnitEvent
+		CALL RefreshIfNotInDanger
+		//CALL RefreshActiveUnitEvent
 NoFade
 ENDA 
 
@@ -329,6 +334,16 @@ BLT 1 rA r6
 	SetUnitStatus(0x7FFD, AI2Counter) //uses r5 as Value 
 	SetUnitStatus(0x7FFD, CurrentHP, 1) //uses r5 as Value 
 
+	// "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; ASMC AutoLevelUnits" 
+	// We should make these auto level some specific amount 
+	// How about by the level of the bush? 
+	GetUnitStatus(0x7FFD, Level) 
+	SADD r1 rC r0 // Level to autolevel by 
+	SVAL r3 True 
+	SVAL r4 0x508F // Wilds 
+	ASMC AutoLevelUnits // Also teaches them moves 
+
+	
 	GOTO 0x63  
 Label 1 
 	SDEQUEUE r8

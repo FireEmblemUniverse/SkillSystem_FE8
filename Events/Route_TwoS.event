@@ -1,9 +1,9 @@
 #define ChapterID Route2SCh
-#define GenericA UnitViridianForestSouthWild
-#define GenericB UnitViridianForestSouthTrainer
-#define ClassA ClassRouteOneWildA
-#define ClassB ClassRouteOneWildB
-#define WildLvl 3 
+#define GenericA UnitViridianForestSWild
+#define GenericB UnitViridianForestSTrainer
+#define ClassA ClassRoute1WildA
+#define ClassB ClassRoute1WildB
+#define WildLvl 2 
 #define TrainerL 6 
 
 EventPointerTable(ChapterID,ThisChapter)
@@ -131,7 +131,7 @@ LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(6,15,12,19)) //top patch 
 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
@@ -180,7 +180,7 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyTrainersA:
@@ -188,11 +188,11 @@ EnemyTrainersA:
 UNIT
 
 NPCUnits:
-UNIT UnitRouteOneWild ClassA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 ReinforcementUnits:
-UNIT UnitRouteOneWild ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 

@@ -1,10 +1,10 @@
 #define ChapterID ViridianForestSCh
-#define GenericA UnitViridianForestSouthWild
-#define GenericB UnitViridianForestSouthTrainer
-#define ClassA ClassViridianForestSouthWildA
-#define ClassB ClassViridianForestSouthWildB
-#define WildLvl 3 
-#define TrainerL 6 
+#define GenericA UnitViridianForestSWild
+#define GenericB UnitViridianForestSTrainer
+#define ClassA ClassViridianForestSWildA
+#define ClassB ClassViridianForestSWildB
+#define WildLvl 1 
+#define TrainerL 4 
 
 
 
@@ -90,7 +90,7 @@ CoinsTrap(28,14,ChapterID*2,350)
 CoinsTrap(43,13,(ChapterID*2)+1,400)
 
 
-SpellScrollTrap(22,31, (ChapterID*2)+3, AttackPulse) // Found in next ch 
+SpellScrollTrap(19,0, (ChapterID*2)+3, AttackPulse) // Found in next ch 
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
@@ -140,15 +140,15 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(2,5,16,11))  //nw
 LOAD1 0x1 EnemyUnitsE
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,21,10,27))  //sw
-
+LOAD1 0x1 BeedrillUnitGroup
+ENUN 
 
 OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
-LOAD1 0x1 BeedrillUnitGroup
-ENUN 
+
 
 
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
@@ -201,19 +201,19 @@ EnemyUnitsA:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [1,3] 001b	0x0 0x01 REDA1R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [2,3] 001b	0x0 0x01 REDA2R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
 EnemyUnitsC:
 UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF2 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsD:
@@ -232,12 +232,12 @@ EnemyTrainersA:
 UNIT
 
 BeedrillUnitGroup:
-UNIT GenericA BeedrillID 0x0 Level(10, Enemy, 1)   [25,11] 0b	0x0 0x01 REDA25R11 [0x0,0x0,0x0,0x0] BeedrillAI
+UNIT GenericA BeedrillID 0x0 Level(9, Enemy, 1)   [25,11] 0b	0x0 0x01 REDA25R11 [0x0,0x0,0x0,0x0] BeedrillAI
 UNIT 
 
 
 ReinforcementUnits:
-UNIT GenericA ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 

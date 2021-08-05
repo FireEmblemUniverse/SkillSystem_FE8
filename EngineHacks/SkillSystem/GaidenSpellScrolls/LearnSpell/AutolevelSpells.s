@@ -25,14 +25,13 @@ push	{r4-r7,lr}
 	mov r4, r0 @ Unit 
 	ldrb r7, [r4, #0x0B] @ Allegiance 
 	lsr r7, #6 @ only need top two bits 
-	@mov r11, r11
+	@
 	ldrh r0, [r4, #0x1E] @ inv slot 1
 	cmp r0, #0 
 	beq Start
 	mov r7, #0 @ Do not give moves if they had something in inventory slot 1 
 	Start:
-
-	ldr r1, [r0, #4] @ Class pointer 
+	ldr r1, [r4, #4] @ Class pointer 
 	ldrb r2, [r1, #4] @ Class ID 
 	lsl r2, #2 @ *4 as each pointer is WORD length 
 	
@@ -55,12 +54,15 @@ push	{r4-r7,lr}
 	sub r1, #2 @ r1 is final/first real entry, not terminator 
 	LearnSpellLoop: 
 	sub r1, #2 @ Next entry 
-	cmp r1, r2 
-	blt End 
+	cmp r1, r2  
+	blt End
+	
 	ldrb r0, [r5, r1] 
 	cmp r0, r6 
 	bgt LearnSpellLoop @ We are too low level 
-	add r0, r1, #1 
+	
+	add r0, r1, #1 @ Add ?  
+	
 	ldrb r0, [r5, r0] @ Spell to learn 
 	cmp r3, #5 @ We've already learned 5 moves, so end 
 	bge End 

@@ -1,8 +1,8 @@
 #define ChapterID Route1Ch
-#define GenericA UnitViridianForestSouthWild
-#define GenericB UnitViridianForestSouthTrainer
-#define ClassA ClassRouteOneWildA
-#define ClassB ClassRouteOneWildB
+#define GenericA UnitRoute1Wild
+#define GenericB UnitRoute1Trainer
+#define ClassA ClassRoute1WildA
+#define ClassB ClassRoute1WildB
 #define WildLvl 3 
 #define TrainerL 6 
 EventPointerTable(ChapterID,ThisChapter)
@@ -158,7 +158,7 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid
 LOAD1 0x1 EnemyUnitsD
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //lower 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
@@ -204,38 +204,38 @@ UNIT
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b 0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
 EnemyUnitsB:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
 EnemyUnitsC:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(2, Enemy, 1)   [1,4] 001b	0x0 0x01 REDA1R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [1,4] 001b	0x0 0x01 REDA1R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsD:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF2 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI 
 UNIT
 
 EnemyTrainersA:
-//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+//UNIT GenericB RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
 UNIT
 
 NPCUnits:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 ReinforcementUnits:
-UNIT UnitRouteOneWild ClassRouteOneWildA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 
