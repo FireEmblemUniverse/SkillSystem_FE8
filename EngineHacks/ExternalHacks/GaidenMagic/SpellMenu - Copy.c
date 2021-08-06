@@ -44,29 +44,6 @@ int SpellEffectRoutine(MenuProc* proc, MenuCommandProc* commandProc)
 	}
 	else
 	{
-		Unit* unit = gActiveUnit;
-		if ( unit->ranks[0] != SelectedSpell) 
-		{ 
-		int PreviousSelection = unit->ranks[0]; // save 
-		for ( int i = 1 ; i < 5 ; i++ ) 
-		{ 	
-			if (unit->ranks[i] == SelectedSpell) 
-			{
-			unit->ranks[i] = PreviousSelection;
-			unit->ranks[0] = SelectedSpell;
-			}
-		}
-		//gActionData.itemSlotIndex = 0;
-		//DidSelectSpell = 0;
-		//SelectedSpell = 0;
-		//ClearBG0BG1();
-		//HideMoveRangeGraphics();
-		//GaidenBlackMagicUMEffect(NULL,NULL);
-		//return -1;
-		//return 0x27;
-		} 
-	
-	
 		// Actual effect. Call the target selection menu and shit.
 		gActionData.itemSlotIndex = 0;
 		DidSelectSpell = 1;
@@ -94,8 +71,6 @@ int SpellOnHover(MenuProc* proc)
 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
 	int x = menuItemPanel->x;
 	int y = menuItemPanel->y;
-	
-	// Vesly tried re-ordering spells here which didn't work 
 	
 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	MakeUIWindowTileMap_BG0BG1(x,y,14,8,0);

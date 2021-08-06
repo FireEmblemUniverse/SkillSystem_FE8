@@ -45,7 +45,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 	return SpellsBuffer;
 }
 
-/*
+
 int GetValidSpellSlotToAttackWith(Unit* unit, u8* spells)
 {
 	int spell = GetFirstAttackSpell(unit);
@@ -68,7 +68,6 @@ int GetValidSpellSlotToAttackWith(Unit* unit, u8* spells)
 	
 	return ( spell ? 9 : -1 ); // no spell works // return ( spell ? 9 : -1 );
 }
-*/
 /*
 int GetValidSpellSlotToAttackWith(Unit* unit, u8* spells)
 {
@@ -103,7 +102,7 @@ int GetValidSpellSlotToAttackWith(Unit* unit, u8* spells)
 	return ( spell ? 9 : -1 ); // no spell works // return ( spell ? 9 : -1 );
 }
 */
-/*
+
 int GetValidSpellToAttackWith(Unit* unit, u8* spells)
 {
 	int spell = GetFirstAttackSpell(unit);
@@ -118,7 +117,7 @@ int GetValidSpellToAttackWith(Unit* unit, u8* spells)
 	}
 	return ( spell ? spell|0xFF00 : -1 ); // No spell works 
 }
-*/
+
 /* Intended behavior:
 	First, check if we're using the spell menu.
 		If so, return the selected spell. Otherwise, vanilla.
@@ -157,9 +156,6 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 			
 			// Reorder the list of spells for the player to have 
 			// the most recent one at the top 
-			// this needs to be in spell menu, not here 
-			
-			/*
 				if ( unit->ranks[0] != SelectedSpell) 
 				{ 
 					int PreviousSelection = unit->ranks[0]; // save 
@@ -173,7 +169,6 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 					}
 				
 				} 
-				*/
 				// if [0] equals SelectedSpell -> do nothing 
 				// if [1] equals selected spell -> swap [0] and [1] 
 
@@ -251,31 +246,8 @@ int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 		return -1;
 	}
 
-
-
-
-
-	if ( gChapterData.currentPhase != ( unit->index & 0xC0 ) && ( CanUnitUseWeapon( unit, spell ) ) ) { return ( spell ? 9 : 0 ); } // Enemy phase - Always counter attack with first spell.
-	
-
 	//int spell = GetFirstAttackSpell(unit);
-	//return -1;
-	// slot 5 populates the range data but not anything else in the stat screen 
-	
-	if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); } // Used in stat screen by players. 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); } // Always counter attack with first spell. Also used in stat screen by players. 
 	
 	/*
 	// This function appears only to be called in simulated and real battles (and on the stat screen)?

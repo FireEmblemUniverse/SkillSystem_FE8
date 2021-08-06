@@ -5,7 +5,7 @@
 // I could instead do something like.. 
 // Weapon accuracy + ((wep acc * ((skill*2)+1)) / 100) + skill + (luk/2)
 
-
+#include "PB_Calc_Loop_Effects/Installer.event"
 
 
 PUSH 
@@ -16,6 +16,10 @@ jumpToHack(HitRateLabel)
 //ORG $2ABE8
 //jumpToHack(AvoidLabel)
 
+
+ORG $2AE54
+jumpToHack_r0(NegateDefHack)
+
 POP
 
 ALIGN 4
@@ -25,3 +29,35 @@ HitRateLabel:
 ALIGN 4
 AvoidLabel:
 #incbin "avoidhack.dmp"
+
+
+ALIGN 4 
+NegateDefHack:
+#include "NegateDefHack.lyn.event"
+POIN NegateDefAmountTable
+
+#define FF16 "0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF"
+
+ALIGN 4 
+NegateDefAmountTable:
+BYTE FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16 FF16
+WORD 0 
+//ORG CurrentOffset+256 
+#undef FF16 
+
+#define NegateDefEntry(ItemID, PercentDefToIgnore) "PUSH; ORG NegateDefAmountTable + (ItemID); BYTE PercentDefToIgnore; POP" 
+
+
+NegateDefEntry(Constrict     , 63)
+NegateDefEntry(Flash         , 63)
+NegateDefEntry(Growl         , 63)
+NegateDefEntry(Leer          ,  63)
+NegateDefEntry(SandAttack    , 63)
+NegateDefEntry(TailWhip      , 63)
+NegateDefEntry(Snarl          , 63)   
+
+
+
+
+
+

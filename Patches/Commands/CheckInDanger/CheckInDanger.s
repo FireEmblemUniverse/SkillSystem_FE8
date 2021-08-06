@@ -17,7 +17,7 @@
 
 CheckUnitIsInDanger:
 	push {lr}
-	mov r11, r11
+	@mov r11, r11
 	@mov r0, #1 @ True 
 	@b AlwaysTrue
 	@b Test2

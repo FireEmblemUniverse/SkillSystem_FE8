@@ -219,7 +219,7 @@ Write_Byte(30, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(19, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(7, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 

@@ -11,13 +11,21 @@ bne   L1
   @ Check if we're called by DangerRadius
   @ Or something else (like CheckInDanger ASMC)
   @mov r11, r11
-  @ldr   r1, =GameState
-  @ldrb  r1, [r1, #0x4]
-  @mov   r2, #0x8
-  @tst   r1, r2
-  @bne   Continue 
+  @b OtherTest
+  ldr   r1, =GameState
+  ldrb  r1, [r1, #0x4]
+
+  mov   r2, #0x8
+  @and r1, r2 
+  @cmp r1, #0 
+  tst   r1, r2
+  beq 	L2
+  b Continue 
+  bne   Continue 
   @mov r11, r11 
-  @b L2 
+  b L2 
+  
+  OtherTest:
   ldr r1, =0x30017bb
   ldrb r1, [r1] 
   cmp r1, #0 
