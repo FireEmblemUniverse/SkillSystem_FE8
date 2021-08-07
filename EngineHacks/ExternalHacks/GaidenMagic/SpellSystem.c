@@ -137,13 +137,16 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 	
 	//u8* spells = SpellsGetter(unit, 1);
 	//return 0xFF30; // Always equipped with tackle I guess? lol 
-	
+	int spell = GetFirstAttackSpell(unit);
 	//return GetValidSpellToAttackWith(unit, spells);
 	
 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	{
 		// It is our phase.
-		if ( !UsingSpellMenu ) { return vanillaEquipped; } // capture will only be countered with items i think - Vesly
+		//if ( !UsingSpellMenu ) { return vanillaEquipped; } // capture will only be countered with items i think - Vesly
+		if ( !UsingSpellMenu && ( unit->index & 0xC0 ) ) { return vanillaEquipped; } // enemies wielding their vanilla wep 		
+		if ( !UsingSpellMenu && !( unit->index & 0xC0 ) ) { return ( spell ? spell|0xFF00 : 0 ); } // for mmb - show first spell 
+		
 		else
 		{
 			// We need to cover the case of using a helpful staff on an ally.
@@ -185,13 +188,20 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 	//if ( unit->index & 0xC0 ) { return vanillaEquipped; }
 	else
 	{
-		// It is not our phase.
+		// It is not our phase. - Snek 
+		// actually it could be ... 
+		// - Vesly 
+		// for example, viewing MMB or stat screen .. ? 
+		// it puts the wep into battle actor 
+		
 		// Well, all the logic is in NewGetUnitEquippedWeaponSlot. Why not get the slot then return that item, checking for case 9 (Gaiden magic)?
 
 		//if ( GetUnitEquippedWeaponSlot(unit) == 9 )
 		//{
 			// We're not using the spell menu, but we're still using Gaiden magic. We must be trying to counter with it.
-		int spell = GetFirstAttackSpell(unit);
+		if ( !UsingSpellMenu && ( unit->index & 0xC0 ) ) { return vanillaEquipped; } // mmb - enemies wielding their vanilla wep 		
+		if ( !UsingSpellMenu && !( unit->index & 0xC0 ) ) { return ( spell ? spell|0xFF00 : 0 ); } // for mmb - show first spell 
+		
 		return ( spell ? spell|0xFF00 : 0 );
 		//}
 	}
@@ -499,7 +509,7 @@ int GetNthUsableSpell(Unit* unit, int n, int type)
 	}
 	return -1;
 }
-/*
+
 static int GetVanillaEquipped(Unit* unit)
 {
 	for ( int i = 0 ; i < 5 ; i++ )
@@ -508,7 +518,7 @@ static int GetVanillaEquipped(Unit* unit)
 	}
 	return 0;
 }
-*/
+
 
 int DoesUnitKnowSpell(Unit* unit, u8 spell)
 {

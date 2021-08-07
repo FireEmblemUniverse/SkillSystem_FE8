@@ -58,8 +58,8 @@ struct RTextProc
 
 
 
-extern int GetVanillaEquipped(Unit* unit); // 
-
+//extern int GetVanillaEquipped(Unit* unit); // 
+static int GetVanillaEquipped(Unit* unit);
 
 
 
@@ -138,7 +138,7 @@ int GetNthUsableSpell(Unit* unit, int n, int type);
 
 
 
-//static int GetVanillaEquipped(Unit* unit);
+
 
 
 
