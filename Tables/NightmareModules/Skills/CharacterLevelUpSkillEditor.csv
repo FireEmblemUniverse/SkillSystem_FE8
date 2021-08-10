@@ -1,257 +1,257 @@
 INLINE CharLevelUpSkillTable,Skill List Address
 None,0
-Eirika,0
-Seth,0
-Gilliam,0
-Franz,0
-Moulder,0
-Vanessa,0
-Ross,0
-Neimi,0
-Colm,0
-Garcia,0
-Innes,0
-Lute,0
-Natasha,0
-Cormag,0
-Ephraim,0
-Forde,0
-Kyle,0
-Amelia,0
-Artur,0
-Gerik,0
-Tethys,0
-Marisa,0
-Saleh,0
-Ewan,0
-L'Arachel,0
-Dozla,0
--,0
-Rennac,0
-Duessel,0
-Myrrh,0
-Knoll,0
-Joshua,0
-Syrene,0
-Tana,0
-Lyon,0
-Orson,0
-Glen,0
-Selena,0
-Valter,0
-Riev,0
-Caellach,0
-Fado,0
-Ismaire,0
-Hayden,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
-Lyon's Summon,0
--,0
--,0
-Knoll's Summon,0
-Ewan's Summon,0
-Lyon (Ch 17),0
-Morva (Ch 20),0
-Orson (Ch 5x),0
-Valter (Ch 15),0
-Selena (Ch 10B & 13B),0
-Valter (Prologue),0
-Breguet (Ch 1),0
-Bone (Ch 2),0
-Bazba (Ch 3),0
-Entombed (Ch 4),0
-Saar (Ch 5),0
-Novala (Ch 6),0
-Murray (Ch 7),0
-Tirado (Ch 8),0
-Binks (Ch 9A),0
-Pablo (Ch 10A),0
-Maelduin (Ch 12A),0
-Aias (Ch 13A),0
-Carlyle (Ch 14A),0
-Caellach (Ch 15),0
-Pablo (Ch 13A),0
--,0
-Gorgon (Ch 18),0
-Riev (Ch 19 & 20),0
--,0
--,0
-Gheb (Ch 9B),0
-Beran (Ch 10B),0
-Cyclops (Ch 12B),0
-Wight (Ch 11A),0
-Deathgoyle (Ch 11B),0
-Entombed (Monster Boss),0
--,0
--,0
--,0
--,0
-Hunter (Ch 16),0
--,0
-Brigand,0
--,0
-O'Neill (Prologue),0
-Glen (Cutscene),0
-Zonta (Ch 5x),0
-Vigarde (Ch 14B),0
-Lyon (Ch Final),0
-Orson (Ch 16),0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
-Grado Soldier (Special),0
-Grado Soldier 1 (Normal),0
-Grado Soldier 2,0
-Grado Soldier 3,0
-Grado Soldier 4,0
-Grado Soldier 5,0
-Grado Soldier 6,0
-Grado Soldier 7,0
-Grado Soldier 8,0
-Grado Soldier 9,0
-Grado Soldier 10 (Duessel's),0
-Grado Soldier 11 (Duessel's),0
-Grado Soldier 12 (Duessel's),0
-Grado Soldier 13,0
-Grado Remnant 1 (Main),0
-Cutthroat,0
-Grado Remnant 2 (Cutscene and C16 only?),0
-Grado Remnant 3 (C16 only?),0
-Grado Remnant 4 (C16 only?),0
-Wraith (Sage),0
-Wraith (Swords),0
-Wraith (Axes),0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
-Mercenary (C9A),0
-Mercenary (C10A),0
-Merc Remnant (C13A),0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Monster,0
-Demon King,0
--,0
-Frelian,0
-Frelian,0
--,0
--,0
--,0
-Fado (Renais),0
--,0
-Hayden (Frelia),0
-Mansel (Rausten),0
-Klimt (Carcino),0
-Dara (Caer Pelyn),0
-Ismaire (Jehanna),0
-Pegasus Messenger,0
-Rausten Knight,0
-Rausten Knight,0
-(Untested Beyond this point),0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
--,0
+Eirika,EphraimLordSkillList|IsPointer
+Seth,EphraimLordSkillList|IsPointer
+Gilliam,EphraimLordSkillList|IsPointer
+Franz,EphraimLordSkillList|IsPointer
+Moulder,EphraimLordSkillList|IsPointer
+Vanessa,EphraimLordSkillList|IsPointer
+Ross,EphraimLordSkillList|IsPointer
+Neimi,EphraimLordSkillList|IsPointer
+Colm,EphraimLordSkillList|IsPointer
+Garcia,EphraimLordSkillList|IsPointer
+Innes,EphraimLordSkillList|IsPointer
+Lute,EphraimLordSkillList|IsPointer
+Natasha,EphraimLordSkillList|IsPointer
+Cormag,EphraimLordSkillList|IsPointer
+Ephraim,EphraimLordSkillList|IsPointer
+Forde,EphraimLordSkillList|IsPointer
+Kyle,EphraimLordSkillList|IsPointer
+Amelia,EphraimLordSkillList|IsPointer
+Artur,EphraimLordSkillList|IsPointer
+Gerik,EphraimLordSkillList|IsPointer
+Tethys,EphraimLordSkillList|IsPointer
+Marisa,EphraimLordSkillList|IsPointer
+Saleh,EphraimLordSkillList|IsPointer
+Ewan,EphraimLordSkillList|IsPointer
+L'Arachel,EphraimLordSkillList|IsPointer
+Dozla,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Rennac,EphraimLordSkillList|IsPointer
+Duessel,EphraimLordSkillList|IsPointer
+Myrrh,EphraimLordSkillList|IsPointer
+Knoll,EphraimLordSkillList|IsPointer
+Joshua,EphraimLordSkillList|IsPointer
+Syrene,EphraimLordSkillList|IsPointer
+Tana,EphraimLordSkillList|IsPointer
+Lyon,EphraimLordSkillList|IsPointer
+Orson,EphraimLordSkillList|IsPointer
+Glen,EphraimLordSkillList|IsPointer
+Selena,EphraimLordSkillList|IsPointer
+Valter,EphraimLordSkillList|IsPointer
+Riev,EphraimLordSkillList|IsPointer
+Caellach,EphraimLordSkillList|IsPointer
+Fado,EphraimLordSkillList|IsPointer
+Ismaire,EphraimLordSkillList|IsPointer
+Hayden,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Lyon's Summon,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Knoll's Summon,EphraimLordSkillList|IsPointer
+Ewan's Summon,EphraimLordSkillList|IsPointer
+Lyon (Ch 17),EphraimLordSkillList|IsPointer
+Morva (Ch 20),EphraimLordSkillList|IsPointer
+Orson (Ch 5x),EphraimLordSkillList|IsPointer
+Valter (Ch 15),EphraimLordSkillList|IsPointer
+Selena (Ch 10B & 13B),EphraimLordSkillList|IsPointer
+Valter (Prologue),EphraimLordSkillList|IsPointer
+Breguet (Ch 1),EphraimLordSkillList|IsPointer
+Bone (Ch 2),EphraimLordSkillList|IsPointer
+Bazba (Ch 3),EphraimLordSkillList|IsPointer
+Entombed (Ch 4),EphraimLordSkillList|IsPointer
+Saar (Ch 5),EphraimLordSkillList|IsPointer
+Novala (Ch 6),EphraimLordSkillList|IsPointer
+Murray (Ch 7),EphraimLordSkillList|IsPointer
+Tirado (Ch 8),EphraimLordSkillList|IsPointer
+Binks (Ch 9A),EphraimLordSkillList|IsPointer
+Pablo (Ch 10A),EphraimLordSkillList|IsPointer
+Maelduin (Ch 12A),EphraimLordSkillList|IsPointer
+Aias (Ch 13A),EphraimLordSkillList|IsPointer
+Carlyle (Ch 14A),EphraimLordSkillList|IsPointer
+Caellach (Ch 15),EphraimLordSkillList|IsPointer
+Pablo (Ch 13A),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Gorgon (Ch 18),EphraimLordSkillList|IsPointer
+Riev (Ch 19 & 20),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Gheb (Ch 9B),EphraimLordSkillList|IsPointer
+Beran (Ch 10B),EphraimLordSkillList|IsPointer
+Cyclops (Ch 12B),EphraimLordSkillList|IsPointer
+Wight (Ch 11A),EphraimLordSkillList|IsPointer
+Deathgoyle (Ch 11B),EphraimLordSkillList|IsPointer
+Entombed (Monster Boss),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Hunter (Ch 16),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Brigand,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+O'Neill (Prologue),EphraimLordSkillList|IsPointer
+Glen (Cutscene),EphraimLordSkillList|IsPointer
+Zonta (Ch 5x),EphraimLordSkillList|IsPointer
+Vigarde (Ch 14B),EphraimLordSkillList|IsPointer
+Lyon (Ch Final),EphraimLordSkillList|IsPointer
+Orson (Ch 16),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Grado Soldier (Special),EphraimLordSkillList|IsPointer
+Grado Soldier 1 (Normal),EphraimLordSkillList|IsPointer
+Grado Soldier 2,EphraimLordSkillList|IsPointer
+Grado Soldier 3,EphraimLordSkillList|IsPointer
+Grado Soldier 4,EphraimLordSkillList|IsPointer
+Grado Soldier 5,EphraimLordSkillList|IsPointer
+Grado Soldier 6,EphraimLordSkillList|IsPointer
+Grado Soldier 7,EphraimLordSkillList|IsPointer
+Grado Soldier 8,EphraimLordSkillList|IsPointer
+Grado Soldier 9,EphraimLordSkillList|IsPointer
+Grado Soldier 10 (Duessel's),EphraimLordSkillList|IsPointer
+Grado Soldier 11 (Duessel's),EphraimLordSkillList|IsPointer
+Grado Soldier 12 (Duessel's),EphraimLordSkillList|IsPointer
+Grado Soldier 13,EphraimLordSkillList|IsPointer
+Grado Remnant 1 (Main),EphraimLordSkillList|IsPointer
+Cutthroat,EphraimLordSkillList|IsPointer
+Grado Remnant 2 (Cutscene and C16 only?),EphraimLordSkillList|IsPointer
+Grado Remnant 3 (C16 only?),EphraimLordSkillList|IsPointer
+Grado Remnant 4 (C16 only?),EphraimLordSkillList|IsPointer
+Wraith (Sage),EphraimLordSkillList|IsPointer
+Wraith (Swords),EphraimLordSkillList|IsPointer
+Wraith (Axes),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Mercenary (C9A),EphraimLordSkillList|IsPointer
+Mercenary (C10A),EphraimLordSkillList|IsPointer
+Merc Remnant (C13A),EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Monster,EphraimLordSkillList|IsPointer
+Demon King,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Frelian,EphraimLordSkillList|IsPointer
+Frelian,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Fado (Renais),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+Hayden (Frelia),EphraimLordSkillList|IsPointer
+Mansel (Rausten),EphraimLordSkillList|IsPointer
+Klimt (Carcino),EphraimLordSkillList|IsPointer
+Dara (Caer Pelyn),EphraimLordSkillList|IsPointer
+Ismaire (Jehanna),EphraimLordSkillList|IsPointer
+Pegasus Messenger,EphraimLordSkillList|IsPointer
+Rausten Knight,EphraimLordSkillList|IsPointer
+Rausten Knight,EphraimLordSkillList|IsPointer
+(Untested Beyond this point),EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer
+-,EphraimLordSkillList|IsPointer

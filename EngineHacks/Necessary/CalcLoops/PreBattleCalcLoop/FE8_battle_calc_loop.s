@@ -15,6 +15,7 @@ push {r4-r6,lr}
 mov r4,r0
 mov r5,r1
 mov r6,r2
+@mov r11, r11
 StartLoop:
 ldr r2,[r6]
 cmp r2,#0 @end of loop?
@@ -27,7 +28,7 @@ bl RunCalc
 add r6,#4
 b StartLoop
 EndLoop:
-
+@mov r11, r11
 pop {r4-r6}
 pop {r0}
 bx r0

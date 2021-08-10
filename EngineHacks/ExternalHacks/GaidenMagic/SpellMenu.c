@@ -56,6 +56,12 @@ int SpellEffectRoutine(MenuProc* proc, MenuCommandProc* commandProc)
 			unit->ranks[0] = SelectedSpell;
 			}
 		}
+		} 
+		
+		
+		
+		
+		
 		//gActionData.itemSlotIndex = 0;
 		//DidSelectSpell = 0;
 		//SelectedSpell = 0;
@@ -64,7 +70,7 @@ int SpellEffectRoutine(MenuProc* proc, MenuCommandProc* commandProc)
 		//GaidenBlackMagicUMEffect(NULL,NULL);
 		//return -1;
 		//return 0x27;
-		} 
+
 	
 	
 		// Actual effect. Call the target selection menu and shit.
@@ -89,6 +95,21 @@ int SpellOnHover(MenuProc* proc)
 {
 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	SelectedSpell = spell;
+	
+	//Unit* unit = gActiveUnit;
+	//if ( unit->ranks[0] != SelectedSpell) 
+	//{ 
+	//	int PreviousSelection = unit->ranks[0]; // save 
+	//	for ( int i = 1 ; i < 5 ; i++ ) 
+	//	{ 	
+	//		if (unit->ranks[i] == SelectedSpell) 
+	//		{
+	//		unit->ranks[i] = PreviousSelection;
+	//		unit->ranks[0] = SelectedSpell;
+	//		}
+	//	}
+	//}
+	
 	
 	//UpdateMenuItemPanel(proc); // We're gonna rewrite and inline this instead.
 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
@@ -185,6 +206,8 @@ void NewMenuRText(MenuProc* menuProc, MenuCommandProc* commandProc) // Autohook 
 
 void NewExitBattleForecast(Proc* proc)
 {
+	
+	
 	// If they were using the magic menu. Return there.
 	// The only thing the UM effect uses the procs for is error R-text which shouldn't be possible if we've exited the forecast.
 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }

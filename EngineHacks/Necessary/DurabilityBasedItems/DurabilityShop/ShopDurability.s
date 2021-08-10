@@ -98,7 +98,25 @@ b LoopStart
 
 LoopExit:
 @we are on the list, so just return cost per use
-mov r0,r5
+@ r0 is our ID 
+cmp r0, #0xF7 @ SkillScroll 
+bne DoCostByItemIndex
+mov r0, r5 
+b Cost_GoBack
+
+DoCostByItemIndex:
+@ r0 is our ID 
+@mov r11, r11
+mov r1, #0xFF 
+lsr r0, r4, #8 
+and r0, r1 
+
+@ r0 is durability / our item ID 
+mov r1,#36
+mul r1, r0 @ Offset 
+ldr r3,=ItemTable
+add r3,r1,r3
+ldrh r0,[r3,#0x1A] @ Cost per use of that item 
 b Cost_GoBack
 
 .ltorg

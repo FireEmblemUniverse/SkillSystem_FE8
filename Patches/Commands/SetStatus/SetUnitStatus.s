@@ -28,6 +28,7 @@ SetUnitStatus:
 	ldr 	r0, [r7, #4*0x01]	@What unit are we examining?
 	blh 	GetUnitByEventParameter
 	mov 	r5, r0 				@Copy unit pointer to r5 
+	@mov r11, r11
 	cmp 	r5, #0x0
 	beq 	Error
 	
@@ -99,4 +100,5 @@ Return:
 	blh  0x08019c3c   @UpdateGameTilesGraphics
 Term:
 	pop {r4-r7}
-	pop	{pc}
+	pop	{r1}
+	bx r1 

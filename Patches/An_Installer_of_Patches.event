@@ -2,6 +2,7 @@
 //#include "AIWeaponsHack/AIWeaponsHack.event"
 
 
+#include "ContinueBattleBGM_20200919/Installer.event"
 
 #include "TrainerDeathFlags/Installer.event"
 
@@ -81,7 +82,7 @@
 
 
 
-//#include "FillAIRangeMapFix/FillAIDangerMap.event"
+#include "FillAIRangeMapFix/FillAIDangerMap.event"
 
 
 #include "TutorialDisabler.event"

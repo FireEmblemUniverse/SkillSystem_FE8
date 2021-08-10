@@ -215,11 +215,11 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(30, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(19, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
 Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(29, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+//Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
@@ -322,8 +322,8 @@ AutoLevelUnits(3, True, 0x120) // all
 //MNC2 PalletCh 
 //MNC2 PokecenterCh 
 //MNC2 Route1Ch 
-//MNC2 Route2SCh
-MNC2 ViridianForestNCh
+MNC2 Route2SCh
+//MNC2 ViridianForestNCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh
 NoFade

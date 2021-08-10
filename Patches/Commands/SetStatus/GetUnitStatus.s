@@ -86,4 +86,5 @@ Return:
 	
 Term:
 	pop {r4-r7}
-	pop	{pc}
+	pop	{r1}
+	bx r1

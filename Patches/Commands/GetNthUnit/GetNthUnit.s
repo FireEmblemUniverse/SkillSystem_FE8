@@ -27,6 +27,11 @@ mov r5,#0 @ counter
 ldr r0, =MemorySlot 
 ldr r6, [r0, #4*0x01] @s1 as what valid deployment # to stop at
 						@eg. the 5th valid unit 
+
+mov r1, #0 
+str r1, [r0, #4*0x0C] @ Return 0 if no unit 
+						
+						
 cmp r6, #0
 beq End_LoopThroughUnits
 cmp r6, #0x3F 

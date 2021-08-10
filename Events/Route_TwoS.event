@@ -25,8 +25,12 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventNPC(0,GlobalNPCTurnEvent,0,255) // placeholder
+TurnEventEnemy(0,GlobalEnemyTurnEvent,0,255)// placeholder
 TurnEventPlayer(0,ReinforcementEvent,0,255)
 
+TurnEventNPC(0,TurnNPCsToEnemies,0,255)
+TurnEventEnemy(0,TurnEnemiesToNPCs,0,255)
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -53,6 +57,9 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToViridianForestS [5,10] [6,10] 
 AREA 0 ToViridian [7,36] [11,36] 
 AREA 0 ToRoute2N [18,5] [19,5] 
+AREA 0xA RivalEncounter [2,22] [13,35] 
+AFEV 0 RivalBattleEnd 0
+
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -139,12 +146,137 @@ AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 CALL SetBushHpEvent
-MOVE 65535 Eirika [9,23]
-ENUN
 
+SVAL r2 GaryRoute2SDefeatedFlag
+CALL InitiateCutscene
+BNE 10 rC r0 
+LOAD1 0x1 GaryNPCUnitGroup
+ENUN 
+// Cutscene is true 
+//StopHere 
+//SetUnitStatus(0x01, CurrentHP, 5)
+SetUnitStatus(0x02, CurrentHP, 5)
+SetUnitStatus(0x0F, CurrentHP, 5)
+
+ASMC 0x80225F9 // End player phase 
+
+
+LABEL 10 
 LABEL 0x63
 NoFade
 ENDA
+
+RivalEncounter: 
+CHECK_EVENTID PlayableCutsceneFlag
+BEQ 0x63 rC r0 
+CHECK_EVENTID GaryRoute2SDefeatedFlag
+BNE 0x63 rC r0 
+//ENUT 0xA 
+
+CAM1 [8,27]
+
+//UNCR(0x7FFF, 0x42) // Refresh active 
+//SET_ACTIVE 0
+
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+
+Write_Byte(BulbasaurID, GaryStarterClass)
+
+SCOORD rB [9,27]
+CALL CamSlotB
+SCOORD rB [9,27]
+
+Read_Byte(GaryStarterClass)
+SADD r2 rC r0 
+Text(GaryRoute2SChallengeText)
+SVAL r1 BulbasaurID // Bulbasaur 
+BNE BulbasaurID r2 r1 
+// TRUE 
+
+SVAL r2 GaryBulbasaurUnit|IsPointer
+CALL SendOutPkmnSlotB
+
+GOTO 10
+LABEL BulbasaurID 
+
+SVAL r1 SquirtleID // Bulbasaur 
+BNE SquirtleID r2 r1 
+
+SVAL r2 GarySquirtleUnit|IsPointer
+CALL SendOutPkmnSlotB
+
+GOTO 10
+LABEL SquirtleID 
+
+SVAL r1 CharmanderID // Bulbasaur 
+BNE CharmanderID r2 r1 
+
+SVAL r2 GaryCharmanderUnit|IsPointer
+CALL SendOutPkmnSlotB
+
+
+GOTO 10
+LABEL CharmanderID 
+
+LABEL 10 
+
+SCOORD rB [10,28]
+SVAL r2 GaryPidgeyUnit|IsPointer
+CALL SendOutPkmnSlotB
+SCOORD rB [8,28]
+SVAL r2 GaryWeedleUnit|IsPointer
+CALL SendOutPkmnSlotB
+SCOORD rB [9,29]
+SVAL r2 GaryRattataUnit|IsPointer
+CALL SendOutPkmnSlotB
+
+AutoLevelUnits(TrainerL, True, 0x90EF) 
+
+LABEL 0x63 
+NoFade 
+ENDA 
+
+
+
+
+
+
+
+
+RivalBattleEnd:
+CHECK_EVENTID PlayableCutsceneFlag // Are we battling? 
+BEQ 0x63 rC r0 
+CHECK_ALIVE 0xA0 //0xD0 A1 a2 
+BNE 0x63 rC r0 // if they are alive, jump to label 0x63 
+CHECK_ALIVE 0xA1  
+BNE 0x63 rC r0 
+CHECK_ALIVE 0xA2  
+BNE 0x63 rC r0 
+CHECK_ALIVE 0xD0  
+BNE 0x63 rC r0 
+// All 4 of his pokemon are fainted 
+
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+
+Text(GaryRoute2SDefeatText)
+SVAL r3 1250 
+GIVETOMAIN 0 
+DISA 0xFA // Gary unit 
+ENUF PlayableCutsceneFlag
+ENUT GaryRoute2SDefeatedFlag
+
+LABEL 10 
+CALL HealPartyWithSFXEvent
+
+
+
+LABEL 0x63 
+NoFade 
+ENDA 
+
+
 
 
 
@@ -195,6 +327,33 @@ ReinforcementUnits:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
+GaryNPCUnitGroup:
+UNIT 0xFA GaryID 0x0 Level(1, NPC, 1)   [10,27] 0b	0x0 0x01 REDA10R27 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT
+
+GaryBulbasaurUnit:
+UNIT 0xD0 BulbasaurID 0x0 Level(1, Enemy, 1)   [9,27] 0b	0x0 0x01 REDA9R27 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+GarySquirtleUnit:
+UNIT 0xD0 SquirtleID 0x0 Level(1, Enemy, 1)   [9,27] 0b	0x0 0x01 REDA9R27 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+GaryCharmanderUnit:
+UNIT 0xD0 CharmanderID 0x0 Level(1, Enemy, 1)   [9,27] 0b	0x0 0x01 REDA9R27 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+GaryPidgeyUnit:
+UNIT 0xA0 PidgeyID 0xD0 Level(1, Enemy, 1)   [10,28] 0b	0x0 0x01 REDA10R28 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+GaryWeedleUnit:
+UNIT 0xA1 WeedleID 0xD0 Level(1, Enemy, 1)   [8,28] 0b	0x0 0x01 REDA8R28 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+GaryRattataUnit:
+UNIT 0xA2 RattataID 0xD0 Level(1, Enemy, 1)   [9,29] 0b	0x0 0x01 REDA9R29 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
 
 	
 #undef GenericA 

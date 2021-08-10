@@ -89,8 +89,17 @@ cmp r0, r5
 beq SpellMenuDefending
 	ldr r1, =SelectedSpell
 	ldrb r0, [ r1 ]
+	
+	
+	cmp r0, #0  @ Vesly added 
+	beq SpellMenuDefending @ - mmb/stat screen case 
+	
+	
+	
+	
 	b WriteSpell
 SpellMenuDefending:
+	mov r0, r5 
 	@ r0 is already the defense struct, so...
 	bl GetFirstAttackSpell
 	cmp r0, #0x00
@@ -103,6 +112,12 @@ SkipOrr:
 mov r2, r5
 add r2, r2, #0x48
 mov r1, #0x1
+
+@mov r0, #0xFF 
+@lsl r0, #8 
+@add r0, #2 @ Barrage item 
+
+
 strh r0, [ r2 ]
 mov r0, r9
 strb r1, [ r0 ] @ Set CanCounter.

@@ -21,6 +21,43 @@
 #define WepRamLocat 0x30017C0 
 
 
+
+/*
+08040dcc AiSetMovCostTableWithPassableWalls
+08040e04 .thumb
+08040e04 AiSetMovCostTableWithTerrainSetAsPassable
+08040e68 .thumb
+08040e68 InitAiMoveMapForUnit
+08040f28 .thumb
+08040f28 AiMapRangeFillMovementWithPassableWalls
+08040f88 .thumb
+08040f88 InitAiRangeMoveMapForUnitWithDoorsPassable
+*/
+
+/*
+// 0803d450 AiTryDoOffensiveAction 
+08039c20 AiSetDecision
+08039c64 .thumb
+08039c64 AiUpdateDecision
+08039cac .thumb
+// Lag testing - 
+08039cac AiMasterDecisionMaker - break here first, then break on 08039c20 AiSetDecision
+08039d10 .thumb
+*/
+
+
+#define Halt "CALL StopHereEvent"
+#define Break "CALL StopHereEvent"
+#define Stop "CALL StopHereEvent"
+#define StopHere "CALL StopHereEvent"
+
+StopHereEvent:
+EVBIT_F 2 
+FADI 16 
+Text(DebugTextHere)
+NoFade 
+ENDA 
+
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
 GenericEffect(0, TestCase) // This does work 
@@ -42,7 +79,7 @@ CHECK_EVENTID -1 // Flag in s2
 BNE 0x63 rC r0 // End if flag is on 
 ENUT PlayableCutsceneFlag // Prevent "Call" 
 
-
+SVAL rC 0 // True 
 LABEL 0x63 
 NoFade 
 ENDA 
@@ -77,12 +114,13 @@ GOTO 0x63
 LABEL 0 
 CHECK_HARD 
 BEQ 1 rC r0 
-AutoLevelUnits(11, False, 0x90EF) // Not wilds given +11 invisible levels on hard 
+AutoLevelUnits(8, False, 0x90EF) // Not wilds given +8 invisible levels on hard 
 GOTO 0x63 
 LABEL 1 
-AutoLevelUnits(6, False, 0x90EF) // Not wilds given +6 invisible levels on normal 
+AutoLevelUnits(3, False, 0x90EF) // Not wilds given +3 invisible levels on normal 
 LABEL 0x63 
 ASMC RemoveFoughtTrainers
+//SADD r2 rC r0 // Don't think this is necessary even though rC is pretty volatile 
 NoFade 
 ENDA 
 
@@ -166,6 +204,68 @@ NoFade
 ENDA 
 
 
+GlobalNPCTurnEvent:
+NoFade
+ENDA 
+GlobalEnemyTurnEvent:
+NoFade
+ENDA 
+
+
+HealPartyWithSFXEvent:
+_MUSICSOMETHING 0x7FFF 
+SOUN 0x19 // Pokecenter chime 
+CALL HealPartyEvent 
+SET_ACTIVE 0
+ASMC 0x80225F9 // End player phase 
+NoFade 
+ENDA 
+
+
+HealPartyEvent:
+GetUnitStatus(0x101, MaxHP)
+SADD r5 rC r0 
+SetUnitStatus(0x101, CurrentHP) 
+GetUnitStatus(0x102, MaxHP)
+SADD r5 rC r0 
+SetUnitStatus(0x102, CurrentHP) 
+GetUnitStatus(0x103, MaxHP)
+SADD r5 rC r0 
+SetUnitStatus(0x103, CurrentHP) 
+GetUnitStatus(0x104, MaxHP)
+SADD r5 rC r0 
+SetUnitStatus(0x104, CurrentHP) 
+GetUnitStatus(0x105, MaxHP)
+SADD r5 rC r0 
+SetUnitStatus(0x105, CurrentHP) 
+GetUnitStatus(0x106, MaxHP)
+SADD r5 rC r0 
+SetUnitStatus(0x106, CurrentHP) 
+NoFade 
+ENDA 
+
+TurnNPCsToEnemies:
+CHECK_EVENTID PlayableCutsceneFlag
+BEQ 0 rC r0 
+CUSE 0xFA 
+CUSE 0xFB 
+CUSE 0xFC 
+CUSE 0xFD 
+LABEL 0 
+NoFade 
+ENDA 
+
+TurnEnemiesToNPCs:
+CHECK_EVENTID PlayableCutsceneFlag
+BEQ 0 rC r0 
+CUSN 0xFA 
+CUSN 0xFB 
+CUSN 0xFC 
+CUSN 0xFD 
+LABEL 0 
+NoFade 
+ENDA 
+
 #define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
 
 
@@ -187,6 +287,8 @@ If AI2 counter is equal or greater than TurnToOccur, load unit r8 times
 
 
 */
+
+
 
 
 
@@ -355,16 +457,8 @@ Label 0x63
 NoFade
 ENDA 
 
-#define Halt "CALL StopHere"
-#define Break "CALL StopHere"
-#define Stop "CALL StopHere"
 
-StopHere:
-EVBIT_F 2 
-FADI 1 
-Text(DebugTextHere)
-NoFade 
-ENDA 
+
 
 VisitPokecenter:
 
@@ -431,7 +525,9 @@ EVBIT_F 2
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
 SADD 2 9 0 
+
 MNC2 0xFFFF 
+ENUF PlayableCutsceneFlag 
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
@@ -469,6 +565,7 @@ STAL 22
 RemoveTrap 
 
 DISA 0xFC 
+STAL 10
 NoFade 
 ENDA 
 
@@ -564,7 +661,6 @@ ENDA
 #define EndLabel 63 
 
 CheckDeployed:
-SVAL rC 9
 GetNthUnit(6)
 BEQ Try5Label rC r0 
 LOAD3 0x0 First6Players 
@@ -572,7 +668,6 @@ SVAL r4 6
 GOTO EndLabel
 
 Label Try5Label
-SVAL rC 9
 GetNthUnit(5)
 BEQ Try4Label rC r0 
 LOAD3 0x0 First5Players 
@@ -580,7 +675,6 @@ SVAL r4 5
 GOTO EndLabel 
 
 Label Try4Label
-SVAL rC 9
 GetNthUnit(4)
 BEQ Try3Label rC r0 
 LOAD3 0x0 First4Players 
@@ -588,7 +682,6 @@ SVAL r4 4
 GOTO EndLabel 
 
 Label Try3Label
-SVAL rC 9
 GetNthUnit(3)
 BEQ Try2Label rC r0 
 LOAD3 0x0 First3Players 
@@ -596,7 +689,6 @@ SVAL r4 3
 GOTO EndLabel 
 
 Label Try2Label
-SVAL rC 9
 GetNthUnit(2)
 BEQ Try1Label rC r0 
 LOAD3 0x0 First2Players 

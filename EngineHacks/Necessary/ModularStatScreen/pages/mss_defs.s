@@ -665,6 +665,8 @@
   mov     r2,#0xC1        @0808756C
   lsl     r2,r2,#0x6        @0808756E
   blh      0x80D74A0        @08087570
+  @ around here it gets the weapon ? 
+  
   ldr     r0,[r6,#0xC]        @08087574
   add     r0,#0x1E        @08087576
   add     r0,r0,r4        @08087578

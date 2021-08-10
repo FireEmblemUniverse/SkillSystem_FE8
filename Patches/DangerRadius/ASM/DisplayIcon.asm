@@ -23,6 +23,12 @@ bne   Return
   mov   r1, #0x40
   tst   r0, r1
   bne   Return
+  
+	VeslyAddedCheck: @ Don't do DR for unit IDs greater or equal to 0xF0
+	ldr   r1, [r4] @Unit pointer 
+	ldrb  r1, [r1, #4] @Unit ID 
+	cmp   r1, #0xF0
+	bge   Return
 
     @ Check whether DR-bit is set.
     ldrb  r0, [r4, r6]

@@ -120,8 +120,8 @@ Your party is completely full.[A][X]
 # 0x09E9
 [OpenMidRight][LoadOak][OpenRight]There's no running from a Trainer![A][X]
 
-# 0x09EA
-[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hah, I wondered when[NL]
+## GaryRoute2SChallengeText
+[OpenRight][LoadGaryPoint][OpenRight]Hah, I wondered when[NL]
 you'd show up.[A][NL]
 I've already caught 4 Pokemon![NL]
 How many have you caught?[A][X]
@@ -138,7 +138,7 @@ You drop your remaining credits.[A][X]
 # 0x09EE
 Pokecenter up ahead.[A][X]
 
-# 0x09EF
+## GaryRoute2SDefeatText
 [OpenMidLeft][LoadGaryShrug][OpenMidLeft]Whatever, man.[NL]
 I was goin' easy on ya.[A][X]
 
@@ -146,7 +146,7 @@ I was goin' easy on ya.[A][X]
 Big Pokemon can catch little ones.[NL]
           - Trainer's Tips[A][X]
 		  
-# 0x09F1
+## ViridianForestNBirdkeeperText
 [OpenMidLeft][LoadBirdkeeper][OpenMidLeft]We won't let anyone through![NL]
 This is our turf, now.[A][NL][NL]
 Quick, form a [ToggleRed]line of defense[ToggleRed]![A][X]

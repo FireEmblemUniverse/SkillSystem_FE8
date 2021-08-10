@@ -10,7 +10,7 @@ MSS_page2:
 
 page_start
 
-draw_stats_box
+draw_stats_box @ at bottom of page 
 
 draw_items_text
 

@@ -94,7 +94,7 @@ Traps1:
 //CoinsTrap(28,14,ChapterID*2,350)
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
-//CutBush(4,2)
+CutBush(11,13)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
@@ -138,7 +138,7 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  & bushes
 
 CALL SetBushHpEvent
 
-CALL StopHere
+
 
 LABEL 0x63
 NoFade

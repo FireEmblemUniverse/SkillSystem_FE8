@@ -143,6 +143,7 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(3,11,7,24))  //w
 //OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
 AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 
+// Count trainer flags asmc ? 
 
 LOAD1 0x1 EnemyTrainersA
 ENUN
@@ -156,6 +157,7 @@ LOAD1 0x1 EnemyTrainersD
 ENUN 
 LOAD1 0x1 EnemyTrainersE
 ENUN  
+
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 
 //FADU 7 
@@ -163,6 +165,14 @@ AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels
 //TutText(0x9d5)
 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+// Returns # of trainers on map in rC
+BEQ 10 rC r0 
+// If trainers exist, do stuff 
+//StopHere
+Text(ViridianForestBG,ViridianForestNBirdkeeperText)
+
+
+LABEL 10 
 
 
 CALL SetBushHpEvent

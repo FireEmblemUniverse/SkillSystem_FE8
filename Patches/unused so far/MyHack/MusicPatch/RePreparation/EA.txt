@@ -1,0 +1,43 @@
+
+PUSH
+
+ORG  0x988c6
+B(0x09893a)
+WORD $46874800
+POIN Change0pre
+
+ORG  0x340cc
+BL(0x988c8)
+ORG  0x988c2
+BL(0x988c8)
+ORG  0xa46ee
+BL(0x988c8)
+ORG  0xa5738
+BL(0x988c8)
+
+
+ORG  0xb6910
+WORD $468F4900
+POIN Change1pre
+
+
+ORG 0xB692A
+B(0xB70BA)
+WORD $46874800
+POIN Change2pre
+
+ORG  0x9ef6e
+BL($B692C)
+ORG  0xd13d2
+BL($B692C)
+
+
+POP
+
+Change0pre:
+ #incbin c0p.gba
+Change1pre:
+ #incbin c1p.gba
+
+Change2pre:
+ #incbin c2p.gba

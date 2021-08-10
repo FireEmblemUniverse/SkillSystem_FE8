@@ -1,0 +1,12 @@
+
+PUSH
+ORG 0x5F6C
+#incbin "Allow 254 generic minimugs_Graphics.dmp"
+POIN MiniMugs_Table
+POP
+
+PUSH
+ORG 0x5F9C
+#incbin "Allow 254 generic minimugs_Palette.dmp"
+POIN MiniMugs_Table
+POP

@@ -1,0 +1,33 @@
+// 16FB8 - GetItemHealAmount
+
+// If item not in any list will default to Heal (+ 10)
+
+ALIGN 4
+
+// Recovery + 20
+MendItemList:
+BYTE Mend 0x0
+
+ALIGN 4
+
+// Recovery + 80 (full heal)
+RecoverItemList:
+BYTE Recover Fortify 0x0
+
+PUSH
+ORG 0x16FB8
+jumpToHack(NewHealAmount)
+POP
+
+ALIGN 4
+NewHealAmount:
+#incbin "GetItemHealAmount.dmp"
+POIN MendItemList
+POIN RecoverItemList
+#ifdef USE_STRMAG_SPLIT
+POIN 0x191B8 + 1 // get unit mag
+#endif
+#ifndef USE_STRMAG_SPLIT
+POIN 0x191B0 + 1 // get unit pow
+#endif
+POIN ItemTable

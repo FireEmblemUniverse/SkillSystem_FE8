@@ -74,7 +74,8 @@ ENDA
 
 
 VisitGaryHouse:
-VillageEvent(EnterGaryHouseText, GaryHouseBG)
+TutText(GaryHouseBG,EnterGaryHouseText)
+
 //CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
 //SupplyItemWithDurability(Vulnerary,1)
 //SupplyItemWithDurability(Vulnerary,1)

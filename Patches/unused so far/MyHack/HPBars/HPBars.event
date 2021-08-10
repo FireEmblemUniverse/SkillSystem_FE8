@@ -1,0 +1,66 @@
+
+#ifndef HP_BAR_PALETTES
+
+	#define HP_BAR_PALETTES
+	/* You can ignore these notes if you like.
+	Credit to Xenith and Fatih for a lot of the initial research.
+	There is an array of palettes (32 bytes each) at $802B04.
+	[0] = player HP bar												These 4 seem to be gotten at 0x08050F5C. Allegiance is gotten to get the correct palette from the array.
+	[1] = enemy HP bar												Also at 0x08050FA0? There seem to be different calls for both sides of the screen.
+	[2] = NPC HP bar												Also at 0x080545F8, though this seems to be tied to the flashing animation.
+	[3] = ??? (Other allegiance HP bar probably)					And another hit at 0x08054638.
+
+	$802B84 = When struck palette (for all factions apparently)		Loaded at 0x080544B0 (left) and at 0x080544DE (right).
+
+	Another array of palettes (32 bytes each) at $802BC4.
+	[0] = player HP bar flashing									Loaded at 0x08054610. Another hit at 0x0805464A.
+	[1] = enemy HP bar flashing
+	[2] = NPC HP bar flashing
+	[3] = presumably other allegiace HP bar flashing
+
+	0x080715F4
+
+	Changing these changes the palettes in time!
+	Left dark palette is stored "decompressed" at 0x0201F948.
+	Left light palette is stored "decompressed" at 0x0201F978.
+
+	Right dark palette is stored "decompressed" at 0x0201FA08.
+	Right light palette is stored "decompressed" at 0x0201FA38.
+	*/
+
+	// Example palettes:
+	ALIGN 4
+	BlueDarkHPPalette:
+	#incbin "HPBarDarkBlue_pal.dmp"
+
+	ALIGN 4
+	BlueLightHPPalette:
+	#incbin "HPBarLightBlue_pal.dmp"
+
+	ALIGN 4
+	RedDarkHPPalette:
+	#incbin "HPBarDarkRed_pal.dmp"
+
+	ALIGN 4
+	LowRedDarkHPPalette:
+	#incbin "LowHPBarDarkRed.dmp"
+
+	ALIGN 4
+	RedLightHPPalette:
+	#incbin "HPBarLightRed_pal.dmp"
+
+	// Assembled ASM:
+	ALIGN 4
+	#include "HPBarHax.lyn.event"
+	
+	// Table for defining palette behavior.
+	#define HPBarEntry(Allegiance,DarkPalette,LightPalette,Usability) "WORD Allegiance ; POIN DarkPalette LightPalette Usability"
+	ALIGN 4
+	HPBarTable:
+	HPBarEntry(0,BlueDarkHPPalette,LowRedDarkHPPalette,HPBarIsLowHP) // This ASM usability is included at the bottom of the source code.
+	HPBarEntry(0,BlueDarkHPPalette,BlueLightHPPalette,0)
+	HPBarEntry(1,RedDarkHPPalette,RedLightHPPalette,0)
+    HPBarEntry(2,RedDarkHPPalette,RedLightHPPalette,0)
+	HPBarEntry(0xFF,0,0,0)
+
+#endif // HP_BAR_PALETTES

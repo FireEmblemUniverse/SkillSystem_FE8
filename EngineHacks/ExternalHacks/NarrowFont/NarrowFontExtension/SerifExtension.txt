@@ -130,6 +130,8 @@ BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "serifslash.img.bin"
 
+
+/*
 Sglyph_LParen:
 WORD 0x00000000 
 BYTE 0x00 //empty code-page # (no Shift-JIS)
@@ -146,6 +148,7 @@ BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "serifrparen.img.bin"
 
+
 Sglyph_SingleQuote:
 WORD 0x00000000 
 BYTE 0x00 //empty code-page # (no Shift-JIS)
@@ -153,6 +156,7 @@ BYTE 0x3 //character width
 BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "serifsquote.img.bin"
+*/
 
 Sglyph_DoubleQuote:
 WORD 0x00000000 
@@ -178,11 +182,46 @@ tGlyphEntry(0xCC, Sglyph_Colon)
 tGlyphEntry(0xCD, Sglyph_Plus)
 tGlyphEntry(0xCE, Sglyph_Minus)
 tGlyphEntry(0xCF, Sglyph_Slash)
+tGlyphEntry(0xD5, Sglyph_DoubleQuote)
+
+
+/*
 tGlyphEntry(0xD0, Sglyph_LParen)
 tGlyphEntry(0xD1, Sglyph_RParen)
 
+
 tGlyphEntry(0xD4, Sglyph_SingleQuote)
-tGlyphEntry(0xD5, Sglyph_DoubleQuote)
+*/
+
+Sglyph_pokedollaricon:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "pokedollaricon.img.bin"
+
+Sglyph_physicalicon:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "physicalicon.img.bin"
+
+Sglyph_specialicon:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x11 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "specialicon.img.bin"
+
+
+tGlyphEntry(0xD0, Sglyph_physicalicon)
+tGlyphEntry(0xD1, Sglyph_specialicon)
+tGlyphEntry(0xD4, Sglyph_pokedollaricon)
+
 
 
 

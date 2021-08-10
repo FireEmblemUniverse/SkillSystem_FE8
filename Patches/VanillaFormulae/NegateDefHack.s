@@ -45,7 +45,7 @@ mov r1, #100 @ always divide by 100
 @mov r11, r11  @ break point test 
 mov r2, #0x5A
 ldrh r3, [r4, r2] @ Battle attack 
-mov r11, r11 
+@mov r11, r11 
 
 swi 6 @ Div function 
 @ subtract their def by this number 

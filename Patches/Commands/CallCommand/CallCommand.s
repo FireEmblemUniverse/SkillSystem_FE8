@@ -265,7 +265,7 @@ blh CheckEventId
 cmp r0, #0 
 bne Usability_False
 
-mov r0, #85 @ Flag that prevents call 
+mov r0, #0x85 @ Flag that prevents call 
 blh CheckEventId
 cmp r0, #0 
 bne Usability_False

@@ -51,6 +51,7 @@ ldr 	r1, [r5,#ISB_UnitPoin]
 cmp 	r1, r4
 beq end
 
+
 build_buffer:
 @loop through unit's inventory for passive skill items
 mov 	r6, #0x0
@@ -66,9 +67,11 @@ _blr r3
 @bl GetItemPassiveSkill
 cmp 	r0,#0x0
 bne 	Continue
+
 @ Vesly - I added this for Accessories 
-@ It seems to work but I think it gets ran 5x instead of just 1x 
-@ whatever 
+cmp r6, #0 @ Only run the first time I hope 
+bne reloop 
+
 ldr r3, AccessorySkillGetter
 lsl r2, r3, #8 @ chop off |0x08000000
 cmp r2, #0 

@@ -1,9 +1,12 @@
 #include "ExpandAI_Internals.event"
-// Expands AI1 and AI2 lists to 255 entries 
+// Expands AI1 and AI2 lists to 254 entries 
+// 0xFF is reserved as do not change AI 
 // Add new ones here 
 
 // AI 1 list 
 // Vanilla entries take up 0 - 20 
+NewAI1Entry(0, AttackInRangeExceptF0toFF) // Do not target units 0xF0 - 0xFD 
+//NewAI1Entry(0, 0x085A8870) // Vanilla 
 NewAI1Entry(21, DoNothingAI1)
 NewAI1Entry(22, AttackIfEnemyInRange)
 NewAI1Entry(23, AttackIfEnemyInRange)
@@ -26,14 +29,40 @@ NewAI2Entry(25, BeedrilAI_2)
 #define ZoningAI [24,24]
 #define BeedrillAI [25,25]
 
+
+ALIGN 4
+AttackInRangeExceptF0toFF:
+ActionInRangeExcept(DoNotAttackTheseUnits)
+Goto(0)
+
+ALIGN 4
+DoNotAttackTheseUnits:
+SHORT 0xF0
+SHORT 0xF1
+SHORT 0xF2
+SHORT 0xF3
+SHORT 0xF4
+SHORT 0xF5
+SHORT 0xF6
+SHORT 0xF7
+SHORT 0xF8
+SHORT 0xF9
+SHORT 0xFA
+SHORT 0xFB
+SHORT 0xFC
+SHORT 0xFD
+BYTE 0 //byte + align as terminator
+ALIGN 4 
+
+
 ALIGN 4
 Safest_Zoning_AI2:
-SafestMoveTowardsOpponents 
+SafestMoveTowardsOpponentsExcept(DoNotApproachTheseUnits)
 Goto(0)
 
 ALIGN 4
 Less_Safe_Zoning_AI2:
-LessSafeMoveTowardsOpponents
+LessSafeMoveTowardsOpponentsExcept(DoNotApproachTheseUnits)
 Goto(0)
 
 ALIGN 4
@@ -85,24 +114,33 @@ defLocation(25,11) ; }
 
 ALIGN 4
 Within_2_Safest_Zoning_AI2:
-{ ; Routine_AI(WithinTwoActionsRoutine, DoNotAttackTheseUnits) 
+{ ; Routine_AI(WithinTwoActionsRoutine, DoNotApproachTheseUnits) 
 GotoIfLT(1)
 Nop 
 Goto(0)
 Label(1)
 ChangeAI(0xFF, SafeZoneAI2)
 Goto(1)
-
+ALIGN 4 
+}
 
 ALIGN 4
-DoNotAttackTheseUnits:
-SHORT Eirika
-SHORT Seth
-SHORT Ephraim
+DoNotApproachTheseUnits:
+SHORT 0xF0
+SHORT 0xF1
+SHORT 0xF2
+SHORT 0xF3
+SHORT 0xF4
+SHORT 0xF5
+SHORT 0xF6
+SHORT 0xF7
+SHORT 0xF8
+SHORT 0xF9
+SHORT 0xFA
+SHORT 0xFB
+SHORT 0xFC
+SHORT 0xFD
 BYTE 0 //byte + align as terminator
-ALIGN 4 ; } 
-
-
-
+ALIGN 4 
 
 

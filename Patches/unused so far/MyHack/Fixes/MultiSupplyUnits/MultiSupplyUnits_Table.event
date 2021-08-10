@@ -1,0 +1,8 @@
+#define SupplyEntry(arg000,arg001,arg002,arg003) "BYTE arg000 00 arg001 arg002; SHORT arg003 00; "
+// UnitID, flag, mode, terminator
+
+MultiSupplyUnits_Table:
+SupplyEntry(Sanders,0xFF,0x01,0x0)
+SupplyEntry(Donnalen,0xFF,0x1,0x0)
+SupplyEntry(Devvy,0xFF,0x1,0x0)
+SupplyEntry(0x0,0x0,0x0,0x0)    // term

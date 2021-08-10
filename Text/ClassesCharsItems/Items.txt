@@ -559,7 +559,7 @@ Chip damage. Debuffs Str by 4.[X]
 # 0x0415
 Effective against cavalry.[X]
 # 0x0416
-A weak whipping attack. Str+2.[X]
+*{(} A weak whipping attack.[X]
 # 0x0417
 The Sacred Twin ice blade. Res +5.[X]
 # 0x0418
@@ -567,7 +567,7 @@ Capable of indirect attacks.[X]
 # 0x0419
  [.][X]
 # 0x041A
-The user attacks with its head. Str+2.[X]
+*{(} The user attacks with its head.[X]
 # 0x041B
  [.][X]
 # 0x041C
@@ -583,7 +583,7 @@ Effective against cavalry.[X]
 # 0x0421
 Doubles as ranged attack.[.][X]
 # 0x0422
-A powerful punch. Str+3.[X]
+*{(} A powerful punch.[X]
 # 0x0423
 Strong against axes.[X]
 # 0x0424
@@ -603,9 +603,9 @@ Doubles as ranged attack.[.][X]
 # 0x042B
  [.][X]
 # 0x042C
-Debuffs Luk. Str+2.[X]
+*{(} Debuffs Luk.[X]
 # 0x042D
-Strike first if equipped. Str+2.[X]
+*{(} Strike first if equipped.[X]
 # 0x042E
 Can strike consecutively.[.][X]
 # 0x042F
@@ -615,11 +615,11 @@ Effective against cavalry.[X]
 # 0x0431
 Chip damage. Debuffs Skl by 4.[X]
 # 0x0432
-A weak scratch. Str+2.[X]
+*{(} A weak scratch.[X]
 # 0x0433
 Doubles as ranged attack.[.][X]
 # 0x0434
-A full body slam. Str+3.[.][X]
+*{(} A full body slam.[.][X]
 # 0x0435
 Strong against swords.[X]
 # 0x0436
@@ -631,7 +631,7 @@ The Sacred Twin black axe. Spd +5.[X]
 # 0x0439
 Strong, but difficult to wield.[.][X]
 # 0x043A
-A special pulse of power. Mag+2.[.][X]
+*{)} A special pulse of power.[.][X]
 # 0x043B
  [.][X]
 # 0x043C
@@ -639,7 +639,7 @@ A special pulse of power. Mag+2.[.][X]
 # 0x043D
  [.][X]
 # 0x043E
-A weak full-body attack. Str+2.[X]
+*{(} A weak full-body attack.[X]
 # 0x043F
 Chip damage. Debuffs Def by 4. [X]
 # 0x0440
@@ -649,7 +649,7 @@ Improves critical hit rate.[.][X]
 # 0x0442
 Extended attack range.[X]
 # 0x0443
-A weak flame. Mag+2.[X]
+*{)} A weak flame.[X]
 # 0x0444
 Super long-range weapon.[X]
 # 0x0445
@@ -665,20 +665,20 @@ DUMMY[.][X]
 # 0x044A
 A malefic [X]
 # 0x044B
-A low blow. Str+2.[X]
+*{(} A low blow.[X]
 # 0x044C
 Lulls all enemies within range[NL]
 into a deep slumber.[X]
 # 0x044D
-A weak jolt of electricity. Mag+2.[X]
+*{)} A weak jolt of electricity.[X]
 # 0x044E
-Debuffs Res by 4. Mag+2.[X]
+*{)} Debuffs Res by 4.[X]
 # 0x044F
 A foul talon meant to rend flesh.[.][X]
 # 0x0450
 A claw dripping with poison.[X]
 # 0x0451
-A weak, venomous sting. Str+2.[X]
+*{(} A weak, venomous sting.[X]
 # 0x0452
 A sharp, piercing fang.[.][X]
 # 0x0453
@@ -691,7 +691,7 @@ Effective against monsters.[.][X]
 # 0x0456
 Effective against monsters.[.][X]
 # 0x0457
-A flurry of leaves. Str+3[X]
+*{(} A flurry of leaves.[X]
 # 0x0458
  [.][X]
 # 0x0459
@@ -699,29 +699,29 @@ A flurry of leaves. Str+3[X]
 # 0x045A
  [.][X]
 # 0x045B
-Debuffs enemy Str. Str+2[X]
+*{(} Debuffs enemy Str.[X]
 # 0x045C
 Long-range lightning strike.[X]
 # 0x045D
  [.][X]
 # 0x045E
-A weak spout of water. Mag+3.[X]
+*{)} A weak spout of water.[X]
 # 0x045F
  [.][X]
 # 0x0460
  [.][X]
 # 0x0461
-A powerful stream of bubbles. Mag+3.[X]
+*{)} A powerful stream of bubbles.[X]
 # 0x0462
 Long-range magic attack.[X]
 # 0x0463
  [.][X]
 # 0x0464
-An electric punch. Str+3.[X]
+*{(} An electric punch.[X]
 # 0x0465
  [.][X]
 # 0x0466
-Saps some health. Mag+2.[X]
+*{)} Saps some health.[X]
 # 0x0467
 Drains enemy HP into caster.[X]
 # 0x0468
@@ -729,13 +729,13 @@ Reduces enemy HP by half.[.][X]
 # 0x0469
  [.][X]
 # 0x046A
-A flurry of leaves. Mag+2.[X]
+*{)} A flurry of leaves.[X]
 # 0x046B
  [.][X]
 # 0x046C
 Turns targets to stone for a while.[.][X]
 # 0x046D
-A powerful, venomous jab. Str+3.[X]
+*{(} A powerful, venomous jab.[X]
 # 0x046E
  [.][X]
 # 0x046F
@@ -1077,7 +1077,7 @@ Hits with 50% Atk 2-5 times.[X]
 # 0x1100
 Bubble[X]
 # 0x1101
-A weak froth of bubbles. Mag+2.[X]
+*{)} A weak froth of bubbles.[X]
 # 0x1102
 Waterfall[X]
 
@@ -1094,7 +1094,7 @@ Fissure[X]
 # 0x110A
 Magnitude[X]
 # 0x110B
-A small quake. Mag+2.[X]
+*{)} A small quake.[X]
 # 0x110C
 Earth Power[X]
 
@@ -1107,15 +1107,15 @@ Fly[X]
 # 0x1112
 Gust[X]
 # 0x1113
-A weak gust of wind. Mag+2[X]
+*{)} A weak gust of wind.[X]
 # 0x1114
 Peck[X]
 # 0x1115
-A small peck on the cheek! Str+2[X]
+*{(} A small peck on the cheek![X]
 # 0x1116
 Sky Attack[X]
 # 0x1117
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)} Placeholder description.[X]
 # 0x1118
 Mirror Move[X]
 # 0x1119
@@ -1123,51 +1123,51 @@ Wing Attack[X]
 # 0x111A
 Wing Attack[X]
 # 0x111B
-A strong, winged attack. Str+3.[X]
+*{(} A strong, winged attack.[X]
 # 0x111C
 Agility[X]
 # 0x111D
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x111E
 Amnesia[X]
 # 0x111F
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1120
 Barrier[X]
 # 0x1121
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1122
 Confusion[X]
 # 0x1123
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1124
 Dream Eater[X]
 # 0x1125
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1126
 Hypnosis[X]
 # 0x1127
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1128
 Light Screen[X]
 # 0x1129
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x112A
 Reflect[X]
 # 0x112B
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x112C
 Psybeam[X]
 # 0x112D
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x112E
 Psychic[X]
 # 0x112F
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1130
 Rest[X]
 # 0x1131
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1132
 Teleport[X]
 # 0x1133
@@ -1175,103 +1175,103 @@ Does nothing currently.[X]
 # 0x1134
 Rock Slide[X]
 # 0x1135
-A barrage of rocks. Str+2.[X]
+*{(} A barrage of rocks.[X]
 # 0x1136
 Rock Throw[X]
 # 0x1137
-Thrown rocks. Str+2.[X]
+*{(} Thrown rocks.[X]
 # 0x1138
 Ancientpower[X]
 # 0x1139
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x113A
 Rock Tomb[X]
 # 0x113B
-Debuffs Spd. Str+2.[X]
+*{(} Debuffs Spd.[X]
 # 0x113C
 Rollout[X]
 # 0x113D
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x113E
 Sandstorm[X]
 # 0x113F
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1140
 Confuse Ray[X]
 # 0x1141
-May inflict confusion. Mag+2.[X]
+*{)} May inflict confusion.[X]
 # 0x1142
 Lick[X]
 # 0x1143
-A baffling lick attack. +2 Str.[X]
+*{(}A baffling lick attack.[X]
 # 0x1144
 Night Shade[X]
 # 0x1145
-A ghastly shadow. Mag+2.[X]
+*{)}Placeholder description.[X]
 # 0x1146
 Nightmare[X]
 # 0x1147
-A ghastly shadow. Mag+2.[X]
+*{)}Placeholder description.[X]
 # 0x1148
 Shadow Ball[X]
 # 0x1149
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x114A
 Shadow Punch[X]
 # 0x114B
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x114C
 Dragon Claw[X]
 # 0x114D
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x114E
 Dragon Dance[X]
 # 0x114F
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1150
 Dragon Rage[X]
 # 0x1151
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1152
 Dragonbreath[X]
 # 0x1153
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1154
 Outrage[X]
 # 0x1155
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1156
 Twister[X]
 # 0x1157
-A draconic storm. Mag+2.[X]
+*{)} A draconic storm.[X]
 # 0x1158
 Bug Bite[X]
 # 0x1159
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x115A
 Bug Buzz[X]
 # 0x115B
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x115C
 Fury Cutter[X]
 # 0x115D
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x115E
 Leech Life[X]
 # 0x115F
-Saps a little health. Str+2.[X]
+*{(} Saps a little health.[X]
 # 0x1160
 Megahorn[X]
 # 0x1161
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1162
 Pin Missile[X]
 # 0x1163
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1164
 Signal Beam[X]
 # 0x1165
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1166
 String Shot[X]
 # 0x1167
@@ -1279,17 +1279,17 @@ Chip damage. Debuffs Spd by 4.  [X]
 # 0x1168
 U-Turn[X]
 # 0x1169
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x116A
 X-Scissor[X]
 # 0x116B
-A ghastly shadow. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 
 # 0x116D
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 
 # 0x116F
-A ghastly placeholder. Mag+2. agasdg    [X]
+*{)}Placeholder description.[X]
 # 0x1170
 T[0x0088][0x0096][0x008B][0x0084][0x0085][0x008F] W[0x0081][0x0097][0x0085][X]
 # 0x1171
@@ -1297,11 +1297,11 @@ Chip damage. Greatly debuffs Spd.[X]
 # 0x1172
 Magical Leaf[X]
 # 0x1173
-Perfect accuracy. Mag+3.[X]
+*{)} Perfect accuracy.[X]
 # 0x1174
 Spark[X]
 # 0x1175
-A weak spark. Str+2.[X]
+*{(} A weak spark.[X]
 # 0x1176
 Snarl[X]
 # 0x1177

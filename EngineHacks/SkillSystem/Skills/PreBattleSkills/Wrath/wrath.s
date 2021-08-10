@@ -1,7 +1,15 @@
 .thumb
 .equ WrathID, SkillTester+4
 
-push {r4-r7, lr}
+push {lr}
+
+ldr r3, =WrathID 
+lsl r3, #8 
+lsr r3, #8 
+cmp r3, #0xFF 
+beq End2
+
+push {r4-r7}
 mov r4, r0 @atkr
 mov r5, r1 @dfdr
 
@@ -28,7 +36,10 @@ add r0, #20
 strh r0, [r4,r1]
 
 End:
-pop {r4-r7, r15}
+pop {r4-r7}
+End2:
+pop {pc}
+
 .align
 .ltorg
 SkillTester:

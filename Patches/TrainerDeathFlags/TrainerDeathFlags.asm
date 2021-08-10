@@ -47,7 +47,6 @@ End:
 pop {r0}
 bx r0 
 
-
 .global RemoveFoughtTrainers
 .type RemoveFoughtTrainers, %function
 
@@ -59,7 +58,7 @@ push {r4-r7, lr}
 
 ldr r0, =MemorySlot 
 mov r4, #0x80 
-
+mov r7, #0
 LoopThroughUnits:
 mov r0,r4
 
@@ -91,6 +90,7 @@ bgt NextUnit
 
 ValidUnit:
 @mov r11, r11 
+add r7, #1 
 mov r5, r0 
 mov r6, r1 @ Unit ID we're interested in 
 
@@ -116,7 +116,7 @@ bne NextUnit
 
 mov r0, r5 
 blh 0x80177f4 @ClearUnit
-
+sub r7, #1 
 
 
 
@@ -126,6 +126,8 @@ add r4,#1
 cmp r4,#0xAF
 ble LoopThroughUnits
 End_LoopThroughUnits:
+ldr r3, =MemorySlot
+str r7, [r3, #4*0x0C] @ # of trainers left 
 
 
 pop {r4-r7}
