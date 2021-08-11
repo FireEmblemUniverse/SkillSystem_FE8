@@ -157,10 +157,11 @@ ENUN
 //SetUnitStatus(0x01, CurrentHP, 5)
 SetUnitStatus(0x02, CurrentHP, 5)
 SetUnitStatus(0x0F, CurrentHP, 5)
+SilentGiveItem(0x12, LowKick)
+//ASMC 0x80225F9 // End player phase 
 
-ASMC 0x80225F9 // End player phase 
-
-
+DISA 0xF 
+ASMC 0x080956d9 // Reorder player units 
 LABEL 10 
 LABEL 0x63
 NoFade

@@ -38,6 +38,7 @@ cmp	r0, r1		@check if same character
 bne	End
 
 
+
 @check that we killed the enemy 
 ldrb	r0, [r5,#0x13]	@currhp
 cmp	r0, #0
@@ -60,11 +61,14 @@ strb r0, [r5, r3]
 cmp r3, #0x27 
 blt WipeInventoryLoop
 
-mov r0, #0x1 
-lsl r0, #8 
-add r0, #1  
-mov r3, #0x1E 
-strh r0, [r5, r3] @give unit the auto attack weapon when captured 
+@mov r0, #0x1 
+@lsl r0, #8 
+@add r0, #1  
+@mov r3, #0x1E 
+@strh r0, [r5, r3] @give unit the auto attack weapon when captured - nevermind 
+
+
+
 	
 @remove rescuee/er for player & enemy 
 mov r0, #0
@@ -80,9 +84,10 @@ and		r0,r1
 @mov 	r0, #0
 strb	r0, [r4, #0xC]
 
-@remove 'Dead', 'Rescued' flag 
+@remove 'Dead', 'Undeployed', 'Rescued' flag 
 ldrb 	r0, [r5, #0xC]
-mov		r1,#0x24 
+@ mov		r1,#0x24 
+mov r1, #0x2C @ Undeployed flag, too 
 mvn		r1,r1
 and		r0,r1
 strb	r0, [r5, #0xC]
@@ -95,7 +100,6 @@ lsr r1, r1, #3 @1/8 hp
 lsr r0, #2 @1/4 hp 
 add r0, r1 
 strb 	r0,[r5,#0x13]	
-
 
 
 mov r3, #0x01 @counter 
@@ -112,6 +116,16 @@ pop {r3}
 cmp r0,#0
 bne NextUnit
 
+@push {r3} 
+@blh 0x080956d8 @ReorderPlayerUnitsBasedOnDeployment
+@ not needed afaik 
+@pop {r3} 
+
+
+@ We only continue if we found a result of r0 = 0 
+
+
+
 @ turn into first free player unit id from 0x01 - 0x35 
 mov r1, #0x34 @ Size of each char entry in char table 
 mov r0, r3 
@@ -119,6 +133,11 @@ mul r0, r1
 ldr r1, =#0x8803D30 @unit 0 in char table
 add r1, r0 
 str r1, [r5] 
+
+@ Vesly just added Aug 11 2021 
+@mov r3, #3 
+@strb r3, [r5, #0x0B] @ Make them deployed unit equal to the counter 
+@ nvm, not needed I think 
 
 mov r0, #1
 lsl r0, #8 @0x100 
@@ -179,9 +198,6 @@ End_LoopThroughUnits:
 
 @ run event where unit was caught 
 Event:
-ldr r1, =MemorySlot
-str r0, [r1, #4*0x05] @[30004CC]!!  
-
 mov	r3, #0x00
 ldrb	r0, [r4,#0x11]		@load y coordinate of character
 lsl	r0, #16
@@ -191,11 +207,14 @@ add	r3, r0
 ldr r2, =MemorySlot
 str	r3, [r2, #4*0x0B] 		@and store them in sB for the event engine
 
+@strh r4, [r3, #4*0x0B+0] @ XX
+@strh r5, [r3, #4*0x0B+2] @ YY 
 
 ldr r0, [r5]
 ldrb r0, [r0, #4] 	
 str r0, [r2, #4*0x02] @unit ID in s2 
 
+mov r11, r11 
 
 ldr	r0, =CapturePokemonEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events

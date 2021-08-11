@@ -66,8 +66,9 @@
 
 	#ifndef CAPTURE_SKILL_REQUIRED
 	ALIGN 4
-	Capture_Usability:
-	#incbin "Capture_Usability_Func_NoSkill.dmp"
+	//Capture_Usability:
+	#include "Capture_Usability_Func_NoSkill.lyn.event"
+	//#incbin "Capture_Usability_Func_NoSkill.dmp"
 	POIN Fill_Capture_Range_Map SkillTester
 	WORD CaptureID
 	#endif
@@ -114,7 +115,13 @@
 	ALIGN 4
 	After_Battle_Rescue:
 	#incbin "After_Battle_Rescue.dmp"
-	POIN Is_Capture_Set
+	POIN Vesly_Gaiden_Magic_Is_Capture_Set
+	//POIN Is_Capture_Set
+	
+	ALIGN 4
+	Vesly_Gaiden_Magic_Is_Capture_Set:
+	#incbin "Vesly_Gaiden_Magic_Is_Capture_Set.dmp"
+	
 	
 	ALIGN 4
 	Drop_Dead_Enemy:

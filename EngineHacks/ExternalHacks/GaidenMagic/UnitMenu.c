@@ -8,6 +8,31 @@ int GaidenBlackMagicUMUsability(void) // It's kinda weird that usability is void
 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
 }
 
+extern int *Capture_Usability(void);
+// Vesly added - usability is identical for now 
+int CaptureGaidenBlackMagicUMUsability(void) // It's kinda weird that usability is void, but the other UM functions get the menu proc passed in...
+{
+
+//080171e8 GetUnitRangeMask
+//0801acbc FillMapAttackRangeForUnit
+	if (!(Capture_Usability())) { return 3; }
+
+	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
+}
+
+int CaptureGaidenBlackMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc)
+{
+			// Vesly added 
+	Unit* unit = gActiveUnit;
+	unit->state = unit->state | (1<<30); // Capturing bit 
+			// 
+
+	UsingSpellMenu = BLACK_MAGIC;
+	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,BLACK_MAGIC),proc,commandProc);
+}
+
+
+
 int GaidenWhiteMagicUMUsability(void)
 {
 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,WHITE_MAGIC));
@@ -39,6 +64,10 @@ int GaidenBlackMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc)
 	UsingSpellMenu = BLACK_MAGIC;
 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,BLACK_MAGIC),proc,commandProc);
 }
+
+
+
+
 
 int GaidenWhiteMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc)
 {

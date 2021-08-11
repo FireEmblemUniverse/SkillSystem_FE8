@@ -114,6 +114,12 @@ extern ProcInstruction gProc_TargetSelection; // 0x085B655C.
 
 int GaidenBlackMagicUMUsability(void);
 int GaidenBlackMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc);
+
+// Vesly added 
+int CaptureGaidenBlackMagicUMUsability(void);
+int CaptureGaidenBlackMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc);
+
+
 int GaidenWhiteMagicUMUsability(void);
 int GaidenWhiteMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc);
 static int GaidenMagicUMUsabilityExt(u8* spellList);

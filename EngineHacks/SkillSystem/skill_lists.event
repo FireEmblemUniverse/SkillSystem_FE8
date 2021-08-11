@@ -14,6 +14,12 @@ BYTE 00 00
 BYTE 00 00
 ALIGN 4
 
+TrainerSkillList:
+BYTE 255 WatchfulID 
+BYTE 00 00
+ALIGN 4
+
+
 NPCObjectSkillList:
 BYTE 255 WaryFighterID
 BYTE 255 WatchfulID 

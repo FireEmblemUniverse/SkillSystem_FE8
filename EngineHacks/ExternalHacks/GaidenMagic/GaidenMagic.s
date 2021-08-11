@@ -122,54 +122,54 @@ GaidenMagicUMEffectExt:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r4, r5, r6, lr}	@
-@ UnitMenu.c:50: {
+@ UnitMenu.c:79: {
 	movs	r4, r0	@ spellsList, tmp145
 	subs	r0, r1, #0	@ proc, tmp146,
-@ UnitMenu.c:51: 	if ( proc && commandProc->availability == 2 )
+@ UnitMenu.c:80: 	if ( proc && commandProc->availability == 2 )
 	beq	.L7		@,
-@ UnitMenu.c:51: 	if ( proc && commandProc->availability == 2 )
+@ UnitMenu.c:80: 	if ( proc && commandProc->availability == 2 )
 	adds	r2, r2, #61	@ tmp126,
-@ UnitMenu.c:51: 	if ( proc && commandProc->availability == 2 )
+@ UnitMenu.c:80: 	if ( proc && commandProc->availability == 2 )
 	ldrb	r3, [r2]	@ tmp127,
 	cmp	r3, #2	@ tmp127,
 	bne	.L7		@,
-@ UnitMenu.c:54: 		MenuCallHelpBox(proc,gGaidenMagicUMErrorText);
+@ UnitMenu.c:83: 		MenuCallHelpBox(proc,gGaidenMagicUMErrorText);
 	ldr	r3, .L12	@ tmp128,
 	ldrh	r1, [r3]	@ gGaidenMagicUMErrorText, gGaidenMagicUMErrorText
 	ldr	r3, .L12+4	@ tmp130,
 	bl	.L14		@
-@ UnitMenu.c:55: 		return 0x08;
+@ UnitMenu.c:84: 		return 0x08;
 	movs	r0, #8	@ <retval>,
 .L6:
-@ UnitMenu.c:69: }
+@ UnitMenu.c:98: }
 	@ sp needed	@
 	pop	{r1, r2, r4, r5, r6}
 	pop	{r1}
 	bx	r1
 .L7:
-@ UnitMenu.c:59: 		_ResetIconGraphics();
+@ UnitMenu.c:88: 		_ResetIconGraphics();
 	ldr	r3, .L12+8	@ tmp131,
 	bl	.L14		@
-@ UnitMenu.c:60: 		SelectedSpell = spellsList[0];
+@ UnitMenu.c:89: 		SelectedSpell = spellsList[0];
 	ldrb	r2, [r4]	@ _3, *spellsList_14(D)
-@ UnitMenu.c:60: 		SelectedSpell = spellsList[0];
+@ UnitMenu.c:89: 		SelectedSpell = spellsList[0];
 	ldr	r3, .L12+12	@ tmp132,
-@ UnitMenu.c:61: 		LoadIconPalettes(4);
+@ UnitMenu.c:90: 		LoadIconPalettes(4);
 	movs	r0, #4	@,
-@ UnitMenu.c:60: 		SelectedSpell = spellsList[0];
+@ UnitMenu.c:89: 		SelectedSpell = spellsList[0];
 	strb	r2, [r3]	@ _3, SelectedSpell
-@ UnitMenu.c:61: 		LoadIconPalettes(4);
+@ UnitMenu.c:90: 		LoadIconPalettes(4);
 	ldr	r3, .L12+16	@ tmp134,
 	bl	.L14		@
-@ UnitMenu.c:62: 		MenuProc* menu = StartMenu(&SpellSelectMenuDefs);
+@ UnitMenu.c:91: 		MenuProc* menu = StartMenu(&SpellSelectMenuDefs);
 	ldr	r3, .L12+20	@ tmp136,
 	ldr	r0, .L12+24	@,
 	bl	.L14		@
-@ UnitMenu.c:64: 		StartFace(0,GetUnitPortraitId(gActiveUnit),0xB0,0xC,2);
+@ UnitMenu.c:93: 		StartFace(0,GetUnitPortraitId(gActiveUnit),0xB0,0xC,2);
 	ldr	r5, .L12+28	@ tmp137,
-@ UnitMenu.c:62: 		MenuProc* menu = StartMenu(&SpellSelectMenuDefs);
+@ UnitMenu.c:91: 		MenuProc* menu = StartMenu(&SpellSelectMenuDefs);
 	movs	r4, r0	@ menu, tmp148
-@ UnitMenu.c:64: 		StartFace(0,GetUnitPortraitId(gActiveUnit),0xB0,0xC,2);
+@ UnitMenu.c:93: 		StartFace(0,GetUnitPortraitId(gActiveUnit),0xB0,0xC,2);
 	ldr	r3, .L12+32	@ tmp138,
 	ldr	r0, [r5]	@, gActiveUnit
 	bl	.L14		@
@@ -181,19 +181,19 @@ GaidenMagicUMEffectExt:
 	adds	r3, r3, #10	@,
 	ldr	r6, .L12+36	@ tmp140,
 	bl	.L15		@
-@ UnitMenu.c:65: 		SetFaceBlinkControlById(0,5);
+@ UnitMenu.c:94: 		SetFaceBlinkControlById(0,5);
 	movs	r1, #5	@,
 	movs	r0, #0	@,
 	ldr	r3, .L12+40	@ tmp141,
 	bl	.L14		@
-@ UnitMenu.c:66: 		ForceMenuItemPanel(menu,gActiveUnit,15,11);
+@ UnitMenu.c:95: 		ForceMenuItemPanel(menu,gActiveUnit,15,11);
 	movs	r0, r4	@, menu
 	movs	r3, #11	@,
 	movs	r2, #15	@,
 	ldr	r1, [r5]	@, gActiveUnit
 	ldr	r4, .L12+44	@ tmp143,
 	bl	.L16		@
-@ UnitMenu.c:67: 		return 0x17;
+@ UnitMenu.c:96: 		return 0x17;
 	movs	r0, #23	@ <retval>,
 	b	.L6		@
 .L13:
@@ -224,22 +224,22 @@ GaidenMagicUMUnhover:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ UnitMenu.c:112: 	if ( !SelectedSpell ) { UsingSpellMenu = 0; } // Don't unset this if we're going to the spell menu.
+@ UnitMenu.c:141: 	if ( !SelectedSpell ) { UsingSpellMenu = 0; } // Don't unset this if we're going to the spell menu.
 	ldr	r3, .L19	@ tmp116,
-@ UnitMenu.c:112: 	if ( !SelectedSpell ) { UsingSpellMenu = 0; } // Don't unset this if we're going to the spell menu.
+@ UnitMenu.c:141: 	if ( !SelectedSpell ) { UsingSpellMenu = 0; } // Don't unset this if we're going to the spell menu.
 	ldrb	r3, [r3]	@ SelectedSpell, SelectedSpell
 	cmp	r3, #0	@ SelectedSpell,
 	bne	.L18		@,
-@ UnitMenu.c:112: 	if ( !SelectedSpell ) { UsingSpellMenu = 0; } // Don't unset this if we're going to the spell menu.
+@ UnitMenu.c:141: 	if ( !SelectedSpell ) { UsingSpellMenu = 0; } // Don't unset this if we're going to the spell menu.
 	ldr	r2, .L19+4	@ tmp118,
 	strb	r3, [r2]	@ SelectedSpell, UsingSpellMenu
 .L18:
-@ UnitMenu.c:115: }
+@ UnitMenu.c:144: }
 	@ sp needed	@
-@ UnitMenu.c:113: 	HideMoveRangeGraphics();
+@ UnitMenu.c:142: 	HideMoveRangeGraphics();
 	ldr	r3, .L19+8	@ tmp121,
 	bl	.L14		@
-@ UnitMenu.c:115: }
+@ UnitMenu.c:144: }
 	movs	r0, #0	@,
 	pop	{r4}
 	pop	{r1}
@@ -554,10 +554,10 @@ SpellsGetterForLevel:
 	ldr	r2, .L76	@ tmp149,
 	lsls	r3, r3, #2	@ tmp151, tmp150,
 	ldr	r5, [r3, r2]	@ ROMList, SpellListTable
-	movs	r3, r0	@ ivtmp.225, unit
+	movs	r3, r0	@ ivtmp.229, unit
 @ SpellSystem.c:12: 	u8* currBuffer = SpellsBuffer;
 	ldr	r4, .L76+4	@ currBuffer,
-	adds	r3, r3, #40	@ ivtmp.225,
+	adds	r3, r3, #40	@ ivtmp.229,
 	adds	r0, r0, #45	@ _55,
 .L57:
 @ SpellSystem.c:18: 		if (unit->ranks[i] != 0) {
@@ -571,8 +571,8 @@ SpellsGetterForLevel:
 	adds	r4, r4, #1	@ currBuffer,
 .L56:
 @ SpellSystem.c:16: 	for ( int i = 0 ; i < 5 ; i++ )	
-	adds	r3, r3, #1	@ ivtmp.225,
-	cmp	r0, r3	@ _55, ivtmp.225
+	adds	r3, r3, #1	@ ivtmp.229,
+	cmp	r0, r3	@ _55, ivtmp.229
 	bne	.L57		@,
 @ SpellSystem.c:27: 	if ( ROMList )
 	cmp	r5, #0	@ ROMList,
@@ -604,7 +604,7 @@ SpellsGetterForLevel:
 	cmp	r6, r3	@ unitLevel, _21
 	bge	.L61		@,
 .L62:
-	adds	r5, r5, #2	@ ivtmp.216,
+	adds	r5, r5, #2	@ ivtmp.220,
 	b	.L59		@
 .L60:
 @ SpellSystem.c:32: 			if ( (level == -1 && unitLevel >= ROMList[i].level) || (level == ROMList[i].level) )
@@ -664,6 +664,57 @@ SpellsGetter:
 	bx	r1
 	.size	SpellsGetter, .-SpellsGetter
 	.align	1
+	.global	CaptureGaidenBlackMagicUMEffect
+	.syntax unified
+	.code	16
+	.thumb_func
+	.fpu softvfp
+	.type	CaptureGaidenBlackMagicUMEffect, %function
+CaptureGaidenBlackMagicUMEffect:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+@ UnitMenu.c:26: 	Unit* unit = gActiveUnit;
+	ldr	r3, .L80	@ tmp120,
+@ UnitMenu.c:24: {
+	push	{r4, r5, r6, lr}	@
+@ UnitMenu.c:24: {
+	movs	r4, r0	@ proc, tmp128
+@ UnitMenu.c:32: }
+	@ sp needed	@
+@ UnitMenu.c:26: 	Unit* unit = gActiveUnit;
+	ldr	r0, [r3]	@ unit, gActiveUnit
+@ UnitMenu.c:27: 	unit->state = unit->state | (1<<30); // Capturing bit 
+	movs	r3, #128	@ tmp123,
+@ UnitMenu.c:24: {
+	movs	r5, r1	@ commandProc, tmp129
+@ UnitMenu.c:30: 	UsingSpellMenu = BLACK_MAGIC;
+	movs	r1, #1	@ tmp125,
+@ UnitMenu.c:27: 	unit->state = unit->state | (1<<30); // Capturing bit 
+	ldr	r2, [r0, #12]	@ tmp133, unit_5->state
+	lsls	r3, r3, #23	@ tmp123, tmp123,
+	orrs	r3, r2	@ tmp121, tmp133
+@ UnitMenu.c:27: 	unit->state = unit->state | (1<<30); // Capturing bit 
+	str	r3, [r0, #12]	@ tmp121, unit_5->state
+@ UnitMenu.c:30: 	UsingSpellMenu = BLACK_MAGIC;
+	ldr	r3, .L80+4	@ tmp124,
+	strb	r1, [r3]	@ tmp125, UsingSpellMenu
+@ UnitMenu.c:31: 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,BLACK_MAGIC),proc,commandProc);
+	bl	SpellsGetter		@
+	movs	r2, r5	@, commandProc
+	movs	r1, r4	@, proc
+	bl	GaidenMagicUMEffectExt		@
+@ UnitMenu.c:32: }
+	pop	{r4, r5, r6}
+	pop	{r1}
+	bx	r1
+.L81:
+	.align	2
+.L80:
+	.word	gActiveUnit
+	.word	UsingSpellMenu
+	.size	CaptureGaidenBlackMagicUMEffect, .-CaptureGaidenBlackMagicUMEffect
+	.align	1
 	.global	GaidenBlackMagicUMEffect
 	.syntax unified
 	.code	16
@@ -675,31 +726,31 @@ GaidenBlackMagicUMEffect:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ UnitMenu.c:38: {
+@ UnitMenu.c:63: {
 	movs	r5, r1	@ commandProc, tmp124
-@ UnitMenu.c:41: }
+@ UnitMenu.c:66: }
 	@ sp needed	@
-@ UnitMenu.c:39: 	UsingSpellMenu = BLACK_MAGIC;
+@ UnitMenu.c:64: 	UsingSpellMenu = BLACK_MAGIC;
 	movs	r1, #1	@ tmp119,
-@ UnitMenu.c:38: {
+@ UnitMenu.c:63: {
 	movs	r4, r0	@ proc, tmp123
-@ UnitMenu.c:39: 	UsingSpellMenu = BLACK_MAGIC;
-	ldr	r3, .L80	@ tmp118,
+@ UnitMenu.c:64: 	UsingSpellMenu = BLACK_MAGIC;
+	ldr	r3, .L83	@ tmp118,
 	strb	r1, [r3]	@ tmp119, UsingSpellMenu
-@ UnitMenu.c:40: 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,BLACK_MAGIC),proc,commandProc);
-	ldr	r3, .L80+4	@ tmp121,
+@ UnitMenu.c:65: 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,BLACK_MAGIC),proc,commandProc);
+	ldr	r3, .L83+4	@ tmp121,
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	SpellsGetter		@
 	movs	r2, r5	@, commandProc
 	movs	r1, r4	@, proc
 	bl	GaidenMagicUMEffectExt		@
-@ UnitMenu.c:41: }
+@ UnitMenu.c:66: }
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L81:
+.L84:
 	.align	2
-.L80:
+.L83:
 	.word	UsingSpellMenu
 	.word	gActiveUnit
 	.size	GaidenBlackMagicUMEffect, .-GaidenBlackMagicUMEffect
@@ -715,31 +766,31 @@ GaidenWhiteMagicUMEffect:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ UnitMenu.c:44: {
+@ UnitMenu.c:73: {
 	movs	r5, r1	@ commandProc, tmp124
-@ UnitMenu.c:47: }
+@ UnitMenu.c:76: }
 	@ sp needed	@
-@ UnitMenu.c:45: 	UsingSpellMenu = WHITE_MAGIC;
+@ UnitMenu.c:74: 	UsingSpellMenu = WHITE_MAGIC;
 	movs	r1, #2	@ tmp119,
-@ UnitMenu.c:44: {
+@ UnitMenu.c:73: {
 	movs	r4, r0	@ proc, tmp123
-@ UnitMenu.c:45: 	UsingSpellMenu = WHITE_MAGIC;
-	ldr	r3, .L83	@ tmp118,
+@ UnitMenu.c:74: 	UsingSpellMenu = WHITE_MAGIC;
+	ldr	r3, .L86	@ tmp118,
 	strb	r1, [r3]	@ tmp119, UsingSpellMenu
-@ UnitMenu.c:46: 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,WHITE_MAGIC),proc,commandProc);
-	ldr	r3, .L83+4	@ tmp121,
+@ UnitMenu.c:75: 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,WHITE_MAGIC),proc,commandProc);
+	ldr	r3, .L86+4	@ tmp121,
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	SpellsGetter		@
 	movs	r2, r5	@, commandProc
 	movs	r1, r4	@, proc
 	bl	GaidenMagicUMEffectExt		@
-@ UnitMenu.c:47: }
+@ UnitMenu.c:76: }
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L84:
+.L87:
 	.align	2
-.L83:
+.L86:
 	.word	UsingSpellMenu
 	.word	gActiveUnit
 	.size	GaidenWhiteMagicUMEffect, .-GaidenWhiteMagicUMEffect
@@ -756,7 +807,7 @@ NewGetUnitUseFlags:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	movs	r3, r0	@ _72, unit
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-	movs	r6, r0	@ ivtmp.247, unit
+	movs	r6, r0	@ ivtmp.254, unit
 @ SpellSystem.c:363: {
 	movs	r5, r0	@ unit, tmp181
 @ SpellSystem.c:364: 	u32 ret = 0;
@@ -765,36 +816,36 @@ NewGetUnitUseFlags:
 	movs	r7, #1	@ tmp179,
 	adds	r3, r3, #40	@ _72,
 	str	r3, [sp, #4]	@ _72, %sfp
-	adds	r6, r6, #30	@ ivtmp.247,
-.L86:
+	adds	r6, r6, #30	@ ivtmp.254,
+.L89:
 @ SpellSystem.c:365: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	ldrh	r0, [r6]	@ _11, MEM[base: _68, offset: 0B]
 @ SpellSystem.c:365: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	cmp	r0, #0	@ _11,
-	beq	.L89		@,
+	beq	.L92		@,
 @ SpellSystem.c:367: 		u32 attributes = GetItemAttributes(unit->items[i]);
-	ldr	r3, .L113	@ tmp145,
+	ldr	r3, .L116	@ tmp145,
 	bl	.L14		@
 @ SpellSystem.c:368: 		if ( attributes & IA_WEAPON )
 	tst	r0, r7	@ attributes, tmp179
-	beq	.L87		@,
+	beq	.L90		@,
 @ SpellSystem.c:370: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
 	movs	r0, r5	@, unit
 	ldrh	r1, [r6]	@ MEM[base: _68, offset: 0B], MEM[base: _68, offset: 0B]
-	ldr	r3, .L113+4	@ tmp149,
+	ldr	r3, .L116+4	@ tmp149,
 	bl	.L14		@
 @ SpellSystem.c:370: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
 	cmp	r0, #0	@ tmp183,
-	beq	.L88		@,
+	beq	.L91		@,
 @ SpellSystem.c:370: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
 	orrs	r4, r7	@ <retval>, tmp179
-.L88:
+.L91:
 @ SpellSystem.c:365: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	ldr	r3, [sp, #4]	@ _72, %sfp
-	adds	r6, r6, #2	@ ivtmp.247,
-	cmp	r6, r3	@ ivtmp.247, _72
-	bne	.L86		@,
-.L89:
+	adds	r6, r6, #2	@ ivtmp.254,
+	cmp	r6, r3	@ ivtmp.254, _72
+	bne	.L89		@,
+.L92:
 @ SpellSystem.c:378: 	u8* spells = SpellsGetter(unit,-1);
 	movs	r1, #1	@,
 	movs	r0, r5	@, unit
@@ -803,76 +854,76 @@ NewGetUnitUseFlags:
 @ SpellSystem.c:382: 		if ( attributes & IA_WEAPON )
 	movs	r7, #1	@ tmp177,
 @ SpellSystem.c:378: 	u8* spells = SpellsGetter(unit,-1);
-	movs	r6, r0	@ ivtmp.241, tmp185
-.L91:
+	movs	r6, r0	@ ivtmp.248, tmp185
+.L94:
 @ SpellSystem.c:379: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r6]	@ _24, MEM[base: _60, offset: 0B]
 @ SpellSystem.c:379: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _24,
-	bne	.L94		@,
+	bne	.L97		@,
 @ SpellSystem.c:392: }
 	@ sp needed	@
 	movs	r0, r4	@, <retval>
 	pop	{r1, r2, r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L87:
+.L90:
 @ SpellSystem.c:372: 		else if ( attributes & IA_STAFF )
 	movs	r3, #4	@ tmp192,
 	tst	r0, r3	@ attributes, tmp192
-	beq	.L88		@,
+	beq	.L91		@,
 @ SpellSystem.c:374: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
 	movs	r0, r5	@, unit
 	ldrh	r1, [r6]	@ MEM[base: _68, offset: 0B], MEM[base: _68, offset: 0B]
-	ldr	r3, .L113+8	@ tmp156,
+	ldr	r3, .L116+8	@ tmp156,
 	bl	.L14		@
 @ SpellSystem.c:374: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
 	cmp	r0, #0	@ tmp184,
-	beq	.L88		@,
+	beq	.L91		@,
 @ SpellSystem.c:374: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
 	movs	r3, #2	@ tmp159,
 	orrs	r4, r3	@ <retval>, tmp159
-	b	.L88		@
-.L94:
+	b	.L91		@
+.L97:
 @ SpellSystem.c:381: 		u32 attributes = GetItemAttributes(spells[i]);
-	ldr	r3, .L113	@ tmp161,
+	ldr	r3, .L116	@ tmp161,
 	bl	.L14		@
 @ SpellSystem.c:382: 		if ( attributes & IA_WEAPON )
 	tst	r0, r7	@ attributes, tmp177
-	beq	.L92		@,
+	beq	.L95		@,
 @ SpellSystem.c:384: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
 	movs	r0, r5	@, unit
 	ldrb	r1, [r6]	@ MEM[base: _60, offset: 0B], MEM[base: _60, offset: 0B]
-	ldr	r3, .L113+4	@ tmp165,
+	ldr	r3, .L116+4	@ tmp165,
 	bl	.L14		@
 @ SpellSystem.c:384: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
 	cmp	r0, #0	@ tmp187,
-	beq	.L93		@,
+	beq	.L96		@,
 @ SpellSystem.c:384: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
 	orrs	r4, r7	@ <retval>, tmp177
-.L93:
-	adds	r6, r6, #1	@ ivtmp.241,
-	b	.L91		@
-.L92:
+.L96:
+	adds	r6, r6, #1	@ ivtmp.248,
+	b	.L94		@
+.L95:
 @ SpellSystem.c:386: 		else if ( attributes & IA_STAFF )
 	movs	r3, #4	@ tmp195,
 	tst	r0, r3	@ attributes, tmp195
-	beq	.L93		@,
+	beq	.L96		@,
 @ SpellSystem.c:388: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
 	movs	r0, r5	@, unit
 	ldrb	r1, [r6]	@ MEM[base: _60, offset: 0B], MEM[base: _60, offset: 0B]
-	ldr	r3, .L113+8	@ tmp172,
+	ldr	r3, .L116+8	@ tmp172,
 	bl	.L14		@
 @ SpellSystem.c:388: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
 	cmp	r0, #0	@ tmp188,
-	beq	.L93		@,
+	beq	.L96		@,
 @ SpellSystem.c:388: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
 	movs	r3, #2	@ tmp175,
 	orrs	r4, r3	@ <retval>, tmp175
-	b	.L93		@
-.L114:
+	b	.L96		@
+.L117:
 	.align	2
-.L113:
+.L116:
 	.word	GetItemAttributes
 	.word	CanUnitUseWeaponNow
 	.word	CanUnitUseStaffNow
@@ -893,43 +944,43 @@ CanUseAttackSpellsNow:
 	movs	r5, r0	@ unit, tmp128
 @ SpellSystem.c:485: 	u8* spells = SpellsGetter(unit,type);
 	bl	SpellsGetter		@
-	movs	r4, r0	@ ivtmp.255, tmp130
-.L116:
+	movs	r4, r0	@ ivtmp.262, tmp130
+.L119:
 @ SpellSystem.c:486: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r4]	@ _8, MEM[base: _25, offset: 0B]
 @ SpellSystem.c:486: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _8,
-	bne	.L120		@,
-.L115:
+	bne	.L123		@,
+.L118:
 @ SpellSystem.c:494: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L120:
+.L123:
 @ SpellSystem.c:488: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
-	ldr	r3, .L122	@ tmp125,
+	ldr	r3, .L125	@ tmp125,
 	bl	.L14		@
 @ SpellSystem.c:488: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	cmp	r0, #4	@ tmp131,
-	bne	.L117		@,
-.L119:
-	adds	r4, r4, #1	@ ivtmp.255,
-	b	.L116		@
-.L117:
+	bne	.L120		@,
+.L122:
+	adds	r4, r4, #1	@ ivtmp.262,
+	b	.L119		@
+.L120:
 @ SpellSystem.c:488: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	movs	r0, r5	@, unit
 	ldrb	r1, [r4]	@ MEM[base: _25, offset: 0B], MEM[base: _25, offset: 0B]
 	bl	CanCastSpellNow		@
 @ SpellSystem.c:488: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	cmp	r0, #0	@ tmp132,
-	beq	.L119		@,
+	beq	.L122		@,
 @ SpellSystem.c:490: 			return 1;
 	movs	r0, #1	@ <retval>,
-	b	.L115		@
-.L123:
+	b	.L118		@
+.L126:
 	.align	2
-.L122:
+.L125:
 	.word	GetItemType
 	.size	CanUseAttackSpellsNow, .-CanUseAttackSpellsNow
 	.align	1
@@ -958,39 +1009,39 @@ GetNthUsableSpell:
 	str	r0, [sp, #4]	@ tmp127, %sfp
 @ SpellSystem.c:501: 	int k = -1;
 	rsbs	r6, r6, #0	@ k, k
-.L125:
+.L128:
 @ SpellSystem.c:502: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldr	r3, [sp, #4]	@ spells, %sfp
 	ldrb	r1, [r3, r4]	@ _6, MEM[base: spells_17, index: _1, offset: 0B]
 @ SpellSystem.c:502: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r1, #0	@ _6,
-	bne	.L128		@,
+	bne	.L131		@,
 @ SpellSystem.c:510: 	return -1;
 	movs	r4, #1	@ <retval>,
 	rsbs	r4, r4, #0	@ <retval>, <retval>
-.L124:
+.L127:
 @ SpellSystem.c:511: }
 	movs	r0, r4	@, <retval>
 	@ sp needed	@
 	pop	{r1, r2, r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L128:
+.L131:
 @ SpellSystem.c:504: 		if ( CanCastSpellNow(unit,spells[i]) )
 	movs	r0, r5	@, unit
 	bl	CanCastSpellNow		@
 @ SpellSystem.c:504: 		if ( CanCastSpellNow(unit,spells[i]) )
 	cmp	r0, #0	@ tmp128,
-	beq	.L126		@,
+	beq	.L129		@,
 @ SpellSystem.c:506: 			k++;
 	adds	r6, r6, #1	@ k,
 @ SpellSystem.c:507: 			if ( k == n ) { return i; }
 	cmp	r6, r7	@ k, n
-	beq	.L124		@,
-.L126:
+	beq	.L127		@,
+.L129:
 @ SpellSystem.c:502: 	for ( int i = 0 ; spells[i] ; i++ )
 	adds	r4, r4, #1	@ <retval>,
-	b	.L125		@
+	b	.L128		@
 	.size	GetNthUsableSpell, .-GetNthUsableSpell
 	.align	1
 	.global	DoesUnitKnowSpell
@@ -1010,27 +1061,27 @@ DoesUnitKnowSpell:
 	movs	r1, #1	@,
 	rsbs	r1, r1, #0	@,
 	bl	SpellsGetter		@
-	movs	r3, r0	@ ivtmp.269, tmp124
-.L133:
+	movs	r3, r0	@ ivtmp.276, tmp124
+.L136:
 @ SpellSystem.c:527: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r3]	@ _3, MEM[base: _15, offset: 0B]
 @ SpellSystem.c:527: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _3,
-	bne	.L135		@,
-.L132:
+	bne	.L138		@,
+.L135:
 @ SpellSystem.c:532: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L135:
+.L138:
 @ SpellSystem.c:529: 		if ( spell == spells[i] ) { return 1; }
-	adds	r3, r3, #1	@ ivtmp.269,
+	adds	r3, r3, #1	@ ivtmp.276,
 	cmp	r0, r4	@ _3, spell
-	bne	.L133		@,
+	bne	.L136		@,
 @ SpellSystem.c:529: 		if ( spell == spells[i] ) { return 1; }
 	movs	r0, #1	@ <retval>,
-	b	.L132		@
+	b	.L135		@
 	.size	DoesUnitKnowSpell, .-DoesUnitKnowSpell
 	.align	1
 	.global	InitGaidenSpellLearnPopup
@@ -1044,7 +1095,7 @@ InitGaidenSpellLearnPopup:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ SpellSystem.c:429: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
-	ldr	r3, .L147	@ tmp131,
+	ldr	r3, .L150	@ tmp131,
 	movs	r2, r3	@ tmp134, tmp131
 @ SpellSystem.c:425: {
 	push	{r4, lr}	@
@@ -1058,12 +1109,12 @@ InitGaidenSpellLearnPopup:
 	movs	r0, #0	@ subject,
 @ SpellSystem.c:429: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	cmp	r1, r2	@ tmp135, tmp137
-	beq	.L138		@,
+	beq	.L141		@,
 @ SpellSystem.c:429: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	movs	r0, r3	@ subject, tmp131
-.L138:
+.L141:
 @ SpellSystem.c:430: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
-	ldr	r3, .L147+4	@ tmp138,
+	ldr	r3, .L150+4	@ tmp138,
 	movs	r2, r3	@ tmp141, tmp138
 	adds	r2, r2, #112	@ tmp141,
 	ldrb	r1, [r2]	@ tmp142,
@@ -1072,23 +1123,23 @@ InitGaidenSpellLearnPopup:
 	ldrsb	r2, [r3, r2]	@ tmp144,
 @ SpellSystem.c:430: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	cmp	r1, r2	@ tmp142, tmp144
-	bne	.L143		@,
+	bne	.L146		@,
 @ SpellSystem.c:431: 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
 	cmp	r0, #0	@ subject,
-	bne	.L139		@,
-.L141:
+	bne	.L142		@,
+.L144:
 @ SpellSystem.c:431: 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
 	movs	r0, #0	@ <retval>,
-.L137:
+.L140:
 @ SpellSystem.c:440: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L143:
+.L146:
 @ SpellSystem.c:430: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	movs	r0, r3	@ subject, tmp138
-.L139:
+.L142:
 @ SpellSystem.c:433: 	u8* spells = SpellsGetterForLevel(&subject->unit,subject->unit.level,-1);
 	movs	r1, #8	@ tmp146,
 	movs	r2, #1	@,
@@ -1099,21 +1150,21 @@ InitGaidenSpellLearnPopup:
 	ldrb	r2, [r0]	@ _12, *spells_22
 @ SpellSystem.c:435: 	if ( *spells )
 	cmp	r2, #0	@ _12,
-	beq	.L141		@,
+	beq	.L144		@,
 @ SpellSystem.c:437: 		gPopupItem = *spells|0xFF00;
-	ldr	r3, .L147+8	@ tmp150,
+	ldr	r3, .L150+8	@ tmp150,
 	orrs	r3, r2	@ tmp149, _12
 @ SpellSystem.c:437: 		gPopupItem = *spells|0xFF00;
-	ldr	r2, .L147+12	@ tmp147,
+	ldr	r2, .L150+12	@ tmp147,
 @ SpellSystem.c:438: 		return 1;
 	movs	r0, #1	@ <retval>,
 @ SpellSystem.c:437: 		gPopupItem = *spells|0xFF00;
 	strh	r3, [r2]	@ tmp149, gPopupItem
 @ SpellSystem.c:438: 		return 1;
-	b	.L137		@
-.L148:
+	b	.L140		@
+.L151:
 	.align	2
-.L147:
+.L150:
 	.word	gBattleActor
 	.word	gBattleTarget
 	.word	-256
@@ -1132,21 +1183,21 @@ GetSpellCost:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
 @ SpellSystem.c:544: 	return GaidenSpellCostTable[GetItemIndex(spell)];
-	ldr	r3, .L150	@ tmp118,
+	ldr	r3, .L153	@ tmp118,
 @ SpellSystem.c:545: }
 	@ sp needed	@
 @ SpellSystem.c:544: 	return GaidenSpellCostTable[GetItemIndex(spell)];
 	bl	.L14		@
 @ SpellSystem.c:544: 	return GaidenSpellCostTable[GetItemIndex(spell)];
-	ldr	r3, .L150+4	@ tmp122,
+	ldr	r3, .L153+4	@ tmp122,
 	ldrb	r0, [r3, r0]	@ tmp121, GaidenSpellCostTable
 @ SpellSystem.c:545: }
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L151:
+.L154:
 	.align	2
-.L150:
+.L153:
 	.word	GetItemIndex
 	.word	GaidenSpellCostTable
 	.size	GetSpellCost, .-GetSpellCost
@@ -1171,9 +1222,9 @@ HasSufficientHP:
 @ SpellSystem.c:445: 	return unit->curHP > GetSpellCost(spell);
 	movs	r3, #1	@ tmp121,
 	cmp	r4, r0	@ _2, tmp130
-	bgt	.L153		@,
+	bgt	.L156		@,
 	movs	r3, #0	@ tmp121,
-.L153:
+.L156:
 @ SpellSystem.c:446: }
 	@ sp needed	@
 	movs	r0, r3	@, tmp121
@@ -1192,77 +1243,77 @@ GaidenMagicUMUsabilityExt:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ UnitMenu.c:18: 	u8* validList = gGenericBuffer; // Let's build a list of valid spells.
-	ldr	r6, .L166	@ validList,
-@ UnitMenu.c:21: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
+@ UnitMenu.c:43: 	u8* validList = gGenericBuffer; // Let's build a list of valid spells.
+	ldr	r6, .L169	@ validList,
+@ UnitMenu.c:46: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
 	movs	r7, #255	@ tmp142,
-@ UnitMenu.c:17: {
-	movs	r5, r0	@ ivtmp.291, tmp143
+@ UnitMenu.c:42: {
+	movs	r5, r0	@ ivtmp.298, tmp143
 	movs	r4, r6	@ validList, validList
-@ UnitMenu.c:21: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
+@ UnitMenu.c:46: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
 	lsls	r7, r7, #8	@ tmp142, tmp142,
-.L155:
-@ UnitMenu.c:19: 	for ( int i = 0 ; spellList[i] ; i++ )
+.L158:
+@ UnitMenu.c:44: 	for ( int i = 0 ; spellList[i] ; i++ )
 	ldrb	r1, [r5]	@ _9, MEM[base: _42, offset: 0B]
-@ UnitMenu.c:19: 	for ( int i = 0 ; spellList[i] ; i++ )
+@ UnitMenu.c:44: 	for ( int i = 0 ; spellList[i] ; i++ )
 	cmp	r1, #0	@ _9,
-	bne	.L157		@,
-@ UnitMenu.c:25: 	*validList = 0;
-	strb	r1, [r6]	@ _9, *validList_15
-@ UnitMenu.c:28: 	if ( !*validList ) { return 3; } // Return unusable if there are no valid spells.
-	ldrb	r3, [r4]	@ MEM[(u8 *)&gGenericBuffer], MEM[(u8 *)&gGenericBuffer]
-@ UnitMenu.c:28: 	if ( !*validList ) { return 3; } // Return unusable if there are no valid spells.
-	movs	r0, #3	@ <retval>,
-@ UnitMenu.c:28: 	if ( !*validList ) { return 3; } // Return unusable if there are no valid spells.
-	cmp	r3, #0	@ MEM[(u8 *)&gGenericBuffer],
-	beq	.L154		@,
-.L159:
-@ UnitMenu.c:29: 	for ( int i = 0 ; validList[i] ; i++ )
-	ldrb	r1, [r4]	@ _30, MEM[base: _37, offset: 0B]
-@ UnitMenu.c:29: 	for ( int i = 0 ; validList[i] ; i++ )
-	cmp	r1, #0	@ _30,
 	bne	.L160		@,
-@ UnitMenu.c:34: 	return 2; // There were valid spells, but we don't have enough HP to cast any of them. Return greyed out.
+@ UnitMenu.c:50: 	*validList = 0;
+	strb	r1, [r6]	@ _9, *validList_15
+@ UnitMenu.c:53: 	if ( !*validList ) { return 3; } // Return unusable if there are no valid spells.
+	ldrb	r3, [r4]	@ MEM[(u8 *)&gGenericBuffer], MEM[(u8 *)&gGenericBuffer]
+@ UnitMenu.c:53: 	if ( !*validList ) { return 3; } // Return unusable if there are no valid spells.
+	movs	r0, #3	@ <retval>,
+@ UnitMenu.c:53: 	if ( !*validList ) { return 3; } // Return unusable if there are no valid spells.
+	cmp	r3, #0	@ MEM[(u8 *)&gGenericBuffer],
+	beq	.L157		@,
+.L162:
+@ UnitMenu.c:54: 	for ( int i = 0 ; validList[i] ; i++ )
+	ldrb	r1, [r4]	@ _30, MEM[base: _37, offset: 0B]
+@ UnitMenu.c:54: 	for ( int i = 0 ; validList[i] ; i++ )
+	cmp	r1, #0	@ _30,
+	bne	.L163		@,
+@ UnitMenu.c:59: 	return 2; // There were valid spells, but we don't have enough HP to cast any of them. Return greyed out.
 	movs	r0, #2	@ <retval>,
-.L154:
-@ UnitMenu.c:35: }
+.L157:
+@ UnitMenu.c:60: }
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L157:
-@ UnitMenu.c:21: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
-	ldr	r3, .L166+4	@ tmp133,
+.L160:
+@ UnitMenu.c:46: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
+	ldr	r3, .L169+4	@ tmp133,
 	orrs	r1, r7	@ tmp131, tmp142
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	CanCastSpellNow		@
-@ UnitMenu.c:21: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
+@ UnitMenu.c:46: 		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
 	cmp	r0, #0	@ tmp144,
-	beq	.L156		@,
-@ UnitMenu.c:22: 		*validList = spellList[i];
+	beq	.L159		@,
+@ UnitMenu.c:47: 		*validList = spellList[i];
 	ldrb	r3, [r5]	@ _6, MEM[base: _42, offset: 0B]
-@ UnitMenu.c:22: 		*validList = spellList[i];
+@ UnitMenu.c:47: 		*validList = spellList[i];
 	strb	r3, [r6]	@ _6, *validList_15
-@ UnitMenu.c:23: 		validList++;
+@ UnitMenu.c:48: 		validList++;
 	adds	r6, r6, #1	@ validList,
-.L156:
-	adds	r5, r5, #1	@ ivtmp.291,
-	b	.L155		@
-.L160:
-@ UnitMenu.c:32: 		if ( HasSufficientHP(gActiveUnit,validList[i]) ) { return 1; } // We've found a spell we can cast! Return usable.
-	ldr	r3, .L166+4	@ tmp139,
+.L159:
+	adds	r5, r5, #1	@ ivtmp.298,
+	b	.L158		@
+.L163:
+@ UnitMenu.c:57: 		if ( HasSufficientHP(gActiveUnit,validList[i]) ) { return 1; } // We've found a spell we can cast! Return usable.
+	ldr	r3, .L169+4	@ tmp139,
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	HasSufficientHP		@
-@ UnitMenu.c:32: 		if ( HasSufficientHP(gActiveUnit,validList[i]) ) { return 1; } // We've found a spell we can cast! Return usable.
-	adds	r4, r4, #1	@ ivtmp.287,
+@ UnitMenu.c:57: 		if ( HasSufficientHP(gActiveUnit,validList[i]) ) { return 1; } // We've found a spell we can cast! Return usable.
+	adds	r4, r4, #1	@ ivtmp.294,
 	cmp	r0, #0	@ tmp145,
-	beq	.L159		@,
-@ UnitMenu.c:32: 		if ( HasSufficientHP(gActiveUnit,validList[i]) ) { return 1; } // We've found a spell we can cast! Return usable.
+	beq	.L162		@,
+@ UnitMenu.c:57: 		if ( HasSufficientHP(gActiveUnit,validList[i]) ) { return 1; } // We've found a spell we can cast! Return usable.
 	movs	r0, #1	@ <retval>,
-	b	.L154		@
-.L167:
+	b	.L157		@
+.L170:
 	.align	2
-.L166:
+.L169:
 	.word	gGenericBuffer
 	.word	gActiveUnit
 	.size	GaidenMagicUMUsabilityExt, .-GaidenMagicUMUsabilityExt
@@ -1279,7 +1330,7 @@ GaidenBlackMagicUMUsability:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
 @ UnitMenu.c:8: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
-	ldr	r3, .L169	@ tmp116,
+	ldr	r3, .L172	@ tmp116,
 @ UnitMenu.c:9: }
 	@ sp needed	@
 @ UnitMenu.c:8: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
@@ -1291,11 +1342,52 @@ GaidenBlackMagicUMUsability:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L170:
+.L173:
 	.align	2
-.L169:
+.L172:
 	.word	gActiveUnit
 	.size	GaidenBlackMagicUMUsability, .-GaidenBlackMagicUMUsability
+	.align	1
+	.global	CaptureGaidenBlackMagicUMUsability
+	.syntax unified
+	.code	16
+	.thumb_func
+	.fpu softvfp
+	.type	CaptureGaidenBlackMagicUMUsability, %function
+CaptureGaidenBlackMagicUMUsability:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+@ UnitMenu.c:18: 	if (!(Capture_Usability())) { return 3; }
+	ldr	r3, .L177	@ tmp117,
+@ UnitMenu.c:14: {
+	push	{r4, lr}	@
+@ UnitMenu.c:18: 	if (!(Capture_Usability())) { return 3; }
+	bl	.L14		@
+	movs	r3, r0	@ tmp120,
+@ UnitMenu.c:18: 	if (!(Capture_Usability())) { return 3; }
+	movs	r0, #3	@ <retval>,
+@ UnitMenu.c:18: 	if (!(Capture_Usability())) { return 3; }
+	cmp	r3, #0	@ tmp120,
+	beq	.L174		@,
+@ UnitMenu.c:20: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
+	ldr	r3, .L177+4	@ tmp118,
+	movs	r1, #1	@,
+	ldr	r0, [r3]	@, gActiveUnit
+	bl	SpellsGetter		@
+	bl	GaidenMagicUMUsabilityExt		@
+.L174:
+@ UnitMenu.c:21: }
+	@ sp needed	@
+	pop	{r4}
+	pop	{r1}
+	bx	r1
+.L178:
+	.align	2
+.L177:
+	.word	Capture_Usability
+	.word	gActiveUnit
+	.size	CaptureGaidenBlackMagicUMUsability, .-CaptureGaidenBlackMagicUMUsability
 	.align	1
 	.global	GaidenWhiteMagicUMUsability
 	.syntax unified
@@ -1308,22 +1400,22 @@ GaidenWhiteMagicUMUsability:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ UnitMenu.c:13: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,WHITE_MAGIC));
-	ldr	r3, .L172	@ tmp116,
-@ UnitMenu.c:14: }
+@ UnitMenu.c:38: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,WHITE_MAGIC));
+	ldr	r3, .L180	@ tmp116,
+@ UnitMenu.c:39: }
 	@ sp needed	@
-@ UnitMenu.c:13: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,WHITE_MAGIC));
+@ UnitMenu.c:38: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,WHITE_MAGIC));
 	movs	r1, #2	@,
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	SpellsGetter		@
 	bl	GaidenMagicUMUsabilityExt		@
-@ UnitMenu.c:14: }
+@ UnitMenu.c:39: }
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L173:
+.L181:
 	.align	2
-.L172:
+.L180:
 	.word	gActiveUnit
 	.size	GaidenWhiteMagicUMUsability, .-GaidenWhiteMagicUMUsability
 	.align	1
@@ -1351,7 +1443,7 @@ SetRoundForSpell:
 	bl	HasSufficientHP		@
 @ SpellSystem.c:408: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	cmp	r0, #0	@ tmp160,
-	beq	.L175		@,
+	beq	.L183		@,
 @ SpellSystem.c:410: 		int cost = GetSpellCost(unit->weapon);
 	ldrh	r0, [r6]	@ tmp142,
 	bl	GetSpellCost		@
@@ -1371,20 +1463,20 @@ SetRoundForSpell:
 	ldrb	r0, [r4, #5]	@ tmp152,
 	subs	r3, r0, r3	@ tmp153, tmp152, _21
 	strb	r3, [r4, #5]	@ tmp153, buffer_11(D)->damage
-.L174:
+.L182:
 @ SpellSystem.c:422: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L175:
+.L183:
 @ SpellSystem.c:420: 		buffer->attributes |= BATTLE_HIT_ATTR_5; // This bit is checked in an external hack I've made.
 	movs	r3, #32	@ tmp157,
 	ldr	r2, [r4]	@ tmp165,* buffer
 	orrs	r3, r2	@ tmp155, tmp165
 	str	r3, [r4]	@ tmp155,* buffer
 @ SpellSystem.c:422: }
-	b	.L174		@
+	b	.L182		@
 	.size	SetRoundForSpell, .-SetRoundForSpell
 	.align	1
 	.global	Proc_GaidenMagicHPCost
@@ -1399,7 +1491,7 @@ Proc_GaidenMagicHPCost:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ SpellSystem.c:400: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
-	ldr	r3, .L179	@ tmp119,
+	ldr	r3, .L187	@ tmp119,
 @ SpellSystem.c:398: {
 	movs	r4, r0	@ attacker, tmp120
 	movs	r5, r2	@ buffer, tmp121
@@ -1407,20 +1499,20 @@ Proc_GaidenMagicHPCost:
 	bl	.L14		@
 @ SpellSystem.c:400: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	cmp	r0, #9	@ tmp122,
-	bne	.L177		@,
+	bne	.L185		@,
 @ SpellSystem.c:402: 		SetRoundForSpell(attacker,buffer);
 	movs	r1, r5	@, buffer
 	movs	r0, r4	@, attacker
 	bl	SetRoundForSpell		@
-.L177:
+.L185:
 @ SpellSystem.c:404: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L180:
+.L188:
 	.align	2
-.L179:
+.L187:
 	.word	GetUnitEquippedWeaponSlot
 	.size	Proc_GaidenMagicHPCost, .-Proc_GaidenMagicHPCost
 	.align	1
@@ -1441,32 +1533,32 @@ GetFirstAttackSpell:
 @ SpellSystem.c:549: 	u8* spells = SpellsGetter(unit,-1);
 	rsbs	r1, r1, #0	@,
 	bl	SpellsGetter		@
-	movs	r4, r0	@ ivtmp.311, tmp126
-.L182:
+	movs	r4, r0	@ ivtmp.321, tmp126
+.L190:
 @ SpellSystem.c:551: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r4]	@ _7, MEM[base: _6, offset: 0B]
-	movs	r5, r4	@ _6, ivtmp.311
+	movs	r5, r4	@ _6, ivtmp.321
 @ SpellSystem.c:551: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _7,
-	beq	.L181		@,
+	beq	.L189		@,
 @ SpellSystem.c:553: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
-	ldr	r3, .L187	@ tmp123,
+	ldr	r3, .L195	@ tmp123,
 	bl	.L14		@
 @ SpellSystem.c:553: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
-	adds	r4, r4, #1	@ ivtmp.311,
+	adds	r4, r4, #1	@ ivtmp.321,
 	cmp	r0, #4	@ tmp127,
-	beq	.L182		@,
+	beq	.L190		@,
 @ SpellSystem.c:553: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
 	ldrb	r0, [r5]	@ <retval>, *_6
-.L181:
+.L189:
 @ SpellSystem.c:556: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L188:
+.L196:
 	.align	2
-.L187:
+.L195:
 	.word	GetItemType
 	.size	GetFirstAttackSpell, .-GetFirstAttackSpell
 	.align	1
@@ -1485,7 +1577,7 @@ NewGetUnitEquippedWeapon:
 	movs	r6, r0	@ unit, tmp165
 @ SpellSystem.c:515: 	for ( int i = 0 ; i < 5 ; i++ )
 	movs	r5, #0	@ i,
-.L192:
+.L200:
 @ SpellSystem.c:517: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	movs	r3, r6	@ tmp136, unit
 @ SpellSystem.c:517: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
@@ -1494,17 +1586,17 @@ NewGetUnitEquippedWeapon:
 	adds	r3, r3, #30	@ tmp136,
 	ldrh	r1, [r3, r2]	@ MEM[base: _31, index: _40, offset: 0B], MEM[base: _31, index: _40, offset: 0B]
 	movs	r0, r6	@, unit
-	ldr	r3, .L212	@ tmp139,
+	ldr	r3, .L220	@ tmp139,
 	bl	.L14		@
 	subs	r4, r0, #0	@ <retval>, tmp166,
 @ SpellSystem.c:517: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
-	beq	.L190		@,
+	beq	.L198		@,
 @ SpellSystem.c:517: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	adds	r5, r5, #12	@ tmp140,
 	lsls	r5, r5, #1	@ tmp141, tmp140,
 	adds	r5, r6, r5	@ tmp142, unit, tmp141
 	ldrh	r4, [r5, #6]	@ <retval>, *unit_21(D)
-.L191:
+.L199:
 @ SpellSystem.c:140: 	int spell = GetFirstAttackSpell(unit);
 	movs	r0, r6	@, unit
 	bl	GetFirstAttackSpell		@
@@ -1513,7 +1605,7 @@ NewGetUnitEquippedWeapon:
 @ SpellSystem.c:143: 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	ldrb	r6, [r6, #11]	@ _3,
 @ SpellSystem.c:143: 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
-	ldr	r1, .L212+4	@ tmp145,
+	ldr	r1, .L220+4	@ tmp145,
 @ SpellSystem.c:143: 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	lsls	r6, r6, #24	@ _3, _3,
 @ SpellSystem.c:143: 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
@@ -1524,89 +1616,89 @@ NewGetUnitEquippedWeapon:
 	movs	r2, r0	@ spell, tmp167
 @ SpellSystem.c:143: 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	ands	r3, r6	@ _5, _3
-	ldr	r0, .L212+8	@ tmp163,
+	ldr	r0, .L220+8	@ tmp163,
 @ SpellSystem.c:143: 	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
 	cmp	r1, r3	@ tmp146, _5
-	bne	.L193		@,
+	bne	.L201		@,
 @ SpellSystem.c:147: 		if ( !UsingSpellMenu && ( unit->index & 0xC0 ) ) { return vanillaEquipped; } // enemies wielding their vanilla wep 		
 	ldrb	r3, [r0]	@ UsingSpellMenu, UsingSpellMenu
 	cmp	r3, #0	@ UsingSpellMenu,
-	bne	.L194		@,
+	bne	.L202		@,
 @ SpellSystem.c:147: 		if ( !UsingSpellMenu && ( unit->index & 0xC0 ) ) { return vanillaEquipped; } // enemies wielding their vanilla wep 		
 	cmp	r1, #0	@ tmp146,
-	bne	.L189		@,
+	bne	.L197		@,
 @ SpellSystem.c:148: 		if ( !UsingSpellMenu && !( unit->index & 0xC0 ) ) { return ( spell ? spell|0xFF00 : 0 ); } // for mmb - show first spell 
 	movs	r4, r1	@ <retval>, tmp146
-.L211:
+.L219:
 @ SpellSystem.c:203: 		if ( !UsingSpellMenu && !( unit->index & 0xC0 ) ) { return ( spell ? spell|0xFF00 : 0 ); } // for mmb - show first spell 
 	cmp	r2, #0	@ spell,
-	beq	.L189		@,
-.L209:
+	beq	.L197		@,
+.L217:
 @ SpellSystem.c:205: 		return ( spell ? spell|0xFF00 : 0 );
 	movs	r4, #255	@ tmp161,
 	lsls	r4, r4, #8	@ tmp161, tmp161,
 	orrs	r4, r2	@ <retval>, spell
-	b	.L189		@
-.L190:
+	b	.L197		@
+.L198:
 @ SpellSystem.c:515: 	for ( int i = 0 ; i < 5 ; i++ )
 	adds	r5, r5, #1	@ i,
 @ SpellSystem.c:515: 	for ( int i = 0 ; i < 5 ; i++ )
 	cmp	r5, #5	@ i,
-	bne	.L192		@,
-	b	.L191		@
-.L194:
+	bne	.L200		@,
+	b	.L199		@
+.L202:
 @ SpellSystem.c:153: 			if ( unit->index == gBattleTarget.unit.index && GetItemType(SelectedSpell) == ITYPE_STAFF )
-	ldr	r3, .L212+12	@ tmp150,
+	ldr	r3, .L220+12	@ tmp150,
 @ SpellSystem.c:153: 			if ( unit->index == gBattleTarget.unit.index && GetItemType(SelectedSpell) == ITYPE_STAFF )
 	ldrb	r3, [r3, #11]	@ tmp151,
 	lsls	r3, r3, #24	@ tmp151, tmp151,
-	ldr	r5, .L212+16	@ tmp164,
+	ldr	r5, .L220+16	@ tmp164,
 	asrs	r3, r3, #24	@ tmp151, tmp151,
 	cmp	r3, r6	@ tmp151, _3
-	beq	.L196		@,
-.L197:
+	beq	.L204		@,
+.L205:
 @ SpellSystem.c:184: 				return SelectedSpell|0xFF00; 
 	movs	r4, #255	@ tmp154,
 	ldrb	r0, [r5]	@ SelectedSpell, SelectedSpell
 	lsls	r4, r4, #8	@ tmp154, tmp154,
 	orrs	r4, r0	@ <retval>, SelectedSpell
-.L189:
+.L197:
 @ SpellSystem.c:208: }
 	movs	r0, r4	@, <retval>
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L196:
+.L204:
 @ SpellSystem.c:153: 			if ( unit->index == gBattleTarget.unit.index && GetItemType(SelectedSpell) == ITYPE_STAFF )
 	ldrb	r0, [r5]	@ SelectedSpell, SelectedSpell
-	ldr	r3, .L212+20	@ tmp157,
+	ldr	r3, .L220+20	@ tmp157,
 	bl	.L14		@
 @ SpellSystem.c:153: 			if ( unit->index == gBattleTarget.unit.index && GetItemType(SelectedSpell) == ITYPE_STAFF )
 	cmp	r0, #4	@ tmp168,
-	bne	.L197		@,
-	b	.L189		@
-.L193:
+	bne	.L205		@,
+	b	.L197		@
+.L201:
 @ SpellSystem.c:202: 		if ( !UsingSpellMenu && ( unit->index & 0xC0 ) ) { return vanillaEquipped; } // mmb - enemies wielding their vanilla wep 		
 	ldrb	r1, [r0]	@ UsingSpellMenu, UsingSpellMenu
 	cmp	r1, #0	@ UsingSpellMenu,
-	bne	.L198		@,
+	bne	.L206		@,
 @ SpellSystem.c:202: 		if ( !UsingSpellMenu && ( unit->index & 0xC0 ) ) { return vanillaEquipped; } // mmb - enemies wielding their vanilla wep 		
 	cmp	r3, #0	@ _5,
-	bne	.L189		@,
+	bne	.L197		@,
 @ SpellSystem.c:148: 		if ( !UsingSpellMenu && !( unit->index & 0xC0 ) ) { return ( spell ? spell|0xFF00 : 0 ); } // for mmb - show first spell 
 	movs	r4, r3	@ <retval>, _5
-	b	.L211		@
-.L198:
+	b	.L219		@
+.L206:
 @ SpellSystem.c:148: 		if ( !UsingSpellMenu && !( unit->index & 0xC0 ) ) { return ( spell ? spell|0xFF00 : 0 ); } // for mmb - show first spell 
 	movs	r4, #0	@ <retval>,
 @ SpellSystem.c:205: 		return ( spell ? spell|0xFF00 : 0 );
 	cmp	r2, r4	@ spell,
-	beq	.L189		@,
-	b	.L209		@
-.L213:
+	beq	.L197		@,
+	b	.L217		@
+.L221:
 	.align	2
-.L212:
+.L220:
 	.word	CanUnitUseWeapon
 	.word	gChapterData
 	.word	UsingSpellMenu
@@ -1631,78 +1723,78 @@ NewGetUnitEquippedWeaponSlot:
 @ SpellSystem.c:226: 	int spell = GetFirstAttackSpell(unit);
 	bl	GetFirstAttackSpell		@
 @ SpellSystem.c:229: 	if ( !(UsingSpellMenu) && unit->index != gBattleTarget.unit.index && (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) ) { 
-	ldr	r3, .L249	@ tmp150,
+	ldr	r3, .L257	@ tmp150,
 @ SpellSystem.c:229: 	if ( !(UsingSpellMenu) && unit->index != gBattleTarget.unit.index && (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) ) { 
 	ldrb	r4, [r3]	@ UsingSpellMenu, UsingSpellMenu
 @ SpellSystem.c:226: 	int spell = GetFirstAttackSpell(unit);
 	movs	r6, r0	@ spell, tmp190
-	ldr	r7, .L249+4	@ tmp187,
+	ldr	r7, .L257+4	@ tmp187,
 @ SpellSystem.c:229: 	if ( !(UsingSpellMenu) && unit->index != gBattleTarget.unit.index && (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) ) { 
 	cmp	r4, #0	@ UsingSpellMenu,
-	bne	.L215		@,
+	bne	.L223		@,
 @ SpellSystem.c:229: 	if ( !(UsingSpellMenu) && unit->index != gBattleTarget.unit.index && (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) ) { 
 	movs	r2, #11	@ tmp153,
-	ldr	r3, .L249+8	@ tmp152,
+	ldr	r3, .L257+8	@ tmp152,
 	ldrb	r3, [r3, #11]	@ tmp154,
 	ldrsb	r2, [r5, r2]	@ tmp153,
 	lsls	r3, r3, #24	@ tmp154, tmp154,
 	asrs	r3, r3, #24	@ tmp154, tmp154,
 	cmp	r2, r3	@ tmp153, tmp154
-	beq	.L216		@,
+	beq	.L224		@,
 @ SpellSystem.c:229: 	if ( !(UsingSpellMenu) && unit->index != gBattleTarget.unit.index && (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) ) { 
-	ldr	r3, .L249+12	@ tmp200,
+	ldr	r3, .L257+12	@ tmp200,
 	ldrh	r3, [r3]	@ gBattleStats, gBattleStats
 	lsls	r3, r3, #30	@ tmp199, gBattleStats,
-	beq	.L216		@,
-	movs	r6, r5	@ ivtmp.332, unit
-	adds	r6, r6, #30	@ ivtmp.332,
-.L219:
+	beq	.L224		@,
+	movs	r6, r5	@ ivtmp.342, unit
+	adds	r6, r6, #30	@ ivtmp.342,
+.L227:
 @ SpellSystem.c:233: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
 	movs	r0, r5	@, unit
 	ldrh	r1, [r6]	@ MEM[base: _39, offset: 0B], MEM[base: _39, offset: 0B]
-	bl	.L251		@
+	bl	.L259		@
 @ SpellSystem.c:233: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
 	cmp	r0, #0	@ tmp191,
-	bne	.L217		@,
-.L220:
+	bne	.L225		@,
+.L228:
 @ SpellSystem.c:240: 		return -1; 
 	movs	r4, #1	@ <retval>,
 	rsbs	r4, r4, #0	@ <retval>, <retval>
-.L214:
+.L222:
 @ SpellSystem.c:357: }
 	movs	r0, r4	@, <retval>
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L217:
+.L225:
 @ SpellSystem.c:236: 				if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
-	ldr	r3, .L249+12	@ tmp202,
+	ldr	r3, .L257+12	@ tmp202,
 	ldrb	r1, [r3, #2]	@ tmp166,
-	ldr	r3, .L249+16	@ tmp168,
+	ldr	r3, .L257+16	@ tmp168,
 	movs	r2, r5	@, unit
 	ldrh	r0, [r6]	@ MEM[base: _39, offset: 0B], MEM[base: _39, offset: 0B]
 	ldr	r3, [r3]	@ gCan_Attack_Target, gCan_Attack_Target
 	bl	.L14		@
 @ SpellSystem.c:236: 				if ( gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) ) { return i; }
 	cmp	r0, #0	@ tmp192,
-	bne	.L214		@,
+	bne	.L222		@,
 @ SpellSystem.c:230: 		for ( int i = 0 ; i < 5 ; i++ )
 	adds	r4, r4, #1	@ <retval>,
 @ SpellSystem.c:230: 		for ( int i = 0 ; i < 5 ; i++ )
-	adds	r6, r6, #2	@ ivtmp.332,
+	adds	r6, r6, #2	@ ivtmp.342,
 	cmp	r4, #5	@ <retval>,
-	bne	.L219		@,
-	b	.L220		@
-.L215:
+	bne	.L227		@,
+	b	.L228		@
+.L223:
 @ SpellSystem.c:246: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) && !(unit->index & 0xC0) ) { 
-	ldr	r3, .L249+20	@ tmp170,
+	ldr	r3, .L257+20	@ tmp170,
 	movs	r0, r5	@, unit
 	ldrb	r1, [r3]	@ SelectedSpell, SelectedSpell
-	bl	.L251		@
+	bl	.L259		@
 @ SpellSystem.c:246: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) && !(unit->index & 0xC0) ) { 
 	cmp	r0, #0	@ tmp193,
-	beq	.L216		@,
+	beq	.L224		@,
 @ SpellSystem.c:246: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) && !(unit->index & 0xC0) ) { 
 	movs	r2, #11	@ tmp173,
 @ SpellSystem.c:246: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) && !(unit->index & 0xC0) ) { 
@@ -1711,11 +1803,11 @@ NewGetUnitEquippedWeaponSlot:
 	ldrsb	r2, [r5, r2]	@ tmp173,
 @ SpellSystem.c:246: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) && !(unit->index & 0xC0) ) { 
 	tst	r2, r3	@ tmp173, tmp175
-	beq	.L221		@,
-.L223:
+	beq	.L229		@,
+.L231:
 @ SpellSystem.c:230: 		for ( int i = 0 ; i < 5 ; i++ )
 	movs	r4, #0	@ <retval>,
-.L222:
+.L230:
 @ SpellSystem.c:259: 				if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
 	movs	r3, r5	@ tmp178, unit
 @ SpellSystem.c:259: 				if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
@@ -1724,17 +1816,17 @@ NewGetUnitEquippedWeaponSlot:
 	adds	r3, r3, #30	@ tmp178,
 	movs	r0, r5	@, unit
 	ldrh	r1, [r3, r2]	@ MEM[base: _37, index: _14, offset: 0B], MEM[base: _37, index: _14, offset: 0B]
-	bl	.L251		@
+	bl	.L259		@
 @ SpellSystem.c:259: 				if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
 	cmp	r0, #0	@ tmp194,
-	bne	.L214		@,
+	bne	.L222		@,
 @ SpellSystem.c:257: 		for ( int i = 0 ; i < 5 ; i++ )
 	adds	r4, r4, #1	@ <retval>,
 @ SpellSystem.c:257: 		for ( int i = 0 ; i < 5 ; i++ )
 	cmp	r4, #5	@ <retval>,
-	bne	.L222		@,
-	b	.L220		@
-.L216:
+	bne	.L230		@,
+	b	.L228		@
+.L224:
 @ SpellSystem.c:256: 	if ( unit->index & 0xC0 ) {
 	movs	r2, #11	@ tmp176,
 	ldrsb	r2, [r5, r2]	@ tmp176,
@@ -1744,40 +1836,40 @@ NewGetUnitEquippedWeaponSlot:
 	ands	r4, r3	@ <retval>, tmp177
 @ SpellSystem.c:256: 	if ( unit->index & 0xC0 ) {
 	tst	r2, r3	@ tmp176, tmp177
-	bne	.L223		@,
+	bne	.L231		@,
 @ SpellSystem.c:268: 	if ( gChapterData.currentPhase != ( unit->index & 0xC0 ) && ( CanUnitUseWeapon( unit, spell ) ) ) { return ( spell ? 9 : 0 ); } // Enemy phase - Always counter attack with first spell.
-	ldr	r3, .L249+24	@ tmp182,
+	ldr	r3, .L257+24	@ tmp182,
 @ SpellSystem.c:268: 	if ( gChapterData.currentPhase != ( unit->index & 0xC0 ) && ( CanUnitUseWeapon( unit, spell ) ) ) { return ( spell ? 9 : 0 ); } // Enemy phase - Always counter attack with first spell.
 	ldrb	r3, [r3, #15]	@ tmp183,
 	cmp	r3, #0	@ tmp183,
-	beq	.L225		@,
+	beq	.L233		@,
 @ SpellSystem.c:268: 	if ( gChapterData.currentPhase != ( unit->index & 0xC0 ) && ( CanUnitUseWeapon( unit, spell ) ) ) { return ( spell ? 9 : 0 ); } // Enemy phase - Always counter attack with first spell.
 	movs	r1, r6	@, spell
 	movs	r0, r5	@, unit
-	bl	.L251		@
+	bl	.L259		@
 @ SpellSystem.c:268: 	if ( gChapterData.currentPhase != ( unit->index & 0xC0 ) && ( CanUnitUseWeapon( unit, spell ) ) ) { return ( spell ? 9 : 0 ); } // Enemy phase - Always counter attack with first spell.
 	cmp	r0, #0	@ tmp195,
-	beq	.L225		@,
-.L248:
+	beq	.L233		@,
+.L256:
 @ SpellSystem.c:275: 	if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); } // Used in stat screen by players. 
 	cmp	r6, #0	@ spell,
-	beq	.L214		@,
-.L221:
+	beq	.L222		@,
+.L229:
 @ SpellSystem.c:248: 		return 9;
 	movs	r4, #9	@ <retval>,
-	b	.L214		@
-.L225:
+	b	.L222		@
+.L233:
 @ SpellSystem.c:275: 	if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); } // Used in stat screen by players. 
 	movs	r1, r6	@, spell
 	movs	r0, r5	@, unit
-	bl	.L251		@
+	bl	.L259		@
 @ SpellSystem.c:275: 	if ( CanUnitUseWeapon( unit, spell ) ) { return ( spell ? 9 : 0 ); } // Used in stat screen by players. 
 	cmp	r0, #0	@ tmp196,
-	bne	.L248		@,
-	b	.L220		@
-.L250:
+	bne	.L256		@,
+	b	.L228		@
+.L258:
 	.align	2
-.L249:
+.L257:
 	.word	UsingSpellMenu
 	.word	CanUnitUseWeapon
 	.word	gBattleTarget
@@ -1799,21 +1891,21 @@ Target_Routine_For_Fortify:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
 @ SpellSystem.c:563: 	if ( UsingSpellMenu )
-	ldr	r3, .L255	@ tmp123,
+	ldr	r3, .L263	@ tmp123,
 @ SpellSystem.c:563: 	if ( UsingSpellMenu )
 	ldrb	r3, [r3]	@ UsingSpellMenu, UsingSpellMenu
 	cmp	r3, #0	@ UsingSpellMenu,
-	beq	.L253		@,
+	beq	.L261		@,
 @ SpellSystem.c:565: 		item = SelectedSpell|0xFF00;
-	ldr	r3, .L255+4	@ tmp125,
+	ldr	r3, .L263+4	@ tmp125,
 	ldrb	r2, [r3]	@ SelectedSpell, SelectedSpell
 @ SpellSystem.c:565: 		item = SelectedSpell|0xFF00;
 	movs	r3, #255	@ tmp128,
 	lsls	r3, r3, #8	@ tmp128, tmp128,
 	orrs	r2, r3	@ item, tmp128
-.L254:
+.L262:
 @ SpellSystem.c:571: 	gHealStaff_RangeSetup(unit,0,item);
-	ldr	r3, .L255+8	@ tmp137,
+	ldr	r3, .L263+8	@ tmp137,
 @ SpellSystem.c:572: }
 	@ sp needed	@
 @ SpellSystem.c:571: 	gHealStaff_RangeSetup(unit,0,item);
@@ -1824,19 +1916,19 @@ Target_Routine_For_Fortify:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L253:
+.L261:
 @ SpellSystem.c:569: 		item = unit->unit.items[gActionData.itemSlotIndex];
-	ldr	r3, .L255+12	@ tmp131,
+	ldr	r3, .L263+12	@ tmp131,
 	ldrb	r3, [r3, #18]	@ tmp132,
 @ SpellSystem.c:569: 		item = unit->unit.items[gActionData.itemSlotIndex];
 	adds	r3, r3, #12	@ tmp133,
 	lsls	r3, r3, #1	@ tmp134, tmp133,
 	adds	r3, r0, r3	@ tmp135, unit, tmp134
 	ldrh	r2, [r3, #6]	@ item, *unit_11(D)
-	b	.L254		@
-.L256:
+	b	.L262		@
+.L264:
 	.align	2
-.L255:
+.L263:
 	.word	UsingSpellMenu
 	.word	SelectedSpell
 	.word	gHealStaff_RangeSetup
@@ -1859,19 +1951,19 @@ GaidenZeroOutSpellVariables:
 @ SpellSystem.c:579: }
 	@ sp needed	@
 @ SpellSystem.c:576: 	UsingSpellMenu = 0;
-	ldr	r2, .L258	@ tmp113,
+	ldr	r2, .L266	@ tmp113,
 	strb	r3, [r2]	@ tmp114, UsingSpellMenu
 @ SpellSystem.c:577: 	SelectedSpell = 0;
-	ldr	r2, .L258+4	@ tmp116,
+	ldr	r2, .L266+4	@ tmp116,
 	strb	r3, [r2]	@ tmp114, SelectedSpell
 @ SpellSystem.c:578: 	DidSelectSpell = 0;
-	ldr	r2, .L258+8	@ tmp119,
+	ldr	r2, .L266+8	@ tmp119,
 	strb	r3, [r2]	@ tmp114, DidSelectSpell
 @ SpellSystem.c:579: }
 	bx	lr
-.L259:
+.L267:
 	.align	2
-.L258:
+.L266:
 	.word	UsingSpellMenu
 	.word	SelectedSpell
 	.word	DidSelectSpell
@@ -1889,18 +1981,18 @@ GetUnitRangeMaskForSpells:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
 @ RangeDisplay.c:42: 	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
-	ldr	r3, .L276	@ tmp130,
+	ldr	r3, .L284	@ tmp130,
 @ RangeDisplay.c:40: {
 	str	r1, [sp, #4]	@ tmp139, %sfp
 @ RangeDisplay.c:42: 	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
-	ldrb	r1, [r3]	@ UsingSpellMenu.73_1, UsingSpellMenu
+	ldrb	r1, [r3]	@ UsingSpellMenu.75_1, UsingSpellMenu
 @ RangeDisplay.c:40: {
 	movs	r7, r0	@ unit, tmp138
 @ RangeDisplay.c:42: 	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
-	cmp	r1, #0	@ UsingSpellMenu.73_1,
-	bne	.L261		@,
-	subs	r1, r1, #1	@ iftmp.72_16,
-.L261:
+	cmp	r1, #0	@ UsingSpellMenu.75_1,
+	bne	.L269		@,
+	subs	r1, r1, #1	@ iftmp.74_16,
+.L269:
 @ RangeDisplay.c:41: 	long long current = 0;
 	movs	r5, #0	@ <retval>,
 @ RangeDisplay.c:42: 	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
@@ -1910,13 +2002,13 @@ GetUnitRangeMaskForSpells:
 	movs	r4, r5	@ <retval>, <retval>
 @ RangeDisplay.c:42: 	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
 	str	r0, [sp]	@ tmp140, %sfp
-.L262:
+.L270:
 @ RangeDisplay.c:43: 	for ( int i = 0 ; spells[i] ; i++ )
-	ldr	r3, [sp]	@ ivtmp.354, %sfp
+	ldr	r3, [sp]	@ ivtmp.364, %sfp
 	ldrb	r6, [r3]	@ _12, MEM[base: _36, offset: 0B]
 @ RangeDisplay.c:43: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r6, #0	@ _12,
-	bne	.L265		@,
+	bne	.L273		@,
 @ RangeDisplay.c:56: }
 	movs	r0, r5	@, <retval>
 	movs	r1, r4	@, <retval>
@@ -1925,7 +2017,7 @@ GetUnitRangeMaskForSpells:
 	pop	{r4, r5, r6, r7}
 	pop	{r2}
 	bx	r2
-.L265:
+.L273:
 @ RangeDisplay.c:45: 		int spell = spells[i]|0xFF00;
 	movs	r3, #255	@ tmp163,
 	lsls	r3, r3, #8	@ tmp163, tmp163,
@@ -1937,15 +2029,15 @@ GetUnitRangeMaskForSpells:
 	movs	r0, r7	@, unit
 @ RangeDisplay.c:46: 		if ( usability == NULL )
 	cmp	r3, #0	@ usability,
-	bne	.L263		@,
+	bne	.L271		@,
 @ RangeDisplay.c:48: 			if ( CanCastSpell(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
 	bl	CanCastSpell		@
-.L275:
+.L283:
 @ RangeDisplay.c:52: 			if ( usability(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
 	cmp	r0, #0	@ tmp144,
-	beq	.L264		@,
+	beq	.L272		@,
 @ RangeDisplay.c:52: 			if ( usability(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
-	ldr	r3, .L276+4	@ tmp134,
+	ldr	r3, .L284+4	@ tmp134,
 	movs	r1, r6	@, spell
 	ldr	r3, [r3]	@ gGet_Item_Range, gGet_Item_Range
 	movs	r0, r7	@, unit
@@ -1957,19 +2049,19 @@ GetUnitRangeMaskForSpells:
 	bl	IncorporateNewRange		@
 	movs	r5, r0	@ <retval>, tmp161
 	movs	r4, r1	@ <retval>, tmp162
-.L264:
-	ldr	r3, [sp]	@ ivtmp.354, %sfp
-	adds	r3, r3, #1	@ ivtmp.354,
-	str	r3, [sp]	@ ivtmp.354, %sfp
-	b	.L262		@
-.L263:
+.L272:
+	ldr	r3, [sp]	@ ivtmp.364, %sfp
+	adds	r3, r3, #1	@ ivtmp.364,
+	str	r3, [sp]	@ ivtmp.364, %sfp
+	b	.L270		@
+.L271:
 @ RangeDisplay.c:52: 			if ( usability(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
 	ldr	r3, [sp, #4]	@ usability, %sfp
 	bl	.L14		@
-	b	.L275		@
-.L277:
+	b	.L283		@
+.L285:
 	.align	2
-.L276:
+.L284:
 	.word	UsingSpellMenu
 	.word	gGet_Item_Range
 	.size	GetUnitRangeMaskForSpells, .-GetUnitRangeMaskForSpells
@@ -1995,30 +2087,30 @@ Return_Range_Bitfield:
 	str	r2, [sp, #8]	@ tmp149, %sfp
 @ RangeDisplay.c:11: 	if ( slot == -1 || slot == -2 )
 	adds	r3, r3, #2	@ tmp175, slot,
-	bcc	.L279		@,
+	bcc	.L287		@,
 @ RangeDisplay.c:10: 	long long current = 0;
 	movs	r5, #0	@ <retval>,
 	movs	r3, r0	@ _19, unit
-	movs	r7, r0	@ ivtmp.363, unit
+	movs	r7, r0	@ ivtmp.373, unit
 	movs	r4, r5	@ <retval>, <retval>
 	adds	r3, r3, #40	@ _19,
 	str	r3, [sp, #12]	@ _19, %sfp
-	adds	r7, r7, #30	@ ivtmp.363,
-.L280:
+	adds	r7, r7, #30	@ ivtmp.373,
+.L288:
 @ RangeDisplay.c:14: 		for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	ldrh	r1, [r7]	@ _10, MEM[base: _38, offset: 0B]
 @ RangeDisplay.c:14: 		for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	cmp	r1, #0	@ _10,
-	beq	.L282		@,
+	beq	.L290		@,
 @ RangeDisplay.c:16: 			if ( usability(unit,unit->items[i]) )
 	movs	r0, r6	@, unit
 	ldr	r3, [sp, #8]	@ usability, %sfp
 	bl	.L14		@
 @ RangeDisplay.c:16: 			if ( usability(unit,unit->items[i]) )
 	cmp	r0, #0	@ tmp150,
-	beq	.L281		@,
+	beq	.L289		@,
 @ RangeDisplay.c:18: 				current = IncorporateNewRange(current,gGet_Item_Range(unit,unit->items[i]));
-	ldr	r3, .L290	@ tmp137,
+	ldr	r3, .L298	@ tmp137,
 	movs	r0, r6	@, unit
 	ldr	r3, [r3]	@ gGet_Item_Range, gGet_Item_Range
 	ldrh	r1, [r7]	@ MEM[base: _38, offset: 0B], MEM[base: _38, offset: 0B]
@@ -2030,17 +2122,17 @@ Return_Range_Bitfield:
 	bl	IncorporateNewRange		@
 	movs	r5, r0	@ <retval>, tmp165
 	movs	r4, r1	@ <retval>, tmp166
-.L281:
+.L289:
 @ RangeDisplay.c:14: 		for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	ldr	r3, [sp, #12]	@ _19, %sfp
-	adds	r7, r7, #2	@ ivtmp.363,
-	cmp	r7, r3	@ ivtmp.363, _19
-	bne	.L280		@,
-.L282:
+	adds	r7, r7, #2	@ ivtmp.373,
+	cmp	r7, r3	@ ivtmp.373, _19
+	bne	.L288		@,
+.L290:
 @ RangeDisplay.c:21: 		return ( slot == -1 ? IncorporateNewRange(current,GetUnitRangeMaskForSpells(unit,usability)) : current );
 	ldr	r3, [sp, #4]	@ slot, %sfp
 	adds	r3, r3, #1	@ tmp176, slot,
-	bne	.L278		@,
+	bne	.L286		@,
 @ RangeDisplay.c:21: 		return ( slot == -1 ? IncorporateNewRange(current,GetUnitRangeMaskForSpells(unit,usability)) : current );
 	movs	r0, r6	@, unit
 	ldr	r1, [sp, #8]	@, %sfp
@@ -2050,11 +2142,11 @@ Return_Range_Bitfield:
 	movs	r0, r5	@, <retval>
 	movs	r1, r4	@, <retval>
 	bl	IncorporateNewRange		@
-.L289:
+.L297:
 @ RangeDisplay.c:33: 			return GetUnitRangeMaskForSpells(unit,usability);
 	movs	r5, r0	@ <retval>, tmp173
 	movs	r4, r1	@ <retval>, tmp174
-.L278:
+.L286:
 @ RangeDisplay.c:36: }
 	movs	r0, r5	@, <retval>
 	movs	r1, r4	@, <retval>
@@ -2063,16 +2155,16 @@ Return_Range_Bitfield:
 	pop	{r4, r5, r6, r7}
 	pop	{r2}
 	bx	r2
-.L279:
+.L287:
 @ RangeDisplay.c:26: 		if ( slot != 9 )
 	ldr	r3, [sp, #4]	@ slot, %sfp
 	cmp	r3, #9	@ slot,
-	beq	.L285		@,
+	beq	.L293		@,
 @ RangeDisplay.c:28: 			return gGet_Item_Range(unit,unit->items[slot]);
 	movs	r1, r3	@ slot, slot
 	adds	r1, r1, #12	@ slot,
 @ RangeDisplay.c:28: 			return gGet_Item_Range(unit,unit->items[slot]);
-	ldr	r3, .L290	@ tmp144,
+	ldr	r3, .L298	@ tmp144,
 @ RangeDisplay.c:28: 			return gGet_Item_Range(unit,unit->items[slot]);
 	lsls	r1, r1, #1	@ tmp140, tmp139,
 	adds	r1, r0, r1	@ tmp141, unit, tmp140
@@ -2080,15 +2172,15 @@ Return_Range_Bitfield:
 	ldr	r3, [r3]	@ gGet_Item_Range, gGet_Item_Range
 	ldrh	r1, [r1, #6]	@ tmp143, *unit_26(D)
 	bl	.L14		@
-	b	.L289		@
-.L285:
+	b	.L297		@
+.L293:
 @ RangeDisplay.c:33: 			return GetUnitRangeMaskForSpells(unit,usability);
 	ldr	r1, [sp, #8]	@, %sfp
 	bl	GetUnitRangeMaskForSpells		@
-	b	.L289		@
-.L291:
+	b	.L297		@
+.L299:
 	.align	2
-.L290:
+.L298:
 	.word	gGet_Item_Range
 	.size	Return_Range_Bitfield, .-Return_Range_Bitfield
 	.align	1
@@ -2129,7 +2221,7 @@ mov r12, r7
 	movs	r0, #16	@ tmp122,
 	ldrsb	r1, [r4, r1]	@ tmp121,
 	ldrsb	r0, [r4, r0]	@ tmp122,
-	ldr	r4, .L293	@ tmp123,
+	ldr	r4, .L301	@ tmp123,
 	ldr	r4, [r4]	@ gWrite_Range, gWrite_Range
 	bl	.L16		@
 @ RangeDisplay.c:86: 	asm("pop { r7 }");
@@ -2144,9 +2236,9 @@ mov r12, r7
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L294:
+.L302:
 	.align	2
-.L293:
+.L301:
 	.word	gWrite_Range
 	.size	All_Spells_One_Square, .-All_Spells_One_Square
 	.align	1
@@ -2161,57 +2253,57 @@ GaidenBlackMagicUMHover:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ UnitMenu.c:73: 	UsingSpellMenu = BLACK_MAGIC;
+@ UnitMenu.c:102: 	UsingSpellMenu = BLACK_MAGIC;
 	movs	r5, #1	@ tmp122,
-	ldr	r3, .L299	@ tmp121,
+	ldr	r3, .L307	@ tmp121,
 	strb	r5, [r3]	@ tmp122, UsingSpellMenu
-@ UnitMenu.c:74: 	BmMapFill(gMapMovement,-1);
-	ldr	r3, .L299+4	@ tmp124,
-	ldr	r4, .L299+8	@ tmp125,
+@ UnitMenu.c:103: 	BmMapFill(gMapMovement,-1);
+	ldr	r3, .L307+4	@ tmp124,
+	ldr	r4, .L307+8	@ tmp125,
 	ldr	r0, [r3]	@, gMapMovement
 	movs	r1, #255	@,
 	bl	.L16		@
-@ UnitMenu.c:75: 	BmMapFill(gMapRange,0);
-	ldr	r3, .L299+12	@ tmp126,
+@ UnitMenu.c:104: 	BmMapFill(gMapRange,0);
+	ldr	r3, .L307+12	@ tmp126,
 	movs	r1, #0	@,
 	ldr	r0, [r3]	@, gMapRange
 	bl	.L16		@
-@ UnitMenu.c:76: 	if ( CanUseAttackSpellsNow(gActiveUnit,BLACK_MAGIC) ) // If we can use an attack spell now, display the red range.
-	ldr	r4, .L299+16	@ tmp128,
+@ UnitMenu.c:105: 	if ( CanUseAttackSpellsNow(gActiveUnit,BLACK_MAGIC) ) // If we can use an attack spell now, display the red range.
+	ldr	r4, .L307+16	@ tmp128,
 	movs	r1, r5	@, tmp122
 	ldr	r0, [r4]	@, gActiveUnit
 	bl	CanUseAttackSpellsNow		@
-	ldr	r5, .L299+20	@ tmp136,
-@ UnitMenu.c:76: 	if ( CanUseAttackSpellsNow(gActiveUnit,BLACK_MAGIC) ) // If we can use an attack spell now, display the red range.
+	ldr	r5, .L307+20	@ tmp136,
+@ UnitMenu.c:105: 	if ( CanUseAttackSpellsNow(gActiveUnit,BLACK_MAGIC) ) // If we can use an attack spell now, display the red range.
 	cmp	r0, #0	@ tmp137,
-	beq	.L296		@,
-@ UnitMenu.c:78: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckNotStaff);
+	beq	.L304		@,
+@ UnitMenu.c:107: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckNotStaff);
 	ldr	r0, [r4]	@, gActiveUnit
-	ldr	r1, .L299+24	@,
+	ldr	r1, .L307+24	@,
 	bl	All_Spells_One_Square		@
-@ UnitMenu.c:79: 		DisplayMoveRangeGraphics(3);
+@ UnitMenu.c:108: 		DisplayMoveRangeGraphics(3);
 	movs	r0, #3	@,
-.L298:
-@ UnitMenu.c:90: }
+.L306:
+@ UnitMenu.c:119: }
 	@ sp needed	@
-@ UnitMenu.c:84: 		DisplayMoveRangeGraphics(5);
-	bl	.L301		@
-@ UnitMenu.c:90: }
+@ UnitMenu.c:113: 		DisplayMoveRangeGraphics(5);
+	bl	.L309		@
+@ UnitMenu.c:119: }
 	movs	r0, #0	@,
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L296:
-@ UnitMenu.c:83: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckStaff);
+.L304:
+@ UnitMenu.c:112: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckStaff);
 	ldr	r0, [r4]	@, gActiveUnit
-	ldr	r1, .L299+28	@,
+	ldr	r1, .L307+28	@,
 	bl	All_Spells_One_Square		@
-@ UnitMenu.c:84: 		DisplayMoveRangeGraphics(5);
+@ UnitMenu.c:113: 		DisplayMoveRangeGraphics(5);
 	movs	r0, #5	@,
-	b	.L298		@
-.L300:
+	b	.L306		@
+.L308:
 	.align	2
-.L299:
+.L307:
 	.word	UsingSpellMenu
 	.word	gMapMovement
 	.word	BmMapFill
@@ -2233,57 +2325,57 @@ GaidenWhiteMagicUMHover:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ UnitMenu.c:94: 	UsingSpellMenu = WHITE_MAGIC;
+@ UnitMenu.c:123: 	UsingSpellMenu = WHITE_MAGIC;
 	movs	r5, #2	@ tmp122,
-	ldr	r3, .L306	@ tmp121,
+	ldr	r3, .L314	@ tmp121,
 	strb	r5, [r3]	@ tmp122, UsingSpellMenu
-@ UnitMenu.c:95: 	BmMapFill(gMapMovement,-1);
-	ldr	r3, .L306+4	@ tmp124,
-	ldr	r4, .L306+8	@ tmp125,
+@ UnitMenu.c:124: 	BmMapFill(gMapMovement,-1);
+	ldr	r3, .L314+4	@ tmp124,
+	ldr	r4, .L314+8	@ tmp125,
 	ldr	r0, [r3]	@, gMapMovement
 	movs	r1, #255	@,
 	bl	.L16		@
-@ UnitMenu.c:96: 	BmMapFill(gMapRange,0);
-	ldr	r3, .L306+12	@ tmp126,
+@ UnitMenu.c:125: 	BmMapFill(gMapRange,0);
+	ldr	r3, .L314+12	@ tmp126,
 	movs	r1, #0	@,
 	ldr	r0, [r3]	@, gMapRange
 	bl	.L16		@
-@ UnitMenu.c:97: 	if ( CanUseAttackSpellsNow(gActiveUnit,WHITE_MAGIC) ) // If we can use an attack spell now, display the red range.
-	ldr	r4, .L306+16	@ tmp128,
+@ UnitMenu.c:126: 	if ( CanUseAttackSpellsNow(gActiveUnit,WHITE_MAGIC) ) // If we can use an attack spell now, display the red range.
+	ldr	r4, .L314+16	@ tmp128,
 	movs	r1, r5	@, tmp122
 	ldr	r0, [r4]	@, gActiveUnit
 	bl	CanUseAttackSpellsNow		@
-	ldr	r5, .L306+20	@ tmp136,
-@ UnitMenu.c:97: 	if ( CanUseAttackSpellsNow(gActiveUnit,WHITE_MAGIC) ) // If we can use an attack spell now, display the red range.
+	ldr	r5, .L314+20	@ tmp136,
+@ UnitMenu.c:126: 	if ( CanUseAttackSpellsNow(gActiveUnit,WHITE_MAGIC) ) // If we can use an attack spell now, display the red range.
 	cmp	r0, #0	@ tmp137,
-	beq	.L303		@,
-@ UnitMenu.c:99: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckNotStaff);
+	beq	.L311		@,
+@ UnitMenu.c:128: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckNotStaff);
 	ldr	r0, [r4]	@, gActiveUnit
-	ldr	r1, .L306+24	@,
+	ldr	r1, .L314+24	@,
 	bl	All_Spells_One_Square		@
-@ UnitMenu.c:100: 		DisplayMoveRangeGraphics(3);
+@ UnitMenu.c:129: 		DisplayMoveRangeGraphics(3);
 	movs	r0, #3	@,
-.L305:
-@ UnitMenu.c:108: }
+.L313:
+@ UnitMenu.c:137: }
 	@ sp needed	@
-@ UnitMenu.c:105: 		DisplayMoveRangeGraphics(5);
-	bl	.L301		@
-@ UnitMenu.c:108: }
+@ UnitMenu.c:134: 		DisplayMoveRangeGraphics(5);
+	bl	.L309		@
+@ UnitMenu.c:137: }
 	movs	r0, #0	@,
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L303:
-@ UnitMenu.c:104: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckStaff);
+.L311:
+@ UnitMenu.c:133: 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckStaff);
 	ldr	r0, [r4]	@, gActiveUnit
-	ldr	r1, .L306+28	@,
+	ldr	r1, .L314+28	@,
 	bl	All_Spells_One_Square		@
-@ UnitMenu.c:105: 		DisplayMoveRangeGraphics(5);
+@ UnitMenu.c:134: 		DisplayMoveRangeGraphics(5);
 	movs	r0, #5	@,
-	b	.L305		@
-.L307:
+	b	.L313		@
+.L315:
 	.align	2
-.L306:
+.L314:
 	.word	UsingSpellMenu
 	.word	gMapMovement
 	.word	BmMapFill
@@ -2306,8 +2398,8 @@ SpellUsability:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
 @ SpellMenu.c:5: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,index,UsingSpellMenu)];
-	ldr	r7, .L316	@ tmp133,
-	ldr	r4, .L316+4	@ tmp135,
+	ldr	r7, .L324	@ tmp133,
+	ldr	r4, .L324+4	@ tmp135,
 @ SpellMenu.c:4: {
 	movs	r6, r1	@ index, tmp144
 @ SpellMenu.c:5: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,index,UsingSpellMenu)];
@@ -2326,24 +2418,24 @@ SpellUsability:
 	ldrb	r5, [r5, r0]	@ spell, *_10
 @ SpellMenu.c:6: 	if ( !spell ) { return 3; }
 	cmp	r5, #0	@ spell,
-	bne	.L309		@,
-.L311:
+	bne	.L317		@,
+.L319:
 @ SpellMenu.c:6: 	if ( !spell ) { return 3; }
 	movs	r0, #3	@ <retval>,
-.L308:
+.L316:
 @ SpellMenu.c:11: }
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L309:
+.L317:
 @ SpellMenu.c:8: 	if ( !CanCastSpellNow(gActiveUnit,spell) ) { return 3; }
 	movs	r1, r5	@, spell
 	ldr	r0, [r4]	@, gActiveUnit
 	bl	CanCastSpellNow		@
 @ SpellMenu.c:8: 	if ( !CanCastSpellNow(gActiveUnit,spell) ) { return 3; }
 	cmp	r0, #0	@ tmp147,
-	beq	.L311		@,
+	beq	.L319		@,
 @ SpellMenu.c:10: 	return ( HasSufficientHP(gActiveUnit,spell) ? 1 : 2 );
 	movs	r1, r5	@, spell
 	ldr	r0, [r4]	@, gActiveUnit
@@ -2352,10 +2444,10 @@ SpellUsability:
 	rsbs	r3, r0, #0	@ tmp143, tmp148
 	adcs	r0, r0, r3	@ tmp142, tmp148, tmp143
 	adds	r0, r0, #1	@ <retval>,
-	b	.L308		@
-.L317:
+	b	.L316		@
+.L325:
 	.align	2
-.L316:
+.L324:
 	.word	UsingSpellMenu
 	.word	gActiveUnit
 	.size	SpellUsability, .-SpellUsability
@@ -2376,8 +2468,8 @@ SpellDrawingRoutine:
 @ SpellMenu.c:22: }
 	@ sp needed	@
 @ SpellMenu.c:16: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,menuCommand->commandDefinitionIndex,UsingSpellMenu)];
-	ldr	r6, .L319	@ tmp145,
-	ldr	r7, .L319+4	@ tmp143,
+	ldr	r6, .L327	@ tmp145,
+	ldr	r7, .L327+4	@ tmp143,
 	ldr	r0, [r6]	@, gActiveUnit
 	ldrb	r1, [r7]	@ UsingSpellMenu, UsingSpellMenu
 	bl	SpellsGetter		@
@@ -2410,10 +2502,10 @@ SpellDrawingRoutine:
 @ SpellMenu.c:19: 	DrawItemMenuCommand(&menuCommand->text,spell,canUse,&gBg0MapBuffer[menuCommand->yDrawTile * 32 + menuCommand->xDrawTile]);
 	adds	r3, r3, r1	@ tmp157, tmp155, tmp156
 @ SpellMenu.c:19: 	DrawItemMenuCommand(&menuCommand->text,spell,canUse,&gBg0MapBuffer[menuCommand->yDrawTile * 32 + menuCommand->xDrawTile]);
-	ldr	r1, .L319+8	@ tmp160,
+	ldr	r1, .L327+8	@ tmp160,
 	lsls	r3, r3, #1	@ tmp158, tmp157,
 	adds	r3, r3, r1	@ tmp159, tmp158, tmp160
-	ldr	r4, .L319+12	@ tmp164,
+	ldr	r4, .L327+12	@ tmp164,
 	movs	r1, r5	@ tmp161, _13
 @ SpellMenu.c:19: 	DrawItemMenuCommand(&menuCommand->text,spell,canUse,&gBg0MapBuffer[menuCommand->yDrawTile * 32 + menuCommand->xDrawTile]);
 	adds	r0, r0, #52	@ menuCommand,
@@ -2421,16 +2513,16 @@ SpellDrawingRoutine:
 	bl	.L16		@
 @ SpellMenu.c:20: 	EnableBgSyncByMask(1);
 	movs	r0, #1	@,
-	ldr	r3, .L319+16	@ tmp165,
+	ldr	r3, .L327+16	@ tmp165,
 	bl	.L14		@
 @ SpellMenu.c:22: }
 	movs	r0, #0	@,
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L320:
+.L328:
 	.align	2
-.L319:
+.L327:
 	.word	gActiveUnit
 	.word	UsingSpellMenu
 	.word	gBg0MapBuffer
@@ -2448,54 +2540,66 @@ MagicMenuBPress:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
+@ SpellMenu.c:28: 	Unit* unit = gActiveUnit;
+	ldr	r3, .L330	@ tmp122,
+	ldr	r2, [r3]	@ unit, gActiveUnit
+@ SpellMenu.c:29: 	unit->state &= ~(1UL << 30); // Always clear capturing bit if leaving menu 
+	ldr	r3, .L330+4	@ tmp125,
+	ldr	r1, [r2, #12]	@ tmp145, unit_9->state
+	ands	r3, r1	@ tmp123, tmp145
+@ SpellMenu.c:25: {
 	push	{r4, lr}	@
-@ SpellMenu.c:26: 	FillBgMap(gBg2MapBuffer,0);
+@ SpellMenu.c:32: 	FillBgMap(gBg2MapBuffer,0);
 	movs	r1, #0	@,
-@ SpellMenu.c:35: }
+@ SpellMenu.c:41: }
 	@ sp needed	@
-@ SpellMenu.c:26: 	FillBgMap(gBg2MapBuffer,0);
-	ldr	r0, .L322	@,
-	ldr	r3, .L322+4	@ tmp120,
+@ SpellMenu.c:29: 	unit->state &= ~(1UL << 30); // Always clear capturing bit if leaving menu 
+	str	r3, [r2, #12]	@ tmp123, unit_9->state
+@ SpellMenu.c:32: 	FillBgMap(gBg2MapBuffer,0);
+	ldr	r0, .L330+8	@,
+	ldr	r3, .L330+12	@ tmp127,
 	bl	.L14		@
-@ SpellMenu.c:27: 	EnableBgSyncByMask(4);
+@ SpellMenu.c:33: 	EnableBgSyncByMask(4);
 	movs	r0, #4	@,
-	ldr	r3, .L322+8	@ tmp121,
+	ldr	r3, .L330+16	@ tmp128,
 	bl	.L14		@
-@ SpellMenu.c:28: 	Text_ResetTileAllocation();
-	ldr	r3, .L322+12	@ tmp122,
+@ SpellMenu.c:34: 	Text_ResetTileAllocation();
+	ldr	r3, .L330+20	@ tmp129,
 	bl	.L14		@
-@ SpellMenu.c:30: 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
-	ldr	r3, .L322+16	@ tmp123,
-	ldrh	r1, [r3, #28]	@ tmp124,
-@ SpellMenu.c:30: 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
-	ldrh	r3, [r3, #12]	@ tmp126,
-@ SpellMenu.c:30: 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
+@ SpellMenu.c:36: 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
+	ldr	r3, .L330+24	@ tmp130,
+	ldrh	r1, [r3, #28]	@ tmp131,
+@ SpellMenu.c:36: 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
+	ldrh	r3, [r3, #12]	@ tmp133,
+@ SpellMenu.c:36: 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
 	movs	r2, #1	@,
-	subs	r1, r1, r3	@ tmp127, tmp124, tmp126
-	ldr	r4, .L322+20	@ tmp129,
+	subs	r1, r1, r3	@ tmp134, tmp131, tmp133
+	ldr	r4, .L330+28	@ tmp136,
 	movs	r3, #16	@,
-	ldr	r0, .L322+24	@,
+	ldr	r0, .L330+32	@,
 	bl	.L16		@
-@ SpellMenu.c:31: 	HideMoveRangeGraphics();
-	ldr	r3, .L322+28	@ tmp130,
+@ SpellMenu.c:37: 	HideMoveRangeGraphics();
+	ldr	r3, .L330+36	@ tmp137,
 	bl	.L14		@
-@ SpellMenu.c:32: 	SelectedSpell = 0;
-	movs	r3, #0	@ tmp132,
-	ldr	r2, .L322+32	@ tmp131,
-	strb	r3, [r2]	@ tmp132, SelectedSpell
-@ SpellMenu.c:33: 	UsingSpellMenu = 0;
-	ldr	r2, .L322+36	@ tmp134,
-@ SpellMenu.c:35: }
+@ SpellMenu.c:38: 	SelectedSpell = 0;
+	movs	r3, #0	@ tmp139,
+	ldr	r2, .L330+40	@ tmp138,
+	strb	r3, [r2]	@ tmp139, SelectedSpell
+@ SpellMenu.c:39: 	UsingSpellMenu = 0;
+	ldr	r2, .L330+44	@ tmp141,
+@ SpellMenu.c:41: }
 	movs	r0, #59	@,
-@ SpellMenu.c:33: 	UsingSpellMenu = 0;
-	strb	r3, [r2]	@ tmp132, UsingSpellMenu
-@ SpellMenu.c:35: }
+@ SpellMenu.c:39: 	UsingSpellMenu = 0;
+	strb	r3, [r2]	@ tmp139, UsingSpellMenu
+@ SpellMenu.c:41: }
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L323:
+.L331:
 	.align	2
-.L322:
+.L330:
+	.word	gActiveUnit
+	.word	-1073741825
 	.word	gBg2MapBuffer
 	.word	FillBgMap
 	.word	EnableBgSyncByMask
@@ -2519,103 +2623,103 @@ SpellEffectRoutine:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
-@ SpellMenu.c:39: 	if ( commandProc->availability == 2)
+@ SpellMenu.c:45: 	if ( commandProc->availability == 2)
 	adds	r1, r1, #61	@ tmp140,
-@ SpellMenu.c:39: 	if ( commandProc->availability == 2)
+@ SpellMenu.c:45: 	if ( commandProc->availability == 2)
 	ldrb	r3, [r1]	@ tmp141,
 	cmp	r3, #2	@ tmp141,
-	bne	.L325		@,
-@ SpellMenu.c:42: 		MenuCallHelpBox(proc,gGaidenMagicSpellMenuErrorText);
-	ldr	r3, .L333	@ tmp142,
+	bne	.L333		@,
+@ SpellMenu.c:48: 		MenuCallHelpBox(proc,gGaidenMagicSpellMenuErrorText);
+	ldr	r3, .L341	@ tmp142,
 	ldrh	r1, [r3]	@ gGaidenMagicSpellMenuErrorText, gGaidenMagicSpellMenuErrorText
-	ldr	r3, .L333+4	@ tmp144,
+	ldr	r3, .L341+4	@ tmp144,
 	bl	.L14		@
-@ SpellMenu.c:43: 		return 0x08;
+@ SpellMenu.c:49: 		return 0x08;
 	movs	r0, #8	@ <retval>,
-.L324:
-@ SpellMenu.c:92: }
+.L332:
+@ SpellMenu.c:102: }
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L325:
-@ SpellMenu.c:47: 		Unit* unit = gActiveUnit;
-	ldr	r4, .L333+8	@ tmp145,
+.L333:
+@ SpellMenu.c:53: 		Unit* unit = gActiveUnit;
+	ldr	r4, .L341+8	@ tmp145,
 	ldr	r3, [r4]	@ unit, gActiveUnit
-@ SpellMenu.c:48: 		if ( unit->ranks[0] != SelectedSpell) 
+@ SpellMenu.c:54: 		if ( unit->ranks[0] != SelectedSpell) 
 	movs	r6, r3	@ tmp148, unit
-@ SpellMenu.c:48: 		if ( unit->ranks[0] != SelectedSpell) 
-	ldr	r5, .L333+12	@ tmp149,
-@ SpellMenu.c:48: 		if ( unit->ranks[0] != SelectedSpell) 
+@ SpellMenu.c:54: 		if ( unit->ranks[0] != SelectedSpell) 
+	ldr	r5, .L341+12	@ tmp149,
+@ SpellMenu.c:54: 		if ( unit->ranks[0] != SelectedSpell) 
 	adds	r6, r6, #40	@ tmp148,
 	ldrb	r0, [r6]	@ _3,
-@ SpellMenu.c:48: 		if ( unit->ranks[0] != SelectedSpell) 
-	ldrb	r1, [r5]	@ SelectedSpell.95_4, SelectedSpell
-@ SpellMenu.c:48: 		if ( unit->ranks[0] != SelectedSpell) 
-	cmp	r0, r1	@ _3, SelectedSpell.95_4
-	beq	.L327		@,
-	movs	r2, r3	@ ivtmp.393, unit
+@ SpellMenu.c:54: 		if ( unit->ranks[0] != SelectedSpell) 
+	ldrb	r1, [r5]	@ SelectedSpell.97_4, SelectedSpell
+@ SpellMenu.c:54: 		if ( unit->ranks[0] != SelectedSpell) 
+	cmp	r0, r1	@ _3, SelectedSpell.97_4
+	beq	.L335		@,
+	movs	r2, r3	@ ivtmp.403, unit
 	adds	r3, r3, #45	@ _47,
-	adds	r2, r2, #41	@ ivtmp.393,
-.L329:
-@ SpellMenu.c:53: 			if (unit->ranks[i] == SelectedSpell) 
+	adds	r2, r2, #41	@ ivtmp.403,
+.L337:
+@ SpellMenu.c:59: 			if (unit->ranks[i] == SelectedSpell) 
 	ldrb	r7, [r2]	@ MEM[base: _40, offset: 0B], MEM[base: _40, offset: 0B]
-	cmp	r7, r1	@ MEM[base: _40, offset: 0B], SelectedSpell.95_4
-	bne	.L328		@,
-@ SpellMenu.c:55: 			unit->ranks[i] = PreviousSelection;
+	cmp	r7, r1	@ MEM[base: _40, offset: 0B], SelectedSpell.97_4
+	bne	.L336		@,
+@ SpellMenu.c:61: 			unit->ranks[i] = PreviousSelection;
 	strb	r0, [r2]	@ _3, MEM[base: _40, offset: 0B]
-@ SpellMenu.c:56: 			unit->ranks[0] = SelectedSpell;
-	strb	r1, [r6]	@ SelectedSpell.95_4, unit_25->ranks
-.L328:
-@ SpellMenu.c:51: 		for ( int i = 1 ; i < 5 ; i++ ) 
-	adds	r2, r2, #1	@ ivtmp.393,
-	cmp	r2, r3	@ ivtmp.393, _47
-	bne	.L329		@,
-.L327:
-@ SpellMenu.c:77: 		gActionData.itemSlotIndex = 0;
+@ SpellMenu.c:62: 			unit->ranks[0] = SelectedSpell;
+	strb	r1, [r6]	@ SelectedSpell.97_4, unit_25->ranks
+.L336:
+@ SpellMenu.c:57: 		for ( int i = 1 ; i < 5 ; i++ ) 
+	adds	r2, r2, #1	@ ivtmp.403,
+	cmp	r2, r3	@ ivtmp.403, _47
+	bne	.L337		@,
+.L335:
+@ SpellMenu.c:83: 		gActionData.itemSlotIndex = 0;
 	movs	r2, #0	@ tmp157,
-	ldr	r3, .L333+16	@ tmp156,
+	ldr	r3, .L341+16	@ tmp156,
 	strb	r2, [r3, #18]	@ tmp157, gActionData.itemSlotIndex
-@ SpellMenu.c:78: 		DidSelectSpell = 1;
-	ldr	r3, .L333+20	@ tmp159,
+@ SpellMenu.c:84: 		DidSelectSpell = 1;
+	ldr	r3, .L341+20	@ tmp159,
 	adds	r2, r2, #1	@ tmp160,
 	strb	r2, [r3]	@ tmp160, DidSelectSpell
-@ SpellMenu.c:79: 		ClearBG0BG1();
-	ldr	r3, .L333+24	@ tmp162,
+@ SpellMenu.c:85: 		ClearBG0BG1();
+	ldr	r3, .L341+24	@ tmp162,
 	bl	.L14		@
-@ SpellMenu.c:80: 		int type = GetItemType(SelectedSpell);
-	ldr	r3, .L333+28	@ tmp165,
+@ SpellMenu.c:86: 		int type = GetItemType(SelectedSpell);
+	ldr	r3, .L341+28	@ tmp165,
 	ldrb	r0, [r5]	@ SelectedSpell, SelectedSpell
 	bl	.L14		@
 	movs	r1, #255	@ tmp185,
 	ldrb	r3, [r5]	@ SelectedSpell, SelectedSpell
 	lsls	r1, r1, #8	@ tmp185, tmp185,
-@ SpellMenu.c:83: 			MakeTargetListForWeapon(gActiveUnit,SelectedSpell|0xFF00);
+@ SpellMenu.c:93: 			MakeTargetListForWeapon(gActiveUnit,SelectedSpell|0xFF00);
 	orrs	r1, r3	@ tmp168, SelectedSpell
-@ SpellMenu.c:81: 		if ( type != ITYPE_STAFF )
+@ SpellMenu.c:87: 		if ( type != ITYPE_STAFF )
 	cmp	r0, #4	@ tmp188,
-	beq	.L330		@,
-@ SpellMenu.c:83: 			MakeTargetListForWeapon(gActiveUnit,SelectedSpell|0xFF00);
+	beq	.L338		@,
+@ SpellMenu.c:93: 			MakeTargetListForWeapon(gActiveUnit,SelectedSpell|0xFF00);
 	ldr	r0, [r4]	@, gActiveUnit
-	ldr	r3, .L333+32	@ tmp171,
+	ldr	r3, .L341+32	@ tmp171,
 	bl	.L14		@
-@ SpellMenu.c:84: 			StartTargetSelection(&SpellTargetSelection);
-	ldr	r0, .L333+36	@,
-	ldr	r3, .L333+40	@ tmp173,
+@ SpellMenu.c:94: 			StartTargetSelection(&SpellTargetSelection);
+	ldr	r0, .L341+36	@,
+	ldr	r3, .L341+40	@ tmp173,
 	bl	.L14		@
-.L332:
-@ SpellMenu.c:90: 		return 0x27;
+.L340:
+@ SpellMenu.c:100: 		return 0x27;
 	movs	r0, #39	@ <retval>,
-	b	.L324		@
-.L330:
-@ SpellMenu.c:88: 			ItemEffect_Call(gActiveUnit,SelectedSpell|0xFF00);
-	ldr	r0, [r4]	@, gActiveUnit
-	ldr	r3, .L333+44	@ tmp179,
-	bl	.L14		@
 	b	.L332		@
-.L334:
+.L338:
+@ SpellMenu.c:98: 			ItemEffect_Call(gActiveUnit,SelectedSpell|0xFF00);
+	ldr	r0, [r4]	@, gActiveUnit
+	ldr	r3, .L341+44	@ tmp179,
+	bl	.L14		@
+	b	.L340		@
+.L342:
 	.align	2
-.L333:
+.L341:
 	.word	gGaidenMagicSpellMenuErrorText
 	.word	MenuCallHelpBox
 	.word	gActiveUnit
@@ -2641,317 +2745,317 @@ SpellOnHover:
 	@ args = 0, pretend = 0, frame = 24
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, lr}	@
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
-	ldr	r3, .L350	@ tmp389,
-	ldr	r6, .L350+4	@ tmp206,
-@ SpellMenu.c:95: {
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+	ldr	r3, .L358	@ tmp389,
+	ldr	r6, .L358+4	@ tmp206,
+@ SpellMenu.c:105: {
 	sub	sp, sp, #36	@,,
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	ldrb	r1, [r6]	@ UsingSpellMenu, UsingSpellMenu
-@ SpellMenu.c:95: {
+@ SpellMenu.c:105: {
 	movs	r4, r0	@ proc, tmp367
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	SpellsGetter		@
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
-	ldr	r3, .L350	@ tmp390,
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+	ldr	r3, .L358	@ tmp390,
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	adds	r4, r4, #97	@ tmp213,
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	ldrb	r2, [r6]	@ UsingSpellMenu, UsingSpellMenu
 	ldrb	r1, [r4]	@ tmp214,
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	movs	r5, r0	@ _4, tmp368
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	GetNthUsableSpell		@
-@ SpellMenu.c:97: 	SelectedSpell = spell;
-	ldr	r3, .L350+8	@ tmp216,
-@ SpellMenu.c:96: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
+@ SpellMenu.c:107: 	SelectedSpell = spell;
+	ldr	r3, .L358+8	@ tmp216,
+@ SpellMenu.c:106: 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,proc->commandIndex,UsingSpellMenu)];
 	ldrb	r7, [r5, r0]	@ spell, *_12
-@ SpellMenu.c:115: 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
-	ldr	r0, .L350+12	@,
-@ SpellMenu.c:97: 	SelectedSpell = spell;
+@ SpellMenu.c:125: 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
+	ldr	r0, .L358+12	@,
+@ SpellMenu.c:107: 	SelectedSpell = spell;
 	strb	r7, [r3]	@ spell, SelectedSpell
-@ SpellMenu.c:115: 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
-	ldr	r3, .L350+16	@ tmp219,
+@ SpellMenu.c:125: 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
+	ldr	r3, .L358+16	@ tmp219,
 	bl	.L14		@
-@ SpellMenu.c:116: 	int x = menuItemPanel->x;
+@ SpellMenu.c:126: 	int x = menuItemPanel->x;
 	movs	r3, r0	@ tmp222, tmp370
-@ SpellMenu.c:115: 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
+@ SpellMenu.c:125: 	MenuItemPanelProc* menuItemPanel = (MenuItemPanelProc*)ProcFind(&gProc_MenuItemPanel);
 	str	r0, [sp, #8]	@ tmp370, %sfp
-@ SpellMenu.c:116: 	int x = menuItemPanel->x;
+@ SpellMenu.c:126: 	int x = menuItemPanel->x;
 	adds	r3, r3, #48	@ tmp222,
 	ldrb	r3, [r3]	@ _14,
 	str	r3, [sp, #24]	@ _14, %sfp
-@ SpellMenu.c:117: 	int y = menuItemPanel->y;
+@ SpellMenu.c:127: 	int y = menuItemPanel->y;
 	movs	r3, r0	@ tmp225, tmp370
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	movs	r4, r0	@ _140, tmp370
-@ SpellMenu.c:117: 	int y = menuItemPanel->y;
+@ SpellMenu.c:127: 	int y = menuItemPanel->y;
 	adds	r3, r3, #49	@ tmp225,
-@ SpellMenu.c:117: 	int y = menuItemPanel->y;
+@ SpellMenu.c:127: 	int y = menuItemPanel->y;
 	ldrb	r3, [r3]	@ y,
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	adds	r4, r4, #52	@ _140,
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
-	ldr	r5, .L350+20	@ tmp226,
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+	ldr	r5, .L358+20	@ tmp226,
 	movs	r0, r4	@, _140
-@ SpellMenu.c:117: 	int y = menuItemPanel->y;
+@ SpellMenu.c:127: 	int y = menuItemPanel->y;
 	str	r3, [sp, #28]	@ y, %sfp
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	str	r4, [sp, #16]	@ _140, %sfp
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
-	bl	.L301		@
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+	bl	.L309		@
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	ldr	r3, [sp, #8]	@ _145, %sfp
 	adds	r3, r3, #60	@ _145,
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	movs	r0, r3	@, _145
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	str	r3, [sp, #20]	@ _145, %sfp
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
-	bl	.L301		@
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+	bl	.L309		@
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	ldr	r6, [sp, #8]	@ _150, %sfp
 	adds	r6, r6, #68	@ _150,
-@ SpellMenu.c:121: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
+@ SpellMenu.c:131: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Clear(&menuItemPanel->textHandles[i]); }
 	movs	r0, r6	@, _150
-	bl	.L301		@
-@ SpellMenu.c:122: 	MakeUIWindowTileMap_BG0BG1(x,y,14,8,0);
+	bl	.L309		@
+@ SpellMenu.c:132: 	MakeUIWindowTileMap_BG0BG1(x,y,14,8,0);
 	movs	r5, #0	@ tmp229,
 	movs	r3, #8	@,
 	movs	r2, #14	@,
 	ldr	r1, [sp, #28]	@, %sfp
 	ldr	r0, [sp, #24]	@, %sfp
 	str	r5, [sp]	@ tmp229,
-	ldr	r4, .L350+24	@ tmp398,
+	ldr	r4, .L358+24	@ tmp398,
 	bl	.L16		@
-@ SpellMenu.c:124: 	int spellType = GetItemType(spell);
+@ SpellMenu.c:134: 	int spellType = GetItemType(spell);
 	movs	r0, r7	@, spell
-	ldr	r3, .L350+28	@ tmp231,
+	ldr	r3, .L358+28	@ tmp231,
 	bl	.L14		@
 	str	r0, [sp, #12]	@ tmp371, %sfp
-@ SpellMenu.c:125: 	if ( spellType != ITYPE_STAFF )
+@ SpellMenu.c:135: 	if ( spellType != ITYPE_STAFF )
 	cmp	r0, #4	@ spellType,
-	bne	.LCB2206	@
-	b	.L336	@long jump	@
-.LCB2206:
-@ SpellMenu.c:127: 		BattleGenerateUiStats(gActiveUnit,9); // 9 is using a Gaiden spell.
-	ldr	r3, .L350	@ tmp401,
+	bne	.LCB2284	@
+	b	.L344	@long jump	@
+.LCB2284:
+@ SpellMenu.c:137: 		BattleGenerateUiStats(gActiveUnit,9); // 9 is using a Gaiden spell.
+	ldr	r3, .L358	@ tmp401,
 	movs	r1, #9	@,
 	ldr	r0, [r3]	@, gActiveUnit
-	ldr	r3, .L350+32	@ tmp233,
+	ldr	r3, .L358+32	@ tmp233,
 	bl	.L14		@
-@ SpellMenu.c:128: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
-	ldr	r3, .L350+36	@ tmp402,
-	ldr	r0, .L350+40	@,
+@ SpellMenu.c:138: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
+	ldr	r3, .L358+36	@ tmp402,
+	ldr	r0, .L358+40	@,
 	bl	.L14		@
-@ SpellMenu.c:128: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
+@ SpellMenu.c:138: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
 	movs	r2, r5	@, tmp229
-@ SpellMenu.c:128: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
+@ SpellMenu.c:138: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
 	movs	r3, r0	@ _19, tmp372
-@ SpellMenu.c:128: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
+@ SpellMenu.c:138: 		Text_InsertString(&menuItemPanel->textHandles[0],0x02,0,GetStringFromIndex(0x4F1)); // Affin.
 	movs	r1, #2	@,
 	ldr	r0, [sp, #16]	@, %sfp
-	ldr	r4, .L350+44	@ tmp404,
+	ldr	r4, .L358+44	@ tmp404,
 	bl	.L16		@
-@ SpellMenu.c:129: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
-	ldr	r3, .L350+48	@ tmp237,
+@ SpellMenu.c:139: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
+	ldr	r3, .L358+48	@ tmp237,
 	ldrh	r0, [r3]	@ gGaidenMagicHPCostText, gGaidenMagicHPCostText
-	ldr	r3, .L350+36	@ tmp406,
+	ldr	r3, .L358+36	@ tmp406,
 	bl	.L14		@
-@ SpellMenu.c:129: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
+@ SpellMenu.c:139: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
 	movs	r2, r5	@, tmp229
-@ SpellMenu.c:129: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
+@ SpellMenu.c:139: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
 	movs	r3, r0	@ _23, tmp373
-@ SpellMenu.c:129: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
+@ SpellMenu.c:139: 		Text_InsertString(&menuItemPanel->textHandles[0],0x32,0,GetStringFromIndex(gGaidenMagicHPCostText)); // HP Cost.
 	movs	r1, #50	@,
 	ldr	r0, [sp, #16]	@, %sfp
-	ldr	r4, .L350+44	@ tmp408,
+	ldr	r4, .L358+44	@ tmp408,
 	bl	.L16		@
-@ SpellMenu.c:130: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
-	ldr	r3, .L350+36	@ tmp410,
-	ldr	r0, .L350+52	@,
+@ SpellMenu.c:140: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
+	ldr	r3, .L358+36	@ tmp410,
+	ldr	r0, .L358+52	@,
 	bl	.L14		@
-@ SpellMenu.c:130: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
+@ SpellMenu.c:140: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
 	movs	r2, r5	@, tmp229
-@ SpellMenu.c:130: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
+@ SpellMenu.c:140: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
 	movs	r3, r0	@ _25, tmp374
-@ SpellMenu.c:130: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
+@ SpellMenu.c:140: 		Text_InsertString(&menuItemPanel->textHandles[1],0x02,0,GetStringFromIndex(0x4F3)); // Atk.
 	movs	r1, #2	@,
 	ldr	r0, [sp, #20]	@, %sfp
-	ldr	r4, .L350+44	@ tmp412,
+	ldr	r4, .L358+44	@ tmp412,
 	bl	.L16		@
-@ SpellMenu.c:131: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
-	ldr	r3, .L350+36	@ tmp414,
-	ldr	r0, .L350+56	@,
+@ SpellMenu.c:141: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
+	ldr	r3, .L358+36	@ tmp414,
+	ldr	r0, .L358+56	@,
 	bl	.L14		@
-@ SpellMenu.c:131: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
+@ SpellMenu.c:141: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
 	movs	r2, r5	@, tmp229
-@ SpellMenu.c:131: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
+@ SpellMenu.c:141: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
 	movs	r3, r0	@ _27, tmp375
-@ SpellMenu.c:131: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
+@ SpellMenu.c:141: 		Text_InsertString(&menuItemPanel->textHandles[2],0x02,0,GetStringFromIndex(0x4F4)); // Hit.
 	movs	r1, #2	@,
 	movs	r0, r6	@, _150
-	ldr	r4, .L350+44	@ tmp416,
+	ldr	r4, .L358+44	@ tmp416,
 	bl	.L16		@
-@ SpellMenu.c:132: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
-	ldr	r3, .L350+36	@ tmp418,
-	ldr	r0, .L350+60	@,
+@ SpellMenu.c:142: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
+	ldr	r3, .L358+36	@ tmp418,
+	ldr	r0, .L358+60	@,
 	bl	.L14		@
-@ SpellMenu.c:132: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
+@ SpellMenu.c:142: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
 	movs	r2, r5	@, tmp229
-@ SpellMenu.c:132: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
+@ SpellMenu.c:142: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
 	movs	r3, r0	@ _28, tmp376
-@ SpellMenu.c:132: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
+@ SpellMenu.c:142: 		Text_InsertString(&menuItemPanel->textHandles[1],0x32,0,GetStringFromIndex(0x501)); // Crit.
 	movs	r1, #50	@,
 	ldr	r0, [sp, #20]	@, %sfp
-	ldr	r4, .L350+44	@ tmp420,
+	ldr	r4, .L358+44	@ tmp420,
 	bl	.L16		@
-@ SpellMenu.c:133: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
-	ldr	r3, .L350+36	@ tmp422,
-	ldr	r0, .L350+64	@,
+@ SpellMenu.c:143: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
+	ldr	r3, .L358+36	@ tmp422,
+	ldr	r0, .L358+64	@,
 	bl	.L14		@
-@ SpellMenu.c:133: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
+@ SpellMenu.c:143: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
 	movs	r2, r5	@, tmp229
-@ SpellMenu.c:133: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
+@ SpellMenu.c:143: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
 	movs	r3, r0	@ _29, tmp377
-@ SpellMenu.c:133: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
+@ SpellMenu.c:143: 		Text_InsertString(&menuItemPanel->textHandles[2],0x32,0,GetStringFromIndex(0x4F5)); // Avoid.
 	movs	r1, #50	@,
 	movs	r0, r6	@, _150
-	ldr	r4, .L350+44	@ tmp424,
+	ldr	r4, .L358+44	@ tmp424,
 	bl	.L16		@
-@ SpellMenu.c:136: 		if ( !HasSufficientHP(gActiveUnit,spell) ) { CostColor = 1; }
-	ldr	r3, .L350	@ tmp426,
+@ SpellMenu.c:146: 		if ( !HasSufficientHP(gActiveUnit,spell) ) { CostColor = 1; }
+	ldr	r3, .L358	@ tmp426,
 	movs	r1, r7	@, spell
 	ldr	r0, [r3]	@, gActiveUnit
 	bl	HasSufficientHP		@
-@ SpellMenu.c:136: 		if ( !HasSufficientHP(gActiveUnit,spell) ) { CostColor = 1; }
+@ SpellMenu.c:146: 		if ( !HasSufficientHP(gActiveUnit,spell) ) { CostColor = 1; }
 	subs	r3, r0, #1	@ tmp355, tmp378
 	sbcs	r0, r0, r3	@ tmp378, tmp378, tmp355
 	movs	r5, r0	@ tmp354, tmp378
-@ SpellMenu.c:137: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[0],0x54,CostColor,GetSpellCost(spell));
+@ SpellMenu.c:147: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[0],0x54,CostColor,GetSpellCost(spell));
 	movs	r0, r7	@, spell
 	bl	GetSpellCost		@
-@ SpellMenu.c:136: 		if ( !HasSufficientHP(gActiveUnit,spell) ) { CostColor = 1; }
+@ SpellMenu.c:146: 		if ( !HasSufficientHP(gActiveUnit,spell) ) { CostColor = 1; }
 	adds	r5, r5, #1	@ CostColor,
-@ SpellMenu.c:137: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[0],0x54,CostColor,GetSpellCost(spell));
+@ SpellMenu.c:147: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[0],0x54,CostColor,GetSpellCost(spell));
 	lsls	r3, r0, #24	@ tmp254, tmp379,
 	movs	r2, r5	@, CostColor
 	movs	r1, #84	@,
-	ldr	r5, .L350+68	@ tmp256,
+	ldr	r5, .L358+68	@ tmp256,
 	ldr	r0, [sp, #16]	@, %sfp
 	lsrs	r3, r3, #24	@ tmp254, tmp254,
-	bl	.L301		@
-@ SpellMenu.c:138: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x24,2,gBattleActor.battleAttack);
-	ldr	r4, .L350+72	@ tmp257,
+	bl	.L309		@
+@ SpellMenu.c:148: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x24,2,gBattleActor.battleAttack);
+	ldr	r4, .L358+72	@ tmp257,
 	movs	r3, r4	@ tmp260, tmp257
 	adds	r3, r3, #90	@ tmp260,
-@ SpellMenu.c:138: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x24,2,gBattleActor.battleAttack);
+@ SpellMenu.c:148: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x24,2,gBattleActor.battleAttack);
 	movs	r2, #2	@,
 	movs	r1, #36	@,
 	ldrb	r3, [r3]	@ tmp264,
 	ldr	r0, [sp, #20]	@, %sfp
-	bl	.L301		@
-@ SpellMenu.c:139: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x24,2,gBattleActor.battleHitRate);
+	bl	.L309		@
+@ SpellMenu.c:149: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x24,2,gBattleActor.battleHitRate);
 	movs	r3, r4	@ tmp270, tmp257
 	adds	r3, r3, #96	@ tmp270,
-@ SpellMenu.c:139: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x24,2,gBattleActor.battleHitRate);
+@ SpellMenu.c:149: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x24,2,gBattleActor.battleHitRate);
 	movs	r2, #2	@,
 	movs	r1, #36	@,
 	movs	r0, r6	@, _150
 	ldrb	r3, [r3]	@ tmp274,
-	bl	.L301		@
-@ SpellMenu.c:140: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x54,2,gBattleActor.battleCritRate);
+	bl	.L309		@
+@ SpellMenu.c:150: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x54,2,gBattleActor.battleCritRate);
 	movs	r3, r4	@ tmp280, tmp257
 	adds	r3, r3, #102	@ tmp280,
-@ SpellMenu.c:140: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x54,2,gBattleActor.battleCritRate);
+@ SpellMenu.c:150: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x54,2,gBattleActor.battleCritRate);
 	movs	r2, #2	@,
 	movs	r1, #84	@,
 	ldrb	r3, [r3]	@ tmp284,
 	ldr	r0, [sp, #20]	@, %sfp
-@ SpellMenu.c:141: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x54,2,gBattleActor.battleAvoidRate);
+@ SpellMenu.c:151: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x54,2,gBattleActor.battleAvoidRate);
 	adds	r4, r4, #98	@ tmp290,
-@ SpellMenu.c:140: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x54,2,gBattleActor.battleCritRate);
-	bl	.L301		@
-@ SpellMenu.c:141: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x54,2,gBattleActor.battleAvoidRate);
+@ SpellMenu.c:150: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[1],0x54,2,gBattleActor.battleCritRate);
+	bl	.L309		@
+@ SpellMenu.c:151: 		Text_InsertNumberOr2Dashes(&menuItemPanel->textHandles[2],0x54,2,gBattleActor.battleAvoidRate);
 	movs	r2, #2	@,
 	movs	r1, #84	@,
 	movs	r0, r6	@, _150
 	ldrb	r3, [r4]	@ tmp294,
-	bl	.L301		@
-.L340:
+	bl	.L309		@
+.L348:
 	ldr	r5, [sp, #28]	@ y, %sfp
 	ldr	r3, [sp, #24]	@ _14, %sfp
 	adds	r5, r5, #1	@ y,
 	adds	r4, r3, #1	@ tmp298, _14,
 	lsls	r5, r5, #5	@ _158, tmp297,
-	ldr	r3, .L350+76	@ tmp434,
+	ldr	r3, .L358+76	@ tmp434,
 	adds	r4, r4, r5	@ tmp299, tmp298, _158
 	lsls	r4, r4, #1	@ tmp300, tmp299,
-	adds	r4, r4, r3	@ ivtmp.405, tmp300, tmp434
+	adds	r4, r4, r3	@ ivtmp.415, tmp300, tmp434
 	ldr	r3, [sp, #8]	@ _173, %sfp
-	ldr	r6, [sp, #8]	@ ivtmp.403, %sfp
+	ldr	r6, [sp, #8]	@ ivtmp.413, %sfp
 	adds	r3, r3, #76	@ _173,
 	str	r3, [sp, #16]	@ _173, %sfp
-	adds	r6, r6, #52	@ ivtmp.403,
-.L338:
-@ SpellMenu.c:161: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Display(&menuItemPanel->textHandles[i],&gBG0MapBuffer[y+1+2*i][x+1]); }
-	movs	r1, r4	@, ivtmp.405
-	movs	r0, r6	@, ivtmp.403
-	ldr	r3, .L350+80	@ tmp330,
+	adds	r6, r6, #52	@ ivtmp.413,
+.L346:
+@ SpellMenu.c:171: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Display(&menuItemPanel->textHandles[i],&gBG0MapBuffer[y+1+2*i][x+1]); }
+	movs	r1, r4	@, ivtmp.415
+	movs	r0, r6	@, ivtmp.413
+	ldr	r3, .L358+80	@ tmp330,
 	bl	.L14		@
-@ SpellMenu.c:161: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Display(&menuItemPanel->textHandles[i],&gBG0MapBuffer[y+1+2*i][x+1]); }
+@ SpellMenu.c:171: 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Display(&menuItemPanel->textHandles[i],&gBG0MapBuffer[y+1+2*i][x+1]); }
 	ldr	r3, [sp, #16]	@ _173, %sfp
-	adds	r6, r6, #8	@ ivtmp.403,
-	adds	r4, r4, #128	@ ivtmp.405,
-	cmp	r6, r3	@ ivtmp.403, _173
-	bne	.L338		@,
-@ SpellMenu.c:163: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
+	adds	r6, r6, #8	@ ivtmp.413,
+	adds	r4, r4, #128	@ ivtmp.415,
+	cmp	r6, r3	@ ivtmp.413, _173
+	bne	.L346		@,
+@ SpellMenu.c:173: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
 	ldr	r3, [sp, #12]	@ spellType, %sfp
 	cmp	r3, #4	@ spellType,
-	beq	.L341		@,
-@ SpellMenu.c:163: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
+	beq	.L349		@,
+@ SpellMenu.c:173: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
 	ldr	r0, [sp, #8]	@ menuItemPanel, %sfp
 	adds	r0, r0, #50	@ menuItemPanel,
 	ldrb	r2, [r0]	@ tmp334,
-@ SpellMenu.c:163: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
+@ SpellMenu.c:173: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
 	ldr	r0, [sp, #24]	@ _14, %sfp
 	adds	r0, r0, #5	@ _14,
-@ SpellMenu.c:163: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
-	ldr	r3, .L350+76	@ tmp446,
+@ SpellMenu.c:173: 	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
+	ldr	r3, .L358+76	@ tmp446,
 	ldr	r1, [sp, #12]	@ tmp336, %sfp
 	adds	r0, r0, r5	@ tmp338, tmp337, _158
 	lsls	r0, r0, #1	@ tmp339, tmp338,
 	adds	r0, r3, r0	@ tmp340, tmp446, tmp339
 	lsls	r2, r2, #12	@ tmp335, tmp334,
-	ldr	r3, .L350+84	@ tmp342,
+	ldr	r3, .L358+84	@ tmp342,
 	adds	r1, r1, #112	@ tmp336,
 	bl	.L14		@
-.L341:
-@ SpellMenu.c:169: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
+.L349:
+@ SpellMenu.c:179: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
 	movs	r5, #16	@ _67,
 	movs	r6, #17	@ _69,
-@ SpellMenu.c:165: 	BmMapFill(gMapMovement,-1);
-	ldr	r3, .L350+88	@ tmp343,
-	ldr	r4, .L350+92	@ tmp344,
+@ SpellMenu.c:175: 	BmMapFill(gMapMovement,-1);
+	ldr	r3, .L358+88	@ tmp343,
+	ldr	r4, .L358+92	@ tmp344,
 	ldr	r0, [r3]	@, gMapMovement
 	movs	r1, #255	@,
 	bl	.L16		@
-@ SpellMenu.c:166: 	BmMapFill(gMapRange,0);
-	ldr	r3, .L350+96	@ tmp345,
+@ SpellMenu.c:176: 	BmMapFill(gMapRange,0);
+	ldr	r3, .L358+96	@ tmp345,
 	movs	r1, #0	@,
 	ldr	r0, [r3]	@, gMapRange
 	bl	.L16		@
-@ SpellMenu.c:169: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
-	ldr	r3, .L350+100	@ tmp347,
-	ldr	r4, [r3]	@ gWrite_Range.112_64, gWrite_Range
-@ SpellMenu.c:169: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
-	ldr	r3, .L350	@ tmp348,
-	ldr	r0, [r3]	@ gActiveUnit.113_65, gActiveUnit
-@ SpellMenu.c:169: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
-	ldr	r3, .L350+104	@ tmp349,
+@ SpellMenu.c:179: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
+	ldr	r3, .L358+100	@ tmp347,
+	ldr	r4, [r3]	@ gWrite_Range.114_64, gWrite_Range
+@ SpellMenu.c:179: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
+	ldr	r3, .L358	@ tmp348,
+	ldr	r0, [r3]	@ gActiveUnit.115_65, gActiveUnit
+@ SpellMenu.c:179: 	gWrite_Range(gActiveUnit->xPos,gActiveUnit->yPos,gGet_Item_Range(gActiveUnit,spell));
+	ldr	r3, .L358+104	@ tmp349,
 	movs	r1, r7	@, spell
 	ldr	r3, [r3]	@ gGet_Item_Range, gGet_Item_Range
 	ldrsb	r5, [r0, r5]	@ _67,* _67
@@ -2962,85 +3066,85 @@ SpellOnHover:
 	movs	r0, r5	@, _67
 	movs	r1, r6	@, _69
 	bl	.L16		@
-@ SpellMenu.c:170: 	DisplayMoveRangeGraphics(( spellType == ITYPE_STAFF ? 4 : 2 )); // See note in UnitMenu.c.
-	ldr	r0, [sp, #12]	@ iftmp.117_77, %sfp
+@ SpellMenu.c:180: 	DisplayMoveRangeGraphics(( spellType == ITYPE_STAFF ? 4 : 2 )); // See note in UnitMenu.c.
+	ldr	r0, [sp, #12]	@ iftmp.119_77, %sfp
 	cmp	r0, #4	@ spellType,
-	beq	.L342		@,
-	movs	r0, #2	@ iftmp.117_77,
-.L342:
-@ SpellMenu.c:170: 	DisplayMoveRangeGraphics(( spellType == ITYPE_STAFF ? 4 : 2 )); // See note in UnitMenu.c.
-	ldr	r3, .L350+108	@ tmp351,
+	beq	.L350		@,
+	movs	r0, #2	@ iftmp.119_77,
+.L350:
+@ SpellMenu.c:180: 	DisplayMoveRangeGraphics(( spellType == ITYPE_STAFF ? 4 : 2 )); // See note in UnitMenu.c.
+	ldr	r3, .L358+108	@ tmp351,
 	bl	.L14		@
-@ SpellMenu.c:172: }
+@ SpellMenu.c:182: }
 	movs	r0, #0	@,
 	add	sp, sp, #36	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L336:
-@ SpellMenu.c:146: 		const char* desc = GetStringFromIndex(GetItemUseDescId(spell));
-	ldr	r3, .L350+112	@ tmp302,
+.L344:
+@ SpellMenu.c:156: 		const char* desc = GetStringFromIndex(GetItemUseDescId(spell));
+	ldr	r3, .L358+112	@ tmp302,
 	movs	r0, r7	@, spell
 	bl	.L14		@
-	ldr	r3, .L350+36	@ tmp303,
+	ldr	r3, .L358+36	@ tmp303,
 	bl	.L14		@
-	ldr	r4, [sp, #16]	@ ivtmp.410, %sfp
-@ SpellMenu.c:148: 		desc--;
+	ldr	r4, [sp, #16]	@ ivtmp.420, %sfp
+@ SpellMenu.c:158: 		desc--;
 	subs	r0, r0, #1	@ desc,
-.L339:
-@ SpellMenu.c:152: 			Text_InsertString(&menuItemPanel->textHandles[j],0,0,desc);
+.L347:
+@ SpellMenu.c:162: 			Text_InsertString(&menuItemPanel->textHandles[j],0,0,desc);
 	movs	r2, #0	@,
-@ SpellMenu.c:151: 			desc++;
+@ SpellMenu.c:161: 			desc++;
 	adds	r5, r0, #1	@ desc, desc,
-@ SpellMenu.c:152: 			Text_InsertString(&menuItemPanel->textHandles[j],0,0,desc);
+@ SpellMenu.c:162: 			Text_InsertString(&menuItemPanel->textHandles[j],0,0,desc);
 	movs	r3, r5	@, desc
-	movs	r0, r4	@, ivtmp.410
+	movs	r0, r4	@, ivtmp.420
 	movs	r1, r2	@,
-	ldr	r6, .L350+44	@ tmp304,
+	ldr	r6, .L358+44	@ tmp304,
 	bl	.L15		@
-@ SpellMenu.c:153: 			desc = Text_GetStringNextLine(desc);
-	ldr	r3, .L350+116	@ tmp305,
+@ SpellMenu.c:163: 			desc = Text_GetStringNextLine(desc);
+	ldr	r3, .L358+116	@ tmp305,
 	movs	r0, r5	@, desc
 	bl	.L14		@
-@ SpellMenu.c:155: 		} while ( *desc );
+@ SpellMenu.c:165: 		} while ( *desc );
 	ldrb	r3, [r0]	@ *desc_103, *desc_103
-	adds	r4, r4, #8	@ ivtmp.410,
+	adds	r4, r4, #8	@ ivtmp.420,
 	cmp	r3, #0	@ *desc_103,
-	bne	.L339		@,
-@ SpellMenu.c:156: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
-	ldr	r2, .L350+120	@ tmp308,
-@ SpellMenu.c:156: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
-	ldr	r3, .L350+72	@ tmp307,
-@ SpellMenu.c:156: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
+	bne	.L347		@,
+@ SpellMenu.c:166: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
+	ldr	r2, .L358+120	@ tmp308,
+@ SpellMenu.c:166: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
+	ldr	r3, .L358+72	@ tmp307,
+@ SpellMenu.c:166: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
 	movs	r0, r2	@ tmp311, tmp308
-@ SpellMenu.c:156: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
+@ SpellMenu.c:166: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
 	movs	r1, r3	@ tmp314, tmp307
-@ SpellMenu.c:156: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
+@ SpellMenu.c:166: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
 	adds	r0, r0, #90	@ tmp311,
-@ SpellMenu.c:156: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
+@ SpellMenu.c:166: 		gBattleActor.battleAttack = gBattleTarget.battleAttack; // ??? this is something vanilla does???
 	ldrh	r0, [r0]	@ tmp315,
 	adds	r1, r1, #90	@ tmp314,
 	strh	r0, [r1]	@ tmp315, gBattleActor.battleAttack
-@ SpellMenu.c:158: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
+@ SpellMenu.c:168: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
 	movs	r0, r2	@ tmp321, tmp308
-@ SpellMenu.c:158: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
+@ SpellMenu.c:168: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
 	movs	r1, r3	@ tmp324, tmp307
-@ SpellMenu.c:158: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
+@ SpellMenu.c:168: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
 	adds	r0, r0, #102	@ tmp321,
-@ SpellMenu.c:158: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
+@ SpellMenu.c:168: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
 	ldrh	r0, [r0]	@ tmp325,
-@ SpellMenu.c:157: 		gBattleActor.battleHitRate = gBattleTarget.battleHitRate; // ??? this fixes the green/red arrows from showing on staves???
+@ SpellMenu.c:167: 		gBattleActor.battleHitRate = gBattleTarget.battleHitRate; // ??? this fixes the green/red arrows from showing on staves???
 	ldr	r2, [r2, #96]	@ tmp440, MEM <unsigned int> [(short int *)&gBattleTarget + 96B]
-@ SpellMenu.c:158: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
+@ SpellMenu.c:168: 		gBattleActor.battleCritRate = gBattleTarget.battleCritRate;
 	adds	r1, r1, #102	@ tmp324,
 	strh	r0, [r1]	@ tmp325, gBattleActor.battleCritRate
-@ SpellMenu.c:157: 		gBattleActor.battleHitRate = gBattleTarget.battleHitRate; // ??? this fixes the green/red arrows from showing on staves???
+@ SpellMenu.c:167: 		gBattleActor.battleHitRate = gBattleTarget.battleHitRate; // ??? this fixes the green/red arrows from showing on staves???
 	str	r2, [r3, #96]	@ tmp440, MEM <unsigned int> [(short int *)&gBattleActor + 96B]
-	b	.L340		@
-.L351:
+	b	.L348		@
+.L359:
 	.align	2
-.L350:
+.L358:
 	.word	gActiveUnit
 	.word	UsingSpellMenu
 	.word	SelectedSpell
@@ -3085,28 +3189,28 @@ SpellOnUnhover:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SpellMenu.c:176: 	if ( !DidSelectSpell ) // Don't hide the squares if we're going to the target selection menu.
-	ldr	r4, .L354	@ tmp116,
-@ SpellMenu.c:176: 	if ( !DidSelectSpell ) // Don't hide the squares if we're going to the target selection menu.
+@ SpellMenu.c:186: 	if ( !DidSelectSpell ) // Don't hide the squares if we're going to the target selection menu.
+	ldr	r4, .L362	@ tmp116,
+@ SpellMenu.c:186: 	if ( !DidSelectSpell ) // Don't hide the squares if we're going to the target selection menu.
 	ldrb	r3, [r4]	@ DidSelectSpell, DidSelectSpell
 	cmp	r3, #0	@ DidSelectSpell,
-	bne	.L353		@,
-@ SpellMenu.c:178: 		HideMoveRangeGraphics();
-	ldr	r3, .L354+4	@ tmp118,
+	bne	.L361		@,
+@ SpellMenu.c:188: 		HideMoveRangeGraphics();
+	ldr	r3, .L362+4	@ tmp118,
 	bl	.L14		@
-.L353:
-@ SpellMenu.c:182: }
+.L361:
+@ SpellMenu.c:192: }
 	@ sp needed	@
-@ SpellMenu.c:180: 	DidSelectSpell = 0; // Unset this variable.
+@ SpellMenu.c:190: 	DidSelectSpell = 0; // Unset this variable.
 	movs	r0, #0	@ tmp120,
 	strb	r0, [r4]	@ tmp120, DidSelectSpell
-@ SpellMenu.c:182: }
+@ SpellMenu.c:192: }
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L355:
+.L363:
 	.align	2
-.L354:
+.L362:
 	.word	DidSelectSpell
 	.word	HideMoveRangeGraphics
 	.size	SpellOnUnhover, .-SpellOnUnhover
@@ -3123,77 +3227,77 @@ NewMenuRText:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	movs	r3, r1	@ commandProc, tmp173
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ SpellMenu.c:188: 	if ( UsingSpellMenu )
-	ldr	r2, .L361	@ tmp176,
-@ SpellMenu.c:186: 	int xTile = commandProc->xDrawTile * 8;
+@ SpellMenu.c:198: 	if ( UsingSpellMenu )
+	ldr	r2, .L369	@ tmp176,
+@ SpellMenu.c:196: 	int xTile = commandProc->xDrawTile * 8;
 	ldrh	r4, [r1, #42]	@ tmp142,
-@ SpellMenu.c:187: 	int yTile = commandProc->yDrawTile * 8;
+@ SpellMenu.c:197: 	int yTile = commandProc->yDrawTile * 8;
 	ldrh	r5, [r1, #44]	@ tmp143,
-@ SpellMenu.c:188: 	if ( UsingSpellMenu )
-	ldrb	r1, [r2]	@ UsingSpellMenu.119_5, UsingSpellMenu
+@ SpellMenu.c:198: 	if ( UsingSpellMenu )
+	ldrb	r1, [r2]	@ UsingSpellMenu.121_5, UsingSpellMenu
 	adds	r3, r3, #60	@ commandProc,
 	str	r3, [sp]	@ commandProc, %sfp
-	ldr	r6, .L361+4	@ tmp172,
-@ SpellMenu.c:186: 	int xTile = commandProc->xDrawTile * 8;
+	ldr	r6, .L369+4	@ tmp172,
+@ SpellMenu.c:196: 	int xTile = commandProc->xDrawTile * 8;
 	lsls	r4, r4, #3	@ xTile, tmp142,
-@ SpellMenu.c:187: 	int yTile = commandProc->yDrawTile * 8;
+@ SpellMenu.c:197: 	int yTile = commandProc->yDrawTile * 8;
 	lsls	r5, r5, #3	@ yTile, tmp143,
-@ SpellMenu.c:188: 	if ( UsingSpellMenu )
-	cmp	r1, #0	@ UsingSpellMenu.119_5,
-	beq	.L357		@,
-@ SpellMenu.c:191: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
-	ldr	r7, .L361+8	@ tmp145,
+@ SpellMenu.c:198: 	if ( UsingSpellMenu )
+	cmp	r1, #0	@ UsingSpellMenu.121_5,
+	beq	.L365		@,
+@ SpellMenu.c:201: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
+	ldr	r7, .L369+8	@ tmp145,
 	ldr	r0, [r7]	@, gActiveUnit
 	bl	SpellsGetter		@
-@ SpellMenu.c:191: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
-	ldr	r3, .L361	@ tmp178,
-@ SpellMenu.c:191: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
+@ SpellMenu.c:201: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
+	ldr	r3, .L369	@ tmp178,
+@ SpellMenu.c:201: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
 	str	r0, [sp, #4]	@ tmp174, %sfp
-@ SpellMenu.c:191: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
+@ SpellMenu.c:201: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
 	ldrb	r2, [r3]	@ UsingSpellMenu, UsingSpellMenu
 	ldr	r3, [sp]	@ tmp171, %sfp
 	ldr	r0, [r7]	@, gActiveUnit
 	ldrb	r1, [r3]	@ tmp151,
 	bl	GetNthUsableSpell		@
-@ SpellMenu.c:191: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
+@ SpellMenu.c:201: 		DrawItemRText(xTile,yTile,SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,commandProc->commandDefinitionIndex,UsingSpellMenu)]);
 	ldr	r3, [sp, #4]	@ _8, %sfp
 	ldrb	r2, [r3, r0]	@ *_16, *_16
-.L360:
-@ SpellMenu.c:205: }
+.L368:
+@ SpellMenu.c:215: }
 	@ sp needed	@
-@ SpellMenu.c:202: 			DrawItemRText(xTile,yTile,*((u16*)&gGameState+0x16)); // Probably related to special cases like ballistae?
+@ SpellMenu.c:212: 			DrawItemRText(xTile,yTile,*((u16*)&gGameState+0x16)); // Probably related to special cases like ballistae?
 	movs	r1, r5	@, yTile
 	movs	r0, r4	@, xTile
 	bl	.L15		@
-@ SpellMenu.c:205: }
+@ SpellMenu.c:215: }
 	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L357:
-@ SpellMenu.c:196: 		if ( commandProc->commandDefinitionIndex <= 4 )
+.L365:
+@ SpellMenu.c:206: 		if ( commandProc->commandDefinitionIndex <= 4 )
 	ldr	r3, [sp]	@ tmp171, %sfp
 	ldrb	r3, [r3]	@ _19,
-@ SpellMenu.c:196: 		if ( commandProc->commandDefinitionIndex <= 4 )
+@ SpellMenu.c:206: 		if ( commandProc->commandDefinitionIndex <= 4 )
 	cmp	r3, #4	@ _19,
-	bhi	.L359		@,
-@ SpellMenu.c:198: 			DrawItemRText(xTile,yTile,gActiveUnit->items[commandProc->commandDefinitionIndex]);
-	ldr	r2, .L361+8	@ tmp161,
+	bhi	.L367		@,
+@ SpellMenu.c:208: 			DrawItemRText(xTile,yTile,gActiveUnit->items[commandProc->commandDefinitionIndex]);
+	ldr	r2, .L369+8	@ tmp161,
 	adds	r3, r3, #12	@ tmp162,
 	ldr	r2, [r2]	@ gActiveUnit, gActiveUnit
 	lsls	r3, r3, #1	@ tmp163, tmp162,
 	adds	r3, r2, r3	@ tmp164, gActiveUnit, tmp163
-@ SpellMenu.c:198: 			DrawItemRText(xTile,yTile,gActiveUnit->items[commandProc->commandDefinitionIndex]);
-	ldrh	r2, [r3, #6]	@ tmp166, *gActiveUnit.124_20
-	b	.L360		@
-.L359:
-@ SpellMenu.c:202: 			DrawItemRText(xTile,yTile,*((u16*)&gGameState+0x16)); // Probably related to special cases like ballistae?
-	ldr	r3, .L361+12	@ tmp168,
-@ SpellMenu.c:202: 			DrawItemRText(xTile,yTile,*((u16*)&gGameState+0x16)); // Probably related to special cases like ballistae?
+@ SpellMenu.c:208: 			DrawItemRText(xTile,yTile,gActiveUnit->items[commandProc->commandDefinitionIndex]);
+	ldrh	r2, [r3, #6]	@ tmp166, *gActiveUnit.126_20
+	b	.L368		@
+.L367:
+@ SpellMenu.c:212: 			DrawItemRText(xTile,yTile,*((u16*)&gGameState+0x16)); // Probably related to special cases like ballistae?
+	ldr	r3, .L369+12	@ tmp168,
+@ SpellMenu.c:212: 			DrawItemRText(xTile,yTile,*((u16*)&gGameState+0x16)); // Probably related to special cases like ballistae?
 	ldrh	r2, [r3, #44]	@ MEM[(u16 *)&gGameState + 44B], MEM[(u16 *)&gGameState + 44B]
-	b	.L360		@
-.L362:
+	b	.L368		@
+.L370:
 	.align	2
-.L361:
+.L369:
 	.word	UsingSpellMenu
 	.word	DrawItemRText
 	.word	gActiveUnit
@@ -3210,46 +3314,46 @@ NewExitBattleForecast:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SpellMenu.c:213: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
+@ SpellMenu.c:223: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
 	movs	r1, #0	@,
-@ SpellMenu.c:208: {
+@ SpellMenu.c:218: {
 	push	{r4, lr}	@
-@ SpellMenu.c:213: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
-	ldr	r3, .L367	@ tmp115,
-	ldrb	r3, [r3]	@ UsingSpellMenu.125_1, UsingSpellMenu
-@ SpellMenu.c:213: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
+@ SpellMenu.c:223: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
+	ldr	r3, .L375	@ tmp115,
+	ldrb	r3, [r3]	@ UsingSpellMenu.127_1, UsingSpellMenu
+@ SpellMenu.c:223: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
 	movs	r0, r1	@,
-@ SpellMenu.c:213: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
-	cmp	r3, #1	@ UsingSpellMenu.125_1,
-	bne	.L364		@,
-@ SpellMenu.c:213: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
+@ SpellMenu.c:223: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
+	cmp	r3, #1	@ UsingSpellMenu.127_1,
+	bne	.L372		@,
+@ SpellMenu.c:223: 	if ( UsingSpellMenu == BLACK_MAGIC ) { GaidenBlackMagicUMEffect(NULL,NULL); }
 	bl	GaidenBlackMagicUMEffect		@
-.L365:
-@ SpellMenu.c:221: }
+.L373:
+@ SpellMenu.c:231: }
 	@ sp needed	@
-@ SpellMenu.c:220: 	SelectedSpell = 0; // Regardless of use case, ensure that this is 0.
+@ SpellMenu.c:230: 	SelectedSpell = 0; // Regardless of use case, ensure that this is 0.
 	movs	r2, #0	@ tmp118,
-	ldr	r3, .L367+4	@ tmp117,
+	ldr	r3, .L375+4	@ tmp117,
 	strb	r2, [r3]	@ tmp118, SelectedSpell
-@ SpellMenu.c:221: }
+@ SpellMenu.c:231: }
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L364:
-@ SpellMenu.c:214: 	else if ( UsingSpellMenu == WHITE_MAGIC ) { GaidenWhiteMagicUMEffect(NULL,NULL); }
-	cmp	r3, #2	@ UsingSpellMenu.125_1,
-	bne	.L366		@,
-@ SpellMenu.c:214: 	else if ( UsingSpellMenu == WHITE_MAGIC ) { GaidenWhiteMagicUMEffect(NULL,NULL); }
+.L372:
+@ SpellMenu.c:224: 	else if ( UsingSpellMenu == WHITE_MAGIC ) { GaidenWhiteMagicUMEffect(NULL,NULL); }
+	cmp	r3, #2	@ UsingSpellMenu.127_1,
+	bne	.L374		@,
+@ SpellMenu.c:224: 	else if ( UsingSpellMenu == WHITE_MAGIC ) { GaidenWhiteMagicUMEffect(NULL,NULL); }
 	bl	GaidenWhiteMagicUMEffect		@
-	b	.L365		@
-.L366:
-@ SpellMenu.c:218: 		AttackUMEffect(NULL,NULL);
-	ldr	r3, .L367+8	@ tmp116,
+	b	.L373		@
+.L374:
+@ SpellMenu.c:228: 		AttackUMEffect(NULL,NULL);
+	ldr	r3, .L375+8	@ tmp116,
 	bl	.L14		@
-	b	.L365		@
-.L368:
+	b	.L373		@
+.L376:
 	.align	2
-.L367:
+.L375:
 	.word	UsingSpellMenu
 	.word	SelectedSpell
 	.word	AttackUMEffect
@@ -3274,7 +3378,7 @@ GaidenStatScreen:
 @ StatScreen.c:3: {
 	movs	r4, r2	@ currHandle, tmp183
 @ StatScreen.c:4: 	u8* spells = SpellsGetter(gpStatScreenUnit,-1);
-	ldr	r3, .L374	@ tmp144,
+	ldr	r3, .L382	@ tmp144,
 @ StatScreen.c:3: {
 	str	r0, [sp, #8]	@ tmp181, %sfp
 @ StatScreen.c:4: 	u8* spells = SpellsGetter(gpStatScreenUnit,-1);
@@ -3283,7 +3387,7 @@ GaidenStatScreen:
 	bl	SpellsGetter		@
 @ StatScreen.c:5: 	int tile = (currHandle-1)->tileIndexOffset;
 	movs	r3, r4	@ tmp145, currHandle
-	movs	r7, r0	@ ivtmp.433, tmp184
+	movs	r7, r0	@ ivtmp.443, tmp184
 	subs	r3, r3, #8	@ tmp145,
 @ StatScreen.c:5: 	int tile = (currHandle-1)->tileIndexOffset;
 	ldrh	r3, [r3]	@ tile, MEM[(struct TextHandle *)currHandle_27(D) + 4294967288B]
@@ -3291,12 +3395,12 @@ GaidenStatScreen:
 	ldr	r6, [sp, #8]	@ iconX, %sfp
 @ StatScreen.c:5: 	int tile = (currHandle-1)->tileIndexOffset;
 	str	r3, [sp, #4]	@ tile, %sfp
-.L370:
+.L378:
 @ StatScreen.c:8: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r7]	@ _15, MEM[base: _62, offset: 0B]
 @ StatScreen.c:8: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _15,
-	bne	.L373		@,
+	bne	.L381		@,
 @ StatScreen.c:32: }
 	movs	r0, r4	@, currHandle
 	add	sp, sp, #28	@,,
@@ -3304,9 +3408,9 @@ GaidenStatScreen:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L373:
+.L381:
 @ StatScreen.c:10: 		const ItemData* item = GetItemData(spells[i]);
-	ldr	r3, .L374+4	@ tmp146,
+	ldr	r3, .L382+4	@ tmp146,
 	bl	.L14		@
 @ StatScreen.c:11: 		DrawIcon(&StatScreenBufferMap[iconY][iconX],item->iconId,0x4000);
 	movs	r2, #128	@,
@@ -3318,11 +3422,11 @@ GaidenStatScreen:
 	ldrb	r1, [r0, #29]	@ tmp148,
 	str	r3, [sp, #20]	@ _56, %sfp
 	adds	r0, r6, r3	@ tmp149, iconX, _56
-	ldr	r3, .L374+8	@ tmp195,
+	ldr	r3, .L382+8	@ tmp195,
 	lsls	r0, r0, #1	@ tmp150, tmp149,
 	lsls	r2, r2, #7	@,,
 	adds	r0, r0, r3	@ tmp151, tmp150, tmp195
-	ldr	r3, .L374+12	@ tmp153,
+	ldr	r3, .L382+12	@ tmp153,
 	bl	.L14		@
 @ StatScreen.c:13: 		tile += 6;
 	ldr	r3, [sp, #4]	@ tile, %sfp
@@ -3350,17 +3454,17 @@ GaidenStatScreen:
 @ StatScreen.c:20: 		currHandle->unk07 = 0;
 	strb	r5, [r4, #7]	@ tmp155, MEM[base: currHandle_16, offset: 7B]
 @ StatScreen.c:22: 		Text_Clear(currHandle);
-	ldr	r3, .L374+16	@ tmp167,
+	ldr	r3, .L382+16	@ tmp167,
 	bl	.L14		@
 @ StatScreen.c:23: 		Text_SetColorId(currHandle,TEXT_COLOR_NORMAL);
 	movs	r1, r5	@, tmp155
 	movs	r0, r4	@, currHandle
-	ldr	r3, .L374+20	@ tmp168,
+	ldr	r3, .L382+20	@ tmp168,
 	bl	.L14		@
 @ StatScreen.c:24: 		Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL,GetStringFromIndex(item->nameTextId));
 	ldr	r3, [sp, #16]	@ item, %sfp
 	ldrh	r0, [r3]	@ *item_32, *item_32
-	ldr	r3, .L374+24	@ tmp170,
+	ldr	r3, .L382+24	@ tmp170,
 	bl	.L14		@
 @ StatScreen.c:24: 		Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL,GetStringFromIndex(item->nameTextId));
 	movs	r2, r5	@, tmp155
@@ -3369,19 +3473,19 @@ GaidenStatScreen:
 @ StatScreen.c:24: 		Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL,GetStringFromIndex(item->nameTextId));
 	movs	r1, r5	@, tmp155
 	movs	r0, r4	@, currHandle
-	ldr	r5, .L374+28	@ tmp171,
-	bl	.L301		@
+	ldr	r5, .L382+28	@ tmp171,
+	bl	.L309		@
 @ StatScreen.c:25: 		Text_Display(currHandle,&StatScreenBufferMap[iconY][iconX+2]);
 	ldr	r3, [sp, #20]	@ _56, %sfp
 @ StatScreen.c:25: 		Text_Display(currHandle,&StatScreenBufferMap[iconY][iconX+2]);
 	adds	r1, r6, #2	@ tmp172, iconX,
 @ StatScreen.c:25: 		Text_Display(currHandle,&StatScreenBufferMap[iconY][iconX+2]);
 	adds	r1, r1, r3	@ tmp173, tmp172, _56
-	ldr	r3, .L374+8	@ tmp202,
+	ldr	r3, .L382+8	@ tmp202,
 	lsls	r1, r1, #1	@ tmp174, tmp173,
 	movs	r0, r4	@, currHandle
 	adds	r1, r1, r3	@ tmp175, tmp174, tmp202
-	ldr	r3, .L374+32	@ tmp177,
+	ldr	r3, .L382+32	@ tmp177,
 	bl	.L14		@
 @ StatScreen.c:28: 		if ( iconX == x ) { iconX += 8; }
 	ldr	r3, [sp, #8]	@ x, %sfp
@@ -3389,22 +3493,22 @@ GaidenStatScreen:
 	adds	r4, r4, #8	@ currHandle,
 @ StatScreen.c:28: 		if ( iconX == x ) { iconX += 8; }
 	cmp	r6, r3	@ iconX, x
-	bne	.L371		@,
+	bne	.L379		@,
 @ StatScreen.c:28: 		if ( iconX == x ) { iconX += 8; }
 	adds	r6, r6, #8	@ iconX,
-.L372:
-	adds	r7, r7, #1	@ ivtmp.433,
-	b	.L370		@
-.L371:
+.L380:
+	adds	r7, r7, #1	@ ivtmp.443,
+	b	.L378		@
+.L379:
 @ StatScreen.c:29: 		else { iconX = x; iconY += 2; }
 	ldr	r3, [sp, #12]	@ y, %sfp
 	adds	r3, r3, #2	@ y,
 	str	r3, [sp, #12]	@ y, %sfp
 	ldr	r6, [sp, #8]	@ iconX, %sfp
-	b	.L372		@
-.L375:
+	b	.L380		@
+.L383:
 	.align	2
-.L374:
+.L382:
 	.word	gpStatScreenUnit
 	.word	GetItemData
 	.word	StatScreenBufferMap
@@ -3438,7 +3542,7 @@ GaidenRTextGetter:
 	ldr	r3, [r0, #44]	@ tmp141, proc_12(D)->rTextData
 	ldrb	r5, [r3, #18]	@ _2, MEM[(char *)_1 + 18B]
 @ StatScreen.c:37: 	proc->type = SpellsGetter(gpStatScreenUnit,-1)[index]; // I think if this is positive, it treats this as an item bubble.
-	ldr	r3, .L377	@ tmp126,
+	ldr	r3, .L385	@ tmp126,
 	rsbs	r1, r1, #0	@, tmp140
 	ldr	r0, [r3]	@, gpStatScreenUnit
 	bl	SpellsGetter		@
@@ -3450,7 +3554,7 @@ GaidenRTextGetter:
 	adds	r3, r3, #78	@ tmp129,
 	strh	r0, [r3]	@ _7, proc_12(D)->type
 @ StatScreen.c:38: 	proc->textID = GetItemData(proc->type)->descTextId;
-	ldr	r3, .L377+4	@ tmp131,
+	ldr	r3, .L385+4	@ tmp131,
 	bl	.L14		@
 @ StatScreen.c:38: 	proc->textID = GetItemData(proc->type)->descTextId;
 	ldrh	r3, [r0, #2]	@ tmp135,
@@ -3460,9 +3564,9 @@ GaidenRTextGetter:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L378:
+.L386:
 	.align	2
-.L377:
+.L385:
 	.word	gpStatScreenUnit
 	.word	GetItemData
 	.size	GaidenRTextGetter, .-GaidenRTextGetter
@@ -3489,90 +3593,90 @@ GaidenRTextLooper:
 	movs	r5, r0	@ proc, tmp161
 @ StatScreen.c:44: 	if ( proc->direction == DIRECTION_RIGHT )
 	cmp	r3, #16	@ _3,
-	bne	.L380		@,
+	bne	.L388		@,
 @ StatScreen.c:47: 		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	movs	r7, #1	@ tmp160,
 	rsbs	r7, r7, #0	@ tmp160, tmp160
-.L381:
+.L389:
 @ StatScreen.c:47: 		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
-	ldr	r3, .L389	@ tmp142,
-	ldr	r6, [r3]	@ gpStatScreenUnit.132_4, gpStatScreenUnit
+	ldr	r3, .L397	@ tmp142,
+	ldr	r6, [r3]	@ gpStatScreenUnit.134_4, gpStatScreenUnit
 @ StatScreen.c:47: 		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	movs	r1, r7	@, tmp160
-	movs	r0, r6	@, gpStatScreenUnit.132_4
+	movs	r0, r6	@, gpStatScreenUnit.134_4
 	bl	SpellsGetter		@
 @ StatScreen.c:47: 		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	ldrb	r1, [r0, r4]	@ *_7, *_7
-	movs	r0, r6	@, gpStatScreenUnit.132_4
+	movs	r0, r6	@, gpStatScreenUnit.134_4
 	bl	DoesUnitKnowSpell		@
 @ StatScreen.c:47: 		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	cmp	r0, #0	@ tmp163,
-	bne	.L379		@,
+	bne	.L387		@,
 @ StatScreen.c:49: 			RTextUp(proc);
 	movs	r0, r5	@, proc
-	ldr	r3, .L389+4	@ tmp141,
+	ldr	r3, .L397+4	@ tmp141,
 	bl	.L14		@
 @ StatScreen.c:47: 		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	subs	r4, r4, #2	@ index, index,
-	bpl	.L381		@,
-.L379:
+	bpl	.L389		@,
+.L387:
 @ StatScreen.c:63: }
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L380:
+.L388:
 @ StatScreen.c:53: 	else if ( proc->direction == DIRECTION_DOWN )
 	cmp	r3, #128	@ _3,
-	bne	.L379		@,
+	bne	.L387		@,
 @ StatScreen.c:56: 		if ( !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	movs	r1, #1	@,
 @ StatScreen.c:56: 		if ( !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
-	ldr	r7, .L389	@ tmp145,
-	ldr	r6, [r7]	@ gpStatScreenUnit.135_10, gpStatScreenUnit
+	ldr	r7, .L397	@ tmp145,
+	ldr	r6, [r7]	@ gpStatScreenUnit.137_10, gpStatScreenUnit
 @ StatScreen.c:56: 		if ( !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	rsbs	r1, r1, #0	@,
-	movs	r0, r6	@, gpStatScreenUnit.135_10
+	movs	r0, r6	@, gpStatScreenUnit.137_10
 	bl	SpellsGetter		@
 @ StatScreen.c:56: 		if ( !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	ldrb	r1, [r0, r4]	@ *_13, *_13
-	movs	r0, r6	@, gpStatScreenUnit.135_10
+	movs	r0, r6	@, gpStatScreenUnit.137_10
 	bl	DoesUnitKnowSpell		@
 @ StatScreen.c:56: 		if ( !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 	cmp	r0, #0	@ tmp165,
-	bne	.L379		@,
+	bne	.L387		@,
 @ StatScreen.c:58: 			RTextLeft(proc);
 	movs	r0, r5	@, proc
-	ldr	r6, .L389+8	@ tmp148,
+	ldr	r6, .L397+8	@ tmp148,
 	bl	.L15		@
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
 	lsls	r3, r4, #31	@ tmp172, _2,
-	bpl	.L379		@,
+	bpl	.L387		@,
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
 	movs	r1, #1	@,
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
-	ldr	r7, [r7]	@ gpStatScreenUnit.139_16, gpStatScreenUnit
+	ldr	r7, [r7]	@ gpStatScreenUnit.141_16, gpStatScreenUnit
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
 	rsbs	r1, r1, #0	@,
-	movs	r0, r7	@, gpStatScreenUnit.139_16
+	movs	r0, r7	@, gpStatScreenUnit.141_16
 	bl	SpellsGetter		@
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
 	adds	r4, r0, r4	@ tmp156, tmp166, _2
 	subs	r4, r4, #1	@ tmp157,
-	movs	r0, r7	@, gpStatScreenUnit.139_16
+	movs	r0, r7	@, gpStatScreenUnit.141_16
 	ldrb	r1, [r4]	@ *_19, *_19
 	bl	DoesUnitKnowSpell		@
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
 	cmp	r0, #0	@ tmp167,
-	bne	.L379		@,
+	bne	.L387		@,
 @ StatScreen.c:60: 			if ( index % 2 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextLeft(proc); }
 	movs	r0, r5	@, proc
 	bl	.L15		@
 @ StatScreen.c:63: }
-	b	.L379		@
-.L390:
+	b	.L387		@
+.L398:
 	.align	2
-.L389:
+.L397:
 	.word	gpStatScreenUnit
 	.word	RTextUp
 	.word	RTextLeft
@@ -3584,9 +3688,9 @@ GaidenRTextLooper:
 	bx	r3
 .L16:
 	bx	r4
-.L301:
+.L309:
 	bx	r5
 .L15:
 	bx	r6
-.L251:
+.L259:
 	bx	r7

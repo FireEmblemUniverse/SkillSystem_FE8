@@ -1,15 +1,10 @@
 .thumb
 .org 0x0
-.align 4 
+
 .equ SkillTester, Fill_Capture_Range_Map+4
 .equ CaptureID, SkillTester+4
 
-.global Capture_Usability
-.type Capture_Usability, %function 
-
-Capture_Usability:
 push	{r4-r6,r14}
-
 ldr		r0,CurrentCharPtr
 ldr		r0,[r0]
 ldr		r1,[r0,#0xC]		@status word
@@ -23,8 +18,8 @@ bne		RetFalse
 mov		r5,r0
 mov		r6,#0x0
 ItemLoop:
-lsl		r4,r6,#0x0 @ not short, byte 
-add		r4,#0x28 @ wexp 
+lsl		r4,r6,#0x1
+add		r4,#0x1E
 add		r4,r5
 ldrh	r4,[r4]
 cmp		r4,#0x0
@@ -57,9 +52,8 @@ add		r6,#0x1
 cmp		r6,#0x4
 ble		ItemLoop
 RetFalse:
-mov		r0,#0x0 @ changed to 0 for the C code in gaiden magic as boolean answer 
+mov		r0,#0x3
 GoBack:
-mov r11, r11 @ break 
 pop		{r4-r6}
 pop		{r1}
 bx		r1

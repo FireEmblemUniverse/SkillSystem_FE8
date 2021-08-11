@@ -23,12 +23,6 @@ int SpellDrawingRoutine(MenuProc* menu, MenuCommandProc* menuCommand)
 
 int MagicMenuBPress(void)
 {
-
-			// Vesly added 
-	Unit* unit = gActiveUnit;
-	unit->state &= ~(1UL << 30); // Always clear capturing bit if leaving menu 
-	// Vesly 
-
 	FillBgMap(gBg2MapBuffer,0);
 	EnableBgSyncByMask(4);
 	Text_ResetTileAllocation();
@@ -86,10 +80,6 @@ int SpellEffectRoutine(MenuProc* proc, MenuCommandProc* commandProc)
 		int type = GetItemType(SelectedSpell);
 		if ( type != ITYPE_STAFF )
 		{
-			// Vesly added 
-			//unit->state = unit->state | (1<<30); // Capturing bit 
-			// 
-			
 			MakeTargetListForWeapon(gActiveUnit,SelectedSpell|0xFF00);
 			StartTargetSelection(&SpellTargetSelection);
 		}

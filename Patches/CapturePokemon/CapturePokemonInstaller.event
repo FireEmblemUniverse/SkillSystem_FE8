@@ -20,6 +20,12 @@ ALIGN 4
 CapturePokemonEvent:
 // s2 is unit id of newly captured unit 
 // sB is coords of existing unit 
+//EVBIT_F 2 
+//FADI 16 
+///LOAD1 1 EphraimUnitGroup
+//ENUN 
+//Text(DebugTextHere)
+
 EVBIT_MODIFY 1
 CUSA 0x7FFD //enemy to player 
 EmoticonSlotB(OpenPokeballGraphic)
@@ -29,15 +35,21 @@ EmoticonSlotB(PokeballGraphic)
 
 STAL 0x32 
 SPAWN_NPC 0xFD [-1, -1] 
+//SPAWN_ALLY 0xFD [-1, -1] 
+
+ 
+//Text(DebugTextHere)
 MOVENEXTTO 7 0x7FFD 0x7FFE
 ENUN 
 DISA 0xFD 
 EVBIT_MODIFY 0
+//ASMC 0x080956d9 // Reorder player units
 NoFade
 ENDA
 
-
-
+EphraimUnitGroup:
+UNIT Ephraim  PidgeyID 0x1 Level(5,Ally,True)  [3,21] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
 
 
 
