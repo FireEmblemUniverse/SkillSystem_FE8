@@ -42,6 +42,7 @@ END_MAIN
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
+AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshIfNotInDanger 0 
@@ -63,7 +64,7 @@ ToRoute1:
 ChapterTransition(Route1Ch, 12, 0)
 
 ToRoute2S:
-ChapterTransition(Route2SCh, 10, 38)
+ChapterTransition(Route2SCh, 10, 36)
 //TutText(ClosedAreaText)
 //NoFade 
 //ENDA 
@@ -103,7 +104,7 @@ StrengthBoulder(5,18)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(19,1, ChapterID, 0x0) //no extra text 
-SignATrap(16,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(16,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 

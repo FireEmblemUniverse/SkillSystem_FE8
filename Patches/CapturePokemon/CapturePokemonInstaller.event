@@ -3,7 +3,9 @@ PCBoxFullEvent:
 CAM1 0xFFFF
 WARP_IN
 STAL 0x32
-Text(0xA18)
+Text(PokemonCapturedText)
+SVAL r3 300 
+GIVETOSLOT3 // Take 300 gold from the player 
 NoFade
 ENDA
 
@@ -42,6 +44,7 @@ SPAWN_NPC 0xFD [-1, -1]
 MOVENEXTTO 7 0x7FFD 0x7FFE
 ENUN 
 DISA 0xFD 
+Text(PokemonCapturedText)
 EVBIT_MODIFY 0
 //ASMC 0x080956d9 // Reorder player units
 NoFade

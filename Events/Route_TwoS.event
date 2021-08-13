@@ -92,6 +92,7 @@ Traps1:
 
 CutBush(15,26)
 CutBush(16,21)
+CutBush(15,27)
 
 
 //RockSmash(3,2)
@@ -101,7 +102,7 @@ RedPokeballTrap(21,31, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(17,20, (ChapterID*2)+1, Gust) 
 
 SignBTrap(8,11, ChapterID, 0x0) //no extra text 
-SignATrap(10,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(10,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,21, ChapterID*2, 0xB7)
 SpellScrollTrap(17,20, (ChapterID*2)+1, 0xB7)
@@ -189,6 +190,7 @@ SCOORD rB [9,27]
 
 Read_Byte(GaryStarterClass)
 SADD r2 rC r0 
+EVBIT_MODIFY 4
 Text(GaryRoute2SChallengeText)
 SVAL r1 BulbasaurID // Bulbasaur 
 BNE BulbasaurID r2 r1 
@@ -232,7 +234,7 @@ SVAL r2 GaryRattataUnit|IsPointer
 CALL SendOutPkmnSlotB
 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-
+EVBIT_MODIFY 0
 LABEL 0x63 
 NoFade 
 ENDA 

@@ -43,17 +43,18 @@ is being used.[A]
 Some signs allow[NL]
 for fast travel.[A][X]
 
-
 ## KnowledgeArea
 Your knowledge of this area[NL]
 allows for fast travel.[A][X]
 
-
-## RetreatCenter 
+## RetreatCenter
 Retreat to last Pokecenter?[NL]
 [No][X]
 
 ## ViridianGymText
+Viridian Gym[A][X]
+
+## ViridianGymText2 // Some bug was making the LearnMoveText show up twice (in its slot and previous slot)
 Viridian Gym[A][X]
 
 ## LearnMoveText
@@ -308,9 +309,9 @@ at the start of the turn.[A][X]
 You can only call your[NL]
 party once per turn.[A][X]
 
-# 0x0A17
+## PokemonCapturedText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Pokemon captured.[NL]
-[ToggleRed]300 credits[ToggleRed] consumed.[LoadOverworldFaces][X]
+[ToggleRed]300 credits[ToggleRed] consumed.[A][X]
 
 # 0x0A18
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[A][X]

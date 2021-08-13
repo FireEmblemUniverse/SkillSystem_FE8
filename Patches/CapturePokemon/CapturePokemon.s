@@ -143,15 +143,37 @@ mov r0, #1
 lsl r0, #8 @0x100 
 add r0, #6 @0x106 
 blh GetUnitByEventParameter @ 0x0800BC51
+@mov r11, r11
 cmp r0, #0 
 beq AddToParty @no 6th deployed unit, so add to party 
 @otherwise, add 'Escaped, Undeployed' flags
 ldr 	r0, [r5, #0xC]
 mov 	r1, #1 
 lsl 	r1, #16 @10000 = escaped  
-add 	r1, #0x8 @8 = undeployed 
+add 	r1, #0x9 @8 = undeployed 
 and		r0,r1
 str		r0, [r5, #0xC]
+
+
+mov	r3, #0x00
+ldrb	r0, [r4,#0x11]		@load y coordinate of character
+lsl	r0, #16
+add	r3, r0
+ldrb	r0, [r4,#0x10]		@load x coordinate of character
+add	r3, r0
+ldr r2, =MemorySlot
+str	r3, [r2, #4*0x0B] 		@and store them in sB for the event engine
+
+ldr r0, [r5]
+ldrb r0, [r0, #4] 	
+str r0, [r2, #4*0x02] @unit ID in s2 
+
+ldr	r0, =PCBoxFullEvent	@this event is 
+mov	r1, #0x01		@0x01 = wait for events
+blh EventEngine 
+
+b End 
+
 AddToParty: 
 
 
@@ -214,7 +236,6 @@ ldr r0, [r5]
 ldrb r0, [r0, #4] 	
 str r0, [r2, #4*0x02] @unit ID in s2 
 
-mov r11, r11 
 
 ldr	r0, =CapturePokemonEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events

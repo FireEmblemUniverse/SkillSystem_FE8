@@ -47,25 +47,45 @@ mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
 ldrb r2, [r6, r3] 	@hit 
 add r2, r2, #30		@+30 hit attacker 
+
+cmp r2, #255
+blt DontCapHitSinceUnder255  
+mov r2, #255
+DontCapHitSinceUnder255:
+
 strb r2, [r6, r3] 	@put our hit back into attacker battle struct
 
 mov r3, #0x62 		@0x62 entry as attacker's avoid
 mov r2,r6 		@attacker battle struct					
 ldsh r2, [r6, r3] 	@avo
 add r2, r2, #15		@+15 avo attacker
+
+cmp r2, #127 
+blt DontCapAvoSinceUnder127  
+mov r2, #127 
+DontCapAvoSinceUnder127:
+
+
 strh r2, [r6, r3] 	@put our avo back into attacker battle struct
 
-mov r3, #0x5A 		@0x62 entry as attacker's attack
-mov r2,r6 		@attacker battle struct					
-ldsh r2, [r6, r3] 	@atk
-lsl r2,r2,#0x1		@2x attack
-strh r2, [r6, r3] 	@put our avo back into attacker battle struct
-mov		r5,r0 	@remove 2x MT
+@mov r3, #0x5A 		@0x62 entry as attacker's attack
+@mov r2,r6 		@attacker battle struct					
+@ldsh r2, [r6, r3] 	@atk
+@lsl r2,r2,#0x1		@2x attack
+@strh r2, [r6, r3] 	@put our avo back into attacker battle struct
+@mov		r5,r0 	@remove 2x MT
+mov r5, #4 @ just 2x mt 
 
 mov r3, #0x5C 		@0x64 entry as attacker's def/res
 mov r2,r6 		@attacker battle struct					
 ldsh r2, [r6, r3] 	@
 add r2, r2, #5		@+5 def/res attacker
+
+cmp r2, #127 
+blt DontCapDefResSinceUnder127  
+mov r2, #127 
+DontCapDefResSinceUnder127:
+
 strh r2, [r6, r3] 	@put our def/res back into attacker battle struct
 
 mul		r0,r5
@@ -80,6 +100,10 @@ Ineffective:
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
 ldsb r2, [r6, r3] 	@hit 
+
+@ no need to cap afaik 
+@ well probably need to if it started at values other than 0 
+
 sub r2, r2, #30		@-30 hit attacker 
 strb r2, [r6, r3] 	@put our hit back into attacker battle struct
 sub r0, #3

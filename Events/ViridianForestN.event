@@ -97,7 +97,7 @@ CoinsTrap(11,26,(ChapterID*2)+1,400)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(6,10, ChapterID, 0x0) //no extra text 
-SignATrap(44,28, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(44,28, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 SkillScrollTrap(44,14, ChapterID*2, TantivyID)
 SpellScrollTrap(20,30, (ChapterID*2)+1, AttackPulse)

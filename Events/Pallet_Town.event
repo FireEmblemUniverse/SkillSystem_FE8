@@ -30,6 +30,7 @@ END_MAIN
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
+AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshUnitsEvent 0 
@@ -110,12 +111,12 @@ Traps1:
 //GoldPokeballTrap(3,9, 2, Gust) 
 //SkillScrollTrap(7,9, 1, AcrobatID)
 
-SpellScrollTrap(3,9, 1, Ember)
-SpellScrollTrap(5,9, 2, Bubble)
+//SpellScrollTrap(3,9, 1, Ember)
+//SpellScrollTrap(5,9, 2, Bubble)
 
 
 //SignBTrap(14,4, 0x8, 0x0) //no extra text 
-//SignATrap(9,4, 0x8, SignsFastTravel)
+//SignATrap(9,4, 0x8, 0x0)
 
 //BerryTree(10,4,5)
 
@@ -138,7 +139,7 @@ CutBush(6,19)
 CutBush(11,19)
 
 
-RedPokeballTrap(4,4, 0x01, Vulnerary)
+//RedPokeballTrap(4,4, 0x01, Vulnerary)
 
 //sprites: 
 

@@ -458,6 +458,10 @@ NoFade
 ENDA 
 
 
+CityAfev:
+ASMC CallCommandEffect
+NoFade 
+ENDA 
 
 
 VisitPokecenter:
@@ -474,6 +478,8 @@ NoFade
 ENDA 
 
 RefreshIfNotInDanger:
+// for some reason if you walk 15 tiles it doesn't auto select your active unit 
+// but it does if you walk less than that ??????? 
 
 CHECK_EVENTID 1 
 BNE 63 rC r0 // if flag is ON,  skip everything 
@@ -573,6 +579,10 @@ STAL 10
 NoFade 
 ENDA 
 
+SomeSignsAllowFastTravelEvent:
+TutText(SignsFastTravel)
+NoFade 
+ENDA 
 
 
 FastTravelEvent:

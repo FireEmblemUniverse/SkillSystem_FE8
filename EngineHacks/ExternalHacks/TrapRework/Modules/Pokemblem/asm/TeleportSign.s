@@ -343,8 +343,8 @@ ldr r1,=MemorySlot2
 str r2,[r1]		@overwrite s2 with 0
 
 mov r1, #0x4 
-ldrh r2, [r4, r1]     @gold amount 
-cmp r2, #0
+ldrh r2, [r4, r1]     @text id 
+cmp r2, #0		@ if text is empty, don't display a msg 
 beq SkipFirstMsg 
 ldr r1,=MemorySlot2
 str r2,[r1]		@overwrite s2
@@ -364,13 +364,9 @@ add r0, r1
 
 blh CheckNewFlag
 cmp r0, #0 
-beq Continue 
+beq NowSignsAllowFastTravelEvent 
 
 @ Flag is ON, so display msg and teleport player 
-
-ldr r0, =MemorySlot0 
-str r0, [r0, #4*0x5] @[0x30004CC]!
-
 
 @ find trapID that matches 
 ldrb r0, [r4, #2] @trap ID @203A67C
@@ -427,6 +423,13 @@ bl goto_r3
 
 
 b Continue 
+
+NowSignsAllowFastTravelEvent: 
+ldr	r0, =SomeSignsAllowFastTravelEvent	@this event gives item found in byte 0x4 of the trap
+mov	r1, #0x01		@0x01 = wait for events
+ldr r3, ExecuteEvent
+bl goto_r3
+
 
 Continue:
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine

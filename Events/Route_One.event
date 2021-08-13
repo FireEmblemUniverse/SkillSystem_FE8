@@ -91,7 +91,7 @@ RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(14,2, ChapterID, 0x0) //no extra text 
-SignATrap(13,34, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(13,34, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,21, ChapterID*2, 0xB7)
 //SpellScrollTrap(17,21, (ChapterID*2)+1, 0xB7)
@@ -99,7 +99,9 @@ SignATrap(13,34, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID 
 //Sign(8,4, 2)
 
 //Save(10,4)
-SaveCost(12,17) 
+
+
+//SaveCost(12,17) 
 
 
 BerryTree(20,2,5)

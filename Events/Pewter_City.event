@@ -53,6 +53,7 @@ END_MAIN
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
+AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshActive 0 
@@ -94,7 +95,7 @@ CutBush(28,5)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(36,18, ChapterID, 0x0) //no extra text 
-SignATrap(18,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(18,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
@@ -109,7 +110,7 @@ SignTrap(27,27, PewterFlowerSignText) // Wooden
 EnterTutTrap(14,6, PewterMuseumText) // Museum
 EnterTutTrap(29,11, PewterNEHouseText) // Ne house trade 
 EnterTutTrap(6,31, PewterSWHouseText) // sw coin house  
-
+EnterTutTrap(22,4, PewterSWHouseText) // sw coin house  
 
 
 Save(16,24) // Pokecenter 

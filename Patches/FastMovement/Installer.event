@@ -9,7 +9,7 @@
 // If uncommented, this will take over your 
 // chapter menu to add a new entry! 
 
-//#define TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
+#define TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
 // This makes the Chapter Menu command "Toy Box"
 // that toggles whether to freely place units or not 
 // only show up if flag 0xAB is ON 

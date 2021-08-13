@@ -99,7 +99,7 @@ SpellScrollTrap(19,0, (ChapterID*2)+3, AttackPulse) // Found in next ch
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(43,1, ChapterID, 0x0) //no extra text 
-SignATrap(29,26, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(29,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
