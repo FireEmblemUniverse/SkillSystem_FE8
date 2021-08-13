@@ -59,7 +59,7 @@ ble		ItemLoop
 RetFalse:
 mov		r0,#0x0 @ changed to 0 for the C code in gaiden magic as boolean answer 
 GoBack:
-mov r11, r11 @ break 
+@mov r11, r11 @ break 
 pop		{r4-r6}
 pop		{r1}
 bx		r1

@@ -236,44 +236,36 @@ to toggle DangerRadius.[A][NL]
 At times, DangerRadius will[NL]
 pop up automatically.[A][X]
 
-# 0x0A05
+## PewterMuseumText
 This Museum is where we[NL]
 study evolution based on fossils.[A][NL]
 What? You've seen Pokemon evolve?[A][NL]
 Don't be absurd![NL]
 Evolution takes millions of years.[.....][NL]
 You're thinking of [ToggleRed]Metamorphosis.[A][X]
-# 0x0A06
-It's empty.[A][.....][NL][NL]
-Why[.....] are we [NL]
-breaking[NL]
-in,[.....] again?[A][NL]
-After [.....]searching[.....][NL]
-for [.....]what[.....] feels[.....][NL]
-like[.....] days,[A][NL]
-you[.....][.....] finally [NL]
-scavenge[NL]
-some coins.[A][X]
 
-# 0x0A07
+## PewterSWHouseText
+It's empty.[A][X]
+
+## PewterNEHouseText
 I'll trade my Haunter [NL]
 if you bring me a Mewtwo.[A][NL][NL]
 Haha, I'm just messin'[NL]
 with you. I don't even[NL]
 have a Haunter.[A][X]
 
-# 0x0A09
+## PewterMuseumSignText
 Pewter Museum.[A][X]
 
-# 0x0A0B
+## PewterFlowerSignText
 Repels reduce the amount[NL]
 of wild Pokemon found.[A][X]
 
-# 0x0A0C
+## PewterGymSignText
 Pewter Gym.[NL]
 Rock-type Pokemon.[A][X]
 
-# 0x0A0D
+## BrockIntroText
 [OpenMidRight][LoadBrock][OpenMidRight]I believe in rock hard[NL]
 defense and determination![A][NL]
 That's why my pokemon are[NL]
@@ -282,7 +274,7 @@ Hmm? What about my Nidoran,[NL]
 Sandshrew, and Vulpix?[A][NL]
 Those don't count.[A][CloseSpeechSlow][LoadOverworldFaces][OpenMidRight][MoveLeft][OpenLeft]There there, sweetie.[NL]
 Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight][OpenMidRight]Ahem. Let's battle![A][X]
-# 0x0A0E
+## PewterCityText
 The city of Boulders.[A][X]
 
 # 0x0A0F
@@ -296,7 +288,7 @@ This area is closed.[A][X]
 You hear a rustling[NL]
 in the burrow.[A][X]
 
-# 0x0A13
+## BrockDefeatText
 [OpenMidRight][LoadBrock][OpenMidRight]As proof of your victory, [NL]
 here's the BOULDERBADGE![A][NL]
 Wear it proud, knowing[NL]

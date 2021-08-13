@@ -95,17 +95,22 @@ Traps1:
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
 CutBush(11,13)
+
+CutBush(21,10)
+
 //RockSmash(3,2)
+
+
 //StrengthBoulder(4,3)
 
 //RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
-//SignBTrap(43,1, ChapterID, 0x0) //no extra text 
-//SignATrap(29,26, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(20,38, ChapterID, 0x0) //no extra text 
+SignATrap(14,12, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
-//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+SpellScrollTrap(14,3, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -113,8 +118,8 @@ CutBush(11,13)
 //SaveCost(43,3) 
 
 
-//BerryTree(28,9,5)
-//BerryTree(11,14,5)
+BerryTree(16,28,5)
+BerryTree(21,30,5)
 
 
 
@@ -130,7 +135,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,1,1), Range(2,2,8,8)) //patch 
+RandomizeCoords(Grass, Range(0,0,2,2), Range(2,2,8,8)) //patch 
 
 OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  & bushes 
@@ -177,8 +182,8 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-//UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA2R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [1,0] 0b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] BushAI
 UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [1,1] 0b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] BushAI
 

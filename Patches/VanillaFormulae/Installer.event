@@ -20,7 +20,18 @@ jumpToHack(HitRateLabel)
 ORG $2AE54
 jumpToHack_r0(NegateDefHack)
 
+//ORG $25180  - This didn't work properly for some reason. It seemed to work in my context the first few iterations, but it led to a jump to d002d000 or something eventually 
+//jumpToHack_r3(AddUnitToTargetListHack)
+
+ORG $24EE4
+jumpToHack_r1(ForEachUnitInRangeHack)
+
 POP
+
+
+
+#include "ForEachUnitInRangeHack.lyn.event"
+
 
 ALIGN 4
 HitRateLabel:
@@ -29,6 +40,9 @@ HitRateLabel:
 ALIGN 4
 AvoidLabel:
 #incbin "avoidhack.dmp"
+
+ALIGN 4
+#include "AddUnitToTargetListHack.lyn.event"
 
 
 ALIGN 4 

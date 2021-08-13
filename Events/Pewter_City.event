@@ -47,7 +47,7 @@ END_MAIN
 
 
 LocationBasedEvents:
-
+Vendor(ShopItems,24,20)
 END_MAIN
 
 MiscBasedEvents:
@@ -86,29 +86,93 @@ Traps1:
 //CoinsTrap(28,14,ChapterID*2,350)
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
-//CutBush(4,2)
+CutBush(28,5)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
 //RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
-SignBTrap(35,18, ChapterID, 0x0) //no extra text 
-SignATrap(17,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(36,18, ChapterID, 0x0) //no extra text 
+SignATrap(18,31, ChapterID, SignsFastTravel) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
-//Sign(8,4, 2)
 
-Save(16,24)
-SaveCost(43,3) 
+BlankExamineTrap(8,16,PewterGymSignText)
+
+Sign2Trap(16,7, PewterMuseumSignText) // Metal ? 
+SignTrap(27,27, PewterFlowerSignText) // Wooden 
+
+
+EnterTutTrap(14,6, PewterMuseumText) // Museum
+EnterTutTrap(29,11, PewterNEHouseText) // Ne house trade 
+EnterTutTrap(6,31, PewterSWHouseText) // sw coin house  
+
+
+
+Save(16,24) // Pokecenter 
 
 
 BerryTree(24,29,5)
 BerryTree(30,29,5)
 
 
+Save(16,24)
+
+StrengthBoulder(12,17)
+
+
+
+
+Flower(26,3)
+Flower(28,3)
+Flower(27,2)
+Flower(29,2)
+
+Flower(27,8)
+Flower(25,8)
+Flower(26,9)
+Flower(24,9)
+
+Flower(8,2)
+Flower(6,2)
+Flower(7,3)
+Flower(8,4)
+
+Flower(10,30)
+Flower(11,31)
+Flower(12,30)
+Flower(13,31)
+
+Flower(4,21)
+Flower(6,21)
+Flower(8,21)
+Flower(4,23)
+Flower(3,22)
+Flower(5,22)
+Flower(7,22)
+
+Flower(23,28)
+Flower(24,28)
+Flower(25,28)
+Flower(26,28)
+Flower(27,28)
+Flower(28,28)
+Flower(29,28)
+Flower(30,28)
+Flower(31,28)
+
+Flower(23,30)
+Flower(24,30)
+Flower(25,30)
+Flower(26,30)
+Flower(27,30)
+Flower(28,30)
+Flower(29,30)
+Flower(30,30)
+Flower(31,30)
 
 
 ENDTRAP
@@ -117,6 +181,7 @@ ALIGN 4
 
 BeginningScene:
 CALL GlobalBeginningScene
+CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
 
 
@@ -126,9 +191,16 @@ ENDA
 
 
 
-ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 ALIGN 4
+ShopItems:
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+//BYTE SuperPotion 12
+//BYTE SkillScroll AcrobatID 
+BYTE SpellScroll Tackle SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
 
 ArmoryItems:
 SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin

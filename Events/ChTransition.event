@@ -474,8 +474,12 @@ NoFade
 ENDA 
 
 RefreshIfNotInDanger:
+
 CHECK_EVENTID 1 
 BNE 63 rC r0 // if flag is ON,  skip everything 
+CHECK_ENEMIES 
+BEQ 10 rC r0 // No Enemies, so refresh 
+
 CHECK_COORDS 0x7FFF
 SADD rB rC r0 
 ASMC CheckUnitIsInDanger

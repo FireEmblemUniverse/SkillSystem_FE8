@@ -29,8 +29,8 @@ TurnEventNPC(0,GlobalNPCTurnEvent,0,255) // placeholder
 TurnEventEnemy(0,GlobalEnemyTurnEvent,0,255)// placeholder
 TurnEventPlayer(0,ReinforcementEvent,0,255)
 
-TurnEventNPC(0,TurnNPCsToEnemies,0,255)
-TurnEventEnemy(0,TurnEnemiesToNPCs,0,255)
+//TurnEventNPC(0,TurnNPCsToEnemies,0,255) // Instead made it so Gary / unit id 0xFA cannot be targeted despite being an enemy 
+//TurnEventEnemy(0,TurnEnemiesToNPCs,0,255) // See "ForEachUnitInRangeHack.asm" 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -155,13 +155,12 @@ ENUN
 // Cutscene is true 
 //StopHere 
 //SetUnitStatus(0x01, CurrentHP, 5)
-SetUnitStatus(0x02, CurrentHP, 5)
-SetUnitStatus(0x0F, CurrentHP, 5)
-SilentGiveItem(0x12, LowKick)
+//SetUnitStatus(0x02, CurrentHP, 5)
+//SetUnitStatus(0x0F, CurrentHP, 5)
+//SilentGiveItem(0x12, LowKick)
 //ASMC 0x80225F9 // End player phase 
 
-DISA 0xF 
-ASMC 0x080956d9 // Reorder player units 
+//ASMC 0x080956d9 // Reorder player units 
 LABEL 10 
 LABEL 0x63
 NoFade
@@ -329,7 +328,7 @@ UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0
 UNIT 
 
 GaryNPCUnitGroup:
-UNIT 0xFA GaryID 0x0 Level(1, NPC, 1)   [10,27] 0b	0x0 0x01 REDA10R27 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xFA GaryID 0x0 Level(1, Enemy, 1)   [10,27] 0b	0x0 0x01 REDA10R27 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 GaryBulbasaurUnit:

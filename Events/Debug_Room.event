@@ -160,7 +160,7 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  BulbasaurID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT Ephraim  PidgeyID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT Seth  RattataID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
@@ -218,8 +218,8 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(29, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-//Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
@@ -322,9 +322,9 @@ AutoLevelUnits(3, True, 0x120) // all
 //MNC2 PalletCh 
 //MNC2 PokecenterCh 
 //MNC2 Route1Ch 
-DISA 0x2
-MNC2 Route2SCh
-//MNC2 ViridianForestNCh
+//DISA 0x2
+//MNC2 Route2SCh
+MNC2 ViridianForestNCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh
 NoFade
