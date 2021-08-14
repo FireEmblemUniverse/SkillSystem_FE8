@@ -51,7 +51,13 @@ swi 6 @ Div function
 @ subtract their def by this number 
 mov r3, #0x5C 
 ldrh r2, [r6, r3] @ def to negate part of  
+cmp r2, r0 
+bge NoCapNeeded
+mov r2, #0 
+b StoreBackIn
+NoCapNeeded: 
 sub r2, r0 
+StoreBackIn:
 strh r2, [r6, r3] @ ignored some 
 b End 
 

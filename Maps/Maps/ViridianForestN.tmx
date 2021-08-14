@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="47" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="1">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="47" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="1">
  <tileset firstgid="1" name="10001112" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/ViridianForestNTileset" trans="ffffff" width="512" height="512"/>
  </tileset>
@@ -3130,10 +3130,10 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Snag2" width="47" height="33" visible="0">
+ <layer id="11" name="Snag2" width="47" height="33">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="2"/>
    <property name="Width" value="1"/>
    <property name="X" value="35"/>
    <property name="Y" value="23"/>
@@ -4209,7 +4209,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="754"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -4569,7 +4569,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="595"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -4695,7 +4695,7 @@
  <layer id="4" name="Snag3" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="3"/>
    <property name="Width" value="1"/>
    <property name="X" value="34"/>
    <property name="Y" value="22"/>
@@ -6257,7 +6257,7 @@
  <layer id="5" name="Snag4" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="4"/>
    <property name="Width" value="1"/>
    <property name="X" value="32"/>
    <property name="Y" value="21"/>
@@ -7819,7 +7819,7 @@
  <layer id="3" name="Snag5" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="5"/>
    <property name="Width" value="1"/>
    <property name="X" value="31"/>
    <property name="Y" value="22"/>
@@ -9381,7 +9381,7 @@
  <layer id="4" name="Snag6" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="6"/>
    <property name="Width" value="1"/>
    <property name="X" value="35"/>
    <property name="Y" value="17"/>
@@ -10943,7 +10943,7 @@
  <layer id="5" name="Snag7" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="7"/>
    <property name="Width" value="1"/>
    <property name="X" value="32"/>
    <property name="Y" value="17"/>
@@ -12505,7 +12505,7 @@
  <layer id="6" name="Snag8" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="8"/>
    <property name="Width" value="1"/>
    <property name="X" value="35"/>
    <property name="Y" value="13"/>
@@ -14067,7 +14067,7 @@
  <layer id="7" name="Snag9" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="9"/>
    <property name="Width" value="1"/>
    <property name="X" value="26"/>
    <property name="Y" value="5"/>
@@ -15629,7 +15629,7 @@
  <layer id="8" name="Snag10" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="10"/>
    <property name="Width" value="1"/>
    <property name="X" value="18"/>
    <property name="Y" value="20"/>
@@ -17191,7 +17191,7 @@
  <layer id="9" name="Snag11" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="11"/>
    <property name="Width" value="1"/>
    <property name="X" value="16"/>
    <property name="Y" value="20"/>
@@ -18753,7 +18753,7 @@
  <layer id="10" name="Snag12" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
-   <property name="ID" value="1"/>
+   <property name="ID" value="12"/>
    <property name="Width" value="1"/>
    <property name="X" value="11"/>
    <property name="Y" value="24"/>

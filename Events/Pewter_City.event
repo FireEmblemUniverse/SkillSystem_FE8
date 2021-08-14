@@ -261,7 +261,7 @@ UNIT
 
 
 ReinforcementUnits:
-UNIT GenericA ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT Reinforcement0 ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 

@@ -46,17 +46,11 @@
 */
 
 
-#define Halt "CALL StopHereEvent"
-#define Break "CALL StopHereEvent"
-#define Stop "CALL StopHereEvent"
-#define StopHere "CALL StopHereEvent"
+#define Halt "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+#define Break "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+#define Stop "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+#define StopHere "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
 
-StopHereEvent:
-EVBIT_F 2 
-FADI 16 
-Text(DebugTextHere)
-NoFade 
-ENDA 
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
 
@@ -416,12 +410,21 @@ BLT 1 rA r6
 	SetUnitStatus(0x7FFD, State, 0xC) // Undeploy+Dead bush for MOVENEXTTO to work 
 	
 	// New unit was loaded at 0,0 so we move them to r8 coord of Bush 
+
+	
 	MOVEONTO 0xFFFF 0x7FFE 0x7FFD
 	ENUN 
 	SADD rB r6 r0 
 	EVBIT_T 9 //Follow moving units 
-	MOVENEXTTO 0x2 0xFFFE 0x7FFD //vanilla ignores dead/undeployed units 
+	
+	// move coord unit beside the undeployed bush 
+	// if you spawn_npc here instead, you'll need to undeploy it or something so that 0x7FFE ignores the placeholder 
+	// npc while moving the newly spawned unit 
+	MOVENEXTTO 0x2 0x7FFE 0x7FFD  
 	ENUN 
+	
+
+	
 	SetUnitStatus(0x7FFC, State, 0) // Redeploy Bush 
 
 	EVBIT_F 9 //Unfollow moving units 
@@ -441,7 +444,7 @@ BLT 1 rA r6
 	GetUnitStatus(0x7FFD, Level) 
 	SADD r1 rC r0 // Level to autolevel by 
 	SVAL r3 True 
-	SVAL r4 0x508F // Wilds 
+	SVAL r4 0x909F // Wild reinforcements 
 	ASMC AutoLevelUnits // Also teaches them moves 
 
 	

@@ -71,7 +71,7 @@ StrHigher:
 
 @mov r11, r11 
 
-@r0 has Battle attack 
+@r0 has Str or Mag 
 add r2, r0, #7 @ Ceiling up 
 lsr r2, #3 @ 1/8th 
 @add r0, #1 @ Ceiling up 

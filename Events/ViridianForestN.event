@@ -169,7 +169,7 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 BEQ 10 rC r0 
 // If trainers exist, do stuff 
 //StopHere
-Text(ViridianForestBG,ViridianForestNBirdkeeperText)
+//Text(ViridianForestBG,ViridianForestNBirdkeeperText)
 
 
 LABEL 10 
@@ -248,8 +248,8 @@ UNIT GenericB SpearowID 0xD0 Level(1, Enemy, 1) [12,27]  0b 0x0	0x0 0x00 [0x0,0x
 UNIT
 
 EnemyTrainersB:
-UNIT 0xD1 MetapodID 0x0 Level(1, Enemy, 1) [5,12]  DropItem 0x0	0x0 REDA5R12 [Headbutt, Guard,Gold500x,0x0] ZoningGroupTwoAI
-//UNIT 0xD1 MetapodID 0x0 Level(1, Enemy, 1) [15,6]  DropItem 0x0	0x0 0x00 [Headbutt, Guard,Gold500x,0x0] ZoningGroupTwoAI
+//UNIT 0xD1 MetapodID 0x0 Level(1, Enemy, 1) [5,12]  DropItem 0x0	0x0 REDA5R12 [Headbutt, Guard,Gold500x,0x0] ZoningGroupTwoAI
+UNIT 0xD1 MetapodID 0x0 Level(10, Enemy, 1) [15,6]  DropItem 0x0	0x0 0x00 [Headbutt, Guard,Gold500x,0x0] ZoningGroupTwoAI
 UNIT GenericB PidgeyID 0xD1 Level(1, Enemy, 1) [16,4]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupTwoAI
 UNIT GenericB SpearowID 0xD1 Level(1, Enemy, 1) [17,7]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupTwoAI
 UNIT
@@ -275,7 +275,7 @@ UNIT
 
 
 ReinforcementUnits:
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT Reinforcement0 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 

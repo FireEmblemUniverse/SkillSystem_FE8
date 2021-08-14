@@ -35,9 +35,11 @@ ldr r3,[r0] @if no unit, exit
 cmp r3,#0
 beq NextUnit
 
+@mov r11, r11
 ldr r3,[r0,#0xC] @ condition word
 mov r2,#0x8 @ benched
 tst r3,r2
+
 bne NextUnit
 
 mov r1, #0x10
@@ -49,6 +51,7 @@ mov r1, #0x11
 ldrb r2, [r0, r1] @if unit y coords do not match, exit 
 cmp r2, r5
 bne NextUnit 
+@mov r11, r11 
 
 
 b 	Finish 		@now we have s2 unit ID 

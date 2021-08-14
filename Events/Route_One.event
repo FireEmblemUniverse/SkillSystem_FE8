@@ -3,7 +3,7 @@
 #define GenericB UnitRoute1Trainer
 #define ClassA ClassRoute1WildA
 #define ClassB ClassRoute1WildB
-#define WildLvl 3 
+#define WildLvl 1 
 #define TrainerL 6 
 EventPointerTable(ChapterID,ThisChapter)
 
@@ -160,7 +160,7 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid
 LOAD1 0x1 EnemyUnitsD
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //lower 
-AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds & Bushes 
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
@@ -237,7 +237,7 @@ UNIT GenericA ClassA 0x0 Level(1, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0
 UNIT
 
 ReinforcementUnits:
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT Reinforcement0 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
 

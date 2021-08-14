@@ -39,6 +39,7 @@
 #define ClassRoute25WaterB 0x23
 
 
+
 //Enemy unit IDs 
 // Wilds are 0x50 - 0x8F 
 // Trainers are 0x90 - 0xBD & 0xC0 - 0xCF I guess 
@@ -81,3 +82,11 @@
 #define UnitRoute25Trainer 0xB1
 #define UnitRoute25WaterA 0x72
 #define UnitRoute25WaterB 0x73
+
+// Reinforcement unit IDs 0x90 - 0x9F 
+// limited to these unit IDs just for ease of autoleveling in Reinforce() macro 
+#define Reinforcement0 0x90 
+
+
+
+
