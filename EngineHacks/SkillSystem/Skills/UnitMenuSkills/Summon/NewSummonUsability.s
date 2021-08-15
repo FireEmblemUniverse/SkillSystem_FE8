@@ -151,7 +151,7 @@ b ReturnFalse
 
 CheckNextUnit:
 add r4,#1
-cmp r4,#0x3F
+cmp r4,#0xAF @ For compatibility with Pikmin's npc/enemy summons hack
 ble GetSummonUnit
 
 ReturnTrue:
