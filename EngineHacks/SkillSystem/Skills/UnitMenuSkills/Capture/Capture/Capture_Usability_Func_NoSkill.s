@@ -20,6 +20,17 @@ mov		r2,#0x80
 lsl		r2,#0x4				@is in ballista
 tst		r1,r2
 bne		RetFalse
+
+@ Vesly added 
+ldr r2, =0x202BCF0 @ Chapter Data Struct 
+ldr r2, [r2, #8] @ Gold 
+mov r1, #255 
+add r1, #45 
+cmp r2, r1 
+blt RetFalse @ Not enough money to capture 
+
+
+
 mov		r5,r0
 mov		r6,#0x0
 ItemLoop:

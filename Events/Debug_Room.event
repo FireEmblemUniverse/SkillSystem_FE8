@@ -308,12 +308,12 @@ SupplyItemWithDurability(SuperPotion, 5)
 
 
 LABEL 0x63
-SVAL r3 12500 
-GIVETOMAIN 0
+//SVAL r3 12500 
+//GIVETOMAIN 0
 
 ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(1, False, 0x120) // all 
+AutoLevelUnits(19, True, 0x120) // all 
 
 
 //GotoPrepScreen 

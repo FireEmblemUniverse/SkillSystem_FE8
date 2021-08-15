@@ -19,6 +19,11 @@ PUSH
 	#incbin "WritePromotoRAM.dmp"
 	SHORT 0xE012
 	
+	ORG $736C4 
+	SHORT 0x7A28 // Show current level instead of level 1 on promotion 
+	// - Vesly added 
+	
+	
 	//LOADS
 	ORG $737D8
 	SHORT 0x1838 0x7801

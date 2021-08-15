@@ -53,10 +53,27 @@ beq NextUnit
 ldr r3,[r0]
 cmp r3,#0
 beq NextUnit
-ldr r1,[r0,#0xC] @ condition word
-mov r2,#0xC @ benched/dead
-@tst r1,r2
-@bne NextUnit
+
+
+ldr r2, =MemorySlot 
+ldr r1, [r2, #4*0x05] @ Mem slot 5 
+cmp r1, #0 
+beq AnyCoordinate
+lsl r2, r1, #8 
+lsr r2, #24 @ YY 
+lsl r1, #24 
+lsr r1, #24 @ XX 
+ldrb r3, [r0, #0x10] 
+cmp r3, r1 
+bne NextUnit 
+ldrb r3, [r0, #0x11] 
+cmp r3, r2 
+bne NextUnit 
+
+@ Coordinate matches, so go ahead 
+
+
+AnyCoordinate: 
 mov r5, r0 @unit to autolevel 
 
 ldr		r2, =MemorySlot @

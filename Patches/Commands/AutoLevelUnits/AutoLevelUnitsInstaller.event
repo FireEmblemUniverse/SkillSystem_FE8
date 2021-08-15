@@ -2,7 +2,8 @@
 
 
 
-#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; ASMC AutoLevelUnits" 
+#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 0; ASMC AutoLevelUnits" 
 
+#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange, Coordinate) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 Coordinate; ASMC AutoLevelUnits" 
 
 

@@ -41,7 +41,8 @@ b	End
 
 Original:
 pop	{r2}
-ldr	r0,[r2]
+ldr	r0,[r2, #4] @Vesly added ,4 to make it class based ? 
+				@ Teq pointed me in this direction so ty to him 
 ldrh	r0,[r0]
 
 End:

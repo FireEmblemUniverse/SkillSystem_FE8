@@ -1,5 +1,10 @@
 PUSH 
 
+// Promotion music by 7743 
+ORG 0x7272A
+BYTE 0x0D // "small achievement" 
+
+
 // Prep screen bgm editor by 7743 
 ORG 0x4D3E0 
 BYTE 0x1A // Cycling music prep screen 

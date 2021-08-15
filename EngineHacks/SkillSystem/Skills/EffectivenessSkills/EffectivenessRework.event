@@ -83,8 +83,8 @@ SetWeaponEffectiveness(FireType|GroundType|RockType, SupEff)
 WORD 0
 
 BugAdv:
-SetWeaponEffectiveness(GrassType|PsychicType, Resist)
-SetWeaponEffectiveness(FightingType|FireType|FlyingType|GhostType|PoisonType|SteelType, SupEff)
+SetWeaponEffectiveness(FightingType|FireType|FlyingType|GhostType|PoisonType|SteelType, Resist)
+SetWeaponEffectiveness(GrassType|PsychicType, SupEff)
 WORD 0
 
 

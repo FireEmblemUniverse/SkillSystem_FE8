@@ -73,6 +73,19 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 #define MapChangesPointerTable(aId, apointer) "PUSH; ORG MapChangesPLIST+(0x4 * aId); POIN apointer; POP"
 
 
+// Vesly added for convenience 
+// But you could edit this in your csv if you prefer 
+#define EventsIDEntry(ChapterID) "PUSH; ORG NewChapterDataTable +(148 * ChapterID)+ 116 ; BYTE ChapterID+1; POP" // 116 is the offset of the EventsID byte, while each row has 148 bytes of data  
+
+// if you really want to have it not just be identical to your chapter ID+1, then use this below I guess 
+#define EventsIDEntry(ChapterID, EventID) "PUSH; ORG NewChapterDataTable +(148 * ChapterID)+ 116 ; BYTE EventID; POP" // 116 is the offset of the EventsID byte, while each row has 148 bytes of data  
+
+// to do: test & use these so I don't have to manually type them in the csv lol 
+
+
+
+
+
 
 // OBJECT and PALETTE share numbers,
 // tile config, Conf pointer, tile anim 1/2, and Conf changes are all separate
@@ -139,7 +152,7 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 
 // to do: make this part of the automation 
 // they just need to be put in the definitions automation part 
-// functionally, it doesn't really matter what numbers they have 
+// functionally it doesn't really matter what numbers they have 
 // so you could probably just do WhicheverCh and it'd work fine 
 #define ViridianForestNMapChanges 120 
 

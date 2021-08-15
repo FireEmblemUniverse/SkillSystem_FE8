@@ -16,7 +16,9 @@ ALIGN 4
 BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
 BtlLoopTable:
-POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+//POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_WRank BC_Status // maybe I don't need BC_Support ? 
+
 
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
 
@@ -64,7 +66,7 @@ POIN WeakChipDmg
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 
-//POIN MinimumDamage
+//POIN MinimumDamage - this is broken 
 //POIN FixedDamageWeapons
 
 
@@ -74,6 +76,7 @@ POIN CriticalCheck
 	POIN NegateCritWeapons //This goes last, so that crit will always be set to 0 if set and never modified from there
 #endif // CANNOT_CRIT
 POIN 0
+
 
 PUSH
 ORG 0x2a3f8

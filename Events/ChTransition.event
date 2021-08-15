@@ -289,6 +289,11 @@ If AI2 counter is equal or greater than TurnToOccur, load unit r8 times
 LoadReinforcements:
 CHECK_ALIVE 0x7FFD 
 BEQ 0x63 rC r0 //If bush is dead, break 
+
+CHECK_ENEMIES 
+SVAL r1 50 
+BGE 0x63 rC r1 // If we've hit the enemy cap, don't load reinforcements  
+
 GetUnitStatus(0x7FFD, AI2Counter)
 SADD rA rC r0 
 BLT 0x63 rA r6 //Do nothing during grace period 
@@ -411,11 +416,22 @@ BLT 1 rA r6
 	
 	// New unit was loaded at 0,0 so we move them to r8 coord of Bush 
 
-	
+
+
 	MOVEONTO 0xFFFF 0x7FFE 0x7FFD
 	ENUN 
 	SADD rB r6 r0 
 	EVBIT_T 9 //Follow moving units 
+	
+	// "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; ASMC AutoLevelUnits" 
+	// We should make these auto level some specific amount 
+	// How about by the level of the bush? 
+	GetUnitStatus(0x7FFD, Level) 
+	SADD r1 rC r0 // Level to autolevel by 
+	SVAL r3 True 
+	SVAL r4 0x909F // Wild reinforcements 
+	SADD r5 rB r0 // Bush/newly spawned unit coord 
+	ASMC AutoLevelUnits // Also teaches them moves 
 	
 	// move coord unit beside the undeployed bush 
 	// if you spawn_npc here instead, you'll need to undeploy it or something so that 0x7FFE ignores the placeholder 
@@ -438,14 +454,7 @@ BLT 1 rA r6
 	SetUnitStatus(0x7FFD, AI2Counter) //uses r5 as Value 
 	SetUnitStatus(0x7FFD, CurrentHP, 1) //uses r5 as Value 
 
-	// "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; ASMC AutoLevelUnits" 
-	// We should make these auto level some specific amount 
-	// How about by the level of the bush? 
-	GetUnitStatus(0x7FFD, Level) 
-	SADD r1 rC r0 // Level to autolevel by 
-	SVAL r3 True 
-	SVAL r4 0x909F // Wild reinforcements 
-	ASMC AutoLevelUnits // Also teaches them moves 
+
 
 	
 	GOTO 0x63  

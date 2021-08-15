@@ -6,8 +6,15 @@ PUSH
 ORG 0x2BE70 
 BYTE 0x00 0x00 0x00 0x00
 
-ORG 0x736DA 
-BYTE 0x18 0x7A
+//ORG 0x736DA  // Promotion screen part but conflicts with strmag split 
+//BYTE 0x18 0x7A
+
+
+// Remove supports 
+//Support Thresholds  (SupportUnitForm) @01 Eirika2021-08-15 9:52:16 AM
+ORG $8AEBAC
+BYTE  $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+
 
 
 // Snags class ID 

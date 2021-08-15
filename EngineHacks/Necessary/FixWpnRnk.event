@@ -13,7 +13,6 @@ FixWpnRnkHook:
 	// I'd hit a game freeze where it was storing a byte to the next empty 
 	// player unit ram address, so the game would try to load this 
 	// as a unit pointer 
-	//WORD $5C382050 $5C383028 $D0032800 $5C382052 $47184B02 $42402001 $47184B01 $802C0FB $802C1AB
 
 PUSH
 
