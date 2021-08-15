@@ -68,7 +68,7 @@
 	
 	ALIGN 4
 	ExampleMapSpriteGraphics:
-	#incext Png2Dmp "bin/Sigil.png" --lz77
+	#incbin "bin/Sigil.dmp" 
 	
 	
 	ALIGN 4
