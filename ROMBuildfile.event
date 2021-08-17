@@ -3,8 +3,9 @@
     #include "CustomDefinitions.event"
 	
 	ORG 0x01000000
-	#include "Music/FEBuilder_Pokemblem_Music_Dump.event"
-//PROTECT $25224
+	#include "Music/MusicInstaller.event"
+	MESSAGE Pokemblem music space ends at currentOffset
+
     ORG FreeSpace
 
     #include "repointedTextTable.event"
@@ -28,11 +29,6 @@
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
 
-
-
-
-	#include "Music/MusicInstaller.event"
-
     //Maps
     #include "Maps/SplitPList.event"
 
@@ -51,11 +47,7 @@
 	
 	MESSAGE Used patch space ends at currentOffset
 	
-	
 
-
-	//Repointed things
-	//#include "Repoint/ClassRepoint.event"
 
 	//Graphics
 	#include "Graphics/GraphicsInstaller.event"

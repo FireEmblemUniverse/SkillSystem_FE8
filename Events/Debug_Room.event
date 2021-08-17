@@ -22,94 +22,8 @@ BYTE 0
 
 
 
-
-
-//EventPointerTable(OaksLabCh,ThisChapter)
-
-
-
-
-
-//EventPointerTable(Route1Ch,ThisChapter)
-
-EventPointerTable(ViridianCh,ThisChapter)
-EventPointerTable(Route2SCh,ThisChapter)
-EventPointerTable(ViridianForestSCh,ThisChapter)
-EventPointerTable(ViridianForestNCh,ThisChapter)
-
-
-
-EventPointerTable(CeladonCh                        ,ThisChapter)
-EventPointerTable(CeladonGymCh                     ,ThisChapter)
-EventPointerTable(CeruleanCh                       ,ThisChapter)
-EventPointerTable(CeruleanGymCh                    ,ThisChapter)
-EventPointerTable(CinnabarCh                       ,ThisChapter)
-EventPointerTable(CinnabarGymCh                    ,ThisChapter)
-EventPointerTable(DiglettsCaveCh                   ,ThisChapter)
-EventPointerTable(FuschiaCh                        ,ThisChapter)
-EventPointerTable(FuschiaGymCh                     ,ThisChapter)
-EventPointerTable(LavendarCh                       ,ThisChapter)
-EventPointerTable(MtMoonB1Ch                       ,ThisChapter)
-EventPointerTable(MtMoonB2Ch                       ,ThisChapter)
-EventPointerTable(MtMoonB3Ch                       ,ThisChapter)
 EventPointerTable(OaksLabCh                        ,ThisChapter)
-EventPointerTable(PalletCh                         ,ThisChapter)
-EventPointerTable(PewterCh                         ,ThisChapter)
-EventPointerTable(PewterGymCh                      ,ThisChapter)
-EventPointerTable(PokecenterCh                     ,ThisChapter)
-EventPointerTable(PokemonTowerF1Ch                 ,ThisChapter)
-EventPointerTable(PokemonTowerF2Ch                 ,ThisChapter)
-EventPointerTable(PokemonTowerF3Ch                 ,ThisChapter)
-EventPointerTable(PokemonTowerF4Ch                 ,ThisChapter)
-EventPointerTable(PokemonTowerF5Ch                 ,ThisChapter)
-EventPointerTable(RockTunnelB1Ch                   ,ThisChapter)
-EventPointerTable(RockTunnelB2Ch                   ,ThisChapter)
-EventPointerTable(Route1Ch                         ,ThisChapter)
-EventPointerTable(Route10Ch                        ,ThisChapter)
-EventPointerTable(Route11Ch                        ,ThisChapter)
-EventPointerTable(Route12NCh                       ,ThisChapter)
-EventPointerTable(Route12SCh                       ,ThisChapter)
-EventPointerTable(Route13Ch                        ,ThisChapter)
-EventPointerTable(Route14Ch                        ,ThisChapter)
-EventPointerTable(Route15Ch                        ,ThisChapter)
-EventPointerTable(Route16Ch                        ,ThisChapter)
-EventPointerTable(Route17NCh                       ,ThisChapter)
-EventPointerTable(Route17SCh                       ,ThisChapter)
-EventPointerTable(Route18Ch                        ,ThisChapter)
-EventPointerTable(Route19Ch                        ,ThisChapter)
-EventPointerTable(Route20ECh                       ,ThisChapter)
-EventPointerTable(Route20WCh                       ,ThisChapter)
-EventPointerTable(Route21Ch                        ,ThisChapter)
-EventPointerTable(Route22Ch                        ,ThisChapter)
-EventPointerTable(Route23MCh                       ,ThisChapter)
-EventPointerTable(Route23NCh                       ,ThisChapter)
-EventPointerTable(Route23SCh                       ,ThisChapter)
-EventPointerTable(Route24Ch                        ,ThisChapter)
-EventPointerTable(Route25Ch                        ,ThisChapter)
-EventPointerTable(Route2NCh                        ,ThisChapter)
-EventPointerTable(Route2SCh                        ,ThisChapter)
-EventPointerTable(Route3ECh                        ,ThisChapter)
-EventPointerTable(Route3MCh                        ,ThisChapter)
-EventPointerTable(Route3WCh                        ,ThisChapter)
-EventPointerTable(Route4ECh                        ,ThisChapter)
-EventPointerTable(Route4MCh                        ,ThisChapter)
-EventPointerTable(Route4WCh                        ,ThisChapter)
-EventPointerTable(Route5Ch                         ,ThisChapter)
-EventPointerTable(Route6Ch                         ,ThisChapter)
-EventPointerTable(Route7Ch                         ,ThisChapter)
-EventPointerTable(Route8Ch                         ,ThisChapter)
-EventPointerTable(Route9ECh                        ,ThisChapter)
-EventPointerTable(Route9WCh                        ,ThisChapter)
-EventPointerTable(SaffronCh                        ,ThisChapter)
-EventPointerTable(SaffronDojoCh                    ,ThisChapter)
-EventPointerTable(SaffronGymCh                     ,ThisChapter)
-EventPointerTable(SSAnneCh                         ,ThisChapter)
-EventPointerTable(VermillionCh                     ,ThisChapter)
-EventPointerTable(VermillionGymCh                  ,ThisChapter)
-EventPointerTable(ViridianCh                       ,ThisChapter)
-EventPointerTable(ViridianForestNCh                ,ThisChapter)
-EventPointerTable(ViridianForestSCh                ,ThisChapter)
-EventPointerTable(ViridianGymCh                    ,ThisChapter)
+
 
 
 
@@ -218,8 +132,8 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(21, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(20, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(16, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
@@ -290,11 +204,11 @@ LOAD1 0x1 EnemyUnits2
 ENUN
 
 //GotoPrepScreen
-Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(15, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
@@ -313,7 +227,7 @@ LABEL 0x63
 
 ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(19, True, 0x120) // all 
+AutoLevelUnits(5, True, 0x120) // all 
 
 
 //GotoPrepScreen 
@@ -322,11 +236,12 @@ AutoLevelUnits(19, True, 0x120) // all
 //MNC2 PokecenterCh 
 //MNC2 Route1Ch 
 //DISA 0x2
-//MNC2 Route2SCh
-MNC2 ViridianForestNCh
+//MNC2 Route2NCh
+//MNC2 ViridianForestNCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh
+MNC2 PewterCh
 NoFade
 ENDA
 

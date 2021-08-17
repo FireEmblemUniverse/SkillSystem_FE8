@@ -22,6 +22,18 @@
 	.equ MemorySlot3,0x30004C4    @item ID to give @[0x30004C4]!!?
 	.equ DivisionRoutine, 0x080D18FC
 
+	.global RandomizePlayerCoords
+	.type   RandomizePlayerCoords, function
+
+RandomizePlayerCoords:
+	push {r4-r7, lr}
+mov r4,#0x1 @ deployment id / counter 
+ldr r0, =MemorySlot 
+
+ldr r5, [r0, #4*0x09] @r5 / s9 as valid coords to place into 
+ldr r6, [r0, #4*0x01] @r6 / s1 as valid terrain type 
+b LoopThroughUnits
+
 	.global RandomizeCoords
 	.type   RandomizeCoords, function
 

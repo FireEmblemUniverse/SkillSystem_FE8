@@ -1,0 +1,246 @@
+
+// Placeholder events for any chapter that doesn't have them written 
+// So you can walk around in the map and be auto refreshed 
+
+
+EventPointerTable(OaksLabCh,ThisChapter)
+EventPointerTable(Route1Ch,ThisChapter)
+EventPointerTable(ViridianCh,ThisChapter)
+EventPointerTable(Route2SCh,ThisChapter)
+EventPointerTable(ViridianForestSCh,ThisChapter)
+EventPointerTable(ViridianForestNCh,ThisChapter)
+EventPointerTable(CeladonCh                        ,ThisChapter)
+EventPointerTable(CeladonGymCh                     ,ThisChapter)
+EventPointerTable(CeruleanCh                       ,ThisChapter)
+EventPointerTable(CeruleanGymCh                    ,ThisChapter)
+EventPointerTable(CinnabarCh                       ,ThisChapter)
+EventPointerTable(CinnabarGymCh                    ,ThisChapter)
+EventPointerTable(DiglettsCaveCh                   ,ThisChapter)
+EventPointerTable(FuschiaCh                        ,ThisChapter)
+EventPointerTable(FuschiaGymCh                     ,ThisChapter)
+EventPointerTable(LavendarCh                       ,ThisChapter)
+EventPointerTable(MtMoonB1Ch                       ,ThisChapter)
+EventPointerTable(MtMoonB2Ch                       ,ThisChapter)
+EventPointerTable(MtMoonB3Ch                       ,ThisChapter)
+EventPointerTable(OaksLabCh                        ,ThisChapter)
+EventPointerTable(PalletCh                         ,ThisChapter)
+EventPointerTable(PewterCh                         ,ThisChapter)
+EventPointerTable(PewterGymCh                      ,ThisChapter)
+EventPointerTable(PokecenterCh                     ,ThisChapter)
+EventPointerTable(PokemonTowerF1Ch                 ,ThisChapter)
+EventPointerTable(PokemonTowerF2Ch                 ,ThisChapter)
+EventPointerTable(PokemonTowerF3Ch                 ,ThisChapter)
+EventPointerTable(PokemonTowerF4Ch                 ,ThisChapter)
+EventPointerTable(PokemonTowerF5Ch                 ,ThisChapter)
+EventPointerTable(RockTunnelB1Ch                   ,ThisChapter)
+EventPointerTable(RockTunnelB2Ch                   ,ThisChapter)
+EventPointerTable(Route1Ch                         ,ThisChapter)
+EventPointerTable(Route10Ch                        ,ThisChapter)
+EventPointerTable(Route11Ch                        ,ThisChapter)
+EventPointerTable(Route12NCh                       ,ThisChapter)
+EventPointerTable(Route12SCh                       ,ThisChapter)
+EventPointerTable(Route13Ch                        ,ThisChapter)
+EventPointerTable(Route14Ch                        ,ThisChapter)
+EventPointerTable(Route15Ch                        ,ThisChapter)
+EventPointerTable(Route16Ch                        ,ThisChapter)
+EventPointerTable(Route17NCh                       ,ThisChapter)
+EventPointerTable(Route17SCh                       ,ThisChapter)
+EventPointerTable(Route18Ch                        ,ThisChapter)
+EventPointerTable(Route19Ch                        ,ThisChapter)
+EventPointerTable(Route20ECh                       ,ThisChapter)
+EventPointerTable(Route20WCh                       ,ThisChapter)
+EventPointerTable(Route21Ch                        ,ThisChapter)
+EventPointerTable(Route22Ch                        ,ThisChapter)
+EventPointerTable(Route23MCh                       ,ThisChapter)
+EventPointerTable(Route23NCh                       ,ThisChapter)
+EventPointerTable(Route23SCh                       ,ThisChapter)
+EventPointerTable(Route24Ch                        ,ThisChapter)
+EventPointerTable(Route25Ch                        ,ThisChapter)
+EventPointerTable(Route2NCh                        ,ThisChapter)
+EventPointerTable(Route2SCh                        ,ThisChapter)
+EventPointerTable(Route3ECh                        ,ThisChapter)
+EventPointerTable(Route3MCh                        ,ThisChapter)
+EventPointerTable(Route3WCh                        ,ThisChapter)
+EventPointerTable(Route4ECh                        ,ThisChapter)
+EventPointerTable(Route4MCh                        ,ThisChapter)
+EventPointerTable(Route4WCh                        ,ThisChapter)
+EventPointerTable(Route5Ch                         ,ThisChapter)
+EventPointerTable(Route6Ch                         ,ThisChapter)
+EventPointerTable(Route7Ch                         ,ThisChapter)
+EventPointerTable(Route8Ch                         ,ThisChapter)
+EventPointerTable(Route9ECh                        ,ThisChapter)
+EventPointerTable(Route9WCh                        ,ThisChapter)
+EventPointerTable(SaffronCh                        ,ThisChapter)
+EventPointerTable(SaffronDojoCh                    ,ThisChapter)
+EventPointerTable(SaffronGymCh                     ,ThisChapter)
+EventPointerTable(SSAnneCh                         ,ThisChapter)
+EventPointerTable(VermillionCh                     ,ThisChapter)
+EventPointerTable(VermillionGymCh                  ,ThisChapter)
+EventPointerTable(ViridianCh                       ,ThisChapter)
+EventPointerTable(ViridianForestNCh                ,ThisChapter)
+EventPointerTable(ViridianForestSCh                ,ThisChapter)
+EventPointerTable(ViridianGymCh                    ,ThisChapter)
+
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+END_MAIN
+
+CharacterBasedEvents:
+//CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)
+END_MAIN
+
+LocationBasedEvents:
+//Vendor(ShopItems,2,7)
+//Armory(ArmoryItems,10,26)
+//Village(0x8,VillageEvent,18,27)
+//House(0,HouseEvent,6,24)
+//Seize(10,2)
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+AFEV 0 CityAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 RefreshActive 0 
+
+Dunno1:
+END_MAIN
+
+Dunno2:
+END_MAIN
+
+Dunno3:
+END_MAIN
+
+Tutorial:
+END_MAIN
+
+Units1:
+UNIT Eirika  CharmanderID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Ephraim  PidgeyID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Seth  RattataID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT
+
+
+Units2:
+UNIT Amelia MankeyID 0x1 Level(5,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT
+
+
+MoreUnits:
+UNIT CaellachCC 0x11 0x1 Level(5,Enemy,True) [0,0] 0b 0x0 0x0 0x0 [0x21,0x29,0x7C,0x0] [0x0,0x0,0x0,0x0]
+UNIT
+
+
+EnemyUnits:
+UNIT 0xF2 0x3B 0x40 Level(5,Enemy,True)    [8,7] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
+UNIT ONeill Fighter 0x40 Level(5,Enemy,True)     [8,14] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
+UNIT
+
+
+
+EnemyUnits2:
+UNIT Vigarde General 0x40 0xA5    [3,3] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
+UNIT
+
+
+
+Traps1:
+ENDTRAP
+ALIGN 4
+
+Traps2:
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+
+ENUF SkipIntroFlag
+
+//ENUT 0xAC // Fast Movement 
+ENUT 0xAB 
+
+Write_Byte(0, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(0, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+CALL GlobalBeginningScene
+CALL CityBeginningScene
+CALL LoadAndPlacePlayers 
+//RandomizePlayerCoords(Ground, Range(0,0,2,2), Range(2,2,15,10)) //somewhere possible, hopefully ? 
+
+
+LABEL 0x63
+
+//AutoLevelUnits(19, True, 0x120) // all 
+
+
+
+NoFade
+ENDA
+
+TalkEvent:
+NoFade
+ENDA
+
+
+EndingScene:
+ASMC 0x85C71 0x381F5 0x37CF9 //show records screen
+STAL 120
+EVBIT_F 0x2
+MNTS 0x1 //return to title screen
+NoFade
+ENDA
+
+VillageEvent:
+	VillageEventItem(VillageText, Village, Boots)
+
+HouseEvent:
+	// Set parameters
+	SVAL r1 NiceThighsID
+	SVAL r2 (-1) // (-1) is active unit
+	
+	// Check if unit has skill
+	// If they have, goto label #0 (end)
+	ASMC (ASMC_HasSkill|1)
+	BNE 0 rC r0
+	
+	// Learn skill to unit
+	ASMC (ASMC_LearnNewSkill|1)
+	
+LABEL 0
+	// end
+	
+	Text(HouseText)
+	
+	NoFade
+	ENDA
+	
+	// HouseEvent(HouseText, HouseBG)
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4

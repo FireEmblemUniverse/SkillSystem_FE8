@@ -12,6 +12,15 @@
 
 //#define MonsterFaceGraphic 0x14
 
+#define QuestionmarkEmoticon 0x6
+#define FrownEmoticon 3 
+#define HeartEmoticon 2 
+
+
+
+#define Emoticon(Graphic, GivenCoord) "GivenCoord; BYTE $4B $0D $00 Graphic;  POIN Show_map_emotion_Install|1"
+
+
 
 ALIGN 4
 Show_map_emotion_Install:

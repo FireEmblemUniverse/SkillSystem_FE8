@@ -605,9 +605,9 @@ Doubles as ranged attack.[.][X]
 # 0x042C
 *{(} Debuffs Luk.[X]
 # 0x042D
-*{(} Strike first if equipped.[X]
+*{(} Strike first when attacked.[X]
 # 0x042E
-Can strike consecutively.[.][X]
+A powerful, fanged attack.[X]
 # 0x042F
 Chip damage. Debuffs Def by 4.[X]
 # 0x0430
@@ -1302,23 +1302,28 @@ Magical Leaf[X]
 Spark[X]
 # 0x1175
 *{(} A weak spark.[X]
+
 # 0x1176
-Snarl[X]
-# 0x1177
-Chip damage. Res+4. Debuffs Mag.[X]
-# 0x1178
 Guard[X]
-# 0x1179
+# 0x1177
 Deals exactly 1/2 Str. Def/Res+3.[X]
 
 ## BiteNameText
 Bite[X]
 
 ## BiteDescText
-[X]
+ [X]
 
+## ThiefNameText
+Thief[X]
 
+## ThiefDescText
+ [X]
 
+## SnarlNameText
+Snarl[X]
 
+## SnarlDescText
+Chip damage. Debuffs Mag.[X]
 
 

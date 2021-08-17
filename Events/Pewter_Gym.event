@@ -29,18 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,ReinforcementEvent,0,255)
-
 END_MAIN
-
-//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-ReinforcementEvent:
-Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
-Reinforce(0xF1, 1, ReinforcementUnits, 3, 3) // Middle 
-Reinforce(0xF2, 1, ReinforcementUnits, 1, 3) // Bottom 
-NoFade 
-ENDA 
-
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
@@ -49,7 +38,6 @@ END_MAIN
 
 
 LocationBasedEvents:
-
 END_MAIN
 
 MiscBasedEvents:
@@ -57,7 +45,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToPewter [7,16] [7,16] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -69,30 +57,7 @@ EscapeTileTerminator ; }
 ToPewter:
 ChapterTransition(PewterCh, 12, 16)
 
-// Allocated 2 traps per chapter, in most cases 
-// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
-// Traps that do not reference ram do not have this limit 
-// Eg. flowers are not obtained once, so you can spam them 
 Traps1:
-//CoinsTrap(28,14,ChapterID*2,350)
-//CoinsTrap(43,13,(ChapterID*2)+1,400)
-
-//CutBush(4,2)
-//RockSmash(3,2)
-//StrengthBoulder(4,3)
-
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
-//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
-
-
-//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
-//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
-//OpenPokeball(8,3)
-//Sign(8,4, 2)
-
-
-
-
 ENDTRAP
 ALIGN 4
 
@@ -100,34 +65,80 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+CHECK_EVENTID BoulderbadgeObtained
+BNE 0x63 rC r0 
 
-LOAD1 0x1 EnemyUnitsA
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(27,23,32,27)) //se patch 
-LOAD1 0x1 EnemyUnitsB
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(27,10,33,20)) //ne 
-LOAD1 0x1 EnemyUnitsC
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(19,10,23,20)) //mid e
-LOAD1 0x1 EnemyUnitsD
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(11,10,15,24))  //m w
-LOAD1 0x1 EnemyUnitsE
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(3,11,7,24))  //w
+MUSC 0x7FFF // Mute 
+CAM1 [7,0] 
 
-
-OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
+SilentGiveItemWithDurability(0xD0, Berry,0x03)
+SilentGiveItemWithDurability(0xA0, Berry,0x01)
+SilentGiveItemWithDurability(0xA1, Berry,0x01)
+SilentGiveItemWithDurability(0xA2, Berry,0x01)
+SilentGiveItemWithDurability(0xA3, Berry,0x01)
 
-CALL SetBushHpEvent
+//FADI 16 
+EVBIT_MODIFY 4 
+MUSCFAST PreIntroBGM
+MUSCFAST IntroBGM 
+// 0202BD30 word 
+TEXTSTART 
+
+TEXTSHOW BrockIntroText 
+
+TEXTEND 
+
+
+
+//TEXTCONT 
+//TEXTEND 
+
+MUSI 
+
+
+Emoticon(QuestionmarkEmoticon, Coord(5,7)) 
+
+STAL 43 
+Emoticon(QuestionmarkEmoticon, Coord(11,8)) 
+STAL 45 
+CUMO [3,8] 
+CUMO [11,8]
+CUMO [5,7] 
+MUSC 0x7FFF // Mute 
+MUSCSLOW FranticSFX
+
+TEXTCONT 
+TEXTEND 
+CURE 
+CURSOR_FLASHING [3,8] 
+STAL 45 
+CURE
+Emoticon(FrownEmoticon, Coord(3,8)) 
+STAL 44 
+TEXTCONT 
+TEXTEND 
+CURSOR_FLASHING [3,8] 
+STAL 45 
+CURE
+Emoticon(HeartEmoticon, Coord(3,8)) 
+STAL 45 
+CURE 
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+TEXTCONT 
+TEXTEND 
+REMA 
+CAM1 [7,12] 
+
+
 
 LABEL 0x63
 NoFade
@@ -136,7 +147,7 @@ ENDA
 
 
 
-EndingScene: //Unused but must exist 
+EndingScene: 
 NoFade
 ENDA
 
@@ -156,43 +167,14 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-EnemyUnitsA:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsB:
-UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT
-
-EnemyUnitsC:
-UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsD:
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT
-
-EnemyUnitsE:
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT
 
 EnemyTrainersA:
-//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+UNIT 0xD0 OnixID 0x0 Level(1, Enemy, 1) [7,6]  0b 0x0	0x0 REDA7R6 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT 0xA0 NidoranFID 0xD0 Level(1, Enemy, 1) [5,7]  0b 0x0	0x0 REDA5R7 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT 0xA1 GeodudeID 0xD0 Level(1, Enemy, 1) [9,7]  0b 0x0	0x0 REDA9R7 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT 0xA2 VulpixID 0xD0 Level(1, Enemy, 1) [3,8]  0b 0x0	0x0 REDA3R8 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT 0xA3 SandshrewID 0xD0 Level(1, Enemy, 1) [11,8]  0b 0x0	0x0 REDA11R8 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
 UNIT
-
-
-
-ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT 
-
 
 
 	

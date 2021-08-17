@@ -20,7 +20,8 @@
 #define UnitPointerRam 0x30017BC // - BF
 #define WepRamLocat 0x30017C0 
 
-
+// ASMC 0x80160D1 // Return to map BGM 
+// SCOORD rB [5, 6]
 
 /*
 08040dcc AiSetMovCostTableWithPassableWalls
