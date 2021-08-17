@@ -28,7 +28,9 @@ jumpToHack_r1(ForEachUnitInRangeHack)
 
 POP
 
+// 2B718 nosferatu effect ? 
 
+//#include "WeaponsRestorePercentHealthHack.lyn.event"
 
 #include "ForEachUnitInRangeHack.lyn.event"
 

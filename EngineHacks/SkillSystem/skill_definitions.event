@@ -17,6 +17,8 @@
 #define ShadePlusID 45
 
 
+#define WeakChipDmgID 255
+#define PiercingID 255
 //Aura Skills
 
 //Anathema: -10 Avoid/Dodge to all enemies within 3 tiles.
@@ -39,12 +41,11 @@
 //By Sme
 #define DauntID 255
 
-// Ignore half of enemy def/res 
-// By Vesly 
-#define PiercingID 202 
+// Restore 1/4 hp dealt - Vesly
+#define AbsorbID 202 
 
-// Deal half of str/mag & ignore half of enemy def 
-#define WeakChipDmgID 200
+// Restore 1/2 hp dealt - Vesly 
+#define DrainID 200
 
 //Demoiselle: Male allies within 2 tiles receive -2 damage.
 //Author Unknown (Initial Commit)
@@ -156,11 +157,16 @@
 #define FullmetalBodyID FullMetalBodyID //Alias
 
 
+// hit 2-5 times - Vesly 
+#define MultiHitID 46 
+// hit 3 times - Vesly
+#define TripleHitID 47
+
 //Effectiveness Skills
 
 //Nullify: Unit is protected from all effective attacks.
 //By Tequila
-#define NullifyID 46
+#define NullifyID 255
 
 //Slayer: Deal effective damage to monster units.
 //By Tequila
@@ -168,7 +174,7 @@
 
 //Skybreaker: Deal effective damage to flying units.
 //By Sme
-#define SkybreakerID 47
+#define SkybreakerID 255
 
 //Resourceful: Double effectiveness multiplier.
 //By Sme

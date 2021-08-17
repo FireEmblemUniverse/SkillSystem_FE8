@@ -12,6 +12,22 @@
 //BYTE 0 // Goes at the end of each learnset 
 
 
+#define Roar 255 
+#define Metronome 255 
+#define DragonDance 255
+#define Withdraw 255 
+#define SleepPowder 255 
+#define LovelyKiss 255 
+#define Sing 255 
+#define Agility 255
+#define Haze 255 
+#define Minimize 255 
+#define Amnesia 255 
+#define MirrorMove 255 
+#define Counter 255
+
+
+
 ALIGN 4
 BulbasaurTMs:
 BYTE 0
@@ -144,7 +160,7 @@ BYTE 0
 
 ALIGN 4
 RaichuTMs:
-BYTE Flash TailWhip Agility QuickAttack Dig BugBite Thunderwave
+BYTE Flash TailWhip Agility QuickAttack Dig BugBite ThunderWave
 BYTE 0
 
 ALIGN 4
@@ -437,7 +453,7 @@ BYTE 0
 
 ALIGN 4
 MagnetonTMs:
-BYTE Flash Thunderwave LightScreen Reflect TriAttack Explosion SignalBeam
+BYTE Flash ThunderWave LightScreen Reflect TriAttack Explosion SignalBeam
 BYTE 0
 
 ALIGN 4
@@ -483,7 +499,7 @@ BYTE 0
 
 ALIGN 4
 CloysterTMs:
-BYTE Thunderwave ConfuseRay LightScreen Reflect Withdraw Haze Bind
+BYTE ThunderWave ConfuseRay LightScreen Reflect Withdraw Haze Bind
 BYTE Barrage Swift Clamp AuroraBeam
 BYTE 0
 

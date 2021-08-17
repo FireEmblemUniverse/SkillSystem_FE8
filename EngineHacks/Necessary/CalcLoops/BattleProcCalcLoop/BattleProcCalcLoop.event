@@ -64,10 +64,15 @@ POIN Proc_StealHP
 
 POIN Proc_AetherHeal	//skills that heal based on final damage
 
+//POIN WeaponsRestorePercentHealthHack // Vesly added nvm
+
+POIN Proc_TripleHit Proc_MultiHit Proc_Absorb Proc_Drain
+
+
 POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
 
 #ifdef STATUS_WEAPONS
-	POIN Proc_StatusWeapons
+	POIN Proc_StatusWeapons 
 #endif // STATUS_WEAPONS
 
 #ifdef COMBAT_ARTS
