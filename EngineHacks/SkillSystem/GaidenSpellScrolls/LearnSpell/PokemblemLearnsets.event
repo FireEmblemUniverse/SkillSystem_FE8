@@ -182,7 +182,7 @@ BYTE 3 Tackle
 BYTE 10 FuryCutter
 BYTE 16 PinMissile
 BYTE 19 Rage
-BYTE 22 Thief
+BYTE 22 ThiefAtt
 BYTE 25 PoisonJab
 //BYTE 31 Resv //Agility
 BYTE 0 0
@@ -242,7 +242,7 @@ BYTE 1 TailWhip
 BYTE 4 QuickAttack
 BYTE 10 Bite
 BYTE 16 HyperFang
-BYTE 22 Thief
+BYTE 22 ThiefAtt
 BYTE 28 DoubleEdge
 BYTE 0 0
 
@@ -253,7 +253,7 @@ BYTE 1 TailWhip
 BYTE 4 QuickAttack
 BYTE 10 Bite
 BYTE 16 HyperFang
-BYTE 22 Thief
+BYTE 22 ThiefAtt
 BYTE 28 DoubleEdge
 BYTE 0 0
 

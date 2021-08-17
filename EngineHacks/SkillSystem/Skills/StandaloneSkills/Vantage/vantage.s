@@ -59,6 +59,9 @@ VantagePlus:
 eor r4,r5
 eor r5,r4
 eor r4,r5
+
+b Normal @ Vesly added so VantagePlus doesn't negate crits 
+
 mov r1, #0x66
 mov r0, #0
 strh r0, [r4,r1]
