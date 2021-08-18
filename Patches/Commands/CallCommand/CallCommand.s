@@ -87,7 +87,7 @@ ldrb r1, [r3, #0x1B] @ Current unit's rescued Deployment byte
 lsl r0, #8 
 add r0, r1 
 
-push {r0}
+push {r0} @ Save what the terrain & deployment byte should be at current unit's tile eg. ----TRDB (Terrain, Deployment Byte)
 mov r0, #0x00 @ -- tile
 strb r0, [r2] 
 @blh RefreshTerrainMap

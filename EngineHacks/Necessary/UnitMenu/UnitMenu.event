@@ -72,6 +72,10 @@ UnitMenuTable:
 	// Debug command 
 	// MenuCommand(EscapeName, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
 	
+
+// Modular Summon 
+  MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
+	
   
   MenuCommand(0x67A, 0x6CC, BlueText, $22FDC, $23020)
   // UM_Seize

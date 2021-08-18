@@ -1,6 +1,8 @@
 // Does not work 
 //#include "AIWeaponsHack/AIWeaponsHack.event"
 
+#include "ModularSummon/Installer.event" 
+
 #include "CustomSkills/Installer.event"
 
 #include "ContinueBattleBGM_20200919/Installer.event"

@@ -472,7 +472,8 @@ ENDA
 
 
 CityAfev:
-ASMC CallCommandEffect
+//ASMC CallCommandEffect
+UNCM(0x7FFF, 0x0D) 
 NoFade 
 ENDA 
 
