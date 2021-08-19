@@ -50,7 +50,10 @@
 #define Halt "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
 #define Break "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
 #define Stop "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-#define StopHere "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+//#define StopHere "CUMO 0x7FFE; EVBIT_F 2; TutText(DebugTextHere); CURE"
+#define StopHere "CUMO 0x7FFF; EVBIT_F 2; STAL 45; CURE"
+//#define StopHere "EVBIT_F 7"
+
 
 
 #define RamFlags 0x203F548 //0x448 after debuff table 
@@ -472,8 +475,8 @@ ENDA
 
 
 CityAfev:
-//ASMC CallCommandEffect
-UNCM(0x7FFF, 0x0D) 
+ASMC CallCommandEffect
+//UNCM(0x7FFF, 0x0D) // Undeploy active 
 NoFade 
 ENDA 
 

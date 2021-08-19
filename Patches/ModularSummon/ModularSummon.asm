@@ -28,8 +28,18 @@
 ModularSummonEffect:
 	push	{r4-r7,lr}
 
+
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
+cmp r3, #0 
+beq GotoBreak
+ldr r2, [r3] 
+cmp r2, #0 
+bne SetupStuff 
+GotoBreak:
+b Break  @ No unit so break 
+
+SetupStuff:
 mov r7, r3 
 
 
@@ -128,7 +138,6 @@ cmp r0, r2
 beq LoadEachSummonLoop @ You cannot summon yourself, as this breaks the terrain. 
 
 blh GetUnitByEventParameter
-mov r11, r11 
 cmp r0, #0 
 beq LoadUnitTime @ Unit is cleared, so summon 
 ldr r1, [r0, #0x0C] @ State 
@@ -147,7 +156,7 @@ beq LoadEachSummonLoop @ Unit is alive, so try next one
 
 
 blh 0x080177f4 @ ClearUnit
-mov r11, r11 
+
 LoadUnitTime:
 
 mov r0, r5 
@@ -168,7 +177,7 @@ b End
 // therefore, it shouldn't be used here I don't think 
 @ 0803bde0 FindUnitClosestValidPosition
 @blh 0x803BDE1, r7 @ FindUnitClosestValidPosition
-@mov r11, r11 @ break 
+@ break 
 
 
 
@@ -226,8 +235,23 @@ ldr r2, [r0, #0x34] @ Y
 strb r1, [r6, #0x10] @ X
 strb r2, [r6, #0x11] @ Y
 
+ldr r3, =MemorySlot 
+lsl r0, r2, #16 
+add r0, r1 
+mov r1, #0x0B*4 
+str r0, [r3, r1]  @ Store coords to sB 
+
+
+blh  0x080271a0   @SMS_UpdateFromGameData
+
+ldr r0, =WarpAnimationEvent
+mov r1, #1 
+blh EventEngine 
+
 
 strb r4, [r6, #0x1B] @ Deployment byte 
+
+
 
 b LoadEachSummonLoop 
 	
@@ -268,9 +292,29 @@ mov r0, #0x1
 strb r0, [r1,#0x11]
 mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 @mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+ 
+@ SET_ABS_FUNC AiSetDecision, 0x8039C21
+@ void AiSetDecision(int xPos, int yPos, int actionId, int targetId, int itemSlot, int xPos2, int yPos2);
+@ 		SetAiActionParameters(
+@ 			xMovement, yMovement,
+@			AI_DECISION_DANCE,
+@			targetIndex, 0, 0, 0); 
+
+@ SetAiActionParameters(XX, YY, 1, 0, 0, 0, 0) 
+
+
+@ XX cur pos 
+@@ YY cur pos 
+@ decision = 0x01	Wait 
+@ target = 0 no target 
+@ item = 0 
+@ xPos2, yPos2 = 0 
 
 
 
+
+Break:
+mov r0, #1
 
 	pop {r4-r7}
 	pop {r1}
@@ -284,7 +328,123 @@ ExecuteEvent:
 	.long 0x800D07D @AF5D
 CurrentUnitFateData:
 	.long 0x203A958
+	.thumb 
 	
+@ I thought maybe I could queue asmc and events this way, but it didn't work either 
+@.global RunMakeAIWaitEvent
+@.type RunMakeAIWaitEvent, %function 	
+@RunMakeAIWaitEvent:
+@push {lr} 
+@ldr r0, =MakeAIWaitEvent @1 and 2 seem to wait, 0,3,4,8,0xFF does not 
+@mov r1, #0x02
+@blh EventEngine 
+@@ldr r0, =DoNothingEvent 
+@@mov r1, #1 
+@@blh EventEngine 
+@mov r0, #1 
+@pop {r1}
+@bx r1  
+	
+.align 4
+.global UpdateActiveUnitCoords
+.type UpdateActiveUnitCoords, %function 
+UpdateActiveUnitCoords: 
+push {lr} 
+
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldr r2, =MemorySlot 
+mov r1, #4*0x0B 
+ldr r2, [r2, r1] 
+lsl r0, r2, #24 
+lsr r0, #24 
+lsr r1, r2, #16 
+strb r0, [r3, #0x10] 
+strb r1, [r3, #0x11] 
+	
+pop {r0} 
+bx r0 
+	
+.align 4
+.global EnqueueModularSummon
+.type EnqueueModularSummon, %function 
+EnqueueModularSummon: 
+push {r4, lr} 
+
+sub sp, #0xC 
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+
+ldr r2, =MemorySlot 
+ldrb r1, [r3, #0x10]
+ldrb r0, [r3, #0x11] 
+
+add r0, #3 
+add r1, #2
+
+
+lsl r0, #16 
+add r0, r1 
+str r0, [r2, #0x0B*4] @ ----YY--XX coord in sB 
+ldr r1, [r3] 
+ldrb r1, [r1, #4] @ Unit ID 
+str r1, [r2, #0x02*4] @ ------ID in s2 
+
+
+ldrb r0, [r3, #0x10] @ X
+ldrb r1, [r3, #0x11] @ Y 
+add r0, #2 
+add r1, #3
+
+@mov r2, #0 @ Action: noop @ when they move to a coord, it had 0 here (but runs the range event in some other way I guess) 
+@mov r11, r11 
+@ #0x00 - noop (does not trigger range events) 
+@ #0x01 - attacks target? but since I have no target it just crashes the game 
+@ #0x02 - moved two tiles to the left 
+@ #0x03 - gold was stolen 
+@ #0x04 - the village was destroyed 
+@ #0x05 - wait, I guess? it ran the range event, which is good enough for me
+@ #0x07 - targets something but no crash 
+@ #0x08 - targets something but no crash 
+@ #0x09 - wait ? 
+@ #0xFF - targets & crashes 
+
+mov r2, #0x5 
+mov r3, #0 @ store into item slot / X / Y coord 
+str r3, [sp, #0] @ Item slot 
+str r3, [sp, #4] @ X Coord2 (0 is fine) 
+str r3, [sp, #8] @ Y Coord2 (0 is fine)
+mov r3, #0 @ Target 
+blh 0x8039C21, r4 @ AiSetDecision
+add sp, #0xC 
+@ mov r11, r11 
+@ breaks once per enemy with this AI, so perfect 
+@ but doesn't actually 'wait' at the spot, so it doesn't trigger range events.. 
+@ so we manually trigger them now 
+@ but first, let's put the active unit's coord into sB and their unit id in s2 
+
+
+
+@ Tried invoking the EventEngine and it didn't work
+@ so it's running this 3x then running the event 3x 
+@ when it runs the event 3x, the current unit is the same for all 3 hmm 
+@ldrb r0, [r3, #0x10] @ X 
+@ldrb r1, [r3, #0x11] @ Y 
+@bl RunMiscBasedEvents - this was from Sme's FreeMovement hack. 
+@ Since it didn't work correctly in this context, it is no longer included below 
+ldr r0, =ASMCModularSummonEvent 
+mov r1, #1 
+blh EventEngine 
+
+
+mov r0, #1 
+pop {r4}
+pop {r1} 
+bx r1 
+
+.align 4
+.ltorg
+
 	
 	.global ModularSummonUsability
 .type ModularSummonUsability, %function
@@ -389,6 +549,7 @@ mov r0, #3 @ False is 3 for some reason
 
 
 Exit: 
+
 pop {r4-r7}
 pop {r1} 
 bx r1 

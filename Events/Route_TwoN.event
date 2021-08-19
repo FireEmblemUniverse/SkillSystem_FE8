@@ -54,6 +54,9 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
+//AREA 0 CallStopHereEvent  [4,3] [15,20]
+//AREA 0 CallStopHereEvent2 [4,3] [15,20]
+/*
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
@@ -62,6 +65,7 @@ AREA 0 ToRoute2S [18,41] [19,41]
 AREA 0 ToViridianForestN [5,13] [6,13] 
 AREA 0 ToPewter [8,0] [11,0] 
 AREA 0 ToRoute11 [17,11] [17,11] 
+*/
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -74,6 +78,16 @@ EscapeTileEntry(17,11)
 EscapeTileTerminator ; } 
 #endif 
 
+CallStopHereEvent:
+StopHere 
+NoFade 
+ENDA 
+
+CallStopHereEvent2:
+TutText(DebugTextHere) 
+NoFade 
+ENDA 
+ 
 ToPewter:
 ChapterTransition(PewterCh, 19, 36)
 
@@ -181,9 +195,22 @@ UNIT
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+
+// TryModularSummonAI
+//UNIT 0x60 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] [0xC,0x0,0x0,0x0] 
+//UNIT 0x61 ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] [0xC,0x0,0x0,0x0] 
+//UNIT 0x62 ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] [0xC,0x0,0x0,0x0] 
+
+
+UNIT 0xA0 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] TryModularSummonAI
+UNIT 0xA1 ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] WaitAI
+UNIT 0xA2 ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] WaitAI
+
+//UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+
+
 UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [1,0] 0b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] BushAI
 UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [1,1] 0b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] BushAI
 

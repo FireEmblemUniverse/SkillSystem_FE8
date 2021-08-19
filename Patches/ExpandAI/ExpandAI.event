@@ -1,4 +1,7 @@
 #include "ExpandAI_Internals.event"
+
+#include "MakeAIWait.lyn.event" 
+
 // Expands AI1 and AI2 lists to 254 entries 
 // 0xFF is reserved as do not change AI 
 // Add new ones here 
@@ -12,6 +15,8 @@ NewAI1Entry(22, AttackIfEnemyInRange)
 NewAI1Entry(23, AttackIfEnemyInRange)
 NewAI1Entry(24, AttackIfEnemyInRange)
 NewAI1Entry(25, AttackIfEnemyInRange)
+NewAI1Entry(26, TryModularSummonAILabel)
+NewAI1Entry(27, MakeAIWaitLabel)
 
 // AI 2 list
 // Vanilla entries take up 0 - 18
@@ -20,6 +25,9 @@ NewAI2Entry(22, Within_2_Safest_Zoning_AI2)
 NewAI2Entry(23, Safest_Zoning_AI2)
 NewAI2Entry(24, Less_Safe_Zoning_AI2)
 NewAI2Entry(25, BeedrilAI_2)
+NewAI2Entry(26, TryModularSummonAILabel)
+NewAI2Entry(27, MakeAIWaitLabel)
+
 
 #define SafeZoneAI2 23 
 #define BushAI [21,21]
@@ -28,6 +36,40 @@ NewAI2Entry(25, BeedrilAI_2)
 #define LessSafeZoningAI [24,24]
 #define ZoningAI [24,24]
 #define BeedrillAI [25,25]
+#define TryModularSummonAI [26,21] 
+#define AttackOrWaitAI [0,27] // If nobody in range, wait 
+#define WaitAI [27,3] // Wait. Do nothing else. 
+//#define AttackOrWait [0,27] // If nobody in range, wait 
+
+
+ALIGN 4
+TryModularSummonAILabel:
+Routine_AI(EnqueueModularSummon, 0)
+Goto(0)
+ALIGN 4 
+
+ALIGN 4
+MakeAIWaitLabel:
+Routine_AI(MakeAIWait, 0)
+Goto(0)
+ALIGN 4 
+
+
+/*
+ALIGN 4
+TryModularSummonAILabel:
+//Routine_AI(ModularSummonEffect, 0)
+//Goto(0)
+//ALIGN 4 
+AI_Conditional(ModularSummonUsability, 0) // Asm function, parameters 
+ConditionalGoto(1, NE, 1) // Goto label 1 if usability routine does not return 1 
+Routine_AI(ModularSummonEffect, 0)
+Goto(0) // Exit 
+Label(1) 
+ChangeAI(3,3)
+Goto(0) // Exit 
+ALIGN 4 
+*/
 
 
 ALIGN 4
