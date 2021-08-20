@@ -207,7 +207,24 @@ strb r0, [r6, #0x1B] @
 
 ldrh r0, [r2, #0x10] 
 strh r0, [r6, #0x10] @ So units have matching coords 
-blh  0x0801a1f4   @RefreshFogAndUnitMaps @RefreshEntityMaps 
+
+@ need to manually update so hidden units aren't removed @blh  0x0801a1f4   @RefreshFogAndUnitMaps @RefreshEntityMaps 
+ldrb r0, [r6, #0x10] 
+ldrb r1, [r6, #0x11] 
+
+
+ldr		r2,=0x202E4D8 @ UnitMap 	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+
+ldrb r0, [r6, #0x0B] @ Deployment byte to store 
+strb r0, [r2] 
+
+
 ldr r0, =0x859da95 @ Procs SMSJumpAnimation 
 
 
@@ -243,17 +260,43 @@ strb r2, [r6, #0x11] @ Y
 @strb r2, [r3, #0x14] @ YY 
 
 
+@blh 0x8019FA0 @ UpdateUnitMapAndVision RefreshUnitMapAndVision
+@ need to manually update so hidden units aren't removed @blh  0x0801a1f4   @RefreshFogAndUnitMaps @RefreshEntityMaps 
+@blh  0x0801a1f4   @RefreshFogAndUnitMaps
+
+ldrb r0, [r6, #0x10] 
+ldrb r1, [r6, #0x11] 
+
+ldr		r2,=0x202E4D8 @ UnitMap 	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+
+ldrb r0, [r6, #0x0B] @ Deployment byte to store 
+strb r0, [r2] 
+
+@@ it works!!!! 
+
+@@ all that's left is to bugtest char/class/level/flag and add some bells and whistles 
+@ maybe also by chapter ? 
+
+@@ relative coord mode where it tries to summon units relative to where you are 
+@ this might cause them to be summoned somewhere bad, though.. 
+@ maybe I need to check that the current unit can path to that location 
+
+@ 
+
 
 
 ldr r0, [r6, #0x0C] @ New unit's state 
-mov r1, #1 
-lsl r1, #16 
-@add r1, #1 @ 0x10001 - Escaped,Hidden 
+mov r1, #1  @ 0x1 - Escaped,Hidden 
 orr r0, r1 
-@str r0, [r6, #0x0C] 
+str r0, [r6, #0x0C] 
 
 mov r0, r6 
-mov r11, r11 
 bl SendToQueueASMC @ Store unit pointer in queue 
 
 @blh  0x080271a0   @SMS_UpdateFromGameData
@@ -305,7 +348,7 @@ strb r0, [r3, #0x1B] @ Rescuer/ee restored
 
 End:
 
-	blh  0x0801a1f4   @RefreshFogAndUnitMaps
+	
 	@blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics
 
@@ -408,13 +451,10 @@ ldr r5, [r3, #4*0x01] @ Unit pointer
 mov r11, r11 
 ldr r0, [r5, #0x0C] @ New unit's state 
 
-mov r1, #1 
-lsl r1, #16 
-neg r1, r1 
-sub r1, #1 
-and r0, r1 @ remove 0x10001 - Escaped,Hidden 
-mov r0, #0
+mov r1, #0 
+sub r1, #2 
 
+and r0, r1 @ remove 0x1 - Hidden 
 str r0, [r5, #0x0C] 
 
 ldr r3, =0x203A958 @ ActionStruct 
