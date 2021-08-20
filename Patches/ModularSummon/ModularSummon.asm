@@ -359,17 +359,26 @@ blh ProcStartBlocking, r2
 pop { r0 }
 bx r0
 	
+.equ ProcFind, 0x08002E9C
+
 .global IfActiveAIFinishedMovingThenStopPausingEventEngine
 .type IfActiveAIFinishedMovingThenStopPausingEventEngine, %function
 IfActiveAIFinishedMovingThenStopPausingEventEngine:
-push {lr} 
-ldr r3, =0x202512F @ 202548F
-ldrb r1, [r3] 
-cmp r1, #1 
-bne ContinuePausingEventEngine 
-blh BreakProcLoop, r1
-
+push {r4, lr} 
+mov r4, r0 @ Parent? 
+ldr r0, =0x89a2c48 @gProc_MoveUnit
+blh ProcFind, r1
+cmp r0, #0x00
+beq BreakProcLoopNow
+	mov r1, #0x3F 
+	ldrb r0, [ r0, r1 ] 
+	cmp r0, #1 
+	bne ContinuePausingEventEngine 
+BreakProcLoopNow: 
+mov r0, r4 @ parent to break from 
+blh BreakProcLoop
 ContinuePausingEventEngine: 
+pop {r4}
 pop {r0} 
 bx r0 
 	
