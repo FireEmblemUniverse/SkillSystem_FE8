@@ -19,7 +19,7 @@ ldr r3, [r3]
 ldrb r0, [r3, #0x10] @ X
 ldrb r1, [r3, #0x11] @ Y 
 @mov r2, #0 @ Action: noop @ when they move to a coord, it had 0 here (but runs the range event in some other way I guess) 
-mov r11, r11 
+@mov r11, r11 
 @ #0x00 - noop (does not trigger range events) 
 @ #0x01 - attacks target? but since I have no target it just crashes the game 
 @ #0x02 - moved two tiles to the left 

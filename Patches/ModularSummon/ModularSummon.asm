@@ -27,7 +27,9 @@
 
 ModularSummonEffect:
 	push	{r4-r7,lr}
-
+mov r7, r8  
+push {r7} @ Save r8 to restore at the end 
+mov r8, r0 @ Parent proc 
 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
@@ -235,21 +237,39 @@ ldr r2, [r0, #0x34] @ Y
 strb r1, [r6, #0x10] @ X
 strb r2, [r6, #0x11] @ Y
 
-ldr r3, =MemorySlot 
-lsl r0, r2, #16 
-add r0, r1 
-mov r1, #0x0B*4 
-str r0, [r3, r1]  @ Store coords to sB 
+@ idk 
+@ldr r3, =0x203A958 @ ActionStruct 
+@strb r1, [r3, #0x13] @ XX 
+@strb r2, [r3, #0x14] @ YY 
 
+
+
+
+ldr r0, [r6, #0x0C] @ New unit's state 
+mov r1, #1 
+lsl r1, #16 
+@add r1, #1 @ 0x10001 - Escaped,Hidden 
+orr r0, r1 
+@str r0, [r6, #0x0C] 
+
+mov r0, r6 
+mov r11, r11 
+bl SendToQueueASMC @ Store unit pointer in queue 
 
 @blh  0x080271a0   @SMS_UpdateFromGameData
 @
-@ldr r0, =WarpAnimationEvent
-@mov r1, #1 
-@blh EventEngine 
+ldr r0, =WarpAnimationEvent
+mov r1, #1 
+blh EventEngine 
 
 
-strb r4, [r6, #0x1B] @ Deployment byte 
+@ this causes the animations to all to occur at once 
+@ needs parent proc in r0 ? 
+@mov r0, r8 @ Parent proc (event engine) 
+@blh 0x807AD09 @ New6C_SummonGfx_FromActionStructCoords 
+
+
+strb r4, [r6, #0x1B] @ rescued Deployment byte 
 
 
 
@@ -279,12 +299,14 @@ lsl r0, #24
 lsr r0, #24 
 strb r0, [r3, #0x1B] @ Rescuer/ee restored 
 
-
+@ldr r0, =GlowingCrossEvent
+@mov r1, #1 
+@blh EventEngine 
 
 End:
 
 	blh  0x0801a1f4   @RefreshFogAndUnitMaps
-	blh  0x080271a0   @SMS_UpdateFromGameData
+	@blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics
 
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
@@ -316,6 +338,8 @@ mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is s
 Break:
 mov r0, #1
 
+	pop {r7}
+	mov r8, r7 @ Restore r8 
 	pop {r4-r7}
 	pop {r1}
 	bx r1 
@@ -344,6 +368,72 @@ CurrentUnitFateData:
 @mov r0, #1 
 @pop {r1}
 @bx r1  
+
+
+@ Queue starts at 030004F0 
+@ Queue size from mem slot D 
+@ find entry 
+@ save and load from there 
+.global SendToQueueASMC
+.type SendToQueueASMC, %function 
+SendToQueueASMC:
+push {lr} 
+@mov r0, #0x3F 
+@ Store r0 to queue ? 
+ldr r3, =0x30004F0 
+ldr r2, =0x30004B8 
+ldr r1, [r2, #0x34] 
+lsl r1, #2 
+add r1, r3 
+str r0, [r1] 
+ldr r0, [r2, #0x34] 
+add r0, #1 
+str r0, [r2, #0x34] 
+
+
+@ldr r1, =0x800D529 
+pop {r1} 
+bx r1 
+
+
+@[030004E4]!!
+.global WarpAnimationQueue 
+.type WarpAnimationQueue, %function 
+	
+WarpAnimationQueue:
+push {r4-r5, lr} 
+mov r4, r0 @ Parent event engine 
+ldr r3, =MemorySlot 
+ldr r5, [r3, #4*0x01] @ Unit pointer 
+mov r11, r11 
+ldr r0, [r5, #0x0C] @ New unit's state 
+
+mov r1, #1 
+lsl r1, #16 
+neg r1, r1 
+sub r1, #1 
+and r0, r1 @ remove 0x10001 - Escaped,Hidden 
+mov r0, #0
+
+str r0, [r5, #0x0C] 
+
+ldr r3, =0x203A958 @ ActionStruct 
+ldrb r0, [r5, #0x10]
+strb r0, [r3, #0x13] @ X 
+ldrb r1, [r5, #0x11] 
+strb r1, [r3, #0x14] @ Y 
+
+
+mov r0, r4 @ Parent proc (event engine) 
+blh 0x807AD09 @ New6C_SummonGfx_FromActionStructCoords 
+
+
+@blh  0x080271a0   @SMS_UpdateFromGameData
+
+pop {r4-r5} 
+pop {r1} 
+bx r1 
+	
 	
 	
 	
@@ -351,7 +441,7 @@ CurrentUnitFateData:
 .equ BreakProcLoop, 0x08002E94
 .global PauseEventEngineWhileUnitsAreMoving
 .type PauseEventEngineWhileUnitsAreMoving, %function
-PauseEventEngineWhileUnitsAreMoving: @ r0 = parent proc (the event engine). This is presumably ASMCed. Memory slot 0x2 is a pointer to events to run.
+PauseEventEngineWhileUnitsAreMoving: @ r0 = parent proc (the event engine). This is presumably ASMCed. 
 push { lr }
 mov r1, r0
 ldr r0, =PauseEventEngineUnitsMovingProc
@@ -399,40 +489,114 @@ lsr r0, #24
 lsr r1, r2, #16 
 strb r0, [r3, #0x10] 
 strb r1, [r3, #0x11] 
+mov r11, r11
 	
 pop {r0} 
 bx r0 
-	
-.align 4
-.global EnqueueModularSummon
-.type EnqueueModularSummon, %function 
-EnqueueModularSummon: 
-push {r4, lr} 
 
+
+
+
+.align 4 
+
+
+
+.align 4 
+@ Based on 803CDD4 
+@ 803B808 FindSafestTileAI from 803CDE7
+@.global CopyAIScript11
+.type CopyAIScript11_Move_Towards_Safety, %function 
+CopyAIScript11_Move_Towards_Safety: 
+push {r4-r5, lr}
+sub sp, #0x10 @ allocate space 
+mov r5, r0 @ dunno - 203CFFF ? not needed for my purposes i think 
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
+add r4, sp, #0x0C @ stack address to save something to  ? 
+mov r1, r4 
+blh 0x803B809 @ FindSafestTileAI
+
+@ returns true or false 
+@ if false, don't do AiSetDecision 
+@ at a glance, it always returned true 
+@ so I don't know what criteria it returns false for 
+@ maybe if it failed in some way... ? 
+lsl r0, #24 
+lsr r0, #24 @ bool is a byte 
+@add r0, sp, #0x0C @ stack address to save something to
+mov r2, #0 
+ldsh r0, [r4, r2] 
+mov r2, #2
+ldsh r1, [r4, r2] 
+@ then it stores stuff into the sp and runs AiSetDecision 
+add sp, #0x10 
+pop {r4-r5}
+pop {r2} 
+bx r2 
+
+.align 4
+.global RunAwayModularSummon
+.type RunAwayModularSummon, %function 
+RunAwayModularSummon:
+push {r4-r5, lr} 
+
+@ if I do this, they instead will attack things so I commented these 5 lines out 
+@ ModularSummonEffect handles the case of it not actually being usable anyway 
+@ So it just has no effect 
+
+@bl ModularSummonUsability 
+@cmp r0, #1 
+@beq ContinueRunAway
+@b TryOtherAIOptionsInstead  
+@ContinueRunAway:
+mov r5, #0 @ Don't take offensive action 
+bl CopyAIScript11_Move_Towards_Safety @ based on current unit, should return r0 XX r1 YY coords 
+b SetAIToWaitAtCoords
+
+.align 4
+.global ApproachEnemyModularSummon
+.type ApproachEnemyModularSummon, %function 
+ApproachEnemyModularSummon:
+push {r4-r5, lr} 
+mov r5, #1 @ Do take offensive action 
+bl ModularSummonUsability 
+cmp r1, #1 
+beq ContinueApproachEnemy
+b TryOtherAIOptionsInstead 
+ContinueApproachEnemy:
+ldr r3, =CurrentUnit 
+ldr r0, [r3] 
+add r0, #0x45 
+@ 0x803ce18 @ AIScript12_Move_Towards_Enemy 
+@ r0 is 202D001, d049, d091 
+@ this is ActiveUnit ram address + 0x45 (AI2 count) 
+blh 0x803ce18 @ AIScript12_Move_Towards_Enemy
+
+ldr r3, =0x203AA96 @ AI decision +0x92 (XX) 
+ldrb r1, [r3, #0x0] @ XX 
+ldrb r2, [r3, #0x1] @ YY 
+
+ldr r3, =MemorySlot
+add r3, #4*0x0B @ Slot B 
+strh r1, [r3, #0] 
+strh r2, [r3, #2] 
+b EnqueueModularSummon
+
+
+@ given r0 = XX and r1 = YY, wait at coords. 
+SetAIToWaitAtCoords:
 sub sp, #0xC 
+
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
+ldr r2, [r3] @ char table unit 
+ldrb r2, [r2, #4] @ Unit ID 
+ldr r3, =MemorySlot @ r3 is no longer unit 
+str r2, [r3, #0x02*4] @ ------ID in s2 
+lsl r2, r1, #16 
+add r2, r0 
+str r2, [r3, #0x0B*4] @ ----YY--XX coord in sB 
 
-ldr r2, =MemorySlot 
-ldrb r1, [r3, #0x10]
-ldrb r0, [r3, #0x11] 
-
-add r0, #3 
-add r1, #2
-
-
-lsl r0, #16 
-add r0, r1 
-str r0, [r2, #0x0B*4] @ ----YY--XX coord in sB 
-ldr r1, [r3] 
-ldrb r1, [r1, #4] @ Unit ID 
-str r1, [r2, #0x02*4] @ ------ID in s2 
-
-
-ldrb r0, [r3, #0x10] @ X
-ldrb r1, [r3, #0x11] @ Y 
-add r0, #2 
-add r1, #3
 
 @mov r2, #0 @ Action: noop @ when they move to a coord, it had 0 here (but runs the range event in some other way I guess) 
 @mov r11, r11 
@@ -455,7 +619,6 @@ str r3, [sp, #8] @ Y Coord2 (0 is fine)
 mov r3, #0 @ Target 
 blh 0x8039C21, r4 @ AiSetDecision
 add sp, #0xC 
-@ mov r11, r11 
 @ breaks once per enemy with this AI, so perfect 
 @ but doesn't actually 'wait' at the spot, so it doesn't trigger range events.. 
 @ so we manually trigger them now 
@@ -470,13 +633,34 @@ add sp, #0xC
 @ldrb r1, [r3, #0x11] @ Y 
 @bl RunMiscBasedEvents - this was from Sme's FreeMovement hack. 
 @ Since it didn't work correctly in this context, it is no longer included below 
+
+EnqueueModularSummon: 
+
+bl ModularSummonUsability 
+cmp r1, #1 
+bne NotWorthTryingToSummon
 ldr r0, =ASMCModularSummonEvent 
 mov r1, #1 
 blh EventEngine 
+b ReturnTrue 
+
+NotWorthTryingToSummon:
+cmp r5, #0 
+bne TryOtherAIOptionsInstead 
+b ReturnTrue 
 
 
-mov r0, #1 
-pop {r4}
+@ If this is false, it tries to do other stuff like attack I guess 
+@ I really don't know how it works 
+TryOtherAIOptionsInstead:
+mov r0, #0 @ False 
+b ExitModularSummonAI 
+
+ReturnTrue: 
+mov r0, #1 @ True that we made an AI decision 
+
+ExitModularSummonAI:
+pop {r4-r5}
 pop {r1} 
 bx r1 
 
@@ -484,12 +668,15 @@ bx r1
 .ltorg
 
 	
-	.global ModularSummonUsability
+.global ModularSummonUsability
 .type ModularSummonUsability, %function
 
 ModularSummonUsability:
 push {r4-r7, lr}
-
+mov r7, r8 
+push {r7}
+mov r1, #0
+mov r8, r1 @ how many we can summon 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
 mov r7, r3 
@@ -501,7 +688,7 @@ TableLoopStart2:
 add r4, #8
 ldr r2, [r4, #4] @ If unit group is empty, then terminate 
 cmp r2, #0 
-beq Usability_False
+beq Usability_False @ DetermineUsability @ ? 
 
 
 ldrb r0, [r4, #0] @ Unit ID 
@@ -547,11 +734,15 @@ ValidFlagException2:
 ldr r5, [r4, #4] 
 @ loop 
 sub r5, #20 
-CheckIfAnySummonedUnitDoesNotExistLoop: 
+CheckIfAnySummonedUnitDoesNotExistLoop:  
 add r5, #20 
 ldr r0, [r5]
 cmp r0, #0 
-beq Usability_False
+beq DetermineUsability @ We iterated through all units in the group, so return usability now 
+
+mov r1, #1
+add r8, r1 @ 1 unit found 
+
 ldrb r0, [r5] @ unit id 
 
 ldr r2, [r7] @ You cannot summon yourself, as this breaks the terrain. 
@@ -562,32 +753,72 @@ beq CheckIfAnySummonedUnitDoesNotExistLoop @ You cannot summon yourself, as this
 
 blh GetUnitByEventParameter
 cmp r0, #0 
-beq UsabilityTrue
+beq AddToCounter
 ldr r1, [r0, #0x0C] @ State 
 mov r2, #0x04 @ Dead 
 and r2, r1 
 cmp r2, #0 
-bne UsabilityTrue @ Unit is dead, so return True 
+bne AddToCounter @ Unit is dead, so return True 
 b CheckIfAnySummonedUnitDoesNotExistLoop 
 
+AddToCounter:
+mov r0, #1 
+lsl r0, #8 
+add r8, r0 @ ----AABB // AA is number of valid summons. BB is total potential number of summons 
 @ they were cleared or dead, so true 
+b CheckIfAnySummonedUnitDoesNotExistLoop 
+
+
+
+
+
+
+DetermineUsability:
+@ Total summonable   
+mov r3, r8
+lsr r0, r3, #8 
+ 
+
+@ Total potential summonable 
+lsl r1, r3, #24 
+lsr r1, #24 
+
+lsr r2, r1, #1 @ half 
+cmp r0, r2 
+bgt SummoningHalfOrMore 
+mov r1, #0 
+cmp r0, #0 
+beq Usability_False @ Count of 0 units, so false 
+
 UsabilityTrue:
 mov r0, #1 
 b Exit
 
-mov r0, #8 @ Flag that prevents call 
-blh CheckEventId
-cmp r0, #0 
-bne Usability_False
-
+SummoningHalfOrMore: 
+mov r1, #1 
+b UsabilityTrue
 
 Usability_False:
 mov r0, #3 @ False is 3 for some reason  
-
-
+mov r1, #0 @ don't try to summon 
 
 Exit: 
+pop {r7}
+mov r8, r7 
+pop {r4-r7}
+pop {r2} 
+bx r2 
+
+
+.global ModularSummon_HowManyCanWeSummonOutOfTotal 
+.type ModularSummon_HowManyCanWeSummonOutOfTotal, %function
+
+ModularSummon_HowManyCanWeSummonOutOfTotal:
+
+
+
 
 pop {r4-r7}
 pop {r1} 
 bx r1 
+
