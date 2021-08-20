@@ -448,7 +448,6 @@ push {r4-r5, lr}
 mov r4, r0 @ Parent event engine 
 ldr r3, =MemorySlot 
 ldr r5, [r3, #4*0x01] @ Unit pointer 
-mov r11, r11 
 ldr r0, [r5, #0x0C] @ New unit's state 
 
 mov r1, #0 
@@ -529,7 +528,6 @@ lsr r0, #24
 lsr r1, r2, #16 
 strb r0, [r3, #0x10] 
 strb r1, [r3, #0x11] 
-mov r11, r11
 	
 pop {r0} 
 bx r0 
