@@ -1,5 +1,5 @@
 #include "ModularSummon.lyn.event"
-
+#include "Extensions/ProcDefinitions.txt"
 
 ALIGN 4 
 ModularSummonTable:
@@ -15,11 +15,8 @@ WORD 0 0 // Terminator
 
 ALIGN 4 
 ASMCModularSummonEvent:
-STAL 30
-//CALL WarpAnimationEvent
-//Text(DebugTextHere) 
+ASMC PauseEventEngineWhileUnitsAreMoving
 ASMC UpdateActiveUnitCoords 
-//Text(DebugTextHere) 
 ASMC ModularSummonEffect
 //Text(DebugTextHere) 
 //CUMO 0x7FFE; EVBIT_F 2; STAL 45; CURE
@@ -48,3 +45,28 @@ UNIT 19  ParasID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5
 UNIT 20  ExeggutorID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 //UNIT 21  CharmanderID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
+
+
+// 9A2DB0? 
+
+ALIGN 4
+PauseEventEngineUnitsMovingProc:
+PROC_YIELD // Buffer.
+PROC_SET_NAME(PauseEventEngineUnitsMovingProcName)
+PROC_LOOP_ROUTINE(IfActiveAIFinishedMovingThenStopPausingEventEngine)
+PROC_END
+
+PauseEventEngineUnitsMovingProcName:
+String("EventEnginePauseUnitsMoving") ; BYTE 0
+
+
+// +0x2C is the pointer to our new event engine proc.
+
+
+
+
+
+
+
+
+

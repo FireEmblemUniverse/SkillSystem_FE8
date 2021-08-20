@@ -242,11 +242,11 @@ mov r1, #0x0B*4
 str r0, [r3, r1]  @ Store coords to sB 
 
 
-blh  0x080271a0   @SMS_UpdateFromGameData
-
-ldr r0, =WarpAnimationEvent
-mov r1, #1 
-blh EventEngine 
+@blh  0x080271a0   @SMS_UpdateFromGameData
+@
+@ldr r0, =WarpAnimationEvent
+@mov r1, #1 
+@blh EventEngine 
 
 
 strb r4, [r6, #0x1B] @ Deployment byte 
@@ -345,6 +345,35 @@ CurrentUnitFateData:
 @pop {r1}
 @bx r1  
 	
+	
+	
+.equ ProcStartBlocking, 0x08002CE0
+.equ BreakProcLoop, 0x08002E94
+.global PauseEventEngineWhileUnitsAreMoving
+.type PauseEventEngineWhileUnitsAreMoving, %function
+PauseEventEngineWhileUnitsAreMoving: @ r0 = parent proc (the event engine). This is presumably ASMCed. Memory slot 0x2 is a pointer to events to run.
+push { lr }
+mov r1, r0
+ldr r0, =PauseEventEngineUnitsMovingProc
+blh ProcStartBlocking, r2
+pop { r0 }
+bx r0
+	
+.global IfActiveAIFinishedMovingThenStopPausingEventEngine
+.type IfActiveAIFinishedMovingThenStopPausingEventEngine, %function
+IfActiveAIFinishedMovingThenStopPausingEventEngine:
+push {lr} 
+ldr r3, =0x202512F @ 202548F
+ldrb r1, [r3] 
+cmp r1, #1 
+bne ContinuePausingEventEngine 
+blh BreakProcLoop, r1
+
+ContinuePausingEventEngine: 
+pop {r0} 
+bx r0 
+	
+
 .align 4
 .global UpdateActiveUnitCoords
 .type UpdateActiveUnitCoords, %function 
