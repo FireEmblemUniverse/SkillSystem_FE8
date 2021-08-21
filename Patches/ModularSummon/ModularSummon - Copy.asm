@@ -30,8 +30,6 @@ ModularSummonEffect:
 mov r7, r8  
 push {r7} @ Save r8 to restore at the end 
 mov r8, r0 @ Parent proc 
-mov r6, r9 
-push {r6} 
 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
@@ -97,31 +95,8 @@ bne TableLoopStart
 ValidFlagException:
 
 @ We have found a valid case to summon 
-mov r9, r4 @ Save table so we know user input 
 
-@ 202E4DC	Terrain map (tile id)
-@ We need to make our current tile terrain that cannot be crossed 
-@ We restore it at the end 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
 
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-
-ldrb r1, [r3, #0x1B] @ Current unit's rescued Deployment byte 
-lsl r0, #8 
-add r0, r1 
-push {r0} @ Save what the terrain & deployment byte should be at current unit's tile eg. ----TRDB (Terrain, Deployment Byte)
-mov r0, #0x00 @ -- tile
-strb r0, [r2] 
 
 
 
@@ -134,7 +109,7 @@ LoadEachSummonLoop:
 add r5, #20 @ Next specific unit to load 
 ldr r0, [r5] 
 cmp r0, #0 
-beq GotoRestoreTerrain @ We went through all units, so end 
+beq GotoEnd @ We went through all units, so end 
 
 
 ldrb r0, [r5] @ unit id 
@@ -170,8 +145,7 @@ blh LoadUnit
 mov r6, r0 @ Newly loaded unit 
 b PlaceSummonedUnit 
 
-GotoRestoreTerrain: 
-b RestoreTerrain 
+
 
 GotoEnd: 
 b End
@@ -189,125 +163,12 @@ b End
 @place most recently loaded unit to valid coord 
 PlaceSummonedUnit:
 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrh r0, [r3, #0x10] 
-push {r0} @ Save current units coords to the stack. Restore after restoring terrain 
 
-
-
-
-
-
-@ To find the closest / best position, we're going to mimic the parameters and use this vanilla function 
-@ void UnitGetDeathDropLocation(struct Unit* unit, int* xOut, int* yOut)
-@ Newly loaded unit in r6 
-
-
-@ check if using relative coords 
-mov r3, r9 
-ldrb r0, [r3, #4] 
-cmp r0, #1 
-bne NotUsingRelativeCoords
-@ check that current unit can reach destination 
-@ if so, put the current unit to those coords 
-mov r1, #4  
-ldrh r0, [r5, #4] 
-mov r1, #0xF 
-lsl r1, #8 
-add r1, #0xFF 
-@ r1 is 0xFFF. Top 4 bits used for stuff like Monster, Drop Item, etc. 
-and r0, r1 
-@ r0 is now coords only, 6 bits each  
-@ 3F is X, 0x40 - 0xFFF is y 
-mov r1, #0x3F
-mvn r1, r1 
-and r1, r0  
-lsr r1, #6 @ YY 
-
-mov r2, #0x3F
-and r0, r2 @ XX 
-
-@ r0 = XX, r1 = YY 
-
-mov r2, #10 
-sub r0, r0, r2 @ XX - 10 
-sub r1, r1, r2 @ YY - 10
-
-
-ldr r3, =CurrentUnit 
-ldr r3, [r3] @ Current unit ram struct pointer 
-ldrb r2, [r3, #0x10] @ X 
-add r0, r2 
-
-@ Check that we wouldn't be summoning outside the border of the map 
-cmp r0, #0 
-bge NoCapXXLeft
-mov r0, #0 @ 
-NoCapXXLeft: 
-cmp r0, #63 
-blt NoCapXXRight
-mov r0, #63 
-NoCapXXRight:
-
-
-ldrb r2, [r3, #0x11] @ Y 
-add r1, r2 
-cmp r1, #0 
-bge NoCapYYUp
-mov r1, #0 @ 
-NoCapYYUp: 
-cmp r1, #63 
-blt NoCapYYDown
-mov r1, #63 
-NoCapYYDown:
-
-@ pretend we're 1 tile below where we want to spawn stuff 
-add r1, #1
-
-lsl r2, r1, #8 
-add r2, r0 @ Save ----YYXX to r2 
-@ now check if we can reach destination 
-
-ldr		r3,=0x202E4E0	@Movement map 	@Load the location in the table of tables of the map you want
-ldr		r3,[r3]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r3,r1			@so that we can get the correct row pointer
-ldr		r3,[r3]			@Now we're at the beginning of the row data
-add		r3,r0			@add x coordinate
-ldrb	r0,[r3]			@load datum at those coordinates
-
-@ if this is 0xFF, then we cannot reach the destination, so we'll not use relative coords 
-@ however, we'll write to adjacent tiles in the UnitMap so that summons avoid being adjacent 
-@ (just for cool factor, I guess) 
-
-cmp r0, #0xFF 
-bne UseRelativeCoords
-b NotUsingRelativeCoords
-UseRelativeCoords: 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-@strh r2, [r3, #0x10] @ ----YYXX 
-lsr r1, r2, #8 @ YY 
-lsl r0, r2, #24 
-lsr r0, #24 
-strb r0, [r3, #0x10] 
-strb r1, [r3, #0x11] 
-
-
-@ put our 
-
-
-@mov r11, r11 
-
-
-NotUsingRelativeCoords:
 @ 202E4DC	Terrain map (tile id)
 @ We need to make our current tile terrain that cannot be crossed 
 @ We restore it at the end 
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
-
 ldrb r0, [r3, #0x10] @ X coord 
 ldrb r1, [r3, #0x11] @ Y coord 
 
@@ -329,8 +190,9 @@ strb r0, [r2]
 
 
 
-
-
+@ To find the closest / best position, we're going to mimic the parameters and use this vanilla function 
+@ void UnitGetDeathDropLocation(struct Unit* unit, int* xOut, int* yOut)
+@ Newly loaded unit in r6 
 ldr r2, =CurrentUnit 
 ldr r2, [r2] @ Current unit ram struct pointer 
 @ldrb r3, [r6, #0x0B] @ Deployment byte
@@ -346,8 +208,8 @@ ldrh r0, [r2, #0x10]
 strh r0, [r6, #0x10] @ So units have matching coords 
 
 @ need to manually update so hidden units aren't removed @blh  0x0801a1f4   @RefreshFogAndUnitMaps @RefreshEntityMaps 
-ldrb r0, [r2, #0x10] 
-ldrb r1, [r2, #0x11] 
+ldrb r0, [r6, #0x10] 
+ldrb r1, [r6, #0x11] 
 ldrb r2, [r2, #0x0B] @ Acting unit's deployment byte 
 bl WriteDeploymentByteToGivenCoordsUnitMap
 
@@ -437,6 +299,7 @@ blh EventEngine
 
 strb r4, [r6, #0x1B] @ rescued Deployment byte 
 
+RestoreTerrain:
 @ 202E4DC	Terrain map (tile id)
 @ We restore the terrain now 
 ldr r3, =CurrentUnit
@@ -459,35 +322,14 @@ lsr r0, #24
 strb r0, [r3, #0x1B] @ Rescuer/ee restored 
 
 @ Restore current unit's coords here, too 
-pop {r0}
-strh r0, [r3, #0x10] 
+
 
 
 
 b LoadEachSummonLoop 
 	
 	
-RestoreTerrain:
-@ 202E4DC	Terrain map (tile id)
-@ We restore the terrain now 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-pop {r0}
 
-lsr r1, r0, #8
-strb r1, [r2] @ Terrain restored 
-lsl r0, #24 
-lsr r0, #24 
-strb r0, [r3, #0x1B] @ Rescuer/ee restored 
 
 
 End:
@@ -511,9 +353,6 @@ mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is s
 
 Break:
 mov r0, #1
-
-	pop {r6}
-	mov r9, r6 
 
 	pop {r7}
 	mov r8, r7 @ Restore r8 
