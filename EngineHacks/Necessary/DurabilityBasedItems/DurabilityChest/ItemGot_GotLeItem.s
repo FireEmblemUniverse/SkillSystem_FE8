@@ -16,7 +16,7 @@ ldr r5, [r4, #0x54] // unit
 ldr r0, [r4, #0x58] // item id
 
 // custom - check for durability
-ldr r1, = #0x203FFFF // end of RAM
+ldr r1, = #0x203FFF7 // end of RAM
 mov r2, r1
 ldrb r1, [r1]
 cmp r1, #0x0

@@ -95,7 +95,7 @@ bx r0
 
 
 PreBattle_UnsetDurabilityFlag:
-ldr r1, = #0x203FFFF // end of RAM
+ldr r1, = #0x203FFF7 // end of RAM
 mov r0, #0x0
 strb r0, [r1] // zero it back out
 bx r14
