@@ -1,6 +1,15 @@
 #include "AutoLevelUnits.lyn.event"
+#include "ASMC_ApplyBonusLevels.lyn.event" 
+
+// void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) { 
+// 17FC4 
+// let's just define the max stat cap for level and default to 20 
+
+// void CheckBattleUnitLevelUp(struct BattleUnit* bu)
+// 802ba28 CheckForLevelUp
 
 
+#define VanillaAutoLevel(UnitID, Levels, VisibleOrNot) "SVAL 1 UnitID; SVAL 3 Levels; SVAL 4 VisibleOrNot; ASMC ASMC_ApplyBonusLevels"
 
 #define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 0; ASMC AutoLevelUnits" 
 

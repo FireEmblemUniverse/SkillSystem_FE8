@@ -38,7 +38,7 @@ bge NegateAllDef
 mov r2, #0x5C 
 ldrh r2, [r6, r2] @ def to negate part of  
 mul r0, r2 @ times the percentage 
-mov r3, #0x64 @ For friendly rounding - always up
+mov r3, #0x63 @ For friendly rounding - always up
 add r0, r3 @ always ceiling up, so negating 51% of 2 def will negate all 2 def 
 			@ but negating 1-50% of 2 def will negate 1 def 
 mov r1, #100 @ always divide by 100 

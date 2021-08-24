@@ -1,29 +1,84 @@
-#include "ModularSummon.lyn.event"
-#include "Extensions/ProcDefinitions.txt"
+// Modular Summon 
+// By Vesly       :-] 
 
-ALIGN 4 
+
+
+
+// Add this to your Unit Menu: root\EngineHacks\Necessary\UnitMenu
+// Modular Summon 
+  // MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
+
+ALIGN 12 
 ModularSummonTable:
 // Unit ID, Class ID, ReqLevel, ReqFlag; POIN UnitGroup 
 // 0x0 = any unit, class, level, or flag is fine 
-BYTE Eirika 0x0 0x0 0x0 	
-// RelativePos?
-BYTE 0x1 0x2 0x3 0x4
-POIN EirikasSummonUnitGroup 
-
-
-BYTE 2 0x0 0x0 0x0			0x1 0x2 0x3 0x4; POIN EirikasSummonUnitGroup 
-BYTE 0xA1 0x0 0x0 0x0		0x1 0x2 0x3 0x4; POIN AnotherUnitGroup
-BYTE 0xA0 0x0 0x0 0x0		0x1 0x2 0x3 0x4; POIN EirikasSummonUnitGroup 
+// 		Unit, 	Class, 	LevelReq, 	FlagReq, 	RelativePos, 	MatchLvl, 	ResetStats		Idk
+BYTE 	0x1		 0x0 		0x0 		0x0 		True 			True 		$0 				$0 ; POIN EirikasSummonUnitGroup; ALIGN 12
+// Unit, 	Class, 	LevelReq, 	FlagReq, 	RelativePos, 	MatchLvl, 	ResetStats		Idk
+BYTE 2 		0x0 		0x0 		0x0			True 			True 		True 			0x0; POIN EirikasSummonUnitGroup; ALIGN 12
+BYTE 0xA1 0x0 0x0 0x0		True True 0x3 0x4; POIN AnotherUnitGroup; ALIGN 12
+BYTE 0xA0 0x0 0x0 0x0		True True 0x3 0x4; POIN EirikasSummonUnitGroup; ALIGN 12
 
 WORD 0 0 0 // Terminator 
+// (Aligh 12 is unnecessary but if you forget a byte it might make things explode a little less I'm hoping) 
+
+// Match Level will autolevel the summoned unit to match the level of the summoner. 
+
+// Reset Stats will clear any data on the unit before summoning it. 
+
+
+
+// Relative Position uses the coords in your unit group compared with [10,10] 
+// So [8,13] would be 2 tiles left 3 tiles below that it tries to place the unit to 
+// If this fails, it should place them nearby instead 
+
+// If you load more than around 20 units at once as a summon, it'll probably crash the game or something idk lol
+#include "EAstdlib.event"
+EirikasSummonUnitGroup:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 				AIWord 
+UNIT 3  			Paladin 			0x0 	Level(1, Enemy, 1)     [8,8] 0b 0x0 0x0 0x0 				[0x2,0x3,0x4,0x5] 		[0x0,0x0,0x0,0x0]
+UNIT 4  Fighter 0x0 Level(1, Enemy, 1)     [12,8] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 5  Bael 0x0 Level(1, Enemy, 1)     [8,12] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 6  PegasusKnight 0x0 Level(1, Enemy, 1)     [12,12] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+AnotherUnitGroup:
+UNIT 19  EirikaLord 0x0 Level(3, Enemy, 1)     [9,11] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 20  Knight 0x0 Level(3, Enemy, 1)     [11,11] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+// No need to touch stuff below here probably 
+#ifndef IsPointer
+	#define IsPointer #0x08000000 
+#endif 
+#ifndef SDEQUEUE 
+	#define SDEQUEUE "SHORT 0x0722" 
+#endif 
+
+#include "ModularSummon.lyn.event"
+
+#include "Extensions/ProcDefinitions.txt"
+
+#ifndef EXPAND_AI
+	#include "ExpandAI/ExpandAI.event"
+#endif 
+#ifndef PROC_YIELD
+	#define PROC_YIELD "PROC_YEILD"
+#endif 
+
+
+
 
 ALIGN 4 
 ASMCModularSummonEvent:
 ASMC PauseEventEngineWhileUnitsAreMoving
-
 ASMC UpdateActiveUnitCoords 
 ASMC ModularSummonEffect
-ASMC 0x0801a1f5   //@RefreshFogAndUnitMaps
+ASMC 0x0801a1f5   //@RefreshFogAndUnitMaps 
 NoFade 
 ENDA 
 
@@ -31,45 +86,10 @@ ENDA
 // 3B808
 // 9A46AC gProc_summongfx
 WarpAnimationEvent:
-SDEQUEUE 1
+SDEQUEUE 1 // we stored a unit pointer to the memory slots queue, so now we retrive that pointer 
 ASMC WarpAnimationQueue
-
-//WARPIN_SB // Event code 41 at 8010BEC
-// WARP_IN Event sub 8012950
-// WARP_IN Event sub2 8021D34
-//ENDWARP
 NoFade 
 ENDA 
-
-// WARPIN_SB 
-// r0 = 2025594 - some proc? 
-
-
-// WARP_IN2: 
-// r0 = some proc ? 
-// r1 = XX 
-// r2 = YY 
-// r3 = 1 ? (byte) -> into new proc at +0x64 
-// ldr r5, [sp, #0x18] = 1 ? (byte) 
-
-
-
-EirikasSummonUnitGroup:
-UNIT 3  CharizardID 0x0 Level(3, Enemy, 1)     [8,8] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 4  GyaradosID 0x0 Level(3, Enemy, 1)     [12,8] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 5  DragoniteID 0x0 Level(3, Enemy, 1)     [8,12] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 6  AerodactylID 0x0 Level(3, Enemy, 1)     [12,12] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 
-
-
-AnotherUnitGroup:
-UNIT 19  ParasID 0x0 Level(3, Enemy, 1)     [9,11] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 20  ExeggutorID 0x0 Level(3, Enemy, 1)     [11,11] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-//UNIT 21  CharmanderID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-//UNIT 5  SandslashID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-//UNIT 6  MewID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-//UNIT 7  ZapdosID 0x0 Level(3, Ally, 1)     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 
 
 
 ALIGN 4

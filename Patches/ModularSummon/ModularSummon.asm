@@ -36,12 +36,12 @@ push {r6}
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
 cmp r3, #0 
-beq GotoBreak
+beq GotoEnd
 ldr r2, [r3] 
 cmp r2, #0 
 bne SetupStuff 
-GotoBreak:
-b Break  @ No unit so break 
+
+
 
 SetupStuff:
 mov r7, r3 
@@ -144,25 +144,40 @@ ldrb r2, [r2, #4]
 cmp r0, r2 
 beq LoadEachSummonLoop @ You cannot summon yourself, as this breaks the terrain. 
 
+mov r7, #0 @ Do not autolevel unit unless they were cleared 
 blh GetUnitByEventParameter
 cmp r0, #0 
 beq LoadUnitTime @ Unit is cleared, so summon 
-ldr r1, [r0, #0x0C] @ State 
-mov r2, #0x04 @ Dead 
-and r2, r1 
-cmp r2, #0 
-beq LoadEachSummonLoop @ Unit is alive, so try next one 
-@ unit to summon is dead but needs to be cleared 
 
-@ remove dead bitflag 
-mov r2, #0x04
-mvn r2, r2 
-and r1, r2 
-str r1, [r0, #0x0C] @ Remove 'dead' bitflag from the unit 
+	ldr r1, [r0, #0x0C] @ State 
 
-@ or just clear the unit 
-blh 0x080177f4 @ ClearUnit
+	mov r3, #0x08 @ Undeployed 
+	and r3, r1 @ If unit is deployed already, ignore them 
+	cmp r3, #0 
+	bne LoadEachSummonLoop 
 
+	mov r2, #0x04 @ Dead 
+	and r2, r1 
+	cmp r2, #0 
+	beq LoadEachSummonLoop @ Unit is alive, so try next one 
+	@ unit to summon is dead but needs to be cleared 
+
+	@ they are undeployed but alive 
+	@ remove dead/undeployed bitflag 
+	mov r2, #0x0C
+	mvn r2, r2 
+	and r1, r2 
+	str r1, [r0, #0x0C] @ Remove 'dead', 'undeployed' bitflag from the unit 
+	mov r3, r9 
+	ldrb r1, [r3, #6] @ Reset Stats? T/F 
+	cmp r1, #1 
+	bne LoadUnitTime 
+	@ We reset their stats by clearing the unit 
+	
+	@ or just clear the unit 
+	@ r0 is unit def to load  
+	blh 0x080177f4 @ ClearUnit
+	mov r7, #1 
 LoadUnitTime:
 
 mov r0, r5 
@@ -182,12 +197,45 @@ b End
 // therefore, it shouldn't be used here I don't think 
 @ 0803bde0 FindUnitClosestValidPosition
 @blh 0x803BDE1, r7 @ FindUnitClosestValidPosition
-@ break 
 
 
+.equ IncreaseUnitStatsByLevelCount, 0x8017FC4
+.equ EnsureNoUnitStatCapOverflow, 0x80181c8
 
 @place most recently loaded unit to valid coord 
 PlaceSummonedUnit:
+
+cmp r7, #1 
+bne DoNotMatchSummonsLevel @ Unit wasn't cleared, so don't autolevel lol 
+mov r3, r9 @ should we match summon's level to the summoner? 
+ldrb r0, [r3, #5] @ bool yes/no 
+cmp r0, #1 
+bne DoNotMatchSummonsLevel 
+ldr r2, =CurrentUnit 
+ldr r2, [r2]
+ldrb r0, [r2, #8] @ Summoner's level 
+ldrb r1, [r6, #8] @ Summon's level 
+cmp r1, r0 
+bge DoNotMatchSummonsLevel 
+strb r0, [r6, #8] @ Summon as same lvl as summoner 
+
+sub r2, r0, r1 @ Number of levels to increase by 
+ldr r1, [r6, #4]
+ldrb r1, [r1, #4] @ class id of summon 
+mov r0, r6 @ Summon unit pointer 
+blh IncreaseUnitStatsByLevelCount @ // str/mag split compatible
+mov r0, r6
+blh EnsureNoUnitStatCapOverflow
+ldrb r0, [r6, #0x12] 
+strb r0, [r6, #0x13] @ Set to max hp 
+
+
+
+
+DoNotMatchSummonsLevel: 
+
+
+
 
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
@@ -263,42 +311,36 @@ mov r1, #63
 NoCapYYDown:
 
 @ pretend we're 1 tile below where we want to spawn stuff 
-add r1, #1
+add r1, #1 
+bl IsTileFreeFromUnits @ Returns r0 T/F, r1 YY, r2 XX 
+cmp r0, #1 
+bne DontAddOneToYCoord 
+mov r0, r2 
+bl CanWeTraverseTerrain 
+cmp r0, #1 
+bne DontAddOneToYCoord 
+add r1, #1 @ 1 below the tile we want 
 
-lsl r2, r1, #8 
-add r2, r0 @ Save ----YYXX to r2 
-@ now check if we can reach destination 
-
-ldr		r3,=0x202E4E0	@Movement map 	@Load the location in the table of tables of the map you want
-ldr		r3,[r3]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r3,r1			@so that we can get the correct row pointer
-ldr		r3,[r3]			@Now we're at the beginning of the row data
-add		r3,r0			@add x coordinate
-ldrb	r0,[r3]			@load datum at those coordinates
-
-@ if this is 0xFF, then we cannot reach the destination, so we'll not use relative coords 
+DontAddOneToYCoord:
+mov r0, r2 @ XX 
+sub r1, #1 
+@ if this is false, then we cannot reach the destination, so we'll not use relative coords 
 @ however, we'll write to adjacent tiles in the UnitMap so that summons avoid being adjacent 
 @ (just for cool factor, I guess) 
 
-cmp r0, #0xFF 
-bne UseRelativeCoords
-b NotUsingRelativeCoords
+bl CanWeTraverseTerrain
+@ returns T/F r0, yy r1, xx r2 
+cmp r0, #0x1 
+bne NotUsingRelativeCoords
 UseRelativeCoords: 
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
-@strh r2, [r3, #0x10] @ ----YYXX 
-lsr r1, r2, #8 @ YY 
-lsl r0, r2, #24 
-lsr r0, #24 
+mov r0, r2 
+@ r1 is already y 
 strb r0, [r3, #0x10] 
 strb r1, [r3, #0x11] 
 
 
-@ put our 
-
-
-@mov r11, r11 
 
 
 NotUsingRelativeCoords:
@@ -507,11 +549,6 @@ mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is s
 @ SetAiActionParameters(XX, YY, 5, 0, 0, 0, 0) 
 
 
-
-
-Break:
-mov r0, #1
-
 	pop {r6}
 	mov r9, r6 
 
@@ -531,6 +568,71 @@ CurrentUnitFateData:
 	.long 0x203A958
 	.thumb 
 	
+.type IsTileFreeFromUnits, %function 
+IsTileFreeFromUnits:
+push {lr}
+@ Given r0 = x, r1 = y 
+mov r2, r0 
+lsl r2, #8 
+add r2, r1 
+
+ldr		r3,=0x202E4D8	@Unit map 	@Load the location in the table of tables of the map you want
+ldr		r3,[r3]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r3,r1			@so that we can get the correct row pointer
+ldr		r3,[r3]			@Now we're at the beginning of the row data
+add		r3,r0			@add x coordinate
+ldrb	r0,[r3]			@load datum at those coordinates
+cmp r0, #0 
+bne TileIsNotFree
+mov r0, #1 
+b EndTileFreeFromUnits 
+
+TileIsNotFree: 
+mov r0, #0 @ Tile is not free 
+EndTileFreeFromUnits: 
+lsl r1, r2, #24 
+lsr r1, #24 
+lsr r2, #8 
+@ return r0 true/false, r1 yy, r2 xx 
+
+pop {r3} 
+bx r3 
+
+
+.type CanWeTraverseTerrain, %function 
+CanWeTraverseTerrain:
+push {lr}
+@ Given r0 = x, r1 = y 
+mov r2, r0 
+lsl r2, #8 
+add r2, r1 
+
+ldr		r3,=0x202E4E0	@Movement map 	@Load the location in the table of tables of the map you want
+ldr		r3,[r3]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r3,r1			@so that we can get the correct row pointer
+ldr		r3,[r3]			@Now we're at the beginning of the row data
+add		r3,r0			@add x coordinate
+ldrb	r0,[r3]			@load datum at those coordinates
+
+cmp r0, #0xFF 
+beq TileIsNotPassable 
+mov r0, #1 
+b EndTraverseTerrainCheck
+
+TileIsNotPassable: 
+mov r0, #0 @ Tile is not free 
+EndTraverseTerrainCheck: 
+lsl r1, r2, #24 
+lsr r1, #24 
+lsr r2, #8 
+@ return r0 true/false, r1 yy, r2 xx 
+pop {r3} 
+bx r3 
+
+
+
 
 @.global WriteDeploymentByteToGivenCoordsUnitMap
 .type WriteDeploymentByteToGivenCoordsUnitMap, %function 	
