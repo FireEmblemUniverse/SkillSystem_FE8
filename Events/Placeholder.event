@@ -114,11 +114,11 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
-AFEV 0 GlobalAfev 0
-AFEV 0 CityAfev 0
+//AFEV 0 GlobalAfev 0
+//AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshActive 0 
+//AFEV 0 RefreshActive 0 
 
 Dunno1:
 END_MAIN
@@ -150,16 +150,10 @@ UNIT
 
 
 EnemyUnits:
-UNIT 0xF2 0x3B 0x40 Level(5,Enemy,True)    [8,7] 0b 0x0 0x0 0x0 [WretchedAir,0x0,0x0,0x0] AttackInRangeAI
-UNIT ONeill Fighter 0x40 Level(5,Enemy,True)     [8,14] 0b 0x0 0x0 0x0 [SteelAxe, HandAxe] AttackInRangeAI
+UNIT 0xA0 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xA1 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xA2 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT
-
-
-
-EnemyUnits2:
-UNIT Vigarde General 0x40 0xA5    [3,3] 0 0 0 0 [Spear, SilverBlade, Tomahawk] NeverMoveAI
-UNIT
-
 
 
 Traps1:
@@ -178,15 +172,20 @@ ENUF SkipIntroFlag
 //ENUT 0xAC // Fast Movement 
 ENUT 0xAB 
 
-Write_Byte(0, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(0, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+//21, 19
+//Write_Byte(21, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//Write_Byte(19, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 CALL GlobalBeginningScene
 CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
 //RandomizePlayerCoords(Ground, Range(0,0,2,2), Range(2,2,15,10)) //somewhere possible, hopefully ? 
-
-
+LOAD1 1 EnemyUnits 
+ENUN 
+RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
 
 //AutoLevelUnits(19, True, 0x120) // all 

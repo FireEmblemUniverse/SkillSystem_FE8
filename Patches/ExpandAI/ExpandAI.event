@@ -47,7 +47,7 @@ NewAI2Entry(29, RunAwayModularSummonLabel)
 #define AttackOrWaitAI [0,26] // If nobody in range, wait 
 #define WaitAI [26,3] // Wait. Do nothing else. 
 #define RunAwayAI [27,27]
-#define ApproachEnemySummonAI [28,0] 
+#define ApproachEnemySummonAI [28,0,0,32] 
 #define RunAwaySummonAI [29,27] 
 
 

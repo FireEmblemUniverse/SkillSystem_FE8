@@ -61,7 +61,7 @@ push {r7} @ Save r8 to restore at the end
 mov r8, r0 @ Parent proc 
 mov r6, r9 
 push {r6} 
-mov r11, r11 
+
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
 cmp r3, #0 
@@ -536,7 +536,7 @@ pop {r0}
 
 ldr r1, [r0, #0x30] @ X
 ldr r2, [r0, #0x34] @ Y 
-
+mov r11,r11 
 
 add sp, #0x38 
 
@@ -611,6 +611,7 @@ strh r0, [r3, #0x10]
 b LoadEachSummonLoop 
 
 ValidCoordSkip:
+mov r11, r11 
 strb r0, [r6, #0x10]
 strb r1, [r6, #0x11]
 
@@ -967,70 +968,51 @@ bx r1
 	
 
 	
-.global CallAIModularSummon_Event
-.type CallAIModularSummon_Event, %function
-CallAIModularSummon_Event: @ r0 = parent proc (the event engine). This is presumably ASMCed. 
-push { lr }
-ldr r0, =AIModularSummon_Event
-mov r1, #1 
-blh EventEngine 
-
-pop { r0 }
-bx r0
-
+	
 
 
 .global PauseEventEngineWhileUnitsAreMoving
 .type PauseEventEngineWhileUnitsAreMoving, %function
 PauseEventEngineWhileUnitsAreMoving: @ r0 = parent proc (the event engine). This is presumably ASMCed. 
-push { lr } 
+push { lr }
 mov r1, r0
 ldr r0, =PauseEventEngineUnitsMovingProc
 blh ProcStartBlocking, r2
 pop { r0 }
 bx r0
 	
-.type CallWaitUntilAIMovesProc, %function
-CallWaitUntilAIMovesProc: 
-push { lr }
-@mov r1, r0 
-mov r1, #3
-ldr r0, =WaitUntilAIMovesProc
 
-blh pr6C_New, r2
-
-@blh ProcStartBlocking 
-pop { r0 }
-bx r0
-
-.global IfProcStateWrongThenYield 
-.type IfProcStateWrongThenYield, %function
-IfProcStateWrongThenYield:
+.global IfProcStateWrongThenCallEventEndB 
+.type IfProcStateWrongThenCallEventEndB, %function
+IfProcStateWrongThenCallEventEndB:
 push {r4, lr} 
 mov r4, r0 @ Parent? 
 ldr r0, =0x85a8024 @gProc_CpPerform
 blh ProcFind, r1 
+ldr r3, =MemorySlot 
 
 cmp r0, #0 
 beq ProcStateError 
-@beq ReturnProcStateRight 
 ldr r1, [r0, #4] @ Code Cursor 
-ldr r2, =0x85A804C @ Moving unit 
+ldr r2, =0x85A804C
+
 cmp r1, r2 
 beq ReturnProcStateRight 
 
 ProcStateError:
+ldr r0, =ASMCModularSummonEvent
+mov r1, #1 
+blh EventEngine 
+
 mov r0, #0 
+str r0, [r3, #4*0x0C] 
+b EndIfProcStateWrongThenCallEventEndB
 
+ReturnProcStateRight:
+mov r0, #1 
+str r0, [r3, #4*0x0C] 
 
-b EndIfProcStateWrongThenYield
-
-ReturnProcStateRight: 
-mov r0, r4 @ parent to break from 
-blh BreakProcLoop
-mov r0, #1
-
-EndIfProcStateWrongThenYield:
+EndIfProcStateWrongThenCallEventEndB:
 pop {r4}
 pop {r1}
 bx r1 
@@ -1041,26 +1023,65 @@ bx r1
 IfActiveAIFinishedMovingThenStopPausingEventEngine:
 push {r4, lr} 
 mov r4, r0 @ Parent? 
-
-blh 0x8078739 @ MU_IsAnyActive
+mov r11, r11 
+b ContinuePausingEventEngine
+@b BreakProcLoopNow
+@ MU_IsAnyActive
+@ wait until proc CpPerform begins 0x85A8024 
+ldr r0, =0x85a8024 @gProc_CpPerform
+blh ProcFind, r1
+@mov r11, r11 
 cmp r0, #0 
-bne ContinuePausingEventEngine 
+beq ContinuePausingEventEngine 
+ldr r1, [r0, #4] @ Code Cursor 
+ldr r2, =0x85A804C
+cmp r1, r2 
+bne ContinuePausingEventEngine
 b BreakProcLoopNow
 
-@ both these methods seem to work 
-@ but they require @gProc_CpPerform code cursor to be at +0x28 aka ldr r2, =0x85A804C @ Moving unit 
-ldr r0, =0x89a2c48 @gProc_MoveUnit
+@
+
+ldr r0, =0x85A8024
 blh ProcFind, r1 
 cmp r0, #0 
-beq BreakProcLoopNow 
-mov r1, #0x3F 
-ldrb r0, [ r0, r1 ] 
-cmp r0, #1 
+beq BreakProcLoopNow
+mov r2, #0x28 @ block counter  
+ldrb r1, [r0, r2] 
+mov r11, r11
+cmp r1, #0 
 bne ContinuePausingEventEngine 
 b BreakProcLoopNow
 
+ldr r0, =0x859a548 @gProc_CameraMovement
+@blh ProcFind, r1 
+@cmp r0, #0 
+@bne ContinuePausingEventEngine
 
+@ wait until movement begins 
 
+ldr r0, =0x89a2c48 @gProc_MoveUnit
+blh ProcFind, r1 
+mov r11, r11 
+cmp r0, #0 
+beq ContinuePausingEventEngine 
+@@
+@
+@mov r11, r11 
+@blh 0x8078739 @ MU_IsAnyActive
+mov r11, r11 
+@cmp r0, #0 
+@beq ContinuePausingEventEngine 
+b BreakProcLoopNow
+@ 
+// #5 is staffwait, we want #0x12 ? @ 803a204 CpPerform_StaffWait
+
+cmp r0, #0x01
+beq BreakProcLoopNow
+b ContinuePausingEventEngine
+	@mov r1, #0x3F 
+	@ldrb r0, [ r0, r1 ] 
+	@cmp r0, #1 
+	@bne ContinuePausingEventEngine 
 BreakProcLoopNow: 
 mov r0, r4 @ parent to break from 
 blh BreakProcLoop
@@ -1103,7 +1124,7 @@ bx r0
 @.global CopyAIScript11
 .type CopyAIScript11_Move_Towards_Safety, %function 
 CopyAIScript11_Move_Towards_Safety: 
-push {r4-r6, lr}
+push {r4-r5, lr}
 sub sp, #0x10 @ allocate space 
 mov r5, r0 @ dunno - 203CFFF ? not needed for my purposes i think 
 ldr r0, =CurrentUnit 
@@ -1127,7 +1148,7 @@ mov r2, #2
 ldsh r1, [r4, r2] 
 @ then it stores stuff into the sp and runs AiSetDecision 
 add sp, #0x10 
-pop {r4-r6}
+pop {r4-r5}
 pop {r2} 
 bx r2 
 
@@ -1135,8 +1156,8 @@ bx r2
 .global RunAwayModularSummon
 .type RunAwayModularSummon, %function 
 RunAwayModularSummon:
-push {r4-r6, lr} 
-mov r6, r0 @ Parent 
+push {r4-r5, lr} 
+
 @ if I do this, they instead will attack things so I commented these 5 lines out 
 @ ModularSummonEffect handles the case of it not actually being usable anyway 
 @ So it just has no effect 
@@ -1155,8 +1176,7 @@ b ReturnTrue
 .global ApproachEnemyModularSummon
 .type ApproachEnemyModularSummon, %function 
 ApproachEnemyModularSummon:
-push {r4-r6, lr} 
-mov r6, r0 @ Parent 
+push {r4-r5, lr} 
 mov r5, #1 @ Do take offensive action 
 ldr r3, =CurrentUnit 
 ldr r0, [r3] 
@@ -1214,8 +1234,8 @@ str r2, [r3, #0x0B*4] @ ----YY--XX coord in sB
 @ #0x08 - targets something but no crash 
 @ #0x09 - wait ? 
 @ #0xFF - targets & crashes 
-@ is #5 is staffwait? @ 803a204 CpPerform_StaffWait
-mov r2, #0x5
+
+mov r2, #0x5 
 mov r3, #0 @ store into item slot / X / Y coord 
 str r3, [sp, #0] @ Item slot 
 str r3, [sp, #4] @ X Coord2 (0 is fine) 
@@ -1241,18 +1261,14 @@ bx r1
 @ Since it didn't work correctly in this context, it is no longer included below 
 
 EnqueueModularSummon: 
-ldr r3, =CurrentUnit
-ldr r3,[r3]
-ldrb r0, [r3, #0x10]
-ldrb r1, [r3, #0x11]
 
-mov r11, r11 
 bl ModularSummonUsability 
 cmp r1, #1 
 bne NotWorthTryingToSummon
 
-
-bl CallWaitUntilAIMovesProc
+ldr r0, =ASMCModularSummonEvent 
+mov r1, #1 
+blh EventEngine 
 b ReturnTrue 
 
 NotWorthTryingToSummon:
@@ -1286,7 +1302,7 @@ ReturnTrue:
 mov r0, #1 @ True that we made an AI decision 
 
 ExitModularSummonAI:
-pop {r4-r6}
+pop {r4-r5}
 pop {r1} 
 bx r1 
 
