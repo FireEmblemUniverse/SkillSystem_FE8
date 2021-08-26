@@ -61,7 +61,7 @@ push {r7} @ Save r8 to restore at the end
 mov r8, r0 @ Parent proc 
 mov r6, r9 
 push {r6} 
-mov r11, r11 
+
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
 cmp r3, #0 
@@ -171,7 +171,7 @@ ldrb r0, [r5] @ unit id
 ldr r2, [r7] 
 ldrb r2, [r2, #4] 
 cmp r0, r2 
-beq LoadEachSummonLoop @ You cannot summon yourself, as this breaks the terrain. 
+beq LoadEachSummonLoop @ You cannot summon yourself
 
 mov r7, #0 @ Do not autolevel unit unless they were cleared 
 blh GetUnitByEventParameter
@@ -211,6 +211,9 @@ LoadUnitTime:
 
 mov r0, r5 
 blh LoadUnit 
+
+
+
 mov r6, r0 @ Newly loaded unit 
 b PlaceSummonedUnit 
 
@@ -279,7 +282,7 @@ ldrh r0, [r3, #0x10]
 push {r0} @ Save current units coords to the stack. Restore after restoring terrain 
 
 
-
+strh r0, [r6, #0x10] @ match coords 
 
 
 
@@ -420,6 +423,7 @@ bl IsTileFreeFromUnits @ Returns r0 T/F, r1 YY, r2 XX
 cmp r0, #1 
 bne DontAddOneToYCoord 
 mov r0, r2 
+mov r2, r6 
 bl CanWeReachOnMovementMap 
 cmp r0, #1 
 bne DontAddOneToYCoord 
@@ -440,7 +444,7 @@ mov r0, r2 @ XX
 @ if this is false, then we cannot reach the destination, so we'll not use relative coords 
 @ however, we'll write to adjacent tiles in the UnitMap so that summons avoid being adjacent 
 @ (just for cool factor, I guess) 
-
+mov r2, r6 
 bl CanWeReachOnMovementMap
 @ returns T/F r0, yy r1, xx r2 
 cmp r0, #0x1 
@@ -537,9 +541,20 @@ pop {r0}
 ldr r1, [r0, #0x30] @ X
 ldr r2, [r0, #0x34] @ Y 
 
+mov r11, r11 @ ok.. 
 
 add sp, #0x38 
 
+cmp r1, #63 
+blt GetUnitDropLocationWasProbablySuccessful 
+
+mov r0, r6 @ Unit 
+bl FindRandomValidCoordinate @ We couldn't find anything, so let's search at random! 
+mov r2, r1 
+mov r1, r0 
+
+
+GetUnitDropLocationWasProbablySuccessful:
 strb r1, [r6, #0x10] @ X
 strb r2, [r6, #0x11] @ Y
 
@@ -614,11 +629,7 @@ ValidCoordSkip:
 strb r0, [r6, #0x10]
 strb r1, [r6, #0x11]
 
-@ldr		r3, =0x202E4D4 	@ Map Size  
-@ldrh 	r2, [r3] @ XX 
-@sub r2, #1
-@ldrh 	r3, [r3, #2] @ YY 
-@sub r3, #1
+
 
 
 @ unnecessary? 
@@ -728,6 +739,22 @@ CurrentUnitFateData:
 	.long 0x203A958
 	.thumb 
 	
+.global ModularSummon_CenterCameraASMC
+.type ModularSummon_CenterCameraASMC, %function 
+ModularSummon_CenterCameraASMC:
+push {lr}
+@mov r0,#1
+@ r0 = 0 , r1 X, r2 Y 
+ldr r3, =MemorySlot 
+add r3, #4*0x0B 
+ldrb r1, [r3, #0] @ X coord 
+ldrb r2, [r3, #2] @ Y coord 
+@blh EnsureCameraOntoPosition
+@ r0 = parent proc, r1 x, r2 y
+blh CenterCameraOntoPosition
+pop {r0} 
+bx r0 
+	
 .global ModularSummon_RestoreCameraASMC
 .type ModularSummon_RestoreCameraASMC, %function 
 ModularSummon_RestoreCameraASMC:
@@ -776,13 +803,61 @@ lsr r2, #8
 pop {r3} 
 bx r3 
 
-.type ClearTheMemorySlotQueue_ASMC, %function 
-ClearTheMemorySlotQueue_ASMC:
+.type FindRandomValidCoordinate, %function 
+FindRandomValidCoordinate:
+push {r4-r7, lr}
+mov r6, r0 
+ldr r3, =0x202E4D4 	@ Map Size 
+ldrh r5, [r3, #2] @ YY 
+sub r5, #1 
+lsl r5, #16 
+ldrh r3, [r3] @ XX 
+sub r3, #1 
+add r5, r3 @ r5 is --YY--XX 
 
+mov r7, #0 @ Counter 
+mov r11, r11 
+FindRandomCoordLoop:
+add r7, #1 
+cmp r7, #0xFF 
+bge EndFindRandomCoordLoop
+blh 0x8000c64 @NextRN_100
+lsr r2, r5, #16 
+mul r0, r2 @
+mov r1, #100 @ Div by this  
+swi 6 @ Div 
+mov r4, r0 
+@ Random YY  
+blh 0x8000c64 @NextRN_100
+lsl r2, r5, #24
+lsr r2, r2, #24 
 
+mul r0, r2 @ 
+mov r1, #100 @ Div by this 
+swi 6 @ Div 
+@ Random XX
+@r0 is XX 
+mov r1, r4 @ YY 
+lsl r4, #16 @ --YY----
+add r4, r0 @ --YY--XX 
 
+bl IsTileFreeFromUnits
+cmp r0, #1
+bne FindRandomCoordLoop 
+mov r0, r2 @ r0 XX 
+@ r1 YY 
+mov r2, r6 @ r2 UnitStruct  
+bl Call_CanUnitCrossTerrain 
+cmp r0, #1
+bne FindRandomCoordLoop 
+mov r0, r2 
+@ r1 as YY 
+EndFindRandomCoordLoop:
 
-
+mov r11, r11 
+pop {r4-r7}
+pop {r2}
+bx r2 @ Return r0 XX, r1 YY 
 
 
 .type Call_CanUnitCrossTerrain, %function 
@@ -813,21 +888,22 @@ bx r3
 
 .type CanWeReachOnMovementMap, %function 
 CanWeReachOnMovementMap:
-push {lr}
-@ Given r0 = x, r1 = y 
+push {r4, lr}
+@ Given r0 = x, r1 = y, r2 unit struct 
+mov r4, r0 
+lsl r4, #8 
+add r4, r1 
+@ r4 as ----xxyy 
 
+mov r0, r2 @ unit struct provided 
+mov r1, #0xF
+blh 0x801a3cc @FillMovementMapForUnitAndMovement
+@ If the unit had 15 movement, could they ever reach this tile?
 
-ldr r3, =0x202BCF0 @ gChapterData
-ldrb r3, [r3, #0xF] @ Phase 
-mov r2, #0xC0 
-and r3, r2
+lsr r0, r4, #8 
+lsl r1, r4, #24 
+lsr r1, #24 
 
-mov r2, r0 
-lsl r2, #8 
-add r2, r1 
-
-cmp r3, #0 
-bne EnemyPhase
 
 ldr		r3,	=0x202E4E0	@player =0x202E4E0	@Movement map 	@Load the location in the table of tables of the map you want
 ldr		r3,[r3]			@Offset of map's table of row pointers
@@ -841,26 +917,37 @@ beq WeCannotReachOnMovementMap
 mov r0, #1 
 b EndCanWeReachOnMovementMap
 
-EnemyPhase:
-ldr		r3,	=0x202E4F0	@enemy =0x202E4E0	@Movement map 	@Load the location in the table of tables of the map you want
-ldr		r3,[r3]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r3,r1			@so that we can get the correct row pointer
-ldr		r3,[r3]			@Now we're at the beginning of the row data
-add		r3,r0			@add x coordinate
-ldrb	r0,[r3]			@load datum at those coordinates
-cmp r0, #0xFF 
-beq WeCannotReachOnMovementMap 
-mov r0, #1 
-b EndCanWeReachOnMovementMap
+@EnemyPhase:
+@enemy =0x202E4f0
+@ldr r3, =0x203AA7E @ 203AA04 + 7A | byte | 1 if the second movement map is readable as the "danger" map (0 if not)
+@ This didn't seem to work as I needed 
+@ 203AA7E had the value 1 on enemy phase, so it was probably being used as a range map instead of movement map 
 
 WeCannotReachOnMovementMap: 
 mov r0, #0 @ Tile is not free 
 EndCanWeReachOnMovementMap: 
-lsl r1, r2, #24 
+lsl r4, #8 
+add r4, r0 
+
+@ Filling Move map with -1
+@ ------------------------
+	
+ldr r0, =0x0202E4E0 @ Movement map
+ldr r0, [r0]
+mov r1, #1
+neg r1, r1
+	
+blh 0x80197E4 @ MapFill - arguments: r0 = rows start ptr, r1 = value; returns: nothing
+
+lsl r0, r4, #24 
+lsr r0, #24 @ T/F 
+lsr r4, #8 	
+
+lsl r1, r4, #24 
 lsr r1, #24 
-lsr r2, #8 
+lsr r2, r4, #8 
 @ return r0 true/false, r1 yy, r2 xx 
+pop {r4} 
 pop {r3} 
 bx r3 
 
@@ -887,9 +974,27 @@ bx r0
 
 
 
+.global EmptyMemorySlotQueue
+.type EmptyMemorySlotQueue, %function
+EmptyMemorySlotQueue:
+push {lr} 
+ldr r3, =0x30004f0 
+ldr r2, =0x300050e 
+mov r0, #0 
+EmptyMemorySlotQueueLoop:
+str r0, [r3] 
+add r3, #4 
+cmp r3, r2 
+ble EmptyMemorySlotQueueLoop
+ldr r3, =MemorySlot
+str r0, [r3, #4*0x0D] 
+EmptyMemorySlotQueueEnd:
+pop {r0}
+bx r0 
 
 
-
+pop {r1} 
+bx r1 
 @ Queue starts at 030004F0 
 @ Queue size from mem slot D 
 @ find entry 
@@ -1013,9 +1118,12 @@ blh ProcFind, r1
 
 cmp r0, #0 
 beq ProcStateError 
-@beq ReturnProcStateRight 
 ldr r1, [r0, #4] @ Code Cursor 
-ldr r2, =0x85A804C @ Moving unit 
+@ldr r2, =0x85A804C @ Moving unit 
+
+ldr r2, =0x85A8064 @ wait 0x85a8024 + 0x40 @gProc_CpPerform
+
+
 cmp r1, r2 
 beq ReturnProcStateRight 
 
@@ -1036,19 +1144,16 @@ pop {r1}
 bx r1 
 
 
+
+
+
+
 .global IfActiveAIFinishedMovingThenStopPausingEventEngine
 .type IfActiveAIFinishedMovingThenStopPausingEventEngine, %function
 IfActiveAIFinishedMovingThenStopPausingEventEngine:
 push {r4, lr} 
 mov r4, r0 @ Parent? 
 
-blh 0x8078739 @ MU_IsAnyActive
-cmp r0, #0 
-bne ContinuePausingEventEngine 
-b BreakProcLoopNow
-
-@ both these methods seem to work 
-@ but they require @gProc_CpPerform code cursor to be at +0x28 aka ldr r2, =0x85A804C @ Moving unit 
 ldr r0, =0x89a2c48 @gProc_MoveUnit
 blh ProcFind, r1 
 cmp r0, #0 
@@ -1058,6 +1163,15 @@ ldrb r0, [ r0, r1 ]
 cmp r0, #1 
 bne ContinuePausingEventEngine 
 b BreakProcLoopNow
+
+blh 0x8078739 @ MU_IsAnyActive
+cmp r0, #0 
+bne ContinuePausingEventEngine 
+b BreakProcLoopNow
+
+@ uh idk if both work 
+@ but they require @gProc_CpPerform code cursor to be at +0x28 aka ldr r2, =0x85A804C @ Moving unit 
+
 
 
 
@@ -1144,12 +1258,29 @@ mov r6, r0 @ Parent
 @bl ModularSummonUsability 
 @cmp r0, #1 
 @beq ContinueRunAway
-@b TryOtherAIOptionsInstead  
+@b ShouldWeTryOtherAIOptionsInstead
 @ContinueRunAway:
 mov r5, #0 @ Don't take offensive action 
+
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+mov r2, #0x41 @ AI4 
+mov r1, #0x20 @ BossAI
+ldrb r2, [r3, r2] 
+and r1, r2 
+cmp r1, #0 
+beq ContinueRunAwayModularSummon
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+ldrb r0, [r3, #0x10] 
+ldrb r1, [r3, #0x11] 
+bl SetAIToWaitAtCoords 
+b EnqueueModularSummon 
+
+ContinueRunAwayModularSummon:
 bl CopyAIScript11_Move_Towards_Safety @ based on current unit, should return r0 XX r1 YY coords 
 bl SetAIToWaitAtCoords
-b ReturnTrue
+b EnqueueModularSummon
 
 .align 4
 .global ApproachEnemyModularSummon
@@ -1158,6 +1289,27 @@ ApproachEnemyModularSummon:
 push {r4-r6, lr} 
 mov r6, r0 @ Parent 
 mov r5, #1 @ Do take offensive action 
+
+bl ModularSummonUsability 
+cmp r1, #1 
+bne OffensiveActionBranch
+
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+mov r2, #0x41 @ AI4 
+mov r1, #0x20 @ BossAI
+ldrb r2, [r3, r2] 
+and r1, r2 
+cmp r1, #0 
+beq ContinueApproachEnemyModularSummon 
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+ldrb r0, [r3, #0x10] 
+ldrb r1, [r3, #0x11] 
+bl SetAIToWaitAtCoords
+b EnqueueModularSummon
+
+ContinueApproachEnemyModularSummon:
 ldr r3, =CurrentUnit 
 ldr r0, [r3] 
 add r0, #0x45 
@@ -1165,24 +1317,34 @@ add r0, #0x45
 @ r0 is 202D001, d049, d091 
 @ this is ActiveUnit ram address + 0x45 (AI2 count) 
 blh AIScript12_Move_Towards_Enemy @0x803ce18 
-
 ldr r3, =0x203AA96 @ AI decision +0x92 (XX) 
 ldrb r0, [r3, #0x0] @ XX 
 ldrb r1, [r3, #0x1] @ YY 
-
-bl ModularSummonUsability 
-cmp r1, #1 
-bne TryOtherAIOptionsInstead 
-ldr r3, =0x203AA96 @ AI decision +0x92 (XX) 
-ldrb r0, [r3, #0x0] @ XX 
-ldrb r1, [r3, #0x1] @ YY 
-
-ldr r3, =MemorySlot
-add r3, #4*0x0B @ Slot B 
-strh r0, [r3, #0] 
-strh r1, [r3, #2] 
 bl SetAIToWaitAtCoords 
 b EnqueueModularSummon
+
+OffensiveActionBranch: 
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+mov r2, #0x41 @ AI4 
+mov r1, #0x20 @ BossAI
+ldrb r2, [r3, r2] 
+and r1, r2 
+
+ldr r3, =CurrentUnit 
+ldr r0, [r3] 
+add r0, #0x43 
+
+ldr r3, =0x30017d0 @ 030017d0 gpAiScriptCurrent 
+ldr r2, =0x85A8870 @ vanilla ai attack in range ai1 aiscript gAiScript_ActionInRange
+str r2, [r3] 
+@ 30017d0 storing 918D2B8 AttackInRangeExceptF0toFF
+
+blh 0x803ca0c @AiScriptCmd_05_DoStandardAction
+b ReturnTrue 
+
+
+
 
 
 .type SetAIToWaitAtCoords, %function 
@@ -1191,8 +1353,23 @@ SetAIToWaitAtCoords:
 push {lr}
 sub sp, #0xC 
 
+ldr r2, =0x203AA96 @ AI decision +0x92 (XX) 
+ldrh r0, [r2, #0x0] @ XX,YY
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
+cmp r0, #0 
+bne ContinueSetAIToWaitAtCoords
+
+
+
+mov r1, #0x10 
+ldrh r0, [r3, r1] 
+mov r1, #0x13
+strh r0, [r2, r1] @ Ai decision 
+ldrb r0, [r3, #0x10] @ No decision made by move towards enemy 
+ldrb r1, [r3, #0x11] @ so put in our current coords 
+ContinueSetAIToWaitAtCoords:
+
 ldr r2, [r3] @ char table unit 
 ldrb r2, [r2, #4] @ Unit ID 
 ldr r3, =MemorySlot @ r3 is no longer unit 
@@ -1241,42 +1418,83 @@ bx r1
 @ Since it didn't work correctly in this context, it is no longer included below 
 
 EnqueueModularSummon: 
-ldr r3, =CurrentUnit
-ldr r3,[r3]
-ldrb r0, [r3, #0x10]
-ldrb r1, [r3, #0x11]
+ldr r3, =0x203AA96 @ AI decision +0x92 (XX) 
+ldrb r0, [r3, #0x0] @ XX 
+ldrb r1, [r3, #0x1] @ YY 
+ldr r3, =MemorySlot
+add r3, #4*0x0B @ Slot B 
+strh r0, [r3, #0] 
+strh r1, [r3, #2] 
 
-mov r11, r11 
 bl ModularSummonUsability 
+mov r11, r11 
+cmp r0, #1 
+bne ShouldWeTryOtherAIOptionsInstead
 cmp r1, #1 
-bne NotWorthTryingToSummon
+bne ShouldWeTryOtherAIOptionsInstead
 
+bl EmptyMemorySlotQueue
+
+@ldr r3, =CurrentUnit
+@ldr r3,[r3]
+@ldrh r0, [r3, #0x10]
+@ldr r3, =0x203A958 @ action
+@mov r2, #0x13
+@
+@strh r0, [r3, r2] 
+@ldrh r1, [r3, r2] 
+@cmp r0, r1 
+@beq AltMethodStationary
 
 bl CallWaitUntilAIMovesProc
 b ReturnTrue 
 
 NotWorthTryingToSummon:
 cmp r5, #0 
-bne TryOtherAIOptionsInstead 
+bne ShouldWeTryOtherAIOptionsInstead
 b ReturnTrue 
 
 
 @ If this is false, it tries to do other stuff like attack I guess 
 @ I really don't know how it works 
-TryOtherAIOptionsInstead:
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-mov r2, #0x41 @ AI4 
-mov r1, #0x20 @ BossAI
-ldrb r2, [r3, r2] 
-and r1, r2 
-cmp r1, #0 
-beq ReturnFalse
-@ do wait AI here instead 
-ldrb r0, [r3, #0x10] 
-ldrb r1, [r3, #0x11] 
-bl SetAIToWaitAtCoords
+@ Decide if we should try other ai options 
+ShouldWeTryOtherAIOptionsInstead:
+@ldr r3, =CurrentUnit
+@ldr r3, [r3] 
+@mov r2, #0x41 @ AI4 
+@mov r1, #0x20 @ BossAI
+@ldrb r2, [r3, r2] 
+@and r1, r2 
+@cmp r1, #0 
+@beq ReturnFalse
+@@ do wait AI here instead 
+@ldrb r0, [r3, #0x10] 
+@ldrb r1, [r3, #0x11] 
+@bl SetAIToWaitAtCoords
+
+cmp r5, #1 @ Aggro should return false so that ai will try other stuff 
+@beq TryOffensiveAction 
 b ReturnTrue 
+
+TryOffensiveAction: @ 3d450 AiTryDoOffensiveAction
+@ should we try staff action? sub_803FA40 
+
+@ldr r0, _0803F674  @ sub_803F5E0
+
+	@ldr r0, _0803CA60  @ sub_803C864
+	@ldr r0, _0803CA44  @ sub_803C818
+	@ldr r0, _0803C9D8  @ sub_803C8F4 @ didn't work 
+	@bl sub_803D450 @ blh try offensive action 
+	@b _0803C9FC
+
+
+@ldr r0, =0x803C9D8 @ some table? 
+ldr r0, =0x803c819 @IsUnitEnemyWithActiveUnit
+
+blh 0x803d450 @ AiTryDoOffensiveAction 
+mov r11, r11 
+b ExitModularSummonAI
+
 
 ReturnFalse: 
 mov r0, #0 @ False 
@@ -1286,6 +1504,7 @@ ReturnTrue:
 mov r0, #1 @ True that we made an AI decision 
 
 ExitModularSummonAI:
+mov r11, r11 
 pop {r4-r6}
 pop {r1} 
 bx r1 

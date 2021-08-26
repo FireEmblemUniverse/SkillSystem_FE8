@@ -5,9 +5,6 @@
 #ifndef IsPointer
 	#define IsPointer 0x08000000 
 #endif 
-#ifndef SDEQUEUE 
-	#define SDEQUEUE "SHORT 0x0722" 
-#endif 
 
 #include "ModularSummon.lyn.event"
 
@@ -37,13 +34,16 @@ NoFade
 ENDA 
 
 AIModularSummon_Event:
-SDEQUEUE rB
-LABEL 0 
-BEQ 1 rD r0 
-SDEQUEUE 1
-GOTO 0 
-LABEL 1 
+
+//SDEQUEUE rB
+//LABEL 0 
+//BEQ 1 rD r0 
+//SDEQUEUE 1
+//GOTO 0 
+//LABEL 1 
 ASMC PauseEventEngineWhileUnitsAreMoving
+
+//SDEQUEUE rB
 ASMC UpdateActiveUnitCoords
 ASMC ModularSummonEffect2
 ASMC 0x0801a1f5 //@RefreshFogAndUnitMaps 
@@ -53,11 +53,12 @@ ENDA
 
 // 3B808
 // 9A46AC gProc_summongfx
+ALIGN 4
 WarpAnimationEvent:
-//EVBIT_F 2; FADI 16; Text(DebugTextHere)
-SDEQUEUE 1 // we stored a unit pointer to the memory slots queue, so now we retrive that pointer 
+// we stored a unit pointer to the memory slots queue, so now we retrive that pointer to mem slot 1 
+SHORT 0x0722 0x1 // SDEQUEUE, as old EA doesn't define this 
 ASMC ModularSummon_GetSummonedUnitCoords
-_0x2629 -2 // CAM2
+ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined - this can freeze the game 
 ASMC WarpAnimationQueue
 NoFade 
 ENDA 

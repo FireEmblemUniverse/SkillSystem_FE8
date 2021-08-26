@@ -150,9 +150,9 @@ UNIT
 
 
 EnemyUnits:
-UNIT 0xA0 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0xA1 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0xA2 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xA0 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [6,16] 001b	0x0 0x01 REDA6R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xA1 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [5,5] 001b	0x0 0x01 REDA5R5 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xA2 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [16,6] 001b	0x0 0x01 REDA16R6 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT
 
 
@@ -170,10 +170,10 @@ BeginningScene:
 ENUF SkipIntroFlag
 
 //ENUT 0xAC // Fast Movement 
-ENUT 0xAB 
+//ENUT 0xAB 
 
-Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(0, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(0, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //21, 19
 //Write_Byte(21, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 

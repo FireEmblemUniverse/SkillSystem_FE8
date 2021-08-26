@@ -132,8 +132,8 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(21, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //21 
-Write_Byte(8, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
@@ -225,7 +225,7 @@ LABEL 0x63
 //SVAL r3 12500 
 //GIVETOMAIN 0
 
-ENUT 0xAB // Enable toy box 
+//ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
 AutoLevelUnits(5, True, 0x120) // all 
 
@@ -236,9 +236,9 @@ AutoLevelUnits(5, True, 0x120) // all
 //MNC2 PokecenterCh 
 //MNC2 Route1Ch 
 //DISA 0x2
-MNC2 Route2NCh
+//MNC2 Route2NCh
 //MNC2 PokemonTowerF1Ch
-//MNC2 ViridianForestNCh
+MNC2 ViridianForestNCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh
