@@ -29,6 +29,11 @@ bne   Return
 	ldrb  r1, [r1, #4] @Unit ID 
 	cmp   r1, #0xF0
 	bge   Return
+	@ If no item in inv slot 1, don't display icon 
+	ldrh r1, [r4, #0x1E] @ Item1 
+	cmp r1, #0 
+	beq Return 
+	
 
     @ Check whether DR-bit is set.
     ldrb  r0, [r4, r6]

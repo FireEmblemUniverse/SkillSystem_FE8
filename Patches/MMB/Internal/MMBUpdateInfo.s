@@ -23,10 +23,10 @@ MMBUpdateInfo:
 	mov		lr, r1
 	bllr
 
-	ldr		r2, =#0x8806DEF
+	ldr		r2, =#0x88068F0
 	ldr		r5,[r0,#0]
 	cmp		r5, r2  	@unit pointer 8803d30 + 30c0 = 8806DF0
-	bgt		PreNoUnit 	@unit 0 + 0xF0 times 0x32 bytes = 8806df0
+	bge		PreNoUnit 	@unit 0 + 0xF0 times 0x32 bytes = 8806df0
 	b		Saveunit	@so units of id 0xF0 or greater ignored
 
 Saveunit:

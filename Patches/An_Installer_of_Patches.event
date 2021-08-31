@@ -1,7 +1,12 @@
 // Does not work 
 //#include "AIWeaponsHack/AIWeaponsHack.event"
 
-#include "ModularSummon/Installer.event" 
+
+
+#include "CapturePokemon/CapturePokemonInstaller.event"  // Should be before modular summon stuff 
+
+#include "PreventAttacking/Installer.event"
+
 
 #include "CustomSkills/Installer.event"
 
@@ -10,8 +15,12 @@
 #include "TrainerDeathFlags/Installer.event"
 
 #include "ExpandAI/ExpandAI.event"
+
+#include "ModularSummon/Installer.event" 
+
+
 #include "PrepScreen/PrepScreen.event"
-#include "CapturePokemon/CapturePokemonInstaller.event" 
+
 
 #include "EventParameters/EventParameters.event"
 

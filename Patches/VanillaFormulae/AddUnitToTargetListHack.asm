@@ -16,9 +16,21 @@ ldr r0, [r0]
 
 ldr r3, [r4]
 ldrb r3, [r3, #4] @Target Unit ID 
+@ We cannot target unit ids 0xE0-0xEF, 0xFA-0xFD 
+cmp r3, #0xE0 
+blt Continue 
+cmp r3, #0xFA 
+beq Skip 
+cmp r3, #0xFB
+beq Skip 
+cmp r3, #0xFC
+beq Skip 
+cmp r3, #0xFD
+beq Skip 
 
-cmp r3, #0xFA @ We cannot target unit id 0xFA 
-bne Continue 
+cmp r3, #0xF0 
+bge Continue 
+
 b Skip 
 Continue:  
 

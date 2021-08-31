@@ -4,6 +4,21 @@
 #include "TrainerDeathFlags.lyn.event"
 
 
+TrainerSpotsYouEvent:
+
+// Doing this makes them stop moving early, but they disappear for a frame 
+UNCR(0x7FFF, 1) // Unhide the trainer 
+ASMC  0x080271a1   //@SMS_UpdateFromGameData 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+
+BottomWallText(ViridianForestTrainerE4Text)
+NoFade 
+ENDA 
+
+TrainerDefeatedEvent:
+BottomWallText(ViridianForestTrainerE4DefeatText)
+NoFade 
+ENDA 
 
 
 

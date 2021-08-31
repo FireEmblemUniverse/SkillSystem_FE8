@@ -117,7 +117,7 @@ GOTO 0x63
 LABEL 1 
 AutoLevelUnits(3, False, 0x90EF) // Not wilds given +3 invisible levels on normal 
 LABEL 0x63 
-ASMC RemoveFoughtTrainers
+//ASMC RemoveFoughtTrainers
 //SADD r2 rC r0 // Don't think this is necessary even though rC is pretty volatile 
 NoFade 
 ENDA 

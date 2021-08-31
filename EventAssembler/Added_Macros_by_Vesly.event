@@ -1,9 +1,16 @@
 #define Coord(XX,YY) "SVAL rB YY<<16|XX" 
 
+// ASMC 0x80790a5 //MU_EndAll //deselect unit
+// ASMC 0x080CCA15 //NewPromotion
 
 #define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
 #define TutText(background,textID) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO; CALL $9EE2C4; EVBIT_T 0x7; ENDA"
 #define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
+#define BottomWallText(text) "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
+#define BottomWallS2Text "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND; REMA"
+
+
+
 #define CGText(text, BGIndex) "FlashBlack; ShowCG(BGIndex); CGTEXTSTART; TEXTSHOW text; TEXTEND; REMA; ClearBackgroundSmooth"
 
 #define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 

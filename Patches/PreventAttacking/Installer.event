@@ -1,0 +1,40 @@
+PUSH
+ORG $24EE4
+jumpToHack_r1(PreventAttacking)
+POP 
+
+// Prevent Attacking 
+// By Vesly 
+// Prevents the player from attacking units based on the target's unit ID or class ID. 
+// Will only take effect when a certain flag is on, or when capturing. 
+
+#include "PreventAttacking.lyn.event"
+
+
+ALIGN 4
+PreventAttackingTable:
+// UnitID, ClassID, FlagID, CapturingOnly 
+// Unit or Class ID of 0x00 prevents ALL chars/classes from attacking 
+// Flag ID of 0xFF prevents ALL units 
+// 4th byte should always equal 0 
+// A value of 1 is used in pokemblem for custom stuff to do with capturing. 
+
+// BYTE 0x00 0x00 0xFF 0x0 - Prevent player units from attacking in any circumstances 
+
+//BYTE 0x68 0x00 0xFF 0x00 // Prevent players from attacking O'Neil. 
+//BYTE 0x00 0x07 0xFF 0x00 // Prevent players from attacking Paladins. 
+//BYTE 0x68 0x00 0xB0 0x00 // Prevent players from attacking O'Neil while flag 0xB0 is on. 
+
+
+
+
+BYTE 0xE0 0xEF 0x00 0x00 0xFF 0x00 // Never attack units 0xE0 - 0xEF 
+BYTE 0xA0 0xFF 0x00 0x00 0xFF 0x01 // Never capture unit IDs 0xA0 and above - this also terminates lol 
+
+ALIGN 4; WORD 0 0 // Terminator 
+
+
+
+
+
+

@@ -26,30 +26,30 @@ CapturePokemon:	@Make
 @check if dead
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
-beq	End
+beq	Break
 
 @check if attacked this turn
 ldrb 	r0, [r6,#0x11]	@action taken this turn
 cmp	r0, #0x2 @attack
-bne	End
+bne	Break
 ldrb 	r0, [r6,#0x0C]	@allegiance byte of the current character taking action
 ldrb	r1, [r4,#0x0B]	@allegiance byte of the character we are checking
 cmp	r0, r1		@check if same character
-bne	End
+bne	Break
 
 
 
 @check that we killed the enemy 
 ldrb	r0, [r5,#0x13]	@currhp
 cmp	r0, #0
-bne	End
+bne	Break
 
 @check that we're capturing the enemy 
 ldrb 	r0, [r5, #0x0C] @unit state 
 mov r1, #0x20 @being rescued 
 and r0, r1 
 cmp r0, #0
-beq End 		@if they are not being rescued, end 
+beq Break 		@if they are not being rescued, Break 
 
 
 mov r3, #0x1D 
@@ -249,6 +249,7 @@ End:
 	blh  0x0801a1f4   @RefreshFogAndUnitMaps
 	blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics
+Break:
 	
 	pop {r4-r7}
 	pop {r0}

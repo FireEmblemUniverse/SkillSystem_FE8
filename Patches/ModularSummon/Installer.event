@@ -1,6 +1,5 @@
 // Modular Summon 
 // By Vesly       :-] 
-#include "ModularSummon_Internals.event"
 
 
 
@@ -8,15 +7,24 @@
 // Modular Summon 
   // MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
 
+#define MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup) "BYTE UnitID ClassID LevelReq FlagReq PosType MatchLvl ResetStats AllowDuplicates; POIN UnitGroup; ALIGN 12" 
+#define MS_TableTerminator "WORD 0 0 0" 
+
+
 ALIGN 12 
 ModularSummonTable:
 // Unit ID, Class ID, ReqLevel, ReqFlag; POIN UnitGroup 
 // 0x0 = any unit, class, level, or flag is fine 
-// 		Unit, 	Class, 	LevelReq, 	FlagReq, 	PosType, 		MatchLvl, 	ResetStats		Padding
-BYTE 	0x1		 0x0 		0x0 		0x0 		0x1				0x1 		0x0 			$0 ; POIN EirikasSummonUnitGroup; ALIGN 12
-// 		Unit, 	Class, 	LevelReq, 	FlagReq, 	PosType,	 	MatchLvl, 	ResetStats		Padding
-BYTE 	0x2 	0x0 		0x0 		0x0			0x1 			0x1 		0x1 			0x0; POIN SethsSummonUnitGroup; ALIGN 12
+// 		Unit, 	Class, 	LevelReq, 	FlagReq, 	PosType, 		MatchLvl, 	ResetStats		AllowDuplicates
+
+//MS_TableEntry(1, 0, 0, 0, 1, 1, 0, EirikasSummonUnitGroup) 
+//BYTE 	0x1		 0x0 		0x0 		0x0 		0x1				0x1 		0x0 			$0 ; POIN EirikasSummonUnitGroup; ALIGN 12
+// 		Unit, 	Class, 	LevelReq, 	FlagReq, 	PosType,	 	MatchLvl, 	ResetStats		AllowDuplicates
+BYTE 	0x2 	0x0 		0x0 		0x0			0x1 			0x1 		0x1 			0x0; POIN AnotherUnitGroup; ALIGN 12
+//BYTE 	0x2 	0x0 		0x0 		0x0			0x1 			0x1 		0x1 			0x0; POIN SethsSummonUnitGroup; ALIGN 12
 BYTE 	0x68 	0x0 		0x0 		0x0			0x1 			0x1 		0x1 			0x0; POIN AnotherUnitGroup; ALIGN 12
+//BYTE 	0xA0 	0x0 		0x0 		0x0			0x1 			0x1 		0x1 			0x0; POIN AnotherUnitGroup; ALIGN 12
+//BYTE 	0xA1	0x0 		0x0 		0x0 		0x1				0x1 		0x0 			$0 ; POIN EirikasSummonUnitGroup; ALIGN 12
 WORD 0 0 0 // Terminator 
 // (Align 12 is probably unnecessary but if you forget a byte it might make things explode a little less I'm hoping) 
 
@@ -34,6 +42,8 @@ WORD 0 0 0 // Terminator
 
 // If you load more than around 20 units at once as a summon, it'll probably break something lol
 // Units that are alive/already deployed will not be summoned 
+
+
 
 EirikasSummonUnitGroup:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 								AIWord 
@@ -58,6 +68,7 @@ UNIT
 
 
 
+#include "ModularSummon_Internals.event"
 
 
 

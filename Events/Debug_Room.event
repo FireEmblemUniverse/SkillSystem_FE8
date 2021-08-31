@@ -74,14 +74,14 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  CharizardID 0x1 Level(5,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-//UNIT Ephraim  PidgeyID 0x1 Level(5,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT Seth  RattataID 0x1 Level(5,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  CharmanderID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Ephraim  PidgeyID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Seth  RattataID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
 Units2:
-//UNIT Amelia MankeyID 0x1 Level(5,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Amelia MankeyID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
@@ -132,8 +132,8 @@ Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(21, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //21 
-Write_Byte(5, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(42, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(26, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
@@ -171,10 +171,12 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
 //SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
-SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, Vulnerary, 2)
 SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
+
+SupplyItemWithDurability(Berry, 3)
 
 
 //SilentGiveItem(Eirika, SuperPotion3)
@@ -182,14 +184,14 @@ SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 //SilentGiveItem(Eirika, Elixir)
 
-SupplyItem(Tackle)
-SupplyItem(LowKick)  
-SupplyItem(Ember) 
-SupplyItem(WaterGun)
-SupplyItem(Thundershock) 
-SupplyItem(Absorb) 
-SupplyItem(Lick)
-SupplyItem(Psychic) 
+//SupplyItem(Tackle)
+//SupplyItem(LowKick)  
+//SupplyItem(Ember) 
+//SupplyItem(WaterGun)
+//SupplyItem(Thundershock) 
+//SupplyItem(Absorb) 
+//SupplyItem(Lick)
+//SupplyItem(Psychic) 
 
 //SilentGiveItem(Eirika, LowKick)
 
@@ -209,7 +211,7 @@ ENUN
 
 //Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(15, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
+//SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
 
@@ -222,8 +224,8 @@ SupplyItemWithDurability(SuperPotion, 5)
 
 
 LABEL 0x63
-//SVAL r3 12500 
-//GIVETOMAIN 0
+SVAL r3 4500 
+GIVETOMAIN 0
 
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC

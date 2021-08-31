@@ -1,12 +1,14 @@
 
 #include "EAstdlib.event"
 
-// No need to touch stuff below here probably 
+// No need for most people to edit this file 
 #ifndef IsPointer
 	#define IsPointer 0x08000000 
 #endif 
 
 #include "ModularSummon.lyn.event"
+#include "AI_dependencies.lyn.event"
+#include "TrainerAI.lyn.event"
 
 #include "Extensions/ProcDefinitions.txt"
 
@@ -17,54 +19,50 @@
 	#define PROC_YIELD "PROC_YEILD"
 #endif 
 
+#define POINToModularSummonTable16 "POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable; POIN ModularSummonTable"
+#define POINToModularSummonTable256 "POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16; POINToModularSummonTable16"
 
 ALIGN 4
-ClearMemorySlotQueueEvent:
-LABEL 0 
-BEQ 1 rD r0 
-SDEQUEUE 1
-GOTO 0 
-LABEL 1 
-NoFade 
-ENDA 
+ModularSummonChapterTable:
+POINToModularSummonTable256
 
-CallModularSummonASMC_Event:
-ASMC ModularSummonEffect2
-NoFade 
-ENDA 
+WORD 0 // 
 
-AIModularSummon_Event:
-
-//SDEQUEUE rB
-//LABEL 0 
-//BEQ 1 rD r0 
-//SDEQUEUE 1
-//GOTO 0 
-//LABEL 1 
-ASMC PauseEventEngineWhileUnitsAreMoving
-
-//SDEQUEUE rB
-ASMC UpdateActiveUnitCoords
-ASMC ModularSummonEffect2
-ASMC 0x0801a1f5 //@RefreshFogAndUnitMaps 
-NoFade 
-ENDA 
+// All chapters poin to the master ModularSummonTable by default 
+// but we can now make other tables poin elsewhere instead 
+#define MS_ChTableEntry(ChID) "PUSH; ORG ModularSummonChapterTable + (4*ChID); POIN MS_IndividualChTable; POP; ALIGN 12; MS_IndividualChTable:" 
 
 
-// 3B808
-// 9A46AC gProc_summongfx
+
 ALIGN 4
 WarpAnimationEvent:
 // we stored a unit pointer to the memory slots queue, so now we retrive that pointer to mem slot 1 
 SHORT 0x0722 0x1 // SDEQUEUE, as old EA doesn't define this 
 ASMC ModularSummon_GetSummonedUnitCoords
-ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined - this can freeze the game 
+ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
+
 ASMC WarpAnimationQueue
+
+EmoticonSlotB(PokeballGraphic)
+STAL 14 
+EmoticonSlotB(OpenPokeballGraphic)
+STAL 18
+//LOAD_S2 1 // No restriction: always load 
+//ENUN 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+STAL 22 
+RemoveTrap 
+
+DISA 0xFC 
+STAL 10
+
+
+
 NoFade 
 ENDA 
 
-ModularSummon_RestoreCameraEvent:
-//_0x2629 0x7FFF // CAM2
+ModularSummon_RestoreCameraEvent: // This is an event so that it gets queued after X number of warp animation events, instead of happening beforehand 
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 NoFade 
 ENDA 
@@ -74,27 +72,17 @@ WaitUntilAIMovesProc:
 PROC_YIELD // Buffer.
 PROC_SET_NAME(WaitUntilAIMovesProcName)
 PROC_SLEEP(0)
-PROC_LOOP_ROUTINE(IfProcStateWrongThenYield)
-PROC_CALL_ROUTINE(CallAIModularSummon_Event)
-PROC_END
+PROC_LOOP_ROUTINE(WaitUntilAIMoves)
+PROC_CALL_ROUTINE(TrainerSpotsYouFunction)
+PROC_CALL_ROUTINE(0x80790a5) //MU_EndAll //deselect unit
 
-ALIGN 4
-PauseEventEngineUnitsMovingProc:
-PROC_YIELD // Buffer.
-PROC_SET_NAME(PauseEventEngineUnitsMovingProcName)
-
-PROC_LOOP_ROUTINE(IfActiveAIFinishedMovingThenStopPausingEventEngine)
-
+PROC_CALL_ROUTINE(ModularSummonEffect)
 PROC_END
 
 
 WaitUntilAIMovesProcName:
-String("EventEnginePauseUnitsMoving") ; BYTE 0
+String("CustomAIPausedBecauseUnitIsMoving") ; BYTE 0
 ALIGN 4
 
-PauseEventEngineUnitsMovingProcName:
-String("EventEnginePauseUnitsMoving") ; BYTE 0
-
-ALIGN 4
 
 

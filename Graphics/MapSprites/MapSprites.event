@@ -807,6 +807,9 @@ r151Moving:
 #incbin "MMS/r151.dmp"
 
 
+ALIGN 4
+BugCatcherMoving:
+#incbin "More MMS/BugCatcherMMS.dmp"
 
 ALIGN 4
 GrassMoving:
@@ -1519,7 +1522,7 @@ BerryTreeStanding:
 
 ALIGN 4
 BugCatcherStanding:
-#incbin "More SMS/BugCatcher.dmp"
+#incbin "More SMS/BugCatcherSMS.dmp"
 
 ALIGN 4
 FighterStanding:

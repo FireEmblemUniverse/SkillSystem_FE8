@@ -23,6 +23,12 @@ ldsb	r1,[r4,r1]
 .short	0xF800
 cmp		r0,#0x0
 bne		GoBack
+
+ldr r0, [r4] @ Unit Struct 
+ldrb r0, [r0, #4] @ Unit ID 
+cmp r0, #0xA0 
+bge GoBack @ Never allow capturing for unit IDs 0xA0 and greater 
+
 @ Vesly commented out so con is ignored 
 @mov		r0,r5
 @ldr		r1,Can_Rescue_Check

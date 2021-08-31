@@ -21,8 +21,9 @@ NewAI1Entry(25, AttackIfEnemyInRange)
 NewAI1Entry(26, MakeAIWaitLabel)
 NewAI1Entry(27, RunAwayLabel)
 
-NewAI1Entry(28, ApproachEnemyModularSummonLabel)
-NewAI1Entry(29, RunAwayModularSummonLabel)
+NewAI1Entry(28, PursueAndSummonOrAttackLabel)
+NewAI1Entry(29, RunAwayAndSummonLabel)
+NewAI1Entry(30, SummonOrAttackInRangeLabel)
 
 // AI 2 list
 // Vanilla entries take up 0 - 18
@@ -34,8 +35,9 @@ NewAI2Entry(25, BeedrilAI_2)
 
 NewAI2Entry(26, MakeAIWaitLabel)
 NewAI2Entry(27, RunAwayLabel)
-NewAI2Entry(28, ApproachEnemyModularSummonLabel)
-NewAI2Entry(29, RunAwayModularSummonLabel)
+NewAI2Entry(28, PursueAndSummonOrAttackLabel)
+NewAI2Entry(29, RunAwayAndSummonLabel)
+NewAI2Entry(30, SummonOrAttackInRangeLabel)
 
 #define SafeZoneAI2 23 
 #define BushAI [21,21]
@@ -47,25 +49,32 @@ NewAI2Entry(29, RunAwayModularSummonLabel)
 #define AttackOrWaitAI [0,26] // If nobody in range, wait 
 #define WaitAI [26,3] // Wait. Do nothing else. 
 #define RunAwayAI [27,27]
-#define ApproachEnemySummonAI [28,0] 
-#define RunAwaySummonAI [29,27] 
+#define ApproachEnemySummonAI [28,0,0,0] 
+#define RunAwayAndSummonAI [29,27] 
+#define SummonOrAttackInRangeAI [30,30] 
+#define SummonOrAttackIfAdjacentAI [30,30,0,32]
 
 
 
 
 
 ALIGN 4 
-ApproachEnemyModularSummonLabel:
-Routine_AI(ApproachEnemyModularSummon, 0)
+PursueAndSummonOrAttackLabel:
+Routine_AI(PursueAndSummonOrAttackFunc, 0)
 Goto(0)
 ALIGN 4 
 
 ALIGN 4
-RunAwayModularSummonLabel:
-Routine_AI(RunAwayModularSummon, 0)
+RunAwayAndSummonLabel:
+Routine_AI(RunAwayAndSummonFunc, 0)
 Goto(0)
 ALIGN 4 
 
+ALIGN 4 
+SummonOrAttackInRangeLabel:
+Routine_AI(SummonOrAttackInRangeFunc, 0)
+Goto(0)
+ALIGN 4
 
 
 ALIGN 4
