@@ -41,6 +41,13 @@ ContinueB:
 
 ldrh r1,[r5]
 ldrh r0,[r4]
+
+@ items to swap between units in r0 and r1 
+mov r2, #0xC0 @ 0x40|0x80 forged / equipped? (forgable items is disabled anyway)
+lsl r2, #8 
+bic r0, r2 
+bic r1, r2 @ remove top 2 bits of durability, i think 
+
 strh r1,[r4]
 strh r0,[r5]
 b End
