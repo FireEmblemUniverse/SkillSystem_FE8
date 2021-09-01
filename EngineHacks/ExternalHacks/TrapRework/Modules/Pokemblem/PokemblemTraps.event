@@ -24,8 +24,8 @@
 	SetTrapEventInit(HiddenPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder19ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder20ID,ObtainItemInitialization)
-	SetTrapEventInit(CoinsID,ObtainCoinsInitialization)
-		//SetTrapEventInit(CoinsID,ObtainItemInitialization)
+	SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
+		//SetTrapEventInit(CoinsTrapID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder22ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder23ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder24ID,ObtainItemInitialization)
@@ -39,8 +39,8 @@
 
 
 	SetTrapEventInit(CutBushID,GenericTrapDisappearInitialization)
-	SetTrapEventInit(RockSmashID,GenericTrapDisappearInitialization)
-	SetTrapEventInit(StrengthBoulderID,GenericTrapDisappearInitialization)
+	SetTrapEventInit(RockSmashTrapID,GenericTrapDisappearInitialization)
+	SetTrapEventInit(StrengthBoulderTrapID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(BreakableFloorID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(HoleID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(BoulderReceptacleID,GenericTrapDisappearInitialization)
@@ -103,7 +103,7 @@
 //#define ObtainItem(XX,YY,CompletionFlag, ItemID, EffectID) "BYTE RedPokeballItemID XX YY CompletionFlag ItemID EffectID"
 
 #define ObtainItem(XX,YY,CompletionFlag, ItemID) "BYTE RedPokeballItemID XX YY; SHORT CompletionFlag; BYTE ItemID"
-#define ObtainGold(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
+#define ObtainGold(XX,YY, Flag, CoinsAmount) "BYTE CoinsTrapID XX YY Flag; SHORT CoinsAmount"
 
 	//#define FlowerSMS 0x7A 
 	//#define FlowerTrapID 65 
@@ -187,13 +187,13 @@ SetTrapMapSpritePalette(ObtainSpellID,NPCTrapPaletteWord)
 SetImpassableTrap(ObtainSpellID)
 
 
-#define BerryTreeID 112 //0x70
-SetTrapEventInit(BerryTreeID,BerryTreeInitialization)
-SetTrapMapSprite(BerryTreeID,BerryTreeSMS)
-SetTrapMapSpritePalette(BerryTreeID,NPCTrapPaletteWord)
-SetImpassableTrap(BerryTreeID)
+#define BerryTreeTrapID 112 //0x70
+SetTrapEventInit(BerryTreeTrapID,BerryTreeInitialization)
+SetTrapMapSprite(BerryTreeTrapID,BerryTreeSMS)
+SetTrapMapSpritePalette(BerryTreeTrapID,NPCTrapPaletteWord)
+SetImpassableTrap(BerryTreeTrapID)
 
-#define BerryTree(XX,YY,BerriesCounter) "BYTE BerryTreeID XX YY BerriesCounter; SHORT 0x0"
+#define BerryTree(XX,YY,BerriesCounter) "BYTE BerryTreeTrapID XX YY BerriesCounter; SHORT 0x0"
 
 
 #define EnterCGTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankCGEnterID XX YY CompletionFlag; SHORT TextID"
@@ -223,7 +223,7 @@ SetImpassableTrap(BerryTreeID)
 // Display + block your path 
 #define OpenPokeball(XX,YY) "BYTE OpenPokeballItemID XX YY 0x0 OpenBallSMS 0x0"
 #define Sign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 SignSMS EventIndex"
-#define Save(XX,YY) "BYTE SaveID XX YY 0x0 BlankSMS 1"
+#define Save(XX,YY) "BYTE SaveTrapID XX YY 0x0 BlankSMS 1"
 #define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 1"
 
 //#define Enter(XX,YY) 
@@ -247,11 +247,11 @@ SetImpassableTrap(BerryTreeID)
 #define CutBush(XX,YY) "BYTE CutBushID XX YY CutHmFlag CutBushSMS 0x0"
 #define CutBushEffect(XX,YY, EffectID) "BYTE CutBushID XX YY CutHmFlag CutBushSMS EffectID"
 
-#define RockSmash(XX,YY) "BYTE RockSmashID XX YY RockSmashFlag RockSmashSMS 0x0"
-#define RockSmashEffect(XX,YY, EffectID) "BYTE RockSmashID XX YY RockSmashFlag RockSmashSMS EffectID"
+#define RockSmash(XX,YY) "BYTE RockSmashTrapID XX YY RockSmashFlag RockSmashSMS 0x0"
+#define RockSmashEffect(XX,YY, EffectID) "BYTE RockSmashTrapID XX YY RockSmashFlag RockSmashSMS EffectID"
 
-#define StrengthBoulder(XX,YY) "BYTE StrengthBoulderID XX YY StrengthBoulderFlag StrengthBoulderSMS 0x0"
-#define StrengthBoulderEffect(XX,YY, EffectIndex) "BYTE StrengthBoulderID XX YY StrengthBoulderFlag StrengthBoulderSMS EffectIndex"
+#define StrengthBoulder(XX,YY) "BYTE StrengthBoulderTrapID XX YY StrengthBoulderFlag StrengthBoulderSMS 0x0"
+#define StrengthBoulderEffect(XX,YY, EffectIndex) "BYTE StrengthBoulderTrapID XX YY StrengthBoulderFlag StrengthBoulderSMS EffectIndex"
 
 
 // Items 
@@ -266,7 +266,7 @@ SetImpassableTrap(BerryTreeID)
 #define TrainerDefeatedFlagOffset 0xA0 
 
 
-#define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsID XX YY Flag; SHORT CoinsAmount"
+#define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsTrapID XX YY Flag; SHORT CoinsAmount"
 #define SignATrap(XX,YY,Flag, TextID) "BYTE TeleportSignAID XX YY Flag; SHORT TextID"
 #define SignBTrap(XX,YY,Flag, TextID) "BYTE TeleportSignBID XX YY Flag; SHORT TextID"
 
@@ -335,17 +335,17 @@ POIN GenericTrapDisappearTableOffset
 	SetTrapMapSprite(RedPokeballItemID,RedPokeballSMS)
 	SetTrapMapSprite(GoldPokeballItemID,GoldPokeballSMS)
 	SetTrapMapSprite(HiddenPokeballItemID,0)
-	SetTrapMapSprite(CoinsID,CoinsSMS)
+	SetTrapMapSprite(CoinsTrapID,CoinsSMS)
 
 	SetTrapMapSpritePalette(RedPokeballItemID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(GoldPokeballItemID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(HiddenPokeballItemID,NPCTrapPaletteWord)
-	SetTrapMapSpritePalette(CoinsID,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(CoinsTrapID,NPCTrapPaletteWord)
 
 
 	SetImpassableTrap(RedPokeballItemID)
 	SetImpassableTrap(GoldPokeballItemID)
-	SetImpassableTrap(CoinsID)
+	SetImpassableTrap(CoinsTrapID)
 
 
 

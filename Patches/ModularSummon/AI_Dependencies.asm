@@ -23,19 +23,21 @@ bx r0
 .global WaitUntilAIMoves
 .type WaitUntilAIMoves, %function
 WaitUntilAIMoves:
-push {r4, lr} 
+push {r4-r5, lr} 
 mov r4, r0 @ Parent? 
 ldr r0, =0x85a8024 @gProc_CpPerform
 blh ProcFind, r1 
-
 cmp r0, #0 
 beq ProcStateError 
 ldr r1, [r0, #4] @ Code Cursor 
 @ldr r2, =0x85A804C @ Moving unit 
-
+@cmp r1, r2 
+@bne SkipThis
+@mov r3, #40 
+@add r5, r0, r3 @ Idk 
+@
+@SkipThis:
 ldr r2, =0x85A8064 @ wait 0x85a8024 + 0x40 @gProc_CpPerform
-
-
 cmp r1, r2 
 beq ReturnProcStateRight 
 
@@ -46,12 +48,14 @@ mov r0, #0
 b EndIfProcStateWrongThenYield
 
 ReturnProcStateRight: 
-mov r0, r4 @ parent to break from 
+
+
+mov r0, r4 @  @ parent to break from 
 blh BreakProcLoop
 mov r0, #1
 
 EndIfProcStateWrongThenYield:
-pop {r4}
+pop {r4-r5}
 pop {r1}
 bx r1 
 
@@ -62,10 +66,58 @@ bx r1
 .align 
 .ltorg
 
+
+
+.global QueueAIForUnitInMemSlot1
+.type QueueAIForUnitInMemSlot1, %function 
+QueueAIForUnitInMemSlot1: 
+push {r4-r7, lr}
+
+ldr r3, =MemorySlot 
+ldr r6, [r3, #4] @ Slot 1 
+
+
+mov r4, #0 
+ldr r5, =0x203AA04 @ gAiData.aiUnits 
+
+FindEndOfAIQueueLoop:
+ldrb r0, [r5, r4] 
+cmp r0, #0 
+beq WeFoundEndOfAI 
+add r4, #1 
+cmp r4, #0x73 // #0x73 bytes of queued ai  
+bgt Error 
+b FindEndOfAIQueueLoop
+
+WeFoundEndOfAI:
+ldrb r0, [r6, #0x0B] @ Deployment byte 
+strb r0, [r5, r4] @ Queue the unit 
+
+
+
+
+	@// Finding last index in the ai unit queue
+	@unsigned lastIndex = 0;
+	@for (; gAiData.aiUnits[lastIndex]; ++lastIndex) {}
+
+	@// Queuing our refreshed unit
+	@@gAiData.aiUnits[lastIndex]     = gAiData.decision.unitTargetIndex;
+	@gAiData.aiUnits[lastIndex + 1] = 0;
+
+
+Error: 
+
+
+pop {r4-r7}
+pop {r2} 
+bx r2 
+
+
+
 .align 4 
 @ Based on 803CDD4 
 @ 803B808 FindSafestTileAI from 803CDE7
-@.global CopyAIScript11
+.global CopyAIScript11_Move_Towards_Safety
 .type CopyAIScript11_Move_Towards_Safety, %function 
 CopyAIScript11_Move_Towards_Safety: 
 push {r4-r6, lr}

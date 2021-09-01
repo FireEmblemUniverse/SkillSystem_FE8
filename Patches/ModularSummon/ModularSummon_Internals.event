@@ -42,7 +42,9 @@ ASMC ModularSummon_GetSummonedUnitCoords
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
 
 ASMC WarpAnimationQueue
+ASMC QueueAIForUnitInMemSlot1
 
+STAL 5
 EmoticonSlotB(PokeballGraphic)
 STAL 14 
 EmoticonSlotB(OpenPokeballGraphic)
@@ -55,7 +57,7 @@ STAL 22
 RemoveTrap 
 
 DISA 0xFC 
-STAL 10
+STAL 5
 
 
 
@@ -73,8 +75,8 @@ PROC_YIELD // Buffer.
 PROC_SET_NAME(WaitUntilAIMovesProcName)
 PROC_SLEEP(0)
 PROC_LOOP_ROUTINE(WaitUntilAIMoves)
+
 PROC_CALL_ROUTINE(TrainerSpotsYouFunction)
-PROC_CALL_ROUTINE(0x80790a5) //MU_EndAll //deselect unit
 
 PROC_CALL_ROUTINE(ModularSummonEffect)
 PROC_END

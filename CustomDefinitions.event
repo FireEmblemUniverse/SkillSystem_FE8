@@ -7,6 +7,12 @@
 #define ChapterTileset(chapter, object, palette, config) "PUSH; ORG 0x8b0890 + (148* chapter) + 4; SHORT object; BYTE palette config; POP"
 #define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
 
+#include "Enumerate/ItemListPokemon.enu.event"
+#include "Enumerate/ClassIDList.enu.event"
+#include "Enumerate/ClassSpriteList.enu.event"
+
+
+
 // title screen area 
 		//PROTECT $C5724 $C579F
 		// PROTECT $2af00 $2afff // doubling area 
@@ -49,6 +55,7 @@
 
 #include "EngineHacks/ExternalHacks/AccessoriesAndForging/AccessoryEffectDefinitions.event"
 #include "Graphics/WepIcons/Icon Definitions.event"
+
 
 
 #ifndef DebuffTable
@@ -185,6 +192,5 @@
 #define jumpToHack_r2(offset) "SHORT 0x4A00 0x4710 ; POIN (offset|1)"
 #define jumpToHack_r3(offset) "SHORT 0x4B00 0x4718 ; POIN (offset|1)"
 
-#include "Enumerate/ItemListPokemon.enu.event"
-#include "Enumerate/ClassIDList.enu.event"
+
 

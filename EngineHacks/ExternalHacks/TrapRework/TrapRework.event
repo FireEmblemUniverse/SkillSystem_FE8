@@ -22,12 +22,12 @@
 	#define RedPokeballItemID 16	//respawnable item 
 	#define GoldPokeballItemID 17	//non-respawnable item
 	#define HiddenPokeballItemID 18	//invisible item 
-	#define CoinsID 21 // 
+	#define CoinsTrapID 21 // 
 	#define OpenPokeballItemID 89	//blocks but cannot interact 
 	
 	#define ObstacleID 48 
 	
-	#define SaveID 58 //0x3a
+	#define SaveTrapID 58 //0x3a
 	#define SaveCostID 59
 	#define EnterID 60
 	#define Exit2ID 61
@@ -40,9 +40,9 @@
 			// 0x1A flowers 
 
 
-	#define CutBushID 32		//Cut
-	#define RockSmashID 33		//Smash
-	#define StrengthBoulderID 34	//Push
+	#define CutBushTrapID 32		//Cut
+	#define RockSmashTrapID 33		//Smash
+	#define StrengthBoulderTrapID 34	//Push
 	#define BreakableFloorID 35	//Step
 	#define HoleID 36 		//Jump
 	#define BoulderReceptacleID 37	//place boulder into
@@ -138,7 +138,7 @@
 	SetTrapMapSprite(GorgonEggTrapID,0)
 	SetTrapMapSprite(LightRuneTrapID,0x66) //light rune map sprite
 
-	SetTrapMapSprite(SaveID,SavePointSMS)
+	SetTrapMapSprite(SaveTrapID,SavePointSMS)
 	SetTrapMapSprite(SaveCostID,BlankSMS)
 	SetTrapMapSprite(EnterID,BlankSMS)
 	SetTrapMapSprite(Exit2ID,BlankSMS)
@@ -148,9 +148,9 @@
 	SetTrapMapSprite(HiddenPokeballItemID,GoldPokeballSMS)
 	SetTrapMapSprite(OpenPokeballItemID,OpenBallSMS)
 
-	SetTrapMapSprite(CutBushID,CutBushSMS)
-	SetTrapMapSprite(RockSmashID,RockSmashSMS)
-	SetTrapMapSprite(StrengthBoulderID,StrengthBoulderSMS)
+	SetTrapMapSprite(CutBushTrapID,CutBushSMS)
+	SetTrapMapSprite(RockSmashTrapID,RockSmashSMS)
+	SetTrapMapSprite(StrengthBoulderTrapID,StrengthBoulderSMS)
 	SetTrapMapSprite(BreakableFloorID,0x72)
 	SetTrapMapSprite(HoleID,0x73)
 	SetTrapMapSprite(BoulderReceptacleID,0x74)
@@ -162,7 +162,7 @@
 
 	SetTrapMapSprite(Placeholder19ID,0x6C) //burrow
 	SetTrapMapSprite(Placeholder20ID,0x6D) //grass
-	SetTrapMapSprite(CoinsID,CoinsSMS) //coins
+	SetTrapMapSprite(CoinsTrapID,CoinsSMS) //coins
 	SetTrapMapSprite(Placeholder22ID,0x6F) //placeholder
 	SetTrapMapSprite(Placeholder23ID,0x77)
 	SetTrapMapSprite(Placeholder24ID,0x78)
@@ -213,9 +213,9 @@
 	
 
 	
-	SetTrapMapSpritePalette(CutBushID,NPCTrapPaletteWord)
-	SetTrapMapSpritePalette(RockSmashID,NPCTrapPaletteWord)
-	SetTrapMapSpritePalette(StrengthBoulderID,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(CutBushTrapID,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(RockSmashTrapID,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(StrengthBoulderTrapID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(BreakableFloorID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(HoleID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(BoulderReceptacleID,NPCTrapPaletteWord)
@@ -230,7 +230,7 @@
 	SetTrapMapSpritePalette(Placeholder19ID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(Placeholder20ID,NPCTrapPaletteWord)
 	
-	SetTrapMapSpritePalette(CoinsID,NPCTrapPaletteWord)
+	SetTrapMapSpritePalette(CoinsTrapID,NPCTrapPaletteWord)
 	
 	SetTrapMapSpritePalette(Placeholder22ID,NPCTrapPaletteWord)
 	SetTrapMapSpritePalette(Placeholder23ID,NPCTrapPaletteWord)
@@ -314,9 +314,9 @@
 
 	SetImpassableTrap(LightRuneTrapID)
 	
-	SetImpassableTrap(CutBushID)
-	SetImpassableTrap(RockSmashID)
-	SetImpassableTrap(StrengthBoulderID)
+	SetImpassableTrap(CutBushTrapID)
+	SetImpassableTrap(RockSmashTrapID)
+	SetImpassableTrap(StrengthBoulderTrapID)
 	SetImpassableTrap(BreakableFloorID)
 	SetImpassableTrap(HoleID)
 	SetImpassableTrap(BoulderReceptacleID)

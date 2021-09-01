@@ -1,0 +1,121 @@
+
+#define TQ_ChEntry(ChID) "PUSH; ORG TrainerQuotesPoinTable + (4*ChID); POIN TQ_IndividualChTable; POP; ALIGN 4; TQ_IndividualChTable:" 
+#define TD_ChEntry(ChID) "PUSH; ORG TrainerDefeatPoinTable + (4*ChID); POIN TD_IndividualChTable; POP; ALIGN 4; TD_IndividualChTable:" 
+#define TQD_TableTerminator "ALIGN 4; WORD 0" 
+
+
+
+#define TQT_POIN16 "POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable"
+#define TQT_POIN256 "TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16" 
+
+ALIGN 4 
+TrainerQuotesPoinTable:
+// Indexed by chapter. Points to a table of text entries to use. 
+
+TQT_POIN256 
+WORD 0 
+
+ALIGN 4 
+TrainerQuotesTable: 
+// If no entry for that chapter, we use this one. 
+// Indexed by trainer ID 
+// eg. 0xE0 - 0xEF 
+SHORT VF_0xE0_BQ // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BQ // 0xE1
+SHORT 450 // Gold 
+SHORT VF_0xE2_BQ // 0xE2 
+SHORT 400 // Gold 
+SHORT VF_0xE3_BQ // 0xE3 
+SHORT 600 // Gold 
+SHORT VF_0xE4_BQ // 0xE4 
+SHORT 900 // Gold 
+
+SHORT VF_0xE0_BQ // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BQ // 0xE1
+SHORT 450 // Gold 
+SHORT VF_0xE2_BQ // 0xE2 
+SHORT 400 // Gold 
+SHORT VF_0xE3_BQ // 0xE3 
+SHORT 600 // Gold 
+SHORT VF_0xE4_BQ // 0xE4 
+SHORT 900 // Gold 
+
+SHORT VF_0xE0_BQ // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BQ // 0xE1
+SHORT 450 // Gold 
+SHORT VF_0xE2_BQ // 0xE2 
+SHORT 400 // Gold 
+SHORT VF_0xE3_BQ // 0xE3 
+SHORT 600 // Gold 
+SHORT VF_0xE4_BQ // 0xE4 
+SHORT 900 // Gold 
+
+SHORT VF_0xE0_BQ // 0xE0 
+SHORT 300 // Gold 
+ALIGN 4; WORD 0 // Terminator 
+
+
+
+
+#define TDT_POIN16 "POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable; POIN TrainerDefeatTable"
+#define TDT_POIN256 "TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16; TDT_POIN16" 
+
+ALIGN 4 
+TrainerDefeatPoinTable:
+// Indexed by chapter. Points to a table of text entries to use. 
+
+TDT_POIN256 
+WORD 0 
+
+ALIGN 4 
+TrainerDefeatTable: 
+// If no entry for that chapter, we use this one. 
+// Indexed by trainer ID 
+// eg. 0xE0 - 0xEF 
+SHORT VF_0xE0_BD // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BD // 0xE1
+SHORT 450 // Gold 
+SHORT VF_0xE2_BD // 0xE2 
+SHORT 400 // Gold 
+SHORT VF_0xE3_BD // 0xE3 
+SHORT 600 // Gold 
+SHORT VF_0xE4_BD // 0xE4 
+SHORT 900 // Gold 
+
+SHORT VF_0xE0_BD // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BD // 0xE1
+SHORT 450 // Gold 
+SHORT VF_0xE2_BD // 0xE2 
+SHORT 400 // Gold 
+SHORT VF_0xE3_BD // 0xE3 
+SHORT 600 // Gold 
+SHORT VF_0xE4_BD // 0xE4 
+SHORT 900 // Gold 
+
+SHORT VF_0xE0_BD // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BD // 0xE1
+SHORT 450 // Gold 
+SHORT VF_0xE2_BD // 0xE2 
+SHORT 400 // Gold 
+SHORT VF_0xE3_BD // 0xE3 
+SHORT 600 // Gold 
+SHORT VF_0xE4_BD // 0xE4 
+SHORT 900 // Gold 
+
+SHORT VF_0xE0_BD // 0xE0 
+SHORT 300 // Gold 
+ALIGN 4; WORD 0 // Terminator 
+
+
+
+
+
+
+
+

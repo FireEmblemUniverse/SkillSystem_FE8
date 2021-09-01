@@ -248,12 +248,45 @@ add r0, r1 @ Full offset
 blh SetNewFlag
 
 
-@mov r11, r11 
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+ldr r1, [r3] @ Char data 
+ldrb r1, [r1, #4] @ Unit ID 
+cmp r1, #0xE0 
+blt ExitDefeatedTrainer
+sub r1, #0xE0 @ we only have trainers from unit IDs 0xE0 - 0xEF 
+lsl r1, #2 @ 4 bytes per entry 
+
+ldr r3, =0x202BCF0 @ gChapterData 
+ldrb r0, [r3, #0xE] @ what chapter is it 
+ldr r3, =TrainerDefeatPoinTable
+lsl r0, #2 @ 4 bytes per poin 
+add r3, r0 
+ldr r3, [r3] @ Specific chapter's table of quotes 
+ldrh r0, [r3, r1] @ TextID we want 
+add r1, #2 @ Gold amount 
+ldrh r1, [r3, r1] @ Gold amount we want 
+str r1, [r3, #4*0x03] @ Gold to give 
+
+ldr r3, =MemorySlot 
+str r0, [r3, #4*0x02] @ Store to mem slot 2 
+
+
+ldr r2, =CurrentUnit
+ldr r2, [r2] 
+ldrb r0, [r2, #0x10] @ X 
+ldrb r1, [r2, #0x11] @ Y 
+
+lsl r1, #16 
+add r1, r0 
+str r1, [r3, #4*0x0B] @ Coords 
+
 
 ldr r0, =TrainerDefeatedEvent 
 mov r1, #1 
 blh EventEngine 
 
+ExitDefeatedTrainer:
 
 
 

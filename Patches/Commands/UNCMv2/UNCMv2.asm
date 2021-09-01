@@ -83,9 +83,10 @@ Start:
 	
 
 	Exit:
-	blh  0x0801a1f4   @RefreshFogAndUnitMaps 
 	blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics
+	blh  0x0801a1f8   @RefreshUnitMaps 
+
 	
 	pop {r4-r7}
 	pop {r0}

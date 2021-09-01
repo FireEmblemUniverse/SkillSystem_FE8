@@ -1,189 +1,588 @@
 #include "Tools/Tool Helpers.txt"
 
-PUSH
+ALIGN 4
+NewStandingMapSpriteTable:
+FILL(256*8)
+WORD 0 
 
+
+ALIGN 4
+NewMovingMapSpriteTable:
+FILL(256*8)
+WORD 0 
+
+
+PUSH
+ORG $26730
+POIN NewStandingMapSpriteTable
+ORG $267B0
+POIN NewStandingMapSpriteTable
+ORG $26838
+POIN NewStandingMapSpriteTable
+ORG $26C88
+POIN NewStandingMapSpriteTable
+ORG $272D0
+POIN NewStandingMapSpriteTable
+ORG $27BB0
+POIN NewStandingMapSpriteTable
+ORG $27C9C
+POIN NewStandingMapSpriteTable
+ORG $27D48
+POIN NewStandingMapSpriteTable
+ORG $27E0C
+POIN NewStandingMapSpriteTable
+ORG $27E9C
+POIN NewStandingMapSpriteTable
+ORG $27F74
+POIN NewStandingMapSpriteTable
+ORG $28064
+POIN NewStandingMapSpriteTable
+
+
+ORG $79584
+POIN NewMovingMapSpriteTable
+ORG $79598
+POIN NewMovingMapSpriteTable
+ORG $BAC2C
+POIN NewMovingMapSpriteTable
+ORG $BAC40
+POIN NewMovingMapSpriteTable
+
+
+
+POP
+
+PUSH
 #define SetSMS(index, size, graphics) "ORG NewStandingMapSpriteTable + (index)*8 + 2; BYTE size 0; POIN graphics"
 //SetSMS($00, 2, m150Standing) //EphraimLord to Mewtwo
-/*
-
-SetSMS($01, 2, m1Standing)   //EirikaLord to Bulbasaur
-SetSMS($02, 2, m2Standing)
-SetSMS($03, 2, m3Standing)
-SetSMS($04, 2, m4Standing)   //Cavalier to Charmander
-SetSMS($05, 2, m5Standing)
-SetSMS($06, 2, m6Standing)
-SetSMS($07, 2, m7Standing)
-SetSMS($08, 2, m8Standing)
-SetSMS($09, 2, m9Standing)
-SetSMS($0A, 2, m10Standing)
-SetSMS($0B, 2, m11Standing)
-SetSMS($0C, 2, m12Standing)
-SetSMS($0D, 2, m13Standing)
-SetSMS($0E, 2, m14Standing)
-SetSMS($0F, 2, m15Standing)
-SetSMS($10, 2, m16Standing)
-SetSMS($11, 2, m17Standing)
-SetSMS($12, 2, m18Standing)
-SetSMS($13, 2, m19Standing)
-SetSMS($14, 2, m20Standing)
-SetSMS($15, 2, m21Standing)
-SetSMS($16, 2, m22Standing)
-SetSMS($17, 2, m23Standing)
-SetSMS($18, 2, m24Standing)
-SetSMS($19, 2, m25Standing)
-SetSMS($1A, 2, m26Standing)
-SetSMS($1B, 2, m27Standing)
-SetSMS($1C, 2, m28Standing)
-SetSMS($1D, 2, m29Standing)
-SetSMS($1E, 2, m30Standing)
-SetSMS($1F, 2, m31Standing)
-SetSMS($20, 2, m32Standing)
-SetSMS($21, 2, m33Standing)
-SetSMS($22, 2, m34Standing)
-SetSMS($23, 2, m35Standing)
-SetSMS($24, 2, m36Standing)
-SetSMS($25, 2, m37Standing)
-SetSMS($26, 2, m38Standing)
-SetSMS($27, 2, m39Standing)
-SetSMS($28, 2, m40Standing)
-SetSMS($29, 2, m41Standing)
-SetSMS($2A, 2, m42Standing)
-SetSMS($2B, 2, m43Standing)
-SetSMS($2C, 2, m44Standing)
-SetSMS($2D, 2, m45Standing)
-SetSMS($2E, 2, m46Standing)
-SetSMS($2F, 2, m47Standing)
-SetSMS($30, 2, m48Standing)
-SetSMS($31, 2, m49Standing)
-SetSMS($32, 2, m50Standing)
-SetSMS($33, 2, m51Standing)
-SetSMS($34, 2, m52Standing)
-SetSMS($35, 2, m53Standing)
-SetSMS($36, 2, m54Standing)
-SetSMS($37, 2, m55Standing)
-SetSMS($38, 2, m56Standing)
-SetSMS($39, 2, m57Standing)
-SetSMS($3A, 2, m58Standing)
-SetSMS($3B, 2, m59Standing)
-SetSMS($3C, 2, m60Standing)
-SetSMS($3D, 2, m61Standing)
-SetSMS($3E, 2, m62Standing)
-SetSMS($3F, 2, m63Standing)
-SetSMS($40, 2, m64Standing)
-SetSMS($41, 2, m65Standing)
-SetSMS($42, 2, m66Standing)
-SetSMS($43, 2, m67Standing)
-SetSMS($44, 2, m68Standing)
-SetSMS($45, 2, m69Standing)
-SetSMS($46, 2, m70Standing)
-SetSMS($47, 2, m71Standing)
-SetSMS($48, 2, m72Standing)
-SetSMS($49, 2, m73Standing)
-SetSMS($4A, 2, m74Standing)
-SetSMS($4B, 2, m75Standing)
-SetSMS($4C, 2, m76Standing)
-SetSMS($4D, 2, m77Standing)
-SetSMS($4E, 2, m78Standing)
-SetSMS($4F, 2, m79Standing)
-SetSMS($50, 2, m80Standing)
-SetSMS($51, 2, m81Standing)
-SetSMS($52, 2, m82Standing)
-SetSMS($53, 2, m83Standing)
-SetSMS($54, 2, m84Standing)
-SetSMS($55, 2, m85Standing)
-SetSMS($56, 2, m86Standing)
-SetSMS($57, 2, m87Standing)
-SetSMS($58, 2, m88Standing)
-SetSMS($59, 2, m89Standing)
-SetSMS($5A, 2, m90Standing)
-SetSMS($5B, 2, m91Standing)
-SetSMS($5C, 2, m92Standing)
-SetSMS($5D, 2, m93Standing)
-SetSMS($5E, 2, m94Standing)
-SetSMS($5F, 2, m95Standing)
-SetSMS($60, 2, m96Standing)
-SetSMS($61, 2, m97Standing)
-SetSMS($62, 2, m98Standing)
-SetSMS($63, 2, m99Standing)
-SetSMS($64, 2, m100Standing)
-SetSMS($65, 2, m101Standing)
-SetSMS($66, 2, m102Standing)
-SetSMS($67, 2, m103Standing)
-SetSMS($68, 2, m104Standing)
-SetSMS($69, 2, m105Standing)
-SetSMS($6A, 2, m106Standing)
-SetSMS($6B, 2, m107Standing)
-SetSMS($6C, 2, m108Standing)
-SetSMS($6D, 2, m109Standing)
-SetSMS($6E, 2, m110Standing)
-SetSMS($6F, 2, m111Standing)
-SetSMS($70, 2, m112Standing)
-SetSMS($71, 2, m113Standing)
-SetSMS($72, 2, m114Standing)
-SetSMS($73, 2, m115Standing)
-SetSMS($74, 2, m116Standing)
-SetSMS($75, 2, m117Standing)
-SetSMS($76, 2, m118Standing)
-SetSMS($77, 2, m119Standing)
-SetSMS($78, 2, m120Standing)
-SetSMS($79, 2, m121Standing)
-SetSMS($7A, 2, m122Standing)
-SetSMS($7B, 2, m123Standing)
-SetSMS($7C, 2, m124Standing)
-SetSMS($7D, 2, m125Standing)
-SetSMS($7E, 2, m126Standing)
-SetSMS($7F, 2, m127Standing)
 
 
+SetSMS(BulbasaurSMS , 2 ,   m1Standing)   //Eiri
+SetSMS(IvysaurSMS , 2 ,    m2Standing) 
+SetSMS(VenusaurSMS , 2 ,    m3Standing) 
+SetSMS(CharmanderSMS , 2 ,   m4Standing)   //Cava
+SetSMS(CharmeleonSMS , 2 ,   m5Standing)
+SetSMS(CharizardSMS , 2 ,   m6Standing)
+SetSMS(SquirtleSMS , 2 ,    m7Standing) 
+SetSMS(WartortleSMS , 2 ,   m8Standing)
+SetSMS(BlastoiseSMS , 2 ,   m9Standing)
+SetSMS(CaterpieSMS , 2 ,   m10Standing)
+SetSMS(MetapodSMS , 2 ,   m11Standing)
+SetSMS(ButterfreeSMS , 2 ,   m12Standing)
+SetSMS(WeedleSMS, 2 ,    m13Standing) 
+SetSMS(KakunaSMS, 2 ,    m14Standing) 
+SetSMS(BeedrillSMS , 2 ,   m15Standing)
+SetSMS(PidgeySMS, 2 ,    m16Standing) 
+SetSMS(PidgeottoSMS , 2 ,   m17Standing)
+SetSMS(PidgeotSMS , 2 ,   m18Standing)
+SetSMS(TreekoSMS, 2 ,  m1Standing) // Treeko ? 
+SetSMS(CrobatSMS, 2 ,  CrobatStanding)
+SetSMS(Unused3SMS , 2 ,  m1Standing)
+SetSMS(Unused4SMS , 2 ,  m1Standing)
+SetSMS(RattataSMS , 2 ,    m19Standing) 
+SetSMS(RaticateSMS , 2 ,    m20Standing) 
+SetSMS(SpearowSMS , 2 ,   m21Standing)
+SetSMS(FearowSMS, 2 ,    m22Standing) 
+SetSMS(EkansSMS, 2 ,    m23Standing) 
+SetSMS(ArbokSMS, 2 ,    m24Standing) 
+SetSMS(PikachuSMS , 2 ,   m25Standing)
+SetSMS(RaichuSMS, 2 ,     m26Standing)  
+SetSMS(SandshrewSMS , 2 ,    m27Standing) 
+SetSMS(SandslashSMS , 2 ,    m28Standing) 
+SetSMS(NidoranFSMS , 2 ,   m29Standing)
+SetSMS(NidorinaSMS , 2 ,    m30Standing) 
+SetSMS(NidoqueenSMS , 2 ,   m31Standing)
+SetSMS(NidoranMSMS , 2 ,   m32Standing)
+SetSMS(NidorinoSMS , 2 ,   m33Standing)
+SetSMS(NidokingSMS , 2 ,   m34Standing)
+SetSMS(ClefairySMS , 2 ,   m35Standing)
+SetSMS(ClefableSMS , 2 ,   m36Standing)
+SetSMS(VulpixSMS, 2 ,    m37Standing) 
+SetSMS(NinetalesSMS , 2 ,   m38Standing)
+SetSMS(JigglypuffSMS , 2 ,   m39Standing)
+SetSMS(WigglytuffSMS , 2 ,   m40Standing)
+SetSMS(ZubatSMS, 2 ,     m41Standing)  
+SetSMS(GolbatSMS, 2 ,    m42Standing) 
+SetSMS(OddishSMS, 2 ,    m43Standing) 
+SetSMS(GloomSMS, 2 ,    m44Standing) 
+SetSMS(VileplumeSMS , 2 ,    m45Standing) 
+SetSMS(ParasSMS, 2 ,     m46Standing)  
+SetSMS(ParasectSMS , 2 ,    m47Standing) 
+SetSMS(GorgonEggSMS , 2 ,  m1Standing)
+SetSMS(VenonatSMS , 2 ,      m48Standing) 
+SetSMS(VenomothSMS , 2 ,     m49Standing)
+SetSMS(DiglettSMS , 2 ,      m50Standing) 
+SetSMS(DugtrioSMS , 2 ,     m51Standing)
+SetSMS(MeowthSMS, 2 ,     m52Standing)
+SetSMS(PersianSMS , 2 ,      m53Standing) 
+SetSMS(PsyduckSMS , 2 ,     m54Standing)
+SetSMS(GolduckSMS , 2 ,     m55Standing)
+SetSMS(MankeySMS, 2 ,     m56Standing)
+SetSMS(PrimeapeSMS , 2 ,       m57Standing)  
+SetSMS(GrowlitheSMS , 2 ,     m58Standing)
+SetSMS(ArcanineSMS , 2 ,     m59Standing)
+SetSMS(PoliwagSMS , 2 ,     m60Standing)
+SetSMS(PoliwhirlSMS , 2 ,      m61Standing) 
+SetSMS(PoliwrathSMS , 2 ,     m62Standing)
+SetSMS(AbraSMS, 2 ,      m63Standing) 
+SetSMS(KadabraSMS , 2 ,      m64Standing) 
+SetSMS(AlakazamSMS , 2 ,     m65Standing)
+SetSMS(MachopSMS, 2 ,     m66Standing)
+SetSMS(MachokeSMS , 2 ,      m67Standing) 
+SetSMS(MachampSMS , 2 ,      m68Standing) 
+SetSMS(BellsproutSMS , 2 ,     m69Standing) 
+SetSMS(WeepinbellSMS , 2 ,     m70Standing) 
+SetSMS(VictreebelSMS , 2 ,      m71Standing)  
+SetSMS(TentacoolSMS , 2 ,     m72Standing)
+SetSMS(TentacruelSMS , 2 ,     m73Standing) 
+SetSMS(GeodudeSMS , 2 ,     m74Standing)
+SetSMS(GravellerSMS , 2 ,     m75Standing)
+SetSMS(PhantomSMS , 2 ,   m1Standing)
+SetSMS(GolemSMS, 2 ,     m76Standing)
+SetSMS(PonytaSMS, 2 ,     m77Standing)
+SetSMS(RapidashSMS , 2 ,      m78Standing) 
+SetSMS(SlowpokeSMS , 2 ,      m79Standing) 
+SetSMS(SlowbroSMS , 2 ,     m80Standing)
+SetSMS(MagnemiteSMS , 2 ,     m81Standing)  
+SetSMS(MagnetonSMS , 2 ,      m82Standing) 
+SetSMS(FarfetchdSMS , 2 ,      m83Standing)   
+SetSMS(DoduoSMS, 2 ,     m84Standing)
+SetSMS(DodrioSMS, 2 ,     m85Standing)
+SetSMS(SeelSMS, 2 ,       m86Standing)   
+SetSMS(DewgongSMS , 2 ,       m87Standing) 
+SetSMS(GrimerSMS, 2 ,      m88Standing) 
+SetSMS(CutBushSMS , 0 ,   CutBushStanding)
+SetSMS(RockSmashSMS , 0 ,  RockSmashStanding)
+SetSMS(StrengthBoulderSMS , 0 , StrengthBoulderStanding )
+SetSMS(GorgonEgg2SMS , 2 ,   m1Standing)
+SetSMS(Unused8SMS , 2 ,   m1Standing )
+SetSMS(DeathgoyleSMS , 2 ,   m1Standing )
+SetSMS(DracoZombieSMS  , 2 ,   m1Standing)
+SetSMS(DemonKingSMS , 2 ,   m1Standing)
+SetSMS(lassSMS, 1 ,   lassStanding)
+SetSMS(picnickerSMS , 1 ,   picnickerStanding)
+SetSMS(policemanSMS , 1 ,   policemanStanding) 
+SetSMS(prof_oakSMS , 1 ,   prof_oakStanding)
+SetSMS(rockerSMS, 1 ,   rockerStanding)
+SetSMS(rocket_fSMS , 1 ,   rocket_fStanding)
+SetSMS(rocket_mSMS , 1 ,   rocket_mStanding)
+SetSMS(sailorSMS, 1 ,   sailorStanding)
+SetSMS(scientistSMS , 1 ,   scientistStanding)
+SetSMS(super_nerdSMS , 1 ,   super_nerdStanding) 
+	SetSMS(Civilian5SMS , 1 ,   m1Standing) 
+SetSMS(FlowerSMS , 0 ,   FlowersStanding)
+SetSMS(BerryTreeSMS , 0 ,   BerryTreeStanding)
+SetSMS(sfxSMS, 0 ,   BlankStanding) 
+SetSMS(OpenBallSMS , 0 ,   OpenBallStanding)
+SetSMS(RedPokeballSMS  , 0 ,   RedPokeballStanding)
+SetSMS(GoldPokeballSMS  , 0 ,   GoldPokeballStanding)
+SetSMS(GarySMS, 2 ,   GaryStanding)  
+SetSMS(PlatformSMS , 2 ,   PlatformStanding) 
+SetSMS(BlankSMS, 0 ,   BlankStanding)
+SetSMS(SavePointSMS , 0 ,   SavePointStanding)
+SetSMS(BushSMS, 0 ,  GrassStanding )  
+SetSMS(SignSMS , 0 ,   SignStanding)   
+SetSMS(Sign2SMS , 0 ,   Sign2Standing) 
+SetSMS(CoinsSMS, 0 ,   CoinsStanding)
+SetSMS(MukSMS, 2 ,    m89Standing)     
+SetSMS(ShellderSMS , 2 ,      m90Standing)  
+SetSMS(CloysterSMS , 2 ,     m91Standing)  
+SetSMS(GastlySMS, 2 ,     m92Standing)    
+SetSMS(HaunterSMS , 2 ,    m93Standing)  
+SetSMS(GengarSMS, 2 ,     m94Standing)    
+SetSMS(OnixSMS, 2 ,   m95Standing)      
+SetSMS(DrowzeeSMS , 2 ,    m96Standing)    
+SetSMS(HypnoSMS, 2 ,     m97Standing)   
+SetSMS(KrabbySMS, 2 ,     m98Standing)    
+SetSMS(KinglerSMS , 2 ,     m99Standing)     
+SetSMS(VoltorbSMS , 2 ,    m100Standing) 
+SetSMS(ElectrodeSMS , 2 ,     m101Standing) 
+SetSMS(ExeggcuteSMS , 2 ,    m102Standing)   
+SetSMS(ExeggutorSMS , 2 ,      m103Standing) 
+SetSMS(CuboneSMS, 2 ,    m104Standing) 
+SetSMS(MarowakSMS , 2 ,    m105Standing)    
+SetSMS(HitmonleeSMS , 2 ,     m106Standing)    
+SetSMS(HitmonchanSMS , 2 ,     m107Standing)   
+SetSMS(LickitungSMS , 2 ,    m108Standing) 
+SetSMS(KoffingSMS , 2 ,    m109Standing)   
+SetSMS(WeezingSMS , 2 ,      m110Standing)  
+SetSMS(RhyhornSMS , 2 ,     m111Standing)  
+SetSMS(RhydonSMS, 2 ,    m112Standing)  
+SetSMS(ChanseySMS , 2 ,   m113Standing)   
+SetSMS(TangelaSMS , 2 ,     m114Standing)   
+SetSMS(KangaskhanSMS , 2 ,     m115Standing)   
+SetSMS(HorseaSMS, 2 ,      m116Standing) 
+SetSMS(SeadraSMS, 2 ,    m117Standing)   
+SetSMS(GoldeenSMS , 2 ,       m118Standing) 
+SetSMS(SeakingSMS , 2 ,      m119Standing) 
+SetSMS(StaryuSMS, 2 ,      m120Standing) 
+SetSMS(StarmieSMS , 2 ,    m121Standing) 
+SetSMS(MrMimeSMS, 2 ,      m122Standing) 
+SetSMS(ScytherSMS , 2 ,      m123Standing)
+SetSMS(JynxSMS, 2 ,      m124Standing)
+SetSMS(ElectabuzzSMS , 2 ,    m125Standing)
+SetSMS(MagmarSMS, 2 ,    m126Standing)  
+SetSMS(PinsirSMS, 2 ,      m127Standing)
+SetSMS(TaurosSMS, 2 ,      m128Standing) 
+SetSMS(MagikarpSMS , 2 ,      m129Standing) 
+SetSMS(GyaradosSMS , 2 ,     m130Standing) 
+SetSMS(LaprasSMS, 2 ,     m131Standing) 
+SetSMS(DittoSMS, 2 ,     m132Standing)  
+SetSMS(EeveeSMS, 2 ,      m133Standing)
+SetSMS(VaporeonSMS , 2 ,     m134Standing)  
+SetSMS(JolteonSMS , 2 ,    m135Standing)  
+SetSMS(FlareonSMS , 2 ,     m136Standing)  
+SetSMS(PorygonSMS , 2 ,     m137Standing)
+SetSMS(OmanyteSMS , 2 ,    m138Standing) 
+SetSMS(OmastarSMS , 2 ,     m139Standing)  
+SetSMS(KabutoSMS, 2 ,    m140Standing)  
+SetSMS(KabutopsSMS , 2 ,    m141Standing)   
+SetSMS(AerodactylSMS , 2 ,    m142Standing)
+SetSMS(SnorlaxSMS , 2 ,     m143Standing)
+SetSMS(ArticunoSMS , 2 ,    m144Standing)
+SetSMS(ZapdosSMS, 2 ,    m145Standing)
+SetSMS(MoltresSMS , 2 ,    m146Standing) 
+SetSMS(DratiniSMS , 2 ,     m147Standing) 
+SetSMS(DragonairSMS , 2 ,    m148Standing)  
+SetSMS(DragoniteSMS , 2 ,    m149Standing) 
+SetSMS(MewtwoSMS, 2 ,    m150Standing)
+SetSMS(MewSMS, 2 ,     m151Standing) 
+SetSMS(balding_manSMS  , 1 ,   balding_manStanding)
+SetSMS(battle_girlSMS  , 1 ,   battle_girlStanding)
+SetSMS(beautySMS, 1 ,   beautyStanding)
+SetSMS(billSMS, 1 ,   billStanding)
+SetSMS(blackbeltSMS , 1 ,   blackbeltStanding)
+SetSMS(blueSMS, 1 ,   blueStanding)
+SetSMS(boySMS, 1 ,   boyStanding)
+SetSMS(bug_catcherSMS  , 1 ,   bug_catcherStanding)
+SetSMS(camperSMS, 1 ,   camperStanding)
+SetSMS(captainSMS , 1 ,   captainStanding)
+SetSMS(channelerSMS , 1 ,   channelerStanding)
+SetSMS(chefSMS, 1 ,   chefStanding)
+SetSMS(cooltrainer_fSMS  , 1 ,   cooltrainer_fStanding)
+SetSMS(fat_manSMS , 1 ,   fat_manStanding)
+SetSMS(fisherSMS, 1 ,   fisherStanding)
+SetSMS(gentlemanSMS , 1 ,   gentlemanStanding)
+SetSMS(hikerSMS, 1 ,   hikerStanding)
+SetSMS(Unused36SMS , 0 ,    m1Standing)
+SetSMS(Unused37SMS , 0 ,    m1Standing)
+SetSMS(Unused38SMS , 0 ,    m1Standing)
+SetSMS(Unused39SMS , 0 ,    m1Standing)
+SetSMS(Unused40SMS , 0 ,    m1Standing)
+SetSMS(Unused41SMS , 0 ,    m1Standing)
+SetSMS(Unused42SMS , 0 ,    m1Standing)
+SetSMS(Unused43SMS , 0 ,    m1Standing)
+SetSMS(Unused1SMS , 0 ,    m1Standing)
+SetSMS(Unused2SMS , 0 ,    m1Standing)
+SetSMS(Unused44SMS , 0 ,    m1Standing)
+SetSMS(Unused45SMS , 0 ,    m1Standing)
+SetSMS(Unused46SMS , 0 ,    m1Standing)
+SetSMS(Unused47SMS , 0 ,    m1Standing)
+SetSMS(Unused48SMS , 0 ,    m1Standing)
+SetSMS(Unused49SMS , 0 ,    m1Standing)
+SetSMS(Unused50SMS , 0 ,    m1Standing)
+SetSMS(Unused51SMS , 0 ,    m1Standing)
+SetSMS(Unused52SMS , 0 ,    m1Standing)
+SetSMS(Unused53SMS , 0 ,    m1Standing)
+SetSMS(Unused54SMS , 0 ,    m1Standing)
+SetSMS(Unused55SMS , 0 ,    m1Standing)
+SetSMS(Unused56SMS , 0 ,    m1Standing)
+SetSMS(Unused57SMS , 0 ,    m1Standing)
+SetSMS(Unused58SMS , 0 ,    m1Standing)
+SetSMS(Unused59SMS , 0 ,    m1Standing)
+SetSMS(Unused60SMS , 0 ,    m1Standing)
+SetSMS(Unused61SMS , 0 ,    m1Standing)
+SetSMS(Unused62SMS , 0 ,    m1Standing)
+SetSMS(Unused63SMS , 0 ,    m1Standing)
+SetSMS(Unused64SMS , 0 ,    m1Standing)
+SetSMS(Unused65SMS , 0 ,    m1Standing)
+SetSMS(Unused66SMS , 0 ,    m1Standing)
+SetSMS(Unused67SMS , 0 ,    m1Standing)
+SetSMS(Unused68SMS , 0 ,    m1Standing)
+SetSMS(Unused69SMS , 0 ,    m1Standing)
+SetSMS(Unused70SMS , 0 ,    m1Standing)
+SetSMS(Unused71SMS , 0 ,    m1Standing)
+SetSMS(Unused72SMS , 0 ,    m1Standing)
+SetSMS(Unused73SMS , 0 ,    m1Standing)
+SetSMS(Unused74SMS , 0 ,    m1Standing)
+SetSMS(Unused75SMS , 0 ,    m1Standing)
+SetSMS(Unused76SMS , 0 ,    m1Standing)
+SetSMS(Unused77SMS , 0 ,    m1Standing)
+SetSMS(Unused78SMS , 0 ,    m1Standing)
+SetSMS(Unused79SMS , 0 ,    m1Standing)
+SetSMS(Unused80SMS , 0 ,    m1Standing)
 
 
-//Class table only goes up to 127 aka 7F by default. 
-SetSMS($80, 2, m128Standing)
-SetSMS($81, 2, m129Standing)
-SetSMS($82, 2, m130Standing)
-SetSMS($83, 2, m131Standing)
-SetSMS($84, 2, m132Standing)
-SetSMS($85, 2, m133Standing)
-SetSMS($86, 2, m134Standing)
-SetSMS($87, 2, m135Standing)
-SetSMS($88, 2, m136Standing)
-SetSMS($89, 2, m137Standing)
-SetSMS($8A, 2, m138Standing)
-SetSMS($8B, 2, m139Standing)
-SetSMS($8C, 2, m140Standing)
-SetSMS($8D, 2, m141Standing)
-SetSMS($8E, 2, m142Standing)
-SetSMS($8F, 2, m143Standing)
-SetSMS($90, 2, m144Standing)
-SetSMS($91, 2, m145Standing)
-SetSMS($92, 2, m146Standing)
-SetSMS($93, 2, m147Standing)
-SetSMS($94, 2, m148Standing)
-SetSMS($95, 2, m149Standing)
-SetSMS($96, 2, m150Standing)
-SetSMS($97, 2, m151Standing)
-*/
+
+
+
+
+
 
 
 
 //Standing map animations counts from 0
 //Moving map animations count from 1
 //so if matching them, they will be offset by 1
-//eg. for class 5 Cavalier we're setting it to be Charmander 
 
-//i think duplicates need to be ignored.. eg. 7 and 8 paladin both use the same image address 
 
 #define SetMMS(index, graphics, another_ptr) "ORG NewMovingMapSpriteTable + (index-1)*8; POIN graphics another_ptr"
+#define DemonKingAP 0x81fd028
 
-
-//SetMMS($01, r150Moving, $81fd028)
-//SetMMS($02, r1Moving, $81fd028)
-//SetMMS($03, r2Moving, $81fd028)
-//SetMMS($04, r3Moving, $81fd028)
-//SetMMS($05, r4Moving, $81E4EA4) 
-
-//todo: add the rest of the moving sprites
-
+SetMMS(BulbasaurMMS ,    r1Moving,        DemonKingAP)   
+SetMMS(IvysaurMMS ,     r2Moving,        DemonKingAP) 
+SetMMS(VenusaurMMS ,     r3Moving,        DemonKingAP) 
+SetMMS(CharmanderMMS ,    r4Moving,        DemonKingAP)  
+SetMMS(CharmeleonMMS ,    r5Moving,        DemonKingAP)
+SetMMS(CharizardMMS ,    r6Moving,        DemonKingAP)
+SetMMS(SquirtleMMS ,     r7Moving,        DemonKingAP) 
+SetMMS(WartortleMMS ,    r8Moving,        DemonKingAP)
+SetMMS(BlastoiseMMS ,    r9Moving,        DemonKingAP)
+SetMMS(CaterpieMMS ,    r10Moving,        DemonKingAP)
+SetMMS(MetapodMMS ,    r11Moving,        DemonKingAP)
+SetMMS(ButterfreeMMS ,    r12Moving,        DemonKingAP)
+SetMMS(WeedleMMS,     r13Moving,        DemonKingAP) 
+SetMMS(KakunaMMS,     r14Moving,        DemonKingAP) 
+SetMMS(BeedrillMMS ,    r15Moving,        DemonKingAP)
+SetMMS(PidgeyMMS,     r16Moving,        DemonKingAP) 
+SetMMS(PidgeottoMMS ,    r17Moving,        DemonKingAP)
+SetMMS(PidgeotMMS ,    r18Moving,        DemonKingAP)
+SetMMS(TreekoMMS,   r1Moving,        DemonKingAP) 
+SetMMS(CrobatMMS,   CrobatMoving,        DemonKingAP)
+SetMMS(Unused3MMS ,   r1Moving,        DemonKingAP)
+SetMMS(Unused4MMS ,   r1Moving,        DemonKingAP)
+SetMMS(RattataMMS ,     r19Moving,        DemonKingAP) 
+SetMMS(RaticateMMS ,     r20Moving,        DemonKingAP) 
+SetMMS(SpearowMMS ,    r21Moving,        DemonKingAP)
+SetMMS(FearowMMS,     r22Moving,        DemonKingAP) 
+SetMMS(EkansMMS,     r23Moving,        DemonKingAP) 
+SetMMS(ArbokMMS,     r24Moving,        DemonKingAP) 
+SetMMS(PikachuMMS ,    r25Moving,        DemonKingAP)
+SetMMS(RaichuMMS,      r26Moving,        DemonKingAP)  
+SetMMS(SandshrewMMS ,     r27Moving,        DemonKingAP) 
+SetMMS(SandslashMMS ,     r28Moving,        DemonKingAP) 
+SetMMS(NidoranFMMS ,    r29Moving,        DemonKingAP)
+SetMMS(NidorinaMMS ,     r30Moving,        DemonKingAP) 
+SetMMS(NidoqueenMMS ,    r31Moving,        DemonKingAP)
+SetMMS(NidoranMMMS ,    r32Moving,        DemonKingAP)
+SetMMS(NidorinoMMS ,    r33Moving,        DemonKingAP)
+SetMMS(NidokingMMS ,    r34Moving,        DemonKingAP)
+SetMMS(ClefairyMMS ,    r35Moving,        DemonKingAP)
+SetMMS(ClefableMMS ,    r36Moving,        DemonKingAP)
+SetMMS(VulpixMMS,     r37Moving,        DemonKingAP) 
+SetMMS(NinetalesMMS ,    r38Moving,        DemonKingAP)
+SetMMS(JigglypuffMMS ,    r39Moving,        DemonKingAP)
+SetMMS(WigglytuffMMS ,    r40Moving,        DemonKingAP)
+SetMMS(ZubatMMS,      r41Moving,        DemonKingAP)  
+SetMMS(GolbatMMS,     r42Moving,        DemonKingAP) 
+SetMMS(OddishMMS,     r43Moving,        DemonKingAP) 
+SetMMS(GloomMMS,     r44Moving,        DemonKingAP) 
+SetMMS(VileplumeMMS ,     r45Moving,        DemonKingAP) 
+SetMMS(ParasMMS,      r46Moving,        DemonKingAP)  
+SetMMS(ParasectMMS ,     r47Moving,        DemonKingAP) 
+SetMMS(GorgonEggMMS ,   r1Moving,        DemonKingAP)
+SetMMS(VenonatMMS ,       r48Moving,        DemonKingAP) 
+SetMMS(VenomothMMS ,      r49Moving,        DemonKingAP)
+SetMMS(DiglettMMS ,       r50Moving,        DemonKingAP) 
+SetMMS(DugtrioMMS ,      r51Moving,        DemonKingAP)
+SetMMS(MeowthMMS,      r52Moving,        DemonKingAP)
+SetMMS(PersianMMS ,       r53Moving,        DemonKingAP) 
+SetMMS(PsyduckMMS ,      r54Moving,        DemonKingAP)
+SetMMS(GolduckMMS ,      r55Moving,        DemonKingAP)
+SetMMS(MankeyMMS,      r56Moving,        DemonKingAP)
+SetMMS(PrimeapeMMS ,        r57Moving,        DemonKingAP)  
+SetMMS(GrowlitheMMS ,      r58Moving,        DemonKingAP)
+SetMMS(ArcanineMMS ,      r59Moving,        DemonKingAP)
+SetMMS(PoliwagMMS ,      r60Moving,        DemonKingAP)
+SetMMS(PoliwhirlMMS ,       r61Moving,        DemonKingAP) 
+SetMMS(PoliwrathMMS ,      r62Moving,        DemonKingAP)
+SetMMS(AbraMMS,       r63Moving,        DemonKingAP) 
+SetMMS(KadabraMMS ,       r64Moving,        DemonKingAP) 
+SetMMS(AlakazamMMS ,      r65Moving,        DemonKingAP)
+SetMMS(MachopMMS,      r66Moving,        DemonKingAP)
+SetMMS(MachokeMMS ,       r67Moving,        DemonKingAP) 
+SetMMS(MachampMMS ,       r68Moving,        DemonKingAP) 
+SetMMS(BellsproutMMS ,      r69Moving,        DemonKingAP) 
+SetMMS(WeepinbellMMS ,      r70Moving,        DemonKingAP) 
+SetMMS(VictreebelMMS ,       r71Moving,        DemonKingAP)  
+SetMMS(TentacoolMMS ,      r72Moving,        DemonKingAP)
+SetMMS(TentacruelMMS ,      r73Moving,        DemonKingAP) 
+SetMMS(GeodudeMMS ,      r74Moving,        DemonKingAP)
+SetMMS(GravellerMMS ,      r75Moving,        DemonKingAP)
+SetMMS(PhantomMMS ,    r1Moving,        DemonKingAP)
+SetMMS(GolemMMS,      r76Moving,        DemonKingAP)
+SetMMS(PonytaMMS,      r77Moving,        DemonKingAP)
+SetMMS(RapidashMMS ,       r78Moving,        DemonKingAP) 
+SetMMS(SlowpokeMMS ,       r79Moving,        DemonKingAP) 
+SetMMS(SlowbroMMS ,      r80Moving,        DemonKingAP)
+SetMMS(MagnemiteMMS ,      r81Moving,        DemonKingAP)  
+SetMMS(MagnetonMMS ,       r82Moving,        DemonKingAP) 
+SetMMS(FarfetchdMMS ,       r83Moving,        DemonKingAP)   
+SetMMS(DoduoMMS,      r84Moving,        DemonKingAP)
+SetMMS(DodrioMMS,      r85Moving,        DemonKingAP)
+SetMMS(SeelMMS,        r86Moving,        DemonKingAP)   
+SetMMS(DewgongMMS ,        r87Moving,        DemonKingAP) 
+SetMMS(GrimerMMS,       r88Moving,        DemonKingAP) 
+SetMMS(CutBushMMS ,    r1Moving,        DemonKingAP)
+SetMMS(RockSmashMMS ,   r1Moving,        DemonKingAP)
+SetMMS(StrengthBoulderMMS ,  r1Moving ,        DemonKingAP)
+SetMMS(GorgonEgg2MMS ,    r1Moving,        DemonKingAP)
+SetMMS(Unused8MMS ,    r1Moving ,        DemonKingAP)
+SetMMS(DeathgoyleMMS ,    r1Moving ,        DemonKingAP)
+SetMMS(DracoZombieMMS  ,    r1Moving,        DemonKingAP)
+SetMMS(DemonKingMMS ,    r1Moving,        DemonKingAP)
+SetMMS(lassMMS,    lassMoving,        DemonKingAP)
+SetMMS(picnickerMMS ,    picnickerMoving,        DemonKingAP)
+SetMMS(policemanMMS ,    policemanMoving,        DemonKingAP) 
+SetMMS(prof_oakMMS ,    prof_oakMoving,        DemonKingAP)
+SetMMS(rockerMMS,    rockerMoving,        DemonKingAP)
+SetMMS(rocket_fMMS ,    rocket_fMoving,        DemonKingAP)
+SetMMS(rocket_mMMS ,    rocket_mMoving,        DemonKingAP)
+SetMMS(sailorMMS,    sailorMoving,        DemonKingAP)
+SetMMS(scientistMMS ,    scientistMoving,        DemonKingAP)
+SetMMS(super_nerdMMS ,    super_nerdMoving,        DemonKingAP) 
+	SetMMS(Civilian5MMS ,    r1Moving,        DemonKingAP) 
+SetMMS(FlowerMMS ,    r1Moving,        DemonKingAP)
+SetMMS(BerryTreeMMS ,   r1Moving,        DemonKingAP)
+SetMMS(sfxMMS,    BlankMoving,        DemonKingAP) 
+SetMMS(OpenBallMMS ,    r1Moving,        DemonKingAP)
+SetMMS(RedPokeballMMS  ,    r1Moving,        DemonKingAP)
+SetMMS(GoldPokeballMMS  ,    r1Moving,        DemonKingAP)
+SetMMS(GaryMMS,    r1Moving,        DemonKingAP)  
+SetMMS(PlatformMMS ,    r1Moving,        DemonKingAP) 
+SetMMS(BlankMMS,    BlankMoving,        DemonKingAP)
+SetMMS(SavePointMMS ,    r1Moving,        DemonKingAP)
+SetMMS(BushMMS,   GrassMoving ,        DemonKingAP)  
+SetMMS(SignMMS ,    r1Moving,        DemonKingAP)   
+SetMMS(Sign2MMS ,    r1Moving,        DemonKingAP) 
+SetMMS(CoinsMMS,    r1Moving,        DemonKingAP)
+SetMMS(MukMMS,     r89Moving,        DemonKingAP)     
+SetMMS(ShellderMMS ,       r90Moving,        DemonKingAP)  
+SetMMS(CloysterMMS ,      r91Moving,        DemonKingAP)  
+SetMMS(GastlyMMS,      r92Moving,        DemonKingAP)    
+SetMMS(HaunterMMS ,     r93Moving,        DemonKingAP)  
+SetMMS(GengarMMS,      r94Moving,        DemonKingAP)    
+SetMMS(OnixMMS,    r95Moving,        DemonKingAP)      
+SetMMS(DrowzeeMMS ,     r96Moving,        DemonKingAP)    
+SetMMS(HypnoMMS,      r97Moving,        DemonKingAP)   
+SetMMS(KrabbyMMS,      r98Moving,        DemonKingAP)    
+SetMMS(KinglerMMS ,      r99Moving,        DemonKingAP)     
+SetMMS(VoltorbMMS ,     r100Moving,        DemonKingAP) 
+SetMMS(ElectrodeMMS ,      r101Moving,        DemonKingAP) 
+SetMMS(ExeggcuteMMS ,     r102Moving,        DemonKingAP)   
+SetMMS(ExeggutorMMS ,       r103Moving,        DemonKingAP) 
+SetMMS(CuboneMMS,     r104Moving,        DemonKingAP) 
+SetMMS(MarowakMMS ,     r105Moving,        DemonKingAP)    
+SetMMS(HitmonleeMMS ,      r106Moving,        DemonKingAP)    
+SetMMS(HitmonchanMMS ,      r107Moving,        DemonKingAP)   
+SetMMS(LickitungMMS ,     r108Moving,        DemonKingAP) 
+SetMMS(KoffingMMS ,     r109Moving,        DemonKingAP)   
+SetMMS(WeezingMMS ,       r110Moving,        DemonKingAP)  
+SetMMS(RhyhornMMS ,      r111Moving,        DemonKingAP)  
+SetMMS(RhydonMMS,     r112Moving,        DemonKingAP)  
+SetMMS(ChanseyMMS ,    r113Moving,        DemonKingAP)   
+SetMMS(TangelaMMS ,      r114Moving,        DemonKingAP)   
+SetMMS(KangaskhanMMS ,      r115Moving,        DemonKingAP)   
+SetMMS(HorseaMMS,       r116Moving,        DemonKingAP) 
+SetMMS(SeadraMMS,     r117Moving,        DemonKingAP)   
+SetMMS(GoldeenMMS ,        r118Moving,        DemonKingAP) 
+SetMMS(SeakingMMS ,       r119Moving,        DemonKingAP) 
+SetMMS(StaryuMMS,       r120Moving,        DemonKingAP) 
+SetMMS(StarmieMMS ,     r121Moving,        DemonKingAP) 
+SetMMS(MrMimeMMS,       r122Moving,        DemonKingAP) 
+SetMMS(ScytherMMS ,       r123Moving,        DemonKingAP)
+SetMMS(JynxMMS,       r124Moving,        DemonKingAP)
+SetMMS(ElectabuzzMMS ,     r125Moving,        DemonKingAP)
+SetMMS(MagmarMMS,     r126Moving,        DemonKingAP)  
+SetMMS(PinsirMMS,       r127Moving,        DemonKingAP)
+SetMMS(TaurosMMS,       r128Moving,        DemonKingAP) 
+SetMMS(MagikarpMMS ,       r129Moving,        DemonKingAP) 
+SetMMS(GyaradosMMS ,      r130Moving,        DemonKingAP) 
+SetMMS(LaprasMMS,      r131Moving,        DemonKingAP) 
+SetMMS(DittoMMS,      r132Moving,        DemonKingAP)  
+SetMMS(EeveeMMS,       r133Moving,        DemonKingAP)
+SetMMS(VaporeonMMS ,      r134Moving,        DemonKingAP)  
+SetMMS(JolteonMMS ,     r135Moving,        DemonKingAP)  
+SetMMS(FlareonMMS ,      r136Moving,        DemonKingAP)  
+SetMMS(PorygonMMS ,      r137Moving,        DemonKingAP)
+SetMMS(OmanyteMMS ,     r138Moving,        DemonKingAP) 
+SetMMS(OmastarMMS ,      r139Moving,        DemonKingAP)  
+SetMMS(KabutoMMS,     r140Moving,        DemonKingAP)  
+SetMMS(KabutopsMMS ,     r141Moving,        DemonKingAP)   
+SetMMS(AerodactylMMS ,     r142Moving,        DemonKingAP)
+SetMMS(SnorlaxMMS ,      r143Moving,        DemonKingAP)
+SetMMS(ArticunoMMS ,     r144Moving,        DemonKingAP)
+SetMMS(ZapdosMMS,     r145Moving,        DemonKingAP)
+SetMMS(MoltresMMS ,     r146Moving,        DemonKingAP) 
+SetMMS(DratiniMMS ,      r147Moving,        DemonKingAP) 
+SetMMS(DragonairMMS ,     r148Moving,        DemonKingAP)  
+SetMMS(DragoniteMMS ,     r149Moving,        DemonKingAP) 
+SetMMS(MewtwoMMS,     r150Moving,        DemonKingAP)
+SetMMS(MewMMS,      r151Moving,        DemonKingAP) 
+SetMMS(balding_manMMS  ,    balding_manMoving,        DemonKingAP)
+SetMMS(battle_girlMMS  ,    battle_girlMoving,        DemonKingAP)
+SetMMS(beautyMMS,    beautyMoving,        DemonKingAP)
+SetMMS(billMMS,    billMoving,        DemonKingAP)
+SetMMS(blackbeltMMS ,    blackbeltMoving,        DemonKingAP)
+SetMMS(blueMMS,    blueMoving,        DemonKingAP)
+SetMMS(boyMMS,    boyMoving,        DemonKingAP)
+SetMMS(bug_catcherMMS  ,    bug_catcherMoving,        DemonKingAP)
+SetMMS(camperMMS,    camperMoving,        DemonKingAP)
+SetMMS(captainMMS ,    captainMoving,        DemonKingAP)
+SetMMS(channelerMMS ,    channelerMoving,        DemonKingAP)
+SetMMS(chefMMS,    chefMoving,        DemonKingAP)
+SetMMS(cooltrainer_fMMS  ,    cooltrainer_fMoving,        DemonKingAP)
+SetMMS(fat_manMMS ,    fat_manMoving,        DemonKingAP)
+SetMMS(fisherMMS,    fisherMoving,        DemonKingAP)
+SetMMS(gentlemanMMS ,    gentlemanMoving,        DemonKingAP)
+SetMMS(hikerMMS,    hikerMoving,        DemonKingAP)
+SetMMS(Unused36MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused37MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused38MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused39MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused40MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused41MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused42MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused43MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused1MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused2MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused44MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused45MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused46MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused47MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused48MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused49MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused50MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused51MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused52MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused53MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused54MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused55MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused56MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused57MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused58MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused59MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused60MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused61MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused62MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused63MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused64MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused65MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused66MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused67MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused68MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused69MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused70MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused71MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused72MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused73MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused74MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused75MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused76MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused77MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused78MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused79MMS ,     r1Moving,        DemonKingAP)
+SetMMS(Unused80MMS ,     r1Moving,        DemonKingAP)
 
 
 
@@ -822,6 +1221,183 @@ BlankMoving:
 ALIGN 4
 CrobatMoving:
 #incbin "More MMS/Crobat.dmp"
+
+
+
+ALIGN 4
+balding_manStanding:
+#incbin "Trainer_SMS/SMS_balding_man.dmp"
+ALIGN 4
+battle_girlStanding:
+#incbin "Trainer_SMS/SMS_battle_girl.dmp"
+ALIGN 4
+beautyStanding:
+#incbin "Trainer_SMS/SMS_beauty.dmp"
+ALIGN 4
+billStanding:
+#incbin "Trainer_SMS/SMS_bill.dmp"
+ALIGN 4
+blackbeltStanding:
+#incbin "Trainer_SMS/SMS_blackbelt.dmp"
+ALIGN 4
+blueStanding:
+#incbin "Trainer_SMS/SMS_blue.dmp"
+ALIGN 4
+boyStanding:
+#incbin "Trainer_SMS/SMS_boy.dmp"
+ALIGN 4
+bug_catcherStanding:
+#incbin "Trainer_SMS/SMS_bug_catcher.dmp"
+ALIGN 4
+camperStanding:
+#incbin "Trainer_SMS/SMS_camper.dmp"
+ALIGN 4
+captainStanding:
+#incbin "Trainer_SMS/SMS_captain.dmp"
+ALIGN 4
+channelerStanding:
+#incbin "Trainer_SMS/SMS_channeler.dmp"
+ALIGN 4
+chefStanding:
+#incbin "Trainer_SMS/SMS_chef.dmp"
+ALIGN 4
+cooltrainer_fStanding:
+#incbin "Trainer_SMS/SMS_cooltrainer_f.dmp"
+ALIGN 4
+fat_manStanding:
+#incbin "Trainer_SMS/SMS_fat_man.dmp"
+ALIGN 4
+fisherStanding:
+#incbin "Trainer_SMS/SMS_fisher.dmp"
+ALIGN 4
+gentlemanStanding:
+#incbin "Trainer_SMS/SMS_gentleman.dmp"
+ALIGN 4
+hikerStanding:
+#incbin "Trainer_SMS/SMS_hiker.dmp"
+ALIGN 4
+lassStanding:
+#incbin "Trainer_SMS/SMS_lass.dmp"
+ALIGN 4
+picnickerStanding:
+#incbin "Trainer_SMS/SMS_picnicker.dmp"
+ALIGN 4
+policemanStanding:
+#incbin "Trainer_SMS/SMS_policeman.dmp"
+ALIGN 4
+prof_oakStanding:
+#incbin "Trainer_SMS/SMS_prof_oak.dmp"
+ALIGN 4
+rockerStanding:
+#incbin "Trainer_SMS/SMS_rocker.dmp"
+ALIGN 4
+rocket_fStanding:
+#incbin "Trainer_SMS/SMS_rocket_f.dmp"
+ALIGN 4
+rocket_mStanding:
+#incbin "Trainer_SMS/SMS_rocket_m.dmp"
+ALIGN 4
+sailorStanding:
+#incbin "Trainer_SMS/SMS_sailor.dmp"
+
+ALIGN 4
+scientistStanding:
+#incbin "Trainer_SMS/SMS_scientist.dmp"
+
+ALIGN 4
+super_nerdStanding:
+#incbin "Trainer_SMS/SMS_super_nerd.dmp"
+
+
+
+
+
+
+
+
+
+
+ALIGN 4
+balding_manMoving:
+#incbin "Trainer_MMS/MMS_balding_man.dmp"
+ALIGN 4
+battle_girlMoving:
+#incbin "Trainer_MMS/MMS_battle_girl.dmp"
+ALIGN 4
+beautyMoving:
+#incbin "Trainer_MMS/MMS_beauty.dmp"
+ALIGN 4
+billMoving:
+#incbin "Trainer_MMS/MMS_bill.dmp"
+ALIGN 4
+blackbeltMoving:
+#incbin "Trainer_MMS/MMS_blackbelt.dmp"
+ALIGN 4
+blueMoving:
+#incbin "Trainer_MMS/MMS_blue.dmp"
+ALIGN 4
+boyMoving:
+#incbin "Trainer_MMS/MMS_boy.dmp"
+ALIGN 4
+bug_catcherMoving:
+#incbin "Trainer_MMS/MMS_bug_catcher.dmp"
+ALIGN 4
+camperMoving:
+#incbin "Trainer_MMS/MMS_camper.dmp"
+ALIGN 4
+captainMoving:
+#incbin "Trainer_MMS/MMS_captain.dmp"
+ALIGN 4
+channelerMoving:
+#incbin "Trainer_MMS/MMS_channeler.dmp"
+ALIGN 4
+chefMoving:
+#incbin "Trainer_MMS/MMS_chef.dmp"
+ALIGN 4
+cooltrainer_fMoving:
+#incbin "Trainer_MMS/MMS_cooltrainer_f.dmp"
+ALIGN 4
+fat_manMoving:
+#incbin "Trainer_MMS/MMS_fat_man.dmp"
+ALIGN 4
+fisherMoving:
+#incbin "Trainer_MMS/MMS_fisher.dmp"
+ALIGN 4
+gentlemanMoving:
+#incbin "Trainer_MMS/MMS_gentleman.dmp"
+ALIGN 4
+hikerMoving:
+#incbin "Trainer_MMS/MMS_hiker.dmp"
+ALIGN 4
+lassMoving:
+#incbin "Trainer_MMS/MMS_lass.dmp"
+ALIGN 4
+picnickerMoving:
+#incbin "Trainer_MMS/MMS_picnicker.dmp"
+ALIGN 4
+policemanMoving:
+#incbin "Trainer_MMS/MMS_policeman.dmp"
+ALIGN 4
+prof_oakMoving:
+#incbin "Trainer_MMS/MMS_prof_oak.dmp"
+ALIGN 4
+rockerMoving:
+#incbin "Trainer_MMS/MMS_rocker.dmp"
+ALIGN 4
+rocket_fMoving:
+#incbin "Trainer_MMS/MMS_rocket_f.dmp"
+ALIGN 4
+rocket_mMoving:
+#incbin "Trainer_MMS/MMS_rocket_m.dmp"
+ALIGN 4
+sailorMoving:
+#incbin "Trainer_MMS/MMS_sailor.dmp"
+ALIGN 4
+scientistMoving:
+#incbin "Trainer_MMS/MMS_scientist.dmp"
+ALIGN 4
+super_nerdMoving:
+#incbin "Trainer_MMS/MMS_super_nerd.dmp"
 
 
 

@@ -2,21 +2,25 @@
 //#define TrainerDefeatedFlagOffset 0xA0  
 
 #include "TrainerDeathFlags.lyn.event"
+#include "Quotes.event" 
 
 
 TrainerSpotsYouEvent:
-
-// Doing this makes them stop moving early, but they disappear for a frame 
-UNCR(0x7FFF, 1) // Unhide the trainer 
-ASMC  0x080271a1   //@SMS_UpdateFromGameData 
+ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 ASMC 0x80790a5 //MU_EndAll //deselect unit
+BottomWallS2Text 
 
-BottomWallText(ViridianForestTrainerE4Text)
+
+//BottomWallText(ViridianForestTrainerE4Text)
 NoFade 
 ENDA 
 
 TrainerDefeatedEvent:
-BottomWallText(ViridianForestTrainerE4DefeatText)
+//BottomWallText(ViridianForestTrainerE4DefeatText)
+ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
+
+BottomWallS2Text
+GIVETOMAIN 1
 NoFade 
 ENDA 
 

@@ -1,7 +1,9 @@
+/*
+
 #define BugCatcherMMS 0x73
 #define GrassMMS 0x7C 
 #define BlankMMS 0x7F
-#define CrobatMMS 0xD9 
+
 
 
 
@@ -31,3 +33,63 @@
 #define HikerSMS 0x75 
 
 
+#define TreekoSMS 0x13
+#define CrobatSMS 0x14
+#define lassSMS 0x67
+#define picnickerSMS 0x68
+#define policemanSMS 0x69
+#define prof_oakSMS 0x6A
+#define rockerSMS 0x6B
+#define rocket_fSMS 0x6C
+#define rocket_mSMS 0x6D
+#define sailorSMS 0x6E
+#define scientistSMS 0x6F
+#define super_nerdSMS 0x70
+#define balding_manSMS 0xBF
+#define battle_girlSMS 0xC0
+#define beautySMS 0xC1
+#define billSMS 0xC2
+#define blackbeltSMS 0xC3
+#define blueSMS 0xC4
+#define boySMS 0xC5
+#define bug_catcherSMS 0xC6
+#define camperSMS 0xC7
+#define captainSMS 0xC8
+#define channelerSMS 0xC9
+#define chefSMS 0xCA
+#define cooltrainer_fSMS 0xCB
+#define fat_manSMS 0xCC
+#define fisherSMS 0xCD
+#define gentlemanSMS 0xCE
+#define hikerSMS 0xCF
+
+#define TreekoMMS 0x13
+#define CrobatMMS 0x14
+#define lassMMS 0x67
+#define picnickerMMS 0x68
+#define policemanMMS 0x69
+#define prof_oakMMS 0x6A
+#define rockerMMS 0x6B
+#define rocket_fMMS 0x6C
+#define rocket_mMMS 0x6D
+#define sailorMMS 0x6E
+#define scientistMMS 0x6F
+#define super_nerdMMS 0x70
+#define balding_manMMS 0xBF
+#define battle_girlMMS 0xC0
+#define beautyMMS 0xC1
+#define billMMS 0xC2
+#define blackbeltMMS 0xC3
+#define blueMMS 0xC4
+#define boyMMS 0xC5
+#define bug_catcherMMS 0xC6
+#define camperMMS 0xC7
+#define captainMMS 0xC8
+#define channelerMMS 0xC9
+#define chefMMS 0xCA
+#define cooltrainer_fMMS 0xCB
+#define fat_manMMS 0xCC
+#define fisherMMS 0xCD
+#define gentlemanMMS 0xCE
+#define hikerMMS 0xCF
+*/

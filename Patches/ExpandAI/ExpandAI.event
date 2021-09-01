@@ -15,7 +15,7 @@ NewAI1Entry(0, AttackInRangeExceptF0toFF) // Do not target units 0xF0 - 0xFD
 //NewAI1Entry(0, 0x085A8870) // Vanilla 
 NewAI1Entry(21, DoNothingAI1)
 NewAI1Entry(22, AttackIfEnemyInRange)
-NewAI1Entry(23, AttackIfEnemyInRange)
+NewAI1Entry(23, DoNothing1TurnAI1)
 NewAI1Entry(24, AttackIfEnemyInRange)
 NewAI1Entry(25, AttackIfEnemyInRange)
 NewAI1Entry(26, MakeAIWaitLabel)
@@ -25,6 +25,7 @@ NewAI1Entry(28, PursueAndSummonOrAttackLabel)
 NewAI1Entry(29, RunAwayAndSummonLabel)
 NewAI1Entry(30, SummonOrAttackInRangeLabel)
 NewAI1Entry(31, TrainerSummonTeamAILabel)
+NewAI1Entry(32, MoveTowardsCommanderAILabel)
 
 // AI 2 list
 // Vanilla entries take up 0 - 18
@@ -40,11 +41,12 @@ NewAI2Entry(28, PursueAndSummonOrAttackLabel)
 NewAI2Entry(29, RunAwayAndSummonLabel)
 NewAI2Entry(30, SummonOrAttackInRangeLabel)
 NewAI2Entry(31, TrainerSummonTeamAILabel)
+NewAI2Entry(32, MoveTowardsCommanderAILabel)
 
 #define SafeZoneAI2 23 
 #define BushAI [21,21]
-#define WithinTwoZoningAI [22,22]
-#define SafeZoningAI [23,23]
+#define WithinTwoZoningAI [23,23] // 
+#define SafeZoningAI [23,32]
 #define LessSafeZoningAI [24,24]
 #define ZoningAI [24,24]
 #define BeedrillAI [25,25]
@@ -57,6 +59,14 @@ NewAI2Entry(31, TrainerSummonTeamAILabel)
 #define SummonOrAttackIfAdjacentAI [30,30,0,32]
 #define TrainerAI [31, 6, 0, 0] 
 #define TrainerBossAI [31, 6, 0, 32] 
+
+
+ALIGN 4
+MoveTowardsCommanderAILabel:
+Routine_AI(MoveTowardsCommanderAIFunc, 0)
+ChangeAI(24, 0xFF) // Attack if in range 
+Goto(0)
+ALIGN 4
 
 
 ALIGN 4
@@ -123,6 +133,10 @@ SHORT 0xFD
 BYTE 0 //byte + align as terminator
 ALIGN 4 
 
+ALIGN 4
+MoveTowardsE0Label:
+MoveTowardsIfOutOfRange(0xE0)
+Goto(0)
 
 ALIGN 4
 Safest_Zoning_AI2:
@@ -138,6 +152,13 @@ ALIGN 4
 AttackIfEnemyInRange:
 ActionInRange
 Goto(0)
+
+ALIGN 4
+DoNothing1TurnAI1:
+RunAway
+ChangeAI(24, 0xFF) // Attack if in range 
+Goto(0) 
+
 
 ALIGN 4
 DoNothingAI1: 
@@ -179,6 +200,9 @@ ALIGN 4; Locat_5:
 defLocation(25,17)
 ALIGN 4; Locat_6: 
 defLocation(25,11) ; }
+
+
+
 
 
 ALIGN 4

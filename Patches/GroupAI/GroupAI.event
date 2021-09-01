@@ -30,16 +30,16 @@ GroupAI:
 
 
 
-#define SafestZoningGroupOneAI 					[0x00,0x17,0x09,0x01] 
-#define SafestZoningGroupTwoAI 					[0x00,0x17,0x09,0x02]
-#define SafestZoningGroupThreeAI				[0x00,0x17,0x09,0x03]
-#define SafestZoningGroupFourAI					[0x00,0x17,0x09,0x04]
-#define SafestZoningGroupFiveAI					[0x00,0x17,0x09,0x05]
-#define SafestZoningGroupSixAI					[0x00,0x17,0x09,0x06]
-#define SafestZoningGroupSevenAI				[0x00,0x17,0x09,0x07]
-#define SafestZoningGroupEightAI				[0x00,0x17,0x09,0x08]
-#define SafestZoningGroupNineAI					[0x00,0x17,0x09,0x09]
-#define SafestZoningGroupTenAI					[0x00,0x17,0x09,0x0A]
+#define SafestZoningGroupOneAI 					[32,24,0x09,0x01] // Retreat for 1st turn
+#define SafestZoningGroupTwoAI 					[32,24,0x09,0x02]
+#define SafestZoningGroupThreeAI				[32,24,0x09,0x03]
+#define SafestZoningGroupFourAI					[32,24,0x09,0x04]
+#define SafestZoningGroupFiveAI					[32,24,0x09,0x05]
+#define SafestZoningGroupSixAI					[32,24,0x09,0x06]
+#define SafestZoningGroupSevenAI				[32,24,0x09,0x07]
+#define SafestZoningGroupEightAI				[32,24,0x09,0x08]
+#define SafestZoningGroupNineAI					[32,24,0x09,0x09]
+#define SafestZoningGroupTenAI					[32,24,0x09,0x0A]
 
 
 
