@@ -6,6 +6,7 @@
 
 
 TrainerSpotsYouEvent:
+
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 BottomWallS2Text 
@@ -17,10 +18,12 @@ ENDA
 
 TrainerDefeatedEvent:
 //BottomWallText(ViridianForestTrainerE4DefeatText)
+ASMC PostTrainerBattleActions 
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
-
+CUMO 0x7ffE
 BottomWallS2Text
-GIVETOMAIN 1
+CURE
+GIVETOMAIN 0
 NoFade 
 ENDA 
 

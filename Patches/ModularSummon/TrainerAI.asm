@@ -180,7 +180,7 @@ bx r0
 
 MoveTowardsCommanderAIFunc:
 push {lr} 
-mov r11, r11 
+
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
 mov r2, #0x38 @ Commander 
