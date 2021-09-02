@@ -48,12 +48,7 @@
 */
 
 
-#define Halt "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-#define Break "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-#define Stop "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-//#define StopHere "CUMO 0x7FFE; EVBIT_F 2; TutText(DebugTextHere); CURE"
-#define StopHere "CUMO 0x7FFF; EVBIT_F 2; STAL 45; CURE"
-//#define StopHere "EVBIT_F 7"
+
 
 
 

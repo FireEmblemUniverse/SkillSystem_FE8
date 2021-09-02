@@ -1194,6 +1194,11 @@ cmp r0, r2
 beq CheckIfAnySummonedUnitDoesNotExistLoop @ You cannot summon yourself, as this breaks the terrain. 
 
 
+ldrb r1, [r4, #7] @ Load duplicate units? (This is probably only useful for enemies) 
+cmp r1, #1 
+beq AddToCounter  
+
+
 blh GetUnitByEventParameter
 cmp r0, #0 
 beq AddToCounter

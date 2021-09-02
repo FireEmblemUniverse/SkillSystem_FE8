@@ -27,6 +27,15 @@ GIVETOMAIN 0
 NoFade 
 ENDA 
 
+TrainerPostBattleTalkEvent:
+ASMC GetTargetAndStoreToRam
+ASMC PostTrainerBattleActions 
+BottomWallS2Text
+NoFade 
+ENDA 
+
+
+#include "PostBattleTalk.lyn.event"
 
 
 

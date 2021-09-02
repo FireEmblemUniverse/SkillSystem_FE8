@@ -1,50 +1,49 @@
-@ hook with r1 at 8024EE4 
+@jump to hack with r3 or whatever 
+@ 2517C 
 
-
-.align 4
 .macro blh to, reg=r3
   ldr \reg, =\to
   mov lr, \reg
   .short 0xf800
 .endm
 
-	.equ GetUnit, 0x8019431
-	.equ CurrentUnit, 0x3004E50
-	.equ CheckEventId, 0x8083da8 
-	
 
+
+.align 4
 .thumb 
-.align 4 
+
+	.equ CheckEventId, 0x8083da8 
 
 .global PreventAttacking
 .type PreventAttacking, %function 
 
+
 PreventAttacking:
- 
-@ vanilla stuff 
-add r0, r5, r0 
-ldr r0, [r0] 
-add r1, r0, r4 
+
 push {r4-r7, lr}
-ldrb r0, [r1] @ Target Unit deployment ID 
 
 
+mov r4, r0 @ target 
+ldr r0, =0x2033F3C @ gUnitSubject 
+ldr r5, [r0] 
+ldrb r0, [r5, #0x0B] @ Deployment byte 
+mov r1, #0x0B 
+ldsb r1, [r4, r1] @ Deployment byte 
 
+blh 0x8024d8c @AreUnitsAllied
+lsl r0, #24 
 cmp r0, #0 
-beq Skip
+bne CannotAttack @ Units are allied, so exit 
+@ Vesly stuff 
 
-push {r0} 
-
-
-blh GetUnit @19431 
-cmp r0, #0 
-beq CannotAttack 
-mov r4, r0 
-
-ldr r5, [r4] @ Unit pointer 
-ldrb r5, [r5, #4] @ Char ID 
+@ Target's class id 
 ldr r6, [r4, #4] @ Class pointer 
 ldrb r6, [r6, #4] @ Class id
+
+@ Target's unit id 
+ldr r5, [r4] @ Unit pointer 
+ldrb r5, [r5, #4] @ Char ID 
+
 
  
 
@@ -100,8 +99,8 @@ Capturing:
 cmp r5, #0xA0 @ Unit ID 
 blt WeCanAttack 
 
-ldr r1, =CurrentUnit 
-ldr r3, [r1]
+ldr r1, =0x2033F3C @ gUnitSubject 
+ldr r3, [r1] 
 ldr r1, [r3, #0x0C] @ Current Unit State 
 
 mov r2, #0x40 
@@ -112,55 +111,28 @@ cmp r2, #0
 beq WeCanAttack @ If we are not capturing, then we can attack. 
 
 b CannotAttack 
-@ If we are capturing, then we cannot attack. 
 
-@ Check that they are adjacent ! 
-@ r4 is target unit ram pointer, r3 is current unit ram pointer 
-ldrb r1, [r3, #0x10] @ Coords 
-ldrb r2, [r4, #0x10] @ Coords 
-cmp r2, r1 
-beq XWasEqual
-ldrb r1, [r3, #0x11] @ Coords 
-ldrb r2, [r4, #0x11] @ Coords 
-cmp r2, r1 
-bne CannotAttack @ Neither X nor Y was equal, so ExitB 
-YWasEqual:
-ldrb r1, [r3, #0x10] @ Coords 
-ldrb r2, [r4, #0x10] @ Coords 
-b EitherCase
+WeCanAttack:
+@ back to vanilla stuff now 
+@ Add the target now 
+mov r0, #0x10 
+ldsb r0, [r4, r0] @ XX 
+mov r1, #0x11 
+ldsb r1, [r4, r1] @ YY 
 
-XWasEqual:
-ldrb r1, [r3, #0x11] @ Coords 
-ldrb r2, [r4, #0x11] @ Coords 
+mov r2, #0xB 
+ldsb r2, [r4, r2] 
+mov r3, #0 
+blh 0x0804F8BC   @AddTarget
 
 
-EitherCase:
-sub r1, #1 @ 
-cmp r1, r2 
-beq WeCanCapture @ If we are adjacent, then we can capture. 
-add r1, #2 
-cmp r1, r2 
-beq WeCanCapture
-b CannotAttack @ 
-
-WeCanCapture:
-WeCanAttack: 
-
-
-pop {r0}
-@ r0 should be their deployment ID eg. unit ram + 0x0B 
-
-Skip:
-pop {r4-r7}
-pop {r1} 
-
-ldr r1, =0x8024EED @ Return address 
-bx r1 
 
 
 CannotAttack:
-pop {r0}
 
-mov r0, #0 
-b Skip 
+pop {r4-r7}
+pop {r0}
+bx r0 
+
+
 

@@ -1,14 +1,38 @@
+
+
+
+
+PUSH
+ORG $2517C 
+jumpToHack(PreventAttacking) 
+
+ORG $24EE4
+jumpToHack(PreventAttTradeRescueEtc_Ver2)
+
+
+POP 
+
+
+
+/*
 PUSH
 ORG $24EE4
-jumpToHack_r1(PreventAttacking)
+jumpToHack(PreventAttTradeRescueEtc)
 POP 
+*/
+
+
+
 
 // Prevent Attacking 
 // By Vesly 
 // Prevents the player from attacking units based on the target's unit ID or class ID. 
 // Will only take effect when a certain flag is on, or when capturing. 
 
-#include "PreventAttacking.lyn.event"
+#include "PreventAttacking.lyn.event" 
+#include "PreventTalking.lyn.event" 
+
+#include "PreventAttTradeRescueEtc.lyn.event"
 
 
 ALIGN 4

@@ -136,6 +136,7 @@ Write_Byte(42, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(26, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
+
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
@@ -174,10 +175,12 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 SilentGiveItemWithDurability(Eirika, Vulnerary, 2)
 SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
 
+SilentGiveItemWithDurability(2, Vulnerary, 3)
+
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 SupplyItemWithDurability(Berry, 3)
-
+SupplyItemWithDurability(SuperPotion, 5)
 
 //SilentGiveItem(Eirika, SuperPotion3)
 //SilentGiveItem(Eirika, SuperPotion4)
@@ -229,7 +232,7 @@ GIVETOMAIN 0
 
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(5, True, 0x120) // all 
+AutoLevelUnits(6, True, 0x120) // all 
 
 
 //GotoPrepScreen 

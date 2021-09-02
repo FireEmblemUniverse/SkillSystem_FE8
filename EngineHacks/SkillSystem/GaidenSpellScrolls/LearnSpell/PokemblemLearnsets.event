@@ -141,8 +141,10 @@ BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
-BYTE 1 Guard
-BYTE 7 Guard
+BYTE 1 StringShot
+BYTE 3 Tackle
+BYTE 15 BugBite
+//BYTE 7 Guard
 BYTE 0 0
 
 ALIGN 4
@@ -171,8 +173,10 @@ BYTE 0 0
 
 ALIGN 4
 KakunaLearnset:
-BYTE 1 Guard
-BYTE 7 Guard
+BYTE 1 StringShot
+BYTE 3 Tackle
+BYTE 15 BugBite
+//BYTE 7 Guard
 BYTE 0 0
 
 ALIGN 4
@@ -190,8 +194,8 @@ BYTE 0 0
 ALIGN 4
 PidgeyLearnset:
 BYTE 1 Tackle
-BYTE 5 SandAttack
-BYTE 9 Gust
+BYTE 4 Gust
+BYTE 9 SandAttack
 BYTE 13 QuickAttack
 BYTE 21 Twister
 BYTE 25 WingAttack
@@ -1239,7 +1243,7 @@ BYTE 0 0
 ALIGN 4
 KabutoLearnset:
 BYTE 1 Scratch 
-BYTE 1 Guard 
+//BYTE 1 Guard 
 BYTE 6 Absorb 
 BYTE 11 Leer 
 BYTE 16 EarthPower 

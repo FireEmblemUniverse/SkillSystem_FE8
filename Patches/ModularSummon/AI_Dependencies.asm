@@ -80,6 +80,7 @@ ldr r6, [r3, #4] @ Slot 1
 mov r4, #0 
 ldr r5, =0x203AA04 @ gAiData.aiUnits 
 
+
 FindEndOfAIQueueLoop:
 ldrb r0, [r5, r4] 
 cmp r0, #0 
@@ -92,6 +93,11 @@ b FindEndOfAIQueueLoop
 WeFoundEndOfAI:
 ldrb r0, [r6, #0x0B] @ Deployment byte 
 strb r0, [r5, r4] @ Queue the unit 
+
+@ Put 0 immediately afterwards 
+add r4, #1 
+mov r0, #0 
+strb r0, [r5, r4] 
 
 
 
@@ -128,7 +134,6 @@ ldr r0, [r0]
 add r4, sp, #0x0C @ stack address to save something to  ? 
 mov r1, r4 
 blh FindSafestTileAI @0x803B809  
-
 
 @ returns true or false 
 @ if false, don't do AiSetDecision 

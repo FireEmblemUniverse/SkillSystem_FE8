@@ -1,18 +1,21 @@
 ALIGN 4
 PreventTradingList:
-BYTE 0x1 
-BYTE Tackle 
-BYTE SacredStone 
-
+// Add items that can't be traded here
+// BYTE itemID
+// BYTE 0xBF
+// BYTE 0xC0
 BYTE 0
 ALIGN 4 
 
 
-
-
-
-
 PUSH
+
+ORG $9A554
+BYTE $47 $F0 $D8 $F9
+
+ORG $1948A
+BYTE $D2 $19
+
 
 ORG 0xe1908
 jumpToHack(giveall_fix)

@@ -44,6 +44,8 @@ ENDA
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+//TrainerPostBattleTalk(0xE0)
 END_MAIN
 
 
@@ -54,13 +56,13 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
-//AFEV 0 GlobalAfev 0
+AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-//AFEV 0 RefreshIfNotInDanger 0 
+AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute2N [4,7] [6,7] 
-//AREA 0 ToViridianForestS_A [43,32] [44,32] 
-//AREA 0 ToViridianForestS_B [36,32] [39,32] 
+AREA 0 ToViridianForestS_A [43,32] [44,32] 
+AREA 0 ToViridianForestS_B [36,32] [39,32] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -217,6 +219,7 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
+// Wilds
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
@@ -248,24 +251,19 @@ UNIT
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
-MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersB) 
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersB) 
 MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersC) 
-MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersD) 
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersE) 
+MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersD) 
+MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersE) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT VF_0xE0_BQ // 0xE0 
-SHORT 300 // Gold 
 SHORT VF_0xE1_BQ // 0xE1
-SHORT 450 // Gold 
 SHORT VF_0xE2_BQ // 0xE2 
-SHORT 400 // Gold 
 SHORT VF_0xE3_BQ // 0xE3 
-SHORT 600 // Gold 
 SHORT VF_0xE4_BQ // 0xE4 
-SHORT 900 // Gold 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
@@ -282,11 +280,11 @@ SHORT 900 // Gold
 TQD_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE4 bug_catcherID 0x0 Level(1, Enemy, 1) [10,28]  0b 0x0	0x0 REDA10R28 [0x1,0x0,0x0,0x0] TrainerAI // TrainerBossAI
-UNIT 0xE3 bug_catcherID 0x0 Level(1, Enemy, 1) [15,6 ]  0b 0x0	0x0 REDA15R6  [0x1,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 bug_catcherID 0x0 Level(1, Enemy, 1) [21,17]  0b 0x0	0x0 REDA21R17 [0x1,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 bug_catcherID 0x0 Level(1, Enemy, 1) [31,13]  0b 0x0	0x0 REDA31R13 [0x1,0x0,0x0,0x0] TrainerAI
 UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [39,18]  0b 0x0	0x0 REDA39R18 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 bug_catcherID 0x0 Level(1, Enemy, 1) [29,13]  0b 0x0	0x0 REDA29R13 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 bug_catcherID 0x0 Level(1, Enemy, 1) [19,14]  0b 0x0	0x0 REDA19R14 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 bug_catcherID 0x0 Level(1, Enemy, 1) [12,8 ]  0b 0x0	0x0 REDA12R8  [0x1,0x0,0x0,0x0] TrainerFleeAI // This makes them run into a corner i think 
+UNIT 0xE4 bug_catcherID 0x0 Level(1, Enemy, 1) [9,25]  0b 0x0	0x0 REDA9R25 [0x1,0x0,0x0,0x0] TrainerAI // TrainerBossAI
 UNIT
 
 
@@ -295,15 +293,15 @@ UNIT
 // they range from 0xD0 - 0xDF 
 // handled in Patches\TrainerDeathFlags
 EnemyTrainersA:
-UNIT 0xD0 		EkansID 0xE4 		Level(1, Enemy, 1) [8,8]  0b 0x0	0x0 0x00 [PoisonSting,Acid,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	WeedleID 0xE4 	Level(1, Enemy, 1) [10,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	CaterpieID 0xE4 	Level(1, Enemy, 1) [12,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT 0xD4 		RattataID 0xE0 	Level(1, Enemy, 1) [ 8,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	WeedleID 0xE0 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	CaterpieID 0xE0 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
 UNIT
 
 EnemyTrainersB:
-UNIT 0xD1 		MetapodID 0xE3 	Level(1, Enemy, 1) [ 8,12]  0b 0x0	0x0 0x00 [Headbutt, Guard,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	WeedleID 0xE3 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	CaterpieID 0xE3 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT 0xD3 		RattataID 0xE1 	Level(1, Enemy, 1) [ 8,10]  0b 0x0	0x0 REDA32R13 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	WeedleID 0xE1 	Level(1, Enemy, 1) [12,10]  0b 0x0	0x0 REDA31R14 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	CaterpieID 0xE1 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 REDA33R14 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT
 
 EnemyTrainersC:
@@ -313,15 +311,15 @@ UNIT GenericB 	WeedleID 0xE2 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 REDA20R16 [
 UNIT
 
 EnemyTrainersD:
-UNIT 0xD3 		RattataID 0xE1 	Level(1, Enemy, 1) [ 8,10]  0b 0x0	0x0 REDA32R13 [Tackle, TailWhip,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	WeedleID 0xE1 	Level(1, Enemy, 1) [12,10]  0b 0x0	0x0 REDA31R14 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	CaterpieID 0xE1 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 REDA33R14 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT 0xD1 		MetapodID 0xE3 	Level(1, Enemy, 1) [ 8,12]  0b 0x0	0x0 0x00 [Headbutt, Tackle,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB  KakunaID 0xE3 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x00 [Headbutt, Tackle,0x0,0x0] SafestZoningGroupTwoAI
+//UNIT GenericB 	CaterpieID 0xE3 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 EnemyTrainersE:
-UNIT 0xD4 		RattataID 0xE0 	Level(1, Enemy, 1) [ 8,12]  0b 0x0	0x0 0x00 [Tackle, TailWhip,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	WeedleID 0xE0 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	RattataID 0xE0 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT 0xD0 		EkansID 0xE4 		Level(1, Enemy, 1) [8,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	WeedleID 0xE4 	Level(1, Enemy, 1) [10,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	CaterpieID 0xE4 	Level(1, Enemy, 1) [12,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
 /*

@@ -3,6 +3,12 @@
 .equ FE7, 0
 .equ FE8, 1	@untested
 
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
+
 .thumb
 .org 0
 
@@ -259,8 +265,13 @@ mov		r1,r6
 ldr		r2,=Check_Effectiveness
 mov		r14,r2
 .short	0xF800
-cmp		r0,#0
-bne		IsEffective
+
+	@ Vesly added - make it only display for super effective moves, not resists etc. 
+	cmp r0, #4 
+	beq IsEffective 
+
+@cmp		r0,#0
+@bne		IsEffective
 ldrh	r0,[r4,r5]
 ldr		r1,=Get_Item_Crit
 mov		r14,r1
@@ -283,6 +294,13 @@ mov		r0,#2
 orr		r7,r0
 
 TalkEventCheck:
+@ Vesly added 
+@ If trainer is not defeated, do not display icon above them 
+mov r0, r4 @ Target 
+blh CheckTrainerFlag
+cmp r0, #0 
+beq WriteToCache 
+
 ldr		r0,[r6]
 ldrb	r0,[r0,#4]				@active unit's char id
 ldr		r1,[r4]
@@ -292,6 +310,9 @@ mov		r14,r2
 .short	0xF800
 cmp		r0,#0
 beq		WriteToCache
+
+
+
 mov		r0,#4
 orr		r7,r0
 WriteToCache:
@@ -434,3 +455,5 @@ bx r1
 
 .align
 .ltorg
+
+

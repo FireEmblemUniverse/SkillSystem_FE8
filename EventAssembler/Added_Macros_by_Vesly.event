@@ -3,17 +3,31 @@
 // ASMC 0x80790a5 //MU_EndAll //deselect unit
 // ASMC 0x080CCA15 //NewPromotion
 
-#define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
+#define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 #define TutText(background,textID) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO; CALL $9EE2C4; EVBIT_T 0x7; ENDA"
-#define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
-#define BottomWallText(text) "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA"
+#define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
+#define BottomWallText(text) "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered along bottom of screen 
 #define BottomWallS2Text "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND; REMA"
-
 
 
 #define CGText(text, BGIndex) "FlashBlack; ShowCG(BGIndex); CGTEXTSTART; TEXTSHOW text; TEXTEND; REMA; ClearBackgroundSmooth"
 
 #define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 
 
+#define Break "CALL 0x89EE1D4" // ENDB and unsets completion flag of event 
+#define Halt "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+#define Stop "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+#define StopHere "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+//#define StopHere "CUMO (-1); EVBIT_F 2; STAL 45; CURE" // no text but waits 45 frames 
+
+#define PlayerInRange "SVAL r2 0; CALL 0x89EE1B8" // When matching allegiance stops in range - Eg. if not player, ENDB 
+#define NPCInRange "SVAL r2 1; CALL 0x89EE1B8" 
+#define EnemyInRange "SVAL r2 2; CALL 0x89EE1B8" 
+
+
+// Pokemblem stuff: 
+
+#define TrainerPostBattleTalk(char2) "CHARASM 0 TrainerPostBattleTalkEvent 0x0 char2 PostBattleTalkUsability|1"
+#define AllTrainersPostBattleTalk "TrainerPostBattleTalk(0xE0); TrainerPostBattleTalk(0xE1); TrainerPostBattleTalk(0xE2); TrainerPostBattleTalk(0xE3); TrainerPostBattleTalk(0xE4); TrainerPostBattleTalk(0xE5); TrainerPostBattleTalk(0xE6); TrainerPostBattleTalk(0xE7); TrainerPostBattleTalk(0xE8); TrainerPostBattleTalk(0xE9); TrainerPostBattleTalk(0xEA); TrainerPostBattleTalk(0xEB); TrainerPostBattleTalk(0xEC); TrainerPostBattleTalk(0xED); TrainerPostBattleTalk(0xEE); TrainerPostBattleTalk(0xEF)" 
 
 

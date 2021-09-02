@@ -1,0 +1,1 @@
+This is the PreventTrade hack initially from Circles, altered by Vesly, and then tweaked by Pawkkie to support unequipping accessories when traded between units / the convoy.

@@ -96,8 +96,12 @@ beq ReturnFalse @ trainer was defeated already
 
 
 
-
 mov r1, #0x2D 
+ldrb r0, [r4, r1] 
+cmp r0, #0 
+bne ReturnFalse 
+
+
 strb r6, [r4,r1] @ Wexp1 as # of team members 
 mov r0, #0 
 mov r1, #0x2E 
@@ -155,12 +159,13 @@ push {r4-r7, lr}
 ldr r4, =0x203A4EC  @ Atkr 
 ldr r5, =0x203A56C @ Dfdr
 
-mov r1, #0x38 @ Commander 
+
 
 CheckAtkrFirst:
 ldrb r0, [r4, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne CheckDfdrSecond
+mov r1, #0x38 @ Commander 
 ldrb r0, [r4, r1] @ Commander 
 cmp r0, #0 
 beq CheckDfdrSecond 
@@ -169,10 +174,16 @@ cmp r0, #0
 beq CheckDfdrSecond 
 mov r6, r0 @ Commander 
 
+
+mov r1, #0x38 @ Commander 
+mov r0, #0 
+strb r0, [r4, r1] @ Make atkr have no commander so this doesn't trigger again 
+
+
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
 mov r2, #0x2E 
-ldrb r1, [r6, r2] @ Wexp2 as which ones that have fainted (none so far) 
+ldrb r1, [r6, r2] @ Wexp2 as how many that have fainted 
 add r1, #1 @ 1 more has died 
 strb r1, [r6, r2] 
 cmp r0, r1 
@@ -186,9 +197,11 @@ b CheckDfdrSecond
 
 
 CheckDfdrSecond:
+
 ldrb r0, [r5, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne False_IsTrainersTeamDefeated
+mov r1, #0x38 @ Commander 
 ldrb r0, [r5, r1] @ Commander 
 cmp r0, #0 
 beq False_IsTrainersTeamDefeated
@@ -196,6 +209,11 @@ blh GetUnitByEventParameter
 cmp r0, #0 
 beq False_IsTrainersTeamDefeated
 mov r6, r0 @ Commander 
+
+@ dunno if needed these 3 lines 
+mov r1, #0x38 @ Commander 
+mov r0, #0 
+strb r0, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again 
 
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
@@ -231,19 +249,10 @@ DefeatedTrainerRoutine:
 push {r4-r7, lr}
 mov r6, r0 @ Defeated trainer 
 
-ldr r1, [r6] 
-ldrb r1, [r1, #4] @ Unit ID we're interested in 
-
-sub r1, #0xE0 @ Unit ID offset 
-
-ldr r3, =0x202BCF0 @ Chapter Data 
-ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
-lsl r0, #4 @ 16 trainers per area allowed 
-add r0, r1 @ which trainer exactly 
-ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
-lsl r1, r3, #3 @ 8 flags per byte so +0x500 
-add r0, r1 @ Full offset 
-
+bl CheckTrainerFlag @ Returns offset of flag in r1 for convenience  
+cmp r0, #1 
+beq ExitDefeatedTrainer @ Flag is already on, so don't end the battle multiple times 
+mov r0, r1 @ Returns offset of flag in r1 for convenience  
 blh SetNewFlag
 
 ldr r3, =0x30017C4
@@ -261,6 +270,82 @@ ExitDefeatedTrainer:
 pop {r4-r7}
 pop {r1}
 bx r1 
+
+@ Trainers use IDs 0xE0 - 0xEF 
+.global CheckTrainerFlag
+.type CheckTrainerFlag, %function 
+CheckTrainerFlag:
+push {r4-r5, lr}
+
+@ given unit struct r0, check if their flag is set or not 
+mov r4, r0 
+mov r5, #0 
+
+ldr r1, [r4] 
+ldrb r1, [r1, #4] @ Unit ID we're interested in 
+cmp r1, #0xE0 
+blt TrainerFlagTrue 
+cmp r1, #0xF0 
+bge TrainerFlagTrue 
+
+ldr r3, =0x202BCF0 @ Chapter Data 
+ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
+lsl r0, #4 @ 16 trainers per area allowed 
+add r0, r1 @ which trainer exactly 
+ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
+lsl r1, r3, #3 @ 8 flags per byte so +0x500 
+add r0, r1 @ Full offset 
+mov r5, r0 
+blh CheckNewFlag 
+b ExitCheckTrainerFlag 
+
+
+TrainerFlagTrue:
+mov r0, #1 
+b ExitCheckTrainerFlag 
+
+TrainerFlagFalse:
+mov r0, #0 
+
+ExitCheckTrainerFlag: 
+mov r1, r5 @ Offset of flag 
+pop {r4-r5} 
+pop {r2}
+bx r2 
+
+
+.global GetTargetAndStoreToRam
+.type GetTargetAndStoreToRam, %function 
+GetTargetAndStoreToRam:
+push {lr} 
+
+ldr r3, =0x203A958
+ldrb r0, [r3, #0x0D] 
+
+blh GetUnit @ by deployment byte 
+ldr r3, =0x30017C4 
+cmp r0, #0 
+beq Error 
+str r0, [r3] 
+b Exit2
+
+
+
+
+Error: 
+str r0, [r3] @ put in 0 
+
+Exit2: 
+
+
+pop {r1}
+bx r1 
+
+
+
+
+
+
 
 .global PostTrainerBattleActions
 .type PostTrainerBattleActions, %function 
@@ -356,7 +441,6 @@ cmp r1, #0xDF
 bgt NextUnit 
 
 ValidUnit:
-@mov r11, r11 
 add r7, #1 
 mov r5, r0 
 mov r6, r1 @ Unit ID we're interested in 
@@ -375,7 +459,6 @@ lsl r1, r3, #3 @ 8 flags per byte so +0x500
 add r0, r1 @ Full offset 
 
 blh CheckNewFlag
-@mov r11, r11 
 cmp r0, #1 
 @if completion flag is true, then we do not spawn this trap :-) 
 bne NextUnit 

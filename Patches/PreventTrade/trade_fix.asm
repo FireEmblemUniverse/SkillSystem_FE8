@@ -45,8 +45,46 @@ ldrh r0,[r4]
 @ items to swap between units in r0 and r1 
 mov r2, #0xC0 @ 0x40|0x80 forged / equipped? (forgable items is disabled anyway)
 lsl r2, #8 
-bic r0, r2 
+
+@ Check if itemID stored at the address in r4 has the "IsAccsesory" weapon ability, and if it does, unequip it before trading
+push {r1-r3}
+ldr r3, =ItemTable
+ldrb r2,[r4] @ itemID
+mov r1, #0x24 @ width of item table
+mul r2, r1 @ multiply itemID by width of table
+add r2, #0xA @ offset to the column for Weapon Ability 3, which can contain IsAccessory (0x40)
+ldrb r2, [r3,r2] @ Get value in weapon ability 3
+mov r3, #0x40 @ Setup to compare WA3 with IsAccessory
+and r3, r2
+mov r1, #0x0
+cmp r3, r1
+beq NotAccessory1 @ if NOT = 0, go to NotAccessory1
+pop {r1-r3}
+bic r0, r2 @ remove top 2 bits of durability, i think 
+b CheckAcc1End
+NotAccessory1:
+pop {r1-r3}
+CheckAcc1End:
+
+@ Check if itemID stored at the address in r5 has the "IsAccessory" weapon ability, and if it does, unequip it before trading
+push {r1-r3}
+ldr r3, =ItemTable
+ldrb r2,[r5] @ itemID
+mov r1, #0x24 @ width of item table
+mul r2, r1 @ multiply itemID by width of table
+add r2, #0xA @ offset to the column for Weapon Ability 3, which can contain IsAccessory (0x40)
+ldrb r2, [r3,r2] @ Get value in weapon ability 3
+mov r3, #0x40 @ Setup to compare WA3 with IsAccessory
+and r3, r2
+mov r1, #0x0
+cmp r3, r1
+beq NotAccessory2 @ if NOT = 0, go to NotAccessory1
+pop {r1-r3}
 bic r1, r2 @ remove top 2 bits of durability, i think 
+b CheckAcc2End
+NotAccessory2:
+pop {r1-r3}
+CheckAcc2End:
 
 strh r1,[r4]
 strh r0,[r5]

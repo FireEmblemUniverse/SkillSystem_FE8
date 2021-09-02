@@ -21,40 +21,24 @@ TrainerQuotesTable:
 // Indexed by trainer ID 
 // eg. 0xE0 - 0xEF 
 SHORT VF_0xE0_BQ // 0xE0 
-SHORT 300 // Gold 
 SHORT VF_0xE1_BQ // 0xE1
-SHORT 450 // Gold 
 SHORT VF_0xE2_BQ // 0xE2 
-SHORT 400 // Gold 
 SHORT VF_0xE3_BQ // 0xE3 
-SHORT 600 // Gold 
 SHORT VF_0xE4_BQ // 0xE4 
-SHORT 900 // Gold 
 
 SHORT VF_0xE0_BQ // 0xE0 
-SHORT 300 // Gold 
 SHORT VF_0xE1_BQ // 0xE1
-SHORT 450 // Gold 
 SHORT VF_0xE2_BQ // 0xE2 
-SHORT 400 // Gold 
 SHORT VF_0xE3_BQ // 0xE3 
-SHORT 600 // Gold 
 SHORT VF_0xE4_BQ // 0xE4 
-SHORT 900 // Gold 
 
 SHORT VF_0xE0_BQ // 0xE0 
-SHORT 300 // Gold 
 SHORT VF_0xE1_BQ // 0xE1
-SHORT 450 // Gold 
 SHORT VF_0xE2_BQ // 0xE2 
-SHORT 400 // Gold 
 SHORT VF_0xE3_BQ // 0xE3 
-SHORT 600 // Gold 
 SHORT VF_0xE4_BQ // 0xE4 
-SHORT 900 // Gold 
 
 SHORT VF_0xE0_BQ // 0xE0 
-SHORT 300 // Gold 
 ALIGN 4; WORD 0 // Terminator 
 
 

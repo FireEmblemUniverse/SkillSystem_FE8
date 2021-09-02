@@ -26,6 +26,8 @@ NewAI1Entry(29, RunAwayAndSummonLabel)
 NewAI1Entry(30, SummonOrAttackInRangeLabel)
 NewAI1Entry(31, TrainerSummonTeamAILabel)
 NewAI1Entry(32, MoveTowardsCommanderAILabel)
+NewAI1Entry(33, TrainerFleeSummonTeamAILabel)
+
 
 // AI 2 list
 // Vanilla entries take up 0 - 18
@@ -42,6 +44,7 @@ NewAI2Entry(29, RunAwayAndSummonLabel)
 NewAI2Entry(30, SummonOrAttackInRangeLabel)
 NewAI2Entry(31, TrainerSummonTeamAILabel)
 NewAI2Entry(32, MoveTowardsCommanderAILabel)
+NewAI2Entry(33, TrainerFleeSummonTeamAILabel)
 
 #define SafeZoneAI2 23 
 #define BushAI [21,21]
@@ -52,19 +55,26 @@ NewAI2Entry(32, MoveTowardsCommanderAILabel)
 #define BeedrillAI [25,25]
 #define AttackOrWaitAI [0,26] // If nobody in range, wait 
 #define WaitAI [26,3] // Wait. Do nothing else. 
-#define RunAwayAI [27,27]
+#define RunAwayAI [6,27]
 #define ApproachEnemySummonAI [28,0,0,0] 
 #define RunAwayAndSummonAI [29,27] 
 #define SummonOrAttackInRangeAI [30,30] 
 #define SummonOrAttackIfAdjacentAI [30,30,0,32]
-#define TrainerAI [31, 6, 0, 0] 
-#define TrainerBossAI [31, 6, 0, 32] 
+#define TrainerAI [31, 3, 0, 0] 
+#define TrainerBossAI [31, 3, 0, 32] 
+#define TrainerFleeAI [33, 3, 0, 0] 
 
 
 ALIGN 4
 MoveTowardsCommanderAILabel:
 Routine_AI(MoveTowardsCommanderAIFunc, 0)
 ChangeAI(24, 0xFF) // Attack if in range 
+Goto(0)
+ALIGN 4
+
+ALIGN 4
+TrainerFleeSummonTeamAILabel:
+Routine_AI(TrainerFleeSummonTeamAIFunc, 0)
 Goto(0)
 ALIGN 4
 
