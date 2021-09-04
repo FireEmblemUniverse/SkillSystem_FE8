@@ -78,7 +78,7 @@ PROC_LOOP_ROUTINE(WaitUntilAIMoves)
 
 PROC_CALL_ROUTINE(TrainerSpotsYouFunction)
 
-PROC_CALL_ROUTINE(ModularSummonEffect)
+//PROC_CALL_ROUTINE(ModularSummonEffect)
 PROC_END
 
 

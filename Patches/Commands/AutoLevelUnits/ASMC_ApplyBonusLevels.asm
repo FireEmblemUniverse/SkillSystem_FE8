@@ -8,6 +8,8 @@
 .endm
 
 .equ MemorySlot,0x30004B8
+@ Given r0 unit, r1 levels recompute stats 
+@ r1 can be negative i think 
 .equ IncreaseUnitStatsByLevelCount, 0x8017FC4
 .equ GetUnitStructFromEventParameter, 0x800bc50
 .equ EnsureNoUnitStatCapOverflow, 0x80181c8
@@ -19,8 +21,7 @@
 
 .type ASMC_ApplyBonusLevels, %function 
 .global ASMC_ApplyBonusLevels
-@ Given r0 unit, r1 levels recompute stats 
-@ r1 can be negative 
+
 ASMC_ApplyBonusLevels:
 push {r4-r7, lr}
 

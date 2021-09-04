@@ -212,8 +212,7 @@ ENUN
 //Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-//Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(15, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
 //SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
@@ -223,16 +222,19 @@ SupplyItemWithDurability(SuperPotion, 5)
 
  //[0902374F]?
 
-
+Write_Byte(8, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 LABEL 0x63
 SVAL r3 4500 
 GIVETOMAIN 0
 
+
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
 AutoLevelUnits(6, True, 0x120) // all 
+
 
 
 //GotoPrepScreen 

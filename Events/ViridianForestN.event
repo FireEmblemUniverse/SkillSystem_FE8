@@ -149,7 +149,7 @@ AutoLevelUnits(WildLvl, True, 0x508F) // Wilds
 LOAD1 0x1 HumanTrainers
 ENUN 
 
-AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
 /*
 LOAD1 0x1 EnemyTrainersA
@@ -172,7 +172,7 @@ AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels
 //EVBIT_F 2
 //TutText(0x9d5)
 
-CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+//CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 // Returns # of trainers on map in rC
 //BEQ 10 rC r0 
 // If trainers exist, do stuff 
@@ -181,7 +181,6 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 
 
 LABEL 10 
-//SetUnitStatus(0x02, CurrentHP, 5)
 //SetUnitStatus(0x0F, CurrentHP, 5)
 CALL SetBushHpEvent
 
@@ -299,15 +298,15 @@ UNIT GenericB 	CaterpieID 0xE0 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 0x00 [0x0
 UNIT
 
 EnemyTrainersB:
-UNIT 0xD3 		RattataID 0xE1 	Level(1, Enemy, 1) [ 8,10]  0b 0x0	0x0 REDA32R13 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	WeedleID 0xE1 	Level(1, Enemy, 1) [12,10]  0b 0x0	0x0 REDA31R14 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	CaterpieID 0xE1 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 REDA33R14 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT 0xD3 		RattataID 0xE1 	Level(1, Enemy, 1) [ 8,10]  0b 0x0	0x0 0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	WeedleID 0xE1 	Level(1, Enemy, 1) [12,10]  0b 0x0	0x0 0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	CaterpieID 0xE1 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT
 
 EnemyTrainersC:
-UNIT 0xD2 		PikachuID 0xE2 	Level(1, Enemy, 1) [ 8,12]  0b 0x0	0x0 REDA21R17 [Thundershock, TailWhip,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	CaterpieID 0xE2 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 REDA22R15 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	WeedleID 0xE2 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 REDA20R16 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT 0xD2 		PikachuID 0xE2 	Level(1, Enemy, 1) [ 8,12]  0b 0x0	0x0 0x0 [Thundershock, TailWhip,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	CaterpieID 0xE2 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	WeedleID 0xE2 	Level(1, Enemy, 1) [12,12]  0b 0x0	0x0 0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT
 
 EnemyTrainersD:

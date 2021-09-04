@@ -6,12 +6,30 @@
 
 
 TrainerSpotsYouEvent:
-
+ASMC ModularSummon_UnhideActive 
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-BottomWallS2Text 
+SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
+ASMC CallCheckTrainerFlag 
+BEQ 0 rC r0 // If flag is unset, always call modular summon 
+
+EVBIT_MODIFY 4
+SVAL r7 1 
+EVBIT_F 2 
+TEXTSHOW RematchText // Only rematch if player says to 
+TEXTEND 
+BNE 10 rC r7
 
 
+LABEL 0 
+REMA 
+ASMC ModularSummonEffect
+GOTO 0x63 
+
+LABEL 10 
+REMA 
+
+LABEL 0x63 
 //BottomWallText(ViridianForestTrainerE4Text)
 NoFade 
 ENDA 
@@ -19,11 +37,14 @@ ENDA
 TrainerDefeatedEvent:
 //BottomWallText(ViridianForestTrainerE4DefeatText)
 ASMC PostTrainerBattleActions 
+SADD rA rC r0 
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
 CUMO 0x7ffE
 BottomWallS2Text
 CURE
+BNE 0x63 rA r0  // award no gold for rematches 
 GIVETOMAIN 0
+LABEL 0x63 
 NoFade 
 ENDA 
 
@@ -35,7 +56,7 @@ NoFade
 ENDA 
 
 
-#include "PostBattleTalk.lyn.event"
+
 
 
 

@@ -260,19 +260,14 @@ Term:
 		
 	item_match:
 		
-	mov 	r0, r5 		@move value into r0 
-	
-	ldr 	r1, [r3, r4] 
 
+	mov 	r1, r5 		@move value into r0 
 	
-	@//eor 	r0, r1 @this flips the switch 
+	ldr 	r0, [r3, r4] 
 	
-	@neg 	r0, #0xFF 
-	@and 	r0, r1 
+	bic 	r0, r1 
 	
-	bic 	r1, r0 
-	
-	str 	r1, [r3, r4] 
+	str 	r0, [r3, r4] 
 	b 		NextUnit
 
 

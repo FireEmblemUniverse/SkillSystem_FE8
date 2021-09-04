@@ -4,7 +4,7 @@
 #define ClassA ClassRoute1WildA
 #define ClassB ClassRoute1WildB
 #define WildLvl 1 
-#define TrainerL 6 
+#define TrainerL 2 
 EventPointerTable(ChapterID,ThisChapter)
 
 ALIGN 4
@@ -162,10 +162,9 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //lower 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds & Bushes 
 
-LOAD1 0x1 EnemyTrainersA
+LOAD1 0x1 HumanTrainers
 ENUN 
-AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
-CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
 CALL SetBushHpEvent
 
@@ -228,17 +227,49 @@ UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0
 UNIT 0xF2 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI 
 UNIT
 
-EnemyTrainersA:
-//UNIT GenericB RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
-UNIT
-
-NPCUnits:
-UNIT GenericA ClassA 0x0 Level(1, NPC, 1)   [1,0] 001b	0x0 0x01 REDA10R10 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT
-
 ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
+
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersB) 
+MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersC) 
+MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersD) 
+MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersE) 
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT VF_0xE0_BQ // 0xE0 
+SHORT VF_0xE1_BQ // 0xE1
+TQD_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+SHORT VF_0xE0_BD // 0xE0 
+SHORT 300 // Gold 
+SHORT VF_0xE1_BD // 0xE1
+SHORT 450 // Gold 
+TQD_TableTerminator ; }
+
+
+HumanTrainers:
+UNIT 0xE0 boyID 0x0 Level(1, Enemy, 1) [7,27]  0b 0x0	0x0 REDA7R27 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 bug_catcherID 0x0 Level(1, Enemy, 1) [12,17]  0b 0x0	0x0 REDA12R17 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 
+
+
+EnemyTrainersA:
+UNIT GenericB 	RattataID 0xE0 	Level(1, Enemy, 1) [10,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT
+
+EnemyTrainersB:
+UNIT GenericB 	WeedleID 0xE1 	Level(1, Enemy, 1) [9,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	CaterpieID 0xE1 	Level(1, Enemy, 1) [11,12]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT
+
 
 
 	

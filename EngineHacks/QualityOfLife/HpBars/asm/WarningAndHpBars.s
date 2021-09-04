@@ -300,6 +300,11 @@ mov r0, r4 @ Target
 blh CheckTrainerFlag
 cmp r0, #0 
 beq WriteToCache 
+mov r1, #0x2D 
+ldrb r0, [r4, r1] 
+cmp r0, #50 
+bne WriteToCache 
+
 
 ldr		r0,[r6]
 ldrb	r0,[r0,#4]				@active unit's char id

@@ -49,30 +49,15 @@ blt WeCanAttack
 cmp r5, #0xF0 
 bge WeCanAttack 
 
+mov r0, r4 
 
-sub r5, #0xE0 
-mov r1, r5 
-
-ldr r3, =0x202BCF0 @ Chapter Data 
-ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
-lsl r0, #4 @ 16 trainers per area allowed 
-add r0, r1 @ which trainer exactly 
-ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
-lsl r1, r3, #3 @ 8 flags per byte so +0x500 
-add r0, r1 @ Full offset 
-mov r6, r0 
-
-
-
-
-
-
-
-
-blh CheckNewFlag 
+blh CheckTrainerFlag 
 cmp r0, #1 
 bne CannotAttack @ We can only talk to them if the flag is ON 
-
+mov r1, #0x2D 
+ldrb r0, [r4, r1] @ Battle started etc. 
+cmp r0, #50 
+bne CannotAttack 
 
 
 WeCanAttack: 

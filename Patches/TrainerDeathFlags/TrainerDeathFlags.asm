@@ -17,9 +17,9 @@
 	.equ EventEngine, 0x800D07C
 	.equ CurrentUnit, 0x3004E50
 
-.global TrainerDeathFlags
-.type TrainerDeathFlags, %function
-TrainerDeathFlags:
+@.global TrainerDeathFlags
+@.type TrainerDeathFlags, %function
+@TrainerDeathFlags:
 push {lr}
 
 ldr r1, [r2] @ Char pointer 
@@ -179,9 +179,11 @@ mov r1, #0x38 @ Commander
 mov r0, #0 
 strb r0, [r4, r1] @ Make atkr have no commander so this doesn't trigger again 
 
-
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
+cmp r0, #50 
+beq CheckDfdrSecond 
+
 mov r2, #0x2E 
 ldrb r1, [r6, r2] @ Wexp2 as how many that have fainted 
 add r1, #1 @ 1 more has died 
@@ -217,6 +219,9 @@ strb r0, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again
 
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
+cmp r0, #50 
+beq False_IsTrainersTeamDefeated 
+
 mov r2, #0x2E 
 ldrb r1, [r6, r2] @ Wexp2 as which ones that have fainted (none so far) 
 add r1, #1 @ 1 more has died 
@@ -249,14 +254,13 @@ DefeatedTrainerRoutine:
 push {r4-r7, lr}
 mov r6, r0 @ Defeated trainer 
 
-bl CheckTrainerFlag @ Returns offset of flag in r1 for convenience  
-cmp r0, #1 
-beq ExitDefeatedTrainer @ Flag is already on, so don't end the battle multiple times 
-mov r0, r1 @ Returns offset of flag in r1 for convenience  
-blh SetNewFlag
+mov r1, #0x2D 
+ldrb r0, [r6, r1] 
+cmp r0, #50
+beq ExitDefeatedTrainer 
 
 ldr r3, =0x30017C4
-str r6, [r3] @ my ram 
+str r6, [r3] @ my ram 2
 
 
 ldr r0, =TrainerDefeatedEvent 
@@ -269,6 +273,20 @@ ExitDefeatedTrainer:
 
 pop {r4-r7}
 pop {r1}
+bx r1 
+
+.global CallCheckTrainerFlag 
+.type CallCheckTrainerFlag, %function 
+CallCheckTrainerFlag: 
+push {lr} 
+ldr r0, =CurrentUnit
+ldr r0, [r0] 
+bl CheckTrainerFlag 
+ldr r3, =MemorySlot 
+mov r1, #0x0C*4 
+str r0, [r3, r1] @ Store result to sC 
+
+pop {r1} 
 bx r1 
 
 @ Trainers use IDs 0xE0 - 0xEF 
@@ -390,6 +408,17 @@ lsl r1, #16
 add r1, r0 
 str r1, [r3, #4*0x0B] @ Coords 
 
+mov r0, r4 
+blh CheckTrainerFlag 
+ldr r3, =MemorySlot 
+mov r2, #0x0C*4 
+str r0, [r3, r2] @ store result to sC 
+mov r0, r1 @ returned address offset to set 
+blh SetNewFlag 
+
+mov r0, #50 
+mov r1, #0x2D 
+strb r0, [r4, r1] @ to not trigger the battle again 
 
 pop {r4}
 pop {r0}

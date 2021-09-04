@@ -26,8 +26,7 @@
 
 
 // Pokemblem stuff: 
-
-#define TrainerPostBattleTalk(char2) "CHARASM 0 TrainerPostBattleTalkEvent 0x0 char2 PostBattleTalkUsability|1"
+#define TrainerPostBattleTalk(char2) "CHAR 0 TrainerPostBattleTalkEvent [0x0, char2] 0"
 #define AllTrainersPostBattleTalk "TrainerPostBattleTalk(0xE0); TrainerPostBattleTalk(0xE1); TrainerPostBattleTalk(0xE2); TrainerPostBattleTalk(0xE3); TrainerPostBattleTalk(0xE4); TrainerPostBattleTalk(0xE5); TrainerPostBattleTalk(0xE6); TrainerPostBattleTalk(0xE7); TrainerPostBattleTalk(0xE8); TrainerPostBattleTalk(0xE9); TrainerPostBattleTalk(0xEA); TrainerPostBattleTalk(0xEB); TrainerPostBattleTalk(0xEC); TrainerPostBattleTalk(0xED); TrainerPostBattleTalk(0xEE); TrainerPostBattleTalk(0xEF)" 
 
 

@@ -685,10 +685,10 @@ lsr r0, #24
 strb r0, [r3, #0x1B] @ Rescuer/ee restored 
 
 @ Unhide the active unit 
-ldrb r0, [r3, #0x0C] @ State 
-mov r1, #0xFE  @ 0x1 - hide
-and r0, r1 
-strb r0, [r3, #0x0C] 
+@ldrb r0, [r3, #0x0C] @ State 
+@mov r1, #0xFE  @ 0x1 - hide
+@and r0, r1 
+@strb r0, [r3, #0x0C] 
 
 
 @ Restore camera 
@@ -700,10 +700,10 @@ blh EventEngine
 
 End:
 
-	blh  0x0801a1f8   @RefreshUnitMaps - not fog maps too because DR 
-	
-	blh  0x080271a0   @SMS_UpdateFromGameData
-	blh  0x08019c3c   @UpdateGameTilesGraphics
+	@blh  0x0801a1f8   @RefreshUnitMaps - not fog maps too because DR 
+	@
+	@blh  0x080271a0   @SMS_UpdateFromGameData
+	@blh  0x08019c3c   @UpdateGameTilesGraphics
 
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1
@@ -727,6 +727,30 @@ mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is s
 	
 .align 
 .ltorg
+
+.global ModularSummon_UnhideActive 
+.type ModularSummon_UnhideActive, %function 
+
+ModularSummon_UnhideActive:
+push {lr}
+
+
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+
+@ Unhide the active unit 
+ldrb r0, [r3, #0x0C] @ State 
+mov r1, #0xFE  @ 0x1 - hide
+and r0, r1 
+strb r0, [r3, #0x0C] 
+
+	blh  0x0801a1f8   @RefreshUnitMaps - not fog maps too because DR 
+	
+	blh  0x080271a0   @SMS_UpdateFromGameData
+	blh  0x08019c3c   @UpdateGameTilesGraphics
+
+pop {r0} 
+bx r0 
 
 
 	.equ CheckEventId,0x8083da8

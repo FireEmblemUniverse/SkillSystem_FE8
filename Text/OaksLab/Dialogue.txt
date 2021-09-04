@@ -4,6 +4,10 @@
 Retreat to Pewter city?
 [No][X]
 
+## RematchText
+Rematch trainer?[NL]
+[Yes][X]
+
 ## GuideMenuEffectivenessTitleText
 Dmg Mdfy[X]
 
@@ -541,6 +545,23 @@ it if you go easy on me![A][X]
 ## VF_0xE5_BD
 That totally stinks! I'm going to[NL]
 catch some stronger ones![A][X]
+
+
+## R1_0xE1_BQ
+I might be little, but I won't like[NL]
+it if you go easy on me![A][X]
+
+## R1_0xE1_BD
+That totally stinks! I'm going to[NL]
+catch some stronger ones![A][X]
 	
 
 
+## R1_0xE0_BQ
+I just lost, so I'm trying[NL]
+to find more POKEMON.[A][NL]
+Wait! You look weak![NL]
+Come on, let's battle![A][X]
+
+## R1_0xE0_BD
+Ugh. I don't have any more POKEMON.[A][X]

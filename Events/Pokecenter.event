@@ -37,6 +37,9 @@ END_MAIN
 
 BeginningScene:		// Since our party is so small and you can release/delete units, only LOAD3 works here 
 					// Otherwise it'll spawn Seth if you have no P-02
+OffAllUnitState(0x0145, 0x4210008, Any, Any, Any, Any, Any) // Remove escaped, departed, undeployed last ch, undeployed (does not remove death) 
+					
+					
 LOAD3 0x0 Units1 // Do not load dead / non-existent units 
 ENUN 
 

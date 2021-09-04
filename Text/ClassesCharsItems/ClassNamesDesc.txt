@@ -13,14 +13,14 @@ blank[X]
 # 0x11E0
 sfx unit[X]
 
-#0x1000 BulbasaurNameText *
+#0x1000 BulbasaurNameText ^
 Bulbasaur[X]
 
 ## GrassPoisonText
 Typing: [Grass] [Poison][NL]
 Weak to: [Fire] [Ice] [Flying] [Psychic] [NL]
 Resists: [Grass] [Water] [Electric] [Fighting] [Poison] [Ground] [Bug] [X]
-## IvysaurText *
+## IvysaurText ^
 Ivysaur[X]
 # 0x1003
 Typing: [Grass] [Poison][NL]
@@ -32,13 +32,13 @@ Venusaur[X]
 Grass/Poison. [NL]
 Weak: FIRE, ICE, FLY, PSY[NL]
 Res: GRA, WTR, ELC, FIT, POI, GRD, BUG[X]
-# 0x1006 *
+# 0x1006 ^
 Charmander[X]
 # 0x1007
 Typing: [Fire] [NL]
 Weak to: [Water] [Ground] [Rock] [NL]
 Resists: [Bug] [Fire] [Grass] [Ice] [X]
-## CharmeleonText*
+## CharmeleonText^
 Charmeleon[X]
 
 # 0x100A
@@ -95,7 +95,7 @@ Pidgey[X]
 Typing: [Normal] [Flying] [NL]
 Weak to: [Electric] [Ice] [Rock] [NL]
 Resists: [Bug] [Fighting] [Grass] [Ground] [Ghost] [X]
-# 0x1020 *
+# 0x1020 ^
 Pidgeotto[X]
 
 # 0x1022

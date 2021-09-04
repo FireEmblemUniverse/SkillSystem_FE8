@@ -52,8 +52,8 @@
 
 #include "StatBarLength.event" 
 
-// #include "CasualMode.event"
-// DangerRadius conflicts, so edit ClearDR2.asm as needed 
+#include "CasualModeFlag/Installer.event"
+// DangerRadius used to conflict, so previously I edited ClearDR2.asm as needed 
 
 
 #include "SetUnitState.lyn.event"

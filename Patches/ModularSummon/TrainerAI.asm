@@ -149,6 +149,13 @@ blt ExitTrainerSpotsYou
 sub r1, #0xE0 @ we only have trainers from unit IDs 0xE0 - 0xEF 
 lsl r1, #1 @ 2 bytes per text entry 
 
+
+mov r2, #0x2D 
+ldrb r0, [r3, r2] 
+cmp r0, #50 
+beq ExitTrainerSpotsYou 
+
+
 ldr r3, =0x202BCF0 @ gChapterData 
 ldrb r0, [r3, #0xE] @ what chapter is it 
 ldr r3, =TrainerQuotesPoinTable
