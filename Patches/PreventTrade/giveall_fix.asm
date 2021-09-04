@@ -1,7 +1,14 @@
 .thumb
-.org 0 @paste to e1908 -
 .align 4
 @originally at 9a554, write 47f0d8f9
+
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
+
+
 @also need to change 1948a to d219
 mov r7, #0x1e @item slot (r7 had the number of items total)
 Loop:
@@ -45,11 +52,8 @@ add r2, r7
 add r2, r1 
 mov r1, #0 
 strh r1, [r2] 
-@ blh undefined at top 
-ldr r3, =0x8017984 
-mov lr, r3 
-.short 0xF8 
-@blh 0x8017984
+blh 0x8017984 
+
 ReturnSkipped:
 add r4,#1
 cmp r4,#5 @(cmp 5 instead of r5, may be a couple extra loops but who cares)

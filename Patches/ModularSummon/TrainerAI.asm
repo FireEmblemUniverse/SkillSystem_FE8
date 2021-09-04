@@ -43,7 +43,6 @@ b TrainerSummonTeamStart
 
 TrainerSummonTeamStart:
 
-
 bl AnyTargetWithinRange
 cmp r0, #0 
 beq DontSummonStuff 
@@ -139,6 +138,7 @@ bx r1
 TrainerSpotsYouFunction:
 push {r4-r7, lr}
 
+ 
 
 ldr r3, =CurrentUnit
 ldr r3, [r3] 

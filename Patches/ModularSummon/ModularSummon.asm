@@ -83,12 +83,49 @@ ldrb r0, [r4, #3]
 cmp r0, #0 
 beq ValidFlagException
 blh CheckEventId
-mov r1, r0 
-ldrb r0, [r4, #3] 
-cmp r0, r1 
+cmp r0, #1 
 bne TableLoopStart
 ValidFlagException:
 
+@ If cutscene, check through table for other possible teams 
+ldrb r0, =PlayableCutsceneFlag 
+lsl r0, #24 
+lsr r0, #24 
+blh CheckEventId 
+cmp r0, #1 
+bne NotACutscene
+
+
+ldr r3, =0x30017b2 @ GaryStarterClass byte 
+ldrb r0, [r3] 
+cmp r0, #0 
+beq NotACutscene 
+
+ldr r5, [r4, #8] @ Poin to unit group 
+ldrb r1, [r5, #1] @ Class ID 
+cmp r1, #9 
+bgt NotACutscene 
+
+@ If it doesn't match, it'll repeat the loop 
+cmp r0, r1 
+beq NotACutscene 
+add r0, #1 
+cmp r0, r1 
+beq NotACutscene 
+add r0, #1 
+cmp r0, r1 
+beq NotACutscene 
+
+b TableLoopStart 
+
+GotoEnd: 
+b End
+
+
+
+
+
+NotACutscene: 
 @ We have found a valid case to summon 
 mov r9, r4 @ Save table so we know user input 
 
@@ -199,8 +236,7 @@ b PlaceSummonedUnit
 GotoRestoreTerrain: 
 b RestoreTerrain 
 
-GotoEnd: 
-b End
+
 
 
 @GetPreferredPositionForUNIT(uDef, &unit->xPos, &unit->yPos, FALSE);
@@ -1191,9 +1227,7 @@ ldrb r0, [r4, #3]
 cmp r0, #0 
 beq ValidFlagException2
 blh CheckEventId
-mov r1, r0 
-ldrb r0, [r4, #3] 
-cmp r0, r1 
+cmp r0, #1 
 bne TableLoopStart2
 
 ValidFlagException2:

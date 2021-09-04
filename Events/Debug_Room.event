@@ -145,8 +145,9 @@ ENUN
 LOAD1 0x1 Units2
 ENUN
 
+
+
 /*
-SilentGiveItemWithDurability(Eirika, SpellScroll,LeafFlurry)
 SilentGiveItemWithDurability(Eirika, SkillScroll,AcrobatID)
 SilentGiveItemWithDurability(Eirika, Tackle,0x01)
 SilentGiveItemWithDurability(Eirika, Berry,0x04)
@@ -172,8 +173,11 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
 //SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
+SilentGiveItemWithDurability(Eirika, SpellScroll,LeafFlurry)
+SilentGiveItemWithDurability(Eirika, Ember, 1)
 SilentGiveItemWithDurability(Eirika, Vulnerary, 2)
 SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, Scratch, 1)
 
 SilentGiveItemWithDurability(2, Vulnerary, 3)
 
@@ -233,19 +237,25 @@ GIVETOMAIN 0
 
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(6, True, 0x120) // all 
+AutoLevelUnits(15, True, 0x120) // all 
 
 
+Write_Byte(7, GaryStarterClass) 
 
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
 //MNC2 PalletCh 
-//MNC2 PokecenterCh 
+MNC2 PokecenterCh 
 //MNC2 Route1Ch 
 //DISA 0x2
-//MNC2 Route2NCh
+
+
+Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(36, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+//MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch
-MNC2 ViridianForestNCh
+//MNC2 ViridianForestNCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh

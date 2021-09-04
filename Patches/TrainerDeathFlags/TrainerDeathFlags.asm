@@ -275,6 +275,26 @@ pop {r4-r7}
 pop {r1}
 bx r1 
 
+
+.global ASMC_CheckTrainerFlag
+.type ASMC_CheckTrainerFlag, %function 
+ASMC_CheckTrainerFlag: 
+push {lr} 
+ldr r3, =MemorySlot 
+ldr r0, [r3, #4] @ Slot 1 as unit ID to check 
+blh GetUnitByEventParameter 
+cmp r0, #0 
+beq Exit_ASMC_CheckTrainerFlag @ no trainer, so false 
+bl CheckTrainerFlag @ result in r0 
+Exit_ASMC_CheckTrainerFlag:
+ldr r3, =MemorySlot 
+mov r1, #0x0C*4 
+str r0, [r3, r1] @ Store result to sC 
+pop {r1} 
+bx r1 
+
+
+
 .global CallCheckTrainerFlag 
 .type CallCheckTrainerFlag, %function 
 CallCheckTrainerFlag: 

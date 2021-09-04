@@ -237,9 +237,6 @@ UNIT
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
 MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersB) 
-MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersC) 
-MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersD) 
-MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersE) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 

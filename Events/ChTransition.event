@@ -142,6 +142,12 @@ TutText(ClosedAreaText)
 NoFade 
 ENDB 
 
+ALIGN 4 
+CannotEscapeTrainerBattleEvent:
+Text(CannotEscapeTrainerBattleText)
+NoFade 
+ENDA 
+
 ALIGN 4
 CheckIfNoPlayerUnits:
 // For some reason there's no game over when all units are dead/undeployed anymore 
@@ -541,6 +547,8 @@ ENDA
 ChTransition: 
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
+CHECK_EVENTID PlayableCutsceneFlag 
+BNE 20 rC r0 
 
 EVBIT_MODIFY 4
 SVAL r7 1 
@@ -551,6 +559,11 @@ SADD 2 9 0
 
 MNC2 0xFFFF 
 ENUF PlayableCutsceneFlag 
+GOTO 0x63 
+
+LABEL 20 // Cutscene prevents escape 
+CALL CannotEscapeTrainerBattleEvent
+
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade

@@ -124,8 +124,9 @@ Your party is completely full.[A][X]
 'Unit ID taken', please send bug report.[A][X]
 
 
-# 0x09E9
-[OpenMidRight][LoadOak][OpenRight]There's no running from a Trainer![A][X]
+## CannotEscapeTrainerBattleText
+[OpenMidRight][LoadOak][OpenMidRight]There's no running from[NL]
+this Trainer battle![A][X]
 
 ## GaryRoute2SChallengeText
 [OpenRight][LoadGaryPoint][OpenRight]Hah, I wondered when[NL]
@@ -496,17 +497,63 @@ They're comfy and easy to wear![A][X]
 Awww..[A][X]
 
 
-## VF_0xE0_BQ
+## VF_0xE5_BQ
+I might be little, but I won't like[NL]
+it if you go easy on me![A][X]
+
+## VF_0xE5_BD
+That totally stinks! I'm going to[NL]
+catch some stronger ones![A][X]
+
+
+## R1_0xE1_BQ
+I might be little, but I won't like[NL]
+it if you go easy on me![A][X]
+
+## R1_0xE1_BD
+That totally stinks! I'm going to[NL]
+catch some stronger ones![A][X]
+	
+
+
+## R1_0xE0_BQ
+I just lost, so I'm trying[NL]
+to find more POKEMON.[A][NL]
+Wait! You look weak![NL]
+Come on, let's battle![A][X]
+
+## R1_0xE0_BD
+Ugh. I don't have any more POKEMON.[A][X]
+
+
+## R2_0xE1_BQ
+Are you going to Viridian Forest?[NL]
+It's a natural maze in there.[A][NL]
+How about a battle?[A][X]
+
+## R2_0xE1_BD
+I got lost there, and lost here![A][X]
+
+
+## VFS_0xE0_BQ
+// Viridian Forest (south) trainer 0xE0 Battle Quote / Defeat
 I came here with some friends to[NL]
 catch us some BUG POKEMON![A][NL]
 Let's battle![A][X]
 
-## VF_0xE0_BD
+## VFS_0xE0_BD
 Ack! I lost?[A][X]
 
 
+## VF_0xE0_BQ
+I'm itching for a battle![A][X]
+
+## VF_0xE0_BD
+Oh, boo.[NL]
+Nothing went right.[A][X]
+
+
 ## VF_0xE1_BQ
-// Viridian Forest trainer 0xE0 Battle Quote / Defeat
 Hey! You have POKEMON![NL]
 Come on! Let's battle'em![A][X]
 
@@ -536,32 +583,3 @@ I give! You're good at this![A][X]
 
 
 
-
-
-## VF_0xE5_BQ
-I might be little, but I won't like[NL]
-it if you go easy on me![A][X]
-
-## VF_0xE5_BD
-That totally stinks! I'm going to[NL]
-catch some stronger ones![A][X]
-
-
-## R1_0xE1_BQ
-I might be little, but I won't like[NL]
-it if you go easy on me![A][X]
-
-## R1_0xE1_BD
-That totally stinks! I'm going to[NL]
-catch some stronger ones![A][X]
-	
-
-
-## R1_0xE0_BQ
-I just lost, so I'm trying[NL]
-to find more POKEMON.[A][NL]
-Wait! You look weak![NL]
-Come on, let's battle![A][X]
-
-## R1_0xE0_BD
-Ugh. I don't have any more POKEMON.[A][X]
