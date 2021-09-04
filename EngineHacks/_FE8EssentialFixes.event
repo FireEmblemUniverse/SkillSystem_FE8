@@ -30,11 +30,11 @@ POP
   ORG $30da6  //Game/text speed Fast, Autocursor off
   SHORT $22d0
   
-//Allow Visit from any tile
-  PUSH
-  ORG $23072
-  SHORT $e00d
-  POP
+//Allow Visit from any tile (this is broken atm, also allows visits to destroyed villages)
+//  PUSH
+//  ORG $23072
+//  SHORT $e00d
+//  POP
 
 	
 //change staff battle init to not give 0xFF status on miss
