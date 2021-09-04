@@ -34,9 +34,20 @@ CheckAcc1End:
 bl Give_func
 mov r0,r5
 mov r1,#0
-ldr r2, StoreFromInv
-mov lr,r2
-.short 0xF800
+@ldr r2, StoreFromInv
+@mov lr,r2
+@.short 0xF8
+lsl r1, #1 
+mov r2, r0 
+add r2, r7 
+add r2, r1 
+mov r1, #0 
+strh r1, [r0] 
+@ blh undefined at top 
+ldr r3, =0x8017984 
+mov lr, r3 
+.short 0xF8 
+@blh 0x8017984
 ReturnSkipped:
 add r4,#1
 cmp r4,#5 @(cmp 5 instead of r5, may be a couple extra loops but who cares)
