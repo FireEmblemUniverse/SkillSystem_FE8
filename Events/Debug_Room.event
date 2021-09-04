@@ -173,11 +173,15 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
 //SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
+/*
 SilentGiveItemWithDurability(Eirika, SpellScroll,LeafFlurry)
-SilentGiveItemWithDurability(Eirika, Ember, 1)
+SilentGiveItemWithDurability(Eirika, MuscleBand, 0xC1)
+SilentGiveItemWithDurability(Eirika, Scratch, 1)
+*/
+
 SilentGiveItemWithDurability(Eirika, Vulnerary, 2)
 SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
-SilentGiveItemWithDurability(Eirika, Scratch, 1)
+
 
 SilentGiveItemWithDurability(2, Vulnerary, 3)
 
@@ -245,7 +249,7 @@ Write_Byte(7, GaryStarterClass)
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
 //MNC2 PalletCh 
-MNC2 PokecenterCh 
+//MNC2 PokecenterCh 
 //MNC2 Route1Ch 
 //DISA 0x2
 
@@ -253,7 +257,7 @@ MNC2 PokecenterCh
 Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(36, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-//MNC2 Route2SCh
+MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch
 //MNC2 ViridianForestNCh
 //MNC2 PewterCh

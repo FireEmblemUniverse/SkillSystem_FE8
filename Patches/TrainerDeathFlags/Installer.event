@@ -65,9 +65,11 @@ GOTO 0x63
 
 LABEL 20 // Cutscene 
 ENUF PlayableCutsceneFlag 
-FADU 16 
+TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
+FADI 8 
+CURE
 DISA 0xE0 
-
+FADU 10
 
 LABEL 0x63 
 NoFade 

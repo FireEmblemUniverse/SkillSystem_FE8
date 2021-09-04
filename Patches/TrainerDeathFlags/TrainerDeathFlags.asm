@@ -282,10 +282,7 @@ ASMC_CheckTrainerFlag:
 push {lr} 
 ldr r3, =MemorySlot 
 ldr r0, [r3, #4] @ Slot 1 as unit ID to check 
-blh GetUnitByEventParameter 
-cmp r0, #0 
-beq Exit_ASMC_CheckTrainerFlag @ no trainer, so false 
-bl CheckTrainerFlag @ result in r0 
+bl CheckTrainerFlagByID @ result in r0 
 Exit_ASMC_CheckTrainerFlag:
 ldr r3, =MemorySlot 
 mov r1, #0x0C*4 
@@ -309,6 +306,15 @@ str r0, [r3, r1] @ Store result to sC
 pop {r1} 
 bx r1 
 
+.global CheckTrainerFlagByID
+.type CheckTrainerFlagByID, %function 
+CheckTrainerFlagByID:
+push {r4-r5, lr}
+mov r5, #0 
+mov r1, r0 
+
+b StartCheckTrainerFlag 
+
 @ Trainers use IDs 0xE0 - 0xEF 
 .global CheckTrainerFlag
 .type CheckTrainerFlag, %function 
@@ -321,6 +327,8 @@ mov r5, #0
 
 ldr r1, [r4] 
 ldrb r1, [r1, #4] @ Unit ID we're interested in 
+StartCheckTrainerFlag:
+
 cmp r1, #0xE0 
 blt TrainerFlagTrue 
 cmp r1, #0xF0 

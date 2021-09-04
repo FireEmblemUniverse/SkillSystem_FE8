@@ -14,9 +14,6 @@ PUSH
 ORG $9A554
 BYTE $47 $F0 $D8 $F9
 
-ORG $1948A
-BYTE $D2 $19
-
 
 ORG 0xe1908
 jumpToHack(giveall_fix)
