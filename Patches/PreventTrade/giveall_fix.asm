@@ -37,6 +37,8 @@ mov r1,#0
 @ldr r2, StoreFromInv
 @mov lr,r2
 @.short 0xF8
+@ instead of editing StoreFromInv at 19484, just copy paste the code here 
+@ it's just a few lines anyway 
 lsl r1, #1 
 mov r2, r0 
 add r2, r7 
