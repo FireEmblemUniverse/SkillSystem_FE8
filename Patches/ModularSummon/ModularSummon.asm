@@ -228,7 +228,7 @@ blh LoadUnit
 
 mov r6, r0 @ Newly loaded unit 
 
-blh AutolevelSpells
+
 
 
 b PlaceSummonedUnit 
@@ -269,8 +269,9 @@ ldrb r0, [r2, #8] @ Summoner's level
 ldrb r1, [r6, #8] @ Summon's level 
 cmp r1, r0 
 bge DoNotMatchSummonsLevel 
+add r0, r1 @ combine their lvls
 strb r0, [r6, #8] @ Summon as same lvl as summoner 
-
+sub r0, r1 @ yes we do this twice dw 
 sub r2, r0, r1 @ Number of levels to increase by 
 mov r1, #0x2F 
 ldrb r0, [r6, r1] @ Dark WEXP as bonus levels? 
@@ -290,7 +291,9 @@ strb r0, [r6, #0x13] @ Set to max hp
 
 
 DoNotMatchSummonsLevel: 
+mov r0, r6
 
+blh AutolevelSpells
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
 
