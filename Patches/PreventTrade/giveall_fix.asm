@@ -44,7 +44,7 @@ mov r2, r0
 add r2, r7 
 add r2, r1 
 mov r1, #0 
-strh r1, [r0] 
+strh r1, [r2] 
 @ blh undefined at top 
 ldr r3, =0x8017984 
 mov lr, r3 
