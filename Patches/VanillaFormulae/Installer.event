@@ -23,9 +23,16 @@ jumpToHack_r0(NegateDefHack)
 //ORG $25180  - This didn't work properly for some reason. It seemed to work in my context the first few iterations, but it led to a jump to d002d000 or something eventually 
 //jumpToHack_r3(AddUnitToTargetListHack)
 
+ORG $2AAD0 
+callHack_r3(StabBonusFunc)
 
 
 POP
+
+
+#include "StabBonus.lyn.event" 
+
+
 
 // 2B718 nosferatu effect ? 
 
@@ -71,7 +78,7 @@ NegateDefEntry(SandAttack    , 63)
 NegateDefEntry(TailWhip      , 63)
 NegateDefEntry(Snarl          , 63)   
 
-
+NegateDefEntry(DragonRage          , 50)
 
 
 

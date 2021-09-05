@@ -3,6 +3,7 @@
 @r0=attacker's item id, r1=defender battle struct
 
 .equ NullifyID, SkillTester+4
+.equ IsAccessory, SkillTester+8
 
 push	{r4-r7,r14}
 mov		r4,r0
@@ -35,15 +36,43 @@ and		r0,r1
 ldr		r3,=#0x80177B0		@get_item_data
 mov		r14,r3
 .short	0xF800
+
 ldr		r1,[r0,#0x8]		@weapon abilities
-mov		r2,#0x80
-lsl		r2,#0x7				@delphi shield bit, aka 'protector item'
-tst		r1,r2
-beq		NextItem
-ldr		r1,[r0,#0x10]		@pointer to classes it protects
+ldr r2, IsAccessory 
+lsl r2, #24 
+lsr r2, #8 	@accessory bit, aka 'protector item'	
+@0x00400000 	
+and r2, r1 
+cmp r2, #0 
+beq NextItem 
+lsl r1, r7, #1 
+add r1, #0x1E 
+ldrh r1, [r5, r1] 
+ldr r2, =0x80 
+lsl r2, #24 
+lsr r2, #16 @ chop of |0x8000000 if we had defined ldr r2, IsEquipped
+@ 0x8000 
+and r2, r1 
+cmp r2, #0 
+beq NextItem 
+
+ldr		r1,[r0,#0x10]		@pointer to types it protects
 cmp		r1,#0
 beq		NextItem
-ldrh	r1,[r1,#2]
+
+ldrh	r1,[r1,#2] @ type attack to nullify 
+
+
+
+ldrh	r2,[r4,#2]			@bitfield of types this weapon is effective against
+
+and r1, r2 
+cmp r1, #0 
+beq NextItem 
+b RetFalse 
+
+
+
 bic		r6,r1				@remove bits that are protected from the class weaknesses bitfield
 cmp		r6,#0
 beq		RetFalse

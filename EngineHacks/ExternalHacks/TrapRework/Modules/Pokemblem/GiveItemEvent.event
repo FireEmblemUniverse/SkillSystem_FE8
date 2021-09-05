@@ -19,7 +19,11 @@ ENDA
 ALIGN 4
 PickBerryEvent:
 CAM1 0xFFFF
-CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
+SVAL r1 0x7FFF 
+SVAL r3 Berry 
+// r4 has the durability from the asm already 
+ASMC SilentGiveItemWithDurability
+//CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
 Label 0x63 
 NoFade
 ENDA

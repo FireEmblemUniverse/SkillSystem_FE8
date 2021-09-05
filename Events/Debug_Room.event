@@ -179,11 +179,12 @@ SilentGiveItemWithDurability(Eirika, MuscleBand, 0xC1)
 SilentGiveItemWithDurability(Eirika, Scratch, 1)
 */
 
-SilentGiveItemWithDurability(Eirika, Vulnerary, 2)
-SilentGiveItemWithDurability(Eirika, Vulnerary, 1)
+SilentGiveItemWithDurability(Eirika, Berry, 0x3)
+
+SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
 
 
-SilentGiveItemWithDurability(2, Vulnerary, 3)
+SilentGiveItemWithDurability(2, Berry, 3)
 
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
 
@@ -255,7 +256,7 @@ Write_Byte(7, GaryStarterClass)
 
 
 Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(36, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(31, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch

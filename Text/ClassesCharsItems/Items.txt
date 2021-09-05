@@ -4,6 +4,42 @@
  Debug[A][X]
  
  
+ 
+## BlackbeltText
+Blackbelt[X]
+
+## BlackbeltDescText
+Slightly powers up[NL]
+FIGHTING moves.[X]
+
+
+## BlackbeltUseDesc
+Slightly powers up[NL]
+FIGHTING moves.[X]
+
+## DryingPanText
+Drying Pan[X]
+
+## DryingPanDescText
+Negates weakness to[NL]
+WATER moves.[X]
+
+
+## ChoiceBandText
+Choice Band[X]
+
+## ChoiceBandDescText
+Powers up a single[NL]
+move.[X]
+
+## JellyDonutText
+Jelly Donut[X]
+
+## JellyDonutDescText
+Dub-exclusive.[NL]
+Heals 20 HP.[X]
+
+ 
 ## WiseGlassesNameText
 Wise Glasses[X]
 
@@ -33,14 +69,7 @@ Grants Str+2[X]
 Grants Str+2[X]
 
 
-## BlackbeltNameText
-Blackbelt[X]
 
-## BlackbeltDescText
-Grants Str+3[X]
-
-## BlackbeltUseDesc
-Grants Str+3[X]
  
  
 ## CloakNameText
@@ -151,23 +180,23 @@ Berry[X]
 Sitrus Berry[X]
 
 ## PotionDescText
-Restores 15 Hp.[X]
+Restores 15 HP.[X]
 
 ## SuperPotionDescText
-Restores 25 Hp.[X]
+Restores 25 HP.[X]
  
 ## HyperPotionDescText
-Restores 40 Hp.[X]
+Restores 40 HP.[X]
 
 ## MaxPotionDescText
-Restores all Hp.[X]
+Restores all HP.[X]
  
 ## BerryDescText
-Restores 10 Hp.[N]
+Restores 10 HP.[N]
 Consumed at low HP.[X]
 
 ## SitrusBerryDescText
-Restores 20 Hp.[N]
+Restores 20 HP.[N]
 Consumed at low HP.[X]
 
 # 0x0354

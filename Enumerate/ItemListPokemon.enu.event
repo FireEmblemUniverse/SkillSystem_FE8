@@ -159,7 +159,7 @@
 #define Gold3000x 0x9F
 #define Gold5000x 0xA0
 #define DoubleKick 0xA1
-#define Potion 0xA2
+#define JellyDonut 0xA2
 #define SuperPotion 0xA3
 #define HyperPotion 0xA4
 #define Dance2 0xA5
@@ -247,9 +247,9 @@
 #define SkillScrollID 0xF7
 #define SpellScrollID 0xF8
 #define WiseGlasses 0xF9
-#define Eviolite 0xFA
+#define Blackbelt 0xFA
 #define MuscleBand 0xFB
-#define Cloak 0xFC
+#define DryingPan 0xFC
 #define AngelRing 0xFD
 #define RenewalRing 0xFE
 #define QuickClaw 0xFF

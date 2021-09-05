@@ -71,6 +71,7 @@
 	#incbin "Redone_Effectiveness.dmp"
 	POIN SkillTester
 	WORD NullifyID
+	WORD IsAccessory 
 
 	ALIGN 4
 	Redone_Redone_Slayer:

@@ -242,7 +242,7 @@ BYTE 0 0
 ALIGN 4
 RattataLearnset:
 BYTE 1 Tackle
-BYTE 1 TailWhip 
+BYTE 2 TailWhip 
 BYTE 4 QuickAttack
 BYTE 10 Bite
 BYTE 16 HyperFang
@@ -253,7 +253,7 @@ BYTE 0 0
 ALIGN 4
 RaticateLearnset:
 BYTE 1 Tackle
-BYTE 1 TailWhip 
+BYTE 2 TailWhip 
 BYTE 4 QuickAttack
 BYTE 10 Bite
 BYTE 16 HyperFang
@@ -264,7 +264,7 @@ BYTE 0 0
 ALIGN 4
 SpearowLearnset:
 BYTE 1 Peck
-BYTE 1 Growl
+BYTE 2 Growl
 BYTE 5 Leer
 BYTE 9 DoubleHit
 BYTE 15 WingAttack
@@ -278,7 +278,7 @@ BYTE 0 0
 ALIGN 4
 FearowLearnset:
 BYTE 1 Peck
-BYTE 1 Growl
+BYTE 2 Growl
 BYTE 5 Leer
 BYTE 9 DoubleHit
 BYTE 15 WingAttack
@@ -292,7 +292,7 @@ BYTE 0 0
 ALIGN 4
 EkansLearnset:
 BYTE 1 Constrict
-BYTE 1 Leer
+BYTE 3 Leer
 BYTE 7 PoisonSting 
 BYTE 9 Bite
 BYTE 13 Glare
@@ -305,7 +305,7 @@ BYTE 0 0
 ALIGN 4
 ArbokLearnset:
 BYTE 1 Constrict
-BYTE 1 Leer
+BYTE 3 Leer
 BYTE 7 PoisonSting 
 BYTE 9 Bite
 BYTE 13 Glare
@@ -318,7 +318,7 @@ BYTE 0 0
 ALIGN 4
 PikachuLearnset:
 BYTE 1 Thundershock
-BYTE 1 Growl
+BYTE 3 Growl
 BYTE 5 TailWhip
 BYTE 10 ThunderWave
 BYTE 13 QuickAttack
@@ -332,7 +332,7 @@ BYTE 0 0
 ALIGN 4
 RaichuLearnset:
 BYTE 1 Thundershock
-BYTE 1 Growl
+BYTE 3 Growl
 BYTE 5 TailWhip
 BYTE 10 ThunderWave
 BYTE 13 QuickAttack

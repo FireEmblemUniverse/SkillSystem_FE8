@@ -117,6 +117,8 @@ SpellScrollTrap(17,20, (ChapterID*2)+1, 0xB7)
 BerryTree(2,22,5)
 
 
+BerryTree(9,31,5) // remove 
+
 Flower(3,12)
 Flower(2,13)
 Flower(2,16)
@@ -160,6 +162,8 @@ BNE 10 rC r0
 //ENUT PlayableCutsceneFlag 
 LOAD1 0x1 GaryBattleUnitGroup 
 ENUN 
+
+AutoLevelUnits(12, True, 0xA0AF) // Wilds  
 // Cutscene is true 
 //SetUnitStatus(0x01, CurrentHP, 5)
 //SetUnitStatus(0x02, CurrentHP, 5)
@@ -171,6 +175,9 @@ ENUN
 LABEL 10 
 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
+
+SetUnitStatus(0x01, CurrentHP, 5)
+SetUnitStatus(0x02, CurrentHP, 5)
 
 LABEL 0x63
 NoFade
@@ -372,7 +379,10 @@ TQD_TableTerminator ; }
 
 
 GaryBattleUnitGroup:
-UNIT 0xE0 blueID 0x0 Level(1, Enemy, 1) [9,29]  0b 0x0	0x0 REDA9R29 [0x2,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
+UNIT 0xE0 blueID 0x0 Level(2, Enemy, 1) [9,29]  0b 0x0	0x0 REDA9R29 [0x2,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
+//UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+//UNIT GenericB	OnixID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+
 UNIT 
 
 HumanTrainers:

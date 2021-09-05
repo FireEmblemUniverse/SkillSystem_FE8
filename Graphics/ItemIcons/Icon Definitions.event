@@ -25,6 +25,7 @@
 #define SteelIcon 0x18
 #define FairyIcon 0x19
 //#define Icon 0x1A
+
 #define SkillScrollIcon     0xff
 
 #define HPUpIcon 0x2B
@@ -37,7 +38,14 @@
 #define LuckBulkUpIcon 0x32
 #define RareCandyIcon 0x33
 
-#define BlackbeltIcon 0x35 
+
+
+
+#define BlackbeltIcon 0x40 
+#define DryingPanIcon 0x41
+#define ChoiceBandIcon 0x42 
+#define MuscleBandIcon 0x43 
+
 
 #define MoonStoneIcon 0x62
 #define LinkStoneIcon 0x63
@@ -51,7 +59,7 @@
 #define SuperPotionIcon 0xCC
 #define HyperPotionIcon 0xCD
 #define BerryIcon 0xCE
-
+#define JellyDonutIcon 0xCF 
 
 
 

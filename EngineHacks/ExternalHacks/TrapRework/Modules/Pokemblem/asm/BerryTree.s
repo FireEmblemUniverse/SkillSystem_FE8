@@ -183,14 +183,19 @@ bge DontHeal
 
 mov r3, #0x1C 
 mov r2, #0x27
-mov r1, #0x6C @ Berry item ID 
 SearchHeldBerryLoop:
+mov r1, #0x6C @ Berry item ID 
 add r3, #2 @ Item index 
 cmp r3, r2
 bge DontHeal
 ldrb r0, [r4, r3] 
 cmp r0, r1 
 bne SearchHeldBerryLoop
+ldrh r0, [r4, r3] @ includes durability 
+mov r1, #0x80 
+lsl r1, #8 @ 0x8000 
+tst r1, r0 
+beq SearchHeldBerryLoop @ Only consume if equipped 
 mov r6, r3 
 
 
@@ -383,8 +388,12 @@ ldrb r0, [r4, #0x3]     @ # of berries
 cmp r0, #0
 beq NoBerriesMessage @ No berries on it right now 
 
-sub r0, #1 
-strb r0, [r4, #0x3] @ take away a berry 
+@sub r0, #1 
+@strb r0, [r4, #0x3] @ take away a berry 
+mov r1, #0 
+strb r1, [r4, #0x3] @ Take away all berries 
+ldr r3, =MemorySlot0 
+strb r0, [r3, #4*0x04] @ Store number of berries to give into s4 
 
 ldr r0, =PickBerryEvent
 b DoTheEvent

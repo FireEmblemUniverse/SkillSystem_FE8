@@ -32,7 +32,10 @@ ItemEffectivenessPtr(Megahorn, BugAdv)
 
 
 //Protector item (macro still works, even if it's wrongly named)
-ItemEffectivenessPtr(DelphiShield, FlierProtection)
+//ItemEffectivenessPtr(DelphiShield, FlierProtection)
+ItemEffectivenessPtr(DryingPan, WaterProtection)
+//ItemEffectivenessPtr(DryingPan, FireProtection)
+
 
 #define SetWeaponEffectiveness(type_list, coefficient_times_2) "BYTE 0 coefficient_times_2; SHORT type_list"
 
@@ -180,3 +183,11 @@ WORD 0
 #define SetProtection(type_list) "SHORT 0 type_list"
 FlierProtection:
 SetProtection(FlierType)
+
+WaterProtection:
+SetProtection(WaterType) 
+
+//FireProtection:
+//SetProtection(FireType) 
+
+

@@ -1,0 +1,42 @@
+//#include "Icon Definitions.event"
+// Included in custom definitions so it'll come before our tables now 
+
+ALIGN 4
+NewItemIcons:
+// Sheet with all icons goes here 
+#incbin "Icon Sheet.dmp"
+
+#define ItemIconEntry(ItemIconID) "ORG NewItemIcons + (ItemIconID*128)"
+
+PUSH 
+// Individual Icons go here
+
+ItemIconEntry(BerryIcon)
+#incbin "Individual_Icons/BerryByN426.dmp"
+
+ItemIconEntry(BlackbeltIcon)
+#incbin "Individual_Icons/BlackbeltByGabrielKnight.dmp"
+
+ItemIconEntry(ChoiceBandIcon)
+#incbin "Individual_Icons/ChoiceBandByZaim.dmp"
+
+ItemIconEntry(DryingPanIcon)
+#incbin "Individual_Icons/DryingPanByN426.dmp"
+
+ItemIconEntry(JellyDonutIcon)
+#incbin "Individual_Icons/JellyDonutByN426.dmp"
+
+ItemIconEntry(MuscleBandIcon)
+#incbin "Individual_Icons/MuscleBandByZaim.dmp"
+
+// End of icons 
+POP 
+
+
+
+PUSH
+ORG $36B4
+POIN NewItemIcons
+ORG $3788
+POIN NewItemIcons
+POP
