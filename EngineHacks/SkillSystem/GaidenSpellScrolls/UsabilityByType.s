@@ -79,8 +79,8 @@ bx r1
 .endm 
 
 .macro shortonlyend
-	lsl r1, #16 
-	lsr r1, #16
+	lsl r0, #16 
+	lsr r0, #16
 	b End 
 .endm 
 
@@ -88,68 +88,68 @@ bx r1
 EffectivenessToTypeBitfield: 
 push {lr} 
 
-ldrb r1, =NormalWepType 
+ldrb r1, =NormalTypeWep 
 byteonlycmp 
 beq Normal 
 
-ldrb r1, =ElectricWepType 
+ldrb r1, =ElectricTypeWep 
 byteonlycmp 
 beq Electric
 
-ldrb r1, =WaterWepType 
+ldrb r1, =WaterTypeWep 
 byteonlycmp 
 beq Water
 
-ldrb r1, =FireWepType 
+ldrb r1, =FireTypeWep 
 byteonlycmp 
 beq Fire
 
-ldrb r1, =GrassWepType 
+ldrb r1, =GrassTypeWep 
 byteonlycmp 
 beq Grass 
 
-ldrb r1, =GroundWepType 
+ldrb r1, =GroundTypeWep 
 byteonlycmp 
 beq Ground
 
-ldrb r1, =PsychicWepType 
+ldrb r1, =PsychicTypeWep 
 byteonlycmp 
 beq Psychic
 
-ldrb r1, =FightingWepType 
+ldrb r1, =FightingTypeWep 
 byteonlycmp 
 beq Fighting
 
-ldrb r1, =IceWepType 
+ldrb r1, =IceTypeWep 
 byteonlycmp 
 beq Ice
 
 
-ldrb r1, =PoisonWepType 
+ldrb r1, =PoisonTypeWep 
 byteonlycmp 
 beq Poison 
 
-ldrb r1, =FlyingWepType 
+ldrb r1, =FlyingTypeWep 
 byteonlycmp 
 beq Flying
 
-ldrb r1, =RockWepType 
+ldrb r1, =RockTypeWep 
 byteonlycmp 
 beq Rock
 
-ldrb r1, =GhostWepType 
+ldrb r1, =GhostTypeWep 
 byteonlycmp 
 beq Ghost 
 
-ldrb r1, =DragonWepType 
+ldrb r1, =DragonTypeWep 
 byteonlycmp 
 beq Dragon 
 
-ldrb r1, =BugWepType 
+ldrb r1, =BugTypeWep 
 byteonlycmp 
 beq Bug 
 
-ldrb r1, =SteelWepType 
+ldrb r1, =SteelTypeWep 
 byteonlycmp 
 beq Steel
 
@@ -160,7 +160,7 @@ b End
 
 
 Normal: 
-ldr r0, =#0xFFFF
+ldr r0, =NormalType 
 shortonlyend
 
 

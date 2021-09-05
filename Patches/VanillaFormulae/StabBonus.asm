@@ -1,5 +1,7 @@
 @ callhack with r3 at 2AAD0 (in BattleLoadAttack / BC_Power)
 
+@ also see \EngineHacks\SkillSystem\GaidenSpellScrolls\UsabilityByType.s 
+
 .thumb
 .align 4
 
@@ -24,15 +26,22 @@ mov r6, r0 @ wep might
 
 
 mov r1, #0x48 
-ldrh r0, [r4, r1] @ atkr wep after bttl and is what vanilla uses so whatever - 4A before  
+ldrb r0, [r4, r1] @ atkr wep after bttl and is what vanilla uses so whatever - 4A before  
 
 ldr r1, [r4, #4] 
 ldrb r1, [r1, #4] @ Class ID 
 
 bl ShouldWeaponHaveStabBonus
+cmp r0, #0 
+beq ExitStabBonusFunc
+add r0, r6, #1 
+lsr r0, #1 @ half rounded up 
+add r6, r0 @ 1.5x mt, rounded up 
 
 
 
+
+ExitStabBonusFunc: 
 mov r0, r6 @ wep might 
 @ r0 should be weapon might at this point 
 
@@ -46,23 +55,43 @@ ldrb r1, [r1]
 lsl r1, #24  
 asr r1, #24 
 add r1, r0 
-@mov r4, r6 
 
 pop {r2} 
 bx r2 
 
 
 ShouldWeaponHaveStabBonus:
-@ given r0 = wep and r1 = class id, determine if they should have stab bonus or not 
+@ given r0 = wep id and r1 = class id, determine if they should have stab bonus or not 
 push {r4-r7, lr} 
 
+mov r4, r0 
+mov r5, r1 
+@ 80177b0 GetItemData
+blh 0x8017548 @GetItemWType
+@ Given r0 as weapon type, return class type bitfield 
+blh EffectivenessToTypeBitfield 
+mov r6, r0 
+mov r0, r5 
+blh 0x8019444 @GetClassData
 
+mov r7, r0 
+mov r1, #0x50 @ typing 
+ldrh r1, [r7, r1] @ type bitfield 
+mov r0, r6 @ wep's type bitfield 
+
+mov r11, r11 
+and r0, r1 
+cmp r0, #0 
+beq False_WeaponStabBonus 
+b True_WeaponShouldHaveStabBonus 
 
 
 False_WeaponStabBonus:
+mov r0, #0 
+b Exit_WeaponHaveStabBonus 
 
 True_WeaponShouldHaveStabBonus:
-
+mov r0, #1 
 
 Exit_WeaponHaveStabBonus:
 
@@ -71,12 +100,5 @@ pop {r1}
 bx r1 
 
 
-EquateStabBonus:
-@ give r0 = mt, add 50% mt 
-push {r4-r7, lr} 
 
-
-pop {r4-r7} 
-pop {r1} 
-bx r1 
 

@@ -5,8 +5,8 @@ BulbasaurLearnset:
 BYTE 1 Tackle // Goes at the start of each learnset
 BYTE 3 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
 BYTE 7 VineWhip
-BYTE 9 LeechSeed
-BYTE 13 PoisonPowder
+//BYTE 9 LeechSeed
+//BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
 BYTE 21 Sleep2 //SleepPowder
@@ -22,8 +22,8 @@ IvysaurLearnset:
 BYTE 1 Tackle 
 BYTE 3 Growl  
 BYTE 7 VineWhip
-BYTE 9 LeechSeed
-BYTE 13 PoisonPowder
+//BYTE 9 LeechSeed
+//BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
 BYTE 21 Sleep2 //SleepPowder
@@ -38,8 +38,8 @@ VenusaurLearnset:
 BYTE 1 Tackle 
 BYTE 3 Growl  
 BYTE 7 VineWhip
-BYTE 9 LeechSeed
-BYTE 13 PoisonPowder
+//BYTE 9 LeechSeed
+//BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
 BYTE 21 Sleep2 //SleepPowder
@@ -152,10 +152,10 @@ ButterfreeLearnset:
 BYTE 1 StringShot
 BYTE 3 Tackle
 BYTE 10 Confusion
-BYTE 12 Sleep2 //SleepPowder
-BYTE 12 PoisonPowder
+//BYTE 12 Sleep2 //SleepPowder
+//BYTE 12 PoisonPowder
 BYTE 16 Gust
-BYTE 22 Rescue //?Buff (Whirlwind)
+//BYTE 22 Rescue //?Buff (Whirlwind)
 BYTE 24 Psybeam
 BYTE 28 SignalBeam
 BYTE 30 Warp //?Buff (Tailwind)
@@ -201,8 +201,8 @@ BYTE 21 Twister
 BYTE 25 WingAttack
 //BYTE 29 Resv //Agility
 BYTE 33 Slash
-BYTE 37 Heal //?Buff (Roost)
-BYTE 43 Warp //?Buff (Tailwind)
+//BYTE 37 Heal //?Buff (Roost)
+//BYTE 43 Warp //?Buff (Tailwind)
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
 BYTE 0 0
@@ -217,8 +217,8 @@ BYTE 21 Twister
 BYTE 25 WingAttack
 //BYTE 29 Resv //Agility
 BYTE 33 Slash
-BYTE 37 Heal //?Buff (Roost)
-BYTE 43 Warp //?Buff (Tailwind)
+//BYTE 37 Heal //?Buff (Roost)
+//BYTE 43 Warp //?Buff (Tailwind)
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
 BYTE 0 0
@@ -233,8 +233,8 @@ BYTE 21 Twister
 BYTE 25 WingAttack
 //BYTE 29 Resv //Agility
 BYTE 33 Slash
-BYTE 37 Heal //?Buff (Roost)
-BYTE 43 Warp //?Buff (Tailwind)
+//BYTE 37 Heal //?Buff (Roost)
+//BYTE 43 Warp //?Buff (Tailwind)
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
 BYTE 0 0
@@ -245,8 +245,8 @@ BYTE 1 Tackle
 BYTE 2 TailWhip 
 BYTE 4 QuickAttack
 BYTE 10 Bite
-BYTE 16 HyperFang
-BYTE 22 ThiefAtt
+BYTE 16 ThiefAtt 
+BYTE 22 HyperFang
 BYTE 28 DoubleEdge
 BYTE 0 0
 
@@ -256,8 +256,8 @@ BYTE 1 Tackle
 BYTE 2 TailWhip 
 BYTE 4 QuickAttack
 BYTE 10 Bite
-BYTE 16 HyperFang
-BYTE 22 ThiefAtt
+BYTE 16 ThiefAtt 
+BYTE 22 HyperFang
 BYTE 28 DoubleEdge
 BYTE 0 0
 
@@ -295,7 +295,7 @@ BYTE 1 Constrict
 BYTE 3 Leer
 BYTE 7 PoisonSting 
 BYTE 9 Bite
-BYTE 13 Glare
+//BYTE 13 Glare
 BYTE 16 Acid
 BYTE 22 MudBomb
 //BYTE 28 Resv //Haze
@@ -308,7 +308,7 @@ BYTE 1 Constrict
 BYTE 3 Leer
 BYTE 7 PoisonSting 
 BYTE 9 Bite
-BYTE 13 Glare
+//BYTE 13 Glare
 BYTE 16 Acid
 BYTE 22 MudBomb
 //BYTE 28 Resv //Haze
