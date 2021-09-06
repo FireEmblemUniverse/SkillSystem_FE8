@@ -280,7 +280,7 @@ DivideByThreeConstant:
 DivideByFiveConstant:
     .long 0x00003334
 canGainEXP:
-    .long 0x8029634 @CanUnitNotLevelUp
+    .long 0x8029635 @CanUnitNotLevelUp
 HardModeBit:
     .long 0x202BC0C @0x40 = hard mode
 EasyModeBit:

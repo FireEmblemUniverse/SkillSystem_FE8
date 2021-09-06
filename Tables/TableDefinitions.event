@@ -3,6 +3,7 @@
 
 #define TABLE_DEFINITIONS
 
+#include "StatDefinitions.event" 
 #include "MMS Definitions.txt" 
 #include "ItemTypeDefinitions.txt"
 

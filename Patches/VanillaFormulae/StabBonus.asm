@@ -34,8 +34,9 @@ ldrb r1, [r1, #4] @ Class ID
 bl ShouldWeaponHaveStabBonus
 cmp r0, #0 
 beq ExitStabBonusFunc
-add r0, r6, #1 
-lsr r0, #1 @ half rounded up 
+mov r0, r6 
+@add r0, r6, #1 @ half rounded up 
+lsr r0, #1 
 add r6, r0 @ 1.5x mt, rounded up 
 
 
