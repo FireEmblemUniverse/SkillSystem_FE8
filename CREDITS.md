@@ -10,50 +10,48 @@ Capture - Tequila
 EffectivenessRework - Tequila
 SkillSystems - circles, Sme, & others
 Trap Rework - Sme
-Combat Arts - Sme
+Gaiden Magic - Snek, Gamma 
+Equippable Accessories - Kirb 
 FreeMovement - Sme (eventually to be inserted)
-ModularPreBattleSkills - Myself
-PromoteOnLvl - Myself
 Map/chapter transitions - Huichelaar
-I’ve edited all of these systems in some (often minor) way to better fit Pokemblem.
 
 # Special Thanks
 7743, without whom this project would not be possible. He’s added many features and patches to FEBuilder that I greedily requested, and has always offered support when I was having trouble.
 
 # Assets
-FEGBA formatting (including tracing or redrawing) - Vesly
 
 Trainer sprites - Zaim
 
-Pokemart Clerk - Zaim
+Pokemart Clerk, Beta Trainer Sprites, Choice Band, Muscle Band - Zaim
 
 Tileset water animations - N426
 
-Evolution stones - N426
+Evolution stones, Jelly Donut, Drying Pan - N426
 
-Potion Icons & Stat boosters - Jester
-
-Tech Skill Icons - Jester
+Potions, Stat boosters, & various skill icons - Jester
 
 Pewter Tileset Palette improvements - Zoramine
 Stat Screen by SD9K with alternate palettes by Aqua 
 
 Scub - help with items & movesets
 
+PMD Minimugs - Akim2007 
+
+Physical / special icons, wise glasses - Epicer
+
+
 # Sources:
 
 Spriter’s resource FRLG (link) 1.
 Maps originally ripped by: Bob799, Sapphire_Dragon, fabnt, Axmarrone, Hoeloe, GaryXCJK, Wess, LF
 FR/LG Trainers originally ripped by: Sapphire_Dragon
+
 Misc.
 AI4 as group ai - PhantomSentine
 Examine item fix - Sme
 Fates exp - Crazycolorz5
-Levelup rework - Zeta
-Dynamic equip - Gamma
-GetDeployedUnitX - Snek
+EventParameters - Snek
 Full Heal item - MintX
-Debuffs restore quicker, lvls above 31 saved, additional trap types, effectiveness calcs - Myself
 
 # Playtesters
 Ariadna
@@ -68,8 +66,6 @@ Tbone
 
 # Patches
 256 Col Title Screen - Leonarth
-All instrument - Blazer
-254 minimugs - Gryz
 CasualMode - circles
 Ch titles as text - circles
 Drumfix - circles
@@ -77,7 +73,6 @@ remove control enemy - Brendor
 Split menu - Stan, circles
 Escape - ngmansion, aera
 GetPressedKeys - Shuusuke
-GetUnitDistance - Snek
 RescueEvent - circles
 EMS - Stan
 Ai & LeaderAI fix - Stan
@@ -86,7 +81,6 @@ UNCM - Tequila
 AIDangerMapFix - Gamma
 HPBars - Circles
 ImprovedSoundMixer - ipatix
-NicerFog - Leonarth
 MagicSwordRework - Sme
 MMB - Zane
 NarrowFont - Scraiza
