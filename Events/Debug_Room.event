@@ -183,6 +183,10 @@ SilentGiveItemWithDurability(Eirika, Berry, 0x3)
 
 SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
 
+SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
+SilentGiveItemWithDurability(Eirika, SuperPotion, 0x5)
+
+
 
 SilentGiveItemWithDurability(2, Berry, 3)
 
@@ -242,7 +246,7 @@ GIVETOMAIN 0
 
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(15, True, 0x120) // all 
+AutoLevelUnits(13, True, 0x120) // all 
 
 
 Write_Byte(7, GaryStarterClass) 
@@ -256,7 +260,7 @@ Write_Byte(7, GaryStarterClass)
 
 
 Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(31, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(36, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch

@@ -38,6 +38,8 @@ Physical / special icons, wise glasses - Epicer
 
 Blackbelt - Gabriel Knight
 
+Quick Claw - HusbandoEmblem
+
 # Sources:
 
 Spriter’s resource FRLG (link) 1.

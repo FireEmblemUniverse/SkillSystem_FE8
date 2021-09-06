@@ -37,17 +37,17 @@ Jelly Donut[X]
 
 ## JellyDonutDescText
 Dub-exclusive.[NL]
-Heals 20 HP.[X]
+Heals 15 HP.[X]
 
  
 ## WiseGlassesNameText
 Wise Glasses[X]
 
 ## WiseGlassesDescText
-Grants Mag+2[X]
+Grants Mag+3[X]
 
 ## WiseGlassesUseDesc
-Grants Mag+2[X]
+Grants Mag+3[X]
 
 
  ## EvioliteNameText
@@ -63,10 +63,10 @@ Grants Def/Res+2[X]
 Muscle Band[X]
 
 ## MuscleBandDescText
-Grants Str+2[X]
+Grants Str+3[X]
 
 ## MuscleBandUseDesc
-Grants Str+2[X]
+Grants Str+3[X]
 
 
 
@@ -88,10 +88,12 @@ won't target this unit.[X]
 Quick Claw[X]
 
 ## QuickClawDescText
-Grants Spd+5[X]
+Attack first[NL]
+while defending.[X]
 
 ## QuickClawUseDesc
-Grants Spd+5[X]
+Attack first[NL]
+while defending.[X]
  
 ## RenewalRingNameText
 Renewal Ring[X]
@@ -157,9 +159,6 @@ All level up gains are doubled.[N]
 ## AngelRingUseDesc
 Double stat gains[X]
  
-
-# 0x1234
-Super Potion[X]
  
 ## SuperPotionText
 Super Potion[X]
