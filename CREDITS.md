@@ -20,25 +20,23 @@ Map/chapter transitions - Huichelaar
 
 # Assets
 
-Trainer sprites - Zaim
-
 Pokemart Clerk, Beta Trainer Sprites, Choice Band, Muscle Band - Zaim
 
-Tileset water animations - N426
-
-Evolution stones, Jelly Donut, Drying Pan - N426
+Tileset water animations, Evolution stones, Jelly Donut, Drying Pan - N426
 
 Potions, Stat boosters, & various skill icons - Jester
 
+PMD Minimugs - Akim2007 
+
 Pewter Tileset Palette improvements - Zoramine
+
 Stat Screen by SD9K with alternate palettes by Aqua 
 
-Scub - help with items & movesets
-
-PMD Minimugs - Akim2007 
+ChilanBerry, Rurouni, ScubaLuigi - help with items & learnsets
 
 Physical / special icons, wise glasses - Epicer
 
+Blackbelt - Gabriel Knight
 
 # Sources:
 
@@ -52,6 +50,8 @@ Examine item fix - Sme
 Fates exp - Crazycolorz5
 EventParameters - Snek
 Full Heal item - MintX
+Hide portraits during promotion - Tequila
+CheckInDanger - Stanh
 
 # Playtesters
 Ariadna
@@ -59,10 +59,23 @@ MournfulRelic
 bpat
 YourHiro
 Elzaim
-Scub
+ScubaLuigi
 Leche
 MikiBrock
 Tbone
+LackadasicalDerp
+Aqua
+TheIcyCharmander
+TheGreatUncleYga
+Akim2007
+ChilanBerry
+Piku
+mitltl
+darknight97
+
+
+# Additional Thanks to: 
+Sme, Tequila, Pikmin1211, 
 
 # Patches
 256 Col Title Screen - Leonarth
