@@ -75,7 +75,7 @@ extern u16 gBG0MapBuffer[32][32]; // 0x02022CA8.
 extern Unit* gpStatScreenUnit; // 0x02003BC08.
 
 
-
+extern u16 AttackStatsText;
 extern u16 gGaidenMagicHPCostText;
 extern u16 gGaidenMagicUMErrorText;
 extern u16 gGaidenMagicSpellMenuErrorText;

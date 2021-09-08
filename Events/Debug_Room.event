@@ -267,7 +267,7 @@ AutoLevelUnits(9, True, 0x120) // all
 //AutoLevelUnits(33, False, 0x120) // all 
 
 
-//Write_Byte(7, GaryStarterClass) 
+Write_Byte(7, GaryStarterClass) 
 
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
@@ -277,13 +277,13 @@ AutoLevelUnits(9, True, 0x120) // all
 //DISA 0x2
 
 
-Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-MNC2 PalletCh
+Write_Byte(33, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(26, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+//MNC2 PalletCh
 //MNC2 PewterGymCh
 //MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch
-//MNC2 ViridianForestSCh
+MNC2 ViridianForestSCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh
