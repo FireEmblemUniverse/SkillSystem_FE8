@@ -1,12 +1,15 @@
-// Does not work 
-//#include "AIWeaponsHack/AIWeaponsHack.event"
+//#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 
+//#define DEBUG_MODE True 
 
+#ifdef DEBUG_MODE 
+	#include "AutosaveKiller.event"
+#endif 
 
 #include "CapturePokemon/CapturePokemonInstaller.event"  // Should be before modular summon stuff 
 
 #include "PreventAttacking/Installer.event"
-
+#include "PreventTrade/Installer.event"
 
 #include "CustomSkills/Installer.event"
 
@@ -25,15 +28,14 @@
 #include "EventParameters/EventParameters.event"
 
 #include "MMB/Installers/MMBInstallerVesly.event"
-#include "AutosaveKiller.event"
 
-#include "PreventTrade/Installer.event"
+
+
+
 
 #include "DisabledStatusScreen/DisabledStatusScreen.event" 
 
-//#include "FreeMovement/FreeMovement.event"
-
-#include "FastMovement/Installer.event"
+//#include "FastMovement/Installer.event"
 
 #include "DangerRadius/FogDR.event" 
 #include "MultiTileMarker/MultiTileMarker_Install.event"

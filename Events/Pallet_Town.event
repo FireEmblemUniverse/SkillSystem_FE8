@@ -2,7 +2,7 @@ EventPointerTable(PalletCh,ThisChapter)
 
 #define ChapterID PalletCh
 
-ALIGN 4
+ALIGN 32
 ThisChapter:
 POIN TurnBasedEvents
 POIN CharacterBasedEvents
@@ -15,10 +15,13 @@ POIN $0 $0 $0
 POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
+ALIGN 32
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+//TurnEventPlayer(0,CityBeginningScene,1,1)
 END_MAIN
 
+ALIGN 32
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 END_MAIN
@@ -26,7 +29,7 @@ END_MAIN
 
 
 
-
+ALIGN 32
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
@@ -88,9 +91,8 @@ TutText(GaryHouseBG,EnterGaryHouseText)
 NoFade 
 ENDA 
 
+ALIGN 32
 LocationBasedEvents:
-
-
 House(0,VisitPokecenter,6,7) 
 
 House(0,VisitGaryHouse,15,7) //gary's house 
@@ -162,9 +164,14 @@ ALIGN 4
 
 
 	
-
+ALIGN 32
 BeginningScene:
+#ifdef FREE_MOVEMENT_INSTALLED
+CALL LoadMainUnit
+#endif 
+#ifndef FREE_MOVEMENT_INSTALLED
 CALL LoadAndPlacePlayers 
+#endif 
 CALL GlobalBeginningScene
 CALL CityBeginningScene
 LABEL 0x63
@@ -186,19 +193,24 @@ ALIGN 4
 ArmoryItems:
 SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
 ALIGN 4
-
+ALIGN 32
 EndingScene: //Unused but must exist 
 NoFade
 ENDA
 
+ALIGN 32
 Dunno1:
 END_MAIN
+ALIGN 32
 Dunno2:
 END_MAIN
+ALIGN 32
 Dunno3:
 END_MAIN
+ALIGN 32
 Tutorial:
 END_MAIN
+ALIGN 32
 Traps2:
 ENDTRAP
 ALIGN 4

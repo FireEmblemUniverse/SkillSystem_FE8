@@ -1,12 +1,15 @@
 #define DebugMode 0x1 
 
+
+#include "WorldMap/WorldMapEvents.event"
+
 #include "UnitAndClassDefinitions.event"
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
 
 	{ ; #include "Placeholder.event" ; } 
 	{ ; #include "Debug_Room.event" ; }
-	//{ ; #include "Oaks_Lab.event" ;}
+	{ ; #include "Oaks_Lab.event" ;}
 
 {
 #include "Pallet_Town.event"

@@ -18,7 +18,7 @@
 #define PidgeotSMS 0x11
 #define TreekoSMS 0x12
 #define CrobatSMS 0x13
-#define Unused3SMS 0x14
+#define RedSMS 0x14
 #define Unused4SMS 0x15
 #define RattataSMS 0x16
 #define RaticateSMS 0x17
@@ -272,7 +272,7 @@
 #define PidgeotMMS 0x12
 #define TreekoMMS 0x13
 #define CrobatMMS 0x14
-#define Unused3MMS 0x15
+#define RedMMS 0x15
 #define Unused4MMS 0x16
 #define RattataMMS 0x17
 #define RaticateMMS 0x18

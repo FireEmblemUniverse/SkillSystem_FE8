@@ -56,7 +56,6 @@
 
     //Events
 	#include "Events/EventsInstaller.event"
-    #include "Events/WorldMap/WorldMapEvents.event"
 	#include "A_Debug_Command.event"
 	
     MESSAGE Used free space ends at currentOffset

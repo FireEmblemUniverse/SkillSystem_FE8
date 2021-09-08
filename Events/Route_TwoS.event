@@ -117,7 +117,6 @@ SpellScrollTrap(17,20, (ChapterID*2)+1, 0xB7)
 BerryTree(2,22,5)
 
 
-BerryTree(9,31,5) // remove 
 
 Flower(3,12)
 Flower(2,13)
@@ -163,7 +162,7 @@ BNE 10 rC r0
 LOAD1 0x1 GaryBattleUnitGroup 
 ENUN 
 
-AutoLevelUnits(12, True, 0xA0AF) // Wilds  
+AutoLevelUnits(TrainerL, True, 0xA0AF) 
 // Cutscene is true 
 //SetUnitStatus(0x01, CurrentHP, 5)
 //SetUnitStatus(0x02, CurrentHP, 5)
@@ -176,8 +175,6 @@ LABEL 10
 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
 
-SetUnitStatus(0x01, CurrentHP, 5)
-SetUnitStatus(0x02, CurrentHP, 5)
 
 LABEL 0x63
 NoFade
@@ -362,6 +359,7 @@ UNIT
 MS_TableEntry(0xE0, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsA) 
 MS_TableEntry(0xE0, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsB) 
 MS_TableEntry(0xE0, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsC) 
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, TrainerUnitsA) 
 MS_TableTerminator ; } 
 
@@ -380,7 +378,7 @@ TQD_TableTerminator ; }
 
 GaryBattleUnitGroup:
 UNIT 0xE0 blueID 0x0 Level(2, Enemy, 1) [9,29]  0b 0x0	0x0 REDA9R29 [0x2,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
-//UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+//UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 
 UNIT 
@@ -406,6 +404,13 @@ UNIT
 
 GaryUnitsC:
 UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,9] 	0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	RattataID 0xE0 Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	WeedleID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeyID 0xE0 Level(1, Enemy, 1)   [11,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+GaryUnitsD:
+UNIT GenericB	EeveeID 0xE0 Level(1, Enemy, 1)   [9,9] 	0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT GenericB 	RattataID 0xE0 Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT GenericB 	WeedleID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT GenericB 	PidgeyID 0xE0 Level(1, Enemy, 1)   [11,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 

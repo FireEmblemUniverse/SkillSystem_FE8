@@ -37,7 +37,7 @@ END_MAIN
 ReinforcementEvent:
 Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
 Reinforce(0xF1, 1, ReinforcementUnits, 3, 3) // Middle 
-Reinforce(0xF2, 1, ReinforcementUnits, 1, 3) // Bottom 
+Reinforce(0xF2, 1, ReinforcementUnits, 2, 3) // Bottom 
 NoFade 
 ENDA 
 
@@ -195,7 +195,7 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(5, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
@@ -203,7 +203,7 @@ UNIT
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [1,3] 001b	0x0 0x01 REDA1R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(2, Enemy, 1)   [2,3] 001b	0x0 0x01 REDA2R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(5, Enemy, 1)   [2,3] 001b	0x0 0x01 REDA2R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
@@ -215,12 +215,12 @@ UNIT
 EnemyUnitsD:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(6, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 EnemyUnitsE:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [2,0] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(5, Enemy, 1)   [2,0] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 
@@ -241,11 +241,11 @@ MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT VF_0xE0_BQ // 0xE0 
+SHORT VFS_0xE0_BQ // 0xE0 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT VF_0xE0_BD // 0xE0 
+SHORT VFS_0xE0_BD // 0xE0 
 SHORT 300 // Gold 
 TQD_TableTerminator ; }
 

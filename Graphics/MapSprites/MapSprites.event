@@ -77,7 +77,7 @@ SetSMS(PidgeottoSMS , 2 ,   m17Standing)
 SetSMS(PidgeotSMS , 2 ,   m18Standing)
 SetSMS(TreekoSMS, 2 ,  m1Standing) // Treeko ? 
 SetSMS(CrobatSMS, 2 ,  CrobatStanding)
-SetSMS(Unused3SMS , 2 ,  m1Standing)
+SetSMS(RedSMS , 1 ,  red_normalStanding)
 SetSMS(Unused4SMS , 2 ,  m1Standing)
 SetSMS(RattataSMS , 2 ,    m19Standing) 
 SetSMS(RaticateSMS , 2 ,    m20Standing) 
@@ -349,7 +349,7 @@ SetMMS(PidgeottoMMS ,    r17Moving,        DemonKingAP)
 SetMMS(PidgeotMMS ,    r18Moving,        DemonKingAP)
 SetMMS(TreekoMMS,   r1Moving,        DemonKingAP) 
 SetMMS(CrobatMMS,   CrobatMoving,        DemonKingAP)
-SetMMS(Unused3MMS ,   r1Moving,        DemonKingAP)
+SetMMS(RedMMS ,   red_normalMoving,        DemonKingAP)
 SetMMS(Unused4MMS ,   r1Moving,        DemonKingAP)
 SetMMS(RattataMMS ,     r19Moving,        DemonKingAP) 
 SetMMS(RaticateMMS ,     r20Moving,        DemonKingAP) 
@@ -1309,10 +1309,14 @@ super_nerdStanding:
 #incbin "Trainer_SMS/SMS_super_nerd.dmp"
 
 
+ALIGN 4
+red_normalStanding:
+#incbin "Trainer_SMS/SMS_red_normal.dmp"
 
 
-
-
+ALIGN 4
+red_normalMoving:
+#incbin "Trainer_MMS/MMS_red_normal.dmp"
 
 
 

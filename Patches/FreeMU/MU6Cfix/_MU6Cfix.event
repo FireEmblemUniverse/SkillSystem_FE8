@@ -1,0 +1,17 @@
+
+
+
+PUSH
+	ORG 0x788B0
+	jumpToHack(MU_ExecCmd_FixForFreeMU)
+
+	ORG 0x78D10
+	jumpToHack(MU_CALL2_FixForFreeMU)
+
+	ORG 0x7947C
+	jumpToHack(MU_GetSpeed_FixForFreeMU)
+POP
+
+
+#include MU6Cfix.lyn.event
+ALIGN 4

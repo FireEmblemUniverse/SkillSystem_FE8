@@ -1,6 +1,6 @@
 ALIGN 4
 PreventTradingList:
-BYTE 0x6C
+
 // Add items that can't be traded here
 // BYTE itemID
 // BYTE 0xBF

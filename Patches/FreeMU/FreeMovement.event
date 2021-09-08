@@ -1,0 +1,152 @@
+
+#ifndef FREE_MOVEMENT_INSTALLED
+#define FREE_MOVEMENT_INSTALLED
+#define FreeMU_MovingSpeed 0x20
+//#define FreeMU_MovingSpeed 0x20
+
+	#include "Extensions/ProcDefinitions.txt"
+	#include "Extensions/6CDefinitions.txt"
+	#include "Extensions/Hack Installation.txt"
+
+	
+	// By Mokha, origin from Sme
+	// FreeMU Flag: 0x2028924+0x3
+	// Don't worry about FreeMU_Unit, it has been saved in proc now.
+	
+	PUSH
+	
+	ORG $59A38C
+	POIN NewPlayerPhaseEvaluationFunc|1
+	ORG $59A3B4
+	POIN NewPlayerPhaseEvaluationFunc|1
+			//call FreeMovementControlProc
+	
+	ORG $59A2E4
+	POIN NewMakePhaseControllerFunc|1
+			//call FreeMovementControlProc
+	
+	POP
+	
+	#define EnableFreeMovement "ASMC EnableFreeMovementASMC"
+	#define DisableFreeMovement "ASMC DisableFreeMovementASMC"
+	
+	#include "src/FreeMUcore.lyn.event"
+	#include "src/FreeMUext.lyn.event"
+	#include "src/FreeMUevents.lyn.event"
+	#include "asm/FreeMU.lyn.event"
+	#include "MU6Cfix/_MU6Cfix.event"
+	
+	
+	
+	ALIGN 4
+	FreeMovementControlProc:
+	PROC_SET_NAME(FreeMovementProcName)
+	PROC_SET_MARK(2)
+	_6C_YIELD
+	_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
+	_6C_CALL_ROUTINE($801A1F5) // RefreshFogAndUnitMaps
+	_6C_CALL_ROUTINE($8019C3D) // UpdateGameTilesGraphics
+	_6C_CALL_ROUTINE($80271A1) // SMS_UpdateFromGameData
+	_6C_CALL_ROUTINE($80160D1) // UpdatePlayMapMusic
+	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow - // Modular Minimug Box 
+	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
+	_6C_CALL_ROUTINE(pFMU_InitTimer|1)
+	
+	_6C_LABEL(0)	//Idle
+	_6C_YIELD
+	_6C_CALL_ROUTINE(pFMU_OnInit|1)
+	_6C_CALL_ROUTINE(pFMU_CorrectCameraPosition|1)
+	_6C_LABEL(0xD)	
+	_6C_YIELD
+	_6C_CALL_ROUTINE(pFMU_MainLoop|1)
+	_6C_CALL_ROUTINE(pFMU_HanleContinueMove|1)	//Handle Continue move
+	_6C_GOTO(0xD)
+	
+	_6C_LABEL(1)	//ProcMU Not Exist
+	_6C_YIELD
+	_6C_CALL_ROUTINE(pFMU_RunMiscBasedEvents|1)
+	_6C_YIELD
+	_6C_CALL_ROUTINE(pFMU_MoveUnit|1)
+	_6C_YIELD
+	_6C_GOTO(0)
+	
+	_6C_LABEL(2)	//Not Move
+	_6C_CALL_ROUTINE(pFMU_HandleKeyMisc|1)
+	_6C_YIELD
+	//_6C_CALL_ROUTINE(pFMU_HandleSave|1)	//Default - Laggiest part 
+	_6C_YIELD
+	_6C_GOTO(0)
+	
+	_6C_LABEL(4)	//Press A
+	_6C_CALL_ROUTINE(pFMU_PressA|1)
+	_6C_GOTO(0)
+	
+	_6C_LABEL(5)	//Press L
+	_6C_CALL_ROUTINE(pFMU_PressL|1)
+	_6C_GOTO(0)
+	
+	_6C_LABEL(6)	//Press Select
+	_6C_SLEEP(0x0) // 0x3
+	_6C_CALL_ROUTINE(pFMU_PressSelect|1)
+	_6C_GOTO(0)
+	
+	_6C_LABEL(7)	//Press Start
+	_6C_CALL_ROUTINE(pFMU_PressStart|1)
+	_6C_GOTO(0)
+	
+	_6C_LABEL(0xE)	//Save
+	_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
+	_6C_GOTO(0)
+	
+	_6C_LABEL(0xF)
+	_6C_END
+	
+	
+	
+	#define MM_Status	  "BYTE $D4 $7E $0D $08 $90 $06 $E0 $06 $00 $6F $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $51 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Guide	  "BYTE $CC $7E $0D $08 $9C $06 $E5 $06 $04 $74 $00 $00 $61 $26 $02 $08 $79 $26 $02 $08 $E5 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Options	  "BYTE $C4 $7E $0D $08 $9E $06 $E3 $06 $00 $70 $00 $00 $41 $4C $02 $08 $00 $00 $00 $00 $BD $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Suspend 	  "BYTE $AC $7E $0D $08 $9F $06 $E4 $06 $00 $73 $00 $00 $B1 $25 $02 $08 $00 $00 $00 $00 $D1 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Dunno1     "BYTE $BC $7E $0D $08 $9B $06 $E1 $06 $00 $71 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $29 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Dunno2     "BYTE $B4 $7E $0D $08 $9D $06 $E2 $06 $00 $72 $00 $00 $49 $F4 $04 $08 /*$CD $4C $02 $08 */$00 $00 $00 $00 $E1 $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Separator  "WORD 0 0 0 0 0 0 0 0 0"
+	#define MenuBox(XCoord, YCoord, Width, Height, Style, CommandListPointer) "BYTE XCoord YCoord Width Height; WORD Style; POIN CommandListPointer"
+	#define MenuBoxFull(XCoord, YCoord, Width, Height, Style, CommandListPointer, Constructor, RPressStart, Pointer3, OnBPress, OnRPress, RPressEnd) "BYTE XCoord YCoord Width Height; WORD Style; POIN CommandListPointer Constructor RPressStart Pointer3 OnBPress OnRPress RPressEnd"
+	
+	ALIGN 4
+	FreeMovementProcName:
+	String(E_FREEMOVE)
+	BYTE 0
+	
+	ALIGN 4
+	FreeMovementLMenu:
+	MenuBoxFull($01, $02, $07, 0, 0, FreeMovementMenuTable, $0, $0, $0, FreeMovementMenuOnBPress, $4F521, $4F459)
+	
+	ALIGN 4
+	FreeMovementMenuTable:
+	MM_Status
+	MM_Guide
+	MM_Dunno1 // Options 
+	//MM_Dunno2 // Retreat 
+	MM_Suspend
+	MM_Separator
+
+/*
+MESSAGE pFMU_MainLoop pFMU_MainLoop_
+MESSAGE pFMU_MoveUnit pFMU_MoveUnit_
+MESSAGE pFMU_HandleKeyMisc pFMU_HandleKeyMisc_
+MESSAGE pFMU_HandleSave pFMU_HandleSave_
+MESSAGE pFMU_PressA pFMU_PressA_
+MESSAGE pFMU_PressL pFMU_PressL_
+MESSAGE pFMU_PressSelect pFMU_PressSelect_
+MESSAGE pFMU_PressStart pFMU_PressStart_
+MESSAGE pFMU_RunMiscBasedEvents pFMU_RunMiscBasedEvents_
+MESSAGE FMUmisc_RunMapEvents FMUmisc_RunMapEvents_
+MESSAGE FMUmisc_RunTalkEvents FMUmisc_RunTalkEvents_
+MESSAGE pFMU_OnInit pFMU_OnInit_
+MESSAGE pFMU_InitTimer pFMU_InitTimer_
+MESSAGE MU_GetSpeed_FixForFreeMU MU_GetSpeed_FixForFreeMU_
+*/
+
+#endif // FREE_MOVEMENT_INSTALLED
+

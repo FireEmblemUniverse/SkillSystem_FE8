@@ -6,6 +6,7 @@
 
 #include "Commands/CompareTactText/CompareTactTextInstaller.event" 
 
+#include "Commands/TactNameDefault/Installer.event"
 
 
 #include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"

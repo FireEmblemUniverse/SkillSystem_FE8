@@ -47,19 +47,26 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(BoulderbadgeObtained,EnterGym,12,16) // village ? 
 Vendor(ShopItems,24,20)
 END_MAIN
+
+EnterGym:
+ENUF BoulderbadgeObtained 
+ForcedChapterTransition(PewterGymCh, 7, 15)
+NoFade 
+ENDA 
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AFEV 0 CityAfev 0
+AFEV 0 RefreshIfNotInDanger 0 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshActive 0 
 AREA 0 ToRoute2N [17,37] [21,37] 
 AREA 0 ToRoute3W [39,19] [39,22] 
-AREA 0 ToPewterGym [12,16] [12,16] 
+//AREA 0 ToPewterGym [12,16] [12,16] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 

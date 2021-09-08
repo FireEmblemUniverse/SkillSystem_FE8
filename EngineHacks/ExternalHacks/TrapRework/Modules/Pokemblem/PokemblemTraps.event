@@ -38,7 +38,7 @@
 	SetTrapEventInit(Placeholder31ID,ObtainItemInitialization)
 
 
-	SetTrapEventInit(CutBushID,GenericTrapDisappearInitialization)
+	SetTrapEventInit(CutBushTrapID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(RockSmashTrapID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(StrengthBoulderTrapID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(BreakableFloorID,GenericTrapDisappearInitialization)
@@ -93,8 +93,8 @@
 #define GenericEffect(id, event) "PUSH; ORG GenericTrapTableOffset + (4 * id); POIN event; POP"
 
 
-#define GenericDisappear(XX,YY,EffectID) "BYTE CutBushID XX YY 0x0 0x0 EffectID"
-#define GenericDisappear(XX,YY,ReqFlag, Sprite, EffectID) "BYTE CutBushID XX YY ReqFlag Sprite EffectID"
+#define GenericDisappear(XX,YY,EffectID) "BYTE CutBushTrapID XX YY 0x0 0x0 EffectID"
+#define GenericDisappear(XX,YY,ReqFlag, Sprite, EffectID) "BYTE CutBushTrapID XX YY ReqFlag Sprite EffectID"
 #define GenericDisappearEffect(id, event) "PUSH; ORG GenericTrapDisappearTableOffset + (4 * id); POIN event; POP"
 
 
@@ -244,8 +244,8 @@ SetImpassableTrap(BerryTreeTrapID)
 #define RockSmashFlag 0x20
 #define StrengthBoulderFlag 0x21
 
-#define CutBush(XX,YY) "BYTE CutBushID XX YY CutHmFlag CutBushSMS 0x0"
-#define CutBushEffect(XX,YY, EffectID) "BYTE CutBushID XX YY CutHmFlag CutBushSMS EffectID"
+#define CutBush(XX,YY) "BYTE CutBushTrapID XX YY CutHmFlag CutBushSMS 0x0"
+#define CutBushEffect(XX,YY, EffectID) "BYTE CutBushTrapID XX YY CutHmFlag CutBushSMS EffectID"
 
 #define RockSmash(XX,YY) "BYTE RockSmashTrapID XX YY RockSmashFlag RockSmashSMS 0x0"
 #define RockSmashEffect(XX,YY, EffectID) "BYTE RockSmashTrapID XX YY RockSmashFlag RockSmashSMS EffectID"

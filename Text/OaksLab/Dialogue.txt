@@ -278,7 +278,7 @@ Rock-type Pokemon.[A][X]
 defense and determination![A][NL]
 That's why my pokemon are[NL]
 all the rock-type.[A][CloseSpeechSlow][LoadOverworldFaces][NL]
-Hmm? What about my Nidoran,[NL]
+Hmm? What about my Diglett,[NL]
 Sandshrew, and Vulpix?[A][NL]
 Those don't count.[A][CloseSpeechSlow][LoadOverworldFaces][OpenMidRight][MoveLeft][OpenLeft]There there, sweetie.[NL]
 Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight][OpenMidRight]Ahem. Let's battle![A][X]
@@ -304,17 +304,23 @@ you've completed my gym.[A][NL]
 The others won't be[NL]
 quite so easy.[A][X]
 
-# 0x0A14
-You cannot call your party[NL]
-so soon after attacking.[A][X]
 
-# 0x0A15
-You can only rest[NL]
-at the start of the turn.[A][X]
+## BrockDryingPanText
+[OpenMidRight][LoadBrock][OpenMidRight]Wait![NL]
+Take this.[A][X]
+
+## BrockDryingPanText2
+[OpenMidRight][LoadBrock][OpenMidRight]
+This trusty pan will negate[NL]
+any weakness to WATER moves.[A][NL]
+I am sad to part with it, but[NL]
+I know you'll take good care of it.[A][NL]
+Good luck, [Tact]![A][LoadOverworldFaces][X]
+
 
 # 0x0A16
-You can only call your[NL]
-party once per turn.[A][X]
+You can only rest[NL]
+at the start of the turn.[A][X]
 
 ## PokemonCapturedText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Pokemon captured.[NL]

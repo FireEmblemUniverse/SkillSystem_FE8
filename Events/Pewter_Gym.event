@@ -42,10 +42,11 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
-AFEV 0 GlobalAfev 0
+//AFEV 0 GlobalAfev 0
+DefeatAll(EndingScene) 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-//AFEV 0 RefreshIfNotInDanger 0 
+AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToPewter [7,16] [7,16] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -77,11 +78,12 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
-SilentGiveItemWithDurability(0xD0, Berry,0x03)
-SilentGiveItemWithDurability(0xA0, Berry,0x01)
-SilentGiveItemWithDurability(0xA1, Berry,0x01)
-SilentGiveItemWithDurability(0xA2, Berry,0x01)
-SilentGiveItemWithDurability(0xA3, Berry,0x01)
+SilentGiveItemWithDurability(0xD0, DryingPan,0x81)
+SilentGiveItemWithDurability(0xD0, JellyDonut,0x2)
+SilentGiveItemWithDurability(0xA0, Berry,0x81)
+SilentGiveItemWithDurability(0xA1, Berry,0x81)
+SilentGiveItemWithDurability(0xA2, Berry,0x81)
+SilentGiveItemWithDurability(0xA3, Berry,0x81)
 
 //FADI 16 
 EVBIT_MODIFY 4 
@@ -148,6 +150,32 @@ ENDA
 
 
 EndingScene: 
+CHECK_EVENTID BoulderbadgeObtained 
+BNE 0x63 rC r0 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+Text(BrockDefeatText)
+GiveItemWithDurability(0, SpellScroll, RockTomb)
+//GiveItemWithDurability(0, SpellScroll, RockTomb)
+ENUT BoulderbadgeObtained 
+SVAL r3 3000 
+GIVETOMAIN 0 
+TEXTSHOW BrockDryingPanText
+TEXTEND 
+REMA
+SVAL r3 DryingPan
+GIVEITEM 0x0 // Party leader 
+TEXTSTART
+TEXTSHOW BrockDryingPanText2
+TEXTEND 
+FADI 4 
+REMA 
+ForcedChapterTransition(PewterCh, 12, 16)
+LABEL 0x63 
 NoFade
 ENDA
 
@@ -169,11 +197,11 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 OnixID 0x0 Level(1, Enemy, 1) [7,6]  0b 0x0	0x0 REDA7R6 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
-UNIT 0xA0 NidoranFID 0xD0 Level(1, Enemy, 1) [5,7]  0b 0x0	0x0 REDA5R7 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
-UNIT 0xA1 GeodudeID 0xD0 Level(1, Enemy, 1) [9,7]  0b 0x0	0x0 REDA9R7 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
-UNIT 0xA2 VulpixID 0xD0 Level(1, Enemy, 1) [3,8]  0b 0x0	0x0 REDA3R8 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
-UNIT 0xA3 SandshrewID 0xD0 Level(1, Enemy, 1) [11,8]  0b 0x0	0x0 REDA11R8 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT 0xD0 OnixID 0x0 Level(1, Enemy, 1) [7,6]  0b 0x0	0x0 REDA7R6 		[0x0,0x0,0x0,0x0] ZoningHeal80GroupOneAI
+UNIT 0xA0 DiglettID 0xD0 Level(1, Enemy, 1) [5,7]  0b 0x0	0x0 REDA5R7 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 GeodudeID 0xD0 Level(1, Enemy, 1) [9,7]  0b 0x0	0x0 REDA9R7 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA2 VulpixID 0xD0 Level(1, Enemy, 1) [3,8]  0b 0x0	0x0 REDA3R8 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 SandshrewID 0xD0 Level(1, Enemy, 1) [11,8]  0b 0x0 0x0 REDA11R8 [0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 
 

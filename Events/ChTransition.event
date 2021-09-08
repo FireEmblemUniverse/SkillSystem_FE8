@@ -78,25 +78,17 @@ LABEL 0x63
 NoFade 
 ENDA 
 
-// Range event that checks if the cutscene should be completed 
-// 
+
 
 TeleportActiveUnitPrepEvent:
-//SET_ACTIVE 0
-
 NoFade 
 ENDA 
 
 TeleportActiveUnitEvent:
-
 NoFade 
 ENDA 
 
-RefreshActive:
-UNCR(0x7FFF, 0x42)
-//ASMC RefreshActiveUnit 
-NoFade 
-ENDA 
+
 
 
 GenericAutolevelEvent:
@@ -169,8 +161,8 @@ ENDA
 
 GlobalAfev:
 //ReplenishDurability(0x7FFF)
-SVAL r2 0 // Player allegiance 
-CALL 0x89EE1B8 // When matching allegiance stops in range 
+//SVAL r2 0 // Player allegiance 
+//CALL 0x89EE1B8 // When matching allegiance stops in range // This is dangerous, it seems. Doing it can lead into an infinite loop of cantoing by 1 tile. 
 				// 		Eg. if not player, ENDB 
 		//CALL RefreshActiveUnitEvent
 NoFade
@@ -181,7 +173,11 @@ NoFade
 ENDA 
 
 CityBeginningScene:
-SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+SetMaxMove
+//SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+#ifdef FREE_MOVEMENT_INSTALLED
+EnableFreeMovement
+#endif 
 NoFade 
 ENDA 
 
@@ -347,14 +343,7 @@ SADD r9 rC r3  //Add MaxHP+(Freq-1)
 SDIV r9 r9 r7 // MaxHP / Freq (rounded up) 
 GetUnitStatus(0x7FFD, CurrentHP) //s1, s3, s4 
 SADD r5 rC r9 
-
-
-
 SetUnitStatus(0x7FFD, CurrentHP) // Set to heal 
-
-
-
-
 //SADD r5 r5 r9 //for rounding  
 GetUnitStatus(0x7FFD, MaxHP) //s1, s3, s4 
 // MaxHP / Freq (rounded down) 
@@ -404,8 +393,17 @@ Label 0
 SVAL r1 1
 SADD r6 r4 r1
 BLT 1 rA r6 
+
+	SADD r7 r5 r0  // Unit group? 
+GetUnitStatus(0x7FFD, CurrentHP) //s1, s3, s4 
+
+SADD r5 rC r0
+GetUnitStatus(0x7FFD, MaxHP) // Failsafe I guess, but this thing isn't quite perfectly functional anyway lol 
+BLT 1 r5 rC  // If less than full hp, don't load units 
+
+
 		//Load units
-	SADD r7 r5 r0 
+
 	COUNTER_SET 0 0 
 	Label 2 // Loop 
 	//Text(0x9d5)
@@ -477,7 +475,7 @@ ENDA
 
 
 CityAfev:
-ASMC CallCommandEffect
+//ASMC CallCommandEffect
 //UNCM(0x7FFF, 0x0D) // Undeploy active 
 NoFade 
 ENDA 
@@ -497,7 +495,7 @@ NoFade
 ENDA 
 
 RefreshIfNotInDanger:
-// for some reason if you walk 15 tiles it doesn't auto select your active unit 
+// for some reason if you walk your max range it doesn't auto select your active unit 
 // but it does if you walk less than that ??????? 
 
 CHECK_EVENTID 1 
@@ -541,10 +539,26 @@ ENDA
 
 
 #define ChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA" 
+#define ForcedChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 
+ForceChTransition:
+#ifdef FREE_MOVEMENT_INSTALLED
+DisableFreeMovement
+#endif 
+SADD 2 9 0 
+MNC2 0xFFFF 
+ENUF PlayableCutsceneFlag 
+LABEL 0x63 
+EVBIT_MODIFY 0
+NoFade
+ENDA 
 
 
 ChTransition: 
+
+#ifdef FREE_MOVEMENT_INSTALLED
+DisableFreeMovement
+#endif 
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 CHECK_EVENTID PlayableCutsceneFlag 
@@ -568,6 +582,16 @@ LABEL 0x63
 EVBIT_MODIFY 0
 NoFade
 ENDA 
+
+LoadMainUnit:
+LOAD3 0x0 First1Player //always should have one player, at least 
+SVAL r4 1
+OnAllUnitState(0x01FF, Undeployed, Escaped|Undeployed|Hide, AnyArmy, AnyClass, AnyRange, AnyItem) 
+ENUN 
+CALL PlacePlayers
+NoFade 
+ENDA 
+
 
 LoadAndPlacePlayers:
 //EVBIT_T 0x2 //Scene skipping 
@@ -635,6 +659,7 @@ EVBIT_F 2
 NoFade 
 ENDA 
 
+// Unused now..? 
 CallCommandEvent:
 ENUT 1 // Battle flag / Used 'Call' this turn 
 CHECK_COORDS 0x7FFF 

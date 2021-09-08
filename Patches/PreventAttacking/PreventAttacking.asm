@@ -13,7 +13,7 @@
 .thumb 
 
 	.equ CheckEventId, 0x8083da8 
-
+	.equ CurrentUnit, 0x3004E50
 .global PreventAttacking
 .type PreventAttacking, %function 
 
@@ -45,12 +45,12 @@ ldr r5, [r4] @ Unit pointer
 ldrb r5, [r5, #4] @ Char ID 
 
 
- 
+
 
 ldr r7, =PreventAttackingTable
-sub r7, #4 
+sub r7, #6
 PreventAttackingLoop:
-add r7, #4 
+add r7, #6 
 ldr r0, [r7, #4] 
 cmp r0, #0 
 beq WeCanAttack @ Finished the loop 
@@ -96,10 +96,12 @@ FlagIDException:
 b CannotAttack 
 
 Capturing: 
+
 cmp r5, #0xA0 @ Unit ID 
 blt WeCanAttack 
 
-ldr r1, =0x2033F3C @ gUnitSubject 
+ldr r1, =CurrentUnit 
+@ldr r1, =0x2033F3C @ gUnitSubject 
 ldr r3, [r1] 
 ldr r1, [r3, #0x0C] @ Current Unit State 
 

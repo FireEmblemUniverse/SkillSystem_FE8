@@ -164,15 +164,18 @@ pop {r4-r6}
 pop {r1}
 bx r1 
 
+
+
+
+
+
+
+
 .align 4
 HeldBerryEffect:
 push {r4-r6,r14}
 mov r4,r0 @r4 = unit
 mov r5,r1 @r5 = heal %
-
-
-
-
 mov r2, #0x12  
 ldrb r0, [r4, r2]
 mov r2, #0x13  
@@ -239,6 +242,8 @@ ldrb r0, [r4, r3] @ dur
 sub r0, #1
 cmp r0, #0 
 beq RemoveBlankItem
+cmp r0, #0x80 
+beq RemoveBlankItem @ Equipped berry 
 
 
 lsl r0, #8 
@@ -249,7 +254,9 @@ b DontHeal
 
 RemoveBlankItem:
 sub r3, #1 
+mov r0, #0 
 strh r0, [r4, r3] 
+mov r0, r4 
 blh RemoveUnitBlankItems @move everything else up
 
 

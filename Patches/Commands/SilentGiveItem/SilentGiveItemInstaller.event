@@ -8,6 +8,7 @@
 
 
 
+
 #define CombineGiveItemWithDurability(UnitID, Item,Durability) "GetUnitStatus(UnitID, 0x1E, 0x04); SADD r6 rC r0; SVAL r5 0; SVAL r3 0x1E; ASMC SetUnitStatus ; CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID ; SVAL r1 UnitID; SVAL r3 0x1E; SVAL r4 0x04; SADD r5 r6 r0; STAL 10; ASMC SetUnitStatus; SVAL 1 UnitID; SVAL r3 Item; SVAL r4 Durability; ASMC SilentGiveItemWithDurability"
 
 

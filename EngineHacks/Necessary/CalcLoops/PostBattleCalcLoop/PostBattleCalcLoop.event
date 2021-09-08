@@ -13,6 +13,7 @@ POIN PostCombatSkills
 PostCombatSkills: //I like having savage blow as the first one because it makes the activation sound play first
 POIN SavageBlow 
 
+
 #ifdef GroupAI 
 	POIN GroupAI 
 #endif

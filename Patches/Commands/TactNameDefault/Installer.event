@@ -1,0 +1,11 @@
+
+
+#define SetTactName(TextID) "SHORT 0x0D40 TextID; POIN SetTactNameData|1"
+
+
+ALIGN 4 
+SetTactNameData:
+#incbin "CopyTactName.dmp"
+
+ALIGN 4 
+

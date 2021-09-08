@@ -1,0 +1,18 @@
+- Commented out your MESSAGEs in the installer. 
+- Moved your `#define FreeMU_MovingSpeed` to the installer, instead of hidden inside a folder. 
+- Could we #define which byte in ram to use, please? You can provide the default suggestion, of course. 
+- Commented out "Retreat" in the menu cause you might've made it always usable? 
+- Range events & AFEVs seem to be on a timer. Would it be possible to make this not repeat until you move to a new square? 
+- You can't interact with traps such as Snags or Mines in this mode.
+- I have a lot of custom traps using Sme's TrapRework like bushes that you have to cut down to walk through or pokeball items to pick up. How would I make them work in FreeMovement mode? They have a unit menu option that's usable when you're adjacent to them. Like Snags, for example. 
+- Is the only way to switch back to normal mode by doing `DisableFreeMovement` followed by `MNC2 ChapterID`? If I wanted to try and make it switch freely between the modes, what should I look into? 
+
+
+
+- Probably not your fault, but my call command range event causes it to loop for some reason lmao. It looks pretty funny. (I am not pressing any buttons lol.)
+
+
+
+
+
+

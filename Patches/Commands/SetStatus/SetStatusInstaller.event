@@ -1,6 +1,7 @@
 // Originally by 7743 
 // Rewritten by Vesly 
 
+#define MaxMovementValue 19
 
 #ifdef _FE8_
 
@@ -13,6 +14,11 @@
 #include "SetUnitStatusAll.lyn.event"
 #include "OnAllUnitState.lyn.event"
 #include "OffAllUnitState.lyn.event"
+#include "SetMaxMove.lyn.event"
+
+
+
+#define SetMaxMove "SVAL r1 0; ASMC SetMaxMove_ASMC" 
 
 
 // 

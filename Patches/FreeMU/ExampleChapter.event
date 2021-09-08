@@ -1,0 +1,82 @@
+#include EAstdlib.event
+EventPointerTable(7,MyPrologue)
+
+
+
+
+ALIGN 32
+MyPrologue:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno Dunno Dunno
+POIN Tutorial
+POIN TrapData TrapData
+POIN PlayerUnits EnemyUnits
+POIN $0 $0 $0 $0 $0 $0
+POIN BeginningScene EndingScene
+
+ALIGN 32
+PlayerUnits:
+UNIT Eirika EirikaLord Eirika Level(1,Ally,False) [1,0] 0x0 0x0 0x0 0x1 [Rapier,Vulnerary] NoAI
+UNIT 0x2 General Eirika Level(1,Ally,False) [0,0] 0x0 0x0 0x0 0x1 [SilverLance,SteelSword] NoAI
+UNIT
+
+ALIGN 32
+EnemyUnits:
+UNIT 0x68 0x3F 0x0 0x24 [14,8] 0b 0x0 0x1 0x8B3BFC [0x1F,0x0,0x0,0x0] [0x6,0x3,0x0,0x0]
+UNIT 0x82 0x3F 0x0 0xC [14,7] 0b 0x0 0x1 0x8B3C04 [0x1F,0x0,0x0,0x0] [0x0,0xA,0x0,0x0]
+UNIT 0x80 0x3F 0x0 0x14 [14,7] 0b 0x0 0x1 0x8B3C0C [0x1F,0x0,0x0,0x0] [0x0,0x12,0x2,0x0]
+UNIT 0x7F DemonKing 0 Level(1,0x2,False) [3,3] 0x0 0x0 0x0 0x1 [0x1F] NoAI
+UNIT
+
+ALIGN 32
+TurnBasedEvents:
+END_MAIN
+
+ALIGN 32 //For some reason, CharacterBasedEvents have to be 32-Aligned
+CharacterBasedEvents:
+END_MAIN
+
+ALIGN 32
+LocationBasedEvents:
+END_MAIN
+
+ALIGN 32
+Dunno:
+WORD $00
+END_MAIN
+
+ALIGN 32
+Tutorial:
+WORD $00
+END_MAIN
+
+ALIGN 32
+TrapData:
+ENDTRAP
+
+ALIGN 32
+BeginningScene:
+LOMA 0x0
+LOAD1 1 PlayerUnits
+ENUN
+LOAD1 1 EnemyUnits
+ENUN
+
+//ASMC EnableFreeMovementASMC|1
+EnableFreeMovement
+
+ENDA
+
+ALIGN 32
+EndingScene:
+GOTO_CHAPTER_NOWM 0x1
+ENDA
+
+ALIGN 32
+MiscBasedEvents:
+DefeatAll(EndingScene)
+END_MAIN
+

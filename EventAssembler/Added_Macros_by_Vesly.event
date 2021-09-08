@@ -1,29 +1,35 @@
-#define Coord(XX,YY) "SVAL rB YY<<16|XX" 
 
-// ASMC 0x80790a5 //MU_EndAll //deselect unit
-// ASMC 0x080CCA15 //NewPromotion
 
+// Useful Vanilla ASMCs 
+#define EndMMS "ASMC 0x80790a5" //MU_EndAll //deselect unit
+#define PromoteActiveUnit "ASMC 0x080CCA15" //NewPromotion
+#define EndTurn "ASMC 0x80225F9" // ChMenu "End" to end player phase 
+#define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 
+
+// Text 
 #define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 #define TutText(background,textID) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO; CALL $9EE2C4; EVBIT_T 0x7; ENDA"
 #define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 #define BottomWallText(text) "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered along bottom of screen 
 #define BottomWallS2Text "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND; REMA"
-
-
 #define CGText(text, BGIndex) "FlashBlack; ShowCG(BGIndex); CGTEXTSTART; TEXTSHOW text; TEXTEND; REMA; ClearBackgroundSmooth"
 
-#define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 
 
+// Debugging 
 #define Break "CALL 0x89EE1D4" // ENDB and unsets completion flag of event 
 #define Halt "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
 #define Stop "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-#define StopHere "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
+#define StopHere "EVBIT_F 2; FADI 16; Text(DebugTextHere)" // duplicates for when I forget the name lol 
 //#define StopHere "CUMO (-1); EVBIT_F 2; STAL 45; CURE" // no text but waits 45 frames 
 
+// Helpers 
+#define Coord(XX,YY) "SVAL rB YY<<16|XX" 
 #define PlayerInRange "SVAL r2 0; CALL 0x89EE1B8" // When matching allegiance stops in range - Eg. if not player, ENDB 
 #define NPCInRange "SVAL r2 1; CALL 0x89EE1B8" 
 #define EnemyInRange "SVAL r2 2; CALL 0x89EE1B8" 
 
+#define GiveItemWithDurability(UnitID, Item, Durability) "CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID"
+#define GiveItemWithDurability(UnitID) "SVAL r1 8; SLSL r4 r4 r1; SADD r3 r3 r4; CALL $591F40; GIVEITEMTO UnitID" // s3 as item, s4 as durability 
 
 // Pokemblem stuff: 
 #define TrainerPostBattleTalk(char2) "CHAR 0 TrainerPostBattleTalkEvent [0x0, char2] 0"

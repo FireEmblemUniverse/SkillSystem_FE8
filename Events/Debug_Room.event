@@ -74,14 +74,21 @@ Tutorial:
 END_MAIN
 
 Units1:
+#ifdef FREE_MOVEMENT_INSTALLED
+UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+#endif 
+#ifndef FREE_MOVEMENT_INSTALLED
 UNIT Eirika  CharmanderID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT Ephraim  PidgeyID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+#endif 
+UNIT 3  PidgeyID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT Seth  RattataID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
 Units2:
-UNIT Amelia MankeyID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4 MankeyID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 5 PikachuID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6 OddishID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
@@ -179,17 +186,27 @@ SilentGiveItemWithDurability(Eirika, MuscleBand, 0xC1)
 SilentGiveItemWithDurability(Eirika, Scratch, 1)
 */
 
-SilentGiveItemWithDurability(Eirika, Berry, 0x3)
+SilentGiveItemWithDurability(Eirika, RenewalRing, 0x1) // Starter 
+SilentGiveItemWithDurability(Eirika, SkillScroll, ParagonID)
+//SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
 
-SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
+//SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
+//SilentGiveItemWithDurability(Eirika, SuperPotion, 0x5)
 
-SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
-SilentGiveItemWithDurability(Eirika, SuperPotion, 0x5)
+SilentGiveItemWithDurability(5, Berry, 0x83) // Pikachu 
+SilentGiveItemWithDurability(5, WiseGlasses, 0x1)
 
+SilentGiveItemWithDurability(6, Berry, 0x3) // Oddish
+SilentGiveItemWithDurability(6, WiseGlasses, 0x81)
 
+SilentGiveItemWithDurability(3, Berry, 0x83) // Pidgey 
+//SilentGiveItemWithDurability(3, WiseGlasses, 0x1)
 
-SilentGiveItemWithDurability(2, Berry, 3)
+SilentGiveItemWithDurability(2, Berry, 0x83) // Rattata 
+SilentGiveItemWithDurability(2, SpellScroll, Headbutt)
 
+SilentGiveItemWithDurability(4, MuscleBand, 0x81) // Mankey 
+SilentGiveItemWithDurability(4, JellyDonut, 4)
 //CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 SupplyItemWithDurability(Berry, 3)
@@ -235,21 +252,22 @@ SupplyItemWithDurability(SuperPotion, 5)
 
  //[0902374F]?
 
-Write_Byte(8, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
 LABEL 0x63
 SVAL r3 4500 
 GIVETOMAIN 0
 
-
+SetTactName(VeslyName)
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(13, True, 0x120) // all 
+AutoLevelUnits(9, True, 0x120) // all 
+//AutoLevelUnits(33, False, 0x120) // all 
 
 
-Write_Byte(7, GaryStarterClass) 
+//Write_Byte(7, GaryStarterClass) 
 
 //GotoPrepScreen 
 //ENUT SkipIntroFlag
@@ -259,12 +277,13 @@ Write_Byte(7, GaryStarterClass)
 //DISA 0x2
 
 
-Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(36, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-MNC2 Route2SCh
+Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+MNC2 PalletCh
+//MNC2 PewterGymCh
+//MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch
-//MNC2 ViridianForestNCh
+//MNC2 ViridianForestSCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 Route2NCh
