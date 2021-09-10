@@ -5,6 +5,8 @@
 #include "Quotes.event" 
 
 #define CheckTrainerFlag(UnitID) "SVAL r1 UnitID; ASMC ASMC_CheckTrainerFlag"
+#define MarkTrainerAsDefeated(UnitID) "SVAL r1 UnitID; ASMC MarkTrainerAsDefeated_ASMC"
+
 
 TrainerSpotsYouEvent:
 ASMC ModularSummon_UnhideActive 

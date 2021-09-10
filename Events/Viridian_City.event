@@ -93,7 +93,7 @@ CutBush(13,5)
 CoinsTrap(26,14,(ChapterID*2)+1,600)
 SpellScrollTrap(12,5, (ChapterID*2)+1, LeechLife)
 RockSmash(11,23)
-SpellScrollTrap(9,29, (ChapterID*2), Bubble)
+SkillScrollTrap(9,29, (ChapterID*2), Relief)
 
 
 StrengthBoulder(5,16)

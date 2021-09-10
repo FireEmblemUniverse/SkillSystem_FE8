@@ -2,10 +2,10 @@
 
 
 
-//Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
+DONE //Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
 TantivyID 
 
-//Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
+DONE //Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
 //Author Unknown (Initial Commit)
 #define ReliefID 90
 
@@ -18,7 +18,7 @@ TantivyID
 
 
 
-//Crit Boost: +15 critical rate.
+DONE - lucky bracer //Crit Boost: +15 critical rate.
 //Author Unknown (Initial Commit)
 #define CritUpID 3
 #define CritBoostID CritUpID //Alias
@@ -27,7 +27,7 @@ TantivyID
 //Author Unknown (Initial Commit)
 #define StrongRiposteID 231
 
-//Patience: When under attack, avoid +10.
+DONE //Patience: When under attack, avoid +10.
 //Author Unknown (Initial Commit)
 #define PatienceID 172
 

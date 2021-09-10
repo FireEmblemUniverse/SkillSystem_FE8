@@ -285,8 +285,9 @@ Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight]
 ## PewterCityText
 The city of Boulders.[A][X]
 
-# 0x0A0F
-Under development.[A][X]
+## NoBoulderbadgeText
+You need the Boulderbadge[NL]
+to progress through here.[A][X]
 
 ## ClosedAreaText
 This area is closed.[A][X]
@@ -359,19 +360,19 @@ Better keep them.[A][X]
 # 0x0A21
 Let the Pokemon free.[X]
 
-# 0x0A22
+## RocketMagikarpText_A
 [OpenRight][LoadBlankFace][OpenRight]Hello, there![A][NL]
-Have I got a deal for you![A][LoadOverworldFaces][NL][NL]
+Have I got a deal for you![A][NL][NL]
 I'll let you have[NL]
 a swell MAGIKARP[A][NL]
-for just 500 Credits![A][NL][NL]
+for just 500 Credits![A][NL]
 What do you say?[NL]
-[No][X]
+     [No][X]
 
-# 0x0A23
+## RocketMagikarpText_B
 [OpenRight]Finally! I mean.. congrats.[A][X]
 
-# 0x0A24
+## RocketMagikarpText_C
 [OpenRight]Tcch, what a waste of time.[A][X]
 
 # 0x0A25
@@ -585,6 +586,79 @@ to protect me...[A][X]
 Hey, wait up! What's the hurry?[A][X]
 ## VF_0xE4_BD
 I give! You're good at this![A][X]
+
+
+
+## R3_0xE0_BQ
+Hey![NL]
+I saw you in VIRIDIAN FOREST![A][X]
+
+## R3_0xE0_BD
+You beat me again![A][X]
+
+
+
+## R3_0xE1_BQ
+Excuse me![NL]
+You looked at me, didn't you?[A][X]
+
+## R3_0xE1_BD
+You're mean![A][X]
+
+
+## R3_0xE2_BQ
+Hi![NL]
+I like shorts![A]
+They're delightfully comfy and[NL]
+easy to wear![A][X]
+
+## R3_0xE2_BD
+I don't believe it![A][X]
+
+
+## R3_0xE3_BQ
+Eek![NL]
+Did you touch me?[A][X]
+
+## R3_0xE3_BD
+That's it?[A][X]
+
+## R3_0xE4_BQ
+Are you a TRAINER?[NL]
+Let's get with it right away![A][X]
+
+## R3_0xE4_BD
+If I had new POKEMON,[NL]
+I would've won![A][X]
+
+## R3_0xE5_BQ
+That look you gave me...[NL]
+It's so intriguing![A][X]
+
+## R3_0xE5_BD
+Be nice![A][X]
+
+## R3_0xE6_BQ
+Hey! You're not wearing shorts![NL]
+What's wrong with you?[A][X]
+
+## R3_0xE6_BD
+I always wear shorts, even in[NL]
+winter. That's my policy.[A][X]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

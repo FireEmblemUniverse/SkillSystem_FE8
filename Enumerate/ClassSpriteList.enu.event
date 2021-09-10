@@ -110,7 +110,7 @@
 #define sailorSMS 0x6D
 #define scientistSMS 0x6E
 #define super_nerdSMS 0x6F
-#define Civilian5SMS 0x70
+#define BurrowSMS 0x70
 #define FlowerSMS 0x71
 #define BerryTreeSMS 0x72
 #define sfxSMS 0x73
@@ -364,7 +364,7 @@
 #define sailorMMS 0x6E
 #define scientistMMS 0x6F
 #define super_nerdMMS 0x70
-#define Civilian5MMS 0x71
+#define BurrowMMS 0x71
 #define FlowerMMS 0x72
 #define BerryTreeMMS 0x73
 #define sfxMMS 0x74

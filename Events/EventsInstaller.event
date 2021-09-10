@@ -46,8 +46,13 @@
 #include "Pewter_Gym.event"
 }
 
+{
+#include "Route_Three.event" 
+}
 
-
+{
+#include "Route_FourW.event" 
+}
 
 
 

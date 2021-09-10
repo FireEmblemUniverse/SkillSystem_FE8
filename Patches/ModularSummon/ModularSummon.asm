@@ -277,11 +277,15 @@ mov r1, #0x2F
 ldrb r0, [r6, r1] @ Dark WEXP as bonus levels? 
 add r2, r0 
 
+add r2, #5 @ normal mode is about 5 invisible levels i guess for now lol 
 
 ldr r1, [r6, #4]
 ldrb r1, [r1, #4] @ class id of summon 
 mov r0, r6 @ Summon unit pointer 
 blh IncreaseUnitStatsByLevelCount @ // str/mag split compatible
+
+
+
 mov r0, r6
 blh EnsureNoUnitStatCapOverflow
 ldrb r0, [r6, #0x12] 

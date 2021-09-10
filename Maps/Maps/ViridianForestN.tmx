@@ -1269,7 +1269,7 @@
    <tile gid="342"/>
    <tile gid="456"/>
    <tile gid="456"/>
-   <tile gid="456"/>
+   <tile gid="310"/>
    <tile gid="956"/>
    <tile gid="957"/>
    <tile gid="958"/>
@@ -3130,7 +3130,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="11" name="Snag2" width="47" height="33">
+ <layer id="11" name="Snag2" width="47" height="33" visible="0">
   <properties>
    <property name="Height" value="1"/>
    <property name="ID" value="2"/>

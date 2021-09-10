@@ -47,7 +47,7 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(BoulderbadgeObtained,EnterGym,12,16) // village ? 
+Village(BoulderbadgeObtained,EnterGym,12,16) // village ? 
 Vendor(ShopItems,24,20)
 END_MAIN
 
@@ -83,8 +83,14 @@ ToRoute2N:
 ChapterTransition(Route2NCh, 10, 0)
 
 ToRoute3W:
-CALL ClosedArea
-ChapterTransition(Route3WCh, 0, 10)
+CHECK_EVENTID BoulderbadgeObtained
+BEQ 0 rC r0 
+ChapterTransition(Route3Ch, 0, 10)
+LABEL 0 
+TutText(NoBoulderbadgeText)
+NoFade 
+ENDA 
+
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -98,7 +104,7 @@ CutBush(28,5)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+RedPokeballTrap(30,18, ChapterID*2, LuckyBracer)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(36,18, ChapterID, 0x0) //no extra text 
@@ -127,9 +133,6 @@ BerryTree(24,29,5)
 BerryTree(30,29,5)
 
 
-Save(16,24)
-
-//StrengthBoulder(12,17)
 
 
 
@@ -206,6 +209,7 @@ ShopItems:
 //BYTE SuperPotion 12
 //BYTE SkillScroll AcrobatID 
 BYTE SpellScroll Tackle SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+BYTE SpellScroll Gust SpellScroll Magnitude
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

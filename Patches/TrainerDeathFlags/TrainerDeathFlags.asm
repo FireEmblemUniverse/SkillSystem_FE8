@@ -390,7 +390,28 @@ bx r1
 
 
 
+.global MarkTrainerAsDefeated_ASMC
+.type MarkTrainerAsDefeated_ASMC, %function 
+MarkTrainerAsDefeated_ASMC: 
+push {r4, lr} 
 
+ldr r3, =MemorySlot 
+ldr r0, [r3, #4] @ s1 as unit ID 
+blh GetUnitByEventParameter
+cmp r0, #0 
+beq ExitMarkTrainerAsDefeated
+
+ldr r3, =0x30017C4 @ my ram 
+str r0, [r3] 
+bl PostTrainerBattleActions 
+
+
+
+ExitMarkTrainerAsDefeated: 
+
+pop {r4} 
+pop {r0} 
+bx r0 
 
 
 .global PostTrainerBattleActions

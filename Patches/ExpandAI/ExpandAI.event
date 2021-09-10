@@ -63,6 +63,7 @@ NewAI2Entry(33, TrainerFleeSummonTeamAILabel)
 #define TrainerAI [31, 3, 0, 0] 
 #define TrainerBossAI [31, 3, 0, 32] 
 #define TrainerFleeAI [33, 3, 0, 0] 
+#define AttackIfWithin2 [0, 6] 
 
 
 ALIGN 4

@@ -1,0 +1,208 @@
+#define ChapterID Route4WCh
+#define GenericA UnitRoute3Wild
+#define GenericB UnitRoute3Trainer
+#define ClassA ClassRoute3WildA
+#define ClassB ClassRoute3WildB
+#define WildLvl 6 
+#define TrainerL 7 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CharacterEventBothWays(0,RocketMagikarpEvent, 0x00, 0xEF) 
+END_MAIN
+
+RocketMagikarpEvent:
+
+EVBIT_MODIFY 4 
+CAM1 [10,11]
+TEXTSTART 
+TEXTSHOW RocketMagikarpText_A
+TEXTEND 
+SVAL r7 1 
+BNE 0 rC r7 
+TEXTSHOW RocketMagikarpText_B
+ENUT RocketMagikarpFlag
+SVAL r3 500 
+GIVETOSLOT3 // Take 500 gold 
+LOAD1 1 MagikarpUnitGroup 
+ENUN 
+AutoLevelUnits(0, True, 0x3636) // Magikarp 
+UNCM(0x36, 0x10009) // Undeploy + escape the magikarp 
+
+GOTO 50 
+LABEL 0 
+TEXTSHOW RocketMagikarpText_C
+
+LABEL 50 
+TEXTEND 
+REMA 
+
+CHECK_EVENTID RocketMagikarpFlag 
+BEQ 0x63 rC r0 
+FADI 4 
+DISA 0xEF // remove rocket 
+LABEL 0x63 
+EVBIT_MODIFY 0 
+NoFade 
+ENDA 
+
+LocationBasedEvents:
+Village(0, ToMtMoonB1, 19,15) 
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToRoute3 [8,19] [15,19] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(19,5) 
+EscapeTileEntry(11,19) 
+EscapeTileEntry(13,19) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToMtMoonB1:
+CALL ClosedArea
+ChapterTransition(PewterCh, 39, 20)
+
+ToRoute3:
+ChapterTransition(Route4WCh, 12, 19)
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+CoinsTrap(6,4,ChapterID*2,450)
+
+//CutBush(4,2)
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+
+//RedPokeballTrap(18,9, ChapterID*2, SuperPotion)
+//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+// SIGN at 18,7 
+Save(12,4)
+
+//SignBTrap(54,11, ChapterID, 0x0) //no extra text 
+//SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+//OpenPokeball(8,3)
+//Sign(8,4, 2)
+
+
+//SaveCost(43,3) 
+
+
+BerryTree(23,23,5)
+BerryTree(49,10,5)
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL CityBeginningScene
+CALL LoadAndPlacePlayers 
+
+CHECK_EVENTID RocketMagikarpFlag 
+BNE 0x63 rC r0 
+LOAD1 0x1 HumanTrainers
+ENUN 
+MarkTrainerAsDefeated(0xEF) 
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+// Wilds
+HumanTrainers:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT 0xEF rocket_mID 0x0 Level(1, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA12R11 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 
+
+MagikarpUnitGroup:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT 0x36 MagikarpID 0x0 Level(1, Ally, 1)   [12,11] 0b	0x0 0x00 REDAMagikarp [0x0,0x0,0x0,0x0] DoNothing
+UNIT 
+
+ALIGN 4
+REDAMagikarp:
+REDA [12,5] 0x0 0x0 0x0 0x0
+
+ALIGN 4 
+	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

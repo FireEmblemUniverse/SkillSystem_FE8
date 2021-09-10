@@ -169,7 +169,7 @@ SetSMS(rocket_mSMS , 1 ,   rocket_mStanding)
 SetSMS(sailorSMS, 1 ,   sailorStanding)
 SetSMS(scientistSMS , 1 ,   scientistStanding)
 SetSMS(super_nerdSMS , 1 ,   super_nerdStanding) 
-	SetSMS(Civilian5SMS , 1 ,   m1Standing) 
+SetSMS(BurrowSMS , 0 ,   BurrowStanding) 
 SetSMS(FlowerSMS , 0 ,   FlowersStanding)
 SetSMS(BerryTreeSMS , 0 ,   BerryTreeStanding)
 SetSMS(sfxSMS, 0 ,   BlankStanding) 
@@ -441,7 +441,7 @@ SetMMS(rocket_mMMS ,    rocket_mMoving,        DemonKingAP)
 SetMMS(sailorMMS,    sailorMoving,        DemonKingAP)
 SetMMS(scientistMMS ,    scientistMoving,        DemonKingAP)
 SetMMS(super_nerdMMS ,    super_nerdMoving,        DemonKingAP) 
-	SetMMS(Civilian5MMS ,    r1Moving,        DemonKingAP) 
+SetMMS(BurrowMMS ,    BurrowMoving,        DemonKingAP) 
 SetMMS(FlowerMMS ,    r1Moving,        DemonKingAP)
 SetMMS(BerryTreeMMS ,   r1Moving,        DemonKingAP)
 SetMMS(sfxMMS,    BlankMoving,        DemonKingAP) 
@@ -2036,6 +2036,10 @@ RocketAStanding:
 ALIGN 4
 BurrowStanding:
 #incbin "More SMS/Burrow.dmp"
+
+ALIGN 4
+BurrowMoving:
+#incbin "More MMS/Burrow.dmp"
 
 ALIGN 4
 GrassStanding:
