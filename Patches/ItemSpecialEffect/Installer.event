@@ -1,0 +1,57 @@
+#include "ItemSpecialEffect.lyn.event" 
+
+// #define Take_Over_Item_Menu ""
+
+ALIGN 4 
+ItemSpecialEffectTable:
+// 8 bytes per entry 
+// ItemID, ReqFlag, Pad, Pad, POIN EventAddress 
+BYTE 0xBB 0 0 0; POIN ExampleEvent // 0xBB is gold gem 
+//BYTE Berry 0 0 0; POIN ExampleEvent
+// Entries
+ALIGN 4; WORD 0 // Terminator 
+
+
+ALIGN 4
+ExampleEvent:
+TutText(DebugTextHere)
+NoFade 
+ENDA 
+
+
+
+
+
+
+
+#ifdef Take_Over_Item_Menu 
+
+#ifndef IM_USE 
+
+#define MenuCommand(name,description,colour,usability,effect) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; WORD 0 0 0"
+#define IM_Use "BYTE $8C $7D $0D $08 $96 $06 $DB $06 $00 $34 $00 $00 $7D $36 $02 $08 $00 $00 $00 $00 $71 $37 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+#define IM_Equip "BYTE $84 $7D $0D $08 $97 $06 $DA $06 $04 $35 $00 $00 $F5 $36 $02 $08 $00 $00 $00 $00 $F9 $37 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+#define IM_Trade "BYTE $7C $7D $0D $08 $98 $06 $D4 $06 $04 $36 $00 $00 $35 $2F $02 $08 $00 $00 $00 $00 $39 $38 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+#define IM_Discard "BYTE $74 $7D $0D $08 $99 $06 $DC $06 $04 $37 $00 $00 $3D $37 $02 $08 $00 $00 $00 $00 $6D $38 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+#define IM_Separator "WORD 0 0 0 0 0 0 0 0 0"
+#endif 
+
+
+PUSH
+ORG $59D120
+POIN ItemMenuTable
+POP
+
+
+ALIGN 4
+ItemMenuTable:
+MenuCommand(0x696, 0x6DB, BlueText, ItemSpecialEffectUsability, ItemSpecialEffect)
+IM_Use
+IM_Equip
+IM_Trade
+IM_Discard
+IM_Separator
+
+#endif 
+
+

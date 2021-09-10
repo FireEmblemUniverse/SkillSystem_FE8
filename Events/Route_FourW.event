@@ -72,7 +72,7 @@ NoFade
 ENDA 
 
 LocationBasedEvents:
-Village(0, ToMtMoonB1, 19,15) 
+Village(0, ToMtMoonB1, 19,5) 
 END_MAIN
 
 MiscBasedEvents:
@@ -80,7 +80,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute3 [8,19] [15,19] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -92,11 +92,11 @@ EscapeTileTerminator ; }
 #endif 
 
 ToMtMoonB1:
-CALL ClosedArea
-ChapterTransition(PewterCh, 39, 20)
+//CALL ClosedArea
+ChapterTransition(MtMoonB1Ch, 13,32)
 
 ToRoute3:
-ChapterTransition(Route4WCh, 12, 19)
+ChapterTransition(Route3Ch, 52,0)
 
 
 // Allocated 2 traps per chapter, in most cases 

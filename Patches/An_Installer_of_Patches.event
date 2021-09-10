@@ -1,6 +1,6 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 
-//#define DEBUG_MODE True 
+#include "ItemSpecialEffect/Installer.event" 
 
 #ifdef DEBUG_MODE 
 	#include "AutosaveKiller.event"
@@ -70,9 +70,6 @@
 #include "EscapeArrive/EscapeMenu/EA.txt"
 
 
-
-//#include "FreeMovement/MakeShopASMC.lyn.event"
-
 #include "FatesExp/Installer.event"
 
 
@@ -89,7 +86,7 @@
 #include "ChapterTransition/ChapterTransitionInstaller.event"
 
 
-//#include "RNGRandomizer/RNGRandomizerInstaller.event" /this broke suspend for some reason 
+//#include "RNGRandomizer/RNGRandomizerInstaller.event" //this broke suspend for some reason 
 
 
 // misc QoL

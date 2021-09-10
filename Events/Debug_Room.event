@@ -199,7 +199,7 @@ SilentGiveItemWithDurability(5, WiseGlasses, 0x1)
 SilentGiveItemWithDurability(6, Berry, 0x3) // Oddish
 SilentGiveItemWithDurability(6, WiseGlasses, 0x81)
 
-SilentGiveItemWithDurability(3, Berry, 0x83) // Pidgey 
+SilentGiveItemWithDurability(3, Berry, 0x1) // Pidgey 
 //SilentGiveItemWithDurability(3, WiseGlasses, 0x1)
 
 SilentGiveItemWithDurability(2, Berry, 0x83) // Rattata 
@@ -276,9 +276,9 @@ Write_Byte(7, GaryStarterClass)
 //MNC2 Route1Ch 
 //DISA 0x2
 
-
-Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(17, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+ChangeEdition(1)
+Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
 //MNC2 Route2SCh

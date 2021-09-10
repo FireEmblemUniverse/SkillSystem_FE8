@@ -1,4 +1,3 @@
-#define DebugMode 0x1 
 
 
 #include "WorldMap/WorldMapEvents.event"
@@ -7,9 +6,11 @@
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
 
-	{ ; #include "Placeholder.event" ; } 
-	{ ; #include "Debug_Room.event" ; }
+{ ; #include "Placeholder.event" ; } 
+{ ; #include "Debug_Room.event" ; }
+#ifndef DEBUG_MODE 
 	{ ; #include "Oaks_Lab.event" ;}
+#endif 
 
 {
 #include "Pallet_Town.event"
@@ -53,6 +54,25 @@
 {
 #include "Route_FourW.event" 
 }
+
+{
+#include "MtMoonB1.event"
+}
+{
+#include "MtMoonB2.event"
+}
+{
+#include "MtMoonB3.event"
+}
+
+
+
+
+
+
+
+
+
 
 
 

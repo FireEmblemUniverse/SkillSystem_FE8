@@ -91,6 +91,7 @@ WORD 0 0 0
 
 ALIGN 4
 ItemMenuTable:
+MenuCommand(0x505, 0, BlueText, ItemSpecialEffectUsability, ItemSpecialEffect)
 IM_Use
 #ifdef INSTALL_ACCESSORIES
 MenuCommand(0x697, 0, GreenText, EquipAccessoryUsability|1, EquipAccessoryEffect|1)

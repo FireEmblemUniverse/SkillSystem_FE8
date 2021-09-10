@@ -14,14 +14,12 @@
 #define ClassRoute2NWildB 0xA
 #define ClassRoute3WildA 0xB
 #define ClassRoute3WildB 0xC
-#define ClassMtMoonB1S 0xD
-#define ClassMtMoonB1N 0xE
-#define ClassMtMoonB2A 0xF
-#define ClassMtMoonB2B 0x10
-#define ClassMtMoonB3E 0x11
-#define ClassMtMoonB3NE 0x12
-#define ClassMtMoonB3M 0x13
-#define ClassMtMoonB3W 0x14
+#define ClassMtMoonB1WildA 0xD
+#define ClassMtMoonB1WildB 0xE
+#define ClassMtMoonB2WildA 0xF
+#define ClassMtMoonB2WildB 0x10
+#define ClassMtMoonB3WildA 0x11
+#define ClassMtMoonB3WildB 0x12
 #define ClassMtMoonCommon 0x15
 #define ClassRoute4WildA 0x16
 #define ClassRoute4WildB 0x17
@@ -48,40 +46,48 @@
 #define OaksPikachu 0x4F
 #define UnitPalletTownWild 0x50
 #define UnitRoute1Wild 0x51
-#define UnitRoute1Trainer 0xA0
+
 #define UnitRoute2SWild 0x53
-#define UnitRoute2STrainer 0xA1
+
 #define UnitViridianForestSWild 0x55
-#define UnitViridianForestSTrainer 0xA2
+
 #define UnitViridianForestNWild 0x57
-#define UnitViridianForestNTrainer 0xA3
+
 #define UnitRoute2NWild 0x59
-#define UnitRoute2NTrainer 0xA4
+
 #define UnitRoute3Wild 0x5B
-#define UnitRoute3Trainer 0xA5
-#define UnitMtMoonB1S 0x5D
-#define UnitMtMoonB1N 0x5E
-#define UnitMtMoonB2A 0x5F
-#define UnitMtMoonB2B 0x60
-#define UnitMtMoonB3E 0x61
-#define UnitMtMoonB3NE 0x62
-#define UnitMtMoonB3M 0x63
-#define UnitMtMoonB3W 0x64
-#define UnitMtMoonCommon 0x65
+
+#define UnitMtMoonWild 0x5D
+
+
+
 #define UnitRoute4Wild 0x66
-#define UnitRoute4Trainer 0xA6
+
 #define UnitCeruleanCityA 0x68
 #define UnitCeruleanCityB 0x69
 #define UnitCeruleanGymA 0x6A
 #define UnitCeruleanGymB 0x6B
 #define UnitRoute24Wild 0x6C
-#define UnitRoute24Trainer 0xA7
+
 #define UnitRoute24WaterA 0x6E
 #define UnitRoute24WaterB 0x6F
 #define UnitRoute25Wild 0x70
-#define UnitRoute25Trainer 0xA8
+
 #define UnitRoute25WaterA 0x72
 #define UnitRoute25WaterB 0x73
+
+
+
+#define UnitRoute1Trainer 0xA0
+#define UnitRoute2STrainer 0xA1
+#define UnitViridianForestSTrainer 0xA2
+#define UnitViridianForestNTrainer 0xA3
+#define UnitRoute2NTrainer 0xA4
+#define UnitRoute3Trainer 0xA5
+#define UnitMtMoonTrainer 0xA6
+#define UnitRoute4Trainer 0xA7
+#define UnitRoute24Trainer 0xA8
+#define UnitRoute25Trainer 0xA9
 
 // Reinforcement unit IDs 0x90 - 0x9F 
 // limited to these unit IDs just for ease of autoleveling in Reinforce() macro 

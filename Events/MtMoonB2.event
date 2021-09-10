@@ -1,10 +1,10 @@
-#define ChapterID Route3Ch
-#define GenericA UnitRoute3Wild
-#define GenericB UnitRoute3Trainer
-#define ClassA ClassRoute3WildA
-#define ClassB ClassRoute3WildB
-#define WildLvl 5 
-#define TrainerL 7 
+#define ChapterID MtMoonB2Ch
+#define GenericA UnitMtMoonWild
+#define GenericB UnitMtMoonTrainer
+#define ClassA ClassMtMoonB1WildA
+#define ClassB ClassMtMoonB1WildB
+#define WildLvl 6 
+#define TrainerL 8 
 
 
 
@@ -35,15 +35,8 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 ReinforcementEvent:
-Reinforce(0xF0, 1, GrassReinforcementUnits, 2, 4) // Mid Grass 
-Reinforce(0xF1, 1, GrassReinforcementUnits, 4, 4) // East Grass 
-Reinforce(0xF2, 1, BurrowReinforcementUnits, 6, 4) // West burrow 
-Reinforce(0xF3, 1, BurrowReinforcementUnits, 7, 4) // Mid-W Burrow 
-Reinforce(0xF4, 1, BurrowReinforcementUnits, 8, 4) // Mid-E Burrow 
-Reinforce(0xF5, 1, BurrowReinforcementUnits, 9, 4) // East burrow 
-
-
-
+Reinforce(0xF0, 1, BurrowReinforcementUnits, 6, 4) // West burrow 
+Reinforce(0xF1, 1, BurrowReinforcementUnits, 7, 4) // Mid-W Burrow 
 NoFade 
 ENDA 
 
@@ -51,13 +44,22 @@ ENDA
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 AllTrainersPostBattleTalk
-//TrainerPostBattleTalk(0xE0)
 END_MAIN
 
 
 
 LocationBasedEvents:
+Village(0, ToRoute4M, 28,5) 
 
+Village(0, ToMtMoonB3_M, 11,30) 
+Village(0, ToMtMoonB3_NE, 13,14) 
+
+Village(0, ToMtMoonB3_E, 22,22) 
+Village(0, ToMtMoonB3_W, 20,6) 
+
+Village(0, ToMtMoonB1_W, 3,7) 
+Village(0, ToMtMoonB1_M, 19,14) 
+Village(0, ToMtMoonB1_E, 28,15) 
 END_MAIN
 
 MiscBasedEvents:
@@ -66,24 +68,48 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToPewterCity [0,9] [0,12] 
-AREA 0 ToRoute4W [49,0] [55,0] 
 END_MAIN
+
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(50,0) 
-EscapeTileEntry(52,0) 
-EscapeTileEntry(54,0) 
-EscapeTileEntry(0,10) 
-EscapeTileEntry(0,11) 
+EscapeTileEntry(28,5) 
+EscapeTileEntry(11,30) 
+EscapeTileEntry(13,14) 
+EscapeTileEntry(22,22) 
+EscapeTileEntry(20,06) 
+EscapeTileEntry(03,07) 
+EscapeTileEntry(19,14) 
+EscapeTileEntry(28,15) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToPewterCity:
-ChapterTransition(PewterCh, 39, 20)
+ToRoute4M:
+ChapterTransition(Route4MCh, 6, 5)
 
-ToRoute4W:
-ChapterTransition(Route4WCh, 12, 19)
+ToMtMoonB3_NE:
+ChapterTransition(MtMoonB3Ch, 23,12)
+
+ToMtMoonB3_M:
+ChapterTransition(MtMoonB3Ch, 12,30)
+
+ToMtMoonB3_E:
+ChapterTransition(MtMoonB3Ch, 21,20)
+
+ToMtMoonB3_W:
+ChapterTransition(MtMoonB3Ch, 5, 9)
+
+
+ToMtMoonB1_M:
+ChapterTransition(MtMoonB1Ch, 15, 16)
+
+ToMtMoonB1_W:
+ChapterTransition(MtMoonB1Ch, 5, 6)
+
+ToMtMoonB1_E:
+ChapterTransition(MtMoonB1Ch, 25,15)
+
+
+
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -91,8 +117,8 @@ ChapterTransition(Route4WCh, 12, 19)
 // Traps that do not reference ram do not have this limit 
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
-CoinsTrap(13,15,ChapterID*2,550)
-CoinsTrap(57,15,(ChapterID*2)+1,600)
+//CoinsTrap(13,15,ChapterID*2,550)
+//CoinsTrap(57,15,(ChapterID*2)+1,600)
 
 //CutBush(4,2)
 //RockSmash(3,2)
@@ -102,28 +128,16 @@ CoinsTrap(57,15,(ChapterID*2)+1,600)
 //RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
-SignBTrap(54,11, ChapterID, 0x0) //no extra text 
-SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+//SignBTrap(54,11, ChapterID, 0x0) //no extra text 
+//SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
 //Save(10,4)
 //SaveCost(43,3) 
-
-Flower(39,14)
-Flower(41,14)
-Flower(41,16)
-Flower(42,15)
-Flower(43,16)
-Flower(45,16)
-
-
-BerryTree(23,23,5)
-BerryTree(49,10,5)
-
 
 
 ENDTRAP
@@ -133,20 +147,25 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+
+CALL CityBeginningScene 
+
+/*
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(22,11,33,16)) //w patch 
+RandomizeCoords(Ground, Range(0,0,5,5), Range(22,11,33,16)) //w patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(47,10,57,16)) //se patch 
+RandomizeCoords(Ground, Range(0,0,5,5), Range(47,10,57,16)) //se patch 
 LOAD1 0x1 EnemyUnitsC // burrows 
 ENUN
 AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
-AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes   
+AutoLevelUnits(WildLvl, True, 0xF0F9) // Burrows 
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
+*/
 LABEL 0x63
 NoFade
 ENDA
@@ -303,16 +322,16 @@ UNIT GenericB  SandshrewID 0xE4 		Level(5, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0
 UNIT
 
 EnemyTrainers5: // Lass
-UNIT GenericB  OddishID 0xE5 		Level(1, Enemy, 1) [8,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
-UNIT GenericB 	PoliwagID 0xE5 	Level(1, Enemy, 1) [10,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
-UNIT GenericB 	VulpixID 0xE5 	Level(1, Enemy, 1) [12,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB  OddishID 0xE4 		Level(1, Enemy, 1) [8,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	PoliwagID 0xE4 	Level(1, Enemy, 1) [10,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	VulpixID 0xE4 	Level(1, Enemy, 1) [12,8]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
 UNIT
 
 
 EnemyTrainers6: // Camper 
-UNIT GenericB 	RattataID 0xE6	Level(1, Enemy, 1) [12,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
-UNIT GenericB  SpearowID 0xE6		Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
-UNIT GenericB 	SandshrewID 0xE6 	Level(1, Enemy, 1) [8,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericB 	RattataID 0xE4 	Level(1, Enemy, 1) [12,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericB  SpearowID 0xE4 		Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericB 	SandshrewID 0xE4 	Level(1, Enemy, 1) [8,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
 UNIT
 
 

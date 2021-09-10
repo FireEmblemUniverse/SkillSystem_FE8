@@ -1,8 +1,34 @@
+
+// For world map users 
+//#include "Alternative_MNC2Fix/Installer.event" 
+
+
+
 PUSH
+
+/*
+// These are now in essential fixes 
+//Allows MNC2 To jump to any chapter ID.
+ORG 0xBD070
+BYTE 0xB8 0xE0
+
+//Fixes the world map chapter ID being loaded instead of the actual chapter ID.
+ORG 0x897B2
+BYTE 0x0 0x0 0x0 0x0
+
+
+//Fixes the game considering some chapters postgame.
+ORG 0x897C4
+BYTE 0x0E 0x20 0x20 0x56
+*/
+
+// Disable skirmishes from appearing on the world map by 7743 
+//ORG 0x0C18F8
+//BYTE $00 $00 $00 $00 
+
 
 // Level does not decrease with Promotion
 //  by 7743 
-
 ORG 0x2BE70 
 BYTE 0x00 0x00 0x00 0x00
 
