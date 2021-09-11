@@ -11,6 +11,32 @@
   .short 0xf800
 .endm
 
+.global RockyHelmetFunc
+.type RockyHelmetFunc, %function @ r4 = attacker's character struct, r5 = defender's character struct
+RockyHelmetFunc: @ Deals damage equal to 20% of the enemy's HP after combat if this unit initiates battle.
+push { r6, r7, lr }
+ldr r0, =#0x0203A958
+ldrb r0, [ r0, #0x11 ]
+cmp r0, #0x02
+bne End @ End if this isn't combat.
+mov r0, r5
+ldr r1, =PoisonStrikeIDLink
+ldrb r1, [ r1 ]
+blh SkillTester, r3
+cmp r0, #0x00
+beq End
+
+@ check not mage nor debuff move ? 
+
+
+
+ldr r6, =#0x0203A4EC @ Attack struct
+ldr r7, =#0x0203A56C @ Defense struct
+bl PSGWInjureAttacker
+b End
+
+
+
 .global PoisonStrike
 .type PoisonStrike, %function @ r4 = attacker's character struct, r5 = defender's character struct
 PoisonStrike: @ Deals damage equal to 20% of the enemy's HP after combat if this unit initiates battle.
