@@ -293,8 +293,8 @@ CHECK_ALIVE 0x7FFD
 BEQ 0x63 rC r0 //If bush is dead, break 
 
 CHECK_ENEMIES 
-SVAL r1 50 
-BGE 0x63 rC r1 // If we've hit the enemy cap, don't load reinforcements  
+SVAL r1 30 
+BGE 0x63 rC r1 // Don't load reinforcements if 30+ units on map - prev 50 If we've hit the enemy cap, don't load reinforcements  
 
 GetUnitStatus(0x7FFD, AI2Counter)
 SADD rA rC r0 
