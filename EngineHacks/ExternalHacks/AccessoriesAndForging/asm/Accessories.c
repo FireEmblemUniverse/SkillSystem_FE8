@@ -58,7 +58,7 @@ int CanUnitUseAccessory(u16 accessory, struct Unit *unit) {
 }
 
 int EquipAccessoryUsability() {
-	int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY;
+	//int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY;
 	if ((GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY) && !(ITEM_EQUIPPED(gActiveUnit->items[gActionData.itemSlotIndex]))) {
 		if(CanUnitUseAccessory(gActiveUnit->items[gActionData.itemSlotIndex], gActiveUnit)) return 1; else return 2;
 	}		
@@ -101,13 +101,41 @@ int UnequipAccessoryEffect(void *CurrentMenuProc) {
 }
 
 int EquippedAccessoryGetter(struct Unit *unit) {
-		int itemId;
+		//int itemId;
 
 	if(!unit) return 0; // if no unit return no accessory effect
 	for(int i = 0; i < 5; i++) {
 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
 		if (isItemAnAccessory) {
 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_INDEX(unit->items[i]); // & isItemAnAccessory
+		}
+	}
+	return 0; // if no equipped item return nothing
+}
+
+int EquippedAccessoryDurabilityGetter(struct Unit *unit) {
+		//int itemId;
+
+	if(!unit) return 0; // if no unit return no accessory effect
+	for(int i = 0; i < 5; i++) {
+		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
+		if (isItemAnAccessory) {
+			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
+		}
+	}
+	return 0; // if no equipped item return nothing
+}
+
+int EquippedShieldAccessoryDurabilityGetter(struct Unit *unit) {
+		//int itemId;
+
+	if(!unit) return 0; // if no unit return no accessory effect
+	for(int i = 0; i < 5; i++) {
+		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
+		if (GetItemMight(unit->items[i]) == AE_NormalShield_Link) { 
+			if (isItemAnAccessory) {
+				if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
+			}
 		}
 	}
 	return 0; // if no equipped item return nothing
@@ -148,11 +176,18 @@ int AccessoryEffectTester(struct Unit *unit, int AccessoryEffectID) {
 }
 
 int AccessorySkillGetter(struct Unit *unit) {
-	int item = EquippedAccessoryGetter(unit);
+	int item = EquippedAccessoryGetter(unit); // this returns ITEM_INDEX(unit->items[i]); // & isItemAnAccessory
 	if(!item) return 0;
 	if (AccessoryEffectTester(unit, 1)) { // Test if Accessory has the Skill effect
-		return GetItemHit(item);
-		//return GetItemData(ITEM_INDEX(EquippedAccessoryGetter(unit)))->hit;
+		int itemUses = EquippedAccessoryDurabilityGetter(unit);
+		
+		if (item == Ves_SkillBlockOne_Link) { return 	((itemUses) + 0); } 
+		if (item == Ves_SkillBlockTwo_Link) { return 	((itemUses) + 64); } 
+		if (item == Ves_SkillBlockThree_Link) { return 	((itemUses) + 128); } 
+		if (item == Ves_SkillBlockFour_Link) { return 	((itemUses) + 192); } 
+		return 0; // Does not match these item IDs, so grant no skill 
+		//return GetItemHit(item);
+		
 	}
 	return 0;
 }

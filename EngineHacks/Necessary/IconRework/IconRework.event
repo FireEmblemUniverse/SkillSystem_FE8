@@ -12,6 +12,15 @@ InjectIconGfxGetter(2, (prGetAffinityIconGfx+1))
 InjectIconGfxGetter(3, (prGetMountTypeIconGfx+1))
 InjectIconGfxGetter(4, (prGetWRankIconGfx+1))
 InjectIconGfxGetter(5, (prGetSkillBookIconGfx+1))
+InjectIconGfxGetter(6, (prGetAccessoryIconGfx+1))
+InjectIconGfxGetter(7, (prGetSkillAccessory_1IconGfx+1))
+InjectIconGfxGetter(8, (prGetSkillAccessory_2IconGfx+1))
+InjectIconGfxGetter(9, (prGetSkillAccessory_3IconGfx+1))
+InjectIconGfxGetter(10, (prGetSkillAccessory_4IconGfx+1))
+
+
+
+
 
 ALIGN 4
 prGetSkillIconGfx:
@@ -33,6 +42,26 @@ prGetWRankIconGfx:
 prGetSkillBookIconGfx:
 	#incbin "asm/GetSheetIconGfx.bin"
 	POIN SkillIcons
+	
+prGetAccessoryIconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN AccessoryIcons
+	
+prGetSkillAccessory_1IconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN SkillAccessoryIcons_1
+
+prGetSkillAccessory_2IconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN SkillAccessoryIcons_2
+prGetSkillAccessory_3IconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN SkillAccessoryIcons_3
+prGetSkillAccessory_4IconGfx:
+	#incbin "asm/GetSheetIconGfx.bin"
+	POIN SkillAccessoryIcons_4
+
+
 
 }
 

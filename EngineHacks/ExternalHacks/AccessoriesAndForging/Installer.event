@@ -4,7 +4,19 @@
 #ifdef ACCESSORIES_AND_FORGING
 #define INSTALL_ACCESSORIES 
 
-// [0x203F100..0x203F540]!!
+
+ALIGN 4; Ves_SkillBlockOne_Link: 	; BYTE Ves_SkillBlockOne_ItemID
+ALIGN 4; Ves_SkillBlockTwo_Link: 	; BYTE Ves_SkillBlockTwo_ItemID
+ALIGN 4; Ves_SkillBlockThree_Link: 	; BYTE Ves_SkillBlockThree_ItemID
+ALIGN 4; Ves_SkillBlockFour_Link: 	; BYTE Ves_SkillBlockFour_ItemID
+
+ALIGN 4 
+
+ALIGN 4 
+AE_NormalShield_Link:
+BYTE AE_NormalShield 
+
+ALIGN 4 
 
 #define Faith 0x4 
 
@@ -62,7 +74,7 @@ ALIGN 4
 gAccessoryLocksLookupTable:
 //AccessoryLocks(RenewalRing, 0, 0, AL_LORD, 0)
 //AccessoryLocks(RenewalRing, 0, 0, ClassListEquip, 0)
-AccessoryLocks(RenewalRing, 0, 0, MagicClassesList, 0)
+//AccessoryLocks(RenewalRing, 0, 0, MagicClassesList, 0)
 WORD 0
 
 // Class Types not defined by Class Attributes

@@ -18,6 +18,9 @@ MSG_prCheckUnitAccessoryEffect: // Wraps SkillTester for MSG
 #define rIfUnitHasNotAccessoryEffect(aEffectId)         "rWithConstant(aEffectId); rIfNot(MSG_prCheckUnitAccessoryEffect)"
 #define rIfUnitHasNotAccessoryEffect(aEffectId, arNext) "rIfUnitHasNotAccessoryEffect(aEffectId); arNext"
 
+#define rForUnitEquippedDurabilityAccessory "rForResultOfExt((EquippedShieldAccessoryDurabilityGetter-1))"
+#define rForUnitEquippedDurabilityAccessory(arNext) "rForResultOfExt((EquippedShieldAccessoryDurabilityGetter-1)); arNext"
+
 #define rForUnitEquippedAccessory        	"rForResultOfExt((EquippedAccessoryGetter-1))"
 #define rForUnitEquippedAccessory(arNext) 	"rForResultOfExt((EquippedAccessoryGetter-1)); arNext"
 

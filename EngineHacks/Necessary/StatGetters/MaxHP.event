@@ -21,7 +21,7 @@ prAddEquipHP:
 
 	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryHP:
-	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemHPBonus)))
+	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityHPBonus-1)))
 	#endif 
 
 prHexingRodEffect:

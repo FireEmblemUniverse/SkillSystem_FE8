@@ -33,6 +33,18 @@ mov r0,r9
 mov r1,#0xFF
 and r0,r1
 
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop1Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory1
+cmp r0,r1
+beq Loop1Exit_Accessory
+add r2,#2
+b Loop1Start_Accessory
+
+NotAccessory1:
+
 ldr r2,=DurabilityBasedItemIconList
 
 Loop1Start:
@@ -43,6 +55,28 @@ cmp r0,r1
 beq Loop1Exit
 add r2,#2
 b Loop1Start
+
+Loop1Exit_Accessory:
+
+@get icon based on durability of item; item halfword is in r9
+
+mov r1,r9
+push {r3} 
+mov r3, #0x3F 
+lsl r3, #8 
+and r1, r3 
+lsr r1, #8 @ ignore equipped bits 
+pop {r3} 
+
+
+ldrb r2,[r2,#1]
+lsl r2,r2,#8 		@shifted 8 bits left
+orr r1,r2
+
+
+
+b SkipForReturn1 
+
 
 Loop1Exit:
 
@@ -56,6 +90,10 @@ lsl r2,r2,#8 		@shifted 8 bits left
 orr r1,r2
 
 b SkipForReturn1
+
+
+
+
 
 IsItemIcon:
 
@@ -83,6 +121,22 @@ mov r0,r5
 mov r1,#0xFF
 and r0,r1
 
+
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop2Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory2
+cmp r0,r1
+beq Loop2Exit_Accessory
+add r2,#2
+b Loop2Start_Accessory
+
+NotAccessory2:
+
+
+
+
 ldr r2,=DurabilityBasedItemIconList
 
 Loop2Start:
@@ -93,6 +147,27 @@ cmp r0,r1
 beq Loop2Exit
 add r2,#2
 b Loop2Start
+
+Loop2Exit_Accessory:
+
+@get icon based on durability of item; item halfword is in r6
+mov r1,r5
+lsr r1,r1,#8
+
+
+mov r1, #0x3F
+lsl r1, #8 
+and r1, r5  @ ignore equipped bits 
+lsr r1, #8 
+
+ldrb r2,[r2,#1]
+lsl r2,r2,#8 		@shifted 8 bits left
+orr r1,r2
+
+
+b SkipForReturn2
+
+
 
 Loop2Exit:
 
@@ -129,6 +204,19 @@ mov r0,r6
 mov r1,#0xFF
 and r0,r1
 
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop3Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory3
+cmp r0,r1
+beq Loop3Exit_Accessory
+add r2,#2
+b Loop3Start_Accessory
+
+NotAccessory3:
+
+
 ldr r2,=DurabilityBasedItemIconList
 
 Loop3Start:
@@ -139,6 +227,25 @@ cmp r0,r1
 beq Loop3Exit
 add r2,#2
 b Loop3Start
+
+Loop3Exit_Accessory:
+
+@get icon based on durability of item; item halfword is in r6
+mov r1,r6
+mov r1, #0x3F
+lsl r1, #8  
+and r1, r6 @ ignore equipped bits 
+lsr r1,r1,#8
+
+ldrb r2,[r2,#1]
+lsl r2,r2,#8 		@shifted 8 bits left
+orr r1,r2
+
+
+b SkipLine3
+
+
+
 
 Loop3Exit:
 
@@ -183,6 +290,20 @@ mov r0,r6
 mov r1,#0xFF
 and r0,r1
 
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop4Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory4
+cmp r0,r1
+beq Loop4Exit_Accessory
+add r2,#2
+b Loop4Start_Accessory
+
+NotAccessory4:
+
+
+
 ldr r2,=DurabilityBasedItemIconList
 
 Loop4Start:
@@ -193,6 +314,24 @@ cmp r0,r1
 beq Loop4Exit
 add r2,#2
 b Loop4Start
+
+Loop4Exit_Accessory:
+
+@get icon based on durability of item; item halfword is in r6
+
+
+ldrb r2,[r2,#1]
+mov r1, #0x3F 
+and r2, r1 @ ignore equipped bits 
+
+mov r1,r6
+lsr r1,r1,#8
+lsl r2,r2,#8 		@shifted 8 bits left
+orr r1,r2
+
+
+b SkipLine4
+
 
 Loop4Exit:
 
@@ -237,6 +376,20 @@ ldr r0,[sp,#0x28] @item
 mov r1,#0xFF
 and r0,r1
 
+
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop5Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory5
+cmp r0,r1
+beq Loop5Exit_Accessory
+add r2,#2
+b Loop5Start_Accessory
+
+NotAccessory5:
+
+
 ldr r2,=DurabilityBasedItemIconList
 
 Loop5Start:
@@ -247,6 +400,28 @@ cmp r0,r1
 beq Loop5Exit
 add r2,#2
 b Loop5Start
+
+Loop5Exit_Accessory:
+
+@get icon based on durability of item; item halfword is in r6
+ldr r0,[sp,#0x28] @item
+mov r1,#0xFF
+lsl r1,r1,#8
+and r0,r1
+lsr r0,r0,#8 @r0 = durability
+mov r1, #0x3F 
+and r0, r1 @ ignore equipped bits 
+
+
+ldrb r2,[r2,#1]
+lsl r1,r1,#8 @shifted 8 bits left
+orr r0,r1
+mov r1,r0
+
+
+
+b FinishFunc_Use
+
 
 Loop5Exit:
 
@@ -288,6 +463,19 @@ mov r0,r4
 mov r1,#0xFF
 and r0,r1
 
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop6Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory6
+cmp r0,r1
+beq Loop6Exit_Accessory
+add r2,#2
+b Loop6Start_Accessory
+
+NotAccessory6:
+
+
 ldr r2,=DurabilityBasedItemIconList
 
 Loop6Start:
@@ -298,6 +486,26 @@ cmp r0,r1
 beq Loop6Exit
 add r2,#2
 b Loop6Start
+
+Loop6Exit_Accessory:
+
+@get durability
+mov r0,r4
+lsr r0,r0,#8
+mov r1, #0x3F 
+and r0, r1 @ ignore equipped bits 
+
+ldrb r1,[r2,#1]
+
+lsl r1,r1,#8
+orr r0,r1
+
+@r0 = icon ID
+b GenericGoBack
+
+
+
+
 
 Loop6Exit:
 
@@ -347,6 +555,20 @@ CheckIfSkillBookIcon_DropItem:
 mov r0,r6
 mov r1,#0xFF
 and r0,r1
+
+ldr r2,=DurabilityBasedItemIconList_Accessory
+Loop7Start_Accessory:
+ldrb r1,[r2]
+cmp r1,#0
+beq NotAccessory7
+cmp r0,r1
+beq Loop7Exit_Accessory
+add r2,#2
+b Loop7Start_Accessory
+
+NotAccessory7:
+
+
 ldr r2,=DurabilityBasedItemIconList
 
 DropItemLoopStart:
@@ -357,6 +579,22 @@ cmp r0,r1
 beq DropItemLoopExit
 add r2,#2
 b DropItemLoopStart
+
+Loop7Exit_Accessory:
+@icon is durability | r2+1 <<8
+@item halfword in r6
+mov r0,r6
+lsr r0,r0,#8
+mov r1, #0x3F 
+and r0, r1 
+
+ldrb r1,[r2,#1]
+
+lsl r1,r1,#8
+orr r1,r0
+
+b DropItemGoBack
+
 
 DropItemLoopExit:
 @icon is durability | r2+1 <<8

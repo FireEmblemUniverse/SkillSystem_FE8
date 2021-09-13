@@ -10,6 +10,16 @@ typedef struct {
 	int (*userCheckFunction)(u8 item, struct Unit *unit, struct AccessoryLocks *accessoryLocks); // if non 0, will run that function and use the result from that(1 = usable, 0 = unusable)
 }AccessoryLocks;
 
+
+extern u8 Ves_SkillBlockOne_Link;
+extern u8 Ves_SkillBlockTwo_Link;
+extern u8 Ves_SkillBlockThree_Link; 
+extern u8 Ves_SkillBlockFour_Link;
+
+extern u8 AE_NormalShield_Link; 
+
+
+
 extern const struct ItemData gItemData[];
 extern const AccessoryLocks gAccessoryLocksLookupTable[];
 extern u16 CannotEquipAccessoryText;

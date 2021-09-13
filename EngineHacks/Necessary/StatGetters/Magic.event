@@ -21,7 +21,7 @@ prAddEquipMagic:
 
 	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryMagic:
-	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemMagBonus)))
+	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityMagBonus-1)))
 	#endif 
 
 #include "_asm/Mag.lyn.event" // Contains prDebuffMag and prRallyMag

@@ -1,11 +1,14 @@
 #ifndef INSTALL_STAT_GETTERS_EVENT
 #define INSTALL_STAT_GETTERS_EVENT
 
+
+
 #include "../MSG/InstallCore.event"
 #include "../MSG/InstallHelpers.event"
 #include "../MSG/Extensions/SkillSystem.event"
 #include "../MSG/Extensions/PassiveItemStatBonuses.event"
 #ifdef ACCESSORIES_AND_FORGING
+	#include "DurabilityAccessories/Installer.event" 
 	#include "../MSG/Extensions/Accessory.event"
 #endif 
 

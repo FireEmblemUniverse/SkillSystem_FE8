@@ -47,6 +47,12 @@
 // Restore 1/2 hp dealt - Vesly 
 #define DrainID 200
 
+// Opponent takes 20% hp after attacking you 
+#define RockyHelmetSkillID 201 
+
+
+
+
 //Demoiselle: Male allies within 2 tiles receive -2 damage.
 //Author Unknown (Initial Commit)
 #define DemoiselleID 255
@@ -63,9 +69,12 @@
 //Author Unknown (Initial Commit)
 #define FocusID 203
 
+
+
+
 //Gentilhomme: Female allies within 2 tiles receive -2 damage.
 //Author Unknown (Initial Commit)
-#define GentilhommeID 201
+#define GentilhommeID 255
 
 //Hex: -15 avoid to all adjacent enemies.
 //By Snakey1

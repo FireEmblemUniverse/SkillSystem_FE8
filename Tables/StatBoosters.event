@@ -1,5 +1,7 @@
 //   
-
+#define MuscleBand_BoostIndex 1 
+#define WiseGlasses_BoostIndex 2
+#define LuckyBracer_BoostIndex 3
 
 //#define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
 

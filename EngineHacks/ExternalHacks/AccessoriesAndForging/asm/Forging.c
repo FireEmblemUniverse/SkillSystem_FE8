@@ -23,12 +23,14 @@ const ItemData* GetItemData(u8 itemIndex) {
 }
 */
 
+/*
 int GetItemUses(int item) {
     if (GetItemAttributes(item) & IA_UNBREAKABLE)
         return 0xFF;
     else
         return ITEM_USES(item);
 }
+*/
 
 /*
 int GetItemMight(int item) {

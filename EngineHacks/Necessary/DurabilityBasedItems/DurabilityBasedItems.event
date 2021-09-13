@@ -7,7 +7,7 @@ ALIGN 4
 #include "ScrollDurability.lyn.event"
 #include "SkillBookIconDraw.lyn.event"
 #include "ItemDescTable.event" 
-
+#include "AccessoryNameTable.event" 
 
 PUSH 
 
@@ -112,26 +112,67 @@ ALIGN 4
 DurabilityBasedItemNameList: //used for item name
 DurabilityTextEntry(0xFFFF,True,SkillDescTable)
 DurabilityTextEntry(0xFFFE,True,ItemNameTable)
+DurabilityTextEntry(0xFFFD,False,StatAccessoryNameTable)
+
+
+DurabilityTextEntry(0xFFFC,True,SkillAccessoryNameTable_1)
+DurabilityTextEntry(0xFFFB,True,SkillAccessoryNameTable_2)
+DurabilityTextEntry(0xFFFA,True,SkillAccessoryNameTable_3)
+DurabilityTextEntry(0xFFF9,True,SkillAccessoryNameTable_4)
+
+
+
+//DurabilityTextEntry(0xFFFC,True,StatAccessoryNameTable)
 DurabilityTextEnd
 
 ALIGN 4
 DurabilityBasedItemDescList: //used for item desc
 DurabilityTextEntry(0xFFFF,False,SkillDescTable)
 DurabilityTextEntry(0xFFFE,False,ItemDescTable)
+DurabilityTextEntry(0xFFFD,False,StatAccessoryDescTable)
+
+
+DurabilityTextEntry(0xFFFC,False,SkillAccessoryDescTable_1)
+DurabilityTextEntry(0xFFFB,False,SkillAccessoryDescTable_2)
+DurabilityTextEntry(0xFFFA,False,SkillAccessoryDescTable_3)
+DurabilityTextEntry(0xFFF9,False,SkillAccessoryDescTable_4)
+
+//DurabilityTextEntry(0xFFFC,False,StatAccessoryDescTable)
 DurabilityTextEnd
 
 ALIGN 4
 DurabilityItemList: //used for durability
 DurabilityItem(SkillScroll)
 DurabilityItem(SpellScroll)
+
+/* - Durability based items always return 1 as durability ? */ 
+/*
+DurabilityItem(MuscleBand)
+DurabilityItem(Ves_SkillBlockOne_ItemID)
+DurabilityItem(Ves_SkillBlockTwo_ItemID)
+DurabilityItem(Ves_SkillBlockThree_ItemID)
+DurabilityItem(Ves_SkillBlockFour_ItemID)
+*/
+
 DurabilityItemEnd
 
 ALIGN 4
 DurabilityBasedItemIconList: //used for icons
 DurabilityIcon(SkillScroll,5)
+
 //DurabilityIcon(SpellScroll,0) // 0 is regular item icons 
 // but we want all TMs to have the same TM icon 
 DurabilityIconEnd
+
+ALIGN 4
+DurabilityBasedItemIconList_Accessory:
+DurabilityIcon(StatAccessory, 6)
+DurabilityIcon(Ves_SkillBlockOne_ItemID,7 )
+DurabilityIcon(Ves_SkillBlockTwo_ItemID, 8)
+DurabilityIcon(Ves_SkillBlockThree_ItemID, 9)
+DurabilityIcon(Ves_SkillBlockFour_ItemID, 10)
+DurabilityIconEnd
+
 ALIGN 4
 
 

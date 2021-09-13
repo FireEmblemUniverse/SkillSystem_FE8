@@ -21,7 +21,7 @@ prAddEquipDefense:
 
 	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryDefense:
-	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemDefBonus)))
+	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityDefBonus-1)))
 	#endif 
 	
 prDebuffDef:

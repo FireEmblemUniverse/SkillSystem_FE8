@@ -21,7 +21,7 @@ prAddEquipSkill:
 
 	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessorySkill:
-	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemSklBonus)))
+	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilitySklBonus-1)))
 	#endif 
 
 prDebuffSkl:

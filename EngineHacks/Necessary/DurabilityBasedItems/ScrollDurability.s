@@ -15,7 +15,7 @@
 
 
 ScrollDurabilityGetter: @hook at 17594
-
+@mov r11, r11 
 
 add r0,r0,r1
 ldr r0,[r0,#8]

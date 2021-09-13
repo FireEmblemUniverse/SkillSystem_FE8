@@ -1,0 +1,33 @@
+#include "DurabilityAccessoriesStatBoostGetter.lyn.event"
+
+
+#define STR2_8 "POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2"
+#define STR2_Fill "STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8" 
+
+#define Durb_StatBonus_Entry(Index, StatBoostPointer) "PUSH; ORG DurabilityStatBonusTable + (4*Index); POIN StatBoostPointer; POP" 
+
+ALIGN 4
+DurabilityStatBonusTable:
+WORD 0 // Entry 0 is blank i guess 
+STR2_Fill // Should never go past this since durability maxes at 63 / 0x3F 
+WORD 0 
+
+
+
+
+Durb_StatBonus_Entry(MuscleBand_BoostIndex, STR3)
+Durb_StatBonus_Entry(WiseGlasses_BoostIndex, MAG3)
+Durb_StatBonus_Entry(LuckyBracer_BoostIndex, LUK3) 
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,7 @@ prAddEquipLuck:
 
 	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessoryLuck:
-	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemLckBonus)))
+	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityLckBonus-1)))
 	#endif 
 
 prDebuffLck:

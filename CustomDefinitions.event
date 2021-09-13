@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases 
-//#define DEBUG_MODE ""
+#define DEBUG_MODE ""
 
 
 #define FreeSpace 0x01081420
@@ -15,14 +15,21 @@
 #include "Enumerate/ClassIDList.enu.event"
 #include "Enumerate/ClassSpriteList.enu.event"
 
-
+PROTECT $17584
 // title screen area 
 		//PROTECT $C5724 $C579F
 		// PROTECT $2af00 $2afff // doubling area 
 
 		//PROTECT $3E320 // ai danger map 
 
-		
+
+
+#define Ves_SkillBlockOne_ItemID 0xFC
+#define Ves_SkillBlockTwo_ItemID 0xFD 
+#define Ves_SkillBlockThree_ItemID 0xFE
+#define Ves_SkillBlockFour_ItemID 0xFF 
+
+
 
 #ifndef ClassAnimTable
     #define ClassAnimTable (0xc00008-0x20)

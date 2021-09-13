@@ -1,0 +1,53 @@
+ALIGN 4
+AccessoryIcons:
+FILL(0x2000) 
+ALIGN 4
+SkillAccessoryIcons_1:
+FILL(0x2000) 
+ALIGN 4
+SkillAccessoryIcons_2:
+FILL(0x2000) 
+ALIGN 4
+SkillAccessoryIcons_3:
+FILL(0x2000) 
+ALIGN 4
+SkillAccessoryIcons_4:
+FILL(0x2000) 
+
+//Icon graphics are uncompressed
+#define AccessoryIcon(indexID) "ORG (128*indexID)+AccessoryIcons"
+#define SkillAccessoryIcons_1(skillID) "ORG 128*skillID+SkillAccessoryIcons_1"
+#define SkillAccessoryIcons_2(skillID) "ORG 128*skillID+SkillAccessoryIcons_2"
+#define SkillAccessoryIcons_3(skillID) "ORG 128*skillID+SkillAccessoryIcons_3"
+#define SkillAccessoryIcons_4(skillID) "ORG 128*skillID+SkillAccessoryIcons_4"
+
+
+PUSH
+AccessoryIcon(MuscleBand_BoostIndex)
+#incbin "StatBoosterIcons/MuscleBandByZaim.dmp"
+
+AccessoryIcon(WiseGlasses_BoostIndex)
+#incbin "StatBoosterIcons/WiseGlassesByEpicer.dmp"
+
+
+AccessoryIcon(LuckyBracer_BoostIndex)
+#incbin "StatBoosterIcons/LuckyBracerByBeansy.dmp"
+
+
+
+
+
+
+SkillAccessoryIcons_2((RenewalID&0x3F))
+#incbin "SkillAccIcons/RenewalRingByCardCafe.dmp"
+
+
+SkillAccessoryIcons_2((VantageID&0x3F))
+#incbin "SkillAccIcons/QuickClawByHusbandoEmblem.dmp"
+
+
+
+POP 
+
+
+

@@ -20,7 +20,7 @@ ldrb r0, [ r0, #0x11 ]
 cmp r0, #0x02
 bne End @ End if this isn't combat.
 mov r0, r5
-ldr r1, =PoisonStrikeIDLink
+ldr r1, =RockyHelmetIDLink
 ldrb r1, [ r1 ]
 blh SkillTester, r3
 cmp r0, #0x00

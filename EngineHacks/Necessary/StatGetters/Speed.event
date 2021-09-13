@@ -21,7 +21,7 @@ prAddEquipSpeed:
 
 	#ifdef ACCESSORIES_AND_FORGING
 prAddAccessorySpeed:
-	rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemSpdBonus)))
+	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilitySpdBonus-1)))
 	#endif 
 
 prDebuffSpd:

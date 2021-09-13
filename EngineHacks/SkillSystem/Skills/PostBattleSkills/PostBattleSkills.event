@@ -35,6 +35,8 @@ ALIGN 4
 #else
 	#include "PoisonStrikeGrislyWound/PoisonStrikeGrislyWoundExtNoCheck.lyn.event"
 #endif
+RockyHelmetIDLink:
+BYTE RockyHelmetSkillID
 PoisonStrikeIDLink:
 BYTE PoisonStrikeID
 GrislyWoundIDLink:

@@ -98,7 +98,7 @@ SpellScrollTrap(19,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
 //RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
-RedPokeballTrap(28,14, ChapterID*2, QuickClaw)
+//RedPokeballTrap(28,14, ChapterID*2, QuickClaw)
 
 SignBTrap(43,4, ChapterID, 0x0) //no extra text 
 SignATrap(29,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
@@ -154,6 +154,8 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 
 CALL SetBushHpEvent
+
+SetUnitStatus(Eirika, CurrentHP, 5)
 //*/
 LABEL 0x63
 NoFade

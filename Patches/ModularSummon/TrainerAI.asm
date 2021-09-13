@@ -253,7 +253,7 @@ bx r1
 .equ GetUnitByEventParameter, 0x0800BC51
 
 MoveTowardsGivenCoord: 
-push {lr} 
+push {r4, lr} 
 @ Given r0 = XX 
 @ r1 = yy 
 @ moves towards that coordinate 
@@ -267,10 +267,11 @@ str r0, [sp]
 mov r0, r2 @ XX 
 mov r2, #0 @ Dunno 
 mov r3, #0xFF @ Dunno - safety..? 
-blh AiTryMoveTowards 
+blh AiTryMoveTowards, r4 
 
 mov r0, #1 @ True 
 add sp, #4 
+pop {r4}
 pop {r1} 
 bx r1 
 
