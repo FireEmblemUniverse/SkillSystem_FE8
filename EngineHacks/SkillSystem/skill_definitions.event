@@ -473,13 +473,13 @@
 //By Datagne
 #define KnightAspirantID 173
 
-//Life and Death: +10 to damage dealt and taken.
+//Life and Death: +5 to damage dealt and taken.
 //Author Unknown (Initial Commit)
-#define LifeAndDeathID 255
+#define LifeAndDeathID 222
 
 //Light Weight: When holding three or less items, attack speed +3.
 //Author Unknown (Initial Commit)
-#define LightWeightID 222
+#define LightWeightID 255
 
 //Loyalty: When within 2 spaces of a Lord, -3 damage taken, +15% hit.
 //By Datagne

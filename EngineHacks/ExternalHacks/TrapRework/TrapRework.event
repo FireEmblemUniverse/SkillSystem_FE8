@@ -22,6 +22,10 @@
 	#define RedPokeballItemID 16	//respawnable item 
 	#define GoldPokeballItemID 17	//non-respawnable item
 	#define HiddenPokeballItemID 18	//invisible item 
+	
+	//#define StatAccessoryID 19 
+	//#define SkillAccessoryID 20 
+	
 	#define CoinsTrapID 21 // 
 	#define OpenPokeballItemID 89	//blocks but cannot interact 
 	
@@ -55,12 +59,7 @@
 
 
 
-	
 
-
-
-	#define Placeholder19ID 19	//respawnable item 
-	#define Placeholder20ID 20	//respawnable item 
 	//#define Placeholder21ID 21	//respawnable item 
 	#define Placeholder22ID 22	//respawnable item 
 	#define Placeholder23ID 23	//respawnable item 
@@ -160,8 +159,9 @@
 	SetTrapMapSprite(GenericID,0x6A)
 	SetTrapMapSprite(NPCTalkID,0x6B) //rocket 
 
-	SetTrapMapSprite(Placeholder19ID,0x6C) //burrow
-	SetTrapMapSprite(Placeholder20ID,0x6D) //grass
+
+	
+	
 	SetTrapMapSprite(CoinsTrapID,CoinsSMS) //coins
 	SetTrapMapSprite(Placeholder22ID,0x6F) //placeholder
 	SetTrapMapSprite(Placeholder23ID,0x77)
@@ -227,8 +227,7 @@
 	
 	SetTrapMapSpritePalette(HiddenPokeballItemID,NPCTrapPaletteWord)
 
-	SetTrapMapSpritePalette(Placeholder19ID,NPCTrapPaletteWord)
-	SetTrapMapSpritePalette(Placeholder20ID,NPCTrapPaletteWord)
+
 	
 	SetTrapMapSpritePalette(CoinsTrapID,NPCTrapPaletteWord)
 	
@@ -326,8 +325,7 @@
 	SetImpassableTrap(GenericID)
 	SetImpassableTrap(NPCTalkID)
 
-	SetImpassableTrap(Placeholder19ID)
-	SetImpassableTrap(Placeholder20ID)
+
 	//SetImpassableTrap(Placeholder21ID)
 	SetImpassableTrap(Placeholder22ID)
 	SetImpassableTrap(Placeholder23ID)

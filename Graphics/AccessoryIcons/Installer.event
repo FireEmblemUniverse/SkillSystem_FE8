@@ -1,6 +1,9 @@
 ALIGN 4
 AccessoryIcons:
 FILL(0x2000) 
+
+// Four parts so each partition of skill IDs can poin to it 
+// so skill id 65 will use icon at SkillAccessoryIcons_2 + 1*128 
 ALIGN 4
 SkillAccessoryIcons_1:
 FILL(0x2000) 
@@ -16,35 +19,54 @@ FILL(0x2000)
 
 //Icon graphics are uncompressed
 #define AccessoryIcon(indexID) "ORG (128*indexID)+AccessoryIcons"
-#define SkillAccessoryIcons_1(skillID) "ORG 128*skillID+SkillAccessoryIcons_1"
-#define SkillAccessoryIcons_2(skillID) "ORG 128*skillID+SkillAccessoryIcons_2"
-#define SkillAccessoryIcons_3(skillID) "ORG 128*skillID+SkillAccessoryIcons_3"
-#define SkillAccessoryIcons_4(skillID) "ORG 128*skillID+SkillAccessoryIcons_4"
-
+#define SkillAccessoryIcons(skillID) "ORG 128*skillID+SkillAccessoryIcons_1"
 
 PUSH
-AccessoryIcon(MuscleBand_BoostIndex)
+AccessoryIcon(MuscleBand_BoostIndex) // Str
 #incbin "StatBoosterIcons/MuscleBandByZaim.dmp"
 
-AccessoryIcon(WiseGlasses_BoostIndex)
+AccessoryIcon(WiseGlasses_BoostIndex) // Mag 
 #incbin "StatBoosterIcons/WiseGlassesByEpicer.dmp"
 
-
-AccessoryIcon(LuckyBracer_BoostIndex)
+AccessoryIcon(LuckyBracer_BoostIndex) // Luck 
 #incbin "StatBoosterIcons/LuckyBracerByBeansy.dmp"
 
+AccessoryIcon(LeatherShield_BoostIndex) // Def/Res
+#incbin "StatBoosterIcons/LeatherShieldByCardCafe.dmp"
+
+AccessoryIcon(BronzeShield_BoostIndex) // Def 
+#incbin "StatBoosterIcons/BronzeShieldByCardCafe.dmp"
+
+AccessoryIcon(OldWard_BoostIndex) // Res 
+#incbin "StatBoosterIcons/OldWardByCardCafe.dmp"
+
+AccessoryIcon(WornBoots_BoostIndex) // Speed 
+#incbin "StatBoosterIcons/SpeedyBootsByCardCafe.dmp"
+
+AccessoryIcon(OldScope_BoostIndex) // Skl 
+#incbin "StatBoosterIcons/ScopePlaceholderByCardCafe.dmp"
 
 
 
 
-
-SkillAccessoryIcons_2((RenewalID&0x3F))
+SkillAccessoryIcons(RenewalID)
 #incbin "SkillAccIcons/RenewalRingByCardCafe.dmp"
 
-
-SkillAccessoryIcons_2((VantageID&0x3F))
+SkillAccessoryIcons(RockyHelmetSkillID)
 #incbin "SkillAccIcons/QuickClawByHusbandoEmblem.dmp"
 
+SkillAccessoryIcons(VantagePlusID)
+#incbin "SkillAccIcons/QuickClawByHusbandoEmblem.dmp"
+
+SkillAccessoryIcons(CritUpID)
+#incbin "SkillAccIcons/LuckyBracerByBeansy.dmp"
+
+
+SkillAccessoryIcons(LifeAndDeathID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+
+SkillAccessoryIcons(WaryFighterID)
+#incbin "SkillAccIcons/WaryRingByBeansy.dmp"
 
 
 POP 

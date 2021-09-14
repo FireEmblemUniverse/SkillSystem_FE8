@@ -4,15 +4,8 @@
 
 #define StatAccessory_NameEntry(Index, TextID) "PUSH; ORG StatAccessoryNameTable + (2*Index); SHORT TextID; ORG StatAccessoryNameTable + (2*(Index+0x40)); SHORT TextID; ORG StatAccessoryNameTable + (2*(Index+0x80)); SHORT TextID; ORG StatAccessoryNameTable + (2*(Index+0xC0)); SHORT TextID; POP"
 #define StatAccessory_DescEntry(Index, TextID) "PUSH; ORG StatAccessoryDescTable + (2*Index); SHORT TextID; ORG StatAccessoryDescTable + (2*(Index+0x40)); SHORT TextID; ORG StatAccessoryDescTable + (2*(Index+0x80)); SHORT TextID; ORG StatAccessoryDescTable + (2*(Index+0xC0)); SHORT TextID; POP"
-
-#define SkillAccessory1_NameEntry(Index, TextID) "PUSH; ORG SkillAccessoryNameTable_1 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryNameTable_1 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryNameTable_1 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryNameTable_1 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory1_DescEntry(Index, TextID) "PUSH; ORG SkillAccessoryDescTable_1 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryDescTable_1 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryDescTable_1 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryDescTable_1 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory2_NameEntry(Index, TextID) "PUSH; ORG SkillAccessoryNameTable_2 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryNameTable_2 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryNameTable_2 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryNameTable_2 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory2_DescEntry(Index, TextID) "PUSH; ORG SkillAccessoryDescTable_2 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryDescTable_2 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryDescTable_2 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryDescTable_2 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory3_NameEntry(Index, TextID) "PUSH; ORG SkillAccessoryNameTable_3 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryNameTable_3 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryNameTable_3 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryNameTable_3 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory3_DescEntry(Index, TextID) "PUSH; ORG SkillAccessoryDescTable_3 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryDescTable_3 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryDescTable_3 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryDescTable_3 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory4_NameEntry(Index, TextID) "PUSH; ORG SkillAccessoryNameTable_4 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryNameTable_4 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryNameTable_4 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryNameTable_4 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
-#define SkillAccessory4_DescEntry(Index, TextID) "PUSH; ORG SkillAccessoryDescTable_4 + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryDescTable_4 + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryDescTable_4 + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryDescTable_4 + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
+#define SkillAccessory_NameEntry(Index, TextID) "PUSH; ORG SkillAccessoryNameTable +(((Index&0xC0)>>6)*512) + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryNameTable +(((Index&0xC0)>>6)*512) + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryNameTable +(((Index&0xC0)>>6)*512) + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryNameTable +(((Index&0xC0)>>6)*512) + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
+#define SkillAccessory_DescEntry(Index, TextID) "PUSH; ORG SkillAccessoryDescTable +(((Index&0xC0)>>6)*512) + (2*(Index&0x3F)); SHORT TextID; ORG SkillAccessoryDescTable +(((Index&0xC0)>>6)*512) + (2*((Index&0x3F)+0x40)); SHORT TextID; ORG SkillAccessoryDescTable +(((Index&0xC0)>>6)*512) + (2*((Index&0x3F)+0x80)); SHORT TextID; ORG SkillAccessoryDescTable +(((Index&0xC0)>>6)*512) + (2*((Index&0x3F)+0xC0)); SHORT TextID; POP"
 
 
 
@@ -26,42 +19,30 @@ StatAccessoryDescTable:
 DebugText_Fill
 ALIGN 4; WORD 0
 
+// uhhh I wrote this for graphics 
+// Four parts so each partition of skill IDs can poin to it 
+// so skill id 65 will use icon at SkillAccessoryIcons_2 + 1*128 
+// so probably the same thing here 
 ALIGN 4
+SkillAccessoryNameTable:
 SkillAccessoryNameTable_1:
 DebugText_Fill
-ALIGN 4; WORD 0
-
-ALIGN 4
-SkillAccessoryDescTable_1:
-DebugText_Fill
-ALIGN 4; WORD 0
-
-ALIGN 4
 SkillAccessoryNameTable_2:
 DebugText_Fill
-ALIGN 4; WORD 0
-
-ALIGN 4
-SkillAccessoryDescTable_2:
-DebugText_Fill
-ALIGN 4; WORD 0
-
-ALIGN 4
 SkillAccessoryNameTable_3:
 DebugText_Fill
-ALIGN 4; WORD 0
-
-ALIGN 4
-SkillAccessoryDescTable_3:
-DebugText_Fill
-ALIGN 4; WORD 0
-
-ALIGN 4
 SkillAccessoryNameTable_4:
 DebugText_Fill
 ALIGN 4; WORD 0
 
 ALIGN 4
+SkillAccessoryDescTable:
+SkillAccessoryDescTable_1:
+DebugText_Fill
+SkillAccessoryDescTable_2:
+DebugText_Fill
+SkillAccessoryDescTable_3:
+DebugText_Fill
 SkillAccessoryDescTable_4:
 DebugText_Fill
 ALIGN 4; WORD 0
@@ -80,9 +61,41 @@ StatAccessory_DescEntry(WiseGlasses_BoostIndex, WiseGlassesDescText)
 StatAccessory_NameEntry(LuckyBracer_BoostIndex, LuckyBracerNameText)
 StatAccessory_DescEntry(LuckyBracer_BoostIndex, LuckyBracerDescText)
 
+StatAccessory_NameEntry(LeatherShield_BoostIndex, LeatherShieldNameText)
+StatAccessory_DescEntry(LeatherShield_BoostIndex, LeatherShieldDescText)
 
-SkillAccessory2_NameEntry(RenewalID, RenewalRingNameText)
-SkillAccessory2_DescEntry(RenewalID, RenewalRingDescText)
+StatAccessory_NameEntry(BronzeShield_BoostIndex, BronzeShieldNameText)
+StatAccessory_DescEntry(BronzeShield_BoostIndex, BronzeShieldDescText)
 
+StatAccessory_NameEntry(OldWard_BoostIndex, OldWardNameText)
+StatAccessory_DescEntry(OldWard_BoostIndex, OldWardDescText)
+
+StatAccessory_NameEntry(WornBoots_BoostIndex, WornBootsNameText)
+StatAccessory_DescEntry(WornBoots_BoostIndex, WornBootsDescText)
+
+StatAccessory_NameEntry(OldScope_BoostIndex, OldScopeNameText)
+StatAccessory_DescEntry(OldScope_BoostIndex, OldScopeDescText)
+
+
+
+// Skills 
+
+SkillAccessory_NameEntry(RenewalID, RenewalRingNameText)
+SkillAccessory_DescEntry(RenewalID, RenewalRingDescText)
+
+SkillAccessory_NameEntry(RockyHelmetSkillID, RockyHelmetNameText)
+SkillAccessory_DescEntry(RockyHelmetSkillID, RockyHelmetDescText)
+
+SkillAccessory_NameEntry(VantagePlusID, QuickClawNameText)
+SkillAccessory_DescEntry(VantagePlusID, QuickClawDescText)
+
+SkillAccessory_NameEntry(CritUpID, LuckyBracerNameText)
+SkillAccessory_DescEntry(CritUpID, LuckyBracerDescText)
+
+SkillAccessory_NameEntry(LifeAndDeathID, SurgesSigilNameText)
+SkillAccessory_DescEntry(LifeAndDeathID, SurgesSigilDescText)
+
+SkillAccessory_NameEntry(WaryFighterID, ObliviousRingNameText)
+SkillAccessory_DescEntry(WaryFighterID, ObliviousRingDescText)
 
 

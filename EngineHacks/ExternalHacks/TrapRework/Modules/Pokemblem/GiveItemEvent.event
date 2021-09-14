@@ -33,3 +33,17 @@ TutText(NoBerriesLeftText)
 NoFade 
 ENDA 
 
+
+ALIGN 4
+GiveStatBoostAccessoryEvent:
+// SVAL r4 StatBoost_Index
+SVAL r3 StatAccessory; GiveItemWithDurability(0x7FFF)
+NoFade 
+ENDA 
+
+ALIGN 4
+GiveSkillAccessoryEvent:
+// SVAL r5 SkillID 
+GiveSkillAccessory(0x7FFF)
+NoFade 
+ENDA

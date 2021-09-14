@@ -22,8 +22,7 @@
 	SetTrapEventInit(RedPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(GoldPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(HiddenPokeballItemID,ObtainItemInitialization)
-	SetTrapEventInit(Placeholder19ID,ObtainItemInitialization)
-	SetTrapEventInit(Placeholder20ID,ObtainItemInitialization)
+
 	SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
 		//SetTrapEventInit(CoinsTrapID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder22ID,ObtainItemInitialization)
@@ -193,6 +192,21 @@ SetTrapMapSprite(BerryTreeTrapID,BerryTreeSMS)
 SetTrapMapSpritePalette(BerryTreeTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(BerryTreeTrapID)
 
+#define StatAccessoryTrapID 19 //0x13
+SetTrapEventInit(StatAccessoryTrapID,ObtainStatAccessoryInitialization)
+SetTrapMapSprite(StatAccessoryTrapID,RedPokeballSMS)
+SetTrapMapSpritePalette(StatAccessoryTrapID,NPCTrapPaletteWord)
+SetImpassableTrap(StatAccessoryTrapID)
+
+#define SkillAccessoryTrapID 20 //0x14
+SetTrapEventInit(SkillAccessoryTrapID,ObtainSkillAccessoryInitialization)
+SetTrapMapSprite(SkillAccessoryTrapID,RedPokeballSMS)
+SetTrapMapSpritePalette(SkillAccessoryTrapID,NPCTrapPaletteWord)
+SetImpassableTrap(SkillAccessoryTrapID)
+
+#define StatAccessoryTrap(XX,YY, Flag, AccessoryID) "BYTE StatAccessoryTrapID XX YY 0x0 Flag AccessoryID"
+#define SkillAccessoryTrap(XX,YY, Flag, SkillID) "BYTE SkillAccessoryTrapID XX YY 0x0 Flag SkillID"
+
 #define BerryTree(XX,YY,BerriesCounter) "BYTE BerryTreeTrapID XX YY BerriesCounter; SHORT 0x0"
 
 
@@ -274,6 +288,8 @@ SetImpassableTrap(BerryTreeTrapID)
 #define SpellScrollTrap(XX,YY, Flag, SpellID) "BYTE ObtainSpellID XX YY Flag SpellScroll SpellID" // 2nd last byte is ItemID defined in custom definitions in root  
 #define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID Flag 0x0"
 #define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID Flag 0x0"
+
+
 // Coins is first 256 flags 
 // Then signs / completion of areas is +0x20 
 // Then Spells as +0x40 
@@ -363,7 +379,7 @@ ALIGN 4
 #include "asm/ObtainCoins.lyn.event"
 #include "asm/BerryTree.lyn.event"
 #include "asm/ObtainScroll.lyn.event" 
-
+#include "asm/ObtainAccessory.lyn.event"
 #include "asm/TeleportSign.lyn.event"
 #include "asm/DisplayText.lyn.event" 
 #include "asm/EnterText.lyn.event"

@@ -186,8 +186,6 @@ SilentGiveItemWithDurability(Eirika, MuscleBand, 0xC1)
 SilentGiveItemWithDurability(Eirika, Scratch, 1)
 */
 
-// renewal id - 87 
-#define GiveSkillAccessory(UnitID, SkillID) "SVAL r1 0xC0; SVAL r3 SkillID; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SVAL r3 SkillID; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; GIVEITEMTO UnitID"
 
 
 //SVAL r1 ((0xC0 & SkillID)>>6) // This gets the skill ID where the top 3 bits denote if it's above 0x40, 0x80, 0xC0 
@@ -198,13 +196,13 @@ SilentGiveItemWithDurability(Eirika, Scratch, 1)
 
 GiveSkillAccessory(Eirika, RenewalID) 
 
-SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex|0x80)
+SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
 
 //SilentGiveItemWithDurability(Eirika, RenewalRing, 0x1) // Starter 
 //SilentGiveItemWithDurability(Eirika, SkillScroll, ParagonID)
 //SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
 
-//SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
+SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
 //SilentGiveItemWithDurability(Eirika, SuperPotion, 0x5)
 
 /*
@@ -292,13 +290,14 @@ Write_Byte(7, GaryStarterClass)
 //DISA 0x2
 
 //ChangeEdition(1)
-Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(14, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(12, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
 //MNC2 Route2SCh
 //MNC2 PokemonTowerF1Ch
-MNC2 ViridianForestSCh
+//MNC2 ViridianForestSCh
 //MNC2 Route3Ch
 //MNC2 Route4WCh
 //MNC2 MtMoonB3Ch

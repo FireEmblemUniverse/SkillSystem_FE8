@@ -1,7 +1,6 @@
 //   
-#define MuscleBand_BoostIndex 1 
-#define WiseGlasses_BoostIndex 2
-#define LuckyBracer_BoostIndex 3
+
+
 
 //#define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
 
@@ -174,3 +173,5 @@ StatBonus(0,0,0,0,0,4,0,0,0,0)
 #define LeatherShield 0x2
 #define SteelShield 0x3
 */
+
+#include "AccessoryStatBoosts.event" 

@@ -14,14 +14,14 @@ ldr r1, LifeAndDeathID
 cmp r0, #0
 beq End
 
-@add 10 damage each
+@add 5 damage each
 mov r1, #0x5a
 ldrsh r0, [r4, r1] @atk
-add r0, #10
+add r0, #5
 strh r0, [r4,r1]
 mov r1, #0x5c
 ldrsh r0, [r4, r1] @atk
-sub r0, #10
+sub r0, #5
 strh r0, [r4,r1]
 
 End:

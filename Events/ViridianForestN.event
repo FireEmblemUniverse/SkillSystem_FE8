@@ -95,7 +95,9 @@ CoinsTrap(11,26,(ChapterID*2)+1,400)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-RedPokeballTrap(32,26, ChapterID*2, WiseGlasses)
+//
+StatAccessoryTrap(32,26, ChapterID*2, LeatherShield_BoostIndex)
+
 //RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 

@@ -134,6 +134,9 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect) //Read 
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect) //Talk 
 
+
+  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainStatAccessoryUsability0x13, ObtainStatAccessoryEffect) //take accessory  
+  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainSkillAccessoryUsability0x14, ObtainSkillAccessoryEffect) //take accessory 
   
   MenuCommand(UM_PickBerry, UM_PickBerryDesc, NormalText, BerryTreeUsability, PickBerryTreeEffect) //Enter  
 //  ## UM_EatBerry
@@ -177,8 +180,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainItemUsability0x11, ObtainItemEffect) //Take (Gold pokeball) 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, ObtainItemUsability0x12, ObtainItemEffect) //Examine
 //dummy ones 
-  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainItemUsability0x13, ObtainItemEffect) //Take
-  MenuCommand(UM_Pickup, UM_PickupDesc, GreenText, ObtainItemUsability0x14, ObtainItemEffect) //Pickup
+
   MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
   
   //Pickup 11ED 11EE 

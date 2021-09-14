@@ -111,18 +111,12 @@ POP
 ALIGN 4
 DurabilityBasedItemNameList: //used for item name
 DurabilityTextEntry(0xFFFF,True,SkillDescTable)
-DurabilityTextEntry(0xFFFE,True,ItemNameTable)
+DurabilityTextEntry(0xFFFE,False,ItemNameTable)
 DurabilityTextEntry(0xFFFD,False,StatAccessoryNameTable)
-
-
-DurabilityTextEntry(0xFFFC,True,SkillAccessoryNameTable_1)
-DurabilityTextEntry(0xFFFB,True,SkillAccessoryNameTable_2)
-DurabilityTextEntry(0xFFFA,True,SkillAccessoryNameTable_3)
-DurabilityTextEntry(0xFFF9,True,SkillAccessoryNameTable_4)
-
-
-
-//DurabilityTextEntry(0xFFFC,True,StatAccessoryNameTable)
+DurabilityTextEntry(0xFFFC,False,SkillAccessoryNameTable_1)
+DurabilityTextEntry(0xFFFB,False,SkillAccessoryNameTable_2)
+DurabilityTextEntry(0xFFFA,False,SkillAccessoryNameTable_3)
+DurabilityTextEntry(0xFFF9,False,SkillAccessoryNameTable_4)
 DurabilityTextEnd
 
 ALIGN 4
@@ -130,14 +124,10 @@ DurabilityBasedItemDescList: //used for item desc
 DurabilityTextEntry(0xFFFF,False,SkillDescTable)
 DurabilityTextEntry(0xFFFE,False,ItemDescTable)
 DurabilityTextEntry(0xFFFD,False,StatAccessoryDescTable)
-
-
 DurabilityTextEntry(0xFFFC,False,SkillAccessoryDescTable_1)
 DurabilityTextEntry(0xFFFB,False,SkillAccessoryDescTable_2)
 DurabilityTextEntry(0xFFFA,False,SkillAccessoryDescTable_3)
 DurabilityTextEntry(0xFFF9,False,SkillAccessoryDescTable_4)
-
-//DurabilityTextEntry(0xFFFC,False,StatAccessoryDescTable)
 DurabilityTextEnd
 
 ALIGN 4
@@ -146,13 +136,13 @@ DurabilityItem(SkillScroll)
 DurabilityItem(SpellScroll)
 
 /* - Durability based items always return 1 as durability ? */ 
-/*
-DurabilityItem(MuscleBand)
+
+DurabilityItem(StatAccessory)
 DurabilityItem(Ves_SkillBlockOne_ItemID)
 DurabilityItem(Ves_SkillBlockTwo_ItemID)
 DurabilityItem(Ves_SkillBlockThree_ItemID)
 DurabilityItem(Ves_SkillBlockFour_ItemID)
-*/
+// Dunno what this part actually does. At a glance stuff seems to work with this commented out. 
 
 DurabilityItemEnd
 
@@ -165,7 +155,7 @@ DurabilityIcon(SkillScroll,5)
 DurabilityIconEnd
 
 ALIGN 4
-DurabilityBasedItemIconList_Accessory:
+DurabilityBasedItemIconList_Accessory: // New version to chop of durability bits 0x40 and above 
 DurabilityIcon(StatAccessory, 6)
 DurabilityIcon(Ves_SkillBlockOne_ItemID,7 )
 DurabilityIcon(Ves_SkillBlockTwo_ItemID, 8)

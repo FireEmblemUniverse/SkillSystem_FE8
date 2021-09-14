@@ -100,8 +100,7 @@ StrengthBoulder(5,16)
 StrengthBoulder(6,17)
 StrengthBoulder(5,18)
 
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
-//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
 
 SignBTrap(19,1, ChapterID, 0x0) //no extra text 
 SignATrap(16,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

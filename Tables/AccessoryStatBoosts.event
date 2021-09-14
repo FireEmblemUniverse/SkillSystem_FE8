@@ -1,0 +1,42 @@
+#define MuscleBand_BoostIndex 1 
+#define WiseGlasses_BoostIndex 2
+#define LuckyBracer_BoostIndex 3
+#define LeatherShield_BoostIndex 4
+#define BronzeShield_BoostIndex 5
+#define OldWard_BoostIndex 6
+#define WornBoots_BoostIndex 7
+#define OldScope_BoostIndex 8
+
+#define STR2_8 "POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2"
+#define STR2_Fill "STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8" 
+
+#define Durb_StatBonus_Entry(Index, StatBoostPointer) "PUSH; ORG DurabilityStatBonusTable + (4*Index); POIN StatBoostPointer; POP" 
+
+ALIGN 4
+DurabilityStatBonusTable:
+WORD 0 // Entry 0 is blank i guess 
+STR2_Fill // Should never go past this since durability maxes at 63 / 0x3F 
+WORD 0 
+
+
+Durb_StatBonus_Entry(MuscleBand_BoostIndex, STR3)
+Durb_StatBonus_Entry(WiseGlasses_BoostIndex, MAG3)
+Durb_StatBonus_Entry(LuckyBracer_BoostIndex, LUK5) 
+Durb_StatBonus_Entry(LeatherShield_BoostIndex, DEFRES2)
+Durb_StatBonus_Entry(BronzeShield_BoostIndex, DEF4)
+Durb_StatBonus_Entry(OldWard_BoostIndex, RES5) 
+Durb_StatBonus_Entry(WornBoots_BoostIndex, SPD4)
+Durb_StatBonus_Entry(OldScope_BoostIndex, SKL5)
+
+
+
+
+
+
+
+
+
+
+
+
+

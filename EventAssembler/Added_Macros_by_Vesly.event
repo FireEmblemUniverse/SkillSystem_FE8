@@ -31,8 +31,13 @@
 #define GiveItemWithDurability(UnitID, Item, Durability) "CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID"
 #define GiveItemWithDurability(UnitID) "SVAL r1 8; SLSL r4 r4 r1; SADD r3 r3 r4; CALL $591F40; GIVEITEMTO UnitID" // s3 as item, s4 as durability 
 
+
+
 // Pokemblem stuff: 
 #define TrainerPostBattleTalk(char2) "CHAR 0 TrainerPostBattleTalkEvent [0x0, char2] 0"
 #define AllTrainersPostBattleTalk "TrainerPostBattleTalk(0xE0); TrainerPostBattleTalk(0xE1); TrainerPostBattleTalk(0xE2); TrainerPostBattleTalk(0xE3); TrainerPostBattleTalk(0xE4); TrainerPostBattleTalk(0xE5); TrainerPostBattleTalk(0xE6); TrainerPostBattleTalk(0xE7); TrainerPostBattleTalk(0xE8); TrainerPostBattleTalk(0xE9); TrainerPostBattleTalk(0xEA); TrainerPostBattleTalk(0xEB); TrainerPostBattleTalk(0xEC); TrainerPostBattleTalk(0xED); TrainerPostBattleTalk(0xEE); TrainerPostBattleTalk(0xEF)" 
+#define GiveSkillAccessory(UnitID, SkillID) "SVAL r1 0xC0; SVAL r3 SkillID; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SVAL r3 SkillID; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; GIVEITEMTO UnitID"
+// SVAL r5 *SkillID of accessory to give* 
+#define GiveSkillAccessory(UnitID) "SVAL r1 0xC0; SADD r3 r5 r0; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SADD r3 r5 r0; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; GIVEITEMTO UnitID"
 
 
