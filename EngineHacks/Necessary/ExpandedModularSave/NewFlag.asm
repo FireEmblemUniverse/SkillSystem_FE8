@@ -77,7 +77,7 @@ Start:
 	b Exit
 
 	Off:
-	bic r1, r0 @any bits in common should now should be unset 
+	bic r0, r1 @any bits in common should now should be unset 
 	strb r0, [r3] @store back into ram 
 
 	
