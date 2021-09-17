@@ -1,4 +1,4 @@
-
+it's 1 image, Gfx @ $B11D0C, TSA $B118C4, Pal $B11864
 
 
 
@@ -23,7 +23,7 @@ DONE - lucky bracer //Crit Boost: +15 critical rate.
 #define CritUpID 3
 #define CritBoostID CritUpID //Alias
 
-//Strong Riposte: When under attack, damage +3.
+DONE - //Strong Riposte: When under attack, damage +3.
 //Author Unknown (Initial Commit)
 #define StrongRiposteID 231
 
@@ -46,7 +46,7 @@ DONE //Patience: When under attack, avoid +10.
 //By Zeta
 #define PerfectionistID 226
 
-//Prescience: When initiating battle, Hit and Avo +15.
+DONE - //Prescience: When initiating battle, Hit and Avo +15.
 //By Sme
 #define PrescienceID 243
 

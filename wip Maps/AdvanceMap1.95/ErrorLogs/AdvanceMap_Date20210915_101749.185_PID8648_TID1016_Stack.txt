@@ -1,0 +1,38 @@
+(EMapDoesNotExist) Offsets of map "CL:44_Invalid" is not defined for game "POKEMON FIRE"!
+Stacktrace:
+  $0045A5EC
+  $0045A0E9
+  $0046FA01
+  $00472703
+  $0051859E
+  $00519B01
+  $0040AFFA
+  $00510E72
+  $005472D7
+  $0056FE17
+  $0052F6E5
+  $764136DB
+  $7640A66A
+  $764083DA
+  $764081A0
+  $005324F8
+  $0041F049
+
+AdvanceMap Version: 1.9.5.0
+
+Rom informations:
+Filename: C:\Users\David\Desktop\Buildfile\wip Maps\AdvanceMap1.95\Pokemon - Fire Red Version (U) (V1.1).gba
+Romname: POKEMON FIREBPRE
+
+Actual position:
+aktModularForm: AMMainForm
+CurrentViewID: 0
+MapIndex: CL:12
+OldMapIndex: CL:12
+LoadingMapIndex: CL:12
+isMapFile: false
+MapHeaderData: F45F2D0898A63B0818AB16080000000013010C005B00000800000001
+MapFooterData: 0100000001000000445D2D084C5D2D08244C2D088C4D2D0802020000
+EventHeaderData: 0403000208A63B0868A63B080000000080A63B08
+Connections (ConDataOffset/ConnectionAmount): $000000 / 0
+WildPokemonHeader: FFFF000000000000000000000000000000000000

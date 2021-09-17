@@ -42,9 +42,11 @@ OffAllUnitState(0x0145, 0x4210008, Any, Any, Any, Any, Any) // Remove escaped, d
 					
 LOAD3 0x0 Units1 // Do not load dead / non-existent units 
 ENUN 
-
+ASMC UnequipAccessories 
 //ENUT SkipIntroFlag
 GotoPrepScreen
+
+ASMC AutoEquipAccessories 
 
 GetNthUnit(1)
 SADD r2 rC r0 

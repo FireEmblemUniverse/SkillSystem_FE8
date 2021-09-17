@@ -3,7 +3,7 @@
 #define GenericB UnitViridianForestSTrainer
 #define ClassA ClassViridianForestSWildA
 #define ClassB ClassViridianForestSWildB
-#define WildLvl 3 
+#define WildLvl 3
 #define TrainerL 4 
 
 
@@ -95,10 +95,12 @@ SpellScrollTrap(19,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-//RedPokeballTrap(28,14, ChapterID*2, QuickClaw)
+//SkillAccessoryTrap(28,14, ChapterID*2, VantagePlusID) - now in route 2s 
 
 SignBTrap(43,4, ChapterID, 0x0) //no extra text 
 SignATrap(29,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
@@ -155,7 +157,7 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CALL SetBushHpEvent
 
-SetUnitStatus(Eirika, CurrentHP, 5)
+//SetUnitStatus(Eirika, CurrentHP, 5)
 //*/
 LABEL 0x63
 NoFade

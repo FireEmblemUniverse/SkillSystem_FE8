@@ -58,8 +58,8 @@ BYTE 0x0E 0x20 0x20 0x56
   // POIN $596cc
 
 //allow Wyvern Knights to triangle attack
-  ORG $2b168
-  SHORT 0
+  //ORG $2b168
+  //SHORT 0
 
 //12 Tracks/16 Sounds Fix (credit Agro/Brendor)
   ORG $2900
@@ -80,12 +80,12 @@ BYTE 0x0E 0x20 0x20 0x56
   SHORT 0
 
 //Skip H&S screen
-  ORG $CC20C
-  SHORT 0
+  //ORG $CC20C
+  ///SHORT 0
 
 //Skip Intro cutscene
-  ORG $C6714
-  SHORT 0
+  //ORG $C6714
+  //SHORT 0
 
 //Skip New Game text
   ORG $C4928

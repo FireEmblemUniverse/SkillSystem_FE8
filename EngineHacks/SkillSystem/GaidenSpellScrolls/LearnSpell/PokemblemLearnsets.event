@@ -375,286 +375,561 @@ BYTE 0 0
 
 ALIGN 4
 NidoranFLearnset:
-BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 Magnitude
+BYTE 1 Growl
+BYTE 1 Scratch
+BYTE 7 TailWhip 
+BYTE 9 DoubleKick
+BYTE 13 PoisonSting 
+BYTE 19 DoubleHit
+BYTE 21 Bite
+BYTE 25 Heal //?Support HelpingHand
+//BYTE 31 Resv //ToxicSpikes
+BYTE 33 Snarl
+BYTE 37 NightSlash
+//BYTE 43 Resv //Captivate
+BYTE 45 PoisonJab
 BYTE 0 0
 
 ALIGN 4
 NidorinaLearnset:
-BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 Magnitude
+BYTE 1 Growl
+BYTE 1 Scratch
+BYTE 7 TailWhip 
+BYTE 9 DoubleKick
+BYTE 13 PoisonSting 
+BYTE 19 DoubleHit
+BYTE 21 Bite
+BYTE 25 Heal //?Support HelpingHand
+//BYTE 31 Resv //ToxicSpikes
+BYTE 33 Snarl
+BYTE 37 NightSlash
+//BYTE 43 Resv //Captivate
+BYTE 45 PoisonJab
 BYTE 0 0
 
 ALIGN 4
 NidoqueenLearnset:
-BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 Magnitude
+BYTE 1 Growl
+BYTE 1 Scratch
+BYTE 7 TailWhip 
+BYTE 9 DoubleKick
+BYTE 13 PoisonSting 
+BYTE 19 DoubleHit
+BYTE 21 Bite
+BYTE 25 Heal //?Support HelpingHand
+//BYTE 31 Resv //ToxicSpikes
+BYTE 33 Snarl
+BYTE 37 NightSlash
+//BYTE 43 Resv //Captivate
+BYTE 45 PoisonJab
 BYTE 0 0
 
 ALIGN 4
 NidoranMLearnset:
-BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 Magnitude
+BYTE 1 Leer
+BYTE 5 Peck
+//BYTE 7 Resv //FocusEnergy
+BYTE 9 DoubleKick 
+BYTE 13 PoisonSting
+BYTE 19 DoubleHit
+BYTE 21 HornAttack
+BYTE 25 Heal //?Support HelpingHand
+//BYTE 31 Resv //ToxicSpikes
+BYTE 33 Snarl
+BYTE 37 PoisonJab
+//BYTE 43 Resv //Captivate
+BYTE 45 HornDrill
 BYTE 0 0
 
 ALIGN 4
 NidorinoLearnset:
-BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 Magnitude
+BYTE 1 Leer
+BYTE 5 Peck
+//BYTE 7 Resv //FocusEnergy
+BYTE 9 DoubleKick 
+BYTE 13 PoisonSting
+BYTE 19 DoubleHit
+BYTE 21 HornAttack
+BYTE 25 Heal //?Support HelpingHand
+//BYTE 31 Resv //ToxicSpikes
+BYTE 33 Snarl
+BYTE 37 PoisonJab
+//BYTE 43 Resv //Captivate
+BYTE 45 HornDrill
 BYTE 0 0
 
 ALIGN 4
 NidokingLearnset:
-BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 Magnitude
+BYTE 1 Leer
+BYTE 5 Peck
+//BYTE 7 Resv //FocusEnergy
+BYTE 9 DoubleKick 
+BYTE 13 PoisonSting
+BYTE 19 DoubleHit
+BYTE 21 HornAttack
+BYTE 25 Heal //?Support HelpingHand
+//BYTE 31 Resv //ToxicSpikes
+BYTE 33 Snarl
+BYTE 37 PoisonJab
+//BYTE 43 Resv //Captivate
+BYTE 45 HornDrill
 BYTE 0 0
 
 ALIGN 4
 ClefairyLearnset:
 BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse 
+BYTE 1 Growl
+//BYTE 4 Resv //Encore
+BYTE 7 Sleep //Sing 
+BYTE 10 DoubleHit
+//BYTE 13 Resv //?Support DefenseCurl
+//BYTE 16 Resv //FollowMe
+//BYTE 19 Resv //Minimize
+BYTE 22 KarateChop
+BYTE 25 Barrier
+BYTE 28 Heal
+//BYTE 31 Metronome
+//BYTE 34 Resv //Gravity
+BYTE 37 Physic
+//BYTE 40 Resv //?Support LightScreen
+BYTE 43 MeteorMash
+BYTE 46 Recover
 BYTE 0 0
 
 ALIGN 4
 ClefableLearnset:
 BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse 
+BYTE 1 Growl
+//BYTE 4 Resv //Encore
+BYTE 7 Sleep //Sing 
+BYTE 10 DoubleHit
+//BYTE 13 Resv //?Support DefenseCurl
+//BYTE 16 Resv //FollowMe
+//BYTE 19 Resv //Minimize
+BYTE 22 KarateChop
+BYTE 25 Barrier
+BYTE 28 Heal
+//BYTE 31 Metronome
+//BYTE 34 Resv //Gravity
+BYTE 37 Physic
+//BYTE 40 Resv //?Support LightScreen
+BYTE 43 MeteorMash
+BYTE 46 Recover
 BYTE 0 0
 
 ALIGN 4
 VulpixLearnset:
-BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheel
+BYTE 1 Ember
+BYTE 4 TailWhip
+//BYTE 7 Resv //Roar
+BYTE 11 QuickAttack
+//BYTE 14 Resv //WillOWisp
+BYTE 17 ConfuseRay
+BYTE 21 Confusion
+BYTE 24 Flamethrower
+BYTE 27 Heal //?Support Safeguard
+BYTE 31 Bite
+BYTE 34 FireSpin
+//BYTE 37 Resv //Captivate
+BYTE 41 NightShade
+BYTE 44 Psybeam
+BYTE 47 FireBlast
 BYTE 0 0
 
 ALIGN 4
 NinetalesLearnset:
-BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheel
+BYTE 1 Ember
+BYTE 4 TailWhip
+//BYTE 7 Resv //Roar
+BYTE 11 QuickAttack
+//BYTE 14 Resv //WillOWisp
+BYTE 17 ConfuseRay
+BYTE 21 Confusion
+BYTE 24 Flamethrower
+BYTE 27 Heal //?Support Safeguard
+BYTE 31 Bite
+BYTE 34 FireSpin
+//BYTE 37 Resv //Captivate
+BYTE 41 NightShade
+BYTE 44 Psybeam
+BYTE 47 FireBlast
 BYTE 0 0
 
 ALIGN 4
 JigglypuffLearnset:
-BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse 
+BYTE 1 Sleep //Sing
+BYTE 5 Heal //?Support Defense Curl
+BYTE 9 Pound 
+//BYTE 13 Resv //Disable
+BYTE 17 Rollout
+BYTE 21 DoubleHit
+BYTE 25 Recover //?Support Rest
+BYTE 29 BodySlam
+BYTE 33 MirrorShot //GyroBall
+BYTE 37 DoubleKick
+BYTE 41 Physic //?Support Mimic
+BYTE 45 TriAttack
+BYTE 49 DoubleEdge
 BYTE 0 0
 
 ALIGN 4
 WigglytuffLearnset:
-BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse 
+BYTE 1 Sleep //Sing
+BYTE 5 Heal //?Support Defense Curl
+BYTE 9 Pound 
+//BYTE 13 Resv //Disable
+BYTE 17 Rollout
+BYTE 21 DoubleHit
+BYTE 25 Recover //?Support Rest
+BYTE 29 BodySlam
+BYTE 33 MirrorShot //GyroBall
+BYTE 37 DoubleKick
+BYTE 41 Physic //?Support Mimic
+BYTE 45 TriAttack
+BYTE 49 DoubleEdge
 BYTE 0 0
 
 ALIGN 4
 ZubatLearnset:
-BYTE 1 ConfuseRay
-BYTE 5 Leer 
-BYTE 9 Acid 
-BYTE 13 Growl 
-BYTE 17 Scratch
+BYTE 1 LeechLife
+BYTE 5 Pound 
+BYTE 9 Lick 
+BYTE 13 Bite 
+BYTE 17 WingAttack 
+BYTE 21 ConfuseRay
+BYTE 25 Gust
+BYTE 29 SandAttack
+BYTE 33 Toxic //PoisonFang
+//BYTE 37 Resv //Haze
+BYTE 41 AirSlash
 BYTE 0 0
 
 ALIGN 4
 GolbatLearnset:
-BYTE 1 ConfuseRay
-BYTE 5 Leer 
-BYTE 9 Acid 
-BYTE 13 Growl 
-BYTE 17 Scratch
+BYTE 1 LeechLife
+BYTE 5 Pound 
+BYTE 9 Lick 
+BYTE 13 Bite 
+BYTE 17 WingAttack 
+BYTE 21 ConfuseRay
+BYTE 25 Gust
+BYTE 29 SandAttack
+BYTE 33 Toxic //PoisonFang
+//BYTE 37 Resv //Haze
+BYTE 41 AirSlash
 BYTE 0 0
 
 ALIGN 4
 OddishLearnset:
 BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle 
+BYTE 5 Constrict  
+BYTE 9 Acid
+BYTE 13 PoisonPowder
+BYTE 17 Sleep //SleepPowder
+BYTE 21 MegaDrain
+BYTE 25 Heal //?Support LuckyChant 
+BYTE 29 BodySlam
+BYTE 33 Mend //?Support Moonlight
+BYTE 37 PetalDance
+BYTE 39 MagicalLeaf
 BYTE 0 0
 
 ALIGN 4
 GloomLearnset:
 BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle
+BYTE 5 Constrict  
+BYTE 9 Acid
+BYTE 13 PoisonPowder
+BYTE 17 Sleep //SleepPowder
+BYTE 21 MegaDrain
+BYTE 25 Heal //?Support LuckyChant 
+BYTE 29 BodySlam
+BYTE 33 Mend //?Support Moonlight
+BYTE 37 PetalDance
+BYTE 39 MagicalLeaf
 BYTE 0 0
 
 ALIGN 4
 VileplumeLearnset:
 BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle
+BYTE 5 Constrict  
+BYTE 9 Acid
+BYTE 13 PoisonPowder
+BYTE 17 Sleep //SleepPowder
+BYTE 21 MegaDrain
+BYTE 25 Heal //?Support LuckyChant 
+BYTE 29 BodySlam
+BYTE 33 Mend //?Support Moonlight
+BYTE 37 PetalDance
+BYTE 39 MagicalLeaf
 BYTE 0 0
 
 ALIGN 4
 ParasLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 Scratch
+BYTE 1 Scratch 
+BYTE 6 PoisonPowder  
+BYTE 11 LeechLife
+BYTE 17 Sleep //Spore
+BYTE 22 Slash
+BYTE 27 Acid //Growth
+BYTE 33 MegaDrain
+BYTE 38 Physic //?Support Aromatherapy
+BYTE 43 XScissor
 BYTE 0 0
 
 ALIGN 4
 ParasectLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 Scratch
+BYTE 1 Scratch 
+BYTE 6 PoisonPowder  
+BYTE 11 LeechLife
+BYTE 17 Sleep //Spore
+BYTE 22 Slash
+BYTE 27 Acid //Growth
+BYTE 33 MegaDrain
+BYTE 38 Physic //?Support Aromatherapy
+BYTE 43 XScissor
 BYTE 0 0
 
 ALIGN 4
 VenonatLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 Scratch
+BYTE 1 Tackle 
+BYTE 1 StringShot  
+BYTE 5 Pound
+BYTE 11 Confusion
+BYTE 13 PoisonPowder
+BYTE 17 LeechLife
+//BYTE 23 ??? //StunSpore
+BYTE 25 Psybeam
+BYTE 29 Sleep
+BYTE 35 SignalBeam
+BYTE 37 DreamEater
+BYTE 41 PoisonGas //PoisonFang
+BYTE 47 Psychic
 BYTE 0 0
 
 ALIGN 4
 VenomothLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 Scratch
+BYTE 1 Tackle 
+BYTE 1 StringShot  
+BYTE 5 Pound
+BYTE 11 Confusion
+BYTE 13 PoisonPowder
+BYTE 17 LeechLife
+//BYTE 23 ??? //StunSpore
+BYTE 25 Psybeam
+BYTE 29 Sleep
+BYTE 35 SignalBeam
+BYTE 37 DreamEater
+BYTE 41 PoisonGas //PoisonFang
+BYTE 47 Psychic
 BYTE 0 0
 
 ALIGN 4
 DiglettLearnset:
-BYTE 1 Magnitude 
-BYTE 5 Leer 
-BYTE 9 Dig 
-BYTE 14 Scratch 
+BYTE 1 Scratch 
+BYTE 1 SandAttack 
+BYTE 4 Growl 
+BYTE 7 ConfuseRay
+BYTE 12 Magnitude
+BYTE 15 MudShot
+BYTE 18 Dig
+BYTE 23 Thief
+BYTE 26 EarthPower
+BYTE 29 MudBomb
+BYTE 34 Slash
+BYTE 37 Earthquake
+BYTE 40 Fissure 
 BYTE 0 0
 
 ALIGN 4
 DugtrioLearnset:
-BYTE 1 Magnitude 
-BYTE 5 Leer 
-BYTE 9 Dig 
-BYTE 14 Scratch
+BYTE 1 Scratch 
+BYTE 1 SandAttack 
+BYTE 4 Growl 
+BYTE 7 ConfuseRay
+BYTE 12 Magnitude
+BYTE 15 MudShot
+BYTE 18 Dig
+BYTE 23 Thief
+BYTE 26 EarthPower
+BYTE 29 MudBomb
+BYTE 34 Slash
+BYTE 37 Earthquake
+BYTE 40 Fissure 
 BYTE 0 0
 
 ALIGN 4
 MeowthLearnset:
 BYTE 1 Scratch 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 QuickAttack
+BYTE 1 Growl 
+BYTE 6 Bite 
+BYTE 9 Cut
+BYTE 14 DoubleHit
+BYTE 17 Leer
+BYTE 22 Thief
+BYTE 25 PayDay
+BYTE 30 Slash
+BYTE 33 NightSlash
 BYTE 0 0
 
 ALIGN 4
 PersianLearnset:
 BYTE 1 Scratch 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 QuickAttack
+BYTE 1 Growl 
+BYTE 6 Bite 
+BYTE 9 Cut
+BYTE 14 DoubleHit
+BYTE 17 Leer
+BYTE 22 Thief
+BYTE 25 PayDay
+BYTE 30 Slash
+BYTE 33 NightSlash
 BYTE 0 0
 
 ALIGN 4
 PsyduckLearnset:
-BYTE 1 Bubble 
+BYTE 1 Scratch 
 BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 9 Bubble 
+BYTE 14 SandAttack
+BYTE 18 Confusion
+BYTE 22 WaterPulse
+BYTE 27 Doubleslap
+BYTE 31 TailWhip
+BYTE 35 Heal //?Support PsychUp
+BYTE 40 Psybeam
+BYTE 44 Barrier //?Support Amnesia
+BYTE 48 HydroPump
 BYTE 0 0
 
 ALIGN 4
 GolduckLearnset:
-BYTE 1 Bubble 
+BYTE 1 Scratch 
 BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 9 Bubble 
+BYTE 14 SandAttack
+BYTE 18 Confusion
+BYTE 22 WaterPulse
+BYTE 27 Doubleslap
+BYTE 31 TailWhip
+BYTE 35 Heal //?Support PsychUp
+BYTE 40 Psybeam
+BYTE 44 Barrier //?Support Amnesia
+BYTE 48 HydroPump
 BYTE 0 0
 
 ALIGN 4
 MankeyLearnset:
 BYTE 1 Scratch 
-BYTE 3 LowKick 
-BYTE 8 Leer 
-BYTE 12 Tackle 
+BYTE 1 LowKick 
+BYTE 1 Leer 
+BYTE 9 Doubleslap
+BYTE 13 KarateChop
+BYTE 17 SeismicToss
+BYTE 25 Thief
+BYTE 33 MegaPunch //Swagger
+BYTE 37 JumpKick
+BYTE 41 Thrash
+BYTE 45 NightSlash
+BYTE 49 HiJumpKick
 BYTE 0 0
 
 ALIGN 4
 PrimeapeLearnset:
 BYTE 1 Scratch 
-BYTE 3 LowKick 
-BYTE 8 Leer 
-BYTE 12 Tackle 
+BYTE 1 LowKick 
+BYTE 1 Leer 
+BYTE 9 Doubleslap
+BYTE 13 KarateChop
+BYTE 17 SeismicToss
+BYTE 25 Thief
+BYTE 33 MegaPunch //Swagger
+BYTE 37 JumpKick
+BYTE 41 Thrash
+BYTE 45 NightSlash
+BYTE 49 HiJumpKick
 BYTE 0 0
 
 ALIGN 4
 GrowlitheLearnset:
-BYTE 1 Tackle
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheel
+BYTE 1 Bite
+BYTE 1 Growl
+BYTE 6 Ember
+BYTE 9 Leer
+BYTE 14 Pound
+BYTE 17 Heal //?Support HelpingHand
+BYTE 20 FlameWheel
+BYTE 25 RollingKick
+BYTE 28 Scorch
+BYTE 31 TakeDown
+BYTE 34 Flamethrower
+BYTE 42 NightSlash
+BYTE 45 FireBlast
+BYTE 48 SacredFire
 BYTE 0 0
 
 ALIGN 4
 ArcanineLearnset:
-BYTE 1 Tackle
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheel
+BYTE 1 Bite
+BYTE 1 Growl
+BYTE 6 Ember
+BYTE 9 Leer
+BYTE 14 Pound
+BYTE 17 Heal //?Support HelpingHand
+BYTE 20 FlameWheel
+BYTE 25 RollingKick
+BYTE 28 Scorch
+BYTE 31 TakeDown
+BYTE 34 Flamethrower
+BYTE 42 NightSlash
+BYTE 45 FireBlast
+BYTE 48 SacredFire
 BYTE 0 0
 
 ALIGN 4
 PoliwagLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 1 Growl 
+BYTE 5 Bubble 
+BYTE 8 Sleep 
+BYTE 11 WaterGun
+BYTE 15 Doubleslap
+BYTE 21 BodySlam
+BYTE 25 BubbleBeam
+BYTE 28 MudShot
+BYTE 31 KarateChop
+BYTE 35 HydroPump
+BYTE 41 MudBomb
 BYTE 0 0
 
 ALIGN 4
 PoliwhirlLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 1 Growl 
+BYTE 5 Bubble 
+BYTE 8 Sleep 
+BYTE 11 WaterGun
+BYTE 15 Doubleslap
+BYTE 21 BodySlam
+BYTE 25 BubbleBeam
+BYTE 28 MudShot
+BYTE 31 KarateChop
+BYTE 35 HydroPump
+BYTE 41 MudBomb
 BYTE 0 0
 
 ALIGN 4
 PoliwrathLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 1 Growl 
+BYTE 5 Bubble 
+BYTE 8 Sleep 
+BYTE 11 WaterGun
+BYTE 15 Doubleslap
+BYTE 21 BodySlam
+BYTE 25 BubbleBeam
+BYTE 28 MudShot
+BYTE 31 KarateChop
+BYTE 35 HydroPump
+BYTE 41 MudBomb
+BYTE 47 HiJumpKick
 BYTE 0 0
 
 ALIGN 4
@@ -666,102 +941,189 @@ BYTE 0 0
 ALIGN 4
 KadabraLearnset:
 BYTE 1 Leer 
+BYTE 1 Confusion
 BYTE 16 Confusion
+BYTE 18 Heal //?Support Disable
+BYTE 23 Psybeam
+BYTE 28 Barrier
+BYTE 30 Mend //?Support Recover
+BYTE 34 DreamEater
+BYTE 36 Barrier //?Support RolePlay
+BYTE 40 Psychic
+BYTE 42 Physic
 BYTE 0 0
 
 ALIGN 4
 AlakazamLearnset:
 BYTE 1 Leer 
+BYTE 1 Confusion
 BYTE 16 Confusion
+BYTE 18 Heal //?Support Disable
+BYTE 23 Psybeam
+BYTE 28 Barrier
+BYTE 30 Mend //?Support Recover
+BYTE 34 DreamEater
+BYTE 36 Barrier //?Support RolePlay
+BYTE 40 Psychic
+BYTE 42 Physic
 BYTE 0 0
 
 ALIGN 4
 MachopLearnset:
-BYTE 1 Tackle
-BYTE 5 LowKick 
-BYTE 9 Leer
-BYTE 14 KarateChop
+BYTE 1 LowKick
+BYTE 1 Leer
+BYTE 7 Pound //FocusEnergy
+BYTE 16 SeismicToss
+BYTE 21 KarateChop
+BYTE 25 RollingKick
+BYTE 31 JumpKick
+BYTE 34 Submission
+BYTE 37 HiJumpKick
 BYTE 0 0
 
 ALIGN 4
 MachokeLearnset:
-BYTE 1 Tackle
-BYTE 5 LowKick 
-BYTE 9 Leer
-BYTE 14 KarateChop
+BYTE 1 LowKick
+BYTE 1 Leer
+BYTE 7 Pound //FocusEnergy
+BYTE 16 SeismicToss
+BYTE 21 KarateChop
+BYTE 25 RollingKick
+BYTE 31 JumpKick
+BYTE 34 Submission
+BYTE 37 HiJumpKick
 BYTE 0 0
 
 ALIGN 4
 MachampLearnset:
-BYTE 1 Tackle
-BYTE 5 LowKick 
-BYTE 9 Leer
-BYTE 14 KarateChop
+BYTE 1 LowKick
+BYTE 1 Leer
+BYTE 7 Pound //FocusEnergy
+BYTE 16 SeismicToss
+BYTE 21 KarateChop
+BYTE 25 RollingKick
+BYTE 31 JumpKick
+BYTE 34 Submission
+BYTE 37 HiJumpKick
 BYTE 0 0
 
 ALIGN 4
 BellsproutLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle
+BYTE 1 VineWhip 
+BYTE 7 Leer
+BYTE 11 Constrict
+BYTE 13 Sleep
+BYTE 15 PoisonPowder
+BYTE 19 Acid
+BYTE 24 Thief
+BYTE 29 Heal //?Support SweetScent
+BYTE 33 Sludge
+BYTE 38 RazorLeaf
+BYTE 41 Slam
 BYTE 0 0
 
 ALIGN 4
 WeepinbellLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle
+BYTE 1 VineWhip 
+BYTE 7 Leer
+BYTE 11 Constrict
+BYTE 13 Sleep
+BYTE 15 PoisonPowder
+BYTE 19 Acid
+BYTE 24 Thief
+BYTE 29 Heal //?Support SweetScent
+BYTE 33 Sludge
+BYTE 38 RazorLeaf
+BYTE 41 Slam
 BYTE 0 0
 
 ALIGN 4
 VictreebelLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle
+BYTE 1 VineWhip 
+BYTE 7 Leer
+BYTE 11 Constrict
+BYTE 13 Sleep
+BYTE 15 PoisonPowder
+BYTE 19 Acid
+BYTE 24 Thief
+BYTE 29 Heal //?Support SweetScent
+BYTE 33 Sludge
+BYTE 38 RazorLeaf
+BYTE 41 Slam
 BYTE 0 0
 
 ALIGN 4
 TentacoolLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 1 PoisonSting 
+BYTE 5 Pound
+BYTE 8 Constrict 
+BYTE 12 Acid 
+BYTE 17 BubbleBeam
+BYTE 22 Bind
+BYTE 26 Barrier
+BYTE 29 WaterPulse
+BYTE 33 PoisonJab
+BYTE 36 Leer
+BYTE 40 HydroPump
 BYTE 0 0
 
 ALIGN 4
 TentacruelLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGun
+BYTE 1 PoisonSting 
+BYTE 5 Pound
+BYTE 8 Constrict 
+BYTE 12 Acid 
+BYTE 17 BubbleBeam
+BYTE 22 Bind
+BYTE 26 Barrier
+BYTE 29 WaterPulse
+BYTE 33 PoisonJab
+BYTE 36 Leer
+BYTE 40 HydroPump
 BYTE 0 0
 
 ALIGN 4
 GeodudeLearnset:
 BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 7 RockTomb
-BYTE 13 RockThrow 
+BYTE 1 Growl 
+BYTE 7 RockThrow
+BYTE 12 Magnitude
+BYTE 17 MegaPunch
+BYTE 22 Rollout
+BYTE 27 Earthquake
+BYTE 31 Explosion
+BYTE 36 DoubleEdge
+BYTE 39 RockSlide
 BYTE 0 0
 
 ALIGN 4
 GravellerLearnset:
 BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 7 RockTomb
-BYTE 13 RockThrow 
+BYTE 1 Growl 
+BYTE 7 RockThrow
+BYTE 12 Magnitude
+BYTE 17 MegaPunch
+BYTE 22 Rollout
+BYTE 27 Earthquake
+BYTE 31 Explosion
+BYTE 36 DoubleEdge
+BYTE 39 RockSlide
 BYTE 0 0
 
 ALIGN 4
 GolemLearnset:
 BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 7 RockTomb
-BYTE 13 RockThrow 
+BYTE 1 Growl 
+BYTE 7 RockThrow
+BYTE 12 Magnitude
+BYTE 17 MegaPunch
+BYTE 22 Rollout
+BYTE 27 Earthquake
+BYTE 31 Explosion
+BYTE 36 DoubleEdge
+BYTE 39 RockSlide
 BYTE 0 0
+
 
 ALIGN 4
 PonytaLearnset:
@@ -912,11 +1274,20 @@ BYTE 0 0
 ALIGN 4
 OnixLearnset:
 BYTE 1 Tackle
-BYTE 4 TailWhip 
+//BYTE 1 Growl 
+BYTE 1 Bind 
+//BYTE 6 TailWhip
 BYTE 7 RockTomb 
-BYTE 10 Magnitude
-BYTE 18 Headbutt 
-BYTE 24 Dig 
+//BYTE 9 RockThrow 
+BYTE 14 Rage
+BYTE 17 RockTomb
+BYTE 23 Slam
+BYTE 28 Dragonbreath
+//BYTE 33 ??? //Curse
+BYTE 38 IronTail
+BYTE 44 Magnitude
+BYTE 49 DoubleEdge
+BYTE 54 RockSlide
 BYTE 0 0
 
 ALIGN 4

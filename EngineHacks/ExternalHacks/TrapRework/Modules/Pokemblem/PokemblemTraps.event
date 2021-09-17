@@ -204,8 +204,8 @@ SetTrapMapSprite(SkillAccessoryTrapID,RedPokeballSMS)
 SetTrapMapSpritePalette(SkillAccessoryTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(SkillAccessoryTrapID)
 
-#define StatAccessoryTrap(XX,YY, Flag, AccessoryID) "BYTE StatAccessoryTrapID XX YY 0x0 Flag AccessoryID"
-#define SkillAccessoryTrap(XX,YY, Flag, SkillID) "BYTE SkillAccessoryTrapID XX YY 0x0 Flag SkillID"
+#define StatAccessoryTrap(XX,YY, Flag, AccessoryID) "BYTE StatAccessoryTrapID XX YY Flag 0x0 AccessoryID"
+#define SkillAccessoryTrap(XX,YY, Flag, SkillID) "BYTE SkillAccessoryTrapID XX YY Flag 0x0 SkillID"
 
 #define BerryTree(XX,YY,BerriesCounter) "BYTE BerryTreeTrapID XX YY BerriesCounter; SHORT 0x0"
 

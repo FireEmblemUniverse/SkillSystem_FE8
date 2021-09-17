@@ -113,7 +113,7 @@
 // If uncomented, ModularEXP will be implemented.
 // Go to "ModularEXP/ModularEXP.event" and "Tables/FE8 Nightmare modules/Misc/Modular EXP Class Table.csv" to edit experience gains.
 // This patch normally conflicts with Paragon, but installing here remedies this.
-#define MODULAR_EXP
+//#define MODULAR_EXP
 
 // If uncommented, PortraitSelectionASM will be implemented.
 // Go to "PortraitSelectionASM/PortraitSelectionASM.event" to configure your modular portrait options.

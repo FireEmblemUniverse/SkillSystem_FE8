@@ -11,6 +11,8 @@
 	.equ GetUnitByEventParameter, 0x0800BC51
 	.equ RemoveUnitBlankItems,0x8017984
 	
+@ This should be fine for giving back unused spell scrolls, as they have 1 durability max & should therefore never combine 
+@ but maybe in the future this should be fool-proofed anyway..? 
 .global unitRamSilentGiveItemWithDurability
 .type unitRamSilentGiveItemWithDurability, function
 unitRamSilentGiveItemWithDurability:

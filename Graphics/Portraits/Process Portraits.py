@@ -6,9 +6,9 @@ import png
 
 directory = 'test batch/'
 directory = 'raw/'
-resize_portrait = (60,60)
-portrait_border_offset = (16,8)
-portrait_offset = (18,10)
+resize_portrait = (64,72)
+portrait_border_offset = (16,0)
+portrait_offset = (16,0)
 minimug_offset = (96,16)
 minimug_border_offset = (96,16)
 resize_minimug = (32,32)

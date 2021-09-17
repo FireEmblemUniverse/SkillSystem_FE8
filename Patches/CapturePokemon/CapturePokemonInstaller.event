@@ -1,5 +1,7 @@
 ALIGN 4
 PCBoxFullEvent:
+EVBIT_MODIFY 1
+CUSA 0x7FFD //enemy to player 
 CAM1 0xFFFF
 WARP_IN
 STAL 0x32

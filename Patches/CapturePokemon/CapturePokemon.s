@@ -151,7 +151,7 @@ ldr 	r0, [r5, #0xC]
 mov 	r1, #1 
 lsl 	r1, #16 @10000 = escaped  
 add 	r1, #0x9 @8 = undeployed 
-and		r0,r1
+orr		r0,r1
 str		r0, [r5, #0xC]
 
 

@@ -337,28 +337,13 @@ at the start of the turn.[A][X]
 # 0x0A1A
 Mt. Moon[A][X]
 
-# 0x0A1B
-Will you release this Pokemon?[NL]
-[No][X]
 
-# 0x0A1C
-Goodbye![A][X]
 
 # 0x0A1D
 You cry into the burrow,[NL]
 frightening the inhabitants.[A][X]
 
-# 0x0A1E
-That's your last one![A][X]
 
-# 0x0A1F
-Better keep them.[A][X]
-
-# 0x0A20
- Release[X]
- 
-# 0x0A21
-Let the Pokemon free.[X]
 
 ## RocketMagikarpText_A
 [OpenRight][LoadBlankFace][OpenRight]Hello, there![A][NL]
@@ -785,3 +770,91 @@ And make it double![A][X]
 
 ## MMB3_0xE6_BD
 Blasting off again![A][X]
+
+
+## R4_0xE0_BQ
+I came to MT. MOON in search of[NL]
+new rock POKEMON.[A][X]
+
+## R4_0xE0_BD
+All I found was rocks...[A][X]
+
+
+## GaryCeruleanChallengeText
+// Rival Gary 
+[OpenMidRight][LoadGaryPoint][OpenMidRight]
+Hey! It's whatsyourface![A][NL]
+I kicked your ass back[NL]
+in Viridian.[A][NL]
+Hm? What are you[NL]
+blabbering about.[A][NL]
+I have some steam[NL]
+to blow off. Let's go![A][X]
+
+## GaryCeruleanDefeatText
+[OpenMidRight][LoadGaryShrug][OpenMidRight]Tcch. I coulda won.[NL]
+These rules are dumb.[A][NL]
+I already beat Misty, y'kno.[A][NL]
+She didn't stand a chance[NL]
+against my team of Pikachu.[A][NL]
+Smell ya later, loser.[A][X]
+
+
+## NoCascadeBadgeText
+I'm on patrol for[NL]
+TEAM ROCKET.[A][X]
+
+
+## CeruleanGymSignText
+Cerulean Gym[A][X]
+
+## CeruleanBicycleShopSignText
+Bicycle Shop[A][X]
+
+## CeruleanBottomSignText
+TRAINER TIPS[A][NL]
+A POKEMON can be made to hold[NL]
+an item.[A][NL]
+Some items can even be used by[NL]
+the holding POKEMON in battle.[A][X]
+
+## CeruleanCityNWHouseText
+You're a TRAINER, too?[A][NL]
+Collecting, battling...[NL]
+It's a tough life, isn't it?[A][X]
+	
+## CeruleanCityNHouseText
+Sigh...[NL]
+Too much time, too little to do...[A][NL]
+Is nothing entertaining happening[NL]
+anywhere?[A][X]
+
+## CeruleanCitySHouseText
+Did you know that you can CUT down[NL]
+small trees with the right HM?[A][X]
+
+// 1 house is just door locked 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

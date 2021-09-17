@@ -77,7 +77,7 @@ ExecuteEvent:
 mov	r1, #0x01		@0x01 = wait for events
 blh EventEngine 
 
-blh  0x0801a1f4   @RefreshFogAndUnitMaps
+blh  0x0801a1f8   @RefreshFogAndUnitMaps
 @blh  0x080271a0   @SMS_UpdateFromGameData
 blh  0x08019c3c   @UpdateGameTilesGraphics
 blh  0x80311a8 		@ReloadGameCoreGraphics
@@ -97,7 +97,7 @@ ldrb r1, [r3, #4*0x04] @ Move to learn
 ldrb r0, [r3, #4*0x05] @ WEXP offset 
 strb r1, [r2, r0] @ Store new move where it should go 
 
-blh  0x0801a1f4   @RefreshFogAndUnitMaps
+blh  0x0801a1f8   @RefreshFogAndUnitMaps
 @blh  0x080271a0   @SMS_UpdateFromGameData
 @blh  0x08019c3c   @UpdateGameTilesGraphics
 blh  0x80311a8 		@ReloadGameCoreGraphics

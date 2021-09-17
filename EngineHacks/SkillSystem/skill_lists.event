@@ -24,6 +24,7 @@ NPCObjectSkillList:
 BYTE 255 WaryFighterID
 BYTE 255 WatchfulID 
 BYTE 255 ShadePlusID
+BYTE 255 VoidCurseID 
 BYTE 00 00
 ALIGN 4
 

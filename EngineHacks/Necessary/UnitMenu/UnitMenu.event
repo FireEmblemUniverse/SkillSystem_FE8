@@ -276,13 +276,16 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 	//MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
 
   
-  UM_Rescue
-  UM_Give
-  UM_Take
+  // Pokemblem doesn't really need tbh 
+  //UM_Rescue
+  //UM_Give
+  //UM_Take
+  //UM_Drop
+  
   // MenuCommand(0x689, 0x6c5, 0, 0x228a4, RescueEffect) //rescue
   // MenuCommand(UMText_Transfer,UMText_TransferDesc,GreenText,TransferUsability,TransferTarget) //transfer
   // MenuCommand(UMText_Switch,UMText_SwitchDesc,GreenText,SwitchUsability,SwitchCommand)   //switch
-  UM_Drop
+
 
 
 	
@@ -300,6 +303,8 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   
   //UM_Supply
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+  
+  MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, $04F449, ReleaseCommandEffect)
   
   UM_Wait
 

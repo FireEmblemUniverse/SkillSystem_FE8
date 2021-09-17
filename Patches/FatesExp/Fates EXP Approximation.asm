@@ -256,12 +256,14 @@ normalKillingEXP:
 
 
 killingBoundaryCheck:
+	lsl r0, #1 
     cmp r0, #0x1
     bge positive
     mov r0, #0x0 @changed 
     b positive
 
 boundaryCheck:
+	lsl r0, #1 
 cmp r0, #0x0
 bge positive
 mov r0, #0x0

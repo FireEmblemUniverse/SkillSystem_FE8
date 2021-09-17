@@ -1,0 +1,101 @@
+
+
+// Monster Classes 
+#define ClassPalletTownWild 0x0
+#define ClassRoute1WildA 0x1
+#define ClassRoute1WildB 0x2
+#define ClassRoute2ShWildA 0x3
+#define ClassRoute2SWildB 0x4
+#define ClassViridianForestSWildA 0x5
+#define ClassViridianForestSWildB 0x6
+#define ClassViridianForestNWildA 0x7
+#define ClassViridianForestNWildB 0x8
+#define ClassRoute2NWildA 0x9
+#define ClassRoute2NWildB 0xA
+#define ClassRoute3WildA 0xB
+#define ClassRoute3WildB 0xC
+#define ClassMtMoonB1WildA 0xD
+#define ClassMtMoonB1WildB 0xE
+#define ClassMtMoonB2WildA 0xF
+#define ClassMtMoonB2WildB 0x10
+#define ClassMtMoonB3WildA 0x11
+#define ClassMtMoonB3WildB 0x12
+#define ClassMtMoonCommon 0x15
+#define ClassRoute4WildA 0x16
+#define ClassRoute4WildB 0x17
+#define ClassCeruleanCityA 0x18
+#define ClassCeruleanCityB 0x19
+#define ClassCeruleanGymA 0x1A
+#define ClassCeruleanGymB 0x1B
+#define ClassRoute24WildA 0x1C
+#define ClassRoute24WildB 0x1D
+#define ClassRoute24WaterA 0x1E
+#define ClassRoute24WaterB 0x1F
+#define ClassRoute25WildA 0x20
+#define ClassRoute25WildB 0x21
+#define ClassRoute25WaterA 0x22
+#define ClassRoute25WaterB 0x23
+
+
+
+//Enemy unit IDs 
+// Wilds are 0x50 - 0x8F 
+// Trainers are 0x90 - 0xBD & 0xC0 - 0xCF I guess 
+// 0xBE is Formotiis iirc 
+
+#define OaksPikachu 0x4F
+#define UnitPalletTownWild 0x50
+#define UnitRoute1Wild 0x51
+
+#define UnitRoute2SWild 0x53
+
+#define UnitViridianForestSWild 0x55
+
+#define UnitViridianForestNWild 0x57
+
+#define UnitRoute2NWild 0x59
+
+#define UnitRoute3Wild 0x5B
+
+#define UnitMtMoonWild 0x5D
+
+
+
+#define UnitRoute4Wild 0x66
+
+#define UnitCeruleanCityA 0x68
+#define UnitCeruleanCityB 0x69
+#define UnitCeruleanGymA 0x6A
+#define UnitCeruleanGymB 0x6B
+#define UnitRoute24Wild 0x6C
+
+#define UnitRoute24WaterA 0x6E
+#define UnitRoute24WaterB 0x6F
+#define UnitRoute25Wild 0x70
+
+#define UnitRoute25WaterA 0x72
+#define UnitRoute25WaterB 0x73
+
+
+
+#define UnitRoute1Trainer 0xA0
+#define UnitRoute2STrainer 0xA1
+#define UnitViridianForestSTrainer 0xA2
+#define UnitViridianForestNTrainer 0xA3
+#define UnitRoute2NTrainer 0xA4
+#define UnitRoute3Trainer 0xA5
+#define UnitMtMoonTrainer 0xA6
+#define UnitRoute4Trainer 0xA7
+#define UnitRoute24Trainer 0xA8
+#define UnitRoute25Trainer 0xA9
+#define UnitCeruleanTrainer 0xAA 
+
+
+
+// Reinforcement unit IDs 0x90 - 0x9F 
+// limited to these unit IDs just for ease of autoleveling in Reinforce() macro 
+#define Reinforcement0 0x90 
+
+
+
+

@@ -2,8 +2,8 @@
 
 
 
-//#define defStatBoosts(hp, str, mag, skl, spd, luk, def, res) "BYTE hp str skl spd def res luk mag"
-
+//#define defStatBoosts(hp, str, mag, skl, spd, def, res, luk) "BYTE hp str skl spd def res luk mag"
+// (hp, str, mag, skl, spd, def, res, luk, unk, unk)
 ALIGN 4
 All2:
 StatBonus(2,2,2,2,2,2,2,2,0,0)
@@ -24,19 +24,21 @@ StatBonus(0,0,0,2,0,0,0,0,0,0)
 ALIGN 4
 SPD2:
 StatBonus(0,0,0,0,2,0,0,0,0,0)
-ALIGN 4
-LUK2:
-StatBonus(0,0,0,0,0,0,0,2,0,0)
+
 ALIGN 4
 DEF2:
 StatBonus(0,0,0,0,0,2,0,0,0,0)
 ALIGN 4
 RES2:
 StatBonus(0,0,0,0,0,0,2,0,0,0)
+ALIGN 4
+LUK2:
+StatBonus(0,0,0,0,0,0,0,2,0,0)
 
 ALIGN 4
 DEFRES2:
 StatBonus(0,0,0,0,0,2,2,0,0,0)
+
 
 ALIGN 4
 HP3:
@@ -53,15 +55,16 @@ StatBonus(0,0,0,3,0,0,0,0,0,0)
 ALIGN 4
 SPD3:
 StatBonus(0,0,0,0,3,0,0,0,0,0)
-ALIGN 4
-LUK3:
-StatBonus(0,0,0,0,0,0,0,3,0,0)
+
 ALIGN 4
 DEF3:
 StatBonus(0,0,0,0,0,3,0,0,0,0)
 ALIGN 4
 RES3:
 StatBonus(0,0,0,0,0,0,3,0,0,0)
+ALIGN 4
+LUK3:
+StatBonus(0,0,0,0,0,0,0,3,0,0)
 
 ALIGN 4
 HP4:
@@ -78,14 +81,15 @@ StatBonus(0,0,0,4,0,0,0,0,0,0)
 ALIGN 4
 SPD4:
 StatBonus(0,0,0,0,4,0,0,0,0,0)
-ALIGN 4
-LUK4:
-StatBonus(0,0,0,0,0,4,0,0,0,0)
+
 ALIGN 4
 DEF4:
-StatBonus(0,0,0,0,0,0,4,0,0,0)
+StatBonus(0,0,0,0,0,4,0,0,0,0)
 ALIGN 4
 RES4:
+StatBonus(0,0,0,0,0,0,4,0,0,0)
+ALIGN 4
+LUK4:
 StatBonus(0,0,0,0,0,0,0,4,0,0)
 
 ALIGN 4
@@ -103,16 +107,16 @@ StatBonus(0,0,0,5,0,0,0,0,0,0)
 ALIGN 4
 SPD5:
 StatBonus(0,0,0,0,5,0,0,0,0,0)
-ALIGN 4
-LUK5:
-StatBonus(0,0,0,0,0,5,0,0,0,0)
+
 ALIGN 4
 DEF5:
-StatBonus(0,0,0,0,0,0,5,0,0,0)
+StatBonus(0,0,0,0,0,5,0,0,0,0)
 ALIGN 4
 RES5:
+StatBonus(0,0,0,0,0,0,5,0,0,0)
+ALIGN 4
+LUK5:
 StatBonus(0,0,0,0,0,0,0,5,0,0)
-
 
 
 

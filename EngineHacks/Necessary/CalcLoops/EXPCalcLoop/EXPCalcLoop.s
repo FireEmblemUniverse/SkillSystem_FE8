@@ -62,6 +62,7 @@ cmp r0, #100
 ble DefenderStore
 	mov r0, #100
 DefenderStore:
+
 mov r1, r4
 add r1, r1, #0x6E
 strb r0, [ r1 ]

@@ -107,7 +107,10 @@ CutBush(21,10)
 //StrengthBoulder(4,3)
 
 RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 SignBTrap(20,38, ChapterID, 0x0) //no extra text 
 SignATrap(14,12, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

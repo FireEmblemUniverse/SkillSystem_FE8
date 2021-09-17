@@ -26,6 +26,9 @@ BYTE 0x0E 0x20 0x20 0x56
 //ORG 0x0C18F8
 //BYTE $00 $00 $00 $00 
 
+// Show class instead of unit during no anims battle preview 
+ORG $7BEAE 
+SHORT 0x6840 
 
 // Level does not decrease with Promotion
 //  by 7743 
@@ -157,7 +160,114 @@ ORG 0x268E4 BYTE 0x00 0x20	//
 
 ORG 0x26B42 BYTE 0x00 0x20	//
 
+/*
+//Damage preview Flooring to 1 (no actual effect) 
+  ORG $2B53E
+  BYTE $01
+  ORG $2B542
+  BYTE $01
+  ORG $368CE
+  BYTE $01
+  ORG $368D2
+  BYTE $01
+  ORG $36964
+  BYTE $01
+  ORG $36968
+  BYTE $01
+  ORG $577DE
+  BYTE $01
+  ORG $577E2
+  BYTE $26
+  ORG $5781A
+  BYTE $01
+  ORG $5781E
+  BYTE $01
+  //thanks 7743
+  */
+  
+  // max wexp - 7743 
+ORG 0x2c1a2
+BYTE 0xFF  
+ORG 0x2c1a6
+BYTE 0xFF 
 
+// Armor triangle - 7743 
+
+#define HardcodingID GaryID 
+ORG 0x74FD8 
+BYTE HardcodingID 
+ORG 0x75044 
+BYTE HardcodingID 
+ORG 0x74FE0 
+BYTE HardcodingID 
+ORG 0x7504C 
+BYTE HardcodingID 
+ORG 0x74FB4 
+BYTE HardcodingID 
+ORG 0x74FBA 
+BYTE HardcodingID 
+ORG 0x74FC8 
+BYTE HardcodingID 
+ORG 0x75034 
+BYTE HardcodingID 
+ORG 0x74FD0 
+BYTE HardcodingID 
+ORG 0x7503C
+BYTE HardcodingID 
+
+// Pegasus triangle attack 
+ORG 0x750C4 
+BYTE HardcodingID 
+ORG 0x7510C 
+BYTE HardcodingID 
+ORG 0x75156 
+BYTE HardcodingID 
+ORG 0x750CC 
+BYTE HardcodingID 
+ORG 0x75114 
+BYTE HardcodingID 
+
+
+// Disables opening the Status menu to view detailed unit info for the selected class. 
+// raticate ?? 
+
+// Ewan promotes rank removal 
+ORG 0x2bd0a 
+BYTE HardcodingID 
+ORG 0x2BE5A 
+BYTE HardcodingID 
+ORG 0x2bd10 
+BYTE HardcodingID 
+ORG 0x2BE60 
+BYTE HardcodingID 
+
+// Lockpick skill - Kirito 
+ORG 0x40C6A 
+BYTE HardcodingID 
+
+// Manakete bg - 7743 
+ORG 0x70B7E 
+BYTE HardcodingID 
+
+// Bonus exp 
+ORG 0x2C3FE 
+BYTE HardcodingID
+ORG 0x2C4F8 
+BYTE HardcodingID 
+
+// Unit id and higher to class grow with autolevel 
+ORG 0x17C4C 
+BYTE 0x50 
+
+// Unit ID Cannot be hit by sleep, berserk, and silence 
+// by 7743 
+ORG 0x2CD44 
+BYTE 0x4F
+
+
+//Fix top-right tiles in statscreen
+    ORG $5D20
+    BYTE 5
 
 
 POP 

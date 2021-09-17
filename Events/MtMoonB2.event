@@ -49,17 +49,14 @@ END_MAIN
 
 
 LocationBasedEvents:
-Village(0, ToRoute4M, 28,5) 
-
-Village(0, ToMtMoonB3_M, 11,30) 
-Village(0, ToMtMoonB3_NE, 13,14) 
-
-Village(0, ToMtMoonB3_E, 22,22) 
-Village(0, ToMtMoonB3_W, 20,6) 
-
-Village(0, ToMtMoonB1_W, 3,7) 
-Village(0, ToMtMoonB1_M, 19,14) 
-Village(0, ToMtMoonB1_E, 28,15) 
+House(0, ToRoute4E, 28,5) 
+House(0, ToMtMoonB3_M, 11,30) 
+House(0, ToMtMoonB3_NE, 13,14) 
+House(0, ToMtMoonB3_E, 22,22) 
+House(0, ToMtMoonB3_W, 20,6) 
+House(0, ToMtMoonB1_W, 3,7) 
+House(0, ToMtMoonB1_M, 19,14) 
+House(0, ToMtMoonB1_E, 28,15) 
 END_MAIN
 
 MiscBasedEvents:
@@ -83,8 +80,8 @@ EscapeTileEntry(28,15)
 EscapeTileTerminator ; } 
 #endif 
 
-ToRoute4M:
-ChapterTransition(Route4MCh, 6, 5)
+ToRoute4E:
+ChapterTransition(Route4ECh, 5, 5)
 
 ToMtMoonB3_NE:
 ChapterTransition(MtMoonB3Ch, 23,12)
@@ -124,9 +121,10 @@ Traps1:
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-//RedPokeballTrap(18,9, ChapterID*2, SuperPotion)
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //SignBTrap(54,11, ChapterID, 0x0) //no extra text 
 //SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
@@ -137,7 +135,7 @@ Traps1:
 //Sign(8,4, 2)
 
 //Save(10,4)
-//SaveCost(43,3) 
+SaveCost(5,10) 
 
 
 ENDTRAP
@@ -147,8 +145,6 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
-CALL CityBeginningScene 
 
 
 LOAD1 0x1 EnemyUnitsA

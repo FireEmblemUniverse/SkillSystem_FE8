@@ -33,9 +33,9 @@ str r1, [r0, #4*0x0C] @ Return 0 if no unit
 						
 						
 cmp r6, #0
-beq End_LoopThroughUnits
+beq End
 cmp r6, #0x3F 
-bgt End_LoopThroughUnits
+bgt End
 
 LoopThroughUnits:
 mov r0,r4
@@ -50,11 +50,8 @@ mov r2,#0xC @ benched/dead
 tst r1,r2
 bne NextUnit
 @ if you got here, unit exists and is not dead or undeployed, so go ham
-ldr r3, [r0]
-mov r0, #0
-ldrb r0, [r3, #4] @Unit ID 
-ldr r2, =MemorySlot 
-str r0, [r2, #4*0x0C]
+
+
 
 add r5,#1
 cmp r5,r6
@@ -63,7 +60,16 @@ NextUnit:
 add r4,#1
 cmp r4,#0x3F
 ble LoopThroughUnits
+b End 
 End_LoopThroughUnits:
+ldr r3, [r0]
+mov r0, #0
+ldrb r0, [r3, #4] @Unit ID 
+ldr r2, =MemorySlot 
+str r0, [r2, #4*0x0C]
+
+End: 
+
 pop {r4-r7}
 pop {r0}
 bx r0

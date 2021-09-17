@@ -5,9 +5,12 @@
 #define PromoteActiveUnit "ASMC 0x080CCA15" //NewPromotion
 #define EndTurn "ASMC 0x80225F9" // ChMenu "End" to end player phase 
 #define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 
+#define ReorderParty "ASMC 0x080956d9" // Reorder player units 
+
 
 // Text 
 #define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
+#define TutText_B(text) "SVAL 0xB 0x00B0FFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Bottom-Centered 
 #define TutText(background,textID) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO; CALL $9EE2C4; EVBIT_T 0x7; ENDA"
 #define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 #define BottomWallText(text) "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered along bottom of screen 

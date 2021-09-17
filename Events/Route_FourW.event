@@ -190,7 +190,7 @@ UNIT
 
 MagikarpUnitGroup:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT 0x36 MagikarpID 0x0 Level(1, Ally, 1)   [12,11] 0b	0x0 0x00 REDAMagikarp [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0x36 MagikarpID 0x0 Level(1, Ally, 1)   [12,11] 0b	0x0 0x01 REDAMagikarp [0x0,0x0,0x0,0x0] DoNothing
 UNIT 
 
 ALIGN 4

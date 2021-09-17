@@ -48,8 +48,62 @@
 */
 
 
+//prep - make stuff unequipped 
+//leave prep chapter - auto equip accessories 
+//grey out unusable skill scrolls ? 
 
+ReleasePokemonEvent:
+EVBIT_MODIFY 4
+CURSOR_FLASHING 0x7FFF // Shiny frame ? 
+CHECK_COORDS 0x7FFF 
+SADD rB rC r0 
+SPAWN_NPC 0xFC [-1,-1] 
+ASMC ModularSummon_CenterCameraASMC
+//SHORT 0x2629 0x7FFE // Cam2 
+//SVAL r1 0x30000 
+//SADD rB rB r1 // 3 Y coord lower than active unit 
+//SPAWN_NPC 0xFD [-1,-1] // Invisible unit for cam 
 
+//DISA 0xFD 
+
+STARTFADE 
+FADECOLORS 0x1006 5 135 110 110 // non-sprites? 
+CURE 
+TutText_B(ReleasePokemonText)
+SADD rA rC r0 
+
+SVAL r7 1
+BNE 0 rA r7 
+// They said yes 
+SVAL rC 0 
+GetNthUnit(2) 
+BEQ 10 rC r0
+// And they have another unit deployed 
+TutText_B(GoodbyeReleasePokemonText)
+
+DISA 0x7FFF 
+
+ReorderParty 
+//ENDFADE 
+SET_ACTIVE 0 
+GOTO 0x63  
+
+LABEL 10 
+//ENDFADE 
+TutText_B(CannotReleasePokemonText)
+GOTO 0x63 
+
+LABEL 0 
+
+TutText_B(BetterKeepPokemonText)
+
+LABEL 0x63 
+EVBIT_MODIFY 0
+CAM1 0xFC 
+DISA 0xFC 
+ENDFADE 
+NoFade 
+ENDA 
 
 
 #define RamFlags 0x203F548 //0x448 after debuff table 

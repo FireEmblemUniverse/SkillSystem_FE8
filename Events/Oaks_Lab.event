@@ -152,7 +152,7 @@ SADD rB rA r0
 CALL SendOutPkmnSlotB
 
 CHECK_CLASS 0xA0 // Starter choice 
-SADD r4 rC r0 
+SADD r2 rC r0 
 Write_Byte(GaryStarterClass)
 
 UNCR(2, Hide) 

@@ -3,6 +3,7 @@ ALIGN 4
 #include "DurabilityChest/Installer.event"
 #include "DurabilityShop/ShopDurability.event"
 
+#include "AutoEquipAccessories.lyn.event"
 #include "ScrollNames.lyn.event"
 #include "ScrollDurability.lyn.event"
 #include "SkillBookIconDraw.lyn.event"
