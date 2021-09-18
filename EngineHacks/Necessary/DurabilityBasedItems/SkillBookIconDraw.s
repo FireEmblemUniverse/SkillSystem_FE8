@@ -257,7 +257,7 @@ and r0,r1
 lsr r0,r0,#8 @r0 = durability
 
 ldrb r2,[r2,#1]
-lsl r1,r1,#8 @shifted 8 bits left
+lsl r1,r2,#8 @shifted 8 bits left
 orr r0,r1
 mov r1,r0
 b FinishFunc_Use

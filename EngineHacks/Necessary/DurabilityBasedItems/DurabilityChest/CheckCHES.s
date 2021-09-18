@@ -39,7 +39,7 @@ ldrh r0, [r3, #0x4]
 
 // custom - get the durability of the item
 lsr r0, #0x8
-ldr r1, = #0x203FFFF // end of RAM
+ldr r1, = #0x203FFF7 // end of RAM
 strb r0, [r1]
 
 // now store the item id

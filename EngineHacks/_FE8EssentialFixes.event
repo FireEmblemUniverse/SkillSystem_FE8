@@ -30,10 +30,20 @@ POP
   ORG $30da6  //Game/text speed Fast, Autocursor off
   SHORT $22d0
   
-//Allow Visit from any tile
+//Allow Visit from any tile (this is broken atm, also allows visits to destroyed villages)
+//  PUSH
+//  ORG $23072
+//  SHORT $e00d
+//  POP
+
+	
+//change staff battle init to not give 0xFF status on miss
   PUSH
-  ORG $23072
-  SHORT $e00d
+  ORG $2CBAC
+  SHORT 0x2100 //mov r1,#1 -> mov r1,#0
+  SHORT 0x46C0 //neg r1,r1 -> nop
+  ORG $2A5FE  
+  SHORT 0x2000 //mov r0,#0xFF -> mov r0,#0
   POP
 
 //Break HP Cap for Players/NPCs (credit Solum)

@@ -159,7 +159,6 @@
 	
 	ItemEffectAfterAnimProc:
 	PROC_SLEEP(0x1)
-	PROC_CALL_ROUTINE($3001C|1)
 	PROC_CALL_ROUTINE(IEAfterBattle|1)
 	PROC_END
 	
