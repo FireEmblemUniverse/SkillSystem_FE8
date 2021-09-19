@@ -13,14 +13,14 @@ Press R for details.[X]
 
 
 
-## LeatherShieldNameText
+## LeatherShieldNameText ^
 Leather Shield[X]
 
 ## LeatherShieldDescText
 Def/Res +2.[X]
 
-## BronzeShieldNameText
-Leather Shield[X]
+## BronzeShieldNameText ^
+Bronze Shield[X]
 
 ## BronzeShieldDescText
 Def+4.[X]
@@ -31,26 +31,26 @@ Old Ward[X]
 ## OldWardDescText
 Res+5.[X]
 
-## WornBootsNameText
+## WornBootsNameText ^
 Worn Boots[X]
 
 ## WornBootsDescText
 Spd+4.[X]
 
-## OldScopeNameText
+## OldScopeNameText ^
 Old Scope[X]
 
 ## OldScopeDescText
 Skl+5.[X]
 
-## RockyHelmetNameText
+## RockyHelmetNameText ^
 Rocky Helmet[X]
 
 ## RockyHelmetDescText
 Opponents take 20% HP[NL]
 after attacking the holder.[X]
 
-## SurgesSigilNameText
+## SurgesSigilNameText ^
 Surge's Sigil[X]
 
 ## SurgesSigilDescText
@@ -62,7 +62,7 @@ Oblivious Ring[X]
 ## ObliviousRingDescText
 Cannot double or be doubled.[X]
 
-## LuckyBracerNameText
+## LuckyBracerNameText ^
 Lucky Bracer[X]
 
 ## LuckyBracerDescText
@@ -88,7 +88,7 @@ Negates weakness to[NL]
 WATER moves.[X]
 
 
-## ChoiceBandText
+## ChoiceBandText ^
 Choice Band[X]
 
 ## ChoiceBandDescText
@@ -359,7 +359,7 @@ Scratch[X]
 Sing[X]
 # 0x0384
 Slam[X]
-# 0x0385
+## SlashName
 Slash[X]
 # 0x0386
 Splash[X]
@@ -711,8 +711,8 @@ Chip damage. Debuffs Skl by 4.[X]
 Doubles as ranged attack.[.][X]
 # 0x0434
 *{(} A full body slam.[.][X]
-# 0x0435
-Strong against swords.[X]
+## SlashDesc
+*{(} High critical hit ratio.[X]
 # 0x0436
 Good against swordfighters.[.][X]
 # 0x0437

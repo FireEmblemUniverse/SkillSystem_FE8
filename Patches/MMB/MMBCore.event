@@ -2,6 +2,8 @@
 	#include "EAstdlib.event"
 	#include "Extensions/Hack Installation.txt"
 
+#include "HuichelaarMMBPaletteFix/Installer.event"
+
 	#include "Internal/UI1ProcCode.event"
 
 	#include "Internal/MMBInit.lyn.event"

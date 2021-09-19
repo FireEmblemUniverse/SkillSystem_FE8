@@ -143,6 +143,7 @@ ALIGN 4
 MetapodLearnset:
 BYTE 1 StringShot
 BYTE 3 Tackle
+BYTE 10 Confusion
 BYTE 15 BugBite
 //BYTE 7 Guard
 BYTE 0 0
@@ -168,13 +169,15 @@ ALIGN 4
 WeedleLearnset:
 BYTE 1 PoisonSting
 BYTE 1 StringShot
+BYTE 4 Tackle 
 BYTE 15 BugBite
 BYTE 0 0
 
 ALIGN 4
 KakunaLearnset:
 BYTE 1 StringShot
-BYTE 3 Tackle
+BYTE 4 Tackle
+BYTE 10 FuryCutter
 BYTE 15 BugBite
 //BYTE 7 Guard
 BYTE 0 0
@@ -182,7 +185,7 @@ BYTE 0 0
 ALIGN 4
 BeedrillLearnset:
 BYTE 1 PoisonSting
-BYTE 3 Tackle
+BYTE 4 Tackle
 BYTE 10 FuryCutter
 BYTE 16 PinMissile
 BYTE 19 Rage

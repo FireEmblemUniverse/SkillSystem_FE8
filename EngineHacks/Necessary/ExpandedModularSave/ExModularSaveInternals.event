@@ -3,6 +3,8 @@
 
 #include "SrcCore/MSCore.lyn.event"
 
+#include "ExpandedStatsAndConvoy.event"
+
 #ifndef LynJumpDefined
 	#define LynJumpDefined
 	#define LynJump(aTarget) "WORD $46C04778 $E59FC000 $E12FFF1C; POIN aTarget; "
@@ -17,6 +19,9 @@ gMS_WMDataChunkId:        BYTE EMS_CHUNK_WMDATA
 #include "SrcCore/MSSizeHook.lyn.event"
 #include "SrcCore/MSBWLHook.lyn.event"
 
+#define GetConvoyItemArrayStart $08031500
+#include "SrcModules/SaveConvoyExpanded.lyn.event"
+
 PUSH
 	// Checksum computation function now returns a constant
 	// Because we don't care (should we?)
@@ -30,6 +35,24 @@ PUSH
 	// Replace GetSaveTargetAddress
 	ORG $0A3064
 		LynJump(MS_GetSaveAddressBySlot)
+		
+	//Replace SaveConvoyItems
+	ORG $0A31E4
+		LynJump(MS_SaveConvoyItems_1)
+	ORG $0A324E
+		SHORT $46C0 // nop for alignment
+		LynJump(MS_SaveConvoyItems_2)
+		
+	//Replace LoadConvoyItems
+	ORG $0A326C
+		LynJump(MS_LoadConvoyItems_1)
+	ORG $0A3296
+		SHORT $4815 //we have to move a LDR due to lynjump overwriting this pointer
+	ORG $0A32D6
+		SHORT $46C0 // nop for alignment
+		LynJump(MS_LoadConvoyItems_2)
+	ORG $0A32EC
+		POIN $08205CA4 //data loaded at A3296
 
 	// Replace CopySaveGame
 	ORG $0A4E08
@@ -65,7 +88,7 @@ PUSH
 
 	// Replace LoadSavedEid8A
 	ORG $0A5290
-		LynJump(MS_CheckEid8AFromGameSave)
+		LynJump(MS_CheckEid8AFromGameSave)	
 
 	// I don't want to load units from save for now
 	// So I'll just """disable""" save menu R-text info

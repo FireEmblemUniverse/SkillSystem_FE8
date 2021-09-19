@@ -156,6 +156,10 @@ EnterTutTrap(10,10, CeruleanCityNHouseText) //
 EnterTutTrap(8,16, DoorLockedText) // 
 EnterTutTrap(16,27, CeruleanCitySHouseText) //   
 
+EnterTutTrap(6,27, BicycleShopText) //   
+EnterTutTrap(7,27, BicycleShopText) //   
+
+
 
 BerryTree(29,26,5)
 

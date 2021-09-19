@@ -201,10 +201,10 @@ SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
 //SilentGiveItemWithDurability(Eirika, SkillScroll, ParagonID)
 //SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
 
+SilentGiveItemWithDurability(1, SpellScroll, LeechLife)
 SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
-SilentGiveItemWithDurability(1, SpellScroll, Slam)
-SilentGiveItemWithDurability(1, SpellScroll, WaterGun)
-
+SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
+SilentGiveItemWithDurability(Eirika, Berry, 0x83)
 
 
 //SilentGiveItemWithDurability(1, SpellScroll, LeechLife)
@@ -277,7 +277,7 @@ Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 
 LABEL 0x63
 SVAL r3 4500 
-//GIVETOMAIN 0
+GIVETOMAIN 0
 
 SetTactName(VeslyName)
 //ENUT 0xAB // Enable toy box 
@@ -306,7 +306,8 @@ Write_Byte(21, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 PokemonTowerF1Ch
 MNC2 ViridianForestSCh
 //MNC2 Route3Ch
-//MNC2 MtMoonB2Ch
+//MNC2 MtMoonB3Ch
+//MNC2 CeruleanCh
 //MNC2 Route4ECh
 //MNC2 CeruleanCh
 //MNC2 PewterCh

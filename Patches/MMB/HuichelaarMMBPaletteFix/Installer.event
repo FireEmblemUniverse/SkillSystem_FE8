@@ -1,0 +1,21 @@
+// When switching from one minimug to another, the new palette is buffered, but
+// the new tiles are immediately flushed to VRAM. MinimugPalette also buffers
+// the tiles, preventing that one frame where a minimug is using the wrong palette.
+// label prefix: MMP.
+
+{
+// Definitions & variables
+#define MMP_Buffer 0x202B4AC    // Set this to some free ram space, size 0x200 bytes.
+                                // I'm using the last 0x200 bytes of the textstring buffer.
+PUSH
+
+  ORG 0x5968
+  callHack_r0(MMPFix)
+  SHORT 0x46C0
+
+POP
+
+ALIGN 4
+MMPFix:
+#include "MMPFix.lyn.event"
+}
