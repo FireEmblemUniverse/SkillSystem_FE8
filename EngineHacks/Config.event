@@ -17,7 +17,7 @@
 #define AS_DOUBLING_THRESHOLD 3
 
 // If true, dropped items will retain their durability.
-#define DROPPED_ITEM_DURABILITY False
+#define DROPPED_ITEM_DURABILITY True
 
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
