@@ -1,0 +1,64 @@
+<bh:00>: End convo/text [X]
+<bh:01>: New line [NL]
+<bh:02>: Two new lines [2NL]
+<bh:03>: Blue arrow (push A to continue) [A]
+<bh:04>: Short pause in speech [....]
+<bh:05>: Longer pause in speech (alltext uses this one) [.....]
+<bh:06>: Longer pause in speech [......]
+<bh:07>: Long pause in speech [.......]
+<bh:08>: Open speech bubble [OpenFarLeft]
+<bh:09>: Open speech bubble [OpenMidLeft]
+<bh:0a>: Open speech bubble [OpenLeft]
+<bh:0b>: Open speech bubble [OpenRight]
+<bh:0c>: Open speech bubble [OpenMidRight]
+<bh:0d>: Open speech bubble [OpenFarRight]
+<bh:0e>: Open speech bubble [OpenFarFarLeft]
+<bh:0f>: Open speech bubble [OpenFarFarRight]
+<bh:10>: Character 0x10 sets a portrait with the byte that follows; use Portrait List.txt
+	to check value labels [LoadFace]
+<bh:11>: Clear current speaker's face [ClearFace]
+<bh:12>: Sets text speed to display normally [NormalPrint] (FE 6 only!)
+<bh:13>: Sets text speed to display quickly [FastPrint] (FE 6 only!)
+<bh:14>: Close speech bubble quickly [CloseSpeechFast]
+<bh:15>: Close speech bubble slowly [CloseSpeechSlow]
+<bh:16>: Makes characters move their mouth or stop [ToggleMouthMove]
+<bh:17>: Makes characters use their smiling frames or cease [ToggleSmile]
+<bh:18>: Gives a yes/no prompt (starts on yes) [Yes]
+<bh:19>: Gives a yes/no prompt (starts on no) [No]
+<bh:1a>: Gives buy/sell prompt (glitches if no shop?) [Buy/Sell]
+<bh:1b>: Gives a prompt about whether the player would like to continue with using the shop
+	[ShopContinue] (FE 8 only!)
+<bh:1c>: Sends selected character to back of display [SendToBack]
+<bh:1d>: Play text faster for the open speech bubble [FastPrint] (FE 8 only!)
+<bh:1f>: Short pause - text printing SFX still play [.]
+20-7F: Standard ASCII with 0x20 as a space, etc.
+80: Movement flag/extended controls
+Types:
+<wh:0480>: Load face at overworld map [LoadOverworldFaces]
+<wh:0580>: Print monetary amount [G]
+<wh:0a80>: Move to far left [MoveFarLeft]
+<wh:0b80>: Move to mid left [MoveMidLeft]
+<wh:0c80>: Move to left [MoveLeft]
+<wh:0d80>: Move to right [MoveRight]
+<wh:0e80>: Move to mid right [MoveMidRight]
+<wh:0f80>: Move to far right [MoveFarRight]
+<wh:1080>: Move to off screen left [MoveFarFarLeft]
+<wh:1180>: Move to off screen right [MoveFarFarRight]
+<wh:1680>: Enables blinking [EnableBlinking]
+<wh:1880>: Delays blinking for a fixed amount of time after the line fills [DelayBlinking]
+<wh:1980>: Pauses blinking for a short time; calling repeatedly doesn't seem to queue pauses
+	properly [PauseBlinking]
+<wh:1b80>: Disables blinking [DisableBlinking]
+<wh:1c80>: Open eyes (if closed or half) [OpenEyes]
+<wh:1d80>: Close eyes [CloseEyes]
+<wh:1e80>: Close eyes halfway [HalfCloseEyes]
+<wh:1f80>: Wink (character's outside eye) [Wink]
+<wh:2080>: Say Tactician's name [Tact]
+<wh:2180>: Change text red (if used again, changes text back to black) [ToggleRed]
+<wh:2280>: Display name of item that has been loaded [Item]
+<wh:2380>: Sets name of speaker with text that appears after until next line break (used for
+	dialogs that appear over CGs) [SetName]
+<wh:2580>: Toggles whether to invert the colors of the dialog box for that creepy ghost voice
+	effect [ToggleColorInvert]
+
+Using the position a character is already in as a destination causes them to "bounce". Using a destination that already has a character filling it will cause the characters to switch places. Also, notice the simililarities between the movement types and the "[Open]" commands. Note that there is a 4 character limit for conversations - clear one before loading a fifth each time.

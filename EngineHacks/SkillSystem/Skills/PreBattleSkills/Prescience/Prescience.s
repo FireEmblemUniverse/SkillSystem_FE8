@@ -30,13 +30,13 @@ mov r0, r4
 @hit
 add r0,#0x60
 ldrh r3,[r0]
-add r3,#15
+add r3,#10
 strh r3,[r0]
 
 @avoid
 add r0,#2
 ldrh r3,[r0]
-add r3,#15
+add r3,#10
 strh r3,[r0]
 
 

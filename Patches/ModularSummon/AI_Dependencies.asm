@@ -280,8 +280,17 @@ b JudgeInRangeBranch
 .global AnyTargetWithinRange 
 .type AnyTargetWithinRange, %function 
 
-
+@ 0803d450 AiTryDoOffensiveAction
 AnyTargetWithinRange:
+push {lr} 
+ldr r0, =0x803C865 @ IsUnitEnemyAndNotInTheAiInstList IsUnitEnemyAndNotInTheAiInstList
+blh 0x803d450 @AiTryDoOffensiveAction
+pop {r1} 
+bx r1 
+
+
+
+AnyTargetWithinRange2:
 push {r4-r7, lr} 
 mov r7, r8 
 push {r7}  
@@ -359,13 +368,33 @@ ldrh r2, [r6, r7]
 cmp r2, #0 @ 
 beq AnyoneWithinRangeLoop @ No weapon, so move on to next unit 
 @ r0 actor, r1 target, r2 weapon 
-@push {r0-r1}
+push {r1-r2} @ target, wep
 blh 0x803AC3C @ CouldStationaryUnitBeInRangeHeuristic
-@mov r2, r0 
-@pop {r1-r2}
+pop {r1-r2} 
 
 cmp r0, #1 
-bne ContinueAnyoneWithinRangeLoop 
+bne ContinueAnyoneWithinRangeLoop @ try next weapon 
+push {r1}
+mov r0, r1 @ target 
+mov r1, r2 @ wep 
+blh 0x803D880 @ AiFillUnitStandingRangeWithWeapon
+pop {r1} 
+
+
+ldrb r0, [r1, #0x10] @ X 
+ldrb r1, [r1, #0x11] @ Y 
+
+
+ldr r2, =0x202E4E4	@Range map
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+cmp r0, #0 
+beq AnyoneWithinRangeLoop 
+
 
 mov r5, #1 @ True 
 

@@ -47,8 +47,8 @@ SVAL r7 1
 BNE 0 rC r7 
 TEXTSHOW RocketMagikarpText_B
 ENUT RocketMagikarpFlag
-SVAL r3 500 
-GIVETOSLOT3 // Take 500 gold 
+SVAL r3 2000 
+GIVETOSLOT3 // Take 2000 gold 
 LOAD1 1 MagikarpUnitGroup 
 ENUN 
 AutoLevelUnits(0, True, 0x3636) // Magikarp 
@@ -73,6 +73,7 @@ ENDA
 
 LocationBasedEvents:
 Village(0, ToMtMoonB1, 19,5) 
+House(0, TestCase, 8,8)
 END_MAIN
 
 MiscBasedEvents:
@@ -109,6 +110,7 @@ CoinsTrap(6,4,ChapterID*2,450)
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
+
 
 //RedPokeballTrap(18,9, ChapterID*2, SuperPotion)
 //RedPokeballTrap(18,25, ChapterID*2, Vulnerary)

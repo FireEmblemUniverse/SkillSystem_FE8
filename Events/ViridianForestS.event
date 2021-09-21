@@ -44,6 +44,7 @@ ENDA
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
 END_MAIN
 
 
@@ -61,6 +62,7 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToRoute2S [28,28] [28,28] 
 AREA 0 ToViridianForestN_A [42,0] [43,0] 
 AREA 0 ToViridianForestN_B [35,0] [38,0] 
+AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -257,7 +259,7 @@ TQD_TableTerminator ; }
 
 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [40,17]  0b 0x0	0x1 REDA40R17 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [40,17]  0b 0x0	0x1 REDA40R17 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 

@@ -1,6 +1,4 @@
-it's 1 image, Gfx @ $B11D0C, TSA $B118C4, Pal $B11864
-
-
+DONE Focus 
 
 DONE //Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
 TantivyID 
@@ -8,7 +6,6 @@ TantivyID
 DONE //Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
 //Author Unknown (Initial Commit)
 #define ReliefID 90
-
 
 
 //Canto: Can move again after certain actions.
@@ -23,32 +20,71 @@ DONE - lucky bracer //Crit Boost: +15 critical rate.
 #define CritUpID 3
 #define CritBoostID CritUpID //Alias
 
-DONE - //Strong Riposte: When under attack, damage +3.
-//Author Unknown (Initial Commit)
-#define StrongRiposteID 231
+
 
 DONE //Patience: When under attack, avoid +10.
 //Author Unknown (Initial Commit)
 #define PatienceID 172
 
-//Pursuit: When under attack, attack speed +2.
+Charge - Rattata's skill ? 
+
+DONE - //Strong Riposte: When under attack, damage +2.
 //Author Unknown (Initial Commit)
-#define PursuitID 177
+#define StrongRiposteID 231
 
+//Chivalry: When foe is at full HP, attack and def/res +1.
+//Author Unknown (Initial Commit)
+#define ChivalryID 212
 
-//Insight: Hit +20.
+//Pragmatic: When foe is not at full HP, attack +1 and def/res+1.
+//Author Unknown (Initial Commit)
+#define PragmaticID 227
+
+//Vigilance: Avoid +10.
+//By Sme
+#define VigilanceID 7
+
+//Insight: Hit +10.
 //By Sme
 #define InsightID 171
 
+//Pursuit: When under attack, attack speed +4.
+//Author Unknown (Initial Commit)
+#define PursuitID 177
 
+//Silent Pride: Gain 1 damage and take -1 damage per 25% below max HP.
+//By Datagne
+#define SilentPrideID 181
 
-//Perfectionist: +15 Hit/Avoid when user's HP is at maximum.
+//Perfectionist: +10 Hit/Avoid when user's HP is at maximum.
 //By Zeta
 #define PerfectionistID 226
 
-DONE - //Prescience: When initiating battle, Hit and Avo +15.
+//Wind Disciple: +10 Hit and Avoid when HP is not at max.
+//Author Unknown (Initial Commit)
+#define WindDiscipleID 233
+
+
+
+//Wrath: If HP < 50%, +15 critical rate.
+//Author Unknown (Initial Commit)
+#define WrathID 150 //150
+
+//Opportunist: +2 damage if the foe cannot counter.
+//By Tequila
+#define OpportunistID 225
+
+
+DONE - //Prescience: When initiating battle, Hit and Avo +10.
 //By Sme
 #define PrescienceID 243
+
+
+
+
+
+
+
 
 
 Venom Ring 

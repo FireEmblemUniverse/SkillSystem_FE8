@@ -38,7 +38,7 @@ StrongSkill:
 ldr     r0,=0x203A56C       @Move defender data into r0.
 add     r0,#0x5A    @Move to the defender's attack.
 ldrh    r3,[r0]     @Load the defender's attack into r3.
-add     r3,#0x03    @Add 3 to the defender's attack.
+add     r3,#0x02    @Add 2 to the defender's attack.
 strh    r3,[r0]     @Store defender attack.
 b       SkillReturn
 PatienceSkill:
@@ -52,7 +52,7 @@ PursuitSkill:
 ldr     r0,=0x203A56C       @Move defender data into r0.
 add     r0,#0x5E    @Move to the defender's AS.
 ldrh    r3,[r0]     @Load the defender's AS into r3.
-add     r3,#0x02    @Add 2 to the defender's AS.
+add     r3,#0x04    @Add 4 to the defender's AS.
 strh    r3,[r0]     @Store defender AS.
 b 		SkillReturn
 ChivalrySkill:
@@ -64,12 +64,12 @@ bne SkillReturn 				  @skip if max hp != curr hp
 ldr     r0,=0x203A56C       @Move defender data into r0.
 add     r0,#0x5A    @Move to the defender's attack.
 ldrh    r3,[r0]     @Load the defender's attack into r3.
-add     r3,#0x02    @Add 2 to the defender's attack.
+add     r3,#0x01    @Add 1 to the defender's attack.
 strh    r3,[r0]     @Store defender attack.
 ldr     r0,=0x203A4EC     @Move attacker data into r0.
 add     r0,#0x5A    @Move to the attacker's attack.
 ldrh    r3,[r0]     @Load the defender's attack into r3.
-sub     r3,#0x02    @Subtract 2 to the defender's attack.
+sub     r3,#0x01    @Subtract 1 to the defender's attack.
 strh    r3,[r0]     @Store defender attack.
 b       SkillReturn
 PragmaticSkill:
@@ -81,7 +81,7 @@ beq SkillReturn 				  @skip if max hp > curr hp
 ldr     r0,=0x203A56C       @Move defender data into r0.
 add     r0,#0x5A    @Move to the defender's attack.
 ldrh    r3,[r0]     @Load the defender's attack into r3.
-add     r3,#0x03    @Add 3 to the defender's attack.
+add     r3,#0x01    @Add 3 to the defender's attack.
 strh    r3,[r0]     @Store defender attack.
 ldr     r0,=0x203A4EC     @Move attacker data into r0.
 add     r0,#0x5A    @Move to the defender's attack.

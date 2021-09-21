@@ -1,0 +1,166 @@
+#define ChapterID CeruleanGymCh
+#define WildLvl 5 
+#define TrainerL 16 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+//AFEV 0 GlobalAfev 0
+DefeatAll(EndingScene) 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToCerulean [9,18] [9,18] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(9,18) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToCerulean:
+ChapterTransition(CeruleanCh, 24, 20)
+
+Traps1:
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+CHECK_EVENTID CascadebadgeObtained
+BNE 0x63 rC r0 
+
+MUSC 0x7FFF // Mute 
+CAM1 [7,0] 
+
+
+LOAD1 0x1 EnemyTrainersA
+ENUN 
+AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveSkillAccessory(0xD0, RenewalID)
+SilentGiveItemWithDurability(0xD0, JellyDonut,0x2)
+SilentGiveItemWithDurability(0xA0, Berry,0x81)
+SilentGiveItemWithDurability(0xA1, Berry,0x81)
+SilentGiveItemWithDurability(0xA2, Berry,0x81)
+SilentGiveItemWithDurability(0xA3, Berry,0x81)
+
+
+MUSCFAST IntroBGM 
+Text(MistyChallengeText)
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12] 
+
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+EndingScene: 
+CHECK_EVENTID CascadebadgeObtained 
+BNE 0x63 rC r0 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+Text(MistyDefeatText)
+GiveItemWithDurability(0, SpellScroll, BubbleBeam)
+ENUT CascadebadgeObtained 
+SVAL r3 4500 
+GIVETOMAIN 0 
+TEXTSHOW MistyWaitText
+TEXTEND 
+REMA
+GiveSkillAccessory(0, RenewalID)
+TEXTSTART
+TEXTSHOW MistyRewardText
+TEXTEND 
+FADI 4 
+REMA 
+ForcedChapterTransition(CeruleanCh, 24, 20)
+LABEL 0x63 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+EnemyTrainersA:
+UNIT 0xD0 StarmieID 0x0 Level(2, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 		[0x0,0x0,0x0,0x0] ZoningHeal80GroupOneAI
+UNIT 0xA0 LaprasID 0xD0 Level(0, Enemy, 1) [4,7]  0b 0x0	0x1 REDA4R7 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 PsyduckID 0xD0 Level(1, Enemy, 1) [14,5]  0b 0x0	0x1 REDA14R5 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA2 HorseaID 0xD0 Level(1, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 GoldeenID 0xD0 Level(1, Enemy, 1) [13,11]  0b 0x0	0x1 REDA13R11 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 DratiniID 0xD0 Level(1, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+
+UNIT
+
+
+	
+
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

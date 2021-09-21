@@ -1,0 +1,7 @@
+// Dancer AI Priority Fix
+// by Vesly, Adthor 
+
+PUSH 
+ORG $3996A 
+SHORT 0x3095 
+POP 

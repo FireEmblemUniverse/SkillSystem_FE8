@@ -51,8 +51,8 @@ END_MAIN
 
 EnterGym:
 ENUF CascadebadgeObtained 
-CALL ClosedArea
-ForcedChapterTransition(CeruleanGymCh, 7, 15)
+//CALL ClosedArea
+ForcedChapterTransition(CeruleanGymCh, 9, 17)
 NoFade 
 ENDA 
 
@@ -131,6 +131,7 @@ Traps1:
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
 CutBush(19,31)
+CutBush(29,19)
 Save(15,17) // Pokecenter 
 
 //RockSmash(3,2)
@@ -195,6 +196,8 @@ LABEL 0
 
 
 CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
+//SADD rA rC r0 
+//Stop 
 BNE 10 rC r0 
 LOAD1 0x1 GaryBattleUnitGroup 
 ENUN 
@@ -221,11 +224,12 @@ ALIGN 4
 ShopItems:
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
-BYTE SuperPotion 10 
+BYTE SuperPotion 5 
 BYTE JellyDonut 5
-//BYTE SkillScroll AcrobatID 
-BYTE SpellScroll Tackle SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
-BYTE SpellScroll Gust SpellScroll Magnitude
+BYTE SkillScroll TantivyID 
+BYTE SpellScroll AttackPulse SpellScroll WaterGun SpellScroll Growl 
+BYTE SpellScroll DoubleHit //SpellScroll Headbutt 
+BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
@@ -254,7 +258,7 @@ SHORT 2000 // Gold
 TQD_TableTerminator ; }
 
 GaryBattleUnitGroup:
-UNIT 0xE0 blueID 0x0 Level(2, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [0x2,0x0,0x0,0x0] TrainerAI // Item 2 has 1-11 range 
+UNIT 0xE0 blueID 0x0 Level(2, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
 //UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 

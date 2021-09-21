@@ -21,7 +21,7 @@ beq GoBack
 mov r0, r4
 add r0,#0x60
 ldrh r3,[r0]
-add r3,#20
+add r3,#10
 strh r3,[r0]
 
 GoBack:

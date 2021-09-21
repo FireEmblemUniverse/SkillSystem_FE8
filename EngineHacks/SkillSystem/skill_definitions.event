@@ -390,7 +390,7 @@
 #define CritUpID 3
 #define CritBoostID CritUpID //Alias
 
-//Strong Riposte: When under attack, damage +3.
+//Strong Riposte: When under attack, damage +2.
 //Author Unknown (Initial Commit)
 #define StrongRiposteID 231
 
@@ -398,15 +398,15 @@
 //Author Unknown (Initial Commit)
 #define PatienceID 172
 
-//Pursuit: When under attack, attack speed +2.
+//Pursuit: When under attack, attack speed +4.
 //Author Unknown (Initial Commit)
 #define PursuitID 177
 
-//Chivalry: When foe is at full HP, attack and def/res +2.
+//Chivalry: When foe is at full HP, attack and def/res +1.
 //Author Unknown (Initial Commit)
 #define ChivalryID 212
 
-//Pragmatic: When foe is not at full HP, attack +3 and def/res+1.
+//Pragmatic: When foe is not at full HP, attack +1 and def/res+1.
 //Author Unknown (Initial Commit)
 #define PragmaticID 227
 
@@ -497,7 +497,7 @@
 //Author Unknown (Initial Commit)
 #define NaturalCoverID 224
 
-//Opportunist: +4 damage if the foe cannot counter.
+//Opportunist: +2 damage if the foe cannot counter.
 //By Tequila
 #define OpportunistID 225
 
@@ -509,7 +509,7 @@
 //By Zeta
 #define PerfectionistID 226
 
-//Prescience: When initiating battle, Hit and Avo +15.
+//Prescience: When initiating battle, Hit and Avo +10.
 //By Sme
 #define PrescienceID 243
 
@@ -531,7 +531,7 @@
 //By Sme
 #define ShortShieldID 178
 
-//Silent Pride: Gain 2 damage and take -2 damage per 25% below max HP.
+//Silent Pride: Gain 1 damage and take -1 damage per 25% below max HP.
 //By Datagne
 #define SilentPrideID 181
 
@@ -572,7 +572,7 @@
 //By Datagne
 #define VanityID 183
 
-//Vigilance: Avoid +20.
+//Vigilance: Avoid +10.
 //By Sme
 #define VigilanceID 7
 
@@ -580,7 +580,7 @@
 //Author Unknown (Initial Commit)
 #define WindDiscipleID 233
 
-//Wrath: If HP < 50%, +20 critical rate.
+//Wrath: If HP < 50%, +15 critical rate.
 //Author Unknown (Initial Commit)
 #define WrathID 150 //150
 

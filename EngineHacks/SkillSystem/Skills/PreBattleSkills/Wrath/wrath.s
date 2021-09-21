@@ -29,10 +29,10 @@ ldr r1, WrathID
 cmp r0, #0
 beq End
 
-@add 20 crit
+@add 15 crit
 mov r1, #0x66
 ldrh r0, [r4, r1] @crit
-add r0, #20
+add r0, #15
 strh r0, [r4,r1]
 
 End:

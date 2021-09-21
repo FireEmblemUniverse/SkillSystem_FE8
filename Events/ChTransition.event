@@ -353,6 +353,12 @@ CHECK_ENEMIES
 SVAL r1 30 
 BGE 0x63 rC r1 // Don't load reinforcements if 30+ units on map - prev 50 If we've hit the enemy cap, don't load reinforcements  
 
+// r5 is unit group pointer 
+ASMC CountReinforcementUnits 
+SVAL r1 15 
+BGE 0x63 rC r1 // If 15 or more reinforcements, do not spawn any more 
+
+
 GetUnitStatus(0x7FFD, AI2Counter)
 SADD rA rC r0 
 BLT 0x63 rA r6 //Do nothing during grace period 

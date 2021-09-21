@@ -1,5 +1,5 @@
-#define Resv 0x1
-#define Barrage 0x2
+#define ThreeRangeWep 0x1
+#define SevenRangeWep 0x2
 #define Bind 0x3
 #define BodySlam 0x4
 #define CometPunch 0x5
@@ -246,8 +246,8 @@
 #define DryingPan 0xF6
 #define SkillScrollID 0xF7
 #define SpellScrollID 0xF8
-#define WiseGlasses 0xF9
-#define Blackbelt 0xFA
+#define FiveRangeWep 0xF9
+#define NineRangeWep 0xFA
 #define StatAccessory 0xFB
 #define SkillAccOne 0xFC
 #define SkillAccTwo 0xFD

@@ -23,11 +23,11 @@ beq End
 @add 15 hit and avoid
 mov r1, #0x60
 ldrh r0, [r4, r1] @hit
-add r0, #15
+add r0, #10
 strh r0, [r4,r1]
 mov r1, #0x62
 ldrh r0, [r4, r1] @avoid
-add r0, #15
+add r0, #10
 strh r0, [r4,r1]
 
 End:

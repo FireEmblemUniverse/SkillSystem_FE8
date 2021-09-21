@@ -24,7 +24,7 @@ POIN Lull //This is effectively a stat modifier routine, so it has to go first
 
 // I've decided to comment out stuff that I'm not using for the time being in order to speed up AI - Vesly 
 
-/*
+
 POIN FaireCheck HolyAura
 POIN BreakerCheck MageSlayer
 POIN BlowCheck
@@ -60,14 +60,14 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 
 //quick riposte goes after everything that might touch AS
 POIN QuickRiposte
-*/
+
 
 POIN WeakChipDmg
 
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 
-//POIN MinimumDamage - this is broken 
+POIN MinimumDamage
 //POIN FixedDamageWeapons
 
 

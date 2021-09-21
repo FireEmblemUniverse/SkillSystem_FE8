@@ -1,737 +1,0 @@
-
-ALIGN 4
-BulbasaurLearnset:
-// BYTE Level Move 
-BYTE 1 Tackle // Goes at the end of each learnset 
-BYTE 4 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
-BYTE 7 VineWhip
-BYTE 14 LeafFlurry
-BYTE 0 0 // Goes at the end of each learnset 
-	ALIGN 4
-IvysaurLearnset:BYTE 1 Tackle 
-BYTE 4 Growl  
-BYTE 7 VineWhip
-BYTE 14 LeafFlurry
-//BYTE 16 RazorLeafBYTE 0 0ALIGN 4
-VenusaurLearnset:BYTE 1 Tackle 
-BYTE 4 Growl  
-BYTE 7 VineWhip
-BYTE 14 LeafFlurryBYTE 0 0ALIGN 4
-CharmanderLearnset:
-BYTE 1 ScratchBYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-CharmeleonLearnset:BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-CharizardLearnset:BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-SquirtleLearnset:BYTE 1 Tackle 
-BYTE 4 Leer  
-BYTE 7 Bubble
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-WartortleLearnset:BYTE 1 Tackle 
-BYTE 4 Leer  
-BYTE 7 Bubble
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-BlastoiseLearnset:BYTE 1 Tackle 
-BYTE 4 Leer  
-BYTE 7 Bubble
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-CaterpieLearnset:
-BYTE 1 StringShotBYTE 3 Tackle
-BYTE 7 TailWhipBYTE 0 0ALIGN 4
-MetapodLearnset:BYTE 1 StringShot
-BYTE 3 TackleBYTE 0 0ALIGN 4
-ButterfreeLearnset:BYTE 1 StringShot
-BYTE 3 TackleBYTE 0 0ALIGN 4
-WeedleLearnset:BYTE 1 PoisonSting
-BYTE 3 Tackle
-BYTE 7 TailWhipBYTE 0 0ALIGN 4
-KakunaLearnset:BYTE 1 PoisonSting
-BYTE 3 TackleBYTE 0 0ALIGN 4
-BeedrillLearnset:BYTE 1 PoisonSting
-BYTE 3 Tackle
-BYTE 21 PoisonJabBYTE 0 0ALIGN 4
-PidgeyLearnset:BYTE 1 SandAttack
-BYTE 3 Tackle 
-BYTE 6 Leer
-BYTE 8 Gust
-BYTE 12 PeckBYTE 0 0ALIGN 4
-PidgeottoLearnset:BYTE 1 SandAttack
-BYTE 3 Tackle 
-BYTE 6 Leer
-BYTE 8 Gust
-BYTE 12 Peck
-BYTE 22 WingAttackBYTE 0 0ALIGN 4
-PidgeotLearnset:BYTE 1 SandAttack
-BYTE 3 Tackle 
-BYTE 6 Leer
-BYTE 8 Gust
-BYTE 12 Peck
-BYTE 22 WingAttackBYTE 0 0ALIGN 4
-RattataLearnset:
-BYTE 1 Tackle
-BYTE 4 TailWhip 
-BYTE 7 Leer
-BYTE 12 QuickAttack
-BYTE 19 HeadbuttBYTE 0 0ALIGN 4
-RaticateLearnset:BYTE 1 Tackle
-BYTE 4 TailWhip 
-BYTE 7 Leer
-BYTE 12 QuickAttack
-BYTE 19 HeadbuttBYTE 0 0ALIGN 4
-SpearowLearnset:BYTE 1 Leer
-BYTE 3 Tackle 
-BYTE 6 SandAttack
-BYTE 8 Peck
-BYTE 12 GustBYTE 0 0ALIGN 4
-FearowLearnset:BYTE 1 Leer
-BYTE 3 Tackle 
-BYTE 6 SandAttack
-BYTE 8 Peck
-BYTE 12 GustBYTE 0 0ALIGN 4
-EkansLearnset:BYTE 1 Constrict
-BYTE 4 Acid 
-BYTE 7 PoisonSting 
-BYTE 10 TailWhip
-BYTE 13 Growl
-BYTE 16 Leer 
-BYTE 19 Tackle BYTE 0 0ALIGN 4
-ArbokLearnset:BYTE 1 Constrict
-BYTE 4 Acid 
-BYTE 7 PoisonSting 
-BYTE 10 TailWhip
-BYTE 13 Growl
-BYTE 16 Leer 
-BYTE 19 Tackle BYTE 0 0ALIGN 4
-PikachuLearnset:BYTE 1 Tackle
-BYTE 3 Thundershock
-BYTE 6 QuickAttack
-BYTE 9 Growl 
-BYTE 13 Leer BYTE 0 0ALIGN 4
-RaichuLearnset:BYTE 1 Tackle
-BYTE 3 Thundershock
-BYTE 6 QuickAttack
-BYTE 9 Growl 
-BYTE 13 Leer BYTE 0 0ALIGN 4
-SandshrewLearnset:BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 6 Magnitude 
-BYTE 10 RockTombBYTE 0 0ALIGN 4
-SandslashLearnset:BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 6 Magnitude 
-BYTE 10 RockTombBYTE 0 0ALIGN 4
-NidoranFLearnset:BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 MagnitudeBYTE 0 0ALIGN 4
-NidorinaLearnset:BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 MagnitudeBYTE 0 0ALIGN 4
-NidoqueenLearnset:BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 MagnitudeBYTE 0 0ALIGN 4
-NidoranMLearnset:BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 MagnitudeBYTE 0 0ALIGN 4
-NidorinoLearnset:BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 MagnitudeBYTE 0 0ALIGN 4
-NidokingLearnset:BYTE 1 Tackle
-BYTE 5 Leer 
-BYTE 9 PoisonSting 
-BYTE 13 LowKick
-BYTE 18 MagnitudeBYTE 0 0ALIGN 4
-ClefairyLearnset:BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse BYTE 0 0ALIGN 4
-ClefableLearnset:BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse BYTE 0 0ALIGN 4
-VulpixLearnset:BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-NinetalesLearnset:BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-JigglypuffLearnset:BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse BYTE 0 0ALIGN 4
-WigglytuffLearnset:BYTE 1 Pound
-BYTE 3 TailWhip
-BYTE 7 Headbutt 
-BYTE 9 Leer
-BYTE 12 AttackPulse BYTE 0 0ALIGN 4
-ZubatLearnset:BYTE 1 ConfuseRay
-BYTE 5 Leer 
-BYTE 9 Acid 
-BYTE 13 Growl 
-BYTE 17 ScratchBYTE 0 0ALIGN 4
-GolbatLearnset:BYTE 1 ConfuseRay
-BYTE 5 Leer 
-BYTE 9 Acid 
-BYTE 13 Growl 
-BYTE 17 ScratchBYTE 0 0ALIGN 4
-OddishLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle BYTE 0 0ALIGN 4
-GloomLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-VileplumeLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-ParasLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 ScratchBYTE 0 0ALIGN 4
-ParasectLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 ScratchBYTE 0 0ALIGN 4
-VenonatLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 ScratchBYTE 0 0ALIGN 4
-VenomothLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeechLife
-BYTE 12 ScratchBYTE 0 0ALIGN 4
-DiglettLearnset:BYTE 1 Magnitude 
-BYTE 5 Leer 
-BYTE 9 Dig 
-BYTE 14 Scratch BYTE 0 0ALIGN 4
-DugtrioLearnset:BYTE 1 Magnitude 
-BYTE 5 Leer 
-BYTE 9 Dig 
-BYTE 14 ScratchBYTE 0 0ALIGN 4
-MeowthLearnset:BYTE 1 Scratch 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 QuickAttackBYTE 0 0ALIGN 4
-PersianLearnset:BYTE 1 Scratch 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 QuickAttackBYTE 0 0ALIGN 4
-PsyduckLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-GolduckLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-MankeyLearnset:BYTE 1 Scratch 
-BYTE 3 LowKick 
-BYTE 8 Leer 
-BYTE 12 Tackle BYTE 0 0ALIGN 4
-PrimeapeLearnset:BYTE 1 Scratch 
-BYTE 3 LowKick 
-BYTE 8 Leer 
-BYTE 12 Tackle BYTE 0 0ALIGN 4
-GrowlitheLearnset:BYTE 1 Tackle
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-ArcanineLearnset:BYTE 1 Tackle
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-PoliwagLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-PoliwhirlLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-PoliwrathLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-AbraLearnset:BYTE 1 Leer 
-BYTE 16 ConfusionBYTE 0 0ALIGN 4
-KadabraLearnset:BYTE 1 Leer 
-BYTE 16 ConfusionBYTE 0 0ALIGN 4
-AlakazamLearnset:BYTE 1 Leer 
-BYTE 16 ConfusionBYTE 0 0ALIGN 4
-MachopLearnset:BYTE 1 Tackle
-BYTE 5 LowKick 
-BYTE 9 Leer
-BYTE 14 KarateChopBYTE 0 0ALIGN 4
-MachokeLearnset:BYTE 1 Tackle
-BYTE 5 LowKick 
-BYTE 9 Leer
-BYTE 14 KarateChopBYTE 0 0ALIGN 4
-MachampLearnset:BYTE 1 Tackle
-BYTE 5 LowKick 
-BYTE 9 Leer
-BYTE 14 KarateChopBYTE 0 0ALIGN 4
-BellsproutLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-WeepinbellLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-VictreebelLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-TentacoolLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-TentacruelLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-GeodudeLearnset:BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 7 RockTomb
-BYTE 13 RockThrow BYTE 0 0ALIGN 4
-GravellerLearnset:BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 7 RockTomb
-BYTE 13 RockThrow BYTE 0 0ALIGN 4
-GolemLearnset:BYTE 1 Tackle
-BYTE 4 Leer 
-BYTE 7 RockTomb
-BYTE 13 RockThrow BYTE 0 0ALIGN 4
-PonytaLearnset:BYTE 1 Tackle
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-RapidashLearnset:BYTE 1 Tackle
-BYTE 4 Growl
-BYTE 7 Ember
-BYTE 14 FlameWheelBYTE 0 0ALIGN 4
-SlowpokeLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-SlowbroLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-MagnemiteLearnset:BYTE 1 Tackle
-BYTE 4 Thundershock 
-BYTE 9 Leer 
-BYTE 14 AttackPulse BYTE 0 0ALIGN 4
-MagnetonLearnset:BYTE 1 Tackle
-BYTE 4 Thundershock 
-BYTE 9 Leer 
-BYTE 14 AttackPulse BYTE 0 0ALIGN 4
-FarfetchdLearnset:BYTE 1 Scratch 
-BYTE 6 Leer 
-BYTE 10 TailWhip 
-BYTE 14 Headbutt BYTE 0 0ALIGN 4
-DoduoLearnset:BYTE 1 Scratch 
-BYTE 6 Leer 
-BYTE 10 TailWhip 
-BYTE 14 Headbutt BYTE 0 0ALIGN 4
-DodrioLearnset:BYTE 1 Scratch 
-BYTE 6 Leer 
-BYTE 10 TailWhip 
-BYTE 14 Headbutt BYTE 0 0ALIGN 4
-SeelLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-DewgongLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-GrimerLearnset:BYTE 1 Scratch 
-BYTE 4 Acid
-BYTE 8 PoisonSting 
-BYTE 10 Leer 
-BYTE 14 Headbutt BYTE 0 0ALIGN 4
-MukLearnset:BYTE 1 Scratch 
-BYTE 4 Acid
-BYTE 8 PoisonSting 
-BYTE 10 Leer 
-BYTE 14 Headbutt BYTE 0 0ALIGN 4
-ShellderLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-CloysterLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 14 WaterGunBYTE 0 0ALIGN 4
-GastlyLearnset:BYTE 1 ConfuseRay 
-BYTE 4 Leer 
-BYTE 9 Acid 
-BYTE 14 Confusion BYTE 0 0ALIGN 4
-HaunterLearnset:BYTE 1 ConfuseRay 
-BYTE 4 Leer 
-BYTE 9 Acid 
-BYTE 14 Confusion BYTE 0 0ALIGN 4
-GengarLearnset:BYTE 1 ConfuseRay 
-BYTE 4 Leer 
-BYTE 9 Acid 
-BYTE 14 Confusion BYTE 0 0ALIGN 4
-OnixLearnset:BYTE 1 Tackle
-BYTE 4 TailWhip 
-BYTE 7 RockTomb 
-BYTE 10 Magnitude
-BYTE 18 Headbutt 
-BYTE 24 Dig BYTE 0 0ALIGN 4
-DrowzeeLearnset:BYTE 1 ConfuseRay 
-BYTE 4 Leer 
-BYTE 9 Scratch 
-BYTE 14 Confusion BYTE 0 0ALIGN 4
-HypnoLearnset:BYTE 1 ConfuseRay 
-BYTE 4 Leer 
-BYTE 9 Scratch 
-BYTE 14 Confusion BYTE 0 0ALIGN 4
-KrabbyLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-KinglerLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-VoltorbLearnset:BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 33 Swift 
-BYTE 41 ThunderboltBYTE 0 0ALIGN 4
-ElectrodeLearnset:BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 33 Swift 
-BYTE 41 ThunderboltBYTE 0 0ALIGN 4
-ExeggcuteLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-ExeggutorLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-CuboneLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-MarowakLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-HitmonleeLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-HitmonchanLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-LickitungLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-KoffingLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-WeezingLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-RhyhornLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-RhydonLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-ChanseyLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-TangelaLearnset:BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 TackleBYTE 0 0ALIGN 4
-KangaskhanLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-HorseaLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-SeadraLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-GoldeenLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-SeakingLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-StaryuLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-StarmieLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-MrMimeLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-ScytherLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-JynxLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-ElectabuzzLearnset:BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 33 Swift 
-BYTE 41 ThunderboltBYTE 0 0ALIGN 4
-MagmarLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-PinsirLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-TaurosLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-MagikarpLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-GyaradosLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-LaprasLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-DittoLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-EeveeLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-VaporeonLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-JolteonLearnset:BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 33 Swift 
-BYTE 41 ThunderboltBYTE 0 0ALIGN 4
-FlareonLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-PorygonLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-OmanyteLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-OmastarLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-KabutoLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-KabutopsLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-AerodactylLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-SnorlaxLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-ArticunoLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-ZapdosLearnset:BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 24 Peck
-BYTE 33 Swift 
-BYTE 41 ThunderboltBYTE 0 0ALIGN 4
-MoltresLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-DratiniLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-DragonairLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-DragoniteLearnset:BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGunBYTE 0 0ALIGN 4
-MewtwoLearnset:BYTE 1 TackleBYTE 0 0ALIGN 4
-MewLearnset:BYTE 1 TackleBYTE 0 0
-
-ALIGN 4 
-
-
-
-
-
-
-// Stuff for Vesly 
-
-GaidenList(BulbasaurID,BulbasaurLearnset)
-GaidenList(IvysaurID,IvysaurLearnset)
-GaidenList(VenusaurID,VenusaurLearnset)
-GaidenList(CharmanderID,CharmanderLearnset)
-GaidenList(CharmeleonID,CharmeleonLearnset)
-GaidenList(CharizardID,CharizardLearnset)
-GaidenList(SquirtleID,SquirtleLearnset)
-GaidenList(WartortleID,WartortleLearnset)
-GaidenList(BlastoiseID,BlastoiseLearnset)
-GaidenList(CaterpieID,CaterpieLearnset)
-GaidenList(MetapodID,MetapodLearnset)
-GaidenList(ButterfreeID,ButterfreeLearnset)
-GaidenList(WeedleID,WeedleLearnset)
-GaidenList(KakunaID,KakunaLearnset)
-GaidenList(BeedrillID,BeedrillLearnset)
-GaidenList(PidgeyID,PidgeyLearnset)
-GaidenList(PidgeottoID,PidgeottoLearnset)
-GaidenList(PidgeotID,PidgeotLearnset)
-GaidenList(RattataID,RattataLearnset)
-GaidenList(RaticateID,RaticateLearnset)
-GaidenList(SpearowID,SpearowLearnset)
-GaidenList(FearowID,FearowLearnset)
-GaidenList(EkansID,EkansLearnset)
-GaidenList(ArbokID,ArbokLearnset)
-GaidenList(PikachuID,PikachuLearnset)
-GaidenList(RaichuID,RaichuLearnset)
-GaidenList(SandshrewID,SandshrewLearnset)
-GaidenList(SandslashID,SandslashLearnset)
-GaidenList(NidoranFID,NidoranFLearnset)
-GaidenList(NidorinaID,NidorinaLearnset)
-GaidenList(NidoqueenID,NidoqueenLearnset)
-GaidenList(NidoranMID,NidoranMLearnset)
-GaidenList(NidorinoID,NidorinoLearnset)
-GaidenList(NidokingID,NidokingLearnset)
-GaidenList(ClefairyID,ClefairyLearnset)
-GaidenList(ClefableID,ClefableLearnset)
-GaidenList(VulpixID,VulpixLearnset)
-GaidenList(NinetalesID,NinetalesLearnset)
-GaidenList(JigglypuffID,JigglypuffLearnset)
-GaidenList(WigglytuffID,WigglytuffLearnset)
-GaidenList(ZubatID,ZubatLearnset)
-GaidenList(GolbatID,GolbatLearnset)
-GaidenList(OddishID,OddishLearnset)
-GaidenList(GloomID,GloomLearnset)
-GaidenList(VileplumeID,VileplumeLearnset)
-GaidenList(ParasID,ParasLearnset)
-GaidenList(ParasectID,ParasectLearnset)
-GaidenList(VenonatID,VenonatLearnset)
-GaidenList(VenomothID,VenomothLearnset)
-GaidenList(DiglettID,DiglettLearnset)
-GaidenList(DugtrioID,DugtrioLearnset)
-GaidenList(MeowthID,MeowthLearnset)
-GaidenList(PersianID,PersianLearnset)
-GaidenList(PsyduckID,PsyduckLearnset)
-GaidenList(GolduckID,GolduckLearnset)
-GaidenList(MankeyID,MankeyLearnset)
-GaidenList(PrimeapeID,PrimeapeLearnset)
-GaidenList(GrowlitheID,GrowlitheLearnset)
-GaidenList(ArcanineID,ArcanineLearnset)
-GaidenList(PoliwagID,PoliwagLearnset)
-GaidenList(PoliwhirlID,PoliwhirlLearnset)
-GaidenList(PoliwrathID,PoliwrathLearnset)
-GaidenList(AbraID,AbraLearnset)
-GaidenList(KadabraID,KadabraLearnset)
-GaidenList(AlakazamID,AlakazamLearnset)
-GaidenList(MachopID,MachopLearnset)
-GaidenList(MachokeID,MachokeLearnset)
-GaidenList(MachampID,MachampLearnset)
-GaidenList(BellsproutID,BellsproutLearnset)
-GaidenList(WeepinbellID,WeepinbellLearnset)
-GaidenList(VictreebelID,VictreebelLearnset)
-GaidenList(TentacoolID,TentacoolLearnset)
-GaidenList(TentacruelID,TentacruelLearnset)
-GaidenList(GeodudeID,GeodudeLearnset)
-GaidenList(GravellerID,GravellerLearnset)
-GaidenList(GolemID,GolemLearnset)
-GaidenList(PonytaID,PonytaLearnset)
-GaidenList(RapidashID,RapidashLearnset)
-GaidenList(SlowpokeID,SlowpokeLearnset)
-GaidenList(SlowbroID,SlowbroLearnset)
-GaidenList(MagnemiteID,MagnemiteLearnset)
-GaidenList(MagnetonID,MagnetonLearnset)
-GaidenList(FarfetchdID,FarfetchdLearnset)
-GaidenList(DoduoID,DoduoLearnset)
-GaidenList(DodrioID,DodrioLearnset)
-GaidenList(SeelID,SeelLearnset)
-GaidenList(DewgongID,DewgongLearnset)
-GaidenList(GrimerID,GrimerLearnset)
-GaidenList(MukID,MukLearnset)
-GaidenList(ShellderID,ShellderLearnset)
-GaidenList(CloysterID,CloysterLearnset)
-GaidenList(GastlyID,GastlyLearnset)
-GaidenList(HaunterID,HaunterLearnset)
-GaidenList(GengarID,GengarLearnset)
-GaidenList(OnixID,OnixLearnset)
-GaidenList(DrowzeeID,DrowzeeLearnset)
-GaidenList(HypnoID,HypnoLearnset)
-GaidenList(KrabbyID,KrabbyLearnset)
-GaidenList(KinglerID,KinglerLearnset)
-GaidenList(VoltorbID,VoltorbLearnset)
-GaidenList(ElectrodeID,ElectrodeLearnset)
-GaidenList(ExeggcuteID,ExeggcuteLearnset)
-GaidenList(ExeggutorID,ExeggutorLearnset)
-GaidenList(CuboneID,CuboneLearnset)
-GaidenList(MarowakID,MarowakLearnset)
-GaidenList(HitmonleeID,HitmonleeLearnset)
-GaidenList(HitmonchanID,HitmonchanLearnset)
-GaidenList(LickitungID,LickitungLearnset)
-GaidenList(KoffingID,KoffingLearnset)
-GaidenList(WeezingID,WeezingLearnset)
-GaidenList(RhyhornID,RhyhornLearnset)
-GaidenList(RhydonID,RhydonLearnset)
-GaidenList(ChanseyID,ChanseyLearnset)
-GaidenList(TangelaID,TangelaLearnset)
-GaidenList(KangaskhanID,KangaskhanLearnset)
-GaidenList(HorseaID,HorseaLearnset)
-GaidenList(SeadraID,SeadraLearnset)
-GaidenList(GoldeenID,GoldeenLearnset)
-GaidenList(SeakingID,SeakingLearnset)
-GaidenList(StaryuID,StaryuLearnset)
-GaidenList(StarmieID,StarmieLearnset)
-GaidenList(MrMimeID,MrMimeLearnset)
-GaidenList(ScytherID,ScytherLearnset)
-GaidenList(JynxID,JynxLearnset)
-GaidenList(ElectabuzzID,ElectabuzzLearnset)
-GaidenList(MagmarID,MagmarLearnset)
-GaidenList(PinsirID,PinsirLearnset)
-GaidenList(TaurosID,TaurosLearnset)
-GaidenList(MagikarpID,MagikarpLearnset)
-GaidenList(GyaradosID,GyaradosLearnset)
-GaidenList(LaprasID,LaprasLearnset)
-GaidenList(DittoID,DittoLearnset)
-GaidenList(EeveeID,EeveeLearnset)
-GaidenList(VaporeonID,VaporeonLearnset)
-GaidenList(JolteonID,JolteonLearnset)
-GaidenList(FlareonID,FlareonLearnset)
-GaidenList(PorygonID,PorygonLearnset)
-GaidenList(OmanyteID,OmanyteLearnset)
-GaidenList(OmastarID,OmastarLearnset)
-GaidenList(KabutoID,KabutoLearnset)
-GaidenList(KabutopsID,KabutopsLearnset)
-GaidenList(AerodactylID,AerodactylLearnset)
-GaidenList(SnorlaxID,SnorlaxLearnset)
-GaidenList(ArticunoID,ArticunoLearnset)
-GaidenList(ZapdosID,ZapdosLearnset)
-GaidenList(MoltresID,MoltresLearnset)
-GaidenList(DratiniID,DratiniLearnset)
-GaidenList(DragonairID,DragonairLearnset)
-GaidenList(DragoniteID,DragoniteLearnset)
-GaidenList(MewtwoID,MewtwoLearnset)
-GaidenList(MewID,MewLearnset)

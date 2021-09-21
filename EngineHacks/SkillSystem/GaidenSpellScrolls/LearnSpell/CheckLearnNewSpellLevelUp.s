@@ -75,7 +75,6 @@ AlivePlayer:
 	mov r2, #0 @ Counter 
 	
 	ldrb r0, [r5, #0x08] @ Unit's level 
-	mov r11, r11
 	MoveToLearnLoop:
 	ldrh r1, [r3, r2] 
 	cmp r1, #0 @ Learning move '--' at level 0 terminates the list 

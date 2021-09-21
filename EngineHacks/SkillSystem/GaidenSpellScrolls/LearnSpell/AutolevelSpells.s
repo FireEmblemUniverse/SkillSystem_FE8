@@ -45,7 +45,6 @@ push	{r4-r7,lr}
 	cmp r0, #0 
 	bne Find_terminator_offset_loop
 	
-	@mov r11, r11 
 	ldrb r6, [r4, #8] @ Unit's level 
 	mov r3, #0x0 @ Wexp / inv offset 
 		@ r1, r2, r3, r4, r5, and r6 are used 
@@ -73,7 +72,6 @@ push	{r4-r7,lr}
 	
 	cmp r7, #0 
 	beq LearnSpellLoop 
-	@mov r11, r11
 	sub r7, r3, #1 
 	push {r3}
 	lsl r7, r7, #1 @ 2 bytes per weapon 
@@ -87,6 +85,7 @@ push	{r4-r7,lr}
 	cmp r7, #0 
 	bne FindFreeInventorySpaceLoop
 	@ We found free inventory, so store 
+	
 	strb r0, [r4, r3] 
 	mov r0, #0x9 @ 9 durability i guess 
 	add r3, #1 

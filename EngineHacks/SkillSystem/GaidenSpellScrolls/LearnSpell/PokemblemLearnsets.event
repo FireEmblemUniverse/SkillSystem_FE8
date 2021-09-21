@@ -9,7 +9,7 @@ BYTE 7 VineWhip
 //BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
-BYTE 21 Sleep2 //SleepPowder
+//BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Growth
 BYTE 27 DoubleEdge
 BYTE 33 Mend //?Buff (Synthesis)
@@ -26,7 +26,7 @@ BYTE 7 VineWhip
 //BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
-BYTE 21 Sleep2 //SleepPowder
+//BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Growth
 BYTE 27 DoubleEdge
 BYTE 33 Mend //?Buff (Synthesis)
@@ -42,7 +42,7 @@ BYTE 7 VineWhip
 //BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
-BYTE 21 Sleep2 //SleepPowder
+//BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Growth
 BYTE 27 DoubleEdge
 BYTE 33 Mend //?Buff (Synthesis)
@@ -483,7 +483,7 @@ ClefairyLearnset:
 BYTE 1 Pound
 BYTE 1 Growl
 //BYTE 4 Resv //Encore
-BYTE 7 Sleep //Sing 
+//BYTE 7 Sleep //Sing 
 BYTE 10 DoubleHit
 //BYTE 13 Resv //?Support DefenseCurl
 //BYTE 16 Resv //FollowMe
@@ -504,7 +504,7 @@ ClefableLearnset:
 BYTE 1 Pound
 BYTE 1 Growl
 //BYTE 4 Resv //Encore
-BYTE 7 Sleep //Sing 
+//BYTE 7 Sleep //Sing 
 BYTE 10 DoubleHit
 //BYTE 13 Resv //?Support DefenseCurl
 //BYTE 16 Resv //FollowMe
@@ -560,7 +560,8 @@ BYTE 0 0
 
 ALIGN 4
 JigglypuffLearnset:
-BYTE 1 Sleep //Sing
+//BYTE 1 Sleep //Sing
+BYTE 1 Leer
 BYTE 5 Heal //?Support Defense Curl
 BYTE 9 Pound 
 //BYTE 13 Resv //Disable
@@ -577,7 +578,8 @@ BYTE 0 0
 
 ALIGN 4
 WigglytuffLearnset:
-BYTE 1 Sleep //Sing
+//BYTE 1 Sleep //Sing
+BYTE 1 Leer
 BYTE 5 Heal //?Support Defense Curl
 BYTE 9 Pound 
 //BYTE 13 Resv //Disable
@@ -628,7 +630,7 @@ BYTE 1 Absorb
 BYTE 5 Constrict  
 BYTE 9 Acid
 BYTE 13 PoisonPowder
-BYTE 17 Sleep //SleepPowder
+//BYTE 17 Sleep //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 Heal //?Support LuckyChant 
 BYTE 29 BodySlam
@@ -643,7 +645,7 @@ BYTE 1 Absorb
 BYTE 5 Constrict  
 BYTE 9 Acid
 BYTE 13 PoisonPowder
-BYTE 17 Sleep //SleepPowder
+//BYTE 17 Sleep //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 Heal //?Support LuckyChant 
 BYTE 29 BodySlam
@@ -658,7 +660,7 @@ BYTE 1 Absorb
 BYTE 5 Constrict  
 BYTE 9 Acid
 BYTE 13 PoisonPowder
-BYTE 17 Sleep //SleepPowder
+//BYTE 17 Sleep //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 Heal //?Support LuckyChant 
 BYTE 29 BodySlam
@@ -672,7 +674,7 @@ ParasLearnset:
 BYTE 1 Scratch 
 BYTE 6 PoisonPowder  
 BYTE 11 LeechLife
-BYTE 17 Sleep //Spore
+//BYTE 17 Sleep //Spore
 BYTE 22 Slash
 BYTE 27 Acid //Growth
 BYTE 33 MegaDrain
@@ -685,7 +687,7 @@ ParasectLearnset:
 BYTE 1 Scratch 
 BYTE 6 PoisonPowder  
 BYTE 11 LeechLife
-BYTE 17 Sleep //Spore
+//BYTE 17 Sleep //Spore
 BYTE 22 Slash
 BYTE 27 Acid //Growth
 BYTE 33 MegaDrain
@@ -703,7 +705,7 @@ BYTE 13 PoisonPowder
 BYTE 17 LeechLife
 //BYTE 23 ??? //StunSpore
 BYTE 25 Psybeam
-BYTE 29 Sleep
+//BYTE 29 Sleep
 BYTE 35 SignalBeam
 BYTE 37 DreamEater
 BYTE 41 PoisonGas //PoisonFang
@@ -720,7 +722,7 @@ BYTE 13 PoisonPowder
 BYTE 17 LeechLife
 //BYTE 23 ??? //StunSpore
 BYTE 25 Psybeam
-BYTE 29 Sleep
+//BYTE 29 Sleep
 BYTE 35 SignalBeam
 BYTE 37 DreamEater
 BYTE 41 PoisonGas //PoisonFang
@@ -893,7 +895,7 @@ ALIGN 4
 PoliwagLearnset:
 BYTE 1 Growl 
 BYTE 5 Bubble 
-BYTE 8 Sleep 
+//BYTE 8 Sleep 
 BYTE 11 WaterGun
 BYTE 15 Doubleslap
 BYTE 21 BodySlam
@@ -908,7 +910,7 @@ ALIGN 4
 PoliwhirlLearnset:
 BYTE 1 Growl 
 BYTE 5 Bubble 
-BYTE 8 Sleep 
+//BYTE 8 Sleep 
 BYTE 11 WaterGun
 BYTE 15 Doubleslap
 BYTE 21 BodySlam
@@ -923,7 +925,7 @@ ALIGN 4
 PoliwrathLearnset:
 BYTE 1 Growl 
 BYTE 5 Bubble 
-BYTE 8 Sleep 
+//BYTE 8 Sleep 
 BYTE 11 WaterGun
 BYTE 15 Doubleslap
 BYTE 21 BodySlam
@@ -1015,7 +1017,7 @@ BellsproutLearnset:
 BYTE 1 VineWhip 
 BYTE 7 Leer
 BYTE 11 Constrict
-BYTE 13 Sleep
+//BYTE 13 Sleep
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
@@ -1030,7 +1032,7 @@ WeepinbellLearnset:
 BYTE 1 VineWhip 
 BYTE 7 Leer
 BYTE 11 Constrict
-BYTE 13 Sleep
+//BYTE 13 Sleep
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
@@ -1045,7 +1047,7 @@ VictreebelLearnset:
 BYTE 1 VineWhip 
 BYTE 7 Leer
 BYTE 11 Constrict
-BYTE 13 Sleep
+//BYTE 13 Sleep
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief

@@ -20,6 +20,7 @@ beq End
 ldrb r0, [r4, #0x12]
 ldrb r1, [r4, #0x13]
 
+add r0, #3 @ for friendly rounding purposes - Vesly (eg. 5/19 hp counts as being 25% or less hp) 
 lsr r0, #2 @max hp/4
 cmp r1,r0
 ble TwentyHP
@@ -44,8 +45,8 @@ mov r2,#0x3
 
 
 Effect:
-mov r3,#0x2
-mul r2,r3
+@mov r3,#0x2
+@mul r2,r3
 
 mov r1, #0x5A
 ldrh r0, [r4, r1] @Attack

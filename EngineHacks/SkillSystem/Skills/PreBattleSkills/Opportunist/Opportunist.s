@@ -23,7 +23,7 @@ beq		GoBack
 
 add		r4,#0x5A
 ldrh	r0,[r4]
-add		r0,#4
+add		r0,#2
 strh	r0,[r4]
 
 GoBack:

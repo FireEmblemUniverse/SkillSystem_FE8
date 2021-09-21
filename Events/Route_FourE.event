@@ -233,7 +233,7 @@ SHORT 600 // Gold
 TQD_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 hikerID 0x0 Level(1, Enemy, 1) [22,10]  0b 0x0	0x1 REDA22R10 [0x1,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 hikerID 0x0 Level(1, Enemy, 1) [22,10]  0b 0x0	0x1 REDA22R10 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 

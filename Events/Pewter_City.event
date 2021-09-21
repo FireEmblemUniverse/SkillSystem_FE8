@@ -205,12 +205,10 @@ ENDA
 
 ALIGN 4
 ShopItems:
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
-//SHLI 0
-//BYTE SuperPotion 12
-//BYTE SkillScroll AcrobatID 
-BYTE SpellScroll Tackle SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
-BYTE SpellScroll Gust SpellScroll Magnitude
+BYTE JellyDonut 4
+BYTE SkillScroll PatienceID
+BYTE SpellScroll Tackle SpellScroll Leer SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

@@ -15,7 +15,7 @@ resize_minimug = (32,32)
 enable_portrait_bg = False 
 enable_portrait_border = False
 enable_minimug_border = True
-mug_contrast = 0.8
+mug_contrast = 1.0
 
 
 dir_entries = scandir(directory)

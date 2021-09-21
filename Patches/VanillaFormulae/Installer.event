@@ -27,8 +27,12 @@ ORG $2AAD0
 callHack_r3(StabBonusFunc)
 
 ORG $9B788 
-jumpToHack_r6(DisplayDurabilitySupply|1) // use r6 instead? 
+jumpToHack_r6(DisplayDurabilitySupply|1) 
 SHORT 0x46C0 // Don't ldrh r6, [r0] 
+
+ORG $34CDC 
+jumpToHack_r3(DisplayDurabilityTradeWindowSmall) 
+
 
 POP
 

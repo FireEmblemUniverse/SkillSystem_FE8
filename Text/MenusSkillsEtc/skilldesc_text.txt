@@ -152,7 +152,7 @@ double attacks occur immediately.[X]
 
 ## SD_Wrath
 Wrath: If HP < 50%,[N]
-+20 critical rate.[X]
++15 critical rate.[X]
 
 ## SD_Counter
 Counter: Reflect physical damage[N]
@@ -356,7 +356,7 @@ Intimidate: -10 Avoid to[N]
 all enemies within 2 tiles.[X]
 
 ## SD_Opportunist
-Opportunist: +4 damage[N]
+Opportunist: +2 damage[N]
 if the foe cannot counter.[X]
 
 ## SD_Trample
@@ -469,7 +469,7 @@ Avoid when HP is not at max.[X]
 
 ## SD_StrongRiposte
 Strong Riposte: When under[N]
-attack, damage +3. [X]
+attack, damage +2. [X]
 
 ## SD_Patience
 Patience: When under[N]
@@ -477,7 +477,7 @@ attack, avoid +10. [X]
 
 ## SD_Pursuit
 Pursuit: When under attack,[N]
-attack speed +2. [X]
+attack speed +4. [X]
 
 ## SD_LightWeight
 Light Weight: When holding three[N]
@@ -493,11 +493,11 @@ Skl * 1.5.[X]
 
 ## SD_Chivalry
 Chivalry: When foe is at full HP,[N]
-attack and def/res +2.[X]
+attack and def/res +1.[X]
 
 ## SD_Pragmatic
 Pragmatic: When foe is not at full HP,[N]
-attack +3 and def/res+1.[X]
+attack and def/res+1.[X]
 
 ## SD_Armsthrift
 Armsthrift: Luck % chance to not[N]
@@ -810,8 +810,8 @@ Holy Aura: Gain +1 damage, +5% hit,[N]
 +5% avoid, +5% crit when using light.[X]
 
 ## SD_SilentPride
-Silent Pride: Gain 2 damage and take[N]
--2 damage per 25% below max HP.[X]
+Silent Pride: Gain 1 damage and take[N]
+-1 damage per 25% below max HP.[X]
 
 ## SD_Loyalty
 Loyalty: When within 2 spaces of[N]
@@ -916,10 +916,10 @@ Resolve: When HP < 50%,[N]
 gain 1.5x Str, Skl, & Spd.[X]
 
 ## SD_Insight
-Insight: Hit +20.[X]
+Insight: Hit +10.[X]
 
 ## SD_Vigilance
-Vigilance: Avoid +20.[X]
+Vigilance: Avoid +10.[X]
 
 ## SD_Daunt
 Daunt: -5 Hit and Crit to all[N]
@@ -939,7 +939,7 @@ to adjacent allies.[X]
 
 ## SD_Prescience
 Prescience: When initiating[N]
-battle, Hit and Avo +15.[X]
+battle, Hit and Avo +10.[X]
 
 ## SD_DefiantAvo
 Deviant Avoid: When HP is 25%[N]

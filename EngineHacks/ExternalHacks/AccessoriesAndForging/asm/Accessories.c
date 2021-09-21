@@ -277,7 +277,7 @@ void ComputeBattleUnitAttack(struct BattleUnit* attacker, struct BattleUnit* def
     else attacker->battleAttack += attacker->unit.pow;
 }
 */
-
+/*
 int GetStatIncreaseWithAngelRing(int growth, struct Unit* unit) {
     int result = 0;
 
@@ -292,6 +292,7 @@ int GetStatIncreaseWithAngelRing(int growth, struct Unit* unit) {
 	}
     return result;
 }
+*/
 
 void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defender, struct BattleHit* roundData) {
 	if (!(roundData->attributes & BATTLE_HIT_ATTR_MISS)) { // if attack didn't miss 

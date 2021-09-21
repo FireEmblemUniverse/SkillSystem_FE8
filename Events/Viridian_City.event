@@ -149,8 +149,12 @@ ShopItems:
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 //BYTE SuperPotion 12
-//BYTE SkillScroll AcrobatID 
-BYTE SpellScroll Tackle SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+BYTE JellyDonut 3
+BYTE SkillScroll FocusID 
+
+
+BYTE SpellScroll Tackle SpellScroll Scratch SpellScroll TailWhip SpellScroll Bite 
+BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

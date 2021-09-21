@@ -379,12 +379,12 @@ EquippedAccessoryGetter:
 @ Accessories.c:106: 	if(!unit) return 0; // if no unit return no accessory effect
 	cmp	r0, #0	@ unit,
 	beq	.L34		@,
-	movs	r5, r0	@ ivtmp.73, unit
+	movs	r5, r0	@ ivtmp.71, unit
 @ Accessories.c:108: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
 	movs	r6, #128	@ tmp131,
 	adds	r0, r0, #40	@ unit,
 	movs	r4, r0	@ _29, unit
-	adds	r5, r5, #30	@ ivtmp.73,
+	adds	r5, r5, #30	@ ivtmp.71,
 	lsls	r6, r6, #15	@ tmp131, tmp131,
 .L37:
 @ Accessories.c:108: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
@@ -396,7 +396,7 @@ EquippedAccessoryGetter:
 	beq	.L35		@,
 @ Accessories.c:110: 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_INDEX(unit->items[i]); // & isItemAnAccessory
 	movs	r2, #0	@ tmp142,
-	ldrsh	r3, [r5, r2]	@ _15, ivtmp.73, tmp142
+	ldrsh	r3, [r5, r2]	@ _15, ivtmp.71, tmp142
 @ Accessories.c:110: 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_INDEX(unit->items[i]); // & isItemAnAccessory
 	ldrh	r0, [r5]	@ _15, MEM[base: _26, offset: 0B]
 @ Accessories.c:110: 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_INDEX(unit->items[i]); // & isItemAnAccessory
@@ -413,8 +413,8 @@ EquippedAccessoryGetter:
 	bx	r1
 .L35:
 @ Accessories.c:107: 	for(int i = 0; i < 5; i++) {
-	adds	r5, r5, #2	@ ivtmp.73,
-	cmp	r5, r4	@ ivtmp.73, _29
+	adds	r5, r5, #2	@ ivtmp.71,
+	cmp	r5, r4	@ ivtmp.71, _29
 	bne	.L37		@,
 .L34:
 @ Accessories.c:106: 	if(!unit) return 0; // if no unit return no accessory effect
@@ -440,12 +440,12 @@ EquippedAccessoryDurabilityGetter:
 @ Accessories.c:119: 	if(!unit) return 0; // if no unit return no accessory effect
 	cmp	r0, #0	@ unit,
 	beq	.L48		@,
-	movs	r5, r0	@ ivtmp.84, unit
+	movs	r5, r0	@ ivtmp.82, unit
 @ Accessories.c:121: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
 	movs	r6, #128	@ tmp132,
 	adds	r0, r0, #40	@ unit,
 	movs	r4, r0	@ _30, unit
-	adds	r5, r5, #30	@ ivtmp.84,
+	adds	r5, r5, #30	@ ivtmp.82,
 	lsls	r6, r6, #15	@ tmp132, tmp132,
 .L51:
 @ Accessories.c:121: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
@@ -457,7 +457,7 @@ EquippedAccessoryDurabilityGetter:
 	beq	.L49		@,
 @ Accessories.c:123: 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
 	movs	r2, #0	@ tmp145,
-	ldrsh	r3, [r5, r2]	@ _15, ivtmp.84, tmp145
+	ldrsh	r3, [r5, r2]	@ _15, ivtmp.82, tmp145
 @ Accessories.c:123: 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
 	ldrh	r0, [r5]	@ _15, MEM[base: _27, offset: 0B]
 @ Accessories.c:123: 			if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
@@ -474,8 +474,8 @@ EquippedAccessoryDurabilityGetter:
 	bx	r1
 .L49:
 @ Accessories.c:120: 	for(int i = 0; i < 5; i++) {
-	adds	r5, r5, #2	@ ivtmp.84,
-	cmp	r5, r4	@ ivtmp.84, _30
+	adds	r5, r5, #2	@ ivtmp.82,
+	cmp	r5, r4	@ ivtmp.82, _30
 	bne	.L51		@,
 .L48:
 @ Accessories.c:119: 	if(!unit) return 0; // if no unit return no accessory effect
@@ -501,12 +501,12 @@ EquippedShieldAccessoryDurabilityGetter:
 @ Accessories.c:132: 	if(!unit) return 0; // if no unit return no accessory effect
 	cmp	r0, #0	@ unit,
 	beq	.L62		@,
-	movs	r5, r0	@ ivtmp.95, unit
+	movs	r5, r0	@ ivtmp.93, unit
 @ Accessories.c:134: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
 	movs	r6, #128	@ tmp151,
 	adds	r0, r0, #40	@ unit,
 	movs	r4, r0	@ _37, unit
-	adds	r5, r5, #30	@ ivtmp.95,
+	adds	r5, r5, #30	@ ivtmp.93,
 	lsls	r6, r6, #15	@ tmp151, tmp151,
 .L65:
 @ Accessories.c:134: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
@@ -531,7 +531,7 @@ EquippedShieldAccessoryDurabilityGetter:
 	beq	.L63		@,
 @ Accessories.c:137: 				if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
 	movs	r2, #0	@ tmp156,
-	ldrsh	r3, [r5, r2]	@ _10, ivtmp.95, tmp156
+	ldrsh	r3, [r5, r2]	@ _10, ivtmp.93, tmp156
 @ Accessories.c:137: 				if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
 	ldrh	r0, [r5]	@ _10, MEM[base: _33, offset: 0B]
 @ Accessories.c:137: 				if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
@@ -548,8 +548,8 @@ EquippedShieldAccessoryDurabilityGetter:
 	bx	r1
 .L63:
 @ Accessories.c:133: 	for(int i = 0; i < 5; i++) {
-	adds	r5, r5, #2	@ ivtmp.95,
-	cmp	r5, r4	@ ivtmp.95, _37
+	adds	r5, r5, #2	@ ivtmp.93,
+	cmp	r5, r4	@ ivtmp.93, _37
 	bne	.L65		@,
 .L62:
 @ Accessories.c:132: 	if(!unit) return 0; // if no unit return no accessory effect
@@ -574,20 +574,20 @@ DepleteEquippedAccessoryUse:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-	movs	r5, r0	@ ivtmp.106, unit
+	movs	r5, r0	@ ivtmp.104, unit
 	adds	r0, r0, #40	@ unit,
 	movs	r4, r0	@ _17, unit
-	adds	r5, r5, #30	@ ivtmp.106,
+	adds	r5, r5, #30	@ ivtmp.104,
 .L76:
 @ Accessories.c:146: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
 	ldrh	r0, [r5]	@ MEM[base: _15, offset: 0B], MEM[base: _15, offset: 0B]
 	ldr	r3, .L78	@ tmp122,
 @ Accessories.c:145: 	for(int i = 0; i < 5; i++) {
-	adds	r5, r5, #2	@ ivtmp.106,
+	adds	r5, r5, #2	@ ivtmp.104,
 @ Accessories.c:146: 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
 	bl	.L8		@
 @ Accessories.c:145: 	for(int i = 0; i < 5; i++) {
-	cmp	r5, r4	@ ivtmp.106, _17
+	cmp	r5, r4	@ ivtmp.104, _17
 	bne	.L76		@,
 @ Accessories.c:162: }
 	@ sp needed	@
@@ -740,61 +740,6 @@ AccessorySkillGetter:
 	.word	Ves_SkillBlockFour_Link
 	.size	AccessorySkillGetter, .-AccessorySkillGetter
 	.align	1
-	.global	GetStatIncreaseWithAngelRing
-	.syntax unified
-	.code	16
-	.thumb_func
-	.fpu softvfp
-	.type	GetStatIncreaseWithAngelRing, %function
-GetStatIncreaseWithAngelRing:
-	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 0
-	@ frame_needed = 0, uses_anonymous_args = 0
-	push	{r4, r5, r6, lr}	@
-@ Accessories.c:281: int GetStatIncreaseWithAngelRing(int growth, struct Unit* unit) {
-	movs	r5, r1	@ unit, tmp128
-@ Accessories.c:282:     int result = 0;
-	movs	r4, #0	@ <retval>,
-.L100:
-@ Accessories.c:284:     while (growth > 100) {
-	cmp	r0, #100	@ growth,
-	bgt	.L101		@,
-@ Accessories.c:289:     if (Roll1RN(growth)) {
-	ldr	r3, .L107	@ tmp120,
-	bl	.L8		@
-@ Accessories.c:289:     if (Roll1RN(growth)) {
-	cmp	r0, #0	@ tmp129,
-	beq	.L99		@,
-@ Accessories.c:291: 		if(AccessoryEffectTester(unit, AE_AngelRingID)) result++;
-	ldr	r3, .L107+4	@ tmp121,
-	movs	r0, r5	@, unit
-	ldrb	r1, [r3]	@ AE_AngelRingID, AE_AngelRingID
-	bl	AccessoryEffectTester		@
-@ Accessories.c:290:         result++;
-	subs	r3, r0, #1	@ tmp126, tmp130
-	sbcs	r0, r0, r3	@ tmp125, tmp130, tmp126
-	adds	r0, r0, r4	@ tmp125, tmp125, <retval>
-	adds	r4, r0, #1	@ <retval>, tmp125,
-.L99:
-@ Accessories.c:294: }
-	movs	r0, r4	@, <retval>
-	@ sp needed	@
-	pop	{r4, r5, r6}
-	pop	{r1}
-	bx	r1
-.L101:
-@ Accessories.c:285:         result++;
-	adds	r4, r4, #1	@ <retval>,
-@ Accessories.c:286:         growth -= 100;
-	subs	r0, r0, #100	@ growth,
-	b	.L100		@
-.L108:
-	.align	2
-.L107:
-	.word	Roll1RN
-	.word	AE_AngelRingID
-	.size	GetStatIncreaseWithAngelRing, .-GetStatIncreaseWithAngelRing
-	.align	1
 	.global	Proc_CheckForAccessory
 	.syntax unified
 	.code	16
@@ -805,39 +750,39 @@ Proc_CheckForAccessory:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ Accessories.c:297: 	if (!(roundData->attributes & BATTLE_HIT_ATTR_MISS)) { // if attack didn't miss 
+@ Accessories.c:298: 	if (!(roundData->attributes & BATTLE_HIT_ATTR_MISS)) { // if attack didn't miss 
 	ldr	r3, [r2]	@ *roundData_7(D), *roundData_7(D)
-@ Accessories.c:296: void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defender, struct BattleHit* roundData) {
+@ Accessories.c:297: void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defender, struct BattleHit* roundData) {
 	push	{r4, lr}	@
-@ Accessories.c:296: void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defender, struct BattleHit* roundData) {
+@ Accessories.c:297: void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defender, struct BattleHit* roundData) {
 	movs	r4, r1	@ defender, tmp131
-@ Accessories.c:297: 	if (!(roundData->attributes & BATTLE_HIT_ATTR_MISS)) { // if attack didn't miss 
+@ Accessories.c:298: 	if (!(roundData->attributes & BATTLE_HIT_ATTR_MISS)) { // if attack didn't miss 
 	lsls	r3, r3, #30	@ tmp135, *roundData_7(D),
-	bmi	.L109		@,
-@ Accessories.c:298: 		int accessory = EquippedAccessoryGetter(&defender->unit);
+	bmi	.L99		@,
+@ Accessories.c:299: 		int accessory = EquippedAccessoryGetter(&defender->unit);
 	movs	r0, r1	@, defender
 	bl	EquippedAccessoryGetter		@
-@ Accessories.c:299: 		if(accessory) { // if the defender has an accessory equipped
+@ Accessories.c:300: 		if(accessory) { // if the defender has an accessory equipped
 	cmp	r0, #0	@ accessory,
-	beq	.L109		@,
-@ Accessories.c:300: 			if (GetItemAttributes(accessory) & IA_DEPLETEUSESONDEFENSE) {
-	ldr	r3, .L119	@ tmp128,
+	beq	.L99		@,
+@ Accessories.c:301: 			if (GetItemAttributes(accessory) & IA_DEPLETEUSESONDEFENSE) {
+	ldr	r3, .L109	@ tmp128,
 	bl	.L8		@
-@ Accessories.c:300: 			if (GetItemAttributes(accessory) & IA_DEPLETEUSESONDEFENSE) {
+@ Accessories.c:301: 			if (GetItemAttributes(accessory) & IA_DEPLETEUSESONDEFENSE) {
 	lsls	r3, r0, #8	@ tmp136, tmp134,
-	bpl	.L109		@,
-@ Accessories.c:301: 				DepleteEquippedAccessoryUse(&defender->unit);
+	bpl	.L99		@,
+@ Accessories.c:302: 				DepleteEquippedAccessoryUse(&defender->unit);
 	movs	r0, r4	@, defender
 	bl	DepleteEquippedAccessoryUse		@
-.L109:
-@ Accessories.c:305: }
+.L99:
+@ Accessories.c:306: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L120:
+.L110:
 	.align	2
-.L119:
+.L109:
 	.word	GetItemAttributes
 	.size	Proc_CheckForAccessory, .-Proc_CheckForAccessory
 	.align	1
@@ -852,67 +797,67 @@ UnitAddItem:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ Accessories.c:308: int UnitAddItem(struct Unit* unit, u16 item) {
+@ Accessories.c:309: int UnitAddItem(struct Unit* unit, u16 item) {
 	movs	r5, r0	@ unit, tmp145
-@ Accessories.c:311: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+@ Accessories.c:312: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
 	lsls	r0, r1, #24	@ tmp128, item,
-	ldr	r3, .L129	@ tmp130,
+	ldr	r3, .L119	@ tmp130,
 	lsrs	r0, r0, #24	@ tmp128, tmp128,
-@ Accessories.c:308: int UnitAddItem(struct Unit* unit, u16 item) {
+@ Accessories.c:309: int UnitAddItem(struct Unit* unit, u16 item) {
 	movs	r4, r1	@ item, tmp146
-@ Accessories.c:311: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+@ Accessories.c:312: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
 	bl	.L8		@
-@ Accessories.c:311: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+@ Accessories.c:312: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
 	lsls	r3, r0, #9	@ tmp150, tmp147,
-	bpl	.L123		@,
-@ Accessories.c:311: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+	bpl	.L113		@,
+@ Accessories.c:312: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
 	movs	r0, r5	@, unit
 	bl	EquippedAccessoryGetter		@
-@ Accessories.c:311: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+@ Accessories.c:312: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
 	cmp	r0, #0	@ tmp148,
-	bne	.L123		@,
-@ Accessories.c:311: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+	bne	.L113		@,
+@ Accessories.c:312: 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
 	movs	r3, #128	@ tmp133,
 	lsls	r3, r3, #8	@ tmp133, tmp133,
 	orrs	r4, r3	@ item, tmp133
-.L123:
-@ Accessories.c:314:         if (unit->items[i] == 0) {
+.L113:
+@ Accessories.c:315:         if (unit->items[i] == 0) {
 	movs	r2, r5	@ tmp136, unit
-@ Accessories.c:313:     for (i = 0; i < 5; ++i) {
+@ Accessories.c:314:     for (i = 0; i < 5; ++i) {
 	movs	r0, #0	@ i,
-@ Accessories.c:314:         if (unit->items[i] == 0) {
+@ Accessories.c:315:         if (unit->items[i] == 0) {
 	adds	r2, r2, #30	@ tmp136,
-.L127:
+.L117:
 	lsls	r1, r0, #1	@ tmp137, i,
-@ Accessories.c:314:         if (unit->items[i] == 0) {
+@ Accessories.c:315:         if (unit->items[i] == 0) {
 	ldrh	r1, [r2, r1]	@ MEM[base: _26, index: _25, offset: 0B], MEM[base: _26, index: _25, offset: 0B]
 	cmp	r1, #0	@ MEM[base: _26, index: _25, offset: 0B],
-	bne	.L125		@,
-@ Accessories.c:315:             unit->items[i] = item;
+	bne	.L115		@,
+@ Accessories.c:316:             unit->items[i] = item;
 	adds	r0, r0, #12	@ tmp139,
 	lsls	r0, r0, #1	@ tmp140, tmp139,
 	adds	r0, r5, r0	@ tmp141, unit, tmp140
 	strh	r4, [r0, #6]	@ item, unit_14(D)->items
-@ Accessories.c:316:             return TRUE;
+@ Accessories.c:317:             return TRUE;
 	movs	r0, #1	@ <retval>,
-.L121:
-@ Accessories.c:321: }
+.L111:
+@ Accessories.c:322: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L125:
-@ Accessories.c:313:     for (i = 0; i < 5; ++i) {
+.L115:
+@ Accessories.c:314:     for (i = 0; i < 5; ++i) {
 	adds	r0, r0, #1	@ i,
-@ Accessories.c:313:     for (i = 0; i < 5; ++i) {
+@ Accessories.c:314:     for (i = 0; i < 5; ++i) {
 	cmp	r0, #5	@ i,
-	bne	.L127		@,
-@ Accessories.c:320:     return FALSE;
+	bne	.L117		@,
+@ Accessories.c:321:     return FALSE;
 	movs	r0, #0	@ <retval>,
-	b	.L121		@
-.L130:
+	b	.L111		@
+.L120:
 	.align	2
-.L129:
+.L119:
 	.word	GetItemAttributes
 	.size	UnitAddItem, .-UnitAddItem
 	.ident	"GCC: (devkitARM release 54) 10.1.0"

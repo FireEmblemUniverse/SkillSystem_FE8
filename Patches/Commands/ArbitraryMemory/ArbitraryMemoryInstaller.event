@@ -1,6 +1,8 @@
 #ifndef EVENT_WRITER
 #define EVENT_WRITER
 
+#include "ClearVRAM.lyn.event" 
+
 /* 
 030017A0    @DUNGEON_STRUCT_STRUCT    gDungeonState    {U}
 030017ac    @DUNGEON_STRUCT_STRUCT    gBeforeDungeonState    {U}

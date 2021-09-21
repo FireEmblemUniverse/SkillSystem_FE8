@@ -138,10 +138,10 @@ How many have you caught?[A][X]
 There's no running from a Trainer![A][X]
 
 # 0x09EC
-You drop 50 credits as you escape.[A][X]
+You drop 50 *{'} as you escape.[A][X]
 
 # 0x09ED
-You drop your remaining credits.[A][X]
+You drop your remaining *{'}.[A][X]
 
 # 0x09EE
 Pokecenter up ahead.[A][X]
@@ -293,10 +293,6 @@ to progress through here.[A][X]
 This area is closed.[A][X]
 
 
-# 0x0A12
-You hear a rustling[NL]
-in the burrow.[A][X]
-
 ## BrockDefeatText
 [OpenMidRight][LoadBrock][OpenMidRight]As proof of your victory, [NL]
 here's the BOULDERBADGE![A][NL]
@@ -305,6 +301,9 @@ you've completed my gym.[A][NL]
 The others won't be[NL]
 quite so easy.[A][X]
 
+## MistyWaitText
+[OpenMidRight][LoadMisty][OpenMidRight]Wait![NL]
+Take this.[A][X]
 
 ## BrockDryingPanText
 [OpenMidRight][LoadBrock][OpenMidRight]Wait![NL]
@@ -319,24 +318,24 @@ I know you'll take good care of it.[A][NL]
 Good luck, [Tact]![A][LoadOverworldFaces][X]
 
 
-# 0x0A16
-You can only rest[NL]
-at the start of the turn.[A][X]
+## MistyRewardText
+[OpenMidRight][LoadMisty][OpenMidRight]
+This soothing ring will restore[NL]
+your health every turn.[A][NL]
+I'm going to teach my Starmie Renewal,[NL]
+so I don't really need it anymore.[A][NL]
+Keep at it, [Tact]![A][LoadOverworldFaces][X]
 
 ## PokemonCapturedText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Pokemon captured.[NL]
-[ToggleRed]300 credits[ToggleRed] consumed.[A][X]
+[ToggleRed]300 *{'}[ToggleRed] consumed.[A][X]
 
 # 0x0A18
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[A][X]
 
 # 0x0A19
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Napping sequence observed.[NL]
-[ToggleRed]100 credits[ToggleRed] consumed.[A][X]
-
-# 0x0A1A
-Mt. Moon[A][X]
-
+[ToggleRed]100 *{'}[ToggleRed] consumed.[A][X]
 
 
 # 0x0A1D
@@ -350,7 +349,7 @@ frightening the inhabitants.[A][X]
 Have I got a deal for you![A][NL][NL]
 I'll let you have[NL]
 a swell MAGIKARP[A][NL]
-for just 500 Credits![A][NL]
+for just 2000 *{'}![A][NL]
 What do you say?[NL]
      [No][X]
 
@@ -364,11 +363,6 @@ What do you say?[NL]
 A Pokemon was[NL]
 sent to the PC.[A][X]
 
-# 0x0A26
-[OpenMidRight][LoadGaryShrug][OpenMidRight]I ain't got time for the likes of you.[NL]
-I'll see ya in Cerulean, loser![A][NL]
-This is the end of the demo.[NL]
-Smell ya later.[A][X]
 
 # 0x0A27
 [OpenRight][LoadBlankFace][OpenRight]Have you seen a Gastly yet?[A][X]
@@ -413,22 +407,12 @@ please join the discord.[A][X]
 
 # 0x0A30
 You want a bike?[NL]
-That'll be 1,000,000 credits.[A][NL]
+That'll be 1,000,000 *{'}.[A][NL]
 What?[NL]
 You ain't got it?[A][NL]
 Haha, get lost, kid.[A][X]
-# 0x0A31
-[OpenMidLeft][LoadMisty][OpenMidLeft]Ack! Washed away![A] Welp,[NL]
-I guess you've earned this.[A][NL]
-The CASCADEBADGE is a[NL]
-symbol of your victory.[A][NL]
-Show it off - you've [NL]
-completed this demo.[A][NL]
-What? You want more?[A][NL]
-Join the discord to help[NL]
-playtest upcoming content.[A][X]
 
-# 0x0A32
+## MistyChallengeText
 [OpenMidRight][LoadMisty][OpenMidRight]My policy is an all-out offensive[NL]
 with water-type Pokemon![A][NL]
 If you want to turn pro, you should [NL]
@@ -442,30 +426,21 @@ Still can't believe I lost...[A][NL][NL]
 Enough chatter! My Pokemon[NL]
 will scrub the floor with you![A][X]
 
-# 0x0A33
-[OpenMidRight][LoadGaryShrug][OpenMidRight]Tcch. I coulda won.[NL]
-These rules are cheap.[A][NL]
-I already beat Misty, y'kno.[A][NL]
-She didn't stand a chance[NL]
-against my team of Pikachu.[A][NL]
-Smell ya later, loser.[A][X]
-
-# 0x0A34
-[OpenMidRight][LoadGaryPoint][OpenMidRight]Hey! It's you![A][NL]
-I kicked your ass back[NL]
-in Viridian.[A][NL]
-Hm? What are you [NL]
-blabbering about.[A][NL]
-I have some steam[NL]
-to blow off. Let's go![A][X]
+## MistyDefeatText
+[OpenMidRight][LoadMisty][OpenMidRight]Ack! Washed away![A] Welp,[NL]
+I guess you've earned this.[A][NL]
+The CASCADEBADGE is a[NL]
+symbol of your victory.[A][NL]
+Show it off - you've[NL]
+done well.[A][X]
 
 # 0x0A35
-[OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [LoadOverworldFaces] credits?[NL]
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G] *{'}?[NL]
 [Yes][X]
 
 # 0x0A36
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[NL]
-Requires 500+ credits.[A][X]
+Requires 500+ *{'}.[A][X]
 
 # 0x0A37
 My name's Bill.[NL]
@@ -593,7 +568,7 @@ You're mean![A][X]
 
 ## R3_0xE2_BQ
 Hi![NL]
-I like shorts![A]
+I like shorts![A][NL]
 They're delightfully comfy and[NL]
 easy to wear![A][X]
 
@@ -650,8 +625,8 @@ Did you come to explore the cave,[NL]
 too?[A][X]
 
 ## MMB1_0xE1_BD
-Losing stinks![NL]
-It's so uncool.[A][X]
+I feel at home in here.[A][X]
+
 
 
 ## MMB1_0xE2_BQ
@@ -715,19 +690,19 @@ to get to CERULEAN CITY.[A][X]
 We, TEAM ROCKET, shall find the[NL]
 fossils![A][NL]
 Reviving POKEMON from them will[NL]
-earn us huge riches[A][X]
+earn us huge riches.[A][X]
 
 ## MMB3_0xE0_BD
 Urgh![NL]
-Now I'm mad[A][X]
+Now I'm mad![A][X]
 
 ## MMB3_0xE1_BQ
 We, TEAM ROCKET, are POKEMON[NL]
 gangsters![A][NL]
-We strike fear with our strength[A][X]
+We strike fear with our strength![A][X]
 
 ## MMB3_0xE1_BD
-I blew it[A][X]
+I blew it![A][X]
 
 
 ## MMB3_0xE2_BQ
@@ -741,10 +716,10 @@ So, you are good...[A][X]
 ## MMB3_0xE3_BQ
 Little kids shouldn't be messing[NL]
 around with grown-ups![A][NL]
-It could be bad news[A][X]
+It could be bad news.[A][X]
 
 ## MMB3_0xE3_BD
-I'm steamed[A][X]
+I'm steamed![A][X]
 
 
 
@@ -843,6 +818,9 @@ small trees with the right HM?[A][X]
 
 
 
+## UNUSED_0xE1_BD
+Losing stinks![NL]
+It's so uncool.[A][X]
 
 
 

@@ -35,7 +35,7 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 ReinforcementEvent:
-Reinforce(0xF0, 2, BurrowReinforcementUnits, 4, 4) // Mid burrow 
+Reinforce(0xF0, 1, BurrowReinforcementUnits, 4, 4) // Mid burrow 
 Reinforce(0xF1, 1, BurrowReinforcementUnits, 6, 4) // SE Burrow 
 Reinforce(0xF2, 1, BurrowReinforcementUnits, 9, 4) // NW Burrow 
 NoFade 
@@ -243,12 +243,12 @@ SHORT 500 // Gold
 TQD_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [6,23]  0b 0x0	0x1 REDA6R23 [0x1,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 hikerID 0x0 Level(1, Enemy, 1) [19,20]  0b 0x0	0x1 REDA19R20 [0x1,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE2 super_nerdID 0x0 Level(1, Enemy, 1) [29,24]  0b 0x0	0x1 REDA29R24 [0x1,0x0,0x0,0x0] TrainerFleeAI
-UNIT 0xE3 bug_catcherID 0x0 Level(1, Enemy, 1) [30,08]  0b 0x0	0x1 REDA30R8 [0x1,0x0,0x0,0x0] TrainerAI //
-UNIT 0xE4 hikerID 0x0 Level(1, Enemy, 1) [18,05]  0b 0x0	0x1 REDA18R5 [0x1,0x0,0x0,0x0] TrainerAI // TrainerBossAI
-UNIT 0xE5 hikerID 0x0 Level(1, Enemy, 1) [5,12]  0b 0x0	0x1 REDA5R12 [0x1,0x0,0x0,0x0] TrainerBossAI // TrainerBossAI
+UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [6,23]  0b 0x0	0x1 REDA6R23 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 hikerID 0x0 Level(1, Enemy, 1) [19,20]  0b 0x0	0x1 		REDA19R20 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE2 super_nerdID 0x0 Level(1, Enemy, 1) [29,24]  0b 0x0	0x1 REDA29R24 [ThreeRangeWep,0x0,0x0,0x0] TrainerFleeAI
+UNIT 0xE3 bug_catcherID 0x0 Level(1, Enemy, 1) [30,08]  0b 0x0	0x1 REDA30R8 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI //
+UNIT 0xE4 hikerID 0x0 Level(1, Enemy, 1) [18,05]  0b 0x0	0x1 		REDA18R5 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI // TrainerBossAI
+UNIT 0xE5 hikerID 0x0 Level(1, Enemy, 1) [5,12]  0b 0x0	0x1 		REDA5R12 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI // TrainerBossAI
 UNIT
 
 

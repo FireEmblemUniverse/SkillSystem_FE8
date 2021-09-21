@@ -36,7 +36,7 @@ AFEV 0 GlobalAfev 0
 AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshUnitsEvent 0 
+AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute21 [0,0] [0,0] 
 AREA 0 ToRoute1 [12,0] [13,0] 
 END_MAIN
@@ -55,22 +55,7 @@ ChapterTransition(Route21Ch, 0, 0)
 ToRoute1:
 ChapterTransition(Route1Ch, 13, 39)
 
-RefreshUnitsEvent:
 
-Read_Byte(RamFlags)
-SADD r5 rC r0 
-MemSlotToString(r5)
-//Text(0x9DD) 
-
-//Write_Byte(23, RamFlags) //202E204 //202E4D4 (FE8)
-//Read_Byte(RamFlags)
-SADD r5 rC r0 
-MemSlotToString(r5)
-//Text(0x9DD) 
-
-CALL RefreshIfNotInDanger
-NoFade
-ENDA 
 
 
 

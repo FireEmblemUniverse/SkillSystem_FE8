@@ -29,7 +29,7 @@ ldrh r0, [r4, r1] 	@ put the value into r0
 					@ so: load halfword into r0 using the Attacker+0x62 short 
 					
 					
-add r0,#20			@ add decimal 20 to r0 
+add r0,#10			@ add decimal 10 to r0 
 strh r0, [r4, r1]	@ store r0 into the attacker + r1 (0x62) short 
 
 GoBack:
