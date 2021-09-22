@@ -109,15 +109,14 @@
 
 //Added 
 
-#define SkipIntroFlag 0x83
-#define PlayableCutsceneFlag 0x85 
-#define RefreshActiveUnitFlag 0x86 
+#define SkipIntroFlag 0x86
+// 85 - program code FE8J ? 
 #define GaryRoute2SDefeatedFlag 0x8B 
 #define BoulderbadgeObtained 0x8C 
 #define RocketMagikarpFlag 0x8D 
 #define CascadebadgeObtained 0x8E
-
-
+#define PlayableCutsceneFlag 0x8F 
+#define RefreshActiveUnitFlag 0x90 
 
 
 

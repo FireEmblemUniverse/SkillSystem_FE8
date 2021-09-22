@@ -275,7 +275,107 @@ BNE 18 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsScub|IsPointer
 GOTO 200
+
 Label 18
+CompareTactText(MitchellName)
+BNE 19 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsMitchell|IsPointer
+GOTO 200
+
+Label 19
+CompareTactText(AkimName)
+BNE 20 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsAkim|IsPointer
+GOTO 200
+
+Label 20
+CompareTactText(PikuName)
+BNE 21 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsPiku|IsPointer
+GOTO 200
+
+Label 21
+CompareTactText(LtSurgeName)
+BNE 22 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsLtSurge|IsPointer
+GOTO 200
+
+Label 22
+CompareTactText(ErikaName)
+BNE 23 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsErika|IsPointer
+GOTO 200
+
+Label 23
+CompareTactText(KogaName)
+BNE 24 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsKoga|IsPointer
+GOTO 200
+
+Label 24
+CompareTactText(SabrinaName)
+BNE 25 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsSabrina|IsPointer
+GOTO 200
+
+Label 25
+CompareTactText(BlaineName)
+BNE 26 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsBlaine|IsPointer
+GOTO 200
+
+Label 26
+CompareTactText(GiovanniName)
+BNE 27 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsGiovanni|IsPointer
+GOTO 200
+
+Label 27
+CompareTactText(LoreleiName)
+BNE 28 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsLorelei|IsPointer
+GOTO 200
+
+Label 28
+CompareTactText(BrunoName)
+BNE 29 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsBruno|IsPointer
+GOTO 200
+
+Label 29
+CompareTactText(AgathaName)
+BNE 30 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsAgatha|IsPointer
+GOTO 200
+Label 30
+CompareTactText(MewStarterName)
+BNE 31 rC r7
+CALL NiceTryMessage
+GOTO 0x63
+
+Label 31
+CompareTactText(MewtwoStarterName)
+BNE 199 rC r7
+CALL NiceTryMessage
+GOTO 0x63
+
+
+
+Label 199
+
+
 GOTO 0x63 
 
 
@@ -293,6 +393,10 @@ Text(PlaytesterMessage)
 NoFade 
 ENDA 
 
+NiceTryMessage:
+Text(NiceTryText)
+NoFade 
+ENDA 
 
 
 
@@ -368,10 +472,7 @@ ALIGN 4
 
 
 
-ALIGN 4 
-UnitsA: 
-UNIT 0x02  EeveeID BonusUnitParameters
-UNIT
+
 
 ALIGN 4 
 UnitsPandan: 
@@ -383,30 +484,7 @@ UnitsDer:
 UNIT 0x02 EeveeID BonusUnitParameters
 UNIT
 
-ALIGN 4 
-UnitsAsh: 
-UNIT 0x02  PikachuID BonusUnitParameters
-UNIT
 
-ALIGN 4 
-UnitsRed: 
-UNIT 0x02  PikachuID BonusUnitParameters
-UNIT
-
-ALIGN 4 
-UnitsLance: 
-UNIT 0x02  DratiniID BonusUnitParameters
-UNIT
-
-ALIGN 4 
-UnitsMisty: 
-UNIT 0x02  StaryuID BonusUnitParameters
-UNIT
-
-ALIGN 4 
-UnitsGary: 
-UNIT 0x02  MagikarpID BonusUnitParameters
-UNIT
 
 ALIGN 4 
 Unitsbpat: 
@@ -458,7 +536,115 @@ UnitsJester:
 UNIT 0x02 MagikarpID BonusUnitParameters
 UNIT
 
+
+
+ALIGN 4 
+UnitsAkim: 
+UNIT 0x02 GastlyID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsMitchell: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsPiku: 
+UNIT 0x02 NidoranFID BonusUnitParameters
+UNIT
+
+
+ALIGN 4 
+UnitsAsh: 
+UNIT 0x02  PikachuID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsRed: 
+UNIT 0x02  PikachuID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsA: 
+UNIT 0x02  EeveeID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsGary: 
+UNIT 0x02  MagikarpID BonusUnitParameters
+UNIT
+
+
+
 ALIGN 4 
 UnitsBrock: 
 UNIT 0x02 GeodudeID BonusUnitParameters
 UNIT
+
+
+ALIGN 4 
+UnitsMisty: 
+UNIT 0x02  StaryuID BonusUnitParameters
+UNIT
+
+
+ALIGN 4 
+UnitsLtSurge: 
+UNIT 0x02 VoltorbID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsErika: 
+UNIT 0x02 BellsproutID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsKoga: 
+UNIT 0x02 KoffingID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsSabrina: 
+UNIT 0x02 AbraID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsBlaine: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsGiovanni: 
+UNIT 0x02 RhyhornID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsLorelei: 
+UNIT 0x02 SeelID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsBruno: 
+UNIT 0x02 MachopID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsAgatha: 
+UNIT 0x02 GastlyID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsLance: 
+UNIT 0x02  DratiniID BonusUnitParameters
+UNIT
+
+
+
+
+
+
+
+
+
+
+

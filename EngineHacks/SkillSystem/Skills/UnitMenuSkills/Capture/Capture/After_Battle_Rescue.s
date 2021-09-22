@@ -27,7 +27,6 @@
 
 @if capturing:
 
-
 	ldr     r0,[r5, #0xC]
 	mov		r1,#0x80
 	lsl		r1,#0x17

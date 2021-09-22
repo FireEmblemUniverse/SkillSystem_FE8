@@ -573,7 +573,7 @@ pop {r0}
 ldr r1, [r0, #0x30] @ X
 ldr r2, [r0, #0x34] @ Y 
 
-@mov r11, r11 @ ok.. 
+
 
 add sp, #0x38 
 

@@ -6,6 +6,7 @@
 #define EndTurn "ASMC 0x80225F9" // ChMenu "End" to end player phase 
 #define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 
 #define ReorderParty "ASMC 0x080956d9" // Reorder player units 
+#define QuickSave "ASMC 0x80B5D5D"
 
 
 // Text 

@@ -55,9 +55,9 @@ Other Vulnerary (Custom promotion items will replace this),0x8028b60,0x802a100,0
 Another Vulnerary (can be replaced with custom item effect),0x8028b60,0x802a100,0x802905c,0x802fec4
 Juna Fruit,0x8028bf8,0x802a0f4,0x802905c,0x802ff70
 Latona,0x8028b98,0x802a100,0x8029014,0x802ff48
-Multi-Skill Scroll,MultiScrollUsability|IsPointer,0x804f451,0x802905c,MultiScrollEffect|IsPointer
-0x39,MultiSpellScrollUsability|IsPointer,0x804f451,0x802905c,MultiSpellScrollEffect|IsPointer
-0x3a,MultiSpellScrollUsability|IsPointer,0x804f451,0x802905c,MultiSpellScrollEffect|IsPointer
+Multi-Skill Scroll,MultiScrollUsability|IsPointer,0x802a100,0x802905c,MultiScrollEffect|IsPointer
+0x39,MultiSpellScrollUsability|IsPointer,0x802a100,0x802905c,MultiSpellScrollEffect|IsPointer
+0x3a,MultiSpellScrollUsability|IsPointer,0x802a100,0x802905c,MultiSpellScrollEffect|IsPointer
 0x3b,0x8028c04,0x802a100,0x802905c,0x802ff76
 0x3c,0x8028c04,0x802a100,0x802905c,0x802ff76
 0x3d,0x8028c04,0x802a100,0x802905c,0x802ff76

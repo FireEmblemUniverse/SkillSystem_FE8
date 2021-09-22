@@ -244,6 +244,9 @@ NoFade
 ENDA 
 
 GlobalTurnEvent:
+#ifndef DEBUG_MODE
+QuickSave
+#endif 
 CHECK_EVENTID 9 
 BNE 0 rC r0 
 ENUF 1 // Auto refresh if not in danger 

@@ -76,7 +76,7 @@ Proceed to next area?[NL]
 Oh wait, I never gave you one![A][....][NL]
 Thing is, I gave my last one to Gary.[NL]
 He is my grandson, afterall.[A][NL]
-I knew you'd understand.[A][NL][NL]
+I knew you'd understand.[A][2NL]
 What? How will you track your collection?[....][NL]
 Welp,[....] beats me.[A][LoadOverworldFaces][NL]
 ...fine. You have a number of Pokemon.[NL]
@@ -156,7 +156,7 @@ Big Pokemon can catch little ones.[NL]
 		  
 ## ViridianForestNBirdkeeperText
 [OpenMidLeft][LoadBirdkeeper][OpenMidLeft]We won't let anyone through![NL]
-This is our turf, now.[A][NL][NL]
+This is our turf, now.[A][2NL]
 Quick, form a [ToggleRed]line of defense[ToggleRed]![A][X]
 
 
@@ -257,7 +257,7 @@ It's empty.[A][X]
 
 ## PewterNEHouseText
 I'll trade my Haunter [NL]
-if you bring me a Mewtwo.[A][NL][NL]
+if you bring me a Mewtwo.[A][2NL]
 Haha, I'm just messin'[NL]
 with you. I don't even[NL]
 have a Haunter.[A][X]
@@ -346,7 +346,7 @@ frightening the inhabitants.[A][X]
 
 ## RocketMagikarpText_A
 [OpenRight][LoadBlankFace][OpenRight]Hello, there![A][NL]
-Have I got a deal for you![A][NL][NL]
+Have I got a deal for you![A][2NL]
 I'll let you have[NL]
 a swell MAGIKARP[A][NL]
 for just 2000 *{'}![A][NL]
@@ -395,7 +395,7 @@ Cerulean City[A][X]
 Cerulean Gym.[NL]
 Water-type Pokemon.[A][X]
 # 0x0A2F
-Scram, kid![A][NL][NL]
+Scram, kid![A][2NL]
 More content? This is it![NL]
 27 chapters long.[A] [NL]
 Don't believe me? [NL]
@@ -422,7 +422,7 @@ monotype team as well?[A][NL]
 That's a bad idea.[A] [NL]
 What'll happen when some loser[NL]
 decides to catch 6 Pikachu?[A][NL]
-Still can't believe I lost...[A][NL][NL]
+Still can't believe I lost...[A][2NL]
 Enough chatter! My Pokemon[NL]
 will scrub the floor with you![A][X]
 
@@ -444,7 +444,7 @@ Requires 500+ *{'}.[A][X]
 
 # 0x0A37
 My name's Bill.[NL]
-Here, take this.[A][NL][NL][CloseSpeechFast]
+Here, take this.[A][2NL][CloseSpeechFast]
 OBTAINED SS. ANNE TICKET.[A][X]
 
 # 0x0A38
@@ -452,7 +452,7 @@ OBTAINED SS. ANNE TICKET.[A][X]
 Pokemon are gone for good.[A][NL]
 In it, you may only capture 34[NL]
 Pokemon throughout the game.[A][NL]
-It is not the recommended game mode.[A][NL][NL]
+It is not the recommended game mode.[A][2NL]
 Will you try Nuzlocke mode?[NL]
 [No][X]
 

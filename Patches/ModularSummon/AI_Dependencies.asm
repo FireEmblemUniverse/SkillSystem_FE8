@@ -282,15 +282,13 @@ b JudgeInRangeBranch
 
 @ 0803d450 AiTryDoOffensiveAction
 AnyTargetWithinRange:
-push {lr} 
-ldr r0, =0x803C865 @ IsUnitEnemyAndNotInTheAiInstList IsUnitEnemyAndNotInTheAiInstList
-blh 0x803d450 @AiTryDoOffensiveAction
-pop {r1} 
-bx r1 
-
-
-
-AnyTargetWithinRange2:
+@push {lr} 
+@ldr r0, =0x803C865 @ IsUnitEnemyAndNotInTheAiInstList IsUnitEnemyAndNotInTheAiInstList
+@blh 0x803d450 @AiTryDoOffensiveAction
+@mov r11, r11 
+@@ this doesn't work because AiTryDoOffensiveAction sets the ai action 
+@pop {r1} 
+@bx r1 
 push {r4-r7, lr} 
 mov r7, r8 
 push {r7}  
@@ -377,8 +375,9 @@ bne ContinueAnyoneWithinRangeLoop @ try next weapon
 push {r1}
 mov r0, r1 @ target 
 mov r1, r2 @ wep 
-blh 0x803D880 @ AiFillUnitStandingRangeWithWeapon
+blh 0x803B558 @ FillMovementAndRangeMapForItem
 pop {r1} 
+
 
 
 ldrb r0, [r1, #0x10] @ X 

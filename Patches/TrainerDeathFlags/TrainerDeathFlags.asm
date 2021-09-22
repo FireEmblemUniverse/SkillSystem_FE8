@@ -74,24 +74,7 @@ lsr r1, #24 @ # pokemon they have
 cmp r0, r1 
 blt ReturnFalse @ 1 or more of the units have already been summoned 
 mov r6, r1 @ Total party size 
-@ Check if we've previously been defeated 
 
-ldr r1, [r4] 
-ldrb r1, [r1, #4] @ Unit ID we're interested in 
-
-sub r1, #0xE0 @ Unit ID offset 
-
-ldr r3, =0x202BCF0 @ Chapter Data 
-ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
-lsl r0, #4 @ 16 trainers per area allowed 
-add r0, r1 @ which trainer exactly 
-ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
-lsl r1, r3, #3 @ 8 flags per byte so +0x500 
-add r0, r1 @ Full offset 
-
-blh CheckNewFlag
-cmp r0, #1 
-beq ReturnFalse @ trainer was defeated already 
 
 
 
@@ -339,6 +322,8 @@ ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
 lsl r0, #4 @ 16 trainers per area allowed 
 add r0, r1 @ which trainer exactly 
 ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
+lsl r3, #24 
+lsr r3, #24 
 lsl r1, r3, #3 @ 8 flags per byte so +0x500 
 add r0, r1 @ Full offset 
 mov r5, r0 
@@ -458,7 +443,7 @@ add r1, r0
 str r1, [r3, #4*0x0B] @ Coords 
 
 mov r0, r4 
-blh CheckTrainerFlag 
+bl CheckTrainerFlag 
 ldr r3, =MemorySlot 
 mov r2, #0x0C*4 
 str r0, [r3, r2] @ store result to sC 

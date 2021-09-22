@@ -95,6 +95,7 @@ POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
 TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
 END_MAIN
 
 CharacterBasedEvents:
@@ -102,6 +103,7 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
+House(0,TestCase, 6,5)
 //Vendor(ShopItems,2,7)
 //Armory(ArmoryItems,10,26)
 //Village(0x8,VillageEvent,18,27)
@@ -111,11 +113,10 @@ END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
-//AFEV 0 GlobalAfev 0
-//AFEV 0 CityAfev 0
+AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-//AFEV 0 RefreshActive 0 
+AFEV 0 RefreshIfNotInDanger 0 
 
 Dunno1:
 END_MAIN
@@ -147,9 +148,9 @@ UNIT
 
 
 EnemyUnits:
-UNIT 0xA0 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [6,16] 001b	0x0 0x01 REDA6R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0xA1 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [5,5] 001b	0x0 0x01 REDA5R5 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0xA2 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [16,6] 001b	0x0 0x01 REDA16R6 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [9,5] 001b	0x0 0x01 REDA9R5 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [16,6] 001b	0x0 0x01 REDA16R6 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT
 
 
@@ -169,8 +170,8 @@ ENUF SkipIntroFlag
 //ENUT 0xAC // Fast Movement 
 //ENUT 0xAB 
 
-Write_Byte(0, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(0, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //21, 19
 //Write_Byte(21, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -184,7 +185,7 @@ LOAD1 1 EnemyUnits
 ENUN 
 RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-
+SetUnitStatus(1, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 
 

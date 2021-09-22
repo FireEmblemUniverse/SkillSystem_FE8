@@ -11,7 +11,10 @@ ALIGN 4
 		//CUMO 0xFFFF
 		//STAL 0x01
 		//CURE
+		GetUnitStatus(0x7fff, 0x1e, 0x4)
+		SADD r5 rC r0
 		ASMC 0x080CCA15 //NewPromotion
+		SVAL 4 0x04; SVAL 1 0x7fff; SVAL 3 0x1e; ASMC SetUnitStatus
 		ASMC 0x80790a5 //MU_EndAll //deselect unit
 		NoFade
 		ENDA

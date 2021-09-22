@@ -20,9 +20,19 @@ CapturePokemon:	@Make
 
 	push {r4-r7, lr}	
 	
-	@r4 = attacker, r5 = defender, r6 = action struct 
+	@normally r4 = attacker, r5 = defender, r6 = action struct 
+	ldr r4, =0x203A4EC 
+	ldr r5, =0x203A56C
+	ldr r6, =0x203A958 
+	@ we need the actual unit structs 
+	ldrb r0, [r4, #0x0B] 
+	blh GetUnit 
+	mov r4, r0 
+	ldrb r0, [r5, #0x0B] 
+	blh GetUnit 
+	mov r5, r0 
 	
-	
+
 @check if dead
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
@@ -47,8 +57,8 @@ bne	Break
 @check that we're capturing the enemy 
 ldrb 	r0, [r5, #0x0C] @unit state 
 mov r1, #0x20 @being rescued 
-and r0, r1 
-cmp r0, #0
+and r1, r0
+cmp r1, #0
 beq Break 		@if they are not being rescued, Break 
 
 
@@ -60,14 +70,6 @@ add r3, #1 @start at #0x1E
 strb r0, [r5, r3]
 cmp r3, #0x27 
 blt WipeInventoryLoop
-
-@mov r0, #0x1 
-@lsl r0, #8 
-@add r0, #1  
-@mov r3, #0x1E 
-@strh r0, [r5, r3] @give unit the auto attack weapon when captured - nevermind 
-
-
 
 	
 @remove rescuee/er for player & enemy 
@@ -134,10 +136,6 @@ ldr r1, =#0x8803D30 @unit 0 in char table
 add r1, r0 
 str r1, [r5] 
 
-@ Vesly just added Aug 11 2021 
-@mov r3, #3 
-@strb r3, [r5, #0x0B] @ Make them deployed unit equal to the counter 
-@ nvm, not needed I think 
 
 mov r0, #1
 lsl r0, #8 @0x100 

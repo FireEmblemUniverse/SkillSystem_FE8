@@ -47,9 +47,12 @@ bl AnyTargetWithinRange
 cmp r0, #0 
 beq DontSummonStuff 
 
+
 blh ShouldTrainerSummonTeam 
 cmp r0, #0 
 beq DontSummonStuff
+
+
 
 b SummonStuff 
 

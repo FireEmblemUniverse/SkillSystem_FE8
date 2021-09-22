@@ -80,15 +80,16 @@ UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x
 #ifndef FREE_MOVEMENT_INSTALLED
 UNIT Eirika  MewtwoID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
-UNIT 3  DragoniteID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT Seth  ZapdosID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+
 UNIT
 
 
 Units2:
+UNIT 3  DragoniteID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Seth  ZapdosID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4 ArticunoID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 0x7 MoltresID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 6 MewID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+//UNIT 6 MewID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
@@ -194,15 +195,16 @@ SilentGiveItemWithDurability(Eirika, Scratch, 1)
 
 //GiveSkillAccessory(Eirika, RenewalID)
 //SilentGiveSkillAccessory(Eirika, RenewalID)
-
 SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
+
+SilentGiveItemWithDurability(Eirika, SkillScroll, RenewalID)
 
 //SilentGiveItemWithDurability(Eirika, RenewalRing, 0x1) // Starter 
 //SilentGiveItemWithDurability(Eirika, SkillScroll, ParagonID)
 //SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
 
 SilentGiveItemWithDurability(1, SpellScroll, LeechLife)
-SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
+
 SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
 SilentGiveItemWithDurability(Eirika, Berry, 0x83)
 
@@ -271,7 +273,7 @@ SupplyItemWithDurability(SuperPotion, 5)
 
  //[0902374F]?
 
-Write_Byte(10, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(8, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 
@@ -282,7 +284,7 @@ GIVETOMAIN 0
 SetTactName(VeslyName)
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(15, True, 0x145) // all 
+AutoLevelUnits(5, True, 0x145) // all 
 //AutoLevelUnits(133, False, 0x145) // all 
 
 
@@ -296,10 +298,10 @@ Write_Byte(4, GaryStarterClass)
 //DISA 0x2
 
 //ChangeEdition(1)
-Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(18, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(17, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 ViridianCh 
-//MNC2 Route1Ch 
+MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
 //MNC2 Route2SCh
@@ -312,7 +314,9 @@ Write_Byte(18, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 CeruleanCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
-MNC2 CeruleanCh
+//MNC2 CeruleanCh
+//MNC2 CinnabarCh
+
 //MNC2 Route2NCh
 //MNC2 PewterCh
 NoFade

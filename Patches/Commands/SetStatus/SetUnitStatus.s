@@ -24,7 +24,6 @@ SetUnitStatus:
 
 	ldr		r7, =MemorySlot 
 	ldr 	r4, [r7, #4*0x03]	@What status do we set?
-	
 	ldr 	r0, [r7, #4*0x01]	@What unit are we examining?
 	blh 	GetUnitByEventParameter
 	mov 	r5, r0 				@Copy unit pointer to r5 

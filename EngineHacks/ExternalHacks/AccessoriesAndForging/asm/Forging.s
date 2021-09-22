@@ -815,33 +815,33 @@ GetItemAfterUse:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ Forging.c:194:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+@ Forging.c:195:     if (GetItemAttributes(item) & IA_UNBREAKABLE) {
 	ldr	r3, .L87	@ tmp120,
-@ Forging.c:193: u16 GetItemAfterUse(int item) {
+@ Forging.c:194: u16 GetItemAfterUse(int item) {
 	movs	r4, r0	@ item, tmp129
-@ Forging.c:194:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+@ Forging.c:195:     if (GetItemAttributes(item) & IA_UNBREAKABLE) {
 	bl	.L25		@
-@ Forging.c:194:     if (GetItemAttributes(item) & IA_UNBREAKABLE)
+@ Forging.c:195:     if (GetItemAttributes(item) & IA_UNBREAKABLE) {
 	lsls	r3, r0, #28	@ tmp131, tmp130,
 	bpl	.L83		@,
 .L86:
-@ Forging.c:202:     return item; // return used item
+@ Forging.c:206:     return item; // return used item
 	lsls	r0, r4, #16	@ <retval>, item,
 	lsrs	r0, r0, #16	@ <retval>, <retval>,
 	b	.L84		@
 .L83:
-@ Forging.c:197:     item -= (1 << 8); // lose one use
+@ Forging.c:201:     item -= (1 << 8); // lose one use
 	subs	r4, r4, #1	@ item,
 	subs	r4, r4, #255	@ item,
-@ Forging.c:199:     if (ITEM_USES(item) < 1)
+@ Forging.c:203:     if (ITEM_USES(item) < 1)
 	lsls	r3, r4, #18	@ tmp126, item,
 	lsrs	r3, r3, #26	@ tmp125, tmp126,
-@ Forging.c:200:         return 0; // return no item if uses < 0
+@ Forging.c:204:         return 0; // return no item if uses < 0
 	subs	r0, r3, #0	@ <retval>, tmp125,
-@ Forging.c:199:     if (ITEM_USES(item) < 1)
+@ Forging.c:203:     if (ITEM_USES(item) < 1)
 	bne	.L86		@,
 .L84:
-@ Forging.c:203: }
+@ Forging.c:207: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}

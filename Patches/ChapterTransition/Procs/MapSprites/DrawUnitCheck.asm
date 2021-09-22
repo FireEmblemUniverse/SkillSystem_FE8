@@ -17,6 +17,9 @@ mov r3, #0x40
 lsl r3, #8
 mov r0, #0xC
 add r3, r3, r0
+mov r0, #1 
+lsl r0, #16 
+add r3, r0 @ 1400c 
 mov r0, #0
 @mov   r3, #0x1400C @dead, undeployed, solo animation1, escaped - don't draw
 and   r2, r3

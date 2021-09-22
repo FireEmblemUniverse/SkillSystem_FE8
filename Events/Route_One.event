@@ -161,7 +161,15 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //lower 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //bottom bush 
+LOAD1 0x1 EnemyUnitsE
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,9,35))  //bottom w
+LOAD1 0x1 EnemyUnitsF
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(16,32,21,35))  //bottom e
+
+
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds & Bushes 
 
 LOAD1 0x1 HumanTrainers
@@ -219,14 +227,19 @@ UNIT
 
 EnemyUnitsC:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [1,4] 001b	0x0 0x01 REDA1R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsD:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF2 BushID 0x0 Level(0, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI 
+UNIT
+
+EnemyUnitsE:
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT
+
+EnemyUnitsF:
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 ReinforcementUnits:

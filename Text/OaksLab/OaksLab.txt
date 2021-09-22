@@ -10,7 +10,7 @@ A Pokemon.[X]
 I mentioned they were coming, [NL]
 remember?[A][NL]
 [OpenLeft][ToggleColorInvert]Tcch.[A][NL]
-[ToggleColorInvert][OpenLeft][ClearFace][OpenMidRight][MoveRight][OpenRight]Welcome to the world of Pokemblem.[A][NL][NL]
+[ToggleColorInvert][OpenLeft][ClearFace][OpenMidRight][MoveRight][OpenRight]Welcome to the world of Pokemblem.[A][2NL]
 My name is OAK![NL]
 People call me the Pokemblem PROF![A][CloseSpeechFast][NL]
 [OpenLeft][LoadGaryPoint][OpenLeft][ToggleColorInvert]The hell are you saying?[NL]
@@ -72,10 +72,14 @@ Well, that's a surprise.[A][NL]
 Here's something extra[NL]
 special, just for you.[A][X]
 
+## NiceTryText
+[OpenMidRight][LoadOak][OpenMidRight]Oh, you wanted[NL]
+[Tact]?[A][NL]
+Nice try.[A][X]
 
-# 0x118F
-[OpenMidRight][LoadOak][OpenMidRight]Choose a name.[A][X]
 
+# 0x11E2
+A Pokemon.[X]
 
 ## JesterName
 Jester[X]
@@ -94,18 +98,7 @@ Pandan[X]
 
 ## DerName
 Der[X]
-## AshName
-Ash[X]
-## RedName
-Red[X]
-## LanceName
-Lance[X]
-## BrockName
-Brock[X]
-## MistyName
-Misty[X]
-## GaryName
-Gary[X]
+
 
 ## bpatName
 bpat[X]
@@ -113,11 +106,63 @@ bpat[X]
 Vesly[X]
 ## ZaimName
 Zaim[X]
-## AName
-A[X]
+
 ## AriadnaName
 Ariadna[X]
 ## ScubName
 Scub[X]
+## AkimName
+Akim[X]
+## MitchellName
+Mitchell[X]
+## PikuName
+Piku[X]
+
+## AName
+A[X]
+## AshName
+Ash[X]
+## RedName
+Red[X]
+## GaryName
+Gary[X]
+
+## BrockName
+Brock[X]
+## MistyName
+Misty[X]
+## LtSurgeName
+Lt Surge[X]
+## ErikaName
+Erika[X]
+## KogaName
+Koga[X]
+## SabrinaName
+Sabrina[X]
+## BlaineName
+Blaine[X]
+## GiovanniName
+Giovanni[X]
+## LoreleiName
+Lorelei[X]
+## BrunoName
+Bruno[X]
+## AgathaName
+Agatha[X]
+## LanceName
+Lance[X]
+
+## MewStarterName
+Mew[X]
+## MewtwoStarterName
+Mewtwo[X]
+
+
+
+
+
+
+
+
 
 

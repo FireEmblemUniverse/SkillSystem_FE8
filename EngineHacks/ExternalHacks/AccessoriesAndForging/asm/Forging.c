@@ -190,10 +190,14 @@ void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u1
     DrawIcon(mapOut, GetItemIconId(item), 0x4000);
 }
 
-u16 GetItemAfterUse(int item) {
-    if (GetItemAttributes(item) & IA_UNBREAKABLE)
-        return item; // unbreakable items don't loose uses!
 
+u16 GetItemAfterUse(int item) {
+    if (GetItemAttributes(item) & IA_UNBREAKABLE) {
+        return item; // unbreakable items don't loose uses!
+	}
+	
+
+	
     item -= (1 << 8); // lose one use
 
     if (ITEM_USES(item) < 1)
