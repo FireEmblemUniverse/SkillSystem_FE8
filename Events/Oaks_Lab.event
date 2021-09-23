@@ -20,7 +20,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventNPC(8,OaksPikachuEvent,1,1) 
+TurnEventNPC(0x10,OaksPikachuEvent,1,1) 
 END_MAIN
 
 CharacterBasedEvents:
@@ -367,11 +367,16 @@ GOTO 0x63
 
 Label 31
 CompareTactText(MewtwoStarterName)
-BNE 199 rC r7
+BNE 32 rC r7
 CALL NiceTryMessage
 GOTO 0x63
 
-
+Label 32
+CompareTactText(ChilanName)
+BNE 199 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsChilan|IsPointer
+GOTO 200
 
 Label 199
 
@@ -536,7 +541,10 @@ UnitsJester:
 UNIT 0x02 MagikarpID BonusUnitParameters
 UNIT
 
-
+ALIGN 4 
+UnitsChilan: 
+UNIT 0x02 MagnemiteID BonusUnitParameters
+UNIT
 
 ALIGN 4 
 UnitsAkim: 

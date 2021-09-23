@@ -3,16 +3,15 @@
 #include "Vanilla/Shops.txt"
 #include "Vanilla/Terrain.txt"
 #include "Vanilla/default.txt" 
-
-
+#include "ClassesCharsItems/VanillaItemText.txt"
 #include "ClassesCharsItems/Characters.txt"
-#include "ClassesCharsItems/Items.txt"
 #include "ClassesCharsItems/ClassNamesDesc.txt" 
 
-
+#include "ClassesCharsItems/Items.txt"
 #include "MenusSkillsEtc/unitmenu_text.txt"
 #include "MenusSkillsEtc/WeaponTypes.txt"
 #include "MenusSkillsEtc/skilldesc_text.txt"
+#include "MenusSkillsEtc/skillname_text.txt"
 #include "MenusSkillsEtc/chapter_names.txt"
 
 #include "OaksLab/OaksLab.txt"

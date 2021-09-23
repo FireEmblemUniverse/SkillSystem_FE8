@@ -1414,5 +1414,8 @@ My Skill 69: Has an effect.[X]
 ## SD_SK70
 My Skill 70: Has an effect.[X]
 
-
+// used these for skill names 
+//([:][^\n]*[\[X\]])
+//([:][^\n]*[\n][^\n]*[\[X\]])
+//([:][^\n]*[\n][^\n]*[\n][^\n]*[\[X\]])
 

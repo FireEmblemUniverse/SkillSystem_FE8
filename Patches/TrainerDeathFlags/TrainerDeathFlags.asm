@@ -203,7 +203,7 @@ strb r0, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
 cmp r0, #50 
-beq False_IsTrainersTeamDefeated 
+beq False_IsTrainersTeamDefeated @ just now, anyway (they were previously defeated) 
 
 mov r2, #0x2E 
 ldrb r1, [r6, r2] @ Wexp2 as which ones that have fainted (none so far) 
@@ -228,6 +228,49 @@ Exit_IsTrainersTeamDefeated:
 pop {r4-r7}
 pop {r1}
 bx r1 
+
+.global AreAnyTrainerBattlesActive
+.type AreAnyTrainerBattlesActive, %function 
+AreAnyTrainerBattlesActive:
+
+push {r4-r7, lr}
+
+
+
+mov r4, #0xDF 
+mov r5, #0x2D @ number of summoned units 
+
+AreAnyTrainerBattlesActive_Loop:
+add r4, #1 
+cmp r4, #0xF0 
+bge BreakLoop
+mov r0, r4 
+blh GetUnitByEventParameter 
+cmp r0, #0 
+beq AreAnyTrainerBattlesActive_Loop
+ldrb r1, [r0, r5]
+cmp r1, #0 
+beq AreAnyTrainerBattlesActive_Loop 
+cmp r1, #50 
+beq AreAnyTrainerBattlesActive_Loop
+
+@ if we got here, at least one battle is active, so ret true 
+mov r0, #1 
+b AreAnyTrainerBattlesActive_Exit
+
+BreakLoop:
+mov r0, #0 @ False 
+
+AreAnyTrainerBattlesActive_Exit:
+
+pop {r4-r7}
+pop {r1}
+bx r1 
+
+
+
+
+
 
 
 .global DefeatedTrainerRoutine
@@ -453,6 +496,17 @@ blh SetNewFlag
 mov r0, #50 
 mov r1, #0x2D 
 strb r0, [r4, r1] @ to not trigger the battle again 
+
+bl AreAnyTrainerBattlesActive 
+cmp r0, #1
+beq DontTurnOffFlag
+
+ldr r0, =TrainerBattleActiveFlag 
+lsl r0, #24 
+lsr r0, #24 
+blh 0x8083cd8 @UnsetGlobalEventId
+DontTurnOffFlag: 
+
 
 pop {r4}
 pop {r0}

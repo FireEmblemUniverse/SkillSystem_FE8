@@ -284,7 +284,7 @@ GIVETOMAIN 0
 SetTactName(VeslyName)
 //ENUT 0xAB // Enable toy box 
 //ENUT 0xAC
-AutoLevelUnits(5, True, 0x145) // all 
+AutoLevelUnits(12, True, 0x145) // all 
 //AutoLevelUnits(133, False, 0x145) // all 
 
 
@@ -298,10 +298,10 @@ Write_Byte(4, GaryStarterClass)
 //DISA 0x2
 
 //ChangeEdition(1)
-Write_Byte(6, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(17, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(8, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 ViridianCh 
-MNC2 Route1Ch 
+//MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
 //MNC2 Route2SCh
@@ -311,7 +311,7 @@ MNC2 Route1Ch
 //MNC2 MtMoonB1Ch
 //MNC2 CeruleanCh
 //MNC2 Route4ECh
-//MNC2 CeruleanCh
+MNC2 CeruleanCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 CeruleanCh

@@ -111,7 +111,7 @@ POP
 
 ALIGN 4
 DurabilityBasedItemNameList: //used for item name
-DurabilityTextEntry(0xFFFF,True,SkillDescTable)
+DurabilityTextEntry(0xFFFF,False,SkillNameTable)
 DurabilityTextEntry(0xFFFE,False,ItemNameTable)
 DurabilityTextEntry(0xFFFD,False,StatAccessoryNameTable)
 DurabilityTextEntry(0xFFFC,False,SkillAccessoryNameTable_1)

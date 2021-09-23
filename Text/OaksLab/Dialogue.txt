@@ -1,8 +1,6 @@
 
 
-# 0x900
-Retreat to Pewter city?
-[No][X]
+
 
 ## RematchText
 Rematch trainer?[NL]
@@ -89,39 +87,11 @@ You find a world map![NL]
 You decide to leave it.[A][X]
 
 
-# 0x09D9
-Do you forfeit?[NL]
-[Yes][X]
-# 0x09DA
-Under development.[A][X]
+
 ## GiveUpLearnMoveText
 Give up on new move?[NL]
 [Yes][X]
-# 0x09DC
-Continue South?[NL]
-[Yes][X]
 
-# 0x09DD
-[OpenMidRight][LoadBlankFace][OpenMidRight][G][A][X]
-
-# 0x09DE
-Continue North?
-[Yes][X]
-# 0x09DF
-[OpenMidLeft][LoadFace][0x135][OpenMidLeft]Do you truly think you can take[.][NL]
-us with those numbers?[A][NL]
-Imbecile! You'll learn the[NL]
-error of your ways![.][A][X]
-# 0x09E0
-It seems you can't go here yet.[A][X]
-# 0x09E1
-'Pkmn owned', please send bug report.[A][X]
-# 0x09E2
-Your party is completely full.[A][X]
-# 0x09E3
-[OpenLeft][LoadOverworldFaces] out of 35 max pkmn.[A][X]
-# 0x09E4
-'Unit ID taken', please send bug report.[A][X]
 
 
 ## CannotEscapeTrainerBattleText
@@ -134,25 +104,13 @@ you'd show up.[A][NL]
 I've already caught 4 Pokemon![NL]
 How many have you caught?[A][X]
 
-# 0x09EB
-There's no running from a Trainer![A][X]
 
-# 0x09EC
-You drop 50 *{'} as you escape.[A][X]
-
-# 0x09ED
-You drop your remaining *{'}.[A][X]
-
-# 0x09EE
-Pokecenter up ahead.[A][X]
 
 ## GaryRoute2SDefeatText
 [OpenMidLeft][LoadGaryShrug][OpenMidLeft]Whatever, man.[NL]
 I was goin' easy on ya.[A][X]
 
-# 0x09F0
-Big Pokemon can catch little ones.[NL]
-          - Trainer's Tips[A][X]
+
 		  
 ## ViridianForestNBirdkeeperText
 [OpenMidLeft][LoadBirdkeeper][OpenMidLeft]We won't let anyone through![NL]
@@ -176,18 +134,18 @@ Oak's Research Lab.[A][X]
 Save by visiting home or a Pokecenter.[NL]
             -Trainer's Tips[A][X]
 			
-# 0x09F8
+## UnusedTrainerTips1
 Manage your party at a Pokecenter.[NL]
           - Trainer's Tips[A][X]
 		  
 ## ViridianCityText
 Viridian City.[A][X]
-# 0x09FA
+## UnusedTrainerTips2
 You can carry up to 6 Pokemon[NL]
 with you at once.[NL]
             - Trainer's Tips.[A][X]
 			
-# 0x09FB
+## JumpLedgeText
 Jump down?   
 [No][X]
 
@@ -199,23 +157,14 @@ Jump down?
 
 
 
-# 0x09FC
-Viridian Forest.[A][X]
-
-# 0x09FD
-Route 2.[A][X]
-
-# 0x09FE
+## UnusedTrainerTips3
 Hold DOWN after WAIT to[NL]
 quickly jump down ledges.[NL]
       - Trainer's Tips.[A][X]
 	  
-# 0x09FF
-Some [ToggleRed]SIGNS[ToggleRed] allow[NL]
-for fast travel.[NL]
- - Trainer's Tips.[A][X]
+
  
-# 0x0A00
+## UnusedTrainerTips4
 Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
 you out, avoiding combat.[NL]
         - Trainer's Tips.[A][X]
@@ -232,17 +181,8 @@ up in here like ya own the place?[A][NL]
 This is private property![NL]
 Let me sip my coffee in peace.[A][X]
 
-# 0x0A03
-At times, DangerRadius will[NL]
-pop up automatically.[A][NL]
-Open the MENU to [NL]
-disable this.[A][X]
 
-# 0x0A04
-Use [ToggleRed]SELECT[ToggleRed] on a unit[NL]
-to toggle DangerRadius.[A][NL]
-At times, DangerRadius will[NL]
-pop up automatically.[A][X]
+
 
 ## PewterMuseumText
 This Museum is where we[NL]
@@ -330,18 +270,6 @@ Keep at it, [Tact]![A][LoadOverworldFaces][X]
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Pokemon captured.[NL]
 [ToggleRed]300 *{'}[ToggleRed] consumed.[A][X]
 
-# 0x0A18
-[OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[A][X]
-
-# 0x0A19
-[OpenLeft][LoadDex][OpenLeft][FastPrint]Napping sequence observed.[NL]
-[ToggleRed]100 *{'}[ToggleRed] consumed.[A][X]
-
-
-# 0x0A1D
-You cry into the burrow,[NL]
-frightening the inhabitants.[A][X]
-
 
 
 ## RocketMagikarpText_A
@@ -359,58 +287,23 @@ What do you say?[NL]
 ## RocketMagikarpText_C
 [OpenRight]Tcch, what a waste of time.[A][X]
 
-# 0x0A25
-A Pokemon was[NL]
-sent to the PC.[A][X]
 
 
-# 0x0A27
+## UnusedSeenGastlyquote
 [OpenRight][LoadBlankFace][OpenRight]Have you seen a Gastly yet?[A][X]
-# 0x0A28
-[OpenMidLeft][LoadOak][OpenMidLeft]Debug mode?[NL]
-[No][X]
+
 ## DoorLockedText
 The door is locked.[A][X]
 
 
 
-# 0x0A2A
+## UnusedBillQuote
 There's a Pokemaniac who[NL]
 lives just up north of here.[A][NL]
 We're safer off that way,[NL]
 if you ask me.[A] Who knows[NL]
 what he gets up to?[A][X]
 
-# 0x0A2B
-South: Underground Pass,[NL]
-Saffron City.[A][X]
-
-# 0x0A2C
-Fancy Bike Shop[A][X]
-
-# 0x0A2D
-Cerulean City[A][X]
-
-# 0x0A2E
-Cerulean Gym.[NL]
-Water-type Pokemon.[A][X]
-# 0x0A2F
-Scram, kid![A][2NL]
-More content? This is it![NL]
-27 chapters long.[A] [NL]
-Don't believe me? [NL]
-Count each area yourself.[A][NL]
-I'll keep standing here [NL]
-until the next release.[A][NL]
-If you like the hack,[NL]
-please join the discord.[A][X]
-
-# 0x0A30
-You want a bike?[NL]
-That'll be 1,000,000 *{'}.[A][NL]
-What?[NL]
-You ain't got it?[A][NL]
-Haha, get lost, kid.[A][X]
 
 ## MistyChallengeText
 [OpenMidRight][LoadMisty][OpenMidRight]My policy is an all-out offensive[NL]
@@ -434,27 +327,19 @@ symbol of your victory.[A][NL]
 Show it off - you've[NL]
 done well.[A][X]
 
-# 0x0A35
+## SaveCostText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G] *{'}?[NL]
 [Yes][X]
 
-# 0x0A36
+## TooPoorToSaveText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[NL]
 Requires 500+ *{'}.[A][X]
 
-# 0x0A37
+## BillHouseText
 My name's Bill.[NL]
 Here, take this.[A][2NL][CloseSpeechFast]
 OBTAINED SS. ANNE TICKET.[A][X]
 
-# 0x0A38
-[OpenMidLeft][LoadOak][OpenMidLeft]On Nuzlocke mode, fainted [NL]
-Pokemon are gone for good.[A][NL]
-In it, you may only capture 34[NL]
-Pokemon throughout the game.[A][NL]
-It is not the recommended game mode.[A][2NL]
-Will you try Nuzlocke mode?[NL]
-[No][X]
 
 ## ViridianForestTrainerE4Text
 I like shorts![A][NL]

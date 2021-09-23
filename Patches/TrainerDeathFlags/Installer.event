@@ -59,9 +59,14 @@ CUMO 0x7ffE
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
 
+
 BottomWallS2Text
 CURE
 BNE 0x63 rA r0  // award no gold for rematches 
+// just in case... 
+SVAL rC 16 
+SLSL r3 r3 rC
+SLSR r3 r3 rC // so never over 65535  
 GIVETOMAIN 0
 GOTO 0x63 
 

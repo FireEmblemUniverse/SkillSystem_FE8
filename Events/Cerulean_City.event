@@ -1,7 +1,7 @@
 #define ChapterID CeruleanCh
 #define GenericB UnitCeruleanTrainer
 #define WildLvl 5 
-#define TrainerL 14 
+#define TrainerL 12 
 
 
 
@@ -69,7 +69,7 @@ AREA 0 ToRoute24_Walk [15,0] [17,0]
 AREA 0 ToRoute24_Swim [9,0] [13,0] 
 AREA 0 ToRoute9W [31,10] [31,18] 
 AREA 0 ToRoute5 [19,31] [19,31] // Cut bush 
-AREA 0 StartRivalBattleCutscene [14,0] [24,16] // Turn event instead 
+AREA 0 StartRivalBattleCutscene [14,0] [24,16] //
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -157,7 +157,7 @@ EnterTutTrap(10,10, CeruleanCityNHouseText) //
 EnterTutTrap(8,16, DoorLockedText) // 
 EnterTutTrap(16,27, CeruleanCitySHouseText) //   
 
-EnterTutTrap(6,27, BicycleShopText) //   
+EnterTutTrap(6,27, BicycleShopText) // this has two doors    
 EnterTutTrap(7,27, BicycleShopText) //   
 
 

@@ -37,7 +37,7 @@ check_acting:
 	ldrb r2, [r0, r1] 
 	ldrb r1, [r0, #0x08] @ Current level 
 	cmp r1, r2 
-	beq Exit 
+	beq check_target 
 	ldrb r0, [r0, #0x0B] @ Unit Index
 	mov r1, #0xC0
 	tst r0, r1

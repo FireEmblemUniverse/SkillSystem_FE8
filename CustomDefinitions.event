@@ -116,7 +116,9 @@
 #define RocketMagikarpFlag 0x8D 
 #define CascadebadgeObtained 0x8E
 #define PlayableCutsceneFlag 0x8F 
-#define RefreshActiveUnitFlag 0x90 
+#define TrainerBattleActiveFlag 0x90
+#define RefreshActiveUnitFlag 0x91 
+#define CallCountdownFlag 0x8 
 
 
 

@@ -260,12 +260,23 @@ CallCommandUsability:
 push {lr}
 
 
-mov r0, #8 @ Flag that prevents call 
+ldr r0, =CallCountdownFlag @ Flag that prevents call 
+lsl r0, #24 
+lsr r0, #24 
 blh CheckEventId
 cmp r0, #0 
 bne Usability_False
 
-mov r0, #0x85 @ Flag that prevents call 
+ldr r0, =PlayableCutsceneFlag @ Flag that prevents call 
+lsl r0, #24 
+lsr r0, #24 
+blh CheckEventId
+cmp r0, #0 
+bne Usability_False
+
+ldr r0, =TrainerBattleActiveFlag @ Flag that prevents call 
+lsl r0, #24 
+lsr r0, #24 
 blh CheckEventId
 cmp r0, #0 
 bne Usability_False

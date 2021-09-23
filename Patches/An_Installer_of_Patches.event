@@ -2,9 +2,8 @@
 
 #include "ItemSpecialEffect/Installer.event" 
 
-#ifdef DEBUG_MODE 
-	#include "AutosaveKiller.event"
-#endif 
+#include "AutosaveKiller.event"
+
 
 #include "CapturePokemon/CapturePokemonInstaller.event"  // Should be before modular summon stuff 
 
