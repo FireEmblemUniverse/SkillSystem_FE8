@@ -11,18 +11,16 @@ beq return_nosteal
   beq NoSkillAnim
   
     @ Check which side attacks
-    @ TODO, mimic 8058358's if else.
+    @ Mimics 8058358's if else.
     ldr   r0, [r7]
     lsl   r0, #0x8
     lsr   r0, #0x1B
     mov   r1, #0x8
     and   r0, r1
     lsr   r0, #0x3            @ 1 if Target/Defender is attacking. 0 Otherwise.
-    
     ldr   r1, =0x203E108
     ldrh  r1, [r1]            @ 1 if right side initiated combat.
     cmp   r0, r1
-    
     bne   Right
     @Left:
       mov   r3, r5
@@ -31,7 +29,6 @@ beq return_nosteal
       mov   r3, r4
     L1:
     
-  
     ldrh r1, [r3]
     mov r0, #0x80
     lsl r0, #4
