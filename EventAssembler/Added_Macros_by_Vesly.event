@@ -1,6 +1,7 @@
 
 
 // Useful Vanilla ASMCs 
+#define StartGameOver "ASMC 0x800D391" // Game over ASMC 
 #define EndMMS "ASMC 0x80790a5" //MU_EndAll //deselect unit
 #define PromoteActiveUnit "ASMC 0x080CCA15" //NewPromotion
 #define EndTurn "ASMC 0x80225F9" // ChMenu "End" to end player phase 
