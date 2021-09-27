@@ -90,7 +90,6 @@ CALL ClosedArea
 ChapterTransition(Route5Ch, 16, 0)
 
 ToRoute9W:
-CALL ClosedArea
 ChapterTransition(Route9WCh, 0, 8)
 
 
@@ -102,7 +101,6 @@ CALL ClosedArea
 ChapterTransition(Route4ECh, 58, 0)
 
 ToRoute24_Walk:
-CALL ClosedArea
 ChapterTransition(Route24Ch, 11, 39)
 
 ToRoute24_Swim:

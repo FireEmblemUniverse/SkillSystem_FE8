@@ -1,0 +1,1143 @@
+.ceiling 255
+
+//Here you can choose which skills to install. You can only install up to 254, ranging from IDs 1 - 254. Make sure you don't use the same ID more than once.
+//To disable a skill, define it as 255.
+//Skills are categorized broadly by where their effect is applied, in no particular order within each category.
+
+//AI Skills
+
+//Provoke: Enemies are more likely to target this unit.
+//By Tequila
+ ProvokeID
+
+//Shade: Enemies are less likely to target this unit.
+//By Sme
+ ShadeID
+
+//Shade+: Enemies will not target this unit.
+//By Sme
+ ShadePlusID
+
+
+// Restore 1/4 hp dealt - Vesly
+ AbsorbID 
+
+// Restore 1/2 hp dealt - Vesly 
+ DrainID
+
+// Opponent takes 20% hp after attacking you 
+ RockyHelmetSkillID 
+
+
+ 
+ 
+//Aura Skills
+
+//Anathema: -10 Avoid/Dodge to all enemies within 3 tiles.
+//Author Unknown (Initial Commit)
+ AnathemaID
+
+
+
+
+
+
+
+//Focus: +10 Critical if there are no allies within 3 tiles.
+//Author Unknown (Initial Commit)
+ FocusID
+
+
+
+
+//Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
+//Author Unknown (Initial Commit)
+ TantivyID
+
+
+
+
+
+
+
+
+
+
+//Debuff Skills
+
+//Seal Skills: Debuff opponent's stat by 6 after combat. (Recover 1/turn)
+//Author Unknown (Initial Commit)
+ SealStrID
+ SealSklID
+ SealSpdID
+ SealLukID
+ SealDefID
+ SealResID
+//By Snakey1
+ SealMagID
+
+//Full Metal Body: This unit is immune to all the Seal skills.
+//By Leonarth
+ FullMetalBodyID
+
+
+
+// hit 2-5 times - Vesly 
+ MultiHitID 
+// hit 3 times - Vesly
+ TripleHitID
+
+//Effectiveness Skills
+
+
+
+
+//Resourceful: Double effectiveness multiplier.
+//By Sme
+ ResourcefulID
+
+
+//EXP Skills
+
+//Paragon: Experience gain is doubled.
+//Author Unknown (Initial Commit)
+ ParagonID
+
+//Void Curse: This unit gives no experience when defeated.
+//By Sme
+ VoidCurseID
+
+//Growth Skills
+
+//Blossom: 2x growth rates, but 1/2 exp gain.
+//By Sme
+ BlossomID
+
+//Aptitude: +20% to all growth rates.
+//By Sme
+ AptitudeID
+
+
+//HP Restoration Skills
+
+//Renewal: Restore 30% of max HP at the start of each turn.
+//Author Unknown (Initial Commit)
+ RenewalID
+
+//Amaterasu: Allies within 2 tiles recover 20% HP each turn.
+//Author Unknown (Initial Commit)
+ AmaterasuID
+
+//Camaraderie: Recover 10% HP each turn if there are allies within 2 tiles.
+//Author Unknown (Initial Commit)
+ CamaraderieID
+
+//Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
+//Author Unknown (Initial Commit)
+ ReliefID
+
+//Bond: All allies within 3 tiles recover 10% HP each turn.
+//Author Unknown (Initial Commit)
+ BondID
+
+//Forager: Recover 20% HP each turn if on a Plain, Forest or Mountain.
+//By Leonarth
+ ForagerID
+
+//Imbue: Recover HP equal to Magic at the start of each turn.
+//By Sme
+ ImbueID
+
+//Movement Skills
+
+//Acrobat: All traversable terrain costs 1 movement.
+//By Tequila
+ AcrobatID
+
+//Armor March: At start of turn, if unit is adjacent to an armor ally, unit and adjacent armor allies gain +2 Mov.
+//By Leonarth
+ ArmorMarchID
+
+//Pass: Can move through enemy units.
+//By Tequila
+ PassID
+
+//Keep Up: At start of turn, if unit is within 3 spaces of an ally with Canto or Canto+, unit gains +2 Mov.
+//By Sme
+ KeepUpID
+
+//Indoor March: At start of turn, if unit is on indoor terrain, unit gains +2 Mov.
+//By Sme
+ IndoorMarchID
+
+//Nature Rush: At start of turn, if unit is on natural terrain, unit gains +2 Mov.
+//By Sme
+ NatureRushID
+
+
+//Mug-Loading Skills
+
+//Quantum Visage: Face changes every time it's looked at.
+//By Leonarth
+ RandomMugID
+
+
+//Identity Problems: This unit can't decide on a name or face.
+//By Leonarth
+ IdentityProblemsID
+
+
+//Post-Battle Skills
+
+//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
+//By circleseverywhere
+ BreathOfLifeID
+
+//Canto: Can move again after certain actions.
+//By Tequila
+ CantoID
+
+//Canto+: Can move again after attacking and other actions.
+//By Tequila
+ CantoPlusID
+
+//Despoil: Obtain a Red Gem after attacking and defeating an enemy. (Luck % activation)
+//Author Unknown (Initial Commit)
+ DespoilID
+
+//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
+//By circleseverywhere
+ FuryID
+
+//Galeforce: Move again after attacking and defeating an enemy.
+//Author Unknown (Initial Commit)
+ GaleforceID
+
+//Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
+//Author Unknown (Initial Commit)
+ LifetakerID
+
+//Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
+//By Snakey1
+ PoisonStrikeID
+
+//Grisly Wound: Deals damage equal to 20% of the enemy's max HP after every battle.
+//By Snakey1
+ GrislyWoundID
+
+//Powerstaff: Get another action after using a staff.
+//By Sme
+ PowerstaffID
+
+//Re-Move: Luck% chance to get another action at end of turn.
+//By Sme
+ ReMoveID
+
+//Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
+//By circleseverywhere
+ SavageBlowID
+
+//Cultured: If unit attacks next to a unit with Nice Thighs, move again. -50 hit against units with Nice Thighs.
+//By Sme
+ CulturedID
+
+//Gridmaster: Movement skills do not end your action.
+//By Sme
+ GridmasterID
+
+
+//Pre-Battle Skills
+
+//Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
+//By 2WB & Colorz
+ AxeFaithID
+
+
+//Battle Veteran: Gain +1 damage and +5% Hit per 10 levels unit has.
+//By Datagne
+ BattleVeteranID
+
+//Blow Skills: Apply a stat bonus when initiating battle.
+//By Rossendale
+ DuelistsBlowID
+ DeathBlowID
+ DartingBlowID
+ WardingBlowID
+ CertainBlowID
+ ArmoredBlowID
+//By Darrman
+ HeroesDeathBlowID
+
+//Breaker Skills:  +50 Hit/Avo when enemy has the specified weapon type equipped.
+//By Rossendale
+ SwordbreakerID
+ LancebreakerID
+ AxebreakerID
+ BowbreakerID
+ TomebreakerID
+
+//Charge: Gain +1 damage for every two squares moved.
+//By Datagne
+ ChargeID
+
+//Charge+: Charge+: If unit has used up all movement, gain brave effect.
+//By Sme
+ ChargePlusID
+
+//Critical Force: Base critical is Skl * 1.5.
+//Author Unknown (Initial Commit)
+ CriticalForceID
+
+//Killing Machine: Total critical rate is doubled.
+//Author Unknown (Initial Commit)
+ KillingMachineID
+
+//Crit Boost: +15 critical rate.
+//Author Unknown (Initial Commit)
+ CritUpID
+
+
+//Strong Riposte: When under attack, damage +2.
+//Author Unknown (Initial Commit)
+ StrongRiposteID
+
+//Patience: When under attack, avoid +10.
+//Author Unknown (Initial Commit)
+ PatienceID
+
+//Pursuit: When under attack, attack speed +4.
+//Author Unknown (Initial Commit)
+ PursuitID
+
+//Chivalry: When foe is at full HP, attack and def/res +1.
+//Author Unknown (Initial Commit)
+ ChivalryID
+
+//Pragmatic: When foe is not at full HP, attack +1 and def/res+1.
+//Author Unknown (Initial Commit)
+ PragmaticID
+
+//Defiant Avoid/Crit: When HP is 25% or lower, gain +30 Avoid or Crit.
+//By Sme
+ DefiantAvoID
+ DefiantCritID
+
+
+
+//Faire Skills: +4 damage when equipping a weapon of the specified type.
+//Author Unknown (Initial Commit)
+ SwordfaireID
+ LancefaireID
+ AxefaireID
+ BowfaireID
+ TomefaireID
+
+//Fiery Blood: +4 damage when HP is not at max.
+//Author Unknown (Initial Commit)
+ FieryBloodID
+
+
+
+//Fortune: This unit cannot be crit.
+//By Sme
+ FortuneID
+
+//Frenzy: For every 4 damage taken, +1 to damage dealt.
+//By Tequila
+ FrenzyID
+
+//Hawkeye: User will always hit the enemy.
+//By SD9k
+ HawkeyeID
+
+//Heavy Strikes: Add weapon weight to critical chance.
+//By Datagne
+ HeavyStrikesID
+
+
+
+//Insight: Hit +20.
+//By Sme
+ InsightID
+
+//Knight Aspirant: When above 75% health, +2 damage, +15% avoid.
+//By Datagne
+ KnightAspirantID
+
+//Life and Death: +5 to damage dealt and taken.
+//Author Unknown (Initial Commit)
+ LifeAndDeathID
+
+//Light Weight: When holding three or less items, attack speed +3.
+//Author Unknown (Initial Commit)
+ LightWeightID 
+
+//Loyalty: When within 2 spaces of a Lord, -3 damage taken, +15% hit.
+//By Datagne
+ LoyaltyID
+
+//Lucky Seven: +20 Hit and Avoid until the 7th turn.
+//Author Unknown (Initial Commit)
+ LuckySevenID
+
+//Mage Slayer: Gain +2 damage and +10% crit when facing magical enemies.
+//By Datagne
+ MageSlayerID
+
+//Natural Cover: -3 damage taken when on terrain with effects.
+//Author Unknown (Initial Commit)
+ NaturalCoverID
+
+//Opportunist: +2 damage if the foe cannot counter.
+//By Tequila
+ OpportunistID
+
+//Outrider: Take -1 damage and gain +3% crit per space moved.
+//By Datagne
+ OutriderID
+
+//Perfectionist: +15 Hit/Avoid when user's HP is at maximum.
+//By Zeta
+ PerfectionistID
+
+//Prescience: When initiating battle, Hit and Avo +10.
+//By Sme
+ PrescienceID
+
+//Puissance: +3 Damage when the user's Strength is higher than the enemy's.
+//By Zeta
+ PuissanceID
+
+//Quick Riposte: If defending and HP is 50% or higher, unit doubles and attacker does not double.
+//By Sme
+ QuickRiposteID
+
+
+//Quick/Slow Burn: Hit and Avoid bonus increasing or decreasing each turn, maximum +15.
+//Author Unknown (Initial Commit)
+ QuickBurnID
+ SlowBurnID
+
+//Short Shield: Gain 6 defense against attacks recieved in melee.
+//By Sme
+ ShortShieldID
+
+//Silent Pride: Gain 1 damage and take -1 damage per 25% below max HP.
+//By Datagne
+ SilentPrideID
+
+//Stance Skills: Bonus to stats when defending.
+//By Snakey1
+ BracingStanceID
+ DartingStanceID
+ FierceStanceID
+ KestrelStanceID
+ MirrorStanceID
+ ReadyStanceID
+ SteadyStanceID
+ SturdyStanceID
+ SwiftStanceID
+ WardingStanceID
+ SpectrumStanceID
+//By Sme
+ AlertStanceID
+ AlertStancePlusID
+
+//Thunderstorm: If weapon weight > enemy W. Weight, +2 dmg, +15% hit, +5% crit.
+//By Datagne
+ ThunderstormID
+
+//Tower Shield: Gain 6 defense against attacks recieved at range.
+//By Sme
+ TowerShieldID
+
+//Tower Shield+: Take no damage against attacks recieved at range.
+//By Sme
+ TowerShieldPlusID
+
+//Trample: +5 damage to unmounted units.
+//By Tequila
+ TrampleID
+
+//Vanity: Gain +2 Damage and +10 Hit when fighting enemy at 2 range.
+//By Datagne
+ VanityID
+
+//Vigilance: Avoid +10.
+//By Sme
+ VigilanceID
+
+//Wind Disciple: +10 Hit and Avoid when HP is not at max.
+//Author Unknown (Initial Commit)
+ WindDiscipleID
+
+//Wrath: If HP < 50%, +15 critical rate.
+//Author Unknown (Initial Commit)
+ WrathID //150
+
+//Quick Draw: +4 Damage when initiating battle.
+//Author Unknown (Initial Commit)
+ QuickDrawID
+
+// Arcane Blade: When initiating battle at 1 range: Add 3+(Mag/2) to Hit and Crit.
+//By Zeta
+ ArcaneBladeID
+
+//Blue Flame: Attack +2. When adjacent to an ally, Attack +4.
+//By Sme
+ BlueFlameID
+
+//Double Lion: All weapons are treated as brave.
+//By Sme
+ DoubleLionID
+
+//Thighdeology: If a unit within 3 tiles has Nice Thighs, gain +2 Attack and +20 Hit.
+//By Sme
+ ThighdeologyID
+
+//Thotslayer: +15 crit against units with Nice Thighs or Personality.
+//By Sme
+ ThotslayerID
+
+
+//Proc Skills
+
+//Adept: Gain a consecutive attack. (Speed % activation)
+//Author Unknown (Initial Commit)
+ AdeptID
+
+//Aegis: Nullify a magic attack. (Skill % activation)
+//Author Unknown (Initial Commit)
+ AegisID
+
+//Aether: First strike absorbs HP, second strike negates defenses. (Skill/2 % activation)
+//Author Unknown (Initial Commit)
+ AetherID
+
+//Astra: 5 attacks at half damage. (Skill % activation)
+//Author Unknown (Initial Commit)
+ AstraID
+
+//Bane: Leave the opponent at 1 HP. (Skill/2 % activation)
+//Author Unknown (Initial Commit)
+ BaneID
+
+//Barricade: Damage taken is halved after first being struck.
+//By Snakey1
+ BarricadeID
+
+//Barricade+: In combat, damage recieved equals half of the damage when struck last.
+//By Snakey1
+ BarricadePlusID
+
+//Black Magic: Skill% chance to inflict a random status.
+//By Tequila
+ BlackMagicID
+
+//Colossus: Triples Strength. (Skill % activation)
+//Author Unknown (Initial Commit)
+ ColossusID
+
+//Corona: Negate enemy resistance. (Skill% activation)
+//By Sme
+ CoronaID
+
+//Counter: Reflect physical damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+ CounterID
+
+//Countermagic: Reflect magic damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+ CounterMagicID
+
+//Deadeye: Doubles hit rate. Skill% chance to inflict sleep.
+//By Sme
+ DeadeyeID
+
+//Devil's Luck: Immune to Devil Reversal. Gives unit's Devil Reversal to the enemy. (31-Luck % chance of Devil Reversal).
+//By Leonarth
+ DevilsLuckID
+
+//Devil's Pact: Immune to Devil Reversal. Curses the enemy with Devil Reversal. (31-Luck % chance of Devil Reversal).
+//By Leonarth
+ DevilsPactID
+
+//Devil's Whim: This unit is cursed, but the curse spreads to the enemy as well. (31-Luck % chance of Devil Reversal).
+//By Leonarth
+ DevilsWhimID
+
+
+
+//Dragon Fang: 1.5x damage. (Skill% activation)
+//By Sme
+ DragonFangID
+
+//Eclipse: Leave opponent with 1 HP. (Skill % activation)
+//By Sme
+ EclipseID
+
+//Enrage: Inflict berserk status. (Skill% activation)
+//By Sme
+ EnrageID
+
+//Flare: Halve enemy resistance. (Skill% activation)
+//By Sme
+ FlareID
+
+//Foresight: Avoid the damage from enemy Critical Hits and Skill Activations.
+//By Leonarth
+ ForesightID
+
+//Ignis: Add Def/2 and Res/2 to damage dealt. (Skill % activation)
+//Author Unknown (Initial Commit)
+ IgnisID
+
+//Impale: Deal 4x damage. (Skill % activation)
+//Author Unknown (Initial Commit)
+ ImpaleID
+
+//Lethality: Instantly kill opponent. (Skill/2 % activation)
+//Author Unknown (Initial Commit)
+ LethalityID
+
+//Luna: Negates enemy defenses. (Skill % activation)
+//Author Unknown (Initial Commit)
+ LunaID
+
+//Miracle: Survive a lethal attack if HP > 50%.
+//Author Unknown (Initial Commit)
+ MiracleID
+
+//Moonbow: Enemy Def/Res is reduced by 25%. Charge: 2
+//Author Unknown (Initial Commit)
+ MoonbowID
+
+//Pavise: Nullify a physical attack. (Skill % activation)
+//Author Unknown (Initial Commit)
+ PaviseID
+
+//Petrify: Inflict stone status. (Skill% activation)
+//By Sme
+ PetrifyID
+
+//Sol: Restore damage dealt as HP. (Skill % activation)
+//Author Unknown (Initial Commit)
+ SolID
+
+//Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
+//Author Unknown (Initial Commit)
+ SureShotID
+
+//Corrosion: Decrease durability of enemy's weapon by User's level (Skill/2 % activation)
+//By Sme
+ CorrosionID
+
+//Glacies: Add unit's Resistance to damage dealt. (Skill % activation)
+//By Sme
+ GlaciesID
+
+//Great Shield: Negate all damage. (Defense % activation)
+//By Sme
+ GreatShieldID
+
+//Vengeance: Add half of damage taken to damage dealt. (Skill % activation)
+//By Sme
+ VengeanceID
+
+//Range Skills
+
+//Bow Range +1: Maximum range of equipped bows is increased.
+//By Teraspark
+ BowRangeUpID
+
+//Point Blank: Minimum range of equipped bows is set to 1.
+//By Teraspark
+ PointBlankID
+
+//Staff Savant: Maximum range of staves is increased by 1.
+//By Teraspark
+ StaffSavantID
+
+//Tome Range +1: Maximum range of equipped tome is increased.
+//By Kirb
+ TomeRangeUpID
+
+
+//Rounds Data Skills
+
+//Armsthrift: Luck % chance to not consume weapon durability.
+//Author Unknown (Initial Commit)
+ ArmsthriftID
+
+//Dazzle: Opponents cannot counterattack this unit.
+//By circleseverywhere
+ DazzleID
+
+//Desperation: If HP < 50%, double attacks occur immediately.
+//By ??? (Initial Commit)
+ DesperationID
+
+//Assassinate: When initiating battle at 1 range: +2 Damage, double attacks occur before counter.
+//By Zeta
+ AssassinateID
+
+//Moonlight: Cannot double but opponent cannot counterattack.
+//By Sme
+ MoonlightID
+
+
+
+//Stat Modifier Skills
+
+
+
+//Resolve: When HP < 50%, gain 1.5x Str, Skl, & Spd.
+//By Sme
+ ResolveID
+
+//Fortress Defense: +5 Def, -3 Str/Mag
+//By Leonarth
+ FortressDefenseID 
+
+//Fortress Resistance: 5 Res, -3 Str/Mag
+//By Leonarth
+ FortressResistanceID 
+
+//Life and Death: Grants +5 Atk/Mag/Spd, -5 Def/Res.
+//By Leonarth
+ HeroesLifeAndDeathID
+
+
+
+
+//Unit Menu Skills
+
+//Rally Skills: +4 to specified stat to allies within 2 tiles.
+//Author Unknown (Initial Commit)
+ RallyStrID
+ RallyMagID //Requires Str/Mag Split
+ RallySklID
+ RallySpdID
+ RallyLukID
+ RallyDefID
+ RallyResID
+ RallyMovID
+ RallySpectrumID
+
+//Capture: Capture an enemy after defeating it with reduced stats.
+//By Tequila
+ CaptureID
+
+//Dance: Refresh an ally unit to let them act again.
+//By Sme
+ DanceID
+
+//Gamble: A reckless attack with halved hit but doubled crit.
+//Author Unknown (Initial Commit)
+ GambleID
+
+//Lunge: Swap places with the opponent after combat. (No effect if Move is --)
+//By Tequila
+ LungeID
+
+//Mercy: Enemies are left with at least 1 HP.
+//By Tequila
+ MercyID
+
+
+
+//Shove: Allows unit to push other units one tile away.
+//By StanH
+ ShoveID
+
+//Smite: Allows unit to push other units two tiles away.
+//By StanH
+ SmiteID
+
+//Pivot: Allows unit to move to the opposite side of an adjacent ally.
+//By StanH
+ PivotID
+
+//Reposition: Allows unit to pull an adjacent ally to its opposite side.
+//By StanH
+ RepositionID
+
+//Swap: Allows unit to swap positions with an adjacent ally.
+//By StanH
+ SwapID
+
+//Swarp: Allows unit to swap positions with a distant ally.
+//Be Sme
+ SwarpID
+
+//Steal: Unit can steal items.
+//By Tequila
+ StealID
+
+//Steal+: Unit can steal unequipped weapons and staves if con>weight.
+//By Tequila
+ StealPlusID
+
+
+//Miscellaneous Skills
+
+//Wary Fighter: Unit cannot double or be doubled.
+//By Tequila
+ WaryFighterID
+
+
+
+//Vantage: If HP < 50%, strike first when attacked.
+//Author Unknown (Initial Commit)
+ VantageID
+
+//Catch 'Em All: Grants the user every skill.
+//By Leonarth
+ CatchEmAllID
+
+//Vantage+: User always attacks first, even if attacked. Negates crits.
+//By SD9k
+ VantagePlusID
+
+//Nihil: Cancels the opponent's skills in combat.
+//Author Unknown (Initial Commit)
+ NihilID
+
+//Live to Serve: When healing an ally, also heals self.
+////Author Unknown (Initial Commit) & Leonarth
+ LiveToServeID
+
+//Locktouch: Can open locks without keys or picks.
+//By Kao
+ LockTouchID
+
+
+//Expertise: Reduce bonus damage from critical hits by 50%.
+//Author Unknown (Initial Commit)
+ ExpertiseID
+
+//Celerity: Movement +2.
+//Author Unknown (Initial Commit)
+ CelerityID
+
+//Dragon's Blood: Unit is able to activate Dragon Veins.
+//By Colorz
+ DragonsBloodID
+
+//Hero: +30% skill activation rate when HP is below 50%.
+//By Sme
+ HeroID
+
+//Rightful King: +10% to Skill activation rate.
+//Author Unknown (Initial Commit)
+ RightfulKingID
+
+//Rightful God: +30% to Skill activation rate.
+//Author Unknown (Initial Commit)
+ RightfulGodID
+
+//Rightful Arch: Sets Skill activation rate to 100%.
+//Author Unknown (Initial Commit)
+ RightfulArchID 
+
+//Triangle Adept: Doubles weapon triangle effects for this unit.
+//By Tequila
+ TriAdeptID
+
+
+//Triangle Adept+: Doubles weapon triangle effects.
+//By Sme
+ TriAdeptPlusID
+
+
+//Inspiring Tune: Refreshing a unit grants them +2 Pow/Def until the next turn.
+//By Leonarth
+ VigorDanceID
+
+
+//Liquid Ooze: Attackers trying to gain HP from attacking this unit lose it instead.
+//By Leonarth
+ LiquidOozeID
+
+
+
+//Watchful: This unit cannot be captured or stolen from.
+//By Sme
+ WatchfulID
+
+//Boon: Cure bad status effects at the beginning of each turn.
+//By Sme
+ BoonID
+
+//Synchronize: Statuses are also applied to the attacker.
+//By Sme
+ SynchronizeID
+
+//Bargain: Halves prices in shops.
+//By Sme
+ BargainID
+
+//Poise: +1 Move. Negates enemy hit bonus from weapon triangle advantage.
+//By Zeta
+ PoiseID
+
+//Amische: This unit's religion disallows them from using non-Iron weaponry.
+//By Sme
+ AmischeID
+
+//Triangle Attack: Allows this unit to perform a triangle attack with 2 other units who have this skill.
+ TriangleAttackID
+
+
+
+
+
+//Display-Only Skills
+
+ CunningID
+ NiceThighsID
+ PersonalityID
+
+//Down With Arch: If the hit lands, instantly kill the enemy unit. (Only if name starts with "Arch")
+ DownWithArchID 255
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Charisma: Grants +10 Hit/Avoid to all allies within three tiles.
+//By Darrman
+ CharismaID
+
+//Charm: Allies within 2 tiles deal +2 damage.
+//Author Unknown (Initial Commit)
+ CharmID
+
+//Hex: -15 avoid to all adjacent enemies.
+//By Snakey1
+ HexID
+
+//Infiltrator: If within 2 spaces of two or more enemies, gain +3 damage and +15% hit.
+//By Datagne
+ InfiltratorID
+
+//Inspiration: Allies within 2 tiles deal +2 damage and receive -2 damage.
+//Author Unknown (Initial Commit)
+ InspirationID
+
+//Intimidate: -10 Avoid to all enemies within 2 tiles.
+//Author Unknown (Initial Commit)
+ IntimidateID
+
+//Lily's Poise: Adjacent allies gain +1/-3 damage dealt/received.
+//Author Unknown (Initial Commit)
+ LilysPoiseID
+
+//Malefic Aura: Enemies within 2 tiles receive +2 magic damage.
+//Author Unknown (Initial Commit)
+ MaleficAuraID
+
+
+
+//Solidarity: Critical and Critical Avoid +10 to adjacent allies.
+//By SD9k
+ SolidarityID
+
+//Spur Skills: Adjacent allies gain +4 to their respective stat.
+//Author Unknown (Initial Commit)
+ SpurStrID
+ SpurMagID
+ SpurSpdID
+ SpurDefID
+ SpurResID
+
+//Voice of Peace: Enemies within 2 tiles deal -2 damage.
+//Author Unknown (Initial Commit)
+ VoiceOfPeaceID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Daunt: -5 Hit and Crit to all enemy units in a 3-tile radius.
+//By Sme
+ DauntID
+
+//Blood Tide: Atk and Hit +5 to adjacent allies.
+//By Sme
+ BloodTideID
+
+//Demoiselle: Male allies within 2 tiles receive -2 damage.
+//Author Unknown (Initial Commit)
+ DemoiselleID
+
+//Drive Skills: Allies within 2 spaces receive +4 to their respective stat.
+//By Sme
+ DriveStrID
+ DriveMagID
+ DriveSpdID
+ DriveDefID
+ DriveResID
+//Night Tide: Def and Res +5 to adjacent allies.
+//By Sme
+ NightTideID
+
+
+//Gentilhomme: Female allies within 2 tiles receive -2 damage.
+//Author Unknown (Initial Commit)
+ GentilhommeID
+
+//Nullify: Unit is protected from all effective attacks.
+//By Tequila
+ NullifyID
+
+//Slayer: Deal effective damage to monster units.
+//By Tequila
+ SlayerID
+
+
+//Biorhythm Skills: Double or halve biorhythm effects.
+//By Sme
+ TempestID //Requires Biorhythm
+ SerenityID //Requires Biorhythm
+
+//Defiant Skills: When HP is 25% or lower, gain +4 to the given stat.
+//By Sme
+ DefiantStrID
+ DefiantMagID
+ DefiantSklID
+ DefiantSpdID
+ DefiantLckID
+ DefiantDefID
+ DefiantResID
+
+//Holy Aura: Gain +1 damage, +5% hit, +5% avoid, +5% crit when using light.
+//By Datagne
+ HolyAuraID
+
+//Push Skills: When HP is full, gain +5 to the given stat.
+//By Sme
+ PushStrID
+ PushMagID
+ PushSklID
+ PushSpdID
+ PushDefID
+ PushResID
+
+//Lull Skills: Negate the effects of a rally for the given stat.
+//By Sme
+ LullStrID
+ LullMagID
+ LullSklID
+ LullSpdID
+ LullLckID
+ LullDefID
+ LullResID
+ LullSpectrumID
+//Up With Arch: Adjacent ally units gain might equal to half this unit's might. (Only if name starts with "Arch")
+//Author Unknown (Initial Commit)
+ UpWithArchID
+
+//White Pool: Atk and AS +5 to adjacent allies.
+//By Sme
+ WhitePoolID
+
+//Skyguard: +4 defense against flying enemies if within 3 spaces of an ally flier.
+//By Sme
+ SkyguardID
+
+//Horseguard: +4 defense against horseback enemies if within 3 spaces of an ally horse rider.
+//By Sme
+ HorseguardID
+
+//Armorboost: +4 attack and defense against armored enemies if within 3 spaces of an armored ally.
+//By Sme
+ ArmorboostID
+
+//Summon: Can conjure a phantom soldier to fight alongside you.
+//By Sme
+ SummonID
+
+//Supply: This unit has access to the convoy.
+//By Sme
+ SupplyID
+
+//Savior: Can rescue without penalties.
+//Author Unknown (Initial Commit)
+ SaviorID
+
+//Discipline: Weapon experience gains are doubled.
+//Author Unknown (Initial Commit)
+ DisciplineID
+
+//Shadowgift: Allows the user to use Dark Magic. (Uses highest Magic Rank)
+//By Leonarth
+ ShadowgiftID 
+
+//Lumina: Allows the user to use Light Magic. (Uses highest Magic Rank)
+//By Leonarth
+ LuminaID 
+
+//Discipline+: Weapon experience gains are doubled. Unit may S-Rank multiple weapon types.
+//By Zeta
+ DisciplinePlusID 
+ 
+  WeakChipDmgID
+ PiercingID
+
+
+//Skybreaker: Deal effective damage to flying units.
+//By Sme
+ SkybreakerID
+ 
+ //Foreign Princess: Foreign army units take -2/+2 damage dealt/taken.
+//By Sme
+ ForeignPrincessID
+ 
+ //Indoor/Outdoor Fighter: +10 Hit and Avo when fighting indoors/outdoors.
+//By Sme
+ IndoorFighterID
+ OutdoorFighterID
+
+//Elbow Room: +3 damage dealt when on open terrain.
+//Author Unknown (Initial Commit)
+ ElbowRoomID
+
+//Even/Odd Rhythm: +10 Hit and Avoid on even or odd numbered turns.
+//Author Unknown (Initial Commit)
+ OddRhythmID
+ EvenRhythmID
+
+//Broken Skills
+ Roll12ID
+ TraceID

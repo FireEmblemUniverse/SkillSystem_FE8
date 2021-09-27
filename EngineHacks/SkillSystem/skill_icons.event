@@ -518,7 +518,7 @@ ORG SkillIcon(FortressResistanceID)
 ORG SkillIcon(ForesightID)
 #incbin "SkillIcons/Foresight.dmp"
 
-ORG SkillIcon(AxefaithID)
+ORG SkillIcon(AxeFaithID)
 #incbin "SkillIcons/Axefaith.dmp"
 
 ORG SkillIcon(ArmorMarchID)

@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases 
-//#define DEBUG_MODE ""
+#define DEBUG_MODE ""
 
 
 
@@ -85,7 +85,7 @@
 #define SkillScroll 0xF7
 #define SpellScroll 0xF8
 
-#include "EngineHacks/SkillSystem/skill_definitions.event"
+#include "EngineHacks/SkillSystem/Definitions/skill_definitions.enu.event"
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p
 

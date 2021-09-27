@@ -75,6 +75,12 @@
 #include "Cerulean_Gym.event"
 }
 
+{
+#include "Route_TwentyFour.event"
+}
+{
+#include "Route_TwentyFive.event"
+}
 
 
 

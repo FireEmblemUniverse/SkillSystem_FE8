@@ -1,9 +1,10 @@
-#include "gbafe.h"
+#include "FE-CLib\include\gbafe.h"
 
 extern int SkillTester(Unit*, int) __attribute__((long_call));
 
-extern int AreUnitsAllied(int, int) __attribute__((long_call));
-extern int IsSameAllegience(int, int) __attribute__((long_call)); // forgive the typo
+
+extern int AreAllegiancesEqual(int, int) __attribute__((long_call));
+extern int AreAllegiancesAllied(int, int) __attribute__((long_call)); // forgive the typo
 
 extern uint8_t gAuraUnitListOut[];
 
@@ -12,9 +13,14 @@ static int absolute(int value) { return value < 0 ? -value : value; }
 static int AuraSkillTest(Unit* unit, Unit* other, int skill, int param);
 
 long long AuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
-	int count = 0;
 
+	int count = 0;
+	
 	for (int i = 0; i < 0x100; ++i) {
+		if ((skill == 255)) { 
+			i = 0x100; 
+			continue; 
+		} 
 		Unit* other = gUnitLookup[i];
 		
 		if (!other)
@@ -53,7 +59,7 @@ long long AuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
 }
 
 int AuraSkillTest(Unit* unit, Unit* other, int skill, int param) {
-	const int(*pAllegianceChecker)(int, int) = ((param & 1) ? AreUnitsAllied : IsSameAllegience);
+	const int(*pAllegianceChecker)(int, int) = ((param & 1) ? AreAllegiancesEqual : AreAllegiancesAllied);
 	
 	if (param == 4)
 		return SkillTester(other, skill);

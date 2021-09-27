@@ -54,7 +54,7 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 #endif
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS
-	//POIN ModularPreBattleSkill 
+	POIN ModularPreBattleSkill 
 #endif // MODULAR_PRE_BATTLE_SKILLS
 //add any new ones before here
 
