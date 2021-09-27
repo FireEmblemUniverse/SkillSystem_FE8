@@ -80,18 +80,10 @@ mov		r1,r7
 add		r1,#0x73
 strb	r0,[r1]			@ store the hp growth to (battle struct+0x73), which will then be read later for the level-up display
 add		r5,r0			@ add r0 (level-up number) to r5 (counter) and store it in r5 (this is equal to add r5,r5,r0)
-@mov 	r11, r11
-cmp 	r4, #6 		@ checking if the flag has been set
-blt		StrGrowth		@ if not, go to the next growth
- @ Vesly added: if it's less than 2 stats that have leveled up, then we keep trying 
-cmp		r5,#0x2			@ if flag is set, check whether a stat proc'd yet
-blt		StrGrowth		@ if no stat proc'd, go to next growth
-b		CheckCaps		@ if flag is set and stat proc'd, make sure the level-up did not go over the cap
-
-@ First time through r4 is 0. After an iteration, it'll be 1 and we won't try again 
-@ r5 is only checked during the 2nd iteration. 
-@ 
-
+cmp r4, #0 
+beq StrGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
 
 
 StrGrowth:
@@ -104,13 +96,13 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x74
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		MagGrowth
-cmp		r5,#0x2	
-blt		MagGrowth
-b		CheckCaps
+cmp r4, #0 
+beq MagGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
+
+
 
 @ I'm adding Magic growth into this function to remedy the 0 magic growth bug. -Snek
 @ This will do nothing if str/mag isn't enabled.
@@ -127,9 +119,10 @@ mov		r1,r7
 add		r1,#0x7A
 strb	r0,[r1]
 add		r5,r0
-cmp		r4,#0x0
-
-
+cmp r4, #0 
+beq SklGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
 
 
 SklGrowth:
@@ -142,13 +135,12 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x75
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		SpdGrowth
-cmp		r5,#0x2
-blt		SpdGrowth
-b		CheckCaps 
+cmp r4, #0 
+beq SpdGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
+
 
 SpdGrowth:
 ldr		r0,Get_Spd_Growth
@@ -160,13 +152,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x76
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		DefGrowth
-cmp		r5,#0x2
-blt		DefGrowth
-b		CheckCaps
+cmp r4, #0 
+beq DefGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
 
 DefGrowth:
 ldr		r0,Get_Def_Growth
@@ -178,13 +168,12 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x77
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		ResGrowth
-cmp		r5,#0x2
-blt		ResGrowth
-b		CheckCaps
+cmp r4, #0 
+beq ResGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
+
 
 ResGrowth:
 ldr		r0,Get_Res_Growth
@@ -196,13 +185,11 @@ mov		r14,r6
 mov		r1,r7
 add		r1,#0x78
 strb	r0,[r1]
-@mov 	r11, r11
 add		r5,r0
-cmp 	r4, #6
-blt		LukGrowth
-cmp		r5,#0x2
-blt		LukGrowth
-b		CheckCaps
+cmp r4, #0 
+beq LukGrowth 
+cmp r5, #2 
+bge CheckCapsLadder
 
 LukGrowth:
 ldr		r0,Get_Luk_Growth
@@ -215,8 +202,7 @@ mov		r1,r7
 add		r1,#0x79
 strb	r0,[r1]
 add		r5,r0
-@mov 	r11, r11
-cmp		r5,#0x2
+cmp		r5,#0x2 @if not 2 pr more stats, retry
 bge		CheckCapsLadder
 add 	r4, #1 
 @ At the end of each iteration, we break if at least 2 stats leveled up 
