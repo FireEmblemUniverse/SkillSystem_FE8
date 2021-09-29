@@ -8,6 +8,9 @@ ALIGN 4
 All2:
 StatBonus(2,2,2,2,2,2,2,2,0,0)
 
+ALIGN 4
+STR2SKL2SPD2:
+StatBonus(0,2,0,2,2,0,0,0,0,0)
 
 ALIGN 4
 HP2:

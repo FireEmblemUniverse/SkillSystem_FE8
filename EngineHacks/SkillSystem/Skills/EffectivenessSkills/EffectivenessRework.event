@@ -64,11 +64,10 @@ ItemEffectivenessPtr(DryingPan, WaterProtection)
 
 
 #define Immune 0x01 
-#define NoIdeaWhatThisIs 0x02
 #define SupEff 0x04
 #define Resist 0x07
 
-
+ALIGN 4
 NormalAdv:
 SetWeaponEffectiveness(GhostType, Immune)
 SetWeaponEffectiveness(SteelType|RockType, Resist)
@@ -159,14 +158,15 @@ SetWeaponEffectiveness(BugType|FireType|FlyingType|IceType, SupEff)
 WORD 0
 
 SteelAdv:
+SetWeaponEffectiveness(PoisonType, Immune)
 SetWeaponEffectiveness(ElectricType|FireType|SteelType|WaterType, Resist)
 SetWeaponEffectiveness(IceType|RockType, SupEff)
 WORD 0
 
 
 DarkAdv:
-SetWeaponEffectiveness(FightingType|FairyType, Resist)
-SetWeaponEffectiveness(GhostType|PsychicType|DarkType, SupEff)
+SetWeaponEffectiveness(FightingType, Resist)
+SetWeaponEffectiveness(GhostType|PsychicType, SupEff)
 WORD 0
 
 FairyAdv:

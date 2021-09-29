@@ -76,6 +76,8 @@ StatAccessory_DescEntry(WornBoots_BoostIndex, WornBootsDescText)
 StatAccessory_NameEntry(OldScope_BoostIndex, OldScopeNameText)
 StatAccessory_DescEntry(OldScope_BoostIndex, OldScopeDescText)
 
+StatAccessory_NameEntry(EnergyBand_BoostIndex, EnergyBandNameText)
+StatAccessory_DescEntry(EnergyBand_BoostIndex, EnergyBandDescText)
 
 
 // Skills 
@@ -97,5 +99,21 @@ SkillAccessory_DescEntry(LifeAndDeathID, SurgesSigilDescText)
 
 SkillAccessory_NameEntry(WaryFighterID, ObliviousRingNameText)
 SkillAccessory_DescEntry(WaryFighterID, ObliviousRingDescText)
+
+SkillAccessory_NameEntry(PerfectionistID, PerfectionistAccNameText)
+SkillAccessory_DescEntry(PerfectionistID, PerfectionistAccDescText)
+
+SkillAccessory_NameEntry(SealSpdID, SealSpdAccNameText)
+SkillAccessory_DescEntry(SealSpdID, SealSpdAccDescText)
+
+SkillAccessory_NameEntry(SealDefID, SealDefAccNameText)
+SkillAccessory_DescEntry(SealDefID, SealDefAccDescText)
+
+
+
+
+
+
+
 
 

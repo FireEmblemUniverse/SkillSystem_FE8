@@ -80,7 +80,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-//AFEV 0 RefreshIfNotInDanger 0 
+AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute3 [8,19] [15,19] 
 END_MAIN
 #ifdef MultiTileMarker_Installer

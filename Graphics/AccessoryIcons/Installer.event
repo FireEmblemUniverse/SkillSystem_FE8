@@ -46,6 +46,8 @@ AccessoryIcon(WornBoots_BoostIndex) // Speed
 AccessoryIcon(OldScope_BoostIndex) // Skl 
 #incbin "StatBoosterIcons/ScopePlaceholderByCardCafe.dmp"
 
+AccessoryIcon(EnergyBand_BoostIndex) // Def 
+#incbin "StatBoosterIcons/MuscleBandByZaim.dmp"
 
 
 
@@ -67,6 +69,29 @@ SkillAccessoryIcons(LifeAndDeathID)
 
 SkillAccessoryIcons(WaryFighterID)
 #incbin "SkillAccIcons/WaryRingByBeansy.dmp"
+
+SkillAccessoryIcons(PerfectionistID)
+#incbin "SkillAccIcons/WaryRingByBeansy.dmp"
+
+
+SkillAccessoryIcons(SealStrID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(SealSklID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(SealSpdID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(SealDefID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(SealResID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(SealLukID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(SealMagID)
+#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+
+
+
+
 
 
 POP 

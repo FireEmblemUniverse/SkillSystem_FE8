@@ -22,6 +22,31 @@ Press R for details.[X]
 Grants a skill.[NL]
 Press R for details.[X]
 
+## EnergyBandNameText
+Energy Band[X]
+## EnergyBandDescText
+Str/Skl/Spd + 2.[X]
+
+
+## PerfectionistAccNameText
+Perfect Ring[X]
+## PerfectionistAccDescText
++10 Hit/Avo while full HP.[X]
+
+
+## SealDefAccNameText
+Defence Seal[X]
+## SealDefAccDescText
+Debuffs enemy Def[NL]
+by 6 after combat.[X]
+
+
+## SealSpdAccNameText
+Speed Seal[X]
+## SealSpdAccDescText
+Debuffs enemy Spd[NL]
+by 6 after combat.[X]
+
 
 
 ## LeatherShieldNameText ^
@@ -862,270 +887,270 @@ Crush Claw[X]
 *{(}Placeholder description.[X]
 
 ## GuillotineDesc
-*{(}Placeholder description.[X]
+*{(}An extremely powerful cutting blow.[X]
 
 ## HornAttackDesc
-*{(}Placeholder description.[X]
+*{(}Impales the foe with a horn.[X]
 
 ## HornDrillDesc
-*{(}Placeholder description.[X]
+*{(}Turns a horn into a powerful drill.[X]
 
 ## HyperBeamDesc
-*{(}Placeholder description.[X]
+*{)}A powerful beam that tires the user.[X]
 
 ## HyperFangDesc
-*{(}Placeholder description.[X]
+*{(}Bites with superior fangs.[X]
 
 ## MegaKickDesc
-*{(}Placeholder description.[X]
+*{(}A fiersomely normal kick.[X]
 
 ## PayDayDesc
-*{(}Placeholder description.[X]
+*{(}Throws coins to damage foes.[X]
 
 ## RageDesc
-*{(}Placeholder description.[X]
+*{(}Strikes with anger and fury.[X]
 
 
 ## MetalClawName
 Metal Claw[X]
 
 ## MetalClawDesc
-*{(}Placeholder description.[X]
+*{(}Slashes the foe with metalic claws.[X]
 
 ## IronTailName
 Iron Tail[X]
 
 ## IronTailDesc
-*{(}Placeholder description.[X]
+*{(}Steels the tail for a sturdy strike.[X]
 
 ## MeteorMashName
 Meteor Mash[X]
 
 ## MeteorMashDesc
-*{(}Placeholder description.[X]
+*{(}A powerful metallic strike.[X]
 
 ## MirrorShotName
 Mirror Shot[X]
 
 ## MirrorShotDesc
-*{(}Placeholder description.[X]
+*{)}Uses technology to strike.[X]
 
 ## FlashCannonName
 Flash Cannon[X]
 
 ## FlashCannonDesc
-*{(}Placeholder description.[X]
+*{)}Emits a harsh technological light.[X]
 
 ## MetalSoundName
 Metal Sound[X]
 
 ## MetalSoundDesc
-*{(}Placeholder description.[X]
+Chip damage. Reduces Res by -4.[X]
 
 ## SlamDesc
-*{(}Placeholder description.[X]
+*{(}Slams the foe with a powerful tackle.[X]
 
 ## SplashDesc
-*{(}Placeholder description.[X]
+Chip damage. Does nothing.[X]
 
 ## SuperFangDesc
-*{(}Placeholder description.[X]
+*{(}Bites with hard fangs.[X]
 
 ## SwiftDesc
-*{(}Placeholder description.[X]
+*{)}Strikes with exceedingly accurate stars.[X]
 
 ## SwordsDanceDesc 
-*{(}Placeholder description.[X]
+*{(}Boosts attack.[X]
 
 ## TakeDownDesc
-*{(}Placeholder description.[X]
+*{(}A harsh tackle that injures the user.[X]
 
 ## ThrashDesc
-*{(}Placeholder description.[X]
+*{(}A rough series of strikes a blows.[X]
 
 ## TriAttackDesc
-*{(}Placeholder description.[X]
+*{)}A fiery, icy and electric blast.[X]
 
 ## FirePunchDesc
-*{(}Placeholder description.[X]
+*{(}A blazing punch of flame.[X]
 
 ## FlameWheelDesc
-*{(}Placeholder description.[X]
+*{(}A blazing fiery tackle.[X]
 
 ## ScorchDesc
-*{(}Placeholder description.[X]
+*{)}A burst of hot flame.[X]
 
 ## FlamethrowerDesc
-*{(}Placeholder description.[X]
+*{)}A searing torrent of flame.[X]
 
 ## FireSpinDesc
-*{(}Placeholder description.[X]
+*{)}An entrapping circle of flames.[X]
 
 ## FireBlastDesc
-*{(}Placeholder description.[X]
+*{)}An intense blast of fire.[X]
 
 ## SacredFireDesc
-*{(}Placeholder description.[X]
+*{)}A blast of searing holy flame.[X]
 
 ## ClampDesc
-*{(}Placeholder description.[X]
+*{(}Clamps down hard on the foe.[X]
 
 ## CrabhammerDesc
-*{(}Placeholder description.[X]
+*{(}Swats at the foe with a crabbed arm.[X]
 
 ## HydroPumpDesc
-*{(}Placeholder description.[X]
+*{)}Blasts the foe with powerful water jets.[X]
 
 ## SurfDesc
-*{(}Placeholder description.[X]
+*{)}Torrents of water strike the foe.[X]
 
 ## WaterfallDesc
-*{(}Placeholder description.[X]
+*{(}Creates a waterfall and crashes on foe.[X]
 
 ## WaterPulseDesc
-*{(}Placeholder description.[X]
+*{)}Blasts foe with water.[X]
 
 ## WaterPulseName
 Water Pulse[X]
 
 ## LeechSeedDesc
-*{(}Placeholder description.[X]
+*{)}Saps the health of the target.[X]
 
 ## MegaDrainDesc
-*{(}Placeholder description.[X]
+*{)}Drains the health of the foe.[X]
 
 ## PetalDanceDesc
-*{(}Placeholder description.[X]
+*{(}A powerful display of plant power.[X]
 
 ## LeafBladeDesc
-*{(}Placeholder description.[X]
+*{(}A cutting blade of sharp leaves.[X]
 
 ## SolarBeamDesc
-*{(}Placeholder description.[X]
+*{)}A beam of charged solar power.[X]
 
 ## RazorLeafDesc
-*{(}Placeholder description.[X]
+*{(}Launches a barrage of cutting leaves.[X]
 
 ## ThunderDesc
-*{(}Placeholder description.[X]
+*{)}A fierce but innacurate electric strike.[X]
 
 ## VoltTackleDesc
-*{(}Placeholder description.[X]
+*{(}A powerful electric tackle.[X]
 
 ## BlizzardDesc
-*{(}Placeholder description.[X]
+*{)}Unleashes a harsh blizzard on foe.[X]
 
 ## AuroraBeamDesc
-*{(}Placeholder description.[X]
+*{)}Creates a chilly beam of frost.[X]
 
 ## IceBeamDesc
-*{(}Placeholder description.[X]
+*{)}Blasts a harsh frosty beam.[X]
 
 ## IcePunchDesc
-*{(}Placeholder description.[X]
+*{(}Strikes with an icy fist.[X]
 
 ## AvalancheDesc
-*{(}Placeholder description.[X]
+*{(}Calls forth a blanket of snow.[X]
 
 ## DoubleKickDesc
 *{(}Hits twice.[X]
 
 ## HiJumpKickDesc
-*{(}Placeholder description.[X]
+*{(}A bigger leaping kick of strength.[X]
 
 ## JumpKickDesc
-*{(}Placeholder description.[X]
+*{(}A leaping kick of power.[X]
 
 ## RollingKickDesc
-*{(}Placeholder description.[X]
+*{(}User rolls about unleashing kicks.[X]
 
 ## SeismicTossDesc
-*{(}Placeholder description.[X]
+*{(}A hardy judo throw.[X]
 
 ## SubmissionDesc
-*{(}Placeholder description.[X]
+*{(}Throws the foe with all their might.[X]
 
 ## PoisonGasDesc
-*{(}Placeholder description.[X]
+*{)}A foul smelling poison gas attack.[X]
 
 ## PoisonPowderDesc
-*{(}Placeholder description.[X]
+Chip damage. A powder that inflicts a harsh poison.[X]
 
 ## SludgeDesc
-*{(}Placeholder description.[X]
+*{)}A poisonous glob of goo hurled at the foe.[X]
 
 ## PoisonJabDesc
-*{(}Placeholder description.[X]
+*{(}A poisonous strike.[X]
 
 ## ToxicDesc
-*{(}Placeholder description.[X]
+Chip damage. Badly poisons target on hit.[X]
 
 ## DigDesc
-*{(}Placeholder description.[X]
+*{(}Digs down for an earthy strike.[X]
 
 ## BonemerangDesc
-*{(}Placeholder description.[X]
+*{(}Whip a bone boomerang at the foe.[X]
 
 ## EarthquakeDesc
-*{(}Placeholder description.[X]
+*{(}Shatters techtonics to destroy foes.[X]
 
 ## FissureDesc
-*{(}Placeholder description.[X]
+*{(}Creates an earthen rift to swallow foes.[X]
 
 ## EarthPowerDesc
-*{(}Placeholder description.[X]
+*{)}Strikes by shaking the earth itself.[X]
 
 ## MudBombName
 Mud Bomb[X]
 
 ## MudBombDesc
-*{(}Placeholder description.[X]
+*{)}Shoots a massive wad of mud.[X]
 
 ## MudShotName
 Mud Shot[X]
 
 ## MudShotDesc
-*{(}Placeholder description.[X]
+*{)}Shoots a wad of mud.[X]
 
 ## DrillPeckDesc
-*{(}Placeholder description.[X]
+*{(}A drilling peck from the sky.[X]
 
 ## FlyDesc
-*{(}Placeholder description.[X]
+*{(}Flies high and then attacks.[X]
 
 ## AirSlashName
 Air Slash[X]
 
 ## AirSlashDesc
-*{(}Placeholder description.[X]
+*{(}A diving slash of wind and wings.[X]
 
 ## HexName
 Hex[X]
 
 ## HexDesc
-*{(}Placeholder description.[X]
+*{)}A spirit's vengeful curse.[X]
 
 
 ## NightSlashName
 Night Slash[X]
 
 ## NightSlashDesc
-*{(}Placeholder description.[X]
+*{(}A daring and dark strike.[X]
 
 ## DarkPulseName
 Dark Pulse[X]
 
 ## DarkPulseDesc
-*{(}Placeholder description.[X]
+*{)}A painful wave of darkness.[X]
 
 ## NightDazeName
 Night Daze[X]
 
 ## NightDazeDesc
-*{(}Placeholder description.[X]
+*{)} A dark gaze that strikes fear.[X]
 
 ## BindDesc
-*{(}Placeholder description.[X]
+*{(}Traps the foe in a binding grip.[X]
 
 
 

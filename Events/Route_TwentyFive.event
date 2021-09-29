@@ -47,7 +47,7 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, BillsHouse, 49,4) 
+House(SSAnneTicketFlag, BillsHouse, 49,4) 
 END_MAIN
 
 MiscBasedEvents:
@@ -80,7 +80,7 @@ ChapterTransition(Route24Ch, 23,11)
 
 
 BillsHouse:
-CALL ClosedArea
+Text(BillHouseText)
 NoFade 
 ENDA 
 
@@ -219,21 +219,21 @@ MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R4_0xE0_BQ // 0xE0 
-SHORT R4_0xE0_BQ // 0xE0 
-SHORT R4_0xE0_BQ // 0xE0 
-SHORT R4_0xE0_BQ // 0xE0 
+SHORT R25_0xE0_BQ // 0xE0 
+SHORT R25_0xE1_BQ // 0xE0 
+SHORT R25_0xE2_BQ // 0xE0 
+SHORT R25_0xE3_BQ // 0xE0 
 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R4_0xE0_BD // 0xE0 
+SHORT R25_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R4_0xE0_BD // 0xE0 
+SHORT R25_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R4_0xE0_BD // 0xE0 
+SHORT R25_0xE2_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R4_0xE0_BD // 0xE0 
+SHORT R25_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
 TQD_TableTerminator ; }
 

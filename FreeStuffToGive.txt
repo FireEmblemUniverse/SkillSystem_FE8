@@ -12,7 +12,7 @@ DONE //Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
 //By Tequila
 #define CantoID 1
 
-
+DONE _ SealDefID - 
 
 
 DONE - lucky bracer //Crit Boost: +15 critical rate.
@@ -32,7 +32,7 @@ DONE - //Strong Riposte: When under attack, damage +2.
 //Author Unknown (Initial Commit)
 #define StrongRiposteID 231
 
-//Chivalry: When foe is at full HP, attack and def/res +1.
+DONE i think //Chivalry: When foe is at full HP, attack and def/res +1.
 //Author Unknown (Initial Commit)
 #define ChivalryID 212
 
@@ -56,7 +56,7 @@ DONE - //Strong Riposte: When under attack, damage +2.
 //By Datagne
 #define SilentPrideID 181
 
-//Perfectionist: +10 Hit/Avoid when user's HP is at maximum.
+DONE //Perfectionist: +10 Hit/Avoid when user's HP is at maximum.
 //By Zeta
 #define PerfectionistID 226
 

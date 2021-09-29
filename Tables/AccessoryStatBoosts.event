@@ -6,6 +6,7 @@
 #define OldWard_BoostIndex 6
 #define WornBoots_BoostIndex 7
 #define OldScope_BoostIndex 8
+#define EnergyBand_BoostIndex 9 
 
 #define STR2_8 "POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2"
 #define STR2_Fill "STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8" 
@@ -27,6 +28,7 @@ Durb_StatBonus_Entry(BronzeShield_BoostIndex, DEF4)
 Durb_StatBonus_Entry(OldWard_BoostIndex, RES5) 
 Durb_StatBonus_Entry(WornBoots_BoostIndex, SPD4)
 Durb_StatBonus_Entry(OldScope_BoostIndex, SKL5)
+Durb_StatBonus_Entry(EnergyBand_BoostIndex, STR2SKL2SPD2)
 
 
 

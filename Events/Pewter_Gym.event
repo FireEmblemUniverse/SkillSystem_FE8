@@ -38,6 +38,7 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(0, ToPewter, 7, 15)
 END_MAIN
 
 MiscBasedEvents:
@@ -47,11 +48,10 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToPewter [7,16] [7,16] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,16) 
+EscapeTileEntry(7,15) 
 EscapeTileTerminator ; } 
 #endif 
 
@@ -68,7 +68,7 @@ CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 CHECK_EVENTID BoulderbadgeObtained
 BNE 0x63 rC r0 
-
+ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [7,0] 
 
@@ -154,7 +154,9 @@ CHECK_EVENTID BoulderbadgeObtained
 BNE 0x63 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
-
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM

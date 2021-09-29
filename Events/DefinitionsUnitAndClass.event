@@ -36,6 +36,19 @@
 #define ClassRoute25WaterA 0x22
 #define ClassRoute25WaterB 0x23
 
+#define ClassRoute9WWildA 0x24
+#define ClassRoute9WWildB 0x25
+
+#define ClassRoute5WildA 0x26
+#define ClassRoute5WildB 0x27
+#define ClassRoute6WildA 0x28
+#define ClassRoute6WildB 0x29
+#define ClassRoute11WildA 0x2A
+#define ClassRoute11WildB 0x2B
+#define ClassDiglettsCaveWildA 0x2C
+#define ClassDiglettsCaveWildB 0x2D
+
+
 
 
 //Enemy unit IDs 
@@ -69,13 +82,16 @@
 #define UnitCeruleanGymB 0x6B
 #define UnitRoute24Wild 0x6C
 
-#define UnitRoute24WaterA 0x6E
-#define UnitRoute24WaterB 0x6F
+#define UnitRoute24Water 0x6E
 #define UnitRoute25Wild 0x70
+#define UnitRoute25Water 0x6E
 
-#define UnitRoute25WaterA 0x72
-#define UnitRoute25WaterB 0x73
 
+#define UnitRoute9WWild 0x71
+#define UnitRoute5Wild 0x72
+#define UnitRoute6Wild 0x73
+#define UnitRoute11Wild 0x74
+#define UnitDiglettsCaveWild 0x75
 
 
 #define UnitRoute1Trainer 0xA0
@@ -89,7 +105,11 @@
 #define UnitRoute24Trainer 0xA8
 #define UnitRoute25Trainer 0xA9
 #define UnitCeruleanTrainer 0xAA 
-
+#define UnitRoute9WTrainer 0xAB
+#define UnitRoute5Trainer 0xAC
+#define UnitRoute6Trainer 0xAD
+#define UnitRoute11Trainer 0xAE
+#define UnitDiglettsCaveTrainer 0xAF
 
 
 // Reinforcement unit IDs 0x90 - 0x9F 

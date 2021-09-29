@@ -300,6 +300,10 @@ Write_Byte(4, GaryStarterClass)
 //ChangeEdition(1)
 Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
+Write_Byte(0, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(9, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+
 //MNC2 ViridianCh 
 //MNC2 Route1Ch 
 //MNC2 PalletCh
@@ -310,14 +314,14 @@ Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 Route4WCh
 //MNC2 MtMoonB1Ch
 //MNC2 CeruleanCh
-MNC2 Route24Ch
+//MNC2 Route24Ch
 //MNC2 Route4ECh
 //MNC2 CeruleanCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 CeruleanCh
 //MNC2 CinnabarCh
-
+MNC2 Route9WCh
 //MNC2 Route2NCh
 //MNC2 PewterCh
 NoFade

@@ -350,7 +350,8 @@ ALIGN 4
 SandshrewLearnset:
 BYTE 1 Scratch
 BYTE 3 SandAttack 
-BYTE 7 PoisonSting 
+BYTE 5 Magnitude
+BYTE 8 PoisonSting 
 BYTE 11 QuickAttack
 BYTE 15 Swift
 BYTE 19 DoubleHit
@@ -365,7 +366,8 @@ ALIGN 4
 SandslashLearnset:
 BYTE 1 Scratch
 BYTE 3 SandAttack 
-BYTE 7 PoisonSting 
+BYTE 5 Magnitude
+BYTE 8 PoisonSting 
 BYTE 11 QuickAttack
 BYTE 15 Swift
 BYTE 19 DoubleHit
