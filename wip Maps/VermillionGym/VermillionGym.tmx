@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="13" height="26" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="01000203" tilewidth="16" tileheight="16">
-  <image source="../TilesetPreviews/VermillionGym" trans="ffffff"/>
+<map version="1.0" orientation="orthogonal" width="13" height="22" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="VermillionGymTilesProcessed" tilewidth="16" tileheight="16">
+  <image source="VermillionGymTilesProcessed" trans="ffffff"/>
  </tileset>
- <layer name="Tile Layer 1" width="13" height="26">
+ <layer name="Tile Layer 1" width="13" height="22">
   <properties>
-   <property name="Anims1" value="0"/>
-   <property name="ChapterID" value="VermillionGymCh"/>
-   <property name="Main" value=""/>
-   <property name="MapID" value="VermillionGymMap"/>
-   <property name="ObjectType" value="VermillionGymObj"/>
-   <property name="PaletteID" value="VermillionGymPal"/>
-   <property name="TileConfig" value="VermillionGymConf"/>
+   <property name="Main" value =""/>
   </properties>
   <data>
   <tile gid="1"/>
@@ -109,11 +103,11 @@
   <tile gid="3"/>
   <tile gid="4"/>
   <tile gid="104"/>
-  <tile gid="197"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="200"/>
+  <tile gid="105"/>
+  <tile gid="129"/>
+  <tile gid="130"/>
+  <tile gid="131"/>
+  <tile gid="132"/>
   <tile gid="104"/>
   <tile gid="3"/>
   <tile gid="4"/>
@@ -122,11 +116,11 @@
   <tile gid="9"/>
   <tile gid="33"/>
   <tile gid="133"/>
-  <tile gid="229"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="232"/>
+  <tile gid="134"/>
+  <tile gid="135"/>
+  <tile gid="136"/>
+  <tile gid="137"/>
+  <tile gid="161"/>
   <tile gid="133"/>
   <tile gid="9"/>
   <tile gid="33"/>
@@ -143,58 +137,6 @@
   <tile gid="162"/>
   <tile gid="68"/>
   <tile gid="40"/>
-  <tile gid="1"/>
-  <tile gid="1"/>
-  <tile gid="39"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="1"/>
-  <tile gid="1"/>
-  <tile gid="39"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="1"/>
-  <tile gid="1"/>
-  <tile gid="39"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="69"/>
-  <tile gid="1"/>
-  <tile gid="1"/>
-  <tile gid="39"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
-  <tile gid="164"/>
-  <tile gid="69"/>
   <tile gid="1"/>
   <tile gid="1"/>
   <tile gid="39"/>

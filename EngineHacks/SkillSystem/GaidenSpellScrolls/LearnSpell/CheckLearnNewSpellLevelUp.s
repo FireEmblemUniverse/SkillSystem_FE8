@@ -44,10 +44,22 @@ check_acting:
 	beq AlivePlayer @ not NPC nor Enemy
 
 check_target:
+
 	ldr r0, =pBattleUnitTarget
 	ldrb r1, [r0, #0x13] @ Current HP
 	cmp r1, #0
 	beq Exit @ Unit is ded
+	
+	@ apparently snags want to learn moves too 
+	ldr r1, [r0, #4] @ class table pointer 
+	ldrb r1, [r1, #4] @ class id 
+	ldr r2, =SnagID 
+	lsl r2, #24 
+	lsr r2, #24 
+	cmp r1, r2 
+	beq Exit 
+	
+	
 	mov r1, #0x70 @ Level before battle 
 	ldrb r2, [r0, r1] 
 	ldrb r1, [r0, #0x08] @ Current level 

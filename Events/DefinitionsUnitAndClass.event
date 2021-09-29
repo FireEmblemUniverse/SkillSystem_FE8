@@ -36,8 +36,6 @@
 #define ClassRoute25WaterA 0x22
 #define ClassRoute25WaterB 0x23
 
-#define ClassRoute9WWildA 0x24
-#define ClassRoute9WWildB 0x25
 
 #define ClassRoute5WildA 0x26
 #define ClassRoute5WildB 0x27
@@ -48,6 +46,8 @@
 #define ClassDiglettsCaveWildA 0x2C
 #define ClassDiglettsCaveWildB 0x2D
 
+#define ClassRoute9WWildA 0x24
+#define ClassRoute9WWildB 0x25
 
 
 
@@ -109,7 +109,9 @@
 #define UnitRoute5Trainer 0xAC
 #define UnitRoute6Trainer 0xAD
 #define UnitRoute11Trainer 0xAE
-#define UnitDiglettsCaveTrainer 0xAF
+#define UnitDiglettsCaveTrainer 0xAE // unused? 
+#define UnitSSAnneTrainer 0xAF
+#define UnitVermillionGymTrainer 0xB0
 
 
 // Reinforcement unit IDs 0x90 - 0x9F 

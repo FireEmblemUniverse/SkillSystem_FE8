@@ -104,7 +104,8 @@ CutBush(21,10)
 
 //StrengthBoulder(4,3)
 
-RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+CoinsTrap(16,35, ChapterID*2, 900)
+//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
 //RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 

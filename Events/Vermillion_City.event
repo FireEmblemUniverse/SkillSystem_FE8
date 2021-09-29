@@ -91,7 +91,6 @@ ChapterTransition(Route11Ch, 0, 9)
 
 
 ToSSAnne:
-CALL ClosedArea
 ChapterTransition(SSAnneCh, 19,3)
 
 
@@ -126,10 +125,7 @@ SignATrap(18,5, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 BlankExamineTrap(8,22,CeruleanGymSignText)
 SignTrap(8,15, CeruleanBicycleShopSignText) // Wooden 
 
-House(0,ClosedArea,7,4) // old rod ? 
-House(0,ClosedArea,10,15) // Fan club 
-House(0,ClosedArea,17,15) //
-House(0,ClosedArea,23,18) //
+
 
 EnterTutTrap(7,4, DoorLockedText) // 
 EnterTutTrap(10,15, DoorLockedText) // 

@@ -148,6 +148,10 @@ CheckAtkrFirst:
 ldrb r0, [r4, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne CheckDfdrSecond
+ldrb r0, [r4, #0x0B] @ Deployment id 
+blh GetUnit 
+mov r4, r0 
+
 mov r1, #0x38 @ Commander 
 ldrb r0, [r4, r1] @ Commander 
 cmp r0, #0 
@@ -189,6 +193,10 @@ CheckDfdrSecond:
 ldrb r0, [r5, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne False_IsTrainersTeamDefeated
+
+ldrb r0, [r5, #0x0B] @ Deployment id 
+blh GetUnit 
+mov r5, r0 
 mov r1, #0x38 @ Commander 
 ldrb r0, [r5, r1] @ Commander 
 cmp r0, #0 

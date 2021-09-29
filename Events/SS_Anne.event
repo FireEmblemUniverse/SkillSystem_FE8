@@ -1,8 +1,8 @@
-#define ChapterID Route6Ch
-#define GenericA UnitRoute6Wild
-#define GenericB UnitRoute6Trainer
-#define ClassA ClassRoute6WildA
-#define ClassB ClassRoute6WildB
+#define ChapterID SSAnneCh
+#define GenericA UnitSSAnneWild
+#define GenericB UnitSSAnneTrainer
+#define ClassA ClassSSAnneWildA
+#define ClassB ClassSSAnneWildB
 #define WildLvl 13 
 #define TrainerL 16
 
@@ -34,8 +34,6 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 ReinforcementEvent:
-Reinforce(0xF0, 1, ReinforcementUnits, 5, 4) 
-Reinforce(0xF1, 1, ReinforcementUnits, 6, 4) 
 NoFade 
 ENDA 
 
@@ -45,12 +43,14 @@ CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 AllTrainersPostBattleTalk
 END_MAIN
 
-
+UpperBoat:
+TutText(ClosedAreaText)
+NoFade
+ENDA 
 
 LocationBasedEvents:
-House(0, ToSaffron, 12,5) 
-House(0, ToSaffron, 13,5) 
-House(0, ToRoute5, 19,13) 
+House(0, ToVermillion, 19,2) 
+//House(0, UpperBoat, 2,6) 
 END_MAIN
 
 MiscBasedEvents:
@@ -59,28 +59,15 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToVermillion [10,39] [12,39] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID)  
-EscapeTileEntry(13,5) 
-EscapeTileEntry(12,5)
-EscapeTileEntry(19,13)
-EscapeTileEntry(11,39)
+EscapeTileEntry(19,2) 
 EscapeTileTerminator ; } 
 #endif 
 
 ToVermillion:
-ChapterTransition(VermillionCh, 21,0)
-
-ToRoute5:
-TutText(UndergroundPassText)
-ForcedChapterTransition(Route5Ch, 21,31)
-
-
-ToSaffron:
-CALL ClosedArea
-ChapterTransition(SaffronCh, 0,0)
+ChapterTransition(VermillionCh, 21,33)
 
 
 
@@ -92,8 +79,9 @@ Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
-CutBush(9,0)
+//CutBush(9,0)
 
+SkillAccessoryTrap(22,23, (ChapterID*2)+1, VantagePlusID) 
 
 
 //RockSmash(3,2)
@@ -107,20 +95,31 @@ CutBush(9,0)
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+EnterTrap(2,6, DoorLockedText)
 
-SpellScrollTrap(7,33, (ChapterID*2), DoubleHit)
+EnterTrap(5,20, DoorLockedText)
+EnterTrap(9,20, DoorLockedText)
+EnterTrap(13,20, DoorLockedText)
+EnterTrap(17,20, DoorLockedText)
+EnterTrap(5,9, DoorLockedText)
+EnterTrap(8,9, DoorLockedText)
+EnterTrap(11,9, DoorLockedText)
+EnterTrap(14,9, DoorLockedText)
+EnterTrap(17,9, DoorLockedText)
 
-SkillAccessoryTrap(5,5, (ChapterID*2), SealSpdID)
+//SpellScrollTrap(7,33, (ChapterID*2), DoubleHit)
+
+//SkillAccessoryTrap(5,5, (ChapterID*2), SealSpdID)
 
 
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 
 
-SignBTrap(9,33, ChapterID, 0x0) //no extra text 
-SignATrap(21,15, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+//SignBTrap(9,33, ChapterID, 0x0) //no extra text 
+//SignATrap(21,15, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
-BerryTree(8,22,5)
-BerryTree(19,5,5)
+//BerryTree(8,22,5)
+//BerryTree(19,5,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
@@ -144,21 +143,24 @@ CALL LoadAndPlacePlayers
 
 
 
-LOAD1 0x1 EnemyUnitsA
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(10,5,17,11)) //w patch 
-LOAD1 0x1 EnemyUnitsB
-ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(10,12,17,17)) //w patch 
-
-
-
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
-AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes  
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
+
+MarkTrainerAsDefeated(0xE1) 
+LABEL 0
+LOAD1 0x1 CaptainUnitGroup
+LOAD1 0x1 HumanTrainers
+ENUN 
+
+CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
+BNE 10 rC r0 
+LOAD1 0x1 GaryUnitGroup 
+ENUN 
+LABEL 10 
+
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
 LABEL 0x63
 NoFade
@@ -194,41 +196,30 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-// Wilds - SpearowID	BellsproutID
-
-EnemyUnitsA:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsB:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-
-ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
-UNIT 
-
 
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
-MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsA) 
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsB) 
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsC) 
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
+
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
 MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
+MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
+MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4) 
+
+
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT R25_0xE0_BQ // 0xE0 
 SHORT R25_0xE1_BQ // 0xE0 
 SHORT R25_0xE1_BQ // 0xE0 
-
+SHORT R25_0xE1_BQ // 0xE0 
+SHORT R25_0xE1_BQ // 0xE0 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
@@ -238,36 +229,85 @@ SHORT R25_0xE1_BD // 0xE0
 SHORT 600 // Gold 
 SHORT R25_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
-
-
+SHORT R25_0xE1_BD // 0xE0 
+SHORT 600 // Gold 
+SHORT R25_0xE1_BD // 0xE0 
+SHORT 600 // Gold 
 TQD_TableTerminator ; }
 
+GaryUnitGroup:
+UNIT 0xE0 blueID 0x0 Level(1, Enemy, 1) [24,15]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 
+
+CaptainUnitGroup:
+UNIT 0xE1 captainID 0x0 Level(1, Enemy, 1) [28,6]  0b 0x0	0x1 REDA28R6 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+
 HumanTrainers:
-UNIT 0xE0 picnickerID 0x0 Level(1, Enemy, 1) [11,27]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 picnickerID 0x0 Level(1, Enemy, 1) [14,18]  0b 0x0	0x1 REDA14R18 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 bug_catcherID 0x0 Level(1, Enemy, 1) [4,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-
+UNIT 0xE2 sailorID 0x0 Level(1, Enemy, 1) [10,6]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 gentlemanID 0x0 Level(1, Enemy, 1) [5,20]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE4 sailorID 0x0 Level(1, Enemy, 1) [17,20]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 
 
-EnemyTrainers0: // picnicker
-UNIT GenericB 	PidgeottoID 0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	BellsproutID 0xE0 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	OddishID 0xE0 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+GaryUnitsA:
+UNIT GenericB	IvysaurID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
 UNIT
 
-EnemyTrainers1: // picnicker
-UNIT GenericB 	BellsproutID 0xE1 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	MeowthID 0xE1 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	BellsproutID 0xE1 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+GaryUnitsB:
+UNIT GenericB	CharmeleonID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
 UNIT
 
-EnemyTrainers1: // Bug catcher
-UNIT GenericB 	VenonatID 0xE2 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+GaryUnitsC:
+UNIT GenericB	WartortleID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT
+
+GaryUnitsD:
+UNIT GenericB	EeveeID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI 
+UNIT
+
+
+EnemyTrainers2: // sailor 
+UNIT GenericB 	TentacoolID 0xE1 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	PidgeottoID 0xE1 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	TentacoolID 0xE1 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT
+
+EnemyTrainers3: // gentleman 
+UNIT GenericB 	RaticateID 0xE2 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	PidgeottoID 0xE2 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	VenonatID 0xE2 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	RaticateID 0xE2 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT
+	
+EnemyTrainers4: // sailor 
+UNIT GenericB 	TentacoolID 0xE3 	Level(1, Enemy, 1) [8,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	RaticateID 0xE3	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	PidgeottoID 0xE3 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	TentacoolID 0xE3 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT
+	
 	
 #undef GenericA 
 #undef GenericB 

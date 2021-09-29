@@ -186,17 +186,16 @@ LABEL 0
 
 
 CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
-//SADD rA rC r0 
-//Stop 
 BNE 10 rC r0 
 LOAD1 0x1 GaryBattleUnitGroup 
 ENUN 
-AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
+
 GOTO 0x63 
 LABEL 10 
 CALL CityBeginningScene // Move bonus only when Gary is defeated 
 
 LABEL 0x63
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
 NoFade
 ENDA
 
