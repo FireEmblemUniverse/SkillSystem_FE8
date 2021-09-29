@@ -16,6 +16,7 @@
   #define Trv_Icon_Y 0x2E
   
   #include "DisplayGrowthsOptions/DisplayGrowthsOptions.event"
+  #include "WeaponRankStatScreen/WeaponRankStatScreen.event"
  
   PUSH
     ORG 0x205b24 //24 for stat screen
