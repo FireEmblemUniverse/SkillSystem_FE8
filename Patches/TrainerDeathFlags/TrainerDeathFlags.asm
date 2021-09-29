@@ -158,9 +158,6 @@ beq CheckDfdrSecond
 mov r6, r0 @ Commander 
 
 
-mov r1, #0x38 @ Commander 
-mov r0, #0 
-strb r0, [r4, r1] @ Make atkr have no commander so this doesn't trigger again 
 
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
@@ -173,12 +170,18 @@ add r1, #1 @ 1 more has died
 strb r1, [r6, r2] 
 cmp r0, r1 
 bne CheckDfdrSecond 
+
+mov r1, #0x38 @ Commander 
+mov r0, #0 
+strb r0, [r4, r1] @ Make atkr have no commander so this doesn't trigger again 
+
+
 mov r0, r6 @ Defeated trainer 
 bl DefeatedTrainerRoutine
 
 
 
-b CheckDfdrSecond 
+b True_IsTrainersTeamDefeated
 
 
 CheckDfdrSecond:
@@ -195,10 +198,6 @@ cmp r0, #0
 beq False_IsTrainersTeamDefeated
 mov r6, r0 @ Commander 
 
-@ dunno if needed these 3 lines 
-mov r1, #0x38 @ Commander 
-mov r0, #0 
-strb r0, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again 
 
 mov r1, #0x2D 
 ldrb r0, [r6,r1] @ Wexp1 as # of team members 
@@ -211,6 +210,13 @@ add r1, #1 @ 1 more has died
 strb r1, [r6, r2] 
 cmp r0, r1 
 bne False_IsTrainersTeamDefeated  
+
+
+@ dunno if needed these 3 lines 
+mov r1, #0x38 @ Commander 
+mov r0, #0 
+strb r0, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again 
+
 mov r0, r6 @ Defeated trainer 
 bl DefeatedTrainerRoutine
 b True_IsTrainersTeamDefeated
