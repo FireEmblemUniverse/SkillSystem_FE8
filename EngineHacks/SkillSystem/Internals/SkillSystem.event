@@ -8,6 +8,22 @@ PUSH //let 203e884 + charnum*10 = skill area (bytes 1,2,3,4 NOT 0 tho)
 
 //PROBLEM: skills 1 and 2 get kept along with loss count
 
+ORG $5904A
+SHORT 0x46C0
+jumpToHack(SkillActivationAnims)
+ORG $518E4      // Don't overwrite VRAM holding procced skill icon.
+jumpToHack(KeepProcSkillIcon)
+ORG $5D9408                               // Make defensive skill use opponent's x-location.
+BYTE 0x16                                 // Replace proc loop with proc call (can yield).
+ORG $6E614                                // This means we no longer have to break proc loop,
+WORD 0xF7EB6DE0 0x2302FE4D 0x48055E1A     // allowing us to replace the call to breakProcLoop
+WORD 0x21802301 0xF0040049 0x2000F9BD     // with a call to getTargetAIS.
+WORD 0xBC02BC10 0x00004708                // Originally the proc loop would immediately break.
+                                          // It seems whoever designed battle animation stuff
+                                          // didn't know about proc call.
+ORG $7A89C
+jumpToHack(SkillProcDisplayMap)           // Display procced skill icon during map battle.
+
 /*
 ORG $a44c8 //bwl
 BYTE $70 $47
@@ -60,6 +76,22 @@ jumpToHack(Unset_Attack_Flag_2)
 ORG $2B918
 jumpToHack(RemoveRoundHack)
 POP
+
+ALIGN 4
+KeepProcSkillIcon:
+#include "KeepProcSkillIcon.lyn.event"
+ALIGN 4
+SkillActivationAnims:
+#include "activationanims.lyn.event"
+ALIGN 4
+SkillProcDisplayMap:
+#include "SkillProcDisplayMap.lyn.event"
+ALIGN 4
+#include "C/SkillProcDisplay.lyn.event"
+ALIGN 4
+SPD_ProcDisplayTiles:
+#incbin "Graphics/ProcDisplayTiles.dmp"    // Uncompressed image.
+
 
 ALIGN 4
 Skill_Getter: // gets a list of skills
