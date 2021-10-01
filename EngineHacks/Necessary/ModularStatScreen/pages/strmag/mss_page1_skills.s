@@ -99,12 +99,12 @@ ldr		r0,[r0,#20]		@luk growth getter
 draw_growth_at 26, 9
 
 
+draw_textID_at 21, 3, textID=0x4E9, growth_func=1 @hp name
 
 ldr		r0,[sp,#0xC]
 ldr		r0,[r0]			@hp growth getter (not displaying because there's no room atm)
 draw_growth_at 26, 3
 
-draw_textID_at 21, 3, textID=0x4E9, growth_func=1 @hp name
 b		NextColumn
 .ltorg
 
