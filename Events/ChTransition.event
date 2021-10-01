@@ -240,6 +240,9 @@ ENDA
 
 GlobalBeginningScene:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+#ifdef DEBUG_MODE 
+SetMaxMove
+#endif 
 NoFade 
 ENDA 
 
@@ -247,15 +250,15 @@ GlobalTurnEvent:
 #ifndef DEBUG_MODE
 QuickSave
 #endif 
-CHECK_EVENTID 9 
+CHECK_EVENTID CallCountdownFlag_2 
 BNE 0 rC r0 
 ENUF 1 // Auto refresh if not in danger 
 LABEL 0 
-ENUF 9 // 1 turn until auto refresh again 
+ENUF CallCountdownFlag_2 // 1 turn until auto refresh again 
 #ifdef DRUnitBitMask
 SetNearbyDangerRadius
 #endif 
-ENUF 8 // Can 'Call' again 
+ENUF CallCountdownFlag // Can 'Call' again 
 NoFade
 ENDA 
 
@@ -566,7 +569,7 @@ RefreshIfNotInDanger:
 CHECK_EVENTID TrainerBattleActiveFlag 
 BNE 62 rC r0 // if flag is ON,  skip everything 
 
-CHECK_EVENTID 1 
+CHECK_EVENTID AttackedThisTurnFlag 
 BNE 63 rC r0 // if flag is ON,  skip everything 
 CHECK_ENEMIES 
 BEQ 10 rC r0 // No Enemies, so refresh 

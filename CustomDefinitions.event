@@ -103,7 +103,6 @@
 #define WorldMapSomethingFlag 0x88 
 #define WordMapInitialized 0x89 
 #define FreliaFlag 0x8A 
-
 #define CasualModeFlag 0xB0
 
 
@@ -120,9 +119,22 @@
 #define RefreshActiveUnitFlag 0x91 
 #define CallCountdownFlag 0x8 
 #define CallCountdownFlag_2 0x9 
-
+#define AttackedThisTurnFlag 0x1 
 #define SSAnneTicketFlag 0x92 
-#define ThunderbadgeObtained 0x93 
+#define ObtainedCutFlag 0x93
+#define CutHmFlag 0x93 
+
+#define ThunderbadgeObtained 0x94 
+
+
+#define RockSmashFlag 0x20
+#define StrengthBoulderFlag 0x21
+
+#define DebugPlaceUnitsFlag 0xAA 
+#define DebugPlaceUnitsFlagMenu 0xAB 
+
+
+
 
 
 

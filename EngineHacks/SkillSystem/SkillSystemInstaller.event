@@ -14,7 +14,9 @@
 #ifdef __DEBUG__
   #include "DebugSkillEdit/DebugSkillEdit.event"
 #endif
-  #include "DebugSkillEdit/DebugSkillEdit.event"
+
+#include "ReorderMovesMenu/Installer.event" 
+
 #include "SkillScrolls/SkillScrolls.event"
 #include "GaidenSpellScrolls/SpellScrolls.event"
 

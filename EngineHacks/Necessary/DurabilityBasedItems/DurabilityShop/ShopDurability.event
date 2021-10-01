@@ -12,7 +12,6 @@ POP
 
 ALIGN 4
 FixedPriceItemList:
-BYTE Berry
 BYTE SkillScroll
 BYTE SpellScroll
 BYTE 0

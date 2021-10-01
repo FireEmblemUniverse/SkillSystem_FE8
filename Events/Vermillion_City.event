@@ -57,7 +57,7 @@ END_MAIN
 
 EnterGym:
 ENUF ThunderbadgeObtained 
-CALL ClosedArea
+//CALL ClosedArea
 ForcedChapterTransition(VermillionGymCh, 7,24)
 NoFade 
 ENDA 
@@ -122,15 +122,18 @@ SignATrap(18,5, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
 
-BlankExamineTrap(8,22,CeruleanGymSignText)
-SignTrap(8,15, CeruleanBicycleShopSignText) // Wooden 
+BlankExamineTrap(8,22,VermillionGymSignText)
+SignTrap(8,15, VermillionFanClubSignText) // Wooden 
 
 
 
-EnterTutTrap(7,4, DoorLockedText) // 
-EnterTutTrap(10,15, DoorLockedText) // 
-EnterTutTrap(17,15, DoorLockedText) // 
-EnterTutTrap(23,18, DoorLockedText) //   
+EnterTutTrap(7,4, VermillionNWHouseText) // 
+EnterTutTrap(10,15, FanClubText) // 
+
+EnterTutTrap(17,15, VermillionMidHouseText) // 
+EnterTutTrap(23,18, VermillionSEHouseText)
+
+//EnterTutTrap(23,18, DoorLockedText) //   
 
 
 //Flower(10,6)

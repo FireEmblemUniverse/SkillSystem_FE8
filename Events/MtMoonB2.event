@@ -84,25 +84,32 @@ ToRoute4E:
 ChapterTransition(Route4ECh, 5, 5)
 
 ToMtMoonB3_NE:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB3Ch, 23,12)
 
 ToMtMoonB3_M:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB3Ch, 12,30)
 
 ToMtMoonB3_E:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB3Ch, 21,20)
 
 ToMtMoonB3_W:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB3Ch, 5, 9)
 
 
 ToMtMoonB1_M:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB1Ch, 15, 16)
 
 ToMtMoonB1_W:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB1Ch, 5, 6)
 
 ToMtMoonB1_E:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB1Ch, 25,15)
 
 
@@ -145,7 +152,7 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
+ENUF SkipIntroFlag
 
 LOAD1 0x1 EnemyUnitsA
 ENUN

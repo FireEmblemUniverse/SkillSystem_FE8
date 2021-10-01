@@ -149,9 +149,14 @@ ldrb r0, [r4, #0x13] @ CurrentHP
 cmp r0, #0 
 bne CheckDfdrSecond
 ldrb r0, [r4, #0x0B] @ Deployment id 
+lsr r1, r0, #6 @ allegiance 
+cmp r1, #0 
+beq CheckDfdrSecond
+
 blh GetUnit 
 mov r4, r0 
-
+cmp r0, #0 
+beq CheckDfdrSecond 
 mov r1, #0x38 @ Commander 
 ldrb r0, [r4, r1] @ Commander 
 cmp r0, #0 
@@ -168,6 +173,10 @@ ldrb r0, [r6,r1] @ Wexp1 as # of team members
 cmp r0, #50 
 beq CheckDfdrSecond 
 
+mov r1, #0x38 @ Commander 
+mov r2, #0 
+strb r2, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again 
+
 mov r2, #0x2E 
 ldrb r1, [r6, r2] @ Wexp2 as how many that have fainted 
 add r1, #1 @ 1 more has died 
@@ -175,9 +184,6 @@ strb r1, [r6, r2]
 cmp r0, r1 
 bne CheckDfdrSecond 
 
-mov r1, #0x38 @ Commander 
-mov r0, #0 
-strb r0, [r4, r1] @ Make atkr have no commander so this doesn't trigger again 
 
 
 mov r0, r6 @ Defeated trainer 
@@ -194,11 +200,20 @@ ldrb r0, [r5, #0x13] @ CurrentHP
 cmp r0, #0 
 bne False_IsTrainersTeamDefeated
 
+
 ldrb r0, [r5, #0x0B] @ Deployment id 
+lsr r1, r0, #6 @ allegiance 
+cmp r1, #0 
+beq False_IsTrainersTeamDefeated
+
 blh GetUnit 
+
+cmp r0, #0 
+beq False_IsTrainersTeamDefeated
 mov r5, r0 
 mov r1, #0x38 @ Commander 
 ldrb r0, [r5, r1] @ Commander 
+
 cmp r0, #0 
 beq False_IsTrainersTeamDefeated
 blh GetUnitByEventParameter
@@ -212,6 +227,11 @@ ldrb r0, [r6,r1] @ Wexp1 as # of team members
 cmp r0, #50 
 beq False_IsTrainersTeamDefeated @ just now, anyway (they were previously defeated) 
 
+mov r1, #0x38 @ Commander 
+mov r2, #0 
+strb r2, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again 
+
+
 mov r2, #0x2E 
 ldrb r1, [r6, r2] @ Wexp2 as which ones that have fainted (none so far) 
 add r1, #1 @ 1 more has died 
@@ -220,10 +240,7 @@ cmp r0, r1
 bne False_IsTrainersTeamDefeated  
 
 
-@ dunno if needed these 3 lines 
-mov r1, #0x38 @ Commander 
-mov r0, #0 
-strb r0, [r5, r1] @ Make dfdr have no commander so this doesn't trigger again 
+
 
 mov r0, r6 @ Defeated trainer 
 bl DefeatedTrainerRoutine
@@ -273,6 +290,9 @@ mov r0, #1
 b AreAnyTrainerBattlesActive_Exit
 
 BreakLoop:
+
+
+
 mov r0, #0 @ False 
 
 AreAnyTrainerBattlesActive_Exit:
@@ -519,6 +539,12 @@ ldr r0, =TrainerBattleActiveFlag
 lsl r0, #24 
 lsr r0, #24 
 blh 0x8083cd8 @UnsetGlobalEventId
+
+ldr r0, =CallCountdownFlag_2
+lsl r0, #24 
+lsr r0, #24 
+blh 0x8083cd8 @UnsetGlobalEventId
+
 DontTurnOffFlag: 
 
 

@@ -74,7 +74,7 @@ ToVermillion:
 ChapterTransition(VermillionCh, 21,0)
 
 ToRoute5:
-TutText(UndergroundPassText)
+TutText(0x35,UndergroundPassText) // black bg 
 ForcedChapterTransition(Route5Ch, 21,31)
 
 
@@ -92,7 +92,7 @@ Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
-CutBush(9,0)
+//CutBush(9,0)
 
 
 
@@ -225,19 +225,19 @@ MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT R6_0xE0_BQ // 0xE0 
+SHORT R6_0xE1_BQ // 0xE0 
+SHORT R6_0xE2_BQ // 0xE0 
 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R6_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
+SHORT R6_0xE1_BD // 0xE0 
+SHORT 900 // Gold 
+SHORT R6_0xE2_BD // 0xE0 
+SHORT 500 // Gold 
 
 
 TQD_TableTerminator ; }

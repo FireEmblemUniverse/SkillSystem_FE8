@@ -92,7 +92,7 @@
 .avoid 177
 .avoid 212
 .avoid 227
-
+.avoid 254 
  
  
  
@@ -189,7 +189,7 @@
 
 //Aptitude: +20% to all growth rates.
 //By Sme
- AptitudeID
+ AptitudeID 254
 
 
 //HP Restoration Skills

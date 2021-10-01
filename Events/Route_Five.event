@@ -82,7 +82,7 @@ ToCerulean:
 ChapterTransition(CeruleanCh, 19,30)
 
 ToRoute6:
-TutText(UndergroundPassText)
+TutText(0x35,UndergroundPassText) // black bg 
 ForcedChapterTransition(Route6Ch, 19,13)
 
 
@@ -230,15 +230,15 @@ MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT R5_0xE0_BQ // 0xE0 
+SHORT R5_0xE1_BQ // 0xE0 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R5_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
+SHORT R5_0xE1_BD // 0xE0 
+SHORT 800 // Gold 
 TQD_TableTerminator ; }
 
 HumanTrainers:

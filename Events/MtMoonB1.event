@@ -76,12 +76,15 @@ ToRoute4W:
 ChapterTransition(Route4WCh, 19, 5)
 
 ToMtMoonB2_E:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 28,15)
 
 ToMtMoonB2_M:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 19, 14)
 
 ToMtMoonB2_W:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 3, 7)
 
 // Allocated 2 traps per chapter, in most cases 
@@ -126,7 +129,7 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
+ENUF SkipIntroFlag
 ENUT RocketMagikarpFlag
 
 

@@ -254,9 +254,7 @@ SetImpassableTrap(SkillAccessoryTrapID)
 
 
 // HMs 
-#define CutHmFlag 0x66 
-#define RockSmashFlag 0x20
-#define StrengthBoulderFlag 0x21
+
 
 #define CutBush(XX,YY) "BYTE CutBushTrapID XX YY CutHmFlag CutBushSMS 0x0"
 #define CutBushEffect(XX,YY, EffectID) "BYTE CutBushTrapID XX YY CutHmFlag CutBushSMS EffectID"

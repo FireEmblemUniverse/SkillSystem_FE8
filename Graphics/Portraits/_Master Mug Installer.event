@@ -64,6 +64,13 @@ MistyData: // 001
 #incbin "Dmp/Misty_minimug.dmp" 
 setMugEntry(159, MistyData, 9, 9, 9, 9)
 
+ALIGN 16 
+LtSurgeData: // 001
+#incbin "Dmp/LtSurge_mug.dmp" 
+#incbin "Dmp/LtSurge_frames.dmp" 
+#incbin "Dmp/LtSurge_palette.dmp" 
+#incbin "Dmp/LtSurge_minimug.dmp" 
+setMugEntry(165, LtSurgeData, 9, 9, 9, 9)
 
 // Reserved 
 ALIGN 16 

@@ -130,7 +130,7 @@ b AddTo_r5
 CalculateAmount:
 mov r1, r0 @ Max hp 
 sub r1, #1 @ for bad rounding?
-mov r0, #10 @ amount to heal 
+mov r0, #8 @ amount to heal 
 mov r2, #100 
 mul r0, r2 
 blh #0x080D18FC @ Div routine 
@@ -212,7 +212,7 @@ b AddTo_r5_now
 CalculateAmountNow:
 mov r1, r0 @ Max hp 
 sub r1, #1 @ for bad rounding?
-mov r0, #10 @ amount to heal 
+mov r0, #8 @ amount to heal 
 mov r2, #100 
 mul r0, r2 
 blh #0x080D18FC @ Div routine 

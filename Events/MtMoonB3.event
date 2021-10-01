@@ -79,15 +79,19 @@ EscapeTileTerminator ; }
 #endif 
 
 ToMtMoonB2_ME:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 22,22)
 
 ToMtMoonB2_SW:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 11, 30)
 
 ToMtMoonB2_NW:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 13, 14)
 
 ToMtMoonB2_Exit:
+ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 20, 6)
 
 // Allocated 2 traps per chapter, in most cases 
@@ -131,6 +135,7 @@ ALIGN 4
 
 
 BeginningScene:
+ENUF SkipIntroFlag
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
@@ -146,12 +151,18 @@ LOAD1 0x1 EnemyUnitsC // burrows
 ENUN
 AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 AutoLevelUnits(WildLvl, True, 0xF0F9) // Burrows 
+
+
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
 LABEL 0x63
+
+//LOAD1 1 DebugUnit 
+//ENUN 
+
 NoFade
 ENDA
 
@@ -208,7 +219,9 @@ BurrowReinforcementUnits:
 UNIT Reinforcement0 RattataID 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
-
+DebugUnit:
+UNIT GenericA ZubatID 0x0 Level(1, Enemy, 1)   [18,30] 0b	0x0 0x01 REDA18R30 [LeechLife,0x0,0x0,0x0] AttackInRangeAI
+UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 

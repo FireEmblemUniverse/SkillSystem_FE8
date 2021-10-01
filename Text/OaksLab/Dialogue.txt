@@ -592,7 +592,7 @@ I blew it![A][X]
 
 ## MMB3_0xE2_BQ
 We're pulling a big job here![NL]
-Get lost, kid[A][X]
+Get lost, kid.[A][X]
 
 ## MMB3_0xE2_BD
 So, you are good...[A][X]
@@ -775,10 +775,260 @@ Drat![NL]
 A ZUBAT bit me back in that cave.[A][X]
 
 ## DaycareHouseText
-I'm sorry, but you'll[NL]
-have to come back later.[A][X]
+I run the DAY-CARE service.[A][NL]
+You'd like me to raise one of[NL]
+your POKEMON?[A][2NL]
+I can put you down on the wait list,[NL]
+but it's several months long...[A][NL]
+Sorry, but could you come back later?[A][X]
+
 
 ## UndergroundPassText
 After a long walk, you[NL]
 emerge at the other side.[A][X]
+
+
+
+## R5_0xE0_BQ 
+Let's go, but don't cheat![A][X]
+
+## R5_0xE0_BD 
+Huh?[N]
+That's not right![A][X]
+
+
+## R5_0xE1_BQ 
+I've never seen you around.[N]
+Are you good?[A][X]
+
+## R5_0xE1_BD 
+You're too good![A][X]
+
+
+
+## R6_0xE0_BQ 
+Who's there?[N]
+Alright, let's go![A][X]
+
+
+## R6_0xE0_BD
+I just can't win![A][X]
+
+## R6_0xE1_BQ 
+I raised my POKEMON carefully.[N]
+They should be ready by now![A][X]
+
+## R6_0xE1_BD
+Tch...[N]
+I better go find stronger ones![A][X]
+
+
+
+
+## R6_0xE2_BQ 
+There aren't many bugs out here.[A][X]
+
+## R6_0xE2_BD
+No![N]
+You're kidding![A][NL]
+I like bugs, so I'm going back to[N]
+VIRIDIAN FOREST.[A][X]
+
+
+// vermillion 
+## VermillionGymSignText
+Vermillion Gym[A][X]
+
+
+## VermillionFanClubSignText
+Vermillion Fan Club[A][X]
+
+
+
+## FanClubText
+I chair the POKEMON Fan Club![A][N]
+I raise more than a hundred[N]
+POKEMON![A][N]
+I'm very fussy when it comes to[N]
+POKEMON! I surely am![A][N]
+So...[A][N]
+Did you come visit to hear about[N]
+my POKEMON?[A][N]
+Good![N]
+Then listen up![A][N]
+My favorite RAPIDASH...[A][N]
+It's...cute...lovely...smart... [N]
+plus...amazing...you think so?...[A][N]
+oh yes...it's...stunning...[A][N]
+kindly...love it![A][N]
+Hug it...when...sleeping...warm[N]
+and cuddly...spectacular...[A][N]
+ravishing...[A][N]
+...Oops! Excuse me![N]
+I've talked far too much![A][N]
+Tell me about yourself![A][N]
+Hmm? You just want a Bike voucher?[A][N]
+Hah, sure, kid. Let me also write up[N]
+a cheque for you to buy a car.[A][N]
+Fat chance. Now go away.[A][X]
+
+## VermillionNWHouseText
+I'm the FISHING GURU![N]
+I simply looove fishing![A][N]
+I'd share my love of fishing with you,[N]
+but the lazy developer hasn't made rods.[A][X]
+
+## VermillionMidHouseText
+Hi![N]
+Do you have a Hoot-hoot?[A][N]
+Want to trade it for my Kadabra?[N]
+No..? That's too bad.[A][X]
+
+## VermillionSEHouseText
+I'm getting my PIDGEY to fly a[N]
+letter to SAFFRON in the north.[A][X]
+
+## LtSurgeChallengeText
+[OpenMidRight][LoadLtSurge][OpenMidRight]Hey, kid! What do you think you're[N]
+doing here?[A][N]
+You won't live long in combat![N]
+Not with your puny power![A][N]
+I tell you, kid, electric POKEMON[N]
+saved me during the war![A][N]
+They zapped my enemies into[N]
+paralysis![A][N]
+The same as I'll do to you![A][X]
+	
+## LtSurgeDefeatText
+[OpenMidRight][LoadLtSurge][OpenMidRight]Bah. As a reward for your win,[N]
+take this THUNDERBADGE.[A][N]
+It mighta been a fluke,[N]
+but rules are rules...[A][X]
+
+## LtSurgeWaitText
+[OpenMidRight][LoadLtSurge][OpenMidRight]Hold up, kid.[N]
+Take this![A][X]
+
+## LtSurgeRewardText
+[OpenMidRight][LoadLtSurge][OpenMidRight]This here'll make the difference[N]
+'tween life and death, sometimes![A]
+'Course, it can come back to bite ya.[A][X]
+
+
+
+## R11_0xE0_BQ
+I'm the best in my class.[N]
+I train every morning.[A][X]
+
+## R11_0xE0_BD
+Darn![N]
+My POKEMON need to be stronger![A][X]
+
+## R11_0xE1_BQ
+Careful![N]
+I'm laying down some cables![A][X]
+
+## R11_0xE1_BD
+That was electric![A][X]
+
+## R11_0xE2_BQ
+You can't be a coward in the world[N]
+of POKEMON![A][X]
+
+## R11_0xE2_BD
+Aww! I've had enough![A][X]
+
+## R11_0xE3_BQ
+Watch out for live wires![A][X]
+
+## R11_0xE3_BD
+Whoa![N]
+You spark plug![A][X]
+
+
+
+
+
+
+
+## SSA_0xE0_BQ
+[OpenMidRight][LoadGaryShrug][OpenMidRight]Bonjour,[NL]
+[Tact]![A][NL]
+Imagine seeing you here![NL][A]
+Were you really invited?[NL]
+Tcch, no way.[A][NL]
+How's your POKEDEX coming?[A][NL]
+Haha, you don't even have one![NL]
+Some trainer you are.[A][NL]
+I already caught 40 kinds, pal.[A]
+Wanna see?[A][X]
+
+## SSA_0xE0_BD
+[OpenMidRight][LoadGaryShrug][OpenMidRight]Humph![A][2NL]
+If I didn't waste time[NL]
+catching so many, I woulda won.[A][X]
+
+
+
+
+
+## SSA_0xE3_BQ
+You insolent pup![N]
+How dare you barge in![A][X]
+
+## SSA_0xE3_BD
+Humph! You rude child![N]
+You have no sense of courtesy![A][X]
+	
+	
+
+## SSA_0xE2_BQ
+Hey, matey![A][N]
+Let's do a little jig![A][X]
+
+## SSA_0xE2_BD
+You're impressive![A][X]
+
+
+
+## SSA_0xE4_BQ
+I am but a solitary traveler...[A][N]
+My sole companions and friends are[N]
+POKEMON I caught on my journeys...[A][X]
+
+## SSA_0xE4_BD
+My, my friends...[A][X]
+
+
+
+## SSA_0xE1_BD
+// captain after teaching cut 
+Using CUT, you can chop down[N]
+small trees.[A][N]
+Why not try it with the trees[N]
+around VERMILION CITY?[A][X]
+
+
+## CaptainTeachHMText
+You want to see my hidden CUT[NL]
+technique?[A][NL]
+Watch closely...[NL]
+...[A][NL]
+..[NL]
+....[A][2NL]
+Ho-haah![A][NL]
+..[NL]
+...[A][X]
+
+## LearnedCutText
+You feel you've learned how
+to cut little bushes now.[A][X]
+
+
+
+
+
+
+
+
 

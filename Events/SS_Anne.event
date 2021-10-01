@@ -40,8 +40,20 @@ ENDA
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR ObtainedCutFlag CaptainHMevent [0x0, 0xE1] 0 // Captain 
+TrainerPostBattleTalk(0xE1) // Captain talk again 
+TrainerPostBattleTalk(0xE2) 
+TrainerPostBattleTalk(0xE3) 
+TrainerPostBattleTalk(0xE4) 
 END_MAIN
+
+CaptainHMevent:
+TutText(CaptainTeachHMText)
+STAL 15 
+TutText(LearnedCutText)
+NoFade
+ENDA 
+
 
 UpperBoat:
 TutText(ClosedAreaText)
@@ -215,24 +227,24 @@ MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT SSA_0xE0_BQ // gary
+SHORT SSA_0xE2_BQ // n/a
+SHORT SSA_0xE2_BQ // 0xE0 
+SHORT SSA_0xE3_BQ // 0xE0 
+SHORT SSA_0xE4_BQ // 0xE0 
 TQD_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT SSA_0xE0_BD // gary
+SHORT 1800 // Gold 
+SHORT SSA_0xE1_BD // captain after HM obtained 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
+SHORT SSA_0xE2_BD // 0xE0 
+SHORT 500 // Gold 
+SHORT SSA_0xE3_BD // 0xE0 
+SHORT 750 // Gold 
+SHORT SSA_0xE4_BD // 0xE0 
+SHORT 800 // Gold 
 TQD_TableTerminator ; }
 
 GaryUnitGroup:
@@ -290,22 +302,22 @@ UNIT
 
 
 EnemyTrainers2: // sailor 
-UNIT GenericB 	TentacoolID 0xE1 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	PidgeottoID 0xE1 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	TentacoolID 0xE1 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	TentacoolID 0xE2 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	PidgeottoID 0xE2 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	TentacoolID 0xE2 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 EnemyTrainers3: // gentleman 
-UNIT GenericB 	RaticateID 0xE2 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	PidgeottoID 0xE2 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	RaticateID 0xE2 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	RaticateID 0xE3 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	PidgeottoID 0xE3 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	RaticateID 0xE3 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT
 	
 EnemyTrainers4: // sailor 
-UNIT GenericB 	TentacoolID 0xE3 	Level(1, Enemy, 1) [8,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	RaticateID 0xE3	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	PidgeottoID 0xE3 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	TentacoolID 0xE3 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	TentacoolID 0xE4 	Level(1, Enemy, 1) [8,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	RaticateID 0xE4	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	PidgeottoID 0xE4 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	TentacoolID 0xE4 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT
 	
 	

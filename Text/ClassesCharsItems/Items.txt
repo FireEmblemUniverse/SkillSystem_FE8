@@ -86,11 +86,11 @@ Rocky Helmet[X]
 Opponents take 20% HP[NL]
 after attacking the holder.[X]
 
-## SurgesSigilNameText ^
+## SurgesSigilNameText
 Surge's Sigil[X]
 
 ## SurgesSigilDescText
-+5 dmg dealt and received.[X]
++6 dmg dealt and received.[X]
 
 ## ObliviousRingNameText ^
 Oblivious Ring[X]
@@ -290,7 +290,7 @@ Restores 40 HP.[X]
 Restores all HP.[X]
  
 ## BerryDescText
-Restores 10 HP.[N]
+Restores 8 HP.[N]
 Consumed at low HP.[X]
 
 ## SitrusBerryDescText
@@ -403,7 +403,7 @@ Dragon Axe[X]
 Thunder[X]
 ## IcePunchName
 Ice Punch[X]
-## AttackPulseName
+## AttackPulseName ^
 Attack Pulse[X]
 ## SuperFangName
 Super Fang[X]
@@ -440,7 +440,7 @@ Jump Kick[X]
 ## LowKickName
 Low Kick[X]
 
-## ThundershockName
+## ThundershockName ^
 Thundershock[X]
 ## AcidName
 Acid[X]
@@ -658,7 +658,7 @@ Sky Attack[X]
 *{)} Placeholder description.[X]
 ## MirrorMoveName
 Mirror Move[X]
-## WingAttackName
+## WingAttackName ^
 Wing Attack[X]
 ## WingAttackDesc
 *{(} A strong, winged attack.[X]
@@ -824,7 +824,7 @@ X-Scissor[X]
 *{(}Placeholder description.[X]
 
 
-## ThunderWaveName
+## ThunderWaveName ^
 Thunder Wave[X]
 ## ThunderWaveDesc
 Chip damage. Greatly debuffs Spd.[X]

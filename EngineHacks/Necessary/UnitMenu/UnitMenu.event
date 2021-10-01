@@ -71,11 +71,12 @@ UnitMenuTable:
     
 	// Debug command 
 	// MenuCommand(EscapeName, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
-	
+
 
 // Modular Summon 
   MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
 	
+  
   
   MenuCommand(0x67A, 0x6CC, BlueText, $22FDC, $23020)
   // UM_Seize
@@ -301,10 +302,14 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   
   UM_Trade
   
+  MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, $04F449, ReleaseCommandEffect)
+  
   //UM_Supply
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
   
-  MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, $04F449, ReleaseCommandEffect)
+  
+  MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,NewSupplyUsability,ReorderMovesEffect)
+	
   
   UM_Wait
 

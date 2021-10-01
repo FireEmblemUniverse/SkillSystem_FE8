@@ -79,6 +79,9 @@ WORD 0
 
 #define NegateDefEntry(ItemID, PercentDefToIgnore) "PUSH; ORG NegateDefAmountTable + (ItemID); BYTE PercentDefToIgnore; POP" 
 
+// also in PB_Calc_Loop_Effects/Installer.event 
+//Constrict Flash Growl Leer Pound SandAttack 
+//TailWhip FireSpin StringShot Smog Snarl ThunderWave Acid PoisonPowder
 
 NegateDefEntry(Constrict     , 63)
 NegateDefEntry(Flash         , 63)
@@ -86,7 +89,15 @@ NegateDefEntry(Growl         , 63)
 NegateDefEntry(Leer          ,  63)
 NegateDefEntry(SandAttack    , 63)
 NegateDefEntry(TailWhip      , 63)
-NegateDefEntry(Snarl          , 63)   
+NegateDefEntry(FireSpin      , 63)
+NegateDefEntry(StringShot      , 63)
+NegateDefEntry(Smog      , 63)
+NegateDefEntry(Snarl          , 63) 
+NegateDefEntry(ThunderWave          , 63) 
+NegateDefEntry(Acid          , 63) 
+NegateDefEntry(PoisonPowder          , 63) 
+
+
 
 NegateDefEntry(DragonRage          , 50)
 
