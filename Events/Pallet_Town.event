@@ -63,7 +63,7 @@ ChapterTransition(Route1Ch, 13, 39)
 
 
 VisitGaryHouse:
-TutText(GaryHouseBG,EnterGaryHouseText)
+TutTextAutoFade(GaryHouseBG,EnterGaryHouseText)
 
 //CombineGiveItemWithDurability(0x7FFF, Vulnerary,1)
 //SupplyItemWithDurability(Vulnerary,1)
