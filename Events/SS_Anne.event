@@ -70,6 +70,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 StartRivalBattleCutscene [4,13] [27,24]
 AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -81,7 +82,13 @@ EscapeTileTerminator ; }
 ToVermillion:
 ChapterTransition(VermillionCh, 21,33)
 
-
+StartRivalBattleCutscene: // So that players can flee if they never walk near the rival 
+CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
+BNE 10 rC r0 
+ENUT PlayableCutsceneFlag 
+LABEL 10 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -160,7 +167,7 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
-MarkTrainerAsDefeated(0xE1) 
+
 LABEL 0
 LOAD1 0x1 CaptainUnitGroup
 LOAD1 0x1 HumanTrainers
@@ -171,7 +178,7 @@ BNE 10 rC r0
 LOAD1 0x1 GaryUnitGroup 
 ENUN 
 LABEL 10 
-
+MarkTrainerAsDefeated(0xE1) 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
 LABEL 0x63

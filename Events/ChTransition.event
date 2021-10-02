@@ -627,7 +627,7 @@ ENDA
 
 
 ChTransition: 
-ENUF TrainerBattleActiveFlag
+
 #ifdef FREE_MOVEMENT_INSTALLED
 DisableFreeMovement
 #endif 
@@ -641,6 +641,7 @@ SVAL r7 1
 EVBIT_F 2 
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
+ENUF TrainerBattleActiveFlag
 SADD 2 9 0 
 
 MNC2 0xFFFF 

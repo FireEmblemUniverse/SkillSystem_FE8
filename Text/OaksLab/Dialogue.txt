@@ -910,9 +910,11 @@ but rules are rules...[A][X]
 Take this![A][X]
 
 ## LtSurgeRewardText
-[OpenMidRight][LoadLtSurge][OpenMidRight]This here'll make the difference[N]
-'tween life and death, sometimes![A]
-'Course, it can come back to bite ya.[A][X]
+[OpenMidRight][LoadLtSurge][OpenMidRight]This here'll make the[N]
+difference 'tween life and[A][N]
+death, sometimes![A][N]
+'Course, it can come[N]
+back to bite ya.[A][X]
 
 
 
@@ -960,8 +962,9 @@ Tcch, no way.[A][NL]
 How's your POKEDEX coming?[A][NL]
 Haha, you don't even have one![NL]
 Some trainer you are.[A][NL]
-I already caught 40 kinds, pal.[A]
-Wanna see?[A][X]
+I already caught 40 kinds, pal.[A][N]
+I hope you can swim, 'cause[N]
+I'll knock you overboard![A][X]
 
 ## SSA_0xE0_BD
 [OpenMidRight][LoadGaryShrug][OpenMidRight]Humph![A][2NL]
@@ -1021,7 +1024,7 @@ Ho-haah![A][NL]
 ...[A][X]
 
 ## LearnedCutText
-You feel you've learned how
+You feel you've learned how[N]
 to cut little bushes now.[A][X]
 
 
