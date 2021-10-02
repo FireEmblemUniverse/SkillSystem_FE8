@@ -121,12 +121,6 @@ PUSH
 ORG $2b3ec
 jumpToHack(ProcLoopParent)
 
-ORG $59064
-jumpToHack(SkillActivationAnims)
-
-ORG $590a8
-jumpToHack(SkillActivationAnims_defensive)
-
 //skip hp substraction if devil effect
 ORG $2B69E
 SHORT 0xE00B
