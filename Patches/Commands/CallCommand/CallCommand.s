@@ -226,7 +226,7 @@ strb r0, [r3, #0x1B] @ Rescuer/ee restored
 
 
 
-	blh  0x0801a1f4   @RefreshFogAndUnitMaps
+	blh  0x0801a1f8   @RefreshFogAndUnitMaps
 	blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics
 

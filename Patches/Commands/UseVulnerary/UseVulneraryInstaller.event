@@ -4,8 +4,16 @@
 
 // Unit ram + 0x1E is Item1 
 // We want the entire short of Item1+Durability, so I use 0x04 (SHORT) instead of the default byte for itemID or itemDURB 
+
+#define UseVulnerary(UnitID, AmountToHeal) "GetUnitStatus(UnitID, 0x1E, 0x04); SADD r5 rC r0; SVAL 1 UnitID; SVAL r6 AmountToHeal; ASMC HealLikeAVulnerary; SVAL r1 UnitID; SVAL r3 0x1E; SVAL 4 0x04; ASMC SetUnitStatus" 
+
 #define UseVulnerary(UnitID) "GetUnitStatus(UnitID, 0x1E, 0x04); SADD r5 rC r0; SVAL 1 UnitID; ASMC HealLikeAVulnerary; SVAL r1 UnitID; SVAL r3 0x1E; SVAL 4 0x04; ASMC SetUnitStatus" 
- 
+
+ALIGN 4  
+UseVulneraryEvent:
+UseVulnerary(0x7FFF)
+NoFade 
+ENDA 
 
 // Accelerate vulnerary recovery
 // By 7743 

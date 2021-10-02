@@ -5,6 +5,9 @@
 
 #include "Extensions/Hack Installation.txt"
 #include "_UnitMenuDefs.event"
+#include "SubMenu/Installer.event"
+
+
 
 PUSH
   // Repoint Unit Menu
@@ -277,11 +280,6 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 	//MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
 
   
-  // Pokemblem doesn't really need tbh 
-  UM_Rescue
-  UM_Give
-  UM_Take
-  UM_Drop
   
   // MenuCommand(0x689, 0x6c5, 0, 0x228a4, RescueEffect) //rescue
   // MenuCommand(UMText_Transfer,UMText_TransferDesc,GreenText,TransferUsability,TransferTarget) //transfer
@@ -296,23 +294,27 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 
   UM_Item
   
+MenuCommand(UM_RecoverName, UM_RecoverDesc, BlueText, RecoverCommandUsability, RecoverCommandEffect)
     //UM_Call, UM_CallDesc 
     MenuCommand(UM_Call, UM_CallDesc, GreenText, CallCommandUsability, CallCommandEffect)
   //UM_Rest, UM_RestDesc 
   
   UM_Trade
   
-  MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, $04F449, ReleaseCommandEffect)
+
   
   //UM_Supply
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+
+// Wait (edited to show an arrow) 
+BYTE 0x94 0x7D 0xD 0x8 0x95 0x6 0xBF 0x6 0x0 0x6B 0x0 0x0 0x49 0xF4 0x4 0x8; POIN DisplayedWaitmarkIfSubMenu+1; BYTE 0x39 0x27 0x2 0x8 0 0 0 0 0 0 0 0 0 0 0 0	//	待機 wait
+
   
-  
-  MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,NewSupplyUsability,ReorderMovesEffect)
-	
-  
-  UM_Wait
+  //UM_Wait
 
   UM_Separator 
 
 #endif // UNIT_MENU
+
+
+

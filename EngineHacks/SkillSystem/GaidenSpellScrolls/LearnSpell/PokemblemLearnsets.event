@@ -12,7 +12,7 @@ BYTE 19 RazorLeaf
 //BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Growth
 BYTE 27 DoubleEdge
-BYTE 33 Mend //?Buff (Synthesis)
+BYTE 33 RecoverMove //?Buff (Synthesis)
 BYTE 37 SolarBeam
 BYTE 0 0// Goes at the end of each learnset 
 	
@@ -29,7 +29,7 @@ BYTE 19 RazorLeaf
 //BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Growth
 BYTE 27 DoubleEdge
-BYTE 33 Mend //?Buff (Synthesis)
+BYTE 33 RecoverMove //?Buff (Synthesis)
 BYTE 37 SolarBeam
 BYTE 0 0
 
@@ -45,7 +45,7 @@ BYTE 19 RazorLeaf
 //BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Growth
 BYTE 27 DoubleEdge
-BYTE 33 Mend //?Buff (Synthesis)
+BYTE 33 RecoverMove //?Buff (Synthesis)
 BYTE 37 SolarBeam
 BYTE 0 0
 
@@ -160,7 +160,7 @@ BYTE 16 Gust
 BYTE 24 Psybeam
 BYTE 28 SignalBeam
 BYTE 30 Warp //?Buff (Tailwind)
-BYTE 34 Physic //?Buff (Safeguard)
+BYTE 34 RecoverMove //?Buff (Safeguard)
 BYTE 36 Snarl
 BYTE 40 BugBuzz
 BYTE 0 0
@@ -204,7 +204,7 @@ BYTE 21 Twister
 BYTE 25 WingAttack
 //BYTE 29 Resv //Agility
 BYTE 33 Slash
-//BYTE 37 Heal //?Buff (Roost)
+//BYTE 37 RecoverMove //?Buff (Roost)
 //BYTE 43 Warp //?Buff (Tailwind)
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
@@ -220,7 +220,7 @@ BYTE 21 Twister
 BYTE 25 WingAttack
 //BYTE 29 Resv //Agility
 BYTE 33 Slash
-//BYTE 37 Heal //?Buff (Roost)
+//BYTE 37 RecoverMove //?Buff (Roost)
 //BYTE 43 Warp //?Buff (Tailwind)
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
@@ -236,7 +236,7 @@ BYTE 21 Twister
 BYTE 25 WingAttack
 //BYTE 29 Resv //Agility
 BYTE 33 Slash
-//BYTE 37 Heal //?Buff (Roost)
+//BYTE 37 RecoverMove //?Buff (Roost)
 //BYTE 43 Warp //?Buff (Tailwind)
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
@@ -387,7 +387,7 @@ BYTE 9 DoubleKick
 BYTE 13 PoisonSting 
 BYTE 19 DoubleHit
 BYTE 21 Bite
-BYTE 25 Heal //?Support HelpingHand
+BYTE 25 RecoverMove //?Support HelpingHand
 //BYTE 31 Resv //ToxicSpikes
 BYTE 33 Snarl
 BYTE 37 NightSlash
@@ -404,7 +404,7 @@ BYTE 9 DoubleKick
 BYTE 13 PoisonSting 
 BYTE 19 DoubleHit
 BYTE 21 Bite
-BYTE 25 Heal //?Support HelpingHand
+BYTE 25 RecoverMove //?Support HelpingHand
 //BYTE 31 Resv //ToxicSpikes
 BYTE 33 Snarl
 BYTE 37 NightSlash
@@ -421,7 +421,7 @@ BYTE 9 DoubleKick
 BYTE 13 PoisonSting 
 BYTE 19 DoubleHit
 BYTE 21 Bite
-BYTE 25 Heal //?Support HelpingHand
+BYTE 25 RecoverMove //?Support HelpingHand
 //BYTE 31 Resv //ToxicSpikes
 BYTE 33 Snarl
 BYTE 37 NightSlash
@@ -438,7 +438,7 @@ BYTE 9 DoubleKick
 BYTE 13 PoisonSting
 BYTE 19 DoubleHit
 BYTE 21 HornAttack
-BYTE 25 Heal //?Support HelpingHand
+BYTE 25 RecoverMove //?Support HelpingHand
 //BYTE 31 Resv //ToxicSpikes
 BYTE 33 Snarl
 BYTE 37 PoisonJab
@@ -455,7 +455,7 @@ BYTE 9 DoubleKick
 BYTE 13 PoisonSting
 BYTE 19 DoubleHit
 BYTE 21 HornAttack
-BYTE 25 Heal //?Support HelpingHand
+BYTE 25 RecoverMove //?Support HelpingHand
 //BYTE 31 Resv //ToxicSpikes
 BYTE 33 Snarl
 BYTE 37 PoisonJab
@@ -472,7 +472,7 @@ BYTE 9 DoubleKick
 BYTE 13 PoisonSting
 BYTE 19 DoubleHit
 BYTE 21 HornAttack
-BYTE 25 Heal //?Support HelpingHand
+BYTE 25 RecoverMove //?Support HelpingHand
 //BYTE 31 Resv //ToxicSpikes
 BYTE 33 Snarl
 BYTE 37 PoisonJab
@@ -492,13 +492,13 @@ BYTE 10 DoubleHit
 //BYTE 19 Resv //Minimize
 BYTE 22 KarateChop
 BYTE 25 Barrier
-BYTE 28 Heal
+BYTE 28 RecoverMove
 //BYTE 31 Metronome
 //BYTE 34 Resv //Gravity
-BYTE 37 Physic
+BYTE 37 RecoverMove
 //BYTE 40 Resv //?Support LightScreen
 BYTE 43 MeteorMash
-BYTE 46 Recover
+BYTE 46 RecoverMove
 BYTE 0 0
 
 ALIGN 4
@@ -513,13 +513,13 @@ BYTE 10 DoubleHit
 //BYTE 19 Resv //Minimize
 BYTE 22 KarateChop
 BYTE 25 Barrier
-BYTE 28 Heal
+BYTE 28 RecoverMove
 //BYTE 31 Metronome
 //BYTE 34 Resv //Gravity
-BYTE 37 Physic
+BYTE 37 RecoverMove
 //BYTE 40 Resv //?Support LightScreen
 BYTE 43 MeteorMash
-BYTE 46 Recover
+BYTE 46 RecoverMove
 BYTE 0 0
 
 ALIGN 4
@@ -532,7 +532,7 @@ BYTE 11 QuickAttack
 BYTE 17 ConfuseRay
 BYTE 21 Confusion
 BYTE 24 Flamethrower
-BYTE 27 Heal //?Support Safeguard
+BYTE 27 RecoverMove //?Support Safeguard
 BYTE 31 Bite
 BYTE 34 FireSpin
 //BYTE 37 Resv //Captivate
@@ -551,7 +551,7 @@ BYTE 11 QuickAttack
 BYTE 17 ConfuseRay
 BYTE 21 Confusion
 BYTE 24 Flamethrower
-BYTE 27 Heal //?Support Safeguard
+BYTE 27 RecoverMove //?Support Safeguard
 BYTE 31 Bite
 BYTE 34 FireSpin
 //BYTE 37 Resv //Captivate
@@ -564,16 +564,16 @@ ALIGN 4
 JigglypuffLearnset:
 //BYTE 1 Sleep //Sing
 BYTE 1 Leer
-BYTE 5 Heal //?Support Defense Curl
+BYTE 5 RecoverMove //?Support Defense Curl
 BYTE 9 Pound 
 //BYTE 13 Resv //Disable
 BYTE 17 Rollout
 BYTE 21 DoubleHit
-BYTE 25 Recover //?Support Rest
+BYTE 25 RecoverMove //?Support Rest
 BYTE 29 BodySlam
 BYTE 33 MirrorShot //GyroBall
 BYTE 37 DoubleKick
-BYTE 41 Physic //?Support Mimic
+BYTE 41 RecoverMove //?Support Mimic
 BYTE 45 TriAttack
 BYTE 49 DoubleEdge
 BYTE 0 0
@@ -582,16 +582,16 @@ ALIGN 4
 WigglytuffLearnset:
 //BYTE 1 Sleep //Sing
 BYTE 1 Leer
-BYTE 5 Heal //?Support Defense Curl
+BYTE 5 RecoverMove //?Support Defense Curl
 BYTE 9 Pound 
 //BYTE 13 Resv //Disable
 BYTE 17 Rollout
 BYTE 21 DoubleHit
-BYTE 25 Recover //?Support Rest
+BYTE 25 RecoverMove //?Support Rest
 BYTE 29 BodySlam
 BYTE 33 MirrorShot //GyroBall
 BYTE 37 DoubleKick
-BYTE 41 Physic //?Support Mimic
+BYTE 41 RecoverMove //?Support Mimic
 BYTE 45 TriAttack
 BYTE 49 DoubleEdge
 BYTE 0 0
@@ -634,9 +634,9 @@ BYTE 9 Acid
 BYTE 13 PoisonPowder
 //BYTE 17 Sleep //SleepPowder
 BYTE 21 MegaDrain
-BYTE 25 Heal //?Support LuckyChant 
+BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
-BYTE 33 Mend //?Support Moonlight
+BYTE 33 RecoverMove //?Support Moonlight
 BYTE 37 PetalDance
 BYTE 39 MagicalLeaf
 BYTE 0 0
@@ -649,9 +649,9 @@ BYTE 9 Acid
 BYTE 13 PoisonPowder
 //BYTE 17 Sleep //SleepPowder
 BYTE 21 MegaDrain
-BYTE 25 Heal //?Support LuckyChant 
+BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
-BYTE 33 Mend //?Support Moonlight
+BYTE 33 RecoverMove //?Support Moonlight
 BYTE 37 PetalDance
 BYTE 39 MagicalLeaf
 BYTE 0 0
@@ -664,9 +664,9 @@ BYTE 9 Acid
 BYTE 13 PoisonPowder
 //BYTE 17 Sleep //SleepPowder
 BYTE 21 MegaDrain
-BYTE 25 Heal //?Support LuckyChant 
+BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
-BYTE 33 Mend //?Support Moonlight
+BYTE 33 RecoverMove //?Support Moonlight
 BYTE 37 PetalDance
 BYTE 39 MagicalLeaf
 BYTE 0 0
@@ -680,7 +680,7 @@ BYTE 11 LeechLife
 BYTE 22 Slash
 BYTE 27 Acid //Growth
 BYTE 33 MegaDrain
-BYTE 38 Physic //?Support Aromatherapy
+BYTE 38 RecoverMove //?Support Aromatherapy
 BYTE 43 XScissor
 BYTE 0 0
 
@@ -693,7 +693,7 @@ BYTE 11 LeechLife
 BYTE 22 Slash
 BYTE 27 Acid //Growth
 BYTE 33 MegaDrain
-BYTE 38 Physic //?Support Aromatherapy
+BYTE 38 RecoverMove //?Support Aromatherapy
 BYTE 43 XScissor
 BYTE 0 0
 
@@ -803,7 +803,7 @@ BYTE 18 Confusion
 BYTE 22 WaterPulse
 BYTE 27 Doubleslap
 BYTE 31 TailWhip
-BYTE 35 Heal //?Support PsychUp
+BYTE 35 RecoverMove //?Support PsychUp
 BYTE 40 Psybeam
 BYTE 44 Barrier //?Support Amnesia
 BYTE 48 HydroPump
@@ -819,7 +819,7 @@ BYTE 18 Confusion
 BYTE 22 WaterPulse
 BYTE 27 Doubleslap
 BYTE 31 TailWhip
-BYTE 35 Heal //?Support PsychUp
+BYTE 35 RecoverMove //?Support PsychUp
 BYTE 40 Psybeam
 BYTE 44 Barrier //?Support Amnesia
 BYTE 48 HydroPump
@@ -864,7 +864,7 @@ BYTE 1 Growl
 BYTE 6 Ember
 BYTE 9 Leer
 BYTE 14 Pound
-BYTE 17 Heal //?Support HelpingHand
+BYTE 17 RecoverMove //?Support HelpingHand
 BYTE 20 FlameWheel
 BYTE 25 RollingKick
 BYTE 28 Scorch
@@ -882,7 +882,7 @@ BYTE 1 Growl
 BYTE 6 Ember
 BYTE 9 Leer
 BYTE 14 Pound
-BYTE 17 Heal //?Support HelpingHand
+BYTE 17 RecoverMove //?Support HelpingHand
 BYTE 20 FlameWheel
 BYTE 25 RollingKick
 BYTE 28 Scorch
@@ -950,14 +950,14 @@ KadabraLearnset:
 BYTE 1 Leer 
 BYTE 1 Confusion
 BYTE 16 Confusion
-BYTE 18 Heal //?Support Disable
+BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
 BYTE 28 Barrier
-BYTE 30 Mend //?Support Recover
+BYTE 30 RecoverMove //?Support RecoverMove
 BYTE 34 DreamEater
 BYTE 36 Barrier //?Support RolePlay
 BYTE 40 Psychic
-BYTE 42 Physic
+BYTE 42 RecoverMove
 BYTE 0 0
 
 ALIGN 4
@@ -965,14 +965,14 @@ AlakazamLearnset:
 BYTE 1 Leer 
 BYTE 1 Confusion
 BYTE 16 Confusion
-BYTE 18 Heal //?Support Disable
+BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
 BYTE 28 Barrier
-BYTE 30 Mend //?Support Recover
+BYTE 30 RecoverMove //?Support RecoverMove
 BYTE 34 DreamEater
 BYTE 36 Barrier //?Support RolePlay
 BYTE 40 Psychic
-BYTE 42 Physic
+BYTE 42 RecoverMove
 BYTE 0 0
 
 ALIGN 4
@@ -1023,7 +1023,7 @@ BYTE 11 Constrict
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
-BYTE 29 Heal //?Support SweetScent
+BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
 BYTE 38 RazorLeaf
 BYTE 41 Slam
@@ -1038,7 +1038,7 @@ BYTE 11 Constrict
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
-BYTE 29 Heal //?Support SweetScent
+BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
 BYTE 38 RazorLeaf
 BYTE 41 Slam
@@ -1053,7 +1053,7 @@ BYTE 11 Constrict
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
-BYTE 29 Heal //?Support SweetScent
+BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
 BYTE 38 RazorLeaf
 BYTE 41 Slam
@@ -1626,7 +1626,7 @@ BYTE 6 Absorb
 BYTE 11 Leer 
 BYTE 16 EarthPower 
 BYTE 21 SandAttack 
-BYTE 26 Heal //?Support (Endure) 
+BYTE 26 RecoverMove //?Support (Endure) 
 BYTE 31 Crabhammer 
 BYTE 36 MegaDrain 
 BYTE 41 MetalSound 
@@ -1642,7 +1642,7 @@ BYTE 6 Absorb
 BYTE 11 Leer 
 BYTE 16 EarthPower 
 BYTE 21 SandAttack 
-BYTE 26 Heal //?Support (Endure) 
+BYTE 26 RecoverMove //?Support (Endure) 
 BYTE 31 Crabhammer 
 BYTE 36 MegaDrain 
 BYTE 41 MetalSound 
@@ -1691,7 +1691,7 @@ BYTE 29 Ancientpower
 //BYTE 36 Resv //Agility //?Buff
 BYTE 43 IceBeam
 BYTE 50 Barrier //?Buff (Reflect)
-BYTE 57 Physic //?Buff (Roost)
+BYTE 57 RecoverMove //?Buff (Roost)
 //BYTE 64 Warp ?Buff (Tailwind)
 BYTE 71 Blizzard
 BYTE 78 Guillotine
@@ -1708,7 +1708,7 @@ BYTE 29 Ancientpower
 //BYTE 36 ??? ?Buff (Charge)
 //BYTE 43 Resv //Agility //?Buff
 BYTE 50 Thunderbolt
-BYTE 57 Physic //?Buff (Roost)
+BYTE 57 RecoverMove //?Buff (Roost)
 BYTE 64 LightScreen //?Buff
 BYTE 71 DrillPeck
 BYTE 78 Thunder
@@ -1720,12 +1720,12 @@ BYTE 1 WingAttack
 BYTE 1 Ember 
 BYTE 8 FireSpin 
 //BYTE 15 Resv //Agility //?Buff 
-BYTE 22 Heal //?Buff (Endure) 
+BYTE 22 RecoverMove //?Buff (Endure) 
 BYTE 29 Ancientpower 
 BYTE 36 Flamethrower 
 BYTE 43 Barrier //?Buff (Safeguard) 
 BYTE 50 AirSlash 
-BYTE 57 Physic //?Buff (Roost) 
+BYTE 57 RecoverMove //?Buff (Roost) 
 BYTE 64 FireBlast 
 BYTE 71 SolarBeam 
 BYTE 78 SkyAttack 
@@ -1796,7 +1796,7 @@ BYTE 22 Psybeam
 //BYTE 64 ??? ?Buff (Power Swap, Guard Swap)
 BYTE 71 Psychic
 //BYTE 79 ??? ?Buff (Me First)
-BYTE 86 Fortify //?Buff (Recover)
+BYTE 86 Fortify //?Buff (RecoverMove)
 //BYTE 93 ??? ?Buff (Safeguard)
 BYTE 100 SeismicToss
 BYTE 0 0

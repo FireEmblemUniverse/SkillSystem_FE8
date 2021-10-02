@@ -118,7 +118,7 @@ MoveCommandSelect:
 	movs	r1, r3	@ ivtmp.49, _28
 @ ReorderMoves.c:70:     int iIn = 0, iOut = 0;
 	movs	r0, #0	@ iOut,
-	adds	r2, r2, #48	@ _54,
+	adds	r2, r2, #45	@ _54,
 .L5:
 @ ReorderMoves.c:74:         if (moves[iIn])
 	ldrb	r5, [r1]	@ _32, MEM[base: _46, offset: 0B]
@@ -130,15 +130,15 @@ MoveCommandSelect:
 @ ReorderMoves.c:75:             moves[iOut++] = moves[iIn];
 	adds	r0, r0, #1	@ iOut,
 .L4:
-@ ReorderMoves.c:72:     for (; iIn < UNIT_SKILL_COUNT; ++iIn)
+@ ReorderMoves.c:72:     for (; iIn < 5; ++iIn)
 	adds	r1, r1, #1	@ ivtmp.49,
 	cmp	r1, r2	@ ivtmp.49, _54
 	bne	.L5		@,
 @ ReorderMoves.c:79:         moves[iOut] = 0;
 	movs	r2, #0	@ tmp151,
-	cmp	r0, #8	@ iOut,
+	cmp	r0, #5	@ iOut,
 	bgt	.L7		@,
-	adds	r2, r2, #8	@ tmp152,
+	adds	r2, r2, #5	@ tmp152,
 	subs	r2, r2, r0	@ tmp151, tmp152, iOut
 .L7:
 	adds	r0, r3, r0	@ tmp153, _28, iOut

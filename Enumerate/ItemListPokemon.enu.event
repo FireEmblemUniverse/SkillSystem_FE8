@@ -13,7 +13,7 @@
 #define EggBomb 0xD
 #define Explosion 0xE
 #define Flash 0xF
-#define Fury(magic) 0x10
+#define RecoverMove 0x10
 #define Glare 0x11
 #define Growl 0x12
 #define Growth 0x13

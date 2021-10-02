@@ -1,7 +1,7 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 
 #include "ItemSpecialEffect/Installer.event" 
-
+#include "CommandMoves/Installer.event" 
 #include "AutosaveKiller.event"
 
 

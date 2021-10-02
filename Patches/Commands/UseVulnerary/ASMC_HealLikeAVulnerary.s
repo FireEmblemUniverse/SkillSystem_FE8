@@ -5,7 +5,7 @@
 
 	gEventSlot = 0x030004B8
 	gAction = 0x0203A958
-
+	.equ MemorySlot,0x30004B8
 	SpawnProcLocking = 0x08002CE0+1
 	GetUnitFromEventParam = 0x0800BC50+1
 	CreateItem = 0x08016540+1
@@ -42,7 +42,12 @@ HealLikeAVulnerary:
 	bl   bx_r3
 
 	mov  r0, r4  @ arg r0 = proc
-	mov  r1, #10 @ arg r1 = healing amount
+	
+	ldr r3, =MemorySlot 
+	ldr r1, [r3, #4*0x06] @ s6 as healing amount in r1 
+	lsl r1, #24 
+	lsr r1, #24 @ just in case i guess 
+	@ mov  r1, #10 @ arg r1 = healing amount
 
 	ldr  r3, =DoVulneraryEffect
 	bl   bx_r3
