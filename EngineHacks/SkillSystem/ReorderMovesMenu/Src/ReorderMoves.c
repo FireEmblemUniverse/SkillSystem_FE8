@@ -2,7 +2,7 @@
 #include "FE-CLib-master/include/gbafe.h"
 
 
-enum { UNIT_SKILL_COUNT = 8 };
+enum { UNIT_SKILL_COUNT = 5 };
 
 #define BG_SYNC_BIT(aBg) (1 << (aBg))
 enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
@@ -56,7 +56,7 @@ int UnitCountSkills(struct Unit* unit)
 
     int count = 0;
 
-    for (int i = 0; i < UNIT_SKILL_COUNT && moves[i]; ++i)
+    for (int i = 0; i < 5 && moves[i]; ++i)
         count++;
 
     return count;
@@ -69,13 +69,13 @@ void UnitClearBlankSkills(struct Unit* unit)
 
     int iIn = 0, iOut = 0;
 
-    for (; iIn < UNIT_SKILL_COUNT; ++iIn)
+    for (; iIn < 5; ++iIn)
     {
         if (moves[iIn])
             moves[iOut++] = moves[iIn];
     }
 
-    for (; iOut < UNIT_SKILL_COUNT; ++iOut)
+    for (; iOut < 5; ++iOut)
         moves[iOut] = 0;
 }
 
