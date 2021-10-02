@@ -22,9 +22,9 @@ CFLAGS := $(ARCH)$(INCFLAGS) -Wall -Os -mtune=arm7tdmi -mlong-calls
 
 # listing files
 CFILES := $(wildcard *.c)
-SFILES := $(wildcard *.asm)
-OFILES := $(CFILES:.c=.o) $(SFILES:.asm=.o)
-ASMFILES := $(CFILES:.c=.s)
+SFILES := $(wildcard *.s)
+OFILES := $(CFILES:.c=.o) $(SFILES:.s=.o)
+ASMFILES := $(CFILES:.c=.asm)
 LYNFILES := $(OFILES:.o=.lyn.event)
 DMPFILES := $(OFILES:.o=.dmp)
 
@@ -36,7 +36,7 @@ $(shell mkdir -p $(DEPSDIR) > /dev/null)
 DEPFILES := $(addprefix $(DEPSDIR)/, $(notdir $(CFILES:.c=.d)))
 
 # dependency generation flags for CC
-CDEPFLAGS = -MD -MT $*.o -MT $*.s -MF $(DEPSDIR)/$(notdir $*).d -MP
+CDEPFLAGS = -MD -MT $*.o -MT $*.asm -MF $(DEPSDIR)/$(notdir $*).d -MP
 
 # "make all" phony targets
 all: $(OFILES) $(ASMFILES) $(LYNFILES) $(DMPFILES);
@@ -46,7 +46,7 @@ clean:
 	rm -f $(OFILES) $(ASMFILES) $(LYNFILES) $(DMPFILES) $(DEPFILES)
 
 # C to ASM rule
-%.s: %.c
+%.asm: %.c
 	$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@
 
 # C to OBJ rule
@@ -54,7 +54,7 @@ clean:
 	$(CC) $(CFLAGS) $(CDEPFLAGS) -c $< -o $@
 
 # ASM to OBJ rule
-%.o: %.asm
+%.o: %.s
 	$(AS) $(ARCH) $< -o $@
 
 # OBJ to DMP rule
