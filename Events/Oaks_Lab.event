@@ -373,10 +373,18 @@ GOTO 0x63
 
 Label 32
 CompareTactText(ChilanName)
-BNE 199 rC r7
+BNE 33 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsChilan|IsPointer
 GOTO 200
+
+Label 33
+CompareTactText(FpkforName)
+BNE 199 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsFpkfor|IsPointer
+GOTO 200
+
 
 Label 199
 
@@ -561,6 +569,10 @@ UnitsPiku:
 UNIT 0x02 NidoranFID BonusUnitParameters
 UNIT
 
+ALIGN 4 
+UnitsFpkfor: 
+UNIT 0x02 ExeggcuteID BonusUnitParameters
+UNIT
 
 ALIGN 4 
 UnitsAsh: 
