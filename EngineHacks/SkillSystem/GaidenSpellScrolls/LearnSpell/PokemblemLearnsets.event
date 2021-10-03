@@ -6,7 +6,7 @@ BYTE 1 Tackle // Goes at the start of each learnset
 BYTE 3 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
 BYTE 7 VineWhip
 //BYTE 9 LeechSeed
-//BYTE 13 PoisonPowder
+BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
 //BYTE 21 Sleep2 //SleepPowder
@@ -23,7 +23,7 @@ BYTE 1 Tackle
 BYTE 3 Growl  
 BYTE 7 VineWhip
 //BYTE 9 LeechSeed
-//BYTE 13 PoisonPowder
+BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
 //BYTE 21 Sleep2 //SleepPowder
@@ -39,7 +39,7 @@ BYTE 1 Tackle
 BYTE 3 Growl  
 BYTE 7 VineWhip
 //BYTE 9 LeechSeed
-//BYTE 13 PoisonPowder
+BYTE 13 PoisonPowder
 BYTE 15 TakeDown
 BYTE 19 RazorLeaf
 //BYTE 21 Sleep2 //SleepPowder
@@ -485,7 +485,7 @@ ClefairyLearnset:
 BYTE 1 Pound
 BYTE 1 Growl
 //BYTE 4 Resv //Encore
-//BYTE 7 Sleep //Sing 
+//BYTE 7 Sleep2 //Sing 
 BYTE 10 DoubleHit
 //BYTE 13 Resv //?Support DefenseCurl
 //BYTE 16 Resv //FollowMe
@@ -506,7 +506,7 @@ ClefableLearnset:
 BYTE 1 Pound
 BYTE 1 Growl
 //BYTE 4 Resv //Encore
-//BYTE 7 Sleep //Sing 
+//BYTE 7 Sleep2 //Sing 
 BYTE 10 DoubleHit
 //BYTE 13 Resv //?Support DefenseCurl
 //BYTE 16 Resv //FollowMe
@@ -562,9 +562,9 @@ BYTE 0 0
 
 ALIGN 4
 JigglypuffLearnset:
-//BYTE 1 Sleep //Sing
+//BYTE 1 Sleep2 //Sing
 BYTE 1 Leer
-BYTE 5 RecoverMove //?Support Defense Curl
+BYTE 5 RecoverMove //?Support DefenseCurl
 BYTE 9 Pound 
 //BYTE 13 Resv //Disable
 BYTE 17 Rollout
@@ -580,9 +580,9 @@ BYTE 0 0
 
 ALIGN 4
 WigglytuffLearnset:
-//BYTE 1 Sleep //Sing
+//BYTE 1 Sleep2 //Sing
 BYTE 1 Leer
-BYTE 5 RecoverMove //?Support Defense Curl
+BYTE 5 RecoverMove //?Support DefenseCurl
 BYTE 9 Pound 
 //BYTE 13 Resv //Disable
 BYTE 17 Rollout
@@ -632,7 +632,7 @@ BYTE 1 Absorb
 BYTE 5 Constrict  
 BYTE 9 Acid
 BYTE 13 PoisonPowder
-//BYTE 17 Sleep //SleepPowder
+//BYTE 17 Sleep2 //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
@@ -647,7 +647,7 @@ BYTE 1 Absorb
 BYTE 5 Constrict  
 BYTE 9 Acid
 BYTE 13 PoisonPowder
-//BYTE 17 Sleep //SleepPowder
+//BYTE 17 Sleep2 //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
@@ -662,7 +662,7 @@ BYTE 1 Absorb
 BYTE 5 Constrict  
 BYTE 9 Acid
 BYTE 13 PoisonPowder
-//BYTE 17 Sleep //SleepPowder
+//BYTE 17 Sleep2 //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
@@ -676,7 +676,7 @@ ParasLearnset:
 BYTE 1 Scratch 
 BYTE 6 PoisonPowder  
 BYTE 11 LeechLife
-//BYTE 17 Sleep //Spore
+//BYTE 17 Sleep2 //Spore
 BYTE 22 Slash
 BYTE 27 Acid //Growth
 BYTE 33 MegaDrain
@@ -689,7 +689,7 @@ ParasectLearnset:
 BYTE 1 Scratch 
 BYTE 6 PoisonPowder  
 BYTE 11 LeechLife
-//BYTE 17 Sleep //Spore
+//BYTE 17 Sleep2 //Spore
 BYTE 22 Slash
 BYTE 27 Acid //Growth
 BYTE 33 MegaDrain
@@ -707,7 +707,7 @@ BYTE 13 PoisonPowder
 BYTE 17 LeechLife
 //BYTE 23 ??? //StunSpore
 BYTE 25 Psybeam
-//BYTE 29 Sleep
+//BYTE 29 Sleep2
 BYTE 35 SignalBeam
 BYTE 37 DreamEater
 BYTE 41 PoisonGas //PoisonFang
@@ -724,7 +724,7 @@ BYTE 13 PoisonPowder
 BYTE 17 LeechLife
 //BYTE 23 ??? //StunSpore
 BYTE 25 Psybeam
-//BYTE 29 Sleep
+//BYTE 29 Sleep2
 BYTE 35 SignalBeam
 BYTE 37 DreamEater
 BYTE 41 PoisonGas //PoisonFang
@@ -897,7 +897,7 @@ ALIGN 4
 PoliwagLearnset:
 BYTE 1 Growl 
 BYTE 5 Bubble 
-//BYTE 8 Sleep 
+//BYTE 8 Sleep2 
 BYTE 11 WaterGun
 BYTE 15 Doubleslap
 BYTE 21 BodySlam
@@ -912,7 +912,7 @@ ALIGN 4
 PoliwhirlLearnset:
 BYTE 1 Growl 
 BYTE 5 Bubble 
-//BYTE 8 Sleep 
+//BYTE 8 Sleep2 
 BYTE 11 WaterGun
 BYTE 15 Doubleslap
 BYTE 21 BodySlam
@@ -927,7 +927,7 @@ ALIGN 4
 PoliwrathLearnset:
 BYTE 1 Growl 
 BYTE 5 Bubble 
-//BYTE 8 Sleep 
+//BYTE 8 Sleep2 
 BYTE 11 WaterGun
 BYTE 15 Doubleslap
 BYTE 21 BodySlam
@@ -1019,7 +1019,7 @@ BellsproutLearnset:
 BYTE 1 VineWhip 
 BYTE 7 Leer
 BYTE 11 Constrict
-//BYTE 13 Sleep
+//BYTE 13 Sleep2
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
@@ -1034,7 +1034,7 @@ WeepinbellLearnset:
 BYTE 1 VineWhip 
 BYTE 7 Leer
 BYTE 11 Constrict
-//BYTE 13 Sleep
+//BYTE 13 Sleep2
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
@@ -1049,7 +1049,7 @@ VictreebelLearnset:
 BYTE 1 VineWhip 
 BYTE 7 Leer
 BYTE 11 Constrict
-//BYTE 13 Sleep
+//BYTE 13 Sleep2
 BYTE 15 PoisonPowder
 BYTE 19 Acid
 BYTE 24 Thief
@@ -1142,9 +1142,9 @@ BYTE 15 FlameWheel
 BYTE 19 HornAttack // Stomp
 BYTE 24 FireSpin
 BYTE 28 TakeDown
-BYTE 33 PoisonJab //BYTE 33 Resv //Agility //?Buff 
+BYTE 33 PoisonJab //BYTE 33 Resv //Agility
 BYTE 37 FireBlast
-BYTE 42 MegaHorn //BYTE 42 Bounce
+BYTE 42 Megahorn // Bounce
 BYTE 46 SacredFire // Flare Blitz
 BYTE 0 0 // Went with Platinum moveset for this line, Rapidash gets Poison Jab/Megahorn at lvl 1 which is why they are there for now
 
@@ -1158,50 +1158,50 @@ BYTE 15 FlameWheel
 BYTE 19 HornAttack
 BYTE 24 FireSpin
 BYTE 28 TakeDown
-BYTE 33 PoisonJab //BYTE 33 Resv // Agility //?Buff 
+BYTE 33 PoisonJab //BYTE 33 Resv // Agility
 BYTE 37 FireBlast
-BYTE 42 MegaHorn //BYTE 42 Bounce
+BYTE 42 Megahorn // Bounce
 BYTE 46 SacredFire
 BYTE 0 0 
 
 ALIGN 4
 SlowpokeLearnset:
 BYTE 1 Tackle
-// BYTE 1 Curse 
-BYTE 1 RecoverMove // Yawn
+// BYTE 1 Resv Curse 
+BYTE 1 RecoverMove // Resv Yawn
 BYTE 6 Growl
 BYTE 11 WaterGun 
 BYTE 15 Confusion
-// BYTE 20 Disable
+// BYTE 20 Resv Disable
 BYTE 25 Headbutt
 BYTE 29 WaterPulse
 BYTE 34 Psybeam 
 BYTE 37 Waterfall
-BYTE 39 RecoverMove // Slack Off (RecoverMove move)
-BYTE 43 Barrier // Amnesia
+BYTE 39 RecoverMove
+BYTE 43 Barrier // Resv Amnesia
 BYTE 48 Psychic
-BYTE 53 Surf // Rain Dance
-// BYTE 57 Psych Up // Support move
+BYTE 53 Surf // Resv RainDance
+// BYTE 57 Resv Psych Up 
 BYTE 0 0
 
 ALIGN 4
 SlowbroLearnset:
 BYTE 1 Tackle
 // BYTE 1 Curse 
-BYTE 1 RecoverMove // Yawn
+BYTE 1 RecoverMove // Resv Yawn
 BYTE 6 Growl
 BYTE 11 WaterGun 
 BYTE 15 Confusion
-// BYTE 20 Disable
+// BYTE 20 Resv Disable
 BYTE 25 Headbutt
 BYTE 29 WaterPulse
 BYTE 34 Psybeam 
 BYTE 37 Waterfall
-BYTE 39 RecoverMove // Slack Off (RecoverMove move)
-BYTE 43 Barrier // Amnesia
+BYTE 39 RecoverMove 
+BYTE 43 Barrier // Resv Amnesia
 BYTE 48 Psychic
-BYTE 53 Surf // Rain Dance
-// BYTE 57 Psych Up // Support move
+BYTE 53 Surf // Resv RainDance
+// BYTE 57 Resv Psych Up 
 BYTE 0 0 // Missing Slowking moveset if you want to make it better for some unholy reason
 
 ALIGN 4
@@ -1209,17 +1209,17 @@ MagnemiteLearnset:
 BYTE 1 Tackle
 BYTE 1 MetalSound // Maybe change range? not 1-2 like the rest of the chip moves
 BYTE 6 Thundershock
-BYTE 11 Pound // Supersonic
+BYTE 11 Pound // Resv Supersonic
 BYTE 14 AttackPulse // SonicBoom
 BYTE 17 ThunderWave
 BYTE 22 Spark
-BYTE 27 Flash // Lock-On
+BYTE 27 Flash // Resv LockOn
 BYTE 30 Swift // Magnet Bomb, steel move
 BYTE 33 TriAttack // BYTE 33 Screech
 BYTE 38 Thunderbolt 
 BYTE 43 MirrorShot
-// BYTE 46 Magnet Rise
-BYTE 49 MeteorMash // Gyro Ball
+// BYTE 46 Resv MagnetRise
+BYTE 49 MeteorMash // GyroBall
 BYTE 54 Thunder // Zap Cannon
 BYTE 0 0 // Magnezone gets Mirror Coat and Barrier if you wanna incorporate that in this line
 
@@ -1228,17 +1228,17 @@ MagnetonLearnset:
 BYTE 1 Tackle
 BYTE 1 MetalSound // Maybe change range? not 1-2 like the rest of the chip moves
 BYTE 6 Thundershock
-BYTE 11 Pound // Supersonic
+BYTE 11 Pound // Resv Supersonic
 BYTE 14 AttackPulse // SonicBoom
 BYTE 17 ThunderWave
 BYTE 22 Spark
-BYTE 27 Flash // Lock-On
+BYTE 27 Flash // Resv LockOn
 BYTE 30 Swift // Magnet Bomb, steel move
 BYTE 33 TriAttack // BYTE 33 Screech
 BYTE 38 Thunderbolt 
 BYTE 43 MirrorShot
-// BYTE 46 Magnet Rise
-BYTE 49 MeteorMash // Gyro Ball
+// BYTE 46 Resv MagnetRise
+BYTE 49 MeteorMash // GyroBall
 BYTE 54 Thunder // Zap Cannon
 BYTE 0 0 // Magnezone gets Mirror Coat and Barrier if you wanna incorporate that in this line
 
@@ -1249,17 +1249,17 @@ BYTE 1 PoisonJab
 BYTE 1 Leer
 BYTE 1 FuryCutter
 BYTE 1 SandAttack
-BYTE 7 DoubleHit // Fury Attack
-BYTE 9 Thief // Knock Off
+BYTE 7 DoubleHit // FuryAttack
+BYTE 9 Thief // KnockOff
 BYTE 13 WingAttack // Aerial Ace
 BYTE 19 Slash
 BYTE 21 Gust // Air Cutter
 BYTE 25 SwordsDance
-// BYTE 31 Agility
+// BYTE 31 Resv Agility
 BYTE 33 NightSlash
 BYTE 37 AirSlash
 BYTE 43 QuickAttack // Feint
-BYTE 45 Guillotine // False Swipe
+BYTE 45 Guillotine // FalseSwipe
 BYTE 0 0
 
 ALIGN 4
@@ -1268,16 +1268,16 @@ BYTE 1 Peck
 BYTE 1 Growl
 BYTE 5 QuickAttack
 BYTE 10 Rage
-BYTE 14 DoubleHit // Fury Attack
+BYTE 14 DoubleHit // FuryAttack
 BYTE 19 Thief // Pursuit
 BYTE 23 Swift // Uproar
-// BYTE 28 Acupressure
+// BYTE 28 Resv Acupressure
 BYTE 32 DoubleEdge // DoubleHit
 BYTE 34 TriAttack
-// BYTE 37 Resv //Agility
+// BYTE 37 Resv // Agility
 BYTE 41 DrillPeck
 // BYTE 46 Endeavor
-BYTE 0 0 g
+BYTE 0 0 
 
 ALIGN 4
 DodrioLearnset:
@@ -1285,13 +1285,13 @@ BYTE 1 Peck
 BYTE 1 Growl
 BYTE 5 QuickAttack
 BYTE 10 Rage
-BYTE 14 DoubleHit // Fury Attack
+BYTE 14 DoubleHit // FuryAttack
 BYTE 19 Thief // Pursuit
 BYTE 23 Swift // Uproar
-// BYTE 28 Acupressure
+// BYTE 28 Resv Acupressure
 BYTE 32 DoubleEdge // DoubleHit
 BYTE 34 TriAttack
-// BYTE 37 Resv //Agility
+// BYTE 37 Resv // Agility
 BYTE 41 DrillPeck
 // BYTE 46 Endeavor
 BYTE 0 0 
@@ -1300,89 +1300,89 @@ ALIGN 4
 SeelLearnset:
 BYTE 1 Headbutt
 BYTE 3 Growl
-BYTE 7 Bubble // Water Sport
-BYTE 13 RecoverMove // Encore
+BYTE 7 Bubble // Resv WaterSport
+BYTE 13 RecoverMove // Resv Encore
 BYTE 19 AuroraBeam // 11 IcyWind + 27 Aurora /2 = 19
-// BYTE 21 Rest
-BYTE 23 SignalBeam // BYTE 23 Aqua Ring
-BYTE 31 Waterfall // Aqua Jet
+// BYTE 21 Resv Rest
+BYTE 23 SignalBeam // BYTE 23 Resv AquaRing
+BYTE 31 Waterfall // AquaJet
 BYTE 32 IceBeam // 17 IceShard + 47 Ice /2 = 32
 BYTE 33 WaterPulse // Brine
 BYTE 37 TakeDown
 BYTE 41 Surf // Dive
-BYTE 43 HydroPump // Aqua Tail
-BYTE 51 Blizzard // Safeguard
+BYTE 43 HydroPump // AquaTail
+BYTE 51 Blizzard // Resv Safeguard
 BYTE 0 0 // Changed some move levels, signal beam is meant to be gained early per example
 
 ALIGN 4
 DewgongLearnset:
 BYTE 1 Headbutt
 BYTE 3 Growl
-BYTE 7 Bubble // Water Sport
-BYTE 13 RecoverMove // Encore
+BYTE 7 Bubble // Resv WaterSport
+BYTE 13 RecoverMove // Resv Encore
 BYTE 19 AuroraBeam // 11 IcyWind + 27 Aurora /2 = 19
-// BYTE 21 Rest
-BYTE 23 SignalBeam // BYTE 23 Aqua Ring
-BYTE 31 Waterfall // Aqua Jet
+// BYTE 21 Resv Rest
+BYTE 23 SignalBeam // BYTE 23 Resv AquaRing
+BYTE 31 Waterfall // AquaJet
 BYTE 32 IceBeam // 17 IceShard + 47 Ice /2 = 32
 BYTE 33 WaterPulse // Brine
 BYTE 37 TakeDown
 BYTE 41 Surf // Dive
-BYTE 43 HydroPump // Aqua Tail
-BYTE 51 Blizzard // Safeguard
+BYTE 43 HydroPump // AquaTail
+BYTE 51 Blizzard // Resv Safeguard
 BYTE 0 0
 
 ALIGN 4
 GrimerLearnset:
 BYTE 1 PoisonGas
 BYTE 1 Pound
-// BYTE 4 Harden
+// BYTE 4 Resv Harden
 BYTE 7 MudShot // Mud-Slap
-BYTE 12 RecoverMove // Disable
-// BYTE 17 Minimize
+BYTE 12 RecoverMove // Resv Disable
+// BYTE 17 Resv Minimize
 BYTE 20 Sludge
 BYTE 23 MudBomb
 BYTE 28 Bite // Fling
 // BYTE 33 Screech
-BYTE 36 Toxic // Sludge Bomb
-// BYTE 39 Acid Armor
-BYTE 44 PoisonJab // Gunk Shot
-BYTE 49 DarkPulse // Memento
+BYTE 36 Toxic // SludgeBomb
+// BYTE 39 Resv Acid Armor
+BYTE 44 PoisonJab // GunkShot
+BYTE 49 DarkPulse // Resv Memento
 BYTE 0 0
 
 ALIGN 4
 MukLearnset:
 BYTE 1 PoisonGas
 BYTE 1 Pound
-// BYTE 4 Harden
+// BYTE 4 Resv Harden
 BYTE 7 MudShot // Mud-Slap
-BYTE 12 RecoverMove // Disable
-// BYTE 17 Minimize
+BYTE 12 RecoverMove // Resv Disable
+// BYTE 17 Resv Minimize
 BYTE 20 Sludge
 BYTE 23 MudBomb
 BYTE 28 Bite // Fling
 // BYTE 33 Screech
-BYTE 36 Toxic // Sludge Bomb
-// BYTE 39 Acid Armor
-BYTE 44 PoisonJab // Gunk Shot
-BYTE 49 DarkPulse // Memento
+BYTE 36 Toxic // SludgeBomb
+// BYTE 39 Resv Acid Armor
+BYTE 44 PoisonJab // GunkShot
+BYTE 49 DarkPulse // Resv Memento
 BYTE 0 0
 
 ALIGN 4
 ShellderLearnset:
 BYTE 1 Tackle 
-BYTE 4 Bubble // Withdraw 
-BYTE 8 Pound // Supersonic
-BYTE 16 PoisonSting // Protect
+BYTE 4 Bubble // Resv Withdraw 
+BYTE 8 Pound // Resv Supersonic
+BYTE 16 PoisonSting // Resv Protect
 BYTE 20 Leer
-BYTE 22 Avalanche // 13 Icicle Spear
+BYTE 22 Avalanche // 13 IcicleSpear
 BYTE 25 Clamp
 BYTE 28 AuroraBeam // IceShard
-BYTE 28 PoisonJab // Spikes
+BYTE 28 PoisonJab // Resv Spikes
 BYTE 32 Blizzard // AuroraBeam
 BYTE 37 Waterfall // Whirlpool
-BYTE 40 MirrorShot // Iron Defense
-BYTE 40 DoubleSlap // Spike Cannon
+BYTE 40 MirrorShot // IronDefense
+BYTE 40 Doubleslap // SpikeCannon
 BYTE 44 Surf // Brine
 BYTE 49 IceBeam
 BYTE 0 0
@@ -1392,72 +1392,72 @@ CloysterLearnset:
 BYTE 1 Tackle 
 BYTE 4 Bubble // Withdraw 
 BYTE 8 Pound // Supersonic
-BYTE 16 PoisonSting // Protect
+BYTE 16 PoisonSting // Resv Protect
 BYTE 20 Leer
-BYTE 22 Avalanche // 13 Icicle Spear
+BYTE 22 Avalanche // 13 IcicleSpear
 BYTE 25 Clamp
 BYTE 28 AuroraBeam // IceShard
-BYTE 28 PoisonJab // Spikes
+BYTE 28 PoisonJab // Resv Spikes
 BYTE 32 Blizzard // AuroraBeam
 BYTE 37 Waterfall // Whirlpool
-BYTE 40 MirrorShot // Iron Defense
-BYTE 40 DoubleSlap // Spike Cannon
+BYTE 40 MirrorShot // IronDefense
+BYTE 40 Doubleslap // SpikeCannon
 BYTE 44 Surf // Brine
 BYTE 49 IceBeam
 BYTE 0 0
 
 ALIGN 4
 GastlyLearnset:
-//BYTE 1 Sleep // Hypnosis
+//BYTE 1 Sleep2 // Hypnosis
 BYTE 1 Lick
-BYTE 1 Snarl // 22 Sucker Punch
-// BYTE 5 Spite
-// BYTE 8 Mean Look
-// BYTE 12 Curse
+BYTE 1 Snarl // 22 SuckerPunch
+// BYTE 5 Resv Spite
+// BYTE 8 Resv MeanLook
+// BYTE 12 Resv Curse
 BYTE 15 NightShade
 BYTE 19 ConfuseRay
 BYTE 26 Thief
 BYTE 29 ShadowBall 
 BYTE 33 DreamEater
 BYTE 36 DarkPulse
-// BYTE 40 Destiny Bond
-// BYTE 43 Nightmare
+// BYTE 40 Resv DestinyBond
+// BYTE 43 Resv Nightmare
 BYTE 0 0
 
 ALIGN 4
 HaunterLearnset:
-//BYTE 1 Sleep // Hypnosis
+//BYTE 1 Sleep2 // Hypnosis
 BYTE 1 Lick
-BYTE 1 Snarl // 22 Sucker Punch
-// BYTE 5 Spite
-// BYTE 8 Mean Look
-// BYTE 12 Curse
+BYTE 1 Snarl // 22 SuckerPunch
+// BYTE 5 Resv Spite
+// BYTE 8 Resv MeanLook
+// BYTE 12 Resv Curse
 BYTE 15 NightShade
 BYTE 19 ConfuseRay
 BYTE 26 Thief
 BYTE 29 ShadowBall 
 BYTE 33 DreamEater
 BYTE 36 DarkPulse
-// BYTE 40 Destiny Bond
-// BYTE 43 Nightmare
+// BYTE 40 Resv DestinyBond
+// BYTE 43 Resv Nightmare
 BYTE 0 0
 
 ALIGN 4
 GengarLearnset:
-//BYTE 1 Sleep // Hypnosis
+//BYTE 1 Sleep2 // Hypnosis
 BYTE 1 Lick
-BYTE 1 Snarl // 22 Sucker Punch
-// BYTE 5 Spite
-// BYTE 8 Mean Look
-// BYTE 12 Curse
+BYTE 1 Snarl // 22 SuckerPunch
+// BYTE 5 Resv Spite
+// BYTE 8 Resv MeanLook
+// BYTE 12 Resv Curse
 BYTE 15 NightShade
 BYTE 19 ConfuseRay
 BYTE 26 Thief
 BYTE 29 ShadowBall 
 BYTE 33 DreamEater
 BYTE 36 DarkPulse
-// BYTE 40 Destiny Bond
-// BYTE 43 Nightmare
+// BYTE 40 Resv DestinyBond
+// BYTE 43 Resv Nightmare
 BYTE 0 0
 
 ALIGN 4
@@ -1482,54 +1482,54 @@ BYTE 0 0
 ALIGN 4
 DrowzeeLearnset:
 BYTE 1 Pound
-// BYTE 1 Sleep // Hypnosis
-BYTE 7 RecoverMove // Disable 
+// BYTE 1 Sleep2 // Hypnosis
+BYTE 7 RecoverMove // Resv Disable 
 BYTE 9 Confusion 
 BYTE 15 Headbutt
-BYTE 18 Poison Gas
-BYTE 21 Barrier // Meditate
+BYTE 18 PoisonGas
+BYTE 21 Barrier // Resv Meditate
 BYTE 26 Psybeam
-// BYTE 29 Psych Up
+// BYTE 29 Resv Psych Up
 BYTE 32 Headbutt // Don't look at me.
-// BYTE 37 Swagger
+// BYTE 37 Resv Swagger
 BYTE 40 Psychic
 BYTE 43 DarkPulse
-BYTE 50 Warp // Zen Headbutt
-BYTE 53 RecoverMove // Future Sight
+BYTE 50 Warp // ZenHeadbutt
+BYTE 53 RecoverMove // Resv FutureSight
 BYTE 0 0
 
 ALIGN 4
 HypnoLearnset:
 BYTE 1 Pound
-// BYTE 1 Sleep // Hypnosis
-BYTE 7 RecoverMove // Disable 
+// BYTE 1 Sleep2 // Hypnosis
+BYTE 7 RecoverMove // Resv Disable 
 BYTE 9 Confusion 
 BYTE 15 Headbutt
-BYTE 18 Poison Gas
-BYTE 21 Barrier // Meditate
+BYTE 18 PoisonGas
+BYTE 21 Barrier // Resv Meditate
 BYTE 26 Psybeam
-// BYTE 29 Psych Up
+// BYTE 29 Resv Psych Up
 BYTE 32 Headbutt // Don't look at me.
-// BYTE 37 Swagger
+// BYTE 37 Resv Swagger
 BYTE 40 Psychic
 BYTE 43 DarkPulse
-BYTE 50 Warp // Zen Headbutt
-BYTE 53 RecoverMove // Future Sight
+BYTE 50 Warp // ZenHeadbutt
+BYTE 53 RecoverMove // Resv FutureSight
 BYTE 0 0 // Gets Nightmare and Switcheroo on evo in Gen 4, also should probably look at Butterfree as well if warp is not meant to be allowed
 
 ALIGN 4
 KrabbyLearnset:
 BYTE 1 Bubble 
-// BYTE 1 Mud Sport
-BYTE 5 Cut // Vice Grip 
+// BYTE 1 Resv MudSport
+BYTE 5 Cut // ViceGrip 
 BYTE 9 Leer 
-// BYTE 11 Harden
+// BYTE 11 Resv Harden
 BYTE 15 BubbleBeam
 BYTE 19 MudShot
 BYTE 21 MetalClaw
 BYTE 25 Headbutt // Stomp
-BYTE 29 Waterfall // 29 Protect
-BYTE 31 Guilotine
+BYTE 29 Waterfall // 29 Resv Protect
+BYTE 31 Guillotine
 // BYTE 39 Brine
 BYTE 41 Crabhammer 
 // BYTE 45 Flail
@@ -1538,16 +1538,16 @@ BYTE 0 0
 ALIGN 4
 KinglerLearnset:
 BYTE 1 Bubble 
-// BYTE 1 Mud Sport
-BYTE 5 Cut // Vice Grip 
+// BYTE 1 Resv MudSport
+BYTE 5 Cut // ViceGrip 
 BYTE 9 Leer 
-// BYTE 11 Harden
+// BYTE 11 Resv Harden
 BYTE 15 BubbleBeam
 BYTE 19 MudShot
 BYTE 21 MetalClaw
 BYTE 25 Headbutt // Stomp
-BYTE 29 Waterfall // 29 Protect
-BYTE 31 Guilotine
+BYTE 29 Waterfall // 29 Resv Protect
+BYTE 31 Guillotine
 // BYTE 39 Brine
 BYTE 41 Crabhammer 
 // BYTE 45 Flail
@@ -1561,15 +1561,15 @@ BYTE 8 AttackPulse // SonicBoom
 BYTE 12 Spark
 BYTE 15 Magnitude // Rollout
 // BYTE 19 Screech
-// BYTE 22 Light Screen
-BYTE 26 Thunderbolt // Charge Beam
+// BYTE 22 Resv LightScreen
+BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 Swift
-BYTE 36 Thunder // Magnet Rise
+BYTE 36 Thunder // Resv MagnetRise
 BYTE 36 Explosion // 29 selfdestruct + 43 explosion /2 = 36
-BYTE 40 MirrorShot // Gyro Ball
+BYTE 40 MirrorShot // GyroBall
 // BYTE 43 Explosion
-// BYTE 47 Mirror Coat
+// BYTE 47 Resv Mirror Coat
 BYTE 0 0
 
 ALIGN 4
@@ -1580,52 +1580,52 @@ BYTE 8 AttackPulse // SonicBoom
 BYTE 12 Spark
 BYTE 15 Magnitude // Rollout
 // BYTE 19 Screech
-// BYTE 22 Light Screen
-BYTE 26 Thunderbolt // Charge Beam
+// BYTE 22 Resv LightScreen
+BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 Swift
-BYTE 36 Thunder // Magnet Rise
+BYTE 36 Thunder // Resv MagnetRise
 BYTE 36 Explosion // 29 selfdestruct + 43 explosion /2 = 36
-BYTE 40 MirrorShot // Gyro Ball
+BYTE 40 MirrorShot // GyroBall
 // BYTE 43 Explosion
-// BYTE 47 Mirror Coat
+// BYTE 47 Resv Mirror Coat
 BYTE 0 0
 
 ALIGN 4
 ExeggcuteLearnset:
 BYTE 1 AttackPulse // Uproar
-BYTE 1 Doubleslap 
-// BYTE 1 Sleep
-// BYTE 7 Reflect
+BYTE 4 Doubleslap 
+// BYTE 1 Sleep2 // Hypnosis
+// BYTE 7 Resv Reflect
 BYTE 11 LeafFlurry // Leech Seed
 BYTE 17 Absorb // Bullet Seed
-BYTE 19 BodySlam // BYTE 19 Stun Spore // 17 Stomp
-// BYTE 21 PoisonPowder
-// BYTE 23 Sleep // Sleep Powder
+BYTE 19 BodySlam // BYTE 19 StunSpore // 17 Stomp
+BYTE 21 PoisonPowder
+// BYTE 23 Sleep2 // Sleep2 Powder
 BYTE 27 Confusion
 BYTE 27 EggBomb
-BYTE 33 RecoverMove // Worry Seed
-BYTE 37 BodySlam // Natural Gift
+BYTE 33 RecoverMove // Resv WorrySeed
+BYTE 37 BodySlam // NaturalGift
 BYTE 43 SolarBeam 
 BYTE 47 Psychic
 BYTE 47 PetalDance
-BYTE 0 0
+BYTE 0 0 // Maybe change one of the Sleep2 moves to something else?
 
 ALIGN 4
 ExeggutorLearnset:
 BYTE 1 AttackPulse // Uproar
 BYTE 1 Doubleslap 
-// BYTE 1 Sleep
-// BYTE 7 Reflect
+// BYTE 1 Sleep2
+// BYTE 7 Resv Reflect
 BYTE 11 LeafFlurry // Leech Seed
 BYTE 17 Absorb // Bullet Seed
-BYTE 19 BodySlam // BYTE 19 Stun Spore // 17 Stomp
+BYTE 19 BodySlam // BYTE 19 StunSpore // 17 Stomp
 // BYTE 21 PoisonPowder
-// BYTE 23 Sleep // Sleep Powder
+// BYTE 23 Sleep2 // Sleep2 Powder
 BYTE 27 Confusion
 BYTE 27 EggBomb
-BYTE 33 RecoverMove // Worry Seed
-BYTE 37 BodySlam // Natural Gift
+BYTE 33 RecoverMove // WorrySeed
+BYTE 37 BodySlam // NaturalGift
 BYTE 43 SolarBeam 
 BYTE 47 Psychic
 BYTE 47 PetalDance
@@ -1635,224 +1635,590 @@ ALIGN 4
 CuboneLearnset:
 BYTE 1 Growl
 BYTE 3 TailWhip
-BYTE 7 Magnitude // Bone Club
+BYTE 7 Magnitude // BoneClub
 BYTE 11 Headbutt
 BYTE 13 Leer
-//BYTE 17 Focus
+// BYTE 17 Resv FocusEnergy
+BYTE 21 Bonemerang
+BYTE 23 Rage
+BYTE 27 TakeDown // FalseSwipe
+BYTE 31 Thrash
+BYTE 33 Bite // Fling
+BYTE 37 Earthquake // Bone Rush
+// BYTE 41 Resv Endeavor
+BYTE 43 DoubleEdge
 BYTE 0 0
 
 ALIGN 4
 MarowakLearnset:
-BYTE 1 Tackle
+BYTE 1 Growl
+BYTE 3 TailWhip
+BYTE 7 Magnitude // BoneClub
+BYTE 11 Headbutt
+BYTE 13 Leer
+// BYTE 17 Resv FocusEnergy
+BYTE 21 Bonemerang
+BYTE 23 Rage
+BYTE 27 TakeDown // FalseSwipe
+BYTE 31 Thrash
+BYTE 33 Bite // Fling
+BYTE 37 Earthquake // Bone Rush
+// BYTE 41 Resv Endeavor
+BYTE 43 DoubleEdge
 BYTE 0 0
 
 ALIGN 4
 HitmonleeLearnset:
-BYTE 1 Tackle
+BYTE 1 DoubleKick
+// BYTE 1 Resv Revenge
+// BYTE 5 Resv Meditate
+BYTE 9 RollingKick
+BYTE 13 JumpKick
+// BYTE 21 Resv FocusEnergy
+BYTE 23 HiJumpKick // 17 BrickBreak + 29 hijumpkick /2 = 23
+BYTE 25 QuickAttack // Feint
+// BYTE 33 Resv Mind Reader
+// BYTE 37 Resv Foresight
+BYTE 41 FirePunch // Blaze Kick
+BYTE 45 RecoverMove
+BYTE 49 MegaKick
+BYTE 53 TakeDown // Close Combat
+// BYTE 57 Reversal
 BYTE 0 0
 
 ALIGN 4
 HitmonchanLearnset:
-BYTE 1 Tackle
+BYTE 1 CometPunch
+// BYTE 1 Resv Revenge
+BYTE 6 RecoverMove // Resv Agility
+BYTE 11 Thief // Pursuit
+BYTE 16 SeismicToss // Mach Punch
+BYTE 21 QuickAttack // Feint
+// BYTE 26 Sky Uppercut
+BYTE 31 FirePunch
+BYTE 31 ThunderPunch
+BYTE 31 IcePunch
+BYTE 36 Submission
+BYTE 41 MegaPunch
+// BYTE 46 Resv Detect
+BYTE 51 HiJumpKick // Counter
+// BYTE 56 CloseCombat
 BYTE 0 0
 
 ALIGN 4
 LickitungLearnset:
-BYTE 1 Tackle
+BYTE 1 Lick
+BYTE 5 Pound // Supersonic
+// BYTE 9 DefenseCurl
+BYTE 13 Bite // KnockOff
+BYTE 17 Constrict // Wrap
+BYTE 21 Headbutt // Stomp
+BYTE 25 RecoverMove // Disable
+BYTE 29 Slam
+BYTE 33 Magnitude
+// BYTE 37 Resv Me First
+// BYTE 37 Resv Refresh
+// BYTE 37 Resv Screech
+BYTE 49 LeafBlade // PowerWhip
+BYTE 53 HyperBeam // WringOut
 BYTE 0 0
 
 ALIGN 4
 KoffingLearnset:
+BYTE 1 PoisonGas
 BYTE 1 Tackle
+BYTE 6 Smog
+BYTE 10 SandAttack // SmokeScreen
+BYTE 15 Bite // Assurance
+BYTE 24 Sludge
+BYTE 28 Explosion // 19 Selfdestruct + 37 Explosion /2 = 28
+BYTE 28 AuroraBeam // Resv Haze
+BYTE 33 MirrorShot // GyroBall
+BYTE 33 DoubleHit // BYTE 37 Explosion 
+BYTE 42 Toxic // SludgeBomb
+BYTE 46 ShadowBall // DestinyBond
+BYTE 51 DarkPulse // BYTE 51 Resv Memento
 BYTE 0 0
 
 ALIGN 4
 WeezingLearnset:
+BYTE 1 PoisonGas
 BYTE 1 Tackle
+BYTE 6 Smog
+BYTE 10 SandAttack // SmokeScreen
+BYTE 15 Bite // Assurance
+BYTE 24 Sludge
+BYTE 28 Explosion // 19 Selfdestruct + 37 Explosion /2 = 28
+BYTE 28 AuroraBeam // Resv Haze
+BYTE 33 MirrorShot // GyroBall
+BYTE 33 DoubleHit // BYTE 37 Explosion 
+BYTE 42 Toxic // SludgeBomb
+BYTE 46 ShadowBall // DestinyBond
+BYTE 51 DarkPulse // BYTE 51 Resv Memento
 BYTE 0 0
 
 ALIGN 4
 RhyhornLearnset:
-BYTE 1 Tackle
+BYTE 1 HornAttack
+BYTE 1 TailWhip
+BYTE 9 Headbutt // Stomp
+BYTE 13 DoubleHit // FuryAttack
+BYTE 21 Glare // ScaryFace
+BYTE 25 RockThrow // Rock Blast
+BYTE 33 TakeDown 
+BYTE 37 HornDrill
+BYTE 42 Submission // Hammer Arm
+BYTE 45 RockSlide // Stone Edge
+BYTE 49 Earthquake
+BYTE 57 Megahorn
 BYTE 0 0
 
 ALIGN 4
 RhydonLearnset:
-BYTE 1 Tackle
+BYTE 1 HornAttack
+BYTE 1 TailWhip
+BYTE 9 Headbutt // Stomp
+BYTE 13 DoubleHit // FuryAttack
+BYTE 21 Glare // ScaryFace
+BYTE 25 RockThrow // Rock Blast
+BYTE 33 TakeDown 
+BYTE 37 HornDrill
+BYTE 42 Submission // Hammer Arm
+BYTE 45 RockSlide // Stone Edge
+BYTE 49 Earthquake
+BYTE 57 Megahorn
 BYTE 0 0
 
 ALIGN 4
 ChanseyLearnset:
-BYTE 1 Tackle
+BYTE 1 Pound
+BYTE 1 Growl
+BYTE 5 TailWhip
+// BYTE 9 Resv Refresh
+BYTE 12 RecoverMove
+BYTE 16 Doubleslap
+// BYTE 20 Resv Minimize
+// BYTE 23 Sleep2 // Sing
+BYTE 27 Snarl // Fling
+// BYTE 31 Resv DefenseCurl
+// BYTE 34 Resv LightScreen
+BYTE 38 EggBomb
+// BYTE 42 Resv HealingWish
+BYTE 46 DoubleEdge
 BYTE 0 0
 
 ALIGN 4
 TangelaLearnset:
-BYTE 1 Absorb 
-BYTE 4 Leer  
-BYTE 7 LeafFlurry
-BYTE 14 Tackle
-BYTE 0 0
+// BYTE 1 Resv Ingrain 
+BYTE 1 Constrict
+// BYTE 5 Sleep2 // SleepPowder
+BYTE 8 Absorb
+BYTE 12 Growth
+BYTE 15 PoisonPowder
+BYTE 19 VineWhip
+BYTE 22 Bind
+BYTE 26 MegaDrain  
+// BYTE 29 StunSpore
+BYTE 33 Ancientpower
+BYTE 36 Thief // KnockOff
+BYTE 40 BodySlam // NaturalGift
+BYTE 43 Slam
+// BYTE 47 Resv Tickle
+BYTE 50 HyperBeam // WringOut
+BYTE 54 PetalDance // PowerWhip
+BYTE 0 0 // Tangrowth gets Block
 
 ALIGN 4
 KangaskhanLearnset:
-BYTE 1 Tackle
+BYTE 1 CometPunch
+BYTE 1 Leer
+BYTE 7 Snarl // FakeOut
+BYTE 10 TailWhip
+BYTE 13 Bite
+BYTE 19 MegaPunch
+BYTE 22 Rage
+BYTE 25 BodySlam // DizzyPunch
+BYTE 31 NightDaze // Crunch
+BYTE 34 RecoverMove // Endure
+BYTE 37 Outrage
+BYTE 43 DoubleHit
+BYTE 48 Thief // SuckerPunch
+// BYTE 49 Reversal
 BYTE 0 0
 
 ALIGN 4
 HorseaLearnset:
 BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
-BYTE 0 0
+BYTE 4 SandAttack // SmokeScreen
+BYTE 8 Leer
+BYTE 11 WaterGun
+// BYTE 14 Resv FocusEnergy
+BYTE 18 BubbleBeam
+// BYTE 23 Resv Agility
+BYTE 26 Twister
+BYTE 30 Surf // Brine
+BYTE 35 HydroPump
+// BYTE 38 Resv DragonDance
+BYTE 42 Outrage // DragonPulse
+BYTE 0 0 // Kingdra gets Yawn
 
 ALIGN 4
 SeadraLearnset:
 BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 4 SandAttack // SmokeScreen
+BYTE 8 Leer
+BYTE 11 WaterGun
+// BYTE 14 Resv FocusEnergy
+BYTE 18 BubbleBeam
+// BYTE 23 Resv Agility
+BYTE 26 Twister
+BYTE 30 Surf // Brine
+BYTE 35 HydroPump
+// BYTE 38 Resv DragonDance
+BYTE 42 Outrage // DragonPulse
 BYTE 0 0
 
 ALIGN 4
 GoldeenLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
-BYTE 0 0
+BYTE 1 Peck
+BYTE 1 TailWhip 
+// BYTE 1 Resv WaterSport 
+BYTE 7 Pound // Resv Supersonic
+BYTE 11 HornAttack 
+BYTE 17 WaterPulse
+BYTE 21 BodySlam // Flail
+// BYTE 27 Resv AquaRing
+BYTE 31 DoubleHit // FuryAttack
+BYTE 37 Waterfall
+BYTE 41 HornDrill
+BYTE 47 PoisonJab // BYTE 47 Resv Agility
+BYTE 51 Megahorn
+BYTE 0 0 // Seaking gets PoisonJab at lvl 1
 
 ALIGN 4
 SeakingLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 1 Peck
+BYTE 1 TailWhip 
+// BYTE 1 Resv WaterSport 
+BYTE 7 Pound // Resv Supersonic
+BYTE 11 HornAttack 
+BYTE 17 WaterPulse
+BYTE 21 BodySlam // Flail
+// BYTE 27 Resv AquaRing
+BYTE 31 DoubleHit // FuryAttack
+BYTE 37 Waterfall
+BYTE 41 HornDrill
+BYTE 47 PoisonJab // BYTE 47 Resv Agility
+BYTE 51 Megahorn
 BYTE 0 0
 
 ALIGN 4
 StaryuLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 1 Tackle
+// BYTE 1 Resv Harden
+BYTE 6 WaterGun
+BYTE 10 QuickAttack
+BYTE 15 RecoverMove
+BYTE 19 Flash // Resv Camouflage
+BYTE 20 ConfuseRay
+BYTE 24 Swift
+BYTE 28 BubbleBeam
+// BYTE 33 Resv Minimize
+BYTE 37 MirrorShot // GyroBall
+// BYTE 42 LightScreen
+BYTE 46 Ancientpower
+// BYTE 51 Resv CosmicPower
+BYTE 55 HydroPump
 BYTE 0 0
 
 ALIGN 4
 StarmieLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 1 Tackle
+// BYTE 1 Resv Harden
+BYTE 6 WaterGun
+BYTE 10 QuickAttack
+BYTE 15 RecoverMove
+BYTE 19 Flash // Resv Camouflage
+BYTE 20 ConfuseRay
+BYTE 24 Swift
+BYTE 28 BubbleBeam
+// BYTE 33 Resv Minimize
+BYTE 37 MirrorShot // GyroBall
+// BYTE 42 LightScreen
+BYTE 46 Ancientpower
+// BYTE 51 Resv CosmicPower
+BYTE 55 HydroPump
 BYTE 0 0
 
 ALIGN 4
 MrMimeLearnset:
-BYTE 1 Tackle
-BYTE 0 0
+BYTE 1 MagicalLeaf
+// BYTE 1 Resv PowerSwap
+// BYTE 1 Resv GuardSwap
+BYTE 1 Barrier
+BYTE 1 Confusion
+// BYTE 4 Resv CopyCat
+BYTE 8 RecoverMove // BYTE 8 Resv Meditate
+// BYTE 11 Resv Encore
+BYTE 15 Doubleslap
+// BYTE 18 Resv Mimic
+// BYTE 22 Resv LightScreen
+// BYTE 22 Resv Reflect
+BYTE 25 Psybeam
+// BYTE 29 Resv Substitute
+// BYTE 32 Resv Recycle
+// BYTE 36 Resv Trick
+BYTE 39 Psychic
+// BYTE 43 Resv RolePlay
+// BYTE 46 Resv BatonPass
+// BYTE 50 Resv Safeguard
+BYTE 0 0 // Do not have the patience to salvage this moveset, and without support moves its not going to make sense anyway
 
 ALIGN 4
 ScytherLearnset:
-BYTE 1 Tackle
+BYTE 1 SeismicToss // VaccumWave
+BYTE 1 QuickAttack
+BYTE 1 Leer
+// BYTE 5 Resv FocusEnergy
+BYTE 9 Thief // Pursuit 
+BYTE 13 TakeDown // FalseSwipe
+// BYTE 17 Resv Agility
+BYTE 21 WingAttack
+BYTE 25 FuryCutter
+BYTE 29 Slash
+BYTE 33 Swift // RazorWind
+// BYTE 37 Resv DoubleTeam
+BYTE 41 XScissor
+BYTE 45 NightSlash
+BYTE 49 DoubleHit
+BYTE 53 AirSlash
+BYTE 57 SwordsDance
+BYTE 61 QuickAttack // Feint
 BYTE 0 0
 
 ALIGN 4
 JynxLearnset:
-BYTE 1 Tackle
+BYTE 1 Pound
+BYTE 1 Lick
+// BYTE 1 Resv LovelyKiss
+BYTE 5 Lick 
+BYTE 6 AuroraBeam // PowderSnow 1 + PowderSnow 11 /2 = 6
+// BYTE 8 Resv LovelyKiss 
+BYTE 15 Doubleslap
+BYTE 18 IcePunch
+// BYTE 21 Resv MeanLook
+BYTE 22 Avalanche // PowderSnow  11 + Avalanche 33 /2 = 22
+// BYTE 25 Resv FakeTears 
+BYTE 28 RollingKick // WakeUpSlap
+BYTE 39 BodySlam
+BYTE 44 HyperBeam // WringOut
+// BYTE 49 Resv PerishSong
+BYTE 55 Blizzard
 BYTE 0 0
 
 ALIGN 4
 ElectabuzzLearnset:
-BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 33 Swift 
-BYTE 41 Thunderbolt
+BYTE 1 QuickAttack 
+BYTE 1 Leer
+BYTE 1 Thundershock
+BYTE 7 Thundershock
+BYTE 10 LowKick
+BYTE 16 Swift
+BYTE 19 Spark // ShockWave
+// BYTE 25 Resv LightScreen
+BYTE 28 ThunderPunch
+BYTE 37 ThunderWave // Discharge
+BYTE 43 Thunderbolt
+// BYTE 52 Resv Screech
+BYTE 58 Thunder
 BYTE 0 0
 
 ALIGN 4
 MagmarLearnset:
-BYTE 1 Tackle
+BYTE 1 Smog
+BYTE 1 Leer
+BYTE 1 Ember
+BYTE 7 Ember
+BYTE 10 SandAttack // SmokeScreen
+BYTE 16 Bite // FaintAttack
+BYTE 19 FireSpin
+BYTE 25 ConfuseRay
+BYTE 28 FirePunch
+BYTE 36 Scorch // LavaPlume
+BYTE 41 Flamethrower
+// BYTE 49 Resv SunnyDay
+BYTE 54 FireBlast
 BYTE 0 0
 
 ALIGN 4
 PinsirLearnset:
-BYTE 1 Tackle
+BYTE 1 Cut // ViceGrip
+// BYTE 1 Resv FocusEnergy
+BYTE 4 Bind
+BYTE 8 SeismicToss
+// BYTE 13 Resv Harden
+// BYTE 18 Revenge
+BYTE 21 RollingKick // BrickBreak
+// BYTE 25 VitalThrow
+BYTE 30 XScissor
+BYTE 35 Thrash
+BYTE 38 SwordsDance
+BYTE 42 Submission
+BYTE 47 Guillotine
+BYTE 52 HiJumpKick // Superpower
 BYTE 0 0
 
 ALIGN 4
 TaurosLearnset:
 BYTE 1 Tackle
+BYTE 3 TailWhip
+BYTE 5 Rage
+BYTE 8 HornAttack
+BYTE 11 Glare // ScaryFace
+BYTE 15 Bite // Pursuit
+// BYTE 19 Resv Rest
+BYTE 24 Thief // Payback
+// BYTE 29 ZenHeadbutt
+BYTE 35 TakeDown
+BYTE 41 QuickAttack // Swagger
+BYTE 48 Thrash
+BYTE 55 DoubleEdge // GigaImpact
 BYTE 0 0
 
 ALIGN 4
 MagikarpLearnset:
-BYTE 1 Tackle
+BYTE 1 Splash
+BYTE 15 Tackle
 BYTE 0 0
 
 ALIGN 4
 GyaradosLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 1 Tackle
+BYTE 1 Thrash
+BYTE 15 Tackle
+BYTE 15 Thrash
+BYTE 20 Bite
+BYTE 23 DragonRage
+BYTE 26 Leer
+BYTE 29 Twister
+BYTE 32 Avalanche // IceFang
+BYTE 35 Waterfall // AquaTail
+BYTE 38 Surf // Resv RainDance
+BYTE 41 HydroPump
+BYTE 44 Outrage // Resv DragonDance
+BYTE 47 HyperBeam
 BYTE 0 0
 
 ALIGN 4
 LaprasLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 1 WaterGun
+BYTE 1 Growl 
+// BYTE 1 Sleep2 // Sing
+// BYTE 4 Resv Mist
+BYTE 7 ConfuseRay
+BYTE 14 WaterPulse
+BYTE 18 BodySlam
+BYTE 21 IceBeam // 10 iceshard + 32 iceb /2 = 21
+// BYTE 27 Resv PerishSong 
+BYTE 29 Surf // 22 rain + 37 brine /2 round down = 29
+// BYTE 43 Resv Safeguard
+BYTE 49 HydroPump
+BYTE 55 Blizzard // SheerCold
 BYTE 0 0
 
 ALIGN 4
 DittoLearnset:
+// BYTE 1 Transform
 BYTE 1 Tackle
 BYTE 0 0
 
 ALIGN 4
 EeveeLearnset:
 BYTE 1 Tackle
+BYTE 1 TailWhip
+BYTE 1 RecoverMove
+BYTE 8 SandAttack
+BYTE 15 Growl
+BYTE 22 QuickAttack
+BYTE 29 Bite
+// BYTE 36 Resv BatonPass
+BYTE 43 TakeDown
+BYTE 50 DoubleEdge // LastResort
+BYTE 57 HyperBeam // TrumpCard
 BYTE 0 0
 
 ALIGN 4
 VaporeonLearnset:
-BYTE 1 Bubble 
-BYTE 5 TailWhip 
-BYTE 10 Leer 
-BYTE 13 Tackle
-BYTE 18 WaterGun
+BYTE 1 Tackle
+BYTE 1 TailWhip
+BYTE 1 RecoverMove
+BYTE 8 SandAttack
+BYTE 15 WaterGun
+BYTE 22 QuickAttack
+BYTE 29 Bite
+BYTE 36 AuroraBeam
+// BYTE 43 Resv AquaRing
+BYTE 50 DoubleEdge // LastResort
+// BYTE 57 Resv Haze
+BYTE 60 Surf // 43 aqua + 78 muddy /2 round down = 60
+// BYTE 64 Resv AcidArmor
+BYTE 71 HydroPump
+// BYTE 78 MuddyWater 
 BYTE 0 0
 
 ALIGN 4
 JolteonLearnset:
-BYTE 1 Leer 
-BYTE 5 Thundershock 
-BYTE 12 Tackle 
-BYTE 19 AttackPulse
-BYTE 33 Swift 
-BYTE 41 Thunderbolt
+BYTE 1 Tackle
+BYTE 1 TailWhip
+BYTE 1 RecoverMove
+BYTE 8 SandAttack
+BYTE 15 Thundershock
+BYTE 22 QuickAttack
+BYTE 29 DoubleKick
+BYTE 36 PinMissile
+BYTE 43 Spark // ThunderFang
+BYTE 50 DoubleEdge // LastResort
+BYTE 57 ThunderWave
+// BYTE 64 Resv Agility
+BYTE 71 Thunder
+BYTE 78 VoltTackle // Discharge
 BYTE 0 0
 
 ALIGN 4
 FlareonLearnset:
 BYTE 1 Tackle
+BYTE 1 TailWhip
+BYTE 1 RecoverMove
+BYTE 8 SandAttack
+BYTE 15 Ember
+BYTE 22 QuickAttack
+BYTE 29 Bite
+BYTE 36 FireSpin
+BYTE 43 Scorch // FireFang
+BYTE 50 DoubleEdge // LastResort
+BYTE 57 Smog
+BYTE 64 Glare // ScaryFace
+BYTE 71 FireBlast
+BYTE 78 SacredFire
 BYTE 0 0
 
 ALIGN 4
 PorygonLearnset:
 BYTE 1 Tackle
+// BYTE 1 Resv Sharpen
+// BYTE 1 Resv Conversion
+// BYTE 1 Resv Conversion
+BYTE 7 Psybeam
+// BYTE 12 Resv Agility
+BYTE 18 RecoverMove
+// BYTE 23 Resv MagnetRise
+BYTE 29 SignalBeam
+// BYTE 34 Resv Recycle // Hammerne for Recycle?
+BYTE 40 Spark // Discharge
+BYTE 45 Flash // BYTE 45 Resv LockOn
+BYTE 51 TriAttack
+// BYTE 56 Resv MagicCoat
+BYTE 62 Thunder // ZapCannon
 BYTE 0 0
 
 ALIGN 4
@@ -1895,7 +2261,7 @@ BYTE 6 Absorb
 BYTE 11 Leer 
 BYTE 16 EarthPower 
 BYTE 21 SandAttack 
-BYTE 26 RecoverMove //?Support (Endure) 
+BYTE 26 RecoverMove //?Support (RecoverMove) 
 BYTE 31 Crabhammer 
 BYTE 36 MegaDrain 
 BYTE 41 MetalSound 
@@ -1911,7 +2277,7 @@ BYTE 6 Absorb
 BYTE 11 Leer 
 BYTE 16 EarthPower 
 BYTE 21 SandAttack 
-BYTE 26 RecoverMove //?Support (Endure) 
+BYTE 26 RecoverMove //?Support (RecoverMove) 
 BYTE 31 Crabhammer 
 BYTE 36 MegaDrain 
 BYTE 41 MetalSound 
@@ -1942,7 +2308,7 @@ BYTE 1 Tackle
 BYTE 12 Lick 
 //BYTE 20 ??? (Yawn) 
 BYTE 25 Rest 
-//BYTE 28 ??? (Sleep Talk) 
+//BYTE 28 ??? (Sleep2 Talk) 
 //BYTE 28 ??? (Snore) 
 BYTE 33 BodySlam 
 BYTE 41 Rollout 
@@ -1989,7 +2355,7 @@ BYTE 1 WingAttack
 BYTE 1 Ember 
 BYTE 8 FireSpin 
 //BYTE 15 Resv //Agility //?Buff 
-BYTE 22 RecoverMove //?Buff (Endure) 
+BYTE 22 RecoverMove //?Buff (RecoverMove) 
 BYTE 29 Ancientpower 
 BYTE 36 Flamethrower 
 BYTE 43 Barrier //?Buff (Safeguard) 
