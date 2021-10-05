@@ -88,8 +88,8 @@ StatAccessory_DescEntry(MuscleBandT2_BoostIndex, MuscleBandT2DescText)
 StatAccessory_NameEntry(WiseGlassesT2_BoostIndex, WiseGlassesT2NameText)
 StatAccessory_DescEntry(WiseGlassesT2_BoostIndex, WiseGlassesT2DescText)
 
-StatAccessory_NameEntry(EnergyBand_BoostIndex, EnergyBandNameText)
-StatAccessory_DescEntry(EnergyBand_BoostIndex, EnergyBandDescText)
+StatAccessory_NameEntry(EnergyBandT2_BoostIndex, EnergyBandT2NameText)
+StatAccessory_DescEntry(EnergyBandT2_BoostIndex, EnergyBandT2DescText)
 
 StatAccessory_NameEntry(PaddedShield_BoostIndex, PaddedShieldNameText)
 StatAccessory_DescEntry(PaddedShield_BoostIndex, PaddedShieldDescText)
@@ -211,10 +211,7 @@ SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife)
 //By Datagne
 SkillAccessory_NameEntry(ChargeID, SN_Charge)
 SkillAccessory_DescEntry(ChargeID, SD_Charge)
-//Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
-//By Snakey1
-SkillAccessory_NameEntry(PoisonStrikeID, SN_PoisonStrike)
-SkillAccessory_DescEntry(PoisonStrikeID, SD_PoisonStrike)
+
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere
 SkillAccessory_NameEntry(FuryID, BerserkGeneName)
@@ -239,28 +236,28 @@ SkillAccessory_NameEntry(ArmoredBlowID, SN_ArmoredBlow)
 SkillAccessory_DescEntry(ArmoredBlowID, SD_ArmoredBlow)
  //Stance Skills: Bonus to stats when defending.
 //By Snakey1
-SkillAccessory_NameEntry(BracingStanceID, SN_BracingStance)
-SkillAccessory_DescEntry(BracingStanceID, SD_BracingStance)
-SkillAccessory_NameEntry(DartingStanceID, SN_DartingStance)
-SkillAccessory_DescEntry(DartingStanceID, SD_DartingStance)
-SkillAccessory_NameEntry(FierceStanceID, SN_FierceStance)
-SkillAccessory_DescEntry(FierceStanceID, SD_FierceStance)
-SkillAccessory_NameEntry(KestrelStanceID, SN_KestrelStance)
-SkillAccessory_DescEntry(KestrelStanceID, SD_KestrelStance)
-SkillAccessory_NameEntry(MirrorStanceID, SN_MirrorStance)
-SkillAccessory_DescEntry(MirrorStanceID, SD_MirrorStance)
-SkillAccessory_NameEntry(ReadyStanceID, SN_ReadyStance)
-SkillAccessory_DescEntry(ReadyStanceID, SD_ReadyStance)
-SkillAccessory_NameEntry(SteadyStanceID, SN_SteadyStance)
-SkillAccessory_DescEntry(SteadyStanceID, SD_SteadyStance)
-SkillAccessory_NameEntry(SturdyStanceID, SN_SturdyStance)
-SkillAccessory_DescEntry(SturdyStanceID, SD_SturdyStance)
-SkillAccessory_NameEntry(SwiftStanceID, SN_SwiftStance)
-SkillAccessory_DescEntry(SwiftStanceID, SD_SwiftStance)
-SkillAccessory_NameEntry(WardingStanceID, SN_WardingStance)
-SkillAccessory_DescEntry(WardingStanceID, SD_WardingStance)
-SkillAccessory_NameEntry(SpectrumStanceID, SN_SpectrumStance)
-SkillAccessory_DescEntry(SpectrumStanceID, SD_SpectrumStance)
+SkillAccessory_NameEntry(BracingStanceID, SN_Bracing_Stance)
+SkillAccessory_DescEntry(BracingStanceID, SD_Bracing_Stance)
+SkillAccessory_NameEntry(DartingStanceID, SN_Darting_Stance)
+SkillAccessory_DescEntry(DartingStanceID, SD_Darting_Stance)
+SkillAccessory_NameEntry(FierceStanceID, SN_Fierce_Stance)
+SkillAccessory_DescEntry(FierceStanceID, SD_Fierce_Stance)
+SkillAccessory_NameEntry(KestrelStanceID, SN_Kestrel_Stance)
+SkillAccessory_DescEntry(KestrelStanceID, SD_Kestrel_Stance)
+SkillAccessory_NameEntry(MirrorStanceID, SN_Mirror_Stance)
+SkillAccessory_DescEntry(MirrorStanceID, SD_Mirror_Stance)
+SkillAccessory_NameEntry(ReadyStanceID, SN_Ready_Stance)
+SkillAccessory_DescEntry(ReadyStanceID, SD_Ready_Stance)
+SkillAccessory_NameEntry(SteadyStanceID, SN_Steady_Stance)
+SkillAccessory_DescEntry(SteadyStanceID, SD_Steady_Stance)
+SkillAccessory_NameEntry(SturdyStanceID, SN_Sturdy_Stance)
+SkillAccessory_DescEntry(SturdyStanceID, SD_Sturdy_Stance)
+SkillAccessory_NameEntry(SwiftStanceID, SN_Swift_Stance)
+SkillAccessory_DescEntry(SwiftStanceID, SD_Swift_Stance)
+SkillAccessory_NameEntry(WardingStanceID, SN_Warding_Stance)
+SkillAccessory_DescEntry(WardingStanceID, SD_Warding_Stance)
+SkillAccessory_NameEntry(SpectrumStanceID, SN_Spectrum_Stance)
+SkillAccessory_DescEntry(SpectrumStanceID, SD_Spectrum_Stance)
 //By Sme
 SkillAccessory_NameEntry(AlertStanceID, SN_AlertStance)
 SkillAccessory_DescEntry(AlertStanceID, SD_AlertStance)
@@ -291,8 +288,8 @@ SkillAccessory_DescEntry(DazzleID, SD_Dazzle)
 //Venom Ring 
 //Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
 //By Snakey1
-SkillAccessory_NameEntry(PoisonStrikeID, SN_PoisonStrike)
-SkillAccessory_DescEntry(PoisonStrikeID, SD_PoisonStrike)
+SkillAccessory_NameEntry(PoisonStrikeID, SN_Poison_Strike)
+SkillAccessory_DescEntry(PoisonStrikeID, SD_Poison_Strike)
 
 //Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
 //By circleseverywhere
@@ -306,8 +303,8 @@ SkillAccessory_NameEntry(SavageBlowID, SN_SavageBlow)
 SkillAccessory_DescEntry(SavageBlowID, SD_SavageBlow)
 //Grisly Wound: Deals damage equal to 20% of the enemy's max HP after every battle.
 //By Snakey1
-SkillAccessory_NameEntry(GrislyWoundID, SN_GrislyWound)
-SkillAccessory_DescEntry(GrislyWoundID, SD_GrislyWound)
+SkillAccessory_NameEntry(GrislyWoundID, SN_Grisly_Wound)
+SkillAccessory_DescEntry(GrislyWoundID, SD_Grisly_Wound)
 
 
 // Blossom Ring  - Present from Erika 
@@ -345,8 +342,8 @@ SkillAccessory_DescEntry(FuryID, SD_Fury)
 SkillAccessory_NameEntry(HawkeyeID, SN_Hawkeye) // silph scope? 
 SkillAccessory_DescEntry(HawkeyeID, SD_Hawkeye)
 
-SkillAccessory_NameEntry(Galeforce, SN_Galeforce)
-SkillAccessory_DescEntry(Galeforce, SD_Galeforce)
+SkillAccessory_NameEntry(GaleforceID, SN_Galeforce)
+SkillAccessory_DescEntry(GaleforceID, SD_Galeforce)
 
 
 
