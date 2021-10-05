@@ -380,9 +380,23 @@ GOTO 200
 
 Label 33
 CompareTactText(FpkforName)
-BNE 199 rC r7
+BNE 34 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsFpkfor|IsPointer
+GOTO 200
+
+Label 34
+CompareTactText(OmarName)
+BNE 35 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsOmar|IsPointer
+GOTO 200
+
+Label 35
+CompareTactText(CheeseName)
+BNE 199 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsOmar|IsPointer
 GOTO 200
 
 
@@ -573,6 +587,23 @@ ALIGN 4
 UnitsFpkfor: 
 UNIT 0x02 ExeggcuteID BonusUnitParameters
 UNIT
+
+ALIGN 4 
+UnitsOmar: 
+UNIT 0x02  MachopID BonusUnitParameters
+UNIT
+
+
+
+
+
+
+
+
+
+
+
+
 
 ALIGN 4 
 UnitsAsh: 

@@ -1,21 +1,26 @@
+ 
+#define PlaceholderIconData "$66 $66 $66 $66 $66 $00 $00 $00 $06 $06 $00 $00 $06 $60 $00 $00 $06 $00 $06 $00 $06 $00 $60 $00 $06 $00 $00 $06 $06 $00 $00 $60 $66 $66 $66 $66 $00 $00 $00 $66 $00 $00 $60 $60 $00 $00 $06 $60 $00 $60 $00 $60 $00 $06 $00 $60 $60 $00 $00 $60 $06 $00 $00 $60 $06 $00 $00 $60 $06 $00 $00 $06 $06 $00 $60 $00 $06 $00 $06 $00 $06 $60 $00 $00 $06 $06 $00 $00 $66 $00 $00 $00 $66 $66 $66 $66 $06 $00 $00 $60 $60 $00 $00 $60 $00 $06 $00 $60 $00 $60 $00 $60 $00 $00 $06 $60 $00 $00 $60 $60 $00 $00 $00 $66 $66 $66 $66 $66"
+#define PlaceholderIcon16 "PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData"
+#define PlaceholderIcon64 "PlaceholderIcon16 PlaceholderIcon16 PlaceholderIcon16 PlaceholderIcon16"
+
 ALIGN 4
 AccessoryIcons:
-FILL(0x2000) 
+BYTE PlaceholderIcon64
 
 // Four parts so each partition of skill IDs can poin to it 
 // so skill id 65 will use icon at SkillAccessoryIcons_2 + 1*128 
 ALIGN 4
 SkillAccessoryIcons_1:
-FILL(0x2000) 
+BYTE PlaceholderIcon64
 ALIGN 4
 SkillAccessoryIcons_2:
-FILL(0x2000) 
+BYTE PlaceholderIcon64
 ALIGN 4
 SkillAccessoryIcons_3:
-FILL(0x2000) 
+BYTE PlaceholderIcon64
 ALIGN 4
 SkillAccessoryIcons_4:
-FILL(0x2000) 
+BYTE PlaceholderIcon64
 
 //Icon graphics are uncompressed
 #define AccessoryIcon(indexID) "ORG (128*indexID)+AccessoryIcons"

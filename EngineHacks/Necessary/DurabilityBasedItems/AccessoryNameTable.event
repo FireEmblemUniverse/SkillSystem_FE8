@@ -80,6 +80,78 @@ StatAccessory_NameEntry(EnergyBand_BoostIndex, EnergyBandNameText)
 StatAccessory_DescEntry(EnergyBand_BoostIndex, EnergyBandDescText)
 
 
+
+
+StatAccessory_NameEntry(MuscleBandT2_BoostIndex, MuscleBandT2NameText)
+StatAccessory_DescEntry(MuscleBandT2_BoostIndex, MuscleBandT2DescText)
+
+StatAccessory_NameEntry(WiseGlassesT2_BoostIndex, WiseGlassesT2NameText)
+StatAccessory_DescEntry(WiseGlassesT2_BoostIndex, WiseGlassesT2DescText)
+
+StatAccessory_NameEntry(EnergyBand_BoostIndex, EnergyBandNameText)
+StatAccessory_DescEntry(EnergyBand_BoostIndex, EnergyBandDescText)
+
+StatAccessory_NameEntry(PaddedShield_BoostIndex, PaddedShieldNameText)
+StatAccessory_DescEntry(PaddedShield_BoostIndex, PaddedShieldDescText)
+
+StatAccessory_NameEntry(IronShield_BoostIndex, IronShieldNameText)
+StatAccessory_DescEntry(IronShield_BoostIndex, IronShieldDescText)
+
+StatAccessory_NameEntry(MagicWard_BoostIndex, MagicWardNameText)
+StatAccessory_DescEntry(MagicWard_BoostIndex, MagicWardDescText)
+
+StatAccessory_NameEntry(QuickBoots_BoostIndex, QuickBootsNameText)
+StatAccessory_DescEntry(QuickBoots_BoostIndex, QuickBootsDescText)
+
+StatAccessory_NameEntry(SightScope_BoostIndex, SightScopeNameText)
+StatAccessory_DescEntry(SightScope_BoostIndex, SightScopeDescText)
+
+
+
+
+
+
+StatAccessory_NameEntry(MuscleBandT3_BoostIndex, MuscleBandT3NameText)
+StatAccessory_DescEntry(MuscleBandT3_BoostIndex, MuscleBandT3DescText)
+
+StatAccessory_NameEntry(WiseGlassesT3_BoostIndex, WiseGlassesT3NameText)
+StatAccessory_DescEntry(WiseGlassesT3_BoostIndex, WiseGlassesT3DescText)
+
+StatAccessory_NameEntry(EnergyBandT3_BoostIndex, EnergyBandT3NameText)
+StatAccessory_DescEntry(EnergyBandT3_BoostIndex, EnergyBandT3DescText)
+
+
+StatAccessory_NameEntry(StuddedShield_BoostIndex, StuddedShieldNameText)
+StatAccessory_DescEntry(StuddedShield_BoostIndex, StuddedShieldDescText)
+
+StatAccessory_NameEntry(SteelShield_BoostIndex, SteelShieldNameText)
+StatAccessory_DescEntry(SteelShield_BoostIndex, SteelShieldDescText)
+
+StatAccessory_NameEntry(EnhancedWard_BoostIndex, EnhancedWardNameText)
+StatAccessory_DescEntry(EnhancedWard_BoostIndex, EnhancedWardDescText)
+
+StatAccessory_NameEntry(VintageBoots_BoostIndex, VintageBootsNameText)
+StatAccessory_DescEntry(VintageBoots_BoostIndex, VintageBootsDescText)
+
+StatAccessory_NameEntry(SilphScope_BoostIndex, SilphScopeNameText)
+StatAccessory_DescEntry(SilphScope_BoostIndex, SilphScopeDescText)
+
+StatAccessory_NameEntry(LuckyBracerT3_BoostIndex, LuckyBracerT3NameText)
+StatAccessory_DescEntry(LuckyBracerT3_BoostIndex, LuckyBracerT3DescText)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Skills 
 
 SkillAccessory_NameEntry(RenewalID, RenewalRingNameText)
@@ -108,6 +180,174 @@ SkillAccessory_DescEntry(SealSpdID, SealSpdAccDescText)
 
 SkillAccessory_NameEntry(SealDefID, SealDefAccNameText)
 SkillAccessory_DescEntry(SealDefID, SealDefAccDescText)
+
+
+SkillAccessory_NameEntry(SealDefID, SealDefAccNameText)
+SkillAccessory_DescEntry(SealDefID, SealDefAccDescText)
+
+
+
+
+// (SkillAccessory_DescEntry\()([^I]*)(ID)
+// $1$2ID, SD_$2) 
+
+
+//Fiery Blood: +4 damage when HP is not at max.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(FieryBloodID, SN_FieryBlood)
+SkillAccessory_DescEntry(FieryBloodID, SD_FieryBlood)
+ 
+ //Fortune: This unit cannot be crit.
+//By Sme
+SkillAccessory_NameEntry(FortuneID, SN_Fortune)
+SkillAccessory_DescEntry(FortuneID, SD_Fortune)
+
+
+//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
+//By circleseverywhere
+SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife) 
+SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife) 
+ //Charge: Gain +1 damage for every two squares moved.
+//By Datagne
+SkillAccessory_NameEntry(ChargeID, SN_Charge)
+SkillAccessory_DescEntry(ChargeID, SD_Charge)
+//Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
+//By Snakey1
+SkillAccessory_NameEntry(PoisonStrikeID, SN_PoisonStrike)
+SkillAccessory_DescEntry(PoisonStrikeID, SD_PoisonStrike)
+//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
+//By circleseverywhere
+SkillAccessory_NameEntry(FuryID, BerserkGeneName)
+SkillAccessory_DescEntry(FuryID, SD_Fury)
+//Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(LifetakerID, SN_Lifetaker)
+SkillAccessory_DescEntry(LifetakerID, SD_Lifetaker)
+ //Blow Skills: Apply a stat bonus when initiating battle.
+//By Rossendale
+SkillAccessory_NameEntry(DuelistsBlowID, SN_DuelistsBlow)
+SkillAccessory_DescEntry(DuelistsBlowID, SD_DuelistsBlow)
+SkillAccessory_NameEntry(DeathBlowID, SN_DeathBlow)
+SkillAccessory_DescEntry(DeathBlowID, SD_DeathBlow)
+SkillAccessory_NameEntry(DartingBlowID, SN_DartingBlow)
+SkillAccessory_DescEntry(DartingBlowID, SD_DartingBlow)
+SkillAccessory_NameEntry(WardingBlowID, SN_WardingBlow)
+SkillAccessory_DescEntry(WardingBlowID, SD_WardingBlow)
+SkillAccessory_NameEntry(CertainBlowID, SN_CertainBlow)
+SkillAccessory_DescEntry(CertainBlowID, SD_CertainBlow)
+SkillAccessory_NameEntry(ArmoredBlowID, SN_ArmoredBlow)
+SkillAccessory_DescEntry(ArmoredBlowID, SD_ArmoredBlow)
+ //Stance Skills: Bonus to stats when defending.
+//By Snakey1
+SkillAccessory_NameEntry(BracingStanceID, SN_BracingStance)
+SkillAccessory_DescEntry(BracingStanceID, SD_BracingStance)
+SkillAccessory_NameEntry(DartingStanceID, SN_DartingStance)
+SkillAccessory_DescEntry(DartingStanceID, SD_DartingStance)
+SkillAccessory_NameEntry(FierceStanceID, SN_FierceStance)
+SkillAccessory_DescEntry(FierceStanceID, SD_FierceStance)
+SkillAccessory_NameEntry(KestrelStanceID, SN_KestrelStance)
+SkillAccessory_DescEntry(KestrelStanceID, SD_KestrelStance)
+SkillAccessory_NameEntry(MirrorStanceID, SN_MirrorStance)
+SkillAccessory_DescEntry(MirrorStanceID, SD_MirrorStance)
+SkillAccessory_NameEntry(ReadyStanceID, SN_ReadyStance)
+SkillAccessory_DescEntry(ReadyStanceID, SD_ReadyStance)
+SkillAccessory_NameEntry(SteadyStanceID, SN_SteadyStance)
+SkillAccessory_DescEntry(SteadyStanceID, SD_SteadyStance)
+SkillAccessory_NameEntry(SturdyStanceID, SN_SturdyStance)
+SkillAccessory_DescEntry(SturdyStanceID, SD_SturdyStance)
+SkillAccessory_NameEntry(SwiftStanceID, SN_SwiftStance)
+SkillAccessory_DescEntry(SwiftStanceID, SD_SwiftStance)
+SkillAccessory_NameEntry(WardingStanceID, SN_WardingStance)
+SkillAccessory_DescEntry(WardingStanceID, SD_WardingStance)
+SkillAccessory_NameEntry(SpectrumStanceID, SN_SpectrumStance)
+SkillAccessory_DescEntry(SpectrumStanceID, SD_SpectrumStance)
+//By Sme
+SkillAccessory_NameEntry(AlertStanceID, SN_AlertStance)
+SkillAccessory_DescEntry(AlertStanceID, SD_AlertStance)
+ 
+ 
+ // Seal skills 
+ 
+//Counter: Reflect physical damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(CounterID, SN_Counter)
+SkillAccessory_DescEntry(CounterID, SD_Counter)
+
+//Countermagic: Reflect magic damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(CounterMagicID, SN_CounterMagic)
+SkillAccessory_DescEntry(CounterMagicID, SD_CounterMagic)
+
+//Miracle: Survive a lethal attack if HP > 50%.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(MiracleID, SN_Miracle)
+SkillAccessory_DescEntry(MiracleID, SD_Miracle)
+
+//Dazzle: Opponents cannot counterattack this unit.
+//By circleseverywhere
+SkillAccessory_NameEntry(DazzleID, SN_Dazzle)
+SkillAccessory_DescEntry(DazzleID, SD_Dazzle)
+
+//Venom Ring 
+//Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
+//By Snakey1
+SkillAccessory_NameEntry(PoisonStrikeID, SN_PoisonStrike)
+SkillAccessory_DescEntry(PoisonStrikeID, SD_PoisonStrike)
+
+//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
+//By circleseverywhere
+SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife)
+SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife)
+
+// Toxic Ring
+//Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
+//By circleseverywhere
+SkillAccessory_NameEntry(SavageBlowID, SN_SavageBlow)
+SkillAccessory_DescEntry(SavageBlowID, SD_SavageBlow)
+//Grisly Wound: Deals damage equal to 20% of the enemy's max HP after every battle.
+//By Snakey1
+SkillAccessory_NameEntry(GrislyWoundID, SN_GrislyWound)
+SkillAccessory_DescEntry(GrislyWoundID, SD_GrislyWound)
+
+
+// Blossom Ring  - Present from Erika 
+//Blossom: 2x growth rates, but 1/2 exp gain.
+//By Sme
+SkillAccessory_NameEntry(BlossomID, SN_Blossom)
+SkillAccessory_DescEntry(BlossomID, SD_Blossom)
+//Voice of Peace: Enemies within 2 tiles deal -2 damage.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(VoiceOfPeaceID, SN_VoiceOfPeace)
+SkillAccessory_DescEntry(VoiceOfPeaceID, SD_VoiceOfPeace)
+//Amaterasu: Allies within 2 tiles recover 20% HP each turn.
+//Author Unknown (Initial Commit)
+SkillAccessory_NameEntry(AmaterasuID, SN_Amaterasu)
+SkillAccessory_DescEntry(AmaterasuID, SD_Amaterasu)
+
+//Sabrina 
+//Psychic Ring / Hoplon Guard 
+//Fortune: This unit cannot be crit.
+//By Sme
+SkillAccessory_NameEntry(FortuneID, SN_Fortune)
+SkillAccessory_DescEntry(FortuneID, SD_Fortune)
+
+
+//Blaine 
+
+
+//Giovanni 
+//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
+//By circleseverywhere
+SkillAccessory_NameEntry(FuryID, SN_Fury)
+SkillAccessory_DescEntry(FuryID, SD_Fury)
+//Hawkeye: User will always hit the enemy.
+//By SD9k
+SkillAccessory_NameEntry(HawkeyeID, SN_Hawkeye) // silph scope? 
+SkillAccessory_DescEntry(HawkeyeID, SD_Hawkeye)
+
+SkillAccessory_NameEntry(Galeforce, SN_Galeforce)
+SkillAccessory_DescEntry(Galeforce, SD_Galeforce)
+
 
 
 

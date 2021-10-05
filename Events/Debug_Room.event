@@ -306,7 +306,7 @@ Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(22, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(12, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //MNC2 ViridianCh 
 //MNC2 Route1Ch 
@@ -319,9 +319,9 @@ Write_Byte(22, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 MtMoonB3Ch
 //MNC2 Route5Ch
 //MNC2 VermillionGymCh
-//MNC2 Route9WCh
+MNC2 Route9WCh
 //MNC2 SSAnneCh
-MNC2 CeruleanCh
+//MNC2 CeruleanCh
 //MNC2 Route24Ch
 //MNC2 Route4ECh
 //MNC2 CeruleanCh

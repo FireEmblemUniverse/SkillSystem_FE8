@@ -8,6 +8,24 @@
 #define OldScope_BoostIndex 8
 #define EnergyBand_BoostIndex 9 
 
+#define MuscleBandT2_BoostIndex 10 
+#define WiseGlassesT2_BoostIndex 11 
+#define EnergyBandT2_BoostIndex 12 
+#define PaddedShield_BoostIndex 13
+#define IronShield_BoostIndex 14
+#define MagicWard_BoostIndex 15
+#define QuickBoots_BoostIndex 16
+#define SightScope_BoostIndex 17
+#define MuscleBandT3_BoostIndex 18
+#define WiseGlassesT3_BoostIndex 19
+#define EnergyBandT3_BoostIndex 20
+#define StuddedShield_BoostIndex 21
+#define SteelShield_BoostIndex 22
+#define EnhancedWard_BoostIndex 23
+#define VintageBoots_BoostIndex 24
+#define SilphScope_BoostIndex 25
+#define LuckyBracerT3_BoostIndex 26 
+
 #define STR2_8 "POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2"
 #define STR2_Fill "STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8" 
 
@@ -31,7 +49,28 @@ Durb_StatBonus_Entry(OldScope_BoostIndex, SKL5)
 Durb_StatBonus_Entry(EnergyBand_BoostIndex, STR2SKL2SPD2)
 
 
+// Tier 2 
+Durb_StatBonus_Entry(MuscleBandT2_BoostIndex, STR5)
+Durb_StatBonus_Entry(WiseGlassesT2_BoostIndex, MAG5)
+Durb_StatBonus_Entry(EnergyBandT2_BoostIndex, STRSKLSPD4)
+Durb_StatBonus_Entry(PaddedShield_BoostIndex, DEFRES4)
+Durb_StatBonus_Entry(IronShield_BoostIndex, DEF7)
+Durb_StatBonus_Entry(MagicWard_BoostIndex, RES8) 
+Durb_StatBonus_Entry(QuickBoots_BoostIndex, SPD7)
+Durb_StatBonus_Entry(SightScope_BoostIndex, SKL7)
 
+
+
+// Tier 3 
+Durb_StatBonus_Entry(MuscleBandT3_BoostIndex, STR8)
+Durb_StatBonus_Entry(WiseGlassesT3_BoostIndex, MAG8) 
+Durb_StatBonus_Entry(EnergyBandT3_BoostIndex, STRSKLSPD6)
+Durb_StatBonus_Entry(StuddedShield_BoostIndex, DEFRES6)
+Durb_StatBonus_Entry(SteelShield_BoostIndex, DEF10)
+Durb_StatBonus_Entry(EnhancedWard_BoostIndex, RES10) 
+Durb_StatBonus_Entry(VintageBoots_BoostIndex, SPD10)
+Durb_StatBonus_Entry(SilphScope_BoostIndex, SKL10)
+Durb_StatBonus_Entry(LuckyBracerT3_BoostIndex, LUK10) 
 
 
 

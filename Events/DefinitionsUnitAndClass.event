@@ -48,12 +48,22 @@
 
 #define ClassRoute9WWildA 0x24
 #define ClassRoute9WWildB 0x25
+#define ClassRoute9EWildA 0x26
+#define ClassRoute9EWildB 0x27
+#define ClassRoute10WildA 0x28
+#define ClassRoute10WildB 0x29
+#define ClassRockTunnelWildA 0x2A
+#define ClassRockTunnelWildB 0x2B
+#define ClassPokeTowerWildA 0x2C
+#define ClassPokeTowerWildB 0x2D
+
+
 
 
 
 //Enemy unit IDs 
-// Wilds are 0x50 - 0x8F 
-// Trainers are 0x90 - 0xBD & 0xC0 - 0xCF I guess 
+// Wilds are 0x50 - 0x8F, reinforcements are 0x90-0x9F for some reason 
+// Trainers are 0xA0 - 0xBD & 0xC0 - 0xCF I guess 
 // 0xBE is Formotiis iirc 
 
 #define OaksPikachu 0x4F
@@ -92,7 +102,11 @@
 #define UnitRoute6Wild 0x73
 #define UnitRoute11Wild 0x74
 #define UnitDiglettsCaveWild 0x75
-
+#define UnitRoute9EWild 0x76
+#define UnitRoute10Wild 0x77
+#define UnitRockTunnelWild 0x78
+#define UnitPokeTowerWild 0x79
+#define UnitRoute12Wild 0x7A 
 
 #define UnitRoute1Trainer 0xA0
 #define UnitRoute2STrainer 0xA1
@@ -112,6 +126,17 @@
 #define UnitDiglettsCaveTrainer 0xAE // unused? 
 #define UnitSSAnneTrainer 0xAF
 #define UnitVermillionGymTrainer 0xB0
+#define UnitRoute9ETrainer 0xB1 
+#define UnitRoute10Trainer 0xB2
+#define UnitRockTunnelETrainer 0xB3 
+#define UnitPokeTowerTrainer 0xB4
+
+
+
+// avoid 0xBE and 0xBF // formotiis? 
+ 
+
+
 
 
 // Reinforcement unit IDs 0x90 - 0x9F 

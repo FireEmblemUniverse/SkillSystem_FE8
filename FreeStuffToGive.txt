@@ -44,7 +44,7 @@ DONE i think //Chivalry: When foe is at full HP, attack and def/res +1.
 //By Sme
 #define VigilanceID 7
 
-//Insight: Hit +10.
+DONE //Insight: Hit +10.
 //By Sme
 #define InsightID 171
 
@@ -60,7 +60,7 @@ DONE //Perfectionist: +10 Hit/Avoid when user's HP is at maximum.
 //By Zeta
 #define PerfectionistID 226
 
-//Wind Disciple: +10 Hit and Avoid when HP is not at max.
+DONE //Wind Disciple: +10 Hit and Avoid when HP is not at max.
 //Author Unknown (Initial Commit)
 #define WindDiscipleID 233
 
@@ -79,13 +79,112 @@ DONE - //Prescience: When initiating battle, Hit and Avo +10.
 //By Sme
 #define PrescienceID 243
 
+//Shove: Allows unit to push other units one tile away.
+//By StanH
+ ShoveID
+
+//Smite: Allows unit to push other units two tiles away.
+//By StanH
+ SmiteID
+
+//Pivot: Allows unit to move to the opposite side of an adjacent ally.
+//By StanH
+ PivotID
+
+//Reposition: Allows unit to pull an adjacent ally to its opposite side.
+//By StanH
+ RepositionID
+
+//Swap: Allows unit to swap positions with an adjacent ally.
+//By StanH
+ SwapID
 
 
 
 
+Accessories: 
+
+//Fiery Blood: +4 damage when HP is not at max.
+//Author Unknown (Initial Commit)
+ FieryBloodID
+
+//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
+//By circleseverywhere
+ BreathOfLifeID 
+ 
+ //Charge: Gain +1 damage for every two squares moved.
+//By Datagne
+ ChargeID
+
+DONE //Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
+//By Snakey1
+ PoisonStrikeID - DONE 
+
+// DONE 
+//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
+//By circleseverywhere
+
+//Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
+//Author Unknown (Initial Commit)
+ LifetakerID
+ 
+ //Blow Skills: Apply a stat bonus when initiating battle.
+//By Rossendale
+ DuelistsBlowID
+ DeathBlowID
+ DartingBlowID
+ WardingBlowID
+ CertainBlowID
+ ArmoredBlowID
+ 
+ // Bracing Stance- +4 res/def
+// Darting Stance- +6 Speed 
+// Fierce Stance - +6 Attack 
+// Kestrel Stance- +4 atk/spd
+// Mirror Stance- +4 atk/res
+// Steady Stance- +6 def DONE 
+// Sturdy Stance- +4 atk/def
+// Ready Stance - +4 spd/def
+// Swift Stance- +4 spd/res
+// Warding Stance- +6 res DONE 
+ //Stance Skills: Bonus to stats when defending.
+//By Snakey1
+ BracingStanceID
+ DartingStanceID
+ FierceStanceID
+ KestrelStanceID
+ MirrorStanceID
+ ReadyStanceID
+ SteadyStanceID
+ SturdyStanceID
+ SwiftStanceID
+ WardingStanceID
+ SpectrumStanceID
+//By Sme
+ AlertStanceID
+ AlertStancePlusID
+ 
+ 
+ // Seal skills 
+ 
+//Counter: Reflect physical damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+ CounterID
+
+//Countermagic: Reflect magic damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+ CounterMagicID
+
+//Miracle: Survive a lethal attack if HP > 50%.
+//Author Unknown (Initial Commit)
+ MiracleID
 
 
+Gym Leader Accessories: 
 
+//Dazzle: Opponents cannot counterattack this unit.
+//By circleseverywhere
+ DazzleID
 
 Venom Ring 
 //Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
@@ -93,7 +192,6 @@ Venom Ring
 #define PoisonStrikeID 126
 
 // Wary Ring 
-Present from Brock 
 //Wary Fighter: Unit cannot double or be doubled.
 //By Tequila
 #define WaryFighterID 111

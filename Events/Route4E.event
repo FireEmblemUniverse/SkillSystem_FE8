@@ -104,11 +104,15 @@ CoinsTrap(29,18,ChapterID*2,450)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-//SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
+//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+SkillScrollTrap(14,2, (ChapterID*2)+1, WindDiscipleID) 
+
+
+
+SkillAccessoryTrap(37,3, ChapterID*2, FuryID) // Berserk Gene ?  
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
-SpellScrollTrap(37,3, (ChapterID*2)+1, WingAttack) // cause they probably used a flier to get up here xD 
+//SpellScrollTrap(37,3, (ChapterID*2)+1, WingAttack) // cause they probably used a flier to get up here xD 
 
 SignBTrap(55,10, ChapterID, 0x0) //no extra text 
 SignATrap(8,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

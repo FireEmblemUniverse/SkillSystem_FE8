@@ -9,8 +9,31 @@ All2:
 StatBonus(2,2,2,2,2,2,2,2,0,0)
 
 ALIGN 4
-STR2SKL2SPD2:
+STRSKLSPD2:
 StatBonus(0,2,0,2,2,0,0,0,0,0)
+
+ALIGN 4
+STRSKLSPD4:
+StatBonus(0,4,0,4,4,0,0,0,0,0)
+
+ALIGN 4
+STRSKLSPD6:
+StatBonus(0,6,0,6,6,0,0,0,0,0)
+
+
+ALIGN 4
+DEFRES2:
+StatBonus(0,0,0,0,0,2,2,0,0,0)
+
+ALIGN 4
+DEFRES4:
+StatBonus(0,0,0,0,0,4,4,0,0,0)
+
+ALIGN 4
+DEFRES6:
+StatBonus(0,0,0,0,0,6,6,0,0,0)
+
+
 
 ALIGN 4
 HP2:
@@ -38,9 +61,7 @@ ALIGN 4
 LUK2:
 StatBonus(0,0,0,0,0,0,0,2,0,0)
 
-ALIGN 4
-DEFRES2:
-StatBonus(0,0,0,0,0,2,2,0,0,0)
+
 
 
 ALIGN 4
@@ -122,9 +143,274 @@ LUK5:
 StatBonus(0,0,0,0,0,0,0,5,0,0)
 
 
+ALIGN 4
+HP6:
+StatBonus(6,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR6:
+StatBonus(0,6,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG6:
+StatBonus(0,0,6,0,0,0,0,0,0,0)
+ALIGN 4
+SKL6:
+StatBonus(0,0,0,6,0,0,0,0,0,0)
+ALIGN 4
+SPD6:
+StatBonus(0,0,0,0,6,0,0,0,0,0)
+
+ALIGN 4
+DEF6:
+StatBonus(0,0,0,0,0,6,0,0,0,0)
+ALIGN 4
+RES6:
+StatBonus(0,0,0,0,0,0,6,0,0,0)
+ALIGN 4
+LUK6:
+StatBonus(0,0,0,0,0,0,0,6,0,0)
+
+
+ALIGN 4
+HP7:
+StatBonus(7,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR7:
+StatBonus(0,7,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG7:
+StatBonus(0,0,7,0,0,0,0,0,0,0)
+ALIGN 4
+SKL7:
+StatBonus(0,0,0,7,0,0,0,0,0,0)
+ALIGN 4
+SPD7:
+StatBonus(0,0,0,0,7,0,0,0,0,0)
+
+ALIGN 4
+DEF7:
+StatBonus(0,0,0,0,0,7,0,0,0,0)
+ALIGN 4
+RES7:
+StatBonus(0,0,0,0,0,0,7,0,0,0)
+ALIGN 4
+LUK7:
+StatBonus(0,0,0,0,0,0,0,7,0,0)
+
+
+ALIGN 4
+HP8:
+StatBonus(8,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR8:
+StatBonus(0,8,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG8:
+StatBonus(0,0,8,0,0,0,0,0,0,0)
+ALIGN 4
+SKL8:
+StatBonus(0,0,0,8,0,0,0,0,0,0)
+ALIGN 4
+SPD8:
+StatBonus(0,0,0,0,8,0,0,0,0,0)
+
+ALIGN 4
+DEF8:
+StatBonus(0,0,0,0,0,8,0,0,0,0)
+ALIGN 4
+RES8:
+StatBonus(0,0,0,0,0,0,8,0,0,0)
+ALIGN 4
+LUK8:
+StatBonus(0,0,0,0,0,0,0,8,0,0)
+
+ALIGN 4
+HP9:
+StatBonus(9,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR9:
+StatBonus(0,9,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG9:
+StatBonus(0,0,9,0,0,0,0,0,0,0)
+ALIGN 4
+SKL9:
+StatBonus(0,0,0,9,0,0,0,0,0,0)
+ALIGN 4
+SPD9:
+StatBonus(0,0,0,0,9,0,0,0,0,0)
+
+ALIGN 4
+DEF9:
+StatBonus(0,0,0,0,0,9,0,0,0,0)
+ALIGN 4
+RES9:
+StatBonus(0,0,0,0,0,0,9,0,0,0)
+ALIGN 4
+LUK9:
+StatBonus(0,0,0,0,0,0,0,9,0,0)
+
+
+ALIGN 4
+HP10:
+StatBonus(10,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR10:
+StatBonus(0,10,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG10:
+StatBonus(0,0,10,0,0,0,0,0,0,0)
+ALIGN 4
+SKL10:
+StatBonus(0,0,0,10,0,0,0,0,0,0)
+ALIGN 4
+SPD10:
+StatBonus(0,0,0,0,10,0,0,0,0,0)
+
+ALIGN 4
+DEF10:
+StatBonus(0,0,0,0,0,10,0,0,0,0)
+ALIGN 4
+RES10:
+StatBonus(0,0,0,0,0,0,10,0,0,0)
+ALIGN 4
+LUK10:
+StatBonus(0,0,0,0,0,0,0,10,0,0)
 
 
 
+ALIGN 4
+HP11:
+StatBonus(11,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR11:
+StatBonus(0,11,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG11:
+StatBonus(0,0,11,0,0,0,0,0,0,0)
+ALIGN 4
+SKL11:
+StatBonus(0,0,0,11,0,0,0,0,0,0)
+ALIGN 4
+SPD11:
+StatBonus(0,0,0,0,11,0,0,0,0,0)
+
+ALIGN 4
+DEF11:
+StatBonus(0,0,0,0,0,11,0,0,0,0)
+ALIGN 4
+RES11:
+StatBonus(0,0,0,0,0,0,11,0,0,0)
+ALIGN 4
+LUK11:
+StatBonus(0,0,0,0,0,0,0,11,0,0)
+
+
+ALIGN 4
+HP12:
+StatBonus(12,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR12:
+StatBonus(0,12,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG12:
+StatBonus(0,0,12,0,0,0,0,0,0,0)
+ALIGN 4
+SKL12:
+StatBonus(0,0,0,12,0,0,0,0,0,0)
+ALIGN 4
+SPD12:
+StatBonus(0,0,0,0,12,0,0,0,0,0)
+
+ALIGN 4
+DEF12:
+StatBonus(0,0,0,0,0,12,0,0,0,0)
+ALIGN 4
+RES12:
+StatBonus(0,0,0,0,0,0,12,0,0,0)
+ALIGN 4
+LUK12:
+StatBonus(0,0,0,0,0,0,0,12,0,0)
+
+
+ALIGN 4
+HP13:
+StatBonus(13,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR13:
+StatBonus(0,13,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG13:
+StatBonus(0,0,13,0,0,0,0,0,0,0)
+ALIGN 4
+SKL13:
+StatBonus(0,0,0,13,0,0,0,0,0,0)
+ALIGN 4
+SPD13:
+StatBonus(0,0,0,0,13,0,0,0,0,0)
+
+ALIGN 4
+DEF13:
+StatBonus(0,0,0,0,0,13,0,0,0,0)
+ALIGN 4
+RES13:
+StatBonus(0,0,0,0,0,0,13,0,0,0)
+ALIGN 4
+LUK13:
+StatBonus(0,0,0,0,0,0,0,13,0,0)
+
+
+ALIGN 4
+HP14:
+StatBonus(14,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR14:
+StatBonus(0,14,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG14:
+StatBonus(0,0,14,0,0,0,0,0,0,0)
+ALIGN 4
+SKL14:
+StatBonus(0,0,0,14,0,0,0,0,0,0)
+ALIGN 4
+SPD14:
+StatBonus(0,0,0,0,14,0,0,0,0,0)
+
+ALIGN 4
+DEF14:
+StatBonus(0,0,0,0,0,14,0,0,0,0)
+ALIGN 4
+RES14:
+StatBonus(0,0,0,0,0,0,14,0,0,0)
+ALIGN 4
+LUK14:
+StatBonus(0,0,0,0,0,0,0,14,0,0)
+
+
+ALIGN 4
+HP15:
+StatBonus(15,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR15:
+StatBonus(0,15,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG15:
+StatBonus(0,0,15,0,0,0,0,0,0,0)
+ALIGN 4
+SKL15:
+StatBonus(0,0,0,15,0,0,0,0,0,0)
+ALIGN 4
+SPD15:
+StatBonus(0,0,0,0,15,0,0,0,0,0)
+
+ALIGN 4
+DEF15:
+StatBonus(0,0,0,0,0,15,0,0,0,0)
+ALIGN 4
+RES15:
+StatBonus(0,0,0,0,0,0,15,0,0,0)
+ALIGN 4
+LUK15:
+StatBonus(0,0,0,0,0,0,0,15,0,0)
 
 
 
