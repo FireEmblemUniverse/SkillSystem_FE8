@@ -21,10 +21,3 @@
 
 #include "SkillScrolls/SkillScrolls.event"
 
-
-#ifdef SHOW_SKILL_WARNING
-	WARNING "Default skills have been reordered!"
-	WARNING "This will break existing save files made with old configs."
-	WARNING "Restore your old 'skill_definitions.event' if necessary to avoid any issues."
-	WARNING "To hide these warnings, comment out '#define SHOW_SKILL_WARNING' in 'Config.event'."
-#endif // SHOW_SKILL_WARNING
