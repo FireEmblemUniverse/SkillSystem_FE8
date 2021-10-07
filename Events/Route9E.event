@@ -99,7 +99,7 @@ RockSmash(29,9)
 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-GoldPokeballTrap(9,3, (ChapterID*2)+1, Headbutt) 
+GoldPokeballTrap(9,3, (ChapterID*2)+1, MegaPunch) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
@@ -108,12 +108,12 @@ SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(39,9, ChapterID, 0x0) //no extra text 
-SignATrap(2,4, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(37,11, ChapterID, 0x0) //no extra text 
+SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
-BerryTree(35,3,5)
+BerryTree(24,16,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
@@ -138,7 +138,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(17,3,27,7)) //w patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(5,1,10,2)) //w patch 
 
 AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes  
@@ -216,7 +216,7 @@ TQD_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 

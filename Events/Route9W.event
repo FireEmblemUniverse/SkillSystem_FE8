@@ -98,8 +98,8 @@ Traps1:
 
 CutBush(12,10)
 
-//SaveCost(10,10) // until boulder removed 
-//StrengthBoulder(13,10) // lol 
+SaveCost(10,10) // until boulder removed 
+StrengthBoulder(13,10) // lol 
 //StrengthBoulder(11,10) // lol 
 
 
@@ -125,7 +125,7 @@ SignATrap(2,4, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 
 
 
 BerryTree(35,3,5)
-
+BerryTree(38,3,5)
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
 //OpenPokeball(8,3)
@@ -226,7 +226,7 @@ SHORT 600 // Gold
 TQD_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [NineRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 

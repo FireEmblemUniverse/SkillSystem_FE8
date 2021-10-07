@@ -46,8 +46,27 @@ END_MAIN
 
 LocationBasedEvents:
 House(CascadebadgeObtained,EnterGym,24,20) //
+House(0, EnterPillagedHouseS, 23,10) 
+House(0, EnterPillagedHouseN, 24, 7)
 Vendor(ShopItems,22,27)
 END_MAIN
+
+EnterPillagedHouseS:
+SET_ACTIVE 0
+MOVE (-1) 0x7FFF [24,7]
+ENUN
+SET_CURSOR [24,7]
+NoFade 
+ENDA 
+
+
+EnterPillagedHouseN:
+SET_ACTIVE 0
+MOVE (-1) 0x7FFF [23,10]
+ENUN
+SET_CURSOR [23,10]
+NoFade 
+ENDA 
 
 EnterGym:
 ENUF CascadebadgeObtained 
@@ -219,8 +238,8 @@ ShopItems:
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SkillScroll TantivyID 
-BYTE SpellScroll AttackPulse SpellScroll WaterGun SpellScroll Growl 
-BYTE SpellScroll DoubleHit //SpellScroll Headbutt 
+BYTE SpellScroll AttackPulse SpellScroll WaterGun SpellScroll Bite
+BYTE SpellScroll DoubleHit SpellScroll SignalBeam
 BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
