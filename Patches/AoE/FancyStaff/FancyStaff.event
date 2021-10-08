@@ -1,0 +1,6 @@
+#include "Freeselect/Freeselect6C.event"
+#include "_6C_Basic_Cases/_Staff6C_BasicCases.event"
+
+#define rfStaffTargeting(routine, rangefunc, procpoin) "SHORT 0x1C28 0x1C22 0x4903 0x4B04; BL(routine); SHORT 0xBC30 0xBC01 0x4700 0x0; POIN (rangefunc|1) procpoin"
+
+#include "New Staves/Installer.event"

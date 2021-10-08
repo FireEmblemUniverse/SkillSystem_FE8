@@ -142,17 +142,18 @@ push {r4-r7, lr}
 ldr r4, =0x203A4EC  @ Atkr 
 ldr r5, =0x203A56C @ Dfdr
 
-
+ldrb r0, [r4, #0x0B] @ Deployment id 
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldrb r1, [r3, #0x0B] @ deployment ID 
+cmp r0, r1 
+bne False_IsTrainersTeamDefeated
 
 CheckAtkrFirst:
 ldrb r0, [r4, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne CheckDfdrSecond
 ldrb r0, [r4, #0x0B] @ Deployment id 
-lsr r1, r0, #6 @ allegiance 
-cmp r1, #0 
-beq CheckDfdrSecond
-
 blh GetUnit 
 mov r4, r0 
 cmp r0, #0 
@@ -182,7 +183,7 @@ ldrb r1, [r6, r2] @ Wexp2 as how many that have fainted
 add r1, #1 @ 1 more has died 
 strb r1, [r6, r2] 
 cmp r0, r1 
-bne CheckDfdrSecond 
+bne False_IsTrainersTeamDefeated
 
 
 
@@ -199,13 +200,7 @@ CheckDfdrSecond:
 ldrb r0, [r5, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne False_IsTrainersTeamDefeated
-
-
 ldrb r0, [r5, #0x0B] @ Deployment id 
-lsr r1, r0, #6 @ allegiance 
-cmp r1, #0 
-beq False_IsTrainersTeamDefeated
-
 blh GetUnit 
 
 cmp r0, #0 

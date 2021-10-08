@@ -75,7 +75,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToRoute2N:
-ChapterTransition(ViridianForestSCh, 19, 41)
+ChapterTransition(Route2NCh, 19, 41)
 
 ToViridianForestS:
 ChapterTransition(ViridianForestSCh, 28, 28)

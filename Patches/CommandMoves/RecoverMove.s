@@ -23,7 +23,6 @@ ldr r1, =RecoverMove
 lsl r1, #24 
 lsr r1, #24 
 bl MoveTester 
-mov r11, r11 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
 ldrb r2, [r3, #0x13] @ Curr HP 

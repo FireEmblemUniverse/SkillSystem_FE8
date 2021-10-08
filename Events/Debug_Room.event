@@ -78,18 +78,18 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  IvysaurID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MewtwoID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
 
 
 Units2:
-UNIT 3  DiglettID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 2  MankeyID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 4 SandshrewID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  DugtrioID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  PrimeapeID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4 SandslashID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 7 KadabraID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 6 PidgeottoID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6 PidgeotID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 
@@ -129,27 +129,6 @@ ENUT DebugPlaceUnitsFlagMenu
 
 
 ENUF SkipIntroFlag
-Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-//Write_Byte(7, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(23, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-//Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(27, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-//Write_Byte(9, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(21, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//21 
-Write_Byte(42, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(26, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-
-
-//SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
 
 
 LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
@@ -173,85 +152,28 @@ SilentGiveItemWithDurability(Ephraim, QuickClaw, 1)
 SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80) 
 */ 
 
-
-
-
-
-
-
-
-
-
-//SilentGiveItemWithDurability(Eirika, SpellScroll, MegaDrain)
-//SilentGiveItemWithDurability(Eirika, SpellScroll, Pound)
-//SilentGiveItemWithDurability(Seth, SpellScroll, Ember)
-/*
-SilentGiveItemWithDurability(Eirika, SpellScroll,LeafFlurry)
-SilentGiveItemWithDurability(Eirika, MuscleBand, 0xC1)
-SilentGiveItemWithDurability(Eirika, Scratch, 1)
-*/
-
-
-
-//SVAL r1 ((0xC0 & SkillID)>>6) // This gets the skill ID where the top 3 bits denote if it's above 0x40, 0x80, 0xC0 
-// we just add this to our Ves_SkillBlockOne_ItemID as it's sequential and gives us 0, 1, 2, or 3 
-
-
-//GiveSkillAccessory(Eirika, RenewalID)
-//SilentGiveSkillAccessory(Eirika, RenewalID)
 SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
 
 SilentGiveItemWithDurability(Eirika, SkillScroll, RenewalID)
 
-//SilentGiveItemWithDurability(Eirika, RenewalRing, 0x1) // Starter 
-//SilentGiveItemWithDurability(Eirika, SkillScroll, ParagonID)
-//SilentGiveItemWithDurability(Eirika, DryingPan, 0x83)
-
 SilentGiveItemWithDurability(1, SpellScroll, LeechLife)
 
 SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
-//SilentGiveItemWithDurability(Eirika, Berry, 0x83)
-
-
-//SilentGiveItemWithDurability(1, SpellScroll, LeechLife)
-
-
-//SilentGiveItemWithDurability(Eirika, SuperPotion, 0x5)
-
 
 SilentGiveItemWithDurability(5, Berry, 0x83) // Pikachu 
-//SilentGiveItemWithDurability(5, WiseGlasses, 0x1)
 
 SilentGiveItemWithDurability(6, Berry, 0x3) // Oddish
-//SilentGiveItemWithDurability(6, WiseGlasses, 0x81)
 
 SilentGiveItemWithDurability(3, Berry, 0x1) // Pidgey 
-//SilentGiveItemWithDurability(3, WiseGlasses, 0x1)
 
 SilentGiveItemWithDurability(2, Berry, 0x83) // Rattata 
 SilentGiveItemWithDurability(2, SpellScroll, Headbutt)
 
 SilentGiveItemWithDurability(4, JellyDonut, 4)
-//CombineGiveItemWithDurability(Eirika, Vulnerary, 1)
 
 SupplyItemWithDurability(Berry, 3)
 SupplyItemWithDurability(SuperPotion, 5)
 
-//SilentGiveItem(Eirika, SuperPotion3)
-//SilentGiveItem(Eirika, SuperPotion4)
-
-//SilentGiveItem(Eirika, Elixir)
-
-//SupplyItem(Tackle)
-//SupplyItem(LowKick)  
-//SupplyItem(Ember) 
-//SupplyItem(WaterGun)
-//SupplyItem(Thundershock) 
-//SupplyItem(Absorb) 
-//SupplyItem(Lick)
-//SupplyItem(Psychic) 
-
-//SilentGiveItem(Eirika, LowKick)
 
 
 GOTO 0x63 
@@ -263,50 +185,23 @@ ENUN
 LOAD1 0x1 EnemyUnits2
 ENUN
 
-//GotoPrepScreen
-//Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-//Write_Byte(4, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
-
-//SetUnitStatus(Ephraim, State, 0x09) //Undeployed + Dead 
-
-
-
-SupplyItemWithDurability(SuperPotion, 5) 
-SupplyItemWithDurability(SuperPotion, 5) 
-
- //[0902374F]?
-
-Write_Byte(8, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
 
 LABEL 0x63
 SVAL r3 15500 
 GIVETOMAIN 0
 
 SetTactName(VeslyName)
-//ENUT 0xAB // Enable toy box 
-//ENUT 0xAC
-AutoLevelUnits(12, True, 0x145) // all 
-//AutoLevelUnits(133, False, 0x145) // all 
 
+AutoLevelUnits(50, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
-//GotoPrepScreen 
-//ENUT SkipIntroFlag
-//MNC2 PalletCh 
-//MNC2 PokecenterCh 
-//MNC2 Route1Ch 
-//DISA 0x2
 
-//ChangeEdition(1)
 Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(12, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(18, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //MNC2 ViridianCh 
 //MNC2 Route1Ch 
@@ -318,18 +213,19 @@ Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 Route4WCh
 //MNC2 MtMoonB3Ch
 //MNC2 Route5Ch
-MNC2 VermillionCh
+//MNC2 VermillionCh
 //MNC2 CeruleanCh
 //MNC2 Route9WCh
 //MNC2 SSAnneCh
 //MNC2 CeruleanCh
 //MNC2 Route24Ch
-//MNC2 Route4ECh
+//MNC2 Route2SCh
+//MNC2 Route5Ch
 //MNC2 CeruleanCh
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 CeruleanCh
-//MNC2 CinnabarCh
+MNC2 CinnabarCh
 //MNC2 Route9ECh
 //MNC2 Route5Ch
 //MNC2 Route2NCh

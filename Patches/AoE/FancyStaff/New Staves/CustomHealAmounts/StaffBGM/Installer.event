@@ -1,0 +1,17 @@
+#include "Extensions/Hack Installation.txt"
+
+PUSH
+ORG $72570
+jumpToHack(IsHealStaff)
+POP
+
+IsHealStaff:
+#incbin "IsHealStaff.dmp"
+POIN HealingStaffList
+POIN StatusStaffList
+
+HealingStaffList:
+BYTE Heal Mend Recover Physic Fortify Restore Hammerne Barrier Latona Soothe Remedy 0xFF
+
+StatusStaffList:
+BYTE Silence Berserk Sleep Petrify 0xFF

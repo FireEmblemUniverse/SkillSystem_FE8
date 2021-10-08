@@ -1,0 +1,37 @@
+// 25B18 - Dance Targetting
+// 28B98 - Usability (begins at 28A8C?)
+// 2FF68 - Effect
+
+ALIGN 4
+AnewStaff_RangeSetup:
+//rfItemRangeSetup($25B18+1,Item_TURange)
+#incbin "AnewRangeSetup.dmp"
+POIN 0x25B18 + 1 // Targetting Routine
+POIN Item_TURange
+
+ALIGN 4
+AnewUsability:
+#incbin "AnewUsability.dmp"
+POIN AnewStaff_RangeSetup + 1
+
+ALIGN 4
+AnewEffectFunc: // exec
+#incbin "AnewEffectFunc.dmp"
+POIN AnewEffect
+
+ALIGN 4
+AnewEffect:
+#incbin "AnewSetup.dmp"
+
+ALIGN 4
+AnewTargetting:
+#incbin "AnewTargetting.dmp"
+POIN AnewStaff_RangeSetup + 1
+
+// Correction to Generic Staff Targetting
+PUSH
+ORG $295AA
+SHORT 0x46C0
+POP
+
+IER_setItemEffect(0x3F, AnewUsability, 0x2a100, AnewTargetting, AnewEffectFunc)

@@ -1,0 +1,28 @@
+// 2625D - TryAddUnitToWarpTargetList
+
+ALIGN 4
+TryAddUnitToAbortTargetList:
+#incbin "TryAddUnitToAbortTargetList.dmp"
+
+ALIGN 4
+AbortStaffTargeting:
+#incbin "AbortTargetting.dmp"
+POIN SetupAbortTargetSelection + 1
+
+ALIGN 4
+SetupAbortTargetSelection:
+#incbin "SetupAbortTargetSelection.dmp"
+POIN AbortStaff_RangeSetup
+
+ALIGN 4
+AbortStaffUsability:
+#incbin "GenericUsability.dmp"
+POIN AbortStaff_RangeSetup + 1
+
+ALIGN 4
+AbortStaff_RangeSetup:
+#incbin "AbortRangeSetup.dmp"
+POIN TryAddUnitToAbortTargetList + 1
+POIN Item_TURange
+
+IER_setItemEffect(0x41, AbortStaffUsability, 0x2a100, AbortStaffTargeting, 0x2fea4)

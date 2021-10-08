@@ -1,5 +1,7 @@
  
-#define PlaceholderIconData "$66 $66 $66 $66 $66 $00 $00 $00 $06 $06 $00 $00 $06 $60 $00 $00 $06 $00 $06 $00 $06 $00 $60 $00 $06 $00 $00 $06 $06 $00 $00 $60 $66 $66 $66 $66 $00 $00 $00 $66 $00 $00 $60 $60 $00 $00 $06 $60 $00 $60 $00 $60 $00 $06 $00 $60 $60 $00 $00 $60 $06 $00 $00 $60 $06 $00 $00 $60 $06 $00 $00 $06 $06 $00 $60 $00 $06 $00 $06 $00 $06 $60 $00 $00 $06 $06 $00 $00 $66 $00 $00 $00 $66 $66 $66 $66 $06 $00 $00 $60 $60 $00 $00 $60 $00 $06 $00 $60 $00 $60 $00 $60 $00 $00 $06 $60 $00 $00 $60 $60 $00 $00 $00 $66 $66 $66 $66 $66"
+ 
+#define PlaceholderIconData "$00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $E0 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $E0 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $40 $00 $02 $00 $42 $00 $24 $20 $04 $00 $40 $43 $00 $00 $CE $24 $04 $00 $49 $40 $E3 $00 $00 $00 $00 $9E $00 $00 $E0 $49 $00 $00 $9E $04 $00 $E0 $42 $00 $00 $2E $04 $00 $E0 $41 $00 $00 $40 $04 $00 $00 $00 $00 $00 $00 $04 $00 $E4 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+//#define PlaceholderIconData "$66 $66 $66 $66 $66 $00 $00 $00 $06 $06 $00 $00 $06 $60 $00 $00 $06 $00 $06 $00 $06 $00 $60 $00 $06 $00 $00 $06 $06 $00 $00 $60 $66 $66 $66 $66 $00 $00 $00 $66 $00 $00 $60 $60 $00 $00 $06 $60 $00 $60 $00 $60 $00 $06 $00 $60 $60 $00 $00 $60 $06 $00 $00 $60 $06 $00 $00 $60 $06 $00 $00 $06 $06 $00 $60 $00 $06 $00 $06 $00 $06 $60 $00 $00 $06 $06 $00 $00 $66 $00 $00 $00 $66 $66 $66 $66 $06 $00 $00 $60 $60 $00 $00 $60 $00 $06 $00 $60 $00 $60 $00 $60 $00 $00 $06 $60 $00 $00 $60 $60 $00 $00 $00 $66 $66 $66 $66 $66"
 #define PlaceholderIcon16 "PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData PlaceholderIconData"
 #define PlaceholderIcon64 "PlaceholderIcon16 PlaceholderIcon16 PlaceholderIcon16 PlaceholderIcon16"
 
@@ -94,8 +96,10 @@ SkillAccessoryIcons(SealLukID)
 SkillAccessoryIcons(SealMagID)
 #incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
 
-
-
+SkillAccessoryIcons(SteadyStanceID)
+#incbin "StatBoosterIcons/BronzeShieldByCardCafe.dmp"
+SkillAccessoryIcons(WardingStanceID)
+#incbin "StatBoosterIcons/OldWardByCardCafe.dmp"
 
 
 

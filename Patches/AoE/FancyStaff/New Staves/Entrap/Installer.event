@@ -1,0 +1,18 @@
+
+ALIGN 4
+Entrap_Usability:
+#incbin "Entrap_Usability.dmp"
+POIN Entrap_Target_Func|1
+ALIGN 4
+Entrap_Target1:
+#incbin "Entrap_Target1.dmp"
+POIN Entrap_Target_Func|1
+ALIGN 4
+Entrap_Target_Func:
+#incbin "Entrap_Target_Func.dmp"
+POIN Entrap_Target_Check|1
+ALIGN 4
+Entrap_Target_Check:
+#incbin "Entrap_Target_Check.dmp"
+
+IER_setItemEffect(0x3A, Entrap_Usability, 0x2a100, Entrap_Target1, 0x2fe94)

@@ -1,0 +1,11 @@
+ALIGN 4
+NewExecRestore:
+#incbin "ExecRestore.dmp"
+POIN Item_TURange
+
+ALIGN 4
+AlleviateEffect:
+#incbin "AlleviateEffect.dmp"
+POIN NewExecRestore
+
+IER_setItemEffect(0x3D, 0x28abc, 0x2a100, 0x28fbc, AlleviateEffect)
