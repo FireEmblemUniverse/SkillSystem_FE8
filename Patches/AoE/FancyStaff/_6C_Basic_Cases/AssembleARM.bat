@@ -15,4 +15,6 @@ SET objcopy="%startDir%arm-none-eabi-objcopy"
 %objcopy% -S "%~n1.elf" -O binary "%~n1.dmp"
 
 echo y | del "%~n1.elf"
+
+echo y | del "%~n1.symbols.log"
 pause

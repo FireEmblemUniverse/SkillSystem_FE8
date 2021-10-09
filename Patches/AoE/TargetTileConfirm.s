@@ -49,20 +49,7 @@ strb 	r3, [r0,#0x11]
 strb 	r1, [r0, #0x13]
 strb 	r2, [r0, #0x14]
 
-push {r0-r3}
-
-ldr r3, =MemorySlot 
-mov r0, #0x4*0xB 
-strb r1, [r3, r0] 
-add r0, #2 
-strb r2, [r3, r0] 
-
-ldr r0, =TestEventAsdf
-mov r1, #1 
-blh EventEngine 
-
-pop {r0-r3}
-
+bl AoE_Effect
 mov 	r0, #0x6
 b End
 
