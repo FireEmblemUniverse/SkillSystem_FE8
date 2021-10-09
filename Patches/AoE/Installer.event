@@ -16,30 +16,49 @@
 
 #include "AoE.lyn.event"
 #include "CreateRangeMapFromTemplateByStanH.lyn.event" 
+#include "AoE_RangeTemplates.event"
+#include "AoE_CallSubmenuEffect.lyn.event"
 
-//@ Header:
-//@   [UByte]: x size
-//@   [UByte]: y size
-//@   [UByte]: x origin
-//@   [UByte]: y origin
-//@ Data:
-//@   [UByte array]: 1 if in range, 0 if not
+
+
+
 ALIGN 4
-RangeTemplate_Cross:
-BYTE 5 5 // Size 
-BYTE 2 2 // Center 
-BYTE 0 0 1 0 0
-BYTE 0 0 1 0 0
-BYTE 1 1 1 1 1
-BYTE 0 0 1 0 0
-BYTE 0 0 1 0 0
+AoESubmenuDef:
+BYTE 7 //x coord
+BYTE 3 //y coord
+BYTE 9 //width
+BYTE 0 //height
+WORD 0 //Unknown
+POIN AoEMenuCommandsList //menu commands ptr
+WORD 0 //OnInit
+WORD 0 //OnEnd
+WORD 0 //Unknown
+POIN 0x22861 //On B Press
+POIN 0x4f521 //On R Press
+POIN 0x4f459 //On Help Box
 
-ALIGN 4; WORD 0 0 // just in case i messed up 
 
-//ALIGN 4
-//AoETargetting:
-//rfStaffTargeting(AoE_FSTargeting, AoE_RangeSetup, AoE_FreeSelect)
+ALIGN 4
+AoEMenuCommandsList:
 
+MenuCommand(UM_Shove, UM_AoEDesc, NormalText, AoE_Usability, AoE_Setup)
+MenuCommand(UM_Adept, UM_AoEDesc, NormalText, AoE_Usability, AoE_Setup)
+
+UM_Separator 
+
+
+// dunno about this one - does it make stuff attack ? 
+// SpecificEffect 
+// gotta make AoE_Setup have index at the end i guess 
+ALIGN 4
+AoE_1Effect:
+//#incbin "AoE_SpecificEffect.dmp"
+WORD 1 // 
+
+ALIGN 4
+AoE_2Effect:
+//#incbin "AoE_SpecificEffect.dmp"
+WORD 2 //Adept art ID
 
 
 ALIGN 4

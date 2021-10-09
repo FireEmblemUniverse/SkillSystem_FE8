@@ -34,6 +34,9 @@ pop {r1}
 bx r1 
 
 
+
+
+
 	.equ pr6C_New, 0x08002C7C
 .global AoE_Setup 
 .type AoE_Setup, %function 
@@ -59,78 +62,70 @@ ldr r3, =AoE_FreeSelect @ Proc list
 
 bl AoE_FSTargeting
 
-
-ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x1
-strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 pop {r4-r7}
 pop {r0} 
 bx r0 
 
-.global AoE_Effect
-.type AoE_Effect, %function 
-AoE_Effect:
+.global AoE_GenericEffect
+.type AoE_GenericEffect, %function 
+AoE_GenericEffect:
 push {r4-r7, lr} 
 
+ldr r2, =RangeTemplate_Cross
 bl AoE_EffectCreateRangeMap
 
 ldr r0, =AoE_DamageUnitsInRange
 blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask? 
 
-@ldr r3, =MemorySlot 
-@mov r0, #0x4*0xB 
-@strb r1, [r3, r0] 
-@add r0, #2 
-@strb r2, [r3, r0] 
-@
-@ldr r0, =TestEventAsdf
-@mov r1, #1 
-@blh EventEngine 
+
+bl AoE_ClearRangeMap
+blh 0x801dacc @HideMoveRangeGraphics
+
+ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
+mov r0, #0x1
+strb r0, [r1,#0x11]
 
 blh  0x08019c3c   @UpdateGameTilesGraphics
+blh 0x0804E884   @//ClearBG0BG1
+
 
 pop {r4-r7}
 pop {r0} 
 bx r0 
 
-.type AoE_EffectCreateRangeMap, %function 
-.global AoE_EffectCreateRangeMap
-AoE_EffectCreateRangeMap:
-@ given XX and YY via action struct, construct a range mask around it? 
-
-push {r4-r7, lr}
-
-
-
-@ Clear range map 
+.global AoE_ClearRangeMap
+.type AoE_ClearRangeMap, %function 
+AoE_ClearRangeMap:
+push {lr} 
 ldr r0, =0x202E4E4 @ range map pointer 
 ldr r0, [r0]
 mov r1, #0
 _blh FillMap
+pop {r0}
+bx r0 
+
+
+.type AoE_EffectCreateRangeMap, %function 
+.global AoE_EffectCreateRangeMap
+AoE_EffectCreateRangeMap:
+@ given XX and YY via action struct, construct a range mask around it? 
+push {r4-r7, lr}
+@ r2 = RangeMapPointer 
+
+mov r5, r2 
+bl AoE_ClearRangeMap
 
 ldr r0, =CurrentUnit
 ldr r4, [r0] 
 
-
-@ldrb r6, [r4, #0x10] @ XX 
-@ldrb r7, [r4, #0x11] @ YY 
-
 ldr r3, =pActionStruct
 ldrb r0, [r3, #0x13]  @@ XX 
-@strb r0, [r4, #0x10] 
 ldrb r1, [r3, #0x14] @ YY 
-@strb r1, [r4, #0x11] 
-
-
 @ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
-
-ldr r2, =RangeTemplate_Cross
+mov r2, r5 
 bl CreateRangeMapFromTemplate
-
-@strb r6, [r4, #0x10] 
-@strb r7, [r4, #0x11] 
 
 pop {r4-r7}
 pop {r0} 
@@ -186,7 +181,6 @@ mov 	r0, #1
 ldr 	r3, =prNewFreeSelect
 orr 	r3, r0 
 mov 	r0, r4
-mov r11, r11 
 bl	Jump
 pop 	{r4}
 pop 	{r3}
@@ -218,5 +212,4 @@ bx r3
 
 .ltorg
 .align
-
 

@@ -12,7 +12,8 @@
 	#incbin "TargetTileConfirm.dmp"
 	ALIGN 4
 	FS6C_ButtonPress_Cancel:
-	#incbin "TargetTileCancel.dmp"
+	#include "TargetTileCancel.lyn.event"
+	//#incbin "TargetTileCancel.dmp"
 	
 	//Construct & Destruct Cases
 	Staff6C_fsStart:

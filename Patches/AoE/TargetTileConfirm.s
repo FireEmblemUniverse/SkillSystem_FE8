@@ -49,7 +49,7 @@ strb 	r3, [r0,#0x11]
 strb 	r1, [r0, #0x13]
 strb 	r2, [r0, #0x14]
 
-bl AoE_Effect
+bl AoE_GenericEffect
 mov 	r0, #0x6
 b End
 

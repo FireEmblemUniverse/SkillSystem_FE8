@@ -1,0 +1,35 @@
+//@ Header:
+//@   [UByte]: x size
+//@   [UByte]: y size
+//@   [UByte]: x origin
+//@   [UByte]: y origin
+//@ Data:
+//@   [UByte array]: 1 if in range, 0 if not
+ALIGN 4
+RangeTemplate_Cross:
+BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
+BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
+BYTE 0 0 1 0 0
+BYTE 0 0 1 0 0
+BYTE 1 1 1 1 1
+BYTE 0 0 1 0 0
+BYTE 0 0 1 0 0
+
+
+
+
+
+
+
+ALIGN 4
+RangeTemplate_Cross2:
+BYTE 5 5 // Size 
+BYTE 2 2 // Center 
+BYTE 0 0 1 0 0
+BYTE 0 0 1 0 0
+BYTE 1 1 1 1 1
+BYTE 0 0 1 0 0
+BYTE 0 0 1 0 0
+
+
+

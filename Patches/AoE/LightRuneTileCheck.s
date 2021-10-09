@@ -19,6 +19,8 @@ PUSH {r4,r5,r6,lr}
 
 // output - boolean - r0
 
+b retTrue
+
 MOV r4 ,r0
 MOV r5 ,r1
 LDR r0, =gMapUnit
@@ -48,6 +50,7 @@ BNE retFalse
         CMP r0, #0x0
         BLE retFalse
             // retTrue
+			retTrue:
             MOV r0, #0x1
             B end
         retFalse:
