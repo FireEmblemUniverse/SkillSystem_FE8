@@ -485,6 +485,11 @@ ldr r4, [r3] @
 ldr r1, [r4] 
 ldrb r1, [r1, #4] @ Leader's unit ID 
 
+ldr r3, =MemorySlot
+str r1, [r3, #0x9*4]
+
+
+
 sub r1, #0xE0 @ we only have trainers from unit IDs 0xE0 - 0xEF 
 lsl r1, #2 @ 4 bytes per entry 
 

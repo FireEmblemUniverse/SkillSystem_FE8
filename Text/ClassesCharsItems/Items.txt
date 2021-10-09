@@ -53,7 +53,11 @@ Perfect Ring[X]
 
 
 
-
+## SealResAccNameText
+Resistance Seal[X]
+## SealResAccDescText
+Debuffs enemy Res[NL]
+by 6 after combat.[X]
 
 
 
@@ -619,22 +623,22 @@ Seismic Toss[X]
 Submission[X]
 
 ## ConstrictDesc
-Chip damage. Debuffs Spd by 4.[X]
+Chip damage. Debuffs Spd by 5.[X]
 
 
 ## DoubleHitDesc
 Hits twice.[X]
 ## LeerDesc
-Chip damage. Debuffs Def by 4.[X]
+Chip damage. Debuffs Def by 5.[X]
 ## TailWhipDesc
-Chip damage. Debuffs Def by 4.[X]
+Chip damage. Debuffs Def by 5.[X]
 
 ## FlashDesc
 Chip damage. Greatly debuffs Skl.[X]
 
 
 ## GrowlDesc
-Chip damage. Debuffs Str by 4.[X]
+Chip damage. Debuffs Str by 5.[X]
 
 ## VineWhipDesc
 *{(} A weak whipping attack.[X]
@@ -658,7 +662,7 @@ A powerful bolt of electricity.[X]
 
 
 ## SandAttackDesc
-Chip damage. Debuffs Skl by 4.[X]
+Chip damage. Debuffs Skl by 5.[X]
 ## ScratchDesc
 *{(} A weak scratch.[X]
 
@@ -685,7 +689,7 @@ Chip damage. Debuffs Skl by 4.[X]
 ## ThundershockDesc
 *{)} A weak jolt of electricity.[X]
 ## AcidDesc
-*{)} Debuffs Res by 4.[X]
+*{)} Debuffs Res by 5.[X]
 
 ## PoisonStingDesc
 *{(} A weak, venomous sting.[X]
@@ -917,7 +921,7 @@ Signal Beam[X]
 ## StringShotName
 String Shot[X]
 ## StringShotDesc
-Chip damage. Debuffs Spd by 4.  [X]
+Chip damage. Debuffs Spd by 5.  [X]
 ## UTurnName
 U-Turn[X]
 ## UTurnDesc

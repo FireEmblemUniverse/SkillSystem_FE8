@@ -105,48 +105,32 @@ push {r4-r7, lr}
 
 
 @ Clear range map 
-@ldr r0, =0x202E4E4 @ range map pointer 
-@ldr r0, [r0]
-@mov r1, #0
-@_blh FillMap
-
-	@r0 = targeting condition routine pointer
-	@r1 = item id
-
-ldr r0, =0x8026525 
-mov r1, #1 @ item id ? 
-
-
-blh Item_TURange
-@blh 0x80170d4 @GetWeaponRangeMask
-
-@blh 0x801b460 @FillRangeMapByRangeMask
+ldr r0, =0x202E4E4 @ range map pointer 
+ldr r0, [r0]
+mov r1, #0
+_blh FillMap
 
 ldr r0, =CurrentUnit
 ldr r4, [r0] 
 
 
-ldrb r6, [r4, #0x10] @ XX 
-ldrb r7, [r4, #0x11] @ YY 
+@ldrb r6, [r4, #0x10] @ XX 
+@ldrb r7, [r4, #0x11] @ YY 
 
 ldr r3, =pActionStruct
 ldrb r0, [r3, #0x13]  @@ XX 
-strb r0, [r4, #0x10] 
-ldrb r0, [r3, #0x14] @ YY 
-strb r0, [r4, #0x11] 
+@strb r0, [r4, #0x10] 
+ldrb r1, [r3, #0x14] @ YY 
+@strb r1, [r4, #0x11] 
 
-mov r0, r4 
 
-mov r2, #1 
-ldr r1, =0x8026525 
-	@r0 = char pointer 
-	@r1 = targeting condition routine pointer
-	@r2 = item id
-@ i think r0/r2 are provided by the parent function 
-blh Item_TTRange
+@ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
 
-strb r6, [r4, #0x10] 
-strb r7, [r4, #0x11] 
+ldr r2, =RangeTemplate_Cross
+bl CreateRangeMapFromTemplate
+
+@strb r6, [r4, #0x10] 
+@strb r7, [r4, #0x11] 
 
 pop {r4-r7}
 pop {r0} 

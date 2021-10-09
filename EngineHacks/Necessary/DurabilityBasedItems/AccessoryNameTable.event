@@ -182,8 +182,8 @@ SkillAccessory_NameEntry(SealDefID, SealDefAccNameText)
 SkillAccessory_DescEntry(SealDefID, SealDefAccDescText)
 
 
-SkillAccessory_NameEntry(SealDefID, SealDefAccNameText)
-SkillAccessory_DescEntry(SealDefID, SealDefAccDescText)
+SkillAccessory_NameEntry(SealResID, SealResAccNameText)
+SkillAccessory_DescEntry(SealResID, SealResAccDescText)
 
 
 

@@ -59,7 +59,7 @@ CUMO 0x7ffE
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
 
-
+LABEL 10
 BottomWallS2Text
 CURE
 BNE 0x63 rA r0  // award no gold for rematches 
@@ -71,6 +71,8 @@ GIVETOMAIN 0
 GOTO 0x63 
 
 LABEL 20 // Cutscene 
+SVAL r7 0xE0 
+BNE 10 r7 r9 // Only if unit is 0xE0 
 ENUF PlayableCutsceneFlag 
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 FADI 8 

@@ -217,6 +217,9 @@ Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 CeruleanCh
 //MNC2 Route9WCh
 //MNC2 SSAnneCh
+MNC2 CinnabarCh
+
+
 //MNC2 CeruleanCh
 //MNC2 Route24Ch
 //MNC2 Route2SCh
@@ -225,7 +228,7 @@ Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 PewterCh
 //MNC2 ViridianCh
 //MNC2 CeruleanCh
-MNC2 CinnabarCh
+
 //MNC2 Route9ECh
 //MNC2 Route5Ch
 //MNC2 Route2NCh
