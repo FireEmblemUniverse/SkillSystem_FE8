@@ -18,15 +18,65 @@
 #include "CreateRangeMapFromTemplateByStanH.lyn.event" 
 #include "AoE_RangeTemplates.event"
 #include "AoE_CallSubmenuEffect.lyn.event"
+#include "AoE_DamageEffect.lyn.event" 
+
+#define AoE_EntrySizeDef 32 // 32 bytes per AoE table entry 
+#define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
+#define AoE_RamAddressDef "0x0203F101"
 
 
 
+/*
+ALIGN 4 
+AoE_Table: 
+POIN AdditionalUsabilityRoutine // Eg. for SkillTester, if desired (It's given r0 = AoE Effect Index #)
+BYTE Unit Class Level Flag Item 0 0 0
+BYTE FriendlyFireBool FixedDamageBool MagBasedBool HitResBool 
+BYTE DepleteItemBool UsableOnlyIfStationaryBool HpCost 0
+BYTE DmgOrMtLowerBound DmgUpperBound MinRange MaxRange
+POIN OptionalAddedRoutineForAnimations
+POIN RangeMaskTable 
+WORD 0 0 0 0 0 0 0 0 // Terminator
+*/
+ALIGN 4
+AoE_EntrySize:
+BYTE AoE_EntrySizeDef
+
+ALIGN 4
+AoE_RamAddress:
+WORD AoE_RamAddressDef
+
+
+ALIGN 4 
+AoE_Table:
+// Entry 
+POIN 0
+BYTE 0 0 0 0 // 4
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 0 0 0 // 12 
+BYTE 0 0 0 0 
+BYTE 1 15 1 3 // 20 - 23 
+POIN 0 
+POIN RangeTemplate_Cross
+
+// Entry 
+POIN 0
+BYTE 1 0 0 0 0 0 0 0 // Usable by Eirika 
+BYTE 0 0 0 0 
+BYTE 0 0 0 0 
+BYTE 0 0 1 3 
+POIN 0 
+POIN RangeTemplate_Cross
+
+
+
+AoE_TableTerminator
 
 ALIGN 4
 AoESubmenuDef:
-BYTE 7 //x coord
+BYTE 0 //x coord
 BYTE 3 //y coord
-BYTE 9 //width
+BYTE 8 //width
 BYTE 0 //height
 WORD 0 //Unknown
 POIN AoEMenuCommandsList //menu commands ptr
@@ -40,25 +90,31 @@ POIN 0x4f459 //On Help Box
 
 ALIGN 4
 AoEMenuCommandsList:
-
-MenuCommand(UM_Shove, UM_AoEDesc, NormalText, AoE_Usability, AoE_Setup)
-MenuCommand(UM_Adept, UM_AoEDesc, NormalText, AoE_Usability, AoE_Setup)
-
+MenuCommand(UM_Shove, UM_AoEDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1)
+MenuCommand(UM_Adept, UM_AoEDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1)
 UM_Separator 
 
 
-// dunno about this one - does it make stuff attack ? 
-// SpecificEffect 
-// gotta make AoE_Setup have index at the end i guess 
+ALIGN 4 
+AoE_0Usability:
+#include "AoE_SpecificUsability.lyn.event"
+WORD 0
+
+ALIGN 4 
+AoE_1Usability:
+#include "AoE_SpecificUsability.lyn.event"
+WORD 1
+
+// stores the index byte to ram, then starts AoE_Setup
 ALIGN 4
-AoE_1Effect:
-//#incbin "AoE_SpecificEffect.dmp"
-WORD 1 // 
+AoE_0Effect:
+#include "AoE_SpecificEffect.lyn.event"
+WORD 0 // 
 
 ALIGN 4
-AoE_2Effect:
-//#incbin "AoE_SpecificEffect.dmp"
-WORD 2 //Adept art ID
+AoE_1Effect:
+#include "AoE_SpecificEffect.lyn.event"
+WORD 1 //Adept art ID
 
 
 ALIGN 4
@@ -82,27 +138,21 @@ ALIGN 4
 AoE_fsStart:
 StaffTargetInit(UM_AoEHelp, rsRed, Staff6C_fsStart) // rsRed
 
-TestEventAsdf:
-SPAWN_NPC 0x10 [-1,-1] 
-
-NoFade 
-ENDA 
 
 
 ALIGN 4
 InvalidCursorByRangeMap_2:
 #incbin "InvalidCursorByRangeMap.dmp"
-POIN LightRuneTileCheck_2
+POIN OptionalAdditionalRangeSelectionCheck
 
 ALIGN 4
-LightRuneTileCheck_2:
-#incbin "LightRuneTileCheck.dmp"
+OptionalAdditionalRangeSelectionCheck:
+#incbin "OptionalAdditionalRangeSelectionCheck.dmp"
 
 ALIGN 4
 TargetTileConfirm_2:
-//#incbin "TargetTileConfirm.dmp"
 #include "TargetTileConfirm.lyn.event"
-POIN LightRuneTileCheck_2
+POIN OptionalAdditionalRangeSelectionCheck
 
 
 

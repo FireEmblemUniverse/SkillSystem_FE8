@@ -10,6 +10,11 @@
 .thumb
 @A button case
 
+.equ ClearBG0BG1, 0x0804E884
+.equ SetFont, 0x8003D38
+.equ Font_ResetAllocation, 0x8003D20  
+.equ EndAllMenus, 0x804EF20 
+
 .equ ActionID, 0x01
 
 push 	{r4, r14}
@@ -50,7 +55,18 @@ strb 	r1, [r0, #0x13]
 strb 	r2, [r0, #0x14]
 
 bl AoE_GenericEffect
-mov 	r0, #0x6
+blh ClearBG0BG1
+@ copied from vanilla 
+mov r0, #0 
+blh SetFont 
+blh Font_ResetAllocation 
+blh EndAllMenus
+
+mov r0, #0xb7 
+
+
+
+@mov 	r0, #0x6
 b End
 
 BadTile:

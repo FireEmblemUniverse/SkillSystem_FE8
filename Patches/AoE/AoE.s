@@ -141,16 +141,31 @@ push {r4-r7, lr}
 
 @ given r0 unit found in range, damage them 
 
-mov r4, r0 
-ldrb r0, [r4, #0x13] 
+
+mov r7, r0 @ target 
+ldr r6, =CurrentUnit 
+ldr r6, [r6] @ actor 
+ldr r5, =AoE_RamAddress
+ldrb r5, [r5] @ Ram address of previously stored effect index 
+
+mov r0, r5 @ effect index 
+mov r1, r6 @ attacker 
+mov r2, r7 @ target 
+@r0 = effect index
+@r1 = attacker / current unit ram 
+@r2 = current target unit ram
+bl AoE_RegularDamage @ Returns damage to deal 
 
 
-sub r0, #20 
+ldrb r1, [r7, #0x13] 
+sub r0, r1, r0 
+
 cmp r0, #0 
 bgt NoCapHP
 mov r0, #1 
 NoCapHP:
-strb r0, [r4, #0x13] 
+strb r0, [r7, #0x13] 
+
 
 pop {r4-r7}
 pop {r0}

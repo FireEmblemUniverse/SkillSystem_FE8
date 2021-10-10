@@ -5,14 +5,8 @@
 .global AoE_Usability
 .type AoE_Usability, %function
 
-.global AoE_Effect
-.type AoE_Effect, %function
-
-
-
-
 AoEUsability:
-push {r4-r7,r14}
+push {r4,r14}
 
 @loop through all menu command usabilities looking for one that returns true
 
@@ -34,7 +28,7 @@ RetFalse:
 mov r0,#3
 
 GoBack:
-pop {r4-r7}
+pop {r4}
 pop {r1}
 bx r1
 
@@ -44,6 +38,8 @@ bx r1
 
 
 .equ StartMenuAdjusted,0x804EB98
+.global AoE_Effect
+.type AoE_Effect, %function
 
 AoE_Effect:
 push {r14}
