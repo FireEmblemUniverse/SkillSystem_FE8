@@ -10,7 +10,8 @@
 
 AoE_SpecificEffect:
 push {lr}
-ldr r2, =#0x0203F101
+ldr r2, =AoE_RamAddress @ pointer 
+ldr r2, [r2] 
 ldr r3, AoEID
 strb r3, [r2]
 

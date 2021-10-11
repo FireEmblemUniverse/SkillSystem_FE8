@@ -35,7 +35,26 @@ bx r1
 
 
 
+.global AoE_ClearBG2
+.type AoE_ClearBG2, %function 
+AoE_ClearBG2:
+push {lr}
 
+ldr r2, =0x2023ca8 @gBg2MapBuffer
+ldr r3, =0x20244a8 @gBg3MapBuffer
+mov r0, #0 
+
+Loop:
+str r0, [r2] 
+add r2, #4 
+cmp r2, r3 
+blt Loop 
+
+
+
+
+pop {r0}
+bx r0 
 
 	.equ pr6C_New, 0x08002C7C
 .global AoE_Setup 
@@ -48,17 +67,22 @@ push {r4-r7, lr}
 ldr r4, =CurrentUnit
 ldr r4, [r4] 
 
+bl AoE_GetTableEntryPointer
+mov r5, r0 
+ldrb r0, [r5, #19] @ Heal or dmg 
+ldr r3, =AoE_FreeSelect @ Proc list 
+cmp r0, #1 
+bne Start_FreeSelect
+ldr r3, =AoE_HealFreeSelect @ For green tiles 
 
+Start_FreeSelect:
 @parameters
 	@r0 = char pointer
 	@r1 = pointer range builder function
-	@r2 = item id
 	@r3 = pointer list for proc
 mov r0, r4 @ CurrentUnit 
 ldr r1, =AoE_RangeSetup
-mov r2, #2 @ 1-7 range weapon - used for the range mask 
-@ later I will try to construct a range mask myself  
-ldr r3, =AoE_FreeSelect @ Proc list 
+
 
 bl AoE_FSTargeting
 
@@ -73,27 +97,45 @@ bx r0
 AoE_GenericEffect:
 push {r4-r7, lr} 
 
-ldr r2, =RangeTemplate_Cross
+bl AoE_GetTableEntryPointer
+mov r4, r0 
+
+add r0, #28
+ldr r0, [r0] @ RangeTemplate for AoE
+@ parameters: r0 = RangeMaskPointer 
 bl AoE_EffectCreateRangeMap
 
 ldr r0, =AoE_DamageUnitsInRange
 blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask? 
 
 
-bl AoE_ClearRangeMap
-blh 0x801dacc @HideMoveRangeGraphics
-
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1
 strb r0, [r1,#0x11]
 
-blh  0x08019c3c   @UpdateGameTilesGraphics
-blh 0x0804E884   @//ClearBG0BG1
 
 
 pop {r4-r7}
 pop {r0} 
 bx r0 
+
+.global AoE_GetTableEntryPointer 
+.type AoE_GetTableEntryPointer, %function 
+AoE_GetTableEntryPointer:
+push {lr} 
+ldr r0, =AoE_RamAddress @ pointer 
+ldr r0, [r0] @ actual address 
+ldrb r0, [r0] @ Ram address of previously stored effect index 
+ldr r3, =AoE_EntrySize 
+ldrb r3, [r3] 
+mul r3, r0 
+ldr r0, =AoE_Table
+add r0, r3 
+
+pop {r1}
+bx r1 
+
+
 
 .global AoE_ClearRangeMap
 .type AoE_ClearRangeMap, %function 
@@ -102,7 +144,7 @@ push {lr}
 ldr r0, =0x202E4E4 @ range map pointer 
 ldr r0, [r0]
 mov r1, #0
-_blh FillMap
+blh 0x80197E4 @MapFill
 pop {r0}
 bx r0 
 
@@ -110,16 +152,17 @@ bx r0
 .type AoE_EffectCreateRangeMap, %function 
 .global AoE_EffectCreateRangeMap
 AoE_EffectCreateRangeMap:
-@ given XX and YY via action struct, construct a range mask around it? 
-push {r4-r7, lr}
-@ r2 = RangeMapPointer 
 
-mov r5, r2 
+push {r4-r7, lr}
+@ r0 = RangeMapPointer 
+
+mov r5, r0 
 bl AoE_ClearRangeMap
 
 ldr r0, =CurrentUnit
 ldr r4, [r0] 
 
+@ given XX and YY via action struct,
 ldr r3, =pActionStruct
 ldrb r0, [r3, #0x13]  @@ XX 
 ldrb r1, [r3, #0x14] @ YY 
@@ -145,7 +188,8 @@ push {r4-r7, lr}
 mov r7, r0 @ target 
 ldr r6, =CurrentUnit 
 ldr r6, [r6] @ actor 
-ldr r5, =AoE_RamAddress
+ldr r5, =AoE_RamAddress @pointer 
+ldr r5, [r5] @ actual address 
 ldrb r5, [r5] @ Ram address of previously stored effect index 
 
 mov r0, r5 @ effect index 
@@ -177,7 +221,6 @@ bx r0
 @parameters
 	@r0 = char pointer
 	@r1 = pointer range builder function
-	@r2 = item id
 	@r3 = pointer list for proc
 .global AoE_FSTargeting
 .type AoE_FSTargeting, %function 
@@ -187,11 +230,13 @@ push	{r4,lr}
 mov 	r4, r3
 mov 	r3, r1
 bl		Jump
+
 ldr 	r0, =MoveCostMapRows
 ldr 	r0, [r0]
 mov 	r1, #0x1
 neg 	r1, r1
 _blh 	FillMap
+
 mov 	r0, #1
 ldr 	r3, =prNewFreeSelect
 orr 	r3, r0 
@@ -213,15 +258,20 @@ bx	r3
 .type AoE_RangeSetup, %function 
 
 AoE_RangeSetup:
-push {lr}
+push {r4, lr}
+bl AoE_ClearRangeMap
+bl AoE_GetTableEntryPointer
+mov r4, r0 
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+ldrb r0, [r3, #0x10] @ XX 
+ldrb r1, [r3, #0x11] @ YY 
+ldrb r2, [r4, #22] @ Min range 
+ldrb r3, [r4, #23] @ Max range 
+@ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
+blh CreateRangeMapFromRange, r4
 
-ldr r1, =0x8026525 
-	@r0 = char pointer 
-	@r1 = targeting condition routine pointer
-	@r2 = item id
-@ i think r0/r2 are provided by the parent function 
-blh Item_TTRange
-
+pop {r4} 
 pop {r3}
 bx r3
 

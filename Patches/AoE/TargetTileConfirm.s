@@ -54,13 +54,33 @@ strb 	r3, [r0,#0x11]
 strb 	r1, [r0, #0x13]
 strb 	r2, [r0, #0x14]
 
+
 bl AoE_GenericEffect
-blh ClearBG0BG1
-@ copied from vanilla 
+
+bl AoE_ClearRangeMap
+blh 0x801dacc @HideMoveRangeGraphics
+
+@blh ClearBG0BG1
+@ copied from vanilla item 'use'
 mov r0, #0 
 blh SetFont 
 blh Font_ResetAllocation 
 blh EndAllMenus
+blh  0x08019c3c   @UpdateGameTilesGraphics
+
+
+
+
+@Effect/Idle Routine Return Value (r0 Bitfield):
+@        & 0x01 | Does things? idunno - pause the hand selector ? 
+@        & 0x02 | Ends the menu
+@        & 0x04 | Plays the beep sound
+@        & 0x08 | Plays the boop sound
+@        & 0x10 | Clears menu graphics
+@        & 0x20 | Deletes E_FACE #0
+@        & 0x40 | Nothing (Not handled)
+@        & 0x80 | Orrs 0x80 to E_Menu+0x63 bitfield (Ends the menu on next loop call (next frame))
+@
 
 mov r0, #0xb7 
 
