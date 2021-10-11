@@ -11,8 +11,8 @@
 	FS6C_ButtonPress_Confirm:	//Free Select 6C
 	#incbin "TargetTileConfirm.dmp"
 	ALIGN 4
-	FS6C_ButtonPress_Cancel:
-	#include "TargetTileCancel.lyn.event"
+	AoE_FS6C_ButtonPress_Cancel:
+	#include "AoE_TargetTileCancel.lyn.event"
 	//#incbin "TargetTileCancel.dmp"
 	
 	//Construct & Destruct Cases
@@ -23,7 +23,8 @@
 	#incbin "Staff_tsStart2.dmp"
 
 	Staff6C_fsDelete:
-	#incbin "Staff_fsDelete.dmp"
+	//#incbin "Staff_fsDelete.dmp"
+	#include "Staff_fsDelete.lyn.event"
 	
 	Staff6C_tsCreate:
 	#incbin "Staff_NewTargetSelect.dmp"

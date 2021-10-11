@@ -76,10 +76,7 @@ UnitMenuTable:
 	// MenuCommand(EscapeName, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
 
 #ifdef DEBUG_MODE
-//MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_Usability, AoE_Setup)
-
 MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_Usability, AoE_Effect)
-
 #endif 
 
 // Modular Summon 

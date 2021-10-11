@@ -47,7 +47,8 @@ _prFreeSelect6C_Loop:
 
 ALIGN 4
 _prFreeSelect6C_Destruct:
-	#incbin "fsDestructor.dmp"
+	//#incbin "fsDestructor.dmp"
+	#include "fsDestructor.lyn.event"
 }
 
 #endif // HAX_FREE_SELECT_6C_EVENT

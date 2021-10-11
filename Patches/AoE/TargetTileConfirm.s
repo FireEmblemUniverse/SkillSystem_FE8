@@ -10,10 +10,7 @@
 .thumb
 @A button case
 
-.equ ClearBG0BG1, 0x0804E884
-.equ SetFont, 0x8003D38
-.equ Font_ResetAllocation, 0x8003D20  
-.equ EndAllMenus, 0x804EF20 
+
 
 .equ ActionID, 0x01
 
@@ -57,18 +54,7 @@ strb 	r2, [r0, #0x14]
 
 bl AoE_GenericEffect
 
-bl AoE_ClearRangeMap
-blh 0x801dacc @HideMoveRangeGraphics
-
-@blh ClearBG0BG1
-@ copied from vanilla item 'use'
-mov r0, #0 
-blh SetFont 
-blh Font_ResetAllocation 
-blh EndAllMenus
-blh  0x08019c3c   @UpdateGameTilesGraphics
-
-
+bl AoE_ClearGraphics
 
 
 @Effect/Idle Routine Return Value (r0 Bitfield):
@@ -90,7 +76,14 @@ mov r0, #0xb7
 b End
 
 BadTile:
+bl AoE_ClearGraphics
+blh AoE_FS6C_ButtonPress_Cancel
+
+
+
+
 mov 	r0, #0x10
+mov r0, #0xb7 
 
 End:
 pop 	{r4}

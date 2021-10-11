@@ -40,6 +40,8 @@ bx r1
 AoE_ClearBG2:
 push {lr}
 
+
+
 ldr r2, =0x2023ca8 @gBg2MapBuffer
 ldr r3, =0x20244a8 @gBg3MapBuffer
 mov r0, #0 
@@ -50,6 +52,19 @@ add r2, #4
 cmp r2, r3 
 blt Loop 
 
+
+
+ldr r2, =0x02024cb0 @gBg2MapTarget
+ldr r2, [r2] 
+mov r3, #0x8 
+lsl r3, #8 @ 0x800 bytes for this? 
+add r3, r2 
+
+Loop2:
+str r0, [r2] 
+add r2, #4 
+cmp r2, r3 
+blt Loop2
 
 
 
@@ -88,6 +103,9 @@ bl AoE_FSTargeting
 
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+
+mov r0, #0xb7 
+
 pop {r4-r7}
 pop {r0} 
 bx r0 
@@ -136,15 +154,73 @@ pop {r1}
 bx r1 
 
 
+	.equ ProcFind, 0x08002E9C
+
+.global AoE_EndTargetSelection
+.type AoE_EndTargetSelection, %function 
+AoE_EndTargetSelection:
+push {lr} 
+
+ldr r0, =0x85b655c @gProc_TargetSelection
+blh ProcFind, r1 
+cmp r0, #0 
+beq ProcStateError 
+@ takes Proc_TargetSelection's ram address in r0 
+@struct Proc* EndTargetSelection(struct TargetSelectionProc*); //! FE8U = 0x804FAB9
+blh 0x804fab8 @EndTargetSelection
+ProcStateError:
+pop {r0}
+bx r0 
+
+
+.equ ClearBG0BG1, 0x0804E884
+.equ SetFont, 0x8003D38
+.equ Font_ResetAllocation, 0x8003D20  
+.equ EndAllMenus, 0x804EF20 
+
+.global AoE_ClearGraphics
+.type AoE_ClearGraphics, %function 
+AoE_ClearGraphics:
+push {lr} 
+bl AoE_ClearRangeMap
+blh 0x801dacc @HideMoveRangeGraphics
+bl AoE_ClearBG2
+blh 0x8019b18 @UpdateGameTileGfx
+
+@blh ClearBG0BG1
+@ copied from vanilla item 'use'
+@mov r0, #0 
+@blh SetFont 
+@blh Font_ResetAllocation 
+@blh EndAllMenus
+@blh 0x801a1f4 @RefreshEntityMaps
+@blh  0x08019c3c   @DrawTileGraphics
+
+@blh 0x80271a0 @SMS_UpdateFromGameData
+
+@bl AoE_EndTargetSelection 
+
+pop {r0}
+bx r0 
+
 
 .global AoE_ClearRangeMap
 .type AoE_ClearRangeMap, %function 
+
 AoE_ClearRangeMap:
 push {lr} 
 ldr r0, =0x202E4E4 @ range map pointer 
 ldr r0, [r0]
 mov r1, #0
 blh 0x80197E4 @MapFill
+
+
+@ldr r0, =0x202E4E0 @ range map pointer 
+@ldr r0, [r0]
+@mov r1, #1
+@neg r1, r1 
+@blh 0x80197E4 @MapFill
+
 pop {r0}
 bx r0 
 
