@@ -78,9 +78,10 @@ mul r1, r0
 add r4, r1 @ Entry we want 
 ldrb r0, [r4, #20] @ lower bound mt 
 ldrb r1, [r4, #21] @ upper bound mt
-
+cmp r0, r1 
+bgt FoundMt @ if lower bound is higher than upper bound because of user error, then we just use the lower bound 
 bl GetRandBetweenXAndY
-
+FoundMt:
 mov r5, r0 @ mt 
 
 

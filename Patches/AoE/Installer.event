@@ -1,10 +1,36 @@
 #ifdef DEBUG_MODE
 
+// Only hook is at 0x59AD7C (for purple squares)
 
 #include "Extensions/ProcDefinitions.txt"
 #ifndef PROC_YIELD
 	#define PROC_YIELD "PROC_YEILD"
 #endif 
+ // 59AD50 proc
+
+
+#include "TilePalettes/MokhaInstaller.event"
+
+PUSH 
+
+ORG $1DA98 // from 1DA98 function  @ b8 
+jumpToHack(PurpleMovementSquares|1)
+
+POP 
+
+
+ALIGN 4
+PurpleMovementSquares:
+#include "TilePalettes/PurpleMovementSquares_2.lyn.event"
+
+
+
+/*
+#include "TilePalettes/PurplePaletteSquaresByHuichelaar.event" // This HOOKS 0x59AD7C !! 
+
+
+*/
+
 
 //#include "FancyStaff/FancyStaff.event"
 #ifndef rfStaffTargeting
@@ -22,6 +48,7 @@
 #include "AoE_RangeTemplates.event"
 #include "AoE_CallSubmenuEffect.lyn.event"
 #include "AoE_DamageEffect.lyn.event" 
+
 
 #define AoE_EntrySizeDef 32 // 32 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
@@ -197,11 +224,17 @@ CommandDefEnd
 	#define rsMove	0x1
 	#define rsRed	0x2
 	#define rsGreen	0x4
-	#define rsBlue	0x10
+	#define rsBlue	0x10 // identical to move ? 
 #endif 
+
+
+//.short 0x8000
+//.short 0xA2
+//.word RangeSquarePurplePalette
 
 ALIGN 4
 AoE_fsStart:
+//StaffTargetInit(UM_AoEHelp, 0x20, Staff6C_fsStart) 
 StaffTargetInit(UM_AoEHelp, rsRed, Staff6C_fsStart) 
 
 AoE_HealfsStart:

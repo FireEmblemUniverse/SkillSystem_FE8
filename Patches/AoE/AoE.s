@@ -99,6 +99,46 @@ mov r0, r4 @ XX
 mov r1, r5  @ YY 
 bl CreateMoveMapFromTemplate
 
+
+mov r0, #0x20 @ purple ? - only works for range map 
+mov r0, #0x40
+blh 0x801da98 @DisplayMoveRangeGraphics
+@ 801DAC0
+
+
+pop {r4-r7}
+pop {r0} 
+bx r0 
+
+
+.global AoE_DisplayDamageArea2
+.type AoE_DisplayDamageArea2, %function 
+
+AoE_DisplayDamageArea2:
+
+push {r4-r7, lr} 
+
+@given r0 = xx, r1 = yy, display movement squares in a template around it 
+mov r4, r0 
+mov r5, r1 
+
+
+
+
+ldr r0, =0x202E4E0
+ldr r0, [r0] 
+mov r1, #0xFF
+blh FillMap
+
+bl AoE_GetTableEntryPointer
+ldr r2, [r0, #28]
+
+@ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
+ldr r3, =pActionStruct 
+mov r0, r4 @ XX 
+mov r1, r5  @ YY 
+bl CreateMoveMapFromTemplate
+
 mov r0, #1
 blh 0x801da98 @DisplayMoveRangeGraphics
 
