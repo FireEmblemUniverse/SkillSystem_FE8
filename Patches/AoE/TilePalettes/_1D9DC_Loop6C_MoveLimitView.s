@@ -18,7 +18,7 @@ _1D9DC_Loop6C_MoveLimitView:
 	
 	add		r4, #0x4A
 	ldrh	r1,[r4]
-mov r11, r11
+
 
 .TestRoutine:
 	mov		r0, #0x1
@@ -103,7 +103,8 @@ mov r11, r11
 	beq		.NotBit40
 	
 	lsl		r0, r5, #0x1
-	ldr		r1, =gPalGreenRangeSquare
+	@ldr		r1, =gPalGreenRangeSquare
+	ldr r1, =RangeSquarePurplePalette
 	add		r0, r0, r1
 	mov		r1, #0x82
 	mov		r2, #0x20
