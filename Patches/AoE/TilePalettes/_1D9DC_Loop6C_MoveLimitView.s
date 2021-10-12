@@ -19,7 +19,6 @@ _1D9DC_Loop6C_MoveLimitView:
 	add		r4, #0x4A
 	ldrh	r1,[r4]
 
-
 .TestRoutine:
 	mov		r0, #0x1
 	and		r0, r1

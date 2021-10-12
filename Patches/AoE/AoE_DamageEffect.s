@@ -16,21 +16,17 @@
 .global AoE_FixedDamage
 .type AoE_FixedDamage, %function
 AoE_FixedDamage:
-push {r4-r7, lr} 
+push {r4, lr} 
+@r0 = table effect address 
+mov r4, r0 
 
-@r0 = effect index
-ldr r1, =AoE_EntrySize
-ldrb r1, [r1] 
-ldr r4, =AoE_Table 
-mul r1, r0 
-add r4, r1 @ Entry we want 
-ldrb r0, [r4, #16] @ lower bound dmg 
-ldrb r1, [r4, #17] @ upper bound dmg 
 
+ldrb r0, [r4, #20] @ lower bound dmg 
+ldrb r1, [r4, #21] @ upper bound dmg 
 bl GetRandBetweenXAndY
 @ returns the dmg dealt 
 
-pop {r4-r7} 
+pop {r4} 
 pop {r1} 
 bx r1
 
@@ -47,6 +43,10 @@ blh NextRN_100
 
 sub r3, r5, r4 @ difference 
 mul r0, r3 @ 
+
+add r0, #50 @ for rounding 
+
+
 mov r1, #100 
 swi 6 @ divide by 100 
 
@@ -64,18 +64,14 @@ bx r1
 AoE_RegularDamage:
 push {r4-r7, lr} 
 
-
-@r0 = effect index
+mov r4, r0 
+@r0 = table effect address 
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
 mov r6, r1 
 mov r7, r2 
 
-ldr r1, =AoE_EntrySize
-ldrb r1, [r1] 
-ldr r4, =AoE_Table 
-mul r1, r0 
-add r4, r1 @ Entry we want 
+
 ldrb r0, [r4, #20] @ lower bound mt 
 ldrb r1, [r4, #21] @ upper bound mt
 cmp r0, r1 

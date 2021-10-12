@@ -2,15 +2,15 @@
 .align
 
 
-.global AoE_Usability
-.type AoE_Usability, %function
+.global AoE_AreAnyUsable
+.type AoE_AreAnyUsable, %function
 
-AoEUsability:
+AoE_AreAnyUsable:
 push {r4,r14}
 
 @loop through all menu command usabilities looking for one that returns true
 
-ldr r4,=AoESubmenuDef
+ldr r4,=AoEMenuCommandsList
 add r4,#0xC @usability of first menu option
 
 LoopStart:

@@ -13,23 +13,112 @@
 	.equ CurrentUnit, 0x3004E50
 	.equ MemorySlot,0x30004B8
 	.equ EventEngine, 0x800D07C
-
+  .equ CheckEventId,0x8083da8
 	.equ CurrentUnitFateData, 0x203A958
+	
+
+
 	
 .global AoE_Usability 
 .type AoE_Usability, %function 
 
 AoE_Usability:
-push {lr} 
+push {r4-r5, lr} 
+@ given r0 = specific AoE table entry we want 
+mov r4, r0 
 
-mov r0, #1 
+ldrb r0, [r4, #17] @ Stationary bool 
+cmp r0, #0 
+beq SkipStationaryCheck
+ldr r3, =pActionStruct 
+ldrb r0, [r3, #0x10] @ squares moved this turn 
+cmp r0, #0 
+bne ReturnFalse 
+
+
+SkipStationaryCheck: 
+ldr r3, =CurrentUnit 
+ldr r5, [r3] @ unit struct ram pointer 
+
+
+ldr r1, [r4] @ Additional routine ? 
+cmp r1, #0 
+beq SkipAdditionalUsabilityRoutine 
+@r0 is still our specific effect index
+mov lr, r1
+.short 0xF800
+
+cmp r0, #0 
+beq ReturnFalse
+
+SkipAdditionalUsabilityRoutine:
+
+
+ldrb r0, [r4, #4] @ Unit ID 
+cmp r0, #0x00 
+beq ValidUnit
+ldr r1, [r5] @ Char 
+ldrb r1, [r1, #4] @ unit id 
+cmp r0, r1 
+bne ReturnFalse
+
+ValidUnit:
+
+ldrb r0, [r4, #5] @ class 
+cmp r0, #0 
+beq ValidClass
+ldr r1, [r5, #4] @ class 
+ldrb r1, [r1, #4] @ class id 
+cmp r0, r1 
+bne ReturnFalse
+
+ValidClass:
+
+@ check lvl 
+ldrb r0, [r4, #6] 
+cmp r0, #0 
+beq ValidLevel
+ldrb r1, [r5, #8] @ level ? 
+cmp r0, r1 
+bgt ReturnFalse
+
+ValidLevel:
+ldrb r0, [r4, #7]
+cmp r0, #0 
+beq ValidFlag
+blh CheckEventId
 cmp r0, #1 
-beq RetTrue 
-RetFalse: 
-mov r0, #3 @ Menu false usability is 3 
+bne ReturnFalse
 
-RetTrue: 
+ValidFlag:
+ldrb r0, [r4, #8] @ Req Item 
+cmp r0, #0 
+beq ValidItem
+mov r1, #0x1C 
+InventoryLoop: 
+add r1, #2 
+cmp r1, #0x28 
+bge ReturnFalse
+ldrb r2, [r5, r1] 
+cmp r2, #0 
+beq ReturnFalse
+cmp r2, r0 
+bne InventoryLoop
+@ They have said item, so continue
+ValidItem:
 
+
+ReturnTrue: 
+mov r0, #1 
+b Finish_Usability 
+
+
+ReturnFalse: 
+mov r0, #3 
+
+
+Finish_Usability: 
+pop {r4-r5}
 pop {r1} 
 bx r1 
 
@@ -39,6 +128,9 @@ bx r1
 .type AoE_ClearBG2, %function 
 AoE_ClearBG2:
 push {lr}
+
+
+
 ldr r2, =0x2023ca8 @gBg2MapBuffer
 ldr r3, =0x20244a8 @gBg3MapBuffer
 mov r0, #0 
@@ -111,43 +203,6 @@ pop {r0}
 bx r0 
 
 
-.global AoE_DisplayDamageArea2
-.type AoE_DisplayDamageArea2, %function 
-
-AoE_DisplayDamageArea2:
-
-push {r4-r7, lr} 
-
-@given r0 = xx, r1 = yy, display movement squares in a template around it 
-mov r4, r0 
-mov r5, r1 
-
-
-
-
-ldr r0, =0x202E4E0
-ldr r0, [r0] 
-mov r1, #0xFF
-blh FillMap
-
-bl AoE_GetTableEntryPointer
-ldr r2, [r0, #28]
-
-@ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
-ldr r3, =pActionStruct 
-mov r0, r4 @ XX 
-mov r1, r5  @ YY 
-bl CreateMoveMapFromTemplate
-
-mov r0, #1
-blh 0x801da98 @DisplayMoveRangeGraphics
-
-
-
-pop {r4-r7}
-pop {r0} 
-bx r0 
-
 
 	.equ pr6C_New, 0x08002C7C
 .global AoE_Setup 
@@ -187,7 +242,7 @@ bx r0
 .global AoE_GenericEffect
 .type AoE_GenericEffect, %function 
 AoE_GenericEffect:
-push {r4-r7, lr} 
+push {r4, lr} 
 
 bl AoE_GetTableEntryPointer
 mov r4, r0 
@@ -197,7 +252,42 @@ ldr r0, [r0] @ RangeTemplate for AoE
 @ parameters: r0 = RangeMaskPointer 
 bl AoE_EffectCreateRangeMap
 
+ldrb r0, [r4, #8] 
+cmp r0, #0 
+beq DoNotDepleteItem
+ldrb r0, [r4, #16]
+cmp r0, #1 
+bne DoNotDepleteItem
+mov r0, r4 
+bl AoE_DepleteItem
+DoNotDepleteItem: 
+
+ldrb r0, [r4, #18] @ Hp Cost 
+cmp r0, #0 
+beq SkipHpCost 
+
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldrb r1, [r3, #0x13] 
+cmp r1, r0 
+bgt NoCapHpCost
+mov r0, r1 
+sub r0, #1 @ deal damage equal to current hp - 1 
+NoCapHpCost:
+sub r1, r0 
+strb r1, [r3, #0x13] @ hp 
+
+
+SkipHpCost: 
+ldrb r0, [r4, #19] @ Heal Bool 
+cmp r0, #1 
+bne DamageUnits
+ldr r0, =AoE_HealUnitsInRange
+
+b Start_ForEachUnitInRange
+DamageUnits: 
 ldr r0, =AoE_DamageUnitsInRange
+Start_ForEachUnitInRange:
 blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask? 
 
 
@@ -207,7 +297,7 @@ strb r0, [r1,#0x11]
 
 
 
-pop {r4-r7}
+pop {r4}
 pop {r0} 
 bx r0 
 
@@ -258,7 +348,14 @@ AoE_ClearGraphics:
 push {lr} 
 bl AoE_ClearRangeMap
 blh 0x801dacc @HideMoveRangeGraphics
-bl AoE_ClearBG2
+
+bl AoE_ClearBG2 
+@ this would probably be better to use if we encounter bugs 
+@ 801d6fc PlayerPhase_ReloadGameGfx
+@ but it also clears our menu 
+
+
+
 blh 0x8019b18 @UpdateGameTileGfx
 
 @blh ClearBG0BG1
@@ -325,6 +422,54 @@ pop {r0}
 bx r0 
 
 
+.type AoE_DepleteItem, %function 
+.global AoE_DepleteItem
+AoE_DepleteItem:
+
+push {r4-r6, lr}
+@ r0 = table entry 
+
+mov r4, r0  
+
+
+ldr r0, =CurrentUnit
+ldr r5, [r0] 
+
+ldrb r0, [r4, #8] @ Req Item 
+cmp r0, #0 
+beq Done_DepleteItem
+mov r1, #0x1C 
+InventoryLoop_DepleteItem: 
+add r1, #2 
+cmp r1, #0x28 
+bge Done_DepleteItem
+ldrb r2, [r5, r1] 
+cmp r2, #0 
+beq Done_DepleteItem
+cmp r2, r0 
+bne InventoryLoop_DepleteItem
+ldrh r0, [r5, r1] 
+mov r6, r1 
+blh 0x8016aec @GetItemAfterUse
+strh r0, [r5, r6] 
+cmp r0, #0 
+bne Done_DepleteItem
+mov r0, r5 
+blh 0x8017984 @RemoveUnitBlankItems
+
+Done_DepleteItem:
+
+pop {r4-r6}
+pop {r0} 
+bx r0 
+
+
+@ hp cost 
+@ wexp/item type req ?
+
+
+
+
 
 @ given a range mask, do stuff to all units in range? 
 .global AoE_DamageUnitsInRange
@@ -338,18 +483,43 @@ push {r4-r7, lr}
 mov r7, r0 @ target 
 ldr r6, =CurrentUnit 
 ldr r6, [r6] @ actor 
-ldr r5, =AoE_RamAddress @pointer 
-ldr r5, [r5] @ actual address 
-ldrb r5, [r5] @ Ram address of previously stored effect index 
 
-mov r0, r5 @ effect index 
+bl AoE_GetTableEntryPointer
+mov r5, r0 @ table effect address 
+
+ldrb r1, [r5, #12] @ Friendly fire bool 
+cmp r1, #1 
+beq AlwaysDamage @ If friendly fire is on, then we heal regardless of allegiance 
+mov r2, #0x0B 
+ldsb r0, [r6, r2] 
+ldsb r1, [r7, r2] 
+blh 0x8024d8c @AreAllegiancesAllied
+cmp r0, #1 
+beq DoNotDamageTarget
+
+AlwaysDamage: 
+ldrb r1, [r5, #13] 
+cmp r1, #0 
+bne DoFixedDmg
+
+
+mov r0, r5 @ table effect address 
 mov r1, r6 @ attacker 
 mov r2, r7 @ target 
 @r0 = effect index
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
 bl AoE_RegularDamage @ Returns damage to deal 
+b CleanupDamage 
 
+DoFixedDmg: 
+mov r0, r5 
+mov r1, r6 
+mov r2, r7 
+bl AoE_FixedDamage 
+
+
+CleanupDamage:
 
 ldrb r1, [r7, #0x13] 
 sub r0, r1, r0 
@@ -360,11 +530,64 @@ mov r0, #1
 NoCapHP:
 strb r0, [r7, #0x13] 
 
+DoNotDamageTarget:
 
 pop {r4-r7}
 pop {r0}
 bx r0 
 
+
+.global AoE_HealUnitsInRange
+.type AoE_HealUnitsInRange, %function 
+AoE_HealUnitsInRange:
+push {r4-r7, lr} 
+
+@ given r0 unit found in range, heal them 
+
+
+mov r7, r0 @ target 
+ldr r6, =CurrentUnit 
+ldr r6, [r6] @ actor 
+
+bl AoE_GetTableEntryPointer
+mov r5, r0 @ table effect address 
+ldrb r1, [r5, #12] @ Friendly fire bool 
+cmp r1, #1 
+beq AlwaysHeal @ If friendly fire is on, then we heal regardless of allegiance 
+mov r2, #0x0B 
+ldsb r0, [r6, r2] 
+ldsb r1, [r7, r2] 
+blh 0x8024d8c @AreAllegiancesAllied
+cmp r0, #0 
+beq DoNotHealTarget
+
+
+AlwaysHeal:
+mov r0, r5 
+mov r1, r6 
+mov r2, r7 
+@r0 = effect index
+@r1 = attacker / current unit ram 
+@r2 = current target unit ram
+bl AoE_FixedDamage 
+
+
+CleanupHealing:
+
+ldrb r1, [r7, #0x13] 
+add r0, r1, r0 
+ldrb r1, [r7, #0x12] @ Max HP 
+cmp r0, r1
+ble NoCapHP_Healing
+mov r0, r1 @ Healed to full 
+NoCapHP_Healing:
+strb r0, [r7, #0x13] 
+
+DoNotHealTarget:
+
+pop {r4-r7}
+pop {r0}
+bx r0 
 
 
 

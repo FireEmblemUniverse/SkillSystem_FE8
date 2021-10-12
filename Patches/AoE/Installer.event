@@ -1,41 +1,41 @@
 #ifdef DEBUG_MODE
 
-// Only hook is at 0x59AD7C (for purple squares)
+// Hooks: $1DA98 and $1D9DC 
+// this is to display purple tiles while selecting an area to attack 
 
-#include "Extensions/ProcDefinitions.txt"
-#ifndef PROC_YIELD
-	#define PROC_YIELD "PROC_YEILD"
-#endif 
- // 59AD50 proc
-
-
-#include "TilePalettes/MokhaInstaller.event"
+//#ifndef SKILLSYSTEM_SKILL_TESTER
+	//#define SKILLSYSTEM_SKILL_TESTER SkillTester
+//#endif
+MapDisplay:
+#include	"TilePalettes/_1D9DC_Loop6C_MoveLimitView.lyn.event"
 
 PUSH 
 
-ORG $1DA98 // from 1DA98 function  @ b8 
+ORG $1DA98 
 jumpToHack(PurpleMovementSquares|1)
+
+ORG	$1D9DC
+jumpToHack(_1D9DC_Loop6C_MoveLimitView)
 
 POP 
 
 
+
+
+ALIGN 4
+RangeSquarePurplePalette:
+#incbin "TilePalettes/RangeSquaresPurplePalette.dmp"
+
+
 ALIGN 4
 PurpleMovementSquares:
-#include "TilePalettes/PurpleMovementSquares_2.lyn.event"
+#include "TilePalettes/PurpleMovementSquares.lyn.event"
 
 
 
-/*
-#include "TilePalettes/PurplePaletteSquaresByHuichelaar.event" // This HOOKS 0x59AD7C !! 
-
-
-*/
-
-
-//#include "FancyStaff/FancyStaff.event"
+#include "FreeSelect/FreeSelect6C.event"
+#include "_6C_Basic_Cases/_Staff6C_BasicCases.event"
 #ifndef rfStaffTargeting
-	#include "FancyStaff/FreeSelect/FreeSelect6C.event"
-	#include "FancyStaff/_6C_Basic_Cases/_Staff6C_BasicCases.event"
 	#define rfStaffTargeting(routine, rangefunc, procpoin) "SHORT 0x1C28 0x1C22 0x4903 0x4B04; BL(routine); SHORT 0xBC30 0xBC01 0x4700 0x0; POIN (rangefunc|1) procpoin"
 #endif 
 
@@ -60,7 +60,8 @@ PurpleMovementSquares:
 ALIGN 4 
 AoE_Table: 
 POIN AdditionalUsabilityRoutine // Eg. for SkillTester, if desired (It's given r0 = AoE Effect Index #)
-BYTE Unit Class Level Flag Item 0 0 0
+BYTE Unit Class Level Flag 
+BYTE Item 0 WeaponType ReqWeaponExp
 BYTE FriendlyFireBool FixedDamageBool MagBasedBool HitResBool 
 BYTE DepleteItemBool UsableOnlyIfStationaryBool HpCost HealBool
 BYTE DmgOrMtLowerBound DmgUpperBound MinRange MaxRange
@@ -82,10 +83,10 @@ AoE_Table:
 // Entry 
 POIN 0
 BYTE 0 0 0 0 // 4
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 0 0 0 // 12 
-BYTE 0 0 0 0 
-BYTE 10 15 1 4 // 20 - 23 
+BYTE 0x6C 0 0 0 // Always usable by anyone 
+BYTE 0 1 0 0 // 12 
+BYTE 1 1 23 1 
+BYTE 10 11 1 4 // 20 - 23 
 POIN 0 
 POIN RangeTemplate_Cross
 
@@ -167,6 +168,7 @@ AoE_0Usability:
 WORD 0 // Skill ID (If applicable)
 WORD 0 // Effect Index ID 
 
+
 ALIGN 4 
 AoE_1Usability:
 #include "AoE_SpecificUsability.lyn.event"
@@ -225,16 +227,14 @@ CommandDefEnd
 	#define rsRed	0x2
 	#define rsGreen	0x4
 	#define rsBlue	0x10 // identical to move ? 
+	#define movementRed 0x20 
+	#define movementPurple 0x40 
 #endif 
 
 
-//.short 0x8000
-//.short 0xA2
-//.word RangeSquarePurplePalette
 
 ALIGN 4
 AoE_fsStart:
-//StaffTargetInit(UM_AoEHelp, 0x20, Staff6C_fsStart) 
 StaffTargetInit(UM_AoEHelp, rsRed, Staff6C_fsStart) 
 
 AoE_HealfsStart:
