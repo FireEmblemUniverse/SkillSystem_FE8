@@ -36,7 +36,7 @@
 .equ FE8U_Memcopy,       0x080D1C0C
 
 .equ FE8U_MapSizeStruct, 0x0202E4D4
-.equ FE8U_RangeMapRows,  0x0202E4E4
+.equ FE8U_MoveMapRows,  0x0202E4E0
 
 @ Ok so, definition time:
 @ Header:
@@ -49,10 +49,11 @@
 
 @ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
 
-.global CreateRangeMapFromTemplate
-.type CreateRangeMapFromTemplate, %function 
 
-CreateRangeMapFromTemplate:
+.global CreateMoveMapFromTemplate
+.type CreateMoveMapFromTemplate, %function 
+
+CreateMoveMapFromTemplate:
 	push {r4-r7, lr}
 	
 	mov r4, r8
@@ -250,7 +251,7 @@ OKAY_MIN_4:
 		@ r7 = startPair
 		@ (r8 = r2)
 	
-	ldr r2, =FE8U_RangeMapRows @ r2 = FE8U_RangeMapRows
+	ldr r2, =FE8U_MoveMapRows @ r2 = FE8U_RangeMapRows
 	ldr r2, [r2]
 	lsl r0, #2 @ r0 = 4*mStartY
 	
@@ -375,52 +376,3 @@ End:
 
 .ltorg
 .align
-
-
-.thumb
-
-.equ FE8U_FillRangeMap, 0x0801AABC
-
-.global CreateRangeMapFromRange
-.type CreateRangeMapFromRange, %function 
-
-@ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
-CreateRangeMapFromRange:
-	push {r4-r7, lr}
-	
-	ldr r7, =FE8U_FillRangeMap
-	
-	mov r4, r2 @ r4 = min, use for later
-	
-	@ [r5, r6] = [x, y]
-	mov r5, r0
-	mov r6, r1
-	
-	mov r2, r3 @ range = max
-	mov r3, #1 @ add = 1
-	
-	mov lr, r7
-	.short 0xF800
-	
-	@ [r0, r1] = [x, y]
-	mov r0, r5
-	mov r1, r6
-	
-	mov r2, r4 @ range = min
-	
-	mov r3, #1
-	neg r3, r3 @ add = -1
-	
-	mov lr, r7
-	.short 0xF800
-	
-	pop {r4-r7}
-	
-	pop {r1}
-	bx r1
-
-.ltorg
-.align
-
-EALiterals:
-	@ notin

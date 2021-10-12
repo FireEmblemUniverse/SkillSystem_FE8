@@ -8,7 +8,7 @@
 
   .equ CheckEventId,0x8083da8
     .equ CurrentUnit, 0x3004E50
-
+.equ AoE_SpecificEffectIndex, AoE_SkillID+4
 
 AoE_SpecificUsability:
 push {r4-r7, lr}
@@ -109,5 +109,5 @@ bx r1
 .align 4 
 
 
+AoE_SkillID:
 
-AoE_SpecificEffectIndex: 

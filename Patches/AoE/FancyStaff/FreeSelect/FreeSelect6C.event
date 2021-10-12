@@ -43,7 +43,8 @@ _prFreeSelect6C_Init:
 
 ALIGN 4
 _prFreeSelect6C_Loop:
-	#incbin "fsInputLoop.dmp"
+	#include "fsInputLoop.lyn.event"
+	//#incbin "fsInputLoop.dmp"
 
 ALIGN 4
 _prFreeSelect6C_Destruct:

@@ -16,6 +16,9 @@
 
 #include "AoE.lyn.event"
 #include "CreateRangeMapFromTemplateByStanH.lyn.event" 
+#include "CreateMoveMapFromTemplate.lyn.event" 
+
+
 #include "AoE_RangeTemplates.event"
 #include "AoE_CallSubmenuEffect.lyn.event"
 #include "AoE_DamageEffect.lyn.event" 
@@ -55,26 +58,28 @@ BYTE 0 0 0 0 // 4
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 0 0 0 // 12 
 BYTE 0 0 0 0 
-BYTE 10 15 3 4 // 20 - 23 
+BYTE 10 15 3 5 // 20 - 23 
 POIN 0 
 POIN RangeTemplate_Cross
 
 // Entry 
 POIN 0
-BYTE 1 0 0 0 0 0 0 0 // Usable by Eirika 
+BYTE 1 0 0 0 
+BYTE 0 0 0 0 // Usable by Eirika 
 BYTE 0 0 0 0 
 BYTE 0 0 0 0 
-BYTE 2 3 5 6
+BYTE 2 3 5 7
 POIN 0 
-POIN RangeTemplate_Cross
+POIN RangeTemplate_Square
 
 POIN 0
-BYTE 1 0 0 0 0 0 0 0 // Usable by Eirika 
+BYTE 1 0 0 0 
+BYTE 0 0 0 0 // Usable by Eirika 
 BYTE 0 0 0 0 
 BYTE 0 0 0 0 
-BYTE 6 8 1 2
+BYTE 6 8 0 2
 POIN 0 
-POIN RangeTemplate_Cross
+POIN RangeTemplate_X
 
 
 
@@ -132,32 +137,38 @@ UM_Separator
 ALIGN 4 
 AoE_0Usability:
 #include "AoE_SpecificUsability.lyn.event"
-WORD 0
+WORD 0 // Skill ID (If applicable)
+WORD 0 // Effect Index ID 
 
 ALIGN 4 
 AoE_1Usability:
 #include "AoE_SpecificUsability.lyn.event"
+WORD 0
 WORD 1
 
 ALIGN 4 
 AoE_2Usability:
 #include "AoE_SpecificUsability.lyn.event"
+WORD 0
 WORD 2
 
 // stores the index byte to ram, then starts AoE_Setup
 ALIGN 4
 AoE_0Effect:
 #include "AoE_SpecificEffect.lyn.event"
+WORD 0
 WORD 0 //AoE effect ID 
 
 ALIGN 4
 AoE_1Effect:
 #include "AoE_SpecificEffect.lyn.event"
+WORD 0
 WORD 1 //AoE effect ID 
 
 ALIGN 4
 AoE_2Effect:
 #include "AoE_SpecificEffect.lyn.event"
+WORD 0
 WORD 2 //AoE effect ID 
 
 

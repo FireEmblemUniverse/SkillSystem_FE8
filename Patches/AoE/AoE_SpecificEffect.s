@@ -1,3 +1,4 @@
+.align 4
 .thumb
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -6,14 +7,17 @@
 .endm
 
 
-
+.equ AoE_SpecificEffectIndex, AoE_SkillID+4
 
 AoE_SpecificEffect:
 push {lr}
 ldr r2, =AoE_RamAddress @ pointer 
 ldr r2, [r2] 
-ldr r3, AoEID
+ldr r3, =AoE_SpecificEffectIndex
+ldrb r3, [r3] 
 strb r3, [r2]
+
+
 
 bl AoE_Setup
 @blh 0x8022b30 @ Copied from combat arts - take/give menu stuff ? 
@@ -40,5 +44,5 @@ bx r1
 .ltorg
 .align 4
 
-AoEID:
+AoE_SkillID:
 @WORD ID

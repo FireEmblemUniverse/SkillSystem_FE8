@@ -39,9 +39,6 @@ bx r1
 .type AoE_ClearBG2, %function 
 AoE_ClearBG2:
 push {lr}
-
-
-
 ldr r2, =0x2023ca8 @gBg2MapBuffer
 ldr r3, =0x20244a8 @gBg3MapBuffer
 mov r0, #0 
@@ -51,9 +48,6 @@ str r0, [r2]
 add r2, #4 
 cmp r2, r3 
 blt Loop 
-
-
-
 ldr r2, =0x02024cb0 @gBg2MapTarget
 ldr r2, [r2] 
 mov r3, #0x8 
@@ -66,10 +60,54 @@ add r2, #4
 cmp r2, r3 
 blt Loop2
 
-
-
 pop {r0}
 bx r0 
+
+
+@ 801d624 PlayerPhase_DisplayUnitMovement
+@ 801d6fc PlayerPhase_ReloadGameGfx
+@ 801d9dc Loop6C_MoveLimitView
+@0801d89c Load6CRangeDisplaySquareGfx
+@0801d92c Setup6CRangeDisplayGfx
+@801da98 DisplayMoveRangeGraphics
+
+.global AoE_DisplayDamageArea
+.type AoE_DisplayDamageArea, %function 
+
+AoE_DisplayDamageArea:
+
+push {r4-r7, lr} 
+
+@given r0 = xx, r1 = yy, display movement squares in a template around it 
+mov r4, r0 
+mov r5, r1 
+
+
+
+
+ldr r0, =0x202E4E0
+ldr r0, [r0] 
+mov r1, #0xFF
+blh FillMap
+
+bl AoE_GetTableEntryPointer
+ldr r2, [r0, #28]
+
+@ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
+ldr r3, =pActionStruct 
+mov r0, r4 @ XX 
+mov r1, r5  @ YY 
+bl CreateMoveMapFromTemplate
+
+mov r0, #1
+blh 0x801da98 @DisplayMoveRangeGraphics
+
+
+
+pop {r4-r7}
+pop {r0} 
+bx r0 
+
 
 	.equ pr6C_New, 0x08002C7C
 .global AoE_Setup 
@@ -101,10 +139,6 @@ ldr r1, =AoE_RangeSetup
 
 bl AoE_FSTargeting
 
-@mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
-mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
-
-mov r0, #0xb7 
 
 pop {r4-r7}
 pop {r0} 

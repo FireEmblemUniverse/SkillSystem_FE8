@@ -4,7 +4,7 @@
 
 
 FreeSelect6C_Loop:
-	push 	{r4-r5, r14}
+	push 	{r4-r6, r14}
 
 	mov 	r4, r0		@hold onto 6c pointer
 
@@ -75,9 +75,13 @@ NoBPress:
 NoRPress:
 	ldr 	r0, =pGameDataStruct
 	ldr 	r0, [r0, #0x14] @ r0 = Cursor Position Pair
-	
+	mov r6, r5 @ cursor coords 
 	cmp 	r0, r5
 	beq NoCursorMovement
+	
+	
+
+	
 	
 	ldr 	r3, [r4, #0x2C] @ routine array pointer
 	ldr 	r3, [r3, #0x08] @ OnPositionChange
@@ -140,7 +144,7 @@ NoBeep:
 	_blh PlaySound
 	
 NoBoop:
-	mov 	r0, #0x10
+	mov 	r0, #0x10 
 	tst 	r5, r0
 	beq NoGurr
 	
@@ -152,22 +156,28 @@ NoSound:
 	mov 	r0, #0x20
 	tst 	r5, r0
 	beq XCursor
-	
+
+@ y cursor movement 
 	ldr r0, [r4, #0x30]
 	mov r1, #0x0
 	
 	_blh TCS_SetAnim
+	
 	
 	b Finish
 	XCursor:
 	mov 	r0, #0x40
 	tst 	r5, r0
 	beq NoCursorMovement
-	
+@ x cursor movement 
 	ldr r0, [r4, #0x30]
 	mov r1, #0x1
 	
 	_blh TCS_SetAnim
+	
+	
+
+	
 	
 NoCursorMovement:
 Finish:
@@ -199,9 +209,17 @@ Finish:
 	
 	ldr r0, [r4, #0x30]
 	_blh TCS_Update
+	
+@ vesly 
+lsl r0, r6, #16 
+lsr r0, #16 
+lsl r1, r6, #8 
+lsr r1, #24 
+bl AoE_DisplayDamageArea
+	
 
 End:
-pop 	{r4-r5}
+pop 	{r4-r6}
 pop 	{r3}
 
 BXR3:

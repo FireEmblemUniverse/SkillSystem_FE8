@@ -39,15 +39,6 @@ ldrb r2, [r3, #0x11]
 
 blh EnsureCameraOntoPosition
 
-
-@ldr r0, =0x859b600 @gProc_GoBackToUnitMenu
-@mov r1, #3
-@@@
-@blh pr6C_New
-@
-@blh EndAllMenus
-@blh ClearBG0BG1
-
 bl AoE_ClearGraphics
 
 
