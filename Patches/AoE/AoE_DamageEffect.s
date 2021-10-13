@@ -1,5 +1,8 @@
 .align 4
 .thumb
+
+.include "Definitions.s"
+
 .macro blh to, reg=r3
   ldr \reg, =\to
   mov lr, \reg
@@ -8,7 +11,7 @@
 
 @ 0802a95c FillPreBattleStats ?
 
-.equ NextRN_100, 0x8000c64 @NextRN_100
+
 
 @ given r0 = effect index
 @ return damage (between the ranges)
@@ -19,10 +22,8 @@ AoE_FixedDamage:
 push {r4, lr} 
 @r0 = table effect address 
 mov r4, r0 
-
-
-ldrb r0, [r4, #20] @ lower bound dmg 
-ldrb r1, [r4, #21] @ upper bound dmg 
+ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound dmg 
+ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound dmg 
 bl GetRandBetweenXAndY
 @ returns the dmg dealt 
 
@@ -72,8 +73,8 @@ mov r6, r1
 mov r7, r2 
 
 
-ldrb r0, [r4, #20] @ lower bound mt 
-ldrb r1, [r4, #21] @ upper bound mt
+ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound mt 
+ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound mt
 cmp r0, r1 
 bgt FoundMt @ if lower bound is higher than upper bound because of user error, then we just use the lower bound 
 bl GetRandBetweenXAndY
@@ -91,28 +92,29 @@ mov r5, r0 @ mt
 
 
 
-
-
-ldrb r0, [r4, #14] @ use mag bool 
-mov r1, #0x14 @ str/pow 
-cmp r0, #0 
-beq UseStr
-@ get unit str / mag 
-@ add to mt 
-mov r1, #0x3A @ mag byte. do not select "use mag" if no strmag split lmao
-UseStr:
+ldrb r2, [r4, #ConfigByte] 
+mov r0, #MagBasedBool 
+mov r1, #0x14 @ str/pow default 
+tst r0, r2 
+bne LoadAtt
+mov r1, #0x3A @ mag byte. do not select "use mag" if no strmag split lol
+LoadAtt:
 ldrb r0, [r6, r1] @ str or mag 
 
+mov r5, r0 @ dmg to deal 
 @ get unit def/res 
 @ add to terrain bonus
-ldrb r2, [r4, #15] @ use res bool 
-mov r1, #0x17 
-cmp r2, #0 
-beq UseDef
+
+ldrb r2, [r4, #ConfigByte] 
+mov r3, #HitResBool 
+mov r1, #0x17  @ Def as default 
+tst r3, r2 
+beq LoadDefOrRes
 mov r1, #0x18 @ Res 
-UseDef: 
+LoadDefOrRes: 
 ldrb r1, [r7, r1] @ Def or Res 
 
+mov r0, r5 @ dmg 
 sub r0, r1 @ Dmg to deal 
 cmp r0, #0 
 bgt NoCap 

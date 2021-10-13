@@ -3,7 +3,7 @@
 #include "ItemSpecialEffect/Installer.event" 
 #include "CommandMoves/Installer.event" 
 #include "AutosaveKiller.event"
-#include "AoE/Installer.event"
+
 
 #include "CapturePokemon/CapturePokemonInstaller.event"  // Should be before modular summon stuff 
 
@@ -19,7 +19,7 @@
 #include "ExpandAI/ExpandAI.event"
 
 #include "ModularSummon/Installer.event" 
-
+#include "AoE/Installer.event"
 
 #include "PrepScreen/PrepScreen.event"
 

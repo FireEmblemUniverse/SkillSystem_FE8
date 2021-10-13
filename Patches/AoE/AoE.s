@@ -2,21 +2,14 @@
 .align 4
 
 .include "_TargetSelectionDefinitions.s"
+.include "Definitions.s"
+
 
 .macro blh to, reg=r3
   ldr \reg, =\to
   mov lr, \reg
   .short 0xf800
 .endm
-
-	.equ pActionStruct, 0x203A958
-	.equ CurrentUnit, 0x3004E50
-	.equ MemorySlot,0x30004B8
-	.equ EventEngine, 0x800D07C
-  .equ CheckEventId,0x8083da8
-	.equ CurrentUnitFateData, 0x203A958
-	
-
 
 	
 .global AoE_Usability 
@@ -27,8 +20,9 @@ push {r4-r5, lr}
 @ given r0 = specific AoE table entry we want 
 mov r4, r0 
 
-ldrb r0, [r4, #17] @ Stationary bool 
-cmp r0, #0 
+ldrb r1, [r4, #ConfigByte] @ Stationary bool 
+mov r0, #UsableOnlyIfStationaryBool
+tst r0, r1 
 beq SkipStationaryCheck
 ldr r3, =pActionStruct 
 ldrb r0, [r3, #0x10] @ squares moved this turn 
@@ -40,21 +34,9 @@ SkipStationaryCheck:
 ldr r3, =CurrentUnit 
 ldr r5, [r3] @ unit struct ram pointer 
 
-
-ldr r1, [r4] @ Additional routine ? 
-cmp r1, #0 
-beq SkipAdditionalUsabilityRoutine 
-@r0 is still our specific effect index
-mov lr, r1
-.short 0xF800
-
-cmp r0, #0 
-beq ReturnFalse
-
-SkipAdditionalUsabilityRoutine:
+ldrb r0, [r4, #UnitByte] @ Unit ID 
 
 
-ldrb r0, [r4, #4] @ Unit ID 
 cmp r0, #0x00 
 beq ValidUnit
 ldr r1, [r5] @ Char 
@@ -64,7 +46,7 @@ bne ReturnFalse
 
 ValidUnit:
 
-ldrb r0, [r4, #5] @ class 
+ldrb r0, [r4, #ClassByte] @ class 
 cmp r0, #0 
 beq ValidClass
 ldr r1, [r5, #4] @ class 
@@ -75,7 +57,7 @@ bne ReturnFalse
 ValidClass:
 
 @ check lvl 
-ldrb r0, [r4, #6] 
+ldrb r0, [r4, #LevelByte] 
 cmp r0, #0 
 beq ValidLevel
 ldrb r1, [r5, #8] @ level ? 
@@ -83,7 +65,7 @@ cmp r0, r1
 bgt ReturnFalse
 
 ValidLevel:
-ldrb r0, [r4, #7]
+ldrh r0, [r4, #FlagShort]
 cmp r0, #0 
 beq ValidFlag
 blh CheckEventId
@@ -91,7 +73,7 @@ cmp r0, #1
 bne ReturnFalse
 
 ValidFlag:
-ldrb r0, [r4, #8] @ Req Item 
+ldrb r0, [r4, #ItemByte] @ Req Item 
 cmp r0, #0 
 beq ValidItem
 mov r1, #0x1C 
@@ -183,7 +165,9 @@ mov r1, #0xFF
 blh FillMap
 
 bl AoE_GetTableEntryPointer
-ldr r2, [r0, #28]
+ldrb r2, [r0, #RangeMaskByte]
+ldr r1, =RangeTemplateIndexList
+ldr r2, [r1, r2] @ POIN to the RangeMask we want 
 
 @ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
 ldr r3, =pActionStruct 
@@ -191,11 +175,8 @@ mov r0, r4 @ XX
 mov r1, r5  @ YY 
 bl CreateMoveMapFromTemplate
 
-
-mov r0, #0x20 @ purple ? - only works for range map 
-mov r0, #0x40
+mov r0, #0x40 @ purple now, thanks to huichelaar & mokha 
 blh 0x801da98 @DisplayMoveRangeGraphics
-@ 801DAC0
 
 
 pop {r4-r7}
@@ -217,12 +198,13 @@ ldr r4, [r4]
 
 bl AoE_GetTableEntryPointer
 mov r5, r0 
-ldrb r0, [r5, #19] @ Heal or dmg 
-ldr r3, =AoE_FreeSelect @ Proc list 
-cmp r0, #1 
-bne Start_FreeSelect
-ldr r3, =AoE_HealFreeSelect @ For green tiles 
 
+ldrb r1, [r5, #ConfigByte] @ Stationary bool 
+mov r0, #HealBool
+ldr r3, =AoE_FreeSelect @ Proc list 
+tst r0, r1 
+beq Start_FreeSelect
+ldr r3, =AoE_HealFreeSelect @ For green tiles 
 Start_FreeSelect:
 @parameters
 	@r0 = char pointer
@@ -247,28 +229,49 @@ push {r4, lr}
 bl AoE_GetTableEntryPointer
 mov r4, r0 
 
-add r0, #28
-ldr r0, [r0] @ RangeTemplate for AoE
+@ store to sB 
+ldr r3, =MemorySlot
+ldr r2, =pActionStruct 
+ldrb r0, [r2, #0x13] 
+ldrb r1, [r2, #0x14] 
+add r3, #4*0x0B 
+strh r0, [r3] 
+add r3, #2 
+strh r1, [r3] 
+
+ldr r0, =TestEventQWER
+mov r1, #1 
+blh EventEngine
+
+mov r0, r4 
+
+bl AoE_GetTableEntryPointer
+ldrb r2, [r0, #RangeMaskByte]
+ldr r1, =RangeTemplateIndexList
+ldr r0, [r1, r2] @ POIN to the RangeMask we want 
+
 @ parameters: r0 = RangeMaskPointer 
 bl AoE_EffectCreateRangeMap
 
-ldrb r0, [r4, #8] 
+ldrb r0, [r4, #ItemByte] 
 cmp r0, #0 
 beq DoNotDepleteItem
-ldrb r0, [r4, #16]
-cmp r0, #1 
-bne DoNotDepleteItem
+
+ldrb r1, [r4, #ConfigByte]
+mov r0, #DepleteItemBool
+tst r0, r1 
+beq DoNotDepleteItem
 mov r0, r4 
 bl AoE_DepleteItem
 DoNotDepleteItem: 
 
-ldrb r0, [r4, #18] @ Hp Cost 
+ldrb r0, [r4, #HpCostByte] @ Hp Cost 
 cmp r0, #0 
 beq SkipHpCost 
 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
-ldrb r1, [r3, #0x13] 
+ldrb r1, [r3, #0x13] @ Curr HP
 cmp r1, r0 
 bgt NoCapHpCost
 mov r0, r1 
@@ -279,11 +282,12 @@ strb r1, [r3, #0x13] @ hp
 
 
 SkipHpCost: 
-ldrb r0, [r4, #19] @ Heal Bool 
-cmp r0, #1 
-bne DamageUnits
-ldr r0, =AoE_HealUnitsInRange
 
+ldrb r1, [r4, #ConfigByte] @ Stationary bool 
+mov r0, #HealBool
+tst r0, r1 
+beq DamageUnits
+ldr r0, =AoE_HealUnitsInRange
 b Start_ForEachUnitInRange
 DamageUnits: 
 ldr r0, =AoE_DamageUnitsInRange
@@ -318,25 +322,7 @@ pop {r1}
 bx r1 
 
 
-	.equ ProcFind, 0x08002E9C
-
-.global AoE_EndTargetSelection
-.type AoE_EndTargetSelection, %function 
-AoE_EndTargetSelection:
-push {lr} 
-
-ldr r0, =0x85b655c @gProc_TargetSelection
-blh ProcFind, r1 
-cmp r0, #0 
-beq ProcStateError 
-@ takes Proc_TargetSelection's ram address in r0 
-@struct Proc* EndTargetSelection(struct TargetSelectionProc*); //! FE8U = 0x804FAB9
-blh 0x804fab8 @EndTargetSelection
-ProcStateError:
-pop {r0}
-bx r0 
-
-
+.equ ProcFind, 0x08002E9C
 .equ ClearBG0BG1, 0x0804E884
 .equ SetFont, 0x8003D38
 .equ Font_ResetAllocation, 0x8003D20  
@@ -384,14 +370,6 @@ ldr r0, =0x202E4E4 @ range map pointer
 ldr r0, [r0]
 mov r1, #0
 blh 0x80197E4 @MapFill
-
-
-@ldr r0, =0x202E4E0 @ range map pointer 
-@ldr r0, [r0]
-@mov r1, #1
-@neg r1, r1 
-@blh 0x80197E4 @MapFill
-
 pop {r0}
 bx r0 
 
@@ -435,7 +413,7 @@ mov r4, r0
 ldr r0, =CurrentUnit
 ldr r5, [r0] 
 
-ldrb r0, [r4, #8] @ Req Item 
+ldrb r0, [r4, #ItemByte] @ Req Item 
 cmp r0, #0 
 beq Done_DepleteItem
 mov r1, #0x1C 
@@ -471,7 +449,7 @@ bx r0
 
 
 
-@ given a range mask, do stuff to all units in range? 
+
 .global AoE_DamageUnitsInRange
 .type AoE_DamageUnitsInRange, %function 
 AoE_DamageUnitsInRange:
@@ -487,10 +465,12 @@ ldr r6, [r6] @ actor
 bl AoE_GetTableEntryPointer
 mov r5, r0 @ table effect address 
 
-ldrb r1, [r5, #12] @ Friendly fire bool 
-cmp r1, #1 
-beq AlwaysDamage @ If friendly fire is on, then we heal regardless of allegiance 
-mov r2, #0x0B 
+ldrb r1, [r5, #ConfigByte] 
+mov r0, #FriendlyFireBool
+tst r0, r1 
+bne AlwaysDamage @ If friendly fire is on, then we heal regardless of allegiance 
+
+mov r2, #0x0B @ Allegiance byte 
 ldsb r0, [r6, r2] 
 ldsb r1, [r7, r2] 
 blh 0x8024d8c @AreAllegiancesAllied
@@ -498,9 +478,10 @@ cmp r0, #1
 beq DoNotDamageTarget
 
 AlwaysDamage: 
-ldrb r1, [r5, #13] 
-cmp r1, #0 
-bne DoFixedDmg
+ldrb r1, [r5, #ConfigByte]  
+mov r0, #FriendlyFireBool
+tst r0, r1 
+bne DoFixedDmg 
 
 
 mov r0, r5 @ table effect address 
@@ -521,14 +502,14 @@ bl AoE_FixedDamage
 
 CleanupDamage:
 
-ldrb r1, [r7, #0x13] 
+ldrb r1, [r7, #0x13] @ curr hp 
 sub r0, r1, r0 
 
 cmp r0, #0 
 bgt NoCapHP
 mov r0, #1 
 NoCapHP:
-strb r0, [r7, #0x13] 
+strb r0, [r7, #0x13] @ curr hp 
 
 DoNotDamageTarget:
 
@@ -551,9 +532,11 @@ ldr r6, [r6] @ actor
 
 bl AoE_GetTableEntryPointer
 mov r5, r0 @ table effect address 
-ldrb r1, [r5, #12] @ Friendly fire bool 
-cmp r1, #1 
-beq AlwaysHeal @ If friendly fire is on, then we heal regardless of allegiance 
+
+ldrb r1, [r5, #ConfigByte]  
+mov r0, #FriendlyFireBool
+tst r0, r1 
+bne AlwaysHeal @ If friendly fire is on, then we heal regardless of allegiance 
 mov r2, #0x0B 
 ldsb r0, [r6, r2] 
 ldsb r1, [r7, r2] 
@@ -570,9 +553,27 @@ mov r2, r7
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
 bl AoE_FixedDamage 
+mov r4, r0 
 
+ldrb r1, [r5, #ConfigByte]  
+mov r0, #FixedDamageBool
+tst r0, r1 
+beq CleanupHealing @ Fixed Damage means to not use Str/Mag for staves 
+mov r0, #MagBasedBool 
+tst r0, r1 
+beq UseStr 
+mov r1, #0x3A
+ldrb r0, [r6, r1] @ Use Mag 
+add r4, r0 
+b CleanupHealing 
+
+
+UseStr: @ Seems silly to use str, but non str/mag split users will appreciate 
+ldrb r0, [r6, #0x14] @ Str 
+add r4, r0 @ 
 
 CleanupHealing:
+mov r0, r4 @ Amount to heal 
 
 ldrb r1, [r7, #0x13] 
 add r0, r1, r0 
@@ -639,8 +640,8 @@ ldr r3, =CurrentUnit
 ldr r3, [r3] 
 ldrb r0, [r3, #0x10] @ XX 
 ldrb r1, [r3, #0x11] @ YY 
-ldrb r2, [r4, #22] @ Min range 
-ldrb r3, [r4, #23] @ Max range 
+ldrb r2, [r4, #MinRangeByte] @ Min range 
+ldrb r3, [r4, #MaxRangeByte] @ Max range 
 @ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
 blh CreateRangeMapFromRange, r4
 

@@ -5,8 +5,23 @@
 //@   [UByte]: y origin
 //@ Data:
 //@   [UByte array]: 1 if in range, 0 if not
+
+ALIGN 4 
+RangeTemplateIndexList:
+POIN RangeTemplateTable_Cross
+POIN RangeTemplateTable_VerticalLine
+POIN RangeTemplateTable_HorizontalLine
+POIN RangeTemplateTable_Square
+POIN RangeTemplateTable_X
+POIN RangeTemplateTable_SmallCross
+POIN RangeTemplateTable_SmallX
+WORD 0 // Terminator 
+
+
+
+
 ALIGN 4
-RangeTemplate_Cross:
+RangeTemplateTable_Cross:
 BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
 BYTE 0 0 1 0 0
@@ -17,7 +32,7 @@ BYTE 0 0 1 0 0
 
 
 ALIGN 4
-RangeTemplate_VerticalLine:
+RangeTemplateTable_VerticalLine:
 BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
 BYTE 0 0 1 0 0
@@ -28,7 +43,7 @@ BYTE 0 0 1 0 0
 
 
 ALIGN 4
-RangeTemplate_HorizontalLine:
+RangeTemplateTable_HorizontalLine:
 BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
 BYTE 0 0 0 0 0
@@ -42,7 +57,7 @@ BYTE 0 0 0 0 0
 
 
 ALIGN 4
-RangeTemplate_Square:
+RangeTemplateTable_Square:
 BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
 BYTE 0 0 0 0 0
@@ -52,7 +67,7 @@ BYTE 0 1 1 1 0
 BYTE 0 0 0 0 0
 
 ALIGN 4
-RangeTemplate_X:
+RangeTemplateTable_X:
 BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
 BYTE 1 0 0 0 1
@@ -63,7 +78,7 @@ BYTE 1 0 0 0 1
 
 
 ALIGN 4
-RangeTemplate_SmallCross:
+RangeTemplateTable_SmallCross:
 BYTE 3 3 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 1 1 // Center (0-indexed, so [1,1] is the center)
 BYTE 0 1 0 
@@ -71,7 +86,7 @@ BYTE 1 1 1
 BYTE 0 1 0 
 
 ALIGN 4
-RangeTemplate_SmallX:
+RangeTemplateTable_SmallX:
 BYTE 3 3 // Size (1-indexed, so this is a 5x5y array) 
 BYTE 1 1 // Center (0-indexed, so [1,1] is the center)
 BYTE 1 0 1
