@@ -166,6 +166,7 @@ blh FillMap
 
 bl AoE_GetTableEntryPointer
 ldrb r2, [r0, #RangeMaskByte]
+lsl r2, #2 @ 4 bytes per entry 
 ldr r1, =RangeTemplateIndexList
 ldr r2, [r1, r2] @ POIN to the RangeMask we want 
 
@@ -221,32 +222,151 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
-.global AoE_GenericEffect
-.type AoE_GenericEffect, %function 
-AoE_GenericEffect:
-push {r4, lr} 
+.global AoE_ExternalAnimation
+.type AoE_ExternalAnimation, %function 
+AoE_ExternalAnimation:
+push {r4-r7, lr} 
+mov r7, r0 @ Parent Proc 
+bl AoE_GetTableEntryPointer
+
+mov r4, r0 
+ldrb r0, [r4, #Animation_SELECTION_IDByte] 
+@ 12 bytes per entry 
+lsl r1, r0, #3 @ 8 bytes
+lsl r0, #2 @ 4 bytes  
+add r0, r1 @ 12 bytes
+mov r5, r0 @ Animation table index byte 
+ldr r6, =AoE_Animation_SELECTION_Table 
+
+ldr r0, [r6, r5] @ POIN animation 
+
+cmp r0, #0 
+beq NoAnimation 
+
+mov lr, r0 
+mov r0, r7 @ Parent proc 
+.short 0xF800 @ run the given (animation) routine, whatever that may be 
+
+NoAnimation: 
+
+
+pop {r4-r7}
+pop {r0} 
+bx r0 
+
+
+@ this starts right away 
+.global AoE_Animation
+.type AoE_Animation, %function 
+AoE_Animation:
+push {r4-r7, lr} 
 
 bl AoE_GetTableEntryPointer
 mov r4, r0 
 
-@ store to sB 
-ldr r3, =MemorySlot
-ldr r2, =pActionStruct 
-ldrb r0, [r2, #0x13] 
-ldrb r1, [r2, #0x14] 
-add r3, #4*0x0B 
-strh r0, [r3] 
-add r3, #2 
-strh r1, [r3] 
 
-ldr r0, =TestEventQWER
+ldr r0, =Call_AoE_ExternalAnimationEvent
+mov r1, #1 
+blh EventEngine 
+
+ldrb r0, [r4, #Animation_SELECTION_IDByte] 
+@ 12 bytes per entry 
+lsl r1, r0, #3 @ 8 bytes
+lsl r0, #2 @ 4 bytes  
+add r0, r1 @ 12 bytes
+mov r5, r0 @ Animation table index byte 
+ldr r6, =AoE_Animation_SELECTION_Table 
+add r5, #4 
+ldr r0, [r6, r5] @ POIN event address 
+cmp r0, #0 
+beq NoEvent
 mov r1, #1 
 blh EventEngine
 
-mov r0, r4 
+NoEvent:
+add r5, #4 
+ldrh r0, [r6, r5] @ sfx/bgm ID 
+cmp r0, #0 
+beq NoSound
+
+NoSound: 
+
+ldr r0, =Clear_sBEvent 
+@ This needs to be an event so that sB doesn't get cleared until the animation finishes 
+mov r1, #1 
+blh EventEngine 
+
+
+pop {r4-r7}
+pop {r0} 
+bx r0 
+
+@ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
+.equ New6CBlocking,                0x08002CE0
+
+.global AoE_StartBlockingProc
+.type AoE_StartBlockingProc, %function 
+AoE_StartBlockingProc:
+push {r4-r5, lr} 
+mov r4, r0 
+mov r1, r4 @ Parent proc 
+ldr r0, =AoE_MainProc
+@ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
+blh New6CBlocking
+
+
+pop {r4-r5}
+pop {r0} 
+bx r0 
+
+	.equ BreakProcLoop, 0x08002E94
+
+.align 
+.ltorg
+.global AoE_PauseForAnimation
+.type AoE_PauseForAnimation, %function
+AoE_PauseForAnimation:
+push {r4-r5, lr} 
+mov r4, r0 @ Parent? 
+mov r0, #0
+ldr r3, =MemorySlot
+add r3, #4*0x0B 
+ldr r0, [r3] 
+cmp r0, #0
+beq BreakProcLoopNow
+b End_AoEPause
+BreakProcLoopNow: 
+mov r0, r4 @  @ parent to break from 
+blh BreakProcLoop
+mov r0, #1
+
+End_AoEPause:
+pop {r4-r5}
+pop {r1}
+bx r1 
+
+
+
+
+.global AoE_GenericEffect
+.type AoE_GenericEffect, %function 
+AoE_GenericEffect:
+push {r4-r5, lr} 
+mov r5, r0 @ Parent Proc? - event engine 
+ldr r3, =0x30017BC @ ram address to store parent proc pointer 
+str r0, [r3] 
+
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+cmp r3, #0 
+beq End_AoE
+
+
 
 bl AoE_GetTableEntryPointer
-ldrb r2, [r0, #RangeMaskByte]
+mov r4, r0 
+ldrb r2, [r4, #RangeMaskByte]
+lsl r2, #2 @ 4 bytes per entry 
 ldr r1, =RangeTemplateIndexList
 ldr r0, [r1, r2] @ POIN to the RangeMask we want 
 
@@ -294,14 +414,14 @@ ldr r0, =AoE_DamageUnitsInRange
 Start_ForEachUnitInRange:
 blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask? 
 
-
+End_AoE:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1
 strb r0, [r1,#0x11]
 
 
 
-pop {r4}
+pop {r4-r5}
 pop {r0} 
 bx r0 
 
@@ -458,9 +578,30 @@ push {r4-r7, lr}
 @ given r0 unit found in range, damage them 
 
 
+
 mov r7, r0 @ target 
 ldr r6, =CurrentUnit 
-ldr r6, [r6] @ actor 
+ldr r6, [r6] @ actor
+
+
+@ store target's coords to sB 
+@ldr r3, =MemorySlot
+@ldrb r0, [r7, #0x10] 
+@ldrb r1, [r7, #0x11] 
+@add r3, #4*0x0B 
+@strh r0, [r3] 
+@add r3, #2 
+@strh r1, [r3] 
+@
+@ldr r3, =0x30017BC @ ram address to store parent proc pointer 
+@ldr r0, [r3] 
+@ldr r1, =TestEventQWER
+@blh EventCaller 
+
+@ void EventCaller(r0=ParentProc, r1=pEventCode)
+@ mov r0, ParentProc 
+@ ldr r1, =EventAddress 
+@ blh EventCaller 
 
 bl AoE_GetTableEntryPointer
 mov r5, r0 @ table effect address 

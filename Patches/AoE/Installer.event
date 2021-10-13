@@ -3,9 +3,100 @@
 // Hooks: $1DA98 and $1D9DC 
 // this is to display purple tiles while selecting an area to attack 
 
+
+#include "EventCaller/EventCaller.event"
+
+
 //#ifndef SKILLSYSTEM_SKILL_TESTER
 	//#define SKILLSYSTEM_SKILL_TESTER SkillTester
 //#endif
+
+
+ALIGN 4
+AoE_Animation_ALL_Table:
+POIN 0 //AnimationRouine
+POIN 0 //EventAddress 
+SHORT 0 //Sfx 
+SHORT 1 // so we don't hide data in febuilder early 
+
+POIN 0 // Entry 1 
+POIN 0  
+SHORT 0 
+SHORT 1 
+
+WORD 0 0 0 // INDEXED, so no terminator actually needed 
+
+ALIGN 4
+AoE_Animation_UNITS_Table:
+POIN 0 //AnimationRouine
+POIN 0 //EventAddress 
+SHORT 0 //Sfx 
+SHORT 1 // so we don't hide data in febuilder early 
+
+POIN 0 // Entry 1 
+POIN 0  
+SHORT 0 
+SHORT 1 
+
+
+
+WORD 0 0 0 // INDEXED, so no terminator actually needed 
+
+ALIGN 4
+AoE_Animation_SELECTION_Table:
+POIN 0 //AnimationRouine
+POIN 0 //EventAddress 
+SHORT 0 //Sfx 
+SHORT 1 // so we don't hide data in febuilder early 
+
+POIN 0 //Entry 1 
+POIN ExampleLightRuneEvent
+SHORT 0 
+SHORT 1 
+
+POIN 0x807AD09 // Entry 2
+POIN 0 //ExampleLightRuneEvent
+SHORT 0 
+SHORT 1 
+
+
+POIN 0x807AD09 // Entry 1 
+POIN 0 //ExampleLightRuneEvent
+SHORT 0 
+SHORT 1 
+
+
+WORD 0 0 0 // INDEXED, so no terminator actually needed 
+
+Call_AoE_ExternalAnimationEvent:
+ASMC AoE_ExternalAnimation 
+NoFade 
+ENDA 
+
+Clear_sBEvent:
+SVAL rB 0 
+NoFade 
+ENDA 
+
+AoE_MainEvent:
+ASMC AoE_StartBlockingProc
+NoFade 
+ENDA 
+
+
+ExampleLightRuneEvent:
+//SPAWN_NPC 0x10 [-1,-1]
+//StopHere
+//EmoticonSlotB(PokeballGraphic)
+AddAnimTrap(LightRuneTrapID)
+STAL 22 
+RemoveTrap 
+SVAL rB 0
+NoFade 
+ENDA 
+
+
+
 MapDisplay:
 #include	"TilePalettes/_1D9DC_Loop6C_MoveLimitView.lyn.event"
 
@@ -53,32 +144,7 @@ PurpleMovementSquares:
 #define AoE_EntrySizeDef 20 // 32 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
 #define AoE_RamAddressDef "0x0203F101"
-/*
-AoE_Table: //sizeof() == 20
-BYTE Unit Class Level Item    //4
-SHORT Flag                    //5-6
-BYTE Skill                    //7
-BYTE CharacteristicBitFlag    //8
-BYTE HpCost                    //9
-BYTE DmgOrMtLowerBound DmgUpperBound MinRange MaxRange    //13
-BYTE AnimationID    //14
-BYTE RangeMaskID    //15
-SHORT SE_SongID        //16-17
-BYTE 00 00 00          //18-19
 
-
-ALIGN 4 
-AoE_Table: 
-POIN AdditionalUsabilityRoutine // Eg. for SkillTester, if desired (It's given r0 = AoE Effect Index #)
-BYTE Unit Class Level Flag 
-BYTE Item 0 WeaponType ReqWeaponExp
-BYTE FriendlyFireBool FixedDamageBool MagBasedBool HitResBool 
-BYTE DepleteItemBool UsableOnlyIfStationaryBool HpCost HealBool
-BYTE DmgOrMtLowerBound DmgUpperBound MinRange MaxRange
-POIN OptionalAddedRoutineForAnimations
-POIN RangeMaskTable 
-WORD 0 0 0 0 0 0 0 0 // Terminator
-*/
 
 /*
 @ Primary Table structure 
@@ -116,7 +182,19 @@ WORD 0 0 0 0 0 0 0 0 // Terminator
 #define UsableOnlyIfStationaryBool 0x40 
 
 
+ALIGN 4
+AoE_MainProc:
+PROC_YIELD // Buffer.
+PROC_SET_NAME(AoE_MainProcName)
+PROC_SLEEP(0)
+PROC_LOOP_ROUTINE(AoE_PauseForAnimation)
+PROC_CALL_ROUTINE(AoE_GenericEffect)
+PROC_END
 
+
+AoE_MainProcName:
+String("AoE_MainProc") ; BYTE 0
+ALIGN 4
 
 
 
@@ -130,15 +208,6 @@ AoE_RamAddress:
 WORD AoE_RamAddressDef
 
 
-TestEventQWER:
-//SPAWN_NPC 0x10 [-1,-1]
-//StopHere
-//EmoticonSlotB(PokeballGraphic)
-AddAnimTrap(LightRuneTrapID)
-STAL 22 
-RemoveTrap 
-NoFade 
-ENDA 
 
 // Animation & sound on ALL tiles 
 // Animation & sound on tiles with units 
@@ -153,7 +222,7 @@ BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
 BYTE 0 0 // Index of RangeMask, AnimationALL,
-BYTE 0 0 // Animation UNITS, Animation SELECTION 
+BYTE 0 1 // Animation UNITS, Animation SELECTION 
 ALIGN 4
 
 // Entry 
@@ -162,8 +231,8 @@ BYTE 0 0 0 0 // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 0 0 // Index of RangeMask, AnimationALL,
-BYTE 0 0 // Animation UNITS, Animation SELECTION 
+BYTE 1 0 // Index of RangeMask, AnimationALL,
+BYTE 0 2 // Animation UNITS, Animation SELECTION 
 ALIGN 4
 // Entry 
 BYTE 0 0 0 0 
@@ -171,8 +240,8 @@ BYTE 0 0 0 0 // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 0 0 // Index of RangeMask, AnimationALL,
-BYTE 0 0 // Animation UNITS, Animation SELECTION 
+BYTE 2 0 // Index of RangeMask, AnimationALL,
+BYTE 0 2 // Animation UNITS, Animation SELECTION 
 ALIGN 4
 
 
@@ -194,20 +263,7 @@ POIN 0x4f521 //On R Press
 POIN 0x4f459 //On Help Box
 
 
-ALIGN 4
-AoEHealingSubmenuDef:
-BYTE 0 //x coord
-BYTE 3 //y coord
-BYTE 8 //width
-BYTE 0 //height
-WORD 0 //Unknown
-POIN AoEHealingMenuCommandsList //menu commands ptr
-WORD 0 //OnInit
-WORD 0 //OnEnd
-WORD 0 //Unknown
-POIN 0x22861 //On B Press
-POIN 0x4f521 //On R Press
-POIN 0x4f459 //On Help Box
+
 
 
 ALIGN 4
@@ -215,16 +271,9 @@ AoEMenuCommandsList:
 MenuCommand(UM_BlazeName, UM_BlazeDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1)
 MenuCommand(UM_TorrentName, UM_TorrentDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1)
 MenuCommand(UM_OvergrowthName, UM_OvergrowthDesc, NormalText, AoE_2Usability|1, AoE_2Effect|1)
-
-
 UM_Separator 
 
 
-ALIGN 4
-AoEHealingMenuCommandsList:
-MenuCommand(UM_Smite, UM_AoEDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1)
-MenuCommand(UM_Pivot, UM_AoEDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1)
-UM_Separator 
 
 
 ALIGN 4 
