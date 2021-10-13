@@ -20,6 +20,24 @@ push {r4-r5, lr}
 @ given r0 = specific AoE table entry we want 
 mov r4, r0 
 
+ldr r3, =AoE_SkillTester @ word 0 if skill tester doesn't exist 
+cmp r3, #0 
+beq SkipSkillTester
+ldrb r0, [r4, #SkillByte]
+cmp r0, #0 
+beq SkipSkillTester
+cmp r0, #255 
+beq SkipSkillTester
+
+mov lr, r3 
+.short 0xf800 
+cmp r0, #0 
+beq ReturnFalse
+
+
+SkipSkillTester:
+
+
 ldrb r1, [r4, #ConfigByte] @ Stationary bool 
 mov r0, #UsableOnlyIfStationaryBool
 tst r0, r1 
@@ -28,6 +46,7 @@ ldr r3, =pActionStruct
 ldrb r0, [r3, #0x10] @ squares moved this turn 
 cmp r0, #0 
 bne ReturnFalse 
+
 
 
 SkipStationaryCheck: 
@@ -184,6 +203,39 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
+.global AoE_ShowBrokenWall
+.type AoE_ShowBrokenWall, %function 
+AoE_ShowBrokenWall:
+push {r4, lr}
+SUB SP, #0x4
+
+ldr	r3,=0x30004B8	@FE8U MemorySlot0
+@ldr r3, =0x030004B0	@FE8J MemorySlot0
+
+@ldrb r1,[r3,#0x4 * 4]
+mov r1, #5 @ Count of rocks 
+str r1,[SP, #0x0]      @arg4 Count
+
+ldr r3, =pActionStruct
+ldrb r1, [r3, #0x13] @ XX 
+ldrb r2, [r3, #0x14] @ YY
+
+
+ldrb r3,[r3,#0x4 * 3]  @arg3 Direction
+mov r3, #2 @ Down (Direction) 
+
+push {r3}
+ldr  r3,=0x0801F780		@FE8U Show_BrokenWall_Effect
+@ldr  r3,=0x0801F3D8		@FE8J Show_BrokenWall_Effect
+mov  r14,r3
+pop {r3}
+.short 0xF800
+
+ADD SP, #0x4
+pop {r4} 
+pop {r0}
+bx r0
+
 
 
 	.equ pr6C_New, 0x08002C7C
@@ -236,7 +288,7 @@ lsl r1, r0, #3 @ 8 bytes
 lsl r0, #2 @ 4 bytes  
 add r0, r1 @ 12 bytes
 mov r5, r0 @ Animation table index byte 
-ldr r6, =AoE_Animation_SELECTION_Table 
+ldr r6, =AoE_Animation_Table 
 
 ldr r0, [r6, r5] @ POIN animation 
 
@@ -275,7 +327,7 @@ lsl r1, r0, #3 @ 8 bytes
 lsl r0, #2 @ 4 bytes  
 add r0, r1 @ 12 bytes
 mov r5, r0 @ Animation table index byte 
-ldr r6, =AoE_Animation_SELECTION_Table 
+ldr r6, =AoE_Animation_Table 
 add r5, #4 
 ldr r0, [r6, r5] @ POIN event address 
 cmp r0, #0 
@@ -353,8 +405,6 @@ bx r1
 AoE_GenericEffect:
 push {r4-r5, lr} 
 mov r5, r0 @ Parent Proc? - event engine 
-ldr r3, =0x30017BC @ ram address to store parent proc pointer 
-str r0, [r3] 
 
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
@@ -582,26 +632,6 @@ push {r4-r7, lr}
 mov r7, r0 @ target 
 ldr r6, =CurrentUnit 
 ldr r6, [r6] @ actor
-
-
-@ store target's coords to sB 
-@ldr r3, =MemorySlot
-@ldrb r0, [r7, #0x10] 
-@ldrb r1, [r7, #0x11] 
-@add r3, #4*0x0B 
-@strh r0, [r3] 
-@add r3, #2 
-@strh r1, [r3] 
-@
-@ldr r3, =0x30017BC @ ram address to store parent proc pointer 
-@ldr r0, [r3] 
-@ldr r1, =TestEventQWER
-@blh EventCaller 
-
-@ void EventCaller(r0=ParentProc, r1=pEventCode)
-@ mov r0, ParentProc 
-@ ldr r1, =EventAddress 
-@ blh EventCaller 
 
 bl AoE_GetTableEntryPointer
 mov r5, r0 @ table effect address 
