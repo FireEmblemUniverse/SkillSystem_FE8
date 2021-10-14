@@ -53,9 +53,9 @@ strb 	r2, [r0, #0x14]
 
 ldr r3, =MemorySlot 
 add r3, #0x04*0x0B 
-strb r1, [r3] @ XX
+strh r1, [r3] @ XX
 add r3, #2 
-strb r2, [r3] @ YY 
+strh r2, [r3] @ YY 
 
 bl AoE_Animation
 
