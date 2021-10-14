@@ -116,7 +116,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 
 Dunno1:
 END_MAIN

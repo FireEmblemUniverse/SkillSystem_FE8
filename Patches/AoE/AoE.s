@@ -12,6 +12,7 @@
 .endm
 
 	
+.align 4
 .global AoE_Usability 
 .type AoE_Usability, %function 
 
@@ -125,6 +126,7 @@ bx r1
 
 
 
+.align 4
 .global AoE_ClearBG2
 .type AoE_ClearBG2, %function 
 AoE_ClearBG2:
@@ -164,6 +166,7 @@ bx r0
 @0801d92c Setup6CRangeDisplayGfx
 @801da98 DisplayMoveRangeGraphics
 
+.align 4
 .global AoE_DisplayDamageArea
 .type AoE_DisplayDamageArea, %function 
 
@@ -203,42 +206,298 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
-.global AoE_ShowBrokenWall
-.type AoE_ShowBrokenWall, %function 
-AoE_ShowBrokenWall:
-push {r4, lr}
-SUB SP, #0x4
 
-ldr	r3,=0x30004B8	@FE8U MemorySlot0
-@ldr r3, =0x030004B0	@FE8J MemorySlot0
+.align 4
+.global AoE_ShowBrokenWall_Vertical
+.type AoE_ShowBrokenWall_Vertical, %function 
+AoE_ShowBrokenWall_Vertical:
+push {r4-r7, lr}
 
-@ldrb r1,[r3,#0x4 * 4]
-mov r1, #5 @ Count of rocks 
-str r1,[SP, #0x0]      @arg4 Count
+@ r0 is the parent proc 
+mov r4, r0 
 
-ldr r3, =pActionStruct
-ldrb r1, [r3, #0x13] @ XX 
-ldrb r2, [r3, #0x14] @ YY
+bl AoE_FindHighestMoveMapTile
+@ returns r0 X and r1 Y 
+mov r5, r0 @ X 
+mov r6, r1 @ Y 
+
+cmp r0, #0xFF 
+beq ExitRocksAnim
+
+mov r2, #2 @ Down (search direction) 
+bl AoE_FindNumberOfTilesForLineOfRocks
+@ returns # of rocks in r0 
+cmp r0, #1 
+ble ExitRocksAnim
 
 
-ldrb r3,[r3,#0x4 * 3]  @arg3 Direction
+sub sp, #0x4
+
+str r0,[sp, #0x0]  @ Count of rocks 
+mov r1, r5 @ XX 
+mov r2, r6 @ YY 
+
+@ldr r3, =pActionStruct
+@ldrb r0, [r4, #0x13] @ XX 
+@ldrb r1, [r4, #0x14] @ YY
+
+
 mov r3, #2 @ Down (Direction) 
+@ 0 = left, 1 = right, 2 = down, 3 = up
+mov r0, r4 @ Parent proc 
 
-push {r3}
-ldr  r3,=0x0801F780		@FE8U Show_BrokenWall_Effect
+blh 0x0801F780, r7 @FE8U Show_BrokenWall_Effect
 @ldr  r3,=0x0801F3D8		@FE8J Show_BrokenWall_Effect
-mov  r14,r3
-pop {r3}
-.short 0xF800
 
-ADD SP, #0x4
-pop {r4} 
+add sp, #0x4
+
+
+
+ExitRocksAnim:
+
+pop {r4-r7} 
 pop {r0}
 bx r0
 
 
+.align 4
+.global AoE_ShowBrokenWall_Horizontal
+.type AoE_ShowBrokenWall_Horizontal, %function 
+AoE_ShowBrokenWall_Horizontal:
+push {r4-r7, lr}
+
+@ r0 is the parent proc 
+mov r4, r0 
+
+bl AoE_FindLeftMostMoveMapTile
+mov r5, r0 @ XX 
+mov r6, r1 @ YY 
+cmp r0, #0xFF 
+beq ExitRocksAnimHorizontal
+
+@ if horizontal line is size of 1 tile, we won't do anything 
+
+mov r2, #1 @ right (search direction) 
+mov r11, r11
+bl AoE_FindNumberOfTilesForLineOfRocks
+cmp r0, #1 
+ble ExitRocksAnimHorizontal
+
+sub sp, #0x4
+str r0,[sp, #0x0]  @ Count of rocks 
+mov r1, r5 @ XX 
+mov r2, r6 @ YY 
+
+mov r3, #1 @ right (Direction) 
+@ 0 = left, 1 = right, 2 = down, 3 = up
+mov r0, r4 @ Parent proc 
+
+blh 0x0801F780, r7 @FE8U Show_BrokenWall_Effect
+@ldr  r3,=0x0801F3D8		@FE8J Show_BrokenWall_Effect
+
+ADD SP, #0x4
+
+ExitRocksAnimHorizontal:
+
+pop {r4-r7} 
+pop {r0}
+bx r0
+
+
+.align 4
+.global  AoE_FindNumberOfTilesForLineOfRocks
+.type  AoE_FindNumberOfTilesForLineOfRocks, %function 
+AoE_FindNumberOfTilesForLineOfRocks:
+push {r4-r7, lr}
+@ given r0 = XX, r1 = yy, r2 = direction to search, return the number of tiles in the move map that are not 0xFF 
+
+mov r5, r2 @ direction 
+ldr r3, =0x202E4D4 @ Map Size 
+ldrh r6, [r3] @ XX 
+ldrh r7, [r3, #2] @ YY 
+
+ldr r4, =0x202E4E0 @ Movement Map pointer  
+ldr r4, [r4] @ movement map 
+
+cmp r5, #2 
+beq SearchDown
+cmp r5, #1 
+bne RockTilesLength_False
+
+mov r5, #0 @ Counter 
+
+SearchRightLoop:
+@ r0 = XX, r1 = YY 
+@ r0 = XX, r1 = YY 
+add r5, #1
+add r0, #1 
+cmp r0, r6 
+bge RockTilesLength_Exit
+
+
+lsl		r3, r1,#0x2			@multiply y coordinate by 4
+add		r3,r4			@so that we can get the correct row pointer
+ldr		r3,[r3]			@Now we're at the beginning of the row data
+add		r3,r0			@add x coordinate
+ldrb	r2,[r3]			@load datum at those coordinates
+cmp r2, #0xFF 
+bne SearchRightLoop
+
+b RockTilesLength_Exit
+
+
+SearchDown:
+mov r5, #0 @ Counter 
+
+SearchDownLoop: 
+@ r0 = XX, r1 = YY 
+add r5, #1
+add r1, #1 
+cmp r1, r7 
+bge RockTilesLength_Exit
+
+
+lsl		r3, r1,#0x2			@multiply y coordinate by 4
+add		r3,r4			@so that we can get the correct row pointer
+ldr		r3,[r3]			@Now we're at the beginning of the row data
+add		r3,r0			@add x coordinate
+ldrb	r2,[r3]			@load datum at those coordinates
+cmp r2, #0xFF 
+bne SearchDownLoop
+
+b RockTilesLength_Exit
+
+RockTilesLength_False:
+mov r5, #0 
+
+RockTilesLength_Exit:
+mov r0, r5 
+
+pop {r4-r7} 
+pop {r3}
+bx r3
+
+
+
+
+
+
+
+.align 
+.global AoE_FindHighestMoveMapTile
+.type AoE_FindHighestMoveMapTile, %function 
+AoE_FindHighestMoveMapTile:
+
+push {r4-r7, lr}
+
+ldr r3, =0x202E4D4 @ Map Size 
+ldrh r6, [r3] @ XX 
+ldrh r7, [r3, #2] @ YY 
+
+
+
+ldr r4, =0x202E4E0 @ Movement Map 
+ldr r4, [r4] @ movement map [0,0] 
+
+mov r3, #0 @ Y coord 
+sub r3, #1 
+
+YLoop:
+add r3, #1 
+cmp r3, r7 
+bge BreakYLoop
+lsl r0, r3, #2 @ 4 times Y coord 
+ldr r5, [r4, r0] @ beginning of Y row 
+mov r2, #0 
+sub r2, #1 
+XLoop:
+add r2, #1 
+cmp r2, r6 
+bge YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r5, r2] @ Xcoord to check 
+cmp r0, #0xFF 
+beq XLoop
+
+@ We found a valid tile 
+mov r0, r2 @ XX 
+mov r1, r3 @ YY 
+
+b End_AoE_FindHighestMoveMapTile
+
+BreakYLoop:
+mov r0, #0xFF @ -1 / false (no tile found) 
+mov r1, #0xFF 
+
+
+End_AoE_FindHighestMoveMapTile:
+
+
+pop {r4-r7} 
+pop {r3}
+bx r3
+
+
+
+
+
+
+
+.align 4
+.global AoE_FindLeftMostMoveMapTile
+.type AoE_FindLeftMostMoveMapTile, %function 
+AoE_FindLeftMostMoveMapTile:
+
+push {r4-r7, lr}
+
+ldr r3, =0x202E4D4 @ Map Size 
+ldrh r6, [r3] @ XX 
+ldrh r7, [r3, #2] @ YY 
+
+
+
+ldr r4, =0x202E4E0 @ Movement Map 
+ldr r4, [r4] @ movement map [0,0] 
+
+mov r2, #0 @ X coord 
+sub r2, #1 
+XLoop_2:
+add r2, #1 
+cmp r2, r6 
+bge BreakXLoop_2
+
+mov r3, #0 
+sub r3, #1 
+YLoop_2:
+add r3, #1 
+cmp r3, r7 
+bge XLoop_2 @ Finished the column, so +1 to X coord 
+lsl r0, r3, #2 @ 4 times the y coord 
+ldr r5, [r4, r0] @ beginning of row 
+ldrb r0, [r5, r2] @ coord to check 
+cmp r0, #0xFF 
+beq YLoop_2
+
+@ We found a valid tile 
+mov r0, r2 @ XX 
+mov r1, r3 @ YY 
+
+b End_AoE_FindLeftMostMoveMapTile
+
+BreakXLoop_2:
+mov r0, #0xFF 
+mov r1, #0xFF 
+
+
+End_AoE_FindLeftMostMoveMapTile:
+
+
+
+pop {r4-r7} 
+pop {r3}
+bx r3
 
 	.equ pr6C_New, 0x08002C7C
+.align 4
 .global AoE_Setup 
 .type AoE_Setup, %function 
 
@@ -274,6 +533,7 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
+.align 4
 .global AoE_ExternalAnimation
 .type AoE_ExternalAnimation, %function 
 AoE_ExternalAnimation:
@@ -308,6 +568,7 @@ bx r0
 
 
 @ this starts right away 
+.align 4
 .global AoE_Animation
 .type AoE_Animation, %function 
 AoE_Animation:
@@ -356,6 +617,7 @@ bx r0
 @ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
 .equ New6CBlocking,                0x08002CE0
 
+.align 4
 .global AoE_StartBlockingProc
 .type AoE_StartBlockingProc, %function 
 AoE_StartBlockingProc:
@@ -375,6 +637,7 @@ bx r0
 
 .align 
 .ltorg
+.align 4
 .global AoE_PauseForAnimation
 .type AoE_PauseForAnimation, %function
 AoE_PauseForAnimation:
@@ -400,6 +663,7 @@ bx r1
 
 
 
+.align 4
 .global AoE_GenericEffect
 .type AoE_GenericEffect, %function 
 AoE_GenericEffect:
@@ -475,6 +739,7 @@ pop {r4-r5}
 pop {r0} 
 bx r0 
 
+.align 4
 .global AoE_GetTableEntryPointer 
 .type AoE_GetTableEntryPointer, %function 
 AoE_GetTableEntryPointer:
@@ -498,6 +763,7 @@ bx r1
 .equ Font_ResetAllocation, 0x8003D20  
 .equ EndAllMenus, 0x804EF20 
 
+.align 4
 .global AoE_ClearGraphics
 .type AoE_ClearGraphics, %function 
 AoE_ClearGraphics:
@@ -531,6 +797,7 @@ pop {r0}
 bx r0 
 
 
+.align 4
 .global AoE_ClearRangeMap
 .type AoE_ClearRangeMap, %function 
 
@@ -545,6 +812,7 @@ bx r0
 
 
 .type AoE_EffectCreateRangeMap, %function 
+.align 4
 .global AoE_EffectCreateRangeMap
 AoE_EffectCreateRangeMap:
 
@@ -571,6 +839,7 @@ bx r0
 
 
 .type AoE_DepleteItem, %function 
+.align 4
 .global AoE_DepleteItem
 AoE_DepleteItem:
 
@@ -620,6 +889,7 @@ bx r0
 
 
 
+.align 4
 .global AoE_DamageUnitsInRange
 .type AoE_DamageUnitsInRange, %function 
 AoE_DamageUnitsInRange:
@@ -689,6 +959,7 @@ pop {r0}
 bx r0 
 
 
+.align 4
 .global AoE_HealUnitsInRange
 .type AoE_HealUnitsInRange, %function 
 AoE_HealUnitsInRange:
@@ -767,6 +1038,7 @@ bx r0
 	@r0 = char pointer
 	@r1 = pointer range builder function
 	@r3 = pointer list for proc
+.align 4
 .global AoE_FSTargeting
 .type AoE_FSTargeting, %function 
 	
@@ -799,6 +1071,7 @@ bx	r3
 .ltorg
 .align
 
+.align 4
 .global AoE_RangeSetup
 .type AoE_RangeSetup, %function 
 

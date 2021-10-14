@@ -14,8 +14,8 @@ POIN 0 //EventAddress
 SHORT 0 //Sfx 
 SHORT 1 // so we don't hide data in febuilder early 
 
-POIN AoE_ShowBrokenWall //Entry 1 
-POIN 0 
+POIN 0 //AoE_ShowBrokenWall_Vertical //Entry 1 
+POIN RocksEvent
 SHORT 0 
 SHORT 1 
 
@@ -42,8 +42,25 @@ SVAL rB 0
 NoFade 
 ENDA 
 
+RocksEvent:
+ASMC AoE_ShowBrokenWall_Vertical
+ASMC AoE_ShowBrokenWall_Horizontal
+//CALL RocksEventA
+//CALL RocksEventB
+NoFade 
+ENDA 
 
+RocksEventA:
+ASMC AoE_ShowBrokenWall_Vertical
+ 
+NoFade 
+ENDA 
 
+RocksEventB:
+ASMC AoE_ShowBrokenWall_Horizontal
+ 
+NoFade 
+ENDA 
 
 
 

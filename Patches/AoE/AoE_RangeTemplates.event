@@ -8,8 +8,9 @@
 
 ALIGN 4 
 RangeTemplateIndexList:
-POIN RangeTemplateTable_VerticalLine
+POIN RangeTemplateTable_Cross
 POIN RangeTemplateTable_GiantCross
+POIN RangeTemplateTable_VerticalLine
 POIN RangeTemplateTable_HorizontalLine
 POIN RangeTemplateTable_Cross
 POIN RangeTemplateTable_Square
@@ -60,7 +61,7 @@ BYTE 1 0 1
 ALIGN 4
 RangeTemplateTable_VerticalLine:
 BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
-BYTE 2 0 // Center (0-indexed, so [2,2] is the center)
+BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
 BYTE 0 0 1 0 0
 BYTE 0 0 1 0 0
 BYTE 0 0 1 0 0
