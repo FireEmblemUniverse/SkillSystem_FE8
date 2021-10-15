@@ -215,7 +215,7 @@ lsl r0, r6, #16
 lsr r0, #16 
 lsl r1, r6, #8 
 lsr r1, #24 
-bl AoE_DisplayDamageArea
+bl AoE_CallDisplayDamageArea
 	
 
 End:

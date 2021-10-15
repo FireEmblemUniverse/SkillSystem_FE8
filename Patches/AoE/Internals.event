@@ -1,7 +1,7 @@
 
 #define AoE_EntrySizeDef 16 // 16 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
-#define AoE_RamAddressDef "0x0203F101"
+#define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 
 
 // Most users should not need to edit this file. 
 
@@ -11,7 +11,14 @@ AoE_SkillTester:
 	POIN SkillTester
 #else; WORD 0; #endif 
 
-MapDisplay:
+
+ALIGN 4
+AoE_Pokemblem_MoveTester: 
+#ifdef Pokemblem_MoveTester
+	POIN MoveTester
+#else; WORD 0; #endif 
+
+
 #include	"TilePalettes/_1D9DC_Loop6C_MoveLimitView.lyn.event"
 
 PUSH 
@@ -139,7 +146,7 @@ WORD AoE_RamAddressDef
 
 ALIGN 4
 AoESubmenuDef:
-BYTE 0 //x coord
+BYTE 0 //x coord ? 
 BYTE 3 //y coord
 BYTE 8 //width
 BYTE 0 //height
@@ -180,9 +187,8 @@ CommandDefEnd
 	#define rsGreen	0x4
 	#define rsBlue	0x10 // identical to move ? 
 	#define movementRed 0x20 
-	#define movementPurple 0x40 
 #endif 
-
+	#define movementPurple 0x40 
 
 
 ALIGN 4

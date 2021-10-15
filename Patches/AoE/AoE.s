@@ -25,8 +25,6 @@ ldr r3, [r3] @ word 0 if skill tester doesn't exist
 cmp r3, #0 
 beq SkipSkillTester
 ldrb r1, [r4, #SkillByte]
-ldr r2, =AoE_SkillIndexTable
-ldrb r1, [r2, r1] 
 cmp r1, #0 
 beq SkipSkillTester
 cmp r1, #255 
@@ -40,6 +38,26 @@ beq ReturnFalse
 
 
 SkipSkillTester:
+
+@ given r0 = unit struct, r1 = move ID, return T/F whether unit knows this move 
+ldr r3, =AoE_Pokemblem_MoveTester 
+ldr r3, [r3] @ word 0 if move tester doesn't exist 
+cmp r3, #0 
+beq SkipMoveTester
+ldrb r1, [r4, #GaidenSpellWexpByte]
+cmp r1, #0 
+beq SkipMoveTester
+cmp r1, #255 
+beq SkipMoveTester
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
+mov lr, r3 
+.short 0xf800 
+cmp r0, #0 
+beq ReturnFalse
+
+SkipMoveTester:
+
 
 
 ldrb r1, [r4, #ConfigByte] @ Stationary bool 
@@ -149,6 +167,30 @@ bx r0
 @0801d92c Setup6CRangeDisplayGfx
 @801da98 DisplayMoveRangeGraphics
 
+
+
+.align 4
+.global AoE_CallDisplayDamageArea
+.type AoE_CallDisplayDamageArea, %function 
+
+AoE_CallDisplayDamageArea:
+push {r4-r5, lr}
+
+mov r4, r0 
+mov r5, r1 
+bl AoE_GetTableEntryPointer
+mov r2, r0 
+mov r0, r4 
+mov r1, r5 
+
+bl AoE_DisplayDamageArea
+
+pop {r4-r5} 
+pop {r0}
+bx r0 
+
+
+
 .align 4
 .global AoE_DisplayDamageArea
 .type AoE_DisplayDamageArea, %function 
@@ -157,26 +199,24 @@ AoE_DisplayDamageArea:
 
 push {r4-r7, lr} 
 
-@given r0 = xx, r1 = yy, display movement squares in a template around it 
+@given r0 = xx, r1 = yy, r2= table entry pointer, display movement squares in a template around it 
 mov r4, r0 
 mov r5, r1 
+mov r6, r2 @ AoE_GetTableEntryPointer
 
 
 
-
-ldr r0, =0x202E4E0
+ldr r0, =0x202E4E0 @ Movement map 
 ldr r0, [r0] 
 mov r1, #0xFF
 blh FillMap
 
-bl AoE_GetTableEntryPointer
-ldrb r2, [r0, #RangeMaskByte]
+ldrb r2, [r6, #RangeMaskByte]
 lsl r2, #2 @ 4 bytes per entry 
 ldr r1, =RangeTemplateIndexList
 ldr r2, [r1, r2] @ POIN to the RangeMask we want 
 
 @ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
-ldr r3, =pActionStruct 
 mov r0, r4 @ XX 
 mov r1, r5  @ YY 
 bl CreateMoveMapFromTemplate
@@ -564,14 +604,15 @@ tst r0, r1
 beq Start_FreeSelect
 ldr r3, =AoE_HealFreeSelect @ For green tiles 
 Start_FreeSelect:
-@parameters
-	@r0 = char pointer
-	@r1 = pointer range builder function
-	@r3 = pointer list for proc
+
 mov r0, r4 @ CurrentUnit 
 ldr r1, =AoE_RangeSetup
 
-
+@parameters
+	@r0 = char pointer
+	@r1 = pointer range builder function
+	@r2 = nothing now (previously item) 
+	@r3 = pointer list for proc
 bl AoE_FSTargeting
 
 
@@ -890,6 +931,20 @@ blh 0x80197E4 @MapFill
 pop {r0}
 bx r0 
 
+.align 4
+.global AoE_ClearMoveMap
+.type AoE_ClearMoveMap, %function 
+
+AoE_ClearMoveMap:
+push {lr} 
+ldr r0, =0x202E4E0 @ range map pointer 
+ldr r0, [r0]
+mov r1, #0
+sub r1, #1
+blh 0x80197E4 @MapFill
+pop {r0}
+bx r0 
+
 
 .type AoE_EffectCreateRangeMap, %function 
 .align 4
@@ -1166,12 +1221,35 @@ ldrb r0, [r3, #0x10] @ XX
 ldrb r1, [r3, #0x11] @ YY 
 ldrb r2, [r4, #MinRangeByte] @ Min range 
 ldrb r3, [r4, #MaxRangeByte] @ Max range 
+mov r11, r11 
 @ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
 blh CreateRangeMapFromRange, r4
 
 pop {r4} 
 pop {r3}
 bx r3
+
+.align 4
+.global AoE_RangeSetup_Hover
+.type AoE_RangeSetup_Hover, %function 
+
+AoE_RangeSetup_Hover:
+push {r4, lr}
+mov r4, r0 @ AoE_Table Entry 
+bl AoE_ClearRangeMap
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+ldrb r0, [r3, #0x10] @ XX 
+ldrb r1, [r3, #0x11] @ YY 
+ldrb r2, [r4, #MinRangeByte] @ Min range 
+ldrb r3, [r4, #MaxRangeByte] @ Max range  
+@ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
+blh CreateRangeMapFromRange, r4
+
+pop {r4} 
+pop {r3}
+bx r3
+
 
 .ltorg
 .align

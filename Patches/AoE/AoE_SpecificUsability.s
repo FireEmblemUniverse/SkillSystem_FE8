@@ -7,8 +7,6 @@
 .endm
 
 
-.equ AoE_SpecificEffectIndex, AoE_SkillID+4
-
 AoE_SpecificUsability:
 push {lr}
 
@@ -33,5 +31,6 @@ bx r1
 .align 4 
 
 
-AoE_SkillID:
+AoE_SpecificEffectIndex:
+@WORD ID 
 

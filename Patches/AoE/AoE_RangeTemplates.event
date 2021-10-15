@@ -61,8 +61,9 @@ BYTE 0 0 1 0 0
 
 ALIGN 4
 RangeTemplateTable_SmallX:
-BYTE 3 3 // Size (1-indexed, so this is a 5x5y array) 
+BYTE 3 3 // Size (1-indexed, so this is a 3x3y array) 
 BYTE 1 1 // Center (0-indexed, so [1,1] is the center)
+
 BYTE 1 0 1
 BYTE 0 1 0 
 BYTE 1 0 1 

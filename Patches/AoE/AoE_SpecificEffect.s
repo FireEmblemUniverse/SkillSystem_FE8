@@ -7,8 +7,6 @@
 .endm
 
 
-.equ AoE_SpecificEffectIndex, AoE_SkillID+4
-
 AoE_SpecificEffect:
 push {lr}
 ldr r2, =AoE_RamAddress @ pointer 
@@ -44,5 +42,5 @@ bx r1
 .ltorg
 .align 4
 
-AoE_SkillID:
+AoE_SpecificEffectIndex:
 @WORD ID

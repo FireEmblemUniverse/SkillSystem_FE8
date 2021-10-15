@@ -4,6 +4,102 @@
 // it should not conflict with combat arts. 
 #include "Internals.event"
 
+// Add this to your Unit Menu 
+// MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+
+// Text entries:
+/*
+## UM_AoEName
+ AoE[X]
+
+## UM_AoEDesc
+Hit multiple units.[X]
+
+
+
+## UM_AoEHelp
+Select an area to Attack.[X]
+
+## UM_AoEHealHelp
+Select an area to Heal.[X]
+
+*/
+
+// 0x4AB is DUMMY text
+
+// 8022C99 - HideMoveRangeGraphicsWrapper
+
+
+// These are the submenu options that appear:
+ALIGN 4
+AoEMenuCommandsList:
+MenuCommand(UM_BlazeName, UM_BlazeDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1, AoE_0Hover|1, 0x8022C99)
+MenuCommand(UM_TorrentName, UM_TorrentDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1, AoE_1Hover|1, 0x8022C99)
+MenuCommand(UM_OvergrowthName, UM_OvergrowthDesc, NormalText, AoE_2Usability|1, AoE_2Effect|1, AoE_2Hover|1, 0x8022C99)
+UM_Separator 
+
+
+
+
+/*
+@ Primary Table structure 
+@ Usability Reqs 
+UnitByte, #0 
+ClassByte, #1 
+LevelByte, #2 
+ItemByte, #3 
+FlagShort, #4 @and 5 
+SkillByte, #6 
+Pokemblem_MoveTesterByte, #7 // Does nothing if not pokemblem 
+@ Config 
+HpCostByte, #8
+ConfigByte, #9
+
+PowerLowerBoundByte, #10
+PowerUpperBoundByte, #11 
+MinRangeByte, #12
+MaxRangeByte, #13 
+RangeMask_IDByte, #14 
+Animation_IDByte, #15
+*/
+
+// Bitfield for more config options 
+#define HealBool 0x01
+#define FriendlyFireBool 0x02 
+#define FixedDamageBool 0x04 
+#define MagBasedBool 0x08 
+#define HitResBool 0x10
+#define DepleteItemBool 0x20
+#define UsableOnlyIfStationaryBool 0x40 
+
+
+ALIGN 4 
+AoE_Table:
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 MagBasedBool|DepleteItemBool
+BYTE 5 5 // damage range 
+BYTE 1 5 // Attack range 
+BYTE 0 1 // Index of RangeMask, Animation
+
+
+// Entry 
+BYTE 0 0 0 0 
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 HealBool|FriendlyFireBool|MagBasedBool
+BYTE 5 5 // damage range 
+BYTE 0 4 // Attack range 
+BYTE 1 2 // Index of RangeMask, Animation
+
+// Entry 
+BYTE 0 0 0 0 
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE 5 10 // damage range 
+BYTE 0 4 // Attack range 
+BYTE 2 3 // Index of RangeMask, AnimationALL,
+AoE_TableTerminator
 
 
 
@@ -83,88 +179,7 @@ ENDA
 
 
 
-/*
-@ Primary Table structure 
-@ Usability Reqs 
-.equ UnitByte, #0 
-.equ ClassByte, #1 
-.equ LevelByte, #2 
-.equ ItemByte, #3 
-.equ FlagShort, #4 @and 5 
-.equ SkillByte, #6 
-@ 7 is padding - it does nothing 
-@ Config 
-.equ HpCostByte, #8
-.equ ConfigByte, #9
 
-.equ PowerLowerBoundByte, #10
-.equ PowerUpperBoundByte, #11 
-.equ MinRangeByte, #12
-.equ MaxRangeByte, #13 
-.equ RangeMaskByte, #14 
-.equ Animation_IDByte, #15
-*/
-
-// Bitfield for more config options 
-#define HealBool 0x01
-#define FriendlyFireBool 0x02 
-#define FixedDamageBool 0x04 
-#define MagBasedBool 0x08 
-#define HitResBool 0x10
-#define DepleteItemBool 0x20
-#define UsableOnlyIfStationaryBool 0x40 
-
-
-
-
-
-ALIGN 4 
-AoE_SkillIndexTable:
-BYTE 0 RenewalID 0 0 0 0 0 0 0 
-ALIGN 4; WORD 0xFFFFFFFF // Unnecessary Terminator 
-
-
-
-ALIGN 4 
-AoE_Table:
-// Entry 
-BYTE 0 0 0 JellyDonut
-BYTE 0 0 1 0 // Always usable by anyone 
-BYTE 0 MagBasedBool|DepleteItemBool
-BYTE 5 5 // damage range 
-BYTE 1 5 // Attack range 
-BYTE 0 1 // Index of RangeMask, Animation
-
-
-// Entry 
-BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 HealBool|FriendlyFireBool|MagBasedBool
-BYTE 5 5 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 1 2 // Index of RangeMask, Animation
-
-// Entry 
-BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 2 3 // Index of RangeMask, AnimationALL,
-AoE_TableTerminator
-
-
-
-
-
-
-
-ALIGN 4
-AoEMenuCommandsList:
-MenuCommand(UM_BlazeName, UM_BlazeDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1)
-MenuCommand(UM_TorrentName, UM_TorrentDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1)
-MenuCommand(UM_OvergrowthName, UM_OvergrowthDesc, NormalText, AoE_2Usability|1, AoE_2Effect|1)
-UM_Separator 
 
 
 
@@ -172,42 +187,49 @@ UM_Separator
 ALIGN 4 
 AoE_0Usability:
 #include "AoE_SpecificUsability.lyn.event"
-WORD 0 // Skill ID (If applicable)
 WORD 0 // Effect Index ID 
 
 
 ALIGN 4 
 AoE_1Usability:
 #include "AoE_SpecificUsability.lyn.event"
-WORD 0
 WORD 1
 
 ALIGN 4 
 AoE_2Usability:
 #include "AoE_SpecificUsability.lyn.event"
-WORD 0
 WORD 2
 
-// stores the index byte to ram, then starts AoE_Setup
+
 ALIGN 4
 AoE_0Effect:
 #include "AoE_SpecificEffect.lyn.event"
-WORD 0
 WORD 0 //AoE effect ID 
 
 ALIGN 4
 AoE_1Effect:
 #include "AoE_SpecificEffect.lyn.event"
-WORD 0
 WORD 1 //AoE effect ID 
 
 ALIGN 4
 AoE_2Effect:
 #include "AoE_SpecificEffect.lyn.event"
-WORD 0
 WORD 2 //AoE effect ID 
 
 
+ALIGN 4
+AoE_0Hover:
+#include "AoE_SpecificHover.lyn.event"
+WORD 0 //AoE effect ID 
 
+ALIGN 4
+AoE_1Hover:
+#include "AoE_SpecificHover.lyn.event"
+WORD 1 //AoE effect ID 
+
+ALIGN 4
+AoE_2Hover:
+#include "AoE_SpecificHover.lyn.event"
+WORD 2 //AoE effect ID 
 
 

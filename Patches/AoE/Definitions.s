@@ -8,7 +8,7 @@
 .equ ItemByte, 3 
 .equ FlagShort, 4 @and 5 
 .equ SkillByte, 6 
-@ 7 is padding - it does nothing 
+.equ GaidenSpellWexpByte, 7 @ For Pokemblem 
 @ Config 
 .equ HpCostByte, 8
 .equ ConfigByte, 9
