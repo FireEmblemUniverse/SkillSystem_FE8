@@ -17,7 +17,6 @@ push {r4-r5, lr} @ will pop when returned to vanilla function
 mov r5, r0 
 
 
-
 ldr r4, =0x859AD50 
 mov r0, r4 
 blh ProcFind

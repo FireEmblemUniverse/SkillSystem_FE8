@@ -55,7 +55,8 @@ PurpleMovementSquares:
 #include "AoE.lyn.event"
 #include "CreateRangeMapFromTemplateByStanH.lyn.event" 
 #include "CreateMoveMapFromTemplate.lyn.event" 
-
+#include "CreateMoveMap2FromTemplate.lyn.event" 
+#include "RotateMoveMap.lyn.event"
 
 #include "AoE_RangeTemplates.event"
 #include "AoE_CallSubmenuEffect.lyn.event"

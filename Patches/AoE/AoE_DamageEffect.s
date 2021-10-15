@@ -86,22 +86,16 @@ mov r5, r0 @ mt
 
 @ terrain bonuses function ? 0802a6dc BattleSetupTerrainData
 
-
-
-
-
-
-
 ldrb r2, [r4, #ConfigByte] 
 mov r0, #MagBasedBool 
 mov r1, #0x14 @ str/pow default 
 tst r0, r2 
-bne LoadAtt
+beq LoadAtt
 mov r1, #0x3A @ mag byte. do not select "use mag" if no strmag split lol
 LoadAtt:
 ldrb r0, [r6, r1] @ str or mag 
 
-mov r5, r0 @ dmg to deal 
+add r5, r0 @ dmg to deal 
 @ get unit def/res 
 @ add to terrain bonus
 

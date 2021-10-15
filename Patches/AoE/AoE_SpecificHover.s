@@ -13,6 +13,7 @@
 AoE_HoverEffect:
 push {r4, lr} 
 
+@b Exit 
 bl AoE_ClearMoveMap
 
 ldr r0, =AoE_SpecificEffectIndex 
@@ -26,9 +27,19 @@ mov r4, r0
 
 @mov r0, r4 
 @ Given r0 = Table Entry, construct range map 
-bl AoE_RangeSetup_Hover
-mov r0, #2 
-blh 0x801da98 @DisplayMoveRangeGraphics
+bl AoE_RangeSetup_Hover @ also clears range map 
+@could be green instead tho 
+
+@ldrb r1, [r4, #ConfigByte] @ Stationary bool 
+@mov r0, #HealBool
+@tst r0, r1 
+@mov r0, #2 @ red 
+@beq DisplayColour
+@mov r0, #0x40 @ Green 
+@DisplayColour:
+
+@mov r0, #2
+@blh 0x801da98 @DisplayMoveRangeGraphics
 
 
 mov r2, r4 
@@ -41,6 +52,8 @@ ldrb r1, [r3, #0x11] @ YY
 bl AoE_DisplayDamageArea
 @mov r0, #42 
 @blh 0x801da98 @DisplayMoveRangeGraphics
+
+Exit:
 
 pop {r4}
 pop {r0} 
