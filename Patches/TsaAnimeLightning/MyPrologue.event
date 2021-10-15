@@ -1,0 +1,101 @@
+#include EAstdlib.event
+EventPointerTable(7,MyPrologue)
+
+#ifndef FreeSpace
+	#define	FreeSpace $B2A610
+	ORG FreeSpace
+#endif
+
+
+
+MyPrologue:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno Dunno Dunno
+POIN Tutorial
+POIN TrapData TrapData
+POIN PlayerUnits EnemyUnits
+POIN $0 $0 $0 $0 $0 $0
+POIN BeginningScene EndingScene
+
+PlayerUnits:
+UNIT Eirika EirikaLord Eirika Level(1,Ally,False) [3,4] 0x0 0x0 0x0 0x1 [Rapier,Vulnerary] NoAI
+UNIT Seth General Eirika Level(1,Ally,False) [1,0] 0x0 0x0 0x0 0x1 [SilverLance,SteelSword] NoAI
+UNIT 0x40 Sage Eirika Level(1,Ally,False) [3,3] 0x0 0x0 0x0 0x1 [SilverLance,SteelSword] NoAI
+UNIT
+
+EnemyUnits:
+UNIT 0x68 0x3F 0x0 0x24 [14,8] 0b 0x0 0x1 0x8B3BFC [0x1F,0x0,0x0,0x0] [0x6,0x3,0x0,0x0]
+UNIT 0x82 0x3F 0x0 0xC [14,7] 0b 0x0 0x1 0x8B3C04 [0x1F,0x0,0x0,0x0] [0x0,0xA,0x0,0x0]
+UNIT 0x80 0x3F 0x0 0x14 [14,7] 0b 0x0 0x1 0x8B3C0C [0x1F,0x0,0x0,0x0] [0x0,0x12,0x2,0x0]
+UNIT
+
+TurnBasedEvents:
+END_MAIN
+
+ALIGN 32 //For some reason, CharacterBasedEvents have to be 32-Aligned
+CharacterBasedEvents:
+END_MAIN
+
+LocationBasedEvents:
+END_MAIN
+
+Dunno:
+WORD $00
+END_MAIN
+
+Tutorial:
+WORD $00
+END_MAIN
+
+TrapData:
+ENDTRAP
+
+ALIGN 32
+
+BeginningScene:
+LOAD1 1 PlayerUnits
+ENUN
+LOAD1 1 EnemyUnits
+ENUN
+
+TEXTSTART
+TEXT 0x90B
+TEXTEND
+TEXTCLEAR
+
+
+STARTFADE
+COLORFADE_FADE [0,32] 0xFF00 128 128 128
+STAL 0x10
+
+SVAL 0xB 0x00040003
+ASMC EventStartAnime|1
+
+SVAL 0xB 0x00030003
+ASMC EventStartAnime|1
+
+SVAL 0xB 0x00070007
+ASMC EventStartAnime|1
+STAL 0x30
+COLORFADE_FADE [0,32] 0xFF00 256 256 256
+
+ENDA
+
+
+
+
+
+
+
+EndingScene:
+GOTO_CHAPTER_NOWM 0x1
+ENDA
+
+MiscBasedEvents:
+DefeatAll(EndingScene)
+END_MAIN
+
+

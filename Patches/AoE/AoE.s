@@ -20,16 +20,19 @@ AoE_Usability:
 push {r4-r5, lr} 
 @ given r0 = specific AoE table entry we want 
 mov r4, r0 
-
-ldr r3, =AoE_SkillTester @ word 0 if skill tester doesn't exist 
+ldr r3, =AoE_SkillTester 
+ldr r3, [r3] @ word 0 if skill tester doesn't exist 
 cmp r3, #0 
 beq SkipSkillTester
-ldrb r0, [r4, #SkillByte]
-cmp r0, #0 
+ldrb r1, [r4, #SkillByte]
+ldr r2, =AoE_SkillIndexTable
+ldrb r1, [r2, r1] 
+cmp r1, #0 
 beq SkipSkillTester
-cmp r0, #255 
+cmp r1, #255 
 beq SkipSkillTester
-
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
 mov lr, r3 
 .short 0xf800 
 cmp r0, #0 
@@ -131,30 +134,10 @@ bx r1
 .type AoE_ClearBG2, %function 
 AoE_ClearBG2:
 push {lr}
-
-
-
-ldr r2, =0x2023ca8 @gBg2MapBuffer
-ldr r3, =0x20244a8 @gBg3MapBuffer
-mov r0, #0 
-
-Loop:
-str r0, [r2] 
-add r2, #4 
-cmp r2, r3 
-blt Loop 
-ldr r2, =0x02024cb0 @gBg2MapTarget
-ldr r2, [r2] 
-mov r3, #0x8 
-lsl r3, #8 @ 0x800 bytes for this? 
-add r3, r2 
-
-Loop2:
-str r0, [r2] 
-add r2, #4 
-cmp r2, r3 
-blt Loop2
-
+ldr r0, =0x02024cb0 @gBg2MapTarget
+ldr r0, [r0]
+mov r1, #0 
+blh 0x8001220 @FillBgMap	@FillBgMap(gBg2MapBuffer,0);
 pop {r0}
 bx r0 
 
@@ -205,6 +188,8 @@ blh 0x801da98 @DisplayMoveRangeGraphics
 pop {r4-r7}
 pop {r0} 
 bx r0 
+
+
 
 
 .align 4
@@ -278,7 +263,6 @@ beq ExitRocksAnimHorizontal
 @ if horizontal line is size of 1 tile, we won't do anything 
 
 mov r2, #1 @ right (search direction) 
-mov r11, r11
 bl AoE_FindNumberOfTilesForLineOfRocks
 cmp r0, #1 
 ble ExitRocksAnimHorizontal
@@ -390,11 +374,22 @@ AoE_FindHighestMoveMapTile:
 
 push {r4-r7, lr}
 
+mov r7, r8 
+push {r7} 
+
 ldr r3, =0x202E4D4 @ Map Size 
 ldrh r6, [r3] @ XX 
-ldrh r7, [r3, #2] @ YY 
+ldrh r3, [r3, #2] @ YY 
+mov r8, r3 
 
+ldr r3, =MemorySlot 
+ldr r5, [r3, #4] @ Slot1 as Nth highest to find 
+mov r7, #0 @ 0th found by default 
 
+mov r0, #0 @ Default to false 
+ldr r1, =MemorySlot 
+add r1, #0x04*0x0C @ Slot C 
+str r0, [r1] 
 
 ldr r4, =0x202E4E0 @ Movement Map 
 ldr r4, [r4] @ movement map [0,0] 
@@ -404,20 +399,38 @@ sub r3, #1
 
 YLoop:
 add r3, #1 
-cmp r3, r7 
+cmp r3, r8 
 bge BreakYLoop
 lsl r0, r3, #2 @ 4 times Y coord 
-ldr r5, [r4, r0] @ beginning of Y row 
+ldr r1, [r4, r0] @ beginning of Y row 
 mov r2, #0 
 sub r2, #1 
 XLoop:
 add r2, #1 
 cmp r2, r6 
 bge YLoop @ Finished the row, so +1 to Y coord 
-ldrb r0, [r5, r2] @ Xcoord to check 
+ldrb r0, [r1, r2] @ Xcoord to check 
 cmp r0, #0xFF 
 beq XLoop
 
+add r7, #1 @ Nth entry to find 
+cmp r7, r5 
+blt XLoop
+
+add r0, r2, #1 @ Is the next tile to the right valid too? 
+ldrb r0, [r1, r0] 
+cmp r0, #0xFF 
+beq NoMoreColumns 
+mov r0, #1 @ True
+b StoreColumnResult
+NoMoreColumns:
+mov r0, #0 @ False 
+StoreColumnResult:
+ldr r1, =MemorySlot 
+add r1, #0x04*0x0C @ Slot C 
+str r0, [r1] 
+
+ValidColumn:
 @ We found a valid tile 
 mov r0, r2 @ XX 
 mov r1, r3 @ YY 
@@ -431,6 +444,8 @@ mov r1, #0xFF
 
 End_AoE_FindHighestMoveMapTile:
 
+pop {r7} 
+mov r8, r7 
 
 pop {r4-r7} 
 pop {r3}
@@ -446,14 +461,23 @@ bx r3
 .global AoE_FindLeftMostMoveMapTile
 .type AoE_FindLeftMostMoveMapTile, %function 
 AoE_FindLeftMostMoveMapTile:
-
 push {r4-r7, lr}
+mov r7, r8 
+push {r7} 
 
 ldr r3, =0x202E4D4 @ Map Size 
 ldrh r6, [r3] @ XX 
-ldrh r7, [r3, #2] @ YY 
+ldrh r3, [r3, #2] @ YY 
+mov r8, r3 
 
+ldr r3, =MemorySlot 
+ldr r5, [r3, #4] @ Slot1 as Nth left most to find 
+mov r7, #0 @ 0th found by default 
 
+mov r0, #0 @ Default to false 
+ldr r1, =MemorySlot 
+add r1, #0x04*0x0C @ Slot C 
+str r0, [r1] 
 
 ldr r4, =0x202E4E0 @ Movement Map 
 ldr r4, [r4] @ movement map [0,0] 
@@ -469,13 +493,34 @@ mov r3, #0
 sub r3, #1 
 YLoop_2:
 add r3, #1 
-cmp r3, r7 
+cmp r3, r8
 bge XLoop_2 @ Finished the column, so +1 to X coord 
 lsl r0, r3, #2 @ 4 times the y coord 
-ldr r5, [r4, r0] @ beginning of row 
-ldrb r0, [r5, r2] @ coord to check 
+ldr r1, [r4, r0] @ beginning of row 
+ldrb r0, [r1, r2] @ coord to check 
 cmp r0, #0xFF 
 beq YLoop_2
+
+add r7, #1 @ Nth entry to find 
+cmp r7, r5 
+blt YLoop_2
+
+
+add r0, r3, #1 @ Is the next tile down valid too? 
+lsl r0, #2 @ 4 times y column 
+ldr r1, [r4, r0] 
+ldrb r0, [r1, r2] 
+cmp r0, #0xFF 
+beq NoMoreRows
+mov r0, #1 @ True
+b StoreRowsResult
+NoMoreRows:
+mov r0, #0 @ False 
+StoreRowsResult:
+ldr r1, =MemorySlot 
+add r1, #0x04*0x0C @ Slot C 
+str r0, [r1] 
+
 
 @ We found a valid tile 
 mov r0, r2 @ XX 
@@ -490,7 +535,8 @@ mov r1, #0xFF
 
 End_AoE_FindLeftMostMoveMapTile:
 
-
+pop {r7} 
+mov r8, r7 
 
 pop {r4-r7} 
 pop {r3}
@@ -542,7 +588,7 @@ mov r7, r0 @ Parent Proc
 bl AoE_GetTableEntryPointer
 
 mov r4, r0 
-ldrb r0, [r4, #Animation_SELECTION_IDByte] 
+ldrb r0, [r4, #Animation_IDByte] 
 @ 12 bytes per entry 
 lsl r1, r0, #3 @ 8 bytes
 lsl r0, #2 @ 4 bytes  
@@ -566,6 +612,20 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
+.global AoE_Camera
+.type AoE_Camera, %function
+AoE_Camera:
+push {lr}
+ldr r3, =MemorySlot
+add r3, #4*0x0B
+ldrb r1, [r3] @ XX 
+ldrb r2, [r3, #2] @ YY 
+
+@r0 as parent 
+blh 0x8015D84 @CenterCameraOntoPosition
+
+pop {r0} 
+bx r0 
 
 @ this starts right away 
 .align 4
@@ -574,15 +634,31 @@ bx r0
 AoE_Animation:
 push {r4-r7, lr} 
 
+
+
+@mov r0, #0
+@ldr r3, =MemorySlot
+@add r3, #4*0x0B
+@ldrb r1, [r3] @ XX 
+@ldrb r2, [r3, #2] @ YY 
+@@r0 as parent 
+@blh 0x08015e0c @EnsureCameraOntoPosition
+
+
 bl AoE_GetTableEntryPointer
 mov r4, r0 
+
+
+
+
+@blh 0x8015e0c @EnsureCameraOntoPosition
 
 
 ldr r0, =Call_AoE_ExternalAnimationEvent
 mov r1, #1 
 blh EventEngine 
 
-ldrb r0, [r4, #Animation_SELECTION_IDByte] 
+ldrb r0, [r4, #Animation_IDByte] 
 @ 12 bytes per entry 
 lsl r1, r0, #3 @ 8 bytes
 lsl r0, #2 @ 4 bytes  
@@ -601,6 +677,10 @@ add r5, #4
 ldrh r0, [r6, r5] @ sfx/bgm ID 
 cmp r0, #0 
 beq NoSound
+
+mov r1, #0 
+blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown
+
 
 NoSound: 
 
@@ -1000,7 +1080,7 @@ mov r4, r0
 ldrb r1, [r5, #ConfigByte]  
 mov r0, #FixedDamageBool
 tst r0, r1 
-beq CleanupHealing @ Fixed Damage means to not use Str/Mag for staves 
+bne CleanupHealing @ Fixed Damage means to not use Str/Mag for staves 
 mov r0, #MagBasedBool 
 tst r0, r1 
 beq UseStr 

@@ -1,5 +1,5 @@
 
-#define AoE_EntrySizeDef 20 // 32 bytes per AoE table entry 
+#define AoE_EntrySizeDef 16 // 16 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
 #define AoE_RamAddressDef "0x0203F101"
 
@@ -56,6 +56,42 @@ PurpleMovementSquares:
 
 
 
+/*
+Vanilla animations:
+(Grabbed from Febuilder)
+
+ASMC 0x8080475 // Play Demon King sealing Effect
+ASMC 0x807FCC1 // Play Demon King summon Effect (floor)
+ASMC 0x807F879 // Play Demon King summon Effect 
+ASMX 0x8085BFD // Torch item Effect
+
+ASMC 0x5DB19 //Elfire 
+
+ASMC 0x5D065 //Fire Breath
+
+
+*/ 
+/*
+ThunderEvent:
+//STARTFADE
+//COLORFADE_FADE [0,32] 0xFF00 128 128 128
+//STAL 0x10
+SET_ACTIVE 0
+ASMC 0x801d6fd //PlayerPhase_ReloadGameGfx - just in case they didn't cleanup their gfx 
+ 
+STARTFADE
+COLORFADE_FADE [0,32] 0xFF00 128 128 128
+STAL 0x10
+
+//SVAL 0xB 0x00040003
+ASMC EventStartAnime|1
+//ENDFADE 
+
+
+NoFade 
+ENDA 
+*/
+
 
 Call_AoE_ExternalAnimationEvent:
 ASMC AoE_ExternalAnimation 
@@ -63,6 +99,7 @@ NoFade
 ENDA 
 
 Clear_sBEvent:
+ASMC 0x801d6fd //PlayerPhase_ReloadGameGfx - just in case they didn't cleanup their gfx 
 SVAL rB 0 
 NoFade 
 ENDA 

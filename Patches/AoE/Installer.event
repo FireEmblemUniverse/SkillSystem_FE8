@@ -7,25 +7,26 @@
 
 
 
+
 ALIGN 4
 AoE_Animation_Table: // 12 bytes per entry 
 POIN 0 //AnimationRouine
 POIN 0 //EventAddress 
-SHORT 0 //Sfx 
+SHORT 0 //Bgm/Sfx 
 SHORT 1 // so we don't hide data in febuilder early 
 
-POIN 0 //AoE_ShowBrokenWall_Vertical //Entry 1 
-POIN RocksEvent
-SHORT 0 
+POIN 0 //Entry 1 
+POIN RocksEvent_MiddleVertical 
+SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 2
-POIN ExampleLightRuneEvent
+POIN RocksEvent_Cross
 SHORT 0 
 SHORT 1 
 
-POIN 0x807AD09 // Entry 3 - summon gfx 
-POIN 0 //ExampleLightRuneEvent
+POIN 0 //0x807AD09 // Entry 3 - summon gfx 
+POIN RocksEvent_Horizontal
 SHORT 0 
 SHORT 1 
 
@@ -33,32 +34,50 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 
 
 
-
-ExampleLightRuneEvent:
-AddAnimTrap(LightRuneTrapID)
-STAL 22 
-RemoveTrap 
-SVAL rB 0
+AoE_CameraEvent:
+ASMC AoE_Camera
 NoFade 
 ENDA 
 
-RocksEvent:
-ASMC AoE_ShowBrokenWall_Vertical
+
+RocksEvent_MiddleVertical:
+SVAL r1 2 // 2nd vertical line it finds 
+ASMC AoE_ShowBrokenWall_Vertical 
+NoFade 
+ENDA 
+
+RocksEvent_MiddleHorizontal:
+SVAL r1 2 // 2nd horizontal line it finds 
 ASMC AoE_ShowBrokenWall_Horizontal
-//CALL RocksEventA
-//CALL RocksEventB
 NoFade 
 ENDA 
 
-RocksEventA:
+RocksEvent_Cross:
+SVAL r1 1 
 ASMC AoE_ShowBrokenWall_Vertical
- 
+SVAL r1 1 
+ASMC AoE_ShowBrokenWall_Horizontal
 NoFade 
 ENDA 
 
-RocksEventB:
+
+RocksEvent_Vertical: // This drops rocks in vertical lines, repeating from left to right
+SVAL r1 1
+SVAL r3 1 
+LABEL 0
+ASMC AoE_ShowBrokenWall_Vertical
+SADD r1 r1 r3 
+BEQ 0 rC r3 // Repeat until false is returned 
+NoFade 
+ENDA 
+
+RocksEvent_Horizontal: // This drops rocks in horizontal lines, repeating from top to bottom 
+SVAL r1 1
+SVAL r3 1 
+LABEL 0
 ASMC AoE_ShowBrokenWall_Horizontal
- 
+SADD r1 r1 r3 
+BEQ 0 rC r3 // Repeat until false is returned 
 NoFade 
 ENDA 
 
@@ -83,11 +102,7 @@ ENDA
 .equ MinRangeByte, #12
 .equ MaxRangeByte, #13 
 .equ RangeMaskByte, #14 
-.equ Animation_ALL_IDByte, #15
-.equ Animation_UNITS_IDByte, #16
-.equ Animation_SELECTION_IDByte, #17 
-@ 18 and 19 are padding 
-
+.equ Animation_IDByte, #15
 */
 
 // Bitfield for more config options 
@@ -105,22 +120,29 @@ ENDA
 
 ALIGN 4 
 AoE_SkillIndexTable:
-BYTE 0 0 0 0 0 0 0 0 
-WORD 0xFFFFFFFF // Unnecessary Terminator 
+BYTE 0 RenewalID 0 0 0 0 0 0 0 
+ALIGN 4; WORD 0xFFFFFFFF // Unnecessary Terminator 
 
 
 
 ALIGN 4 
 AoE_Table:
 // Entry 
+BYTE 0 0 0 JellyDonut
+BYTE 0 0 1 0 // Always usable by anyone 
+BYTE 0 MagBasedBool|DepleteItemBool
+BYTE 5 5 // damage range 
+BYTE 1 5 // Attack range 
+BYTE 0 1 // Index of RangeMask, Animation
+
+
+// Entry 
 BYTE 0 0 0 0 
 BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
+BYTE 0 HealBool|FriendlyFireBool|MagBasedBool
+BYTE 5 5 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 0 0 // Index of RangeMask, AnimationALL,
-BYTE 0 1 // Animation UNITS, Animation SELECTION 
-ALIGN 4
+BYTE 1 2 // Index of RangeMask, Animation
 
 // Entry 
 BYTE 0 0 0 0 
@@ -128,20 +150,7 @@ BYTE 0 0 0 0 // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 1 0 // Index of RangeMask, AnimationALL,
-BYTE 0 2 // Animation UNITS, Animation SELECTION 
-ALIGN 4
-// Entry 
-BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 2 0 // Index of RangeMask, AnimationALL,
-BYTE 0 3 // Animation UNITS, Animation SELECTION 
-ALIGN 4
-
-
+BYTE 2 3 // Index of RangeMask, AnimationALL,
 AoE_TableTerminator
 
 

@@ -18,12 +18,7 @@
 .equ MinRangeByte, 12
 .equ MaxRangeByte, 13 
 .equ RangeMaskByte, 14 
-.equ Animation_ALL_IDByte, 15
-.equ Animation_UNITS_IDByte, 16
-.equ Animation_SELECTION_IDByte, 17 
-@ 18 and 19 are padding 
-
- 
+.equ Animation_IDByte, 15
 
 @ Config Bools 
 .equ HealBool, 0x01

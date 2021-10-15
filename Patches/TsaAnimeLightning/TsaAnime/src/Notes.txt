@@ -1,0 +1,18 @@
+TSA PROC:
++0x40:	
+ 	被初始化为0；
+
++0x42 (short)
+ 似乎用于决定是否展示新图片；
+
++0x44 (short)
+ 似乎决定了图片Decompress的目标位置的Index
+
++0x48 (short):
+ 被初始化为0x77；
+ Maybe a timer: from 0x77
+ 似乎是在初始化Pal的时候不停地减一，并与0x1E做判定
+ 在Idle里面似乎也用来判定Pal了
+
++0x4A (short)
++0x4C (Short)
