@@ -60,19 +60,37 @@ NoBPress:
 	lsl 	r3, #0x8	@ check if R button was pressed
 	tst 	r0, r3
 	beq 	NoRPress
-
+	
+	
+	
+	b RotateMaskClockwise
+	
+	
 	ldr 	r3, [r4, #0x2C]
 	ldr 	r3, [r3, #0x14] @ OnRPress
-
+	mov r6, r5 
+	
 	cmp 	r3, #0x0
 	beq 	NoRPress
 
 	mov 	r0, r4
 	bl BXR3
 
+
 	b HandleCode
 
 NoRPress:
+	mov 	r3, #0x1
+	lsl 	r3, #0x9	@ check if L button was pressed
+	tst 	r0, r3
+	beq 	NoLPress
+	
+
+b RotateMaskCounterClockwise
+
+NoLPress:
+
+
 	ldr 	r0, =pGameDataStruct
 	ldr 	r0, [r0, #0x14] @ r0 = Cursor Position Pair
 	mov r6, r5 @ cursor coords 
@@ -215,8 +233,58 @@ lsl r0, r6, #16
 lsr r0, #16 
 lsl r1, r6, #8 
 lsr r1, #24 
+mov r3, r4 
+add r3, #0x68 @ rotation byte - 2b or 0x68 ? 
+ldrb 	r2, [r3]
+@lsl r2, #30 
+@lsr r2, #30 
 bl AoE_CallDisplayDamageArea
-	
+b End 
+
+
+RotateMaskCounterClockwise:
+@b DisplayMask
+mov r3, r4 
+add r3, #0x68 @ rotation byte 
+ldrb 	r2, [r3]
+lsl r2, #30 
+lsr r2, #30 
+cmp r2, #0
+bgt SubOne
+mov r2, #3 
+strb r2, [r3] 
+b DisplayMask
+SubOne:
+sub r2, #1 
+strb r2, [r3] 
+b DisplayMask
+
+
+RotateMaskClockwise:
+@b DisplayMask
+mov r3, r4 
+add r3, #0x68 @ rotation byte 
+ldrb 	r2, [r3]
+lsl r2, #30 
+lsr r2, #30 
+cmp r2, #3 
+blt AddOne
+mov r2, #0 
+strb r2, [r3] 
+b DisplayMask
+AddOne:
+add r2, #1 
+strb r2, [r3] 
+b DisplayMask
+
+DisplayMask:
+lsl r0, r6, #16 
+lsr r0, #16 
+lsl r1, r6, #8 
+lsr r1, #24 
+@r2 is still rotation byte 
+bl AoE_CallDisplayDamageArea
+b HandleCode
 
 End:
 pop 	{r4-r6}

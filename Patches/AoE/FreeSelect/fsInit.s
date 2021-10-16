@@ -16,6 +16,10 @@ FreeSelect6C_Init:
 	_blh TCS_New
 	str 	r0, [r4, #0x30]
 	mov 	r1, #0x0
+	
+	@ vesly added 
+	str 	r1, [r4, #0x68] @ empty rotation on init 
+	
 	strh 	r1, [r0, #0x22]
 	
 	ldr 	r3, =pGameDataStruct

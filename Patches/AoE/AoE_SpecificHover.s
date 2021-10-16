@@ -49,6 +49,7 @@ ldr r3, [r3]
 ldrb r0, [r3, #0x10] @ XX 
 ldrb r1, [r3, #0x11] @ YY 
 @given r0 = xx, r1 = yy, r2= table entry pointer, display movement squares in a template around it 
+mov r3, #0 @ Rotation 
 bl AoE_DisplayDamageArea
 @mov r0, #42 
 @blh 0x801da98 @DisplayMoveRangeGraphics

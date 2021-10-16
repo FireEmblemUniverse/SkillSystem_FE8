@@ -20,6 +20,10 @@ AoE_Usability:
 push {r4-r5, lr} 
 @ given r0 = specific AoE table entry we want 
 mov r4, r0 
+
+
+
+
 ldr r3, =AoE_SkillTester 
 ldr r3, [r3] @ word 0 if skill tester doesn't exist 
 cmp r3, #0 
@@ -174,18 +178,19 @@ bx r0
 .type AoE_CallDisplayDamageArea, %function 
 
 AoE_CallDisplayDamageArea:
-push {r4-r5, lr}
+push {r4-r6, lr}
 
 mov r4, r0 
 mov r5, r1 
+mov r6, r2 @ rotation byte 
 bl AoE_GetTableEntryPointer
 mov r2, r0 
 mov r0, r4 
 mov r1, r5 
-
+mov r3, r6 @ rotation byte 
 bl AoE_DisplayDamageArea
 
-pop {r4-r5} 
+pop {r4-r6} 
 pop {r0}
 bx r0 
 
@@ -203,7 +208,7 @@ push {r4-r7, lr}
 mov r4, r0 
 mov r5, r1 
 mov r6, r2 @ AoE_GetTableEntryPointer
-
+mov r7, r3 @ rotation byte 
 
 
 ldr r0, =0x202E4E0 @ Movement map 
@@ -219,19 +224,24 @@ blh FillMap
 
 
 ldrb r2, [r6, #RangeMaskByte]
-lsl r2, #2 @ 4 bytes per entry 
+lsl r2, #2 @ x4 
+add r2, r7 @rotation byte 
+lsl r2, #2 @ 4 words per entry 
 ldr r1, =RangeTemplateIndexList
 ldr r2, [r1, r2] @ POIN to the RangeMask we want 
+
+
 
 @ Arguments: r0 = center X, r1 = center Y, r2 = pointer to template
 mov r0, r4 @ XX 
 mov r1, r5  @ YY 
-@bl CreateMoveMapFromTemplate
-bl CreateMoveMap2FromTemplate
-@ new vesly 
-ldr r0, =0x202E4F0 @ Previous map 
-ldr r1, =0x202E4E0 @ New Map 
-bl RotateMoveMap 
+bl CreateMoveMapFromTemplate
+@bl CreateMoveMap2FromTemplate
+@@ new vesly 
+@ldr r0, =0x202E4F0 @ Previous map 
+@ldr r1, =0x202E4E0 @ New Map 
+@mov r2, r6 
+@bl RotateMoveMap 
 
 ldrb r1, [r6, #ConfigByte] @ Stationary bool 
 mov r0, #HealBool
@@ -824,7 +834,15 @@ beq End_AoE
 bl AoE_GetTableEntryPointer
 mov r4, r0 
 ldrb r2, [r4, #RangeMaskByte]
-lsl r2, #2 @ 4 bytes per entry 
+lsl r2, #2 @ x4 
+ldr r3, =MemorySlot 
+ldrb r3, [r3, #4*0x03] @ Slot 3 as rotation 
+lsl r3, #30 
+lsr r3, #30 @ Just in case - make only our 4 rotations valid 
+add r2, r3 
+
+@ rotation 
+lsl r2, #2 @ 4 words per entry 
 ldr r1, =RangeTemplateIndexList
 ldr r0, [r1, r2] @ POIN to the RangeMask we want 
 

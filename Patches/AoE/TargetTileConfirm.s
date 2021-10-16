@@ -60,7 +60,10 @@ strh r2, [r3] @ YY
 bl AoE_Animation
 
 
-
+ldr r3, =MemorySlot
+mov r2, #0x68 @ byte 0x68 of Proc  
+ldrb r2, [r4, r2] 
+str r2, [r3, #4*0x03] @ Store to Memory Slot 3 as rotation 
 
 ldr r0, =AoE_MainEvent
 mov r1, #1 

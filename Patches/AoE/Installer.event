@@ -18,10 +18,11 @@ Hit multiple units.[X]
 
 
 ## UM_AoEHelp
-Select an area to Attack.[X]
+Select an area to Attack. Press L/R to Rotate.[X]
 
 ## UM_AoEHealHelp
-Select an area to Heal.[X]
+Select an area to Heal. Press L/R to Rotate.[X]
+
 
 */
 
@@ -32,10 +33,10 @@ Select an area to Heal.[X]
 
 // These are the submenu options that appear:
 ALIGN 4
-AoEMenuCommandsList:
-MenuCommand(UM_BlazeName, UM_BlazeDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1, AoE_0Hover|1, 0x8022C99)
-MenuCommand(UM_TorrentName, UM_TorrentDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1, AoE_1Hover|1, 0x8022C99)
-MenuCommand(UM_OvergrowthName, UM_OvergrowthDesc, NormalText, AoE_2Usability|1, AoE_2Effect|1, AoE_2Hover|1, 0x8022C99)
+AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1, AoE_0Hover|1, 0x8022C99)
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1, AoE_1Hover|1, 0x8022C99)
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_2Usability|1, AoE_2Effect|1, AoE_2Hover|1, 0x8022C99)
 UM_Separator 
 
 
@@ -112,7 +113,7 @@ SHORT 0 //Bgm/Sfx
 SHORT 1 // so we don't hide data in febuilder early 
 
 POIN 0 //Entry 1 
-POIN RocksEvent_MiddleVertical 
+POIN RocksEvent_Cross
 SHORT 0 // Bgm  
 SHORT 1 
 
@@ -122,7 +123,7 @@ SHORT 0
 SHORT 1 
 
 POIN 0 //0x807AD09 // Entry 3 - summon gfx 
-POIN RocksEvent_Horizontal
+POIN RocksEvent_Cross
 SHORT 0 
 SHORT 1 
 
@@ -135,6 +136,8 @@ ASMC AoE_Camera
 NoFade 
 ENDA 
 
+// Note that Memory Slot 3 is used to pass the rotation to the effect. 
+// If your animation event overwrites Memory Slot 3, you will get a random rotation. 
 
 RocksEvent_MiddleVertical:
 SVAL r1 2 // 2nd vertical line it finds 
