@@ -103,7 +103,7 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-House(0,TestCase, 6,5)
+House(0,GiveExp, 11,11)
 //Vendor(ShopItems,2,7)
 //Armory(ArmoryItems,10,26)
 //Village(0x8,VillageEvent,18,27)
@@ -111,12 +111,17 @@ House(0,TestCase, 6,5)
 //Seize(10,2)
 END_MAIN
 
+GiveExp:
+GiveEXP(0x7FFF, 100)
+NoFade 
+ENDA 
+
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-//AFEV 0 RefreshIfNotInDanger 0 
+AFEV 0 RefreshIfNotInDanger 0 
 
 Dunno1:
 END_MAIN

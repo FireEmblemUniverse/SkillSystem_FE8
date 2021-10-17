@@ -304,6 +304,11 @@
 //If true, the stat colors for player units will reflect their growth in the stat.
 #define USE_STAT_COLORS False
 
+//If true, Tiered Growths mode will exist. 
+#define TIERED_GROWTHS_MODE False 
+//ID of flag to use for tiered growths mode, if enabled
+//#define FIXED_GROWTHS_FLAG_ID 0xEF
+
 
 //If true, Fixed Growths mode will exist.
 #define FIXED_GROWTHS_MODE True

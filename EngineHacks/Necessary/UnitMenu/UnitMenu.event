@@ -75,14 +75,12 @@ UnitMenuTable:
 	// Debug command 
 	// MenuCommand(EscapeName, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
 
-#ifdef DEBUG_MODE
-MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
-#endif 
+
 
 // Modular Summon 
   MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
 	
-  
+  UM_Visit
   
   MenuCommand(0x67A, 0x6CC, BlueText, $22FDC, $23020)
   // UM_Seize
@@ -99,12 +97,12 @@ MenuCommand(UM_GaidenBlackMagic,UM_GaidenMagicDesc,NormalText,GaidenBlackMagicUM
 
 // Capture uses GaidenMagic stuff 
 MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsability,CaptureGaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
-
-
-
 //MenuCommand(UM_GaidenWhiteMagic,UM_GaidenMagicDesc,NormalText,GaidenWhiteMagicUMUsability,GaidenWhiteMagicUMEffect,GaidenWhiteMagicUMHover,GaidenMagicUMUnhover)
 #endif // GAIDEN_MAGIC
-  
+
+#ifdef DEBUG_MODE
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+#endif 
 
   
 //Disappear after use
@@ -253,7 +251,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(0x680, 0x6c9, GreenText, 0x23c81, 0x23cc5)
   // UM_Support
   MenuCommand(0x681, 0x6ca, GreenText, 0x23d15, 0x23d65)
-  UM_Visit
+
   
   #ifdef RAID
     MenuCommand(RaidNameText,RaidDescText,NormalText,RaidUsability,RaidEffect)

@@ -247,7 +247,8 @@
 
  ALIGN 4
   Write_Growths_To_Battle_Struct:
-    #incbin "asm/Write_Growths_To_Battle_Struct.dmp"
+	#incbin "asm/Vesly_WriteGrowths.dmp" 
+    //#incbin "asm/Write_Growths_To_Battle_Struct.dmp"
         POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth
 	#ifdef USE_STRMAG_SPLIT
 		POIN Get_Mag_Growth
@@ -256,6 +257,7 @@
 	#endif // USE_STRMAG_SPLIT
 	POIN Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
     WORD Growth_Options
+	WORD TIERED_GROWTHS_MODE 
 
   ALIGN 4
 /*
