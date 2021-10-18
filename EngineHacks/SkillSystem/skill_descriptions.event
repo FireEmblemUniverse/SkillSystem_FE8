@@ -12,7 +12,7 @@ ORG 2*0xFF+SkillNameTable
 #define SkillName(skillID,name) "PUSH; ORG 2*skillID+SkillNameTable; SHORT name; POP"
 
 SkillDescription(WeakChipDmgID,SD_WeakChipDmg)
-SkillDescription(PiercingID,SD_Piercing)
+SkillDescription(ScaledBackID,SD_ScaledBack)
 SkillDescription(AcrobatID,SD_Acrobat)
 SkillDescription(PassID,SD_Pass)
 SkillDescription(CantoPlusID,SD_CantoPlus)
@@ -315,7 +315,7 @@ SkillDescription(SynchronizeID,SD_Synchronize)
 SkillDescription(SwarpID,SD_Swarp)
 
 SkillName(WeakChipDmgID,SN_WeakChipDmg)
-SkillName(PiercingID,SN_Piercing)
+SkillName(ScaledBackID,SN_ScaledBack)
 SkillName(AcrobatID,SN_Acrobat)
 SkillName(PassID,SN_Pass)
 SkillName(CantoPlusID,SN_CantoPlus)

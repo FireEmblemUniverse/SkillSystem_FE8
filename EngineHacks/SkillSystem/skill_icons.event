@@ -8,8 +8,8 @@ SkillIcons:
 ORG SkillIcon(WeakChipDmgID)
 #incbin "SkillIcons/Acrobat.dmp"
 
-ORG SkillIcon(PiercingID)
-#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(ScaledBackID)
+#incbin "SkillIcons/ScaledBack.dmp"
 
 ORG SkillIcon(AcrobatID)
 #incbin "SkillIcons/Acrobat.dmp"

@@ -22,6 +22,7 @@ lsl r0, #16
 add r3, r0 @ 1400c 
 mov r0, #0
 @mov   r3, #0x1400C @dead, undeployed, solo animation1, escaped - don't draw
+mov r11, r11 
 and   r2, r3
 cmp   r2, #0x0
 bne   Return                    @ Unit is dead, don't draw

@@ -73,6 +73,9 @@
 //Author Unknown (Initial Commit)
  PragmaticID 227
  
+ //Aptitude: +20% to all growth rates.
+//By Sme
+ AptitudeID 254
  
  
 .avoid 201 
@@ -187,9 +190,7 @@
 //By Sme
  BlossomID
 
-//Aptitude: +20% to all growth rates.
-//By Sme
- AptitudeID 254
+
 
 
 //HP Restoration Skills
@@ -948,6 +949,8 @@
  CunningID
  NiceThighsID
  PersonalityID
+
+ScaledBackID
 
 //Down With Arch: If the hit lands, instantly kill the enemy unit. (Only if name starts with "Arch")
  DownWithArchID 255

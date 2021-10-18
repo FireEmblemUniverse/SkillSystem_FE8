@@ -346,6 +346,12 @@ blh GetUnit
 ldr r1, [r0] 
 cmp r1, #0 
 beq AnyoneWithinRangeLoop
+ldr r1, [r0, #0x0C] 
+ldr r2, =0x1000C
+and r1, r2 
+cmp r1, #0 
+bne AnyoneWithinRangeLoop
+
 
 @ same as AreUnitsAllied at 24D8C 
 ldrb r3, [r6, #0x0B] @ CurrentUnit Allegiance 
