@@ -245,6 +245,18 @@
     POIN Get_Hp_Growth
     POIN Get_Palette_Index
 
+// Vesly's stuff 
+#include "asm/GetAverageStat.lyn.event"
+
+
+LowerTierForcedStatGain: 
+WORD ForcedStatGainXBelowAverage
+
+UpperTierPreventStatGain:
+WORD PreventStatGainXAboveAverage
+
+
+
  ALIGN 4
   Write_Growths_To_Battle_Struct:
 	#incbin "asm/Vesly_WriteGrowths.dmp" 
@@ -258,6 +270,12 @@
 	POIN Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
     WORD Growth_Options
 	WORD TIERED_GROWTHS_MODE 
+	POIN GetAverageStat
+	POIN TieredLevelUp
+	WORD MinimumStatsOnLevelUpDef
+	
+ALIGN 4
+
 
   ALIGN 4
 /*

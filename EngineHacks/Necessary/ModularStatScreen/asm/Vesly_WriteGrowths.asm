@@ -17,6 +17,9 @@
 .equ Get_Luk_Growth, Class_Level_Cap_Table+32
 .equ Growth_Options, Class_Level_Cap_Table+36
 .equ TieredGrowthOptions, Class_Level_Cap_Table+40 
+.equ GetAverageStat, Class_Level_Cap_Table+44 
+.equ TieredLevelUp, Class_Level_Cap_Table+48
+.equ MinimumStatsOnLevelUp, Class_Level_Cap_Table+52 
 
 
 
@@ -71,11 +74,28 @@ strb	r0,[r7,#0x9]	@ store the new exp. If the unit is capped, then we stored 0xF
 mov		r4,#0			@ zeroing out r4 to use as a flag.
 mov		r5,#0			@ zeroing out r5 to use as a counter.
 
-b UseTieredGrowths
+
 
 ldr 	r0, TieredGrowthOptions 
 ldrb 	r0, [r0] 
 cmp 	r0, #0
+beq TryOtherGrowths
+
+
+
+
+mov r0, #0xAE @ flag 
+
+
+
+
+
+
+
+ldr		r1,Check_Event_ID	@ bytes 2 and 3 of the opinion word are a (permanent) event ID, which is set if fixed growths are on (makes it easy to toggle)
+mov		r14,r1
+.short	0xF800
+cmp r0, #0 
 beq TryOtherGrowths
 b UseTieredGrowths
 TryOtherGrowths:
@@ -107,11 +127,6 @@ b Exit
 	add		r1,r6
 	strb	r0,[r1]			
 	add		r5,r0			@ add r0 (level-up number) to r5 (counter) and store it in r5 (this is equal to add r5,r5,r0)
-	cmp r4, #0 
-	.short 0xD002 @ beq - jump some lines forward 
-	cmp r5, #2 
-	bge CheckCapsLadder
-	mov r8, r8
 .endm
 
 .macro FixedLevelUp
@@ -169,16 +184,16 @@ LevelUp
 ldr		r0,Get_Luk_Growth
 mov r6, #0x79 
 LevelUp 
-mov r8, r8 
-mov r8,r8 
-cmp		r5,#0x2 @if not 2 pr more stats, retry
+ldr r0, MinimumStatsOnLevelUp
+ldrb r0, [r0] 
+cmp		r5,r2 @if 2 or more stats, we're happy 
 bge		CheckCapsLadder
 add 	r4, #1 
 @ At the end of each iteration, we break if at least 2 stats leveled up 
 				@ If 0 or 1 stats did, we do an entire iteration again 
-				@ Therefore, 1 of your stats might sometimes raise by 2 :-) 
 cmp 	r4, #6 @ We will try up to 6 times 
 bge 	CheckCapsLadder 
+mov r5, #0
 b HpGrowth 
 
 
@@ -249,89 +264,175 @@ add		r6,#19			@ add 2 levels if the unit is promoted (otherwise, without 100+ gr
 
 TieredHpGrowth:
 ldr	r0,Get_Hp_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x12 @max hp 
-mov r2, r7 
-mov r3, #0x73 
-@ r0 = growth function 
-@ r1 = # of levels 
-@ r2 = atkr/dfdr 
-@ r3 = stat offset 
-bl TieredLevelUp
+mov r1, #0 @ hp 
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x12 @ stat 
+mov r2, r7 @ unit 
+
+@ r0 = average stat 
+@ r1 = stat byte 
+@ r2 = atkr/dfdr/unit 
+@ r3 = growth function 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Hp_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x73 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 ldr	r0,Get_Str_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x14 @max hp 
-mov r2, r7 
-mov r3, #0x74
-bl TieredLevelUp
+mov r1, #1 @ str
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x14 @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Str_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x74 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 ldr	r0,Get_Mag_Growth
 cmp r0, #0 
 beq SkipMag
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x3a @max hp 
-mov r2, r7 
-mov r3, #0x7a
-bl TieredLevelUp
+mov r1, #7 @ mag
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x3a @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Mag_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x7a 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 SkipMag:
 
 ldr	r0,Get_Skl_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x15 @max hp 
-mov r2, r7 
-mov r3, #0x75 
-bl TieredLevelUp
+mov r1, #2 @ skl
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x15 @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Skl_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x75 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 ldr	r0,Get_Spd_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x16 @max hp 
-mov r2, r7 
-mov r3, #0x76 
-bl TieredLevelUp
+mov r1, #3 @ spd 
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x16 @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Spd_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x76 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 ldr	r0,Get_Def_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x17 @max hp 
-mov r2, r7 
-mov r3, #0x77
-bl TieredLevelUp
+mov r1, #4 @ def 
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x17 @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Def_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x77 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 ldr	r0,Get_Res_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x18 @max hp 
-mov r2, r7 
-mov r3, #0x78
-bl TieredLevelUp
+mov r1, #5 @ res 
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x18 @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Res_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x78 
+mov r2, r7 
+strb r0, [r2, r3] 
 
 ldr	r0,Get_Luk_Growth
-mov r1, r6 
-lsl r1, #8 
-add r1, #0x19 @max hp 
-mov r2, r7 
-mov r3, #0x79 
-bl TieredLevelUp
+mov r1, #6 @ luck 
+mov r2, r7 @ Unit 
+ldr r3, GetAverageStat
+mov r14, r3
+mov r3, r6 @ Levels gained 
+.short 0xf800
+@ r0 is the average stat 
+mov r1, #0x19 @ stat 
+mov r2, r7 @ unit 
+ldr r3, TieredLevelUp
+mov r14, r3
+ldr	r3,Get_Luk_Growth
+.short 0xf800
 add r5, r0 @ stats gained
+mov r3, #0x79
+mov r2, r7 
+strb r0, [r2, r3] 
 
-b CheckCaps
-
-
-
+ldr r0, MinimumStatsOnLevelUp
+ldrb r0, [r0] 
+cmp		r5,r2 @if 2 or more stats, we're happy 
+bge CheckCaps 
+add r4, #1 
+cmp r4, #6 @ try up to 6 times 
+bge CheckCaps 
+mov r5, #0 
+b UseTieredGrowths
 
 
 DivideBy100:
@@ -365,59 +466,8 @@ pop {r0}
 bx r0 
 
 
-.align 
 
-TieredLevelUp:
-push {r4-r7, lr}
-@ r0 = growth function 
-@ r1 = # of levels 
-@ r2 = atkr/dfdr 
-@ r3 = stat offset 
-mov r5, r3 
-lsl r4, r1, #24 
-lsr r4, #24 
-lsl r6, r1, #16 @lvls 
-lsr r6, #24 @lvls 
-mov r7, r2 @ unit 
-mov r14, r0 @ funtion 
-mov r0, r7 
-.short 0xf800 
-
-mov r3, r0 @ growth 
-push {r3}
-mul		r0,r6			@ multiply growth by # of levels
-mov r1, #100 
-swi 6
-pop {r3}
-@mov r11, r11 
-cmp r0, #1 
-blt NoLowerCap
-sub r0, #1 
-NoLowerCap:
-ldrb r1, [r7, r4] @ stat 
-cmp r0, r1 
-bge RandomGainStat
-mov r0, #1 @ gain the stat 
-b StoreStat
-
-RandomGainStat:
-mov r0, r3 @ growth 
-ldr r3, Calc_Level_Up
-mov r14, r3 
-.short 0xf800 
-StoreStat:
-mov		r1,r7
-add		r1,r5
-strb	r0,[r1]			
-
-@ return t/f 
-pop {r4-r7}
-pop {r1} 
-bx r1 
-
-
-
-
+.ltorg
 .align
 Can_Gain_Exp:
 .long 0x0802B9F4
@@ -431,5 +481,3 @@ Check_Event_ID:
 .long 0x08083DA8
 Class_Level_Cap_Table:
 
-
-.align 4

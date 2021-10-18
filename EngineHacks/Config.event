@@ -309,6 +309,10 @@
 //ID of flag to use for tiered growths mode, if enabled
 //#define FIXED_GROWTHS_FLAG_ID 0xEF
 
+#define ForcedStatGainXBelowAverage 3
+#define PreventStatGainXAboveAverage 5
+#define MinimumStatsOnLevelUpDef 2 
+
 
 //If true, Fixed Growths mode will exist.
 #define FIXED_GROWTHS_MODE True
