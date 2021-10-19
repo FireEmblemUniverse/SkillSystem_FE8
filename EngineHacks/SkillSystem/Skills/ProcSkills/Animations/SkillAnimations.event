@@ -1,12 +1,3 @@
-ALIGN 4
-SkillActivationAnims:
-#incbin "AnimActivation/activationanims.dmp"
-POIN SkillAnimationTable
-
-ALIGN 4
-SkillActivationAnims_defensive:
-#incbin "AnimActivation/activationanims_defensive.dmp"
-POIN SkillAnimationTable
 
 ALIGN 4
 LunaAnim:

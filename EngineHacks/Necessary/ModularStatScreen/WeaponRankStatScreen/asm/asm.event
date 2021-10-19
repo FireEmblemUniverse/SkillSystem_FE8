@@ -1,0 +1,42 @@
+PUSH
+
+  // Repoint weapon rank Description Getter RTexts
+  ORG 0xA00F5C
+  POIN WeaponDescGetter+0x1
+  ORG 0xA00F78
+  POIN WeaponDescGetter+0x1
+  ORG 0xA00F94
+  POIN WeaponDescGetter+0x1
+  ORG 0xA00FB0
+  POIN WeaponDescGetter+0x1
+  
+  // Repoint weapon rank Looper RTexts
+  ORG 0xA00F58
+  POIN WeaponDescLooper+0x1
+  ORG 0xA00F74
+  POIN WeaponDescLooper+0x1
+  ORG 0xA00F90
+  POIN WeaponDescLooper+0x1
+  ORG 0xA00FAC
+  POIN WeaponDescLooper+0x1
+
+  // Re-designate helptextIDs to match the new weaponrankdraw function which draws rows instead of columns.
+  ORG 0xA00F72
+  SHORT 0x2
+  ORG 0xA00F8E
+  SHORT 0x1
+
+POP
+
+// FSR Staff weaponrank comes BEFORE offensive magic in RAM Unitstruct
+// Which doesn't translate to the helptextIDs, so we do this.
+ALIGN 2
+WeaponHelpTextIDs:
+SHORT 0x561 0x562 0x563 0x564 0x568 0x565 0x566 0x567
+
+ALIGN 4
+WeaponDescGetter:
+#include "WeaponDescGetter.lyn.event"
+ALIGN 4
+WeaponDescLooper:
+#include "WeaponDescLooper.lyn.event"

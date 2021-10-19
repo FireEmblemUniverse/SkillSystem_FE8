@@ -48,9 +48,10 @@ ldrb  r1, [r4,#0x0B]  @allegiance byte of the character we are checking
 cmp r0, r1    @check if same character
 bne End
 
-@check if already cantoing
+@check if already cantoing, and is not in a ballista
 ldr	r0, [r4,#0x0C]	@status bitfield
-mov	r1, #0x40	@has moved already
+mov	r1, #0x21
+lsl	r1, #0x06	@has moved already and is in a ballista
 and	r0, r1
 cmp	r0, #0x00
 bne	End

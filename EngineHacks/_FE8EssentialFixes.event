@@ -23,6 +23,16 @@ POP
 //Fix MNC2 Freezing glitch (breaks skirmishes!)
   ORG $BD070
   SHORT $E0B8
+  
+// Remove hardcoded checks for chapter 5x (by Stan)
+    
+	// do not display 0 gold in 5x
+    ORG $024DF2
+        SHORT $46C0 // nop
+    
+	// allow convoy access in 5x
+    ORG $03164E
+        SHORT $E003 // b 0x08031658
 
 //Set Default Options
   ORG $30d8a  //animations type 2

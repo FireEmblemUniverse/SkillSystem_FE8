@@ -7,9 +7,6 @@
 // = GENERAL CONFIGURATION =
 // =========================
 
-// If commented, the skill reorder warning will not be displayed.
-#define SHOW_SKILL_WARNING
-
 // If commented, the test map will not be installed.
 #define USE_TEST_MAP
 
@@ -17,7 +14,7 @@
 #define AS_DOUBLING_THRESHOLD 3
 
 // If true, dropped items will retain their durability.
-#define DROPPED_ITEM_DURABILITY False
+#define DROPPED_ITEM_DURABILITY True
 
 // ===================================
 // = HACK INSTALLATION CONFIGURATION =
