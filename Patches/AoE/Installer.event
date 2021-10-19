@@ -79,9 +79,9 @@ AoE_Table:
 // Entry 
 BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
+BYTE 0 FriendlyFireBool|MagBasedBool
 BYTE 5 5 // damage range 
-BYTE 3 7 // Attack range 
+BYTE 0 2 // Attack range 
 BYTE 0 1 // Index of RangeMask, Animation
 
 
@@ -90,7 +90,7 @@ BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
 BYTE 5 5 // damage range 
-BYTE 0 4 // Attack range 
+BYTE 1 3 // Attack range 
 BYTE 1 2 // Index of RangeMask, Animation
 
 // Entry 
@@ -98,7 +98,7 @@ BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
+BYTE 2 4 // Attack range 
 BYTE 2 3 // Index of RangeMask, AnimationALL,
 AoE_TableTerminator
 

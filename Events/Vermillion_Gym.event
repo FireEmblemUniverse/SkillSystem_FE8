@@ -1,6 +1,6 @@
 #define ChapterID VermillionGymCh
 #define WildLvl 5 
-#define TrainerL 18 
+#define TrainerL 21
 
 
 
@@ -72,13 +72,14 @@ CAM1 [8,6]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(7, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
 SilentGiveSkillAccessory(0xD0, LifeAndDeathID)
-SilentGiveItemWithDurability(0xD0, JellyDonut,0x3)
+SilentGiveItemWithDurability(0xD0, SuperPotion,0x1)
 SilentGiveItemWithDurability(0xA0, Berry,0x82)
 SilentGiveItemWithDurability(0xA1, Berry,0x82)
 SilentGiveItemWithDurability(0xA2, Berry,0x82)
@@ -151,12 +152,12 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 RaichuID 0x0 Level(2, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 		[Thunderbolt,AttackPulse,0x0,0x0] ZoningHeal80GroupOneAI
-UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x1 REDA6R6 	[Thundershock,Tackle,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 VoltorbID 0xD0 Level(1, Enemy, 1) [8,6]  0b 0x0	0x1 REDA8R6 	[Thundershock,Tackle,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 RaichuID 0x0 Level(2, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 		[Thunderbolt,AttackPulse,GrassKnot,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x1 REDA6R6 	[Thundershock,Tackle,ThunderWave,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 ElectrodeID 0xD0 Level(1, Enemy, 1) [8,6]  0b 0x0	0x1 REDA8R6 	[Screech,0x0,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA2 ElectabuzzID 0xD0 Level(1, Enemy, 1) [6,9]  0b 0x0 0x1 REDA6R9 [ThunderPunch,IcePunch,FirePunch,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 JolteonID 0xD0 Level(1, Enemy, 1) [8,9]  0b 0x0	0x1 REDA8R9 	[Thundershock,TailWhip,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 CuboneID 0xD0 Level(1, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 JolteonID 0xD0 Level(1, Enemy, 1) [8,9]  0b 0x0	0x1 REDA8R9 	[Thundershock,TailWhip,TakeDown,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 MarowakID 0xD0 Level(1, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 
 

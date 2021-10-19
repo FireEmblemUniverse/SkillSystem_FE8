@@ -78,7 +78,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  MagikarpID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  WartortleID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -142,7 +142,7 @@ ENUN
 LOAD1 0x1 Units2
 ENUN
 
-LOAD1 0x1 Units3
+//LOAD1 0x1 Units3
 ENUN
 UNCM(0x12, 0x9)
 UNCM(0x13, 0x9)
@@ -201,7 +201,7 @@ GIVETOMAIN 0
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(1, True, 0x145) // all 
+AutoLevelUnits(18, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
@@ -220,9 +220,9 @@ Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 PokemonTowerF1Ch
 //MNC2 ViridianForestSCh
 //MNC2 Route4WCh
-MNC2 MtMoonB3Ch
+//MNC2 MtMoonB3Ch
 //MNC2 Route5Ch
-//MNC2 VermillionCh
+MNC2 VermillionGymCh
 //MNC2 CeruleanCh
 //MNC2 Route9WCh
 //MNC2 SSAnneCh

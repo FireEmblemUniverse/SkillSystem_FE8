@@ -25,6 +25,8 @@ defWeaponDebuffs(0,0,0,0,0,0,0) //0x0: let 0-index entry be no debuffs.
 #define GoodResDebuff 0x14
 #define GoodMagDebuff 0x15
 
+#define MedDefResDebuff 0x16
+
 
 #define CannotDouble 0xC
 
@@ -56,6 +58,10 @@ defWeaponDebuffs(0,0,0,0,15,0,0) //0x12: Def debuff
 defWeaponDebuffs(0,0,0,0,0,15,0) //0x13: Res debuff.
 
 defWeaponDebuffs(0,0,0,0,0,0,15) //0x15: Mag debuff 
+
+defWeaponDebuffs(0,0,0,0,10,10,0) //0x15: Mag debuff 
+
+
 
 #include "Manual/_Master Manual Table Installer.event"
 #include "StatBoosters.event"

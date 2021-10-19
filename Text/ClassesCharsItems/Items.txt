@@ -20,6 +20,7 @@ Recover[X]
 ## RecoverDescText
 Restore 25% HP.[X]
 
+
 ## HeavyWardName ^
 Heavy Ward[X]
 
@@ -601,8 +602,8 @@ Thunder Punch[X]
 Withdraw[X]
 ## AbsorbName
 Absorb[X]
-## LeechSeedName ^
-Leech Seed[X]
+## GrassKnotName ^
+Grass Knot[X]
 ## MegaDrainName ^
 Mega Drain[X]
 ## PetalDanceName
@@ -653,7 +654,7 @@ Chip damage. Debuffs Str by 5.[X]
 *{(} A powerful punch.[X]
 
 ## ThunderboltDesc
-A powerful bolt of electricity.[X]
+*{)} A powerful bolt of electricity.[X]
 
 ## PoundDesc
 *{(} Debuffs Luk.[X]
@@ -932,6 +933,13 @@ X-Scissor[X]
 *{(}Placeholder description.[X]
 
 
+
+## ScreechName
+Screech[X]
+
+## ScreechDesc
+Chip damage. Greatly debuffs Def/Res.[X]
+
 ## ThunderWaveName ^
 Thunder Wave[X]
 ## ThunderWaveDesc
@@ -1059,7 +1067,7 @@ Chip damage. Reduces Res by -4.[X]
 *{(}Slams the foe with a powerful tackle.[X]
 
 ## SplashDesc
-Chip damage. Does nothing.[X]
+Does nothing.[X]
 
 ## SuperFangDesc
 *{(}Bites with hard fangs.[X]
@@ -1123,6 +1131,9 @@ Water Pulse[X]
 
 ## LeechSeedDesc
 *{)}Saps the health of the target.[X]
+
+## GrassKnotDesc
+*{(}Trip the foe with a vine.[X]
 
 ## MegaDrainDesc
 *{)}Drains the health of the foe.[X]

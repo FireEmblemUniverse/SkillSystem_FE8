@@ -86,6 +86,7 @@ WORD 0
 //TailWhip FireSpin StringShot Smog Snarl ThunderWave Acid PoisonPowder
 
 NegateDefEntry(Constrict     , 63)
+NegateDefEntry(Screech     , 63)
 NegateDefEntry(Flash         , 63)
 NegateDefEntry(Growl         , 63)
 NegateDefEntry(Leer          ,  63)

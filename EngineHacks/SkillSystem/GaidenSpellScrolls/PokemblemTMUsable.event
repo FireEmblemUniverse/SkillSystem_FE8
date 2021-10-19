@@ -183,7 +183,7 @@ BYTE 0
 ALIGN 4
 SandslashTMs:
 BYTE IronTail LeechLife PoisonJab RockTomb Rollout PinMissile Sandstorm FuryCutter XScissor
-BYTE CrushClaw Cut HyperBeam SignalBeam SandAttack Scratch Slash Swift RockSlide
+BYTE Cut HyperBeam SignalBeam SandAttack Scratch Slash Swift RockSlide
 BYTE SwordsDance SeismicToss KarateChop PoisonSting
 BYTE 0
 
@@ -918,7 +918,7 @@ BYTE 0
 
 ALIGN 4
 MewTMs:
-BYTE Barrage Bind BodySlam CometPunch Constrict Covet CrushClaw Cut
+BYTE Barrage Bind BodySlam CometPunch Constrict Covet Screech Cut
 BYTE Doubleslap DoubleHit DoubleEdge EggBomb Explosion Flash AttackPulse Glare Dig Magnitude
 BYTE Growl Growth Guillotine Headbutt HornAttack HornDrill HyperBeam SignalBeam
 BYTE HyperFang Leer MegaKick MegaPunch PayDay Pound QuickAttack Rage
@@ -927,7 +927,7 @@ BYTE FlashCannon MetalSound Slash Splash SuperFang Swift SwordsDance
 BYTE Tackle DoubleHit TailWhip TakeDown Thrash TriAttack FirePunch MegaPunch Clamp
 BYTE FlameWheel Flamethrower Ember Scorch FireSpin FireBlast SacredFire Surf
 BYTE Clamp Crabhammer HydroPump Waterfall Absorb
-BYTE WaterPulse WaterGun Bubble BubbleBeam LeechSeed LeafBlade
+BYTE WaterPulse WaterGun Bubble BubbleBeam GrassKnot LeafBlade
 BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance VineWhip ThunderX ThunderPunch
 BYTE Thundershock Thunderbolt VoltTackle ThunderWave Spark Blizzard
 BYTE AuroraBeam IceBeam IcePunch Avalanche KarateChop DoubleKick Acid

@@ -8,7 +8,12 @@
 
 #include "RecoverMove.lyn.event" 
 
+#include "SplashMove.lyn.event"
 
+UseSplashEvent:
+TutText(SplashMeterRisingText)
+NoFade 
+ENDA 
 
 
 

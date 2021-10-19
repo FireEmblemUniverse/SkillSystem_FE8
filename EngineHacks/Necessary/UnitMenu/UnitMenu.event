@@ -101,7 +101,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 #endif // GAIDEN_MAGIC
 
 #ifdef DEBUG_MODE
-MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+//MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 #endif 
 
   
@@ -123,7 +123,6 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   //UM_Interact_Disappear
   MenuCommand(UM_Interact,UM_InteractDesc,BlueText, GenericTrapDisappearUsability0x26, GenericTrapDisappearEffect)
 
-//dummy entries to get the address 
   //UM_Jump
   MenuCommand(UM_Jump,UM_JumpDesc,BlueText, GenericTrapDisappearUsability0x27, GenericTrapDisappearEffect)
   //UM_Eat
@@ -293,9 +292,13 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
     MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
   #endif
 
+
+MenuCommand(UM_SplashName, UM_SplashDesc, GreenText, SplashCommandUsability, SplashCommandEffect)
+
   UM_Item
   
 MenuCommand(UM_RecoverName, UM_RecoverDesc, BlueText, RecoverCommandUsability, RecoverCommandEffect)
+
     //UM_Call, UM_CallDesc 
     MenuCommand(UM_Call, UM_CallDesc, GreenText, CallCommandUsability, CallCommandEffect)
   //UM_Rest, UM_RestDesc 

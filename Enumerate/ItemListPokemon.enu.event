@@ -5,7 +5,7 @@
 #define CometPunch 0x5
 #define Constrict 0x6
 #define Covet 0x7
-#define CrushClaw 0x8
+#define Screech 0x8
 #define Cut 0x9
 #define Doubleslap 0xA
 #define DoubleHit 0xB
@@ -68,7 +68,7 @@
 #define Waterfall 0x44
 #define WaterPulse 0x45
 #define Absorb 0x46
-#define LeechSeed 0x47
+#define GrassKnot 0x47
 #define MegaDrain 0x48
 #define PetalDance 0x49
 #define LeafFlurry 0x4A

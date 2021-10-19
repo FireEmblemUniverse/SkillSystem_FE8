@@ -4,7 +4,7 @@
 
 ALIGN 4
 ChipDamageWeaponList:
-BYTE Constrict Flash Growl Leer Pound SandAttack TailWhip FireSpin StringShot Smog Snarl ThunderWave Acid PoisonPowder 
+BYTE Constrict Flash Growl Leer Pound SandAttack TailWhip FireSpin StringShot Smog Snarl ThunderWave Acid PoisonPowder Screech
 BYTE 0x0 //terminator
 ALIGN 4 
 WORD 0
