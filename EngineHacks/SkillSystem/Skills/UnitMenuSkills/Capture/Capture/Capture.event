@@ -140,8 +140,7 @@
 	
 	ALIGN 4
 	Blank_Portrait:
-	//#incext PortraitFormatter "blank_portrait.png"
-	#incbin "blank_portrait.dmp"
+	#incext PortraitFormatter "blank_portrait.png"
 	setMugEntry(0x1, Blank_Portrait, 3, 5, 3, 3)
 	
 #else

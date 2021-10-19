@@ -44,40 +44,40 @@ gpRallyDebuffsAddr:
 ALIGN 4
 gRallyPreviewPalette:
 gRallyGenericPalette:
-	#incbin "data/generic_pal.dmp"
+	#incext Png2Dmp "data/fx-preview.png" --palette-only
 
 ALIGN 4
 gRallyStrengthPalette:
-	#incbin "data/str_pal.dmp"
+	#incext Png2Dmp "data/fx-strength.png" --palette-only
 
 ALIGN 4
 gRallySkillPalette:
-	#incbin "data/skl_pal.dmp"
+	#incext Png2Dmp "data/fx-skill.png" --palette-only
 
 ALIGN 4
 gRallySpeedPalette:
-	#incbin "data/spd_pal.dmp"
+	#incext Png2Dmp "data/fx-speed.png" --palette-only
 
 ALIGN 4
 gRallyDefensePalette:
-	#incbin "data/def_pal.dmp"
+	#incext Png2Dmp "data/fx-defense.png" --palette-only
 
 ALIGN 4
 gRallyResistancePalette:
-	#incbin "data/res_pal.dmp"
+	#incext Png2Dmp "data/fx-resistance.png" --palette-only
 
 ALIGN 4
 gRallyLuckPalette:
-	#incbin "data/luk_pal.dmp"
+	#incext Png2Dmp "data/fx-luck.png" --palette-only
 
 ALIGN 4
 gRallyMovePalette:
-	#incbin "data/mov_pal.dmp"
+	#incext Png2Dmp "data/fx-move.png" --palette-only
 	
 #ifdef USE_STRMAG_SPLIT
 	ALIGN 4
 	gRallyMagicPalette:
-		#incbin "data/mag_pal.dmp"
+		#incext Png2Dmp "data/fx-magic.png" --palette-only
 #endif // USE_STRMAG_SPLIT
 
 #endif // HAX_RALLIES

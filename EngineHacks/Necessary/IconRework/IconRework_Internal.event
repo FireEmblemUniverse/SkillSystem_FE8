@@ -109,14 +109,14 @@ ORG (currentOffset+256)
 
 ALIGN 4
 AffinityIcons:
-#incbin "bin/AffinityIcons.dmp"
+#incext Png2Dmp "bin/AffinityIcons.png"
 
 ALIGN 4
 MountTypeIcons:
-#incbin "bin/MountTypeIcons.dmp"
+#incext Png2Dmp "bin/MountTypeIcons.png"
 
 ALIGN 4
 WRankIcons:
-#incbin "bin/WRankIcons.dmp"
+#incext Png2Dmp "bin/WRankIcons.png"
 
 #endif // HAX_ICON_REWORK_INTERNAL
