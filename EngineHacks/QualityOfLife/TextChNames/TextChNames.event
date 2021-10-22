@@ -3,6 +3,7 @@
 
 // Chapter Names as Text.
 // Hack by circleseverywhere
+// Extended Latin charset support by hypergammaspaces
 
 #ifdef _FE8_
 
@@ -23,10 +24,10 @@
 
   ChFont:
     //#incext Png2Dmp "bin/font.png" --lz77
-    #incbin "bin/font.dmp"
+    #incbin "bin/font-extended.dmp"
 
   ChTable:
-    #incbin "bin/chartable.dmp"
+    #incbin "bin/chartable-extended.dmp"
 
   }
 
