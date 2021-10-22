@@ -1,0 +1,49 @@
+#ifndef MSG_BALLISTAE_GETTERS
+#define MSG_BALLISTAE_GETTERS
+
+#define prGetBallistaItemAt  0x0803798C
+	
+#define rCallForUnitPosition(aprRoutine) "SHORT $B510 $2301 $4C06 $405C $469E $44FE $4720 $4B05 $2201 $4053 $4696 $44FE $4718 $BC10 $BC02 $4708; POIN prGetUnitPosition aprRoutine"
+
+/*
+	$B510 //push {r4, lr}
+	$2301 //mov r3, #0x1
+	$4C06 //ldr r4, =prGetUnitPosition
+	$405C //eor r4, r3
+	$469E //mov r14, r3
+	$44FE //add r14, r15
+	$4720 //bx r4
+
+	$4B05 //ldr r3, =aprRoutine
+	$2201 //mov r2, #0x1
+	$4053 //eor r3, r2
+	$4696 //mov r14, r2
+	$44FE //add r14, r15
+	$4718 //bx r3
+	$BC10 //pop {r4}
+	$BC02 //pop {r1}
+	$4708 //bx r1
+*/
+	
+ALIGN 4	
+prGetUnitPosition:
+	SHORT $2310 //mov r3, #0x10
+	SHORT $56C8 //ldsb r0, [r1, r3]
+	SHORT $2311 //mov r3, #0x11
+	SHORT $56C9 //ldsb r1, [r1, r3]
+	SHORT $4770 //bx r14
+	SHORT $46C0 //nop for alignment
+
+prGetLoadedBallistaAt:
+	rCallForUnitPosition(prGetBallistaItemAt)
+ALIGN 4
+
+#define rIfOnLoadedBallista "rIf(prGetLoadedBallistaAt)"
+#define rIfOnLoadedBallista(arNext) "rIf(prGetLoadedBallistaAt); arNext"
+
+#define rIfRidingLoadedBallista "rIfUnitHasState(US_INBALLISTA); rIfOnLoadedBallista"
+#define rIfRidingLoadedBallista(arNext) "rIfUnitHasState(US_INBALLISTA); rIfOnLoadedBallista; arNext"
+
+#define rForCurrentBallista(arNext) "rForResultOf(prGetLoadedBallistaAt); arNext"
+
+#endif

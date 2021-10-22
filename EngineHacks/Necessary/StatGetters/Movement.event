@@ -48,6 +48,6 @@ prAddEquipMov:
 
 ALIGN 4
 prItemPassiveMov:
-	rPassiveStatBoosts(STAT_MOV)
+	rPassiveStatBoostsStacking(STAT_MOV)
 
 #endif // MODULAR_GETTER_MOVEMENT_EVENT

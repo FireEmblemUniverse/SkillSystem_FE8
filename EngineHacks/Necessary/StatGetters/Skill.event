@@ -25,6 +25,6 @@ prRallySkl:
 	POIN GetDebuffs|1
 
 prItemPassiveSkl:
-	rPassiveStatBoosts(STAT_SKILL)
+	rPassiveStatBoostsStacking(STAT_SKILL)
 
 #endif // MODULAR_GETTER_SKILL_EVENT

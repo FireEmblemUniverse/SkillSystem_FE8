@@ -168,6 +168,9 @@
 // If uncommented, the third page of the stat screen will only show weapon ranks that the unit has a rank in.
 #define ONLY_SHOW_USED_RANKS
 
+// If uncommented, the second page of the stat screen will display data of map-based ballista in the inventory.
+#define QOL_STAT_SCREEN_BALLISTA
+
 // If uncommented, Gaiden Magic 2.0 will be enabled.
 // Set spell lists in ExternalHacks/GaidenMagic/GaidenSpellLists.event.
 // Set spell HP costs in "Item editors/Gaiden Spell Cost Tables.csv"
