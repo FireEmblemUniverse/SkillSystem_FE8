@@ -57,6 +57,7 @@ STAL 22
 RemoveTrap 
 
 DISA 0xFC 
+ASMC 0x8026689 //SMS_Init - refresh SMS in case we've gone overboard 
 STAL 5
 
 

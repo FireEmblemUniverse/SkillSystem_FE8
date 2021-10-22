@@ -1,0 +1,13 @@
+[0202BE88]? // Player1 displayed class sprite ram 
+with value 203A024 (wartortle)
+
+[0909FF52]? - wartortle class sprite rom 
+we want to replace with 0x75 (pokeball) in prep menu only 
+
+17918
+in GetUnitSMSIndex at 17904 
+
+
+
+
+

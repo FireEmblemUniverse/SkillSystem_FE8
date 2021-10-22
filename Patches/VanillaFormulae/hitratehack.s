@@ -12,7 +12,7 @@ ldsb r2,[r4,r2] @ Skill in r2
 @lsl r1, r2, #1 @ Skill * 2 
 mov r1, r2 
 add r1, #1 @ So we never multiply by 0 
-mul r0, r1 @ wep hit rate * (skill*2) 
+mul r0, r1 @ wep hit rate * (skill) 
 mov r1, #100 
 swi 0x6 @ Divide r0 by r1 
 		@ Probably clobbers the scratch registers 

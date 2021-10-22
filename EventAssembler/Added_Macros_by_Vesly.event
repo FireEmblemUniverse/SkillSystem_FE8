@@ -8,7 +8,7 @@
 #define ReturnToMapBGM "ASMC 0x80160D1" // Return to map BGM 
 #define ReorderParty "ASMC 0x080956d9" // Reorder player units 
 #define QuickSave "ASMC 0x80B5D5D"
-
+#define RefreshSMS "ASMC 0x8026689" //SMS_Init - refresh SMS OBJ space in case we've exceeded because >16 'mons 
 
 // Text 
 #define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 

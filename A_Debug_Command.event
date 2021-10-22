@@ -6,7 +6,7 @@
 
 ALIGN 4
 DebugCommandEvent:
-
+ASMC 0x8026689 //SMS_Init
 
 //RemoveTrap(16,15)
 //AddTrap(LightRuneTrapID,16,15)

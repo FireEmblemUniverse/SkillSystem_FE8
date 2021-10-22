@@ -36,7 +36,7 @@ jumpToHack_r3(DisplayDurabilityTradeWindowSmall)
 
 POP
 
-
+#include "MinimumDamage.lyn.event"
 
 
 #include "DisplayDurabilitySupply.lyn.event"
