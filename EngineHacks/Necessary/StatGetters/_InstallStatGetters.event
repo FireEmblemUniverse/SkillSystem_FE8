@@ -5,6 +5,7 @@
 #include "../MSG/InstallHelpers.event"
 #include "../MSG/Extensions/SkillSystem.event"
 #include "../MSG/Extensions/PassiveItemStatBonuses.event"
+#include "../MSG/Extensions/BallistaUtilities.event"
 #ifdef USE_STRMAG_SPLIT
 	#include "../MSG/Extensions/Strmag.event"
 #endif // USE_STRMAG_SPLIT

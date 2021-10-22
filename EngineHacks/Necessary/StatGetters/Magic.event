@@ -21,6 +21,6 @@ MagDebuffTableLink:
 POIN GetDebuffs|1
 
 prItemPassiveMag:
-	rPassiveStatBoosts(0x09)
+	rPassiveStatBoostsStacking(0x09)
 
 #endif // MODULAR_GETTER_MAGIC_EVENT

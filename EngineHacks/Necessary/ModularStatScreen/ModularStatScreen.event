@@ -156,8 +156,15 @@
   
   #endif // USE_STRMAG_SPLIT
   
+  #ifdef QOL_STAT_SCREEN_BALLISTA
+  
+    #include "pages/mss_page2_ballista.lyn.event"
+
+  #else  // QOL_STAT_SCREEN_BALLISTA
   
     #include "pages/mss_page2_original.lyn.event"
+
+  #endif  // QOL_STAT_SCREEN_BALLISTA
   
   #ifdef ONLY_SHOW_USED_RANKS
   

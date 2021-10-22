@@ -15,7 +15,7 @@ add     sp,#-0x4                @@ 0808230E B081
 mov     r4,r0               @@ 08082310 1C04     
 mov     r0,r1               @@ 08082312 1C08    
 mov		r1,r2 
-bl      sub_80822a4               @@ 08082314 F7FFFFC6 @not in fe8?? 
+bl      LoadChapterName               @@ 08082314 F7FFFFC6 @not in fe8?? 
 mov     r7,r0               @@ 08082318 1C07     
 lsl     r0,r4,#0x5                @@ 0808231A 0160     
 mov     r1,#0x0C0               @@ 0808231C 21C0     
@@ -49,7 +49,7 @@ b       loc_80823C6               @@ 08082350 E039
  
 loc_8082368:
 mov     r0,r7               @@ 08082368 1C38     
-bl      routine_20e8               @@ 0808236A F7FFFEBD 
+bl      MapTextCharacterToFont               @@ 0808236A F7FFFEBD 
 mov     r2,r0               @@ 0808236E 1C02     
 cmp     r2,#0x80                @@ 08082370 2A80     
 bne     loc_8082386               @@ 08082372 D108     
@@ -66,7 +66,7 @@ mov     r6,r5               @@ 08082382 1C2E
 b       loc_80823C4               @@ 08082384 E01E   
 loc_8082386:  
 lsl     r1,r2,#0x3                @@ 08082386 00D1     
-ldr     r0, UnknownTablePtr     @=0x8CC2784               @@ 08082388 4804  @some kind of table??   
+ldr     r0, FontDimensionsTable     @=0x8CC2784  
 add     r4,r1,r0                @@ 0808238A 180C     
 ldrb    r3,[r4]               @@ 0808238C 7823     
 sub     r1,r6,r3                @@ 0808238E 1AF1     
@@ -113,7 +113,7 @@ pop     {r0}                @@ 080823D8 BC01
 bx      r0                @@ 080823DA 4700   
 .ltorg  
 
-sub_80822a4:
+LoadChapterName:
 push    {r4,r14}                @@ 080822A4 B510     
 mov     r4,r0               @@ 080822A6 1C04     
 cmp     r4,#0x0               @@ 080822A8 2C00     
@@ -187,7 +187,7 @@ mov     r4,#0x0               @@ 0808222A 2400
 b       loc_8082288               @@ 0808222C E02C   
 loop_808222E:  
 mov     r0,r6               @@ 0808222E 1C30     
-bl      routine_20e8               @@ 08082230 F7FFFF5A 
+bl      MapTextCharacterToFont               @@ 08082230 F7FFFF5A 
 cmp     r0,#0x80                @@ 08082234 2880     
 bne     loc_8082250               @@ 08082236 D10B     
 cmp     r4,r5               @@ 08082238 42AC     
@@ -205,7 +205,7 @@ mov     r4,r5               @@ 0808224C 1C2C
 b       loc_8082286               @@ 0808224E E01A   
 loc_8082250:  
 lsl     r1,r0,#0x3                @@ 08082250 00C1     
-ldr     r0,UnknownTablePtr @0x8CC2784               @@ 08082252 4805     
+ldr     r0,FontDimensionsTable @0x8CC2784               @@ 08082252 4805     
 add     r2,r1,r0                @@ 08082254 180A     
 ldrb    r0,[r2]               @@ 08082256 7810     
 sub     r1,r4,r0                @@ 08082258 1A21     
@@ -252,79 +252,200 @@ pop     {r1}                @@ 0808229E BC02
 bx      r1                @@ 080822A0 4708     
 .ltorg
 
-routine_20e8:
-push    {r14}               @@ 080820E8 B500     
-add     sp,#-0x20               @@ 080820EA B088     
-mov     r2,r0               @@ 080820EC 1C02     
-ldrb    r1,[r2]               @@ 080820EE 7811     
-mov     r0,r1               @@ 080820F0 1C08     
-sub     r0,#0x41                @@ 080820F2 3841     
-lsl     r0,r0,#0x18               @@ 080820F4 0600     
-lsr     r0,r0,#0x18               @@ 080820F6 0E00     
-cmp     r0,#0x19                @@ 080820F8 2819     
-bhi     loc_8082102               @@ 080820FA D802     
-mov     r0,r1               @@ 080820FC 1C08     
-sub     r0,#0x41                @@ 080820FE 3841     
-b       loc_8082162               @@ 08082100 E02F 
-loc_8082102:    
-mov     r0,r1               @@ 08082102 1C08     
-sub     r0,#0x61                @@ 08082104 3861     
-lsl     r0,r0,#0x18               @@ 08082106 0600     
-lsr     r0,r0,#0x18               @@ 08082108 0E00     
-cmp     r0,#0x19                @@ 0808210A 2819     
-bhi     loc_8082114               @@ 0808210C D802     
-ldrb    r0,[r2]               @@ 0808210E 7810     
-sub     r0,#0x47                @@ 08082110 3847     
-b       loc_8082162               @@ 08082112 E026     
-loc_8082114:
-mov     r0,r1               @@ 08082114 1C08     
-sub     r0,#0x30                @@ 08082116 3830     
-lsl     r0,r0,#0x18               @@ 08082118 0600     
-lsr     r0,r0,#0x18               @@ 0808211A 0E00     
-cmp     r0,#0x9               @@ 0808211C 2809     
-bhi     loc_8082126               @@ 0808211E D802     
-ldrb    r0,[r2]               @@ 08082120 7810     
-add     r0,#0x4               @@ 08082122 3004     
-b       loc_8082162               @@ 08082124 E01D   
-loc_8082126:  
-mov     r0,r1               @@ 08082126 1C08     
-cmp     r0,#0x2D                @@ 08082128 282D     
-bne     loc_8082130               @@ 0808212A D101     
-mov     r0,#0x3E                @@ 0808212C 203E     
-b       loc_8082162               @@ 0808212E E018  
-loc_8082130:   
-cmp     r0,#0x27                @@ 08082130 2827     
-bne     loc_8082138               @@ 08082132 D101     
-mov     r0,#0x3F                @@ 08082134 203F     
-b       loc_8082162               @@ 08082136 E014  
-loc_8082138:   
-cmp     r0,#0x3A                @@ 08082138 283A     
-bne     loc_8082140               @@ 0808213A D101     
-mov     r0,#0x40                @@ 0808213C 2040     
-b       loc_8082162               @@ 0808213E E010  
-loc_8082140:   
-cmp     r0,#0x2E                @@ 08082140 282E     
-bne     loc_8082148               @@ 08082142 D101     
-mov     r0,#0x41                @@ 08082144 2041     
-b       loc_8082162               @@ 08082146 E00C  
-loc_8082148:   
-@cmp     r0,#0x20                @@ 08082148 2820     
-@fall through: all unrecognised characters are now space
-@beq     loc_8082160               @@ 0808214A D009     
-@ldr     r1,=0x8000a0     @0x8404BA0               @@ 0808214C 4903  @@@@@@@@@@@@@@@@@@@@@@@@ string("none chapter message = %c")
-@ldrb    r2,[r2]               @@ 0808214E 7812     
-@mov     r0,r13                @@ 08082150 4668     
-@bl      0x80C0088                @@ 08082152 F03DFF99 
-@0xe, this'll never happen anyway tbh
-@mov     r0,#0x1               @@ 08082156 2001     
-@neg     r0,r0               @@ 08082158 4240     
-@b       loc_8082162               @@ 0808215A E002     
-loc_8082160:   
-mov     r0,#0x80                @@ 08082160 2080   
-loc_8082162:  
-add     sp,#0x20                @@ 08082162 B008     
-pop     {r1}                @@ 08082164 BC02     
-bx      r1                @@ 08082166 4708     
+MapTextCharacterToFont:
+push    {r14}    
+add     sp,#-0x20   
+mov     r3,r0    
+ldrb    r2,[r3]    
+mov     r0,r2    
+sub     r0,#0x41     
+lsl     r0,r0,#0x18     
+lsr     r0,r0,#0x18    
+cmp     r0,#0x19   
+bhi     NotUppercase    
+ldrb    r0,[r3]        @uppercase
+sub     r0,#0x41     
+b       GotTextCharacterIndex 
+NotUppercase:    
+mov     r0,r2    
+sub     r0,#0x61     
+lsl     r0,r0,#0x18     
+lsr     r0,r0,#0x18    
+cmp     r0,#0x19    
+bhi     NotLowercase    
+ldrb    r0,[r3]        @lowercase
+sub     r0,#0x47    
+b       GotTextCharacterIndex    
+NotLowercase:
+mov     r0,r2   
+sub     r0,#0x30    
+lsl     r0,r0,#0x18     
+lsr     r0,r0,#0x18    
+cmp     r0,#0x9    
+bhi     NotNumeral    
+ldrb    r0,[r3]        @numerals
+add     r0,#0x4    
+b       GotTextCharacterIndex
+
+	NotNumeral:       @\& symbol
+	mov  r1, r2
+	cmp  r1, #0x26
+	bne Check_Apostrophe
+	
+		mov  r0, #0x3E
+		b    GotTextCharacterIndex
+		
+	Check_Apostrophe:
+	cmp r1, #0x27
+	bne Check_HyphenPeriodSlash
+		
+		mov  r0, #0x3F
+		b    GotTextCharacterIndex
+	
+	Check_HyphenPeriodSlash:
+	mov r0, r2
+	sub r0, #0x2C
+	lsl r0, r0, #0x18
+	lsr r0, r0, #0x18
+	cmp r0, #0x2
+	bhi Check_Colon
+
+		@-./ symbols
+		ldrb r0, [r3]
+		add r0, #0x14
+		b GotTextCharacterIndex
+		
+	Check_Colon:
+	cmp     r1,#0x3A     
+	bne     Check_CD     
+	mov     r0,#0x43     
+	b       GotTextCharacterIndex  
+	
+	Check_CD:        @Í
+	cmp     r1,#0xCD
+	bne     Check_9C    
+	mov     r0,#0x44   
+	b       GotTextCharacterIndex 
+	
+	Check_9C:        @œ
+	cmp     r1,#0x9C
+	bne     Check_E0
+	mov     r0,#0x45
+	b       GotTextCharacterIndex 
+	
+	Check_E0:        @à
+	cmp     r1,#0xE0
+	bne     Check_E1
+	mov     r0,#0x46
+	b       GotTextCharacterIndex
+	
+	Check_E1:
+	ldrb    r0,[r3]
+	mov     r1,r0
+	cmp     r1,#0xE1
+	bne     Check_E2
+	mov     r0,#0x47
+	b       GotTextCharacterIndex
+	
+	Check_E2:
+	cmp     r1,#0xE2
+	bne     Check_E4
+	mov     r0,#0x48
+	b       GotTextCharacterIndex
+	
+	Check_E4:
+	cmp     r1,#0xE4
+	bne     Check_E8
+	mov     r0,#0x49
+	b       GotTextCharacterIndex
+	
+	Check_E8:
+	cmp     r1,#0xE8
+	bne     Check_E9
+	mov     r0,#0x4A
+	b       GotTextCharacterIndex
+	
+	Check_E9:
+	cmp     r1,#0xE9
+	bne     Check_EA
+	mov     r0,#0x4B
+	b       GotTextCharacterIndex
+	
+	Check_EA:
+	cmp     r1,#0xEA
+	bne     Check_ED
+	mov     r0,#0x4C
+	b       GotTextCharacterIndex
+	
+	Check_ED:
+	cmp     r1,#0xED
+	bne     Check_EE
+	mov     r0,#0x4D
+	b       GotTextCharacterIndex
+	
+	Check_EE:
+	cmp     r1,#0xEE
+	bne     Check_F1
+	mov     r0,#0x4E
+	b       GotTextCharacterIndex
+	
+	Check_F1:
+	cmp     r1,#0xF1
+	bne     Check_F2
+	mov     r0,#0x56
+	b       GotTextCharacterIndex
+	
+	Check_F2:
+	cmp     r1,#0xF2
+	bne     Check_F3
+	mov     r0,#0x4F
+	b       GotTextCharacterIndex
+	
+	Check_F3:
+	cmp     r1,#0xF3
+	bne     Check_F4
+	mov     r0,#0x50
+	b       GotTextCharacterIndex
+	
+	Check_F4:
+	cmp     r1,#0xF4
+	bne     Check_F6
+	mov     r0,#0x51
+	b       GotTextCharacterIndex
+	
+	Check_F6:
+	cmp     r1,#0xF6
+	bne     Check_FC
+	mov     r0,#0x52
+	b       GotTextCharacterIndex
+	
+	Check_FC:
+	cmp     r1,#0xFC
+	bne     Check_Parenthese_Open
+	mov     r0,#0x53
+	b       GotTextCharacterIndex
+	
+	Check_Parenthese_Open:
+	cmp     r1,#0x28
+	bne     Check_Parenthese_Close
+	mov     r0,#0x54
+	b       GotTextCharacterIndex
+	
+	Check_Parenthese_Close:
+	cmp     r1,#0x29
+	bne     MapToSpaceChar
+	mov     r0,#0x55
+	b       GotTextCharacterIndex
+	
+@anything unrecognized is now a space.
+
+MapToSpaceChar:   
+mov     r0,#0x80
+GotTextCharacterIndex:  
+add     sp,#0x20     
+pop     {r1}    
+bx      r1
+.align 
 .ltorg
 
 sub_8082168:
@@ -347,7 +468,7 @@ asr     r0,r0,#0x8                @@ 08082188 1200
 lsl     r0,r0,#0x4                @@ 0808218A 0100     
 str     r0,[sp,#0x10]               @@ 0808218C 9004     
 lsl     r4,r4,#0x3                @@ 0808218E 00E4     
-ldr     r0,UnknownTablePtr @0x8CC2784               @@ 08082190 4801     
+ldr     r0,FontDimensionsTable @0x8CC2784               @@ 08082190 4801     
 add     r6,r4,r0                @@ 08082192 1826     
 ldrb    r2,[r6,#0x6]                @@ 08082194 79B2     
 b       loc_808220E               @@ 08082196 E03A     
@@ -434,7 +555,7 @@ bx      r0                @@ 08082222 4700
 
 sub_80820CC:
 mov     r2,#0x0               @@ 080820CC 2200     
-ldr     r1,UnknownTablePtr @=0x8CC2784                @@ 080820CE 4905     
+ldr     r1,FontDimensionsTable @=0x8CC2784                @@ 080820CE 4905     
 cmp     r0,#0x0               @@ 080820D0 2800     
 beq     loc_80820E0               @@ 080820D2 D005  
 loc_80820D4:   
@@ -451,5 +572,5 @@ bx      r14               @@ 080820E2 4770
 
 .align
 Font_Graphic_Ptr:
-.set UnknownTablePtr, Font_Graphic_Ptr+4
-.set AltChapterTitleTable, UnknownTablePtr+4
+.set FontDimensionsTable, Font_Graphic_Ptr+4
+.set AltChapterTitleTable, FontDimensionsTable+4

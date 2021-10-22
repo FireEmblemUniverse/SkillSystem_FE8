@@ -1,9 +1,6 @@
 #ifndef MODULAR_GETTER_COMMON_EVENT
 #define MODULAR_GETTER_COMMON_EVENT
 
-#define rPassiveStatBoosts(aStatOffset) "rForEachUnitItem; rIfItemHasPassiveStatBoosts; rAddItemPassiveStatBoosts(aStatOffset)"
-#define rPassiveStatBoostsNonStacking(aStatOffset) "rForEachUnitItemUntil; rIfItemHasPassiveStatBoosts; rAddItemPassiveStatBoosts(aStatOffset)"
-
 prHalveIfRescuing:
 	rIfUnitHasState(US_RESCUING)
 		rIfUnitHasNotSkill(SaviorID)
