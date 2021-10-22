@@ -212,8 +212,27 @@ ST_Skill6:
   
   
 #endif // USE_STRMAG_SPLIT
-  
-  
+
+
+
+#ifdef QOL_STAT_SCREEN_BALLISTA
+    
+    PUSH
+        
+        ORG 0x88A00
+        replaceWithHack(ItemMenuRtextGetter)
+        
+        ORG 0x88B40
+        replaceWithHack(ItemMenuRtextLooper)
+        
+    POP
+    
+    ALIGN 4
+    #include "asm/ItemMenuRtext_BallistaFix.lyn.event"
+
+#endif  // QOL_STAT_SCREEN_BALLISTA
+
+
 
 #ifdef ENABLE_PERSONAL_INFO
 
@@ -272,21 +291,37 @@ ST_Skill6:
 
   ST_Name4:
     RMenu(0,ST_Class4,0,ST_Donate,0x18,0x50,0x0,NameDescGetter)
-
+    
   ST_Class4:
-    RMenu(ST_Name4,ST_Level4,0,ST_Donate,0x6,0x68,0x6E8,ClassDescGetter)
+	#ifdef GAIDEN_MAGIC
+	  RMenu(ST_Name4,ST_Level4,0,ST_Spell1,0x6,0x68,0x6E8,ClassDescGetter)
+	#else
+	  RMenu(ST_Name4,ST_Level4,0,ST_Donate,0x6,0x68,0x6E8,ClassDescGetter)
+	#endif
 
   ST_Level4:
     RMenu(ST_Class4,ST_HP4,0,ST_Exp4,0x6,0x78,0x542)
 
   ST_Exp4:
-    RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Donate,0x26,0x78,0x543)
+	#ifdef GAIDEN_MAGIC
+      RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Spell3,0x26,0x78,0x543)
+    #else
+	  RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Donate,0x26,0x78,0x543)
+	#endif
 
   ST_HP4:
-    RMenu(ST_Level4,0,0,ST_Donate,0x6,0x88,0x544)
-
+	#ifdef GAIDEN_MAGIC
+      RMenu(ST_Level4,0,0,ST_Spell5,0x6,0x88,0x544)
+	#else
+	  RMenu(ST_Level4,0,0,ST_Donate,0x6,0x88,0x544)
+	#endif
+    
   ST_Donate:
-    RMenu(0,0,ST_Name4,0,0x86,0x48,DonateURL)
+	#ifdef GAIDEN_MAGIC
+      RMenu(0,ST_Spell1,ST_Name4,0,0x86,0x48,DonateURL)
+	#else
+	  RMenu(0,0,ST_Name4,0,0x86,0x48,DonateURL)
+	#endif
 	
 #endif // ENABLE_PERSONAL_INFO
 
