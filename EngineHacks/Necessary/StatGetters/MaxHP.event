@@ -21,6 +21,6 @@ prHexingRodEffect:
 	WORD DebuffTable
 
 prItemPassiveHp:
-	rPassiveStatBoosts(STAT_HP)
+	rPassiveStatBoostsStacking(STAT_HP)
 
 #endif // MODULAR_GETTER_MAXHP_EVENT

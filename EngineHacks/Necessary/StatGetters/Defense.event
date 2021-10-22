@@ -28,6 +28,6 @@ prFortressDefenseDef:
 	_testSkill(FortressDefenseID,5,0)
 
 prItemPassiveDefense:
-	rPassiveStatBoosts(STAT_DEFENSE)
+	rPassiveStatBoostsStacking(STAT_DEFENSE)
 
 #endif // MODULAR_GETTER_DEFENSE_EVENT
