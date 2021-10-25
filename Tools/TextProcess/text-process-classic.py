@@ -1,3 +1,17 @@
+
+# TPC CHANGELOG:
+
+# 1.0:
+# - Initial Release
+
+# 2.0:
+# - Add support for #define <name> <repl>
+#   - Invoke using either `{<name>}` or `[<name>]`
+#   - Nesting invocations supported
+# - Add support for C++-style comments ('// <comment>' at the end of lines)
+
+# modified by Bly for use with Scraiza's narrow font hack
+
 import os, sys, re
 
 def show_exception_and_exit(exc_type, exc_value, tb):
@@ -6,8 +20,22 @@ def show_exception_and_exit(exc_type, exc_value, tb):
 	traceback.print_exception(exc_type, exc_value, tb)
 	sys.exit(-1)
 
+# create dict for narrow text
+NARROW_DICT = {"a":"[0x81]", "b":"[0x82]", "c":"[0x83]", "d":"[0x84]", "e":"[0x85]", "f":"[0x86]", "g":"[0x87]", "h":"[0x88]", "k":"[0x8A]", "n":"[0x8B]", "o":"[0x8C]", "p":"[0x8D]", "q":"[0x8E]", "r":"[0x8F]", "s":"[0x90]", "t":"[0x89]", "u":"[0x96]", "v":"[0x97]", "x":"[0x98]", "y":"[0x99]", "z":"[0x9A]", "A":"[0x9B]", "B":"[0x9C]", "C":"[0x9D]", "D":"[0x9E]", "E":"[0x9F]", "F":"[0xA0]", "G":"[0xA2]", "H":"[0xA3]", "J":"[0xA4]", "K":"[0xA5]", "L":"[0xA6]", "O":"[0xA7]", "P":"[0xA8]", "Q":"[0xA9]", "R":"[0xAC]", "S":"[0xAD]", "U":"[0xAE]", "V":"[0xAF]", "X":"[0xB0]", "Y":"[0xB1]", "Z":"[0xB2]", " ":"[0xBC]"}
+
+# create dict for narrow text for menus
+NARROW_MENU_DICT = {"a":"[0x81]", "b":"[0x82]", "c":"[0x83]", "d":"[0x84]", "e":"[0x85]", "f":"[0x86]", "g":"[0x87]", "h":"[0x88]", "j":"[0x89]", "k":"[0x8A]", "n":"[0x8B]", "o":"[0x8C]", "p":"[0x8D]", "q":"[0x8E]", "r":"[0x8F]", "s":"[0x90]", "u":"[0x96]", "v":"[0x97]", "x":"[0x98]", "y":"[0x99]", "z":"[0x9A]", "A":"[0x9B]", "B":"[0x9C]", "C":"[0x9D]", "D":"[0x9E]", "E":"[0x9F]", "F":"[0xA0]", "G":"[0xA2]", "H":"[0xA3]", "J":"[0xA4]", "K":"[0xA5]", "L":"[0xA6]", "O":"[0xA7]", "P":"[0xA8]", "Q":"[0xA9]", "R":"[0xAC]", "S":"[0xAD]", "U":"[0xAE]", "V":"[0xAF]", "X":"[0xB0]", "Y":"[0xB1]", "Z":"[0xB2]", " ":"[0xBC]"}
+
+RE_NON_ALPHANUM = re.compile(r'\W')
+RE_DIRECTIVE    = re.compile(r"^#([a-zA-Z]\w*)\s+(.+)")
+RE_DEFINE_PARTS = re.compile(r"^(\w+)\s+(.+)")
+RE_MACRO_INVOKE = re.compile(r'\{(\w+)\}|\[(\w+)\]')
+RE_TEXT_ENTRY 	= re.compile(r"^#\s*([0x[0-9a-fA-F]+|#)\s*(\w+)?\s*(({?[*^])|})?$", re.I) # added third group for checking narrow
+RE_NARROW_SEC	= re.compile(r"([*^]{[^}]*})")
+RE_BRACKETS		= re.compile(r"(\[[^]]*\])")
+
 def macroize_name(name):
-	return re.sub(r"[^A-Za-z0-9_]", '_', name).upper()
+	return RE_NON_ALPHANUM.sub('_', name).upper()
 
 class TextProcessError(Exception):
 
@@ -38,6 +66,89 @@ class ParseFileError(Exception):
 		self.textEntry = textEntry
 		self.errDesc   = errDesc
 
+class Preprocessor:
+
+	def __init__(self, doTrace):
+		self.doTrace = doTrace  # boolean
+		self.definitions = {}   # { string: string }
+		self.includeSet = set() # { string }
+
+	def strip_comment(self, string):
+		i = string.find('//')
+
+		if i >= 0:
+			return string[:i]
+
+		return string
+
+	def preprocess(self, fileName):
+		if fileName in self.includeSet:
+			sys.stderr.write("WARNING: file `{}` was already included once, ignoring.\n".format(fileName))
+			return None
+
+		self.includeSet.add(fileName)
+
+		if self.doTrace:
+			sys.stderr.write("TRACE: [preprocess] opening `{}`\n".format(fileName))
+
+		with open(fileName, 'r') as f:
+			for iLine, line in enumerate(f.readlines()):
+				line = self.strip_comment(line)
+				stripped = line.strip()
+
+				m = RE_DIRECTIVE.match(stripped)
+
+				if m:
+					directive = m.group(1).strip().lower()
+
+					if directive == 'include':
+						# include directive
+
+						includee = m.group(2).strip()
+
+						if (includee[0] == '"'):
+							includee = includee.strip('"')
+
+						dirpath = os.path.dirname(fileName)
+
+						if len(dirpath) > 0:
+							includee = os.path.join(dirpath, includee)
+
+						for otherLine in self.preprocess(includee):
+							yield otherLine
+
+					elif directive == 'define':
+						m2 = RE_DEFINE_PARTS.match(m.group(2).strip())
+
+						if not m2:
+							raise TextProcessError(fileName, iLine+1, "Bad define! Replacement string is probably missing.")
+
+						defname = m2.group(1)
+						defvalu = m2.group(2)
+
+						if (defvalu[0] == '"'):
+							defvalu = defvalu.strip('"')
+
+						self.definitions[defname] = defvalu
+
+					else:
+						sys.stderr.write('WARNING: {}:{}: What is a "#{}"? is this is comment? consider using "//" for comments instead!\n'.format(
+							fileName, iLine+1, directive))
+
+				else:
+					yield (fileName, iLine, self.expand_macros(line))
+
+	def _get_expanded_expr(self, m):
+		defname = m.group(0)[1:-1]
+
+		if defname in self.definitions:
+			return self.expand_macros(self.definitions[defname])
+
+		return m.group(0)
+
+	def expand_macros(self, string):
+		return RE_MACRO_INVOKE.sub(lambda m: self._get_expanded_expr(m), string)
+
 def generate_text_entries(lines, doTrace):
 	"""takes a compiled file and returns a list of individual text entries"""
 
@@ -48,6 +159,13 @@ def generate_text_entries(lines, doTrace):
 	currentText = None
 	currentDefinition = None
 
+	# for checking narrow
+	narrow = False
+	menu = False
+	constantNarrow = False
+	constantMenu = False
+	lastNarrow = False
+
 	for (fileName, iLine, line) in lines:
 		l = line.strip()
 
@@ -56,7 +174,7 @@ def generate_text_entries(lines, doTrace):
 				next # Skip empty lines
 
 			else:
-				match = re.match(r"^#\s*([0x[0-9a-fA-F]+|#)\s*(\w+)?$", l, re.M | re.I)
+				match = RE_TEXT_ENTRY.match(l)
 
 				if not match:
 					raise TextProcessError(fileName, iLine+1, "expected entry header!")
@@ -67,51 +185,71 @@ def generate_text_entries(lines, doTrace):
 				else:
 					currentStringId = int(match.group(1), base = 0)
 
+
 				currentDefinition = match.group(2)
 				currentText = ""
 
+				if match.group(3) is not None:
+					if '*' in match.group(3):
+						narrow = True
+						menu = False
+					elif '^' in match.group(3):
+						narrow = True
+						menu = True
+					if narrow or constantNarrow:
+						if '{' in match.group(3):
+							constantNarrow = True
+							constantMenu = menu
+						elif '}' in match.group(3):
+							lastNarrow = True
+
 		else:
-			currentText += line + "\n"
+			if constantNarrow: # narrow block
+				line = narrowText(line, constantMenu)
+			elif narrow: # narrow entry
+				line = narrowText(line, menu)
+			elif RE_NARROW_SEC.search(line): # check for narrow section
+				sections = RE_NARROW_SEC.split(line)
+				line = ""
+				for section in sections:
+					if section.startswith('^'):
+						line += narrowText(section[2:-1], True)
+					elif section.startswith('*'):
+						line += narrowText(section[2:-1], False)
+					else:
+						line += section
+
+			currentText += line
 
 			if l[-3:] == "[X]": # Line ends in [X] (end of text entry)
 				result.append(TextEntry(currentText, currentStringId, currentDefinition))
 
 				if doTrace:
-					print("TRACE: [generate_text_entries] read {}".format(result[-1].get_pretty_identifier()))
+					sys.stderr.write("TRACE: [generate_text_entries] read {}\n".format(result[-1].get_pretty_identifier()))
 
-				currentText       = None
+				currentText = None
 				currentDefinition = None
+				narrow = False
+
+				if lastNarrow: # done with a narrow block
+					constantNarrow = False
+					lastNarrow = False
 
 	return result
 
-def preprocess(fileName, doTrace, includeDepth = 0):
-	if includeDepth > 500:
-		print("Warning: #include depth exceeds 500. Check for circular inclusion.\nCurrent file: " + fileName)
-		return None
-
-	if doTrace:
-		print("TRACE: [preprocess] opening `{}`".format(fileName))
-
-	with open(fileName, 'r') as f:
-		for iLine, line in enumerate(f.readlines()):
-			m = re.match(r"^#include\s+(.+)", line.strip(), re.M | re.I)
-
-			if m:
-				includee = m.group(1).strip()
-
-				if (includee[0] == '"'):
-					includee = includee.strip('"')
-
-				dirpath = os.path.dirname(fileName)
-
-				if len(dirpath) > 0:
-					includee = os.path.join(dirpath, includee)
-
-				for otherLine in preprocess(includee, doTrace, includeDepth+1):
-					yield otherLine
-
-			else:
-				yield (fileName, iLine, line)
+def narrowText(line, menuToggle):
+	sections = RE_BRACKETS.split(line)
+	line = "";
+	for section in sections:
+		if section.startswith('['):
+			line += section
+		elif menuToggle:
+			for c in section:
+				line += NARROW_MENU_DICT.get(c,c)
+		else:
+			for c in section:
+				line += NARROW_DICT.get(c,c)
+	return line
 
 def generate_definitions_lines(name, textEntries):
 	yield "// Text Definitions generated by text-process\n"
@@ -144,7 +282,7 @@ def main(args):
 	argParse = argparse.ArgumentParser()
 
 	argParse.add_argument('input', help = 'input text file')
-	argParse.add_argument('--installer', default = 'Install Text Data.event', help = 'name of the installer event file to produce')
+	argParse.add_argument('--installer', default = 'InstallTextData.event', help = 'name of the installer event file to produce')
 	argParse.add_argument('--definitions', default = 'Text Definitions.event', help = 'name of the definitions event file to produce')
 	argParse.add_argument('--parser-exe', default = None, help = 'name/path of the parser executable')
 	argParse.add_argument('--depends', default = None, nargs='*', help = 'files that text depends on (typically ParseDefinitions.txt)')
@@ -183,7 +321,7 @@ def main(args):
 	# Read the entries
 
 	if verbose:
-		print("TRACE: [global] start reading input")
+		sys.stderr.write("TRACE: [global] start reading input\n")
 
 	entryList = []
 
@@ -195,26 +333,26 @@ def main(args):
 		usedStringIds   = []
 		usedDefinitions = []
 
-		for entry in generate_text_entries(preprocess(inputPath, verbose), verbose): # create separate files for each text entry
+		for entry in generate_text_entries(Preprocessor(verbose).preprocess(inputPath), verbose): # create separate files for each text entry
 			if entry.stringId in usedStringIds:
-				print("WARNING: Duplicate entry for text Id {:03X}! (ignoring)".format(entry.stringId))
+				sys.stderr.write("WARNING: Duplicate entry for text Id {:03X}! (ignoring)\n".format(entry.stringId))
 
 				if entry.definition:
-					print("NOTE: Second entry was defined as `{}`".format(entry.definition))
+					sys.stderr.write("NOTE: Second entry was defined as `{}`\n".format(entry.definition))
 
 				continue
 
 			usedStringIds.append(entry.stringId)
 
 			if entry.definition and (entry.definition in usedDefinitions):
-				print("WARNING: Duplicate entry definition {}! (ignoring)".format(entry.definition))
+				sys.stderr.write("WARNING: Duplicate entry definition {}! (ignoring)\n".format(entry.definition))
 
 				continue
 
 			entryList.append(entry)
 
 	except TextProcessError as e:
-		sys.exit("ERROR: in file `{}`, line {}:\n  {}".format(e.fileName, e.lineNumber, e.errDesc))
+		sys.exit("ERROR: {}:{}:\n  {}".format(e.fileName, e.lineNumber, e.errDesc))
 
 	# Write the entries
 
@@ -224,7 +362,7 @@ def main(args):
 	textFolder = os.path.join(cwd, ".TextEntries")
 
 	if verbose:
-		print("TRACE: [global] start generating output")
+		sys.stderr.write("TRACE: [global] start generating output\n")
 
 	if not os.path.exists(textFolder):
 		os.mkdir(textFolder)
@@ -269,7 +407,7 @@ def main(args):
 
 				if textNeedsUpdate:
 					if verbose:
-						print("TRACE: [write] output `{}`".format(textFileName))
+						sys.stderr.write("TRACE: [write] output `{}`\n".format(textFileName))
 
 					with open(textFileName, 'w') as tf:
 						tf.write(entry.text)
@@ -279,7 +417,7 @@ def main(args):
 				if hasParser:
 					if not os.path.exists(dataFileName) or textNeedsUpdate or os.path.getmtime(dataFileName) < textModifyTime:
 						if verbose:
-							print("TRACE: [write] update `{}`".format(dataFileName))
+							sys.stderr.write("TRACE: [write] update `{}`\n".format(dataFileName))
 
 						generate_text_binary(parserExePath, entry, textFileName, dataFileName)
 
