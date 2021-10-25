@@ -5,7 +5,7 @@
 .set Get_Hp_Growth, Growth_Options+4
 .set Get_Palette_Index, Get_Hp_Growth+4
 
-@r0=thing to add to r8, r7 has the pointer with char ptr at 0xC, r8=bg0 buffer in wram
+@r0=thing to add to r9, r7 has the pointer with char ptr at 0xC, r9=bg0 buffer in wram
 push	{r4,r5,r14}
 mov		r4,r0
 add		sp,#-0x4
@@ -39,9 +39,9 @@ NotAllied:
 ldr		r0,ProcessHP
 mov		r14,r0
 mov		r0,r4
-add		r0,r8
-mov		r2,#0x22
-mov		r3,#0x23
+add		r0,r9
+mov		r2,#0x22 @glyph_H
+mov		r3,#0x23 @glyph_P
 .short	0xF800
 cmp		r5,#0
 beq		NoShenanigans		@don't need to restore the original tile id
