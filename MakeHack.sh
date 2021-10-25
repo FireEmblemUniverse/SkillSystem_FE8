@@ -9,7 +9,7 @@ base_dir=$(dirname "$(readlink -f "$0")")
 
 source_rom="$base_dir/FE8_clean.gba"
 
-main_event="$base_dir/ROM Buildfile.event"
+main_event="$base_dir/ROMBuildfile.event"
 
 target_rom="$base_dir/SkillsTest.gba"
 target_ups="$base_dir/SkillsTest.ups" # unused, but kept for symmetry with MAKE HACK_full.cmd
@@ -18,7 +18,7 @@ target_ups="$base_dir/SkillsTest.ups" # unused, but kept for symmetry with MAKE 
 
 c2ea_py="$base_dir/Tools/C2EA/c2ea.py"
 textprocess_py="$base_dir/Tools/TextProcess/text-process-classic.py"
-parsefile="$base_dir/Event Assembler/Tools/ParseFile"
+parsefile="$base_dir/EventAssembler/Tools/ParseFile"
 
 # finding correct python version
 
@@ -56,12 +56,12 @@ if [[ $1 != quick ]]; then
 
   cd "$base_dir/Text"
   echo | $python3 "$textprocess_py" \
-    "text_buildfile.txt" --parser-exe "$parsefile"
+    "text_buildfile.txt" --parser-exe "$parsefile" --installer "InstallTextData.event" --definitions "TextDefinitions.event"
 fi
 
 echo "Assembling"
 
-cd "$base_dir/Event Assembler"
+cd "$base_dir/EventAssembler"
 mono ColorzCore.exe A FE8 "-output:$target_rom" "-input:$main_event"
 
 # TODO: generate patch (would require a linux version of ups)
