@@ -19,6 +19,7 @@ target_ups="$base_dir/SkillsTest.ups" # unused, but kept for symmetry with MAKE 
 c2ea_py="$base_dir/Tools/C2EA/c2ea.py"
 textprocess_py="$base_dir/Tools/TextProcess/text-process-classic.py"
 parsefile="$base_dir/EventAssembler/Tools/ParseFile"
+tmx2ea="$base_dir/Tools/tmx2ea/tmx2ea.py"
 
 # finding correct python version
 
@@ -57,6 +58,10 @@ if [[ $1 != quick ]]; then
   cd "$base_dir/Text"
   echo | $python3 "$textprocess_py" \
     "text_buildfile.txt" --parser-exe "$parsefile" --installer "InstallTextData.event" --definitions "TextDefinitions.event"
+    
+  echo "Processing Maps"
+  cd "$base_dir/Maps/"
+  echo | $python3 $tmx2ea -s -O "MasterMapInstaller.event"
 fi
 
 echo "Assembling"
