@@ -28,7 +28,7 @@ ldrh r2,[r3] @current number
 add r2,r1 @for the next one.
 strb r1, [r3, #4] @store width
 strb r2, [r3, #8] @assign the next one.
-blh BufferText
+blh String_GetFromIndex
 mov    r2, #0x0
 str    r2, [sp]
 str    r0, [sp, #4]
@@ -36,7 +36,7 @@ mov    r2, #0 @colour
 mov    r0, r7
 ldr    r1, =(tile_origin+(0x20*2*3)+(2*17))
 mov    r3, #0
-blh    DrawText, r4
+blh    DrawTextInline, r4
 add    r7, #8
 
 b LiteralJump1
@@ -60,7 +60,7 @@ ldrh r2,[r3] @current number
 add r2,r1 @for the next one.
 strb r1, [r3, #4] @store width
 strb r2, [r3, #8] @assign the next one.
-blh BufferText
+blh String_GetFromIndex
 mov    r2, #0x0
 str    r2, [sp]
 str    r0, [sp, #4]
@@ -68,7 +68,7 @@ mov    r2, #0 @colour
 mov    r0, r7
 ldr    r1, =(tile_origin+(0x20*2*5)+(2*17))
 mov    r3, #0
-blh    DrawText, r4
+blh    DrawTextInline, r4
 add    r7, #8
 
 draw_textID_at 13, 7, textID=0xd4d, width=16, colour=Blue
@@ -95,7 +95,7 @@ ldrh r2,[r3] @current number
 add r2,r1 @for the next one.
 strb r1, [r3, #4] @store width
 strb r2, [r3, #8] @assign the next one.
-blh BufferText
+blh String_GetFromIndex
 mov    r2, #0x0
 str    r2, [sp]
 str    r0, [sp, #4]
@@ -103,7 +103,7 @@ mov    r2, #0 @colour
 mov    r0, r7
 ldr    r1, =(tile_origin+(0x20*2*7)+(2*17))
 mov    r3, #0
-blh    DrawText, r4
+blh    DrawTextInline, r4
 add    r7, #8
 
 @ second dislike
@@ -122,7 +122,7 @@ ldrh r2,[r3] @current number
 add r2,r1 @for the next one.
 strb r1, [r3, #4] @store width
 strb r2, [r3, #8] @assign the next one.
-blh BufferText
+blh String_GetFromIndex
 mov    r2, #0x0
 str    r2, [sp]
 str    r0, [sp, #4]
@@ -130,7 +130,7 @@ mov    r2, #0 @colour
 mov    r0, r7
 ldr    r1, =(tile_origin+(0x20*2*9)+(2*17))
 mov    r3, #0
-blh    DrawText, r4
+blh    DrawTextInline, r4
 add    r7, #8
 
 draw_textID_at 13, 11, textID=0xd4f, width=16, colour=Blue
@@ -157,7 +157,7 @@ ldrh r2,[r3] @current number
 add r2,r1 @for the next one.
 strb r1, [r3, #4] @store width
 strb r2, [r3, #8] @assign the next one.
-blh BufferText
+blh String_GetFromIndex
 mov    r2, #0x0
 str    r2, [sp]
 str    r0, [sp, #4]
@@ -165,7 +165,7 @@ mov    r2, #0 @colour
 mov    r0, r7
 ldr    r1, =(tile_origin+(0x20*2*11)+(2*16))
 mov    r3, #0
-blh    DrawText, r4
+blh    DrawTextInline, r4
 add    r7, #8
 
 draw_textID_at 21, 11, textID=0xd4e, width=16, colour=Blue
@@ -192,7 +192,7 @@ ldrh r2,[r3] @current number
 add r2,r1 @for the next one.
 strb r1, [r3, #4] @store width
 strb r2, [r3, #8] @assign the next one.
-blh BufferText
+blh String_GetFromIndex
 mov    r2, #0x0
 str    r2, [sp]
 str    r0, [sp, #4]
@@ -200,7 +200,7 @@ mov    r2, #0 @colour
 mov    r0, r7
 ldr    r1, =(tile_origin+(0x20*2*11)+(2*25))
 mov    r3, #0
-blh    DrawText, r4
+blh    DrawTextInline, r4
 add    r7, #8
 
 @ Next let's draw Gaiden spells if the hack is installed.
