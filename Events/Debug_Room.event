@@ -78,14 +78,14 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  WartortleID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  IvysaurID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
 
 
 Units2:
-UNIT 3  DugtrioID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  MagikarpID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 2  PrimeapeID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4 SandslashID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 7 KadabraID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
@@ -174,7 +174,7 @@ SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
 
 SilentGiveItemWithDurability(Eirika, SkillScroll, RenewalID)
 
-SilentGiveItemWithDurability(1, SpellScroll, LeechLife)
+SilentGiveItemWithDurability(1, SpellScroll, LeafFlurry)
 
 SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
 
@@ -210,7 +210,7 @@ GIVETOMAIN 0
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(14, True, 0x145) // all 
+AutoLevelUnits(17, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
@@ -218,8 +218,8 @@ Write_Byte(4, GaryStarterClass)
 Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(24, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(35, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 PokecenterCh
 
 //MNC2 ViridianCh 
@@ -236,8 +236,10 @@ Write_Byte(5, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 CeruleanCh
 //MNC2 Route9WCh
 //MNC2 SSAnneCh
-MNC2 CinnabarCh
+//MNC2 CinnabarCh
+MNC2 ViridianForestSCh
 
+//MNC2 Route24Ch
 
 //MNC2 CeruleanCh
 //MNC2 Route24Ch
@@ -282,17 +284,17 @@ CALL RefreshIfNotInDanger
 /*
 SVAL r2 0x2 
 SCOORD rB [5, 6]
-CUSE(0xFFFD)
+CUSE(0x7FFD)
 
 SCOORD rB [5, 7]
 SVAL r2 0xF 
-UNCM(0xFFFD, 0x0D)
+UNCM(0x7FFD, 0x0D)
 */
 
 //SetAllDangerRadius
 
 //SCOORD rB [5, 7]
-//SetBadStatus(0xFFFE, 0x55)
+//SetBadStatus(0x7FFE, 0x55)
 //SetUnitStatusAll(0x016A, BadStatus, 0x32, 0x0C, Any, 0x0103, Range(1,1,12,12), 0)
 //SetUnitStatusAll(0x016A, BadStatusType, 0x51, 0x0C, 0, 0, 0, 0)
 //SetUnitStatusAll(0x016A, BadStatusTurn, 0x96, 0x0C, 0, 0, 0, 0)

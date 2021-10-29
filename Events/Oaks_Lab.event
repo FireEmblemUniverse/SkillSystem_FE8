@@ -394,10 +394,26 @@ GOTO 200
 
 Label 35
 CompareTactText(CheeseName)
-BNE 199 rC r7
+BNE 36 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsOmar|IsPointer
 GOTO 200
+
+
+Label 36 
+CompareTactText(BoomName)
+BNE 37 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsBoom|IsPointer
+GOTO 200
+
+Label 37 
+CompareTactText(LexykName) // KyleItWithFire
+BNE 199 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsLexyk|IsPointer
+GOTO 200
+
 
 
 Label 199
@@ -503,7 +519,7 @@ ALIGN 4
 
 ALIGN 4 
 UnitsPandan: 
-UNIT 0x02  TangelaID BonusUnitParameters
+UNIT 0x02  OddishID BonusUnitParameters
 UNIT
 
 ALIGN 4 
@@ -593,9 +609,15 @@ UnitsOmar:
 UNIT 0x02  MachopID BonusUnitParameters
 UNIT
 
+ALIGN 4 
+UnitsBoom: 
+UNIT 0x02  CuboneID BonusUnitParameters
+UNIT
 
-
-
+ALIGN 4 
+UnitsLexyk: // KyleItWithFire
+UNIT 0x02  GastlyID BonusUnitParameters
+UNIT
 
 
 

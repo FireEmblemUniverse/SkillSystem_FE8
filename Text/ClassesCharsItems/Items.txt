@@ -486,7 +486,7 @@ Minimize[X]
 Pay Day[X]
 ## PoundName
 Pound[X]
-## QuickAttackName
+## QuickAttackName ^
 Quick Attack[X]
 ## RageName
 Rage[X]
@@ -494,7 +494,7 @@ Rage[X]
 Recover[X]
 ## RoarName
 Roar[X]
-## SandAttackName
+## SandAttackName ^
 Sand-Attack[X]
 ## ScratchName
 Scratch[X]
@@ -555,8 +555,7 @@ Thundershock[X]
 Acid[X]
 ## PoisonGasName
 Poison Gas[X]
-## PoisonPowderName ^
-Poison Powder[X]
+
 ## PoisonStingName ^
 Poison Sting[X]
 ## SludgeName
@@ -592,8 +591,7 @@ Clamp[X]
 Crabhammer[X]
 ## BubblebeamName ^
 Bubble Beam[X]
-## HydroPumpName ^
-Hydro Pump[X]
+
 ## SurfName
 Surf[X]
 ## ThunderPunchName ^
@@ -642,78 +640,78 @@ Chip damage. Greatly debuffs Skl.[X]
 Chip damage. Debuffs Str by 5.[X]
 
 ## VineWhipDesc
-*{(} A weak whipping attack.[X]
+*{(}A weak whipping attack.[X]
 
 ## HeadbuttDesc
-*{(} The user attacks with its head.[X]
+*{(}The user attacks with its head.[X]
 
 
 
 
 ## MegaPunchDesc
-*{(} A powerful punch.[X]
+*{(}A powerful punch.[X]
 
 ## ThunderboltDesc
-*{)} A powerful bolt of electricity.[X]
+*{)}A powerful bolt of electricity.[X]
 
 ## PoundDesc
-*{(} Debuffs Luk.[X]
+*{(}Debuffs Luk.[X]
 ## QuickAttackDesc
-*{(} Strike first when attacked.[X]
+*{(}Strike first when attacked.[X]
 
 
 ## SandAttackDesc
 Chip damage. Debuffs Skl by 5.[X]
 ## ScratchDesc
-*{(} A weak scratch.[X]
+*{(}A weak scratch.[X]
 
 ## BodySlamDesc
-*{(} A full body slam.[.][X]
+*{(}A full body slam.[.][X]
 ## SlashDesc
-*{(} High critical hit ratio.[X]
+*{(}High critical hit ratio.[X]
 
 ## AttackPulseDesc
-*{)} A special pulse of power.[.][X]
+*{)}A special pulse of power.[.][X]
 
 ## TackleDesc 
-*{(} A weak full-body attack.[X]
+*{(}A weak full-body attack.[X]
 
 
 ## EmberDesc
-*{)} A weak flame.[X]
+*{)}A weak flame.[X]
 
 ## KarateChopDesc
-*{(} A swift chop.[X]
+*{(}A swift chop.[X]
 ## LowKickDesc
-*{(} A low blow.[X]
+*{(}A low blow.[X]
 
 ## ThundershockDesc
-*{)} A weak jolt of electricity.[X]
+*{)}A weak jolt of electricity.[X]
 ## AcidDesc
-*{)} Debuffs Res by 5.[X]
+*{)}Debuffs Res by 5.[X]
 
 ## PoisonStingDesc
-*{(} A weak, venomous sting.[X]
+*{(}A weak, venomous sting.[X]
 ## SmogDesc
 Chip damage. Debuffs Res.[X]
 
 ## WaterGunDesc
-*{)} A weak spout of water.[X]
+*{)}A weak spout of water.[X]
 
 ## BubblebeamDesc
-*{)} A powerful stream of bubbles.[X]
+*{)}A powerful stream of bubbles.[X]
 
 ## ThunderPunchDesc
-*{(} An electric punch.[X]
+*{(}An electric punch.[X]
 
 ## AbsorbDesc
-*{)} Saps some health.[X]
+*{)}Saps some health.[X]
 
 ## LeafFlurryDesc 
-*{)} A flurry of leaves.[X]
+*{)}A flurry of leaves.[X]
 
 ## PoisonJamDesc
-*{(} A powerful, venomous jab.[X]
+*{(}A powerful, venomous jab.[X]
 
 
  
@@ -727,9 +725,8 @@ Hits with 50% Atk 2-5 times.[X]
 ## BubbleName
 Bubble[X]
 ## BubbleDesc
-*{)} A weak froth of bubbles.[X]
-## WaterfallName
-Waterfall[X]
+*{)}A weak froth of bubbles.[X]
+
 
 ## BonemerangName
 Bonemerang[X]
@@ -743,7 +740,7 @@ Fissure[X]
 ## MagnitudeName
 Magnitude[X]
 ## MagnitudeDesc
-*{)} A small quake.[X]
+*{)}A small quake.[X]
 ## EarthPowerName
 Earth Power[X]
 
@@ -756,21 +753,21 @@ Fly[X]
 ## GustName
 Gust[X]
 ## GustDesc
-*{)} A weak gust of wind.[X]
+*{)}A weak gust of wind.[X]
 ## PeckName
 Peck[X]
 ## PeckDesc
-*{(} A small peck on the cheek![X]
+*{(}A small peck on the cheek![X]
 ## SkyAttackName
 Sky Attack[X]
 ## SkyAttackDesc
-*{)} Placeholder description.[X]
+*{)}Placeholder description.[X]
 ## MirrorMoveName
 Mirror Move[X]
 ## WingAttackName ^
 Wing Attack[X]
 ## WingAttackDesc
-*{(} A strong, winged attack.[X]
+*{(}A strong, winged attack.[X]
 ## AgilityName
 Agility[X]
 ## AgilityDesc
@@ -822,11 +819,11 @@ Does nothing currently.[X]
 ## RockSlideName
 Rock Slide[X]
 ## RockSlideDesc
-*{(} A barrage of rocks.[X]
+*{(}A barrage of rocks.[X]
 ## RockThrowName
 Rock Throw[X]
 ## RockThrowDesc
-*{(} Thrown rocks.[X]
+*{(}Thrown rocks.[X]
 ## AncientpowerName
 Ancientpower[X]
 ## AncientpowerDesc
@@ -834,7 +831,7 @@ Ancientpower[X]
 ## RockTombName
 Rock Tomb[X]
 ## RockTombDesc
-*{(} Debuffs Spd.[X]
+*{(}Debuffs Spd.[X]
 ## RolloutName
 Rollout[X]
 ## RolloutDesc
@@ -846,7 +843,7 @@ Sandstorm[X]
 ## ConfuseRayName
 Confuse Ray[X]
 ## ConfuseRayDesc
-*{)} May inflict confusion.[X]
+*{)}May inflict confusion.[X]
 ## LickName
 Lick[X]
 ## LickDesc
@@ -854,7 +851,7 @@ Lick[X]
 ## NightShadeName
 Night Shade[X]
 ## NightShadeDesc
-*{)}Placeholder description.[X]
+*{)}A ghostly pulse.[X]
 ## NightmareName
 Nightmare[X]
 ## NightmareDesc
@@ -890,7 +887,7 @@ Outrage[X]
 ## TwisterName
 Twister[X]
 ## TwisterDesc
-*{)} A draconic storm.[X]
+*{)}A draconic storm.[X]
 ## BugBiteName
 Bug Bite[X]
 ## BugBiteDesc
@@ -906,7 +903,7 @@ Fury Cutter[X]
 ## LeechLifeName
 Leech Life[X]
 ## LeechLifeDesc
-*{(} Saps a little health.[X]
+*{(}Saps a little health.[X]
 ## MegahornName
 Megahorn[X]
 ## MegahornDesc
@@ -947,24 +944,24 @@ Chip damage. Greatly debuffs Spd.[X]
 ## MagicalLeafName
 Magical Leaf[X]
 ## MagicalLeafDesc
-*{)} Perfect accuracy.[X]
+*{)}Perfect accuracy.[X]
 ## SparkName
 Spark[X]
 ## SparkDesc
-*{(} A weak spark.[X]
+*{(}A weak spark.[X]
 
 
 ## BiteNameText
 Bite[X]
 
 ## BiteDescText
-*{(} A weak bite.[X]
+*{(}A weak bite.[X]
 
 ## ThiefNameText
 Thief[X]
 
 ## ThiefDescText
-*{(} A weak pickpocket.[X]
+*{(}A weak pickpocket.[X]
 
 ## SnarlNameText
 Snarl[X]
@@ -1115,19 +1112,32 @@ Does nothing.[X]
 *{(}Swats at the foe with a crabbed arm.[X]
 
 ## HydroPumpDesc
-*{)}Blasts the foe with powerful water jets.[X]
+*{)}Blasts the foe with water jets.[X]
 
 ## SurfDesc
 *{)}Torrents of water strike the foe.[X]
 
 ## WaterfallDesc
-*{(}Creates a waterfall and crashes on foe.[X]
+*{(}Crashes the foe with a waterfall.[X]
 
 ## WaterPulseDesc
-*{)}Blasts foe with water.[X]
+*{)}Pulses water at the foe.[X]
 
-## WaterPulseName
+## HydroPumpName ^
+Hydro Pump[X]
+//THE QUICK BROWN[X]
+
+## WaterPulseName ^
 Water Pulse[X]
+//FOX JUMPS OVER[X]
+
+## WaterfallName ^
+Waterfall[X]
+//THE LAZY DOG[X]
+
+
+
+
 
 ## LeechSeedDesc
 *{)}Saps the health of the target.[X]
@@ -1192,11 +1202,14 @@ Water Pulse[X]
 ## PoisonGasDesc
 *{)}A foul smelling poison gas attack.[X]
 
+## PoisonPowderName ^
+Poison Powder[X]
+
 ## PoisonPowderDesc
-Chip damage. A powder that inflicts a harsh poison.[X]
+Chip damage. A poisonous powder.[X]
 
 ## SludgeDesc
-*{)}A poisonous glob of goo hurled at the foe.[X]
+*{)}A poisonous goo hurled at the foe.[X]
 
 ## PoisonJabDesc
 *{(}A poisonous strike.[X]
@@ -1266,7 +1279,7 @@ Dark Pulse[X]
 Night Daze[X]
 
 ## NightDazeDesc
-*{)} A dark gaze that strikes fear.[X]
+*{)}A dark gaze that strikes fear.[X]
 
 ## BindDesc
 *{(}Traps the foe in a binding grip.[X]

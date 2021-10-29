@@ -37,16 +37,16 @@ beq Neutral
 cmp r5, #7
 beq Ineffective
 cmp r5, #2
-beq MuchIneffect
+beq Ineffective
 cmp r5, #1
 beq Immune
 
 @add stuff here
-@supereffective (+30 hit, +15 avo)
+@supereffective (+60 hit, +30 avo)
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
 ldrb r2, [r6, r3] 	@hit 
-add r2, r2, #30		@+30 hit attacker 
+add r2, r2, #60		@+60 hit attacker 
 
 cmp r2, #255
 blt DontCapHitSinceUnder255  
@@ -58,7 +58,7 @@ strb r2, [r6, r3] 	@put our hit back into attacker battle struct
 mov r3, #0x62 		@0x62 entry as attacker's avoid
 mov r2,r6 		@attacker battle struct					
 ldsh r2, [r6, r3] 	@avo
-add r2, r2, #15		@+15 avo attacker
+add r2, r2, #30		@+30 avo attacker
 
 cmp r2, #127 
 blt DontCapAvoSinceUnder127  
@@ -74,7 +74,7 @@ strh r2, [r6, r3] 	@put our avo back into attacker battle struct
 @lsl r2,r2,#0x1		@2x attack
 @strh r2, [r6, r3] 	@put our avo back into attacker battle struct
 @mov		r5,r0 	@remove 2x MT
-mov r5, #4 @ just 2x mt 
+mov r5, #5 @ just 2x mt 
 
 mov r3, #0x5C 		@0x64 entry as attacker's def/res
 mov r2,r6 		@attacker battle struct					
@@ -104,9 +104,12 @@ ldsb r2, [r6, r3] 	@hit
 @ no need to cap afaik 
 @ well probably need to if it started at values other than 0 
 
-sub r2, r2, #30		@-30 hit attacker 
+sub r2, r2, #40		@-40 hit attacker 
 strb r2, [r6, r3] 	@put our hit back into attacker battle struct
-sub r0, #3
+mov		r0,#0
+ldrh	r1,[r4,r0]	@current attack
+lsr r1, #1
+sub r0, r1 
 b		Label3
 
 
@@ -115,18 +118,29 @@ MuchIneffect:
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
 ldsb r2, [r6, r3] 	@hit 
-sub r2, r2, #45		@-45 hit attacker 
+sub r2, r2, #60		@-45 hit attacker 
 strb r2, [r6, r3] 	@put our hit back into attacker battle struct
-sub r0, #6
+mov		r0,#0
+ldsh	r1,[r4,r0]	@current attack
+add r2, r1, #1 @ bad rounding 
+lsr r2, #2 @ 1/4
+lsr r1, #1 @ 1/2 
+add r1, r2 @ 3/4 to take away 
+
+sub r0, r1 
 b		Label3
 
 Immune:
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
 ldsb r2, [r6, r3] 	@hit 
-sub r2, r2, #60		@-60 hit attacker 
+sub r2, r2, #80		@-60 hit attacker 
 strb r2, [r6, r3] 	@put our hit back into attacker battle struct
-sub r0, #45		@-45 dmg if 'immune' 
+mov r2, #0 
+mov		r0,#0
+ldsh	r1,[r4,r0]	@current attack
+lsl r1, #1 @ no idea why 
+sub r0, r1 
 b		Label3
 
 Label3:

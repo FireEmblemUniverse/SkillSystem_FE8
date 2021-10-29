@@ -204,7 +204,7 @@ BYTE 0x00
 Sglyph_physicalicon:
 WORD 0x00000000 
 BYTE 0x00 //empty code-page # (no Shift-JIS)
-BYTE 0x11 //character width
+BYTE 0x12 //character width
 BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "physicalicon.img.bin"
@@ -212,7 +212,7 @@ BYTE 0x00
 Sglyph_specialicon:
 WORD 0x00000000 
 BYTE 0x00 //empty code-page # (no Shift-JIS)
-BYTE 0x11 //character width
+BYTE 0x12 //character width
 BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "specialicon.img.bin"
@@ -223,5 +223,6 @@ tGlyphEntry(0xD1, Sglyph_specialicon)
 tGlyphEntry(0xD4, Sglyph_pokedollaricon)
 
 
-
+mGlyphEntry(0xD0, Sglyph_physicalicon)
+mGlyphEntry(0xD1, Sglyph_specialicon)
 

@@ -491,7 +491,7 @@ BLT 1 r5 rC  // If less than full hp, don't load units
 
 
 
-	MOVEONTO 0xFFFF 0x7FFE 0x7FFD
+	MOVEONTO (-1) 0x7FFE 0x7FFD
 	ENUN 
 	SADD rB r6 r0 
 	EVBIT_T 9 //Follow moving units 
@@ -618,7 +618,7 @@ ENUF TrainerBattleActiveFlag
 DisableFreeMovement
 #endif 
 SADD 2 9 0 
-MNC2 0xFFFF 
+MNC2 (-1) 
 ENUF PlayableCutsceneFlag 
 LABEL 0x63 
 EVBIT_MODIFY 0
@@ -644,7 +644,7 @@ BNE 0x63 rC r7
 ENUF TrainerBattleActiveFlag
 SADD 2 9 0 
 
-MNC2 0xFFFF 
+MNC2 (-1) 
 ENUF PlayableCutsceneFlag 
 GOTO 0x63 
 
@@ -718,7 +718,7 @@ SADD rB r3 r0
 SPAWN_NPC 0xFD [-1,-1] 
 
 EVBIT_T 2 // Scene skipping 
-MOVENEXTTO 0xFFFF 0x7FFD 0x7FFE 
+MOVENEXTTO (-1) 0x7FFD 0x7FFE // speed, unit unit 
 ENUN 
 
 CAM1 0xFD 
@@ -738,12 +738,12 @@ ENUT 1 // Battle flag / Used 'Call' this turn
 CHECK_COORDS 0x7FFF 
 SADD rB rC r0 
 SPAWN_NPC 0xFD [-1,-1]
-MOVENEXTTO 	0xFFFF 0x301 0xFD
-MOVENEXTTO 	0xFFFF 0x302 0xFD
-MOVENEXTTO		0xFFFF 0x0303 0xFD
+MOVENEXTTO 	(-1) 0x301 0xFD
+MOVENEXTTO 	(-1) 0x302 0xFD
+MOVENEXTTO	(-1) 0x0303 0xFD
 ENUN 
-MOVENEXTTO 0xFFFF 0x0304 0xFD
-MOVENEXTTO 0xFFFF 0x0305 0xFD
+MOVENEXTTO (-1) 0x0304 0xFD
+MOVENEXTTO (-1) 0x0305 0xFD
 ENUN 
 DISA 0xFD 
 NoFade
@@ -768,16 +768,16 @@ ASMC SetUnitStatus
 ENUN 			// move 1st unit instantly to value in CoordsNewArea 
 
 // speed, unit, destination unit 
-MOVEONTO 	0xFFFF 0x101 0xFD //hold this coordinate for now because MoveNextTo is stupid 
-MOVENEXTTO 	0xFFFF 0x102 0xFD 
+MOVEONTO 	(-1) 0x101 0xFD //hold this coordinate for now because MoveNextTo is stupid 
+MOVENEXTTO 	(-1) 0x102 0xFD 
 
-MOVENEXTTO 0xFFFF 0x0103 0xFD
-MOVENEXTTO 0xFFFF 0x0104 0xFD
+MOVENEXTTO (-1) 0x0103 0xFD
+MOVENEXTTO (-1) 0x0104 0xFD
 ENUN 
 
-MOVENEXTTO 0xFFFF 0x0105 0xFD
-MOVENEXTTO 0xFFFF 0x0106 0xFD
-//MOVENEXTTO 0xFFFF 0x0102 0x0102 //free up P1's coord  
+MOVENEXTTO (-1) 0x0105 0xFD
+MOVENEXTTO (-1) 0x0106 0xFD
+//MOVENEXTTO (-1) 0x0102 0x0102 //free up P1's coord  
 
 ENUN 
 CAM1 0xFD 

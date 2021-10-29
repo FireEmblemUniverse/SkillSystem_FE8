@@ -59,23 +59,23 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToRoute2S [28,28] [28,28] 
-AREA 0 ToViridianForestN_A [42,0] [43,0] 
-AREA 0 ToViridianForestN_B [35,0] [38,0] 
+AREA 0 ToRoute2S [26,28] [28,28] 
+AREA 0 ToViridianForestN_A [41,0] [42,0] 
+AREA 0 ToViridianForestN_B [34,0] [37,0] 
 AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(28,28) 
+EscapeTileEntry(27,28) 
+EscapeTileEntry(35,0) 
 EscapeTileEntry(36,0) 
-EscapeTileEntry(37,0) 
+EscapeTileEntry(41,0) 
 EscapeTileEntry(42,0) 
-EscapeTileEntry(43,0) 
 EscapeTileTerminator ; } 
 #endif 
 
 ToRoute2S:
-ChapterTransition(Route2SCh, 6, 11)
+ChapterTransition(Route2SCh, 5, 11)
 
 ToViridianForestN_A:
 ChapterTransition(ViridianForestNCh, 43, 31)
@@ -89,10 +89,10 @@ ChapterTransition(ViridianForestNCh, 37, 32)
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
 
-CoinsTrap(43,13,(ChapterID*2)+1,400)
+CoinsTrap(42,13,(ChapterID*2)+1,400)
 
 
-SpellScrollTrap(19,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
+SpellScrollTrap(18,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
@@ -104,8 +104,8 @@ SpellScrollTrap(19,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
 
 //SkillAccessoryTrap(28,14, ChapterID*2, VantagePlusID) - now in route 2s 
 
-SignBTrap(43,4, ChapterID, 0x0) //no extra text 
-SignATrap(29,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(42,4, ChapterID, 0x0) //no extra text 
+SignATrap(28,25, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
@@ -113,11 +113,11 @@ SignATrap(29,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //Sign(8,4, 2)
 
 //Save(10,4)
-SaveCost(43,6) 
+SaveCost(42,7) 
 
 
-BerryTree(28,9,5)
-BerryTree(11,14,5)
+BerryTree(27,9,5)
+BerryTree(10,14,5)
 
 
 
@@ -133,19 +133,19 @@ CALL LoadAndPlacePlayers
 ///*
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(30,4,38,25)) //ne patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(29,4,38,25)) //ne patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(13,9,26,24)) //mid  
+RandomizeCoords(Grass, Range(0,0,5,5), Range(12,9,26,24)) //mid  
 LOAD1 0x1 EnemyUnitsC
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(38,23,46,27)) //se
+RandomizeCoords(Grass, Range(0,0,5,5), Range(37,23,46,27)) //se
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,5,16,11))  //nw
+RandomizeCoords(Grass, Range(0,0,5,5), Range(1,5,16,11))  //nw
 LOAD1 0x1 EnemyUnitsE
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,21,10,27))  //sw
+RandomizeCoords(Grass, Range(0,0,5,5), Range(1,21,10,27))  //sw
 LOAD1 0x1 BeedrillUnitGroup
 ENUN 
 
@@ -233,7 +233,7 @@ UNIT
 
 
 BeedrillUnitGroup:
-UNIT GenericA BeedrillID 0x0 Level(7, Enemy, 1)   [25,11] 0b	0x0 0x01 REDA25R11 [0x0,0x0,0x0,0x0] BeedrillAI
+UNIT GenericA BeedrillID 0x0 Level(7, Enemy, 1)   [24,11] 0b	0x0 0x01 REDA24R11 [0x0,0x0,0x0,0x0] BeedrillAI
 UNIT 
 
 
@@ -259,7 +259,7 @@ TQD_TableTerminator ; }
 
 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [40,17]  0b 0x0	0x1 REDA40R17 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [39,17]  0b 0x0	0x1 REDA39R17 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 

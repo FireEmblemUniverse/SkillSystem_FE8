@@ -101,12 +101,14 @@ ENDA
 
 
 Call_AoE_ExternalAnimationEvent:
+EVBIT_MODIFY 4
 ASMC AoE_ExternalAnimation 
 NoFade 
 ENDA 
 
 Clear_sBEvent:
 ASMC 0x801d6fd //PlayerPhase_ReloadGameGfx - just in case they didn't cleanup their gfx 
+EVBIT_MODIFY 0
 SVAL rB 0 
 NoFade 
 ENDA 

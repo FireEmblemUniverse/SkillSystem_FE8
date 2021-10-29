@@ -76,7 +76,7 @@ Write_Byte(RetreatChapter)
 
 Read_Byte(CurrentChapter)
 SADD r2 rC r0 
-MNC2 0xFFFF // uses s2 
+MNC2 (-1) // uses s2 
 
 LABEL 0x63
 NoFade

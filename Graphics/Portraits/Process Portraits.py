@@ -103,15 +103,14 @@ for entry in dir_entries:
             palette_data.append(color.b)
             #palette_data.append(color.a)
         # If index 0/1/2 is all white, then we don't adjust it
-        # Usually index 0/1/2 is the transparent bg colour 
-        if (palette_data[0] == 255):
-            if palette_data[1] == 255:
-                if palette_data[2] == 255:
-                    break
-        else:
-            palette_data[0] = 0
-            palette_data[1] = 255
-            palette_data[2] = 0
+        # Usually index 0/1/2 is the transparent bg colour
+        
+        if ((palette_data[0] == 255) | (palette_data[0] == 0)):
+            if ((palette_data[1] == 255) | (palette_data[1] == 0)):
+                if ((palette_data[2] != 255) | (palette_data[2] != 0)):
+                    palette_data[0] = 0
+                    palette_data[1] = 255
+                    palette_data[2] = 0
 
         out_img.putpalette(palette_data)
         

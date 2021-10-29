@@ -36,6 +36,7 @@ WORD 0 //
 
 ALIGN 4
 WarpAnimationEvent:
+EVBIT_MODIFY 4
 // we stored a unit pointer to the memory slots queue, so now we retrive that pointer to mem slot 1 
 SHORT 0x0722 0x1 // SDEQUEUE, as old EA doesn't define this 
 ASMC ModularSummon_GetSummonedUnitCoords
@@ -61,7 +62,7 @@ ASMC 0x8026689 //SMS_Init - refresh SMS in case we've gone overboard
 STAL 5
 
 
-
+EVBIT_MODIFY 0
 NoFade 
 ENDA 
 
