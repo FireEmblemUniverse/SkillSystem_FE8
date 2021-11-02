@@ -16,6 +16,7 @@ ALIGN 16
 GaryPointData: // 001
 #incbin "Dmp/GaryPoint_mug.dmp" 
 #incbin "Dmp/GaryPoint_frames.dmp" 
+GaryPointData_Pal:
 #incbin "Dmp/GaryPoint_palette.dmp" 
 #incbin "Dmp/GaryPoint_minimug.dmp" 
 setMugEntry(154, GaryPointData, 9, 9, 9, 9)

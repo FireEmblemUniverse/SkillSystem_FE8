@@ -6,11 +6,12 @@
 
 ALIGN 4
 DebugCommandEvent:
-ASMC 0x8026689 //SMS_Init
-
-//RemoveTrap(16,15)
-//AddTrap(LightRuneTrapID,16,15)
-
+SCOORD rB [3,6]
+ENUT HideUnitIconsFlag // 0x84 
+ASMC ASMC_Draw
+STAL 100
+SVAL rB 0xFFFFFFFF 
+ENUF HideUnitIconsFlag 
 
 NoFade 
 ENDA 

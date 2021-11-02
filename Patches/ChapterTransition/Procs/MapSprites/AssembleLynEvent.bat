@@ -7,7 +7,7 @@ SET lyn=C:\Users\Vesly\Desktop\FEBuilderGBA\app\EA\Tools\lyn
 @rem Assemble into an elf
 %as% -g -mcpu=arm7tdmi -mthumb-interwork %1 -o "%~n1.elf"
 
-if exist "..\..\defs\Definitions.asm" (
+if exist "..\..\Defs\Definitions.asm" (
 
 	@rem Assemble definitions into a .elf if exists	
 	%as% -g -mcpu=arm7tdmi -mthumb-interwork "..\..\defs\Definitions.asm" -o "..\..\defs\Definitions.elf"

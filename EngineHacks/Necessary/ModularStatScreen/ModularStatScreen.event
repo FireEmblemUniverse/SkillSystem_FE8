@@ -202,11 +202,12 @@
 
   ALIGN 4
   NewPageNameLayout:
-    POIN $a008bc $a008d0 $a008de $a008bc
+    POIN $a008bc $a008d0 $a008bc $a008bc //$a008bc $a008d0 $a008de $a008bc 
 
   ALIGN 4
   NewPageNameTiles:
     SHORT 0 $40 $e $80
+	//SHORT 0 0 0 0
 
   ALIGN 4
   NewPageNamePalette:

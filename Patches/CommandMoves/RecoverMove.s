@@ -39,7 +39,7 @@ RetTrue:
 pop {r1} 
 bx r1 
 
-
+	.equ CurrentUnitFateData, 0x203A958
 .global RecoverCommandEffect 
 .type RecoverCommandEffect, %function 
 
@@ -60,7 +60,8 @@ mov r1, #1 @ Wait
 blh EventEngine 
 
 
-ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
+
+ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1
 strb r0, [r1,#0x11]
 mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
@@ -79,10 +80,6 @@ bx r0
 
 .ltorg 
 .align 
-CurrentUnitFateData:
-	.long 0x203A958
-
-
 
 
 
