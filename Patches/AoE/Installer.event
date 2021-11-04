@@ -82,7 +82,7 @@ BYTE 0 0 0 0 // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool
 BYTE 5 5 // damage range 
 BYTE 0 2 // Attack range 
-BYTE 0 1 // Index of RangeMask, Animation
+BYTE 6 1 // Index of RangeMask, Animation
 
 
 // Entry 
@@ -91,7 +91,7 @@ BYTE 0 0 0 0 // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
 BYTE 5 5 // damage range 
 BYTE 1 3 // Attack range 
-BYTE 1 2 // Index of RangeMask, Animation
+BYTE 6 2 // Index of RangeMask, Animation
 
 // Entry 
 BYTE 0 0 0 0 
@@ -113,17 +113,17 @@ SHORT 0 //Bgm/Sfx
 SHORT 1 // so we don't hide data in febuilder early 
 
 POIN 0 //Entry 1 
-POIN RocksEvent_Cross
+POIN DebugCommandEvent
 SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 2
-POIN RocksEvent_Cross
+POIN DebugCommandEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 //0x807AD09 // Entry 3 - summon gfx 
-POIN RocksEvent_Cross
+POIN DebugCommandEvent
 SHORT 0 
 SHORT 1 
 

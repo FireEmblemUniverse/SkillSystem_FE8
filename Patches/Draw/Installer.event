@@ -23,43 +23,76 @@ ASMC_DrawProcName:
 String("CustomAIPausedBecauseUnitIsMoving") ; BYTE 0
 ALIGN 4
 
+ALIGN 4
+AnimTable:
+POIN Cauterize_Anim CauterizeData_pal; SHORT 0 0
+POIN Heal_Anim HealData_pal; SHORT 0 0 // SFX 
+POIN Fireball_Anim FireballData_pal; SHORT 0 0
+WORD 0 0 0
+
+
+
+
 
 ALIGN 4 
-AnimTable:
-BYTE 20; ALIGN 4 ; POIN FireballData1 
-BYTE 30; ALIGN 4 ; POIN FireballData2
-BYTE 40; ALIGN 4 ; POIN FireballData3 
-BYTE 50; ALIGN 4 ; POIN FireballData2
-BYTE 60; ALIGN 4 ; POIN FireballData3 
-BYTE 70; ALIGN 4 ; POIN FireballData2
-BYTE 80; ALIGN 4 ; POIN FireballData3 
+//HealAnim:
+BYTE 8; ALIGN 4 ; POIN heal_0000_Data
+BYTE 8; ALIGN 4 ; POIN heal_0001_Data
+BYTE 8; ALIGN 4 ; POIN heal_0002_Data
+BYTE 8; ALIGN 4 ; POIN heal_0003_Data
+BYTE 8; ALIGN 4 ; POIN heal_0004_Data
+BYTE 8; ALIGN 4 ; POIN heal_0005_Data
+BYTE 8; ALIGN 4 ; POIN heal_0006_Data
+BYTE 8; ALIGN 4 ; POIN heal_0007_Data
+BYTE 8; ALIGN 4 ; POIN heal_0000_Data
+BYTE 8; ALIGN 4 ; POIN heal_0001_Data
+BYTE 8; ALIGN 4 ; POIN heal_0002_Data
+BYTE 8; ALIGN 4 ; POIN heal_0003_Data
+BYTE 8; ALIGN 4 ; POIN heal_0004_Data
+BYTE 8; ALIGN 4 ; POIN heal_0005_Data
+BYTE 8; ALIGN 4 ; POIN heal_0006_Data
+BYTE 8; ALIGN 4 ; POIN heal_0007_Data
+BYTE 8; ALIGN 4 ; POIN heal_0000_Data
+BYTE 8; ALIGN 4 ; POIN heal_0001_Data
+BYTE 8; ALIGN 4 ; POIN heal_0002_Data
+BYTE 8; ALIGN 4 ; POIN heal_0003_Data
+BYTE 8; ALIGN 4 ; POIN heal_0004_Data
+BYTE 8; ALIGN 4 ; POIN heal_0005_Data
+BYTE 8; ALIGN 4 ; POIN heal_0006_Data
+BYTE 8; ALIGN 4 ; POIN heal_0007_Data
+BYTE 8; ALIGN 4 ; POIN heal_0000_Data
+BYTE 8; ALIGN 4 ; POIN heal_0001_Data
+BYTE 8; ALIGN 4 ; POIN heal_0002_Data
+BYTE 8; ALIGN 4 ; POIN heal_0003_Data
+BYTE 8; ALIGN 4 ; POIN heal_0004_Data
+BYTE 8; ALIGN 4 ; POIN heal_0005_Data
+BYTE 8; ALIGN 4 ; POIN heal_0006_Data
+BYTE 8; ALIGN 4 ; POIN heal_0007_Data
+BYTE 8; ALIGN 4 ; POIN heal_0000_Data
+BYTE 8; ALIGN 4 ; POIN heal_0001_Data
+BYTE 8; ALIGN 4 ; POIN heal_0002_Data
+BYTE 8; ALIGN 4 ; POIN heal_0003_Data
+BYTE 8; ALIGN 4 ; POIN heal_0004_Data
+BYTE 8; ALIGN 4 ; POIN heal_0005_Data
+BYTE 8; ALIGN 4 ; POIN heal_0006_Data
+BYTE 8; ALIGN 4 ; POIN heal_0007_Data
 WORD 0 0
 
 
-ALIGN 4
-PoliwhirlData2: 
-#incbin "Dmp/062.dmp" 
-ALIGN 4 
-PoliwhirlData_Pal:
-#incbin "Dmp/062_pal.dmp"
-
-
 
 ALIGN 4
-FireballData1: 
-#incbin "Dmp/fb_1.dmp" 
-ALIGN 4
-FireballData2: 
-#incbin "Dmp/fb_2.dmp" 
-ALIGN 4
-FireballData3: 
-#incbin "Dmp/fb_3.dmp" 
+//FireballAnim:
+BYTE 20; ALIGN 4 ; POIN Fireball_0000_Data
+BYTE 10; ALIGN 4 ; POIN Fireball_0001_Data
+BYTE 10; ALIGN 4 ; POIN Fireball_0002_Data
+BYTE 5 ; ALIGN 4 ; POIN Fireball_0001_Data
+BYTE 15; ALIGN 4 ; POIN Fireball_0002_Data
+BYTE 20; ALIGN 4 ; POIN Fireball_0001_Data
+BYTE 40; ALIGN 4 ; POIN Fireball_0002_Data
 
 
-ALIGN 4 
-FireballData_Pal:
-#incbin "Dmp/fb_1_pal.dmp"
-
-
-
+SetSlotBTo0xFFFFFFFF:
+SVAL rB (-1)
+NoFade 
+ENDA 
 

@@ -103,7 +103,9 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-House(0,GiveExp, 11,11)
+//House(0,GiveExp, 11,11)
+
+
 //Vendor(ShopItems,2,7)
 //Armory(ArmoryItems,10,26)
 //Village(0x8,VillageEvent,18,27)
@@ -121,7 +123,8 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
+END_MAIN
 
 Dunno1:
 END_MAIN
@@ -154,8 +157,8 @@ UNIT
 
 EnemyUnits:
 UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [Tackle,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA13R12 [Tackle,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [0x0,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA13R12 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [16,6] 001b	0x0 0x01 REDA16R6 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT
 
@@ -207,7 +210,7 @@ LOAD1 1 EnemyUnits
 ENUN 
 //LOAD1 1 Units3 
 ENUN 
-AutoLevelUnits(3, True, 0x50FF)
+//AutoLevelUnits(3, True, 0x50FF)
 RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
 SetUnitStatus(1, CurrentHP, 5)

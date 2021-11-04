@@ -94,14 +94,19 @@ ldr r5, =0x6010FFF @ end of first two rows
 blh 0x8001FE0 @| ClearTileRigistry
 
 
+ldr r3, =MemorySlot 
+ldr r3, [r3, #4] @ Slot 1 
+lsl r3, #2 @ x4 
+add r0, r3, r3 @ x8 
+add r0, r3 @ x12 
+add r0, #4 @ palette offset in table 
+ldr r2, =AnimTable 
 
-ldr r0, =FireballData_Pal 
+ldr r0, [r2, r0] @ Palette 
 
-mov r1, #15 @ palette offset 
+mov r1, #26 @ palette # 
 lsl r1, #5 @ multiply by #0x20
-mov r2, #0x2 
-lsl r2, #8 @ 0x200 
-add r1, r2  @ 31st palette 
+
 
 
 mov	r2,#0x20
@@ -123,7 +128,7 @@ blh EnsureCameraOntoPosition
 
 blh GetGameClock 
 ldr r3, =MemorySlot
-str r0, [r3, #4*1] @ slot 1 
+str r0, [r3, #4*3] @ slot 3
 
 
 
@@ -138,23 +143,6 @@ bx r1
 .equ PushToSecondaryOAM, 0x08002BB8
 .equ GetGameClock, 0x08000D28
 
-.global Draw_GetGameClock
-.type Draw_GetGameClock, %function 
-Draw_GetGameClock:
-push {r4-r7, lr}
-
-
-blh GetGameClock 
-@mov r11, r11 
-
-
-pop {r4-r7}
-pop {r1}
-bx r1 
-
-
-
-
 
 .global Draw_PushToOam
 .type Draw_PushToOam, %function 
@@ -163,41 +151,55 @@ push {r4-r7, lr}
 
 mov r5, r0 
 
-
-
-
 push {r5} 
 
 blh GetGameClock 
 
 
 
-ldr r2, =MemorySlot
-ldr r2, [r2, #4] @ initial game clock time 
+ldr r3, =MemorySlot
+ldr r2, [r3, #12] @ initial game clock time in s3
 sub r0, r2 @ frame we're on
+
+ 
+ldr r3, =MemorySlot 
+ldr r3, [r3, #4] @ Slot 1 
+lsl r3, #2 @ x4 
+add r2, r3, r3 @ x8 
+add r2, r3 @ x12 
 ldr r3, =AnimTable 
+ldr r3, [r3, r2] @ Specific animation table 
+
 sub r3, #8 
+mov r1, #0 @ frames offset 
+b TryNextFrameLoop 
+ExitAnimation: 
+ldr r0, =SetSlotBTo0xFFFFFFFF
+mov r1, #1 
+blh EventEngine
+b Skip
 
 TryNextFrameLoop:
 add r3, #8 
-ldrb r2, [r3]
+ldrh r2, [r3] 
 cmp r2, #0 
-beq Skip  
-cmp r0, r2 
+add r1, r2 
+beq ExitAnimation  
+cmp r0, r1 
 bge TryNextFrameLoop 
 
 
 
 ldr r0, [r3, #4] 
 
-ldr r1, =0x6013000 
+ldr r1, =0x6013000 @vram
 ldr r2, =#4096 @ number of bytes 
 mov r2, #8
 mov r3, #8
 @ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
 blh RegisterObjectTileGraphics, r4
 
-Skip:
+
 
 
 
@@ -228,7 +230,8 @@ ldr r3, =MemorySlot
 add r3, #4*0x0B 
 ldrh r5, [r3]
 ldrh r6, [r3, #2]
-
+sub r5, #1
+sub r6, #1 
 
 
 ldr r3, =0x202BCBC @(gCurrentRealCameraPos )
@@ -251,16 +254,21 @@ mov r0, r5
 @			02 | short | base OAM1 data (x coord, flips, size)
 @			04 | short | base OAM2 data (tile index, priority, palette index)
 
-lsl r0, #4 @ 2*XX 
-mov   r2, #0xC0 @ 64x64  FF 
+lsl r0, #4 @ 16*XX 
+mov   r2, #0xc0 @ #0xC0 64x64  FF 
 lsl   r2, #0x8 @ shifted by this amount 
 orr   r0, r2                    @ Sprite size, 32x32
 
 
-lsl r1, r6, #4 @ 2*YY 
+lsl r1, r6, #4 @ 16*YY 
+sub r1, #8 
+sub r0, #8 
+
+
+
 mov r3, r7
-mov r2, #31 @ palette # 
-lsl r2, #11 @ bits 12-15 
+mov r2, #26 @ palette # 26 - or 27 is the light rune palette i think 
+lsl r2, #12 @ bits 12-15 
 add r3, r2 @ palette | flips | tile 
 
 mov r2, sp 
@@ -270,6 +278,7 @@ blh PushToSecondaryOAM, r4
 
 add sp, #8 
 
+Skip:
 pop {r5} 
 
 mov r0, r5 
@@ -295,7 +304,8 @@ strb r1,[r0]
 
 mov r0, #0 
 ldr r1, =0x6013000 
-ldr r2, =#4096 @ bytes 
+ldr r2, =#4096 @ 64x64 image bytes size 
+@=#4096 @64x64 image bytes 
 @Arguments: r0 = *word* to fill with, r1 = Destination pointer, r2 = size (bytes)
 blh 0x08002054 @ RegisterFillTile
 

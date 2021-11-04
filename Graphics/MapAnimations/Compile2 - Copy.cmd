@@ -1,0 +1,45 @@
+@echo off
+
+@cd %~dp0/Png
+
+echo //Generated - do not edit!>GeneratedInstaller.txt
+echo. >> GeneratedInstaller.txt
+
+
+@dir /b /a:d > subfolders.txt
+@for /f "tokens=*" %%G in (subfolders.txt) do (
+@cd %~dp0png\%%G
+echo %~dp0png\%%G
+
+@echo.> GeneratedInstaller.txt
+@echo.>> GeneratedInstaller.txt
+@echo.>> GeneratedInstaller.txt
+@echo.>> GeneratedInstaller.txt
+echo ALIGN 4 >> GeneratedInstaller.txt
+echo %%~nG_Anim: >> GeneratedInstaller.txt
+@dir *.png /b > png.txt
+@for /f "tokens=*" %%m in (png.txt) do (
+echo BYTE 8; ALIGN 4; POIN %%~nm_Data >> GeneratedInstaller.txt)
+echo WORD 0 0 >> GeneratedInstaller.txt
+@echo.>> GeneratedInstaller.txt
+@echo.>> GeneratedInstaller.txt
+@echo //Image Data >> GeneratedInstaller.txt
+@echo.>> GeneratedInstaller.txt
+@for /f "tokens=*" %%m in (png.txt) do (
+@echo ALIGN 4 >> GeneratedInstaller.txt
+@echo %%~nm_Data: >> GeneratedInstaller.txt
+@echo #incbin "%%~nm.dmp" >> GeneratedInstaller.txt
+@echo. >> GeneratedInstaller.txt)
+@del png.txt
+@cd %~dp0/Png
+type %~dp0Png\%%G\GeneratedInstaller.txt >> %~dp0Png\GeneratedInstaller.txt
+
+@del "%~dp0Png\%%G\GeneratedInstaller.txt"
+)
+@cd %~dp0
+@copy "%~dp0Png\GeneratedInstaller.txt" "%~dp0" > nul
+@del "%~dp0Png\GeneratedInstaller.txt"
+
+echo Done!
+
+pause

@@ -1,0 +1,255 @@
+//Generated - do not edit!
+ 
+
+
+
+
+ALIGN 4 
+Cauterize_Anim: 
+BYTE 2; ALIGN 4; POIN Cauterize_0000_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0001_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0002_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0003_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0004_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0005_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0006_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0007_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0008_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0009_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0010_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0011_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0012_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0013_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0014_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0015_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0016_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0017_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0018_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0019_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0020_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0021_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0022_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0023_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0024_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0025_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0026_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0027_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0028_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0029_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0030_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0031_Data 
+BYTE 2; ALIGN 4; POIN Cauterize_0032_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+Cauterize_0000_Data: 
+#incbin "dmp\Cauterize_0000.dmp" 
+ 
+ALIGN 4 
+Cauterize_0001_Data: 
+#incbin "dmp\Cauterize_0001.dmp" 
+ 
+ALIGN 4 
+Cauterize_0002_Data: 
+#incbin "dmp\Cauterize_0002.dmp" 
+ 
+ALIGN 4 
+Cauterize_0003_Data: 
+#incbin "dmp\Cauterize_0003.dmp" 
+ 
+ALIGN 4 
+Cauterize_0004_Data: 
+#incbin "dmp\Cauterize_0004.dmp" 
+ 
+ALIGN 4 
+Cauterize_0005_Data: 
+#incbin "dmp\Cauterize_0005.dmp" 
+ 
+ALIGN 4 
+Cauterize_0006_Data: 
+#incbin "dmp\Cauterize_0006.dmp" 
+ 
+ALIGN 4 
+Cauterize_0007_Data: 
+#incbin "dmp\Cauterize_0007.dmp" 
+ 
+ALIGN 4 
+Cauterize_0008_Data: 
+#incbin "dmp\Cauterize_0008.dmp" 
+ 
+ALIGN 4 
+Cauterize_0009_Data: 
+#incbin "dmp\Cauterize_0009.dmp" 
+ 
+ALIGN 4 
+Cauterize_0010_Data: 
+#incbin "dmp\Cauterize_0010.dmp" 
+ 
+ALIGN 4 
+Cauterize_0011_Data: 
+#incbin "dmp\Cauterize_0011.dmp" 
+ 
+ALIGN 4 
+Cauterize_0012_Data: 
+#incbin "dmp\Cauterize_0012.dmp" 
+ 
+ALIGN 4 
+Cauterize_0013_Data: 
+#incbin "dmp\Cauterize_0013.dmp" 
+ 
+ALIGN 4 
+Cauterize_0014_Data: 
+#incbin "dmp\Cauterize_0014.dmp" 
+ 
+ALIGN 4 
+Cauterize_0015_Data: 
+#incbin "dmp\Cauterize_0015.dmp" 
+ 
+ALIGN 4 
+Cauterize_0016_Data: 
+#incbin "dmp\Cauterize_0016.dmp" 
+ 
+ALIGN 4 
+Cauterize_0017_Data: 
+#incbin "dmp\Cauterize_0017.dmp" 
+ 
+ALIGN 4 
+Cauterize_0018_Data: 
+#incbin "dmp\Cauterize_0018.dmp" 
+ 
+ALIGN 4 
+Cauterize_0019_Data: 
+#incbin "dmp\Cauterize_0019.dmp" 
+ 
+ALIGN 4 
+Cauterize_0020_Data: 
+#incbin "dmp\Cauterize_0020.dmp" 
+ 
+ALIGN 4 
+Cauterize_0021_Data: 
+#incbin "dmp\Cauterize_0021.dmp" 
+ 
+ALIGN 4 
+Cauterize_0022_Data: 
+#incbin "dmp\Cauterize_0022.dmp" 
+ 
+ALIGN 4 
+Cauterize_0023_Data: 
+#incbin "dmp\Cauterize_0023.dmp" 
+ 
+ALIGN 4 
+Cauterize_0024_Data: 
+#incbin "dmp\Cauterize_0024.dmp" 
+ 
+ALIGN 4 
+Cauterize_0025_Data: 
+#incbin "dmp\Cauterize_0025.dmp" 
+ 
+ALIGN 4 
+Cauterize_0026_Data: 
+#incbin "dmp\Cauterize_0026.dmp" 
+ 
+ALIGN 4 
+Cauterize_0027_Data: 
+#incbin "dmp\Cauterize_0027.dmp" 
+ 
+ALIGN 4 
+Cauterize_0028_Data: 
+#incbin "dmp\Cauterize_0028.dmp" 
+ 
+ALIGN 4 
+Cauterize_0029_Data: 
+#incbin "dmp\Cauterize_0029.dmp" 
+ 
+ALIGN 4 
+Cauterize_0030_Data: 
+#incbin "dmp\Cauterize_0030.dmp" 
+ 
+ALIGN 4 
+Cauterize_0031_Data: 
+#incbin "dmp\Cauterize_0031.dmp" 
+ 
+ALIGN 4 
+Cauterize_0032_Data: 
+#incbin "dmp\Cauterize_0032.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Fireball_Anim: 
+BYTE 2; ALIGN 4; POIN Fireball_0000_Data 
+BYTE 2; ALIGN 4; POIN Fireball_0001_Data 
+BYTE 2; ALIGN 4; POIN Fireball_0002_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+Fireball_0000_Data: 
+#incbin "dmp\Fireball_0000.dmp" 
+ 
+ALIGN 4 
+Fireball_0001_Data: 
+#incbin "dmp\Fireball_0001.dmp" 
+ 
+ALIGN 4 
+Fireball_0002_Data: 
+#incbin "dmp\Fireball_0002.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Heal_Anim: 
+BYTE 2; ALIGN 4; POIN heal_0000_Data 
+BYTE 2; ALIGN 4; POIN heal_0001_Data 
+BYTE 2; ALIGN 4; POIN heal_0002_Data 
+BYTE 2; ALIGN 4; POIN heal_0003_Data 
+BYTE 2; ALIGN 4; POIN heal_0004_Data 
+BYTE 2; ALIGN 4; POIN heal_0005_Data 
+BYTE 2; ALIGN 4; POIN heal_0006_Data 
+BYTE 2; ALIGN 4; POIN heal_0007_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+heal_0000_Data: 
+#incbin "dmp\heal_0000.dmp" 
+ 
+ALIGN 4 
+heal_0001_Data: 
+#incbin "dmp\heal_0001.dmp" 
+ 
+ALIGN 4 
+heal_0002_Data: 
+#incbin "dmp\heal_0002.dmp" 
+ 
+ALIGN 4 
+heal_0003_Data: 
+#incbin "dmp\heal_0003.dmp" 
+ 
+ALIGN 4 
+heal_0004_Data: 
+#incbin "dmp\heal_0004.dmp" 
+ 
+ALIGN 4 
+heal_0005_Data: 
+#incbin "dmp\heal_0005.dmp" 
+ 
+ALIGN 4 
+heal_0006_Data: 
+#incbin "dmp\heal_0006.dmp" 
+ 
+ALIGN 4 
+heal_0007_Data: 
+#incbin "dmp\heal_0007.dmp" 
+ 

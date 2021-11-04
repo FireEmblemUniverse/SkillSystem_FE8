@@ -1,0 +1,25 @@
+
+
+
+#include "GeneratedInstaller.event"
+
+
+ALIGN 4 
+FireballData_pal:
+#incbin "Dmp/Fireball_0000_pal.dmp"
+
+
+ALIGN 4
+HealData_pal:
+#incbin "Dmp/heal_0000_pal.dmp" 
+
+
+ALIGN 4
+CauterizeData_pal:
+#incbin "Dmp/Cauterize_0000_pal.dmp"
+
+
+
+
+
+

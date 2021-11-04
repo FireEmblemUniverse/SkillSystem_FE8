@@ -6,10 +6,11 @@
 
 ALIGN 4
 DebugCommandEvent:
-SCOORD rB [3,6]
+//SCOORD rB [6,7]
 ENUT HideUnitIconsFlag // 0x84 
+SVAL r1 0
 ASMC ASMC_Draw
-STAL 100
+STAL 66
 SVAL rB 0xFFFFFFFF 
 ENUF HideUnitIconsFlag 
 
