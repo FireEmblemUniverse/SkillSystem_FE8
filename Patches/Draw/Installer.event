@@ -14,18 +14,25 @@ PROC_SET_NAME(ASMC_DrawProcName)
 PROC_CALL_ROUTINE(Draw_StoreToBuffer)
 PROC_SLEEP(2)
 PROC_LOOP_ROUTINE(Draw_PushToOam)
-//PROC_LOOP_ROUTINE(Draw_PauseForAnimation)
 PROC_CALL_ROUTINE(Draw_Cleanup) 
 PROC_END
 
 
 ASMC_DrawProcName:
-String("CustomAIPausedBecauseUnitIsMoving") ; BYTE 0
+String("PausesStuffWhileAnimationIsGoing") ; BYTE 0
 ALIGN 4
 
 ALIGN 4
 AnimTable:
+POIN Boomerang_Anim BoomerangData_pal; SHORT 0 0
 POIN Cauterize_Anim CauterizeData_pal; SHORT 0 0
+POIN Feather_Anim FeatherData_pal; SHORT 0 0
+POIN Freeze_Anim FreezeData_pal; SHORT 0 0
+POIN Flash_Anim FlashData_pal; SHORT 0 0
+
+
+
+
 POIN Heal_Anim HealData_pal; SHORT 0 0 // SFX 
 POIN Fireball_Anim FireballData_pal; SHORT 0 0
 WORD 0 0 0
@@ -34,65 +41,52 @@ WORD 0 0 0
 
 
 
-ALIGN 4 
-//HealAnim:
-BYTE 8; ALIGN 4 ; POIN heal_0000_Data
-BYTE 8; ALIGN 4 ; POIN heal_0001_Data
-BYTE 8; ALIGN 4 ; POIN heal_0002_Data
-BYTE 8; ALIGN 4 ; POIN heal_0003_Data
-BYTE 8; ALIGN 4 ; POIN heal_0004_Data
-BYTE 8; ALIGN 4 ; POIN heal_0005_Data
-BYTE 8; ALIGN 4 ; POIN heal_0006_Data
-BYTE 8; ALIGN 4 ; POIN heal_0007_Data
-BYTE 8; ALIGN 4 ; POIN heal_0000_Data
-BYTE 8; ALIGN 4 ; POIN heal_0001_Data
-BYTE 8; ALIGN 4 ; POIN heal_0002_Data
-BYTE 8; ALIGN 4 ; POIN heal_0003_Data
-BYTE 8; ALIGN 4 ; POIN heal_0004_Data
-BYTE 8; ALIGN 4 ; POIN heal_0005_Data
-BYTE 8; ALIGN 4 ; POIN heal_0006_Data
-BYTE 8; ALIGN 4 ; POIN heal_0007_Data
-BYTE 8; ALIGN 4 ; POIN heal_0000_Data
-BYTE 8; ALIGN 4 ; POIN heal_0001_Data
-BYTE 8; ALIGN 4 ; POIN heal_0002_Data
-BYTE 8; ALIGN 4 ; POIN heal_0003_Data
-BYTE 8; ALIGN 4 ; POIN heal_0004_Data
-BYTE 8; ALIGN 4 ; POIN heal_0005_Data
-BYTE 8; ALIGN 4 ; POIN heal_0006_Data
-BYTE 8; ALIGN 4 ; POIN heal_0007_Data
-BYTE 8; ALIGN 4 ; POIN heal_0000_Data
-BYTE 8; ALIGN 4 ; POIN heal_0001_Data
-BYTE 8; ALIGN 4 ; POIN heal_0002_Data
-BYTE 8; ALIGN 4 ; POIN heal_0003_Data
-BYTE 8; ALIGN 4 ; POIN heal_0004_Data
-BYTE 8; ALIGN 4 ; POIN heal_0005_Data
-BYTE 8; ALIGN 4 ; POIN heal_0006_Data
-BYTE 8; ALIGN 4 ; POIN heal_0007_Data
-BYTE 8; ALIGN 4 ; POIN heal_0000_Data
-BYTE 8; ALIGN 4 ; POIN heal_0001_Data
-BYTE 8; ALIGN 4 ; POIN heal_0002_Data
-BYTE 8; ALIGN 4 ; POIN heal_0003_Data
-BYTE 8; ALIGN 4 ; POIN heal_0004_Data
-BYTE 8; ALIGN 4 ; POIN heal_0005_Data
-BYTE 8; ALIGN 4 ; POIN heal_0006_Data
-BYTE 8; ALIGN 4 ; POIN heal_0007_Data
-WORD 0 0
+PUSH
+ORG $81274 // Poin to the vanilla proc 
+POIN gProc_MapAnimRound_Animation
 
+POP 
 
-
+// gProc_MapAnimDefaultRound at 9A4764
+// Copied the vanilla proc with our own routine added 
 ALIGN 4
-//FireballAnim:
-BYTE 20; ALIGN 4 ; POIN Fireball_0000_Data
-BYTE 10; ALIGN 4 ; POIN Fireball_0001_Data
-BYTE 10; ALIGN 4 ; POIN Fireball_0002_Data
-BYTE 5 ; ALIGN 4 ; POIN Fireball_0001_Data
-BYTE 15; ALIGN 4 ; POIN Fireball_0002_Data
-BYTE 20; ALIGN 4 ; POIN Fireball_0001_Data
-BYTE 40; ALIGN 4 ; POIN Fireball_0002_Data
+gProc_MapAnimRound_Animation:
+PROC_YIELD 
+PROC_SET_NAME(gProc_MapAnimRound_AnimationName)
+PROC_CALL_ROUTINE(0x80813F9) // Begin Rounds Animation 
+PROC_CALL_ROUTINE($80814D5) // Move towards target 
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($80814D5)
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($80814D5)
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($80814D5)
+PROC_SLEEP(1)
+
+PROC_CALL_ROUTINE($80815C1) // Camera Onto Target 
+PROC_SLEEP(2)
+PROC_CALL_ROUTINE($808161D) // Specific vanilla animations 
+
+PROC_CALL_ROUTINE(Draw_SetupMemorySlots)
+
+PROC_NEW_CHILD(DrawSpriteProc)
+
+//PROC_LOOP_ROUTINE($8081915) // Wait for HP to end changing 
 
 
-SetSlotBTo0xFFFFFFFF:
-SVAL rB (-1)
-NoFade 
-ENDA 
+PROC_CALL_ROUTINE($8081535) // Move away 
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($8081535) // Move away 
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($8081535) // Move away 
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($8081535) // Move away 
+PROC_LOOP_ROUTINE(Draw_WaitXFrames)
+
+PROC_END
+
+
+gProc_MapAnimRound_AnimationName:
+String("gProc_MapAnimRound_Animation_Repointed") ; BYTE 0
+ALIGN 4
 

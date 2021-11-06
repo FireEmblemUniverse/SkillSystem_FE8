@@ -6,13 +6,10 @@
 
 ALIGN 4
 DebugCommandEvent:
-//SCOORD rB [6,7]
-ENUT HideUnitIconsFlag // 0x84 
+SCOORD rB [6,7]
+//ENUT HideUnitIconsFlag // 0x84 
 SVAL r1 0
-ASMC ASMC_Draw
-STAL 66
-SVAL rB 0xFFFFFFFF 
-ENUF HideUnitIconsFlag 
-
+ASMC ASMC_Draw // given sB coords to display at and s1 animation to display, shows an animation 
+//ENUF HideUnitIconsFlag 
 NoFade 
 ENDA 

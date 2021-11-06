@@ -73,7 +73,7 @@ UnitMenuTable:
       //MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
     
 #ifdef DEBUG_MODE
-	//MenuCommand(EscapeName, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
+	MenuCommand(DebugTextHere, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
 #endif 
 
 

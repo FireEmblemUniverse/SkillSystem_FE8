@@ -20,6 +20,30 @@ CauterizeData_pal:
 
 
 
+ALIGN 4
+BoomerangData_pal:
+#incbin "Dmp/bullet005_48px_8_pal.dmp"
+
+
+ALIGN 4
+FeatherData_pal:
+#incbin "Dmp/feather0000_pal.dmp"
+
+
+
+ALIGN 4
+FlashData_pal:
+#incbin "Dmp/Flash00_pal.dmp"
+
+
+ALIGN 4
+FreezeData_pal:
+#incbin "Dmp/Freeze03_pal.dmp"
+
+
+
+
+
 
 
 

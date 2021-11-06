@@ -40,44 +40,111 @@ mov r4, r0
 mov r1, r4 @ Parent proc 
 ldr r0, =DrawSpriteProc
 @ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
-@blh pr6C_NewBlocking
-mov r1, #3 
-blh pr6C_New
+blh pr6C_NewBlocking
+@mov r1, #3 
+@blh pr6C_New
 
 
 pop {r4-r5}
 pop {r0} 
 bx r0 
 
+.align 4
+.global Draw_SetupMemorySlots
+.type Draw_SetupMemorySlots, %function 
+
+Draw_SetupMemorySlots:
+push {lr}
+
+ldr r3, =MemorySlot 
+mov r0, #0 
+str r0, [r3, #4] @ slot 1 
+
+
+blh GetGameClock 
+ldr r3, =MemorySlot
+str r0, [r3, #4*3] @ slot 3
+
+
+
+@ copied from function 080815C0 //MapAnim_MoveCameraOnTarget MapAnim_MoveCameraOnTarget
+ldr r3, =0x203E1F0 @(gMapAnimStruct )
+mov r1, r3 
+add r1, #0x59 
+ldrb r2, [r1]
+lsl r1, r2, #2 
+add r1, r2 
+lsl r1, #2 
+add r1, r3 
+ldr r2, [r1] 
+mov r1, #0x10 
+ldsb r0, [r2, r1] @ XX 
+ldrb r1, [r2, #0x11] @ YY 
+lsl r1, #24 
+asr r1, #24 
+@ bl EnsureCameraOntoPosition - this is what the function usually does 
+
+
+ldr r3, =MemorySlot 
+add r3, #4*0x0B 
+
+@ldr r2, =CurrentUnit 
+@ldrb r0, [r2, #0x10] 
+@ldrb r1, [r2, #0x11] 
+
+
+
+strh r0, [r3] 
+strh r1, [r3, #2] 
+
+
+
+
+
+
+
+
+pop {r1}
+bx r1 
+
+
+
+
 	.equ BreakProcLoop, 0x08002E94
 
 .align 
 .ltorg
-.align 4
-.global Draw_PauseForAnimation
-.type Draw_PauseForAnimation, %function
-@ this loops our animation until the event engine does sval rB 0 
-Draw_PauseForAnimation:
-push {r4-r5, lr} 
-mov r4, r0 @ Parent? 
-ldr r3, =MemorySlot
-add r3, #4*0x0B 
-ldr r0, [r3] 
-mov r1, #0 
-sub r1, #1
-cmp r0, r1
-beq BreakProcLoopNow
-mov r0, #0 
-b End_DrawPause
-BreakProcLoopNow: 
-mov r0, r4 @  @ parent to break from 
-blh BreakProcLoop
-mov r0, #1
-
-End_DrawPause:
-pop {r4-r5}
-pop {r1}
-bx r1 
+@.align 4
+@.global Draw_PauseForAnimation
+@.type Draw_PauseForAnimation, %function
+@@ this loops our animation until the event engine does sval rB 0 
+@Draw_PauseForAnimation:
+@push {r4-r5, lr} 
+@mov r4, r0 @ Parent? 
+@ldr r3, =MemorySlot
+@add r3, #4*0x0B 
+@ldr r0, [r3] 
+@mov r1, #0 
+@sub r1, #1
+@cmp r0, r1
+@beq BreakProcLoopNow
+@mov r0, #0 
+@b End_DrawPause
+@BreakProcLoopNow: 
+@
+@@ldr r3, =0x203E24F @(gMapAnimaionWait )
+@@ldrb r0, [r3] 
+@@cmp r0, #0 
+@@beq End_DrawPause
+@
+@mov r0, r4 @  @ parent to break from 
+@blh BreakProcLoop
+@mov r0, #1
+@
+@End_DrawPause:
+@pop {r4-r5}
+@pop {r1}
+@bx r1 
 
 
 .equ RegisterTileGraphics, 0x8002014 
@@ -125,11 +192,9 @@ ldrh r1, [r3] @ XX
 ldrh r2, [r3, #2] @ YY 
 blh EnsureCameraOntoPosition
 
-
 blh GetGameClock 
 ldr r3, =MemorySlot
 str r0, [r3, #4*3] @ slot 3
-
 
 
 pop {r4-r7}
@@ -142,6 +207,74 @@ bx r1
 .equ CopyToPaletteBuffer, 0x8000DB8
 .equ PushToSecondaryOAM, 0x08002BB8
 .equ GetGameClock, 0x08000D28
+
+.global CallDraw_WaitXFrames
+.type CallDraw_WaitXFrames, %function 
+CallDraw_WaitXFrames:
+push {r4, lr}
+mov r4, r0 
+ldr r3, =0x203E24F @(gMapAnimaionWait )
+ldrb r0, [r3] 
+cmp r0, #0 
+beq End_CallDrawPause
+
+mov r0, r4 
+bl Draw_WaitXFrames
+
+End_CallDrawPause:
+
+pop {r4}
+pop {r1}
+bx r1 
+
+
+
+
+.global Draw_WaitXFrames
+.type Draw_WaitXFrames, %function 
+Draw_WaitXFrames:
+push {r4, lr}
+
+mov r4, r0 @ Parent? 
+blh GetGameClock 
+
+ldr r3, =MemorySlot
+ldr r2, [r3, #12] @ initial game clock time in s3
+sub r0, r2 @ Number of frames since then 
+
+@ Get total frames now 
+ldr r3, =MemorySlot 
+ldr r3, [r3, #4] @ Slot 1 
+lsl r3, #2 @ x4 
+add r2, r3, r3 @ x8 
+add r2, r3 @ x12 
+ldr r3, =AnimTable 
+ldr r3, [r3, r2] @ Specific animation table 
+sub r3, #8
+mov r2, #0 @ Number of frames to wait 
+
+NumberOfFramesLoop:
+add r3, #8 
+ldrh r1, [r3] 
+add r2, r1 @ total frames 
+cmp r1, #0 
+bne NumberOfFramesLoop
+
+
+cmp r0, r2
+bge BreakProcLoopNow2
+mov r0, #0 
+b End_DrawPause
+BreakProcLoopNow2: 
+mov r0, r4 @  @ parent to break from 
+blh BreakProcLoop
+mov r0, #1
+End_DrawPause:
+
+pop {r4}
+pop {r1}
+bx r1 
+
 
 
 .global Draw_PushToOam
@@ -174,16 +307,27 @@ sub r3, #8
 mov r1, #0 @ frames offset 
 b TryNextFrameLoop 
 ExitAnimation: 
-ldr r0, =SetSlotBTo0xFFFFFFFF
-mov r1, #1 
-blh EventEngine
+@ldr r0, =SetSlotBTo0xFFFFFFFF
+@mov r1, #1 
+@blh EventEngine
+ldr r3, =MemorySlot 
+ldr r0, =0xFFFFFFFF 
+add r3, #0x0B*4 
+str r0, [r3] 
+@7b878 sets to 0 
+@ 81698, 7bd3a 
+ldr r3, =0x203E24F @(gMapAnimaionWait )
+mov r0, #1
+strb r0, [r3] 
+
+
 b Skip
 
 TryNextFrameLoop:
 add r3, #8 
 ldrh r2, [r3] 
-cmp r2, #0 
 add r1, r2 
+cmp r2, #0 
 beq ExitAnimation  
 cmp r0, r1 
 bge TryNextFrameLoop 
@@ -282,7 +426,8 @@ Skip:
 pop {r5} 
 
 mov r0, r5 
-bl Draw_PauseForAnimation
+@bl Draw_PauseForAnimation
+bl Draw_WaitXFrames
 
 pop {r4-r7}
 pop {r1}
