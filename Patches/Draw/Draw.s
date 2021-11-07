@@ -21,20 +21,6 @@
 .type ASMC_Draw, %function 
 
 ASMC_Draw:
-push {r4-r7, lr}
-
-
-bl Draw_StartBlockingProc
-
-
-pop {r4-r7}
-pop {r1}
-bx r1 
-
-.align 4
-.global Draw_StartBlockingProc
-.type Draw_StartBlockingProc, %function 
-Draw_StartBlockingProc:
 push {r4-r5, lr} 
 mov r4, r0 
 mov r1, r4 @ Parent proc 
@@ -53,12 +39,23 @@ bx r0
 .global Draw_SetupMemorySlots
 .type Draw_SetupMemorySlots, %function 
 
+@ This function is only used for battles. The ASMC / AoE version does not use this. 
 Draw_SetupMemorySlots:
 push {lr}
 
+
+@ldr r3, =0x203a608 @gpCurrentRound
+@ldr r0, [r3] 
+@ldr r1, [r0] 
+@mov r11, r11 
+
+@bl Draw_GetActiveCoords
+@mov r11, r11 
+
+
+bl Draw_GetAnimationIDByWeapon @ Takes no params, returns animation id to use 
 ldr r3, =MemorySlot 
-mov r0, #0 
-str r0, [r3, #4] @ slot 1 
+str r0, [r3, #4] @ slot 1 - animation ID 
 
 
 blh GetGameClock 
@@ -92,60 +89,15 @@ add r3, #4*0x0B
 @ldrb r0, [r2, #0x10] 
 @ldrb r1, [r2, #0x11] 
 
-
-
 strh r0, [r3] 
 strh r1, [r3, #2] 
-
-
-
-
-
-
-
 
 pop {r1}
 bx r1 
 
-
-
-
 	.equ BreakProcLoop, 0x08002E94
-
 .align 
 .ltorg
-@.align 4
-@.global Draw_PauseForAnimation
-@.type Draw_PauseForAnimation, %function
-@@ this loops our animation until the event engine does sval rB 0 
-@Draw_PauseForAnimation:
-@push {r4-r5, lr} 
-@mov r4, r0 @ Parent? 
-@ldr r3, =MemorySlot
-@add r3, #4*0x0B 
-@ldr r0, [r3] 
-@mov r1, #0 
-@sub r1, #1
-@cmp r0, r1
-@beq BreakProcLoopNow
-@mov r0, #0 
-@b End_DrawPause
-@BreakProcLoopNow: 
-@
-@@ldr r3, =0x203E24F @(gMapAnimaionWait )
-@@ldrb r0, [r3] 
-@@cmp r0, #0 
-@@beq End_DrawPause
-@
-@mov r0, r4 @  @ parent to break from 
-@blh BreakProcLoop
-@mov r0, #1
-@
-@End_DrawPause:
-@pop {r4-r5}
-@pop {r1}
-@bx r1 
-
 
 .equ RegisterTileGraphics, 0x8002014 
 .equ RegisterObjectTileGraphics, 0x8012FF4 
@@ -160,6 +112,10 @@ ldr r5, =0x6010FFF @ end of first two rows
 
 blh 0x8001FE0 @| ClearTileRigistry
 
+blh GetGameClock 
+ldr r3, =MemorySlot
+str r0, [r3, #4*3] @ slot 3
+
 
 ldr r3, =MemorySlot 
 ldr r3, [r3, #4] @ Slot 1 
@@ -170,7 +126,10 @@ add r0, #4 @ palette offset in table
 ldr r2, =AnimTable 
 
 ldr r0, [r2, r0] @ Palette 
+cmp r0, #0 
+beq SkipUpdatingPalette @ No animation 
 
+UpdatePalette:
 mov r1, #26 @ palette # 
 lsl r1, #5 @ multiply by #0x20
 
@@ -184,6 +143,7 @@ ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the p
 mov	r1,#1
 strb r1,[r0]
 
+SkipUpdatingPalette:
 
 mov r0, #0 
 ldr r3, =MemorySlot 
@@ -192,9 +152,7 @@ ldrh r1, [r3] @ XX
 ldrh r2, [r3, #2] @ YY 
 blh EnsureCameraOntoPosition
 
-blh GetGameClock 
-ldr r3, =MemorySlot
-str r0, [r3, #4*3] @ slot 3
+
 
 
 pop {r4-r7}
@@ -208,24 +166,7 @@ bx r1
 .equ PushToSecondaryOAM, 0x08002BB8
 .equ GetGameClock, 0x08000D28
 
-.global CallDraw_WaitXFrames
-.type CallDraw_WaitXFrames, %function 
-CallDraw_WaitXFrames:
-push {r4, lr}
-mov r4, r0 
-ldr r3, =0x203E24F @(gMapAnimaionWait )
-ldrb r0, [r3] 
-cmp r0, #0 
-beq End_CallDrawPause
 
-mov r0, r4 
-bl Draw_WaitXFrames
-
-End_CallDrawPause:
-
-pop {r4}
-pop {r1}
-bx r1 
 
 
 
@@ -250,6 +191,9 @@ add r2, r3, r3 @ x8
 add r2, r3 @ x12 
 ldr r3, =AnimTable 
 ldr r3, [r3, r2] @ Specific animation table 
+cmp r3, #0 
+beq NoAnimation
+
 sub r3, #8
 mov r2, #0 @ Number of frames to wait 
 
@@ -262,12 +206,26 @@ bne NumberOfFramesLoop
 
 
 cmp r0, r2
-bge BreakProcLoopNow2
+bge BreakProcLoopNow
 mov r0, #0 
 b End_DrawPause
-BreakProcLoopNow2: 
+
+NoAnimation:
+
+cmp r0, #28 @ Always 28+ frames when no animation 
+bgt VanillaHP_BarRoutine
+mov r0, #0 
+b End_DrawPause
+
+VanillaHP_BarRoutine:
+mov r0, r4 @ parent proc 
+blh 0x8081914 @ default routine wait for hp to finish going down 
+b End_DrawPause
+
+BreakProcLoopNow:
 mov r0, r4 @  @ parent to break from 
-blh BreakProcLoop
+blh 0x8081914 @ default routine wait for hp to finish going down 
+@blh BreakProcLoop
 mov r0, #1
 End_DrawPause:
 
@@ -275,6 +233,135 @@ pop {r4}
 pop {r1}
 bx r1 
 
+
+.type Draw_GetActiveCoords, %function  
+Draw_GetActiveCoords:
+push {lr}
+
+ldr r3, =0x203E1F0 @(gMapAnimStruct )
+mov r1, r3 
+add r1, #0x59 
+ldrb r2, [r1]
+lsl r1, r2, #2 
+add r1, r2 
+lsl r1, #2 
+add r1, r3 
+ldr r2, [r1] 
+mov r1, #0x10 
+ldsb r0, [r2, r1] @ XX 
+ldrb r1, [r2, #0x11] @ YY 
+lsl r1, #24 
+asr r1, #24 
+
+
+pop {r2}
+bx r2 
+.align 4 
+
+.global Draw_GetActiveAttackerOrDefender
+.type Draw_GetActiveAttackerOrDefender, %function 
+Draw_GetActiveAttackerOrDefender:
+push {r4, lr} 
+
+bl Draw_GetActiveCoords @ I guess this returns the target's coords? 
+
+
+ldr r3, =0x203A4EC @ Atkr 
+ldr r4, =0x203A56C @ Dfdr 
+ldrb r2, [r3, #0x10]
+cmp r2, r0
+bne TryDfdr
+ldrb r2, [r3, #0x11] 
+cmp r2, r1 
+bne TryDfdr 
+b ExitDraw_GetActiveAttackerOrDefender
+
+
+TryDfdr:
+ldr r3, =0x203A56C @ Dfdr 
+ldr r4, =0x203A4EC @ Atkr 
+ldrb r2, [r3, #0x10]
+cmp r2, r0  
+bne RetFalse
+ldrb r2, [r3, #0x11] 
+cmp r2, r1 
+bne RetFalse 
+b ExitDraw_GetActiveAttackerOrDefender
+
+
+RetFalse:
+mov r3, #0
+mov r4, #0  
+ExitDraw_GetActiveAttackerOrDefender:
+mov r1, r3 @ Target @ we found the target's coords, so let's instead use the active unit 
+mov r0, r4 @ Active 
+
+@ r0 has the atkr or dfdr struct 
+
+pop {r4} 
+pop {r2}
+bx r2
+
+
+.global Draw_GetAnimationIDByWeapon
+.type Draw_GetAnimationIDByWeapon, %function 
+Draw_GetAnimationIDByWeapon:
+push {r4, lr}
+
+
+bl Draw_GetActiveAttackerOrDefender 
+
+cmp r0, #0 
+beq Error 
+mov r4, r0 
+
+@ Current unit's battle struct is in r4 
+mov r0, r4
+add r0, #0x4A @ Active unit's weapon 
+ldrb r0, [r0] @ Weapon ID 
+
+mov r2, #0 @ Counter 
+ldr r3, =SpecificWeaponAnimations
+sub r3, #2 @ 2 bytes per 
+AnimationBySpecificWeapon_Loop:
+add r3, #2 
+ldr r1, [r3] 
+cmp r1, #0 
+beq BreakAnimationBySpecificWeapon_Loop
+ldrb r1, [r3] 
+cmp r0, r1 
+bne AnimationBySpecificWeapon_Loop
+ldrb r0, [r3, #1] @ Animation ID 
+b ExitDraw_GetAnimationIDByWeapon @ We found an animation for that specific weapon 
+
+BreakAnimationBySpecificWeapon_Loop:
+blh 0x8017548 @GetItemWType
+
+mov r2, #0 @ Counter 
+ldr r3, =WeaponTypeAnimations
+sub r3, #2 
+
+AnimationByWeaponType_Loop:
+add r3, #2 
+ldr r1, [r3] 
+cmp r1, #0 
+beq Error @ No animation found for this weapon type, so error 
+ldrb r1, [r3] 
+cmp r0, r1 
+bne AnimationByWeaponType_Loop
+ldrb r0, [r3, #1] @ Animation ID 
+b ExitDraw_GetAnimationIDByWeapon
+
+Error:
+mov r0, #0 @ 0th animation is none 
+
+
+ExitDraw_GetAnimationIDByWeapon:
+
+pop {r4}
+pop {r1}
+bx r1 
+.align 
 
 
 .global Draw_PushToOam
@@ -286,8 +373,33 @@ mov r5, r0
 
 push {r5} 
 
-blh GetGameClock 
+@ get coordinates 
+ldr r3, =MemorySlot 
+add r3, #4*0x0B 
+ldrh r5, [r3]
+ldrh r6, [r3, #2]
 
+
+
+ldr r3, =0x202BCBC @(gCurrentRealCameraPos )
+ldrh r0, [r3]
+ldrh r1, [r3, #2] 
+
+lsr r0, #4 @ fsr cam pos gives coords <<#4 bits over 
+lsr r1, #4 
+sub r5, r0 
+sub r6, r1 
+
+@ r0 = XX, r1 = YY
+lsl r0, r5, #4 @ 16*XX 
+lsl r1, r6, #4 @ 16*YY 
+bl Draw_NumberDuringBattle
+
+sub r5, #1 @ offset by 1 to center 64x64 animations 
+sub r6, #1 
+
+
+blh GetGameClock 
 
 
 ldr r3, =MemorySlot
@@ -302,23 +414,17 @@ add r2, r3, r3 @ x8
 add r2, r3 @ x12 
 ldr r3, =AnimTable 
 ldr r3, [r3, r2] @ Specific animation table 
-
+cmp r3, #0 @ No animation, so exit 
+beq ExitAnimation
 sub r3, #8 
 mov r1, #0 @ frames offset 
 b TryNextFrameLoop 
 ExitAnimation: 
-@ldr r0, =SetSlotBTo0xFFFFFFFF
-@mov r1, #1 
-@blh EventEngine
-ldr r3, =MemorySlot 
-ldr r0, =0xFFFFFFFF 
-add r3, #0x0B*4 
-str r0, [r3] 
 @7b878 sets to 0 
 @ 81698, 7bd3a 
-ldr r3, =0x203E24F @(gMapAnimaionWait )
-mov r0, #1
-strb r0, [r3] 
+@ldr r3, =0x203E24F @(gMapAnimaionWait )
+@mov r0, #1
+@strb r0, [r3] 
 
 
 b Skip
@@ -336,15 +442,13 @@ bge TryNextFrameLoop
 
 ldr r0, [r3, #4] 
 
-ldr r1, =0x6013000 @vram
+ldr r1, =VRAM_Address_Link
+ldr r1, [r1] 
 ldr r2, =#4096 @ number of bytes 
 mov r2, #8
 mov r3, #8
 @ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
 blh RegisterObjectTileGraphics, r4
-
-
-
 
 
 
@@ -367,38 +471,30 @@ str   r2, [r1, #0x4]
 
 
 
-mov r5, #40 @ XX 
-mov r6, #40 @ YY 
 
-ldr r3, =MemorySlot 
-add r3, #4*0x0B 
-ldrh r5, [r3]
-ldrh r6, [r3, #2]
-sub r5, #1
-sub r6, #1 
+@ Clear number data buffer 
+@ldr r3, =0x2028e44 @gDebugNumberString
+@mov r2, #0 
+@str r2, [r3] 
+@add r3, #4 
+@str r2, [r3] 
+@add r3, #4 
+@str r2, [r3] @ Cleared 
 
 
-ldr r3, =0x202BCBC @(gCurrentRealCameraPos )
-ldrh r0, [r3]
-ldrh r1, [r3, #2] 
 
-lsr r0, #4
-lsr r1, #4 
-sub r5, r0 
-sub r6, r1 
-
-ldr r7, =0x180 @ offset where we put the tiles 
+ldr r7, =VRAM_Address_Link
+ldr r7, [r7] 
+lsr r7, #5 @ eg. tile #0x198 - offset where we put the tiles 
 
 @ Push to secondary OAM
 @To compute the offset for one tile in the map buffer given its (x, y) pos: offset = 2*x + 0x40*y
-mov r0, r5 
+lsl r0, r5, #4 @ 16*XX 
 
 
 @	00 | short | base OAM0 data (y coord, various flags, shape)
 @			02 | short | base OAM1 data (x coord, flips, size)
 @			04 | short | base OAM2 data (tile index, priority, palette index)
-
-lsl r0, #4 @ 16*XX 
 mov   r2, #0xc0 @ #0xC0 64x64  FF 
 lsl   r2, #0x8 @ shifted by this amount 
 orr   r0, r2                    @ Sprite size, 32x32
@@ -426,12 +522,211 @@ Skip:
 pop {r5} 
 
 mov r0, r5 
-@bl Draw_PauseForAnimation
 bl Draw_WaitXFrames
 
 pop {r4-r7}
 pop {r1}
 bx r1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.align 4
+
+.global Draw_NumberDuringBattle
+.type Draw_NumberDuringBattle, %function 
+
+
+Draw_NumberDuringBattle:
+push {r4-r7, lr}
+
+mov r4, r0 @ XX 
+mov r5, r1 @ YY 
+
+
+blh GetGameClock 
+ldr r3, =MemorySlot
+ldr r2, [r3, #4*3] @ slot 3
+sub r0, r2 @ Number of frames since animation started 
+mov r6, r0 
+lsr r6, #1 @ every 2 frames move upwards 
+cmp r6, #16 
+blt Continue_DrawNumber
+mov r6, #16 @ max height is +16 above 
+Continue_DrawNumber:
+sub r5, r6 
+
+lsr r0, r6, #1 
+add r0, #5 
+DivisionLoop:
+sub r0, #5 
+cmp r0, #5 
+bgt DivisionLoop 
+
+add r4, #5 
+sub r4, r0 @ subtract or add based on the remainder so that it will wiggle ? 
+
+
+
+
+
+
+
+
+bl Draw_GetActiveAttackerOrDefender
+cmp r0, #0 
+beq ExitDraw_NumberDuringBattle
+ldr r1, =0x203A4EC @ Atkr 
+
+@DetermineBattleActorSide:
+ldr r2, =0x203E108 @ what side is the battle actor on? 
+ldrb r2, [r2] 
+cmp r2, #1 
+bne DontSwapSides
+ldr r1, =0x203A56C @ Dfdr 
+DontSwapSides:
+
+cmp r0, r1 
+bne BattleSideRight 
+
+DeducedAtkrOrDfdr: 
+mov r2, r0 @ Active unit 
+mov r3, r1 @ Target
+
+BattleSideLeft:
+mov r0, #0 
+ldr r3, =0x0203E1BC @ Battle side 1 - See febuilder debugger "BattleSome" struct starting at 0203E0F0
+ldsh r0, [r3, r0] 
+cmp r0, #0 
+blt ExitDraw_NumberDuringBattle
+b FoundDamage
+
+BattleSideRight:
+mov r0, #0 
+ldr r3, =0x203E1BE @ Battle side 2
+ldsh r0, [r3, r0] 
+cmp r0, #0 
+blt ExitDraw_NumberDuringBattle
+
+FoundDamage:
+
+@ 203A5EC Rounds ? 
+@ldr r3, =0x203A5EC @ Rounds 
+@ldrb r0, [r3] 
+@mov r1, #2 
+@and r0, r1 
+@cmp r0, #0 
+@bne ExitDraw_NumberDuringBattle @ Unit missed. 
+@
+@ldrb r0, [r3, #3] @ damage 
+
+
+
+mov r7, r0 @ Damage to deal 
+
+@mov r7, #64
+
+
+mov r1, r7 
+cmp r7, #10 
+blt SkipTensDigit
+
+add r1, #10 
+mov r2, #0 @ counter
+sub r2, #1 
+
+ 
+GetRemainderLoop:
+sub r1, #10 
+add r2, #1 
+cmp r1, #10 
+bge GetRemainderLoop 
+@r2 as Top digit only 
+mov r7, r1 @ remainder only 
+
+
+
+mov r0, r4 
+mov r1, r5 
+
+
+bl Draw_NumberOAM
+
+SkipTensDigit:
+mov r0, r4 
+mov r1, r5 
+add r0, #8 
+mov r2, r7 
+bl Draw_NumberOAM
+
+
+	@ Inputs:
+	@ r0: X coordinate
+	@ r1: Y coordinate
+	@ r2: Number
+@mov r2, #64 
+
+mov r2, r7 
+@blh MMBDrawUnsignedNumber
+
+ExitDraw_NumberDuringBattle:
+
+pop {r4-r7}
+pop {r1}
+bx r1 
+
+.equ SpriteData8x8,			0x08590F44
+
+Draw_NumberOAM:
+@ referenced Zane's MMB function for this 
+.type	Draw_NumberOAM, %function
+
+@ Inputs:
+@ r0: X coordinate
+@ r1: Y coordinate
+@ r2: Number
+
+push	{lr}
+
+@ We'll need all scratch registers,
+@ so we set lr first
+
+ldr		r3, =PushToSecondaryOAM 
+mov		lr, r3
+
+@ add number to base
+@ 0-9 in r2 is the number
+@ 0x0A in r2 is a dash
+ldr		r3, =0x81C0 @ Number base tile
+cmp r2, #5 
+ble GotOffset
+ldr		r3, =0x81E0 @ Number base tile
+sub r2, #6  
+GotOffset:
+add		r3, r2, r3
+
+@ OAM data for a single 8x8 sprite
+
+ldr		r2, =SpriteData8x8
+
+.short 0xf800 
+
+pop		{r0}
+bx		r0
+
+
+
 
 .global Draw_Cleanup
 .type Draw_Cleanup, %function 
@@ -448,7 +743,8 @@ strb r1,[r0]
 
 
 mov r0, #0 
-ldr r1, =0x6013000 
+ldr r1, =VRAM_Address_Link
+ldr r1, [r1] 
 ldr r2, =#4096 @ 64x64 image bytes size 
 @=#4096 @64x64 image bytes 
 @Arguments: r0 = *word* to fill with, r1 = Destination pointer, r2 = size (bytes)
@@ -460,9 +756,6 @@ blh 0x8001FE0 @| ClearTileRigistry
 pop {r4-r7}
 pop {r1}
 bx r1 
-
-
-
 
 
 

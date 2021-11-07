@@ -1,11 +1,27 @@
 #include "Draw.lyn.event"
-
-
 #include "EAstdlib.event"
-
 #include "Extensions/ProcDefinitions.txt"
 
-// 21668 //Redraw map at end of event effect 
+ALIGN 4
+WeaponTypeAnimations:
+// Weapon type (eg. SWORD) 
+BYTE $20 3
+BYTE 0 0 0 0; ALIGN 4 // Terminator 
+
+
+#define NoAnimation 0 
+#define FreezeAnimation 1 
+#define BoomerangAnimation 2
+
+ALIGN 4
+SpecificWeaponAnimations:
+BYTE Confusion FreezeAnimation 
+BYTE SandAttack BoomerangAnimation 
+BYTE Tackle NoAnimation 
+BYTE 0 0 0 0; ALIGN 4 // Terminator 
+
+
+
 
 ALIGN 4
 DrawSpriteProc:
@@ -17,34 +33,35 @@ PROC_LOOP_ROUTINE(Draw_PushToOam)
 PROC_CALL_ROUTINE(Draw_Cleanup) 
 PROC_END
 
-
 ASMC_DrawProcName:
 String("PausesStuffWhileAnimationIsGoing") ; BYTE 0
 ALIGN 4
 
 ALIGN 4
 AnimTable:
+WORD 0 0 0 // 0th animation is blank 
+POIN Freeze_Anim FreezeData_pal; SHORT 0 0
 POIN Boomerang_Anim BoomerangData_pal; SHORT 0 0
+
+
 POIN Cauterize_Anim CauterizeData_pal; SHORT 0 0
 POIN Feather_Anim FeatherData_pal; SHORT 0 0
-POIN Freeze_Anim FreezeData_pal; SHORT 0 0
+
 POIN Flash_Anim FlashData_pal; SHORT 0 0
-
-
-
-
 POIN Heal_Anim HealData_pal; SHORT 0 0 // SFX 
 POIN Fireball_Anim FireballData_pal; SHORT 0 0
 WORD 0 0 0
 
 
-
+#define VRAM_Address 0x6013300
+ALIGN 4
+VRAM_Address_Link:
+WORD VRAM_Address 
 
 
 PUSH
 ORG $81274 // Poin to the vanilla proc 
 POIN gProc_MapAnimRound_Animation
-
 POP 
 
 // gProc_MapAnimDefaultRound at 9A4764
@@ -53,7 +70,7 @@ ALIGN 4
 gProc_MapAnimRound_Animation:
 PROC_YIELD 
 PROC_SET_NAME(gProc_MapAnimRound_AnimationName)
-PROC_CALL_ROUTINE(0x80813F9) // Begin Rounds Animation 
+PROC_CALL_ROUTINE($80813F9) // Begin Rounds Animation 
 PROC_CALL_ROUTINE($80814D5) // Move towards target 
 PROC_SLEEP(1)
 PROC_CALL_ROUTINE($80814D5)
@@ -70,10 +87,8 @@ PROC_CALL_ROUTINE($808161D) // Specific vanilla animations
 PROC_CALL_ROUTINE(Draw_SetupMemorySlots)
 
 PROC_NEW_CHILD(DrawSpriteProc)
-
+PROC_YIELD
 //PROC_LOOP_ROUTINE($8081915) // Wait for HP to end changing 
-
-
 PROC_CALL_ROUTINE($8081535) // Move away 
 PROC_SLEEP(1)
 PROC_CALL_ROUTINE($8081535) // Move away 
