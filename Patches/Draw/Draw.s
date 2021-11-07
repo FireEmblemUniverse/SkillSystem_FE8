@@ -183,6 +183,12 @@ ldr r3, =MemorySlot
 ldr r2, [r3, #12] @ initial game clock time in s3
 sub r0, r2 @ Number of frames since then 
 
+ldr r2, =MinimumFramesLink
+ldr r2, [r2] 
+cmp r0, r2 
+ble End_DrawPause @ regardless of animation or not, always pause at least X frames 
+
+
 @ Get total frames now 
 ldr r3, =MemorySlot 
 ldr r3, [r3, #4] @ Slot 1 
@@ -211,12 +217,6 @@ mov r0, #0
 b End_DrawPause
 
 NoAnimation:
-
-cmp r0, #28 @ Always 28+ frames when no animation 
-bgt VanillaHP_BarRoutine
-mov r0, #0 
-b End_DrawPause
-
 VanillaHP_BarRoutine:
 mov r0, r4 @ parent proc 
 blh 0x8081914 @ default routine wait for hp to finish going down 
@@ -406,6 +406,8 @@ ldr r3, =MemorySlot
 ldr r2, [r3, #12] @ initial game clock time in s3
 sub r0, r2 @ frame we're on
 
+
+
  
 ldr r3, =MemorySlot 
 ldr r3, [r3, #4] @ Slot 1 
@@ -434,7 +436,7 @@ add r3, #8
 ldrh r2, [r3] 
 add r1, r2 
 cmp r2, #0 
-beq ExitAnimation  
+beq ExitAnimation
 cmp r0, r1 
 bge TryNextFrameLoop 
 
@@ -561,9 +563,9 @@ ldr r2, [r3, #4*3] @ slot 3
 sub r0, r2 @ Number of frames since animation started 
 mov r6, r0 
 lsr r6, #1 @ every 2 frames move upwards 
-cmp r6, #16 
+cmp r6, #13 
 blt Continue_DrawNumber
-mov r6, #16 @ max height is +16 above 
+mov r6, #13 @ max height is +16 above 
 Continue_DrawNumber:
 sub r5, r6 
 
@@ -584,52 +586,53 @@ sub r4, r0 @ subtract or add based on the remainder so that it will wiggle ?
 
 
 
-bl Draw_GetActiveAttackerOrDefender
-cmp r0, #0 
-beq ExitDraw_NumberDuringBattle
-ldr r1, =0x203A4EC @ Atkr 
-
-@DetermineBattleActorSide:
-ldr r2, =0x203E108 @ what side is the battle actor on? 
-ldrb r2, [r2] 
-cmp r2, #1 
-bne DontSwapSides
-ldr r1, =0x203A56C @ Dfdr 
-DontSwapSides:
-
-cmp r0, r1 
-bne BattleSideRight 
-
-DeducedAtkrOrDfdr: 
-mov r2, r0 @ Active unit 
-mov r3, r1 @ Target
-
-BattleSideLeft:
-mov r0, #0 
-ldr r3, =0x0203E1BC @ Battle side 1 - See febuilder debugger "BattleSome" struct starting at 0203E0F0
-ldsh r0, [r3, r0] 
-cmp r0, #0 
-blt ExitDraw_NumberDuringBattle
-b FoundDamage
-
-BattleSideRight:
-mov r0, #0 
-ldr r3, =0x203E1BE @ Battle side 2
-ldsh r0, [r3, r0] 
-cmp r0, #0 
-blt ExitDraw_NumberDuringBattle
-
-FoundDamage:
-
-@ 203A5EC Rounds ? 
-@ldr r3, =0x203A5EC @ Rounds 
-@ldrb r0, [r3] 
-@mov r1, #2 
-@and r0, r1 
+@bl Draw_GetActiveAttackerOrDefender
 @cmp r0, #0 
-@bne ExitDraw_NumberDuringBattle @ Unit missed. 
+@beq ExitDraw_NumberDuringBattle
+@ldr r1, =0x203A4EC @ Atkr 
 @
-@ldrb r0, [r3, #3] @ damage 
+@@DetermineBattleActorSide:
+@ldr r2, =0x203E108 @ what side is the battle actor on? 
+@ldrb r2, [r2] 
+@cmp r2, #1 
+@bne DontSwapSides
+@ldr r1, =0x203A56C @ Dfdr 
+@DontSwapSides:
+@
+@cmp r0, r1 
+@bne BattleSideRight 
+@
+@DeducedAtkrOrDfdr: 
+@mov r2, r0 @ Active unit 
+@mov r3, r1 @ Target
+@
+@BattleSideLeft:
+@mov r0, #0 
+@ldr r3, =0x0203E1BC @ Battle side 1 - See febuilder debugger "BattleSome" struct starting at 0203E0F0
+@ldsh r0, [r3, r0] 
+@cmp r0, #0 
+@blt ExitDraw_NumberDuringBattle
+@b FoundDamage
+@
+@BattleSideRight:
+@mov r0, #0 
+@ldr r3, =0x203E1BE @ Battle side 2
+@ldsh r0, [r3, r0] 
+@cmp r0, #0 
+@blt ExitDraw_NumberDuringBattle
+
+@FoundDamage:
+
+
+ldr r3, =0x203E24A @ current round - from function 8161C - address 81676 
+ldrh r1, [r3] 
+mov r2, #2 
+and r1, r2 
+cmp r1, #0 
+bne ExitDraw_NumberDuringBattle
+ldrb r0, [r3, #3] @ dmg? 
+
+
 
 
 

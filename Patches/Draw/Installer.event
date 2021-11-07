@@ -58,6 +58,12 @@ ALIGN 4
 VRAM_Address_Link:
 WORD VRAM_Address 
 
+#define MinimumFrames 28
+ALIGN 4
+MinimumFramesLink:
+WORD MinimumFrames 
+
+
 
 PUSH
 ORG $81274 // Poin to the vanilla proc 
