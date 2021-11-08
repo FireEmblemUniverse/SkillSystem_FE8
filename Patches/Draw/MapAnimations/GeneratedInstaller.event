@@ -1,0 +1,368 @@
+//Generated - do not edit!
+ 
+
+
+
+
+ALIGN 4 
+Break1_Large_Anim: 
+BYTE 2; ALIGN 4; POIN break1_001_Data 
+BYTE 2; ALIGN 4; POIN break1_002_Data 
+BYTE 2; ALIGN 4; POIN break1_003_Data 
+BYTE 2; ALIGN 4; POIN break1_004_Data 
+BYTE 2; ALIGN 4; POIN break1_005_Data 
+BYTE 2; ALIGN 4; POIN break1_006_Data 
+BYTE 2; ALIGN 4; POIN break1_007_Data 
+BYTE 2; ALIGN 4; POIN break1_008_Data 
+BYTE 2; ALIGN 4; POIN break1_009_Data 
+BYTE 2; ALIGN 4; POIN break1_010_Data 
+BYTE 2; ALIGN 4; POIN break1_011_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+break1_001_Data: 
+#incbin "dmp\break1_001.dmp" 
+ 
+ALIGN 4 
+break1_002_Data: 
+#incbin "dmp\break1_002.dmp" 
+ 
+ALIGN 4 
+break1_003_Data: 
+#incbin "dmp\break1_003.dmp" 
+ 
+ALIGN 4 
+break1_004_Data: 
+#incbin "dmp\break1_004.dmp" 
+ 
+ALIGN 4 
+break1_005_Data: 
+#incbin "dmp\break1_005.dmp" 
+ 
+ALIGN 4 
+break1_006_Data: 
+#incbin "dmp\break1_006.dmp" 
+ 
+ALIGN 4 
+break1_007_Data: 
+#incbin "dmp\break1_007.dmp" 
+ 
+ALIGN 4 
+break1_008_Data: 
+#incbin "dmp\break1_008.dmp" 
+ 
+ALIGN 4 
+break1_009_Data: 
+#incbin "dmp\break1_009.dmp" 
+ 
+ALIGN 4 
+break1_010_Data: 
+#incbin "dmp\break1_010.dmp" 
+ 
+ALIGN 4 
+break1_011_Data: 
+#incbin "dmp\break1_011.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Break1_Small_Anim: 
+BYTE 2; ALIGN 4; POIN break1_001_Data 
+BYTE 2; ALIGN 4; POIN break1_002_Data 
+BYTE 2; ALIGN 4; POIN break1_003_Data 
+BYTE 2; ALIGN 4; POIN break1_004_Data 
+BYTE 2; ALIGN 4; POIN break1_005_Data 
+BYTE 2; ALIGN 4; POIN break1_006_Data 
+BYTE 2; ALIGN 4; POIN break1_007_Data 
+BYTE 2; ALIGN 4; POIN break1_008_Data 
+BYTE 2; ALIGN 4; POIN break1_009_Data 
+BYTE 2; ALIGN 4; POIN break1_010_Data 
+BYTE 2; ALIGN 4; POIN break1_011_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+break1_001_Data: 
+#incbin "dmp\break1_001.dmp" 
+ 
+ALIGN 4 
+break1_002_Data: 
+#incbin "dmp\break1_002.dmp" 
+ 
+ALIGN 4 
+break1_003_Data: 
+#incbin "dmp\break1_003.dmp" 
+ 
+ALIGN 4 
+break1_004_Data: 
+#incbin "dmp\break1_004.dmp" 
+ 
+ALIGN 4 
+break1_005_Data: 
+#incbin "dmp\break1_005.dmp" 
+ 
+ALIGN 4 
+break1_006_Data: 
+#incbin "dmp\break1_006.dmp" 
+ 
+ALIGN 4 
+break1_007_Data: 
+#incbin "dmp\break1_007.dmp" 
+ 
+ALIGN 4 
+break1_008_Data: 
+#incbin "dmp\break1_008.dmp" 
+ 
+ALIGN 4 
+break1_009_Data: 
+#incbin "dmp\break1_009.dmp" 
+ 
+ALIGN 4 
+break1_010_Data: 
+#incbin "dmp\break1_010.dmp" 
+ 
+ALIGN 4 
+break1_011_Data: 
+#incbin "dmp\break1_011.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Break2_Large_Anim: 
+BYTE 2; ALIGN 4; POIN break2_000_Data 
+BYTE 2; ALIGN 4; POIN break2_001_Data 
+BYTE 2; ALIGN 4; POIN break2_002_Data 
+BYTE 2; ALIGN 4; POIN break2_003_Data 
+BYTE 2; ALIGN 4; POIN break2_004_Data 
+BYTE 2; ALIGN 4; POIN break2_005_Data 
+BYTE 2; ALIGN 4; POIN break2_006_Data 
+BYTE 2; ALIGN 4; POIN break2_007_Data 
+BYTE 2; ALIGN 4; POIN break2_008_Data 
+BYTE 2; ALIGN 4; POIN break2_009_Data 
+BYTE 2; ALIGN 4; POIN break2_010_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+break2_000_Data: 
+#incbin "dmp\break2_000.dmp" 
+ 
+ALIGN 4 
+break2_001_Data: 
+#incbin "dmp\break2_001.dmp" 
+ 
+ALIGN 4 
+break2_002_Data: 
+#incbin "dmp\break2_002.dmp" 
+ 
+ALIGN 4 
+break2_003_Data: 
+#incbin "dmp\break2_003.dmp" 
+ 
+ALIGN 4 
+break2_004_Data: 
+#incbin "dmp\break2_004.dmp" 
+ 
+ALIGN 4 
+break2_005_Data: 
+#incbin "dmp\break2_005.dmp" 
+ 
+ALIGN 4 
+break2_006_Data: 
+#incbin "dmp\break2_006.dmp" 
+ 
+ALIGN 4 
+break2_007_Data: 
+#incbin "dmp\break2_007.dmp" 
+ 
+ALIGN 4 
+break2_008_Data: 
+#incbin "dmp\break2_008.dmp" 
+ 
+ALIGN 4 
+break2_009_Data: 
+#incbin "dmp\break2_009.dmp" 
+ 
+ALIGN 4 
+break2_010_Data: 
+#incbin "dmp\break2_010.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Break2_Small_Anim: 
+BYTE 2; ALIGN 4; POIN break2_000_Data 
+BYTE 2; ALIGN 4; POIN break2_001_Data 
+BYTE 2; ALIGN 4; POIN break2_002_Data 
+BYTE 2; ALIGN 4; POIN break2_003_Data 
+BYTE 2; ALIGN 4; POIN break2_004_Data 
+BYTE 2; ALIGN 4; POIN break2_005_Data 
+BYTE 2; ALIGN 4; POIN break2_006_Data 
+BYTE 2; ALIGN 4; POIN break2_007_Data 
+BYTE 2; ALIGN 4; POIN break2_008_Data 
+BYTE 2; ALIGN 4; POIN break2_009_Data 
+BYTE 2; ALIGN 4; POIN break2_010_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+break2_000_Data: 
+#incbin "dmp\break2_000.dmp" 
+ 
+ALIGN 4 
+break2_001_Data: 
+#incbin "dmp\break2_001.dmp" 
+ 
+ALIGN 4 
+break2_002_Data: 
+#incbin "dmp\break2_002.dmp" 
+ 
+ALIGN 4 
+break2_003_Data: 
+#incbin "dmp\break2_003.dmp" 
+ 
+ALIGN 4 
+break2_004_Data: 
+#incbin "dmp\break2_004.dmp" 
+ 
+ALIGN 4 
+break2_005_Data: 
+#incbin "dmp\break2_005.dmp" 
+ 
+ALIGN 4 
+break2_006_Data: 
+#incbin "dmp\break2_006.dmp" 
+ 
+ALIGN 4 
+break2_007_Data: 
+#incbin "dmp\break2_007.dmp" 
+ 
+ALIGN 4 
+break2_008_Data: 
+#incbin "dmp\break2_008.dmp" 
+ 
+ALIGN 4 
+break2_009_Data: 
+#incbin "dmp\break2_009.dmp" 
+ 
+ALIGN 4 
+break2_010_Data: 
+#incbin "dmp\break2_010.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Circle_Large_Anim: 
+BYTE 2; ALIGN 4; POIN circle_000_Data 
+BYTE 2; ALIGN 4; POIN circle_001_Data 
+BYTE 2; ALIGN 4; POIN circle_002_Data 
+BYTE 2; ALIGN 4; POIN circle_003_Data 
+BYTE 2; ALIGN 4; POIN circle_004_Data 
+BYTE 2; ALIGN 4; POIN circle_005_Data 
+BYTE 2; ALIGN 4; POIN circle_006_Data 
+BYTE 2; ALIGN 4; POIN circle_007_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+circle_000_Data: 
+#incbin "dmp\circle_000.dmp" 
+ 
+ALIGN 4 
+circle_001_Data: 
+#incbin "dmp\circle_001.dmp" 
+ 
+ALIGN 4 
+circle_002_Data: 
+#incbin "dmp\circle_002.dmp" 
+ 
+ALIGN 4 
+circle_003_Data: 
+#incbin "dmp\circle_003.dmp" 
+ 
+ALIGN 4 
+circle_004_Data: 
+#incbin "dmp\circle_004.dmp" 
+ 
+ALIGN 4 
+circle_005_Data: 
+#incbin "dmp\circle_005.dmp" 
+ 
+ALIGN 4 
+circle_006_Data: 
+#incbin "dmp\circle_006.dmp" 
+ 
+ALIGN 4 
+circle_007_Data: 
+#incbin "dmp\circle_007.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Circle_Small_Anim: 
+BYTE 2; ALIGN 4; POIN circle_000_Data 
+BYTE 2; ALIGN 4; POIN circle_001_Data 
+BYTE 2; ALIGN 4; POIN circle_002_Data 
+BYTE 2; ALIGN 4; POIN circle_003_Data 
+BYTE 2; ALIGN 4; POIN circle_004_Data 
+BYTE 2; ALIGN 4; POIN circle_005_Data 
+BYTE 2; ALIGN 4; POIN circle_006_Data 
+BYTE 2; ALIGN 4; POIN circle_007_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+circle_000_Data: 
+#incbin "dmp\circle_000.dmp" 
+ 
+ALIGN 4 
+circle_001_Data: 
+#incbin "dmp\circle_001.dmp" 
+ 
+ALIGN 4 
+circle_002_Data: 
+#incbin "dmp\circle_002.dmp" 
+ 
+ALIGN 4 
+circle_003_Data: 
+#incbin "dmp\circle_003.dmp" 
+ 
+ALIGN 4 
+circle_004_Data: 
+#incbin "dmp\circle_004.dmp" 
+ 
+ALIGN 4 
+circle_005_Data: 
+#incbin "dmp\circle_005.dmp" 
+ 
+ALIGN 4 
+circle_006_Data: 
+#incbin "dmp\circle_006.dmp" 
+ 
+ALIGN 4 
+circle_007_Data: 
+#incbin "dmp\circle_007.dmp" 
+ 

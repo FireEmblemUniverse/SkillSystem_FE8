@@ -1,47 +1,54 @@
 #include "Draw.lyn.event"
 #include "EAstdlib.event"
 #include "Extensions/ProcDefinitions.txt"
+#include "MapAnimations/Installer.event"
+
+
+
+
+
+#define Empty_AnimID 0 
+#define Freeze_AnimID 1 
+#define Boomerang_AnimID 2
+#define ThinSlash_AnimID 3 // Slender 
+#define ThickSlash_AnimID 4
+
+
+
+
 
 ALIGN 4
 WeaponTypeAnimations:
 // Weapon type (eg. SWORD) 
-BYTE $20 3
+BYTE $20 ThickSlash_AnimID
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 
-#define NoAnimation 0 
-#define FreezeAnimation 1 
-#define BoomerangAnimation 2
 
 ALIGN 4
 SpecificWeaponAnimations:
-BYTE Confusion FreezeAnimation 
-BYTE SandAttack BoomerangAnimation 
-BYTE Tackle NoAnimation 
+BYTE Confusion Freeze_AnimID
+BYTE SandAttack ThinSlash_AnimID
+BYTE Tackle Empty_AnimID
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 
 
 
-ALIGN 4
-DrawSpriteProc:
-PROC_YIELD 
-PROC_SET_NAME(ASMC_DrawProcName)
-PROC_CALL_ROUTINE(Draw_StoreToBuffer)
-PROC_SLEEP(2)
-PROC_LOOP_ROUTINE(Draw_PushToOam)
-PROC_CALL_ROUTINE(Draw_Cleanup) 
-PROC_END
-
-ASMC_DrawProcName:
-String("PausesStuffWhileAnimationIsGoing") ; BYTE 0
-ALIGN 4
 
 ALIGN 4
 AnimTable:
 WORD 0 0 0 // 0th animation is blank 
 POIN Freeze_Anim FreezeData_pal; SHORT 0 0
 POIN Boomerang_Anim BoomerangData_pal; SHORT 0 0
+POIN Break1_Small_Anim Break1Data_pal; SHORT 0 0
+POIN Break2_Small_Anim Break2Data_pal; SHORT 0 0
+
+POIN Circle_Small_Anim CircleData_pal; SHORT 0 0
+
+
+POIN Slashing_A_Anim SlashingData_pal; SHORT 0 0
+POIN Slashing_B_Anim SlashingData_pal; SHORT 0 0 // same palete 
 
 
 POIN Cauterize_Anim CauterizeData_pal; SHORT 0 0
@@ -69,6 +76,23 @@ PUSH
 ORG $81274 // Poin to the vanilla proc 
 POIN gProc_MapAnimRound_Animation
 POP 
+
+
+
+ALIGN 4
+DrawSpriteProc:
+PROC_YIELD 
+PROC_SET_NAME(ASMC_DrawProcName)
+PROC_CALL_ROUTINE(Draw_StoreToBuffer)
+PROC_SLEEP(2)
+PROC_LOOP_ROUTINE(Draw_PushToOam)
+PROC_CALL_ROUTINE(Draw_Cleanup) 
+PROC_END
+
+ASMC_DrawProcName:
+String("PausesStuffWhileAnimationIsGoing") ; BYTE 0
+ALIGN 4
+
 
 // gProc_MapAnimDefaultRound at 9A4764
 // Copied the vanilla proc with our own routine added 
