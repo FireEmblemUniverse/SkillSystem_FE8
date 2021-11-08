@@ -123,7 +123,7 @@ lsl r3, #2 @ x4
 add r0, r3, r3 @ x8 
 add r0, r3 @ x12 
 add r0, #4 @ palette offset in table 
-ldr r2, =AnimTable 
+ldr r2, =AnimTable2 
 
 ldr r0, [r2, r0] @ Palette 
 cmp r0, #0 
@@ -191,11 +191,11 @@ ble End_DrawPause @ regardless of animation or not, always pause at least X fram
 
 @ Get total frames now 
 ldr r3, =MemorySlot 
-ldr r3, [r3, #4] @ Slot 1 
+ldr r3, [r3, #4] @ Slot 1 as AnimID 
 lsl r3, #2 @ x4 
 add r2, r3, r3 @ x8 
 add r2, r3 @ x12 
-ldr r3, =AnimTable 
+ldr r3, =AnimTable2
 ldr r3, [r3, r2] @ Specific animation table 
 cmp r3, #0 
 beq NoAnimation
@@ -373,6 +373,15 @@ mov r5, r0
 
 push {r5} 
 
+
+@ if we miss, do not show an animation 
+ldr r3, =0x203E24A @ current round - from function 8161C - address 81676 
+ldrh r1, [r3] 
+mov r2, #2 
+and r1, r2 
+cmp r1, #0 
+bne Skip
+
 @ get coordinates 
 ldr r3, =MemorySlot 
 add r3, #4*0x0B 
@@ -414,7 +423,7 @@ ldr r3, [r3, #4] @ Slot 1
 lsl r3, #2 @ x4 
 add r2, r3, r3 @ x8 
 add r2, r3 @ x12 
-ldr r3, =AnimTable 
+ldr r3, =AnimTable2
 ldr r3, [r3, r2] @ Specific animation table 
 cmp r3, #0 @ No animation, so exit 
 beq ExitAnimation

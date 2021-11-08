@@ -1,6 +1,6 @@
 @echo off
 
-@set "Png2Dmp=%~dp0/../../../EventAssembler/Tools/Png2Dmp.exe"
+@set "Png2Dmp=%~dp0/../../EventAssembler/Tools/Png2Dmp.exe"
 
 @cd %~dp0/Png
 

@@ -47,83 +47,62 @@ SlashingData_pal:
 
 ALIGN 4
 Break1Data_pal:
-#incbin "Dmp/Break1_001_pal.dmp"
+#incbin "Dmp/Small_Break1_000_pal.dmp"
 
 ALIGN 4
 Break2Data_pal:
-#incbin "Dmp/Break2_001_pal.dmp"
+#incbin "Dmp/Small_Break2_000_pal.dmp"
 
 ALIGN 4
 CircleData_pal:
-#incbin "Dmp/Circle_001_pal.dmp"
+#incbin "Dmp/Small_Circle_000_pal.dmp"
+
+ALIGN 4
+Hit1Data_pal:
+#incbin "Dmp/Small_Hit1_000_pal.dmp"
+
+ALIGN 4
+Hit2Data_pal:
+#incbin "Dmp/Small_Hit2_000_pal.dmp"
+
+ALIGN 4
+Impact1Data_pal:
+#incbin "Dmp/Small_Impact1_000_pal.dmp"
+
+ALIGN 4
+Impact2Data_pal:
+#incbin "Dmp/Small_Impact2_000_pal.dmp"
+
+ALIGN 4
+Shards1Data_pal:
+#incbin "Dmp/Small_Shards1_000_pal.dmp"
+
+ALIGN 4
+Shards2Data_pal:
+#incbin "Dmp/Small_Shards2_000_pal.dmp"
+
+
+ALIGN 4
+Splash1Data_pal:
+#incbin "Dmp/Small_Splash1_000_pal.dmp"
+
+ALIGN 4
+Splash2Data_pal:
+#incbin "Dmp/Small_Splash2_000_pal.dmp"
+
+
 
 
 // Below is copied from GeneratedInstaller.event
 // Except I've changed how many frames some of the images should be 
  
+ 
+ 
+
+
+
+
 //Generated - do not edit!
- 
-ALIGN 4 
-Break1_Large_Anim: 
-BYTE 4; ALIGN 4; POIN break1_001_Data 
-BYTE 4; ALIGN 4; POIN break1_002_Data 
-BYTE 4; ALIGN 4; POIN break1_003_Data 
-BYTE 4; ALIGN 4; POIN break1_004_Data 
-BYTE 4; ALIGN 4; POIN break1_005_Data 
-BYTE 4; ALIGN 4; POIN break1_006_Data 
-BYTE 4; ALIGN 4; POIN break1_007_Data 
-BYTE 4; ALIGN 4; POIN break1_008_Data 
-BYTE 4; ALIGN 4; POIN break1_009_Data 
-BYTE 4; ALIGN 4; POIN break1_010_Data 
-BYTE 4; ALIGN 4; POIN break1_011_Data 
-WORD 0 0 
-
-
-//Image Data 
-
-ALIGN 4 
-break1_001_Data: 
-#incbin "dmp\break1_001.dmp" 
- 
-ALIGN 4 
-break1_002_Data: 
-#incbin "dmp\break1_002.dmp" 
- 
-ALIGN 4 
-break1_003_Data: 
-#incbin "dmp\break1_003.dmp" 
- 
-ALIGN 4 
-break1_004_Data: 
-#incbin "dmp\break1_004.dmp" 
- 
-ALIGN 4 
-break1_005_Data: 
-#incbin "dmp\break1_005.dmp" 
- 
-ALIGN 4 
-break1_006_Data: 
-#incbin "dmp\break1_006.dmp" 
- 
-ALIGN 4 
-break1_007_Data: 
-#incbin "dmp\break1_007.dmp" 
- 
-ALIGN 4 
-break1_008_Data: 
-#incbin "dmp\break1_008.dmp" 
- 
-ALIGN 4 
-break1_009_Data: 
-#incbin "dmp\break1_009.dmp" 
- 
-ALIGN 4 
-break1_010_Data: 
-#incbin "dmp\break1_010.dmp" 
- 
-ALIGN 4 
-break1_011_Data: 
-#incbin "dmp\break1_011.dmp" 
  
 
 
@@ -131,131 +110,65 @@ break1_011_Data:
 
 ALIGN 4 
 Break1_Small_Anim: 
-BYTE 4; ALIGN 4; POIN break1_001_Data 
-BYTE 4; ALIGN 4; POIN break1_002_Data 
-BYTE 4; ALIGN 4; POIN break1_003_Data 
-BYTE 4; ALIGN 4; POIN break1_004_Data 
-BYTE 4; ALIGN 4; POIN break1_005_Data 
-BYTE 4; ALIGN 4; POIN break1_006_Data 
-BYTE 4; ALIGN 4; POIN break1_007_Data 
-BYTE 4; ALIGN 4; POIN break1_008_Data 
-BYTE 4; ALIGN 4; POIN break1_009_Data 
-BYTE 4; ALIGN 4; POIN break1_010_Data 
-BYTE 4; ALIGN 4; POIN break1_011_Data 
+BYTE 4 0 0 0; POIN small_break1_000_Data 
+BYTE 4 0 0 0; POIN small_break1_001_Data 
+BYTE 4 0 0 0; POIN small_break1_002_Data 
+BYTE 4 0 0 0; POIN small_break1_003_Data 
+BYTE 4 0 0 0; POIN small_break1_004_Data 
+BYTE 4 0 0 0; POIN small_break1_005_Data 
+BYTE 4 0 0 0; POIN small_break1_006_Data 
+BYTE 4 0 0 0; POIN small_break1_007_Data 
+BYTE 4 0 0 0; POIN small_break1_008_Data 
+BYTE 4 0 0 0; POIN small_break1_009_Data 
+BYTE 4 0 0 0; POIN small_break1_010_Data 
 WORD 0 0 
 
 
 //Image Data 
 
 ALIGN 4 
-break1_001_Data: 
-#incbin "dmp\break1_001.dmp" 
+small_break1_000_Data: 
+#incbin "dmp\small_break1_000.dmp" 
  
 ALIGN 4 
-break1_002_Data: 
-#incbin "dmp\break1_002.dmp" 
+small_break1_001_Data: 
+#incbin "dmp\small_break1_001.dmp" 
  
 ALIGN 4 
-break1_003_Data: 
-#incbin "dmp\break1_003.dmp" 
+small_break1_002_Data: 
+#incbin "dmp\small_break1_002.dmp" 
  
 ALIGN 4 
-break1_004_Data: 
-#incbin "dmp\break1_004.dmp" 
+small_break1_003_Data: 
+#incbin "dmp\small_break1_003.dmp" 
  
 ALIGN 4 
-break1_005_Data: 
-#incbin "dmp\break1_005.dmp" 
+small_break1_004_Data: 
+#incbin "dmp\small_break1_004.dmp" 
  
 ALIGN 4 
-break1_006_Data: 
-#incbin "dmp\break1_006.dmp" 
+small_break1_005_Data: 
+#incbin "dmp\small_break1_005.dmp" 
  
 ALIGN 4 
-break1_007_Data: 
-#incbin "dmp\break1_007.dmp" 
+small_break1_006_Data: 
+#incbin "dmp\small_break1_006.dmp" 
  
 ALIGN 4 
-break1_008_Data: 
-#incbin "dmp\break1_008.dmp" 
+small_break1_007_Data: 
+#incbin "dmp\small_break1_007.dmp" 
  
 ALIGN 4 
-break1_009_Data: 
-#incbin "dmp\break1_009.dmp" 
+small_break1_008_Data: 
+#incbin "dmp\small_break1_008.dmp" 
  
 ALIGN 4 
-break1_010_Data: 
-#incbin "dmp\break1_010.dmp" 
+small_break1_009_Data: 
+#incbin "dmp\small_break1_009.dmp" 
  
 ALIGN 4 
-break1_011_Data: 
-#incbin "dmp\break1_011.dmp" 
- 
-
-
-
-
-ALIGN 4 
-Break2_Large_Anim: 
-BYTE 4; ALIGN 4; POIN break2_000_Data 
-BYTE 4; ALIGN 4; POIN break2_001_Data 
-BYTE 4; ALIGN 4; POIN break2_002_Data 
-BYTE 4; ALIGN 4; POIN break2_003_Data 
-BYTE 4; ALIGN 4; POIN break2_004_Data 
-BYTE 4; ALIGN 4; POIN break2_005_Data 
-BYTE 4; ALIGN 4; POIN break2_006_Data 
-BYTE 4; ALIGN 4; POIN break2_007_Data 
-BYTE 4; ALIGN 4; POIN break2_008_Data 
-BYTE 4; ALIGN 4; POIN break2_009_Data 
-BYTE 4; ALIGN 4; POIN break2_010_Data 
-WORD 0 0 
-
-
-//Image Data 
-
-ALIGN 4 
-break2_000_Data: 
-#incbin "dmp\break2_000.dmp" 
- 
-ALIGN 4 
-break2_001_Data: 
-#incbin "dmp\break2_001.dmp" 
- 
-ALIGN 4 
-break2_002_Data: 
-#incbin "dmp\break2_002.dmp" 
- 
-ALIGN 4 
-break2_003_Data: 
-#incbin "dmp\break2_003.dmp" 
- 
-ALIGN 4 
-break2_004_Data: 
-#incbin "dmp\break2_004.dmp" 
- 
-ALIGN 4 
-break2_005_Data: 
-#incbin "dmp\break2_005.dmp" 
- 
-ALIGN 4 
-break2_006_Data: 
-#incbin "dmp\break2_006.dmp" 
- 
-ALIGN 4 
-break2_007_Data: 
-#incbin "dmp\break2_007.dmp" 
- 
-ALIGN 4 
-break2_008_Data: 
-#incbin "dmp\break2_008.dmp" 
- 
-ALIGN 4 
-break2_009_Data: 
-#incbin "dmp\break2_009.dmp" 
- 
-ALIGN 4 
-break2_010_Data: 
-#incbin "dmp\break2_010.dmp" 
+small_break1_010_Data: 
+#incbin "dmp\small_break1_010.dmp" 
  
 
 
@@ -263,116 +176,65 @@ break2_010_Data:
 
 ALIGN 4 
 Break2_Small_Anim: 
-BYTE 4; ALIGN 4; POIN break2_000_Data 
-BYTE 4; ALIGN 4; POIN break2_001_Data 
-BYTE 4; ALIGN 4; POIN break2_002_Data 
-BYTE 4; ALIGN 4; POIN break2_003_Data 
-BYTE 4; ALIGN 4; POIN break2_004_Data 
-BYTE 4; ALIGN 4; POIN break2_005_Data 
-BYTE 4; ALIGN 4; POIN break2_006_Data 
-BYTE 4; ALIGN 4; POIN break2_007_Data 
-BYTE 4; ALIGN 4; POIN break2_008_Data 
-BYTE 4; ALIGN 4; POIN break2_009_Data 
-BYTE 4; ALIGN 4; POIN break2_010_Data 
+BYTE 4 0 0 0; POIN small_break2_000_Data 
+BYTE 4 0 0 0; POIN small_break2_001_Data 
+BYTE 4 0 0 0; POIN small_break2_002_Data 
+BYTE 4 0 0 0; POIN small_break2_003_Data 
+BYTE 4 0 0 0; POIN small_break2_004_Data 
+BYTE 4 0 0 0; POIN small_break2_005_Data 
+BYTE 4 0 0 0; POIN small_break2_006_Data 
+BYTE 4 0 0 0; POIN small_break2_007_Data 
+BYTE 4 0 0 0; POIN small_break2_008_Data 
+BYTE 4 0 0 0; POIN small_break2_009_Data 
+BYTE 4 0 0 0; POIN small_break2_010_Data 
 WORD 0 0 
 
 
 //Image Data 
 
 ALIGN 4 
-break2_000_Data: 
-#incbin "dmp\break2_000.dmp" 
+small_break2_000_Data: 
+#incbin "dmp\small_break2_000.dmp" 
  
 ALIGN 4 
-break2_001_Data: 
-#incbin "dmp\break2_001.dmp" 
+small_break2_001_Data: 
+#incbin "dmp\small_break2_001.dmp" 
  
 ALIGN 4 
-break2_002_Data: 
-#incbin "dmp\break2_002.dmp" 
+small_break2_002_Data: 
+#incbin "dmp\small_break2_002.dmp" 
  
 ALIGN 4 
-break2_003_Data: 
-#incbin "dmp\break2_003.dmp" 
+small_break2_003_Data: 
+#incbin "dmp\small_break2_003.dmp" 
  
 ALIGN 4 
-break2_004_Data: 
-#incbin "dmp\break2_004.dmp" 
+small_break2_004_Data: 
+#incbin "dmp\small_break2_004.dmp" 
  
 ALIGN 4 
-break2_005_Data: 
-#incbin "dmp\break2_005.dmp" 
+small_break2_005_Data: 
+#incbin "dmp\small_break2_005.dmp" 
  
 ALIGN 4 
-break2_006_Data: 
-#incbin "dmp\break2_006.dmp" 
+small_break2_006_Data: 
+#incbin "dmp\small_break2_006.dmp" 
  
 ALIGN 4 
-break2_007_Data: 
-#incbin "dmp\break2_007.dmp" 
+small_break2_007_Data: 
+#incbin "dmp\small_break2_007.dmp" 
  
 ALIGN 4 
-break2_008_Data: 
-#incbin "dmp\break2_008.dmp" 
+small_break2_008_Data: 
+#incbin "dmp\small_break2_008.dmp" 
  
 ALIGN 4 
-break2_009_Data: 
-#incbin "dmp\break2_009.dmp" 
+small_break2_009_Data: 
+#incbin "dmp\small_break2_009.dmp" 
  
 ALIGN 4 
-break2_010_Data: 
-#incbin "dmp\break2_010.dmp" 
- 
-
-
-
-
-ALIGN 4 
-Circle_Large_Anim: 
-BYTE 4; ALIGN 4; POIN circle_000_Data 
-BYTE 4; ALIGN 4; POIN circle_001_Data 
-BYTE 4; ALIGN 4; POIN circle_002_Data 
-BYTE 4; ALIGN 4; POIN circle_003_Data 
-BYTE 4; ALIGN 4; POIN circle_004_Data 
-BYTE 4; ALIGN 4; POIN circle_005_Data 
-BYTE 4; ALIGN 4; POIN circle_006_Data 
-BYTE 4; ALIGN 4; POIN circle_007_Data 
-WORD 0 0 
-
-
-//Image Data 
-
-ALIGN 4 
-circle_000_Data: 
-#incbin "dmp\circle_000.dmp" 
- 
-ALIGN 4 
-circle_001_Data: 
-#incbin "dmp\circle_001.dmp" 
- 
-ALIGN 4 
-circle_002_Data: 
-#incbin "dmp\circle_002.dmp" 
- 
-ALIGN 4 
-circle_003_Data: 
-#incbin "dmp\circle_003.dmp" 
- 
-ALIGN 4 
-circle_004_Data: 
-#incbin "dmp\circle_004.dmp" 
- 
-ALIGN 4 
-circle_005_Data: 
-#incbin "dmp\circle_005.dmp" 
- 
-ALIGN 4 
-circle_006_Data: 
-#incbin "dmp\circle_006.dmp" 
- 
-ALIGN 4 
-circle_007_Data: 
-#incbin "dmp\circle_007.dmp" 
+small_break2_010_Data: 
+#incbin "dmp\small_break2_010.dmp" 
  
 
 
@@ -380,50 +242,538 @@ circle_007_Data:
 
 ALIGN 4 
 Circle_Small_Anim: 
-BYTE 4; ALIGN 4; POIN circle_000_Data 
-BYTE 4; ALIGN 4; POIN circle_001_Data 
-BYTE 4; ALIGN 4; POIN circle_002_Data 
-BYTE 4; ALIGN 4; POIN circle_003_Data 
-BYTE 4; ALIGN 4; POIN circle_004_Data 
-BYTE 4; ALIGN 4; POIN circle_005_Data 
-BYTE 4; ALIGN 4; POIN circle_006_Data 
-BYTE 4; ALIGN 4; POIN circle_007_Data 
+BYTE 4 0 0 0; POIN small_circle_000_Data 
+BYTE 4 0 0 0; POIN small_circle_001_Data 
+BYTE 4 0 0 0; POIN small_circle_002_Data 
+BYTE 4 0 0 0; POIN small_circle_003_Data 
+BYTE 4 0 0 0; POIN small_circle_004_Data 
+BYTE 4 0 0 0; POIN small_circle_005_Data 
+BYTE 4 0 0 0; POIN small_circle_006_Data 
+BYTE 4 0 0 0; POIN small_circle_007_Data 
 WORD 0 0 
 
 
 //Image Data 
 
 ALIGN 4 
-circle_000_Data: 
-#incbin "dmp\circle_000.dmp" 
+small_circle_000_Data: 
+#incbin "dmp\small_circle_000.dmp" 
  
 ALIGN 4 
-circle_001_Data: 
-#incbin "dmp\circle_001.dmp" 
+small_circle_001_Data: 
+#incbin "dmp\small_circle_001.dmp" 
  
 ALIGN 4 
-circle_002_Data: 
-#incbin "dmp\circle_002.dmp" 
+small_circle_002_Data: 
+#incbin "dmp\small_circle_002.dmp" 
  
 ALIGN 4 
-circle_003_Data: 
-#incbin "dmp\circle_003.dmp" 
+small_circle_003_Data: 
+#incbin "dmp\small_circle_003.dmp" 
  
 ALIGN 4 
-circle_004_Data: 
-#incbin "dmp\circle_004.dmp" 
+small_circle_004_Data: 
+#incbin "dmp\small_circle_004.dmp" 
  
 ALIGN 4 
-circle_005_Data: 
-#incbin "dmp\circle_005.dmp" 
+small_circle_005_Data: 
+#incbin "dmp\small_circle_005.dmp" 
  
 ALIGN 4 
-circle_006_Data: 
-#incbin "dmp\circle_006.dmp" 
+small_circle_006_Data: 
+#incbin "dmp\small_circle_006.dmp" 
  
 ALIGN 4 
-circle_007_Data: 
-#incbin "dmp\circle_007.dmp" 
+small_circle_007_Data: 
+#incbin "dmp\small_circle_007.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Hit1_Small_Anim: 
+BYTE 4 0 0 0; POIN small_hit1_000_Data 
+BYTE 4 0 0 0; POIN small_hit1_001_Data 
+BYTE 4 0 0 0; POIN small_hit1_002_Data 
+BYTE 4 0 0 0; POIN small_hit1_003_Data 
+BYTE 4 0 0 0; POIN small_hit1_004_Data 
+BYTE 4 0 0 0; POIN small_hit1_005_Data 
+BYTE 4 0 0 0; POIN small_hit1_006_Data 
+BYTE 4 0 0 0; POIN small_hit1_007_Data 
+BYTE 4 0 0 0; POIN small_hit1_008_Data 
+BYTE 4 0 0 0; POIN small_hit1_009_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_hit1_000_Data: 
+#incbin "dmp\small_hit1_000.dmp" 
+ 
+ALIGN 4 
+small_hit1_001_Data: 
+#incbin "dmp\small_hit1_001.dmp" 
+ 
+ALIGN 4 
+small_hit1_002_Data: 
+#incbin "dmp\small_hit1_002.dmp" 
+ 
+ALIGN 4 
+small_hit1_003_Data: 
+#incbin "dmp\small_hit1_003.dmp" 
+ 
+ALIGN 4 
+small_hit1_004_Data: 
+#incbin "dmp\small_hit1_004.dmp" 
+ 
+ALIGN 4 
+small_hit1_005_Data: 
+#incbin "dmp\small_hit1_005.dmp" 
+ 
+ALIGN 4 
+small_hit1_006_Data: 
+#incbin "dmp\small_hit1_006.dmp" 
+ 
+ALIGN 4 
+small_hit1_007_Data: 
+#incbin "dmp\small_hit1_007.dmp" 
+ 
+ALIGN 4 
+small_hit1_008_Data: 
+#incbin "dmp\small_hit1_008.dmp" 
+ 
+ALIGN 4 
+small_hit1_009_Data: 
+#incbin "dmp\small_hit1_009.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Hit2_Small_Anim: 
+BYTE 4 0 0 0; POIN small_hit2_000_Data 
+BYTE 4 0 0 0; POIN small_hit2_001_Data 
+BYTE 4 0 0 0; POIN small_hit2_002_Data 
+BYTE 4 0 0 0; POIN small_hit2_003_Data 
+BYTE 4 0 0 0; POIN small_hit2_004_Data 
+BYTE 4 0 0 0; POIN small_hit2_005_Data 
+BYTE 4 0 0 0; POIN small_hit2_006_Data 
+BYTE 4 0 0 0; POIN small_hit2_007_Data 
+BYTE 4 0 0 0; POIN small_hit2_008_Data 
+BYTE 4 0 0 0; POIN small_hit2_009_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_hit2_000_Data: 
+#incbin "dmp\small_hit2_000.dmp" 
+ 
+ALIGN 4 
+small_hit2_001_Data: 
+#incbin "dmp\small_hit2_001.dmp" 
+ 
+ALIGN 4 
+small_hit2_002_Data: 
+#incbin "dmp\small_hit2_002.dmp" 
+ 
+ALIGN 4 
+small_hit2_003_Data: 
+#incbin "dmp\small_hit2_003.dmp" 
+ 
+ALIGN 4 
+small_hit2_004_Data: 
+#incbin "dmp\small_hit2_004.dmp" 
+ 
+ALIGN 4 
+small_hit2_005_Data: 
+#incbin "dmp\small_hit2_005.dmp" 
+ 
+ALIGN 4 
+small_hit2_006_Data: 
+#incbin "dmp\small_hit2_006.dmp" 
+ 
+ALIGN 4 
+small_hit2_007_Data: 
+#incbin "dmp\small_hit2_007.dmp" 
+ 
+ALIGN 4 
+small_hit2_008_Data: 
+#incbin "dmp\small_hit2_008.dmp" 
+ 
+ALIGN 4 
+small_hit2_009_Data: 
+#incbin "dmp\small_hit2_009.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Impact1_Small_Anim: 
+BYTE 4 0 0 0; POIN small_impact1_000_Data 
+BYTE 4 0 0 0; POIN small_impact1_001_Data 
+BYTE 4 0 0 0; POIN small_impact1_002_Data 
+BYTE 4 0 0 0; POIN small_impact1_003_Data 
+BYTE 4 0 0 0; POIN small_impact1_004_Data 
+BYTE 4 0 0 0; POIN small_impact1_005_Data 
+BYTE 4 0 0 0; POIN small_impact1_006_Data 
+BYTE 4 0 0 0; POIN small_impact1_007_Data 
+BYTE 4 0 0 0; POIN small_impact1_008_Data 
+BYTE 4 0 0 0; POIN small_impact1_009_Data 
+BYTE 4 0 0 0; POIN small_impact1_010_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_impact1_000_Data: 
+#incbin "dmp\small_impact1_000.dmp" 
+ 
+ALIGN 4 
+small_impact1_001_Data: 
+#incbin "dmp\small_impact1_001.dmp" 
+ 
+ALIGN 4 
+small_impact1_002_Data: 
+#incbin "dmp\small_impact1_002.dmp" 
+ 
+ALIGN 4 
+small_impact1_003_Data: 
+#incbin "dmp\small_impact1_003.dmp" 
+ 
+ALIGN 4 
+small_impact1_004_Data: 
+#incbin "dmp\small_impact1_004.dmp" 
+ 
+ALIGN 4 
+small_impact1_005_Data: 
+#incbin "dmp\small_impact1_005.dmp" 
+ 
+ALIGN 4 
+small_impact1_006_Data: 
+#incbin "dmp\small_impact1_006.dmp" 
+ 
+ALIGN 4 
+small_impact1_007_Data: 
+#incbin "dmp\small_impact1_007.dmp" 
+ 
+ALIGN 4 
+small_impact1_008_Data: 
+#incbin "dmp\small_impact1_008.dmp" 
+ 
+ALIGN 4 
+small_impact1_009_Data: 
+#incbin "dmp\small_impact1_009.dmp" 
+ 
+ALIGN 4 
+small_impact1_010_Data: 
+#incbin "dmp\small_impact1_010.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Impact2_Small_Anim: 
+BYTE 4 0 0 0; POIN small_impact2_000_Data 
+BYTE 4 0 0 0; POIN small_impact2_001_Data 
+BYTE 4 0 0 0; POIN small_impact2_002_Data 
+BYTE 4 0 0 0; POIN small_impact2_003_Data 
+BYTE 4 0 0 0; POIN small_impact2_004_Data 
+BYTE 4 0 0 0; POIN small_impact2_005_Data 
+BYTE 4 0 0 0; POIN small_impact2_006_Data 
+BYTE 4 0 0 0; POIN small_impact2_007_Data 
+BYTE 4 0 0 0; POIN small_impact2_008_Data 
+BYTE 4 0 0 0; POIN small_impact2_009_Data 
+BYTE 4 0 0 0; POIN small_impact2_010_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_impact2_000_Data: 
+#incbin "dmp\small_impact2_000.dmp" 
+ 
+ALIGN 4 
+small_impact2_001_Data: 
+#incbin "dmp\small_impact2_001.dmp" 
+ 
+ALIGN 4 
+small_impact2_002_Data: 
+#incbin "dmp\small_impact2_002.dmp" 
+ 
+ALIGN 4 
+small_impact2_003_Data: 
+#incbin "dmp\small_impact2_003.dmp" 
+ 
+ALIGN 4 
+small_impact2_004_Data: 
+#incbin "dmp\small_impact2_004.dmp" 
+ 
+ALIGN 4 
+small_impact2_005_Data: 
+#incbin "dmp\small_impact2_005.dmp" 
+ 
+ALIGN 4 
+small_impact2_006_Data: 
+#incbin "dmp\small_impact2_006.dmp" 
+ 
+ALIGN 4 
+small_impact2_007_Data: 
+#incbin "dmp\small_impact2_007.dmp" 
+ 
+ALIGN 4 
+small_impact2_008_Data: 
+#incbin "dmp\small_impact2_008.dmp" 
+ 
+ALIGN 4 
+small_impact2_009_Data: 
+#incbin "dmp\small_impact2_009.dmp" 
+ 
+ALIGN 4 
+small_impact2_010_Data: 
+#incbin "dmp\small_impact2_010.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Shards1_Small_Anim: 
+BYTE 4 0 0 0; POIN small_shards1_000_Data 
+BYTE 4 0 0 0; POIN small_shards1_001_Data 
+BYTE 4 0 0 0; POIN small_shards1_002_Data 
+BYTE 4 0 0 0; POIN small_shards1_003_Data 
+BYTE 4 0 0 0; POIN small_shards1_004_Data 
+BYTE 4 0 0 0; POIN small_shards1_005_Data 
+BYTE 4 0 0 0; POIN small_shards1_006_Data 
+BYTE 4 0 0 0; POIN small_shards1_007_Data 
+BYTE 4 0 0 0; POIN small_shards1_008_Data 
+BYTE 4 0 0 0; POIN small_shards1_009_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_shards1_000_Data: 
+#incbin "dmp\small_shards1_000.dmp" 
+ 
+ALIGN 4 
+small_shards1_001_Data: 
+#incbin "dmp\small_shards1_001.dmp" 
+ 
+ALIGN 4 
+small_shards1_002_Data: 
+#incbin "dmp\small_shards1_002.dmp" 
+ 
+ALIGN 4 
+small_shards1_003_Data: 
+#incbin "dmp\small_shards1_003.dmp" 
+ 
+ALIGN 4 
+small_shards1_004_Data: 
+#incbin "dmp\small_shards1_004.dmp" 
+ 
+ALIGN 4 
+small_shards1_005_Data: 
+#incbin "dmp\small_shards1_005.dmp" 
+ 
+ALIGN 4 
+small_shards1_006_Data: 
+#incbin "dmp\small_shards1_006.dmp" 
+ 
+ALIGN 4 
+small_shards1_007_Data: 
+#incbin "dmp\small_shards1_007.dmp" 
+ 
+ALIGN 4 
+small_shards1_008_Data: 
+#incbin "dmp\small_shards1_008.dmp" 
+ 
+ALIGN 4 
+small_shards1_009_Data: 
+#incbin "dmp\small_shards1_009.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Shards2_Small_Anim: 
+BYTE 4 0 0 0; POIN small_shards2_000_Data 
+BYTE 4 0 0 0; POIN small_shards2_001_Data 
+BYTE 4 0 0 0; POIN small_shards2_002_Data 
+BYTE 4 0 0 0; POIN small_shards2_003_Data 
+BYTE 4 0 0 0; POIN small_shards2_004_Data 
+BYTE 4 0 0 0; POIN small_shards2_005_Data 
+BYTE 4 0 0 0; POIN small_shards2_006_Data 
+BYTE 4 0 0 0; POIN small_shards2_007_Data 
+BYTE 4 0 0 0; POIN small_shards2_008_Data 
+BYTE 4 0 0 0; POIN small_shards2_009_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_shards2_000_Data: 
+#incbin "dmp\small_shards2_000.dmp" 
+ 
+ALIGN 4 
+small_shards2_001_Data: 
+#incbin "dmp\small_shards2_001.dmp" 
+ 
+ALIGN 4 
+small_shards2_002_Data: 
+#incbin "dmp\small_shards2_002.dmp" 
+ 
+ALIGN 4 
+small_shards2_003_Data: 
+#incbin "dmp\small_shards2_003.dmp" 
+ 
+ALIGN 4 
+small_shards2_004_Data: 
+#incbin "dmp\small_shards2_004.dmp" 
+ 
+ALIGN 4 
+small_shards2_005_Data: 
+#incbin "dmp\small_shards2_005.dmp" 
+ 
+ALIGN 4 
+small_shards2_006_Data: 
+#incbin "dmp\small_shards2_006.dmp" 
+ 
+ALIGN 4 
+small_shards2_007_Data: 
+#incbin "dmp\small_shards2_007.dmp" 
+ 
+ALIGN 4 
+small_shards2_008_Data: 
+#incbin "dmp\small_shards2_008.dmp" 
+ 
+ALIGN 4 
+small_shards2_009_Data: 
+#incbin "dmp\small_shards2_009.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Splash1_Small_Anim: 
+BYTE 4 0 0 0; POIN small_splash1_000_Data 
+BYTE 4 0 0 0; POIN small_splash1_001_Data 
+BYTE 4 0 0 0; POIN small_splash1_002_Data 
+BYTE 4 0 0 0; POIN small_splash1_003_Data 
+BYTE 4 0 0 0; POIN small_splash1_004_Data 
+BYTE 4 0 0 0; POIN small_splash1_005_Data 
+BYTE 4 0 0 0; POIN small_splash1_006_Data 
+BYTE 4 0 0 0; POIN small_splash1_007_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_splash1_000_Data: 
+#incbin "dmp\small_splash1_000.dmp" 
+ 
+ALIGN 4 
+small_splash1_001_Data: 
+#incbin "dmp\small_splash1_001.dmp" 
+ 
+ALIGN 4 
+small_splash1_002_Data: 
+#incbin "dmp\small_splash1_002.dmp" 
+ 
+ALIGN 4 
+small_splash1_003_Data: 
+#incbin "dmp\small_splash1_003.dmp" 
+ 
+ALIGN 4 
+small_splash1_004_Data: 
+#incbin "dmp\small_splash1_004.dmp" 
+ 
+ALIGN 4 
+small_splash1_005_Data: 
+#incbin "dmp\small_splash1_005.dmp" 
+ 
+ALIGN 4 
+small_splash1_006_Data: 
+#incbin "dmp\small_splash1_006.dmp" 
+ 
+ALIGN 4 
+small_splash1_007_Data: 
+#incbin "dmp\small_splash1_007.dmp" 
+ 
+
+
+
+
+ALIGN 4 
+Splash2_Small_Anim: 
+BYTE 4 0 0 0; POIN small_splash2_000_Data 
+BYTE 4 0 0 0; POIN small_splash2_001_Data 
+BYTE 4 0 0 0; POIN small_splash2_002_Data 
+BYTE 4 0 0 0; POIN small_splash2_003_Data 
+BYTE 4 0 0 0; POIN small_splash2_004_Data 
+BYTE 4 0 0 0; POIN small_splash2_005_Data 
+BYTE 4 0 0 0; POIN small_splash2_006_Data 
+BYTE 4 0 0 0; POIN small_splash2_007_Data 
+BYTE 4 0 0 0; POIN small_splash2_008_Data 
+BYTE 4 0 0 0; POIN small_splash2_009_Data 
+WORD 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_splash2_000_Data: 
+#incbin "dmp\small_splash2_000.dmp" 
+ 
+ALIGN 4 
+small_splash2_001_Data: 
+#incbin "dmp\small_splash2_001.dmp" 
+ 
+ALIGN 4 
+small_splash2_002_Data: 
+#incbin "dmp\small_splash2_002.dmp" 
+ 
+ALIGN 4 
+small_splash2_003_Data: 
+#incbin "dmp\small_splash2_003.dmp" 
+ 
+ALIGN 4 
+small_splash2_004_Data: 
+#incbin "dmp\small_splash2_004.dmp" 
+ 
+ALIGN 4 
+small_splash2_005_Data: 
+#incbin "dmp\small_splash2_005.dmp" 
+ 
+ALIGN 4 
+small_splash2_006_Data: 
+#incbin "dmp\small_splash2_006.dmp" 
+ 
+ALIGN 4 
+small_splash2_007_Data: 
+#incbin "dmp\small_splash2_007.dmp" 
+ 
+ALIGN 4 
+small_splash2_008_Data: 
+#incbin "dmp\small_splash2_008.dmp" 
+ 
+ALIGN 4 
+small_splash2_009_Data: 
+#incbin "dmp\small_splash2_009.dmp" 
  
 
 
@@ -431,12 +781,12 @@ circle_007_Data:
 
 ALIGN 4 
 Slashing_A_Anim: 
-BYTE 5; ALIGN 4; POIN Slashing000_Data 
-BYTE 5; ALIGN 4; POIN Slashing001_Data 
-BYTE 5; ALIGN 4; POIN Slashing002_Data 
-BYTE 5; ALIGN 4; POIN Slashing003_Data 
-BYTE 5; ALIGN 4; POIN Slashing004_Data 
-BYTE 5; ALIGN 4; POIN Slashing005_Data 
+BYTE 5 0 0 0; POIN Slashing000_Data 
+BYTE 5 0 0 0; POIN Slashing001_Data 
+BYTE 5 0 0 0; POIN Slashing002_Data 
+BYTE 5 0 0 0; POIN Slashing003_Data 
+BYTE 5 0 0 0; POIN Slashing004_Data 
+BYTE 5 0 0 0; POIN Slashing005_Data 
 WORD 0 0 
 
 
@@ -472,12 +822,12 @@ Slashing005_Data:
 
 ALIGN 4 
 Slashing_B_Anim: 
-BYTE 5; ALIGN 4; POIN Slashing006_Data 
-BYTE 5; ALIGN 4; POIN Slashing007_Data 
-BYTE 5; ALIGN 4; POIN Slashing008_Data 
-BYTE 5; ALIGN 4; POIN Slashing009_Data 
-BYTE 5; ALIGN 4; POIN Slashing010_Data 
-BYTE 5; ALIGN 4; POIN Slashing011_Data 
+BYTE 5 0 0 0; POIN Slashing006_Data 
+BYTE 5 0 0 0; POIN Slashing007_Data 
+BYTE 5 0 0 0; POIN Slashing008_Data 
+BYTE 5 0 0 0; POIN Slashing009_Data 
+BYTE 5 0 0 0; POIN Slashing010_Data 
+BYTE 5 0 0 0; POIN Slashing011_Data 
 WORD 0 0 
 
 
@@ -513,14 +863,14 @@ Slashing011_Data:
 
 ALIGN 4 
 Boomerang_Anim: 
-BYTE 4; ALIGN 4; POIN bullet005_48px_8_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_9_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_10_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_11_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_12_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_13_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_14_Data 
-BYTE 4; ALIGN 4; POIN bullet005_48px_15_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_8_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_9_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_10_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_11_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_12_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_13_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_14_Data 
+BYTE 4 0 0 0; POIN bullet005_48px_15_Data 
 
 WORD 0 0 
 
@@ -565,39 +915,39 @@ bullet005_48px_9_Data:
 
 ALIGN 4 
 Cauterize_Anim: 
-BYTE 2; ALIGN 4; POIN Cauterize_0000_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0001_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0002_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0003_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0004_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0005_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0006_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0007_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0008_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0009_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0010_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0011_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0012_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0013_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0014_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0015_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0016_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0017_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0018_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0019_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0020_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0021_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0022_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0023_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0024_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0025_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0026_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0027_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0028_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0029_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0030_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0031_Data 
-BYTE 2; ALIGN 4; POIN Cauterize_0032_Data 
+BYTE 2 0 0 0; POIN Cauterize_0000_Data 
+BYTE 2 0 0 0; POIN Cauterize_0001_Data 
+BYTE 2 0 0 0; POIN Cauterize_0002_Data 
+BYTE 2 0 0 0; POIN Cauterize_0003_Data 
+BYTE 2 0 0 0; POIN Cauterize_0004_Data 
+BYTE 2 0 0 0; POIN Cauterize_0005_Data 
+BYTE 2 0 0 0; POIN Cauterize_0006_Data 
+BYTE 2 0 0 0; POIN Cauterize_0007_Data 
+BYTE 2 0 0 0; POIN Cauterize_0008_Data 
+BYTE 2 0 0 0; POIN Cauterize_0009_Data 
+BYTE 2 0 0 0; POIN Cauterize_0010_Data 
+BYTE 2 0 0 0; POIN Cauterize_0011_Data 
+BYTE 2 0 0 0; POIN Cauterize_0012_Data 
+BYTE 2 0 0 0; POIN Cauterize_0013_Data 
+BYTE 2 0 0 0; POIN Cauterize_0014_Data 
+BYTE 2 0 0 0; POIN Cauterize_0015_Data 
+BYTE 2 0 0 0; POIN Cauterize_0016_Data 
+BYTE 2 0 0 0; POIN Cauterize_0017_Data 
+BYTE 2 0 0 0; POIN Cauterize_0018_Data 
+BYTE 2 0 0 0; POIN Cauterize_0019_Data 
+BYTE 2 0 0 0; POIN Cauterize_0020_Data 
+BYTE 2 0 0 0; POIN Cauterize_0021_Data 
+BYTE 2 0 0 0; POIN Cauterize_0022_Data 
+BYTE 2 0 0 0; POIN Cauterize_0023_Data 
+BYTE 2 0 0 0; POIN Cauterize_0024_Data 
+BYTE 2 0 0 0; POIN Cauterize_0025_Data 
+BYTE 2 0 0 0; POIN Cauterize_0026_Data 
+BYTE 2 0 0 0; POIN Cauterize_0027_Data 
+BYTE 2 0 0 0; POIN Cauterize_0028_Data 
+BYTE 2 0 0 0; POIN Cauterize_0029_Data 
+BYTE 2 0 0 0; POIN Cauterize_0030_Data 
+BYTE 2 0 0 0; POIN Cauterize_0031_Data 
+BYTE 2 0 0 0; POIN Cauterize_0032_Data 
 WORD 0 0 
 
 
@@ -741,22 +1091,22 @@ Cauterize_0032_Data:
 
 ALIGN 4 
 Feather_Anim: 
-BYTE 3; ALIGN 4; POIN feather0000_Data 
-BYTE 3; ALIGN 4; POIN feather0001_Data 
-BYTE 3; ALIGN 4; POIN feather0002_Data 
-BYTE 3; ALIGN 4; POIN feather0003_Data 
-BYTE 3; ALIGN 4; POIN feather0004_Data 
-BYTE 3; ALIGN 4; POIN feather0005_Data 
-BYTE 3; ALIGN 4; POIN feather0006_Data 
-BYTE 3; ALIGN 4; POIN feather0007_Data 
-BYTE 3; ALIGN 4; POIN feather0008_Data 
-BYTE 3; ALIGN 4; POIN feather0009_Data 
-BYTE 3; ALIGN 4; POIN feather0010_Data 
-BYTE 3; ALIGN 4; POIN feather0011_Data 
-BYTE 3; ALIGN 4; POIN feather0012_Data 
-BYTE 3; ALIGN 4; POIN feather0013_Data 
-BYTE 3; ALIGN 4; POIN feather0014_Data 
-BYTE 3; ALIGN 4; POIN feather0015_Data 
+BYTE 3 0 0 0; POIN feather0000_Data 
+BYTE 3 0 0 0; POIN feather0001_Data 
+BYTE 3 0 0 0; POIN feather0002_Data 
+BYTE 3 0 0 0; POIN feather0003_Data 
+BYTE 3 0 0 0; POIN feather0004_Data 
+BYTE 3 0 0 0; POIN feather0005_Data 
+BYTE 3 0 0 0; POIN feather0006_Data 
+BYTE 3 0 0 0; POIN feather0007_Data 
+BYTE 3 0 0 0; POIN feather0008_Data 
+BYTE 3 0 0 0; POIN feather0009_Data 
+BYTE 3 0 0 0; POIN feather0010_Data 
+BYTE 3 0 0 0; POIN feather0011_Data 
+BYTE 3 0 0 0; POIN feather0012_Data 
+BYTE 3 0 0 0; POIN feather0013_Data 
+BYTE 3 0 0 0; POIN feather0014_Data 
+BYTE 3 0 0 0; POIN feather0015_Data 
 WORD 0 0 
 
 
@@ -832,9 +1182,9 @@ feather0015_Data:
 
 ALIGN 4 
 Fireball_Anim: 
-BYTE 2; ALIGN 4; POIN Fireball_0000_Data 
-BYTE 2; ALIGN 4; POIN Fireball_0001_Data 
-BYTE 2; ALIGN 4; POIN Fireball_0002_Data 
+BYTE 2 0 0 0; POIN Fireball_0000_Data 
+BYTE 2 0 0 0; POIN Fireball_0001_Data 
+BYTE 2 0 0 0; POIN Fireball_0002_Data 
 WORD 0 0 
 
 
@@ -858,16 +1208,16 @@ Fireball_0002_Data:
 
 ALIGN 4 
 Flash_Anim: 
-BYTE 3; ALIGN 4; POIN Flash00_Data 
-BYTE 3; ALIGN 4; POIN Flash01_Data 
-BYTE 3; ALIGN 4; POIN Flash02_Data 
-BYTE 3; ALIGN 4; POIN Flash03_Data 
-BYTE 3; ALIGN 4; POIN Flash04_Data 
-BYTE 3; ALIGN 4; POIN Flash05_Data 
-BYTE 3; ALIGN 4; POIN Flash06_Data 
-BYTE 3; ALIGN 4; POIN Flash07_Data 
-BYTE 3; ALIGN 4; POIN Flash08_Data 
-BYTE 3; ALIGN 4; POIN Flash09_Data 
+BYTE 3 0 0 0; POIN Flash00_Data 
+BYTE 3 0 0 0; POIN Flash01_Data 
+BYTE 3 0 0 0; POIN Flash02_Data 
+BYTE 3 0 0 0; POIN Flash03_Data 
+BYTE 3 0 0 0; POIN Flash04_Data 
+BYTE 3 0 0 0; POIN Flash05_Data 
+BYTE 3 0 0 0; POIN Flash06_Data 
+BYTE 3 0 0 0; POIN Flash07_Data 
+BYTE 3 0 0 0; POIN Flash08_Data 
+BYTE 3 0 0 0; POIN Flash09_Data 
 WORD 0 0 
 
 
@@ -919,80 +1269,80 @@ Flash09_Data:
 
 ALIGN 4 
 Freeze_Anim: 
-BYTE 1; ALIGN 4; POIN Freeze03_Data 
-BYTE 1; ALIGN 4; POIN Freeze04_Data 
-BYTE 1; ALIGN 4; POIN Freeze05_Data 
-BYTE 1; ALIGN 4; POIN Freeze06_Data 
-BYTE 1; ALIGN 4; POIN Freeze07_Data 
-BYTE 1; ALIGN 4; POIN Freeze08_Data 
-BYTE 1; ALIGN 4; POIN Freeze09_Data 
-BYTE 1; ALIGN 4; POIN Freeze10_Data 
-BYTE 1; ALIGN 4; POIN Freeze11_Data 
-BYTE 1; ALIGN 4; POIN Freeze12_Data 
-BYTE 1; ALIGN 4; POIN Freeze13_Data 
-BYTE 1; ALIGN 4; POIN Freeze14_Data 
-BYTE 1; ALIGN 4; POIN Freeze15_Data 
-BYTE 1; ALIGN 4; POIN Freeze16_Data 
-BYTE 1; ALIGN 4; POIN Freeze17_Data 
-BYTE 1; ALIGN 4; POIN Freeze18_Data 
-BYTE 1; ALIGN 4; POIN Freeze19_Data 
-BYTE 1; ALIGN 4; POIN Freeze20_Data 
-BYTE 1; ALIGN 4; POIN Freeze21_Data 
-BYTE 1; ALIGN 4; POIN Freeze22_Data 
-BYTE 1; ALIGN 4; POIN Freeze23_Data 
-BYTE 1; ALIGN 4; POIN Freeze24_Data 
-BYTE 1; ALIGN 4; POIN Freeze25_Data 
-BYTE 1; ALIGN 4; POIN Freeze26_Data 
-BYTE 1; ALIGN 4; POIN Freeze27_Data 
-BYTE 1; ALIGN 4; POIN Freeze28_Data 
-BYTE 1; ALIGN 4; POIN Freeze29_Data 
-BYTE 1; ALIGN 4; POIN Freeze30_Data 
-BYTE 1; ALIGN 4; POIN Freeze31_Data 
-BYTE 1; ALIGN 4; POIN Freeze32_Data 
-BYTE 1; ALIGN 4; POIN Freeze33_Data 
-BYTE 1; ALIGN 4; POIN Freeze34_Data 
-BYTE 1; ALIGN 4; POIN Freeze35_Data 
-BYTE 1; ALIGN 4; POIN Freeze36_Data 
-BYTE 1; ALIGN 4; POIN Freeze37_Data 
-BYTE 1; ALIGN 4; POIN Freeze38_Data 
-BYTE 1; ALIGN 4; POIN Freeze39_Data 
-BYTE 1; ALIGN 4; POIN Freeze40_Data 
-BYTE 1; ALIGN 4; POIN Freeze41_Data 
-BYTE 1; ALIGN 4; POIN Freeze42_Data 
-BYTE 1; ALIGN 4; POIN Freeze43_Data 
-BYTE 1; ALIGN 4; POIN Freeze44_Data 
-BYTE 1; ALIGN 4; POIN Freeze45_Data 
-BYTE 1; ALIGN 4; POIN Freeze46_Data 
-BYTE 1; ALIGN 4; POIN Freeze47_Data 
-BYTE 1; ALIGN 4; POIN Freeze48_Data 
-BYTE 1; ALIGN 4; POIN Freeze49_Data 
-BYTE 1; ALIGN 4; POIN Freeze50_Data 
-BYTE 1; ALIGN 4; POIN Freeze51_Data 
-BYTE 1; ALIGN 4; POIN Freeze52_Data 
-BYTE 1; ALIGN 4; POIN Freeze53_Data 
-BYTE 1; ALIGN 4; POIN Freeze54_Data 
-BYTE 1; ALIGN 4; POIN Freeze55_Data 
-BYTE 1; ALIGN 4; POIN Freeze56_Data 
-BYTE 1; ALIGN 4; POIN Freeze57_Data 
-BYTE 1; ALIGN 4; POIN Freeze58_Data 
-BYTE 1; ALIGN 4; POIN Freeze59_Data 
-BYTE 1; ALIGN 4; POIN Freeze60_Data 
-BYTE 1; ALIGN 4; POIN Freeze61_Data 
-BYTE 1; ALIGN 4; POIN Freeze62_Data 
-BYTE 1; ALIGN 4; POIN Freeze63_Data 
-BYTE 1; ALIGN 4; POIN Freeze64_Data 
-BYTE 1; ALIGN 4; POIN Freeze65_Data 
-BYTE 1; ALIGN 4; POIN Freeze66_Data 
-BYTE 1; ALIGN 4; POIN Freeze67_Data 
-BYTE 1; ALIGN 4; POIN Freeze68_Data 
-BYTE 1; ALIGN 4; POIN Freeze69_Data 
-BYTE 1; ALIGN 4; POIN Freeze70_Data 
-BYTE 1; ALIGN 4; POIN Freeze71_Data 
-BYTE 1; ALIGN 4; POIN Freeze72_Data 
-BYTE 1; ALIGN 4; POIN Freeze73_Data 
-BYTE 1; ALIGN 4; POIN Freeze74_Data 
-BYTE 1; ALIGN 4; POIN Freeze75_Data 
-BYTE 1; ALIGN 4; POIN Freeze76_Data 
+BYTE 1 0 0 0; POIN Freeze03_Data 
+BYTE 1 0 0 0; POIN Freeze04_Data 
+BYTE 1 0 0 0; POIN Freeze05_Data 
+BYTE 1 0 0 0; POIN Freeze06_Data 
+BYTE 1 0 0 0; POIN Freeze07_Data 
+BYTE 1 0 0 0; POIN Freeze08_Data 
+BYTE 1 0 0 0; POIN Freeze09_Data 
+BYTE 1 0 0 0; POIN Freeze10_Data 
+BYTE 1 0 0 0; POIN Freeze11_Data 
+BYTE 1 0 0 0; POIN Freeze12_Data 
+BYTE 1 0 0 0; POIN Freeze13_Data 
+BYTE 1 0 0 0; POIN Freeze14_Data 
+BYTE 1 0 0 0; POIN Freeze15_Data 
+BYTE 1 0 0 0; POIN Freeze16_Data 
+BYTE 1 0 0 0; POIN Freeze17_Data 
+BYTE 1 0 0 0; POIN Freeze18_Data 
+BYTE 1 0 0 0; POIN Freeze19_Data 
+BYTE 1 0 0 0; POIN Freeze20_Data 
+BYTE 1 0 0 0; POIN Freeze21_Data 
+BYTE 1 0 0 0; POIN Freeze22_Data 
+BYTE 1 0 0 0; POIN Freeze23_Data 
+BYTE 1 0 0 0; POIN Freeze24_Data 
+BYTE 1 0 0 0; POIN Freeze25_Data 
+BYTE 1 0 0 0; POIN Freeze26_Data 
+BYTE 1 0 0 0; POIN Freeze27_Data 
+BYTE 1 0 0 0; POIN Freeze28_Data 
+BYTE 1 0 0 0; POIN Freeze29_Data 
+BYTE 1 0 0 0; POIN Freeze30_Data 
+BYTE 1 0 0 0; POIN Freeze31_Data 
+BYTE 1 0 0 0; POIN Freeze32_Data 
+BYTE 1 0 0 0; POIN Freeze33_Data 
+BYTE 1 0 0 0; POIN Freeze34_Data 
+BYTE 1 0 0 0; POIN Freeze35_Data 
+BYTE 1 0 0 0; POIN Freeze36_Data 
+BYTE 1 0 0 0; POIN Freeze37_Data 
+BYTE 1 0 0 0; POIN Freeze38_Data 
+BYTE 1 0 0 0; POIN Freeze39_Data 
+BYTE 1 0 0 0; POIN Freeze40_Data 
+BYTE 1 0 0 0; POIN Freeze41_Data 
+BYTE 1 0 0 0; POIN Freeze42_Data 
+BYTE 1 0 0 0; POIN Freeze43_Data 
+BYTE 1 0 0 0; POIN Freeze44_Data 
+BYTE 1 0 0 0; POIN Freeze45_Data 
+BYTE 1 0 0 0; POIN Freeze46_Data 
+BYTE 1 0 0 0; POIN Freeze47_Data 
+BYTE 1 0 0 0; POIN Freeze48_Data 
+BYTE 1 0 0 0; POIN Freeze49_Data 
+BYTE 1 0 0 0; POIN Freeze50_Data 
+BYTE 1 0 0 0; POIN Freeze51_Data 
+BYTE 1 0 0 0; POIN Freeze52_Data 
+BYTE 1 0 0 0; POIN Freeze53_Data 
+BYTE 1 0 0 0; POIN Freeze54_Data 
+BYTE 1 0 0 0; POIN Freeze55_Data 
+BYTE 1 0 0 0; POIN Freeze56_Data 
+BYTE 1 0 0 0; POIN Freeze57_Data 
+BYTE 1 0 0 0; POIN Freeze58_Data 
+BYTE 1 0 0 0; POIN Freeze59_Data 
+BYTE 1 0 0 0; POIN Freeze60_Data 
+BYTE 1 0 0 0; POIN Freeze61_Data 
+BYTE 1 0 0 0; POIN Freeze62_Data 
+BYTE 1 0 0 0; POIN Freeze63_Data 
+BYTE 1 0 0 0; POIN Freeze64_Data 
+BYTE 1 0 0 0; POIN Freeze65_Data 
+BYTE 1 0 0 0; POIN Freeze66_Data 
+BYTE 1 0 0 0; POIN Freeze67_Data 
+BYTE 1 0 0 0; POIN Freeze68_Data 
+BYTE 1 0 0 0; POIN Freeze69_Data 
+BYTE 1 0 0 0; POIN Freeze70_Data 
+BYTE 1 0 0 0; POIN Freeze71_Data 
+BYTE 1 0 0 0; POIN Freeze72_Data 
+BYTE 1 0 0 0; POIN Freeze73_Data 
+BYTE 1 0 0 0; POIN Freeze74_Data 
+BYTE 1 0 0 0; POIN Freeze75_Data 
+BYTE 1 0 0 0; POIN Freeze76_Data 
 WORD 0 0 
 
 
@@ -1300,14 +1650,14 @@ Freeze76_Data:
 
 ALIGN 4 
 Heal_Anim: 
-BYTE 2; ALIGN 4; POIN heal_0000_Data 
-BYTE 2; ALIGN 4; POIN heal_0001_Data 
-BYTE 2; ALIGN 4; POIN heal_0002_Data 
-BYTE 2; ALIGN 4; POIN heal_0003_Data 
-BYTE 2; ALIGN 4; POIN heal_0004_Data 
-BYTE 2; ALIGN 4; POIN heal_0005_Data 
-BYTE 2; ALIGN 4; POIN heal_0006_Data 
-BYTE 2; ALIGN 4; POIN heal_0007_Data 
+BYTE 2 0 0 0; POIN heal_0000_Data 
+BYTE 2 0 0 0; POIN heal_0001_Data 
+BYTE 2 0 0 0; POIN heal_0002_Data 
+BYTE 2 0 0 0; POIN heal_0003_Data 
+BYTE 2 0 0 0; POIN heal_0004_Data 
+BYTE 2 0 0 0; POIN heal_0005_Data 
+BYTE 2 0 0 0; POIN heal_0006_Data 
+BYTE 2 0 0 0; POIN heal_0007_Data 
 WORD 0 0 
 
 

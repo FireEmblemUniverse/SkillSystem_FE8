@@ -8,10 +8,24 @@
 
 
 #define Empty_AnimID 0 
-#define Freeze_AnimID 1 
-#define Boomerang_AnimID 2
-#define ThinSlash_AnimID 3 // Slender 
-#define ThickSlash_AnimID 4
+
+#define Break1AnimID 1
+#define Break2AnimID 2
+#define CircleAnimID 3
+#define Hit1AnimID 4
+#define Hit2AnimID 5 // broken 
+#define Impact1AnimID 6
+#define Impact2AnimID 7
+#define Shards1AnimID 8
+#define Shards2AnimID 9
+#define Splash1AnimID 10
+#define Splash2AnimID 11
+#define ThinSlashAnimID 12 
+#define ThickSlashAnimID 13
+#define FlashAnimID 14 
+#define FreezeAnimID 15 
+#define BoomerangAnimID 2
+
 
 
 
@@ -19,17 +33,43 @@
 
 ALIGN 4
 WeaponTypeAnimations:
-// Weapon type (eg. SWORD) 
-BYTE $20 ThickSlash_AnimID
+BYTE 0 ThinSlashAnimID // Sword 
+BYTE 1 Break1AnimID // Lance 
+BYTE 2 ThickSlashAnimID // Axe 
+BYTE 3 Shards1AnimID // Bow 
+BYTE 5 Splash1AnimID // Anima 
+BYTE 6 FlashAnimID // Light 
+BYTE 7 Break2AnimID // Dark 
+BYTE $B Hit1AnimID // Monster 
+BYTE $11 Hit1AnimID // Dragonstone 
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 
+#ifndef SilverSword 
+	#define SilverSword 8 
+#endif 
 
 ALIGN 4
 SpecificWeaponAnimations:
-BYTE Confusion Freeze_AnimID
-BYTE SandAttack ThinSlash_AnimID
-BYTE Tackle Empty_AnimID
+BYTE SilverSword Break1AnimID 
+
+/*
+BYTE Confusion FreezeAnimID
+BYTE SandAttack Splash1AnimID
+BYTE Magnitude Splash2AnimID
+//BYTE Tackle Empty_AnimID
+BYTE TakeDown Break1AnimID
+BYTE Tackle Break2AnimID
+BYTE SeismicToss CircleAnimID
+BYTE Swift Hit1AnimID
+BYTE QuickAttack Hit2AnimID
+BYTE Gust Shards1AnimID
+BYTE PoisonPowder Shards2AnimID
+BYTE Growl FlashAnimID
+BYTE Leer FlashAnimID 
+BYTE VineWhip ThinSlashAnimID
+*/
+
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 
@@ -37,26 +77,33 @@ BYTE 0 0 0 0; ALIGN 4 // Terminator
 
 
 ALIGN 4
-AnimTable:
+AnimTable2:
 WORD 0 0 0 // 0th animation is blank 
-POIN Freeze_Anim FreezeData_pal; SHORT 0 0
-POIN Boomerang_Anim BoomerangData_pal; SHORT 0 0
+
 POIN Break1_Small_Anim Break1Data_pal; SHORT 0 0
 POIN Break2_Small_Anim Break2Data_pal; SHORT 0 0
-
 POIN Circle_Small_Anim CircleData_pal; SHORT 0 0
-
-
+POIN Hit1_Small_Anim Hit1Data_pal; SHORT 0 0
+POIN Hit2_Small_Anim Hit2Data_pal; SHORT 0 0
+POIN Impact1_Small_Anim Impact1Data_pal; SHORT 0 0
+POIN Impact2_Small_Anim Impact2Data_pal; SHORT 0 0
+POIN Shards1_Small_Anim Shards1Data_pal; SHORT 0 0
+POIN Shards2_Small_Anim Shards2Data_pal; SHORT 0 0
+POIN Splash1_Small_Anim Splash1Data_pal; SHORT 0 0
+POIN Splash2_Small_Anim Splash2Data_pal; SHORT 0 0
 POIN Slashing_A_Anim SlashingData_pal; SHORT 0 0
 POIN Slashing_B_Anim SlashingData_pal; SHORT 0 0 // same palete 
+POIN Flash_Anim FlashData_pal; SHORT 0 0
+POIN Freeze_Anim FreezeData_pal; SHORT 0 0
 
 
+POIN Boomerang_Anim BoomerangData_pal; SHORT 0 0
 POIN Cauterize_Anim CauterizeData_pal; SHORT 0 0
 POIN Feather_Anim FeatherData_pal; SHORT 0 0
 
-POIN Flash_Anim FlashData_pal; SHORT 0 0
-POIN Heal_Anim HealData_pal; SHORT 0 0 // SFX 
-POIN Fireball_Anim FireballData_pal; SHORT 0 0
+
+//POIN Heal_Anim HealData_pal; SHORT 0 0 // SFX 
+//POIN Fireball_Anim FireballData_pal; SHORT 0 0
 WORD 0 0 0
 
 
