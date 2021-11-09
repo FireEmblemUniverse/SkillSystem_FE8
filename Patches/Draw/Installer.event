@@ -34,14 +34,14 @@
 ALIGN 4
 WeaponTypeAnimations:
 BYTE 0 ThinSlashAnimID // Sword 
-BYTE 1 Break1AnimID // Lance 
-BYTE 2 ThickSlashAnimID // Axe 
-BYTE 3 Shards1AnimID // Bow 
-BYTE 5 Splash1AnimID // Anima 
+BYTE 1 Hit1AnimID // Lance 
+BYTE 2 Shards2AnimID // Axe 
+BYTE 3 Break1AnimID // Bow  
+BYTE 5 Splash2AnimID // Anima 
 BYTE 6 FlashAnimID // Light 
-BYTE 7 Break2AnimID // Dark 
-BYTE $B Hit1AnimID // Monster 
-BYTE $11 Hit1AnimID // Dragonstone 
+BYTE 7 Impact1AnimID // Dark 
+BYTE $B Shards1AnimID // Monster 
+BYTE $11 Shards1AnimID // Dragonstone 
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 

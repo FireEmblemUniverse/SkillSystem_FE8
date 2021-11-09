@@ -117,6 +117,27 @@ ldr r3, =MemorySlot
 str r0, [r3, #4*3] @ slot 3
 
 
+
+ldr r0, =SaveScreenNumbers 
+ldr r1, =0x6013800 @ tile where numbers are usually 
+mov r2, #6
+mov r3, #2
+@ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
+blh RegisterObjectTileGraphics, r4
+
+@ default 8x8 sprite uses 24th palette? 
+@ we should set the palette to something, at least 
+@ 24th palette used by transformed myrrh 
+@ldr r0, =0x80A8EE4 @ poin to save menu palette (for the numbers to draw)
+ldr r0, =SaveScreenNumbersPal
+mov r1, #27 @ usual palette # 
+lsl r1, #5 @ multiply by #0x20
+mov	r2,#0x20
+blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset, r2 = size (0x20 per full palette)
+
+
+
+
 ldr r3, =MemorySlot 
 ldr r3, [r3, #4] @ Slot 1 
 lsl r3, #2 @ x4 
@@ -462,6 +483,10 @@ mov r3, #8
 blh RegisterObjectTileGraphics, r4
 
 
+ldr r0, [r3, #4] 
+
+
+
 
 sub sp, #8 
 
@@ -719,7 +744,6 @@ mov		lr, r3
 
 @ add number to base
 @ 0-9 in r2 is the number
-@ 0x0A in r2 is a dash
 ldr		r3, =0x81C0 @ Number base tile
 cmp r2, #5 
 ble GotOffset
@@ -728,11 +752,35 @@ sub r2, #6
 GotOffset:
 add		r3, r2, r3
 
-@ OAM data for a single 8x8 sprite
 
-ldr		r2, =SpriteData8x8
+mov r2, #27 @ palette # 26 - or 27 is the light rune palette i think 
+lsl r2, #12 @ bits 12-15 
+orr r3, r2 
+
+@ palette | flips | tile 
+
+ldr		r2, =SpriteData8x8 @ OAM data for a single 8x8 sprite
+
+@
+@sub sp, #8 
+@@ Prepare OAM data
+@mov   r2, #0x1
+@mov   r1, sp
+@str   r2, [r1]
+@mov   r2, #0x0
+@str   r2, [r1, #0x4]
+@
+@
+@@	bit 0-9   | Tile Number     (0-1023)
+@@			bit 10    | Horizontal Flip (0=Normal, 1=Mirrored)
+@@			bit 11    | Vertical Flip   (0=Normal, 1=Mirrored)
+@@			bit 12-15 | Palette Number  (0-15)
+@
+@add sp, #8 
+
 
 .short 0xf800 
+
 
 pop		{r0}
 bx		r0
