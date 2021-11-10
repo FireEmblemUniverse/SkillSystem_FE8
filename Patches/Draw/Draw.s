@@ -106,11 +106,13 @@ bx r1
 .type Draw_StoreToBuffer, %function 
 Draw_StoreToBuffer:
 push {r4-r7, lr}
-ldr r4, =0x6010000 @ tile one 
-ldr r5, =0x6010FFF @ end of first two rows 
 
 
-blh 0x8001FE0 @| ClearTileRigistry
+@ clearing unnecessary I think 
+@ldr r4, =0x6010000 @ tile one 
+@ldr r5, =0x6010FFF @ end of first two rows 
+@blh 0x8001FE0 @| ClearTileRigistry
+
 
 blh GetGameClock 
 ldr r3, =MemorySlot
@@ -425,8 +427,17 @@ lsl r0, r5, #4 @ 16*XX
 lsl r1, r6, #4 @ 16*YY 
 bl Draw_NumberDuringBattle
 
+cmp r5, #1 
+blt CapXX
 sub r5, #1 @ offset by 1 to center 64x64 animations 
+CapXX:
+cmp r6, #1 
+blt CapYY
 sub r6, #1 
+CapYY:
+
+
+
 
 
 blh GetGameClock 
@@ -474,6 +485,9 @@ bge TryNextFrameLoop
 
 ldr r0, [r3, #4] 
 
+bl Draw_UpdateVRAM @ push to a buffer
+
+ldr r0, =gGenericBuffer 
 ldr r1, =VRAM_Address_Link
 ldr r1, [r1] 
 ldr r2, =#4096 @ number of bytes 
@@ -481,12 +495,6 @@ mov r2, #8
 mov r3, #8
 @ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
 blh RegisterObjectTileGraphics, r4
-
-
-ldr r0, [r3, #4] 
-
-
-
 
 sub sp, #8 
 
@@ -503,19 +511,6 @@ str   r2, [r1, #0x4]
 @			bit 10    | Horizontal Flip (0=Normal, 1=Mirrored)
 @			bit 11    | Vertical Flip   (0=Normal, 1=Mirrored)
 @			bit 12-15 | Palette Number  (0-15)
-
-
-
-
-
-@ Clear number data buffer 
-@ldr r3, =0x2028e44 @gDebugNumberString
-@mov r2, #0 
-@str r2, [r3] 
-@add r3, #4 
-@str r2, [r3] 
-@add r3, #4 
-@str r2, [r3] @ Cleared 
 
 
 
@@ -538,6 +533,11 @@ orr   r0, r2                    @ Sprite size, 32x32
 
 lsl r1, r6, #4 @ 16*YY 
 sub r1, #8 
+
+mov r2, #0x4 @ blend bit
+lsl r2, #8 
+add r1, r2 
+
 sub r0, #8 
 
 
@@ -565,7 +565,34 @@ pop {r1}
 bx r1 
 
 
+.equ    UnLZ77Decompress, 0x08012F50
+.equ    CpuFastSet, 0x080D1674
+.equ    gGenericBuffer, 0x02020188 // #10016 bytes, I think 
 
+.type Draw_UpdateVRAM, %function 
+Draw_UpdateVRAM:
+@ Arguments:
+@ r0: lz77 compressed image 
+.thumb
+
+push  {r4, r14}
+
+  
+@ Decompress image into buffer
+ldr   r1, =gGenericBuffer
+blh UnLZ77Decompress 
+
+ldr r0, =gGenericBuffer 
+ldr r1, =VRAM_Address_Link
+ldr r1, [r1] 
+mov   r3, #0x80 @ size ? 
+mov   r2, #0x20  
+
+blh CpuFastSet, r4 
+
+pop   {r4}
+pop   {r1}
+bx    r1
 
 
 
@@ -597,65 +624,24 @@ ldr r2, [r3, #4*3] @ slot 3
 sub r0, r2 @ Number of frames since animation started 
 mov r6, r0 
 lsr r6, #1 @ every 2 frames move upwards 
-cmp r6, #13 
+cmp r6, #12 
 blt Continue_DrawNumber
-mov r6, #13 @ max height is +16 above 
+mov r6, #12 @ max height is +12 above 
 Continue_DrawNumber:
 sub r5, r6 
 
 lsr r0, r6, #1 
-add r0, #5 
+
+add r0, #4 
 DivisionLoop:
-sub r0, #5 
-cmp r0, #5 
+sub r0, #4 
+cmp r0, #4 
 bgt DivisionLoop 
 
-add r4, #5 
+add r4, #4 
 sub r4, r0 @ subtract or add based on the remainder so that it will wiggle ? 
 
 
-
-
-
-
-
-
-@bl Draw_GetActiveAttackerOrDefender
-@cmp r0, #0 
-@beq ExitDraw_NumberDuringBattle
-@ldr r1, =0x203A4EC @ Atkr 
-@
-@@DetermineBattleActorSide:
-@ldr r2, =0x203E108 @ what side is the battle actor on? 
-@ldrb r2, [r2] 
-@cmp r2, #1 
-@bne DontSwapSides
-@ldr r1, =0x203A56C @ Dfdr 
-@DontSwapSides:
-@
-@cmp r0, r1 
-@bne BattleSideRight 
-@
-@DeducedAtkrOrDfdr: 
-@mov r2, r0 @ Active unit 
-@mov r3, r1 @ Target
-@
-@BattleSideLeft:
-@mov r0, #0 
-@ldr r3, =0x0203E1BC @ Battle side 1 - See febuilder debugger "BattleSome" struct starting at 0203E0F0
-@ldsh r0, [r3, r0] 
-@cmp r0, #0 
-@blt ExitDraw_NumberDuringBattle
-@b FoundDamage
-@
-@BattleSideRight:
-@mov r0, #0 
-@ldr r3, =0x203E1BE @ Battle side 2
-@ldsh r0, [r3, r0] 
-@cmp r0, #0 
-@blt ExitDraw_NumberDuringBattle
-
-@FoundDamage:
 
 
 ldr r3, =0x203E24A @ current round - from function 8161C - address 81676 
@@ -666,14 +652,11 @@ cmp r1, #0
 bne ExitDraw_NumberDuringBattle
 ldrb r0, [r3, #3] @ dmg? 
 
-
-
-
-
+cmp r0, #99 
+ble NoCap 
+mov r0, #99 @ Max damage to display, i guess 
+NoCap:
 mov r7, r0 @ Damage to deal 
-
-@mov r7, #64
-
 
 mov r1, r7 
 cmp r7, #10 
@@ -706,16 +689,6 @@ mov r1, r5
 add r0, #8 
 mov r2, r7 
 bl Draw_NumberOAM
-
-
-	@ Inputs:
-	@ r0: X coordinate
-	@ r1: Y coordinate
-	@ r2: Number
-@mov r2, #64 
-
-mov r2, r7 
-@blh MMBDrawUnsignedNumber
 
 ExitDraw_NumberDuringBattle:
 
@@ -760,24 +733,6 @@ orr r3, r2
 @ palette | flips | tile 
 
 ldr		r2, =SpriteData8x8 @ OAM data for a single 8x8 sprite
-
-@
-@sub sp, #8 
-@@ Prepare OAM data
-@mov   r2, #0x1
-@mov   r1, sp
-@str   r2, [r1]
-@mov   r2, #0x0
-@str   r2, [r1, #0x4]
-@
-@
-@@	bit 0-9   | Tile Number     (0-1023)
-@@			bit 10    | Horizontal Flip (0=Normal, 1=Mirrored)
-@@			bit 11    | Vertical Flip   (0=Normal, 1=Mirrored)
-@@			bit 12-15 | Palette Number  (0-15)
-@
-@add sp, #8 
-
 
 .short 0xf800 
 

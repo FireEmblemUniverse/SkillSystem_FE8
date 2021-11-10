@@ -1,6 +1,6 @@
 @echo off
 
-@set "Png2Dmp=%~dp0/../../EventAssembler/Tools/Png2Dmp.exe"
+@set "Png2Dmp=%~dp0/../../../EventAssembler/Tools/Png2Dmp.exe"
 
 @cd %~dp0/Png
 
@@ -12,7 +12,7 @@ echo %~dp0png\%%G
 
 @dir *.png /b > png.txt
 
-@for /f "tokens=*" %%m in (png.txt) do ("%Png2Dmp%" "%%m" -po "%%~nm_pal.dmp")
+@for /f "tokens=*" %%m in (png.txt) do ("%Png2Dmp%" "%%m" --lz77 -po "%%~nm_pal.dmp")
 
 @cd %~dp0
 

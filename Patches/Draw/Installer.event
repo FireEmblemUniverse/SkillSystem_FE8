@@ -1,14 +1,19 @@
-#include "Draw.lyn.event"
-#include "EAstdlib.event"
-#include "Extensions/ProcDefinitions.txt"
-#include "MapAnimations/Installer.event"
+
+//#define INSTALL_BONUS_ANIMATIONS // Uncomment for additional animations 
+#define VRAM_Address 0x6013300 // Where in VRAM (see No$Gba Obj window) to draw animation 
+#define MinimumFrames 28 // Vanilla does 28 frames 
 
 
+PUSH // Only vanilla address that we take over. 
+ORG $81274 // Poin to the vanilla proc 
+POIN gProc_MapAnimRound_Animation
+POP 
 
+
+#include "Internals.event"
 
 
 #define Empty_AnimID 0 
-
 #define Break1AnimID 1
 #define Break2AnimID 2
 #define CircleAnimID 3
@@ -24,12 +29,12 @@
 #define ThickSlashAnimID 13
 #define FlashAnimID 14 
 #define FreezeAnimID 15 
-#define BoomerangAnimID 2
-
-
-
-
-
+#define BoomerangAnimID 16
+#define FeatherAnimID 17
+#define CauterizeAnimID 18
+#define FireballAnimID 19
+#define HealAnimID 20
+#define NumberOfAnimIDs 20
 
 ALIGN 4
 WeaponTypeAnimations:
@@ -45,140 +50,45 @@ BYTE $11 Shards1AnimID // Dragonstone
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 
-#ifndef SilverSword 
-	#define SilverSword 8 
-#endif 
+
 
 ALIGN 4
 SpecificWeaponAnimations:
-BYTE SilverSword Break1AnimID 
-
-/*
-BYTE Confusion FreezeAnimID
-BYTE SandAttack Splash1AnimID
-BYTE Magnitude Splash2AnimID
-//BYTE Tackle Empty_AnimID
-BYTE TakeDown Break1AnimID
-BYTE Tackle Break2AnimID
-BYTE SeismicToss CircleAnimID
-BYTE Swift Hit1AnimID
-BYTE QuickAttack Hit2AnimID
-BYTE Gust Shards1AnimID
-BYTE PoisonPowder Shards2AnimID
-BYTE Growl FlashAnimID
-BYTE Leer FlashAnimID 
-BYTE VineWhip ThinSlashAnimID
-*/
+BYTE SilverSword Shards1AnimID // Silver sword will always use the Shards1 animation 
 
 BYTE 0 0 0 0; ALIGN 4 // Terminator 
 
 
 
 
+// Animation IDs are defined above 
+// Animations and Palettes are included in "MapAnimations/Installer.event"
 
-ALIGN 4
-AnimTable2:
-WORD 0 0 0 // 0th animation is blank 
-
-POIN Break1_Small_Anim Break1Data_pal; SHORT 0 0
-POIN Break2_Small_Anim Break2Data_pal; SHORT 0 0
-POIN Circle_Small_Anim CircleData_pal; SHORT 0 0
-POIN Hit1_Small_Anim Hit1Data_pal; SHORT 0 0
-POIN Hit2_Small_Anim Hit2Data_pal; SHORT 0 0
-POIN Impact1_Small_Anim Impact1Data_pal; SHORT 0 0
-POIN Impact2_Small_Anim Impact2Data_pal; SHORT 0 0
-POIN Shards1_Small_Anim Shards1Data_pal; SHORT 0 0
-POIN Shards2_Small_Anim Shards2Data_pal; SHORT 0 0
-POIN Splash1_Small_Anim Splash1Data_pal; SHORT 0 0
-POIN Splash2_Small_Anim Splash2Data_pal; SHORT 0 0
-POIN Slashing_A_Anim SlashingData_pal; SHORT 0 0
-POIN Slashing_B_Anim SlashingData_pal; SHORT 0 0 // same palete 
-POIN Flash_Anim FlashData_pal; SHORT 0 0
-POIN Freeze_Anim FreezeData_pal; SHORT 0 0
-
-
-POIN Boomerang_Anim BoomerangData_pal; SHORT 0 0
-POIN Cauterize_Anim CauterizeData_pal; SHORT 0 0
-POIN Feather_Anim FeatherData_pal; SHORT 0 0
-
-
-//POIN Heal_Anim HealData_pal; SHORT 0 0 // SFX 
-//POIN Fireball_Anim FireballData_pal; SHORT 0 0
-WORD 0 0 0
-
-
-#define VRAM_Address 0x6013300
-ALIGN 4
-VRAM_Address_Link:
-WORD VRAM_Address 
-
-#define MinimumFrames 28
-ALIGN 4
-MinimumFramesLink:
-WORD MinimumFrames 
+AnimTable_Entry(ThinSlashAnimID,Slashing_A_Anim, SlashingData_pal)
+AnimTable_Entry(Hit1AnimID,Hit1_Small_Anim, Hit1Data_pal)
+AnimTable_Entry(Shards2AnimID,Shards2_Small_Anim, Shards2Data_pal)
+AnimTable_Entry(Break1AnimID,Break1_Small_Anim, Break1Data_pal)
+AnimTable_Entry(Splash2AnimID,Splash2_Small_Anim, Splash2Data_pal)
+AnimTable_Entry(FlashAnimID,Flash_Anim, FlashData_pal)
+AnimTable_Entry(Impact1AnimID,Impact1_Small_Anim, Impact1Data_pal)
+AnimTable_Entry(Shards1AnimID,Shards1_Small_Anim, Shards1Data_pal)
+#ifdef INSTALL_BONUS_ANIMATIONS 
+AnimTable_Entry(Break2AnimID,Break2_Small_Anim, Break2Data_pal)
+AnimTable_Entry(CircleAnimID,Circle_Small_Anim, CircleData_pal)
+AnimTable_Entry(CauterizeAnimID,Cauterize_Anim, CauterizeData_pal) // small hit 2 was here 
+AnimTable_Entry(Impact2AnimID,Impact2_Small_Anim, Impact2Data_pal)
+AnimTable_Entry(Splash1AnimID,Splash1_Small_Anim, Splash1Data_pal)
+AnimTable_Entry(ThickSlashAnimID,Slashing_B_Anim, SlashingData_pal) // same palete as Slashing_A
+AnimTable_Entry(FreezeAnimID,Freeze_Anim, FreezeData_pal)
+AnimTable_Entry(BoomerangAnimID,Boomerang_Anim, BoomerangData_pal)
+AnimTable_Entry(FeatherAnimID,Feather_Anim, FeatherData_pal)
+//AnimTable_Entry(HealAnimID,Heal_Anim, HealData_pal) // SFX 
+//AnimTable_Entry(FireballAnimID,Fireball_Anim, FireballData_pal)
+#endif 
 
 
 
-PUSH
-ORG $81274 // Poin to the vanilla proc 
-POIN gProc_MapAnimRound_Animation
-POP 
 
 
 
-ALIGN 4
-DrawSpriteProc:
-PROC_YIELD 
-PROC_SET_NAME(ASMC_DrawProcName)
-PROC_CALL_ROUTINE(Draw_StoreToBuffer)
-PROC_SLEEP(2)
-PROC_LOOP_ROUTINE(Draw_PushToOam)
-PROC_CALL_ROUTINE(Draw_Cleanup) 
-PROC_END
-
-ASMC_DrawProcName:
-String("PausesStuffWhileAnimationIsGoing") ; BYTE 0
-ALIGN 4
-
-
-// gProc_MapAnimDefaultRound at 9A4764
-// Copied the vanilla proc with our own routine added 
-ALIGN 4
-gProc_MapAnimRound_Animation:
-PROC_YIELD 
-PROC_SET_NAME(gProc_MapAnimRound_AnimationName)
-PROC_CALL_ROUTINE($80813F9) // Begin Rounds Animation 
-PROC_CALL_ROUTINE($80814D5) // Move towards target 
-PROC_SLEEP(1)
-PROC_CALL_ROUTINE($80814D5)
-PROC_SLEEP(1)
-PROC_CALL_ROUTINE($80814D5)
-PROC_SLEEP(1)
-PROC_CALL_ROUTINE($80814D5)
-PROC_SLEEP(1)
-
-PROC_CALL_ROUTINE($80815C1) // Camera Onto Target 
-PROC_SLEEP(2)
-PROC_CALL_ROUTINE($808161D) // Specific vanilla animations 
-
-PROC_CALL_ROUTINE(Draw_SetupMemorySlots)
-
-PROC_NEW_CHILD(DrawSpriteProc)
-PROC_YIELD
-//PROC_LOOP_ROUTINE($8081915) // Wait for HP to end changing 
-PROC_CALL_ROUTINE($8081535) // Move away 
-PROC_SLEEP(1)
-PROC_CALL_ROUTINE($8081535) // Move away 
-PROC_SLEEP(1)
-PROC_CALL_ROUTINE($8081535) // Move away 
-PROC_SLEEP(1)
-PROC_CALL_ROUTINE($8081535) // Move away 
-PROC_LOOP_ROUTINE(Draw_WaitXFrames)
-
-PROC_END
-
-
-gProc_MapAnimRound_AnimationName:
-String("gProc_MapAnimRound_Animation_Repointed") ; BYTE 0
-ALIGN 4
 

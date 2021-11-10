@@ -216,7 +216,9 @@ LABEL 0x63
 SetUnitStatus(1, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 
-
+MOVE (-1) 1 [1,0]
+MOVE (-1) 0x50 [0,0]
+ENUN 
 
 ENUT 0xAE  
 NoFade
