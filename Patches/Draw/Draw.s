@@ -5,6 +5,14 @@
   .short 0xf800
 .endm
 
+.macro blh_free to, reg=r3
+  push {\reg}
+  ldr \reg, =\to
+  mov lr, \reg
+  pop {\reg}
+  .short 0xf800
+.endm
+
 	.equ pr6C_NewBlocking,           0x08002CE0 
 	.equ pr6C_New,                   0x08002C7C
 	.equ Proc_CreateBlockingChild, 0x80031c4 
@@ -400,14 +408,14 @@ lsl r0, r5, #4 @ 16*XX
 lsl r1, r6, #4 @ 16*YY 
 bl Draw_NumberDuringBattle
 
-cmp r5, #1 
-blt CapXX
-sub r5, #1 @ offset by 1 to center 64x64 animations 
-CapXX:
-cmp r6, #1 
-blt CapYY
-sub r6, #1 
-CapYY:
+@cmp r5, #1 
+@blt CapXX
+@sub r5, #1 @ offset by 1 to center 64x64 animations 
+@CapXX:
+@cmp r6, #1 
+@blt CapYY
+@sub r6, #1 
+@CapYY:
 
 
 
@@ -489,7 +497,7 @@ sub sp, #8
 
 
 @ Prepare OAM data
-mov   r2, #0x1
+mov   r2, #0x1 @ ASDF ASDF 
 mov   r1, sp
 str   r2, [r1]
 mov   r2, #0x0
@@ -501,45 +509,112 @@ str   r2, [r1, #0x4]
 @			bit 11    | Vertical Flip   (0=Normal, 1=Mirrored)
 @			bit 12-15 | Palette Number  (0-15)
 
-
-
 ldr r7, =VRAM_Address_Link
 ldr r7, [r7] 
+lsl r7, #16 @ Cut of |0x601---- 
+lsr r7, #16 
+
 lsr r7, #5 @ eg. tile #0x198 - offset where we put the tiles 
+
+
+
+mov r4, #0 @ Counter 
+sub r4, #1 
+
+DisplaySpriteChunkLoop:
+add r4, #1 
+cmp r4, #16
+bge ExitDisplaySpriteLoop 
+
+
+@ remainder 
+
+@ 3300 / #0x198
+@ 3340 / #0x19A (+2) 
+@ 3380 / 19c, 19f 
+@ 33C0 
+@ 3b00 1d8, 1da, 1dc, 1df 
+
+@ 4300 / #0x218, 21a, 21c, 21f 
+@ 4340  
+@ 4380 / 
+@ 43C0 
+@ 4b00 258
 
 @ Push to secondary OAM
 @To compute the offset for one tile in the map buffer given its (x, y) pos: offset = 2*x + 0x40*y
-lsl r0, r5, #4 @ 16*XX 
+
+@ 800
+lsl r2, r4, #30 @ we only want 2 bits left 
+lsr r2, #30 @ X coord offset 
+
+mov r0, r5 
+add r0, r2
+lsl r0, #4 @ 16*XX 
+
+
 
 
 @	00 | short | base OAM0 data (y coord, various flags, shape)
 @			02 | short | base OAM1 data (x coord, flips, size)
 @			04 | short | base OAM2 data (tile index, priority, palette index)
-mov   r2, #0xc0 @ #0xC0 64x64  FF 
+@mov   r2, #0xc0 @ #0xC0 64x64  FF 
+
+
+
+
+
+mov r1, r6 
+lsr r2, r4, #2 @ Counter / 4 (Y coord offset) 
+add r1, r2 
+lsl r1, #4 @ 16*YY 
+
+
+cmp r0, #24 
+blt DisplaySpriteChunkLoop @ Can't display this chunk as it would be offscreen 
+sub r0, #24 
+
+
+cmp r1, #24 
+blt DisplaySpriteChunkLoop @ Can't display this chunk as it would be offscreen 
+sub r1, #24 
+
+
+
+mov r2, #0x40 @ 16x16 
 lsl   r2, #0x8 @ shifted by this amount 
-orr   r0, r2                    @ Sprite size, 32x32
+orr   r0, r2                    @ Sprite size, 16x16
 
-
-lsl r1, r6, #4 @ 16*YY 
-sub r1, #8 
 
 mov r2, #0x4 @ blend bit
 lsl r2, #8 
-add r1, r2 
-
-sub r0, #8 
+orr r1, r2 
 
 
 
-mov r3, r7
+
+lsr r2, r4, #2 @ Counter / 4 (Y coord offset) 
+lsl r2, #6 @ 0x40 * (Counter/4) @ gets us Y offset to use 
+mov r3, r7 
+add r3, r2 
+@ now to add +2, +4, or +6 
+lsl r2, r4, #30 @ we only want 2 bits left 
+lsr r2, #29 @ *2 of X coord 
+add r3, r2 @ VRAM address we want 
+
+
 mov r2, #26 @ palette # 26 - or 27 is the light rune palette i think 
 lsl r2, #12 @ bits 12-15 
-add r3, r2 @ palette | flips | tile 
+orr r3, r2 @ palette | flips | tile 
 
 mov r2, sp 
 
 @ r0 = base x coord, r1 = base y coord, r2 = pointer to OAM Data, r3 = base OAM2 (tile/palette index)
-blh PushToSecondaryOAM, r4 
+blh_free PushToSecondaryOAM, r3 @ pushes / pops r3  
+
+b DisplaySpriteChunkLoop
+
+ExitDisplaySpriteLoop:
 
 add sp, #8 
 
@@ -605,6 +680,11 @@ push {r4-r7, lr}
 
 mov r4, r0 @ XX 
 mov r5, r1 @ YY 
+
+ldr r0, =0x859dabc @gProc_Battle
+blh ProcFind 
+cmp r0, #0 
+beq ExitDraw_NumberDuringBattle
 
 
 blh GetGameClock 
@@ -675,7 +755,7 @@ bl Draw_NumberOAM
 SkipTensDigit:
 mov r0, r4 
 mov r1, r5 
-add r0, #8 
+add r0, #8 @ 8 pixels to the right for ones column 
 mov r2, r7 
 bl Draw_NumberOAM
 
