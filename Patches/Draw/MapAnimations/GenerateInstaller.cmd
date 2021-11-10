@@ -19,8 +19,8 @@ echo ALIGN 4 >> GeneratedInstaller.txt
 echo %%~nG_Anim: >> GeneratedInstaller.txt
 @dir *.png /b > png.txt
 @for /f "tokens=*" %%m in (png.txt) do (
-echo BYTE 3 0 0 0; POIN %%~nm_Data >> GeneratedInstaller.txt)
-echo WORD 0 0 >> GeneratedInstaller.txt
+echo BYTE 3 0 0 0; POIN %%~nm_Data %%~nm_pal >> GeneratedInstaller.txt)
+echo WORD 0 0 0 >> GeneratedInstaller.txt
 @echo.>> GeneratedInstaller.txt
 @echo.>> GeneratedInstaller.txt
 @echo //Image Data >> GeneratedInstaller.txt
@@ -29,6 +29,11 @@ echo WORD 0 0 >> GeneratedInstaller.txt
 @echo ALIGN 4 >> GeneratedInstaller.txt
 @echo %%~nm_Data: >> GeneratedInstaller.txt
 @echo #incbin "dmp\%%~nm.dmp" >> GeneratedInstaller.txt
+@echo. >> GeneratedInstaller.txt
+@echo ALIGN 4 >> GeneratedInstaller.txt
+@echo %%~nm_pal: >> GeneratedInstaller.txt
+@echo #incbin "dmp\%%~nm_pal.dmp" >> GeneratedInstaller.txt
+@echo. >> GeneratedInstaller.txt
 @echo. >> GeneratedInstaller.txt)
 @del png.txt
 @cd %~dp0/Png

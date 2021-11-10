@@ -23,8 +23,7 @@ SaveScreenNumbers:
 
 ALIGN 4
 SaveScreenNumbersPal:
-//#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" // same thing but only 32 bytes instead of 512 from png2dmp 
-BYTE $0E $52 $C7 $14 $E4 $28 $26 $2D $A4 $1C $8A $3D $CC $41 $0E $4A $50 $52 $92 $56 $C7 $14 $FF $03 $7D $67 $D7 $52 $11 $3E $00 $00
+#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" // same thing but only 32 bytes instead of 512 from png2dmp 
 
 
 #ifndef SilverSword 
@@ -32,16 +31,16 @@ BYTE $0E $52 $C7 $14 $E4 $28 $26 $2D $A4 $1C $8A $3D $CC $41 $0E $4A $50 $52 $92
 #endif 
 
 
-#define AnimTable_Entry(ID, SpecificAnimationTable, PaletteAddr) "PUSH; ORG AnimTable2 + (ID*12); POIN SpecificAnimationTable PaletteAddr; SHORT 0 0; POP"
+#define AnimTable_Entry(ID, SpecificAnimationTable) "PUSH; ORG AnimTable2 + (ID*8); POIN SpecificAnimationTable; SHORT 0 0; POP"
 
-#define FillWithZeroes "WORD 0 0 0 0 0 0 0 0 0 0 0 0" // 4 entries 
+#define FillWithZeroes "WORD 0 0 0 0 0 0 0 0" // 4 entries 
 #define FillTwentyEntries "FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes"
 
 
 
 ALIGN 4
 AnimTable2:
-WORD 0 0 0 // 0th animation is blank 
+WORD 0 0 // 0th animation is blank 
 FillTwentyEntries 
 
 

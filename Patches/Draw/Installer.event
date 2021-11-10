@@ -64,26 +64,26 @@ BYTE 0 0 0 0; ALIGN 4 // Terminator
 // Animation IDs are defined above 
 // Animations and Palettes are included in "MapAnimations/Installer.event"
 
-AnimTable_Entry(ThinSlashAnimID,Slashing_A_Anim, SlashingData_pal)
-AnimTable_Entry(Hit1AnimID,Hit1_Small_Anim, Hit1Data_pal)
-AnimTable_Entry(Shards2AnimID,Shards2_Small_Anim, Shards2Data_pal)
-AnimTable_Entry(Break1AnimID,Break1_Small_Anim, Break1Data_pal)
-AnimTable_Entry(Splash2AnimID,Splash2_Small_Anim, Splash2Data_pal)
-AnimTable_Entry(FlashAnimID,Flash_Anim, FlashData_pal)
-AnimTable_Entry(Impact1AnimID,Impact1_Small_Anim, Impact1Data_pal)
-AnimTable_Entry(Shards1AnimID,Shards1_Small_Anim, Shards1Data_pal)
+AnimTable_Entry(ThinSlashAnimID,Slashing_A_Anim)
+AnimTable_Entry(Hit1AnimID,Hit1_Small_Anim)
+AnimTable_Entry(Shards2AnimID,Shards2_Small_Anim)
+AnimTable_Entry(Break1AnimID,Break1_Small_Anim)
+AnimTable_Entry(Splash2AnimID,Splash2_Small_Anim)
+AnimTable_Entry(FlashAnimID,Flash_Anim)
+AnimTable_Entry(Impact1AnimID,Impact1_Small_Anim)
+AnimTable_Entry(Shards1AnimID,Shards1_Small_Anim)
 #ifdef INSTALL_BONUS_ANIMATIONS 
-AnimTable_Entry(Break2AnimID,Break2_Small_Anim, Break2Data_pal)
-AnimTable_Entry(CircleAnimID,Circle_Small_Anim, CircleData_pal)
-AnimTable_Entry(CauterizeAnimID,Cauterize_Anim, CauterizeData_pal) // small hit 2 was here 
-AnimTable_Entry(Impact2AnimID,Impact2_Small_Anim, Impact2Data_pal)
-AnimTable_Entry(Splash1AnimID,Splash1_Small_Anim, Splash1Data_pal)
-AnimTable_Entry(ThickSlashAnimID,Slashing_B_Anim, SlashingData_pal) // same palete as Slashing_A
-AnimTable_Entry(FreezeAnimID,Freeze_Anim, FreezeData_pal)
-AnimTable_Entry(BoomerangAnimID,Boomerang_Anim, BoomerangData_pal)
-AnimTable_Entry(FeatherAnimID,Feather_Anim, FeatherData_pal)
-//AnimTable_Entry(HealAnimID,Heal_Anim, HealData_pal) // SFX 
-//AnimTable_Entry(FireballAnimID,Fireball_Anim, FireballData_pal)
+AnimTable_Entry(Break2AnimID,Break2_Small_Anim)
+AnimTable_Entry(CircleAnimID,Circle_Small_Anim)
+AnimTable_Entry(CauterizeAnimID,Cauterize_Anim) // small hit 2 was here 
+AnimTable_Entry(Impact2AnimID,Impact2_Small_Anim)
+AnimTable_Entry(Splash1AnimID,Splash1_Small_Anim)
+AnimTable_Entry(ThickSlashAnimID,Slashing_B_Anim) // same palete as Slashing_A
+AnimTable_Entry(FreezeAnimID,Freeze_Anim)
+AnimTable_Entry(BoomerangAnimID,Boomerang_Anim)
+AnimTable_Entry(FeatherAnimID,Feather_Anim)
+//AnimTable_Entry(HealAnimID,Heal_Anim) // SFX 
+//AnimTable_Entry(FireballAnimID,Fireball_Anim)
 #endif 
 
 

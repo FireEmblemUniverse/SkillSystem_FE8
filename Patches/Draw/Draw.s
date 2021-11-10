@@ -140,33 +140,7 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 
 
 
-ldr r3, =MemorySlot 
-ldr r3, [r3, #4] @ Slot 1 
-lsl r3, #2 @ x4 
-add r0, r3, r3 @ x8 
-add r0, r3 @ x12 
-add r0, #4 @ palette offset in table 
-ldr r2, =AnimTable2 
 
-ldr r0, [r2, r0] @ Palette 
-cmp r0, #0 
-beq SkipUpdatingPalette @ No animation 
-
-UpdatePalette:
-mov r1, #26 @ palette # 
-lsl r1, #5 @ multiply by #0x20
-
-
-
-mov	r2,#0x20
-blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset, r2 = size (0x20 per full palette)
-
-@ palette must be updated 
-ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the palette RAM needs to be updated
-mov	r1,#1
-strb r1,[r0]
-
-SkipUpdatingPalette:
 
 mov r0, #0 
 ldr r3, =MemorySlot 
@@ -217,17 +191,16 @@ ldr r3, =MemorySlot
 ldr r3, [r3, #4] @ Slot 1 as AnimID 
 lsl r3, #2 @ x4 
 add r2, r3, r3 @ x8 
-add r2, r3 @ x12 
 ldr r3, =AnimTable2
 ldr r3, [r3, r2] @ Specific animation table 
 cmp r3, #0 
 beq NoAnimation
 
-sub r3, #8
+sub r3, #12
 mov r2, #0 @ Number of frames to wait 
 
 NumberOfFramesLoop:
-add r3, #8 
+add r3, #12 
 ldrh r1, [r3] 
 add r2, r1 @ total frames 
 cmp r1, #0 
@@ -453,13 +426,12 @@ sub r0, r2 @ frame we're on
 ldr r3, =MemorySlot 
 ldr r3, [r3, #4] @ Slot 1 
 lsl r3, #2 @ x4 
-add r2, r3, r3 @ x8 
-add r2, r3 @ x12 
+add r2, r3, r3 @ x8 @ fixed
 ldr r3, =AnimTable2
 ldr r3, [r3, r2] @ Specific animation table 
 cmp r3, #0 @ No animation, so exit 
 beq ExitAnimation
-sub r3, #8 
+sub r3, #12 
 mov r1, #0 @ frames offset 
 b TryNextFrameLoop 
 ExitAnimation: 
@@ -473,7 +445,7 @@ ExitAnimation:
 b Skip
 
 TryNextFrameLoop:
-add r3, #8 
+add r3, #12 
 ldrh r2, [r3] 
 add r1, r2 
 cmp r2, #0 
@@ -481,9 +453,26 @@ beq ExitAnimation
 cmp r0, r1 
 bge TryNextFrameLoop 
 
+push {r3} @ Table offset 
+ldr r0, [r3, #8] @ Palette to use 
+
+@UpdatePalette
+mov r1, #26 @ palette # 
+lsl r1, #5 @ multiply by #0x20
+mov	r2,#0x20 @ size 
+blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset, r2 = size (0x20 per full palette)
+
+@ palette must be updated 
+ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the palette RAM needs to be updated
+mov	r1,#1
+strb r1,[r0]
+
+pop {r3} 
 
 
-ldr r0, [r3, #4] 
+ldr r0, [r3, #4] @ image address 
+
+
 
 bl Draw_UpdateVRAM @ push to a buffer
 
