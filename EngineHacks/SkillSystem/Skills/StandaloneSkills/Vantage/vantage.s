@@ -33,9 +33,11 @@ ldsb r3, [r5,r3] @currhp
 cmp r3, r2
 bgt Normal
 @swap them
-@eor r4,r5
-@eor r5,r4
-@eor r4,r5
+eor r4,r5
+eor r5,r4
+eor r4,r5
+b Normal
+
 @if showing animation
 @ ldr     r0,=0x802b444    @pointer to the current round
 @ ldr     r0, [r0]          @current round pointer (usually 203a608)
@@ -59,13 +61,13 @@ VantagePlus:
 eor r4,r5
 eor r5,r4
 eor r4,r5
-mov r1, #0x66
+mov r1, #0x66 @crit
 mov r0, #0
 strh r0, [r4,r1]
-mov r1, #0x68
-mov r0, #0
-strh r0, [r4,r1]
-mov r1, #0x6A
+@mov r1, #0x68 @crit avoid
+@mov r0, #0
+@strh r0, [r4,r1]
+mov r1, #0x6A @battle crit
 mov r0, #0
 strh r0, [r4,r1]
 
