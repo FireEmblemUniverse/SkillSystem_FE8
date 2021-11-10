@@ -493,21 +493,23 @@ mov r3, #8
 @ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
 blh RegisterObjectTileGraphics, r4
 
-sub sp, #8 
-
-
-@ Prepare OAM data
-mov   r2, #0x1 @ ASDF ASDF 
-mov   r1, sp
-str   r2, [r1]
-mov   r2, #0x0
-str   r2, [r1, #0x4]
+@sub sp, #8 
+@
+@
+@@ Prepare OAM data
+@mov   r2, #0x1 @ 
+@mov   r1, sp
+@str   r2, [r1]
+@mov   r2, #0x0
+@str   r2, [r1, #0x4]
 
 
 @	bit 0-9   | Tile Number     (0-1023)
 @			bit 10    | Horizontal Flip (0=Normal, 1=Mirrored)
 @			bit 11    | Vertical Flip   (0=Normal, 1=Mirrored)
 @			bit 12-15 | Palette Number  (0-15)
+
+
 
 ldr r7, =VRAM_Address_Link
 ldr r7, [r7] 
@@ -516,14 +518,17 @@ lsr r7, #16
 
 lsr r7, #5 @ eg. tile #0x198 - offset where we put the tiles 
 
-
+mov r8, r4 
+push {r4}
+ldr r4, =PushToSecondaryOAM|1
+mov r8, r4 @ for blh 
 
 mov r4, #0 @ Counter 
 sub r4, #1 
 
 DisplaySpriteChunkLoop:
 add r4, #1 
-cmp r4, #16
+cmp r4, #64
 bge ExitDisplaySpriteLoop 
 
 
@@ -545,29 +550,21 @@ bge ExitDisplaySpriteLoop
 @To compute the offset for one tile in the map buffer given its (x, y) pos: offset = 2*x + 0x40*y
 
 @ 800
-lsl r2, r4, #30 @ we only want 2 bits left 
-lsr r2, #30 @ X coord offset 
+lsl r2, r4, #29 @ we only want 3 bits left (#0 - #7)
+lsr r2, #29  
+lsl r2, #3 @ X*8 coord offset
 
 mov r0, r5 
+lsl r0, #4 
+
 add r0, r2
-lsl r0, #4 @ 16*XX 
-
-
-
-
-@	00 | short | base OAM0 data (y coord, various flags, shape)
-@			02 | short | base OAM1 data (x coord, flips, size)
-@			04 | short | base OAM2 data (tile index, priority, palette index)
-@mov   r2, #0xc0 @ #0xC0 64x64  FF 
-
-
-
-
 
 mov r1, r6 
-lsr r2, r4, #2 @ Counter / 4 (Y coord offset) 
+lsr r2, r4, #3 @ Counter / 8 (Y coord offset) 
+lsl r2, #3 @ 8*Y
+lsl r1, #4 
 add r1, r2 
-lsl r1, #4 @ 16*YY 
+
 
 
 cmp r0, #24 
@@ -579,44 +576,52 @@ cmp r1, #24
 blt DisplaySpriteChunkLoop @ Can't display this chunk as it would be offscreen 
 sub r1, #24 
 
-
-
-mov r2, #0x40 @ 16x16 
-lsl   r2, #0x8 @ shifted by this amount 
+mov r2, #0 @ 0, 1, 2, or 3 as valid here?
+		@ probably 8, 16, 32, and 64 pixel squares 
+lsl r2, #0xe @ bits E-F determine size 
 orr   r0, r2                    @ Sprite size, 16x16
 
 
 mov r2, #0x4 @ blend bit
 lsl r2, #8 
 orr r1, r2 
+@ r1 also has sprite shape (default is square, but can also be horizontal or vertical rectangle) 
 
 
 
-
-lsr r2, r4, #2 @ Counter / 4 (Y coord offset) 
-lsl r2, #6 @ 0x40 * (Counter/4) @ gets us Y offset to use 
+lsr r2, r4, #3 @ Counter / 8 (Y coord offset) 
+lsl r2, #5 @ 0x20 * (Counter/8) @ gets us Y offset to use 
 mov r3, r7 
 add r3, r2 
-@ now to add +2, +4, or +6 
-lsl r2, r4, #30 @ we only want 2 bits left 
-lsr r2, #29 @ *2 of X coord 
+
+ 
+
+lsl r2, r4, #29 @ we only want 3 bits left 
+lsr r2, #29 @ X coord 
 add r3, r2 @ VRAM address we want 
 
+@mov r11, r11 
 
 mov r2, #26 @ palette # 26 - or 27 is the light rune palette i think 
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 @ palette | flips | tile 
 
-mov r2, sp 
+@mov r2, sp 
+ldr r2, =SpriteData8x8
 
 @ r0 = base x coord, r1 = base y coord, r2 = pointer to OAM Data, r3 = base OAM2 (tile/palette index)
-blh_free PushToSecondaryOAM, r3 @ pushes / pops r3  
+@blh_free PushToSecondaryOAM, r3 @ pushes / pops r3  
+mov lr, r8 @ PushToSecondaryOAM
+.short 0xF800 @ bx lr 
 
 b DisplaySpriteChunkLoop
 
 ExitDisplaySpriteLoop:
 
-add sp, #8 
+pop {r4}
+mov r8, r4 
+
+@add sp, #8 
 
 Skip:
 pop {r5} 
