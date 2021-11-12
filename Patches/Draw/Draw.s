@@ -13,16 +13,7 @@
   .short 0xf800
 .endm
 
-	.equ pr6C_NewBlocking,           0x08002CE0 
-	.equ pr6C_New,                   0x08002C7C
-	.equ Proc_CreateBlockingChild, 0x80031c4 
-	.equ BreakProcLoop, 0x08002E94
-	.equ ProcFind, 0x08002E9C
-	.equ EnsureCameraOntoPosition, 0x08015e0d
-	.equ CheckEventId, 0x8083da8
-	.equ MemorySlot, 0x30004B8
-	.equ CurrentUnit, 0x3004E50
-	.equ EventEngine, 0x800D07C
+
 	
 
 .global ASMC_Draw
@@ -64,11 +55,6 @@ push {lr}
 bl Draw_GetAnimationIDByWeapon @ Takes no params, returns animation id to use 
 ldr r3, =MemorySlot 
 str r0, [r3, #4] @ slot 1 - animation ID 
-
-
-blh GetGameClock 
-ldr r3, =MemorySlot
-str r0, [r3, #4*3] @ slot 3
 
 
 
@@ -116,15 +102,12 @@ Draw_StoreToBuffer:
 push {r4-r7, lr}
 
 
-@ clearing unnecessary I think 
-@ldr r4, =0x6010000 @ tile one 
-@ldr r5, =0x6010FFF @ end of first two rows 
-@blh 0x8001FE0 @| ClearTileRigistry
+
+mov r1, #0 
+str r1, [r0, #0x30] @ store 0 to Proc + 0x68
+@ initial game time 
 
 
-blh GetGameClock 
-ldr r3, =MemorySlot
-str r0, [r3, #4*3] @ slot 3
 
 
 
@@ -147,22 +130,26 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 
 
 
+@ AoE test 
+ldr r0, =0x202E4E0 @ Movement map 
+ldr r0, [r0] 
+mov r1, #0xFF
+blh FillMap
 
-
-
-mov r0, #0 
 ldr r3, =MemorySlot 
 add r3, #4*0x0B 
-ldrh r1, [r3] @ XX 
-ldrh r2, [r3, #2] @ YY 
-blh EnsureCameraOntoPosition
-
+ldrh r0, [r3] @ XX 
+ldrh r1, [r3, #2] @ YY 
+ldr r2, =RangeTemplateTable_Smile1
+bl CreateMoveMapFromTemplate
 
 
 
 pop {r4-r7}
 pop {r1}
 bx r1 
+
+
 
 .align 4 
 .ltorg 
@@ -174,6 +161,39 @@ bx r1
 
 
 
+.global Draw_Camera
+.type Draw_Camera, %function
+Draw_Camera:
+push {lr}
+ldr r3, =MemorySlot
+add r3, #4*0x0B
+ldrb r1, [r3] @ XX 
+ldrb r2, [r3, #2] @ YY 
+
+@r0 as parent 
+@blh 0x8015D84 @CenterCameraOntoPosition
+mov r0, #0 
+blh EnsureCameraOntoPosition
+@EnsureCameraOntoPosition, 0x08015e0c
+
+pop {r0} 
+bx r0 
+
+.ltorg 
+.align 
+
+.equ FillMap,                      0x080197E4
+	.equ pr6C_NewBlocking,           0x08002CE0 
+	.equ pr6C_New,                   0x08002C7C
+	.equ Proc_CreateBlockingChild, 0x80031c4 
+	.equ BreakProcLoop, 0x08002E94
+	.equ ProcFind, 0x08002E9C
+	.equ EnsureCameraOntoPosition, 0x08015e0c
+	.equ CheckEventId, 0x8083da8
+	.equ MemorySlot, 0x30004B8
+	.equ CurrentUnit, 0x3004E50
+	.equ EventEngine, 0x800D07C
+
 
 
 .global Draw_WaitXFrames
@@ -182,10 +202,36 @@ Draw_WaitXFrames:
 push {r4, lr}
 
 mov r4, r0 @ Parent? 
-blh GetGameClock 
+
 
 ldr r3, =MemorySlot
-ldr r2, [r3, #12] @ initial game clock time in s3
+add r3, #0x0B*4 
+ldrh r0, [r3] 
+ldrh r1, [r3, #2] 
+
+@ given coordinates to move the camera to, decide whether the camera needs to be moved or not 
+@ r0 = XX, r1 = YY 
+blh 0x8015e9c @ ShouldCameraMovePos?
+cmp r0, #0 
+beq ContinueDraw_Wait
+mov r0, #0 
+b End_DrawPause 
+
+ContinueDraw_Wait: 
+
+ldr r0, =DrawSpriteProc
+blh ProcFind 
+cmp r0, #0 
+beq BreakProcLoopNow
+mov r5, r0 @ Proc with initial game clock time 
+
+blh GetGameClock @ Current frame 
+ldr r2, [r5, #0x30] @ initial game clock time 
+cmp r2, #0 
+bne NoSetTime
+str r0, [r5, #0x30] 
+mov r2, r0 
+NoSetTime: 
 sub r0, r2 @ Number of frames since then 
 
 ldr r2, =MinimumFramesLink
@@ -373,9 +419,9 @@ bx r1
 Draw_PushToOam:
 push {r4-r7, lr}
 
-mov r5, r0 
+mov r4, r0 
 
-push {r5} 
+push {r4} 
 
 
 @ if we miss, do not show an animation 
@@ -394,38 +440,13 @@ ldrh r6, [r3, #2]
 
 
 
-ldr r3, =0x202BCBC @(gCurrentRealCameraPos )
-ldrh r0, [r3]
-ldrh r1, [r3, #2] 
-
-lsr r0, #4 @ fsr cam pos gives coords <<#4 bits over 
-lsr r1, #4 
-sub r5, r0 
-sub r6, r1 
-
-@ r0 = XX, r1 = YY
-lsl r0, r5, #4 @ 16*XX 
-lsl r1, r6, #4 @ 16*YY 
+mov r0, r5 
+mov r1, r6 
 bl Draw_NumberDuringBattle
-
-@cmp r5, #1 
-@blt CapXX
-@sub r5, #1 @ offset by 1 to center 64x64 animations 
-@CapXX:
-@cmp r6, #1 
-@blt CapYY
-@sub r6, #1 
-@CapYY:
-
-
-
-
 
 blh GetGameClock 
 
-
-ldr r3, =MemorySlot
-ldr r2, [r3, #12] @ initial game clock time in s3
+ldr r2, [r4, #0x30] @ initial game clock time 
 sub r0, r2 @ frame we're on
 
 
@@ -461,8 +482,8 @@ beq ExitAnimation
 cmp r0, r1 
 bge TryNextFrameLoop 
 
-push {r3} @ Table offset 
-ldr r0, [r3, #8] @ Palette to use 
+mov r7, r3 @ Table offset 
+ldr r0, [r7, #8] @ Palette to use 
 
 @UpdatePalette
 mov r1, #26 @ palette # 
@@ -475,10 +496,8 @@ ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the p
 mov	r1,#1
 strb r1,[r0]
 
-pop {r3} 
 
-
-ldr r0, [r3, #4] @ image address 
+ldr r0, [r7, #4] @ image address 
 
 
 
@@ -493,94 +512,179 @@ mov r3, #8
 @ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
 blh RegisterObjectTileGraphics, r4
 
+
+ldr r0, =0x859dabc @gProc_Battle
+blh ProcFind 
+cmp r0, #0 
+beq DrawByMask
+
+mov r0, r5 @ XX 
+mov r1, r6 @ YY 
+ldr r2, =VRAM_Address_Link
+ldr r2, [r2] 
+lsl r2, #16 @ Cut of |0x601---- 
+lsr r2, #16 
+lsr r2, #5 @ eg. tile #0x198 - offset where we put the tiles 
+bl Draw_DisplaySprites
+
+b Skip 
+
+DrawByMask:
+mov r0, r5 @ X coord to center on 
+mov r1, r6 @ Y 
+
+ldr r2, =VRAM_Address_Link
+ldr r2, [r2] 
+lsl r2, #16 @ Cut of |0x601---- 
+lsr r2, #16 
+lsr r2, #5 @ eg. tile #0x198 - offset where we put the tiles 
+bl Draw_ForTileInMapDisplaySprites
+
+Skip:
+pop {r4} 
+
+mov r0, r4 
+bl Draw_WaitXFrames
+
+pop {r4-r7}
+pop {r1}
+bx r1 
+
+
+.align 
+
+.type Draw_ForTileInMapDisplaySprites, %function 
+Draw_ForTileInMapDisplaySprites:
+push {r4-r7, lr}
+
+mov r7, r8 
+push {r7}
+mov r6, r9 
+push {r6}
+
+mov r5, r10 
+push {r5} 
+mov r5, #0 @ counter ? 
+mov r10, r5 
+
+
+
+mov r8, r2 @ VRAM address 
+ldr r4, =0x202E4E0 @ Movement Map 
+ldr r4, [r4] @ movement map [0,0] 
+mov r9, r4 @ movement map 
+
+ldr r3, =0x202E4D4 @ Map Size 
+ldrh r6, [r3] @ XX Boundary size 
+ldrh r7, [r3, #2] @ YY Boundary size 
+
+
+
+mov r5, #0 @ Y coord 
+sub r5, #1 
+
+YLoop:
+add r5, #1 
+cmp r5, r7 
+bge BreakYLoop
+
+mov r4, #0 
+sub r4, #1 
+XLoop:
+lsl r0, r5, #2 @ 4 times Y coord 
+mov r3, r9 @ movement map 
+ldr r1, [r3, r0] @ beginning of Y row 
+
+XLoop_2:
+add r4, #1 
+cmp r4, r6 
+bge YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r1, r4] @ Xcoord to check 
+cmp r0, #0xFF 
+beq XLoop_2
+
+mov r1, r10 
+add r1, #1 
+mov r10, r1 
+cmp r1, #30 
+blt NoBreak 
+b BreakYLoop @ 30+ as too many to display? 
+NoBreak:
+@ ValidCoord:
+@ We found a valid tile 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY 
+
+
+
+@mov r11, r11 
+
+mov r2, r8 @ vram 
+bl Draw_DisplaySprites 
+b XLoop 
+
+
+BreakYLoop:
+
+pop {r5} 
+mov r10, r5 
+pop {r6} 
+mov r9, r6 
+pop {r7}
+mov r8, r7
+
+pop {r4-r7}
+pop {r1}
+bx r1 
+
+.align 
+
+
+
+
+
+
+
+
+.type Draw_DisplaySprites, %function 
+Draw_DisplaySprites:
+push {r4, lr}
+
+mov r3, r2 @ VRAM Tile 
+
+lsl r0, #4 @ 16 pixels per coord 
+lsl r1, #4 
+
+sub r0, #24 @ Center X coord 
+sub r1, #24  @ Center Y coord 
+
+
+ldr r2, =0x202BCBC @(gCurrentRealCameraPos )
+ldrh r2, [r2]
+sub r0, r2
+ldr r2, =0x202BCBC @(gCurrentRealCameraPos )
+ldrh r2, [r2, #2] 
+sub r1, r2
+
+lsl r0, #24 @ only 9 bits used for coords 
+lsr r0, #24 
+lsl r1, #24 
+lsr r1, #24 
+
 @sub sp, #8 
-@
-@
 @@ Prepare OAM data
 @mov   r2, #0x1 @ 
-@mov   r1, sp
-@str   r2, [r1]
+@mov   r3, sp
+@str   r2, [r3]
 @mov   r2, #0x0
-@str   r2, [r1, #0x4]
-
-
-@	bit 0-9   | Tile Number     (0-1023)
-@			bit 10    | Horizontal Flip (0=Normal, 1=Mirrored)
-@			bit 11    | Vertical Flip   (0=Normal, 1=Mirrored)
-@			bit 12-15 | Palette Number  (0-15)
+@str   r2, [r3, #0x4]
 
 
 
-ldr r7, =VRAM_Address_Link
-ldr r7, [r7] 
-lsl r7, #16 @ Cut of |0x601---- 
-lsr r7, #16 
-
-lsr r7, #5 @ eg. tile #0x198 - offset where we put the tiles 
-
-mov r8, r4 
-push {r4}
-ldr r4, =PushToSecondaryOAM|1
-mov r8, r4 @ for blh 
-
-mov r4, #0 @ Counter 
-sub r4, #1 
-
-DisplaySpriteChunkLoop:
-add r4, #1 
-cmp r4, #64
-bge ExitDisplaySpriteLoop 
-
-
-@ remainder 
-
-@ 3300 / #0x198
-@ 3340 / #0x19A (+2) 
-@ 3380 / 19c, 19f 
-@ 33C0 
-@ 3b00 1d8, 1da, 1dc, 1df 
-
-@ 4300 / #0x218, 21a, 21c, 21f 
-@ 4340  
-@ 4380 / 
-@ 43C0 
-@ 4b00 258
-
-@ Push to secondary OAM
-@To compute the offset for one tile in the map buffer given its (x, y) pos: offset = 2*x + 0x40*y
-
-@ 800
-lsl r2, r4, #29 @ we only want 3 bits left (#0 - #7)
-lsr r2, #29  
-lsl r2, #3 @ X*8 coord offset
-
-mov r0, r5 
-lsl r0, #4 
-
-add r0, r2
-
-mov r1, r6 
-lsr r2, r4, #3 @ Counter / 8 (Y coord offset) 
-lsl r2, #3 @ 8*Y
-lsl r1, #4 
-add r1, r2 
-
-
-
-cmp r0, #24 
-blt DisplaySpriteChunkLoop @ Can't display this chunk as it would be offscreen 
-sub r0, #24 
-
-
-cmp r1, #24 
-blt DisplaySpriteChunkLoop @ Can't display this chunk as it would be offscreen 
-sub r1, #24 
-
-mov r2, #0 @ 0, 1, 2, or 3 as valid here?
+mov r2, #3 @ 0, 1, 2, or 3 as valid here?
 		@ probably 8, 16, 32, and 64 pixel squares 
 lsl r2, #0xe @ bits E-F determine size 
-orr   r0, r2                    @ Sprite size, 16x16
-
+orr r0, r2                    @ Sprite size, 64x64
 
 mov r2, #0x4 @ blend bit
 lsl r2, #8 
@@ -589,49 +693,25 @@ orr r1, r2
 
 
 
-lsr r2, r4, #3 @ Counter / 8 (Y coord offset) 
-lsl r2, #5 @ 0x20 * (Counter/8) @ gets us Y offset to use 
-mov r3, r7 
-add r3, r2 
-
- 
-
-lsl r2, r4, #29 @ we only want 3 bits left 
-lsr r2, #29 @ X coord 
-add r3, r2 @ VRAM address we want 
-
-@mov r11, r11 
-
+@mov r3, r3 @ Vram tile 
 mov r2, #26 @ palette # 26 - or 27 is the light rune palette i think 
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 @ palette | flips | tile 
 
+ldr r2, =0x8590f54 @gOAM_32x32Obj - seems to work fine for 64x64 objects, too 
 @mov r2, sp 
-ldr r2, =SpriteData8x8
 
-@ r0 = base x coord, r1 = base y coord, r2 = pointer to OAM Data, r3 = base OAM2 (tile/palette index)
-@blh_free PushToSecondaryOAM, r3 @ pushes / pops r3  
-mov lr, r8 @ PushToSecondaryOAM
-.short 0xF800 @ bx lr 
-
-b DisplaySpriteChunkLoop
-
-ExitDisplaySpriteLoop:
-
-pop {r4}
-mov r8, r4 
+blh PushToSecondaryOAM, r4 
 
 @add sp, #8 
 
-Skip:
-pop {r5} 
 
-mov r0, r5 
-bl Draw_WaitXFrames
+pop {r4}
+pop {r0}
+bx r0
 
-pop {r4-r7}
-pop {r1}
-bx r1 
+
+
 
 
 .equ    UnLZ77Decompress, 0x08012F50
@@ -682,6 +762,24 @@ bx    r1
 
 Draw_NumberDuringBattle:
 push {r4-r7, lr}
+
+
+
+lsl r0, #4 
+lsl r1, #4 
+
+ldr r3, =0x202BCBC @(gCurrentRealCameraPos )
+ldrh r2, [r3]
+ldrh r3, [r3, #2] 
+
+sub r0, r2 
+sub r1, r3 
+
+lsl r0, #24 @ only 9 bits used for coords 
+lsr r0, #24 
+lsl r1, #24 
+lsr r1, #24 
+
 
 mov r4, r0 @ XX 
 mov r5, r1 @ YY 

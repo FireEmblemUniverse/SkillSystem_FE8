@@ -45,19 +45,12 @@ FillTwentyEntries
 
 
 
-
-
-
-
-
-
-
 ALIGN 4
 DrawSpriteProc:
 PROC_YIELD 
 PROC_SET_NAME(ASMC_DrawProcName)
+PROC_CALL_ROUTINE(Draw_Camera)
 PROC_CALL_ROUTINE(Draw_StoreToBuffer)
-PROC_SLEEP(2)
 PROC_LOOP_ROUTINE(Draw_PushToOam)
 PROC_CALL_ROUTINE(Draw_Cleanup) 
 PROC_END
