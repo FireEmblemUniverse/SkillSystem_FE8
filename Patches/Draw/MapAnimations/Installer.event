@@ -3,6 +3,15 @@
 #include "GeneratedInstaller.event"
 
 
+/*
+ALIGN 4 
+Flash_Anim: 
+BYTE 3 0 // Frames to display, Padding (Always 0)
+SHORT 0 // SFX to play starting on this frame 
+POIN Flash00_Data // Image data 
+POIN Flash00_pal // Palette data 
+WORD 0 0 0 // Terminator 
+*/ 
 
 
 
@@ -26,5 +35,3 @@
 // Below is copied from GeneratedInstaller.event
 // Except I've changed how many frames some of the images should be 
 
-//Generated - do not edit!
- 

@@ -131,17 +131,17 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 
 
 @ AoE test 
-ldr r0, =0x202E4E0 @ Movement map 
-ldr r0, [r0] 
-mov r1, #0xFF
-blh FillMap
-
-ldr r3, =MemorySlot 
-add r3, #4*0x0B 
-ldrh r0, [r3] @ XX 
-ldrh r1, [r3, #2] @ YY 
-ldr r2, =RangeTemplateTable_Smile1
-bl CreateMoveMapFromTemplate
+@ldr r0, =0x202E4E0 @ Movement map 
+@ldr r0, [r0] 
+@mov r1, #0xFF
+@blh FillMap
+@
+@ldr r3, =MemorySlot 
+@add r3, #4*0x0B 
+@ldrh r0, [r3] @ XX 
+@ldrh r1, [r3, #2] @ YY 
+@ldr r2, =RangeTemplateTable_Smile1
+@bl CreateMoveMapFromTemplate
 
 
 
@@ -214,7 +214,7 @@ ldrh r1, [r3, #2]
 blh 0x8015e9c @ ShouldCameraMovePos?
 cmp r0, #0 
 beq ContinueDraw_Wait
-mov r0, #0 
+mov r0, #2 @ Waiting for camera 
 b End_DrawPause 
 
 ContinueDraw_Wait: 
@@ -237,8 +237,10 @@ sub r0, r2 @ Number of frames since then
 ldr r2, =MinimumFramesLink
 ldr r2, [r2] 
 cmp r0, r2 
-ble End_DrawPause @ regardless of animation or not, always pause at least X frames 
-
+bgt Continue_DrawPause 
+mov r0, #0 
+b End_DrawPause @ regardless of animation or not, always pause at least X frames 
+Continue_DrawPause:
 
 @ Get total frames now 
 ldr r3, =MemorySlot 
@@ -251,12 +253,12 @@ cmp r3, #0
 beq NoAnimation
 
 sub r3, #12
-mov r2, #0 @ Number of frames to wait 
+mov r2, #0 @ Number of frames to wait counter 
 
 NumberOfFramesLoop:
 add r3, #12 
 ldrh r1, [r3] 
-add r2, r1 @ total frames 
+add r2, r1 @ total frames to wait 
 cmp r1, #0 
 bne NumberOfFramesLoop
 
@@ -269,7 +271,7 @@ b End_DrawPause
 NoAnimation:
 VanillaHP_BarRoutine:
 mov r0, r4 @ parent proc 
-blh 0x8081914 @ default routine wait for hp to finish going down 
+blh 0x8081914 @ default routine of "wait for hp to finish going down" 
 b End_DrawPause
 
 BreakProcLoopNow:
@@ -421,7 +423,10 @@ push {r4-r7, lr}
 
 mov r4, r0 
 
-push {r4} 
+bl Draw_WaitXFrames
+cmp r0, #2 
+beq Skip 
+
 
 
 @ if we miss, do not show an animation 
@@ -440,8 +445,9 @@ ldrh r6, [r3, #2]
 
 
 
-mov r0, r5 
-mov r1, r6 
+mov r0, r5 @ X coord
+mov r1, r6 @ Y coord
+mov r2, r4 @ parent proc 
 bl Draw_NumberDuringBattle
 
 blh GetGameClock 
@@ -479,10 +485,25 @@ ldrh r2, [r3]
 add r1, r2 
 cmp r2, #0 
 beq ExitAnimation
-cmp r0, r1 
-bge TryNextFrameLoop 
-
+cmp r0, r1 @ once current frame is less than the frame offset, we have our frame offset 
+bgt TryNextFrameLoop @ nov 14 - swapped from bge to bgt i guess 
 mov r7, r3 @ Table offset 
+cmp r0, r1 
+bne NoSound 
+
+ldrh r0, [r7, #2] @ sfx/bgm ID 
+cmp r0, #0 
+beq NoSound
+
+@ Only play sound on the exact frame 
+blh 0x080D01FC   //m4aSongNumStart r0=music id:SOUND // Seems to work fine for SFX 
+@blh 0x08014B28   @ //PlaySpacialSoundMaybe, r0=BGM index, r1 = Unknown // 
+@blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown // 
+NoSound: 
+
+
+
+
 ldr r0, [r7, #8] @ Palette to use 
 
 @UpdatePalette
@@ -495,6 +516,10 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the palette RAM needs to be updated
 mov	r1,#1
 strb r1,[r0]
+
+
+
+
 
 
 ldr r0, [r7, #4] @ image address 
@@ -513,10 +538,17 @@ mov r3, #8
 blh RegisterObjectTileGraphics, r4
 
 
-ldr r0, =0x859dabc @gProc_Battle
-blh ProcFind 
-cmp r0, #0 
-beq DrawByMask
+@ldr r0, =0x859dabc @gProc_Battle
+@blh ProcFind 
+@cmp r0, #0 
+@beq DrawByMask
+
+ldr r3, =MemorySlot 
+ldr r3, [r3, #8] @ Slot 2 
+ldr r2, =0xFFFFFFFF 
+@mov r11, r11 
+cmp r2, r3 
+beq DrawByMask @ Only draw by mask if Memory slot 2 is (-1) 
 
 mov r0, r5 @ XX 
 mov r1, r6 @ YY 
@@ -541,10 +573,7 @@ lsr r2, #5 @ eg. tile #0x198 - offset where we put the tiles
 bl Draw_ForTileInMapDisplaySprites
 
 Skip:
-pop {r4} 
 
-mov r0, r4 
-bl Draw_WaitXFrames
 
 pop {r4-r7}
 pop {r1}
@@ -763,7 +792,7 @@ bx    r1
 Draw_NumberDuringBattle:
 push {r4-r7, lr}
 
-
+mov r6, r2 @ parent proc 
 
 lsl r0, #4 
 lsl r1, #4 
@@ -791,8 +820,7 @@ beq ExitDraw_NumberDuringBattle
 
 
 blh GetGameClock 
-ldr r3, =MemorySlot
-ldr r2, [r3, #4*3] @ slot 3
+ldr r2, [r6, #0x30] 
 sub r0, r2 @ Number of frames since animation started 
 mov r6, r0 
 lsr r6, #1 @ every 2 frames move upwards 
@@ -938,6 +966,11 @@ ldr r2, =#4096 @ 64x64 image bytes size
 blh 0x08002054 @ RegisterFillTile
 
 blh 0x8001FE0 @| ClearTileRigistry
+
+ldr r3, =MemorySlot
+mov r1, #0  
+str r1, [r3, #8] @ Slot 2 to have the value of "0" 
+
 
 
 pop {r4-r7}

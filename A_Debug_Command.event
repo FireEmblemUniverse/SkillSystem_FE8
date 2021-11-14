@@ -6,9 +6,9 @@
 
 ALIGN 4
 DebugCommandEvent:
-SCOORD rB [6,7]
+//SCOORD rB [6,7]
 
-SCOORD rB [9,3]
+//SCOORD rB [9,3]
 //ASMC AoE_Camera
 //ENUT HideUnitIconsFlag // 0x84 
 SVAL r1 1 // Animation ID 

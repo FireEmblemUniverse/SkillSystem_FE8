@@ -708,6 +708,9 @@ bx r0
 AoE_Animation:
 push {r4-r7, lr} 
 
+ldr r3, =MemorySlot
+ldr r1, =0xFFFFFFFF 
+str r1, [r3, #8] @ Slot 2 to have the value of "0xFFFFFFFF" 
 
 
 @mov r0, #0
