@@ -44,6 +44,10 @@ WORD 0 0 // 0th animation is blank
 FillTwentyEntries 
 
 
+#ifndef PROC_YIELD
+	#define PROC_YIELD "PROC_YEILD"
+#endif 
+
 
 ALIGN 4
 DrawSpriteProc:

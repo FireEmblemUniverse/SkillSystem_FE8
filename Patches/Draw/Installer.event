@@ -29,12 +29,9 @@ POP
 #define ThickSlashAnimID 13
 #define FlashAnimID 14 
 #define FreezeAnimID 15 
-#define BoomerangAnimID 16
-#define FeatherAnimID 17
-#define CauterizeAnimID 18
-#define FireballAnimID 19
-#define HealAnimID 20
-#define NumberOfAnimIDs 20
+#define FeatherAnimID 16
+#define CauterizeAnimID 17
+#define NumberOfAnimIDs 17
 
 ALIGN 4
 WeaponTypeAnimations:
@@ -80,10 +77,7 @@ AnimTable_Entry(Impact2AnimID,Impact2_Small_Anim)
 AnimTable_Entry(Splash1AnimID,Splash1_Small_Anim)
 AnimTable_Entry(ThickSlashAnimID,Slashing_B_Anim) // same palete as Slashing_A
 AnimTable_Entry(FreezeAnimID,Freeze_Anim)
-AnimTable_Entry(BoomerangAnimID,Boomerang_Anim)
 AnimTable_Entry(FeatherAnimID,Feather_Anim)
-//AnimTable_Entry(HealAnimID,Heal_Anim) // SFX 
-//AnimTable_Entry(FireballAnimID,Fireball_Anim)
 #endif 
 
 

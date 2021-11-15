@@ -1,6 +1,6 @@
 
-//#include "DefaultAnimations.event"
-#include "GeneratedInstaller.event"
+#include "DefaultAnimations.event"
+//#include "GeneratedInstaller.event"
 
 
 /*
@@ -34,4 +34,8 @@ WORD 0 0 0 // Terminator
 
 // Below is copied from GeneratedInstaller.event
 // Except I've changed how many frames some of the images should be 
+
+
+
+
 

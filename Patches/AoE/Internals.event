@@ -11,6 +11,9 @@ AoE_SkillTester:
 	POIN SkillTester
 #else; WORD 0; #endif 
 
+#ifndef PROC_YIELD
+	#define PROC_YIELD "PROC_YEILD"
+#endif 
 
 ALIGN 4
 AoE_Pokemblem_MoveTester: 

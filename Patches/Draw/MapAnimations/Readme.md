@@ -8,11 +8,7 @@ Instructions
 - Run "Png2DmpImages.cmd" and "GenerateInstaller.cmd". 
 	- - OPTIONAL:
 	- - - Copy contents of "GeneratedInstaller.event" into the installer. 
-	- - - Edit how many frames to display each image (default is 2 frames) 
-	- - Alternatively, simply #include "GeneratedInstaller.event" if you want everything as 2 frames per image. 
-- #incbin the palette. Eg.
-```ALIGN 4 
-FOLDERNAMEData_pal:
-#incbin "Dmp/Fireball_0000_pal.dmp"```
-- Add an entry to AnimTable. Eg.
-```POIN FOLDERNAME_Anim FOLDERNAMEData_pal; SHORT 0 0```
+	- - - Edit how many frames to display each image (default is 3 frames) 
+	- - Alternatively, simply #include "GeneratedInstaller.event" if you want everything as 3 frames per image. 
+- Add an entry to AnimTable.
+
