@@ -57,11 +57,13 @@ AttackerInR3:
 mov r3, r4 @ Attacker 
 
 CheckHigherStrOrMag:
+mov r4, r3 @ atkr or dfdr 
+
 
 mov r1, #0x14 @ Str 
-ldrb r0, [r3, r1] 
+ldrb r0, [r4, r1] 
 mov r1, #0x3A 
-ldrb r1, [r3, r1] @ Mag 
+ldrb r1, [r4, r1] @ Mag 
 cmp r0, r1  
 bgt StrHigher 
 @ Mag was higher
@@ -69,7 +71,7 @@ mov r0, r1
 
 StrHigher:
 
-@mov r11, r11 
+
 
 @r0 has Str or Mag 
 add r2, r0, #7 @ Ceiling up 
@@ -90,8 +92,11 @@ add r0, r2 @ 5/8ths
 @lsr r0, #1 @ Halve enemy defense/res 
 
 @mov r1, #0x5A 
-@ldrh r2, [r4, r1]
-@add r0, r2  
+@ldsh r1, [r4, r1]
+@ldrb r2, [r4, #0x13] @ ChipDmgWeps always lack "hit res / use mag" bitflags 
+@sub r1, r2 @ take away Str 
+@
+@add r0, r1 @ add whatever bonuses I guess 
 
 
 
@@ -101,7 +106,8 @@ mov r0, #127 @ Max dmg
 
 DontCap:
 mov r1, #0x5A 
-strh r0, [r3, r1]	@ store back in 
+strh r0, [r4, r1]	@ store back in 
+
 
 GoBack:
 pop {r4-r5}

@@ -26,7 +26,7 @@ lsr r1, #24
 cmp r0, r1 
 bne SkipAtkr
 mov r1, #0x5a 
-ldrh r0, [r4, r1] 
+ldsh r0, [r4, r1] 
 lsr r0, #1 @ half dmg 
 strh r0, [r4, r1] 
 SkipAtkr: 
@@ -38,7 +38,7 @@ lsr r1, #24
 cmp r0, r1 
 bne SkipDfdr
 mov r1, #0x5a 
-ldrh r0, [r5, r1] 
+ldsh r0, [r5, r1] 
 lsr r0, #1 @ half dmg 
 strh r0, [r5, r1] 
 SkipDfdr: 

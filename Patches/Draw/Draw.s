@@ -358,7 +358,7 @@ bx r2
 .global Draw_GetAnimationIDByWeapon
 .type Draw_GetAnimationIDByWeapon, %function 
 Draw_GetAnimationIDByWeapon:
-push {r4, lr}
+push {r4-r5, lr}
 
 
 bl Draw_GetActiveAttackerOrDefender 
@@ -373,12 +373,13 @@ add r0, #0x4A @ Active unit's weapon
 ldrb r0, [r0] @ Weapon ID 
 
 mov r2, #0 @ Counter 
+ldr r5, =0xFFFF @ Terminator 
 ldr r3, =SpecificWeaponAnimations
 sub r3, #2 @ 2 bytes per 
 AnimationBySpecificWeapon_Loop:
 add r3, #2 
-ldr r1, [r3] 
-cmp r1, #0 
+ldrh r1, [r3] 
+cmp r1, r5 
 beq BreakAnimationBySpecificWeapon_Loop
 ldrb r1, [r3] 
 cmp r0, r1 
@@ -390,13 +391,14 @@ BreakAnimationBySpecificWeapon_Loop:
 blh 0x8017548 @GetItemWType
 
 mov r2, #0 @ Counter 
+ldr r5, =0xFFFF @ Terminator 
 ldr r3, =WeaponTypeAnimations
 sub r3, #2 
 
 AnimationByWeaponType_Loop:
 add r3, #2 
-ldr r1, [r3] 
-cmp r1, #0 
+ldrh r1, [r3] 
+cmp r1, r5
 beq Error @ No animation found for this weapon type, so error 
 ldrb r1, [r3] 
 cmp r0, r1 
@@ -410,7 +412,7 @@ mov r0, #0 @ 0th animation is none
 
 ExitDraw_GetAnimationIDByWeapon:
 
-pop {r4}
+pop {r4-r5}
 pop {r1}
 bx r1 
 .align 

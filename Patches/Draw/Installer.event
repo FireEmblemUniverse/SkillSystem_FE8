@@ -44,7 +44,7 @@ BYTE 6 FlashAnimID // Light
 BYTE 7 Impact1AnimID // Dark 
 BYTE $B Shards1AnimID // Monster 
 BYTE $11 Shards1AnimID // Dragonstone 
-BYTE 0 0 0 0; ALIGN 4 // Terminator 
+SHORT 0xFFFF // Terminator 
 
 
 
@@ -53,7 +53,7 @@ ALIGN 4
 SpecificWeaponAnimations:
 BYTE SilverSword Shards1AnimID // Silver sword will always use the Shards1 animation 
 
-BYTE 0 0 0 0; ALIGN 4 // Terminator 
+SHORT 0xFFFF // Terminator 
 
 
 

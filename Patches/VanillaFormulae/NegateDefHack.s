@@ -68,6 +68,10 @@ mov r0, #0
 strh r0, [r6, r1] @ Store back def 
 
 End:
+mov r0, r4 @ Atkr 
+mov r1, r6 @ Dfdr 
+bl MinimumDamage2
+
 pop {r4-r6}
 pop {r0}
 ldr r0, =0x802AE5D @ Return address 
