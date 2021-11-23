@@ -101,9 +101,15 @@ gForgableItems:
 //ForgableItem(IronSword, "Requires mythril to turn into quick sword", 500, QuickSword, Mythril, 1000)
 WORD 0 0 0
 
+
+#define MenuCommand(name,description,colour,usability,drawingroutine, effect) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; POIN drawingroutine|1; POIN effect|1; WORD 0 0 0"
+
+
+
 ALIGN 4
 ItemMenuTable:
-MenuCommand(0x505, 0, BlueText, ItemSpecialEffectUsability, ItemSpecialEffect)
+MenuCommand(0x505, 0, BlueText, ItemSpecialEffectUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
+
 IM_Use
 #ifdef INSTALL_ACCESSORIES
 MenuCommand(0x697, 0, GreenText, EquipAccessoryUsability|1, EquipAccessoryEffect|1)

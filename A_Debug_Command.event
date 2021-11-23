@@ -8,15 +8,14 @@ ALIGN 4
 DebugCommandEvent:
 //SCOORD rB [6,7]
 
-//SCOORD rB [9,3]
-//ASMC AoE_Camera
-//ENUT HideUnitIconsFlag // 0x84 
+SCOORD rB [9,3]
 SVAL r1 1 // Animation ID 
-SVAL r3 2 // Display all in move map 
+SVAL r2 0 // Always 0
+//SVAL r2 (-1) // Display all in move map 
+ASMC ASMC_Draw // given sB coords to display at and s1 animation to display, shows an animation 
 // Overide on # of frames to wait for animation 
 // Display one animation centered around given coords 
 // display animation at all coords in move map (for AoE)
-ASMC ASMC_Draw // given sB coords to display at and s1 animation to display, shows an animation 
 //ENUF HideUnitIconsFlag 
 NoFade 
 ENDA 

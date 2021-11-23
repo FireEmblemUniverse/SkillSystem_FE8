@@ -78,7 +78,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  MagikarpID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x1,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MagikarpID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -169,6 +169,9 @@ SilentGiveItemWithDurability(Ephraim, RenewalRing, 1)
 SilentGiveItemWithDurability(Ephraim, QuickClaw, 1) 
 SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80) 
 */ 
+//SilentGiveItemWithDurability(Eirika, GoldGem, 0x3)
+SilentGiveItemWithDurability(Eirika, WaterStone, 0x3)
+
 
 SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
 
@@ -176,7 +179,7 @@ SilentGiveItemWithDurability(Eirika, SkillScroll, RenewalID)
 
 SilentGiveItemWithDurability(1, SpellScroll, LeafFlurry)
 
-SilentGiveItemWithDurability(Eirika, JellyDonut, 0x3)
+
 
 SilentGiveItemWithDurability(5, Berry, 0x83) // Pikachu 
 

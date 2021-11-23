@@ -1,0 +1,24 @@
+{
+#ifndef __mx_mug
+#define __mx_mug(mugEntry, mugLocation)"PUSH; ORG PortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0; "
+#endif
+
+    {
+        __mx_mug(GaryPointMug, __mug_dmp)
+        #incbin "GaryPoint.pos.dmp"
+        BYTE 1 0 0 0; POP;
+        align 4
+        __mug_dmp:
+            #incbin "GaryPoint.dmp"
+    }
+
+    {
+        __mx_mug(RosheaMug, __mug_dmp)
+        #incbin "Roshea.pos.dmp"
+        BYTE 1 0 0 0; POP;
+        align 4
+        __mug_dmp:
+            #incbin "Roshea.dmp"
+    }
+
+}

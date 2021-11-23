@@ -4,6 +4,16 @@
 #define MinimumFrames 28 // Vanilla does 28 frames 
 
 
+#define ShowAnimation(AnimationID, Coordinate) "SVAL r1 AnimationID; SVAL r2 0; SCORDS rB Coordinate; ASMC ASMC_Draw" 
+
+/*
+// Usage: 
+SVAL r1 AnimationID 
+SVAL r2 0 // (-1) shows the animation at all coordinates in the move map, so we SVAL r2 0. 
+SCOORDS rB [0,0] // Coordinates 
+ASMC ASMC_Draw 
+*/
+
 PUSH // Only vanilla address that we take over. 
 ORG $81274 // Poin to the vanilla proc 
 POIN gProc_MapAnimRound_Animation
@@ -12,26 +22,25 @@ POP
 
 #include "Internals.event"
 
-
 #define Empty_AnimID 0 
-#define Break1AnimID 1
-#define Break2AnimID 2
-#define CircleAnimID 3
-#define Hit1AnimID 4
-#define Hit2AnimID 5 // broken 
-#define Impact1AnimID 6
-#define Impact2AnimID 7
+#define ThinSlashAnimID 1
+#define Hit1AnimID 2
+#define Shards2AnimID 3 
+#define Break1AnimID 4
+#define Splash2AnimID 5
+#define FlashAnimID 6
+#define Impact1AnimID 7
 #define Shards1AnimID 8
-#define Shards2AnimID 9
-#define Splash1AnimID 10
-#define Splash2AnimID 11
-#define ThinSlashAnimID 12 
+// Bonus animations below 
+#define Break2AnimID 9
+#define CircleAnimID 10
+#define Impact2AnimID 11
+#define Splash1AnimID 12
 #define ThickSlashAnimID 13
-#define FlashAnimID 14 
-#define FreezeAnimID 15 
-#define FeatherAnimID 16
-#define CauterizeAnimID 17
-#define NumberOfAnimIDs 17
+#define FreezeAnimID 14
+#define FeatherAnimID 15
+#define CauterizeAnimID 16
+#define NumberOfAnimIDs 16
 
 ALIGN 4
 WeaponTypeAnimations:
@@ -52,8 +61,8 @@ SHORT 0xFFFF // Terminator
 ALIGN 4
 SpecificWeaponAnimations:
 BYTE SilverSword Shards1AnimID // Silver sword will always use the Shards1 animation 
-
 SHORT 0xFFFF // Terminator 
+
 
 
 

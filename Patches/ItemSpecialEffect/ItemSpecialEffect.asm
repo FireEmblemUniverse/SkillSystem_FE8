@@ -1,4 +1,3 @@
-@Hard coded item menu usability 
 .thumb 
 
 .macro blh to, reg=r3
@@ -8,68 +7,21 @@
 .endm
 
 
-.equ gActionData, 0x203A958
-.equ CurrentUnit, 0x3004E50
-.equ CheckEventId,0x8083da8
-
-.global ItemSpecialEffectUsability
-.type ItemSpecialEffectUsability, %function
-ItemSpecialEffectUsability:
-push {r4-r6, lr} 
-
-
-ldr r5, =CurrentUnit 
-ldr r5, [r5]
-ldr r3, =gActionData 
-ldrb r4, [r3, #0x12] @ inventory slot # 
-lsl r4, #1 @ 2 bytes per inv slot 
-add r4, #0x1E 
-add r4, r5 @ unit ram address of actual item to load 
-ldrh r1, [r4] 
-mov r4, #0xFF 
-and r4, r1 @ item id 
-
-ldr r6, =ItemSpecialEffectTable
-sub r6, #8
-FindValidItemLoop:
-add r6, #8 
-ldr r0, [r6] 
-cmp r0, #0 
-beq RetFalse 
-ldrb r0, [r6] @ item id 
-cmp r0, r4 @ if they match, return true 
-bne FindValidItemLoop 
-ldrb r0, [r6, #1] @ flag 
-cmp r0, #0 
-beq RetTrue @ Always true if flag is 0 
-blh CheckEventId
-cmp r0, #1 
-bne FindValidItemLoop 
-
-RetTrue: 
-mov r0, #1
-b ExitUsability 
-
-RetFalse: 
-mov r0, #3 @ 3 is false lol 
-b ExitUsability
-@ if hover item = our item, return true 
-
-ExitUsability:
-pop {r4-r6} 
-pop {r1} 
-bx r1
-
 .equ RemoveUnitBlankItems,0x8017984
 .equ GetItemAfterUse, 0x08016AEC
 .equ EventEngine, 0x800D07C
 .equ CurrentUnitFateData, 0x203A958
 
+.equ gActionData, 0x203A958
+.equ CurrentUnit, 0x3004E50
+.equ CheckEventId,0x8083da8
 
 .equ ClearBG0BG1, 0x0804E884
 .equ SetFont, 0x8003D38
 .equ Font_ResetAllocation, 0x8003D20  
 .equ EndAllMenus, 0x804EF20 
+
+.equ ItemSpecialEffectUsability, ItemSpecialEffectTable+4
 
 
 .global ItemSpecialEffect
@@ -77,7 +29,6 @@ bx r1
 ItemSpecialEffect:
 push {r4-r7, lr} 
 
-@ reduce durability and remove item if 0 durability 
 
 ldr r5, =CurrentUnit 
 ldr r5, [r5]
@@ -86,30 +37,14 @@ ldrb r4, [r3, #0x12] @ inventory slot #
 lsl r4, #1 @ 2 bytes per inv slot 
 add r4, #0x1E 
 add r4, r5 @ unit ram address of actual item to load 
-ldrh r0, [r4]
-blh GetItemAfterUse
+ldrb r0, [r4] 
+mov r1, r5 
 
-ldrh r1, [r4] 
-strh r0, [r4] @ version after use 
-mov r4, #0xFF 
-and r4, r1 @ item id 
+ldr r3, ItemSpecialEffectUsability 
+mov lr, r3 
+.short 0xF800 
+mov r6, r1 @ Table 
 
-ldr r6, =ItemSpecialEffectTable
-sub r6, #8
-FindValidItemLoop_Effect:
-add r6, #8 
-ldr r0, [r6] 
-cmp r0, #0 
-beq ExitItemSpecialEffect
-ldrb r0, [r6] @ item id 
-cmp r0, r4 @ if they match, return true 
-bne FindValidItemLoop_Effect 
-ldrb r0, [r6, #1] @ flag 
-cmp r0, #0 
-beq RunEvent @ Always true if flag is 0 
-blh CheckEventId
-cmp r0, #1 
-bne FindValidItemLoop_Effect
 
 blh ClearBG0BG1
 @ copied from vanilla 
@@ -118,17 +53,27 @@ blh SetFont
 blh Font_ResetAllocation 
 
 RunEvent: 
-add r6, #4 
+add r6, #8
 ldr r0, [r6] @ event address 
 mov r1, #1 
 blh EventEngine 
+
+
+@ reduce durability and remove item if 0 durability 
+
+
+ldrh r0, [r4]
+blh GetItemAfterUse
+
+strh r0, [r4] @ version after use 
+
 
 mov r0, r5 
 blh RemoveUnitBlankItems
 
 ExitItemSpecialEffect:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x1
+mov r0, #0x10 @ Visit @ warning: using 0x1A "Use Item" will cause the item to also be used if it can (eg. vuln will also heal)  
 strb r0, [r1,#0x11]
 
 @Effect/Idle Routine Return Value (r0 Bitfield):
@@ -154,5 +99,8 @@ pop {r4-r7}
 pop {r1} 
 bx r1
 
+.align
+.ltorg
 
+ItemSpecialEffectTable:
 
