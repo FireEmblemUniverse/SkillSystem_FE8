@@ -35,6 +35,7 @@ ldrb 	r1, [r6,#0x10]	@squares moved this turn
 cmp	r0,r1
 beq	End
 
+blh 0x801A1F5 @first refresh the entity map
 ldr	r1,=#0x8018BD8	@check if can move again
 mov	lr, r1
 .short	0xF800
