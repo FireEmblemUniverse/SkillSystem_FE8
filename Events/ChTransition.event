@@ -217,6 +217,12 @@ ENDA
 
 
 GlobalAfev:
+#ifdef DRUnitBitMask
+CHECK_EVENTID 1 // Auto refresh if not in danger 
+BNE 0 rC r0 
+SetNearbyDangerRadius
+LABEL 0
+#endif 
 //ReplenishDurability(0x7FFF)
 //SVAL r2 0 // Player allegiance 
 //CALL 0x89EE1B8 // When matching allegiance stops in range // This is dangerous, it seems. Doing it can lead into an infinite loop of cantoing by 1 tile. 
@@ -633,8 +639,7 @@ DisableFreeMovement
 #endif 
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
-CHECK_EVENTID PlayableCutsceneFlag 
-BNE 20 rC r0 
+
 
 EVBIT_MODIFY 4
 SVAL r7 1 
@@ -648,8 +653,7 @@ MNC2 (-1)
 ENUF PlayableCutsceneFlag 
 GOTO 0x63 
 
-LABEL 20 // Cutscene prevents escape 
-CALL CannotEscapeTrainerBattleEvent
+
 
 LABEL 0x63 
 EVBIT_MODIFY 0

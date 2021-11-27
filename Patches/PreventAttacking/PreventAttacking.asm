@@ -23,6 +23,7 @@ PreventAttacking:
 push {r4-r7, lr}
 
 
+
 mov r4, r0 @ target 
 ldr r0, =0x2033F3C @ gUnitSubject 
 ldr r5, [r0] 
@@ -48,9 +49,9 @@ ldrb r5, [r5, #4] @ Char ID
 
 
 ldr r7, =PreventAttackingTable
-sub r7, #6
+sub r7, #8
 PreventAttackingLoop:
-add r7, #6 
+add r7, #8 
 ldr r0, [r7, #4] 
 cmp r0, #0 
 beq WeCanAttack @ Finished the loop 

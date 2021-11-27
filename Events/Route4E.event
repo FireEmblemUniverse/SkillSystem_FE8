@@ -229,12 +229,12 @@ MS_TableTerminator ; }
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT R4_0xE0_BQ // 0xE0 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT R4_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 hikerID 0x0 Level(1, Enemy, 1) [22,10]  0b 0x0	0x1 REDA22R10 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI

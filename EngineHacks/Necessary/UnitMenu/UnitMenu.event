@@ -78,7 +78,7 @@ UnitMenuTable:
 
 
 // Modular Summon 
-  MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
+  //MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
 	
   UM_Visit
   

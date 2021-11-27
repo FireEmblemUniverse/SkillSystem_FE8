@@ -228,7 +228,7 @@ SHORT MMB1_0xE2_BQ // 0xE2
 SHORT MMB1_0xE3_BQ // 0xE3 
 SHORT MMB1_0xE4_BQ // 0xE4 
 SHORT MMB1_0xE5_BQ // 0xE5
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT MMB1_0xE0_BD // 0xE0 
@@ -243,7 +243,7 @@ SHORT MMB1_0xE4_BD // 0xE4
 SHORT 375 // Gold 
 SHORT MMB1_0xE5_BD // 0xE4 
 SHORT 500 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [6,23]  0b 0x0	0x1 REDA6R23 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI

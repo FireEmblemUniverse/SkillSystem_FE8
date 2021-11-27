@@ -225,7 +225,7 @@ SHORT R25_0xE1_BQ // 0xE0
 SHORT R25_0xE2_BQ // 0xE0 
 SHORT R25_0xE3_BQ // 0xE0 
 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT R25_0xE0_BD // 0xE0 
@@ -236,7 +236,7 @@ SHORT R25_0xE2_BD // 0xE0
 SHORT 600 // Gold 
 SHORT R25_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 hikerID 0x0 Level(1, Enemy, 1) [13,3]  0b 0x0	0x1 REDA13R3 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI

@@ -232,14 +232,14 @@ MS_TableTerminator ; }
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT R5_0xE0_BQ // 0xE0 
 SHORT R5_0xE1_BQ // 0xE0 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT R5_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
 SHORT R5_0xE1_BD // 0xE0 
 SHORT 800 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 super_nerdID 0x0 Level(1, Enemy, 1) [21,6]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI

@@ -244,7 +244,7 @@ SHORT MMB3_0xE4_BQ // 0xE4
 SHORT MMB3_0xE5_BQ // 0xE5
 SHORT MMB3_0xE6_BQ // 0xE5
 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT MMB3_0xE0_BD // 0xE0 
@@ -261,7 +261,7 @@ SHORT MMB3_0xE5_BD // 0xE4
 SHORT 500 // Gold 
 SHORT MMB3_0xE6_BD // 0xE4 
 SHORT 500 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 rocket_mID 0x0 Level(1, Enemy, 1) [28,23]  0b 0x0	0x1 REDA28R23 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI

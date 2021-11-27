@@ -4,7 +4,7 @@
 
 push	{r4-r7,r14}
 
-
+@mov r11, r11 
 ldr   r0, =ActiveUnit
 ldr   r7, [r0]
 mov   r1, #0x0
@@ -13,6 +13,8 @@ ldr   r6, =GameState
 mov   r5, r6
 add   r5, #0x3E
 strb  r1, [r5]
+
+b L1 @ Never FOW 
 
 @ Check for FOW.
 ldr   r0, =ChapterData
@@ -76,6 +78,7 @@ L1:
 Return:
 pop   {r4-r7}
 pop   {r0}
+mov r11, r11 
 bx    r0
 GOTO_R4:
 bx    r4

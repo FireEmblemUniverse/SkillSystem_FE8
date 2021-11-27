@@ -67,8 +67,7 @@ Loop:
 			
 				ldr r1, [r0, #0x0C] 
 				ldr r2, =0x1000C
-				and r1, r2 
-				cmp r1, #0 
+				tst r1, r2 
 				bne NextIteration2
           
               @ Check if unit is nearby
@@ -78,24 +77,33 @@ Loop:
               ldsb  r0, [r0, r2]                      @ Ally or NPC X.
               mov   r2, r10
               mov   r3, r11
-              sub   r0, r2
-              sub   r1, r3
+              sub   r0, r2 @ X difference 
+              sub   r1, r3 @ Y difference 
               
               @ Take coordinates'
-              @ absolute values.
-              cmp   r0, #0x0
-              bge   L2
-                neg   r0, r0
-              L2:
-              cmp   r1, #0x0
-              bge   L3
-                neg   r1, r1
-              L3:
-              add   r0, r1
+              @ absolute values.				
+				asr r3, r0, #31
+				add r0, r0, r3
+				eor r0, r3
+				
+				asr r3, r1, #31
+				add r1, r1, r3
+				eor r1, r3
+			  
+				add r0, r1 
+              @cmp   r0, #0x0
+              @bge   L2
+              @  neg   r0, r0
+              @L2:
+              @cmp   r1, #0x0
+              @bge   L3
+              @  neg   r1, r1
+              @L3:
+              @add   r0, r1
               cmp   r0, r8
               ble   L1                                @ Break.
           
-          NextIteration2:
+          NextIteration2: // Players 
           add   r7, #0x1
           cmp   r7, #0x7F
           ble   Loop2
@@ -134,6 +142,7 @@ mov   r10, r6
 mov   r11, r7
 pop   {r4-r7}
 pop   {r0}
+
 bx    r0
 GOTO_R2:
 bx    r2

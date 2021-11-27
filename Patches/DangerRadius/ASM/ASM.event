@@ -130,7 +130,7 @@ DisplayMarker:
 ALIGN 4
 UpdateDRMove:
 #include "UpdateDRMove.lyn.event"
-}
+//}
 ALIGN 4
 InitializeDR:
 #include "InitializeDR.lyn.event"

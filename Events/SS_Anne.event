@@ -68,10 +68,8 @@ END_MAIN
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
-AFEV 0 TemporaryGaryBugFix 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AREA 0 StartRivalBattleCutscene [4,13] [27,24]
 AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -81,24 +79,18 @@ EscapeTileTerminator ; }
 #endif 
 
 ToVermillion:
+CHECK_EVENTID PlayableCutsceneFlag 
+BNE 20 rC r0 
 ChapterTransition(VermillionCh, 21,33)
 
-StartRivalBattleCutscene: // So that players can flee if they never walk near the rival 
-CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
-BNE 10 rC r0 
-ENUT PlayableCutsceneFlag 
-LABEL 10 
+LABEL 20 // Cutscene prevents escape 
+CALL CannotEscapeTrainerBattleEvent
+LABEL 63 
 NoFade 
-ENDA 
 
-TemporaryGaryBugFix:
-CHECK_EXISTS 0xE0 
-BNE 0x63 rC r0 
-ENUF PlayableCutsceneFlag // allow players to leave the SS anne 
 
-LABEL 0x63 
-NoFade 
-ENDA 
+
+
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -183,7 +175,7 @@ LOAD1 0x1 CaptainUnitGroup
 LOAD1 0x1 HumanTrainers
 ENUN 
 
-CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
+CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
 BNE 10 rC r0 
 LOAD1 0x1 GaryUnitGroup 
 ENUN 
@@ -230,10 +222,10 @@ UNIT
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsA) 
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsB) 
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsC) 
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsA) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsB) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsC) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
 
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
 MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
@@ -244,14 +236,16 @@ MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xF, SSA_0xE0_BQ) // Gary 
 SHORT SSA_0xE0_BQ // gary
 SHORT SSA_0xE2_BQ // n/a
 SHORT SSA_0xE2_BQ // 0xE0 
 SHORT SSA_0xE3_BQ // 0xE0 
 SHORT SSA_0xE4_BQ // 0xE0 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xF, SSA_0xE0_BD, 1800) // Gary
 SHORT SSA_0xE0_BD // gary
 SHORT 1800 // Gold 
 SHORT SSA_0xE1_BD // captain after HM obtained 
@@ -262,10 +256,10 @@ SHORT SSA_0xE3_BD // 0xE0
 SHORT 750 // Gold 
 SHORT SSA_0xE4_BD // 0xE0 
 SHORT 800 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 GaryUnitGroup:
-UNIT 0xE0 blueID 0x0 Level(1, Enemy, 1) [24,18]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xEF blueID 0x0 Level(1, Enemy, 1) [24,18]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 CaptainUnitGroup:
@@ -282,39 +276,39 @@ UNIT
 
 
 GaryUnitsA:
-UNIT GenericB	IvysaurID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
-UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	IvysaurID 0xEF Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT GenericB 	RaticateID 0xEF Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	BeedrillID 0xEF Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	KadabraID 0xEF Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeottoID 0xEF Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	NidorinoID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsB:
-UNIT GenericB	CharmeleonID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
-UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	CharmeleonID 0xEF Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT GenericB 	RaticateID 0xEF Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	BeedrillID 0xEF Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	KadabraID 0xEF Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeottoID 0xEF Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	NidorinoID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsC:
-UNIT GenericB	WartortleID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
-UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	WartortleID 0xEF Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT GenericB 	RaticateID 0xEF Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	BeedrillID 0xEF Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	KadabraID 0xEF Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeottoID 0xEF Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	NidorinoID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsD:
-UNIT GenericB	EeveeID 0xE0 Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
-UNIT GenericB 	RaticateID 0xE0 Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	BeedrillID 0xE0 Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	KadabraID 0xE0 Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeottoID 0xE0 Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidorinoID 0xE0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	EeveeID 0xEF Level(4, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT GenericB 	RaticateID 0xEF Level(2, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	BeedrillID 0xEF Level(1, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	KadabraID 0xEF Level(1, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeottoID 0xEF Level(3, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	NidorinoID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 

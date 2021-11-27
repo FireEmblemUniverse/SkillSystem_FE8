@@ -1,7 +1,15 @@
 
 #define TQ_ChEntry(ChID) "PUSH; ORG TrainerQuotesPoinTable + (4*ChID); POIN TQ_IndividualChTable; POP; ALIGN 4; TQ_IndividualChTable:" 
 #define TD_ChEntry(ChID) "PUSH; ORG TrainerDefeatPoinTable + (4*ChID); POIN TD_IndividualChTable; POP; ALIGN 4; TD_IndividualChTable:" 
-#define TQD_TableTerminator "ALIGN 4; WORD 0" 
+//#define TQD_TableTerminator "ALIGN 4; WORD 0" 
+
+
+#define BQ(ID, TextID) "PUSH; ORG CurrentOffset + (ID*2); SHORT TextID; POP"
+#define BD(ID, TextID, Gold) "PUSH; ORG CurrentOffset + (ID*4); SHORT TextID Gold; POP"
+
+
+#define TBQ_TableTerminator "ALIGN 4; ORG CurrentOffset + (16*2); WORD 0"
+#define TDQ_TableTerminator "ALIGN 4; ORG CurrentOffset + (16*4); WORD 0"
 
 
 

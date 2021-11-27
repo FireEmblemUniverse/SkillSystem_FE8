@@ -28,7 +28,6 @@ TurnEventPlayer(0,GlobalTurnEvent,0,255)
 TurnEventNPC(0,GlobalNPCTurnEvent,0,255) // placeholder
 TurnEventEnemy(0,GlobalEnemyTurnEvent,0,255)// placeholder
 TurnEventPlayer(0,ReinforcementEvent,0,255)
-TurnEventEnemy(0,StartRivalBattleCutscene,1,1)
 //TurnEventNPC(0,TurnNPCsToEnemies,0,255) // Instead made it so Gary / unit id 0xFA cannot be targeted despite being an enemy 
 //TurnEventEnemy(0,TurnEnemiesToNPCs,0,255) // See "ForEachUnitInRangeHack.asm" 
 END_MAIN
@@ -58,10 +57,6 @@ AREA 0 ToViridianForestS [5,10] [6,10]
 AREA 0 ToViridian [7,36] [11,36] 
 AREA 0 ToRoute2N [18,5] [19,5] 
 AFEV 0 RefreshIfNotInDanger 0 
-//AREA 0 StartRivalBattleCutscene [2,15] [16,35] // Turn event instead 
-//AREA 0xA RivalEncounter [2,22] [13,35] 
-//AFEV 0 RivalBattleEnd 0
-
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -78,7 +73,16 @@ ToRoute2N:
 ChapterTransition(Route2NCh, 19, 41)
 
 ToViridianForestS:
+CHECK_EVENTID PlayableCutsceneFlag 
+BNE 20 rC r0 
 ChapterTransition(ViridianForestSCh, 28, 28)
+
+LABEL 20 // Cutscene prevents escape 
+CALL CannotEscapeTrainerBattleEvent
+LABEL 63 
+NoFade 
+ENDA 
+
 
 ToViridian:
 ChapterTransition(ViridianCh, 17, 0)
@@ -161,7 +165,7 @@ ENUN
 //CALL InitiateCutscene
 //BNE 10 rC r0 
 
-CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
+CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
 BNE 10 rC r0 
 
 ENUT TrainerBattleActiveFlag
@@ -186,126 +190,6 @@ LABEL 0x63
 NoFade
 ENDA
 
-StartRivalBattleCutscene: // So that players can flee if they never walk near the rival 
-CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
-BNE 10 rC r0 
-ENUT PlayableCutsceneFlag 
-LABEL 10 
-NoFade 
-ENDA 
-
-/*
-RivalEncounter: 
-CHECK_EVENTID PlayableCutsceneFlag
-BEQ 0x63 rC r0 
-CHECK_EVENTID GaryRoute2SDefeatedFlag
-BNE 0x63 rC r0 
-//ENUT 0xA 
-
-CAM1 [8,27]
-
-//UNCR(0x7FFF, 0x42) // Refresh active 
-//SET_ACTIVE 0
-
-UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
-ASMC 0x80790a5 //MU_EndAll //deselect unit
-
-Write_Byte(BulbasaurID, GaryStarterClass)
-
-SCOORD rB [9,27]
-CALL CamSlotB
-SCOORD rB [9,27]
-
-Read_Byte(GaryStarterClass)
-SADD r2 rC r0 
-EVBIT_MODIFY 4
-Text(GaryRoute2SChallengeText)
-SVAL r1 BulbasaurID // Bulbasaur 
-BNE BulbasaurID r2 r1 
-// TRUE 
-
-SVAL r2 GaryBulbasaurUnit|IsPointer
-CALL SendOutPkmnSlotB
-
-GOTO 10
-LABEL BulbasaurID 
-
-SVAL r1 SquirtleID // Bulbasaur 
-BNE SquirtleID r2 r1 
-
-SVAL r2 GarySquirtleUnit|IsPointer
-CALL SendOutPkmnSlotB
-
-GOTO 10
-LABEL SquirtleID 
-
-SVAL r1 CharmanderID // Bulbasaur 
-BNE CharmanderID r2 r1 
-
-SVAL r2 GaryCharmanderUnit|IsPointer
-CALL SendOutPkmnSlotB
-
-
-GOTO 10
-LABEL CharmanderID 
-
-LABEL 10 
-
-SCOORD rB [10,28]
-SVAL r2 GaryPidgeyUnit|IsPointer
-CALL SendOutPkmnSlotB
-SCOORD rB [8,28]
-SVAL r2 GaryWeedleUnit|IsPointer
-CALL SendOutPkmnSlotB
-SCOORD rB [9,29]
-SVAL r2 GaryRattataUnit|IsPointer
-CALL SendOutPkmnSlotB
-
-AutoLevelUnits(TrainerL, True, 0x90EF) 
-EVBIT_MODIFY 0
-LABEL 0x63 
-NoFade 
-ENDA 
-
-*/
-
-
-
-
-
-/*
-RivalBattleEnd:
-CHECK_EVENTID PlayableCutsceneFlag // Are we battling? 
-BEQ 0x63 rC r0 
-CHECK_ALIVE 0xA0 //0xD0 A1 a2 
-BNE 0x63 rC r0 // if they are alive, jump to label 0x63 
-CHECK_ALIVE 0xA1  
-BNE 0x63 rC r0 
-CHECK_ALIVE 0xA2  
-BNE 0x63 rC r0 
-CHECK_ALIVE 0xD0  
-BNE 0x63 rC r0 
-// All 4 of his pokemon are fainted 
-
-UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
-ASMC 0x80790a5 //MU_EndAll //deselect unit
-
-Text(GaryRoute2SDefeatText)
-SVAL r3 1250 
-GIVETOMAIN 0 
-DISA 0xFA // Gary unit 
-ENUF PlayableCutsceneFlag
-ENUT GaryRoute2SDefeatedFlag
-
-LABEL 10 
-CALL HealPartyWithSFXEvent
-
-
-
-LABEL 0x63 
-NoFade 
-ENDA 
-*/
 
 
 
@@ -362,28 +246,30 @@ UNIT
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE0, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsA) 
-MS_TableEntry(0xE0, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsB) 
-MS_TableEntry(0xE0, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsC) 
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
+MS_TableEntry(0xEF, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsA) 
+MS_TableEntry(0xEF, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsB) 
+MS_TableEntry(0xEF, 0, 0, PlayableCutsceneFlag, 1, 1, 0, 1, GaryUnitsC) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, TrainerUnitsA) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xF, GaryRoute2SChallengeText) // Gary 
 SHORT GaryRoute2SChallengeText // 0xE0 
 SHORT R2_0xE1_BQ // 0xE1 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xF, GaryRoute2SDefeatText, 1500) // Gary 
 SHORT GaryRoute2SDefeatText // 0xE0 
 SHORT 1500 // Gold 
 SHORT R2_0xE1_BD // 0xE1 
 SHORT 375 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 
 GaryBattleUnitGroup:
-UNIT 0xE0 blueID 0x0 Level(1, Enemy, 0) [9,28]  0b 0x0	0x1 REDA9R28 [NineRangeWep,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
+UNIT 0xEF blueID 0x0 Level(1, Enemy, 0) [9,28]  0b 0x0	0x1 REDA9R28 [NineRangeWep,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
 //UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 
@@ -395,31 +281,31 @@ UNIT
 
 
 GaryUnitsA:
-UNIT GenericB	BulbasaurID 0xE0 Level(1, Enemy, 1)   [11,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeyID 0xE0 Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	WeedleID 0xE0 Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	RattataID 0xE0 Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	BulbasaurID 0xEF Level(1, Enemy, 1)   [11,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeyID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	WeedleID 0xEF Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	RattataID 0xEF Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsB:
-UNIT GenericB	CharmanderID 0xE0 Level(1, Enemy, 1)   [11,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeyID 0xE0 Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	WeedleID 0xE0 Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	RattataID 0xE0 Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	CharmanderID 0xEF Level(1, Enemy, 1)   [11,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeyID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	WeedleID 0xEF Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	RattataID 0xEF Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsC:
-UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [11,9] 	0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeyID 0xE0 Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	WeedleID 0xE0 Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	RattataID 0xE0 Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	SquirtleID 0xEF Level(1, Enemy, 1)   [11,9] 	0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeyID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	WeedleID 0xEF Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	RattataID 0xEF Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsD:
-UNIT GenericB	EeveeID 0xE0 Level(1, Enemy, 1)   [11,9] 	0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeyID 0xE0 Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	WeedleID 0xE0 Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	RattataID 0xE0 Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB	EeveeID 0xEF Level(1, Enemy, 1)   [11,9] 	0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	PidgeyID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	WeedleID 0xEF Level(1, Enemy, 1)   [11,11]  0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	RattataID 0xEF Level(1, Enemy, 1)   [9,11] 0b	0x0 0x01 0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 TrainerUnitsA:

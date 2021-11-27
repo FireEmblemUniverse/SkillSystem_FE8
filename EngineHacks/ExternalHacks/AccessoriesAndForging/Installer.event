@@ -108,7 +108,7 @@ WORD 0 0 0
 
 ALIGN 4
 ItemMenuTable:
-MenuCommand(0x505, 0, BlueText, ItemSpecialEffectUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
+MenuCommand(0x505, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1) 
 
 IM_Use
 #ifdef INSTALL_ACCESSORIES

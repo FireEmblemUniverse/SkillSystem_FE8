@@ -8,11 +8,13 @@ ALIGN 4
 DebugCommandEvent:
 //SCOORD rB [6,7]
 
-SCOORD rB [9,3]
-SVAL r1 1 // Animation ID 
-SVAL r2 0 // Always 0
+UseVulnerary(0x7FFF)
+
+//SCOORD rB [9,3]
+//SVAL r1 1 // Animation ID 
+//SVAL r2 0 // Always 0
 //SVAL r2 (-1) // Display all in move map 
-ASMC ASMC_Draw // given sB coords to display at and s1 animation to display, shows an animation 
+//ASMC ASMC_Draw // given sB coords to display at and s1 animation to display, shows an animation 
 // Overide on # of frames to wait for animation 
 // Display one animation centered around given coords 
 // display animation at all coords in move map (for AoE)

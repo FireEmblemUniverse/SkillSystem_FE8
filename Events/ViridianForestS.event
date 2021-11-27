@@ -250,12 +250,12 @@ MS_TableTerminator ; }
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT VFS_0xE0_BQ // 0xE0 
-TQD_TableTerminator
+TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT VFS_0xE0_BD // 0xE0 
 SHORT 300 // Gold 
-TQD_TableTerminator ; }
+TDQ_TableTerminator ; }
 
 
 HumanTrainers:

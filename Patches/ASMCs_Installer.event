@@ -1,7 +1,7 @@
 
 #include "Draw/Installer.event"
 #include "Commands/CallCommand/CallCommand.event"
-#include "Commands/SilentGiveItem/SilentGiveItemInstaller.event"
+#include "Commands/SilentGiveItem/Installer.event"
 #include "Commands/MemSlotString/MemSlotStringInstaller.event"
 #include "Commands/SetStatus/SetStatusInstaller.event"
 

@@ -740,7 +740,7 @@ BYTE 7 ConfuseRay
 BYTE 12 Magnitude
 BYTE 15 MudShot
 BYTE 18 Dig
-BYTE 23 Thief
+BYTE 23 ThiefAtt
 BYTE 26 EarthPower
 BYTE 29 MudBomb
 BYTE 34 Slash
@@ -757,7 +757,7 @@ BYTE 7 ConfuseRay
 BYTE 12 Magnitude
 BYTE 15 MudShot
 BYTE 18 Dig
-BYTE 23 Thief
+BYTE 23 ThiefAtt
 BYTE 26 EarthPower
 BYTE 29 MudBomb
 BYTE 34 Slash
@@ -773,7 +773,7 @@ BYTE 6 Bite
 BYTE 9 Cut
 BYTE 14 DoubleHit
 BYTE 17 Leer
-BYTE 22 Thief
+BYTE 22 ThiefAtt
 BYTE 25 PayDay
 BYTE 30 Slash
 BYTE 33 NightSlash
@@ -787,7 +787,7 @@ BYTE 6 Bite
 BYTE 9 Cut
 BYTE 14 DoubleHit
 BYTE 17 Leer
-BYTE 22 Thief
+BYTE 22 ThiefAtt
 BYTE 25 PayDay
 BYTE 30 Slash
 BYTE 33 NightSlash
@@ -833,7 +833,7 @@ BYTE 1 Leer
 BYTE 9 Doubleslap
 BYTE 13 KarateChop
 BYTE 17 SeismicToss
-BYTE 25 Thief
+BYTE 25 ThiefAtt
 BYTE 33 MegaPunch //Swagger
 BYTE 37 JumpKick
 BYTE 41 Thrash
@@ -849,7 +849,7 @@ BYTE 1 Leer
 BYTE 9 Doubleslap
 BYTE 13 KarateChop
 BYTE 17 SeismicToss
-BYTE 25 Thief
+BYTE 25 ThiefAtt
 BYTE 33 MegaPunch //Swagger
 BYTE 37 JumpKick
 BYTE 41 Thrash
@@ -1022,7 +1022,7 @@ BYTE 11 Constrict
 //BYTE 13 Sleep2
 BYTE 15 PoisonPowder
 BYTE 19 Acid
-BYTE 24 Thief
+BYTE 24 ThiefAtt
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
 BYTE 38 RazorLeaf
@@ -1037,7 +1037,7 @@ BYTE 11 Constrict
 //BYTE 13 Sleep2
 BYTE 15 PoisonPowder
 BYTE 19 Acid
-BYTE 24 Thief
+BYTE 24 ThiefAtt
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
 BYTE 38 RazorLeaf
@@ -1052,7 +1052,7 @@ BYTE 11 Constrict
 //BYTE 13 Sleep2
 BYTE 15 PoisonPowder
 BYTE 19 Acid
-BYTE 24 Thief
+BYTE 24 ThiefAtt
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
 BYTE 38 RazorLeaf
@@ -1250,7 +1250,7 @@ BYTE 1 Leer
 BYTE 1 FuryCutter
 BYTE 1 SandAttack
 BYTE 7 DoubleHit // FuryAttack
-BYTE 9 Thief // KnockOff
+BYTE 9 ThiefAtt // KnockOff
 BYTE 13 WingAttack // Aerial Ace
 BYTE 19 Slash
 BYTE 21 Gust // Air Cutter
@@ -1269,7 +1269,7 @@ BYTE 1 Growl
 BYTE 5 QuickAttack
 BYTE 10 Rage
 BYTE 14 DoubleHit // FuryAttack
-BYTE 19 Thief // Pursuit
+BYTE 19 ThiefAtt // Pursuit
 BYTE 23 Swift // Uproar
 // BYTE 28 Resv Acupressure
 BYTE 32 DoubleEdge // DoubleHit
@@ -1286,7 +1286,7 @@ BYTE 1 Growl
 BYTE 5 QuickAttack
 BYTE 10 Rage
 BYTE 14 DoubleHit // FuryAttack
-BYTE 19 Thief // Pursuit
+BYTE 19 ThiefAtt // Pursuit
 BYTE 23 Swift // Uproar
 // BYTE 28 Resv Acupressure
 BYTE 32 DoubleEdge // DoubleHit
@@ -1416,7 +1416,7 @@ BYTE 1 Snarl // 22 SuckerPunch
 // BYTE 12 Resv Curse
 BYTE 15 NightShade
 BYTE 19 ConfuseRay
-BYTE 26 Thief
+BYTE 26 ThiefAtt
 BYTE 29 ShadowBall 
 BYTE 33 DreamEater
 BYTE 36 DarkPulse
@@ -1434,7 +1434,7 @@ BYTE 1 Snarl // 22 SuckerPunch
 // BYTE 12 Resv Curse
 BYTE 15 NightShade
 BYTE 19 ConfuseRay
-BYTE 26 Thief
+BYTE 26 ThiefAtt
 BYTE 29 ShadowBall 
 BYTE 33 DreamEater
 BYTE 36 DarkPulse
@@ -1452,7 +1452,7 @@ BYTE 1 Snarl // 22 SuckerPunch
 // BYTE 12 Resv Curse
 BYTE 15 NightShade
 BYTE 19 ConfuseRay
-BYTE 26 Thief
+BYTE 26 ThiefAtt
 BYTE 29 ShadowBall 
 BYTE 33 DreamEater
 BYTE 36 DarkPulse
@@ -1691,7 +1691,7 @@ HitmonchanLearnset:
 BYTE 1 CometPunch
 // BYTE 1 Resv Revenge
 BYTE 6 RecoverMove // Resv Agility
-BYTE 11 Thief // Pursuit
+BYTE 11 ThiefAtt // Pursuit
 BYTE 16 SeismicToss // Mach Punch
 BYTE 21 QuickAttack // Feint
 // BYTE 26 Sky Uppercut
@@ -1820,7 +1820,7 @@ BYTE 22 Bind
 BYTE 26 MegaDrain  
 // BYTE 29 StunSpore
 BYTE 33 Ancientpower
-BYTE 36 Thief // KnockOff
+BYTE 36 ThiefAtt // KnockOff
 BYTE 40 BodySlam // NaturalGift
 BYTE 43 Slam
 // BYTE 47 Resv Tickle
@@ -1842,7 +1842,7 @@ BYTE 31 NightDaze // Crunch
 BYTE 34 RecoverMove // Endure
 BYTE 37 Outrage
 BYTE 43 DoubleHit
-BYTE 48 Thief // SuckerPunch
+BYTE 48 ThiefAtt // SuckerPunch
 // BYTE 49 Reversal
 BYTE 0 0
 
@@ -1980,7 +1980,7 @@ BYTE 1 SeismicToss // VaccumWave
 BYTE 1 QuickAttack
 BYTE 1 Leer
 // BYTE 5 Resv FocusEnergy
-BYTE 9 Thief // Pursuit 
+BYTE 9 ThiefAtt // Pursuit 
 BYTE 13 TakeDown // FalseSwipe
 // BYTE 17 Resv Agility
 BYTE 21 WingAttack
@@ -2077,7 +2077,7 @@ BYTE 8 HornAttack
 BYTE 11 Glare // ScaryFace
 BYTE 15 Bite // Pursuit
 // BYTE 19 Resv Rest
-BYTE 24 Thief // Payback
+BYTE 24 ThiefAtt // Payback
 // BYTE 29 ZenHeadbutt
 BYTE 35 TakeDown
 BYTE 41 QuickAttack // Swagger

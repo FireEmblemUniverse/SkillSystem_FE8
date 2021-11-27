@@ -16,7 +16,7 @@
 	ORG FreeSpace
 #endif
 
-{
+//{
 // Definitions, don't change these.
 #define DRUnitBitMask 0x1<<DRUnitBit
 #define NoDR 0

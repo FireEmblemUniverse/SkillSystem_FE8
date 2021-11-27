@@ -14,8 +14,12 @@ ASMC ModularSummon_UnhideActive
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 
-CHECK_EVENTID PlayableCutsceneFlag 
-BNE 20 rC r0 
+//CHECK_EVENTID PlayableCutsceneFlag 
+//BNE 20 rC r0 
+CHECK_ACTIVE 
+SVAL r7 0xEF 
+BEQ 20 rC r7 // If unit is 0xEF, always considered cutscene I guess 
+
 
 LABEL 0
 
@@ -41,9 +45,7 @@ REMA
 GOTO 0x63 
 
 LABEL 20 // Playable cutscene eg. rival battle 
-CHECK_ACTIVE 
-SVAL r7 0xE0 
-BNE 0 rC r7 
+ENUT PlayableCutsceneFlag
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 ASMC ModularSummonEffect 
 
@@ -74,13 +76,13 @@ GIVETOMAIN 0
 GOTO 0x63 
 
 LABEL 20 // Cutscene 
-SVAL r7 0xE0 
-BNE 10 r7 r9 // Only if unit is 0xE0 
+SVAL r7 0xEF
+BNE 10 r7 r9 // Only if unit is 0xEF
 ENUF PlayableCutsceneFlag 
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 FADI 8 
 CURE
-DISA 0xE0 
+DISA 0xEF 
 FADU 10
 
 LABEL 0x63 
