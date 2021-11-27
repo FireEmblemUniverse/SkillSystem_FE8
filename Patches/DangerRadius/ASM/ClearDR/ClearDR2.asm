@@ -1,57 +1,41 @@
-@ Remove DR from an enemy that died after battle.
-@ Hooks at 0x18400, in Phantom_Check.
-@ Also implements Capture's Should_Dead_Unit_Be_Cleared.
-@   r2: killed unit's struct.
+@ Clear DRCountByte when units are cleared.
+@ Replaces ClearUnits, 0x177C4.
 .thumb
 
-push  {r4-r6}
-ldr   r0, =DRUnitByte
-lsl   r0, #0x5
-lsr   r4, r0, #0x5
-ldr   r0, =DRUnitBitMask
-lsl   r0, #0x5
-lsr   r5, r0, #0x5
+push  {r4-r7,r14}
+
+
+@ Clear DRCountByte.
 ldr   r0, =DRCountByte
 lsl   r0, #0x5
-lsr   r6, r0, #0x5
+lsr   r0, #0x5
+mov   r1, #0x0
+strb  r1, [r0]
 
 
-@ Check if unit is Enemy.
-mov   r0, #0x80
-ldrb  r1, [r2, #0xB]
-tst   r1, r0
-beq   L1
+@ Vanilla.
+ldr   r4, =ClearUnitStruct
+mov   r5, #0x0
+ldr   r7, =RAMSlotTable
 
-  @ Unit is Enemy.
-  @ Check if DR-bit is set.
-  ldrb  r1, [r2, r4]
-  tst   r1, r5
+Loop:
+  lsl   r0, r5, #0x2
+  ldr   r6, [r0, r7]
+  cmp   r6, #0x0
   beq   L1
   
-    @ DR-bit is set.
-    @ Unset and decrement DR counter.
-    eor   r1, r5
-    strb  r1, [r2, r4]
-    ldrb  r1, [r6]
-    sub   r1, #0x1
-    strb  r1, [r6]
-L1:
+    mov   r0, r6
+    bl    GOTO_R4
+    strb  r5, [r6, #0xB]
+    
+  L1:
+  add   r5, #0x1
+  cmp   r5, #0xFF
+  ble   Loop
 
 
-@ Should_Dead_Unit_Be_Cleared.
-@ Return 1 in r1 if unit should be cleared, or 0 if they should not.
-
-ldrb	r1,[r2,#0xB]
-mov		r0,#0xC0
-and		r1,r0
-cmp		r1,#0
-beq		GoBack		@ Player units don't get cleared.
-ldr		r0,[r2,#0xC]
-mov		r3,#0x20	@ Being rescued.
-tst		r0,r3
-beq		GoBack
-mov		r1,#0
-GoBack:
-pop   {r4-r6}
-ldr		r0,=#0x8018409
-bx		r0
+pop   {r4-r7}
+pop   {r0}
+bx    r0
+GOTO_R4:
+bx    r4

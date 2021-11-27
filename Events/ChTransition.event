@@ -217,12 +217,7 @@ ENDA
 
 
 GlobalAfev:
-#ifdef DRUnitBitMask
-CHECK_EVENTID 1 // Auto refresh if not in danger 
-BNE 0 rC r0 
-SetNearbyDangerRadius
-LABEL 0
-#endif 
+
 //ReplenishDurability(0x7FFF)
 //SVAL r2 0 // Player allegiance 
 //CALL 0x89EE1B8 // When matching allegiance stops in range // This is dangerous, it seems. Doing it can lead into an infinite loop of cantoing by 1 tile. 
@@ -572,6 +567,7 @@ ENDA
 RefreshIfNotInDanger:
 // for some reason if you walk your max range it doesn't auto select your active unit 
 // but it does if you walk less than that ??????? 
+
 CHECK_EVENTID TrainerBattleActiveFlag 
 BNE 62 rC r0 // if flag is ON,  skip everything 
 
@@ -592,6 +588,16 @@ LABEL 62
 ENUT 1 
 ENUT 9
 LABEL 63 
+
+#ifdef DRUnitBitMask
+CHECK_EVENTID 1 // Auto refresh if not in danger 
+BNE 0 rC r0 
+SetNearbyDangerRadius
+LABEL 0
+#endif 
+
+
+
 NoFade
 ENDA 
 

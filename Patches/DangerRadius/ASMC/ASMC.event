@@ -12,23 +12,18 @@
 ALIGN 4
 CheckDR:
 #include "CheckDR.lyn.event"
-
 ALIGN 4
 SetDR:
 #include "SetDR.lyn.event"
-
 ALIGN 4
 UnsetDR:
 #include "UnsetDR.lyn.event"
-
 ALIGN 4
 SetAllDR:
 #include "SetAllDR.lyn.event"
-
 ALIGN 4
 UnsetAllDR:
 #include "UnsetAllDR.lyn.event"
-
 ALIGN 4
 SetNearbyDR:
 #include "SetNearbyDR.lyn.event"

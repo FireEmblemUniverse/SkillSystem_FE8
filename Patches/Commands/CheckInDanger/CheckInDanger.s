@@ -23,7 +23,7 @@ CheckUnitIsInDanger:
 	@b Test2
 	@b Test
 	ldr r1, =0x30017bb
-	mov r0, #1 
+	mov r0, #1
 	strb r0, [r1] @ Do not do DR stuff 
 	
 	ldr r3, =FillRangeMapForDangerZone

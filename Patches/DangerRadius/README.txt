@@ -14,7 +14,11 @@ INSTALL
   
   I haven't tried inserting this in FEBuilder, but feel free to. I don't know if it'll work due to certain 
   things relying on #ifdefs. If something doesn't work (whether that'd be when inserting through FEBuilder, 
-  buildfiles, cheese, w/e, feel free to tell me.
+  buildfiles, cheese, w/e, feel free to tell me. If you're installing the latest version of FogDR over a
+  previous version of FogDR, there are a few hooks that could break. Keep an eye on the hooks for "ClearDR1", 
+  "DRHook", "RefreshFog" and "UpdateDRMove" and see if there's anything happening there that wasn't specified
+  in the "FogDR/ASM/ASM.event" or "FogDR/ASM/ClearDR/ClearDR.event", yet differs from vanilla. These files
+  insert the relevant hooks.
 
   If you're using Modular Stat Getters, be sure to set MSG to True in FogDR.event. The SkillSystem build I'm 
   using, from January 2021, iIrc, does use Modular Stat Getters. Likewise, if you're not using Modular Stat 

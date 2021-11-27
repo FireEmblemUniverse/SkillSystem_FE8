@@ -9,6 +9,12 @@ mov   r5, r9
 mov   r6, r10
 mov   r7, r11
 push  {r4-r7}
+
+ldr r1, =0x30017bb
+mov r0, #0 
+strb r0, [r1] @ Do DR stuff
+
+
 ldr   r0, =DRUnitByte
 lsl   r0, #0x5
 lsr   r5, r0, #0x5
@@ -133,6 +139,7 @@ mov   r1, r9
 strb  r1, [r0]            @ Reset DRCountByte.
 
 bl    InitializeDR
+
 
 
 pop   {r4-r7}

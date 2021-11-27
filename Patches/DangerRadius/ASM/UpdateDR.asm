@@ -25,7 +25,7 @@ ldr r2, =#0x30017bb @ DRSingleRam
 ldrb r1, [r2]
 cmp r1, #0 
 bne OnlyRefreshVanillaStuff
-add r1, #1 
+mov r1, #1 
 strb r1, [r2] 
 b DR 
 
@@ -48,25 +48,25 @@ strb r0, [r2]
 @ Not using FOW so skip 
 b DR @ Vesly
 
-@ Check for FOW.
-ldr   r0, =ChapterData
-ldrb  r0, [r0, #0xD]
-cmp   r0, #0x0
-beq   DR
-
-  @ FOW active, vanilla behaviour.
-  ldr   r0,=FogMap
-  ldr   r0,[r0]
-  mov   r1,#0x0
-  ldr   r4, =ClearMapWith
-  bl    GOTO_R4
-  ldr   r4, =UpdateTrapFogVision
-  bl    GOTO_R4
-  ldr   r4, =UpdateUnitMapAndVision
-  bl    GOTO_R4
-  ldr   r4, =UpdateTrapHiddenStates
-  bl    GOTO_R4
-  b     Return
+@@ Check for FOW.
+@ldr   r0, =ChapterData
+@ldrb  r0, [r0, #0xD]
+@cmp   r0, #0x0
+@beq   DR
+@
+@  @ FOW active, vanilla behaviour.
+@  ldr   r0,=FogMap
+@  ldr   r0,[r0]
+@  mov   r1,#0x0
+@  ldr   r4, =ClearMapWith
+@  bl    GOTO_R4
+@  ldr   r4, =UpdateTrapFogVision
+@  bl    GOTO_R4
+@  ldr   r4, =UpdateUnitMapAndVision
+@  bl    GOTO_R4
+@  ldr   r4, =UpdateTrapHiddenStates
+@  bl    GOTO_R4
+@  b     Return
 
 @ Check whether we should update Danger Radius or not.
 @ Is DR active?

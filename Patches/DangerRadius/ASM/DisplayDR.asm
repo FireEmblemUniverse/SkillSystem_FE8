@@ -2,6 +2,15 @@
 @ to determine whether or not to display this unit's Danger Radius.
 .thumb
 
+
+  @OtherTest:
+  @ldr r1, =0x30017bb
+  @ldrb r1, [r1] 
+  @cmp r1, #0 
+  @beq Continue 
+  @b L2 
+
+
 @ Check for FOW.
 ldr   r1, =ChapterData
 ldrb  r1, [r1,#0xD]
@@ -25,12 +34,7 @@ bne   L1
   @mov r11, r11 
   b L2 
   
-  OtherTest:
-  ldr r1, =0x30017bb
-  ldrb r1, [r1] 
-  cmp r1, #0 
-  beq Continue 
-  b L2 
+
   
    Continue:
 

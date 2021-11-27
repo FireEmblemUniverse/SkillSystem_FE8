@@ -4,7 +4,15 @@
 
 push	{r4-r7,r14}
 
+
+
+ @OtherTest:
+ @ldr r1, =0x30017bb
+ @ldrb r1, [r1] 
+ @cmp r1, #0 
+ @bne Return 
 @mov r11, r11 
+
 ldr   r0, =ActiveUnit
 ldr   r7, [r0]
 mov   r1, #0x0
@@ -14,7 +22,7 @@ mov   r5, r6
 add   r5, #0x3E
 strb  r1, [r5]
 
-b L1 @ Never FOW 
+b L1 @ Never fow 
 
 @ Check for FOW.
 ldr   r0, =ChapterData
@@ -74,11 +82,21 @@ L1:
   ldr		r4, =UpdateGameTilesGraphics
   bl		GOTO_R4
 
+@mov r11, r11 
+
+ldr r1, =0x30017bb
+mov r0, #1 
+strb r0, [r1] @ Do not repeat DR stuff
+
 
 Return:
+
+
+
+
+
 pop   {r4-r7}
 pop   {r0}
-mov r11, r11 
 bx    r0
 GOTO_R4:
 bx    r4
