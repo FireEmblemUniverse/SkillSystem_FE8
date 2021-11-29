@@ -4,15 +4,6 @@
 
 push	{r4-r7,r14}
 
-
-
- @OtherTest:
- @ldr r1, =0x30017bb
- @ldrb r1, [r1] 
- @cmp r1, #0 
- @bne Return 
-@mov r11, r11 
-
 ldr   r0, =ActiveUnit
 ldr   r7, [r0]
 mov   r1, #0x0
@@ -61,7 +52,8 @@ L1:
   ldrb  r1, [r5]
   mov   r0, #0x1
   and   r0, r1
-  ldr   r4, =ApplyStuffToRangeMaps
+  
+  ldr   r4, =ApplyStuffToRangeMaps @FillRangeMapForDangerZone
   bl    GOTO_R4
   ldr   r0, =MovementMap
   ldr   r0, [r0]
@@ -70,27 +62,34 @@ L1:
   ldr   r4, =ClearMapWith
   bl    GOTO_R4
   
+
+  
+  
   @ Set GameState and Active Unit back.
   ldrb  r1, [r6, #0x4]
-  mov   r0, #0xF7
+  mov   r0, #0xF7 @ 0x08 : danger zone? viewing attack range?
   and   r0, r1
   strb  r0, [r6, #0x4]
   ldr   r0, =ActiveUnit
   str   r7, [r0]
   
+  
+  @@ Check GameState.
+  @ldrb  r1, [r6, #0x4]
+  @mov   r0, #0x8
+  @and r0, r1 
+  @cmp r0, #0 
+  @bne Return @ Don't update graphics when turning DR off 
+  @@ Only update if pressed select or used ASMC I guess 
+  
   @ Update Game Tile Gfx.
   ldr		r4, =UpdateGameTilesGraphics
   bl		GOTO_R4
 
-@mov r11, r11 
 
-ldr r1, =0x30017bb
-mov r0, #1 
-strb r0, [r1] @ Do not repeat DR stuff
 
 
 Return:
-
 
 
 
@@ -100,3 +99,5 @@ pop   {r0}
 bx    r0
 GOTO_R4:
 bx    r4
+
+.equ	gMapRange, 0x0202E4E4

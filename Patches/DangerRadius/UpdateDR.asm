@@ -9,6 +9,10 @@ mov   r6, r10
 mov   r7, r11
 push  {r4-r7}
 
+mov r8, r8 
+mov  r11, r11 
+mov r8, r8 
+
 ldr   r0, =ActiveUnit
 ldr   r0, [r0]
 ldrb r0, [r0, #0x0B] 
@@ -237,6 +241,11 @@ bl    GOTO_R4
 
 
 Return:
+
+mov r8, r8 
+mov  r11, r11 
+mov r8, r8 
+
 pop   {r4-r7}
 mov   r8, r4
 mov   r9, r5

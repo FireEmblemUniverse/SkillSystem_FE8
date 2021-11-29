@@ -87,6 +87,14 @@ PUSH
   
 POP
 
+MaybeRefresh:
+//ASMC UnsetAllDR|1
+ASMC SetNearbyDR|1
+ASMC RefreshUnitASMC|1 
+NoFade 
+ENDA 
+
+
 ALIGN 4
 EndDR:
 #include "EndDR.lyn.event"
@@ -127,3 +135,23 @@ UpdateDRMove:
 ALIGN 4
 InitializeDR:
 #include "InitializeDR.lyn.event"
+
+
+
+
+#include "RefreshUnit.lyn.event"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

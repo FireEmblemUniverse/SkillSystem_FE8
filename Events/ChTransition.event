@@ -258,6 +258,7 @@ LABEL 0
 ENUF CallCountdownFlag_2 // 1 turn until auto refresh again 
 #ifdef DRUnitBitMask
 SetNearbyDangerRadius
+//ASMC InitializeDR|1
 #endif 
 ENUF CallCountdownFlag // Can 'Call' again 
 NoFade
@@ -564,6 +565,16 @@ MNC2 PokecenterCh
 NoFade 
 ENDA 
 
+ALIGN 4
+AttackedThisTurnFlagLink:
+BYTE AttackedThisTurnFlag 
+
+ALIGN 4
+TrainerBattleActiveFlagLink:
+BYTE TrainerBattleActiveFlag
+
+
+ALIGN 4 
 RefreshIfNotInDanger:
 // for some reason if you walk your max range it doesn't auto select your active unit 
 // but it does if you walk less than that ??????? 
@@ -575,6 +586,8 @@ CHECK_EVENTID AttackedThisTurnFlag
 BNE 63 rC r0 // if flag is ON,  skip everything 
 CHECK_ENEMIES 
 BEQ 10 rC r0 // No Enemies, so refresh 
+
+GOTO 63 
 
 CHECK_COORDS 0x7FFF
 SADD rB rC r0 
@@ -589,12 +602,14 @@ ENUT 1
 ENUT 9
 LABEL 63 
 
-#ifdef DRUnitBitMask
-CHECK_EVENTID 1 // Auto refresh if not in danger 
-BNE 0 rC r0 
-SetNearbyDangerRadius
-LABEL 0
-#endif 
+//#ifdef DRUnitBitMask
+//CHECK_EVENTID 1 // Auto refresh if not in danger 
+//BNE 0 rC r0 
+//SetNearbyDangerRadius
+//SetNearbyDangerRadius
+//ASMC InitializeDR|1 
+//LABEL 0
+//#endif 
 
 
 
