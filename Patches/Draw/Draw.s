@@ -43,7 +43,7 @@ Draw_SetupMemorySlots:
 push {lr}
 
 
-@ldr r3, =0x203a608 @gpCurrentRound
+@ldr r3, =0x203a608 @gpCurrentRound	{U}
 @ldr r0, [r3] 
 @ldr r1, [r0] 
 @mov r11, r11 
@@ -59,7 +59,9 @@ str r0, [r3, #4] @ slot 1 - animation ID
 
 
 @ copied from function 080815C0 //MapAnim_MoveCameraOnTarget MapAnim_MoveCameraOnTarget
-ldr r3, =0x203E1F0 @(gMapAnimStruct )
+ldr r3, =0x203E1F0 @(gMapAnimStruct )	{U}
+@ldr r3, =0x0203E1EC @(gMapAnimStruct )	{J}
+
 mov r1, r3 
 add r1, #0x59 
 ldrb r2, [r1]
@@ -89,12 +91,15 @@ strh r1, [r3, #2]
 pop {r1}
 bx r1 
 
-	.equ BreakProcLoop, 0x08002E94
+	.equ BreakProcLoop, 0x08002E94	@{U}
+@	.equ BreakProcLoop, 0x08002DE4	@{J}
 .align 
 .ltorg
 
-.equ RegisterTileGraphics, 0x8002014 
-.equ RegisterObjectTileGraphics, 0x8012FF4 
+.equ RegisterTileGraphics, 0x08002014	@{U}
+@.equ RegisterTileGraphics, 0x08001F64	@{J}
+.equ RegisterObjectTileGraphics, 0x08012FF4	@{U}
+@.equ RegisterObjectTileGraphics, 0x080130AC	@{J}
 
 .global Draw_StoreToBuffer
 .type Draw_StoreToBuffer, %function 
@@ -121,7 +126,7 @@ blh RegisterObjectTileGraphics, r4
 @ default 8x8 sprite uses 24th palette? 
 @ we should set the palette to something, at least 
 @ 24th palette used by transformed myrrh 
-@ldr r0, =0x80A8EE4 @ poin to save menu palette (for the numbers to draw)
+@ldr r0, =0x80A8EE4 @ poin to save menu palette (for the numbers to draw)	{U}
 ldr r0, =SaveScreenNumbersPal
 mov r1, #27 @ usual palette # 
 lsl r1, #5 @ multiply by #0x20
@@ -131,7 +136,7 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 
 
 @ AoE test 
-@ldr r0, =0x202E4E0 @ Movement map 
+@ldr r0, =0x202E4E0 @ Movement map	{U}
 @ldr r0, [r0] 
 @mov r1, #0xFF
 @blh FillMap
@@ -151,12 +156,15 @@ bx r1
 
 
 
-.align 4 
-.ltorg 
+.align 4
+.ltorg
 
-.equ CopyToPaletteBuffer, 0x8000DB8
-.equ PushToSecondaryOAM, 0x08002BB8
-.equ GetGameClock, 0x08000D28
+.equ CopyToPaletteBuffer, 0x8000DB8	@{U}
+@.equ CopyToPaletteBuffer, 0x8000D68	@{J}
+.equ PushToSecondaryOAM, 0x08002BB8	@{U}
+@.equ PushToSecondaryOAM, 0x08002B08	@{J}
+.equ GetGameClock, 0x08000D28	@{U}
+@.equ GetGameClock, 0x08000CD8	@{J}
 
 
 
@@ -171,10 +179,9 @@ ldrb r1, [r3] @ XX
 ldrb r2, [r3, #2] @ YY 
 
 @r0 as parent 
-@blh 0x8015D84 @CenterCameraOntoPosition
+@blh 0x8015D84 @CenterCameraOntoPosition	{U}
 mov r0, #0 
 blh EnsureCameraOntoPosition
-@EnsureCameraOntoPosition, 0x08015e0c
 
 pop {r0} 
 bx r0 
@@ -182,18 +189,28 @@ bx r0
 .ltorg 
 .align 
 
-.equ FillMap,                      0x080197E4
-	.equ pr6C_NewBlocking,           0x08002CE0 
-	.equ pr6C_New,                   0x08002C7C
-	.equ Proc_CreateBlockingChild, 0x80031c4 
-	.equ BreakProcLoop, 0x08002E94
-	.equ ProcFind, 0x08002E9C
-	.equ EnsureCameraOntoPosition, 0x08015e0c
-	.equ CheckEventId, 0x8083da8
-	.equ MemorySlot, 0x30004B8
-	.equ CurrentUnit, 0x3004E50
-	.equ EventEngine, 0x800D07C
-
+.equ FillMap,                    0x080197E4	@{U}
+@.equ FillMap,                    0x080194BC	@{J}
+.equ pr6C_NewBlocking,           0x08002CE0	@{U}
+@.equ pr6C_NewBlocking,           0x08002C30	@{J}
+.equ pr6C_New,                   0x08002C7C	@{U}
+@.equ pr6C_New,                   0x08002BCC	@{J}
+.equ Proc_CreateBlockingChild,   0x080031c4	@{U}
+@.equ Proc_CreateBlockingChild,   0x08003110	@{J}
+.equ BreakProcLoop,              0x08002E94	@{U}
+@.equ BreakProcLoop,              0x08002DE4	@{J}
+.equ ProcFind,                   0x08002E9C	@{U}
+@.equ ProcFind,                   0x08002DEC	@{J}
+.equ EnsureCameraOntoPosition,   0x08015e0c	@{U}
+@.equ EnsureCameraOntoPosition,   0x08015E18	@{J}
+.equ CheckEventId,               0x08083da8	@{U}
+@.equ CheckEventId,               0x080860D0	@{J}
+.equ MemorySlot,                 0x030004B8	@{U}
+@.equ MemorySlot,                 0x030004B0	@{J}
+.equ CurrentUnit,                0x03004E50	@{U}
+@.equ CurrentUnit,                0x03004DF0	@{J}
+.equ EventEngine,                0x0800D07C	@{U}
+@.equ EventEngine,                0x0800D340	@{J}
 
 
 .global Draw_WaitXFrames
@@ -211,7 +228,8 @@ ldrh r1, [r3, #2]
 
 @ given coordinates to move the camera to, decide whether the camera needs to be moved or not 
 @ r0 = XX, r1 = YY 
-blh 0x8015e9c @ ShouldCameraMovePos?
+blh 0x8015e9c @ ShouldCameraMovePos?	@{U}
+@blh 0x8015EA8 @ ShouldCameraMovePos?	@{J}
 cmp r0, #0 
 beq ContinueDraw_Wait
 mov r0, #2 @ Waiting for camera 
@@ -271,12 +289,16 @@ b End_DrawPause
 NoAnimation:
 VanillaHP_BarRoutine:
 mov r0, r4 @ parent proc 
-blh 0x8081914 @ default routine of "wait for hp to finish going down" 
+blh 0x8081914 @ default routine of "wait for hp to finish going down"	@{U}
+@blh 0x8083C54 @ default routine of "wait for hp to finish going down"	@{J}
+
 b End_DrawPause
 
 BreakProcLoopNow:
 mov r0, r4 @  @ parent to break from 
-blh 0x8081914 @ default routine wait for hp to finish going down 
+blh 0x8081914 @ default routine wait for hp to finish going down	@{U}
+@blh 0x8083C54 @ default routine wait for hp to finish going down	@{J}
+
 @blh BreakProcLoop
 mov r0, #1
 End_DrawPause:
@@ -290,7 +312,8 @@ bx r1
 Draw_GetActiveCoords:
 push {lr}
 
-ldr r3, =0x203E1F0 @(gMapAnimStruct )
+ldr r3, =0x203E1F0 @(gMapAnimStruct )	@{U}
+@ldr r3, =0x0203E1EC @(gMapAnimStruct )	@{J}
 mov r1, r3 
 add r1, #0x59 
 ldrb r2, [r1]
@@ -318,8 +341,11 @@ push {r4, lr}
 bl Draw_GetActiveCoords @ I guess this returns the target's coords? 
 
 
-ldr r3, =0x203A4EC @ Atkr 
-ldr r4, =0x203A56C @ Dfdr 
+ldr r3, =0x203A4EC @ Atkr	@{U}
+@ldr r3, =0x0203A4E8 @ Atkr	@{J}
+ldr r4, =0x203A56C @ Dfdr	@{U}
+@ldr r4, =0x0203A568 @ Dfdr	@{J}
+
 ldrb r2, [r3, #0x10]
 cmp r2, r0
 bne TryDfdr
@@ -330,8 +356,11 @@ b ExitDraw_GetActiveAttackerOrDefender
 
 
 TryDfdr:
-ldr r3, =0x203A56C @ Dfdr 
-ldr r4, =0x203A4EC @ Atkr 
+ldr r3, =0x203A56C @ Dfdr	@{U}
+@ldr r3, =0x0203A568 @ Dfdr	@{J}
+ldr r4, =0x203A4EC @ Atkr	@{U}
+@ldr r4, =0x0203A4E8 @ Atkr	@{J}
+
 ldrb r2, [r3, #0x10]
 cmp r2, r0  
 bne RetFalse
@@ -388,7 +417,8 @@ ldrb r0, [r3, #1] @ Animation ID
 b ExitDraw_GetAnimationIDByWeapon @ We found an animation for that specific weapon 
 
 BreakAnimationBySpecificWeapon_Loop:
-blh 0x8017548 @GetItemWType
+blh 0x8017548 @GetItemWType	{U}
+@blh 0x80172F0 @GetItemWType	{J}
 
 mov r2, #0 @ Counter 
 ldr r5, =0xFFFF @ Terminator 
@@ -432,7 +462,9 @@ beq Skip
 
 
 @ if we miss, do not show an animation 
-ldr r3, =0x203E24A @ current round - from function 8161C - address 81676 
+ldr r3, =0x203E24A @ current round - from function 8161C - address 81676	@{U}
+@ldr r3, =0x203E246 @ current round - from function 8161C - address 81676	@{J}
+
 ldrh r1, [r3] 
 mov r2, #2 
 and r1, r2 
@@ -474,7 +506,7 @@ b TryNextFrameLoop
 ExitAnimation: 
 @7b878 sets to 0 
 @ 81698, 7bd3a 
-@ldr r3, =0x203E24F @(gMapAnimaionWait )
+@ldr r3, =0x203E24F @(gMapAnimaionWait )	{U}
 @mov r0, #1
 @strb r0, [r3] 
 
@@ -498,9 +530,11 @@ cmp r0, #0
 beq NoSound
 
 @ Only play sound on the exact frame 
-blh 0x080D01FC   //m4aSongNumStart r0=music id:SOUND // Seems to work fine for SFX 
-@blh 0x08014B28   @ //PlaySpacialSoundMaybe, r0=BGM index, r1 = Unknown // 
-@blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown // 
+blh 0x080D01FC   @m4aSongNumStart r0=music id:SOUND // Seems to work fine for SFX 	{U}
+@blh 0x080D4EF4   @m4aSongNumStart r0=music id:SOUND // Seems to work fine for SFX	{J}
+
+@blh 0x08014B28   @ //PlaySpacialSoundMaybe, r0=BGM index, r1 = Unknown //	{U}
+@blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown //	{U}
 NoSound: 
 
 
@@ -515,7 +549,9 @@ mov	r2,#0x20 @ size
 blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset, r2 = size (0x20 per full palette)
 
 @ palette must be updated 
-ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the palette RAM needs to be updated
+ldr	r0,=0x300000E @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{U}
+@ldr	r0,=0x300000D @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{J}
+
 mov	r1,#1
 strb r1,[r0]
 
@@ -533,14 +569,14 @@ bl Draw_UpdateVRAM @ push to a buffer
 ldr r0, =gGenericBuffer 
 ldr r1, =VRAM_Address_Link
 ldr r1, [r1] 
-ldr r2, =#4096 @ number of bytes 
+ldr r2, =4096 @ number of bytes 
 mov r2, #8
 mov r3, #8
 @ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
 blh RegisterObjectTileGraphics, r4
 
 
-@ldr r0, =0x859dabc @gProc_Battle
+@ldr r0, =0x859dabc @gProc_Battle	{U}
 @blh ProcFind 
 @cmp r0, #0 
 @beq DrawByMask
@@ -601,11 +637,13 @@ mov r10, r5
 
 
 mov r8, r2 @ VRAM address 
-ldr r4, =0x202E4E0 @ Movement Map 
+ldr r4, =0x202E4E0 @ Movement Map	@{U}
+@ldr r4, =0x202E4DC @ Movement Map	@{J}
 ldr r4, [r4] @ movement map [0,0] 
 mov r9, r4 @ movement map 
 
-ldr r3, =0x202E4D4 @ Map Size 
+ldr r3, =0x202E4D4 @ Map Size	@{U}
+@ldr r3, =0x202E4D0 @ Map Size	@{J}
 ldrh r6, [r3] @ XX Boundary size 
 ldrh r7, [r3, #2] @ YY Boundary size 
 
@@ -690,10 +728,12 @@ sub r0, #24 @ Center X coord
 sub r1, #24  @ Center Y coord 
 
 
-ldr r2, =0x202BCBC @(gCurrentRealCameraPos )
+ldr r2, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
+@ldr r2, =0x202BCB8 @(gCurrentRealCameraPos )	@{J}
 ldrh r2, [r2]
 sub r0, r2
-ldr r2, =0x202BCBC @(gCurrentRealCameraPos )
+ldr r2, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
+@ldr r2, =0x202BCB8 @(gCurrentRealCameraPos )	@{J}
 ldrh r2, [r2, #2] 
 sub r1, r2
 
@@ -729,7 +769,8 @@ mov r2, #26 @ palette # 26 - or 27 is the light rune palette i think
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 @ palette | flips | tile 
 
-ldr r2, =0x8590f54 @gOAM_32x32Obj - seems to work fine for 64x64 objects, too 
+ldr r2, =0x8590f54 @gOAM_32x32Obj - seems to work fine for 64x64 objects, too	@{U}
+@ldr r2, =0x85B8CEC @gOAM_32x32Obj - seems to work fine for 64x64 objects, too	@{J}
 @mov r2, sp 
 
 blh PushToSecondaryOAM, r4 
@@ -745,9 +786,11 @@ bx r0
 
 
 
-.equ    UnLZ77Decompress, 0x08012F50
-.equ    CpuFastSet, 0x080D1674
-.equ    gGenericBuffer, 0x02020188 // #10016 bytes, I think 
+.equ    UnLZ77Decompress, 0x08012F50	@{U}
+@.equ    UnLZ77Decompress, 0x08013008	@{J}
+.equ    CpuFastSet, 0x080D1674	@{U}
+@.equ    CpuFastSet, 0x080D636C	@{J}
+.equ    gGenericBuffer, 0x02020188 @ #10016 bytes, I think 	@{U}	@{J}
 
 .type Draw_UpdateVRAM, %function 
 Draw_UpdateVRAM:
@@ -799,7 +842,8 @@ mov r6, r2 @ parent proc
 lsl r0, #4 
 lsl r1, #4 
 
-ldr r3, =0x202BCBC @(gCurrentRealCameraPos )
+ldr r3, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
+@ldr r3, =0x202BCB8 @(gCurrentRealCameraPos )	@{J}
 ldrh r2, [r3]
 ldrh r3, [r3, #2] 
 
@@ -815,7 +859,8 @@ lsr r1, #24
 mov r4, r0 @ XX 
 mov r5, r1 @ YY 
 
-ldr r0, =0x859dabc @gProc_Battle
+ldr r0, =0x859dabc @gProc_Battle	@{U}
+@ldr r0, =0x85C5F9C @gProc_Battle	@{J}
 blh ProcFind 
 cmp r0, #0 
 beq ExitDraw_NumberDuringBattle
@@ -845,8 +890,8 @@ sub r4, r0 @ subtract or add based on the remainder so that it will wiggle ?
 
 
 
-
-ldr r3, =0x203E24A @ current round - from function 8161C - address 81676 
+ldr r3, =0x203E24A @ current round - from function 8161C - address 81676	@{U}
+@ldr r3, =0x203E246 @ current round - from function 8161C - address 81676	@{J}
 ldrh r1, [r3] 
 mov r2, #2 
 and r1, r2 
@@ -898,7 +943,8 @@ pop {r4-r7}
 pop {r1}
 bx r1 
 
-.equ SpriteData8x8,			0x08590F44
+.equ SpriteData8x8,			0x08590F44	@{U}
+@.equ SpriteData8x8,			0x085B8CDC	@{J}
 
 Draw_NumberOAM:
 @ referenced Zane's MMB function for this 
@@ -950,11 +996,13 @@ bx		r0
 
 Draw_Cleanup:
 push {r4-r7, lr}
-blh 0x8021668 @ Redraw map at end of event effect 
+blh 0x8021668 @ Redraw map at end of event effect	@{U}
+@blh 0x8021360 @ Redraw map at end of event effect	@{J}
 
 
 @ palette must be updated 
-ldr	r0,=#0x300000E @ 0300000E is a byte (bool) that tells the game whether the palette RAM needs to be updated
+ldr	r0,=0x300000E @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{U}
+@ldr	r0,=0x300000D @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{J}
 mov	r1,#0
 strb r1,[r0]
 
@@ -962,12 +1010,14 @@ strb r1,[r0]
 mov r0, #0 
 ldr r1, =VRAM_Address_Link
 ldr r1, [r1] 
-ldr r2, =#4096 @ 64x64 image bytes size 
-@=#4096 @64x64 image bytes 
+ldr r2, =4096 @ 64x64 image bytes size 
+@=4096 @64x64 image bytes 
 @Arguments: r0 = *word* to fill with, r1 = Destination pointer, r2 = size (bytes)
-blh 0x08002054 @ RegisterFillTile
+blh 0x08002054 @ RegisterFillTile	@{U}
+@blh 0x08001FA4 @ RegisterFillTile	@{J}
 
-blh 0x8001FE0 @| ClearTileRigistry
+blh 0x8001FE0 @| ClearTileRigistry	@{U}
+@blh 0x8001F30 @| ClearTileRigistry	@{J}
 
 ldr r3, =MemorySlot
 mov r1, #0  

@@ -1,8 +1,23 @@
 
-//#define INSTALL_BONUS_ANIMATIONS // Uncomment for additional animations 
+#define INSTALL_BONUS_ANIMATIONS // Uncomment for additional animations 
 #define VRAM_Address 0x6013300 // Where in VRAM (see No$Gba Obj window) to draw animation 
 #define MinimumFrames 28 // Vanilla does 28 frames 
 
+
+// Impact1 can be Dark if used 
+// SmallShards_1 can be bug i guess 
+// ghost ? 
+// Flying, Steel 
+// Circle 2x speed can be flying 
+/*
+Water and Poison are too high 
+
+Grass / Fire / Water are pretty small 
+
+
+
+
+*/
 
 #define ShowAnimation(AnimationID, Coordinate) "SVAL r1 AnimationID; SVAL r2 0; SCORDS rB Coordinate; ASMC ASMC_Draw" 
 
@@ -15,12 +30,14 @@ ASMC ASMC_Draw
 */
 
 PUSH // Only vanilla address that we take over. 
-ORG $81274 // Poin to the vanilla proc 
+ORG $81274 // Poin to the vanilla proc	//{U}
+//ORG $835B4 // Poin to the vanilla proc	//{J}
 POIN gProc_MapAnimRound_Animation
 POP 
 
 
 #include "Internals.event"
+#include "MapAnimations/PokemblemAnimations.event"
 
 #define Empty_AnimID 0 
 #define ThinSlashAnimID 1
@@ -40,10 +57,57 @@ POP
 #define FreezeAnimID 14
 #define FeatherAnimID 15
 #define CauterizeAnimID 16
-#define NumberOfAnimIDs 16
+
+
+#define debuff_ID 17
+#define dragon_ID 18
+#define electric_ID 19
+#define fighting_ID 20
+#define fire_ID 21
+#define ghost_ID 22
+#define grass_ID 23
+#define ground_ID 24
+#define healing_ID 25
+#define ice_ID 26
+#define normal_ID 27
+#define poison_ID 28
+#define psychic_ID 29
+#define rock_ID 30
+#define water_ID 31
+#define powder_ID 32
+#define flying_ID 	CircleAnimID
+#define bug_ID Shards1AnimID
+#define dark_ID Impact1AnimID
+#define steel_ID Shards1AnimID
+#define fairy_ID FeatherAnimID
+
+
+
+
+
+
 
 ALIGN 4
 WeaponTypeAnimations:
+BYTE NormalTypeWep normal_ID
+BYTE FightingTypeWep fighting_ID
+BYTE ElectricTypeWep electric_ID
+BYTE SteelTypeWep steel_ID
+BYTE WaterTypeWep water_ID
+BYTE IceTypeWep ice_ID
+BYTE FireTypeWep fire_ID
+BYTE FlyingTypeWep flying_ID
+BYTE DragonTypeWep dragon_ID
+BYTE FairyTypeWep fairy_ID
+BYTE GrassTypeWep grass_ID 
+BYTE PoisonTypeWep poison_ID
+BYTE BugTypeWep bug_ID
+BYTE GroundTypeWep ground_ID
+BYTE RockTypeWep rock_ID
+BYTE PsychicTypeWep psychic_ID
+BYTE GhostTypeWep ghost_ID
+BYTE DarkTypeWep dark_ID
+/*
 BYTE 0 ThinSlashAnimID // Sword 
 BYTE 1 Hit1AnimID // Lance 
 BYTE 2 Shards2AnimID // Axe 
@@ -53,6 +117,7 @@ BYTE 6 FlashAnimID // Light
 BYTE 7 Impact1AnimID // Dark 
 BYTE $B Shards1AnimID // Monster 
 BYTE $11 Shards1AnimID // Dragonstone 
+*/
 SHORT 0xFFFF // Terminator 
 
 
@@ -60,7 +125,25 @@ SHORT 0xFFFF // Terminator
 
 ALIGN 4
 SpecificWeaponAnimations:
-BYTE SilverSword Shards1AnimID // Silver sword will always use the Shards1 animation 
+// Normal type debuffs to use Leer animation 
+BYTE Constrict  debuff_ID
+BYTE Screech    debuff_ID
+BYTE Flash      debuff_ID
+BYTE Growl      debuff_ID
+BYTE Leer       debuff_ID
+BYTE SandAttack debuff_ID
+BYTE TailWhip   debuff_ID
+
+/*
+BYTE FireSpin   debuff_ID
+BYTE StringShot debuff_ID
+BYTE Smog       debuff_ID
+BYTE Snarl      debuff_ID
+BYTE ThunderWave debuff_ID
+BYTE Acid       debuff_ID
+BYTE PoisonPowder debuff_ID
+*/
+//BYTE SilverSword Shards1AnimID // Silver sword will always use the Shards1 animation 
 SHORT 0xFFFF // Terminator 
 
 
@@ -88,6 +171,42 @@ AnimTable_Entry(ThickSlashAnimID,Slashing_B_Anim) // same palete as Slashing_A
 AnimTable_Entry(FreezeAnimID,Freeze_Anim)
 AnimTable_Entry(FeatherAnimID,Feather_Anim)
 #endif 
+AnimTable_Entry(debuff_ID          ,       debuff_Anim         )
+AnimTable_Entry(dragon_ID          ,       dragon_Anim         )
+AnimTable_Entry(electric_ID        ,       electric_Anim       )
+AnimTable_Entry(fighting_ID        ,       fighting_Anim       )
+AnimTable_Entry(fire_ID             ,        fire_Anim         )
+AnimTable_Entry(ghost_ID            ,        ghost_Anim        )
+AnimTable_Entry(grass_ID            ,        grass_Anim        )
+AnimTable_Entry(ground_ID          ,       ground_Anim         )
+AnimTable_Entry(healing_ID         ,       healing_Anim        )
+AnimTable_Entry(ice_ID              ,        ice_Anim          )
+AnimTable_Entry(normal_ID          ,       normal_Anim         )
+AnimTable_Entry(poison_ID          ,       poison_Anim         )
+AnimTable_Entry(psychic_ID         ,       psychic_Anim        )
+AnimTable_Entry(rock_ID             ,        rock_Anim         )
+AnimTable_Entry(water_ID            ,        water_Anim        )
+AnimTable_Entry(powder_ID          ,       powder_Anim         )
+
+//AnimTable_Entry(flying_ID          ,       flying_Anim         ) // These 3 use non-FRLG anims 
+//AnimTable_Entry(bug_ID              ,        bug_Anim          )
+//AnimTable_Entry(dark_ID             ,       dark_Anim          )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

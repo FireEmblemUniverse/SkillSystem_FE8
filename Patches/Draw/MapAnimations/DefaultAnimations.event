@@ -1,16 +1,16 @@
 ALIGN 4 
 Break1_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_break1_000_Data small_break1_000_pal 
-BYTE 2 0; SHORT 0; POIN small_break1_001_Data small_break1_001_pal 
-BYTE 2 0; SHORT 0; POIN small_break1_002_Data small_break1_002_pal 
-BYTE 3 0; SHORT 0; POIN small_break1_003_Data small_break1_003_pal 
-BYTE 3 0; SHORT 0; POIN small_break1_004_Data small_break1_004_pal 
-BYTE 3 0; SHORT 0; POIN small_break1_005_Data small_break1_005_pal 
-BYTE 3 0; SHORT 0; POIN small_break1_006_Data small_break1_006_pal 
-BYTE 3 0; SHORT 0; POIN small_break1_007_Data small_break1_007_pal 
-BYTE 3 0; SHORT 0; POIN small_break1_008_Data small_break1_008_pal 
-BYTE 2 0; SHORT 0; POIN small_break1_009_Data small_break1_009_pal 
-BYTE 2 0; SHORT 0; POIN small_break1_010_Data small_break1_010_pal 
+BYTE 2 0; SHORT 0; POIN small_break1_001_Data small_break1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_break1_002_Data small_break1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_break1_003_Data small_break1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_break1_004_Data small_break1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_break1_005_Data small_break1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_break1_006_Data small_break1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_break1_007_Data small_break1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_break1_008_Data small_break1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_break1_009_Data small_break1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_break1_010_Data small_break1_000_pal 
 WORD 0 0 0 
 
 
@@ -18,101 +18,71 @@ WORD 0 0 0
 
 ALIGN 4 
 small_break1_000_Data: 
-#incbin "dmp\small_break1_000.dmp" 
+#incbin "dmp\small_break1_000.dmp"	//HINT=BIN
  
 ALIGN 4 
 small_break1_000_pal: 
-#incbin "dmp\small_break1_000_pal.dmp" 
+#incbin "dmp\small_break1_000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_break1_001_Data: 
-#incbin "dmp\small_break1_001.dmp" 
+#incbin "dmp\small_break1_001.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_001_pal: 
-#incbin "dmp\small_break1_001_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_002_Data: 
-#incbin "dmp\small_break1_002.dmp" 
+#incbin "dmp\small_break1_002.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_002_pal: 
-#incbin "dmp\small_break1_002_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_003_Data: 
-#incbin "dmp\small_break1_003.dmp" 
+#incbin "dmp\small_break1_003.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_003_pal: 
-#incbin "dmp\small_break1_003_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_004_Data: 
-#incbin "dmp\small_break1_004.dmp" 
+#incbin "dmp\small_break1_004.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_004_pal: 
-#incbin "dmp\small_break1_004_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_005_Data: 
-#incbin "dmp\small_break1_005.dmp" 
+#incbin "dmp\small_break1_005.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_005_pal: 
-#incbin "dmp\small_break1_005_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_006_Data: 
-#incbin "dmp\small_break1_006.dmp" 
+#incbin "dmp\small_break1_006.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_006_pal: 
-#incbin "dmp\small_break1_006_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_007_Data: 
-#incbin "dmp\small_break1_007.dmp" 
+#incbin "dmp\small_break1_007.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_007_pal: 
-#incbin "dmp\small_break1_007_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_008_Data: 
-#incbin "dmp\small_break1_008.dmp" 
+#incbin "dmp\small_break1_008.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_008_pal: 
-#incbin "dmp\small_break1_008_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_009_Data: 
-#incbin "dmp\small_break1_009.dmp" 
+#incbin "dmp\small_break1_009.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_009_pal: 
-#incbin "dmp\small_break1_009_pal.dmp" 
  
  
 ALIGN 4 
 small_break1_010_Data: 
-#incbin "dmp\small_break1_010.dmp" 
+#incbin "dmp\small_break1_010.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_break1_010_pal: 
-#incbin "dmp\small_break1_010_pal.dmp" 
  
  
 
@@ -122,15 +92,15 @@ small_break1_010_pal:
 ALIGN 4 
 Flash_Anim: 
 BYTE 2 0; SHORT 0; POIN Flash00_Data Flash00_pal 
-BYTE 3 0; SHORT 0; POIN Flash01_Data Flash01_pal 
-BYTE 3 0; SHORT 0; POIN Flash02_Data Flash02_pal 
-BYTE 3 0; SHORT 0; POIN Flash03_Data Flash03_pal 
-BYTE 3 0; SHORT 0; POIN Flash04_Data Flash04_pal 
-BYTE 3 0; SHORT 0; POIN Flash05_Data Flash05_pal 
-BYTE 3 0; SHORT 0; POIN Flash06_Data Flash06_pal 
-BYTE 3 0; SHORT 0; POIN Flash07_Data Flash07_pal 
-BYTE 3 0; SHORT 0; POIN Flash08_Data Flash08_pal 
-BYTE 2 0; SHORT 0; POIN Flash09_Data Flash09_pal 
+BYTE 3 0; SHORT 0; POIN Flash01_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash02_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash03_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash04_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash05_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash06_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash07_Data Flash00_pal 
+BYTE 3 0; SHORT 0; POIN Flash08_Data Flash00_pal 
+BYTE 2 0; SHORT 0; POIN Flash09_Data Flash00_pal 
 WORD 0 0 0 
 
 
@@ -138,92 +108,65 @@ WORD 0 0 0
 
 ALIGN 4 
 Flash00_Data: 
-#incbin "dmp\Flash00.dmp" 
+#incbin "dmp\Flash00.dmp"	//HINT=BIN
  
 ALIGN 4 
 Flash00_pal: 
-#incbin "dmp\Flash00_pal.dmp" 
+#incbin "dmp\Flash00_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 Flash01_Data: 
-#incbin "dmp\Flash01.dmp" 
+#incbin "dmp\Flash01.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash01_pal: 
-#incbin "dmp\Flash01_pal.dmp" 
  
  
 ALIGN 4 
 Flash02_Data: 
-#incbin "dmp\Flash02.dmp" 
+#incbin "dmp\Flash02.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash02_pal: 
-#incbin "dmp\Flash02_pal.dmp" 
  
  
 ALIGN 4 
 Flash03_Data: 
-#incbin "dmp\Flash03.dmp" 
+#incbin "dmp\Flash03.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash03_pal: 
-#incbin "dmp\Flash03_pal.dmp" 
  
  
 ALIGN 4 
 Flash04_Data: 
-#incbin "dmp\Flash04.dmp" 
+#incbin "dmp\Flash04.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash04_pal: 
-#incbin "dmp\Flash04_pal.dmp" 
  
  
 ALIGN 4 
 Flash05_Data: 
-#incbin "dmp\Flash05.dmp" 
+#incbin "dmp\Flash05.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash05_pal: 
-#incbin "dmp\Flash05_pal.dmp" 
  
  
 ALIGN 4 
 Flash06_Data: 
-#incbin "dmp\Flash06.dmp" 
+#incbin "dmp\Flash06.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash06_pal: 
-#incbin "dmp\Flash06_pal.dmp" 
  
  
 ALIGN 4 
 Flash07_Data: 
-#incbin "dmp\Flash07.dmp" 
+#incbin "dmp\Flash07.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash07_pal: 
-#incbin "dmp\Flash07_pal.dmp" 
  
  
 ALIGN 4 
 Flash08_Data: 
-#incbin "dmp\Flash08.dmp" 
+#incbin "dmp\Flash08.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash08_pal: 
-#incbin "dmp\Flash08_pal.dmp" 
  
  
 ALIGN 4 
 Flash09_Data: 
-#incbin "dmp\Flash09.dmp" 
+#incbin "dmp\Flash09.dmp"	//HINT=BIN
  
-ALIGN 4 
-Flash09_pal: 
-#incbin "dmp\Flash09_pal.dmp" 
  
  
 
@@ -233,15 +176,15 @@ Flash09_pal:
 ALIGN 4 
 Hit1_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_hit1_000_Data small_hit1_000_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_001_Data small_hit1_001_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_002_Data small_hit1_002_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_003_Data small_hit1_003_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_004_Data small_hit1_004_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_005_Data small_hit1_005_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_006_Data small_hit1_006_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_007_Data small_hit1_007_pal 
-BYTE 3 0; SHORT 0; POIN small_hit1_008_Data small_hit1_008_pal 
-BYTE 2 0; SHORT 0; POIN small_hit1_009_Data small_hit1_009_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_001_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_002_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_003_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_004_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_005_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_006_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_007_Data small_hit1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit1_008_Data small_hit1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_hit1_009_Data small_hit1_000_pal 
 WORD 0 0 0 
 
 
@@ -249,93 +192,144 @@ WORD 0 0 0
 
 ALIGN 4 
 small_hit1_000_Data: 
-#incbin "dmp\small_hit1_000.dmp" 
+#incbin "dmp\small_hit1_000.dmp"	//HINT=BIN
  
 ALIGN 4 
 small_hit1_000_pal: 
-#incbin "dmp\small_hit1_000_pal.dmp" 
+#incbin "dmp\small_hit1_000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_hit1_001_Data: 
-#incbin "dmp\small_hit1_001.dmp" 
+#incbin "dmp\small_hit1_001.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_001_pal: 
-#incbin "dmp\small_hit1_001_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_002_Data: 
-#incbin "dmp\small_hit1_002.dmp" 
+#incbin "dmp\small_hit1_002.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_002_pal: 
-#incbin "dmp\small_hit1_002_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_003_Data: 
-#incbin "dmp\small_hit1_003.dmp" 
+#incbin "dmp\small_hit1_003.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_003_pal: 
-#incbin "dmp\small_hit1_003_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_004_Data: 
-#incbin "dmp\small_hit1_004.dmp" 
+#incbin "dmp\small_hit1_004.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_004_pal: 
-#incbin "dmp\small_hit1_004_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_005_Data: 
-#incbin "dmp\small_hit1_005.dmp" 
+#incbin "dmp\small_hit1_005.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_005_pal: 
-#incbin "dmp\small_hit1_005_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_006_Data: 
-#incbin "dmp\small_hit1_006.dmp" 
+#incbin "dmp\small_hit1_006.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_006_pal: 
-#incbin "dmp\small_hit1_006_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_007_Data: 
-#incbin "dmp\small_hit1_007.dmp" 
+#incbin "dmp\small_hit1_007.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_007_pal: 
-#incbin "dmp\small_hit1_007_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_008_Data: 
-#incbin "dmp\small_hit1_008.dmp" 
+#incbin "dmp\small_hit1_008.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_hit1_008_pal: 
-#incbin "dmp\small_hit1_008_pal.dmp" 
  
  
 ALIGN 4 
 small_hit1_009_Data: 
-#incbin "dmp\small_hit1_009.dmp" 
+#incbin "dmp\small_hit1_009.dmp"	//HINT=BIN
+ 
+ 
  
 ALIGN 4 
-small_hit1_009_pal: 
-#incbin "dmp\small_hit1_009_pal.dmp" 
+Hit2_Small_Anim: 
+BYTE 2 0; SHORT 0; POIN small_hit2_000_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_001_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_002_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_003_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_004_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_005_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_006_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_007_Data small_hit2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_hit2_008_Data small_hit2_000_pal 
+BYTE 2 0; SHORT 0; POIN small_hit2_009_Data small_hit2_000_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+small_hit2_000_Data: 
+#incbin "dmp\small_hit2_000.dmp"	//HINT=BIN
  
+ALIGN 4 
+small_hit2_000_pal: 
+#incbin "dmp\small_hit2_000_pal.dmp"	//HINT=BIN
+ 
+ 
+ALIGN 4 
+small_hit2_001_Data: 
+#incbin "dmp\small_hit2_001.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_002_Data: 
+#incbin "dmp\small_hit2_002.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_003_Data: 
+#incbin "dmp\small_hit2_003.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_004_Data: 
+#incbin "dmp\small_hit2_004.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_005_Data: 
+#incbin "dmp\small_hit2_005.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_006_Data: 
+#incbin "dmp\small_hit2_006.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_007_Data: 
+#incbin "dmp\small_hit2_007.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_008_Data: 
+#incbin "dmp\small_hit2_008.dmp"	//HINT=BIN
+ 
+ 
+ 
+ALIGN 4 
+small_hit2_009_Data: 
+#incbin "dmp\small_hit2_009.dmp"	//HINT=BIN
  
 
 
@@ -344,16 +338,16 @@ small_hit1_009_pal:
 ALIGN 4 
 Impact1_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_impact1_000_Data small_impact1_000_pal 
-BYTE 2 0; SHORT 0; POIN small_impact1_001_Data small_impact1_001_pal 
-BYTE 2 0; SHORT 0; POIN small_impact1_002_Data small_impact1_002_pal 
-BYTE 3 0; SHORT 0; POIN small_impact1_003_Data small_impact1_003_pal 
-BYTE 3 0; SHORT 0; POIN small_impact1_004_Data small_impact1_004_pal 
-BYTE 3 0; SHORT 0; POIN small_impact1_005_Data small_impact1_005_pal 
-BYTE 3 0; SHORT 0; POIN small_impact1_006_Data small_impact1_006_pal 
-BYTE 3 0; SHORT 0; POIN small_impact1_007_Data small_impact1_007_pal 
-BYTE 3 0; SHORT 0; POIN small_impact1_008_Data small_impact1_008_pal 
-BYTE 2 0; SHORT 0; POIN small_impact1_009_Data small_impact1_009_pal 
-BYTE 2 0; SHORT 0; POIN small_impact1_010_Data small_impact1_010_pal 
+BYTE 2 0; SHORT 0; POIN small_impact1_001_Data small_impact1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_impact1_002_Data small_impact1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_impact1_003_Data small_impact1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_impact1_004_Data small_impact1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_impact1_005_Data small_impact1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_impact1_006_Data small_impact1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_impact1_007_Data small_impact1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_impact1_008_Data small_impact1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_impact1_009_Data small_impact1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_impact1_010_Data small_impact1_000_pal 
 WORD 0 0 0 
 
 
@@ -361,101 +355,70 @@ WORD 0 0 0
 
 ALIGN 4 
 small_impact1_000_Data: 
-#incbin "dmp\small_impact1_000.dmp" 
+#incbin "dmp\small_impact1_000.dmp"	//HINT=BIN
  
 ALIGN 4 
 small_impact1_000_pal: 
-#incbin "dmp\small_impact1_000_pal.dmp" 
+#incbin "dmp\small_impact1_000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_impact1_001_Data: 
-#incbin "dmp\small_impact1_001.dmp" 
+#incbin "dmp\small_impact1_001.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_001_pal: 
-#incbin "dmp\small_impact1_001_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_002_Data: 
-#incbin "dmp\small_impact1_002.dmp" 
- 
-ALIGN 4 
-small_impact1_002_pal: 
-#incbin "dmp\small_impact1_002_pal.dmp" 
+#incbin "dmp\small_impact1_002.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_impact1_003_Data: 
-#incbin "dmp\small_impact1_003.dmp" 
+#incbin "dmp\small_impact1_003.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_003_pal: 
-#incbin "dmp\small_impact1_003_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_004_Data: 
-#incbin "dmp\small_impact1_004.dmp" 
+#incbin "dmp\small_impact1_004.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_004_pal: 
-#incbin "dmp\small_impact1_004_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_005_Data: 
-#incbin "dmp\small_impact1_005.dmp" 
+#incbin "dmp\small_impact1_005.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_005_pal: 
-#incbin "dmp\small_impact1_005_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_006_Data: 
-#incbin "dmp\small_impact1_006.dmp" 
+#incbin "dmp\small_impact1_006.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_006_pal: 
-#incbin "dmp\small_impact1_006_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_007_Data: 
-#incbin "dmp\small_impact1_007.dmp" 
+#incbin "dmp\small_impact1_007.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_007_pal: 
-#incbin "dmp\small_impact1_007_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_008_Data: 
-#incbin "dmp\small_impact1_008.dmp" 
+#incbin "dmp\small_impact1_008.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_008_pal: 
-#incbin "dmp\small_impact1_008_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_009_Data: 
-#incbin "dmp\small_impact1_009.dmp" 
+#incbin "dmp\small_impact1_009.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_009_pal: 
-#incbin "dmp\small_impact1_009_pal.dmp" 
  
  
 ALIGN 4 
 small_impact1_010_Data: 
-#incbin "dmp\small_impact1_010.dmp" 
+#incbin "dmp\small_impact1_010.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_impact1_010_pal: 
-#incbin "dmp\small_impact1_010_pal.dmp" 
  
  
 
@@ -465,15 +428,15 @@ small_impact1_010_pal:
 ALIGN 4 
 Shards1_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_shards1_000_Data small_shards1_000_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_001_Data small_shards1_001_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_002_Data small_shards1_002_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_003_Data small_shards1_003_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_004_Data small_shards1_004_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_005_Data small_shards1_005_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_006_Data small_shards1_006_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_007_Data small_shards1_007_pal 
-BYTE 3 0; SHORT 0; POIN small_shards1_008_Data small_shards1_008_pal 
-BYTE 2 0; SHORT 0; POIN small_shards1_009_Data small_shards1_009_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_001_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_002_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_003_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_004_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_005_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_006_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_007_Data small_shards1_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards1_008_Data small_shards1_000_pal 
+BYTE 2 0; SHORT 0; POIN small_shards1_009_Data small_shards1_000_pal 
 WORD 0 0 0 
 
 
@@ -481,92 +444,64 @@ WORD 0 0 0
 
 ALIGN 4 
 small_shards1_000_Data: 
-#incbin "dmp\small_shards1_000.dmp" 
+#incbin "dmp\small_shards1_000.dmp"	//HINT=BIN
  
 ALIGN 4 
 small_shards1_000_pal: 
-#incbin "dmp\small_shards1_000_pal.dmp" 
+#incbin "dmp\small_shards1_000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_shards1_001_Data: 
-#incbin "dmp\small_shards1_001.dmp" 
- 
-ALIGN 4 
-small_shards1_001_pal: 
-#incbin "dmp\small_shards1_001_pal.dmp" 
+#incbin "dmp\small_shards1_001.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_shards1_002_Data: 
-#incbin "dmp\small_shards1_002.dmp" 
+#incbin "dmp\small_shards1_002.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_002_pal: 
-#incbin "dmp\small_shards1_002_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_003_Data: 
-#incbin "dmp\small_shards1_003.dmp" 
+#incbin "dmp\small_shards1_003.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_003_pal: 
-#incbin "dmp\small_shards1_003_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_004_Data: 
-#incbin "dmp\small_shards1_004.dmp" 
+#incbin "dmp\small_shards1_004.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_004_pal: 
-#incbin "dmp\small_shards1_004_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_005_Data: 
-#incbin "dmp\small_shards1_005.dmp" 
+#incbin "dmp\small_shards1_005.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_005_pal: 
-#incbin "dmp\small_shards1_005_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_006_Data: 
-#incbin "dmp\small_shards1_006.dmp" 
+#incbin "dmp\small_shards1_006.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_006_pal: 
-#incbin "dmp\small_shards1_006_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_007_Data: 
-#incbin "dmp\small_shards1_007.dmp" 
+#incbin "dmp\small_shards1_007.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_007_pal: 
-#incbin "dmp\small_shards1_007_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_008_Data: 
-#incbin "dmp\small_shards1_008.dmp" 
+#incbin "dmp\small_shards1_008.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_008_pal: 
-#incbin "dmp\small_shards1_008_pal.dmp" 
  
  
 ALIGN 4 
 small_shards1_009_Data: 
-#incbin "dmp\small_shards1_009.dmp" 
+#incbin "dmp\small_shards1_009.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards1_009_pal: 
-#incbin "dmp\small_shards1_009_pal.dmp" 
  
  
 
@@ -576,15 +511,15 @@ small_shards1_009_pal:
 ALIGN 4 
 Shards2_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_shards2_000_Data small_shards2_000_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_001_Data small_shards2_001_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_002_Data small_shards2_002_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_003_Data small_shards2_003_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_004_Data small_shards2_004_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_005_Data small_shards2_005_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_006_Data small_shards2_006_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_007_Data small_shards2_007_pal 
-BYTE 3 0; SHORT 0; POIN small_shards2_008_Data small_shards2_008_pal 
-BYTE 2 0; SHORT 0; POIN small_shards2_009_Data small_shards2_009_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_001_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_002_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_003_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_004_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_005_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_006_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_007_Data small_shards2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_shards2_008_Data small_shards2_000_pal 
+BYTE 2 0; SHORT 0; POIN small_shards2_009_Data small_shards2_000_pal 
 WORD 0 0 0 
 
 
@@ -592,92 +527,65 @@ WORD 0 0 0
 
 ALIGN 4 
 small_shards2_000_Data: 
-#incbin "dmp\small_shards2_000.dmp" 
+#incbin "dmp\small_shards2_000.dmp"	//HINT=BIN
  
 ALIGN 4 
 small_shards2_000_pal: 
-#incbin "dmp\small_shards2_000_pal.dmp" 
+#incbin "dmp\small_shards2_000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_shards2_001_Data: 
-#incbin "dmp\small_shards2_001.dmp" 
+#incbin "dmp\small_shards2_001.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_001_pal: 
-#incbin "dmp\small_shards2_001_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_002_Data: 
-#incbin "dmp\small_shards2_002.dmp" 
+#incbin "dmp\small_shards2_002.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_002_pal: 
-#incbin "dmp\small_shards2_002_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_003_Data: 
-#incbin "dmp\small_shards2_003.dmp" 
+#incbin "dmp\small_shards2_003.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_003_pal: 
-#incbin "dmp\small_shards2_003_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_004_Data: 
-#incbin "dmp\small_shards2_004.dmp" 
+#incbin "dmp\small_shards2_004.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_004_pal: 
-#incbin "dmp\small_shards2_004_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_005_Data: 
-#incbin "dmp\small_shards2_005.dmp" 
+#incbin "dmp\small_shards2_005.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_005_pal: 
-#incbin "dmp\small_shards2_005_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_006_Data: 
-#incbin "dmp\small_shards2_006.dmp" 
+#incbin "dmp\small_shards2_006.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_006_pal: 
-#incbin "dmp\small_shards2_006_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_007_Data: 
-#incbin "dmp\small_shards2_007.dmp" 
+#incbin "dmp\small_shards2_007.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_007_pal: 
-#incbin "dmp\small_shards2_007_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_008_Data: 
-#incbin "dmp\small_shards2_008.dmp" 
+#incbin "dmp\small_shards2_008.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_008_pal: 
-#incbin "dmp\small_shards2_008_pal.dmp" 
  
  
 ALIGN 4 
 small_shards2_009_Data: 
-#incbin "dmp\small_shards2_009.dmp" 
+#incbin "dmp\small_shards2_009.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_shards2_009_pal: 
-#incbin "dmp\small_shards2_009_pal.dmp" 
  
  
 
@@ -687,11 +595,11 @@ small_shards2_009_pal:
 ALIGN 4 
 Slashing_A_Anim: 
 BYTE 4 0; SHORT 0; POIN Slashing000_Data Slashing000_pal 
-BYTE 5 0; SHORT 0; POIN Slashing001_Data Slashing001_pal 
-BYTE 5 0; SHORT 0; POIN Slashing002_Data Slashing002_pal 
-BYTE 5 0; SHORT 0; POIN Slashing003_Data Slashing003_pal 
-BYTE 5 0; SHORT 0; POIN Slashing004_Data Slashing004_pal 
-BYTE 4 0; SHORT 0; POIN Slashing005_Data Slashing005_pal 
+BYTE 5 0; SHORT 0; POIN Slashing001_Data Slashing000_pal 
+BYTE 5 0; SHORT 0; POIN Slashing002_Data Slashing000_pal 
+BYTE 5 0; SHORT 0; POIN Slashing003_Data Slashing000_pal 
+BYTE 5 0; SHORT 0; POIN Slashing004_Data Slashing000_pal 
+BYTE 4 0; SHORT 0; POIN Slashing005_Data Slashing000_pal 
 WORD 0 0 0 
 
 
@@ -699,56 +607,39 @@ WORD 0 0 0
 
 ALIGN 4 
 Slashing000_Data: 
-#incbin "dmp\Slashing000.dmp" 
+#incbin "dmp\Slashing000.dmp"	//HINT=BIN
  
 ALIGN 4 
 Slashing000_pal: 
-#incbin "dmp\Slashing000_pal.dmp" 
+#incbin "dmp\Slashing000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 Slashing001_Data: 
-#incbin "dmp\Slashing001.dmp" 
+#incbin "dmp\Slashing001.dmp"	//HINT=BIN
  
-ALIGN 4 
-Slashing001_pal: 
-#incbin "dmp\Slashing001_pal.dmp" 
  
  
 ALIGN 4 
 Slashing002_Data: 
-#incbin "dmp\Slashing002.dmp" 
+#incbin "dmp\Slashing002.dmp"	//HINT=BIN
  
-ALIGN 4 
-Slashing002_pal: 
-#incbin "dmp\Slashing002_pal.dmp" 
  
  
 ALIGN 4 
 Slashing003_Data: 
-#incbin "dmp\Slashing003.dmp" 
- 
-ALIGN 4 
-Slashing003_pal: 
-#incbin "dmp\Slashing003_pal.dmp" 
+#incbin "dmp\Slashing003.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 Slashing004_Data: 
-#incbin "dmp\Slashing004.dmp" 
- 
-ALIGN 4 
-Slashing004_pal: 
-#incbin "dmp\Slashing004_pal.dmp" 
+#incbin "dmp\Slashing004.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 Slashing005_Data: 
-#incbin "dmp\Slashing005.dmp" 
+#incbin "dmp\Slashing005.dmp"	//HINT=BIN
  
-ALIGN 4 
-Slashing005_pal: 
-#incbin "dmp\Slashing005_pal.dmp" 
  
  
 
@@ -758,15 +649,15 @@ Slashing005_pal:
 ALIGN 4 
 Splash2_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_splash2_000_Data small_splash2_000_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_001_Data small_splash2_001_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_002_Data small_splash2_002_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_003_Data small_splash2_003_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_004_Data small_splash2_004_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_005_Data small_splash2_005_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_006_Data small_splash2_006_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_007_Data small_splash2_007_pal 
-BYTE 3 0; SHORT 0; POIN small_splash2_008_Data small_splash2_008_pal 
-BYTE 2 0; SHORT 0; POIN small_splash2_009_Data small_splash2_009_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_001_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_002_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_003_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_004_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_005_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_006_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_007_Data small_splash2_000_pal 
+BYTE 3 0; SHORT 0; POIN small_splash2_008_Data small_splash2_000_pal 
+BYTE 2 0; SHORT 0; POIN small_splash2_009_Data small_splash2_000_pal 
 WORD 0 0 0 
 
 
@@ -774,91 +665,64 @@ WORD 0 0 0
 
 ALIGN 4 
 small_splash2_000_Data: 
-#incbin "dmp\small_splash2_000.dmp" 
+#incbin "dmp\small_splash2_000.dmp"	//HINT=BIN
  
 ALIGN 4 
 small_splash2_000_pal: 
-#incbin "dmp\small_splash2_000_pal.dmp" 
+#incbin "dmp\small_splash2_000_pal.dmp"	//HINT=BIN
  
  
 ALIGN 4 
 small_splash2_001_Data: 
-#incbin "dmp\small_splash2_001.dmp" 
+#incbin "dmp\small_splash2_001.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_001_pal: 
-#incbin "dmp\small_splash2_001_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_002_Data: 
-#incbin "dmp\small_splash2_002.dmp" 
+#incbin "dmp\small_splash2_002.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_002_pal: 
-#incbin "dmp\small_splash2_002_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_003_Data: 
-#incbin "dmp\small_splash2_003.dmp" 
+#incbin "dmp\small_splash2_003.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_003_pal: 
-#incbin "dmp\small_splash2_003_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_004_Data: 
-#incbin "dmp\small_splash2_004.dmp" 
+#incbin "dmp\small_splash2_004.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_004_pal: 
-#incbin "dmp\small_splash2_004_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_005_Data: 
-#incbin "dmp\small_splash2_005.dmp" 
+#incbin "dmp\small_splash2_005.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_005_pal: 
-#incbin "dmp\small_splash2_005_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_006_Data: 
-#incbin "dmp\small_splash2_006.dmp" 
+#incbin "dmp\small_splash2_006.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_006_pal: 
-#incbin "dmp\small_splash2_006_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_007_Data: 
-#incbin "dmp\small_splash2_007.dmp" 
+#incbin "dmp\small_splash2_007.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_007_pal: 
-#incbin "dmp\small_splash2_007_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_008_Data: 
-#incbin "dmp\small_splash2_008.dmp" 
+#incbin "dmp\small_splash2_008.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_008_pal: 
-#incbin "dmp\small_splash2_008_pal.dmp" 
  
  
 ALIGN 4 
 small_splash2_009_Data: 
-#incbin "dmp\small_splash2_009.dmp" 
+#incbin "dmp\small_splash2_009.dmp"	//HINT=BIN
  
-ALIGN 4 
-small_splash2_009_pal: 
-#incbin "dmp\small_splash2_009_pal.dmp" 
  
  
