@@ -87,13 +87,6 @@ PUSH
   
 POP
 
-MaybeRefresh:
-//ASMC UnsetAllDR|1
-ASMC SetNearbyDR|1
-ASMC RefreshUnitASMC|1 
-NoFade 
-ENDA 
-
 
 ALIGN 4
 EndDR:

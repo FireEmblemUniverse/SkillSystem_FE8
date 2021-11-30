@@ -578,7 +578,11 @@ ALIGN 4
 RefreshIfNotInDanger:
 // for some reason if you walk your max range it doesn't auto select your active unit 
 // but it does if you walk less than that ??????? 
+NoFade 
+ENDA 
 
+
+UnusedEvent:
 CHECK_EVENTID TrainerBattleActiveFlag 
 BNE 62 rC r0 // if flag is ON,  skip everything 
 

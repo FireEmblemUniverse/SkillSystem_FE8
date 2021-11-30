@@ -132,7 +132,10 @@ BerryTree(19,5,5)
 
 //Flower(38,9)
 
-
+// Impact1 can be Dark if used 
+// SmallShards_1 can be bug i guess 
+// ghost ? 
+// Flying, Bug, Steel 
 
 ENDTRAP
 ALIGN 4
@@ -146,10 +149,10 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(10,5,17,11)) //w patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,15,21,22)) //n patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(10,12,17,17)) //w patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(13,23,21,33)) //s patch 
 
 
 
