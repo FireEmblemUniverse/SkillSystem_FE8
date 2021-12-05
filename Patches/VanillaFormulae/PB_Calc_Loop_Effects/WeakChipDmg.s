@@ -57,13 +57,13 @@ AttackerInR3:
 mov r3, r4 @ Attacker 
 
 CheckHigherStrOrMag:
-mov r4, r3 @ atkr or dfdr 
+@r3 as atkr or dfdr 
 
 
 mov r1, #0x14 @ Str 
-ldrb r0, [r4, r1] 
+ldrb r0, [r3, r1] 
 mov r1, #0x3A 
-ldrb r1, [r4, r1] @ Mag 
+ldrb r1, [r3, r1] @ Mag 
 cmp r0, r1  
 bgt StrHigher 
 @ Mag was higher
@@ -106,7 +106,7 @@ mov r0, #127 @ Max dmg
 
 DontCap:
 mov r1, #0x5A 
-strh r0, [r4, r1]	@ store back in 
+strh r0, [r3, r1]	@ store back in 
 
 
 GoBack:

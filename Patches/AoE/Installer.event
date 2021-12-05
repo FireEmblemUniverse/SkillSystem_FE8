@@ -46,7 +46,7 @@ POP
 #endif // FEBUILDER_EXTRA_ORG
 
 #include "Internals.event"
-
+#define MenuCommandID(name,description,colour,ID,usability,effect, unknown1, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour ID; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"
 
 // Add this to your Unit Menu 
 // MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)

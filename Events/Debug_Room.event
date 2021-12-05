@@ -221,8 +221,8 @@ Write_Byte(4, GaryStarterClass)
 Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(3, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(17, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(35, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(13, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 PokecenterCh
 
 //MNC2 ViridianCh 
@@ -240,7 +240,7 @@ Write_Byte(17, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 Route9WCh
 //MNC2 SSAnneCh
 //MNC2 CinnabarCh
-MNC2 Route6Ch
+MNC2 Route4ECh
 //MNC2 SSAnneCh 
 //MNC2 ViridianForestSCh
 

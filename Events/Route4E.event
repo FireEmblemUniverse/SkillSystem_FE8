@@ -98,8 +98,9 @@ CoinsTrap(29,18,ChapterID*2,450)
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
-
-//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+CutBush(10,5)
+RedPokeballTrap(9,5, ChapterID*2, MoonStone) // Requires Cut 
+CutBush(9,6)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 

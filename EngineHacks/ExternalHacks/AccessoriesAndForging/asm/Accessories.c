@@ -79,14 +79,30 @@ int EquipAccessoryEffect(void *CurrentMenuProc) {
 		MenuCallHelpBox(CurrentMenuProc, CannotEquipAccessoryText);
 		return 0x8;
 	}
-	for(int i = 0; i < 5; i++) {
+	for(int i = 0; i < 4; i++) {
 		int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[i]) & IA_ACCESSORY;
 		if (isItemAnAccessory) { 
-			if(ITEM_EQUIPPED(gActiveUnit->items[i])) gActiveUnit->items[i] &= 0x7FFF;
+			if(ITEM_EQUIPPED(gActiveUnit->items[i])) { // Unequip accessories 
+			gActiveUnit->items[i] &= 0x7FFF; // Unequip current accessory 
+			
+			
+
+			}
 		}
 	}
 	//int isItemAnAccessory = GetItemAttributes(gActiveUnit->items[gActionData.itemSlotIndex]) & IA_ACCESSORY;
 	gActiveUnit->items[gActionData.itemSlotIndex] |= (1 << 15);
+	
+	int newItemZero = gActiveUnit->items[gActionData.itemSlotIndex];
+	// find which slot is free? 
+	// Push everything else down 
+	if (gActionData.itemSlotIndex == 4) gActiveUnit->items[4] = gActiveUnit->items[3];
+	if (gActionData.itemSlotIndex >= 3) gActiveUnit->items[3] = gActiveUnit->items[2];
+	if (gActionData.itemSlotIndex >= 2) gActiveUnit->items[2] = gActiveUnit->items[1];
+	if (gActionData.itemSlotIndex >= 1) gActiveUnit->items[1] = gActiveUnit->items[0];
+	gActiveUnit->items[0] = newItemZero;
+			
+
 	return CancelMenu(CurrentMenuProc);
 }
 

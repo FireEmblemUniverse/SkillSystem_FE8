@@ -5,6 +5,67 @@
 
 
 ALIGN 4 
+claw_Anim: 
+BYTE 3 0; SHORT 0; POIN claw0000_Data claw0000_pal 
+BYTE 3 0; SHORT 0; POIN claw0001_Data claw0001_pal 
+BYTE 3 0; SHORT 0; POIN claw0002_Data claw0002_pal 
+BYTE 3 0; SHORT 0; POIN claw0003_Data claw0003_pal 
+BYTE 3 0; SHORT 0; POIN claw0004_Data claw0004_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+claw0000_Data: 
+#incbin "dmp\claw0000.dmp" 
+ 
+ALIGN 4 
+claw0000_pal: 
+#incbin "dmp\claw0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+claw0001_Data: 
+#incbin "dmp\claw0001.dmp" 
+ 
+ALIGN 4 
+claw0001_pal: 
+#incbin "dmp\claw0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+claw0002_Data: 
+#incbin "dmp\claw0002.dmp" 
+ 
+ALIGN 4 
+claw0002_pal: 
+#incbin "dmp\claw0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+claw0003_Data: 
+#incbin "dmp\claw0003.dmp" 
+ 
+ALIGN 4 
+claw0003_pal: 
+#incbin "dmp\claw0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+claw0004_Data: 
+#incbin "dmp\claw0004.dmp" 
+ 
+ALIGN 4 
+claw0004_pal: 
+#incbin "dmp\claw0004_pal.dmp" 
+ 
+ 
+
+
+
+
+ALIGN 4 
 fire_plume_Anim: 
 BYTE 3 0; SHORT 0; POIN fire_plume0000_Data fire_plume0000_pal 
 BYTE 3 0; SHORT 0; POIN fire_plume0001_Data fire_plume0001_pal 
@@ -170,5 +231,238 @@ gust0009_Data:
 ALIGN 4 
 gust0009_pal: 
 #incbin "dmp\gust0009_pal.dmp" 
+ 
+ 
+
+
+
+
+ALIGN 4 
+poison_small_Anim: 
+BYTE 3 0; SHORT 0; POIN poison_small0000_Data poison_small0000_pal 
+BYTE 3 0; SHORT 0; POIN poison_small0001_Data poison_small0001_pal 
+BYTE 3 0; SHORT 0; POIN poison_small0002_Data poison_small0002_pal 
+BYTE 3 0; SHORT 0; POIN poison_small0003_Data poison_small0003_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+poison_small0000_Data: 
+#incbin "dmp\poison_small0000.dmp" 
+ 
+ALIGN 4 
+poison_small0000_pal: 
+#incbin "dmp\poison_small0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+poison_small0001_Data: 
+#incbin "dmp\poison_small0001.dmp" 
+ 
+ALIGN 4 
+poison_small0001_pal: 
+#incbin "dmp\poison_small0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+poison_small0002_Data: 
+#incbin "dmp\poison_small0002.dmp" 
+ 
+ALIGN 4 
+poison_small0002_pal: 
+#incbin "dmp\poison_small0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+poison_small0003_Data: 
+#incbin "dmp\poison_small0003.dmp" 
+ 
+ALIGN 4 
+poison_small0003_pal: 
+#incbin "dmp\poison_small0003_pal.dmp" 
+ 
+ 
+
+
+
+
+ALIGN 4 
+powder_Anim: 
+BYTE 3 0; SHORT 0; POIN powder0000_Data powder0000_pal 
+BYTE 3 0; SHORT 0; POIN powder0001_Data powder0001_pal 
+BYTE 3 0; SHORT 0; POIN powder0002_Data powder0002_pal 
+BYTE 3 0; SHORT 0; POIN powder0003_Data powder0003_pal 
+BYTE 3 0; SHORT 0; POIN powder0004_Data powder0004_pal 
+BYTE 3 0; SHORT 0; POIN powder0005_Data powder0005_pal 
+BYTE 3 0; SHORT 0; POIN powder0006_Data powder0006_pal 
+BYTE 3 0; SHORT 0; POIN powder0007_Data powder0007_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+powder0000_Data: 
+#incbin "dmp\powder0000.dmp" 
+ 
+ALIGN 4 
+powder0000_pal: 
+#incbin "dmp\powder0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0001_Data: 
+#incbin "dmp\powder0001.dmp" 
+ 
+ALIGN 4 
+powder0001_pal: 
+#incbin "dmp\powder0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0002_Data: 
+#incbin "dmp\powder0002.dmp" 
+ 
+ALIGN 4 
+powder0002_pal: 
+#incbin "dmp\powder0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0003_Data: 
+#incbin "dmp\powder0003.dmp" 
+ 
+ALIGN 4 
+powder0003_pal: 
+#incbin "dmp\powder0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0004_Data: 
+#incbin "dmp\powder0004.dmp" 
+ 
+ALIGN 4 
+powder0004_pal: 
+#incbin "dmp\powder0004_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0005_Data: 
+#incbin "dmp\powder0005.dmp" 
+ 
+ALIGN 4 
+powder0005_pal: 
+#incbin "dmp\powder0005_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0006_Data: 
+#incbin "dmp\powder0006.dmp" 
+ 
+ALIGN 4 
+powder0006_pal: 
+#incbin "dmp\powder0006_pal.dmp" 
+ 
+ 
+ALIGN 4 
+powder0007_Data: 
+#incbin "dmp\powder0007.dmp" 
+ 
+ALIGN 4 
+powder0007_pal: 
+#incbin "dmp\powder0007_pal.dmp" 
+ 
+ 
+
+
+
+
+ALIGN 4 
+water_small_Anim: 
+BYTE 3 0; SHORT 0; POIN water_small0000_Data water_small0000_pal 
+BYTE 3 0; SHORT 0; POIN water_small0001_Data water_small0001_pal 
+BYTE 3 0; SHORT 0; POIN water_small0002_Data water_small0002_pal 
+BYTE 3 0; SHORT 0; POIN water_small0003_Data water_small0003_pal 
+BYTE 3 0; SHORT 0; POIN water_small0004_Data water_small0004_pal 
+BYTE 3 0; SHORT 0; POIN water_small0005_Data water_small0005_pal 
+BYTE 3 0; SHORT 0; POIN water_small0006_Data water_small0006_pal 
+BYTE 3 0; SHORT 0; POIN water_small0007_Data water_small0007_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+water_small0000_Data: 
+#incbin "dmp\water_small0000.dmp" 
+ 
+ALIGN 4 
+water_small0000_pal: 
+#incbin "dmp\water_small0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0001_Data: 
+#incbin "dmp\water_small0001.dmp" 
+ 
+ALIGN 4 
+water_small0001_pal: 
+#incbin "dmp\water_small0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0002_Data: 
+#incbin "dmp\water_small0002.dmp" 
+ 
+ALIGN 4 
+water_small0002_pal: 
+#incbin "dmp\water_small0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0003_Data: 
+#incbin "dmp\water_small0003.dmp" 
+ 
+ALIGN 4 
+water_small0003_pal: 
+#incbin "dmp\water_small0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0004_Data: 
+#incbin "dmp\water_small0004.dmp" 
+ 
+ALIGN 4 
+water_small0004_pal: 
+#incbin "dmp\water_small0004_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0005_Data: 
+#incbin "dmp\water_small0005.dmp" 
+ 
+ALIGN 4 
+water_small0005_pal: 
+#incbin "dmp\water_small0005_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0006_Data: 
+#incbin "dmp\water_small0006.dmp" 
+ 
+ALIGN 4 
+water_small0006_pal: 
+#incbin "dmp\water_small0006_pal.dmp" 
+ 
+ 
+ALIGN 4 
+water_small0007_Data: 
+#incbin "dmp\water_small0007.dmp" 
+ 
+ALIGN 4 
+water_small0007_pal: 
+#incbin "dmp\water_small0007_pal.dmp" 
  
  
