@@ -11,8 +11,9 @@ AoE_SpecificEffect:
 push {lr}
 ldr r2, =AoE_RamAddress @ pointer 
 ldr r2, [r2] 
-ldr r3, =AoE_SpecificEffectIndex
-ldrb r3, [r3] 
+
+ldr  r0, [r1, #0x30] @get current menu struct
+ldrb r3, [r0, #0x9]  @Menu->MenuID AoETableID
 strb r3, [r2]
 
 
@@ -41,6 +42,3 @@ bx r1
 
 .ltorg
 .align 4
-
-AoE_SpecificEffectIndex:
-@WORD ID

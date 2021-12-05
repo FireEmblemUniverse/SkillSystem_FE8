@@ -726,10 +726,14 @@ bl AoE_GetTableEntryPointer
 mov r4, r0 
 
 
+ldrb r0, [r4, #Animation_IDByte] 
+ldr r3, =MemorySlot 
+str r0, [r3, #4*1] 
 
-
-@blh 0x8015e0c @EnsureCameraOntoPosition
-
+@ldr r0, =GenericASMC_DrawEvent
+@mov r1, #1
+@blh EventEngine
+@b NoSound
 
 ldr r0, =Call_AoE_ExternalAnimationEvent
 mov r1, #1 

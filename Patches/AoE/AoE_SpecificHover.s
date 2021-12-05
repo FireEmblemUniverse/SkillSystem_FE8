@@ -13,11 +13,11 @@
 AoE_HoverEffect:
 push {r4, lr} 
 
-@b Exit 
+ldr  r0, [r1, #0x30] @get current menu struct
+ldrb r4, [r0, #0x9]  @Menu->MenuID AoETableID
 bl AoE_ClearMoveMap
 
-ldr r0, =AoE_SpecificEffectIndex 
-ldrb r0, [r0]
+mov r0, r4
 ldr r1, =AoE_EntrySize 
 ldrb r1, [r1]
 mul r1, r0 @ Offset for the entry we want 
@@ -62,7 +62,4 @@ bx r0
 
 .align 4
 .ltorg 
-
-AoE_SpecificEffectIndex:
-@ WORD AoE_Index
 
