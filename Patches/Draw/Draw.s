@@ -135,7 +135,7 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 
 
 
-@ AoE test 
+@@ AoE test 
 @ldr r0, =0x202E4E0 @ Movement map	{U}
 @ldr r0, [r0] 
 @mov r1, #0xFF
@@ -737,9 +737,11 @@ ldr r2, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
 ldrh r2, [r2, #2] 
 sub r1, r2
 
-lsl r0, #24 @ only 9 bits used for coords 
-lsr r0, #24 
-lsl r1, #24 
+
+
+lsl r0, #23 @ only 9 bits used for coords 
+lsr r0, #23 
+lsl r1, #24 @ 8 bits here for some reason (?????????????????) 
 lsr r1, #24 
 
 @sub sp, #8 

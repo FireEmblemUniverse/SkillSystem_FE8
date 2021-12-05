@@ -113,22 +113,29 @@ SHORT 0 //Bgm/Sfx
 SHORT 1 // so we don't hide data in febuilder early 
 
 POIN 0 //Entry 1 
-POIN DebugCommandEvent
+POIN AoE_DrawASMCEvent
 SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 2
-POIN DebugCommandEvent
+POIN AoE_DrawASMCEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 //0x807AD09 // Entry 3 - summon gfx 
-POIN DebugCommandEvent
+POIN AoE_DrawASMCEvent
 SHORT 0 
 SHORT 1 
 
 WORD 0 0 0 // INDEXED, so no terminator actually needed 
 
+
+
+AoE_DrawASMCEvent:
+SVAL 1 1 // Animation ID 
+ASMC ASMC_Draw
+NoFade 
+ENDA 
 
 
 AoE_CameraEvent:

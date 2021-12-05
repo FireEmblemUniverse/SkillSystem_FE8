@@ -75,7 +75,7 @@ POP
 #define rock_ID 30
 #define water_ID 31
 #define powder_ID 32
-#define flying_ID 	CircleAnimID
+#define flying_ID 	33
 #define bug_ID Shards1AnimID
 #define dark_ID Impact1AnimID
 #define steel_ID Shards1AnimID
@@ -175,21 +175,25 @@ AnimTable_Entry(debuff_ID          ,       debuff_Anim         )
 AnimTable_Entry(dragon_ID          ,       dragon_Anim         )
 AnimTable_Entry(electric_ID        ,       electric_Anim       )
 AnimTable_Entry(fighting_ID        ,       fighting_Anim       )
-AnimTable_Entry(fire_ID             ,        fire_Anim         )
+//AnimTable_Entry(fire_ID             ,        fire_Anim         )
+AnimTable_Entry(fire_ID             ,        fire_plume_Anim         )
+
 AnimTable_Entry(ghost_ID            ,        ghost_Anim        )
 AnimTable_Entry(grass_ID            ,        grass_Anim        )
 AnimTable_Entry(ground_ID          ,       ground_Anim         )
 AnimTable_Entry(healing_ID         ,       healing_Anim        )
 AnimTable_Entry(ice_ID              ,        ice_Anim          )
 AnimTable_Entry(normal_ID          ,       normal_Anim         )
-AnimTable_Entry(poison_ID          ,       poison_Anim         )
+//AnimTable_Entry(poison_ID          ,       poison_Anim         )
 AnimTable_Entry(psychic_ID         ,       psychic_Anim        )
 AnimTable_Entry(rock_ID             ,        rock_Anim         )
-AnimTable_Entry(water_ID            ,        water_Anim        )
+
+
+//AnimTable_Entry(water_ID            ,        water_Anim        )
 AnimTable_Entry(powder_ID          ,       powder_Anim         )
 
-//AnimTable_Entry(flying_ID          ,       flying_Anim         ) // These 3 use non-FRLG anims 
-//AnimTable_Entry(bug_ID              ,        bug_Anim          )
+AnimTable_Entry(flying_ID          ,       gust_Anim         ) 
+//AnimTable_Entry(bug_ID              ,        bug_Anim          ) // These 2 use non-FRLG anims 
 //AnimTable_Entry(dark_ID             ,       dark_Anim          )
 
 

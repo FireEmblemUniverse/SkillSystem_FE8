@@ -952,7 +952,7 @@ blh 0x8019b18 @UpdateGameTileGfx
 @blh Font_ResetAllocation 
 @blh EndAllMenus
 @blh 0x801a1f4 @RefreshEntityMaps
-@blh  0x08019c3c   @DrawTileGraphics
+blh  0x08019c3c   @DrawTileGraphics
 
 @blh 0x80271a0 @SMS_UpdateFromGameData
 
