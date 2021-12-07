@@ -1,4 +1,4 @@
-NAME=AoE 広範囲のエリア攻撃(AoEMenuCommandsList)
+NAME=AoE 範囲技 広範囲のエリア攻撃(AoEMenuCommandsList)
 NAME.en=AoE Area of Effect(AoEMenuCommandsList)
 NAME.zh=AoE Area of Effect(AoEMenuCommandsList)
 TYPE=STRUCT
@@ -23,15 +23,15 @@ DATACOUNT=$GREP36 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x
 LISTNAME=$W4:TEXT
 
 //データを定義します
-P0=Not Use(JP ONLY)
+P0:CSTRING=Not Use(JP ONLY)
 W4:TEXT=NameText
 W6:TEXT=HelpText
 B8:$COMBO combo.MenuColor.txt=Color
-B9=AoE_TableID
+B9:$COMBO combo.AoE_TableID.txt=AoE_TableID
 W10=00
-P12:ASM=Usability
-P16:ASM=Draw
-P20:ASM=Effect
-P24:ASM=Hover
-P28:ASM=Select
-P32:ASM=Cancel
+P12:ASM=Usability(Do NOT Change)
+P16:ASM=Draw(Do NOT Change)
+P20:ASM=Effect(Do NOT Change)
+P24:ASM=Hover(Do NOT Change)
+P28:ASM=Select(Do NOT Change)
+P32:ASM=Cancel(Do NOT Change)

@@ -39,7 +39,8 @@ bl AoE_RangeSetup_Hover @ also clears range map
 @DisplayColour:
 
 @mov r0, #2
-@blh 0x801da98 @DisplayMoveRangeGraphics
+@blh 0x801da98 @DisplayMoveRangeGraphics	@{U}
+@@blh 0x0801D6FC @DisplayMoveRangeGraphics	@{J}
 
 
 mov r2, r4 
@@ -52,7 +53,8 @@ ldrb r1, [r3, #0x11] @ YY
 mov r3, #0 @ Rotation 
 bl AoE_DisplayDamageArea
 @mov r0, #42 
-@blh 0x801da98 @DisplayMoveRangeGraphics
+@blh 0x801da98 @DisplayMoveRangeGraphics	@{U}
+@@blh 0x0801D6FC @DisplayMoveRangeGraphics	@{J}
 
 Exit:
 

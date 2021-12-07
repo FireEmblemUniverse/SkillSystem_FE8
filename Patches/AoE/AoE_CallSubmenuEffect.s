@@ -42,7 +42,8 @@ bx r1
 
 
 
-.equ StartMenuAdjusted,0x804EB98
+.equ StartMenuAdjusted,0x804EB98	@{U}
+@.equ StartMenuAdjusted,0x804F924	@{J}
 .global AoE_Effect
 .type AoE_Effect, %function
 

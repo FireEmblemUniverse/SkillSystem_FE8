@@ -1,7 +1,11 @@
-.equ GetTrapAt, 0x802E1F0
-.equ gMapUnit, 0x202E4D8
-.equ MoveCostClear, 0x880BB96
-.equ gMapTerrain, 0x202E4DC
+.equ GetTrapAt, 0x802E1F0	@{U}
+@.equ GetTrapAt, 0x0802E128	@{J}
+.equ gMapUnit, 0x202E4D8	@{U}
+@.equ gMapUnit, 0x202E4D4	@{J}
+.equ MoveCostClear, 0x880BB96	@{U}
+@.equ MoveCostClear, 0x88600EE	@{J}
+.equ gMapTerrain, 0x202E4DC	@{U}
+@.equ gMapTerrain, 0x0202E4D8	@{J}
 
 .macro blh to, reg=r3
     ldr \reg, =\to
@@ -13,11 +17,11 @@
 
 PUSH {r4,r5,r6,lr}
 
-// input
-// r0 = xCoord
-// r1 = yCoord
+@ input
+@ r0 = xCoord
+@ r1 = yCoord
 
-// output - boolean - r0
+@ output - boolean - r0
 
 b retTrue
 
@@ -49,7 +53,7 @@ BNE retFalse
         ASR r0 ,r0 ,#0x18
         CMP r0, #0x0
         BLE retFalse
-            // retTrue
+            @ retTrue
 			retTrue:
             MOV r0, #0x1
             B end

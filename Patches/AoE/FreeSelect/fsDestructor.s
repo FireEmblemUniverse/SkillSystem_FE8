@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 FreeSelect6C_Destructor:
 	push {lr}

@@ -1,4 +1,4 @@
-NAME=AoE 広範囲のエリア攻撃(RangeTemplateIndexList)
+NAME=AoE 範囲技 広範囲のエリア攻撃(RangeTemplateIndexList)
 NAME.en=AoE Area of Effect(RangeTemplateIndexList)
 NAME.zh=AoE Area of Effect(RangeTemplateIndexList)
 TYPE=STRUCT
@@ -24,7 +24,7 @@ DATACOUNT=$GREP16 0x00 0x00 0x00 0x00
 LISTNAME=$COMBO combo.RangeMask.txt
 
 //データを定義します
-P0=Left
-P4=Top
-P8=Right
-P12=Bottom
+P0:AOERANGEPOINTER=Left
+P4:AOERANGEPOINTER=Top
+P8:AOERANGEPOINTER=Right
+P12:AOERANGEPOINTER=Bottom

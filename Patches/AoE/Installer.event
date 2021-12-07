@@ -3,50 +3,14 @@
 // briefly uses a byte in ram at 0x0203F101, which combat arts also use. 
 // it should not conflict with combat arts. 
 
-
 // if you are using FEBuilder. 
 #ifdef FEBUILDER_EXTRA_ORG
-#define UM_AoEName 0xf89
-#define UM_AoEDesc 0xf8a
-#define UM_AoEHelp 0xf8b
-#define UM_AoEHealHelp 0xf8c
-
-#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP" //With Huffman
-setText(UM_AoEName,TxtData0xf89)
-setText(UM_AoEDesc,TxtData0xf8a)
-setText(UM_AoEHelp,TxtData0xf8b)
-setText(UM_AoEHealHelp,TxtData0xf8c)
-
-ALIGN 4
-TxtData0xf89:
-#incbin "TxtData0xf89.txt.bin"
-
-ALIGN 4
-TxtData0xf8a:
-#incbin "TxtData0xf8a.txt.bin"
-
-ALIGN 4
-TxtData0xf8b:
-#incbin "TxtData0xf8b.txt.bin"
-
-ALIGN 4
-TxtData0xf8c:
-#incbin "TxtData0xf8c.txt.bin"
-
-PUSH
-ORG	FEBUILDER_EXTRA_ORG	//FEBuilderGBAで確保したメニュー領域に追加
-POIN	TxtData0xf89
-SHORT	UM_AoEName UM_AoEDesc		//右がヘルプ指定
-SHORT	$6300 0
-POIN	AoE_AreAnyUsable|1
-POIN	0
-POIN	AoE_Effect|1
-WORD	0 0 0
-POP
+#include "FEBuilderGBA/EN.event"	//{U}
+//#include "FEBuilderGBA/JP.event"	//{J}
 #endif // FEBUILDER_EXTRA_ORG
 
 #include "Internals.event"
-#define MenuCommandID(name,description,colour,ID,usability,effect, unknown1, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour ID; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"
+
 
 // Add this to your Unit Menu 
 // MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
@@ -67,44 +31,60 @@ Select an area to Attack. Press L/R to Rotate.[X]
 ## UM_AoEHealHelp
 Select an area to Heal. Press L/R to Rotate.[X]
 
+## UM_AoEName0
+ AoE0[X]
 
+## UM_AoEName1
+ AoE1[X]
+
+## UM_AoEName2
+ AoE2[X]
+
+## UM_AoEName3
+ AoE3[X]
+
+## UM_AoEName4
+ AoE4[X]
+
+## UM_AoEName5
+ AoE5[X]
+
+## UM_AoEName6
+ AoE6[X]
+
+## UM_AoEName7
+ AoE7[X]
+
+## UM_AoEName8
+ AoE8[X]
+
+## UM_AoEName9
+ AoE9[X]
 */
 
+#define HideMoveRangeGraphicsWrapper 0x8022C98	//{U}
+//#define HideMoveRangeGraphicsWrapper 0x8022C60	//{J}
 
-
-// 8022C99 - HideMoveRangeGraphicsWrapper
-
-
-
+	#define MenuCommandID(name,description,colour,ID,usability,effect, unknown1, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour ID; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"	//{U}
+//	#define MenuCommandID(nameJP,description,colour,ID,usability,effect, unknown1, unknown2) "POIN nameJP; SHORT 0x60C description; BYTE colour ID; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"	//{J}
 
 // These are the submenu options that appear:
 ALIGN 4
 AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0x9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
-MenuCommandID(UM_AoEName, UM_AoEDesc, NormalText, 0xA, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, 0x8022C99)
+MenuCommandID(UM_AoEName0, UM_AoEDesc, NormalText, 0x0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName1, UM_AoEDesc, NormalText, 0x1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName2, UM_AoEDesc, NormalText, 0x2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 0x3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 0x4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 0x5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 0x6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 0x7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 0x8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 0x9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
-ALIGN 4 
-AoE_SpecificUsability:
-#include "AoE_SpecificUsability.lyn.event"
 
-ALIGN 4
-AoE_SpecificEffect:
-#include "AoE_SpecificEffect.lyn.event"
-
-ALIGN 4
-AoE_SpecificHover:
-#include "AoE_SpecificHover.lyn.event"
 
 
 /*
@@ -137,7 +117,7 @@ Animation_IDByte, #15
 #define HitResBool 0x10
 #define DepleteItemBool 0x20
 #define UsableOnlyIfStationaryBool 0x40 
-
+#define KeepHP1NotDieBool 0x80
 
 ALIGN 4 
 AoE_Table:
@@ -167,70 +147,62 @@ BYTE 0 4 // Attack range
 BYTE 2 2 // Index of RangeMask, AnimationALL,
 
 // Entry 3
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
 BYTE 5 5 // damage range 
 BYTE 3 7 // Attack range 
-BYTE 0 3 // Index of RangeMask, Animation
+BYTE 3 3 // Index of RangeMask, Animation
 
 
 // Entry 4
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 0 FriendlyFireBool|MagBasedBool
 BYTE 5 5 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 1 4 // Index of RangeMask, Animation
+BYTE 4 4 // Index of RangeMask, Animation
 
 // Entry 5
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 2 5 // Index of RangeMask, AnimationALL,
+BYTE 5 5 // Index of RangeMask, AnimationALL,
 
 // Entry 6
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
 BYTE 5 5 // damage range 
 BYTE 3 7 // Attack range 
-BYTE 0 6 // Index of RangeMask, Animation
+BYTE 6 6 // Index of RangeMask, Animation
 
 
 // Entry 7
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 0 FriendlyFireBool|MagBasedBool
 BYTE 5 5 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 1 7 // Index of RangeMask, Animation
+BYTE 7 7 // Index of RangeMask, Animation
 
 // Entry 8
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 2 8 // Index of RangeMask, AnimationALL,
+BYTE 8 8 // Index of RangeMask, AnimationALL,
 
 // Entry 9
-BYTE 0xFF 0xFF 0 0
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 2 9 // Index of RangeMask, AnimationALL,
-
-// Entry A
-BYTE 0xFF 0xFF 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 2 0xA // Index of RangeMask, AnimationALL,
+BYTE 9 9 // Index of RangeMask, AnimationALL,
 AoE_TableTerminator
 
 

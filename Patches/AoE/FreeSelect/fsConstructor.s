@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 .equ Proc_FreeSelect, PointerList + 0x0
 @Free Select Constructor
 @parameters:

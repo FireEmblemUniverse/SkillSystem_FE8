@@ -1,4 +1,4 @@
-NAME=AoE 広範囲のエリア攻撃(AoE_Table)
+NAME=AoE 範囲技 広範囲のエリア攻撃(AoE_Table)
 NAME.en=AoE Area of Effect(AoE_Table)
 NAME.zh=AoE Area of Effect(AoE_Table)
 TYPE=STRUCT
@@ -21,7 +21,7 @@ DATASIZE=16
 //データ個数 00 が出てくるまで
 DATACOUNT=$GREP16 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
 
-//LISTNAME=
+LISTNAME=$COMBO combo.AoE_TableID.txt
 
 //データを定義します
 B0:UNIT=Unit(00=ANY)
@@ -32,7 +32,7 @@ W4:FLAG=Flag(00=ANY)
 B6:SKILL=Skill(00=ANY)
 B7=00(Pokemblem Only)
 B8:DECIMAL=HpCostByte
-B9=ConfigByte
+B9:AOECONFIG=ConfigByte
 B10:DECIMAL=PowerLowerBoundByte
 B11:DECIMAL=PowerUpperBoundByte
 B12:DECIMAL=MinRangeByte

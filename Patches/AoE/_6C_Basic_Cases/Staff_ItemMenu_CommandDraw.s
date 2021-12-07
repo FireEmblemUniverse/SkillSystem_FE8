@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 @thing for drawing menu commands
 @arguments:
@@ -33,7 +33,8 @@ add 	r3, r3, r1
 lsl 	r3, r3, #0x1
 ldr 	r1, =pBG0TileMap
 add 	r3, r3, r1
-ldr 	r1, =0x8016848
+ldr 	r1, =0x8016848	@{U}
+@ldr 	r1, =0x80165F0	@{J}
 mov 	lr, r1
 mov 	r1, r4
 .short 0xF800

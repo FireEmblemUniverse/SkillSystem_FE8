@@ -19,7 +19,8 @@ strb r3, [r2]
 
 
 bl AoE_Setup
-@blh 0x8022b30 @ Copied from combat arts - take/give menu stuff ? 
+@blh 0x8022b30 @ Copied from combat arts - take/give menu stuff ? 	@{U}
+@@blh 0x8022AF8 @ Copied from combat arts - take/give menu stuff ? 	@{J}
 
 @Effect/Idle Routine Return Value (r0 Bitfield):
 @        & 0x01 | Does things? idunno - pause the hand selector ? 
