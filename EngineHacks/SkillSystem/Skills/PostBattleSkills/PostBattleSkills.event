@@ -125,6 +125,9 @@ SHORT 0x7B18 0x2102 0x4008 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0 0x2802 //galeforce
 SHORT 0x7b18 0x2102 0x4001 0x2902 0xd020 0x2140 0x4008 0x46c0 0x2800 //galeforce does not autoselect the unit
 #endif
 
+ORG $2302C //prevent infinite canto after seizing under certain conditions as a consequence of the modified canto check
+SHORT 0x2102
+
 ORG $18754 //this used to set state to "turn ended"
 SHORT 0x46C0
 ORG $1D264 //this used to be part of the "check if already cantoing"
