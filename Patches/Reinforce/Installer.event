@@ -1,0 +1,29 @@
+#include "Reinforce.lyn.event"
+
+#include "Extensions/Hack Installation.txt"
+
+PUSH 
+ORG 0x35E24 
+callHack_r3(HookAddBushes)
+ORG $35F7C 
+callHack_r3(HookSpawnUnits)
+POP 
+
+
+
+ReinforcementUnitsQWER:
+UNIT 0x60 RattataID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 
+
+
+SummonGFXEvent:
+ASMC 0x807AD09 //@New6C_SummonGfx_FromActionStructCoords 
+#ifdef DRUnitBitMask
+SetNearbyDangerRadius // Pokemblem only 
+#endif 
+NoFade
+ENDA
+
+
+
+

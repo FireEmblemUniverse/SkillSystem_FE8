@@ -96,7 +96,29 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+//TurnEventPlayer(0,ReinforcementEvent,0,255)
 END_MAIN
+
+ReinforcementEvent:
+// BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns
+SVAL s1 0xF0 
+SVAL s3 ReinforcementUnits|IsPointer 
+//ASMC Reinforce_ASMC
+/*
+Reinforce2(0xF0, 1, ReinforcementUnits, 6, 4) // Top 
+Reinforce2(0xF1, 1, ReinforcementUnits, 5, 3) // Middle 
+Reinforce2(0xF2, 1, ReinforcementUnits, 3, 3) // Bottom 
+*/
+NoFade 
+ENDA 
+
+
+// #define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
+
+
+ReinforcementUnits:
+UNIT Reinforcement0 ClassRoute1WildA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 
 
 CharacterBasedEvents:
 //CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)
@@ -157,9 +179,10 @@ UNIT
 
 EnemyUnits:
 UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 ParasID 0x0 Level(1, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA13R12 [Tackle,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [16,6] 001b	0x0 0x01 REDA16R6 [0x0,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 ParasID 0x0 Level(1, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA15R12 [Tackle,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [15,13] 0b	0x0 0x01 REDA18R11 [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x01 REDA19R9 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
 
@@ -215,7 +238,7 @@ RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
 SetUnitStatus(1, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
-
+CALL SetBushHpEvent
 
 SetUnitStatus(1, 0x29, Bubble)
 SetUnitStatus(1, 0x2a, Leer)

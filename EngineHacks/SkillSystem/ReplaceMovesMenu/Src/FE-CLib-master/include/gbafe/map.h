@@ -20,6 +20,17 @@ extern MapData gMapMovement2; //! FE8U = (0x0202E4F0)
 
 extern u16** const gMapRawTiles; //! FE8U = (0x0859A9D4)
 
+enum
+{
+    NEW_MAP_MOVEMENT_MAX = 10,
+};
+
+enum
+{
+    MAP_MOVEMENT_MAX = 120,
+    MAP_MOVEMENT_EXTENDED = 124,
+};
+
 enum {
 	// for use with gMapHidden
 

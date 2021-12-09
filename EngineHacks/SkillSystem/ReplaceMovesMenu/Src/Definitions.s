@@ -52,6 +52,8 @@ SET_DATA gpCurrentRound, 0x0203A608
 
 //@ Autohooks:
 
+SET_FUNC gUnknown_0880BB96, (0x0880BB96+1)
+
 SET_FUNC NewGetUnitEquippedWeapon, (0x08016B28+1)
 
 SET_FUNC NewGetUnitEquippedWeaponSlot, (0x08016B58+1)

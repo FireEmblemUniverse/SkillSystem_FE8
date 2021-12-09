@@ -94,6 +94,10 @@ bne DontRefresh
 
 @ previously in event code has auto-refresh if no enemies 
 
+	ldr r3, =pActionStruct 
+	mov r0, #0 
+	strb r0, [r3, #0x10] @ No squares moved this turn, as they're refreshed now 
+
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
 

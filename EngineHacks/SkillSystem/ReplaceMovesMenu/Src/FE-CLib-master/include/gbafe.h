@@ -7,6 +7,7 @@ extern "C" {
 
 #include "gba/gba.h"
 
+
 #include "gbafe/armfunc.h"
 #include "gbafe/random.h"
 #include "gbafe/hardware.h"
@@ -39,6 +40,8 @@ extern "C" {
 #include "gbafe/save.h"
 #include "gbafe/event.h"
 #include "gbafe/battle.h"
+#include "gbafe/global.h" 
+//#include "gbafe/variables.h" // added Vesly 
 
 #ifdef __cplusplus
 } // extern "C"

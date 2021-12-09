@@ -10,7 +10,17 @@
 #endif // FEBUILDER_EXTRA_ORG
 
 #include "Internals.event"
+#include "AoE_ASMC.lyn.event"
 
+// ASMC Usage: 
+#define AoE_ASMC(Unit, AoE_ID, RotationID, CoordX, CoordY) "SVAL s1 Unit; SVAL s6 AoE_ID; SVAL s7 RotationID; SVAL sB CoordY<<16|CoordX; ASMC AoE_ASMC"
+/*
+SVAL s1 (-1) // Unit 
+SVAL s6 0 // AoE ID 
+SVAL s7 0 // Rotation 
+SCOORD sB [10, 11] // Coords 
+ASMC AoE_ASMC
+*/ 
 
 // Add this to your Unit Menu 
 // MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)

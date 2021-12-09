@@ -1,3 +1,6 @@
+//  08035F34 F7FF FC66   BL 0x08035804   //ExecFortSelfHealMotion @ r0 as Unit ? 
+// 8035E20 B510   PUSH {r4,lr}   //Procs TerrainHealLoop CallASM
+
 //Ram to save certain things in 
 
 #define XCoordNewArea 			0x30017ac
@@ -330,6 +333,9 @@ ENDA
 #define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
 
 
+#define Reinforce2(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements2"
+
+
 /*
 "SVAL r5 UnitGroup; 
 SVAL r6 GracePeriod    +5     ; 
@@ -340,17 +346,206 @@ SVAL r8 NumberOfEnemies; "
 When loaded, set their AI2 counter to 5 
 Each turn, this increments by +1 
 
-
 If AI2 counter is 1 less than TurnToOccur, display angry face at coords +10000 (1y below) 
 
 If AI2 counter is equal or greater than TurnToOccur, load unit r8 times 
+*/
+
+SpawnUnitsEvent:
+//ASMC Reinforce_ASMC
+NoFade 
+ENDA 
+
+
+LoadReinforcements2:
+CHECK_ALIVE 0x7FFD 
+BEQ 0x63 rC r0 //If bush is dead, break 
+
+CHECK_ENEMIES 
+SVAL r1 30 
+BGE 0x63 rC r1 // Don't load reinforcements if 30+ units on map - prev 50 If we've hit the enemy cap, don't load reinforcements  
+
+// r5 is unit group pointer 
+ASMC CountReinforcementUnits 
+SVAL r1 15 
+BGE 0x63 rC r1 // If 15 or more reinforcements, do not spawn any more 
+
+
+GetUnitStatus(0x7FFD, AI2Counter)
+SADD rA rC r0 
+BLT 0x63 rA r6 //Do nothing during grace period 
+
+
+SADD rB r5 r0 
 
 
 
+SENQUEUE r7 
+SENQUEUE r8 
+
+
+/*
+r6 GracePeriod    +5 
+r7 FrequencyInTurns
+rA AI2Counter 
+
+
+If AI2Counter is less than the Graceperiod, do nothing 
+
+Eg. 3 turn grace, then every 4 turns 
+
+
+
+
+Get hp 
+
+If Hp is max, set AI2Counter to r4+1 
+If hp is dn bge max-X, set AI2Counter to r4 
+
+Freq - 1 
+Add MaxHP+(Freq-1) / (Freq) // For friendly rounding 
 */
 
 
+CAM1 0x7FFD 
 
+
+GetUnitStatus(0x7FFD, MaxHP) //s1, s3, s4 
+SVAL r1 1 
+SSUB r3 r7 r1 // Freq-1 
+SADD r9 rC r3  //Add MaxHP+(Freq-1)
+
+SDIV r9 r9 r7 // MaxHP / Freq (rounded up) 
+GetUnitStatus(0x7FFD, CurrentHP) //s1, s3, s4 
+SADD r5 rC r9 
+//SADD r5 r5 r9 //for rounding  
+GetUnitStatus(0x7FFD, MaxHP) //s1, s3, s4 
+// MaxHP / Freq (rounded down) 
+SDIV r3 rC r7 
+SDIV r1 r5 r3 
+
+SADD r3 r6 r0 //5 + grace period (eg. 6) 
+
+SADD r5 r3 r1 // 6 + 3 = 9 
+
+SetUnitStatus(0x7FFD, AI2Counter) // Set to ai2 
+//Text(0x9d6)
+// Plus grace period + 5 
+
+SADD rA r5 r0 
+
+SADD r9 r2 r0 
+SVAL r1 1 
+//r6 should be 
+SADD r4 r6 r7 	// Graceperiod + Freq 
+
+SSUB r4 r4 r1  //r4 is now TurnToOccur - 1 
+
+SADD r5 rB r0 // Unit Group 
+
+CHECK_COORDS 0x7FFD 
+SADD rB rC r0 
+
+
+
+BNE 0 r4 rA 
+	//Display scary face at +1y coord below 
+
+	CAM1 0x7FFD 
+	//Text(0x9d5)
+	STAL 20
+	SVAL r1 0x10000 
+	SADD rB rB r1 
+	EmoticonSlotB(0x14)
+	//EmoticonSlotB(MonsterFaceGraphic)
+	STAL 77 
+	SSUB rB rB r1 //
+
+	GOTO 20 
+Label 0 
+
+SVAL r1 1
+SADD r6 r4 r1
+BLT 1 rA r6 
+
+	SADD r7 r5 r0  // Unit group? 
+GetUnitStatus(0x7FFD, CurrentHP) //s1, s3, s4 
+
+SADD r5 rC r0
+GetUnitStatus(0x7FFD, MaxHP) // Failsafe I guess, but this thing isn't quite perfectly functional anyway lol 
+BLT 1 r5 rC  // If less than full hp, don't load units 
+
+
+		//Load units
+
+	COUNTER_SET 0 0 
+	Label 2 // Loop 
+	//Text(0x9d5)
+	COUNTER_ADD 0 1 
+	SADD r2 r7 r0 
+	LOAD_S2 1 //Load unit group provided earlier without restriction 
+	ENUN 
+	
+	SADD r6 rB r0 
+	SVAL rB 0
+	SetUnitStatus(0x7FFE, State, 0) // Remove "Drop last item" 
+	SADD r2 r9 r0 
+	SetUnitStatus(0x7FFD, State, 0xC) // Undeploy+Dead bush for MOVENEXTTO to work 
+	
+	// New unit was loaded at 0,0 so we move them to r8 coord of Bush 
+
+
+
+	MOVEONTO (-1) 0x7FFE 0x7FFD
+	ENUN 
+	SADD rB r6 r0 
+	EVBIT_T 9 //Follow moving units 
+	
+	// "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; ASMC AutoLevelUnits" 
+	// We should make these auto level some specific amount 
+	// How about by the level of the bush? 
+	GetUnitStatus(0x7FFD, Level) 
+	SADD r1 rC r0 // Level to autolevel by 
+	SVAL r3 True 
+	SVAL r4 0x909F // Wild reinforcements 
+	SADD r5 rB r0 // Bush/newly spawned unit coord 
+	ASMC AutoLevelUnits // Also teaches them moves 
+	
+	// move coord unit beside the undeployed bush 
+	// if you spawn_npc here instead, you'll need to undeploy it or something so that 0x7FFE ignores the placeholder 
+	// npc while moving the newly spawned unit 
+	MOVENEXTTO 0x2 0x7FFE 0x7FFD  
+	ENUN 
+	
+
+	
+	SetUnitStatus(0x7FFC, State, 0) // Redeploy Bush 
+
+	EVBIT_F 9 //Unfollow moving units 
+	
+	COUNTER_CHECK 0
+	BLT 2 rC r8 // Loop if supposed to deploy multiple units 
+	SDEQUEUE r8
+	SDEQUEUE r7 
+	//GetUnitStatus(0x7FFD, AI2_Counter) 
+	SSUB r5 rA r7 //sub by frequency 
+	SetUnitStatus(0x7FFD, AI2Counter) //uses r5 as Value 
+	SetUnitStatus(0x7FFD, CurrentHP, 1) //uses r5 as Value 
+
+
+
+	
+	GOTO 0x63  
+Label 1 
+	SDEQUEUE r8
+	SDEQUEUE r7 
+Label 20 
+
+
+
+Label 0x63 
+NoFade
+ENDA 
 
 
 LoadReinforcements:

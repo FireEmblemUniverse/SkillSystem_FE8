@@ -11,3 +11,18 @@
 #include "Src/SkillsDebug.lyn.event"
 
 #endif // DEBUG_SKILL_EDIT_INCLUDED
+
+#include "Src/FindFreeTile.lyn.event" 
+
+ALIGN 4
+GenericMovCost: // used in FindFreeTile code 
+BYTE $FF $01 $01 $FA $FA $01 $01 $01 $01 $01 $01 $01 $01 $32 $01 $01 $0A $0F $32 $01 $01 $0A $02 $01 $01 $FF $FA $FA $01 $01 $FA $01 $01 $01 $FA $01 $01 $01 $FA $01 $01 $01 $01 $01 $FF $01 $FF $01 $01 $FA $FF $FA $01 $32 $32 $01 $01 $32 $32 $32 $0A $0A $01 $FA $FA $FF
+
+
+
+// 0x19 / Fence / -- is impassible traps 
+// FF 01 01 FA FA 01 01 01 01 01 01 01 01 32 01 01 0A 0F 32 01 01 0A 03 01 01 FF FA FA 01 01 FA 01 01 01 FA 01 01 01 FA 01 01 01 01 01 FF 01 FF 01 01 FA FF FA 01 32 32 01 01 32 32 32 0A 0A 01 FA FA FF
+
+
+
+

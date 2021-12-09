@@ -11,6 +11,7 @@
 	.equ MemorySlot,0x30004B8
 	.equ CurrentUnit, 0x3004E50
 	.equ EventEngine, 0x800D07C
+.set prMap_Fill,                 0x080197E4 @ arguments: r0 = rows start ptr, r1 = value; returns: nothing
 
 	.equ GetUnitByEventParameter, 0x0800BC51
 	.equ GetUnit, 0x8019430
@@ -28,8 +29,6 @@
 
 CallCommandEffect:
 	push	{r4-r7,lr}
-mov r7, r0 @ Parent Proc ? Idk I don't use this 
-
 mov r4,#0 @ current deployment id
 mov r5,#0 @ counter
 
@@ -68,29 +67,6 @@ blh SetEventId
 
 Start: 
 
-@ 202E4DC	Terrain map (tile id)
-@ We need to make our current tile terrain that cannot be crossed 
-@ We restore it at the end 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-
-ldrb r1, [r3, #0x1B] @ Current unit's rescued Deployment byte 
-lsl r0, #8 
-add r0, r1 
-
-push {r0} @ Save what the terrain & deployment byte should be at current unit's tile eg. ----TRDB (Terrain, Deployment Byte)
-mov r0, #0x00 @ -- tile
-strb r0, [r2] 
-@blh RefreshTerrainMap
 
 LoopThroughFirst5Units:
 add r4, #1  @ r4 also increases in NextUnit 
@@ -119,76 +95,41 @@ mov r6, r0
 ldr r2, =CurrentUnit 
 ldr r2, [r2] @ Current unit ram struct pointer 
 
-push {r5}
-ldrb r0, [r6, #0x0B] @ Deployment byte 
-strb r0, [r2, #0x1B]
-mov r5, r0 @ Store whoever is being rescued lol 
-
-ldrb r0, [r2, #0x0B] @ Deployment byte 
-strb r0, [r6, #0x1B] @ 
-
-@
-@
-@mov r1, #0x1D @ Rescuing someone, dead 
-@ldr r0, [r2, #0x0C] 
-@and r0, r1 
-@str r0, [r2, #0x0C] @ Active is rescuing 
-@
-@mov r1, #0x20 
-@ldr r0, [r6, #0x0C] 
-@and r0, r1 
-@str r0, [r6, #0x0C] @ unit to move is rescued
-@
-@mov r0, #0 
-@strb r0, [r2, #0x13] @ Current hp to dead 
-@@ Drop rescued unit if dead 32674
-
-
 ldrh r0, [r2, #0x10] 
 strh r0, [r6, #0x10] @ So units have matching coords 
-blh  0x0801a1f4   @RefreshFogAndUnitMaps @RefreshEntityMaps 
-ldr r0, =0x859da95 @ Procs SMSJumpAnimation 
+blh  0x0801a1f8   @RefreshFogAndUnitMaps
+@blh 0x8019fa0 @RefreshUnitMapAndVision
 
 
-@ldr   r2, [r7, #0x14]
-@cmp r2, #0
-@b Do_pr6C_New
-
-@beq Do_pr6C_New 
-@mov r1, r7 @ Parent proc 
-@blh pr6C_NewBlocking @ Procs SMSJumpAnimation 
-@b Continue 
-
-Do_pr6C_New:
-mov r1, #3
-blh pr6C_New @ Procs SMSJumpAnimation 
-Continue: 
+	ldr r0, =0x202E4E0 @ 202E4F0
+	ldr r0, [r0]
+	
+	mov r1, #1
+	neg r1, r1
+	
+	blh prMap_Fill
 
 
-mov r7, r0 @ Proc pointer 
 
-@ldr r3, =CurrentUnit
-@ldr r3, [r3] @ Rescuer's ram unit struct pointer 
 
-str r6, [r0, #0x2C] @ First arg: Rescuee's unit struct [202BE94]
-mov r1, r0 
-add r1, #0x30 
-mov r2, r0
-add r2, #0x34 
+mov r0, r6 @ Unit to place 
+ldr r1, =MemorySlot 
+add r1, #4*0x0A @ XX in sA
+add r2, r1, #4 @ YY in sB 
+ldr r3, =0xFFFFFFFF @ (-1) as failed value 
+str r3, [r1]
+str r3, [r2] 
+bl FindFreeTile @FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
-ldr r0, =CurrentUnit
-ldr r0, [r0] @ Rescuer's ram unit struct pointer [202BE4C]
-
-blh GetUnitDropLocation @ 184E0 
-mov r0, r7
-ldr r1, [r0, #0x30] @ X
-ldr r2, [r0, #0x34] @ Y 
+ldr r3, =MemorySlot 
+add r3, #4*0x0A @ sA 
+ldr r1, [r3] @ X
+ldr r2, [r3, #4] @ Y 
 strb r1, [r6, #0x10] @ X
 strb r2, [r6, #0x11] @ Y
 
 
-strb r5, [r6, #0x1B] @ Deployment byte 
-pop {r5}
+
 
 b LoopThroughFirst5Units
 	
@@ -202,27 +143,7 @@ mov r0, #0
 	
 End:
 
-@ 202E4DC	Terrain map (tile id)
-@ We need to make our current tile terrain that cannot be crossed 
-@ We restore it at the end 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-pop {r0}
 
-lsr r1, r0, #8
-strb r1, [r2] @ Terrain restored 
-lsl r0, #24 
-lsr r0, #24 
-strb r0, [r3, #0x1B] @ Rescuer/ee restored 
 
 
 

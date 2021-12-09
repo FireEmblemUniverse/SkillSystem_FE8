@@ -6,12 +6,25 @@
 
 ALIGN 4
 DebugCommandEvent:
-SCOORD rB [1,1]
-SVAL r1 1 // Animation ID 
-SVAL r2 0 // Always 0
+AoE_ASMC((-1), 0, 0, 10, 11)
+
+/*
+SVAL s1 (-1) // Unit 
+SVAL s6 0 // AoE ID 
+SVAL s7 0 // Rotation 
+SCOORD sB [10, 11] // Coords 
+ASMC AoE_ASMC
+//ASMC AoE_StartBlockingProc
+*/ 
+
+//ASMC AoE_GenericEffect
+
+//SCOORD rB [1,1]
+//SVAL r1 1 // Animation ID 
+//SVAL r2 0 // Always 0
 //SVAL r2 (-1) // Display all in move map 
 // given sB coords to display at and s1 animation to display, shows an animation 
-ASMC ASMC_Draw 
+//ASMC ASMC_Draw 
 NoFade 
 ENDA 
 

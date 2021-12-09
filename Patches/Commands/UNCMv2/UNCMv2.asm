@@ -6,7 +6,7 @@
   .short 0xf800
 .endm
 	.thumb
-
+	.equ pActionStruct, 0x203A958	@{U}
 	.equ MemorySlot, 0x30004B8 
 	.equ GetUnitByEventParameter, 0x0800BC51
 	
@@ -69,6 +69,13 @@ Start:
 	
 	bic 	r0, r1				@Clear bits 
 	str		r0, [r4, #0x0C] 	@Store status back in unit
+	mov r0, #2 
+	tst r0, r1 
+	beq Exit 
+	@mov r11, r11 
+	ldr r3, =pActionStruct 
+	mov r0, #0 
+	strb r0, [r3, #0x10] @ No squares moved this turn, as they're refreshed now 
 	
 	b Exit 
 	
