@@ -19,7 +19,7 @@ void FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
         {
             int distance;
 
-            if (gMapMovement[iy][ix] > 7) // NEW_MAP_MOVEMENT_MAX
+            if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
                 continue;
 
             if (gMapUnit[iy][ix] != 0)

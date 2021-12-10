@@ -15,7 +15,7 @@ Reinforce_HpRestore:
 push {r4-r5, lr} 
 
 mov r4,r0 @r4 = unit
-mov r5,r1 @r5 = heal %
+mov r5,r1 @r5 = heal % (0) 
 ldr r2, [r4] @ Char pointer 
 ldrb r2, [r2, #4] @Char ID 
 cmp r2, #0xF0 
@@ -28,10 +28,21 @@ cmp r0, #0
 bne NoHeal @ Only heal bushes on Player Phase 
 
 
+bl Reinforce_GetTableEntry
+mov r3, r0 
 
-mov r0, #50 @ 50% healing 
-add r5, r0 
+ldr r2, =0x202BCF0 
+add r2, #0x10 
+ldrh r1, [r2] @ Turn # 
+ldrb r0, [r3, #2] @ Grace period 
 
+cmp r0, r1 
+bgt NoHeal 
+sub r1, r0 
+ldrb r1, [r3, #3] @ Frequency 
+mov r0, #100 
+blh #0x080D18FC @ div by 100 
+add r5, r0
 
 
 NoHeal: 
@@ -44,6 +55,19 @@ bx r1
 
 .ltorg 
 .align 
+
+.type Reinforce_GetTableEntry, %function 
+Reinforce_GetTableEntry:
+push {lr} 
+ldr r0, =ReinforcementTableOfPointers
+ldr r3, =0x202BCFE @ Chapter ID 
+ldrb r3, [r3] @ Ch ID 
+lsl r3, #2 @ 4 bytes per entry 
+add r0, r3 
+ldr r0, [r0] @ Individual table 
+
+pop {r1} 
+bx r1 
 
 	.equ CurrentUnit, 0x3004E50	@{U}
 	.equ MemorySlot,0x30004B8	@{U}
@@ -67,12 +91,13 @@ push {r4-r7, lr}
 mov r4, r0 @ unit 
 mov r6, r1 @ target array 
 
-
-ldr r5, =ReinforcementUnitsQWER@ Unit group 
+bl Reinforce_GetTableEntry
+mov r7, r0 
+ldr r1, [r7, #4] @ Unit group to load 
 
 
 ldr r0, =0x8000000 
-orr r0, r5 @ just in case we didn't do |IsPointer already 
+orr r0, r1 @ just in case we didn't do |IsPointer already 
 
 blh LoadUnit 
 mov r5, r0 @ Newly loaded unit 
@@ -97,6 +122,10 @@ ldsh r1, [r3, r2] @ YY
 strb r0, [r5, #0x10] @ XX 
 strb r1, [r5, #0x11] @ YY 
 
+ldr r3, =0xFFFFFFFF 
+cmp r1, r3 
+beq DeleteIfNotPlayer 
+
 ldr r3, =0x203A958 @ ActionStruct 
 strb r0, [r3, #0x13] @ X 
 strb r1, [r3, #0x14] @ Y 
@@ -115,6 +144,13 @@ strb r0, [r6, #3] @ hp to restore
 
 mov r0, #1 @ true 
 b ExitReinforce_SpawnIfFull 
+
+DeleteIfNotPlayer:
+ldrb r0, [r5, #0x0B] @ deployment byte 
+cmp r0, #0x3F 
+ble False 
+mov r0, r5 
+blh 0x80177F4 @ClearUnit @ 0x080177f4
 
 False:
 mov r0, #0 
@@ -151,6 +187,9 @@ bge Loop @ If full hp already, do not add to list
 mov r0, r5 
 mov r1, #0 @ Start with 0 healing 
 bl Reinforce_HpRestore
+cmp r0, #0 
+beq Loop
+
 @ r0 as Amount to heal in percentage 
 ldrb r1, [r5, #0x12] @ Max hp 
 mul r0, r1

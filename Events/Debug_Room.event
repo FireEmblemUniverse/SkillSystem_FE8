@@ -225,7 +225,7 @@ Write_Byte(11, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(22, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 PokecenterCh
 
-MNC2 ViridianCh 
+//MNC2 ViridianCh 
 //MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
@@ -241,7 +241,7 @@ MNC2 ViridianCh
 //MNC2 SSAnneCh
 
 
-//MNC2 CinnabarCh
+MNC2 CinnabarCh
 
 
 //MNC2 Route4ECh

@@ -103,9 +103,10 @@ ReinforcementEvent:
 // BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns
 SVAL s1 0xF0 
 SVAL s3 ReinforcementUnits|IsPointer 
+Reinforce(CinnabarCh, 0xF0, 1, ReinforcementUnits, 2, 3) // Top 
 //ASMC Reinforce_ASMC
 /*
-Reinforce2(0xF0, 1, ReinforcementUnits, 6, 4) // Top 
+
 Reinforce2(0xF1, 1, ReinforcementUnits, 5, 3) // Middle 
 Reinforce2(0xF2, 1, ReinforcementUnits, 3, 3) // Bottom 
 */

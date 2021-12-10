@@ -11,7 +11,7 @@ POP
 
 
 
-ReinforcementUnitsQWER:
+DefaultReinforcementUnitGroup:
 UNIT 0x60 RattataID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
 UNIT 
 
@@ -23,6 +23,18 @@ SetNearbyDangerRadius // Pokemblem only
 #endif 
 NoFade
 ENDA
+
+// 202BCF0 + E 
+
+#define DefaultReinforcementUnitGroup16 "POIN DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup DefaultReinforcementUnitGroup"
+#define DefaultReinforcementUnitGroup256 "DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16; DefaultReinforcementUnitGroup16"
+
+ALIGN 4
+ReinforcementTableOfPointers: // Indexed by chapter ID 
+DefaultReinforcementUnitGroup256
+
+#define Reinforce(ChapterID, BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "NoFade; ENDA; PUSH; ORG ReinforcementTableOfPointers + (4*ChapterID); POIN Reinforce_IndividualChTable; POP; ALIGN 8; Reinforce_IndividualChTable:; BYTE BushUnitID; BYTE NumberOfEnemies; BYTE GracePeriod; BYTE FrequencyInTurns; POIN UnitGroup"
+
 
 
 

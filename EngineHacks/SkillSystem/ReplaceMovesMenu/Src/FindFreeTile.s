@@ -161,17 +161,17 @@ FindFreeTile:
 	subs	r5, r5, #1	@ iy,
 	b	.L2		@
 .L5:
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 5) // NEW_MAP_MOVEMENT_MAX
+@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
 	ldr	r3, .L10+24	@ tmp199,
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 5) // NEW_MAP_MOVEMENT_MAX
+@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
 	ldr	r2, [sp, #8]	@ _124, %sfp
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 5) // NEW_MAP_MOVEMENT_MAX
+@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
 	ldr	r3, [r3]	@ gMapMovement, gMapMovement
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 5) // NEW_MAP_MOVEMENT_MAX
+@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
 	ldr	r3, [r3, r2]	@ *_23, *_23
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 5) // NEW_MAP_MOVEMENT_MAX
+@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
 	ldrb	r3, [r3, r4]	@ *_26, *_26
-	cmp	r3, #5	@ *_26,
+	cmp	r3, #14	@ *_26,
 	bhi	.L4		@,
 @ FindFreeTile.c:25:             if (gMapUnit[iy][ix] != 0)
 	ldr	r3, .L10+12	@ tmp205,
