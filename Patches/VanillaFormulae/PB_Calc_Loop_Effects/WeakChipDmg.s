@@ -76,9 +76,9 @@ StrHigher:
 @r0 has Str or Mag 
 add r2, r0, #7 @ Ceiling up 
 lsr r2, #3 @ 1/8th 
-@add r0, #1 @ Ceiling up 
+add r0, #1 @ Ceiling up 
 lsr r0, #1 @ 1/2 
-add r0, r2 @ 5/8ths 
+@add r0, r2 @ 5/8ths 
 
  
 @add r0, #3 @ For rounding 

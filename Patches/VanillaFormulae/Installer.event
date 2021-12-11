@@ -34,6 +34,10 @@ ORG $34CDC
 jumpToHack_r3(DisplayDurabilityTradeWindowSmall) 
 
 
+ORG $2ADd0 
+jumpToHack_r3(MinimumDamage3)
+
+
 POP
 
 #include "MinimumDamage.lyn.event"

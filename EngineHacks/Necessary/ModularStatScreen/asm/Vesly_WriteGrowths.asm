@@ -152,6 +152,7 @@ NormalGrowths:
 @ This function is very repetitive, so I'm using a macro to save on rewriting the same 12 lines over and over again. 
 
 HpGrowth:
+mov r5, #0
 ldr		r0,Get_Hp_Growth
 mov r6, #0x73 @ store the hp growth to (battle struct+0x73), which will then be read later for the level-up display
 LevelUp
@@ -186,16 +187,20 @@ mov r6, #0x79
 LevelUp 
 ldr r0, MinimumStatsOnLevelUp
 ldrb r0, [r0] 
-cmp		r5,r2 @if 2 or more stats, we're happy 
+cmp		r5,r0 @if 2 or more stats, we're happy 
 bge		CheckCapsLadder
 add 	r4, #1 
 @ At the end of each iteration, we break if at least 2 stats leveled up 
 				@ If 0 or 1 stats did, we do an entire iteration again 
-cmp 	r4, #6 @ We will try up to 6 times 
-bge 	CheckCapsLadder 
-mov r5, #0
-b HpGrowth 
 
+cmp 	r4, #10 @ We will try up to 10 times 
+
+blt 	HpGrowth
+cmp r5, #1 
+bge CheckCapsLadder
+cmp r6, #20
+blt HpGrowth
+b CheckCapsLadder
 
 @End of normal growths routine
 FixedGrowths:
@@ -263,6 +268,7 @@ add		r6,#19			@ add 2 levels if the unit is promoted (otherwise, without 100+ gr
 
 
 TieredHpGrowth:
+mov r5, #0 
 ldr	r0,Get_Hp_Growth
 mov r1, #0 @ hp 
 mov r2, r7 @ Unit 
@@ -426,13 +432,27 @@ strb r0, [r2, r3]
 
 ldr r0, MinimumStatsOnLevelUp
 ldrb r0, [r0] 
-cmp		r5,r2 @if 2 or more stats, we're happy 
+cmp		r5,r0 @if 2 or more stats, we're happy 
 bge CheckCaps 
 add r4, #1 
-cmp r4, #6 @ try up to 6 times 
-bge CheckCaps 
-mov r5, #0 
+@ At the end of each iteration, we break if at least 2 stats leveled up 
+				@ If 0 or 1 stats did, we do an entire iteration again 
+
+cmp 	r4, #10 @ We will try up to 10 times 
+
+bge 	Stupid
 b UseTieredGrowths
+Stupid:
+cmp r5, #1 
+blt Sexy
+b CheckCapsLadder
+Sexy: 
+cmp r6, #20
+bge Flanders
+b UseTieredGrowths
+Flanders:
+
+b CheckCapsLadder
 
 
 DivideBy100:
