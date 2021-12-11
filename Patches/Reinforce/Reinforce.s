@@ -100,12 +100,18 @@ bx r1
 
 Reinforce_SpawnIfFull:
 push {r4-r7, lr}
-@ given unit struct in r0, and unit group in r1, check if full HP. 
+@ given unit struct in s9 and target array in sA, check if full HP and spawn reinforcements if so 
+@ r0, and unit group in r1, check if full HP. 
 mov r7, r8 
 push {r7} 
 
-mov r4, r0 @ unit 
-mov r6, r1 @ target array 
+ldr r3, =MemorySlot 
+add r3, #4*0x9 
+ldr r4, [r3] @ Unit 
+ldr r6, [r3, #4] @ Target array 
+
+@mov r4, r0 @ unit 
+@mov r6, r1 @ target array 
 
 ldr r0, [r4] 
 ldrb r0, [r0, #4] @ Unit ID 
@@ -118,12 +124,28 @@ mov r7, r0
 mov r1, #0 
 mov r8, r1 
 
-ldr r0, =0x202E4F0 @ Movement map	@{U}
+ldr r3, =MemorySlot 
+add r3, #4*0x0B @ sB 
+ldrb r2, [r4, #0x10] @ XX // used for camera 
+strh r2, [r3] @ XX 
+add r3, #2 
+ldrb r2, [r4, #0x11] @ YY // used for camera in ASMC_Draw 
+strh r2, [r3] 
+
+
+ldr r0, =0x202E4F0 @ Backup Movement map	@{U}
 ldr r0, [r0] 
 mov r1, #0xFF
 blh FillMap
 
+
 LoadUnitsLoop:
+
+ldr r0, =0x202E4E0 @ Movement map	@{U}
+ldr r0, [r0] 
+mov r1, #0xFF
+
+
 ldr r1, [r7, #4] @ Unit group to load 
 
 
@@ -142,6 +164,8 @@ add r2, r1, #4 @ YY in sA
 ldr r3, =0xFFFFFFFF @ (-1) as failed value 
 str r3, [r1]
 str r3, [r2] 
+
+
 bl FindFreeTile @FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
 ldr r3, =MemorySlot 
@@ -151,26 +175,83 @@ ldsh r0, [r3, r2] @ XX
 add r3, #4 @ sA 
 ldsh r1, [r3, r2] @ YY
 
-add r3, #4 @ sB 
-ldrb r2, [r4, #0x10] @ XX // used for camera 
-strh r2, [r3] @ XX 
-add r3, #2 
-ldrb r2, [r4, #0x11] @ YY // used for camera in ASMC_Draw 
-strh r2, [r3] 
- 
-strb r0, [r5, #0x10] @ XX 
-strb r1, [r5, #0x11] @ YY 
 
-ldr r3, =0xFFFFFFFF @ coords are (-1) if failed 
-cmp r1, r3 
-beq DeleteIfNotPlayer 
+
+
+
+
+@ Store new coord into new  unit 
+@strb r0, [r5, #0x10] @ XX 
+@strb r1, [r5, #0x11] @ YY 
+
 @@ r0 / r1 is still our coords 
 ldr r3, =0x203A958 @ ActionStruct 
 strb r0, [r3, #0x13] @ X 
 strb r1, [r3, #0x14] @ Y 
+
+
+ldr r3, =0xFFFFFFFF @ coords are (-1) if failed 
+cmp r1, r3 
+bne OnlyDeleteIfFailedAndNotPlayer 
+ldrb r2, [r5, #0x0B] @ deployment byte 
+cmp r2, #0x3F 
+ble OnlyDeleteIfFailedAndNotPlayer 
+mov r0, r5 
+blh 0x80177F4 @ClearUnit @ 0x080177f4
+b FinishUp
+
+OnlyDeleteIfFailedAndNotPlayer:
+
+ldr r3, =0x203A958 @ ActionStruct  @ Temp move new unit to diff tile for AutoLevelUnits 
+mov r1, #0x13 
+ldrh r0, [r3, r1] @ Coords 
+strh r0, [r5, #0x10] @ Coords 
+
+@ AutoLevelUnits(15, True, 0x50FF)
+ldr r3, =MemorySlot 
+add r3, #4 @ s1 
+ldrb r0, [r4, #8] 
+str r0, [r3] @ # of levels equal to the bush 
+
+mov r0, #1 @ True IncreaseDisplayedLevelBoolean s3 
+add r3, #8 @ s3 
+str r0, [r3] 
+ldr r0, [r5]
+ldrb r0, [r0, #4] @ Unit ID 
+str r0, [r3, #4] @ s4 UnitIDRange
+mov r0, #0 
+ldrb r0, [r5, #0x10] @ XX 
+strh r0, [r3, #8] 
+ldrb r1, [r5, #0x11] @ YY 
+strh r1, [r3, #10] @ YY 
+@SVAL 3 ; SVAL 4 ; SVAL 5 0; ASMC AutoLevelUnits" 
+bl AutoLevelUnits
+
+ldrh r0, [r4, #0x10] @ Coords 
+strh r0, [r5, #0x10] @ Coords 
+
+
+
+
+ldr r3, =0x203A958 @ ActionStruct 
+ldrb r0, [r3, #0x13] @ X 
+ldrb r1, [r3, #0x14] @ Y 
+
 bl AddToMaps @ r0 XX, r1 YY 
 
+
+ldr r3, =0x203A958 @ ActionStruct 
+mov r0, r5 @ Unit 
+ldrb r1, [r3, #0x13] @ X 
+ldrb r2, [r3, #0x14] @ Y 
+bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
+
+
+
+
+
 @blh  0x0801a1f8   @RefreshUnitMaps messing stuff up? 
+GotoNextLoop:
 mov r1, r8 
 add r1, #1 
 mov r8, r1 
@@ -178,14 +259,19 @@ ldrb r0, [r7, #1] @ Number of enemies
 cmp r1, r0 
 blt LoadUnitsLoop 
 
+FinishUp:
+
 bl CopyMapOver
 
-ldr r0, =SummonGFXEvent
+blh 0x8026688 @SMS_Init
+
+ldr r0, =ENUNEvent
 mov r1, #1
 blh EventEngine
 
 
-@blh 0x8026688 @SMS_Init
+
+
 
 mov r0, #1
 strb r0, [r4, #0x13] @ current hp [0202D0A7]?
@@ -197,12 +283,7 @@ strb r0, [r6, #3] @ hp to restore
 mov r0, #1 @ true 
 b ExitReinforce_SpawnIfFull 
 
-DeleteIfNotPlayer:
-ldrb r0, [r5, #0x0B] @ deployment byte 
-cmp r0, #0x3F 
-ble False 
-mov r0, r5 
-blh 0x80177F4 @ClearUnit @ 0x080177f4
+
 
 False:
 mov r0, #0 
@@ -216,6 +297,50 @@ bx r1
 
 .align 
 .ltorg 
+
+@.equ MuCtr_CreateWithReda, 0x800FEF5 @r0 = char struct, target x coord, target y coord
+.equ MuCtr_CreateWithReda, 0x8079DDC @ Doesn't return? 
+@.equ MoveUnit, 0x807A014
+
+
+.type CreateREDA, %function 
+CreateREDA: 
+push {r4, lr} 
+
+sub sp,#0x1C
+mov r3,#0
+str r3,[sp]
+str r3,[sp,#0x4]
+str r3,[sp,#0x8]
+str r3,[sp,#0xC]
+str r3,[sp,#0x10]
+str r3,[sp,#0x14]
+str r3,[sp,#0x18]
+@str r3,[sp,#0x1C] @ this was a mistake Sme made, as it overwrites something we haven't allocated 
+
+mov r3,#2 @ Speed 
+@r0 = char struct, target x coord, target y coord, speed 
+blh MuCtr_CreateWithReda, r4 @ 0x8079DDC
+add sp,#0x1C 
+
+
+
+pop {r4} 
+
+pop {r0} 
+bx r0 
+
+.align 
+.ltorg 
+
+
+
+
+
+
+
+
+
 
 .type AddToMaps, %function 
 AddToMaps:
@@ -269,7 +394,7 @@ lsl r1, r7, #2
 add r2, r4, r1 
 ldr r4, [r4] 
 ldr r5, [r5] 
-mov r11, r11 
+
 ldr r2, [r2] 
 add r6, r2 @ end ram address A 
 mov r0, r6
@@ -415,9 +540,18 @@ add r1, r2
 cmp r0, r1 
 bgt Error 
 
-mov r0, r5 
-mov r1, r4 
-bl Reinforce_SpawnIfFull
+
+ldr r3, =MemorySlot 
+add r3, #4*0x9 
+str r5, [r3] @ Unit 
+str r4, [r3, #4] @ Some struct 
+
+ldr r0, =CallReinforce_SpawnIfFullEvent
+mov r1, #1 
+blh EventEngine 
+@mov r0, r5 
+@mov r1, r4 
+@bl Reinforce_SpawnIfFull
 
 
 

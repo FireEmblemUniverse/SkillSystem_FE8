@@ -16,18 +16,25 @@ UNIT 0x60 MagikarpID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0
 UNIT 
 
 
-SummonGFXEvent:
-ShowAnimationAll(healing_ID)
+CallReinforce_SpawnIfFullEvent:
+ASMC Reinforce_SpawnIfFull
+NoFade 
+ENDA 
+
+ENUNEvent:
+//ShowAnimationAll(healing_ID)
 // Sparkle_4 ? SummonGfx? LightRuneAnim? 
 //ASMC 0x807AD09 //@New6C_SummonGfx_FromActionStructCoords 
+//ASMC 0x80271a1 // SMS_UpdateFromGameData
+ENUN 
+//ASMC 0x8019c3d // UpdateGameTilesGraphics
+//ASMC 0x801a1f9 // refresh entity maps 
 #ifdef DRUnitBitMask
 SetNearbyDangerRadius // Pokemblem only 
 #endif 
-ASMC 0x80271a1 // SMS_UpdateFromGameData
-ASMC 0x8019c3d // UpdateGameTilesGraphics
-ASMC 0x801a1f9 // refresh entity maps 
 NoFade
 ENDA
+
 
 // 202BCF0 + E 
 
