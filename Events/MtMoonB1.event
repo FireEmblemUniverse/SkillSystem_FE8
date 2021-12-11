@@ -29,17 +29,14 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,ReinforcementEvent,0,255)
-
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-ReinforcementEvent:
+{ ; ReinforceEntry(ChapterID)
 Reinforce(0xF0, 1, BurrowReinforcementUnits, 4, 4) // Mid burrow 
 Reinforce(0xF1, 1, BurrowReinforcementUnits, 6, 4) // SE Burrow 
 Reinforce(0xF2, 1, BurrowReinforcementUnits, 9, 4) // NW Burrow 
-NoFade 
-ENDA 
+}
 
 
 CharacterBasedEvents:

@@ -330,7 +330,7 @@ LABEL 0
 NoFade 
 ENDA 
 
-#define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
+//#define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
 
 
 #define Reinforce2(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements2"

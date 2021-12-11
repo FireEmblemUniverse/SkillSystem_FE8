@@ -96,14 +96,16 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-//TurnEventPlayer(0,ReinforcementEvent,0,255)
+//
 END_MAIN
 
-ReinforcementEvent:
+
 // BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns
-SVAL s1 0xF0 
-SVAL s3 ReinforcementUnits|IsPointer 
-Reinforce(CinnabarCh, 0xF0, 1, ReinforcementUnits, 2, 3) // Top 
+
+{ ; ReinforceEntry(CinnabarCh)
+Reinforce(0xF0, 2, ReinforcementUnits, 1, 1) // Top 
+Reinforce(0xF1, 2, ReinforcementUnits, 3, 2) // Top 
+} 
 //ASMC Reinforce_ASMC
 /*
 
@@ -183,7 +185,7 @@ UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA1
 UNIT 0x50 ParasID 0x0 Level(1, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0x50 OnixID 0x0 Level(1, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA15R12 [Tackle,0x0,0x0,0x0] [28,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [15,13] 0b	0x0 0x01 REDA18R11 [0x0,0x0,0x0,0x0] BushAI
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x01 REDA19R9 [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x01 REDA19R11 [0x0,0x0,0x0,0x0] BushAI
 UNIT
 
 

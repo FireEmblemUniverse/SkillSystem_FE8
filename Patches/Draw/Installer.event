@@ -18,8 +18,9 @@ Grass / Fire / Water are pretty small
 
 
 */
+#define ShowAnimationAll(AnimationID) "SVAL r1 AnimationID; SVAL r2 (-1); ASMC ASMC_Draw" 
 
-#define ShowAnimation(AnimationID, Coordinate) "SVAL r1 AnimationID; SVAL r2 0; SCORDS rB Coordinate; ASMC ASMC_Draw" 
+#define ShowAnimation(AnimationID, Coordinate) "SVAL r1 AnimationID; SVAL r2 0; SCOORDS rB Coordinate; ASMC ASMC_Draw" 
 
 /*
 // Usage: 

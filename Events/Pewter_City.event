@@ -29,15 +29,8 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,ReinforcementEvent,0,255)
-
 END_MAIN
 
-//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-ReinforcementEvent:
-
-NoFade 
-ENDA 
 
 
 CharacterBasedEvents: 

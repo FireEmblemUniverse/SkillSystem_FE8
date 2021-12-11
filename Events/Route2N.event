@@ -29,18 +29,14 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,ReinforcementEvent,0,255)
-
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-ReinforcementEvent:
+{ ; ReinforceEntry(ChapterID)
 Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
 Reinforce(0xF1, 1, ReinforcementUnits, 3, 3) // Middle 
 Reinforce(0xF2, 1, ReinforcementUnits, 1, 3) // Bottom 
-NoFade 
-ENDA 
-
+}
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)

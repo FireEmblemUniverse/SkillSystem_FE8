@@ -27,17 +27,14 @@ TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
 TurnEventNPC(0,GlobalNPCTurnEvent,0,255) // placeholder
 TurnEventEnemy(0,GlobalEnemyTurnEvent,0,255)// placeholder
-TurnEventPlayer(0,ReinforcementEvent,0,255)
 //TurnEventNPC(0,TurnNPCsToEnemies,0,255) // Instead made it so Gary / unit id 0xFA cannot be targeted despite being an enemy 
 //TurnEventEnemy(0,TurnEnemiesToNPCs,0,255) // See "ForEachUnitInRangeHack.asm" 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-ReinforcementEvent:
+{ ; ReinforceEntry(ChapterID)
 Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) // Top 
-NoFade 
-ENDA 
-
+}
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)

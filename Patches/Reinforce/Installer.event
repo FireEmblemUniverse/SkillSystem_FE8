@@ -12,15 +12,20 @@ POP
 
 
 DefaultReinforcementUnitGroup:
-UNIT 0x60 RattataID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0x60 MagikarpID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
 UNIT 
 
 
 SummonGFXEvent:
-ASMC 0x807AD09 //@New6C_SummonGfx_FromActionStructCoords 
+ShowAnimationAll(healing_ID)
+// Sparkle_4 ? SummonGfx? LightRuneAnim? 
+//ASMC 0x807AD09 //@New6C_SummonGfx_FromActionStructCoords 
 #ifdef DRUnitBitMask
 SetNearbyDangerRadius // Pokemblem only 
 #endif 
+ASMC 0x80271a1 // SMS_UpdateFromGameData
+ASMC 0x8019c3d // UpdateGameTilesGraphics
+ASMC 0x801a1f9 // refresh entity maps 
 NoFade
 ENDA
 
@@ -33,7 +38,8 @@ ALIGN 4
 ReinforcementTableOfPointers: // Indexed by chapter ID 
 DefaultReinforcementUnitGroup256
 
-#define Reinforce(ChapterID, BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "NoFade; ENDA; PUSH; ORG ReinforcementTableOfPointers + (4*ChapterID); POIN Reinforce_IndividualChTable; POP; ALIGN 8; Reinforce_IndividualChTable:; BYTE BushUnitID; BYTE NumberOfEnemies; BYTE GracePeriod; BYTE FrequencyInTurns; POIN UnitGroup"
+#define ReinforceEntry(ChapterID) "NoFade; ENDA; PUSH; ORG ReinforcementTableOfPointers + (4*ChapterID); POIN Reinforce_IndividualChTable; POP; ALIGN 8; Reinforce_IndividualChTable:; WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+#define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "PUSH; ORG (Reinforce_IndividualChTable + (BushUnitID-0xF0)*8); BYTE BushUnitID; BYTE NumberOfEnemies; BYTE GracePeriod; BYTE FrequencyInTurns; POIN UnitGroup; POP"
 
 
 

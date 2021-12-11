@@ -27,8 +27,13 @@ ldrb r0, [r0, #0xF]
 cmp r0, #0 
 bne NoHeal @ Only heal bushes on Player Phase 
 
-
+ldr r0, [r4] 
+ldrb r0, [r0, #4] @ Unit ID 
 bl Reinforce_GetTableEntry
+ldr r1, =0xFFFFFFFF 
+cmp r0, r1 
+beq NoHeal  
+
 mov r3, r0 
 
 ldr r2, =0x202BCF0 
@@ -59,12 +64,22 @@ bx r1
 .type Reinforce_GetTableEntry, %function 
 Reinforce_GetTableEntry:
 push {lr} 
+mov r1, #0xF0 
+sub r0, r1
+lsl r1, r0, #3 @ 8 bytes per entry 
 ldr r0, =ReinforcementTableOfPointers
 ldr r3, =0x202BCFE @ Chapter ID 
 ldrb r3, [r3] @ Ch ID 
 lsl r3, #2 @ 4 bytes per entry 
 add r0, r3 
 ldr r0, [r0] @ Individual table 
+add r0, r1 @ table to use 
+
+ldr r1, [r0] 
+cmp r1, #0 
+bne Passed
+ldr r0, =0xFFFFFFFF 
+Passed:
 
 pop {r1} 
 bx r1 
@@ -78,6 +93,7 @@ bx r1
 	.equ CurrentUnitFateData, 0x203A958	@{U}
 	.equ GetUnitStructFromEventParameter, 0x800bc50
 	.equ LoadUnit, 0x8017ac4 
+	.equ FillMap,                      0x080197E4	@{U}
 
 .global Reinforce_SpawnIfFull
 .type Reinforce_SpawnIfFull, %function 
@@ -85,14 +101,29 @@ bx r1
 Reinforce_SpawnIfFull:
 push {r4-r7, lr}
 @ given unit struct in r0, and unit group in r1, check if full HP. 
-
-@mov r11, r11 @ [0202D0A7]!
+mov r7, r8 
+push {r7} 
 
 mov r4, r0 @ unit 
 mov r6, r1 @ target array 
 
+ldr r0, [r4] 
+ldrb r0, [r0, #4] @ Unit ID 
 bl Reinforce_GetTableEntry
+ldr r1, =0xFFFFFFFF 
+cmp r0, r1 
+beq False 
+
 mov r7, r0 
+mov r1, #0 
+mov r8, r1 
+
+ldr r0, =0x202E4F0 @ Movement map	@{U}
+ldr r0, [r0] 
+mov r1, #0xFF
+blh FillMap
+
+LoadUnitsLoop:
 ldr r1, [r7, #4] @ Unit group to load 
 
 
@@ -106,29 +137,48 @@ ldrh r1, [r4, #0x10] @ XX / YY
 strh r1, [r5, #0x10] 
 @mov r0, r5 @ New unit in r0 
 ldr r1, =MemorySlot 
-add r1, #4*0x0A @ XX in sA
-add r2, r1, #4 @ YY in sB 
+add r1, #4*0x09 @ XX in s9
+add r2, r1, #4 @ YY in sA 
 ldr r3, =0xFFFFFFFF @ (-1) as failed value 
 str r3, [r1]
 str r3, [r2] 
 bl FindFreeTile @FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
 ldr r3, =MemorySlot 
-add r3, #4*0x0A @ sA 
+add r3, #4*0x09 @ s9
 mov r2, #0 
 ldsh r0, [r3, r2] @ XX 
-add r3, #4 
-ldsh r1, [r3, r2] @ YY 
+add r3, #4 @ sA 
+ldsh r1, [r3, r2] @ YY
+
+add r3, #4 @ sB 
+ldrb r2, [r4, #0x10] @ XX // used for camera 
+strh r2, [r3] @ XX 
+add r3, #2 
+ldrb r2, [r4, #0x11] @ YY // used for camera in ASMC_Draw 
+strh r2, [r3] 
+ 
 strb r0, [r5, #0x10] @ XX 
 strb r1, [r5, #0x11] @ YY 
 
-ldr r3, =0xFFFFFFFF 
+ldr r3, =0xFFFFFFFF @ coords are (-1) if failed 
 cmp r1, r3 
 beq DeleteIfNotPlayer 
-
+@@ r0 / r1 is still our coords 
 ldr r3, =0x203A958 @ ActionStruct 
 strb r0, [r3, #0x13] @ X 
 strb r1, [r3, #0x14] @ Y 
+bl AddToMaps @ r0 XX, r1 YY 
+
+@blh  0x0801a1f8   @RefreshUnitMaps messing stuff up? 
+mov r1, r8 
+add r1, #1 
+mov r8, r1 
+ldrb r0, [r7, #1] @ Number of enemies 
+cmp r1, r0 
+blt LoadUnitsLoop 
+
+bl CopyMapOver
 
 ldr r0, =SummonGFXEvent
 mov r1, #1
@@ -141,6 +191,8 @@ mov r0, #1
 strb r0, [r4, #0x13] @ current hp [0202D0A7]?
 mov r0, #0
 strb r0, [r6, #3] @ hp to restore 
+
+
 
 mov r0, #1 @ true 
 b ExitReinforce_SpawnIfFull 
@@ -156,10 +208,102 @@ False:
 mov r0, #0 
 ExitReinforce_SpawnIfFull:
 
-
+pop {r7} 
+mov r8, r7 
 pop {r4-r7}
 pop {r1} 
 bx r1 
+
+.align 
+.ltorg 
+
+.type AddToMaps, %function 
+AddToMaps:
+push {lr} 
+ldr		r2,=0x202E4F0 @ Backup Movemap 	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r3, r1, #0x2			@multiply y coordinate by 4
+add		r2,r3			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+
+@ldrb	r0,[r2]			@load datum at those coordinates
+mov r3, #1 
+strb r3, [r2] 
+
+ldr		r2,=0x202E4D8 @ unit map	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r3, r1, #0x2			@multiply y coordinate by 4
+add		r2,r3			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+
+@ldrb	r0,[r2]			@load datum at those coordinates
+mov r3, #0xFF  
+strb r3, [r2] 
+
+
+pop {r2} 
+bx r2 
+
+.ltorg 
+.align 
+
+.type CopyMapOver, %function 
+CopyMapOver:
+push {r4-r7, lr} 
+
+ldr r4, =0x202E4F0 
+ldr r5, =0x202E4E0 
+ldr r4, [r4] 
+ldr r5, [r5] 
+
+ldr r7, =0x202E4D4 
+ldrh r6, [r7] 
+add r7, #2 
+ldrh r7, [r7] 
+sub r6, #1 @ Map size X 
+sub r7, #1 @ Map size Y 
+
+lsl r1, r7, #2 
+add r2, r4, r1 
+ldr r4, [r4] 
+ldr r5, [r5] 
+mov r11, r11 
+ldr r2, [r2] 
+add r6, r2 @ end ram address A 
+mov r0, r6
+sub r0, r4 
+add r7, r5, r0 @ end ram address B 
+
+mov r0, #0
+LoopCopyMap: 
+cmp r4, r6 
+bge ExitLoopCopyMap 
+ldr r0, [r4] 
+str r0, [r5]
+add r4, #4 
+add r5, #4  
+b LoopCopyMap 
+
+
+ExitLoopCopyMap: 
+
+
+
+
+
+
+
+pop {r4-r7}
+pop {r0}
+bx r0 
+
+.ltorg 
+.align 
+
+
+
 
 .global Reinforce_AddBushToPlayerHpRestorationTargetList
 .type Reinforce_AddBushToPlayerHpRestorationTargetList, %function 
