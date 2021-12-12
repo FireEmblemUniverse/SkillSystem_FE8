@@ -42,7 +42,7 @@ ldrh r1, [r2] @ Turn #
 ldrb r0, [r3, #2] @ Grace period 
 
 cmp r0, r1 
-bgt NoHeal 
+bge NoHeal 
 sub r1, r0 
 ldrb r1, [r3, #3] @ Frequency 
 mov r0, #100 
@@ -250,7 +250,7 @@ bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
 
 
 
-@blh  0x0801a1f8   @RefreshUnitMaps messing stuff up? 
+@blh  0x0801a1f8   @RefreshUnitMaps 
 GotoNextLoop:
 mov r1, r8 
 add r1, #1 

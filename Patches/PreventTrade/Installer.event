@@ -48,7 +48,7 @@ giveall_fix:
 
 ALIGN 4
 inventory_full:
-#incbin "inventory_full.dmp"
+#include "inventory_full.lyn.event"
 
 ALIGN 4
 supply_fix:

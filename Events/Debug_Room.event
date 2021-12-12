@@ -139,7 +139,7 @@ ALIGN 4
 BeginningScene:
 ENUT CasualModeFlag
 
-ENUT 0xAE
+ENUT BracketedGrowthsFlag
 ENUT DebugPlaceUnitsFlagMenu
 
 
@@ -173,13 +173,17 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 SilentGiveItemWithDurability(Eirika, WaterStone, 0x3)
 
 
-SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex)
+SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex|0x80)
 
 SilentGiveItemWithDurability(Eirika, SkillScroll, RenewalID)
 
+SilentGiveItemWithDurability(Eirika, SpellScroll, KarateChop)
+
 SilentGiveItemWithDurability(1, SpellScroll, LeafFlurry)
 
-
+//GiveItemWithDurability(UnitID, Item, Durability)
+//GiveItemWithDurability(1, SpellScroll, LeafFlurry)
+GiveItemWithDurability(Eirika, SpellScroll, KarateChop)
 
 SilentGiveItemWithDurability(5, Berry, 0x83) // Pikachu 
 

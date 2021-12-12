@@ -26,8 +26,8 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnits, 6, 4) // Top 
-Reinforce(0xF1, 1, ReinforcementUnits, 5, 3) // Middle 
+Reinforce(0xF0, 1, ReinforcementUnits, 7, 4) // Top 
+Reinforce(0xF1, 1, ReinforcementUnits, 6, 3) // Middle 
 Reinforce(0xF2, 1, ReinforcementUnits, 3, 3) // Bottom 
 }
 

@@ -142,6 +142,8 @@ push {r4-r7, lr}
 ldr r4, =0x203A4EC  @ Atkr 
 ldr r5, =0x203A56C @ Dfdr
 
+@mov r11, r11 
+
 ldrb r0, [r4, #0x0B] @ Deployment id 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
@@ -153,11 +155,7 @@ CheckAtkrFirst:
 ldrb r0, [r4, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne CheckDfdrSecond
-ldrb r0, [r4, #0x0B] @ Deployment id 
-blh GetUnit 
-mov r4, r0 
-cmp r0, #0 
-beq CheckDfdrSecond 
+
 mov r1, #0x38 @ Commander 
 ldrb r0, [r4, r1] @ Commander 
 cmp r0, #0 
@@ -166,7 +164,23 @@ blh GetUnitByEventParameter
 cmp r0, #0 
 beq CheckDfdrSecond 
 mov r6, r0 @ Commander 
+@ newly loaded trainer unit could be same deployment id 
+@ as a wild one you just defeated, so we check this 
+@ only after checking support 7 for commander 
 
+ldrb r0, [r4, #0x0B] @ Deployment id 
+blh GetUnit 
+mov r4, r0 
+cmp r0, #0 
+beq CheckDfdrSecond 
+
+@ Commander should be the same for atkr / unit 
+ldr r3, =0x203A4EC  @ Atkr
+mov r2, #0x38 @ Commander 
+ldrb r0, [r4, r2] 
+ldrb r1, [r3, r2] @ Commander 
+cmp r0, r1 
+bne CheckDfdrSecond 
 
 
 mov r1, #0x2D 
@@ -196,16 +210,12 @@ b True_IsTrainersTeamDefeated
 
 
 CheckDfdrSecond:
-
+@ 202d1b4 
 ldrb r0, [r5, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne False_IsTrainersTeamDefeated
-ldrb r0, [r5, #0x0B] @ Deployment id 
-blh GetUnit 
 
-cmp r0, #0 
-beq False_IsTrainersTeamDefeated
-mov r5, r0 
+
 mov r1, #0x38 @ Commander 
 ldrb r0, [r5, r1] @ Commander 
 
@@ -215,6 +225,21 @@ blh GetUnitByEventParameter
 cmp r0, #0 
 beq False_IsTrainersTeamDefeated
 mov r6, r0 @ Commander 
+
+ldrb r0, [r5, #0x0B] @ Deployment id 
+blh GetUnit 
+cmp r0, #0 
+beq False_IsTrainersTeamDefeated
+mov r5, r0 
+
+@ Commander should be the same for Dfdr / unit 
+@ this is done because battle struct doesn't get cleared after battle 
+ldr r3, =0x203A56C @ Dfdr
+mov r2, #0x38 @ Commander 
+ldrb r0, [r5, r2] 
+ldrb r1, [r3, r2] @ Commander 
+cmp r0, r1 
+bne False_IsTrainersTeamDefeated
 
 
 mov r1, #0x2D 
