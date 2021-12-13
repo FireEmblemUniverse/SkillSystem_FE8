@@ -78,14 +78,32 @@ strb    r1,[r0,#0x10]        @store attacker x coord in defender x coord
 ldrb    r1,[r5,#0xF]
 strb    r1,[r0,#0x11]
 
+@update defender's rescuee coordinates to attacker coordinates if applicable
+ldrb 	r0,[r0,#0x1B]
+cmp 	r0,#0
+beq 	GoBack
+
+ldr 	r1,=#0x80182d8 @GetUnitByCharIdAndAllegiance
+mov 	r14,r1
+.short 	0xF800 @bl r14
+cmp 	r0,#0 @if it returns null then don't try to do anything
+beq 	GoBack
+
+@ update coords
+ldrb    r1,[r5,#0xE]        @attacker x
+strb    r1,[r0,#0x10]        @store attacker x coord in defender x coord
+ldrb    r1,[r5,#0xF]
+strb    r1,[r0,#0x11]
+
+
 GoBack:
-ldr r0, LungeMarker
-mov r1, #0
-strb r1, [r0]
-ldr        r0,[r2,#0xC]
-pop        {r4-r7}
-pop        {r1}
-bx        r1
+ldr 	r0, LungeMarker
+mov 	r1, #0
+strb 	r1, [r0]
+ldr     r0,[r2,#0xC]
+pop     {r4-r7}
+pop     {r1}
+bx      r1
 
 .align
 Somewhere:
