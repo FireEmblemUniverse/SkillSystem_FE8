@@ -57,11 +57,11 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-//AFEV 0 RefreshIfNotInDanger 0 
+////AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute2S [26,28] [28,28] 
 AREA 0 ToViridianForestN_A [41,0] [42,0] 
 AREA 0 ToViridianForestN_B [34,0] [37,0] 
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 

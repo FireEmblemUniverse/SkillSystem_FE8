@@ -53,7 +53,7 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToViridianForestS [5,10] [6,10] 
 AREA 0 ToViridian [7,36] [11,36] 
 AREA 0 ToRoute2N [18,5] [19,5] 
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 

@@ -54,7 +54,7 @@ MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AFEV 0 CityAfev 0
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AREA 0 ToRoute2N [17,37] [21,37] 

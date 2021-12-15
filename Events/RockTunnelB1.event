@@ -1,0 +1,322 @@
+#define ChapterID RockTunnelB1Ch
+#define GenericA UnitRockTunnelWild
+#define GenericB UnitRockTunnelTrainer
+#define ClassA ClassRockTunnelWildA
+#define ClassB ClassRockTunnelWildB
+#define WildLvl 19
+#define TrainerL 24
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+{ ; ReinforceEntry(ChapterID)
+Reinforce(0xF0, 1, ReinforcementUnits, 1, 4) 
+Reinforce(0xF1, 1, ReinforcementUnits, 2, 4) 
+Reinforce(0xF2, 1, ReinforcementUnits, 3, 4) 
+}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0, ToRoute10, 20,2) 
+House(0, ToLavendar, 13,28) 
+House(0, ToRockTunnelB2_NE, 40,3) 
+House(0, ToRockTunnelB2_NW, 3,2) 
+House(0, ToRockTunnelB2_Mid, 19,11) 
+House(0, ToRockTunnelB2_SE, 40,23) 
+
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(20,2) 
+EscapeTileEntry(13,28) 
+EscapeTileEntry(40,3) 
+EscapeTileEntry(3,2) 
+EscapeTileEntry(19,11) 
+EscapeTileEntry(40,23) 
+EscapeTileTerminator ; } 
+#endif 
+
+
+ToRoute10:
+ChapterTransition(Route10Ch, 8,19)
+
+ToLavendar:
+ChapterTransition(LavendarCh, 8,7)
+
+ToRockTunnelB2_NE:
+ChapterTransition(RockTunnelB2Ch, 30,3)
+
+ToRockTunnelB2_NW:
+ChapterTransition(RockTunnelB2Ch, 4,3)
+
+ToRockTunnelB2_Mid:
+ChapterTransition(RockTunnelB2Ch, 19,11)
+
+ToRockTunnelB2_SE:
+ChapterTransition(RockTunnelB2Ch, 30,19)
+
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(29,18,ChapterID*2,450)
+//CoinsTrap(57,15,(ChapterID*2)+1,600)
+
+
+RockSmash(5,10)
+RockSmash(16,17)
+RockSmash(24,12)
+RockSmash(11,25)
+RockSmash(32,25)
+
+SaveCost(15,5) 
+
+
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+
+RedPokeballTrap(19,16, ChapterID*2, SuperPotion)
+RedPokeballTrap(28,26, ChapterID*2, SuperPotion)
+
+//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
+
+//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+//SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
+//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+
+//SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
+
+SignBTrap(16,22, ChapterID, 0x0) //no extra text 
+SignATrap(28,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+
+
+//BerryTree(2,28,5)
+
+//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+//OpenPokeball(8,3)
+//Sign(8,4, 2)
+
+//Save(10,4)
+//SaveCost(43,3) 
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+
+
+LOAD1 0x1 EnemyUnitsA
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,1,40,12)) //grass patch 
+LOAD1 0x1 EnemyUnitsB
+ENUN
+RandomizeCoords(Grass, Range(0,0,5,5), Range(3,13,40,27)) //grass patch 
+
+LOAD1 0x1 EnemyUnitsC // Burrows
+ENUN
+
+AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes  
+LOAD1 0x1 HumanTrainers
+ENUN 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
+CALL SetBushHpEvent
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+// Wilds - SpearowID	BellsproutID
+
+EnemyUnitsA:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+
+UNIT 
+
+EnemyUnitsB:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+
+UNIT 
+
+EnemyUnitsC:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT 0xF0 BurrowID 0x0 Level(1, Enemy, 1)   [7,11]  0b	0x0 0x01 REDA7R11  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BurrowID 0x0 Level(1, Enemy, 1)   [35,9]  0b	0x0 0x01 REDA35R9  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF2 BurrowID 0x0 Level(1, Enemy, 1)   [32,21]  0b	0x0 0x01 REDA32R21  [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+
+ReinforcementUnits:
+UNIT Reinforcement0 ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
+
+
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
+MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
+MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
+
+
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT R25_0xE0_BQ // 0xE0 
+SHORT R25_0xE0_BQ // 0xE0 
+SHORT R25_0xE0_BQ // 0xE0 
+SHORT R25_0xE0_BQ // 0xE0 
+
+
+
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+SHORT R25_0xE0_BD // 0xE0 
+SHORT 600 // Gold 
+SHORT R25_0xE0_BD // 0xE0 
+SHORT 600 // Gold 
+SHORT R25_0xE0_BD // 0xE0 
+SHORT 600 // Gold 
+SHORT R25_0xE0_BD // 0xE0 
+SHORT 600 // Gold 
+
+TDQ_TableTerminator ; }
+
+HumanTrainers:
+UNIT 0xE0 hikerID 0x0 Level(1, Enemy, 1) [29,2]  0b 0x0	0x1 REDA29R2 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 hikerID 0x0 Level(1, Enemy, 1) [11,3]  0b 0x0	0x1 REDA11R3 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 picnickerID 0x0 Level(1, Enemy, 1) [30,19]  0b 0x0	0x1 REDA30R19 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 picnickerID 0x0 Level(1, Enemy, 1) [23,18]  0b 0x0	0x1 REDA23R18 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT
+
+// geodude, machop, zubat (onix) 
+// (cubone), bellsprout, sandshrew 
+
+
+EnemyTrainers0: // hiker
+UNIT GenericB 	GeodudeID 		0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	MachopID 		0xE0 	Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	GeodudeID 		0xE0 	Level(1, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	ZubatID 		0xE0 	Level(1, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT
+EnemyTrainers1: // hiker
+UNIT GenericB 	ZubatID 		0xE1 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupTwoAI
+UNIT GenericB 	GeodudeID 		0xE1 	Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupTwoAI
+UNIT GenericB 	OnixID 		0xE1 	Level(1, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupTwoAI
+UNIT GenericB 	GeodudeID 		0xE1 	Level(1, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupTwoAI
+UNIT
+EnemyTrainers2: // picnicker
+UNIT GenericB 	SandshrewID		0xE2 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupThreeAI
+UNIT GenericB 	GeodudeID 		0xE2 	Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupThreeAI
+UNIT GenericB 	BellsproutID 	0xE2 	Level(1, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupThreeAI
+UNIT GenericB 	ZubatID 		0xE2 	Level(1, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupThreeAI
+UNIT
+EnemyTrainers3: // picnicker
+UNIT GenericB 	SandshrewID 		0xE3 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupFourAI
+UNIT GenericB 	SandshrewID 		0xE3 	Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupFourAI
+UNIT GenericB 	BellsproutID 		0xE3 	Level(1, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupFourAI
+UNIT GenericB 	ZubatID 			0xE3 	Level(1, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupFourAI
+UNIT
+
+
+
+
+
+	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

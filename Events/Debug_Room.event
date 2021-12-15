@@ -86,10 +86,10 @@ UNIT
 
 Units2:
 UNIT 3  ArcanineID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 2  RattataID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  GrimerID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4 MankeyID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 7 RattataID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 6 MewID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 7 RaticateID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6 MukID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 Units3:
@@ -183,7 +183,7 @@ SilentGiveItemWithDurability(1, SpellScroll, LeafFlurry)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)
-GiveItemWithDurability(Eirika, SpellScroll, KarateChop)
+//GiveItemWithDurability(Eirika, SpellScroll, KarateChop)
 
 SilentGiveItemWithDurability(5, Berry, 0x83) // Pikachu 
 
@@ -225,8 +225,8 @@ Write_Byte(4, GaryStarterClass)
 Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(11, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(22, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(3, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 PokecenterCh
 
 //MNC2 ViridianCh 
@@ -245,7 +245,7 @@ Write_Byte(22, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 SSAnneCh
 
 
-MNC2 CinnabarCh
+//MNC2 CinnabarCh
 
 
 //MNC2 Route4ECh
@@ -263,7 +263,10 @@ MNC2 CinnabarCh
 //MNC2 ViridianCh
 //MNC2 CeruleanCh
 
-//MNC2 Route9ECh
+MNC2 Route9ECh
+
+
+
 //MNC2 Route11Ch
 //MNC2 Route2NCh
 //MNC2 PewterCh

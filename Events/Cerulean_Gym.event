@@ -42,7 +42,7 @@ CauseGameOverIfLordDies
 DefeatAll(EndingScene) 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToCerulean [9,18] [9,18] 
 END_MAIN
 #ifdef MultiTileMarker_Installer

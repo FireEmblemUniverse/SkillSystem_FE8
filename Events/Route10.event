@@ -46,6 +46,8 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(0, ToRockTunnel, 8,19) 
+House(0, ToPowerPlant, 7, 40) 
 END_MAIN
 
 MiscBasedEvents:
@@ -53,38 +55,31 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToCerulean [0,4] [0,11] 
-AREA 0 ToRoute5 [1,21] [2,21] 
-AREA 0 ToRoute9E_A [40,10] [40,11] 
-AREA 0 ToRoute9E_B [40,13] [40,15] 
+//AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToRoute9E [0,8] [0,10] 
+//AREA 0 ToRockTunnel 
 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(40,10) 
-EscapeTileEntry(40,14) 
-EscapeTileEntry(0,6)
-EscapeTileEntry(0,9)
-EscapeTileEntry(1,21)
-EscapeTileEntry(2,21)
+EscapeTileEntry(0,9) 
+EscapeTileEntry(7,40) 
+EscapeTileEntry(8,19)
+EscapeTileEntry(13,20)
 EscapeTileTerminator ; } 
 #endif 
 
 
-ToCerulean:
-ChapterTransition(CeruleanCh, 31,15)
+ToRoute9E:
+ChapterTransition(Route9ECh, 40,9)
 
-ToRoute5:
-ChapterTransition(Route5Ch, 29,0)
+ToRockTunnel:
+ChapterTransition(RockTunnelB1Ch, 20,2)
 
-ToRoute9E_A:
+ToPowerPlant:
 CALL ClosedArea
-ChapterTransition(Route9ECh, 0,9)
+ChapterTransition(Route9ECh, 0,0)
 
-ToRoute9E_B:
-CALL ClosedArea
-ChapterTransition(Route9ECh, 0,12)
 
 
 
@@ -97,17 +92,19 @@ Traps1:
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
 
-CutBush(12,10)
+CutBush(10,20)
+CutBush(10,22)
+CutBush(10,24)
+CutBush(10,26)
+CutBush(10,28)
 
-SaveCost(10,10) // until boulder removed 
-StrengthBoulder(13,10) // lol 
-StrengthBoulder(11,10) // lol 
+Save(13,19) 
 
 
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-RedPokeballTrap(35,19, ChapterID*2, SuperPotion)
+RedPokeballTrap(3,41, ChapterID*2, SuperPotion)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
@@ -118,12 +115,12 @@ RedPokeballTrap(35,19, ChapterID*2, SuperPotion)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(39,9, ChapterID, 0x0) //no extra text 
-SignATrap(2,4, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(6,42, ChapterID, 0x0) //no extra text 
+SignATrap(7,21, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
-BerryTree(35,3,5)
+BerryTree(2,28,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
@@ -148,7 +145,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(17,3,27,7)) //w patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(6,6,16,10)) //grass patch 
 
 AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes  
@@ -197,6 +194,7 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BushID 0x0 Level(1, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 ReinforcementUnits:
@@ -209,40 +207,31 @@ UNIT
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
 MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
-MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT R25_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 lassID 0x0 Level(1, Enemy, 1) [6,26]  0b 0x0	0x1 REDA6R26 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 
 
 EnemyTrainers0: // bug catcher or bird keeper - attacks from ledge 
-UNIT GenericB 	ButterfreeID 0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
-UNIT GenericB 	PidgeottoID 0xE0 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
-UNIT GenericB 	BeedrillID 0xE0 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	PidgeyID 0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	SpearowID 0xE0 	Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	PidgeottoID 0xE0 	Level(1, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
+UNIT GenericB 	FearowID 0xE0 	Level(1, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI
 UNIT
 
-EnemyTrainers1: // camper
-UNIT GenericB 	PidgeottoID 0xE1 	Level(2, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	SandshrewID 0xE1 	Level(2, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GeodudeID 0xE1 	Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 
-UNIT
 
 
 	

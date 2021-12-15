@@ -53,7 +53,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToCerulean [0,4] [0,11] 
 AREA 0 ToRoute5 [1,21] [2,21] 
 AREA 0 ToRoute9E_A [40,10] [40,11] 

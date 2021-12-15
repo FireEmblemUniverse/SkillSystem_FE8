@@ -60,7 +60,7 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToVermillionWalk [0,8] [0,10] 
 AREA 0 ToVermillionSwim [0,11] [0,13] 
 END_MAIN

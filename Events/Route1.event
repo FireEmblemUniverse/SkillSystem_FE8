@@ -55,7 +55,7 @@ AFEV 0 GlobalAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
-AFEV 0 RefreshIfNotInDanger 0 
+//AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
