@@ -28,7 +28,7 @@
 // USE_SAVE_EXPANSION will be used even if commented
 // TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
-// #define USE_STRMAG_SPLIT
+#define USE_STRMAG_SPLIT
 
 // If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
 // Enabling this *will* break saves, but allows for higher stats and other things.
@@ -94,6 +94,9 @@
 //If uncommented, will enable Negative Weapon Wt/Crit Display.
 #define NEGATIVE_WTCRIT_DISPLAY
 
+//If uncommented, will enable the battle crit cap
+#define CRIT_CAP
+
 //If uncommented, will enable Chapter Names as Text.
 #define TEXT_CHAPTER_NAMES
 
@@ -146,7 +149,7 @@
 
 //If uncommented, Cannot Crit will be implemented.
 //Makes weapon crit of 255 negate crits.
-// #define CANNOT_CRIT
+#define CANNOT_CRIT
 
 //If uncommented, AdvWeaponLocks will be implemented.
 //This is a rewrite of venno's array-based weapon locks.
@@ -219,7 +222,7 @@
 #define RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
 
 // If commented, Capture will be a global command and will not require the Capture skill.
-#define CAPTURE_SKILL_REQUIRED
+//#define CAPTURE_SKILL_REQUIRED
 
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
 #define DRAGON_VEIN_SKILL_REQUIRED

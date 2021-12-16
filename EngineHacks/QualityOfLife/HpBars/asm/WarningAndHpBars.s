@@ -147,6 +147,10 @@ ldsb	r0,[r4,r0]
 mov 	r2,r0
 mov 	r0,r7
 pop		{r7}
+
+cmp     r2, #0x0
+beq     CheckIfSelected         @if hp is zero, don't try to show the bar
+
 cmp		r2,r0
 bge		CheckIfSelected			@if hp is max, don't show the bar
 mov		r1,r0 @ arg r1 = mhp
