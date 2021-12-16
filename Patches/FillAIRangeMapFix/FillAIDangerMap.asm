@@ -1,5 +1,8 @@
 .thumb
 
+.global NuAiFillDangerMap
+.type NuAiFillDangerMap, %function
+
 .equ origin, 0x0803e320
 .equ GetUnitStruct, . + 0x08019430 - origin
 .equ AreUnitsAllied, . + 0x08024D8C - origin
@@ -9,158 +12,145 @@
 .equ FillMovementAndRangeMapForItem, . + 0x0803B558 - origin
 .equ GetUnitPower, . + 0x080191B0 - origin
 
-FillAIDangerMap:
-	push 	{r4-r7,lr}
-	mov 	r7, r10
-	mov 	r6, r9
-	mov 	r5, r8
-	mov		r4, r11
-	push 	{r4-r7}
-	mov 	r0, #0x0
-	mov 	r8, r0
-	mov 	r9, r0
-	mov 	r4, #0x1
-label1:
-	mov 	r0, r4
-	bl 		GetUnitStruct
-	mov 	r6, r0
-	add 	r4, #0x1
-	mov 	r10, r4
-	cmp 	r6, #0x0
-	beq 	label2 					@3e41c
-		ldr 	r0, [r6, #0x0] 
-		cmp 	r0, #0x0
-		beq 	label2 				@3e41c
-			ldr 	r0, [r6, #0xc] 
-			ldr 	r1, =0x0001000d
-			and 	r0, r1
-			cmp 	r0, #0x0
-			bne 	label2 			@3e41c
-				ldr 	r0, =0x0202BE44 	@gActiveUnitIndex 
-				ldrb 	r0, [r0, #0x0] 
-				mov 	r1, #0xb
-				ldsb 	r1, [r6, r1] 
-				bl 		AreUnitsAllied
-				cmp 	r0, #0x0
-				bne 	label2 		@3e41c
-					mov 	r5, #0x0
-					ldrh 	r4, [r6, #0x1e] 
-					cmp 	r4, #0x0
-					beq 	label3 	@3E3A6
-			label5:
-				mov 	r0, r6
-				mov 	r1, r4
-				bl 		CanUnitUseAsWeapon
-				cmp 	r0, #0x0
-				beq 	label4 		@3e392
-					mov 	r0, r4
-					bl 		GetItemMight
-					cmp 	r0, r9
-					ble 	label4 		@3e392
-						mov 	r8, r4
-						mov 	r0, r8
-						bl 		GetItemMight
-						mov 	r9, r0
-				label4:
-					add 	r5, #0x1
-					cmp 	r5, #0x4
-					bgt 	label3 		@3e3a6
-					lsl 	r1, r5, #0x1
-					mov 	r0, r6
-					add 	r0, #0x1e
-					add 	r0, r0, r1
-					ldrh 	r4, [r0, #0x0] 
-					cmp 	r4, #0x0
-					bne 	label5 		@3e36c
-				
-		label3:
-			mov 	r1, r8
-			cmp 	r1, #0x0
-			beq 	label2 		@3e41c
-			
-				@New addition, caching the unit's power
-				mov 	r0, r6
-				bl 		GetUnitPower
-				mov 	r11, r0
-			
-				ldr 	r0, =0x03004e50 
-				ldr 	r0, [r0, #0x0] 
-				mov 	r1, r6
-				mov 	r2, r8
-				bl 		CouldUnitBeInRangeHeuristic
-				cmp 	r0, #0x0
-				beq 	label2 		@3e41c
-					mov 	r0, r6
-					mov 	r1, r8
-					bl 		FillMovementAndRangeMapForItem
-					ldr 	r0, =0x0202E4D4 	@MapSize
-					mov 	r2, #0x2
-					ldsh 	r0, [r0, r2] 		@MapSize.Height
-					sub 	r1, r0, #0x1
-					cmp 	r1, #0x0
-					blt 	label2 		@3e41c
-				
-				
-			label9:
-				ldr 	r0, =0x0202E4D4 		@MapSize
-				mov 	r2, #0x0
-				ldsh 	r0, [r0, r2] 			@MapSize.width
-				sub 	r4, r0, #0x1
-				sub 	r7, r1, #0x1
-				cmp 	r4, #0x0
-				blt 	label6 					@3e416
-					lsl r5, r1, #0x2
-							
-		label8:
-			ldr 	r0, =0x0202E4E4 		@gMapRange
-			ldr 	r0, [r0, #0x0]
-			add 	r0, r5, r0
-			ldr 	r0, [r0, #0x0]
-			add 	r0, r0, r4
-			ldrb 	r0, [r0, #0x0] 
-			lsl 	r0, r0, #0x18
-			asr 	r0, r0, #0x18
-			cmp 	r0, #0x0
-			beq 	label7 		@3e410
-				mov 	r0, r11
-				ldr 	r1, =0x0202E4F0 	@gMapMovement2
-				ldr 	r1, [r1, #0x0] 
-				add 	r1, r5, r1
-				ldr 	r1, [r1, #0x0] 
-				add 	r1, r1, r4
-				add 	r0, r9
-				asr 	r0, r0, #0x1
-				ldrb 	r2, [r1, #0x0] 
-				add 	r0, r0, r2
-				strb 	r0, [r1, #0x0]
-		label7:
-			sub 	r4, #0x1
-			cmp 	r4, #0x0
-			bge 	label8 		@3e3e2
-	
-	label6:
-		mov 	r1, r7
-		cmp 	r1, #0x0
-		bge 	label9 		@3e3d2
-		
-label2:
-	mov 	r4, r10
-	cmp 	r4, #0xBF
-	ble 	label1 @3E332
-	pop 	{r3-r6}
-	/*
-	mov 	r8, r3
-	mov 	r9, r4
-	mov 	r10, r5
-	*/
-	mov 	r11, r3
-	mov 	r8, r4
-	mov 	r9, r5
-	mov 	r10, r6
-	pop 	{r4-r7}
-	pop 	{r0}
-	bx 		r0
+@int i, j, ix, iy;
+@sp+0x4 = i (unit deploy id)
+@r7 = j = item count
 
-.align
-.ltorg
 
+NuAiFillDangerMap:
+    PUSH    {r4-r7, lr}
+    SUB     SP, #0x14
+    MOV     r3, #0x1
+    STR     r3, [SP, #0x4]  @ unit deploy ID = 1
+    
+    get_unit:
+        LDR     r0, [SP, #0x4]
+        BL      GetUnitStruct
+        MOV     r4, r0
+        BNE     fill_continue
+        B       loop_advance
+    
+fill_continue:
+    LDR     r3, [r0, #0x0]
+    CMP     r3, #0x0
+    BEQ     loop_advance    @ if unit->personal_info == NULL
+    LDR     r2, [r0, #0xC]
+    LDR     r3, =0x0000100D
+    TST     r2, r3
+    BNE     loop_advance    @ if unit->state & (hidden|dead|undeployed|bit12)
+    MOV     r1, #0xB
+    LDR     r3, =0x0202BE44 @ gActiveUnitIndex
+    LDSB    r1, [r0, r1]
+    LDRB    r0, [r3, #0x0]
+    BL      AreUnitsAllied
+    MOV     r5, r0
+    BNE     loop_advance    @ if allied with activeUnit
+    LSL     r3, r4, #0x0
+    LSL     r7, r4, #0x0
+    ADD     r3, #0x28
+    STR     r3, [SP, #0xC]  @ end of inventory
+    STR     r0, [SP, #0x8]  @ max_might = 0
+    ADD     r7, #0x1E
+
+weapon_check_loop:
+    LDRH    r6, [r7, #0x0]
+    CMP     r6, #0x0
+    BEQ     no_more_weapons
+    
+        LSL     r1, r6, #0x0
+        LSL     r0, r4, #0x0
+        BL      CanUnitUseAsWeapon
+        CMP     r0, #0x0
+        BEQ     check_next_weapon
+        
+            LSL     r0, r6, #0x0
+            BL      GetItemMight
+            LDR     r3, [SP, #0x8]  @ if result > max_might
+            CMP     r0, r3
+            BLE     check_next_weapon
+            
+                LSL     r5, r6, #0x0    @ r5 = item
+                STR     r0, [SP, #0x8]
+                
+        check_next_weapon:
+            LDR     r3, [SP, #0xC]
+            ADD     r7, #0x2
+            CMP     r3, r7
+            BNE     weapon_check_loop
+    
+    no_more_weapons:
+        CMP     r5, #0x0
+        BEQ     loop_advance    @ if item == 0
+        
+        LDR     r3, =0x03004E50 @ gActiveUnit
+        LSL     r2, r5, #0x0
+        LDR     r0, [r3, #0x0]
+        LSL     r1, r4, #0x0
+        BL      CouldUnitBeInRangeHeuristic
+        CMP     r0, #0x0
+        BEQ     loop_advance    @ if !canReachWithItem
+        
+        LSL     r1, r5, #0x0
+        LSL     r0, r4, #0x0
+        BL      FillMovementAndRangeMapForItem
+        LSL     r0, r4, #0x0
+        BL      GetUnitPower
+        
+        LDR     r3, =0x0202E4D4 @gMapSize
+        MOV     r12, r3
+        MOV     r2, #0x2
+        LDSH    r2, [r3, r2] @MapHeight
+        LDR     r3, [SP, #0x8]
+        ADD     r0, r3, r0
+        ASR     r0, r0, #0x1
+        LSL     r0, r0, #0x18
+        LDR     r6, =0x0202E4E4 @gMapRange
+        LDR     r7, =0x0202E4F0 @gMapMovement2
+        SUB     r2, #0x1
+        LSR     r0, r0, #0x18
+
+loop_map_y:
+    CMP     r2, #0x0
+    BLT     loop_advance
+    MOV     r3, r12
+    MOV     r1, #0x0
+    LDSH    r3, [r3, r1]
+    LSL     r4, r2, #0x2
+    SUB     r3, #0x1
+
+loop_map_x:
+    CMP     r3, #0x0
+    BGE     continue_map_x
+        SUB     r2, #0x1
+        B       loop_map_y
+    
+continue_map_x:
+    LDR     r1, [r6, #0x0]
+    LDR     r1, [r1, r4]
+    LDRB    r1, [r1, r3]
+    CMP     r1, #0x0
+    BEQ     skip_map_store
+
+        LDR     r1, [r7, #0x0]
+        LDR     r5, [r1, r4]
+        LDRB    r1, [r5, r3]
+        ADD     r1, r0, r1
+        STRB    r1, [r5, r3]
+    
+skip_map_store:
+    SUB     r3, #0x1
+    B       loop_map_x
+    
+loop_advance:
+    LDR     r3, [SP, #0x4]
+    ADD     r3, #0x1
+    STR     r3, [SP, #0x4]
+    CMP     r3, #0xC0
+    BNE     get_unit
+    ADD     SP, #0x14
+    POP     {r4-r7}
+    POP     {r0}
+    BX      r0
+
+    .align
+    .ltorg

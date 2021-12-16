@@ -35,7 +35,8 @@
 #define ClassRoute25WildB 0x21
 #define ClassRoute25WaterA 0x22
 #define ClassRoute25WaterB 0x23
-
+#define ClassRoute9WWildA 0x24
+#define ClassRoute9WWildB 0x25
 
 #define ClassRoute5WildA 0x26
 #define ClassRoute5WildB 0x27
@@ -46,17 +47,15 @@
 #define ClassDiglettsCaveWildA 0x2C
 #define ClassDiglettsCaveWildB 0x2D
 
-#define ClassRoute9WWildA 0x24
-#define ClassRoute9WWildB 0x25
-#define ClassRoute9EWildA 0x26
-#define ClassRoute9EWildB 0x27
-#define ClassRoute10WildA 0x28
-#define ClassRoute10WildB 0x29
-#define ClassRockTunnelWildA 0x2A
-#define ClassRockTunnelWildB 0x2B
-#define ClassPokeTowerWildA 0x2C
-#define ClassPokeTowerWildB 0x2D
 
+#define ClassRoute9EWildA 0x2E
+#define ClassRoute9EWildB 0x2F
+#define ClassRoute10WildA 0x30
+#define ClassRoute10WildB 0x31
+#define ClassRockTunnelWildA 0x32
+#define ClassRockTunnelWildB 0x33
+#define ClassPokeTowerWildA 0x34
+#define ClassPokeTowerWildB 0x35
 
 
 

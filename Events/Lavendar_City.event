@@ -1,0 +1,212 @@
+#define ChapterID LavendarCh
+#define GenericB UnitCeruleanTrainer
+#define WildLvl 10 
+#define TrainerL 16 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+//{ ; ReinforceEntry(ChapterID)
+//}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0,ToPokeTower,18,36) //
+House(0,ToRockTunnel,8,7) //
+Vendor(ShopItems,20,45)
+//House(0,ClosedArea,7,4) // old rod ? 
+//House(0,ClosedArea,10,15) // Fan club 
+//House(0,ClosedArea,17,15) //
+//House(0,ClosedArea,23,18) //
+END_MAIN
+
+
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV 0 CityAfev 0
+//AFEV 0 RefreshIfNotInDanger 0 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToRoute8 [0,39] [0,41] 
+AREA 0 ToRoute12 [11,49] [12,49] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(8,7) 
+EscapeTileEntry(6,35) 
+EscapeTileEntry(18,36) 
+EscapeTileEntry(0,40) 
+EscapeTileEntry(11,49) 
+EscapeTileEntry(12,49) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToRoute8:
+CALL ClosedArea 
+ChapterTransition(Route8Ch, 59,10)
+
+ToRoute12:
+ChapterTransition(Route12NCh, 12,0)
+
+
+ToPokeTower:
+ChapterTransition(PokemonTowerF1Ch, 10,18)
+
+ToRockTunnel:
+ChapterTransition(RockTunnelB1Ch, 13,27)
+
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+CoinsTrap(20,7,ChapterID*2,350)
+//CoinsTrap(43,13,(ChapterID*2)+1,400)
+
+//CutBush(17,22)
+Save(6,34) // Pokecenter 
+
+//RockSmash(3,2)
+StrengthBoulder(1,39)
+StrengthBoulder(1,41)
+StrengthBoulder(2,40)
+
+//StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
+SkillAccessoryTrap(13,27, ChapterID*2, PoisonStrikeID)
+
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+SignBTrap(3,35, ChapterID, 0x0) //no extra text 
+SignATrap(11,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+//OpenPokeball(8,3)
+
+//BlankExamineTrap(8,22,VermillionGymSignText)
+SignTrap(21,37, DoorLockedText) // Wooden - Poke tower
+
+
+
+EnterTutTrap(10,41, DoorLockedText) // 
+EnterTutTrap(5,46, DoorLockedText) // 
+
+EnterTutTrap(10,46, DoorLockedText) // 
+
+
+//EnterTutTrap(23,18, DoorLockedText) //   
+
+
+//Flower(10,6)
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+CALL CityBeginningScene 
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+ALIGN 4
+ShopItems:
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+BYTE SuperPotion 5 
+BYTE JellyDonut 5
+BYTE SkillScroll PatienceID 
+BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
+BYTE SpellScroll Headbutt 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
+
+
+
+
+
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+
+
+	
+#undef GenericB 
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

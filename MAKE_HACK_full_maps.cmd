@@ -15,11 +15,11 @@ set "target_ups=%~dp0FE8Hack.ups"
 
 @rem defining tools
 
-set "c2ea=%~dp0Tools\C2EA\c2ea"
-set "textprocess=%~dp0Tools\TextProcess\text-process-classic"
-set "ups=%~dp0Tools\ups\ups"
+set "c2ea=%~dp0Tools\C2EA\c2ea.exe"
+set "textprocess=%~dp0Tools\TextProcess\text-process-classic.exe"
+set "ups=%~dp0Tools\ups\ups.exe"
 set "parsefile=%~dp0EventAssembler\Tools\ParseFile.exe"
-set "tmx2ea=%~dp0Tools\tmx2ea\tmx2ea"
+set "tmx2ea=%~dp0Tools\tmx2ea\tmx2ea.exe"
 
 @rem set %~dp0 into a variable because batch is stupid and messes with it when using conditionals?
 

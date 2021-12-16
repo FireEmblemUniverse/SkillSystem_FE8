@@ -3,6 +3,6 @@
 PUSH
 //Efficiency fix for FillAIDangerMap
 	ORG $3E320
-	#incbin "FillAIDangerMap.dmp"
+	#include "FillAIDangerMap.lyn.event"
 POP
 
