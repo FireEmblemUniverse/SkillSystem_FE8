@@ -178,6 +178,11 @@ POP
   ALIGN 4
   #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
   
+  //Crit Cap
+  #ifdef CRIT_CAP
+    #include "ExternalHacks/CritCap/CritCap.event"
+  #endif
+  
   //Item Effect Revamp by Teraspark
   #include "Necessary/ItemEffectRevamp/IERevamp_Installer.event"
   
