@@ -149,7 +149,7 @@
 
 //If uncommented, Cannot Crit will be implemented.
 //Makes weapon crit of 255 negate crits.
-#define CANNOT_CRIT
+//#define CANNOT_CRIT
 
 //If uncommented, AdvWeaponLocks will be implemented.
 //This is a rewrite of venno's array-based weapon locks.
