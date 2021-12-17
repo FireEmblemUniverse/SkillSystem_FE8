@@ -75,7 +75,7 @@ SetSMS(BeedrillSMS , 2 ,   m15Standing)
 SetSMS(PidgeySMS, 2 ,    m16Standing) 
 SetSMS(PidgeottoSMS , 2 ,   m17Standing)
 SetSMS(PidgeotSMS , 2 ,   m18Standing)
-SetSMS(TreekoSMS, 2 ,  m1Standing) // Treeko ? 
+SetSMS(SuspiciousWaterSMS, 0 ,  SuspiciousWaterStanding) // Treeko ? 
 SetSMS(CrobatSMS, 2 ,  CrobatStanding)
 SetSMS(RedSMS , 1 ,  red_normalStanding)
 SetSMS(Unused4SMS , 2 ,  m1Standing)
@@ -347,7 +347,7 @@ SetMMS(BeedrillMMS ,    r15Moving,        DemonKingAP)
 SetMMS(PidgeyMMS,     r16Moving,        DemonKingAP) 
 SetMMS(PidgeottoMMS ,    r17Moving,        DemonKingAP)
 SetMMS(PidgeotMMS ,    r18Moving,        DemonKingAP)
-SetMMS(TreekoMMS,   r1Moving,        DemonKingAP) 
+SetMMS(SuspiciousWaterMMS,   SuspiciousWaterMoving,        DemonKingAP) 
 SetMMS(CrobatMMS,   CrobatMoving,        DemonKingAP)
 SetMMS(RedMMS ,   red_normalMoving,        DemonKingAP)
 SetMMS(Unused4MMS ,   r1Moving,        DemonKingAP)
@@ -2038,8 +2038,17 @@ BurrowStanding:
 #incbin "More SMS/Burrow.dmp"
 
 ALIGN 4
+SuspiciousWaterStanding:
+#incbin "More SMS/SuspiciousWater.dmp"
+
+ALIGN 4
 BurrowMoving:
 #incbin "More MMS/Burrow.dmp"
+
+ALIGN 4
+SuspiciousWaterMoving:
+#incbin "More MMS/SuspiciousWater.dmp"
+
 
 ALIGN 4
 GrassStanding:

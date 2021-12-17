@@ -86,7 +86,7 @@ UNIT
 
 Units2:
 UNIT 3  ArcanineID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 2  GrimerID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  ButterfreeID 0x1 Level(1,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4 MankeyID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 7 RaticateID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 6 MukID 0x1 Level(1,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
@@ -225,10 +225,10 @@ Write_Byte(4, GaryStarterClass)
 Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
-Write_Byte(5, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //MNC2 PokecenterCh
-
+//MNC2 PalletCh
 //MNC2 ViridianCh 
 //MNC2 Route1Ch 
 //MNC2 PalletCh
@@ -244,6 +244,7 @@ Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 Route9WCh
 //MNC2 SSAnneCh
 
+MNC2 Route12NCh
 
 //MNC2 CinnabarCh
 
@@ -264,7 +265,7 @@ Write_Byte(6, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 CeruleanCh
 
 //MNC2 Route9ECh
-MNC2 PokemonTowerF4Ch
+//MNC2 PokemonTowerF4Ch
 
 
 //MNC2 Route11Ch

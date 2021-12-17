@@ -71,192 +71,289 @@
 	.type	FindFreeTile, %function
 FindFreeTile:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 24
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, lr}	@
-	sub	sp, sp, #28	@,,
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldr	r3, .L22	@ tmp335,
 @ FindFreeTile.c:5: {
-	str	r1, [sp, #16]	@ tmp243, %sfp
-@ FindFreeTile.c:10:     MapMovementFillMovementFromPosition(unit->xPos, unit->yPos, GenericMovCost); // void MapFloodExtended(int x, int y, i8 const move_table[]);
-	movs	r1, #17	@ tmp182,
+	sub	sp, sp, #20	@,,
 @ FindFreeTile.c:5: {
-	str	r0, [sp, #4]	@ tmp242, %sfp
-	str	r2, [sp, #20]	@ tmp244, %sfp
-@ FindFreeTile.c:10:     MapMovementFillMovementFromPosition(unit->xPos, unit->yPos, GenericMovCost); // void MapFloodExtended(int x, int y, i8 const move_table[]);
-	movs	r3, r0	@ unit, tmp242
-	ldrsb	r1, [r0, r1]	@ tmp182,
-	movs	r0, #16	@ tmp183,
-	ldr	r2, .L10	@,
-	ldrsb	r0, [r3, r0]	@ tmp183,
-	ldr	r3, .L10+4	@ tmp184,
-	bl	.L12		@
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	movs	r3, #17	@ tmp186,
-	ldr	r7, .L10+8	@ tmp185,
-	ldr	r2, [r7]	@ gActiveUnit.1_6, gActiveUnit
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	ldr	r6, .L10+12	@ tmp188,
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	ldrsb	r3, [r2, r3]	@ tmp186,
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	ldr	r1, [r6]	@ tmp252, gMapUnit
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	lsls	r3, r3, #2	@ tmp189, tmp186,
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	ldr	r3, [r3, r1]	@ *_10, *_10
-	movs	r1, #255	@ tmp192,
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	ldrb	r2, [r2, #16]	@ tmp190,
-	lsls	r2, r2, #24	@ tmp190, tmp190,
-	asrs	r2, r2, #24	@ tmp190, tmp190,
-@ FindFreeTile.c:13:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
-	strb	r1, [r3, r2]	@ tmp192, *_15
-@ FindFreeTile.c:16:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
-	ldr	r3, .L10+16	@ tmp194,
-	ldrh	r5, [r3, #2]	@ tmp195,
+	str	r2, [sp, #8]	@ tmp323, %sfp
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldr	r2, [r3]	@ gActiveUnit.1_2, gActiveUnit
+	movs	r3, #17	@ tmp223,
+@ FindFreeTile.c:5: {
+	str	r1, [sp, #4]	@ tmp322, %sfp
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldr	r1, .L22+4	@ tmp225,
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldrsb	r3, [r2, r3]	@ tmp223,
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldr	r1, [r1]	@ gMapUnit, gMapUnit
+	lsls	r3, r3, #2	@ tmp226, tmp223,
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldr	r3, [r3, r1]	@ *_6, *_6
+	movs	r1, #255	@ tmp229,
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	ldrb	r2, [r2, #16]	@ tmp227,
+	lsls	r2, r2, #24	@ tmp227, tmp227,
+	asrs	r2, r2, #24	@ tmp227, tmp227,
+@ FindFreeTile.c:12:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	strb	r1, [r3, r2]	@ tmp229, *_11
+@ FindFreeTile.c:16: 	FillMovementMapForUnit(unit); // fill with flier movement & own movement 
+	ldr	r3, .L22+8	@ tmp231,
+@ FindFreeTile.c:5: {
+	movs	r4, r0	@ unit, tmp321
+@ FindFreeTile.c:16: 	FillMovementMapForUnit(unit); // fill with flier movement & own movement 
+	bl	.L24		@
+@ FindFreeTile.c:18:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	ldr	r3, .L22+12	@ tmp232,
+	ldrh	r6, [r3, #2]	@ tmp233,
 @ FindFreeTile.c:6:     int iy, ix, minDistance = 9999;
-	ldr	r3, .L10+20	@ minDistance,
-	str	r3, [sp, #12]	@ minDistance, %sfp
-@ FindFreeTile.c:16:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
-	subs	r5, r5, #1	@ iy,
+	ldr	r3, .L22+16	@ minDistance,
+	str	r3, [sp]	@ minDistance, %sfp
+@ FindFreeTile.c:18:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	subs	r6, r6, #1	@ iy,
 .L2:
-@ FindFreeTile.c:16:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
-	adds	r3, r5, #1	@ tmp249, iy,
+@ FindFreeTile.c:18:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	adds	r3, r6, #1	@ tmp329, iy,
 	bne	.L6		@,
-@ FindFreeTile.c:47:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-	movs	r3, #17	@ tmp230,
-	ldr	r2, [r7]	@ gActiveUnit.16_53, gActiveUnit
-	ldrsb	r3, [r2, r3]	@ tmp230,
-@ FindFreeTile.c:47:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-	ldr	r1, [r6]	@ gMapUnit, gMapUnit
-	lsls	r3, r3, #2	@ tmp233, tmp230,
-@ FindFreeTile.c:47:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-	ldr	r3, [r3, r1]	@ *_57, *_57
-	movs	r1, #0	@ tmp236,
-@ FindFreeTile.c:47:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-	ldrb	r2, [r2, #16]	@ tmp234,
-	lsls	r2, r2, #24	@ tmp234, tmp234,
-	asrs	r2, r2, #24	@ tmp234, tmp234,
-@ FindFreeTile.c:47:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-	strb	r1, [r3, r2]	@ tmp236, *_61
-@ FindFreeTile.c:48: }
-	add	sp, sp, #28	@,,
+@ FindFreeTile.c:48: 	if (*xOut == 0xFFFFFFFF) { 
+	ldr	r3, [sp, #4]	@ xOut, %sfp
+	ldr	r3, [r3]	@ *xOut_124(D), *xOut_124(D)
+	str	r3, [sp, #12]	@ *xOut_124(D), %sfp
+	adds	r3, r3, #1	@ tmp330, *xOut_124(D),
+	beq	.L7		@,
+.L13:
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	ldr	r3, .L22	@ tmp345,
+	ldr	r2, [r3]	@ gActiveUnit.28_92, gActiveUnit
+	movs	r3, #17	@ tmp269,
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	ldr	r1, .L22+4	@ tmp271,
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	ldrsb	r3, [r2, r3]	@ tmp269,
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	ldr	r1, [r1]	@ gMapUnit, gMapUnit
+	lsls	r3, r3, #2	@ tmp272, tmp269,
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	ldr	r3, [r3, r1]	@ *_96, *_96
+	movs	r1, #0	@ tmp275,
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	ldrb	r2, [r2, #16]	@ tmp273,
+	lsls	r2, r2, #24	@ tmp273, tmp273,
+	asrs	r2, r2, #24	@ tmp273, tmp273,
+@ FindFreeTile.c:92:     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	strb	r1, [r3, r2]	@ tmp275, *_100
+@ FindFreeTile.c:93: }
+	add	sp, sp, #20	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
 .L6:
-@ FindFreeTile.c:18:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
-	ldr	r3, .L10+16	@ tmp196,
-	ldrh	r4, [r3]	@ gMapSize, gMapSize
-	lsls	r3, r5, #2	@ _124, iy,
-	str	r3, [sp, #8]	@ _124, %sfp
-@ FindFreeTile.c:18:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
-	subs	r4, r4, #1	@ ix,
+@ FindFreeTile.c:20:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	ldr	r3, .L22+12	@ tmp234,
+	ldrh	r5, [r3]	@ gMapSize, gMapSize
+	lsls	r7, r6, #2	@ _187, iy,
+@ FindFreeTile.c:20:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	subs	r5, r5, #1	@ ix,
 .L3:
-@ FindFreeTile.c:18:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
-	adds	r3, r4, #1	@ tmp248, ix,
+@ FindFreeTile.c:20:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	adds	r3, r5, #1	@ tmp328, ix,
 	bne	.L5		@,
-@ FindFreeTile.c:16:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
-	subs	r5, r5, #1	@ iy,
+@ FindFreeTile.c:18:     for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	subs	r6, r6, #1	@ iy,
 	b	.L2		@
 .L5:
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
-	ldr	r3, .L10+24	@ tmp199,
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
-	ldr	r2, [sp, #8]	@ _124, %sfp
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
+@ FindFreeTile.c:24:             if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
+	ldr	r3, .L22+20	@ tmp237,
 	ldr	r3, [r3]	@ gMapMovement, gMapMovement
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
-	ldr	r3, [r3, r2]	@ *_23, *_23
-@ FindFreeTile.c:22:             if (gMapMovement[iy][ix] > 14) // NEW_MAP_MOVEMENT_MAX
-	ldrb	r3, [r3, r4]	@ *_26, *_26
-	cmp	r3, #14	@ *_26,
+@ FindFreeTile.c:24:             if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
+	ldr	r3, [r3, r7]	@ *_19, *_19
+@ FindFreeTile.c:24:             if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
+	ldrb	r3, [r3, r5]	@ *_22, *_22
+	cmp	r3, #14	@ *_22,
 	bhi	.L4		@,
-@ FindFreeTile.c:25:             if (gMapUnit[iy][ix] != 0)
-	ldr	r3, .L10+12	@ tmp205,
+@ FindFreeTile.c:27:             if (gMapUnit[iy][ix] != 0)
+	ldr	r3, .L22+4	@ tmp243,
 	ldr	r3, [r3]	@ gMapUnit, gMapUnit
-@ FindFreeTile.c:25:             if (gMapUnit[iy][ix] != 0)
-	ldr	r3, [r3, r2]	@ *_29, *_29
-@ FindFreeTile.c:25:             if (gMapUnit[iy][ix] != 0)
-	ldrb	r3, [r3, r4]	@ *_31, *_31
-	cmp	r3, #0	@ *_31,
+@ FindFreeTile.c:27:             if (gMapUnit[iy][ix] != 0)
+	ldr	r3, [r3, r7]	@ *_25, *_25
+@ FindFreeTile.c:27:             if (gMapUnit[iy][ix] != 0)
+	ldrb	r3, [r3, r5]	@ *_27, *_27
+	cmp	r3, #0	@ *_27,
 	bne	.L4		@,
-@ FindFreeTile.c:28:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
-	ldr	r3, .L10+28	@ tmp209,
+@ FindFreeTile.c:30:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	movs	r2, #1	@ tmp337,
+@ FindFreeTile.c:30:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	ldr	r3, .L22+24	@ tmp247,
 	ldr	r3, [r3]	@ gMapHidden, gMapHidden
-@ FindFreeTile.c:28:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
-	ldr	r3, [r3, r2]	@ *_34, *_34
-@ FindFreeTile.c:28:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
-	movs	r2, #1	@ tmp258,
-	ldrb	r3, [r3, r4]	@ *_36, *_36
-	tst	r3, r2	@ *_36, tmp258
+@ FindFreeTile.c:30:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	ldr	r3, [r3, r7]	@ *_30, *_30
+@ FindFreeTile.c:30:             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	ldrb	r3, [r3, r5]	@ *_32, *_32
+	tst	r3, r2	@ *_32, tmp337
 	bne	.L4		@,
-@ FindFreeTile.c:31:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
-	ldr	r3, .L10+32	@ tmp219,
-@ FindFreeTile.c:31:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
-	ldr	r2, [sp, #8]	@ _124, %sfp
-@ FindFreeTile.c:31:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+@ FindFreeTile.c:33:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+	ldr	r3, .L22+28	@ tmp257,
 	ldr	r3, [r3]	@ gMapTerrain, gMapTerrain
-@ FindFreeTile.c:31:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
-	ldr	r3, [r3, r2]	@ *_39, *_39
-	ldr	r0, [sp, #4]	@, %sfp
-	ldrb	r1, [r3, r4]	@ *_41, *_41
-	ldr	r3, .L10+36	@ tmp222,
-	bl	.L12		@
-@ FindFreeTile.c:31:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
-	cmp	r0, #0	@ tmp245,
+@ FindFreeTile.c:33:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+	ldr	r3, [r3, r7]	@ *_35, *_35
+	movs	r0, r4	@, unit
+	ldrb	r1, [r3, r5]	@ *_37, *_37
+	ldr	r3, .L22+32	@ tmp260,
+	bl	.L24		@
+@ FindFreeTile.c:33:             if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+	cmp	r0, #0	@ tmp324,
 	beq	.L4		@,
-@ FindFreeTile.c:34:             distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);
-	ldr	r3, [sp, #4]	@ unit, %sfp
-	ldrb	r3, [r3, #16]	@ tmp223,
-	lsls	r3, r3, #24	@ tmp223, tmp223,
-	asrs	r3, r3, #24	@ tmp223, tmp223,
-	subs	r3, r4, r3	@ tmp224, ix, tmp223
-	asrs	r2, r3, #31	@ tmp246, tmp224,
-	adds	r3, r3, r2	@ tmp225, tmp224, tmp246
-	eors	r3, r2	@ tmp225, tmp246
-	ldr	r2, [sp, #4]	@ unit, %sfp
-	ldrb	r2, [r2, #17]	@ tmp226,
-	lsls	r2, r2, #24	@ tmp226, tmp226,
-	asrs	r2, r2, #24	@ tmp226, tmp226,
-	subs	r2, r5, r2	@ tmp227, iy, tmp226
-	asrs	r1, r2, #31	@ tmp247, tmp227,
-	adds	r2, r2, r1	@ tmp228, tmp227, tmp247
-	eors	r2, r1	@ tmp228, tmp247
-@ FindFreeTile.c:34:             distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);
-	adds	r3, r3, r2	@ distance, tmp225, tmp228
-@ FindFreeTile.c:36:             if (minDistance >= distance)
-	ldr	r2, [sp, #12]	@ minDistance, %sfp
+@ FindFreeTile.c:36:             distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);
+	movs	r3, #16	@ tmp261,
+	ldrsb	r3, [r4, r3]	@ tmp261,
+	subs	r3, r5, r3	@ tmp262, ix, tmp261
+	asrs	r2, r3, #31	@ tmp326, tmp262,
+	adds	r3, r3, r2	@ tmp263, tmp262, tmp326
+	eors	r3, r2	@ tmp263, tmp326
+	movs	r2, #17	@ tmp264,
+	ldrsb	r2, [r4, r2]	@ tmp264,
+	subs	r2, r6, r2	@ tmp265, iy, tmp264
+	asrs	r1, r2, #31	@ tmp327, tmp265,
+	adds	r2, r2, r1	@ tmp266, tmp265, tmp327
+	eors	r2, r1	@ tmp266, tmp327
+@ FindFreeTile.c:36:             distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);
+	adds	r3, r3, r2	@ distance, tmp263, tmp266
+@ FindFreeTile.c:38:             if (minDistance >= distance)
+	ldr	r2, [sp]	@ minDistance, %sfp
 	cmp	r2, r3	@ minDistance, distance
 	blt	.L4		@,
-@ FindFreeTile.c:40:                 *xOut = ix;
-	ldr	r2, [sp, #16]	@ xOut, %sfp
-	str	r4, [r2]	@ ix, *xOut_81(D)
-@ FindFreeTile.c:41:                 *yOut = iy;
-	ldr	r2, [sp, #20]	@ yOut, %sfp
-	str	r3, [sp, #12]	@ distance, %sfp
-	str	r5, [r2]	@ iy, *yOut_83(D)
+@ FindFreeTile.c:42:                 *xOut = ix;
+	ldr	r2, [sp, #4]	@ xOut, %sfp
+	str	r5, [r2]	@ ix, *xOut_124(D)
+@ FindFreeTile.c:43:                 *yOut = iy;
+	ldr	r2, [sp, #8]	@ yOut, %sfp
+	str	r3, [sp]	@ distance, %sfp
+	str	r6, [r2]	@ iy, *yOut_133(D)
 .L4:
-@ FindFreeTile.c:18:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
-	subs	r4, r4, #1	@ ix,
+@ FindFreeTile.c:20:         for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	subs	r5, r5, #1	@ ix,
 	b	.L3		@
-.L11:
-	.align	2
+.L7:
+@ FindFreeTile.c:53: 		MapMovementFillMovementFromPosition(unit->xPos, unit->yPos, GenericMovCost); // void MapFloodExtended(int x, int y, i8 const move_table[]);
+	movs	r1, #17	@ tmp278,
+	movs	r0, #16	@ tmp279,
+	ldr	r3, .L22+36	@ tmp280,
+	ldrsb	r1, [r4, r1]	@ tmp278,
+	ldrsb	r0, [r4, r0]	@ tmp279,
+	ldr	r2, .L22+40	@,
+	bl	.L24		@
+@ FindFreeTile.c:57: 		for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	ldr	r3, .L22+12	@ tmp281,
+	ldrh	r6, [r3, #2]	@ tmp282,
+.L21:
+@ FindFreeTile.c:57: 		for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	subs	r6, r6, #1	@ iy,
+@ FindFreeTile.c:57: 		for (iy = gMapSize.y - 1; iy >= 0; --iy)
+	adds	r3, r6, #1	@ tmp334, iy,
+	beq	.L13		@,
+@ FindFreeTile.c:59: 			for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	ldr	r3, .L22+12	@ tmp283,
+	ldrh	r5, [r3]	@ gMapSize, gMapSize
+	lsls	r7, r6, #2	@ _190, iy,
+@ FindFreeTile.c:59: 			for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	subs	r5, r5, #1	@ ix,
+.L9:
+@ FindFreeTile.c:59: 			for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	adds	r3, r5, #1	@ tmp333, ix,
+	beq	.L21		@,
+@ FindFreeTile.c:63: 				if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
+	ldr	r3, .L22+20	@ tmp286,
+	ldr	r3, [r3]	@ gMapMovement, gMapMovement
+@ FindFreeTile.c:63: 				if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
+	ldr	r3, [r3, r7]	@ *_60, *_60
+@ FindFreeTile.c:63: 				if (gMapMovement[iy][ix] > 14) // I think high movement costs might cause an overflow issue here? So I'm using 1, 2, 15, 255 cost. 
+	ldrb	r3, [r3, r5]	@ *_63, *_63
+	cmp	r3, #14	@ *_63,
+	bhi	.L10		@,
+@ FindFreeTile.c:66: 				if (gMapUnit[iy][ix] != 0)
+	ldr	r3, .L22+4	@ tmp292,
+	ldr	r3, [r3]	@ gMapUnit, gMapUnit
+@ FindFreeTile.c:66: 				if (gMapUnit[iy][ix] != 0)
+	ldr	r3, [r3, r7]	@ *_68, *_68
+@ FindFreeTile.c:66: 				if (gMapUnit[iy][ix] != 0)
+	ldrb	r3, [r3, r5]	@ *_70, *_70
+	cmp	r3, #0	@ *_70,
+	bne	.L10		@,
+@ FindFreeTile.c:69: 				if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	movs	r2, #1	@ tmp346,
+@ FindFreeTile.c:69: 				if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	ldr	r3, .L22+24	@ tmp296,
+	ldr	r3, [r3]	@ gMapHidden, gMapHidden
+@ FindFreeTile.c:69: 				if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	ldr	r3, [r3, r7]	@ *_73, *_73
+@ FindFreeTile.c:69: 				if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
+	ldrb	r3, [r3, r5]	@ *_75, *_75
+	tst	r3, r2	@ *_75, tmp346
+	bne	.L10		@,
+@ FindFreeTile.c:72: 				if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+	ldr	r3, .L22+28	@ tmp306,
+	ldr	r3, [r3]	@ gMapTerrain, gMapTerrain
+@ FindFreeTile.c:72: 				if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+	ldr	r3, [r3, r7]	@ *_78, *_78
+	movs	r0, r4	@, unit
+	ldrb	r1, [r3, r5]	@ *_80, *_80
+	ldr	r3, .L22+32	@ tmp309,
+	bl	.L24		@
+@ FindFreeTile.c:72: 				if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+	cmp	r0, #0	@ tmp325,
+	beq	.L10		@,
+@ FindFreeTile.c:75: 				distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);
+	movs	r3, #16	@ tmp310,
+	ldrsb	r3, [r4, r3]	@ tmp310,
+	subs	r3, r5, r3	@ tmp311, ix, tmp310
+	asrs	r2, r3, #31	@ tmp331, tmp311,
+	adds	r3, r3, r2	@ tmp312, tmp311, tmp331
+	eors	r3, r2	@ tmp312, tmp331
+	movs	r2, #17	@ tmp313,
+	ldrsb	r2, [r4, r2]	@ tmp313,
+	subs	r2, r6, r2	@ tmp314, iy, tmp313
+	asrs	r1, r2, #31	@ tmp332, tmp314,
+	adds	r2, r2, r1	@ tmp315, tmp314, tmp332
+	eors	r2, r1	@ tmp315, tmp332
+@ FindFreeTile.c:75: 				distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);
+	adds	r3, r3, r2	@ distance, tmp312, tmp315
+@ FindFreeTile.c:77: 				if (minDistance >= distance)
+	ldr	r2, [sp]	@ minDistance, %sfp
+	cmp	r2, r3	@ minDistance, distance
+	blt	.L10		@,
+@ FindFreeTile.c:81: 					*xOut = ix;
+	ldr	r2, [sp, #4]	@ xOut, %sfp
+	str	r5, [r2]	@ ix, *xOut_124(D)
+@ FindFreeTile.c:82: 					*yOut = iy;
+	ldr	r2, [sp, #8]	@ yOut, %sfp
+	str	r3, [sp]	@ distance, %sfp
+	str	r6, [r2]	@ iy, *yOut_133(D)
 .L10:
-	.word	GenericMovCost
-	.word	MapMovementFillMovementFromPosition
+@ FindFreeTile.c:59: 			for (ix = gMapSize.x - 1; ix >= 0; --ix)
+	subs	r5, r5, #1	@ ix,
+	b	.L9		@
+.L23:
+	.align	2
+.L22:
 	.word	gActiveUnit
 	.word	gMapUnit
+	.word	FillMovementMapForUnit
 	.word	gMapSize
 	.word	9999
 	.word	gMapMovement
 	.word	gMapHidden
 	.word	gMapTerrain
 	.word	CanUnitCrossTerrain
+	.word	MapMovementFillMovementFromPosition
+	.word	GenericMovCost
 	.size	FindFreeTile, .-FindFreeTile
 	.ident	"GCC: (devkitARM release 54) 10.1.0"
 	.code 16
 	.align	1
-.L12:
+.L24:
 	bx	r3

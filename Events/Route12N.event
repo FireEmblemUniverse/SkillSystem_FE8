@@ -1,10 +1,10 @@
-#define ChapterID Route9ECh
-#define GenericA UnitRoute9EWild
-#define GenericB UnitRoute9ETrainer
-#define ClassA ClassRoute9EWildA
-#define ClassB ClassRoute9EWildB
-#define WildLvl 16
-#define TrainerL 21
+#define ChapterID Route12NCh
+#define GenericA UnitRoute12Wild
+#define GenericB UnitRoute12Trainer
+#define ClassA ClassRoute12WildA
+#define ClassB ClassRoute12WildB
+#define WildLvl 23
+#define TrainerL 28
 
 
 
@@ -128,6 +128,10 @@ BerryTree(24,16,5)
 ENDTRAP
 ALIGN 4
 
+#define Sea 0x15 
+#define Shallow 0x16 
+#define Lake 0x16 
+
 
 BeginningScene:
 CALL GlobalBeginningScene
@@ -137,7 +141,13 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(5,1,10,2)) //w patch 
+RandomizeCoords(Sea, Range(0,0,5,5), Range(9,11,20,20)) //N patch 
+LOAD1 0x1 EnemyUnitsB
+ENUN
+RandomizeCoords(Sea, Range(0,0,5,5), Range(9,23,16,38)) //Mid patch 
+LOAD1 0x1 EnemyUnitsC
+ENUN
+RandomizeCoords(Sea, Range(0,0,5,5), Range(8,39,14,53)) //S patch 
 
 AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
 AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes  
@@ -185,7 +195,15 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF0 SuspiciousWaterID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+EnemyUnitsB:
+UNIT 0xF1 SuspiciousWaterID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+EnemyUnitsC:
+UNIT 0xF2 SuspiciousWaterID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 ReinforcementUnits:

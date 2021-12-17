@@ -37,7 +37,9 @@ AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToRoute21 [0,0] [0,0] 
+AREA 0 ToRoute21WBush [6,19] [6,19] 
+AREA 0 ToRoute21EBush [11,19] [11,19] 
+AREA 0 ToRoute21Water [7,19] [10,19] 
 AREA 0 ToRoute1 [12,0] [13,0] 
 END_MAIN
 
@@ -50,8 +52,18 @@ EscapeTileEntry(8,19)
 EscapeTileTerminator ; } 
 #endif 
 
-ToRoute21:
-ChapterTransition(Route21Ch, 0, 0)
+ToRoute21Water:
+CALL ClosedArea
+ChapterTransition(Route21Ch, 8, 0)
+
+ToRoute21EBush:
+CALL ClosedArea
+ChapterTransition(Route21Ch, 11, 1)
+
+ToRoute21WBush:
+CALL ClosedArea
+ChapterTransition(Route21Ch, 6, 1)
+
 ToRoute1:
 ChapterTransition(Route1Ch, 13, 39)
 
@@ -159,6 +171,10 @@ CALL LoadAndPlacePlayers
 #endif 
 CALL GlobalBeginningScene
 CALL CityBeginningScene
+#ifdef DEBUG_MODE 
+LOAD1 1 WaterUnits
+ENUN 
+#endif 
 LABEL 0x63
 NoFade 
 ENDA 
@@ -205,7 +221,10 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
-
+WaterUnits: 
+//UNIT 0x51  BurrowID 0x1 Level(1, Enemy, 1)     [8,17] 0b 0x0 0x1 REDA8R17 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 0xF0  SuspiciousWaterID 0x1 Level(1, Enemy, 1)     [9,18] 0b 0x0 0x1 REDA9R18 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
 
 TalkEvent:
 Text(0x9DD) 

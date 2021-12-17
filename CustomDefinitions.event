@@ -4,7 +4,8 @@
 // Comment out for public releases 
 #define DEBUG_MODE 
 
-
+// 968 / $3C8 bytes used? - free range
+//PROTECT $1ACBC $1B084
 
 #define FreeSpace 0x01081420
 #define FreeSpaceBLRange 0x1c1ec0

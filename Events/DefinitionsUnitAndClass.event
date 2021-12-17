@@ -57,6 +57,25 @@
 #define ClassPokeTowerWildA 0x34
 #define ClassPokeTowerWildB 0x35
 
+#define ClassRoute12WildA 0x36 
+#define ClassRoute12WildB 0x37
+#define ClassRoute13WildA 0x38 
+#define ClassRoute13WildB 0x39
+#define ClassRoute14WildA 0x3A 
+#define ClassRoute14WildB 0x3B 
+#define ClassRoute15WildA 0x3C
+#define ClassRoute15WildB 0x3D 
+#define ClassSafariWildA 0x3E
+#define ClassSafariWildB 0x3F
+#define ClassSafariWildC 0x40 
+#define ClassSafariWildD 0x41
+#define ClassCyclingRoadWildA 0x42 
+#define ClassCyclingRoadWildB 0x43
+#define ClassRoute7WildA 0x44
+#define ClassRoute7WildB 0x45
+#define ClassRoute8WildA 0x46 
+#define ClassRoute8WildB 0x47 
+
 
 
 
@@ -69,24 +88,27 @@
 #define UnitPalletTownWild 0x50
 #define UnitRoute1Wild 0x51
 
-#define UnitRoute2SWild 0x53
+#define UnitRoute2SWild 0x52
 
-#define UnitViridianForestSWild 0x55
+#define UnitViridianForestSWild 0x53
 
-#define UnitViridianForestNWild 0x57
+#define UnitViridianForestNWild 0x54
 
-#define UnitRoute2NWild 0x59
+#define UnitRoute2NWild 0x55
 
-#define UnitRoute3Wild 0x5B
+#define UnitRoute3Wild 0x56
 
-#define UnitMtMoonWild 0x5D
+#define UnitMtMoonWild 0x57
 
 
 
-#define UnitRoute4Wild 0x66
+#define UnitRoute4Wild 0x58
 
-#define UnitCeruleanCityA 0x68
-#define UnitCeruleanCityB 0x69
+#define UnitCeruleanCityA 0x59
+#define UnitCeruleanCityB 0x5A
+
+
+
 #define UnitCeruleanGymA 0x6A
 #define UnitCeruleanGymB 0x6B
 #define UnitRoute24Wild 0x6C
@@ -106,6 +128,15 @@
 #define UnitRockTunnelWild 0x78
 #define UnitPokeTowerWild 0x79
 #define UnitRoute12Wild 0x7A 
+
+
+#define UnitRoute13Wild 0x7C
+#define UnitRoute14Wild 0x7D 
+#define UnitRoute15Wild 0x7E 
+#define UnitSafariWild 0x7F
+#define UnitCyclingRoadWild 0x80
+#define UnitRoute7Wild 0x81
+#define UnitRoute8Wild 0x82 
 
 #define UnitRoute1Trainer 0xA0
 #define UnitRoute2STrainer 0xA1
@@ -130,6 +161,14 @@
 #define UnitRockTunnelTrainer 0xB3 
 #define UnitPokeTowerTrainer 0xB4
 
+#define UnitRoute12Trainer 0xB5 
+#define UnitRoute13Trainer 0xB6
+#define UnitRoute14Trainer 0xB7 
+#define UnitRoute15Trainer 0xB8 
+#define UnitSafariTrainer 0xB9
+#define UnitCyclingRoadTrainer 0xBA 
+#define UnitRoute7Trainer 0xBB
+#define UnitRoute8Trainer 0xBC 
 
 
 // avoid 0xBE and 0xBF // formotiis? 
