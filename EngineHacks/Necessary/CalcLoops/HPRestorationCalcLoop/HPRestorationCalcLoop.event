@@ -11,7 +11,7 @@ POP
 
 ALIGN 4
 HPRestorationLoop: //for each, r0 = unit and r1 = current heal %; return modified heal % in r0
-POIN Renewal Relief Imbue Forager Camaraderie Amaterasu
+POIN Renewal Relief Imbue Forager Camaraderie Amaterasu Bond
 #ifdef HEAL_TILES
 POIN HealTiles
 #endif // HEAL_TILES
