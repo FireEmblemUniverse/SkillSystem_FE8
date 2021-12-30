@@ -12,7 +12,7 @@ SET_DATA gBG2MapBuffer, 0x02023CA8
 
 
 
-SET_DATA gRAMMenuCommands, 0x203F548
+SET_DATA gRAMMenuCommands, 0x203F648
 //0x203F382 // allocated 0x230 bytes for pokemblem ram and 0x80 bytes for this 
 //0x203F548 // start of pokemblem ram 
 

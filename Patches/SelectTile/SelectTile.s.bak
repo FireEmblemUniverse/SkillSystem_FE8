@@ -41,7 +41,7 @@ SelectTileCalcLoop:
 push {r4-r7, lr}
 
 
-@blh Call
+
 blh CallCharacterSelector
 @blh SkillDebugCommand_OnSelect
 

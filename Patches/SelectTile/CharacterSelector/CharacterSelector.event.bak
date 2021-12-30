@@ -12,7 +12,7 @@
 	#define CreatorMage 3
 	
 	#include "CharacterSelector.lyn.event"
-	#include "CreatorClassSetup.lyn.event"
+	//#include "CreatorClassSetup.lyn.event"
 	#include "CreatorClassDisplayLoop.lyn.event"
 	gCreatorBattleSpriteHeight:
 	BYTE 0x3C

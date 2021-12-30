@@ -193,7 +193,6 @@ void CreatorEnablePresses(CreatorProc* proc)
 
 void CreatorIdle(CreatorProc* proc)
 {
-	asm("mov r11,r11"); 
 	// Burn some RNs!
 	if ( proc->cycle < 15 ) { proc->cycle++; }
 	else { proc->cycle = 0; RandNext(); }

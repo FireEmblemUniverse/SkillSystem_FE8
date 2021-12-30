@@ -158,7 +158,8 @@ gGameSaveChunks:
 	DeclSaveChunk($104d, $02f7, StorePokeRamToSaveFile, LoadPokeRamFromSaveFile, EMS_CHUNK_POKE) // prev $118 bytes 
 
 // now uses all, prev $1165-1344 free 
-
+//$1165 - $1344 free
+	// free up to $1344
 
 	DeclSaveChunkEnd
 

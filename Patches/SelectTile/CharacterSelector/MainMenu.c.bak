@@ -5,9 +5,9 @@ int CreatorMainEntryUsability(const MenuCommandDefinition* command, int index)
 	
 	switch (index)
 	{
-		case YesEntry:
+		case ClassMenu:
 			return 1; // Make the gender and route menus always usable as well as the random option.
-		case NoEntry: // Only usable if they've chosen a class.
+		case DoneEntry: // Only usable if they've chosen a class.
 			//if ( proc->ClassMenu ) { return 1; }
 			return 1;
 			//else { return 2; }
