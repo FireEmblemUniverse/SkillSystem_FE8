@@ -1,0 +1,37 @@
+
+#define OakMug 0x99 
+#define GaryMug 0x9a
+
+#define CharPaletteTable 0x0895eea4
+
+#define CharClassTable 0x0895e0a4 
+
+
+
+gSmallWorldMapPaletteCount:
+BYTE 7 // How many palette banks the small world map should use. Maximum of 7 in vanilla without rewriting the handler routine.
+
+#include "CharacterSelector/CharacterSelector.event"
+
+
+
+#include "eastdlib.event" 
+#include "SelectTile.lyn.event"
+
+
+
+
+PUSH 
+
+ORG $1CA84 
+callHack_r3(SelectTileHook)
+
+
+POP 
+
+
+
+
+
+
+

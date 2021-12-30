@@ -1,0 +1,317 @@
+
+#ifndef CHARACTER_SELECTOR
+	#define CHARACTER_SELECTOR // Legends of Avenir Character Creator by Snek. Not free to use or edit, but free to reference!
+	// Shoutouts to Kirb since I referenced the Ternon house selection a bit, and thanks to everyone who offered me advice as I developed this!
+	
+	#include "ProcDefinitions.event"
+	
+	#define CreatorMale 1
+	#define CreatorFemale 2
+	#define CreatorMercenary 1
+	#define CreatorMilitary 2
+	#define CreatorMage 3
+	
+	#include "CharacterSelector.lyn.event"
+	//#include "CreatorClassSetup.lyn.event"
+	#include "CreatorClassDisplayLoop.lyn.event"
+	gCreatorBattleSpriteHeight:
+	BYTE 0x3C
+	gCreatorPlatformHeight:
+	BYTE 0x4A
+	
+	#define GenericMenuRPress 0x0804F520
+	#define GenericMakeHelpBox 0x0804F458
+	#define ReloadGameCoreGraphics 0x80311A8
+	#define EndFaceById 0x8005759
+	#define gSelectorRAMMenu 	0x30017BC		//0x0203EFB8
+	#define MenuProc 0x5B64D0
+	
+	CreatorShouldRouteBeAvailable:
+	#ifndef __NO_MERCENARY__
+		BYTE 1
+	#else
+		BYTE 0
+	#endif 
+	#ifndef __NO_MILITARY__
+		BYTE 1
+	#else
+		BYTE 0
+	#endif 
+	#ifndef __NO_MAGE__
+		BYTE 1
+	#else
+		BYTE 0
+	#endif 
+	
+	ALIGN 4
+	gCreatorProc: // Main character creator proc.
+	PROC_YIELD
+	PROC_SET_NAME(gCreatorProcName)
+	
+	PROC_CALL_ROUTINE(0x08013D69) // StartFadeIntoBlack.
+	PROC_LOOP_ROUTINE(0x08014069) // Wait for fade.
+	PROC_SLEEP(10)
+	PROC_CALL_ROUTINE(SetupCreator)
+	PROC_NEW_CHILD(gCreatorSpriteProc)
+	PROC_CALL_ROUTINE(0x08013D8D) // Fade out from black.
+	
+	PROC_LABEL(0x00)
+	PROC_CALL_ROUTINE(CreatorStartMenu)
+	PROC_SLEEP(10)
+	PROC_CALL_ROUTINE(CreatorEnablePresses)
+	PROC_LOOP_ROUTINE(CreatorIdle) // We always break this loop with a ProcGoto from a menu option effect.
+										// We're using a non-bloking menu to enable presses sometimes on a timer (Unless we're in the class menu).
+	
+	PROC_LABEL(0x01) // Jumped to at the end of the class menu to wait for the platform to slide back.
+	PROC_WHILE_ROUTINE(CreatorWaitForSlideOut)
+	PROC_BREAK_ALL_LOOP(gCreatorClassProc)
+	PROC_YIELD
+	PROC_GOTO(0x00)
+	
+	PROC_LABEL(0x02) // Jumped to on random press to fade, redraw stuff, then fade back. Button pressing is already disabled.
+	PROC_CALL_ROUTINE(0x08013D69) // StartFadeIntoBlack.
+	PROC_LOOP_ROUTINE(0x08014069) // Wait for fade.
+	PROC_END_ALL(MenuProc) // End the menu.
+	// Starting a new menu already clears BGs and such so eh.
+	PROC_CALL_ROUTINE(CreatorRandomizeChoices)
+	PROC_CALL_ROUTINE(0x08013D8D) // Fade out from black.
+	PROC_GOTO(0x00)
+	
+	PROC_LABEL(0x03) // Jumped to to end the menu.
+	PROC_CALL_ROUTINE(0x08013D69) // StartFadeIntoBlack.
+	PROC_LOOP_ROUTINE(0x08014069) // Wait for fade.
+	PROC_CALL_ROUTINE(CreatorTerminate)
+	PROC_END
+	
+	gCreatorProcName:
+	String("CHARACTER_CREATOR") ; BYTE 0x00
+	
+	ALIGN 4
+	gCreatorClassProc: // Used by the class selection menu to manage the sliding platform.
+	PROC_SET_NAME(gCreatorClassProcName)
+	PROC_CALL_ROUTINE(CreatorClassDrawUIBox)
+	//PROC_CALL_ROUTINE(CreatorClassSetup|1)
+	PROC_CALL_ROUTINE(CreatorClassStartPlatform)
+	PROC_LOOP_ROUTINE(CreatorClassDisplayLoop|1)
+	// We're here if we need to terminate the proc.
+	PROC_CALL_ROUTINE(CreatorClassEndProc)
+	PROC_END
+	
+	gCreatorClassProcName:
+	String("CREATOR_CLASS_DISPLAY") ; BYTE 0x00
+	
+	ALIGN 4
+	gCreatorSpriteProc: // Draw the map sprite on the main menu.
+	PROC_SET_NAME(gCreatorSpriteProcName)
+	PROC_CALL_ROUTINE(CreatorSpriteSetup)
+	PROC_LOOP_ROUTINE(CreatorSpriteIdle)
+	PROC_END
+	
+	gCreatorSpriteProcName:
+	String("CREATOR_SPRITE_UPDATE") ; BYTE 0x00
+	
+	ALIGN 4
+	gTimerProc: // Used to burn a random number of RNs. Let's count the number of frames that pass!
+	PROC_SET_NAME(gTimerProcName)
+	PROC_CALL_ROUTINE(TimerSetup)
+	PROC_LOOP_ROUTINE(TimerIncrement)
+	PROC_END
+	
+	gTimerProcName:
+	String("TIMER"); BYTE 0x00;
+	
+	#define MenuCommand(name,description,color,usability,onDraw,effect,idle,switchIn,switchOut) "WORD 0 ; SHORT name description ; WORD color ; POIN usability onDraw effect idle switchIn switchOut"
+	
+	ALIGN 4
+	gCreatorMainMenuDefs:
+	BYTE 2 3 6 0
+	WORD 1
+	POIN gCreatorMainMenuCommands
+	POIN 0 0 0 CreatorNoBPress GenericMenuRPress|1 GenericMakeHelpBox|1
+	
+	gCreatorMainMenuCommands: // These are also indexed with their menu definitions in CharacterCreator.c.
+	MenuCommand(ClassMenuText,ClassDescText,NormalText,CreatorMainEntryUsability,0,CreatorMainGotoEntry,0,0,0)
+	MenuCommand(DoneMenuText,DoneDescText,GreenText,CreatorMainEntryUsability,0,CreatorEndMenu,0,0,0)
+	WORD 0 0 0 0 0 0 0 0 0
+	
+	gCreatorMainNameUIBoxTSA:
+	#incbin "MainMenuNameBox.dmp"
+	ALIGN 4
+	gCreatorMainNameSpriteUIBoxTSA:
+	#incbin "MainMenuNameSpriteBox.dmp"
+	ALIGN 4
+	gCreatorMainUIBoxTSA:
+	#incbin "MainMenuBlueBox.dmp"
+	ALIGN 4
+	gCreatorMainPortraitUIBoxTSA:
+	#incbin "MainPortraitBox.dmp"
+	ALIGN 4
+	gCreatorMainBoonBaneUIBoxTSA:
+	#incbin "MainBoonBaneBox.dmp"
+	ALIGN 4
+	gCreatorMainNumberHighlightUIBoxTSA:
+	#incbin "MainTextHighlightBox.dmp"
+	
+	ALIGN 4
+	gMainMenuErrorTexts:
+	SHORT 0x00 0x00 0x00 ClassMenuErrorText BoonMenuErrorText BaneMenuErrorText
+	
+	ALIGN 4
+	gAvatarPortraitLookup: // BYTE (gender) (route) ; SHORT (mugID). Used to get a portrait in the main menu based on chosen gender and route.
+	BYTE CreatorMale CreatorMercenary ; SHORT OakMug
+	BYTE CreatorFemale CreatorMercenary ; SHORT GaryMug
+	BYTE CreatorMale CreatorMilitary ; SHORT OakMug
+	BYTE CreatorFemale CreatorMilitary ; SHORT GaryMug
+	BYTE CreatorMale CreatorMage ; SHORT OakMug
+	BYTE CreatorFemale CreatorMage ; SHORT GaryMug
+	WORD 0
+	
+	ALIGN 4
+	gCreatorTextReplacementLookup: // SHORT (normal) (replacement). Used namely in the main menu choice display to use abbreviations instead of narrow font.
+	SHORT WeedleName WeedleName		//PegasusKnightNameNotNarrowText
+	SHORT CaterpieName CaterpieName //WyvernRiderNameNotNarrowText
+	WORD 0
+	
+	ALIGN 4
+	gCreatorGenderMenuDefs:
+	BYTE 2 6 6 0 // X, Y, Width, Height.
+	WORD 1 // Style.
+	POIN gCreatorGenderMenuCommands
+	POIN 0 0 0 CreatorRegressMenu 0 0
+	
+	gCreatorGenderMenuCommands:
+	MenuCommand(MaleMenuText,0x00,NormalText,CreatorSubmenuUsability,0,CreatorSubmenuEffect,0,0,0)
+	MenuCommand(FemaleMenuText,0x00,NormalText,CreatorSubmenuUsability,0,CreatorSubmenuEffect,0,0,0)
+	WORD 0 0 0 0 0 0 0 0 0
+	
+	gCreatorGenderText:
+	SHORT CreatorGenderText
+	
+
+	
+
+	
+
+	
+	ALIGN 4
+	gCreatorRouteDisplayTexts:
+	SHORT CreatorMercenaryRouteText CreatorMilitaryRouteText CreatorMageRouteText
+	
+	ALIGN 4
+	gCreatorClassMenuDefs:
+	BYTE 2 0 9 0
+	WORD 1
+	WORD gSelectorRAMMenu // We generate this menu in RAM because it depends on what route they chose.
+	POIN 0 0 0 CreatorRegressMenu 0 0
+	
+	#define ClassMenuOption(Gender,Route,Character1,Class1,Character2,Class2,Character3,Class3,Character4,Class4,Character5,Class5) "BYTE Gender Route Character1 Class1 Character2 Class2 Character3 Class3 Character4 Class4 Character5 Class5"
+	gClassMenuOptions:
+	ClassMenuOption(CreatorMale,CreatorMercenary,		1, CaterpieID, 2, WeedleID, 3, PidgeyID, 4, RattataID, 5, MeowthID)
+	ClassMenuOption(CreatorFemale,CreatorMercenary,	1, CaterpieID, 2, WeedleID, 3, PidgeyID, 4, RattataID, 5, MeowthID)
+	ClassMenuOption(CreatorMale,CreatorMilitary,		1, CaterpieID, 2, WeedleID, 3, PidgeyID, 4, RattataID, 5, MeowthID)
+	ClassMenuOption(CreatorFemale,CreatorMilitary,	1, CaterpieID, 2, WeedleID, 3, PidgeyID, 4, RattataID, 5, MeowthID)
+	ClassMenuOption(CreatorMale,CreatorMage,			1, CaterpieID, 2, WeedleID, 3, PidgeyID, 4, RattataID, 5, MeowthID)
+	ClassMenuOption(CreatorFemale,CreatorMage,		1, CaterpieID, 2, WeedleID, 3, PidgeyID, 4, RattataID, 5, MeowthID)
+	WORD 0 0 0
+	
+	SkillGetter:
+	POIN Skill_Getter+1
+	
+	gCreatorClassUIBoxTSA:
+	#incbin "ClassBlueBox.dmp"
+	
+	gCreatorAppropriateItemArray: // Used to give weapons to units for the platform.
+	BYTE IronSword IronLance IronAxe IronBow Heal Fire Light Flux
+	
+	ALIGN 4
+	gCreatorRealInventoryList: // BYTE CharacterID Item1 Item2 Item3 Item4 Item5. Special list of different weapons to give aside from (Appropriate item) and (Vulnerary).
+	BYTE CaterpieID SteelSword IronLance Vulnerary 0 0
+	BYTE CaterpieID SteelSword IronLance Vulnerary 0 0
+	BYTE WeedleID SteelLance IronAxe Vulnerary 0 0
+	BYTE WeedleID SteelLance IronAxe Vulnerary 0 0
+	BYTE RattataID SteelBow Vulnerary 0 0 0
+	BYTE RattataID SteelBow Vulnerary 0 0 0
+	BYTE PidgeyID Lightning Heal Vulnerary 0 0
+	BYTE PidgeyID Lightning Heal Vulnerary 0 0
+	BYTE MeowthID IronSword Fire Vulnerary 0 0
+	BYTE MeowthID IronSword Fire Vulnerary 0 0
+	SHORT 0 0 0
+	
+	gCreatorVulnerary:
+	BYTE Vulnerary
+	
+
+	
+
+
+	
+	ALIGN 4
+	gCreatorBoonBaneEffects:
+	// BYTE (base effect) (growth effect).
+	BYTE 0 0 // 0 index is blank.
+	BYTE 5 20 // HP.
+	BYTE 2 10 // Str.
+	BYTE 2 10 // Mag.
+	BYTE 3 15 // Skl.
+	BYTE 2 10 // Spd.
+	BYTE 2 10 // Def.
+	BYTE 2 15 // Res.
+	BYTE 5 25 // Luk.
+	
+	gBaneMenuItemErrorText:
+	SHORT BaneMenuItemErrorText
+	gBoonMenuItemErrorText:
+	SHORT BoonMenuItemErrorText
+	
+	/*
+	What do we want displayed on each screen?
+	
+	MAIN MENU:
+		Gender chosen - probably normal text.
+		Route chosen - probably normal text.
+		Class chosen - normal text + map sprite.
+		Bane chosen - normal text (including the stat name of the bane and its effect).
+		Boon chosen - same as bane.
+		Once gender and route are chosen, show the face of their character.
+		
+	GENDER MENU:
+		Large text information on what choosing a gender is about.
+		
+	ROUTE MENU:
+		Large text information on each route.
+		
+	CLASS MENU:
+		It would be really cool to use the animation display used in promotion screens...
+		Maybe stat display instead... I wonder if we can fit both?
+		Both updated on scrolling through the menu.
+		
+	BOON/BANE MENU:
+		Show all base stats growths and the current boon/bane buffs/debuffs.
+		STATS	Base	Growth
+		HP		5		20
+		Str		2		10
+		Mag		2		10
+		Skl		3		15
+		Spd		2		10
+		Def		3		10
+		Res		3		15
+		Luk		5		25
+		
+	"Promotion-style" battle animation display notes:
+		Handled by a PromotionDisplay_MainLoop (0x080CD014). Only parameter is parent proc (0x08B1271C).
+		Invoking its associated proc is probably not an option because it appears to refer heavily to ITS parent and does stuff to actually start the promotion?
+		Function call at 0x080CD14A sets up the battle animation?
+		Function call at 0x080CD160 draws the platform (and the battle animation?)
+		(Array of halfwords) parent+0x2C seems to be a list of class IDs indexed by their position in the menu.
+		This function is looped through by a dedicated proc that handles this. Its current "mode" is parent+0x40 as a byte?
+			0 = Idle (already drawn and waiting).
+			1 = Initial draw. (Also sliding backwards?) Setting this to 1 while it's idle causes it to slide back then out again.
+			2 = Currently sliding in.
+		(Byte) parent+0x41 seems to be which menu item we're in.
+		(Halfword) parent+0x42 is character ID.
+		(Halfword) parent+0x44 is frame count.
+		
+		It shouldn't be too hard to "trick" this function into thinking it's an actual promotion menu.
+	*/
+	
+#endif // CHARACTER_CREATOR

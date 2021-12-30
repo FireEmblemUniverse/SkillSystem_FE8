@@ -30,10 +30,12 @@
 #include "MMB/Installers/MMBInstallerVesly.event"
 
 
-
+#include "UpdatedLButtonCycling/Installer.event"
 
 
 #include "DisabledStatusScreen/DisabledStatusScreen.event" 
+
+#include "SelectTile/Installer.event"
 
 #ifdef DEBUG_MODE 
 #include "FastMovement/Installer.event"

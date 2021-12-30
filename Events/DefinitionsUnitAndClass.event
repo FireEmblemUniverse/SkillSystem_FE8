@@ -1,3 +1,53 @@
+
+/*
+N/A biker - Koffing, Grimer, Voltorb 
+balding_manID
+fat_manID - unused 
+chefID - ? 
+
+
+battle_girlID - Fighting, (evolved)
+beautyID - Feminine/Cute - 
+Oddish, Bellsprout, Pidgey, Clefairy, Jigglypuff, Pikachu
+Exeggcute, Nidorina, Bulbasaur, Meowth 
+
+blackbeltID - Fighting - Mankey, Machop, Hitmonlee/chan 
+boyID / youngster - Normal/Flying + Ekans, Sandshrew, Zubat 
+bug_catcherID - Bugs - Caterpie, Weedle, Venonat, Paras
+camperID - Ground/Flying/Fire/Normal + Ekans 
+channelerID - Ghosts - Gastly 
+
+cooltrainer_fID - Mixed/Evolved 
+
+fisherID - Water
+
+gentlemanID - Growlithe, Ponyta, Pikachu 
+hikerID - Rock/Ground/(Fighting)
+
+lassID 
+Oddish, Bellsprout, Pidgey, Clefairy, Jigglypuff, Pikachu
+Exeggcute, Nidorina, Bulbasaur, Meowth 
+
+picnickerID - Grass pokemon 
+policemanID - Growlithe
+
+rockerID (birdkeeper) - Bird pokemon (Eg. Pidgey, Spearow, Doduo, Farfetchd
+rocket_fID - Poison/Normal - Zubat, Rattata, Sandshrew, Ekans, Koffing, Drowzee, Machop, Grimer, Cubone 
+rocket_mID - Poison/Normal - Zubat, Rattata, Sandshrew, Ekans, Koffing, Drowzee, Machop, Grimer, Cubone
+sailorID - Water - Machop, Horsea, Tentacool, Shellder, Staryu
+scientistID - Electric - Koffing, Grimer, Voltorb, Magnemite
+super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemite
+
+
+
+
+
+
+*/
+#define birdkeeperID rockerID 
+
+
+
 // Terrain 
 #define Sea 0x15 
 #define Shallow 0x16 

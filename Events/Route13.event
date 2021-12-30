@@ -4,7 +4,7 @@
 #define ClassA ClassRoute13WildA
 #define ClassB ClassRoute13WildB
 #define WildLvl 24
-#define TrainerL 29
+#define TrainerL 30
 
 
 
@@ -76,13 +76,17 @@ EscapeTileTerminator ; }
 ToRoute12S:
 ChapterTransition(Route12SCh, 14,53)
 
-ToRoute13N:
+ToRoute14N:
+CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,5)
-ToRoute13M1:
+ToRoute14M1:
+CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,7)
-ToRoute13M2:
+ToRoute14M2:
+CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,9)
-ToRoute13S:
+ToRoute14S:
+CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,11)
 
 
@@ -213,7 +217,7 @@ UNIT
 
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(1, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 GrassID 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 Grass 0x0 Level(1, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 
@@ -259,16 +263,16 @@ UNIT
 // trainer exclusive: slowpoke, gyarados 
 
 EnemyTrainers0: // fisher 
-UNIT GenericB 	WeepingbellID 0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	WeepinbellID 0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	GloomID 0xE0 	Level(1, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	WeepingbellID 0xE0 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	WeepinbellID 0xE0 	Level(1, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	GloomID 0xE0 	Level(1, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
 EnemyTrainers1: // fisher 
 UNIT GenericB 	VenonatID 	0xE1 		Level(2, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	GloomID 		0xE1 		Level(2, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	WeepingbellID 	0xE1 		Level(2, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	WeepinbellID 	0xE1 		Level(2, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	VenonatID 		0xE1 		Level(2, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
