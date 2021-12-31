@@ -17,8 +17,8 @@ void CallCharacterSelector(Proc* proc) // Presumably ASMCed. Block the event eng
 void SetupCreator(CreatorProc* proc)
 {
 	
-	proc->currMenu = ConfirmationMenu; // Initialize the proc parameters.
-	//proc->currMenu = ClassMenu; // Initialize the proc parameters.
+	//proc->currMenu = ConfirmationMenu; // Initialize the proc parameters.
+	proc->currMenu = ClassMenu; // Initialize the proc parameters.
 	proc->gender = 1; 			// 0
 	proc->route = 1; 			// 0
 	proc->mainUnit = NULL;
@@ -95,23 +95,17 @@ int CreatorSubmenuEffect(MenuProc* proc, MenuCommandProc* commandProc)
 	//asm("mov r11,r11");
 	CreatorProc* creator = (CreatorProc*)ProcFind(&gCreatorProc);
 
-	if ( creator->isPressDisabled ) { return 0; } // Do nothing if presses are disabled.
-	switch (creator->currMenu)
-	{
-		case ClassMenu:
-			creator->leavingClassMenu = 1; // Set this, so we don't clear this on the switch out routine.
-			creator->mainUnit = GetUnit(1);
-			CopyUnit(creator->tempUnit,creator->mainUnit);
-			if ( creator->tempUnit ) { ClearUnit(creator->tempUnit); creator->tempUnit = NULL; }
-			ProcGoto((Proc*)creator,0);
-			creator->lastClassIndex = commandProc->commandDefinitionIndex;
-			creator->currMenu = ConfirmationMenu;
-			//asm("mov r11,r11");
-			return ME_END|ME_PLAY_BEEP;
-	}
+
+	creator->leavingClassMenu = 1; // Set this, so we don't clear this on the switch out routine.
+	creator->mainUnit = GetUnit(1);
+	CopyUnit(creator->tempUnit,creator->mainUnit);
+	if ( creator->tempUnit ) { ClearUnit(creator->tempUnit); creator->tempUnit = NULL; }
+	ProcGoto((Proc*)creator,3);
+	creator->lastClassIndex = commandProc->commandDefinitionIndex;
 	creator->currMenu = ConfirmationMenu;
 	//asm("mov r11,r11");
-	return ME_END|ME_PLAY_BEEP|ME_CLEAR_GFX;
+	return ME_END|ME_PLAY_BEEP;
+
 }
 
 // This is a menu option that jumps to end the menu.
@@ -169,9 +163,9 @@ int CreatorRegressMenu(void)
 	if ( proc->isPressDisabled ) { return 0; }
 	if ( proc->currMenu == ClassMenu )
 	{
-		ProcGoto((Proc*)proc,0); // Previously 1 to wait for the platform to disappear 
+		ProcGoto((Proc*)proc,3); // Previously 1 to wait for the platform to disappear 
 		proc->currMenu = ConfirmationMenu; // Return to the main menu.
-		return ME_END|ME_PLAY_BEEP|ME_CLEAR_GFX;
+		return ME_END|ME_PLAY_BEEP;
 	}
 	else
 	{

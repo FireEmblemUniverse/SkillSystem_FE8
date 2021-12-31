@@ -24,7 +24,7 @@
 	#define ReloadGameCoreGraphics 0x80311A8
 	#define EndFaceById 0x8005759
 	#define gSelectorRAMMenu 	0x203F548 //0x0203EFB8
-	#define MenuProc 0x5B64D0
+	#define MenuProc 0x85B64D0
 	
 	CreatorShouldRouteBeAvailable:
 	#ifndef __NO_MERCENARY__
@@ -64,8 +64,7 @@
 	
 	
 	
-	PROC_YIELD
-	PROC_GOTO(0x00)
+
 	
 	
 	
@@ -179,8 +178,8 @@
 	
 	ALIGN 4
 	gCreatorTextReplacementLookup: // SHORT (normal) (replacement). Used namely in the main menu choice display to use abbreviations instead of narrow font.
-	SHORT WeedleName WeedleName		//PegasusKnightNameNotNarrowText
-	SHORT CaterpieName CaterpieName //WyvernRiderNameNotNarrowText
+	SHORT 0x505 0x505		//PegasusKnightNameNotNarrowText
+	SHORT 0x505 0x505 //WyvernRiderNameNotNarrowText
 	WORD 0
 	
 	ALIGN 4

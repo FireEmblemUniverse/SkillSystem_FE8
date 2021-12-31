@@ -33,7 +33,7 @@ int CreatorMainGotoEntry(MenuProc* proc, MenuCommandProc* commandProc)
 	creator->lastIndex = commandProc->commandDefinitionIndex;
 	EndFaceById(0);
 	asm("mov r11,r11");
-	ProcGoto((Proc*)creator,0);
+	ProcGoto((Proc*)creator,3);
 	
 	return ME_END|ME_PLAY_BEEP|ME_CLEAR_GFX;
 }
