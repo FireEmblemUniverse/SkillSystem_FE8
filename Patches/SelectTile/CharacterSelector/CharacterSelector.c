@@ -163,7 +163,8 @@ int CreatorRegressMenu(void)
 	if ( proc->isPressDisabled ) { return 0; }
 	if ( proc->currMenu == ClassMenu )
 	{
-		ProcGoto((Proc*)proc,3); // Previously 1 to wait for the platform to disappear 
+		//asm("mov r11,r11");
+		ProcGoto((Proc*)proc,1); // Previously 1 to wait for the platform to disappear 
 		proc->currMenu = ConfirmationMenu; // Return to the main menu.
 		return ME_END|ME_PLAY_BEEP;
 	}
@@ -187,7 +188,7 @@ void CreatorEnablePresses(CreatorProc* proc)
 
 void CreatorIdle(CreatorProc* proc)
 {
-	asm("mov r11,r11"); 
+	 
 	// Burn some RNs!
 	if ( proc->cycle < 15 ) { proc->cycle++; }
 	else { proc->cycle = 0; RandNext(); }

@@ -4,7 +4,7 @@
   mov lr, \reg
   .short 0xf800
 .endm
-
+	.equ MemorySlot, 0x30004B8 
 .global SelectTileHook
 .type SelectTileHook, %function 
 
@@ -42,7 +42,25 @@ push {r4-r7, lr}
 
 
 @blh Call
-blh CallCharacterSelector
+
+ldr r3, =MemorySlot 
+mov r1, #0x8
+lsl r1, #24 @ |0x8------ 
+
+ldr r0, =UnitGroupExample_A 
+orr r0, r1 
+str r0, [r3, #4] @ Slot 1 
+
+ldr r0, =UnitGroupExample_B 
+orr r0, r1 
+str r0, [r3, #8] @ Slot 2
+
+ldr r0, =UnitGroupExample_C 
+orr r0, r1 
+str r0, [r3, #12] @ Slot 3 
+
+blh SelectCharacter_ASMC
+@blh CallCharacterSelector
 @blh SkillDebugCommand_OnSelect
 
 

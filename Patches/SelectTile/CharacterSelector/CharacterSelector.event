@@ -57,7 +57,7 @@
 	
 	PROC_LABEL(0x00)
 	PROC_CALL_ROUTINE(CreatorStartMenu)
-	PROC_SLEEP(10)
+	//PROC_SLEEP(10)
 	PROC_CALL_ROUTINE(CreatorEnablePresses)
 	PROC_LOOP_ROUTINE(CreatorIdle) // We always break this loop with a ProcGoto from a menu option effect.
 										// We're using a non-bloking menu to enable presses sometimes on a timer (Unless we're in the class menu).
@@ -114,7 +114,7 @@
 	gCreatorSpriteProc: // Draw the map sprite on the main menu.
 	PROC_SET_NAME(gCreatorSpriteProcName)
 	PROC_CALL_ROUTINE(CreatorSpriteSetup)
-	//PROC_LOOP_ROUTINE(CreatorSpriteIdle)
+	PROC_LOOP_ROUTINE(CreatorSpriteIdle)
 	PROC_END
 	
 	gCreatorSpriteProcName:

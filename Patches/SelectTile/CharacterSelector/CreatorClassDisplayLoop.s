@@ -15,6 +15,7 @@ CreatorClassDisplayLoop:
     /* 080CD018 (T) */  mov     r6,r9
     /* 080CD01A (T) */  mov     r5,r8
     /* 080CD01C (T) */  push    {r5-r7}
+	mov r11, r11 
     /* 080CD01E (T) */  sub     sp,#0x5C
     /* 080CD020 (T) */  mov     r9,r0
     /* 080CD022 (T) */  ldr     r0,=#0x30053A0
@@ -242,4 +243,5 @@ CreatorClassDisplayLoop:
     /* 080CD1CE (T) */  pop     {r4-r7}
     /* 080CD1D0 (T) */  pop     {r0}
 	/* 080CD1D2 (T) */  bx		r0
-	
+.align 
+

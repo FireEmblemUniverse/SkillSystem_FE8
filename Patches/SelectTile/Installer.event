@@ -6,13 +6,25 @@
 
 #define CharClassTable 0x0895e0a4 
 
+UnitGroupExample_A:
+UNIT 0x10  BulbasaurID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+
+UnitGroupExample_B:
+UNIT 0x11  CharmanderID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+
+UnitGroupExample_C:
+UNIT 0x12  SquirtleID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
 
 
 gSmallWorldMapPaletteCount:
 BYTE 7 // How many palette banks the small world map should use. Maximum of 7 in vanilla without rewriting the handler routine.
 
-#include "CharacterSelector/CharacterSelector.event"
+//#include "CharacterSelector/CharacterSelector.event"
 
+#include "SelectCharacter.lyn.event"
 
 
 #include "eastdlib.event" 

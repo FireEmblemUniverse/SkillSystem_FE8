@@ -33,21 +33,7 @@ SET_FUNC RTextRight, (0x080893E4+1)
 SET_DATA gVeslyUnit, 0x30017BC
 SET_DATA gVeslySkill, 0x0202BCDE
 
-SET_DATA SpellsBuffer, 0x202B6D0
-
-SET_DATA SelectedSpell, 0x0203F080
-
-SET_DATA UsingSpellMenu, 0x0203F082
-
-SET_DATA DidSelectSpell, 0x0203F084
-
-SET_DATA SpellTargetSelection, 0x0859D3F8
-
-SET_DATA StatScreenBufferMap, 0x02003C94
-
-SET_DATA gBG0MapBuffer, 0x02022CA8
-
-SET_DATA gpCurrentRound, 0x0203A608
+SET_DATA MemorySlot, 0x30004B8
 
 
 //@ Autohooks:

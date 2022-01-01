@@ -7,6 +7,7 @@ void CreatorClassDrawUIBox(CreatorClassProc* proc)
 
 void CreatorClassStartPlatform(CreatorClassProc* proc) // At this point, CreatorActivateClassDisplay has been called.
 {
+	
 	CreatorProc* creator = (CreatorProc*)ProcFind(&gCreatorProc);
 	if ( creator->route == Mercenary ) { proc->platformType = GrassPlatform; }
 	else if ( creator->route == Military ) { proc->platformType = RoadPlatform; }
@@ -159,8 +160,9 @@ void CreatorActivateClassDisplay(MenuProc* proc, MenuCommandProc* commandProc)
 	}
 }
 
-void CreatorRetractClassDisplay(MenuProc* proc, MenuCommandProc* commandProc)
+void CreatorRetractClassDisplay(MenuProc* proc, MenuCommandProc* commandProc) // Whenever you scroll or exit / confirm the class screen 
 {
+	
 	BgMapFillRect(&gBG0MapBuffer[1][12],30-12,2,0);
 	ClearIcons();
 	CreatorProc* creator = (CreatorProc*)ProcFind(&gCreatorProc);
@@ -171,18 +173,24 @@ void CreatorRetractClassDisplay(MenuProc* proc, MenuCommandProc* commandProc)
 
 int CreatorWaitForSlideOut(CreatorProc* proc) // This is a PROC_WHILE_ROUTINE - return 1 if we want to yield.
 {
+	//asm("mov r11,r11");
 	return gAISArray.xPosition != 320;
 }
 
 void CreatorClassEndProc(CreatorClassProc* proc)
 {
+	//asm("mov r11,r11");
 	CPU_FILL(0,(char*)&gBG0MapBuffer[13][0]-1,(32-13)*32*2,32);
 	DeleteSomeAISStuff(&gSomeAISStruct);
 	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
 	EndEkrAnimeDrvProc();
-	//UnlockGameGraphicsLogic();
-	//RefreshEntityMaps();
-	//DrawTileGraphics();
+	
+	
+	UnlockGameGraphicsLogic();
+	RefreshEntityMaps();
+	DrawTileGraphics();
+	
+	
 	SMS_UpdateFromGameData();
 	MU_EndAll();
 }
