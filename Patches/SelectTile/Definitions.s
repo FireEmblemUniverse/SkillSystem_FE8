@@ -29,6 +29,8 @@ SET_FUNC RTextRight, (0x080893E4+1)
 
 
 //@ Data declarations:
+SET_DATA gRAMMenuCommands, 0x203F548
+//0x203F382 // allocated 0x230 bytes for pokemblem ram and 0x80 bytes for this 
 
 SET_DATA gVeslyUnit, 0x30017BC
 SET_DATA gVeslySkill, 0x0202BCDE
