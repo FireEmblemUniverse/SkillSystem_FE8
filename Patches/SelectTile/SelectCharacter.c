@@ -149,11 +149,16 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 		{
 			proc->list[i].unitRam = LoadUnit(proc->list[i].unitDef); //Unit* 
 					// Now to build this MenuCommandDefinition.
-			//asm("mov r11,r11");
+			//asm("mov r11,r11");			
 			menus[i].nameId = (proc->list[i].unitRam)->pCharacterData->nameTextId; 
+			menus[i].helpId = (proc->list[i].unitRam)->pCharacterData->nameTextId; 
 			menus[i].colorId = 0;
 			menus[i].isAvailable = MenuCommandAlwaysUsable;
+			menus[i].onDraw = 0; 
+			
 			menus[i].onEffect = SelectClass;
+			menus[i].onIdle = 0;
+			
 			menus[i].onSwitchIn = SelectCharacterMenuEnd;
 			menus[i].onSwitchOut = SelectCharacterMenuEnd;
 		}
@@ -163,11 +168,14 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 	struct MenuDefinition Menu_SelectCharacterCreator =
 	{
 		.geometry = { 23, 8, 7 },
-		
-		.commandList = &menus,
+		.style = 0,
+		.commandList = menus,
 
 		.onEnd = SelectCharacterMenuEnd,
-		//.onBPress = (void*) (0x08022860+1), // FIXME
+		.onInit = 0,
+		.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+		.onRPress = 0,
+		.onHelpBox = 0, 
 	};
 
 	proc->currOptionIndex = 0;

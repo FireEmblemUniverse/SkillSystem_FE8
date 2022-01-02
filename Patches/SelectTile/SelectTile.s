@@ -58,6 +58,9 @@ str r0, [r3, #8] @ Slot 2
 ldr r0, =UnitGroupExample_C 
 orr r0, r1 
 str r0, [r3, #12] @ Slot 3 
+str r0, [r3, #16]
+str r0, [r3, #20]
+str r0, [r3, #24]
 
 blh SelectCharacter_ASMC
 @blh CallCharacterSelector
