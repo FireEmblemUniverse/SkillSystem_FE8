@@ -16,20 +16,24 @@ extern unsigned gEventSlot[];
 
 extern MenuCommandDefinition gRAMMenuCommands[]; // 0x0203EFB8.
 
+typedef struct MenuDefinition Menu_SelectCharacterCreator;
+typedef struct MenuCommandDefinition menus[5];
 
-//typedef struct CharacterSet CharacterSet;
-//typedef struct unitLoadGroups unitLoadGroups;
-typedef struct unitSet unitSet;
 
-struct unitSet
-{
-	struct
-	{
-		const struct UnitDefinition* unitDef;
-		Unit* unitRam;
-	} list[5];
+struct MenuDefinition2 {
+	/* 00 */ struct MenuGeometry geometry;
+
+	/* 04 */ u8 style;
+
+	/* 08 */ struct MenuCommandDefinition* commandList;
+
+	/* 10 */ void(*onEnd)(MenuProc*);
+	/* 0C */ void(*onInit)(MenuProc*);
+	/* 14 */ void(*_u14)(MenuProc*);
+	/* 18 */ void(*onBPress)(MenuProc*, MenuCommandProc*);
+	/* 1C */ void(*onRPress)(MenuProc*);
+	/* 20 */ void(*onHelpBox)(MenuProc*, MenuCommandProc*);
 };
-
 
 
 struct Struct_SelectCharacterProc
@@ -67,6 +71,8 @@ static const struct ProcInstruction ProcInstruction_Confirmation[] =
     PROC_END,
 };
 
+
+/*
 static const struct MenuCommandDefinition MenuCommands_CreatorProc[] =
 {
     {
@@ -91,7 +97,7 @@ static const struct MenuCommandDefinition MenuCommands_CreatorProc[] =
     },
     {} // END
 };
-
+*/
 
 static const struct MenuCommandDefinition MenuCommands_ConfirmationProc[] =
 {
@@ -132,6 +138,18 @@ static const struct MenuDefinition Menu_ConfirmCharacter =
     //.onBPress = (void*) (SelectCharacter_ASMC), 
 };
 
+static const struct MenuDefinition Menu_SelectCharacterCreator2 =
+{
+	.geometry = { 23, 8, 7 },
+	.style = 0,
+	.commandList = MenuCommands_ConfirmationProc, //menus,
+	._u14 = 0,
+	.onEnd = SelectCharacterMenuEnd, 
+	.onInit = 0,
+	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+	.onRPress = 0,
+	.onHelpBox = 0, 
+};
 
 
 // ASMC 
@@ -139,8 +157,25 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 {
     struct Struct_SelectCharacterProc* proc = (void*) ProcStart(ProcInstruction_SelectCharacter, ROOT_PROC_3);
     proc->activeUnit = gActiveUnit;
-	MenuCommandDefinition menus[5];
+	
+/*
+	MenuCommandDefinition menus[6];
 	//CPU_FILL(0,(char*)menus,6*9*4,32); // Clear our RAM buffer.
+
+	for ( int i = 0 ; i < 6 ; i++ ) // set to 0 
+	{ 
+		menus[i].rawName = " Debug";
+		menus[i].nameId = 0; 
+		menus[i].helpId = 0; 
+		menus[i].colorId = 0;
+		menus[i]._u09 = 0;
+		menus[i].isAvailable = 0;
+		menus[i].onDraw = 0; 
+		menus[i].onEffect = 0;
+		menus[i].onIdle = 0;
+		menus[i].onSwitchIn = 0; 
+		menus[i].onSwitchOut = 0; 
+	}
 
 	for ( int i = 0 ; i < 5 ; i++ ) // Mem slots 1 - 5
 	{ 
@@ -148,49 +183,74 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 		if (proc->list[i].unitDef != 0) // Non-zero Character ID in unit group to load and non-zero memory slot 
 		{
 			proc->list[i].unitRam = LoadUnit(proc->list[i].unitDef); //Unit* 
-					// Now to build this MenuCommandDefinition.
-			//asm("mov r11,r11");			
+					// Now to build this MenuCommandDefinition.		
+			menus[i].rawName = " Debug";
 			menus[i].nameId = (proc->list[i].unitRam)->pCharacterData->nameTextId; 
 			menus[i].helpId = (proc->list[i].unitRam)->pCharacterData->nameTextId; 
 			menus[i].colorId = 0;
+			menus[i]._u09 = 0;
 			menus[i].isAvailable = MenuCommandAlwaysUsable;
 			menus[i].onDraw = 0; 
 			
 			menus[i].onEffect = SelectClass;
 			menus[i].onIdle = 0;
 			
-			menus[i].onSwitchIn = SelectCharacterMenuEnd;
-			menus[i].onSwitchOut = SelectCharacterMenuEnd;
+			menus[i].onSwitchIn = 0; //SelectCharacterMenuEnd;
+			menus[i].onSwitchOut = 0; //SelectCharacterMenuEnd;
 		}
 
 	}
+	
+*/
 
 	struct MenuDefinition Menu_SelectCharacterCreator =
 	{
 		.geometry = { 23, 8, 7 },
 		.style = 0,
-		.commandList = menus,
-
-		.onEnd = SelectCharacterMenuEnd,
+		.commandList = MenuCommands_ConfirmationProc, //menus,
+		._u14 = 0,
+		.onEnd = SelectCharacterMenuEnd, 
 		.onInit = 0,
 		.onBPress = 0, //(void*) (0x08022860+1), // FIXME
 		.onRPress = 0,
 		.onHelpBox = 0, 
 	};
 
+	
+	
+	asm("mov r11,r11");
+	
+
+
+	struct MenuDefinition2 Menu_SelectCharacterCreator3 =
+	{
+		.geometry = { 23, 8, 7 },
+		.style = 0,
+		.commandList = MenuCommands_ConfirmationProc, //menus,
+		._u14 = 0,
+		.onEnd = SelectCharacterMenuEnd, 
+		.onInit = 0,
+		.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+		.onRPress = 0,
+		.onHelpBox = 0, 
+	};
+
+	
 	proc->currOptionIndex = 0;
-    StartMenuChild(&Menu_SelectCharacterCreator, (void*) proc);
+    StartMenuChild(&Menu_SelectCharacterCreator2, (void*) proc);
 
     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
 
 
+
+
 static int SelectClass(struct MenuProc* menu, struct MenuCommandProc* command)
 {
 	Proc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
-	Struct_SelectCharacterProc* proc_variables = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
-	//struct Struct_SelectCharacterProc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
+	//Struct_SelectCharacterProc* proc_variables = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
+	// useful probably 
 	struct Struct_ConfirmationProc* proc = (void*) ProcStartBlocking(ProcInstruction_Confirmation, parent_proc);
 
 

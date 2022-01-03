@@ -109,7 +109,7 @@ enum MenuEffect {
 void UpdateHandCursor(int x, int y); //! FE8U = (0804E79C+1)
 
 MenuProc* StartMenuAdjusted(const MenuDefinition*, int xScreen, int xLeft, int xRight); //! FE8U = 0x804EB99
-MenuProc* StartMenuChild(const MenuDefinition*, Proc* parent); //! FE8U = 0x804EBC9
+MenuProc* StartMenuChild(MenuDefinition*, Proc* parent); //! FE8U = 0x804EBC9
 MenuProc* StartMenu(const MenuDefinition*); //! FE8U = 0x804EBE5
 MenuProc* StartMenuExt2(const MenuDefinition*, int backBgId, u16 baseTile, int frontBgId, int idk, Proc* parent); //! FE8U = 0x804EC35
 MenuProc* StartMenuAt(const MenuDefinition*, MenuGeometry, Proc* parent); //! FE8U = 0x804EC99
