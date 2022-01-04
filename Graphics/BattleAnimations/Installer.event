@@ -1,3 +1,5 @@
+
+
 #define classAnim(classID,animPointer) "ORG classTable +classID*(72) + 48; WORD $08000000 + animPointer"
 
 

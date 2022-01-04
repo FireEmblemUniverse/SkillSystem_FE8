@@ -4,18 +4,30 @@
 
 	ALIGN 4
 	Get_Hp_Growth:
+	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Hp_Growth2:
+	POP
 	#incbin "Get_Hp_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 	ALIGN 4
 	
 	Get_Str_Growth:
+	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Str_Growth2:
+	POP
 	#incbin "Get_Str_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 	ALIGN 4
 	
 	Get_Mag_Growth:
+   	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Mag_Growth2:
+	POP
 	#incbin "Get_Mag_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	POIN MagCharTable
@@ -24,30 +36,50 @@
 	ALIGN 4
 	
 	Get_Skl_Growth:
+	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Skl_Growth2:
+	POP
 	#incbin "Get_Skl_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 	ALIGN 4
 	
 	Get_Spd_Growth:
+	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Spd_Growth2:
+	POP
 	#incbin "Get_Spd_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 	ALIGN 4
 	
 	Get_Def_Growth:
+	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Def_Growth2:
+	POP
 	#incbin "Get_Def_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 	ALIGN 4
 	
 	Get_Res_Growth:
+   	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Res_Growth2:
+	POP
 	#incbin "Get_Res_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 	ALIGN 4
 	
 	Get_Luk_Growth:
+   	PUSH
+	ORG CURRENTOFFSET+$1;
+	  Get_Luk_Growth2:
+	POP
 	#incbin "Get_Luk_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
