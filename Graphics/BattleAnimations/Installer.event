@@ -61,6 +61,80 @@ weaponTypeAnim(BugAnim,$09)
 weaponTypeAnim(DarkAnim,$09)
 weaponAnimEnd
 
+ALIGN 4
+animBulbasaurClass:
+weaponAnim(0x28,$04) //Hand axe 
+weaponTypeAnim(ItemAnim,$04)
+weaponTypeAnim(NormalAnim,$04)
+weaponTypeAnim(ElectricAnim,$04)
+weaponTypeAnim(WaterAnim,$04)
+weaponTypeAnim(FireAnim,$04)
+weaponTypeAnim(StaffAnim,$04)
+weaponTypeAnim(GrassAnim,$04)
+weaponTypeAnim(GroundAnim,$04)
+weaponTypeAnim(PsychicAnim,$04)
+weaponTypeAnim(FightingAnim,$04)
+weaponTypeAnim(SteelAnim,$04)
+weaponTypeAnim(IceAnim,$04)
+weaponTypeAnim(FlyingAnim,$04)
+weaponTypeAnim(FairyAnim,$04)
+weaponTypeAnim(PoisonAnim,$04)
+weaponTypeAnim(RockAnim,$04)
+weaponTypeAnim(GhostAnim,$04)
+weaponTypeAnim(DragonAnim,$04)
+weaponTypeAnim(BugAnim,$04)
+weaponTypeAnim(DarkAnim,$04)
+weaponAnimEnd
+ALIGN 4
+animCharmanderClass:
+weaponAnim(0x28,$05) //Hand axe 
+weaponTypeAnim(ItemAnim,$05)
+weaponTypeAnim(NormalAnim,$05)
+weaponTypeAnim(ElectricAnim,$05)
+weaponTypeAnim(WaterAnim,$05)
+weaponTypeAnim(FireAnim,$05)
+weaponTypeAnim(StaffAnim,$05)
+weaponTypeAnim(GrassAnim,$05)
+weaponTypeAnim(GroundAnim,$05)
+weaponTypeAnim(PsychicAnim,$05)
+weaponTypeAnim(FightingAnim,$05)
+weaponTypeAnim(SteelAnim,$05)
+weaponTypeAnim(IceAnim,$05)
+weaponTypeAnim(FlyingAnim,$05)
+weaponTypeAnim(FairyAnim,$05)
+weaponTypeAnim(PoisonAnim,$05)
+weaponTypeAnim(RockAnim,$05)
+weaponTypeAnim(GhostAnim,$05)
+weaponTypeAnim(DragonAnim,$05)
+weaponTypeAnim(BugAnim,$05)
+weaponTypeAnim(DarkAnim,$05)
+weaponAnimEnd
+
+ALIGN 4
+animSquirtleClass:
+weaponAnim(0x28,$06) //Hand axe 
+weaponTypeAnim(ItemAnim,$06)
+weaponTypeAnim(NormalAnim,$06)
+weaponTypeAnim(ElectricAnim,$06)
+weaponTypeAnim(WaterAnim,$06)
+weaponTypeAnim(FireAnim,$06)
+weaponTypeAnim(StaffAnim,$06)
+weaponTypeAnim(GrassAnim,$06)
+weaponTypeAnim(GroundAnim,$06)
+weaponTypeAnim(PsychicAnim,$06)
+weaponTypeAnim(FightingAnim,$06)
+weaponTypeAnim(SteelAnim,$06)
+weaponTypeAnim(IceAnim,$06)
+weaponTypeAnim(FlyingAnim,$06)
+weaponTypeAnim(FairyAnim,$06)
+weaponTypeAnim(PoisonAnim,$06)
+weaponTypeAnim(RockAnim,$06)
+weaponTypeAnim(GhostAnim,$06)
+weaponTypeAnim(DragonAnim,$06)
+weaponTypeAnim(BugAnim,$06)
+weaponTypeAnim(DarkAnim,$06)
+weaponAnimEnd
+
 
 #define AnimTableEntry(index) "ORG ClassAnimTable + ((index-1) * 0x20)"
 

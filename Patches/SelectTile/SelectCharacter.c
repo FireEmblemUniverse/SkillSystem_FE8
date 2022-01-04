@@ -190,7 +190,7 @@ static const struct MenuCommandDefinition MenuCommands_ConfirmationProc[] =
 static const struct MenuDefinition MenuDef_SelectCharacter =
 {
     //.geometry = { 23, 12, 7 },
-    .geometry = { 2, 3, 7 },
+    .geometry = { 0, 8, 7 },
 	.style = 0,
     .commandList = MenuCommands_CharacterProc,
 	._u14 = 0,
@@ -205,7 +205,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter =
 static const struct MenuDefinition MenuDef_ConfirmCharacter =
 {
     //.geometry = { 25, 12, 5 },
-    .geometry = { 4, 3, 5 },
+    .geometry = { 2, 8, 5 },
     .commandList = MenuCommands_ConfirmationProc, 
 
     .onEnd = SelectCharacterMenuEnd,
@@ -260,7 +260,7 @@ static void DrawSelect_2(struct MenuProc* menu, struct MenuCommandProc* command)
 
 void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 {
-	ApplyBGBox(gBG1MapBuffer,&gCreatorClassUIBoxTSA,0,12);
+	ApplyBGBox(gBG1MapBuffer,&gCreatorClassUIBoxTSA,0,0);
 	EnableBgSyncByMask(2);
 }
 
@@ -320,7 +320,7 @@ void StartPlatform(CreatorClassProcStruct* proc)
 
 
 	Struct_SelectCharacterProc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
-	parent_proc->platformType = 1; 
+	parent_proc->platformType = 0; // temple ? 
 	for ( int i = 0 ; i < 5 ; i++ ) { proc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; }
 	proc->menuItem = parent_proc->currOptionIndex;
 	proc->charID = parent_proc->list[proc->menuItem].unitRam->pCharacterData->number;
@@ -390,8 +390,8 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 		iconX += 2;
 	}
 	
-	
-	
+	EndFaceById(0);
+	StartFace(0, GetUnitPortraitId(unit), 48, 88, 3);
 	
 	
 	
@@ -400,21 +400,21 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	
 	
 	// Draw stats / growths 
-	DrawUiNumber(&gBG0MapBuffer[15][8],TEXT_COLOR_GOLD,unit->maxHP);
-	DrawUiNumber(&gBG0MapBuffer[15][11],TEXT_COLOR_GOLD,unit->pow);
-	DrawUiNumber(&gBG0MapBuffer[15][14],TEXT_COLOR_GOLD,unit->unk3A); // Magic.
-	DrawUiNumber(&gBG0MapBuffer[15][17],TEXT_COLOR_GOLD,unit->skl);
-	DrawUiNumber(&gBG0MapBuffer[15][20],TEXT_COLOR_GOLD,unit->spd);
-	DrawUiNumber(&gBG0MapBuffer[15][23],TEXT_COLOR_GOLD,unit->def);
-	DrawUiNumber(&gBG0MapBuffer[15][26],TEXT_COLOR_GOLD,unit->res);
+	DrawUiNumber(&gBG0MapBuffer[3][8],TEXT_COLOR_GOLD,unit->maxHP);
+	DrawUiNumber(&gBG0MapBuffer[3][11],TEXT_COLOR_GOLD,unit->pow);
+	DrawUiNumber(&gBG0MapBuffer[3][14],TEXT_COLOR_GOLD,unit->unk3A); // Magic.
+	DrawUiNumber(&gBG0MapBuffer[3][17],TEXT_COLOR_GOLD,unit->skl);
+	DrawUiNumber(&gBG0MapBuffer[3][20],TEXT_COLOR_GOLD,unit->spd);
+	DrawUiNumber(&gBG0MapBuffer[3][23],TEXT_COLOR_GOLD,unit->def);
+	DrawUiNumber(&gBG0MapBuffer[3][26],TEXT_COLOR_GOLD,unit->res);
 	
-	DrawUiNumber(&gBG0MapBuffer[17][8],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[17][11],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[17][14],TEXT_COLOR_GOLD,Get_Mag_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[17][17],TEXT_COLOR_GOLD,Get_Skl_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[17][20],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[17][23],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[17][26],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][8],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][11],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][14],TEXT_COLOR_GOLD,Get_Mag_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][17],TEXT_COLOR_GOLD,Get_Skl_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][20],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][23],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][26],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
 	int tile = 0;
 	TextHandle baseHandle =	{
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
@@ -424,7 +424,7 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Text_Clear(&baseHandle);
 	Text_SetColorId(&baseHandle,TEXT_COLOR_GOLD);
 	Text_InsertString(&baseHandle,0,TEXT_COLOR_GOLD,"Base");
-	Text_Display(&baseHandle,&gBG0MapBuffer[15][2]);
+	Text_Display(&baseHandle,&gBG0MapBuffer[3][2]);
 	
 	TextHandle growthHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
@@ -434,56 +434,56 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Text_Clear(&growthHandle);
 	Text_SetColorId(&growthHandle,TEXT_COLOR_GOLD);
 	Text_InsertString(&growthHandle,0,TEXT_COLOR_GOLD,"Growth");
-	Text_Display(&growthHandle,&gBG0MapBuffer[17][2]);
+	Text_Display(&growthHandle,&gBG0MapBuffer[5][2]);
 	
 	TextHandle hpHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 2
 	};
 	tile += 2;
-	DrawStatNames(hpHandle,"HP",7,13);
+	DrawStatNames(hpHandle,"HP",7,1);
 	
 	TextHandle strHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(strHandle,"Str",10,13);
+	DrawStatNames(strHandle,"Str",10,1);
 	
 	TextHandle magHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(magHandle,"Mag",13,13);
+	DrawStatNames(magHandle,"Mag",13,1);
 	
 	TextHandle sklHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(sklHandle,"Skl",16,13);
+	DrawStatNames(sklHandle,"Skl",16,1);
 	
 	TextHandle spdHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(spdHandle,"Spd",19,13);
+	DrawStatNames(spdHandle,"Spd",19,1);
 	
 	TextHandle defHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(defHandle,"Def",22,13);
+	DrawStatNames(defHandle,"Def",22,1);
 	
 	TextHandle resHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(resHandle,"Res",25,13);
+	DrawStatNames(resHandle,"Res",25,1);
 	
 	EnableBgSyncByMask(1);
 	//BgMapFillRect(&gBG0MapBuffer[1][12],30-12,2,0);

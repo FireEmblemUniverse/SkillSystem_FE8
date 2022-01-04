@@ -7,7 +7,7 @@
 #define CharClassTable 0x0895e0a4 
 
 
-	#define gSelectorRAMMenu 	0x203F548 //0x0203EFB8
+	//#define gSelectorRAMMenu 	0x203F548 //0x0203EFB8
 
     //.geometry = { 23, 12, 7 },
     //.commandList = MenuCommands_CreatorProc,
@@ -16,18 +16,10 @@
     //.onBPress = (void*) (0x08022860+1), // FIXME
 
 	gCharacterSelectorBattleSpriteHeight:
-	BYTE 0x3C
+	BYTE 0x80 //0x3C // - 0xA0 as 0 ? 
 	gCharacterSelectorPlatformHeight:
-	BYTE 0x4A
+	BYTE 0x88 //0x4A
 
-	ALIGN 4
-	gSelectUnitMenuDefs:
-	BYTE 23 8 7 0
-	//BYTE 2 0 9 0
-	WORD 1
-	WORD gSelectorRAMMenu // We generate this menu in RAM because it depends on what route they chose.
-	POIN 0 0 0 0 0 0
-	//POIN 0 0 0 CreatorRegressMenu 0 0
 
 	ALIGN 4
 	gCreatorClassUIBoxTSA:
