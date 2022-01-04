@@ -14,6 +14,23 @@ BYTE 00 00
 BYTE 00 00
 ALIGN 4
 
+BulbasaurSkillList:
+BYTE 1 ReliefID
+BYTE 00 00
+
+ALIGN 4
+CharmanderSkillList:
+BYTE 1 FocusID
+BYTE 00 00
+
+ALIGN 4
+SquirtleSkillList:
+BYTE 1 TantivyID
+BYTE 00 00
+
+ALIGN 4
+
+
 TrainerSkillList:
 BYTE 255 WatchfulID 
 BYTE 00 00

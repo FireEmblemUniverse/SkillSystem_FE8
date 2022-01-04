@@ -196,7 +196,7 @@ static const struct MenuCommandDefinition MenuCommands_ConfirmationProc[] =
 static const struct MenuDefinition MenuDef_SelectCharacter =
 {
     //.geometry = { 23, 12, 7 },
-    .geometry = { 11, 8, 8 },
+    .geometry = { 11, 8, 7 },
 	.style = 0,
     .commandList = MenuCommands_CharacterProc,
 	._u14 = 0,
@@ -211,7 +211,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter =
 static const struct MenuDefinition MenuDef_ConfirmCharacter =
 {
     //.geometry = { 25, 12, 5 },
-    .geometry = { 13, 8, 6 },
+    .geometry = { 13, 8, 5 },
     .commandList = MenuCommands_ConfirmationProc, 
 
     .onEnd = SelectCharacterMenuEnd,
@@ -288,8 +288,7 @@ static void DrawSelectCharacterCommands(struct MenuProc* menu, struct MenuComman
 	Text_SetColorId(currHandle, TEXT_COLOR_NORMAL);
 
 	
-	//u16 textID = unit->pClassData->nameTextId; 
-	u16 textID = unit->pCharacterData->nameTextId; 
+	u16 textID = unit->pClassData->nameTextId; 
 	Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL,GetStringFromIndex(textID));
     Text_Display(currHandle, out);
 
@@ -375,76 +374,28 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Unit* unit = (parent_proc->list[parent_proc->currOptionIndex].unitRam);
 	//asm("mov r11,r11");
 	
-	
-	// Draw usable weapon types 
-	int iconX = 19;
-	int iconY = 8;
+	/*
+	int iconX = 3;
 	for ( int i = 0 ; i < 8 ; i++ )
 	{
 		if ( unit->ranks[i] )
 		{
-			if (iconX < 22)
-			{
-				DrawIcon(&gBG0MapBuffer[iconY][iconX],0x0+i,0x1000); // 0x5000 ? - palette bank 
-				//DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000); // vanilla uses weapon type icons in item icon IDs starting at 0x70 and indexed by weapon type  
-				// what if they have more than 5 weapon types ? 
-				iconX += 2;
-			}
-			else 
-			{ 
-				iconX = 19;
-				iconY += 2;
-				DrawIcon(&gBG0MapBuffer[iconY][iconX],0x0+i,0x1000);
-			}
-		}
-	}
-	
-	
-	//ItemData->iconId
-	// Draw inventory 
-	iconX = 1;
-	iconY = 8; 
-	for ( int i = 0 ; i < 5 ; i+=2 )
-	{
-		if ( unit->items[i] )
-		{
-			if (iconX < 6)
-			{
-			DrawIcon(&gBG0MapBuffer[iconY][iconX],GetItemIconId((unit->items[i])),0x3000);
-			//DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000); // vanilla uses weapon type icons in item icon IDs starting at 0x70 and indexed by weapon type  
-			// what if they have more than 5 weapon types ? 
+			DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000);
 			iconX += 2;
-			}
-		else 
-			{
-				iconX = 1;
-				iconY += 2;
-				DrawIcon(&gBG0MapBuffer[iconY][iconX],GetItemIconId((unit->items[i])),0x3000);
-			}
 		}
 	}
+	
 	
 	u8* skillList = UnitGetSkillList(unit); 
-	iconX = 25;
-	iconY = 8; 
+	iconX = 24;
 	int c = 0;
 	while ( skillList[c] )
 	{
-		if (iconX < 28)
-			{
-				DrawSkillIcon(&gBG0MapBuffer[iconY][iconX],skillList[c],0x2000);
-				c++;
-				iconX += 2;
-			}
-		else 
-			{
-				iconX = 25;
-				iconY += 2;
-				DrawSkillIcon(&gBG0MapBuffer[iconY][iconX],skillList[c],0x2000);
-				c++;
-			}
+		DrawSkillIcon(&gBG0MapBuffer[8][iconX],skillList[c],0x4000);
+		c++;
+		iconX += 2;
 	}
-	
+	*/
 	
 	EndFaceById(0);
 	StartFace(0, GetUnitPortraitId(unit), 40, 88, 3);
@@ -456,21 +407,22 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	
 	
 	// Draw stats / growths 
-	DrawUiNumber(&gBG0MapBuffer[3][9],TEXT_COLOR_GOLD,	(unit->maxHP	));
-	DrawUiNumber(&gBG0MapBuffer[3][12],TEXT_COLOR_GOLD,	(unit->pow	));
-	DrawUiNumber(&gBG0MapBuffer[3][15],TEXT_COLOR_GOLD, (unit->unk3A	)); // Magic.
-	DrawUiNumber(&gBG0MapBuffer[3][18],TEXT_COLOR_GOLD,	unit->skl);
-	DrawUiNumber(&gBG0MapBuffer[3][21],TEXT_COLOR_GOLD,	(unit->spd	));
-	DrawUiNumber(&gBG0MapBuffer[3][24],TEXT_COLOR_GOLD,	(unit->def	));
-	DrawUiNumber(&gBG0MapBuffer[3][27],TEXT_COLOR_GOLD,	(unit->res	));
+	DrawUiNumber(&gBG0MapBuffer[3][8],TEXT_COLOR_GOLD,	(unit->maxHP	));
+
+	DrawUiNumber(&gBG0MapBuffer[3][11],TEXT_COLOR_GOLD,	(unit->pow	));
+	DrawUiNumber(&gBG0MapBuffer[3][14],TEXT_COLOR_GOLD, (unit->unk3A	)); // Magic.
+	DrawUiNumber(&gBG0MapBuffer[3][17],TEXT_COLOR_GOLD,	unit->skl);
+	DrawUiNumber(&gBG0MapBuffer[3][20],TEXT_COLOR_GOLD,	(unit->spd	));
+	DrawUiNumber(&gBG0MapBuffer[3][23],TEXT_COLOR_GOLD,	(unit->def	));
+	DrawUiNumber(&gBG0MapBuffer[3][26],TEXT_COLOR_GOLD,	(unit->res	));
 	
-	DrawUiNumber(&gBG0MapBuffer[5][9],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][12],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][15],TEXT_COLOR_GOLD,Get_Mag_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][18],TEXT_COLOR_GOLD,Get_Skl_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][21],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][24],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][27],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][8],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][11],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][14],TEXT_COLOR_GOLD,Get_Mag_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][17],TEXT_COLOR_GOLD,Get_Skl_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][20],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][23],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][26],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
 	
 	int tile = 0;
 	
@@ -482,7 +434,7 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Text_Clear(&classNameHandle);
 	Text_SetColorId(&classNameHandle,TEXT_COLOR_GOLD);
 	Text_InsertString(&classNameHandle,0,TEXT_COLOR_GOLD,GetStringFromIndex(unit->pClassData->nameTextId));
-	Text_Display(&classNameHandle,&gBG0MapBuffer[1][1]);
+	Text_Display(&classNameHandle,&gBG0MapBuffer[1][2]);
 	
 	
 	TextHandle baseHandle =	{
@@ -510,49 +462,49 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 		.tileWidth = 2
 	};
 	tile += 2;
-	DrawStatNames(hpHandle,"HP",8,1);
+	DrawStatNames(hpHandle,"HP",7,1);
 	
 	TextHandle strHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(strHandle,"Str",11,1);
+	DrawStatNames(strHandle,"Str",10,1);
 	
 	TextHandle magHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(magHandle,"Mag",14,1);
+	DrawStatNames(magHandle,"Mag",13,1);
 	
 	TextHandle sklHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(sklHandle,"Skl",17,1);
+	DrawStatNames(sklHandle,"Skl",16,1);
 	
 	TextHandle spdHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(spdHandle,"Spd",20,1);
+	DrawStatNames(spdHandle,"Spd",19,1);
 	
 	TextHandle defHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(defHandle,"Def",23,1);
+	DrawStatNames(defHandle,"Def",22,1);
 	
 	TextHandle resHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(resHandle,"Res",26,1);
+	DrawStatNames(resHandle,"Res",25,1);
 	
 	EnableBgSyncByMask(1);
 	//BgMapFillRect(&gBG0MapBuffer[1][12],30-12,2,0);
@@ -576,13 +528,14 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 void SwitchOutCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever you scroll or exit / confirm the character menu  
 {
 	// Clear out each 8x8 tile 
-	// leave 12x 9y - 17x 19y alone as this contains text 
 	BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
 	BgMapFillRect(&gBG0MapBuffer[8][0],11,20-8,0); // Clear out each 8x8 tile 
-	BgMapFillRect(&gBG0MapBuffer[8][19],30-19,20-8,0); // Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[8][18],30-18,20-8,0); // Clear out each 8x8 tile 
 
+	//CPU_FILL(0,(char*)&gBG0MapBuffer[1][8]-1,(32-8)*32*2,32);
+	//BgMapFillRect(&gBG0MapBuffer[1][0],32-1,2,0);
 	ClearIcons();
-
+	// leave 12x 9y - 17x 19y alone as this contains text 
 }
 
 
@@ -616,9 +569,9 @@ static int SelectNo(struct MenuProc* menu, struct MenuCommandProc* command)
 static void SelectCharacterMenuEnd(struct MenuProc* menu)
 {
     EndFaceById(0);
-	//BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
-	//BgMapFillRect(&gBG0MapBuffer[8][0],11,20-8,0); // Clear out each 8x8 tile 
-	//BgMapFillRect(&gBG0MapBuffer[8][18],30-18,20-8,0); // Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
+	BgMapFillRect(&gBG0MapBuffer[8][0],11,20-8,0); // Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[8][18],30-18,20-8,0); // Clear out each 8x8 tile 
 	
 	//CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-0)*32*2,32);
 	//CPU_FILL(0,(char*)&gBG1MapBuffer[1][0]-1,(32-0)*32*2,32);

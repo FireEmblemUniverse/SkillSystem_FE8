@@ -1,12 +1,12 @@
 INLINE ClassLevelUpSkillTable,Skill Pointer
 0x00 Separator/Nothing,0x0
-0x01 Ephraim Lord,EphraimLordSkillList|IsPointer
+0x01 Ephraim Lord,BulbasaurSkillList|IsPointer
 0x02 Eirika Lord,EphraimLordSkillList|IsPointer
 0x03 Ephraim Great Lord,EphraimLordSkillList|IsPointer
-0x04 Eirika Great Lord,EphraimLordSkillList|IsPointer
+0x04 Eirika Great Lord,CharmanderSkillList|IsPointer
 0x05 Cavalier,EphraimLordSkillList|IsPointer
 0x06 Cavalier (F),EphraimLordSkillList|IsPointer
-0x07 Paladin,EphraimLordSkillList|IsPointer
+0x07 Paladin,SquirtleSkillList|IsPointer
 0x08 Paladin (F),EphraimLordSkillList|IsPointer
 0x09 Armour Knight,EphraimLordSkillList|IsPointer
 0x0A Armour Knight (F),EphraimLordSkillList|IsPointer
