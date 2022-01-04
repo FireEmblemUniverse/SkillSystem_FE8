@@ -111,7 +111,7 @@ static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 	PROC_CALL_ROUTINE(MU_AllDisable), 
 
 
-	PROC_SLEEP(2),
+	//PROC_SLEEP(2),
 
     PROC_YIELD,
 	
@@ -125,11 +125,11 @@ static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 {
 	PROC_YIELD,
-	PROC_SLEEP(2),
+	//PROC_SLEEP(2),
 	PROC_CALL_ROUTINE(SwitchInCharacter), 
 	PROC_CALL_ROUTINE(StartPlatform),
 	PROC_LOOP_ROUTINE(CreatorClassDisplayLoop),
-	PROC_CALL_ROUTINE(CreatorClassEndProc),
+	//PROC_CALL_ROUTINE(CreatorClassEndProc),
 	PROC_END, 
 }; 
 
@@ -139,19 +139,7 @@ static const struct ProcInstruction ProcInstruction_Confirmation[] =
     PROC_END,
 };
 
-void CreatorClassEndProc(CreatorClassProcStruct* proc)
-{
-	//CPU_FILL(0,(char*)&gBG0MapBuffer[13][0]-1,(32-13)*32*2,32);
-	CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-1)*32*2,32);
-	DeleteSomeAISStuff(&gSomeAISStruct);
-	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
-	EndEkrAnimeDrvProc();
-	//UnlockGameGraphicsLogic();
-	//RefreshEntityMaps();
-	//DrawTileGraphics();
-	SMS_UpdateFromGameData();
-	MU_EndAll();
-}
+
 
 static const struct MenuCommandDefinition MenuCommands_CharacterProc[] =
 {
@@ -227,7 +215,7 @@ static const struct MenuDefinition MenuDef_ConfirmCharacter =
     .commandList = MenuCommands_ConfirmationProc, 
 
     .onEnd = SelectCharacterMenuEnd,
-    //.onBPress = (void*) (SelectCharacter_ASMC), 
+    .onBPress = (void*) (SelectCharacter_ASMC), 
 };
 
 
@@ -531,9 +519,15 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 
 void SwitchOutCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever you scroll or exit / confirm the character menu  
 {
+	// Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
+	BgMapFillRect(&gBG0MapBuffer[8][0],11,20-8,0); // Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[8][18],30-18,20-8,0); // Clear out each 8x8 tile 
+
 	//CPU_FILL(0,(char*)&gBG0MapBuffer[1][8]-1,(32-8)*32*2,32);
-	BgMapFillRect(&gBG0MapBuffer[1][0],32-1,2,0);
+	//BgMapFillRect(&gBG0MapBuffer[1][0],32-1,2,0);
 	ClearIcons();
+	// leave 12x 9y - 17x 19y alone as this contains text 
 }
 
 
@@ -568,12 +562,34 @@ static void SelectCharacterMenuEnd(struct MenuProc* menu)
 {
     EndFaceById(0);
 	CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-0)*32*2,32);
-	CPU_FILL(0,(char*)&gBG1MapBuffer[1][0]-1,(32-0)*32*2,32);
-	CPU_FILL(0,(char*)&gBG2MapBuffer[1][0]-1,(32-0)*32*2,32);
+	//CPU_FILL(0,(char*)&gBG1MapBuffer[1][0]-1,(32-0)*32*2,32);
+	//CPU_FILL(0,(char*)&gBG2MapBuffer[1][0]-1,(32-0)*32*2,32);
+	
+
+	DeleteSomeAISStuff(&gSomeAISStruct);
+	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
+	EndEkrAnimeDrvProc();
+	//UnlockGameGraphicsLogic();
+	//RefreshEntityMaps();
+	//DrawTileGraphics();
+	SMS_UpdateFromGameData();
+	MU_EndAll();
 	
 }
 
-
+void CreatorClassEndProc(CreatorClassProcStruct* proc)
+{
+	//CPU_FILL(0,(char*)&gBG0MapBuffer[13][0]-1,(32-13)*32*2,32);
+	CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-1)*32*2,32);
+	DeleteSomeAISStuff(&gSomeAISStruct);
+	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
+	EndEkrAnimeDrvProc();
+	//UnlockGameGraphicsLogic();
+	//RefreshEntityMaps();
+	//DrawTileGraphics();
+	SMS_UpdateFromGameData();
+	MU_EndAll();
+}
 
 
 
