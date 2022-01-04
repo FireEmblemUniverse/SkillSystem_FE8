@@ -34,13 +34,19 @@ SET_FUNC DeleteSomeAISStuff, (0x0805AA28+1)
 
 SET_FUNC DeleteSomeAISProcs, (0x0805AE14+1)
 
+
+SET_FUNC LockGameGraphicsLogic, 0x8030185
+SET_FUNC UnlockGameGraphicsLogic, 0x80301B9
+SET_FUNC MU_AllDisable, 0x80790E1
+SET_FUNC MU_AllEnable, 0x80790ED
+
 //@ Data declarations:
 SET_DATA gBG0MapBuffer, 0x02022CA8
 
 SET_DATA gBG1MapBuffer, 0x020234A8
 
-SET_DATA gRAMMenuCommands, 0x203F548
-//0x203F382 // allocated 0x230 bytes for pokemblem ram and 0x80 bytes for this 
+SET_DATA gBG2MapBuffer, 0x02023CA8
+
 
 SET_DATA gSomeAISStruct, 0x030053A0
 

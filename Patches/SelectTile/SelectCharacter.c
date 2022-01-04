@@ -53,7 +53,7 @@ static void ApplyBGBox(u16 map[32][32], TSA* tsa, int x, int y);
 
 #define DrawSkillIcon(map,id,oam2base) DrawIcon(map,id|0x100,oam2base)
 
-
+extern u16 gBG2MapBuffer[32][32]; // 0x02023CA8.
 extern AnimationInterpreter gSomeAISStruct; // 0x030053A0.
 extern SomeAISStruct gSomeAISRelatedStruct; // 0x0201FADC.
 
@@ -68,6 +68,13 @@ extern void SetupMovingPlatform(int always0x0, int alwaysNeg1, int always0x1F6, 
 extern void DeleteSomeAISStuff(AnimationInterpreter* interpreter); // 0x0805AA28.
 extern void DeleteSomeAISProcs(struct SomeAISStruct* obj); // 0x0805AE14.
 extern void EndEkrAnimeDrvProc(void);
+
+
+extern void LockGameGraphicsLogic(void); // Hide map sprites? ! FE8U = 0x8030185
+extern void UnlockGameGraphicsLogic(void); //! FE8U = 0x80301B9
+extern void MU_AllDisable(void);
+extern void MU_AllEnable(void); 
+
 
 extern unsigned gEventSlot[];
 
@@ -100,16 +107,26 @@ struct Struct_ConfirmationProc
 static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 {
     PROC_CALL_ROUTINE(LockGameLogic),
+	PROC_CALL_ROUTINE(LockGameGraphicsLogic),
+	PROC_CALL_ROUTINE(MU_AllDisable), 
+
+
+	PROC_SLEEP(2),
 
     PROC_YIELD,
 	
     PROC_CALL_ROUTINE(UnlockGameLogic),
+	PROC_CALL_ROUTINE(UnlockGameGraphicsLogic), 
+	PROC_CALL_ROUTINE(MU_AllEnable),
+	
     PROC_END,
 };
 
 static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 {
 	PROC_YIELD,
+	PROC_SLEEP(2),
+	PROC_CALL_ROUTINE(SwitchInCharacter), 
 	PROC_CALL_ROUTINE(StartPlatform),
 	PROC_LOOP_ROUTINE(CreatorClassDisplayLoop),
 	PROC_CALL_ROUTINE(CreatorClassEndProc),
@@ -124,7 +141,8 @@ static const struct ProcInstruction ProcInstruction_Confirmation[] =
 
 void CreatorClassEndProc(CreatorClassProcStruct* proc)
 {
-	CPU_FILL(0,(char*)&gBG0MapBuffer[13][0]-1,(32-13)*32*2,32);
+	//CPU_FILL(0,(char*)&gBG0MapBuffer[13][0]-1,(32-13)*32*2,32);
+	CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-1)*32*2,32);
 	DeleteSomeAISStuff(&gSomeAISStruct);
 	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
 	EndEkrAnimeDrvProc();
@@ -190,11 +208,11 @@ static const struct MenuCommandDefinition MenuCommands_ConfirmationProc[] =
 static const struct MenuDefinition MenuDef_SelectCharacter =
 {
     //.geometry = { 23, 12, 7 },
-    .geometry = { 0, 8, 7 },
+    .geometry = { 11, 8, 7 },
 	.style = 0,
     .commandList = MenuCommands_CharacterProc,
 	._u14 = 0,
-    .onEnd = SelectCharacterMenuEnd,
+    //.onEnd = SelectCharacterMenuEnd,
 	.onInit = 0,
 	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
 	.onRPress = 0,
@@ -205,7 +223,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter =
 static const struct MenuDefinition MenuDef_ConfirmCharacter =
 {
     //.geometry = { 25, 12, 5 },
-    .geometry = { 2, 8, 5 },
+    .geometry = { 13, 8, 5 },
     .commandList = MenuCommands_ConfirmationProc, 
 
     .onEnd = SelectCharacterMenuEnd,
@@ -220,7 +238,7 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
     proc->activeUnit = gActiveUnit;
 
 
-	for ( int i = 0 ; i < 5 ; i++ ) // Mem slots 1 - 5 as unit groups to load 
+	for ( int i = 0 ; i < 3 ; i++ ) // Mem slots 1 - 5 as unit groups to load 
 	{ 	
 		if (gEventSlot[i+1] != 0) // Non-zero Character ID in unit group to load and non-zero memory slot 
 		{
@@ -233,7 +251,8 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 	
 	proc->currOptionIndex = 0;
     StartMenuChild(&MenuDef_SelectCharacter, (void*) proc);
-
+	
+	
     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
@@ -320,7 +339,7 @@ void StartPlatform(CreatorClassProcStruct* proc)
 
 
 	Struct_SelectCharacterProc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
-	parent_proc->platformType = 0; // temple ? 
+	parent_proc->platformType = 0x3F; // temple ? 
 	for ( int i = 0 ; i < 5 ; i++ ) { proc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; }
 	proc->menuItem = parent_proc->currOptionIndex;
 	proc->charID = parent_proc->list[proc->menuItem].unitRam->pCharacterData->number;
@@ -360,38 +379,42 @@ u8* UnitGetSkillList(struct Unit* unit)
 
 void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever you scroll or exit / confirm the character menu  
 {
+	
+	u8 i = proc->commandIndex;
+	Struct_SelectCharacterProc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
+	
+	//struct Struct_SelectCharacterProc* parent_proc = (void*) proc->parent;
+	parent_proc->currOptionIndex = i;
+	//parent_proc->currOptionIndex = commandProc->commandDefinitionIndex;
 
-	
-	struct Struct_SelectCharacterProc* parent_proc = (void*) proc->parent;
-	parent_proc->currOptionIndex = proc->commandIndex;
-	
 	Unit* unit = (parent_proc->list[parent_proc->currOptionIndex].unitRam);
-
+	asm("mov r11,r11");
 	
-	
-	int iconX = 12;
+	/*
+	int iconX = 3;
 	for ( int i = 0 ; i < 8 ; i++ )
 	{
 		if ( unit->ranks[i] )
 		{
-			DrawIcon(&gBG0MapBuffer[1][iconX],0x70+i,0x5000);
+			DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000);
 			iconX += 2;
 		}
 	}
 	
 	
 	u8* skillList = UnitGetSkillList(unit); 
-	iconX = 20;
+	iconX = 24;
 	int c = 0;
 	while ( skillList[c] )
 	{
-		DrawSkillIcon(&gBG0MapBuffer[1][iconX],skillList[c],0x4000);
+		DrawSkillIcon(&gBG0MapBuffer[8][iconX],skillList[c],0x4000);
 		c++;
 		iconX += 2;
 	}
+	*/
 	
 	EndFaceById(0);
-	StartFace(0, GetUnitPortraitId(unit), 48, 88, 3);
+	StartFace(0, GetUnitPortraitId(unit), 40, 88, 3);
 	
 	
 	
@@ -400,13 +423,14 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	
 	
 	// Draw stats / growths 
-	DrawUiNumber(&gBG0MapBuffer[3][8],TEXT_COLOR_GOLD,unit->maxHP);
-	DrawUiNumber(&gBG0MapBuffer[3][11],TEXT_COLOR_GOLD,unit->pow);
-	DrawUiNumber(&gBG0MapBuffer[3][14],TEXT_COLOR_GOLD,unit->unk3A); // Magic.
-	DrawUiNumber(&gBG0MapBuffer[3][17],TEXT_COLOR_GOLD,unit->skl);
-	DrawUiNumber(&gBG0MapBuffer[3][20],TEXT_COLOR_GOLD,unit->spd);
-	DrawUiNumber(&gBG0MapBuffer[3][23],TEXT_COLOR_GOLD,unit->def);
-	DrawUiNumber(&gBG0MapBuffer[3][26],TEXT_COLOR_GOLD,unit->res);
+	DrawUiNumber(&gBG0MapBuffer[3][8],TEXT_COLOR_GOLD,	(unit->maxHP	));
+
+	DrawUiNumber(&gBG0MapBuffer[3][11],TEXT_COLOR_GOLD,	(unit->pow	));
+	DrawUiNumber(&gBG0MapBuffer[3][14],TEXT_COLOR_GOLD, (unit->unk3A	)); // Magic.
+	DrawUiNumber(&gBG0MapBuffer[3][17],TEXT_COLOR_GOLD,	unit->skl);
+	DrawUiNumber(&gBG0MapBuffer[3][20],TEXT_COLOR_GOLD,	(unit->spd	));
+	DrawUiNumber(&gBG0MapBuffer[3][23],TEXT_COLOR_GOLD,	(unit->def	));
+	DrawUiNumber(&gBG0MapBuffer[3][26],TEXT_COLOR_GOLD,	(unit->res	));
 	
 	DrawUiNumber(&gBG0MapBuffer[5][8],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
 	DrawUiNumber(&gBG0MapBuffer[5][11],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
@@ -415,6 +439,7 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	DrawUiNumber(&gBG0MapBuffer[5][20],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
 	DrawUiNumber(&gBG0MapBuffer[5][23],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
 	DrawUiNumber(&gBG0MapBuffer[5][26],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
+	
 	int tile = 0;
 	TextHandle baseHandle =	{
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
@@ -506,8 +531,8 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 
 void SwitchOutCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever you scroll or exit / confirm the character menu  
 {
-	
-	//BgMapFillRect(&gBG0MapBuffer[1][12],30-12,2,0);
+	//CPU_FILL(0,(char*)&gBG0MapBuffer[1][8]-1,(32-8)*32*2,32);
+	BgMapFillRect(&gBG0MapBuffer[1][0],32-1,2,0);
 	ClearIcons();
 }
 
@@ -541,7 +566,11 @@ static int SelectNo(struct MenuProc* menu, struct MenuCommandProc* command)
 
 static void SelectCharacterMenuEnd(struct MenuProc* menu)
 {
-    //EndFaceById(0);
+    EndFaceById(0);
+	CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-0)*32*2,32);
+	CPU_FILL(0,(char*)&gBG1MapBuffer[1][0]-1,(32-0)*32*2,32);
+	CPU_FILL(0,(char*)&gBG2MapBuffer[1][0]-1,(32-0)*32*2,32);
+	
 }
 
 
