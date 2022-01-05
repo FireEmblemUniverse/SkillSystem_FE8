@@ -268,7 +268,9 @@ static void DrawSelect_2(struct MenuProc* menu, struct MenuCommandProc* command)
 
 void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 {
-	ApplyBGBox(gBG1MapBuffer,&gCreatorClassUIBoxTSA,0,0);
+	//BgMap_ApplyTsa(u16* target, const void* source, u16 tileBase)
+	BgMap_ApplyTsa(gBG1MapBuffer, &gCreatorClassUIBoxTSA, 0);
+	//ApplyBGBox(gBG1MapBuffer,&gCreatorClassUIBoxTSA,0,0);
 	
 	//ApplyBGBox(gBG1MapBuffer,&gPortraitUIBoxTSA,21,0); // portrait mug 
 	
@@ -310,6 +312,8 @@ static void DrawSelectCharacterCommands(struct MenuProc* menu, struct MenuComman
 	*/
 	
 }
+
+
 
 static void ApplyBGBox(u16 map[32][32], TSA* tsa, int x, int y)
 {

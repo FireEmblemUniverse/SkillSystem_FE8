@@ -3,7 +3,7 @@
 
 .macro blh to, reg
     ldr \reg, =\to
-    mov lr, \reg
+    mov lr, \reg 
     .short 0xF800
 .endm
 
