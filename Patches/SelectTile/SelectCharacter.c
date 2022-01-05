@@ -60,6 +60,7 @@ extern SomeAISStruct gSomeAISRelatedStruct; // 0x0201FADC.
 extern u8 gCharacterSelectorBattleSpriteHeight, gCharacterSelectorPlatformHeight;
 
 extern TSA gCreatorClassUIBoxTSA;
+extern TSA gPortraitUIBoxTSA;
 extern u16 gBG0MapBuffer[32][32]; // 0x02022CA8. Snek: Ew why does FE-CLib-master not do it like this?
 extern u16 gBG1MapBuffer[32][32]; // 0x020234A8.
 
@@ -196,7 +197,7 @@ static const struct MenuCommandDefinition MenuCommands_ConfirmationProc[] =
 static const struct MenuDefinition MenuDef_SelectCharacter =
 {
     //.geometry = { 23, 12, 7 },
-    .geometry = { 11, 8, 8 },
+    .geometry = { 12, 8, 8 },
 	.style = 0,
     .commandList = MenuCommands_CharacterProc,
 	._u14 = 0,
@@ -211,7 +212,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter =
 static const struct MenuDefinition MenuDef_ConfirmCharacter =
 {
     //.geometry = { 25, 12, 5 },
-    .geometry = { 13, 8, 6 },
+    .geometry = { 14, 8, 6 },
     .commandList = MenuCommands_ConfirmationProc, 
 
     .onEnd = SelectCharacterMenuEnd,
@@ -268,6 +269,9 @@ static void DrawSelect_2(struct MenuProc* menu, struct MenuCommandProc* command)
 void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 {
 	ApplyBGBox(gBG1MapBuffer,&gCreatorClassUIBoxTSA,0,0);
+	
+	//ApplyBGBox(gBG1MapBuffer,&gPortraitUIBoxTSA,21,0); // portrait mug 
+	
 	EnableBgSyncByMask(2);
 }
 
@@ -374,16 +378,30 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 
 	Unit* unit = (parent_proc->list[parent_proc->currOptionIndex].unitRam);
 	//asm("mov r11,r11");
-	
+		//ItemData->iconId
+	// Draw inventory 
+	int iconX = 21; 
+	int iconY = 11; 
+	for ( int i = 0 ; i < 4 ; i+=2 )
+	{
+		if ( unit->items[i] )
+		{
+			DrawIcon(&gBG0MapBuffer[iconY][iconX],GetItemIconId((unit->items[i])),0x1000);
+			//DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000); // vanilla uses weapon type icons in item icon IDs starting at 0x70 and indexed by weapon type  
+			// what if they have more than 5 weapon types ? 
+			iconX += 2;
+		}
+
+	}
 	
 	// Draw usable weapon types 
-	int iconX = 19;
-	int iconY = 8;
+	iconX = 17;
+	iconY = 5;
 	for ( int i = 0 ; i < 8 ; i++ )
 	{
 		if ( unit->ranks[i] )
 		{
-			if (iconX < 22)
+			if (iconX < 20)
 			{
 				DrawIcon(&gBG0MapBuffer[iconY][iconX],0x0+i,0x1000); // 0x5000 ? - palette bank 
 				//DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000); // vanilla uses weapon type icons in item icon IDs starting at 0x70 and indexed by weapon type  
@@ -392,54 +410,33 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 			}
 			else 
 			{ 
-				iconX = 19;
-				iconY += 2;
+				iconX = 17;
+				iconY -= 2;
 				DrawIcon(&gBG0MapBuffer[iconY][iconX],0x0+i,0x1000);
 			}
 		}
 	}
 	
 	
-	//ItemData->iconId
-	// Draw inventory 
-	iconX = 1;
-	iconY = 8; 
-	for ( int i = 0 ; i < 5 ; i+=2 )
-	{
-		if ( unit->items[i] )
-		{
-			if (iconX < 6)
-			{
-			DrawIcon(&gBG0MapBuffer[iconY][iconX],GetItemIconId((unit->items[i])),0x3000);
-			//DrawIcon(&gBG0MapBuffer[8][iconX],0x70+i,0x5000); // vanilla uses weapon type icons in item icon IDs starting at 0x70 and indexed by weapon type  
-			// what if they have more than 5 weapon types ? 
-			iconX += 2;
-			}
-		else 
-			{
-				iconX = 1;
-				iconY += 2;
-				DrawIcon(&gBG0MapBuffer[iconY][iconX],GetItemIconId((unit->items[i])),0x3000);
-			}
-		}
-	}
+
+
 	
 	u8* skillList = UnitGetSkillList(unit); 
-	iconX = 25;
-	iconY = 8; 
+	iconX = 14;
+	iconY = 5; 
 	int c = 0;
 	while ( skillList[c] )
 	{
-		if (iconX < 28)
+		if (iconX > 11)
 			{
 				DrawSkillIcon(&gBG0MapBuffer[iconY][iconX],skillList[c],0x2000);
 				c++;
-				iconX += 2;
+				iconX -= 2;
 			}
 		else 
 			{
-				iconX = 25;
-				iconY += 2;
+				iconX = 14;
+				iconY -= 2;
 				DrawSkillIcon(&gBG0MapBuffer[iconY][iconX],skillList[c],0x2000);
 				c++;
 			}
@@ -447,7 +444,8 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	
 	
 	EndFaceById(0);
-	StartFace(0, GetUnitPortraitId(unit), 40, 88, 3);
+	//StartFace(0, GetUnitPortraitId(unit), 40, 88, 3);
+	StartFace(0, GetUnitPortraitId(unit), 204, 8, 3);
 	
 	
 	
@@ -456,21 +454,21 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	
 	
 	// Draw stats / growths 
-	DrawUiNumber(&gBG0MapBuffer[3][9],TEXT_COLOR_GOLD,	(unit->maxHP	));
-	DrawUiNumber(&gBG0MapBuffer[3][12],TEXT_COLOR_GOLD,	(unit->pow	));
-	DrawUiNumber(&gBG0MapBuffer[3][15],TEXT_COLOR_GOLD, (unit->unk3A	)); // Magic.
-	DrawUiNumber(&gBG0MapBuffer[3][18],TEXT_COLOR_GOLD,	unit->skl);
-	DrawUiNumber(&gBG0MapBuffer[3][21],TEXT_COLOR_GOLD,	(unit->spd	));
-	DrawUiNumber(&gBG0MapBuffer[3][24],TEXT_COLOR_GOLD,	(unit->def	));
-	DrawUiNumber(&gBG0MapBuffer[3][27],TEXT_COLOR_GOLD,	(unit->res	));
+	DrawUiNumber(&gBG0MapBuffer[5][6],TEXT_COLOR_GOLD,	(unit->maxHP	));
+	DrawUiNumber(&gBG0MapBuffer[7][6],TEXT_COLOR_GOLD,	(unit->pow	));
+	DrawUiNumber(&gBG0MapBuffer[9][6],TEXT_COLOR_GOLD, (unit->unk3A	)); // Magic.
+	DrawUiNumber(&gBG0MapBuffer[11][6],TEXT_COLOR_GOLD,	unit->skl);
+	DrawUiNumber(&gBG0MapBuffer[13][6],TEXT_COLOR_GOLD,	(unit->spd	));
+	DrawUiNumber(&gBG0MapBuffer[15][6],TEXT_COLOR_GOLD,	(unit->def	));
+	DrawUiNumber(&gBG0MapBuffer[17][6],TEXT_COLOR_GOLD,	(unit->res	));
 	
-	DrawUiNumber(&gBG0MapBuffer[5][9],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][12],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][15],TEXT_COLOR_GOLD,Get_Mag_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][18],TEXT_COLOR_GOLD,Get_Skl_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][21],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][24],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
-	DrawUiNumber(&gBG0MapBuffer[5][27],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[5][10],TEXT_COLOR_GOLD,Get_Hp_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[7][10],TEXT_COLOR_GOLD,Get_Str_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[9][10],TEXT_COLOR_GOLD,Get_Mag_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[11][10],TEXT_COLOR_GOLD,Get_Skl_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[13][10],TEXT_COLOR_GOLD,Get_Spd_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[15][10],TEXT_COLOR_GOLD,Get_Def_Growth2(unit));
+	DrawUiNumber(&gBG0MapBuffer[17][10],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
 	
 	int tile = 0;
 	
@@ -482,7 +480,7 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Text_Clear(&classNameHandle);
 	Text_SetColorId(&classNameHandle,TEXT_COLOR_GOLD);
 	Text_InsertString(&classNameHandle,0,TEXT_COLOR_GOLD,GetStringFromIndex(unit->pClassData->nameTextId));
-	Text_Display(&classNameHandle,&gBG0MapBuffer[1][1]);
+	Text_Display(&classNameHandle,&gBG0MapBuffer[1][5]);
 	
 	
 	TextHandle baseHandle =	{
@@ -493,7 +491,7 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Text_Clear(&baseHandle);
 	Text_SetColorId(&baseHandle,TEXT_COLOR_GOLD);
 	Text_InsertString(&baseHandle,0,TEXT_COLOR_GOLD,"Base");
-	Text_Display(&baseHandle,&gBG0MapBuffer[3][2]);
+	Text_Display(&baseHandle,&gBG0MapBuffer[3][4]);
 	
 	TextHandle growthHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
@@ -503,56 +501,56 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	Text_Clear(&growthHandle);
 	Text_SetColorId(&growthHandle,TEXT_COLOR_GOLD);
 	Text_InsertString(&growthHandle,0,TEXT_COLOR_GOLD,"Growth");
-	Text_Display(&growthHandle,&gBG0MapBuffer[5][2]);
+	Text_Display(&growthHandle,&gBG0MapBuffer[3][8]);
 	
 	TextHandle hpHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 2
 	};
 	tile += 2;
-	DrawStatNames(hpHandle,"HP",8,1);
+	DrawStatNames(hpHandle,"HP",2,5);
 	
 	TextHandle strHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(strHandle,"Str",11,1);
+	DrawStatNames(strHandle,"Str",2,7);
 	
 	TextHandle magHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(magHandle,"Mag",14,1);
+	DrawStatNames(magHandle,"Mag",2,9);
 	
 	TextHandle sklHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(sklHandle,"Skl",17,1);
+	DrawStatNames(sklHandle,"Skl",2,11);
 	
 	TextHandle spdHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(spdHandle,"Spd",20,1);
+	DrawStatNames(spdHandle,"Spd",2,13);
 	
 	TextHandle defHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(defHandle,"Def",23,1);
+	DrawStatNames(defHandle,"Def",2,15);
 	
 	TextHandle resHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 3
 	};
 	tile += 3;
-	DrawStatNames(resHandle,"Res",26,1);
+	DrawStatNames(resHandle,"Res",2,17);
 	
 	EnableBgSyncByMask(1);
 	//BgMapFillRect(&gBG0MapBuffer[1][12],30-12,2,0);
@@ -578,8 +576,8 @@ void SwitchOutCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Wheneve
 	// Clear out each 8x8 tile 
 	// leave 12x 9y - 17x 19y alone as this contains text 
 	BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
-	BgMapFillRect(&gBG0MapBuffer[8][0],11,20-8,0); // Clear out each 8x8 tile 
-	BgMapFillRect(&gBG0MapBuffer[8][19],30-19,20-8,0); // Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[8][0],12,20-8,0); // Clear out each 8x8 tile 
+	BgMapFillRect(&gBG0MapBuffer[8][20],30-20,20-8,0); // Clear out each 8x8 tile 
 
 	ClearIcons();
 

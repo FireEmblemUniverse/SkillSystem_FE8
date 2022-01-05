@@ -11,6 +11,9 @@
 	gCharacterSelectorPlatformHeight:
 	BYTE 0x88 //0x4A
 
+	ALIGN 4
+	gPortraitUIBoxTSA:
+	#incbin "PortraitBlueBox.dmp"
 
 	ALIGN 4
 	gCreatorClassUIBoxTSA:

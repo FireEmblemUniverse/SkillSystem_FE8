@@ -16,6 +16,7 @@ ALIGN 4
 
 BulbasaurSkillList:
 BYTE 1 ReliefID
+BYTE 1 LunaID
 BYTE 00 00
 
 ALIGN 4
@@ -26,6 +27,9 @@ BYTE 00 00
 ALIGN 4
 SquirtleSkillList:
 BYTE 1 TantivyID
+BYTE 1 SolID
+BYTE 1 FocusID
+BYTE 1 AetherID
 BYTE 00 00
 
 ALIGN 4
