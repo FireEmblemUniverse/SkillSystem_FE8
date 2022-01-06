@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="MenuTiles" tilewidth="8" tileheight="8" tilecount="128" columns="32">
+  <image source="MenuTiles.png" width="256" height="32"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="2" height="2">
+  <data encoding="csv">
+2147483739,91,
+3221225563,1073741915
+</data>
+ </layer>
+</map>

@@ -1,6 +1,19 @@
 
 .include "FE-CLib-master/reference/FE8U-20190316.s"
 
+
+SET_FUNC Get_Hp_Growth2,   Get_Hp_Growth+1
+SET_FUNC Get_Str_Growth2, Get_Str_Growth+1
+SET_FUNC Get_Mag_Growth2, Get_Mag_Growth+1
+SET_FUNC Get_Skl_Growth2, Get_Skl_Growth+1
+SET_FUNC Get_Spd_Growth2, Get_Spd_Growth+1
+SET_FUNC Get_Def_Growth2, Get_Def_Growth+1
+SET_FUNC Get_Res_Growth2, Get_Res_Growth+1
+
+
+
+
+
 //@ Vanilla function declarations:
 
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
@@ -55,7 +68,5 @@ SET_DATA gSomeAISRelatedStruct, 0x0201FADC
 SET_DATA MemorySlot, 0x30004B8
 
 
-//@ Autohooks:
 
-//SET_FUNC NewGetUnitEquippedWeapon, (0x08016B28+1)
 

@@ -43,28 +43,59 @@ push {r4-r7, lr}
 
 @blh Call
 
-ldr r3, =MemorySlot 
-mov r1, #0x8
-lsl r1, #24 @ |0x8------ 
+ldr r4, =MemorySlot 
+mov r5, #0x8
+lsl r5, #24 @ |0x8------ 
 
 ldr r0, =UnitGroupExample_A 
-orr r0, r1 
-str r0, [r3, #4] @ Slot 1 
+orr r0, r5 
+blh 0x8017ac4 @LoadUnit
+
+mov r0, #0x10
+str r0, [r4, #4] @ Slot 1 
 
 ldr r0, =UnitGroupExample_B 
-orr r0, r1 
-str r0, [r3, #8] @ Slot 2
+orr r0, r5 
+blh 0x8017ac4 @LoadUnit
+
+mov r0, #0x11 
+str r0, [r4, #2*4] @ Slot 2
 
 ldr r0, =UnitGroupExample_C 
-orr r0, r1 
-str r0, [r3, #12] @ Slot 3 
+orr r0, r5 
+blh 0x8017ac4 @LoadUnit
 
-mov r0, #0xFF 
-str r0, [r3, #16]
+mov r0, #0x12 
+str r0, [r4, #3*4] @ Slot 3 
+
+
+ldr r0, =UnitGroupExample_D
+orr r0, r5 
+blh 0x8017ac4 @LoadUnit
+
+
+mov r0, #0 
+str r0, [r4, #4*0x4] @ s4 
+
+
+mov r0, #0x13 
+str r0, [r4, #4*5] @ s5 
+
+
+ldr r0, =#2000 
 lsl r0, #8 
-str r0, [r3, #20]
-ldr r0, =0xF4240 @1m in hex 
-str r0, [r3, #24]
+lsr r0, #8 
+str r0, [r4, #4*6]
+mov r0, #0 
+str r0, [r4, #4*7]
+ldr r0, =98765 
+lsl r0, #8 
+lsr r0, #8 
+str r0, [r4, #4*8]
+mov r0, #0 
+str r0, [r4, #4*9]
+str r0, [r4, #4*10]
+
 
 blh SelectCharacter_ASMC
 @blh CallCharacterSelector

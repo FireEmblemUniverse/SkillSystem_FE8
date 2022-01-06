@@ -11,9 +11,24 @@
 	gCharacterSelectorPlatformHeight:
 	BYTE 0x88 //0x4A
 
+
+
+
 	ALIGN 4
 	gPortraitUIBoxTSA:
 	#incbin "BlueBoxPortrait.dmp"
+
+	ALIGN 4
+	gSkillsRanksUIBoxTSA:
+	#incbin "ASkillsRanksBox.dmp"
+	
+	ALIGN 4
+	gCostUIBoxTSA:
+	#incbin "ACostBox.dmp"
+
+	ALIGN 4
+gItemUIBoxTSA:
+#incbin "AnItemBox.dmp"
 
 	ALIGN 4
 	gCreatorClassUIBoxTSA:
@@ -34,10 +49,12 @@ UNIT 0x11  CharmanderID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [SuperPotio
 UNIT 
 
 UnitGroupExample_C:
-UNIT 0x12  SquirtleID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [Berry,DryingPan,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 0x12  SquirtleID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [Berry,DryingPan,Ember,0x0] [0x0,0x0,0x0,0x0]
 UNIT 
 
-
+UnitGroupExample_D:
+UNIT 0x13  PikachuID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [Tackle, 0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
 
 #include "SelectCharacter.lyn.event"
 
