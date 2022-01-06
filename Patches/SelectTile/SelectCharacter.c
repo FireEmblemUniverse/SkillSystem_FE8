@@ -49,7 +49,6 @@ struct CreatorClassProcStruct
 };
 
 struct SomeAISStruct {};
-static void ApplyBGBox(u16 map[32][32], TSA* tsa, int x, int y);
 
 #define DrawSkillIcon(map,id,oam2base) DrawIcon(map,id|0x100,oam2base)
 
@@ -269,11 +268,13 @@ static void DrawSelect_2(struct MenuProc* menu, struct MenuCommandProc* command)
 void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 {
 	//BgMap_ApplyTsa(u16* target, const void* source, u16 tileBase)
-	BgMap_ApplyTsa(gBG1MapBuffer, &gCreatorClassUIBoxTSA, 0);
-	//ApplyBGBox(gBG1MapBuffer,&gCreatorClassUIBoxTSA,0,0);
-	
-	//ApplyBGBox(gBG1MapBuffer,&gPortraitUIBoxTSA,21,0); // portrait mug 
-	
+	// Menu BG 
+	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &gCreatorClassUIBoxTSA, 0);
+	// Portrait BG  
+	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &gPortraitUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
+
+
+
 	EnableBgSyncByMask(2);
 }
 
@@ -296,35 +297,12 @@ static void DrawSelectCharacterCommands(struct MenuProc* menu, struct MenuComman
 	
 	//u16 textID = unit->pClassData->nameTextId; 
 	u16 textID = unit->pCharacterData->nameTextId; 
-	Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL,GetStringFromIndex(textID));
+	
+	Text_InsertString(currHandle,2,TEXT_COLOR_NORMAL,GetStringFromIndex(textID));
     Text_Display(currHandle, out);
-
-    /*
-	LoadIconPalettes(4);
-
-    for (int i = 0; i < UNIT_SKILL_COUNT; ++i)
-    {
-        if (IsSkill(skills[i]))
-            DrawIcon(out + TILEMAP_INDEX(2*i, 0), SKILL_ICON(skills[i]), TILEREF(0, 4));
-    }
-
-    command->onCycle = (void*) SkillListCommandDrawIdle;
-	*/
 	
 }
 
-
-
-static void ApplyBGBox(u16 map[32][32], TSA* tsa, int x, int y)
-{
-	for ( int i = 0 ; i < tsa->height+1 ; i++ )
-	{
-		for ( int j = 0 ; j < tsa->width+1 ; j++ )
-		{
-			map[i+y][j+x] = ((u16*)(tsa->tiles))[i*(tsa->width+1)+j];
-		}
-	}
-}
 
 
 void StartPlatform(CreatorClassProcStruct* proc) 
@@ -384,8 +362,8 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	//asm("mov r11,r11");
 		//ItemData->iconId
 	// Draw inventory 
-	int iconX = 21; 
-	int iconY = 11; 
+	int iconX = 12; 
+	int iconY = 0; 
 	for ( int i = 0 ; i < 4 ; i+=2 )
 	{
 		if ( unit->items[i] )
@@ -448,13 +426,12 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	
 	
 	EndFaceById(0);
-	//StartFace(0, GetUnitPortraitId(unit), 40, 88, 3);
-	StartFace(0, GetUnitPortraitId(unit), 204, 8, 3);
+	
+	FaceProc* faceProc = StartFace(0, GetUnitPortraitId(unit), 200, 8, 2);
+	faceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) 
 	
 	
-	
-	
-	
+
 	
 	
 	// Draw stats / growths 
@@ -475,6 +452,40 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	DrawUiNumber(&gBG0MapBuffer[17][10],TEXT_COLOR_GOLD,Get_Res_Growth2(unit));
 	
 	int tile = 0;
+
+	TextHandle GoldNameHandle = {
+		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+		.tileWidth = 4
+	};
+	
+	tile += 4;
+	Text_Clear(&GoldNameHandle);
+	Text_SetColorId(&GoldNameHandle,TEXT_COLOR_GOLD);
+	//void DrawTextInline(struct TextHandle*, u16* bg, int color, int xStart, int tileWidth, const char* cstring); //! FE8U = 0x800443D
+	DrawTextInline(&GoldNameHandle, gBG0MapBuffer[11][20], TEXT_COLOR_GOLD, 0, 4, "Cost:");
+	Text_Display(&GoldNameHandle,&gBG0MapBuffer[11][20]);
+
+	
+	int cost = gEventSlot[i+4]; // Cost in gold to purchase character 	
+	
+	TextHandle GoldCostHandle = {
+		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+		.tileWidth = 9
+	};
+	
+	tile += 7;
+	Text_Clear(&GoldCostHandle);
+	Text_SetColorId(&GoldCostHandle,TEXT_COLOR_GOLD);
+	//Text_DrawNumber(&GoldCostHandle, cost);
+	DrawUiNumber(&gBG0MapBuffer[11][29], TEXT_COLOR_GREEN, cost); 
+	//Text_Display(&GoldCostHandle,&gBG0MapBuffer[11][24]);
+	
+	
+	
+	
+	
+	
+	
 	
 	TextHandle classNameHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,

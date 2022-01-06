@@ -13,7 +13,7 @@
 
 	ALIGN 4
 	gPortraitUIBoxTSA:
-	#incbin "PortraitBlueBox.dmp"
+	#incbin "BlueBoxPortrait.dmp"
 
 	ALIGN 4
 	gCreatorClassUIBoxTSA:

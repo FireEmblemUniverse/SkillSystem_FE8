@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="10" height="11" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="MenuTiles" tilewidth="8" tileheight="8" tilecount="128" columns="32">
+  <image source="MenuTiles.png" width="256" height="32"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="10" height="11">
+  <data encoding="csv">
+35,37,36,38,36,36,38,36,38,40,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,15,15,15,15,15,15,15,15,16,
+12,100,101,101,101,101,101,101,102,16,
+27,28,28,28,28,28,28,30,31,32
+</data>
+ </layer>
+</map>

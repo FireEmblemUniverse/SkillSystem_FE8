@@ -58,8 +58,12 @@ str r0, [r3, #8] @ Slot 2
 ldr r0, =UnitGroupExample_C 
 orr r0, r1 
 str r0, [r3, #12] @ Slot 3 
+
+mov r0, #0xFF 
 str r0, [r3, #16]
+lsl r0, #8 
 str r0, [r3, #20]
+ldr r0, =0xF4240 @1m in hex 
 str r0, [r3, #24]
 
 blh SelectCharacter_ASMC
