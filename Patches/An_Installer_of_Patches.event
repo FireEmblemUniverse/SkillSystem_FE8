@@ -35,6 +35,9 @@
 
 #include "DisabledStatusScreen/DisabledStatusScreen.event" 
 
+
+#include "CharacterSelect/Installer.event"
+
 #include "SelectTile/Installer.event"
 
 #ifdef DEBUG_MODE 
