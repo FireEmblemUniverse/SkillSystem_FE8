@@ -8,10 +8,12 @@ extern const MenuDefinition gSelectUnitMenuDefs;
 
 int RestartSelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command);
 int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command);
+static int LoopUntilMenuExited(struct MenuProc* menu, struct MenuCommandProc* command);
+static int SelectCharacter_StartMenu(struct MenuProc* menu, struct MenuCommandProc* command);
 static int SelectClass(struct MenuProc* menu, struct MenuCommandProc* command);
 static int SelectYes(struct MenuProc* menu, struct MenuCommandProc* command);
 static int SelectNo(struct MenuProc* menu, struct MenuCommandProc* command);
-static void SelectCharacterMenuEnd(struct MenuProc* menu);
+void SelectCharacterMenuEnd(void);
 static void DrawSelectCharacterCommands(struct MenuProc* menu, struct MenuCommandProc* command, int i);
 static void DrawSelect_0(struct MenuProc* menu, struct MenuCommandProc* command);
 static void DrawSelect_1(struct MenuProc* menu, struct MenuCommandProc* command);
@@ -25,7 +27,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter2;
 static const struct MenuDefinition MenuDef_SelectCharacter3;
 static const struct MenuDefinition MenuDef_SelectCharacter4;
 static const struct MenuDefinition MenuDef_SelectCharacter5;
-
+void BreakRoutine(void);
 
 
 typedef struct Tile Tile;
@@ -100,7 +102,7 @@ extern void CreatorClassDisplayLoop();
 struct Struct_SelectCharacterProc
 {
 	PROC_HEADER;
-	u8 unusedByteA; // 0x29.
+	u8 destructorBool; // 0x29.
 	u8 platformType; // 0x2A.
 	u8 currOptionIndex; // 0x2B. 0 = first option, 1 = 2nd option, etc. 
 	Unit* activeUnit; // 0x2C. 
@@ -121,18 +123,29 @@ static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 	PROC_CALL_ROUTINE(LockGameGraphicsLogic),
 	PROC_CALL_ROUTINE(MU_AllDisable), 
 
-
-	//PROC_SLEEP(2),
-
     PROC_YIELD,
-	//PROC_LOOP_ROUTINE(LoopUntilYesSelected),
+
+	PROC_LABEL(0x0),
+	PROC_CALL_ROUTINE(SelectCharacter_StartMenu),
+	PROC_LOOP_ROUTINE(LoopUntilMenuExited),
 	
+	PROC_GOTO(0x00),
+	PROC_LABEL(0x1), 
+	//PROC_CALL_ROUTINE(BreakRoutine),
+	//PROC_CALL_ROUTINE(SelectCharacterMenuEnd),
     PROC_CALL_ROUTINE(UnlockGameLogic),
 	PROC_CALL_ROUTINE(UnlockGameGraphicsLogic), 
 	PROC_CALL_ROUTINE(MU_AllEnable),
 	
     PROC_END,
 };
+
+
+void BreakRoutine(void)
+{
+	asm("mov r11,r11");
+}
+
 
 static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 {
@@ -148,6 +161,7 @@ static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 static const struct ProcInstruction ProcInstruction_Confirmation[] =
 {
     PROC_YIELD,
+	//PROC_LOOP_ROUTINE(LoopUntilMenuExited),
     PROC_END,
 };
 
@@ -184,8 +198,20 @@ static const struct MenuDefinition MenuDef_ConfirmCharacter =
     .commandList = MenuCommands_ConfirmationProc, 
 
     //.onEnd = SelectCharacterMenuEnd,
-    .onBPress = (void*) (RestartSelectCharacter_ASMC), 
+    .onBPress = (void*) (SelectNo), 
 };
+
+int LoopUntilMenuExited(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+	Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+	//asm("mov r11,r11");
+	if (proc->destructorBool) 
+	{ 
+		ProcGoto(proc, 1); // Terminate proc label 
+		return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX; 
+	} 
+	else { return ME_NONE; }
+}
 
 int RestartSelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 {
@@ -193,7 +219,9 @@ int RestartSelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* c
 	//ProcInstruction_CreatorClassProc* proc = (CreatorClassProcStruct*)ProcFind(&ProcInstruction_CreatorClassProc);
 	//SwitchInCharacter(menu, command); 
 	// ProcInstruction_CreatorClassProc
-	//SelectCharacter_Part2(menu, command); 
+	
+	
+	//SelectCharacter_StartMenu(menu, command); 
 	return ME_NONE; 
     //return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
@@ -206,31 +234,11 @@ int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command)
 	//Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
 	Struct_SelectCharacterProc* proc = ProcStart(ProcInstruction_SelectCharacter, ROOT_PROC_3);
 	
-	proc->activeUnit = gActiveUnit;
-
-
-	for ( int i = 0 ; i < 5 ; i++ ) // Mem slots 1 - 5 as unit groups to load 
-	{ 	
-		proc->list[i].unitRam = GetUnitByCharId(gEventSlot[i+1]); //Unit* 
-	}
-	
-	
-	
-	proc->currOptionIndex = 0;
-	// Determine menu size based on values in memory slots 1-5 being non-zero. 
-    if 		(proc->list[4].unitRam && proc->list[3].unitRam && proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenuChild(&MenuDef_SelectCharacter5, (void*) proc);
-	else if (proc->list[3].unitRam && proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenuChild(&MenuDef_SelectCharacter4, (void*) proc);
-	else if (proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenuChild(&MenuDef_SelectCharacter3, (void*) proc);
-	else if (proc->list[1].unitRam && proc->list[0].unitRam) StartMenuChild(&MenuDef_SelectCharacter2, (void*) proc);
-	else if (proc->list[0].unitRam) StartMenuChild(&MenuDef_SelectCharacter1, (void*) proc);
-	
-	
-	
     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
     //return ME_DISABLE | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
-void SelectCharacter_Part2(struct MenuProc* menu, struct MenuCommandProc* command)
+int SelectCharacter_StartMenu(struct MenuProc* menu, struct MenuCommandProc* command)
 {
 	Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
 	
@@ -317,7 +325,8 @@ void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 
 static void DrawSelectCharacterCommands(struct MenuProc* menu, struct MenuCommandProc* command, int i)
 {
-    struct Struct_SelectCharacterProc* proc = (void*) menu->parent;
+	Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+    //struct Struct_SelectCharacterProc* proc = (void*) menu->parent;
 	Unit* unit = (proc->list[i].unitRam);
 	
    
@@ -345,8 +354,7 @@ static void DrawSelectCharacterCommands(struct MenuProc* menu, struct MenuComman
 void StartPlatform(CreatorClassProcStruct* proc) 
 {
 
-
-	Struct_SelectCharacterProc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
+	Struct_SelectCharacterProc* parent_proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
 	parent_proc->platformType = 0x3F; // temple ? 
 	for ( int i = 0 ; i < 5 ; i++ ) { proc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; }
 	proc->menuItem = parent_proc->currOptionIndex;
@@ -384,9 +392,8 @@ void SwitchInCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Whenever
 	u8 i = proc->commandIndex;
 	
 	
-	
-	Struct_SelectCharacterProc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
-	
+	Struct_SelectCharacterProc* parent_proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+
 
 	//struct Struct_SelectCharacterProc* parent_proc = (void*) proc->parent;
 	parent_proc->currOptionIndex = i;
@@ -699,7 +706,7 @@ void SwitchOutCharacter(MenuProc* proc, MenuCommandProc* commandProc) // Wheneve
 
 static int SelectClass(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-	Proc* parent_proc = (void*)(Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter[0]);
+	Struct_SelectCharacterProc* parent_proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
 	//struct Struct_ConfirmationProc* proc = (void*) ProcStartBlocking(ProcInstruction_Confirmation, parent_proc);
 	struct Struct_ConfirmationProc* proc = (void*) ProcStartBlocking(ProcInstruction_Confirmation, menu);
 
@@ -716,27 +723,40 @@ static int SelectClass(struct MenuProc* menu, struct MenuCommandProc* command)
 
 static int SelectYes(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-	SelectCharacterMenuEnd(menu);
+	//SelectCharacterMenuEnd(menu);
+
+	SelectCharacterMenuEnd();
+	//proc->destructorBool = 1; // Start destruction sequence  
+	//ProcGoto(proc, 1); // Destructor label 
 	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
 static int SelectNo(struct MenuProc* menu, struct MenuCommandProc* command)
 {
 	//(void*) (SelectCharacter_ASMC);
-	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
+	Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+	//ProcGoto(proc, 0); // Restart label
+	return ME_END | ME_PLAY_BEEP;
+	//return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
 
-static void SelectCharacterMenuEnd(struct MenuProc* menu)
+void SelectCharacterMenuEnd(void)
 {
+	
+	Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+	EndProc(proc);
+	
     EndFaceById(0);
 	
-	
+    UnlockGameLogic();
+	UnlockGameGraphicsLogic(); 
+	MU_AllEnable();
 	//BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
 	//BgMapFillRect(&gBG0MapBuffer[8][0],11,20-8,0); // Clear out each 8x8 tile 
 	//BgMapFillRect(&gBG0MapBuffer[8][18],30-18,20-8,0); // Clear out each 8x8 tile 
 	
-	
+	BreakRoutine();
 
 	DeleteSomeAISStuff(&gSomeAISStruct);
 	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
@@ -748,22 +768,6 @@ static void SelectCharacterMenuEnd(struct MenuProc* menu)
 	MU_EndAll();
 	
 }
-
-void CreatorClassEndProc(CreatorClassProcStruct* proc)
-{
-	//CPU_FILL(0,(char*)&gBG0MapBuffer[13][0]-1,(32-13)*32*2,32);
-	CPU_FILL(0,(char*)&gBG0MapBuffer[1][0]-1,(32-1)*32*2,32);
-	DeleteSomeAISStuff(&gSomeAISStruct);
-	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
-	EndEkrAnimeDrvProc();
-	//UnlockGameGraphicsLogic();
-	//RefreshEntityMaps();
-	//DrawTileGraphics();
-	SMS_UpdateFromGameData();
-	MU_EndAll();
-}
-
-
 
 
 static const struct MenuCommandDefinition MenuCommands_CharacterProc1[] =
@@ -906,7 +910,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter1 =
 	._u14 = 0,
     //.onEnd = SelectCharacterMenuEnd,
 	.onInit = 0,
-	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+	.onBPress = SelectCharacterMenuEnd, 
 	.onRPress = 0,
 	.onHelpBox = 0, 	
 };
@@ -918,7 +922,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter2 =
 	._u14 = 0,
     //.onEnd = SelectCharacterMenuEnd,
 	.onInit = 0,
-	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+	.onBPress = SelectCharacterMenuEnd,
 	.onRPress = 0,
 	.onHelpBox = 0, 	
 };
@@ -930,7 +934,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter3 =
 	._u14 = 0,
     //.onEnd = SelectCharacterMenuEnd,
 	.onInit = 0,
-	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+	.onBPress = SelectCharacterMenuEnd,
 	.onRPress = 0,
 	.onHelpBox = 0, 	
 };
@@ -942,7 +946,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter4 =
 	._u14 = 0,
     //.onEnd = SelectCharacterMenuEnd,
 	.onInit = 0,
-	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+	.onBPress = SelectCharacterMenuEnd,
 	.onRPress = 0,
 	.onHelpBox = 0, 	
 };
@@ -954,7 +958,7 @@ static const struct MenuDefinition MenuDef_SelectCharacter5 =
 	._u14 = 0,
     //.onEnd = SelectCharacterMenuEnd,
 	.onInit = 0,
-	.onBPress = 0, //(void*) (0x08022860+1), // FIXME
+	.onBPress = SelectCharacterMenuEnd,
 	.onRPress = 0,
 	.onHelpBox = 0, 	
 };
