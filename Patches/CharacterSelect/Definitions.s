@@ -10,8 +10,7 @@ SET_FUNC Get_Spd_Growth2, Get_Spd_Growth+1
 SET_FUNC Get_Def_Growth2, Get_Def_Growth+1
 SET_FUNC Get_Res_Growth2, Get_Res_Growth+1
 
-
-
+SET_FUNC Font_ResetAllocation, (0x08003D20+1) 
 
 
 //@ Vanilla function declarations:
