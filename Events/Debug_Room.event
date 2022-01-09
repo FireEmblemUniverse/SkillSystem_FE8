@@ -217,7 +217,7 @@ GIVETOMAIN 0
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(23, True, 0x145) // all 
+AutoLevelUnits(5, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
@@ -244,10 +244,10 @@ Write_Byte(9, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 Route9WCh
 //MNC2 SSAnneCh
 
-MNC2 DiglettsCaveCh
+//MNC2 DiglettsCaveCh
 //MNC2 Route9WCh
 
-//MNC2 CinnabarCh
+MNC2 CinnabarCh
 
 
 //MNC2 Route4ECh

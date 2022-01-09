@@ -13,6 +13,7 @@ gCharacterSelectorPlatformHeight:
 BYTE 0x88 //0x4A
 
 
+#define SelectCharacter(Char1, Char2, Char3, Char4, Char5, Cost1, Cost2, Cost3, Cost4, Cost5) "SVAL s1 Char1; SVAL s2 Char2; SVAL s3 Char3; SVAL s4 Char4; SVAL s5 Char5; SVAL s6 Cost1; SVAL s7 Cost2; SVAL s8 Cost3; SVAL s9 Cost4; SVAL 10 Cost5; ASMC SelectCharacter_ASMC"
 
 
 ALIGN 4
@@ -65,4 +66,5 @@ UNIT
 
 #include "SelectCharacter.lyn.event"
 
+#include "MakeThumb.lyn.event"
 

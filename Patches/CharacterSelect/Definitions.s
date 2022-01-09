@@ -2,14 +2,6 @@
 .include "FE-CLib-master/reference/FE8U-20190316.s"
 
 
-SET_FUNC Get_Hp_Growth2,   Get_Hp_Growth+1
-SET_FUNC Get_Str_Growth2, Get_Str_Growth+1
-SET_FUNC Get_Mag_Growth2, Get_Mag_Growth+1
-SET_FUNC Get_Skl_Growth2, Get_Skl_Growth+1
-SET_FUNC Get_Spd_Growth2, Get_Spd_Growth+1
-SET_FUNC Get_Def_Growth2, Get_Def_Growth+1
-SET_FUNC Get_Res_Growth2, Get_Res_Growth+1
-
 SET_FUNC Font_ResetAllocation, (0x08003D20+1) 
 
 

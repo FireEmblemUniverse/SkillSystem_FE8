@@ -343,8 +343,6 @@ static void DrawSelectCharacterCommands(struct MenuCommandProc* command, int i)
 
 static void DrawNo(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-
-	
 	u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	TextHandle* currHandle = &command->text;
     Text_Clear(currHandle);
@@ -352,7 +350,6 @@ static void DrawNo(struct MenuProc* menu, struct MenuCommandProc* command)
 	
 	Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL," No");
     Text_Display(currHandle, out);
-	
 }
 
 void StartPlatform(CreatorClassProcStruct* proc) 

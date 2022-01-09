@@ -96,7 +96,7 @@ mov r0, #0
 str r0, [r4, #4*9]
 str r0, [r4, #4*10]
 
-
+@blh SkillDebugCommand_OnSelect
 blh SelectCharacter_ASMC
 @blh CallCharacterSelector
 @blh SkillDebugCommand_OnSelect

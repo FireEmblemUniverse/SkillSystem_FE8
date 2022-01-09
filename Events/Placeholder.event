@@ -128,7 +128,8 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-House(0,GiveExp, 11,11)
+//House(0,GiveExp, 11,11)
+House(0,SelectCharEvent, 11,11)
 
 
 //Vendor(ShopItems,2,7)
@@ -140,6 +141,12 @@ END_MAIN
 
 GiveExp:
 GiveEXP(0x7FFF, 100)
+NoFade 
+ENDA 
+
+
+SelectCharEvent:
+SelectCharacter(12, 13, 14, 0, 0, 3000, 500, 1500, 1000, 0) 
 NoFade 
 ENDA 
 
