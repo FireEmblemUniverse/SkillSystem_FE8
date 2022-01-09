@@ -66,6 +66,22 @@
 	#incbin "UnitViewer.dmp"
 	POIN MagClassTable
 	
+	//originally this didn't change the actual sorting at all so let's fix that
+	
+	#define SetUnitViewerSortFunc(id,ptr) "PUSH; ORG 0x92C20 + (id*4); POIN ptr; POP"
+	
+	//shift the stat funcs down by 1 in accordance with the changed labels
+	SetUnitViewerSortFunc(0x8,0x934b4) //Spd -> Skill
+	SetUnitViewerSortFunc(0x9,0x935c0) //Luck -> Spd
+	SetUnitViewerSortFunc(0xA,0x936cc) //Def -> Luck
+	SetUnitViewerSortFunc(0xB,0x937d8) //Res -> Def
+	SetUnitViewerSortFunc(0xC,0x938e4) //Affin -> Res
+	
+	//set mag's func
+	SetUnitViewerSortFunc(0x7,(MagSortFunc-1)) 
+	
+	#include "MagSortFunc.lyn.event"
+	
 #else
 	ERROR "You're not assembling FE7 events!"
 #endif
