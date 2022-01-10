@@ -2,7 +2,10 @@
 #include "SelectTile.lyn.event"
 
 
-
+SelectCharEvent2:
+SelectCharacter(12, 13, 14, 0, 0, 3000, 500, 1500, 1000, 0) 
+NoFade 
+ENDA 
 
 PUSH 
 

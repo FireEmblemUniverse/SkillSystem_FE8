@@ -34,7 +34,7 @@ bx r3
 
 .ltorg 
 .align 
-
+.equ EventEngine, 0x800D07C
 .type SelectTileCalcLoop, %function 
 
 SelectTileCalcLoop:
@@ -97,7 +97,10 @@ str r0, [r4, #4*9]
 str r0, [r4, #4*10]
 
 @blh SkillDebugCommand_OnSelect
-blh SelectCharacter_ASMC
+ldr r0, =SelectCharEvent2
+mov r1, #1 
+blh EventEngine 
+@blh SelectCharacter_ASMC
 @blh CallCharacterSelector
 @blh SkillDebugCommand_OnSelect
 

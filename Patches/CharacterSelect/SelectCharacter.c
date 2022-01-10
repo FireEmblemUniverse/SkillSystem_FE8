@@ -24,7 +24,6 @@ static void SwitchInCharacter(void);
 static void SwitchOutCharacter(MenuProc* proc, MenuCommandProc* commandProc);
 static void StartPlatform(CreatorClassProcStruct* proc);
 static void CreatorClassEndProc(CreatorClassProcStruct* proc);
-//static void CreatorClassEndProc(CreatorClassProcStruct* proc);
 static const struct MenuDefinition MenuDef_SelectCharacter1;
 static const struct MenuDefinition MenuDef_SelectCharacter2;
 static const struct MenuDefinition MenuDef_SelectCharacter3;
@@ -127,13 +126,6 @@ void CreatorIdle(Struct_SelectCharacterProc* proc)
 
 }
 
-int CreatorWaitForSlideOut(Struct_SelectCharacterProc* proc) // This is a PROC_WHILE_ROUTINE - return 1 if we want to yield.
-{
-	//return gAISArray.xPosition != 320;
-	asm("mov r11,r11");
-	return (gAISArray.xPosition < 1000); // == 320);
-}
-
 static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 {
 	
@@ -144,8 +136,6 @@ static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 	
 
 	PROC_CALL_ROUTINE(SelectCharacter_StartMenu),
-	//PROC_WHILE_ROUTINE(CreatorWaitForSlideOut),
-	//PROC_BREAK_ALL_LOOP(gCreatorClassProc)
 
 	PROC_LABEL(0),
     PROC_LOOP_ROUTINE(CreatorIdle),
@@ -166,7 +156,6 @@ static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 {
 	PROC_YIELD,
-	//PROC_SLEEP(2),
 	PROC_CALL_ROUTINE(SwitchInCharacter), 
 	PROC_CALL_ROUTINE(StartPlatform),
 	PROC_LOOP_ROUTINE(CreatorClassDisplayLoop),
@@ -177,7 +166,6 @@ static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 static const struct ProcInstruction ProcInstruction_Confirmation[] =
 {
     PROC_YIELD,
-	//PROC_LOOP_ROUTINE(LoopUntilMenuExited),
     PROC_END,
 };
 
@@ -218,15 +206,9 @@ static const struct MenuDefinition MenuDef_ConfirmCharacter =
 
 
 
-// ASMC 
-//int SelectCharacter_ASMC(struct MenuProc* menu, struct MenuCommandProc* command) // ASMC 
 void SelectCharacter_ASMC(Proc* proc) // ASMC 
 {
-	//Struct_SelectCharacterProc* proc = ProcStart(ProcInstruction_SelectCharacter, ROOT_PROC_3);
-	ProcStartBlocking(ProcInstruction_SelectCharacter, proc);
-	gAISArray.xPosition == 0;
-    //return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
-    //return ME_DISABLE | ME_PLAY_BEEP | ME_CLEAR_GFX;
+	Struct_SelectCharacterProc* charProc = ProcStartBlocking(ProcInstruction_SelectCharacter, proc);
 }
 
 void SelectCharacter_StartMenu(struct Struct_SelectCharacterProc* proc)
@@ -241,8 +223,6 @@ void SelectCharacter_StartMenu(struct Struct_SelectCharacterProc* proc)
 		proc->list[i].unitRam = GetUnitByCharId(gEventSlot[i+1]); //Unit* 
 	}
 	
-	
-	
 	proc->currOptionIndex = 0;
 	// Determine menu size based on values in memory slots 1-5 being non-zero. 
     if 		(proc->list[4].unitRam && proc->list[3].unitRam && proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter5);
@@ -250,24 +230,6 @@ void SelectCharacter_StartMenu(struct Struct_SelectCharacterProc* proc)
 	else if (proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter3);
 	else if (proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter2);
 	else if (proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter1);
-	
-	/*
-	CreatorClassProcStruct* classProc = (CreatorClassProcStruct*)ProcFind(ProcInstruction_CreatorClassProc);
-	if ( !classProc ) { ProcStart(ProcInstruction_CreatorClassProc,(Proc*)proc); } // If the creator class proc doesn't exist yet, make one.
-	else
-	{
-		// Otherwise, update relevant fields.
-		classProc->mode = 1;
-		for ( int i = 0 ; i < 5 ; i++ ) { classProc->classes[i] = proc->list[i].unitRam->pClassData->number; } 
-		
-		
-		classProc->menuItem = proc->currOptionIndex;
-		//classProc->menuItem = commandProc->commandDefinitionIndex;
-		classProc->charID = proc->list[proc->currOptionIndex].unitRam->pCharacterData->number;
-		//classProc->charID = proc->list[commandProc->commandDefinitionIndex].unitRam->pCharacterData->number;
-	}
-	*/
-	
 	
 }
 
@@ -948,6 +910,7 @@ static int SelectYes(struct MenuProc* menu, struct MenuCommandProc* command)
 	//EndProc(confirmation_proc);
 	//EndMenu(menu);
 	EndAllMenus(menu);
+
 	return ME_END | ME_PLAY_BEEP;
 	//return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
@@ -992,8 +955,13 @@ void SelectCharacterMenuEnd(void)
 	CreatorClassProcStruct* creatorClass = (CreatorClassProcStruct*)ProcFind(&ProcInstruction_CreatorClassProc);
 	CreatorClassEndProc(creatorClass);
 	
-	Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+	//Struct_SelectCharacterProc* proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
 	//EndProc(proc);
+	//EndEachProc(&ProcInstruction_CreatorClassProc); //! FE8U = (0x08003078+1)
+	//EndEachProc(&ProcInstruction_CreatorClassProc); //! FE8U = (0x08003078+1)
+	//BreakEachProcLoop(&ProcInstruction_CreatorClassProc);
+	
+	//EndEachProc(&ProcInstruction_SelectCharacter); //! FE8U = (0x08003078+1)
 	
 	//
 	//BgMapFillRect(&gBG0MapBuffer[0][0],30,8,0); 
@@ -1005,13 +973,20 @@ void SelectCharacterMenuEnd(void)
 	DeleteSomeAISStuff(&gSomeAISStruct);
 	DeleteSomeAISProcs(&gSomeAISRelatedStruct);
 	EndEkrAnimeDrvProc();
-	
-	
-	Proc* extraProc = (Proc*)ProcFind(0x8758A30); //gProc_ekrsubAnimeEmulator
+	//Proc* extraProc = (Proc*)ProcFind(0x8758A30); //gProc_ekrsubAnimeEmulator
 
-	asm("mov r11,r11");
+	
+	//Proc* extraProc = ProcFind(0x8758A30); //gProc_ekrsubAnimeEmulator
+	//asm("mov r11,r11");
+	//BreakEachProcLoop(0x8758A30);
+	//BreakProcLoop(extraProc);
+	//EndProc(extraProc);
+	//EndEachProc(0x8758A30); //! FE8U = (0x08003078+1)
+	
 
 	//Proc* extraProc2 = (Proc*)ProcFind(0x85B9E0C); //gProc_ekrsubAnimeEmulator
+	
+	
 	//asm("mov r11,r11");
 	//EndProc(extraProc);
 
@@ -1028,7 +1003,7 @@ void SelectCharacterMenuEnd(void)
 	
     EndFaceById(0);
 	
-
+	
 
 
 	//UnlockGameGraphicsLogic();
