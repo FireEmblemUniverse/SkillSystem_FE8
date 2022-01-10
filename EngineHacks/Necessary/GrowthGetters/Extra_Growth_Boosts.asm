@@ -3,8 +3,7 @@
 
 .equ Item_Table, Growth_Options+4
 .equ SkillTester, Item_Table+4
-.equ BlossomID, SkillTester+4
-.equ AptitudeID, BlossomID+4
+.equ GrowthLoop, SkillTester+4
 @r0=battle struct or char data ptr, r1 = growth so far (from char data), r2=index in stat booster pointer of growth
 
 push	{r4-r7,r14}
@@ -47,7 +46,7 @@ mov		r0,r4
 add		r0,#0x1E
 ldrh	r0,[r0,r3]
 cmp		r0,#0
-beq		BlossomCheck
+beq		SkillLoop
 lsl		r0,#0x18
 lsr		r0,#0x18
 mov		r1,#0x24
@@ -65,37 +64,26 @@ beq		NextItem
 ldsb	r0,[r0,r6]
 add		r5,r0
 cmp		r7,#0x0
-beq		BlossomCheck
+beq		SkillLoop
 NextItem:
 add		r3,#0x2
 cmp		r3,#0x8
-ble		ScrollLoop
+ble		SkillLoop
 
-@growth-boosting skills
-BlossomCheck:
-mov		r0,r4
-ldr		r1,BlossomID
-ldr		r2,SkillTester
-mov		r14,r2
-.short	0xF800
-cmp		r0,#1
-bne		AptitudeCheck
+SkillLoop:
+push {r7}
+ldr r7, GrowthLoop
+Loop:
+ldr r2, [r7]
+cmp r2, #0x0
+beq EndLoop
+    mov r14, r2
+    .short 0xF800
+    add r7, #0x4
+    b Loop
 
-BlossomEffect:
-lsl r5,#1 @growth x2
-
-AptitudeCheck:
-mov		r0,r4
-ldr		r1,AptitudeID
-ldr		r2,SkillTester
-mov		r14,r2
-.short	0xF800
-cmp		r0,#1
-bne		GoBack
-
-AptitudeEffect:
-add		r5,#20 @growth +20%
-
+EndLoop:
+pop {r7}
 GoBack:
 mov		r1,r8
 mov		r0,r5

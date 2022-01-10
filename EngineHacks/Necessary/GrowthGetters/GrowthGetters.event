@@ -1,7 +1,15 @@
 
+  #ifndef USE_STRMAG_SPLIT
   ALIGN 4
   Growth_Getter_Table:
     POIN Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
+  
+  #else  //USE_STRMAG_SPLIT
+    ALIGN 4
+	Growth_Getter_Table:
+	POIN Get_Hp_Growth Get_Str_Growth Get_Mag_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
+  
+  #endif //USE_STRMAG_SPLIT
 
   ALIGN 4
   Get_Hp_Growth:
@@ -15,6 +23,16 @@
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
+  #ifdef USE_STRMAG_SPLIT
+  ALIGN 4
+  Get_Mag_Growth:
+	#incbin "Get_Mag_Growth.dmp"
+	POIN Extra_Growth_Boosts|1
+	POIN MagCharTable
+	POIN MagClassTable
+	WORD USE_CHAR_AND_CLASS_GROWTHS
+  #endif
+	
   ALIGN 4
   Get_Skl_Growth:
     #incbin "Get_Skl_Growth.dmp"
@@ -46,11 +64,14 @@
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   ALIGN 4
+  Growth_Bonus_CalcLoop:
+  POIN BlossomGrowthModifier AptitudeGrowthModifier
+  WORD 0 //Terminator
+  
+  ALIGN 4
   Extra_Growth_Boosts:
     #incbin "Extra_Growth_Boosts.dmp"
     WORD Growth_Options
     POIN ItemTable
 	POIN SkillTester
-	WORD BlossomID
-	WORD AptitudeID
-	
+	POIN Growth_Bonus_CalcLoop
