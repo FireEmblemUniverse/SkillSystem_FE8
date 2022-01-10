@@ -1,3 +1,11 @@
+  //Growth Bonuses from skills are located in the GrowthSkills folder
+  #include "GrowthBonuses/GrowthBonuses.event"
+
+  
+  ALIGN 4
+  Growth_Bonus_CalcLoop:
+  POIN BlossomGrowthModifier AptitudeGrowthModifier MetisTomeCheck ScrollsCheck
+  WORD 0 //Terminator
 
   #ifndef USE_STRMAG_SPLIT
   ALIGN 4
@@ -62,16 +70,9 @@
     #incbin "Get_Luk_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
-
-  ALIGN 4
-  Growth_Bonus_CalcLoop:
-  POIN BlossomGrowthModifier AptitudeGrowthModifier
-  WORD 0 //Terminator
   
   ALIGN 4
   Extra_Growth_Boosts:
     #incbin "Extra_Growth_Boosts.dmp"
     WORD Growth_Options
-    POIN ItemTable
-	POIN SkillTester
 	POIN Growth_Bonus_CalcLoop
