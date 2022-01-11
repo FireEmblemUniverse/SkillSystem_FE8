@@ -154,11 +154,17 @@
 #include "Route13.Event"
 }
 {
-//#include "Route14.event"
+#include "Route14.event"
 }
-
-
-
+{
+#include "Route15.event"
+}
+{
+#include "Fuschia_City.event"
+}
+{
+#include "Fuschia_Gym.event"
+}
 
 
 

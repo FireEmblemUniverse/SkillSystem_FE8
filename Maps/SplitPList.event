@@ -120,6 +120,7 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 
 #include "TilesetAnimations/Water/WaterAnimsInstaller.event"
 #define WaterAnimations 1 
+#define WaterAnimation 1
 
 TileAnimPointerTable(WaterAnimations, WaterTilesetAnimation)
 TileAnimPointerTable(5, 0x59D498)
