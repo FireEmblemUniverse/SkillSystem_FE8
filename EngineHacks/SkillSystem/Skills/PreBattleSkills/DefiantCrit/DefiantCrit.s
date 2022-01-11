@@ -1,7 +1,7 @@
 .thumb
 .align
 
-.equ DefiantAvoID,SkillTester+4
+.equ DefiantCritID,SkillTester+4
 
 push {r4-r7,lr}
 @goes in the battle loop.
@@ -21,7 +21,7 @@ bgt GoBack @if cur hp x4 is less than or equal to max HP, we are at 25% or less
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4
-ldr r1, DefiantAvoID
+ldr r1, DefiantCritID
 .short 0xf800
 cmp r0, #0
 beq GoBack
@@ -45,4 +45,4 @@ bx r0
 
 SkillTester:
 @POIN SkillTester
-@WORD DefiantAvoID
+@WORD DefiantCritID

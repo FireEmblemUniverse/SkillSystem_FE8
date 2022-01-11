@@ -212,11 +212,7 @@ POP
   #include "Necessary/StatGetters/_InstallStatGetters.event"
   
   //Growth Getters
-  #ifndef USE_STRMAG_SPLIT
-    #include "Necessary/GrowthGetters/GrowthGetters.event"
-  #else
-    #include "ExternalHacks/StrMagSplit/GrowthGetters/GrowthGetters.event"
-  #endif // USE_STRMAG_SPLIT
+  #include "Necessary/GrowthGetters/GrowthGetters.event"
   
   ALIGN 4
   #include "Necessary/IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons

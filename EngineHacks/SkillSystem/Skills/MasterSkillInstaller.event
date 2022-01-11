@@ -35,5 +35,6 @@ POP
 #include "StatModifierSkills/StatModifierSkills.event"
 #include "WeaponUsabilitySkills/WeaponUsabilitySkills.event"
 #include "WTASkills/WTASkills.event"
+#include "GrowthSkills/GrowthSkills.event"
 
 #include "charge_table.event"
