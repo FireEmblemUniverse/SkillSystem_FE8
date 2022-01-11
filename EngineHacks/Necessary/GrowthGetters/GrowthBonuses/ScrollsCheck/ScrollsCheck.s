@@ -1,4 +1,5 @@
 .equ Item_Table, Growth_Options+4
+.equ Passive_Boost_Bit, Item_Table+4
 @r4=battle struct or char data ptr, r5 = growth so far (from char data), r6=index in stat booster pointer of growth
 
 .thumb
@@ -21,9 +22,9 @@ mov		r1,#0x24
 mul		r0,r1
 ldr		r1,Item_Table
 add		r0,r1
-mov		r1,#0x22
-ldrb	r1,[r0,r1]
-mov		r2,#0x1			@bit signifying it's a scroll
+mov		r1,#0x8
+ldr		r1,[r0,r1]
+ldr		r2,Passive_Boost_Bit @bit signifying it's a scroll
 tst		r1,r2
 beq		NextItem
 ldr		r0,[r0,#0xC]	@stat bonuses pointer
@@ -36,7 +37,7 @@ beq		End
 NextItem:
 add		r3,#0x2
 cmp		r3,#0x8
-ble		End
+ble		ScrollLoop
 
 End:
 
