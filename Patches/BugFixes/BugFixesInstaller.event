@@ -1,3 +1,49 @@
+
+//gSMSGfxIndexLookup 02033F40
+//SoundRoom Buffer 0201F148
+// by 7743 
+//standing Animationバッファは0xCFまでしか確保する領域がない!
+//仕方がないので、同時には利用しないSoundRoomのバッファを借りることにした
+//もう返さないけど、貸してくれ。死ぬまで借りるだけだから
+//
+//The standing Animation buffer has an area to reserve only up to 0xCF!
+//I couldn't help it, so I decided to borrow a Sound Room buffer that I wouldn't use at the same time.\r\n
+//I won't return it anymore, but lend me one. I just borrow until you die.
+//
+
+PUSH
+ORG 0x2668A
+BYTE 0xFF
+
+ORG 0x266B8
+WORD 0x0201F148
+
+ORG 0x266BE
+BYTE 0xFF
+
+ORG 0x266EC
+WORD 0x0201F148
+
+ORG 0x26778
+WORD 0x0201F148
+
+ORG 0x267F8
+WORD 0x0201F148
+
+ORG 0x26834
+WORD 0x0201F148
+
+ORG 0x268C4
+WORD 0x0201F148
+
+ORG 0x26F28
+WORD 0x0201F148
+
+POP
+
+
+
+
 PUSH
   //Bypass Ch5x Hardcoded Stuff
   ORG $24DF2 //show gold in ch5x

@@ -14,7 +14,7 @@ LYN := "$(abspath .)/FE-CLib-master/utility/lyn.exe"
 
 # setting up compilation flags
 ARCH   := -mcpu=arm7tdmi -mthumb -mthumb-interwork
-CFLAGS := $(ARCH) -Wall -Os -mtune=arm7tdmi -mlong-calls
+CFLAGS := $(ARCH) -Wall -mtune=arm7tdmi -mlong-calls
 
 # C to ASM rule
 %.s: %.c *.c

@@ -47,6 +47,11 @@ BYTE 0 0 0 0; ALIGN 4
 #include "CreatorClassDisplayLoop.lyn.event"
 
 
+
+#include "SelectCharacter.lyn.event"
+
+#include "MakeThumb.lyn.event"
+
 ALIGN 4 
 UnitGroupExample_A:
 UNIT 0x10  BulbasaurID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
@@ -63,8 +68,3 @@ UNIT
 UnitGroupExample_D:
 UNIT 0x13  PikachuID 0x1 Level(1,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [Tackle, 0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 
-
-#include "SelectCharacter.lyn.event"
-
-#include "MakeThumb.lyn.event"
-
