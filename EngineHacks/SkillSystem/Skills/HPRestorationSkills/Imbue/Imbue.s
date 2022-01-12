@@ -33,8 +33,7 @@ mul r0,r1
 
 
 @divide it by MHP
-mov r1,r5
-ldrb r1,[r1,#0x12] @r1 = mhp
+ldrb r1,[r4,#0x12] @r1 = mhp
 
 @add MHP to dividend to make it round up
 add r0,r1

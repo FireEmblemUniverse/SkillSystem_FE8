@@ -1,0 +1,11 @@
+ALIGN 4
+BlossomGrowthModifier:
+#incbin "Blossom/Blossom.dmp"
+POIN SkillTester
+WORD BlossomID
+
+ALIGN 4
+AptitudeGrowthModifier:
+#incbin "Aptitude/Aptitude.dmp"
+POIN SkillTester
+WORD AptitudeID
