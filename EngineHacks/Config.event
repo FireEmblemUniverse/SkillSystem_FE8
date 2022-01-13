@@ -191,6 +191,10 @@
 // (By default, all classes promote at level 255.) 
 // #define PROMOTE_LEVELUP
 
+// If uncommented, passive stat boosts will not stack and only the 
+// first item in the inventory with passive stat boosts will apply them.
+// Setting the 0x00800000 bit in the item ability bitfield will enable passive boosts.
+// #define DONT_STACK_BOOSTS
 
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
@@ -323,6 +327,7 @@
 #define ENEMY_NPC_FIXED_GROWTHS True
 
 //If true, the effects of multiple passive growth boosters can stack.
+//Setting the 0x00800000 bit in the item ability bitfield will enable passive boosts.
 #define STACKABLE_GROWTH_BOOSTS True
 
 //Amount for Metis Tome to boost growths by

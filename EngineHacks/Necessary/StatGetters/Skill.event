@@ -25,6 +25,10 @@ prRallySkl:
 	POIN GetDebuffs|1
 
 prItemPassiveSkl:
+#ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(STAT_SKILL)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_SKILL)
+#endif // DONT_STACK_BOOSTS
 
 #endif // MODULAR_GETTER_SKILL_EVENT
