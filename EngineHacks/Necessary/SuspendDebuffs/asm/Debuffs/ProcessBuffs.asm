@@ -35,22 +35,23 @@ lsl r0, r6
 mov r2, #28 
 lsr r0, r2 
 mov r1, r7 
-@lsr r0, r2 @ 
-@mov r11, r11 
-
-
 
 mov r1, #0xF 
 and r1, r0 
 cmp r1, #0 
 beq Loop 
 
-sub r1, #1 @ -1 stat per turn 
+ldr r2, =BuffDepletePerTurnAmountLink 
+ldr r2, [r2] 
+cmp r1, r2 
+bge NoCap 
+mov r1, r2 @ so r1 will be 0 
+NoCap: 
+sub r1, r2 @ -X from the buff per turn 
 
-@lsl r2, r6 
+
 mov r2, #28
 sub r2, r6
-@mov r2, r6 
 
 lsl r1, r2 @ back to the offset / stat 
 mov r3, #0xF 
@@ -60,7 +61,6 @@ lsl r3, r2
 bic r7, r3 @ remove all bits at that offset 
 orr r7, r1 @ turn on all new bits at that offset 
 str r7, [r5] 
-mov r11, r11
 b Loop 
 
 ExitLoop: 

@@ -48,17 +48,17 @@ PUSH
   BYTE $C7
 
   ORG $31504
-  WORD ConvoyExpansionRAM
+  WORD ConvoyExpansionRAMAddr
   ORG $31524
-  WORD ConvoyExpansionRAM
+  WORD ConvoyExpansionRAMAddr
   ORG $31590
-  WORD ConvoyExpansionRAM
+  WORD ConvoyExpansionRAMAddr
   ORG $315B4				//AddItemToConvoy
-  WORD ConvoyExpansionRAM
+  WORD ConvoyExpansionRAMAddr
   ORG $315E0				//i think this is called when removing item from convoy?
-  WORD ConvoyExpansionRAM
+  WORD ConvoyExpansionRAMAddr
   ORG $31604				//GetConvoyItemSlot
-  WORD ConvoyExpansionRAM
+  WORD ConvoyExpansionRAMAddr
 
   ORG $31528
   BYTE $C8

@@ -8,13 +8,13 @@
 
 
 
-#define BuffTableSize 4 
+
 
 TeamDebuffTables:
   //{
-  #define MaxPlayerUnits 62+1
+  #define MaxPlayerUnits 50+1
   #define MaxEnemyUnits 50+1
-  #define MaxGreenUnits 20+1
+  #define MaxGreenUnits 15+1
   
   #define PUDebuffTable DebuffTable
   #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*8)"
@@ -25,10 +25,10 @@ TeamDebuffTables:
   WORD EUDebuffTable
   WORD GUDebuffTable
   WORD OUDebuffTable
-  #define PUBuffTable OUDebuffTable
-  #define EUBuffTable "PUBuffTable + (MaxPlayerUnits*BuffTableSize)" // 4 bytes default 
-  #define GUBuffTable "EUBuffTable + 	(MaxEnemyUnits*BuffTableSize)"
-  #define OUBuffTable "GUBuffTable + 	(MaxGreenUnits*BuffTableSize)"
+  #define PUBuffTable BuffTable 
+  #define EUBuffTable "PUBuffTable + 	(MaxPlayerUnits*BuffTableEntrySize)" // 4 bytes default 
+  #define GUBuffTable "EUBuffTable + 	(MaxEnemyUnits*BuffTableEntrySize)"
+  #define OUBuffTable "GUBuffTable + 	(MaxGreenUnits*BuffTableEntrySize)"
   ALIGN 4 
 TeamBuffTables:
   WORD PUBuffTable
@@ -41,7 +41,7 @@ ALIGN 4
 GetBuff:
 #include "asm/Buffs/GetBuffs.lyn.event"
 POIN TeamBuffTables
-WORD BuffTableSize
+WORD BuffTableEntrySize
  
 //}
 
@@ -51,6 +51,9 @@ ALIGN 4
 POIN GetBuff
 
 #include "asm/Debuffs/ProcessBuffs.lyn.event"
+ALIGN 4
+BuffDepletePerTurnAmountLink:
+WORD BuffDepletePerTurnAmount // Defined in custom defs 
 
   {
 

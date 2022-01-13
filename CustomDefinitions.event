@@ -64,11 +64,24 @@
 #include "Graphics/ItemIcons/Icon Definitions.event"
 
 
+#define UnitLoadBufferAddr 0x203EFB8 // until 0x2040000 
 
 #ifndef DebuffTable
   #define DebuffTable     0x0203F100
-  #define DebuffTableSize 0x00000440
+  #define DebuffTableSize 0x000003B0 // 0x438? 0x440? 0x448? default with 62 player units & 20 NPCs 
 #endif
+
+#define ConvoyExpansionRAMAddr $0203B200
+#define ConvoyRamSize $190  
+
+#define PokemblemRamLocation 0x203F548 
+#define PokemblemRamSize $27F 
+
+#define BuffDepletePerTurnAmount 2 // -2 from buffs per turn 
+#define BuffTable 0x0203F7C8 // end of pokemblem ram - 0x203F99F // [203F7C7..203F9A0]!
+#define BuffTableSize 0x1D8 // Pokemblem - 50 players/enemies, 15 NPCs - regular would be $21C i think 
+#define BuffTableEntrySize 4 
+
 
 #define LunarBrace 0x98
 #define SolarBrace 0x99

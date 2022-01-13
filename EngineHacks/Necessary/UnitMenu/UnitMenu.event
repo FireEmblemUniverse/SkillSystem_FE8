@@ -298,6 +298,7 @@ MenuCommand(UM_SplashName, UM_SplashDesc, GreenText, SplashCommandUsability, Spl
   UM_Item
   
 MenuCommand(UM_RecoverName, UM_RecoverDesc, BlueText, RecoverCommandUsability, RecoverCommandEffect)
+MenuCommand(UM_RecoverName, UM_RecoverDesc, BlueText, HardenCommandUsability, HardenCommandEffect)
 
     //UM_Call, UM_CallDesc 
     MenuCommand(UM_Call, UM_CallDesc, GreenText, CallCommandUsability, CallCommandEffect)

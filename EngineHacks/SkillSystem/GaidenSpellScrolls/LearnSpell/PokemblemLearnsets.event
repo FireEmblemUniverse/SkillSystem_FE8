@@ -136,12 +136,14 @@ ALIGN 4
 CaterpieLearnset:
 BYTE 1 StringShot
 BYTE 3 Tackle
+BYTE 7 Harden 
 BYTE 15 BugBite
 BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
 BYTE 1 StringShot
+BYTE 1 Harden 
 BYTE 3 Tackle
 BYTE 10 Confusion
 BYTE 15 BugBite
@@ -170,11 +172,14 @@ WeedleLearnset:
 BYTE 1 PoisonSting
 BYTE 1 StringShot
 BYTE 4 Tackle 
+BYTE 7 Harden 
 BYTE 15 BugBite
 BYTE 0 0
 
 ALIGN 4
 KakunaLearnset:
+BYTE 1 Harden 
+BYTE 1 PoisonSting 
 BYTE 1 StringShot
 BYTE 4 Tackle
 BYTE 10 FuryCutter
@@ -1603,7 +1608,7 @@ BYTE 19 BodySlam // BYTE 19 StunSpore // 17 Stomp
 BYTE 21 PoisonPowder
 // BYTE 23 Sleep2 // Sleep2 Powder
 BYTE 27 Confusion
-BYTE 27 EggBomb
+BYTE 27 Swift // EggBomb 
 BYTE 33 RecoverMove // Resv WorrySeed
 BYTE 37 BodySlam // NaturalGift
 BYTE 43 SolarBeam 
@@ -1623,7 +1628,7 @@ BYTE 19 BodySlam // BYTE 19 StunSpore // 17 Stomp
 // BYTE 21 PoisonPowder
 // BYTE 23 Sleep2 // Sleep2 Powder
 BYTE 27 Confusion
-BYTE 27 EggBomb
+BYTE 27 Swift //EggBomb
 BYTE 33 RecoverMove // WorrySeed
 BYTE 37 BodySlam // NaturalGift
 BYTE 43 SolarBeam 
@@ -1802,7 +1807,7 @@ BYTE 16 Doubleslap
 BYTE 27 Snarl // Fling
 // BYTE 31 Resv DefenseCurl
 // BYTE 34 Resv LightScreen
-BYTE 38 EggBomb
+BYTE 38 Swift // EggBomb 
 // BYTE 42 Resv HealingWish
 BYTE 46 DoubleEdge
 BYTE 0 0

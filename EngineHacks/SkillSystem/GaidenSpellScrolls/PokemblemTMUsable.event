@@ -10,7 +10,7 @@
 //BYTE HighJumpKick 
 //BYTE 0 // Goes at the end of each learnset 
 
-
+#define EggBomb 255 
 #define Roar 255 
 #define Metronome 255 
 #define DragonDance 255

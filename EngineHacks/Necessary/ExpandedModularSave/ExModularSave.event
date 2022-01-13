@@ -2,11 +2,11 @@
 #define EXPANDED_MODULAR_SAVE
 
 
-#define ConvoyExpansionRAM $0203B200
+
 
 ALIGN 4 
 ConvoyExpansionRamLink:
-WORD ConvoyExpansionRAM 
+WORD ConvoyExpansionRAMAddr 
 
 #include "SrcModules/Convoy.lyn.event"
 
@@ -152,12 +152,13 @@ gGameSaveChunks:
 	DeclSaveChunk($05f9, $08C4, ESU_SaveGameUnits, ESU_LoadGameUnits, EMS_CHUNK_SAVEUNITS)
 
 	// $102C
-	DeclSaveChunk($0ebd, $0190, SaveConvoyItems,          LoadConvoyItems,            EMS_CHUNK_CONVOYITEMS)
+	DeclSaveChunk($0ebd, ConvoyRamSize, SaveConvoyItems,          LoadConvoyItems,            EMS_CHUNK_CONVOYITEMS)
 	
 	// $1128
-	DeclSaveChunk($104d, $02f7, StorePokeRamToSaveFile, LoadPokeRamFromSaveFile, EMS_CHUNK_POKE) // prev $118 bytes 
+	DeclSaveChunk($104d, PokemblemRamSize, StorePokeRamToSaveFile, LoadPokeRamFromSaveFile, EMS_CHUNK_POKE) // prev $118 bytes 
 
-// now uses all, prev $1165-1344 free 
+// $78 bytes or $12CC - $1344 free 
+
 
 
 	DeclSaveChunkEnd
@@ -211,17 +212,20 @@ gSuspendSaveChunks:
 	DeclSaveChunk($1d51, $0348, ESU_SaveGreenSuspendUnits,  ESU_LoadGreenSuspendUnits)
 	
 	// 2 * 0xC8 (#200) = #0x190  
-	DeclSaveChunk($2099, $0190, SaveConvoyItems,     LoadConvoyItems)            // Convoy Items
+	DeclSaveChunk($2099, ConvoyRamSize, SaveConvoyItems,     LoadConvoyItems)            // Convoy Items
 	
 	
 	// originally $118 or #270 bytes of ram 
-    DeclSaveChunk($2229, $027F, SavePokeSuspend, LoadPokeSuspend) 
+    DeclSaveChunk($2229, PokemblemRamSize, SavePokeSuspend, LoadPokeSuspend) 
 	
-	// 27F bytes 
+	// 27F bytes 540 / 21C 
 	
 	// Save Debuffs (TODO: maybe reduce size) // 900 size 
 	DeclSaveChunk($24A8, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
+	DeclSaveChunk($2858, BuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
 
+// $2A30 - $2DA8 free
+ 
 	// Permanent eids (moved here because of a mistake in the previous allocation)
 	DeclSaveChunk($2DA8, $0019, $0A3150+1, $0A3198+1)
 

@@ -69,5 +69,10 @@ PerTurn:
 WORD Debuff_Table
 POIN ProcessBuffs 
 
+ALIGN 4
+BuffDepletePerTurnAmountLink:
+WORD BuffDepletePerTurnAmount // Defined in custom defs 
+
 #include "ProcessBuffs.lyn.event"
+
 

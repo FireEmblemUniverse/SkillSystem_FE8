@@ -4,7 +4,7 @@
 // @ given r0 = unit struct, r1 = move ID, return T/F whether unit knows this move 
 #include "MoveTester.lyn.event"
 
-
+#include "HardenMove.lyn.event"
 
 #include "RecoverMove.lyn.event" 
 

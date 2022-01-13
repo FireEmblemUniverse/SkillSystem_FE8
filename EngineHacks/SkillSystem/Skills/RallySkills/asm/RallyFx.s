@@ -41,7 +41,47 @@ RallyFxProc:
 RallyFxProc.name:
 	.asciz "Rally Fx"
 
+
+RallyFxProc2:
+	.word 1, RallyFxProc.name
+
+	.word 2, LockGame
+
+	.word 14, 0
+
+	.word 2, RallyFx_OnInit2
+	.word 4, RallyFx_OnEnd
+
+	.word 3, RallyFx_OnLoop
+
+	.word 2, UnlockGame
+
+	.word 0, 0 @ end
+
+RallyFxProc.name:
+	.asciz "Rally Fx"
+
 	.align
+
+	.align
+
+RallyFx_OnInit2:
+	push {lr}
+
+	@ Set [proc+2C] to 0
+	@ It will be our clock
+	mov r1, #0
+	str r1, [r0, #0x2C]
+
+	@ start map aura fx
+
+	ldr r3, =StartMapAuraFx
+	bl  BXR3
+
+	@ add units to aura fx
+
+	ldr r3, =SelfBuff
+b Continue 
 
 RallyFx_OnInit:
 	push {lr}
@@ -59,7 +99,7 @@ RallyFx_OnInit:
 	@ add units to aura fx
 
 	ldr r3, =ForEachRalliedUnit
-
+Continue:
 	ldr r0, =AddMapAuraFxUnit @ arg r0 = function
 	@ unused                  @ arg r1 = user argument
 
@@ -200,6 +240,13 @@ StartRallyFx:
 
 	ldr r0, =RallyFxProc @ arg r0 = proc scr
 	mov r1, #3           @ arg r1 = parent
+
+StartRallyFx2:
+	ldr r3, =StartProc
+
+	ldr r0, =RallyFxProc2 @ arg r0 = proc scr
+	mov r1, #3           @ arg r1 = parent
+
 
 BXR3:
 	bx r3
