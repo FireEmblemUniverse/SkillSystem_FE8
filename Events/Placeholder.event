@@ -243,8 +243,8 @@ CALL LoadAndPlacePlayers
 //RandomizePlayerCoords(Ground, Range(0,0,2,2), Range(2,2,15,10)) //somewhere possible, hopefully ? 
 LOAD1 1 EnemyUnits 
 ENUN 
-LOAD1 1 Units3 
-ENUN 
+//LOAD1 1 Units3 
+//ENUN 
 AutoLevelUnits(15, True, 0x50FF)
 RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
@@ -259,6 +259,27 @@ SetUnitStatus(1, 0x2a, Leer)
 ENUN 
 
 ENUT 0xAE  
+
+
+//STAL 30 
+STAL 50
+
+CALL ExampleCameraEvent
+CALL ExampleCameraEvent
+
+
+
+//EVBIT_T 9 //Follow moving units 
+//MOVE 3 Eirika [12,2]
+//ENUN 
+ 
+
+//CAM1 [0,0]
+//CAM1 [0,26]
+//CAM1 [23,26]
+//CAM1 [23, 0]
+//CAM1 0 // Unit 0 
+
 NoFade
 ENDA
 

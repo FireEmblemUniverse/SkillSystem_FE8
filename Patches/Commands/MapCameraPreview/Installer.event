@@ -1,0 +1,21 @@
+#include "Camera.lyn.event"
+
+
+ExampleCameraEvent:
+CALL 0x8592140 // Ensure we aren't faded to black
+ASMC ASMC_CameraNW
+STAL 15
+ASMC ASMC_CameraSW
+STAL 15
+ASMC ASMC_CameraSE
+STAL 15
+ASMC ASMC_CameraNE
+STAL 15
+ASMC ASMC_CameraLord 
+EVBIT_T 7
+ENDA
+
+
+
+
+

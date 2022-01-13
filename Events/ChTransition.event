@@ -1,6 +1,6 @@
 //  08035F34 F7FF FC66   BL 0x08035804   //ExecFortSelfHealMotion @ r0 as Unit ? 
 // 8035E20 B510   PUSH {r4,lr}   //Procs TerrainHealLoop CallASM
-
+// 089EE340	&EVENT	Any event function	Mystery	1	{U}
 //Ram to save certain things in 
 
 #define XCoordNewArea 			0x30017ac

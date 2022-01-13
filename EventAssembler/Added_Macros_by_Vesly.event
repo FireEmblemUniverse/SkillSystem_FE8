@@ -22,6 +22,8 @@
 #define BottomWallS2Text "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND; REMA"
 #define CGText(text, BGIndex) "FlashBlack; ShowCG(BGIndex); CGTEXTSTART; TEXTSHOW text; TEXTEND; REMA; ClearBackgroundSmooth"
 
+#define ShowMap "CALL 0x8592140" // Fade from black if faded in & clean background if any 
+
 
 // Debugging 
 #define Break "CALL 0x89EE1D4" // ENDB and unsets completion flag of event 
@@ -50,3 +52,11 @@
 
 #define SilentGiveSkillAccessory(UnitID, SkillID) "SVAL r1 0xC0; SVAL r3 SkillID; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SVAL r3 SkillID; SAND r4 r4 r3; SVAL r5 0x80; SADD r4 r4 r5; SADD r3 r1 r0; SVAL r1 UnitID; ASMC SilentGiveItemWithDurability" 
 
+
+/*
+08592140	&EVENT	Any event function	Mystery	12	{U} - fade to black if needed and clean, then fade back from black 
+
+
+
+
+*/

@@ -255,7 +255,8 @@ NameInputEvent:
 
 // Name input screen 
 REMOVEPORTRAITS
-ASMC2 0x48281
+ASMC 0x48281
+//ASMC2 0x48281
 CLEAN
 // Name input screen 
 //FADI 12 
