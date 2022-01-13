@@ -5,6 +5,7 @@
 
 pMagicModifiers: // Magic
 	POIN prAddUnitMagic prAddEquipMagic prDebuffMag-1 prRallyMag-1 prSkillFury prFortressDefensePow prFortressResistancePow prItemPassiveMag VigorDanceCheck prLifeAndDeathBonus prDefiantMag prPushMag
+	POIN prMagBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryMagic
 	#endif 

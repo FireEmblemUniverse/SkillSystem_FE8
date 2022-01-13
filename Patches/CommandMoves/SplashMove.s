@@ -57,6 +57,11 @@ mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is s
 @mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 
 
+ldr r3, =CurrentUnit 
+ldr r0, [r3] 
+blh GetBuff 
+ldr r1, =0xFEDCBA98 
+str r1, [r0] @ give all buffs 
 
 
 pop {r0} 

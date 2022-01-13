@@ -63,6 +63,11 @@ Reloading:
 #incbin "New Reload.dmp"
 WORD Debuff_Table
 
+ALIGN 4
 PerTurn:
 #incbin "ProcessDebuffs.dmp"
 WORD Debuff_Table
+POIN ProcessBuffs 
+
+#include "ProcessBuffs.lyn.event"
+

@@ -5,6 +5,7 @@
 
 pDefenseModifiers: // Defense
 	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prItemPassiveDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef prDefiantDef prPushDef
+	POIN prDefBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryDefense
 	#endif 
@@ -37,5 +38,10 @@ prFortressDefenseDef:
 
 prItemPassiveDefense:
 	rPassiveStatBoosts(STAT_DEFENSE)
+
+
+
+
+
 
 #endif // MODULAR_GETTER_DEFENSE_EVENT

@@ -5,6 +5,7 @@
 
 pLuckModifiers: // Luck
 	POIN prAddUnitLuck prHalveIfCapturing prDebuffLck prAddEquipLuck prItemPassiveLuck prRallyLck prDefiantLck
+	POIN prLukBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryLuck
 	#endif 

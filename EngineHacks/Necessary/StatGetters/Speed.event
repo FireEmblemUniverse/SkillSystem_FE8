@@ -5,6 +5,7 @@
 
 pSpeedModifiers: // Speed
 	POIN prAddUnitSpeed prHalveIfRescuing prHalveIfCapturing prDebuffSpd prAddEquipSpeed prItemPassiveSpeed prRallySpd prLifeAndDeathBonus prSkillFury prResolve prDefiantSpd prPushSpd
+	POIN prSpdBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessorySpeed
 	#endif 

@@ -1,5 +1,11 @@
 @Originally at 188A8
 .thumb
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
+.equ ProcessBuffs, GetUnitDebuffs+4
 @This should do what the code in place did
 cmp     r0,#0x0
 beq     noBarrier
@@ -76,6 +82,10 @@ beq NoMagDebuff
 	sub r0, r0, #0x01
 NoMagDebuff:
 strb r0, [ r3, #0x05 ]
+
+ldr r3, ProcessBuffs 
+mov r0, r4 @ Unit 
+bl BXR3
 
 @no need to do anything
 ldr r3, ReturnLocation

@@ -6,8 +6,12 @@
 
 #ifdef _FE8_
 
+
+
+#define BuffTableSize 4 
+
 TeamDebuffTables:
-  {
+  //{
   #define MaxPlayerUnits 62+1
   #define MaxEnemyUnits 50+1
   #define MaxGreenUnits 20+1
@@ -21,8 +25,33 @@ TeamDebuffTables:
   WORD EUDebuffTable
   WORD GUDebuffTable
   WORD OUDebuffTable
-  }
-  
+  #define PUBuffTable OUDebuffTable
+  #define EUBuffTable "PUBuffTable + (MaxPlayerUnits*BuffTableSize)" // 4 bytes default 
+  #define GUBuffTable "EUBuffTable + 	(MaxEnemyUnits*BuffTableSize)"
+  #define OUBuffTable "GUBuffTable + 	(MaxGreenUnits*BuffTableSize)"
+  ALIGN 4 
+TeamBuffTables:
+  WORD PUBuffTable
+  WORD EUBuffTable
+  WORD GUBuffTable
+  WORD OUBuffTable
+
+ 
+ALIGN 4
+GetBuff:
+#include "asm/Buffs/GetBuffs.lyn.event"
+POIN TeamBuffTables
+WORD BuffTableSize
+ 
+//}
+
+ALIGN 4
+
+#include "asm/Buffs/Buffs.lyn.event"
+POIN GetBuff
+
+#include "asm/Debuffs/ProcessBuffs.lyn.event"
+
   {
 
   PUSH
@@ -103,9 +132,11 @@ TeamDebuffTables:
     #ifndef USE_STRMAG_SPLIT
       #include "asm/Debuffs/ProcessDebuffs.lyn.event"
       POIN GetDebuffs|1
+	  POIN ProcessBuffs|1
     #else
       #include "asm/Debuffs/ProcessDebuffsMag.lyn.event"
       POIN GetDebuffs|1
+	  POIN ProcessBuffs|1
     #endif // USE_STRMAG_SPLIT
 
   ALIGN 4
@@ -130,6 +161,9 @@ TeamDebuffTables:
   GetDebuffs:
     #include "asm/Debuffs/GetDebuffs.lyn.event"
     POIN TeamDebuffTables
+	
+
+	
 
 #else // _FE8_
   ERROR Suspend Expansion and Debuff hack is for FE8

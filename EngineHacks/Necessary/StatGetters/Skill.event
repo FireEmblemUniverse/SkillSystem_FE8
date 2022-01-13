@@ -5,6 +5,7 @@
 
 pSkillModifiers: // Skill
 	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prItemPassiveSkl prRallySkl prResolve prDefiantSkl prPushSkl
+	POIN prSklBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessorySkill
 	#endif 

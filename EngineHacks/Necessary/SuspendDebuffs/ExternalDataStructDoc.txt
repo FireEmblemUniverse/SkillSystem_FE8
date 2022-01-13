@@ -31,3 +31,17 @@ EXTERNAL DATA STRUCT / "DEBUFF TABLE" (203F100)
         +0x20    UNUSED
         +0x40    UNUSED
         +0x80    UNUSED
+
+
+//Buff Table
++0x00    Byte    Lower nybble is str buff, upper nybble is skl buff
++0x01    Byte    Lower nybble is spd buff, upper nybble is def buff
++0x02    Byte    Lower nybble is res buff, upper nybble is lck buff
++0x03 	 Byte 	 Lower nybble is mag buff, upper nybble is empty 
+
+
+
+
+
+
+
