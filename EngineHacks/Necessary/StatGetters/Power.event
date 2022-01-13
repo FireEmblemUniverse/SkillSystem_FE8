@@ -38,6 +38,10 @@ prFortressResistancePow:
 	_testSkill(FortressResistanceID,0,3)
 
 prItemPassivePow:
+#ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(STAT_POWER)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_POWER)
+#endif // DONT_STACK_BOOSTS
 
 #endif // MODULAR_GETTER_POWER_EVENT
