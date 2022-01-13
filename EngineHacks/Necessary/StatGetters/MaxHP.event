@@ -21,6 +21,10 @@ prHexingRodEffect:
 	WORD DebuffTable
 
 prItemPassiveHp:
+#ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(STAT_HP)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_HP)
+#endif // DONT_STACK_BOOSTS
 
 #endif // MODULAR_GETTER_MAXHP_EVENT

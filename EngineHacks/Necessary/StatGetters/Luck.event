@@ -25,6 +25,10 @@ prRallyLck:
 	POIN GetDebuffs|1
 
 prItemPassiveLuck:
+#ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(STAT_LUCK)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_LUCK)
+#endif // DONT_STACK_BOOSTS
 
 #endif // MODULAR_GETTER_LUCK_EVENT

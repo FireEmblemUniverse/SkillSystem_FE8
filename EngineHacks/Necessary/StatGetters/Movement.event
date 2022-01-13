@@ -48,6 +48,10 @@ prAddEquipMov:
 
 ALIGN 4
 prItemPassiveMov:
+#ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(STAT_MOV)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_MOV)
+#endif // DONT_STACK_BOOSTS
 
 #endif // MODULAR_GETTER_MOVEMENT_EVENT
