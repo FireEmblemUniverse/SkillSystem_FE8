@@ -1,5 +1,6 @@
 .thumb
 .equ DominateID, SkillTester+4
+.equ GetUnit,0x8019430
 
 push {r4-r7, lr}
 ldr     r5,=0x203a4ec @attacker
@@ -30,8 +31,40 @@ beq End
 
 @Add damage
 
+@How we get damage to add depends on allegiance of the unit
+
+mov r0,r4 @attacker
+ldrb r0,[r0,#0xB] @allegiance byte
+lsr r0,#6 @just the allegiance
+cmp r0,#0
+bne AltMovementCheck
+@fast, but only works for player units
 ldr r3,=0x203a968 @Spaces Moved
 ldrb r2,[r3]
+b FinishCharge
+
+
+AltMovementCheck:
+@we need trigonometry to get our movement distance since we can't use spaces moved
+@this only works assuming straight lines but not many reasonable other options
+ldr r6,=#0x202BE48 @active unit position (has starting coords)
+@sqrt( (x2-x1)^2 + (y2-y1)^2 )
+@sqrt can be done with swi 8
+
+ldrb r0,[r4,#0x10] @x1
+ldrh r1,[r6] @x2
+sub r1,r0 @x2-x1
+mul r1,r1 @^2
+mov r2,r1
+ldrb r0,[r4,#0x11] @y1
+ldrh r1,[r6,#0x2] @y2
+sub r1,r0 @y2-y1
+mul r1,r1 @^2
+add r0,r1,r2 @(x2-x1)^2 + (y2-y1)^2
+swi 8 @sqrt
+mov r2,r0 @for consistency in finishing
+
+FinishCharge:
 lsr r2,#0x1
 mov r1, #0x5A
 ldrh r0, [r4, r1]
