@@ -14,15 +14,15 @@
 .equ CurrentUnitFateData, 0x203A958 
 
 	
-.global HardenCommandUsability 
-.type HardenCommandUsability, %function 
+.global HoneClawsCommandUsability 
+.type HoneClawsCommandUsability, %function 
 
-HardenCommandUsability:
+HoneClawsCommandUsability:
 push {lr} 
 
 ldr r0, =CurrentUnit 
 ldr r0, [r0] 
-ldr r1, =Harden 
+ldr r1, =HoneClaws 
 lsl r1, #24 
 lsr r1, #24 
 bl MoveTester 
@@ -40,10 +40,10 @@ pop {r1}
 bx r1 
 
 
-.global HardenCommandEffect 
-.type HardenCommandEffect, %function 
+.global HoneClawsCommandEffect 
+.type HoneClawsCommandEffect, %function 
 
-HardenCommandEffect:
+HoneClawsCommandEffect:
 push {lr} 
 
 ldr r3, =CurrentUnit 
@@ -51,12 +51,12 @@ ldr r0, [r3]
 blh GetBuff 
 
 ldr r2, [r0] 
-ldr r3, =0xF000 
+ldr r3, =0xFF 
 
 and r2, r3 
 
 @ldr r1, =0xFEDCBA98 @ Empty Mag, Luck Res, Def Spd, Skl Str 
-ldr r1, =0x5000 @ 5 def 
+ldr r1, =0xA5 @  
 
 cmp r1, r2 
 blo DoNothing @ New buff is less than current buff / bhs 

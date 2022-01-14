@@ -10,7 +10,8 @@
 
 	LockGame   = 0x08015360|1
 	UnlockGame = 0x08015370|1
-
+.equ CurrentUnit, 0x3004E50
+	.equ StartProc2, 0x08002C7D
 	StartProc = 0x08002C7C|1
 	BreakProcLoop = 0x08002E94|1
 
@@ -23,7 +24,7 @@
 	.global StartRallyFx
 
 	.type RallyFx_OnInit, function
-	.type RallyFx_OnInit2, function
+
 	.type RallyFx_OnLoop, function
 	.type RallyFx_OnEnd,  function
 
@@ -48,14 +49,14 @@ RallyFxProc.name:
 
 .align 
 
-RallyFxProc2:
+BuffFxProc:
 	.word 1, RallyFxProc.name
 
 	.word 2, LockGame
 
 	.word 14, 0
 
-	.word 2, RallyFx_OnInit2
+	.word 2, BuffFx_OnInit
 	.word 4, RallyFx_OnEnd
 
 	.word 3, RallyFx_OnLoop
@@ -70,7 +71,8 @@ RallyFxProc2:
 GetBuffBits:
 push {r4-r5, lr}
 @ given r0, = current unit 
-
+ldr r0, =CurrentUnit
+ldr r0, [r0] 
 blh GetBuff 
 mov r4, r0 
 ldr r5, [r4] 
@@ -93,7 +95,7 @@ b Loop
 
 ExitLoop: 
 
-cmp r2, #1 
+cmp r2, #1
 ble NoGenericPalette 
 mov r0, #9 @ Generic Palette 
 b Exit 
@@ -102,8 +104,8 @@ NoGenericPalette:
 @FEDCBA98 @ Empty Mag, Luck Res, Def Spd, Skl Str 
 lsr r1, #2 @ offset we want 
 mov r0, r1 
-sub r0, #1 
-cmp r0, #6 
+
+cmp r0, #7
 blt Exit
 mov r0, #8 @ Mag is index 8 instead 6 
 
@@ -121,7 +123,7 @@ mov r0, #8 @ Mag is index 8 instead 6
 
 
 Exit: 
-mov r0, #0
+
 
 pop {r4-r5} 
 pop {r1}
@@ -129,7 +131,51 @@ bx r1
 
 	.align
 
-RallyFx_OnInit2:
+.equ ProcFind, 0x8002E9D
+.equ gProc_MoveUnit, 0x89A2C48
+
+.type SelfBuff, %function 
+.global SelfBuff 
+SelfBuff:
+	@ Arguments: nothing
+	@ Returns:   nothing
+push {r4, lr} 
+
+ldr r0, =gProc_MoveUnit
+blh ProcFind 
+cmp r0, #0 
+beq SkipHidingInProc
+@mov r4, r0 @ gProc_MoveUnit 
+add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D5
+mov r1, #1 
+strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DD
+
+SkipHidingInProc: 
+ldr r4, =CurrentUnit
+ldr r4, [r4] 
+
+ldr r1, [r4, #0x0C] @ Unit state 
+mov r2, #1 @ Hide 
+bic r1, r2 @ Show SMS 
+str r1, [r4, #0x0C] 
+
+blh  0x0801a1f8   @RefreshUnitMaps
+blh  0x080271a0   @SMS_UpdateFromGameData
+blh  0x08019c3c   @UpdateGameTilesGraphics
+
+mov r0, r4 @ CurrentUnit 
+blh AddMapAuraFxUnit
+
+pop {r4}
+
+pop {r1}
+bx r1
+
+
+	.align
+
+	.type BuffFx_OnInit, function
+BuffFx_OnInit:
 	push {r4, lr}
 	@ Set [proc+2C] to 0
 	@ It will be our clock
@@ -314,12 +360,17 @@ BXR3:
 
 .align 
 
-.type StartRallyFx2, %function 
-.global StartRallyFx2
-StartRallyFx2:
-	ldr r3, =StartProc
-	ldr r0, =RallyFxProc2 @ arg r0 = proc scr
+.type StartBuffFx, %function 
+.global StartBuffFx
+StartBuffFx:
+push {lr} 
+
+	ldr r0, =BuffFxProc @ arg r0 = proc scr
 	mov r1, #3           @ arg r1 = parent
-	
-bx r3 
+	blh StartProc2
+
+
+pop {r1}
+bx r1 
+
 

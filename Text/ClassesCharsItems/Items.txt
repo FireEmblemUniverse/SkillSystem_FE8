@@ -14,6 +14,74 @@ FirstEntry[X]
 ## DebugTextHere
  Debug[A][X]
 
+## SwordsDanceName
+Swords Dance[X]
+
+## SwordsDanceDesc 
++10 Str.[X]
+
+## HardenName
+Harden[X]
+
+## HardenDesc
++5 Def.[X]
+
+## TailwindName
+Tailwind[X]
+
+## TailwindDesc
++5 Spd to nearby allies.[X]
+
+## HealPulseName
+Heal Pulse[X]
+
+## HealPulseDesc
+Restores HP to a nearby ally.[X]
+
+## WishName
+Wish[X]
+
+## WishDesc
+Restores HP to nearby allies.[X]
+
+## BulkUpName
+Bulk Up[X]
+
+## BulkUpDesc
++5 Str/Def.[X]
+
+## CalmMindName
+Calm Mind[X]
+
+## CalmMindDesc
++5 Mag/Res.[X]
+
+## HoneClawsName
+Hone Claws[X]
+
+## HoneClawsDesc
++5 Str, +10 Skl.[X]
+
+## FocusEnergyName
+Focus Energy[X]
+
+## FocusEnergyDesc
++10 Skl.[X]
+
+## AgilityName
+Agility[X]
+## AgilityDesc
++10 Spd.[X]
+## AmnesiaName
+Amnesia[X]
+## AmnesiaDesc
++10 Mag/Res.[X]
+
+
+
+
+
+
 ## RecoverMoveText
 Recover[X]
 
@@ -408,6 +476,15 @@ Consumed at low HP.[X]
 
 ## PokeballName
 Pokeball[X]
+
+
+
+
+
+
+
+
+
 ## BarrageName
 Barrage[X]
 ## BindName
@@ -420,6 +497,11 @@ Comet Punch[X]
 Constrict[X]
 ## CovetName
 Covet[X]
+
+
+
+
+
 
 ## CutName
 Cut[X]
@@ -518,8 +600,7 @@ Attack Pulse[X]
 Super Fang[X]
 ## SwiftName
 Swift[X]
-## SwordsDanceName
-Swords Dance[X]
+
 ## TackleName
 Tackle[X]
 ## TailWhipName
@@ -768,14 +849,11 @@ Mirror Move[X]
 Wing Attack[X]
 ## WingAttackDesc
 *{(}A strong, winged attack.[X]
-## AgilityName
-Agility[X]
-## AgilityDesc
-*{)}Placeholder description.[X]
-## AmnesiaName
-Amnesia[X]
-## AmnesiaDesc
-*{)}Placeholder description.[X]
+
+
+
+
+
 ## BarrierName
 Barrier[X]
 ## BarrierDesc
@@ -795,11 +873,11 @@ Hypnosis[X]
 ## LightScreenName
 Light Screen[X]
 ## LightScreenDesc
-*{)}Placeholder description.[X]
++5 Res to nearby allies.[X]
 ## ReflectName
 Reflect[X]
 ## ReflectDesc
-*{)}Placeholder description.[X]
++5 Def to nearby allies.[X]
 ## PsybeamName
 Psybeam[X]
 ## PsybeamDesc
@@ -997,7 +1075,7 @@ Crush Claw[X]
 *{(}Placeholder description.[X]
 
 ## GrowthDesc
-*{(}Placeholder description.[X]
++5 Str/Mag/Spd.[X]
 
 ## GuillotineDesc
 *{(}An extremely powerful cutting blow.[X]
@@ -1072,8 +1150,7 @@ Does nothing.[X]
 ## SwiftDesc
 *{)}Strikes with perfect accuracy.[X]
 
-## SwordsDanceDesc 
-*{(}Boosts attack.[X]
+
 
 ## TakeDownDesc
 *{(}A harsh tackle that injures the user.[X]

@@ -10,6 +10,15 @@
 
 #include "SplashMove.lyn.event"
 
+
+#include "Agility.lyn.event"
+#include "Amnesia.lyn.event"
+#include "SwordsDance.lyn.event"
+#include "BulkUp.lyn.event"
+#include "CalmMind.lyn.event"
+#include "HoneClaws.lyn.event"
+#include "FocusEnergy.lyn.event"
+
 UseSplashEvent:
 TutText(SplashMeterRisingText)
 NoFade 
