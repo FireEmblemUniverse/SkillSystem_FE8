@@ -1,6 +1,10 @@
 
 	.thumb
-
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
 	@ build using lyn
 	@ requires MapAuraFx functions to be visible
 
@@ -19,6 +23,7 @@
 	.global StartRallyFx
 
 	.type RallyFx_OnInit, function
+	.type RallyFx_OnInit2, function
 	.type RallyFx_OnLoop, function
 	.type RallyFx_OnEnd,  function
 
@@ -41,6 +46,7 @@ RallyFxProc:
 RallyFxProc.name:
 	.asciz "Rally Fx"
 
+.align 
 
 RallyFxProc2:
 	.word 1, RallyFxProc.name
@@ -57,22 +63,81 @@ RallyFxProc2:
 	.word 2, UnlockGame
 
 	.word 0, 0 @ end
+.align 
 
-RallyFxProc.name:
-	.asciz "Rally Fx"
+.type GetBuffBits, %function 
+.global GetBuffBits
+GetBuffBits:
+push {r4-r5, lr}
+@ given r0, = current unit 
 
-	.align
+blh GetBuff 
+mov r4, r0 
+ldr r5, [r4] 
+mov r3, #28 @ Counter of what bits we're on  
+mov r2, #0 @ Counter 
+
+
+Loop:
+mov r0, r5 
+lsl r0, r3 
+lsr r0, #28 
+cmp r3, #0 
+ble ExitLoop 
+sub r3, #4 
+cmp r0, #0 
+beq Loop 
+add r2, #1 
+mov r1, r3 @ shift offset 
+b Loop 
+
+ExitLoop: 
+
+cmp r2, #1 
+ble NoGenericPalette 
+mov r0, #9 @ Generic Palette 
+b Exit 
+NoGenericPalette: 
+
+@FEDCBA98 @ Empty Mag, Luck Res, Def Spd, Skl Str 
+lsr r1, #2 @ offset we want 
+mov r0, r1 
+sub r0, #1 
+cmp r0, #6 
+blt Exit
+mov r0, #8 @ Mag is index 8 instead 6 
+
+@ldr r3, =0xFFFF0000 
+@and r3, r5 
+@ldr r2, =0x0000FFFF
+@and r2, r5 
+@
+@
+@
+@ldr r1, =0xF0F0F0F0 
+@ldr r0, =0x0F0F0F0F
+@ldr r0, =0xF00FF00F 
+@ldr r0, =0x0FF00FF0 
+
+
+Exit: 
+mov r0, #0
+
+pop {r4-r5} 
+pop {r1}
+bx r1  
 
 	.align
 
 RallyFx_OnInit2:
-	push {lr}
-
+	push {r4, lr}
 	@ Set [proc+2C] to 0
 	@ It will be our clock
 	mov r1, #0
 	str r1, [r0, #0x2C]
 
+
+	ldr r4, =GetBuffBits
 	@ start map aura fx
 
 	ldr r3, =StartMapAuraFx
@@ -83,13 +148,15 @@ RallyFx_OnInit2:
 	ldr r3, =SelfBuff
 b Continue 
 
+.align 
 RallyFx_OnInit:
-	push {lr}
-
+	push {r4, lr}
 	@ Set [proc+2C] to 0
 	@ It will be our clock
 	mov r1, #0
 	str r1, [r0, #0x2C]
+
+	ldr r4, =GetUnitRallyBits
 
 	@ start map aura fx
 
@@ -102,7 +169,6 @@ RallyFx_OnInit:
 Continue:
 	ldr r0, =AddMapAuraFxUnit @ arg r0 = function
 	@ unused                  @ arg r1 = user argument
-
 	bl BXR3
 
 	@ set aura fx thing speed
@@ -131,7 +197,9 @@ Continue:
 	ldr r0, =gActiveUnit
 	ldr r0, [r0]
 
-	bl GetUnitRallyBits
+	mov r3, r4 
+	bl BXR3 
+
 
 	mov r1, #0
 
@@ -169,6 +237,7 @@ Continue:
 
 	bl BXR3
 
+	pop {r4} 
 	pop {r1}
 	bx r1
 
@@ -240,14 +309,17 @@ StartRallyFx:
 
 	ldr r0, =RallyFxProc @ arg r0 = proc scr
 	mov r1, #3           @ arg r1 = parent
-
-StartRallyFx2:
-	ldr r3, =StartProc
-
-	ldr r0, =RallyFxProc2 @ arg r0 = proc scr
-	mov r1, #3           @ arg r1 = parent
-
-
 BXR3:
 	bx r3
+
+.align 
+
+.type StartRallyFx2, %function 
+.global StartRallyFx2
+StartRallyFx2:
+	ldr r3, =StartProc
+	ldr r0, =RallyFxProc2 @ arg r0 = proc scr
+	mov r1, #3           @ arg r1 = parent
+	
+bx r3 
 

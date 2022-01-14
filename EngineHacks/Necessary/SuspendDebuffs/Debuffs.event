@@ -39,7 +39,7 @@ TeamBuffTables:
  
 ALIGN 4
 GetBuff:
-#include "asm/Buffs/GetBuffs.lyn.event"
+#include "asm/Buffs/GetBuff.lyn.event"
 POIN TeamBuffTables
 WORD BuffTableEntrySize
  
