@@ -210,11 +210,11 @@ MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
+SHORT R10_0xE0_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R10_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 

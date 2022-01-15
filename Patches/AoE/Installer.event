@@ -81,16 +81,16 @@ Select an area to Heal. Press L/R to Rotate.[X]
 // These are the submenu options that appear:
 ALIGN 4
 AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
-MenuCommandID(UM_AoEName0, UM_AoEDesc, NormalText, 0x0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName1, UM_AoEDesc, NormalText, 0x1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName2, UM_AoEDesc, NormalText, 0x2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 0x3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 0x4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 0x5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 0x6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 0x7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 0x8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 0x9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_RecoverMove, 	UM_AoEDesc, NormalText, 0x0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_HealPulse, 	UM_AoEDesc, NormalText, 0x1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_Wish, 			UM_AoEDesc, NormalText, 0x2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 0x3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 0x4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 0x5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 0x6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 0x7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 0x8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 0x9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
@@ -129,33 +129,43 @@ Animation_IDByte, #15
 #define UsableOnlyIfStationaryBool 0x40 
 #define KeepHP1NotDieBool 0x80
 
+#define HealingAnimationID 1 
+
+#define MediumTriangle 0 
+
+#define SmallLine 2 
+
+#define SmallTriangle 4 
+
+
 ALIGN 4 
 AoE_Table:
-// Entry 0
+// Entry 0 - RecoverMove 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
-BYTE 5 5 // damage range 
-BYTE 3 7 // Attack range 
-BYTE 0 1 // Index of RangeMask, Animation
+BYTE 0 0 0 RecoverMove 
+BYTE 0 HealBool|MagBasedBool //|FixedDamageBool
+BYTE 0 0 // damage range 
+BYTE 0 1 // Attack range 
+BYTE SmallLine HealingAnimationID // Index of RangeMask, Animation
 
 
-// Entry 1
+// Entry 1 - HealPulse 
 BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 5 5 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 1 1 // Index of RangeMask, Animation
+BYTE 0 0 0 HealPulse // Always usable by anyone 
+BYTE 0 HealBool|MagBasedBool
+BYTE 0 5 // damage range 
+BYTE 0 2 // Attack range 
+BYTE SmallTriangle HealingAnimationID // Index of RangeMask, Animation
 
-// Entry 2
+// Entry 2 - Wish 
 BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
+BYTE 0 0 0 Wish // Always usable by anyone 
+BYTE 0 HealBool|MagBasedBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 2 2 // Index of RangeMask, AnimationALL,
+BYTE MediumTriangle HealingAnimationID // Index of RangeMask, AnimationALL,
 
+/*
 // Entry 3
 BYTE 0 0 0 0
 BYTE 0 0 0 0 // Always usable by anyone 
@@ -213,6 +223,7 @@ BYTE 0 FriendlyFireBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
 BYTE 9 9 // Index of RangeMask, AnimationALL,
+*/
 AoE_TableTerminator
 
 
@@ -226,7 +237,7 @@ SHORT 0 //Bgm/Sfx
 SHORT 1 // so we don't hide data in febuilder early 
 
 POIN 0 //Entry 1 
-POIN AoE_EventAnime1
+POIN AoE_HealingAnimation
 SHORT 0 // Bgm  
 SHORT 1 
 
@@ -283,8 +294,8 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 
 
 ALIGN 4 
-AoE_EventAnime1:
-SVAL r1 0x1 //AnimationID
+AoE_HealingAnimation:
+SVAL r1 healing_ID //AnimationID
 ASMC ASMC_Draw|1
 NoFade
 ENDA

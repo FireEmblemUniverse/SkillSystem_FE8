@@ -840,6 +840,20 @@ ldr r3, [r3]
 cmp r3, #0 
 beq End_AoE
 
+@ Add active unit to the UnitMap 
+ldrb r0, [r3, #0x10] @ XX 
+ldrb r1, [r3, #0x11] @ YY 
+ldrb r3, [r3, #0x0B] 
+
+ldr		r2,=0x202E4D8	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+strb 	r3, [r2] 
+
+
 
 
 bl AoE_GetTableEntryPointer
@@ -948,6 +962,25 @@ bx r1
 AoE_ClearGraphics:
 push {lr} 
 bl AoE_ClearRangeMap
+
+
+@ Remove active unit from the UnitMap
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+ldrb r0, [r3, #0x10] @ XX 
+ldrb r1, [r3, #0x11] @ YY 
+mov r3, #0 
+@ldrb r3, [r3, #0x0B] 
+ldr		r2,=0x202E4D8	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+strb 	r3, [r2] 
+
+
+
 blh 0x801dacc @HideMoveRangeGraphics	@{U}
 @blh 0x801D730 @HideMoveRangeGraphics	@{J}
 

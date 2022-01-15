@@ -252,7 +252,7 @@ SetUnitStatus(1, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 
-//SetUnitStatus(1, 0x29, Bubble)
+SetUnitStatus(1, 0x29, RecoverMove)
 //SetUnitStatus(1, 0x2a, Leer)
 //MOVE (-1) 1 [22,26]
 //MOVE (-1) 0x50 [23,26]

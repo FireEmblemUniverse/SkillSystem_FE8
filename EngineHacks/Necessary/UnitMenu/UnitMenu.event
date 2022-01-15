@@ -101,9 +101,9 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 #endif // GAIDEN_MAGIC
 
 #ifdef DEBUG_MODE
-//MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
-#endif 
 
+#endif 
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   
 //Disappear after use
   //UM_Cut
