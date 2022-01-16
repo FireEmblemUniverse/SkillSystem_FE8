@@ -98,11 +98,15 @@ RockSmash(29,9)
 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-GoldPokeballTrap(9,3, (ChapterID*2)+1, MegaPunch) 
+SpellScrollTrap(9,3, (ChapterID*2)+1, HealPulse) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
+StatAccessoryTrap(14,2, (ChapterID*2)+1, PaddedShield_BoostIndex)
+
+
+CoinsTrap(37,14, ChapterID*2, 1000) 
+
+
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 

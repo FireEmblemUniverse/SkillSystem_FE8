@@ -105,8 +105,8 @@ StrengthBoulder(13,10) // lol
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-//RedPokeballTrap(35,19, ChapterID*2, SuperPotion)
-StatAccessoryTrap(35,19, (ChapterID*2), BronzeShield_BoostIndex) 
+RedPokeballTrap(35,19, ChapterID*2, SuperPotion)
+//StatAccessoryTrap(35,19, (ChapterID*2), BronzeShield_BoostIndex) 
 
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 

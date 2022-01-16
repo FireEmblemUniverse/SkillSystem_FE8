@@ -1033,109 +1033,129 @@ to cut little bushes now.[A][X]
 
 ## R9W_0xE0_BQ
 You have POKEMON with you![N]
-You're mine![X]
+You're mine![A][X]
 	
 ## R9W_0xE0_BD
-You deceived me...[X]
+You deceived me...[A][X]
 	
 
 ## R9W_0xE1_BQ
 Who's that walking there with those[N]
-good-looking POKEMON?[X]
+good-looking POKEMON?[A][X]
 ## R9W_0xE1_BD
-Out like a light![X]
+Out like a light![A][X]
 
 
 ## R9E_0xE0_BQ
-Don't you dare patronize me![X]
+Don't you dare patronize me![A][X]
 ## R9E_0xE0_BD
 No![N]
-You're too much.[X]
+You're too much.[A][X]
 
 	
 ## R9E_0xE1_BQ
 I'm taking the ROCK TUNNEL to[N]
-go to LAVENDER...[X]
+go to LAVENDER...[A][X]
 
 ## R9E_0xE1_BD
-Can't measure up...[X]
+Can't measure up...[A][X]
 
 ## R10_0xE0_BQ
 I've been out at a POKEMON GYM[N]
 a few times.[A][N]
-...But I always lose.[X]
+...But I always lose.[A][X]
 
 ## R10_0xE0_BD
 Ohh![N]
-After all my training![X]
+After all my training![A][X]
 	
 
 ## RTB1_0xE0_BQ
-This tunnel goes a long way, kid![X]
+This tunnel goes a long way, kid![A][X]
 
 ## RTB1_0xE0_BD
 Doh![N]
-You win![X]
+You win![A][X]
 	
 ## RTB1_0xE1_BQ    
 Hmm.[N]
-Maybe I'm lost in here...[X]
+Maybe I'm lost in here...[A][X]
 
 ## RTB1_0xE1_BD  
 Ease up![N]
 What am I doing?[A][N]
-Which way is out?[X]
+Which way is out?[A][X]
 	
 ## RTB1_0xE2_BQ  
 Eek![A][N]
 Don't try anything funny in the[N]
-dark![X]
+dark![A][X]
 
 ## RTB1_0xE2_BD  
-It was too dark...[X]
+It was too dark...[A][X]
 	
 ## RTB1_0xE3_BQ  
 I came this far looking for wild[N]
-POKEMON.[X]
+POKEMON.[A][X]
 
 ## RTB1_0xE3_BD  
-I'm out of POKEMON![X]
+I'm out of POKEMON![A][X]
 	
 
 
 
 ## RTB2_0xE0_BQ  
 Hahaha![N]
-Can you beat my power?[X]
+Can you beat my power?[A][X]
 
 ## RTB2_0xE0_BD  
 Oops![N]
-Outmuscled![X]
+Outmuscled![A][X]
 	
 
 ## RTB2_0xE1_BQ  
-Hit me with your best shot![X]
+Hit me with your best shot![A][X]
 
 ## RTB2_0xE1_BD 
-Fired away![X]
+Fired away![A][X]
 	
 
 
 ## RTB2_0xE2_BQ  
 My POKEMON techniques will leave[N]
-you crying![X]
+you crying![A][X]
 
 ## RTB2_0xE2_BD  
 I give![N]
-You're a better technician![X]
+You're a better technician![A][X]
 	
 
 ## RTB2_0xE3_BQ  
 I draw illustrations of POKEMON[N]
-when I'm home.[X]
+when I'm home.[A][X]
 
 ## RTB2_0xE3_BD  
 Whew...[N]
-I'm exhausted...[X]
+I'm exhausted...[A][X]
+
+
+
+## PokemonTowerText
+POKEMON TOWER[N]
+Becalm the Spirits of POKEMON[A][X]
+
+## GhostsText
+Do you believe in ghosts?[A][X]
+
+## LavendarHouse1Text
+This town is known as the grave[N]
+site of POKEMON.[A][N]
+Memorial services are held in[N]
+POKEMON TOWER.[A][X]
+
+## LavendarHouse2Text
+Ghosts appeared in POKEMON TOWER.[A][N]
+I think they're the spirits of[N]
+POKEMON that the ROCKETS killed.[A][X]
 
 

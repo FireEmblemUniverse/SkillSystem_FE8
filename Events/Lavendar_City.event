@@ -110,7 +110,7 @@ StrengthBoulder(1,41)
 StrengthBoulder(2,40)
 
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
-SkillAccessoryTrap(13,27, ChapterID*2, PoisonStrikeID)
+SkillAccessoryTrap(13,27, ChapterID*2, DazzleID)
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
@@ -122,14 +122,14 @@ SignATrap(11,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //OpenPokeball(8,3)
 
 //BlankExamineTrap(8,22,VermillionGymSignText)
-SignTrap(21,37, DoorLockedText) // Wooden - Poke tower
+SignTrap(21,37, PokemonTowerText) // Wooden - Poke tower
 
 
 
-EnterTutTrap(10,41, DoorLockedText) // 
-EnterTutTrap(5,46, DoorLockedText) // 
+EnterTutTrap(10,41, GhostsText) // 
+EnterTutTrap(5,46, LavendarHouse1Text) // 
 
-EnterTutTrap(10,46, DoorLockedText) // 
+EnterTutTrap(10,46, LavendarHouse2Text) // 
 
 
 //EnterTutTrap(23,18, DoorLockedText) //   

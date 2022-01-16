@@ -1,11 +1,12 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 
+
 #include "ItemSpecialEffect/Installer.event"  
 
 #include "CommandMoves/Installer.event" 
 #include "AutosaveKiller.event"
 
-
+#include "CallCommand/CallCommand.event"
 #include "CapturePokemon/CapturePokemonInstaller.event"  // Should be before modular summon stuff 
 
 #include "PreventAttacking/Installer.event"

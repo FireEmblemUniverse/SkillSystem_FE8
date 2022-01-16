@@ -1,0 +1,102 @@
+//ALIGN 4
+//#include "CallCommand.lyn.event"
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+CallCommandEffect:
+POP
+#incbin "CallCommandEffect.dmp"
+// mostly same EALiterals to CallCommandUsability because I'm lazy 
+POIN CallUsability_List
+POIN CallLimit_UnitList
+POIN CallLimit_ClassList
+POIN CallLimit_FlagList
+POIN FindFreeTile
+#ifdef DRUnitBitMask
+	POIN CheckUnitIsInDanger
+#endif 
+#ifndef DRUnitBitMask
+	WORD 0
+#endif 
+#ifdef Pokemblem_MoveTester
+	WORD 1
+	POIN Get2ndFreeUnit
+#endif 
+#ifndef Pokemblem_MoveTester
+	WORD 0
+	WORD 0
+#endif 
+POIN CallCommandUsability
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+CallCommandUsability:
+POP
+#incbin "CallCommandUsability.dmp"
+POIN CallUsability_List
+POIN CallLimit_UnitList
+POIN CallLimit_ClassList
+POIN CallLimit_FlagList
+POIN FindFreeTile
+#ifdef DRUnitBitMask
+	POIN CheckUnitIsInDanger
+#endif 
+#ifndef DRUnitBitMask
+	WORD 0
+#endif 
+#ifdef Pokemblem_MoveTester
+	WORD 1
+	POIN Get2ndFreeUnit
+#endif 
+#ifndef Pokemblem_MoveTester
+	WORD 0
+	WORD 0
+#endif 
+#ifdef SKILLSYSTEM_SKILL_TESTER
+	POIN SkillTester
+#endif 
+#ifndef SKILLSYSTEM_SKILL_TESTER
+	WORD 0
+#endif 
+
+
+
+#include "ReleaseCommand.lyn.event"
+
+ALIGN 4
+CallLimit_UnitList:
+BYTE 2 0 0 // Seth cannot be called 
+BYTE 0 0 0 0
+
+// Classes that won't be called. 
+ALIGN 4
+CallLimit_ClassList:
+BYTE RaticateID MankeyID 
+BYTE 0 0 0 0
+
+ALIGN 4
+CallLimit_FlagList:
+SHORT CallCountdownFlag PlayableCutsceneFlag TrainerBattleActiveFlag 
+BYTE 0 0 0 0
+
+
+
+
+
+// Only units meeting these criteria may use the Call command. 
+// BYTE ChapterID UnitID ClassID SkillID Distance 0; SHORT FlagID; 
+ALIGN 4 
+CallUsability_List:
+BYTE 0xFF // Any chapter ID 
+BYTE 0 // Any unit 
+BYTE 0 // Class 
+BYTE RenewalID // Skill 
+BYTE 5 // Within 5 tiles 
+BYTE 0 // Max number of units 
+SHORT 0 // Any flag if 0. If flag is on, allow command. 
+
+WORD 0 0 
+

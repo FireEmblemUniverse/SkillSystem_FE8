@@ -134,7 +134,7 @@ Traps1:
 //SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+SpellScrollTrap(5,14, (ChapterID*2)+1, Harden)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

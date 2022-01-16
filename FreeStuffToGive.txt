@@ -39,11 +39,11 @@ DONE i think //Chivalry: When foe is at full HP, attack and def/res +1.
 //Author Unknown (Initial Commit)
 #define ChivalryID 212
 
-//Pragmatic: When foe is not at full HP, attack +1 and def/res+1.
+DONE //Pragmatic: When foe is not at full HP, attack +1 and def/res+1.
 //Author Unknown (Initial Commit)
 #define PragmaticID 227
 
-//Vigilance: Avoid +10.
+DONE //Vigilance: Avoid +10.
 //By Sme
 #define VigilanceID 7
 
@@ -73,7 +73,7 @@ DONE //Wind Disciple: +10 Hit and Avoid when HP is not at max.
 //Author Unknown (Initial Commit)
 #define WrathID 150 //150
 
-//Opportunist: +2 damage if the foe cannot counter.
+DONE //Opportunist: +2 damage if the foe cannot counter.
 //By Tequila
 #define OpportunistID 225
 
@@ -185,7 +185,7 @@ DONE //Poison Strike: Deals damage equal to 20% of the enemy's max HP after batt
 
 Gym Leader Accessories: 
 
-//Dazzle: Opponents cannot counterattack this unit.
+DONE //Dazzle: Opponents cannot counterattack this unit.
 //By circleseverywhere
  DazzleID
 
