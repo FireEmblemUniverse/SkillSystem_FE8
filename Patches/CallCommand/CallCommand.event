@@ -59,7 +59,7 @@ BYTE 0xFF 0xFF // Terminator
 
 
 // Only units meeting these criteria may use the Call command. 
-// BYTE ChapterID UnitID ClassID SkillID Distance 0; SHORT FlagID; 
+// BYTE ChapterID UnitID ClassID SkillID Distance NumberOfUnitsThatCanBeCalled; SHORT FlagID; 
 ALIGN 4 
 CallUsability_List:
 BYTE 0xFF // Any chapter ID 

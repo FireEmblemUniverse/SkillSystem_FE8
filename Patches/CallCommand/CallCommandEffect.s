@@ -70,7 +70,7 @@ add r0, r1
 ldr r6, =MemorySlot
 str r0, [r6, #0x0B*4] @ SlotB is used in CheckInDanger 
 
-mov r11, r11 
+
 blh_EALiteral CheckUnitIsInDanger
 add r6, #0xC*4 @ SlotC 
 ldr r0, [r6] 
