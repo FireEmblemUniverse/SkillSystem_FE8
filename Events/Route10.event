@@ -4,7 +4,7 @@
 #define ClassA ClassRoute10WildA
 #define ClassB ClassRoute10WildB
 #define WildLvl 16
-#define TrainerL 22
+#define TrainerL 21
 
 
 
@@ -111,7 +111,7 @@ RedPokeballTrap(3,41, ChapterID*2, SuperPotion)
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
-//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+SkillScrollTrap(3,41, ChapterID*2, PragmaticID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 

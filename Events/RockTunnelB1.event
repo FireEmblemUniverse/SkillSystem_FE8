@@ -3,8 +3,8 @@
 #define GenericB UnitRockTunnelTrainer
 #define ClassA ClassRockTunnelWildA
 #define ClassB ClassRockTunnelWildB
-#define WildLvl 19
-#define TrainerL 24
+#define WildLvl 17
+#define TrainerL 21
 
 
 
@@ -124,8 +124,7 @@ RedPokeballTrap(28,26, ChapterID*2, SuperPotion)
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
-//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
-
+SkillAccessoryTrap(19,16, (ChapterID*2)+1, SealSklID) 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
@@ -140,7 +139,7 @@ SignATrap(28,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //BerryTree(2,28,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+SpellScrollTrap(28,26, (ChapterID*2)+1, BulkUp)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -281,7 +280,7 @@ UNIT
 
 // geodude, machop, zubat (onix) 
 // (cubone), bellsprout, sandshrew 
-
+// wilds: Machop, Geodude, Zubat, Onix 
 
 EnemyTrainers0: // hiker
 UNIT GenericB 	GeodudeID 		0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI

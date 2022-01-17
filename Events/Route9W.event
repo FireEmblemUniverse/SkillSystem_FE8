@@ -229,7 +229,7 @@ UNIT 0xE0 birdkeeperID 0x0 Level(1, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [NineR
 UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
-
+// Wilds - Pidgeotto, Sandshrew, Oddish 
 
 EnemyTrainers0: // bird keeper - attacks from ledge 
 UNIT GenericB 	ButterfreeID 0xE0 	Level(1, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] ZoningGroupOneAI

@@ -51,8 +51,8 @@ POIN FindFreeTile
 ALIGN 4
 Call_ExceptionsList:
 // UnitID, ClassID
-BYTE Seth RaticateID // Seth, Raticate, and Mankey cannot be called
-BYTE 0 MankeyID  
+BYTE 0 0 // Seth, Raticate, and Mankey cannot be called
+BYTE 0 0  
 BYTE 0xFF 0xFF // Terminator 
 
 
@@ -66,7 +66,7 @@ BYTE 0xFF // Any chapter ID
 BYTE 0 // Any unit 
 BYTE 0 // Class 
 BYTE 0 // Skill 
-BYTE 20 // Within 20 tiles 
+BYTE 0 // Within any distance  
 BYTE 0 // Max number of units 
 SHORT 0 // Any flag if 0. If flag is on, allow command. 
 

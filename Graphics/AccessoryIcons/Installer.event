@@ -80,9 +80,16 @@ SkillAccessoryIcons(WaryFighterID)
 SkillAccessoryIcons(PerfectionistID)
 #incbin "SkillAccIcons/WaryRingByBeansy.dmp"
 
-
 SkillAccessoryIcons(SealStrID)
 #incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+
+
+//SkillAccessoryIcons(DazzleID)
+//#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+
+
+
+
 SkillAccessoryIcons(SealSklID)
 #incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
 SkillAccessoryIcons(SealSpdID)

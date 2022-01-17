@@ -3,8 +3,8 @@
 #define GenericB UnitRockTunnelTrainer
 #define ClassA ClassRockTunnelWildA
 #define ClassB ClassRockTunnelWildB
-#define WildLvl 19
-#define TrainerL 24
+#define WildLvl 17
+#define TrainerL 22
 
 
 
@@ -107,9 +107,10 @@ RockSmash(29,23)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-RedPokeballTrap(28,12, ChapterID*2, SuperPotion)
-RedPokeballTrap(7,15, ChapterID*2, SuperPotion)
 
+//RedPokeballTrap(7,15, ChapterID*2, SuperPotion)
+
+CoinsTrap(7,15, ChapterID*2,1500)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
@@ -127,7 +128,7 @@ RedPokeballTrap(7,15, ChapterID*2, SuperPotion)
 
 //BerryTree(2,28,5)
 
-//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+SkillScrollTrap(28,12, ChapterID*2, VigilanceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)

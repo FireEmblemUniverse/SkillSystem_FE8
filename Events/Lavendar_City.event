@@ -80,10 +80,12 @@ CALL ClosedArea
 ChapterTransition(Route8Ch, 59,10)
 
 ToRoute12:
+CALL ClosedArea 
 ChapterTransition(Route12NCh, 12,0)
 
 
 ToPokeTower:
+CALL ClosedArea 
 ChapterTransition(PokemonTowerF1Ch, 10,18)
 
 ToRockTunnel:

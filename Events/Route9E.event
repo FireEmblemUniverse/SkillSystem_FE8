@@ -4,7 +4,7 @@
 #define ClassA ClassRoute9EWildA
 #define ClassB ClassRoute9EWildB
 #define WildLvl 16
-#define TrainerL 21
+#define TrainerL 20
 
 
 
@@ -219,7 +219,7 @@ TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 bug_catcherID 0x0 Level(1, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
-//UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 camperID 0x0 Level(1, Enemy, 1) [16,13]  0b 0x0	0x1 REDA16R13 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 
