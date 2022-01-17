@@ -32,14 +32,11 @@
 
 @ CallUsability_List, end of file +0
  
-.equ CallLimit_UnitList, CallUsability_List+4
-.equ CallLimit_ClassList, CallLimit_UnitList+4
-.equ CallLimit_FlagList, CallLimit_ClassList+4
-.equ FindFreeTile, CallLimit_FlagList+4
+.equ Call_ExceptionsList, CallUsability_List+4
+.equ FindFreeTile, Call_ExceptionsList+4
 .equ CheckUnitIsInDanger, FindFreeTile+4
 .equ PokemblemOrNot, CheckUnitIsInDanger+4 
-.equ Get2ndFreeUnit, PokemblemOrNot+4
-.equ SkillTester, Get2ndFreeUnit+4
+.equ SkillTester, PokemblemOrNot+4 
 
 .equ MaxUnitsCallable, 5
 	
@@ -47,15 +44,9 @@
 .type CallCommandUsability, %function
 
 CallCommandUsability:
-push {r4, lr}
+push {r4-r6, lr}
 
-ldr r0, Get2ndFreeUnit
-cmp r0, #0 
-beq SkipCheckForAvailableUnit
-blh_EALiteral Get2ndFreeUnit @ If no units that aren't dead/undeployed/cantoing/hide, then fail 
-cmp r0, #0 
-beq Usability_False 
-SkipCheckForAvailableUnit: 
+
 
 
 
@@ -131,6 +122,88 @@ bne UsabilityLoop
 SkipFlagCheck: 
 
 
+@ Now loop through units to check if any are within X tiles and not dead/undeployed/cantoing/hide
+
+mov r5, #0 
+
+
+LoopThroughUnits:
+add r5, #1  @ deployment byte 
+cmp r5, #0x3F 
+bgt Usability_False 
+
+mov r0,r5
+blh GetUnit @ 19430
+cmp r0,#0
+beq LoopThroughUnits
+ldr r3,[r0]
+cmp r3,#0
+beq LoopThroughUnits
+ldr r3,[r0,#0xC] @ condition word
+@ if you add +1 to include Hide (eg 0x4F), it'll ignore the active unit, which may be useful 
+mov r2,#0x4F @ moved/dead/undeployed/cantoing/hide
+tst r3,r2
+bne LoopThroughUnits
+@ if you got here, unit exists and is not dead or undeployed, so go ham
+@r0 is Ram Unit Struct 
+mov r6, r0 
+
+ldr r3, Call_ExceptionsList
+ldr r2, [r6] @ unit pointer 
+ldrb r0, [r2, #4] @ unit ID 
+UnitListLoop: 
+
+ldrh r1, [r3] @ terminator? 
+ldr r2, =0xFFFF 
+cmp r1, r2 
+beq BreakUnitListLoop 
+
+ldrb r1, [r3] 
+cmp r1, r0 
+beq LoopThroughUnits @ If unit ID matches, they cannot be called. 
+add r3, #2
+b UnitListLoop 
+BreakUnitListLoop: 
+
+ldr r3, Call_ExceptionsList
+ldr r2, [r6, #4] @ class pointer 
+ldrb r0, [r2, #4] @ class ID 
+ClassListLoop: 
+ldrh r1, [r3] @ terminator? 
+ldr r2, =0xFFFF 
+cmp r1, r2 
+beq BreakClassListLoop 
+ldrb r1, [r3, #1] 
+cmp r1, r0 
+beq LoopThroughUnits @ If class ID matches, they cannot be called. 
+add r3, #2 
+b ClassListLoop 
+BreakClassListLoop: 
+
+
+ldr r2, =CurrentUnit 
+ldr r2, [r2] @ Current unit ram struct pointer 
+
+ldrb r0, [r6, #0x10] @ XX 
+ldrb r1, [r2, #0x10] @ XX 
+sub r0, r1 
+asr r1, r0, #31
+add r0, r0, r1
+eor r0, r1 @ Abs(X1-X2)
+
+ldrb r1, [r6, #0x11] @ YY 
+ldrb r2, [r2, #0x11] @ YY 
+sub r1, r2 
+asr r2, r1, #31
+add r1, r1, r2
+eor r1, r2 @ Abs(Y1-Y2)
+add r0, r1 @ Distance between two units 
+ldrb r1, [r4, #4] @ Max distance to call units from 
+cmp r0, r1 
+bgt LoopThroughUnits 
+
+
+
 
 mov r0, #1 
 mov r1, r4 @ table entry we're using 
@@ -142,7 +215,7 @@ mov r1, #0
 
 
 Exit: 
-pop {r4}
+pop {r4-r6}
 pop {r2} 
 bx r2 
 

@@ -9,23 +9,14 @@ POP
 #incbin "CallCommandEffect.dmp"
 // mostly same EALiterals to CallCommandUsability because I'm lazy 
 POIN CallUsability_List
-POIN CallLimit_UnitList
-POIN CallLimit_ClassList
-POIN CallLimit_FlagList
+POIN Call_ExceptionsList
 POIN FindFreeTile
-#ifdef DRUnitBitMask
-	POIN CheckUnitIsInDanger
-#endif 
-#ifndef DRUnitBitMask
-	WORD 0
-#endif 
 #ifdef Pokemblem_MoveTester
+	POIN CheckUnitIsInDanger
 	WORD 1
-	POIN Get2ndFreeUnit
 #endif 
 #ifndef Pokemblem_MoveTester
-	WORD 0
-	WORD 0
+	WORD 0 0
 #endif 
 POIN CallCommandUsability
 
@@ -37,23 +28,14 @@ CallCommandUsability:
 POP
 #incbin "CallCommandUsability.dmp"
 POIN CallUsability_List
-POIN CallLimit_UnitList
-POIN CallLimit_ClassList
-POIN CallLimit_FlagList
+POIN Call_ExceptionsList
 POIN FindFreeTile
-#ifdef DRUnitBitMask
-	POIN CheckUnitIsInDanger
-#endif 
-#ifndef DRUnitBitMask
-	WORD 0
-#endif 
 #ifdef Pokemblem_MoveTester
+	POIN CheckUnitIsInDanger
 	WORD 1
-	POIN Get2ndFreeUnit
 #endif 
 #ifndef Pokemblem_MoveTester
-	WORD 0
-	WORD 0
+	WORD 0 0
 #endif 
 #ifdef SKILLSYSTEM_SKILL_TESTER
 	POIN SkillTester
@@ -67,21 +49,11 @@ POIN FindFreeTile
 #include "ReleaseCommand.lyn.event"
 
 ALIGN 4
-CallLimit_UnitList:
-BYTE 2 0 0 // Seth cannot be called 
-BYTE 0 0 0 0
-
-// Classes that won't be called. 
-ALIGN 4
-CallLimit_ClassList:
-BYTE RaticateID MankeyID 
-BYTE 0 0 0 0
-
-ALIGN 4
-CallLimit_FlagList:
-SHORT CallCountdownFlag PlayableCutsceneFlag TrainerBattleActiveFlag 
-BYTE 0 0 0 0
-
+Call_ExceptionsList:
+// UnitID, ClassID
+BYTE Seth RaticateID // Seth, Raticate, and Mankey cannot be called
+BYTE 0 MankeyID  
+BYTE 0xFF 0xFF // Terminator 
 
 
 
@@ -93,8 +65,8 @@ CallUsability_List:
 BYTE 0xFF // Any chapter ID 
 BYTE 0 // Any unit 
 BYTE 0 // Class 
-BYTE RenewalID // Skill 
-BYTE 5 // Within 5 tiles 
+BYTE 0 // Skill 
+BYTE 20 // Within 20 tiles 
 BYTE 0 // Max number of units 
 SHORT 0 // Any flag if 0. If flag is on, allow command. 
 

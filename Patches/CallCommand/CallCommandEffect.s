@@ -32,19 +32,16 @@
 
 @ CallUsability_List, end of file +0
  
-.equ CallLimit_UnitList, CallUsability_List+4
-.equ CallLimit_ClassList, CallLimit_UnitList+4
-.equ CallLimit_FlagList, CallLimit_ClassList+4
-.equ FindFreeTile, CallLimit_FlagList+4
+.equ Call_ExceptionsList, CallUsability_List+4
+.equ FindFreeTile, Call_ExceptionsList+4
 .equ CheckUnitIsInDanger, FindFreeTile+4
 .equ PokemblemOrNot, CheckUnitIsInDanger+4 
-.equ Get2ndFreeUnit, PokemblemOrNot+4
-.equ CallCommandUsability, Get2ndFreeUnit+4 
+.equ CallCommandUsability, PokemblemOrNot+4 
 
-.equ MaxUnitsCallable, 5
+.equ MaxUnitsCallableByte, 5
 
-	.global CallCommandEffect
-	.type   CallCommandEffect, function
+.global CallCommandEffect
+.type   CallCommandEffect, function
 
 CallCommandEffect:
 push	{r4-r7,lr}
@@ -73,7 +70,8 @@ add r0, r1
 ldr r6, =MemorySlot
 str r0, [r6, #0x0B*4] @ SlotB is used in CheckInDanger 
 
-@blh_EALiteral CheckUnitIsInDanger
+mov r11, r11 
+blh_EALiteral CheckUnitIsInDanger
 add r6, #0xC*4 @ SlotC 
 ldr r0, [r6] 
 cmp r0, #0 
@@ -89,17 +87,22 @@ Start:
 mov r4,#0 @ current deployment id
 mov r5,#0 @ counter
 
-@blh_EALiteral CallCommandUsability 
+blh_EALiteral CallCommandUsability
 mov r7, r1 @ Table entry we're using 
+cmp r0, #3 
+bne LoopThroughUnits
+b End  
 
 LoopThroughUnits:
 add r4, #1  @ deployment byte 
 cmp r4, #0x3F 
 bgt End 
-ldrb r3, [r7, #MaxUnitsCallable]
+ldrb r3, [r7, #MaxUnitsCallableByte]
+cmp r3, #0 
+beq AnyNumberOfUnits
 cmp r5, r3 @ r5 as number of units that have been called  
 bge End @ We have found all the units we need to act upon 
-
+AnyNumberOfUnits: 
 
 mov r0,r4
 blh GetUnit @ 19430
@@ -117,30 +120,35 @@ bne LoopThroughUnits
 @r0 is Ram Unit Struct 
 mov r6, r0 
 
-
-ldr r3, CallLimit_UnitList
+ldr r3, Call_ExceptionsList
 ldr r2, [r6] @ unit pointer 
 ldrb r0, [r2, #4] @ unit ID 
 UnitListLoop: 
-ldrb r1, [r3] 
-cmp r1, #0 
+
+ldrh r1, [r3] @ terminator? 
+ldr r2, =0xFFFF 
+cmp r1, r2 
 beq BreakUnitListLoop 
+
+ldrb r1, [r3] 
 cmp r1, r0 
 beq LoopThroughUnits @ If unit ID matches, they cannot be called. 
-add r3, #1 
+add r3, #2
 b UnitListLoop 
 BreakUnitListLoop: 
 
-ldr r3, CallLimit_ClassList
+ldr r3, Call_ExceptionsList
 ldr r2, [r6, #4] @ class pointer 
 ldrb r0, [r2, #4] @ class ID 
 ClassListLoop: 
-ldrb r1, [r3] 
-cmp r1, #0 
+ldrh r1, [r3] @ terminator? 
+ldr r2, =0xFFFF 
+cmp r1, r2 
 beq BreakClassListLoop 
+ldrb r1, [r3, #1] 
 cmp r1, r0 
 beq LoopThroughUnits @ If class ID matches, they cannot be called. 
-add r3, #1 
+add r3, #2 
 b ClassListLoop 
 BreakClassListLoop: 
 
@@ -149,23 +157,23 @@ BreakClassListLoop:
 ldr r2, =CurrentUnit 
 ldr r2, [r2] @ Current unit ram struct pointer 
 
-@ldrb r0, [r6, #0x10] @ XX 
-@ldrb r1, [r2, #0x10] @ XX 
-@sub r0, r1 
-@asr r1, r0, #31
-@add r0, r0, r1
-@eor r0, r1 @ Abs(X1-X2)
-@
-@ldrb r1, [r6, #0x10] @ YY 
-@ldrb r2, [r2, #0x11] @ YY 
-@sub r1, r2 
-@asr r2, r1, #31
-@add r1, r1, r2
-@eor r1, r2 @ Abs(Y1-Y2)
-@add r0, r1 @ Distance between two units 
-@ldrb r1, [r7, #4] @ Max distance to call units from 
-@cmp r0, r1 
-@bgt LoopThroughUnits 
+ldrb r0, [r6, #0x10] @ XX 
+ldrb r1, [r2, #0x10] @ XX 
+sub r0, r1 
+asr r1, r0, #31
+add r0, r0, r1
+eor r0, r1 @ Abs(X1-X2)
+
+ldrb r1, [r6, #0x11] @ YY 
+ldrb r2, [r2, #0x11] @ YY 
+sub r1, r2 
+asr r2, r1, #31
+add r1, r1, r2
+eor r1, r2 @ Abs(Y1-Y2)
+add r0, r1 @ Distance between two units 
+ldrb r1, [r7, #4] @ Max distance to call units from 
+cmp r0, r1 
+bgt LoopThroughUnits 
 
 
 
