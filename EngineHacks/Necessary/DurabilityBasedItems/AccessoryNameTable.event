@@ -175,18 +175,27 @@ SkillAccessory_DescEntry(WaryFighterID, ObliviousRingDescText)
 SkillAccessory_NameEntry(PerfectionistID, PerfectionistAccNameText)
 SkillAccessory_DescEntry(PerfectionistID, PerfectionistAccDescText)
 
+SkillAccessory_NameEntry(DazzleID, DazzleAccNameText)
+SkillAccessory_DescEntry(DazzleID, DazzleAccDescText)
+
+
+
+SkillAccessory_NameEntry(SealStrID, SealStrAccNameText)
+SkillAccessory_DescEntry(SealStrID, SealStrAccDescText)
+SkillAccessory_NameEntry(SealMagID, SealMagAccNameText)
+SkillAccessory_DescEntry(SealMagID, SealMagAccDescText)
+
+SkillAccessory_NameEntry(SealSklID, SealSklAccNameText)
+SkillAccessory_DescEntry(SealSklID, SealSklAccDescText)
 SkillAccessory_NameEntry(SealSpdID, SealSpdAccNameText)
 SkillAccessory_DescEntry(SealSpdID, SealSpdAccDescText)
 
 SkillAccessory_NameEntry(SealDefID, SealDefAccNameText)
 SkillAccessory_DescEntry(SealDefID, SealDefAccDescText)
-
-
 SkillAccessory_NameEntry(SealResID, SealResAccNameText)
 SkillAccessory_DescEntry(SealResID, SealResAccDescText)
-
-
-
+SkillAccessory_NameEntry(SealLukID, SealLukAccNameText)
+SkillAccessory_DescEntry(SealLukID, SealLukAccDescText)
 
 // (SkillAccessory_DescEntry\()([^I]*)(ID)
 // $1$2ID, SD_$2) 

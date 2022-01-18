@@ -84,24 +84,25 @@ SkillAccessoryIcons(SealStrID)
 #incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
 
 
-//SkillAccessoryIcons(DazzleID)
-//#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+SkillAccessoryIcons(DazzleID)
+#incbin "SkillAccIcons/ReaperClothByHusbandoEmblem.dmp"
 
-
+SkillAccessoryIcons(AnathemaID)
+#incbin "SkillAccIcons/ReaperClothByBeansy.dmp"
 
 
 SkillAccessoryIcons(SealSklID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "SkillAccIcons/SealSkl.dmp"
 SkillAccessoryIcons(SealSpdID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "SkillAccIcons/SealSpd.dmp"
 SkillAccessoryIcons(SealDefID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "SkillAccIcons/SealDef.dmp"
 SkillAccessoryIcons(SealResID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "SkillAccIcons/SealRes.dmp"
 SkillAccessoryIcons(SealLukID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "SkillAccIcons/SealLuk.dmp"
 SkillAccessoryIcons(SealMagID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "SkillAccIcons/SealMag.dmp"
 
 SkillAccessoryIcons(SteadyStanceID)
 #incbin "StatBoosterIcons/BronzeShieldByCardCafe.dmp"

@@ -120,19 +120,47 @@ Perfect Ring[X]
 ## PerfectionistAccDescText
 +10 Hit/Avo while full HP.[X]
 
+## DazzleAccNameText
+Dark Robe[X]
+## DazzleAccDescText
+Prevents counterattacks.[X]
 
+
+## SealStrAccNameText
+Strength Seal[X]
+## SealStrAccDescText
+Debuffs enemy Str[NL]
+by 6 after combat.[X]
+
+## SealMagAccNameText
+Magic Seal[X]
+## SealMagAccDescText
+Debuffs enemy Mag[NL]
+by 6 after combat.[X]
+
+## SealSklAccNameText
+Skill Seal[X]
+## SealSklAccDescText
+Debuffs enemy Skl[NL]
+by 6 after combat.[X]
+
+## SealSpdAccNameText
+Speed Seal[X]
+## SealSpdAccDescText
+Debuffs enemy Spd[NL]
+by 6 after combat.[X]
+
+## SealLukAccNameText
+Luck Seal[X]
+## SealLukAccDescText
+Debuffs enemy Luk[NL]
+by 6 after combat.[X]
 
 ## SealResAccNameText
 Resistance Seal[X]
 ## SealResAccDescText
 Debuffs enemy Res[NL]
 by 6 after combat.[X]
-
-
-
-
-
-
 
 
 ## SealDefAccNameText
@@ -142,11 +170,7 @@ Debuffs enemy Def[NL]
 by 6 after combat.[X]
 
 
-## SealSpdAccNameText
-Speed Seal[X]
-## SealSpdAccDescText
-Debuffs enemy Spd[NL]
-by 6 after combat.[X]
+
 
 
 

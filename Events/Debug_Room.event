@@ -225,11 +225,11 @@ AutoLevelUnits(18, True, 0x145) // all
 Write_Byte(4, GaryStarterClass) 
 
 
-Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(39, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-
 Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(10, YCoordNewArea)    
+
+Write_Byte(2, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(10, YCoordNewArea)    
 //MNC2 PokecenterCh
 //MNC2 PalletCh
 //MNC2 ViridianCh 
@@ -248,7 +248,7 @@ Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT
 //MNC2 SSAnneCh
 
 //MNC2 DiglettsCaveCh
-MNC2 Route9WCh
+MNC2 Route9ECh
 
 //MNC2 CinnabarCh
 

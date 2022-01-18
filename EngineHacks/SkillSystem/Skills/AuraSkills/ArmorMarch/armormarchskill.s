@@ -36,6 +36,8 @@ mov r0,r4
 ldr r2,=GetUnit
 mov lr,r2
 .short 0xf800
+cmp r0, #0 
+beq End 
 ldr	r2,DebuffTable
 mov lr,r2
 .short 0xf800

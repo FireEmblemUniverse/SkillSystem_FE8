@@ -25,6 +25,7 @@ TeamDebuffTables:
   WORD EUDebuffTable
   WORD GUDebuffTable
   WORD OUDebuffTable
+  WORD 0 
   #define PUBuffTable BuffTable 
   #define EUBuffTable "PUBuffTable + 	(MaxPlayerUnits*BuffTableEntrySize)" // 4 bytes default 
   #define GUBuffTable "EUBuffTable + 	(MaxEnemyUnits*BuffTableEntrySize)"
@@ -35,7 +36,7 @@ TeamBuffTables:
   WORD EUBuffTable
   WORD GUBuffTable
   WORD OUBuffTable
-
+WORD 0 
  
 ALIGN 4
 GetBuff:

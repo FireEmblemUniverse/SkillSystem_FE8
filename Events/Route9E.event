@@ -98,10 +98,13 @@ RockSmash(29,9)
 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-SpellScrollTrap(9,3, (ChapterID*2)+1, HealPulse) 
+//SpellScrollTrap(9,3, (ChapterID*2)+1, HealPulse) 
+SpellScrollTrap(3,10, (ChapterID*2)+1, HealPulse) 
+
+
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-StatAccessoryTrap(14,2, (ChapterID*2)+1, PaddedShield_BoostIndex)
+StatAccessoryTrap(13,10, (ChapterID*2)+1, PaddedShield_BoostIndex)
 
 
 CoinsTrap(37,14, ChapterID*2, 1000) 
