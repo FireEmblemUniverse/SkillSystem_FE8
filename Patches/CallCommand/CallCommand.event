@@ -1,5 +1,5 @@
-//ALIGN 4
-//#include "CallCommand.lyn.event"
+
+
 
 ALIGN 4
 PUSH 
@@ -46,7 +46,6 @@ POIN FindFreeTile
 
 
 
-#include "ReleaseCommand.lyn.event"
 
 ALIGN 4
 Call_ExceptionsList:
