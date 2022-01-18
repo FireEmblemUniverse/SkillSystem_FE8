@@ -36,6 +36,8 @@ mov r0,r4
 ldr r2,=GetUnit
 mov lr,r2
 .short 0xf800
+cmp r0,#0
+beq unsetReit
 ldr	r2,DebuffTable
 mov lr,r2
 .short 0xf800
@@ -56,6 +58,7 @@ mvn	r2,r2
 and	r1,r2
 strb	r1,[r0]		@unset the bit
 
+unsetReit:
 add	r4,#1
 cmp	r4,#0xB3
 beq	allUnset

@@ -3,6 +3,8 @@
 @returns: r0 = pointer to unit's debuffs
 
 GetDebuffEntry:
+cmp r0, #0x00 @ Just return NULL for a NULL unit passed in.
+beq End
 @get deployment number
 ldrb r2,[r0,#0xb]
 @get allegience from the top two bits
