@@ -109,7 +109,11 @@ b Start
 
 Start: 
 mov r0, r5
-blh Get_Hp_Growth
+mov r1, r7 
+ldr r2, =Get_Hp_Growth
+mov r3, #0x1B 
+bl Get_Growth_With_Evolutions
+
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
 @r0 now has # of levels in X stat to add 
@@ -132,25 +136,16 @@ mov r1, #99
 StoreCurrentHp:
 strb r1, [r5, #0x13] @current hp 
 
-IncreaseShownLevel:
-ldr r0, =MemorySlot 
-ldr r0, [r0, #4*0x03] 
-cmp r0, #0 
-beq LevelStrength 
 
-ldrb r1, [r5, #0x08] @Level 
-add r1, r1, r7 
-cmp r1, #100
-ble StoreLevel
-mov r1, #100 
-StoreLevel:
-strb r1, [r5, #0x08] 
 
 
 
 LevelStrength:
 mov r0, r5
-blh Get_Str_Growth
+mov r1, r7 
+ldr r2, =Get_Str_Growth
+mov r3, #0x1c 
+bl Get_Growth_With_Evolutions
 
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
@@ -176,7 +171,10 @@ bx r0
 
 SkillNow: 
 mov r0, r5
-blh Get_Skl_Growth
+mov r1, r7 
+ldr r2, =Get_Skl_Growth
+mov r3, #0x1d
+bl Get_Growth_With_Evolutions
 
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
@@ -190,7 +188,10 @@ StoreSkl:
 strb r0, [r5, r2] 
 
 mov r0, r5
-blh Get_Spd_Growth
+mov r1, r7 
+ldr r2, =Get_Spd_Growth
+mov r3, #0x1e 
+bl Get_Growth_With_Evolutions
 
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
@@ -203,8 +204,11 @@ mov r0, #0x7F
 StoreSpd:
 strb r0, [r5, r2] 
 
-mov r0, r5 
-blh Get_Def_Growth
+mov r0, r5
+mov r1, r7 
+ldr r2, =Get_Def_Growth
+mov r3, #0x1f
+bl Get_Growth_With_Evolutions
 
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
@@ -217,8 +221,11 @@ mov r0, #0x7F
 StoreDef:
 strb r0, [r5, r2] 
 
-mov r0, r5 
-blh Get_Res_Growth
+mov r0, r5
+mov r1, r7 
+ldr r2, =Get_Res_Growth
+mov r3, #0x20
+bl Get_Growth_With_Evolutions
 
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
@@ -231,8 +238,11 @@ mov r0, #0x7F
 StoreRes:
 strb r0, [r5, r2] 
 
-mov r0, r5 
-blh Get_Luk_Growth
+mov r0, r5
+mov r1, r7 
+ldr r2, =Get_Luk_Growth
+mov r3, #0x21
+bl Get_Growth_With_Evolutions
 
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
@@ -245,9 +255,13 @@ mov r0, #0x7F
 StoreLuk:
 strb r0, [r5, r2] 
 
-mov r0, r5 
-blh Get_Mag_Growth
+mov r0, r5
 mov r1, r7 
+ldr r2, =Get_Mag_Growth
+mov r3, #0x3a @ Special case for 0x3a. Not actually loading class data at this byte for the growth. 
+bl Get_Growth_With_Evolutions
+mov r1, r7 
+
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
 mov r2, #0x3A 
 ldrb r1, [r5, r2] @current stat to increase 
@@ -257,6 +271,25 @@ ble StoreMag
 mov r0, #0x7F 
 StoreMag:
 strb r0, [r5, r2] 
+
+
+
+
+@IncreaseShownLevel:
+ldr r0, =MemorySlot 
+ldr r0, [r0, #4*0x03] 
+cmp r0, #0 
+beq SkipIncreaseShownLevel
+
+ldrb r1, [r5, #0x08] @Level 
+add r1, r1, r7 
+cmp r1, #100
+ble StoreLevel
+mov r1, #100 
+StoreLevel:
+strb r1, [r5, #0x08] 
+SkipIncreaseShownLevel:
+
 
 mov r0, r5 
 blh CheckCaps 
@@ -268,7 +301,172 @@ b NextUnit
 
 
 .ltorg
+.align 
 
+
+Get_Growth_With_Evolutions:
+push {r4-r7, lr}
+mov r4, r8
+mov r5, r9 
+mov r6, r10 
+push {r4-r5} 
+mov r4, r0 @ unit struct 
+mov r5, r1 @ levels 
+@r2 as growth getter function 
+mov r9, r3 @ class stat growth offset 
+
+
+ldrb r1, [r4, #8] @ add current level
+add r5, r1 @ final expected level 
+
+
+@r0 as unit struct 
+mov lr, r2 @ growth getter function given as a parameter 
+.short 0xf800 @ blh to the growth getter function 
+mov r7, r0 @ natural growth in final class
+
+
+ldr r3, =AutolevelTable 
+ldr r0, [r4, #4] @ Class pointer 
+ldrb r0, [r0, #4] @ Class ID 
+
+lsl r0, #2 
+add r3, r0 @ Class entry on autolevelling that we want 
+mov r8, r3 
+
+ldr r0, [r3] 
+cmp r0, #0 
+beq FullGrowth
+
+ldr r0, [r4, #4] @ Class pointer 
+mov r2, r9 @ growth offset byte 
+
+cmp r2, #0x3a 
+bne NotMag0
+ldrb r0, [r0, #4] @ Class ID of current class 
+lsl r0, #2 @ 4 bytes per entry in mag table 
+ldr r3, =MagClassTable 
+add r0, r3 @ Class entry we want 
+mov r2, #1 @ Magic growth byte
+
+NotMag0: 
+
+ldrb r0, [r0, r2] @ class growth of the stat we're checking 
+sub r7, r0 @ growths without current class bonuses (eg. only unit growths left) 
+cmp r7, #0
+bge DontPreventNegativeGrowths
+mov r7, #0 
+DontPreventNegativeGrowths:
+
+
+
+mov r3, r8 @ table 
+ldrb r0, [r3, #2] 
+cmp r0, #0 
+beq No2ndClass
+blh 0x8019444 @GetClassData
+@ r0 as class data pointer for 2nd class 
+mov r2, r9 @ growth offset byte 
+
+cmp r2, #0x3a 
+bne NotMag1
+mov r3, r8 @ table 
+ldrb r0, [r3, #2] @ 1st stage 'mon 
+lsl r0, #2 @ 4 bytes per entry in mag table 
+ldr r3, =MagClassTable 
+add r0, r3 @ Class entry we want 
+mov r2, #1 @ Magic growth byte
+
+NotMag1: 
+
+
+ldrb r0, [r0, r2] @ this growth until 
+add r0, r7 @ growth bonuses 
+mov r3, r8 @ table 
+ldrb r1, [r3, #3] 	@ this level 
+sub r1, #1 @ No level-up from level 0 to 1. 
+mul r0, r1 @ Levels * growth 
+mov r6, r0 
+
+@ r5 as final expected level 
+@ eg. 42 
+@ Venusaur: 42-32 = 10. 10 levels as final evolution 
+@ 32 - 16 = 16. 16 levels as ivysaur 
+@ 16-1 = 15. 15 levels as bulbasaur 
+
+
+No2ndClass:
+mov r3, r8 @ table 
+ldrb r0, [r3] @ Pre-evolved 'mon 
+blh 0x8019444 @GetClassData
+@ r0 as class data pointer for pre-evolved class 
+mov r2, r9 @ growth offset byte 
+
+cmp r2, #0x3a 
+bne NotMag2
+mov r3, r8 @ table 
+ldrb r0, [r3] @ Pre-evolved 'mon 
+lsl r0, #2 @ 4 bytes per entry in mag table 
+ldr r3, =MagClassTable 
+add r0, r3 @ Class entry we want 
+mov r2, #1 @ Magic growth byte
+
+NotMag2: 
+ldrb r0, [r0, r2] @ this growth until 
+add r0, r7 @ growth bonuses 
+mov r3, r8 @ table 
+ldrb r1, [r3, #1] 	@ this level 
+ldrb r2, [r3, #3] @ always 0 if no 2nd pre-evolution 
+sub r1, r2 @ X levels as penultimate form 
+mul r0, r1 @ levels * growth 
+mov r2, r6 @ current levels * growth 
+add r2, r0 
+mov r6, r2 
+@ get levels in class * growth% 
+
+@ current class 
+ldr r0, [r4, #4] @ Class pointer 
+mov r2, r9 
+
+cmp r2, #0x3a 
+bne NotMag3
+ldrb r0, [r0, #4] @ Class ID of current class 
+lsl r0, #2 @ 4 bytes per entry in mag table 
+ldr r3, =MagClassTable 
+add r0, r3 @ Class entry we want 
+mov r2, #1 @ Magic growth byte
+
+NotMag3: 
+
+
+ldrb r0, [r0, r2] @ some Growth 
+add r0, r7 @ growth bonuses 
+mov r1, r5 @ final expected level 
+mov r3, r8 @ table 
+ldrb r2, [r3, #1] @ always 0 if no pre-evolution 
+sub r1, r2 @ Number of levels in current stage 
+mul r0, r1 @ levels * growth 
+mov r2, r6 @ current levels * growth 
+add r2, r0 
+mov r6, r2 
+
+@ divide by number of levels to get final average growth 
+mov r0, r6 @ growths*levels in various stages 
+mov r1, r5 @ number of levels to gain 
+sub r1, #1 @ no level-up for level 0 to 1 
+swi 6 @ divide 
+mov r7, r0 @ average growth 
+
+
+FullGrowth:
+mov r0, r7 @ Growth 
+pop {r4-r5} 
+mov r8, r4
+mov r9, r5 
+pop {r4-r7} 
+pop {r1}
+bx r1 
+.align 
 
 
 
