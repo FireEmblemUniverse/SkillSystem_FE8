@@ -46,6 +46,12 @@ POP
 //  SHORT $e00d
 //  POP
 
+//Make attacks at 2-15 range not use long-range anims by default (by Sme)
+//use the Uncounterable flag for long-range anims instead
+PUSH
+  ORG $57314
+  BYTE 0xF
+POP
 	
 //change staff battle init to not give 0xFF status on miss
   PUSH
