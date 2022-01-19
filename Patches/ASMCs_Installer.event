@@ -1,55 +1,55 @@
 
 #include "Draw/Installer.event"
 
-#include "Commands/MapCameraPreview/Installer.event"
+#include "ASMCs/MapCameraPreview/Installer.event"
 
-#include "Commands/SilentGiveItem/Installer.event"
-#include "Commands/MemSlotString/MemSlotStringInstaller.event"
-#include "Commands/SetStatus/SetStatusInstaller.event"
-
-
-
-#include "Commands/CompareTactText/CompareTactTextInstaller.event" 
-
-#include "Commands/TactNameDefault/Installer.event"
+#include "ASMCs/SilentGiveItem/Installer.event"
+#include "ASMCs/MemSlotString/MemSlotStringInstaller.event"
+#include "ASMCs/SetStatus/SetStatusInstaller.event"
 
 
-#include "Commands/RandomizeCoords/RandomizeCoordsInstaller.event"
-#include "Commands/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
+
+#include "ASMCs/CompareTactText/CompareTactTextInstaller.event" 
+
+#include "ASMCs/TactNameDefault/Installer.event"
 
 
-#include "Commands/UseVulnerary/UseVulneraryInstaller.event" 
+#include "ASMCs/RandomizeCoords/RandomizeCoordsInstaller.event"
+#include "ASMCs/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
 
-#include "Commands/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
+
+#include "ASMCs/UseVulnerary/UseVulneraryInstaller.event" 
+
+#include "ASMCs/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
 
 
-#include "Commands/UNCMv2/UNCMv2Installer.event"
-#include "Commands/GetNthUnit/GetNthUnitInstaller.event"
-#include "Commands/CheckInDanger/CheckInDangerInstaller.event"
+#include "ASMCs/UNCMv2/UNCMv2Installer.event"
+#include "ASMCs/GetNthUnit/GetNthUnitInstaller.event"
+#include "ASMCs/CheckInDanger/CheckInDangerInstaller.event"
 
 // Less used commands 
-#include "Commands/HealAllUnits.lyn.event" 
-#include "Commands/GameOptionInstaller.event"
+#include "ASMCs/HealAllUnits.lyn.event" 
+#include "ASMCs/GameOptionInstaller.event"
 
-#include "Commands/LordSplitMenu/Installer.event" 
+#include "ASMCs/LordSplitMenu/Installer.event" 
 
-#include "Commands/CHAI_all/CHAI_all_installer.event"
+#include "ASMCs/CHAI_all/CHAI_all_installer.event"
 
-#include "Commands/CH_allegiance_all/change_allegiance_all_installer.event"
-#include "Commands/BadStatus/BadStatusInstaller.event"
+#include "ASMCs/CH_allegiance_all/change_allegiance_all_installer.event"
+#include "ASMCs/BadStatus/BadStatusInstaller.event"
 
-#include "Commands/CountInRange/CountInRangeInstaller.event"
-#include "Commands/CheckGold/CheckGoldInstaller.event"
-#include "Commands/Item/ItemInstaller.event"
-#include "Commands/DropUnit/DropUnitInstaller.event"
-#include "Commands/GetHeldKeys/GetHeldKeysInstaller.event"
-#include "Commands/GetUnitDistance/GetUnitDistanceInstaller.event"
-#include "Commands/GiveExp/GiveExpInstaller.event" //done 
-#include "Commands/RepoUnit/RepoUnitInstaller.event"
-#include "Commands/RescueUnit/RescueUnitInstaller.event"
-#include "Commands/SendAll/SendAllInstaller.event"
-#include "Commands/SwapEirikaEphraimMode/SwapEirikaEphraimModeInstaller.event" //done 
+#include "ASMCs/CountInRange/CountInRangeInstaller.event"
+#include "ASMCs/CheckGold/CheckGoldInstaller.event"
+#include "ASMCs/Item/ItemInstaller.event"
+#include "ASMCs/DropUnit/DropUnitInstaller.event"
+#include "ASMCs/GetHeldKeys/GetHeldKeysInstaller.event"
+#include "ASMCs/GetUnitDistance/GetUnitDistanceInstaller.event"
+#include "ASMCs/GiveExp/GiveExpInstaller.event" //done 
+#include "ASMCs/RepoUnit/RepoUnitInstaller.event"
+#include "ASMCs/RescueUnit/RescueUnitInstaller.event"
+#include "ASMCs/SendAll/SendAllInstaller.event"
+#include "ASMCs/SwapEirikaEphraimMode/SwapEirikaEphraimModeInstaller.event" //done 
 
 
-//#include "Commands/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event" // This requires some set up
+//#include "ASMCs/ChangeChapterObjective/ChangeChapterObjectiveInstaller.event" // This requires some set up
 // Atm, it makes every chapter display as Seize lol

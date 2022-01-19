@@ -128,8 +128,8 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-//House(0,GiveExp, 11,11)
-House(0,SelectCharEvent, 11,11)
+House(0,GiveExp, 11,11)
+//House(0,SelectCharEvent, 11,11)
 
 
 //Vendor(ShopItems,2,7)
@@ -140,7 +140,7 @@ House(0,SelectCharEvent, 11,11)
 END_MAIN
 
 GiveExp:
-GiveEXP(0x7FFF, 100)
+GiveEXP(0x7FFF, 60)
 NoFade 
 ENDA 
 
@@ -245,7 +245,7 @@ LOAD1 1 EnemyUnits
 ENUN 
 //LOAD1 1 Units3 
 //ENUN 
-AutoLevelUnits(15, True, 0x50FF)
+AutoLevelUnits(21, True, 0x50FF)
 RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
 SetUnitStatus(1, CurrentHP, 5)

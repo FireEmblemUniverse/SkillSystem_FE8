@@ -168,6 +168,57 @@ effect:
 @	blh	0x08002C30       @NewBlocking6C	{J}
 	blh	0x08002ce0       @NewBlocking6C	{U}
 
-	pop	{r4,pc}
+	bl HideMMSFunc
 
+	pop	{r4,pc}
+	
+	
+	
+.equ CurrentUnit,                0x03004E50	@{U}
+@.equ CurrentUnit,                0x03004DF0	@{J}
+.equ ProcFind, 0x8002E9D
+.equ gProc_MoveUnit, 0x89A2C48
 .ltorg
+.align 
+.type HideMMSFunc, %function 
+.global HideMMSFunc 
+HideMMSFunc:
+	@ Arguments: nothing
+	@ Returns:   nothing
+push {r4, lr} 
+
+blh 0x80790a5 @ End MMS 
+
+@b Exit
+ldr r0, =gProc_MoveUnit
+blh ProcFind 
+cmp r0, #0 
+beq SkipHidingInProc
+@mov r4, r0 @ gProc_MoveUnit 
+add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D5
+mov r1, #1 
+strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DD
+
+SkipHidingInProc: 
+@b Exit
+
+ldr r4, =CurrentUnit
+ldr r4, [r4] 
+
+ldr r1, [r4, #0x0C] @ Unit state 
+mov r2, #1 @ Hide 
+bic r1, r2 @ Show SMS 
+str r1, [r4, #0x0C] 
+
+
+Exit:
+blh  0x0801a1f8   @RefreshUnitMaps
+blh  0x080271a0   @SMS_UpdateFromGameData
+blh  0x08019c3c   @UpdateGameTilesGraphics
+
+pop {r4}
+
+pop {r1}
+bx r1
+
+

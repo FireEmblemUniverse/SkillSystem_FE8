@@ -13,9 +13,23 @@ give_exp_Install:
 ALIGN 4
 give_exp_proc:
 //#incbin "event_fe8j.bin" //HINT=PROCS
-#incbin "event_fe8u.bin" //HINT=PROCS
+//#incbin "event_fe8u.bin" //HINT=PROCS
+PROC_CALL_ROUTINE(0x8015361) // LockGameLogic
+//PROC_CALL_ROUTINE(0x80790a5) // End MMS 
+PROC_SLEEP(5)
+//PROC_NEW_CHILD_BLOCKING(give_exp_proc2)
+PROC_JUMP(0x89A35B0) // gProc_MapAnimEnd
+//PROC_CALL_ROUTINE(HideMMSFunc)
+
+PROC_END
+
+ALIGN 4
+give_exp_proc2:
+PROC_JUMP(0x89A35B0) // gProc_MapAnimEnd
+PROC_END
 
 #define GiveEXP(UnitID, EXP) "SVAL 0x1 UnitID ; SVAL 0x3 EXP ; ASMC give_exp_Install|1"
+#define GiveEXP(UnitID) "SVAL 0x1 UnitID ; ASMC give_exp_Install|1"
 //#define GiveEXP(UNITID, EXP) "BYTE 0x40 0x0D UNITID EXP ; POIN give_exp_Install|1;"
 //#define GiveEXPCurrentUnit(EXP) "BYTE 0x4F 0x0D 0x00 EXP ; POIN give_exp_Install|1;"
 //#define GiveEXP(xcoord, ycoord, EXP) "SVAL 0xB Coords(xcoord,ycoord); BYTE 0x4B 0x0D 0x0 EXP ; POIN give_exp_Install|1"

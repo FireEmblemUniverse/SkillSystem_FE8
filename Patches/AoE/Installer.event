@@ -138,13 +138,19 @@ Animation_IDByte, #15
 #define SmallTriangle 4 
 
 
+AoE_GrantExpEvent:
+GiveEXP(0x7fff)
+NoFade
+ENDA
+
+
 ALIGN 4 
 AoE_Table:
 // Entry 0 - RecoverMove 
 BYTE 0 0 0 0
 BYTE 0 0 0 RecoverMove 
-BYTE 0 HealBool|MagBasedBool //|FixedDamageBool
-BYTE 0 0 // damage range 
+BYTE 0 0 //HealBool|MagBasedBool //|FixedDamageBool
+BYTE 40 40 // damage range 
 BYTE 0 1 // Attack range 
 BYTE SmallLine HealingAnimationID // Index of RangeMask, Animation
 
@@ -292,11 +298,13 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 // Note that Memory Slot 3 is used to pass the rotation to the effect. 
 // If your animation event overwrites Memory Slot 3, you will get a random rotation. 
 
+#include "AoE_GrantExp.lyn.event" 
 
 ALIGN 4 
 AoE_HealingAnimation:
 SVAL r1 healing_ID //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -304,6 +312,7 @@ ALIGN 4
 AoE_EventAnime2:
 SVAL r1 0x2 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
