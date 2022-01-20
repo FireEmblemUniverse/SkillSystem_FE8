@@ -1,4 +1,5 @@
-#ifdef _FE8_
+
+
 
 #ifndef GiveEXP_ASMC 
 	#define GiveEXP_ASMC 
@@ -34,3 +35,22 @@
 
 
 #endif
+
+
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+AoE_GrantExp:
+POP 
+#incbin "AoE_GrantExp.dmp" 
+POIN AoE_GrantExpEvent 
+
+AoE_GrantExpEvent:
+GiveEXP((-1))
+NoFade
+ENDA
+
+
+

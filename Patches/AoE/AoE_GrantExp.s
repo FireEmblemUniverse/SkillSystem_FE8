@@ -82,7 +82,9 @@ NoBreak:
 @ ValidCoord:
 @ We found a valid tile 
 mov r0, r4 @ XX 
-mov r1, r5 @ YY 
+mov r1, r5 @ YY
+
+
 
 ldr		r2,=0x202E4D8 @ Unit Map	@Load the location in the table of tables of the map you want
 ldr		r2,[r2]			@Offset of map's table of row pointers
@@ -94,7 +96,25 @@ ldrb	r0,[r2]			@deployment byte
 
 blh GetUnit 
 cmp r0, #0 
-beq YLoop
+beq XLoop
+
+ldr r3, =CurrentUnit
+ldr r3, [r3]
+
+@ are units allied 24D8C
+mov r2, #0x80 
+ldrb r1, [r0, #0x0B] @ deployment byte 
+ldrb r3, [r3, #0x0B] @ deployment byte 
+and r1, r2 
+and r2, r3 
+mov r3, #0 
+cmp r1, r2 
+bne NotAllied
+mov r3, #1 @ Allied 
+b XLoop 
+NotAllied: 
+
+
 mov r1, r0
 ldr r0, =0x203A56C
 blh 0x802A584 @CopyUnitToBattleStruct
@@ -110,6 +130,10 @@ ldr r1, =0x203A56C
 
 blh 0x802c534 @ComputeExpFromBattle
 
+
+
+add r0, #1 @ round up 
+lsr r0, #1 @ half exp  
 mov r1, r10 
 add r0, r1 
 cmp r0, #100 
@@ -121,7 +145,7 @@ NoCap:
 mov r10, r0 
 
 
-b YLoop
+b XLoop
 
 BreakYLoop:
 mov r0, r10 
@@ -130,9 +154,8 @@ ble NoExp
 
 ldr r3, =MemorySlot
 str r0, [r3, #12]
-@mov r11, r11 
 
-ldr r0, =AoE_GrantExpEvent
+ldr r0, AoE_GrantExpEvent
 mov r1, #1 
 blh EventEngine
 
@@ -156,4 +179,5 @@ bx r0
 .align
 .ltorg 
 
+AoE_GrantExpEvent:
 

@@ -686,8 +686,6 @@ mov r1, r5 @ YY
 
 
 
-@mov r11, r11 
-
 mov r2, r8 @ vram 
 bl Draw_DisplaySprites 
 b XLoop 
