@@ -43,15 +43,32 @@ NotStone:
 mov r0, #4
 ldrsh r0, [r7, r0]
 cmp r0, #0
-beq End @tink = no exp for you
+beq CapHealing @tink = no exp for you
 ldr r0, [r6]
 mov r1, #2 @miss flag
 tst r1, r0
-bne End @missed = no exp for you
+bne CapHealing @missed = no exp for you
 mov r1, r4
 add r1, #0x7c
 mov r0, #1
 strb r0, [r1] @set hit flag 
+
+CapHealing:
+ldrb r0, [r6, #5] @r0 = hp change for attacker
+cmp r0,#0
+ble End @if not healing, skip this
+ldrb r1,[r4,#0x12] @attacker max HP
+ldrb r2,[r4,#0x13] @attacker cur HP
+sub r1,r2 @damage taken
+cmp r1,r0
+bge NoCap
+mov r0,r1 @set amount healed to damage taken if would cap
+
+NoCap:
+strb r0,[r6,#5]
+ldrb r1,[r4,#0x13] @cur HP
+add r0,r1
+strb r0,[r4,#0x13]
 
 End:
 pop {r4-r7}
