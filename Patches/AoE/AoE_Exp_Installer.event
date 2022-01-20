@@ -27,7 +27,7 @@
 	PROC_END
 
 
-	#define GiveEXP(UnitID, EXP) "SVAL 0x1 UnitID ; SVAL 0x3 EXP ; ASMC give_exp_Install|1"
+	#define GiveEXP(UnitID, EXP) "SVAL 0x1 UnitID ; SVAL 0x4 EXP ; ASMC give_exp_Install|1"
 	#define GiveEXP(UnitID) "SVAL 0x1 UnitID ; ASMC give_exp_Install|1"
 	//#define GiveEXP(UNITID, EXP) "BYTE 0x40 0x0D UNITID EXP ; POIN give_exp_Install|1;"
 	//#define GiveEXPCurrentUnit(EXP) "BYTE 0x4F 0x0D 0x00 EXP ; POIN give_exp_Install|1;"

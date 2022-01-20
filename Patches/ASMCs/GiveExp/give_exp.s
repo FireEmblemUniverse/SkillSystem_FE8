@@ -11,11 +11,11 @@
 @
 @
 .thumb
-	push	{r4,r5,r6,lr}     @ Event parameter in memory slot 0x1, EXP to grant in slot 0x3. Keep the unit in r4 and the EXP to give in r6.
+	push	{r4,r5,r6,lr}     @ Event parameter in memory slot 0x1, EXP to grant in slot 0x4. Keep the unit in r4 and the EXP to give in r6.
 	mov  r5, r0               @Current Procs
 	
 	ldr r0, =#0x30004B8     @ gMemorySlot.
-	ldr r6, [ r0, #4*0x03 ]   @ Get EXP from memory slot 0x3.
+	ldr r6, [ r0, #4*0x04 ]   @ Get EXP from memory slot 0x4.
 	mov r1, #0x04
     ldsh r0, [ r0, r1 ]  @ Get the event parameter from slot 0x1.
     blh 0x800BC50           @ GetUnitStructFromEventParameter

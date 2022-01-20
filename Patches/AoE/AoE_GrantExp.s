@@ -132,8 +132,17 @@ blh 0x802c534 @ComputeExpFromBattle
 
 
 
-add r0, #1 @ round up 
-lsr r0, #1 @ half exp  
+@add r0, #3 @ round up 
+@lsr r0, #2 @ 1/4 exp  
+
+ldr r3, =0x203A56C @ dfdr 
+ldrb r2, [r3, #0x13] @ Current hp 
+cmp r2, #0 
+bne NoBonus @ 4x damaging exp  "damaging" exp for killing units via AoE. 1x damaging exp otherwise. 
+lsl r0, #2 
+NoBonus: 
+@lsl r0, #1 
+
 mov r1, r10 
 add r0, r1 
 cmp r0, #100 
@@ -153,7 +162,7 @@ cmp r0, #0
 ble NoExp 
 
 ldr r3, =MemorySlot
-str r0, [r3, #12]
+str r0, [r3, #16] @ slot 4 
 
 ldr r0, AoE_GrantExpEvent
 mov r1, #1 

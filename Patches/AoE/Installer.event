@@ -298,11 +298,11 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 
 ALIGN 4 
 AoE_HealingAnimation:
-SVAL r1 healing_ID //AnimationID
+SVAL r1 2 //healing_ID //AnimationID
 //ASMC AoE_CalcExp|1
-
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
+SVAL s1 2 
 NoFade
 ENDA
 
