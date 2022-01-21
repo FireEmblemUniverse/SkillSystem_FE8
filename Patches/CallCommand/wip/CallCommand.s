@@ -152,8 +152,8 @@ ldr r2, [r2] @ Current unit ram struct pointer
 
 ldrh r0, [r2, #0x10] 
 strh r0, [r6, #0x10] @ So units have matching coords 
-blh  0x0801a1f8   @RefreshFogAndUnitMaps
-@blh   0x8019fa0 @RefreshUnitMapAndVision
+
+blh   0x8019fa0 @RefreshUnitMapAndVision
 
 
 ldr r0, =0x202E4E0 @ Movement map
@@ -187,7 +187,8 @@ b LoopThroughUnits
 	
 End:
 
-blh  0x0801a1f8   @RefreshFogAndUnitMaps
+blh 0x08019FA0   //UpdateUnitMapAndVision
+blh 0x0801A1A0   //UpdateTrapHiddenStates
 blh  0x080271a0   @SMS_UpdateFromGameData
 blh  0x08019c3c   @UpdateGameTilesGraphics
 

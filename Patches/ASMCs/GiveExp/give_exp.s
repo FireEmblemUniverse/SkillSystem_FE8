@@ -193,11 +193,7 @@ HideMMSFunc:
 	@ Arguments: nothing 
 	@ Returns:   nothing
 push {lr} 
-
-
-@mov r4, r0 @ unit struct 
-
-
+@ even if giving exp to a unit that is not the active unit, we only want to show sms for the active unit 
 blh 0x80790a4 @ End MMS 
 ldr r0, =gProc_MoveUnit
 blh ProcFind 
@@ -208,19 +204,18 @@ mov r1, #1
 strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DD
 
 SkipHidingInProc: 
-@ even if giving exp to a unit that is not the active unit, we only want to show sms for the active unit 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
-cmp r3, #0
-beq Exit
+cmp r3, #0 
+beq Exit 
 ldr r1, [r3, #0x0C] @ Unit state 
 mov r2, #1 @ Hide 
 bic r1, r2 @ Show SMS 
 str r1, [r3, #0x0C] 
 
-
 Exit:
-blh  0x0801a1f8   @RefreshUnitMaps
+blh 0x08019FA0   //UpdateUnitMapAndVision
+blh 0x0801A1A0   //UpdateTrapHiddenStates
 blh  0x080271a0   @SMS_UpdateFromGameData
 blh  0x08019c3c   @UpdateGameTilesGraphics
 

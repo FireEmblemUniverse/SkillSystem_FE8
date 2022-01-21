@@ -250,7 +250,8 @@ bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
 
 
 
-@blh  0x0801a1f8   @RefreshUnitMaps 
+@blh 0x08019FA0   //UpdateUnitMapAndVision
+@blh 0x0801A1A0   //UpdateTrapHiddenStates
 GotoNextLoop:
 mov r1, r8 
 add r1, #1 

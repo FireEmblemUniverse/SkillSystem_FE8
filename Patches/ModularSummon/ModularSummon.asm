@@ -713,10 +713,7 @@ blh EventEngine
 
 End:
 
-	@blh  0x0801a1f8   @RefreshUnitMaps - not fog maps too because DR 
-	@
-	@blh  0x080271a0   @SMS_UpdateFromGameData
-	@blh  0x08019c3c   @UpdateGameTilesGraphics
+
 
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1
@@ -757,7 +754,8 @@ mov r1, #0xFE  @ 0x1 - hide
 and r0, r1 
 strb r0, [r3, #0x0C] 
 
-	blh  0x0801a1f8   @RefreshUnitMaps - not fog maps too because DR 
+blh 0x08019FA0   //UpdateUnitMapAndVision
+blh 0x0801A1A0   //UpdateTrapHiddenStates
 	
 	blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics

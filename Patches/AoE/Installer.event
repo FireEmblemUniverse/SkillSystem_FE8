@@ -298,11 +298,9 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 
 ALIGN 4 
 AoE_HealingAnimation:
-SVAL r1 2 //healing_ID //AnimationID
-//ASMC AoE_CalcExp|1
+SVAL r1 healing_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
-SVAL s1 2 
 NoFade
 ENDA
 
@@ -319,6 +317,7 @@ ALIGN 4
 AoE_EventAnime3:
 SVAL r1 0x3 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -326,6 +325,7 @@ ALIGN 4
 AoE_EventAnime4:
 SVAL r1 0x4 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -333,6 +333,7 @@ ALIGN 4
 AoE_EventAnime5:
 SVAL r1 0x5 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -340,6 +341,7 @@ ALIGN 4
 AoE_EventAnime6:
 SVAL r1 0x6 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -347,6 +349,7 @@ ALIGN 4
 AoE_EventAnime7:
 SVAL r1 0x7 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -354,6 +357,7 @@ ALIGN 4
 AoE_EventAnime8:
 SVAL r1 0x8 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -361,6 +365,7 @@ ALIGN 4
 AoE_EventAnime9:
 SVAL r1 0x9 //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
@@ -368,6 +373,7 @@ ALIGN 4
 AoE_EventAnimeA:
 SVAL r1 0xA //AnimationID
 ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
 NoFade
 ENDA
 

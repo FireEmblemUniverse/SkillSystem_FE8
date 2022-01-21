@@ -94,7 +94,8 @@ Error:
 	str	r0, [r7, #4*0x0C]
 
 Return:
-	blh  0x0801a1f8   @RefreshUnitMaps
+blh 0x08019FA0   //UpdateUnitMapAndVision
+blh 0x0801A1A0   //UpdateTrapHiddenStates
 	blh  0x080271a0   @SMS_UpdateFromGameData
 	blh  0x08019c3c   @UpdateGameTilesGraphics
 Term:
