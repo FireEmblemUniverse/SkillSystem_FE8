@@ -210,7 +210,7 @@ cmp r3, #0
 beq Exit 
 ldr r1, [r3, #0x0C] @ Unit state 
 mov r2, #1 @ Hide 
-bic r1, r2 @ Show SMS 
+bic r1, r2 @ Show SMS @ 
 str r1, [r3, #0x0C] 
 
 Exit:
