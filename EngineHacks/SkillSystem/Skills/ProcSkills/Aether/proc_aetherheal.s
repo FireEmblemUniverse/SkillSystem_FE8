@@ -83,21 +83,21 @@ add r0, r1
 
 checkCap:
 @now r0 is total HP change - is this higher than the max HP?
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-mov r1, #0x12
-ldrsb r1, [r4,r1] @max hp
-sub r1, r2 @damage taken
-cmp r1, r0
-bge NoCap
+@mov r2, #0x13
+@ldrsb r2, [r4,r2] @curr hp
+@mov r1, #0x12
+@ldrsb r1, [r4,r1] @max hp
+@sub r1, r2 @damage taken
+@cmp r1, r0
+@bge NoCap
   @if hp will cap, set r0 to damage taken
-  mov r0, r1
+@  mov r0, r1
 NoCap:
 strb r0, [r6, #5] @write hp change
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-add r0, r2 @new hp
-strb r0, [r4, #0x13]
+@mov r2, #0x13
+@ldrsb r2, [r4,r2] @curr hp
+@add r0, r2 @new hp
+@strb r0, [r4, #0x13]
 
 End:
 pop {r4-r7}

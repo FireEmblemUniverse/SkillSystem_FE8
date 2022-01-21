@@ -108,16 +108,16 @@ mov	r0,#0x13
 ldrb	r0,[r4,r0]	@remaining hp
 add	r0,r2 @new hp; either r0 + damage or r0 + defender current hp
 
-mov	r1,#0x12
-ldrb	r1,[r4,r1]	@max hp
-cmp	r0,r1
-blo	notmaxed
-mov	r0,r1
+@mov	r1,#0x12
+@ldrb	r1,[r4,r1]	@max hp
+@cmp	r0,r1
+@blo	notmaxed
+@mov	r0,r1
 notmaxed:
 strb	r0,[r4,#0x13]
-ldrb	r1,[r6,#5]
-add	r2,r1
-strb	r2,[r6,#5]	@hp change
+@ldrb	r1,[r6,#5]
+@add	r2,r1
+@strb	r2,[r6,#5]	@hp change
 
 End:
 pop {r4-r7}

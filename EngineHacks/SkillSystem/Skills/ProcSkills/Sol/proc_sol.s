@@ -46,7 +46,7 @@ lsr     r1,r1,#0xD                @ 0802B42E 0B49
 mov     r0, #0x41
 lsl     r0, #8           @0x4100, attacker skill activated and hp draining
 orr     r1, r0
-ldr     r0,=#0xFFF80000                @ 0802B434 4804     
+ldr     r0,=0xFFF80000                @ 0802B434 4804     
 and     r0,r2                @ 0802B436 4010     
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018  
@@ -95,21 +95,21 @@ add r0, r1
 
 checkCap:
 @now r0 is total HP change - is this higher than the max HP?
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-mov r1, #0x12
-ldrsb r1, [r4,r1] @max hp
-sub r1, r2 @damage taken
-cmp r1, r0
-bge NoCap
-  @if hp will cap, set r0 to damage taken
-  mov r0, r1
+@mov r2, #0x13
+@ldrsb r2, [r4,r2] @curr hp
+@mov r1, #0x12
+@ldrsb r1, [r4,r1] @max hp
+@sub r1, r2 @damage taken
+@cmp r1, r0
+@bge NoCap
+@  @if hp will cap, set r0 to damage taken
+@  mov r0, r1
 NoCap:
 strb r0, [r6, #5] @write hp change
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-add r0, r2 @new hp
-strb r0, [r4, #0x13]
+@mov r2, #0x13
+@ldrsb r2, [r4,r2] @curr hp
+@add r0, r2 @new hp
+@strb r0, [r4, #0x13]
 
 End:
 pop {r4-r7}
