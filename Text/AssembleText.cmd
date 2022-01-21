@@ -1,9 +1,9 @@
 
 @echo off
 
-set "textprocess=%~dp0..\Tools\TextProcess\text-process-classic"
-set "parsefile=%~dp0..\Event Assembler\Tools\ParseFile.exe"
+set "textprocess=%~dp0..\Tools\TextProcess\text-process-classic.exe"
+set "parsefile=%~dp0..\EventAssembler\Tools\ParseFile.exe"
 
-echo: | ("%textprocess%" "text_buildfile.txt" --parser-exe "%parsefile%")
+  echo: | ("%textprocess%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
 
 pause

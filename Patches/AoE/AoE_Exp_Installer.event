@@ -36,7 +36,13 @@
 
 #endif
 
+#ifndef AoE_RamAddressDef
+	#define AoE_RamAddressDef "0x0203F101"
+#endif 
 
+#ifndef AoE_EntrySizeDef
+	#define AoE_EntrySizeDef 16
+#endif 
 
 
 ALIGN 4
@@ -46,11 +52,12 @@ AoE_GrantExp:
 POP 
 #incbin "AoE_GrantExp.dmp" 
 POIN AoE_GrantExpEvent 
+WORD AoE_RamAddressDef 
+WORD AoE_EntrySizeDef
+POIN AoE_Table
 
 AoE_GrantExpEvent:
 GiveEXP((-1))
 NoFade
 ENDA
-
-
 

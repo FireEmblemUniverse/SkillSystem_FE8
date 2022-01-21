@@ -16,6 +16,11 @@
 .equ GetUnit, 0x8019430 
 
 
+.equ AoE_RamAddress, AoE_GrantExpEvent+4
+.equ AoE_EntrySize, AoE_RamAddress+4
+.equ AoE_Table, AoE_EntrySize+4 
+
+
 .type AoE_GrantExp, %function 
 .global AoE_GrantExp 
 AoE_GrantExp:
@@ -26,9 +31,28 @@ mov r6, r9
 push {r6}
 mov r5, r10 
 push {r5} 
+mov r4, r11 
+push {r4} 
 mov r5, #0 @ units found counter ? 
 mov r8, r5 
 mov r10, r5 @ exp 
+mov r11, r5 @ not healing default 
+
+
+ldr r0, AoE_RamAddress @ ram address used 
+ldrb r0, [r0] @ Ram address of previously stored effect index 
+ldr r3, AoE_EntrySize 
+mul r3, r0 
+ldr r0, AoE_Table
+add r0, r3 
+ldrb r1, [r0, #9]  @ #ConfigByte
+
+mov r0, #1 @#HealBool, 0x01 @
+tst r0, r1 
+beq NotHealing 
+mov r0, #1 @ Healing True 
+mov r11, r0 @ save 
+NotHealing:
 
 
 ldr r3, =CurrentUnit
@@ -101,6 +125,10 @@ beq XLoop
 ldr r3, =CurrentUnit
 ldr r3, [r3]
 
+mov r2, r11 @ are we healing units 
+cmp r2, #1 
+beq Healing 
+
 @ are units allied 24D8C
 mov r2, #0x80 
 ldrb r1, [r0, #0x0B] @ deployment byte 
@@ -152,9 +180,27 @@ mov r10, r0
 b BreakYLoop
 NoCap: 
 mov r10, r0 
-
-
 b XLoop
+
+Healing: 
+@ are units allied 24D8C
+mov r2, #0x80 
+ldrb r1, [r0, #0x0B] @ deployment byte 
+ldrb r3, [r3, #0x0B] @ deployment byte 
+and r1, r2 
+and r2, r3 
+mov r3, #0 
+cmp r1, r2 
+beq Allied
+mov r3, #1 @ Allied 
+b XLoop 
+Allied: @ only grant exp for healing allied units 
+mov r0, r10 
+mov r1, #10 
+add r0, r1 @ grant 10 exp per unit healed 
+mov r10, r0 
+b XLoop 
+
 
 BreakYLoop:
 mov r0, r10 
@@ -173,6 +219,8 @@ NoExp:
 
 @ count tiles/units effected in move map 
 @ grant exp to active unit 
+pop {r4}
+mov r11, r4 
 pop {r5} 
 mov r10, r5 
 pop {r6} 

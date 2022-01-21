@@ -137,7 +137,7 @@ Animation_IDByte, #15
 
 #define SmallTriangle 4 
 
-#include "AoE_Exp_Installer.event" 
+
 
 
 ALIGN 4 
@@ -228,7 +228,7 @@ BYTE 9 9 // Index of RangeMask, AnimationALL,
 */
 AoE_TableTerminator
 
-
+#include "AoE_Exp_Installer.event" 
 
 
 ALIGN 4
