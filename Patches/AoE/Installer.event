@@ -145,8 +145,8 @@ AoE_Table:
 // Entry 0 - RecoverMove 
 BYTE 0 0 0 0
 BYTE 0 0 0 RecoverMove 
-BYTE 0 0 //HealBool|MagBasedBool //|FixedDamageBool
-BYTE 40 40 // damage range 
+BYTE 0 HealBool|MagBasedBool //|FixedDamageBool
+BYTE 0 0 // damage range 
 BYTE 0 1 // Attack range 
 BYTE SmallLine HealingAnimationID // Index of RangeMask, Animation
 

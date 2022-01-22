@@ -428,11 +428,17 @@ GOTO 200
 
 Label 37 
 CompareTactText(LexykName) // KyleItWithFire
-BNE 199 rC r7
+BNE 38 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsLexyk|IsPointer
 GOTO 200
 
+Label 38
+CompareTactText(TubaTunaName) // KyleItWithFire
+BNE 199 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsTubaTuna|IsPointer
+GOTO 200
 
 
 Label 199
@@ -638,6 +644,10 @@ UnitsLexyk: // KyleItWithFire
 UNIT 0x02  GastlyID BonusUnitParameters
 UNIT
 
+ALIGN 4
+UnitsTubaTuna:
+UNIT 0x02 RhyhornID BonusUnitParameters 
+UNIT 
 
 
 

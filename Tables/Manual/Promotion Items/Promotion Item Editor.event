@@ -1,33 +1,33 @@
-HeroCrestList:
-BYTE Mercenary Mercenary_F Myrmidon Myrmidon_F Fighter Journeyman_2 Fighter_F 0x0
+MoonStoneList:
+BYTE ClefairyID JigglypuffID NidorinaID NidorinoID 0x0
 
-KnightCrestList:
-BYTE Cavalier Cavalier_F LanceArmor AxeArmor Recruit_2 FreeKnight LanceKnight AxeKnight Soldier 0x0
+LinkStoneList:
+BYTE KadabraID MachokeID HaunterID GravellerID 0x0
 
-OrionsBoltList:
-BYTE Archer Archer_F ArchKnight 0x0
+ThunderStoneList:
+BYTE PikachuID EeveeID 0x0
 
-ElysianWhipList:
-BYTE PegasusKnight Medic WyvernRider WyvernRider_F 0x0
+LeafStoneList:
+BYTE WeepinbellID GloomID ExeggcuteID 0x0
 
-GuidingRingList:
-BYTE Priest Cleric Mage Mage_F Monk Shaman Shaman_F Troubadour Pupil_2 LightMage_F 0x0
+WaterStoneList:
+BYTE PoliwhirlID ShellderID StaryuID EeveeID 0x0
 
 MasterSealList:
-BYTE Mercenary Mercenary_F Myrmidon Myrmidon_F Fighter Pirate Brigand Cavalier Cavalier_F Knight Knight_F Archer Archer_F PegasusKnight WyvernRider WyvernRider_F Priest Cleric Mage Mage_F Shaman Shaman_F Troubadour Thief Journeyman_2 Pupil_2 Recruit_2 Monk FreeKnight LanceKnight AxeKnight AxeArmor Soldier Fighter_F ArchKnight LightMage_F 0x0
-
-HeavenSealList:
+BYTE 0x0
+SacredStoneList:
 BYTE 0x0
 
-OceanSealList:
-BYTE Thief Pirate Brigand 0x0
+FireStoneList:
+BYTE VulpixID GrowlitheID EeveeID 0x0
 
 LunarBraceList:
-BYTE EphraimLord 0x0
+BYTE 0x0
 
 SolarBraceList:
-BYTE EirikaLord 0x0
+BYTE 0x0
 
+/*
 #define PromoItem(Index,List) "ORG PromotionItemTable + 0x4 + (Index * 12); POIN List"
 
 PUSH
@@ -42,31 +42,6 @@ PromoItem(0x7,OceanSealList)
 PromoItem(0x8,LunarBraceList)
 PromoItem(0x9,SolarBraceList)
 POP
-
-
-/*
-PUSH
-
-ORG 0x29398
-POIN HeroCrestList
-ORG 0x293A0
-POIN KnightCrestList
-ORG 0x293A8
-POIN OrionsBoltList
-ORG 0x293B0
-POIN ElysianWhipList
-ORG 0x293B8
-POIN GuidingRingList
-ORG 0x293C0
-POIN MasterSealList
-ORG 0x29408
-POIN OceanSealList
-ORG 0x291D0
-POIN LunarBraceList
-ORG 0x29214
-POIN SolarBraceList
-ORG 0x293D8 // Unused, for item 0x8a
-BYTE 0x0 0x0 0x0
-
-POP
 */
+
+
