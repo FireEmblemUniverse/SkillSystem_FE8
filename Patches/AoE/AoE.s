@@ -760,9 +760,9 @@ ldrh r0, [r6, r5] @ sfx/bgm ID
 cmp r0, #0 
 beq NoSound
 
-mov r1, #0 
-blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown	@{U}
-@blh 0x08002424  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown	@{J}
+blh 0x080D01FC   @m4aSongNumStart r0=music id:SOUND // Seems to work fine for SFX 	{U}
+@blh 0x080D4EF4   @m4aSongNumStart r0=music id:SOUND // Seems to work fine for SFX	{J}
+
 
 
 NoSound: 

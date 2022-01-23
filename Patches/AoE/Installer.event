@@ -240,7 +240,7 @@ SHORT 1 // so we don't hide data in febuilder early
 
 POIN 0 //Entry 1 
 POIN AoE_HealingAnimation
-SHORT 0 // Bgm  
+SHORT 0xb7 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 2
