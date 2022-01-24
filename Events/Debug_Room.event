@@ -220,7 +220,7 @@ GIVETOMAIN 0
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(27, True, 0x145) // all 
+AutoLevelUnits(13, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
@@ -252,7 +252,7 @@ Write_Byte(10, YCoordNewArea)
 MNC2 CinnabarCh
 
 
-MNC2 LavendarCh
+//MNC2 LavendarCh
 
 //MNC2 Route4ECh
 //MNC2 SSAnneCh 

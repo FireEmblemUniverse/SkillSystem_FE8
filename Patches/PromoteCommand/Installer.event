@@ -1,0 +1,50 @@
+#include "eastdlib.event" 
+
+// Add a menu command to use. 
+// MenuCommand(DebugTextHere, EscapeDesc, BlueText, PromoteUsability, PromoteEffect) // Always usable 
+
+// Default is usable while level 15+. Unusable by classes with the "Promoted" bitflag. 
+#define RequiredLevelDef 15
+
+
+PromotionMenuEvent:
+ASMC PromoteStart
+ASMC PromoteFinish 
+NoFade 
+ENDA 
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteUsability:
+POP
+#incbin "PromoteUsability.dmp"
+WORD RequiredLevelDef
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteEffect:
+POP
+#incbin "PromoteEffect.dmp"
+POIN PromotionMenuEvent
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteStart:
+POP
+#incbin "PromoteStart.dmp"
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteFinish:
+POP
+#incbin "PromoteFinish.dmp"
+
+
+
+
