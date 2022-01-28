@@ -1,10 +1,30 @@
 #include "eastdlib.event" 
 
 // Add a menu command to use. 
-// MenuCommand(DebugTextHere, EscapeDesc, BlueText, PromoteUsability, PromoteEffect) // Always usable 
+// 	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
 
-// Default is usable while level 15+. Unusable by classes with the "Promoted" bitflag. 
-#define RequiredLevelDef 15
+/*
+## UM_Promote
+ Promote[X]
+ 
+## UM_PromoteDesc
+Promote this unit.[X]
+*/
+
+
+ALIGN 4
+PromotionMenuList: // Size: 8 bytes per entry. 
+//BYTE Unit Class RequiredLevel ChapterID BoolException 0; SHORT Flag 
+// UnitID to match
+// ClassID to match
+// Must be this level or higher
+// Must be in this chapter or past it
+// If true, units meeting the criteria *will not* be able to use the command. If false, they *will* be able to use the command. 
+// Padding of 0. 
+// Short of Flag. 
+BYTE 0 0 0 0 	False 0 ; SHORT 0
+BYTE 1 0 0 0xff True 0 ; SHORT 0
+WORD 0xFFFFFFFF 0xFFFFFFFF // Terminator. 
 
 
 PromotionMenuEvent:
@@ -20,7 +40,7 @@ ORG CurrentOffset+1
 PromoteUsability:
 POP
 #incbin "PromoteUsability.dmp"
-WORD RequiredLevelDef
+POIN PromotionMenuList 
 
 ALIGN 4
 PUSH 

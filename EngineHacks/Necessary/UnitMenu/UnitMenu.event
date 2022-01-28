@@ -74,7 +74,7 @@ UnitMenuTable:
     
 #ifdef DEBUG_MODE
 	//MenuCommand(DebugTextHere, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
-	MenuCommand(DebugTextHere, EscapeDesc, BlueText, PromoteUsability, PromoteEffect) // Always usable 
+	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) // Always usable 
 #endif 
 
 
