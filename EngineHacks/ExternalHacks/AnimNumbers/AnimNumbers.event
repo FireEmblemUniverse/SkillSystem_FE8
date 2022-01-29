@@ -1,0 +1,50 @@
+#ifdef BATTLE_ANIMATION_NUMBERS
+
+  PUSH
+  
+    // Re-load Miss/NoDamage palette.
+    ORG 0x6C6C0
+    callHack_r3(BAN_ReloadPal)
+  
+    // Start the Anim numbers AISes.
+    ORG 0x553C0
+    callHack_r0(BAN_StartAIS)
+    
+    // Add a custom zero digit to the Stat-up big digits.
+    ORG 0x5C85F8
+    WORD 0x00000000 0x00000000 0x00000000 0x88800000
+    WORD 0xAAD88000 0x8DD1D800 0x08111800 0x08111D80
+    WORD 0x00000000 0x00000000 0x00000000 0x00000888
+    WORD 0x00088DAA 0x008D1DD8 0x00811180 0x08D11180
+    ORG 0x5C89F8
+    WORD 0x08BBBB80 0x08BBBB80 0x08AAAD80 0x08AAA800
+    WORD 0x8DAAD800 0x11D88000 0x88800000 0x00000000
+    WORD 0x08BBBB80 0x08BBBB80 0x08DAAA80 0x008AAA80
+    WORD 0x008DAAD8 0x00088D11 0x00000888 0x00000000
+  
+  POP
+  
+  ALIGN 4
+  BAN_ReloadPal:
+  #include "asm/ReloadPal.lyn.event"
+  
+  ALIGN 4
+  BAN_StartAIS:
+  #include "asm/StartAIS.lyn.event"
+  
+  // Palettes
+  ALIGN 4
+  BAN_DigitsPalette:
+  WORD 0x7BDE001F 0x57D30000 0x00000000 0x00000000
+  WORD 0x000014A5 0x6BD857D3 0x27CB0000 0x00000000
+  WORD 0x7BDE03E0 0x567E0000 0x00000000 0x00000000
+  WORD 0x000014A5 0x6B1E567E 0x257E0000 0x00000000
+  
+  // FrameData for the AISes.
+  #include "FrameData/Digits1FD.event"
+  #include "FrameData/Digits2FD.event"
+  #include "FrameData/Digits3FD.event"
+  #include "FrameData/Digits4FD.event"
+  #include "FrameData/Digits5FD.event"
+
+#endif // BATTLE_ANIMATION_NUMBERS

@@ -20,6 +20,12 @@
 // = HACK INSTALLATION CONFIGURATION =
 // ===================================
 
+// If uncommented, damage numbers will display over participants' heads during battle animations.
+#define BATTLE_ANIMATION_NUMBERS
+
+//ID of flag to use for hiding damage numbers, if enabled above.
+#define BATTLE_ANIMATION_NUMBERS_FLAG 0xEE
+
 // If commented, slayer and effectiveness will remain the same as they are in vanilla
 // Look at SkillSystem/Skills/EffectivenessSkills/Nullify/_README.txt for the full ramifications of uncommenting this
 #define ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK

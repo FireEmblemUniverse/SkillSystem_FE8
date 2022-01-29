@@ -13,6 +13,12 @@
 @r4 is the action struct
 @193a4 heals the unit in r0 by the amount in r1
 
+@ Store uncapped heal value in battle buffer round +0x6
+ldr	r2,=0x802ec18
+ldr	r2,[r2]		@203a608 - battle buffer pointer
+ldr	r2,[r2]
+strh r5, [r2, #0x6]
+
 @calculate amount healed:
 ldrb	r0,[r4, #0xd]	@target number
 blh	0x8019430	@get target data
