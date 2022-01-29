@@ -31,6 +31,8 @@ $RECYCLE.BIN/
 *.ss7
 *.ss8
 *.ss9
+*.sym
+!Tools/sym
 
 # python cache
 __pycache__
