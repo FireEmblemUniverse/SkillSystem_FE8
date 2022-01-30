@@ -1,12 +1,12 @@
-@ Hooked at 0x553C0.
-@ Start Damage/Heal numbers AISes.
-@ r5: Recipient's AIS. Can be initiator if devil effect.
-@ r7: Opposing AIS.
-@ r10: Reserved.
-@ r0-r4, r6, & r9 are free.
+@ Start Damage/Heal numbers animations. Args:
+@   r0: AIS.
+@   r1: 0 if OverDamage or OverHeal (recipient). 1 Otherwise.
 .thumb
 
-push  {r14}
+push  {r4-r7, r14}
+mov   r4, r0
+mov   r5, r1
+
 
 ldr   r0, =BATTLE_ANIMATION_NUMBERS_FLAG
 lsl   r0, #0x5
@@ -17,61 +17,42 @@ cmp   r0, #0x0
 bne   End
 
   @ Flag unset, display damage numbers.
-  ldrh  r0, [r5, #0xE]
+  ldrh  r0, [r4, #0xE]
   sub   r0, #0x1
   ldr   r1, =0x802b90a      @ &BattleBufferWidth.
   ldrb  r1, [r1]
   mul   r0, r1
   ldr   r1, =0x802aec4      @ &Battle buffer.
   ldr   r1, [r1]
-  add   r4, r0, r1          @ Current round in battle buffer.
+  add   r6, r0, r1          @ Current round in battle buffer.
   
-  @ Recipient's AIS.
-  mov   r0, r5
+  mov   r0, r4
   ldr   r3, =GetAISSubjectId
   bl    GOTO_R3
-  mov   r6, r0
-  mov   r1, #0x6
-  ldsh  r1, [r4, r1]
-  bl    PutDigitsInVRAM
-  cmp   r0, #0x0
-  beq   Next
-    mov   r3, r0
-    mov   r2, r6
-    sub   r1, r6, #0x1
-    neg   r1, r1
-    add   r1, r1, #0x5
-    mov   r0, r5
-    bl    StartAIS
-  Next:
-
-  @ Opposing AIS.
-  mov   r0, r7
-  ldr   r3, =GetAISSubjectId
-  bl    GOTO_R3
-  mov   r6, r0
-  mov   r1, #0x5
-  ldsb  r1, [r4, r1]
+  mov   r7, r0
+  cmp   r5, #0x0
+  bne   CapDmgHeal
+    mov   r1, #0x6
+    ldsh  r1, [r6, r1]      @ OverDamage/OverHeal.
+    b     IfThenElse
+  CapDmgHeal:
+    mov   r1, #0x5
+    ldsb  r1, [r6, r1]      @ Capped damage/heal.
+  IfThenElse:
   bl    PutDigitsInVRAM
   cmp   r0, #0x0
   beq   End
     mov   r3, r0
-    mov   r2, r6
-    sub   r1, r6, #0x1
+    mov   r2, r7
+    sub   r1, r7, #0x1
     neg   r1, r1
     add   r1, r1, #0x5
-    mov   r0, r7
+    mov   r0, r4
     bl    StartAIS
 
-@ Vanilla. Overwritten by hook.
-End:
-mov   r0, r5
-ldr   r3, =StartEfxHpBar
-bl    GOTO_R3
-mov   r0, r7
-ldr   r3, =0x805A269
-bl    GOTO_R3
 
+End:
+pop   {r4-r7}
 pop   {r1}
 bx    r1
 GOTO_R3:

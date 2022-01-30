@@ -66,10 +66,18 @@ blh	0x8019430
 mov	r1,r5
 blh	0x80193a4
 
-@now cap off hp of self
+@now cap off hp of self (healer).
+@and write amount to heal to healer.
 ldrb	r0,[r4,#0xc]
 blh	0x8019430
 blh	0x8019150
+ldr	r2,=0x802ec18
+ldr	r2,[r2]		@203a608 - battle buffer pointer
+ldr	r2,[r2]
+ldr	r1,=0x203a4ec @attacker
+ldrb  r1, [r1, #0x13]
+sub   r1, r0, r1  @post-battle hp - current hp.
+strb	r1,[r2,#5]
 
 @and again for the ally, and fetch currhp
 ldrb	r0,[r4,#0xd]
@@ -80,13 +88,10 @@ ldr	r2,[r2]		@203a608 - battle buffer pointer
 ldr	r2,[r2]
 ldr	r5,=0x203a56c
 ldrb	r1,[r5,#0x13]
-sub	r1,r0		@current hp - post-battle hp
+sub	r1,r0		@current hp - post-battle hp. This one needs to be negative.
 strb	r1,[r2,#3]
 
-@now write amount to heal
-neg 	r1,r1
-strb	r1,[r2,#5]
-@and set the heal flag
+@set the heal flag
 ldr     r3,[r2]
 lsl     r1,r3,#0xD                @ 0802B42C 0351     
 lsr     r1,r1,#0xD                @ 0802B42E 0B49     
