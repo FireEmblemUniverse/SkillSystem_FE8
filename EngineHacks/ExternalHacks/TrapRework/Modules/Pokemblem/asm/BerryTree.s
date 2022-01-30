@@ -176,13 +176,15 @@ HeldBerryEffect:
 push {r4-r6,r14}
 mov r4,r0 @r4 = unit
 mov r5,r1 @r5 = heal %
-mov r2, #0x12  
-ldrb r0, [r4, r2]
-mov r2, #0x13  
-ldrb r1, [r4, r2]
-lsr r0, #1 @ half of max hp 
+ldrb r0, [r4, #0x12] @ Max 
+ldrb r1, [r4, #0x13] @ Current HP 
+mov r2, r0 
+add r2, #3 @ for rounding 
+lsr r2, #2 @ quarter of max hp 
+sub r0, r2 @ 3/4 of max hp 
+
 cmp r1, r0 
-bge DontHeal
+bge DontHeal @ If current hp is >= 3/4 of max hp, don't heal. 
 
 mov r3, #0x1C 
 mov r2, #0x27

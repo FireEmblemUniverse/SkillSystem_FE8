@@ -94,12 +94,12 @@ mvn		r1,r1
 and		r0,r1
 strb	r0, [r5, #0xC]
 
-@give defender 3/8 hp 
+@give defender 5/8 hp 
 ldrb r0, [r5, #0x12] 
 add r0, #3 @for generous rounding purposes 
 add r1, r0, #4 @for rounding purposes 
 lsr r1, r1, #3 @1/8 hp 
-lsr r0, #2 @1/4 hp 
+lsr r0, #1 @2/4 hp 
 add r0, r1 
 strb 	r0,[r5,#0x13]	
 

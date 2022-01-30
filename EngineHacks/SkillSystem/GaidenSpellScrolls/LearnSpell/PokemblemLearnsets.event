@@ -2,8 +2,10 @@
 ALIGN 4
 BulbasaurLearnset:
 // BYTE Level Move 
+BYTE 1 GuardMove
 BYTE 1 Tackle // Goes at the start of each learnset
-BYTE 3 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
+
+BYTE 4 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
 BYTE 7 VineWhip
 //BYTE 9 LeechSeed
 BYTE 13 PoisonPowder
@@ -19,8 +21,9 @@ BYTE 0 0// Goes at the end of each learnset
 
 ALIGN 4
 IvysaurLearnset:
+BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 3 Growl  
+BYTE 4 Growl  
 BYTE 7 VineWhip
 //BYTE 9 LeechSeed
 BYTE 13 PoisonPowder
@@ -35,8 +38,9 @@ BYTE 0 0
 
 ALIGN 4
 VenusaurLearnset:
+BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 3 Growl  
+BYTE 4 Growl  
 BYTE 7 VineWhip
 //BYTE 9 LeechSeed
 BYTE 13 PoisonPowder
@@ -51,8 +55,9 @@ BYTE 0 0
 
 ALIGN 4
 CharmanderLearnset:
+BYTE 1 GuardMove
 BYTE 1 Scratch
-BYTE 1 Growl
+BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
 BYTE 25 FlameWheel
@@ -63,8 +68,9 @@ BYTE 0 0
 
 ALIGN 4
 CharmeleonLearnset:
+BYTE 1 GuardMove
 BYTE 1 Scratch
-BYTE 1 Growl
+BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
 BYTE 25 FlameWheel
@@ -75,9 +81,10 @@ BYTE 0 0
 
 ALIGN 4
 CharizardLearnset:
+BYTE 1 GuardMove
 BYTE 1 Scratch
-BYTE 1 Growl
-BYTE 1 AirSlash
+BYTE 4 Growl
+BYTE 4 AirSlash
 BYTE 7 Ember
 BYTE 14 DragonRage
 BYTE 25 FlameWheel
@@ -89,6 +96,7 @@ BYTE 0 0
 
 ALIGN 4
 SquirtleLearnset:
+BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip 
 BYTE 7 Bubble
@@ -104,6 +112,7 @@ BYTE 0 0
 
 ALIGN 4
 WartortleLearnset:
+BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip 
 BYTE 7 Bubble
@@ -119,6 +128,7 @@ BYTE 0 0
 
 ALIGN 4
 BlastoiseLearnset:
+BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip 
 BYTE 7 Bubble
@@ -134,17 +144,17 @@ BYTE 0 0
 
 ALIGN 4
 CaterpieLearnset:
-BYTE 1 StringShot
-BYTE 3 Tackle
+BYTE 1 Tackle
+BYTE 3 StringShot
 BYTE 7 Harden 
 BYTE 15 BugBite
 BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
-BYTE 1 StringShot
+BYTE 1 Tackle
 BYTE 1 Harden 
-BYTE 3 Tackle
+BYTE 3 StringShot
 BYTE 10 Confusion
 BYTE 15 BugBite
 //BYTE 7 Guard
@@ -170,7 +180,7 @@ BYTE 0 0
 ALIGN 4
 WeedleLearnset:
 BYTE 1 PoisonSting
-BYTE 1 StringShot
+BYTE 2 StringShot
 BYTE 4 Tackle 
 BYTE 7 Harden 
 BYTE 15 BugBite
@@ -180,7 +190,7 @@ ALIGN 4
 KakunaLearnset:
 BYTE 1 Harden 
 BYTE 1 PoisonSting 
-BYTE 1 StringShot
+BYTE 2 StringShot
 BYTE 4 Tackle
 BYTE 10 FuryCutter
 BYTE 15 BugBite
@@ -250,8 +260,8 @@ BYTE 0 0
 ALIGN 4
 RattataLearnset:
 BYTE 1 Tackle
-BYTE 2 TailWhip 
-BYTE 4 QuickAttack
+BYTE 4 TailWhip 
+BYTE 6 QuickAttack
 BYTE 10 Bite
 BYTE 16 ThiefAtt 
 BYTE 22 HyperFang
@@ -261,8 +271,8 @@ BYTE 0 0
 ALIGN 4
 RaticateLearnset:
 BYTE 1 Tackle
-BYTE 2 TailWhip 
-BYTE 4 QuickAttack
+BYTE 4 TailWhip 
+BYTE 6 QuickAttack
 BYTE 10 Bite
 BYTE 16 ThiefAtt 
 BYTE 22 HyperFang
@@ -272,7 +282,7 @@ BYTE 0 0
 ALIGN 4
 SpearowLearnset:
 BYTE 1 Peck
-BYTE 2 Growl
+BYTE 3 Growl
 BYTE 5 Leer
 BYTE 9 DoubleHit
 BYTE 15 WingAttack
@@ -286,7 +296,7 @@ BYTE 0 0
 ALIGN 4
 FearowLearnset:
 BYTE 1 Peck
-BYTE 2 Growl
+BYTE 3 Growl
 BYTE 5 Leer
 BYTE 9 DoubleHit
 BYTE 15 WingAttack
@@ -833,8 +843,8 @@ BYTE 0 0
 ALIGN 4
 MankeyLearnset:
 BYTE 1 Scratch 
-BYTE 1 LowKick 
-BYTE 1 Leer 
+BYTE 4 LowKick 
+BYTE 6 Leer 
 BYTE 9 Doubleslap
 BYTE 13 KarateChop
 BYTE 17 SeismicToss
@@ -849,8 +859,8 @@ BYTE 0 0
 ALIGN 4
 PrimeapeLearnset:
 BYTE 1 Scratch 
-BYTE 1 LowKick 
-BYTE 1 Leer 
+BYTE 4 LowKick 
+BYTE 6 Leer 
 BYTE 9 Doubleslap
 BYTE 13 KarateChop
 BYTE 17 SeismicToss
