@@ -214,6 +214,10 @@ bic r1, r2 @ Show SMS @
 str r1, [r3, #0x0C] 
 
 Exit:
+ldr r0, =0x202E4D8 @ Unit map	{U}
+ldr r0, [r0] 
+mov r1, #0
+blh 0x080197E4 @ FillMap 
 blh 0x08019FA0   //UpdateUnitMapAndVision
 blh 0x0801A1A0   //UpdateTrapHiddenStates
 blh  0x080271a0   @SMS_UpdateFromGameData

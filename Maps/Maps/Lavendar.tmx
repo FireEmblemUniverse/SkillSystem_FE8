@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="24" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="24" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="lavendar processed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/Lavendar" trans="ffffff" width="512" height="512"/>
  </tileset>
@@ -245,7 +245,7 @@
    <tile gid="46"/>
    <tile gid="46"/>
    <tile gid="46"/>
-   <tile gid="47"/>
+   <tile gid="46"/>
    <tile gid="48"/>
    <tile gid="65"/>
    <tile gid="42"/>
@@ -842,7 +842,7 @@
    <tile gid="199"/>
    <tile gid="37"/>
    <tile gid="199"/>
-   <tile gid="47"/>
+   <tile gid="73"/>
    <tile gid="39"/>
    <tile gid="11"/>
    <tile gid="290"/>
@@ -923,7 +923,7 @@
    <tile gid="325"/>
    <tile gid="325"/>
    <tile gid="326"/>
-   <tile gid="47"/>
+   <tile gid="73"/>
    <tile gid="39"/>
    <tile gid="1"/>
    <tile gid="100"/>
@@ -1005,7 +1005,7 @@
    <tile gid="37"/>
    <tile gid="199"/>
    <tile gid="37"/>
-   <tile gid="47"/>
+   <tile gid="73"/>
    <tile gid="366"/>
    <tile gid="367"/>
    <tile gid="368"/>
@@ -1013,7 +1013,7 @@
    <tile gid="386"/>
    <tile gid="230"/>
    <tile gid="42"/>
-   <tile gid="47"/>
+   <tile gid="73"/>
    <tile gid="199"/>
    <tile gid="37"/>
    <tile gid="199"/>

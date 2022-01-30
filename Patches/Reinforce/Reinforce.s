@@ -249,7 +249,10 @@ bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
 
 
 
-
+@ldr r0, =0x202E4D8 @ Unit map	{U}
+@ldr r0, [r0] 
+@mov r1, #0
+@blh 0x080197E4 @ FillMap 
 @blh 0x08019FA0   //UpdateUnitMapAndVision
 @blh 0x0801A1A0   //UpdateTrapHiddenStates
 GotoNextLoop:

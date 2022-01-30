@@ -73,8 +73,7 @@ UnitMenuTable:
       //MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
     
 #ifdef DEBUG_MODE
-	//MenuCommand(DebugTextHere, EscapeDesc, BlueText, 0x804F449, DebugCommandEffect) // Always usable 
-	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) // Always usable 
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
 #endif 
 
 
@@ -101,9 +100,6 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 //MenuCommand(UM_GaidenWhiteMagic,UM_GaidenMagicDesc,NormalText,GaidenWhiteMagicUMUsability,GaidenWhiteMagicUMEffect,GaidenWhiteMagicUMHover,GaidenMagicUMUnhover)
 #endif // GAIDEN_MAGIC
 
-#ifdef DEBUG_MODE
-
-#endif 
 MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   
 //Disappear after use

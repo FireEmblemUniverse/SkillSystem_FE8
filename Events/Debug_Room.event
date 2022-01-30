@@ -220,23 +220,29 @@ GIVETOMAIN 0
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(13, True, 0x145) // all 
+AutoLevelUnits(21, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
 
 Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(10, YCoordNewArea)    
+Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(28, YCoordNewArea)    
 
 
 //MNC2 PokecenterCh
 //MNC2 PalletCh
 //MNC2 ViridianCh 
-//MNC2 Route1Ch 
+MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
 //MNC2 Route2SCh
+
+
 //MNC2 PokemonTowerF1Ch
+
+
 //MNC2 ViridianForestNCh
 //MNC2 Route4WCh
 //MNC2 MtMoonB3Ch
@@ -249,7 +255,7 @@ Write_Byte(10, YCoordNewArea)
 //MNC2 DiglettsCaveCh
 //MNC2 Route9WCh
 //MNC2 RockTunnelB2Ch
-MNC2 CinnabarCh
+//MNC2 CinnabarCh
 
 
 //MNC2 LavendarCh

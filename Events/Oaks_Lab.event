@@ -435,12 +435,55 @@ GOTO 200
 
 Label 38
 CompareTactText(TubaTunaName) // KyleItWithFire
-BNE 199 rC r7
+BNE 39 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsTubaTuna|IsPointer
 GOTO 200
 
+Label 39
+CompareTactText(MysteryName_001) 
+BNE 40 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsMystery_001|IsPointer
+GOTO 200
 
+Label 40
+CompareTactText(MysteryName_002) 
+BNE 41 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsMystery_002|IsPointer
+GOTO 200
+
+Label 41
+CompareTactText(MysteryName_003) 
+BNE 42 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsMystery_003|IsPointer
+GOTO 200
+
+Label 42
+CompareTactText(MysteryName_004) 
+BNE 43 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsMystery_004|IsPointer
+GOTO 200
+
+Label 43
+CompareTactText(MysteryName_005) 
+BNE 44 rC r7
+ENUT DebugPlaceUnitsFlagMenu
+CALL PlaytesterCommonMessage 
+SVAL r2 UnitsMystery_005|IsPointer
+GOTO 200
+
+Label 44
+CompareTactText(MysteryName_006) 
+BNE 45 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsMystery_006|IsPointer
+GOTO 200
+
+Label 45 
 Label 199
 
 
@@ -532,7 +575,7 @@ UNIT
 
 
 ALIGN 4
-#define BonusUnitParameters "0x1 Level(5,Ally,True) [7,7] 0b 0x1 REDA7R10 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+#define BonusUnitParameters "0x1 Level(5,Ally,True) [7,7] 0b 0x1 REDA7R10 [Berry,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
 
 
 
@@ -649,12 +692,40 @@ UnitsTubaTuna:
 UNIT 0x02 RhyhornID BonusUnitParameters 
 UNIT 
 
+ALIGN 4
+UnitsMystery_001:
+UNIT 0x07 VulpixID BonusUnitParameters 
+UNIT 0x06 JigglypuffID BonusUnitParameters 
+UNIT 0x02 EeveeID BonusUnitParameters 
+UNIT 0x08 MewID BonusUnitParameters 
+UNIT 0x09 GrowlitheID BonusUnitParameters 
+UNIT 
 
 
 
+ALIGN 4
+UnitsMystery_002:
+UNIT 0x02 VenonatID BonusUnitParameters 
+UNIT 
+ALIGN 4
+UnitsMystery_003:
+UNIT 0x02 MagikarpID BonusUnitParameters 
+UNIT 
+ALIGN 4
+UnitsMystery_004:
+UNIT 0x02 PsyduckID BonusUnitParameters 
+UNIT 
+ALIGN 4
+UnitsMystery_005:
+UNIT 0x02 MewtwoID BonusUnitParameters 
+UNIT 
 
 
 
+ALIGN 4
+UnitsMystery_006:
+UNIT 0x02 EeveeID BonusUnitParameters 
+UNIT 
 
 ALIGN 4 
 UnitsAsh: 

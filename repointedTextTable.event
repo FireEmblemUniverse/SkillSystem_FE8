@@ -2,8 +2,8 @@
 // Include this in *before* text (and *before* Tool Helpers)
 
 #define TextTable NewTextTable // define to not conflict with Tool Helpers
-#define MaxTextEntries 0x176F
-
+//#define MaxTextEntries 0x176F
+#define MaxTextEntries 0x2000
 ALIGN 4
 TextTable:
   //#incbin "Text/NewTextTable.dmp"

@@ -5,10 +5,9 @@
 	ORG 0x01000000
 	#include "Music/MusicInstaller.event"
 	MESSAGE Pokemblem music space ends at currentOffset
-
     ORG FreeSpace
-
-    #include "repointedTextTable.event"
+	#include "repointedTextTable.event"
+	#include "Music/Text/ExtraText.event" 
 
     //Text first for Text ID definitions
 	#include "TextDump/InstallTextData.event" //Pokemblem dump

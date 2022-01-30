@@ -2,22 +2,39 @@
 
 	#include "Extensions/Hack Installation.txt" 
 
+#ifndef ALT_TITLESCREEN
 	ALIGN 4
-
 	titlebackgroundimage:
 	//#incext compress "titlebackgroundimage.img.bin"
 	#incbin "titlebackgroundimage.img_comp.dmp"
 	
 	ALIGN 4
-	
 	titlebackgroundpalette:
 	//#incext png2dmp "titlebackgroundimage.png" --palette-only
 	#incbin "titlebackgroundimage.pal.bin"
 	
 	ALIGN 4
-	
 	titlebackgroundtsa:
 	#incbin "titlebackgroundtsa.bin"
+#endif 
+
+#ifdef ALT_TITLESCREEN
+	ALIGN 4
+	titlebackgroundimage:
+	//#incext compress "titlebackgroundimage.img.bin"
+	#incbin "old.img_comp.dmp"
+	
+	ALIGN 4
+	titlebackgroundpalette:
+	//#incext png2dmp "titlebackgroundimage.png" --palette-only
+	#incbin "old.pal.bin"
+	
+	ALIGN 4
+	titlebackgroundtsa:
+	#incbin "old_tsa.bin"
+
+
+#endif 
 
 	
 	ALIGN 4

@@ -45,9 +45,8 @@
 
 #include "SelectTile/Installer.event"
 
-#ifdef DEBUG_MODE 
+
 #include "FastMovement/Installer.event"
-#endif 
 
 
 #include "DangerRadius/FogDR.event" 

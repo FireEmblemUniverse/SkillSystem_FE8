@@ -1,0 +1,36 @@
+#define MysteryName_001 $90D
+#define MysteryName_002 $90E
+#define MysteryName_003 $90F
+#define MysteryName_004 $910
+#define MysteryName_005 $911
+#define MysteryName_006 $912
+
+#include "Tools/Tool Helpers.txt"
+
+
+__TEXTPROCESSMysteryName_001:
+#incbin "text_buildfileMysteryName_001.fetxt.dmp"
+setText(MysteryName_001, __TEXTPROCESSMysteryName_001)
+
+__TEXTPROCESSMysteryName_002:
+#incbin "text_buildfileMysteryName_002.fetxt.dmp"
+setText(MysteryName_002, __TEXTPROCESSMysteryName_002)
+
+__TEXTPROCESSMysteryName_003:
+#incbin "text_buildfileMysteryName_003.fetxt.dmp"
+setText(MysteryName_003, __TEXTPROCESSMysteryName_003)
+
+__TEXTPROCESSMysteryName_004:
+#incbin "text_buildfileMysteryName_004.fetxt.dmp"
+setText(MysteryName_004, __TEXTPROCESSMysteryName_004)
+
+__TEXTPROCESSMysteryName_005:
+#incbin "text_buildfileMysteryName_005.fetxt.dmp"
+setText(MysteryName_005, __TEXTPROCESSMysteryName_005)
+
+__TEXTPROCESSMysteryName_006:
+#incbin "text_buildfileMysteryName_006.fetxt.dmp"
+setText(MysteryName_006, __TEXTPROCESSMysteryName_006)
+
+
+

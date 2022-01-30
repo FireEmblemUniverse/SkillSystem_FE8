@@ -129,36 +129,6 @@ NotACutscene:
 @ We have found a valid case to summon 
 mov r9, r4 @ Save table so we know user input 
 
-@ 202E4DC	Terrain map (tile id)
-@ We need to make our current tile terrain that cannot be crossed 
-@ We restore it at the end 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-
-
-
-
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-
-ldrb r1, [r3, #0x1B] @ Current unit's rescued Deployment byte 
-lsl r0, #8 
-add r0, r1 
-push {r0} @ Save what the terrain & deployment byte should be at current unit's tile eg. ----TRDB (Terrain, Deployment Byte)
-mov r0, #0x00 @ -- tile
-strb r0, [r2] 
-
-
-
-
 
 @ Load each unit loop 
 ldr r5, [r4, #8] @ Poin to unit group 
@@ -167,7 +137,7 @@ LoadEachSummonLoop:
 add r5, #20 @ Next specific unit to load 
 ldr r0, [r5] 
 cmp r0, #0 
-beq GotoRestoreTerrain @ We went through all units, so end 
+beq GotoRestoreCamera @ We went through all units, so end 
 
 
 ldrb r0, [r5] @ unit id 
@@ -233,19 +203,8 @@ mov r6, r0 @ Newly loaded unit
 
 b PlaceSummonedUnit 
 
-GotoRestoreTerrain: 
-b RestoreTerrain 
-
-
-
-
-@GetPreferredPositionForUNIT(uDef, &unit->xPos, &unit->yPos, FALSE);
-@ uDef is the rom unit in the unit group table 
-@ therefore, it shouldn't be used here I don't think 
-@ 0803bde0 FindUnitClosestValidPosition
-@blh  0x803BDE1, r7 @ FindUnitClosestValidPosition
-
-
+GotoRestoreCamera: 
+b RestoreCamera
 
 
 @place most recently loaded unit to valid coord 
@@ -312,14 +271,14 @@ bl WriteDeploymentByteToGivenCoordsUnitMap
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
 ldrh r0, [r3, #0x10] 
-push {r0} @ Save current units coords to the stack. Restore after restoring terrain 
+push {r0} @ Save current units coords to the stack. Restore later 
 
 
 strh r0, [r6, #0x10] @ match coords 
 
 
 
-@ To find the closest / best position, we're going to mimic the parameters and use this vanilla function 
+@ To find the closest / best position, we're going to mimic this vanilla function 
 @ void UnitGetDeathDropLocation(struct Unit* unit, int* xOut, int* yOut)
 @ Newly loaded unit in r6 
 
@@ -467,85 +426,21 @@ NotUsingRelativeCoords:
 @ If the summoner is stuck surrounded by walls for some reason, stuff below would fail 
 
 
-@ 202E4DC	Terrain map (tile id)
-@ We need to make our current tile terrain that cannot be crossed 
-@ We restore it at the end 
+mov r0, r6 @ new unit 
+ldr r1, =MemorySlot 
+add r1, #4*0x0A @ XX in sA
+add r2, r1, #4 @ YY in sB 
+ldr r3, =0xFFFFFFFF @ (-1) as failed value 
+str r3, [r1]
+str r3, [r2] 
 
+@ Based on GetUnitDropLocation  184E0 
+bl FindFreeTile @FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-
-ldrb r1, [r3, #0x1B] @ Current unit's rescued Deployment byte 
-lsl r0, #8 
-add r0, r1 
-push {r0} @ Save what the terrain & deployment byte should be at current unit's tile eg. ----TRDB (Terrain, Deployment Byte)
-mov r0, #0x00 @ -- tile
-strb r0, [r2] 
-
-
-
-
-
-
-ldr r2, =CurrentUnit 
-ldr r2, [r2] @ Current unit ram struct pointer 
-@ldrb r3, [r6, #0x0B] @ Deployment byte
-@push {r3}
-ldrb r0, [r6, #0x0B] @ Deployment byte 
-strb r0, [r2, #0x1B]
-mov r4, r0 @ Store whoever is being rescued lol 
-
-ldrb r0, [r2, #0x0B] @ Deployment byte 
-strb r0, [r6, #0x1B] @ 
-
-ldrh r0, [r2, #0x10] 
-strh r0, [r6, #0x10] @ So units have matching coords 
-
-
-
-
-sub sp, #0x38 
-mov r0, sp 
-b Continue 
-
-ldr r0, =0x859da94 @ Procs SMSJumpAnimation 
-mov r1, #3 
-blh pr6C_New @ Procs SMSJumpAnimation 
-
-
-Continue: 
-push {r0} 
-str r6, [r0, #0x2C] @ First arg: Rescuee's unit struct [202BE94]
-mov r1, r0 
-add r1, #0x30 
-mov r2, r0
-add r2, #0x34 
-
-ldr r0, =CurrentUnit
-ldr r0, [r0] @ Rescuer's ram unit struct pointer [202BE4C]
-
-blh GetUnitDropLocation @ 184E0 
-
-
-pop {r0}
-
-ldr r1, [r0, #0x30] @ X
-ldr r2, [r0, #0x34] @ Y 
-
-
-
-add sp, #0x38 
+ldr r0, =MemorySlot 
+add r0, #4*0x0A 
+ldr r1, [r0] @ X
+ldr r2, [r0, #0x4] @ Y 
 
 cmp r1, #63 
 ble GetUnitDropLocationWasProbablySuccessful 
@@ -587,40 +482,12 @@ mov r1, #1
 blh EventEngine 
 
 
-@ this causes the animations to all to occur at once 
-@ needs parent proc in r0 ? 
-@mov r0, r8 @ Parent proc (event engine) 
-@blh  0x807AD09 @ New6C_SummonGfx_FromActionStructCoords 
 
 
-strb r4, [r6, #0x1B] @ rescued Deployment byte 
-
-@ 202E4DC	Terrain map (tile id)
-@ We restore the terrain now 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-pop {r0}
-
-lsr r1, r0, #8
-strb r1, [r2] @ Terrain restored 
-lsl r0, #24 
-lsr r0, #24 
-strb r0, [r3, #0x1B] @ Rescuer/ee restored 
-
-@ Restore current unit's coords here, too 
+@ Restore current unit's coords here
 pop {r0}
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
-
 strh r0, [r3, #0x10] 
 
 
@@ -632,18 +499,6 @@ strb r0, [r6, #0x10]
 strb r1, [r6, #0x11]
 
 
-
-
-@ unnecessary? 
-@ldr r3, =CurrentUnit 
-@ldr r3, [r3] 
-@strb r0, [r3, #0x10] 
-@strb r1, [r3, #0x11] 
-
-@ldr r3, =0x203A958 
-@strb r0, [r3, #0x13] 
-@strb r1, [r3, #0x14] 
-@
 ldrb r0, [r6, #0x10] @ XX 
 ldrb r1, [r6, #0x11] @ YY 
 ldrb r2, [r6, #0x0B] @ Deployment byte 
@@ -658,8 +513,6 @@ str r0, [r6, #0x0C]
 mov r0, r6 
 bl SendToQueueASMC @ Store unit pointer in queue 
 
-@blh  0x080271a0   @SMS_UpdateFromGameData
-@
 ldr r0, =WarpAnimationEvent
 mov r1, #1 
 blh EventEngine 
@@ -670,38 +523,15 @@ blh EventEngine
 
 @ Restore current unit's coords here, too 
 pop {r0}
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
 strh r0, [r3, #0x10] 
 b LoadEachSummonLoop
 
 	
 	
-RestoreTerrain:
-@ 202E4DC	Terrain map (tile id)
-@ We restore the terrain now 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ X coord 
-ldrb r1, [r3, #0x11] @ Y coord 
-ldr		r2,=TerrainMap	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-pop {r0}
+RestoreCamera:
 
-lsr r1, r0, #8
-strb r1, [r2] @ Terrain restored 
-lsl r0, #24 
-lsr r0, #24 
-strb r0, [r3, #0x1B] @ Rescuer/ee restored 
-
-@ Unhide the active unit 
-@ldrb r0, [r3, #0x0C] @ State 
-@mov r1, #0xFE  @ 0x1 - hide
-@and r0, r1 
-@strb r0, [r3, #0x0C] 
 
 
 @ Restore camera 
@@ -754,6 +584,10 @@ mov r1, #0xFE  @ 0x1 - hide
 and r0, r1 
 strb r0, [r3, #0x0C] 
 
+ldr r0, =0x202E4D8 @ Unit map	{U}
+ldr r0, [r0] 
+mov r1, #0
+blh 0x080197E4 @ FillMap 
 blh 0x08019FA0   //UpdateUnitMapAndVision
 blh 0x0801A1A0   //UpdateTrapHiddenStates
 	
