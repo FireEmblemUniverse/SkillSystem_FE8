@@ -36,7 +36,9 @@ CapturePokemon:	@Make
 @check if dead
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
-beq	Break
+bne Continue 
+b Break 
+Continue:
 
 @check if attacked this turn
 ldrb 	r0, [r6,#0x11]	@action taken this turn
@@ -77,6 +79,12 @@ mov r0, #0
 mov r1, #0x1B
 strb r0, [r5, r1]
 strb r0, [r4, r1] 
+ldr r2, =0x203A4EC @ atkr/dfdr 
+ldr r3, =0x203A56C
+mov r0, #0
+mov r1, #0x1B
+strb r0, [r2, r1]
+strb r0, [r3, r1] 
 
 @remove 'Rescuing' flag 
 ldrb 	r0, [r4, #0xC]

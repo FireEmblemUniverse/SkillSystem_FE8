@@ -55,7 +55,7 @@ STAL 18
 SPAWN_NPC 0xFC [-1,-1] 
 AddAnimTrap(LightRuneTrapID)
 STAL 22 
-RemoveTrap 
+ASMC RemoveLightRuneASMC|1
 
 DISA 0xFC 
 ASMC 0x8026689 //SMS_Init - refresh SMS in case we've gone overboard 

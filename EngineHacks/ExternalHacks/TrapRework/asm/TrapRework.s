@@ -223,11 +223,8 @@ bx r0
 RemoveTrapAtCoordsASMC: @memory slot B = coords
 push {r14}
 ldr r0,=MemorySlotB
-ldr r1,[r0]
-ldr r0,[r0]
-lsl r0,r0,#16
-lsr r0,r0,#16 @r0 = x coord
-lsr r1,r1,#16 @r1 = y coord
+ldrh r1,[r0, #2] @ YY 
+ldrh r0,[r0] @ XX 
 blh GetTrapAt @r0 = pointer to trap data
 blh RemoveTrap
 pop {r0}
@@ -235,6 +232,22 @@ bx r0
 
 .ltorg
 .align
+
+.global RemoveLightRuneASMC
+.type RemoveLightRune, %function 
+
+RemoveLightRuneASMC: @memory slot B = coords
+push {r14}
+ldr r3,=MemorySlotB
+ldrh r1,[r3, #2] @ YY 
+ldrh r0,[r3] @ XX 
+mov r2, #0x0D @ Light Rune 
+blh 0x802e24c @GetSpecificTrapAt @ XX, YY, TrapType 
+blh 0x802ea90 @RemoveLightRune given trap pointer, remove 
+pop {r0}
+bx r0 
+.align 
+
 
 
 
