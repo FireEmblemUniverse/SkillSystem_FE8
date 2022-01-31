@@ -106,8 +106,8 @@ neg r2, r2
 strb r2, [r6, #5] @set damage
 
 @Update HP
-add r0, r3 @new hp
-strb r0, [r4, #0x13]
+@add r0, r3 @new hp
+@strb r0, [r4, #0x13]
 
 
 End:

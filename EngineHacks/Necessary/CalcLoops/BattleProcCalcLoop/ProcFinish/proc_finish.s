@@ -54,7 +54,8 @@ mov r0, #1
 strb r0, [r1] @set hit flag 
 
 CapHealing:
-ldrb r0, [r6, #5] @r0 = hp change for attacker
+mov r1,#5
+ldrb r0, [r6, r1] @r0 = hp change for attacker
 cmp r0,#0
 ble End @if not healing, skip this
 ldrb r1,[r4,#0x12] @attacker max HP
