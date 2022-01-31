@@ -117,6 +117,13 @@ ALIGN 4
 Chargeups:
 #incbin "Chargeups/Chargeups.dmp"
 
+ALIGN 4
+MESSAGE currentOffset
+Proc_StealHP:
+#incbin "LifeSteal/proc_stealhp.dmp"
+POIN SkillTester
+WORD LiquidOozeID
+
 PUSH
 ORG $2b3ec
 jumpToHack(ProcLoopParent)
