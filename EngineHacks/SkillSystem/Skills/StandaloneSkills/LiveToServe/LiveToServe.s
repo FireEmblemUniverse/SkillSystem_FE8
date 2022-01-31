@@ -68,6 +68,7 @@ blh	0x80193a4
 
 @now cap off hp of self
 ldrb	r0,[r4,#0xc]
+
 blh	0x8019430
 blh	0x8019150
 
