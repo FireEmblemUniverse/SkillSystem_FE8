@@ -16,11 +16,6 @@ Proc_Foresight:
 POIN SkillTester
 WORD ForesightID
 
-Proc_StealHP:
-#incbin "LifeSteal/proc_stealhp.dmp"
-POIN SkillTester
-WORD LiquidOozeID
-
 Proc_Sureshot:
 #incbin "SureShot/proc_sureshot.dmp"
 POIN SkillTester
