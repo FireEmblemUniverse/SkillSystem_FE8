@@ -73,9 +73,11 @@ ldsb r1, [r6, r1] @existing hp change
 sub	r0,r1,r0
 cmp	r0,#0x7F
 blo	checkCap
-neg	r1,r0
 mov r2, #0x13
 ldrsb r2, [r4,r2] @curr hp
+neg r1, r1
+add r2, r1
+neg	r1,r0
 cmp	r1,r2
 blo	NoCap
 mov	r0,r2

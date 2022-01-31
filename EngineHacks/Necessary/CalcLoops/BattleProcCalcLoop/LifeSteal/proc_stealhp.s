@@ -4,7 +4,7 @@
   mov lr, \reg
   .short 0xf800
 .endm
-.equ CounterID, SkillTester+4
+.equ LiquidOozeID, SkillTester+4
 .equ d100Result, 0x802a52c
 @ r0 is attacker, r1 is defender, r2 is current buffer, r3 is battle data
 push {r4-r7,lr}
@@ -68,7 +68,7 @@ str     r0,[r6]                @ 0802B43A 6018
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r5 @defender data
-ldr r1, CounterID
+ldr r1, LiquidOozeID
 .short 0xf800
 cmp r0, #0
 beq	doHeal
@@ -78,14 +78,14 @@ mov	r2,#4
 ldsh	r2,[r7,r2]	@damage
 mov	r0,#0x13
 ldrb	r0,[r4,r0]	@remaining hp
-cmp	r2,r0
-blo	noproblem
-@gonna kill, so lower it
-mov	r2,r0
-sub	r2,#1
-mov	r0,#1
+sub   r1, r0, r2
+bhi	noproblem
+  @gonna die, so lower it
+  mov	r2,r0
+  sub	r2,#1
+  mov	r1,#1
 noproblem:
-strb	r0,[r4,#0x13]
+strb	r1,[r4,#0x13]
 neg	r2,r2
 ldrb	r1,[r6,#5]
 add	r2,r1
@@ -156,4 +156,4 @@ b	End
 .ltorg
 SkillTester:
 @POIN SkillTester
-@WORD CounterID
+@WORD LiquidOozeID

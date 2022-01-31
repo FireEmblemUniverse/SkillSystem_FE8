@@ -97,6 +97,7 @@ BYTE 00 00
 ALIGN 4
 
 BishopSkillList:
+BYTE 255 LiveToServeID
 BYTE 00 00
 ALIGN 4
 
