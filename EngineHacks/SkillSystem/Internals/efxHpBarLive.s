@@ -87,7 +87,7 @@ bne     loc_0x805244E                @ 08052412 D11C
         @let's load up the battle buffer and check that
         ldr r0, =0x802aec4
         ldr r0, [r0] @r0 is battle buffer 203aac0
-        lsl r1, r3, #3 @8 bytes per entry
+        lsl r1, r3, #3 @8 bytes per entry. FIXME Maybe load BattleBufferWidth instead, in case someone changes it?
         add r1, r0
             MissLoop1:
             ldr r0, [r1]
@@ -139,16 +139,30 @@ bne     loc_0x805244E                @ 08052412 D11C
     mov r0, #0x75
     mov r1, #1
     blh 0x8071ab0
-
     mov     r0,#0x2E                @ 08052440 202E     
     ldsh    r1,[r5,r0]                @ 08052442 5E29 
     mov r2, #0x50    
     ldrsh     r0,[r5,r2]                @ 08052444 6D28     
     cmp     r1,r0                @ 08052446 4281     @@ Current HP = Final HP?
-    
-    bne     loc_0x805244E                @ 08052448 D101     
+    bne     loc_0x805244E                @ 08052448 D101  
+      @ Defender's HP is done. But is the attacker's?
+      @ Set defender's delta to 0.
+      mov r0, #0x0
+      mov r1, #0x48
+      strh r0, [r5, r1]
+      @ End if both attacker and defender's HP changes have finished.
+      mov r2, #0x30 @curr hp
+      ldsh r1, [r5,r2]
+      mov r2, #0x52 @final hp
+      ldsh r0, [r5,r2]
+      cmp r1, r0
+      beq AttackerAndDefenderDone
+        cmp r0, #0xff
+        beq AttackerAndDefenderDone
+          b loc_0x805244E
+      AttackerAndDefenderDone:
       mov     r0,#0x1                @ 0805244A 2001     
-      str     r0,[r5,#0x58]                @ 0805244C 65A8     
+      str     r0,[r5,#0x58]                @ 0805244C 65A8   
 loc_0x805244E:
 ldr     r1,[r5,#0x54]                @ 0805244E 6D69     
 cmp     r1,#0x1E                @ 08052450 291E     

@@ -25,6 +25,8 @@ BYTE 00 00
 ALIGN 4
 
 KnightSkillList:
+BYTE 255 CounterMagicID
+BYTE 255 CounterID
 BYTE 00 00
 ALIGN 4
 
