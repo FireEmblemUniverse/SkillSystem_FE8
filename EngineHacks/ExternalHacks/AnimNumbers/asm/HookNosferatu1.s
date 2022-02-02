@@ -8,6 +8,8 @@ mov   r4, r0
 
 @ Recipient's AIS.
 mov   r1, #0x0
+mov   r2, #0x0
+mov   r3, #0x0
 bl    BAN_DisplayDamage
 
 

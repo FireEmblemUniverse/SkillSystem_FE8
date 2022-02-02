@@ -8,6 +8,8 @@ mov   r5, r0
 
 @ Attacker's AIS.
 mov   r1, #0x1
+mov   r2, #0x0
+mov   r3, #0x0
 bl    BAN_DisplayDamage
 
 
