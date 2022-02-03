@@ -16,6 +16,16 @@
     ORG 0x527A4
     jumpToHack(BAN_HookNosferatu2)
     
+    // Kill existing DamageMoji procs.
+    ORG 0x552D0
+    jumpToHack(BAN_KillDigits)
+    
+    // Delay NODAMGEMIS graphics.
+    ORG 0x6C636
+    SHORT 0x2103 0xF796 0xFB20
+    ORG 0x6C648
+    POIN BAN_Proc_DelayNODAMGEMIS
+    
     // Add a custom zero digit to the Stat-up big digits.
     ORG 0x5C85F8
     WORD 0x00000000 0x00000000 0x00000000 0x88800000
@@ -50,13 +60,33 @@
   BAN_DisplayDamage:
   #include "asm/DisplayDamage.lyn.event"
   
-  // Palettes
   ALIGN 4
-  BAN_DigitsPalette:
+  BAN_KillDigits:
+  #include "asm/KillDigits.lyn.event"
+  
+  // Palettes
+  ALIGN 4; BAN_DigitsPalette:
   WORD 0x7BDE001F 0x57D30000 0x00000000 0x00000000
   WORD 0x000014A5 0x6BD857D3 0x27CB0000 0x00000000
   WORD 0x7BDE03E0 0x567E0000 0x00000000 0x00000000
   WORD 0x000014A5 0x6B1E567E 0x257E0000 0x00000000
+  
+  // Delay NODAMGEMIS graphics.
+  ALIGN 4; BAN_DelayNODAMGEMIS:
+  WORD 0x4802B500 0xDF124902 0x4700BC01
+  WORD 0x85BA0B8 0x6012000
+  ALIGN 4; BAN_Proc_DelayNODAMGEMIS:
+  SHORT 0xE 0x1 0x0 0x0
+  SHORT 0x2 0x0; POIN BAN_DelayNODAMGEMIS|1
+  WORD 0x0 0x0
+  
+  // Delay Digits graphics.
+  ALIGN 4; BAN_DelayDigits:
+  #include "asm/DelayDigits.lyn.event"
+  ALIGN 4; BAN_Proc_DelayDigits:
+  SHORT 0xE 0x1 0x0 0x0
+  SHORT 0x2 0x0; POIN BAN_DelayDigits|1
+  WORD 0x0 0x0
   
   // FrameData for the AISes.
   #include "FrameData/Digits1FD.event"

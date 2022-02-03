@@ -24,7 +24,18 @@ cmp   r0, #0x0
 bne   End
 
   @ Flag unset, display damage numbers.
-  ldrh  r0, [r4, #0xE]
+  @ Recipient's AIS might still be finishing up their round,
+  @ so we grab the highest round.
+  mov   r0, r4
+  ldr   r3, =GetOpponentFrontAIS
+  bl    GOTO_R3
+  ldrh  r0, [r0, #0xE]
+  ldrh  r1, [r4, #0xE]
+  cmp   r0, r1
+  bge   Max
+    mov   r0, r1
+  Max:
+  
   sub   r0, #0x1
   ldr   r1, =0x802b90a      @ &BattleBufferWidth.
   ldrb  r1, [r1]
@@ -32,27 +43,52 @@ bne   End
   ldr   r1, =0x802aec4      @ &Battle buffer.
   ldr   r1, [r1]
   add   r6, r0, r1          @ Current round in battle buffer.
-  
-  mov   r0, r4
-  ldr   r3, =GetAISSubjectId
-  bl    GOTO_R3
-  mov   r7, r0
   cmp   r5, #0x0
   bne   CapDmgHeal
-    mov   r1, #0x6
-    ldsh  r1, [r6, r1]      @ OverDamage/OverHeal.
+    mov   r7, #0x6
+    ldsh  r7, [r6, r7]      @ OverDamage/OverHeal.
     b     IfThenElse
   CapDmgHeal:
-    mov   r1, #0x5
-    ldsb  r1, [r6, r1]      @ Capped damage/heal.
+    mov   r7, #0x5
+    ldsb  r7, [r6, r7]      @ Capped damage/heal.
   IfThenElse:
-  bl    PutDigitsInVRAM
-  mov   r5, r0
-  cmp   r5, #0x0
+  cmp   r7, #0x0
   beq   End
-    mov   r3, r0
-    mov   r2, r7
-    sub   r1, r7, #0x1
+  
+    @ Start proc which will put digits in VRAM.
+    ldr   r0, =BAN_Proc_DelayDigits
+    mov   r1, #0x3
+    ldr   r3, =ProcStart
+    bl    GOTO_R3
+    strh  r7, [r0, #0x2A]   @ Damage/heal.
+    mov   r7, r0
+    mov   r0, #0x2A
+    ldsh  r0, [r7, r0]
+    cmp   r0, #0x0
+    bge   Abs
+      neg   r0, r0          @ Take absolute value of damage/heal.
+    Abs:
+    mov   r6, #0x1
+    FindDigitCountLoop:
+      mov   r1, #0xA
+      swi   #0x6
+      cmp   r0, #0x0
+      beq   EndLoop
+        add   r6, #0x1
+        b     FindDigitCountLoop
+    EndLoop:
+    mov   r0, #0x29
+    strb  r6, [r7, r0]      @ Number of digits.
+    mov   r0, r4
+    ldr   r3, =GetAISSubjectId
+    bl    GOTO_R3
+    mov   r1, #0x2C
+    strb  r0, [r7, r1]      @ AISSubjectId. 0 if left, 1 if right.
+
+    @ Start AIS.
+    mov   r3, r6
+    mov   r2, r0
+    sub   r1, r0, #0x1
     neg   r1, r1
     add   r1, r1, #0x5
     mov   r0, r4
@@ -69,129 +105,6 @@ GOTO_R3:
 bx    r3
 GOTO_R12:
 bx    r12
-
-
-@ Put participant's digits in OBJ VRAM. Args:
-@   r0: AISSubjectId. 0 if left, 1 if right.
-@   r1: Damage/Heal value.
-@ Returns:
-@   Number of digits.
-PutDigitsInVRAM:
-push  {r4-r7, r14}
-mov   r4, r8
-mov   r5, r9
-push  {r4-r5}
-mov   r4, r0
-mov   r5, r1
-mov   r6, #0x0
-
-
-cmp   r5, #0x0
-beq   Return
-  ldr   r0, =BAN_DigitsPalette
-  mov   r6, #0x0
-  cmp   r5, #0x0
-  bgt   Plus
-    add   r0, #0x20
-    mov   r6, #0x1
-    neg   r5, r5
-  Plus:
-  
-  @ Load palette.
-  ldr   r1, =gPaletteBuffer+0x2A0
-  sub   r2, r4, #0x1
-  neg   r2, r2
-  lsl   r2, #0x5
-  add   r1, r2
-  mov   r2, #0x8
-  swi   #0xC                @ CpuFastSet
-  ldr   r3, =EnablePaletteSync
-  bl    GOTO_R3
-  
-  @ Put minus or plus in OBJ VRAM.
-  ldr   r0, =0x85C8278      @ Bigger stat-ups digits.
-  mov   r8, r0
-  mov   r0, #0x1C
-  add   r0, r6
-  lsl   r0, #0x6
-  add   r0, r8
-  ldr   r1, =0x6012400
-  lsl   r2, r4, #0x9
-  add   r1, r2
-  mov   r2, #0x8
-  swi   #0xC                @ CpuFastSet.
-  
-  @ Find highest power of 10 denominator.
-  mov   r6, #0x6
-  ldr   r7, =Denom-2
-  FindInitialDenom:
-  sub   r6, #0x1
-  add   r7, #0x2
-  ldrh  r0, [r7]
-  cmp   r0, #0x0
-  beq   Return              @ This branch should never be taken.
-    cmp   r5, r0
-    blt   FindInitialDenom
-  
-  @ Put digits in OBJ VRAM.
-  ldr   r0, =0x6012040
-  lsl   r4, #0x9
-  add   r4, r0
-  Loop:
-    ldrh  r1, [r7]
-    cmp   r1, #0x0
-    beq   Return
-      mov   r0, r5
-      swi   #0x6                @ Div.
-      mov   r2, r0
-      ldrh  r1, [r7]
-      mul   r2, r1
-      sub   r5, r2
-        
-      @ Put digit in OBJ VRAM.
-      cmp   r0, #0x0
-      bne   L1
-        mov   r0, #0xF          @ Zero is a special case.
-      L1:
-      sub   r0, #0x1
-      lsl   r0, #0x6
-      add   r0, r8
-      mov   r9, r0
-      mov   r1, r4
-      mov   r2, #0x10
-      swi   #0xC                @ CpuFastSet.
-      mov   r0, r9
-      mov   r1, r4
-      mov   r2, #0x40
-      lsl   r2, #0x4
-      add   r0, r2
-      add   r1, r2
-      mov   r2, #0x10
-      swi   #0xC                @ CpuFastSet.
-      
-      @ Prepare next iteration.
-      add   r4, #0x40
-      add   r7, #0x2
-      b     Loop
-
-
-Return:
-mov   r0, r6
-pop   {r4-r5}
-mov   r8, r4
-mov   r9, r5
-pop   {r4-r7}
-pop   {r1}
-bx    r1
-
-
-Denom:
-.short 10000
-.short 1000
-.short 100
-.short 10
-.short 1
-.short 0
 
 
 @ Starts an EkrsubAnimeEmulator which mimics an AIS.
@@ -255,9 +168,9 @@ beq   NoOverlap
   sub   r3, r1, r3        @ Left-most pixel of right number.
   sub   r0, r3, r2
   cmp   r0, #0x0
-  bge   Abs
+  bge   Abs2
     neg   r0, r0          @ Take absolute value of distance.
-  Abs:
+  Abs2:
   cmp   r0, #0x8
   bgt   NoOverlap
     mov   r7, #0x38       @ Heighten digits to avoid overlap.
