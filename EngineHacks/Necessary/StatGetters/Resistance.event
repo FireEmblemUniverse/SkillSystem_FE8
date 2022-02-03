@@ -9,6 +9,7 @@ pResistanceModifiers: // Resistance
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryResistance
 	#endif 
+	POIN PoisonStatus FreezeStatus
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif

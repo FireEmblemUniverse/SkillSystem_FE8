@@ -5,6 +5,63 @@
   .short 0xf800
 .endm
 
+.global ProcessStatusEffects
+.type ProcessStatusEffects, %function
+ProcessStatusEffects:
+push {r4, lr}
+push {r0-r2}
+mov r4, r0 @ Unit 
+add r0, #0x36 @ Support5 
+ldrb r1, [r0] 
+mov r2, #1 
+bic r1, r2 @ remove "not fully paralyzed" bitflag 
+strb r1, [r0] 
+
+ldrb r0, [r4, #0x0B] @ deployment byte 
+cmp r0, #0x40 
+blt End
+
+mov r1, #0x30 
+ldrb r0, [r4, r1] @ Status 
+ldr r2, =FreezeStatusID_Link 
+ldr r2, [r2] 
+lsl r0, #28 
+lsr r0, #28 
+cmp r0, r2 
+beq ActedAlready
+
+mov r1, #0x30 
+ldrb r0, [r4, r1] @ Status 
+ldr r2, =ParalyzeStatusID_Link 
+ldr r2, [r2] 
+lsl r0, #28 
+lsr r0, #28 
+cmp r0, r2 
+bne End 
+
+blh 0x8000c64 @NextRN_100
+ldr r1, =EnemyParalyzeChanceLink
+ldr r1, [r1] 
+cmp r0, r1
+bgt End 
+
+ActedAlready:
+ 
+ldr r0, [r4, #0xC]
+mov r1, #2 
+orr r0, r1
+str r0, [r4, #0x0C] @ acted already 
+End: 
+
+pop {r0-r2}
+pop {r4}
+pop {r3}
+bx r3 
+
+.ltorg 
+.align
+
+
 .global ProcessBuffs 
 .type ProcessBuffs, %function 
 ProcessBuffs: 

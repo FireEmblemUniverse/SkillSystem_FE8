@@ -6,6 +6,7 @@
   .short 0xf800
 .endm
 .equ ProcessBuffs, GetUnitDebuffs+4
+.equ ProcessStatusEffects, ProcessBuffs+4 
 
 @This should do what the code in place did
 cmp     r0,#0x0
@@ -76,6 +77,10 @@ strb r0, [r3, #0x4] @Store back
 noSilverDebuff:
 @no need to do anything
 ldr r3, ProcessBuffs 
+mov r0, r4 @ Unit 
+bl BXR3
+
+ldr r3, ProcessStatusEffects
 mov r0, r4 @ Unit 
 bl BXR3
 

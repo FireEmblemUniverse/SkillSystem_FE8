@@ -9,6 +9,7 @@ pSpeedModifiers: // Speed
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessorySpeed
 	#endif 
+	POIN ParalyzeStatus
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif

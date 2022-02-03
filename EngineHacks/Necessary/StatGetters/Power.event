@@ -9,6 +9,7 @@ pPowerModifiers: // Power
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryPower
 	#endif 
+	POIN BurnStatus
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif

@@ -45,6 +45,8 @@ orr r0, r1
 strb r0, [r5, #4] 
 ldr r4, =CurrentUnit @ Copied vanilla code
 
+
+
 mov r0, #0xAA @ Flag used 
 blh CheckEventId 
 cmp r0, #0 
@@ -83,6 +85,7 @@ DisplayRange:
 pop {r3}
 bx r3 
 
+.equ GetUnit, 0x8019430
 
 .align 4
 @ Hooks CheckEventDefinitions at 8082EC4
@@ -97,12 +100,36 @@ ldr r1, [r0]
 mov r0, r4  
 bl BXR1 
 
+
 @ 3007D98
 @ this seems to be the ram address used 
 @ when Dunno2 / "When player has selected coordinate to move to" is hit 
+ldr r3, =0x3007D6C @ player? 
+cmp r4, r3 
+bne SkipParaCheck1
+ldr r1, =CurrentUnit
+ldr r1, [r1]
+cmp r1, #0 
+beq SkipParaCheck1
+bl CheckForParalysis
+SkipParaCheck1:
+
+@ldr r3, =0x3007D70 @ ai? 
+@cmp r4, r3 
+@bne SkipParaCheck2
+@push {r0} @ idk 
+@ldr r1, =0x203AA95 @ current AI actor's deployment byte  
+@ldrb r0, [r1] 
+@blh GetUnit
+@mov r1, r0 
+@pop {r0} 
+@bl CheckForParalysis
+@SkipParaCheck2:
+
 ldr r3, =0x3007D98 
 cmp r4, r3 
 bne SkipTeleportActiveUnit 
+
 blh TeleportActiveUnit
 blh FastMoveUnit
 
@@ -113,6 +140,69 @@ pop {r1}
 BXR1:
 bx r1 
 
+.ltorg 
+.align 
+
+CheckForParalysis:
+push {r4-r5, lr} 
+mov r4, r0 @ Parent proc maybe? idk 
+mov r5, r1 @ unit 
+
+ldr r1, =ParalyzeStatusID_Link 
+ldr r1, [r1] 
+mov r2, #0x36 @ have we done this already this turn? 
+ldrb r2, [r5, r2] @ Support5 
+mov r3, #1 @ if we have, this is 1 
+and r2, r3 
+cmp r2, #1 
+beq FalseParalysis 
+mov r0, r5 @ unit 
+bl IsStatusApplicable @ r0 / r1 as unit struct / status id 
+cmp r0, #1 
+bne FalseParalysis 
+
+mov r3, #0x36 @ have we done this already this turn? 
+ldrb r0, [r5, r3] @ Support5 
+mov r1, #1 
+orr r0, r1 
+strb r0, [r5, r3] @ only check once per unit per turn 
+
+blh 0x8000c64 @NextRN_100
+ldr r1, =PlayerParalyzeChanceLink
+ldr r1, [r1] 
+cmp r0, r1
+bgt FalseParalysis
+
+
+ldr r3, =MemorySlot
+ldrb r0, [r5, #0x10]
+ldrb r1, [r5, #0x11]
+strh r0, [r3, #4*0x0B+0] @ XX
+strh r1, [r3, #4*0x0B+2] @ YY 
+ldr r0, [r5, #0xC] @ State 
+mov r1, #2 @ Acted 
+orr r0, r1 
+str r0, [r5, #0xC] @ Acted already 
+
+@ remove from AI list? 
+
+
+ldr r0, =ParalyzedUnitEvent
+mov r1, #1 @ Wait for events 
+blh EventEngine 
+
+FalseParalysis:
+
+
+
+mov r0, r4 
+pop {r4-r5}
+pop {r1}
+bx r1 
+
+
+.ltorg 
+.align 
 
 .equ MuCtr_CreateWithReda,0x800FEF5 @r0 = char struct, target x coord, target y coord
 .align 4 

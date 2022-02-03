@@ -91,6 +91,7 @@
 #define DevilEffect 0x4
 #define StoneEffect 0x5
 #define CannotDoubleEffect 0xC
+#define InflictStatusEffect 0xD 
 
 //Character/Class Ability
 #define MountedAid 0x00000001
@@ -190,9 +191,18 @@
 #define SickStatusID 9
 #define PetrifyStatusID 13
 
+
+#define BurnStatusID_Def 5
+#define ParalyzeStatusID_Def 6
+#define SleepStatusID_Def 2
+#define PoisonStatusID_Def 1
+#define FreezeStatusID_Def 7
+
 //for setting what status effect 
 //status staves will give 
 #define ItemStatus(StatusID,Duration) "StatusID | (Duration << 4)"
+
+#define StatusEffectDuration 3 // 3 turns 
 
 #endif
 

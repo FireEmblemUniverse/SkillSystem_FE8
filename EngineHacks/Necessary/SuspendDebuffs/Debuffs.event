@@ -137,10 +137,12 @@ WORD BuffDepletePerTurnAmount // Defined in custom defs
       #include "asm/Debuffs/ProcessDebuffs.lyn.event"
       POIN GetDebuffs|1
 	  POIN ProcessBuffs|1
+	  POIN ProcessStatusEffects|1
     #else
       #include "asm/Debuffs/ProcessDebuffsMag.lyn.event"
       POIN GetDebuffs|1
 	  POIN ProcessBuffs|1
+	  POIN ProcessStatusEffects|1
     #endif // USE_STRMAG_SPLIT
 
   ALIGN 4

@@ -1,0 +1,45 @@
+#include "StatusEffectDebuffs.lyn.event" 
+
+//#define BurnStatusID_Def 5
+//#define ParalyzeStatusID_Def 6
+//#define SleepStatusID_Def 2
+//#define PoisonStatusID_Def 1
+//#define FreezeStatusID_Def 7
+
+// Below ones do not debuff stats at this time 
+#define ConfusionStatusID_Def 8 // Proc % skill chance of hurting self in confusion? 
+#define SilenceStatusID_Def 3 // Unused? 
+#define BerserkStatusID_Def 4 // Confused? 
+
+// 5 - 8 are rings, B is stone 
+#define PlayerParalyzeChanceDef 20
+#define EnemyParalyzeChanceDef 35
+
+ALIGN 4 
+PlayerParalyzeChanceLink:
+WORD PlayerParalyzeChanceDef
+
+ALIGN 4 
+EnemyParalyzeChanceLink:
+WORD EnemyParalyzeChanceDef
+
+
+ALIGN 4
+BurnStatusID_Link:
+WORD BurnStatusID_Def
+ParalyzeStatusID_Link:
+WORD ParalyzeStatusID_Def
+SleepStatusID_Link:
+WORD SleepStatusID_Def
+PoisonStatusID_Link:
+WORD PoisonStatusID_Def
+FreezeStatusID_Link:
+WORD FreezeStatusID_Def
+
+
+
+
+
+
+
+

@@ -39,6 +39,16 @@ bne GoBack @if no status weapon bit, don't apply effect
 @check if defender already has a status
 add r1,#0x22
 ldrb r0,[r1] @status to apply
+
+mov r6, r0 @ Status type 
+mov r1, r4 @ Atkr 
+mov r2, r5 @ Dfdr 
+bl IsTargetTypeImmune
+cmp r0,#0x1
+beq GoBack @if type immunity, do nothing 
+mov r0, r6 
+
+
 mov r1,r5
 add r1,#0x30 @defender status byte
 ldrb r2,[r1]

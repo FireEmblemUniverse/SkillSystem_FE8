@@ -68,6 +68,7 @@ PerTurn:
 #incbin "ProcessDebuffs.dmp"
 WORD Debuff_Table
 POIN ProcessBuffs 
+POIN ProcessStatusEffects 
 
 ALIGN 4
 BuffDepletePerTurnAmountLink:

@@ -50,7 +50,13 @@ UNCR(0x7FFF, 0x01) // unhide sms
 NoFade 
 ENDA 
 
-
+ParalyzedUnitEvent:
+SET_ACTIVE 0
+// FEBuilder didn't recognize the code
+WORD 0xFFFF3C21 // SET_CURSOR_SB
+TutText(FullyParalyzedText)
+EVBIT_T 7 // FEBuilder didn't recognize NoFade either 
+ENDA 
 
 ALIGN 4 
 SetNoActiveUnitEvent:
