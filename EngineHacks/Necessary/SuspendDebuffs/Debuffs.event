@@ -100,13 +100,8 @@ TeamDebuffTables:
 
   ALIGN 4
   PerTurn:
-    #ifndef USE_STRMAG_SPLIT
-      #include "asm/Debuffs/ProcessDebuffs.lyn.event"
-      POIN GetDebuffs|1
-    #else
-      #include "asm/Debuffs/ProcessDebuffsMag.lyn.event"
-      POIN GetDebuffs|1
-    #endif // USE_STRMAG_SPLIT
+    #include "asm/Debuffs/ProcessDebuffs.lyn.event"
+    POIN GetDebuffs|1
 
   ALIGN 4
   MapMainClearProc:

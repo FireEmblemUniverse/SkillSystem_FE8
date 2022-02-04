@@ -83,20 +83,11 @@ gSaveBlockTypeSizeLookup:
 
 #include "SrcModules/Debuffs.lyn.event" // Debuffs module
 
-#ifdef USE_STRMAG_SPLIT
-	#ifdef STAIRS_ASM
-		MESSAGE EMS with strmag and Stair
-		#include "SrcModules/SaveUnitExpandedStrmagStairs.lyn.event" // Str/Mag and Stairs both require saving shenanigans.
-	#else
-		#include "SrcModules/SaveUnitExpandedStrmag.lyn.event" // Only Str/Mag split.
-	#endif // STAIRS_ASM
+#ifdef STAIRS_ASM
+	#include "SrcModules/SaveUnitExpandedStairs.lyn.event" // Str/Mag and Stairs both require saving shenanigans.
 #else
-	#ifdef STAIRS_ASM
-		#include "SrcModules/SaveUnitExpandedStairs.lyn.event" // Only StairsASM.
-	#else
-		#include "SrcModules/SaveUnitExpanded.lyn.event" // Regular.
-	#endif // STAIRS_ASM
-#endif // USE_STRMAG_SPLIT
+	#include "SrcModules/SaveUnitExpanded.lyn.event" // Only Str/Mag split.
+#endif // STAIRS_ASM
 
 DebuffTablePointer: // required for debuffs module
 	WORD DebuffTable

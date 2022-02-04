@@ -133,29 +133,13 @@
   ALIGN 4
   BiorhythmTextIDLink:
   SHORT SS_BiorhythmText
-  
-  #ifndef USE_STRMAG_SPLIT
-  
+
   #ifdef LEADERSHIP_STARS
 	#include "pages/mss_page1_skills_leadership.lyn.event"
   #else // LEADERSHIP_STARS
-    #ifdef BIORHYTHM
-	  #include "pages/mss_page1_skills_biorhythm.lyn.event"
-	#else // BIORHYTHM
-	  #include "pages/mss_page1_skills.lyn.event"
-	#endif // BIORHYTHM
-  #endif // LEADERSHIP_STARS
-  
-  #else // USE_STRMAG_SPLIT
-  
-  #ifdef LEADERSHIP_STARS
-	#include "pages/strmag/mss_page1_skills_leadership.lyn.event"
-  #else // LEADERSHIP_STARS
-	#include "pages/strmag/mss_page1_skills.lyn.event"
+	#include "pages/mss_page1_skills.lyn.event"
   #endif // LEADERSHIP_STARS  
-  
-  #endif // USE_STRMAG_SPLIT
-  
+
   #ifdef QOL_STAT_SCREEN_BALLISTA
   
     #include "pages/mss_page2_ballista.lyn.event"
@@ -258,13 +242,9 @@
   ALIGN 4
   Write_Growths_To_Battle_Struct:
     #incbin "asm/Write_Growths_To_Battle_Struct.dmp"
-        POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth
-	#ifdef USE_STRMAG_SPLIT
-		POIN Get_Mag_Growth
-	#else
-		WORD 0 // Code in this function treats 0 here as strmag not installed and does nothing.
-	#endif // USE_STRMAG_SPLIT
-	POIN Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
+    POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth
+    POIN Get_Mag_Growth
+    POIN Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
     WORD Growth_Options
 
   ALIGN 4
