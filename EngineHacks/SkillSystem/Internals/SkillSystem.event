@@ -13,6 +13,10 @@ SHORT 0x46C0
 jumpToHack(SkillActivationAnims)
 ORG $518E4      // Don't overwrite VRAM holding procced skill icon.
 jumpToHack(KeepProcSkillIcon)
+
+ORG $5B9724
+SHORT 0x9 0x0; POIN SPD_main_Proc         // Kill all instances of SPD_main_Proc on death quote.
+                                          // SPD_Map_main_Proc should be fast enough to not need killing.
 ORG $5D9408                               // Make defensive skill use opponent's x-location.
 BYTE 0x16                                 // Replace proc loop with proc call (can yield).
 ORG $6E614                                // This means we no longer have to break proc loop,

@@ -1,5 +1,9 @@
 #ifdef BATTLE_ANIMATION_NUMBERS
 
+  // Display numbers hovering over battle sprites
+  // indicating damage dealt/ HP healed.
+  // By Huichelaar. I got inspired by Lex Talionis.
+
   PUSH
   
     // Re-load Miss/NoDamage palette.
