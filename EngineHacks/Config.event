@@ -21,7 +21,7 @@
 // ===================================
 
 // If uncommented, damage numbers will display over participants' heads during battle animations.
-#define BATTLE_ANIMATION_NUMBERS
+// #define BATTLE_ANIMATION_NUMBERS
 
 //ID of flag to use for hiding damage numbers, if enabled above.
 #define BATTLE_ANIMATION_NUMBERS_FLAG 0xEE
