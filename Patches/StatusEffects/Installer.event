@@ -37,7 +37,20 @@ FreezeStatusID_Link:
 WORD FreezeStatusID_Def
 
 
+#include "IconDisplay.lyn.event" 
 
+// 0x80276D8 is a switch case of what icon to display 
+PUSH 
+ORG $276E8 // 1st ring effect 
+POIN BurnIconFunc 
+ORG $276EC // 2nd ring effect switch case for what icon to display 
+// we're going to have this display silence's icon and replace silence icon
+// with paralysis icon 
+//WORD 0x8027754 // Silence
+//WORD 0x80277F8 // Berserk
+POIN ParalysisIconFunc
+
+POP 
 
 
 
