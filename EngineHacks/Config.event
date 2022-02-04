@@ -24,10 +24,6 @@
 // Look at SkillSystem/Skills/EffectivenessSkills/Nullify/_README.txt for the full ramifications of uncommenting this
 #define ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
 
-// If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
-// Enabling this *will* break saves, but allows for higher stats and other things.
-// #define USE_SAVE_EXPANSION
-
 //If uncommented, will enable Battle Stats with Animations Off.
 #define BATTLE_STATS
 
