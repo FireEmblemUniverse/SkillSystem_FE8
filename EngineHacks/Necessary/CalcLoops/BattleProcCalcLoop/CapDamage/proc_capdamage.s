@@ -15,6 +15,14 @@ mov r7, r3 @battle data
 
 mov r1, #4
 ldrsh r0, [r7,r1] @damage
+
+@ Store uncapped damage value in battle buffer round +0x6
+ldr	r2, =0x802ec18
+ldr	r2, [r2]		@203a608 - battle buffer pointer
+ldr	r2, [r2]
+neg r3, r0
+strh r3, [r2, #0x6]
+
 cmp r0, #0x7f
 ble UnderDMGCap
 mov r0, #0x7f

@@ -59,6 +59,9 @@ POP
 
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 
+  // Display damage numbers in battle animations.
+  #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
+
   //HP Bars (and effective weapon warning)
   #include "QualityOfLife/HpBars/HpBars.event"
 

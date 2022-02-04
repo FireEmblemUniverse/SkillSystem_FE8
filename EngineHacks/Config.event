@@ -191,6 +191,12 @@
 // (By default, all classes promote at level 255.) 
 // #define PROMOTE_LEVELUP
 
+// If uncommented, damage numbers will display over participants' heads during battle animations.
+// #define BATTLE_ANIMATION_NUMBERS
+
+//ID of flag to use for hiding damage numbers, if enabled above.
+#define BATTLE_ANIMATION_NUMBERS_FLAG 0xEE
+
 // If uncommented, passive stat boosts will not stack and only the 
 // first item in the inventory with passive stat boosts will apply them.
 // Setting the 0x00800000 bit in the item ability bitfield will enable passive boosts.

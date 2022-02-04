@@ -118,7 +118,6 @@ Chargeups:
 #incbin "Chargeups/Chargeups.dmp"
 
 ALIGN 4
-MESSAGE currentOffset
 Proc_StealHP:
 #incbin "LifeSteal/proc_stealhp.dmp"
 POIN SkillTester

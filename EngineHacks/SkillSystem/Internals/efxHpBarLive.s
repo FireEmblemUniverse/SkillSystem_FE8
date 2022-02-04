@@ -76,35 +76,25 @@ bne     loc_0x805244E                @ 08052412 D11C
       @check the current HP
       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ make sure HP Draining is checked.
       @now update the attacker   
-        ldr     r0,[r5,#0x5c]                @ 08052368 6E30     
-        blh      0x805A16C                @ 0805236A F007FEFF 
-        ldr     r3,=#0x203E152                @ 08052366 4C15  
-        lsl     r0,r0,#0x1                @ 0805236E 0040     
-        add     r0,r0,r3                @ 08052370 1900     
-        mov     r1,#0x0                @ 08052372 2100     
-        ldsh    r3,[r0,r1]                @ 08052374 5E45  
-        @here r3 is the nth round
-        @let's load up the battle buffer and check that
-        ldr r0, =0x802aec4
-        ldr r0, [r0] @r0 is battle buffer 203aac0
-        lsl r1, r3, #3 @8 bytes per entry
-        add r1, r0
-            MissLoop1:
-            ldr r0, [r1]
-            mov r2, #2 @0x2 is miss
-            and r2, r0
-            cmp r2, #0
-            beq NotMiss1
-                @if a miss, check the next round.
-                add r1, #8
-                b MissLoop1
-            NotMiss1:
-            mov r1, #0x10
-            lsl r1, #4 @0x100 is drain hp
-            and r1, r0
-            cmp r1, #0
-            beq AttackerDone
-      @ NextCheck:
+      ldr     r0,[r5,#0x5c]                @ 08052368 6E30     
+      ldrh    r0, [r0, #0xE]            @ Next round index
+      sub     r0, #0x1
+      ldr     r1, =0x802b90a
+      ldrb    r1, [r1] @ battle buffer width.
+      mul     r0, r1
+      ldr     r1, =0x802aec4
+      ldr     r1, [r1] @ r1 is battle buffer 203aac0
+      add     r0, r1
+      ldr     r0, [r0]
+      mov r1, #0x10
+      lsl r1, #4 @0x100 is drain hp
+      and r1, r0
+      cmp r1, #0
+      bne NextCheck
+        mov r0, #0x4a
+        strh r1, [r5, r0] @ No HP drain, so set attacker's hp delta to 0.
+        b AttackerDone
+      NextCheck:
       mov r2, #0x30 @curr hp
       ldsh r1, [r5,r2]
       mov r2, #0x52 @final hp
@@ -139,16 +129,34 @@ bne     loc_0x805244E                @ 08052412 D11C
     mov r0, #0x75
     mov r1, #1
     blh 0x8071ab0
-
     mov     r0,#0x2E                @ 08052440 202E     
     ldsh    r1,[r5,r0]                @ 08052442 5E29 
     mov r2, #0x50    
     ldrsh     r0,[r5,r2]                @ 08052444 6D28     
     cmp     r1,r0                @ 08052446 4281     @@ Current HP = Final HP?
-    
-    bne     loc_0x805244E                @ 08052448 D101     
+    bne     loc_0x805244E                @ 08052448 D101  
+      @ Defender's HP is done. But is the attacker's?
+      @ Set defender's delta to 0.
+      mov r0, #0x0
+      mov r1, #0x48
+      strh r0, [r5, r1]
+      @ End if both attacker and defender's HP changes have finished.
+      mov r2, #0x30 @curr hp
+      ldsh r1, [r5,r2]
+      mov r2, #0x52 @final hp
+      ldsh r0, [r5,r2]
+      cmp r1, r0
+      beq AttackerAndDefenderDone
+        cmp r0, #0xff
+        beq AttackerAndDefenderDone
+          mov r0, #0x4a
+          ldsh r0, [r5, r0]           @ Attacker's delta
+          cmp r0, #0x0
+          beq AttackerAndDefenderDone
+            b loc_0x805244E
+      AttackerAndDefenderDone:
       mov     r0,#0x1                @ 0805244A 2001     
-      str     r0,[r5,#0x58]                @ 0805244C 65A8     
+      str     r0,[r5,#0x58]                @ 0805244C 65A8   
 loc_0x805244E:
 ldr     r1,[r5,#0x54]                @ 0805244E 6D69     
 cmp     r1,#0x1E                @ 08052450 291E     
@@ -176,28 +184,15 @@ bne     loc_0x80524F0                @ 08052452 D14D
     blh      0x8002E94                @ 080524E6 F7B0FCD5 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     ldr     r0,[r5,#0x5c]                @ 08052368 6E30     
-    blh      0x805A16C                @ 0805236A F007FEFF 
-    ldr     r3,=#0x203E152                @ 08052366 4C15  
-    lsl     r0,r0,#0x1                @ 0805236E 0040     
-    add     r0,r0,r3                @ 08052370 1900     
-    mov     r1,#0x0                @ 08052372 2100     
-    ldsh    r3,[r0,r1]                @ 08052374 5E45  
-    @here r3 is the nth round
-    @let's load up the battle buffer and check that
-    ldr r0, =0x802aec4
-    ldr r0, [r0] @r0 is battle buffer 203aac0
-    lsl r1, r3, #3 @8 bytes per entry
-    add r1, r0
-            MissLoop2:
-            ldr r0, [r1]
-            mov r2, #2 @0x2 is miss
-            and r2, r0
-            cmp r2, #0
-            beq NotMiss2
-                @if a miss, check the next round.
-                add r1, #8
-                b MissLoop2
-    NotMiss2:
+    ldrh    r0, [r0, #0xE]            @ Next round index
+    sub     r0, #0x1
+    ldr     r1, =0x802b90a
+    ldrb    r1, [r1] @ battle buffer width.
+    mul     r0, r1
+    ldr     r1, =0x802aec4
+    ldr     r1, [r1] @ r1 is battle buffer 203aac0
+    add     r0, r1
+    ldr     r0, [r0]
     mov r1, #0x10
     lsl r1, #4 @0x100 is drain hp
     and r1, r0
