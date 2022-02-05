@@ -200,6 +200,9 @@ POP
   #include "QualityOfLife/BattleStatsWithAnimsOff/FE8-BattleStats.event"
   
   ALIGN 4
+  #include "Starfall/StarfallHax.event"
+  
+  ALIGN 4
   #include "Necessary/StatGetters/_InstallStatGetters.event"
   
   //Growth Getters
