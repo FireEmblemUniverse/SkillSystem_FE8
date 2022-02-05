@@ -83,14 +83,21 @@ This character's current age.[X]
 ## HeightDesc
 This character's height.[X]
 
-# 0x51B
+# 0x51B BurnStatScreenName
 Burn[X]
 
-# 0x51C *
+# 0x51C ParalyzeStatScreenName *
 Paralyze[X]
 
-# 0x51D
+# 0x51D FreezeStatScreenName
 Freeze[X]
 
-
-
+# 0x558 BurnRTextDesc
+Strength is halved.[N]
+Damaged each turn.[X]
+# 0x559 ParalysisRTextDesc
+Speed is halved.[N]
+Chance of missed turn.[X]
+# 0x55A FreezeRTextDesc
+Frozen. Def/Res are halved.[N]
+Unable to move.[X]

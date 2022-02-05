@@ -72,25 +72,25 @@ AND r1 ,r2
 @ldr r2, =0x859b968 @# pointer:0802791C -> 0859B968 (Secondary OAM 1 )
 
 pop {r3} @ 0x64 or 0x69 - tile # to use. 
-mov r2, #4 @ item palette # ?
+mov r2, #0 @ 0 as icons default palette - 4 item palette # ?
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 
 ldr r2, =SpriteData8x8
 
 blh 0x08002BB8   @//CallARM_PushToSecondaryOAM
 
-	ldr		r0, =ItemIconPalette
-	mov 	r1, #4 @ MMB item icon palette index 
-	lsl		r1, r1, #0x05
-	mov		r2, #0x20
+@ldr		r0, =ItemIconPalette
+@mov 	r1, #4 @ MMB item icon palette index 
+@lsl		r1, r1, #0x05
+@mov		r2, #0x20
 	
-blh CopyToPaletteBuffer @		(0x08000DB8+1)
-@ palette must be updated 
-ldr	r0,=0x300000E @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{U}
-@ldr	r0,=0x300000D @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{J}
-
-mov	r1,#1
-strb r1,[r0]
+@blh CopyToPaletteBuffer @		(0x08000DB8+1)
+@@ palette must be updated 
+@ldr	r0,=0x300000E @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{U}
+@@ldr	r0,=0x300000D @ this is a byte (bool) that tells the game whether the palette RAM needs to be updated	@{J}
+@
+@mov	r1,#1
+@strb r1,[r0]
 
 End:
 CMP r6, #0x0

@@ -1,5 +1,10 @@
 .thumb
 .align
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
 
 .global Proc_StatusWeapons
 .type Proc_StatusWeapons, %function
@@ -28,25 +33,22 @@ add r0,#0x4A
 ldrh r0,[r0]
 mov r1,#0xFF
 and r0,r1
-mov r1,#36 @length of item table entry
-mul r0,r1
-ldr r1,=ItemTable
-add r1,r0
-ldrb r0,[r1,#0x1F] @r0 = weapon effect
-cmp r0,#0xD
-bne GoBack @if no status weapon bit, don't apply effect
 
-@check if defender already has a status
-add r1,#0x22
-ldrb r0,[r1] @status to apply
+lsl r0, #1 @ 2 bytes per entry 
 
-mov r6, r0 @ Status type 
+ldr r3,=StatusEffectTable
+add r3, r0 
+mov r7, r3 
+ldrh r1, [r7] 
+cmp r1, #0 
+beq GoBack @ No data for this weapon, so exit. 
+ldrb r0, [r7] 
 mov r1, r4 @ Atkr 
 mov r2, r5 @ Dfdr 
 bl IsTargetTypeImmune
 cmp r0,#0x1
 beq GoBack @if type immunity, do nothing 
-mov r0, r6 
+ldrb r0, [r7] @ Status type 
 
 
 mov r1,r5
@@ -55,11 +57,23 @@ ldrb r2,[r1]
 cmp r2,#0
 bne GoBack @don't apply an effect if there is already an effect on this unit
 
+@ check if we roll high enough to apply said effect 
+blh 0x8000c64 @NextRN_100
+ldrb r1, [r7, #1] @ Chance to inflict 
+ldrb r2, [r5, #0x0B] @ deployment byte 
+mov r3, #0x80 
+and r2, r3 
+lsr r2, #7 
+lsl r1, r2 @ enemies as twice as likely to be inflicted by status 
+
+cmp r1, r0 
+blt GoBack @ No status inflicted 
+
+
 @now we're ready to do our effect, but we need to do it to the unit's normal char struct
-push {r0}
 mov r0,r5
 add r0,#0x6F
-pop {r1}
+ldrb r1, [r7] @ Status Effect 
 strb r1,[r0]
 
 

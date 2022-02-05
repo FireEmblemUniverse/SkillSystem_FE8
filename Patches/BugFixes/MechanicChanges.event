@@ -1,0 +1,219 @@
+
+
+			PUSH 
+
+
+
+ORG $178EA 
+BYTE 0x30 // Status as 3 turns default. - 7743 
+
+
+// Promote without weapon ? 
+// By FE8 Girls 
+ORG $2F6A0; BYTE 0xE7 0xF7 0x42 0xFA
+ORG $CD0EC; BYTE 0x49 0xF7 0x1C 0xFD
+  
+  
+  // Disable skirmishes from appearing on the world map by 7743 
+//ORG 0x0C18F8
+//BYTE $00 $00 $00 $00 
+
+// Show class instead of unit during no anims battle preview 
+ORG $7BEAE 
+SHORT 0x6840 
+
+// Level does not decrease with Promotion
+//  by 7743 
+ORG 0x2BE70 
+BYTE 0x00 0x00 0x00 0x00
+
+//ORG 0x736DA  // Promotion screen part but conflicts with strmag split 
+//BYTE 0x18 0x7A
+
+
+// Remove supports 
+//Support Thresholds  (SupportUnitForm) @01 Eirika2021-08-15 9:52:16 AM
+ORG $8AEBAC
+BYTE  $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+
+
+
+// Snags class ID 
+ORG 0x2C8D2 
+SHORT 0x20FE // mov r0, #0xFE 
+
+
+// Battle anims off - always use portrait id 1 (for leveling up)
+// by Tequila  
+ORG 0x7F264 
+BYTE 0x01 0x21 
+
+
+// Chapter Menu Window Width by Kirb 
+ORG 0x59D216
+BYTE 0x7 // Default is 7 
+// Needs the whole menu to be shifted over to look decent with width > 7 
+
+
+// Disable sound room by Aera 
+ORG 0x0AB920
+BYTE 0x00 0x00 0x00 0x20
+
+// Disable Link Arena, Map and Transfer options.
+// Credit to Aera.
+  ORG 0xAB917
+  BYTE 0xE0
+  ORG 0xAB94D
+  BYTE 0xE0
+  ORG 0xAB95F
+  BYTE 0xE0
+
+  
+
+  
+  // Remove portrait from promotion screen by Tequila 
+ORG $073DD0 
+BYTE $C0 $46 $C0 $46 
+
+// Max name length in Name Input Screen 
+// By Circles 
+ORG 0x44800 
+BYTE 0x9 //max name length
+
+ORG 0x482BA 
+BYTE 0x9 //max cursor position
+
+
+//Damage preview Flooring to 1 (battle preview) 
+  ORG $2B53E
+  BYTE $01
+  ORG $2B542
+  BYTE $01
+  ORG $368CE
+  BYTE $01
+  ORG $368D2
+  BYTE $01
+  ORG $36964
+  BYTE $01
+  ORG $36968
+  BYTE $01
+  ORG $577DE
+  BYTE $01
+  ORG $577E2
+  BYTE $26
+  ORG $5781A
+  BYTE $01
+  ORG $5781E
+  BYTE $01
+  //thanks 7743
+  
+
+// Armor triangle - 7743 
+#define HardcodingID GaryID 
+ORG 0x74FD8 
+BYTE HardcodingID 
+ORG 0x75044 
+BYTE HardcodingID 
+ORG 0x74FE0 
+BYTE HardcodingID 
+ORG 0x7504C 
+BYTE HardcodingID 
+ORG 0x74FB4 
+BYTE HardcodingID 
+ORG 0x74FBA 
+BYTE HardcodingID 
+ORG 0x74FC8 
+BYTE HardcodingID 
+ORG 0x75034 
+BYTE HardcodingID 
+ORG 0x74FD0 
+BYTE HardcodingID 
+ORG 0x7503C
+BYTE HardcodingID 
+
+// Pegasus triangle attack 
+ORG 0x750C4 
+BYTE HardcodingID 
+ORG 0x7510C 
+BYTE HardcodingID 
+ORG 0x75156 
+BYTE HardcodingID 
+ORG 0x750CC 
+BYTE HardcodingID 
+ORG 0x75114 
+BYTE HardcodingID 
+
+
+// Disables opening the Status menu to view detailed unit info for the selected class. 
+// raticate ?? 
+
+// Ewan promotes rank removal 
+ORG 0x2bd0a 
+BYTE HardcodingID 
+ORG 0x2BE5A 
+BYTE HardcodingID 
+ORG 0x2bd10 
+BYTE HardcodingID 
+ORG 0x2BE60 
+BYTE HardcodingID 
+
+// Lockpick skill - Kirito 
+ORG 0x40C6A 
+BYTE HardcodingID 
+
+// Manakete bg - 7743 
+ORG 0x70B7E 
+BYTE HardcodingID 
+
+// Bonus exp 
+ORG 0x2C3FE 
+BYTE HardcodingID
+ORG 0x2C4F8 
+BYTE HardcodingID 
+
+// Unit id and higher to class grow with autolevel 
+ORG 0x17C4C 
+BYTE 0x50 
+
+// Unit ID Cannot be hit by sleep, berserk, and silence 
+// by 7743 
+ORG 0x2CD44 
+BYTE 0x4F
+
+POP 
+
+
+
+
+
+
+
+#ifndef DEBUG_MODE
+/*
+PUSH
+ORG 0x1c89e
+BYTE  0x00 0x00 0x00 0x00
+ORG 0x1d22c
+BYTE  0x00 0x00 0x00 0x00
+ORG 0x2CDDE
+BYTE  0x00 0x00 0x00 0x00
+
+ORG 0x31F06
+BYTE  0x00 0x00 0x00 0x00
+ORG 0x377A2
+BYTE  0x00 0x00 0x00 0x00
+ORG 0x39af4
+BYTE  0x00 0x00 0x00 0x00
+
+ORG 0x154F6
+BYTE  0x23 0x48 0xC0 0x7B 0x00 0x28 0x05 0xD1 0x0F 0x49 0x09 0x20 0x88 0x75 0x03 0x20 0x90 0xF0 0x9F 0xFA 0x00 0xBD
+POP
+*/
+#endif 
+
+
+
+
+
+
+

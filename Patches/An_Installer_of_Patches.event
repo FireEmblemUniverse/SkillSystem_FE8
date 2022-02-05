@@ -1,5 +1,5 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
-
+#include "RingRework/Installer.event"
 #include "StatusEffects/Installer.event" 
 
 #include "PromoteCommand/Installer.event"
