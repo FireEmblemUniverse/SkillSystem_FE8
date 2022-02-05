@@ -124,7 +124,8 @@ PackGameSaveUnit.set_class:
 	ldrb r2, [r1, #0x14] @ r2 = Unit->pow
 	strb r2, [r0, #0x03] @ GameSaveUnit->str = Unit->pow
 
-	mov  r2, #0          @ r2 = Unit->mag
+	mov  r3, #0x3A
+	ldrb r2, [r1, r3] @ r2 = Unit->mag
 	strb r2, [r0, #0x04] @ GameSaveUnit->mag = Unit->mag
 
 	ldrb r2, [r1, #0x15] @ r2 = Unit->skl
@@ -287,7 +288,8 @@ UnpackGameSaveUnit:
 	strb r2, [r4, #0x14] @ GameSaveUnit->str = GameSaveUnit->pow
 
 	ldrb r2, [r5, #0x04] @ r2 = GameSaveUnit->mag
-	@ do nothing         @ Unit->mag = GameSaveUnit->mag
+	mov  r3, #0x3A
+	strb r2, [r4, r3]
 
 	ldrb r2, [r5, #0x05] @ r2 = GameSaveUnit->skl
 	strb r2, [r4, #0x15] @ Unit->skl = GameSaveUnit->skl
@@ -480,12 +482,11 @@ PackPlayerSuspendSaveUnit:
 	ldrb r1, [r4, r1]    @ r1 = u->supportbits
 	strb r1, [r2, #0x05] @ su->supportbits = u->supportbits
 
-	mov r1, #0x47
-	ldr r2, =CharacterStructStairByte
-	ldrb r2, [ r2 ]
+	ldr  r1, =CharacterStructStairByte
+	ldrb r1, [r1]
 	ldrb r1, [r4, r1]	 @ r1 = u->stairbyte
-	strb r1, [r2, r2]	 @ su->stairasmbyte = u->stairbyte
-	
+	strb r1, [r2, #0x06]	 @ su->stairasmbyte = u->stairbyte
+
 	pop {r4}
 
 	pop {r1}
@@ -531,12 +532,11 @@ UnpackPlayerSuspendSaveUnit:
 	ldrb r1, [r2, #0x05] @ r1 = su->supportbits
 	strb r1, [r0, r3]    @ u->supportbits = su->supportbits
 
-	mov r3, #0x32
-	ldrb r1, [r2, r3]	 @ r1 = su->stairasmbyte
-	ldr r3, =CharacterStructStairByte
-	ldrb r3, [ r3 ]
-	strb r1, [r0, r3]	 @ u->stairbyte = su->stairasmbyte
-	
+	ldr  r3, =CharacterStructStairByte
+	ldrb r3, [r3]
+	ldrb r1, [r2, #0x06] @ r1 = su->stairasmbyte
+	strb r1, [r0, r3]    @ u->stairbyte = su->stairasmbyte
+
 	pop {r4}
 
 	pop {r1}

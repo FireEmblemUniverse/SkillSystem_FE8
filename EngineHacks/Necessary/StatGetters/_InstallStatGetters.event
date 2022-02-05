@@ -6,9 +6,7 @@
 #include "../MSG/Extensions/SkillSystem.event"
 #include "../MSG/Extensions/PassiveItemStatBonuses.event"
 #include "../MSG/Extensions/BallistaUtilities.event"
-#ifdef USE_STRMAG_SPLIT
-	#include "../MSG/Extensions/Strmag.event"
-#endif // USE_STRMAG_SPLIT
+#include "../MSG/Extensions/Strmag.event"
 
 #include "_Common.event"
 
@@ -23,8 +21,6 @@
 #include "Constitution.event"
 #include "Movement.event"
 #include "Aid.event"
-#ifdef USE_STRMAG_SPLIT
-	#include "Magic.event"
-#endif // USE_STRMAG_SPLIT
+#include "Magic.event"
 
 #endif // INSTALL_STAT_GETTERS_EVENT

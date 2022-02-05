@@ -123,7 +123,8 @@ PackGameSaveUnit.set_class:
 	ldrb r2, [r1, #0x14] @ r2 = Unit->pow
 	strb r2, [r0, #0x03] @ GameSaveUnit->str = Unit->pow
 
-	mov  r2, #0          @ r2 = Unit->mag
+	mov r3, #0x3A
+	ldrb r2, [r1, r3] @ r2 = Unit->mag
 	strb r2, [r0, #0x04] @ GameSaveUnit->mag = Unit->mag
 
 	ldrb r2, [r1, #0x15] @ r2 = Unit->skl
@@ -286,7 +287,8 @@ UnpackGameSaveUnit:
 	strb r2, [r4, #0x14] @ GameSaveUnit->str = GameSaveUnit->pow
 
 	ldrb r2, [r5, #0x04] @ r2 = GameSaveUnit->mag
-	@ do nothing         @ Unit->mag = GameSaveUnit->mag
+	mov r3, #0x3A
+	strb r2, [r4, r3]
 
 	ldrb r2, [r5, #0x05] @ r2 = GameSaveUnit->skl
 	strb r2, [r4, #0x15] @ Unit->skl = GameSaveUnit->skl

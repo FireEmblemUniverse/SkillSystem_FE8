@@ -55,7 +55,6 @@ str r4, [r3]    @Store processed debuffs/no rallies
 pop {r4}
     
 @4: Str/Skl Silver Debuff (6 bits), bit 7 = half strength, HO bit = Hexing Rod
-@5: Magic
 ldrb r0, [r3, #0x4]
 mov r1, #0x3F       @lower 6 bits
 and r1, r0
@@ -67,6 +66,17 @@ and r0, r2          @preserve
 orr r0, r1          @Set the new debuff
 strb r0, [r3, #0x4] @Store back
 noSilverDebuff:
+
+@5: (RallyMag<<4)||MagDebuff
+ldrb r0, [ r3, #0x05 ]
+mov r1, #0xF
+and r0, r1 @ Clear rally mag flag
+cmp r0, #0x00
+beq NoMagDebuff
+	sub r0, r0, #0x01
+NoMagDebuff:
+strb r0, [ r3, #0x05 ]
+
 @no need to do anything
 ldr r3, ReturnLocation
 BXR3:

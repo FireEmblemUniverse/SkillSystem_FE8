@@ -16,7 +16,7 @@ str r0,[sp,#0xC]
 
 ldr r0,=Display_Growth_Options_Link
 ldr r0,[r0]
-mov r1,#0x10
+mov r1,#0x10		@set if stat name color should reflect growth
 and r0,r1
 mov r1,r8
 ldrb r1,[r1,#0xB]
@@ -27,28 +27,17 @@ mov r0,#0
 IsPlayerUnit:
 str r0,[sp,#0x14]
 
-@draw str or mag
-  mov r0, r8
-  blh     MagCheck      @r0 = 1 if mag should show
-  cmp     r0,#0x0       
-  beq     NotMag        
-    @draw Mag at 13, 3. colour defaults to yellow.
-    draw_textID_at 13, 3, textID=0x4ff, growth_func=2
-    b       MagStrDone    
-  NotMag:
-    @draw Str at 13, 3
-    draw_textID_at 13, 3, textID=0x4fe, growth_func=2
-  MagStrDone:
+draw_textID_at 13, 3, textID=0x4fe, growth_func=2 @str
+draw_textID_at 13, 5, textID=0x4ff, growth_func=3 @mag
+draw_textID_at 13, 7, textID=0x4EC, growth_func=4 @skl
+draw_textID_at 13, 9, textID=0x4ED, growth_func=5 @spd
+draw_textID_at 13, 11, textID=0x4ee, growth_func=6 @luck
+draw_textID_at 13, 13, textID=0x4ef, growth_func=7 @def
+draw_textID_at 13, 15, textID=0x4f0, growth_func=8 @res
 
-draw_textID_at 13, 5, textID=0x4EC, growth_func=3 @skl
-draw_textID_at 13, 7, textID=0x4ED, growth_func=4 @spd
-draw_textID_at 13, 9, textID=0x4ee, growth_func=5 @luck
-draw_textID_at 13, 11, textID=0x4ef, growth_func=6 @def
-draw_textID_at 13, 13, textID=0x4f0, growth_func=7 @res
-
-b 	LiteralJump1
+b NoRescue
 .ltorg 
-LiteralJump1:
+NoRescue:
 
 ldr		r0,=StatScreenStruct
 sub		r0,#1
@@ -72,7 +61,6 @@ ShowStats:
 b ShowStats2
 
 .ltorg
-.align
 
 ShowGrowths: @things in this section are only drawn when in growths mode
 
@@ -80,130 +68,118 @@ ldr		r0,[sp,#0xC]
 ldr		r0,[r0,#4]		@str growth getter
 draw_growth_at 18, 3
 ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#8]		@skl growth getter
+ldr		r0,[r0,#8]		@mag growth getter
 draw_growth_at 18, 5
 ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#12]		@spd growth getter
+ldr		r0,[r0,#12]		@skl growth getter
 draw_growth_at 18, 7
 ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#16]		@luk growth getter
+ldr		r0,[r0,#16]		@spd growth getter
 draw_growth_at 18, 9
 ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#20]		@def growth getter
+ldr		r0,[r0,#20]		@luk growth getter
 draw_growth_at 18, 11
 ldr		r0,[sp,#0xC]
-ldr		r0,[r0,#24]		@res growth getter
+ldr		r0,[r0,#24]		@def growth getter
 draw_growth_at 18, 13
 ldr		r0,[sp,#0xC]
-ldr		r0,[r0]			@hp growth getter (not displaying because there's no room atm)
+ldr		r0,[r0,#28]		@res growth getter
 draw_growth_at 18, 15
-draw_textID_at 13, 15, textID=0x4E9, growth_func=1 @hp name
-
-b		literalJump2
+ldr		r0,[sp,#0xC]
+ldr		r0,[r0]			@hp growth getter (not displaying because there's no room atm)
+draw_growth_at 18, 17
+draw_textID_at 13, 17, textID=0x4E9, growth_func=1 @hp name
+b		NextColumn
 .ltorg
 
-ShowStats2: @things in this section are only drawn when not in growths mode
+ShowStats2:
+b		ShowStats3
+
+NextColumn:
+
+draw_textID_at 21, 3, textID=0x4f7 @con
+draw_con_bar_with_getter_at 24, 3
 
 
-draw_str_bar_at 16, 3
-draw_skl_bar_at 16, 5
-draw_spd_bar_at 16, 7
-draw_luck_bar_at 16, 9
-draw_def_bar_at 16, 11
-draw_res_bar_at 16, 13
+draw_textID_at 21, 5, textID=0x4f8 @aid
+draw_number_at 25, 5, 0x80189B8, 2 @aid getter
+draw_aid_icon_at 26, 5
 
-draw_textID_at 13, 15, 0x4f6 @move
-draw_move_bar_with_getter_at 16, 15
+draw_status_text_at 21, 7
 
-b literalJump2
+draw_textID_at 21, 9, textID=0x4f1 @affin
 
-.ltorg
-.align
+draw_affinity_icon_at 24, 9
 
-literalJump2:
-
-
-
-draw_textID_at 13, 17, textID=0x4f7 @con
-draw_con_bar_with_getter_at 16, 17
-
-draw_textID_at 21, 3, textID=0x4f8 @aid
-draw_number_at 25, 3, 0x80189B8, 2 @aid getter
-draw_aid_icon_at 26, 3
-
-draw_trv_text_at 21, 5
-
-draw_textID_at 21, 7, textID=0x4f1 @affin
-draw_affinity_icon_at 24, 7
-
-draw_status_text_at 21, 9
-
-b exitVanillaStatStuff
-
-.ltorg
-.align
-
-exitVanillaStatStuff:
 
 ldr r0,=TalkTextIDLink
 ldrh r0,[r0]
 draw_talk_text_at 21, 11
 
-b startSkills
-
-.ltorg
-.align
-
-startSkills:
-
-.set NoAltIconDraw, 1 @this is the piece that makes them use a separate sheet
-
 ldr r0,=SkillsTextIDLink
 ldrh r0, [r0]
 draw_textID_at 21, 13, colour=White @skills
 
+Nexty:
 
-mov r0,r8
-ldr r1,=Skill_Getter
-mov r14,r1
-.short 0xF800
+b skipliterals
+.ltorg
 
-mov r6,r0
-ldrb r0,[r6]
-cmp r0,#0
-beq SkillsEnd
+ShowStats3:
+draw_str_bar_at 16, 3
+draw_mag_bar_at 16, 5
+draw_skl_bar_at 16, 7
+draw_spd_bar_at 16, 9
+draw_luck_bar_at 16, 11
+draw_def_bar_at 16, 13
+draw_res_bar_at 16, 15
+draw_textID_at 13, 17, 0x4f6 @move
+draw_move_bar_with_getter_at 16, 17
+
+b		NextColumn
+.ltorg
+
+skipliterals:
+
+.set NoAltIconDraw, 1 @this is the piece that makes them use a separate sheet
+
+mov r0, r8
+ldr r1, =Skill_Getter
+mov lr, r1
+.short 0xf800 @skills now stored in the skills buffer
+
+mov r6, r0
+ldrb r0, [r6] 
+cmp r0, #0
+beq SkillEnd
 draw_skill_icon_at 21, 15
 
-ldrb r0,[r6,#1]
-cmp r0,#0
-beq SkillsEnd
+ldrb r0, [r6,#1]
+cmp r0, #0
+beq SkillEnd
 draw_skill_icon_at 24, 15
 
-ldrb r0,[r6,#2]
-cmp r0,#0
-beq SkillsEnd
+ldrb r0, [r6, #2]
+cmp r0, #0
+beq SkillEnd
 draw_skill_icon_at 27, 15
 
-ldrb r0,[r6,#3]
-cmp r0,#0
-beq SkillsEnd
+ldrb r0, [r6, #3]
+cmp r0, #0
+beq SkillEnd
 draw_skill_icon_at 21, 17
 
-ldrb r0,[r6,#4]
-cmp r0,#0
-beq SkillsEnd
+ldrb r0, [r6, #4]
+cmp r0, #0
+beq SkillEnd
 draw_skill_icon_at 24, 17
 
-ldrb r0,[r6,#5]
-cmp r0,#0
-beq SkillsEnd
+ldrb r0, [r6, #5]
+cmp r0, #0
+beq SkillEnd
 draw_skill_icon_at 27, 17
-b SkillsEnd
 
-.ltorg
-.align
-
-SkillsEnd:
+SkillEnd:
 
 @ draw_textID_at 13, 15, textID=0x4f6 @move
 @ draw_move_bar_at 16, 15
@@ -238,7 +214,6 @@ ldr		r0,=StatScreenStruct
 sub		r0,#0x2
 mov		r1,#0x0
 strb	r1,[r0]
-
 b DoNotUpdate
 .ltorg
 
@@ -253,13 +228,16 @@ cmp		r1,#0
 beq		RestoreDone
 cmp		r0,#0
 beq		RestoreDone
-ldr		r1,=#0x02028E70
+ldr		r1,Const2_2028E70
 ldr		r1,[r1]
 strh	r0,[r1,#0x10]
 RestoreDone:
 bx		r14
 
-.ltorg
+.align
+Const2_2028E70:
+.long 0x02028E70
 
 .include "GetTalkee.asm"
 
+.ltorg
