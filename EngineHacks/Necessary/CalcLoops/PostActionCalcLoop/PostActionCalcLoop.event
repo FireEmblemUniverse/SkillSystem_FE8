@@ -16,12 +16,6 @@ POIN LungeUpdate
 POIN PromoteOnLevelUp
 #endif // PROMOTE_LEVELUP
 
-#ifdef GAIDEN_MAGIC
-	POIN GaidenZeroOutSpellVariables
-#endif // GAIDEN_MAGIC
-
-
-
 
 WORD 0
 

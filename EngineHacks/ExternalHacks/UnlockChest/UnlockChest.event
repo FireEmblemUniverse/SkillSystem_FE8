@@ -10,10 +10,6 @@
 	UnlockPostCombat:
 	#incbin "unlockafter.dmp"
 	WORD Unlock
-	#ifdef GAIDEN_MAGIC
-		WORD GaidenUsingSpellMenu GaidenSelectedSpell
-	#else
-		WORD 0 0
-	#endif
+	WORD 0 0
 
 #endif // UNLOCK_WORKS_ON_CHESTS

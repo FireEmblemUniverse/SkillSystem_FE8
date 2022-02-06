@@ -180,9 +180,6 @@ POP
   //Durability-Based Items, for Skill Scrolls
   #include "Necessary/DurabilityBasedItems/DurabilityBasedItems.event"
 
-  // Gaiden Magic 2.0
-  #include "ExternalHacks/GaidenMagic/GaidenMagic.event"
-  
   #ifdef INSTALL_AoE
 	#include "ExternalHacks/AoE/Installer.event"
   #endif 

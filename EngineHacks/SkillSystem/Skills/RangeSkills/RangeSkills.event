@@ -1,7 +1,3 @@
-#ifdef GAIDEN_MAGIC // Gaiden magic forces this flag to be on or else crashes occur.
-	#define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
-#endif // GAIDEN_MAGIC
-
 #define RangeSkill(SkillID, routine) "WORD SkillID; POIN routine"
 //RangeSkill(0,0) used to terminate list
 ALIGN 4
