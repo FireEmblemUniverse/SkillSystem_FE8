@@ -70,7 +70,7 @@ add r2, #12
 ldrb r3, [ r2, #10 ] @ Command ID of first LOCA
 cmp r3, #0x22
 bne BeginCheck4 @ This doesn't have a 0x22 command. Try again.
-ldrb r3, [ r2, #4 ] @ This stair ID in r3
+ldr r3, [ r2, #4 ] @ This stair ID in r3
 cmp r3, r4
 bne BeginCheck4
 @ Great. If I got this far, I have the pointer to the LOCA I'm looking for (except I still need to check that this isn't the LOCA that I'm currently at). I can get the coordinates to move to from here.
@@ -175,7 +175,7 @@ ldrh r0, [ r7, #2 ] @ Event ID of this stair event
 blh CheckEventID, r1
 cmp r0, #0x00
 bne BeginCheck2
-ldrb r4, [ r7, #4 ] @ Stair ID in r4
+ldr r4, [ r7, #4 ] @ Stair ID in r4
 
 pop { r2 } @ Get the pointer to beginning of location events back
 BeginCheck3:
@@ -183,7 +183,7 @@ add r2, #12
 ldrb r3, [ r2, #10 ] @ Command ID of first LOCA
 cmp r3, #0x22
 bne BeginCheck3 @ This doesn't have a 0x22 command. Try again.
-ldrb r3, [ r2, #4 ] @ This stair ID in r3
+ldr r3, [ r2, #4 ] @ This stair ID in r3
 cmp r3, r4
 bne BeginCheck3
 @ Great. If I got this far, I have the pointer to the LOCA I'm looking for (except I still need to check that this isn't the LOCA that I'm currently at). I can get the coordinates to move to from here.

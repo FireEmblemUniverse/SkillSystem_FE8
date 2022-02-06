@@ -21,8 +21,8 @@
 
 	MagicSwordList:
 	//MagicSwordEntry(0x09,WeaponTypeAnima,False,HitDef,HitRes)
-	MagicSwordEntry(WindSword,WeaponTypeAnima,True,HitRes,HitRes)
-	MagicSwordEntry(LightBrand,WeaponTypeLight,True,HitRes,HitRes)
+	MagicSwordEntry(WindSword,WeaponTypeAnima,False,HitRes,HitRes)
+	MagicSwordEntry(LightBrand,WeaponTypeLight,False,HitRes,HitRes)
 	MagicSwordEntry(Runesword,WeaponTypeDark,True,HitRes,HitRes)
 	BYTE 0 0 0 //terminator
 
@@ -53,6 +53,20 @@
 	ORG 0x022CC4
 	BYTE 0xf3 0xf7 0x44 0xfd
 	
+	POP
+	
+	ALIGN 4
+	CheckWexpWeaponTypeHook:
+		WORD 0x19ED2550 0x24287828 0x5C2619E4 0xD0012E00 0x47184B01 0x47184B01 0x802C133 0x802C113
+
+	PUSH
+		// remove check for magic sword bit
+		ORG 0x02C108
+			BYTE 0x80
+
+		// instead check for weapon exp in weapon type
+		ORG 0x02C124
+			WORD 0x47184B00; POIN CheckWexpWeaponTypeHook|1
 	POP
 	
 #endif

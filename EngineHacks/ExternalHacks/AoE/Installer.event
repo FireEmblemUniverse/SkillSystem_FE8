@@ -1,0 +1,238 @@
+// Hooks: $1DA98 and $1D9DC 
+// this is to display purple tiles while selecting an area to attack 
+// briefly uses a byte in ram at 0x0203F101, which combat arts also use. 
+// it should not conflict with combat arts. 
+#include "Internals.event"
+
+// Add this to your Unit Menu 
+// MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+
+// Text entries:
+/*
+## UM_AoEName
+ AoE[X]
+
+## UM_AoEDesc
+Hit multiple units.[X]
+
+
+
+## UM_AoEHelp
+Select an area to Attack. Press L/R to Rotate.[X]
+
+## UM_AoEHealHelp
+Select an area to Heal. Press L/R to Rotate.[X]
+
+
+*/
+
+// 0x4AB is DUMMY text
+
+// 8022C99 - HideMoveRangeGraphicsWrapper
+
+
+// These are the submenu options that appear:
+ALIGN 4
+AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_0Usability|1, AoE_0Effect|1, AoE_0Hover|1, 0x8022C99)
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_1Usability|1, AoE_1Effect|1, AoE_1Hover|1, 0x8022C99)
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_2Usability|1, AoE_2Effect|1, AoE_2Hover|1, 0x8022C99)
+UM_Separator 
+
+
+
+
+/*
+@ Primary Table structure 
+@ Usability Reqs 
+UnitByte, #0 
+ClassByte, #1 
+LevelByte, #2 
+ItemByte, #3 
+FlagShort, #4 @and 5 
+SkillByte, #6 
+Pokemblem_MoveTesterByte, #7 // Does nothing if not pokemblem 
+@ Config 
+HpCostByte, #8
+ConfigByte, #9
+
+PowerLowerBoundByte, #10
+PowerUpperBoundByte, #11 
+MinRangeByte, #12
+MaxRangeByte, #13 
+RangeMask_IDByte, #14 
+Animation_IDByte, #15
+*/
+
+// Bitfield for more config options 
+#define HealBool 0x01
+#define FriendlyFireBool 0x02 
+#define FixedDamageBool 0x04 
+#define MagBasedBool 0x08 
+#define HitResBool 0x10
+#define DepleteItemBool 0x20
+#define UsableOnlyIfStationaryBool 0x40 
+
+
+ALIGN 4 
+AoE_Table:
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool
+BYTE 5 5 // damage range 
+BYTE 0 2 // Attack range 
+BYTE 0 1 // Index of RangeMask, Animation
+
+
+// Entry 
+BYTE 0 0 0 0 
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 5 5 // damage range 
+BYTE 1 3 // Attack range 
+BYTE 1 2 // Index of RangeMask, Animation
+
+// Entry 
+BYTE 0 0 0 0 
+BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE 5 10 // damage range 
+BYTE 2 4 // Attack range 
+BYTE 2 3 // Index of RangeMask, AnimationALL,
+AoE_TableTerminator
+
+
+
+
+ALIGN 4
+AoE_Animation_Table: // 12 bytes per entry 
+POIN 0 //AnimationRouine
+POIN 0 //EventAddress 
+SHORT 0 //Bgm/Sfx 
+SHORT 1 // so we don't hide data in febuilder early 
+
+POIN 0 //Entry 1 
+POIN RocksEvent_Cross
+SHORT 0 // Bgm  
+SHORT 1 
+
+POIN 0 // Entry 2
+POIN RocksEvent_Cross
+SHORT 0 
+SHORT 1 
+
+POIN 0 //0x807AD09 // Entry 3 - summon gfx 
+POIN RocksEvent_Cross
+SHORT 0 
+SHORT 1 
+
+WORD 0 0 0 // INDEXED, so no terminator actually needed 
+
+
+
+AoE_CameraEvent:
+ASMC AoE_Camera
+NoFade 
+ENDA 
+
+// Note that Memory Slot 3 is used to pass the rotation to the effect. 
+// If your animation event overwrites Memory Slot 3, you will get a random rotation. 
+
+RocksEvent_MiddleVertical:
+SVAL r1 2 // 2nd vertical line it finds 
+ASMC AoE_ShowBrokenWall_Vertical 
+NoFade 
+ENDA 
+
+RocksEvent_MiddleHorizontal:
+SVAL r1 2 // 2nd horizontal line it finds 
+ASMC AoE_ShowBrokenWall_Horizontal
+NoFade 
+ENDA 
+
+RocksEvent_Cross:
+SVAL r1 1 
+ASMC AoE_ShowBrokenWall_Vertical
+SVAL r1 1 
+ASMC AoE_ShowBrokenWall_Horizontal
+NoFade 
+ENDA 
+
+
+RocksEvent_Vertical: // This drops rocks in vertical lines, repeating from left to right
+SVAL r1 1
+SVAL r3 1 
+LABEL 0
+ASMC AoE_ShowBrokenWall_Vertical
+SADD r1 r1 r3 
+BEQ 0 rC r3 // Repeat until false is returned 
+NoFade 
+ENDA 
+
+RocksEvent_Horizontal: // This drops rocks in horizontal lines, repeating from top to bottom 
+SVAL r1 1
+SVAL r3 1 
+LABEL 0
+ASMC AoE_ShowBrokenWall_Horizontal
+SADD r1 r1 r3 
+BEQ 0 rC r3 // Repeat until false is returned 
+NoFade 
+ENDA 
+
+
+
+
+
+
+
+
+ALIGN 4 
+AoE_0Usability:
+#include "AoE_SpecificUsability.lyn.event"
+WORD 0 // Effect Index ID 
+
+
+ALIGN 4 
+AoE_1Usability:
+#include "AoE_SpecificUsability.lyn.event"
+WORD 1
+
+ALIGN 4 
+AoE_2Usability:
+#include "AoE_SpecificUsability.lyn.event"
+WORD 2
+
+
+ALIGN 4
+AoE_0Effect:
+#include "AoE_SpecificEffect.lyn.event"
+WORD 0 //AoE effect ID 
+
+ALIGN 4
+AoE_1Effect:
+#include "AoE_SpecificEffect.lyn.event"
+WORD 1 //AoE effect ID 
+
+ALIGN 4
+AoE_2Effect:
+#include "AoE_SpecificEffect.lyn.event"
+WORD 2 //AoE effect ID 
+
+
+ALIGN 4
+AoE_0Hover:
+#include "AoE_SpecificHover.lyn.event"
+WORD 0 //AoE effect ID 
+
+ALIGN 4
+AoE_1Hover:
+#include "AoE_SpecificHover.lyn.event"
+WORD 1 //AoE effect ID 
+
+ALIGN 4
+AoE_2Hover:
+#include "AoE_SpecificHover.lyn.event"
+WORD 2 //AoE effect ID 
+
+

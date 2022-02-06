@@ -41,6 +41,8 @@
 		New_Use(UnlockStaff_RangeSetup)
 	ORG $28ADC	//Barrier
 		New_Use(BarrierStaff_RangeSetup)
+	ORG $28BD8	//Dancer Rings
+		New_Use(DancerRing_RangeSetup)
 	
 	//TARGET
 	ORG $28F98	//Heal/Mend/Recover Staff
@@ -79,7 +81,10 @@
 		POIN Unlock_Jump|1
 		WORD 0x87A	//target select help text
 	//ORG $28FEC	//Barrier Staff
-	
+	ORG $29048	//Dancer Rings
+		SHORT 0x1C28 0x1C21
+		BL(DancerRingTargetSelect)
+		B($29062)
 	//killing off some of the now useless routines and using the space for jumps
 	ORG $2606C
 	Barrier_Jump:
@@ -99,11 +104,22 @@
 		SHORT 0xBC01 0x4700 0x0
 		POIN WarpStaff_RangeSetup|1
 	Hammerne_Jump:
-		SHORT 0xB500 0x1C22 0x4902
+		SHORT 0xB500 0x1C21 0x4902
 		BL($D18C4)
 		SHORT 0xBC01 0x4700 0x0
 		POIN HammerneStaff_RangeSetup|1
-	
+	DancerRingTargetSelect:
+		SHORT 0xB500 0x1C0B
+		SHORT 0x4902 0x4A03
+		BL($295A8)
+		SHORT 0xBC01 0x4700
+		POIN DancerRingJump|1
+		WORD 0x87F //target select help text
+	DancerRingJump:
+		SHORT 0xB500 0x1C22 0x4902
+		BL($D18C4)
+		SHORT 0xBC01 0x4700 0x0
+		POIN DancerRing_RangeSetup|1
 	/*
 	//Shouldn't have to touch these
 	#define New_Use(item) "ORG Usability_Table+4*(item-0x4B); POIN 0x28A8C"
@@ -438,6 +454,8 @@ POP
 		rfItemRangeSetup(0x25795,Item_TTRange)
 	BarrierStaff_RangeSetup:
 		rfItemRangeSetup(0x2601D,Item_TURange)
+	DancerRing_RangeSetup:
+		rfItemRangeSetup(0x265B5,Item_TURange)
 	/*
 	Range_Write:
 	#incbin "RangeWrite.dmp"

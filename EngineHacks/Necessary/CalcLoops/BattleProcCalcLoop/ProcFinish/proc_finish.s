@@ -43,15 +43,48 @@ NotStone:
 mov r0, #4
 ldrsh r0, [r7, r0]
 cmp r0, #0
-beq End @tink = no exp for you
+beq CapHealingOrDamage @tink = no exp for you
 ldr r0, [r6]
 mov r1, #2 @miss flag
 tst r1, r0
-bne End @missed = no exp for you
+bne CapHealingOrDamage @missed = no exp for you
 mov r1, r4
 add r1, #0x7c
 mov r0, #1
 strb r0, [r1] @set hit flag 
+
+CapHealingOrDamage:
+mov   r1, #0x5
+ldsb  r0, [r6, r1]          @ r0 = hp change for attacker
+cmp   r0, #0x0
+beq   End                   @ if not healing or taking damage, skip this
+  ldr   r1, [r6]
+  mov   r2, #0x80
+  mov   r3, #0x1            @ Min HP if no devil effect.
+  tst   r1, r2
+  beq   NoDevil
+    mov   r3, #0x0          @ Min HP if devil effect.
+  NoDevil:
+  ldrb  r1, [r4, #0x12]     @ attacker max HP
+  ldrb  r2, [r4, #0x13]     @ attacker cur HP
+  add   r2, r0
+  cmp   r2, #0x0
+  blt   HPmin
+    cmp   r2, r1
+    bgt   HPmax
+      b     StoreVal
+
+  HPmin:
+  mov   r2, r3
+  b     StoreVal
+  HPmax:
+  mov   r2, r1
+  StoreVal:
+  ldrb  r0, [r4, #0x13]     @ attacker cur HP
+  sub   r0, r2, r0
+  strb  r0, [r6, #0x5]      @ HP change.
+  strb  r2, [r4, #0x13]     @ attacker cur HP
+
 
 End:
 pop {r4-r7}

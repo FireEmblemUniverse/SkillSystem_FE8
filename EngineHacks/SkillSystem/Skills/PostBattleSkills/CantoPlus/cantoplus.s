@@ -35,6 +35,7 @@ ldrb 	r1, [r6,#0x10]	@squares moved this turn
 cmp	r0,r1
 beq	End
 
+blh 0x801A1F5 @first refresh the entity map
 ldr	r1,=#0x8018BD8	@check if can move again
 mov	lr, r1
 .short	0xF800
@@ -42,9 +43,10 @@ lsl	r0, #0x18
 cmp	r0, #0x00
 beq	End
 
-@check if already Cantoing
+@check if already cantoing, and is not in a ballista
 ldr	r0, [r4,#0x0C]	@status bitfield
-mov	r1, #0x40	@has moved already
+mov	r1, #0x21
+lsl	r1, #0x06 	@has moved already and is in a ballista
 and	r0, r1
 cmp	r0, #0x00
 bne	End

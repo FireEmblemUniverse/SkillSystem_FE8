@@ -48,7 +48,7 @@ blt CheckDefender
 ldr r1,=DefenderUnit
 add r1,#0x6F
 ldrb r0,[r1]
-cmp r0,#0xFF
+cmp r0,#0
 bne CheckDefender
 
 @set defender status to attacker status
@@ -85,7 +85,7 @@ mov r0,r6
 
 VanillaStatusApplyCheck:
 cmp r0,#0
-blt GoBack
+ble GoBack
 
 mov r1,r0
 ldr r0,=SetUnitNewStatus

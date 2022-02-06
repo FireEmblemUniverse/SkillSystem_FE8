@@ -35,6 +35,11 @@ prRallySpd:
 	POIN GetDebuffs|1
 
 prItemPassiveSpeed:
-	rPassiveStatBoosts(STAT_SPEED)
+#ifndef DONT_STACK_BOOSTS
+	rPassiveStatBoostsStacking(STAT_SPEED)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_SPEED)
+#endif // DONT_STACK_BOOSTS
+
 
 #endif // MODULAR_GETTER_SPEED_EVENT

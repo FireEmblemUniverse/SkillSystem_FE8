@@ -265,6 +265,12 @@ blh GetCharacterData
 pop {r2}
 str r0,[r4]
 ldrb r0,[r2,#2]
+cmp r0,#0xFF @if 0xFF get from chapter table
+bne MakeTarget_StoreMHP
+ldr r1,=ChapterDataTable
+add r1,#0x2C
+ldrb r0,[r1]
+MakeTarget_StoreMHP:
 strb r0,[r4,#0x12]
 b MakeTarget_GoBack
 
@@ -376,6 +382,7 @@ ldr r0,=ReturnPoint_ForceAnims1
 b ForceAnims_GoBack
 
 ForceAnims_RetFalse:
+ldr r3,=0x0203E104
 ldr r0,=ReturnPoint_ForceAnims2
 
 ForceAnims_GoBack:

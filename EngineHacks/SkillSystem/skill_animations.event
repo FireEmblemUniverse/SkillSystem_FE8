@@ -2,6 +2,24 @@
 ALIGN 4
 SkillAnimationTable:
 
+// Initialize all entries to 0.
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
 SkillAnimation(SureShotID,SureShotAnim)
 SkillAnimation(AdeptID,AdeptAnim)
 SkillAnimation(LunaID,LunaAnim)

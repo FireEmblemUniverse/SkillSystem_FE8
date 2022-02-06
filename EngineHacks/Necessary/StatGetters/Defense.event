@@ -38,7 +38,11 @@ prFortressDefenseDef:
 	_testSkill(FortressDefenseID,5,0)
 
 prItemPassiveDefense:
-	rPassiveStatBoosts(STAT_DEFENSE)
+#ifndef DONT_STACK_BOOSTS
+	rPassiveStatBoostsStacking(STAT_DEFENSE)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_DEFENSE)
+#endif // DONT_STACK_BOOSTS
 
 
 

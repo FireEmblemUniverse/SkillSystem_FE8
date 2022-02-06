@@ -44,6 +44,10 @@ prFortressResistanceRes:
 	_testSkill(FortressResistanceID,5,0)
 
 prItemPassiveResistance:
-	rPassiveStatBoosts(STAT_RESISTANCE)
+#ifndef DONT_STACK_BOOSTS
+	rPassiveStatBoostsStacking(STAT_RESISTANCE)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_RESISTANCE)
+#endif // DONT_STACK_BOOSTS
 
 #endif // MODULAR_GETTER_RESISTANCE_EVENT

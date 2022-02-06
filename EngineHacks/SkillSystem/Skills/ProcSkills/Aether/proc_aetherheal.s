@@ -48,56 +48,22 @@ ldr	r1,LiquidOozeID
 ldr	r3,SkillTester
 mov	lr,r3
 .short	0xF800
+mov	  r1, #4
+ldsh	r1, [r7, r1]    @ damage
+ldrb  r2, [r5, #0x13] @ defender's curr hp
+cmp   r1, r2
+ble   defLives        @ Damage taken / HP healed by attacker.
+  mov   r1, r2        @ can't exceed damage dealt to defender.
+defLives:
 cmp	r0,#0
 beq	noOoze
-
-@take damage from healing
-mov r0, #4
-ldrsh r0, [r7, r0]
-cmp r0, #0
-ble End @don't do anything
-mov r1, #5
-ldsb r1, [r6, r1] @existing hp change
-sub	r0,r1,r0
-cmp	r0,#0x7F
-blo	checkCap
-neg	r1,r0
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-cmp	r1,r2
-blo	NoCap
-mov	r0,r2
-sub	r0,#1
-neg	r0,r0
-b	NoCap
-
+  neg   r1, r1
 noOoze:
-@and recalculate damage with healing
-mov r0, #4
-ldrsh r0, [r7, r0]
-cmp r0, #0
-ble End @don't do anything
-mov r1, #5
-ldsb r1, [r6, r1] @existing hp change
-add r0, r1
+mov   r2, #0x5
+ldsb	r2,[r6,r2]	@hp change
+add   r2, r1
+strb	r2,[r6,#5]	@hp change
 
-checkCap:
-@now r0 is total HP change - is this higher than the max HP?
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-mov r1, #0x12
-ldrsb r1, [r4,r1] @max hp
-sub r1, r2 @damage taken
-cmp r1, r0
-bge NoCap
-  @if hp will cap, set r0 to damage taken
-  mov r0, r1
-NoCap:
-strb r0, [r6, #5] @write hp change
-mov r2, #0x13
-ldrsb r2, [r4,r2] @curr hp
-add r0, r2 @new hp
-strb r0, [r4, #0x13]
 
 End:
 pop {r4-r7}

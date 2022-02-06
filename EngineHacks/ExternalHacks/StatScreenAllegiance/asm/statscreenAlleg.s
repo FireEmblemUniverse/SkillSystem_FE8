@@ -13,7 +13,8 @@ ldrb r0,[r0]
 CheckAlleg:
 mov r1,#0xc0
 and r1,r0
-ldr r0,=0x8a06460
+ldr r0,=0x8088640
+ldr r0,[r0]
 cmp r1,#0
 beq End //if ally, we're done
 cmp r1,#0x40

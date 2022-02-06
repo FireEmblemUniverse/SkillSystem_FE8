@@ -46,6 +46,7 @@ CombatArt_Sol:
 #incbin "Sol/proc_sol.dmp"
 POIN SkillTester
 WORD SolID
+WORD LiquidOozeID
 
 ALIGN 4
 CombatArt_SureShot:

@@ -110,6 +110,7 @@
 #define IsLord 0x00002000
 #define IsFemale 0x00004000
 #define IsBoss 0x00008000
+#define UnlockLock1 0x00010000
 #define SwordmasterUnlock 0x00020000
 #define UseMonsterWeapons 0x00040000
 #ifdef _FE7_

@@ -59,6 +59,9 @@ POP
 
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 
+  // Display damage numbers in battle animations.
+  #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
+
   //HP Bars (and effective weapon warning)
   #include "QualityOfLife/HpBars/HpBars.event"
 
@@ -176,6 +179,11 @@ POP
   ALIGN 4
   #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
   
+  //Crit Cap
+  #ifdef CRIT_CAP
+    #include "ExternalHacks/CritCap/CritCap.event"
+  #endif
+  
   //Item Effect Revamp by Teraspark
   #include "Necessary/ItemEffectRevamp/IERevamp_Installer.event"
   
@@ -184,6 +192,10 @@ POP
 
   // Gaiden Magic 2.0
   #include "ExternalHacks/GaidenMagic/GaidenMagic.event"
+  
+  #ifdef INSTALL_AoE
+	#include "ExternalHacks/AoE/Installer.event"
+  #endif 
   
   // Unlock working on chests
   #include "ExternalHacks/UnlockChest/UnlockChest.event"
@@ -201,11 +213,7 @@ POP
   #include "Necessary/StatGetters/_InstallStatGetters.event"
   
   //Growth Getters
-  #ifndef USE_STRMAG_SPLIT
-    #include "Necessary/GrowthGetters/GrowthGetters.event"
-  #else
-    #include "ExternalHacks/StrMagSplit/GrowthGetters/GrowthGetters.event"
-  #endif // USE_STRMAG_SPLIT
+  #include "Necessary/GrowthGetters/GrowthGetters.event"
   
   ALIGN 4
   #include "Necessary/IconRework/IconRework.event"   // Allows using standard Icon routines to draw skill icons
