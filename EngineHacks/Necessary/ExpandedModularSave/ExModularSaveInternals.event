@@ -20,7 +20,7 @@ gMS_WMDataChunkId:        BYTE EMS_CHUNK_WMDATA
 #include "SrcCore/MSBWLHook.lyn.event"
 
 #define GetConvoyItemArrayStart $08031500
-#include "SrcModules/SaveConvoyExpanded.lyn.event"
+#include "SrcModules/ConvoyHook.lyn.event"
 
 PUSH
 	// Checksum computation function now returns a constant

@@ -10,7 +10,7 @@
 	ReadSramFastAddr       = 0x030067A0   @ pointer to the actual ReadSramFast function
 
 	
-	
+	// [0203B360..203b38F]!!
 	@ arguments:
 @ a saving and loading function (they take r0 = chunk save address; r1 = size; and are responsible for writing to/reading from SRAM)
 @ arguments:
