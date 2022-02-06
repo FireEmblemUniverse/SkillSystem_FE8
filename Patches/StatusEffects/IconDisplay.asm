@@ -75,14 +75,18 @@ pop {r3} @ 0x64 or 0x69 - tile # to use.
 mov r2, #0 @ 0 as icons default palette - 4 item palette # ?
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 
-mov r2, #2
+mov r2, #2 @ above map sprites but below menus etc. 
 lsl r2, #0xA @ priority is bits $A-B
 orr r3, r2 
 
 ldr r2, =SpriteData8x8
 
+push {lr}
 blh 0x08002BB8   @//CallARM_PushToSecondaryOAM
+pop {r3}
+mov lr, r3 
 
+b End2 
 @ldr		r0, =ItemIconPalette
 @mov 	r1, #4 @ MMB item icon palette index 
 @lsl		r1, r1, #0x05
@@ -97,6 +101,8 @@ blh 0x08002BB8   @//CallARM_PushToSecondaryOAM
 @strb r1,[r0]
 
 End:
+pop {r3}
+End2:
 CMP r6, #0x0
 BNE Exit_2
 
