@@ -32,7 +32,7 @@ ALIGN 4
 		//StaffMight
 		
 		//Might Vulnerary
-		//#include "ItemEffects/MigVul_Setup.event"
+		#include "ItemEffects/MigVul_Setup.event"
 
 		//AoE Status Staves
 		#include "AoEStaves/AoEStatusStaves.event"

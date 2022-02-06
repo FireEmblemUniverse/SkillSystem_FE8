@@ -75,6 +75,10 @@ pop {r3} @ 0x64 or 0x69 - tile # to use.
 mov r2, #0 @ 0 as icons default palette - 4 item palette # ?
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 
+mov r2, #2
+lsl r2, #0xA @ priority is bits $A-B
+orr r3, r2 
+
 ldr r2, =SpriteData8x8
 
 blh 0x08002BB8   @//CallARM_PushToSecondaryOAM

@@ -1413,7 +1413,35 @@ My Skill 68: Has an effect.[X]
 My Skill 69: Has an effect.[X]
 ## SD_SK70
 My Skill 70: Has an effect.[X]
+## SD_HeavyBlade
+Heavy Blade: +4 Damage/-2[N]
+Attack Speed when unit's Con[N] 
+is bigger than the enemy.[X]
 
+## SD_DancingBlade
+Dancing Blade: +4 Attack Speed[N]
+/-2 Damage when unit's Con[N]
+is lower than the enemy.[X]
+
+## SD_FireBoost
+Fire Boost: Grants +6 Attack[N]
+if unit's current HP is at[N]
+least 3 higher than the enemy's.[X]
+
+## SD_WindBoost
+Wind Boost: Grants +6 Attack[N]
+Speed if unit's current HP is at[N]
+least 3 higher than the enemy's.[X]
+
+## SD_EarthBoost
+Earth Boost: Grants +6 Defense[N]
+if unit's current HP is at[N]
+least 3 higher than the enemy's.[X]
+
+## SD_WaterBoost
+Water Boost: Grants +6 Resistance[N]
+if unit's current HP is at[N]
+least 3 higher than the enemy's.[X]
 // used these for skill names 
 //([:][^\n]*[\[X\]])
 //([:][^\n]*[\n][^\n]*[\[X\]])

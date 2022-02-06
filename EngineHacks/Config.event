@@ -11,7 +11,7 @@
 #define USE_TEST_MAP
 
 // The amount of attack speed needed to double an opponent.
-#define AS_DOUBLING_THRESHOLD 3
+#define AS_DOUBLING_THRESHOLD 10
 
 // If true, dropped items will retain their durability.
 #define DROPPED_ITEM_DURABILITY True
@@ -28,11 +28,11 @@
 // USE_SAVE_EXPANSION will be used even if commented
 // TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
-// #define USE_STRMAG_SPLIT
+#define USE_STRMAG_SPLIT
 
 // If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
 // Enabling this *will* break saves, but allows for higher stats and other things.
-// #define USE_SAVE_EXPANSION
+#define USE_SAVE_EXPANSION
 
 //If uncommented, will enable Battle Stats with Animations Off.
 #define BATTLE_STATS
@@ -65,7 +65,7 @@
 #define EVENT_SEND_TO_CONVOY
 
 //If uncommented, will enable Event Writer.
-#define EVENT_WRITER
+//#define EVENT_WRITER
 
 //If uncommented, will enable Freeze.
 #define FREEZE_HACK
@@ -123,7 +123,7 @@
 
 // If uncommented, StairsASM will be implemented.
 // This patch adds an entry to the Unit Menu, so installing here is necessary.
-// #define STAIRS_ASM
+#define STAIRS_ASM
 
 // If uncommented, Raid will be implemented.
 // This patch adds an entry to the Unit Menu, so installing here is necessary.
@@ -131,7 +131,7 @@
 
 // If uncommented, Escape-Arrive will be implemented.
 // /this adds entries to the Unit Menu and normally conflicts with Lunge and Stairs. Install here to avoid the conflicts.
-// #define ESCAPE_ARRIVE
+#define ESCAPE_ARRIVE
 
 // If uncommented, Leadership Stars will be implemented.
 // Go to LeadershipStars/LeadershipStars.event to edit settings.
@@ -149,36 +149,36 @@
 
 //If uncommented, Cannot Crit will be implemented.
 //Makes weapon crit of 255 negate crits.
-//#define CANNOT_CRIT
+#define CANNOT_CRIT
 
 //If uncommented, AdvWeaponLocks will be implemented.
 //This is a rewrite of venno's array-based weapon locks.
-// #define ADV_WEAPON_LOCKS
+#define ADV_WEAPON_LOCKS
 
 //If uncommented, Status-Inflicting Weapons will be implemented.
 //Setting weapon effect 0xD will apply the effect ID at item data +0x22.
-// #define STATUS_WEAPONS
+#define STATUS_WEAPONS
 
 //If uncommented, Narrow Font will be implemented.
 //This allows for setting narrower text in addition to standard text.
-// #define NARROW_FONT
+#define NARROW_FONT
 
 // If uncommented, the fourth page of the stat screen will include personal information on the character.
 // This information can be edited in the "Personal Data Editor.csv" file.
 // This will automatically enable Narrow Font.
-#define ENABLE_PERSONAL_INFO
+//#define ENABLE_PERSONAL_INFO
 
 // If uncommented, the third page of the stat screen will only show weapon ranks that the unit has a rank in.
 #define ONLY_SHOW_USED_RANKS
 
 // If uncommented, the second page of the stat screen will display data of map-based ballista in the inventory.
-#define QOL_STAT_SCREEN_BALLISTA
+//#define QOL_STAT_SCREEN_BALLISTA
 
 // If uncommented, Gaiden Magic 2.0 will be enabled.
 // Set spell lists in ExternalHacks/GaidenMagic/GaidenSpellLists.event.
 // Set spell HP costs in "Item editors/Gaiden Spell Cost Tables.csv"
 // An example for stat screen display is in MSS page 4.
-// #define GAIDEN_MAGIC
+#define GAIDEN_MAGIC
 
 // If uncommented, Area of Effect (AoE) attacks will be enabled. 
 // See ExternalHacks/AoE/Installer.event for details. 
@@ -189,7 +189,9 @@
 
 // If uncommented, units can promote after acting when at or above the specified levels.
 // (By default, all classes promote at level 255.) 
-// #define PROMOTE_LEVELUP
+#define PROMOTE_LEVELUP
+
+#define ACCESSORIES_AND_FORGING
 
 // If uncommented, damage numbers will display over participants' heads during battle animations.
 // #define BATTLE_ANIMATION_NUMBERS
@@ -207,7 +209,7 @@
 // =================================
 
 // if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
-// #define ENABLE_GALEFORCE_AUTOSELECT
+#define ENABLE_GALEFORCE_AUTOSELECT
 
 // if uncommented lethality will work like it originally did in gba
 // #define ENABLE_GBA_LETHALITY
@@ -232,10 +234,10 @@
 #define RESIDUAL_DAMAGE_REQUIRES_BATTLE_DAMAGE
 
 // If commented, Capture will be a global command and will not require the Capture skill.
-#define CAPTURE_SKILL_REQUIRED
+//#define CAPTURE_SKILL_REQUIRED
 
 // If commented, Dragon Veins will be a global command and will not require the Dragon's Blood skill.
-#define DRAGON_VEIN_SKILL_REQUIRED
+//#define DRAGON_VEIN_SKILL_REQUIRED
 
 //If commented, Heroes Movement skills will use class checks and will not require their respective skills. Configure lists for each skill in 'SkillSystem/Skills/UnitMenuSkills/HeroesMovement/HeroesMovement.event', at the bottom of the file.
 #define HEROES_MOVEMENT_SKILL_REQUIRED
@@ -256,7 +258,7 @@
 #define ALSO_USE_VANILLA_DANCE_CHECK False
 #define ALSO_USE_VANILLA_SUPPLY_CHECK True
 #define ALSO_USE_VANILLA_SUMMON_CHECK False
-#define ALSO_USE_VANILLA_STEAL_CHECK True
+#define ALSO_USE_VANILLA_STEAL_CHECK False
 
 //If uncommented, Combat Arts will be enabled.
 //This changes the behavior of most command skills and some proc skills such that they cost additional durability per hit and are selected from a submenu.
@@ -267,7 +269,7 @@
 
 //If uncommented, ModularPreBattleSkill will be installed.
 //This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
-#define MODULAR_PRE_BATTLE_SKILLS
+//#define MODULAR_PRE_BATTLE_SKILLS
 
 // If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
 // This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
@@ -318,10 +320,21 @@
 #define PRESS_SELECT_TO_VIEW_GROWTHS
 
 //If true, the stat colors for player units will reflect their growth in the stat.
-#define USE_STAT_COLORS True
+#define USE_STAT_COLORS False
+
+//If true, Tiered Growths mode will exist. 
+#define TIERED_GROWTHS_MODE False 
+//ID of flag to use for tiered growths mode, if enabled
+//#define FIXED_GROWTHS_FLAG_ID 0xEF
+
+#define ForcedStatGainXBelowAverage 3
+#define PreventStatGainXAboveAverage 5
+#define MinimumStatsOnLevelUpDef 2 
+
+
 
 //If true, Fixed Growths mode will exist.
-#define FIXED_GROWTHS_MODE False
+#define FIXED_GROWTHS_MODE True
 
 //ID of flag to use for fixed growths mode, if enabled
 #define FIXED_GROWTHS_FLAG_ID 0xEF
@@ -340,7 +353,7 @@
 #define METIS_TOME_BOOST 5
 
 //If true, growths will be calculated as (char growth + class growth).
-#define USE_CHAR_AND_CLASS_GROWTHS False
+#define USE_CHAR_AND_CLASS_GROWTHS True
 
 //The growth rate ranges for each stat color and the colors themselves can be edited in
 //Necessary/MSS/DisplayGrowthsOptions/GrowthColorsTable.event and NewPalette.event, respectively.

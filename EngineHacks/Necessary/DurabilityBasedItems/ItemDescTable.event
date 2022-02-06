@@ -6,20 +6,20 @@ ItemNameTable:
 SHORT 0x00
 SHORT 0x0354
 SHORT 0x0355
-SHORT BindName
+SHORT CalmMindName
 SHORT BodySlamName
-SHORT CometPunchName
+SHORT BulkUpName
 SHORT ConstrictName
-SHORT CovetName
+SHORT AmnesiaName
 SHORT ScreechName
-SHORT CutName
+SHORT AgilityName
 SHORT DoubleslapName
 SHORT DoubleHitName
 SHORT DoubleEdgeName
-SHORT EggBombName
+SHORT HardenName
 SHORT ExplosionName
 SHORT FlashName
-SHORT 0x0362
+SHORT RecoverMoveText
 SHORT GlareName
 SHORT GrowlName
 SHORT GrowthName
@@ -93,21 +93,21 @@ SHORT 0x03CD
 SHORT 0x03CE
 SHORT 0x03CF
 SHORT 0x03D0
-SHORT 0x0387
-SHORT 0x03D4
-SHORT 0x03D5
-SHORT 0x03D6
-SHORT 0x03D7
-SHORT 0x03D8
-SHORT 0x03D9
-SHORT 0x03DA
-SHORT 0x03DB
-SHORT 0x03DC
-SHORT 0x03DD
-SHORT 0x03DE
-SHORT 0x03DF
-SHORT 0x03E0
-SHORT 0x03E1
+SHORT HoneClawsName
+SHORT HPUpName
+SHORT ProteinName
+SHORT SecretTonicName
+SHORT CarbosName
+SHORT LuckyTonicName
+SHORT IronName
+SHORT ZincName
+SHORT CalciumName
+SHORT ConBoosterName
+SHORT MoonStoneName
+SHORT LinkStoneName
+SHORT ThunderStoneName
+SHORT LeafStoneName
+SHORT WaterStoneName
 SHORT 0x03E2
 SHORT 0x03E3
 SHORT 0x03E4
@@ -123,7 +123,7 @@ SHORT 0x03EF
 SHORT 0x03F0
 SHORT 0x03F1
 SHORT 0x03F2
-SHORT 0x0374
+SHORT GuardMoveName
 SHORT 0x03E2
 SHORT 0x0403
 SHORT 0x0403
@@ -139,7 +139,7 @@ SHORT RazorLeafName
 SHORT VineWhipName
 SHORT ThunderName
 SHORT ThunderPunchName
-SHORT 0x03F4
+SHORT SacredStoneName
 SHORT 0x03F5
 SHORT 0x0403
 SHORT ThundershockName
@@ -154,7 +154,7 @@ SHORT IceBeamName
 SHORT IcePunchName
 SHORT AvalancheName
 SHORT KarateChopName
-SHORT 0x03F6
+SHORT FireStoneName
 SHORT 0x03F7
 SHORT 0x03F8
 SHORT 0x03F9
@@ -186,7 +186,7 @@ SHORT PoisonJabName
 SHORT ToxicName
 SHORT 0x03BD
 SHORT DigName
-SHORT 0x0402
+SHORT ExoticCandyName
 SHORT 0x03FE
 SHORT 0x03FF
 SHORT 0x03EE
@@ -205,7 +205,7 @@ SHORT PeckName
 SHORT SkyAttackName
 SHORT AirSlashName
 SHORT WingAttackName
-SHORT BarrierName
+SHORT FocusEnergyName
 SHORT ConfusionName
 SHORT DreamEaterName
 SHORT HypnosisName
@@ -214,13 +214,13 @@ SHORT ReflectName
 SHORT PsybeamName
 SHORT PsychicName
 SHORT RestName
-SHORT TeleportName
+SHORT TailwindName
 SHORT RockSlideName
 SHORT RockThrowName
 SHORT AncientpowerName
 SHORT RockTombName
 SHORT RolloutName
-SHORT SandstormName
+SHORT WishName
 SHORT ConfuseRayName
 SHORT LickName
 SHORT NightShadeName
@@ -262,6 +262,7 @@ SHORT 0xFFF9
 
 
 
+
 ALIGN 4 
 WORD 0 
 
@@ -270,20 +271,20 @@ ItemDescTable:
 SHORT 0x00
 SHORT 0x0409
 SHORT 0x0405
-SHORT BindDesc
+SHORT CalmMindDesc
 SHORT BodySlamDesc
-SHORT CometPunchDesc
+SHORT BulkUpDesc
 SHORT ConstrictDesc
-SHORT CovetDesc
+SHORT AmnesiaDesc
 SHORT ScreechDesc
-SHORT CutDesc
+SHORT AgilityDesc
 SHORT DoubleslapDesc
 SHORT DoubleHitDesc
 SHORT DoubleEdgeDesc
-SHORT EggBombDesc
+SHORT HardenDesc
 SHORT ExplosionDesc
 SHORT FlashDesc
-SHORT 0x0412
+SHORT RecoverDescText
 SHORT GlareDesc
 SHORT GrowlDesc
 SHORT GrowthDesc
@@ -357,21 +358,21 @@ SHORT 0x047C
 SHORT 0x047D
 SHORT 0x047E
 SHORT 0x047F
-SHORT 0x0437
-SHORT 0x0483
-SHORT 0x0484
-SHORT 0x0485
-SHORT 0x0486
-SHORT 0x0487
-SHORT 0x0488
-SHORT 0x0489
-SHORT 0x048A
-SHORT 0x048B
-SHORT 0x048C
-SHORT 0x048D
-SHORT 0x048E
-SHORT 0x048F
-SHORT 0x0490
+SHORT HoneClawsDesc
+SHORT HPUpDesc
+SHORT ProteinDesc
+SHORT SecretTonicDesc
+SHORT CarbosDesc
+SHORT LuckyTonicDesc
+SHORT IronDesc
+SHORT ZincDesc
+SHORT CalciumDesc
+SHORT ConBoosterDesc
+SHORT MoonStoneDesc
+SHORT LinkStoneDesc
+SHORT ThunderStoneDesc
+SHORT LeafStoneDesc
+SHORT WaterStoneDesc
 SHORT 0x0491
 SHORT 0x0492
 SHORT 0x0493
@@ -387,7 +388,7 @@ SHORT 0x049E
 SHORT 0x049F
 SHORT 0x04A0
 SHORT 0x04A1
-SHORT 0x0424
+SHORT GuardMoveDesc
 SHORT 0x0491
 SHORT 0x04AB
 SHORT 0x04AB
@@ -403,7 +404,7 @@ SHORT RazorLeafDesc
 SHORT VineWhipDesc
 SHORT ThunderDesc
 SHORT ThunderPunchDesc
-SHORT 0x04A5
+SHORT SacredStoneDesc
 SHORT 0x04A6
 SHORT 0x04AB
 SHORT ThundershockDesc
@@ -418,7 +419,7 @@ SHORT IceBeamDesc
 SHORT IcePunchDesc
 SHORT AvalancheDesc
 SHORT KarateChopDesc
-SHORT 0x04A7
+SHORT FireStoneDesc
 SHORT 0x04A8
 SHORT 0x04A9
 SHORT 0x04A1
@@ -450,7 +451,7 @@ SHORT PoisonJabDesc
 SHORT ToxicDesc
 SHORT 0x046C
 SHORT DigDesc
-SHORT 0x04AA
+SHORT ExoticCandyDesc
 SHORT 0x04A1
 SHORT 0x04A1
 SHORT 0x049D
@@ -469,7 +470,7 @@ SHORT PeckDesc
 SHORT SkyAttackDesc
 SHORT AirSlashDesc
 SHORT WingAttackDesc
-SHORT BarrierDesc
+SHORT FocusEnergyDesc
 SHORT ConfusionDesc
 SHORT DreamEaterDesc
 SHORT HypnosisDesc
@@ -478,13 +479,13 @@ SHORT ReflectDesc
 SHORT PsybeamDesc
 SHORT PsychicDesc
 SHORT RestDesc
-SHORT TeleportDesc
+SHORT TailwindDesc
 SHORT RockSlideDesc
 SHORT RockThrowDesc
 SHORT AncientpowerDesc
 SHORT RockTombDesc
 SHORT RolloutDesc
-SHORT SandstormDesc
+SHORT WishDesc
 SHORT ConfuseRayDesc
 SHORT LickDesc
 SHORT NightShadeDesc
@@ -523,6 +524,7 @@ SHORT 0xFFFC
 SHORT 0xFFFB
 SHORT 0xFFFA
 SHORT 0xFFF9
+
 
 
 ALIGN 4 
