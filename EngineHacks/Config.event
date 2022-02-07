@@ -256,7 +256,7 @@
 // If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
 // This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
 // Uncommenting this may hinder edge edge cases of range-based skills working as equipped weapon skills.
-// #define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
+#define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
 
 //If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
 //  #define USE_LEGACY_SKILL_DEFAULTS
