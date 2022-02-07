@@ -42,10 +42,10 @@ void DrawPromoPreview(u16 item) {
 	u8 promotedClass = promoClassList->promoClass;
 	ClassData promotedClassEntry = gClassData[promotedClass];
 	
-	//draw fixed (externalized) text ID @ ~(132,98)
-	//draw class name @ ~(132,112)
+	//draw fixed (externalized) text ID @ ~(136,96)
+	//draw class name @ ~(136,112)
 	//draw icons for weapons w/o 0 base rank  
-	//on promoted class @ ~(132,128), padded 
+	//on promoted class @ ~(136,128), padded 
 	//draw class type icon @ ~(208,104)
 	//draw class skill icon @ ~(208,128)
 	
