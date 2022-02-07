@@ -77,10 +77,6 @@ POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a
 POIN Proc_Corrosion //skills that don't affect damage
 
 
-#ifdef GAIDEN_MAGIC
-	POIN Proc_GaidenMagicHPCost // Very similar to a counter.
-#endif // GAIDEN_MAGIC
-
 #ifdef MODULAR_PRE_BATTLE_SKILLS
 	POIN Proc_CmbArtHpCost
 #endif //ModularPreBattleSkills

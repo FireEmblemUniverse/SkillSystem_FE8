@@ -164,12 +164,6 @@
 // If uncommented, the second page of the stat screen will display data of map-based ballista in the inventory.
 #define QOL_STAT_SCREEN_BALLISTA
 
-// If uncommented, Gaiden Magic 2.0 will be enabled.
-// Set spell lists in ExternalHacks/GaidenMagic/GaidenSpellLists.event.
-// Set spell HP costs in "Item editors/Gaiden Spell Cost Tables.csv"
-// An example for stat screen display is in MSS page 4.
-// #define GAIDEN_MAGIC
-
 // If uncommented, Area of Effect (AoE) attacks will be enabled. 
 // See ExternalHacks/AoE/Installer.event for details. 
 //#define INSTALL_AoE
@@ -262,7 +256,7 @@
 // If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
 // This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
 // Uncommenting this may hinder edge edge cases of range-based skills working as equipped weapon skills.
-// #define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
+#define RANGE_SKILLS_CHECK_USES_SKILLTESTER2
 
 //If commented, level up skill learn lists will be replaced with ones emulating a vanilla skill spread. This will NOT remove personal skills.
 //  #define USE_LEGACY_SKILL_DEFAULTS
