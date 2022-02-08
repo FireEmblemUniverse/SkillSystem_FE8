@@ -80,6 +80,8 @@
 .equ gCurrentTextString, 0x202A6AC 
 .equ Const_2022D40, 0x2022D40
 .equ Const_2023D40, 0x2023D40
+.equ Const_2003D2C, 0x2003D2C
+.equ Const_200472C, 0x200472C
 
 @With this in mind, any unlabeled RAM addresses beginning with 0x200 can reasonably be assumed to be offsets within the tilemap
 
