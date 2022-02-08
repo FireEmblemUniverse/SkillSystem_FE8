@@ -31,6 +31,7 @@
 @getters
 .equ UnitHasMagicRank, 0x08018A58
 .equ MountedIconHelper, 0x08018AF0
+.equ MagCheck, 0x8018A58
 .equ AidCheck, 0x080189B8
 .equ CurHPGetter, 0x08019150
 .equ MaxHPGetter, 0x08019190       
@@ -80,6 +81,8 @@
 .equ gCurrentTextString, 0x202A6AC 
 .equ Const_2022D40, 0x2022D40
 .equ Const_2023D40, 0x2023D40
+.equ Const_2003D2C, 0x2003D2C
+.equ Const_200472C, 0x200472C
 
 @With this in mind, any unlabeled RAM addresses beginning with 0x200 can reasonably be assumed to be offsets within the tilemap
 

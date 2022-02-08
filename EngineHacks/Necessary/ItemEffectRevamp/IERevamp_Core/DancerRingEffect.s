@@ -36,12 +36,12 @@ bl 	InflictStatusOnUnit
 
 
 @also dance
-sub r0,#0x30
-ldr	r1,[r0,#0xC]
-ldr	r2,=#0x80323A0
-ldr	r2,[r2]
-and	r1,r2
-str	r1,[r0,#0xC]
+@sub r0,#0x30
+@ldr	r1,[r0,#0xC]
+@ldr	r2,=#0x80323A0
+@ldr	r2,[r2]
+@and	r1,r2
+@str	r1,[r0,#0xC]
 
 
 ldr 	r1, =#0x203A4D4
