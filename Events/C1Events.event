@@ -24,6 +24,8 @@ ALIGN 32 //For some reason, CharacterBasedEvents have to be 32-Aligned?
 CharacterBasedEvents:
 END_MAIN
 
+ALIGN 4
+
 LocationBasedEvents:
 Village(0x7,Ch1Village,1,2)
 END_MAIN
