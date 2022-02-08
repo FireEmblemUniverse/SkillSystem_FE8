@@ -31,6 +31,7 @@
 @getters
 .equ UnitHasMagicRank, 0x08018A58
 .equ MountedIconHelper, 0x08018AF0
+.equ MagCheck, 0x8018A58
 .equ AidCheck, 0x080189B8
 .equ CurHPGetter, 0x08019150
 .equ MaxHPGetter, 0x08019190       

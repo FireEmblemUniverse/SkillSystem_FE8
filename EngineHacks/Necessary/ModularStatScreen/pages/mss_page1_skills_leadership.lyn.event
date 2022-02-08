@@ -74,8 +74,7 @@ POIN DontBlinkLeft
 BYTE $44 $6E $8 $8 $80 $13 $0 $6 $68 $A $0 $1
 POIN Growth_Getter_Table
 POIN Display_Growth_Options_Link
-POIN MagCheck
-BYTE $FF $4 $0 $0 $40 $A2 $0 $8
+BYTE $58 $8A $1 $8 $FF $4 $0 $0 $40 $A2 $0 $8
 POIN Get_Palette_Index
 BYTE $6E $3D $0 $2 $3C $44 $0 $8 $FE $4 $0 $0 $EC $4 $0 $0 $EE $3D $0 $2 $ED $4 $0 $0 $6E $3E $0 $2 $EE $4 $0 $0 $EE $3E $0 $2 $EF $4 $0 $0 $6E $3F $0 $2 $F0 $4 $0 $0 $EE $3F $0 $2
 SHORT $4808 $3801 $4641 $7AC9 $22C0 $4211 $D003 $7801 $22FE $4011 $7001 $7800 $2101 $4208 $D000 $E003 $E0F2
@@ -262,11 +261,7 @@ BYTE $0 $F8
 SHORT $4808 $4686 $480A $490A $2212 $2312
 BYTE $0 $F8
 SHORT $4802 $3802 $2100 $7001 $E00E
-BYTE $0 $0 $FC $3B $0 $2 $D $0 $0 $3 $B8 $74 $D $8
-POIN Const_2003D2C
-BYTE $40 $2D $2 $2
-POIN Const_200472C
-BYTE $40 $3D $2 $2
+BYTE $0 $0 $FC $3B $0 $2 $D $0 $0 $3 $B8 $74 $D $8 $2C $3D $0 $2 $40 $2D $2 $2 $2C $47 $0 $2 $40 $3D $2 $2
 SHORT $B014 $BC80 $46B8 $BCF0 $BC01 $4700 $2900 $D004 $2800 $D002 $4901 $6809 $8208 $4770
 BYTE $70 $8E $2 $2
 SHORT $B530 $1C04 $480F $4686 $480D $7B80
