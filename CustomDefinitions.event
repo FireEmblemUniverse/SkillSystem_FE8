@@ -37,3 +37,22 @@
 #include "EngineHacks/SkillSystem/skill_definitions.event"
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p
+
+//Starfall Definitions start here
+
+#define Esme 0x1
+#define Solomin 0x2
+#define Oldrik 0x3
+#define Baeric 0x4
+#define Basren 0x5
+
+//we have not setup the class list yet but we can setup the stubs here and replace whatever
+#define EsmeLord 0x1
+#define Grassrunner 0x8
+#define SwordRider 0x5
+#define LanceRider 0x6
+#define AxeRider 0x3F
+#define BowRider 0x19
+
+
+ 

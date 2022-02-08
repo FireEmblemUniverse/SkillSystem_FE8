@@ -20,8 +20,7 @@
 
 //	#ifdef USE_TEST_MAP
     //Events
-    #include "Events/ch1events.event"
-    #include "Events/WorldMapEvents.event"
+	#include "Events/Event Installer.event"
 
     //Maps
     #include "Maps/MasterMapInstaller.event"

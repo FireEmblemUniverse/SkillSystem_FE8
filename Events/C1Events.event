@@ -1,0 +1,84 @@
+﻿//Made by Camtech075 of SerenesForest
+//Modified by Nintenlord
+
+#include EAstdlib.event
+
+EventPointerTable(0x07,ThisChapter)
+
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno Dunno Dunno
+POIN Tutorial
+POIN TrapData TrapData
+POIN Units Units
+POIN $0 $0 $0 $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+END_MAIN
+ALIGN 32 //For some reason, CharacterBasedEvents have to be 32-Aligned?
+
+CharacterBasedEvents:
+END_MAIN
+
+LocationBasedEvents:
+Village(0x7,Ch1Village,1,2)
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+DefeatAll(EndingScene)
+//AFEV 0x8 PrepAIChange 0x01 //Not sure what you were trying to do here, explain this to me and I will implement this in a modern form that's easier for people these days to debug/understand
+END_MAIN
+
+Dunno:
+END_MAIN
+
+Tutorial:
+END_MAIN
+
+TrapData:
+ENDTRAP
+
+ALIGN 4
+
+Units:
+UNIT Esme EsmeLord 0x00 Level(1, Ally, 0) [7,11] 0x00 0x00 0x0 0x00 [IronLance, Heal, Vulnerary] NoAI
+UNIT Solomin Grassrunner 0x00 Level(1, Ally, 0) [8,11] 0x00 0x00 0x0 0x00 [IronSword] NoAI
+UNIT Oldrik LanceRider 0x00 Level(1, Ally, 0) [6,12] 0x00 0x00 0x0 0x00 [IronLance, Vulnerary] NoAI
+UNIT Baeric SwordRider 0x00 Level(1, Ally, 0) [10,11] 0x00 0x00 0x0 0x00 [IronSword, Vulnerary] NoAI
+UNIT Basren BowRider 0x01 Level(1, Ally, 0) [7,12] 0x00 0x00 0x0 0x00 [IronBow, Longbow] NoAI
+UNIT
+
+
+//Let me know what we want to call these enemies and I'll set up any definitions we need.
+Enemies:
+UNIT 0x68 Soldier 0x01 Level(4, Enemy, 0) [10,0] 0x00 0x00 0x0 0x00 [Horseslayer] AttackInRangeAI
+UNIT 0x66 Brigand 0x01 Level(3, Enemy, 1) [11,1] 0x00 0x00 0x0 0x00 [IronAxe] BrigandAI
+UNIT 0x66 Mercenary 0x01 Level(3, Enemy, 1) [12,1] 0x00 0x00 0x0 0x00 [IronSword] AttackInRangeAI
+UNIT 0x66 Soldier 0x01 Level(2, Enemy, 1) [8,3] 0x00 0x00 0x0 0x00 [IronLance] AttackInRangeAI
+UNIT 0x66 Archer 0x01 Level(2, Enemy, 1) [12,5] 0x00 0x00 0x0 0x00 [IronBow] AttackInRangeAI
+UNIT 0x66 Brigand 0x01 Level(1, Enemy, 0) [7,8] 0x00 0x00 0x0 0x00 [IronAxe] PursueWithoutHeedAI
+UNIT 0x66 Mercenary 0x01 Level(1, Enemy, 0) [3,10] 0x00 0x00 0x0 0x00 [IronSword] PursueWithoutHeedAI
+UNIT 0x66 Soldier 0x01 Level(2, Enemy, 1) [3,5] 0x00 0x00 0x0 0x00 [IronLance] AttackInRangeAI
+UNIT 0x66 Brigand 0x01 Level(1, Enemy, 0) [12,9] 0x00 0x00 0x0 0x00 [IronAxe] BrigandAI
+UNIT
+
+BeginningScene:
+LOAD1 1 Units
+ENUN
+LOAD1 1 Enemies
+ENUN
+ENDA
+
+Ch1Village:
+VillageEventItem(C1VillageText,Village,Vulnerary)
+
+EndingScene:
+MoveToChapter(1)
+ENDA
+
+MESSAGE Events end at offset CURRENTOFFSET

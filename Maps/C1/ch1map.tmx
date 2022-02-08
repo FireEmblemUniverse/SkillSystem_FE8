@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" name="pful fields tileset img" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="../Tileset/01000203.png" width="512" height="512"/>
+ </tileset>
+ <layer id="1" name="Main" width="15" height="13">
+  <properties>
+   <property name="Anims1" value="0x05"/>
+   <property name="Anims2" value="0x00"/>
+   <property name="ChapterID" value="0x00"/>
+   <property name="Main" value=""/>
+   <property name="MapChangesID" value="0x06"/>
+   <property name="MapID" value="0x04"/>
+   <property name="ObjectType" value="0x01"/>
+   <property name="PaletteID" value="0x02"/>
+   <property name="TileConfig" value="0x3"/>
+  </properties>
+  <data encoding="csv">
+808,809,810,722,723,605,630,364,396,209,728,391,164,163,100,
+840,841,842,738,788,602,207,784,733,721,164,100,163,100,100,
+872,873,874,229,673,565,733,816,231,470,773,164,197,707,707,
+46,231,264,270,171,601,231,763,784,363,164,141,16,135,80,
+78,783,231,178,391,3,163,362,849,786,396,103,115,168,114,
+138,205,395,721,163,601,45,83,78,164,145,206,721,77,104,
+144,265,232,163,597,630,163,114,110,199,178,238,163,107,108,
+104,362,163,100,601,71,83,82,389,302,71,80,136,142,100,
+100,163,785,818,602,103,39,39,83,44,7,39,115,82,71,
+721,100,163,816,601,100,114,115,104,163,103,168,163,103,39,
+15,164,209,391,2147484249,163,143,136,142,163,163,643,172,77,39,
+114,72,15,163,3,45,112,167,144,45,72,673,99,137,39,
+115,7,82,597,606,163,100,163,114,83,144,738,140,143,39
+</data>
+ </layer>
+ <layer id="3" name="VillageDie" width="15" height="13">
+  <properties>
+   <property name="Height" value="3"/>
+   <property name="ID" value="0"/>
+   <property name="Width" value="3"/>
+   <property name="X" value="0"/>
+   <property name="Y" value="0"/>
+  </properties>
+  <data encoding="csv">
+904,905,906,0,0,0,0,0,0,0,0,0,0,0,0,
+936,937,938,0,0,0,0,0,0,0,0,0,0,0,0,
+968,969,970,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="VillageSave" width="15" height="13">
+  <properties>
+   <property name="Height" value="1"/>
+   <property name="ID" value="1"/>
+   <property name="Width" value="1"/>
+   <property name="X" value="1"/>
+   <property name="Y" value="2"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,33,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
