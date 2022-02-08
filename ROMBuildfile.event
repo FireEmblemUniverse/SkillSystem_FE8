@@ -18,14 +18,14 @@
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
 
-	#ifdef USE_TEST_MAP
+//	#ifdef USE_TEST_MAP
     //Events
-    #include "Events/Release_map.event"
+    #include "Events/ch1events.event"
     #include "Events/WorldMapEvents.event"
 
     //Maps
     #include "Maps/MasterMapInstaller.event"
-    #endif // USE_TEST_MAP
+//    #endif // USE_TEST_MAP
 	
     MESSAGE Used free space ends at currentOffset
 #else
