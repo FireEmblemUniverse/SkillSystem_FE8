@@ -1,0 +1,15 @@
+
+PUSH
+ORG $1E800
+jumpToHack(PromoPreviewWrapper)
+POP
+
+#include "PromoPreviewWrapper.lyn.event"
+
+#include "PromoPreview.lyn.event"
+
+ALIGN 4
+PromotesToTextIDLink:
+WORD PromotesToText
+NoUseTextIDLink:
+WORD NoUseText
