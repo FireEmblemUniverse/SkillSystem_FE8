@@ -25,7 +25,7 @@ for sym in args.sym_files:
                 # In case the address is an odd number, we need to subtract 1 from it to make it even. This is more useful in no$gba.
                 if address % 2: address -= 1 # If the address is odd, subtract 1 from it.
                 
-                lines.append(f'0{address:0X} {restOfLine}\n')
+                lines.append(f'{address:08X} {restOfLine}\n')
     except FileNotFoundError:
         if args.loud: exit(f'Error: sym file {sym} not found.')
 
