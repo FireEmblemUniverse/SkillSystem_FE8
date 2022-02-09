@@ -38,7 +38,20 @@ void DrawPromoPreview(u16 item) {
 		if (activeUnit.pClassData->number == promoClassList->baseClass) break;
 		promoClassList ++;
 	}
-	if (promoClassList->baseClass == 0) return;
+	if (promoClassList->baseClass == 0) {
+		
+		//we reach here when we are not able to use the promo item
+		TextHandle nouseHandle = {
+			.tileIndexOffset = gpCurrentFont->tileNext,
+			.tileWidth = 12
+		};
+		const char* textID = GetStringFromIndex(NoUseTextIDLink);
+		Text_Clear(&nouseHandle);
+		Text_DrawString(&nouseHandle, textID);
+		Text_Display(&nouseHandle, &gBG0MapBuffer[12][16]);
+	
+		return;
+	}
 	u8 promotedClass = promoClassList->promoClass;
 	ClassData promotedClassEntry = gClassData[promotedClass];
 	

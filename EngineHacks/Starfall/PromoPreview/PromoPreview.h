@@ -23,5 +23,7 @@ struct PromoItemClassListEntry
 extern struct PromoItemsListEntry PromoItemsList;
 
 extern int PromotesToTextIDLink;
+extern int NoUseTextIDLink;
 
 extern u8 ClassSkillTable[256];
+

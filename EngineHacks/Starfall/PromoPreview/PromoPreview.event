@@ -11,3 +11,5 @@ POP
 ALIGN 4
 PromotesToTextIDLink:
 WORD PromotesToText
+NoUseTextIDLink:
+WORD NoUseText
