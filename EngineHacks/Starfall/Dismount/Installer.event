@@ -1,3 +1,4 @@
+//credit to Pikmin1211 for majority of this, Loog for ASMCs and debuffs
 
 MESSAGE Dismount starts at currentOffset
 ALIGN 4
@@ -14,9 +15,31 @@ MESSAGE Dismount ends at currentOffset
 
 ALIGN 4
 MountedClassTable:
-MountedUnmounted(LanceRider, Soldier) // examples; we'll need to change this later
-MountedUnmounted(SwordRider, Mercenary)
-MountedUnmounted(BowRider, Archer)
+MountedUnmounted(Lord, Lord_D) // examples; we'll need to change this later
+MountedUnmounted(GreatLord, GreatLord_D)
+MountedUnmounted(Sword_Rider, Sword_Rider_D)
+MountedUnmounted(Lance_Rider, Lance_Rider_D)
+MountedUnmounted(Axe_Rider, Axe_Rider_D)
+MountedUnmounted(Bow_Rider, Bow_Rider_D)
+MountedUnmounted(Pegasus_Rider, Pegasus_Rider_D)
+MountedUnmounted(Wyvern_Rider, Wyvern_Rider_D)
+MountedUnmounted(Troubadour, Troubadour_D)
+MountedUnmounted(Paladin, Paladin_D)
+MountedUnmounted(Forrest_Knight, Forrest_Knight_D)
+MountedUnmounted(Lancer, Lancer_D)
+MountedUnmounted(Great_Knight, Great_Knight_D)
+MountedUnmounted(Arch_Knight, Arch_Knight_D)
+MountedUnmounted(Fire_Knight, Fire_Knight_D)
+MountedUnmounted(Wind_Knight, Wind_Knight_D)
+MountedUnmounted(Thunder_Knight, Thunder_Knight_D)
+MountedUnmounted(Grassrunner, Grassrunner_D)
+MountedUnmounted(Falcoknight, Falcoknight_D)
+MountedUnmounted(Seraph_Knight, Seraph_Knight_D)
+MountedUnmounted(Kinshi_Knight, Kinshi_Knight_D)
+MountedUnmounted(Wyvern_Lord, Wyvern_Lord_D)
+MountedUnmounted(Qilin_Knight, Qilin_Knight_D)
+MountedUnmounted(Scaleguard, Scaleguard_D)
+MountedUnmounted(Valkyrie, Valkyrie_D)
 EndMountUnmountedTable
 
 ALIGN 4
