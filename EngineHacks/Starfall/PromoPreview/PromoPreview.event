@@ -7,3 +7,7 @@ POP
 #include "PromoPreviewWrapper.lyn.event"
 
 #include "PromoPreview.lyn.event"
+
+ALIGN 4
+PromotesToTextIDLink:
+WORD PromotesToText
