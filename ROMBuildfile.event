@@ -1,6 +1,7 @@
 #ifdef _FE8_
     #include "EAstdlib.event"
     #include "CustomDefinitions.event"
+    #include "Definitions/DefinitionsInstaller.event"
 //PROTECT $25224
     ORG FreeSpace
 

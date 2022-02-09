@@ -9,10 +9,11 @@ ORG $188F6
 BYTE 0x00 0x00
 BYTE 0x00 0x48 0x87 0x46; POIN (Boon|0x1)
 
-//Discipline
+//Discipline // interferes with removing kill bonus
+/*
 ORG $2C13C
 callHack_r3(Discipline)
-
+*/
 //Live to Serve
 ORG $2EBD4
 jumpToHack(LiveToServe)
@@ -62,12 +63,14 @@ Boon:
 POIN SkillTester
 WORD BoonID
 
+/*
 ALIGN 4
 Discipline:
 #incbin "Discipline/Discipline.dmp"
 POIN SkillTester
 WORD DisciplineID
 WORD DisciplinePlusID
+*/
 
 ALIGN 4
 LiveToServe:
