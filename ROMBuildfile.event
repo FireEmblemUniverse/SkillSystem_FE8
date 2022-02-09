@@ -2,7 +2,7 @@
     #include "EAstdlib.event"
     #include "CustomDefinitions.event"
     #include "Definitions/DefinitionsInstaller.event"
-//PROTECT $25224
+
     ORG FreeSpace
 
     #include "repointedTextTable.event"
@@ -19,13 +19,11 @@
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
 
-//	#ifdef USE_TEST_MAP
     //Events
-	#include "Events/Event Installer.event"
+	#include "Events/_EventInstaller.event"
 
     //Maps
     #include "Maps/MasterMapInstaller.event"
-//    #endif // USE_TEST_MAP
 	
     MESSAGE Used free space ends at currentOffset
 #else
