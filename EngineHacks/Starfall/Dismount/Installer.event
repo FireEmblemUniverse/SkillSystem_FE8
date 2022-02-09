@@ -1,0 +1,93 @@
+
+MESSAGE Dismount starts at currentOffset
+ALIGN 4
+#include "Dismount.lyn.event"
+MESSAGE Dismount ends at currentOffset
+
+#define MountedUnmounted(classIDMounted, classIDUnmounted) "BYTE classIDMounted classIDUnmounted"
+#define EndMountUnmountedTable "BYTE 0x00 0x00"
+
+#define DismountUnit(unit) "SVAL s1 unit; ASMC DismountUnitASMC"
+#define DismountAll "ASMC DismountAllASMC"
+#define MountUnit(unit) "SVAL s1 unit; ASMC MountUnitASMC"
+#define MountAll "ASMC MountAllASMC"
+
+ALIGN 4
+MountedClassTable:
+MountedUnmounted(LanceRider, Soldier) // examples; we'll need to change this later
+MountedUnmounted(SwordRider, Mercenary)
+MountedUnmounted(BowRider, Archer)
+EndMountUnmountedTable
+
+ALIGN 4
+MountDismountAllTable:
+BYTE Esme
+BYTE Solomin
+BYTE Oldrik
+BYTE Baeric
+BYTE Basren
+BYTE 0xFF
+
+/*
+#define rIfUnitIsDismounted(dismountType)            "rWithConstant(dismountType); rIf(MSG_prCheckDismountedType)"
+#define rIfUnitIsDismounted(dismountType, arNext)    "rIfUnitIsDismounted(dismountType); arNext"
+
+#define HorseDismountType 1
+#define PegasusDismountType 2
+#define DragonDismountType 3
+
+#define DISMOUNT_CHECKER DismountTester
+
+ALIGN 4
+MSG_prCheckDismountedType: // Wraps SkillTester for MSG
+	rCallExternal(DismountTester^1)
+
+ALIGN 4
+prDismountedHorseDefDebuff:
+	rIfUnitIsDismounted(HorseDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedPegDefDebuff:
+	rIfUnitIsDismounted(PegasusDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedDragonDefDebuff:
+	rIfUnitIsDismounted(DragonDismountType)
+		rSubConst(5)
+ALIGN 4
+prDismountedHorseSpdDebuff:
+	rIfUnitIsDismounted(HorseDismountType)
+		rSubConst(2)
+ALIGN 4
+prDismountedPegSpdDebuff:
+	rIfUnitIsDismounted(PegasusDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedDragonSpdDebuff:
+	rIfUnitIsDismounted(DragonDismountType)
+		rSubConst(2)
+ALIGN 4
+prDismountedHorseSklDebuff:
+	rIfUnitIsDismounted(HorseDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedPegSklDebuff:
+	rIfUnitIsDismounted(PegasusDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedDragonSklDebuff:
+	rIfUnitIsDismounted(DragonDismountType)
+		rSubConst(2)
+ALIGN 4
+prDismountedHorseStrDebuff:
+	rIfUnitIsDismounted(HorseDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedPegStrDebuff:
+	rIfUnitIsDismounted(PegasusDismountType)
+		rSubConst(1)
+ALIGN 4
+prDismountedDragonStrDebuff:
+	rIfUnitIsDismounted(DragonDismountType)
+		rSubConst(3)
+*/
