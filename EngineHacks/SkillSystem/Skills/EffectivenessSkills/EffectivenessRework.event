@@ -3,9 +3,11 @@
 #define SlayerTableEntry(class_id, type_list, coefficient_times_2) "BYTE class_id coefficient_times_2; SHORT type_list"
 ALIGN 4
 SlayerTable:
+/*
 SlayerTableEntry(Bishop, MonsterType, 6)
 SlayerTableEntry(Bishop_F, MonsterType, 6)
 SlayerTableEntry(Ranger_F, MonsterType, 6)
+*/
 WORD 0 //terminator
 
 //Change existing effective items (class weaknesses are already part of the class data table)

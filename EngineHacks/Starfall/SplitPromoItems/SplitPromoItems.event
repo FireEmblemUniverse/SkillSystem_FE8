@@ -20,13 +20,13 @@ POP
 
 ALIGN 4
 PromoItemsList:
-PromoItemEntry(HeroCrest,HeroCrestPromoList)
-PromoItemEntry(KnightCrest,KnightCrestPromoList)
-PromoItemEntry(OrionsBolt,OrionsBoltPromoList)
-PromoItemEntry(ElysianWhip,ElysianWhipPromoList)
-PromoItemEntry(GuidingRing,GuidingRingPromoList)
-PromoItemEntry(OceanSeal,OceanSealPromoList)
-PromoItemEntry(SolarBrace,SolarBracePromoList)
+PromoItemEntry(HeroCrest,SolarCrestPromoList)
+PromoItemEntry(KnightCrest,LunarRingPromoList)
+PromoItemEntry(OrionsBolt,AstralSigilPromoList)
+//PromoItemEntry(ElysianWhip,ElysianWhipPromoList)
+//PromoItemEntry(GuidingRing,GuidingRingPromoList)
+//PromoItemEntry(OceanSeal,OceanSealPromoList)
+//PromoItemEntry(SolarBrace,SolarBracePromoList)
 PromoItemEntry(LunarBrace,LunarBracePromoList)
 PromoItemsEnd
 
@@ -39,52 +39,102 @@ BYTE 0
 #define PromoListEnd "SHORT 0"
 
 ALIGN 4
-HeroCrestPromoList:
+SolarCrestPromoList:
+PromoListEntry(Sword_Rider,Paladin)
+PromoListEntry(Sword_Rider_D,Paladin_D)
+PromoListEntry(Lance_Rider,Paladin)
+PromoListEntry(Lance_Rider_D,Paladin_D)
+PromoListEntry(Axe_Rider,Great_Knight)
+PromoListEntry(Axe_Rider_D,Great_Knight_D)
+PromoListEntry(Bow_Rider,Forrest_Knight)
+PromoListEntry(Bow_Rider_D,Forrest_Knight_D)
+PromoListEntry(Armor,General)
+PromoListEntry(Soldier,Halberdier)
 PromoListEntry(Mercenary,Hero)
-PromoListEntry(Mercenary_F,Hero_F)
-PromoListEntry(Myrmidon,Swordmaster)
-PromoListEntry(Myrmidon_F,Swordmaster_F)
-PromoListEntry(Fighter,Hero)
-PromoListEntry(Journeyman_2,Warrior)
-
-PromoListEntry(Cavalier,Paladin)
-PromoListEntry(Cavalier_F,Paladin_F)
-PromoListEntry(Knight,General)
-PromoListEntry(Knight_F,General_F)
-PromoListEnd
-
-ALIGN 4
-KnightCrestPromoList:
-PromoListEntry(Cavalier,GreatKnight)
-PromoListEntry(Cavalier_F,GreatKnight_F)
-PromoListEntry(Knight,GreatKnight)
-PromoListEntry(Knight_F,GreatKnight_F)
-PromoListEntry(Recruit_2,Paladin)
-
-PromoListEntry(Archer,Ranger)
-PromoListEntry(Archer_F,Ranger_F)
-PromoListEntry(PegasusKnight,WyvernKnight_F)
-PromoListEntry(WyvernRider,WyvernKnight)
-PromoListEntry(WyvernRider_F,WyvernKnight_F)
-PromoListEntry(Troubadour,Valkyrie)
-PromoListEntry(Mage,MageKnight)
-PromoListEntry(Mage_F,MageKnight_F)
-PromoListEntry(Priest,MageKnight)
-PromoListEntry(Cleric,Valkyrie)
-PromoListEnd
-
-ALIGN 4
-OrionsBoltPromoList:
-PromoListEntry(Archer,Sniper)
-PromoListEntry(Archer_F,Sniper_F)
-
-PromoListEntry(Mercenary,Ranger)
-PromoListEntry(Mercenary_F,Ranger_F)
 PromoListEntry(Fighter,Warrior)
-PromoListEntry(Brigand,Warrior)
-PromoListEntry(Pirate,Warrior)
+PromoListEntry(Archer,Sniper)
+PromoListEntry(Thief,Assassin)
+PromoListEntry(Myrmidon,Swordmaster)
+PromoListEntry(Deserter,Ravager)
+PromoListEntry(Brigand,Berserker)
+PromoListEntry(Pirate,Berserker)
+PromoListEntry(Pegasus_Rider,Falcoknight)
+PromoListEntry(Pegasus_Rider_D,Falcoknight_D)
+PromoListEntry(Wyvern_Rider,Wyvern_Lord)
+PromoListEntry(Wyvern_Rider_D,Wyvern_Lord_D)
+PromoListEntry(Fire_Mage,Fire_Knight_D)
+PromoListEntry(Wind_Mage,Wind_Knight_D)
+PromoListEntry(Thunder_Mage,Thunder_Knight_D)
+PromoListEntry(Cleric,War_Monk)
+PromoListEntry(Troubadour,Arch_Knight)
+PromoListEntry(Troubadour_D,Arch_Knight_D)
 PromoListEnd
 
+ALIGN 4
+LunarRingPromoList:
+PromoListEntry(Sword_Rider,Fire_Knight)
+PromoListEntry(Sword_Rider_D,Fire_Knight_D)
+PromoListEntry(Lance_Rider,Wind_Knight)
+PromoListEntry(Lance_Rider_D,Wind_Knight_D)
+PromoListEntry(Axe_Rider,Thunder_Knight)
+PromoListEntry(Axe_Rider_D,Thunder_Knight_D)
+PromoListEntry(Bow_Rider,Arch_Knight)
+PromoListEntry(Bow_Rider_D,Arch_Knight_D)
+PromoListEntry(Armor,Baron)
+PromoListEntry(Soldier,Dragoon)
+PromoListEntry(Mercenary,Slayer)
+PromoListEntry(Fighter,War_Monk)
+PromoListEntry(Archer,Adventurer)
+PromoListEntry(Thief,Trickster)
+PromoListEntry(Myrmidon,Slayer)
+PromoListEntry(Deserter,Dragoon)
+PromoListEntry(Brigand,Harbinger)
+PromoListEntry(Pirate,Harbinger)
+PromoListEntry(Pegasus_Rider,Seraph_Knight)
+PromoListEntry(Pegasus_Rider_D,Seraph_Knight_D)
+PromoListEntry(Wyvern_Rider,Qilin_Knight)
+PromoListEntry(Wyvern_Rider_D,Qilin_Knight_D)
+PromoListEntry(Fire_Mage,Fire_Sage)
+PromoListEntry(Wind_Mage,Wind_Sage)
+PromoListEntry(Thunder_Mage,Thunder_Sage)
+PromoListEntry(Cleric,Thunder_Sage)
+PromoListEntry(Troubadour,Valkyrie)
+PromoListEntry(Troubadour_D,Valkyrie_D)
+PromoListEnd
+
+ALIGN 4
+AstralSigilPromoList:
+PromoListEntry(Sword_Rider,Grassrunner)
+PromoListEntry(Sword_Rider_D,Grassrunner_D)
+PromoListEntry(Lance_Rider,Lancer)
+PromoListEntry(Lance_Rider_D,Lancer_D)
+PromoListEntry(Axe_Rider,Wyvern_Lord)
+PromoListEntry(Axe_Rider_D,Wyvern_Lord_D)
+PromoListEntry(Bow_Rider,Kinshi_Knight)
+PromoListEntry(Bow_Rider_D,Kinshi_Knight_D)
+PromoListEntry(Armor,Great_Knight_D)
+PromoListEntry(Soldier,General)
+PromoListEntry(Mercenary,Ranger)
+PromoListEntry(Fighter,Hero)
+PromoListEntry(Archer,Warrior)
+PromoListEntry(Thief,Grassrunner_D)
+PromoListEntry(Myrmidon,Assassin)
+PromoListEntry(Deserter,Champion)
+PromoListEntry(Brigand,Halberdier)
+PromoListEntry(Pirate,Halberdier)
+PromoListEntry(Pegasus_Rider,Kinshi_Knight)
+PromoListEntry(Pegasus_Rider_D,Kinshi_Knight_D)
+PromoListEntry(Wyvern_Rider,Scaleguard)
+PromoListEntry(Wyvern_Rider_D,Scaleguard_D)
+PromoListEntry(Fire_Mage,Diabolist)
+PromoListEntry(Wind_Mage,Windcaller)
+PromoListEntry(Thunder_Mage,Baron)
+PromoListEntry(Cleric,Trickster)
+PromoListEntry(Troubadour,Qilin_Knight)
+PromoListEntry(Troubadour_D,Qilin_Knight_D)
+PromoListEnd
+
+/*
 ALIGN 4
 ElysianWhipPromoList:
 PromoListEntry(PegasusKnight,FalcoKnight)
@@ -123,17 +173,18 @@ PromoListEntry(Shaman,Summoner)
 PromoListEntry(Shaman_F,Summoner_F)
 PromoListEntry(Monk,Sage)
 PromoListEnd
-
+*/
 ALIGN 4
 LunarBracePromoList:
-PromoListEntry(EirikaLord,EirikaMasterLord)
+PromoListEntry(Lord,GreatLord)
+PromoListEntry(Lord_D,GreatLord_D)
 PromoListEnd
 
-ALIGN 4
+/*ALIGN 4
 SolarBracePromoList:
 PromoListEntry(EphraimLord,EphraimMasterLord)
 PromoListEnd
-
+*/
 #endif // SPLIT_PROMO_ITEMS
 #else
 ERROR Split Promo Items is only for FE8!
