@@ -1,0 +1,165 @@
+// Item Definitions
+
+// Swords
+
+#define BronzeSword 1
+#define IronSword 2
+#define SteelSword 3
+#define SilverSword 4
+#define T1KillerSword 5
+#define Wyrmslayer 6
+#define Armorslayer 7
+#define KillingEdge 8
+#define BraveSword 9
+#define IronBlade 10
+#define SteelBlade 11
+#define WoDao 12
+
+// Lances
+
+#define BronzeLance 13
+#define IronLance 14
+#define SteelLance 15
+#define SilverLance 16
+#define T1KillerLance 17
+#define Horseslayer 18
+#define HeavySpear 19
+#define KillerLance 20
+#define BraveLance 21
+#define IronGreatlance 22
+#define SteelGreatlance 23
+#define IronPike 24
+#define SteelPike 25
+#define Javelin 26
+#define Spear 27
+
+// Axes
+
+#define BronzeAxe 28
+#define IronAxe 29
+#define SteelAxe 30
+#define SilverAxe 31
+#define T1KillerAxe 32
+#define Hammer 33
+#define Wingclipper 34
+#define KillerAxe 35
+#define BraveAxe 36
+#define IronPoleaxe 37
+#define SteelPoleaxe 38
+#define HandAxe 39
+#define Tomahawk 40
+
+// Bows
+
+#define BronzeBow 41
+#define IronBow 42
+#define SteelBow 43
+#define SilverBow 44
+#define T1KillerBow 45
+#define KillerBow 46
+#define BraveBow 47
+#define IronLongbow 48
+#define SteelLongbow 49
+#define AntiMageBow 50
+#define ArcaneBow 51
+#define RapierBow 52
+
+// Thunder
+
+#define Thunder 53
+#define Elthunder 54
+#define Thoron 55
+#define Bolting 56
+#define ChainVolt 57
+#define Paralysis 58
+
+// Fire
+
+#define Fire 59
+#define Elfire 60
+#define Bolganone 61
+#define Meteor 62
+#define Beastblaze 63
+#define Ragnarok 64
+
+// Wind
+
+#define Wind 65
+#define Elwind 66
+#define Tornado 67
+#define Blizzard 68
+#define Aircalibur 69
+#define ValorousGale 70
+
+// Staves
+
+#define Soothe 71
+#define Heal 72
+#define Mend 73
+#define Recover 74
+#define Restore 75
+#define Physic 76
+#define Fortify 77
+#define Freeze 78
+#define Numb 79
+#define Silence 80
+#define Berserk 81
+#define Slow 82
+#define Barrier 83
+#define LightRune 84
+#define Warp 85
+#define Rescue 86
+#define Swarp 87
+#define Unlock 88
+
+// Items
+
+// Stat Boosters
+
+#define AngelicRobe 89 //hp
+#define EnergyRing 90 //str
+#define SpiritDust 91 //mag
+#define SecretBook 92 //dex
+#define Speedwing 93 //spd
+#define GoddessIcon 94 //luk
+#define Dragonshield 95 //def
+#define Talisman 96 //res
+#define Boots 97 //mov
+
+// Promo Items
+
+#define SolarCrest 98
+#define LunarRing 99
+#define AstralSigil 100
+
+// Usables
+
+#define Vulnerary 101
+#define Elixir 102
+#define PureWater 103
+#define Antitoxin 104
+#define Torch 105
+#define SkillScroll 106
+
+// Sellables
+
+#define RedGem 107
+#define BlueGem 108
+#define WhiteGem 109
+#define BlackGem 110
+
+// Misc
+
+#define SilverCard 111
+#define MemberCard 112
+
+// Weapon Types
+#define ThunderType 5
+#define FireType 6
+#define WindType 7
+#define ItemType 9
+
+// Weapon Locks
+#define InfantryLock 0x00000800
+#define InfantryUnlock 0x00010000
+

@@ -15,7 +15,7 @@
 #define AddClassAnimation(AnimationID,WeaponType,Custom) "BYTE WeaponType Custom AnimationID 0x0"
 #define AddHandAxeAnimation(AnimationID) "BYTE 0x28 0x0 AnimationID 0x0 0x29 0x0 AnimationID 0x0 0x2C 0x0 AnimationID 0x0"
 #define EndClassAnimation "BYTE 0x0 0x0 0x0 0x0"
-#define Swords 0x0
+#define Swords 0x00
 #define Lances 0x01
 #define Axes 0x2
 #define Bows 0x3

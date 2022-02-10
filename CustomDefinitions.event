@@ -18,9 +18,6 @@
   #define ChapterDataTableEntSize 148
 #endif
 
-#define LunarBrace MoonBracelet
-#define SolarBrace SunBracelet
-
 // Attribute for defining items with passive stat bonuses
 #define PASSIVE_ITEM_BOOSTS_ATTR 0x00800000
 
@@ -31,14 +28,7 @@
 
 #define GrowthBonus(HPB,StrB,MagB,SklB,SpdB,DefB,ResB,LckB) "BYTE 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 HPB StrB SklB SpdB DefB ResB LckB MagB 0x0 0x0"
 
-//item ID for skill scroll
-#define SkillScroll 0xBC
-
 #include "EngineHacks/SkillSystem/skill_definitions.event"
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p
 
-
-
-
- 

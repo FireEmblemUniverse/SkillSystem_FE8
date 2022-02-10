@@ -20,19 +20,13 @@ POP
 
 ALIGN 4
 PromoItemsList:
-PromoItemEntry(HeroCrest,SolarCrestPromoList)
-PromoItemEntry(KnightCrest,LunarRingPromoList)
-PromoItemEntry(OrionsBolt,AstralSigilPromoList)
-//PromoItemEntry(ElysianWhip,ElysianWhipPromoList)
-//PromoItemEntry(GuidingRing,GuidingRingPromoList)
-//PromoItemEntry(OceanSeal,OceanSealPromoList)
-//PromoItemEntry(SolarBrace,SolarBracePromoList)
-PromoItemEntry(LunarBrace,LunarBracePromoList)
+PromoItemEntry(SolarCrest,SolarCrestPromoList)
+PromoItemEntry(LunarRing,LunarRingPromoList)
+PromoItemEntry(AstralSigil,AstralSigilPromoList)
 PromoItemsEnd
 
 ALIGN 4
 SplitPromoItemsList:
-BYTE MasterSeal 
 BYTE 0
 
 #define PromoListEntry(baseClass,promoClass) "BYTE baseClass promoClass"
@@ -134,57 +128,7 @@ PromoListEntry(Troubadour,Qilin_Knight)
 PromoListEntry(Troubadour_D,Qilin_Knight_D)
 PromoListEnd
 
-/*
-ALIGN 4
-ElysianWhipPromoList:
-PromoListEntry(PegasusKnight,FalcoKnight)
-PromoListEntry(WyvernRider,WyvernLord)
-PromoListEntry(WyvernRider_F,WyvernLord_F)
-PromoListEntry(Thief,Rogue)
-PromoListEnd
 
-ALIGN 4
-GuidingRingPromoList:
-PromoListEntry(Priest,Bishop)
-PromoListEntry(Cleric,Bishop_F)
-PromoListEntry(Mage,Sage)
-PromoListEntry(Mage_F,Sage_F)
-PromoListEntry(Monk,Bishop)
-PromoListEntry(Shaman,Druid)
-PromoListEntry(Shaman_F,Druid_F)
-PromoListEntry(Troubadour,Valkyrie)
-PromoListEntry(Pupil_2,Sage)
-
-
-PromoListEnd
-
-ALIGN 4
-OceanSealPromoList:
-PromoListEntry(Brigand,Berserker)
-PromoListEntry(Pirate,Berserker)
-PromoListEntry(Thief,Assassin)
-
-PromoListEntry(Myrmidon,Assassin)
-PromoListEntry(Myrmidon_F,Assassin_F)
-PromoListEntry(Journeyman_2,Journeyman_3)
-PromoListEntry(Recruit_2,Recruit_3)
-PromoListEntry(Pupil_2,Pupil_3)
-PromoListEntry(Shaman,Summoner)
-PromoListEntry(Shaman_F,Summoner_F)
-PromoListEntry(Monk,Sage)
-PromoListEnd
-*/
-ALIGN 4
-LunarBracePromoList:
-PromoListEntry(Lord,GreatLord)
-PromoListEntry(Lord_D,GreatLord_D)
-PromoListEnd
-
-/*ALIGN 4
-SolarBracePromoList:
-PromoListEntry(EphraimLord,EphraimMasterLord)
-PromoListEnd
-*/
 #endif // SPLIT_PROMO_ITEMS
 #else
 ERROR Split Promo Items is only for FE8!
