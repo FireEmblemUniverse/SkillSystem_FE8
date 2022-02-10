@@ -155,6 +155,7 @@
 #define DragonType	0x08
 #define MonsterType	0x10
 #define SwordType	0x20
+#define MageType	0x40
 
 //Status Effects
 #define NoStatusID 0
@@ -172,6 +173,64 @@
 //for setting what status effect 
 //status staves will give 
 #define ItemStatus(StatusID,Duration) "StatusID | (Duration << 4)"
+
+#define NoEffectID 0
+#define HealEffectID 1
+#define MendEffectID 2
+#define RecoverEffectID 3
+#define PhysicEffectID 4
+#define FortifyEffectID 5
+#define RestoreEffectID 6
+#define SilenceEffectID 7
+#define SleepEffectID 8
+#define BerserkEffectID 9
+#define WarpEffectID 10
+#define RescueEffectID 11
+#define TorchEffectID 12
+#define HammerneEffectID 13
+#define UnlockEffectID 14
+#define BarrierEffectID 15
+#define AngelicRobeEffectID 16
+#define EnergyRingEffectID 17
+#define SecretBookEffectID 18
+#define SpeedwingsEffectID 19
+#define GoddessIconEffectID 20
+#define DragonshieldEffectID 21
+#define TalismanEffectID 22
+#define BootsEffectID 23
+#define BodyRingEffectID 24
+#define HeroCrestEffectID 25
+#define KnightCrestEffectID 26
+#define OrionsBoltEffectID 27
+#define ElysianWhipEffectID 28
+#define GuidingRingEffectID 29
+#define ChestKeyEffectID 30
+#define DoorKeyEffectID 31
+#define LockpickEffectID 32
+#define VulneraryEffectID 33
+#define ElixirEffectID 34
+#define PureWaterEffectID 35
+#define AntidoteEffectID 36
+#define TorchItemEffectID 37
+#define MasterKeyEffectID 38
+#define MineEffectID 39
+#define LightRuneEffectID 40
+#define FillasMightEffectID 41
+#define NinisGraceEffectID 42
+#define ThorsIreEffectID 43
+#define SetsLitanyEffectID 44
+#define MasterSealEffectID 45
+#define MetisTomeEffectID 46
+#define HeavenSealEffectID 47
+#define OceanSealEffectID 48
+#define LunarBraceEffectID 49
+#define SolarBraceEffectID 50
+#define Vulnerary2EffectID 51
+#define Vulnerary3EffectID 52
+#define Vulnerary4EffectID 53
+#define JunaFruitEffectID 54
+#define LatonaEffectID 55
+#define SkillScrollEffectID 56
 
 #endif
 

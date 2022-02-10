@@ -1,0 +1,47 @@
+//miscellaneous ez hacks that don't have their own folders
+
+
+// thanks to Blademaster for the hex locations for ranks
+
+PUSH // Weapon level modifications
+ORG 0x16d66 // D rank WEXP
+BYTE 50
+ORG 0x16d6e // C rank WEXP
+BYTE 100
+ORG 0x16d76 // B rank WEXP
+BYTE 150
+ORG 0x16d7e // A rank WEXP
+BYTE 200
+ORG 0x16d86 // S rank WEXP, no one should ever get this 
+BYTE 255
+ORG 0x2ad74 // S rank WEXP for in battle bonus (location from pik)
+BYTE 255
+ORG 0x16e90 // bar to D rank WEXP
+BYTE 50
+ORG 0x16e96 // D rank WEXP
+BYTE 50
+ORG 0x16e9a // bar to C rank WEXP
+BYTE 50
+ORG 0x16ea0 // C rank WEXP
+BYTE 100
+ORG 0x16ea4 // bar to B rank WEXP
+BYTE 50
+ORG 0x16eaa // B rank WEXP
+BYTE 150
+ORG 0x16eae // bar to A rank WEXP
+BYTE 50
+ORG 0x16eb4 // A rank WEXP
+BYTE 200
+ORG 0x16eb8 // bar to S rank WEXP
+BYTE 0
+ORG 0x2c1a6
+BYTE 255
+POP
+
+PUSH // this part is from alusq, removes kill bonus for wexp
+ORG $2c142
+BYTE 0x01 0x29 0x0 0xDC 
+POP
+
+
+
