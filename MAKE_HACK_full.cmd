@@ -10,9 +10,9 @@ set "source_rom=%~dp0FE8_clean.gba"
 
 set "main_event=%~dp0ROMBuildfile.event"
 
-set "target_rom=%~dp0SkillsTest.gba"
-set "target_ups=%~dp0SkillsTest.ups"
-set "target_sym=%~dp0SkillsTest.sym"
+set "target_rom=%~dp0_Starfall.gba"
+set "target_ups=%~dp0_Starfall.ups"
+set "target_sym=%~dp0_Starfall.sym"
 
 @rem defining tools
 
