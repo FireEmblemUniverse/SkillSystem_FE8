@@ -4,6 +4,32 @@ adding yourself!
 
 # Graphics
 
+## Map Sprites
+ - Intelligent Systems
+ - SALVAGED
+ - flasuban
+ - Nuramon
+ - Its_Just_Jay
+ - Alusq
+ - Leif
+ - MeatofJustice
+ - Pikmin1211
+ - SamirPlayz
+ - L95
+ - Ash3wl
+ - topazlight
+ - hypergammaspaces
+ - DerTheVaporeon
+ - TBA
+ - J-Treecko
+ - SD9k
+ - Smug_Mug
+ - StreetHero
+ - Agro
+ - CamusZekeSirius
+ - N426
+ - 
+
 ## Class Cards
 
  - Intelligent Systems

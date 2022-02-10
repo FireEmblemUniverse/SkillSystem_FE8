@@ -57,3 +57,676 @@ ORG MovingMapSpriteTable
 #incbin "VanillaMovingMapSpriteTable.dmp"
 POP
 
+StandingMapSprite(LordMapSprite,MapSprite16x16,LordSMS)
+MovingMapSprite(Lord, $1C3D7C, LordMMS)
+
+StandingMapSprite(GreatLordMapSprite,MapSprite16x16,GreatLordSMS)
+MovingMapSprite(GreatLord, $1C3D7C, GreatLordMMS)
+
+StandingMapSprite(SwordRiderMapSprite,MapSprite16x32,SwordRiderSMS)
+MovingMapSprite(SwordRider, $1C3D7C, SwordRiderMMS)
+
+StandingMapSprite(LanceRiderMapSprite,MapSprite16x32,LanceRiderSMS)
+MovingMapSprite(LanceRider, $1C3D7C, LanceRiderMMS)
+
+StandingMapSprite(AxeRiderMapSprite,MapSprite16x32,AxeRiderSMS)
+MovingMapSprite(AxeRider, $1C3D7C, AxeRiderMMS)
+
+StandingMapSprite(BowRiderMapSprite,MapSprite16x32,BowRiderSMS)
+MovingMapSprite(BowRider, $1C3D7C, BowRiderMMS)
+
+StandingMapSprite(ArmorMapSprite,MapSprite16x16,ArmorSMS)
+MovingMapSprite(Armor, $1C3D7C, ArmorMMS)
+
+StandingMapSprite(SoldierMapSprite,MapSprite16x16,SoldierSMS)
+MovingMapSprite(Soldier, $1C3D7C, SoldierMMS)
+
+StandingMapSprite(MercenaryMapSprite,MapSprite16x16,MercenarySMS)
+MovingMapSprite(Mercenary, $1C3D7C, MercenaryMMS)
+
+StandingMapSprite(FighterMapSprite,MapSprite16x32,FighterSMS)
+MovingMapSprite(Fighter, $1C3D7C,FighterMMS)
+
+StandingMapSprite(ArcherMapSprite,MapSprite16x16,ArcherSMS)
+MovingMapSprite(Archer, $1C3D7C, ArcherMMS)
+
+StandingMapSprite(ThiefMapSprite,MapSprite16x16,ThiefSMS)
+MovingMapSprite(Thief, $1C3D7C, ThiefMMS)
+
+StandingMapSprite(MyrmidonMapSprite,MapSprite16x16,MyrmidonSMS)
+MovingMapSprite(Myrmidon, $1C3D7C, MyrmidonMMS)
+
+StandingMapSprite(DeserterMapSprite,MapSprite16x16,DeserterSMS)
+MovingMapSprite(Deserter, $1C3D7C, DeserterMMS)
+
+StandingMapSprite(BrigandMapSprite,MapSprite16x16,BrigandSMS)
+MovingMapSprite(Brigand, $1C3D7C, BrigandMMS)
+
+StandingMapSprite(PirateMapSprite,MapSprite16x16,PirateSMS)
+MovingMapSprite(Pirate, $1C3D7C, PirateMMS)
+
+StandingMapSprite(PegasusRiderMapSprite,MapSprite16x32,PegasusRiderSMS)
+MovingMapSprite(PegasusRider, $1C3D7C, PegasusRiderMMS)
+
+StandingMapSprite(WyvernRiderMapSprite,MapSprite16x32,WyvernRiderSMS)
+MovingMapSprite(WyvernRider, $1C3D7C, WyvernRiderMMS)
+
+StandingMapSprite(ThunderMageMapSprite,MapSprite16x32,ThunderMageSMS)
+MovingMapSprite(ThunderMage, $1C3D7C, ThunderMageMMS)
+
+StandingMapSprite(FireMageMapSprite,MapSprite16x16,FireMageSMS)
+MovingMapSprite(FireMage, $1C3D7C, FireMageMMS)
+
+StandingMapSprite(WindMageMapSprite,MapSprite16x16,WindMageSMS)
+MovingMapSprite(WindMage, $1C3D7C, WindMageMMS)
+
+StandingMapSprite(ClericMapSprite,MapSprite16x16,ClericSMS)
+MovingMapSprite(Cleric, $1C3D7C, ClericMMS)
+
+StandingMapSprite(TroubadourMapSprite,MapSprite16x32,TroubadourSMS)
+MovingMapSprite(Troubadour, $1C3D7C, TroubadourMMS)
+
+StandingMapSprite(PaladinMapSprite,MapSprite16x32,PaladinSMS)
+MovingMapSprite(Paladin, $1C3D7C, PaladinMMS)
+
+StandingMapSprite(ForrestKnightMapSprite,MapSprite16x32,ForrestKnightSMS)
+MovingMapSprite(ForrestKnight, $1C3D7C, ForrestKnightMMS)
+
+StandingMapSprite(LancerMapSprite,MapSprite16x32,LancerSMS)
+MovingMapSprite(Lancer, $1C3D7C, LancerMMS)
+
+StandingMapSprite(GreatKnightMapSprite,MapSprite16x32,GreatKnightSMS)
+MovingMapSprite(GreatKnight, $1C3D7C, GreatKnightMMS)
+
+StandingMapSprite(ArchKnightMapSprite,MapSprite16x32,ArchKnightSMS)
+MovingMapSprite(ArchKnight, $1C3D7C, ArchKnightMMS)
+
+StandingMapSprite(FireKnightMapSprite,MapSprite16x32,FireKnightSMS)
+MovingMapSprite(FireKnight, $1C3D7C, FireKnightMMS)
+
+StandingMapSprite(WindKnightMapSprite,MapSprite16x32,WindKnightSMS)
+MovingMapSprite(WindKnight, $1C3D7C, WindKnightMMS)
+
+StandingMapSprite(ThunderKnightMapSprite,MapSprite16x32,ThunderKnightSMS)
+MovingMapSprite(ThunderKnight, $1C3D7C, ThunderKnightMMS)
+
+StandingMapSprite(GeneralMapSprite,MapSprite16x32,GeneralSMS)
+MovingMapSprite(General, $1C3D7C, GeneralMMS)
+
+StandingMapSprite(BaronMapSprite,MapSprite32x32,BaronSMS)
+MovingMapSprite(Baron, $1C3D7C, BaronMMS)
+
+StandingMapSprite(HalberdierMapSprite,MapSprite16x16,HalberdierSMS)
+MovingMapSprite(Halberdier, $1C3D7C, HalberdierMMS)
+
+StandingMapSprite(HeroMapSprite,MapSprite16x16,HeroSMS)
+MovingMapSprite(Hero, $1C3D7C, HeroMMS)
+
+StandingMapSprite(WarriorMapSprite,MapSprite16x32,WarriorSMS)
+MovingMapSprite(Warrior, $1C3D7C, WarriorMMS)
+
+StandingMapSprite(ChampionMapSprite,MapSprite16x16,ChampionSMS)
+MovingMapSprite(Champion, $1C3D7C, ChampionMMS)
+
+StandingMapSprite(SlayerMapSprite,MapSprite16x16,SlayerSMS)
+MovingMapSprite(Slayer, $1C3D7C, SlayerMMS)
+
+StandingMapSprite(DragoonMapSprite,MapSprite16x32,DragoonSMS)
+MovingMapSprite(Dragoon, $1C3D7C, DragoonMMS)
+
+StandingMapSprite(HarbingerMapSprite,MapSprite16x32,HarbingerSMS)
+MovingMapSprite(Harbinger, $1C3D7C, HarbingerMMS)
+
+StandingMapSprite(WarMonkMapSprite,MapSprite16x32,WarMonkSMS)
+MovingMapSprite(WarMonk, $1C3D7C, WarMonkMMS)
+
+StandingMapSprite(AdventurerMapSprite,MapSprite16x16,AdventurerSMS)
+MovingMapSprite(Adventurer, $1C3D7C, AdventurerMMS)
+
+StandingMapSprite(AssassinMapSprite,MapSprite16x16,AssassinSMS)
+MovingMapSprite(Assassin, $1C3D7C, AssassinMMS)
+
+StandingMapSprite(TricksterMapSprite,MapSprite16x16,TricksterSMS)
+MovingMapSprite(Trickster, $1C3D7C, TricksterMMS)
+
+StandingMapSprite(GrassrunnerMapSprite,MapSprite16x32,GrassrunnerSMS)
+MovingMapSprite(Grassrunner, $1C3D7C, GrassrunnerMMS)
+
+StandingMapSprite(SniperMapSprite,MapSprite16x16,SniperSMS)
+MovingMapSprite(Sniper, $1C3D7C, SniperMMS)
+
+StandingMapSprite(SwordmasterMapSprite,MapSprite16x16,SwordmasterSMS)
+MovingMapSprite(Swordmaster, $1C3D7C, SwordmasterMMS)
+
+StandingMapSprite(RavagerMapSprite,MapSprite32x32,RavagerSMS)
+MovingMapSprite(Ravager, $1C3D7C, RavagerMMS)
+
+StandingMapSprite(BerserkerMapSprite,MapSprite16x32,BerserkerSMS)
+MovingMapSprite(Berserker, $1C3D7C, BerserkerMMS)
+
+StandingMapSprite(FalcoknightMapSprite,MapSprite16x32,FalcoknightSMS)
+MovingMapSprite(Falcoknight, $1C3D7C, FalcoknightMMS)
+
+StandingMapSprite(SeraphKnightMapSprite,MapSprite16x32,SeraphKnightSMS)
+MovingMapSprite(SeraphKnight, $1C3D7C, SeraphKnightMMS)
+
+StandingMapSprite(KinshiKnightMapSprite,MapSprite16x32,KinshiKnightSMS)
+MovingMapSprite(KinshiKnight, $1C3D7C, KinshiKnightMMS)
+
+StandingMapSprite(WyvernLordMapSprite,MapSprite16x32,WyvernLordSMS)
+MovingMapSprite(WyvernLord, $1C3D7C, WyvernLordMMS)
+
+StandingMapSprite(QilinKnightMapSprite,MapSprite16x32,QilinKnightSMS)
+MovingMapSprite(QilinKnight, $1C3D7C, QilinKnightMMS)
+
+StandingMapSprite(ScaleguardMapSprite,MapSprite16x32,ScaleguardSMS)
+MovingMapSprite(Scaleguard, $1C3D7C, ScaleguardMMS)
+
+StandingMapSprite(ThunderSageMapSprite,MapSprite16x16,ThunderSageSMS)
+MovingMapSprite(ThunderSage, $1C3D7C, ThunderSageMMS)
+
+StandingMapSprite(FireSageMapSprite,MapSprite16x16,FireSageSMS)
+MovingMapSprite(FireSage, $1C3D7C, FireSageMMS)
+
+StandingMapSprite(WindSageMapSprite,MapSprite16x16,WindSageSMS)
+MovingMapSprite(WindSage, $1C3D7C, WindSageMMS)
+
+StandingMapSprite(WindcallerMapSprite,MapSprite16x16,WindcallerSMS)
+MovingMapSprite(Windcaller, $1C3D7C, WindcallerMMS)
+
+StandingMapSprite(DiabolistMapSprite,MapSprite16x16,DiabolistSMS)
+MovingMapSprite(Diabolist, $1C3D7C, DiabolistMMS)
+
+StandingMapSprite(ValkyrieMapSprite,MapSprite16x32,ValkyrieSMS)
+MovingMapSprite(Valkyrie, $1C3D7C, ValkyrieMMS)
+
+
+ALIGN 4
+LordSMS:
+#incext Png2Dmp "Lord.png" --lz77
+
+ALIGN 4
+LordMMS:
+#incext Png2Dmp "LordMov.png" --lz77
+
+
+ALIGN 4
+GreatLordSMS:
+#incext Png2Dmp "GreatLord.png" --lz77
+
+ALIGN 4
+GreatLordMMS:
+#incext Png2Dmp "GreatLordMov.png" --lz77
+
+ALIGN 4
+SwordRiderSMS:
+#incext Png2Dmp "SwordRider.png" --lz77
+
+ALIGN 4
+SwordRiderMMS:
+#incext Png2Dmp "SwordRiderMov.png" --lz77
+
+ALIGN 4
+LanceRiderSMS:
+#incext Png2Dmp "LanceRider.png" --lz77
+
+ALIGN 4
+LanceRiderMMS:
+#incext Png2Dmp "LanceRiderMov.png" --lz77
+
+ALIGN 4
+AxeRiderSMS:
+#incext Png2Dmp "AxeRider.png" --lz77
+
+ALIGN 4
+AxeRiderMMS:
+#incext Png2Dmp "AxeRiderMov.png" --lz77
+
+ALIGN 4
+BowRiderSMS:
+#incext Png2Dmp "BowRider.png" --lz77
+
+ALIGN 4
+BowRiderMMS:
+#incext Png2Dmp "BowRiderMov.png" --lz77
+
+ALIGN 4
+ArmorSMS:
+#incext Png2Dmp "Armor.png" --lz77
+
+ALIGN 4
+ArmorMMS:
+#incext Png2Dmp "ArmorMov.png" --lz77
+
+ALIGN 4
+SoldierSMS:
+#incext Png2Dmp "Soldier.png" --lz77
+
+ALIGN 4
+SoldierMMS:
+#incext Png2Dmp "SoldierMov.png" --lz77
+
+ALIGN 4
+MercenarySMS:
+#incext Png2Dmp "Mercenary.png" --lz77
+
+ALIGN 4
+MercenaryMMS:
+#incext Png2Dmp "MercenaryMov.png" --lz77
+
+ALIGN 4
+FighterSMS:
+#incext Png2Dmp "Fighter.png" --lz77
+
+ALIGN 4
+FighterMMS:
+#incext Png2Dmp "FighterMov.png" --lz77
+
+ALIGN 4
+ArcherSMS:
+#incext Png2Dmp "Archer.png" --lz77
+
+ALIGN 4
+ArcherMMS:
+#incext Png2Dmp "ArcherMov.png" --lz77
+
+ALIGN 4
+ThiefSMS:
+#incext Png2Dmp "Thief.png" --lz77
+
+ALIGN 4
+ThiefMMS:
+#incext Png2Dmp "ThiefMov.png" --lz77
+
+ALIGN 4
+MyrmidonSMS:
+#incext Png2Dmp "Myrmidon.png" --lz77
+
+ALIGN 4
+MyrmidonMMS:
+#incext Png2Dmp "MyrmidonMov.png" --lz77
+
+ALIGN 4
+DeserterSMS:
+#incext Png2Dmp "Deserter.png" --lz77
+
+ALIGN 4
+DeserterMMS:
+#incext Png2Dmp "DeserterMov.png" --lz77
+
+ALIGN 4
+BrigandSMS:
+#incext Png2Dmp "Brigand.png" --lz77
+
+ALIGN 4
+BrigandMMS:
+#incext Png2Dmp "BrigandMov.png" --lz77
+
+ALIGN 4
+PirateSMS:
+#incext Png2Dmp "Pirate.png" --lz77
+
+ALIGN 4
+PirateMMS:
+#incext Png2Dmp "PirateMov.png" --lz77
+
+ALIGN 4
+PegasusRiderSMS:
+#incext Png2Dmp "PegasusRider.png" --lz77
+
+ALIGN 4
+PegasusRiderMMS:
+#incext Png2Dmp "PegasusRiderMov.png" --lz77
+
+ALIGN 4
+WyvernRiderSMS:
+#incext Png2Dmp "WyvernRider.png" --lz77
+
+ALIGN 4
+WyvernRiderMMS:
+#incext Png2Dmp "WyvernRiderMov.png" --lz77
+
+ALIGN 4
+ThunderMageSMS:
+#incext Png2Dmp "ThunderMage.png" --lz77
+
+ALIGN 4
+ThunderMageMMS:
+#incext Png2Dmp "ThunderMageMov.png" --lz77
+
+ALIGN 4
+FireMageSMS:
+#incext Png2Dmp "FireMage.png" --lz77
+
+ALIGN 4
+FireMageMMS:
+#incext Png2Dmp "FireMageMov.png" --lz77
+
+ALIGN 4
+WindMageSMS:
+#incext Png2Dmp "WindMage.png" --lz77
+
+ALIGN 4
+WindMageMMS:
+#incext Png2Dmp "WindMageMov.png" --lz77
+
+ALIGN 4
+ClericSMS:
+#incext Png2Dmp "Cleric.png" --lz77
+
+ALIGN 4
+ClericMMS:
+#incext Png2Dmp "ClericMov.png" --lz77
+
+ALIGN 4
+TroubadourSMS:
+#incext Png2Dmp "Troubadour.png" --lz77
+
+ALIGN 4
+TroubadourMMS:
+#incext Png2Dmp "TroubadourMov.png" --lz77
+
+ALIGN 4
+PaladinSMS:
+#incext Png2Dmp "Paladin.png" --lz77
+
+ALIGN 4
+PaladinMMS:
+#incext Png2Dmp "PaladinMov.png" --lz77
+
+ALIGN 4
+ForrestKnightSMS:
+#incext Png2Dmp "ForrestKnight.png" --lz77
+
+ALIGN 4
+ForrestKnightMMS:
+#incext Png2Dmp "ForrestKnightMov.png" --lz77
+
+ALIGN 4
+LancerSMS:
+#incext Png2Dmp "Lancer.png" --lz77
+
+ALIGN 4
+LancerMMS:
+#incext Png2Dmp "LancerMov.png" --lz77
+
+ALIGN 4
+GreatKnightSMS:
+#incext Png2Dmp "GreatKnight.png" --lz77
+
+ALIGN 4
+GreatKnightMMS:
+#incext Png2Dmp "GreatKnightMov.png" --lz77
+
+ALIGN 4
+ArchKnightSMS:
+#incext Png2Dmp "ArchKnight.png" --lz77
+
+ALIGN 4
+ArchKnightMMS:
+#incext Png2Dmp "ArchKnightMov.png" --lz77
+
+ALIGN 4
+FireKnightSMS:
+#incext Png2Dmp "FireKnight.png" --lz77
+
+ALIGN 4
+FireKnightMMS:
+#incext Png2Dmp "FireKnightMov.png" --lz77
+
+ALIGN 4
+WindKnightSMS:
+#incext Png2Dmp "WindKnight.png" --lz77
+
+ALIGN 4
+WindKnightMMS:
+#incext Png2Dmp "WindKnightMov.png" --lz77
+
+ALIGN 4
+ThunderKnightSMS:
+#incext Png2Dmp "ThunderKnight.png" --lz77
+
+ALIGN 4
+ThunderKnightMMS:
+#incext Png2Dmp "ThunderKnightMov.png" --lz77
+
+ALIGN 4
+GeneralSMS:
+#incext Png2Dmp "General.png" --lz77
+
+ALIGN 4
+GeneralMMS:
+#incext Png2Dmp "GeneralMov.png" --lz77
+
+ALIGN 4
+BaronSMS:
+#incext Png2Dmp "Baron.png" --lz77
+
+ALIGN 4
+BaronMMS:
+#incext Png2Dmp "BaronMov.png" --lz77
+
+ALIGN 4
+HalberdierSMS:
+#incext Png2Dmp "Halberdier.png" --lz77
+
+ALIGN 4
+HalberdierMMS:
+#incext Png2Dmp "HalberdierMov.png" --lz77
+
+ALIGN 4
+HeroSMS:
+#incext Png2Dmp "Hero.png" --lz77
+
+ALIGN 4
+HeroMMS:
+#incext Png2Dmp "HeroMov.png" --lz77
+
+ALIGN 4
+WarriorSMS:
+#incext Png2Dmp "Warrior.png" --lz77
+
+ALIGN 4
+WarriorMMS:
+#incext Png2Dmp "WarriorMov.png" --lz77
+
+ALIGN 4
+ChampionSMS:
+#incext Png2Dmp "Champion.png" --lz77
+
+ALIGN 4
+ChampionMMS:
+#incext Png2Dmp "ChampionMov.png" --lz77
+
+ALIGN 4
+SlayerSMS:
+#incext Png2Dmp "Slayer.png" --lz77
+
+ALIGN 4
+SlayerMMS:
+#incext Png2Dmp "SlayerMov.png" --lz77
+
+ALIGN 4
+DragoonSMS:
+#incext Png2Dmp "Dragoon.png" --lz77
+
+ALIGN 4
+DragoonMMS:
+#incext Png2Dmp "DragoonMov.png" --lz77
+
+ALIGN 4
+HarbingerSMS:
+#incext Png2Dmp "Harbinger.png" --lz77
+
+ALIGN 4
+HarbingerMMS:
+#incext Png2Dmp "HarbingerMov.png" --lz77
+
+ALIGN 4
+WarMonkSMS:
+#incext Png2Dmp "WarMonk.png" --lz77
+
+ALIGN 4
+WarMonkMMS:
+#incext Png2Dmp "WarMonkMov.png" --lz77
+
+ALIGN 4
+AdventurerSMS:
+#incext Png2Dmp "Adventurer.png" --lz77
+
+ALIGN 4
+AdventurerMMS:
+#incext Png2Dmp "AdventurerMov.png" --lz77
+
+ALIGN 4
+AssassinSMS:
+#incext Png2Dmp "Assassin.png" --lz77
+
+ALIGN 4
+AssassinMMS:
+#incext Png2Dmp "AssassinMov.png" --lz77
+
+ALIGN 4
+TricksterSMS:
+#incext Png2Dmp "Trickster.png" --lz77
+
+ALIGN 4
+TricksterMMS:
+#incext Png2Dmp "TricksterMov.png" --lz77
+
+ALIGN 4
+GrassrunnerSMS:
+#incext Png2Dmp "Grassrunner.png" --lz77
+
+ALIGN 4
+GrassrunnerMMS:
+#incext Png2Dmp "GrassrunnerMov.png" --lz77
+
+ALIGN 4
+SniperSMS:
+#incext Png2Dmp "Sniper.png" --lz77
+
+ALIGN 4
+SniperMMS:
+#incext Png2Dmp "SniperMov.png" --lz77
+
+ALIGN 4
+SwordmasterSMS:
+#incext Png2Dmp "Swordmaster.png" --lz77
+
+ALIGN 4
+SwordmasterMMS:
+#incext Png2Dmp "SwordmasterMov.png" --lz77
+
+ALIGN 4
+RavagerSMS:
+#incext Png2Dmp "Ravager.png" --lz77
+
+ALIGN 4
+RavagerMMS:
+#incext Png2Dmp "RavagerMov.png" --lz77
+
+ALIGN 4
+BerserkerSMS:
+#incext Png2Dmp "Berserker.png" --lz77
+
+ALIGN 4
+BerserkerMMS:
+#incext Png2Dmp "BerserkerMov.png" --lz77
+
+ALIGN 4
+FalcoknightSMS:
+#incext Png2Dmp "Falcoknight.png" --lz77
+
+ALIGN 4
+FalcoknightMMS:
+#incext Png2Dmp "FalcoknightMov.png" --lz77
+
+ALIGN 4
+SeraphKnightSMS:
+#incext Png2Dmp "SeraphKnight.png" --lz77
+
+ALIGN 4
+SeraphKnightMMS:
+#incext Png2Dmp "SeraphKnightMov.png" --lz77
+
+ALIGN 4
+KinshiKnightSMS:
+#incext Png2Dmp "KinshiKnight.png" --lz77
+
+ALIGN 4
+KinshiKnightMMS:
+#incext Png2Dmp "KinshiKnightMov.png" --lz77
+
+ALIGN 4
+WyvernLordSMS:
+#incext Png2Dmp "WyvernLord.png" --lz77
+
+ALIGN 4
+WyvernLordMMS:
+#incext Png2Dmp "WyvernLordMov.png" --lz77
+
+ALIGN 4
+QilinKnightSMS:
+#incext Png2Dmp "QilinKnight.png" --lz77
+
+ALIGN 4
+QilinKnightMMS:
+#incext Png2Dmp "QilinKnightMov.png" --lz77
+
+ALIGN 4
+ScaleguardSMS:
+#incext Png2Dmp "Scaleguard.png" --lz77
+
+ALIGN 4
+ScaleguardMMS:
+#incext Png2Dmp "ScaleguardMov.png" --lz77
+
+ALIGN 4
+ThunderSageSMS:
+#incext Png2Dmp "ThunderSage.png" --lz77
+
+ALIGN 4
+ThunderSageMMS:
+#incext Png2Dmp "ThunderSageMov.png" --lz77
+
+ALIGN 4
+FireSageSMS:
+#incext Png2Dmp "FireSage.png" --lz77
+
+ALIGN 4
+FireSageMMS:
+#incext Png2Dmp "FireSageMov.png" --lz77
+
+ALIGN 4
+WindSageSMS:
+#incext Png2Dmp "WindSage.png" --lz77
+
+ALIGN 4
+WindSageMMS:
+#incext Png2Dmp "WindSageMov.png" --lz77
+
+ALIGN 4
+WindcallerSMS:
+#incext Png2Dmp "Windcaller.png" --lz77
+
+ALIGN 4
+WindcallerMMS:
+#incext Png2Dmp "WindcallerMov.png" --lz77
+
+ALIGN 4
+DiabolistSMS:
+#incext Png2Dmp "Diabolist.png" --lz77
+
+ALIGN 4
+DiabolistMMS:
+#incext Png2Dmp "DiabolistMov.png" --lz77
+
+ALIGN 4
+ValkyrieSMS:
+#incext Png2Dmp "Valkyrie.png" --lz77
+
+ALIGN 4
+ValkyrieMMS:
+#incext Png2Dmp "ValkyrieMov.png" --lz77
+
