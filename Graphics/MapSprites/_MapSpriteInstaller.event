@@ -1,0 +1,59 @@
+
+#include "_MapSpriteDefs.event" 
+
+//repoint map sprite tables
+
+PUSH
+ORG $26730
+POIN StandingMapSpriteTable
+ORG $267B0
+POIN StandingMapSpriteTable
+ORG $26838
+POIN StandingMapSpriteTable
+ORG $26C88
+POIN StandingMapSpriteTable
+ORG $272D0
+POIN StandingMapSpriteTable
+ORG $27BB0
+POIN StandingMapSpriteTable
+ORG $27C9C
+POIN StandingMapSpriteTable
+ORG $27D48
+POIN StandingMapSpriteTable
+ORG $27E0C
+POIN StandingMapSpriteTable
+ORG $27E9C
+POIN StandingMapSpriteTable
+ORG $27F74
+POIN StandingMapSpriteTable
+ORG $28064
+POIN StandingMapSpriteTable
+
+ORG $79584
+POIN MovingMapSpriteTable
+ORG $79598
+POIN MovingMapSpriteTable
+ORG $BAC2C
+POIN MovingMapSpriteTable
+ORG $BAC40
+POIN MovingMapSpriteTable
+POP
+
+ALIGN 4
+StandingMapSpriteTable:
+FILL (256*8)
+
+ALIGN 4
+MovingMapSpriteTable:
+FILL (256*8)
+
+//we need to fill out these tables with the vanilla table contents
+//we'll use dmps because i'm lazy
+
+PUSH
+ORG StandingMapSpriteTable
+#incbin "VanillaStandingMapSpriteTable.dmp"
+ORG MovingMapSpriteTable
+#incbin "VanillaMovingMapSpriteTable.dmp"
+POP
+
