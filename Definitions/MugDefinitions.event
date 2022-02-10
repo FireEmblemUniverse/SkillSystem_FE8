@@ -1,0 +1,73 @@
+// Character Mug Defs
+
+
+
+// Class Card Defs
+
+#define LordClassCard 114
+#define SwordRiderClassCard 115
+#define LanceRiderClassCard 116
+#define AxeRiderClassCard 117
+#define BowRiderClassCard 118
+#define ArmorClassCard 119
+#define SoldierClassCard 120
+#define MercenaryClassCard 121
+#define FighterClassCard 122
+#define ArcherClassCard 123
+#define ThiefClassCard 124
+#define MyrmidonClassCard 125
+#define DeserterClassCard 126
+#define BrigandClassCard 127
+#define PirateClassCard 128
+#define PegasusRiderClassCard 129
+#define WyvernRiderClassCard 130
+#define ThunderMageClassCard 131
+#define FireMageClassCard 132
+#define WindMageClassCard 133
+#define ClericClassCard 134
+#define TroubadourClassCard 135
+#define PaladinClassCard 136
+#define ForrestKnightClassCard 137
+#define LancerClassCard 138
+#define GreatKnightClassCard 139
+#define ArchKnightClassCard 140
+#define FireKnightClassCard 141
+#define WindKnightClassCard 142
+#define ThunderKnightClassCard 143
+#define GeneralClassCard 144
+#define BaronClassCard 145
+#define HalberdierClassCard 146
+#define HeroClassCard 147
+#define WarriorClassCard 148
+#define ChampionClassCard 149
+#define SlayerClassCard 150
+#define DragoonClassCard 151
+#define HarbingerClassCard 152
+#define WarMonkClassCard 153
+#define AdventurerClassCard 154
+#define AssassinClassCard 155
+#define TricksterClassCard 156
+#define GrassrunnerClassCard 157
+#define SniperClassCard 158
+#define SwordmasterClassCard 159
+#define RavagerClassCard 1606
+#define BerserkerClassCard 161
+#define FalcoknightClassCard 162
+#define SeraphKnightClassCard 163
+#define KinshiKnightClassCard 164
+#define WyvernLordClassCard 165
+#define QilinKnightClassCard 166
+#define ScaleguardClassCard 167
+#define ThunderSageClassCard 168
+#define FireSageClassCard 169
+#define WindSageClassCard 170
+#define WindcallerClassCard 171
+#define DiabolistClassCard 172
+#define ValkyrieClassCard 173
+#define GreatLordClassCard 174
+
+// Mug Installation Defs
+
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG ExpandedPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0x00000000; BYTE mouthX mouthY eyeX eyeY; WORD 0x01; POP"
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY, eyeControl) "PUSH; ORG ExpandedPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0x00000000; BYTE mouthX mouthY eyeX eyeY; WORD eyeControl; POP"
+#define setCardEntry(cardEntry,cardLocation,cardPaletteLocation) "PUSH; ORG PortraitTable+cardEntry*0x1C; POIN 0 0 cardPaletteLocation 0 cardLocation; POP"

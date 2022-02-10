@@ -2,7 +2,7 @@
 // #define WorldMapIntroPointerTable(id,offset) "PUSH; ORG 0x8B3ad8+(4*id); POIN offset; POP"
 
 {
-  #define PrologueWMEventsID 0x1
+  #define PrologueWMEventsID 0x0
   ALIGN 4
   #include "WM_Prologue.event"
 }

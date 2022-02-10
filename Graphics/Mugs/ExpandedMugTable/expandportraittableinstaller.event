@@ -1,0 +1,11 @@
+ALIGN 4
+ExpandedPortraitTable:
+#incbin "expandportraittable.bin"
+
+#undef PortraitTable
+#define PortraitTable ExpandedPortraitTable
+
+PUSH
+ORG $5524
+POIN ExpandedPortraitTable
+POP

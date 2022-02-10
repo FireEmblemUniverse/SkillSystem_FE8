@@ -53,3 +53,5 @@ defWeaponDebuffs(4,0,4,0,4,4,0) //0x5: Pebble debuff.
 
 	BYTE 0x0	//end of list
 #endif
+
+#include "../Graphics/Mugs/ExpandedMugTable/expandportraittableinstaller.event"
