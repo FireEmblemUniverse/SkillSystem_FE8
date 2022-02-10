@@ -1,9 +1,9 @@
 //credit to Pikmin1211 for majority of this, Loog for ASMCs and debuffs
 
-MESSAGE Dismount starts at currentOffset
+
 ALIGN 4
 #include "Dismount.lyn.event"
-MESSAGE Dismount ends at currentOffset
+
 
 #define MountedUnmounted(classIDMounted, classIDUnmounted) "BYTE classIDMounted classIDUnmounted"
 #define EndMountUnmountedTable "BYTE 0x00 0x00"

@@ -2,7 +2,38 @@ Note: This list is incomplete and insufficiently organized. If you contributed
 something that you'd like special recognition for, please make a pull request
 adding yourself!
 
-# Skill contributors
+# Graphics
+
+## Class Cards
+
+ - Intelligent Systems
+ - N426
+ - SALVAGED
+ - Rasdel
+ - epicer
+ - Leif
+ - L95
+ - flasuban 
+ - RobertFPY
+ - MeteorSR23
+ - Nuramon
+ - Pikmin1211
+ - Eldritch Abomination
+ - St jack
+ - TBA
+ - Kenpuhu
+ - Jj09
+ - DerTheVaporeon
+ - Scraiza 
+ - Sword of HaE
+ - CamusZekeSirius
+ - SamirPlayz
+ - Huichelaar
+
+
+# Skill System Credits
+
+## Skill contributors
 
 - Tequila
 - Rossendale
@@ -21,12 +52,12 @@ adding yourself!
 - Ganzap
 - Mikey Seregon
 
-# Other
+## Other
 
 - 7743: various bugfixes
 - RobertFPY, Pikmin1211, and Snakey1: Str/Mag Split Finalization
 
-# Icons
+## Icons
 
 - Monkeybard, Black Mage
 - Blaze: Stances
