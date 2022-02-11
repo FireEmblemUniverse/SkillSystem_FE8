@@ -160,8 +160,12 @@ CalcAvoid:
     add  r1, r4
     ldrb r1, [r1]
     add  r0, r1
+    cmp  r0, #0x0
+    bgt  StoreAvoid
+        mov  r0, #0x0
 
     @store the value
+    StoreAvoid:
     mov  r1, r4
     add  r1, #0x62
     strh r0, [r1]
