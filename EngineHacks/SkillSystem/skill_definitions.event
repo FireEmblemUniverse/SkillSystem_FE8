@@ -93,11 +93,22 @@
 
 //Spur Skills: Adjacent allies gain +4 to their respective stat.
 //Author Unknown (Initial Commit)
-#define SpurStrID 159
-#define SpurMagID 160
-#define SpurSpdID 161
-#define SpurDefID 162
-#define SpurResID 163
+#define SpurStrID 255
+#define SpurMagID 255
+#define SpurSpdID 255
+#define SpurDefID 255
+#define SpurResID 255
+
+//ThrowBoost: Reduces Weight penalty for throwing weapons by 4
+#define ThrowBoostID 159
+
+//Heavy Traits: Reduces Weight penalty for matching heavy weapons by 4
+//Note: Only HeavyBow has been implemented so far
+//By Contro
+#define HeavySwordID 160
+#define HeavyLanceID 161
+#define HeavyAxeID   162
+#define HeavyBowID   163
 
 //Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
 //Author Unknown (Initial Commit)

@@ -237,25 +237,25 @@ Voice of Peace: Enemies within[N]
 Amaterasu: Allies within 2 tiles[N]
 recover 20% HP each turn.[X]
 
-## SD_SpurStr
-Spur Strength: Adjacent allies[N]
-deal +4 physical damage.[X]
+## SD_ThrowBoost
+Throw Boost: -4 weight penalty[N]
+when using throwable weapons.[X]
 
-## SD_SpurMag
-Spur Magic: Adjacent allies[N]
-deal +4 magical damage.[X]
+## SD_HeavySword
+Heavy Sword: -4 weight penalty[N]
+when using heavy swords.[X]
 
-## SD_SpurSpd
-Spur Speed: Adjacent allies[N]
-gain +4 Attack Speed.[X]
+## SD_HeavyLance
+Heavy Lance: -4 weight penalty[N]
+when using heavy lances.[X]
 
-## SD_SpurDef
-Spur Defense: Adjacent allies[N]
-take -4 physical damage.[X]
+## SD_HeavyAxe
+Heavy Axe: -4 weight penalty[N]
+when using heavy axes.[X]
 
-## SD_SpurRes
-Spur Resistance: Adjacent allies[N]
-take -4 magical damage.[X]
+## SD_HeavyBow
+Heavy Bow: -4 weight penalty[N]
+when using heavy bows.[X]
 
 ## SD_Nihil
 Nihil: Cancels the opponent's[N]

@@ -15,7 +15,8 @@ ALIGN 4
 BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
 BtlLoopTable:
-POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+POIN BC_DefRes BC_Power BC_ASpd CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+POIN CalcAvoid CalcHit CalcAS CalcCrit //New calculations for Starfall
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
 POIN FaireCheck HolyAura
 POIN BreakerCheck MageSlayer

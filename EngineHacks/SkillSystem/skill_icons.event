@@ -173,20 +173,20 @@ ORG SkillIcon(VoiceOfPeaceID)
 ORG SkillIcon(AmaterasuID)
 #incbin "SkillIcons/Amaterasu.dmp"
 
-ORG SkillIcon(SpurStrID)
-#incbin "SkillIcons/SpurStr.dmp"
+ORG SkillIcon(ThrowBoostID)
+#incbin "SkillIcons/ThrowBoost.dmp"
 
-ORG SkillIcon(SpurMagID)
-#incbin "SkillIcons/SpurMag.dmp"
+ORG SkillIcon(HeavySwordID)
+#incbin "SkillIcons/HeavySword.dmp"
 
-ORG SkillIcon(SpurSpdID)
-#incbin "SkillIcons/SpurSpd.dmp"
+ORG SkillIcon(HeavyLanceID)
+#incbin "SkillIcons/HeavyLance.dmp"
 
-ORG SkillIcon(SpurDefID)
-#incbin "SkillIcons/SpurDef.dmp"
+ORG SkillIcon(HeavyAxeID)
+#incbin "SkillIcons/HeavyAxe.dmp"
 
-ORG SkillIcon(SpurResID)
-#incbin "SkillIcons/SpurRes.dmp"
+ORG SkillIcon(HeavyBowID)
+#incbin "SkillIcons/HeavyBow.dmp"
 
 ORG SkillIcon(NihilID)
 #incbin "SkillIcons/Nihil.dmp"
