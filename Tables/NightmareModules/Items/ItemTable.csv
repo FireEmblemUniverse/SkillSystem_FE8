@@ -1,6 +1,6 @@
 0x809B10,Name,Description,Use Desc,ID,Type,ItemAbility,Stat Boosts,Effectiveness,Uses,Mt,Hit,Wt,Crit,Range,Price Per Use,Weapon Level,Icon,Use Effect,Weapon Effect,Weapon EXP,Debuff Type,IER Byte,Item Skill
 Nothing,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0,0,0,0,0,0x0,0,NoRank,0x0,NoEffectID,NoEffect,0,0x0,0x0,0x0
-BronzeSword,BronzeSwordName,BronzeSwordDesc,0x0,1,Swords,IsWeapon,0x0,0x0,50,3,100,0,-0,0x11,10,ERank,BronzeSword,NoEffectID,NoEffect,1,0x0,0x0,0x0
+BronzeSword,BronzeSwordName,BronzeSwordDesc,0x0,1,Swords,IsWeapon,0x0,0x0,50,3,100,0,255,0x11,10,ERank,BronzeSword,NoEffectID,NoEffect,1,0x0,0x0,0x0
 IronSword,IronSwordName,IronSwordDesc,0x0,2,Swords,IsWeapon,0x0,0x0,40,6,85,0,0,0x11,16,ERank,IronSword,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SteelSword,SteelSwordName,SteelSwordDesc,0x0,3,Swords,IsWeapon,0x0,0x0,30,10,75,2,0,0x11,20,DRank,SteelSword,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SilverSword,SilverSwordName,SilverSwordDesc,0x0,4,Swords,IsWeapon,0x0,0x0,20,15,80,3,0,0x11,75,BRank,SilverSword,NoEffectID,NoEffect,1,0x0,0x0,0x0
@@ -12,7 +12,7 @@ BraveSword,BraveSwordName,BraveSwordDesc,0x0,9,Swords,IsWeapon|IsBrave,0x0,0x0,3
 IronBlade,IronBladeName,IronBladeDesc,0x0,10,Swords,IsWeapon,0x0,0x0,25,12,70,3,0,0x11,0,DRank,IronBlade,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SteelBlade,SteelBladeName,SteelBladeDesc,0x0,11,Swords,IsWeapon,0x0,0x0,20,16,65,4,0,0x11,250,CRank,SteelBlade,NoEffectID,NoEffect,1,0x0,0x0,0x0
 WoDao,WoDaoName,WoDaoDesc,0x0,12,Swords,IsWeapon|SwordmasterLock,0x0,0x0,15,10,70,3,50,0x11,60,BRank,WoDao,NoEffectID,NoEffect,1,0x0,0x0,0x0
-BronzeLance,BronzeLanceName,BronzeLanceDesc,0x0,13,Lances,IsWeapon,0x0,0x0,50,4,95,0,0,0x11,65,ERank,BronzeLance,NoEffectID,NoEffect,1,0x0,0x0,0x0
+BronzeLance,BronzeLanceName,BronzeLanceDesc,0x0,13,Lances,IsWeapon,0x0,0x0,50,4,95,0,255,0x11,65,ERank,BronzeLance,NoEffectID,NoEffect,1,0x0,0x0,0x0
 IronLance,IronLanceName,IronLanceDesc,0x0,14,Lances,IsWeapon,0x0,0x0,40,7,80,0,0,0x11,70,ERank,IronLance,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SteelLance,SteelLanceName,SteelLanceDesc,0x0,15,Lances,IsWeapon,0x0,0x0,30,11,70,2,0,0x11,150,DRank,SteelLance,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SilverLance,SilverLanceName,SilverLanceDesc,0x0,16,Lances,IsWeapon,0x0,0x0,20,16,75,3,0,0x11,50,BRank,SilverLance,NoEffectID,NoEffect,1,0x0,0x0,0x0
@@ -27,7 +27,7 @@ IronPike,IronPikeName,IronPikeDesc,0x0,24,Lances,IsWeapon|InfantryLock,0x0,0x0,3
 SteelPike,SteelPikeName,SteelPikeDesc,0x0,25,Lances,IsWeapon|InfantryLock,0x0,0x0,20,9,70,3,0,0x11,250,BRank,SteelPike,NoEffectID,NoEffect,1,0x0,0x0,0x0
 Javelin,JavelinName,JavelinDesc,0x0,26,Lances,IsWeapon,0x0,0x0,20,3,80,2,0,0x12,60,DRank,Javelin,NoEffectID,NoEffect,1,0x0,0x0,0x0
 Spear,SpearName,SpearDesc,0x0,27,Lances,IsWeapon,0x0,0x0,15,8,70,4,0,0x12,65,BRank,Spear,NoEffectID,NoEffect,1,0x0,0x0,0x0
-BronzeAxe,BronzeAxeName,BronzeAxeDesc,0x0,28,Axes,IsWeapon,0x0,0x0,50,5,90,0,0,0x11,20,ERank,BronzeAxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
+BronzeAxe,BronzeAxeName,BronzeAxeDesc,0x0,28,Axes,IsWeapon,0x0,0x0,50,5,90,0,255,0x11,20,ERank,BronzeAxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
 IronAxe,IronAxeName,IronAxeDesc,0x0,29,Axes,IsWeapon,0x0,0x0,40,8,75,0,0,0x11,600,ERank,IronAxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SteelAxe,SteelAxeName,SteelAxeDesc,0x0,30,Axes,IsWeapon,0x0,0x0,30,12,65,2,0,0x11,130,DRank,SteelAxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SilverAxe,SilverAxeName,SilverAxeDesc,0x0,31,Axes,IsWeapon,0x0,0x0,20,17,70,3,0,0x11,6,BRank,SilverAxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
@@ -40,16 +40,16 @@ IronPoleaxe,IronPoleaxeName,IronPoleaxeDesc,0x0,37,Axes,IsWeapon,0x0,0x0,25,14,6
 SteelPoleaxe,SteelPoleaxeName,SteelPoleaxeDesc,0x0,38,Axes,IsWeapon,0x0,0x0,20,18,55,4,0,0x11,40,CRank,SteelPoleaxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
 HandAxe,HandAxeName,HandAxeDesc,0x0,39,Axes,IsWeapon,0x0,0x0,20,4,75,2,0,0x12,45,DRank,HandAxe,NoEffectID,NoEffect,1,0x0,0x0,0x0
 Tomahawk,TomahawkName,TomahawkDesc,0x0,40,Axes,IsWeapon,0x0,HorseEffectiveness|IsPointer,15,9,65,4,0,0x12,15,BRank,Tomahawk,NoEffectID,NoEffect,1,0x0,0x0,0x0
-BronzeBow,BronzeBowName,BronzeBowDesc,0x0,41,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,50,5,100,0,0,0x22,200,ERank,BronzeBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
+BronzeBow,BronzeBowName,BronzeBowDesc,0x0,41,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,50,5,100,0,255,0x22,200,ERank,BronzeBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 IronBow,IronBowName,IronBowDesc,0x0,42,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,40,8,85,0,0,0x22,140,ERank,IronBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SteelBow,SteelBowName,SteelBowDesc,0x0,43,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,30,12,75,2,0,0x22,100,DRank,SteelBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 SilverBow,SilverBowName,SilverBowDesc,0x0,44,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,20,17,80,3,0,0x22,0,BRank,SilverBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 T1KillerBow,T1KillerBowName,T1KillerBowDesc,0x0,45,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,25,6,85,1,20,0x22,12,DRank,T1KillerBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 KillerBow,KillerBowName,KillerBowDesc,0x0,46,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,25,11,75,2,40,0x22,24,BRank,KillerBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 BraveBow,BraveBowName,BraveBowDesc,0x0,47,Bows,IsWeapon|IsBrave,0x0,FlierEffectiveness|IsPointer,30,11,70,5,0,0x22,80,ARank,BraveBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
-IronLongbow,IronLongbowName,IronLongbowDesc,0x0,48,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,20,6,75,3,0,0x23,0,DRank,IronLongbow,NoEffectID,NoEffect,1,0x0,0x0,0x0
-SteelLongbow,SteelLongbowName,SteelLongbowDesc,0x0,49,Bows,IsWeapon,0x0,FlierEffectiveness|IsPointer,15,10,70,4,0,0x23,70,CRank,SteelLongbow,NoEffectID,NoEffect,1,0x0,0x0,0x0
-AntiMageBow,AntiMageBowName,AntiMageBowDesc,0x0,50,Bows,IsWeapon,0x0,FlierAndMageEffectiveness|IsPointer,25,9,85,2,0,0x22,250,CRank,AntiMageBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
+IronLongbow,IronLongbowName,IronLongbowDesc,0x0,48,Bows,IsWeapon|IsHeavy,0x0,FlierEffectiveness|IsPointer,20,6,75,3,0,0x23,0,DRank,IronLongbow,NoEffectID,NoEffect,1,0x0,0x0,0x0
+SteelLongbow,SteelLongbowName,SteelLongbowDesc,0x0,49,Bows,IsWeapon|IsHeavy,0x0,FlierEffectiveness|IsPointer,15,10,70,4,0,0x23,70,CRank,SteelLongbow,NoEffectID,NoEffect,1,0x0,0x0,0x0
+AntiMageBow,AntiMageBowName,AntiMageBowDesc,0x0,50,Bows,IsWeapon|IsHeavy,0x0,FlierAndMageEffectiveness|IsPointer,25,9,85,2,0,0x22,250,CRank,AntiMageBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 ArcaneBow,ArcaneBowName,ArcaneBowDesc,0x0,51,Bows,IsWeapon|IsMagic,0x0,FlierEffectiveness|IsPointer,20,8,80,2,0,0x22,80,CRank,ArcaneBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 RapierBow,RapierBowName,RapierBowDesc,0x0,52,Bows,IsWeapon|EphraimLock,0x0,FlierEffectiveness|IsPointer,25,10,80,4,0,0x22,100,BRank,RapierBow,NoEffectID,NoEffect,1,0x0,0x0,0x0
 Thunder,ThunderName,ThunderDesc,0x0,53,ThunderType,IsWeapon|IsMagic,0x0,0x0,40,5,80,0,0,0x12,0,ERank,Thunder,NoEffectID,NoEffect,1,0x0,0x0,0x0

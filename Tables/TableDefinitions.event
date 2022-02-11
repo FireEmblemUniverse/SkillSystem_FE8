@@ -48,6 +48,7 @@
 #define NegateCriticals 0x00008000
 #define CannotUse 0x00010000
 #define NegateDef 0x00020000
+#define IsHeavy 0x80000000
 #ifdef _FE8_
   #define EirikaLock 0x00040000
   #define EphraimLock 0x00080000
