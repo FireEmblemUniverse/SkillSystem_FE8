@@ -156,6 +156,11 @@ CalcAvoid:
     ldsb r0, [r0, r1]
     lsl  r0, #0x1
 
+    mov  r1, #0x57
+    add  r1, r4
+    ldrb r1, [r1]
+    add  r0, r1
+
     @store the value
     mov  r1, r4
     add  r1, #0x62
