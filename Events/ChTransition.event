@@ -22,7 +22,8 @@
 #define DRSingleRam 			0x30017bb
 #define UnitPointerRam 0x30017BC // - BF
 #define WepRamLocat 0x30017C0 
-#define PostTrainerBattleRamLocat 0x30017C4 
+#define PostTrainerBattleRamLocat 0x30017C4 //- c7 
+#define DisableMenuOptionsRam 0x30017C8 // gaiden, capture, guard, call, submenu 
 
 // ASMC 0x80160D1 // Return to map BGM 
 // SCOORD rB [5, 6]

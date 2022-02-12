@@ -1,0 +1,7 @@
+#define EnqueneTutorialEvent_0_PhaseSwitch(pEvent) "SHORT 0x0B41; SHORT 0x0; POIN pEvent"
+#define EnqueneTutorialEvent_1_PostAction(pEvent) "SHORT 0x0B41; SHORT 0x1; POIN pEvent"
+#define EnqueneTutorialEvent_2_OnSelect(pEvent) "SHORT 0x0B41; SHORT 0x2; POIN pEvent"
+#define EnqueneTutorialEvent_3_PreMove(pEvent) "SHORT 0x0B41; SHORT 0x3; POIN pEvent"
+#define EnqueneTutorialEvent_4_PostMove(pEvent) "SHORT 0x0B41; SHORT 0x4; POIN pEvent"
+#define EnqueneTutorialEvent_5_BattleForecast(pEvent) "SHORT 0x0B41; SHORT 0x5; POIN pEvent"
+#define EnqueneTutorialEvent_6_PlayerPhaseStart(pEvent) "SHORT 0x0B41; SHORT 0x6; POIN pEvent"

@@ -28,6 +28,13 @@ b NormalExit
 
 
 FlipMenu:
+ldr r0, =0x30017C8
+ldrb r0, [r0] 
+mov r2, #0x10 @ Prevent submenu bitflag 
+and r0, r2
+cmp r0, #0 
+bne NormalExit 
+
 ldr r0,[r4,#0x30]   @menu define
 @ldr r2,=0x085C5490 @SubMenu	{J}
 ldr r2,=0x0859CFB0 @SubMenu	{U}

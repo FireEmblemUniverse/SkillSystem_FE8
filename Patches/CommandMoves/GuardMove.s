@@ -20,6 +20,14 @@
 GuardCommandUsability:
 push {lr} 
 
+ldr r0, =DisableMenuOptionsRamLink
+ldr r0, [r0] 
+ldrb r0, [r0] 
+mov r1, #4 @ Guard bitflag 
+and r0, r1
+cmp r0, #0 
+bne RetFalse 
+
 ldr r0, =CurrentUnit 
 ldr r0, [r0] 
 ldr r1, =GuardMove

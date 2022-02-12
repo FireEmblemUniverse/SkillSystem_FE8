@@ -2,6 +2,7 @@
 
 #include "WorldMap/WorldMapEvents.event"
 
+#include "TutorialDef.event"
 #include "DefinitionsUnitAndClass.event"
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
@@ -18,6 +19,10 @@
 
 {
 #include "Route1.event" 
+}
+
+{
+#include "Route1Tutorial.event" 
 }
 
 {

@@ -188,6 +188,13 @@ CurrentUnitFateData:
 CallCommandUsability:
 push {lr}
 
+ldr r0, =DisableMenuOptionsRamLink
+ldr r0, [r0] 
+ldrb r0, [r0] 
+mov r1, #8 @ Prevent call bitflag 
+and r0, r1
+cmp r0, #0 
+bne Usability_False  
 
 ldr r0, =CallCountdownFlag @ Flag that prevents call 
 lsl r0, #24 

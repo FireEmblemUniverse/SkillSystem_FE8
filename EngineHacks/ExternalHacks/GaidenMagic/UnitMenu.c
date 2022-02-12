@@ -1,20 +1,27 @@
 
+
 /* Intended behavior:
 	Return 1 if there is any spell that is usable with enough HP to cast it with a valid target.
 	Return 2 if there is at least 1 usable spell, but there isn't enough HP to cast any usable spells.
 	Return 3 if there are no spells with valid targets. */
 int GaidenBlackMagicUMUsability(void) // It's kinda weird that usability is void, but the other UM functions get the menu proc passed in...
 {
+	u8* DisableMenuOptionsRam = (u8*) 0x30017C8;
+	if (*DisableMenuOptionsRam & 1) return 3; // For tutorials 
 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
 }
 
 extern int *Capture_Usability(void);
+
+
 // Vesly added - usability is identical for now 
 int CaptureGaidenBlackMagicUMUsability(void) // It's kinda weird that usability is void, but the other UM functions get the menu proc passed in...
 {
-
+	u8* DisableMenuOptionsRam = (u8*) 0x30017C8;
 //080171e8 GetUnitRangeMask
 //0801acbc FillMapAttackRangeForUnit
+	if (*DisableMenuOptionsRam & 2) return 3; 
+	
 	if (!(Capture_Usability())) { return 3; }
 
 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.

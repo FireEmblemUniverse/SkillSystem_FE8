@@ -20,6 +20,14 @@
 
 push {r4,r14}
 
+ldr r0, =DisableMenuOptionsRamLink
+ldr r0, [r0] 
+ldrb r0, [r0] 
+mov r1, #0x20 @ Prevent supply bitflag 
+and r0, r1
+cmp r0, #0 
+bne ReturnFalse 
+
 ldr r1, =gActiveUnit
 ldr r1, [r1]
 ldr r0, [r1, #0xC]
@@ -99,7 +107,6 @@ bx r1
 
 IsAdjacent:
 push {r4,r5,r6,r7,lr}
-
 ldr r1,=gActiveUnit
 ldr r0,[r1]
 

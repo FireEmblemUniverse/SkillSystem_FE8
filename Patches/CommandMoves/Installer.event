@@ -11,6 +11,10 @@
 
 #include "SplashMove.lyn.event"
 
+ALIGN 4
+DisableMenuOptionsRamLink:
+WORD 0x30017C8 //DisableMenuOptionsRam
+
 
 #include "Agility.lyn.event"
 #include "Amnesia.lyn.event"

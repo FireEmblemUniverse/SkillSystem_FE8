@@ -14,7 +14,8 @@ WORD ALSO_USE_VANILLA_DANCE_CHECK
 
 ALIGN 4
 NewSupplyUsability:
-#incbin "Supply/NewSupplyUsability.dmp"
+#include "Supply/NewSupplyUsability.lyn.event" 
+//#incbin "Supply/NewSupplyUsability.dmp"
 POIN SkillTester
 WORD SupplyID
 WORD ALSO_USE_VANILLA_SUPPLY_CHECK
