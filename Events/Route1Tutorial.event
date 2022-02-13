@@ -53,10 +53,17 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0 Restore_Options 0
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
+
+Restore_Options:
+CALL MyTutorial_Cleanup
+NoFade 
+ENDA 
+
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(11,0) 
@@ -200,7 +207,15 @@ Capture Pokemon tutorial
 
 ALIGN 4
 MyTutorial1:
-TutText(CatchPokemonTutorial_1)
+SCOORD sB [17,32] // adjacent
+CAMERA_SB // show Mankey 
+CURSOR_FLASHING_SB
+STAL 15
+TutText_B(CatchPokemonTutorial_1)
+STAL 15
+CHECK_COORDS 0 // Party Leader  
+SADD sB sC s0 
+SET_CURSOR_SB
 EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
 NoFade 
 ENDA
@@ -250,6 +265,11 @@ ENDA
 #define Supply_Off 0x20 
 
 MyTutorial2:
+
+CHECK_ACTIVE
+SVAL 0x2 0x1
+BNE 10 0xC 0x2
+
 SHOW_MOVERANGE 0x7FFF
 // Wild Mankey at 13, 35
 SCOORD sB [14,35] // adjacent
@@ -262,13 +282,20 @@ DISABLEOPTIONS 0xFFFF // Disables all vanilla options, leaving only Guard and Ca
 IGNORE_KEYS B_Key|Start_Key|R_Key|L_Key
 
 Write_Byte(Attack_Off|Capture_Off|Call_Off|Submenu_Off|Supply_Off, DisableMenuOptionsRam) 
-EnqueneTutorialEvent_3_PreMove(MyTutorial3)
 
+CURE
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
-CURSOR_FLASHING_SB
-//TutText(CatchPokemonTutorial_2)
-//EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
+ASMC ModularSummon_CenterCameraASMC // this one centers the camera 
+EnqueneTutorialEvent_3_PreMove(MyTutorial3)
+GOTO 63 
+
+LABEL 10 
+EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
+
+
+
+LABEL 63
 NoFade 
 ENDA
 
@@ -280,10 +307,9 @@ SVAL 0xD 0x0 // empty queue
 
 CHECK_CURSOR
 SCOORD sB [14,35] // adjacent
-BEQ 0x0 0xC 0xB
-SCOORD sB [14,35] // adjacent
 BNE 1 sC sB 
 LABEL 0
+CURE
 ASMC 0x1D7E9	// Maybe related to range display?
 EnqueneTutorialEvent_4_PostMove(MyTutorial4)
 SVAL 0xC 0x1
@@ -291,13 +317,14 @@ GOTO 63
 
 LABEL 0x1	// if Not move to target
 SET_CURSOR_SB
-CAMERA_SB
+ASMC ModularSummon_CenterCameraASMC // this one centers the camera 
+//CAMERA_SB
 CURSOR_FLASHING_SB
 SCOORD sB [14,35] // adjacent
 CURSOR_FLASHING_SB
 STAL_SKIP_FAST 8
-TutText(CatchPokemonTutorial_2)
-// TutText 
+TutText_B(CatchPokemonTutorial_2)
+// TutText_B 
 CURE
 EnqueneTutorialEvent_3_PreMove(MyTutorial3) // Repeat if failed to move as told 
 SVAL 0xC 0x0
@@ -306,25 +333,39 @@ NoFade
 ENDA
 
 MyTutorial4:
-TutText(CatchPokemonTutorial_3)
+TutText_B(CatchPokemonTutorial_3)
 EnqueneTutorialEvent_0_PhaseSwitch(MyTutorial5)
 NoFade 
 ENDA
 
+
+
+
 MyTutorial5:
-TutText(CatchPokemonTutorial_4)
+CALL MyTutorial_Cleanup // If they don't select the unit right away, they need to be able to press B 
+TutText_B(CatchPokemonTutorial_4)
+DISABLEOPTIONS EndOption 
 EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial6)
 NoFade 
 ENDA
 
 MyTutorial6:
-TutText(CatchPokemonTutorial_5)
+TutText_B(CatchPokemonTutorial_5)
+CURSOR_FLASHING [14,35]
 EnqueneTutorialEvent_2_OnSelect(MyTutorial7)
 NoFade 
 ENDA
 
 MyTutorial7:
+CHECK_ACTIVE
+SVAL 0x2 0x1
+BNE 10 0xC 0x2
+
 SHOW_MOVERANGE 0x7FFF
+CURSOR_FLASHING [14,35] // adjacent
+CURSOR_FLASHING [16,35] // adjacent
+CURSOR_FLASHING [15,34] // adjacent
+STAL 20
 // Wild Mankey at 13, 35
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
@@ -336,8 +377,12 @@ IGNORE_KEYS B_Key|Start_Key|R_Key|L_Key
 Write_Byte(Attack_Off|Guard_Off|Call_Off|Submenu_Off|Supply_Off, DisableMenuOptionsRam) 
 //WORD 0x30B41 MyTutorial2 | 0x8000000	// 0x3 = Pre Move
 EnqueneTutorialEvent_3_PreMove(MyTutorial8)
+GOTO 63 
+LABEL 10 
+EnqueneTutorialEvent_2_OnSelect(MyTutorial7)
 
-//TutText(CatchPokemonTutorial_2)
+LABEL 63 
+//TutText_B(CatchPokemonTutorial_2)
 //EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
 NoFade 
 ENDA
@@ -349,23 +394,30 @@ SVAL 0xD 0x0 // empty queue
 CHECK_CURSOR
 SCOORD sB [14,35] // adjacent
 BEQ 0x0 0xC 0xB
-SCOORD sB [14,35] // adjacent
+SCOORD sB [16,35] // adjacent
+BEQ 0x0 0xC 0xB
+SCOORD sB [15,34] // adjacent
 BNE 1 sC sB 
 LABEL 0
-ASMC 0x1D7E9	// Maybe related to range display?
-EnqueneTutorialEvent_4_PostMove(MyTutorial9)
+//ASMC 0x1D7E9	// Maybe related to range display?
+//SHOW_ATTACK_RANGE 0x7fff
+// HIDE_ATTACK_RANGE 
+EnqueneTutorialEvent_5_BattleForecast(MyTutorial9)
 SVAL 0xC 0x1
 GOTO 63
 
 LABEL 0x1	// if Not move to target
 SET_CURSOR_SB
-CAMERA_SB
+ASMC ModularSummon_CenterCameraASMC // this one centers the camera 
+//CAMERA_SB
 CURSOR_FLASHING_SB
-SCOORD sB [13,36] // adjacent
+SCOORD sB [16,35] // adjacent
+CURSOR_FLASHING_SB
+SCOORD sB [14,35] // adjacent
 CURSOR_FLASHING_SB
 STAL_SKIP_FAST 8
-TutText(CatchPokemonTutorial_2)
-// TutText 
+TutText_B(CatchPokemonTutorial_2)
+// TutText_B 
 CURE
 EnqueneTutorialEvent_3_PreMove(MyTutorial8) // Repeat if failed to move as told 
 SVAL 0xC 0x0
@@ -374,16 +426,31 @@ NoFade
 ENDA
 
 MyTutorial9:
-//TutText(CatchPokemonTutorial_3)
-EnqueneTutorialEvent_0_PhaseSwitch(MyTutorial_Cleanup)
-EnqueneTutorialEvent_2_OnSelect(MyTutorial_Cleanup)
+TutText_B(CatchPokemonTutorial_6)
+EnqueneTutorialEvent_2_OnSelect(MyTutorial10)
+
 NoFade 
 ENDA
 
+MyTutorial10:
+//TutText_B(CatchPokemonTutorial_3)
+EnqueneTutorialEvent_0_PhaseSwitch(MyTutorial_End)
+EnqueneTutorialEvent_2_OnSelect(MyTutorial_End)
+NoFade 
+ENDA
+
+MyTutorial_End:
+TutText_B(CatchPokemonTutorial_7)
+CALL MyTutorial_Cleanup 
+NoFade 
+ENDA 
+
+
 MyTutorial_Cleanup:
-DISABLEOPTIONS 0 // Disables all vanilla options, leaving only Guard and Capture. 
+DISABLEOPTIONS 0 // Re-enable options 
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
+
 NoFade 
 ENDA
 

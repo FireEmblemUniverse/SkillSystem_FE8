@@ -19,27 +19,27 @@
 CapturePokemon:	@Make
 
 	push {r4-r7, lr}	
-	
+	mov r11, r11 
 	@normally r4 = attacker, r5 = defender, r6 = action struct 
 	ldr r4, =0x203A4EC 
 	ldr r5, =0x203A56C
 	ldr r6, =0x203A958 
 	@ we need the actual unit structs 
-	ldrb r0, [r4, #0x0B] 
+	ldrb r0, [r4, #0x0B] @ Captured pokemon deployment byte 
 	blh GetUnit 
 	mov r4, r0 
-	ldrb r0, [r5, #0x0B] 
+	ldrb r0, [r5, #0x0B] @ rescuing pkmn deployment byte 
 	blh GetUnit 
 	mov r5, r0 
 	
 
-@check if dead
+@check if active unit is dead
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
 bne Continue 
 b Break 
 Continue:
-
+@ [203A969]!!
 @check if attacked this turn
 ldrb 	r0, [r6,#0x11]	@action taken this turn
 cmp	r0, #0x2 @attack

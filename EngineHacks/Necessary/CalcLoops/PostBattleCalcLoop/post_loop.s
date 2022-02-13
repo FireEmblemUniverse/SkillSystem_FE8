@@ -1,4 +1,4 @@
-@hook at 0801d308
+@called at 08037744
 .macro blh to, reg=r3
   ldr \reg, =\to
   mov lr, \reg
@@ -14,7 +14,10 @@
 @r5 has defender pointer in ram (actual character pointer, not defender pointer)
 @r6 has action struct
 @r7 loop table pointer
-push	{r0-r7}
+push {r4-r5, lr}
+mov r5, r0 
+ldr r4, =CurrentUnit 
+push	{r4-r7}
 
 @reload current unit data to avoid weird staff on reload
 ldr	r5, =CurrentUnit
@@ -69,19 +72,25 @@ End:
 ldr	r0,=#0x203A4D4
 mov	r1,#0
 strb	r1,[r0]
-pop	{r0-r7}
-push	{r4}
-cmp	r0, #0x00
-bne	Skipmov
-mov	r0, #0x01
-ldr	r4,=#0x801d316
-b	Skipmore
-Skipmov:
-ldr	r4,=#0x801d310
-Skipmore:
-mov	lr, r4
-pop	{r4}
-.short	0xf800
+pop	{r4-r7}
+ldr r0, [r4] 
+blh 0x8019150 @GetUnitCurrentHP 
+pop {r4-r5}
+pop {r1}
+bx r1 
+
+@push	{r4}
+@cmp	r0, #0x00
+@bne	Skipmov
+@mov	r0, #0x01
+@ldr	r4,=#0x801d316
+@b	Skipmore
+@Skipmov:
+@ldr	r4,=#0x801d310
+@Skipmore:
+@mov	lr, r4
+@pop	{r4}
+@.short	0xf800
 
 .ltorg
 .align
