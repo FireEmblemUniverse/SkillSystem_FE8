@@ -67,7 +67,7 @@ mov	lr, r0
 	@mov	r5, r0
 add	r7, #0x04	@prepare next pointer
 b	Loop
-
+mov r8, r8 
 End:
 ldr	r0,=#0x203A4D4
 mov	r1,#0
@@ -76,7 +76,7 @@ pop	{r4-r7}
 ldr r0, [r4] 
 blh 0x8019150 @GetUnitCurrentHP 
 pop {r4-r5}
-pop {r1}
+pop {r1} 
 bx r1 
 
 @push	{r4}

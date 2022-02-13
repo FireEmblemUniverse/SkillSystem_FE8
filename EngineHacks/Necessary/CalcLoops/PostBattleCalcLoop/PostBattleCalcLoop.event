@@ -4,7 +4,7 @@
 PUSH 
 ORG $37744 // HandlePostActionTraps occurs before the hook at $1D308 and sets action to "wait" when standing on a trap 
 callHack_r3(PostCombatLoop)
-POP 
+POP  
 
 //PUSH
 //ORG $1D308 //hook just before the check for misc event
