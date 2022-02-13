@@ -2,8 +2,8 @@
 	/* Post-battle calculation loop*/
 
 PUSH 
-ORG $37744 // HandlePostActionTraps occurs before the hook at $1D308 and sets action to "wait" when standing on a trap 
-callHack_r3(PostCombatLoop)
+ORG $37748 // HandlePostActionTraps occurs before the hook at $1D308 and sets action to "wait" when standing on a trap 
+jumpToHack(PostCombatLoop)
 POP  
 
 //PUSH

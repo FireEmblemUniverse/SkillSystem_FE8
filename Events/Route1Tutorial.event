@@ -205,28 +205,6 @@ Capture Pokemon tutorial
 
 */
 
-ALIGN 4
-MyTutorial1:
-SCOORD sB [17,32] // adjacent
-CAMERA_SB // show Mankey 
-CURSOR_FLASHING_SB
-STAL 15
-TutText_B(CatchPokemonTutorial_1)
-STAL 15
-CHECK_COORDS 0 // Party Leader  
-SADD sB sC s0 
-SET_CURSOR_SB
-EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
-NoFade 
-ENDA
-
-// $D793F is read in a mem copy and saved at 3007D9C
-// Menu_CallDefined proc is read but has invalid address to jump to 
-// 4EF38 / 69 
-//PUSH 
-//ORG $D793F // Table of options to ignore 
-//BYTE $4E // GaidenMagic menu option  
-//POP 
 
 #define AttackOption 1
 #define StaffOption 2
@@ -263,6 +241,33 @@ ENDA
 #define Call_Off 8
 #define Submenu_Off 0x10 
 #define Supply_Off 0x20 
+
+ALIGN 4
+MyTutorial1:
+
+DISABLEOPTIONS EndOption 
+SCOORD sB [17,32] // adjacent
+CAMERA_SB // show Mankey 
+CURSOR_FLASHING_SB
+STAL 15
+TutText_B(CatchPokemonTutorial_1)
+STAL 15
+CHECK_COORDS 0 // Party Leader  
+SADD sB sC s0 
+SET_CURSOR_SB
+EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
+NoFade 
+ENDA
+
+// $D793F is read in a mem copy and saved at 3007D9C
+// Menu_CallDefined proc is read but has invalid address to jump to 
+// 4EF38 / 69 
+//PUSH 
+//ORG $D793F // Table of options to ignore 
+//BYTE $4E // GaidenMagic menu option  
+//POP 
+
+
 
 MyTutorial2:
 

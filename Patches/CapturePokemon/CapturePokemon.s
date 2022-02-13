@@ -39,7 +39,7 @@ cmp	r0, #0x00
 bne Continue 
 b Break 
 Continue:
-@ [203A969]!!
+@ [203A969]!! - handle post action trap was changing action to "wait" if you'd stepped on a trap 
 @check if attacked this turn
 ldrb 	r0, [r6,#0x11]	@action taken this turn
 cmp	r0, #0x2 @attack
