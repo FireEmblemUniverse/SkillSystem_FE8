@@ -60,7 +60,10 @@ AREA 0 ToPallet [12,39] [13,39]
 END_MAIN
 
 Restore_Options:
+CHECK_EVENTID Route1Tutorial_A
+BNE 0 sC s0
 CALL MyTutorial_Cleanup
+LABEL 0
 NoFade 
 ENDA 
 
@@ -175,6 +178,7 @@ LOAD1 0x1 EnemyUnitsF
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(18,32,21,35))  //bottom e
 
+ENUT Route1Tutorial_A
 CHECK_EVENTID Route1Tutorial_A
 BNE 0 sC s0
 LOAD1 0x1 EnemyUnitsG // Mankey to catch 
@@ -189,7 +193,7 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CALL SetBushHpEvent
 
-EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial1)
+//EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial1)
 
 LABEL 0x63
 NoFade
@@ -244,7 +248,8 @@ Capture Pokemon tutorial
 
 ALIGN 4
 MyTutorial1:
-
+CHECK_EXISTS 0x102 
+BNE 63 sC s0 // If more than 1 unit, don't do the tutorial. 
 DISABLEOPTIONS EndOption 
 SCOORD sB [17,32] // adjacent
 CAMERA_SB // show Mankey 
@@ -256,6 +261,8 @@ CHECK_COORDS 0 // Party Leader
 SADD sB sC s0 
 SET_CURSOR_SB
 EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
+LABEL 63 
+SVAL 0xC 0x1
 NoFade 
 ENDA
 
@@ -270,11 +277,6 @@ ENDA
 
 
 MyTutorial2:
-
-CHECK_ACTIVE
-SVAL 0x2 0x1
-BNE 10 0xC 0x2
-
 SHOW_MOVERANGE 0x7FFF
 // Wild Mankey at 13, 35
 SCOORD sB [14,35] // adjacent
@@ -282,25 +284,15 @@ CURSOR_FLASHING_SB
 SCOORD sB [14,35] // adjacent
 CURSOR_FLASHING_SB
 STAL 25
-
 DISABLEOPTIONS 0xFFFF // Disables all vanilla options, leaving only Guard and Capture. 
 IGNORE_KEYS B_Key|Start_Key|R_Key|L_Key
-
 Write_Byte(Attack_Off|Capture_Off|Call_Off|Submenu_Off|Supply_Off, DisableMenuOptionsRam) 
-
 CURE
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
 ASMC ModularSummon_CenterCameraASMC // this one centers the camera 
 EnqueneTutorialEvent_3_PreMove(MyTutorial3)
-GOTO 63 
-
-LABEL 10 
-EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
-
-
-
-LABEL 63
+SVAL 0xC 0x1
 NoFade 
 ENDA
 
@@ -315,7 +307,7 @@ SCOORD sB [14,35] // adjacent
 BNE 1 sC sB 
 LABEL 0
 CURE
-ASMC 0x1D7E9	// Maybe related to range display?
+ASMC 0x1D7E9	// Skip selecting tile twice 
 EnqueneTutorialEvent_4_PostMove(MyTutorial4)
 SVAL 0xC 0x1
 GOTO 63
@@ -351,30 +343,28 @@ CALL MyTutorial_Cleanup // If they don't select the unit right away, they need t
 TutText_B(CatchPokemonTutorial_4)
 DISABLEOPTIONS EndOption 
 EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial6)
+SVAL 0xC 0x1
 NoFade 
 ENDA
 
 MyTutorial6:
 TutText_B(CatchPokemonTutorial_5)
-CURSOR_FLASHING [14,35]
+CHECK_COORDS 0 // Party Leader  
+SADD sB sC s0 
+SET_CURSOR_SB
 EnqueneTutorialEvent_2_OnSelect(MyTutorial7)
+SVAL 0xC 0x1
 NoFade 
 ENDA
 
 MyTutorial7:
-CHECK_ACTIVE
-SVAL 0x2 0x1
-BNE 10 0xC 0x2
-
 SHOW_MOVERANGE 0x7FFF
 CURSOR_FLASHING [14,35] // adjacent
 CURSOR_FLASHING [16,35] // adjacent
 CURSOR_FLASHING [15,34] // adjacent
 STAL 20
 // Wild Mankey at 13, 35
-CHECK_COORDS 0x7FFF 
-SADD sB sC s0 
-STAL 15
+//STAL 15
 
 DISABLEOPTIONS 0xFFFF // Disables all vanilla options, leaving only Guard and Capture. 
 IGNORE_KEYS B_Key|Start_Key|R_Key|L_Key
@@ -382,20 +372,12 @@ IGNORE_KEYS B_Key|Start_Key|R_Key|L_Key
 Write_Byte(Attack_Off|Guard_Off|Call_Off|Submenu_Off|Supply_Off, DisableMenuOptionsRam) 
 //WORD 0x30B41 MyTutorial2 | 0x8000000	// 0x3 = Pre Move
 EnqueneTutorialEvent_3_PreMove(MyTutorial8)
-GOTO 63 
-LABEL 10 
-EnqueneTutorialEvent_2_OnSelect(MyTutorial7)
-
-LABEL 63 
-//TutText_B(CatchPokemonTutorial_2)
-//EnqueneTutorialEvent_2_OnSelect(MyTutorial2)
+SVAL 0xC 0x1
 NoFade 
 ENDA
 
 MyTutorial8:
-EVBIT_T 0x7
 SVAL 0xD 0x0 // empty queue 
-
 CHECK_CURSOR
 SCOORD sB [14,35] // adjacent
 BEQ 0x0 0xC 0xB
@@ -404,7 +386,8 @@ BEQ 0x0 0xC 0xB
 SCOORD sB [15,34] // adjacent
 BNE 1 sC sB 
 LABEL 0
-//ASMC 0x1D7E9	// Maybe related to range display?
+ASMC 0x1D7E9	// Skip selecting tile twice 
+HIDE_ATTACK_RANGE
 //SHOW_ATTACK_RANGE 0x7fff
 // HIDE_ATTACK_RANGE 
 EnqueneTutorialEvent_5_BattleForecast(MyTutorial9)
@@ -432,17 +415,13 @@ ENDA
 
 MyTutorial9:
 TutText_B(CatchPokemonTutorial_6)
-EnqueneTutorialEvent_2_OnSelect(MyTutorial10)
-
-NoFade 
-ENDA
-
-MyTutorial10:
-//TutText_B(CatchPokemonTutorial_3)
 EnqueneTutorialEvent_0_PhaseSwitch(MyTutorial_End)
-EnqueneTutorialEvent_2_OnSelect(MyTutorial_End)
+EnqueneTutorialEvent_2_OnSelect(MyTutorial_Cleanup)
+SVAL 0xC 0x1
 NoFade 
 ENDA
+
+
 
 MyTutorial_End:
 TutText_B(CatchPokemonTutorial_7)

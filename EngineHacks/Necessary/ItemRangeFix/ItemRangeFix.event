@@ -287,6 +287,7 @@
 	SHORT 0x4B00 0x4718
 	POIN Target_Routine_For_Non_Unlock|1
 	*/
+	
 	Fortify_Jump:
 	SHORT 0x4B00 0x4718
 	POIN Target_Routine_For_Fortify|1
@@ -318,6 +319,7 @@
 	
 	//************** CAN BE WRITTEN TO WHEREVER IF YOU WANT THIS SPACE FOR OTHER ASSEMBLY STUFF *********************
 POP
+
 	ALIGN 4
 	All_Weapons_One_Square:
 	#include "RangeDisplay/All_Weapons_One_Square.lyn.event"
@@ -353,6 +355,8 @@ POP
 	#include "RangeDisplay/Get_Item_Range.lyn.event"
 	//#incbin "Get Item Range.dmp"
 	POIN GetItemRangeM|1
+	
+
 	
 	ALIGN 4
 	Write_Range:
