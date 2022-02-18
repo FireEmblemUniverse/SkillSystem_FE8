@@ -1,6 +1,10 @@
 
+## DebugText
+Debug[A][X]
 
-
+## SkipTutorialText
+Skip catching tutorial?[NL]
+[No][X]
 
 ## RematchText
 Rematch trainer?[NL]
@@ -35,8 +39,7 @@ deal 5 less damage.[X]
 ## SetNameTest
 Mewtwo[NL]
 Placeholder text[NL]
-is being used.[A]
-[X]
+is being used.[A][X]
 
 
 ## CatchPokemonTutorial_1
@@ -56,8 +59,13 @@ Great! It's weakened![A][N]
 Now we'll capture it.[A][X]
 
 ## CatchPokemonTutorial_6
-The Battle Forecast shows[N]
-the damage you'll deal.[A][X]
+The Battle Forecast shows the[N]
+damage you'll deal in blue.[A][N]
+The red side shows the enemy's HP[N]
+dmg, hit rate, and crit chance.[A][N]
+Knock out an enemy while[N]
+capturing to catch them all![A][X]
+
 ## CatchPokemonTutorial_7
 Well done![A] Catch lots[N]
 of POKEMON to progress.[A][X]

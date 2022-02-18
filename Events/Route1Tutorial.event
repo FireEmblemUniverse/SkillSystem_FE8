@@ -59,13 +59,7 @@ AREA 0 ToPallet [12,39] [13,39]
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 
-Restore_Options:
-CHECK_EVENTID Route1Tutorial_A
-BNE 0 sC s0
-CALL MyTutorial_Cleanup
-LABEL 0
-NoFade 
-ENDA 
+
 
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -178,7 +172,7 @@ LOAD1 0x1 EnemyUnitsF
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(18,32,21,35))  //bottom e
 
-ENUT Route1Tutorial_A
+
 CHECK_EVENTID Route1Tutorial_A
 BNE 0 sC s0
 LOAD1 0x1 EnemyUnitsG // Mankey to catch 
@@ -193,7 +187,14 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CALL SetBushHpEvent
 
-//EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial1)
+EVBIT_MODIFY 4
+ShowMap
+SVAL r7 1 
+TutText(SkipTutorialText) 
+BNE 10 rC r7
+GOTO 0x63 
+LABEL 10 
+EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial1)
 
 LABEL 0x63
 NoFade
@@ -250,6 +251,7 @@ ALIGN 4
 MyTutorial1:
 CHECK_EXISTS 0x102 
 BNE 63 sC s0 // If more than 1 unit, don't do the tutorial. 
+ENUT PlayableCutsceneFlag
 DISABLEOPTIONS EndOption 
 SCOORD sB [17,32] // adjacent
 CAMERA_SB // show Mankey 
@@ -336,7 +338,14 @@ NoFade
 ENDA
 
 
-
+Restore_Options: // AFEV - if cutscene, restore options after acting. 
+PlayerInRange
+CHECK_EVENTID PlayableCutsceneFlag
+BEQ 0 sC s0
+CALL MyTutorial_Cleanup
+LABEL 0
+NoFade 
+ENDA 
 
 MyTutorial5:
 CALL MyTutorial_Cleanup // If they don't select the unit right away, they need to be able to press B 
@@ -425,6 +434,8 @@ ENDA
 
 MyTutorial_End:
 TutText_B(CatchPokemonTutorial_7)
+ENUT Route1Tutorial_A
+ENUF PlayableCutsceneFlag
 CALL MyTutorial_Cleanup 
 NoFade 
 ENDA 

@@ -246,7 +246,7 @@ ENDA
 GlobalBeginningScene:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 #ifdef DEBUG_MODE 
-//SetMaxMove
+SetMaxMove
 #endif 
 NoFade 
 ENDA 
@@ -865,6 +865,7 @@ CALL 0x89EE1B8 // When matching allegiance stops in range
 EVBIT_MODIFY 4
 SVAL r7 1 
 EVBIT_F 2 
+
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
 ENUF TrainerBattleActiveFlag
