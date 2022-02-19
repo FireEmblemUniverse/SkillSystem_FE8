@@ -10,40 +10,42 @@
 	.equ SetEventId, 0x8083d80 
 	.equ UnsetEventId, 0x8083d94
 	.equ GameOptionHandler, 0x80B1D14
-.type QuicksaveToggleFunc, %function
-.global QuicksaveToggleFunc
+	
 
-QuicksaveToggleFunc:
-mov r11, r11 
+
+	
+.type GenericToggleFunc, %function
+.global GenericToggleFunc
+
+GenericToggleFunc:
+push {r4}
+mov r4, r0 @ ID 
 @ vanilla already pushed lr 
-ldr r0, =QuicksaveToggleFlagLink
-ldr r0, [r0] 
+mov r0, r4 
 blh CheckEventId
 cmp r0, #0 
 beq SetFlagOn
-ldr r0, =QuicksaveToggleFlagLink
-ldr r0, [r0] 
+mov r0, r4
 blh UnsetEventId
 b End 
 SetFlagOn:
-ldr r0, =QuicksaveToggleFlagLink
-ldr r0, [r0] 
+mov r0, r4
 blh SetEventId 
 End:
+pop {r4}
 pop {r1}
 bx r1 
 
 .ltorg 
 .align 
 
-.type QuicksaveCheckCurrentOption, %function 
-.global QuicksaveCheckCurrentOption
-QuicksaveCheckCurrentOption:
+.type GenericCheckOption, %function 
+.global GenericCheckOption
 @ don't push lr ?
-ldr r0, =QuicksaveToggleFlagLink
-ldr r0, [r0] 
+GenericCheckOption:
+push {r4}
 blh CheckEventId
-Skip: 
+pop {r4}
 pop {r1}
 bx r1 
 

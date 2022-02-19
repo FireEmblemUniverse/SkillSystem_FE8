@@ -75,13 +75,23 @@ ORG GameOptionsEffectTable+4*(GameOptionsMaxEntries+1)
 // GameOptTable + (x+1)*8 + $2c*TableEntryID 
 #define GameOptionsEntry(EntryID, MainText, Selection1HelpText, Selection1Text, Pos_Sel1, Selection2HelpText, Selection2Text, Pos_Sel2, IconID, CurrOptionFunc, EffectFunction)"PUSH; ORG GameOptionsTable+44*EntryID; WORD MainText; SHORT Selection1HelpText Selection1Text Pos_Sel1 0 Selection2HelpText Selection2Text Pos_Sel2 0 0 0 190 0 0 0 189 0; WORD IconID; POIN 0x80B1D15|1; ORG GameOptionsEffectTable+4*EntryID; POIN CurrOptionFunc|1; ORG GameOptionsCheckCurrentJumpTable+4*EntryID; POIN EffectFunction|1; POP"
 
-
+#define GenericToggleFunctionCode "SHORT $4B01 $4718 $46C0; POIN GenericToggleFunc"
+#define GenericCheckCurrentOptionCode "SHORT $4B01 $4718 $46C0; POIN GenericCheckOption"
+//BYTE  AutosaveOpt $20 // mov r0, #Index
+//SHORT $4B01 // ldr r3, POIN ____
+//SHORT $4718 // bx r3 
+//SHORT $46C0 // nop 
+//POIN GenericToggleFunc
 
 
 
 
 // Repoint stuff 
 PUSH 
+
+ORG $B1A32 
+BYTE NumberOfOptionsToDisplay
+
 
 ORG $B1DF0
 BYTE GameOptionsMaxEntries 

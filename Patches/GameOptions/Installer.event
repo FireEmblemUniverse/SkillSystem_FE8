@@ -1,5 +1,6 @@
 
 #define GameOptionsMaxEntries 0x12
+#define NumberOfOptionsToDisplay 9 
 
 #define AutosaveOpt 0x11 // New entries start at 0x11 
 #define DangerRadiusOpt 0x12 
@@ -10,10 +11,25 @@
 #include "Internals.event"
 
 ALIGN 4
-GameOptionsFlagList:
-SHORT AutosaveOpt QuicksaveToggleFlag
-SHORT DangerRadiusOpt DangerRadiusToggleFlag
-SHORT 0 0 
+QuicksaveToggleFunc:
+BYTE  QuicksaveToggleFlag $20 // mov r0, #Index
+GenericToggleFunctionCode
+
+ALIGN 4
+QuicksaveCheckCurrentOption:
+BYTE  QuicksaveToggleFlag $20 // mov r0, #Index
+GenericCheckCurrentOptionCode
+
+
+ALIGN 4
+DangerRadiusToggleFunc:
+BYTE  DangerRadiusToggleFlag $20 // mov r0, #Index
+GenericToggleFunctionCode
+
+ALIGN 4
+DangerRadiusCheckCurrentOption:
+BYTE  DangerRadiusToggleFlag $20 // mov r0, #Index
+GenericCheckCurrentOptionCode
 
 
 ALIGN 4
@@ -23,21 +39,21 @@ BYTE AutosaveOpt
 BYTE DangerRadiusOpt
 BYTE GameSpeedOpt 
 BYTE TextSpeedOpt 
-BYTE TerrainOpt 
-BYTE UnitOpt
-BYTE CombatOpt 
-BYTE ShowObjectiveOpt
-BYTE HPBarsOpt 
+//BYTE TerrainOpt 
+//BYTE UnitOpt
+//BYTE CombatOpt 
+//BYTE ShowObjectiveOpt
+//BYTE HPBarsOpt 
 BYTE AutocursorOpt 
 BYTE AutoendTurnsOpt
 BYTE MusicOpt 
 BYTE SoundFXOpt 
 BYTE WindowColorOpt
-BYTE 0 3 0 0 // Terminator? 
+BYTE 0 0  // Terminator? 
 
 
 // Set text/position/icon/checkCurrent / toggle routine for the entry 
 GameOptionsEntry(AutosaveOpt, AutosaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) 
-GameOptionsEntry(DangerRadiusOpt, AutosaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) 
+GameOptionsEntry(DangerRadiusOpt, DangerRadiusText, DangerRadiusHelpText, DangerRadiusAutoText, 368, DangerRadiusManualHelpText, DangerRadiusManualText, 1167, 0x14, DangerRadiusCheckCurrentOption, DangerRadiusToggleFunc) 
 
 
