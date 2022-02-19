@@ -10,10 +10,11 @@
 	.equ SetEventId, 0x8083d80 
 	.equ UnsetEventId, 0x8083d94
 	.equ GameOptionHandler, 0x80B1D14
-.type QuicksaveToggleRoutine, %function
-.global QuicksaveToggleRoutine
+.type QuicksaveToggleFunc, %function
+.global QuicksaveToggleFunc
 
-QuicksaveToggleRoutine:
+QuicksaveToggleFunc:
+mov r11, r11 
 @ vanilla already pushed lr 
 ldr r0, =QuicksaveToggleFlagLink
 ldr r0, [r0] 
@@ -35,9 +36,9 @@ bx r1
 .ltorg 
 .align 
 
-.type QuicksaveJumpTableFunc, %function 
-.global QuicksaveJumpTableFunc
-QuicksaveJumpTableFunc:
+.type QuicksaveCheckCurrentOption, %function 
+.global QuicksaveCheckCurrentOption
+QuicksaveCheckCurrentOption:
 @ don't push lr ?
 ldr r0, =QuicksaveToggleFlagLink
 ldr r0, [r0] 
