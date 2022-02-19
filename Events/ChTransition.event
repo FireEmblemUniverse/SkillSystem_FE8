@@ -11,10 +11,7 @@
 #define DigChapter 			0x30017b1 
 #define GaryStarterClass 		0x30017b2 //we can set this at the beginning and then add 1 a couple times to evolve, maybe? 
 #define Player1UnitID 			0x30017b3 
-#define Player2UnitID 			0x30017b4 
-#define Player3UnitID 			0x30017b5 
-#define Player4UnitID 			0x30017b6 
-#define Player5UnitID 			0x30017b7 
+//#define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
 #define Player6UnitID 			0x30017b8 
 #define BerryDurabilityToggleRam 			0x30017b9 
 
@@ -23,7 +20,7 @@
 #define UnitPointerRam 0x30017BC // - BF
 #define WepRamLocat 0x30017C0 
 #define PostTrainerBattleRamLocat 0x30017C4 //- c7 
-#define DisableMenuOptionsRam 0x30017C8 // gaiden, capture, guard, call, submenu 
+// past this is volatile? 
 
 // ASMC 0x80160D1 // Return to map BGM 
 // SCOORD rB [5, 6]
@@ -252,17 +249,20 @@ NoFade
 ENDA 
 
 GlobalTurnEvent:
-#ifndef DEBUG_MODE
+CHECK_EVENTID QuicksaveToggleFlag
+BNE 2 rC r0 
 QuickSave
-#endif 
+LABEL 2 
 CHECK_EVENTID CallCountdownFlag_2 
 BNE 0 rC r0 
 ENUF 1 // Auto refresh if not in danger 
 LABEL 0 
 ENUF CallCountdownFlag_2 // 1 turn until auto refresh again 
 #ifdef DRUnitBitMask
+CHECK_EVENTID DangerRadiusToggleFlag
+BNE 1 rC r0 
 SetNearbyDangerRadius
-//ASMC InitializeDR|1
+LABEL 1 
 #endif 
 ENUF CallCountdownFlag // Can 'Call' again 
 NoFade

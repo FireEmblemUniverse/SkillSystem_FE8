@@ -69,7 +69,29 @@ Return:
 pop   {r0}
 bx    r0
 
+.ltorg
+.align 
 
+RefreshNow:
+push {lr}
+
+@ previously in event code has auto-refresh if no enemies 
+
+ldr r3, =pActionStruct 
+mov r0, #0 
+strb r0, [r3, #0x10] @ No squares moved this turn, as they're refreshed now 
+
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+
+
+ldr r0, [r3, #0x0C]
+mov r1, #0x42 @ Canto, Acted This turn 
+bic r0, r1 
+str r0, [r3, #0x0C]
+mov r0, #1 
+pop {r0}
+bx r0 
 
 
 
@@ -91,29 +113,10 @@ ldrb r0, [r0]
 blh CheckEventId 
 cmp r0, #0 
 bne DontRefresh  
-
-@ previously in event code has auto-refresh if no enemies 
-
-	ldr r3, =pActionStruct 
-	mov r0, #0 
-	strb r0, [r3, #0x10] @ No squares moved this turn, as they're refreshed now 
-
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-
-
-ldr r0, [r3, #0x0C]
-mov r1, #0x42 @ Canto, Acted This turn 
-bic r0, r1 
-str r0, [r3, #0x0C]
-
-YesRefresh:
-mov r0, #1 
+bl RefreshNow
 b Exit 
-
 DontRefresh:
 mov r0, #0 
-
 Exit:
 pop   {r1}
 bx    r1
@@ -128,9 +131,19 @@ bx    r1
 RefreshUnitWithoutFogASMC:
 push {lr}
 
-bl RefreshIfFlagsPermitIt
-cmp r0, #1
-bne DoNotRefresh2 @ Don't bother calculating enemy range if prevent refresh flags are on. 
+ldr r0, =TrainerBattleActiveFlagLink 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne DoNotRefresh2
+
+ 
+ldr r0, =AttackedThisTurnFlagLink 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne DoNotRefresh2  @ Don't bother calculating enemy range if prevent refresh flags are on. 
+
 
 
 mov r0, #0 @ arg r0 = staff range?
@@ -160,10 +173,9 @@ ldrb	r0,[r2]			@load datum at those coordinates
 
 cmp r0, #0 
 bne DoNotRefresh2
+
+bl RefreshNow
 b Return2 
-
-
-
 
 DoNotRefresh2:
 ldr r0, =AttackedThisTurnFlagLink
@@ -174,11 +186,12 @@ blh 0x8083bd8 @SetLocalEventId
 Return2: 
 
 
-pop {r3}
-bx r3
+pop {r1}
+bx r1
 
 
-
+.ltorg 
+.align 
 
 
 

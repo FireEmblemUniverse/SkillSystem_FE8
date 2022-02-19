@@ -48,24 +48,24 @@ GotoPrepScreen
 
 ASMC AutoEquipAccessories 
 
-GetNthUnit(1)
-SADD r2 rC r0 
-Write_Byte(Player1UnitID)
-GetNthUnit(2)
-SADD r2 rC r0 
-Write_Byte(Player2UnitID)
-GetNthUnit(3)
-SADD r2 rC r0 
-Write_Byte(Player3UnitID)
-GetNthUnit(4)
-SADD r2 rC r0 
-Write_Byte(Player4UnitID)
-GetNthUnit(5)
-SADD r2 rC r0 
-Write_Byte(Player5UnitID)
-GetNthUnit(6)
-SADD r2 rC r0 
-Write_Byte(Player6UnitID)
+//GetNthUnit(1)
+//SADD r2 rC r0 
+//Write_Byte(Player1UnitID)
+//GetNthUnit(2)
+//SADD r2 rC r0 
+//Write_Byte(Player2UnitID)
+//GetNthUnit(3)
+//SADD r2 rC r0 
+//Write_Byte(Player3UnitID)
+//GetNthUnit(4)
+//SADD r2 rC r0 
+//Write_Byte(Player4UnitID)
+//GetNthUnit(5)
+//SADD r2 rC r0 
+//Write_Byte(Player5UnitID)
+//GetNthUnit(6)
+//SADD r2 rC r0 
+//Write_Byte(Player6UnitID)
 
 
 	//Return 

@@ -74,6 +74,7 @@ ToPallet:
 ChapterTransition(PalletCh, 12, 1)
 
 ToViridian:
+ENUT Route1Tutorial_A
 ChapterTransition(ViridianCh, 19, 35)
 
 
@@ -170,7 +171,7 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,9,35))  //bottom w
 LOAD1 0x1 EnemyUnitsF
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(18,32,21,35))  //bottom e
+RandomizeCoords(Grass, Range(0,0,5,5), Range(20,32,21,35))  //bottom e - prev 18x 
 
 
 CHECK_EVENTID Route1Tutorial_A
@@ -186,7 +187,7 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
 CALL SetBushHpEvent
-ENUT Route1Tutorial_A
+
 
 CHECK_EVENTID Route1Tutorial_A
 BNE 0x63 sC s0
@@ -255,6 +256,7 @@ MyTutorial1:
 CHECK_EXISTS 0x102 
 BNE 63 sC s0 // If more than 1 unit, don't do the tutorial. 
 ENUT PlayableCutsceneFlag
+SetUnitStatus(GenericA+1, LuckStat, 2)
 DISABLEOPTIONS EndOption 
 SCOORD sB [17,32] // adjacent
 CAMERA_SB // show Mankey 
@@ -282,6 +284,7 @@ ENDA
 
 
 MyTutorial2:
+SetUnitStatus(GenericA+1, LuckStat, 10)
 SHOW_MOVERANGE 0x7FFF
 // Wild Mankey at 13, 35
 SCOORD sB [14,35] // adjacent
@@ -360,6 +363,8 @@ NoFade
 ENDA
 
 MyTutorial6:
+SetUnitStatus(GenericA+1, CurrentHP, 3)
+SetUnitStatus(GenericA+1, LuckStat, 2)
 TutText_B(CatchPokemonTutorial_5)
 CHECK_COORDS 0 // Party Leader  
 SADD sB sC s0 
@@ -377,7 +382,6 @@ CURSOR_FLASHING [15,34] // adjacent
 STAL 20
 // Wild Mankey at 13, 35
 //STAL 15
-
 DISABLEOPTIONS 0xFFFF // Disables all vanilla options, leaving only Guard and Capture. 
 IGNORE_KEYS B_Key|Start_Key|R_Key|L_Key
 
@@ -515,11 +519,11 @@ UNIT GenericA ClassA 0x0 Level(0, Enemy, 0)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0
 UNIT
 
 EnemyUnitsF:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 0)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA PidgeyID 0x0 Level(0, Enemy, 0)   [1,0] 0b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 EnemyUnitsG:
-UNIT GenericA MankeyID 0x0 Level(0, Enemy, 0)   [13,35] 0b	0x0 0x01 REDA17R32 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA+1 MankeyID 0x0 Level(0, Enemy, 0)   [17,32] 0b	0x0 0x01 REDA17R32 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 ReinforcementUnits:

@@ -5,8 +5,9 @@
 #define AutosaveOpt 0x11 // New entries start at 0x11 
 #define DangerRadiusOpt 0x12 
 
-#define QuicksaveToggleFlag 0x98 
-#define DangerRadiusToggleFlag 0x99 
+// CustomDefinitions 
+//#define QuicksaveToggleFlag 0x96 
+//#define DangerRadiusToggleFlag 0x97 
 
 #include "Internals.event"
 

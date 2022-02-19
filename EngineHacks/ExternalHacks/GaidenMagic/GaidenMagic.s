@@ -1295,11 +1295,11 @@ GaidenBlackMagicUMUsability:
 @ UnitMenu.c:10: 	if (*DisableMenuOptionsRam & 1) return 3; // For tutorials 
 	ldr	r3, .L175	@ tmp118,
 @ UnitMenu.c:10: 	if (*DisableMenuOptionsRam & 1) return 3; // For tutorials 
-	ldrb	r3, [r3]	@ MEM[(u8 *)50337736B], MEM[(u8 *)50337736B]
+	ldrb	r3, [r3]	@ MEM[(u8 *)50337716B], MEM[(u8 *)50337716B]
 @ UnitMenu.c:10: 	if (*DisableMenuOptionsRam & 1) return 3; // For tutorials 
 	movs	r0, #3	@ <retval>,
 @ UnitMenu.c:10: 	if (*DisableMenuOptionsRam & 1) return 3; // For tutorials 
-	tst	r3, r1	@ MEM[(u8 *)50337736B], tmp122
+	tst	r3, r1	@ MEM[(u8 *)50337716B], tmp122
 	bne	.L172		@,
 @ UnitMenu.c:11: 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.
 	ldr	r3, .L175+4	@ tmp126,
@@ -1315,7 +1315,7 @@ GaidenBlackMagicUMUsability:
 .L176:
 	.align	2
 .L175:
-	.word	50337736
+	.word	50337716
 	.word	gActiveUnit
 	.size	GaidenBlackMagicUMUsability, .-GaidenBlackMagicUMUsability
 	.align	1
@@ -1333,8 +1333,8 @@ CaptureGaidenBlackMagicUMUsability:
 @ UnitMenu.c:23: 	if (*DisableMenuOptionsRam & 2) return 3; 
 	ldr	r3, .L184	@ tmp119,
 @ UnitMenu.c:23: 	if (*DisableMenuOptionsRam & 2) return 3; 
-	ldrb	r3, [r3]	@ MEM[(u8 *)50337736B], MEM[(u8 *)50337736B]
-	lsls	r3, r3, #30	@ tmp133, MEM[(u8 *)50337736B],
+	ldrb	r3, [r3]	@ MEM[(u8 *)50337716B], MEM[(u8 *)50337716B]
+	lsls	r3, r3, #30	@ tmp133, MEM[(u8 *)50337716B],
 	bpl	.L178		@,
 .L180:
 @ UnitMenu.c:23: 	if (*DisableMenuOptionsRam & 2) return 3; 
@@ -1362,7 +1362,7 @@ CaptureGaidenBlackMagicUMUsability:
 .L185:
 	.align	2
 .L184:
-	.word	50337736
+	.word	50337716
 	.word	Capture_Usability
 	.word	gActiveUnit
 	.size	CaptureGaidenBlackMagicUMUsability, .-CaptureGaidenBlackMagicUMUsability

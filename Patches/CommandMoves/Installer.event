@@ -13,7 +13,7 @@
 
 ALIGN 4
 DisableMenuOptionsRamLink:
-WORD 0x30017C8 //DisableMenuOptionsRam
+WORD DisableMenuOptionsRam // gaiden, capture, submenu, (guard & call use definitions)   //DisableMenuOptionsRam
 
 
 #include "Agility.lyn.event"

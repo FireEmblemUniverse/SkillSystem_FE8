@@ -20,6 +20,7 @@
 
 push {r4,r14}
 
+mov r11, r11 
 ldr r0, =DisableMenuOptionsRamLink
 ldr r0, [r0] 
 ldrb r0, [r0] 

@@ -30,7 +30,10 @@ ENUN
 //ASMC 0x8019c3d // UpdateGameTilesGraphics
 //ASMC 0x801a1f9 // refresh entity maps 
 #ifdef DRUnitBitMask
+CHECK_EVENTID DangerRadiusToggleFlag
+BNE 1 rC r0 
 SetNearbyDangerRadius // Pokemblem only 
+LABEL 1 
 #endif 
 NoFade
 ENDA
