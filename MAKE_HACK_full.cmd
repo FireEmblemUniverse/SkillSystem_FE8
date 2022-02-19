@@ -7,9 +7,7 @@
 @rem defining buildfile config
 
 set "source_rom=%~dp0FE8_clean.gba"
-
 set "main_event=%~dp0ROMBuildfile.event"
-
 set "target_rom=%~dp0FE8Hack.gba"
 set "target_ups=%~dp0Pokemblem.ups"
 
@@ -17,7 +15,7 @@ set "target_ups=%~dp0Pokemblem.ups"
 
 set "c2ea=%~dp0Tools\C2EA\c2ea.exe"
 set "textprocess=%~dp0Tools\TextProcess\text-process-classic.exe"
-set "ups=%~dp0Tools\ups\ups"
+set "ups=%~dp0Tools\ups\ups.exe"
 set "parsefile=%~dp0EventAssembler\Tools\ParseFile.exe"
 set "tmx2ea=%~dp0Tools\tmx2ea\tmx2ea.exe"
 

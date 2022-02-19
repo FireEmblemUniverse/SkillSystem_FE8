@@ -186,7 +186,10 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
 CALL SetBushHpEvent
+ENUT Route1Tutorial_A
 
+CHECK_EVENTID Route1Tutorial_A
+BNE 0x63 sC s0
 EVBIT_MODIFY 4
 ShowMap
 SVAL r7 1 

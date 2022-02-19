@@ -14,34 +14,38 @@
 .global QuicksaveToggleRoutine
 
 QuicksaveToggleRoutine:
-push {r4-r5, lr}
-mov r4, r0 
+@ vanilla already pushed lr 
 ldr r0, =QuicksaveToggleFlagLink
-ldr r5, [r0] 
-mov r0, r5 
+ldr r0, [r0] 
 blh CheckEventId
 cmp r0, #0 
 beq SetFlagOn
-mov r0, r5 
+ldr r0, =QuicksaveToggleFlagLink
+ldr r0, [r0] 
 blh UnsetEventId
-mov r0, r4 @ Parent Proc? 
-blh GameOptionHandler
-mov r0, #0
 b End 
 SetFlagOn:
-mov r0, r5 
+ldr r0, =QuicksaveToggleFlagLink
+ldr r0, [r0] 
 blh SetEventId 
-mov r0, r4 @ Parent Proc? 
-blh GameOptionHandler
-mov r0, #1 
 End:
-pop {r4-r5}
 pop {r1}
 bx r1 
 
 .ltorg 
 .align 
 
+.type QuicksaveJumpTableFunc, %function 
+.global QuicksaveJumpTableFunc
+QuicksaveJumpTableFunc:
+@ don't push lr ?
+ldr r0, =QuicksaveToggleFlagLink
+ldr r0, [r0] 
+blh CheckEventId
+Skip: 
+pop {r1}
+bx r1 
 
-
+.ltorg 
+.align 
 

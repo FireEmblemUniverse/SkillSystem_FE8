@@ -1,6 +1,6 @@
 
-// jump table 0x80B1DFE 
-// max # of options: 0xb1DF0 
+
+#define GameOptionsMaxEntries 0x11
 
 
 #define AnimationOpt 0
@@ -17,6 +17,13 @@
 #define SoundFXOpt 7
 #define WindowColorOpt 8 
 #define AutosaveOpt 0x11 
+
+
+
+
+
+
+
 
 
 ALIGN 4
@@ -45,8 +52,9 @@ WORD QuicksaveToggleFlag
 
 #include "QuicksaveToggleRoutine.lyn.event"
 
-
-#define GameOptionsEntry(MainText, Selection1HelpText, Selection1Text, Pos_Sel1, Selection2HelpText, Selection2Text, Pos_Sel2, IconID, Routine)"WORD MainText; SHORT Selection1HelpText Selection1Text Pos_Sel1 0 Selection2HelpText Selection2Text Pos_Sel2 0; WORD 0 0 0 0 IconID; POIN Routine|1"
+// given opt of 1.. 
+// GameOptTable + (x+1)*8 + $2c*TableEntryID 
+#define GameOptionsEntry(MainText, Selection1HelpText, Selection1Text, Pos_Sel1, Selection2HelpText, Selection2Text, Pos_Sel2, IconID, Routine)"WORD MainText; SHORT Selection1HelpText Selection1Text Pos_Sel1 0 Selection2HelpText Selection2Text Pos_Sel2 0 0 0 190 0 0 0 189 0; WORD IconID; POIN Routine|1"
 ALIGN 4
 GameOptionsTable:
 //	Item Name	Selector 1 Help	Selector 1 Text	Selector 1 Display Position	Selector 1 Unknown 2	Selector 2 Help	Selector 2 Text	Selector 2 Display position	Selector 2 Unknown 2	Selector 3 Help	Selector 3 Text	Selector 3 Display Position	Selector 3 Unknown 2	Selector 4 Help	Selector 4 Text	Selector 4 Display position	Selector 4 Unknown 2	Icon (value * 8)	ASM Function
@@ -67,14 +75,28 @@ WORD 0x9D;SHORT 0xB9 0xBD 624 0x00 0xB9 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x
 WORD 0x9E;SHORT 0xBA 0xBD 624 0x00 0xBA 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x1C;POIN 0x0B1D15 //0E Show Objective
 WORD 0x9F;SHORT 0xBB 0xBD 624 0x00 0xBB 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x1E;POIN 0x0B1D15 //0F Controller
 WORD 0xA0;SHORT 0xBC 0xBD 624 0x00 0xBC 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x20;POIN 0x0B1D15 //10 Rank Display
-GameOptionsEntry(AutosaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveToggleRoutine) 
-WORD 1 // Terminator? 
+GameOptionsEntry(AutosaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, 0x80B1D15) 
+// Table, so no terminator 
 
 
-
-
+ALIGN 4
+SetGameOptionsJumpTable:
+BYTE $C8 $1F $0B $08 $30 $20 $0B $08 $48 $20 $0B $08 $60 $20 $0B $08 $78 $20 $0B $08 $90 $20 $0B $08 $9C $20 $0B $08 $B4 $20 $0B $08 $CC $20 $0B $08 $80 $21 $0B $08 $E4 $20 $0B $08 $FC $20 $0B $08 $14 $21 $0B $08 $20 $21 $0B $08 $38 $21 $0B $08 $50 $21 $0B $08 $68 $21 $0B $08
+POIN QuicksaveToggleRoutine
+// Repoint stuff 
 
 PUSH 
+
+ORG $B1DF0
+BYTE GameOptionsMaxEntries 
+ORG $B1F6E 
+BYTE GameOptionsMaxEntries
+
+ORG $B1E00
+POIN GameOptionsJumpTable
+
+ORG $B1F80
+POIN SetGameOptionsJumpTable
 
 ORG $B176C
 POIN GameOptionsTable
@@ -114,3 +136,24 @@ POIN GameOptionsOrderList
 
 POP 
 
+ALIGN 4
+GameOptionsJumpTable:
+BYTE $48 $1E $0B $08 
+BYTE $7E $1E $0B $08 
+BYTE $8C $1E $0B $08 
+BYTE $98 $1E $0B $08 
+BYTE $A8 $1E $0B $08 
+BYTE $B8 $1E $0B $08 
+BYTE $C4 $1E $0B $08 
+BYTE $D4 $1E $0B $08 
+BYTE $E4 $1E $0B $08 
+BYTE $5A $1F $0B $08 
+BYTE $F4 $1E $0B $08 
+BYTE $04 $1F $0B $08 
+BYTE $14 $1F $0B $08 
+BYTE $20 $1F $0B $08 
+BYTE $30 $1F $0B $08 
+BYTE $40 $1F $0B $08 
+BYTE $50 $1F $0B $08 // Last vanilla entry 0x1 
+POIN QuicksaveJumpTableFunc
+// Table, so no terminator 
