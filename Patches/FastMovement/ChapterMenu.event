@@ -63,8 +63,8 @@ WORD  0x0
 
 // Options
 WORD  0x80D7EBC
-SHORT 0x69B
-SHORT 0x6E1
+SHORT ConfigText
+SHORT ConfigHelpText
 BYTE  0x0
 BYTE  0x71
 SHORT 0x0
@@ -91,9 +91,9 @@ WORD  0x0
 
 // Suspend
 WORD  0x80D7EAC
-SHORT 0x69F
-SHORT 0x6E4
-BYTE  0x0
+SHORT CM_QuicksaveText
+SHORT QuicksaveHelpText
+BYTE  0x2
 BYTE  0x73
 SHORT 0x0
 WORD  0x80225B1

@@ -36,6 +36,106 @@ Resistance[X]
 Resisted attacks[NL]
 deal 5 less damage.[X]
 
+## TrainerTip_Quicksave
+The game autosaves at the[N]
+start of your turn.[A][N]
+Change this in [Red]Options[Red][N]
+to manually [Red]Quicksave[Red].[N]
+        - Trainer's Tips.[A][X]
+
+## TrainerTip_Catch
+KO a POKEMON while[N]
+capturing to catch it![N]
+        - Trainer's Tips.[A][X]
+
+## TrainerTip_Water
+Some POKEMON can traverse[N]
+shallow water or ledges.[N]
+        - Trainer's Tips.[A][X]
+
+## TrainerTip_DangerZone
+[Red]Danger Zone[Red] pops up[N]
+automatically, but can[A][N]
+be turned off in [Red]Config[Red].[N]
+        - Trainer's Tips.[A][X]
+
+## TrainerTip_TMs_2
+All TMs and Skill Scrolls can be[N]
+purchased later on.[N]
+        - Trainer's Tips.[A][X]
+
+## TrainerTip_TMs
+Upgrade your moves via TMs.[N]
+        - Trainer's Tips.[A][X]
+
+
+## TrainerTip_DangerZone2
+Press [Red]Select[Red] on an enemy[N]
+to toggle [Red]Danger Zone[Red],[A][N]
+or press [Red]Select[Red] on an empty tile[N]
+to toggle [Red]Danger Zone[Red] nearby.[N]
+        - Trainer's Tips.[A][X]
+
+
+
+## TrainerTip_Accessory
+Equip an item for extra benefits.[N]
+        - Trainer's Tips.[A][X]
+
+
+
+## TrainerTip_Def
+Some POKEMON are weak to special[N]
+attacks,[A] while others are weak to[N]
+physical attacks.[N]
+        - Trainer's Tips.[A][X]
+
+## PewterFlowerSignText
+Berries always seem to regrow[N]
+whenever you come back.[N]
+        - Trainer's Tips.[A][X]
+//Repels reduce the amount[NL]
+//of wild Pokemon found.[A][X]
+
+
+## UnusedTrainerTips2
+You can carry up to 6 Pokemon[NL]
+with you at once.[NL]
+            - Trainer's Tips.[A][X]
+
+## UnusedTrainerTips3
+Hold DOWN after WAIT to[NL]
+quickly jump down ledges.[NL]
+      - Trainer's Tips.[A][X]
+	  
+
+ 
+## UnusedTrainerTips4
+Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
+you out, avoiding combat.[NL]
+        - Trainer's Tips.[A][X]
+
+## TrainerTip_Skills
+// add to Route3 
+Learn up to 4 Skills via Scrolls.[N]
+        - Trainer's Tips.[A][X]
+
+
+## PalletTrainerTipsText 
+Save by visiting home or a Pokecenter.[NL]
+            -Trainer's Tips[A][X]
+			
+## UnusedTrainerTips1
+Manage your party at a Pokecenter.[NL]
+          - Trainer's Tips[A][X]
+
+## CeruleanBottomSignText
+TRAINER TIPS[A][NL]
+A POKEMON can be made to hold[NL]
+an item.[A][NL]
+Some items can even be used by[NL]
+the holding POKEMON in battle.[A][X]
+
 ## SetNameTest
 Mewtwo[NL]
 Placeholder text[NL]
@@ -160,20 +260,11 @@ Pallet Town.[A][X]
 ## ResearchLabText
 Oak's Research Lab.[A][X]
 
-## PalletTrainerTipsText 
-Save by visiting home or a Pokecenter.[NL]
-            -Trainer's Tips[A][X]
-			
-## UnusedTrainerTips1
-Manage your party at a Pokecenter.[NL]
-          - Trainer's Tips[A][X]
+
 		  
 ## ViridianCityText
 Viridian City.[A][X]
-## UnusedTrainerTips2
-You can carry up to 6 Pokemon[NL]
-with you at once.[NL]
-            - Trainer's Tips.[A][X]
+
 			
 ## JumpLedgeText
 Jump down?   
@@ -186,18 +277,6 @@ Jump down?
 
 
 
-
-## UnusedTrainerTips3
-Hold DOWN after WAIT to[NL]
-quickly jump down ledges.[NL]
-      - Trainer's Tips.[A][X]
-	  
-
- 
-## UnusedTrainerTips4
-Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
-you out, avoiding combat.[NL]
-        - Trainer's Tips.[A][X]
 		
 ## ViridianUpperHouseText
 The gym here's been[NL]
@@ -235,9 +314,7 @@ have a Haunter.[A][X]
 ## PewterMuseumSignText
 Pewter Museum.[A][X]
 
-## PewterFlowerSignText
-Repels reduce the amount[NL]
-of wild Pokemon found.[A][X]
+
 
 ## PewterGymSignText
 Pewter Gym.[NL]
@@ -705,12 +782,7 @@ Bicycle Shop[A][X]
 Want to buy a Bicycle?[NL]
 That'll be 1,000,000$![A][X]
 
-## CeruleanBottomSignText
-TRAINER TIPS[A][NL]
-A POKEMON can be made to hold[NL]
-an item.[A][NL]
-Some items can even be used by[NL]
-the holding POKEMON in battle.[A][X]
+
 
 ## CeruleanCityNWHouseText
 You're a TRAINER, too?[A][NL]

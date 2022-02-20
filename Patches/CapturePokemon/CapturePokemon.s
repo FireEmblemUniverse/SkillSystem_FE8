@@ -19,7 +19,6 @@
 CapturePokemon:	@Make
 
 	push {r4-r7, lr}	
-	mov r11, r11 
 	@normally r4 = attacker, r5 = defender, r6 = action struct 
 	ldr r4, =0x203A4EC 
 	ldr r5, =0x203A56C

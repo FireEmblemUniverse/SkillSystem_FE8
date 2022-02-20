@@ -79,7 +79,12 @@ ChapterTransition(Route22Ch, 47, 8)
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
 
-SignTrap(15,17, ViridianCityText)
+//SignTrap(15,17, ViridianCityText)
+SignTrap(19,13, TrainerTip_Catch)
+SignTrap(15,25, TrainerTip_Water)
+//SignTrap(15,25, TrainerTip_Skills)
+
+
 BlankExamineTrap(26,10, ViridianGymText)
 EnterTutTrap(30,10, DoorLockedText) // Gym 
 EnterTutTrap(21,11, ViridianUpperHouseText) 

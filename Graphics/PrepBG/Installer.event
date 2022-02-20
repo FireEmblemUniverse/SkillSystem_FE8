@@ -5,6 +5,30 @@
 
 PUSH 
 
+// There's like 11 palette shifted versions of this for some reason 
+ORG $B1756C
+#incbin "PrepBG_pal.dmp"
+ORG $B1758C
+#incbin "PrepBG_pal.dmp"
+ORG $B175AC
+#incbin "PrepBG_pal.dmp"
+ORG $B175CC
+#incbin "PrepBG_pal.dmp"
+ORG $B175EC
+#incbin "PrepBG_pal.dmp"
+ORG $B1760C
+#incbin "PrepBG_pal.dmp"
+ORG $B1762C
+#incbin "PrepBG_pal.dmp"
+ORG $B1764C
+#incbin "PrepBG_pal.dmp"
+ORG $B1766C
+#incbin "PrepBG_pal.dmp"
+ORG $B1768C
+#incbin "PrepBG_pal.dmp"
+ORG $B176AC
+#incbin "PrepBG_pal.dmp"
+
 
 
 ORG $02008C

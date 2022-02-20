@@ -99,8 +99,9 @@ SignATrap(13,34, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //SkillScrollTrap(15,21, ChapterID*2, 0xB7)
 //SpellScrollTrap(17,21, (ChapterID*2)+1, 0xB7)
 //OpenPokeball(8,3)
-//Sign(8,4, 2)
-
+SignTrap(13,23, TrainerTip_Quicksave)
+SignTrap(20, 8, TrainerTip_DangerZone)
+// Sign2Trap // Metal 
 //Save(10,4)
 
 

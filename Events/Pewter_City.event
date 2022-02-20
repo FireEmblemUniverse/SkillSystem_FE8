@@ -111,9 +111,9 @@ SignATrap(18,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 
 BlankExamineTrap(8,16,PewterGymSignText)
 
-Sign2Trap(16,7, PewterMuseumSignText) // Metal ? 
+SignTrap(16,7, PewterMuseumSignText) // Metal ? 
 SignTrap(27,27, PewterFlowerSignText) // Wooden 
-
+SignTrap(18,20, TrainerTip_Def)
 
 EnterTutTrap(14,6, PewterMuseumText) // Museum
 EnterTutTrap(29,11, PewterNEHouseText) // Ne house trade 

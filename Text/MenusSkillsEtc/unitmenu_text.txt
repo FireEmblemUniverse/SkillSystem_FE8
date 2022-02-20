@@ -1,14 +1,26 @@
 ## OrderMovesName
  Moves[X]
+
+## QuicksaveHelpText
+Create a temporary save.[X]
+
+## CM_QuicksaveText
+ ^{Quicksave}[X]
+
+## ConfigText
+ Config[X]
  
-## AutosaveText
+## ConfigHelpText
+Configure game options.[X]
+
+## QuicksaveText
 Quicksave[X]
 ## PlayerPhaseHelpText
 Autosave at the start of Player Phase.[X]
 ## PlayerPhaseText
 Auto[X]
 ## ManualHelpText
-Quicksave by selecting "Suspend".[X]
+Quicksave manually from the Chapter Menu.[X]
 ## ManualText
 Manual[X]
 

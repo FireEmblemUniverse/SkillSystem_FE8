@@ -54,7 +54,7 @@ BYTE 0 0  // Terminator?
 
 
 // Set text/position/icon/checkCurrent / toggle routine for the entry 
-GameOptionsEntry(AutosaveOpt, AutosaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) 
+GameOptionsEntry(AutosaveOpt, QuicksaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) 
 GameOptionsEntry(DangerRadiusOpt, DangerRadiusText, DangerRadiusHelpText, DangerRadiusAutoText, 368, DangerRadiusManualHelpText, DangerRadiusManualText, 1167, 0x14, DangerRadiusCheckCurrentOption, DangerRadiusToggleFunc) 
 
 
