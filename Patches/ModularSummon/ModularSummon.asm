@@ -236,7 +236,13 @@ mov r1, #0x2F
 ldrb r0, [r6, r1] @ Dark WEXP as bonus levels? 
 add r2, r0 
 
-add r2, #5 @ normal mode is about 5 invisible levels i guess for now lol 
+push {r2}
+bl GetDifficulty
+pop {r2}
+ldr r1, =TrainerDifficultyBonusLink
+ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
+mul r1, r0 @ 0 for easy, 5 for normal, 10 for hard 
+add r2, r1 @ including bonus hidden levels 
 
 ldr r1, [r6, #4]
 ldrb r1, [r1, #4] @ class id of summon 

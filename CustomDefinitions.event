@@ -9,6 +9,9 @@
 // 968 / $3C8 bytes used? - free range
 //PROTECT $1ACBC $1B084
 
+#define TrainerDifficultyBonusDef 7
+
+
 #define FreeSpace 0x01081420
 #define FreeSpaceBLRange 0x1c1ec0
 

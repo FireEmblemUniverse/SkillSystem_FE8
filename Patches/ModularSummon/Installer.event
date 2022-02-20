@@ -1,7 +1,9 @@
 // Modular Summon 
 // By Vesly       :-] 
 
-
+ALIGN 4
+TrainerDifficultyBonusLink:
+WORD TrainerDifficultyBonusDef
 
 // Add this to your Unit Menu: root\EngineHacks\Necessary\UnitMenu
 // Modular Summon 

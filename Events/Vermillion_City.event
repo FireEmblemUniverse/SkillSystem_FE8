@@ -106,6 +106,9 @@ Traps1:
 CutBush(17,22)
 Save(13,3) // Pokecenter 
 
+SignTrap(32,13, TrainerTip_Submenu)
+SignTrap(30,12, TrainerTip_Release)
+SignTrap(34,12, TrainerTip_ReorderMoves)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
@@ -113,7 +116,7 @@ SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
-SignBTrap(37,12, ChapterID, 0x0) //no extra text 
+SignBTrap(36,18, ChapterID, 0x0) //no extra text 
 SignATrap(18,5, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)

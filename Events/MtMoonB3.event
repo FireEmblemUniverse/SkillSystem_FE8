@@ -98,7 +98,7 @@ Traps1:
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
-
+SignTrap(7,34, TrainerTip_MoveMapFaster)
 //RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 

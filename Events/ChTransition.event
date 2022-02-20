@@ -153,15 +153,15 @@ GenericAutolevelEvent:
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 
-AutoLevelUnits(1, False, 0x90EF) // Not wilds given +1 invisible levels on easy 
+AutoLevelUnits(0*TrainerDifficultyBonusDef, False, 0x90EF) // Not wilds given +1 invisible levels on easy 
 GOTO 0x63 
 LABEL 0 
 CHECK_HARD 
 BEQ 1 rC r0 
-AutoLevelUnits(8, False, 0x90EF) // Not wilds given +8 invisible levels on hard 
+AutoLevelUnits(2*TrainerDifficultyBonusDef, False, 0x90EF) // Not wilds given +8 invisible levels on hard 
 GOTO 0x63 
 LABEL 1 
-AutoLevelUnits(3, False, 0x90EF) // Not wilds given +3 invisible levels on normal 
+AutoLevelUnits(1*TrainerDifficultyBonusDef, False, 0x90EF) // Not wilds given +3 invisible levels on normal 
 LABEL 0x63 
 //ASMC RemoveFoughtTrainers
 //SADD r2 rC r0 // Don't think this is necessary even though rC is pretty volatile 
@@ -237,6 +237,7 @@ SetMaxMove
 #ifdef FREE_MOVEMENT_INSTALLED
 EnableFreeMovement
 #endif 
+QuickSave
 NoFade 
 ENDA 
 
@@ -245,6 +246,9 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 #ifdef DEBUG_MODE 
 SetMaxMove
 #endif 
+//#ifndef DEBUG_MODE 
+QuickSave
+//#endif 
 NoFade 
 ENDA 
 

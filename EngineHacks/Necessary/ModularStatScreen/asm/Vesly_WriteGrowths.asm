@@ -29,7 +29,6 @@
 push	{r4-r7,r14}		@ save the usual registers by pushing them to the stack
 mov r7, r8 
 push {r7}
-
 mov		r7,r0			@ save battle struct ptr by mov-ing it from r0 to a saved register (r7)
 ldr		r1,Can_Gain_Exp	
 mov		r14,r1			@ this is a function call to Can_Gain_Exp routine, which is out of normal BL range

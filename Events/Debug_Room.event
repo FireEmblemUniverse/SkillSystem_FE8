@@ -139,6 +139,7 @@ ALIGN 4
 BeginningScene:
 ENUT CasualModeFlag
 
+Write_Word(15500, 0x202BCF8)
 ENUT BracketedGrowthsFlag
 ENUT DebugPlaceUnitsFlagMenu
 
@@ -215,8 +216,8 @@ ENUT 0x2 //no more death quotes
 
 
 LABEL 0x63
-SVAL r3 15500 
-GIVETOMAIN 0
+//SVAL r3 15500 
+//GIVETOMAIN 0
 
 SetTactName(VeslyName)
 
@@ -227,13 +228,13 @@ Write_Byte(4, GaryStarterClass)
 
 Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(10, YCoordNewArea)    
-Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(31, YCoordNewArea)    
+Write_Byte(5, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(12, YCoordNewArea)    
 //MNC2 Route1Ch 
-
+MNC2 Route3Ch
 //MNC2 PokecenterCh
 //MNC2 PalletCh
-MNC2 ViridianCh 
+//MNC2 ViridianCh 
 //MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh

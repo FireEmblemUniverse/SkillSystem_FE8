@@ -323,7 +323,7 @@
 #define USE_STAT_COLORS False
 
 //If true, Tiered Growths mode will exist. 
-#define TIERED_GROWTHS_MODE False 
+#define TIERED_GROWTHS_MODE True
 //ID of flag to use for tiered growths mode, if enabled
 //#define FIXED_GROWTHS_FLAG_ID 0xEF
 

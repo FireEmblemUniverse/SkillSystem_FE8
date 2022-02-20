@@ -104,7 +104,7 @@ CutBush(9,6)
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 SkillScrollTrap(14,2, (ChapterID*2)+1, WindDiscipleID) 
-
+SignTrap(32,7, TrainerTip_MaxPokemon)
 
 
 SkillAccessoryTrap(37,3, ChapterID*2, FuryID) // Berserk Gene ?  

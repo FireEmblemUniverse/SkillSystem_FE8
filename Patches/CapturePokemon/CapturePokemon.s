@@ -116,7 +116,7 @@ mov r3, #0x01 @counter
 LoopThroughUnits:
 mov r0, r3 
 cmp r3, #40
-bgt End 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
+bgt FullBox 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
 push {r3} 
 blh GetUnitByEventParameter @ 0x0800BC51
 pop {r3} 
@@ -190,6 +190,7 @@ add r3,#1
 cmp r3,#0x3F
 ble LoopThroughUnits
 @ run event where unit was not caught 
+FullBox:
 ldr	r0, =PCBoxFullEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
 blh EventEngine 
