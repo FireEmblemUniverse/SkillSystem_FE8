@@ -113,7 +113,8 @@ BlankExamineTrap(8,16,PewterGymSignText)
 
 SignTrap(16,7, PewterMuseumSignText) // Metal ? 
 SignTrap(27,27, PewterFlowerSignText) // Wooden 
-SignTrap(18,20, TrainerTip_Def)
+SignTrap(17,18, TrainerTip_Def)
+SignTrap(26, 20, TrainerTip_Mart)
 
 EnterTutTrap(14,6, PewterMuseumText) // Museum
 EnterTutTrap(29,11, PewterNEHouseText) // Ne house trade 

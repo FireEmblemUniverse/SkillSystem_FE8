@@ -36,12 +36,22 @@ Resistance[X]
 Resisted attacks[NL]
 deal 5 less damage.[X]
 
+## PalletTrainerTipsText 
+Save by visiting home or a Pokecenter.[NL]
+            -Trainer's Tips[A][X]
+
 ## TrainerTip_Quicksave
 The game autosaves at the[N]
 start of your turn.[A][N]
 Change this in [Red]Options[Red][N]
 to manually [Red]Quicksave[Red].[N]
         - Trainer's Tips.[A][X]
+
+## TrainerTip_Berries
+Berries may be equipped[N]
+and eaten during battle.[A][N]
+They're tasty, too![N]
+            -Trainer's Tips[A][X]
 
 ## TrainerTip_Catch
 KO a POKEMON while[N]
@@ -64,9 +74,7 @@ All TMs and Skill Scrolls can be[N]
 purchased later on.[N]
         - Trainer's Tips.[A][X]
 
-## TrainerTip_TMs
-Upgrade your moves via TMs.[N]
-        - Trainer's Tips.[A][X]
+
 
 
 ## TrainerTip_DangerZone2
@@ -76,7 +84,10 @@ or press [Red]Select[Red] on an empty tile[N]
 to toggle [Red]Danger Zone[Red] nearby.[N]
         - Trainer's Tips.[A][X]
 
-
+## TrainerTip_Zoning
+Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
+you out, avoiding combat.[NL]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_Accessory
 Equip an item for extra benefits.[N]
@@ -90,13 +101,58 @@ attacks,[A] while others are weak to[N]
 physical attacks.[N]
         - Trainer's Tips.[A][X]
 
+
+
+## TrainerTip_Mart
+TMs from the Mart can be[N]
+a great way to power-up![N]
+        - Trainer's Tips.[A][X]
+
 ## PewterFlowerSignText
 Berries always seem to regrow[N]
 whenever you come back.[N]
         - Trainer's Tips.[A][X]
+		
+
+
+## TrainerTip_PartySize
+If you have less than 6 POKEMON[N]
+with you and catch a new one,[A][N]
+it will immediately join you,[N]
+even if yours had fainted.[N]
+        - Trainer's Tips.[A][X]
+
+
+	  
+## TrainerTip_LearnTMs
+POKEMON can learn any move[N]
+they share a type with.[N]
+        - Trainer's Tips.[A][X]
+ 
+## CeruleanBottomSignText
+Learn up to 4 Skills via Scrolls.[N]
+        - Trainer's Tips.[A][X]
+
+
+
+
+// UNUSED trainer tips below 
+## TrainerTip_TMs
+Upgrade your moves via TMs.[N]
+        - Trainer's Tips.[A][X]
+
+			
+## UnusedTrainerTips1
+Manage your party at a Pokecenter.[NL]
+          - Trainer's Tips[A][X]
+
+
+
+
+
+// UNUSED 
 //Repels reduce the amount[NL]
 //of wild Pokemon found.[A][X]
-
 
 ## UnusedTrainerTips2
 You can carry up to 6 Pokemon[NL]
@@ -107,34 +163,6 @@ with you at once.[NL]
 Hold DOWN after WAIT to[NL]
 quickly jump down ledges.[NL]
       - Trainer's Tips.[A][X]
-	  
-
- 
-## UnusedTrainerTips4
-Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
-you out, avoiding combat.[NL]
-        - Trainer's Tips.[A][X]
-
-## TrainerTip_Skills
-// add to Route3 
-Learn up to 4 Skills via Scrolls.[N]
-        - Trainer's Tips.[A][X]
-
-
-## PalletTrainerTipsText 
-Save by visiting home or a Pokecenter.[NL]
-            -Trainer's Tips[A][X]
-			
-## UnusedTrainerTips1
-Manage your party at a Pokecenter.[NL]
-          - Trainer's Tips[A][X]
-
-## CeruleanBottomSignText
-TRAINER TIPS[A][NL]
-A POKEMON can be made to hold[NL]
-an item.[A][NL]
-Some items can even be used by[NL]
-the holding POKEMON in battle.[A][X]
 
 ## SetNameTest
 Mewtwo[NL]

@@ -6,7 +6,7 @@
 
 ALIGN 4
 DebugCommandEvent:
-AoE_ASMC((-1), 0, 0, 10, 11)
+ASMC GetDifficulty
 
 /*
 SVAL s1 (-1) // Unit 

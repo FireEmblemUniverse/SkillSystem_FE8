@@ -1,0 +1,21 @@
+
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+GetDifficulty:
+POP
+#incbin "GetDifficulty.dmp"
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,12 +1,12 @@
 #ifndef UNIT_MENU
 #define UNIT_MENU
 
-//#include "CallCommand.lyn.event" 
-
 #include "Extensions/Hack Installation.txt"
 #include "_UnitMenuDefs.event"
 #include "SubMenu/Installer.event"
 
+#define AlwaysUsable 0x804f449
+#define NeverUsable  0x804f451 
 
 
 PUSH
@@ -74,6 +74,7 @@ UnitMenuTable:
     
 #ifdef DEBUG_MODE
 	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, AlwaysUsable, DebugCommandEffect) // Debug Command
 #endif 
 
 

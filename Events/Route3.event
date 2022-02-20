@@ -89,6 +89,8 @@ Traps1:
 CoinsTrap(13,15,ChapterID*2,550)
 CoinsTrap(57,15,(ChapterID*2)+1,600)
 
+SignTrap(32,11, TrainerTip_PartySize)
+
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
