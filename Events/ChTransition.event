@@ -237,7 +237,6 @@ SetMaxMove
 #ifdef FREE_MOVEMENT_INSTALLED
 EnableFreeMovement
 #endif 
-QuickSave
 NoFade 
 ENDA 
 
@@ -246,15 +245,21 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 #ifdef DEBUG_MODE 
 SetMaxMove
 #endif 
-//#ifndef DEBUG_MODE 
-QuickSave
-//#endif 
 NoFade 
-ENDA 
+ENDA
+
 
 GlobalTurnEvent:
+//#ifndef DEBUG_MODE 
+CHECK_TURNS
+SVAL s1 1
+BNE 3 sC s1 
+ASMC QuicksaveDuringStartEvent
+GOTO 2
+LABEL 3
+//#endif 
 CHECK_EVENTID QuicksaveToggleFlag
-BNE 2 rC r0 
+BNE 2 sC s0 
 QuickSave
 LABEL 2 
 CHECK_EVENTID CallCountdownFlag_2 

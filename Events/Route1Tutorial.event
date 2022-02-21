@@ -166,7 +166,7 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,37))  //bottom bush 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,21,34))  //bottom bush - prev 37y 
 LOAD1 0x1 EnemyUnitsE
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,9,35))  //bottom w
@@ -189,7 +189,8 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CALL SetBushHpEvent
 
-
+CHECK_EXISTS 0x102 
+BNE 0x63 sC s0 // If more than 1 unit, don't do the tutorial.
 CHECK_EVENTID Route1Tutorial_A
 BNE 0x63 sC s0
 EVBIT_MODIFY 4

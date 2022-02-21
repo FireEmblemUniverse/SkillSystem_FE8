@@ -1,0 +1,42 @@
+
+/*
+
+PUSH
+ORG $AC188
+POIN NewDifficultyImage
+
+
+ORG $A29518
+#incbin "2_pal.dmp"
+
+ORG $A29538
+#incbin "1_pal.dmp"
+
+ORG $A29498
+#incbin "6_pal.dmp"
+
+ORG $A294B8
+#incbin "5_pal.dmp"
+
+ORG $A294D8
+#incbin "4_pal.dmp"
+
+ORG $A294F8
+#incbin "3_pal.dmp"
+
+ORG $A29418
+#incbin "Main_pal.dmp"
+
+POP
+
+
+ALIGN 4
+NewDifficultyImage:
+#incbin "Main.dmp"
+
+
+
+*/
+
+
+

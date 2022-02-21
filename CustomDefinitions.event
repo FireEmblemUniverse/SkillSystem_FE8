@@ -2,9 +2,10 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases 
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 //#define ALT_TITLESCREEN
 
+PROTECT 0x0E120
 //PROTECT $37744 $377C4
 // 968 / $3C8 bytes used? - free range
 //PROTECT $1ACBC $1B084
@@ -121,7 +122,8 @@
 #define WordMapInitialized 0x89 
 #define FreliaFlag 0x8A 
 #define BracketedGrowthsFlag 0xAE 
-#define CasualModeFlag 0xE0
+#define CasualModeFlag 0xB0
+#define CasualModeFlag_2 0xE0
 
 
 //Added 

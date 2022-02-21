@@ -10,7 +10,12 @@ POP
 
 
 
-
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+QuicksaveDuringStartEvent:
+POP
+#incbin "QuicksaveDuringStartEvent.dmp"
 
 
 
