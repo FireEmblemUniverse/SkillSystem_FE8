@@ -16,10 +16,10 @@ ldr 	r2,ClassGrowthOption
 cmp		r2,#0
 beq		GetExtraGrowthBoost
 
-ldr		r2, [r0]
+ldr		r2, [r0, #4]
 ldrb	r2, [r2,#4]
 ldr		r3, MagClassTable
-lsl		r2, #1
+lsl		r2, #2
 add		r2, #1
 ldrb	r2, [r3, r2]
 add		r1, r2
