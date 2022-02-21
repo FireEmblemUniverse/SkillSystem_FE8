@@ -226,3 +226,22 @@ tGlyphEntry(0xD4, Sglyph_pokedollaricon)
 mGlyphEntry(0xD0, Sglyph_physicalicon)
 mGlyphEntry(0xD1, Sglyph_specialicon)
 
+
+Sglyph_e_accent:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "e_accent.img.bin"
+
+Sglyph_e_serif:
+WORD 0x00000000 
+BYTE 0x00 //empty code-page # (no Shift-JIS)
+BYTE 0x5 //character width
+BYTE 0x00 //always zero
+BYTE 0x00
+#incbin "e_serif.img.bin"
+
+mGlyphEntry(0xD6, Sglyph_e_accent)
+tGlyphEntry(0xD6, Sglyph_e_serif) // tGlyph uses serif 

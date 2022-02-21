@@ -40,6 +40,8 @@ Blackbelt - Gabriel Knight
 
 Quick Claw - HusbandoEmblem
 
+Difficulty Selection - Halbreadier
+
 # Sources:
 
 Spriter’s resource FRLG (link) 1.

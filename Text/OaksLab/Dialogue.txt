@@ -54,12 +54,12 @@ They're tasty, too![N]
             -Trainer's Tips[A][X]
 
 ## TrainerTip_Catch
-KO a POKEMON while[N]
+KO a Pok[0xD6]mon while[N]
 capturing to catch it![N]
         - Trainer's Tips.[A][X]
 
 ## TrainerTip_Water
-Some POKEMON can traverse[N]
+Some Pok[0xD6]mon can traverse[N]
 shallow water or ledges.[N]
         - Trainer's Tips.[A][X]
 
@@ -96,7 +96,7 @@ Equip an item for extra benefits.[N]
 
 
 ## TrainerTip_Def
-Some POKEMON are weak to special[N]
+Some Pok[0xD6]mon are weak to special[N]
 attacks,[A] while others are weak to[N]
 physical attacks.[N]
         - Trainer's Tips.[A][X]
@@ -116,7 +116,7 @@ whenever you come back.[N]
 
 
 ## TrainerTip_PartySize
-If you have less than 6 POKEMON[N]
+If you have less than 6 Pok[0xD6]mon[N]
 with you and catch a new one,[A][N]
 it will immediately join you,[N]
 even if yours had fainted.[N]
@@ -125,7 +125,7 @@ even if yours had fainted.[N]
 
 	  
 ## TrainerTip_LearnTMs
-POKEMON can learn any move[N]
+Pok[0xD6]mon can learn any move[N]
 they share a type with.[N]
         - Trainer's Tips.[A][X]
 
@@ -134,7 +134,7 @@ they share a type with.[N]
 
 
 ## TrainerTip_Typing
-Press [Red]R[Red] on a POKEMON's name[N]
+Press [Red]R[Red] on a Pok[0xD6]mon's name[N]
 to see their weaknesses.[N]
         - Trainer's Tips.[A][X]
 		
@@ -147,7 +147,7 @@ open to move it faster.[N]
 		
 ## TrainerTip_MaxPokemon
 You may only own up to 40[N]
-POKEMON at a time. Sorry.[N]
+Pok[0xD6]mon at a time. Sorry.[N]
         - Trainer's Tips.[A][X]
 
 ## CeruleanBottomSignText
@@ -161,7 +161,7 @@ a tile and pressing [Red]<-[Red] or [Red]->[Red].[N]
         - Trainer's Tips.[A][X]
 		
 ## TrainerTip_Release
-Release extra POKEMON from the[N]
+Release extra Pok[0xD6]mon from the[N]
 Submenu to free up space.[N]
         - Trainer's Tips.[A][X]
 		
@@ -189,10 +189,10 @@ Manage your party at a Pokecenter.[NL]
 
 // UNUSED 
 //Repels reduce the amount[NL]
-//of wild Pokemon found.[A][X]
+//of wild Pok[0xD6]mon found.[A][X]
 
 ## UnusedTrainerTips2
-You can carry up to 6 Pokemon[NL]
+You can carry up to 6 Pok[0xD6]mon[NL]
 with you at once.[NL]
             - Trainer's Tips.[A][X]
 
@@ -208,7 +208,7 @@ is being used.[A][X]
 
 
 ## CatchPokemonTutorial_1
-Let's catch a POKEMON.[A][X]
+Let's catch a Pok[0xD6]mon.[A][X]
 
 ## CatchPokemonTutorial_2
 Select a highlighted tile.[A][X]
@@ -233,7 +233,7 @@ capturing to catch them all![A][X]
 
 ## CatchPokemonTutorial_7
 Well done![A] Catch lots[N]
-of POKEMON to progress.[A][X]
+of Pok[0xD6]mon to progress.[A][X]
 
 
 ## SignsFastTravel
@@ -272,7 +272,7 @@ He is my grandson, afterall.[A][NL]
 I knew you'd understand.[A][2NL]
 What? How will you track your collection?[....][NL]
 Welp,[....] beats me.[A][LoadOverworldFaces][NL]
-...fine. You have a number of Pokemon.[NL]
+...fine. You have a number of Pok[0xD6]mon.[NL]
 (Hey, one is a number too.)[A][NL]
 Keep up the hard work.[A][X]
 
@@ -296,7 +296,7 @@ this Trainer battle![A][X]
 ## GaryRoute2SChallengeText
 [OpenRight][LoadGaryPoint][OpenRight]Hah, I wondered when[NL]
 you'd show up.[A][NL]
-I've already caught 4 Pokemon![NL]
+I've already caught 4 Pok[0xD6]mon![NL]
 How many have you caught?[A][X]
 
 
@@ -361,7 +361,7 @@ Let me sip my coffee in peace.[A][X]
 ## PewterMuseumText
 This Museum is where we[NL]
 study evolution based on fossils.[A][NL]
-What? You've seen Pokemon evolve?[A][NL]
+What? You've seen Pok[0xD6]mon evolve?[A][NL]
 Don't be absurd![NL]
 Evolution takes millions of years.[.....][NL]
 You're thinking of [ToggleRed]Metamorphosis.[A][X]
@@ -383,12 +383,12 @@ Pewter Museum.[A][X]
 
 ## PewterGymSignText
 Pewter Gym.[NL]
-Rock-type Pokemon.[A][X]
+Rock-type Pok[0xD6]mon.[A][X]
 
 ## BrockIntroText
 [OpenMidRight][LoadBrock][OpenMidRight]I believe in rock hard[NL]
 defense and determination![A][NL]
-That's why my pokemon are[NL]
+That's why my Pok[0xD6]mon are[NL]
 all the rock-type.[A][CloseSpeechSlow][LoadOverworldFaces][NL]
 Hmm? What about my Diglett,[NL]
 Sandshrew, and Vulpix?[A][NL]
@@ -439,7 +439,7 @@ so I don't really need it anymore.[A][NL]
 Keep at it, [Tact]![A][LoadOverworldFaces][X]
 
 ## PokemonCapturedText
-[OpenLeft][LoadDex][OpenLeft][FastPrint]Pokemon captured.[NL]
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Pok[0xD6]mon captured.[NL]
 [ToggleRed]300 *{'}[ToggleRed] consumed.[A][X]
 
 
@@ -479,7 +479,7 @@ what he gets up to?[A][X]
 
 ## MistyChallengeText
 [OpenMidRight][LoadMisty][OpenMidRight]My policy is an all-out offensive[NL]
-with water-type Pokemon![A][NL]
+with water-type Pok[0xD6]mon![A][NL]
 If you want to turn pro, you should [NL]
 come up with your own strategy.[A][NL]
 Hm? You're interested in a [NL]
@@ -488,7 +488,7 @@ That's a bad idea.[A] [NL]
 What'll happen when some loser[NL]
 decides to catch 6 Pikachu?[A][NL]
 Still can't believe I lost...[A][2NL]
-Enough chatter! My Pokemon[NL]
+Enough chatter! My Pok[0xD6]mon[NL]
 will scrub the floor with you![A][X]
 
 ## MistyDefeatText
@@ -542,12 +542,12 @@ catch some stronger ones![A][X]
 
 ## R1_0xE0_BQ
 I just lost, so I'm trying[NL]
-to find more POKEMON.[A][NL]
+to find more Pok[0xD6]mon.[A][NL]
 Wait! You look weak![NL]
 Come on, let's battle![A][X]
 
 ## R1_0xE0_BD
-Ugh. I don't have any more POKEMON.[A][X]
+Ugh. I don't have any more Pok[0xD6]mon.[A][X]
 
 
 ## R2_0xE1_BQ
@@ -562,7 +562,7 @@ I got lost there, and lost here![A][X]
 ## VFS_0xE0_BQ
 // Viridian Forest (south) trainer 0xE0 Battle Quote / Defeat
 I came here with some friends to[NL]
-catch us some BUG POKEMON![A][NL]
+catch us some BUG Pok[0xD6]mon![A][NL]
 Let's battle![A][X]
 
 ## VFS_0xE0_BD
@@ -578,7 +578,7 @@ Nothing went right.[A][X]
 
 
 ## VF_0xE1_BQ
-Hey! You have POKEMON![NL]
+Hey! You have Pok[0xD6]mon![NL]
 Come on! Let's battle'em![A][X]
 
 ## VF_0xE1_BD
@@ -586,15 +586,15 @@ No! CATERPIE can't cut it![A][X]
 
 ## VF_0xE2_BQ
 Yo! You can't jam out if[NL]
-you're a POKEMON trainer![A][X]
+you're a Pok[0xD6]mon trainer![A][X]
 ## VF_0xE2_BD
-Huh? I ran out of POKEMON![A][X]
+Huh? I ran out of Pok[0xD6]mon![A][X]
 
 
 ## VF_0xE3_BQ
 Eek! I don't want any trouble![A][X]
 ## VF_0xE3_BD
-My mom gave me these POKEMON[NL]
+My mom gave me these Pok[0xD6]mon[NL]
 to protect me...[A][X]
 
 
@@ -645,7 +645,7 @@ Are you a TRAINER?[NL]
 Let's get with it right away![A][X]
 
 ## R3_0xE4_BD
-If I had new POKEMON,[NL]
+If I had new Pok[0xD6]mon,[NL]
 I would've won![A][X]
 
 ## R3_0xE5_BQ
@@ -691,7 +691,7 @@ What![NL]
 Don't sneak up on me![A][X]
 
 ## MMB1_0xE2_BD
-My POKEMON won't do![A][X]
+My Pok[0xD6]mon won't do![A][X]
 
 
 ## MMB1_0xE3_BQ
@@ -746,7 +746,7 @@ to get to CERULEAN CITY.[A][X]
 ## MMB3_0xE0_BQ
 We, TEAM ROCKET, shall find the[NL]
 fossils![A][NL]
-Reviving POKEMON from them will[NL]
+Reviving Pok[0xD6]mon from them will[NL]
 earn us huge riches.[A][X]
 
 ## MMB3_0xE0_BD
@@ -754,7 +754,7 @@ Urgh![NL]
 Now I'm mad![A][X]
 
 ## MMB3_0xE1_BQ
-We, TEAM ROCKET, are POKEMON[NL]
+We, TEAM ROCKET, are Pok[0xD6]mon[NL]
 gangsters![A][NL]
 We strike fear with our strength![A][X]
 
@@ -806,7 +806,7 @@ Blasting off again![A][X]
 
 ## R4_0xE0_BQ
 I came to MT. MOON in search of[NL]
-new rock POKEMON.[A][X]
+new rock Pok[0xD6]mon.[A][X]
 
 ## R4_0xE0_BD
 All I found was rocks...[A][X]
@@ -901,7 +901,7 @@ Too much![A][X]
 By the way, how would you like to[NL]
 join TEAM ROCKET?[A][NL]
 We're a group of professional[NL]
-criminals specializing in POKEMON![A][NL]
+criminals specializing in Pok[0xD6]mon![A][NL]
 Want to join?[A][NL]
 Are you sure?[A][NL]
 Come on, join us![A][NL]
@@ -929,7 +929,7 @@ I knew I had to battle you![A][X]
 I knew I'd lose, too![A][X]
 
 ## R25_0xE3_BQ
-My friend has many cute POKEMON.[NL]
+My friend has many cute Pok[0xD6]mon.[NL]
 I'm so jealous![A][X]
 ## R25_0xE3_BD
 I'm not so jealous![A][X]
@@ -944,7 +944,7 @@ A ZUBAT bit me back in that cave.[A][X]
 ## DaycareHouseText
 I run the DAY-CARE service.[A][NL]
 You'd like me to raise one of[NL]
-your POKEMON?[A][2NL]
+your Pok[0xD6]mon?[A][2NL]
 I can put you down on the wait list,[NL]
 but it's several months long...[A][NL]
 Sorry, but could you come back later?[A][X]
@@ -982,7 +982,7 @@ Alright, let's go![A][X]
 I just can't win![A][X]
 
 ## R6_0xE1_BQ 
-I raised my POKEMON carefully.[N]
+I raised my Pok[0xD6]mon carefully.[N]
 They should be ready by now![A][X]
 
 ## R6_0xE1_BD
@@ -1013,14 +1013,14 @@ Vermillion Fan Club[A][X]
 
 
 ## FanClubText
-I chair the POKEMON Fan Club![A][N]
+I chair the Pok[0xD6]mon Fan Club![A][N]
 I raise more than a hundred[N]
-POKEMON![A][N]
+Pok[0xD6]mon![A][N]
 I'm very fussy when it comes to[N]
-POKEMON! I surely am![A][N]
+Pok[0xD6]mon! I surely am![A][N]
 So...[A][N]
 Did you come visit to hear about[N]
-my POKEMON?[A][N]
+my Pok[0xD6]mon?[A][N]
 Good![N]
 Then listen up![A][N]
 My favorite RAPIDASH...[A][N]
@@ -1060,7 +1060,7 @@ letter to SAFFRON in the north.[A][X]
 doing here?[A][N]
 You won't live long in combat![N]
 Not with your puny power![A][N]
-I tell you, kid, electric POKEMON[N]
+I tell you, kid, electric Pok[0xD6]mon[N]
 saved me during the war![A][N]
 They zapped my enemies into[N]
 paralysis![A][N]
@@ -1091,7 +1091,7 @@ I train every morning.[A][X]
 
 ## R11_0xE0_BD
 Darn![N]
-My POKEMON need to be stronger![A][X]
+My Pok[0xD6]mon need to be stronger![A][X]
 
 ## R11_0xE1_BQ
 Careful![N]
@@ -1102,7 +1102,7 @@ That was electric![A][X]
 
 ## R11_0xE2_BQ
 You can't be a coward in the world[N]
-of POKEMON![A][X]
+of Pok[0xD6]mon![A][X]
 
 ## R11_0xE2_BD
 Aww! I've had enough![A][X]
@@ -1164,7 +1164,7 @@ You're impressive![A][X]
 ## SSA_0xE4_BQ
 I am but a solitary traveler...[A][N]
 My sole companions and friends are[N]
-POKEMON I caught on my journeys...[A][X]
+Pok[0xD6]mon I caught on my journeys...[A][X]
 
 ## SSA_0xE4_BD
 My, my friends...[A][X]
@@ -1199,7 +1199,7 @@ to cut little bushes now.[A][X]
 
 
 ## R9W_0xE0_BQ
-You have POKEMON with you![N]
+You have Pok[0xD6]mon with you![N]
 You're mine![A][X]
 	
 ## R9W_0xE0_BD
@@ -1208,7 +1208,7 @@ You deceived me...[A][X]
 
 ## R9W_0xE1_BQ
 Who's that walking there with those[N]
-good-looking POKEMON?[A][X]
+good-looking Pok[0xD6]mon?[A][X]
 ## R9W_0xE1_BD
 Out like a light![A][X]
 
@@ -1228,7 +1228,7 @@ go to LAVENDER...[A][X]
 Can't measure up...[A][X]
 
 ## R10_0xE0_BQ
-I've been out at a POKEMON GYM[N]
+I've been out at a Pok[0xD6]mon GYM[N]
 a few times.[A][N]
 ...But I always lose.[A][X]
 
@@ -1263,10 +1263,10 @@ It was too dark...[A][X]
 	
 ## RTB1_0xE3_BQ  
 I came this far looking for wild[N]
-POKEMON.[A][X]
+Pok[0xD6]mon.[A][X]
 
 ## RTB1_0xE3_BD  
-I'm out of POKEMON![A][X]
+I'm out of Pok[0xD6]mon![A][X]
 	
 
 
@@ -1289,7 +1289,7 @@ Fired away![A][X]
 
 
 ## RTB2_0xE2_BQ  
-My POKEMON techniques will leave[N]
+My Pok[0xD6]mon techniques will leave[N]
 you crying![A][X]
 
 ## RTB2_0xE2_BD  
@@ -1298,7 +1298,7 @@ You're a better technician![A][X]
 	
 
 ## RTB2_0xE3_BQ  
-I draw illustrations of POKEMON[N]
+I draw illustrations of Pok[0xD6]mon[N]
 when I'm home.[A][X]
 
 ## RTB2_0xE3_BD  
@@ -1308,21 +1308,21 @@ I'm exhausted...[A][X]
 
 
 ## PokemonTowerText
-POKEMON TOWER[N]
-Becalm the Spirits of POKEMON[A][X]
+Pok[0xD6]mon TOWER[N]
+Becalm the Spirits of Pok[0xD6]mon[A][X]
 
 ## GhostsText
 Do you believe in ghosts?[A][X]
 
 ## LavendarHouse1Text
 This town is known as the grave[N]
-site of POKEMON.[A][N]
+site of Pok[0xD6]mon.[A][N]
 Memorial services are held in[N]
-POKEMON TOWER.[A][X]
+Pok[0xD6]mon TOWER.[A][X]
 
 ## LavendarHouse2Text
-Ghosts appeared in POKEMON TOWER.[A][N]
+Ghosts appeared in Pok[0xD6]mon TOWER.[A][N]
 I think they're the spirits of[N]
-POKEMON that the ROCKETS killed.[A][X]
+Pok[0xD6]mon that the ROCKETS killed.[A][X]
 
 
