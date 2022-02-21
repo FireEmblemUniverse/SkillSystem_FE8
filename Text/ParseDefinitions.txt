@@ -16,7 +16,6 @@
 [.7] = [.......]
 [Beat] = [ToggleMouthMove]...[.4][ToggleMouthMove]
 [Event] = [LoadOverworldFaces]
-
 [FarFarLeft] = [OpenFarFarLeft]
 [FarLeft] = [OpenFarLeft]
 [MidLeft] = [OpenMidLeft]
@@ -81,6 +80,7 @@
 [Electric] = [0xD2]
 [Dragon] = [0xD3]
 
+[Eaccent] = [0xE9]
 
 
 [CurrentPortrait] = [0xFF][0xFF]

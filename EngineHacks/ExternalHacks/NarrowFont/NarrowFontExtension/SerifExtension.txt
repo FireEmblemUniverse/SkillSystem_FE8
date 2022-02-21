@@ -243,5 +243,5 @@ BYTE 0x00 //always zero
 BYTE 0x00
 #incbin "e_serif.img.bin"
 
-mGlyphEntry(0xD6, Sglyph_e_accent)
-tGlyphEntry(0xD6, Sglyph_e_serif) // tGlyph uses serif 
+//mGlyphEntry(0xE9, Sglyph_e_accent)
+//tGlyphEntry(0xE9, Sglyph_e_serif) // tGlyph uses serif 
