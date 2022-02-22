@@ -14,11 +14,18 @@ ldr		r2,Compare_Allegiance_Func
 mov		r14,r2
 .short	0xF800
 pop		{r1}
+
 ldrb	r2,[r1,#0xB]
 cmp		r0,#0x0
 bne		GoBack
-mov		r0,#0x0
-ldrb	r3,[r1,#0x13]
+
+cmp		r2,#0x80	@Check Enemy
+blt		GoBack
+
+ldrb	r0,[r1,#0x13]
+cmp		r0,#0x1		@HP 1 <=
+bgt		GoBack
+
 cmp		r3,#0x0
 bne		GoBack
 mov		r0,#0x1
