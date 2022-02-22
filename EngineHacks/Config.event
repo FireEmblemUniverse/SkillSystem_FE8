@@ -187,10 +187,6 @@
 // If uncommented, Unlock staves will work on chests.
 // #define UNLOCK_WORKS_ON_CHESTS
 
-// If uncommented, units can promote after acting when at or above the specified levels.
-// (By default, all classes promote at level 255.) 
-// #define PROMOTE_LEVELUP
-
 // If uncommented, damage numbers will display over participants' heads during battle animations.
 // #define BATTLE_ANIMATION_NUMBERS
 
