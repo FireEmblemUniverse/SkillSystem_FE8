@@ -13,6 +13,7 @@ mov		r14,r3
 .short	0xF800
 cmp		r0,#1
 beq		GoBack 		@can't be captured if they have watchful
+
 ldr		r0,Comp_Allegiance_Func
 mov		r14,r0
 ldr		r0,TargetQueuePtr
@@ -23,6 +24,7 @@ ldsb	r1,[r4,r1]
 .short	0xF800
 cmp		r0,#0x0
 bne		GoBack
+
 mov		r0,r5
 ldr		r1,Can_Rescue_Check
 mov		r14,r1
@@ -30,6 +32,15 @@ mov		r1,r4
 .short	0xF800
 cmp		r0,#0x0
 beq		GoBack				@can't capture if you can't rescue
+
+ldr	r1, [r5]
+ldr	r1, [r1, #40]
+ldr	r0, [r5, #4]
+ldr	r0, [r0, #40]
+orr	r1, r0
+lsl	r0, r1, #22
+bmi	GoBack		@Unit has a SupplyFlag
+
 ldr		r0,Fill_Target_Queue
 mov		r14,r0
 ldrb	r0,[r4,#0x10]
