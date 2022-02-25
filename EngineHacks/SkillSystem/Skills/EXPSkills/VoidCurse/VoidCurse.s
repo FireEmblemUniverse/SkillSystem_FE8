@@ -14,7 +14,7 @@ ldr r2, SkillTester
 mov lr, r2
 .short  0xF800
 cmp r0, #0
-beq CheckOther
+beq GoBack
 
 @zero exp if other person has this skill
 mov r4,#0
