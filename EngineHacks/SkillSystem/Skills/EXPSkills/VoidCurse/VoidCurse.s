@@ -20,7 +20,6 @@ beq CheckOther
 mov r4,#0
 
 CheckOther:
-mov r4, r0
 mov r0, r1
 ldr r1, VoidCurseID
 ldr r2, SkillTester
