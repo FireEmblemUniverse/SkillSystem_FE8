@@ -19,18 +19,6 @@ beq CheckOther
 @zero exp if other person has this skill
 mov r4,#0
 
-CheckOther:
-mov r0, r1
-ldr r1, VoidCurseID
-ldr r2, SkillTester
-mov lr, r2
-.short  0xF800
-cmp r0, #0
-beq GoBack
-
-@zero exp if we have this skill
-mov r4,#0
-
 GoBack:
 mov r0, r4
 pop {r4}
