@@ -1581,9 +1581,10 @@ BYTE 1 Thundershock // Charge
 BYTE 5 Tackle
 BYTE 8 AttackPulse // SonicBoom 
 BYTE 12 Spark
-BYTE 15 Magnitude // Rollout
+BYTE 15 Leer // Rollout
+//BYTE 15 Magnitude // Rollout
 BYTE 19 Screech
-BYTE 22 LightScreen
+//BYTE 22 LightScreen
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 Swift

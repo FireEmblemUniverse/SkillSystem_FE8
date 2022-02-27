@@ -51,8 +51,10 @@ Vendor(ShopItems,22,27)
 END_MAIN
 
 EnterPillagedHouseS:
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
 SET_ACTIVE 0
-MOVE (-1) 0x7FFF [24,7]
+MOVE (-1) 0x7FFE [24,7]
 ENUN
 SET_CURSOR [24,7]
 NoFade 
@@ -60,8 +62,10 @@ ENDA
 
 
 EnterPillagedHouseN:
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
 SET_ACTIVE 0
-MOVE (-1) 0x7FFF [23,10]
+MOVE (-1) 0x7FFE [23,10]
 ENUN
 SET_CURSOR [23,10]
 NoFade 
@@ -228,14 +232,6 @@ NoFade
 ENDA
 
 
-StartRivalBattleCutscene: // So that players can flee if they never walk near the rival 
-CheckTrainerFlag(0xE0) // based on unit IDs 0xE0-0xEF per chapter 
-BNE 10 rC r0 
-ENUT PlayableCutsceneFlag 
-LABEL 10 
-NoFade 
-ENDA 
-
 
 ALIGN 4
 ShopItems:
@@ -245,7 +241,7 @@ BYTE SuperPotion 5
 BYTE JellyDonut 5
 BYTE SkillScroll TantivyID 
 BYTE SpellScroll AttackPulse SpellScroll WaterGun SpellScroll Bite
-BYTE SpellScroll DoubleHit SpellScroll SignalBeam
+BYTE SpellScroll DoubleHit SpellScroll SignalBeam SpellScroll MagicalLeaf 
 BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
@@ -277,7 +273,7 @@ SHORT 2000 // Gold
 TDQ_TableTerminator ; }
 
 GaryBattleUnitGroup:
-UNIT 0xEF blueID 0x0 Level(2, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
+UNIT 0xEF blueID 0x0 Level(2, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [NineRangeWep,0x0,0x0,0x0] TrainerAI  
 //UNIT GenericB	SquirtleID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(1, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 

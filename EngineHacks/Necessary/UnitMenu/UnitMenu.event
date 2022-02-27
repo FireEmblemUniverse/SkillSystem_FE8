@@ -101,6 +101,9 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 //MenuCommand(UM_GaidenWhiteMagic,UM_GaidenMagicDesc,NormalText,GaidenWhiteMagicUMUsability,GaidenWhiteMagicUMEffect,GaidenWhiteMagicUMHover,GaidenMagicUMUnhover)
 #endif // GAIDEN_MAGIC
 
+  MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Save
+  MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3B, GenericTrapEffect) //Save
+
 MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   
 //Disappear after use
@@ -325,7 +328,7 @@ MenuCommand(UM_FocusEnergyName, UM_FocusEnergyDesc, BlueText, FocusEnergyCommand
   
   //UM_Supply
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
-
+MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
 // Wait (edited to show an arrow) 
 BYTE 0x94 0x7D 0xD 0x8 0x95 0x6 0xBF 0x6 0x0 0x6B 0x0 0x0 0x49 0xF4 0x4 0x8; POIN DisplayedWaitmarkIfSubMenu+1; BYTE 0x39 0x27 0x2 0x8 0 0 0 0 0 0 0 0 0 0 0 0	//	待機 wait
 

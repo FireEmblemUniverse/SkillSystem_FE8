@@ -70,7 +70,7 @@ POIN TowerShieldPlus
 POIN ScaledBackFunc
 
 //POIN MinimumDamage
-//POIN FixedDamageWeapons
+POIN FixedDamageWeapons
 
 
 // Because of how killing machine works, critical check should always be done last

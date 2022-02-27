@@ -10,7 +10,7 @@
 #define RetreatChapter 		0x30017b0
 #define DigChapter 			0x30017b1 
 #define GaryStarterClass 		0x30017b2 //we can set this at the beginning and then add 1 a couple times to evolve, maybe? 
-#define Player1UnitID 			0x30017b3 
+//#define Player1UnitID 			0x30017b3 // PostTrainerBattleRamLocat now a byte 
 //#define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
 #define Player6UnitID 			0x30017b8 
 #define BerryDurabilityToggleRam 			0x30017b9 
@@ -19,7 +19,7 @@
 #define DRSingleRam 			0x30017bb
 #define UnitPointerRam 0x30017BC // - BF
 #define WepRamLocat 0x30017C0 
-#define PostTrainerBattleRamLocat 0x30017C4 //- c7 
+//#define PostTrainerBattleRamLocat 0x30017C4 //- c7 
 // past this is volatile? 
 
 // ASMC 0x80160D1 // Return to map BGM 
@@ -855,6 +855,9 @@ DisableFreeMovement
 #endif 
 SADD 2 9 0 
 MNC2 (-1) 
+DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
+IGNORE_KEYS 0
+Write_Byte(0, DisableMenuOptionsRam) 
 ENUF PlayableCutsceneFlag 
 LABEL 0x63 
 EVBIT_MODIFY 0
@@ -877,6 +880,11 @@ EVBIT_F 2
 
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
+
+DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
+IGNORE_KEYS 0
+Write_Byte(0, DisableMenuOptionsRam) 
+
 ENUF TrainerBattleActiveFlag
 SADD 2 9 0 
 

@@ -10,11 +10,12 @@ POP
 //ORG $1D308 //hook just before the check for misc event
 //jumpToHack(PostCombatLoop)
 //POP
-
+ALIGN 4
 PostCombatLoop:
 #incbin "post_loop.dmp"
 POIN PostCombatSkills
 
+ALIGN 4
 PostCombatSkills:
 POIN CapturePokemon
 POIN IsTrainersTeamDefeated

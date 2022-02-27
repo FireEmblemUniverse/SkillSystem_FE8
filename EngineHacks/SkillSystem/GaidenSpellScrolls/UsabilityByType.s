@@ -17,9 +17,9 @@
 @ Given r0 = UnitRamPointer, r1 = ItemID, return True or False 
 @ whether class can learn this spell 
 UsabilityByType:
-push {r4, lr} 
+push {r4-r5, lr} 
 mov r4, r0 
-
+mov r5, r1 @ item ID 
 mov r0, r1 		@ Item ID 
 @blh GetItemIndex 			@ GetItemIndex. r0 = item ID.
 blh GetItemData 			@ GetItemData. r0 = pointer to ROM item data.
@@ -37,13 +37,35 @@ ldrh r1, [r2, r1] 	@ Class type bitfield eg. 0x810 is Grass/Poison
 
 and r0, r1 
 cmp r0, #0 
-beq Exit
+beq CheckSpecificList
 mov r0, #1
+b Exit
+CheckSpecificList:
+ldr r2, [r4, #4] @Class pointer 
+ldrb r2, [r2, #4] @ Class ID 
+lsl r2, #2 @ 4 bytes per class 
+ldr r3, =TMListTable
+add r3, r2 @ Class entry we want 
+ldr r3, [r3] 
+lsl r5, #24 
+lsr r5, #24 @ just in case it includes durability i guess 
+sub r3, #1 
+Loop:
+add r3, #1 
+ldrb r0, [r3] 
+cmp r0, #0
+beq RetFalse
+cmp r0, r5 
+bne Loop
+mov r0, #1 
+b Exit 
 
+RetFalse:
+mov r0, #0 
 
 Exit:
 
-pop {r4} 
+pop {r4-r5} 
 pop {r1} 
 bx r1 
 

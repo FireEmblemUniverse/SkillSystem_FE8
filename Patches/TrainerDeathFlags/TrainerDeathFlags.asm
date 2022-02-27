@@ -47,6 +47,9 @@ End:
 pop {r0}
 bx r0 
 
+.ltorg
+.align
+
 .global ShouldTrainerSummonTeam
 .type ShouldTrainerSummonTeam, %function 
 ShouldTrainerSummonTeam: 
@@ -133,7 +136,8 @@ Exit:
 pop {r4-r7}
 pop {r1}
 bx r1 
-
+.ltorg
+.align
 .global IsTrainersTeamDefeated
 .type IsTrainersTeamDefeated, %function 
 IsTrainersTeamDefeated: 
@@ -142,11 +146,13 @@ push {r4-r7, lr}
 ldr r4, =0x203A4EC  @ Atkr 
 ldr r5, =0x203A56C @ Dfdr
 
-@mov r11, r11 
 
 ldrb r0, [r4, #0x0B] @ Deployment id 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
+cmp r3, #0 
+beq False_IsTrainersTeamDefeated
+
 ldrb r1, [r3, #0x0B] @ deployment ID 
 cmp r0, r1 
 bne False_IsTrainersTeamDefeated
@@ -198,7 +204,6 @@ add r1, #1 @ 1 more has died
 strb r1, [r6, r2] 
 cmp r0, r1 
 bne False_IsTrainersTeamDefeated
-
 
 
 mov r0, r6 @ Defeated trainer 
@@ -275,11 +280,11 @@ mov r0, #0
 
 Exit_IsTrainersTeamDefeated:
 
-
 pop {r4-r7}
 pop {r1}
 bx r1 
-
+.ltorg
+.align
 .global AreAnyTrainerBattlesActive
 .type AreAnyTrainerBattlesActive, %function 
 AreAnyTrainerBattlesActive:
@@ -322,7 +327,8 @@ pop {r1}
 bx r1 
 
 
-
+.ltorg
+.align
 
 
 
@@ -332,6 +338,7 @@ bx r1
 
 DefeatedTrainerRoutine:
 push {r4-r7, lr}
+
 mov r6, r0 @ Defeated trainer 
 
 mov r1, #0x2D 
@@ -339,9 +346,11 @@ ldrb r0, [r6, r1]
 cmp r0, #50
 beq ExitDefeatedTrainer 
 
-ldr r3, =0x30017C4
-str r6, [r3] @ my ram 2
-
+ldr r3, =PostTrainerBattleRamLocatLink
+ldr r3, [r3] @ @ my ram 
+ldrb r0, [r6, #0x0B] 
+strb r0, [r3] @ my ram 2
+@ 903cfe6
 
 ldr r0, =TrainerDefeatedEvent 
 mov r1, #1 
@@ -354,7 +363,8 @@ ExitDefeatedTrainer:
 pop {r4-r7}
 pop {r1}
 bx r1 
-
+.ltorg
+.align
 
 .global ASMC_CheckTrainerFlag
 .type ASMC_CheckTrainerFlag, %function 
@@ -369,7 +379,8 @@ mov r1, #0x0C*4
 str r0, [r3, r1] @ Store result to sC 
 pop {r1} 
 bx r1 
-
+.ltorg
+.align
 
 
 .global CallCheckTrainerFlag 
@@ -385,13 +396,15 @@ str r0, [r3, r1] @ Store result to sC
 
 pop {r1} 
 bx r1 
-
+.ltorg
+.align
 .global CheckTrainerFlagByID
 .type CheckTrainerFlagByID, %function 
 CheckTrainerFlagByID:
 push {r4-r5, lr}
 mov r5, #0 
 mov r1, r0 
+mov r4, r0 @ unit ?? 
 
 b StartCheckTrainerFlag 
 
@@ -408,7 +421,7 @@ mov r5, #0
 ldr r1, [r4] 
 ldrb r1, [r1, #4] @ Unit ID we're interested in 
 StartCheckTrainerFlag:
-
+@ r4 below here is variable and dangerous 
 cmp r1, #0xE0 
 blt TrainerFlagTrue 
 cmp r1, #0xF0 
@@ -440,7 +453,8 @@ mov r1, r5 @ Offset of flag
 pop {r4-r5} 
 pop {r2}
 bx r2 
-
+.ltorg
+.align
 
 .global GetTargetAndStoreToRam
 .type GetTargetAndStoreToRam, %function 
@@ -448,28 +462,17 @@ GetTargetAndStoreToRam:
 push {lr} 
 
 ldr r3, =0x203A958
-ldrb r0, [r3, #0x0D] 
-
-blh GetUnit @ by deployment byte 
-ldr r3, =0x30017C4 
-cmp r0, #0 
-beq Error 
-str r0, [r3] 
-b Exit2
-
-
-
-
-Error: 
-str r0, [r3] @ put in 0 
-
-Exit2: 
+ldrb r0, [r3, #0x0D] @ Target's deployment byte 
+ldr r3, =PostTrainerBattleRamLocatLink
+ldr r3, [r3] @ @ my ram 
+strb r0, [r3]
 
 
 pop {r1}
 bx r1 
 
-
+.ltorg
+.align
 
 
 .global MarkTrainerAsDefeated_ASMC
@@ -482,9 +485,11 @@ ldr r0, [r3, #4] @ s1 as unit ID
 blh GetUnitByEventParameter
 cmp r0, #0 
 beq ExitMarkTrainerAsDefeated
+ldrb r0, [r0, #0x0B] @ Deployment byte 
 
-ldr r3, =0x30017C4 @ my ram 
-str r0, [r3] 
+ldr r3, =PostTrainerBattleRamLocatLink
+ldr r3, [r3] @ @ my ram 
+strb r0, [r3] 
 bl PostTrainerBattleActions 
 
 
@@ -495,16 +500,22 @@ pop {r4}
 pop {r0} 
 bx r0 
 
-
+.ltorg
+.align
 .global PostTrainerBattleActions
 .type PostTrainerBattleActions, %function 
 
 PostTrainerBattleActions:
 push {r4, lr} 
-
-
-ldr r3, =0x30017C4 @ my ram 
-ldr r4, [r3] @
+ldr r3, =PostTrainerBattleRamLocatLink
+ldr r3, [r3] @ @ my ram 
+ldrb r0, [r3] @ deployment ID 
+cmp r0, #0 
+beq DontTurnOffFlag
+blh GetUnit 
+cmp r0, #0
+beq DontTurnOffFlag
+mov r4, r0 
 
 
 ldr r1, [r4] 
@@ -560,6 +571,8 @@ bl AreAnyTrainerBattlesActive
 cmp r0, #1
 beq DontTurnOffFlag
 
+
+
 ldr r0, =TrainerBattleActiveFlag 
 lsl r0, #24 
 lsr r0, #24 
@@ -576,7 +589,8 @@ DontTurnOffFlag:
 pop {r4}
 pop {r0}
 bx r0 
-
+.ltorg
+.align
 
 
 	.equ GetUnitByEventParameter, 0x0800BC51
@@ -666,4 +680,18 @@ pop {r4-r7}
 pop {r1}
 bx r1 
 
+.ltorg
+.align
+
+.type BreakPointASMC, %function 
+.global BreakPointASMC
+BreakPointASMC:
+push {lr}
+mov r11, r11 
+mov r8, r8
+mov r5, r5 
+pop {r0}
+bx r0 
+.ltorg 
+.align 
 

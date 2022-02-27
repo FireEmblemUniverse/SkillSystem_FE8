@@ -13,6 +13,14 @@ Create a temporary save.[X]
 ## ConfigHelpText
 Configure game options.[X]
 
+## UM_Promote
+ Evolve[X]
+ 
+## UM_PromoteDesc
+Evolve this unit. There is no[N]
+reason not to evolve immediately.[X]
+
+
 ## QuicksaveText
 Quicksave[X]
 ## PlayerPhaseHelpText
@@ -41,12 +49,6 @@ Fully Paralyzed![A][X]
 ## OrderMovesDesc
 Arrange your moves[N]
 for counter-attacking.[X]
-
-## UM_Promote
- Promote[X]
- 
-## UM_PromoteDesc
-Promote this unit.[X]
 
 ## UM_RecoverMove
  Recover[X]

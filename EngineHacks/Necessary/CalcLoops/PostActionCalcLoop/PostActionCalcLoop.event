@@ -13,7 +13,7 @@ POIN LungeUpdate
 
 
 #ifdef PROMOTE_LEVELUP
-POIN PromoteOnLevelUp
+//POIN PromoteOnLevelUp // Now a unit menu command 
 #endif // PROMOTE_LEVELUP
 
 #ifdef GAIDEN_MAGIC

@@ -189,7 +189,7 @@
 
 // If uncommented, units can promote after acting when at or above the specified levels.
 // (By default, all classes promote at level 255.) 
-#define PROMOTE_LEVELUP
+//#define PROMOTE_LEVELUP
 
 #define ACCESSORIES_AND_FORGING
 

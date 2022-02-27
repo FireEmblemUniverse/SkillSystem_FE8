@@ -92,6 +92,8 @@ PROTECT 0x0E120 // tutorial disabler?
 
 
 #define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
+#define PostTrainerBattleRamLocat 0x30017b3 
+
 
 #define LunarBrace 0x98
 #define SolarBrace 0x99

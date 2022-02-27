@@ -1,0 +1,56 @@
+#include "eastdlib.event" 
+
+// Add a menu command to use. 
+// 	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+
+/*
+## UM_Promote
+ Promote[X]
+ 
+## UM_PromoteDesc
+Promote this unit.[X]
+*/
+
+
+
+PromotionMenuEvent:
+ASMC PromoteStart
+ASMC PromoteFinish 
+NoFade 
+ENDA 
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteUsability:
+POP
+#incbin "PromoteUsability.dmp"
+POIN PromotionLevelTable
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteEffect:
+POP
+#incbin "PromoteEffect.dmp"
+POIN PromotionMenuEvent
+
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteStart:
+POP
+#incbin "PromoteStart.dmp"
+
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1
+PromoteFinish:
+POP
+#incbin "PromoteFinish.dmp"
+
+
+
+
