@@ -441,6 +441,10 @@ SVAL r2 UnitsTubaTuna|IsPointer
 GOTO 200
 
 Label 39
+
+#ifndef ALT_TITLESCREEN
+GOTO 60
+#endif 
 CompareTactText(MysteryName_001) 
 BNE 40 rC r7
 CALL PlaytesterCommonMessage
@@ -484,6 +488,8 @@ SVAL r2 UnitsMystery_006|IsPointer
 GOTO 200
 
 Label 45 
+
+Label 60 // End of mystery names 
 Label 199
 
 

@@ -250,14 +250,14 @@ ENDA
 
 
 GlobalTurnEvent:
-//#ifndef DEBUG_MODE 
+#ifndef DEBUG_MODE 
 CHECK_TURNS
 SVAL s1 1
 BNE 3 sC s1 
 ASMC QuicksaveDuringStartEvent
 GOTO 2
 LABEL 3
-//#endif 
+#endif 
 CHECK_EVENTID QuicksaveToggleFlag
 BNE 2 sC s0 
 QuickSave

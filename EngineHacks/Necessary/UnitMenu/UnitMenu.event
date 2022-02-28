@@ -173,8 +173,6 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   MenuCommand(UM_Confirm, UM_ConfirmDesc, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
   MenuCommand(UM_Read, UM_ReadDesc, NormalText, GenericTrapUsability0x38, GenericTrapEffect) //Read
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x39, GenericTrapEffect) //Examine
-  MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Save
-  MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3B, GenericTrapEffect) //Save
   //MenuCommand(UM_Use, UM_UseDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Use
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, GenericTrapUsability0x3C, GenericTrapEffect) //Enter
   MenuCommand(UM_Exit2, UM_Exit2Desc, GreenText, GenericTrapUsability0x3D, GenericTrapEffect) //Exit

@@ -78,7 +78,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  PikachuID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  PidgeyID 0x1 Level(1,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -222,16 +222,17 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(28, True, 0x145) // all 
+AutoLevelUnits(1, True, 0x145) // all 
 
 Write_Byte(4, GaryStarterClass) 
 
 
 Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(10, YCoordNewArea)    
-Write_Byte(35, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(15, YCoordNewArea)  
-MNC2 Route11Ch  
+Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(21, YCoordNewArea)  
+//MNC2 Route11Ch  
+MNC2 CinnabarCh
 //MNC2 Route1Ch 
 //MNC2 Route3Ch
 //MNC2 PokecenterCh

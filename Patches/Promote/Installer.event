@@ -13,11 +13,6 @@ Promote this unit.[X]
 
 
 
-PromotionMenuEvent:
-ASMC PromoteStart
-ASMC PromoteFinish 
-NoFade 
-ENDA 
 
 
 ALIGN 4
@@ -26,7 +21,7 @@ ORG CurrentOffset+1
 PromoteUsability:
 POP
 #incbin "PromoteUsability.dmp"
-POIN PromotionLevelTable
+POIN PromoteLevelTable
 
 ALIGN 4
 PUSH 
@@ -52,5 +47,10 @@ POP
 #incbin "PromoteFinish.dmp"
 
 
-
+ALIGN 4
+PromotionMenuEvent:
+ASMC PromoteStart
+ASMC PromoteFinish 
+NoFade 
+ENDA 
 
