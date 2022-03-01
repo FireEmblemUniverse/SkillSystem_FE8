@@ -12,6 +12,70 @@
 	.equ EventEngine, 0x800D07C
 	
 	.equ GetUnit, 0x8019431
+
+.global ChangeS1UnitIntoLowestUnitID
+.type ChangeS1UnitIntoLowestUnitID, %function 
+ChangeS1UnitIntoLowestUnitID:
+push {r4, lr}
+bl FindFreeSlot
+mov r4, r0 
+ldr r3, =MemorySlot 
+ldr r0, [r3, #0x1*4] @ s1 as unit ID 
+blh GetUnitByEventParameter
+cmp r0, #0 
+beq Change_Error
+mov r2, r0 @ Unit ram 
+
+mov r0, r4 
+mov r1, #0x34 @ Size of Character table 
+mul r0, r1 
+ldr r3, =0x8017D64 @ POIN CharacterTable 
+ldr r3, [r3] @ Char table unit 0 
+add r0, r3 @ Character table entry 
+str r0, [r2] @ change unit pointer 
+
+Change_Error:
+
+pop {r4} 
+pop {r0}
+bx r0
+.ltorg 
+.align 
+
+
+
+.global FindFreeSlot
+.type FindFreeSlot, %function 
+FindFreeSlot:
+push {r4, lr}
+ldr r3, =0x8017D64 @ POIN CharacterTable 
+ldr r3, [r3] @ Char table unit 0 
+
+mov r4, #0x01 @counter 
+
+
+LoopThroughUnits:
+mov r0, r4 
+cmp r4, #40 @ 0x3F theoretical maximum 
+bgt Error 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
+blh GetUnitByEventParameter @ 0x0800BC51
+cmp r0,#0
+beq FoundUnit
+@NextUnit:
+add r4,#1
+b LoopThroughUnits 
+Error:
+mov r4, #0xFF 
+FoundUnit:
+mov r0, r4 
+
+pop {r4}
+pop {r1}
+bx r1 
+
+.ltorg 
+.align 
+
 	
 	.global CapturePokemon
 	.type   CapturePokemon, function
@@ -111,19 +175,10 @@ add r0, r1
 strb 	r0,[r5,#0x13]	
 
 
-mov r3, #0x01 @counter 
+bl FindFreeSlot
+cmp r0, #40 
+bgt FullBox
 
-LoopThroughUnits:
-mov r0, r3 
-cmp r3, #40
-bgt FullBox 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
-push {r3} 
-blh GetUnitByEventParameter @ 0x0800BC51
-pop {r3} 
-@ldr r1, =MemorySlot
-@str r0, [r1, #4*0x05] @[30004CC]!!  
-cmp r0,#0
-bne NextUnit
 
 @push {r3} 
 @blh 0x080956d8 @ReorderPlayerUnitsBasedOnDeployment
@@ -137,9 +192,10 @@ bne NextUnit
 
 @ turn into first free player unit id from 0x01 - 0x35 
 mov r1, #0x34 @ Size of each char entry in char table 
-mov r0, r3 
+@ r0 as unit ID 
 mul r0, r1
-ldr r1, =#0x8803D30 @unit 0 in char table
+ldr r1, =0x8017D64 @ POIN CharacterTable 
+ldr r1, [r1] @ Char table unit 0 
 add r1, r0 
 str r1, [r5] 
 
@@ -185,10 +241,7 @@ AddToParty:
 
 b End_LoopThroughUnits
 
-NextUnit:
-add r3,#1
-cmp r3,#0x3F
-ble LoopThroughUnits
+
 @ run event where unit was not caught 
 FullBox:
 ldr	r0, =PCBoxFullEvent	@this event is 

@@ -257,11 +257,12 @@ BNE 3 sC s1
 ASMC QuicksaveDuringStartEvent
 GOTO 2
 LABEL 3
-#endif 
+
 CHECK_EVENTID QuicksaveToggleFlag
 BNE 2 sC s0 
 QuickSave
 LABEL 2 
+#endif 
 CHECK_EVENTID CallCountdownFlag_2 
 BNE 0 rC r0 
 ENUF 1 // Auto refresh if not in danger 

@@ -1,5 +1,6 @@
 
-#include "FE-CLib-master/include/gbafe.h"
+#include "gbafe.h"
+
 typedef struct CreatorClassProcStruct CreatorClassProcStruct;
 typedef struct Struct_SelectCharacterProc Struct_SelectCharacterProc;
 typedef struct SomeAISStruct SomeAISStruct;
@@ -981,6 +982,9 @@ void SelectCharacterMenuEnd(void)
 	//DrawTileGraphics();
 	SMS_UpdateFromGameData();
 	MU_EndAll();
+	LoadMapSpritePalettes();
+
+	
 	
 	FillBgMap(gBg0MapBuffer,0);
 	FillBgMap(gBg1MapBuffer,0);

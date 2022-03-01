@@ -1,5 +1,5 @@
 
-.include "FE-CLib-master/reference/FE8U-20190316.s"
+.include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 
 
 SET_FUNC Font_ResetAllocation, (0x08003D20+1) 

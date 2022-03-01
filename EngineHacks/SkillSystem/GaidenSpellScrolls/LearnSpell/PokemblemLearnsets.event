@@ -145,25 +145,50 @@ BYTE 0 0
 ALIGN 4
 CaterpieLearnset:
 BYTE 1 Tackle
-BYTE 3 StringShot
-BYTE 7 Harden 
-BYTE 15 BugBite
+BYTE 1 StringShot
+BYTE 4 Harden 
+BYTE 8 GuardMove
+BYTE 10 Confusion
+//BYTE 12 Sleep2 //SleepPowder
+//BYTE 12 PoisonPowder
+BYTE 16 Gust
+//BYTE 22 Rescue //?Buff (Whirlwind)
+BYTE 24 Psybeam
+BYTE 28 SignalBeam
+BYTE 30 Tailwind
+BYTE 34 RecoverMove //?Buff (Safeguard)
+BYTE 36 Snarl
+BYTE 40 BugBuzz
+//BYTE 15 BugBite
 BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
 BYTE 1 Tackle
-BYTE 1 Harden 
-BYTE 3 StringShot
+BYTE 1 StringShot
+BYTE 4 Harden 
+BYTE 8 GuardMove
 BYTE 10 Confusion
-BYTE 15 BugBite
+//BYTE 12 Sleep2 //SleepPowder
+//BYTE 12 PoisonPowder
+BYTE 16 Gust
+//BYTE 22 Rescue //?Buff (Whirlwind)
+BYTE 24 Psybeam
+BYTE 28 SignalBeam
+BYTE 30 Tailwind
+BYTE 34 RecoverMove //?Buff (Safeguard)
+BYTE 36 Snarl
+BYTE 40 BugBuzz
+//BYTE 15 BugBite
 //BYTE 7 Guard
 BYTE 0 0
 
 ALIGN 4
 ButterfreeLearnset:
+BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 3 Tackle
+BYTE 4 Harden 
+BYTE 8 GuardMove
 BYTE 10 Confusion
 //BYTE 12 Sleep2 //SleepPowder
 //BYTE 12 PoisonPowder
@@ -179,30 +204,43 @@ BYTE 0 0
 
 ALIGN 4
 WeedleLearnset:
-BYTE 1 PoisonSting
-BYTE 2 StringShot
-BYTE 4 Tackle 
-BYTE 7 Harden 
-BYTE 15 BugBite
+BYTE 1 Harden
+BYTE 2 PoisonSting
+BYTE 3 StringShot
+BYTE 4 Tackle
+BYTE 8 GuardMove 
+BYTE 10 FuryCutter
+BYTE 15 PinMissile
+BYTE 19 Rage
+BYTE 22 ThiefAtt
+BYTE 25 PoisonJab
+BYTE 31 Agility
 BYTE 0 0
 
 ALIGN 4
 KakunaLearnset:
-BYTE 1 Harden 
-BYTE 1 PoisonSting 
-BYTE 2 StringShot
+BYTE 1 Harden
+BYTE 2 PoisonSting
+BYTE 3 StringShot
 BYTE 4 Tackle
+BYTE 8 GuardMove 
 BYTE 10 FuryCutter
-BYTE 15 BugBite
-//BYTE 7 Guard
+BYTE 15 PinMissile
+BYTE 19 Rage
+BYTE 22 ThiefAtt
+BYTE 25 PoisonJab
+BYTE 31 Agility
 BYTE 0 0
 
 ALIGN 4
 BeedrillLearnset:
-BYTE 1 PoisonSting
+BYTE 1 Harden
+BYTE 2 StringShot
+BYTE 3 PoisonSting
 BYTE 4 Tackle
+BYTE 8 GuardMove 
 BYTE 10 FuryCutter
-BYTE 16 PinMissile
+BYTE 15 PinMissile
 BYTE 19 Rage
 BYTE 22 ThiefAtt
 BYTE 25 PoisonJab
@@ -212,7 +250,7 @@ BYTE 0 0
 ALIGN 4
 PidgeyLearnset:
 BYTE 1 Tackle
-BYTE 4 Gust
+BYTE 5 Gust
 BYTE 9 SandAttack
 BYTE 13 QuickAttack
 BYTE 21 Twister
@@ -228,8 +266,8 @@ BYTE 0 0
 ALIGN 4
 PidgeottoLearnset:
 BYTE 1 Tackle
-BYTE 5 SandAttack
-BYTE 9 Gust
+BYTE 5 Gust
+BYTE 9 SandAttack
 BYTE 13 QuickAttack
 BYTE 21 Twister
 BYTE 25 WingAttack
@@ -244,8 +282,8 @@ BYTE 0 0
 ALIGN 4
 PidgeotLearnset:
 BYTE 1 Tackle
-BYTE 5 SandAttack
-BYTE 9 Gust
+BYTE 5 Gust
+BYTE 9 SandAttack
 BYTE 13 QuickAttack
 BYTE 21 Twister
 BYTE 25 WingAttack
@@ -261,7 +299,7 @@ ALIGN 4
 RattataLearnset:
 BYTE 1 Tackle
 BYTE 4 TailWhip 
-BYTE 6 QuickAttack
+BYTE 7 QuickAttack
 BYTE 10 Bite
 BYTE 16 ThiefAtt 
 BYTE 22 HyperFang
@@ -272,7 +310,7 @@ ALIGN 4
 RaticateLearnset:
 BYTE 1 Tackle
 BYTE 4 TailWhip 
-BYTE 6 QuickAttack
+BYTE 7 QuickAttack
 BYTE 10 Bite
 BYTE 16 ThiefAtt 
 BYTE 22 HyperFang
@@ -645,45 +683,51 @@ ALIGN 4
 OddishLearnset:
 BYTE 1 Absorb 
 BYTE 5 Constrict  
-BYTE 9 Acid
-BYTE 13 PoisonPowder
+BYTE 8 LeafFlurry
+BYTE 11 Acid
+BYTE 14 MagicalLeaf
+BYTE 17 PoisonPowder
 //BYTE 17 Sleep2 //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
 BYTE 33 RecoverMove //?Support Moonlight
 BYTE 37 PetalDance
-BYTE 39 MagicalLeaf
+//BYTE 39 MagicalLeaf
 BYTE 0 0
 
 ALIGN 4
 GloomLearnset:
 BYTE 1 Absorb 
 BYTE 5 Constrict  
-BYTE 9 Acid
-BYTE 13 PoisonPowder
+BYTE 8 LeafFlurry
+BYTE 11 Acid
+BYTE 14 MagicalLeaf
+BYTE 17 PoisonPowder
 //BYTE 17 Sleep2 //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
 BYTE 33 RecoverMove //?Support Moonlight
 BYTE 37 PetalDance
-BYTE 39 MagicalLeaf
+//BYTE 39 MagicalLeaf
 BYTE 0 0
 
 ALIGN 4
 VileplumeLearnset:
 BYTE 1 Absorb 
 BYTE 5 Constrict  
-BYTE 9 Acid
-BYTE 13 PoisonPowder
+BYTE 8 LeafFlurry
+BYTE 11 Acid
+BYTE 14 MagicalLeaf
+BYTE 17 PoisonPowder
 //BYTE 17 Sleep2 //SleepPowder
 BYTE 21 MegaDrain
 BYTE 25 RecoverMove //?Support LuckyChant 
 BYTE 29 BodySlam
 BYTE 33 RecoverMove //?Support Moonlight
 BYTE 37 PetalDance
-BYTE 39 MagicalLeaf
+//BYTE 39 MagicalLeaf
 BYTE 0 0
 
 ALIGN 4
@@ -811,10 +855,11 @@ BYTE 0 0
 ALIGN 4
 PsyduckLearnset:
 BYTE 1 Scratch 
+BYTE 3 Bubble 
 BYTE 5 TailWhip 
-BYTE 9 Bubble 
-BYTE 14 SandAttack
-BYTE 18 Confusion
+BYTE 8 Confusion 
+BYTE 13 WaterGun 
+BYTE 16 SandAttack
 BYTE 22 WaterPulse
 BYTE 27 Doubleslap
 BYTE 31 TailWhip
@@ -827,10 +872,11 @@ BYTE 0 0
 ALIGN 4
 GolduckLearnset:
 BYTE 1 Scratch 
+BYTE 3 Bubble 
 BYTE 5 TailWhip 
-BYTE 9 Bubble 
-BYTE 14 SandAttack
-BYTE 18 Confusion
+BYTE 8 Confusion 
+BYTE 13 WaterGun 
+BYTE 16 SandAttack
 BYTE 22 WaterPulse
 BYTE 27 Doubleslap
 BYTE 31 TailWhip
@@ -958,12 +1004,19 @@ ALIGN 4
 AbraLearnset:
 BYTE 1 Leer 
 BYTE 16 Confusion
+BYTE 18 RecoverMove //?Support Disable
+BYTE 23 Psybeam
+BYTE 28 Barrier
+BYTE 30 RecoverMove //?Support RecoverMove
+BYTE 34 CalmMind
+BYTE 36 Barrier //?Support RolePlay
+BYTE 40 Psychic
+BYTE 42 RecoverMove
 BYTE 0 0
 
 ALIGN 4
 KadabraLearnset:
 BYTE 1 Leer 
-BYTE 1 Confusion
 BYTE 16 Confusion
 BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
@@ -978,7 +1031,6 @@ BYTE 0 0
 ALIGN 4
 AlakazamLearnset:
 BYTE 1 Leer 
-BYTE 1 Confusion
 BYTE 16 Confusion
 BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
@@ -1038,12 +1090,13 @@ BYTE 1 VineWhip
 BYTE 7 Leer
 BYTE 11 Constrict
 //BYTE 13 Sleep2
-BYTE 15 PoisonPowder
+BYTE 14 RazorLeaf
+BYTE 17 PoisonPowder
 BYTE 19 Acid
 BYTE 24 ThiefAtt
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
-BYTE 38 RazorLeaf
+BYTE 38 LeafBlade
 BYTE 41 Slam
 BYTE 0 0
 
@@ -1053,12 +1106,13 @@ BYTE 1 VineWhip
 BYTE 7 Leer
 BYTE 11 Constrict
 //BYTE 13 Sleep2
-BYTE 15 PoisonPowder
+BYTE 14 RazorLeaf
+BYTE 17 PoisonPowder
 BYTE 19 Acid
 BYTE 24 ThiefAtt
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
-BYTE 38 RazorLeaf
+BYTE 38 LeafBlade
 BYTE 41 Slam
 BYTE 0 0
 
@@ -1068,12 +1122,13 @@ BYTE 1 VineWhip
 BYTE 7 Leer
 BYTE 11 Constrict
 //BYTE 13 Sleep2
-BYTE 15 PoisonPowder
+BYTE 14 RazorLeaf
+BYTE 17 PoisonPowder
 BYTE 19 Acid
 BYTE 24 ThiefAtt
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 33 Sludge
-BYTE 38 RazorLeaf
+BYTE 38 LeafBlade
 BYTE 41 Slam
 BYTE 0 0
 

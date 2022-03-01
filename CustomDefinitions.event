@@ -12,7 +12,7 @@ PROTECT 0x0E120 // tutorial disabler?
 // 968 / $3C8 bytes used? - free range
 //PROTECT $1ACBC $1B084
 
-#define TrainerDifficultyBonusDef 7
+#define TrainerDifficultyBonusDef 10
 
 
 #define FreeSpace 0x01081420
@@ -151,7 +151,7 @@ PROTECT 0x0E120 // tutorial disabler?
 #define Route1Tutorial_A 0x95 
 #define QuicksaveToggleFlag 0x96 
 #define DangerRadiusToggleFlag 0x97 
-
+#define PurchasedPsyduckFlag 0x98
 
 #define SoulbadgeObtained 0x9A 
 #define RainbowbadgeObtained 0xA0 

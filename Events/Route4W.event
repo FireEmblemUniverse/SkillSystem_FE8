@@ -45,14 +45,19 @@ TEXTSHOW RocketMagikarpText_A
 TEXTEND 
 SVAL r7 1 
 BNE 0 rC r7 
+LOAD1 1 MagikarpUnitGroup 
+
 TEXTSHOW RocketMagikarpText_B
 ENUT RocketMagikarpFlag
 SVAL r3 2000 
 GIVETOSLOT3 // Take 2000 gold 
-LOAD1 1 MagikarpUnitGroup 
+
 ENUN 
-AutoLevelUnits(0, True, 0x3636) // Magikarp 
+AutoLevelUnits(1, True, 0x3636) // Magikarp 
 UNCM(0x36, 0x10009) // Undeploy + escape the magikarp 
+
+SVAL s1 0x36 // Magikarp's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
 
 GOTO 50 
 LABEL 0 
@@ -187,7 +192,7 @@ UNIT
 // Wilds
 HumanTrainers:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT 0xEF rocket_mID 0x0 Level(1, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA12R11 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xEF rocket_mID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA12R11 [0x0,0x0,0x0,0x0] DoNothing
 UNIT 
 
 MagikarpUnitGroup:

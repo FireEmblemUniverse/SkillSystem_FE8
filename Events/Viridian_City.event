@@ -24,8 +24,40 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, 0xE1] 0 // Captain 
+TrainerPostBattleTalk(0xE1) // Captain talk again 
 END_MAIN
 
+PurchasePsyduckevent:
+EVBIT_MODIFY 4 
+WallText(PurchasePsyduckText)
+LOAD1 1 PsyduckUnitGroup  
+ENUN 
+SelectCharacter(0x37, 0, 0, 0, 0, 1000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0, 1)
+WallText(No_PurchasedPsyduckText)
+ENUF PurchasedPsyduckFlag
+DISA 0x37
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+WARP_OUT
+SET_ACTIVE 0
+WallText(Yes_PurchasedPsyduckText)
+AutoLevelUnits(3, True, 0x3737) // Psyduck 
+UNCM(0x37, 0x10009) // Undeploy + escape the magikarp 
+SVAL s1 0x37 // Psyduck's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+LABEL 63 
+NoFade
+ENDA 
 
 
 LocationBasedEvents:
@@ -97,7 +129,8 @@ CutBush(13,5)
 //CoinsTrap(9,29,ChapterID*2,450)
 CoinsTrap(26,14,(ChapterID*2)+1,600)
 SpellScrollTrap(12,5, (ChapterID*2)+1, LeechLife)
-RockSmash(11,23)
+RockSmash(9,22)
+RockSmash(10,23)
 SkillScrollTrap(9,29, (ChapterID*2), ReliefID)
 
 
@@ -141,7 +174,9 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
-
+LOAD1 1 FisherUnitGroup
+ENUN 
+MarkTrainerAsDefeated(0xE1) 
 
 LABEL 0x63
 NoFade
@@ -187,29 +222,28 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
+FisherUnitGroup:
+UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [13,24]  0b 0x0	0x1 REDA13R24 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+PsyduckUnitGroup:
+UNIT 0x37 PsyduckID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 
-TalkEvent:
-Text(0x9DD) 
-NoFade
-ENDA 
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xF, SSA_0xE0_BQ) // Gary 
+SHORT SSA_0xE0_BQ // gary
+SHORT SSA_0xE2_BQ // n/a
+TDQ_TableTerminator
 
-VillageEvent:
-	VillageEventItem(VillageText, Village, Boots)
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xF, SSA_0xE0_BD, 1800) // Gary
+SHORT SSA_0xE0_BD // gary
+SHORT 1800 // Gold 
+SHORT V_Fisherman_BD // captain after HM obtained 
+SHORT 600 // Gold 
+}
 
-HouseEvent:
-	// Set parameters
-	SVAL r1 NiceThighsID
-	SVAL r2 (-1) // (-1) is active unit
-	// Check if unit has skill
-	// If they have, goto label #0 (end)
-	ASMC (ASMC_HasSkill|1)
-	BNE 0 rC r0
-	// Learn skill to unit
-	ASMC (ASMC_LearnNewSkill|1)
-LABEL 0
-	Text(HouseText)	
-	NoFade
-	ENDA
 	
 #undef ChapterID

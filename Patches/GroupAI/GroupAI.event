@@ -2,7 +2,10 @@
 
 //this defines it
 ALIGN 4
+PUSH
+ORG CurrentOffset+1
 GroupAI:
+POP
 #incbin "GroupAI.dmp"
 
 

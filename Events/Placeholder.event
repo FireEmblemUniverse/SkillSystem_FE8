@@ -188,9 +188,9 @@ UNIT
 
 
 EnemyUnits:
-//UNIT 0x50 ClassRoute2NWildA 0x0 Level(1, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
-//UNIT 0x50 ParasectID 0x0 Level(1, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 OddishID 0x0 Level(1, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA15R12 [Ember,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+//UNIT 0x50 ClassRoute2NWildA 0x0 Level(0, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
+//UNIT 0x50 ParasectID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 OddishID 0x0 Level(0, Enemy, 1)   [13,12] 0b	0x0 0x01 REDA15R12 [Ember,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 //UNIT 0x50 BeedrillID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] BushAI
 //UNIT 0x61 ButterfreeID 0x0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x01 REDA14R12 [0x0,0x0,0x0,0x0] [0,0,0,32]
 
@@ -253,7 +253,7 @@ SetUnitStatus(2, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 
-SetUnitStatus(1, 0x28, Gust)
+SetUnitStatus(1, 0x28, ThunderWave)
 SetUnitStatus(1, 0x29, Harden)
 SetUnitStatus(1, 0x18, 30)
 //SetUnitStatus(1, 0x29, RecoverMove)

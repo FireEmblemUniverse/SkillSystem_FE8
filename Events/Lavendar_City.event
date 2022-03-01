@@ -85,7 +85,7 @@ ChapterTransition(Route12NCh, 12,0)
 
 
 ToPokeTower:
-//CALL ClosedArea 
+CALL ClosedArea 
 ChapterTransition(PokemonTowerF1Ch, 10,18)
 
 ToRockTunnel:

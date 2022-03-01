@@ -107,6 +107,11 @@ bl BXR1
 ldr r3, =0x3007D6C @ player? 
 cmp r4, r3 
 bne SkipParaCheck1
+ldr r2, =0x202BCF0
+ldrb r1, [r2, #0xF] @ Phase 
+cmp r1, #0 
+bne SkipParaCheck1 @ If not player phase, exit 
+
 ldr r1, =CurrentUnit
 ldr r1, [r1]
 cmp r1, #0 

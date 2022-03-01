@@ -3,8 +3,8 @@
 #define GenericB UnitRoute1Trainer
 #define ClassA ClassRoute1WildA
 #define ClassB ClassRoute1WildB
-#define WildLvl 1 
-#define TrainerL 0
+#define WildLvl 1
+#define TrainerL 1
 EventPointerTable(ChapterID,ThisChapter)
 
 ALIGN 4
@@ -242,7 +242,7 @@ UNIT GenericA ClassA 0x0 Level(0, Enemy, 0)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0
 UNIT
 
 ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(2, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
 
@@ -269,8 +269,8 @@ TDQ_TableTerminator ; }
 
 
 HumanTrainers:
-UNIT 0xE0 boyID 0x0 Level(1, Enemy, 1) [7,27]  0b 0x0	0x1 REDA7R27 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 bug_catcherID 0x0 Level(1, Enemy, 1) [12,17]  0b 0x0	0x1 REDA12R17 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 boyID 0x0 Level(0, Enemy, 1) [7,27]  0b 0x0	0x1 REDA7R27 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE1 bug_catcherID 0x0 Level(0, Enemy, 1) [12,17]  0b 0x0	0x1 REDA12R17 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 

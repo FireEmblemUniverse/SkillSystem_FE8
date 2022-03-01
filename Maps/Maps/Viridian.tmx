@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="37" height="38" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="37" height="38" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="ViridianTilesProcessed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/ViridianTileset.png" trans="ffffff" width="512" height="512"/>
  </tileset>
@@ -800,8 +800,8 @@
    <tile gid="68"/>
    <tile gid="391"/>
    <tile gid="129"/>
-   <tile gid="391"/>
-   <tile gid="129"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
    <tile gid="35"/>
    <tile gid="36"/>
    <tile gid="35"/>
@@ -837,11 +837,11 @@
    <tile gid="68"/>
    <tile gid="38"/>
    <tile gid="39"/>
-   <tile gid="38"/>
-   <tile gid="39"/>
+   <tile gid="4"/>
    <tile gid="4"/>
    <tile gid="391"/>
    <tile gid="129"/>
+   <tile gid="3"/>
    <tile gid="4"/>
    <tile gid="4"/>
    <tile gid="98"/>
@@ -874,11 +874,11 @@
    <tile gid="68"/>
    <tile gid="111"/>
    <tile gid="104"/>
-   <tile gid="111"/>
-   <tile gid="104"/>
-   <tile gid="36"/>
+   <tile gid="4"/>
+   <tile gid="4"/>
    <tile gid="38"/>
    <tile gid="39"/>
+   <tile gid="4"/>
    <tile gid="36"/>
    <tile gid="4"/>
    <tile gid="98"/>
@@ -913,9 +913,9 @@
    <tile gid="9"/>
    <tile gid="13"/>
    <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="111"/>
    <tile gid="104"/>
+   <tile gid="4"/>
    <tile gid="36"/>
    <tile gid="4"/>
    <tile gid="98"/>
