@@ -48,6 +48,7 @@
 //0xFF indicates that that AI byte should not be changed.
 
 #define Goto(label) "BYTE 0x03 0x00 0xFF label; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000"
+#define Goto_End(label) "BYTE 0x03 0x00 0xFF label; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000 0 0 0 0"
 #define LoopAI "Goto(0)"
 
 #define AttackOnly(character) "BYTE 0x04 0x64 0xFF 0x00; WORD character; WORD 0x00000000; WORD 0x00000000"

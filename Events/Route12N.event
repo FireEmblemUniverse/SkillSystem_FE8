@@ -56,7 +56,7 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToLavendar [11,0] [12,0] 
+AREA 0 ToLavender [11,0] [12,0] 
 AREA 0 ToRoute12S [14,59] [15,59] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -68,8 +68,8 @@ EscapeTileEntry(15,59)
 EscapeTileTerminator ; } 
 #endif 
 
-ToLavendar:
-ChapterTransition(LavendarCh, 12,48)
+ToLavender:
+ChapterTransition(LavenderCh, 12,48)
 
 ToRoute12S:
 ChapterTransition(Route12SCh, 14,0)

@@ -3,8 +3,8 @@
 #define GenericB UnitPokeTowerTrainer
 #define ClassA ClassPokeTowerWildA
 #define ClassB ClassPokeTowerWildB
-#define WildLvl 21
-#define TrainerL 27
+#define WildLvl 22
+#define TrainerL 22
 
 
 
@@ -48,7 +48,7 @@ END_MAIN
 
 LocationBasedEvents:
 House(0, ToPokeTowerF2, 10,18) 
-House(0, ToLavendar, 18,9) 
+House(0, ToLavender, 18,9) 
 END_MAIN
 
 MiscBasedEvents:
@@ -68,8 +68,8 @@ EscapeTileTerminator ; }
 ToPokeTowerF2:
 ChapterTransition(PokemonTowerF2Ch, 18,11)
 
-ToLavendar:
-ChapterTransition(LavendarCh, 18,36)
+ToLavender:
+ChapterTransition(LavenderCh, 18,36)
 
 
 

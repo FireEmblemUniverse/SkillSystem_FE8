@@ -197,7 +197,7 @@ with you at once.[NL]
             - Trainer's Tips.[A][X]
 
 ## UnusedTrainerTips3
-Hold DOWN after WAIT to[NL]
+Hold Down after Wait to[NL]
 quickly jump down ledges.[NL]
       - Trainer's Tips.[A][X]
 
@@ -616,6 +616,22 @@ Hey, wait up! What's the hurry?[A][X]
 ## VF_0xE4_BD
 I give! You're good at this![A][X]
 
+## HireGeodudeText
+Want to hire my Rocky?[N]
+He knows the way.[A][X]
+
+## No_HireGeodudeText
+That's okay, Rocky.[A][X]
+
+## Yes_HireGeodudeText
+Rocky will take good[N]
+care of you![A][X]
+
+## HiredGeodudeText
+Rocky will come find me
+when you're done.[A][X]
+
+
 
 
 ## R3_0xE0_BQ
@@ -731,7 +747,7 @@ What about you?[A][X]
 ## MMB1_0xE5_BD
 You got me![A][NL]
 I saw them![NL]
-I'm sure they're from TEAM ROCKET![A][X]
+I'm sure they're from TEAM Rocket![A][X]
 
 
 
@@ -756,7 +772,7 @@ to get to CERULEAN CITY.[A][X]
 
 
 ## MMB3_0xE0_BQ
-We, TEAM ROCKET, shall find the[NL]
+We, TEAM Rocket, shall find the[NL]
 fossils![A][NL]
 Reviving Pok[Eaccent]mon from them will[NL]
 earn us huge riches.[A][X]
@@ -766,7 +782,7 @@ Urgh![NL]
 Now I'm mad![A][X]
 
 ## MMB3_0xE1_BQ
-We, TEAM ROCKET, are Pok[Eaccent]mon[NL]
+We, TEAM Rocket, are Pok[Eaccent]mon[NL]
 gangsters![A][NL]
 We strike fear with our strength![A][X]
 
@@ -846,7 +862,7 @@ Smell ya later, loser.[A][X]
 
 ## NoCascadeBadgeText
 I'm on patrol for[NL]
-TEAM ROCKET.[A][X]
+TEAM Rocket.[A][X]
 
 
 ## CeruleanGymSignText
@@ -911,7 +927,7 @@ Too much![A][X]
 
 ## R24_0xE2_BQ
 By the way, how would you like to[NL]
-join TEAM ROCKET?[A][NL]
+join TEAM Rocket?[A][NL]
 We're a group of professional[NL]
 criminals specializing in Pok[Eaccent]mon![A][NL]
 Want to join?[A][NL]
@@ -1320,21 +1336,37 @@ I'm exhausted...[A][X]
 
 
 ## PokemonTowerText
-Pok[Eaccent]mon TOWER[N]
+Pok[Eaccent]mon Tower[N]
 Becalm the Spirits of Pok[Eaccent]mon[A][X]
 
 ## GhostsText
 Do you believe in ghosts?[A][X]
 
-## LavendarHouse1Text
+## LavenderHouse1Text
 This town is known as the grave[N]
 site of Pok[Eaccent]mon.[A][N]
 Memorial services are held in[N]
-Pok[Eaccent]mon TOWER.[A][X]
+Pok[Eaccent]mon Tower.[A][X]
 
-## LavendarHouse2Text
-Ghosts appeared in Pok[Eaccent]mon TOWER.[A][N]
+## LavenderHouse2Text
+Ghosts appeared in Pok[Eaccent]mon Tower.[A][N]
 I think they're the spirits of[N]
-Pok[Eaccent]mon that the ROCKETS killed.[A][X]
+Pok[Eaccent]mon that the Rockets killed.[A][X]
+
+
+## GaryLavenderChallengeText
+[OpenRight][LoadGaryShrug][OpenRight]Hey, [Tact]![N]
+Did your Pok[Eaccent]mon die?[A][N]
+What? You're not playing a Nuzlocke?[N]
+[LoadGaryPoint]Filthy casual.[A][N]
+I can at least make them[N]
+faint! Let's go![A][X]
+
+## GaryLavenderDefeatText
+[OpenRight][LoadGaryShrug][OpenRight]Arrgh![N]
+You stinker![A][N]
+Tch.. I took it easy on you.[A][X]
+
+
 
 

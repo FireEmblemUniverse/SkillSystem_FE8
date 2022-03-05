@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="24" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" name="lavendar processed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="../TilesetPreviews/Lavendar" trans="ffffff" width="512" height="512"/>
+ <tileset firstgid="1" name="lavender processed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="../TilesetPreviews/Lavender" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="24" height="50">
   <properties>
    <property name="Anims1" value="0"/>
-   <property name="ChapterID" value="LavendarCh"/>
+   <property name="ChapterID" value="LavenderCh"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="LavendarMap"/>
-   <property name="ObjectType" value="LavendarObj"/>
-   <property name="PaletteID" value="LavendarPal"/>
-   <property name="TileConfig" value="LavendarConf"/>
+   <property name="MapID" value="LavenderMap"/>
+   <property name="ObjectType" value="LavenderObj"/>
+   <property name="PaletteID" value="LavenderPal"/>
+   <property name="TileConfig" value="LavenderConf"/>
   </properties>
   <data>
    <tile gid="1"/>

@@ -32,7 +32,7 @@
 #define Route9Obj 0x1E
 #define Route10Obj 0x1F
 #define RockTunnelObj 0x20
-#define LavendarCityObj 0x21
+#define LavenderCityObj 0x21
 #define Route8Obj 0x22
 #define PokemonTowerObj 0x23
 #define Route12Obj 0x24
@@ -90,7 +90,7 @@
 #define Route9Pal 0x58
 #define Route10Pal 0x59
 #define RockTunnelPal 0x5A
-#define LavendarCityPal 0x5B
+#define LavenderCityPal 0x5B
 #define Route8Pal 0x5C
 #define PokemonTowerPal 0x5D
 #define Route12Pal 0x5E

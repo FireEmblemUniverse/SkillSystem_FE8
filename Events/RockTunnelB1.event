@@ -49,7 +49,7 @@ END_MAIN
 
 LocationBasedEvents:
 House(0, ToRoute10, 20,2) 
-House(0, ToLavendar, 13,28) 
+House(0, ToLavender, 13,28) 
 House(0, ToRockTunnelB2_NE, 40,3) 
 House(0, ToRockTunnelB2_NW, 3,2) 
 House(0, ToRockTunnelB2_Mid, 19,11) 
@@ -79,8 +79,8 @@ EscapeTileTerminator ; }
 ToRoute10:
 ChapterTransition(Route10Ch, 8,19)
 
-ToLavendar:
-ChapterTransition(LavendarCh, 8,7)
+ToLavender:
+ChapterTransition(LavenderCh, 8,7)
 
 ToRockTunnelB2_NE:
 ChapterTransition(RockTunnelB2Ch, 30,3)

@@ -24,8 +24,8 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, 0xE1] 0 // Captain 
-TrainerPostBattleTalk(0xE1) // Captain talk again 
+CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, 0xE1] 0 // NPC
+TrainerPostBattleTalk(0xE1) // NPC talk again 
 END_MAIN
 
 PurchasePsyduckevent:
@@ -39,7 +39,7 @@ BEQ 10 sC sB
 GOTO 20
 
 LABEL 10 
-UNCR(0, 1)
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
 WallText(No_PurchasedPsyduckText)
 ENUF PurchasedPsyduckFlag
 DISA 0x37
@@ -52,7 +52,7 @@ WARP_OUT
 SET_ACTIVE 0
 WallText(Yes_PurchasedPsyduckText)
 AutoLevelUnits(3, True, 0x3737) // Psyduck 
-UNCM(0x37, 0x10009) // Undeploy + escape the magikarp 
+UNCM(0x37, 0x10009) // Undeploy + escape the psyduck 
 SVAL s1 0x37 // Psyduck's UnitID 
 ASMC ChangeS1UnitIntoLowestUnitID
 LABEL 63 

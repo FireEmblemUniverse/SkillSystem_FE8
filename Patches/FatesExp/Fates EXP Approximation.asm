@@ -257,6 +257,10 @@ normalKillingEXP:
 
 killingBoundaryCheck:
 boundaryCheck:
+cmp r0, #0x0
+bge positive
+mov r0, #0x0
+positive:
 cmp r0, #10
 bge Not4x
 lsl r0, #2 @ 4x exp 
@@ -281,10 +285,7 @@ add r0, r0
 add r0, r0 @ 3x 
 lsr r0, #1 @ 1.5x exp against trainers 
 NoTrainerBonus:
-cmp r0, #0x0
-bge positive
-mov r0, #0x0
-positive:
+
 cmp r0, #0x64
 ble end
 mov r0, #0x64

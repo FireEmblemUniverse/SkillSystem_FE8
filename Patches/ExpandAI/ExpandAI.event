@@ -4,6 +4,7 @@
 #include "ExpandAI_Internals.event"
 
 #include "MakeAIWait.lyn.event" 
+#include "GuidePlayerAI.lyn.event"
 
 // Expands AI1 and AI2 lists to 254 entries 
 // 0xFF is reserved as do not change AI 
@@ -27,6 +28,7 @@ NewAI1Entry(30, SummonOrAttackInRangeLabel)
 NewAI1Entry(31, TrainerSummonTeamAILabel)
 NewAI1Entry(32, MoveTowardsCommanderAILabel)
 NewAI1Entry(33, TrainerFleeSummonTeamAILabel)
+NewAI1Entry(34, GuidePlayerAILabel)
 
 
 // AI 2 list
@@ -45,6 +47,7 @@ NewAI2Entry(30, SummonOrAttackInRangeLabel)
 NewAI2Entry(31, TrainerSummonTeamAILabel)
 NewAI2Entry(32, MoveTowardsCommanderAILabel)
 NewAI2Entry(33, TrainerFleeSummonTeamAILabel)
+NewAI2Entry(34, DoNothingAI2)
 
 #define SafeZoneAI2 23 
 #define BushAI [21,21]
@@ -64,69 +67,100 @@ NewAI2Entry(33, TrainerFleeSummonTeamAILabel)
 #define TrainerBossAI [31, 3, 0, 32] 
 #define TrainerFleeAI [33, 3, 0, 0] 
 #define AttackIfWithin2 [0, 6] 
+#define GuidePlayerAI [34, 34, 0, 0]
 
-
-ALIGN 4
+ALIGN 32
 MoveTowardsCommanderAILabel:
 Routine_AI(MoveTowardsCommanderAIFunc, 0)
 ChangeAI(24, 0xFF) // Attack if in range 
 Goto(0)
-ALIGN 4
+ALIGN 32
 
-ALIGN 4
+ALIGN 32
 TrainerFleeSummonTeamAILabel:
 Routine_AI(TrainerFleeSummonTeamAIFunc, 0)
 Goto(0)
-ALIGN 4
+ALIGN 32
 
 
-ALIGN 4
+ALIGN 32
 TrainerSummonTeamAILabel:
 Routine_AI(TrainerSummonTeamAIFunc, 0)
 Goto(0)
-ALIGN 4
+ALIGN 32
 
 
-ALIGN 4 
+ALIGN 32 
 PursueAndSummonOrAttackLabel:
 Routine_AI(PursueAndSummonOrAttackFunc, 0)
 Goto(0)
-ALIGN 4 
+ALIGN 32 
 
-ALIGN 4
+ALIGN 32
 RunAwayAndSummonLabel:
 Routine_AI(RunAwayAndSummonFunc, 0)
 Goto(0)
-ALIGN 4 
+ALIGN 32 
 
-ALIGN 4 
+ALIGN 32 
 SummonOrAttackInRangeLabel:
 Routine_AI(SummonOrAttackInRangeFunc, 0)
 Goto(0)
-ALIGN 4
+ALIGN 32
 
 
-ALIGN 4
+ALIGN 32
 MakeAIWaitLabel:
 Routine_AI(MakeAIWait, 0)
 Goto(0)
-ALIGN 4 
+ALIGN 32 
 
 
 RunAwayLabel:
 RunAway 
 Goto(0)
-ALIGN 4 
+ALIGN 32 
 
 
 
-ALIGN 4
+ALIGN 32
 AttackInRangeExceptF0toFF:
 ActionInRangeExcept(DoNotAttackTheseUnits)
 Goto(0)
 
-ALIGN 4
+ALIGN 32
+GuidePlayerAILabel:
+Routine_AI(GuidePlayerAIFunc, 0)
+Goto_End(0)
+
+
+
+
+// 803c5dc 
+// 0x30017D0 has some pointer to the current AI 
+// the first byte of ai1 is expected to be < 0x1C fsr 
+// 0x30017cc determines whether to use ai1 or ai2? 
+// fallback ai1 is 0x85a812c 
+
+
+ALIGN 32
 DoNotAttackTheseUnits:
+SHORT 0xE0 // Unit IDs to not move towards / target 
+SHORT 0xE1
+SHORT 0xE2
+SHORT 0xE3
+SHORT 0xE4
+SHORT 0xE5
+SHORT 0xE6
+SHORT 0xE7
+SHORT 0xE8
+SHORT 0xE9
+SHORT 0xEA
+SHORT 0xEB
+SHORT 0xEC
+SHORT 0xED
+SHORT 0xEE
+SHORT 0xEF
 SHORT 0xF0 // Unit IDs to not move towards / target 
 SHORT 0xF1
 SHORT 0xF2
@@ -142,42 +176,42 @@ SHORT 0xFB
 SHORT 0xFC
 SHORT 0xFD
 BYTE 0 //byte + align as terminator
-ALIGN 4 
+ALIGN 32 
 
-ALIGN 4
+ALIGN 32
 MoveTowardsE0Label:
 MoveTowardsIfOutOfRange(0xE0)
 Goto(0)
 
-ALIGN 4
+ALIGN 32
 Safest_Zoning_AI2:
 SafestMoveTowardsOpponentsExcept(DoNotApproachTheseUnits)
 Goto(0)
 
-ALIGN 4
+ALIGN 32
 Less_Safe_Zoning_AI2:
 LessSafeMoveTowardsOpponentsExcept(DoNotApproachTheseUnits)
 Goto(0)
 
-ALIGN 4
+ALIGN 32
 AttackIfEnemyInRange:
 ActionInRange
 Goto(0)
 
-ALIGN 4
+ALIGN 32
 DoNothing1TurnAI1:
 RunAway
 ChangeAI(24, 0xFF) // Attack if in range 
 Goto(0) 
 
 
-ALIGN 4
+ALIGN 32
 DoNothingAI1: 
 Nop_2
 Goto(0)
 
 // This has a whole bunch of Nops so that AI_2_Counter will increment 
-ALIGN 4
+ALIGN 32
 DoNothingAI2:
 Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop ; Nop 
 Goto(0)
@@ -188,7 +222,7 @@ Goto(0)
 #define WithinTwoActionsRoutine 0x0803F019 
 
 // Curly brackets { } keep Locat_X as defined only within the brackets 
-ALIGN 4
+ALIGN 32
 BeedrilAI_2:
 { ; Routine_AI(MoveToCoordRoutine, Locat_1) 
 	Routine_AI(MoveToCoordRoutine, Locat_2) 
@@ -199,24 +233,24 @@ BeedrilAI_2:
 
 Goto(0)
 
-ALIGN 4; Locat_1: 
+ALIGN 32; Locat_1: 
 defLocation(18,11)
-ALIGN 4; Locat_2: 
+ALIGN 32; Locat_2: 
 defLocation(15,15) 
-ALIGN 4; Locat_3: 
+ALIGN 32; Locat_3: 
 defLocation(16,21)
-ALIGN 4; Locat_4: 
+ALIGN 32; Locat_4: 
 defLocation(23,21) 
-ALIGN 4; Locat_5: 
+ALIGN 32; Locat_5: 
 defLocation(25,17)
-ALIGN 4; Locat_6: 
+ALIGN 32; Locat_6: 
 defLocation(25,11) ; }
 
 
 
 
 
-ALIGN 4
+ALIGN 32
 Within_2_Safest_Zoning_AI2:
 { ; Routine_AI(WithinTwoActionsRoutine, DoNotApproachTheseUnits) 
 GotoIfLT(1)
@@ -225,11 +259,27 @@ Goto(0)
 Label(1)
 ChangeAI(0xFF, SafeZoneAI2)
 Goto(1)
-ALIGN 4 
+ALIGN 32 
 }
 
-ALIGN 4
+ALIGN 32
 DoNotApproachTheseUnits:
+SHORT 0xE0 // Unit IDs to not move towards / target 
+SHORT 0xE1
+SHORT 0xE2
+SHORT 0xE3
+SHORT 0xE4
+SHORT 0xE5
+SHORT 0xE6
+SHORT 0xE7
+SHORT 0xE8
+SHORT 0xE9
+SHORT 0xEA
+SHORT 0xEB
+SHORT 0xEC
+SHORT 0xED
+SHORT 0xEE
+SHORT 0xEF
 SHORT 0xF0 // Unit IDs to not move towards / target 
 SHORT 0xF1
 SHORT 0xF2
@@ -245,6 +295,6 @@ SHORT 0xFB
 SHORT 0xFC
 SHORT 0xFD
 BYTE 0 //byte + align as terminator
-ALIGN 4 
+ALIGN 32 
 
 #endif 

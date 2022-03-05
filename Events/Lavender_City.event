@@ -1,7 +1,7 @@
-#define ChapterID LavendarCh
+#define ChapterID LavenderCh
 #define GenericB UnitCeruleanTrainer
-#define WildLvl 10 
-#define TrainerL 16 
+#define WildLvl 20
+#define TrainerL 20 
 
 
 
@@ -129,9 +129,9 @@ SignTrap(21,37, PokemonTowerText) // Wooden - Poke tower
 
 
 EnterTutTrap(10,41, GhostsText) // 
-EnterTutTrap(5,46, LavendarHouse1Text) // 
+EnterTutTrap(5,46, LavenderHouse1Text) // 
 
-EnterTutTrap(10,46, LavendarHouse2Text) // 
+EnterTutTrap(10,46, LavenderHouse2Text) // 
 
 
 //EnterTutTrap(23,18, DoorLockedText) //   

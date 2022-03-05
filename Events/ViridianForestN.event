@@ -43,6 +43,8 @@ Reinforce(0xF2, 1, ReinforcementUnits, 6, 3) // W-Mid
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR HiredPokemonFlag HireGeodudeevent [0x0, 0xE5] 0 // NPC
+TrainerPostBattleTalk(0xE5) // NPC talk again 
 AllTrainersPostBattleTalk
 //TrainerPostBattleTalk(0xE0)
 END_MAIN
@@ -123,6 +125,37 @@ ENDTRAP
 ALIGN 4
 
 
+HireGeodudeevent:
+EVBIT_MODIFY 4 
+WallText(HireGeodudeText)
+LOAD1 1 HireGeodudeUnitGroup  
+ENUN 
+SelectCharacter(HiredPokemonUnitID, 0, 0, 0, 0, 800, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_HireGeodudeText)
+ENUF HiredPokemonFlag
+DISA HiredPokemonUnitID
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+MOVENEXTTO (-1) HiredPokemonUnitID 0xE5   
+ENUN 
+SET_ACTIVE 0
+WallText(Yes_HireGeodudeText)
+AutoLevelUnits(5, True, (HiredPokemonUnitID<<0x8|HiredPokemonUnitID)) // Psyduck 
+SilentGiveItemWithDurability(HiredPokemonUnitID, JellyDonut,0x5)
+LABEL 63 
+NoFade
+ENDA 
+
+
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
@@ -154,39 +187,22 @@ ENUN
 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 
-/*
-LOAD1 0x1 EnemyTrainersA
-ENUN
-LOAD1 0x1 EnemyTrainersB
-ENUN 
-
-
-LOAD1 0x1 EnemyTrainersC
-ENUN 
-LOAD1 0x1 EnemyTrainersD
-ENUN 
-LOAD1 0x1 EnemyTrainersE
-ENUN  
-
-AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
-*/ 
-
-//FADU 7 
-//EVBIT_F 2
-//TutText(0x9d5)
-
-//CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
-// Returns # of trainers on map in rC
-//BEQ 10 rC r0 
-// If trainers exist, do stuff 
-//StopHere
-//Text(ViridianForestBG,ViridianForestNBirdkeeperText)
 
 
 LABEL 10 
 //SetUnitStatus(2, CurrentHP, 5)
 CALL SetBushHpEvent
 
+MarkTrainerAsDefeated(0xE5) 
+
+/*
+LOAD1 1 HireGeodudeUnitGroup
+ENUN 
+MOVE (-1) HiredPokemonUnitID [43,26]
+ENUN 
+AutoLevelUnits(4, True, (HiredPokemonUnitID<<0x8|HiredPokemonUnitID)) // Psyduck 
+SilentGiveItemWithDurability(HiredPokemonUnitID, JellyDonut,0x5)
+*/
 
 LABEL 0x63
 NoFade
@@ -270,6 +286,7 @@ SHORT VF_0xE1_BQ // 0xE1
 SHORT VF_0xE2_BQ // 0xE2 
 SHORT VF_0xE3_BQ // 0xE3 
 SHORT VF_0xE4_BQ // 0xE4 
+SHORT VF_0xE4_BQ // 0xE4 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
@@ -283,6 +300,8 @@ SHORT VF_0xE3_BD // 0xE3
 SHORT 600 // Gold 
 SHORT VF_0xE4_BD // 0xE4 
 SHORT 900 // Gold 
+SHORT HiredGeodudeText // 0xE4 
+SHORT 900 // Gold 
 TDQ_TableTerminator ; }
 
 HumanTrainers:
@@ -291,6 +310,11 @@ UNIT 0xE1 bug_catcherID 0x0 Level(0, Enemy, 1) [29,13]  0b 0x0	0x1 REDA29R13 [Th
 UNIT 0xE2 bug_catcherID 0x0 Level(0, Enemy, 1) [19,14]  0b 0x0	0x1 REDA19R14 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 bug_catcherID 0x0 Level(0, Enemy, 1) [12,8 ]  0b 0x0	0x1 REDA12R8  [ThreeRangeWep,0x0,0x0,0x0] TrainerFleeAI // This makes them run into a corner i think 
 UNIT 0xE4 bug_catcherID 0x0 Level(0, Enemy, 1) [9,25]  0b 0x0	0x1 REDA9R25 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI // TrainerBossAI
+UNIT 0xE5 hikerID 		0x0 Level(0, Enemy, 1) [43,24]  0b 0x0	0x0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+HireGeodudeUnitGroup:
+UNIT HiredPokemonUnitID GeodudeID 0x0 Level(0, NPC, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] GuidePlayerAI
 UNIT
 
 

@@ -216,8 +216,8 @@ b DontSummonAnything
 	.equ LoadUnit, 0x8017ac4 
 	.equ ClearUnit, 0x080177f4 
 	.equ GetUnit, 0x8019430 
-	.equ GetUnitByEventParameter, 0x0800BC51
-	.equ GetUnitDropLocation, 0x80184E1
+	.equ GetUnitByEventParameter, 0x0800BC50
+	.equ GetUnitDropLocation, 0x80184E0
 	.equ pr6C_NewBlocking,           0x08002CE0 
 	.equ pr6C_New,                   0x08002C7C
 	.equ Proc_CreateBlockingChild, 0x80031c5 
@@ -276,6 +276,8 @@ b JudgeInRangeBranch
 @@ldrb r0, [r4, #0xA] @ decisionTaken 
 @cmp r0, #1 
 @b JudgeInRangeBranch
+.ltorg 
+.align 
 
 .global AnyTargetWithinRange 
 .type AnyTargetWithinRange, %function 
@@ -346,8 +348,15 @@ blh GetUnit
 ldr r1, [r0] 
 cmp r1, #0 
 beq AnyoneWithinRangeLoop
+ldrb r1, [r1, #4] @ unit ID 
+cmp r1, #0xE0 
+blt NotTrainer
+cmp r1, #0xFE 
+bge NotTrainer 
+b AnyoneWithinRangeLoop
+NotTrainer:
 ldr r1, [r0, #0x0C] 
-ldr r2, =0x1000C
+ldr r2, =0x1000C @ escaped, dead, undeployed 
 and r1, r2 
 cmp r1, #0 
 bne AnyoneWithinRangeLoop
@@ -414,6 +423,9 @@ mov r8, r7
 pop {r4-r7}
 pop {r1}
 bx r1 
+
+.ltorg 
+.align 
 
 
 
@@ -571,6 +583,10 @@ beq ReturnTrue
 bl Call_AiScriptCmd_05_DoStandardAction
 b ReturnTrue 
 
+.ltorg 
+.align 
+.type Call_AiScriptCmd_05_DoStandardAction, %function 
+.global Call_AiScriptCmd_05_DoStandardAction
 
 Call_AiScriptCmd_05_DoStandardAction:
 push {lr}
@@ -602,6 +618,9 @@ ldr r2, [r2] @
 str r2, [r3] @ we store 0x85A8870 here (unless they repointed) 
 @ 30017d0 storing ActionInRange 
 
+
+@blh 0x803c974
+@blh 0x803cae4
 blh 0x803ca0c @AiScriptCmd_05_DoStandardAction
 DontTryStandardAction:
 
@@ -612,7 +631,7 @@ bx r0
 .global SetAIToWaitAtCoords
 .type SetAIToWaitAtCoords, %function 
 SetAIToWaitAtCoords:
-@ given r0 = XX and r1 = YY, wait at coords. 
+@ given r0 = XX and r1 = YY, and r2 = ActionType, wait at coords. 
 push {r4, lr}
 mov r4, r2 @ Action type 
 sub sp, #0xC 
