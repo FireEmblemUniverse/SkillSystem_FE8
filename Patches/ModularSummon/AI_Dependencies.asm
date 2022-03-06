@@ -348,13 +348,13 @@ blh GetUnit
 ldr r1, [r0] 
 cmp r1, #0 
 beq AnyoneWithinRangeLoop
-ldrb r1, [r1, #4] @ unit ID 
-cmp r1, #0xE0 
-blt NotTrainer
-cmp r1, #0xFE 
-bge NotTrainer 
-b AnyoneWithinRangeLoop
-NotTrainer:
+@ldrb r1, [r1, #4] @ unit ID 
+@cmp r1, #0xE0 
+@blt NotTrainer
+@cmp r1, #0xFE 
+@bge NotTrainer 
+@b AnyoneWithinRangeLoop
+@NotTrainer:
 ldr r1, [r0, #0x0C] 
 ldr r2, =0x1000C @ escaped, dead, undeployed 
 and r1, r2 

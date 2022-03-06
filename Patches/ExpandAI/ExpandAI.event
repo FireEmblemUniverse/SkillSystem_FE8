@@ -131,7 +131,8 @@ Goto(0)
 ALIGN 32
 GuidePlayerAILabel:
 Routine_AI(GuidePlayerAIFunc, 0)
-Goto_End(0)
+BYTE 0x03 0x00 0xFF 0; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000 // Goto(0)
+//Goto_End(0)
 
 
 
