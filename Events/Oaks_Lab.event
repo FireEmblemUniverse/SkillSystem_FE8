@@ -184,7 +184,7 @@ SupplyItem(Berry)
 SupplyItem(Berry)
 SupplyItem(Berry)
 SupplyItemWithDurability(SuperPotion, 5) 
-AutoLevelUnits(0, True, 0x1FF) // all units to gain moves they should've learned 
+AutoLevelUnits(1, True, 0x1FF) // all units to gain moves they should've learned 
 
 
 

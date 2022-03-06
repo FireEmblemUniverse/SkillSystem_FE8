@@ -179,7 +179,7 @@ RandomizeCoords(Grass, Range(0,0,5,5), Range(3,11,7,24))  //w
 
 
 //OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
 // Count trainer flags asmc ? 
 LOAD1 0x1 HumanTrainers
@@ -195,14 +195,14 @@ CALL SetBushHpEvent
 
 MarkTrainerAsDefeated(0xE5) 
 
-
+/*
 LOAD1 1 HireGeodudeUnitGroup
 ENUN 
 MOVE (-1) HiredPokemonUnitID [43,26]
 ENUN 
 AutoLevelUnits(4, True, (HiredPokemonUnitID<<0x8|HiredPokemonUnitID)) // Psyduck 
 SilentGiveItemWithDurability(HiredPokemonUnitID, JellyDonut,0x5)
-
+*/
 
 LABEL 0x63
 NoFade

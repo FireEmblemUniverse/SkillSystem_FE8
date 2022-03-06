@@ -147,8 +147,8 @@ LOAD1 0x1 EnemyUnitsC
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(8,46,11,52)) //S patch 
 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
-AutoLevelUnits(WildLvl, True, 0xF0F9) // Bushes  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+ // Bushes  
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 

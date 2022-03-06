@@ -140,7 +140,7 @@ ENUN
 RandomizeCoords(Ground, Range(0,0,5,5), Range(2,2,20,18)) //grass patch 
 
 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
 LOAD1 0x1 HumanTrainers //  & Marowak 
 ENUN 

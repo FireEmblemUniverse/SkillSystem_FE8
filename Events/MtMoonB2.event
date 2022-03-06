@@ -172,8 +172,8 @@ ENUN
 RandomizeCoords(Ground, Range(0,0,5,5), Range(19,03,29,6))
 
 
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
-AutoLevelUnits(WildLvl, True, 0xF0F9) // Burrows 
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+ // Burrows 
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 

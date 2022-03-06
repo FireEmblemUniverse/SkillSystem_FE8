@@ -142,8 +142,8 @@ ENUN
 RandomizeCoords(Ground, Range(0,0,5,5), Range(4,26,37,37)) //se patch 
 LOAD1 0x1 EnemyUnitsC // burrows 
 ENUN
-AutoLevelUnits(WildLvl, True, 0x508F) // Wilds  
-AutoLevelUnits(WildLvl, True, 0xF0F9) // Burrows 
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+ // Burrows 
 
 
 LOAD1 0x1 HumanTrainers

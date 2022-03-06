@@ -8,7 +8,7 @@
 	.equ GetUnitByEventParameter, 0x0800BC50
 	.equ CurrentUnit, 0x3004E50
 	.equ AiTryMoveTowards, 0x803BA08 
-	.equ AIScript12_Move_Towards_Enemy, 0x803ce18 
+	
 @ if within 10 tiles of party leader, attack if able or move towards coord XXYY if not able to 
 @ if farther than that, move towards party leader 
 .type GuidePlayerAIFunc, %function 
@@ -16,22 +16,6 @@
 
 GuidePlayerAIFunc:
 push {r4-r5, lr}
-
-bl Call_AiScriptCmd_05_DoStandardAction
-
-ldr r3, =CurrentUnit 
-ldr r0, [r3] 
-add r0, #0x45 
-@ 0x803ce18 @ AIScript12_Move_Towards_Enemy 
-@ r0 is 202D001, d049, d091 
-@ this is ActiveUnit ram address + 0x45 (AI2 count) 
-blh AIScript12_Move_Towards_Enemy @0x803ce18 
-ldr r3, =0x203AA96 @ AI decision +0x92 (XX) 
-ldrb r0, [r3, #0x0] @ XX 
-ldrb r1, [r3, #0x1] @ YY 
-mov r2, #5 @ Wait 
-bl SetAIToWaitAtCoords 
-b True
 
 
 
@@ -91,13 +75,9 @@ ldr r3, =0x203AA94 @ AiDecision
 ldrb r0, [r3] 
 cmp r0, #0 
 beq MoveTowardsTarget
-mov r0, #1
-ldr r1, =0x30017c8 @gAiScriptEndedFlag
-str r0, [r1]
-
-
-
-
+@mov r0, #1
+@ldr r1, =0x30017c8 @gAiScriptEndedFlag
+@str r0, [r1]
 b True 
 
 MoveTowardsLeader:
