@@ -52,7 +52,13 @@ PUSH
   ORG $57314
   BYTE 0xF
 POP
-	
+
+//Disallow using ballistae while cantoing
+PUSH
+  ORG $248DE
+  SHORT $2187
+POP
+
 //change staff battle init to not give 0xFF status on miss
   PUSH
   ORG $2CBAC
