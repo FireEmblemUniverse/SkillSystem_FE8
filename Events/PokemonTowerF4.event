@@ -70,11 +70,14 @@ ToPokeTowerF3:
 ChapterTransition(PokemonTowerF3Ch, 18,10)
 
 ToPokeTowerF5:
+CALL CannotEscapeWild
 ChapterTransition(PokemonTowerF5Ch, 10,16)
+
+
 
 MarowakAIEvent:
 SVAL s1 3<<8 // Attack in range 
-CHAI 0xEF // Marowak 
+CHAI 0xEE // Marowak 
 NoFade 
 ENDA 
 
@@ -198,22 +201,22 @@ UNIT
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
 MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, MarowakUnits) // Marowak  
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, MarowakUnits) // Marowak  
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-BQ(0x0, GaryCeruleanChallengeText)
-BQ(0xF, GaryCeruleanChallengeText)
+BQ(0x0, PTF4_0xE0_BQ)
+BQ(0xE, PTF4_MarowakChallengeText)
 TDQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0x0, GaryCeruleanDefeatText, 2000) 
-BD(0x0, GaryCeruleanDefeatText, 0) 
+BD(0x0, PTF4_0xE0_BD, 1200) 
+BD(0xE, PTF4_MarowakDefeatText, 0) 
 TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [15,5]  0b 0x0	0x1 REDA15R5 [NineRangeWep,0x0,0x0,0x0] TrainerAI  
-UNIT 0xEF MarowakID 0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 [Bonemerang,Screech,0x0,0x0] TrainerAI  
+UNIT 0xEE MarowakID 0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 [Bonemerang,Bonemerang,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
 
@@ -228,10 +231,10 @@ UNIT GenericB 	GastlyID 		0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0
 UNIT
 
 MarowakUnits: // Marowak 
-UNIT GenericB 	GastlyID 		0xEF 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GastlyID 		0xEF 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GastlyID 		0xEF 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GastlyID 		0xEF 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	GastlyID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	GastlyID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	GastlyID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	GastlyID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 

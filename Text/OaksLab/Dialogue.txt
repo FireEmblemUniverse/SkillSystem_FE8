@@ -262,6 +262,13 @@ Learn the new move?[NL]
 Proceed to next area?[NL]
 [Yes][X]
 
+## ExitAreaText
+Exit the area?[N]
+[Yes][X]
+
+## ExitTowerText
+Exit the tower?[N]
+[Yes][X]
 
 ## EnterOaksLabText
 [OpenMidRight][LoadOak][OpenMidRight]Hmm, let me rate your Pokedex...[.....][NL]
@@ -306,11 +313,13 @@ Give up on new move?[NL]
 this Trainer battle![A][X]
 
 ## GaryRoute2SChallengeText
-[OpenRight][LoadGaryPoint][OpenRight]Hah, I wondered when[NL]
+[OpenRight][LoadGaryShrug][OpenRight]Hah, I wondered when[NL]
 you'd show up.[A][NL]
-I've already caught 4 Pok[Eaccent]mon![NL]
-How many have you caught?[A][X]
-
+It's sad to see that you're[N]
+struggling along back here.[A]
+[LoadGaryPoint]I've already caught 4 Pok[Eaccent]mon![A][NL]
+[LoadGaryBattle]More than enough to[N]
+take you down![A][X]
 
 
 ## GaryRoute2SDefeatText
@@ -628,7 +637,7 @@ Rocky will take good[N]
 care of you![A][X]
 
 ## HiredGeodudeText
-Rocky will come find me
+Rocky will come find me[N]
 when you're done.[A][X]
 
 
@@ -846,9 +855,9 @@ All I found was rocks...[A][X]
 Hey! It's whatsyourface![A][NL]
 I kicked your ass back[NL]
 in Viridian.[A][NL]
-Hm? What are you[NL]
+[LoadGaryShrug]Hm? What are you[NL]
 blabbering about.[A][NL]
-I have some steam[NL]
+[LoadGaryBattle]I have some steam[NL]
 to blow off. Let's go![A][X]
 
 ## GaryCeruleanDefeatText
@@ -1154,12 +1163,15 @@ You spark plug![A][X]
 Imagine seeing you here![A][NL]
 Were you really invited?[NL]
 Tcch, no way.[A][NL]
-How's your POKEDEX coming?[A][NL]
-Haha, you don't even have one![NL]
-Some trainer you are.[A][NL]
+How's your badge collection[N]
+coming along?[A][N]
+What? You haven't even[N]
+beaten Surge yet?[A][N]
+[LoadGaryPoint]Haha, some trainer you are.[A][NL]
+How about your POKEDEX?[N]
 I already caught 40 kinds, pal.[A][N]
-I hope you can swim, 'cause[N]
-I'll knock you overboard![A][X]
+[LoadGaryBattle]I hope you can swim, 'cause I'm[N]
+about to knock you overboard![A][X]
 
 ## SSA_0xE0_BD
 [OpenMidRight][LoadGaryShrug][OpenMidRight]Humph![A][2NL]
@@ -1359,14 +1371,171 @@ Pok[Eaccent]mon that the Rockets killed.[A][X]
 Did your Pok[Eaccent]mon die?[A][N]
 What? You're not playing a Nuzlocke?[N]
 [LoadGaryPoint]Filthy casual.[A][N]
-I can at least make them[N]
+[LoadGaryBattle]I can at least make them[N]
 faint! Let's go![A][X]
+
+## GaryLavenderNuzlockeChallengeText
+[OpenRight][LoadGaryShrug][OpenRight]Hey, [Tact]![N]
+Did your Pok[Eaccent]mon die?[A][N]
+You think you're tough, playing[N]
+a Nuzlocke, do you?[A][N]
+[LoadGaryPoint]You're weak! I'm going[N] 
+to destroy you.[A][N]
+[LoadGaryShrug]But hey, look on the[N]
+bright side.[A][N]
+Your Pok[Eaccent]mon won't[N]
+have to travel far.[A][N]
+[LoadGaryPoint]We're already at their final[N]
+resting point. How convenient![A][N]
+[LoadGaryBattle]I wonder how many of yours[N]
+I can knock out. Let's go![A][X]
 
 ## GaryLavenderDefeatText
 [OpenRight][LoadGaryShrug][OpenRight]Arrgh![N]
 You stinker![A][N]
 Tch.. I took it easy on you.[A][X]
 
+## PTF2_0xE0_BQ
+Urrg... Awaa...[N]
+Huhu... Graa...[A][X]
+
+## PTF2_0xE0_BD
+Hmm?[N]
+What am I doing?[A][N]
+Sorry![N]
+I was possessed![A][X]
+
+## PTF3_0xE0_BQ
+Kekeke...[N]
+Kwaaah![A][X]
+
+## PTF3_0xE0_BD
+Hwa![N]
+I'm saved![A][X]
+
+
+## PTF4_0xE0_BQ
+Give.. me...[N]
+blood...[A][X]
+
+## PTF4_0xE0_BD
+I feel anemic and weak...[A][X]
+
+## PTF4_MarowakChallengeText
+Be gone...[N]
+Intruders...[A][X]
+
+## PTF4_MarowakDefeatText
+The spirit was calmed.[N]
+It departed to the afterlife.[A][X]
+
+## AuraFlareText
+The Wild Pok[Eaccent]mon's[N]
+Aura flared to life![A][X]
+
+## AuraDissipated
+The Wild Pok[Eaccent]mon's[N]
+Aura is dissipating![A][X]
+
+## CannotEscapeAuraBattleText
+You can't escape![A][X]
+
+## PTF5_0xE0_BQ
+What do you want?[A][X]
+## PTF5_0xE1_BQ
+Why are you here?[A][X]
+
+## PTF5_0xE0_BD
+What? I just[N]
+want to make money[A][X]
+## PTF5_0xE1_BD
+Hmm? I'm here[N]
+doing a job.[A][X]
+
+## MrFujiText
+Heh?[N]
+You came to save me?[A][N]
+Thank you. But, I came here of my[N]
+own free will.[A][N]
+I came to calm the spirit of[N]
+CUBONE's mother.[A][N]
+I think MAROWAK's spirit has[N]
+finally left us.[A][N]
+I must thank you for your kind[N]
+concern.[A][N]
+Here, take this.[A][X]
+
+## ObtainedPokefluteText
+Obtained Pok[Eaccent]flute.[A][X]
+
+## MrFujiText2
+Use it to wake up[N]
+sleeping Pok[Eaccent]mon.[A][X]
+
+## MrFujiText3
+I come up here to[N]
+meditate sometimes.[A][X]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## KogaChallengeText
+[OpenMidRight][LoadKoga][OpenMidRight]Fwahahaha![A][N]
+A mere child like you dares to[N]
+challenge me?[A][N]
+The very idea makes me shiver[N]
+with mirth![A][N]
+Very well, I shall show you true[N]
+terror as a ninja master.[A][N]
+Poison brings steady doom.[N]
+Sleep renders foes helpless.[A][N]
+Despair to the creeping horror of[N]
+POISON-type Pok[Eaccent]mon![A][X]
+
+
+	
+## KogaDefeatText
+Humph![N]
+You have proven your worth![A][N]
+Here![N]
+Take the SOULBADGE![A][X]
+
+## KogaWaitText
+[OpenMidRight][LoadKoga][OpenMidRight]Ah![N]
+Take this, too![A][X]
+
+## KogaRewardText
+[OpenMidRight][LoadKoga][OpenMidRight]It is a secret technique dating[N]
+back some four hundred years.[A][X]
 
 
 

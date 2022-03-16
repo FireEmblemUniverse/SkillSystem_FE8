@@ -41,14 +41,21 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR PokefluteFlag MrFujievent [0x0, 0xE2] 0 // NPC
+//TrainerPostBattleTalk(0xE2) // NPC talk again 
 AllTrainersPostBattleTalk
 END_MAIN
 
-
+MrFujievent:
+BottomWallText(MrFujiText)
+TutText(ObtainedPokefluteText)
+BottomWallText(MrFujiText2)
+NoFade 
+ENDA 
 
 LocationBasedEvents:
-House(0, ToPokeTowerF2, 10,18) 
-House(0, ToLavender, 18,9) 
+House(0, ToPokeTowerF4, 9,16) 
+//House(0, ToLavender, 18,9) 
 END_MAIN
 
 MiscBasedEvents:
@@ -60,13 +67,18 @@ AFEV 0 GlobalAfev 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(10,18) 
-EscapeTileEntry(18,9) 
+EscapeTileEntry(9,16) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToPokeTowerF2:
-ChapterTransition(PokemonTowerF2Ch, 18,11)
+ToPokeTowerF4:
+CHECK_EVENTID PokefluteFlag
+BEQ 10 sC s0 // No fast escape the tower until talked to Mr. Fuji 
+CALL ExitTowerEvent
+BNE 10 sC s7 
+ForcedChapterTransition(LavenderCh, 18,36)
+LABEL 10
+ChapterTransition(PokemonTowerF4Ch, 10,17)
 
 ToLavender:
 ChapterTransition(LavenderCh, 18,36)
@@ -143,10 +155,20 @@ ENUN
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
 */
+CheckTrainerFlag(0xE0)
+BNE 10 sC s0 
+CheckTrainerFlag(0xE1)
+BNE 10 sC s0 
 LOAD1 0x1 HumanTrainers
 ENUN 
+ENUT PlayableCutsceneFlag
+LABEL 10 
+
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 //CALL SetBushHpEvent
+LOAD1 1 MrFujiUnit
+ENUN 
+MarkTrainerAsDefeated(0xE2)
 
 LABEL 0x63
 NoFade
@@ -217,14 +239,17 @@ MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, RocketUnitsB) // Jessie
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT GaryCeruleanChallengeText // 0xE0 
+SHORT PTF5_0xE0_BQ // 0xE0 
+SHORT PTF5_0xE1_BQ // 0xE0 
 SHORT NoCascadeBadgeText // 0xE0 
 TDQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT GaryCeruleanDefeatText // 0xE0 
+SHORT PTF5_0xE0_BD // 0xE0 
 SHORT 2000 // Gold 
-SHORT NoCascadeBadgeText // 0xE0 
+SHORT PTF5_0xE1_BD // 0xE0 
+SHORT 2000 // Gold 
+SHORT MrFujiText3 // 0xE0 
 SHORT 2000 // Gold 
 TDQ_TableTerminator ; }
 
@@ -233,19 +258,22 @@ UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [9,7]  0b 0x0	0x1 REDA9R7 [SevenRang
 UNIT 0xE1 rocket_fID 0x0 Level(0, Enemy, 1) [11,7]  0b 0x0	0x1 REDA11R7 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
 UNIT 
 
+MrFujiUnit:
+UNIT 0xE2 mrfujiID 0x0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R4 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 
 
 
 RocketUnitsA: // James 
-UNIT GenericB	ZubatID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	NidoranMID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	RaticateID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	WeezingID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB	ZubatID 0xE0 Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	NidoranMID 0xE0 Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	RaticateID 0xE0 Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 RocketUnitsB: // Jessie 
-UNIT GenericB	MeowthID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	ZubatID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	NidoranFID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	ArbokID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB	MeowthID 0xE1 Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	ZubatID 0xE1 Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	NidoranFID 0xE1 Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	ArbokID 0xE1 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
 

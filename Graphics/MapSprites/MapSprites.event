@@ -264,7 +264,7 @@ SetSMS(fat_manSMS , 1 ,   fat_manStanding)
 SetSMS(fisherSMS, 1 ,   fisherStanding)
 SetSMS(gentlemanSMS , 1 ,   gentlemanStanding)
 SetSMS(hikerSMS, 1 ,   hikerStanding)
-SetSMS(Unused36SMS , 0 ,    m1Standing)
+SetSMS(mrfujiSMS , 1 ,    mrfujiStanding)
 SetSMS(Unused37SMS , 0 ,    m1Standing)
 SetSMS(Unused38SMS , 0 ,    m1Standing)
 SetSMS(Unused39SMS , 0 ,    m1Standing)
@@ -536,7 +536,7 @@ SetMMS(fat_manMMS ,    fat_manMoving,        DemonKingAP)
 SetMMS(fisherMMS,    fisherMoving,        DemonKingAP)
 SetMMS(gentlemanMMS ,    gentlemanMoving,        DemonKingAP)
 SetMMS(hikerMMS,    hikerMoving,        DemonKingAP)
-SetMMS(Unused36MMS ,     r1Moving,        DemonKingAP)
+SetMMS(mrfujiMMS ,     mrfujiMoving,        DemonKingAP)
 SetMMS(Unused37MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused38MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused39MMS ,     r1Moving,        DemonKingAP)
@@ -1402,7 +1402,9 @@ scientistMoving:
 ALIGN 4
 super_nerdMoving:
 #incbin "Trainer_MMS/MMS_super_nerd.dmp"
-
+ALIGN 4
+mrfujiMoving:
+#incbin "Trainer_MMS/MMS_mr_fuji.dmp"
 
 
 
@@ -2137,6 +2139,9 @@ ALIGN 4
 CoinsStanding:
 #incbin "More SMS/Coins.dmp"
 
+ALIGN 4
+mrfujiStanding:
+#incbin "Trainer_SMS/SMS_mr_fuji.dmp"
 
 
 //SYSTEM PALETTES 

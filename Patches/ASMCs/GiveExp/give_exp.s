@@ -189,6 +189,7 @@ bl HideMMSFunc
 .ltorg
 .align 
 .type HideMMSFunc, %function 
+.global HideMMSFunc
 HideMMSFunc:
 	@ Arguments: nothing 
 	@ Returns:   nothing

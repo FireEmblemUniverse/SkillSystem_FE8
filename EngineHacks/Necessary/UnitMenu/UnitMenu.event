@@ -223,6 +223,9 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   //UM_Dance
   MenuCommand(0x67E,0x6C2,NormalText,NewDanceUsability,0x231D0)
 
+  // UM_Talk
+  MenuCommand(0x680, 0x6c9, GreenText, 0x23c81, 0x23cc5)
+
 #ifdef INSTALL_AoE
   MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 #endif 
@@ -252,8 +255,7 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 
 #endif // COMBAT_ARTS
 
-  // UM_Talk
-  MenuCommand(0x680, 0x6c9, GreenText, 0x23c81, 0x23cc5)
+
   // UM_Support
   MenuCommand(0x681, 0x6ca, GreenText, 0x23d15, 0x23d65)
 

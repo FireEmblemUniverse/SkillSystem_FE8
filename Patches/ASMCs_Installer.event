@@ -18,7 +18,7 @@
 #include "ASMCs/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
 
 
-#include "ASMCs/UseVulnerary/UseVulneraryInstaller.event" 
+#include "ASMCs/UseItemEffect/Installer.event" 
 
 #include "ASMCs/ArbitraryMemory/ArbitraryMemoryInstaller.event" 
 

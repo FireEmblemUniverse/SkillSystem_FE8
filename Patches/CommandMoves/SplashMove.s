@@ -59,8 +59,8 @@ mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is s
 
 
 
-pop {r0} 
-bx r0 
+pop {r1} 
+bx r1
 
 
 .ltorg 

@@ -542,10 +542,10 @@ ldrh r1, [r3, r1] @ Gold amount we want
 
 ldr r3, =MemorySlot 
 
-strh r1, [r3, #4*0x03] @ Gold to give in s3 
+str r1, [r3, #4*0x03] @ Gold to give in s3 
 
 
-strh r0, [r3, #4*0x02] @ Store to mem slot 2 
+str r0, [r3, #4*0x02] @ Store to mem slot 2 
 
 
 ldrb r0, [r4, #0x10] @ X 
@@ -595,93 +595,6 @@ bx r0
 
 	.equ GetUnitByEventParameter, 0x0800BC51
 	
-.global RemoveFoughtTrainers
-.type RemoveFoughtTrainers, %function
-
-RemoveFoughtTrainers:
-@ Check if currently examindd unit's commander is the trainer 
-@ Check if currently examined unit is the trainer 
-@ If either is true, delete the unit 
-push {r4-r7, lr}
-
-ldr r0, =MemorySlot 
-mov r4, #0x80 
-mov r7, #0
-LoopThroughUnits:
-mov r0,r4
-
-blh GetUnit @ 19430
-cmp r0,#0
-beq NextUnit
-ldr r3,[r0] @ Char table pointer 
-cmp r3,#0
-beq NextUnit
-
-
-ldrb r1, [r3, #4] @ Unit ID 
-@ Their unit ID ranges from 0xD0 to 0xDF, so they are a trainer 
-cmp r1, #0xD0 
-blt CheckLeaderNow
-cmp r1, #0xDF 
-ble ValidUnit
-
-CheckLeaderNow:
-mov r2, #0x38 @ Leader unit ID 
-ldrb r1, [r0, r2]
-
-@ r1 is 
-@ Their leader's ID ranges from 0xD0 to 0xDF, so they are a trainer 
-cmp r1, #0xD0 
-blt NextUnit 
-cmp r1, #0xDF 
-bgt NextUnit 
-
-ValidUnit:
-add r7, #1 
-mov r5, r0 
-mov r6, r1 @ Unit ID we're interested in 
-
-sub r1, #0xD0 @ Unit ID offset 
-
-ldr r3, =0x202BCF0 @ Chapter Data 
-ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
-lsl r0, #4 @ 16 trainers per area allowed 
-
-add r0, r1 @ which trainer exactly 
-
-
-ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
-lsl r1, r3, #3 @ 8 flags per byte so +0x500 
-add r0, r1 @ Full offset 
-
-blh CheckNewFlag
-cmp r0, #1 
-@if completion flag is true, then we do not spawn this trap :-) 
-bne NextUnit 
-
-
-mov r0, r5 
-blh 0x80177f4 @ClearUnit
-sub r7, #1 
-
-
-
-
-NextUnit:
-add r4,#1
-cmp r4,#0xAF
-ble LoopThroughUnits
-End_LoopThroughUnits:
-ldr r3, =MemorySlot
-str r7, [r3, #4*0x0C] @ # of trainers left 
-
-
-pop {r4-r7}
-pop {r1}
-bx r1 
-
-.ltorg
-.align
 
 .type BreakPointASMC, %function 
 .global BreakPointASMC
@@ -695,3 +608,77 @@ bx r0
 .ltorg 
 .align 
 
+
+.type WildAuraMonDefeatQuoteFunc, %function 
+.global WildAuraMonDefeatQuoteFunc
+WildAuraMonDefeatQuoteFunc:
+push {lr}
+
+ldr r3, =MemorySlot
+mov r0, #0 
+str r0, [r3, #4*0x02] @ store 0 to s2 
+
+ldr r3, =0x203A4EC @ atkr 
+ldrb r0, [r3, #0x0B] @ deployment id 
+blh GetUnit 
+cmp r0, #0 
+beq TryAtkr 
+ldr r1, [r0] 
+ldrb r1, [r1, #4] @ unit ID 
+cmp r1, #0xD0 
+blt TryAtkr
+cmp r1, #0xF0
+bge TryAtkr 
+b FoundUnit
+
+TryAtkr:
+ldr r3, =0x203A56C @ dfdr
+ldrb r0, [r3, #0x0B] @ deployment id 
+blh GetUnit 
+cmp r0, #0 
+beq Exit_Aura
+ldr r1, [r0] 
+ldrb r1, [r1, #4] @ unit ID 
+cmp r1, #0xD0 
+blt Exit_Aura
+cmp r1, #0xF0
+bge Exit_Aura
+b FoundUnit
+
+FoundUnit:
+cmp r1, #0xE0 
+bge NoAdd
+add r1, #0x10 
+NoAdd:
+ldr r3, =MemorySlot
+str r1, [r3, #4*1] @ unit ID to mark as defeated 
+
+sub r1, #0xE0 @ we only have x from unit IDs 0xD0 - 0xDF 
+
+
+lsl r1, #2 @ 4 bytes per entry 
+
+ldrb r2, [r0, #0x10] @ XX coord 
+ldrb r3, [r0, #0x11] @ YY coord 
+ldr r0, =MemorySlot
+add r0, #4*0x0B 
+strh r2, [r0] 
+strh r3, [r0, #2] @ coords 
+
+ldr r3, =0x202BCF0 @ gChapterData 
+ldrb r0, [r3, #0xE] @ what chapter is it 
+ldr r3, =TrainerDefeatPoinTable
+lsl r0, #2 @ 4 bytes per poin 
+add r3, r0 
+ldr r3, [r3] @ Specific chapter's table of quotes 
+ldrh r0, [r3, r1] @ TextID we want 
+ldr r3, =MemorySlot 
+str r0, [r3, #4*0x02] @ Store to mem slot 2 
+
+Exit_Aura:
+
+pop {r0}
+bx r0 
+
+.ltorg 
+.align 

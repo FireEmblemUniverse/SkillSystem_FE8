@@ -3,10 +3,14 @@
 #define EndDeathQuote "BYTE 0xff 0xff 0x0 0x0 0x0 0x0 ;SHORT 0x0 ;WORD 0x0 "
 #define DefeatBossFlag 0x2
 #define GameOverFlag 0x65
-#define CheckNoPlayersDeathQuote(UnitID) "BYTE UnitID 0x0 0xff 0xff 0x00 0x00; SHORT 0x00; WORD CheckIfNoPlayerUnits|IsPointer" 
+#define CheckNoPlayersDeathQuote(UnitID) "BYTE UnitID 0x0 0xff 0xff 0x00 0x00; SHORT 0x00; WORD 0" //POIN CheckIfNoPlayerUnits" 
+#define EventDeathQuote(UnitID, EventLabelName) "BYTE UnitID 0x0 0xff 0xff 0x00 0x00; SHORT 0x00; POIN EventLabelName" //POIN CheckIfNoPlayerUnits" 
+// previously how I did it 
 
 ALIGN 4
 DeathQuoteTable:
+EventDeathQuote(0xDE, ModularSummonWildTrainerEvent)
+EventDeathQuote(0xEE, ModularSummonWildTrainerEvent_LeaderDefeated)
 CheckNoPlayersDeathQuote(0x01 )
 CheckNoPlayersDeathQuote(0x02 )
 CheckNoPlayersDeathQuote(0x03 )

@@ -1,6 +1,6 @@
 #define ChapterID FuschiaGymCh
 #define WildLvl 5 
-#define TrainerL 35
+#define TrainerL 26
 
 
 
@@ -87,7 +87,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x82)
 
 
 MUSCFAST IntroBGM 
-Text(LtSurgeChallengeText)
+Text(KogaChallengeText)
 
 
 
@@ -115,17 +115,17 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
-Text(LtSurgeDefeatText)
+Text(KogaDefeatText)
 GiveItemWithDurability(0, SpellScroll, Thunderbolt)
 ENUT ThunderbadgeObtained 
 SVAL r3 6000 
 GIVETOMAIN 0 
-TEXTSHOW LtSurgeWaitText
+TEXTSHOW KogaWaitText
 TEXTEND 
 REMA
 GiveSkillAccessory(0, LifeAndDeathID)
 TEXTSTART
-TEXTSHOW LtSurgeRewardText
+TEXTSHOW KogaRewardText
 TEXTEND 
 FADI 4 
 REMA 
@@ -152,15 +152,24 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 RaichuID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 		[Thunderbolt,AttackPulse,GrassKnot,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x1 REDA6R6 	[Thundershock,Tackle,ThunderWave,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 ElectrodeID 0xD0 Level(0, Enemy, 1) [8,6]  0b 0x0	0x1 REDA8R6 	[Screech,0x0,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [6,9]  0b 0x0 0x1 REDA6R9 [ThunderPunch,IcePunch,FirePunch,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [8,9]  0b 0x0	0x1 REDA8R9 	[Thundershock,TailWhip,TakeDown,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 	[Psybeam,SignalBeam,Sludge,0] PursueWithoutHeedAI
+UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,15]  0b 0x0	0x1 REDA8R15 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
+UNIT 0xA1 GrimerID 		0xD0 Level(0, Enemy, 1) [10,15]  0b 0x0	0x1 REDA10R15 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
+UNIT 0xA2 KoffingID 	0xD0 Level(0, Enemy, 1) [6,15]  0b 0x0 	0x1 REDA6R15 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
+UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,12]  0b 0x0	0x1 REDA5R12 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
+UNIT 0xA4 KabutoID 	0xD0 Level(0, Enemy, 1) [11,12]  0b 0x0	0x1 REDA11R12 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
+//UNIT 0xA4 HypnoID 		0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Psybeam, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
 UNIT
 
-
+EnemyTrainersB:
+UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 	[Psychic,SignalBeam,Sludge,0] PursueWithoutHeedAI
+UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,15]  0b 0x0	0x1 REDA8R15 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
+UNIT 0xA1 MukID 		0xD0 Level(0, Enemy, 1) [10,15]  0b 0x0	0x1 REDA10R15 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
+UNIT 0xA2 WeezingID 	0xD0 Level(0, Enemy, 1) [6,15]  0b 0x0 	0x1 REDA6R15 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
+UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,12]  0b 0x0	0x1 REDA5R12 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
+UNIT 0xA4 KabutopsID 	0xD0 Level(0, Enemy, 1) [11,12]  0b 0x0	0x1 REDA11R12 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
+//UNIT 0xA4 HypnoID 		0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Psybeam, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
+UNIT
 	
 
 #undef WildLvl

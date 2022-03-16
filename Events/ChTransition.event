@@ -185,12 +185,68 @@ LABEL 0x63
 NoFade 
 ENDA 
 
+
+
 // CALL ClosedArea
 ALIGN 4 
 ClosedArea:
 TutText(ClosedAreaText)
 NoFade 
 ENDB 
+
+CannotEscapeTrainer_Oak:
+SVAL s1 0xEF 
+SVAL s2 CannotEscapeTrainerBattleText
+CALL CannotEscapeEvent
+NoFade 
+ENDA 
+
+CannotEscapeWild:
+SVAL s1 0xEE 
+SVAL s2 CannotEscapeAuraBattleText
+CALL CannotEscapeEvent
+NoFade 
+ENDA 
+
+
+CannotEscapeEvent: // given s1 unit ID and s2 text to display that prevents escape, check if trainer undefeated, and if so, prevent escape 
+CHECK_EVENTID PlayableCutsceneFlag
+BNE 20 sC s0 
+ASMC ASMC_CheckTrainerFlag
+BEQ 20 sC s0 
+GOTO 63 
+LABEL 20 
+BottomWallS2Text
+//Text(-1)
+CALL EventBEnd
+
+LABEL 63 
+NoFade 
+ENDA 
+
+EventBEnd:
+NoFade 
+ENDB 
+
+ExitAreaEvent:
+SVAL r2 0 // Player allegiance 
+CALL 0x89EE1B8 // When matching allegiance stops in range 
+EVBIT_MODIFY 4
+SVAL r7 1 
+EVBIT_F 2 
+TutText(ExitAreaText) 
+NoFade 
+ENDA 
+
+ExitTowerEvent:
+SVAL r2 0 // Player allegiance 
+CALL 0x89EE1B8 // When matching allegiance stops in range 
+EVBIT_MODIFY 4
+SVAL r7 1 
+EVBIT_F 2 
+TutText(ExitTowerText) 
+NoFade 
+ENDA 
 
 ALIGN 4 
 CannotEscapeTrainerBattleEvent:
@@ -199,14 +255,14 @@ NoFade
 ENDA 
 
 ALIGN 4
-CheckIfNoPlayerUnits:
+CheckIfNoPlayerUnits: // No longer used 
 // For some reason there's no game over when all units are dead/undeployed anymore 
 // I don't know why. I tried searching in files for 0x18F and 0x190 where the routine seems 
 // to be at 19240, but found nothing. See the feb patch if this behaviour is desired. 
 // This just turns on the game over flag if there are no player units 
 SVAL rC 0x0 
 
-CHECK_CLASS 0x102 // Can still check dying unit, but since they're dying 
+CHECK_CLASS 0x101 // Can still check dying unit, but since they're dying 
 					// we check if there's 2 or more units in the party. 
 					// If it's your only unit, game over. 
 BNE 0 rC r0 
@@ -243,7 +299,7 @@ ENDA
 GlobalBeginningScene:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 #ifdef DEBUG_MODE 
-//SetMaxMove
+SetMaxMove
 #endif 
 NoFade 
 ENDA

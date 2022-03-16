@@ -10,7 +10,7 @@
 	ALIGN 4
 	#include "EventParameters.lyn.event"
 	// 
-	
+	#include "CheckIfGameOver.lyn.event"
 
 	#include "GetNthUnit/GetFFFDs2Unit.lyn.event" 
 	#include "GetNthUnit/GetFFFEsBCoordsUnit.lyn.event" 

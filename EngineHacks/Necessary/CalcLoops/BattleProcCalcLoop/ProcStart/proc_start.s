@@ -168,10 +168,12 @@ blh SkillTester, r3
 
 mov r1, #4
 ldrsh r1, [r7, r1]
-lsl r2, r1, #1
+lsl r2, r1, #1 @ 2x 
 cmp r0,#0
-bne StoreDamage
-add r2, r1 @damagex3
+beq StoreDamage
+add r2, r1 @ 3x 
+add r2, #1 @ rounding 
+lsr r2, #1 @ 1.5x dmg 
 StoreDamage:
 strh r2, [r7, #4] @final damage
 

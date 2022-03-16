@@ -1,7 +1,10 @@
 
 #define TQ_ChEntry(ChID) "PUSH; ORG TrainerQuotesPoinTable + (4*ChID); POIN TQ_IndividualChTable; POP; ALIGN 4; TQ_IndividualChTable:" 
+#define TQ_Nuzlocke_ChEntry(ChID) "PUSH; ORG TrainerQuotesNuzlockePoinTable + (4*ChID); POIN TQ_Nuzlocke_IndividualChTable; POP; ALIGN 4; TQ_Nuzlocke_IndividualChTable:" 
 #define TD_ChEntry(ChID) "PUSH; ORG TrainerDefeatPoinTable + (4*ChID); POIN TD_IndividualChTable; POP; ALIGN 4; TD_IndividualChTable:" 
 //#define TQD_TableTerminator "ALIGN 4; WORD 0" 
+
+
 
 
 #define BQ(ID, TextID) "PUSH; ORG CurrentOffset + (ID*2); SHORT TextID; POP"
@@ -14,13 +17,22 @@
 
 
 #define TQT_POIN16 "POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable; POIN TrainerQuotesTable"
+#define TQTN_POIN16 "POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable; POIN TrainerQuotesNuzlockeTable"
 #define TQT_POIN256 "TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16; TQT_POIN16" 
+#define TQTN_POIN256 "TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16; TQTN_POIN16" 
 
 ALIGN 4 
 TrainerQuotesPoinTable:
 // Indexed by chapter. Points to a table of text entries to use. 
 
 TQT_POIN256 
+WORD 0 
+
+ALIGN 4 
+TrainerQuotesNuzlockePoinTable:
+// Indexed by chapter. Points to a table of text entries to use. 
+
+TQTN_POIN256 
 WORD 0 
 
 ALIGN 4 
@@ -49,6 +61,30 @@ SHORT VF_0xE4_BQ // 0xE4
 SHORT VF_0xE0_BQ // 0xE0 
 ALIGN 4; WORD 0 // Terminator 
 
+TrainerQuotesNuzlockeTable: 
+// If no entry for that chapter, we use this one. 
+// Indexed by trainer ID 
+// eg. 0xE0 - 0xEF 
+SHORT 0 // 0xE0 
+SHORT 0 // 0xE1
+SHORT 0 // 0xE2 
+SHORT 0 // 0xE3 
+SHORT 0 // 0xE4 
+	 
+SHORT 0 // 0xE0 
+SHORT 0 // 0xE1
+SHORT 0 // 0xE2 
+SHORT 0 // 0xE3 
+SHORT 0 // 0xE4 
+	  
+SHORT 0 // 0xE0 
+SHORT 0 // 0xE1
+SHORT 0 // 0xE2 
+SHORT 0 // 0xE3 
+SHORT 0 // 0xE4 
+	  
+SHORT 0 // 0xE0 
+ALIGN 4; WORD 0 // Terminator 
 
 
 

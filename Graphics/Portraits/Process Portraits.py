@@ -29,7 +29,7 @@ for entry in dir_entries:
         portrait_filename = directory + (f"{entry.name}")
         minimug_filename = directory + "minimugs/" + (f"{entry.name}")
         
-        im = Image.open(portrait_filename)
+        im = Image.open(portrait_filename).convert('RGBA')
         if os.path.isfile(minimug_filename):
             im_mini = Image.open(minimug_filename)
         else:
@@ -38,7 +38,7 @@ for entry in dir_entries:
 
 
         mug = im
-        mug = ImageEnhance.Contrast(im).enhance(mug_contrast)#.convert('RGBA')
+        mug = ImageEnhance.Contrast(im).enhance(mug_contrast)
         #mug = ImageEnhance.Brightness(mug).enhance(1.2)
 
 

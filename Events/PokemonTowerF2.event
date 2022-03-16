@@ -195,11 +195,11 @@ MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-BQ(0x0, GaryCeruleanChallengeText)
+BQ(0x0, PTF2_0xE0_BQ)
 TDQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0x0, GaryCeruleanDefeatText, 2000) 
+BD(0x0, PTF2_0xE0_BD, 2000) 
 TDQ_TableTerminator ; }
 
 HumanTrainers:

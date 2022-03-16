@@ -953,10 +953,8 @@ mov r4, r0 @ Parent event engine
 ldr r3, =MemorySlot 
 ldr r5, [r3, #4*0x01] @ Unit pointer 
 ldr r0, [r5, #0x0C] @ New unit's state 
-
 mov r1, #1 
-mvn r1, r1 
-and r0, r1 @ remove 0x1 - Hidden 
+bic r0, r1 @ remove hidden 
 
 str r0, [r5, #0x0C] 
 
@@ -967,10 +965,16 @@ ldrb r2, [r5, #0x11]
 strb r2, [r3, #0x14] @ Y 
 mov r0, r4 @ Parent proc (event engine) 
 
+ldr r3, =MemorySlot
+ldr r0, [r3, #5*0x04] @ s5 as which animation to use for summoning 
+cmp r0, #1 
+bne Skip
+mov r0, r4 
 @ Replaced animation in my own version of modular summon 
 @ uncomment for the traditional one 
-@blh New6C_SummonGfx_FromActionStructCoords @0x807AD09  
+blh New6C_SummonGfx_FromActionStructCoords @0x807AD09  
 
+Skip: 
 
 pop {r4-r5} 
 pop {r1} 

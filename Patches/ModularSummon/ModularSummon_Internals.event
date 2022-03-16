@@ -45,11 +45,14 @@ ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doe
 ASMC WarpAnimationQueue
 ASMC QueueAIForUnitInMemSlot1
 
+SVAL sC 1 
+BEQ 10 sC s5 // Use alternative animation 
 STAL 5
 EmoticonSlotB(PokeballGraphic)
 STAL 14 
 EmoticonSlotB(OpenPokeballGraphic)
 STAL 18
+
 //LOAD_S2 1 // No restriction: always load 
 //ENUN 
 SPAWN_NPC 0xFC [-1,-1] 
@@ -58,6 +61,13 @@ STAL 22
 ASMC RemoveLightRuneASMC|1
 
 DISA 0xFC 
+GOTO 20 
+LABEL 10 
+SPAWN_NPC 0xFC [-1,-1] 
+STAL 22 
+DISA 0xFC 
+
+LABEL 20 
 ASMC 0x8026689 //SMS_Init - refresh SMS in case we've gone overboard 
 STAL 5
 
@@ -65,6 +75,10 @@ STAL 5
 EVBIT_MODIFY 0
 NoFade 
 ENDA 
+
+
+
+
 
 ModularSummon_RestoreCameraEvent: // This is an event so that it gets queued after X number of warp animation events, instead of happening beforehand 
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition

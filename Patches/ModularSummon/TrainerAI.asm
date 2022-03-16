@@ -11,7 +11,7 @@
 	.equ AiSetDecision, 0x8039C21 
 	.equ CurrentUnit, 0x3004E50
 	.equ EventEngine, 0x800D07C
-
+.equ RemoveUnitBlankItems,0x8017984
 .global TrainerFleeSummonTeamAIFunc
 .type TrainerFleeSummonTeamAIFunc, %function 
 TrainerFleeSummonTeamAIFunc: 
@@ -75,6 +75,11 @@ mov r0, #0
 mov r1, #0x1E @ Weapon  
 strh r0, [r3, r1]
 
+mov r0, r3 
+blh RemoveUnitBlankItems
+
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
 
 cmp r4, #1
 beq TryMoving 
@@ -158,14 +163,33 @@ ldrb r0, [r3, r2]
 cmp r0, #50 
 beq ExitTrainerSpotsYou 
 
+mov r4, r1 
 
+ldr r0, =CasualModeFlag 
+lsl r0, #16  
+lsr r0, #16
+blh CheckEventId
+cmp r0, #0
+bne CasualModeOn
+ldr r3, =0x202BCF0 @ gChapterData 
+ldrb r0, [r3, #0xE] @ what chapter is it 
+ldr r3, =TrainerQuotesNuzlockePoinTable
+lsl r0, #2 @ 4 bytes per poin 
+add r3, r0 
+ldr r3, [r3] @ Specific chapter's table of quotes 
+ldrh r0, [r3, r4] @ TextID we want 
+cmp r0, #0 
+bne GotTextID 
+@ we failed to get a real text id, so take the one from casual mode 
+CasualModeOn:
 ldr r3, =0x202BCF0 @ gChapterData 
 ldrb r0, [r3, #0xE] @ what chapter is it 
 ldr r3, =TrainerQuotesPoinTable
 lsl r0, #2 @ 4 bytes per poin 
 add r3, r0 
 ldr r3, [r3] @ Specific chapter's table of quotes 
-ldrh r0, [r3, r1] @ TextID we want 
+ldrh r0, [r3, r4] @ TextID we want 
+GotTextID:
 
 ldr r3, =MemorySlot 
 str r0, [r3, #4*0x02] @ Store to mem slot 2 
@@ -204,7 +228,7 @@ push {lr}
 
 pop {r0} 
 bx r0 
-
+	.equ CheckEventId,0x8083da8
 
 .global MoveTowardsCommanderAIFunc
 .type MoveTowardsCommanderAIFunc, %function 

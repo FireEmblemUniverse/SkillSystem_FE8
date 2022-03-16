@@ -78,18 +78,18 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  BulbasaurID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  NidokingID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
 
 
 Units2:
-UNIT 3  PidgeyID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 2  CaterpieID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 4 MankeyID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 7 PikachuID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 6 RattataID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  PrimeapeID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  MewtwoID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4 ArticunoID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 7 ZapdosID 0x0 Level(1, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6 MoltresID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 Units3:
@@ -175,7 +175,9 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, WaterStone, 0x3)
 
 
-SilentGiveItemWithDurability(Eirika, StatAccessory, WiseGlasses_BoostIndex|0x80)
+//SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
+SilentGiveItemWithDurability(Eirika, DryingPan, 1|0x80)
+//SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
 
 //SilentGiveItemWithDurability(Eirika, SkillScroll, RenewalID)
 
@@ -191,15 +193,24 @@ SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
 
 SilentGiveItemWithDurability(5, Berry, 0x87) // Pikachu 
 
-SilentGiveItemWithDurability(6, Berry, 0x84) // Oddish
+SilentGiveItemWithDurability(7, Berry, 0x87) // Pikachu 
+
+SilentGiveItemWithDurability(6, Berry, 0x86) // Oddish
 
 SilentGiveItemWithDurability(3, Berry, 0x89) // Pidgey 
+SilentGiveItemWithDurability(4, Berry, 0x89) // Pidgey 
 
-SilentGiveItemWithDurability(2, Berry, 0x83) // Rattata 
+SilentGiveItemWithDurability(2, Berry, 0x86) // Rattata 
 //SilentGiveItemWithDurability(2, SpellScroll, Headbutt)
 //SilentGiveItemWithDurability(2, SpellScroll, Dig)
 
+SilentGiveItemWithDurability(1, JellyDonut, 4)
+SilentGiveItemWithDurability(2, Elixir, 4)
+SilentGiveItemWithDurability(3, JellyDonut, 4)
 SilentGiveItemWithDurability(4, JellyDonut, 4)
+SilentGiveItemWithDurability(5, JellyDonut, 4)
+SilentGiveItemWithDurability(6, JellyDonut, 4)
+SilentGiveItemWithDurability(7, JellyDonut, 4)
 
 //SupplyItemWithDurability(Berry, 3)
 //SupplyItemWithDurability(SuperPotion, 5)
@@ -222,19 +233,20 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(4, True, 0x145) // all 
-
+AutoLevelUnits(43, True, 0x145) // all 
+SetUnitStatus(1, 0x28, Bonemerang)
 Write_Byte(4, GaryStarterClass) 
 
 
   
-//Write_Byte(10, XCoordNewArea)    // Placeholder chapter does not use this 
-//Write_Byte(18, YCoordNewArea)  
+Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(18, YCoordNewArea)  
 //MNC2 PokemonTowerF1Ch
-
-Write_Byte(43, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(30, YCoordNewArea)  
-MNC2 ViridianForestNCh
+MNC2 FuschiaGymCh
+//MNC2 CinnabarCh
+//Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
+//Write_Byte(8, YCoordNewArea)  
+//MNC2 CeruleanCh
 
 //MNC2 LavenderCh 
 //MNC2 CeruleanGymCh
@@ -247,6 +259,7 @@ MNC2 ViridianForestNCh
 //MNC2 Route1Ch 
 //MNC2 PalletCh
 //MNC2 PewterGymCh
+//MNC2 CeruleanGymCh 
 //MNC2 Route2SCh
 
 

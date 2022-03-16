@@ -12,6 +12,8 @@ jumpToHack(BtlLoopParent)
 // SHORT 0x280C 0xD005
 POP
 
+
+
 ALIGN 4
 BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
@@ -62,16 +64,13 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 POIN QuickRiposte
 
 
-POIN WeakChipDmg
+
 
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 
-POIN ScaledBackFunc
 
-//POIN MinimumDamage
-POIN FixedDamageWeapons
-
+POIN WeakChipDmg
 
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
@@ -79,6 +78,17 @@ POIN CriticalCheck
 	POIN NegateCritWeapons //This goes last, so that crit will always be set to 0 if set and never modified from there
 #endif // CANNOT_CRIT
 POIN 0
+
+// Occurs once both attacker and defender are confirmed. If weapons negate def, will occur after def is negated. 
+ALIGN 4 
+DamageModifierCalcLoop:
+POIN WeakChipDmg
+POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
+POIN TypeEffectiveness DoublingDamageModifierFunc
+POIN ScaledBackFunc
+POIN MinimumDamage
+POIN FixedDamageWeapons
+POIN 0 
 
 
 PUSH

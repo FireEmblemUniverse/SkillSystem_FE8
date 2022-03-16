@@ -147,7 +147,7 @@ CHECK_COORDS 0x7fff
 SADD sB sC s0  
 MOVENEXTTO (-1) HiredPokemonUnitID 0xE5   
 ENUN 
-SET_ACTIVE 0
+SET_ACTIVE 0 // This fixes MMS from being hidden, but can cause a map camera centering graphical issue if main char is near/against the edge of the map 
 WallText(Yes_HireGeodudeText)
 AutoLevelUnits(5, True, (HiredPokemonUnitID<<0x8|HiredPokemonUnitID)) // Psyduck 
 SilentGiveItemWithDurability(HiredPokemonUnitID, JellyDonut,0x5)

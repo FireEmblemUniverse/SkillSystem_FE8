@@ -19,7 +19,6 @@
 mov r0, r4 
 mov r2, r6 
 
-@ probably don't actually need to push lr 
 push {r4-r6, lr}
 mov r4, r0 
 mov r6, r2 @ Dunno if this is necessary tbh 
@@ -70,10 +69,11 @@ strh r0, [r6, r1] @ Store back def
 End:
 mov r0, r4 @ Atkr 
 mov r1, r6 @ Dfdr 
-bl MinimumDamage2
+bl DamageModifierCalcLoopFunc
 
 pop {r4-r6}
 pop {r0}
+mov lr, r0 
 ldr r0, =0x802AE5D @ Return address 
 bx r0 
 

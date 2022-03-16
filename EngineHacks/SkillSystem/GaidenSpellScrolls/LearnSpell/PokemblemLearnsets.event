@@ -402,8 +402,9 @@ BYTE 0 0
 ALIGN 4
 SandshrewLearnset:
 BYTE 1 Scratch
-BYTE 3 SandAttack 
-BYTE 5 Magnitude
+BYTE 2 SandAttack 
+BYTE 4 Magnitude
+BYTE 6 MudShot
 BYTE 8 PoisonSting 
 BYTE 11 QuickAttack
 BYTE 15 Swift
@@ -418,8 +419,9 @@ BYTE 0 0
 ALIGN 4
 SandslashLearnset:
 BYTE 1 Scratch
-BYTE 3 SandAttack 
-BYTE 5 Magnitude
+BYTE 2 SandAttack 
+BYTE 4 Magnitude
+BYTE 6 MudShot
 BYTE 8 PoisonSting 
 BYTE 11 QuickAttack
 BYTE 15 Swift
@@ -544,7 +546,7 @@ BYTE 10 DoubleHit
 //BYTE 16 Resv //FollowMe
 //BYTE 19 Resv //Minimize
 BYTE 22 KarateChop
-BYTE 25 Barrier
+//BYTE 25 Barrier
 BYTE 28 RecoverMove
 //BYTE 31 Metronome
 //BYTE 34 Resv //Gravity
@@ -565,7 +567,7 @@ BYTE 10 DoubleHit
 //BYTE 16 Resv //FollowMe
 //BYTE 19 Resv //Minimize
 BYTE 22 KarateChop
-BYTE 25 Barrier
+//BYTE 25 Barrier
 BYTE 28 RecoverMove
 //BYTE 31 Metronome
 //BYTE 34 Resv //Gravity
@@ -1006,10 +1008,9 @@ BYTE 1 Leer
 BYTE 16 Confusion
 BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
-BYTE 28 Barrier
+//BYTE 28 Barrier
 BYTE 30 RecoverMove //?Support RecoverMove
 BYTE 34 CalmMind
-BYTE 36 Barrier //?Support RolePlay
 BYTE 40 Psychic
 BYTE 42 RecoverMove
 BYTE 0 0
@@ -1020,10 +1021,9 @@ BYTE 1 Leer
 BYTE 16 Confusion
 BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
-BYTE 28 Barrier
+//BYTE 28 Barrier
 BYTE 30 RecoverMove //?Support RecoverMove
 BYTE 34 CalmMind
-BYTE 36 Barrier //?Support RolePlay
 BYTE 40 Psychic
 BYTE 42 RecoverMove
 BYTE 0 0
@@ -1034,10 +1034,9 @@ BYTE 1 Leer
 BYTE 16 Confusion
 BYTE 18 RecoverMove //?Support Disable
 BYTE 23 Psybeam
-BYTE 28 Barrier
+//BYTE 28 Barrier
 BYTE 30 RecoverMove //?Support RecoverMove
 BYTE 34 CalmMind
-BYTE 36 Barrier //?Support RolePlay
 BYTE 40 Psychic
 BYTE 42 RecoverMove
 BYTE 0 0
@@ -1140,7 +1139,7 @@ BYTE 8 Constrict
 BYTE 12 Acid 
 BYTE 17 BubbleBeam
 BYTE 22 Constrict // Bind
-BYTE 26 Barrier
+BYTE 26 RecoverMove
 BYTE 29 WaterPulse
 BYTE 33 PoisonJab
 BYTE 36 Leer
@@ -1155,7 +1154,7 @@ BYTE 8 Constrict
 BYTE 12 Acid 
 BYTE 17 BubbleBeam
 BYTE 22 Constrict // Bind
-BYTE 26 Barrier
+BYTE 26 RecoverMove
 BYTE 29 WaterPulse
 BYTE 33 PoisonJab
 BYTE 36 Leer
@@ -1564,7 +1563,6 @@ BYTE 7 RecoverMove // Resv Disable
 BYTE 9 Confusion 
 BYTE 15 Headbutt
 BYTE 18 PoisonGas
-BYTE 21 Barrier // Resv Meditate
 BYTE 26 Psybeam
 // BYTE 29 Resv Psych Up
 BYTE 32 Headbutt // Don't look at me.
@@ -1583,7 +1581,6 @@ BYTE 7 RecoverMove // Resv Disable
 BYTE 9 Confusion 
 BYTE 15 Headbutt
 BYTE 18 PoisonGas
-BYTE 21 Barrier // Resv Meditate
 BYTE 26 Psybeam
 // BYTE 29 Resv Psych Up
 BYTE 32 Headbutt // Don't look at me.
@@ -2039,7 +2036,6 @@ MrMimeLearnset:
 BYTE 1 MagicalLeaf
 // BYTE 1 Resv PowerSwap
 // BYTE 1 Resv GuardSwap
-BYTE 1 Barrier
 BYTE 1 Confusion
 // BYTE 4 Resv CopyCat
 BYTE 8 RecoverMove // BYTE 8 Resv Meditate
@@ -2315,7 +2311,7 @@ BYTE 16 Rollout
 BYTE 19 Leer 
 BYTE 25 MudShot
 BYTE 28 BubbleBeam 
-BYTE 34 Barrier //?Support (Protect)
+//BYTE 34 Barrier //?Support (Protect)
 BYTE 37 Ancientpower 
 BYTE 46 RockSlide 
 BYTE 52 HydroPump 
@@ -2331,7 +2327,7 @@ BYTE 16 Rollout
 BYTE 19 Leer 
 BYTE 25 MudShot
 BYTE 28 BubbleBeam 
-BYTE 34 Barrier //?Support (Protect)
+//BYTE 34 Barrier //?Support (Protect)
 BYTE 37 Ancientpower 
 BYTE 46 RockSlide 
 BYTE 52 HydroPump 
@@ -2442,7 +2438,7 @@ BYTE 15 Agility //?Buff
 BYTE 22 RecoverMove //?Buff (RecoverMove) 
 BYTE 29 Ancientpower 
 BYTE 36 Flamethrower 
-BYTE 43 Barrier //?Buff (Safeguard) 
+//BYTE 43 Barrier //?Buff (Safeguard) 
 BYTE 50 AirSlash 
 BYTE 57 RecoverMove //?Buff (Roost) 
 BYTE 64 FireBlast 
@@ -2461,7 +2457,7 @@ BYTE 21 Slam
 BYTE 25 Agility //?Buff 
 BYTE 31 Waterfall 
 BYTE 35 DragonClaw
-BYTE 41 Barrier //?Buff (Safeguard) 
+//BYTE 41 Barrier //?Buff (Safeguard) 
 //BYTE 45 Resv //DragonDance //?Buff
 BYTE 51 Outrage
 BYTE 55 HyperBeam
@@ -2478,7 +2474,7 @@ BYTE 21 Slam
 BYTE 25 Agility //?Buff 
 BYTE 31 Waterfall 
 BYTE 35 DragonClaw
-BYTE 41 Barrier //?Buff (Safeguard) 
+//BYTE 41 Barrier //?Buff (Safeguard) 
 //BYTE 45 Resv //DragonDance //?Buff
 BYTE 51 Outrage
 BYTE 55 HyperBeam
@@ -2495,7 +2491,7 @@ BYTE 21 Slam
 BYTE 25 Agility //?Buff 
 BYTE 31 Waterfall 
 BYTE 35 DragonClaw
-BYTE 41 Barrier //?Buff (Safeguard) 
+//BYTE 41 Barrier //?Buff (Safeguard) 
 //BYTE 45 Resv //DragonDance //?Buff
 BYTE 51 Outrage
 BYTE 55 HyperBeam
@@ -2504,7 +2500,8 @@ BYTE 0 0
 ALIGN 4
 MewtwoLearnset:
 BYTE 1 Confusion
-BYTE 8 Barrier //?Buff (Barrier...?)
+BYTE 8 RecoverMove
+//BYTE 8 Barrier //?Buff (Barrier...?)
 BYTE 15 Swift
 BYTE 22 Psybeam
 //BYTE 29 ??? ?Buff (Psych Up)
@@ -2526,7 +2523,7 @@ BYTE 1 Pound
 BYTE 10 MegaPunch
 //BYTE 20 Resv //Metronome
 BYTE 30 Psychic
-BYTE 40 Barrier //?Buff (Barrier...?)
+BYTE 40 RecoverMove //?Buff (Barrier...?)
 BYTE 50 Ancientpower
 BYTE 60 Amnesia
 //BYTE 70 ??? ?Buff (Me First)

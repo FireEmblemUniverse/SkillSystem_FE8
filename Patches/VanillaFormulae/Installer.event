@@ -35,13 +35,13 @@ jumpToHack_r3(DisplayDurabilityTradeWindowSmall)
 
 
 ORG $2ADd0 
-jumpToHack_r3(MinimumDamage3)
+jumpToHack_r3(DamageModifierCalcLoopHook)
 
 
 POP
 
 #include "MinimumDamage.lyn.event"
-
+#include "TypeEffectiveness.lyn.event"
 
 #include "DisplayDurabilitySupply.lyn.event"
 
@@ -98,6 +98,7 @@ NegateDefEntry(SandAttack    , 63)
 NegateDefEntry(TailWhip      , 63)
 NegateDefEntry(FireSpin      , 63)
 NegateDefEntry(StringShot      , 63)
+NegateDefEntry(MetalSound      , 63)
 NegateDefEntry(Smog      , 63)
 NegateDefEntry(Snarl          , 63) 
 NegateDefEntry(ThunderWave          , 63) 

@@ -66,12 +66,84 @@ MistyData: // 001
 setMugEntry(159, MistyData, 9, 9, 9, 9)
 
 ALIGN 16 
-LtSurgeData: // 001
+LtSurgeData: 
 #incbin "Dmp/LtSurge_mug.dmp" 
 #incbin "Dmp/LtSurge_frames.dmp" 
 #incbin "Dmp/LtSurge_palette.dmp" 
 #incbin "Dmp/LtSurge_minimug.dmp" 
 setMugEntry(165, LtSurgeData, 9, 9, 9, 9)
+
+ALIGN 16 
+KogaData: 
+#incbin "Dmp/Koga_mug.dmp" 
+#incbin "Dmp/Koga_frames.dmp" 
+#incbin "Dmp/Koga_palette.dmp" 
+#incbin "Dmp/Koga_minimug.dmp" 
+setMugEntry(166, KogaData, 9, 9, 9, 9)
+
+ALIGN 16 
+ErikaData: 
+#incbin "Dmp/Erika_mug.dmp" 
+#incbin "Dmp/Erika_frames.dmp" 
+#incbin "Dmp/Erika_palette.dmp" 
+#incbin "Dmp/Erika_minimug.dmp" 
+setMugEntry(167, ErikaData, 9, 9, 9, 9)
+
+ALIGN 16 
+SabrinaData: 
+#incbin "Dmp/Sabrina_mug.dmp" 
+#incbin "Dmp/Sabrina_frames.dmp" 
+#incbin "Dmp/Sabrina_palette.dmp" 
+#incbin "Dmp/Sabrina_minimug.dmp" 
+setMugEntry(168, SabrinaData, 9, 9, 9, 9)
+
+ALIGN 16 
+BlaineData: 
+#incbin "Dmp/Blaine_mug.dmp" 
+#incbin "Dmp/Blaine_frames.dmp" 
+#incbin "Dmp/Blaine_palette.dmp" 
+#incbin "Dmp/Blaine_minimug.dmp" 
+setMugEntry(169, BlaineData, 9, 9, 9, 9)
+
+ALIGN 16 
+GiovanniData: 
+#incbin "Dmp/Giovanni_mug.dmp" 
+#incbin "Dmp/Giovanni_frames.dmp" 
+#incbin "Dmp/Giovanni_palette.dmp" 
+#incbin "Dmp/Giovanni_minimug.dmp" 
+setMugEntry(170, GiovanniData, 9, 9, 9, 9)
+
+ALIGN 16 
+LoreleiData: 
+#incbin "Dmp/Lorelei_mug.dmp" 
+#incbin "Dmp/Lorelei_frames.dmp" 
+#incbin "Dmp/Lorelei_palette.dmp" 
+#incbin "Dmp/Lorelei_minimug.dmp" 
+setMugEntry(171, LoreleiData, 9, 9, 9, 9)
+
+ALIGN 16 
+BrunoData: 
+#incbin "Dmp/Bruno_mug.dmp" 
+#incbin "Dmp/Bruno_frames.dmp" 
+#incbin "Dmp/Bruno_palette.dmp" 
+#incbin "Dmp/Bruno_minimug.dmp" 
+setMugEntry(172, BrunoData, 9, 9, 9, 9)
+
+ALIGN 16 
+AgathaData: 
+#incbin "Dmp/Agatha_mug.dmp" 
+#incbin "Dmp/Agatha_frames.dmp" 
+#incbin "Dmp/Agatha_palette.dmp" 
+#incbin "Dmp/Agatha_minimug.dmp" 
+setMugEntry(173, AgathaData, 9, 9, 9, 9)
+
+ALIGN 16 
+LanceData: 
+#incbin "Dmp/Lance_mug.dmp" 
+#incbin "Dmp/Lance_frames.dmp" 
+#incbin "Dmp/Lance_palette.dmp" 
+#incbin "Dmp/Lance_minimug.dmp" 
+setMugEntry(174, LanceData, 9, 9, 9, 9)
 
 // Reserved 
 ALIGN 16 

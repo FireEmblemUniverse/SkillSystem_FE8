@@ -6,112 +6,51 @@
 .endm
 .thumb
 
-	.global MinimumDamage2
-	.type   MinimumDamage2, function
-
-MinimumDamage2:
-push {r4-r5,lr}
-mov r4, r0
-mov r5, r1
-b Start 
-
-.align 
 	.global MinimumDamage
 	.type   MinimumDamage, function
 
+@ in final PB calc loop and in negate def hack 
 MinimumDamage:
 push {r4-r5,lr}
 mov r4, r0
 mov r5, r1
-@goes in the battle loop.
-@r0/r4 is the attacker battle struct 
-@r1/r5 is the defender battle struct 
-
-mov r2, #0x4C 
-ldr r2, [r4, r2] @ weapon ability word 
-mov r3, #0x80 
-lsl r3, #0xA @ Luna weapon bit 
-and r2, r3 
-cmp r2, #0 
-@bne CheckDfdr @ If the weapon negates defense, we leave it up to MinimumDamage2 function, which is identical except it occurs right after negating defense. 
 
 
-bne GoBack
-
-
-mov r2, #0x4C 
-ldr r2, [r5, r2] @ weapon ability word 
-mov r3, #0x80 
-lsl r3, #0xA @ Luna weapon bit 
-and r2, r3 
-cmp r2, #0 
-bne GoBack @ If the weapon negates defense, we leave it up to MinimumDamage2 function, which is identical except it occurs right after negating defense. 
-
-b Start 
-@mov r3, #0x5C @ Def
-@ldsh r0, [r5, r3]
-@cmp r0, #0 
-@beq CheckDfdr
-@mov r2, #0x5A @ Att 
-@ldsh r1, [r4, r2] @ Att
-@cmp r0, r1 
-@blt CheckDfdr
-@add r0, #1
-@strh r0, [r4, r2] @ Store 
-
-
-b GoBack 
-
-
-Start:
- 
 mov r3, #0x5C @ Def
 ldsh r0, [r5, r3]
+cmp r0, #0 
+bge NoCapDef1
+mov r0, #0 
+NoCapDef1:
 mov r2, #0x5A @ Att 
 ldsh r1, [r4, r2] @ Att
+cmp r1, #0 
+bge NoCapAtt1
+mov r1, #0 
+NoCapAtt1:
 
 cmp r1, r0 
-bgt DoNothingA
-
+bgt CheckOther
 add r0, #1
 strh r0, [r4, r2] @ Store 
 
-DoNothingA:
-
-
-
-@mov r3, #0x5C @ Def
-@ldsh r0, [r5, r3]
-@cmp r0, #0 
-@beq CheckDfdr
-@mov r2, #0x5A @ Att 
-@ldsh r1, [r4, r2] @ Att
-@cmp r0, r1 
-@blt CheckDfdr
-@add r0, #1
-@strh r0, [r4, r2] @ Store 
-@
-@
-@b GoBack 
-@
-@
-@CheckDfdr:
-@mov r3, #0x5C @ Def
-@ldsh r0, [r4, r3]
-@cmp r0, #0 
-@beq GoBack 
-@mov r2, #0x5A @ Att
-@ldsh r1, [r5, r2] @ Att 
-@@cmp r1, #0 
-@@beq GoBack
-@cmp r0, r1 
-@blt GoBack 
-@add r0, #1 
-@strh r0, [r5, r2] @ Store 
-@b GoBack 
-
-
-
+CheckOther:
+mov r3, #0x5C @ Def
+ldsh r0, [r4, r3]
+cmp r0, #0 
+bge NoCapDef2 
+mov r0, #0 
+NoCapDef2:
+mov r2, #0x5A @ Att 
+ldsh r1, [r5, r2] @ Att
+cmp r1, #0 
+bge NoCapAtt2
+mov r1, #0 
+NoCapAtt2:
+cmp r1, r0 
+bgt GoBack
+add r0, #1
+strh r0, [r5, r2] @ Store 
 
 GoBack:
 mov r0, r4
@@ -123,10 +62,10 @@ bx r3
 .align
 .ltorg 
 
-.global MinimumDamage3
-.type MinimumDamage3, %function
+.global DamageModifierCalcLoopHook
+.type DamageModifierCalcLoopHook, %function
 
-MinimumDamage3: 
+DamageModifierCalcLoopHook: 
 @push {r4-r6, lr} 
 @mov r4, r0 
 mov r6, r1 
@@ -134,43 +73,115 @@ ldr r5, [r4, #0x4c]
 mov r0, #0x40 
 and r5, r0 
 
-push {r4-r7, lr} 
-
+push {lr} @ save lr so we can bl / blh 
 mov r2, #0x4C 
 ldr r2, [r4, r2] @ weapon ability word 
 mov r3, #0x80 
 lsl r3, #0xA @ Luna weapon bit 
 and r2, r3 
 cmp r2, #0 
-bne DoNothing 
-
-mov r3, #0x5C @ Def
-ldsh r0, [r6, r3]
-mov r2, #0x5A @ Att 
-ldsh r1, [r4, r2] @ Att
-
-cmp r1, r0 
-bgt DoNothing
-
-add r0, #1
-strh r0, [r4, r2] @ Store 
-
+bne DoNothing @ if the weapon negates def, we do the calc loop later 
+mov r0, r4 @ Atkr 
+mov r1, r6 @ Dfdr ?  
+bl DamageModifierCalcLoopFunc
 DoNothing:
+mov r0, r4 @ atkr 
+mov r1, r6 @ dfdr 
 
-
-
-@mov r0, #0x40 
-pop {r4-r7} 
-pop {r3} 
-ldr r3, =0x802ADD9
-bx r3
-
+pop {r3}
+mov r14, r3 
+ldr r3, =0x802ADd9 @ return address 
+bx r3 
+.ltorg 
 .align 
 
+.type DamageModifierCalcLoopFunc, %function 
+.global DamageModifierCalcLoopFunc 
+
+DamageModifierCalcLoopFunc:
+push {r4-r7, lr} 
+
+mov r4, r0 @ atkr 
+mov r5, r1 @ dfdr 
+ldr r6, =DamageModifierCalcLoop @ a list of functions to go through 
+sub r6, #4 
+Loop:
+add r6, #4 
+ldr r3, [r6] 
+cmp r3, #0 
+beq Break
+mov r0, r4 @ atkr 
+mov r1, r5 @ dfdr 
 
 
 
+mov r2, #1 
+orr r3, r2 @ thumb mode 
+mov r14, r3 
+.short 0xF800 
+b Loop 
 
+Break:
+
+pop {r4-r7} 
+pop {r0} 
+
+bx r0
+.ltorg 
+.align 
+
+.type DoublingDamageModifierFunc, %function 
+.global DoublingDamageModifierFunc
+
+DoublingDamageModifierFunc:
+push {r4-r6, lr}
+mov r4, r0 
+mov r5, r1 
+
+
+sub sp, #8 
+str r4, [sp] 
+str r5, [sp, #4] 
+mov r0, sp 
+mov r1, sp
+add r1, #4 
+
+
+@ takes two pointers to battle struct atkr/dfdr 
+blh 0x802AF90 @ BattleCheckDoubling (which skill sys hooks and does a loop for) 
+add sp, #8 
+cmp r1, #1 
+bne Exit 
+
+mov r3, #0x5A @ att 
+ldsh r0, [r4, r3] 
+mov r2, #0x5C 
+ldsh r1, [r5, r2] @ def 
+sub r0, r1 
+cmp r0, #0 
+blt Exit @ they will deal min damage twice 
+
+add r0, #1 
+lsr r1, r0, #1 @ Half att 
+add r0, #2 
+lsr r0, #2 @ 1/4 
+add r0, r1 @ 3/4 dmg per attack for doubling 
+mov r2, #0x5C 
+ldsh r1, [r5, r2] @ def 
+cmp r1, #0 
+bge NoCap 
+mov r1, #0 
+NoCap: 
+add r0, r1 @ add back def again 
+strh r0, [r4, r3] 
+
+
+Exit:
+pop {r4-r6}
+pop {r0}
+bx r0 
+.ltorg 
+.align 
 
 
 

@@ -93,8 +93,8 @@ mov r0, #0x1
 strb r0, [r1,#0x11]
 mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 
-pop {r0} 
-bx r0 
+pop {r1} 
+bx r1
 
 
 .ltorg 

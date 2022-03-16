@@ -17,14 +17,14 @@ TrainerSpotsYouEvent:
 EVBIT_MODIFY 4
 ASMC ModularSummon_UnhideActive 
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
+CUMO 0x7fff
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-
-//CHECK_EVENTID PlayableCutsceneFlag 
-//BNE 20 rC r0 
+SVAL s5 0 // Pokeball animation as the default 
 CHECK_ACTIVE 
 SVAL r7 0xEF 
 BEQ 20 rC r7 // If unit is 0xEF, always considered cutscene I guess 
-
+SVAL s7 0xEE // Wild Boss pokemon that can only be attacked once its summons are defeated 
+BEQ 21 sC s7 
 
 LABEL 0
 
@@ -41,6 +41,7 @@ BNE 10 rC r7
 
 LABEL 5 
 REMA 
+CURE
 ASMC ModularSummonEffect
 GOTO 0x63 
 
@@ -52,7 +53,26 @@ GOTO 0x63
 LABEL 20 // Playable cutscene eg. rival battle 
 ENUT PlayableCutsceneFlag
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
+CURE
 ASMC ModularSummonEffect 
+GOTO 0x63 
+
+LABEL 21 // Wild Boss pokemon that can only be attacked once its summons are defeated 
+ASMC CallCheckTrainerFlag 
+BNE 0x63 rC r0 // If flag is unset, always call modular summon
+ENUT PlayableCutsceneFlag
+SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
+REMA 
+CURE
+SVAL s5 1 // not pokeball 
+ASMC ModularSummonEffect
+TutText(AuraFlareText)
+
+
+
+SVAL s1 3<<8 // Attack in range 
+CHAI 0x7FFF 
+
 
 LABEL 0x63 
 EVBIT_MODIFY 0
@@ -66,6 +86,7 @@ EVBIT_MODIFY 4
 ASMC PostTrainerBattleActions 
 SADD rA rC r0 
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
+SADD s8 sB s0 
 CUMO 0x7ffE
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
@@ -83,13 +104,34 @@ GOTO 0x63
 
 LABEL 20 // Cutscene 
 SVAL r7 0xEF
-BNE 10 r7 r9 // Only if unit is 0xEF
+BEQ 21 r7 r9 // Only if unit is 0xEF
+SVAL s7 0xEE 
+BEQ 22 s7 s9 // if unit is wild boss pkmn 
+GOTO 10
+LABEL 21 
 ENUF PlayableCutsceneFlag 
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 FADI 8 
 CURE
 DISA 0xEF 
 FADU 10
+GOTO 0x63 
+
+LABEL 22 
+//BottomWallS2Text
+CURE
+TutText(AuraDissipated)
+SADD sB s8 s0 
+GetUnitStatus(0x7FFe, UnitPointer)
+SADD s5 sC s0 
+SVAL s6 52*16 //@ reduce by 0x10 unit IDs 
+SSUB s5 s5 s6 
+SetUnitStatus(0x7FFe, UnitPointer) // 0xEE -> 0xDE unit ID 
+//SetUnitStatus(0x7FFF, UnitPointer, 0x8806A48) // 0xEE -> 0xDE unit ID 
+
+// Later - 
+// ENUF PlayableCutsceneFlag
+// Death quote for the specific pkmn / marowak ? 
 
 LABEL 0x63 
 EVBIT_MODIFY 0
@@ -106,5 +148,28 @@ ENDA
 
 
 
+ModularSummonWildTrainerEvent:
+ENUF PlayableCutsceneFlag
+ASMC WildAuraMonDefeatQuoteFunc
+ASMC MarkTrainerAsDefeated_ASMC
+BEQ 0x63 s2 s0 // If no quote, skip 
+CUMO 0x7ffE
+BottomWallS2Text
+CURE
+LABEL 0x63 
+NoFade 
+ENDA 
+
+ModularSummonWildTrainerEvent_LeaderDefeated:
+ENUF PlayableCutsceneFlag
+ASMC WildAuraMonDefeatQuoteFunc
+ASMC MarkTrainerAsDefeated_ASMC
+BEQ 0x63 s2 s0 // If no quote, skip 
+CUMO 0x7ffE
+BottomWallS2Text
+CURE
+LABEL 0x63 
+NoFade 
+ENDA 
 
 

@@ -22,15 +22,18 @@ ldr r3,=Check_Effectiveness 	@added
 mov r14,r3			@added
 .short 0xF800			@added
 cmp		r0,#0
-beq		Label2
+beq		NoEffectiveness
 cmp		r0,r5
-ble		Label2
+ble		NoEffectiveness
 mov		r5,r0
-Label2:
+NoEffectiveness:
 mov		r0,#0
 ldsh	r0,[r4,r0]	@current attack
 cmp		r5,#0
-beq		Label3
+beq		Exit
+
+
+
 
 cmp r5, #9
 beq Neutral
@@ -41,19 +44,22 @@ beq Ineffective
 cmp r5, #1
 beq Immune
 
-@add stuff here
+
+SuperEffective:
 @supereffective (+60 hit, +30 avo)
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
-ldrb r2, [r6, r3] 	@hit 
+ldsb r2, [r6, r3] 	@hit 
 add r2, r2, #60		@+60 hit attacker 
 
-cmp r2, #255
+cmp r2, #128
 blt DontCapHitSinceUnder255  
-mov r2, #255
+mov r2, #127
 DontCapHitSinceUnder255:
 
 strb r2, [r6, r3] 	@put our hit back into attacker battle struct
+
+
 
 mov r3, #0x62 		@0x62 entry as attacker's avoid
 mov r2,r6 		@attacker battle struct					
@@ -68,33 +74,15 @@ DontCapAvoSinceUnder127:
 
 strh r2, [r6, r3] 	@put our avo back into attacker battle struct
 
-@mov r3, #0x5A 		@0x62 entry as attacker's attack
-@mov r2,r6 		@attacker battle struct					
-@ldsh r2, [r6, r3] 	@atk
-@lsl r2,r2,#0x1		@2x attack
-@strh r2, [r6, r3] 	@put our avo back into attacker battle struct
-@mov		r5,r0 	@remove 2x MT
-mov r5, #5 @ just 2x mt 
 
-mov r3, #0x5C 		@0x64 entry as attacker's def/res
-mov r2,r6 		@attacker battle struct					
-ldsh r2, [r6, r3] 	@
-add r2, r2, #5		@+5 def/res attacker
 
-cmp r2, #127 
-blt DontCapDefResSinceUnder127  
-mov r2, #127 
-DontCapDefResSinceUnder127:
+mov		r0,#0
+ldsh	r0,[r4,r0]	@current attack (only has weapon might so far)
 
-strh r2, [r6, r3] 	@put our def/res back into attacker battle struct
-
-mul		r0,r5
-lsr		r0,#1
-
-b		Label3
+b		Exit
 
 Neutral:		@failsafe, unnecessary
-b		Label3
+b		Exit
 
 Ineffective:
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
@@ -110,7 +98,10 @@ mov		r0,#0
 ldrh	r1,[r4,r0]	@current attack
 lsr r1, #1
 sub r0, r1 
-b		Label3
+mov		r0,#0
+ldsh	r0,[r4,r0]	@current attack
+
+b		Exit
 
 
 
@@ -128,9 +119,10 @@ lsr r1, #1 @ 1/2
 add r1, r2 @ 3/4 to take away 
 
 sub r0, r1 
-b		Label3
+b		Exit
 
 Immune:
+b Ineffective
 mov r3, #0x53		@0x53	Byte	Weapon triangle hit adv effect
 mov r2, r6		@attacker battle struct	
 ldsb r2, [r6, r3] 	@hit 
@@ -141,9 +133,9 @@ mov		r0,#0
 ldsh	r1,[r4,r0]	@current attack
 lsl r1, #1 @ no idea why 
 sub r0, r1 
-b		Label3
+b		Exit
 
-Label3:
+Exit:
 mov		r5,r0
 b		GoBack
 

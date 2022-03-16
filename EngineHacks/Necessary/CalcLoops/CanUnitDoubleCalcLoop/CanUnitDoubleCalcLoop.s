@@ -28,11 +28,24 @@ CanUnitDoubleCalcLoopFunc:
 @ldr r5,[r1] @r5 = defender
 ldr r4,=#0x203A4EC @attacker struct
 ldr r5,=#0x203A56C @defender struct
-@keep the current true/false bool in r6
+ 
+@keep the current true/false bool in r8, then r6 
+
+mov r2, r9
+push {r2}
+mov r2, #0 
+mov r9, r2 @ default 0 
 
 mov r6,r0
 mov r7,r1
 push {r6-r7}
+
+
+mov r3, r8 
+push {r3} 
+
+mov r3, #0 
+mov r8, r3 @ default to 0 
 
 @do standard "can you double" check
 mov r3,#0x5E
@@ -49,7 +62,14 @@ ldr r2,=DoublingThresholdLink
 ldrb r2,[r2]
 cmp r1,r2
 pop {r2}
-ble SetASFalse
+blt SetASFalse
+mov r1, #1 
+mov r8, r1 @ true 
+ldr r1, [r6] 
+cmp r1, r5 @ if defender, don't return 1 in r1 at end, but still do other stuff 
+beq SetASTrue
+mov r1, #1 
+mov r9, r1 @ true 
 b SetASTrue
 
 DoInverseCheck:
@@ -59,7 +79,14 @@ ldr r2,=DoublingThresholdLink
 ldrb r2,[r2]
 cmp r1,r2
 pop {r2}
-ble SetASFalse
+blt SetASFalse
+mov r1, #1 
+mov r8, r1 @ true 
+ldr r1, [r6] 
+cmp r1, r4 @ if atkr, don't return 1 in r1 at end, but still do other stuff 
+beq SetASTrue
+mov r1, #1 
+mov r9, r1 @ true 
 
 SetASTrue: 
 ldr r4,=#0x203A4EC @attacker struct
@@ -79,7 +106,6 @@ SetASTrue_TargetDoubles:
 str r4,[r7]
 str r5,[r6]
 SetASTrue_End:
-mov r6,#1
 b PrepLoop
 
 SetASFalse:
@@ -87,9 +113,12 @@ ldr r4,=#0x203A4EC @attacker struct
 ldr r5,=#0x203A56C @defender struct
 str r4,[r6]
 str r5,[r7]
-mov r6,#0
 
 PrepLoop:
+mov r6, r8 
+pop {r3}
+mov r8, r3 
+
 ldr r7,=CanUnitDoubleCalcLoop
 
 LoopStart:
@@ -143,10 +172,14 @@ pop {r6-r7}
 mov r0,#0
 
 GoBack:
-pop {r4-r7}
-pop {r1}
-bx r1
+mov r1, r9 @ true/false for specific unit ig 
+pop {r2} 
+mov r9, r2 
 
+pop {r4-r7}
+pop {r2}
+bx r2
+@ r0 as t/f for any unit ??????????? 
 .ltorg
 .align
 

@@ -31,32 +31,32 @@ Get1stUnit:
 	push {r4-r7, lr}	
 	mov r6, #1
 	b Start
-
+.align 
 Get2ndUnit:
 	push {r4-r7, lr}	
 	mov r6, #2
 	b Start
-	
+.align 
 Get3rdUnit:
 	push {r4-r7, lr}	
 	mov r6, #3
 	b Start
-
+.align 
 Get4thUnit:
 	push {r4-r7, lr}	
 	mov r6, #4
 	b Start
-
+.align 
 Get5thUnit:
 	push {r4-r7, lr}	
 	mov r6, #5
 	b Start
-
+.align 
 Get6thUnit:
 	push {r4-r7, lr}	
 	mov r6, #6
 	b Start
-
+.align 
 Start: 
 
 mov r4,#1 @ current deployment id
@@ -93,6 +93,6 @@ pop {r1}
 bx r1
 
 .ltorg
-
+.align 
 	
 
