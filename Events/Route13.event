@@ -3,8 +3,8 @@
 #define GenericB UnitRoute13Trainer
 #define ClassA ClassRoute13WildA
 #define ClassB ClassRoute13WildB
-#define WildLvl 24
-#define TrainerL 30
+#define WildLvl 25
+#define TrainerL 25
 
 
 
@@ -237,17 +237,17 @@ MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT R13_0xE0_BQ // 0xE0 
+SHORT R13_0xE1_BQ // 0xE0 
+SHORT R13_0xE2_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R13_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R13_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R13_0xE2_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
@@ -262,21 +262,21 @@ UNIT
 // Venonat, Pidgeotto, Gloom, Weepingbell 
 // trainer exclusive: slowpoke, gyarados 
 
-EnemyTrainers0: // fisher 
+EnemyTrainers0: //
 UNIT GenericB 	WeepinbellID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	GloomID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	WeepinbellID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	GloomID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
-EnemyTrainers1: // fisher 
+EnemyTrainers1: // 
 UNIT GenericB 	VenonatID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	GloomID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	WeepinbellID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	VenonatID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
-EnemyTrainers2: // fisher 
+EnemyTrainers2: // 
 UNIT GenericB 	ChanseyID 		0xE2 		Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	VenonatID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	PidgeottoID 		0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI

@@ -3,8 +3,8 @@
 #define GenericB UnitRoute15Trainer
 #define ClassA ClassRoute15WildA
 #define ClassB ClassRoute15WildB
-#define WildLvl 23
-#define TrainerL 31
+#define WildLvl 26
+#define TrainerL 26
 
 
 
@@ -248,26 +248,26 @@ MS_TableEntry(0xE5, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers5)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT R15_0xE0_BQ // 0xE0 
+SHORT R15_0xE1_BQ // 0xE0 
+SHORT R15_0xE2_BQ // 0xE0 
+SHORT R15_0xE3_BQ // 0xE0 
+SHORT R15_0xE4_BQ // 0xE0 
+SHORT R15_0xE5_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R15_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R15_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R15_0xE2_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R15_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R15_0xE4_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R15_0xE5_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 

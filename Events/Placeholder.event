@@ -248,13 +248,13 @@ ENUN
 AutoLevelUnits(1, True, 0x50FF)
 RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-SetUnitStatus(1, CurrentHP, 5)
+SetUnitStatus(1, CurrentHP, 1)
 SetUnitStatus(2, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 
 //SetUnitStatus(1, 0x2a, Ember)
-SetUnitStatus(1, 0x29, DoubleKick)
+SetUnitStatus(1, 0x29, TakeDown)
 //SetUnitStatus(1, 0x16, 10)
 
 //SetUnitStatus(1, 0x29, RecoverMove)

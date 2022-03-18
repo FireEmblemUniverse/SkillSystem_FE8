@@ -250,7 +250,6 @@ mov r0, r6 @ Summon unit pointer
 blh IncreaseUnitStatsByLevelCount @ // str/mag split compatible
 
 
-
 mov r0, r6
 blh EnsureNoUnitStatCapOverflow
 ldrb r0, [r6, #0x12] 

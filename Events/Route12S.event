@@ -4,7 +4,7 @@
 #define ClassA ClassRoute12WildA
 #define ClassB ClassRoute12WildB
 #define WildLvl 24
-#define TrainerL 29
+#define TrainerL 24
 
 
 
@@ -28,8 +28,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-
-
+TurnEventPlayer(0x10,BerserkSnorlax,0,255)
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -39,16 +38,51 @@ Reinforce(0xF1, 1, ReinforcementUnits, 5, 4)
 Reinforce(0xF2, 1, ReinforcementUnits, 8, 4) 
 }
 
+BerserkSnorlax:
+SetUnitStatus(0xEE, BadStatus, 3<<4|BerserkStatusID)
+NoFade 
+ENDA 
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CharacterEventBothWays(0,AggroSnorlaxEvent, 0, 0xEE)
 AllTrainersPostBattleTalk
 END_MAIN
 
+AggroSnorlaxEvent:
+SVAL s1 TrainerAI_chai
+CHAI 0xEE
+UnmarkTrainerAsDefeated(0xEE)
+MUSCFAST JigglypuffSFX // lol 
+BottomWallText(PlayPokefluteText)
+ENUF 0x10 
 
+STAL 40
+ReturnToMapBGM
+SET_ACTIVE 0
+EndTurn
+NoFade
+ENDA 
+
+SnorlaxRestEvent: // Prevent AoE from damaging him until battle started 
+CHECK_EVENTID PokefluteFlag
+BEQ 10 sC s0
+CHECK_EVENTID PlayableCutsceneFlag // don't heal once battle started 
+BNE 63 sC s0 
+LABEL 10  
+UseVulnerary(0xEE, 99)
+LABEL 63 
+NoFade 
+ENDA 
 
 LocationBasedEvents:
+House(0, EnterRoute12SHouse, 12,20) 
 END_MAIN
+
+EnterRoute12SHouse:
+TutText(Route12FisherHouseText)
+NoFade 
+ENDA 
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
@@ -59,6 +93,7 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToRoute11 [0,3] [0,5] 
 AREA 0 ToRoute12N [14,0] [15,0] 
 AREA 0 ToRoute13 [14,53] [15,53] 
+AFEV 0 SnorlaxRestEvent 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -107,7 +142,7 @@ Traps1:
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
 SignBTrap(18,45, ChapterID, 0x0) //no extra text 
-SignATrap(15,3, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(10,7, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
@@ -139,7 +174,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Shallow, Range(0,0,5,5), Range(8,6,18,25)) //N patch 
+RandomizeCoords(Shallow, Range(0,0,5,5), Range(8,10,18,25)) //N patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
 RandomizeCoords(Shallow, Range(0,0,5,5), Range(8,28,20,43)) //Mid patch 
@@ -148,7 +183,13 @@ ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(8,46,11,52)) //S patch 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
- // Bushes  
+ // Bushes
+LOAD1 0x1 SnorlaxGroup
+ENUN 
+MarkTrainerAsDefeated(0xEE)
+ENUT 0x10 
+SetUnitStatus(0xEE, CurrentHP, 40)
+ 
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
@@ -222,24 +263,27 @@ MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0)
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
 MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
 MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 0, 0, 1, SnorlaxSummons) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT R12S_0xE0_BQ // 0xE0 
+SHORT R12S_0xE1_BQ // 0xE0 
+SHORT R12S_0xE2_BQ // 0xE0 
+SHORT R12S_0xE3_BQ // 0xE0 
+BQ(0xE, SnorlaxGrumpyText)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R12S_0xE0_BD // 0xE0 
+SHORT 612 // Gold 
+SHORT R12S_0xE1_BD // 0xE0 
+SHORT 612 // Gold 
+SHORT R12S_0xE2_BD // 0xE0 
+SHORT 612 // Gold 
+SHORT R12S_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
+BD(0xE, SnorlaxLeftText, 0)
 TDQ_TableTerminator ; }
 
 HumanTrainers:
@@ -247,6 +291,19 @@ UNIT 0xE0 fisherID 0x0 Level(0, Enemy, 1) [10,18]  0b 0x0	0x0 0x0  [FiveRangeWep
 UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [17,27]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 fisherID 0x0 Level(0, Enemy, 1) [10,39]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 fisherID 0x0 Level(0, Enemy, 1) [18,37]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT
+
+SnorlaxGroup:
+UNIT 0xEE SnorlaxID 0x0 Level(0, Enemy, 1) [9,6]  0b 0x0	0x0 0x0  [FiveRangeWep,Headbutt,0x0,0x0] DoNothingAI
+UNIT
+
+SnorlaxSummons:
+UNIT GenericB 	MagikarpID 0xEE 	Level(5, Enemy, 1) [10,10] 0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	MagikarpID 0xEE 	Level(5, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	MagikarpID 0xEE 	Level(5, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	MagikarpID 0xEE 	Level(5, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	MagikarpID 0xEE 	Level(5, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	MagikarpID 0xEE 	Level(5, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
 UNIT
 
 // Tentacool? 

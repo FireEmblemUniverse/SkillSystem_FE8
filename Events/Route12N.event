@@ -3,8 +3,8 @@
 #define GenericB UnitRoute12Trainer
 #define ClassA ClassRoute12WildA
 #define ClassB ClassRoute12WildB
-#define WildLvl 23
-#define TrainerL 28
+#define WildLvl 22
+#define TrainerL 22 // allow a little grinding before Gary at lvl 20 i guess 
 
 
 
@@ -146,6 +146,8 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds
  // Bushes  
 LOAD1 0x1 HumanTrainers
 ENUN 
+
+
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
@@ -222,23 +224,23 @@ MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R25_0xE0_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
-SHORT R25_0xE1_BQ // 0xE0 
+SHORT R12N_0xE0_BQ // 0xE0 
+SHORT R12N_0xE1_BQ // 0xE0 
+SHORT R12N_0xE2_BQ // 0xE0 
+SHORT R12N_0xE3_BQ // 0xE0 
+SHORT R12N_0xE4_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R25_0xE0_BD // 0xE0 
+SHORT R12N_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R25_0xE1_BD // 0xE0 
+SHORT R12N_0xE1_BD // 0xE0 
+SHORT 612 // Gold 
+SHORT R12N_0xE2_BD // 0xE0 
+SHORT 612 // Gold 
+SHORT R12N_0xE3_BD // 0xE0 
+SHORT 612 // Gold 
+SHORT R12N_0xE4_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 

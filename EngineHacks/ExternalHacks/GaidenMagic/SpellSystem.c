@@ -442,7 +442,8 @@ int InitGaidenSpellLearnPopup(void) // Responsible for returning a boolean for w
 int HasSufficientHP(Unit* unit, int spell)
 {
 	// WeaponEXP granted in item data is also the HP cost of the spell.
-	return unit->curHP > GetSpellCost(spell);
+	//asm("mov r11,r11");
+	return (unit->curHP > GetSpellCost(spell));
 }
 
 // This function is going to check if we should be able to use this spell NOW. If this is an attack spell, are we in range, etc.

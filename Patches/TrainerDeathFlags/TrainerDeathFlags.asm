@@ -485,16 +485,44 @@ ldr r0, [r3, #4] @ s1 as unit ID
 blh GetUnitByEventParameter
 cmp r0, #0 
 beq ExitMarkTrainerAsDefeated
-ldrb r0, [r0, #0x0B] @ Deployment byte 
+mov r4, r0 @ unit to mark as defeated 
+bl CheckTrainerFlag 
+mov r0, r1 @ returned address offset to set 
+blh SetNewFlag 
 
-ldr r3, =PostTrainerBattleRamLocatLink
-ldr r3, [r3] @ @ my ram 
-strb r0, [r3] 
-bl PostTrainerBattleActions 
-
-
+mov r0, #50 
+mov r1, #0x2D 
+strb r0, [r4, r1] @ to not trigger the battle again 
 
 ExitMarkTrainerAsDefeated: 
+
+pop {r4} 
+pop {r0} 
+bx r0 
+
+
+
+
+.global UnmarkTrainerAsDefeated_ASMC
+.type UnmarkTrainerAsDefeated_ASMC, %function 
+UnmarkTrainerAsDefeated_ASMC: 
+push {r4, lr} 
+
+ldr r3, =MemorySlot 
+ldr r0, [r3, #4] @ s1 as unit ID 
+blh GetUnitByEventParameter
+cmp r0, #0 
+beq ExitUnmarkTrainerAsDefeated
+mov r4, r0 @ unit to mark as defeated 
+bl CheckTrainerFlag 
+mov r0, r1 @ returned address offset to set 
+blh UnsetNewFlag 
+mov r0, #0 
+mov r1, #0x2D 
+strb r0, [r4, r1] @ to not trigger the battle again 
+
+
+ExitUnmarkTrainerAsDefeated: 
 
 pop {r4} 
 pop {r0} 

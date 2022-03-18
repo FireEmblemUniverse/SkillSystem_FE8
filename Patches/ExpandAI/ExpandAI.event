@@ -49,6 +49,8 @@ NewAI2Entry(32, MoveTowardsCommanderAILabel)
 NewAI2Entry(33, TrainerFleeSummonTeamAILabel)
 NewAI2Entry(34, DoNothingAI2)
 
+#define DoNothingAI DoNothing 
+
 #define SafeZoneAI2 23 
 #define BushAI [21,21]
 #define WithinTwoZoningAI [23,23] // 
@@ -64,6 +66,8 @@ NewAI2Entry(34, DoNothingAI2)
 #define SummonOrAttackInRangeAI [30,30] 
 #define SummonOrAttackIfAdjacentAI [30,30,0,32]
 #define TrainerAI [31, 3, 0, 0] 
+#define TrainerAI_chai (0x3<<8 | 31)
+
 #define TrainerBossAI [31, 3, 0, 32] 
 #define TrainerFleeAI [33, 3, 0, 0] 
 #define AttackIfWithin2 [0, 6] 

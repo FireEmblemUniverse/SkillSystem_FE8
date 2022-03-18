@@ -7,7 +7,10 @@ int SpellUsability(const struct MenuCommandDefinition* menuEntry, int index, int
 	// This option should be usable if the nth spell exists.
 	if ( !CanCastSpellNow(gActiveUnit,spell) ) { return 3; }
 	// Now, let's grey out the spell if we don't have the HP to cast it.
-	return ( HasSufficientHP(gActiveUnit,spell) ? 1 : 2 );
+	u8 HasEnoughHp = HasSufficientHP(gActiveUnit,spell);
+	if (HasEnoughHp) { return 1; }
+	return 2; 
+	//return (  ? 1 : 2 );
 }
 
 int SpellDrawingRoutine(MenuProc* menu, MenuCommandProc* menuCommand)

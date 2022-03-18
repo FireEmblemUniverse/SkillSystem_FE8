@@ -21,7 +21,10 @@ HealLikeVulnerary:
 
 	@UnitIDの保存
 	mov  r5, r0 @ var r5 = unit
-
+	ldrb r0, [r5, #0x13] @ curr hp 
+	ldrb r1, [r5, #0x12] @ max hp 
+	cmp r0, r1 
+	bge Exit 
 	@アニメーションを表示するので、一時的にマップ上の該当ユニットを消す
 	mov  r0, r5	 @ arg r0 = Unit
 	blh  0x0802810c   @HideUnitSMS	{U}

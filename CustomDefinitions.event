@@ -1,8 +1,8 @@
 //#define FreeSpace 0xb2a610
 //#define FreeSpaceBLRange 0x1c1ec0
 
-// Comment out for public releases 
-#define DEBUG_MODE 
+// Comment out for public releases
+//#define DEBUG_MODE 
 //#define ALT_TITLESCREEN
 
 PROTECT 0x0E120 // tutorial disabler? 

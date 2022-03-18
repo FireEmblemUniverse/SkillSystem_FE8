@@ -56,6 +56,8 @@ type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
 SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
 copy /y "%~dp0FE8Hack.sym" %destDir%\comment_.txt
 
+
+
 echo:
 echo Generating patch
 

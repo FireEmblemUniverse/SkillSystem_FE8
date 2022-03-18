@@ -62,7 +62,7 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-CHECK_EVENTID ThunderbadgeObtained
+CHECK_EVENTID SoulbadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
@@ -78,7 +78,7 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveSkillAccessory(0xD0, LifeAndDeathID)
+SilentGiveSkillAccessory(0xD0, GrislyWoundID)
 SilentGiveItemWithDurability(0xD0, SuperPotion,0x1)
 SilentGiveItemWithDurability(0xA0, Berry,0x82)
 SilentGiveItemWithDurability(0xA1, Berry,0x82)
@@ -105,7 +105,7 @@ ENDA
 
 
 EndingScene: 
-CHECK_EVENTID ThunderbadgeObtained 
+CHECK_EVENTID SoulbadgeObtained 
 BNE 0x63 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
@@ -117,7 +117,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(KogaDefeatText)
 GiveItemWithDurability(0, SpellScroll, Thunderbolt)
-ENUT ThunderbadgeObtained 
+ENUT SoulbadgeObtained 
 SVAL r3 6000 
 GIVETOMAIN 0 
 TEXTSHOW KogaWaitText
