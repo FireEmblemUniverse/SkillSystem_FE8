@@ -39,6 +39,9 @@ ItemIconEntry(QuickClawIcon)
 ItemIconEntry(WiseGlassesIcon)
 #incbin "Individual_Icons/WiseGlassesByEpicer.dmp"
 
+ItemIconEntry(SteelIcon)
+#incbin "Individual_Icons/Steel.dmp"
+
 // End of icons 
 POP 
 

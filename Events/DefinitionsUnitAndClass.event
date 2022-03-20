@@ -124,12 +124,13 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define ClassSafariWildB 0x3F
 #define ClassSafariWildC 0x40 
 #define ClassSafariWildD 0x41
-#define ClassCyclingRoadWildA 0x42 
-#define ClassCyclingRoadWildB 0x43
-#define ClassRoute7WildA 0x44
-#define ClassRoute7WildB 0x45
-#define ClassRoute8WildA 0x46 
-#define ClassRoute8WildB 0x47 
+#define ClassSafariWildE 0x42
+#define ClassCyclingRoadWildA 0x43
+#define ClassCyclingRoadWildB 0x44
+#define ClassRoute7WildA 0x45
+#define ClassRoute7WildB 0x46
+#define ClassRoute8WildA 0x47 
+#define ClassRoute8WildB 0x48 
 
 
 

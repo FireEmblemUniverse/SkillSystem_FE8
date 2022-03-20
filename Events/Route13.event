@@ -35,7 +35,7 @@ END_MAIN
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
 Reinforce(0xF0, 1, ReinforcementUnits, 1, 4) 
-Reinforce(0xF1, 1, ReinforcementUnits, 2, 4) 
+Reinforce(0xF1, 1, ReinforcementUnitsB, 2, 4) 
 }
 
 
@@ -216,7 +216,7 @@ UNIT 0xF0 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3 
 UNIT 
 
 EnemyUnitsB:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 Grass 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -225,7 +225,9 @@ ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
- 
+ReinforcementUnitsB:
+UNIT Reinforcement0 ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
 
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 

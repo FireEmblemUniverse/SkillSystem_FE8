@@ -6,7 +6,7 @@
 // Weapon accuracy + ((wep acc * ((skill*2)+1)) / 100) + skill + (luk/2)
 
 #include "PB_Calc_Loop_Effects/Installer.event"
-
+#include "Heal_CalcLoop/Installer.event"
 
 PUSH 
 

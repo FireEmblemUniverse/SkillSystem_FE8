@@ -29,14 +29,23 @@ POIN BeginningScene EndingScene
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
 TurnEventPlayer(0x10,BerserkSnorlax,0,255)
+TurnEventPlayer(0,SleepSnorlax,0,255)
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
 Reinforce(0xF0, 1, ReinforcementUnits, 3, 4) 
 Reinforce(0xF1, 1, ReinforcementUnits, 5, 4) 
-Reinforce(0xF2, 1, ReinforcementUnits, 8, 4) 
+Reinforce(0xF2, 1, ReinforcementUnitsB, 8, 4) 
 }
+
+SleepSnorlax:
+CHECK_EVENTID PokefluteFlag
+BNE 63 sC s0 
+SetUnitStatus(0xEE, BadStatus, 0xF<<4|SleepStatusID)
+LABEL 63 
+NoFade 
+ENDA 
 
 BerserkSnorlax:
 SetUnitStatus(0xEE, BadStatus, 3<<4|BerserkStatusID)
@@ -50,17 +59,23 @@ AllTrainersPostBattleTalk
 END_MAIN
 
 AggroSnorlaxEvent:
+CHECK_EVENTID PokefluteFlag 
+BEQ 10 sC s0 
 SVAL s1 TrainerAI_chai
 CHAI 0xEE
 UnmarkTrainerAsDefeated(0xEE)
 MUSCFAST JigglypuffSFX // lol 
 BottomWallText(PlayPokefluteText)
 ENUF 0x10 
-
+SetUnitStatus(0xEE, BadStatus, 0) // [0202D22C]?
 STAL 40
 ReturnToMapBGM
 SET_ACTIVE 0
 EndTurn
+GOTO 63 
+LABEL 10 
+TutText(SnorlaxSleepingText)
+LABEL 63 
 NoFade
 ENDA 
 
@@ -188,18 +203,20 @@ LOAD1 0x1 SnorlaxGroup
 ENUN 
 MarkTrainerAsDefeated(0xEE)
 ENUT 0x10 
-SetUnitStatus(0xEE, CurrentHP, 40)
+
  
 LOAD1 0x1 HumanTrainers
 ENUN 
+
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
-
+SetUnitStatus(0xEE, CurrentHP, 40)
+SetUnitStatus(0xEE, BadStatus, 0xF<<4|SleepStatusID)
 LABEL 0x63
 NoFade
 ENDA
 
-
+// lifetaker uses warp in anim on enemies defeated lol 
 
 ShopItems:
 SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
@@ -233,28 +250,30 @@ UNIT
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsC:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassRoute24WildA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF2 Grass 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT Reinforcement0 ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
  
-
+ReinforcementUnitsB:
+UNIT Reinforcement0 ClassRoute24WildA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
@@ -267,14 +286,15 @@ MS_TableEntry(0xEE, 0, 0, 0, 1, 0, 0, 1, SnorlaxSummons)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xE, SnorlaxGrumpyText)
 SHORT R12S_0xE0_BQ // 0xE0 
 SHORT R12S_0xE1_BQ // 0xE0 
 SHORT R12S_0xE2_BQ // 0xE0 
 SHORT R12S_0xE3_BQ // 0xE0 
-BQ(0xE, SnorlaxGrumpyText)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xE, SnorlaxLeftText, 0)
 SHORT R12S_0xE0_BD // 0xE0 
 SHORT 612 // Gold 
 SHORT R12S_0xE1_BD // 0xE0 
@@ -283,7 +303,6 @@ SHORT R12S_0xE2_BD // 0xE0
 SHORT 612 // Gold 
 SHORT R12S_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
-BD(0xE, SnorlaxLeftText, 0)
 TDQ_TableTerminator ; }
 
 HumanTrainers:

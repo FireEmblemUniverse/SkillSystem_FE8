@@ -259,6 +259,12 @@ strb r0, [r6, #0x13] @ Set to max hp
 
 
 DoNotMatchSummonsLevel: 
+ldrb r0, [r6, #8] @ unit level 
+cmp r0, #0 
+bgt NoFloorLevel
+mov r0, #1 
+strb r0, [r6, #8] @ Min level as 1 
+NoFloorLevel:
 mov r0, r6
 
 blh AutolevelSpells

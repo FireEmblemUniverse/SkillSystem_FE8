@@ -198,6 +198,9 @@
 #define SleepStatusID_Def 2
 #define PoisonStatusID_Def 1
 #define FreezeStatusID_Def 7
+#define BurnStatusID 5
+#define ParalyzeStatusID 6
+#define FreezeStatusID 7
 
 //for setting what status effect 
 //status staves will give 

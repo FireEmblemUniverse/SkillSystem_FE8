@@ -18,7 +18,7 @@
 .type BurnIconFunc, %function 
 
 BurnIconFunc:
-MOV r3, #0x64
+MOV r3, #0x68
 push {r3} 
 b Start 
 

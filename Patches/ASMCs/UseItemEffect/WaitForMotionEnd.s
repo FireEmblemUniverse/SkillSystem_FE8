@@ -14,6 +14,9 @@ mov r4 ,r0
 @ arg r0 = target proc 
 ldr r0, [r4, #0x2c]
 blh 0x08002e9c	@Fin6C	{U}
+
+
+
 @blh 0x08002DEC	@Fin6C	{J}
 cmp r0 ,#0x0
 bne Exit
@@ -53,18 +56,21 @@ beq SkipHidingInProc
 add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D5
 mov r1, #1 
 strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DD
-
 SkipHidingInProc: 
+ldr r1, [r5, #0x0C] @ Unit state 
+mov r2, #1 @ Hide 
+bic r1, r2 @ Show SMS @
+str r1, [r5, #0x0C] 
 ldr r3, =0x03004E50 @CurrentUnit 
-ldr r3, [r3] 
+ldr r3, [r3]
 cmp r3, #0 
 beq NoActiveUnit
-ldr r1, [r3, #0x0C] @ Unit state 
-mov r2, #1 @ Hide 
-bic r1, r2 @ Show SMS @ 
-str r1, [r3, #0x0C] 
-
+ldr r1, [r3, #0x0C] @ unit state  
+mov r2, #2 @ Acted 
+orr r1, r2  
+str r1, [r3, #0x0C] @ Active unit should be greyed out now. 
 NoActiveUnit:
+
 ldr r0, =0x202E4D8 @ Unit map	{U}
 ldr r0, [r0] 
 mov r1, #0

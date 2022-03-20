@@ -2,6 +2,9 @@
 
 			PUSH 
 
+ORG $255DA // $255D6 to allow it for silenced units 
+SHORT $46C0 // Allow "talk" to sleeping units. 
+
 ORG $782EC // Monsters to not have variable levels
 SHORT $4770 // bx lr 
 

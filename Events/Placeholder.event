@@ -77,8 +77,10 @@ EventPointerTable(ViridianCh                       ,ThisChapter)
 EventPointerTable(ViridianForestNCh                ,ThisChapter)
 EventPointerTable(ViridianForestSCh                ,ThisChapter)
 EventPointerTable(ViridianGymCh                    ,ThisChapter)
-
-
+EventPointerTable(SafariZoneNCh                    ,ThisChapter)
+EventPointerTable(SafariZoneSCh                    ,ThisChapter)
+EventPointerTable(SafariZoneECh                    ,ThisChapter)
+EventPointerTable(SafariZoneWCh                    ,ThisChapter)
 
 
 ALIGN 4
@@ -254,7 +256,7 @@ SetUnitStatus(2, CurrentHP, 5)
 CALL SetBushHpEvent
 
 //SetUnitStatus(1, 0x2a, Ember)
-SetUnitStatus(1, 0x29, TakeDown)
+SetUnitStatus(1, 0x29, RecoverMove)
 //SetUnitStatus(1, 0x16, 10)
 
 //SetUnitStatus(1, 0x29, RecoverMove)

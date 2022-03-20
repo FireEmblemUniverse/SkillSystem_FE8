@@ -316,7 +316,7 @@ this Trainer battle![A][X]
 [OpenRight][LoadGaryShrug][OpenRight]Hah, I wondered when[NL]
 you'd show up.[A][NL]
 It's sad to see that you're[N]
-struggling along back here.[A]
+struggling along back here.[A][N]
 [LoadGaryPoint]I've already caught 4 Pok[Eaccent]mon![A][NL]
 [LoadGaryBattle]More than enough to[N]
 take you down![A][X]
@@ -851,8 +851,7 @@ All I found was rocks...[A][X]
 
 ## GaryCeruleanChallengeText
 // Rival Gary 
-[OpenMidRight][LoadGaryPoint][OpenMidRight]
-Hey! It's whatsyourface![A][NL]
+[OpenMidRight][LoadGaryPoint][OpenMidRight]Hey! It's whatsyourface![A][NL]
 I kicked your ass back[NL]
 in Viridian.[A][NL]
 [LoadGaryShrug]Hm? What are you[NL]
@@ -1523,6 +1522,10 @@ Sorry, we've closed[N]
 off the area.[A][N]
 A sleeping Pok[Eaccent]mon is[N]
 blocking the road![A][X]
+
+## SnorlaxSleepingText
+A sleeping Pok[Eaccent]mon[N]
+blocks the way...[A][X]
 
 ## PlayPokefluteText
 [Tact] played the[N]
