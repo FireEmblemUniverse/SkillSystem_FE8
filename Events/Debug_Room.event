@@ -1,18 +1,4 @@
 
-////////////////////////////////////////////////////
-//                                                //
-// Disassembled with Nintenlord's Event Assembler //
-// Version: 11.0.0.0                              //
-// Game: FE8                                      //
-// File: FE8_clean.gba                            //
-// Offset: $9EC66C                                //
-//                                                //
-////////////////////////////////////////////////////
-
-//EventPointerTable(0x7, PointerList)
-
-
-
 setText(0x160, NewChName)
 
 ALIGN 4
@@ -242,8 +228,8 @@ Write_Byte(4, GaryStarterClass)
 Write_Byte(4, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(4, YCoordNewArea)  
 //MNC2 PokemonTowerF3Ch
-//MNC2 FuschiaGymCh
-MNC2 Route12SCh
+MNC2 FuschiaGymCh
+//MNC2 Route12SCh
 //MNC2 Route1Ch
 //MNC2 CinnabarCh
 //Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 

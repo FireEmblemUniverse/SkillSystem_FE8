@@ -55,7 +55,7 @@ Vendor(ShopItems,19,16)
 END_MAIN
 
 EnterGym:
-ENUF ThunderbadgeObtained 
+ENUF SoulbadgeObtained 
 //CALL ClosedArea
 ForcedChapterTransition(FuschiaGymCh, 8,21)
 NoFade 
@@ -97,7 +97,9 @@ CALL ClosedArea
 ChapterTransition(Route18Ch, 59,9)
 
 EnterSafariZone:
-CALL ClosedArea 
+//CALL ClosedArea 
+TutText(EnterSafariZoneText)
+ChapterTransition(SafariZoneSCh, 20,25)
 NoFade 
 ENDA 
 //ChapterTransition(SafariZoneACh, 59,9)

@@ -78,7 +78,7 @@ for obj_file in glob.glob("ConfObj/*.png"):
 
        f.write("ALIGN 4\r")
        f.write("{}PalData:\r".format(obj_file.rstrip()))
-       f.write("#incbin \"dmp/{}_pal.dmp\"\r\r".format(obj_file.rstrip()))
+       f.write("#incbin \"dmp/{}_pal_fog.dmp\"\r\r".format(obj_file.rstrip()))
 
 ##import sys, subprocess
 ## p = subprocess.Popen('Defs/ObjPalDefinitions.txt', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

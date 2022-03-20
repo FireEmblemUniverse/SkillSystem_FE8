@@ -1707,8 +1707,8 @@ POISON-type Pok[Eaccent]mon![A][X]
 
 	
 ## KogaDefeatText
-Humph![N]
-You have proven your worth![A][N]
+Humph! You have[N]
+proven your worth![A][N]
 Here![N]
 Take the SOULBADGE![A][X]
 
@@ -1717,10 +1717,14 @@ Take the SOULBADGE![A][X]
 Take this, too![A][X]
 
 ## KogaRewardText
-[OpenMidRight][LoadKoga][OpenMidRight]This ancient artifact will[N]
-damage enemies after combat.[A][N]
+[OpenMidRight][LoadKoga][OpenMidRight]This ancient artifact will damage[N]
+nearby enemies after attacking.[A][N]
 It is a secret technique dating[N]
 back some four hundred years.[A][X]
+
+## EnterSafariZoneText
+Enjoy your time in there![N]
+It's free, and there's no time limit.[A][X]
 
 
 

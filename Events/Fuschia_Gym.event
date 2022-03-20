@@ -43,16 +43,16 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToVermillion [7,24] [7,24] 
+AREA 0 ToFuschia [8,21] [8,21] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,24) 
+EscapeTileEntry(8,21) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToVermillion:
-ChapterTransition(VermillionCh, 12,23)
+ToFuschia:
+ChapterTransition(FuschiaCh, 8, 30)
 
 Traps1:
 ENDTRAP
@@ -116,20 +116,20 @@ UNCR(0x7FFF, 0x43) // Show SMS & Refresh
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(KogaDefeatText)
-GiveItemWithDurability(0, SpellScroll, Thunderbolt)
+GiveItemWithDurability(0, SpellScroll, PoisonJab)
 ENUT SoulbadgeObtained 
 SVAL r3 6000 
 GIVETOMAIN 0 
 TEXTSHOW KogaWaitText
 TEXTEND 
 REMA
-GiveSkillAccessory(0, LifeAndDeathID)
+GiveSkillAccessory(0, SavageBlowID)
 TEXTSTART
 TEXTSHOW KogaRewardText
 TEXTEND 
 FADI 4 
 REMA 
-ForcedChapterTransition(VermillionCh, 12,23)
+ForcedChapterTransition(FuschiaCh, 8, 30)
 LABEL 0x63 
 NoFade
 ENDA

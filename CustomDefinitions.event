@@ -3,7 +3,7 @@
 
 // Comment out for public releases
 //#define DEBUG_MODE 
-//#define ALT_TITLESCREEN
+#define ALT_TITLESCREEN
 
 PROTECT 0x0E120 // tutorial disabler? 
 
