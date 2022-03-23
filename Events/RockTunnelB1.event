@@ -139,7 +139,7 @@ SignATrap(28,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //BerryTree(2,28,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-SpellScrollTrap(28,26, (ChapterID*2)+1, BulkUp)
+SpellScrollTrap(28,26, (ChapterID*2)+1, RockSlide)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
