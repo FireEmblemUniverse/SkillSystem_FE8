@@ -126,7 +126,7 @@ EnterTutTrap(11,9, DoorLockedText)
 EnterTutTrap(14,9, DoorLockedText)
 EnterTutTrap(17,9, DoorLockedText)
 
-//SpellScrollTrap(7,33, (ChapterID*2), DoubleHit)
+SpellScrollTrap(7,6, (ChapterID*2), BodySlam)
 
 //SkillAccessoryTrap(5,5, (ChapterID*2), SealSpdID)
 
