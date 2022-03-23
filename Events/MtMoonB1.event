@@ -96,7 +96,7 @@ SignTrap(24,5, TrainerTip_Typing)
 //StrengthBoulder(4,3)
 SkillScrollTrap(15,4, ChapterID*2, PrescienceID)
 SpellScrollTrap(3,21, (ChapterID*2)+1, WaterGun)
-RedPokeballTrap(33,25, ChapterID*2, RareCandy)
+RedPokeballTrap(33,25, ChapterID*2, ExoticCandy)
 StatAccessoryTrap(3,2, (ChapterID*2)+1, OldScope_BoostIndex)
 
 CoinsTrap(10,19,ChapterID*2,650)

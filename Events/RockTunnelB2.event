@@ -115,7 +115,7 @@ CoinsTrap(7,15, ChapterID*2,1500)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+StatAccessoryTrap(26,23, (ChapterID*2)+1, IronShield_BoostIndex)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 

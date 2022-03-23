@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="24" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="24" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="route 14 tileset" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/Route14" trans="ffffff" width="512" height="512"/>
  </tileset>
@@ -480,7 +480,7 @@
    <tile gid="104"/>
    <tile gid="104"/>
    <tile gid="104"/>
-   <tile gid="104"/>
+   <tile gid="9"/>
    <tile gid="104"/>
    <tile gid="97"/>
    <tile gid="7"/>
@@ -526,7 +526,7 @@
    <tile gid="7"/>
    <tile gid="36"/>
    <tile gid="104"/>
-   <tile gid="104"/>
+   <tile gid="9"/>
    <tile gid="104"/>
    <tile gid="104"/>
    <tile gid="104"/>
@@ -575,7 +575,7 @@
    <tile gid="36"/>
    <tile gid="104"/>
    <tile gid="104"/>
-   <tile gid="104"/>
+   <tile gid="9"/>
    <tile gid="104"/>
    <tile gid="104"/>
    <tile gid="97"/>

@@ -12,72 +12,85 @@ PewterGym: RockTomb, DryingPanAccessory
 Route3: 1150g, ParagonSS, DoubleHit
 Route4W: 450g
 MtMoonB1: OldScopeAccessory, RareCandy, PrescienceSS, WaterGun, 650g
-MtMoonB2: Harden
+MtMoonB2: Harden, Iron 
 MtMoonB3: BronzeShieldAccessory, RockyHelmetAccessory, StrongRiposteSS, KarateChop
-Route4E: 450g, WindDiscipleSS, BerserkGeneAccessory, Moon Stone(Cut)
+Route4E: 450g, WindDiscipleSS, BerserkGeneAccessory, MoonStone(Cut)
 CeruleanCity: WardingStance
 store: TantivtySS, AttackPulse, WaterGun, SignalBeam, Bite, DoubleHit, Gust, Magnitude, Confusion 
-Route24: 700g, WingAttack, ThunderWave, WaryFighterAccessory
-Route25: ChivalrySS, OldWardAccessory
+Route24: 700g, WingAttack, ThunderWave, WaryFighterAccessory, Calcium 
+Route25: ChivalrySS, OldWardAccessory, 
 CeruleanGym: Bubblebeam, RenewalRingAccessory
 Route5: PerfectionistSS
 Route6: CertainBlowAccessory, SealSpdAccessory 
 VermillionCity: PoisonStrikeAccessory
 store: PatienceSS, MagicalLeaf, WaterGun, Scorch, Dig, Headbutt, SignalBeam, Magnitude, Confusion
-Diglett'sCave: EnergyBandAccessory
-Route11: Scorch, SealResAccessory
+Diglett'sCave: EnergyBandAccessory, Carbos  
+Route11: Scorch, SealResAccessory, Iron 
 SSAnne: QuickClawAccessory, BodySlam
 VermillionGym: Thunderbolt, Surge'sSigilAccessory
-Route9W: InsightSS
+Route9W: InsightSS, SealStrAccessory
 Route9E: PaddedShieldAccessory, HealPulse, 1000g
-Route10: PragmaticSS
-RockTunnelB1: SealSklAccessory, RockSlide
-RockTunnelB2: VigilanceSS, 1500g 
-LavenderTown: DazzleAccessory 
-PokeTowerF2: AnathemaSS
+Route10: PragmaticSS, ThunderStone 
+RockTunnelB1: SealSklAccessory, RockSlide, MoonStone
+RockTunnelB2: VigilanceSS, IronShield, 1500g 
+LavenderTown: DazzleAccessory, LinkStone 
+PokeTowerF2: AnathemaSS, WiseGlassesT2
 PokeTowerF3: ExoticCandy, ShadowPunch 
 PokeTowerF4: SealMagAccessory, OpportunistSS  
-Route12N:
-Route12S: Clamp, 
-Route13:
-Route14: LeafBlade, 
-Route15:
-Fuschia: AuroraBeam, 
-SafariS:
-SafariE: Psybeam, 
-SafariN:
-SafariW: BugBite
+Route12N: SealDefAccessory, BreathOfLifeAcc, Protein 
+Route12S: Clamp, FierceStanceSS, WaterStone 
+Route13: CounterAcc, MuscleBandT2, FullHeal, HPUp
+Route14: LeafBlade, LeafStone 
+Route15: DartingStanceSS, Zinc, SuperPotion 
+Fuschia: AuroraBeam, MagicWard, FireStone 
+SafariS: FocusBandAcc(Miracle), ExoticCandy 
+SafariE: Psybeam, Protein
+SafariN: ChargeSS, EnergyBandT2 
+SafariW: BugBite, HPUp 
 FuschiaGym: PoisonJab, SavageBlow 
-Route18: DrillPeck
-Route17S:
+Route18: DrillPeck, QuickBoots, Carbos 
+Route17S: PursuitSS, CounterMagicAcc
 Route17N: Flamethrower
-Route16: Fly
-Celadon: IceBeam, TriAttack, Fire/Ice/ThunderPunch
-CeladonGym: PetalDance
-Route7:
+Route16: Fly, PaddedShieldT2 
+Celadon: IceBeam, TriAttack, Fire/Ice/ThunderPunch, LuckyBracerT3, EvoStones 
+CeladonGym: PetalDance, AmaterasuAcc, 
+Route7: WrathSS
 Saffron: Psychic, Surf
-SilphCo: Screech
-SilphCo: SwordsDance
-SilphCo: BugBuzz
-SilphCo:
-Dojo: MegaKick, MegaPunch, HiJumpKick, BulkUp
-SaffronGym: CalmMind
-Route8:
+SilphCo: Screech, SilentPrideSS, Calcium, HPUp 
+SilphCo: SwordsDance, LinkStone 
+SilphCo: BugBuzz, SteelShield
+SilphCo: SilphScope(Hawkeye), 
+Dojo: HiJumpKick, BulkUp, MuscleBandT3 
+SaffronGym: CalmMind, HoplonGuard 
+Route8: CharmSS, LeafStone 
+PowerPlant: Thunder, VintageBoots, ThunderStone, Carbos 
 Route19: HoneClaws
-Route20E:
-Seafoam: Blizzard, EarthPower
-Route20W: X-Scissor 
-Cinnabar: Ancientpower, 
-Mansion: Sludge
-Mansion: ShadowBall
-CinnabarGym: FireBlast
-Route21: HydroPump
-ViridianGym: HyperBeam, Earthquake 
-VictoryRoad: DarkPulse
-VictoryRoad: DoubleEdge
-VictoryRoad: Outrage
+Route20E: EnhancedWard
+Seafoam: Blizzard, EarthPower, WaterStone 
+Route20W: X-Scissor, EnergyBandT3
+Cinnabar: Ancientpower, WiseGlassesT3, FireStone 
+Mansion: Sludge, Zinc 
+Mansion: ShadowBall, GrislyWoundSS, StuddedShield 
+CinnabarGym: FireBlast, FieryBloodSS
+Route21: HydroPump, SecretTonic 
+ViridianGym: HyperBeam, Earthquake, Fury 
+Route22: GaleforceAcc, BlossomAcc
+VictoryRoad: DarkPulse, VoiceOfPeaceAcc
+VictoryRoad: DoubleEdge, EnergyBandT3 
+VictoryRoad: Outrage, Protein, Iron 
 VictoryRoad: Megahorn 
 CeruleanCove: MeteorMash
+
+
+SuperPotion 
+MaxPotion 
+FullHeal
+
+HPUp
+Protein
+SecretTonic
+Luck
+Zinc
 
 
 Accessories: MuscleBand, WiseGlasses, SteadyStance, OldScope, BronzeShield, RockyHelmet, WardingStance,
@@ -85,13 +98,12 @@ RenewalRing, EnergyBand, PoisonStrike, QuickClaw, SurgeSigil, PaddedShield, Dazz
 SavageBlow, 
 
 TMs: LeechLife, AttackPulse, MudShot, RockTomb, DoubleHit, WaterGun, KarateChop, WingAttack, Bubblebeam,
-Dig, Scorch, Thunderbolt, HealPulse, BulkUp, ShadowPunch, 
+Dig, Scorch, Thunderbolt, HealPulse, RockSlide, ShadowPunch, Clamp, LeafBlade, AuroraBeam, Psybeam,
+BugBite, PoisonJab, DrillPeck, Fly, IceBeam, TriAttack, Ele. Punches, PetalDance, Psychic, Surf, 
+Screech, SwordsDance, BugBuzz, HiJumpKick, BulkUp, CalmMind, Thunder, HoneClaws, Blizzard, EarthPower, 
+X-Scissor, Ancientpower, Sludge, ShadowBall, FireBlast, HydroPump, HyperBeam, Earthquake, 
+DarkPulse, DoubleEdge, Outrage, Megahorn, MeteorMash 
 
-
-
-Scrolls: Pursuit, Silent Pride, Wrath, Fiery Blood, Charge, Fierce/Darting Stance
-Skill accessories: Shell Bell (Breath of Life), Miracle
-TMs: 
 
 
 

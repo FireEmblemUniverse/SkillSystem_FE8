@@ -94,9 +94,9 @@ Traps1:
 
 //StrengthBoulder(4,3)
 
-
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-//GoldPokeballTrap(9,3, (ChapterID*2)+1, MegaPunch) 
+RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
@@ -113,7 +113,7 @@ SignATrap(54,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 BerryTree(32,11,5)
 BerryTree(36,11,5)
 
-//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)

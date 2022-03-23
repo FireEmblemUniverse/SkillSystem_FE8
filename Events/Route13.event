@@ -117,9 +117,10 @@ Flower(4,5)
 //StrengthBoulder(4,3)
 
 
-//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-//GoldPokeballTrap(9,3, (ChapterID*2)+1, MegaPunch) 
-//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
+StatAccessoryTrap(20,7, (ChapterID*2), MuscleBandT2_BoostIndex) 
+RedPokeballTrap(1,14, (ChapterID*2)+1, FullHeal) 
+RedPokeballTrap(17,13, (ChapterID*2), HPUp) 
+SkillAccessoryTrap(37,10, (ChapterID*2)+1, CounterID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 

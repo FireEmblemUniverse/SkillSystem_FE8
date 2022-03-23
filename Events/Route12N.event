@@ -92,9 +92,10 @@ Traps1:
 //StrengthBoulder(4,3)
 
 
-//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-//GoldPokeballTrap(9,3, (ChapterID*2)+1, MegaPunch) 
-//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
+
+SkillAccessoryTrap(19,29, (ChapterID*2), SealDefID) 
+RedPokeballTrap(19,50, (ChapterID*2)+1, Protein) 
+SkillAccessoryTrap(17,17, (ChapterID*2)+1, BreathOfLifeID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
@@ -103,7 +104,7 @@ Traps1:
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
 SignBTrap(13,55, ChapterID, 0x0) //no extra text 
-SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(8,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 

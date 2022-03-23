@@ -147,12 +147,14 @@ Traps1:
 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-//GoldPokeballTrap(9,3, (ChapterID*2)+1, MegaPunch) 
+RedPokeballTrap(19,20, (ChapterID*2)+1, WaterStone) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
-//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+
+SpellScrollTrap(11,37, (ChapterID*2)+1, Clamp)
+SkillScrollTrap(9,45, ChapterID*2, FierceStanceID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
@@ -165,7 +167,7 @@ BerryTree(16,19,5)
 BerryTree(9,34,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+//
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

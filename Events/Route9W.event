@@ -113,7 +113,7 @@ CutBush(12,10)
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-//SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
+SkillAccessoryTrap(27,9, ChapterID*2, SealStrID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 SkillScrollTrap(35,19, (ChapterID*2)+1, InsightID) 

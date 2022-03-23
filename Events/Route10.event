@@ -105,6 +105,7 @@ Save(13,19)
 //StrengthBoulder(4,3)
 
 RedPokeballTrap(3,41, ChapterID*2, SuperPotion)
+RedPokeballTrap(17,7, (ChapterID*2)+1, ThunderStone)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 

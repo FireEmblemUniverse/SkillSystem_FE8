@@ -1,10 +1,10 @@
-#define ChapterID DiglettsCaveCh
-#define GenericA UnitDiglettsCaveWild
-#define GenericB UnitRoute6Trainer
-#define ClassA ClassDiglettsCaveWildA
-#define ClassB ClassDiglettsCaveWildB
-#define WildLvl 14
-#define TrainerL 17
+#define ChapterID SafariSCh
+#define GenericA SafariAWild
+#define GenericB SafariAWild
+#define ClassA ClassSafariWildA
+#define ClassB ClassSafariWildB
+#define WildLvl 26
+#define TrainerL 26
 
 
 
@@ -28,12 +28,16 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
 Reinforce(0xF0, 1, ReinforcementUnits, 2, 4) 
-Reinforce(0xF2, 1, ReinforcementUnits, 4, 4) 
+Reinforce(0xF1, 1, ReinforcementUnits, 3, 4) 
+Reinforce(0xF2, 1, ReinforcementUnits, 7, 4) 
+Reinforce(0xF3, 1, ReinforcementUnits, 8, 4) 
 }
 
 
@@ -45,8 +49,6 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToRoute2N, 4,1)  
-House(0, ToRoute11, 32,31) 
 END_MAIN
 
 MiscBasedEvents:
@@ -55,19 +57,26 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToFuschia [8,11] [8,11] 
+AREA 0 ToRoute14N [59,5] [59,8] 
+AREA 0 ToRoute14S [59,10] [59,14] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
-{ ; MultiTileEntry(ChapterID)  
-EscapeTileEntry(32,31) 
-EscapeTileEntry(4,1)
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(59,6) 
+EscapeTileEntry(59,13) 
+EscapeTileEntry(8,11) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToRoute2N:
-ForcedChapterTransition(Route2NCh, 17,11)
+ToFuschia:
+ChapterTransition(FuschiaCh, 41,18)
 
-ToRoute11:
-ForcedChapterTransition(Route11Ch, 6,7)
+ToRoute14N:
+ChapterTransition(Route12SCh, 0,53)
+ToRoute14S:
+ChapterTransition(Route12SCh, 0,47)
+
 
 
 
@@ -79,44 +88,43 @@ Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
-//CutBush(9,0)
 
+//CutBush(12,10)
+//RockSmash(29,9)
 
-
-//RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-RedPokeballTrap(18,18, ChapterID*2, Carbos)
+
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-StatAccessoryTrap(14,4, (ChapterID*2)+1, EnergyBand_BoostIndex)
-//SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
+//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
+//SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-//SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 
-
-SignBTrap(10,3, ChapterID, 0x0) //no extra text 
-SignATrap(27,27, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
-
+SignBTrap(11,9, ChapterID, 0x0) //no extra text 
+SignATrap(54,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
-//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+
+BerryTree(32,11,5)
+BerryTree(36,11,5)
+
+SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
 //Save(10,4)
 //SaveCost(43,3) 
-
-//Flower(38,9)
-
-
-
 ENDTRAP
 ALIGN 4
+
+
 
 
 BeginningScene:
@@ -127,16 +135,19 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(3,1,23,14)) //w patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(43,10,57,11)) //E patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(18,15,32,32)) //se patch 
-LOAD1 0x1 EnemyUnitsC // Burrows 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(24,10,29,11)) //Mid patch 
+LOAD1 0x1 EnemyUnitsC
 ENUN
-
+RandomizeCoords(Grass, Range(0,0,5,5), Range(12,10,17,11)) //W patch 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
+//LOAD1 0x1 HumanTrainers
+//ENUN 
+//AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
 LABEL 0x63
@@ -173,35 +184,30 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-// Wilds - SpearowID	BellsproutID
+
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF2 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsC:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT 0xF0 BurrowID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA19R6  [0x0,0x0,0x0,0x0] BushAI
-UNIT 0xF1 BurrowID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA25R25  [0x0,0x0,0x0,0x0] BushAI
-
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF3 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
-
-
-
+ 
 	
 #undef GenericA 
 #undef GenericB 

@@ -92,7 +92,7 @@ Traps1:
 //RedPokeballTrap(28,12, ChapterID*2, SuperPotion)
 //RedPokeballTrap(7,15, ChapterID*2, SuperPotion)
 
-//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
+StatAccessoryTrap(5,16, (ChapterID*2), WiseGlassesT2_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 

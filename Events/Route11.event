@@ -107,7 +107,7 @@ Traps1:
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+RedPokeballTrap(51,2, ChapterID*2, Iron)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
@@ -118,7 +118,8 @@ Traps1:
 
 SpellScrollTrap(39,14, (ChapterID*2), Scorch)
 
-SkillAccessoryTrap(51,2, (ChapterID*2), SealResID)
+
+SkillAccessoryTrap(48,18, (ChapterID*2), SealResID)
 
 
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 

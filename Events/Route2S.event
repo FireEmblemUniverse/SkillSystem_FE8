@@ -107,7 +107,7 @@ SignTrap(5,23, TrainerTip_DangerZone)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-RedPokeballTrap(21,31, ChapterID*2, RareCandy) // Requires Cut / diglett's cave 
+RedPokeballTrap(21,31, ChapterID*2, ExoticCandy) // Requires Cut / diglett's cave 
 
 SignBTrap(8,11, ChapterID, 0x0) //no extra text 
 SignATrap(10,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

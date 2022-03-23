@@ -109,7 +109,7 @@ CutBush(7,6)
 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+RedPokeballTrap(4,31, (ChapterID*2), Calcium) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 SpellScrollTrap(8,4, (ChapterID*2), WingAttack) 
 SkillAccessoryTrap(19,4, (ChapterID*2)+1, WaryFighterID)
