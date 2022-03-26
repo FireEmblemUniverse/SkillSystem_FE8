@@ -235,7 +235,7 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 FuschiaGymCh
 //MNC2 Route12SCh
 //MNC2 Route1Ch
-//MNC2 CinnabarCh
+MNC2 CinnabarCh
 //Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(8, YCoordNewArea)  
 //MNC2 CeruleanCh
@@ -254,7 +254,7 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 CeruleanGymCh 
 //MNC2 Route2SCh
 
-MNC2 PokecenterCh
+//MNC2 PokecenterCh
 //MNC2 PokemonTowerF1Ch
 
 

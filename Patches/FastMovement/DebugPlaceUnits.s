@@ -104,9 +104,12 @@ bl BXR1
 @ 3007D98
 @ this seems to be the ram address used 
 @ when Dunno2 / "When player has selected coordinate to move to" is hit 
-ldr r3, =0x3007D6C @ player? 
+@stack: 3007d50 + 1c 
+mov r3, sp 
+add r3, #0x1C @ player? 3007D6C 
 cmp r4, r3 
 bne SkipParaCheck1
+mov r11, r11
 ldr r2, =0x202BCF0
 ldrb r1, [r2, #0xF] @ Phase 
 cmp r1, #0 
