@@ -185,7 +185,6 @@ ldr		r0,Get_Luk_Growth
 mov r6, #0x79 
 LevelUp 
 ldr r0, MinimumStatsOnLevelUp
-ldrb r0, [r0] 
 cmp		r5,r0 @if 2 or more stats, we're happy 
 bge		CheckCapsLadder
 add 	r4, #1 
@@ -430,7 +429,6 @@ mov r2, r7
 strb r0, [r2, r3] 
 
 ldr r0, MinimumStatsOnLevelUp
-ldrb r0, [r0] 
 cmp		r5,r0 @if 2 or more stats, we're happy 
 bge CheckCaps 
 add r4, #1 
