@@ -1,3 +1,24 @@
+
+
+@ 801A7F4 function 
+@ given some ram address... in r0 and another in r1 
+
+@ allocate 0x40 of stack 
+
+@ stack into r2 
+@ ram into r3 
+
+@ while Ram_B > Ram_A 
+@ copy byte from Ram_B and store into stack 
+
+@add +1 to stack, sub -1 from Ram_B 
+@ store #4 into final stack address 
+
+@ while stack[i] != 4 
+@ copy byte from the stack and store into Ram_A 
+
+
+
 .align 4
 .thumb
 .macro blh to, reg=r3
@@ -32,6 +53,7 @@
 @ callHackr0(DecideToHideActiveUnitRangeDisplay) 
 
 .equ DisplayActiveUnitEffectRange, 0x0801cc7c 
+.set prMap_Fill,                 0x080197E4 @ arguments: r0 = rows start ptr, r1 = value; returns: nothing
 
 .align 4 
 	.global DecideToHideActiveUnitRangeDisplay
@@ -62,7 +84,15 @@ blh DisplayActiveUnitEffectRange
 b DisplayRange
 SkipDisplayingRange:
 
+ldr r0, =0x202E4E0 @ movement map 0xFF can't move anywhere 
+ldr r0, [r0] 
+mov r1, #0xFF 
+blh prMap_Fill
 
+ldr r0, =0x202E4E4 @ range map 0 = can't move/att there 
+ldr r0, [r0] 
+mov r1, #0 
+blh prMap_Fill 
 
 @ Doesn't work here - too early 
 @@ Remove the blue arrow 
@@ -92,57 +122,37 @@ bx r3
 	.global InsertEventOnTileSelect
 	.type   InsertEventOnTileSelect, function
 InsertEventOnTileSelect:
-
+@ 1a7df (in 801A640) to 801a7f4 
 push {lr} 
-lsl r0, r5, #3 
-add r0, r7 
-ldr r1, [r0] 
-mov r0, r4  
-bl BXR1 
+@ from vanilla function:
+
+lsr r4, r0, #24
+ldr r3, =0x202bcf0 @gChData 
+ldrb r0, [r3, #0xE] @ ch 
+blh 0x80346b0 @gCh Event Data Pointer
+
+push {r4}
+mov r4, r0 
 
 
-@ 3007D98
-@ this seems to be the ram address used 
-@ when Dunno2 / "When player has selected coordinate to move to" is hit 
-@stack: 3007d50 + 1c 
-mov r3, sp 
-add r3, #0x1C @ player? 3007D6C 
-cmp r4, r3 
-bne SkipParaCheck1
-mov r11, r11
+
 ldr r2, =0x202BCF0
 ldrb r1, [r2, #0xF] @ Phase 
 cmp r1, #0 
-bne SkipParaCheck1 @ If not player phase, exit 
+bne SkipTeleportActiveUnit @ If not player phase, exit 
 
 ldr r1, =CurrentUnit
 ldr r1, [r1]
 cmp r1, #0 
-beq SkipParaCheck1
+beq SkipTeleportActiveUnit
 bl CheckForParalysis
-SkipParaCheck1:
 
-@ldr r3, =0x3007D70 @ ai? 
-@cmp r4, r3 
-@bne SkipParaCheck2
-@push {r0} @ idk 
-@ldr r1, =0x203AA95 @ current AI actor's deployment byte  
-@ldrb r0, [r1] 
-@blh GetUnit
-@mov r1, r0 
-@pop {r0} 
-@bl CheckForParalysis
-@SkipParaCheck2:
-
-ldr r3, =0x3007D98 
-cmp r4, r3 
-bne SkipTeleportActiveUnit 
-
-blh TeleportActiveUnit
-blh FastMoveUnit
+bl TeleportActiveUnit
+@bl FastMoveUnit
 
 SkipTeleportActiveUnit:
-cmp r0, #1 
+mov r0, r4 
+pop {r4} 
 
 pop {r1}
 BXR1:
@@ -208,11 +218,10 @@ pop {r4-r5}
 pop {r1}
 bx r1 
 
-
 .ltorg 
 .align 
 
-.equ MuCtr_CreateWithReda,0x800FEF5 @r0 = char struct, target x coord, target y coord
+.equ MuCtr_CreateWithReda,0x800FEF4 @r0 = char struct, target x coord, target y coord
 .align 4 
 	.global TeleportActiveUnit
 	.type   TeleportActiveUnit, function
@@ -261,17 +270,17 @@ b End
 @ Stuff below here might be useful if you want to not use SET_ACTIVE 
 @ 
 
-@ Remove the blue arrow 
-ldr r3, =#0x203A990  @ gMovementArrowData
-mov r0, #0 
-ldr r2, =#0x203AA04 @ gAiData 
-ClearMovementArrowDataLoop:
-cmp r3, r2 
-bge BreakLoop 
-str r0, [r3] 
-add r3, #4 
-b ClearMovementArrowDataLoop
-BreakLoop: 
+@@ Remove the blue arrow 
+@ldr r3, =#0x203A990  @ gMovementArrowData
+@mov r0, #0 
+@ldr r2, =#0x203AA04 @ gAiData 
+@ClearMovementArrowDataLoop:
+@cmp r3, r2 
+@bge BreakLoop 
+@str r0, [r3] 
+@add r3, #4 
+@b ClearMovementArrowDataLoop
+@BreakLoop: 
 
 blh 0x80790a4 @MU_EndAll @ Removes the active unit's MMS
 blh 0x801d6fc @PlayerPhase_ReloadGameGfx @ Removes range/attack map
@@ -327,7 +336,9 @@ mov r1,r4
 mov r2,r5
 blh EnsureCameraOntoPosition
 
-blh 0x8027A40 @ Reset map sprite hover timer ? 
+
+
+@blh 0x8027A40 @ Reset map sprite hover timer ? 
 
 
 blh  0x0801a1f4   @RefreshFogAndUnitMaps 
@@ -341,6 +352,7 @@ pop {r4-r7}
 pop {r1}
 bx r1
 
+.ltorg 
 .equ UnsetEventId, 0x8083d94
 .align 4 
 	.global ToggleFlagAA
@@ -379,3 +391,7 @@ mov r0, #3 @ False
 Skip:
 pop {r1}
 bx r1
+
+
+.ltorg 
+.align 

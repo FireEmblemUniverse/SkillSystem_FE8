@@ -40,6 +40,7 @@
 .equ GetTrapAt,0x802e1f0 	@r0 = x coord, r1 = y coord
 .equ AddTrap,0x802e2b8 		@r0 = x coord, r1 = y coord, r2 = trap ID
 .equ RemoveTrap,0x802e2fc 	@r0 = pointer to trap data
+
 .equ MemorySlot1,0x30004BC	@contains trap ID paramters
 .equ MemorySlotB,0x30004E4	@contains coordinate parameters, formatted 0xYYYYXXXX
 .equ MemorySlotC,0x30004E8	@contains returned values
@@ -233,17 +234,20 @@ bx r0
 .ltorg
 .align
 
+.equ MemorySlot,0x30004B8	@contains trap ID paramters
 .global RemoveLightRuneASMC
-.type RemoveLightRune, %function 
-
+.type RemoveLightRuneASMC, %function 
 RemoveLightRuneASMC: @memory slot B = coords
 push {r14}
-ldr r3,=MemorySlotB
-ldrh r1,[r3, #2] @ YY 
-ldrh r0,[r3] @ XX 
-mov r2, #0x0D @ Light Rune 
+ldr r3,=MemorySlot
+ldrh r1,[r3, #4*0xB+2] @ YY 
+ldrh r0,[r3, #4*0xB] @ XX 
+mov r2, #0x0D @ Light Rune trap ID type 
 blh 0x802e24c @GetSpecificTrapAt @ XX, YY, TrapType 
+cmp r0, #0 
+beq DoNothing 
 blh 0x802ea90 @RemoveLightRune given trap pointer, remove 
+DoNothing: 
 pop {r0}
 bx r0 
 .align 
