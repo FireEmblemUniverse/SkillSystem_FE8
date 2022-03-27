@@ -99,8 +99,8 @@ Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
-SignBTrap(23,9, ChapterID, 0x0) //no extra text 
-SignATrap(31,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(22,11, ChapterID, 0x0) //no extra text 
+SignATrap(31,25, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 //CutBush(12,10)
@@ -122,8 +122,8 @@ RedPokeballTrap(33,7, (ChapterID*2)+1, HPUp)
 
 
 
-BerryTree(32,11,5)
-BerryTree(36,11,5)
+BerryTree(11,9,5)
+BerryTree(6,9,5)
 
 //SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
 SpellScrollTrap(13,27, (ChapterID*2)+1, BugBite)
@@ -141,7 +141,6 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
@@ -198,7 +197,7 @@ UNIT
 
 
 EnemyUnitsE:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassC 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF4 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 

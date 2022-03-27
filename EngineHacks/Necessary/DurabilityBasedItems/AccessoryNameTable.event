@@ -212,15 +212,38 @@ SkillAccessory_NameEntry(FortuneID, SN_Fortune)
 SkillAccessory_DescEntry(FortuneID, SD_Fortune)
 
 
+
 //Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
 //By circleseverywhere
 SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife) 
 SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife) 
- //Charge: Gain +1 damage for every two squares moved.
-//By Datagne
-SkillAccessory_NameEntry(ChargeID, SN_Charge)
-SkillAccessory_DescEntry(ChargeID, SD_Charge)
 
+SkillAccessory_NameEntry(CounterID, SN_Counter)
+SkillAccessory_DescEntry(CounterID, SD_Counter)
+
+SkillAccessory_NameEntry(CounterMagicID, SN_CounterMagic)
+SkillAccessory_DescEntry(CounterMagicID, SD_CounterMagic)
+
+SkillAccessory_NameEntry(MiracleID, SN_Miracle)
+SkillAccessory_DescEntry(MiracleID, SD_Miracle)
+
+SkillAccessory_NameEntry(AmaterasuID, SN_Amaterasu)
+SkillAccessory_DescEntry(AmaterasuID, SD_Amaterasu)
+
+SkillAccessory_NameEntry(FortuneID, SN_Fortune)
+SkillAccessory_DescEntry(FortuneID, SD_Fortune)
+
+SkillAccessory_NameEntry(SavageBlowID, SN_SavageBlow)
+SkillAccessory_DescEntry(SavageBlowID, SD_SavageBlow)
+
+SkillAccessory_NameEntry(GaleforceID, SN_Galeforce)
+SkillAccessory_DescEntry(GaleforceID, SD_Galeforce)
+
+SkillAccessory_NameEntry(VoiceOfPeaceID, SN_VoiceOfPeace)
+SkillAccessory_DescEntry(VoiceOfPeaceID, SD_VoiceOfPeace)
+
+SkillAccessory_NameEntry(BlossomID, SN_Blossom)
+SkillAccessory_DescEntry(BlossomID, SD_Blossom)
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere
 SkillAccessory_NameEntry(FuryID, BerserkGeneName)

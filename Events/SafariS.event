@@ -64,7 +64,7 @@ AFEV 0 GlobalAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToFuschia [19,25] [20,26] 
-AREA 0 ToSafariE [39,12] [39,13] 
+AREA 0 ToSafariE [39,11] [39,12] 
 AREA 0 ToSafariN [19,0] [20,0] 
 AREA 0 ToSafariW [0,13] [0,14] 
 END_MAIN
@@ -72,8 +72,8 @@ END_MAIN
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(19,25) 
 EscapeTileEntry(20,25) 
+EscapeTileEntry(39,11) 
 EscapeTileEntry(39,12) 
-EscapeTileEntry(39,13) 
 EscapeTileEntry(19,0) 
 EscapeTileEntry(20,0) 
 EscapeTileEntry(0,13) 
@@ -146,8 +146,6 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-
-
 LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeCoords(Grass, Range(0,0,5,5), Range(5,3,13,14)) //NW patch 
@@ -209,7 +207,7 @@ UNIT 0xF3 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0
 UNIT 
 
 EnemyUnitsE:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassC 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF4 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
