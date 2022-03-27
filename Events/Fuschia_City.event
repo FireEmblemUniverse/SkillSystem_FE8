@@ -99,7 +99,7 @@ ChapterTransition(Route18Ch, 59,9)
 EnterSafariZone:
 //CALL ClosedArea 
 TutText(EnterSafariZoneText)
-ChapterTransition(SafariZoneSCh, 20,25)
+ChapterTransition(SafariSCh, 20,25)
 NoFade 
 ENDA 
 //ChapterTransition(SafariZoneACh, 59,9)

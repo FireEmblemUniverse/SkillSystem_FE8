@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" name="SafariZoneTilesProcessed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="../TilesetPreviews/SafariZone" trans="ffffff" width="512" height="512"/>
+ <tileset firstgid="1" name="SafariTilesProcessed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="../TilesetPreviews/Safari" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="40" height="30">
   <properties>
    <property name="Anims1" value="0"/>
-   <property name="ChapterID" value="SafariZoneSCh"/>
+   <property name="ChapterID" value="SafariSCh"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="SafariZoneSMap"/>
-   <property name="ObjectType" value="SafariZoneObj"/>
-   <property name="PaletteID" value="SafariZonePal"/>
-   <property name="TileConfig" value="SafariZoneConf"/>
+   <property name="MapID" value="SafariSMap"/>
+   <property name="ObjectType" value="SafariObj"/>
+   <property name="PaletteID" value="SafariPal"/>
+   <property name="TileConfig" value="SafariConf"/>
   </properties>
   <data>
    <tile gid="5"/>
@@ -681,7 +681,7 @@
    <tile gid="8"/>
    <tile gid="8"/>
    <tile gid="71"/>
-   <tile gid="143"/>
+   <tile gid="71"/>
    <tile gid="83"/>
    <tile gid="162"/>
    <tile gid="162"/>
@@ -918,7 +918,7 @@
    <tile gid="83"/>
    <tile gid="71"/>
    <tile gid="72"/>
-   <tile gid="143"/>
+   <tile gid="71"/>
    <tile gid="72"/>
    <tile gid="71"/>
    <tile gid="72"/>
@@ -953,7 +953,7 @@
    <tile gid="162"/>
    <tile gid="162"/>
    <tile gid="162"/>
-   <tile gid="102"/>
+   <tile gid="71"/>
    <tile gid="72"/>
    <tile gid="71"/>
    <tile gid="72"/>
@@ -1094,18 +1094,18 @@
    <tile gid="20"/>
    <tile gid="18"/>
    <tile gid="13"/>
-   <tile gid="2"/>
-   <tile gid="3"/>
-   <tile gid="45"/>
    <tile gid="12"/>
    <tile gid="6"/>
    <tile gid="7"/>
    <tile gid="12"/>
    <tile gid="6"/>
    <tile gid="7"/>
-   <tile gid="98"/>
-   <tile gid="3"/>
-   <tile gid="45"/>
+   <tile gid="12"/>
+   <tile gid="6"/>
+   <tile gid="7"/>
+   <tile gid="12"/>
+   <tile gid="6"/>
+   <tile gid="7"/>
    <tile gid="12"/>
    <tile gid="6"/>
    <tile gid="7"/>
@@ -1125,9 +1125,9 @@
    <tile gid="12"/>
    <tile gid="6"/>
    <tile gid="7"/>
-   <tile gid="98"/>
-   <tile gid="3"/>
-   <tile gid="45"/>
+   <tile gid="12"/>
+   <tile gid="6"/>
+   <tile gid="7"/>
    <tile gid="12"/>
    <tile gid="6"/>
    <tile gid="45"/>

@@ -167,8 +167,18 @@
 {
 #include "Fuschia_Gym.event"
 }
-
-
+{
+#include "SafariS.event"
+}
+{
+#include "SafariE.event"
+}
+{
+#include "SafariN.event"
+}
+{
+#include "SafariW.event"
+}
 
 
 

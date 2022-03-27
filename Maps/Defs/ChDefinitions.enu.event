@@ -43,10 +43,10 @@
 #define Route14Ch 0x2A
 #define Route15Ch 0x2B
 #define FuschiaCh 0x2C
-#define SafariZoneECh 0x2D
-#define SafariZoneNCh 0x2E
-#define SafariZoneSCh 0x2F
-#define SafariZoneWCh 0x30
+#define SafariSCh 0x2D
+#define SafariECh 0x2E
+#define SafariNCh 0x2F
+#define SafariWCh 0x30
 #define FuschiaGymCh 0x31
 #define Route18Ch 0x32
 #define Route17SCh 0x33

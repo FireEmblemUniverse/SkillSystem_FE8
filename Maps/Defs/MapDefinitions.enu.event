@@ -56,10 +56,10 @@
 #define Route8Map 0x38
 #define Route9EMap 0x39
 #define Route9WMap 0x3A
-#define SafariZoneEMap 0x3B
-#define SafariZoneNMap 0x3C
-#define SafariZoneSMap 0x3D
-#define SafariZoneWMap 0x3E
+#define SafariEMap 0x3B
+#define SafariNMap 0x3C
+#define SafariSMap 0x3D
+#define SafariWMap 0x3E
 #define SaffronMap 0x3F
 #define SaffronDojoMap 0x40
 #define SaffronGymMap 0x41

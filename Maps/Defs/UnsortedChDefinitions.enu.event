@@ -56,10 +56,10 @@
 #define Route8Ch 0x38
 #define Route9ECh 0x39
 #define Route9WCh 0x3A
-#define SafariZoneECh 0x3B
-#define SafariZoneNCh 0x3C
-#define SafariZoneSCh 0x3D
-#define SafariZoneWCh 0x3E
+#define SafariECh 0x3B
+#define SafariNCh 0x3C
+#define SafariSCh 0x3D
+#define SafariWCh 0x3E
 #define SaffronCh 0x3F
 #define SaffronDojoCh 0x40
 #define SaffronGymCh 0x41

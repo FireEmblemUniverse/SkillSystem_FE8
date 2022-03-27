@@ -1,8 +1,8 @@
-#define ChapterID SafariSCh
+#define ChapterID SafariWCh
 #define GenericA UnitSafariWild
 #define GenericB UnitSafariWild
 #define ClassA ClassSafariWildA
-#define ClassB ClassSafariWildA
+#define ClassB ClassSafariWildB
 #define ClassC ClassSafariWildE
 #define WildLvl 26
 #define TrainerL 26
@@ -39,11 +39,11 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) 
-Reinforce(0xF1, 1, ReinforcementUnits, 6, 4) 
-Reinforce(0xF2, 1, ReinforcementUnits, 5, 4) 
-Reinforce(0xF3, 1, ReinforcementUnits, 2, 4) 
-Reinforce(0xF4, 1, ReinforcementUnits, 3, 4) 
+Reinforce(0xF0, 1, ReinforcementUnits, 2, 4) 
+Reinforce(0xF1, 1, ReinforcementUnits, 3, 4) 
+Reinforce(0xF2, 1, ReinforcementUnits, 7, 4) 
+Reinforce(0xF3, 1, ReinforcementUnits, 8, 4) 
+Reinforce(0xF4, 1, ReinforcementUnits, 8, 4) 
 }
 
 
@@ -63,35 +63,30 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToFuschia [19,25] [20,26] 
-AREA 0 ToSafariE [39,12] [39,13] 
-AREA 0 ToSafariN [19,0] [20,0] 
-AREA 0 ToSafariW [0,13] [0,14] 
+AREA 0 ToSafariN_A [33,0] [34,0] 
+AREA 0 ToSafariN_B [26,0][27,0] 
+AREA 0 ToSafariS [40,26][40,27] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(19,25) 
-EscapeTileEntry(20,25) 
-EscapeTileEntry(39,12) 
-EscapeTileEntry(39,13) 
-EscapeTileEntry(19,0) 
-EscapeTileEntry(20,0) 
-EscapeTileEntry(0,13) 
-EscapeTileEntry(0,14) 
+EscapeTileEntry(33,0) 
+EscapeTileEntry(34,0) 
+EscapeTileEntry(26,0) 
+EscapeTileEntry(27,0) 
+EscapeTileEntry(40,26) 
+EscapeTileEntry(40,27) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToFuschia:
-ChapterTransition(FuschiaCh, 21,5)
 
-ToSafariE:
-ChapterTransition(SafariECh, 1,21)
+ToSafariN_A:
+ChapterTransition(SafariNCh, 15,31)
 
-ToSafariN:
-ChapterTransition(SafariNCh, 24,31)
+ToSafariN_B:
+ChapterTransition(SafariNCh, 5,31)
 
-ToSafariW:
-ChapterTransition(SafariWCh, 42,26)
+ToSafariS:
+ChapterTransition(SafariSCh, 1,13)
 
 
 
@@ -104,8 +99,8 @@ Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
-SignBTrap(3,11, ChapterID, 0x0) //no extra text 
-SignATrap(18,22, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(23,9, ChapterID, 0x0) //no extra text 
+SignATrap(31,26, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 //CutBush(12,10)
@@ -114,12 +109,12 @@ SignATrap(18,22, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //StrengthBoulder(4,3)
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
-RedPokeballTrap(34,18, (ChapterID*2)+1, ExoticCandy) 
-
+RedPokeballTrap(33,7, (ChapterID*2)+1, HPUp) 
+//RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-SkillAccessoryTrap(22,11, ChapterID*2, MiracleID) 
+//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
@@ -127,10 +122,11 @@ SkillAccessoryTrap(22,11, ChapterID*2, MiracleID)
 
 
 
-BerryTree(19,11,5)
+BerryTree(32,11,5)
+BerryTree(36,11,5)
 
 //SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
-//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+SpellScrollTrap(13,27, (ChapterID*2)+1, BugBite)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -147,29 +143,26 @@ CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
 
-
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(5,3,13,14)) //NW patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(16,7,23,10)) //NW patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(20,3,32,8)) //NE patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(32,6,35,11)) //NE patch 
 
 LOAD1 0x1 EnemyUnitsC
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(7,19,18,24)) //SW patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(4,24,23,30)) //SW patch 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(27,13,35,24)) //SE patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(30,19,35,30)) //SE patch 
 
 LOAD1 0x1 EnemyUnitsE
 ENUN
-RandomizeCoords(Shallow, Range(0,0,5,5), Range(12,9,27,14)) //Water patch 
+RandomizeCoords(Shallow, Range(0,0,5,5), Range(3,16,13,19)) //Water patch 
 LOAD1 0x1 BossUnit
 ENUN
-RandomizeCoords(Shallow, Range(0,0,5,5), Range(12,9,27,14)) //Water patch 
-
-
+RandomizeCoords(Grass, Range(0,0,5,5), Range(4,24,23,30)) //
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
@@ -182,31 +175,27 @@ LABEL 0x63
 NoFade
 ENDA
 
-
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsC:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF2 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsD:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF3 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
+
 
 EnemyUnitsE:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
@@ -214,19 +203,19 @@ UNIT 0xF4 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3 
 UNIT 
 
 ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT Reinforcement0 ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
 BossUnit:
-UNIT 0xEE DragonairID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 0xEE ScytherID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
 BossSummons: 
-UNIT GenericB 	GoldeenID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	PoliwagID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	DratiniID 		0xEE 	Level(0, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	PoliwagID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GoldeenID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	RhyhornID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [10,10]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	PinsirID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
@@ -241,6 +230,7 @@ TDQ_TableTerminator;
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xE, 0x00, 0) 
 TDQ_TableTerminator ; }
+ 
  
 ShopItems:
 SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
