@@ -87,19 +87,10 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 
 
 
-// OBJECT and PALETTE share numbers,
-// tile config, Conf pointer, tile anim 1/2, and Conf changes are all separate
 
 
 
 
-// -------------------------------TILE CONFIG-------------------------------
-
-#include "Defs/ConfDefinitions.enu.event"
-
-// -------------------------------OBJ TYPE-------------------------------
-
-#include "Defs/ObjPalDefinitions.enu.event"
 
 
 
@@ -131,9 +122,6 @@ TileAnimPointerTable(0x7D, 0x0859D678)
 TileAnimPointerTable(0xD3, 0x0859D520)
 
 
-// ------------------------------- CHAPTER ------------------------------------    
-
-#include "Defs/ChDefinitions.enu.event" 
 
 
 
@@ -141,10 +129,7 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 
 
 
-// ------------------------------- MAP ----------------------------
 
-
-#include "Defs/MapDefinitions.enu.event" 
 
 
 // ------------------------------- MAP CHANGES ----------------------------

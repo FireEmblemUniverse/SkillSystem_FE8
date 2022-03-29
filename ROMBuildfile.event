@@ -18,6 +18,7 @@
     #include "Text/InstallTextData.event"
     MESSAGE Used text space ends at currentOffset
 	
+	#include "Maps/Definitions.event"
     //CSV tables
     #include "Tables/TableInstaller.event"
     MESSAGE Used table space ends at currentOffset

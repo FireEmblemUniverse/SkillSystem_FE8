@@ -1,0 +1,24 @@
+
+
+// OBJECT and PALETTE share numbers,
+// tile config, Conf pointer, tile anim 1/2, and Conf changes are all separate
+
+// -------------------------------TILE CONFIG-------------------------------
+
+#include "Defs/ConfDefinitions.enu.event"
+
+// -------------------------------OBJ TYPE-------------------------------
+
+#include "Defs/ObjPalDefinitions.enu.event"
+
+
+
+// ------------------------------- CHAPTER ------------------------------------    
+
+#include "Defs/ChDefinitions.enu.event" 
+
+
+// ------------------------------- MAP ----------------------------
+
+
+#include "Defs/MapDefinitions.enu.event" 
