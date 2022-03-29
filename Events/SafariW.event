@@ -55,7 +55,14 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(RockSmashFlag, RockSmashEvent, 8,7)
 END_MAIN
+
+RockSmashEvent:
+WallText(SafariWHouse_BText)
+TutText(SafariWHouse_CText)
+NoFade 
+ENDA 
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
@@ -102,6 +109,7 @@ Traps1:
 SignBTrap(22,11, ChapterID, 0x0) //no extra text 
 SignATrap(31,25, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
+EnterWallTrap(15,18, SafariWHouse_AText)
 
 //CutBush(12,10)
 //RockSmash(29,9)

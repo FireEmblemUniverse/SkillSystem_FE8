@@ -157,6 +157,8 @@ PROTECT 0x0E120 // tutorial disabler?
 #define PokefluteFlag 0x99 
 
 #define SoulbadgeObtained 0x9D 
+#define RockSmashFlag 0x9E 
+
 #define RainbowbadgeObtained 0xA0 
 
 #define MarshbadgeObtained 0xB1 
@@ -164,7 +166,7 @@ PROTECT 0x0E120 // tutorial disabler?
 
 #define EarthbadgeObtained 0xC0 
 
-#define RockSmashFlag 0x20
+//#define RockSmashFlag 0x20
 #define StrengthBoulderFlag 0x21
 
 #define DebugPlaceUnitsFlag 0xAA 

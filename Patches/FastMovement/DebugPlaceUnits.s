@@ -145,8 +145,6 @@ ldr r1, =CurrentUnit
 ldr r1, [r1]
 cmp r1, #0 
 beq SkipTeleportActiveUnit
-bl CheckForParalysis
-
 bl TeleportActiveUnit
 @bl FastMoveUnit
 
@@ -156,6 +154,41 @@ pop {r4}
 
 pop {r1}
 BXR1:
+bx r1 
+
+.ltorg 
+.align 
+
+	.global InsertEventOnUnitSelect
+	.type   InsertEventOnUnitSelect, function
+InsertEventOnUnitSelect:
+push {lr} 
+@ from vanilla function:
+
+lsr r4, r0, #24
+ldr r3, =0x202bcf0 @gChData 
+ldrb r0, [r3, #0xE] @ ch 
+blh 0x80346b0 @gCh Event Data Pointer
+
+push {r4}
+mov r4, r0 
+
+ldr r2, =0x202BCF0
+ldrb r1, [r2, #0xF] @ Phase 
+cmp r1, #0 
+bne SkipParalyzeActiveUnit @ If not player phase, exit 
+
+ldr r1, =CurrentUnit
+ldr r1, [r1]
+cmp r1, #0 
+beq SkipParalyzeActiveUnit
+bl CheckForParalysis
+
+SkipParalyzeActiveUnit:
+mov r0, r4 
+pop {r4} 
+
+pop {r1}
 bx r1 
 
 .ltorg 

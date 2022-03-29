@@ -47,6 +47,16 @@ POP
 
 
 PUSH
+
+// Disable monsters from appearing on map 
+ORG 0x0C18F8
+BYTE 0 0 0 0
+
+
+
+
+
+
   //Bypass Ch5x Hardcoded Stuff
   ORG $24DF2 //show gold in ch5x
   SHORT 0

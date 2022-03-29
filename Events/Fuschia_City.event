@@ -1,7 +1,7 @@
 #define ChapterID FuschiaCh
 #define GenericB UnitCeruleanTrainer
 #define WildLvl 10 
-#define TrainerL 16 
+#define TrainerL 26 
 
 
 
@@ -135,21 +135,26 @@ SignATrap(38,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
 
-BlankExamineTrap(4,28,VermillionGymSignText)
-SignTrap(19,6, VermillionFanClubSignText) // Safari Zone 
+BlankExamineTrap(4,28,FuschiaGymSignText)
+BlankExamineTrap(28,28,FuschiaSafariSignText)
+SignTrap(19,6, FuschiaSESignText) // Safari Zone 
+
+EnterWallTrap(13,28, FuschiaWHouseAText) // 
+EnterWallTrap(17,28, FuschiaWHouseBText) // 
+
+EnterWallTrap(30,28, FuschiaSEHouseAText) // 
+EnterWallTrap(35,28, FuschiaSEHouseBText)
+
+EnterWallTrap(25,13, FuschiaMidHouseText) //   
 
 
-
-EnterTutTrap(13,28, VermillionNWHouseText) // 
-EnterTutTrap(17,28, FanClubText) // 
-
-EnterTutTrap(30,28, VermillionMidHouseText) // 
-EnterTutTrap(35,28, VermillionSEHouseText)
-
-//EnterTutTrap(23,18, DoorLockedText) //   
-
-
-//Flower(10,6)
+Flower(29,21)
+Flower(29,23)
+Flower(30,22)
+Flower(16,17)
+Flower(18,17)
+Flower(17,18)
+Flower(19,18)
 
 
 
@@ -164,8 +169,10 @@ CALL LoadAndPlacePlayers
 
 CALL CityBeginningScene 
 
-
-
+LOAD1 1 FencedPokemon
+ENUN 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
+//AutoLevelUnits(TrainerL, False, 0xE0EF) // Trainers given visible levels 
 LABEL 0x63
 NoFade
 ENDA
@@ -179,7 +186,7 @@ ShopItems:
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
-BYTE SkillScroll PatienceID 
+BYTE SkillScroll PrescienceID 
 BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
 BYTE SpellScroll Headbutt 
 BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
@@ -189,7 +196,15 @@ BYTE $00; ALIGN 4
 
 
 
-
+FencedPokemon:
+UNIT 0xE0 	SeelID 	0 		Level(0, Enemy, 1) [8,6]    0b 0x0	0x1 REDA8R6 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT 0xE0 	ChanseyID 	0 		Level(0, Enemy, 1) [13,6]    0b 0x0	0x1 REDA13R6 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT 0xE0 	KangaskhanID 	0 		Level(0, Enemy, 1) [8,10]    0b 0x0	0x1 REDA8R10 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT 0xE0 	LaprasID 	0 		Level(0, Enemy, 1) [12,17]    0b 0x0	0x1 REDA12R17 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT 0xE0 	VoltorbID 	0 		Level(0, Enemy, 1) [30,6]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT 0xE0 	SlowpokeID 	0 		Level(0, Enemy, 1) [36,6]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT 0xE0 	GrowlitheID 	0 		Level(0, Enemy, 1) [32,12]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
+UNIT
 
 
 ArmoryItems:

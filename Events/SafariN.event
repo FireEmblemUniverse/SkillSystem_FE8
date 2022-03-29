@@ -107,6 +107,9 @@ Traps1:
 SignBTrap(7,24, ChapterID, 0x0) //no extra text 
 SignATrap(41,27, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
+EnterWallTrap(37,5, SafariNHouseText)
+
+
 //CutBush(12,10)
 //RockSmash(29,9)
 

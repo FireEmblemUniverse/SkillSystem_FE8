@@ -41,6 +41,11 @@ BYTE 255 WatchfulID
 BYTE 00 00
 ALIGN 4
 
+UncounterableTrainerSkillList:
+BYTE 255 DazzleID
+BYTE 255 WatchfulID 
+BYTE 00 00
+ALIGN 4
 
 NPCObjectSkillList:
 BYTE 255 WaryFighterID

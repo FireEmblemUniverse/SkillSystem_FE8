@@ -239,14 +239,15 @@ Write_Byte(4, GaryStarterClass)
 
 
   
-Write_Byte(20, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(25, YCoordNewArea)  
+Write_Byte(10, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(15, YCoordNewArea)  
 //MNC2 PokemonTowerF3Ch
 //MNC2 PewterGymCh 
-//MNC2 FuschiaGymCh
-//MNC2 Route12SCh
+MNC2 PalletCh
+//MNC2 FuschiaCh
+//MNC2 Route15Ch
 //MNC2 Route1Ch
-MNC2 SafariSCh
+//MNC2 SafariSCh
 //Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(8, YCoordNewArea)  
 //MNC2 CeruleanCh

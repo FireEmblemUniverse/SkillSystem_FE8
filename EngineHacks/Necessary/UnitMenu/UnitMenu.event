@@ -104,6 +104,12 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Save
   MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3B, GenericTrapEffect) //Save
 
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5A, EnterTextEffect0x5A) //Enter  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5B, EnterTextEffect0x5B) //Enter  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5C, EnterTextEffect0x5C) //Enter  
+  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5D, EnterTextEffect0x5D) //Enter  
+
+
 MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   
 //Disappear after use
@@ -151,10 +157,7 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   
   
   
-  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5A, EnterTextEffect0x5A) //Enter  
-  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5B, EnterTextEffect0x5B) //Enter  
-  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5C, EnterTextEffect0x5C) //Enter  
-  MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5D, EnterTextEffect0x5D) //Enter  
+
   
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine
@@ -225,6 +228,13 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 
   // UM_Talk
   MenuCommand(0x680, 0x6c9, GreenText, 0x23c81, 0x23cc5)
+  UM_Chest
+  UM_Door
+  UM_Armory
+  UM_Vendor
+  UM_Secret
+  UM_Arena
+
 
 #ifdef INSTALL_AoE
   MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
@@ -268,12 +278,7 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 	MenuCommand(StairsNameText,StairsDescText,GreenText,StairsUsability,StairsEffect)
   #endif // STAIRS_ASM
   
-  UM_Chest
-  UM_Door
-  UM_Armory
-  UM_Vendor
-  UM_Secret
-  UM_Arena
+
   	
   #ifndef COMBAT_ARTS
 	// Shove & cie

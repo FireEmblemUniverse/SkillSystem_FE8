@@ -118,9 +118,9 @@ SignTrap(15,25, TrainerTip_Water)
 
 
 BlankExamineTrap(26,10, ViridianGymText)
-EnterTutTrap(30,10, DoorLockedText) // Gym 
-EnterTutTrap(21,11, ViridianUpperHouseText) 
-EnterTutTrap(21,18, ViridianGrumpyManText) 
+EnterWallTrap(30,10, DoorLockedText) // Gym 
+EnterWallTrap(21,11, ViridianUpperHouseText) 
+EnterWallTrap(21,18, ViridianGrumpyManText) 
 Save(23,24) // 1N of Pokecenter - you can save while adjacent 
 //SaveCost(24,26)
 CutBush(13,5)

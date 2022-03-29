@@ -77,16 +77,12 @@ ToRoute12S:
 ChapterTransition(Route12SCh, 14,53)
 
 ToRoute14N:
-CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,5)
 ToRoute14M1:
-CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,7)
 ToRoute14M2:
-CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,9)
 ToRoute14S:
-CALL ClosedArea 
 ChapterTransition(Route14Ch, 23,11)
 
 
@@ -162,10 +158,10 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Shallow, Range(0,0,5,5), Range(42,5,49,8)) //N patch 
+RandomizeCoords(Shallow, Range(0,0,5,5), Range(44,13,53,16)) //N patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(9,23,16,38)) //Mid patch 
+RandomizeCoords(Grass, Range(0,0,5,5), Range(43,5,49,8)) //Mid patch 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  

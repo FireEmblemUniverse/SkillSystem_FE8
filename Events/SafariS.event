@@ -91,7 +91,7 @@ ToSafariN:
 ChapterTransition(SafariNCh, 24,31)
 
 ToSafariW:
-ChapterTransition(SafariWCh, 42,26)
+ChapterTransition(SafariWCh, 39,26)
 
 
 
@@ -124,6 +124,7 @@ SkillAccessoryTrap(22,11, ChapterID*2, MiracleID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
+EnterWallTrap(23,21, SafariSHouseText)
 
 
 

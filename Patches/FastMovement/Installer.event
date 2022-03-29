@@ -36,8 +36,9 @@ ORG $844C8 // on select tile to move to
 callHack_r1(InsertEventOnTileSelect)
 SHORT $46c0 //noop 
 
-//ORG $84474 //- on select unit 
-
+ORG $84474 //- on select unit 
+callHack_r1(InsertEventOnUnitSelect)
+SHORT $46c0 //noop 
 
 POP 
 

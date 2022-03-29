@@ -72,10 +72,10 @@ EscapeTileTerminator ; }
 ToFuschia:
 ChapterTransition(FuschiaCh, 41,18)
 
-ToRoute14N:
-ChapterTransition(Route12SCh, 0,53)
 ToRoute14S:
-ChapterTransition(Route12SCh, 0,47)
+ChapterTransition(Route14Ch, 0,53)
+ToRoute14N:
+ChapterTransition(Route14Ch, 0,47)
 
 
 

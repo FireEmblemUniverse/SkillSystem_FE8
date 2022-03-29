@@ -116,10 +116,10 @@ SignTrap(27,27, PewterFlowerSignText) // Wooden
 SignTrap(17,18, TrainerTip_Def)
 SignTrap(26, 20, TrainerTip_Mart)
 
-EnterTutTrap(14,6, PewterMuseumText) // Museum
-EnterTutTrap(29,11, PewterNEHouseText) // Ne house trade 
-EnterTutTrap(6,31, PewterSWHouseText) // sw coin house  
-EnterTutTrap(22,4, PewterSWHouseText) // sw coin house  
+EnterWallTrap(14,6, PewterMuseumText) // Museum
+EnterWallTrap(29,11, PewterNEHouseText) // Ne house trade 
+EnterWallTrap(6,31, PewterSWHouseText) // sw coin house  
+EnterWallTrap(22,4, PewterSWHouseText) // sw coin house  
 
 
 Save(16,24) // Pokecenter 

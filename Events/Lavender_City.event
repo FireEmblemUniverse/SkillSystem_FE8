@@ -80,7 +80,7 @@ CALL ClosedArea
 ChapterTransition(Route8Ch, 59,10)
 
 ToRoute12:
-CALL ClosedArea 
+//CALL ClosedArea 
 ChapterTransition(Route12NCh, 12,0)
 
 
@@ -128,13 +128,13 @@ SignTrap(21,37, PokemonTowerText) // Wooden - Poke tower
 
 
 
-EnterTutTrap(10,41, GhostsText) // 
-EnterTutTrap(5,46, LavenderHouse1Text) // 
+EnterWallTrap(10,41, GhostsText) // 
+EnterWallTrap(5,46, LavenderHouse1Text) // 
 
-EnterTutTrap(10,46, LavenderHouse2Text) // 
+EnterWallTrap(10,46, LavenderHouse2Text) // 
 
 
-//EnterTutTrap(23,18, DoorLockedText) //   
+//EnterWallTrap(23,18, DoorLockedText) //   
 
 
 //Flower(10,6)
