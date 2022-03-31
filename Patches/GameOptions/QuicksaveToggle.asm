@@ -18,9 +18,9 @@
 .global GenericToggleFunc
 
 GenericToggleFunc:
-push {r4}
+push {r4, lr}
 mov r4, r0 @ ID 
-@ vanilla already pushed lr 
+@ vanilla just pushed lr 
 mov r0, r4 
 blh CheckEventId
 cmp r0, #0 
@@ -34,6 +34,7 @@ blh SetEventId
 End:
 pop {r4}
 pop {r1}
+pop {r1}
 bx r1 
 
 .ltorg 
@@ -41,11 +42,12 @@ bx r1
 
 .type GenericCheckOption, %function 
 .global GenericCheckOption
-@ don't push lr ?
+@ pop lr twice 
 GenericCheckOption:
-push {r4}
+push {r4, lr}
 blh CheckEventId
 pop {r4}
+pop {r1}
 pop {r1}
 bx r1 
 
