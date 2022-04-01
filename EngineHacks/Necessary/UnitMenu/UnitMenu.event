@@ -305,9 +305,12 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
     MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
   #endif
 
-
+#ifndef MagikarpOnly
 MenuCommand(UM_SplashName, UM_SplashDesc, GreenText, SplashCommandUsability, SplashCommandEffect)
-
+#endif 
+#ifdef MagikarpOnly
+MenuCommand(UM_SplashName, UM_SplashDesc, GreenText, AlwaysUsable, SplashCommandEffect)
+#endif 
 
   
 MenuCommand(UM_RecoverName, UM_RecoverDesc, BlueText, RecoverCommandUsability, RecoverCommandEffect)

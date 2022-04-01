@@ -4,6 +4,7 @@
 // Comment out for public releases
 //#define DEBUG_MODE 
 //#define ALT_TITLESCREEN
+#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
 PROTECT 0x0E120 // tutorial disabler? 
 
@@ -23,6 +24,7 @@ PROTECT 0x0E120 // tutorial disabler?
 
 #include "Enumerate/ItemListPokemon.enu.event"
 #include "Enumerate/ClassIDList.enu.event"
+
 #include "Enumerate/ClassSpriteList.enu.event"
 
 // title screen area 

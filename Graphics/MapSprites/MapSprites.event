@@ -52,6 +52,8 @@ POIN NewMovingMapSpriteTable
 
 POP
 
+
+
 PUSH
 #define SetSMS(index, size, graphics) "ORG NewStandingMapSpriteTable + (index)*8 + 2; BYTE size 0; POIN graphics"
 //SetSMS($00, 2, m150Standing) //EphraimLord to Mewtwo
@@ -324,6 +326,7 @@ SetSMS(Unused80SMS , 0 ,    m1Standing)
 //Standing map animations counts from 0
 //Moving map animations count from 1
 //so if matching them, they will be offset by 1
+
 
 
 #define SetMMS(index, graphics, another_ptr) "ORG NewMovingMapSpriteTable + (index-1)*8; POIN graphics another_ptr"
@@ -2174,6 +2177,34 @@ ORG $59EE20
 
 
 POP
+
+#ifdef MagikarpOnly
+ALIGN 4
+m129Standing_edit:
+#incbin "SMS/129 - Copy.dmp"
+
+
+#define FillSMS_magikarp "BYTE 0 0 1 0; POIN m129Standing_edit;" 
+#define FillMMS_magikarp "POIN r129Moving DemonKingAP;" 
+#define Fill16SMS "FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp FillSMS_magikarp"
+#define Fill256SMS "Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS Fill16SMS"
+#define Fill16MMS "FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp FillMMS_magikarp"
+#define Fill256MMS "Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS Fill16MMS"
+
+PUSH 
+ORG NewStandingMapSpriteTable
+Fill256SMS
+
+ORG NewMovingMapSpriteTable
+Fill256MMS
+
+POP 
+#endif 
+
+
+
+
+
 
 
 
