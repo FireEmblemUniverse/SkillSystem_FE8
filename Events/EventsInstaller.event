@@ -8,7 +8,7 @@
 #include "ChTransition.event" 
 
 { ; #include "Placeholder.event" ; } 
-{ ; #include "Debug_Room.event" ; }
+#include "Debug_Room.event" // no braces { } 
 #ifndef DEBUG_MODE 
 	{ ; #include "Oaks_Lab.event" ;}
 #endif 
@@ -181,6 +181,9 @@
 }
 
 
+{
+#include "Route18.event"
+}
 
 
 

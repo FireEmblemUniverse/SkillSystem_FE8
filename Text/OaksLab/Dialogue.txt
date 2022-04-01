@@ -271,17 +271,22 @@ Exit the tower?[N]
 [Yes][X]
 
 ## EnterOaksLabText
-[OpenMidRight][LoadOak][OpenMidRight]Hmm, let me rate your Pokedex...[.....][NL]
-...[....]   ...[....]   ...[....][A][NL]
-Oh wait, I never gave you one![A][....][NL]
-Thing is, I gave my last one to Gary.[NL]
-He is my grandson, afterall.[A][NL]
-I knew you'd understand.[A][2NL]
-What? How will you track your collection?[....][NL]
-Welp,[....] beats me.[A][LoadOverworldFaces][NL]
-...fine. You have a number of Pok[Eaccent]mon.[NL]
-(Hey, one is a number too.)[A][NL]
-Keep up the hard work.[A][X]
+[OpenMidRight][LoadOak][OpenMidRight]A world of catching[N]
+Pok[Eaccent]mon awaits you![A][X]
+
+
+//## EnterOaksLabText
+//[OpenMidRight][LoadOak][OpenMidRight]Hmm, let me rate your Pokedex...[.....][NL]
+//...[....]   ...[....]   ...[....][A][NL]
+//Oh wait, I never gave you one![A][....][NL]
+//Thing is, I gave my last one to Gary.[NL]
+//He is my grandson, afterall.[A][NL]
+//I knew you'd understand.[A][2NL]
+//What? How will you track your collection?[....][NL]
+//Welp,[....] beats me.[A][LoadOverworldFaces][NL]
+//...fine. You have a number of Pok[Eaccent]mon.[NL]
+//(Hey, one is a number too.)[A][NL]
+//Keep up the hard work.[A][X]
 
 ## EnterGaryHouseText
 You find a world map![NL]
