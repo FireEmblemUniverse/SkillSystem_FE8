@@ -1,6 +1,6 @@
 #define ChapterID Route18Ch
 #define GenericA UnitRoute18Wild
-#define GenericB UnitRoute18Trainer
+#define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute18WildA
 #define ClassB ClassRoute18WildB
 #define WildLvl 27
@@ -95,7 +95,7 @@ ToFuschia:
 ChapterTransition(FuschiaCh, 1,16)
 
 ToRoute17S:
-ChapterTransition(Route17Ch, 12,58)
+ChapterTransition(Route17SCh, 12,58)
 
 
 

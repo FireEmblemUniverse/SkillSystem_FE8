@@ -15,6 +15,7 @@ PROTECT 0x0E120 // tutorial disabler?
 
 #define TrainerDifficultyBonusDef 10
 
+#define PortraitTable NewPortraitTable // Portrait table is an EA def, so no need to #undef it 
 
 #define FreeSpace 0x01081420
 #define FreeSpaceBLRange 0x1c1ec0

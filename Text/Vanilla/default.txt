@@ -2,11 +2,11 @@
 # 0x0002 textWeaponRankIncreasedTo
  Weapon rank increased to [X]
 
-# 0x0094
-HP Bars[.][X]
+#0x94 Text_Options_HPBars
+Map HP Bars[X]
 
-# 0x00B2
-Set health bar display[X]
+#0xB2 Text_Options_HPBars_Desc
+Show HP bars and warning icons[X]
 
 #0x3A LearnedSkillText
 //#first text ID in the free block

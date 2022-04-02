@@ -142,6 +142,50 @@ POIN GameOptionsOrderList
 
 POP 
 
+// This part was done by Gamma to extend past the default of 0xD options to display. 
+PUSH
+    //Start drawing options to BG1 on the second row of tiles instead of the sixth to avoid a buffer overflow 
+    ORG $B1704
+    SHORT $1852 // vanilla value 
+    ORG $B19DA
+    SHORT $6830 $8DC1 $39E0
+    ORG $B1A2E
+    SHORT $4652 $864A 
+	// This next line was edited already above 
+	//BYTE NumberOfOptionsToDisplay $20 // mov r0, #NumberOfOptionsToDisplay 
+	ORG $B1A34 
+	SHORT $8688 $20E0 $854A $858A $85C8
+	// Gfx 
+    ORG $B1BE2
+    BYTE 0x1
+    ORG $B1BE6
+    BYTE 0x1
+    ORG $B1DAE
+    BYTE 0x1
+    ORG $B2190
+    SHORT $1C45
+    ORG $B21C6
+    BYTE 0x1
+    ORG $B21E6
+    BYTE 0xA2 //move bottom text down to compensate
+    ORG $B2380
+    BYTE 0x20
 
+// Replace subtitle help with Hp Bars toggle by Gamma 
+    ORG $35718 // Force Subtitle Help (option replaced by hp bars toggle)
+      SHORT $46C0
+    ORG $B1E30
+    POIN HpBarGetterFunc
+    ORG $B1FB0
+    POIN HpBarSetterFunc
+    
+    ORG $B1F20 //Actually toggle the hp bars on options screen (option byte 0x41&20)
+    HpBarGetterFunc:
+    SHORT $4802 $3041 $7800 $0680 $E016
+    
+    ORG $B2120 //Actually toggle the hp bars on options screen (option byte 0x41&20)
+    HpBarSetterFunc:    
+    SHORT $4A04 $3241 $2001 $1C19 $4001 $0149 $7813 $2021 $4240 $E022
+POP
 
 

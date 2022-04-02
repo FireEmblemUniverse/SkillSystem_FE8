@@ -125,12 +125,18 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define ClassSafariWildC 0x40 
 #define ClassSafariWildD 0x41
 #define ClassSafariWildE 0x42
-#define ClassCyclingRoadWildA 0x43
-#define ClassCyclingRoadWildB 0x44
-#define ClassRoute7WildA 0x45
-#define ClassRoute7WildB 0x46
-#define ClassRoute8WildA 0x47 
-#define ClassRoute8WildB 0x48 
+#define ClassRoute18WildA 0x43
+#define ClassRoute18WildB 0x44
+#define ClassRoute17WildA 0x45
+#define ClassRoute17WildB 0x46
+#define ClassRoute16WildA 0x47
+#define ClassRoute16WildB 0x48
+#define ClassCyclingRoadWildA 0x49
+#define ClassCyclingRoadWildB 0x4A
+#define ClassRoute7WildA 0x4B
+#define ClassRoute7WildB 0x4C
+#define ClassRoute8WildA 0x4D 
+#define ClassRoute8WildB 0x4E 
 
 
 
@@ -143,27 +149,14 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define OaksPikachu 0x4F
 #define UnitPalletTownWild 0x50
 #define UnitRoute1Wild 0x51
-
 #define UnitRoute2SWild 0x52
-
 #define UnitViridianForestSWild 0x53
-
 #define UnitViridianForestNWild 0x54
-
 #define UnitRoute2NWild 0x55
-
 #define UnitRoute3Wild 0x56
-
 #define UnitMtMoonWild 0x57
-
-
-
 #define UnitRoute4Wild 0x58
-
-#define UnitCeruleanCityA 0x59
-#define UnitCeruleanCityB 0x5A
-
-
+#define UnitCeruleanCity 0x59
 
 #define UnitCeruleanGymA 0x6A
 #define UnitCeruleanGymB 0x6B
@@ -189,10 +182,14 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitRoute13Wild 0x7C
 #define UnitRoute14Wild 0x7D 
 #define UnitRoute15Wild 0x7E 
-#define UnitSafariWild 0x7F
-#define UnitCyclingRoadWild 0x80
-#define UnitRoute7Wild 0x81
-#define UnitRoute8Wild 0x82 
+#define UnitRoute18Wild 0x7F 
+#define UnitRoute17Wild 0x80 
+#define UnitRoute16Wild 0x81 
+#define UnitSafariWild 0x82
+#define UnitCyclingRoadWild 0x83
+#define UnitRoute7Wild 0x84
+#define UnitRoute8Wild 0x85 
+
 
 #define UnitRoute1Trainer 0xA0
 #define UnitRoute2STrainer 0xA1
@@ -225,6 +222,8 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitCyclingRoadTrainer 0xBA 
 #define UnitRoute7Trainer 0xBB
 #define UnitRoute8Trainer 0xBC 
+#define UnitRoute18Trainer 0xBD 
+
 
 
 // avoid 0xBE and 0xBF // formotiis? 

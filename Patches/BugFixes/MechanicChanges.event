@@ -1,4 +1,31 @@
 
+PUSH 
+// EXPERIMENTAL 
+    // prevent debuffs and loading issue (Kirb)
+    //0x203ED40 is not sufficient, use 0x0202A6AC text buffer . BY 7743
+    //As long as you don't write strange code that uses TEXTCOND and executes LOAD1
+    // while displaying text, there should be no problem.
+    // If this does not work well, could try the sound buffer 0x0201F148 
+	// although I think Pokemblem already uses the sound buffer for something...? 
+
+    ORG 0xBA30
+//      WORD 0x203ED40
+      WORD 0x0202A6AC //text buffer
+
+    ORG 0xBA54
+//      WORD 0x203ED40
+      WORD 0x0202A6AC //text buffer
+
+    ORG 0xFA34
+//      WORD 0x203ED40
+      WORD 0x0202A6AC //text buffer
+
+    ORG 0xD5B80
+//      WORD 0x203ED40
+      WORD 0x0202A6AC //text buffer
+POP 
+
+
 
 			PUSH 
 
@@ -187,8 +214,6 @@ ORG 0x2CD44
 BYTE 0x4F
 
 POP 
-
-
 
 
 

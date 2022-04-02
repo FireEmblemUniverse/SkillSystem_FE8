@@ -1,6 +1,6 @@
 
-#define GameOptionsMaxEntries 0x12
-#define NumberOfOptionsToDisplay 9 
+#define GameOptionsMaxEntries 0x12 // There are a couple places where the game checks the size of this table. 
+#define NumberOfOptionsToDisplay 10 
 
 #define AutosaveOpt 0x11 // New entries start at 0x11 
 #define DangerRadiusOpt 0x12 
@@ -44,7 +44,7 @@ BYTE TextSpeedOpt
 //BYTE UnitOpt
 //BYTE CombatOpt 
 //BYTE ShowObjectiveOpt
-//BYTE HPBarsOpt 
+BYTE HPBarsOpt 
 BYTE AutocursorOpt 
 BYTE AutoendTurnsOpt
 BYTE MusicOpt 

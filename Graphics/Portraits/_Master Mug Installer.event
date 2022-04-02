@@ -1,4 +1,4 @@
-// setMugEntry(UnitMugID, UnitMugData, MouthX, MouthY, EyeX, EyeY)
+
 PUSH 
 ORG $5524 
 POIN NewPortraitTable
@@ -6,8 +6,11 @@ POP
 
 ALIGN 4
 NewPortraitTable:
-FILL(0x1C*0x100)
+FILL(0x1C*0x100) 0 
 
+// custom defs 
+// #undef PortraitTable 
+// #define PortraitTable NewPortraitTable 
 #define setMugEntryExtend(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY, extend1X, extend1Y, extend2X, extend2Y)"PUSH; ORG NewPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE extend1X extend1Y extend2X extend2Y; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
 
 // ALIGN 16 %[name|stripspecial]%Data: // %[national_dex|zeropad]%#incbin "Dmp/%[national_dex]%_mug.dmp" #incbin "Dmp/%[national_dex]%_frames.dmp" #incbin "Dmp/%[national_dex]%_palette.dmp" #incbin "Dmp/%[national_dex]%_minimug.dmp" setMugEntry(%[national_dex]%, %[name|stripspecial]%Data, 9, 9, 9, 9)
@@ -1391,24 +1394,24 @@ MewData: // 151
 #incbin "Dmp/151_minimug.dmp" 
 setMugEntry(151, MewData, 9, 9, 9, 9)
 
+setMugEntry(0x1, Blank_Portrait, 3, 5, 3, 3)
 
-#define FillMugMagikarp "POIN MagikarpData MagikarpData+0x1624 MagikarpData+0x1604 MagikarpData+0x1004; BYTE 0 0 0 0 9 9 9 9 1 0 1 0;" 
-#define Fill16Magikarp "FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp;"
-#define Fill256Magikarp "Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp"
-#define ScaledBackID_16 "ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID"
-#define ScaledBackID_240 "ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16"
 
 #ifdef MagikarpOnly
-PUSH 
-ORG NewPortraitTable
+	#define FillMugMagikarp "POIN MagikarpData MagikarpData+0x1624 MagikarpData+0x1604 MagikarpData+0x1004; BYTE 0 0 0 0 9 9 9 9 1 0 1 0;" 
+	#define Fill16Magikarp "FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp FillMugMagikarp;"
+	#define Fill256Magikarp "Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp Fill16Magikarp"
+	#define ScaledBackID_16 "ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID ScaledBackID"
+	#define ScaledBackID_240 "ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16 ScaledBackID_16"
+	PUSH 
+	ORG NewPortraitTable
 
-Fill256Magikarp
+	Fill256Magikarp
 
-ORG ClassSkillTable
-BYTE ScaledBackID_240
+	ORG ClassSkillTable
+	BYTE ScaledBackID_240
 
-POP 
-
+	POP 
 #endif 
 
 
