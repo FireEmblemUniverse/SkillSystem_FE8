@@ -6,8 +6,6 @@ GetDebuffEntry:
 cmp r0, #0x00 @ Just return NULL for a NULL unit passed in.
 beq End
 @get deployment number
-cmp r0, #0 
-beq End 
 ldrb r2,[r0,#0xb]
 @get allegience from the top two bits
 lsr r0,r2,#0x6

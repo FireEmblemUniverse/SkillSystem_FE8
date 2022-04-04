@@ -33,11 +33,13 @@ unsetLoop:
 
 @unset the bit for this skill in the debuff table entry for the unit
 mov r0,r4
+mov r6, r0 
 ldr r2,=GetUnit
 mov lr,r2
 .short 0xf800
 cmp r0, #0 
 beq unsetReit
+mov r5, r0 
 ldr	r2,DebuffTable
 mov lr,r2
 .short 0xf800

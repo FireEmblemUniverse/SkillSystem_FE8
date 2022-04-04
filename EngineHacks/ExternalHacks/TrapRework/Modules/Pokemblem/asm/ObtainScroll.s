@@ -38,7 +38,7 @@
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
 @.equ GiveItemEvent, ObtainSkillID+4
-
+@ [203F58F]!!
 ObtainSpellInitialization:
 mov r0, #0x3
 ldrb r0, [r5, r0]     @Completion flag
@@ -80,7 +80,8 @@ ReturnPoint:
 ldr r3,=Init_ReturnPoint
 bx r3
 
-
+.ltorg 
+.align 
 
 GetAdjacentTrap: @r0 = unit we're checking for adjacency to
 push {r4-r6,r14}

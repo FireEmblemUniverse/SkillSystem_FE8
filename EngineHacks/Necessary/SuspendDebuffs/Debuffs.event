@@ -21,10 +21,11 @@ TeamDebuffTables:
   #define GUDebuffTable "EUDebuffTable + (MaxEnemyUnits*8)"
   #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*8)"
   ALIGN 4
-  WORD PUDebuffTable
-  WORD EUDebuffTable
-  WORD GUDebuffTable
-  WORD OUDebuffTable
+  WORD PUDebuffTable // 203f100 + 0x198 
+  WORD GUDebuffTable // 203f298 + 0x80 
+  WORD EUDebuffTable // 203f430 + 0x198 
+  WORD OUDebuffTable // 203f4b0  [203F58F]!!
+  
   WORD 0 
   #define PUBuffTable BuffTable 
   #define EUBuffTable "PUBuffTable + 	(MaxPlayerUnits*BuffTableEntrySize)" // 4 bytes default 
@@ -33,8 +34,8 @@ TeamDebuffTables:
   ALIGN 4 
 TeamBuffTables:
   WORD PUBuffTable
-  WORD EUBuffTable
   WORD GUBuffTable
+  WORD EUBuffTable
   WORD OUBuffTable
 WORD 0 
  
