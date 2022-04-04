@@ -206,17 +206,11 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, MoonStone, 1)
 
 //SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
-ShowMap
-TutText(DebugText)
 
-SilentGiveSkillAccessory(2, ParagonID|0x80)
-TutText(DebugText)
-SilentGiveSkillAccessory(2, RenewalID|0x80)
-TutText(DebugText)
-SilentGiveSkillAccessory(2, PatienceID|0x80)
-TutText(DebugText)
-SilentGiveSkillAccessory(2, RockyHelmetSkillID|0x80)
-TutText(DebugText)
+//EquipNewSkillAccessory(2, RenewalID) // GiveSkillAccessory(0, RenewalID)
+
+SilentGiveSkillAccessory(2, RenewalID)
+
 
 SilentGiveItemWithDurability(6, StatAccessory, WiseGlasses_BoostIndex|0x80)
 
@@ -279,10 +273,10 @@ Write_Byte(4, GaryStarterClass)
 
 
   
-Write_Byte(5, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(12, YCoordNewArea)  
-//MNC2 PewterCh
-MNC2 Route9ECh 
+Write_Byte(25, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(16, YCoordNewArea)  
+MNC2 PewterCh
+//MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch
 //MNC2 PewterGymCh 
 //MNC2 PalletCh

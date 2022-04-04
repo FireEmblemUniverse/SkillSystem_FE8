@@ -154,6 +154,11 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds
  // Bushes  
 LOAD1 0x1 HumanTrainers
 ENUN 
+MarkTrainerAsDefeated(0xE2)
+CHECK_EVENTID ThunderbadgeObtained
+BEQ 0 sC s0 
+DISA 0xE2 
+LABEL 0 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
@@ -215,6 +220,7 @@ MS_TableTerminator ; }
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT R9W_0xE0_BQ // 0xE0 
 SHORT R9W_0xE1_BQ // 0xE0 
+SHORT R9W_0xE1_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
@@ -222,11 +228,14 @@ SHORT R9W_0xE0_BD // 0xE0
 SHORT 600 // Gold 
 SHORT R9W_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
+SHORT Route9W_WaitingSurge // 0xE0 
+SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 birdkeeperID 0x0 Level(0, Enemy, 1) [21,3]  0b 0x0	0x1 REDA21R3 [NineRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 camperID 0x0 Level(0, Enemy, 1) [33,12]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 boyID 0x0 Level(0, Enemy, 1) [11,10]  0b 0x0	0x1 REDA11R10 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT
 
 // Wilds - Pidgeotto, Sandshrew, Oddish 

@@ -86,7 +86,7 @@ LABEL 20 // Cutscene prevents escape
 CALL CannotEscapeTrainerBattleEvent
 LABEL 63 
 NoFade 
-
+ENDA 
 
 
 

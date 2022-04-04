@@ -423,9 +423,23 @@ Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight]
 ## PewterCityText
 The city of Boulders.[A][X]
 
-## NoBoulderbadgeText
+## NoBoulderbadgeText2
 You need the Boulderbadge[NL]
 to progress through here.[A][X]
+
+## NoBoulderbadgeText
+Hey, don't rush ahead![N]
+Keep your coal, man![A][N]
+Hmm? Don't think you can win?[N]
+Of quartz you can![A][N]
+Just never take your[N]
+Pok[Eaccent]mon for granite![A][X]
+
+## PewterCheckGymText
+I must defeat Brock![A][N]
+I cannot progress as[N]
+a trainer until I do![A][N]
+It's all ore nothing![A][X]
 
 ## ClosedAreaText
 This area is closed.[A][X]
@@ -1250,8 +1264,15 @@ You feel you've learned how[N]
 to cut little bushes now.[A][X]
 
 
+## Route9W_WaitingSurge
+I'm waiting for Lt. Surge![A][N]
+He promised to give me a[N]
+tour of the Power Plant...[A][X]
 
-
+## Route9W_WaitingSurge2
+I'm waiting for Lt. Surge![A][N]
+There's something up with[N]
+the Power Plant...[A][X]
 
 ## R9W_0xE0_BQ
 You have Pok[Eaccent]mon with you![N]

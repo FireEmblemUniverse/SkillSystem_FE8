@@ -35,6 +35,7 @@ END_MAIN
 
 CharacterBasedEvents: 
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
 END_MAIN
 
 
@@ -80,7 +81,10 @@ CHECK_EVENTID BoulderbadgeObtained
 BEQ 0 rC r0 
 ChapterTransition(Route3Ch, 0, 10)
 LABEL 0 
-TutText(NoBoulderbadgeText)
+CUMO [38,19]
+CAM1 [38,19]
+BottomWallText(NoBoulderbadgeText)
+CURE 
 NoFade 
 ENDA 
 
@@ -190,8 +194,12 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
-
-
+CHECK_EVENTID BoulderbadgeObtained
+BNE 0 sC s0 
+LOAD1 1 EnemyTrainersA
+ENUN 
+MarkTrainerAsDefeated(0xE0) 
+LABEL 0 
 LABEL 0x63
 NoFade
 ENDA
@@ -260,7 +268,7 @@ UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0
 UNIT
 
 EnemyTrainersA:
-//UNIT UnitRouteOneTrainer RattataID 0x0 Level(5, Enemy, 1) [13,1]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] WithinTwoZoningAI
+UNIT 0xE0 super_nerdID 0x0 Level(5, Enemy, 1) [38,19]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT
 
 
@@ -269,6 +277,13 @@ ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT R9W_0xE0_BQ // 0xE0 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+SHORT PewterCheckGymText // 0xE0 
+TDQ_TableTerminator ; } 
 
 
 	
