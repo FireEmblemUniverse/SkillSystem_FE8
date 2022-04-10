@@ -132,10 +132,10 @@ ENUT RocketMagikarpFlag
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(2,2,34,17)) //N patch 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(2,2,34,17)) //N patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(2,18,34,31)) //S patch 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(2,18,34,31)) //S patch 
 LOAD1 0x1 EnemyUnitsC // burrows 
 ENUN
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  

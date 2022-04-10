@@ -11,7 +11,7 @@
 	.equ UnitMap, 0x202E4D8 
 	.equ GetUnit, 0x8019430
 	.equ GetUnitByEventParameter, 0x0800BC50
-
+	.equ CanUnitCrossTerrain, 0x801949c 
 	.equ RefreshFogAndUnitMaps, 0x0801a1f4  
 	.equ SMS_UpdateFromGameData, 0x080271a0   
 	.equ UpdateGameTilesGraphics, 0x08019c3c   
@@ -26,47 +26,84 @@
 	.type   RandomizePlayerCoords, function
 
 RandomizePlayerCoords:
-	push {r4-r7, lr}
-mov r4,#0x1 @ deployment id / counter 
+push {r4-r7, lr}
+mov r7, r8 
+push {r7}
+mov r0, #0x3F 
+mov r8, r0 
+mov r4,#0x0 @ deployment id / counter 
 ldr r0, =MemorySlot 
 
 ldr r5, [r0, #4*0x09] @r5 / s9 as valid coords to place into 
 ldr r6, [r0, #4*0x01] @r6 / s1 as valid terrain type 
 b LoopThroughUnits
 
-	.global RandomizeCoords
-	.type   RandomizeCoords, function
+	.global RandomizeNPCCoords
+	.type   RandomizeNPCCoords, function
 
-RandomizeCoords:
-	push {r4-r7, lr}	
-
-mov r4,#0x80 @ deployment id / counter 
-
-@ r5 as valid coordinates 
-@ r6 as valid terrain types 
-
+RandomizeNPCCoords:
+push {r4-r7, lr}	
+mov r7, r8 
+push {r7}
+mov r0, #0x7F 
+mov r8, r0 
+mov r4,#0x40 @ deployment id / counter 
 ldr r0, =MemorySlot 
 
 ldr r5, [r0, #4*0x09] @r5 / s9 as valid coords to place into 
 ldr r6, [r0, #4*0x01] @r6 / s1 as valid terrain type 
+b LoopThroughUnits
 
-@ldr r5, =0x0A06150A @ 10,6 - 21,10 
+	.global RandomizeEnemyCoords
+	.type   RandomizeEnemyCoords, function
 
+RandomizeEnemyCoords:
+push {r4-r7, lr}	
+mov r7, r8 
+push {r7}
+mov r0, #0xBF 
+mov r8, r0 
+mov r4,#0x80 @ deployment id / counter 
+ldr r0, =MemorySlot 
+
+ldr r5, [r0, #4*0x09] @r5 / s9 as valid coords to place into 
+ldr r6, [r0, #4*0x01] @r6 / s1 as valid terrain type 
+b LoopThroughUnits
+
+
+	.global RandomizeCoords
+	.type   RandomizeCoords, function
+
+RandomizeCoords: @ players, npcs, and enemies 
+push {r4-r7, lr}	
+mov r7, r8 
+push {r7}
+mov r0, #0xBF 
+mov r8, r0 
+mov r4,#0x0 @ deployment id / counter 
+ldr r0, =MemorySlot 
+
+ldr r5, [r0, #4*0x09] @r5 / s9 as valid coords to place into 
+ldr r6, [r0, #4*0x01] @r6 / s1 as valid terrain type 
+b LoopThroughUnits
 
 LoopThroughUnits:
 mov r0,r4
 blh GetUnit @ 19430
 cmp r0,#0
-beq NextUnit
+beq NextUnitLadder
 ldr r3,[r0]
 cmp r3,#0
-beq NextUnit
+beq NextUnitLadder
 ldr r1,[r0,#0xC] @ condition word
 mov r2,#0xC @ benched/dead
 tst r1,r2
-bne NextUnit
+bne NextUnitLadder
+b ValidUnit
+NextUnitLadder:
+b NextUnit
 
-
+ValidUnit: 
 mov r7, r0 
 
 ldr r3, =MemorySlot
@@ -156,12 +193,6 @@ lsl r2, r5, #8
 lsr r2, r2, #24 @Y lower bound 
 add r0, r2 
 
-@lsl r1, r5, #24 
-@lsr r1, r1, #24 @Y upper bound 
-
-
-@ldr r1, =MemorySlot @[0x30004C4]!!?
-@str r0, [r1, #4*0x03]
 
 add r6, r6, r0 @----xxyy coord to move unit to 
 @mov r6, r0 
@@ -186,8 +217,6 @@ cmp		r0, #0x0
 bne		XCoordInRange		@ Coord occupied, so try again 
 
 
-@could probably use CanUnitBeOnPosition hack instead, oh well 
-
 @x coord to move to 
 @r1 as x coord now 
 lsl 	r1, r6, #16 
@@ -211,10 +240,34 @@ ldrb r0, [r0, #0x0]   @TileID
 
 ldr r3, =MemorySlot 
 ldr r3, [r3, #4*0x04] @Valid terrain 
+cmp r3, #0xFF 
+bge AnyTerrainException
 
 cmp r0, r3 
 bne XCoordInRange
+b ForceSpecificTerrain
+AnyTerrainException:
+lsl 	r0, r6, #16 
+lsr 	r0, r0, #24 
+@y coord to move to 
+lsl 	r1, r6, #24 
+lsr 	r1, r1, #24 
 
+
+@ Given r0 = x, r1 = y, r2 = unit struct
+ldr		r3, =0x202E4DC @ Terrain map	@Load the location in the table of tables of the map you want
+ldr		r3,[r3]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r3,r1			@so that we can get the correct row pointer
+ldr		r3,[r3]			@Now we're at the beginning of the row data
+add		r3,r0			@add x coordinate
+ldrb	r1,[r3]			@load datum at those coordinates
+mov r0, r7 @ unit struct 
+blh CanUnitCrossTerrain @0x801949c @ r1 terrain type, r0 unit 
+cmp r0, #1
+bne XCoordInRange @ If we cannot cross terrain, try another coord. 
+
+ForceSpecificTerrain: @ If terrain type is given, units can be placed there regardless of their ability to walk on it or not 
 @x coord to move to 
 @r1 as x coord now 
 lsl 	r1, r6, #16 
@@ -233,14 +286,18 @@ blh  UpdateGameTilesGraphics
 
 NextUnit:
 add r4,#1
-cmp r4,#0xBF
-ble LoopThroughUnits
+cmp r4, r8
+bgt End_LoopThroughUnits
+b LoopThroughUnits
 End_LoopThroughUnits:
+pop {r7}
+mov r8, r7 
 pop {r4-r7}
 pop {r0}
 bx r0
 
-.ltorg
 
+.ltorg
+.align 
 	
 

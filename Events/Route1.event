@@ -155,24 +155,24 @@ CALL LoadAndPlacePlayers
  
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(10,6,21,10)) //top patch 
 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(16,13,21,17)) //upper mid 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(16,13,21,17)) //upper mid 
 LOAD1 0x1 EnemyUnitsC
 ENUN
 
-RandomizeCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(12,24,17,28)) //lower mid 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,33,21,34))  //bottom bush - prev 37y 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(2,33,21,34))  //bottom bush - prev 37y 
 LOAD1 0x1 EnemyUnitsE
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(2,32,9,35))  //bottom w
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(2,32,9,35))  //bottom w
 LOAD1 0x1 EnemyUnitsF
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(20,32,21,35))  //bottom e - prev 18x 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(20,32,21,35))  //bottom e - prev 18x 
 
 CHECK_EXISTS 0x102 
 BNE 0 sC s0 // If more than 1 unit, don't do the tutorial & don't load the extra mankey. 

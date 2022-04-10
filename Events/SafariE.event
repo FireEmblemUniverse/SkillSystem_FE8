@@ -139,24 +139,24 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(14,1,28,2)) //N patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(14,1,28,2)) //N patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(29,1,39,7)) //NE patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(29,1,39,7)) //NE patch 
 
 LOAD1 0x1 EnemyUnitsC
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(6,8,25,16)) //W patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(6,8,25,16)) //W patch 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(24,19,37,24)) //SE patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(24,19,37,24)) //SE patch 
 
 LOAD1 0x1 EnemyUnitsE
 ENUN
-RandomizeCoords(Shallow, Range(0,0,5,5), Range(14,10,29,22)) //Water patch 
+RandomizeEnemyCoords(Shallow, Range(0,0,5,5), Range(14,10,29,22)) //Water patch 
 LOAD1 0x1 BossUnit
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(8,9,14,15)) //
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(8,9,14,15)) //
 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  

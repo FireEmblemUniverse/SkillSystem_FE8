@@ -248,7 +248,7 @@ ENUN
 //LOAD1 1 Units3 
 //ENUN 
 AutoLevelUnits(1, True, 0x50FF)
-RandomizeCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
+RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
 SetUnitStatus(1, CurrentHP, 1)
 SetUnitStatus(2, CurrentHP, 5)

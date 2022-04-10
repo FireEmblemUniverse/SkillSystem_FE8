@@ -161,10 +161,10 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(2,1,40,12)) //grass patch 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(2,1,40,12)) //grass patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(3,13,40,27)) //grass patch 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(3,13,40,27)) //grass patch 
 
 LOAD1 0x1 EnemyUnitsC // Burrows
 ENUN

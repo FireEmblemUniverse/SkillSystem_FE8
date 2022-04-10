@@ -27,9 +27,9 @@
 
 // Debugging 
 #define Break "CALL 0x89EE1D4" // ENDB and unsets completion flag of event 
-#define Halt "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-#define Stop "EVBIT_F 2; FADI 16; Text(DebugTextHere)"
-#define StopHere "EVBIT_F 2; FADI 16; Text(DebugTextHere)" // duplicates for when I forget the name lol 
+#define Halt "ShowMap; Text(DebugTextHere)"
+#define Stop "ShowMap; Text(DebugTextHere)"
+#define StopHere "ShowMap; Text(DebugTextHere)" // duplicates for when I forget the name lol 
 //#define StopHere "CUMO (-1); EVBIT_F 2; STAL 45; CURE" // no text but waits 45 frames 
 
 // Helpers 
@@ -37,6 +37,10 @@
 #define PlayerInRange "SVAL r2 0; CALL 0x89EE1B8" // When matching allegiance stops in range - Eg. if not player, ENDB 
 #define NPCInRange "SVAL r2 1; CALL 0x89EE1B8" 
 #define EnemyInRange "SVAL r2 2; CALL 0x89EE1B8" 
+#define Area(LowerX, LowerY, UpperX, UpperY) "LowerX<<24|LowerY<<16|UpperX<<8|UpperY"
+#define Range(LowerX, LowerY, UpperX, UpperY) "LowerX<<24|LowerY<<16|UpperX<<8|UpperY"
+
+
 
 #define GiveItemWithDurability(UnitID, Item, Durability) "CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID"
 #define GiveItemWithDurability(UnitID) "SVAL r1 8; SLSL r4 r4 r1; SADD r3 r3 r4; CALL $591F40; GIVEITEMTO UnitID" // s3 as item, s4 as durability 

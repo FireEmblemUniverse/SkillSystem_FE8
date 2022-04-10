@@ -127,10 +127,10 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(3,1,23,14)) //w patch 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(3,1,23,14)) //w patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(18,15,32,32)) //se patch 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(18,15,32,32)) //se patch 
 LOAD1 0x1 EnemyUnitsC // Burrows 
 ENUN
 

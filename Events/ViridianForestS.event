@@ -132,19 +132,19 @@ CALL LoadAndPlacePlayers
 ///*
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(29,4,38,25)) //ne patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(29,4,38,25)) //ne patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(12,9,26,24)) //mid  
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(12,9,26,24)) //mid  
 LOAD1 0x1 EnemyUnitsC
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(37,23,46,27)) //se
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(37,23,46,27)) //se
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(1,5,16,11))  //nw
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(1,5,16,11))  //nw
 LOAD1 0x1 EnemyUnitsE
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(1,21,10,27))  //sw
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(1,21,10,27))  //sw
 LOAD1 0x1 BeedrillUnitGroup
 ENUN 
 

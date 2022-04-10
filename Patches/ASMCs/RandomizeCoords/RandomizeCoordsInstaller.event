@@ -1,12 +1,37 @@
 #include "RandomizeCoords.lyn.event"
 
+// Usage:
+// 1. Load units first, then use the macro.
+// FEBuilder does not have a macro for it, so you will need to write to the memory slots, then ASMC RandomizeCoords 
+// s4 is Terrain type. 0xFF is for any walkable terrain. 
+// s8 is the range of units to be teleported. 
+// s9 is the range of their destination. 
 
 
-#define RandomizeCoords(TerrainType, RangeOfEnemyUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfEnemyUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeCoords" 
-#define RandomizePlayerCoords(TerrainType, RangeOfEnemyUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfEnemyUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizePlayerCoords" 
 
+// RandomizeCoords(GrassTerrainType, Range(0,1,5,6), Range(10,11,15,16)) 
+// This finds all units in the range (0x, 1y, 5x, 6y) and places them into any grass found in (10x, 11y, 15x, 16y) 
 
-#define Grass 0x0C 
-#define Ground 0x01 
+// RandomizePlayerCoords(Range(0,1,5,6), Range(10,11,15,16)) 
+// This randomizes placement of player units in (0x, 1y, 5x, 6y) into any walkable terrain in (10x, 11y, 15x, 16y) 
+
+#ifndef Range
+	#define Range(LowerX, LowerY, UpperX, UpperY) "LowerX<<24|LowerY<<16|UpperX<<8|UpperY"
+#endif 
+
+#define RandomizeCoords(TerrainType, RangeOfUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeCoords" 
+#define RandomizeCoords(RangeOfUnits, RangeToPlaceInto) "SVAL 4 0xFF; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeCoords" 
+#define RandomizePlayerCoords(TerrainType, RangeOfUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizePlayerCoords" 
+#define RandomizePlayerCoords(RangeOfUnits, RangeToPlaceInto) "SVAL 4 0xFF; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizePlayerCoords" 
+#define RandomizeNPCCoords(TerrainType, RangeOfUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeNPCCoords" 
+#define RandomizeNPCCoords(RangeOfUnits, RangeToPlaceInto) "SVAL 4 0xFF; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeNPCCoords" 
+#define RandomizeEnemyCoords(TerrainType, RangeOfUnits, RangeToPlaceInto) "SVAL 4 TerrainType; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeEnemyCoords" 
+#define RandomizeEnemyCoords(RangeOfUnits, RangeToPlaceInto) "SVAL 4 0xFF; SVAL 8 RangeOfUnits; SVAL 9 RangeToPlaceInto; ASMC RandomizeEnemyCoords" 
+
+//#define Ground 0x01 // Plains 
+//#define Grass 0x0C // Forest 
+//#define Sea 0x15 // Sea 
+//#define Shallow 0x16 // River 
+
 
 

@@ -153,23 +153,23 @@ ENUF SkipIntroFlag
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(2,20,23,22)) 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(2,20,23,22)) 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(9,16,29,30)) 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(9,16,29,30)) 
 LOAD1 0x1 EnemyUnitsC 
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(2,7,6,19)) 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(2,7,6,19)) 
 LOAD1 0x1 EnemyUnitsD
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(11,28,29,30))
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(11,28,29,30))
 
 LOAD1 0x1 EnemyUnitsE 
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(10,12,20,15))
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(10,12,20,15))
 LOAD1 0x1 EnemyUnitsF
 ENUN
-RandomizeCoords(Ground, Range(0,0,5,5), Range(19,03,29,6))
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(19,03,29,6))
 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  

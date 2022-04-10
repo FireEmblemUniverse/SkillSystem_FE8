@@ -132,10 +132,10 @@ CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(22,11,33,16)) //w patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(22,11,33,16)) //w patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(47,10,57,16)) //se patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(47,10,57,16)) //se patch 
 LOAD1 0x1 EnemyUnitsC // burrows 
 ENUN
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  

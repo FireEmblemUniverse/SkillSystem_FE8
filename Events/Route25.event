@@ -151,7 +151,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeCoords(Grass, Range(0,0,5,5), Range(1,3,8,4)) //w patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(1,3,8,4)) //w patch 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
