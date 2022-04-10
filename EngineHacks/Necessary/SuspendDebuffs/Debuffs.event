@@ -18,8 +18,8 @@ TeamDebuffTables:
   #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*8)"
   ALIGN 4
   WORD PUDebuffTable
-  WORD EUDebuffTable
   WORD GUDebuffTable
+  WORD EUDebuffTable
   WORD OUDebuffTable
   }
   
