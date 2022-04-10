@@ -233,7 +233,7 @@ blh  UpdateGameTilesGraphics
 
 NextUnit:
 add r4,#1
-cmp r4,#0xAF
+cmp r4,#0xBF
 ble LoopThroughUnits
 End_LoopThroughUnits:
 pop {r4-r7}
