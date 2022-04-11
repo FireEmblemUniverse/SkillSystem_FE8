@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="48" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="41" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="route 16 tileset" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/Route16" trans="ffffff" width="512" height="512"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="48" height="20">
+ <layer id="1" name="Tile Layer 1" width="41" height="20">
   <properties>
    <property name="Anims1" value="WaterAnimations"/>
    <property name="ChapterID" value="Route16Ch"/>
@@ -55,13 +55,6 @@
    <tile gid="3"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="5"/>
    <tile gid="2"/>
    <tile gid="6"/>
@@ -103,13 +96,6 @@
    <tile gid="6"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
    <tile gid="8"/>
    <tile gid="2"/>
    <tile gid="3"/>
@@ -151,13 +137,6 @@
    <tile gid="3"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="9"/>
    <tile gid="10"/>
    <tile gid="33"/>
@@ -196,16 +175,9 @@
    <tile gid="34"/>
    <tile gid="35"/>
    <tile gid="34"/>
-   <tile gid="35"/>
-   <tile gid="34"/>
-   <tile gid="35"/>
-   <tile gid="34"/>
    <tile gid="6"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
    <tile gid="2"/>
    <tile gid="42"/>
    <tile gid="65"/>
@@ -244,16 +216,9 @@
    <tile gid="65"/>
    <tile gid="65"/>
    <tile gid="65"/>
-   <tile gid="65"/>
-   <tile gid="65"/>
-   <tile gid="65"/>
-   <tile gid="65"/>
    <tile gid="97"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -292,16 +257,9 @@
    <tile gid="132"/>
    <tile gid="132"/>
    <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
    <tile gid="133"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="134"/>
@@ -340,16 +298,9 @@
    <tile gid="132"/>
    <tile gid="132"/>
    <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
    <tile gid="97"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -388,16 +339,9 @@
    <tile gid="132"/>
    <tile gid="132"/>
    <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
-   <tile gid="132"/>
    <tile gid="133"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="134"/>
@@ -435,17 +379,10 @@
    <tile gid="101"/>
    <tile gid="101"/>
    <tile gid="101"/>
-   <tile gid="101"/>
-   <tile gid="101"/>
-   <tile gid="101"/>
-   <tile gid="101"/>
    <tile gid="102"/>
    <tile gid="97"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -483,17 +420,10 @@
    <tile gid="136"/>
    <tile gid="136"/>
    <tile gid="136"/>
-   <tile gid="136"/>
-   <tile gid="136"/>
-   <tile gid="136"/>
-   <tile gid="136"/>
    <tile gid="163"/>
    <tile gid="133"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="65"/>
@@ -531,17 +461,10 @@
    <tile gid="165"/>
    <tile gid="165"/>
    <tile gid="165"/>
-   <tile gid="165"/>
-   <tile gid="165"/>
-   <tile gid="165"/>
-   <tile gid="165"/>
    <tile gid="195"/>
    <tile gid="97"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -575,10 +498,6 @@
    <tile gid="65"/>
    <tile gid="65"/>
    <tile gid="65"/>
-   <tile gid="225"/>
-   <tile gid="65"/>
-   <tile gid="65"/>
-   <tile gid="65"/>
    <tile gid="65"/>
    <tile gid="65"/>
    <tile gid="65"/>
@@ -587,9 +506,6 @@
    <tile gid="33"/>
    <tile gid="34"/>
    <tile gid="35"/>
-   <tile gid="34"/>
-   <tile gid="35"/>
-   <tile gid="34"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="134"/>
@@ -631,13 +547,6 @@
    <tile gid="196"/>
    <tile gid="99"/>
    <tile gid="196"/>
-   <tile gid="99"/>
-   <tile gid="196"/>
-   <tile gid="99"/>
-   <tile gid="196"/>
-   <tile gid="99"/>
-   <tile gid="196"/>
-   <tile gid="201"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -679,13 +588,6 @@
    <tile gid="197"/>
    <tile gid="134"/>
    <tile gid="197"/>
-   <tile gid="134"/>
-   <tile gid="197"/>
-   <tile gid="134"/>
-   <tile gid="197"/>
-   <tile gid="134"/>
-   <tile gid="197"/>
-   <tile gid="201"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="134"/>
@@ -727,13 +629,6 @@
    <tile gid="196"/>
    <tile gid="99"/>
    <tile gid="196"/>
-   <tile gid="99"/>
-   <tile gid="196"/>
-   <tile gid="99"/>
-   <tile gid="196"/>
-   <tile gid="99"/>
-   <tile gid="196"/>
-   <tile gid="201"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -775,13 +670,6 @@
    <tile gid="259"/>
    <tile gid="260"/>
    <tile gid="259"/>
-   <tile gid="260"/>
-   <tile gid="259"/>
-   <tile gid="260"/>
-   <tile gid="259"/>
-   <tile gid="260"/>
-   <tile gid="259"/>
-   <tile gid="260"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="134"/>
@@ -823,20 +711,13 @@
    <tile gid="97"/>
    <tile gid="262"/>
    <tile gid="97"/>
-   <tile gid="262"/>
-   <tile gid="97"/>
-   <tile gid="262"/>
-   <tile gid="97"/>
-   <tile gid="262"/>
-   <tile gid="97"/>
-   <tile gid="262"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
    <tile gid="135"/>
    <tile gid="136"/>
    <tile gid="137"/>
-   <tile gid="225"/>
+   <tile gid="101"/>
    <tile gid="101"/>
    <tile gid="101"/>
    <tile gid="101"/>
@@ -871,13 +752,6 @@
    <tile gid="6"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="134"/>
@@ -919,13 +793,6 @@
    <tile gid="3"/>
    <tile gid="4"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
    <tile gid="2"/>
    <tile gid="98"/>
    <tile gid="99"/>
@@ -967,13 +834,6 @@
    <tile gid="6"/>
    <tile gid="7"/>
    <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
-   <tile gid="6"/>
-   <tile gid="7"/>
   </data>
  </layer>
 </map>

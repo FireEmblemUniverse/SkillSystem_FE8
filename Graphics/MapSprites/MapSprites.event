@@ -267,7 +267,7 @@ SetSMS(fisherSMS, 1 ,   fisherStanding)
 SetSMS(gentlemanSMS , 1 ,   gentlemanStanding)
 SetSMS(hikerSMS, 1 ,   hikerStanding)
 SetSMS(mrfujiSMS , 1 ,    mrfujiStanding)
-SetSMS(Unused37SMS , 0 ,    m1Standing)
+SetSMS(bikerSMS , 2 ,    bikerStanding)
 SetSMS(Unused38SMS , 0 ,    m1Standing)
 SetSMS(Unused39SMS , 0 ,    m1Standing)
 SetSMS(Unused40SMS , 0 ,    m1Standing)
@@ -540,7 +540,7 @@ SetMMS(fisherMMS,    fisherMoving,        DemonKingAP)
 SetMMS(gentlemanMMS ,    gentlemanMoving,        DemonKingAP)
 SetMMS(hikerMMS,    hikerMoving,        DemonKingAP)
 SetMMS(mrfujiMMS ,     mrfujiMoving,        DemonKingAP)
-SetMMS(Unused37MMS ,     r1Moving,        DemonKingAP)
+SetMMS(bikerMMS ,     bikerMoving,        DemonKingAP)
 SetMMS(Unused38MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused39MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused40MMS ,     r1Moving,        DemonKingAP)
@@ -1408,7 +1408,9 @@ super_nerdMoving:
 ALIGN 4
 mrfujiMoving:
 #incbin "Trainer_MMS/MMS_mr_fuji.dmp"
-
+ALIGN 4
+bikerMoving:
+#incbin "Trainer_MMS/MMS_biker.dmp"
 
 
 
@@ -2146,6 +2148,11 @@ ALIGN 4
 mrfujiStanding:
 #incbin "Trainer_SMS/SMS_mr_fuji.dmp"
 
+ALIGN 4
+bikerStanding:
+#incbin "Trainer_SMS/SMS_biker.dmp"
+
+
 
 //SYSTEM PALETTES 
 
@@ -2154,8 +2161,7 @@ PUSH
 ORG $59EE20
 #incbin "Palette/all_five_pal.dmp"
 
-// Using the generated _pal.dmp outputs 512 bytes instead of 32
-// this is inline, so I copied them into one .dmp
+// I copied them into one .dmp, which was unnecessary 
 
 /*
 //enemy
