@@ -212,6 +212,10 @@ BYTE 0xFF
     BYTE 5
 
 
+ORG $A8A22 //remove r-text from save screen because why not
+SHORT 0xE025
+
+
 POP 
 
 ALIGN 4
