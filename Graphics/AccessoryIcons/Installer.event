@@ -30,84 +30,84 @@ BYTE PlaceholderIcon64
 
 PUSH
 AccessoryIcon(MuscleBand_BoostIndex) // Str
-#incbin "StatBoosterIcons/MuscleBandByZaim.dmp"
+#incbin "dmp/MuscleBandByZaim.dmp"
 
 AccessoryIcon(WiseGlasses_BoostIndex) // Mag 
-#incbin "StatBoosterIcons/WiseGlassesByEpicer.dmp"
+#incbin "dmp/WiseGlassesByEpicer.dmp"
 
 AccessoryIcon(LuckyBracer_BoostIndex) // Luck 
-#incbin "StatBoosterIcons/LuckyBracerByBeansy.dmp"
+#incbin "dmp/LuckyBracerByBeansy.dmp"
 
 AccessoryIcon(LeatherShield_BoostIndex) // Def/Res
-#incbin "StatBoosterIcons/LeatherShieldByCardCafe.dmp"
+#incbin "dmp/LeatherShieldByCardCafe.dmp"
 
 AccessoryIcon(BronzeShield_BoostIndex) // Def 
-#incbin "StatBoosterIcons/BronzeShieldByCardCafe.dmp"
+#incbin "dmp/BronzeShieldByCardCafe.dmp"
 
 AccessoryIcon(OldWard_BoostIndex) // Res 
-#incbin "StatBoosterIcons/OldWardByCardCafe.dmp"
+#incbin "dmp/OldWardByCardCafe.dmp"
 
 AccessoryIcon(WornBoots_BoostIndex) // Speed 
-#incbin "StatBoosterIcons/SpeedyBootsByCardCafe.dmp"
+#incbin "dmp/SpeedyBootsByCardCafe.dmp"
 
 AccessoryIcon(OldScope_BoostIndex) // Skl 
-#incbin "StatBoosterIcons/ScopePlaceholderByCardCafe.dmp"
+#incbin "dmp/ScopePlaceholderByCardCafe.dmp"
 
 AccessoryIcon(EnergyBand_BoostIndex) // Def 
-#incbin "StatBoosterIcons/MuscleBandByZaim.dmp"
+#incbin "dmp/MuscleBandByZaim.dmp"
 
 
 
 SkillAccessoryIcons(RenewalID)
-#incbin "SkillAccIcons/RenewalRingByCardCafe.dmp"
+#incbin "dmp/RenewalRingByCardCafe.dmp"
 
 SkillAccessoryIcons(RockyHelmetSkillID)
-#incbin "SkillAccIcons/RockyHelmetByFeier.dmp"
+#incbin "dmp/RockyHelmetByFeier.dmp"
 
 SkillAccessoryIcons(VantagePlusID)
-#incbin "SkillAccIcons/QuickClawByHusbandoEmblem.dmp"
+#incbin "dmp/QuickClawByHusbandoEmblem.dmp"
 
 SkillAccessoryIcons(CritUpID)
-#incbin "SkillAccIcons/LuckyBracerByBeansy.dmp"
+#incbin "dmp/LuckyBracerByBeansy.dmp"
 
 
 SkillAccessoryIcons(LifeAndDeathID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "dmp/LifeAndDeathSurgeByEreshkigal.dmp"
 
 SkillAccessoryIcons(WaryFighterID)
-#incbin "SkillAccIcons/WaryRingByBeansy.dmp"
+#incbin "dmp/WaryRingByBeansy.dmp"
 
 SkillAccessoryIcons(PerfectionistID)
-#incbin "SkillAccIcons/WaryRingByBeansy.dmp"
+#incbin "dmp/WaryRingByBeansy.dmp"
 
 SkillAccessoryIcons(SealStrID)
-#incbin "SkillAccIcons/LifeAndDeathSurgeByEreshkigal.dmp"
+#incbin "dmp/LifeAndDeathSurgeByEreshkigal.dmp"
 
 
 SkillAccessoryIcons(DazzleID)
-#incbin "SkillAccIcons/ReaperClothByHusbandoEmblem.dmp"
+#incbin "dmp/ReaperClothByHusbandoEmblem.dmp"
 
 SkillAccessoryIcons(AnathemaID)
-#incbin "SkillAccIcons/ReaperClothByBeansy.dmp"
+#incbin "dmp/ReaperClothByBeansy.dmp"
 
 
 SkillAccessoryIcons(SealSklID)
-#incbin "SkillAccIcons/SealSkl.dmp"
+#incbin "dmp/SealSkl.dmp"
 SkillAccessoryIcons(SealSpdID)
-#incbin "SkillAccIcons/SealSpd.dmp"
+#incbin "dmp/SealSpd.dmp"
 SkillAccessoryIcons(SealDefID)
-#incbin "SkillAccIcons/SealDef.dmp"
+#incbin "dmp/SealDef.dmp"
 SkillAccessoryIcons(SealResID)
-#incbin "SkillAccIcons/SealRes.dmp"
+#incbin "dmp/SealRes.dmp"
 SkillAccessoryIcons(SealLukID)
-#incbin "SkillAccIcons/SealLuk.dmp"
+#incbin "dmp/SealLuk.dmp"
 SkillAccessoryIcons(SealMagID)
-#incbin "SkillAccIcons/SealMag.dmp"
+#incbin "dmp/SealMag.dmp"
 
 SkillAccessoryIcons(SteadyStanceID)
-#incbin "StatBoosterIcons/BronzeShieldByCardCafe.dmp"
+#incbin "dmp/BronzeShieldByCardCafe.dmp"
 SkillAccessoryIcons(WardingStanceID)
-#incbin "StatBoosterIcons/OldWardByCardCafe.dmp"
+#incbin "dmp/OldWardByCardCafe.dmp"
 
 
 

@@ -1,0 +1,222 @@
+//Generated - do not edit!
+//Copy paste the /* */ section into your definitions if desired.
+ 
+ 
+ 
+/* 
+//First free icon past vanilla is 222 / 0xDE 
+ 
+#define BerryIcon 222 
+#define BlackbeltIcon 223 
+#define BlankIcon 224 
+#define BugTypeIcon 225 
+#define CalciumIcon 226 
+#define CarbosIcon 227 
+#define ChoiceBandIcon 228 
+#define DarkTypeIcon 229 
+#define DragonTypeIcon 230 
+#define DryingPanIcon 231 
+#define ElectricTypeIcon 232 
+#define FairyTypeIcon 233 
+#define FightingTypeIcon 234 
+#define FireStoneIcon 235 
+#define FireTypeIcon 236 
+#define FlyingTypeIcon 237 
+#define GhostTypeIcon 238 
+#define GrassTypeIcon 239 
+#define GroundTypeIcon 240 
+#define HPUpIcon 241 
+#define HyperPotionIcon 242 
+#define IceTypeIcon 243 
+#define IronIcon 244 
+#define JellyDonutIcon 245 
+#define LeafStoneIcon 246 
+#define LuckIcon 247 
+#define LuckyBracerIcon 248 
+#define MaximumRepelIcon 249 
+#define MoonStoneIcon 250 
+#define MuscleBandIcon 251 
+#define NormalTypeIcon 252 
+#define PoisonTypeIcon 253 
+#define PotionIcon 254 
+#define ProteinIcon 255 
+#define PsychicTypeIcon 256 
+#define QuickClawIcon 257 
+#define RareCandyIcon 258 
+#define RepelIcon 259 
+#define ReviveIcon 260 
+#define RockTypeIcon 261 
+#define SacredStoneIcon 262 
+#define SecretTonicIcon 263 
+#define SteelIcon 264 
+#define SteelIconIcon 265 
+#define SuperPotionIcon 266 
+#define SuperRepelIcon 267 
+#define ThunderStoneIcon 268 
+#define WaterStoneIcon 269 
+#define WaterTypeIcon 270 
+#define WiseGlassesIcon 271 
+#define ZincIcon 272 
+*/ 
+ 
+ 
+ 
+ 
+//Image Data 
+ 
+PUSH 
+ 
+ItemIconEntry(BerryIcon) 
+#incbin "dmp/Berry.dmp" 
+ 
+ItemIconEntry(BlackbeltIcon) 
+#incbin "dmp/Blackbelt.dmp" 
+ 
+ItemIconEntry(BlankIcon) 
+#incbin "dmp/Blank.dmp" 
+ 
+ItemIconEntry(BugTypeIcon) 
+#incbin "dmp/BugType.dmp" 
+ 
+ItemIconEntry(CalciumIcon) 
+#incbin "dmp/Calcium.dmp" 
+ 
+ItemIconEntry(CarbosIcon) 
+#incbin "dmp/Carbos.dmp" 
+ 
+ItemIconEntry(ChoiceBandIcon) 
+#incbin "dmp/ChoiceBand.dmp" 
+ 
+ItemIconEntry(DarkTypeIcon) 
+#incbin "dmp/DarkType.dmp" 
+ 
+ItemIconEntry(DragonTypeIcon) 
+#incbin "dmp/DragonType.dmp" 
+ 
+ItemIconEntry(DryingPanIcon) 
+#incbin "dmp/DryingPan.dmp" 
+ 
+ItemIconEntry(ElectricTypeIcon) 
+#incbin "dmp/ElectricType.dmp" 
+ 
+ItemIconEntry(FairyTypeIcon) 
+#incbin "dmp/FairyType.dmp" 
+ 
+ItemIconEntry(FightingTypeIcon) 
+#incbin "dmp/FightingType.dmp" 
+ 
+ItemIconEntry(FireStoneIcon) 
+#incbin "dmp/FireStone.dmp" 
+ 
+ItemIconEntry(FireTypeIcon) 
+#incbin "dmp/FireType.dmp" 
+ 
+ItemIconEntry(FlyingTypeIcon) 
+#incbin "dmp/FlyingType.dmp" 
+ 
+ItemIconEntry(GhostTypeIcon) 
+#incbin "dmp/GhostType.dmp" 
+ 
+ItemIconEntry(GrassTypeIcon) 
+#incbin "dmp/GrassType.dmp" 
+ 
+ItemIconEntry(GroundTypeIcon) 
+#incbin "dmp/GroundType.dmp" 
+ 
+ItemIconEntry(HPUpIcon) 
+#incbin "dmp/HPUp.dmp" 
+ 
+ItemIconEntry(HyperPotionIcon) 
+#incbin "dmp/HyperPotion.dmp" 
+ 
+ItemIconEntry(IceTypeIcon) 
+#incbin "dmp/IceType.dmp" 
+ 
+ItemIconEntry(IronIcon) 
+#incbin "dmp/Iron.dmp" 
+ 
+ItemIconEntry(JellyDonutIcon) 
+#incbin "dmp/JellyDonut.dmp" 
+ 
+ItemIconEntry(LeafStoneIcon) 
+#incbin "dmp/LeafStone.dmp" 
+ 
+ItemIconEntry(LuckIcon) 
+#incbin "dmp/Luck.dmp" 
+ 
+ItemIconEntry(LuckyBracerIcon) 
+#incbin "dmp/LuckyBracer.dmp" 
+ 
+ItemIconEntry(MaximumRepelIcon) 
+#incbin "dmp/MaximumRepel.dmp" 
+ 
+ItemIconEntry(MoonStoneIcon) 
+#incbin "dmp/MoonStone.dmp" 
+ 
+ItemIconEntry(MuscleBandIcon) 
+#incbin "dmp/MuscleBand.dmp" 
+ 
+ItemIconEntry(NormalTypeIcon) 
+#incbin "dmp/NormalType.dmp" 
+ 
+ItemIconEntry(PoisonTypeIcon) 
+#incbin "dmp/PoisonType.dmp" 
+ 
+ItemIconEntry(PotionIcon) 
+#incbin "dmp/Potion.dmp" 
+ 
+ItemIconEntry(ProteinIcon) 
+#incbin "dmp/Protein.dmp" 
+ 
+ItemIconEntry(PsychicTypeIcon) 
+#incbin "dmp/PsychicType.dmp" 
+ 
+ItemIconEntry(QuickClawIcon) 
+#incbin "dmp/QuickClaw.dmp" 
+ 
+ItemIconEntry(RareCandyIcon) 
+#incbin "dmp/RareCandy.dmp" 
+ 
+ItemIconEntry(RepelIcon) 
+#incbin "dmp/Repel.dmp" 
+ 
+ItemIconEntry(ReviveIcon) 
+#incbin "dmp/Revive.dmp" 
+ 
+ItemIconEntry(RockTypeIcon) 
+#incbin "dmp/RockType.dmp" 
+ 
+ItemIconEntry(SacredStoneIcon) 
+#incbin "dmp/SacredStone.dmp" 
+ 
+ItemIconEntry(SecretTonicIcon) 
+#incbin "dmp/SecretTonic.dmp" 
+ 
+ItemIconEntry(SteelIcon) 
+#incbin "dmp/Steel.dmp" 
+ 
+ItemIconEntry(SteelIconIcon) 
+#incbin "dmp/SteelIcon.dmp" 
+ 
+ItemIconEntry(SuperPotionIcon) 
+#incbin "dmp/SuperPotion.dmp" 
+ 
+ItemIconEntry(SuperRepelIcon) 
+#incbin "dmp/SuperRepel.dmp" 
+ 
+ItemIconEntry(ThunderStoneIcon) 
+#incbin "dmp/ThunderStone.dmp" 
+ 
+ItemIconEntry(WaterStoneIcon) 
+#incbin "dmp/WaterStone.dmp" 
+ 
+ItemIconEntry(WaterTypeIcon) 
+#incbin "dmp/WaterType.dmp" 
+ 
+ItemIconEntry(WiseGlassesIcon) 
+#incbin "dmp/WiseGlasses.dmp" 
+ 
+ItemIconEntry(ZincIcon) 
+#incbin "dmp/Zinc.dmp" 
+ 
+POP 

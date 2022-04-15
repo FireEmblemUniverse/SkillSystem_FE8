@@ -27,7 +27,8 @@ PROTECT 0x0E120 // tutorial disabler?
 #include "Enumerate/ClassIDList.enu.event"
 
 #include "Enumerate/ClassSpriteList.enu.event"
-
+#include "Enumerate/ItemIcons.event"
+#include "EngineHacks/ExternalHacks/AccessoriesAndForging/AccessoryEffectDefinitions.event"
 // title screen area 
 		//PROTECT $C5724 $C579F
 		// PROTECT $2af00 $2afff // doubling area 
@@ -71,8 +72,7 @@ PROTECT 0x0E120 // tutorial disabler?
 //#define MoveListTable 1 
 
 
-#include "EngineHacks/ExternalHacks/AccessoriesAndForging/AccessoryEffectDefinitions.event"
-#include "Graphics/ItemIcons/Icon Definitions.event"
+
 
 
 #define UnitLoadBufferAddr 0x203EFB8 // until 0x2040000 
