@@ -1,29 +1,28 @@
-#define FireIcon 0x00
-#define WaterIcon 0x01
-#define NormalIcon 0x02
-#define ElectricIcon 0x03
+#define FireTypeIcon 0x00
+#define WaterTypeIcon 0x01
+#define NormalTypeIcon 0x02
+#define ElectricTypeIcon 0x03
 #define Normal2Icon 0x04
-#define FightingIcon 0x05
-#define PoisonIcon 0x06
-#define GroundIcon 0x07
-#define FlyingIcon 0x08
-//#define Icon 0x09
-#define RockIcon 0x0A
+#define FightingTypeIcon 0x05
+#define PoisonTypeIcon 0x06
+#define GroundTypeIcon 0x07
+#define FlyingTypeIcon 0x08
+#define BlankIcon 0x09
+#define RockTypeIcon 0x0A
 //#define Icon 0x0B
 //#define Icon 0x0C
-#define GhostIcon 0x0D
-#define BugIcon 0x0E
+#define GhostTypeIcon 0x0D
+#define BugTypeIcon 0x0E
 #define DragonTypeIcon 0x0F
 //#define Icon 0x10
 //#define Icon 0x11
 //#define Icon 0x12
-#define GrassIcon 0x13
-#define IceIcon 0x14
-#define Flying2Icon 0x15
-#define PsychicIcon 0x17
-#define DarkIcon 0x18
-#define SteelIcon 0x19
-#define FairyIcon 0x1a
+#define GrassTypeIcon 0x13
+#define IceTypeIcon 0x14
+#define PsychicTypeIcon 0x17
+#define DarkTypeIcon 0x18
+#define SteelTypeIcon 0x19
+#define FairyTypeIcon 0x1a
 //#define Icon 0x1A
 
 #define SkillScrollIcon     0xff
@@ -35,7 +34,7 @@
 #define ZincIcon 0x2F
 #define CarbosIcon 0x30
 #define SecretTonicIcon 0x31
-#define LuckBulkUpIcon 0x32
+#define LuckIcon 0x32
 #define RareCandyIcon 0x33
 
 
@@ -56,6 +55,12 @@
 #define WaterStoneIcon 0x66
 #define FireStoneIcon 0xA9
 #define SacredStoneIcon 0xD9 
+
+#define RepelIcon 0xDA
+#define SuperRepelIcon 0xDB
+//#define SkillScrollIcon 0xDC 
+#define MaximumRepelIcon 0xDD
+#define ReviveIcon 0xDE
 
 #define PotionIcon 0xCB
 #define SuperPotionIcon 0xCC

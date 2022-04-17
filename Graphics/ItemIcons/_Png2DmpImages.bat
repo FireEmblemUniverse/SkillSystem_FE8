@@ -7,7 +7,7 @@
 @del png.txt
 
 
-@cd %~dp0/Png
+@cd %~dp0/Pngs
 
 @dir *.png /b > png.txt
 echo Processing images...
@@ -17,9 +17,9 @@ echo Processing images...
 
 @cd %~dp0
 
-@copy "%~dp0Png\*.dmp" "%~dp0Dmp" > nul
+@copy "%~dp0Pngs\*.dmp" "%~dp0Dmp" > nul
 
-@del "%~dp0Png\*.dmp"
+@del "%~dp0Pngs\*.dmp"
 
 
 echo Removing "By*" from .dmp files...

@@ -12,7 +12,6 @@ PROTECT 0x0E120 // tutorial disabler?
 //PROTECT $37744 $377C4
 // 968 / $3C8 bytes used? - free range
 //PROTECT $1ACBC $1B084
-
 #define TrainerDifficultyBonusDef 10
 
 #define PortraitTable NewPortraitTable // Portrait table is an EA def, so no need to #undef it 
@@ -162,6 +161,7 @@ PROTECT 0x0E120 // tutorial disabler?
 #define SoulbadgeObtained 0x9D 
 #define RockSmashFlag 0x9E 
 
+#define FlyFlag 0x9F 
 #define RainbowbadgeObtained 0xA0 
 
 #define MarshbadgeObtained 0xB1 

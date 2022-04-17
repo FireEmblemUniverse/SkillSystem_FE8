@@ -8,55 +8,53 @@
  
 #define BerryIcon 222 
 #define BlackbeltIcon 223 
-#define BlankIcon 224 
-#define BugTypeIcon 225 
-#define CalciumIcon 226 
-#define CarbosIcon 227 
-#define ChoiceBandIcon 228 
-#define DarkTypeIcon 229 
-#define DragonTypeIcon 230 
-#define DryingPanIcon 231 
-#define ElectricTypeIcon 232 
-#define FairyTypeIcon 233 
-#define FightingTypeIcon 234 
-#define FireStoneIcon 235 
-#define FireTypeIcon 236 
-#define FlyingTypeIcon 237 
-#define GhostTypeIcon 238 
-#define GrassTypeIcon 239 
-#define GroundTypeIcon 240 
-#define HPUpIcon 241 
-#define HyperPotionIcon 242 
-#define IceTypeIcon 243 
-#define IronIcon 244 
-#define JellyDonutIcon 245 
-#define LeafStoneIcon 246 
-#define LuckIcon 247 
-#define LuckyBracerIcon 248 
-#define MaximumRepelIcon 249 
-#define MoonStoneIcon 250 
-#define MuscleBandIcon 251 
-#define NormalTypeIcon 252 
-#define PoisonTypeIcon 253 
-#define PotionIcon 254 
-#define ProteinIcon 255 
-#define PsychicTypeIcon 256 
-#define QuickClawIcon 257 
-#define RareCandyIcon 258 
-#define RepelIcon 259 
-#define ReviveIcon 260 
-#define RockTypeIcon 261 
-#define SacredStoneIcon 262 
-#define SecretTonicIcon 263 
-#define SteelIcon 264 
-#define SteelIconIcon 265 
-#define SuperPotionIcon 266 
-#define SuperRepelIcon 267 
-#define ThunderStoneIcon 268 
-#define WaterStoneIcon 269 
-#define WaterTypeIcon 270 
-#define WiseGlassesIcon 271 
-#define ZincIcon 272 
+#define BugTypeIcon 224 
+#define CalciumIcon 225 
+#define CarbosIcon 226 
+#define ChoiceBandIcon 227 
+#define DarkTypeIcon 228 
+#define DragonTypeIcon 229 
+#define DryingPanIcon 230 
+#define ElectricTypeIcon 231 
+#define FairyTypeIcon 232 
+#define FightingTypeIcon 233 
+#define FireStoneIcon 234 
+#define FireTypeIcon 235 
+#define FlyingTypeIcon 236 
+#define GhostTypeIcon 237 
+#define GrassTypeIcon 238 
+#define GroundTypeIcon 239 
+#define HPUpIcon 240 
+#define HyperPotionIcon 241 
+#define IceTypeIcon 242 
+#define IronIcon 243 
+#define JellyDonutIcon 244 
+#define LeafStoneIcon 245 
+#define LuckIcon 246 
+#define LuckyBracerIcon 247 
+#define MaximumRepelIcon 248 
+#define MoonStoneIcon 249 
+#define MuscleBandIcon 250 
+#define NormalTypeIcon 251 
+#define PoisonTypeIcon 252 
+#define PotionIcon 253 
+#define ProteinIcon 254 
+#define PsychicTypeIcon 255 
+#define QuickClawIcon 256 
+#define RareCandyIcon 257 
+#define RepelIcon 258 
+#define ReviveIcon 259 
+#define RockTypeIcon 260 
+#define SacredStoneIcon 261 
+#define SecretTonicIcon 262 
+#define SteelTypeIcon 263 
+#define SuperPotionIcon 264 
+#define SuperRepelIcon 265 
+#define ThunderStoneIcon 266 
+#define WaterStoneIcon 267 
+#define WaterTypeIcon 268 
+#define WiseGlassesIcon 269 
+#define ZincIcon 270 
 */ 
  
  
@@ -71,9 +69,6 @@ ItemIconEntry(BerryIcon)
  
 ItemIconEntry(BlackbeltIcon) 
 #incbin "dmp/Blackbelt.dmp" 
- 
-ItemIconEntry(BlankIcon) 
-#incbin "dmp/Blank.dmp" 
  
 ItemIconEntry(BugTypeIcon) 
 #incbin "dmp/BugType.dmp" 
@@ -192,11 +187,8 @@ ItemIconEntry(SacredStoneIcon)
 ItemIconEntry(SecretTonicIcon) 
 #incbin "dmp/SecretTonic.dmp" 
  
-ItemIconEntry(SteelIcon) 
-#incbin "dmp/Steel.dmp" 
- 
-ItemIconEntry(SteelIconIcon) 
-#incbin "dmp/SteelIcon.dmp" 
+ItemIconEntry(SteelTypeIcon) 
+#incbin "dmp/SteelType.dmp" 
  
 ItemIconEntry(SuperPotionIcon) 
 #incbin "dmp/SuperPotion.dmp" 

@@ -9,7 +9,7 @@ NewItemIcons:
 #define ItemIconEntry(ItemIconID) "ORG NewItemIcons + (ItemIconID*128)"
 
 
-
+#include "GeneratedInstaller.event"
 
 
 PUSH

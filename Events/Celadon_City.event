@@ -1,0 +1,244 @@
+#define ChapterID CeladonCh
+#define GenericB UnitCeruleanTrainer
+#define WildLvl 10 
+#define TrainerL 16 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+//{ ; ReinforceEntry(ChapterID)
+//}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(RainbowbadgeObtained,EnterGym,9,26) //
+Vendor(ShopItems_A,6,11)
+Vendor(ShopItems_B,9,11)
+Vendor(ShopItems_C,12,11)
+Vendor(ShopItems_D,15,11)
+House(ObtainedEeveeFlag,EeveeEvent,22,3) 
+House(0,GameDeveloperEvent,22,10) 
+House(0,SlotMachineEvent,30,20) 
+House(0,PrizesEvent,35,19) 
+END_MAIN
+
+EeveeEvent:
+NoFade 
+ENDA 
+
+GameDeveloperEvent:
+NoFade 
+ENDA 
+
+SlotMachineEvent:
+NoFade 
+ENDA 
+
+PrizesEvent:
+NoFade 
+ENDA 
+
+
+
+EnterGym:
+ENUF RainbowbadgeObtained 
+//CALL ClosedArea
+ForcedChapterTransition(CeladonGymCh, 7,24)
+NoFade 
+ENDA 
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV 0 CityAfev 0
+//AFEV 0 RefreshIfNotInDanger 0 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToRoute16 [0,17] [0,19] 
+AREA 0 ToRoute7 [44,11] [44,13] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(0,18) 
+EscapeTileEntry(9,26) 
+EscapeTileEntry(44,12) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToRoute16:
+ChapterTransition(Route16Ch, 39,13)
+
+ToRoute7:
+ChapterTransition(Route7Ch, 1,3)
+
+
+ToCeladonGym:
+ChapterTransition(CeladonGymCh, 7,17)
+
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(28,14,ChapterID*2,350)
+//CoinsTrap(43,13,(ChapterID*2)+1,400)
+
+CutBush(16,31)
+Save(36,9) // Pokecenter 
+
+//SignTrap(32,13, TrainerTip_Submenu)
+//SignTrap(30,12, TrainerTip_Release)
+//SignTrap(34,12, TrainerTip_ReorderMoves)
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+StatAccessoryTrap(32,15, ChapterID*2, LuckyBracerT3_BoostIndex)
+//SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
+
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+SignBTrap(41,11, ChapterID, 0x0) //no extra text 
+SignATrap(4,16, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+//OpenPokeball(8,3)
+
+BlankExamineTrap(14,26,CeladonGymSignText)
+SignTrap(32,22, CeladonSlotsSignText) // Wooden 
+SignTrap(18,10, CeladonMartSignText) // Wooden 
+
+
+
+EnterWallTrap(33,28, CeladonSHouseText) // 
+EnterWallTrap(37,28, CeladonSEHouseText) // 
+
+//EnterWallTrap(23,18, DoorLockedText) //   
+
+
+//Flower(10,6)
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+CALL CityBeginningScene 
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+ALIGN 4
+ShopItems_A: // Supplies + Evo stones 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+BYTE SuperPotion 5 
+BYTE JellyDonut 5
+SHLI MoonStone FireStone WaterStone ThunderStone LeafStone LinkStone 
+BYTE $00; ALIGN 4
+
+ALIGN 4
+ShopItems_B: // TMs 
+BYTE SkillScroll PatienceID 
+BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
+BYTE SpellScroll Headbutt 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
+
+
+ALIGN 4
+ShopItems_C: // Scrolls 
+BYTE SkillScroll PatienceID 
+BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
+BYTE SpellScroll Headbutt 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
+
+ALIGN 4
+ShopItems_D: // Accessories ? 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+BYTE SkillScroll PatienceID 
+SHLI 0 
+
+
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+
+
+	
+#undef GenericB 
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

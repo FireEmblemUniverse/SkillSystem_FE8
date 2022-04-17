@@ -214,7 +214,7 @@ SilentGiveSkillAccessory(2, RenewalID)
 
 SilentGiveItemWithDurability(6, StatAccessory, WiseGlasses_BoostIndex|0x80)
 
-SilentGiveSkillAccessory(1, RenewalID|0x80)
+SilentGiveSkillAccessory(1, RenewalID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)

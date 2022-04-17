@@ -1,6 +1,6 @@
 #define ChapterID Route16Ch
 #define GenericA UnitRoute16Wild
-#define GenericB UnitRoute16Trainer
+#define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute16WildA
 #define ClassB ClassRoute16WildB
 #define WildLvl 27
@@ -61,7 +61,7 @@ TutText(DebugText) // learn to fly
 NoFade 
 ENDA 
 
-SecretHouse:
+SecretHouse2:
 BottomWallText(DebugText) // use fly from the menu 
 NoFade 
 ENDA 
@@ -133,7 +133,7 @@ EscapeTileTerminator ; }
 ToCeladon:
 ChapterTransition(CeladonCh, 1,18)
 
-ToRoute17S:
+ToRoute17N:
 ChapterTransition(Route17SCh, 8,1)
 
 
@@ -154,7 +154,7 @@ CutBush(37,11)
 
 //StrengthBoulder(4,3)
 
-StatAccessoryTrap(31,10, (ChapterID*2), PaddedShieldT2_BoostIndex) 
+StatAccessoryTrap(31,10, (ChapterID*2), PaddedShield_BoostIndex) 
 
 
 //RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
@@ -204,7 +204,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(40,13,45,16)) //E patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(33,5,37,7)) //E patch 
 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
@@ -260,7 +260,8 @@ TDQ_TableTerminator ; }
 
 
 
-// Rattata, Doduo, Spearow  
+// SpearowID	DoduoID	RaticateID
+
 // trainer's: Weezing, Electrode, Primeape, Machoke
 
 EnemyTrainers0: // biker
