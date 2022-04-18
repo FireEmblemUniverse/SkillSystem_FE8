@@ -43,33 +43,106 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(RainbowbadgeObtained,EnterGym,9,26) //
+House(RainbowbadgeObtained,EnterGym,9,26) 
 Vendor(ShopItems_A,6,11)
 Vendor(ShopItems_B,9,11)
 Vendor(ShopItems_C,12,11)
 Vendor(ShopItems_D,15,11)
+Vendor(ShopItems_Slots,35,19)
 House(ObtainedEeveeFlag,EeveeEvent,22,3) 
 House(0,GameDeveloperEvent,22,10) 
 House(0,SlotMachineEvent,30,20) 
-House(0,PrizesEvent,35,19) 
+House(0,PrizesEvent,37,19) 
 END_MAIN
 
 EeveeEvent:
+EVBIT_MODIFY 4 
+WallText(PurchaseEeveeText)
+LOAD1 1 EeveeUnitGroup  
+ENUN 
+AutoLevelUnits(20, True, TempAlly<<8|TempAlly) // 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 1000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedEeveeText)
+ENUF ObtainedEeveeFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+WARP_OUT
+SET_ACTIVE 0
+WallText(Yes_PurchasedEeveeText)
+
+UNCM(TempAlly, 0x10009) // Undeploy + escape the mon
+SVAL s1 TempAlly 
+ASMC ChangeS1UnitIntoLowestUnitID
+LABEL 63 
+NoFade
+ENDA 
+
+
+PrizesEvent:
+EVBIT_MODIFY 4 
+WallText(PurchasePrizeText)
+LOAD1 1 PrizesUnitGroup  
+ENUN 
+AutoLevelUnits(20, True, TempAlly<<8|TempAlly) // 
+// Abra, Clefairy, Eevee, Dratini, Porygon
+SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 6500, 9000, 12000, 20000) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedPrizeText)
+DISA TempAlly_A
+DISA TempAlly_B
+DISA TempAlly_C
+DISA TempAlly_D
+DISA TempAlly_E
+
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+WARP_OUT
+SET_ACTIVE 0
+WallText(Yes_PurchasedPrizeText)
+
+UNCM(TempAlly, 0x10009) // Undeploy + escape the mon
+SVAL s1 TempAlly 
+ASMC ChangeS1UnitIntoLowestUnitID
+DISA TempAlly_A
+DISA TempAlly_B
+DISA TempAlly_C
+DISA TempAlly_D
+DISA TempAlly_E
+LABEL 63 
+
 NoFade 
 ENDA 
 
+
+
 GameDeveloperEvent:
+TutText(DeveloperText)
 NoFade 
 ENDA 
 
 SlotMachineEvent:
+CALL SlotMachine_Main
+//TutText(ComingSoonText)
 NoFade 
 ENDA 
-
-PrizesEvent:
-NoFade 
-ENDA 
-
 
 
 EnterGym:
@@ -150,8 +223,41 @@ EnterWallTrap(37,28, CeladonSEHouseText) //
 
 //EnterWallTrap(23,18, DoorLockedText) //   
 
-
-//Flower(10,6)
+// 34 flowers 
+Flower(10,15)
+Flower(14,15)
+Flower(9,17)
+Flower(15,17)
+Flower(10,19)
+Flower(14,19)
+Flower(27,11)
+Flower(29,11)
+Flower(31,11)
+Flower(41,21)
+Flower(43,22)
+Flower(43,30)
+Flower(41,31)
+Flower(39,32)
+Flower(36,32)
+Flower(39,29)
+Flower(35,29)
+Flower(31,29)
+Flower(29,29)
+Flower(2,25)
+Flower(4,25)
+Flower(3,26)
+Flower(5,26)
+Flower(2,27)
+Flower(8,28)
+Flower(11,27)
+Flower(13,27)
+Flower(12,28)
+Flower(11,29)
+Flower(13,29)
+Flower(7,30)
+Flower(7,32)
+Flower(6,31)
+Flower(9,32)
 
 
 
@@ -166,6 +272,9 @@ CALL LoadAndPlacePlayers
 
 CALL CityBeginningScene 
 
+
+MOVE (-1) 2 [6,1]
+
 LABEL 0x63
 NoFade
 ENDA
@@ -174,44 +283,77 @@ ENDA
 
 
 ALIGN 4
-ShopItems_A: // Supplies + Evo stones 
+ShopItems_A: // Supplies + Evo stones / Stones 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
+BYTE HyperPotion 4
+BYTE MaxPotion 2 
+BYTE FullHeal 5 
 SHLI MoonStone FireStone WaterStone ThunderStone LeafStone LinkStone 
 BYTE $00; ALIGN 4
 
 ALIGN 4
-ShopItems_B: // TMs 
-BYTE SkillScroll PatienceID 
-BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
-BYTE SpellScroll Headbutt 
-BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
-//SHLI SuperPotion
+ShopItems_B: // TMs CDs 
+BYTE SpellScroll FirePunch SpellScroll ThunderPunch SpellScroll IcePunch 
+BYTE SpellScroll ShadowPunch SpellScroll RockTomb SpellScroll JumpKick
+BYTE SpellScroll BubbleBeam SpellScroll MudBomb SpellScroll DrillPeck
+BYTE SpellScroll HealPulse SpellScroll RockSlide SpellScroll Dragonbreath
+BYTE SpellScroll Psybeam SpellScroll BugBite SpellScroll PoisonJab 
+BYTE SpellScroll LeafBlade
+BYTE $00; ALIGN 4
+
+ALIGN 4 
+ShopItems_Slots:
+BYTE SpellScroll Flamethrower SpellScroll Thunderbolt SpellScroll IceBeam
+BYTE SpellScroll IronTail SpellScroll ShadowBall 
+BYTE $00; ALIGN 4
+// iron tail, shadow ball 
+// dragon rage, hyper beam, substitute 
+
+// Pokemon 
+// Abra, Clefairy, Eevee, Dratini, Porygon
+// pinsir, scyther 
+
+
+
+ALIGN 4
+ShopItems_C: // Skill Scrolls 
+BYTE SkillScroll ReliefID SkillScroll FocusID SkillScroll TantivyID
+BYTE SkillScroll PatienceID SkillScroll ParagonID SkillScroll PrescienceID
+BYTE SkillScroll StrongRiposteID SkillScroll WindDiscipleID SkillScroll ChivalryID
+BYTE SkillScroll PerfectionistID SkillScroll InsightID SkillScroll PragmaticID
+BYTE SkillScroll VigilanceID SkillScroll AnathemaID SkillScroll OpportunistID
+BYTE SkillScroll FierceStanceID
+// 16 items 
 BYTE $00; ALIGN 4
 
 
 ALIGN 4
-ShopItems_C: // Scrolls 
-BYTE SkillScroll PatienceID 
-BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
-BYTE SpellScroll Headbutt 
-BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+ShopItems_Unused: // Skill Scrolls 
+// 2nd store in Viridian? Or at league? 
+BYTE SkillScroll DartingStanceID SkillScroll ChargeID SkillScroll PursuitID
+BYTE SkillScroll WrathID SkillScroll SilentPrideID SkillScroll CharmID 
+BYTE SkillScroll GrislyWoundID SkillScroll FieryBloodID 
+BYTE $00; ALIGN 4
+
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
-BYTE $00; ALIGN 4
+
+
+// Kiosk with stat boosters? 
+
 
 ALIGN 4
 ShopItems_D: // Accessories ? 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
-//SHLI 0
-BYTE SkillScroll PatienceID 
-SHLI 0 
+SHLI HPUp Protein Calcium Carbos Iron Zinc 
+// Tonics if they are ever added 
+BYTE $00; ALIGN 4
 
 
-
+ALIGN 4
 EndingScene: //Unused but must exist 
 NoFade
 ENDA
@@ -233,9 +375,19 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
+EeveeUnitGroup:
+UNIT TempAlly EeveeID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
+PrizesUnitGroup:
+UNIT TempAlly_A AbraID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_B ClefairyID 0x0 Level(0, Ally, 1) [0,1]  0b 0x0	0x1 REDA0R1 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_C EeveeID 0x0 Level(0, Ally, 1) [0,2]  0b 0x0	0x1 REDA0R2 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_D DratiniID 0x0 Level(0, Ally, 1) [0,3]  0b 0x0	0x1 REDA0R3 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_E PorygonID 0x0 Level(0, Ally, 1) [0,4]  0b 0x0	0x1 REDA0R4 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
-
+// Abra, Clefairy, Eevee, Dratini, Porygon
 
 	
 #undef GenericB 

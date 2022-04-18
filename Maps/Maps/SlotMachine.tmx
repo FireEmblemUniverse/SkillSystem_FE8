@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="10" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="SlotMachine" tilewidth="16" tileheight="16">
+  <image source="../TilesetPreviews/SlotMachine" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="10">
+  <properties>
+   <property name="Anims1" value="0"/>
+   <property name="ChapterID" value="SlotMachineCh"/>
+   <property name="Main" value=""/>
+   <property name="MapID" value="SlotMachineMap"/>
+   <property name="ObjectType" value="SlotMachineObj"/>
+   <property name="PaletteID" value="SlotMachinePal"/>
+   <property name="TileConfig" value="SlotMachineConf"/>
+  </properties>
+  <data>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="242"/>
+  <tile gid="240"/>
+  <tile gid="242"/>
+  <tile gid="240"/>
+  <tile gid="242"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="273"/>
+  <tile gid="274"/>
+  <tile gid="275"/>
+  <tile gid="274"/>
+  <tile gid="275"/>
+  <tile gid="274"/>
+  <tile gid="277"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="337"/>
+  <tile gid="146"/>
+  <tile gid="335"/>
+  <tile gid="146"/>
+  <tile gid="335"/>
+  <tile gid="146"/>
+  <tile gid="435"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="337"/>
+  <tile gid="146"/>
+  <tile gid="431"/>
+  <tile gid="146"/>
+  <tile gid="431"/>
+  <tile gid="146"/>
+  <tile gid="435"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="527"/>
+  <tile gid="146"/>
+  <tile gid="399"/>
+  <tile gid="146"/>
+  <tile gid="399"/>
+  <tile gid="146"/>
+  <tile gid="559"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="337"/>
+  <tile gid="146"/>
+  <tile gid="431"/>
+  <tile gid="146"/>
+  <tile gid="431"/>
+  <tile gid="146"/>
+  <tile gid="435"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="337"/>
+  <tile gid="146"/>
+  <tile gid="335"/>
+  <tile gid="146"/>
+  <tile gid="335"/>
+  <tile gid="146"/>
+  <tile gid="435"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="433"/>
+  <tile gid="561"/>
+  <tile gid="463"/>
+  <tile gid="561"/>
+  <tile gid="463"/>
+  <tile gid="561"/>
+  <tile gid="467"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="529"/>
+  <tile gid="240"/>
+  <tile gid="529"/>
+  <tile gid="240"/>
+  <tile gid="529"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  <tile gid="240"/>
+  </data>
+ </layer>
+</map>

@@ -89,7 +89,7 @@ SET_CURSOR_SB, 0x3C21, 4, -game:FE8 -indexMode:8
 # ======================
 
 LOMA, 0x2520, 4, -game:FE8 -indexMode:8
-	Chapter ID, 2, 1
+	Chapter ID, 2, 2
 
 CAM1, 0x2628, 4, -game:FE8 -indexMode:8
 	Position, 2, 2, -coordinates:2 -preferredBase:10

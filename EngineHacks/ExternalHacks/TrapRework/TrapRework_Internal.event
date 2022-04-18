@@ -40,7 +40,7 @@
 
 ALIGN 4
 TerrainHealLoopMyVersion:
-PROC_CALL_ROUTINE(TrapRework_NewUpdateAllLightRunes+1)	
+PROC_CALL_ROUTINE(TrapRework_NewUpdateAllLightRunes|1)	
 PROC_CALL_ROUTINE($8035E21) 
 PROC_LABEL(0)
 

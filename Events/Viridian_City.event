@@ -33,7 +33,8 @@ EVBIT_MODIFY 4
 WallText(PurchasePsyduckText)
 LOAD1 1 PsyduckUnitGroup  
 ENUN 
-SelectCharacter(0x37, 0, 0, 0, 0, 1000, 0, 0, 0, 0) 
+AutoLevelUnits(3, True,  TempAlly<<8|TempAlly) // Psyduck 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 1000, 0, 0, 0, 0) 
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20
@@ -42,7 +43,7 @@ LABEL 10
 UNCR(0x7fff, 1) // SelectCharacter ends MMS 
 WallText(No_PurchasedPsyduckText)
 ENUF PurchasedPsyduckFlag
-DISA 0x37
+DISA TempAlly
 GOTO 63
 
 LABEL 20
@@ -51,9 +52,9 @@ SADD sB sC s0
 WARP_OUT
 SET_ACTIVE 0
 WallText(Yes_PurchasedPsyduckText)
-AutoLevelUnits(3, True, 0x3737) // Psyduck 
-UNCM(0x37, 0x10009) // Undeploy + escape the psyduck 
-SVAL s1 0x37 // Psyduck's UnitID 
+
+UNCM(TempAlly, 0x10009) // Undeploy + escape the psyduck 
+SVAL s1 TempAlly // Psyduck's UnitID 
 ASMC ChangeS1UnitIntoLowestUnitID
 LABEL 63 
 NoFade
@@ -227,7 +228,7 @@ UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [13,24]  0b 0x0	0x1 REDA13R24 [0x0,0x0
 UNIT
 
 PsyduckUnitGroup:
-UNIT 0x37 PsyduckID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly PsyduckID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 

@@ -6,6 +6,7 @@
 #include "DefinitionsUnitAndClass.event"
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
+#include "SlotMachine.event"
 
 { ; #include "Placeholder.event" ; } 
 #include "Debug_Room.event" // no braces { } 
@@ -195,7 +196,9 @@
 }
 
 
-
+{
+#include "Celadon_City.event"
+}
 
 
 

@@ -25,8 +25,7 @@
 .global TrapRework_NewRefreshTrapFogVision
 .type TrapRework_NewRefreshTrapFogVision, %function
 
-.global TrapRework_NewUpdateAllLightRunes
-.type NewUpdateAllLightRunes, %function
+
 
 
 .macro blh to, reg=r3
@@ -343,7 +342,8 @@ bx r0
 
 
 
-
+.global TrapRework_NewUpdateAllLightRunes
+.type TrapRework_NewUpdateAllLightRunes, %function
 
 @based on NullAllLightRunesTerrain at address 2EB50
 

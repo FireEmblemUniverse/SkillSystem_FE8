@@ -163,7 +163,7 @@ PROTECT 0x0E120 // tutorial disabler?
 
 #define FlyFlag 0x9F 
 #define RainbowbadgeObtained 0xA0 
-
+#define ObtainedEeveeFlag 0xA1 
 #define MarshbadgeObtained 0xB1 
 #define VolcanobadgeObtained 0xBA 
 

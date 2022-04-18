@@ -149,6 +149,15 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 // Trainers are 0xA0 - 0xBD & 0xC0 - 0xCF I guess 
 // 0xBE is Formotiis iirc 
 
+
+#define TempAlly 0x37 
+#define TempAlly_A 0x37 
+#define TempAlly_B 0x38 
+#define TempAlly_C 0x39 
+#define TempAlly_D 0x3A 
+#define TempAlly_E 0x3B
+#define TempAllies 0x373B 
+
 #define OaksPikachu 0x4F
 #define UnitPalletTownWild 0x50
 #define UnitRoute1Wild 0x51
