@@ -7,19 +7,7 @@ from pathlib import Path
 import glob
 import os
 
-# `cwd`: current directory is straightforward
-cwd = Path.cwd()
 
-# if we are in the `helper_script.py`
-mod_path = Path(__file__).parent
-
-
-relative_path_1 = 'dmp/'
-
-# search dmp files with the name "*.dmp"
-pattern = "*.dmp"
-
-path = (mod_path / relative_path_1 / pattern).resolve()
 result = glob.glob("dmp/*.dmp")
 #print(path)
 #print(result)

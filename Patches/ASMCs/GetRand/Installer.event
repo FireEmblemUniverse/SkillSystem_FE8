@@ -1,0 +1,13 @@
+
+ALIGN 4
+PUSH
+ORG CurrentOffset+1
+GetRandASMC:
+POP
+#incbin ASMC_GetRandomNumber.dmp
+
+#define GetRand "ASMC GetRandASMC"
+
+
+
+

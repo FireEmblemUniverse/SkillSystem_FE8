@@ -437,7 +437,17 @@ LABEL 0x9050
 EVBIT_T 0x7
 ENDA
 
-#define CompareSlots(Input_A, Input_B, Input_C) "SADD sB Input_A s0; SADD s3 Input_C s0; SADD sC Input_B s0; SXOR sB sB sC; SADD sC Input_B s0; SXOR s3 s3 sC;SVAL sC 1; SADD sB sB sC; SADD s3 s3 sC; SSUB sB s0 sB; SSUB s3 s0 s3; SAND s3 s3 sB; SVAL sC 1; SADD s3 s3 sC; SSUB sC s0 s3; SADD sB Input_A s0" 
+#define CompareSlots(Input_A, Input_B, Input_C) "SADD sB Input_A s0; SADD s3 Input_C s0; SADD sC Input_B s0; SXOR sB sB sC; SADD sC Input_B s0; CALL CompareSlotsEvent;  SADD sB Input_A s0" 
+
+CompareSlotsEvent:
+SXOR s3 s3 sC;SVAL sC 1; SADD sB sB sC; SADD s3 s3 sC; SSUB sB s0 sB; SSUB s3 s0 s3; SAND s3 s3 sB; SVAL sC 1; SADD s3 s3 sC; SSUB sC s0 s3;
+NoFade 
+ENDA 
+
+
+
+
+
 // returns 0 if true because blah 
 // returns non-zero if false 
 
@@ -475,6 +485,7 @@ ENDA
 
 
 SlotMachine_CheckRewards:
+STAL 30
 SVAL 0xB 0x30005
 CHECK_CLASS 0xFFFE
 SADD 0xC2
@@ -543,89 +554,189 @@ GOTO 0x9045
 LABEL 0x9007
 COUNTER_CHECK 1 
 BNE 0x9045 sC s0 
-STAL 150 // only stal if no reward 
+STAL 40 // only stal if no reward 
 LABEL 0x9045 
+STAL 20 
 NoFade 
 ENDA
 
 
+// Eevee: ThunderStone, FireStone, WaterStone 
+// // Clefairy: MoonStone 
+// Oddish: LeafStone 
+// Gastly: LinkStone 
+// Mew: SacredStone
+
+
+GastlyRewardEvent:
+// write to queue X times 
+SVAL s3 LinkStone // 25%
+SENQUEUE s3 
+SVAL s3 Protein // 33%  - real chance about 25% 
+SENQUEUE s3 
+SVAL s3 Carbos // 50% - real chance about 25% 
+SENQUEUE s3 
+SVAL s3 Calcium // guaranteed 
+SENQUEUE s3 
+CALL RandomRewardEvent
+LABEL 99 
+NoFade 
+ENDA 
+
+ClefairyRewardEvent:
+// write to queue X times 
+SVAL s3 MoonStone // 25%
+SENQUEUE s3 
+SVAL s3 Iron // 33%  - real chance about 25% 
+SENQUEUE s3 
+SVAL s3 HPUp // 50% - real chance about 25% 
+SENQUEUE s3 
+SVAL s3 Zinc // guaranteed 
+SENQUEUE s3 
+CALL RandomRewardEvent
+LABEL 99 
+NoFade 
+ENDA 
+
+EeveeRewardEvent:
+// write to queue X times 
+SVAL s3 MaxPotion // 25%
+SENQUEUE s3 
+SVAL s3 FireStone // 33%  - real chance about 25% 
+SENQUEUE s3 
+SVAL s3 WaterStone // 50% - real chance about 25% 
+SENQUEUE s3 
+SVAL s3 ThunderStone // guaranteed 
+SENQUEUE s3 
+CALL RandomRewardEvent
+LABEL 99 
+NoFade 
+ENDA 
+
+MewRewardEvent:
+// write to queue X times 
+SVAL s3 SacredStone
+SENQUEUE s3 
+SVAL s3 ExoticCandy
+SENQUEUE s3 
+SVAL s3 Protein
+SENQUEUE s3 
+SVAL s3 Iron
+SENQUEUE s3 
+SVAL s3 ExoticCandy
+SENQUEUE s3 
+SVAL s3 Calcium
+SENQUEUE s3 
+SVAL s3 Zinc
+SENQUEUE s3 
+SVAL s3 Carbos
+SENQUEUE s3 
+SVAL s3 HPUp
+SENQUEUE s3 
+SVAL s3 ExoticCandy
+SENQUEUE s3 
+CALL RandomRewardEvent
+LABEL 99 
+NoFade 
+ENDA 
+ 
+OddishRewardEvent:
+// write to queue X times 
+SVAL s3 LeafStone
+SENQUEUE s3 
+SVAL s3 SuperPotion
+SENQUEUE s3 
+SVAL s3 Berry
+SENQUEUE s3 
+CALL RandomRewardEvent
+LABEL 99 
+NoFade 
+ENDA 
+
+
+RandomRewardEvent: // loop through entries in queue until desired outcome reached 
+BEQ 99 sD s0 // If queue is empty, exit 
+LABEL 1
+
+SVAL sC 1 
+BLT 98 sD sC // Always give item on final value in queue 
+SDEQUEUE sB 
+SADD s3 sD s0 // queue size into s3 for getrand 
+SVAL sC 16 
+SLSL s3 s3 sC // LSL #16 so hhhhllll
+GetRand // rets True if highest value, false otherwise 
+BEQ 1 sC s0 
+LABEL 98 
+SADD s3 sB s0 
+GIVEITEMTO 0x7FFF
+COUNTER_ADD 1 1
+
+LABEL 2 // Empty the queue if it has any data still in it 
+BEQ 99 sD s0 // If queue is empty, exit 
+SDEQUEUE s3 
+GOTO 2 
+
+LABEL 99 
+NoFade 
+ENDA 
+
+
 SlotMachine_Awards:
-SVAL 0xC VoltorbID
+SVAL 0xC OddishID
 BNE 0x9000 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 SuperPotion
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
 LABEL 0x9000
 SVAL 0xC BushID
 BNE 0x9001 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 MaxPotion
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
+
 LABEL 0x9001
 SVAL 0xC ClefairyID
 BNE 0x9002 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 FullHeal
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL ClefairyRewardEvent
 LABEL 0x9002
 SVAL 0xC BushID
 BNE 0x9003 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 Berry
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
 LABEL 0x9003
 SVAL 0xC EeveeID
 BNE 0x9004 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 ThunderStone
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL EeveeRewardEvent
 LABEL 0x9004
 SVAL 0xC BushID
 BNE 0x9005 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 FireStone
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
 LABEL 0x9005
-SVAL 0xC OpenBallID
+SVAL 0xC GastlyID
 BNE 0x9006 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 Berry
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL GastlyRewardEvent
 LABEL 0x9006
 SVAL 0xC CoinsID
 BNE 0x9007 0xB 0xC
 	CALL 0x591F40
-	SVAL r3 2500 
-	GIVETOMAIN 0
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
 LABEL 0x9007
 SVAL 0xC BushID
 BNE 0x9008 0xB 0xC
 	CALL 0x591F40
-	SVAL r3 3500 
-	GIVETOMAIN 0
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
 LABEL 0x9008
 SVAL 0xC BushID
 BNE 0x9009 0xB 0xC
 	CALL 0x591F40
-	SVAL r3 4500 
-	GIVETOMAIN 0
-	COUNTER_ADD 1 1
+CALL OddishRewardEvent
 LABEL 0x9009
 SVAL 0xC MewID
 BNE 0x900A 0xB 0xC
 	CALL 0x591F40
-	SVAL 0x3 SacredStone
-	GIVEITEMTO 0x7FFF
-	COUNTER_ADD 1 1
+CALL MewRewardEvent
 LABEL 0x900A
 LABEL 0x9050
 EVBIT_T 0x7
