@@ -16,7 +16,7 @@
 @r7 loop table pointer
 mov r5, r0 
 ldr r4, =CurrentUnit 
-push	{r4-r7}
+push	{r4-r7, lr}
 
 @reload current unit data to avoid weird staff on reload
 ldr	r5, =CurrentUnit
@@ -71,6 +71,7 @@ ldr	r0,=#0x203A4D4
 mov	r1,#0
 strb	r1,[r0]
 pop	{r4-r7}
+pop {r3} 
 ldr r0, [r4] 
 blh 0x8019150 @GetUnitCurrentHP 
 ldr r1, =0x8037751
