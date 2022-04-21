@@ -17,6 +17,8 @@ mov r7, r3 @battle data
 @check if we're already in astra
 ldrb r0, [r2, #4] @active skill
 ldrb r1, AstraID
+cmp r1,#255
+beq End
 cmp r0, r1
 beq AlreadyAstra
 @make sure no other skill is active
