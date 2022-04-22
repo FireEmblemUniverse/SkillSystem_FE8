@@ -263,7 +263,7 @@
 
 //If uncommented, ModularPreBattleSkill will be installed.
 //This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
-#define MODULAR_PRE_BATTLE_SKILLS
+// #define MODULAR_PRE_BATTLE_SKILLS
 
 // If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
 // This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.
