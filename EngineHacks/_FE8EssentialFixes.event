@@ -24,6 +24,10 @@ POP
   ORG $BD070
   SHORT $E0B8
   
+//Fix coordinate loading in WARP codes when not loading from slot B (by hypergammaspaces)
+ORG $10C18
+SHORT $7891 $78D2 $0608
+
 // Remove hardcoded checks for chapter 5x (by Stan)
     
 	// do not display 0 gold in 5x
