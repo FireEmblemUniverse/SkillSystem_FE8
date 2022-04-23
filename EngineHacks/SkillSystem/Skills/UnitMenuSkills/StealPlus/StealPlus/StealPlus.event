@@ -79,7 +79,7 @@ WORD WatchfulID
 	SHORT 0xD011 0x6830 //beq Somewhere; ldr r0,[r6]
 	
 	//Some other AI
-	ORG $3EE56
+	ORG $3EE56 // 3EE4C AiTryDoStealAdjacent
 	SHORT 0
 	callHack_r3(Can_Unit_Steal)
 	

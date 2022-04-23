@@ -218,10 +218,10 @@
 #define ENABLE_LEGACY_CANTO False
 
 // if commented, enemies with Steal+ will steal as normal in vanilla (ie, the skill will be pretty much useless
-#define ENABLE_AI_STEAL_PLUS
+//#define ENABLE_AI_STEAL_PLUS
 
 // if commented, Steal will no longer be a skill, but a character ability, and Steal+ will require having regular steal
-#define ENABLE_STEAL_SKILL
+//#define ENABLE_STEAL_SKILL
 
 // If commented, debuffs are allowed to take stats below zero
 #define DEBUFFS_MIN_ZERO

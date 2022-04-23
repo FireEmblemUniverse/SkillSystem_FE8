@@ -209,12 +209,12 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 //EquipNewSkillAccessory(2, RenewalID) // GiveSkillAccessory(0, RenewalID)
 
-SilentGiveSkillAccessory(2, RenewalID)
+//SilentGiveSkillAccessory(2, RenewalID)
 
 
 SilentGiveItemWithDurability(6, StatAccessory, WiseGlasses_BoostIndex|0x80)
 
-SilentGiveSkillAccessory(1, RenewalID)
+//SilentGiveSkillAccessory(1, RenewalID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)
@@ -222,11 +222,11 @@ SilentGiveSkillAccessory(1, RenewalID)
 
 //SilentGiveItemWithDurability(3, SpellScroll, RecoverMove)
 
-SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
-SilentGiveItemWithDurability(2, Berry, 0x7) // Pikachu 
-SilentGiveItemWithDurability(3, Berry, 0x87) // Pikachu 
+//SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
+SilentGiveItemWithDurability(2, RedGem, 0x7) // Pikachu 
+SilentGiveItemWithDurability(3, Berry, 0x7) // Pikachu 
 SilentGiveItemWithDurability(4, Berry, 0x6) // Oddish
-SilentGiveItemWithDurability(5, Berry, 0x89) // Pidgey 
+SilentGiveItemWithDurability(5, Berry, 0x9) // Pidgey 
 SilentGiveItemWithDurability(6, Berry, 0x9) // Pidgey 
 
 //SilentGiveItemWithDurability(2, SpellScroll, Headbutt)
@@ -261,7 +261,7 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(55, True, 0x145) // all 
+AutoLevelUnits(1, True, 0x145) // all 
 SetUnitStatus(1, 0x28, Bonemerang)
 SetUnitStatus(2, 0x28, Bonemerang)
 SetUnitStatus(3, 0x28, Bonemerang)
@@ -276,7 +276,8 @@ Write_Byte(4, GaryStarterClass)
 Write_Byte(30, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(20, YCoordNewArea)  
 //MNC2 PewterCh
-MNC2 CeladonCh
+//MNC2 CeladonCh
+MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch

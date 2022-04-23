@@ -8,7 +8,18 @@
 #include "PB_Calc_Loop_Effects/Installer.event"
 #include "Heal_CalcLoop/Installer.event"
 
+ALIGN 4
+PreventMovingStealIfBossAI:
+#incbin "PreventMovingStealIfBossAI.dmp"
+
 PUSH 
+
+/*
+ORG $3D46C 
+jumpToHack(PreventMovingStealIfBossAI|1)
+ORG $3D474 
+SHORT $46C0 $46C0 // nop nop 
+*/
 
 ORG $2ABB8
 jumpToHack(HitRateLabel)

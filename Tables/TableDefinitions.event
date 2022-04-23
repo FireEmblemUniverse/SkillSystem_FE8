@@ -94,51 +94,44 @@
 #define InflictStatusEffect 0xD 
 
 //Character/Class Ability
-#define MountedAid 0x00000001
-#define HasCanto 0x00000002
-#define Steal 0x00000004
-#define CanUseLockpick 0x00000008
-#define CanDance 0x00000010
-#define CanPlay 0x00000020
-#define CritBoost 0x00000040
-#define UseBallista 0x00000080
-#define IsPromoted 0x00000100
-#define IsSupply 0x00000200
-#define HorseIcon 0x00000400
-#define DragonIcon 0x00000800
-#define PegIcon 0x00001000
-#define IsLord 0x00002000
-#define IsFemale 0x00004000
-#define IsBoss 0x00008000
-#define UnlockLock1 0x00010000
-#define SwordmasterUnlock 0x00020000
-#define UseMonsterWeapons 0x00040000
-#ifdef _FE7_
-  #define Morph 0x00080000
-#endif
+#define MountedAid 0x01
+#define HasCanto 0x02
+#define Steal 0x04
+#define CanUseLockpick 0x08
+#define CanDance 0x10
+#define CanPlay 0x20
+#define CritBoost 0x40
+#define UseBallista 0x80
+// 2nd column 
+#define IsPromoted 0x1
+#define IsSupply 0x2
+#define HorseIcon 0x4
+#define DragonIcon 0x08
+#define PegIcon 0x10
+#define IsLord 0x20
+#define IsFemale 0x40
+#define IsBoss 0x80
+// 3rd column 
+#define UnlockLock1 0x01
+#define SwordmasterUnlock 0x02
+#define UseMonsterWeapons 0x04
 #ifdef _FE8_
-  #define TraineeLevelCap 0x00080000
+  #define TraineeLevelCap 0x08
 #endif
-#define CannotControl 0x00100000
-#define TriangleAttack 0x00200000
-#define TriangleAttack2 0x00400000
-#define DecrementIDAfterLoad 0x00800000
-#define GiveNoExp 0x01000000
-#define Lethality 0x02000000
-#define IsMagicSeal 0x04000000
-#ifdef _FE7_
-  #define DropLastItem 0x08000000
-  #define UnlockEliwood 0x10000000
-  #define UnlockHector 0x20000000
-  #define UnlockLyn 0x40000000
-  #define UnlockAthos 0x80000000
-#endif
+#define CannotControl 0x10
+#define TriangleAttack 0x20
+#define TriangleAttack2 0x40
+#define DecrementIDAfterLoad 0x80
+// 4th column 
+#define GiveNoExp 0x01
+#define Lethality 0x02
+#define IsMagicSeal 0x04
 #ifdef _FE8_
-  #define Summoning 0x08000000
-  #define UnlockEirika 0x10000000
-  #define UnlockEphraim 0x20000000
-  #define UnlockLock3 0x40000000
-  #define UnlockLock4 0x80000000
+  #define Summoning 0x08
+  #define UnlockEirika 0x10
+  #define UnlockEphraim 0x20
+  #define UnlockLock3 0x40
+  #define UnlockLock4 0x80
 #endif
 
 // Affinity
