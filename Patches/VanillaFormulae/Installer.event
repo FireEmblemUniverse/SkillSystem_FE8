@@ -9,8 +9,8 @@
 #include "Heal_CalcLoop/Installer.event"
 
 ALIGN 4
-PreventMovingStealIfBossAI:
-#incbin "PreventMovingStealIfBossAI.dmp"
+PreventStealIfBossAI:
+#incbin "PreventStealIfBossAI.dmp"
 
 PUSH 
 
