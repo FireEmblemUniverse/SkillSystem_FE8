@@ -12,6 +12,12 @@ push {r4-r5,r14}
 mov r4,r0
 mov r5,r1
 
+ldr	 r0,=#0x203A4D4	@pre-battle data pointer, gonna check if a target has been selected or the fight has started (0x02 if targeting someone, 0x01 if battle started)
+ldrb r0,[r0]
+mov  r1,#0x3
+tst  r0,r1
+beq	 GoBack
+
 @does defender have Quick Riposte?
 ldr r0,=#0x203A56C @this gets run twice, once with attacker/defender as proper and once swapped; as such, we check just the defender directly
 ldr r1,QuickRiposteID
