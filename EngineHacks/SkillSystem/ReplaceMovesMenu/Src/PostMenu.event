@@ -22,7 +22,7 @@ ENDA
 
 ALIGN 4
 ExitedNewMoveMenuEvent: 
-
+//ASMC 0x80311a9 // ReloadGameCoreGraphics
 EVBIT_MODIFY 4 
 SVAL r9 1
 TutText(GiveUpLearnMoveText)

@@ -34,6 +34,32 @@ DEFRES6:
 StatBonus(0,0,0,0,0,6,6,0,0,0)
 
 
+ALIGN 4
+HP1:
+StatBonus(1,0,0,0,0,0,0,0,0,0)
+ALIGN 4
+STR1:
+StatBonus(0,1,0,0,0,0,0,0,0,0)
+ALIGN 4
+MAG1:
+StatBonus(0,0,1,0,0,0,0,0,0,0)
+ALIGN 4
+SKL1:
+StatBonus(0,0,0,1,0,0,0,0,0,0)
+ALIGN 4
+SPD1:
+StatBonus(0,0,0,0,1,0,0,0,0,0)
+
+ALIGN 4
+DEF1:
+StatBonus(0,0,0,0,0,1,0,0,0,0)
+ALIGN 4
+RES1:
+StatBonus(0,0,0,0,0,0,1,0,0,0)
+ALIGN 4
+LUK1:
+StatBonus(0,0,0,0,0,0,0,1,0,0)
+
 
 ALIGN 4
 HP2:

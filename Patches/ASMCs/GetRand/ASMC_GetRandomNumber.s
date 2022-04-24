@@ -53,7 +53,6 @@ mov r0, #0
 Store:
 ldr  r3,=0x030004B8 @MemorySlot FE8U
 str  r0,[r3,#0x0C * 4]    @MemorySlotC (Result Value)
-mov r11, r11 
 pop {r4}
 pop {r1}
 bx r1

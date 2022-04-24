@@ -82,6 +82,9 @@ blh 0x0801A1A0   //UpdateTrapHiddenStates
 @blh  0x080271a0   @SMS_UpdateFromGameData
 blh  0x08019c3c   @UpdateGameTilesGraphics
 blh  0x80311a8 		@ReloadGameCoreGraphics
+
+mov r0, #0xB7 @ just in case 
+
 pop {r1}
 bx r1 
 

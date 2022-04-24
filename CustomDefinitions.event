@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
@@ -180,7 +180,7 @@ PROTECT 0x0E120 // tutorial disabler?
 #define OaksPikachuUnitID 0x4F 
 
 
-
+#define SpiritDust Calcium
 
 
 //mov costs & bonuses 
