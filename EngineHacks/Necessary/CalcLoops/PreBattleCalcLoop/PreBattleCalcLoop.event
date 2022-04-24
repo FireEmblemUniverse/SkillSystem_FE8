@@ -16,6 +16,7 @@ BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
 BtlLoopTable:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
+POIN MakeAuraSkillBuffer
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
 POIN FaireCheck HolyAura
 POIN BreakerCheck MageSlayer
@@ -60,6 +61,12 @@ POIN CriticalCheck
 	POIN NegateCritWeapons //This goes last, so that crit will always be set to 0 if set and never modified from there
 #endif // CANNOT_CRIT
 POIN 0
+
+AuraSkills:
+BYTE CharmID DemoiselleID GentilhommeID InspirationID LilysPoiseID SpurStrID SpurMagID SpurSpdID SpurDefID SpurResID NiceThighsID
+BYTE DauntID MaleficAuraID IntimidateID SolidarityID VoiceOfPeaceID AnathemaID LilysPoiseID CharismaID HexID BlueFlameID
+//BYTE DriveStrID DriveMagID DriveSpdID DriveDefID DriveResID
+BYTE 0
 
 PUSH
 ORG 0x2a3f8

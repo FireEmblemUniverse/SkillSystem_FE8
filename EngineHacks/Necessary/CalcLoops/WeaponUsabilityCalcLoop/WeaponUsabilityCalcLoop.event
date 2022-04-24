@@ -26,7 +26,7 @@ ALIGN 4
 DoesUnitHaveWRank: //because of how it works, this both needs to be in the external calc loop and contain lumina/shadowgift
 #incbin "DoesUnitHaveWRank.dmp"
 POIN ItemTable
-POIN SkillTester2	//changed to skilltester2 to avoid indirect recursion (endlessly looping routine calls)
+POIN CheckSkillBuffer	//changed to skilltester2 to avoid indirect recursion (endlessly looping routine calls)
 WORD ShadowgiftID
 WORD LuminaID
 WORD SHADOWGIFT_VIA_STAFF_RANK
