@@ -4,7 +4,7 @@
 #include "LearnSpell/LearnSpell_Installer.event" 
 
 
-
+#include "_Learnsets.event" 
 
 
 
@@ -21,7 +21,7 @@ BYTE SpellScroll
 
 ALIGN 4
 //TMListTable:
-#include "PokemblemTMUsable.event"
+#include "_TMUsable.event"
 
 WORD 0 
 

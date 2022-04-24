@@ -17,6 +17,8 @@ BLT 50 sC s0 // If less than 1000g, exit
 TutText(PlaySlotsText)
 SVAL 0x7 0x1
 BNE 0x63 0xC 0x7 // If not yes, then exit 
+SVAL s3 1000 
+GIVETOSLOT3 // Take s3 (1000g) from the player 
 UNCM(0x7FFF, 1) // Hide current unit 
 // hide party 
 
