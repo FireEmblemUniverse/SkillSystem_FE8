@@ -17,69 +17,69 @@ SHORT $4718 $46C0
 ALIGN 4
 Demoiselle:
 #incbin "Demoiselle/Demoiselle.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD DemoiselleID
 
 ALIGN 4
 Gentilhomme:
 #incbin "Gentilhomme/Gentilhomme.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD GentilhommeID
 
 ALIGN 4
 MaleficAura:
 #incbin "MaleficAura/MaleficAura.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD MaleficAuraID
 
 ALIGN 4
 Intimidate:
 #incbin "Intimidate/Intimidate.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD IntimidateID
 
 ALIGN 4
 Inspiration:
 #incbin "Inspiration/Inspiration.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD InspirationID
 
 ALIGN 4
 Charm:
 #incbin "Charm/Charm.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD CharmID
 
 ALIGN 4
 Charisma:
 #incbin "Charisma/Charisma.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD CharismaID
 
 ALIGN 4
 VoiceOfPeace:
 #incbin "VoiceOfPeace/VoiceOfPeace.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD VoiceOfPeaceID
 
 ALIGN 4
 Tantivy:
 #incbin "Tantivy/Tantivy.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD TantivyID
 
 ALIGN 4
 Focus:
 #incbin "Focus/Focus.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD FocusID
 
 ALIGN 4
 Anathema:
 #incbin "Anathema/Anathema.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD AnathemaID
 
 ALIGN 4
@@ -90,19 +90,19 @@ BYTE HexID
 ALIGN 4
 LilysPoise:
 #incbin "LilysPoise/LilysPoise.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD LilysPoiseID
 
 ALIGN 4
 UpWithArch:
 #incbin "UpWithArch/UpWithArch.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD UpWithArchID
 
 ALIGN 4
 Solidarity:
 #incbin "Solidarity/Solidarity.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD SolidarityID
 
 #include "DriveSkills/DriveSkills.event"
@@ -110,32 +110,32 @@ WORD SolidarityID
 ALIGN 4
 Daunt:
 #incbin "Daunt/Daunt.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD DauntID
 
 ALIGN 4
 BloodTide:
 #incbin "BloodTide/BloodTide.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD BloodTideID
 
 ALIGN 4
 WhitePool:
 #incbin "WhitePool/WhitePool.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD WhitePoolID
 
 ALIGN 4
 NightTide:
 #incbin "NightTide/NightTide.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD NightTideID
 
 ALIGN 4
 Infiltrator:
 #incbin "Infiltrator/Infiltrator.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD InfiltratorID
 
 #include "ArmorMarch/ArmorMarch.event"
@@ -143,13 +143,13 @@ WORD InfiltratorID
 ALIGN 4
 BlueFlameAura:
 #incbin "BlueFlame/BlueFlame.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD BlueFlameID
 
 ALIGN 4
 KeepUp:
 #incbin "KeepUp/KeepUp.dmp"
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD DebuffTable
 WORD ArmorMarchBit
 WORD 8 //size of debuff table entry
