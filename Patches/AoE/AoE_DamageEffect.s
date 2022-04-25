@@ -76,6 +76,15 @@ mov r7, r2
 
 ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound mt 
 ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound mt
+
+ldrb r2, [r4, #GaidenSpellWexpByte] @ required item
+ldr r3, AoE_PokemblemDamageModifier+4 @ POIN PokemblemAoEMtGetter
+cmp r3, #0 
+beq NoMtGetter
+mov lr, r3 
+.short 0xf800 
+
+NoMtGetter:
 cmp r0, r1 
 bgt FoundMt @ if lower bound is higher than upper bound because of user error, then we just use the lower bound 
 bl GetRandBetweenXAndY
@@ -111,6 +120,16 @@ ldrb r1, [r7, r1] @ Def or Res
 
 mov r0, r5 @ dmg 
 sub r0, r1 @ Dmg to deal 
+
+mov r1, r7 @ target 
+ldrb r2, [r4, #GaidenSpellWexpByte] @ required item - used for effectiveness 
+ldr r3, AoE_PokemblemDamageModifier @ Given r0 dmg, r1, target, and r2 'equipped' weapon, recalc dmg 
+cmp r3, #0 
+beq NoModifier
+mov lr, r3 
+.short 0xF800 
+NoModifier:
+
 cmp r0, #0 
 bgt NoCap 
 mov r0, #1 @ Always deal at least 1 damage 
@@ -120,3 +139,7 @@ pop {r4-r7}
 pop {r1} 
 bx r1
 
+.ltorg 
+.align 
+AoE_PokemblemDamageModifier:
+@ POIN modifier function 

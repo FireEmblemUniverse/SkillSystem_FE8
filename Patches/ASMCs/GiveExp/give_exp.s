@@ -11,7 +11,7 @@
 @
 @
 .thumb
-	push	{r4,r5,r6,lr}     @ Event parameter in memory slot 0x1, EXP to grant in slot 0x4. Keep the unit in r4 and the EXP to give in r6.
+	push	{r4-r6,lr}     @ Event parameter in memory slot 0x1, EXP to grant in slot 0x4. Keep the unit in r4 and the EXP to give in r6.
 	mov  r5, r0               @Current Procs
 	
 	ldr r0, =#0x30004B8     @ gMemorySlot.
@@ -48,7 +48,7 @@ Change:
 
 Term:
 	mov r0 ,#0x0
-	pop {r4,r5,r6}
+	pop {r4-r6}
 	pop	{r1}
 	bx	r1
 
@@ -126,11 +126,14 @@ nin_i_exp:
 	pop	{r4,r5,r6}
 	pop	{r1}
 	bx	r1
+.ltorg 
+.align 
 
 effect:
 	push	{r4-r5,lr}
 	mov     r4,r0
 	mov r5, r1 @ unit 
+
 	                       @フォントを初期化しないと、PAL2が使われることがあるらしい。Thanks stan
 @	blh 0x08003bc4         @Font_InitForUIDefault / Font_InitDefault {J}
 	blh 0x08003C94         @Font_InitForUIDefault / Font_InitDefault {U}
@@ -176,20 +179,18 @@ effect:
 @	blh	0x08002C30       @NewBlocking6C	{J}
 	blh	0x08002ce0       @NewBlocking6C	{U}
 
-@mov r0, r5 @ unit 
 bl HideMMSFunc
 
-	pop	{r4-r5,pc}
+	pop	{r4-r5}
+	pop {r0}
+	bx r0 
 	
 	
 .equ CurrentUnit,                0x03004E50	@{U}
 @.equ CurrentUnit,                0x03004DF0	@{J}
 .equ ProcFind, 0x8002E9D
 .equ gProc_MoveUnit, 0x89A2C48
-.ltorg
-.align 
-.type HideMMSFunc, %function 
-.global HideMMSFunc
+
 HideMMSFunc:
 	@ Arguments: nothing 
 	@ Returns:   nothing

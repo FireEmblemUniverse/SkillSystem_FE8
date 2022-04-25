@@ -34,7 +34,7 @@ bl AoE_Setup
 @
 
 
-mov r0, #0x97
+mov r0, #0xB7
 
 
 pop {r1}

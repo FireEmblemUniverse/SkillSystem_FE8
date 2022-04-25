@@ -79,18 +79,78 @@ Select an area to Heal. Press L/R to Rotate.[X]
 //	#define MenuCommandID(nameJP,description,colour,ID,usability,effect, unknown1, unknown2) "POIN nameJP; SHORT 0x60C description; BYTE colour ID; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"	//{J}
 
 // These are the submenu options that appear:
+// order of this might matter so uhh idk 
+// maybe make a macro if you want to add new ones inbetween 
 ALIGN 4
 AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
-MenuCommandID(UM_RecoverMove, 	UM_AoEDesc, NormalText, 0x0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_HealPulse, 	UM_AoEDesc, NormalText, 0x1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_Wish, 			UM_AoEDesc, NormalText, 0x2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 0x3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 0x4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 0x5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 0x6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 0x7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 0x8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-//MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 0x9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_RecoverMove, 	UM_AoEDesc, NormalText, 0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_HealPulse, 	UM_AoEDesc, NormalText, 1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_Wish, 			UM_AoEDesc, NormalText, 2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(EmberName, 		UM_AoEDesc, NormalText, 3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ScorchName, 		UM_AoEDesc, NormalText, 4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(FlamethrowerName, 		UM_AoEDesc, NormalText, 5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(FireBlastName, 		UM_AoEDesc, NormalText, 6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(FirePunchName, 		UM_AoEDesc, NormalText, 7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(WaterGunName, 		UM_AoEDesc, NormalText, 8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(BubbleBeamName, 		UM_AoEDesc, NormalText, 9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SurfName, 		UM_AoEDesc, NormalText, 10, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HydroPumpName, 		UM_AoEDesc, NormalText, 11, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(WaterfallName, 		UM_AoEDesc, NormalText, 12, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(LeafFlurryName, 		UM_AoEDesc, NormalText, 13, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(MagicalLeafName, 		UM_AoEDesc, NormalText, 14, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PetalDanceName, 		UM_AoEDesc, NormalText, 15, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(VineWhipName, 		UM_AoEDesc, NormalText, 16, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(RazorLeafName, 		UM_AoEDesc, NormalText, 17, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(LeafBladeName, 		UM_AoEDesc, NormalText, 18, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ThundershockName, 		UM_AoEDesc, NormalText, 19, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ThunderboltName, 		UM_AoEDesc, NormalText, 20, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ThunderName, 		UM_AoEDesc, NormalText, 21, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SparkName, 		UM_AoEDesc, NormalText, 22, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ThunderPunchName, 		UM_AoEDesc, NormalText, 23, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(VoltTackleName, 		UM_AoEDesc, NormalText, 24, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AuroraBeamName, 		UM_AoEDesc, NormalText, 25, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(IceBeamName, 		UM_AoEDesc, NormalText, 26, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(BlizzardName, 		UM_AoEDesc, NormalText, 27, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AvalancheName, 		UM_AoEDesc, NormalText, 28, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(IcePunchName, 		UM_AoEDesc, NormalText, 29, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DoubleKickName, 		UM_AoEDesc, NormalText, 30, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(RollingKickName, 		UM_AoEDesc, NormalText, 31, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AcidName, 		UM_AoEDesc, NormalText, 32, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SludgeName, 		UM_AoEDesc, NormalText, 33, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PoisonJabName, 		UM_AoEDesc, NormalText, 34, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(MagnitudeName, 		UM_AoEDesc, NormalText, 35, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DigName, 		UM_AoEDesc, NormalText, 36, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(EarthquakeName, 		UM_AoEDesc, NormalText, 37, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(MudShotName, 		UM_AoEDesc, NormalText, 38, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(MudBombName, 		UM_AoEDesc, NormalText, 39, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(EarthPowerName, 		UM_AoEDesc, NormalText, 40, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(GustName, 		UM_AoEDesc, NormalText, 41, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AirSlashName, 		UM_AoEDesc, NormalText, 42, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(WingAttackName, 		UM_AoEDesc, NormalText, 43, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DrillPeckName, 		UM_AoEDesc, NormalText, 44, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(FlyName, 		UM_AoEDesc, NormalText, 45, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ConfusionName, 		UM_AoEDesc, NormalText, 46, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PsybeamName, 		UM_AoEDesc, NormalText, 47, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PsychicName, 		UM_AoEDesc, NormalText, 48, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(RockTombName, 		UM_AoEDesc, NormalText, 49, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(RockSlideName, 		UM_AoEDesc, NormalText, 50, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AncientpowerName, 		UM_AoEDesc, NormalText, 51, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ShadowBallName, 		UM_AoEDesc, NormalText, 52, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ShadowPunchName, 		UM_AoEDesc, NormalText, 53, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(TwisterName, 		UM_AoEDesc, NormalText, 54, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DragonbreathName, 		UM_AoEDesc, NormalText, 55, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DragonClawName, 		UM_AoEDesc, NormalText, 56, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(OutrageName, 		UM_AoEDesc, NormalText, 57, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PinMissileName, 		UM_AoEDesc, NormalText, 58, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(BugBiteName, 		UM_AoEDesc, NormalText, 59, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(MegahornName, 		UM_AoEDesc, NormalText, 60, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SignalBeamName, 		UM_AoEDesc, NormalText, 61, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(BugBuzzName, 		UM_AoEDesc, NormalText, 62, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(BiteName, 		UM_AoEDesc, NormalText, 63, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(NightSlashName, 		UM_AoEDesc, NormalText, 64, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(NightDazeName, 		UM_AoEDesc, NormalText, 65, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DarkPulseName, 		UM_AoEDesc, NormalText, 66, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+
 UM_Separator 
 
 
@@ -129,13 +189,38 @@ Animation_IDByte, #15
 #define UsableOnlyIfStationaryBool 0x40 
 #define KeepHP1NotDieBool 0x80
 
-#define HealingAnimationID 1 
 
+// based on the order of RangeTemplates 
 #define MediumTriangle 0 
-
+#define SmallCurve 1 
 #define SmallLine 2 
-
 #define SmallTriangle 4 
+#define SmallCross 9 
+#define SmallX 11 
+
+
+// same order as animation table lower down 
+#define HealingAnimationID 1 
+#define debuffAnimationID 2
+#define dragonAnimationID 3
+#define electricAnimationID 4 
+#define fightingAnimationID 5
+#define fireAnimationID 6
+#define ghostAnimationID 7
+#define grassAnimationID 8
+#define groundAnimationID 9
+#define iceAnimationID 10
+#define normalAnimationID 11 
+#define poisonAnimationID 12
+#define psychicAnimationID 13
+#define rockAnimationID 14
+#define waterAnimationID 15
+#define powderAnimationID 16
+#define flyingAnimationID 17
+#define bugAnimationID 18
+#define darkAnimationID 19
+
+
 
 
 
@@ -167,68 +252,543 @@ BYTE 5 10 // damage range
 BYTE 0 4 // Attack range 
 BYTE MediumTriangle HealingAnimationID // Index of RangeMask, AnimationALL,
 
-/*
+
 // Entry 3
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
-BYTE 5 5 // damage range 
-BYTE 3 7 // Attack range 
-BYTE 3 3 // Index of RangeMask, Animation
+BYTE 0 0 0 Ember // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine fireAnimationID // Index of RangeMask, AnimationALL,
 
-
-// Entry 4
+// Entry 3
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool
-BYTE 5 5 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 4 4 // Index of RangeMask, Animation
+BYTE 0 0 0 Scorch // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine fireAnimationID // Index of RangeMask, AnimationALL,
 
-// Entry 5
+// Entry 3
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 0 0 Flamethrower // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine fireAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 3
+BYTE 0 0 0 0
+BYTE 0 0 0 FireBlast // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine fireAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 3
+BYTE 0 0 0 0
+BYTE 0 0 0 FirePunch // Always usable by anyone 
 BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 5 5 // Index of RangeMask, AnimationALL,
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine fireAnimationID // Index of RangeMask, AnimationALL,
 
-// Entry 6
+
+// Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
-BYTE 5 5 // damage range 
-BYTE 3 7 // Attack range 
-BYTE 6 6 // Index of RangeMask, Animation
+BYTE 0 0 0 WaterGun // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
 
-
-// Entry 7
+// Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool
-BYTE 5 5 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 7 7 // Index of RangeMask, Animation
+BYTE 0 0 0 BubbleBeam // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
 
-// Entry 8
+// Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 0 0 Surf // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 HydroPump // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Waterfall // Always usable by anyone 
 BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 8 8 // Index of RangeMask, AnimationALL,
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
 
-// Entry 9
+
+
+// Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 0 0 LeafFlurry // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 MagicalLeaf // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 PetalDance // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 VineWhip // Always usable by anyone 
 BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
-BYTE 0 4 // Attack range 
-BYTE 9 9 // Index of RangeMask, AnimationALL,
-*/
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 RazorLeaf // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 LeafBlade // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Thundershock // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Thunderbolt // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Thunder // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Spark // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 ThunderPunch // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 VoltTackle // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 AuroraBeam // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine iceAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 IceBeam // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine iceAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Blizzard // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine iceAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Avalanche // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine iceAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 IcePunch // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine iceAnimationID // Index of RangeMask, AnimationALL,
+
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 DoubleKick // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine fightingAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 RollingKick // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine fightingAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Acid // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine poisonAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Sludge // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine poisonAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 PoisonJab // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine poisonAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Magnitude // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine groundAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Dig // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine groundAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Earthquake // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine groundAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 MudShot // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine groundAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 MudBomb // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine groundAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 EarthPower // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine groundAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Gust // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallCross flyingAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 AirSlash // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallCross flyingAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 WingAttack // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine flyingAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 DrillPeck // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine flyingAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Fly // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine flyingAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Confusion // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallX psychicAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Psybeam // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallX psychicAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Psychic // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallX psychicAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 RockTomb // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine rockAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 RockSlide // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine rockAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Ancientpower // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine rockAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 ShadowBall // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine ghostAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 ShadowPunch // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine ghostAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Twister // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine dragonAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Dragonbreath // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine dragonAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 DragonClaw // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine dragonAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Outrage // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine dragonAnimationID // Index of RangeMask, AnimationALL,
+
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 PinMissile // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine bugAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 BugBite // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine bugAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Megahorn // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine bugAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 SignalBeam // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine bugAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 BugBuzz // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine bugAnimationID // Index of RangeMask, AnimationALL,
+
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Bite // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine darkAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 NightSlash // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine darkAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 NightDaze // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine darkAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 DarkPulse // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range 
+BYTE SmallLine darkAnimationID // Index of RangeMask, AnimationALL,
+
 AoE_TableTerminator
 
 #include "AoE_Exp_Installer.event" 
+#define AnimTableEntry2(Event) "POIN 0 Event; SHORT 0 1"
 
 
 ALIGN 4
@@ -243,50 +803,26 @@ POIN AoE_HealingAnimation
 SHORT 0xb7 // Bgm  
 SHORT 1 
 
-POIN 0 // Entry 2
-POIN AoE_EventAnime2
-SHORT 0 
-SHORT 1 
+AnimTableEntry2(AoE_debuffAnimation)
+AnimTableEntry2(AoE_dragonAnimation)
+AnimTableEntry2(AoE_electricAnimation)
+AnimTableEntry2(AoE_fightingAnimation)
+AnimTableEntry2(AoE_fireAnimation)
+AnimTableEntry2(AoE_ghostAnimation)
+AnimTableEntry2(AoE_grassAnimation)
+AnimTableEntry2(AoE_groundAnimation)
+AnimTableEntry2(AoE_iceAnimation)
+AnimTableEntry2(AoE_normalAnimation)
+AnimTableEntry2(AoE_poisonAnimation)
+AnimTableEntry2(AoE_psychicAnimation)
+AnimTableEntry2(AoE_rockAnimation)
+AnimTableEntry2(AoE_waterAnimation)
+AnimTableEntry2(AoE_powderAnimation)
+AnimTableEntry2(AoE_flyingAnimation)
+AnimTableEntry2(AoE_bugAnimation)
+AnimTableEntry2(AoE_darkAnimation)
 
-POIN 0 //0x807AD09 // Entry 3 - summon gfx 
-POIN AoE_EventAnime3
-SHORT 0 
-SHORT 1 
 
-POIN 0 //Entry 4
-POIN AoE_EventAnime4
-SHORT 0 // Bgm  
-SHORT 1 
-
-POIN 0 // Entry 5
-POIN AoE_EventAnime5
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry 6
-POIN AoE_EventAnime6
-SHORT 0 
-SHORT 1 
-
-POIN 0 //Entry 7
-POIN AoE_EventAnime7
-SHORT 0 // Bgm  
-SHORT 1 
-
-POIN 0 // Entry 8
-POIN AoE_EventAnime8
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry 9
-POIN AoE_EventAnime9
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry A
-POIN AoE_EventAnimeA
-SHORT 0 
-SHORT 1 
 
 WORD 0 0 0 // INDEXED, so no terminator actually needed 
 
@@ -305,76 +841,148 @@ NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime2:
-SVAL r1 0x2 //AnimationID
-
+AoE_debuffAnimation:
+SVAL r1 debuff_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime3:
-SVAL r1 0x3 //AnimationID
+AoE_dragonAnimation:
+SVAL r1 dragon_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime4:
-SVAL r1 0x4 //AnimationID
+AoE_electricAnimation:
+SVAL r1 electric_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime5:
-SVAL r1 0x5 //AnimationID
+AoE_fightingAnimation:
+SVAL r1 fighting_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime6:
-SVAL r1 0x6 //AnimationID
+AoE_fireAnimation:
+SVAL r1 fire_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime7:
-SVAL r1 0x7 //AnimationID
+AoE_ghostAnimation:
+SVAL r1 ghost_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime8:
-SVAL r1 0x8 //AnimationID
+AoE_grassAnimation:
+SVAL r1 grass_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime9:
-SVAL r1 0x9 //AnimationID
+AoE_groundAnimation:
+SVAL r1 ground_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnimeA:
-SVAL r1 0xA //AnimationID
+AoE_iceAnimation:
+SVAL r1 ice_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
+ALIGN 4 
+AoE_normalAnimation:
+SVAL r1 normal_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+ALIGN 4 
+AoE_poisonAnimation:
+SVAL r1 poison_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+ALIGN 4 
+AoE_psychicAnimation:
+SVAL r1 psychic_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+ALIGN 4 
+AoE_rockAnimation:
+SVAL r1 rock_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+ALIGN 4 
+AoE_waterAnimation:
+SVAL r1 water_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+ALIGN 4 
+AoE_powderAnimation:
+SVAL r1 powder_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+ALIGN 4 
+AoE_flyingAnimation:
+SVAL r1 flying_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+
+ALIGN 4 
+AoE_bugAnimation:
+SVAL r1 bug_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+
+ALIGN 4 
+AoE_darkAnimation:
+SVAL r1 dark_ID //AnimationID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
 

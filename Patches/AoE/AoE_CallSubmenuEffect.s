@@ -60,7 +60,7 @@ mov r2,#0
 mov r3,#0
 .short 0xF800
 
-mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+mov r0,#0xB7		@play beep sound & end menu on next frame & clear menu graphics
 pop {r1}
 bx r1
 

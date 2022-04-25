@@ -5,7 +5,7 @@
 ItemNameTable:
 SHORT 0x00
 SHORT 0x0354
-SHORT 0x0355
+SHORT 0x0354
 SHORT CalmMindName
 SHORT BodySlamName
 SHORT BulkUpName
@@ -68,7 +68,7 @@ SHORT BubbleName
 SHORT WaterGunName
 SHORT ClampName
 SHORT CrabhammerName
-SHORT BubblebeamName
+SHORT BubbleBeamName
 SHORT HydroPumpName
 SHORT SurfName
 SHORT WaterfallName
@@ -243,22 +243,23 @@ SHORT SignalBeamName
 SHORT StringShotName
 SHORT UTurnName
 SHORT XScissorName
-SHORT ThiefNameText
+SHORT ThiefName
 SHORT NightSlashName
 SHORT DarkPulseName
 SHORT NightDazeName
-SHORT BiteNameText
-SHORT SnarlNameText
+SHORT BiteName
+SHORT SnarlName
 SHORT DryingPanText
 SHORT 0xFFFF
 SHORT 0xFFFE
-SHORT WiseGlassesNameText
-SHORT BlackbeltText
+SHORT 0x0354
+SHORT 0x0354
 SHORT 0xFFFD
 SHORT 0xFFFC
 SHORT 0xFFFB
 SHORT 0xFFFA
 SHORT 0xFFF9
+
 
 
 
@@ -270,7 +271,7 @@ ALIGN 4
 ItemDescTable: 
 SHORT 0x00
 SHORT 0x0409
-SHORT 0x0405
+SHORT 0x0409
 SHORT CalmMindDesc
 SHORT BodySlamDesc
 SHORT BulkUpDesc
@@ -333,7 +334,7 @@ SHORT BubbleDesc
 SHORT WaterGunDesc
 SHORT ClampDesc
 SHORT CrabhammerDesc
-SHORT BubblebeamDesc
+SHORT BubbleBeamDesc
 SHORT HydroPumpDesc
 SHORT SurfDesc
 SHORT WaterfallDesc
@@ -508,22 +509,23 @@ SHORT SignalBeamDesc
 SHORT StringShotDesc
 SHORT UTurnDesc
 SHORT XScissorDesc
-SHORT ThiefDescText
+SHORT ThiefDesc
 SHORT NightSlashDesc
 SHORT DarkPulseDesc
 SHORT NightDazeDesc
-SHORT BiteDescText
-SHORT SnarlDescText
-SHORT DryingPanDescText
+SHORT BiteDesc
+SHORT SnarlDesc
+SHORT DryingPanDesc
 SHORT 0xFFFF
 SHORT 0xFFFE
-SHORT WiseGlassesDescText
-SHORT BlackbeltDescText
+SHORT 0x0409
+SHORT 0x0409
 SHORT 0xFFFD
 SHORT 0xFFFC
 SHORT 0xFFFB
 SHORT 0xFFFA
 SHORT 0xFFF9
+
 
 
 

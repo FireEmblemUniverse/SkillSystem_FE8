@@ -186,9 +186,7 @@ bl HideMMSFunc
 @.equ CurrentUnit,                0x03004DF0	@{J}
 .equ ProcFind, 0x8002E9D
 .equ gProc_MoveUnit, 0x89A2C48
-.ltorg
-.align 
-.type HideMMSFunc, %function 
+
 HideMMSFunc:
 	@ Arguments: nothing 
 	@ Returns:   nothing

@@ -1138,6 +1138,16 @@ push {r4-r7, lr}
 
 
 mov r7, r0 @ target 
+ldr r3, AoE_PokemblemImmuneTargets
+cmp r3, #0 
+beq NotImmune
+mov lr, r3 
+.short 0xF800 
+cmp r0, #0
+beq NotImmune
+b DoNotDamageTarget
+NotImmune:
+
 ldr r6, =CurrentUnit 
 ldr r6, [r6] @ actor
 
@@ -1147,7 +1157,7 @@ mov r5, r0 @ table effect address
 ldrb r1, [r5, #ConfigByte] 
 mov r0, #FriendlyFireBool
 tst r0, r1 
-bne AlwaysDamage @ If friendly fire is on, then we heal regardless of allegiance 
+bne AlwaysDamage @ If friendly fire is on, then we dmg regardless of allegiance 
 
 mov r2, #0x0B @ Allegiance byte 
 ldsb r0, [r6, r2] 
@@ -1487,3 +1497,5 @@ bx r3
 .ltorg
 .align
 
+AoE_PokemblemImmuneTargets:
+@ POIN address to bl to 

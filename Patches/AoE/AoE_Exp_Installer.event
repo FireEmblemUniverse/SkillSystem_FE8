@@ -1,6 +1,5 @@
 
 
-
 #ifndef GiveEXP_ASMC 
 	#define GiveEXP_ASMC 
 
@@ -57,7 +56,7 @@ WORD AoE_EntrySizeDef
 POIN AoE_Table
 
 AoE_GrantExpEvent:
-GiveEXP((-1))
+GiveEXP(0x7fff)
 NoFade
 ENDA
 
