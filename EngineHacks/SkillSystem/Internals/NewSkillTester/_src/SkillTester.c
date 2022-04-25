@@ -7,6 +7,7 @@ extern s8 AreAllegiancesEqual(int factionA, int factionB);
 extern int AreUnitsAllied(int, int) __attribute__((long_call));
 extern int IsSameAllegience(int, int) __attribute__((long_call)); // forgive the typo
 static int absolute(int value) { return value < 0 ? -value : value; }
+static bool IsSkillIDValid(int skillID) {return skillID != 0 && skillID != 255;}
 
 struct BWLData {
     u8 unk1;
@@ -45,11 +46,28 @@ u8* MakeSkillBuffer(Unit* unit) {
         buff[count++] = temp;
     }
 
-    for (int i = 0; (gBWLDataArray[unitNum].skills[i] != 0) && (gBWLDataArray[unitNum].skills[i] != 255) && (i <= 3); ++i) {
-        buff[count++] = gBWLDataArray[unitNum].skills[i];
+    for (int i = 0; i <= 3; ++i) {
+        if (IsSkillIDValid(gBWLDataArray[unitNum].skills[i])) {
+            buff[count++] = gBWLDataArray[unitNum].skills[i];
+        }
+        break;
     }
 
-    temp = GetItemData(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
+    //Extra checks made special for range skills so Gaiden Magic won't crash
+    if (gBattleStats.config & 3) {
+        if (unit->index == gBattleActor.unit.index) {
+            temp = GetItemData(gBattleActor.weaponBefore & 0xFF)->skill;
+        }
+        else if (unit->index == gBattleTarget.unit.index) {
+            temp = GetItemData(gBattleTarget.weaponBefore & 0xFF)->skill;
+        }
+    }
+
+    //If the unit isn't in combat, use GetUnitEquippedWeapon
+    else {
+        temp = GetItemData(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
+    }
+
     if (temp != 0 && temp != 255) {
         buff[count++] = temp;
     }
@@ -99,6 +117,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 }
 
 //Checks for skills already added to the buffer without needing a full skill test
+//Used by the weapon usability calc loop
 int CheckSkillBuffer(Unit* unit, int skill) {
     for (int i = 0; gSkillBuffer[i] != 0; ++i) {
         if (gSkillBuffer[i] == skill)
@@ -111,17 +130,12 @@ int SkillTester(Unit* attacker, u8 skill) {
     if (skill == 0)   {return TRUE;}
     if (skill == 255) {return FALSE;}
 
-    if (attacker->index == SkillAttackerCache) {
-        for (int i = 0; gSkillBuffer[i] != 0; ++i) {
-            if (gSkillBuffer[i] == skill)
-                return TRUE;
-        }
-        return FALSE;
+    if (attacker->index != SkillAttackerCache) {
+        MakeSkillBuffer(attacker);
     }
 
-    u8* attackerBuffer = MakeSkillBuffer(attacker);
-    for (int i = 0; attackerBuffer[i]; ++i) {
-        if (attackerBuffer[i] == skill) {
+    for (int i = 0; gSkillBuffer[i] != 0; ++i) {
+        if (gSkillBuffer[i] == skill) {
             return TRUE;
         }
     }
@@ -151,7 +165,6 @@ int NewAuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
         		check = !check;
 
             return check;
-
         }
     }
 
@@ -161,7 +174,7 @@ int NewAuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
 u8* GetUnitsInRage(Unit* unit, int param, int range) {
     const s8(*pAllegianceChecker)(int, int) = ((param & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
 
-    int check, count = 0;
+    int count = 0;
 
     for (int i = 0; i < 0x100; ++i) {
         Unit* other = gUnitLookup[i];
@@ -178,8 +191,8 @@ u8* GetUnitsInRage(Unit* unit, int param, int range) {
         if (other->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
 			continue;
 
-        check = (param & 2) ? !pAllegianceChecker(unit->index, other->index)
-                            : pAllegianceChecker(unit->index, other->index);
+        int check = (param & 2) ? !pAllegianceChecker(unit->index, other->index) :
+                                   pAllegianceChecker(unit->index, other->index);
 
         if (check) {
             if ((absolute(other->xPos - unit->xPos)
