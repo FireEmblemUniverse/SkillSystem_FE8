@@ -76,7 +76,6 @@ mov		r5,#0			@ zeroing out r5 to use as a counter.
 
 
 ldr 	r0, TieredGrowthOptions 
-ldrb 	r0, [r0] 
 cmp 	r0, #0
 beq TryOtherGrowths
 
@@ -446,7 +445,7 @@ b CheckCapsLadder
 Sexy: 
 cmp r6, #20
 bge Flanders
-b UseTieredGrowths
+b CheckCapsLadder
 Flanders:
 
 b CheckCapsLadder
