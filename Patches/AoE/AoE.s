@@ -918,7 +918,7 @@ blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for 
 
 End_AoE:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x1
+mov r0, #0x1 @ Wait 
 strb r0, [r1,#0x11]
 
 
@@ -1191,12 +1191,16 @@ bl AoE_FixedDamage
 
 
 CleanupDamage:
-
 ldrb r1, [r7, #0x13] @ curr hp 
 sub r0, r1, r0 
 
 cmp r0, #0 
 bgt NoCapHP
+
+ldr r3, =CurrentUnit
+ldr r3, [r3] 
+cmp r3, r7 
+beq SetHP1
 
 ldrb r2, [r5, #ConfigByte] 
 mov r3, #KeepHP1NotDieBool
@@ -1205,12 +1209,27 @@ bne SetHP1
 
 mov r0, #0x0
 strb r0, [r7, #0x13] @ curr hp 
-b Exit
+ldr r3, =0x203A56C
+b StoreIntoDefender
 
 SetHP1:
 mov r0, #1 
 NoCapHP:
 strb r0, [r7, #0x13] @ curr hp 
+
+StoreIntoDefender:
+ldrb r1, [r7, #0x0B] @ deployment byte 
+strb r1, [r3, #0x0B] 
+lsr r1, #6
+cmp r1, #0 
+beq Exit 
+ldr r3, =0x203A56C
+strb r0, [r3, #0x13] @ curr hp of defender. AoE is always the 'attacker' 
+mov r1, #0x38 @ leader 
+ldrb r2, [r7, r1] 
+strb r2, [r3, r1] @ copy into the defender for trainer death flags stuff 
+
+bl IsTrainersTeamDefeated
 
 DoNotDamageTarget:
 Exit:

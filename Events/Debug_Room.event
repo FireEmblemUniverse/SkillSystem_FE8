@@ -92,7 +92,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  MewtwoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MarowakID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -263,23 +263,23 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(15, True, 0x145) // all 
-SetUnitStatus(1, 0x28, Bonemerang)
-SetUnitStatus(2, 0x28, Bonemerang)
-SetUnitStatus(3, 0x28, Bonemerang)
-SetUnitStatus(4, 0x28, Bonemerang)
-SetUnitStatus(5, 0x28, Bonemerang)
-SetUnitStatus(6, 0x28, Bonemerang)
+AutoLevelUnits(1, True, 0x145) // all 
+SetUnitStatus(1, 0x28, Earthquake)
+SetUnitStatus(2, 0x28, Earthquake)
+SetUnitStatus(3, 0x28, Earthquake)
+SetUnitStatus(4, 0x28, Earthquake)
+SetUnitStatus(5, 0x28, Earthquake)
+SetUnitStatus(6, 0x28, Earthquake)
 
 Write_Byte(4, GaryStarterClass) 
 
 
   
-Write_Byte(30, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(20, YCoordNewArea)  
-//MNC2 PewterCh
+Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(18, YCoordNewArea)  
+MNC2 PewterCh
 //MNC2 CeladonCh
-MNC2 CinnabarCh
+//MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch

@@ -6,6 +6,7 @@
 //@ Data:
 //@   [UByte array]: 1 if in range, 0 if not
 
+
 ALIGN 16 
 RangeTemplateIndexList:
 POIN RangeTemplateTable_Triangle1 // 0
@@ -30,7 +31,6 @@ ALIGN 16; POIN RangeTemplateTable_DoubleHorizontalLine // 3
 POIN RangeTemplateTable_DoubleVerticalLine
 POIN RangeTemplateTable_DoubleHorizontalLine
 POIN RangeTemplateTable_DoubleVerticalLine
-
 
 ALIGN 16; POIN RangeTemplateTable_SmallTriangle1 // 4
 POIN RangeTemplateTable_SmallTriangle2
@@ -67,48 +67,52 @@ POIN RangeTemplateTable_VerticalLine
 
 
 
-ALIGN 16; POIN RangeTemplateTable_SmallCross
+ALIGN 16; POIN RangeTemplateTable_SmallCross // 9
 POIN RangeTemplateTable_SmallCross
 POIN RangeTemplateTable_SmallCross
 POIN RangeTemplateTable_SmallCross
 
 
-ALIGN 16; POIN RangeTemplateTable_Cross
+ALIGN 16; POIN RangeTemplateTable_Cross // 10
 POIN RangeTemplateTable_Cross
 POIN RangeTemplateTable_Cross
 POIN RangeTemplateTable_Cross
 
-ALIGN 16; POIN RangeTemplateTable_SmallX
+ALIGN 16; POIN RangeTemplateTable_SmallX // 11
 POIN RangeTemplateTable_SmallX
 POIN RangeTemplateTable_SmallX
 POIN RangeTemplateTable_SmallX
 
 
-ALIGN 16; POIN RangeTemplateTable_X
+ALIGN 16; POIN RangeTemplateTable_X // 12 
 POIN RangeTemplateTable_X
 POIN RangeTemplateTable_X
 POIN RangeTemplateTable_X
 
 
-ALIGN 16; POIN RangeTemplateTable_Diamond
+ALIGN 16; POIN RangeTemplateTable_Diamond // 13 
 POIN RangeTemplateTable_Diamond
 POIN RangeTemplateTable_Diamond
 POIN RangeTemplateTable_Diamond
 
-
-ALIGN 16; POIN RangeTemplateTable_SmallHorizontalLine
+#define SmallHorizontalLine 14 
+ALIGN 16; POIN RangeTemplateTable_SmallHorizontalLine //14 
 POIN RangeTemplateTable_SmallVerticalLine
 POIN RangeTemplateTable_SmallHorizontalLine
 POIN RangeTemplateTable_SmallVerticalLine
-
-
-
-
 
 ALIGN 16; POIN RangeTemplateTable_Smile1
 POIN RangeTemplateTable_Smile2
 POIN RangeTemplateTable_Smile3
 POIN RangeTemplateTable_Smile4
+
+ALIGN 16; POIN RangeTemplateTable_SmallestLine1 // 15 
+POIN RangeTemplateTable_SmallestLine2
+POIN RangeTemplateTable_SmallestLine3
+POIN RangeTemplateTable_SmallestLine4
+
+
+
 
 ALIGN 16; POIN RangeTemplateTable_Expressionless
 POIN RangeTemplateTable_Expressionless
@@ -125,7 +129,7 @@ POIN RangeTemplateTable_LargeCone2
 POIN RangeTemplateTable_LargeCone3
 POIN RangeTemplateTable_LargeCone4
 
-WORD 0 0 0 0 // Terminator 
+WORD 0 // Terminator 
 
 ALIGN 4
 RangeTemplateTable_Line1:
@@ -168,6 +172,45 @@ BYTE 0 0 0 0 0
 BYTE 0 0 0 0 0
 
 
+ALIGN 4
+RangeTemplateTable_SmallestLine1:
+BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
+BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
+BYTE 0 0 0 0 0
+BYTE 0 0 0 0 0
+BYTE 0 0 1 1 0
+BYTE 0 0 0 0 0
+BYTE 0 0 0 0 0
+
+ALIGN 4
+RangeTemplateTable_SmallestLine2:
+BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
+BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
+BYTE 0 0 0 0 0
+BYTE 0 0 0 0 0
+BYTE 0 0 1 0 0
+BYTE 0 0 1 0 0
+BYTE 0 0 0 0 0
+
+ALIGN 4
+RangeTemplateTable_SmallestLine3:
+BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
+BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
+BYTE 0 0 0 0 0
+BYTE 0 0 0 0 0
+BYTE 0 1 1 0 0
+BYTE 0 0 0 0 0
+BYTE 0 0 0 0 0
+
+ALIGN 4
+RangeTemplateTable_SmallestLine4:
+BYTE 5 5 // Size (1-indexed, so this is a 5x5y array) 
+BYTE 2 2 // Center (0-indexed, so [2,2] is the center)
+BYTE 0 0 0 0 0
+BYTE 0 0 1 0 0
+BYTE 0 0 1 0 0
+BYTE 0 0 0 0 0
+BYTE 0 0 0 0 0
 
 ALIGN 4
 RangeTemplateTable_GiantCross:
@@ -298,7 +341,7 @@ RangeTemplateTable_SmallCurve2:
 BYTE 2 3 
 BYTE 1 0 
 BYTE 0 1 
-BYTE 1 0
+BYTE 1 0 
 BYTE 1 0
 
 ALIGN 4
@@ -361,6 +404,7 @@ BYTE 0 1 1
 BYTE 1 1 1    
 BYTE 0 1 1 
 BYTE 0 0 1
+ 
 
 ALIGN 4
 RangeTemplateTable_Triangle2:
@@ -369,6 +413,9 @@ BYTE 2 0
 BYTE 0 0 1 0 0            
 BYTE 0 1 1 1 0             
 BYTE 1 1 1 1 1    
+
+
+
 
 ALIGN 4
 RangeTemplateTable_Triangle3:
@@ -380,6 +427,8 @@ BYTE 1 1 1
 BYTE 1 1 0 
 BYTE 1 0 0
 
+
+
 ALIGN 4
 RangeTemplateTable_Triangle4:
 BYTE 5 3 
@@ -387,7 +436,7 @@ BYTE 2 2
 BYTE 1 1 1 1 1
 BYTE 0 1 1 1 0             
 BYTE 0 0 1 0 0    
-
+        
 
 
 ALIGN 4

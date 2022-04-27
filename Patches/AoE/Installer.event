@@ -150,7 +150,18 @@ MenuCommandID(BiteName, 		UM_AoEDesc, NormalText, 63, AoE_SpecificUsability|1, A
 MenuCommandID(NightSlashName, 		UM_AoEDesc, NormalText, 64, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(NightDazeName, 		UM_AoEDesc, NormalText, 65, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(DarkPulseName, 		UM_AoEDesc, NormalText, 66, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-
+MenuCommandID(BodySlamName, 		UM_AoEDesc, NormalText, 67, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DoubleslapName, 		UM_AoEDesc, NormalText, 68, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DoubleHitName, 		UM_AoEDesc, NormalText, 69, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(DoubleEdgeName, 		UM_AoEDesc, NormalText, 70, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ExplosionName, 		UM_AoEDesc, NormalText, 71, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HeadbuttName, 		UM_AoEDesc, NormalText, 72, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HyperBeamName, 		UM_AoEDesc, NormalText, 73, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HyperFangName, 		UM_AoEDesc, NormalText, 74, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PayDayName, 		UM_AoEDesc, NormalText, 75, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SlashName, 		UM_AoEDesc, NormalText, 76, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AttackPulseName, 		UM_AoEDesc, NormalText, 77, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SwiftName, 		UM_AoEDesc, NormalText, 78, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
@@ -197,6 +208,7 @@ Animation_IDByte, #15
 #define SmallTriangle 4 
 #define SmallCross 9 
 #define SmallX 11 
+#define SmallestLine 16
 
 
 // same order as animation table lower down 
@@ -784,6 +796,102 @@ BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range 
 BYTE SmallLine darkAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 BodySlam // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Doubleslap // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 DoubleHit // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 DoubleEdge // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Explosion // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Headbutt // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 HyperBeam // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 HyperFang // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 PayDay // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Slash // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 AttackPulse // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Swift // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 0 1 // Attack range 
+BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
 
 AoE_TableTerminator
 
