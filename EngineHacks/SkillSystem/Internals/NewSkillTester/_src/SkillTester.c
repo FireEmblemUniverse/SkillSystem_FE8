@@ -49,10 +49,9 @@ u8* MakeSkillBuffer(Unit* unit) {
     for (int i = 0; i <= 3; ++i) {
         if (IsSkillIDValid(gBWLDataArray[unitNum].skills[i])) {
             buff[count++] = gBWLDataArray[unitNum].skills[i];
+            continue;
         }
-        else {
-            break;
-        }
+        break;
     }
 
     //Extra checks made special for range skills so Gaiden Magic won't crash
@@ -74,9 +73,7 @@ u8* MakeSkillBuffer(Unit* unit) {
         buff[count++] = temp;
     }
 
-    while (count < 11) {
-        buff[count++] = 0;
-    }
+    buff[count++] = 0;
 
     SkillAttackerCache = unit->index;
     return buff;
@@ -102,6 +99,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
         u8* skills = MakeSkillBuffer(other);
 
+        //For every skill in the buffer, loop through the AuraSkills list to find a match
         for (int j = 0; skills[j] != 0; ++j) {
             for (int k = 0; AuraSkills[k] != 0; ++k) {
                 if (AuraSkills[k] == skills[j]) {
@@ -110,6 +108,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
                                                      + absolute(other->yPos - unit->yPos);
                     gAuraSkillBuffer[count].faction = UNIT_FACTION(other);
                     ++count;
+                    break;
                 }
             }
         }
@@ -122,8 +121,9 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 //Used by the weapon usability calc loop
 int CheckSkillBuffer(Unit* unit, int skill) {
     for (int i = 0; gSkillBuffer[i] != 0; ++i) {
-        if (gSkillBuffer[i] == skill)
+        if (gSkillBuffer[i] == skill) {
             return TRUE;
+        }
     }
     return FALSE;
 }
@@ -181,6 +181,7 @@ u8* GetUnitsInRange(Unit* unit, int param, int range) {
     for (int i = 0; i < 0x100; ++i) {
         Unit* other = gUnitLookup[i];
 
+        //NOTE: this is checking bits
 		if (!other)
 			continue;
 
@@ -193,6 +194,7 @@ u8* GetUnitsInRange(Unit* unit, int param, int range) {
         if (other->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
 			continue;
 
+        //Done in a way that check is always true when a unit matching the critera is found
         int check = (param & 2) ? !pAllegianceChecker(unit->index, other->index) :
                                    pAllegianceChecker(unit->index, other->index);
 
