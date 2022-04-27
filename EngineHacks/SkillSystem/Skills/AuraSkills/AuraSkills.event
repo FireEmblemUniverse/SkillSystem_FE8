@@ -66,14 +66,14 @@ ALIGN 4
 Tantivy:
 #incbin "Tantivy/Tantivy.dmp"
 POIN SkillTester
-POIN NewAuraSkillCheck
+POIN GetUnitsInRange
 WORD TantivyID
 
 ALIGN 4
 Focus:
 #incbin "Focus/Focus.dmp"
 POIN SkillTester
-POIN NewAuraSkillCheck
+POIN GetUnitsInRange
 WORD FocusID
 
 ALIGN 4
@@ -135,7 +135,7 @@ ALIGN 4
 Infiltrator:
 #incbin "Infiltrator/Infiltrator.dmp"
 POIN SkillTester
-POIN NewAuraSkillCheck
+POIN GetUnitsInRange
 WORD InfiltratorID
 
 #include "ArmorMarch/ArmorMarch.event"

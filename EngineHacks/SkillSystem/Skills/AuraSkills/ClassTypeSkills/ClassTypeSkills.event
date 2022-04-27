@@ -10,7 +10,7 @@ ALIGN 4
 Horseguard:
 #incbin "Horseguard.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN GetUnitsInRange
 WORD HorseguardID
 WORD HorseType
 

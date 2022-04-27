@@ -1,8 +1,8 @@
 .thumb
 .align
 
-.equ AuraSkillCheck,SkillTester+4
-.equ SkillID,AuraSkillCheck+4
+.equ GetUnitsInRange,SkillTester+4
+.equ SkillID,GetUnitsInRange+4
 .equ ClassType,SkillID+4
 
 push {r4-r7,r14}
@@ -31,16 +31,17 @@ cmp r0,#0
 beq GoBack
 
 @get nearby units
-ldr	r0,AuraSkillCheck
+ldr	r0,GetUnitsInRange
 mov	lr,r0
 mov	r0,r4		@unit to check
-mov	r1,#0
-mov	r2,#1		@are allied
-mov	r3,#3		@range
+mov	r1,#0		@are allied
+mov	r2,#3		@range
 .short	0xf800
+cmp r0, #0x0
+beq GoBack
 
 @check if any nearby unit is correct class type
-ldr	r6,=#0x202B256	@bugger for the nearby units
+mov r6, r0	@bugger for the nearby units
 LoopStart:
 ldrb	r0,[r6]
 cmp	r0,#0
