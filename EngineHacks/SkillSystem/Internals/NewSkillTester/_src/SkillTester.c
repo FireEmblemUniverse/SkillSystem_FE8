@@ -50,7 +50,9 @@ u8* MakeSkillBuffer(Unit* unit) {
         if (IsSkillIDValid(gBWLDataArray[unitNum].skills[i])) {
             buff[count++] = gBWLDataArray[unitNum].skills[i];
         }
-        break;
+        else {
+            break;
+        }
     }
 
     //Extra checks made special for range skills so Gaiden Magic won't crash
@@ -171,7 +173,7 @@ int NewAuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
     return FALSE;
 }
 
-u8* GetUnitsInRage(Unit* unit, int param, int range) {
+u8* GetUnitsInRange(Unit* unit, int param, int range) {
     const s8(*pAllegianceChecker)(int, int) = ((param & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
 
     int count = 0;
@@ -201,6 +203,10 @@ u8* GetUnitsInRage(Unit* unit, int param, int range) {
             }
         }
     }
+
     gUnitRangeBuffer[count] = 0;
+    if (!gUnitRangeBuffer[0])
+        return FALSE;
+
     return gUnitRangeBuffer;
 }
