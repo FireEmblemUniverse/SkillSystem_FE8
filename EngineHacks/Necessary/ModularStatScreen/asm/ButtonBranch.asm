@@ -22,7 +22,7 @@ ldr		r2,[r1,#0xC]
 ldrb	r2,[r2,#0xB]
 mov		r3,#0xC0
 tst		r2,r3
-bne		NotStatScreen
+@bne		NotStatScreen @ Allow pressing select to show growths for enemies etc. 
 sub		r1,#0x2
 mov		r3,#0x1
 strb	r3,[r1]

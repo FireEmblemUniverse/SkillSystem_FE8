@@ -485,11 +485,17 @@ CompareTactText(MysteryName_006)
 BNE 45 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsMystery_006|IsPointer
+
+Label 45
+Label 60 // End of mystery names 
+
+CompareTactText(LuisName) 
+BNE 46 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsLuis|IsPointer
 GOTO 200
 
-Label 45 
-
-Label 60 // End of mystery names 
+Label 46 
 Label 199
 
 
@@ -697,6 +703,13 @@ ALIGN 4
 UnitsTubaTuna:
 UNIT 0x02 RhyhornID BonusUnitParameters 
 UNIT 
+
+ALIGN 4
+UnitsLuis:
+UNIT 0x02 TentacoolID BonusUnitParameters 
+UNIT 
+
+
 
 ALIGN 4
 UnitsMystery_001:

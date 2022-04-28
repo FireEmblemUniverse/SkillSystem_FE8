@@ -250,16 +250,17 @@ ENUN
 AutoLevelUnits(30, True, 0x50FF)
 RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-SetUnitStatus(1, CurrentHP, 58)
+SetUnitStatus(1, CurrentHP, 5)
+
 //SetUnitStatus(2, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 
 //SetUnitStatus(1, 0x2a, Ember)
-//SetUnitStatus(1, 0x29, RecoverMove)
+SetUnitStatus(1, 0x29, RecoverMove)
 SetUnitStatus(0x50, 0x16, 20)
 
-SetUnitStatus(1, 0x29, BugBuzz)
+//SetUnitStatus(1, 0x29, BugBuzz)
 //SetUnitStatus(2, 0x2A, Agility)
 //SetUnitStatus(2, 0x2A, RecoverMove)
 //SetUnitStatus(1, 0x30, (5<<4)|ParalyzeStatusID_Def)

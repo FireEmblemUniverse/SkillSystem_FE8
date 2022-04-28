@@ -866,7 +866,7 @@ Peck[X]
 ## SkyAttackName ^
 Sky Attack[X]
 ## SkyAttackDesc
-*{)}Placeholder description.[X]
+*{)}A powerful attack from above.[X]
 ## MirrorMoveName ^
 Mirror Move[X]
 ## WingAttackName ^
@@ -881,7 +881,7 @@ Wing Attack[X]
 ## BarrierName ^
 Barrier[X]
 ## BarrierDesc
-*{)}Placeholder description.[X]
+*{)}Boosts def by 10.[X]
 ## ConfusionName ^
 Confusion[X]
 ## ConfusionDesc
@@ -889,11 +889,11 @@ Confusion[X]
 ## DreamEaterName ^
 Dream Eater[X]
 ## DreamEaterDesc
-*{)}Placeholder description.[X]
+*{)}Dreams are eaten.[X]
 ## HypnosisName ^
 Hypnosis[X]
 ## HypnosisDesc
-*{)}Placeholder description.[X]
+*{)}The foe is lulled to sleep.[X]
 ## LightScreenName ^
 Light Screen[X]
 ## LightScreenDesc
@@ -905,15 +905,15 @@ Reflect[X]
 ## PsybeamName ^
 Psybeam[X]
 ## PsybeamDesc
-*{)}Placeholder description.[X]
+*{)}A peculiar ray.[X]
 ## PsychicName ^
 Psychic[X]
 ## PsychicDesc
-*{)}Placeholder description.[X]
+*{)}A strong telekinetic attack.[X]
 ## RestName ^
 Rest[X]
 ## RestDesc
-*{)}Placeholder description.[X]
+*{)}Sleep to recover health.[X]
 ## TeleportName ^
 Teleport[X]
 ## TeleportDesc
@@ -929,7 +929,7 @@ Rock Throw[X]
 ## AncientpowerName ^
 Ancientpower[X]
 ## AncientpowerDesc
-*{)}Placeholder description.[X]
+*{)}A prehistoric attack.[X]
 ## RockTombName ^
 Rock Tomb[X]
 ## RockTombDesc
@@ -937,11 +937,11 @@ Rock Tomb[X]
 ## RolloutName ^
 Rollout[X]
 ## RolloutDesc
-*{)}Placeholder description.[X]
+*{)}An intense, rolling attack.[X]
 ## SandstormName ^
 Sandstorm[X]
 ## SandstormDesc
-*{)}Placeholder description.[X]
+*{)}Summons a sandstorm.[X]
 ## ConfuseRayName ^
 Confuse Ray[X]
 ## ConfuseRayDesc
@@ -957,23 +957,23 @@ Night Shade[X]
 ## NightmareName ^
 Nightmare[X]
 ## NightmareDesc
-*{)}Placeholder description.[X]
+*{)}Inflicts a nightmare if asleep.[X]
 ## ShadowBallName ^
 Shadow Ball[X]
 ## ShadowBallDesc
-*{)}Placeholder description.[X]
+*{)}A shadowy blob attack[X]
 ## ShadowPunchName ^
 Shadow Punch[X]
 ## ShadowPunchDesc
-*{)}Placeholder description.[X]
+*{)}A punch from the shadows[X]
 ## DragonClawName ^
 Dragon Claw[X]
 ## DragonClawDesc
-*{)}Placeholder description.[X]
+*{)}A slash with huge claws.[X]
 ## DragonDanceName ^
 Dragon Dance[X]
 ## DragonDanceDesc
-*{)}Placeholder description.[X]
+*{)}Boosts Att+10 and Spd+5.[X]
 ## DragonRageName ^
 Dragon Rage[X]
 ## DragonRageDesc
@@ -981,11 +981,11 @@ Dragon Rage[X]
 ## DragonbreathName ^
 Dragonbreath[X]
 ## DragonbreathDesc
-*{)}Placeholder description.[X]
+*{)}A strong breath attack.[X]
 ## OutrageName ^
 Outrage[X]
 ## OutrageDesc
-*{)}Placeholder description.[X]
+*{)}A rampaging attack.[X]
 ## TwisterName ^
 Twister[X]
 ## TwisterDesc
@@ -1009,11 +1009,11 @@ Leech Life[X]
 ## MegahornName ^
 Megahorn[X]
 ## MegahornDesc
-*{)}Placeholder description.[X]
+*{)}A brutal, ramming attack.[X]
 ## PinMissileName ^
 Pin Missile[X]
 ## PinMissileDesc
-*{)}Placeholder description.[X]
+*{)}Sharp pins strike 2-5 times.[X]
 ## SignalBeamName ^
 Signal Beam[X]
 ## SignalBeamDesc
@@ -1025,11 +1025,11 @@ Chip damage. Debuffs Spd by 5.  [X]
 ## UTurnName ^
 U-Turn[X]
 ## UTurnDesc
-*{)}Placeholder description.[X]
+*{)}A rush and retreat attack.[X]
 ## XScissorName ^
 X-Scissor[X]
 ## XScissorDesc
-*{(}Placeholder description.[X]
+*{(}A dual-slashing attack.[X]
 
 
 
@@ -1072,31 +1072,31 @@ Snarl[X]
 Chip damage. Debuffs Mag.[X]
 
 ## CometPunchDesc 
-*{(}Placeholder description.[X]
+*{(}Flurry of 2-5 strikes.[X]
 
 ## CovetDesc
-*{(}Placeholder description.[X]
+*{(}Attack while stealing an item.[X]
 
 ## CrushClawName ^
 Crush Claw[X]
 
 ## CrushClawDesc
-*{(}Placeholder description.[X]
+*{(}A crushing claw attack.[X]
 
 ## CutDesc
-*{(}Placeholder description.[X]
+*{(}A basic, cutting attack.[X]
 
 ## DoubleEdgeDesc
-*{(}Placeholder description.[X]
+*{(}A reckless, life-risking tackle.[X]
 
 ## EggBombDesc 
-*{(}Placeholder description.[X]
+*{(}A large egg is hurled at the foe.[X]
 
 ## ExplosionDesc
-*{(}Placeholder description.[X]
+*{(}The user explodes at the enemy.[X]
 
 ## GlareDesc
-*{(}Placeholder description.[X]
+*{(}Paralyzes the foe.[X]
 
 ## GrowthDesc
 +5 Str/Mag/Spd.[X]

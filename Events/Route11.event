@@ -119,7 +119,7 @@ RedPokeballTrap(51,2, ChapterID*2, Iron)
 SpellScrollTrap(39,14, (ChapterID*2), Scorch)
 
 
-SkillAccessoryTrap(48,18, (ChapterID*2), SealResID)
+SkillAccessoryTrap(48,18, (ChapterID*2)+1, SealResID)
 
 
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 
