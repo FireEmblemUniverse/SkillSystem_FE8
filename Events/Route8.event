@@ -1,0 +1,228 @@
+#define ChapterID Route8Ch
+#define GenericA UnitRoute8Wild
+#define GenericB UnitCyclingRoadTrainer
+#define ClassA ClassRoute8WildA
+#define ClassB ClassRoute8WildB
+#define WildLvl 35
+#define TrainerL 35
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter: // Use this in all non-gym / non-tutorial chapters
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+UnusedPointers //POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2_Empty
+POIN Units1_Empty Units1_Empty  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene_Empty 
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+{ ; ReinforceEntry(ChapterID)
+Reinforce(0xF0, 1, ReinforcementUnits, 4, 3) 
+//Reinforce(0xF1, 1, ReinforcementUnits, 5, 4) 
+}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0, ToSaffron, 27,6) 
+House(0, ToRoute7, 20,6)
+END_MAIN
+
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToRoute17N [2,19] [14,19] 
+AREA 0 ToCeladon [40,12] [40,14] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(40,13) 
+EscapeTileEntry(4,19) 
+EscapeTileEntry(7,19) 
+EscapeTileEntry(11,19) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToCeladon:
+ChapterTransition(CeladonCh, 1,18)
+
+ToRoute17N:
+ChapterTransition(Route17NCh, 8,1)
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(29,18,ChapterID*2,450)
+//CoinsTrap(57,15,(ChapterID*2)+1,600)
+
+
+CutBush(4,10)
+CutBush(37,11)
+//RockSmash(29,9)
+
+//StrengthBoulder(4,3)
+
+StatAccessoryTrap(31,10, (ChapterID*2), PaddedShield_BoostIndex) 
+
+
+//RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+//RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
+//SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
+
+//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
+//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+
+//SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
+
+SignBTrap(33,11, ChapterID, 0x0) //no extra text 
+SignATrap(6,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+
+
+
+
+//SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
+//SpellScrollTrap(18,9, (ChapterID*2)+1, DrillPeck)
+//OpenPokeball(8,3)
+//Sign(8,4, 2)
+
+//Save(10,4)
+//SaveCost(43,3) 
+
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+// Rent bike? $5000 
+// if yes, set max move 
+// if no, usual movement 
+// if you try to run away with it, "hey thief!" and you pay a fine of $5000 
+
+
+LOAD1 0x1 EnemyUnitsA
+ENUN
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(33,5,37,7)) //E patch 
+
+
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+ // Bushes  
+LOAD1 0x1 HumanTrainers
+ENUN 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
+CALL SetBushHpEvent
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+
+EnemyUnitsA:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+ReinforcementUnits:
+UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
+
+ 
+HumanTrainers:
+UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [5,13]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [14,14]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT R16_0xE0_BQ // 0xE0 
+SHORT R16_0xE1_BQ // 0xE0 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+SHORT R16_0xE0_BD // 0xE0 
+SHORT 600 // Gold 
+SHORT R16_0xE1_BD // 0xE0 
+SHORT 600 // Gold 
+TDQ_TableTerminator ; }
+
+
+
+// SpearowID	DoduoID	RaticateID
+
+// trainer's: Weezing, Electrode, Primeape, Machoke
+
+EnemyTrainers0: // biker
+UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	PrimeapeID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT
+
+EnemyTrainers1: // biker
+UNIT GenericB 	WeezingID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	ElectrodeID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	PrimeapeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT
+
+	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

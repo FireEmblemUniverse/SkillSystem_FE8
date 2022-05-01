@@ -136,6 +136,22 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
+#ifdef DEBUG_MODE
+// Chapter Jump 
+WORD  0x0
+SHORT ChapterJumpTextID
+SHORT ChapterJumpDescID
+BYTE  0x3
+BYTE  0x77
+SHORT 0x0
+WORD  0x804F449 // Always usable 
+WORD  0x0
+POIN  Jump_OnSelect
+WORD  0x0
+WORD  0x0
+WORD  0x0
+#endif 
+
 // End
 WORD  0x80D7EA4
 SHORT 0x6A0

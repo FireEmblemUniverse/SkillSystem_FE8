@@ -8,3 +8,7 @@ TutText(ComingSoonText)
 NoFade
 ENDA 
 
+#ifdef DEBUG_MODE
+#include "ChapterJump.event"
+#endif 
+

@@ -17,25 +17,25 @@ Send, !v
 Return
 
 w::
-MouseMove, 0, -16, 0, R //16 pixels up
+MouseMove, 0, -20, 0, R //16 pixels up
 sleep 50
 Click
 Return
 
 a::
-MouseMove, -16, 0, 0, R //16 pixels left
+MouseMove, -20, 0, 0, R //16 pixels left
 sleep 50
 Click
 Return
 
 s::
-MouseMove, 0, 16, 0, R //16 pixels down
+MouseMove, 0, 20, 0, R //16 pixels down
 sleep 50
 Click
 Return
 
 d::
-MouseMove, 16, 0, 0, R //16 pixels rig
+MouseMove, 20, 0, 0, R //16 pixels rig
 sleep 50
 Click
 Return

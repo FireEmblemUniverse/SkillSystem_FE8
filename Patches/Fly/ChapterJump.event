@@ -1,0 +1,27 @@
+#include "src/ChapterJump.lyn.event"
+#include "ChapterMenu.event"
+
+//remove if table is defined elsewhere
+#include "DebugEventTable/DebugEvent.event"
+
+ALIGN 4
+EmptyEvent:
+    NoFade
+    ENDA
+    
+/*
+ALIGN 4
+DebugEventTest:
+    LOAD1 0 TestUnits
+    NoFade
+    ENDA
+    
+ALIGN 4
+TestUnits:
+    UNIT Ross Fighter 0x0 Level(2,Ally,0) [0,0] 0x0 0x0 0x0 0x0 [IronAxe, HandAxe] NoAI
+    UNIT Innes Sniper 0x0 Level(2,Ally,0) [0,0] 0x0 0x0 0x0 0x0 [IronBow] NoAI
+    UNIT Duessel GreatKnight 0x0 Level(2,Ally,0) [0,0] 0x0 0x0 0x0 0x0 [IronAxe, HandAxe] NoAI
+    UNIT
+*/
+
+

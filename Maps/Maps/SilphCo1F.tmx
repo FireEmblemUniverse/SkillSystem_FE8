@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="36" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="SilphCoTilesProcessed" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="SilphCoTilesProcessed" trans="ffffff" width="512" height="512"/>
+  <image source="../TilesetPreviews/SilphCoTilesProcessed" trans="ffffff" width="512" height="512"/>
  </tileset>
+
+ 
  <layer id="1" name="Tile Layer 1" width="36" height="22">
+   <properties>
+   <property name="Anims1" value="0"/>
+   <property name="ChapterID" value="SilphCo1FCh"/>
+   <property name="Main" value=""/>
+   <property name="MapID" value="SilphCo1FMap"/>
+   <property name="ObjectType" value="SilphCoObj"/>
+   <property name="PaletteID" value="SilphCoPal"/>
+   <property name="TileConfig" value="SilphCoConf"/>
+  </properties>
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3,4,4,4,5,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,7,8,9,10,11,1,

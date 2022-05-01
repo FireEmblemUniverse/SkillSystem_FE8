@@ -1,0 +1,177 @@
+#define ChapterID CeladonGymCh
+
+#define WildLvl 5 
+#define TrainerL 34
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+//AFEV 0 GlobalAfev 0
+DefeatAll(EndingScene) 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToCeladon [7,18] [7,18] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(7,18) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToCeladon:
+ChapterTransition(CeladonCh, 9,27)
+
+Traps1:
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+CHECK_EVENTID RainbowbadgeObtained
+BNE 0x63 rC r0 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [8,6] 
+
+
+LOAD1 0x1 EnemyTrainersA
+ENUN 
+AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(9, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+//AutoLevelUnits(3, False, 0x90EF) 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveSkillAccessory(0xD0, AmaterasuID)
+SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA0, Berry,0x82)
+SilentGiveItemWithDurability(0xA1, Berry,0x82)
+SilentGiveItemWithDurability(0xA2, Berry,0x82)
+SilentGiveItemWithDurability(0xA3, Berry,0x82)
+
+
+MUSCFAST IntroBGM 
+Text(ErikaChallengeText)
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12] 
+
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+EndingScene: 
+CHECK_EVENTID RainbowbadgeObtained 
+BNE 0x63 rC r0 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+Text(ErikaDefeatText)
+GiveItemWithDurability(0, SpellScroll, PetalDance)
+ENUT RainbowbadgeObtained 
+SVAL r3 6000 
+GIVETOMAIN 0 
+TEXTSHOW ErikaWaitText
+TEXTEND 
+REMA
+GiveSkillAccessory(0, AmaterasuID)
+TEXTSTART
+TEXTSHOW ErikaRewardText
+TEXTEND 
+FADI 4 
+REMA 
+ForcedChapterTransition(CeladonCh, 9, 27)
+LABEL 0x63 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+EnemyTrainersA:
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 WeepinbellID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT
+
+EnemyTrainersB: // rematch 
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT
+	
+
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID
