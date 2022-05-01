@@ -66,13 +66,13 @@ CHECK_EVENTID SoulbadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
-CAM1 [8,6] 
+CAM1 [8,11] 
 
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(7, False, 0x90EF) 
+AutoLevelUnits(7, False, 0x90EF) // +7 hidden levels regardless of difficulty 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
@@ -152,22 +152,22 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 	[Psybeam,SignalBeam,Sludge,0] PursueWithoutHeedAI
-UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,15]  0b 0x0	0x1 REDA8R15 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
-UNIT 0xA1 GrimerID 		0xD0 Level(0, Enemy, 1) [10,15]  0b 0x0	0x1 REDA10R15 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
-UNIT 0xA2 KoffingID 	0xD0 Level(0, Enemy, 1) [6,15]  0b 0x0 	0x1 REDA6R15 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
-UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,12]  0b 0x0	0x1 REDA5R12 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
-UNIT 0xA4 KabutoID 	0xD0 Level(0, Enemy, 1) [11,12]  0b 0x0	0x1 REDA11R12 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
+UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Psybeam,SignalBeam,Sludge,0] PursueWithoutHeedAI
+UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,12]  0b 0x0	0x1 REDA8R12 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
+UNIT 0xA1 GrimerID 		0xD0 Level(0, Enemy, 1) [10,12]  0b 0x0	0x1 REDA10R12 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
+UNIT 0xA2 KoffingID 	0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0 	0x1 REDA6R12 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
+UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,9]  0b 0x0	0x1 REDA5R9 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
+UNIT 0xA4 KabutoID 	0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0	0x1 REDA11R9 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
 //UNIT 0xA4 HypnoID 		0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Psybeam, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
 UNIT
 
 EnemyTrainersB:
 UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 	[Psychic,SignalBeam,Sludge,0] PursueWithoutHeedAI
 UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,15]  0b 0x0	0x1 REDA8R15 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
-UNIT 0xA1 MukID 		0xD0 Level(0, Enemy, 1) [10,15]  0b 0x0	0x1 REDA10R15 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
-UNIT 0xA2 WeezingID 	0xD0 Level(0, Enemy, 1) [6,15]  0b 0x0 	0x1 REDA6R15 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
-UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,12]  0b 0x0	0x1 REDA5R12 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
-UNIT 0xA4 KabutopsID 	0xD0 Level(0, Enemy, 1) [11,12]  0b 0x0	0x1 REDA11R12 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
+UNIT 0xA1 MukID 		0xD0 Level(0, Enemy, 1) [10,12]  0b 0x0	0x1 REDA10R12 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
+UNIT 0xA2 WeezingID 	0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0 	0x1 REDA6R12 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
+UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,9]  0b 0x0	0x1 REDA5R9 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
+UNIT 0xA4 KabutopsID 	0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0	0x1 REDA11R9 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
 //UNIT 0xA4 HypnoID 		0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Psybeam, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
 UNIT
 	

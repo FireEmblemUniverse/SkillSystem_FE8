@@ -170,7 +170,7 @@ RandomizeEnemyCoords(Shallow, Range(0,0,5,5), Range(3,16,13,19)) //Water patch
 LOAD1 0x1 BossUnit
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(4,24,23,30)) //
-
+UnmarkTrainerAsDefeated(0xEE)
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
 //LOAD1 0x1 HumanTrainers

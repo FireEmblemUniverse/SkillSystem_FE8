@@ -51,18 +51,19 @@ House(0, EnterGateNE, 27,6)
 House(0, EnterGateNW, 20,6)
 House(0, EnterGateSE, 27,13) 
 House(0, EnterGateSW, 20,13)
-House(FlyFlag, SecretHouse, 10,15)
-House(0, SecretHouse2, 10,15)
+House(FlyFlag, SecretHouse, 10,5)
+House(0, SecretHouse2, 10,5)
 END_MAIN
 
 SecretHouse:
-BottomWallText(DebugText)
-TutText(DebugText) // learn to fly 
+BottomWallText(SecretHouseFlyText)
+TutText(LearnFlyText) // learn to fly 
+//ENUT FlyFlag 
 NoFade 
 ENDA 
 
 SecretHouse2:
-BottomWallText(DebugText) // use fly from the menu 
+BottomWallText(UseFlyText) // use fly from the menu 
 NoFade 
 ENDA 
 
@@ -118,7 +119,7 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToRoute17N [12,19] [14,19] 
+AREA 0 ToRoute17N [2,19] [14,19] 
 AREA 0 ToCeladon [40,12] [40,14] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -134,7 +135,7 @@ ToCeladon:
 ChapterTransition(CeladonCh, 1,18)
 
 ToRoute17N:
-ChapterTransition(Route17SCh, 8,1)
+ChapterTransition(Route17NCh, 8,1)
 
 
 
@@ -247,14 +248,14 @@ MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R15_0xE0_BQ // 0xE0 
-SHORT R15_0xE1_BQ // 0xE0 
+SHORT R16_0xE0_BQ // 0xE0 
+SHORT R16_0xE1_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R15_0xE0_BD // 0xE0 
+SHORT R16_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R15_0xE1_BD // 0xE0 
+SHORT R16_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 

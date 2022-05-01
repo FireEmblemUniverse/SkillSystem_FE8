@@ -93,7 +93,7 @@ ChapterTransition(Route19Ch, 15, 0)
 
 
 ToRoute18:
-CALL ClosedArea 
+//CALL ClosedArea 
 ChapterTransition(Route18Ch, 59,9)
 
 EnterSafariZone:

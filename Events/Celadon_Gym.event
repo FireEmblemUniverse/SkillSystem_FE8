@@ -44,16 +44,16 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToVermillion [7,24] [7,24] 
+AREA 0 ToCeladon [7,18] [7,18] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,24) 
+EscapeTileEntry(7,18) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToVermillion:
-ChapterTransition(VermillionCh, 12,23)
+ToCeladon:
+ChapterTransition(CeladonCh, 9,27)
 
 Traps1:
 ENDTRAP
@@ -73,6 +73,7 @@ CAM1 [8,6]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(9, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
@@ -130,7 +131,7 @@ TEXTSHOW ErikaRewardText
 TEXTEND 
 FADI 4 
 REMA 
-ForcedChapterTransition(CeladonCh, 12,23)
+ForcedChapterTransition(CeladonCh, 9, 27)
 LABEL 0x63 
 NoFade
 ENDA
@@ -153,15 +154,22 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 RaichuID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 		[Thunderbolt,AttackPulse,GrassKnot,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 MagnemiteID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x1 REDA6R6 	[Thundershock,Tackle,ThunderWave,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 VoltorbID 0xD0 Level(0, Enemy, 1) [8,6]  0b 0x0	0x1 REDA8R6 	[Screech,ThunderWave,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [6,9]  0b 0x0 0x1 REDA6R9 [ThunderPunch,IcePunch,FirePunch,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [8,9]  0b 0x0	0x1 REDA8R9 	[Thundershock,TailWhip,TakeDown,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 CuboneID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 WeepinbellID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
 UNIT
 
-
+EnemyTrainersB: // rematch 
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT
 	
 
 #undef WildLvl

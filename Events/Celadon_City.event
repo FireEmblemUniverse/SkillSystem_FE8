@@ -174,6 +174,7 @@ ToRoute16:
 ChapterTransition(Route16Ch, 39,13)
 
 ToRoute7:
+CALL ClosedArea 
 ChapterTransition(Route7Ch, 1,3)
 
 
@@ -200,7 +201,7 @@ Save(36,9) // Pokecenter
 //SignTrap(34,12, TrainerTip_ReorderMoves)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
-StatAccessoryTrap(32,15, ChapterID*2, LuckyBracerT3_BoostIndex)
+StatAccessoryTrap(23,18, ChapterID*2, LuckyBracerT3_BoostIndex)
 //SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 

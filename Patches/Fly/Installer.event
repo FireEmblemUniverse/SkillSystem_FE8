@@ -1,3 +1,10 @@
 #include "eastdlib.event" 
 
 
+#include "FlyCommandTemp.lyn.event"
+
+FlyCommandEvent:
+TutText(ComingSoonText)
+NoFade
+ENDA 
+

@@ -168,7 +168,7 @@ LOAD1 0x1 BossUnit
 ENUN
 RandomizeEnemyCoords(Shallow, Range(0,0,5,5), Range(12,9,27,14)) //Water patch 
 
-
+UnmarkTrainerAsDefeated(0xEE)
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  

@@ -174,7 +174,7 @@ LOAD1 0x1 BossUnit
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(8,9,14,15)) //
 
-
+UnmarkTrainerAsDefeated(0xEE)
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
