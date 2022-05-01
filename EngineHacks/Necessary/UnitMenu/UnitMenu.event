@@ -315,6 +315,7 @@ MenuCommand(UM_SplashName, UM_SplashDesc, GreenText, AlwaysUsable, SplashCommand
   
 MenuCommand(UM_RecoverName, UM_RecoverDesc, BlueText, RecoverCommandUsability, RecoverCommandEffect)
 MenuCommand(UM_GuardName, UM_GuardDesc, BlueText, GuardCommandUsability, GuardCommandEffect)
+MenuCommand(UM_GrowthName, UM_GrowthDesc, BlueText, GrowthCommandUsability, GrowthCommandEffect)
 MenuCommand(UM_HardenName, UM_HardenDesc, BlueText, HardenCommandUsability, HardenCommandEffect)
 MenuCommand(UM_AgilityName, UM_AgilityDesc, BlueText, AgilityCommandUsability, AgilityCommandEffect)
 MenuCommand(UM_AmnesiaName, UM_AmnesiaDesc, BlueText, AmnesiaCommandUsability, AmnesiaCommandEffect)

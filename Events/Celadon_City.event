@@ -273,7 +273,7 @@ CALL LoadAndPlacePlayers
 CALL CityBeginningScene 
 
 
-MOVE (-1) 2 [6,1]
+//MOVE (-1) 2 [6,1]
 
 LABEL 0x63
 NoFade

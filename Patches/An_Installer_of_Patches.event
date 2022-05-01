@@ -2,7 +2,7 @@
 
 #include "Learnsets/SpellScrolls.event"
 
-
+#include "RNGRandomizer/RNGRandomizerInstaller.event" //this broke suspend for some reason 
 #include "_Routines/Installer.event"
 #include "RingRework/Installer.event"
 #include "StatusEffects/Installer.event" 
@@ -110,7 +110,7 @@
 #include "ChapterTransition/ChapterTransitionInstaller.event"
 
 
-//#include "RNGRandomizer/RNGRandomizerInstaller.event" //this broke suspend for some reason 
+
 
 
 // misc QoL

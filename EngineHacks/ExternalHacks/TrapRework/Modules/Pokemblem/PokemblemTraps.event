@@ -271,11 +271,13 @@ SetImpassableTrap(SkillAccessoryTrapID)
 //#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 
 // 
+// 00 ??? 
 #define SignAreaFlagOffset 0x20 
 #define ObtainSpellFlagOffset 0x40 
 #define ObtainSkillFlagOffset 0x60 
 #define ObtainItemFlagOffset 0x80 
-#define TrainerDefeatedFlagOffset 0xA0 
+#define TrainerDefeatedFlagOffset 0xA0 // should use about 0x100 bytes? 128 chapters max * 2 bytes each 
+#define ObtainAccessoryFlagOffset 0x1A0 // should use 0x20 bytes (128 * (1/4)) 
 
 
 #define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsTrapID XX YY Flag; SHORT CoinsAmount"

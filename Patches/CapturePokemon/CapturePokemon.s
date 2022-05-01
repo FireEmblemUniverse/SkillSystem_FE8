@@ -157,6 +157,10 @@ and		r0,r1
 @mov 	r0, #0
 strb	r0, [r4, #0xC]
 
+@ set exp to 0 (if enemy was level 20, vanilla sets their exp to (-1) i guess 
+mov r0, #0
+strb r0, [r5, #0x09] @ Exp to 0 
+
 @remove 'Dead', 'Undeployed', 'Rescued' flag 
 ldrb 	r0, [r5, #0xC]
 @ mov		r1,#0x24 

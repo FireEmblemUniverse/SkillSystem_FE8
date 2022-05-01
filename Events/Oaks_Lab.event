@@ -496,6 +496,14 @@ SVAL r2 UnitsLuis|IsPointer
 GOTO 200
 
 Label 46 
+CompareTactText(GastonName) 
+BNE 47 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsGaston|IsPointer
+GOTO 200
+
+Label 47
+
 Label 199
 
 
@@ -709,6 +717,10 @@ UnitsLuis:
 UNIT 0x02 TentacoolID BonusUnitParameters 
 UNIT 
 
+ALIGN 4
+UnitsGaston:
+UNIT 0x02 VenonatID BonusUnitParameters 
+UNIT 
 
 
 ALIGN 4

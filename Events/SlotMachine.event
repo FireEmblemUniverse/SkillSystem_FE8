@@ -1,28 +1,15 @@
 
-////////////////////////////////////////////////////
-//                                                //
-// Disassembled with Nintenlord's Event Assembler //
-// Version: 11.1.0.0                              //
-// Game: FE8                                      //
-// File: celadon.event_assembler.gba              //
-// Offset: $10010B0                               //
-//                                                //
-////////////////////////////////////////////////////
-
 
 SlotMachine_Main:
 CHECK_MONEY 
 SVAL s7 1000
-BLT 50 sC s0 // If less than 1000g, exit 
+BLT 50 sC s7 // If less than 1000g, exit 
 TutText(PlaySlotsText)
 SVAL 0x7 0x1
 BNE 0x63 0xC 0x7 // If not yes, then exit 
-SVAL s3 1000 
-GIVETOSLOT3 // Take s3 (1000g) from the player 
-UNCM(0x7FFF, 1) // Hide current unit 
+
+//UNCM(0x7FFF, 1) // Hide current unit 
 // hide party 
-
-
 CHECK_COORDS 0x7FFF
 SADD rB rC r0 
 CALL ConvertFromMemSlotBCoord
@@ -30,11 +17,30 @@ CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
 
-
 FADI 33
 LOMA SlotMachineCh
 ShowMap
+LABEL 0 // Used when playing again 
+SVAL s3 1000 
+GIVETOSLOT3 // Take s3 (1000g) from the player 
+
 CALL SlotMachine_Start 
+
+// Play again? 
+TutText(PlaySlotsAgainText)
+SVAL 0x7 0x1
+BNE 20 0xC 0x7 // If not yes, then exit 
+CHECK_MONEY 
+SVAL s7 1000
+BLT 10 sC s7 // If less than 1000g, exit 
+GOTO 0 // Play again & has enough money 
+LABEL 10
+TutText(InsufficientFundsText)
+GOTO 30 
+LABEL 20
+TutText(BetterSlowDownText)
+
+LABEL 30
 // clean up 
 FADI 33
 CLEE 0x0
@@ -56,12 +62,13 @@ CALL CamSlotB
 ASMC TrapRework_NewUpdateAllLightRunes
 
 UNCR(0x7fff, 1) // unhide 
+ShowMap
 GOTO 0x63 
 LABEL 50
 TutText(InsufficientFundsText)
 
 LABEL 0x63 
-ShowMap
+
 
 
 

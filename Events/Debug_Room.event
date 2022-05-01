@@ -92,7 +92,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  MarowakID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MachopID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -276,10 +276,10 @@ Write_Byte(4, GaryStarterClass)
 
   
 Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(18, YCoordNewArea)  
+Write_Byte(30, YCoordNewArea)  
 //MNC2 PewterCh
-//MNC2 CeladonCh
-MNC2 CinnabarCh
+MNC2 CeladonCh
+//MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch

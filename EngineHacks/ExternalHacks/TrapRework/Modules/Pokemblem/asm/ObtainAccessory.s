@@ -43,7 +43,7 @@ ObtainStatAccessoryInitialization:
 mov r0, #0x3
 ldrb r0, [r5, r0]     @Completion flag
 
-ldr r1, =ObtainItemFlagOffset 
+ldr r1, =ObtainAccessoryFlagOffset
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 b ActualInitialization
@@ -52,7 +52,7 @@ ObtainSkillAccessoryInitialization:
 mov r0, #0x3
 ldrb r0, [r5, r0]     @Completion flag
 
-ldr r1, =ObtainItemFlagOffset 
+ldr r1, =ObtainAccessoryFlagOffset 
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 
@@ -284,7 +284,7 @@ beq Usability_RetFalse
 
 mov r0, #0x3 
 ldrb r0, [r4, r0]     @Completion flag
-ldr r1, =ObtainItemFlagOffset 
+ldr r1, =ObtainAccessoryFlagOffset 
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 b ObtainScrollUsability
@@ -301,7 +301,7 @@ beq Usability_RetFalse
 
 mov r0, #0x3 
 ldrb r0, [r4, r0]     @Completion flag
-ldr r1, =ObtainItemFlagOffset 
+ldr r1, =ObtainAccessoryFlagOffset 
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 b ObtainScrollUsability
@@ -355,7 +355,7 @@ mov r4, r0  @&The DV
 @turn on completion flag 
 mov r0, #0x03			
 ldrb r0, [r4, r0]     @Completion flag
-ldr r1, =ObtainItemFlagOffset 
+ldr r1, =ObtainAccessoryFlagOffset 
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 
@@ -393,7 +393,7 @@ mov r4, r0  @&The DV
 @turn on completion flag 
 mov r0, #0x03			
 ldrb r0, [r4, r0]     @Completion flag
-ldr r1, =ObtainItemFlagOffset 
+ldr r1, =ObtainAccessoryFlagOffset 
 lsl r1, #3 @8 flags per byte 
 add r0, r1 
 
