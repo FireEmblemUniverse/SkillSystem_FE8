@@ -33,16 +33,16 @@ extern u8 SkillDefenderCache; //For Nihil
 extern AuraSkillBuffer gAuraSkillBuffer[];
 
 u8* MakeSkillBuffer(Unit* unit) {
-    u8 unitNum = unit->pCharacterData->number, count = 0, temp = 0;
+    int unitNum = unit->pCharacterData->number, count = 0, temp = 0;
     u8* buff = gSkillBuffer;
 
     temp = PersonalSkillTable[unitNum].skillID;
-    if (temp != 0 && temp != 255) {
+    if (IsSkillIDValid(temp)) {
         buff[count++] = temp;
     }
 
     temp = ClassSkillTable[unit->pClassData->number].skillID;
-    if (temp != 0 && temp != 255) {
+    if (IsSkillIDValid(temp)) {
         buff[count++] = temp;
     }
 
@@ -52,6 +52,16 @@ u8* MakeSkillBuffer(Unit* unit) {
             continue;
         }
         break;
+    }
+
+    //Item passive skills
+    for (int i = 0; i <= 4 && unit->items[i] != 0; ++i) {
+        temp = unit->items[i];
+        if ((GetItemAttributes(temp) & 0x00800000)) {
+            if (IsSkillIDValid(GetItemData(temp & 0xFF)->skill)) {
+                buff[count++] = GetItemData(temp & 0xFF)->skill;
+            }
+        }
     }
 
     //Extra checks made special for range skills so Gaiden Magic won't crash
@@ -69,7 +79,7 @@ u8* MakeSkillBuffer(Unit* unit) {
         temp = GetItemData(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
     }
 
-    if (temp != 0 && temp != 255) {
+    if (IsSkillIDValid(temp)) {
         buff[count++] = temp;
     }
 
@@ -88,13 +98,13 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 		if (!other)
 			continue;
 
-		if (unit->index == i)
-			continue;
-
 		if (!other->pCharacterData)
 			continue;
         
         if (other->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
+			continue;
+
+		if (unit->index == i)
 			continue;
 
         u8* skills = MakeSkillBuffer(other);
@@ -119,25 +129,25 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
 //Checks for skills already added to the buffer without needing a full skill test
 //Used by the weapon usability calc loop
-int CheckSkillBuffer(Unit* unit, int skill) {
+bool CheckSkillBuffer(Unit* unit, int skillID) {
     for (int i = 0; gSkillBuffer[i] != 0; ++i) {
-        if (gSkillBuffer[i] == skill) {
+        if (gSkillBuffer[i] == skillID) {
             return TRUE;
         }
     }
     return FALSE;
 }
 
-int SkillTester(Unit* attacker, u8 skill) {
-    if (skill == 0)   {return TRUE;}
-    if (skill == 255) {return FALSE;}
+bool SkillTester(Unit* attacker, u8 skillID) {
+    if (skillID == 0)   {return TRUE;}
+    if (skillID == 255) {return FALSE;}
 
     if (attacker->index != SkillAttackerCache) {
         MakeSkillBuffer(attacker);
     }
 
     for (int i = 0; gSkillBuffer[i] != 0; ++i) {
-        if (gSkillBuffer[i] == skill) {
+        if (gSkillBuffer[i] == skillID) {
             return TRUE;
         }
     }
@@ -145,28 +155,23 @@ int SkillTester(Unit* attacker, u8 skill) {
     return FALSE;
 }
 
-int NewAuraSkillCheck(Unit* unit, int skill, int param, int maxRange) {
+bool NewAuraSkillCheck(Unit* unit, int skillID, int param, int maxRange) {
     const s8(*pAllegianceChecker)(int, int) = ((param & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
 
-    if (skill == 0)   {return TRUE;}
-    if (skill == 255) {return FALSE;}
+    if (skillID == 0)   {return TRUE;}
+    if (skillID == 255) {return FALSE;}
 
     for (int i = 0; gAuraSkillBuffer[i].skillID; ++i) {
-        if (gAuraSkillBuffer[i].skillID == skill && gAuraSkillBuffer[i].distance <= maxRange) {
+        if (gAuraSkillBuffer[i].distance <= maxRange && gAuraSkillBuffer[i].skillID == skillID) {
 
             //NOTE: this is checking bits
-            if (param == 4)
-		        return TRUE;
-
-            if (param > 4)
-		        return 0;
-
             int check = pAllegianceChecker(unit->index, gAuraSkillBuffer[i].faction);
 
             if (param & 2)
         		check = !check;
 
-            return check;
+            if (check)
+                return TRUE;
         }
     }
 
