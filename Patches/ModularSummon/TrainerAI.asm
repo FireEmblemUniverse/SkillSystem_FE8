@@ -146,8 +146,6 @@ bx r1
 TrainerSpotsYouFunction:
 push {r4-r7, lr}
 
- 
-
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
 ldr r1, [r3] @ Char data 

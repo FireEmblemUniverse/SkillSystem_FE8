@@ -1,29 +1,34 @@
+// this data is only relevant to usability 
+// see "Patches/SplitPromoItems/Installer.event"
+ALIGN 4
 MoonStoneList:
 BYTE ClefairyID JigglypuffID NidorinaID NidorinoID 0x0
-
+ALIGN 4
 LinkStoneList:
 BYTE KadabraID MachokeID HaunterID GravellerID 0x0
-
+ALIGN 4
 ThunderStoneList:
 BYTE PikachuID EeveeID 0x0
-
+ALIGN 4
 LeafStoneList:
 BYTE WeepinbellID GloomID ExeggcuteID 0x0
-
+ALIGN 4
 WaterStoneList:
 BYTE PoliwhirlID ShellderID StaryuID EeveeID 0x0
-
+ALIGN 4
 MasterSealList:
 BYTE 0x0
-SacredStoneList:
+ALIGN 4
+SacredStoneList: // No Eevee because branching would be required 
+BYTE VulpixID GrowlitheID PoliwhirlID ShellderID StaryuID WeepinbellID GloomID ExeggcuteID PikachuID KadabraID MachokeID HaunterID GravellerID ClefairyID JigglypuffID NidorinaID NidorinoID  
 BYTE 0x0
-
+ALIGN 4
 FireStoneList:
 BYTE VulpixID GrowlitheID EeveeID 0x0
-
+ALIGN 4
 LunarBraceList:
 BYTE 0x0
-
+ALIGN 4
 SolarBraceList:
 BYTE 0x0
 

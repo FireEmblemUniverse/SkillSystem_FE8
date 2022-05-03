@@ -209,7 +209,7 @@ UNIT Reinforcement0 ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 
 UNIT 
 
 BossUnit:
-UNIT 0xEE KangaskhanID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 0xEE KangaskhanID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [Ember, Tackle,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
 BossSummons: 
@@ -226,8 +226,8 @@ MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, BossSummons)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-BQ(0xE, 0x00)
-TDQ_TableTerminator; 
+BQ(0xE, 0x0)
+TBQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xE, 0x00, 0) 

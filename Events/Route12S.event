@@ -293,7 +293,7 @@ SHORT R12S_0xE0_BQ // 0xE0
 SHORT R12S_0xE1_BQ // 0xE0 
 SHORT R12S_0xE2_BQ // 0xE0 
 SHORT R12S_0xE3_BQ // 0xE0 
-TDQ_TableTerminator
+TBQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xE, SnorlaxLeftText, 0)

@@ -5,7 +5,7 @@
 
 
 
-
+#define UNCM(StatusW) "SVAL 3 StatusW; ASMC UNCM"
 
 //#define UNCM(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCM"
 #define UNCR(UnitID, StatusW) "SVAL 1 UnitID; SVAL 3 StatusW; ASMC UNCR"

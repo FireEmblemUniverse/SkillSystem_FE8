@@ -388,6 +388,7 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	}
 	LoadIconPalettes(0xC);
 	
+	/*
 	// Draw usable weapon types 
 	iconX = 0xE;
 	iconY = 1;
@@ -410,6 +411,7 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 			}
 		}
 	}
+	*/
 	LoadIconPalettes(0xE);
 	
 

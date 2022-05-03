@@ -1,7 +1,7 @@
 
-#define TQ_ChEntry(ChID) "PUSH; ORG TrainerQuotesPoinTable + (4*ChID); POIN TQ_IndividualChTable; POP; ALIGN 4; TQ_IndividualChTable:" 
-#define TQ_Nuzlocke_ChEntry(ChID) "PUSH; ORG TrainerQuotesNuzlockePoinTable + (4*ChID); POIN TQ_Nuzlocke_IndividualChTable; POP; ALIGN 4; TQ_Nuzlocke_IndividualChTable:" 
-#define TD_ChEntry(ChID) "PUSH; ORG TrainerDefeatPoinTable + (4*ChID); POIN TD_IndividualChTable; POP; ALIGN 4; TD_IndividualChTable:" 
+#define TQ_ChEntry(ChID) "PUSH; ORG TrainerQuotesPoinTable + (4*ChID); POIN TQ_IndividualChTable; POP; ALIGN 4; TQ_IndividualChTable: ; PUSH ; WORD 0 0 0 0 0 0 0 0; POP" 
+#define TQ_Nuzlocke_ChEntry(ChID) "PUSH; ORG TrainerQuotesNuzlockePoinTable + (4*ChID); POIN TQ_Nuzlocke_IndividualChTable; POP; ALIGN 4; TQ_Nuzlocke_IndividualChTable: ; PUSH ; WORD 0 0 0 0 0 0 0 0; POP" 
+#define TD_ChEntry(ChID) "PUSH; ORG TrainerDefeatPoinTable + (4*ChID); POIN TD_IndividualChTable; POP; ALIGN 4; TD_IndividualChTable: ; PUSH ; WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; POP" 
 //#define TQD_TableTerminator "ALIGN 4; WORD 0" 
 
 

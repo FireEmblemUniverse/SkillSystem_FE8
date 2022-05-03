@@ -59,8 +59,9 @@ ASMC ModularSummonEffect
 GOTO 0x63 
 
 LABEL 21 // Wild Boss pokemon that can only be attacked once its summons are defeated 
+
 ASMC CallCheckTrainerFlag 
-BNE 0x63 rC r0 // If flag is unset, always call modular summon
+BNE 60 rC r0 // If flag is unset, always call modular summon
 ENUT PlayableCutsceneFlag
 SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
 REMA 
@@ -73,7 +74,10 @@ TutText(AuraFlareText)
 
 SVAL s1 3<<8 // Attack in range 
 CHAI 0x7FFF 
+GOTO 0x63 
 
+LABEL 60 
+TutText(ErrorText) // Error 
 
 LABEL 0x63 
 EVBIT_MODIFY 0

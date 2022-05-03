@@ -81,6 +81,12 @@ EventPointerTable(SafariNCh                    ,ThisChapter)
 EventPointerTable(SafariSCh                    ,ThisChapter)
 EventPointerTable(SafariECh                    ,ThisChapter)
 EventPointerTable(SafariWCh                    ,ThisChapter)
+EventPointerTable(SilphCo1FCh                    ,ThisChapter)
+EventPointerTable(SilphCo2FCh                    ,ThisChapter)
+EventPointerTable(SilphCo3FCh                    ,ThisChapter)
+EventPointerTable(SilphCo4FCh                    ,ThisChapter)
+EventPointerTable(SilphCo5FCh                    ,ThisChapter)
+EventPointerTable(SlotMachineCh                    ,ThisChapter)
 
 
 ALIGN 4
@@ -252,12 +258,12 @@ RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
 SetUnitStatus(1, CurrentHP, 5)
 
-//SetUnitStatus(2, CurrentHP, 5)
+SetUnitStatus(2, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 
 //SetUnitStatus(1, 0x2a, Ember)
-SetUnitStatus(1, 0x29, Growth)
+SetUnitStatus(3, 0x29, RecoverMove)
 SetUnitStatus(0x50, 0x16, 20)
 
 SetUnitStatus(0x50, 0x8, 20)

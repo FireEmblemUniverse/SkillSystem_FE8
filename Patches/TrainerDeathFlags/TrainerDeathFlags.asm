@@ -132,7 +132,6 @@ ReturnFalse:
 mov r0, #0 
 
 Exit:
-
 pop {r4-r7}
 pop {r1}
 bx r1 
@@ -418,6 +417,8 @@ push {r4-r5, lr}
 mov r4, r0 
 mov r5, #0 
 
+
+
 ldr r1, [r4] 
 ldrb r1, [r1, #4] @ Unit ID we're interested in 
 StartCheckTrainerFlag:
@@ -431,7 +432,7 @@ ldr r3, =0x202BCF0 @ Chapter Data
 ldrb r0, [r3, #0x0E] @ +0x0E	Byte	Chapter ID
 lsl r0, #4 @ 16 trainers per area allowed 
 add r0, r1 @ which trainer exactly 
-ldrb r3, =TrainerDefeatedFlagOffset @0xA0 
+ldr r3, =TrainerDefeatedFlagOffset @0xA0 
 lsl r3, #24 
 lsr r3, #24 
 lsl r1, r3, #3 @ 8 flags per byte so +0x500 
@@ -519,7 +520,7 @@ mov r0, r1 @ returned address offset to set
 blh UnsetNewFlag 
 mov r0, #0 
 mov r1, #0x2D 
-strb r0, [r4, r1] @ to not trigger the battle again 
+strb r0, [r4, r1] @ to trigger the battle again 
 
 
 ExitUnmarkTrainerAsDefeated: 

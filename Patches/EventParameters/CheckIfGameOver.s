@@ -12,7 +12,6 @@ CheckIfGameOver:
 push {lr} 
 
 bl Get1stUnit
-mov r11, r11 
 cmp r0, #0 
 bne Exit 
 

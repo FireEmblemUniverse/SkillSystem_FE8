@@ -243,7 +243,7 @@ AoE_Table:
 BYTE 0 0 0 0
 BYTE 0 0 0 RecoverMove 
 BYTE 0 HealBool|MagBasedBool //|FixedDamageBool
-BYTE 0 0 // damage range 
+BYTE 4 4 // damage range: 4 mt + (1/2 mag) 
 BYTE 0 1 // Attack range 
 BYTE SmallLine HealingAnimationID // Index of RangeMask, Animation
 

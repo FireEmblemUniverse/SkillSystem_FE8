@@ -1,0 +1,22 @@
+
+PUSH
+
+
+ORG $CCCD6
+#incbin "CCCD6.bin"
+
+ORG $CCE72
+#incbin "CCE72.bin"
+ORG $CCE90
+#incbin "CCE90.bin"
+ORG $CDB80 
+#incbin "CDB80.bin"
+ORG $CDD38 
+#incbin "CDD38.bin"
+
+
+
+
+POP 
+
+

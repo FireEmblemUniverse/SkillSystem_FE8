@@ -505,7 +505,6 @@ b ApproachEnemyModularSummonStart
 .type PursueAndSummonOrAttackFunc, %function 
 PursueAndSummonOrAttackFunc:
 push {r4-r6, lr} 
-
 mov r5, #1 @ Yes, we move 
 ApproachEnemyModularSummonStart:
 @ Check for AI4 of 0x20 

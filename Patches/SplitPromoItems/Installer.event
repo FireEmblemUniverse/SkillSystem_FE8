@@ -1,0 +1,112 @@
+#ifdef _FE8_
+#ifndef SPLIT_PROMO_ITEMS
+
+PUSH
+ORG $CC5F6
+SHORT 0x46C0 //nop
+jumpToHack(SplitPromoItems)
+ORG $CC5DE
+SHORT 0x46C0 //nop
+jumpToHack(SplitPromoItemsPrep)
+POP
+
+#include "SplitPromoItems.lyn.event"
+#include "SplitPromoPrepScreen.lyn.event"
+
+
+#define PromoItemEntry(itemID,promoList) "BYTE itemID 0 0 0; POIN promoList"
+#define PromoItemsEnd "WORD 0 0"
+
+ALIGN 4
+PromoItemsList:
+PromoItemEntry(FireStone,FireStonePromoList)
+PromoItemEntry(WaterStone,WaterStonePromoList)
+PromoItemEntry(ThunderStone,ThunderStonePromoList)
+PromoItemEntry(LinkStone,LinkStonePromoList)
+PromoItemEntry(LeafStone,LeafStonePromoList)
+PromoItemEntry(MoonStone,MoonStonePromoList)
+PromoItemEntry(SacredStone,SacredStonePromoList)
+PromoItemsEnd
+
+
+
+
+ALIGN 4
+SplitPromoItemsList:
+//BYTE SacredStone 
+BYTE 0
+
+#define PromoListEntry(baseClass,promoClass) "BYTE baseClass promoClass"
+#define PromoListEnd "SHORT 0"
+
+ALIGN 4
+FireStonePromoList:
+PromoListEntry(VulpixID,NinetalesID)
+PromoListEntry(GrowlitheID,ArcanineID)
+PromoListEntry(EeveeID,FlareonID)
+PromoListEnd
+
+ALIGN 4
+ThunderStonePromoList:
+PromoListEntry(EeveeID, JolteonID)
+PromoListEntry(PikachuID, RaichuID)
+PromoListEnd
+
+ALIGN 4
+WaterStonePromoList:
+PromoListEntry(PoliwhirlID, PoliwrathID)
+PromoListEntry(ShellderID, CloysterID)
+PromoListEntry(StaryuID, StarmieID)
+PromoListEntry(EeveeID, VaporeonID)
+PromoListEnd
+
+ALIGN 4
+MoonStonePromoList:
+PromoListEntry(ClefairyID, ClefableID)
+PromoListEntry(JigglypuffID, WigglytuffID)
+PromoListEntry(NidorinaID, NidoqueenID)
+PromoListEntry(NidorinoID, NidokingID)
+PromoListEnd
+
+ALIGN 4
+LinkStonePromoList:
+PromoListEntry(KadabraID, AlakazamID)
+PromoListEntry(MachokeID, MachampID)
+PromoListEntry(HaunterID, GengarID)
+PromoListEntry(GravellerID, GolemID)
+PromoListEnd
+
+ALIGN 4
+LeafStonePromoList:
+PromoListEntry(WeepinbellID, VictreebelID)
+PromoListEntry(GloomID, VileplumeID)
+PromoListEntry(ExeggcuteID, ExeggutorID)
+PromoListEnd
+
+ALIGN 4
+SacredStonePromoList:
+PromoListEntry(WeepinbellID, VictreebelID)
+PromoListEntry(GloomID, VileplumeID)
+PromoListEntry(ExeggcuteID, ExeggutorID)
+PromoListEntry(VulpixID,NinetalesID)
+PromoListEntry(GrowlitheID,ArcanineID)
+PromoListEntry(KadabraID, AlakazamID)
+PromoListEntry(MachokeID, MachampID)
+PromoListEntry(HaunterID, GengarID)
+PromoListEntry(GravellerID, GolemID)
+PromoListEntry(ClefairyID, ClefableID)
+PromoListEntry(JigglypuffID, WigglytuffID)
+PromoListEntry(NidorinaID, NidoqueenID)
+PromoListEntry(NidorinoID, NidokingID)
+PromoListEntry(PoliwhirlID, PoliwrathID)
+PromoListEntry(ShellderID, CloysterID)
+PromoListEntry(StaryuID, StarmieID)
+PromoListEntry(PikachuID, RaichuID)
+PromoListEnd
+
+ALIGN 4 
+
+#endif // SPLIT_PROMO_ITEMS
+#else
+ERROR Split Promo Items is only for FE8!
+#endif // _FE8_

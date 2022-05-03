@@ -1404,12 +1404,14 @@ tst r0, r1
 beq UseStr 
 mov r1, #0x3A
 ldrb r0, [r6, r1] @ Use Mag 
+lsr r0, #1 @ half of mag 
 add r4, r0 
 b CleanupHealing 
 
 
 UseStr: @ Seems silly to use str, but non str/mag split users will appreciate 
 ldrb r0, [r6, #0x14] @ Str 
+lsr r0, #1 @ half of str 
 add r4, r0 @ 
 
 CleanupHealing:

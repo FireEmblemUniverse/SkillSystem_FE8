@@ -1981,8 +1981,8 @@ Thank you! Take good[N]
 care of Eevee![A][X]
 
 ## PurchasePrizeText
-Can I interested you in[N]
-the finest TMs around?[A][X]
+Can I interested you in the[N]
+finest specimens around?[A][X]
 
 ## No_PurchasedPrizeText
 Come back when[N]
@@ -2038,7 +2038,7 @@ Better pace myself...[A][X]
 
 
 ## ErikaChallengeText
-My name is ERIKA.[N]
+[OpenMidRight][LoadErika][OpenMidRight]My name is ERIKA.[N]
 I am the LEADER of CELADON GYM.[A][N]
 I am a study flower-arranging and[N]
 concoct herbal remedies.[A][N]
@@ -2049,18 +2049,18 @@ to challenge me?[A][N]
 Very well, but I shall not lose.[A][X]
 
 ## ErikaDefeatText
-Oh![N]
+[OpenMidRight][LoadErika][OpenMidRight]Oh![N]
 I concede defeat.[A][N]
 You are remarkably strong.[A][N]
 I must confer on you the[N]
 RAINBOWBADGE.[A][X]
 
 ## ErikaWaitText
-[Tact]![N]
+[OpenMidRight][LoadErika][OpenMidRight][Tact]![N]
 Please, take this.[A][X]
 
 ## ErikaRewardText
-This will soothe and restore[N]
+[OpenMidRight][LoadErika][OpenMidRight]This will soothe and restore[N]
 all nearby allies.[A][N]
 I hope you'll make[N]
 good use of it.[A][X]
