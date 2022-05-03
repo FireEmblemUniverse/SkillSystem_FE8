@@ -52,7 +52,7 @@ NewAI2Entry(34, DoNothingAI2)
 #define DoNothingAI DoNothing 
 
 #define SafeZoneAI2 23 
-#define BushAI [21,21]
+#define BushAI [21,21, 4, 32] // will not use vulns or have staves used on them
 #define WithinTwoZoningAI [23,23] // 
 #define SafeZoningAI [23,32]
 #define LessSafeZoningAI [24,24]
