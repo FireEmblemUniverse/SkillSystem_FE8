@@ -122,7 +122,7 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
-// Toy Box 
+// Fly
 WORD  0x0
 SHORT UM_Fly
 SHORT UM_FlyDesc
@@ -136,6 +136,7 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
+/*
 #ifdef DEBUG_MODE
 // Chapter Jump 
 WORD  0x0
@@ -151,6 +152,7 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 #endif 
+*/
 
 // End
 WORD  0x80D7EA4

@@ -6,10 +6,10 @@
   .short 0xf800
 .endm
 	.equ EventEngine, 0x800D07C
-.global FlyCommandEffect
-.type FlyCommandEffect, function 
+.global FlyCommandEffect2
+.type FlyCommandEffect2, function 
 
-FlyCommandEffect: 
+FlyCommandEffect2: 
 push {lr} 
 ldr r0, =FlyCommandEvent 
 mov	r1, #0x01		@0x01 = wait for events

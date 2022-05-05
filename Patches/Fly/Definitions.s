@@ -1,10 +1,6 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 
-
-SET_FUNC Font_ResetAllocation, (0x08003D20+1) 
-
-
 //@ Vanilla function declarations:
 
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
@@ -29,35 +25,59 @@ SET_FUNC RTextLeft, (0x080893B4+1)
 
 SET_FUNC RTextRight, (0x080893E4+1)
 
-SET_FUNC GetUnitEquippedItem, (0x08016B28+1)
-
-SET_FUNC StartMovingPlatform, (0x080CD408+1)
-
-SET_FUNC SetupMovingPlatform, (0x080CD47C+1)
-SET_FUNC DeleteSomeAISStuff, (0x0805AA28+1)
-
-SET_FUNC DeleteSomeAISProcs, (0x0805AE14+1)
 
 
-SET_FUNC LockGameGraphicsLogic, 0x8030185
-SET_FUNC UnlockGameGraphicsLogic, 0x80301B9
-SET_FUNC MU_AllDisable, 0x80790E1
-SET_FUNC MU_AllEnable, 0x80790ED
 
 //@ Data declarations:
+
+SET_DATA gVeslyUnit, 0x30017BC
+SET_DATA gVeslySkill, 0x0202BCDE
+
+SET_DATA SpellsBuffer, 0x202B6D0
+
+SET_DATA SelectedSpell, 0x0203F080
+
+SET_DATA UsingSpellMenu, 0x0203F082
+
+SET_DATA DidSelectSpell, 0x0203F084
+
+SET_DATA SpellTargetSelection, 0x0859D3F8
+
+SET_DATA StatScreenBufferMap, 0x02003C94
+
 SET_DATA gBG0MapBuffer, 0x02022CA8
 
-SET_DATA gBG1MapBuffer, 0x020234A8
-
-SET_DATA gBG2MapBuffer, 0x02023CA8
-
-SET_DATA gPlayerGold, 0x202BCF8
-SET_DATA gSomeAISStruct, 0x030053A0
-
-SET_DATA gSomeAISRelatedStruct, 0x0201FADC
-
-SET_DATA MemorySlot, 0x30004B8
+SET_DATA gpCurrentRound, 0x0203A608
 
 
+//@ Autohooks:
 
+SET_FUNC NewGetUnitEquippedWeapon, (0x08016B28+1)
 
+SET_FUNC NewGetUnitEquippedWeaponSlot, (0x08016B58+1)
+
+SET_FUNC NewGetUnitRangeMask, (0x080171E8+1)
+
+SET_FUNC SetUpBattleWeaponDataHack, (0x0802A730+1)
+
+SET_FUNC NewMenuRText, (0x08024588+1)
+
+SET_FUNC NewGetUnitUseFlags, (0x08018B28+1)
+
+SET_FUNC GaidenActionStaffDoorChestUseItemHack, (0x0802FC48+1)
+
+SET_FUNC GaidenPreActionHack, (0x0801D1D0+1)
+
+SET_FUNC GaidenSetupBattleUnitForStaffHack, (0x0802CB24+1)
+
+SET_FUNC GaidenExecStandardHealHack, (0x0802EBB4+1)
+
+SET_FUNC GaidenExecFortifyHack, (0x0802F184+1)
+
+SET_FUNC GaidenStaffInventoryHack, (0x0802CC80+1)
+
+SET_FUNC GaidenTargetSelectionBPressHack, (0x08022780+1)
+
+SET_FUNC GaidenMenuSpellCostHack, (0x08016884+1)
+
+SET_FUNC GaidenTargetSelectionCamWaitBPressHack, (0x08022844+1)

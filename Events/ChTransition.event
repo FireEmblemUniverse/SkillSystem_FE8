@@ -3,8 +3,8 @@
 // 089EE340	&EVENT	Any event function	Mystery	1	{U}
 //Ram to save certain things in 
 
-#define XCoordNewArea 			0x30017ac
-#define YCoordNewArea 			0x30017ad
+//#define XCoordNewArea 			0x30017ac
+//#define YCoordNewArea 			0x30017ad
 #define CurrentChapter 		0x30017ae
 #define TeleportChapter 		0x30017af 
 #define RetreatChapter 		0x30017b0
@@ -900,6 +900,7 @@ SDIV r2 rB rC
 Write_Byte(YCoordNewArea) 
 NoFade
 ENDA 
+
 
 
 #define ChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA" 

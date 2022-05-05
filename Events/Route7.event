@@ -140,12 +140,6 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-// Rent bike? $5000 
-// if yes, set max move 
-// if no, usual movement 
-// if you try to run away with it, "hey thief!" and you pay a fine of $5000 
-
-
 LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(11,2,18,6)) //E patch 
@@ -153,9 +147,6 @@ RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(11,2,18,6)) //E patch
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
-LOAD1 0x1 HumanTrainers
-ENUN 
-AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
 LABEL 0x63
@@ -179,49 +170,6 @@ UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 
 UNIT 
 
  
-HumanTrainers:
-//UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [5,13]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-//UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [14,14]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT
-
-// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
-{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
-// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
-MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
-MS_TableTerminator ; } 
-
-{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R16_0xE0_BQ // 0xE0 
-SHORT R16_0xE1_BQ // 0xE0 
-TDQ_TableTerminator
-
-TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R16_0xE0_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R16_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-TDQ_TableTerminator ; }
-
-
-
-// SpearowID	DoduoID	RaticateID
-
-// trainer's: Weezing, Electrode, Primeape, Machoke
-
-EnemyTrainers0: // biker
-UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	PrimeapeID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT
-
-EnemyTrainers1: // biker
-UNIT GenericB 	WeezingID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	ElectrodeID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	PrimeapeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT
 
 	
 #undef GenericA 

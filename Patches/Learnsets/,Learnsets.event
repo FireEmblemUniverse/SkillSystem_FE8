@@ -381,7 +381,7 @@ BYTE 13 QuickAttack
 BYTE 21 Slam
 BYTE 26 Thunderbolt
 BYTE 32 Agility
-BYTE 38 LightScreen
+//BYTE 38 LightScreen
 BYTE 43 Thunder 
 BYTE 0 0
 
@@ -395,7 +395,7 @@ BYTE 13 QuickAttack
 BYTE 21 Slam
 BYTE 26 Thunderbolt
 BYTE 32 Agility
-BYTE 38 LightScreen
+//BYTE 38 LightScreen
 BYTE 43 Thunder 
 BYTE 0 0
 
@@ -551,7 +551,7 @@ BYTE 28 RecoverMove
 //BYTE 31 Metronome
 //BYTE 34 Resv //Gravity
 BYTE 37 RecoverMove
-BYTE 40 LightScreen
+//BYTE 40 LightScreen
 BYTE 43 MeteorMash
 BYTE 46 RecoverMove
 BYTE 0 0
@@ -572,7 +572,7 @@ BYTE 28 RecoverMove
 //BYTE 31 Metronome
 //BYTE 34 Resv //Gravity
 BYTE 37 RecoverMove
-BYTE 40 LightScreen
+//BYTE 40 LightScreen
 BYTE 43 MeteorMash
 BYTE 46 RecoverMove
 BYTE 0 0
@@ -1655,7 +1655,7 @@ BYTE 8 AttackPulse // SonicBoom
 BYTE 12 Spark
 BYTE 15 Magnitude // Rollout
 BYTE 19 Screech
-BYTE 22 LightScreen
+//BYTE 22 LightScreen
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 Swift
@@ -1671,7 +1671,7 @@ ExeggcuteLearnset:
 BYTE 1 AttackPulse // Uproar
 BYTE 4 Doubleslap 
 // BYTE 1 Sleep2 // Hypnosis
-BYTE 7 Reflect
+//BYTE 7 Reflect
 BYTE 11 LeafFlurry // Leech Seed
 BYTE 17 Absorb // Bullet Seed
 BYTE 19 BodySlam // BYTE 19 StunSpore // 17 Stomp
@@ -1691,7 +1691,7 @@ ExeggutorLearnset:
 BYTE 1 AttackPulse // Uproar
 BYTE 1 Doubleslap 
 // BYTE 1 Sleep2
-BYTE 7 Reflect
+//BYTE 7 Reflect
 BYTE 11 LeafFlurry // Leech Seed
 BYTE 17 Absorb // Bullet Seed
 BYTE 19 BodySlam // BYTE 19 StunSpore // 17 Stomp
@@ -1878,7 +1878,7 @@ BYTE 16 Doubleslap
 // BYTE 23 Sleep2 // Sing
 BYTE 27 Snarl // Fling
 // BYTE 31 Resv DefenseCurl
-BYTE 34 LightScreen
+//BYTE 34 LightScreen
 BYTE 38 Swift // EggBomb 
 // BYTE 42 Resv HealingWish
 BYTE 46 DoubleEdge
@@ -2006,7 +2006,7 @@ BYTE 24 Swift
 BYTE 28 BubbleBeam
 // BYTE 33 Resv Minimize
 BYTE 37 MirrorShot // GyroBall
-BYTE 42 LightScreen
+//BYTE 42 LightScreen
 BYTE 46 Ancientpower
 // BYTE 51 Resv CosmicPower
 BYTE 55 HydroPump
@@ -2025,7 +2025,7 @@ BYTE 24 Swift
 BYTE 28 BubbleBeam
 // BYTE 33 Resv Minimize
 BYTE 37 MirrorShot // GyroBall
-BYTE 42 LightScreen
+//BYTE 42 LightScreen
 BYTE 46 Ancientpower
 // BYTE 51 Resv CosmicPower
 BYTE 55 HydroPump
@@ -2042,8 +2042,9 @@ BYTE 8 RecoverMove // BYTE 8 Resv Meditate
 // BYTE 11 Resv Encore
 BYTE 15 Doubleslap
 // BYTE 18 Resv Mimic
-BYTE 21 LightScreen
-BYTE 22 Reflect
+//BYTE 21 LightScreen
+BYTE 21 Harden
+//BYTE 22 Reflect
 BYTE 25 Psybeam
 // BYTE 29 Resv Substitute
 // BYTE 32 Resv Recycle
@@ -2105,7 +2106,7 @@ BYTE 7 Thundershock
 BYTE 10 LowKick
 BYTE 16 Swift
 BYTE 19 Spark // ShockWave
-BYTE 25 LightScreen
+//BYTE 25 LightScreen
 BYTE 28 ThunderPunch
 BYTE 37 ThunderWave // Discharge
 BYTE 43 Thunderbolt
@@ -2405,7 +2406,7 @@ BYTE 1 AuroraBeam
 BYTE 29 Ancientpower
 BYTE 36 Agility //?Buff
 BYTE 43 IceBeam
-BYTE 50 Reflect
+//BYTE 50 Reflect
 BYTE 57 RecoverMove //?Buff (Roost)
 BYTE 64 Tailwind
 BYTE 71 Blizzard
@@ -2424,7 +2425,7 @@ BYTE 29 Ancientpower
 BYTE 43 Agility //?Buff
 BYTE 50 Thunderbolt
 BYTE 57 RecoverMove //?Buff (Roost)
-BYTE 64 LightScreen //?Buff
+//BYTE 64 LightScreen //?Buff
 BYTE 71 DrillPeck
 BYTE 78 Thunder
 BYTE 0 0

@@ -47,8 +47,8 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToSaffron, 27,6) 
-House(0, ToRoute7, 20,6)
+House(0, ToSaffron, 2,10) 
+House(0, ToRoute7, 8,4)
 END_MAIN
 
 
@@ -58,23 +58,25 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToRoute17N [2,19] [14,19] 
-AREA 0 ToCeladon [40,12] [40,14] 
+AREA 0 ToLavender [59,9] [59,11] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(40,13) 
-EscapeTileEntry(4,19) 
-EscapeTileEntry(7,19) 
-EscapeTileEntry(11,19) 
+EscapeTileEntry(59,10) 
+EscapeTileEntry(8,4) 
+EscapeTileEntry(2,10) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToCeladon:
-ChapterTransition(CeladonCh, 1,18)
+ToLavender:
+ChapterTransition(LavenderCh, 1,40)
 
-ToRoute17N:
-ChapterTransition(Route17NCh, 8,1)
+ToSaffron:
+ChapterTransition(SaffronCh, 35,20)
+
+
+ToRoute7:
+ChapterTransition(Route7Ch, 7,15)
 
 
 
@@ -85,19 +87,19 @@ ChapterTransition(Route17NCh, 8,1)
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
-//CoinsTrap(57,15,(ChapterID*2)+1,600)
+CoinsTrap(13,12,(ChapterID*2)+1,800)
 
 
-CutBush(4,10)
-CutBush(37,11)
+CutBush(26,15)
+CutBush(40,12)
 //RockSmash(29,9)
 
 //StrengthBoulder(4,3)
 
-StatAccessoryTrap(31,10, (ChapterID*2), PaddedShield_BoostIndex) 
+//StatAccessoryTrap(31,10, (ChapterID*2), PaddedShield_BoostIndex) 
 
 
-//RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+RedPokeballTrap(31,11, (ChapterID*2)+1, LeafStone) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
@@ -105,10 +107,10 @@ StatAccessoryTrap(31,10, (ChapterID*2), PaddedShield_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
-//SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
+SkillScrollTrap(48,14, (ChapterID*2)+1, CharmID) 
 
-SignBTrap(33,11, ChapterID, 0x0) //no extra text 
-SignATrap(6,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(55,8, ChapterID, 0x0) //no extra text 
+SignATrap(5,7, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
@@ -175,8 +177,12 @@ UNIT
 
  
 HumanTrainers:
-UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [5,13]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [14,14]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [32,3]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [24,5]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 bikerID 0x0 Level(0, Enemy, 1) [16,14]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 bikerID 0x0 Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE4 lassID 0x0 Level(0, Enemy, 1) [51,13]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE5 battle_girlID 0x0 Level(0, Enemy, 1) [42,9]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
@@ -184,18 +190,35 @@ UNIT
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
 MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
+MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
+MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
+MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4) 
+MS_TableEntry(0xE5, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers5) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT R16_0xE0_BQ // 0xE0 
+SHORT R16_0xE1_BQ // 0xE0 
+SHORT R16_0xE1_BQ // 0xE0 
+SHORT R16_0xE1_BQ // 0xE0 
+SHORT R16_0xE1_BQ // 0xE0 
 SHORT R16_0xE1_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT R16_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R16_0xE1_BD // 0xE0 
+SHORT R16_0xE1_BD 
 SHORT 600 // Gold 
+SHORT R16_0xE1_BD 
+SHORT 600 // Gold 
+SHORT R16_0xE1_BD 
+SHORT 600 // Gold 
+SHORT R16_0xE1_BD 
+SHORT 600 // Gold 
+SHORT R16_0xE1_BD 
+SHORT 600 // Gold 
+
 TDQ_TableTerminator ; }
 
 
@@ -207,15 +230,44 @@ TDQ_TableTerminator ; }
 EnemyTrainers0: // biker
 UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	PrimeapeID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
 EnemyTrainers1: // biker
-UNIT GenericB 	WeezingID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	ElectrodeID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	PrimeapeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	PrimeapeID 			0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	MachokeID 			0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	MachokeID 			0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	PrimeapeID 			0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT
+
+EnemyTrainers2: // biker
+UNIT GenericB 	WeezingID 			0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	PrimeapeID 			0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	MachokeID 			0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	WeezingID 			0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT
+
+EnemyTrainers3: // biker
+UNIT GenericB 	WeezingID 			0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	MachokeID 			0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	PrimeapeID			0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	PrimeapeID 			0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT
+
+EnemyTrainers4: // lass
+UNIT GenericB 	JigglypuffID 		0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	JigglypuffID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	JigglypuffID 			0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	JigglypuffID 			0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	JigglypuffID 			0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT
+
+EnemyTrainers5: // battle girl
+UNIT GenericB 	PidgeotID 			0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	MachokeID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	PidgeotID 			0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	PidgeotID 			0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
 UNIT
 
 	

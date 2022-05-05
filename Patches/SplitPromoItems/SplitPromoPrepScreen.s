@@ -27,23 +27,25 @@ SplitPromoItemsPrep:
 
 push {r4-r7}
 
-@unnecessary part checking if there is only one promo option:
-@mov r0,r1
-@add r0,#0x34
-@ldrb r0,[r0]
-@cmp r0,#0 
-@bne CC616
-
-@set class to promote to
-@mov r0,r1
-@add r0,#0x35
-@ldrb r0,[r0]
-@mov r1,r2
-@add r1,#0x3B
-@strb r0,[r1]
 
 mov r6,r1
 mov r7,r2
+@unnecessary part checking if there is only one promo option:
+mov r0,r1
+add r0,#0x34
+ldrb r0,[r0]
+cmp r0,#0 
+bne SkipDefault
+
+@set class to promote to
+mov r0,r1
+add r0,#0x35
+ldrb r0,[r0]
+mov r1,r2
+add r1,#0x3B
+strb r0,[r1]
+SkipDefault:
+
 
 @need a new way to get active item in r0
 ldr r0,=0x8A19064 @this is a proc that if still exists has item we used

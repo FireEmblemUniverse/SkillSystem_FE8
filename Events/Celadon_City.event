@@ -175,7 +175,7 @@ ToRoute16:
 ChapterTransition(Route16Ch, 39,13)
 
 ToRoute7:
-CALL ClosedArea 
+//CALL ClosedArea 
 ChapterTransition(Route7Ch, 1,3)
 
 

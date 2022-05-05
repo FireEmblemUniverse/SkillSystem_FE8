@@ -92,7 +92,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  KadabraID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [WaterStone, ThunderStone, FireStone,SacredStone] [0x0,0x0,0x0,0x0]
+UNIT Eirika  RattataID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [SacredStone,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -100,8 +100,8 @@ UNIT
 
 Units2:
 UNIT 2  GrowlitheID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 3  AlakazamID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 4  PidgeottoID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  KadabraID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4  EeveeID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [WaterStone,FireStone,ThunderStone,0x0] [0x0,0x0,0x0,0x0]
 UNIT 5  ScytherID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 //UNIT 6  PinsirID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
@@ -161,7 +161,9 @@ ALIGN 4
 BeginningScene:
 ENUT CasualModeFlag
 ENUT CasualModeFlag_2
-
+ENUT SaffronArrived
+ENUT CinnabarArrived
+ENUT IndigoPlateauArrived
 Write_Word(10000, 0x202BCF8)
 ENUT BracketedGrowthsFlag
 ENUT DebugPlaceUnitsFlagMenu
@@ -221,7 +223,7 @@ SilentGiveItemWithDurability(6, StatAccessory, WiseGlasses_BoostIndex|0x80)
 //GiveItemWithDurability(Eirika, SpellScroll, KarateChop)
 
 //SilentGiveItemWithDurability(1, SpellScroll, RockTomb)
-SilentGiveSkillAccessory(1, RenewalID)
+//SilentGiveSkillAccessory(1, RenewalID)
 SilentGiveItemWithDurability(1, Protein, 1)
 
 //SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
@@ -263,7 +265,7 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(60, True, 0x145) // all 
+AutoLevelUnits(35, True, 0x145) // all 
 //SetUnitStatus(1, 0x28, Earthquake)
 //SetUnitStatus(2, 0x28, Earthquake)
 //SetUnitStatus(3, 0x28, Earthquake)
@@ -273,15 +275,16 @@ AutoLevelUnits(60, True, 0x145) // all
 
 Write_Byte(4, GaryStarterClass) 
 
+ENUT FlyFlag
 
-
-Write_Byte(33, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(22, YCoordNewArea)  
+Write_Byte(1, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(3, YCoordNewArea)  
 //MNC2 PewterCh
 //MNC2 Route16Ch
-MNC2 CeladonCh
+//MNC2 Route7Ch
+//MNC2 CeladonCh
 //MNC2 SafariECh
-//MNC2 CinnabarCh
+MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch
