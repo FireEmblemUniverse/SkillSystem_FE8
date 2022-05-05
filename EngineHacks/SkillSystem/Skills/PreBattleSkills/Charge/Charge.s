@@ -17,8 +17,8 @@ beq End
 @not broken movement map
 ldr r0,=0x203a968
 ldrb r0,[r0]
-cmp r0,#0xFF
-beq End
+cmp r0,#0x80
+bge End
 
 @has Charge
 ldr r0, SkillTester
