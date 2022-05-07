@@ -1,0 +1,16 @@
+#include "ASMC_GetGameOption.lyn.event"
+#include "ASMC_SetGameOption.lyn.event"
+
+#define TextSpeedOption 4
+
+#define TextSpeedSlow 0
+#define TextSpeedNorm 1
+#define TextSpeedFast 2
+#define TextSpeedMax 3
+
+
+#define GetGameOption(Option) "SVAL s1 Option; ASMC GetGameOption|1"
+#define SetGameOption(Option, Value) "SVAL s1 Option; SVAL s3 Value; ASMC SetGameOption|1"
+#define SetGameOption(Option) "SVAL s1 Option; ASMC SetGameOption|1" // sets based on value of s3 
+
+

@@ -1,0 +1,274 @@
+#define ChapterID SaffronCh
+#define GenericB UnitCeruleanTrainer
+#define WildLvl 10 
+#define TrainerL 26 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+//{ ; ReinforceEntry(ChapterID)
+//}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(0xE1) // NPC talk again 
+TrainerPostBattleTalk(0xE2) // NPC talk again 
+//AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(MarshbadgeObtained,EnterGym,30,5) 
+House(DojoDefeated,EnterDojo,24,5) 
+House(0,EnterSilphCo,17,23) 
+House(PsychicObtained,ObtainPsychicEvent,27,31) 
+House(0,ObtainPsychicEvent2,27,31) 
+House(0,EnterSaffronEHouse,27,14) 
+Vendor(ShopItems,24,14)
+END_MAIN
+
+ObtainPsychicEvent:
+BottomWallText(PsychicSaffronText)
+GiveItemWithDurability(0, SkillScroll, Psychic)
+NoFade
+ENDA 
+
+ObtainPsychicEvent2:
+BottomWallText(PsychicSaffronText2)
+NoFade 
+ENDA 
+
+EnterSaffronEHouse:
+EVBIT_MODIFY 2 // Prevent text fast forward, but allow skipping 
+GetGameOption(TextSpeedOption)
+SADD sA sC s0 // save to sA 
+SetGameOption(TextSpeedOption, 1)
+TutText_M(SaffronEHouseText)
+SADD s3 sA s0 
+SetGameOption(TextSpeedOption)
+//GiveItemWithDurability(0, SpellScroll, Sleep2)
+NoFade 
+ENDA 
+
+
+EnterGym:
+ENUF MarshbadgeObtained  
+//CALL ClosedArea
+ForcedChapterTransition(SaffronGymCh, 15, 24)
+NoFade 
+ENDA 
+
+EnterDojo:
+ENUF DojoDefeated 
+//CALL ClosedArea
+ForcedChapterTransition(SaffronDojoCh, 8,15)
+NoFade 
+ENDA 
+
+EnterSilphCo:
+ForcedChapterTransition(SilphCo1FCh, 8,19)
+NoFade 
+ENDA 
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToRoute5 	[16,3] [18,3] 
+AREA 0 ToRoute6 	[17,35] [20,35]  
+AREA 0 ToRoute7 	[1,19] [1,21] 
+AREA 0 ToRoute8 	[36,19] [36,21] 
+END_MAIN
+
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(17,3) 
+EscapeTileEntry(18,35) 
+EscapeTileEntry(19,35) 
+EscapeTileEntry(1,20) 
+EscapeTileEntry(36,20) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToRoute5:
+ChapterTransition(Route5Ch, 15,31)
+ToRoute6:
+ChapterTransition(Route6Ch, 12,6)
+ToRoute7:
+ChapterTransition(Route7Ch, 14,10)
+ToRoute8:
+ChapterTransition(Route8Ch, 3, 10)
+
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(28,14,ChapterID*2,350)
+//CoinsTrap(43,13,(ChapterID*2)+1,400)
+RedPokeballTrap(4,3, ChapterID*2, MaxPotion)
+
+CutBush(4,7)
+
+Save(12,31) // Pokecenter 
+
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+//StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
+
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+SignBTrap(33,18, ChapterID, 0x0) //no extra text 
+SignATrap(4,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+//OpenPokeball(8,3)
+
+BlankExamineTrap(23,7,SaffronGymSignText)
+BlankExamineTrap(31,7,SaffronDojoSignText)
+SignTrap(13,24, SilphCoSignText) 
+SignTrap(29,15, SaffronKaraokeClub)
+
+EnterWallTrap(6,7, SaffronNWHouseText) // mimic
+EnterWallTrap(11,14, SaffronWHouseText) // 
+
+
+
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+ENUT SaffronArrived // unlock pokecenter fly 
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+CALL CityBeginningScene 
+CHECK_EVENTID SilphCoDefeated
+BNE 0 sC s0 
+LOAD1 1 RocketBlockingGym
+ENUN
+MarkTrainerAsDefeated(0xE0)
+LABEL 0
+CHECK_EVENTID RainbowbadgeObtained
+BNE 1 sC s0 
+LOAD1 1 RocketBlockingSilphCo
+ENUN
+MarkTrainerAsDefeated(0xE1)
+LABEL 1 
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+RocketBlockingGym:
+UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [30,5]  0b 0x0	0x1 REDA30R5 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xE1 rocket_fID 0x0 Level(0, Enemy, 1) [7,16]  0b 0x0	0x1 REDA7R16 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+RocketBlockingSilphCo:
+UNIT 0xE2 rocket_mID 0x0 Level(0, Enemy, 1) [17,24]  0b 0x0	0x1 REDA17R24 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0, SSA_0xE0_BQ) // unused
+BQ(1, SSA_0xE0_BQ) // 
+BQ(2, SSA_0xE0_BQ) // 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0, SaffronRocket_0, 1) 
+BD(1, SaffronRocket_1, 1) 
+BD(2, SaffronRocket_2, 1) 
+}
+
+
+ALIGN 4
+ShopItems:
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+BYTE SuperPotion 5 
+BYTE JellyDonut 5
+BYTE SkillScroll PrescienceID 
+BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
+BYTE SpellScroll Headbutt 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
+
+
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+
+
+	
+#undef GenericB 
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

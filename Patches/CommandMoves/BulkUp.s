@@ -26,15 +26,16 @@ ldr r1, =BulkUp
 lsl r1, #24 
 lsr r1, #24 
 bl MoveTester 
-
 cmp r0, #0
-beq RetFalse @ Full hp, so cannot heal self 
+beq RetFalse  
+bl IsPeaceful
 cmp r0, #1 
-beq RetTrue 
+beq RetFalse 
+mov r0, #1 
+b Exit 
 RetFalse: 
 mov r0, #3 @ Menu false usability is 3 
-
-RetTrue: 
+Exit:  
 
 pop {r1} 
 bx r1 

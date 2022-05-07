@@ -30,7 +30,7 @@
 
 // Less used commands 
 #include "ASMCs/HealAllUnits.lyn.event" 
-#include "ASMCs/GameOptionInstaller.event"
+#include "ASMCs/GameOption/GameOptionInstaller.event"
 
 #include "ASMCs/LordSplitMenu/Installer.event" 
 

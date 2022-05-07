@@ -23,18 +23,22 @@ ldr r1, =RecoverMove
 lsl r1, #24 
 lsr r1, #24 
 bl MoveTester 
+cmp r0, #0
+beq RetFalse 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
 ldrb r2, [r3, #0x13] @ Curr HP 
 ldrb r1, [r3, #0x12] @ Max HP 
 cmp r2, r1 
 bge RetFalse @ Full hp, so cannot heal self 
+bl IsPeaceful
 cmp r0, #1 
-beq RetTrue 
+beq RetFalse 
+mov r0, #1 
+b Exit 
 RetFalse: 
 mov r0, #3 @ Menu false usability is 3 
-
-RetTrue: 
+Exit: 
 
 pop {r1} 
 bx r1 

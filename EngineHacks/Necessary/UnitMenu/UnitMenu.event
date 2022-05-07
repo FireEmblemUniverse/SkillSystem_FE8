@@ -108,7 +108,8 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5B, EnterTextEffect0x5B) //Enter  
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5C, EnterTextEffect0x5C) //Enter  
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5D, EnterTextEffect0x5D) //Enter  
-
+  UM_Vendor
+  
 
 MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   
@@ -231,7 +232,7 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   UM_Chest
   UM_Door
   UM_Armory
-  UM_Vendor
+
   UM_Secret
   UM_Arena
 

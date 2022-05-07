@@ -266,6 +266,7 @@ LABEL 0x63
 SetTactName(VeslyName)
 
 AutoLevelUnits(35, True, 0x145) // all 
+SetUnitStatus(1, 0x29, Agility)
 //SetUnitStatus(1, 0x28, Earthquake)
 //SetUnitStatus(2, 0x28, Earthquake)
 //SetUnitStatus(3, 0x28, Earthquake)
@@ -274,17 +275,17 @@ AutoLevelUnits(35, True, 0x145) // all
 //SetUnitStatus(6, 0x28, Earthquake)
 
 Write_Byte(4, GaryStarterClass) 
-
 ENUT FlyFlag
 
-Write_Byte(1, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(3, YCoordNewArea)  
+Write_Byte(27, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(14, YCoordNewArea)  
 //MNC2 PewterCh
 //MNC2 Route16Ch
 //MNC2 Route7Ch
 //MNC2 CeladonCh
 //MNC2 SafariECh
-MNC2 CinnabarCh
+MNC2 SaffronCh
+//MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch

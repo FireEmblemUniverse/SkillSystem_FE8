@@ -17,7 +17,7 @@ QuicksaveDuringStartEvent:
 POP
 #incbin "QuicksaveDuringStartEvent.dmp"
 
-
+#include "IsPeaceful.lyn.event"
 
 
 

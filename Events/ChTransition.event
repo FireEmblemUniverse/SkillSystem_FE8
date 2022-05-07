@@ -939,6 +939,7 @@ EVBIT_F 2
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
 
+
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
@@ -947,6 +948,7 @@ ENUF TrainerBattleActiveFlag
 SADD 2 9 0 
 
 MNC2 (-1) 
+CLEE 0 // clear enemies 
 ENUF PlayableCutsceneFlag 
 GOTO 0x63 
 

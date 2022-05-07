@@ -171,7 +171,12 @@
 #define RainbowbadgeObtained 0xA0 
 #define ObtainedEeveeFlag 0xA1 
 #define SaffronArrived 0xA9
+#define SilphCoDefeated 0xAA
+
+
 #define MarshbadgeObtained 0xB1
+#define DojoDefeated 0xB2
+#define PsychicObtained 0xB3 
 
 #define CinnabarArrived 0xB9  
 #define VolcanobadgeObtained 0xBA 
