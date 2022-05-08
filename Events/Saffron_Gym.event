@@ -73,6 +73,8 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AREA 0xF TurnOffWallFlag [12,9] [20,14]
+AREA 0 MineEvent_Str [16,14] [17,14]
+AREA 0 MineEvent_Mag [15,9] [16,9]
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToSaffron [6,18] [6,18] 
 END_MAIN
@@ -85,7 +87,47 @@ EscapeTileTerminator ; }
 ToSaffron:
 ChapterTransition(SaffronCh, 30,6)
 
+MineEvent_Mag:
+PlayerInRange
+TutText(MagicFeelsDrained)
+//DebuffUnit(0x7FFF, 0x09876543) // -9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
+DebuffUnit(0x7FFF, 0x0A5A0A00) // -10 mag/res/spd, -5 luk 
+NoFade 
+ENDA 
+
+MineEvent_Str:
+PlayerInRange
+TutText(StrFeelsSapped)
+DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk 
+NoFade 
+ENDA 
+
 Traps1:
+ArrowTrap(16,1,1)
+MineTrap(16,14)
+MineTrap(16,14)
+MineTrap(16,14)
+MineTrap(16,14)
+MineTrap(16,14)
+MineTrap(16,14)
+//MineTrap(17,14)
+//MineTrap(17,14)
+//MineTrap(17,14)
+//MineTrap(17,14)
+//MineTrap(17,14)
+//MineTrap(17,14)
+//MineTrap(15,9)
+//MineTrap(15,9)
+//MineTrap(15,9)
+//MineTrap(15,9)
+//MineTrap(15,9)
+//MineTrap(15,9)
+MineTrap(16,9)
+MineTrap(16,9)
+MineTrap(16,9)
+MineTrap(16,9)
+MineTrap(16,9)
+MineTrap(16,9)
 ENDTRAP
 ALIGN 4
 
@@ -119,7 +161,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x82)
 
 
 MUSCFAST IntroBGM 
-Text(ErikaChallengeText)
+Text(SabrinaChallengeText)
 
 
 
@@ -185,21 +227,21 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 AlakazamID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x0 0	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 MrMimeID 0xD0 Level(0, Enemy, 1) [4,5]  0b 0x0		0x0 0 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 HypnoID 0xD0 Level(0, Enemy, 1) [8,5]  0b 0x0		0x0 0	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 KadabraID 0xD0 Level(0, Enemy, 1) [3,7]  0b 0x0 	0x0 0	[Psybeam,MagicalLeaf,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 VenomothID 0xD0 Level(0, Enemy, 1) [9,7]  0b 0x0	0x0 0	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 SlowbroID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x0 0	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xD0 AlakazamID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x0 0	[Psychic,ShadowBall,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 MrMimeID 0xD0 Level(0, Enemy, 1) [4,5]  0b 0x0		0x0 0 	[Psybeam,Doubleslap,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 HypnoID 0xD0 Level(0, Enemy, 1) [8,5]  0b 0x0		0x0 0	[Psybeam,BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 JynxID 0xD0 Level(0, Enemy, 1) [3,7] 	 0b 0x0 	0x0 0	[Psybeam,IceBeam,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 PorygonID 0xD0 Level(0, Enemy, 1) [9,7]  0b 0x0	0x0 0	[TriAttack, Thunderbolt, IceBeam ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 FarfetchdID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x0 0	[Slash,DrillPeck,0x0,0x0] 			ZoningHeal50GroupOneAI
 UNIT
 
 EnemyTrainersB: // rematch 
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xD0 AlakazamID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x0 0	[Psychic,ShadowBall,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 MrMimeID 0xD0 Level(0, Enemy, 1) [4,5]  0b 0x0		0x0 0 	[Psybeam,Doubleslap,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 HypnoID 0xD0 Level(0, Enemy, 1) [8,5]  0b 0x0		0x0 0	[Psybeam,BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 JynxID 0xD0 Level(0, Enemy, 1) [3,7] 	 0b 0x0 	0x0 0	[Psybeam,IceBeam,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 PorygonID 0xD0 Level(0, Enemy, 1) [9,7]  0b 0x0	0x0 0	[TriAttack, Thunderbolt, IceBeam ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 FarfetchdID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x0 0	[Slash,DrillPeck,0x0,0x0] 			ZoningHeal50GroupOneAI
 UNIT
 	
 

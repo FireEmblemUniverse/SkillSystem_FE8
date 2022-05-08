@@ -2,6 +2,7 @@
 #include "ASMCs/GetRand/Installer.event"
 #include "Draw/Installer.event"
 
+#include "ASMCs/DebuffUnit/Installer.event"
 #include "ASMCs/MapCameraPreview/Installer.event"
 
 #include "ASMCs/SilentGiveItem/Installer.event"

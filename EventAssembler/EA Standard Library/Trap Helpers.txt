@@ -22,6 +22,7 @@
 #define GasTrap(XX,YY,direction,startTurn,repeatTimer) "GAST [XX,YY] direction startTurn repeatTimer"
 #define PoisonTrap(XX,YY,direction,startTurn,repeatTimer) "GAST [XX,YY] direction startTurn repeatTimer"
 #define ArrowTrap(XX,YY,startTurn,repeatTimer) "ARROW [XX,YY] startTurn repeatTimer"
+#define ArrowTrap(XX,startTurn,repeatTimer) "ARROW XX startTurn repeatTimer"
 #define InstantFireTrap(XX,YY) "FIRE2 [XX,YY]"
 #define MineTrap(XX,YY) "MINE [XX,YY]"
 #define GorgonEggTrap(XX,YY,startTurn,level) "EGG [XX,YY] startTurn level"

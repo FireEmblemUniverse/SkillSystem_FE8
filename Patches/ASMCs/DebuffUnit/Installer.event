@@ -1,0 +1,22 @@
+
+
+#include "DebuffUnit.lyn.event"
+POIN GetDebuffs|1
+
+
+/*
+eg.
+DebuffUnit((-1), 0x09876543)
+-9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
+*/
+#define DebuffUnit(UnitID, DebuffValue) "SVAL s1 UnitID; SVAL s3 DebuffValue; ASMC DebuffUnit|1"
+
+
+
+
+
+
+
+
+
+
