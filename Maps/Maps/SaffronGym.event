@@ -2,7 +2,17 @@
 
 #include eastdlib.event
 
-SetChapterData(SaffronGymCh,SaffronGymObj,0,SaffronGymPal,SaffronGymConf,SaffronGymMap,Map,0,0,0)
+SetChapterData(SaffronGymCh,SaffronGymObj,0,SaffronGymPal,SaffronGymConf,SaffronGymMap,Map,0,0,SaffronGymMapChanges)
+MapChangesPointerTable(SaffronGymMapChanges, MapChanges)
 Map:
 #incbin "SaffronGym_data.dmp"
+
+MapChanges:
+TileMap(1,11,9,2,5,WallDown)
+TileMapEnd
+
+WallDown:
+SHORT 0x204 0x4 0x208 0x10 0x88 0x88 0x90 0x90 0x90 0x94 
+ALIGN 4
+
 Map_Pointer_Table(SaffronGymMap,Map)

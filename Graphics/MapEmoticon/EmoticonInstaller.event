@@ -18,7 +18,7 @@
 
 
 
-#define Emoticon(Graphic, GivenCoord) "GivenCoord; BYTE $4B $0D $00 Graphic;  POIN Show_map_emotion_Install|1"
+#define Emoticon(Graphic, GivenCoord) "SVAL sB GivenCoord; BYTE $4B $0D $00 Graphic;  POIN Show_map_emotion_Install|1"
 
 
 

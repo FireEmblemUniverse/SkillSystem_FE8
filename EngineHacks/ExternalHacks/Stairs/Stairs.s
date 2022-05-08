@@ -17,11 +17,11 @@ sub sp, #0x08
 @ First, I want to prevent someone using multiple stairs in one turn.
 ldr r0, =#0x03004E50
 ldr r4, [ r0 ] @ Keep character struct in r4 for the time being.
-ldr r1, =CharacterStructStairByte
-ldrb r1, [ r1 ]
-ldrb r0, [ r4, r1 ] @ This should be 0 if no stairs were messed with this turn.
-cmp r0, #0x00
-bne EndFalseNoPop
+@ldr r1, =CharacterStructStairByte
+@ldrb r1, [ r1 ]
+@ldrb r0, [ r4, r1 ] @ This should be 0 if no stairs were messed with this turn.
+@cmp r0, #0x00
+@bne EndFalseNoPop
 
 @ Also ensure that this unit isn't cantoing or rescuing.
 ldr r0, [ r4, #0x0C ]

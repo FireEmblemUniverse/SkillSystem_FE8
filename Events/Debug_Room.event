@@ -277,14 +277,14 @@ SetUnitStatus(1, 0x29, Agility)
 Write_Byte(4, GaryStarterClass) 
 ENUT FlyFlag
 
-Write_Byte(27, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(14, YCoordNewArea)  
+Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(17, YCoordNewArea)  
 //MNC2 PewterCh
 //MNC2 Route16Ch
 //MNC2 Route7Ch
 //MNC2 CeladonCh
 //MNC2 SafariECh
-MNC2 SaffronCh
+MNC2 SaffronGymCh
 //MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh

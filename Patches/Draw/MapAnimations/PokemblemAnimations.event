@@ -1236,7 +1236,13 @@ powder0007_pal:
  
  
 
-
+ALIGN 4 
+psychic_slow_Anim: 
+BYTE 6 0; SHORT 0; POIN Psychic0000_Data Psychic0000_pal 
+BYTE 6 0; SHORT 0; POIN Psychic0001_Data Psychic0001_pal 
+BYTE 18 0; SHORT 0; POIN Psychic0002_Data Psychic0002_pal 
+BYTE 24 0; SHORT 0; POIN Psychic0003_Data Psychic0003_pal 
+WORD 0 0 0 
 
 
 ALIGN 4 

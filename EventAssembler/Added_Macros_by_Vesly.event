@@ -34,7 +34,7 @@
 //#define StopHere "CUMO (-1); EVBIT_F 2; STAL 45; CURE" // no text but waits 45 frames 
 
 // Helpers 
-#define Coord(XX,YY) "SVAL rB YY<<16|XX" 
+#define Coord(XX,YY) "YY<<16|XX" 
 #define PlayerInRange "SVAL r2 0; CALL 0x89EE1B8" // When matching allegiance stops in range - Eg. if not player, ENDB 
 #define NPCInRange "SVAL r2 1; CALL 0x89EE1B8" 
 #define EnemyInRange "SVAL r2 2; CALL 0x89EE1B8" 

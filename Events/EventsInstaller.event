@@ -212,7 +212,9 @@
 {
 #include "Saffron_City.event"
 }
-
+{
+#include "Saffron_Gym.event"
+}
 {
 #include "Route8.event"
 }

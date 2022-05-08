@@ -17,7 +17,7 @@ ldr   r1,AcrobatID
 .short  0xF800
 mov   r1,#0x0       @counter
 ldr   r5,MoveCostLoc
-Loop1:
+Loop1: @ store each value into the movement table in ram  
 add   r2,r4,r1
 add   r3,r5,r1
 ldrb  r2,[r2]

@@ -20,7 +20,7 @@ Grass / Fire / Water are pretty small
 */
 #define ShowAnimationAll(AnimationID) "SVAL r1 AnimationID; SVAL r2 (-1); ASMC ASMC_Draw" 
 
-#define ShowAnimation(AnimationID, Coordinate) "SVAL r1 AnimationID; SVAL r2 0; SCOORDS rB Coordinate; ASMC ASMC_Draw" 
+#define ShowAnimation(AnimationID, Coordinate) "SVAL r1 AnimationID; SVAL r2 0; SVAL rB Coordinate; ASMC ASMC_Draw" 
 
 /*
 // Usage: 
@@ -77,11 +77,12 @@ POP
 #define water_ID 31
 #define powder_ID 32
 #define flying_ID 	33
+#define psychic_slow_ID 34
+
 #define bug_ID Shards1AnimID
 #define dark_ID Impact1AnimID
 #define steel_ID Shards1AnimID
 #define fairy_ID FeatherAnimID
-
 
 
 
@@ -194,7 +195,7 @@ AnimTable_Entry(water_ID            ,        water_small_Anim        )
 AnimTable_Entry(powder_ID          ,       powder_Anim         )
 
 AnimTable_Entry(flying_ID          ,       gust_Anim         ) 
-
+AnimTable_Entry(psychic_slow_ID         ,       psychic_slow_Anim        )
 
 //AnimTable_Entry(bug_ID              ,        bug_Anim          ) // These 2 use non-FRLG anims 
 //AnimTable_Entry(dark_ID             ,       dark_Anim          )

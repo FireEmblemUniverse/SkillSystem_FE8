@@ -1,4 +1,4 @@
-#define ChapterID CeladonGymCh
+#define ChapterID SaffronGymCh
 
 #define WildLvl 5 
 #define TrainerL 34
@@ -25,6 +25,7 @@ POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
 TurnBasedEvents:
+TurnEventEnemy(0x10,RemoveWallEvent,0,255)
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
 END_MAIN
 
@@ -32,9 +33,37 @@ CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 END_MAIN
 
+RemoveWallEvent:
+CAM1 [11,9]
+TEXTSTART
+TEXTSHOW ShowSabrinaText
+TEXTEND 
+ShowAnimation(psychic_slow_ID, Coord(11,11))
+SCOORD sB [11,9]
+TILECHANGE (-1)
+STAL 25
+REMA 
+NoFade 
+ENDA 
+
+TurnOffWallFlag:
+ENUF 0x10 
+NoFade 
+ENDA 
 
 
 LocationBasedEvents:
+//Stairs(EventID,StairID,X1,Y1,X2,Y2)
+Stairs(0,3,18,20,6)
+Stairs(0,20,6,3,18)
+Stairs(1,9,18,12,18)
+Stairs(1,12,18,9,18)
+Stairs(2,20,18,12,7)
+Stairs(2,12,7,20,18)
+Stairs(3,20,12,2,11)
+Stairs(3,2,11,20,12)
+Stairs(4,12,13,7,13)
+Stairs(4,7,13,12,13)
 END_MAIN
 
 MiscBasedEvents:
@@ -43,17 +72,18 @@ CauseGameOverIfLordDies
 DefeatAll(EndingScene) 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0xF TurnOffWallFlag [12,9] [20,14]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToCeladon [7,18] [7,18] 
+AREA 0 ToSaffron [6,18] [6,18] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,18) 
+EscapeTileEntry(6,18) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToCeladon:
-ChapterTransition(CeladonCh, 9,27)
+ToSaffron:
+ChapterTransition(SaffronCh, 30,6)
 
 Traps1:
 ENDTRAP
@@ -63,7 +93,7 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-CHECK_EVENTID RainbowbadgeObtained
+CHECK_EVENTID MarshbadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
@@ -95,6 +125,7 @@ Text(ErikaChallengeText)
 
 ASMC 0x80160D1 // Return to map BGM 
 
+ENUT 0x10 // don't make tile change yet 
 CAM1 [7,12] 
 
 
@@ -107,7 +138,7 @@ ENDA
 
 
 EndingScene: 
-CHECK_EVENTID RainbowbadgeObtained 
+CHECK_EVENTID MarshbadgeObtained 
 BNE 0x63 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
@@ -119,7 +150,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(ErikaDefeatText)
 GiveItemWithDurability(0, SpellScroll, PetalDance)
-ENUT RainbowbadgeObtained 
+ENUT MarshbadgeObtained 
 SVAL r3 6000 
 GIVETOMAIN 0 
 TEXTSHOW ErikaWaitText
@@ -131,7 +162,7 @@ TEXTSHOW ErikaRewardText
 TEXTEND 
 FADI 4 
 REMA 
-ForcedChapterTransition(CeladonCh, 9, 27)
+ForcedChapterTransition(SaffronCh, 9, 27)
 LABEL 0x63 
 NoFade
 ENDA
@@ -154,12 +185,12 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 WeepinbellID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xD0 AlakazamID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x0 0	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 MrMimeID 0xD0 Level(0, Enemy, 1) [4,5]  0b 0x0		0x0 0 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 HypnoID 0xD0 Level(0, Enemy, 1) [8,5]  0b 0x0		0x0 0	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 KadabraID 0xD0 Level(0, Enemy, 1) [3,7]  0b 0x0 	0x0 0	[Psybeam,MagicalLeaf,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 VenomothID 0xD0 Level(0, Enemy, 1) [9,7]  0b 0x0	0x0 0	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 SlowbroID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x0 0	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
 UNIT
 
 EnemyTrainersB: // rematch 

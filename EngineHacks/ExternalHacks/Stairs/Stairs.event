@@ -17,7 +17,7 @@
 		ALIGN 4
 		StairCameraEvent:
 		STAL 0x10
-		CAM1 0xFFFF
+		CAM1 0x7FFF
 		STAL 0x10
 		NoFade
 		ENDA

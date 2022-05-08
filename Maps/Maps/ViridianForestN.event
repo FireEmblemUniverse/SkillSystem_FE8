@@ -2,8 +2,8 @@
 
 #include eastdlib.event
 
-SetChapterData(ViridianForestNCh,ViridianForestNObj,0,ViridianForestNPal,ViridianForestNConf,ViridianForestNMap,Map,0,0,120)
-MapChangesPointerTable(120, MapChanges)
+SetChapterData(ViridianForestNCh,ViridianForestNObj,0,ViridianForestNPal,ViridianForestNConf,ViridianForestNMap,Map,0,0,ViridianForestNMapChanges)
+MapChangesPointerTable(ViridianForestNMapChanges, MapChanges)
 Map:
 #incbin "ViridianForestN_data.dmp"
 

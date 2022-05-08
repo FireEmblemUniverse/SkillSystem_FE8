@@ -98,6 +98,8 @@ Ground[X]
 # 0x1DC
 Ground[X]
 
+# 0x1F1 ^ // previously stairs 
+Teleporter
 
 # 0x1DD
 //#previously fence terrain
@@ -106,3 +108,6 @@ Ground[X]
 Wall[X]
 # 0x1DF
 Wall[X]
+
+
+
