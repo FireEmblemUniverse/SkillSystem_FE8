@@ -3,7 +3,8 @@
 
 
 PUSH
-
+// replaced $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FE
+// the $FE is Sea
 
 //Identical mov costs 
 ORG NormMov
@@ -16,21 +17,21 @@ ORG NormSnowMov
 BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $FF $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $02 $FF $01 $02 $FF $04 $FF
 
 //Identical mov costs 
-ORG SwimmerMov
-BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $50 $00 $00 $00 $FF $FF $00 $00 $40 $05 $02 $00 $00 $00 $00 $00
+ORG SwimmerMov // sea as 0x7E for call command to work properly once marshbadge obtained 
+BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $7E $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $50 $00 $00 $00 $FF $FF $00 $00 $40 $05 $02 $00 $00 $00 $00 $00
 ORG SwimmerRainMov
-BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $50 $00 $00 $00 $FF $FF $00 $00 $40 $05 $02 $00 $00 $00 $00 $00
+BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $7E $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $50 $00 $00 $00 $FF $FF $00 $00 $40 $05 $02 $00 $00 $00 $00 $00
 ORG SwimmerSnowMov
-BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $50 $00 $00 $00 $FF $FF $00 $00 $40 $05 $02 $00 $00 $00 $00 $00
+BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $7E $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $FF $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $50 $00 $00 $00 $FF $FF $00 $00 $40 $05 $02 $00 $00 $00 $00 $00
 
 
 //Identical mov costs 
 ORG FlierMov
-BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $01 $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $05 $00 $9A $00 $80 $79 $51 $09 $31 $04 $11 $00 $05 $00 $00 $00
+BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $7E $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $01 $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $05 $00 $9A $00 $80 $79 $51 $09 $31 $04 $11 $00 $05 $00 $00 $00
 ORG FlierRainMov
-BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $01 $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $05 $00 $9A $00 $80 $79 $51 $09 $31 $04 $11 $00 $05 $00 $00 $00
+BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $7E $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $01 $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $05 $00 $9A $00 $80 $79 $51 $09 $31 $04 $11 $00 $05 $00 $00 $00
 ORG FlierSnowMov
-BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $01 $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $05 $00 $9A $00 $80 $79 $51 $09 $31 $04 $11 $00 $05 $00 $00 $00
+BYTE $FF $01 $01 $01 $FF $01 $01 $01 $01 $01 $02 $01 $01 $FF $01 $01 $FF $FF $FF $01 $FF $7E $01 $01 $01 $FF $FF $FF $01 $02 $FF $01 $01 $01 $FF $01 $01 $02 $01 $02 $02 $02 $01 $01 $FF $01 $FF $01 $01 $FF $FF $FF $01 $FF $FF $01 $01 $FF $FF $FF $FF $FF $01 $FF $FF $FF $01 $01 $05 $00 $9A $00 $80 $79 $51 $09 $31 $04 $11 $00 $05 $00 $00 $00
 
 
 ORG NormAvoBon

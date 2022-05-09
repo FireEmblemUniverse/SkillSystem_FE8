@@ -30,7 +30,7 @@ void FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
             if (gMapHidden[iy][ix] & HIDDEN_BIT_UNIT)
                 continue;
 
-            if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix]))
+            if (!CanUnitCrossTerrain(unit, gMapTerrain[iy][ix])) // movement costs that are 0x80 or higher won't be accepted 
                 continue;
 
             distance = RECT_DISTANCE(ix, iy, unit->xPos, unit->yPos);

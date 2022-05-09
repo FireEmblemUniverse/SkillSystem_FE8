@@ -1,11 +1,11 @@
 .thumb
 .org 0x0
-
+	.equ CheckEventId,0x8083da8
 .equ AcrobatID, SkillChecker+4
 @r0=movement cost table. Function originally at 1A4CC, now jumped to here (jumpToHack)
 push  {r4,r5,r14}
 mov   r4,r0
-ldr   r0,SkillChecker
+ldr 	r0, =CheckEventId
 mov   r14,r0
 ldr   r0,CurrentCharPtr
 ldr   r0,[r0]
@@ -13,7 +13,7 @@ cmp   r0, #0
 bne   NoDZ
 mov   r0, r2 @if the active unit is 0, we're being called from dangerzone
 NoDZ:
-ldr   r1,AcrobatID
+ldr   r0,MarshbadgeObtained
 .short  0xF800
 mov   r1,#0x0       @counter
 ldr   r5,MoveCostLoc
@@ -35,11 +35,12 @@ pop   {r4-r5}
 pop   {r0}
 bx    r0
 
+.ltorg 
 .align
 CurrentCharPtr:
 .long 0x03004E50
 MoveCostLoc:
 .long 0x03004BB0
-SkillChecker:
-@POIN SkillChecker
+MarshbadgeObtained:
+@WORD MarshbadgeObtained
 @WORD AcrobatID

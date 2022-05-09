@@ -15,7 +15,7 @@ POP
 ALIGN 4
 AcrobatCheck:
 #incbin "Acrobat/Acrobat.dmp"
-POIN SkillTester
+WORD MarshbadgeObtained // new usasbility is based on this flag being set 
 WORD AcrobatID
 
 ALIGN 4

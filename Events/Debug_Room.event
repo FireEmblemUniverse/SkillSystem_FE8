@@ -279,18 +279,20 @@ ENUT FlyFlag
 
 Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(17, YCoordNewArea)  
+MNC2 SilphCo1FCh
 //MNC2 PewterCh
 //MNC2 Route16Ch
 //MNC2 Route7Ch
 //MNC2 FuschiaGymCh
 //MNC2 PewterGymCh
 //MNC2 SafariECh
-MNC2 SaffronGymCh
+//MNC2 SaffronGymCh
 //MNC2 CinnabarCh
 //MNC2 Route18Ch
 //MNC2 Route9WCh
 //MNC2 PokemonTowerF3Ch
 //MNC2 PewterGymCh 
+//ENUT MarshbadgeObtained
 //MNC2 PalletCh
 //MNC2 FuschiaCh
 //MNC2 Route15Ch

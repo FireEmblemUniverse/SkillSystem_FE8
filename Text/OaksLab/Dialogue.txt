@@ -2166,6 +2166,33 @@ in the name of TEAM ROCKET![A][X]
 Don't get defiant![N]
 Or I'll have to hurt you![A][X]
 
+
+## GarySilphCoChallengeText
+[OpenMidRight][LoadGaryShrug][OpenMidRight]What kept you,[N]
+[Tact]?[A][Clear]
+Hahaha! I thought you'd[N]
+turn up if I waited here![A][N]
+[LoadGaryPoint]I guess TEAM ROCKET slowed you[N]
+down! Not that I care![A][N]
+[LoadGaryBattle]I saw you in SAFFRON, so I decided[N]
+to see if you got better![A][X]
+
+## GarySilphCoDefeatText
+[OpenMidRight][LoadGaryShrug][OpenMidRight]Oh, man![N]
+So, you are ready for BOSS[A][Clear]
+ROCKET![A][Clear][N]
+[LoadGaryPoint]Well, [Tact]![N]
+I'm moving on up and ahead![A][N]
+I'm going to the Pok[Eaccent]mon LEAGUE to[N]
+boot out the ELITE FOUR.[A][N]
+I'll become the world's most[N]
+powerful TRAINER![A][N]
+Smell ya later![A][X]
+ 
+
+
+
+
 ## MagicFeelsDrained
 Your magic feels[N]
 drained...[A][X]
@@ -2173,6 +2200,9 @@ drained...[A][X]
 ## StrFeelsSapped
 Your strength feels[N]
 sapped...[A][X]
+
+
+
 
 ## SabrinaChallengeText
 [OpenMidRight][LoadSabrina][OpenMidRight]I had a vision of your arrival.[A][N]
@@ -2193,7 +2223,9 @@ But, a loss is a loss.[A][N]
 I admit, I didn't work[N]
 hard enough to win.[A][N]
 Your victory has earned[N]
-you the MARSHBADGE.[A][X]
+you the MARSHBADGE.[A]
+You may now cross the harsh[N]
+seas and head to Cinnabar...[A][X]
 
 ## SabrinaWaitText
 [OpenMidRight][LoadSabrina][OpenMidRight]Wait, please take this with you.[A][X]

@@ -104,30 +104,27 @@ ENDA
 
 Traps1:
 ArrowTrap(16,1,1)
+
+MineTrap(16,13)
+MineTrap(16,13)
+MineTrap(16,13)
 MineTrap(16,14)
 MineTrap(16,14)
 MineTrap(16,14)
-MineTrap(16,14)
-MineTrap(16,14)
-MineTrap(16,14)
-//MineTrap(17,14)
-//MineTrap(17,14)
-//MineTrap(17,14)
-//MineTrap(17,14)
-//MineTrap(17,14)
-//MineTrap(17,14)
-//MineTrap(15,9)
-//MineTrap(15,9)
-//MineTrap(15,9)
-//MineTrap(15,9)
-//MineTrap(15,9)
-//MineTrap(15,9)
+MineTrap(16,15)
+MineTrap(16,15)
+MineTrap(16,15)
+
+
+MineTrap(16,8)
+MineTrap(16,8)
+MineTrap(16,8)
 MineTrap(16,9)
 MineTrap(16,9)
 MineTrap(16,9)
-MineTrap(16,9)
-MineTrap(16,9)
-MineTrap(16,9)
+MineTrap(16,10)
+MineTrap(16,10)
+MineTrap(16,10)
 ENDTRAP
 ALIGN 4
 
@@ -145,7 +142,7 @@ CAM1 [8,6]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(9, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
@@ -193,7 +190,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(SabrinaDefeatText)
 GiveItemWithDurability(0, SpellScroll, CalmMind)
-ENUT MarshbadgeObtained 
+ENUT MarshbadgeObtained // unlocks surf 
 SVAL r3 8000 
 GIVETOMAIN 0 
 TEXTSHOW SabrinaWaitText

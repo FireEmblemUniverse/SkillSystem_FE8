@@ -72,7 +72,7 @@ CAM1 [8,11]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(7, False, 0x90EF) // +7 hidden levels regardless of difficulty 
+AutoLevelUnits(FuschiaGymBonus, False, 0x90EF) // +7 hidden levels regardless of difficulty 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
