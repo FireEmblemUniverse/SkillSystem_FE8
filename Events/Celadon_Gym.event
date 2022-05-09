@@ -56,6 +56,43 @@ ToCeladon:
 ChapterTransition(CeladonCh, 9,27)
 
 Traps1:
+BerryTree(6,8,5)
+BerryTree(8,8,5)
+BerryTree(5,6,5)
+BerryTree(7,6,5)
+BerryTree(9,6,5)
+BerryTree(10,13,5)
+BerryTree(4,13,5)
+BerryTree(7,14,5)
+BerryTree(6,11,5)
+BerryTree(8,11,5)
+
+Flower(11,13)
+Flower(12,13)
+Flower(2,13)
+Flower(3,13)
+
+Flower(3,12)
+Flower(4,12)
+Flower(5,12)
+
+Flower(9,12)
+Flower(10,12)
+Flower(11,12)
+Flower(12,12)
+
+Flower(12,5)
+Flower(12,7)
+Flower(12,9)
+Flower(11,6)
+Flower(11,8)
+
+Flower(2,5)
+Flower(2,7)
+Flower(2,9)
+Flower(3,6)
+Flower(3,8)
+
 ENDTRAP
 ALIGN 4
 
@@ -82,13 +119,20 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 SilentGiveSkillAccessory(0xD0, AmaterasuID)
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, Berry,0x82)
-SilentGiveItemWithDurability(0xA1, Berry,0x82)
-SilentGiveItemWithDurability(0xA2, Berry,0x82)
-SilentGiveItemWithDurability(0xA3, Berry,0x82)
+SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 
 MUSCFAST IntroBGM 
+ShowMap
 Text(ErikaChallengeText)
 
 
@@ -154,20 +198,20 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R4 	[MegaDrain,Constrict,0x0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA1 WeepinbellID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 EnemyTrainersB: // rematch 
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] 			ZoningHeal50GroupOneAI
 UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
 UNIT
 	
