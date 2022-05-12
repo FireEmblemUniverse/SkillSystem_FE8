@@ -33,7 +33,7 @@ After each set of module options are definitions that you can use to adjust the 
 // Tilemap options
 
 	// In 8x8 pixel tiles
-	#define MMBHeight 6
+	#define MMBHeight 8
 	#define MMBWidth 16
 	#define MMBTilemapPaletteIndex 3
 
@@ -62,8 +62,8 @@ After each set of module options are definitions that you can use to adjust the 
 // but horizontal flip doesn't seem to work for some reason 
 	SHORT $00 $1B $1B $1C $1C $1C $1C $1C $1C $1C $1C $1C $1C $1D $1E $1F // Rows 8 (Bottom)
 	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 7
-	//SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 6
-	//SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 5
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 6
+	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $56 $57 // Rows 5
 	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $54 $55 // Rows 4
 	SHORT $00 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $52 $53 // Rows 3
 	SHORT $00 $0E $0E $19 $0E $0E $0E $0E $0E $0E $0E $0E $0E $0E $50 $51 // Rows 2
@@ -73,7 +73,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 // Unit name modules
 
-	//#define MMBName
+	#define MMBName
 		/*
 		 * Draws the unit's name to [MMBNameX, MMBNameY]
 		 * using MMBNameColor.
@@ -477,8 +477,8 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBHPStatusY 5
 
 	// HP options
-	#define MMBHPX 5
-	#define MMBHPY 3
+	#define MMBHPX 1
+	#define MMBHPY 5
 
 	// DEF/RES options
 	#define MMBDEFRESX 9
@@ -494,7 +494,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 // Bar modules
 
-	#define MMBHPBar
+	//#define MMBHPBar
 		/*
 		 * Draws a HP bar of tile width MMBHPBarTileWidth
 		 * to [MMBHPBarX, MMBHPBarY].
@@ -514,7 +514,7 @@ After each set of module options are definitions that you can use to adjust the 
 	// HP bar options
 	#define MMBHPBarX 5
 	#define MMBHPBarY 4
-	#define MMBHPBarTileWidth 6
+	#define MMBHPBarTileWidth 7
 	#define MMBHPBarBase 0x1140
 
 // Affinity modules
@@ -543,11 +543,11 @@ After each set of module options are definitions that you can use to adjust the 
 		 * Overrides the MMBSkill# modules.
 		 */
 
-	//#define MMBSkill1
-	//#define MMBSkill2
-	//#define MMBSkill3
-	//#define MMBSkill4
-	//#define MMBSkill5
+	#define MMBSkill1
+	#define MMBSkill2
+	#define MMBSkill3
+	#define MMBSkill4
+	#define MMBSkill5
 	//#define MMBSkill6
 		/*
 		 * Draws the skill in the specified skill slot to
@@ -619,7 +619,7 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBDEFNumber
 	//#define MMBDODNumber
 	//#define MMBEXPNumber
-	//#define MMBHITNumber
+	#define MMBHITNumber
 	//#define MMBLevelNumber
 	#define MMBRESNumber
 	//#define MMBRTGNumber
@@ -637,11 +637,11 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// AS Number
 	#define MMBASX 112
-	#define MMBASY 16
+	#define MMBASY 32
 
 	// ATK Number
 	#define MMBATKX 112
-	#define MMBATKY 8
+	#define MMBATKY 16
 
 	// AVO Number
 	#define MMBAVOX 96
@@ -657,7 +657,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// DEF Number
 	#define MMBDEFX 112
-	#define MMBDEFY 24
+	#define MMBDEFY 40
 
 	// DOD Number
 	#define MMBDODX 128
@@ -677,15 +677,15 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// RES number
 	#define MMBRESX 112
-	#define MMBRESY 32
+	#define MMBRESY 48
 
 	// RTG number
 	#define MMBRTGX 103
 	#define MMBRTGY 48
 
 	// Current HP number
-	#define MMBCurrentHPX 76
-	#define MMBCurrentHPY 24
+	#define MMBCurrentHPX 112
+	#define MMBCurrentHPY 8
 
 	// Max HP number
 	#define MMBMaxHPX 112
@@ -701,7 +701,7 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBDEFLabel
 	//#define MMBDODLabel
 	//#define MMBEXPLabel
-	//#define MMBHITLabel
+	#define MMBHITLabel
 	//#define MMBLevelLabel
 	#define MMBRESLabel
 	//#define MMBRTGLabel
@@ -718,14 +718,14 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// AS label
 	#define MMBASLabelX 11
-	#define MMBASLabelY 2
+	#define MMBASLabelY 4
 	#define MMBASLabelVRAMTile 0x100
 	#define MMBASLabelPaletteIndex 2
 	#define MMBASLabelTileCount 2
 
 	// ATK label
 	#define MMBATKLabelX 11
-	#define MMBATKLabelY 1
+	#define MMBATKLabelY 2
 	#define MMBATKLabelVRAMTile 0x102
 	#define MMBATKLabelPaletteIndex 2
 	#define MMBATKLabelTileCount 2
@@ -753,7 +753,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// DEF label
 	#define MMBDEFLabelX 11
-	#define MMBDEFLabelY 3
+	#define MMBDEFLabelY 5
 	#define MMBDEFLabelVRAMTile 0x10A
 	#define MMBDEFLabelPaletteIndex 2
 	#define MMBDEFLabelTileCount 2
@@ -788,7 +788,7 @@ After each set of module options are definitions that you can use to adjust the 
 
 	// RES label
 	#define MMBRESLabelX 11
-	#define MMBRESLabelY 4
+	#define MMBRESLabelY 6
 	#define MMBRESLabelVRAMTile 0x164
 	#define MMBRESLabelPaletteIndex 2
 	#define MMBRESLabelTileCount 2
@@ -801,8 +801,8 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBRTGLabelTileCount 2
 
 	// HP label
-	#define MMBHPLabelX 6
-	#define MMBHPLabelY 3
+	#define MMBHPLabelX 11
+	#define MMBHPLabelY 1
 	#define MMBHPLabelVRAMTile 0x120
 	#define MMBHPLabelPaletteIndex 2
 	#define MMBHPLabelTileCount 2
