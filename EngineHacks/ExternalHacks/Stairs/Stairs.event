@@ -3,8 +3,8 @@
 	
 		#define STAIRS_INSTALLED
 		
-		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA StairID 0 [X1,Y1] 0x22 ; LOCA StairID 0x00 [X2,Y2] 0x22"
-		#define Stairs(EventID,StairID,X1,Y1,X2,Y2) "LOCA StairID EventID [X1,Y1] 0x22 ; LOCA StairID EventID [X2,Y2] 0x22"
+		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA 0 StairID [X1,Y1] 0x22 ; LOCA 0 StairID  [X2,Y2] 0x22"
+		#define Stairs(EventID,StairID,X1,Y1,X2,Y2) "LOCA EventID StairID  [X1,Y1] 0x22 ; LOCA EventID StairID [X2,Y2] 0x22"
 		
 		ALIGN 4
 		#include "Stairs.lyn.event"
@@ -16,9 +16,17 @@
 		BYTE 0x47 // Don't touch unless you know what you're doing!
 		ALIGN 4
 		StairCameraEvent:
-		STAL 0x10
-		CAM1 0x7FFF
-		STAL 0x10
+		WARP_OUT 
+		STAL 12
+		EndMMS
+		STAL 7
+		BEQ 0 sB sA // Skip warp in if going to identical coordinates 
+		SADD sB sA s0 
+		CAM1 0x7FFE
+		//STAL 15
+		//WARP_IN 
+		//STAL 15
+		LABEL 0 
 		NoFade
 		ENDA
 		

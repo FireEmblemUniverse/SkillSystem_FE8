@@ -14,6 +14,10 @@
 StairsUsability:
 push { r4 - r7, lr }
 sub sp, #0x08
+mov r7, r8 
+push {r7} 
+mov r0, #0 
+mov r8, r0 
 @ First, I want to prevent someone using multiple stairs in one turn.
 ldr r0, =#0x03004E50
 ldr r4, [ r0 ] @ Keep character struct in r4 for the time being.
@@ -79,7 +83,14 @@ ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 cmp r0, r5
 bne Skip2 @ If the X coordinates are different, then this isn't the same LOCA. Continue.
 cmp r1, r6
-beq BeginCheck4 @ If the X and Y coordinates are the same, try again.
+bne Skip2 
+mov r0, r8 @ 2nd iteration of identical coordinates will be true 
+cmp r0, #1 
+beq Exit 
+add r0, #1 
+mov r8, r0 
+b BeginCheck4 @ If the X and Y coordinates are the same, try again.
+
 
 Skip2:
 @ Now I need to check if there's a unit at these matching coordinates.
@@ -105,13 +116,15 @@ bne StartGreyLoop @ Y coords don't match.
 @ If it's here, then the X coordinate is the same along with the Y. There's a unit on the other end, so return grey.
 @ EndGrey:
 mov r0, #2
-add sp, #0x08
-pop { r4 - r7 }
-pop { r1 }
-bx r1
+b Exit 
 
 EndTrue:
 mov r0, #1
+
+Exit:
+pop {r7} 
+mov r8, r7
+
 add sp, #0x08
 pop { r4 - r7 }
 pop { r1 }
@@ -121,15 +134,16 @@ EndFalse:
 pop { r2 } @ Oopsie I broke the stack because I left my loop within a push / pop.
 EndFalseNoPop:
 mov r0, #3
-add sp, #0x08
-pop { r4 - r7 }
-pop { r1 }
-bx r1
+b Exit 
+
+
+.ltorg 
+.align 
 
 @346B0: (Get_Chapter_Events) (FE8J: 345B8) (FE7: 315BC)
 @Params: r0=chapter number
 @Returns: Pointer to that chapter's events
-
+	.equ MemorySlot, 0x30004B8 
 .global StairsEffect
 .type StairsEffect, %function
 StairsEffect:
@@ -199,19 +213,21 @@ ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 b Skip
 
 SameX:
-@ Vesly added 
-mov r1, r8 
-cmp r1, #0 
-bne Skip 
-add r1, #1 
-mov r8, r1 @ counter
-@ allow stairs to teleport to their own location when trying the 2nd stair 
 ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 cmp r1, r6
+bne Skip 
+ 
+@ Vesly added 
+mov r1, r8 
+add r1, #1 
+mov r8, r1 @ counter
+cmp r1, #1
 beq BeginCheck3
+@ allow stairs to teleport to their own location when trying the 2nd stair 
+mov r0, r5 
+mov r1, r6 
 
 Skip:
-ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 ldr r4, =#0x03004E50
 ldr r4, [ r4 ]
 ldr r2, =#0x0203A958
@@ -219,6 +235,14 @@ strb r0, [ r2, #0x0E ]
 strb r1, [ r2, #0x0F ] @ Sets new coordinates in the action struct
 mov r3, #0x01
 strb r3, [ r2, #0x11 ] @ Sets "wait"
+ldr r3, =MemorySlot 
+add r3, #0x04*0x0A 
+strh r0, [r3] @ new XX 
+strh r1, [r3, #2] @ new yy 
+ldrb r2, [r4, #0x10] @ old XX 
+strh r2, [r3, #4] @ sB xx 
+ldrb r2, [r4, #0x11] @ old YY 
+strh r2, [r3, #6] @ sB yy 
 
 strb r0, [ r4, #0x10 ]
 strb r1, [ r4, #0x11 ]
@@ -234,7 +258,7 @@ ldrb r1, [ r1 ]
 strb r2, [ r4, r1 ]
 
 ldr r0, =StairCameraEvent
-mov r1, #0x00
+mov r1, #0x01
 blh #0x0800D07C, r2 @ Call event engine to take the camera to the other end of the stairs.
 
 mov r0, #0x17
@@ -245,6 +269,9 @@ mov r8, r7
 pop { r4 - r7 }
 pop { r1 }
 bx r1
+
+.ltorg 
+.align 
 
 .global FixWait2
 .type FixWait2, %function
