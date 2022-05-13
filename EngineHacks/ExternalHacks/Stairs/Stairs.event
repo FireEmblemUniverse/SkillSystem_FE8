@@ -3,8 +3,8 @@
 	
 		#define STAIRS_INSTALLED
 		
-		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA 0x00 StairID [X1,Y1] 0x22 ; LOCA 0x00 StairID [X2,Y2] 0x22"
-		#define Stairs(EventID,StairID,X1,Y1,X2,Y2) "LOCA EventID StairID [X1,Y1] 0x22 ; LOCA EventID StairID [X2,Y2] 0x22"
+		#define Stairs(StairID,X1,Y1,X2,Y2) "LOCA StairID 0 [X1,Y1] 0x22 ; LOCA StairID 0x00 [X2,Y2] 0x22"
+		#define Stairs(EventID,StairID,X1,Y1,X2,Y2) "LOCA StairID EventID [X1,Y1] 0x22 ; LOCA StairID EventID [X2,Y2] 0x22"
 		
 		ALIGN 4
 		#include "Stairs.lyn.event"

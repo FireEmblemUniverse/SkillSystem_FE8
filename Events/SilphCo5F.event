@@ -1,4 +1,4 @@
-#define ChapterID SilphCo1FCh
+#define ChapterID SilphCo5FCh
 #define GenericB UnitPokeTowerTrainer
 #define WildLvl 36
 #define TrainerL 36
@@ -44,17 +44,18 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToSaffron, 9, 20)
-House(0, ToSilphCo2F, 33,2) 
+House(0, ToSilphCo4F, 2,5) 
+Stairs(0,10,4,10,4)
+Stairs(0,10,4,10,4)
 END_MAIN
 
-ToSaffron:
-ChapterTransition(SaffronCh, 17,23) 
+ToSilphCo4F:
+ChapterTransition(SilphCo4FCh, 10,4) 
 
-ToSilphCo2F:
+ToSilphCo1F:
 CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
 BEQ 20 rC r0 
-ChapterTransition(SilphCo2FCh, 30, 2) 
+ForcedChapterTransition(SilphCo1FCh, 12,19) 
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent
 LABEL 63 
@@ -67,12 +68,12 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToSilphCo1F [10,4][10,4]
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(9,20) 
-EscapeTileEntry(33,2) 
+EscapeTileEntry(2,5) 
 EscapeTileTerminator ; } 
 #endif 
 

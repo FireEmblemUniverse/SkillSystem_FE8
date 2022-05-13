@@ -1,4 +1,4 @@
-#define ChapterID SilphCo2FCh
+#define ChapterID SilphCo3FCh
 #define GenericA UnitRoute17Wild
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute17WildA
@@ -45,28 +45,35 @@ AllTrainersPostBattleTalk
 END_MAIN
 
 
-
+AREA 0 ToSilphCo4F_Stairs [32,3][32,3] 
+AREA 0 ToSilphCo2F [28,3][28,3]
 LocationBasedEvents:
-House(0, ToSilphCo3F_Stairs, 28,3)
-House(0, ToSilphCo1F, 32,3)
-Stairs(4,3,7,3,7) // does nothing but will activate the range event 
-Stairs(1,34,20,16,7)
-Stairs(2, 34,7, 34,7)
-Stairs(3, 8,20, 8,20)
+House(0, ToSilphCo2F, 28,3)
+House(0, ToSilphCo4F_Stairs, 32,3)
+Stairs(0,19,7,19,7) // does nothing but will activate the range event 
+Stairs(0,19,7,19,7) // does nothing but will activate the range event 
+Stairs(1,18,18,18,18)
+Stairs(1,18,18,18,18)
+Stairs(2, 4,10,4,10)
+Stairs(2, 4,10,4,10)
+
+Stairs(3, 8, 21, 31,21)
+Stairs(3, 31,21,8,21)
+
 END_MAIN
 
-ToSilphCo3F_TeleA:
-ForcedChapterTransition(SilphCo3FCh, 18,18) // path of progression 
-ToSilphCo3F_TeleB:
-ForcedChapterTransition(SilphCo3FCh, 4,10)
+ToSilphCo2F_TeleA:
+ForcedChapterTransition(SilphCo2FCh, 3,7) // path of progression 
+ToSilphCo2F_TeleB:
+ForcedChapterTransition(SilphCo2FCh, 34,7) 
 ToSilphCo4F_Tele:
-ForcedChapterTransition(SilphCo4FCh, 23,19)
+ForcedChapterTransition(SilphCo4FCh, 12,18)
 
 
-ToSilphCo1F:
-ChapterTransition(SilphCo1FCh, 32,2)
-ToSilphCo3F_Stairs:
-ChapterTransition(SilphCo3FCh, 30, 4)
+ToSilphCo2F:
+ChapterTransition(SilphCo2FCh, 29,3)
+ToSilphCo4F_Stairs:
+ChapterTransition(SilphCo4FCh, 19,3)
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
@@ -74,9 +81,9 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSilphCo3F_TeleA [3,7] [3,7] 
-AREA 0 ToSilphCo3F_TeleB [34,7] [34,7] 
-AREA 0 ToSilphCo4F_Tele [8,20][8,20] 
+AREA 0 ToSilphCo2F_TeleA [18,18][18,18] 
+AREA 0 ToSilphCo2F_TeleB [4,10][4,10] 
+AREA 0 ToSilphCo4F_Tele [19,7][19,7] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -99,7 +106,7 @@ Traps1:
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
 
-//SilphCo2F: Flamethrower Carbos 
+//SilphCo3F: Flamethrower Carbos 
 //Route16: Fly, PaddedShieldT2 
 
 

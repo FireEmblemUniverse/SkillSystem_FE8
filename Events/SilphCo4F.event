@@ -1,4 +1,4 @@
-#define ChapterID SilphCo2FCh
+#define ChapterID SilphCo4FCh
 #define GenericA UnitRoute17Wild
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute17WildA
@@ -47,41 +47,39 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToSilphCo3F_Stairs, 28,3)
-House(0, ToSilphCo1F, 32,3)
-Stairs(4,3,7,3,7) // does nothing but will activate the range event 
-Stairs(1,34,20,16,7)
-Stairs(2, 34,7, 34,7)
-Stairs(3, 8,20, 8,20)
+House(0, ToSilphCo3F_Stairs, 20,3)
+House(0, ToSilphCo5F, 11,4)
+Stairs(0,12,18,12,18) // does nothing but will activate the range event 
+Stairs(0,12,18,12,18) // does nothing but will activate the range event 
+Stairs(1,23,19,23,19)
+Stairs(1,23,19,23,19)
 END_MAIN
 
-ToSilphCo3F_TeleA:
-ForcedChapterTransition(SilphCo3FCh, 18,18) // path of progression 
-ToSilphCo3F_TeleB:
-ForcedChapterTransition(SilphCo3FCh, 4,10)
-ToSilphCo4F_Tele:
-ForcedChapterTransition(SilphCo4FCh, 23,19)
+ToSilphCo2F_Tele:
+ForcedChapterTransition(SilphCo2FCh, 8,20) 
+ToSilphCo3F_Tele:
+ForcedChapterTransition(SilphCo4FCh, 19,7)
 
 
-ToSilphCo1F:
-ChapterTransition(SilphCo1FCh, 32,2)
 ToSilphCo3F_Stairs:
-ChapterTransition(SilphCo3FCh, 30, 4)
+ChapterTransition(SilphCo3FCh, 31,3)
+ToSilphCo5F:
+ChapterTransition(SilphCo5FCh, 3,7)
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
+AREA 0 ToSilphCo2F_Tele [23,19][23,19] 
+AREA 0 ToSilphCo3F_Tele [12,18][12,18] 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSilphCo3F_TeleA [3,7] [3,7] 
-AREA 0 ToSilphCo3F_TeleB [34,7] [34,7] 
-AREA 0 ToSilphCo4F_Tele [8,20][8,20] 
+
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(28,3) 
-EscapeTileEntry(32,3) 
+EscapeTileEntry(20,3) 
+EscapeTileEntry(11,4) 
 
 EscapeTileTerminator ; } 
 #endif 
@@ -99,7 +97,7 @@ Traps1:
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
 
-//SilphCo2F: Flamethrower Carbos 
+//SilphCo4F: Flamethrower Carbos 
 //Route16: Fly, PaddedShieldT2 
 
 

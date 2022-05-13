@@ -134,6 +134,11 @@ bx r1
 .type StairsEffect, %function
 StairsEffect:
 push { r4 - r7, lr }
+mov r7, r8 
+push {r7} 
+mov r3, #0 
+mov r8, r3 @ Initialize - Vesly 
+
 mov r5, r0 @ First to check if the "someone's on the other side" flag is set.
 mov r4, r1
 mov r0, r4
@@ -194,11 +199,19 @@ ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 b Skip
 
 SameX:
+@ Vesly added 
+mov r1, r8 
+cmp r1, #0 
+bne Skip 
+add r1, #1 
+mov r8, r1 @ counter
+@ allow stairs to teleport to their own location when trying the 2nd stair 
 ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 cmp r1, r6
 beq BeginCheck3
 
 Skip:
+ldrb r1, [ r2, #9 ] @ Y coordinate in r1
 ldr r4, =#0x03004E50
 ldr r4, [ r4 ]
 ldr r2, =#0x0203A958
@@ -227,6 +240,8 @@ blh #0x0800D07C, r2 @ Call event engine to take the camera to the other end of t
 mov r0, #0x17
 
 EndEffect:
+pop {r7}
+mov r8, r7 
 pop { r4 - r7 }
 pop { r1 }
 bx r1
