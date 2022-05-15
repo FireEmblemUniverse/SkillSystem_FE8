@@ -85,7 +85,7 @@ EscapeTileTerminator ; }
 Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
-
+EnterTrap(23,3, OutOfServiceText)
 
 //Save(15,5) 
 

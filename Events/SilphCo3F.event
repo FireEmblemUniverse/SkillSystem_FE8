@@ -63,10 +63,13 @@ Stairs(3, 31,21,8,21)
 END_MAIN
 
 ToSilphCo2F_TeleA:
+PlayerInRange
 ForcedChapterTransition(SilphCo2FCh, 3,7) // path of progression 
 ToSilphCo2F_TeleB:
+PlayerInRange
 ForcedChapterTransition(SilphCo2FCh, 34,7) 
 ToSilphCo4F_Tele:
+PlayerInRange
 ForcedChapterTransition(SilphCo4FCh, 12,18)
 
 
@@ -84,6 +87,10 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToSilphCo2F_TeleA [18,18][18,18] 
 AREA 0 ToSilphCo2F_TeleB [4,10][4,10] 
 AREA 0 ToSilphCo4F_Tele [19,7][19,7] 
+AREA 0 NW_StatsDrained [4,15][5,16] // w 
+AREA 0 NW_StatsDrained [15,11][16,12] // mid n  
+AREA 0 NW_StatsDrained [15,15][16,16] // mid s  
+AREA 0 NW_StatsDrained [30,10][31,11] // ne 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -94,7 +101,12 @@ EscapeTileTerminator ; }
 #endif 
 
 
-
+NW_StatsDrained:
+PlayerInRange
+TutText(StrFeelsSapped)
+DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -102,6 +114,29 @@ EscapeTileTerminator ; }
 // Eg. flowers are not obtained once, so you can spam them 
 
 Traps1:
+MineTrap(4,15)
+MineTrap(5,15)
+MineTrap(4,16)
+MineTrap(5,16)
+
+MineTrap(15,11)
+MineTrap(16,11)
+MineTrap(15,12)
+MineTrap(16,12)
+
+MineTrap(15,15)
+MineTrap(16,15)
+MineTrap(15,16)
+MineTrap(16,16)
+
+MineTrap(30,10)
+MineTrap(31,10)
+MineTrap(30,11)
+MineTrap(31,11)
+
+EnterTrap(23,4, OutOfServiceText)
+
+
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
@@ -116,16 +151,21 @@ Traps1:
 //StrengthBoulder(4,3)
 
 
+CoinsTrap(7,6,(ChapterID*2)+1,600)
+CoinsTrap(3,19,(ChapterID*2),600)
 
-//RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
-//RedPokeballTrap(8,31, (ChapterID*2), Carbos) 
+RedPokeballTrap(6,19, (ChapterID*2)+1, HPUp) 
+RedPokeballTrap(33,14, (ChapterID*2), Calcium) 
+
 //SkillAccessoryTrap(15,23, (ChapterID*2)+1, CounterMagicID) 
 
-//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
-//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+StatAccessoryTrap(4,21, (ChapterID*2)+1, SteelShield_BoostIndex)
+//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID)
+ 
+SkillScrollTrap(3,8, ChapterID*2, SilentPrideID)
 
-//SpellScrollTrap(14,4, (ChapterID*2)+1, Flamethrower) 
+SpellScrollTrap(30,19, (ChapterID*2)+1, SwordsDance) 
+
 
 
 ENDTRAP
@@ -137,8 +177,6 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-SetMaxMove
-
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
@@ -147,7 +185,7 @@ RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(15,7,20,11)) //E patch
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
-//LOAD1 0x1 HumanTrainers
+LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
@@ -158,29 +196,29 @@ ENDA
 
 
 
-// wilds: doduo, dodrio, ponyta 
-
-
-
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF0 BlankID 0x0 Level(0, Enemy, 1)   [4,10]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BlankID 0x0 Level(0, Enemy, 1)   [8,21]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF2 BlankID 0x0 Level(0, Enemy, 1)   [19,7]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF3 BlankID 0x0 Level(0, Enemy, 1)   [18,18]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF4 BlankID 0x0 Level(0, Enemy, 1)   [31,21]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
+// Teleporter / blank unit to spawn Porygons? 
 ReinforcementUnits:
-UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT Reinforcement0 PorygonID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
 UNIT 
 
-/*
+
+
 HumanTrainers:
-UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [4,31]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [11,40]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 bikerID 0x0 Level(0, Enemy, 1) [18,44]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 bikerID 0x0 Level(0, Enemy, 1) [18,14]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE4 bikerID 0x0 Level(0, Enemy, 1) [8,12]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [4,9]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 scientistID 0x0 Level(0, Enemy, 1) [15,10]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 scientistID 0x0 Level(0, Enemy, 1) [22,17]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 rocket_fID 0x0 Level(0, Enemy, 1) [28,5]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE4 rocket_mID 0x0 Level(0, Enemy, 1) [32,12]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
@@ -214,48 +252,48 @@ SHORT R17N_0xE4_BD // 0xE0
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
+// wild: Porygon 
+// trainer's 2F: Zubat/Golbat, Rattata/Raticate, Machop/Machoke 
+// Trainer's 3F: Ekans/Arbok, Koffing/Weezing, Zubat, Rattata 
+// Trainer's 4F: Drowzee, Grimer, Cubone, Golbat, Raticate, Machoke 
 
-// wild: doduo, dodrio, ponyta 
-// trainer's: Weezing, Dodrio, Electrode, Primeape, Machoke
-
-EnemyTrainers0: // biker
-UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+EnemyTrainers0: 
+UNIT GenericB 	EkansID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	EkansID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	ArbokID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	EkansID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	EkansID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
-EnemyTrainers1: // biker
-UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	DodrioID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	DodrioID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	MachokeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+EnemyTrainers1: 
+UNIT GenericB 	KoffingID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	KoffingID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	WeezingID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	KoffingID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	KoffingID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
-EnemyTrainers2: // biker
-UNIT GenericB 	ElectrodeID 	0xE2 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	PrimeapeID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	PrimeapeID 		0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	ElectrodeID 	0xE2 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+EnemyTrainers2: 
+UNIT GenericB 	ArbokID 	0xE2 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	WeezingID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	RattataID 		0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT
 
-EnemyTrainers3: // biker
-UNIT GenericB 	WeezingID 		0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	ElectrodeID 	0xE3 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	PrimeapeID 		0xE3 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	MachokeID 		0xE3 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+EnemyTrainers3: 
+UNIT GenericB 	ZubatID 		0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	RattataID 	0xE3 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	RattataID 		0xE3 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	ZubatID 		0xE3 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT
 
-EnemyTrainers4: // biker
-UNIT GenericB 	WeezingID 		0xE4 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	PrimeapeID 		0xE4 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	DodrioID 		0xE4 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	DoduoID 		0xE4 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	ElectrodeID 	0xE4 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+EnemyTrainers4: 
+UNIT GenericB 	EkansID 		0xE4 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	ArbokID 		0xE4 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	WeezingID 		0xE4 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	KoffingID 		0xE4 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
 UNIT
 
-	
-*/
+
 #undef GenericA 
 #undef GenericB 
 #undef ClassA

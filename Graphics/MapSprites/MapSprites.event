@@ -268,7 +268,7 @@ SetSMS(gentlemanSMS , 1 ,   gentlemanStanding)
 SetSMS(hikerSMS, 1 ,   hikerStanding)
 SetSMS(mrfujiSMS , 1 ,    mrfujiStanding)
 SetSMS(bikerSMS , 2 ,    bikerStanding)
-SetSMS(Unused38SMS , 0 ,    m1Standing)
+SetSMS(giovanniSMS , 1 ,    giovanniStanding)
 SetSMS(Unused39SMS , 0 ,    m1Standing)
 SetSMS(Unused40SMS , 0 ,    m1Standing)
 SetSMS(Unused41SMS , 0 ,    m1Standing)
@@ -541,7 +541,7 @@ SetMMS(gentlemanMMS ,    gentlemanMoving,        DemonKingAP)
 SetMMS(hikerMMS,    hikerMoving,        DemonKingAP)
 SetMMS(mrfujiMMS ,     mrfujiMoving,        DemonKingAP)
 SetMMS(bikerMMS ,     bikerMoving,        DemonKingAP)
-SetMMS(Unused38MMS ,     r1Moving,        DemonKingAP)
+SetMMS(giovanniMMS ,     giovanniMoving,        DemonKingAP)
 SetMMS(Unused39MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused40MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused41MMS ,     r1Moving,        DemonKingAP)
@@ -1411,7 +1411,9 @@ mrfujiMoving:
 ALIGN 4
 bikerMoving:
 #incbin "Trainer_MMS/MMS_biker.dmp"
-
+ALIGN 4
+giovanniMoving:
+#incbin "Trainer_MMS/MMS_giovanni.dmp"
 
 
 //Map sprites
@@ -2152,7 +2154,9 @@ ALIGN 4
 bikerStanding:
 #incbin "Trainer_SMS/SMS_biker.dmp"
 
-
+ALIGN 4
+giovanniStanding:
+#incbin "Trainer_SMS/SMS_giovanni.dmp"
 
 //SYSTEM PALETTES 
 

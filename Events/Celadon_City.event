@@ -95,7 +95,7 @@ LOAD1 1 PrizesUnitGroup
 ENUN 
 AutoLevelUnits(20, True, TempAlly_A<<8|TempAlly_E) // 
 // Abra, Clefairy, Eevee, Dratini, Porygon
-SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 6500, 9000, 12000, 20000) 
+SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 6500, 9000, 12000, 5000) // Porygon for cheap since in SilphCo for free 
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20

@@ -23,7 +23,7 @@
 
 @del "%~dp0ConfObj\test\*.dmp" 
 
-
+@call aFogTilesetFilter.bat
 echo Done!
 
 pause

@@ -207,7 +207,7 @@
 #define hikerSMS 0xCE
 #define mrfujiSMS 0xCF
 #define bikerSMS 0xD0
-#define Unused38SMS 0xD1
+#define giovanniSMS 0xD1
 #define Unused39SMS 0xD2
 #define Unused40SMS 0xD3
 #define Unused41SMS 0xD4
@@ -461,7 +461,7 @@
 #define hikerMMS 0xCF
 #define mrfujiMMS 0xD0
 #define bikerMMS 0xD1
-#define Unused38MMS 0xD2
+#define giovanniMMS 0xD2
 #define Unused39MMS 0xD3
 #define Unused40MMS 0xD4
 #define Unused41MMS 0xD5

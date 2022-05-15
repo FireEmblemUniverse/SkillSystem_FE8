@@ -29,8 +29,9 @@ blh_2 GetDebuffs
 mov r5, r0 @ ram address of unit's debuffs - 8 bytes 
 ldr r4, =MemorySlot
 ldr r3, [r4, #4*3] @ Debuffs to do 
+cmp r3, #0 
+beq ClearAllDebuffs
 
-mov r11, r11 
 ldrb r0, [r5] @ (str/skl/spd/def/res/luk)
 orr r0, r3 
 strb r0, [r5] 
@@ -49,12 +50,14 @@ lsr r3, #8
 ldrb r0, [r5, #5] 
 orr r0, r3 
 strb r0, [r5, #5] 
-
+b End 
 @lsl r0, #28
 @lsr r0, #28 @ mag only 
+ClearAllDebuffs:
+str r3, [r5] 
+str r3, [r5, #4] @ All cleared 
 
-
-
+End:
 Error:
 
 
