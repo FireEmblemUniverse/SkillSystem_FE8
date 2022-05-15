@@ -86,7 +86,7 @@ ENDA
 
 EnterDojo:
 ENUF DojoDefeated 
-//CALL ClosedArea
+CALL ClosedArea
 ForcedChapterTransition(SaffronDojoCh, 8,15)
 NoFade 
 ENDA 
@@ -124,6 +124,7 @@ ChapterTransition(Route6Ch, 12,6)
 ToRoute7:
 ChapterTransition(Route7Ch, 14,10)
 ToRoute8:
+CALL ClosedArea
 ChapterTransition(Route8Ch, 3, 10)
 
 

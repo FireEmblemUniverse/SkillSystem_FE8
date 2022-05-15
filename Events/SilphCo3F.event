@@ -136,7 +136,8 @@ MineTrap(31,11)
 
 EnterTrap(23,4, OutOfServiceText)
 
-
+BlankExamineTrap(13,19,SilphCo_3F_Report_A)
+BlankExamineTrap(23,20,SilphCo_3F_Report_B)
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
@@ -232,23 +233,23 @@ MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R17N_0xE0_BQ // 0xE0 
-SHORT R17N_0xE1_BQ // 0xE0 
-SHORT R17N_0xE2_BQ // 0xE0 
-SHORT R17N_0xE3_BQ // 0xE0 
-SHORT R17N_0xE4_BQ // 0xE0 
+SHORT SilphCo_3F_0xE0_BQ // 0xE0 
+SHORT SilphCo_3F_0xE1_BQ // 0xE0 
+SHORT SilphCo_3F_0xE2_BQ // 0xE0 
+SHORT SilphCo_3F_0xE3_BQ // 0xE0 
+SHORT SilphCo_3F_0xE4_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R17N_0xE0_BD // 0xE0 
+SHORT SilphCo_3F_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE1_BD // 0xE0 
+SHORT SilphCo_3F_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE2_BD // 0xE0 
+SHORT SilphCo_3F_0xE2_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE3_BD // 0xE0 
+SHORT SilphCo_3F_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE4_BD // 0xE0 
+SHORT SilphCo_3F_0xE4_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 

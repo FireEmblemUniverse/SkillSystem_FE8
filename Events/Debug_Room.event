@@ -279,7 +279,7 @@ ENUT FlyFlag
 
 Write_Byte(3, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(9, YCoordNewArea)  
-MNC2 SilphCo5FCh
+MNC2 SilphCo2FCh
 
 //MNC2 PewterCh
 //MNC2 Route16Ch
