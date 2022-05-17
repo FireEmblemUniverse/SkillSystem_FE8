@@ -86,7 +86,10 @@ ForcedChapterTransition(Route6Ch, 19,13)
 
 
 ToSaffron:
+CHECK_EVENTID SaffronArrived
+BNE 0 sC s0 
 CALL ClosedArea
+LABEL 0 
 ChapterTransition(SaffronCh, 0,0)
 
 

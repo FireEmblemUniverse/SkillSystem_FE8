@@ -46,10 +46,6 @@ LocationBasedEvents:
 House(0,ToPokeTower,18,36) //
 House(0,ToRockTunnel,8,7) //
 Vendor(ShopItems,20,45)
-//House(0,ClosedArea,7,4) // old rod ? 
-//House(0,ClosedArea,10,15) // Fan club 
-//House(0,ClosedArea,17,15) //
-//House(0,ClosedArea,23,18) //
 END_MAIN
 
 
@@ -75,16 +71,13 @@ EscapeTileTerminator ; }
 #endif 
 
 ToRoute8:
-CALL ClosedArea 
 ChapterTransition(Route8Ch, 59,10)
 
 ToRoute12:
-//CALL ClosedArea 
 ChapterTransition(Route12NCh, 12,0)
 
 
 ToPokeTower:
-//CALL ClosedArea 
 ChapterTransition(PokemonTowerF1Ch, 10,18)
 
 ToRockTunnel:
@@ -106,9 +99,9 @@ CoinsTrap(20,7,ChapterID*2,350)
 Save(6,34) // Pokecenter 
 
 //RockSmash(3,2)
-StrengthBoulder(1,39)
-StrengthBoulder(1,41)
-StrengthBoulder(2,40)
+RockSmash(1,39)
+RockSmash(1,41)
+RockSmash(2,40)
 
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(13,27, ChapterID*2, DazzleID)

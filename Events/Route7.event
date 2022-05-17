@@ -34,8 +34,8 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnits, 4, 3) 
-Reinforce(0xF1, 1, ReinforcementUnits, 5, 4) 
+Reinforce(0xF0, 1, ReinforcementUnits, 1, 3) 
+Reinforce(0xF1, 1, ReinforcementUnits, 1, 4) 
 }
 
 
@@ -107,7 +107,7 @@ Traps1:
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(13,18, ChapterID, 0x0) //no extra text 
+SignBTrap(10,14, ChapterID, 0x0) //no extra text 
 SignATrap(4,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 

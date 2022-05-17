@@ -34,8 +34,11 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnits, 4, 4) 
-Reinforce(0xF1, 1, ReinforcementUnits, 5, 4) 
+Reinforce(0xF0, 2, ReinforcementUnits, 1, 5) 
+Reinforce(0xF1, 2, ReinforcementUnits, 2, 5) 
+Reinforce(0xF2, 2, ReinforcementUnits, 3, 5) 
+Reinforce(0xF3, 2, ReinforcementUnits, 2, 5) 
+Reinforce(0xF4, 2, ReinforcementUnits, 1, 5) 
 }
 
 
@@ -51,10 +54,7 @@ LocationBasedEvents:
 House(0, ToSilphCo2F, 28,3)
 House(0, ToSilphCo4F_Stairs, 32,3)
 Stairs(0,19,7,19,7) // does nothing but will activate the range event 
-Stairs(0,19,7,19,7) // does nothing but will activate the range event 
 Stairs(1,18,18,18,18)
-Stairs(1,18,18,18,18)
-Stairs(2, 4,10,4,10)
 Stairs(2, 4,10,4,10)
 
 Stairs(3, 8, 21, 31,21)

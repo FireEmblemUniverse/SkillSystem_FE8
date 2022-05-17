@@ -148,7 +148,6 @@ ENDA
 
 EnterGym:
 ENUF RainbowbadgeObtained 
-//CALL ClosedArea
 ForcedChapterTransition(CeladonGymCh, 7,17)
 NoFade 
 ENDA 
@@ -175,7 +174,6 @@ ToRoute16:
 ChapterTransition(Route16Ch, 39,13)
 
 ToRoute7:
-//CALL ClosedArea 
 ChapterTransition(Route7Ch, 1,3)
 
 
