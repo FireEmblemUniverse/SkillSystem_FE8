@@ -116,6 +116,7 @@ MineTrap(7,9)
 MineTrap(6,10)
 MineTrap(7,10)
 
+
 MineTrap(6,16)
 MineTrap(7,16)
 MineTrap(6,17)
@@ -138,7 +139,7 @@ MineTrap(31,10)
 
 //SilphCo2F: Flamethrower Carbos 
 //Route16: Fly, PaddedShieldT2 
-
+BlankExamineTrap(30,19,SilphCo_2F_Report)
 
 //CutBush(12,10)
 //RockSmash(29,9)
@@ -229,26 +230,26 @@ MS_TableEntry(0xE5, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers5)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R17N_0xE0_BQ // 0xE0 
-SHORT R17N_0xE1_BQ // 0xE0 
-SHORT R17N_0xE2_BQ // 0xE0 
-SHORT R17N_0xE3_BQ // 0xE0 
-SHORT R17N_0xE4_BQ // 0xE0 
-SHORT R17N_0xE4_BQ // 0xE0 
+SHORT SilphCo_2F_0xE0_BQ // 0xE0 
+SHORT SilphCo_2F_0xE1_BQ // 0xE0 
+SHORT SilphCo_2F_0xE2_BQ // 0xE0 
+SHORT SilphCo_2F_0xE3_BQ // 0xE0 
+SHORT SilphCo_2F_0xE4_BQ // 0xE0 
+SHORT SilphCo_2F_0xE5_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R17N_0xE0_BD // 0xE0 
+SHORT SilphCo_2F_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE1_BD // 0xE0 
+SHORT SilphCo_2F_0xE1_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE2_BD // 0xE0 
+SHORT SilphCo_2F_0xE2_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE3_BD // 0xE0 
+SHORT SilphCo_2F_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE4_BD // 0xE0 
+SHORT SilphCo_2F_0xE4_BD // 0xE0 
 SHORT 600 // Gold 
-SHORT R17N_0xE4_BD // 0xE0 
+SHORT SilphCo_2F_0xE5_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 

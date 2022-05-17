@@ -171,9 +171,14 @@
 #define RainbowbadgeObtained 0xA0 
 #define ObtainedEeveeFlag 0xA1 
 #define SaffronArrived 0xA9
-#define SilphCoDefeated 0xAA
+
+#define ToyBoxOnFlag 0xAA 
+#define ToyBoxDisplayFlag 0xAB 
+
+#define SilphCoDefeated 0xAC
 
 
+#define CasualModeFlagOn 0xB0 
 
 #define MarshbadgeObtained 0xB1
 #define DojoDefeated 0xB2
