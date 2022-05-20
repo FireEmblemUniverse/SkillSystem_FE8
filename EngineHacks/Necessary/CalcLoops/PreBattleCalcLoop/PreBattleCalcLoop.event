@@ -14,9 +14,12 @@ POP
 ALIGN 4
 BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
-BtlLoopTable:
+POIN BtlLoopList
+
+ALIGN 4
+BtlLoopList:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
-POIN MakeAuraSkillBuffer
+POIN InitializePreBattleLoop
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
 POIN FaireCheck HolyAura
 POIN BreakerCheck MageSlayer
@@ -62,11 +65,33 @@ POIN CriticalCheck
 #endif // CANNOT_CRIT
 POIN 0
 
-AuraSkills:
-BYTE CharmID DemoiselleID GentilhommeID InspirationID LilysPoiseID SpurStrID SpurMagID SpurSpdID SpurDefID SpurResID NiceThighsID
-BYTE DauntID MaleficAuraID IntimidateID SolidarityID VoiceOfPeaceID AnathemaID LilysPoiseID CharismaID HexID BlueFlameID
-//BYTE DriveStrID DriveMagID DriveSpdID DriveDefID DriveResID
-BYTE 0
+#define AuraSkillEntry(skillID) "PUSH; ORG AuraSkillTable + skillID; BYTE 0x1; POP"
+
+ALIGN 4
+AuraSkillTable:
+FILL 0xFF
+
+AuraSkillEntry(CharmID)
+AuraSkillEntry(DemoiselleID)
+AuraSkillEntry(GentilhommeID)
+AuraSkillEntry(InspirationID)
+AuraSkillEntry(LilysPoiseID)
+AuraSkillEntry(SpurStrID)
+AuraSkillEntry(SpurMagID)
+AuraSkillEntry(SpurSpdID)
+AuraSkillEntry(SpurDefID)
+AuraSkillEntry(SpurResID)
+AuraSkillEntry(NiceThighsID)
+AuraSkillEntry(DauntID)
+AuraSkillEntry(MaleficAuraID)
+AuraSkillEntry(IntimidateID)
+AuraSkillEntry(SolidarityID)
+AuraSkillEntry(VoiceOfPeaceID)
+AuraSkillEntry(AnathemaID)
+AuraSkillEntry(LilysPoiseID)
+AuraSkillEntry(CharismaID)
+AuraSkillEntry(HexID)
+AuraSkillEntry(BlueFlameID)
 
 PUSH
 ORG 0x2a3f8
