@@ -19,9 +19,8 @@ SET_FUNC sub_8004B0C, 0x8004B0D
 
 SET_DATA SkillAttackerCache, 0x02026BB0
 SET_DATA SkillDefenderCache, 0x02026BB4
-
-SET_DATA gSkillBuffer, 0x02026B90
-SET_DATA gTempSkillBuffer, 0x02026C00
+SET_DATA gAttackerSkillBuffer, 0x02026B90
+SET_DATA gDefenderSkillBuffer, 0x02026C00
 SET_DATA gAuraSkillBuffer, 0x02027200
 SET_DATA gUnitRangeBuffer, 0x0202764C
 
