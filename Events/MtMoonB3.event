@@ -145,6 +145,10 @@ ENUN
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Burrows 
 
+LOAD1 0x1 BossUnit
+ENUN
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(25,4,31,10)) //NE patch 
+UnmarkTrainerAsDefeated(0xEE)
 
 LOAD1 0x1 HumanTrainers
 ENUN 
@@ -216,6 +220,21 @@ DebugUnit:
 UNIT GenericA ZubatID 0x0 Level(0, Enemy, 1)   [18,30] 0b	0x0 0x01 REDA18R30 [LeechLife,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
+
+BossUnit:
+UNIT 0xEE ClefableID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 
+
+BossSummons: // 1st class must be >9 even if monsters because of Gary cutscenes using <9 to check for starters / cutscenes 
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClefairyID 0xEE 	Level(0, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA		0xEE 	Level(0, Enemy, 1) [11,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT
+
+
+
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
@@ -226,9 +245,11 @@ MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3)
 MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4) 
 MS_TableEntry(0xE5, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers5) 
 MS_TableEntry(0xE6, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers6) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, BossSummons)  
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xE, 0x00)
 SHORT MMB3_0xE0_BQ // 0xE0 
 SHORT MMB3_0xE1_BQ // 0xE1
 SHORT MMB3_0xE2_BQ // 0xE2 
@@ -240,6 +261,7 @@ SHORT MMB3_0xE6_BQ // 0xE5
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xE, 0x00, 0)
 SHORT MMB3_0xE0_BD // 0xE0 
 SHORT 300 // Gold 
 SHORT MMB3_0xE1_BD // 0xE1

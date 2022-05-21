@@ -60,6 +60,29 @@ b SummonStuff
 DontSummonStuff:
 ldr r3, =CurrentUnit
 ldr r3, [r3] 
+@ use a list of which AI2 we'll actually try to execute 
+@ otherwise, AI1 of trainer AI handles it all 
+
+mov r2, #0x44 @ AI2 
+ldrb r0, [r3, r2] 
+ldr r2, =TrainerAIListToDoAI2
+sub r2, #1
+TrainerAIListLoop: 
+add r2, #1
+ldrb r1, [r2] 
+cmp r0, r1 
+beq GotoAI2
+cmp r1, #0 
+beq ExitTrainerAIListLoop 
+b TrainerAIListLoop
+GotoAI2:
+ldr r1, =0x30017CC
+mov r0, #1 
+str r0, [r1] 
+b ExitTrainerSummonAI
+ExitTrainerAIListLoop:
+
+
 ldrb r0, [r3, #0x10] 
 ldrb r1, [r3, #0x11] 
 mov r2, #0 @ Wait 
@@ -67,10 +90,10 @@ bl SetAIToWaitAtCoords
 b ReturnTrue 
 
 SummonStuff: 
-
 @ Clear weapon to get rid of attack range of trainer 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
+
 mov r0, #0
 mov r1, #0x1E @ Weapon  
 strh r0, [r3, r1]

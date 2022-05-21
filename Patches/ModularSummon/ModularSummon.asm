@@ -244,6 +244,14 @@ ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficul
 mul r1, r0 @ 0 for easy, 5 for normal, 10 for hard 
 add r2, r1 @ including bonus hidden levels 
 
+ldr r0, [r6] @ unit ID 
+ldrb r0, [r0, #4] 
+cmp r0, #0xA0 
+bge NoReduction 
+lsr r2, #1 @ 1/2 bonus levels for capturable mons 
+NoReduction:
+
+
 ldr r1, [r6, #4]
 ldrb r1, [r1, #4] @ class id of summon 
 mov r0, r6 @ Summon unit pointer 

@@ -66,14 +66,15 @@ ENUT PlayableCutsceneFlag
 SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
 REMA 
 CURE
-SVAL s5 1 // not pokeball 
-ASMC ModularSummonEffect
+SVAL s1 0 //3<<8Attack in range  //0 pursue and attack  
+CHAI 0xEE
 TutText(AuraFlareText)
 
+SVAL s5 1 // not pokeball 
+ASMC ModularSummonEffect
 
 
-SVAL s1 3<<8 // Attack in range 
-CHAI 0x7FFF 
+
 GOTO 0x63 
 
 LABEL 60 

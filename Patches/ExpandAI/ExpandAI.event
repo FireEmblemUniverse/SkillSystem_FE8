@@ -49,6 +49,24 @@ NewAI2Entry(32, MoveTowardsCommanderAILabel)
 NewAI2Entry(33, TrainerFleeSummonTeamAILabel)
 NewAI2Entry(34, DoNothingAI2)
 
+/*
+To have AI1 do AI2 instead:
+```
+ldr r1, =0x30017CC
+mov r0, #1 
+str r0, [r1] 
+b Exit
+*/
+// store true to 30017CC (gBoolIsAI2 ) and return 1 in r0
+// 0x08039DE0 "Unknown1_Script_Function_ASM_03"
+// 
+//PUSH
+//ORG $39E1E 
+//SHORT 0x2C01 // try AI1 1 time instead of 255 times 
+//POP 
+// fallback AI1 at 5A812C is " BYTE 05 64 FF 00; WORD 0 0 0" 
+// same as #define ActionInRange "BYTE 0x05 0x64 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000" //Attacks in range
+
 #define DoNothingAI DoNothing 
 
 #define SafeZoneAI2 23 
@@ -57,7 +75,7 @@ NewAI2Entry(34, DoNothingAI2)
 #define SafeZoningAI [23,32]
 #define LessSafeZoningAI [24,24]
 #define ZoningAI [24,24]
-#define BeedrillAI [25,25]
+#define BeedrillAI [31,25] // summons stuff 
 #define AttackOrWaitAI [0,26] // If nobody in range, wait 
 #define WaitAI [26,3] // Wait. Do nothing else. 
 #define RunAwayAI [6,27]
@@ -72,6 +90,12 @@ NewAI2Entry(34, DoNothingAI2)
 #define TrainerFleeAI [33, 3, 0, 0] 
 #define AttackIfWithin2 [0, 6] 
 #define GuidePlayerAI [34, 34, 0, 0]
+
+
+ALIGN 4 
+TrainerAIListToDoAI2:
+BYTE 25 0 // Do AI2 for beedrill AI 
+
 
 ALIGN 32
 MoveTowardsCommanderAILabel:

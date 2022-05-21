@@ -145,11 +145,13 @@ RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(1,5,16,11))  //nw
 LOAD1 0x1 EnemyUnitsE
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(1,21,10,27))  //sw
-LOAD1 0x1 BeedrillUnitGroup
-ENUN 
 
 OffAllUnitState(0x01FF, WillDropItem, Any, EnemyArmy, AnyClass, AnyRange, AnyItem) //Wilds to not drop items 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+
+LOAD1 0x1 BeedrillUnitGroup
+ENUN 
+UnmarkTrainerAsDefeated(0xEE)
 
 LOAD1 0x1 HumanTrainers
 ENUN 
@@ -232,7 +234,7 @@ UNIT
 
 
 BeedrillUnitGroup:
-UNIT GenericA BeedrillID 0x0 Level(7, Enemy, 1)   [24,11] 0b	0x0 0x01 REDA24R11 [0x0,0x0,0x0,0x0] BeedrillAI
+UNIT 0xEE BeedrillID 0x0 Level(5, Enemy, 1)   [24,11] 0b	0x0 0x01 REDA24R11 [0x0,0x0,0x0,0x0] BeedrillAI
 UNIT 
 
 
@@ -240,18 +242,29 @@ ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 
 
+BossSummons: 
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	WeedleID 	0xEE 	Level(0, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA		0xEE 	Level(0, Enemy, 1) [11,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT
+
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
 MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, BossSummons)  
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xE, 0x00)
 SHORT VFS_0xE0_BQ // 0xE0 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xE, 0x00, 0)
 SHORT VFS_0xE0_BD // 0xE0 
 SHORT 300 // Gold 
 TDQ_TableTerminator ; }

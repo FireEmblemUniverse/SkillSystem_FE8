@@ -5,7 +5,7 @@
 #define ClassB ClassRoute2NWildB
 #define WildLvl 6 
 #define TrainerL 6 
-
+#define KadabraLvl 20
 
 
 
@@ -133,6 +133,11 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
+LOAD1 0x1 BossUnit
+ENUN
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(16,27,21,31)) //SE 
+UnmarkTrainerAsDefeated(0xEE)
+AutoLevelUnits(KadabraLvl, True, 0xE0EF) // Wilds  & bushes 
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
@@ -140,6 +145,8 @@ RandomizeEnemyCoords(Grass, Range(0,0,2,2), Range(2,2,8,8)) //patch
 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  & bushes 
+
+ 
 
 
 CALL SetBushHpEvent
@@ -208,6 +215,35 @@ UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 
 UNIT 
 
 
+
+
+BossUnit:
+UNIT 0xEE KadabraID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [Confusion, Psybeam, Growl,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 
+
+BossSummons: // 1st class must be >9 even if monsters because of Gary cutscenes using <9 to check for starters / cutscenes 
+UNIT GenericA 	AbraID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [10,10]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	AbraID		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT
+
+
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, BossSummons)  
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xE, 0x00)
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xE, 0x00, 0)
+TDQ_TableTerminator ; }
 
 	
 #undef GenericA 
