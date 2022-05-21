@@ -25,6 +25,7 @@ ldr r0, [r0]
 ldr r1, =Harden 
 lsl r1, #24 
 lsr r1, #24 
+bl MoveTester 
 cmp r0, #0
 beq RetFalse  
 bl IsPeaceful
