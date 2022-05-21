@@ -221,15 +221,15 @@
 {
 #include "SilphCo3F.event"
 }
-
 {
 #include "SilphCo4F.event"
 }
-
 {
 #include "SilphCo5F.event"
 }
-
+{
+#include "Saffron_Dojo.event"
+}
 {
 #include "Saffron_Gym.event"
 }

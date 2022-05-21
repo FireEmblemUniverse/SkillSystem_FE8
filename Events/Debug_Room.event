@@ -280,10 +280,13 @@ ENUT IndigoPlateauArrived
 
 
 
-Write_Byte(13, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(19, YCoordNewArea)  
+Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(8, YCoordNewArea)  
 //MNC2 SilphCo5FCh
-MNC2 Route10Ch
+//MNC2 Route10Ch
+//MNC2 Route8Ch
+//MNC2 SaffronCh
+MNC2 SaffronGymCh
 //MNC2 VermillionCh
 //MNC2 PewterCh
 //MNC2 Route16Ch

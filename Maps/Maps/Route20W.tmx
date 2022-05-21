@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="route 20 tileset" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="../TilesetPreviews/Route20" trans="ffffff"/>
+  <image source="../TilesetPreviews/Route20" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="60" height="20">
   <properties>
@@ -499,8 +499,8 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="73"/>
+   <tile gid="98"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -558,9 +558,9 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="73"/>
+   <tile gid="105"/>
+   <tile gid="195"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
@@ -618,9 +618,9 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="133"/>
+   <tile gid="164"/>
+   <tile gid="165"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="73"/>
@@ -678,8 +678,8 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="3"/>
-   <tile gid="3"/>
-   <tile gid="3"/>
+   <tile gid="167"/>
+   <tile gid="165"/>
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="73"/>

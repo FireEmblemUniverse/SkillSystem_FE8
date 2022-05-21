@@ -1789,9 +1789,11 @@ There are some rare Pok[Eaccent]mon that[N]
 can only be caught there.[A][X]
 
 ## FuschiaWHouseBText
-Koga uses Poison Pok[Eaccent]mon.[A][N]
-Why aren't they called Venom Pok[Eaccent]mon?[N]
-Do they eat each other in battle?[A][X]
+Koga uses Poison Pok[Eaccent]mon.[A][Clear]
+Hmm?[.....] Why aren't they[N]
+called Venom Pok[Eaccent]mon?[A][N]
+I dunno.[.....] Maybe they eat[N]
+each other in battle?[A][X]
 
 
 ## FuschiaSESignText
@@ -2370,8 +2372,20 @@ Pok[Eaccent]mon exist for TEAM ROCKET![A][N]
 I must go, but I shall return![A][X]
 
 
+## KiyoChallengeText
+I am the KARATE MASTER![N]
+I am always ready to spar![A][N]
+You wish to challenge me?[N]
+Expect no mercy![A][N]
+Fwaaa![A][X]
 
+## KiyoDefeatText
+Hwa![N]
+Arrgh! Beaten![A][X]
 
+## KiyoTalkText
+Never lose focus![N]
+Never falter![A][X]
 
 ## SabrinaChallengeText
 [OpenMidRight][LoadSabrina][OpenMidRight]I had a vision of your arrival.[A][N]
@@ -2394,7 +2408,9 @@ hard enough to win.[A][N]
 Your victory has earned[N]
 you the MARSHBADGE.[A]
 You may now cross the harsh[N]
-seas and head to Cinnabar...[A][X]
+seas and head to Cinnabar...[A][N]
+Well, once it is released,[N]
+anyway.[A][X]
 
 ## SabrinaWaitText
 [OpenMidRight][LoadSabrina][OpenMidRight]Wait, please take this with you.[A][X]

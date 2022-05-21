@@ -84,7 +84,8 @@ ALIGN 4
 DamageModifierCalcLoop:
 POIN WeakChipDmg
 POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
-POIN TypeEffectiveness DoublingDamageModifierFunc
+POIN TypeEffectiveness // also caps moves to deal max 99 
+POIN DoublingDamageModifierFunc
 POIN ScaledBackFunc
 POIN MinimumDamage
 POIN FixedDamageWeapons

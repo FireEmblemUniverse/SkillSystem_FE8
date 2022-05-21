@@ -96,9 +96,35 @@ add r0, r1 @ add back def after
 strh r0, [r4, r3] @ 2x att 
 
 DoNothing:
+mov r3, #0x5A @ att 
+ldsh r2, [r4, r3]  
+mov r1, #0x5C @ def 
+ldsh r0, [r5, r1] 
+cmp r2, r0 
+ble Exit 
+sub r2, r0 
+cmp r2, #99 
+ble NoUpperCapAtkr
+mov r2, #99 
+add r2, r0 
+strh r2, [r4, r3] 
+NoUpperCapAtkr:
 
 
+ldsh r2, [r5, r3]  
+ldsh r0, [r4, r1] 
+cmp r2, r0 
+ble Exit 
+sub r2, r0 
+cmp r2, #99 
+ble NoUpperCapDfdr
+mov r2, #99 
+add r2, r0 
+strh r2, [r5, r3] 
+NoUpperCapDfdr:
 
+
+Exit: 
 
 pop {r4-r7}
 pop {r0}

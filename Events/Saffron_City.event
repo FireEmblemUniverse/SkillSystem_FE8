@@ -35,10 +35,10 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-TrainerPostBattleTalk(0xE0) // NPC talk again 
-TrainerPostBattleTalk(0xE1) // NPC talk again 
-TrainerPostBattleTalk(0xE2) // NPC talk again 
-//AllTrainersPostBattleTalk
+//TrainerPostBattleTalk(0xE0) // NPC talk again 
+//TrainerPostBattleTalk(0xE1) // NPC talk again 
+//TrainerPostBattleTalk(0xE2) // NPC talk again 
+AllTrainersPostBattleTalk
 END_MAIN
 
 
@@ -55,7 +55,7 @@ END_MAIN
 
 ObtainPsychicEvent:
 BottomWallText(PsychicSaffronText)
-GiveItemWithDurability(0, SkillScroll, Psychic)
+GiveItemWithDurability(0x7fff, SpellScroll, Psychic)
 NoFade
 ENDA 
 
@@ -86,8 +86,7 @@ ENDA
 
 EnterDojo:
 ENUF DojoDefeated 
-CALL ClosedArea
-ForcedChapterTransition(SaffronDojoCh, 8,15)
+ForcedChapterTransition(SaffronDojoCh, 8,18)
 NoFade 
 ENDA 
 
@@ -124,7 +123,6 @@ ChapterTransition(Route6Ch, 12,6)
 ToRoute7:
 ChapterTransition(Route7Ch, 14,10)
 ToRoute8:
-CALL ClosedArea
 ChapterTransition(Route8Ch, 3, 10)
 
 
@@ -141,8 +139,9 @@ Traps1:
 RedPokeballTrap(4,3, ChapterID*2, MaxPotion)
 
 CutBush(4,7)
+CutBush(13,7)
 
-Save(12,31) // Pokecenter 
+Save(12,30) // Pokecenter 
 
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
@@ -158,8 +157,8 @@ SignATrap(4,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
 
-BlankExamineTrap(23,7,SaffronGymSignText)
-BlankExamineTrap(31,7,SaffronDojoSignText)
+BlankExamineTrap(31,7,SaffronGymSignText)
+BlankExamineTrap(23,7,SaffronDojoSignText)
 SignTrap(13,24, SilphCoSignText) 
 SignTrap(29,15, SaffronKaraokeClub)
 
@@ -182,20 +181,23 @@ CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
 CALL CityBeginningScene 
+
 CHECK_EVENTID SilphCoDefeated
 BNE 0 sC s0 
 LOAD1 1 RocketBlockingGym
 ENUN
-MarkTrainerAsDefeated(0xE0)
 LABEL 0
 CHECK_EVENTID RainbowbadgeObtained
 BNE 1 sC s0 
 LOAD1 1 RocketBlockingSilphCo
 ENUN
-MarkTrainerAsDefeated(0xE1)
 LABEL 1 
 
 LABEL 0x63
+MarkTrainerAsDefeated(0xE0)
+MarkTrainerAsDefeated(0xE1)
+MarkTrainerAsDefeated(0xE2)
+
 NoFade
 ENDA
 
@@ -220,6 +222,7 @@ TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated
 BD(0, SaffronRocket_0, 1) 
 BD(1, SaffronRocket_1, 1) 
 BD(2, SaffronRocket_2, 1) 
+TDQ_TableTerminator
 }
 
 

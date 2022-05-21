@@ -82,7 +82,7 @@ CHECK_EVENTID SaffronArrived
 BNE 0 sC s0 
 CALL ClosedArea
 LABEL 0 
-ChapterTransition(SaffronCh, 0,0)
+ChapterTransition(SaffronCh, 18,34)
 
 
 

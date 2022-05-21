@@ -25,10 +25,13 @@ NoCapDef1:
 mov r2, #0x5A @ Att 
 ldsh r1, [r4, r2] @ Att
 cmp r1, #0 
-bge NoCapAtt1
+bge NoLowCapAtt1
 mov r1, #0 
-NoCapAtt1:
-
+NoLowCapAtt1:
+cmp r1, #99 
+ble NoHighCapAtt1
+mov r1, #99 
+NoHighCapAtt1:
 cmp r1, r0 
 bgt CheckOther
 add r0, #1
@@ -44,9 +47,13 @@ NoCapDef2:
 mov r2, #0x5A @ Att 
 ldsh r1, [r5, r2] @ Att
 cmp r1, #0 
-bge NoCapAtt2
+bge NoLowCapAtt2
 mov r1, #0 
-NoCapAtt2:
+NoLowCapAtt2:
+cmp r1, #99 
+ble NoHighCapAtt2
+mov r1, #99 
+NoHighCapAtt2:
 cmp r1, r0 
 bgt GoBack
 add r0, #1

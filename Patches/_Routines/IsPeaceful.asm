@@ -23,7 +23,7 @@ mov r4,#0x7F @ current deployment id
 LoopThroughUnits:
 add r4, #1 
 cmp r4, #0xC0 
-bge RetTrue 
+bge IsPeaceful_True
 mov r0,r4
 blh GetUnit @ 19430
 cmp r0, #0
@@ -43,13 +43,12 @@ cmp r1, #0xEF
 bgt ValidEnemy
 b LoopThroughUnits
 ValidEnemy:
-
-RetTrue:
-mov r0, #1 
+NotPeaceful:
+mov r0, #0 
 b Exit 
 
-RetFalse:
-mov r0, #0 
+IsPeaceful_True:
+mov r0, #1
 
 Exit:
 

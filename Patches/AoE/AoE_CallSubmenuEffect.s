@@ -12,7 +12,6 @@
 AoE_AreAnyUsable:
 push {r4,r14}
 
-
 bl IsPeaceful
 cmp r0, #1
 beq RetFalse

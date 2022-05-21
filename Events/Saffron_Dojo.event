@@ -1,7 +1,7 @@
 #define ChapterID SaffronDojoCh
 
 #define WildLvl 5 
-#define TrainerL 30
+#define TrainerL 36
 
 
 
@@ -29,6 +29,7 @@ TurnEventPlayer(0,GlobalTurnEvent,0,255)
 END_MAIN
 
 CharacterBasedEvents:
+AllTrainersPostBattleTalk
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 END_MAIN
 
@@ -37,61 +38,68 @@ END_MAIN
 LocationBasedEvents:
 END_MAIN
 
+CheckIfNoEnemiesLeft:
+CHECK_ENEMIES
+SVAL s1 1 
+BNE 0 sC s1 
+CALL EndingScene 
+GOTO 99 
+LABEL 0 
+ENUF 0xA // so this can run again 
+LABEL 99 
+NoFade 
+ENDA 
+
 MiscBasedEvents:
 CauseGameOverIfLordDies
 //AFEV 0 GlobalAfev 0
 DefeatAll(EndingScene) 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0xA CheckIfNoEnemiesLeft 0
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSaffron [7,18] [7,18] 
+AREA 0 ToSaffron [8,19][8,19] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,18) 
+EscapeTileEntry(8,19) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToCeladon:
-ChapterTransition(CeladonCh, 9,27)
+ToSaffron:
+ChapterTransition(SaffronCh, 24,6)
 
 Traps1:
-BerryTree(6,8,5)
-BerryTree(8,8,5)
-BerryTree(5,6,5)
-BerryTree(7,6,5)
-BerryTree(9,6,5)
-BerryTree(10,13,5)
-BerryTree(4,13,5)
-BerryTree(7,14,5)
-BerryTree(6,11,5)
-BerryTree(8,11,5)
+SpellScrollTrap(5,3, (ChapterID*2)+1, BulkUp) 
+StatAccessoryTrap(8,3, (ChapterID*2)+1, MuscleBandT3_BoostIndex)
+SpellScrollTrap(11,3, (ChapterID*2), HiJumpKick) 
 
-Flower(11,13)
-Flower(12,13)
-Flower(2,13)
-Flower(3,13)
+RockSmash(7,12)
+RockSmash(9,13)
+RockSmash(10,11)
+RockSmash(15,4)
+RockSmash(14,7)
+RockSmash(13,9)
+RockSmash(15,10)
+RockSmash(14,12)
+RockSmash(14,15)
+RockSmash(12,14)
+RockSmash(11,16)
+RockSmash(10,17)
+RockSmash(10,8)
+RockSmash(8,10)
+RockSmash(6,8)
+RockSmash(2,5)
+RockSmash(1,8)
+RockSmash(3,9)
+RockSmash(4,11)
+RockSmash(2,12)
+RockSmash(5,13)
+RockSmash(5,16)
+RockSmash(4,14)
+RockSmash(2,15)
+RockSmash(1,14)
 
-Flower(3,12)
-Flower(4,12)
-Flower(5,12)
-
-Flower(9,12)
-Flower(10,12)
-Flower(11,12)
-Flower(12,12)
-
-Flower(12,5)
-Flower(12,7)
-Flower(12,9)
-Flower(11,6)
-Flower(11,8)
-
-Flower(2,5)
-Flower(2,7)
-Flower(2,9)
-Flower(3,6)
-Flower(3,8)
 
 ENDTRAP
 ALIGN 4
@@ -100,8 +108,6 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-CHECK_EVENTID RainbowbadgeObtained
-BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [8,6] 
@@ -110,36 +116,38 @@ CAM1 [8,6]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(SaffronDojoBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveSkillAccessory(0xD0, AmaterasuID)
+
+
+SilentGiveItemWithDurability(0xD0, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Machoke 
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+SilentGiveItemWithDurability(0xA0, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+SilentGiveItemWithDurability(0xA1, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+SilentGiveItemWithDurability(0xA2, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+SilentGiveItemWithDurability(0xA3, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+SilentGiveItemWithDurability(0xA4, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 
 MUSCFAST IntroBGM 
 ShowMap
-Text(ErikaChallengeText)
-
+BottomWallText(KiyoChallengeText)
+MarkTrainerAsDefeated(0xE1)
 
 
 ASMC 0x80160D1 // Return to map BGM 
 
-CAM1 [7,12] 
+//CAM1 [8,18] 
 
 
 
@@ -151,32 +159,15 @@ ENDA
 
 
 EndingScene: 
-CHECK_EVENTID RainbowbadgeObtained 
-BNE 0x63 rC r0 
-EVBIT_MODIFY 4 
-MUSC 0x7FFF // Mute 
 #ifdef UnsetAllDangerRadius
 UnsetAllDangerRadius
 #endif 
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-MUSCSLOW GymBGM
-Text(ErikaDefeatText)
-GiveItemWithDurability(0, SpellScroll, PetalDance)
-ENUT RainbowbadgeObtained 
-SVAL r3 6000 
+CAM1 [8,6] 
+BottomWallText(KiyoDefeatText)
+SVAL r3 1000 
 GIVETOMAIN 0 
-TEXTSHOW ErikaWaitText
-TEXTEND 
-REMA
-GiveSkillAccessory(0, AmaterasuID)
-TEXTSTART
-TEXTSHOW ErikaRewardText
-TEXTEND 
-FADI 4 
-REMA 
-ForcedChapterTransition(CeladonCh, 9, 27)
-LABEL 0x63 
 NoFade
 ENDA
 
@@ -198,22 +189,29 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R4 	[MegaDrain,Constrict,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 WeepinbellID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xE1 blackbeltID 		0x0  Level(0, Enemy, 1) [8,4]  0b 0x0	0 0	[0,0,0x0,0x0] 		DoNothingAI
+UNIT 0xD0 MachokeID 		0x0  Level(0, Enemy, 1) [8,5]  0b 0x0	0 0	[PetalDance,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [6,5]  0b 0x0	0 0 [MegaDrain,Constrict,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 HitmonchanID 	0xD0 Level(0, Enemy, 1) [10,5]  0b 0x0	0 0	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 GolduckID 		0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0 0 0	[Psybeam,MagicalLeaf,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 PinsirID 		0xD0 Level(0, Enemy, 1) [11,7]  0b 0x0	0 0	[XScissor, Slash, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 PrimeapeID 		0xD0 Level(0, Enemy, 1) [8,8]  0b 0x0	0 0	[Ancientpower,Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
-EnemyTrainersB: // rematch 
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [7,3]  0b 0x0	0x1 REDA7R3 	[PetalDance,Sludge,0x0,0x0] 			ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 			ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] 			ZoningHeal50GroupOneAI
-UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [7,5]  0b 0x0	0x1 REDA7R5 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
-UNIT
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(1, GarySilphCoDefeatText) 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(1, KiyoTalkText, 600) 
+TDQ_TableTerminator ; }
 	
 
 #undef WildLvl
