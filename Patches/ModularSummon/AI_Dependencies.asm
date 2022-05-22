@@ -345,6 +345,8 @@ cmp r4, r9
 bgt NextAllegiance
 mov r0, r4 
 blh GetUnit 
+cmp r0, #0 
+beq AnyoneWithinRangeLoop
 ldr r1, [r0] 
 cmp r1, #0 
 beq AnyoneWithinRangeLoop
@@ -385,7 +387,9 @@ push {r1-r2} @ target, wep
 blh 0x803AC3C @ CouldStationaryUnitBeInRangeHeuristic
 pop {r1-r2} 
 
-cmp r0, #1 
+mov r3, r0
+mov r0, r1 @ for loop  
+cmp r3, #1 
 bne ContinueAnyoneWithinRangeLoop @ try next weapon 
 push {r1}
 @mov r0, r1 @ target doesn't make sense lol 
@@ -399,7 +403,6 @@ pop {r1}
 ldrb r0, [r1, #0x10] @ X 
 ldrb r1, [r1, #0x11] @ Y 
 
-
 ldr r2, =0x202E4E4	@Range map
 ldr		r2,[r2]			@Offset of map's table of row pointers
 lsl		r1,#0x2			@multiply y coordinate by 4
@@ -409,7 +412,6 @@ add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@load datum at those coordinates
 cmp r0, #0 
 beq AnyoneWithinRangeLoop 
-
 
 mov r5, #1 @ True 
 

@@ -117,13 +117,12 @@ ToRoute4E_Walk:
 ChapterTransition(Route4ECh, 59, 11)
 
 ToRoute4E_Swim:
-CALL ClosedArea
-ChapterTransition(Route4ECh, 58, 0)
+ChapterTransition(Route4ECh, 58, 1)
 
 ToRoute24_Walk:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
-ChapterTransition(Route24Ch, 11, 39)
+ChapterTransition(Route24Ch, 12, 39)
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent
 LABEL 63 
@@ -132,8 +131,7 @@ ENDA
 
 
 ToRoute24_Swim:
-CALL ClosedArea
-ChapterTransition(Route24Ch,6, 39)
+ChapterTransition(Route24Ch,6, 38)
 
 
 

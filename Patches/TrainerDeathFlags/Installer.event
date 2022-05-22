@@ -100,7 +100,13 @@ BNE 20 rC r0
 LABEL 10
 BottomWallS2Text
 CURE
-BNE 0x63 rA r0  // award no gold for rematches 
+BNE 34 rA r0  // award 1/4 gold for rematches 
+GOTO 35 
+LABEL 34 
+SVAL sC 2 
+SLSR s3 s3 sC 
+
+LABEL 35 
 // just in case... 
 SVAL rC 16 
 SLSL r3 r3 rC
@@ -138,6 +144,9 @@ SetUnitStatus(0x7FFe, UnitPointer) // 0xEE -> 0xDE unit ID
 // Later - 
 // ENUF PlayableCutsceneFlag
 // Death quote for the specific pkmn / marowak ? 
+GOTO 0x63 
+
+
 
 LABEL 0x63 
 EVBIT_MODIFY 0

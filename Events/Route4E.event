@@ -2,7 +2,7 @@
 #define GenericA UnitRoute4Wild
 #define GenericB UnitRoute4Trainer
 #define ClassA ClassRoute4WildA
-#define ClassB ClassRoute4WildB
+#define ClassB ClassRoute24WildB // water mons 
 #define WildLvl 10 
 #define TrainerL 10 
 
@@ -58,7 +58,7 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToRoute24 [57,0] [59,0] 
+AREA 0 ToCeruleanWater [57,0] [59,0] 
 AREA 0 ToCeruleanCity [59,10] [59,12] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -77,9 +77,8 @@ ToCeruleanCave:
 CALL ClosedArea
 ChapterTransition(MtMoonB2Ch, 0,0)
 
-ToRoute24:
-CALL ClosedArea
-ChapterTransition(MtMoonB2Ch, 0,0)
+ToCeruleanWater:
+ChapterTransition(CeruleanCh, 1,2)
 
 ToCeruleanCity:
 ChapterTransition(CeruleanCh, 0,20)
@@ -118,6 +117,8 @@ SignATrap(8,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 
 
 StrengthBoulder(49,3)
 StrengthBoulder(50,4)
+StrengthBoulder(55,3)
+StrengthBoulder(54,4)
 
 BerryTree(21,6,5)
 BerryTree(23,6,5) 
@@ -161,6 +162,11 @@ CALL LoadAndPlacePlayers
 LOAD1 0x1 EnemyUnitsA
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(34,11,46,17)) //w patch 
+
+LOAD1 0x1 EnemyUnitsB
+ENUN
+RandomizeEnemyCoords(Shallow, Range(0,0,5,5), Range(49,0,59,8)) //w patch 
+
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
@@ -211,6 +217,12 @@ UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+EnemyUnitsB:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
 ReinforcementUnits:

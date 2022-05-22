@@ -95,6 +95,9 @@ mov r6, r0
 ldr r2, =CurrentUnit 
 ldr r2, [r2] @ Current unit ram struct pointer 
 
+ldrh r0, [r6, #0x10] 
+push {r0} @ save original coords 
+
 ldrh r0, [r2, #0x10] 
 strh r0, [r6, #0x10] @ So units have matching coords 
 
@@ -130,6 +133,17 @@ ldr r3, =MemorySlot
 add r3, #4*0x0A @ sA 
 ldr r1, [r3] @ X
 ldr r2, [r3, #4] @ Y 
+pop {r0} @ original coords 
+lsr r3, r1, #8 
+cmp r3, #0 @ if we failed to find a proper place for the called unit, put them at -1x, 0y 
+beq Store
+
+strh r0, [r6, #0x10] @ store original coords back if failed 
+
+b LoopThroughFirst5Units
+
+
+Store: 
 strb r1, [r6, #0x10] @ X
 strb r2, [r6, #0x11] @ Y
 
@@ -180,6 +194,52 @@ ExecuteEvent:
 	.long 0x800D07D @AF5D
 CurrentUnitFateData:
 	.long 0x203A958
+	
+.ltorg 
+.align 
+.global UndeployBadCoordMons
+.type UndeployBadCoordMons, %function 
+UndeployBadCoordMons:
+push {r4, lr}
+
+mov r4, #0 
+UndeployLoop:
+add r4, #1 
+cmp r4, #0xC0 
+bge BreakLoop 
+mov r0, r4 
+blh GetUnit 
+cmp r0, #0 
+beq UndeployLoop
+ldr r3,[r0]
+cmp r3,#0
+beq UndeployLoop
+ldr r3,[r0,#0xC] @ condition word
+ldr r2, =#0x1000C @ escaped, benched/dead
+tst r3,r2
+bne UndeployLoop
+mov r1, #0x10 
+ldsb r1, [r0, r1] 
+cmp r1, #0 
+bge UndeployLoop
+mov r1, #0 
+strb r1, [r0, #0x11] @ YY as 0 
+
+@ r3 is still state 
+ldr r2, =0x210009 @ undeployed last ch, escaped, hide / undeploy 
+orr r3, r2 
+str r3, [r0, #0x0C] @ hide/undeploy unit 
+@ if you got here, unit exists and is not dead or undeployed, so go ham
+@r0 is Ram Unit Struct 
+b UndeployLoop
+
+BreakLoop: 
+
+pop {r4}
+pop {r0}
+bx r0 
+.ltorg 
+.align 
 	
 	
 	.global CallCommandUsability

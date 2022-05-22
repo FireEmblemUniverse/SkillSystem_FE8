@@ -135,7 +135,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 BossUnit
 ENUN
-RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(16,27,21,31)) //SE 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(16,27,21,31)) //SE 
 UnmarkTrainerAsDefeated(0xEE)
 AutoLevelUnits(KadabraLvl, True, 0xE0EF) // Wilds  & bushes 
 
