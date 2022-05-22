@@ -331,6 +331,7 @@ SetNearbyDangerRadius
 LABEL 1 
 #endif 
 ENUF CallCountdownFlag // Can 'Call' again 
+ASMC SeeAllDeployedPokemon
 NoFade
 ENDA 
 

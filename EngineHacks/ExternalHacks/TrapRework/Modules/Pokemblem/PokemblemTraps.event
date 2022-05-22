@@ -272,12 +272,7 @@ SetImpassableTrap(SkillAccessoryTrapID)
 
 // 
 // 00 ??? 
-#define SignAreaFlagOffset 0x20 
-#define ObtainSpellFlagOffset 0x40 
-#define ObtainSkillFlagOffset 0x60 
-#define ObtainItemFlagOffset 0x80 
-#define TrainerDefeatedFlagOffset 0xA0 // should use about 0x100 bytes? 128 chapters max * 2 bytes each 
-#define ObtainAccessoryFlagOffset 0x1A0 // should use 0x20 bytes (128 * (1/4)) 
+
 
 
 #define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsTrapID XX YY Flag; SHORT CoinsAmount"
@@ -289,12 +284,6 @@ SetImpassableTrap(SkillAccessoryTrapID)
 #define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID Flag 0x0"
 #define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID Flag 0x0"
 
-
-// Coins is first 256 flags 
-// Then signs / completion of areas is +0x20 
-// Then Spells as +0x40 
-// Then Skills as +0x60 
-// Then Items as +0x80 and can go indefinitely 
 
 
 
@@ -383,6 +372,7 @@ ALIGN 4
 #include "asm/TeleportSign.lyn.event"
 #include "asm/DisplayText.lyn.event" 
 #include "asm/EnterText.lyn.event"
+#include "asm/RegisterPokemon.lyn.event"
 
 #include "GiveItemEvent.event"
 #include "ShowTextEvent.event"

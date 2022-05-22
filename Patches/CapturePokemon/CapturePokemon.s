@@ -16,7 +16,7 @@
 .global ChangeS1UnitIntoLowestUnitID
 .type ChangeS1UnitIntoLowestUnitID, %function 
 ChangeS1UnitIntoLowestUnitID:
-push {r4, lr}
+push {r4-r5, lr}
 bl FindFreeSlot
 mov r4, r0 
 ldr r3, =MemorySlot 
@@ -24,7 +24,14 @@ ldr r0, [r3, #0x1*4] @ s1 as unit ID
 blh GetUnitByEventParameter
 cmp r0, #0 
 beq Change_Error
-mov r2, r0 @ Unit ram 
+mov r5, r0 @ Unit ram 
+cmp r4, #0xFF 
+beq Change_Error
+
+ldr r0, [r5, #4] @ class pointer 
+ldrb r0, [r0, #4] @ class ID 
+bl RegisterPokemon
+
 
 mov r0, r4 
 mov r1, #0x34 @ Size of Character table 
@@ -32,11 +39,11 @@ mul r0, r1
 ldr r3, =0x8017D64 @ POIN CharacterTable 
 ldr r3, [r3] @ Char table unit 0 
 add r0, r3 @ Character table entry 
-str r0, [r2] @ change unit pointer 
+str r0, [r5] @ change unit pointer 
 
 Change_Error:
 
-pop {r4} 
+pop {r4-r5} 
 pop {r0}
 bx r0
 .ltorg 
@@ -203,6 +210,9 @@ ldr r1, [r1] @ Char table unit 0
 add r1, r0 
 str r1, [r5] 
 
+ldr r0, [r5, #4]
+ldrb r0, [r0, #4] @ class 
+bl RegisterPokemon
 
 mov r0, #1
 lsl r0, #8 @0x100 

@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
@@ -88,6 +88,18 @@
 
 #define PokemblemRamLocation 0x203F548 
 #define PokemblemRamSize $27F 
+
+#define CoinsFlagOffset 0x0 
+#define SignAreaFlagOffset 0x20 
+#define ObtainSpellFlagOffset 0x40 
+#define ObtainSkillFlagOffset 0x60 
+#define ObtainItemFlagOffset 0x80 
+#define TrainerDefeatedFlagOffset 0xA0 // should use about 0x100 bytes? 128 chapters max * 2 bytes each 
+#define ObtainAccessoryFlagOffset 0x1A0 // should use 0x20 bytes (128 * (1/4)) 
+#define PokedexCaughtFlagOffset 0x1C0 // RegisterPokemon in trap rework because most pokemblem ram usage is there i guess 
+#define PokedexSeenFlagOffset 0x1E0 
+
+
 
 #define BuffDepletePerTurnAmount 2 // -2 from buffs per turn 
 #define BuffTable 0x0203F7C8 // end of pokemblem ram - 0x203F99F // [203F7C7..203F9A0]!
