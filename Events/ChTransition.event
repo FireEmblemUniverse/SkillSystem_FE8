@@ -301,6 +301,7 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 #ifdef DEBUG_MODE 
 SetMaxMove
 #endif 
+ASMC RegisterAllOwnedPokemon
 NoFade 
 ENDA
 

@@ -1,5 +1,32 @@
 
 
+#define ChapterJumpTextID 0x0060
+#define ChapterJumpDescID 0x0061
+
+setText(ChapterJumpTextID, ChapterJumpText) // These are from the tutorial, I think?
+setText(ChapterJumpDescID, ChapterJumpDesc)
+
+ChapterJumpText:
+String(" ChJump") // [0x20] would be used as a space prefix for menus, but doesn't seem to work  
+BYTE 0
+
+ChapterJumpDesc:
+String("Jump to a chapter.")
+BYTE 0
+
+/*
+PUSH 
+ORG 0x59D21C  // Chapter Menu
+POIN ChapterMenu
+
+POP 
+
+ALIGN 4
+ChapterMenu:
+
+// Mimics commands at 08059CE6C but adds backup option.
+// Copied from Huichelaar 
+
 // Unit
 WORD  0x80D7EDC
 SHORT 0x69A
@@ -13,21 +40,6 @@ WORD  0x802260D
 WORD  0x0
 WORD  0x0
 WORD  0x0
-
-// Pokedex
-WORD  0x0
-SHORT PokedexNameText
-SHORT PokedexDescText
-BYTE  0x0
-BYTE  0x79
-SHORT 0x0
-WORD  0x804F449 // Always usable 
-WORD  0x0
-POIN  Pokedex_OnSelect
-WORD  0x0
-WORD  0x0
-WORD  0x0
-
 
 // Status
 WORD  0x80D7ED4
@@ -43,10 +55,6 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
-
-
-
-
 // Guide
 WORD  0x80D7ECC
 SHORT 0x69C
@@ -56,11 +64,7 @@ BYTE  0x74
 SHORT 0x0
 WORD  0x8022661
 WORD  0x8022679
-#ifdef Debug
-  POIN  WinFunctionality+0x1
-#else
-  WORD  0x80226E5
-#endif
+WORD  0x80226E5
 WORD  0x0
 WORD  0x0
 WORD  0x0
@@ -81,8 +85,8 @@ WORD  0x0
 
 // Options
 WORD  0x80D7EBC
-SHORT ConfigText
-SHORT ConfigHelpText
+SHORT 0x69B
+SHORT 0x6E1
 BYTE  0x0
 BYTE  0x71
 SHORT 0x0
@@ -109,9 +113,9 @@ WORD  0x0
 
 // Suspend
 WORD  0x80D7EAC
-SHORT CM_QuicksaveText
-SHORT QuicksaveHelpText
-BYTE  0x2
+SHORT 0x69F
+SHORT 0x6E4
+BYTE  0x0
 BYTE  0x73
 SHORT 0x0
 WORD  0x80225B1
@@ -121,47 +125,12 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
-// Toy Box 
-WORD  0x0
-SHORT 0x9B7
-SHORT 0x9B8
-BYTE  0x4
-BYTE  0x75
-SHORT 0x0
-#ifdef TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
-POIN DisplayIfFlagAB
-#endif 
-#ifndef TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
-WORD  0x804F449 // Always usable 
-#endif 
-WORD  0x0
-POIN  ToggleFlagAA
-WORD  0x0
-WORD  0x0
-WORD  0x0
-
-// Fly
-WORD  0x0
-SHORT UM_Fly
-SHORT UM_FlyDesc
-BYTE  0x0
-BYTE  0x76
-SHORT 0x0
-POIN FlyCommandUsability
-WORD  0x0
-POIN  FlyCommandEffect
-WORD  0x0
-WORD  0x0
-WORD  0x0
-
-/*
-#ifdef DEBUG_MODE
 // Chapter Jump 
 WORD  0x0
 SHORT ChapterJumpTextID
 SHORT ChapterJumpDescID
 BYTE  0x3
-BYTE  0x77
+BYTE  0x75
 SHORT 0x0
 WORD  0x804F449 // Always usable 
 WORD  0x0
@@ -169,8 +138,6 @@ POIN  Jump_OnSelect
 WORD  0x0
 WORD  0x0
 WORD  0x0
-#endif 
-*/
 
 // End
 WORD  0x80D7EA4
@@ -199,3 +166,4 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 WORD  0x0
+*/

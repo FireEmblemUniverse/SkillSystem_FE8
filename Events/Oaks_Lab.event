@@ -190,6 +190,7 @@ AutoLevelUnits(1, True, 0x1FF) // all units to gain moves they should've learned
 
 
 LABEL 0x63
+ASMC RegisterAllOwnedPokemon
 NoFade
 ENDA
 

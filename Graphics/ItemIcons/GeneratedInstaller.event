@@ -27,34 +27,37 @@
 #define HPUpIcon 240 
 #define HyperPotionIcon 241 
 #define IceTypeIcon 242 
-#define IronIcon 243 
-#define JellyDonutIcon 244 
-#define LeafStoneIcon 245 
-#define LuckIcon 246 
-#define LuckyBracerIcon 247 
-#define MaximumRepelIcon 248 
-#define MoonStoneIcon 249 
-#define MuscleBandIcon 250 
-#define NormalTypeIcon 251 
-#define PoisonTypeIcon 252 
-#define PotionIcon 253 
-#define ProteinIcon 254 
-#define PsychicTypeIcon 255 
-#define QuickClawIcon 256 
-#define RareCandyIcon 257 
-#define RepelIcon 258 
-#define ReviveIcon 259 
-#define RockTypeIcon 260 
-#define SacredStoneIcon 261 
-#define SecretTonicIcon 262 
-#define SteelTypeIcon 263 
-#define SuperPotionIcon 264 
-#define SuperRepelIcon 265 
-#define ThunderStoneIcon 266 
-#define WaterStoneIcon 267 
-#define WaterTypeIcon 268 
-#define WiseGlassesIcon 269 
-#define ZincIcon 270 
+#define image_palIcon 243 
+#define IronIcon 244 
+#define JellyDonutIcon 245 
+#define LeafStoneIcon 246 
+#define LuckIcon 247 
+#define LuckyBracerIcon 248 
+#define MaximumRepelIcon 249 
+#define MoonStoneIcon 250 
+#define MuscleBandIcon 251 
+#define NormalTypeIcon 252 
+#define OpenPokeballIcon 253 
+#define PoisonTypeIcon 254 
+#define PokeballIcon 255 
+#define PotionIcon 256 
+#define ProteinIcon 257 
+#define PsychicTypeIcon 258 
+#define QuickClawIcon 259 
+#define RareCandyIcon 260 
+#define RepelIcon 261 
+#define ReviveIcon 262 
+#define RockTypeIcon 263 
+#define SacredStoneIcon 264 
+#define SecretTonicIcon 265 
+#define SteelTypeIcon 266 
+#define SuperPotionIcon 267 
+#define SuperRepelIcon 268 
+#define ThunderStoneIcon 269 
+#define WaterStoneIcon 270 
+#define WaterTypeIcon 271 
+#define WiseGlassesIcon 272 
+#define ZincIcon 273 
 */ 
  
  
@@ -127,6 +130,9 @@ ItemIconEntry(HyperPotionIcon)
 ItemIconEntry(IceTypeIcon) 
 #incbin "dmp/IceType.dmp" 
  
+ItemIconEntry(image_palIcon) 
+#incbin "dmp/image_pal.dmp" 
+ 
 ItemIconEntry(IronIcon) 
 #incbin "dmp/Iron.dmp" 
  
@@ -154,8 +160,14 @@ ItemIconEntry(MuscleBandIcon)
 ItemIconEntry(NormalTypeIcon) 
 #incbin "dmp/NormalType.dmp" 
  
+ItemIconEntry(OpenPokeballIcon) 
+#incbin "dmp/OpenPokeball.dmp" 
+ 
 ItemIconEntry(PoisonTypeIcon) 
 #incbin "dmp/PoisonType.dmp" 
+ 
+ItemIconEntry(PokeballIcon) 
+#incbin "dmp/Pokeball.dmp" 
  
 ItemIconEntry(PotionIcon) 
 #incbin "dmp/Potion.dmp" 

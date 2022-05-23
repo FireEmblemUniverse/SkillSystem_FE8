@@ -1,3 +1,6 @@
+
+#include "RegisterPokemon.lyn.event"
+
 ALIGN 4
 PCBoxFullEvent:
 EVBIT_MODIFY 1

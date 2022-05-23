@@ -54,7 +54,13 @@
 #define LeafStoneIcon 0x65
 #define WaterStoneIcon 0x66
 #define FireStoneIcon 0xA9
+
+#define OpenPokeballIcon 0xAA
+#define PokeballIcon 0xAB
+
 #define SacredStoneIcon 0xD9 
+
+#define image_palIcon 0xDA
 
 #define RepelIcon 0xDA
 #define SuperRepelIcon 0xDB

@@ -372,7 +372,7 @@ ALIGN 4
 #include "asm/TeleportSign.lyn.event"
 #include "asm/DisplayText.lyn.event" 
 #include "asm/EnterText.lyn.event"
-#include "asm/RegisterPokemon.lyn.event"
+
 
 #include "GiveItemEvent.event"
 #include "ShowTextEvent.event"
