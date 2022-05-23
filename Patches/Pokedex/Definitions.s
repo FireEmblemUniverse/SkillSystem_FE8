@@ -46,6 +46,7 @@ SET_DATA SpellTargetSelection, 0x0859D3F8
 SET_DATA StatScreenBufferMap, 0x02003C94
 
 SET_DATA gBG0MapBuffer, 0x02022CA8
+SET_DATA gBG1MapBuffer, 0x020234A8
 
 SET_DATA gpCurrentRound, 0x0203A608
 

@@ -1,5 +1,40 @@
 #include "Pokedex.lyn.event"
 
+
+ALIGN 4
+MyPalette:
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+
+ALIGN 4
+PokedexPortraitBox:
+#incbin "PortraitBox.dmp"
+
+ALIGN 4
+PokedexSeenCaughtBox:
+#incbin "SeenCaughtBox.dmp"
+
+
 #define DexEntry(ClassID) "PUSH; ORG PokedexTable+(4*ClassID); WORD 1; POP"
 
 ALIGN 4
