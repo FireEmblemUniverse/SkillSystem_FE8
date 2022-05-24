@@ -3,7 +3,7 @@
 
 ALIGN 4
 SpellListTable: // Allocate space for the spell list pointer table.
-FILL 4*0xFF
+FILL 4*0x100
 
 // Example usage of a spell list.
 	// Format is 0 0 terminated.
