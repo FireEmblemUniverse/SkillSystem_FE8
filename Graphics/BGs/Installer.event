@@ -90,9 +90,11 @@ WORD 0xFFFFFFFF // Febuilder terminator
 
 #define GaryHouseBG 56 
 #define ViridianForestBG 57 
+#define WorldMapBG 58
 // Or new entries go here if you want to put the index number at the start :-) 
 BGEntry(56, LoserWorldMap_img, LoserWorldMap_tsa, LoserWorldMap_pal)
 BGEntry(57, ViridianForestBG_img, ViridianForestBG_tsa, ViridianForestBG_pal)
+BGEntry(58, WorldMap_img, WorldMap_tsa, WorldMap_pal)
 
 
 
@@ -121,3 +123,24 @@ ViridianForestBG_tsa:
 ALIGN 4 
 ViridianForestBG_pal:
 #incbin "dmp/ViridianForest_pal.dmp"
+
+
+ALIGN 4 
+WorldMap_img:
+#incbin "dmp/WorldMap.dmp"
+
+ALIGN 4
+WorldMap_tsa:
+#incbin "dmp/WorldMap_tsa.dmp"
+
+ALIGN 4 
+WorldMap_pal:
+#incbin "dmp/WorldMap_pal.dmp"
+
+
+
+
+
+
+
+

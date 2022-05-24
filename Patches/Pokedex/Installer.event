@@ -34,166 +34,321 @@ ALIGN 4
 PokedexSeenCaughtBox:
 #incbin "SeenCaughtBox.dmp"
 
+ALIGN 4
+gWorldMapPaletteCount:
+BYTE 5
 
-#define DexEntry(ClassID) "PUSH; ORG PokedexTable+(4*ClassID); WORD 1; POP"
+
+#define DexEntry(ClassID, IndexNumber) "PUSH; ORG PokedexTable+(4*ClassID); BYTE IndexNumber; POP"
 
 ALIGN 4
 PokedexTable:
 //FILL(256*4, 0xFF) 
 FILL(256*4) 
 
-DexEntry(BulbasaurID)
-DexEntry(IvysaurID)
-DexEntry(VenusaurID)
-DexEntry(CharmanderID)
-DexEntry(CharmeleonID)
-DexEntry(CharizardID)
-DexEntry(SquirtleID)
-DexEntry(WartortleID)
-DexEntry(BlastoiseID)
-DexEntry(CaterpieID)
-DexEntry(MetapodID)
-DexEntry(ButterfreeID)
-DexEntry(WeedleID)
-DexEntry(KakunaID)
-DexEntry(BeedrillID)
-DexEntry(PidgeyID)
-DexEntry(PidgeottoID)
-DexEntry(PidgeotID)
-//DexEntry(CrobatID)
-//DexEntry(Unused4ID)
-DexEntry(RattataID)
-DexEntry(RaticateID)
-DexEntry(SpearowID)
-DexEntry(FearowID)
-DexEntry(EkansID)
-DexEntry(ArbokID)
-DexEntry(PikachuID)
-DexEntry(RaichuID)
-DexEntry(SandshrewID)
-DexEntry(SandslashID)
-DexEntry(NidoranFID)
-DexEntry(NidorinaID)
-DexEntry(NidoqueenID)
-DexEntry(NidoranMID)
-DexEntry(NidorinoID)
-DexEntry(NidokingID)
-DexEntry(ClefairyID)
-DexEntry(ClefableID)
-DexEntry(VulpixID)
-DexEntry(NinetalesID)
-DexEntry(JigglypuffID)
-DexEntry(WigglytuffID)
-DexEntry(ZubatID)
-DexEntry(GolbatID)
-DexEntry(OddishID)
-DexEntry(GloomID)
-DexEntry(VileplumeID)
-DexEntry(ParasID)
-DexEntry(ParasectID)
-DexEntry(VenonatID)
-DexEntry(VenomothID)
-DexEntry(DiglettID)
-DexEntry(DugtrioID)
-DexEntry(MeowthID)
-DexEntry(PersianID)
-DexEntry(PsyduckID)
-DexEntry(GolduckID)
-DexEntry(MankeyID)
-DexEntry(PrimeapeID)
-DexEntry(GrowlitheID)
-DexEntry(ArcanineID)
-DexEntry(PoliwagID)
-DexEntry(PoliwhirlID)
-DexEntry(PoliwrathID)
-DexEntry(AbraID)
-DexEntry(KadabraID)
-DexEntry(AlakazamID)
-DexEntry(MachopID)
-DexEntry(MachokeID)
-DexEntry(MachampID)
-DexEntry(BellsproutID)
-DexEntry(WeepinbellID)
-DexEntry(VictreebelID)
-DexEntry(TentacoolID)
-DexEntry(TentacruelID)
-DexEntry(GeodudeID)
-DexEntry(GravellerID)
-DexEntry(GolemID)
-DexEntry(PonytaID)
-DexEntry(RapidashID)
-DexEntry(SlowpokeID)
-DexEntry(SlowbroID)
-DexEntry(MagnemiteID)
-DexEntry(MagnetonID)
-DexEntry(FarfetchdID)
-DexEntry(DoduoID)
-DexEntry(DodrioID)
-DexEntry(SeelID)
-DexEntry(DewgongID)
-DexEntry(GrimerID)
-DexEntry(MukID)
-DexEntry(ShellderID)
-DexEntry(CloysterID)
-DexEntry(GastlyID)
-DexEntry(HaunterID)
-DexEntry(GengarID)
-DexEntry(OnixID)
-DexEntry(DrowzeeID)
-DexEntry(HypnoID)
-DexEntry(KrabbyID)
-DexEntry(KinglerID)
-DexEntry(VoltorbID)
-DexEntry(ElectrodeID)
-DexEntry(ExeggcuteID)
-DexEntry(ExeggutorID)
-DexEntry(CuboneID)
-DexEntry(MarowakID)
-DexEntry(HitmonleeID)
-DexEntry(HitmonchanID)
-DexEntry(LickitungID)
-DexEntry(KoffingID)
-DexEntry(WeezingID)
-DexEntry(RhyhornID)
-DexEntry(RhydonID)
-DexEntry(ChanseyID)
-DexEntry(TangelaID)
-DexEntry(KangaskhanID)
-DexEntry(HorseaID)
-DexEntry(SeadraID)
-DexEntry(GoldeenID)
-DexEntry(SeakingID)
-DexEntry(StaryuID)
-DexEntry(StarmieID)
-DexEntry(MrMimeID)
-DexEntry(ScytherID)
-DexEntry(JynxID)
-DexEntry(ElectabuzzID)
-DexEntry(MagmarID)
-DexEntry(PinsirID)
-DexEntry(TaurosID)
-DexEntry(MagikarpID)
-DexEntry(GyaradosID)
-DexEntry(LaprasID)
-DexEntry(DittoID)
-DexEntry(EeveeID)
-DexEntry(VaporeonID)
-DexEntry(JolteonID)
-DexEntry(FlareonID)
-DexEntry(PorygonID)
-DexEntry(OmanyteID)
-DexEntry(OmastarID)
-DexEntry(KabutoID)
-DexEntry(KabutopsID)
-DexEntry(AerodactylID)
-DexEntry(SnorlaxID)
-DexEntry(ArticunoID)
-DexEntry(ZapdosID)
-DexEntry(MoltresID)
-DexEntry(DratiniID)
-DexEntry(DragonairID)
-DexEntry(DragoniteID)
-DexEntry(MewtwoID)
-DexEntry(MewID)
+DexEntry(BulbasaurID    , 1    )
+DexEntry(IvysaurID      ,  2   )
+DexEntry(VenusaurID     ,  3   )
+DexEntry(CharmanderID   , 4    )
+DexEntry(CharmeleonID   , 5    )
+DexEntry(CharizardID    , 6    )
+DexEntry(SquirtleID     ,  7   )
+DexEntry(WartortleID    , 8    )
+DexEntry(BlastoiseID    , 9    )
+DexEntry(CaterpieID     ,  10  )
+DexEntry(MetapodID      ,  11  )
+DexEntry(ButterfreeID   , 12   )
+DexEntry(WeedleID       ,  13  )
+DexEntry(KakunaID       ,  14  )
+DexEntry(BeedrillID     ,  15  )
+DexEntry(PidgeyID       ,  16  )
+DexEntry(PidgeottoID    , 17   )
+DexEntry(PidgeotID      ,  18  )
+DexEntry(RattataID      ,  19  )
+DexEntry(RaticateID     ,  20  )
+DexEntry(SpearowID      ,  21  )
+DexEntry(FearowID       ,  22  )
+DexEntry(EkansID        ,  23   )
+DexEntry(ArbokID        ,  24   )
+DexEntry(PikachuID      ,  25  )
+DexEntry(RaichuID       ,  26  )
+DexEntry(SandshrewID    , 27   )
+DexEntry(SandslashID    , 28   )
+DexEntry(NidoranFID     ,  29  )
+DexEntry(NidorinaID     ,  30  )
+DexEntry(NidoqueenID    , 31   )
+DexEntry(NidoranMID     ,  32  )
+DexEntry(NidorinoID     ,  33  )
+DexEntry(NidokingID     ,  34  )
+DexEntry(ClefairyID     ,  35  )
+DexEntry(ClefableID     ,  36  )
+DexEntry(VulpixID       ,  37  )
+DexEntry(NinetalesID    , 38   )
+DexEntry(JigglypuffID   , 39   )
+DexEntry(WigglytuffID   , 40   )
+DexEntry(ZubatID        ,  41   )
+DexEntry(GolbatID       ,  42  )
+DexEntry(OddishID       ,  43  )
+DexEntry(GloomID        ,  44   )
+DexEntry(VileplumeID    , 45   )
+DexEntry(ParasID        ,  46   )
+DexEntry(ParasectID     ,  47  )
+DexEntry(VenonatID      ,  48  )
+DexEntry(VenomothID     ,  49  )
+DexEntry(DiglettID      ,  50  )
+DexEntry(DugtrioID      ,  51  )
+DexEntry(MeowthID       ,  52  )
+DexEntry(PersianID      ,  53  )
+DexEntry(PsyduckID      ,  54  )
+DexEntry(GolduckID      ,  55  )
+DexEntry(MankeyID       ,  56  )
+DexEntry(PrimeapeID     ,  57  )
+DexEntry(GrowlitheID    , 58   )
+DexEntry(ArcanineID     ,  59  )
+DexEntry(PoliwagID      ,  60  )
+DexEntry(PoliwhirlID    , 61   )
+DexEntry(PoliwrathID    , 62   )
+DexEntry(AbraID         ,  63   )
+DexEntry(KadabraID      ,  64  )
+DexEntry(AlakazamID     ,  65  )
+DexEntry(MachopID       ,  66  )
+DexEntry(MachokeID      ,  67  )
+DexEntry(MachampID      ,  68  )
+DexEntry(BellsproutID   , 69   )
+DexEntry(WeepinbellID   , 70   )
+DexEntry(VictreebelID   , 71   )
+DexEntry(TentacoolID    , 72   )
+DexEntry(TentacruelID   , 73   )
+DexEntry(GeodudeID      ,  74  )
+DexEntry(GravellerID    , 75   )
+DexEntry(GolemID        ,  76   )
+DexEntry(PonytaID       ,  77  )
+DexEntry(RapidashID     ,  78  )
+DexEntry(SlowpokeID     ,  79  )
+DexEntry(SlowbroID      ,  80  )
+DexEntry(MagnemiteID    , 81   )
+DexEntry(MagnetonID     ,  82  )
+DexEntry(FarfetchdID    , 83   )
+DexEntry(DoduoID        ,  84   )
+DexEntry(DodrioID       ,  85  )
+DexEntry(SeelID         ,  86   )
+DexEntry(DewgongID      ,  87  )
+DexEntry(GrimerID       ,  88  )
+DexEntry(MukID          ,  89   )
+DexEntry(ShellderID     ,  90  )
+DexEntry(CloysterID     ,  91  )
+DexEntry(GastlyID       ,  92  )
+DexEntry(HaunterID      ,  93  )
+DexEntry(GengarID       ,  94  )
+DexEntry(OnixID         ,  95   )
+DexEntry(DrowzeeID      ,  96  )
+DexEntry(HypnoID        ,  97   )
+DexEntry(KrabbyID       ,  98  )
+DexEntry(KinglerID      ,  99  )
+DexEntry(VoltorbID      ,  100 )
+DexEntry(ElectrodeID    , 101  )
+DexEntry(ExeggcuteID    , 102  )
+DexEntry(ExeggutorID    , 103  )
+DexEntry(CuboneID       ,  104 )
+DexEntry(MarowakID      ,  105 )
+DexEntry(HitmonleeID    , 106  )
+DexEntry(HitmonchanID   , 107  )
+DexEntry(LickitungID    , 108  )
+DexEntry(KoffingID      ,  109 )
+DexEntry(WeezingID      ,  110 )
+DexEntry(RhyhornID      ,  111 )
+DexEntry(RhydonID       ,  112 )
+DexEntry(ChanseyID      ,  113 )
+DexEntry(TangelaID      ,  114 )
+DexEntry(KangaskhanID   , 115  )
+DexEntry(HorseaID       ,  116 )
+DexEntry(SeadraID       ,  117 )
+DexEntry(GoldeenID      ,  118 )
+DexEntry(SeakingID      ,  119 )
+DexEntry(StaryuID       ,  120 )
+DexEntry(StarmieID      ,  121 )
+DexEntry(MrMimeID       ,  122 )
+DexEntry(ScytherID      ,  123 )
+DexEntry(JynxID         ,  124  )
+DexEntry(ElectabuzzID   , 125  )
+DexEntry(MagmarID       ,  126 )
+DexEntry(PinsirID       ,  127 )
+DexEntry(TaurosID       ,  128 )
+DexEntry(MagikarpID     ,  129 )
+DexEntry(GyaradosID     ,  130 )
+DexEntry(LaprasID       ,  131 )
+DexEntry(DittoID        ,  132  )
+DexEntry(EeveeID        ,  133  )
+DexEntry(VaporeonID     ,  134 )
+DexEntry(JolteonID      ,  135 )
+DexEntry(FlareonID      ,  136 )
+DexEntry(PorygonID      ,  137 )
+DexEntry(OmanyteID      ,  138 )
+DexEntry(OmastarID      ,  139 )
+DexEntry(KabutoID       ,  140 )
+DexEntry(KabutopsID     ,  141 )
+DexEntry(AerodactylID   , 142  )
+DexEntry(SnorlaxID      ,  143 )
+DexEntry(ArticunoID     ,  144 )
+DexEntry(ZapdosID       ,  145 )
+DexEntry(MoltresID      ,  146 )
+DexEntry(DratiniID      ,  147 )
+DexEntry(DragonairID    , 148  )
+DexEntry(DragoniteID    , 149  )
+DexEntry(MewtwoID       ,  150 )
+DexEntry(MewID          ,  151  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

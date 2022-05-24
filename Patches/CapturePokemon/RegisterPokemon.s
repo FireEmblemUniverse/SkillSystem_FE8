@@ -162,8 +162,8 @@ cmp r4, #0xFF
 bgt ExitCountSeen
 lsl r0, r4, #2 @ 4 bytes per entry 
 ldrb r0, [r5, r0] @ 1 if to display 
-cmp r0, #1 
-bne SeenCountLoop
+cmp r0, #0 
+beq SeenCountLoop
 mov r0, r4 
 bl CheckIfSeen 
 cmp r0, #1 
@@ -193,9 +193,9 @@ add r4, #1
 cmp r4, #0xFF 
 bgt ExitCountCaught
 lsl r0, r4, #2 @ 4 bytes per entry 
-ldrb r0, [r5, r0] @ 1 if to display 
-cmp r0, #1 
-bne CaughtCountLoop
+ldrb r0, [r5, r0] @ 0 if not to display 
+cmp r0, #0
+beq CaughtCountLoop
 mov r0, r4 
 bl CheckIfCaught 
 cmp r0, #1 
@@ -205,7 +205,6 @@ b CaughtCountLoop
 
 ExitCountCaught:
 mov r0, r6 
-
 
 pop {r4-r6}
 pop {r1}
