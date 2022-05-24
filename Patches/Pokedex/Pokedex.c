@@ -168,6 +168,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	proc->areaBitfield_A = 0;
 	proc->areaBitfield_B = 0;
 	
+	bool caught = CheckIfCaught(proc->menuIndex);
+	bool seen = CheckIfSeen(proc->menuIndex);
 
 	const struct ClassData* ClassData = GetClassData(proc->menuIndex);
 	u16 title = 0;
@@ -181,13 +183,14 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	
 	if (proc->menuIndex)
 	{
-		if (proc->areaBitfield_A)
+		if (seen)
 		{
 			title = ClassData->nameTextId;
 			Text_DrawString(&command->text, GetStringFromIndex(title));
 			Text_Display(&command->text, out); // Class name 
 		}
 	}
+	
 	
 	
     Text_SetColorId(&command->text, TEXT_COLOR_NORMAL);
@@ -220,19 +223,18 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	
 	
 	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
-	//asm("mov r11, r11");
 	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
 	Text_Display(&command->text,out);
 	Text_Display(&command->text,out);
 	
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &PokedexSeenCaughtBox, 0);
 	EndFaceById(0);
-	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 3);
+	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
 	FaceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
 	
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &PokedexPortraitBox, 0);
 	
-	if (!CheckIfSeen(proc->menuIndex))
+	if (!seen)
 	{ 
 		//FaceProc->pPortraitData->pPortraitPalette = 
 		int paletteID = 22*32;
@@ -244,7 +246,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	LoadIconPalettes(4);
 	ClearIcons();
 	EnableBgSyncByMask(BG0_SYNC_BIT);
-	if (CheckIfCaught(proc->menuIndex))
+	
+	if (caught)
 	{
 		DrawIcon(
 		out + TILEMAP_INDEX(7, 0),
@@ -252,18 +255,25 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	}
 	else
 	{
-		if (CheckIfSeen(proc->menuIndex))
+		if (seen)
 		{
 			DrawIcon(
 			out + TILEMAP_INDEX(7, 0),
 			0xAA, TILEREF(0, 4));
 		}
 	}
+	//ObjClear();
+	if (proc->areaBitfield_A)
+	{
+		//DrawIcon(&gBG0MapBuffer[12][4],0xC,TILEREF(0, 0x4));
 
+	}
 	
+	ObjInsert(0,
+		64,
+		80,
+		&gObj_8x8, TILEREF(0x65, 0));
 	
-
-	EnableBgSyncByMask(1);
 	
 	
 	
@@ -303,6 +313,12 @@ int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
 	}
 	BgMap_ApplyTsa(gBg3MapBuffer,gGenericBuffer, 6<<12);
 	SetBgTileDataOffset(2,0x8000);
+	
+	struct LCDIOBuffer* LCDIOBuffer = &gLCDIOBuffer;
+	LCDIOBuffer->bgOffset[3].x = 0; // make offset as 0, rather than scrolled to the right
+	LCDIOBuffer->bgOffset[3].y = 0; 
+
+	
 	
 	LoadIconPalettes(4);
 	EnableBgSyncByMask(BG_SYNC_BIT(3)); // sync bg 3 

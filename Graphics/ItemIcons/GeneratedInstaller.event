@@ -40,24 +40,25 @@
 #define OpenPokeballIcon 253 
 #define PoisonTypeIcon 254 
 #define PokeballIcon 255 
-#define PotionIcon 256 
-#define ProteinIcon 257 
-#define PsychicTypeIcon 258 
-#define QuickClawIcon 259 
-#define RareCandyIcon 260 
-#define RepelIcon 261 
-#define ReviveIcon 262 
-#define RockTypeIcon 263 
-#define SacredStoneIcon 264 
-#define SecretTonicIcon 265 
-#define SteelTypeIcon 266 
-#define SuperPotionIcon 267 
-#define SuperRepelIcon 268 
-#define ThunderStoneIcon 269 
-#define WaterStoneIcon 270 
-#define WaterTypeIcon 271 
-#define WiseGlassesIcon 272 
-#define ZincIcon 273 
+#define PokemonLocationIcon 256 
+#define PotionIcon 257 
+#define ProteinIcon 258 
+#define PsychicTypeIcon 259 
+#define QuickClawIcon 260 
+#define RareCandyIcon 261 
+#define RepelIcon 262 
+#define ReviveIcon 263 
+#define RockTypeIcon 264 
+#define SacredStoneIcon 265 
+#define SecretTonicIcon 266 
+#define SteelTypeIcon 267 
+#define SuperPotionIcon 268 
+#define SuperRepelIcon 269 
+#define ThunderStoneIcon 270 
+#define WaterStoneIcon 271 
+#define WaterTypeIcon 272 
+#define WiseGlassesIcon 273 
+#define ZincIcon 274 
 */ 
  
  
@@ -168,6 +169,9 @@ ItemIconEntry(PoisonTypeIcon)
  
 ItemIconEntry(PokeballIcon) 
 #incbin "dmp/Pokeball.dmp" 
+ 
+ItemIconEntry(PokemonLocationIcon) 
+#incbin "dmp/PokemonLocation.dmp" 
  
 ItemIconEntry(PotionIcon) 
 #incbin "dmp/Potion.dmp" 
