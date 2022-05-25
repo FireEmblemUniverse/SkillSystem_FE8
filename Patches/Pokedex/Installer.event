@@ -38,6 +38,57 @@ ALIGN 4
 gWorldMapPaletteCount:
 BYTE 5
 
+#define AreaEntry(ChapterID, XX, YY) "PUSH; ORG AreaTable + (2*ChapterID); BYTE XX YY; POP" 
+
+ALIGN 4 
+AreaTable: // for each chapter ID, give xx and yy tile coords (max 30*8x 20*8y) 
+//FILL(256*4, 0xFF) 
+FILL(256*2) 
+
+AreaEntry(Route1Ch, 5, 14)
+AreaEntry(Route2SCh, 5, 11)
+AreaEntry(Route2NCh, 5, 11)
+AreaEntry(Route3Ch, 7, 8)
+AreaEntry(Route4ECh, 13,7)
+AreaEntry(Route5Ch, 15, 8)
+AreaEntry(Route6Ch, 15, 11)
+AreaEntry(Route7Ch, 14, 10)
+AreaEntry(Route8Ch, 17, 10)
+AreaEntry(Route9WCh, 16, 7)
+AreaEntry(Route9ECh, 17, 7)
+AreaEntry(Route10Ch, 18, 7)
+AreaEntry(Route11Ch, 17, 13)
+AreaEntry(Route12NCh, 19, 12)
+AreaEntry(Route12SCh, 19,13)
+AreaEntry(Route13Ch, 18, 15)
+AreaEntry(Route14Ch, 16, 15)
+AreaEntry(Route15Ch, 15, 16)
+AreaEntry(Route16Ch, 10, 10)
+AreaEntry(Route17SCh, 8, 14)
+AreaEntry(Route17NCh, 8, 12)
+AreaEntry(Route18Ch, 11, 16)
+AreaEntry(Route24Ch, 15, 6)
+AreaEntry(Route25Ch, 16, 5)
+AreaEntry(ViridianForestSCh, 5, 10)
+AreaEntry(ViridianForestNCh, 5, 10)
+AreaEntry(MtMoonB1Ch, 10,7)
+AreaEntry(MtMoonB2Ch, 10, 7)
+AreaEntry(MtMoonB3Ch, 10, 7)
+AreaEntry(DiglettsCaveCh, 16, 13)
+AreaEntry(RockTunnelB1Ch, 19, 8)
+AreaEntry(RockTunnelB2Ch, 19, 8)
+AreaEntry(SafariSCh, 13, 16)
+AreaEntry(SafariECh, 13, 16)
+AreaEntry(SafariNCh, 13, 16)
+AreaEntry(SafariWCh, 13, 16)
+AreaEntry(PokemonTowerF1Ch, 19, 10)
+AreaEntry(PokemonTowerF2Ch, 19, 10)
+AreaEntry(PokemonTowerF3Ch, 19, 10)
+AreaEntry(PokemonTowerF4Ch, 19, 10)
+AreaEntry(PokemonTowerF5Ch, 19, 10)
+
+
+
 
 #define DexEntry(ClassID, IndexNumber) "PUSH; ORG PokedexTable+(4*ClassID); BYTE IndexNumber; POP"
 

@@ -42,6 +42,15 @@ struct PokedexTable_Struct
     u8 Unk3;
 };
 
+struct AreaTable_Struct
+{
+	u8 xx; 
+	u8 yy;
+};
+extern struct AreaTable_Struct AreaTable[0xFF];
+
+
+
 struct PokemonLocation 
 {
 	u32 areaBitfield_A;
@@ -247,6 +256,12 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	ClearIcons();
 	EnableBgSyncByMask(BG0_SYNC_BIT);
 	
+	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+		for (int y = 5; y < 20; y++) { 
+			gBG0MapBuffer[y][x] = 0;
+		}
+	}
+	
 	if (caught)
 	{
 		DrawIcon(
@@ -255,24 +270,25 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	}
 	else
 	{
-		if (seen)
-		{
-			DrawIcon(
-			out + TILEMAP_INDEX(7, 0),
-			0xAA, TILEREF(0, 4));
-		}
+		DrawIcon(
+		out + TILEMAP_INDEX(7, 0),
+		0xAA, TILEREF(0, 4));
 	}
 	//ObjClear();
 	if (proc->areaBitfield_A)
 	{
-		//DrawIcon(&gBG0MapBuffer[12][4],0xC,TILEREF(0, 0x4));
-
+		for (int i = 0; i<64; i++)
+		{
+			if (proc->areaBitfield_A & 1<<i)
+			{
+				u8 xx = AreaTable[i].xx;
+				u8 yy = AreaTable[i].yy;
+				DrawIcon(&gBG0MapBuffer[yy][xx],0xC,TILEREF(0, 0x4));
+			}
+		}
 	}
 	
-	ObjInsert(0,
-		64,
-		80,
-		&gObj_8x8, TILEREF(0x65, 0));
+	//ObjInsert(0, 64, 80, &gObj_8x8, TILEREF(0x65, 0));
 	
 	
 	
@@ -338,6 +354,8 @@ static void PokedexDraw(struct MenuProc* menu, struct MenuCommandProc* command) 
 //For the final things before exiting the menu
 static void PokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
 	EndFaceById(0);
+	RenderBmMap();
+	UpdateBmMapDisplay();
     return;
 }
 

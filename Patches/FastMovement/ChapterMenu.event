@@ -1,4 +1,17 @@
 
+// Pokedex
+WORD  0x0
+SHORT PokedexNameText
+SHORT PokedexDescText
+BYTE  0x0
+BYTE  0x79
+SHORT 0x0
+WORD  0x804F449 // Always usable 
+WORD  0x0
+POIN  Pokedex_OnSelect
+WORD  0x0
+WORD  0x0
+WORD  0x0
 
 // Unit
 WORD  0x80D7EDC
@@ -14,19 +27,7 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
-// Pokedex
-WORD  0x0
-SHORT PokedexNameText
-SHORT PokedexDescText
-BYTE  0x0
-BYTE  0x79
-SHORT 0x0
-WORD  0x804F449 // Always usable 
-WORD  0x0
-POIN  Pokedex_OnSelect
-WORD  0x0
-WORD  0x0
-WORD  0x0
+
 
 
 // Status
