@@ -65,8 +65,9 @@ MenuCommands_Pokedex:
 	.word	MenuCommandAlwaysUsable
 @ onDraw:
 	.word	PokedexDraw
+@ onEffect:
+	.word	CallPokedexMenuEnd
 @ onIdle:
-	.space	4
 	.word	PokedexIdle
 	.space	8
 	.space	36
@@ -106,52 +107,52 @@ PokedexIdle:
 	add	r7, sp, #0	@,,
 	str	r0, [r7, #4]	@ menu, menu
 	str	r1, [r7]	@ command, command
-@ Pokedex.c:122:     struct PokedexProc* const proc = (void*) menu->parent;
+@ Pokedex.c:123:     struct PokedexProc* const proc = (void*) menu->parent;
 	ldr	r3, [r7, #4]	@ tmp143, menu
 	ldr	r3, [r3, #20]	@ tmp144, menu_38(D)->parent
 	str	r3, [r7, #12]	@ tmp144, proc
-@ Pokedex.c:125:     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
+@ Pokedex.c:126:     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
 	ldr	r3, .L11	@ tmp145,
 	ldrh	r3, [r3, #6]	@ _1,
-@ Pokedex.c:125:     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
+@ Pokedex.c:126:     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
 	movs	r2, r3	@ _2, _1
 	movs	r3, #32	@ tmp146,
 	ands	r3, r2	@ _3, _2
-@ Pokedex.c:125:     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
+@ Pokedex.c:126:     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
 	beq	.L2		@,
-@ Pokedex.c:126:         if (proc->menuIndex < 0xFF) {
+@ Pokedex.c:127:         if (proc->menuIndex < 0xFF) {
 	ldr	r3, [r7, #12]	@ tmp147, proc
 	movs	r2, #48	@ tmp148,
 	ldrb	r3, [r3, r2]	@ _4,
-@ Pokedex.c:126:         if (proc->menuIndex < 0xFF) {
+@ Pokedex.c:127:         if (proc->menuIndex < 0xFF) {
 	cmp	r3, #255	@ _4,
 	beq	.L2		@,
-@ Pokedex.c:127:             proc->menuIndex--;
+@ Pokedex.c:128:             proc->menuIndex--;
 	ldr	r3, [r7, #12]	@ tmp149, proc
 	movs	r2, #48	@ tmp150,
 	ldrb	r3, [r3, r2]	@ _5,
-@ Pokedex.c:127:             proc->menuIndex--;
+@ Pokedex.c:128:             proc->menuIndex--;
 	subs	r3, r3, #1	@ tmp151,
 	lsls	r3, r3, #24	@ tmp152, tmp151,
 	lsrs	r1, r3, #24	@ _7, tmp152,
 	ldr	r3, [r7, #12]	@ tmp153, proc
 	movs	r2, #48	@ tmp154,
 	strb	r1, [r3, r2]	@ tmp155, proc_39->menuIndex
-@ Pokedex.c:128: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:129: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	b	.L3		@
 .L5:
-@ Pokedex.c:130: 				if (proc->menuIndex > 2) 
+@ Pokedex.c:131: 				if (proc->menuIndex > 2) 
 	ldr	r3, [r7, #12]	@ tmp156, proc
 	movs	r2, #48	@ tmp157,
 	ldrb	r3, [r3, r2]	@ _8,
-@ Pokedex.c:130: 				if (proc->menuIndex > 2) 
+@ Pokedex.c:131: 				if (proc->menuIndex > 2) 
 	cmp	r3, #2	@ _8,
 	bls	.L4		@,
-@ Pokedex.c:132: 					proc->menuIndex--;
+@ Pokedex.c:133: 					proc->menuIndex--;
 	ldr	r3, [r7, #12]	@ tmp160, proc
 	movs	r2, #48	@ tmp161,
 	ldrb	r3, [r3, r2]	@ _9,
-@ Pokedex.c:132: 					proc->menuIndex--;
+@ Pokedex.c:133: 					proc->menuIndex--;
 	subs	r3, r3, #1	@ tmp162,
 	lsls	r3, r3, #24	@ tmp163, tmp162,
 	lsrs	r1, r3, #24	@ _11, tmp163,
@@ -160,31 +161,31 @@ PokedexIdle:
 	strb	r1, [r3, r2]	@ tmp166, proc_39->menuIndex
 	b	.L3		@
 .L4:
-@ Pokedex.c:134: 				else { proc->menuIndex = 0xFF; }
+@ Pokedex.c:135: 				else { proc->menuIndex = 0xFF; }
 	ldr	r3, [r7, #12]	@ tmp167, proc
 	movs	r2, #48	@ tmp168,
 	movs	r1, #255	@ tmp169,
 	strb	r1, [r3, r2]	@ tmp170, proc_39->menuIndex
 .L3:
-@ Pokedex.c:128: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:129: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	ldr	r3, [r7, #12]	@ tmp171, proc
 	movs	r2, #48	@ tmp172,
 	ldrb	r3, [r3, r2]	@ _12,
 	movs	r2, r3	@ _13, _12
-@ Pokedex.c:128: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:129: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	ldr	r3, .L11+4	@ tmp173,
 	lsls	r2, r2, #2	@ tmp174, _13,
 	ldrb	r3, [r2, r3]	@ _14, PokedexTable
-@ Pokedex.c:128: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:129: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	cmp	r3, #0	@ _14,
 	beq	.L5		@,
-@ Pokedex.c:136:             PokedexDraw(menu, command);
+@ Pokedex.c:137:             PokedexDraw(menu, command);
 	ldr	r2, [r7]	@ tmp175, command
 	ldr	r3, [r7, #4]	@ tmp176, menu
 	movs	r1, r2	@, tmp175
 	movs	r0, r3	@, tmp176
 	bl	PokedexDraw		@
-@ Pokedex.c:137:             PlaySfx(0x6B);
+@ Pokedex.c:138:             PlaySfx(0x6B);
 	ldr	r3, .L11+8	@ tmp177,
 	movs	r2, #65	@ tmp178,
 	ldrb	r3, [r3, r2]	@ _15, gChapterData
@@ -193,53 +194,53 @@ PokedexIdle:
 	lsls	r3, r3, #24	@ tmp181, tmp179,
 	lsrs	r3, r3, #24	@ _16, tmp181,
 	bne	.L2		@,
-@ Pokedex.c:137:             PlaySfx(0x6B);
+@ Pokedex.c:138:             PlaySfx(0x6B);
 	movs	r0, #107	@,
 	ldr	r3, .L11+12	@ tmp182,
 	bl	.L13		@
 .L2:
-@ Pokedex.c:141:     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
+@ Pokedex.c:142:     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
 	ldr	r3, .L11	@ tmp183,
 	ldrh	r3, [r3, #6]	@ _17,
-@ Pokedex.c:141:     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
+@ Pokedex.c:142:     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
 	movs	r2, r3	@ _18, _17
 	movs	r3, #16	@ tmp184,
 	ands	r3, r2	@ _19, _18
-@ Pokedex.c:141:     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
+@ Pokedex.c:142:     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
 	beq	.L6		@,
-@ Pokedex.c:142:         if (proc->menuIndex < 0xFF) {
+@ Pokedex.c:143:         if (proc->menuIndex < 0xFF) {
 	ldr	r3, [r7, #12]	@ tmp185, proc
 	movs	r2, #48	@ tmp186,
 	ldrb	r3, [r3, r2]	@ _20,
-@ Pokedex.c:142:         if (proc->menuIndex < 0xFF) {
+@ Pokedex.c:143:         if (proc->menuIndex < 0xFF) {
 	cmp	r3, #255	@ _20,
 	beq	.L6		@,
-@ Pokedex.c:143:             proc->menuIndex++;
+@ Pokedex.c:144:             proc->menuIndex++;
 	ldr	r3, [r7, #12]	@ tmp187, proc
 	movs	r2, #48	@ tmp188,
 	ldrb	r3, [r3, r2]	@ _21,
-@ Pokedex.c:143:             proc->menuIndex++;
+@ Pokedex.c:144:             proc->menuIndex++;
 	adds	r3, r3, #1	@ tmp189,
 	lsls	r3, r3, #24	@ tmp190, tmp189,
 	lsrs	r1, r3, #24	@ _23, tmp190,
 	ldr	r3, [r7, #12]	@ tmp191, proc
 	movs	r2, #48	@ tmp192,
 	strb	r1, [r3, r2]	@ tmp193, proc_39->menuIndex
-@ Pokedex.c:144: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:145: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	b	.L7		@
 .L9:
-@ Pokedex.c:146: 				if (proc->menuIndex < 0xFF) 
+@ Pokedex.c:147: 				if (proc->menuIndex < 0xFF) 
 	ldr	r3, [r7, #12]	@ tmp194, proc
 	movs	r2, #48	@ tmp195,
 	ldrb	r3, [r3, r2]	@ _24,
-@ Pokedex.c:146: 				if (proc->menuIndex < 0xFF) 
+@ Pokedex.c:147: 				if (proc->menuIndex < 0xFF) 
 	cmp	r3, #255	@ _24,
 	beq	.L8		@,
-@ Pokedex.c:148: 					proc->menuIndex++;
+@ Pokedex.c:149: 					proc->menuIndex++;
 	ldr	r3, [r7, #12]	@ tmp196, proc
 	movs	r2, #48	@ tmp197,
 	ldrb	r3, [r3, r2]	@ _25,
-@ Pokedex.c:148: 					proc->menuIndex++;
+@ Pokedex.c:149: 					proc->menuIndex++;
 	adds	r3, r3, #1	@ tmp198,
 	lsls	r3, r3, #24	@ tmp199, tmp198,
 	lsrs	r1, r3, #24	@ _27, tmp199,
@@ -248,31 +249,31 @@ PokedexIdle:
 	strb	r1, [r3, r2]	@ tmp202, proc_39->menuIndex
 	b	.L7		@
 .L8:
-@ Pokedex.c:150: 				else { proc->menuIndex = 1; }
+@ Pokedex.c:151: 				else { proc->menuIndex = 1; }
 	ldr	r3, [r7, #12]	@ tmp203, proc
 	movs	r2, #48	@ tmp204,
 	movs	r1, #1	@ tmp205,
 	strb	r1, [r3, r2]	@ tmp206, proc_39->menuIndex
 .L7:
-@ Pokedex.c:144: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:145: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	ldr	r3, [r7, #12]	@ tmp207, proc
 	movs	r2, #48	@ tmp208,
 	ldrb	r3, [r3, r2]	@ _28,
 	movs	r2, r3	@ _29, _28
-@ Pokedex.c:144: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:145: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	ldr	r3, .L11+4	@ tmp209,
 	lsls	r2, r2, #2	@ tmp210, _29,
 	ldrb	r3, [r2, r3]	@ _30, PokedexTable
-@ Pokedex.c:144: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
+@ Pokedex.c:145: 			while (!PokedexTable[proc->menuIndex].IndexNumber)
 	cmp	r3, #0	@ _30,
 	beq	.L9		@,
-@ Pokedex.c:152:             PokedexDraw(menu, command);
+@ Pokedex.c:153:             PokedexDraw(menu, command);
 	ldr	r2, [r7]	@ tmp211, command
 	ldr	r3, [r7, #4]	@ tmp212, menu
 	movs	r1, r2	@, tmp211
 	movs	r0, r3	@, tmp212
 	bl	PokedexDraw		@
-@ Pokedex.c:153:             PlaySfx(0x6B);
+@ Pokedex.c:154:             PlaySfx(0x6B);
 	ldr	r3, .L11+8	@ tmp213,
 	movs	r2, #65	@ tmp214,
 	ldrb	r3, [r3, r2]	@ _31, gChapterData
@@ -281,14 +282,14 @@ PokedexIdle:
 	lsls	r3, r3, #24	@ tmp217, tmp215,
 	lsrs	r3, r3, #24	@ _32, tmp217,
 	bne	.L6		@,
-@ Pokedex.c:153:             PlaySfx(0x6B);
+@ Pokedex.c:154:             PlaySfx(0x6B);
 	movs	r0, #107	@,
 	ldr	r3, .L11+12	@ tmp218,
 	bl	.L13		@
 .L6:
-@ Pokedex.c:157:     return ME_NONE;
+@ Pokedex.c:158:     return ME_NONE;
 	movs	r3, #0	@ _51,
-@ Pokedex.c:158: }
+@ Pokedex.c:159: }
 	movs	r0, r3	@, <retval>
 	mov	sp, r7	@,
 	add	sp, sp, #16	@,,
@@ -323,26 +324,26 @@ DrawRawText:
 	str	r1, [r4, #4]	@, handle
 	str	r2, [r7, #4]	@ string, string
 	str	r3, [r7]	@ x, x
-@ Pokedex.c:163: 	Text_Clear(&handle);
+@ Pokedex.c:164: 	Text_Clear(&handle);
 	movs	r4, r5	@ tmp132, tmp131
 	adds	r3, r7, r4	@ tmp115,, tmp132
 	movs	r0, r3	@, tmp115
 	ldr	r3, .L15	@ tmp116,
 	bl	.L13		@
-@ Pokedex.c:164: 	Text_SetColorId(&handle,TEXT_COLOR_GOLD);
+@ Pokedex.c:165: 	Text_SetColorId(&handle,TEXT_COLOR_GOLD);
 	adds	r3, r7, r4	@ tmp117,, tmp133
 	movs	r1, #3	@,
 	movs	r0, r3	@, tmp117
 	ldr	r3, .L15+4	@ tmp118,
 	bl	.L13		@
-@ Pokedex.c:165: 	Text_DrawString(&handle,string);
+@ Pokedex.c:166: 	Text_DrawString(&handle,string);
 	ldr	r2, [r7, #4]	@ tmp119, string
 	adds	r3, r7, r4	@ tmp120,, tmp134
 	movs	r1, r2	@, tmp119
 	movs	r0, r3	@, tmp120
 	ldr	r3, .L15+8	@ tmp121,
 	bl	.L13		@
-@ Pokedex.c:166: 	Text_Display(&handle,&gBG0MapBuffer[y][x]);
+@ Pokedex.c:167: 	Text_Display(&handle,&gBG0MapBuffer[y][x]);
 	ldr	r3, [r7, #32]	@ tmp123, y
 	lsls	r2, r3, #5	@ tmp122, tmp123,
 	ldr	r3, [r7]	@ tmp125, x
@@ -355,7 +356,7 @@ DrawRawText:
 	movs	r0, r3	@, tmp128
 	ldr	r3, .L15+16	@ tmp129,
 	bl	.L13		@
-@ Pokedex.c:167: }
+@ Pokedex.c:168: }
 	nop	
 	mov	sp, r7	@,
 	add	sp, sp, #16	@,,
@@ -391,541 +392,502 @@ DrawRawText:
 	.type	PokedexDrawIdle, %function
 PokedexDrawIdle:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 88
+	@ args = 0, pretend = 0, frame = 136
 	@ frame_needed = 1, uses_anonymous_args = 0
-	push	{r4, r5, r7, lr}	@
-	sub	sp, sp, #96	@,,
+	push	{r4, r5, r6, r7, lr}	@
+	mov	lr, r8	@,
+	push	{lr}	@
+	sub	sp, sp, #144	@,,
 	add	r7, sp, #8	@,,
-	str	r0, [r7, #4]	@ menu, menu
-	str	r1, [r7]	@ command, command
-@ Pokedex.c:170:     struct PokedexProc* const proc = (void*) menu->parent;
-	ldr	r3, [r7, #4]	@ tmp169, menu
-	ldr	r3, [r3, #20]	@ tmp170, menu_69(D)->parent
-	str	r3, [r7, #68]	@ tmp170, proc
-@ Pokedex.c:171:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, [r7]	@ tmp171, command
+	str	r0, [r7, #28]	@ menu, menu
+	str	r1, [r7, #24]	@ command, command
+@ Pokedex.c:170: static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
+	mov	r3, sp	@ tmp197,
+	mov	r8, r3	@ saved_stack.11_97, tmp197
+@ Pokedex.c:171:     struct PokedexProc* const proc = (void*) menu->parent;
+	ldr	r3, [r7, #28]	@ tmp198, menu
+	ldr	r3, [r3, #20]	@ tmp199, menu_98(D)->parent
+	str	r3, [r7, #104]	@ tmp199, proc
+@ Pokedex.c:172:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, [r7, #24]	@ tmp200, command
 	ldrh	r3, [r3, #44]	@ _1,
 	lsls	r3, r3, #5	@ _3, _2,
-	ldr	r2, [r7]	@ tmp172, command
+	ldr	r2, [r7, #24]	@ tmp201, command
 	ldrh	r2, [r2, #42]	@ _4,
 	adds	r3, r3, r2	@ _6, _3, _5
-@ Pokedex.c:171:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+@ Pokedex.c:172:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 	lsls	r2, r3, #1	@ _8, _7,
-@ Pokedex.c:171:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-	ldr	r3, .L32	@ tmp174,
-	adds	r3, r2, r3	@ tmp173, _8, tmp174
-	str	r3, [r7, #64]	@ tmp173, out
-@ Pokedex.c:173: 	int* areaBitfield_A = &proc->areaBitfield_A;
-	ldr	r3, [r7, #68]	@ tmp176, proc
-	adds	r3, r3, #52	@ tmp175,
-	str	r3, [r7, #60]	@ tmp175, areaBitfield_A
-@ Pokedex.c:174: 	int* areaBitfield_B = &proc->areaBitfield_B;
-	ldr	r3, [r7, #68]	@ tmp178, proc
-	adds	r3, r3, #56	@ tmp177,
-	str	r3, [r7, #56]	@ tmp177, areaBitfield_B
-@ Pokedex.c:175: 	*areaBitfield_A = 0;
-	ldr	r3, [r7, #60]	@ tmp179, areaBitfield_A
-	movs	r2, #0	@ tmp180,
-	str	r2, [r3]	@ tmp180, *areaBitfield_A_73
-@ Pokedex.c:176: 	*areaBitfield_B = 0;
-	ldr	r3, [r7, #56]	@ tmp181, areaBitfield_B
-	movs	r2, #0	@ tmp182,
-	str	r2, [r3]	@ tmp182, *areaBitfield_B_74
-@ Pokedex.c:177: 	proc->areaBitfield_A = 0;
-	ldr	r3, [r7, #68]	@ tmp183, proc
-	movs	r2, #0	@ tmp184,
-	str	r2, [r3, #52]	@ tmp184, proc_70->areaBitfield_A
-@ Pokedex.c:178: 	proc->areaBitfield_B = 0;
-	ldr	r3, [r7, #68]	@ tmp185, proc
-	movs	r2, #0	@ tmp186,
-	str	r2, [r3, #56]	@ tmp186, proc_70->areaBitfield_B
-@ Pokedex.c:180: 	bool caught = CheckIfCaught(proc->menuIndex);
-	ldr	r3, [r7, #68]	@ tmp187, proc
-	movs	r2, #48	@ tmp188,
+@ Pokedex.c:172:     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
+	ldr	r3, .L36	@ tmp203,
+	adds	r3, r2, r3	@ tmp202, _8, tmp203
+	str	r3, [r7, #100]	@ tmp202, out
+@ Pokedex.c:174: 	int* areaBitfield_A = &proc->areaBitfield_A;
+	ldr	r3, [r7, #104]	@ tmp205, proc
+	adds	r3, r3, #52	@ tmp204,
+	str	r3, [r7, #96]	@ tmp204, areaBitfield_A
+@ Pokedex.c:175: 	int* areaBitfield_B = &proc->areaBitfield_B;
+	ldr	r3, [r7, #104]	@ tmp207, proc
+	adds	r3, r3, #56	@ tmp206,
+	str	r3, [r7, #92]	@ tmp206, areaBitfield_B
+@ Pokedex.c:176: 	*areaBitfield_A = 0;
+	ldr	r3, [r7, #96]	@ tmp208, areaBitfield_A
+	movs	r2, #0	@ tmp209,
+	str	r2, [r3]	@ tmp209, *areaBitfield_A_102
+@ Pokedex.c:177: 	*areaBitfield_B = 0;
+	ldr	r3, [r7, #92]	@ tmp210, areaBitfield_B
+	movs	r2, #0	@ tmp211,
+	str	r2, [r3]	@ tmp211, *areaBitfield_B_103
+@ Pokedex.c:178: 	proc->areaBitfield_A = 0;
+	ldr	r3, [r7, #104]	@ tmp212, proc
+	movs	r2, #0	@ tmp213,
+	str	r2, [r3, #52]	@ tmp213, proc_99->areaBitfield_A
+@ Pokedex.c:179: 	proc->areaBitfield_B = 0;
+	ldr	r3, [r7, #104]	@ tmp214, proc
+	movs	r2, #0	@ tmp215,
+	str	r2, [r3, #56]	@ tmp215, proc_99->areaBitfield_B
+@ Pokedex.c:181: 	bool caught = CheckIfCaught(proc->menuIndex);
+	ldr	r3, [r7, #104]	@ tmp216, proc
+	movs	r2, #48	@ tmp217,
 	ldrb	r3, [r3, r2]	@ _9,
 	movs	r0, r3	@, _9
-	ldr	r3, .L32+4	@ tmp189,
+	ldr	r3, .L36+4	@ tmp218,
 	bl	.L13		@
 	movs	r2, r0	@ _10,
-@ Pokedex.c:180: 	bool caught = CheckIfCaught(proc->menuIndex);
-	movs	r3, #55	@ tmp390,
-	adds	r3, r7, r3	@ tmp190,, tmp390
-	subs	r1, r2, #1	@ tmp192, _10
-	sbcs	r2, r2, r1	@ tmp191, _10, tmp192
-	strb	r2, [r3]	@ tmp193, caught
-@ Pokedex.c:181: 	bool seen = CheckIfSeen(proc->menuIndex);
-	ldr	r3, [r7, #68]	@ tmp194, proc
-	movs	r2, #48	@ tmp195,
+@ Pokedex.c:181: 	bool caught = CheckIfCaught(proc->menuIndex);
+	movs	r3, #67	@ tmp519,
+	movs	r4, #24	@ tmp646,
+	adds	r3, r3, r4	@ tmp645, tmp519, tmp646
+	adds	r3, r3, r7	@ tmp219, tmp645,
+	subs	r1, r2, #1	@ tmp221, _10
+	sbcs	r2, r2, r1	@ tmp220, _10, tmp221
+	strb	r2, [r3]	@ tmp222, caught
+@ Pokedex.c:182: 	bool seen = CheckIfSeen(proc->menuIndex);
+	ldr	r3, [r7, #104]	@ tmp223, proc
+	movs	r2, #48	@ tmp224,
 	ldrb	r3, [r3, r2]	@ _11,
 	movs	r0, r3	@, _11
-	ldr	r3, .L32+8	@ tmp196,
+	ldr	r3, .L36+8	@ tmp225,
 	bl	.L13		@
 	movs	r2, r0	@ _12,
-@ Pokedex.c:181: 	bool seen = CheckIfSeen(proc->menuIndex);
-	movs	r5, #54	@ tmp391,
-	adds	r3, r7, r5	@ tmp197,, tmp391
-	subs	r1, r2, #1	@ tmp199, _12
-	sbcs	r2, r2, r1	@ tmp198, _12, tmp199
-	strb	r2, [r3]	@ tmp200, seen
-@ Pokedex.c:183: 	const struct ClassData* ClassData = GetClassData(proc->menuIndex);
-	ldr	r3, [r7, #68]	@ tmp201, proc
-	movs	r2, #48	@ tmp202,
+@ Pokedex.c:182: 	bool seen = CheckIfSeen(proc->menuIndex);
+	movs	r3, #66	@ tmp520,
+	adds	r3, r3, r4	@ tmp643, tmp520, tmp644
+	adds	r3, r3, r7	@ tmp226, tmp643,
+	subs	r1, r2, #1	@ tmp228, _12
+	sbcs	r2, r2, r1	@ tmp227, _12, tmp228
+	strb	r2, [r3]	@ tmp229, seen
+@ Pokedex.c:184: 	const struct ClassData* ClassData = GetClassData(proc->menuIndex);
+	ldr	r3, [r7, #104]	@ tmp230, proc
+	movs	r2, #48	@ tmp231,
 	ldrb	r3, [r3, r2]	@ _13,
 	movs	r0, r3	@, _13
-	ldr	r3, .L32+12	@ tmp203,
+	ldr	r3, .L36+12	@ tmp232,
 	bl	.L13		@
-	movs	r3, r0	@ tmp204,
-	str	r3, [r7, #48]	@ tmp204, ClassData
-@ Pokedex.c:184: 	u16 title = 0;
-	movs	r4, #86	@ tmp392,
-	adds	r3, r7, r4	@ tmp205,, tmp392
-	movs	r2, #0	@ tmp206,
-	strh	r2, [r3]	@ tmp207, title
-@ Pokedex.c:185:     Text_Clear(&command->text);
-	ldr	r3, [r7]	@ tmp208, command
+	movs	r3, r0	@ tmp233,
+	str	r3, [r7, #84]	@ tmp233, ClassData
+@ Pokedex.c:185: 	u16 title = 0;
+	movs	r4, #94	@ tmp521,
+	movs	r0, #24	@ tmp642,
+	adds	r3, r4, r0	@ tmp641, tmp521, tmp642
+	adds	r3, r3, r7	@ tmp234, tmp641,
+	movs	r2, #0	@ tmp235,
+	strh	r2, [r3]	@ tmp236, title
+@ Pokedex.c:186:     Text_Clear(&command->text);
+	ldr	r3, [r7, #24]	@ tmp237, command
 	adds	r3, r3, #52	@ _14,
 	movs	r0, r3	@, _14
-	ldr	r3, .L32+16	@ tmp209,
+	ldr	r3, .L36+16	@ tmp238,
 	bl	.L13		@
-@ Pokedex.c:186: 	Text_ResetTileAllocation(); // 0x08003D20
-	ldr	r3, .L32+20	@ tmp210,
+@ Pokedex.c:187: 	Text_ResetTileAllocation(); // 0x08003D20
+	ldr	r3, .L36+20	@ tmp239,
 	bl	.L13		@
-@ Pokedex.c:189: 	Pokedex_RetrieveAreasFound(proc->menuIndex, areaBitfield_A, areaBitfield_B);
-	ldr	r3, [r7, #68]	@ tmp211, proc
-	movs	r2, #48	@ tmp212,
+@ Pokedex.c:190: 	Pokedex_RetrieveAreasFound(proc->menuIndex, areaBitfield_A, areaBitfield_B);
+	ldr	r3, [r7, #104]	@ tmp240, proc
+	movs	r2, #48	@ tmp241,
 	ldrb	r3, [r3, r2]	@ _15,
-	ldr	r2, [r7, #56]	@ tmp213, areaBitfield_B
-	ldr	r1, [r7, #60]	@ tmp214, areaBitfield_A
+	ldr	r2, [r7, #92]	@ tmp242, areaBitfield_B
+	ldr	r1, [r7, #96]	@ tmp243, areaBitfield_A
 	movs	r0, r3	@, _15
 	bl	Pokedex_RetrieveAreasFound		@
-@ Pokedex.c:193: 	if (proc->menuIndex)
-	ldr	r3, [r7, #68]	@ tmp215, proc
-	movs	r2, #48	@ tmp216,
+@ Pokedex.c:194: 	if (proc->menuIndex)
+	ldr	r3, [r7, #104]	@ tmp244, proc
+	movs	r2, #48	@ tmp245,
 	ldrb	r3, [r3, r2]	@ _16,
-@ Pokedex.c:193: 	if (proc->menuIndex)
+@ Pokedex.c:194: 	if (proc->menuIndex)
 	cmp	r3, #0	@ _16,
 	beq	.L18		@,
-@ Pokedex.c:195: 		if (seen)
-	adds	r3, r7, r5	@ tmp217,, tmp393
-	ldrb	r3, [r3]	@ tmp218, seen
-	cmp	r3, #0	@ tmp218,
+@ Pokedex.c:196: 		if (seen)
+	movs	r3, #66	@ tmp522,
+	movs	r0, #24	@ tmp640,
+	adds	r3, r3, r0	@ tmp639, tmp522, tmp640
+	adds	r3, r3, r7	@ tmp246, tmp639,
+	ldrb	r3, [r3]	@ tmp247, seen
+	cmp	r3, #0	@ tmp247,
 	beq	.L18		@,
-@ Pokedex.c:197: 			title = ClassData->nameTextId;
-	movs	r1, r4	@ tmp394, tmp392
-	adds	r3, r7, r1	@ tmp219,, tmp394
-	ldr	r2, [r7, #48]	@ tmp220, ClassData
-	ldrh	r2, [r2]	@ tmp221, *ClassData_84
-	strh	r2, [r3]	@ tmp221, title
-@ Pokedex.c:198: 			Text_DrawString(&command->text, GetStringFromIndex(title));
-	ldr	r3, [r7]	@ tmp222, command
-	adds	r3, r3, #52	@ tmp222,
-	movs	r4, r3	@ _17, tmp222
-@ Pokedex.c:198: 			Text_DrawString(&command->text, GetStringFromIndex(title));
-	adds	r3, r7, r1	@ tmp223,, tmp396
+@ Pokedex.c:198: 			title = ClassData->nameTextId;
+	movs	r1, r4	@ tmp523, tmp521
+	adds	r3, r1, r0	@ tmp637, tmp523, tmp638
+	adds	r3, r3, r7	@ tmp248, tmp637,
+	ldr	r2, [r7, #84]	@ tmp249, ClassData
+	ldrh	r2, [r2]	@ tmp250, *ClassData_113
+	strh	r2, [r3]	@ tmp250, title
+@ Pokedex.c:199: 			Text_DrawString(&command->text, GetStringFromIndex(title));
+	ldr	r3, [r7, #24]	@ tmp251, command
+	adds	r3, r3, #52	@ tmp251,
+	movs	r4, r3	@ _17, tmp251
+@ Pokedex.c:199: 			Text_DrawString(&command->text, GetStringFromIndex(title));
+	adds	r3, r1, r0	@ tmp635, tmp525, tmp636
+	adds	r3, r3, r7	@ tmp252, tmp635,
 	ldrh	r3, [r3]	@ _18, title
 	movs	r0, r3	@, _18
-	ldr	r3, .L32+24	@ tmp224,
+	ldr	r3, .L36+24	@ tmp253,
 	bl	.L13		@
 	movs	r3, r0	@ _19,
-@ Pokedex.c:198: 			Text_DrawString(&command->text, GetStringFromIndex(title));
+@ Pokedex.c:199: 			Text_DrawString(&command->text, GetStringFromIndex(title));
 	movs	r1, r3	@, _19
 	movs	r0, r4	@, _17
-	ldr	r3, .L32+28	@ tmp225,
+	ldr	r3, .L36+28	@ tmp254,
 	bl	.L13		@
-@ Pokedex.c:199: 			Text_Display(&command->text, out); // Class name 
-	ldr	r3, [r7]	@ tmp226, command
+@ Pokedex.c:200: 			Text_Display(&command->text, out); // Class name 
+	ldr	r3, [r7, #24]	@ tmp255, command
 	adds	r3, r3, #52	@ _20,
-	ldr	r2, [r7, #64]	@ tmp227, out
-	movs	r1, r2	@, tmp227
+	ldr	r2, [r7, #100]	@ tmp256, out
+	movs	r1, r2	@, tmp256
 	movs	r0, r3	@, _20
-	ldr	r3, .L32+32	@ tmp228,
+	ldr	r3, .L36+32	@ tmp257,
 	bl	.L13		@
 .L18:
-@ Pokedex.c:205:     Text_SetColorId(&command->text, TEXT_COLOR_NORMAL);
-	ldr	r3, [r7]	@ tmp229, command
+@ Pokedex.c:206:     Text_SetColorId(&command->text, TEXT_COLOR_NORMAL);
+	ldr	r3, [r7, #24]	@ tmp258, command
 	adds	r3, r3, #52	@ _21,
 	movs	r1, #0	@,
 	movs	r0, r3	@, _21
-	ldr	r3, .L32+36	@ tmp230,
+	ldr	r3, .L36+36	@ tmp259,
 	bl	.L13		@
-@ Pokedex.c:206:     if (!title) {
-	movs	r3, #86	@ tmp397,
-	adds	r3, r7, r3	@ tmp231,, tmp397
-	ldrh	r3, [r3]	@ tmp232, title
-	cmp	r3, #0	@ tmp232,
+@ Pokedex.c:207:     if (!title) {
+	movs	r3, #94	@ tmp526,
+	movs	r2, #24	@ tmp634,
+	adds	r3, r3, r2	@ tmp633, tmp526, tmp634
+	adds	r3, r3, r7	@ tmp260, tmp633,
+	ldrh	r3, [r3]	@ tmp261, title
+	cmp	r3, #0	@ tmp261,
 	bne	.L19		@,
-@ Pokedex.c:207: 		Text_SetXCursor(&command->text, 0xC);
-	ldr	r3, [r7]	@ tmp233, command
+@ Pokedex.c:208: 		Text_SetXCursor(&command->text, 0xC);
+	ldr	r3, [r7, #24]	@ tmp262, command
 	adds	r3, r3, #52	@ _22,
 	movs	r1, #12	@,
 	movs	r0, r3	@, _22
-	ldr	r3, .L32+40	@ tmp234,
+	ldr	r3, .L36+40	@ tmp263,
 	bl	.L13		@
-@ Pokedex.c:208: 		Text_DrawString(&command->text, "???");
-	ldr	r3, [r7]	@ tmp235, command
+@ Pokedex.c:209: 		Text_DrawString(&command->text, "???");
+	ldr	r3, [r7, #24]	@ tmp264, command
 	adds	r3, r3, #52	@ _23,
-	ldr	r2, .L32+44	@ tmp236,
-	movs	r1, r2	@, tmp236
+	ldr	r2, .L36+44	@ tmp265,
+	movs	r1, r2	@, tmp265
 	movs	r0, r3	@, _23
-	ldr	r3, .L32+28	@ tmp237,
+	ldr	r3, .L36+28	@ tmp266,
 	bl	.L13		@
-@ Pokedex.c:210: 		Text_Display(&command->text, out); // Class name 
-	ldr	r3, [r7]	@ tmp238, command
+@ Pokedex.c:211: 		Text_Display(&command->text, out); // Class name 
+	ldr	r3, [r7, #24]	@ tmp267, command
 	adds	r3, r3, #52	@ _24,
-	ldr	r2, [r7, #64]	@ tmp239, out
-	movs	r1, r2	@, tmp239
+	ldr	r2, [r7, #100]	@ tmp268, out
+	movs	r1, r2	@, tmp268
 	movs	r0, r3	@, _24
-	ldr	r3, .L32+32	@ tmp240,
+	ldr	r3, .L36+32	@ tmp269,
 	bl	.L13		@
 .L19:
-@ Pokedex.c:217: 	int tile = 40;
-	movs	r3, #40	@ tmp241,
-	str	r3, [r7, #44]	@ tmp241, tile
-@ Pokedex.c:219: 	TextHandle caughtNameHandle = {
-	movs	r4, #20	@ tmp398,
-	adds	r3, r7, r4	@ tmp242,, tmp398
-	movs	r0, r3	@ tmp243, tmp242
-	movs	r3, #8	@ tmp244,
-	movs	r2, r3	@, tmp244
+@ Pokedex.c:218: 	int tile = 40;
+	movs	r3, #40	@ tmp270,
+	str	r3, [r7, #120]	@ tmp270, tile
+@ Pokedex.c:220: 	TextHandle caughtNameHandle = {
+	movs	r4, #20	@ tmp527,
+	movs	r1, #24	@ tmp632,
+	adds	r3, r4, r1	@ tmp631, tmp527, tmp632
+	adds	r3, r3, r7	@ tmp271, tmp631,
+	movs	r0, r3	@ tmp272, tmp271
+	movs	r3, #8	@ tmp273,
+	movs	r2, r3	@, tmp273
 	movs	r1, #0	@,
-	ldr	r3, .L32+48	@ tmp245,
+	ldr	r3, .L36+48	@ tmp274,
 	bl	.L13		@
-@ Pokedex.c:220: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
-	ldr	r3, .L32+52	@ tmp248,
+@ Pokedex.c:221: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+	ldr	r3, .L36+52	@ tmp277,
 	ldr	r3, [r3]	@ gpCurrentFont.0_25, gpCurrentFont
 	ldrh	r2, [r3, #18]	@ _26,
-@ Pokedex.c:220: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
-	ldr	r3, [r7, #44]	@ tmp250, tile
-	lsls	r3, r3, #16	@ tmp251, tmp249,
-	lsrs	r3, r3, #16	@ _27, tmp251,
-	adds	r3, r2, r3	@ tmp252, _26, _27
-	lsls	r3, r3, #16	@ tmp253, tmp252,
-	lsrs	r2, r3, #16	@ _28, tmp253,
-@ Pokedex.c:219: 	TextHandle caughtNameHandle = {
-	adds	r3, r7, r4	@ tmp254,, tmp399
-	strh	r2, [r3]	@ tmp255, caughtNameHandle.tileIndexOffset
-	adds	r3, r7, r4	@ tmp256,, tmp400
-	movs	r2, #4	@ tmp257,
-	strb	r2, [r3, #4]	@ tmp258, caughtNameHandle.tileWidth
-@ Pokedex.c:223: 	tile += 4;
-	ldr	r3, [r7, #44]	@ tmp260, tile
-	adds	r3, r3, #4	@ tmp259,
-	str	r3, [r7, #44]	@ tmp259, tile
-@ Pokedex.c:224: 	DrawRawText(caughtNameHandle," Seen",1,1);
-	ldr	r2, .L32+56	@ tmp261,
-	adds	r1, r7, r4	@ tmp262,, tmp401
-	movs	r3, #1	@ tmp263,
-	str	r3, [sp]	@ tmp263,
+@ Pokedex.c:221: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+	ldr	r3, [r7, #120]	@ tmp279, tile
+	lsls	r3, r3, #16	@ tmp280, tmp278,
+	lsrs	r3, r3, #16	@ _27, tmp280,
+	adds	r3, r2, r3	@ tmp281, _26, _27
+	lsls	r3, r3, #16	@ tmp282, tmp281,
+	lsrs	r2, r3, #16	@ _28, tmp282,
+@ Pokedex.c:220: 	TextHandle caughtNameHandle = {
+	movs	r1, #24	@ tmp630,
+	adds	r3, r4, r1	@ tmp629, tmp528, tmp630
+	adds	r3, r3, r7	@ tmp283, tmp629,
+	strh	r2, [r3]	@ tmp284, caughtNameHandle.tileIndexOffset
+	adds	r3, r4, r1	@ tmp627, tmp529, tmp628
+	adds	r3, r3, r7	@ tmp285, tmp627,
+	movs	r2, #4	@ tmp286,
+	strb	r2, [r3, #4]	@ tmp287, caughtNameHandle.tileWidth
+@ Pokedex.c:224: 	tile += 4;
+	ldr	r3, [r7, #120]	@ tmp289, tile
+	adds	r3, r3, #4	@ tmp288,
+	str	r3, [r7, #120]	@ tmp288, tile
+@ Pokedex.c:225: 	DrawRawText(caughtNameHandle," Seen",1,1);
+	ldr	r2, .L36+56	@ tmp290,
+	adds	r3, r4, r1	@ tmp625, tmp530, tmp626
+	adds	r1, r3, r7	@ tmp291, tmp625,
+	movs	r3, #1	@ tmp292,
+	str	r3, [sp]	@ tmp292,
 	movs	r3, #1	@,
 	ldr	r0, [r1]	@, caughtNameHandle
 	ldr	r1, [r1, #4]	@, caughtNameHandle
 	bl	DrawRawText		@
-@ Pokedex.c:226: 	TextHandle seenNameHandle = {
-	movs	r4, #12	@ tmp402,
-	adds	r3, r7, r4	@ tmp264,, tmp402
-	movs	r0, r3	@ tmp265, tmp264
-	movs	r3, #8	@ tmp266,
-	movs	r2, r3	@, tmp266
+@ Pokedex.c:227: 	TextHandle seenNameHandle = {
+	movs	r4, #12	@ tmp531,
+	movs	r1, #24	@ tmp624,
+	adds	r3, r4, r1	@ tmp623, tmp531, tmp624
+	adds	r3, r3, r7	@ tmp293, tmp623,
+	movs	r0, r3	@ tmp294, tmp293
+	movs	r3, #8	@ tmp295,
+	movs	r2, r3	@, tmp295
 	movs	r1, #0	@,
-	ldr	r3, .L32+48	@ tmp267,
+	ldr	r3, .L36+48	@ tmp296,
 	bl	.L13		@
-@ Pokedex.c:227: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
-	ldr	r3, .L32+52	@ tmp270,
+@ Pokedex.c:228: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+	ldr	r3, .L36+52	@ tmp299,
 	ldr	r3, [r3]	@ gpCurrentFont.1_29, gpCurrentFont
 	ldrh	r2, [r3, #18]	@ _30,
-@ Pokedex.c:227: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
-	ldr	r3, [r7, #44]	@ tmp272, tile
-	lsls	r3, r3, #16	@ tmp273, tmp271,
-	lsrs	r3, r3, #16	@ _31, tmp273,
-	adds	r3, r2, r3	@ tmp274, _30, _31
-	lsls	r3, r3, #16	@ tmp275, tmp274,
-	lsrs	r2, r3, #16	@ _32, tmp275,
-@ Pokedex.c:226: 	TextHandle seenNameHandle = {
-	adds	r3, r7, r4	@ tmp276,, tmp403
-	strh	r2, [r3]	@ tmp277, seenNameHandle.tileIndexOffset
-	adds	r3, r7, r4	@ tmp278,, tmp404
-	movs	r2, #5	@ tmp279,
-	strb	r2, [r3, #4]	@ tmp280, seenNameHandle.tileWidth
-@ Pokedex.c:230: 	tile += 5;
-	ldr	r3, [r7, #44]	@ tmp282, tile
-	adds	r3, r3, #5	@ tmp281,
-	str	r3, [r7, #44]	@ tmp281, tile
-@ Pokedex.c:231: 	DrawRawText(seenNameHandle," Caught",1,3);
-	ldr	r2, .L32+60	@ tmp283,
-	adds	r1, r7, r4	@ tmp284,, tmp405
-	movs	r3, #3	@ tmp285,
-	str	r3, [sp]	@ tmp285,
+@ Pokedex.c:228: 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+	ldr	r3, [r7, #120]	@ tmp301, tile
+	lsls	r3, r3, #16	@ tmp302, tmp300,
+	lsrs	r3, r3, #16	@ _31, tmp302,
+	adds	r3, r2, r3	@ tmp303, _30, _31
+	lsls	r3, r3, #16	@ tmp304, tmp303,
+	lsrs	r2, r3, #16	@ _32, tmp304,
+@ Pokedex.c:227: 	TextHandle seenNameHandle = {
+	movs	r1, #24	@ tmp622,
+	adds	r3, r4, r1	@ tmp621, tmp532, tmp622
+	adds	r3, r3, r7	@ tmp305, tmp621,
+	strh	r2, [r3]	@ tmp306, seenNameHandle.tileIndexOffset
+	adds	r3, r4, r1	@ tmp619, tmp533, tmp620
+	adds	r3, r3, r7	@ tmp307, tmp619,
+	movs	r2, #5	@ tmp308,
+	strb	r2, [r3, #4]	@ tmp309, seenNameHandle.tileWidth
+@ Pokedex.c:231: 	tile += 5;
+	ldr	r3, [r7, #120]	@ tmp311, tile
+	adds	r3, r3, #5	@ tmp310,
+	str	r3, [r7, #120]	@ tmp310, tile
+@ Pokedex.c:232: 	DrawRawText(seenNameHandle," Caught",1,3);
+	ldr	r2, .L36+60	@ tmp312,
+	adds	r3, r4, r1	@ tmp617, tmp534, tmp618
+	adds	r1, r3, r7	@ tmp313, tmp617,
+	movs	r3, #3	@ tmp314,
+	str	r3, [sp]	@ tmp314,
 	movs	r3, #1	@,
 	ldr	r0, [r1]	@, seenNameHandle
 	ldr	r1, [r1, #4]	@, seenNameHandle
 	bl	DrawRawText		@
-@ Pokedex.c:234: 	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
-	ldr	r3, [r7, #68]	@ tmp286, proc
-	movs	r2, #49	@ tmp287,
+@ Pokedex.c:235: 	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
+	ldr	r3, [r7, #104]	@ tmp315, proc
+	movs	r2, #49	@ tmp316,
 	ldrb	r3, [r3, r2]	@ _33,
-@ Pokedex.c:234: 	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
+@ Pokedex.c:235: 	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
 	movs	r2, r3	@ _34, _33
-	ldr	r3, .L32+64	@ tmp288,
+	ldr	r3, .L36+64	@ tmp317,
 	movs	r1, #3	@,
-	movs	r0, r3	@, tmp288
-	ldr	r3, .L32+68	@ tmp289,
+	movs	r0, r3	@, tmp317
+	ldr	r3, .L36+68	@ tmp318,
 	bl	.L13		@
-@ Pokedex.c:235: 	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
-	ldr	r3, [r7, #68]	@ tmp290, proc
-	movs	r2, #50	@ tmp291,
+@ Pokedex.c:236: 	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
+	ldr	r3, [r7, #104]	@ tmp319, proc
+	movs	r2, #50	@ tmp320,
 	ldrb	r3, [r3, r2]	@ _35,
-@ Pokedex.c:235: 	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
+@ Pokedex.c:236: 	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
 	movs	r2, r3	@ _36, _35
-	ldr	r3, .L32+72	@ tmp292,
+	ldr	r3, .L36+72	@ tmp321,
 	movs	r1, #3	@,
-	movs	r0, r3	@, tmp292
-	ldr	r3, .L32+68	@ tmp293,
+	movs	r0, r3	@, tmp321
+	ldr	r3, .L36+68	@ tmp322,
 	bl	.L13		@
-@ Pokedex.c:236: 	Text_Display(&command->text,out);
-	ldr	r3, [r7]	@ tmp294, command
-	adds	r3, r3, #52	@ _37,
-	ldr	r2, [r7, #64]	@ tmp295, out
-	movs	r1, r2	@, tmp295
-	movs	r0, r3	@, _37
-	ldr	r3, .L32+32	@ tmp296,
-	bl	.L13		@
-@ Pokedex.c:237: 	Text_Display(&command->text,out);
-	ldr	r3, [r7]	@ tmp297, command
-	adds	r3, r3, #52	@ _38,
-	ldr	r2, [r7, #64]	@ tmp298, out
-	movs	r1, r2	@, tmp298
-	movs	r0, r3	@, _38
-	ldr	r3, .L32+32	@ tmp299,
-	bl	.L13		@
-@ Pokedex.c:239: 	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &PokedexSeenCaughtBox, 0);
-	ldr	r1, .L32+76	@ tmp300,
-	ldr	r3, .L32+80	@ tmp301,
+@ Pokedex.c:241: 	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &PokedexSeenCaughtBox, 0);
+	ldr	r1, .L36+76	@ tmp323,
+	ldr	r3, .L36+80	@ tmp324,
 	movs	r2, #0	@,
-	movs	r0, r3	@, tmp301
-	ldr	r3, .L32+84	@ tmp302,
+	movs	r0, r3	@, tmp324
+	ldr	r3, .L36+84	@ tmp325,
 	bl	.L13		@
-@ Pokedex.c:240: 	EndFaceById(0);
+@ Pokedex.c:242: 	EndFaceById(0);
 	movs	r0, #0	@,
-	ldr	r3, .L32+88	@ tmp303,
+	ldr	r3, .L36+88	@ tmp326,
 	bl	.L13		@
-@ Pokedex.c:241: 	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
-	ldr	r3, [r7, #48]	@ tmp304, ClassData
-	ldrh	r3, [r3, #8]	@ _39,
-@ Pokedex.c:241: 	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
-	movs	r1, r3	@ _40, _39
-	movs	r3, #1	@ tmp305,
-	str	r3, [sp]	@ tmp305,
+@ Pokedex.c:243: 	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
+	ldr	r3, [r7, #84]	@ tmp327, ClassData
+	ldrh	r3, [r3, #8]	@ _37,
+@ Pokedex.c:243: 	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
+	movs	r1, r3	@ _38, _37
+	movs	r3, #1	@ tmp328,
+	str	r3, [sp]	@ tmp328,
 	movs	r3, #4	@,
 	movs	r2, #200	@,
 	movs	r0, #0	@,
-	ldr	r4, .L32+92	@ tmp306,
-	bl	.L34		@
-	movs	r3, r0	@ tmp307,
-	str	r3, [r7, #40]	@ tmp307, FaceProc
-@ Pokedex.c:242: 	FaceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
-	ldr	r3, [r7, #40]	@ tmp308, FaceProc
-	ldrh	r3, [r3, #60]	@ _41,
-	ldr	r2, .L32+96	@ tmp310,
-	ands	r3, r2	@ tmp309, tmp310
-	lsls	r3, r3, #16	@ tmp311, tmp309,
-	lsrs	r2, r3, #16	@ _42, tmp311,
-	ldr	r3, [r7, #40]	@ tmp312, FaceProc
-	strh	r2, [r3, #60]	@ tmp313, FaceProc_115->tileData
-@ Pokedex.c:244: 	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &PokedexPortraitBox, 0);
-	ldr	r1, .L32+100	@ tmp314,
-	ldr	r3, .L32+104	@ tmp315,
+	ldr	r4, .L36+92	@ tmp329,
+	bl	.L40		@
+	movs	r3, r0	@ tmp330,
+	str	r3, [r7, #80]	@ tmp330, FaceProc
+@ Pokedex.c:244: 	FaceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
+	ldr	r3, [r7, #80]	@ tmp331, FaceProc
+	ldrh	r3, [r3, #60]	@ _39,
+	ldr	r2, .L36+96	@ tmp333,
+	ands	r3, r2	@ tmp332, tmp333
+	lsls	r3, r3, #16	@ tmp334, tmp332,
+	lsrs	r2, r3, #16	@ _40, tmp334,
+	ldr	r3, [r7, #80]	@ tmp335, FaceProc
+	strh	r2, [r3, #60]	@ tmp336, FaceProc_142->tileData
+@ Pokedex.c:246: 	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &PokedexPortraitBox, 0);
+	ldr	r1, .L36+100	@ tmp337,
+	ldr	r3, .L36+104	@ tmp338,
 	movs	r2, #0	@,
-	movs	r0, r3	@, tmp315
-	ldr	r3, .L32+84	@ tmp316,
+	movs	r0, r3	@, tmp338
+	ldr	r3, .L36+84	@ tmp339,
 	bl	.L13		@
-@ Pokedex.c:246: 	if (!seen)
-	movs	r3, #54	@ tmp406,
-	adds	r3, r7, r3	@ tmp317,, tmp406
-	ldrb	r3, [r3]	@ tmp318, seen
-	movs	r2, #1	@ tmp320,
-	eors	r3, r2	@ tmp319, tmp320
-	lsls	r3, r3, #24	@ tmp321, tmp319,
-	lsrs	r3, r3, #24	@ _43, tmp321,
-@ Pokedex.c:246: 	if (!seen)
+@ Pokedex.c:248: 	if (!seen)
+	movs	r3, #66	@ tmp535,
+	movs	r1, #24	@ tmp616,
+	adds	r3, r3, r1	@ tmp615, tmp535, tmp616
+	adds	r3, r3, r7	@ tmp340, tmp615,
+	ldrb	r3, [r3]	@ tmp341, seen
+	movs	r2, #1	@ tmp343,
+	eors	r3, r2	@ tmp342, tmp343
+	lsls	r3, r3, #24	@ tmp344, tmp342,
+	lsrs	r3, r3, #24	@ _41, tmp344,
+@ Pokedex.c:248: 	if (!seen)
 	beq	.L20		@,
-@ Pokedex.c:249: 		int paletteID = 22*32;
-	movs	r3, #176	@ tmp388,
-	lsls	r3, r3, #2	@ tmp322, tmp388,
-	str	r3, [r7, #36]	@ tmp322, paletteID
-@ Pokedex.c:250: 		int paletteSize = 32; 
-	movs	r3, #32	@ tmp323,
-	str	r3, [r7, #32]	@ tmp323, paletteSize
-@ Pokedex.c:251: 		CopyToPaletteBuffer(MyPalette, paletteID, paletteSize); // source pointer, palette offset, size 
-	ldr	r1, [r7, #36]	@ paletteID.2_44, paletteID
-	ldr	r2, [r7, #32]	@ paletteSize.3_45, paletteSize
-	ldr	r3, .L32+108	@ tmp324,
-	movs	r0, r3	@, tmp324
-	ldr	r3, .L32+112	@ tmp325,
+@ Pokedex.c:251: 		int paletteID = 22*32;
+	movs	r3, #176	@ tmp517,
+	lsls	r3, r3, #2	@ tmp345, tmp517,
+	str	r3, [r7, #76]	@ tmp345, paletteID
+@ Pokedex.c:252: 		int paletteSize = 32; 
+	movs	r3, #32	@ tmp346,
+	str	r3, [r7, #72]	@ tmp346, paletteSize
+@ Pokedex.c:253: 		CopyToPaletteBuffer(MyPalette, paletteID, paletteSize); // source pointer, palette offset, size 
+	ldr	r1, [r7, #76]	@ paletteID.2_42, paletteID
+	ldr	r2, [r7, #72]	@ paletteSize.3_43, paletteSize
+	ldr	r3, .L36+108	@ tmp347,
+	movs	r0, r3	@, tmp347
+	ldr	r3, .L36+112	@ tmp348,
 	bl	.L13		@
-@ Pokedex.c:252: 		gPaletteSyncFlag = 1;
-	ldr	r3, .L32+116	@ tmp326,
-	movs	r2, #1	@ tmp327,
-	strb	r2, [r3]	@ tmp328, gPaletteSyncFlag
+@ Pokedex.c:254: 		gPaletteSyncFlag = 1;
+	ldr	r3, .L36+116	@ tmp349,
+	movs	r2, #1	@ tmp350,
+	strb	r2, [r3]	@ tmp351, gPaletteSyncFlag
 .L20:
-@ Pokedex.c:255: 	LoadIconPalettes(4);
+@ Pokedex.c:257: 	LoadIconPalettes(4);
 	movs	r0, #4	@,
-	ldr	r3, .L32+120	@ tmp329,
+	ldr	r3, .L36+120	@ tmp352,
 	bl	.L13		@
-@ Pokedex.c:256: 	ClearIcons();
-	ldr	r3, .L32+124	@ tmp330,
+@ Pokedex.c:258: 	ClearIcons();
+	ldr	r3, .L36+124	@ tmp353,
 	bl	.L13		@
-@ Pokedex.c:257: 	EnableBgSyncByMask(BG0_SYNC_BIT);
+@ Pokedex.c:259: 	EnableBgSyncByMask(BG0_SYNC_BIT);
 	movs	r0, #1	@,
-	ldr	r3, .L32+128	@ tmp331,
+	ldr	r3, .L36+128	@ tmp354,
 	bl	.L13		@
-@ Pokedex.c:259: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
-	movs	r3, #0	@ tmp332,
-	str	r3, [r7, #80]	@ tmp332, x
-@ Pokedex.c:259: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+@ Pokedex.c:261: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+	movs	r3, #0	@ tmp355,
+	str	r3, [r7, #124]	@ tmp355, x
+@ Pokedex.c:261: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
 	b	.L21		@
 .L24:
-@ Pokedex.c:260: 		for (int y = 5; y < 20; y++) { 
-	movs	r3, #5	@ tmp333,
-	str	r3, [r7, #76]	@ tmp333, y
-@ Pokedex.c:260: 		for (int y = 5; y < 20; y++) { 
+@ Pokedex.c:262: 		for (int y = 5; y < 20; y++) { 
+	movs	r3, #5	@ tmp356,
+	movs	r2, #128	@ tmp614,
+	adds	r2, r7, r2	@ tmp613,, tmp614
+	str	r3, [r2]	@ tmp356, y
+@ Pokedex.c:262: 		for (int y = 5; y < 20; y++) { 
 	b	.L22		@
 .L23:
-@ Pokedex.c:261: 			gBG0MapBuffer[y][x] = 0;
-	ldr	r3, .L32+132	@ tmp334,
-	ldr	r2, [r7, #76]	@ tmp335, y
-	lsls	r1, r2, #5	@ tmp336, tmp335,
-	ldr	r2, [r7, #80]	@ tmp338, x
-	adds	r2, r1, r2	@ tmp337, tmp336, tmp338
-	lsls	r2, r2, #1	@ tmp339, tmp337,
-	movs	r1, #0	@ tmp340,
-	strh	r1, [r2, r3]	@ tmp341, gBG0MapBuffer[y_57][x_56]
-@ Pokedex.c:260: 		for (int y = 5; y < 20; y++) { 
-	ldr	r3, [r7, #76]	@ tmp343, y
-	adds	r3, r3, #1	@ tmp342,
-	str	r3, [r7, #76]	@ tmp342, y
+@ Pokedex.c:263: 			gBG0MapBuffer[y][x] = 0;
+	ldr	r3, .L36+132	@ tmp357,
+	movs	r0, #128	@ tmp611,
+	adds	r2, r7, r0	@ tmp610,, tmp611
+	ldr	r2, [r2]	@ tmp358, y
+	lsls	r1, r2, #5	@ tmp359, tmp358,
+	ldr	r2, [r7, #124]	@ tmp361, x
+	adds	r2, r1, r2	@ tmp360, tmp359, tmp361
+	lsls	r2, r2, #1	@ tmp362, tmp360,
+	movs	r1, #0	@ tmp363,
+	strh	r1, [r2, r3]	@ tmp364, gBG0MapBuffer[y_65][x_67]
+@ Pokedex.c:262: 		for (int y = 5; y < 20; y++) { 
+	adds	r3, r7, r0	@ tmp607,, tmp608
+	ldr	r3, [r3]	@ tmp366, y
+	adds	r3, r3, #1	@ tmp365,
+	adds	r2, r7, r0	@ tmp604,, tmp605
+	str	r3, [r2]	@ tmp365, y
 .L22:
-@ Pokedex.c:260: 		for (int y = 5; y < 20; y++) { 
-	ldr	r3, [r7, #76]	@ tmp344, y
-	cmp	r3, #19	@ tmp344,
+@ Pokedex.c:262: 		for (int y = 5; y < 20; y++) { 
+	movs	r3, #128	@ tmp602,
+	adds	r3, r7, r3	@ tmp601,, tmp602
+	ldr	r3, [r3]	@ tmp367, y
+	cmp	r3, #19	@ tmp367,
 	ble	.L23		@,
-@ Pokedex.c:259: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
-	ldr	r3, [r7, #80]	@ tmp346, x
-	adds	r3, r3, #1	@ tmp345,
-	str	r3, [r7, #80]	@ tmp345, x
+@ Pokedex.c:261: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+	ldr	r3, [r7, #124]	@ tmp369, x
+	adds	r3, r3, #1	@ tmp368,
+	str	r3, [r7, #124]	@ tmp368, x
 .L21:
-@ Pokedex.c:259: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
-	ldr	r3, [r7, #80]	@ tmp347, x
-	cmp	r3, #29	@ tmp347,
+@ Pokedex.c:261: 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+	ldr	r3, [r7, #124]	@ tmp370, x
+	cmp	r3, #29	@ tmp370,
 	ble	.L24		@,
-@ Pokedex.c:265: 	if (caught)
-	movs	r3, #55	@ tmp407,
-	adds	r3, r7, r3	@ tmp348,, tmp407
-	ldrb	r3, [r3]	@ tmp349, caught
-	cmp	r3, #0	@ tmp349,
+@ Pokedex.c:267: 	if (caught)
+	movs	r3, #67	@ tmp536,
+	movs	r2, #24	@ tmp599,
+	adds	r3, r3, r2	@ tmp598, tmp536, tmp599
+	adds	r3, r3, r7	@ tmp371, tmp598,
+	ldrb	r3, [r3]	@ tmp372, caught
+	cmp	r3, #0	@ tmp372,
 	beq	.L25		@,
-@ Pokedex.c:267: 		DrawIcon(
-	ldr	r3, [r7, #64]	@ tmp350, out
-	adds	r3, r3, #14	@ _46,
-	movs	r2, #128	@ tmp387,
-	lsls	r2, r2, #7	@ tmp351, tmp387,
+@ Pokedex.c:269: 		DrawIcon(
+	ldr	r3, [r7, #100]	@ tmp373, out
+	adds	r3, r3, #14	@ _44,
+	movs	r2, #128	@ tmp516,
+	lsls	r2, r2, #7	@ tmp374, tmp516,
 	movs	r1, #171	@,
-	movs	r0, r3	@, _46
-	ldr	r3, .L32+136	@ tmp352,
+	movs	r0, r3	@, _44
+	ldr	r3, .L36+136	@ tmp375,
 	bl	.L13		@
 	b	.L26		@
 .L25:
-@ Pokedex.c:273: 		DrawIcon(
-	ldr	r3, [r7, #64]	@ tmp353, out
-	adds	r3, r3, #14	@ _47,
-	movs	r2, #128	@ tmp386,
-	lsls	r2, r2, #7	@ tmp354, tmp386,
+@ Pokedex.c:275: 		DrawIcon(
+	ldr	r3, [r7, #100]	@ tmp376, out
+	adds	r3, r3, #14	@ _45,
+	movs	r2, #128	@ tmp515,
+	lsls	r2, r2, #7	@ tmp377, tmp515,
 	movs	r1, #170	@,
-	movs	r0, r3	@, _47
-	ldr	r3, .L32+136	@ tmp355,
+	movs	r0, r3	@, _45
+	ldr	r3, .L36+136	@ tmp378,
 	bl	.L13		@
 .L26:
-@ Pokedex.c:278: 	if (proc->areaBitfield_A)
-	ldr	r3, [r7, #68]	@ tmp356, proc
-	ldr	r3, [r3, #52]	@ _48, proc_70->areaBitfield_A
-@ Pokedex.c:278: 	if (proc->areaBitfield_A)
-	cmp	r3, #0	@ _48,
-	beq	.L27		@,
-@ Pokedex.c:280: 		for (int i = 0; i<64; i++)
-	movs	r3, #0	@ tmp357,
-	str	r3, [r7, #72]	@ tmp357, i
-@ Pokedex.c:280: 		for (int i = 0; i<64; i++)
+@ Pokedex.c:280: 	if (proc->areaBitfield_A)
+	ldr	r3, [r7, #104]	@ tmp379, proc
+	ldr	r3, [r3, #52]	@ _46, proc_99->areaBitfield_A
+@ Pokedex.c:280: 	if (proc->areaBitfield_A)
+	cmp	r3, #0	@ _46,
+	bne	.LCB709	@
+	b	.L27	@long jump	@
+.LCB709:
+@ Pokedex.c:282: 		for (int i = 0; i<64; i++)
+	movs	r3, #0	@ tmp380,
+	movs	r2, #132	@ tmp597,
+	adds	r2, r7, r2	@ tmp596,, tmp597
+	str	r3, [r2]	@ tmp380, i
+@ Pokedex.c:282: 		for (int i = 0; i<64; i++)
 	b	.L28		@
-.L30:
-@ Pokedex.c:282: 			if (proc->areaBitfield_A & 1<<i)
-	ldr	r3, [r7, #68]	@ tmp358, proc
-	ldr	r2, [r3, #52]	@ _49, proc_70->areaBitfield_A
-@ Pokedex.c:282: 			if (proc->areaBitfield_A & 1<<i)
-	ldr	r3, [r7, #72]	@ tmp359, i
-	asrs	r2, r2, r3	@ _49, _49, tmp359
-	movs	r3, r2	@ _50, _49
-	movs	r2, #1	@ tmp360,
-	ands	r3, r2	@ _51, tmp360
-@ Pokedex.c:282: 			if (proc->areaBitfield_A & 1<<i)
-	beq	.L29		@,
-@ Pokedex.c:284: 				u8 xx = AreaTable[i].xx;
-	movs	r0, #31	@ tmp409,
-	adds	r3, r7, r0	@ tmp361,, tmp409
-	ldr	r2, .L32+140	@ tmp362,
-	ldr	r1, [r7, #72]	@ tmp363, i
-	lsls	r1, r1, #1	@ tmp364, tmp363,
-	ldrb	r2, [r1, r2]	@ tmp365, AreaTable
-	strb	r2, [r3]	@ tmp365, xx
-@ Pokedex.c:285: 				u8 yy = AreaTable[i].yy;
-	movs	r4, #30	@ tmp410,
-	adds	r3, r7, r4	@ tmp366,, tmp410
-	ldr	r1, .L32+140	@ tmp367,
-	ldr	r2, [r7, #72]	@ tmp368, i
-	lsls	r2, r2, #1	@ tmp369, tmp368,
-	adds	r2, r1, r2	@ tmp370, tmp367, tmp369
-	adds	r2, r2, #1	@ tmp371,
-	ldrb	r2, [r2]	@ tmp372, AreaTable
-	strb	r2, [r3]	@ tmp372, yy
-@ Pokedex.c:286: 				DrawIcon(&gBG0MapBuffer[yy][xx],0xC,TILEREF(0, 0x4));
-	adds	r3, r7, r4	@ tmp373,, tmp411
-	ldrb	r2, [r3]	@ _52, yy
-	adds	r3, r7, r0	@ tmp374,, tmp412
-	ldrb	r3, [r3]	@ _53, xx
-@ Pokedex.c:286: 				DrawIcon(&gBG0MapBuffer[yy][xx],0xC,TILEREF(0, 0x4));
-	lsls	r2, r2, #5	@ tmp375, _52,
-	adds	r3, r2, r3	@ tmp376, tmp375, _53
-	lsls	r2, r3, #1	@ tmp377, tmp376,
-	ldr	r3, .L32+132	@ tmp378,
-	adds	r3, r2, r3	@ _54, tmp377, tmp378
-	movs	r2, #128	@ tmp385,
-	lsls	r2, r2, #7	@ tmp379, tmp385,
-	movs	r1, #12	@,
-	movs	r0, r3	@, _54
-	ldr	r3, .L32+136	@ tmp380,
-	bl	.L13		@
-.L29:
-@ Pokedex.c:280: 		for (int i = 0; i<64; i++)
-	ldr	r3, [r7, #72]	@ tmp382, i
-	adds	r3, r3, #1	@ tmp381,
-	str	r3, [r7, #72]	@ tmp381, i
-.L28:
-@ Pokedex.c:280: 		for (int i = 0; i<64; i++)
-	ldr	r3, [r7, #72]	@ tmp383, i
-	cmp	r3, #63	@ tmp383,
-	ble	.L30		@,
-.L27:
-@ Pokedex.c:296:     return ME_NONE;
-	movs	r3, #0	@ _133,
-@ Pokedex.c:297: }
-	movs	r0, r3	@, <retval>
-	mov	sp, r7	@,
-	add	sp, sp, #88	@,,
-	@ sp needed	@
-	pop	{r4, r5, r7}
-	pop	{r1}
-	bx	r1
-.L33:
+.L37:
 	.align	2
-.L32:
+.L36:
 	.word	gBg0MapBuffer
 	.word	CheckIfCaught
 	.word	CheckIfSeen
@@ -961,8 +923,443 @@ PokedexDrawIdle:
 	.word	EnableBgSyncByMask
 	.word	gBG0MapBuffer
 	.word	DrawIcon
+.L30:
+@ Pokedex.c:284: 			if (proc->areaBitfield_A & 1<<i)
+	ldr	r3, [r7, #104]	@ tmp381, proc
+	ldr	r2, [r3, #52]	@ _47, proc_99->areaBitfield_A
+@ Pokedex.c:284: 			if (proc->areaBitfield_A & 1<<i)
+	movs	r4, #132	@ tmp594,
+	adds	r3, r7, r4	@ tmp593,, tmp594
+	ldr	r3, [r3]	@ tmp382, i
+	asrs	r2, r2, r3	@ _47, _47, tmp382
+	movs	r3, r2	@ _48, _47
+	movs	r2, #1	@ tmp383,
+	ands	r3, r2	@ _49, tmp383
+@ Pokedex.c:284: 			if (proc->areaBitfield_A & 1<<i)
+	beq	.L29		@,
+@ Pokedex.c:286: 				u8 xx = AreaTable[i].xx;
+	movs	r0, #47	@ tmp538,
+	movs	r1, #24	@ tmp591,
+	adds	r3, r0, r1	@ tmp590, tmp538, tmp591
+	adds	r3, r3, r7	@ tmp384, tmp590,
+	ldr	r2, .L38	@ tmp385,
+	adds	r4, r7, r4	@ tmp588,, tmp589
+	ldr	r1, [r4]	@ tmp386, i
+	lsls	r1, r1, #1	@ tmp387, tmp386,
+	ldrb	r2, [r1, r2]	@ tmp388, AreaTable
+	strb	r2, [r3]	@ tmp388, xx
+@ Pokedex.c:287: 				u8 yy = AreaTable[i].yy;
+	movs	r4, #46	@ tmp539,
+	movs	r1, #24	@ tmp586,
+	adds	r3, r4, r1	@ tmp585, tmp539, tmp586
+	adds	r3, r3, r7	@ tmp389, tmp585,
+	ldr	r1, .L38	@ tmp390,
+	movs	r2, #132	@ tmp584,
+	adds	r2, r7, r2	@ tmp583,, tmp584
+	ldr	r2, [r2]	@ tmp391, i
+	lsls	r2, r2, #1	@ tmp392, tmp391,
+	adds	r2, r1, r2	@ tmp393, tmp390, tmp392
+	adds	r2, r2, #1	@ tmp394,
+	ldrb	r2, [r2]	@ tmp395, AreaTable
+	strb	r2, [r3]	@ tmp395, yy
+@ Pokedex.c:288: 				DrawIcon(&gBG0MapBuffer[yy][xx],0xC,TILEREF(0, 0x4));
+	movs	r1, #24	@ tmp581,
+	adds	r3, r4, r1	@ tmp580, tmp540, tmp581
+	adds	r3, r3, r7	@ tmp396, tmp580,
+	ldrb	r2, [r3]	@ _50, yy
+	adds	r3, r0, r1	@ tmp578, tmp541, tmp579
+	adds	r3, r3, r7	@ tmp397, tmp578,
+	ldrb	r3, [r3]	@ _51, xx
+@ Pokedex.c:288: 				DrawIcon(&gBG0MapBuffer[yy][xx],0xC,TILEREF(0, 0x4));
+	lsls	r2, r2, #5	@ tmp398, _50,
+	adds	r3, r2, r3	@ tmp399, tmp398, _51
+	lsls	r2, r3, #1	@ tmp400, tmp399,
+	ldr	r3, .L38+4	@ tmp401,
+	adds	r3, r2, r3	@ _52, tmp400, tmp401
+	movs	r2, #128	@ tmp514,
+	lsls	r2, r2, #7	@ tmp402, tmp514,
+	movs	r1, #12	@,
+	movs	r0, r3	@, _52
+	ldr	r3, .L38+8	@ tmp403,
+	bl	.L13		@
+.L29:
+@ Pokedex.c:282: 		for (int i = 0; i<64; i++)
+	movs	r2, #132	@ tmp577,
+	adds	r3, r7, r2	@ tmp576,, tmp577
+	ldr	r3, [r3]	@ tmp405, i
+	adds	r3, r3, #1	@ tmp404,
+	adds	r2, r7, r2	@ tmp573,, tmp574
+	str	r3, [r2]	@ tmp404, i
+.L28:
+@ Pokedex.c:282: 		for (int i = 0; i<64; i++)
+	movs	r3, #132	@ tmp571,
+	adds	r3, r7, r3	@ tmp570,, tmp571
+	ldr	r3, [r3]	@ tmp406, i
+	cmp	r3, #63	@ tmp406,
+	ble	.L30		@,
+.L27:
+@ Pokedex.c:292: 	DrawUiNumber(&gBG0MapBuffer[10][25], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	ldr	r3, [r7, #104]	@ tmp407, proc
+	movs	r2, #48	@ tmp408,
+	ldrb	r3, [r3, r2]	@ _53,
+	movs	r2, r3	@ _54, _53
+@ Pokedex.c:292: 	DrawUiNumber(&gBG0MapBuffer[10][25], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	ldr	r3, .L38+12	@ tmp409,
+	lsls	r2, r2, #2	@ tmp410, _54,
+	ldrb	r3, [r2, r3]	@ _55, PokedexTable
+@ Pokedex.c:292: 	DrawUiNumber(&gBG0MapBuffer[10][25], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	movs	r2, r3	@ _56, _55
+	ldr	r3, .L38+16	@ tmp411,
+	movs	r1, #3	@,
+	movs	r0, r3	@, tmp411
+	ldr	r3, .L38+20	@ tmp412,
+	bl	.L13		@
+@ Pokedex.c:297: 	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
+	ldr	r3, [r7, #104]	@ tmp413, proc
+	movs	r2, #48	@ tmp414,
+	ldrb	r3, [r3, r2]	@ _57,
+@ Pokedex.c:297: 	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
+	ldr	r2, .L38+12	@ tmp415,
+	lsls	r3, r3, #2	@ tmp416, _58,
+	adds	r3, r2, r3	@ tmp417, tmp415, tmp416
+	adds	r3, r3, #2	@ tmp418,
+	ldrh	r3, [r3]	@ _59, PokedexTable
+@ Pokedex.c:297: 	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
+	movs	r0, r3	@, _60
+	ldr	r3, .L38+24	@ tmp419,
+	bl	.L13		@
+	movs	r3, r0	@ tmp420,
+	str	r3, [r7, #64]	@ tmp420, string
+@ Pokedex.c:298: 	int lines = GetNumLines(string);
+	ldr	r3, [r7, #64]	@ tmp421, string
+	movs	r0, r3	@, tmp421
+	bl	GetNumLines		@
+	movs	r3, r0	@ tmp422,
+	str	r3, [r7, #60]	@ tmp422, lines
+@ Pokedex.c:301: 	TextHandle handles[lines];
+	ldr	r3, [r7, #60]	@ lines.4_165, lines
+@ Pokedex.c:301: 	TextHandle handles[lines];
+	subs	r2, r3, #1	@ _61, lines.4_165,
+	str	r2, [r7, #56]	@ _61, D.7555
+	movs	r2, r3	@ lines.5_63, lines.4_165
+	str	r2, [r7, #8]	@ lines.5_63, %sfp
+	movs	r2, #0	@ tmp423,
+	str	r2, [r7, #12]	@ tmp423, %sfp
+	ldr	r0, [r7, #8]	@ _64, %sfp
+	ldr	r1, [r7, #12]	@ _64, %sfp
+	movs	r2, r0	@ tmp542, _64
+	lsrs	r2, r2, #26	@ tmp424, tmp542,
+	movs	r4, r1	@ tmp544, _64
+	lsls	r4, r4, #6	@ tmp543, tmp544,
+	str	r4, [r7, #20]	@ tmp543, %sfp
+	ldr	r4, [r7, #20]	@ tmp545, %sfp
+	orrs	r4, r2	@ tmp545, tmp424
+	str	r4, [r7, #20]	@ tmp545, %sfp
+	movs	r2, r0	@ tmp547, _64
+	lsls	r2, r2, #6	@ tmp546, tmp547,
+	str	r2, [r7, #16]	@ tmp546, %sfp
+	movs	r2, r3	@ lines.7_68, lines.4_165
+	str	r2, [r7]	@ lines.7_68, %sfp
+	movs	r2, #0	@ tmp425,
+	str	r2, [r7, #4]	@ tmp425, %sfp
+	ldr	r0, [r7]	@ _69, %sfp
+	ldr	r1, [r7, #4]	@ _69, %sfp
+	movs	r2, r0	@ tmp548, _69
+	lsrs	r2, r2, #26	@ tmp426, tmp548,
+	movs	r4, r1	@ tmp549, _69
+	lsls	r6, r4, #6	@ _169, tmp549,
+	orrs	r6, r2	@ _169, tmp426
+	movs	r2, r0	@ tmp550, _69
+	lsls	r5, r2, #6	@ _169, tmp550,
+	lsls	r3, r3, #3	@ _170, lines.8_71,
+	adds	r3, r3, #7	@ tmp427,
+	lsrs	r3, r3, #3	@ tmp428, tmp427,
+	lsls	r3, r3, #3	@ tmp429, tmp428,
+	mov	r2, sp	@ tmp552,
+	subs	r3, r2, r3	@ tmp551, tmp552, tmp429
+	mov	sp, r3	@, tmp551
+	add	r3, sp, #8	@ tmp430,,
+	adds	r3, r3, #1	@ tmp431,
+	lsrs	r3, r3, #1	@ tmp432, tmp431,
+	lsls	r3, r3, #1	@ tmp433, tmp432,
+	str	r3, [r7, #52]	@ tmp433, handles.9
+@ Pokedex.c:302: 	for ( int i = 0 ; i < lines ; i++ )
+	movs	r3, #0	@ tmp434,
+	str	r3, [r7, #112]	@ tmp434, i
+@ Pokedex.c:302: 	for ( int i = 0 ; i < lines ; i++ )
+	b	.L31		@
+.L32:
+@ Pokedex.c:304: 		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
+	ldr	r3, .L38+28	@ tmp435,
+	ldr	r3, [r3]	@ gpCurrentFont.10_73, gpCurrentFont
+	ldrh	r2, [r3, #18]	@ _74,
+@ Pokedex.c:304: 		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
+	ldr	r3, [r7, #120]	@ tmp437, tile
+	lsls	r3, r3, #16	@ tmp438, tmp436,
+	lsrs	r3, r3, #16	@ _75, tmp438,
+	adds	r3, r2, r3	@ tmp439, _74, _75
+	lsls	r3, r3, #16	@ tmp440, tmp439,
+	lsrs	r1, r3, #16	@ _76, tmp440,
+@ Pokedex.c:304: 		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
+	ldr	r3, [r7, #52]	@ tmp441, handles.9
+	ldr	r2, [r7, #112]	@ tmp442, i
+	lsls	r2, r2, #3	@ tmp443, tmp442,
+	strh	r1, [r2, r3]	@ tmp444, (*handles.9_172)[i_82].tileIndexOffset
+@ Pokedex.c:305: 		handles[i].xCursor = 0;
+	ldr	r2, [r7, #52]	@ tmp445, handles.9
+	ldr	r3, [r7, #112]	@ tmp446, i
+	lsls	r3, r3, #3	@ tmp447, tmp446,
+	adds	r3, r2, r3	@ tmp448, tmp445, tmp447
+	adds	r3, r3, #2	@ tmp449,
+	movs	r2, #0	@ tmp450,
+	strb	r2, [r3]	@ tmp451, (*handles.9_172)[i_82].xCursor
+@ Pokedex.c:306: 		handles[i].colorId = TEXT_COLOR_NORMAL;
+	ldr	r2, [r7, #52]	@ tmp452, handles.9
+	ldr	r3, [r7, #112]	@ tmp453, i
+	lsls	r3, r3, #3	@ tmp454, tmp453,
+	adds	r3, r2, r3	@ tmp455, tmp452, tmp454
+	adds	r3, r3, #3	@ tmp456,
+	movs	r2, #0	@ tmp457,
+	strb	r2, [r3]	@ tmp458, (*handles.9_172)[i_82].colorId
+@ Pokedex.c:307: 		handles[i].tileWidth = 10;
+	ldr	r2, [r7, #52]	@ tmp459, handles.9
+	ldr	r3, [r7, #112]	@ tmp460, i
+	lsls	r3, r3, #3	@ tmp461, tmp460,
+	adds	r3, r2, r3	@ tmp462, tmp459, tmp461
+	adds	r3, r3, #4	@ tmp463,
+	movs	r2, #10	@ tmp464,
+	strb	r2, [r3]	@ tmp465, (*handles.9_172)[i_82].tileWidth
+@ Pokedex.c:308: 		handles[i].useDoubleBuffer = 0;
+	ldr	r2, [r7, #52]	@ tmp466, handles.9
+	ldr	r3, [r7, #112]	@ tmp467, i
+	lsls	r3, r3, #3	@ tmp468, tmp467,
+	adds	r3, r2, r3	@ tmp469, tmp466, tmp468
+	adds	r3, r3, #5	@ tmp470,
+	movs	r2, #0	@ tmp471,
+	strb	r2, [r3]	@ tmp472, (*handles.9_172)[i_82].useDoubleBuffer
+@ Pokedex.c:309: 		handles[i].currentBufferId = 0;
+	ldr	r2, [r7, #52]	@ tmp473, handles.9
+	ldr	r3, [r7, #112]	@ tmp474, i
+	lsls	r3, r3, #3	@ tmp475, tmp474,
+	adds	r3, r2, r3	@ tmp476, tmp473, tmp475
+	adds	r3, r3, #6	@ tmp477,
+	movs	r2, #0	@ tmp478,
+	strb	r2, [r3]	@ tmp479, (*handles.9_172)[i_82].currentBufferId
+@ Pokedex.c:310: 		handles[i].unk07 = 0;
+	ldr	r2, [r7, #52]	@ tmp480, handles.9
+	ldr	r3, [r7, #112]	@ tmp481, i
+	lsls	r3, r3, #3	@ tmp482, tmp481,
+	adds	r3, r2, r3	@ tmp483, tmp480, tmp482
+	adds	r3, r3, #7	@ tmp484,
+	movs	r2, #0	@ tmp485,
+	strb	r2, [r3]	@ tmp486, (*handles.9_172)[i_82].unk07
+@ Pokedex.c:311: 		tile += 10;
+	ldr	r3, [r7, #120]	@ tmp488, tile
+	adds	r3, r3, #10	@ tmp487,
+	str	r3, [r7, #120]	@ tmp487, tile
+@ Pokedex.c:312: 		Text_Clear(&handles[i]);
+	ldr	r3, [r7, #112]	@ tmp490, i
+	lsls	r3, r3, #3	@ tmp489, tmp490,
+	ldr	r2, [r7, #52]	@ tmp491, handles.9
+	adds	r3, r2, r3	@ _77, tmp491, tmp489
+@ Pokedex.c:312: 		Text_Clear(&handles[i]);
+	movs	r0, r3	@, _77
+	ldr	r3, .L38+32	@ tmp492,
+	bl	.L13		@
+@ Pokedex.c:302: 	for ( int i = 0 ; i < lines ; i++ )
+	ldr	r3, [r7, #112]	@ tmp494, i
+	adds	r3, r3, #1	@ tmp493,
+	str	r3, [r7, #112]	@ tmp493, i
+.L31:
+@ Pokedex.c:302: 	for ( int i = 0 ; i < lines ; i++ )
+	ldr	r2, [r7, #112]	@ tmp495, i
+	ldr	r3, [r7, #60]	@ tmp496, lines
+	cmp	r2, r3	@ tmp495, tmp496
+	blt	.L32		@,
+@ Pokedex.c:316: 	DrawMultiline(handles, string, lines);
+	ldr	r2, [r7, #60]	@ tmp497, lines
+	ldr	r1, [r7, #64]	@ tmp498, string
+	ldr	r3, [r7, #52]	@ tmp499, handles.9
+	movs	r0, r3	@, tmp499
+	bl	DrawMultiline		@
+@ Pokedex.c:318: 	for ( int i = 0 ; i < lines ; i++ )
+	movs	r3, #0	@ tmp500,
+	str	r3, [r7, #108]	@ tmp500, i
+@ Pokedex.c:318: 	for ( int i = 0 ; i < lines ; i++ )
+	b	.L33		@
+.L34:
+@ Pokedex.c:320: 		Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
+	ldr	r3, [r7, #108]	@ tmp502, i
+	lsls	r3, r3, #3	@ tmp501, tmp502,
+	ldr	r2, [r7, #52]	@ tmp503, handles.9
+	adds	r0, r2, r3	@ _78, tmp503, tmp501
+@ Pokedex.c:320: 		Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
+	ldr	r3, [r7, #108]	@ tmp504, i
+	adds	r3, r3, #6	@ _79,
+	lsls	r3, r3, #1	@ _80, _79,
+@ Pokedex.c:320: 		Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
+	lsls	r3, r3, #6	@ tmp505, _80,
+	adds	r3, r3, #40	@ tmp505,
+	movs	r2, r3	@ tmp506, tmp505
+	ldr	r3, .L38+4	@ tmp507,
+	adds	r3, r2, r3	@ _81, tmp506, tmp507
+	movs	r1, r3	@, _81
+	ldr	r3, .L38+36	@ tmp508,
+	bl	.L13		@
+@ Pokedex.c:318: 	for ( int i = 0 ; i < lines ; i++ )
+	ldr	r3, [r7, #108]	@ tmp510, i
+	adds	r3, r3, #1	@ tmp509,
+	str	r3, [r7, #108]	@ tmp509, i
+.L33:
+@ Pokedex.c:318: 	for ( int i = 0 ; i < lines ; i++ )
+	ldr	r2, [r7, #108]	@ tmp511, i
+	ldr	r3, [r7, #60]	@ tmp512, lines
+	cmp	r2, r3	@ tmp511, tmp512
+	blt	.L34		@,
+@ Pokedex.c:323:     return ME_NONE;
+	movs	r3, #0	@ _176,
+	mov	sp, r8	@, saved_stack.11_97
+@ Pokedex.c:324: }
+	movs	r0, r3	@, <retval>
+	mov	sp, r7	@,
+	add	sp, sp, #136	@,,
+	@ sp needed	@
+	pop	{r7}
+	mov	r8, r7
+	pop	{r4, r5, r6, r7}
+	pop	{r1}
+	bx	r1
+.L39:
+	.align	2
+.L38:
 	.word	AreaTable
+	.word	gBG0MapBuffer
+	.word	DrawIcon
+	.word	PokedexTable
+	.word	gBG0MapBuffer+690
+	.word	DrawUiNumber
+	.word	GetStringFromIndex
+	.word	gpCurrentFont
+	.word	Text_Clear
+	.word	Text_Display
 	.size	PokedexDrawIdle, .-PokedexDrawIdle
+	.align	1
+	.syntax unified
+	.code	16
+	.thumb_func
+	.fpu softvfp
+	.type	DrawMultiline, %function
+DrawMultiline:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 32
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r4, r7, lr}	@
+	sub	sp, sp, #36	@,,
+	add	r7, sp, #0	@,,
+	str	r0, [r7, #12]	@ handles, handles
+	str	r1, [r7, #8]	@ string, string
+	str	r2, [r7, #4]	@ lines, lines
+@ Pokedex.c:333:     int j = 0;
+	movs	r3, #0	@ tmp124,
+	str	r3, [r7, #28]	@ tmp124, j
+@ Pokedex.c:334:     for ( int i = 0 ; i < lines ; i++ )
+	movs	r3, #0	@ tmp125,
+	str	r3, [r7, #24]	@ tmp125, i
+@ Pokedex.c:334:     for ( int i = 0 ; i < lines ; i++ )
+	b	.L42		@
+.L46:
+@ Pokedex.c:336:         int k = 0;
+	movs	r3, #0	@ tmp126,
+	str	r3, [r7, #20]	@ tmp126, k
+@ Pokedex.c:337:         for ( ; string[j] && string[j] != NL ; k++ )
+	b	.L43		@
+.L45:
+@ Pokedex.c:339:             gGenericBuffer[k] = string[j];
+	ldr	r3, [r7, #28]	@ j.12_1, j
+	ldr	r2, [r7, #8]	@ tmp127, string
+	adds	r3, r2, r3	@ _2, tmp127, j.12_1
+	ldrb	r1, [r3]	@ _3, *_2
+@ Pokedex.c:339:             gGenericBuffer[k] = string[j];
+	ldr	r2, .L47	@ tmp128,
+	ldr	r3, [r7, #20]	@ tmp130, k
+	adds	r3, r2, r3	@ tmp129, tmp128, tmp130
+	adds	r2, r1, #0	@ tmp131, _3
+	strb	r2, [r3]	@ tmp131, gGenericBuffer[k_16]
+@ Pokedex.c:340:             j++;
+	ldr	r3, [r7, #28]	@ tmp133, j
+	adds	r3, r3, #1	@ tmp132,
+	str	r3, [r7, #28]	@ tmp132, j
+@ Pokedex.c:337:         for ( ; string[j] && string[j] != NL ; k++ )
+	ldr	r3, [r7, #20]	@ tmp135, k
+	adds	r3, r3, #1	@ tmp134,
+	str	r3, [r7, #20]	@ tmp134, k
+.L43:
+@ Pokedex.c:337:         for ( ; string[j] && string[j] != NL ; k++ )
+	ldr	r3, [r7, #28]	@ j.13_4, j
+	ldr	r2, [r7, #8]	@ tmp136, string
+	adds	r3, r2, r3	@ _5, tmp136, j.13_4
+	ldrb	r3, [r3]	@ _6, *_5
+@ Pokedex.c:337:         for ( ; string[j] && string[j] != NL ; k++ )
+	cmp	r3, #0	@ _6,
+	beq	.L44		@,
+@ Pokedex.c:337:         for ( ; string[j] && string[j] != NL ; k++ )
+	ldr	r3, [r7, #28]	@ j.14_7, j
+	ldr	r2, [r7, #8]	@ tmp137, string
+	adds	r3, r2, r3	@ _8, tmp137, j.14_7
+	ldrb	r3, [r3]	@ _9, *_8
+@ Pokedex.c:337:         for ( ; string[j] && string[j] != NL ; k++ )
+	cmp	r3, #1	@ _9,
+	bne	.L45		@,
+.L44:
+@ Pokedex.c:342:         gGenericBuffer[k] = 0;
+	ldr	r2, .L47	@ tmp138,
+	ldr	r3, [r7, #20]	@ tmp140, k
+	adds	r3, r2, r3	@ tmp139, tmp138, tmp140
+	movs	r2, #0	@ tmp141,
+	strb	r2, [r3]	@ tmp142, gGenericBuffer[k_16]
+@ Pokedex.c:343:         Text_InsertString(handles,0,handles->colorId,(char*)gGenericBuffer);
+	ldr	r3, [r7, #12]	@ tmp143, handles
+	ldrb	r3, [r3, #3]	@ _10,
+@ Pokedex.c:343:         Text_InsertString(handles,0,handles->colorId,(char*)gGenericBuffer);
+	movs	r2, r3	@ _11, _10
+	ldr	r3, .L47	@ tmp144,
+	ldr	r0, [r7, #12]	@ tmp145, handles
+	movs	r1, #0	@,
+	ldr	r4, .L47+4	@ tmp146,
+	bl	.L40		@
+@ Pokedex.c:345:         handles++;
+	ldr	r3, [r7, #12]	@ tmp148, handles
+	adds	r3, r3, #8	@ tmp147,
+	str	r3, [r7, #12]	@ tmp147, handles
+@ Pokedex.c:346:         j++;
+	ldr	r3, [r7, #28]	@ tmp150, j
+	adds	r3, r3, #1	@ tmp149,
+	str	r3, [r7, #28]	@ tmp149, j
+@ Pokedex.c:334:     for ( int i = 0 ; i < lines ; i++ )
+	ldr	r3, [r7, #24]	@ tmp152, i
+	adds	r3, r3, #1	@ tmp151,
+	str	r3, [r7, #24]	@ tmp151, i
+.L42:
+@ Pokedex.c:334:     for ( int i = 0 ; i < lines ; i++ )
+	ldr	r2, [r7, #24]	@ tmp153, i
+	ldr	r3, [r7, #4]	@ tmp154, lines
+	cmp	r2, r3	@ tmp153, tmp154
+	blt	.L46		@,
+@ Pokedex.c:348: }
+	nop	
+	nop	
+	mov	sp, r7	@,
+	add	sp, sp, #36	@,,
+	@ sp needed	@
+	pop	{r4, r7}
+	pop	{r0}
+	bx	r0
+.L48:
+	.align	2
+.L47:
+	.word	gGenericBuffer
+	.word	Text_InsertString
+	.size	DrawMultiline, .-DrawMultiline
 	.align	1
 	.global	Pokedex_OnSelect
 	.syntax unified
@@ -979,108 +1376,108 @@ Pokedex_OnSelect:
 	add	r7, sp, #0	@,,
 	str	r0, [r7, #4]	@ menu, menu
 	str	r1, [r7]	@ command, command
-@ Pokedex.c:306:     struct PokedexProc* proc = (void*) ProcStart(Proc_ChapterPokedex, ROOT_PROC_3);
-	ldr	r3, .L42	@ tmp147,
+@ Pokedex.c:357:     struct PokedexProc* proc = (void*) ProcStart(Proc_ChapterPokedex, ROOT_PROC_3);
+	ldr	r3, .L56	@ tmp147,
 	movs	r1, #3	@,
 	movs	r0, r3	@, tmp147
-	ldr	r3, .L42+4	@ tmp148,
+	ldr	r3, .L56+4	@ tmp148,
 	bl	.L13		@
 	movs	r3, r0	@ tmp149,
 	str	r3, [r7, #20]	@ tmp149, proc
-@ Pokedex.c:308:     proc->menuIndex = 1;
+@ Pokedex.c:359:     proc->menuIndex = 1;
 	ldr	r3, [r7, #20]	@ tmp150, proc
 	movs	r2, #48	@ tmp151,
 	movs	r1, #1	@ tmp152,
 	strb	r1, [r3, r2]	@ tmp153, proc_41->menuIndex
-@ Pokedex.c:309: 	proc->TotalCaught = CountCaught();
-	ldr	r3, .L42+8	@ tmp154,
+@ Pokedex.c:360: 	proc->TotalCaught = CountCaught();
+	ldr	r3, .L56+8	@ tmp154,
 	bl	.L13		@
 	movs	r3, r0	@ _1,
-@ Pokedex.c:309: 	proc->TotalCaught = CountCaught();
+@ Pokedex.c:360: 	proc->TotalCaught = CountCaught();
 	lsls	r3, r3, #24	@ tmp155, _1,
 	lsrs	r1, r3, #24	@ _2, tmp155,
 	ldr	r3, [r7, #20]	@ tmp156, proc
 	movs	r2, #50	@ tmp157,
 	strb	r1, [r3, r2]	@ tmp158, proc_41->TotalCaught
-@ Pokedex.c:310: 	proc->TotalSeen = CountSeen();
-	ldr	r3, .L42+12	@ tmp159,
+@ Pokedex.c:361: 	proc->TotalSeen = CountSeen();
+	ldr	r3, .L56+12	@ tmp159,
 	bl	.L13		@
 	movs	r3, r0	@ _3,
-@ Pokedex.c:310: 	proc->TotalSeen = CountSeen();
+@ Pokedex.c:361: 	proc->TotalSeen = CountSeen();
 	lsls	r3, r3, #24	@ tmp160, _3,
 	lsrs	r1, r3, #24	@ _4, tmp160,
 	ldr	r3, [r7, #20]	@ tmp161, proc
 	movs	r2, #49	@ tmp162,
 	strb	r1, [r3, r2]	@ tmp163, proc_41->TotalSeen
-@ Pokedex.c:312: 	Decompress(WorldMap_img,(void*)0x6008000);
-	ldr	r2, .L42+16	@ tmp164,
-	ldr	r3, .L42+20	@ tmp165,
+@ Pokedex.c:363: 	Decompress(WorldMap_img,(void*)0x600C000);
+	ldr	r2, .L56+16	@ tmp164,
+	ldr	r3, .L56+20	@ tmp165,
 	movs	r1, r2	@, tmp164
 	movs	r0, r3	@, tmp165
-	ldr	r3, .L42+24	@ tmp166,
+	ldr	r3, .L56+24	@ tmp166,
 	bl	.L13		@
-@ Pokedex.c:314: 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
-	ldr	r3, .L42+28	@ tmp167,
-	ldrb	r3, [r3]	@ gWorldMapPaletteCount.4_5, gWorldMapPaletteCount
+@ Pokedex.c:365: 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
+	ldr	r3, .L56+28	@ tmp167,
+	ldrb	r3, [r3]	@ gWorldMapPaletteCount.15_5, gWorldMapPaletteCount
 	subs	r3, r3, #2	@ _7,
-@ Pokedex.c:314: 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
+@ Pokedex.c:365: 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
 	lsls	r3, r3, #5	@ _8, _7,
-@ Pokedex.c:314: 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
+@ Pokedex.c:365: 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
 	movs	r2, r3	@ _9, _8
-	ldr	r3, .L42+32	@ tmp168,
+	ldr	r3, .L56+32	@ tmp168,
 	movs	r1, #192	@,
 	movs	r0, r3	@, tmp168
-	ldr	r3, .L42+36	@ tmp169,
+	ldr	r3, .L56+36	@ tmp169,
 	bl	.L13		@
-@ Pokedex.c:315: 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
-	ldr	r3, .L42+28	@ tmp170,
-	ldrb	r3, [r3]	@ gWorldMapPaletteCount.5_10, gWorldMapPaletteCount
+@ Pokedex.c:366: 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
+	ldr	r3, .L56+28	@ tmp170,
+	ldrb	r3, [r3]	@ gWorldMapPaletteCount.16_10, gWorldMapPaletteCount
 	subs	r3, r3, #1	@ _12,
-@ Pokedex.c:315: 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
+@ Pokedex.c:366: 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
 	lsls	r2, r3, #5	@ _14, _13,
-@ Pokedex.c:315: 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
-	ldr	r3, .L42+32	@ tmp171,
+@ Pokedex.c:366: 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
+	ldr	r3, .L56+32	@ tmp171,
 	adds	r3, r2, r3	@ _15, _14, tmp171
 	movs	r2, #240	@ tmp252,
 	lsls	r1, r2, #1	@ tmp172, tmp252,
 	movs	r2, #32	@,
 	movs	r0, r3	@, _15
-	ldr	r3, .L42+36	@ tmp173,
+	ldr	r3, .L56+36	@ tmp173,
 	bl	.L13		@
-@ Pokedex.c:317: 	memcpy(gGenericBuffer, WorldMap_tsa, 0x4B2);
-	ldr	r2, .L42+40	@ tmp174,
-	ldr	r1, .L42+44	@ tmp175,
-	ldr	r3, .L42+48	@ tmp176,
+@ Pokedex.c:368: 	memcpy(gGenericBuffer, WorldMap_tsa, 0x4B2);
+	ldr	r2, .L56+40	@ tmp174,
+	ldr	r1, .L56+44	@ tmp175,
+	ldr	r3, .L56+48	@ tmp176,
 	movs	r0, r3	@, tmp176
-	ldr	r3, .L42+52	@ tmp177,
+	ldr	r3, .L56+52	@ tmp177,
 	bl	.L13		@
-@ Pokedex.c:319: 	TSA* tsaBuffer = (TSA*)gGenericBuffer;
-	ldr	r3, .L42+48	@ tmp178,
+@ Pokedex.c:370: 	TSA* tsaBuffer = (TSA*)gGenericBuffer;
+	ldr	r3, .L56+48	@ tmp178,
 	str	r3, [r7, #16]	@ tmp178, tsaBuffer
-@ Pokedex.c:320: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
+@ Pokedex.c:371: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
 	movs	r3, #0	@ tmp179,
 	str	r3, [r7, #28]	@ tmp179, i
-@ Pokedex.c:320: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
-	b	.L36		@
-.L40:
-@ Pokedex.c:322: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
+@ Pokedex.c:371: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
+	b	.L50		@
+.L54:
+@ Pokedex.c:373: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
 	movs	r3, #0	@ tmp180,
 	str	r3, [r7, #24]	@ tmp180, j
-@ Pokedex.c:322: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
-	b	.L37		@
-.L39:
-@ Pokedex.c:324: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+@ Pokedex.c:373: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
+	b	.L51		@
+.L53:
+@ Pokedex.c:375: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
 	ldr	r3, [r7, #16]	@ tmp181, tsaBuffer
 	ldrb	r3, [r3]	@ _16, *tsaBuffer_51
-@ Pokedex.c:324: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+@ Pokedex.c:375: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
 	adds	r3, r3, #1	@ _18,
-@ Pokedex.c:324: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+@ Pokedex.c:375: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
 	ldr	r2, [r7, #28]	@ tmp182, i
 	muls	r2, r3	@ _19, _18
-@ Pokedex.c:324: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+@ Pokedex.c:375: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
 	ldr	r3, [r7, #24]	@ tmp183, j
 	adds	r3, r2, r3	@ _20, _19, tmp183
-@ Pokedex.c:324: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+@ Pokedex.c:375: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
 	ldr	r2, [r7, #16]	@ tmp184, tsaBuffer
 	lsls	r3, r3, #1	@ tmp185, _20,
 	adds	r3, r2, r3	@ tmp188, tmp184, tmp185
@@ -1089,21 +1486,21 @@ Pokedex_OnSelect:
 	lsrs	r3, r3, #28	@ tmp190, tmp191,
 	lsls	r3, r3, #24	@ tmp192, tmp190,
 	lsrs	r3, r3, #24	@ _21, tmp192,
-@ Pokedex.c:324: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+@ Pokedex.c:375: 			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
 	cmp	r3, #10	@ _21,
-	bne	.L38		@,
-@ Pokedex.c:326: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+	bne	.L52		@,
+@ Pokedex.c:377: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
 	ldr	r3, [r7, #16]	@ tmp193, tsaBuffer
 	ldrb	r3, [r3]	@ _22, *tsaBuffer_51
-@ Pokedex.c:326: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+@ Pokedex.c:377: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
 	adds	r3, r3, #1	@ _24,
-@ Pokedex.c:326: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+@ Pokedex.c:377: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
 	ldr	r2, [r7, #28]	@ tmp194, i
 	muls	r2, r3	@ _25, _24
-@ Pokedex.c:326: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+@ Pokedex.c:377: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
 	ldr	r3, [r7, #24]	@ tmp195, j
 	adds	r3, r2, r3	@ _26, _25, tmp195
-@ Pokedex.c:326: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+@ Pokedex.c:377: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
 	ldr	r1, [r7, #16]	@ tmp196, tsaBuffer
 	lsls	r2, r3, #1	@ tmp197, _26,
 	adds	r2, r1, r2	@ tmp200, tmp196, tmp197
@@ -1112,7 +1509,7 @@ Pokedex_OnSelect:
 	lsrs	r2, r2, #28	@ tmp202, tmp203,
 	lsls	r2, r2, #24	@ tmp204, tmp202,
 	lsrs	r2, r2, #24	@ _27, tmp204,
-@ Pokedex.c:326: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+@ Pokedex.c:377: 				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
 	adds	r2, r2, #15	@ tmp205,
 	adds	r1, r2, #0	@ tmp206, tmp205
 	movs	r2, #15	@ tmp208,
@@ -1130,80 +1527,80 @@ Pokedex_OnSelect:
 	adds	r2, r0, #0	@ tmp219, tmp214
 	orrs	r2, r1	@ tmp220, tmp218
 	strb	r2, [r3, #3]	@ tmp221,
-.L38:
-@ Pokedex.c:322: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
+.L52:
+@ Pokedex.c:373: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
 	ldr	r3, [r7, #24]	@ tmp223, j
 	adds	r3, r3, #1	@ tmp222,
 	str	r3, [r7, #24]	@ tmp222, j
-.L37:
-@ Pokedex.c:322: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
+.L51:
+@ Pokedex.c:373: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
 	ldr	r3, [r7, #16]	@ tmp224, tsaBuffer
 	ldrb	r3, [r3]	@ _30, *tsaBuffer_51
 	movs	r2, r3	@ _31, _30
-@ Pokedex.c:322: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
+@ Pokedex.c:373: 		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
 	ldr	r3, [r7, #24]	@ tmp225, j
 	cmp	r3, r2	@ tmp225, _31
-	ble	.L39		@,
-@ Pokedex.c:320: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
+	ble	.L53		@,
+@ Pokedex.c:371: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
 	ldr	r3, [r7, #28]	@ tmp227, i
 	adds	r3, r3, #1	@ tmp226,
 	str	r3, [r7, #28]	@ tmp226, i
-.L36:
-@ Pokedex.c:320: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
+.L50:
+@ Pokedex.c:371: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
 	ldr	r3, [r7, #16]	@ tmp228, tsaBuffer
 	ldrb	r3, [r3, #1]	@ _32,
 	movs	r2, r3	@ _33, _32
-@ Pokedex.c:320: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
+@ Pokedex.c:371: 	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
 	ldr	r3, [r7, #28]	@ tmp229, i
 	cmp	r3, r2	@ tmp229, _33
-	ble	.L40		@,
-@ Pokedex.c:330: 	BgMap_ApplyTsa(gBg3MapBuffer,gGenericBuffer, 6<<12);
+	ble	.L54		@,
+@ Pokedex.c:381: 	BgMap_ApplyTsa(gBg2MapBuffer,gGenericBuffer, 6<<12);
 	movs	r3, #192	@ tmp250,
 	lsls	r2, r3, #7	@ tmp230, tmp250,
-	ldr	r1, .L42+48	@ tmp231,
-	ldr	r3, .L42+56	@ tmp232,
+	ldr	r1, .L56+48	@ tmp231,
+	ldr	r3, .L56+56	@ tmp232,
 	movs	r0, r3	@, tmp232
-	ldr	r3, .L42+60	@ tmp233,
+	ldr	r3, .L56+60	@ tmp233,
 	bl	.L13		@
-@ Pokedex.c:331: 	SetBgTileDataOffset(2,0x8000);
-	movs	r3, #128	@ tmp251,
+@ Pokedex.c:382: 	SetBgTileDataOffset(2,0xC000);
+	movs	r3, #192	@ tmp251,
 	lsls	r3, r3, #8	@ tmp234, tmp251,
 	movs	r1, r3	@, tmp234
 	movs	r0, #2	@,
-	ldr	r3, .L42+64	@ tmp235,
+	ldr	r3, .L56+64	@ tmp235,
 	bl	.L13		@
-@ Pokedex.c:333: 	struct LCDIOBuffer* LCDIOBuffer = &gLCDIOBuffer;
-	ldr	r3, .L42+68	@ tmp236,
+@ Pokedex.c:384: 	struct LCDIOBuffer* LCDIOBuffer = &gLCDIOBuffer;
+	ldr	r3, .L56+68	@ tmp236,
 	str	r3, [r7, #12]	@ tmp236, LCDIOBuffer
-@ Pokedex.c:334: 	LCDIOBuffer->bgOffset[3].x = 0; // make offset as 0, rather than scrolled to the right
+@ Pokedex.c:385: 	LCDIOBuffer->bgOffset[3].x = 0; // make offset as 0, rather than scrolled to the right
 	ldr	r3, [r7, #12]	@ tmp237, LCDIOBuffer
 	movs	r2, #0	@ tmp238,
 	strh	r2, [r3, #40]	@ tmp239, LCDIOBuffer_55->bgOffset[3].x
-@ Pokedex.c:335: 	LCDIOBuffer->bgOffset[3].y = 0; 
+@ Pokedex.c:386: 	LCDIOBuffer->bgOffset[3].y = 0; 
 	ldr	r3, [r7, #12]	@ tmp240, LCDIOBuffer
 	movs	r2, #0	@ tmp241,
 	strh	r2, [r3, #42]	@ tmp242, LCDIOBuffer_55->bgOffset[3].y
-@ Pokedex.c:339: 	LoadIconPalettes(4);
+@ Pokedex.c:390: 	LoadIconPalettes(4);
 	movs	r0, #4	@,
-	ldr	r3, .L42+72	@ tmp243,
+	ldr	r3, .L56+72	@ tmp243,
 	bl	.L13		@
-@ Pokedex.c:340: 	EnableBgSyncByMask(BG_SYNC_BIT(3)); // sync bg 3 
-	movs	r0, #8	@,
-	ldr	r3, .L42+76	@ tmp244,
+@ Pokedex.c:391: 	EnableBgSyncByMask(BG_SYNC_BIT(2)); // sync bg 3 
+	movs	r0, #4	@,
+	ldr	r3, .L56+76	@ tmp244,
 	bl	.L13		@
-@ Pokedex.c:341: 	EnablePaletteSync();
-	ldr	r3, .L42+80	@ tmp245,
+@ Pokedex.c:392: 	EnablePaletteSync();
+	ldr	r3, .L56+80	@ tmp245,
 	bl	.L13		@
-@ Pokedex.c:344:     StartMenuChild(&Menu_Pokedex, (void*) proc);
+@ Pokedex.c:395:     StartMenuChild(&Menu_Pokedex, (void*) proc);
 	ldr	r2, [r7, #20]	@ tmp246, proc
-	ldr	r3, .L42+84	@ tmp247,
+	ldr	r3, .L56+84	@ tmp247,
 	movs	r1, r2	@, tmp246
 	movs	r0, r3	@, tmp247
-	ldr	r3, .L42+88	@ tmp248,
+	ldr	r3, .L56+88	@ tmp248,
 	bl	.L13		@
-@ Pokedex.c:346:     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
+@ Pokedex.c:397:     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 	movs	r3, #23	@ _62,
-@ Pokedex.c:347: }
+@ Pokedex.c:398: }
 	movs	r0, r3	@, <retval>
 	mov	sp, r7	@,
 	add	sp, sp, #32	@,,
@@ -1211,14 +1608,14 @@ Pokedex_OnSelect:
 	pop	{r7}
 	pop	{r1}
 	bx	r1
-.L43:
+.L57:
 	.align	2
-.L42:
+.L56:
 	.word	Proc_ChapterPokedex
 	.word	ProcStart
 	.word	CountCaught
 	.word	CountSeen
-	.word	100696064
+	.word	100712448
 	.word	WorldMap_img
 	.word	Decompress
 	.word	gWorldMapPaletteCount
@@ -1228,7 +1625,7 @@ Pokedex_OnSelect:
 	.word	WorldMap_tsa
 	.word	gGenericBuffer
 	.word	memcpy
-	.word	gBg3MapBuffer
+	.word	gBg2MapBuffer
 	.word	BgMap_ApplyTsa
 	.word	SetBgTileDataOffset
 	.word	gLCDIOBuffer
@@ -1253,19 +1650,19 @@ PokedexDraw:
 	add	r7, sp, #0	@,,
 	str	r0, [r7, #4]	@ menu, menu
 	str	r1, [r7]	@ command, command
-@ Pokedex.c:351:     command->onCycle = (void*) PokedexDrawIdle(menu, command);
+@ Pokedex.c:402:     command->onCycle = (void*) PokedexDrawIdle(menu, command);
 	ldr	r2, [r7]	@ tmp115, command
 	ldr	r3, [r7, #4]	@ tmp116, menu
 	movs	r1, r2	@, tmp115
 	movs	r0, r3	@, tmp116
 	bl	PokedexDrawIdle		@
 	movs	r3, r0	@ _1,
-@ Pokedex.c:351:     command->onCycle = (void*) PokedexDrawIdle(menu, command);
+@ Pokedex.c:402:     command->onCycle = (void*) PokedexDrawIdle(menu, command);
 	movs	r2, r3	@ _2, _1
-@ Pokedex.c:351:     command->onCycle = (void*) PokedexDrawIdle(menu, command);
+@ Pokedex.c:402:     command->onCycle = (void*) PokedexDrawIdle(menu, command);
 	ldr	r3, [r7]	@ tmp117, command
 	str	r2, [r3, #12]	@ _2, command_5(D)->onCycle
-@ Pokedex.c:352: }
+@ Pokedex.c:403: }
 	nop	
 	mov	sp, r7	@,
 	add	sp, sp, #8	@,,
@@ -1274,6 +1671,59 @@ PokedexDraw:
 	pop	{r0}
 	bx	r0
 	.size	PokedexDraw, .-PokedexDraw
+	.align	1
+	.syntax unified
+	.code	16
+	.thumb_func
+	.fpu softvfp
+	.type	CallPokedexMenuEnd, %function
+CallPokedexMenuEnd:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 16
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}	@
+	sub	sp, sp, #16	@,,
+	add	r7, sp, #0	@,,
+	str	r0, [r7, #4]	@ menu, menu
+	str	r1, [r7]	@ command, command
+@ Pokedex.c:407: 	PokedexMenuEnd(menu, command);
+	ldr	r2, [r7]	@ tmp115, command
+	ldr	r3, [r7, #4]	@ tmp116, menu
+	movs	r1, r2	@, tmp115
+	movs	r0, r3	@, tmp116
+	bl	PokedexMenuEnd		@
+@ Pokedex.c:408: 	struct Proc* const proc = (void*) menu->parent; // latter makes more sense, but gives warning as EndProc expects Proc*, not PokedexProc* 
+	ldr	r3, [r7, #4]	@ tmp117, menu
+	ldr	r3, [r3, #20]	@ tmp118, menu_2(D)->parent
+	str	r3, [r7, #12]	@ tmp118, proc
+@ Pokedex.c:410: 	EndProc(proc);
+	ldr	r3, [r7, #12]	@ tmp119, proc
+	movs	r0, r3	@, tmp119
+	ldr	r3, .L61	@ tmp120,
+	bl	.L13		@
+@ Pokedex.c:411: 	UnlockGameLogic();
+	ldr	r3, .L61+4	@ tmp121,
+	bl	.L13		@
+@ Pokedex.c:412: 	UnlockGameGraphicsLogic(); 
+	ldr	r3, .L61+8	@ tmp122,
+	bl	.L13		@
+@ Pokedex.c:413: 	return true;
+	movs	r3, #1	@ _9,
+@ Pokedex.c:414: }
+	movs	r0, r3	@, <retval>
+	mov	sp, r7	@,
+	add	sp, sp, #16	@,,
+	@ sp needed	@
+	pop	{r7}
+	pop	{r1}
+	bx	r1
+.L62:
+	.align	2
+.L61:
+	.word	EndProc
+	.word	UnlockGameLogic
+	.word	UnlockGameGraphicsLogic
+	.size	CallPokedexMenuEnd, .-CallPokedexMenuEnd
 	.align	1
 	.syntax unified
 	.code	16
@@ -1289,31 +1739,66 @@ PokedexMenuEnd:
 	add	r7, sp, #0	@,,
 	str	r0, [r7, #4]	@ menu, menu
 	str	r1, [r7]	@ command, command
-@ Pokedex.c:356: 	EndFaceById(0);
+@ Pokedex.c:417: 	EndFaceById(0);
 	movs	r0, #0	@,
-	ldr	r3, .L47	@ tmp113,
+	ldr	r3, .L65	@ tmp116,
 	bl	.L13		@
-@ Pokedex.c:357: 	RenderBmMap();
-	ldr	r3, .L47+4	@ tmp114,
+@ Pokedex.c:418: 	FillBgMap(gBg0MapBuffer,0);
+	ldr	r3, .L65+4	@ tmp117,
+	movs	r1, #0	@,
+	movs	r0, r3	@, tmp117
+	ldr	r3, .L65+8	@ tmp118,
 	bl	.L13		@
-@ Pokedex.c:358: 	UpdateBmMapDisplay();
-	ldr	r3, .L47+8	@ tmp115,
+@ Pokedex.c:419: 	FillBgMap(gBg1MapBuffer,0);
+	ldr	r3, .L65+12	@ tmp119,
+	movs	r1, #0	@,
+	movs	r0, r3	@, tmp119
+	ldr	r3, .L65+8	@ tmp120,
 	bl	.L13		@
-@ Pokedex.c:359:     return;
+@ Pokedex.c:420: 	FillBgMap(gBg2MapBuffer,0);
+	ldr	r3, .L65+16	@ tmp121,
+	movs	r1, #0	@,
+	movs	r0, r3	@, tmp121
+	ldr	r3, .L65+8	@ tmp122,
+	bl	.L13		@
+@ Pokedex.c:421: 	EnableBgSyncByMask(1|2|4);
+	movs	r0, #7	@,
+	ldr	r3, .L65+20	@ tmp123,
+	bl	.L13		@
+@ Pokedex.c:422: 	UnpackChapterMapPalette(gChapterData.chapterIndex); 
+	ldr	r3, .L65+24	@ tmp124,
+	ldrb	r3, [r3, #14]	@ _1,
+@ Pokedex.c:422: 	UnpackChapterMapPalette(gChapterData.chapterIndex); 
+	movs	r0, r3	@, _2
+	ldr	r3, .L65+28	@ tmp125,
+	bl	.L13		@
+@ Pokedex.c:423: 	UnpackChapterMapGraphics(gChapterData.chapterIndex); // 1 frame of messed up graphics 
+	ldr	r3, .L65+24	@ tmp126,
+	ldrb	r3, [r3, #14]	@ _3,
+	movs	r0, r3	@, _3
+	ldr	r3, .L65+32	@ tmp127,
+	bl	.L13		@
+@ Pokedex.c:430:     return;
 	nop	
-@ Pokedex.c:360: }
+@ Pokedex.c:431: }
 	mov	sp, r7	@,
 	add	sp, sp, #8	@,,
 	@ sp needed	@
 	pop	{r7}
 	pop	{r0}
 	bx	r0
-.L48:
+.L66:
 	.align	2
-.L47:
+.L65:
 	.word	EndFaceById
-	.word	RenderBmMap
-	.word	UpdateBmMapDisplay
+	.word	gBg0MapBuffer
+	.word	FillBgMap
+	.word	gBg1MapBuffer
+	.word	gBg2MapBuffer
+	.word	EnableBgSyncByMask
+	.word	gChapterData
+	.word	UnpackChapterMapPalette
+	.word	UnpackChapterMapGraphics
 	.size	PokedexMenuEnd, .-PokedexMenuEnd
 	.align	1
 	.syntax unified
@@ -1334,22 +1819,22 @@ Pokedex_RetrieveAreasFound:
 	adds	r3, r7, r3	@ tmp147,, tmp256
 	adds	r2, r0, #0	@ tmp148, tmp146
 	strb	r2, [r3]	@ tmp148, classID
-@ Pokedex.c:387: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
+@ Pokedex.c:458: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
 	movs	r3, #22	@ tmp257,
 	adds	r3, r7, r3	@ tmp149,, tmp257
 	movs	r2, #0	@ tmp150,
 	strh	r2, [r3]	@ tmp151, i
-@ Pokedex.c:387: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
-	b	.L50		@
-.L53:
-@ Pokedex.c:389: 		u8 Chapter = MonsterSpawnTable[i].ChID;
+@ Pokedex.c:458: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
+	b	.L68		@
+.L71:
+@ Pokedex.c:460: 		u8 Chapter = MonsterSpawnTable[i].ChID;
 	movs	r4, #22	@ tmp258,
 	adds	r3, r7, r4	@ tmp152,, tmp258
 	ldrh	r2, [r3]	@ _1, i
-@ Pokedex.c:389: 		u8 Chapter = MonsterSpawnTable[i].ChID;
+@ Pokedex.c:460: 		u8 Chapter = MonsterSpawnTable[i].ChID;
 	movs	r6, #21	@ tmp259,
 	adds	r1, r7, r6	@ tmp153,, tmp259
-	ldr	r0, .L55	@ tmp154,
+	ldr	r0, .L73	@ tmp154,
 	movs	r3, r2	@ tmp155, _1
 	lsls	r3, r3, #1	@ tmp155, tmp155,
 	adds	r3, r3, r2	@ tmp155, tmp155, _1
@@ -1358,23 +1843,23 @@ Pokedex_RetrieveAreasFound:
 	adds	r3, r3, #10	@ tmp158,
 	ldrb	r3, [r3]	@ tmp159, MonsterSpawnTable
 	strb	r3, [r1]	@ tmp159, Chapter
-@ Pokedex.c:390: 		if (Chapter)
+@ Pokedex.c:461: 		if (Chapter)
 	adds	r3, r7, r6	@ tmp160,, tmp260
 	ldrb	r3, [r3]	@ tmp161, Chapter
 	cmp	r3, #0	@ tmp161,
-	bne	.LCB1102	@
-	b	.L51	@long jump	@
-.LCB1102:
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+	bne	.LCB1572	@
+	b	.L69	@long jump	@
+.LCB1572:
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r3, r7, r4	@ tmp162,, tmp261
 	ldrh	r2, [r3]	@ _2, i
-	ldr	r1, .L55	@ tmp163,
+	ldr	r1, .L73	@ tmp163,
 	movs	r3, r2	@ tmp164, _2
 	lsls	r3, r3, #1	@ tmp164, tmp164,
 	adds	r3, r3, r2	@ tmp164, tmp164, _2
 	lsls	r3, r3, #2	@ tmp165, tmp164,
 	ldrb	r3, [r3, r1]	@ _3, MonsterSpawnTable
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	movs	r5, #15	@ tmp262,
 	adds	r2, r7, r5	@ tmp166,, tmp262
 	ldrb	r2, [r2]	@ tmp168, classID
@@ -1383,10 +1868,10 @@ Pokedex_RetrieveAreasFound:
 	adcs	r3, r3, r2	@ tmp169, tmp170, tmp171
 	lsls	r3, r3, #24	@ tmp172, tmp167,
 	lsrs	r1, r3, #24	@ _4, tmp172,
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r3, r7, r4	@ tmp173,, tmp263
 	ldrh	r2, [r3]	@ _5, i
-	ldr	r0, .L55	@ tmp174,
+	ldr	r0, .L73	@ tmp174,
 	movs	r3, r2	@ tmp175, _5
 	lsls	r3, r3, #1	@ tmp175, tmp175,
 	adds	r3, r3, r2	@ tmp175, tmp175, _5
@@ -1394,7 +1879,7 @@ Pokedex_RetrieveAreasFound:
 	adds	r3, r0, r3	@ tmp177, tmp174, tmp175
 	adds	r3, r3, #1	@ tmp178,
 	ldrb	r3, [r3]	@ _6, MonsterSpawnTable
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r2, r7, r5	@ tmp179,, tmp264
 	ldrb	r2, [r2]	@ tmp181, classID
 	subs	r3, r2, r3	@ tmp183, tmp181, _6
@@ -1406,10 +1891,10 @@ Pokedex_RetrieveAreasFound:
 	lsls	r3, r3, #24	@ tmp187, tmp186,
 	lsrs	r3, r3, #24	@ _8, tmp187,
 	movs	r0, r3	@ _9, _8
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r3, r7, r4	@ tmp188,, tmp265
 	ldrh	r2, [r3]	@ _10, i
-	ldr	r1, .L55	@ tmp189,
+	ldr	r1, .L73	@ tmp189,
 	movs	r3, r2	@ tmp190, _10
 	lsls	r3, r3, #1	@ tmp190, tmp190,
 	adds	r3, r3, r2	@ tmp190, tmp190, _10
@@ -1417,7 +1902,7 @@ Pokedex_RetrieveAreasFound:
 	adds	r3, r1, r3	@ tmp192, tmp189, tmp190
 	adds	r3, r3, #2	@ tmp193,
 	ldrb	r3, [r3]	@ _11, MonsterSpawnTable
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r2, r7, r5	@ tmp194,, tmp266
 	ldrb	r2, [r2]	@ tmp196, classID
 	subs	r3, r2, r3	@ tmp198, tmp196, _11
@@ -1425,13 +1910,13 @@ Pokedex_RetrieveAreasFound:
 	adcs	r3, r3, r2	@ tmp197, tmp198, tmp199
 	lsls	r3, r3, #24	@ tmp200, tmp195,
 	lsrs	r3, r3, #24	@ _12, tmp200,
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	movs	r1, r0	@ _9, _9
 	orrs	r1, r3	@ _9, _13
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r3, r7, r4	@ tmp201,, tmp268
 	ldrh	r2, [r3]	@ _15, i
-	ldr	r0, .L55	@ tmp202,
+	ldr	r0, .L73	@ tmp202,
 	movs	r3, r2	@ tmp203, _15
 	lsls	r3, r3, #1	@ tmp203, tmp203,
 	adds	r3, r3, r2	@ tmp203, tmp203, _15
@@ -1439,7 +1924,7 @@ Pokedex_RetrieveAreasFound:
 	adds	r3, r0, r3	@ tmp205, tmp202, tmp203
 	adds	r3, r3, #3	@ tmp206,
 	ldrb	r3, [r3]	@ _16, MonsterSpawnTable
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r2, r7, r5	@ tmp207,, tmp269
 	ldrb	r2, [r2]	@ tmp209, classID
 	subs	r3, r2, r3	@ tmp211, tmp209, _16
@@ -1447,12 +1932,12 @@ Pokedex_RetrieveAreasFound:
 	adcs	r3, r3, r2	@ tmp210, tmp211, tmp212
 	lsls	r3, r3, #24	@ tmp213, tmp208,
 	lsrs	r3, r3, #24	@ _17, tmp213,
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	orrs	r1, r3	@ _19, _18
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r3, r7, r4	@ tmp214,, tmp270
 	ldrh	r2, [r3]	@ _20, i
-	ldr	r0, .L55	@ tmp215,
+	ldr	r0, .L73	@ tmp215,
 	movs	r3, r2	@ tmp216, _20
 	lsls	r3, r3, #1	@ tmp216, tmp216,
 	adds	r3, r3, r2	@ tmp216, tmp216, _20
@@ -1460,7 +1945,7 @@ Pokedex_RetrieveAreasFound:
 	adds	r3, r0, r3	@ tmp218, tmp215, tmp216
 	adds	r3, r3, #4	@ tmp219,
 	ldrb	r3, [r3]	@ _21, MonsterSpawnTable
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	adds	r2, r7, r5	@ tmp220,, tmp271
 	ldrb	r2, [r2]	@ tmp222, classID
 	subs	r3, r2, r3	@ tmp224, tmp222, _21
@@ -1468,90 +1953,150 @@ Pokedex_RetrieveAreasFound:
 	adcs	r3, r3, r2	@ tmp223, tmp224, tmp225
 	lsls	r3, r3, #24	@ tmp226, tmp221,
 	lsrs	r3, r3, #24	@ _22, tmp226,
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 	orrs	r3, r1	@ _24, _19
-@ Pokedex.c:393: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
-	beq	.L51		@,
-@ Pokedex.c:395: 				if (Chapter <= 63)
+@ Pokedex.c:464: 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
+	beq	.L69		@,
+@ Pokedex.c:466: 				if (Chapter <= 63)
 	adds	r3, r7, r6	@ tmp227,, tmp272
 	ldrb	r3, [r3]	@ tmp230, Chapter
 	cmp	r3, #63	@ tmp230,
-	bhi	.L52		@,
-@ Pokedex.c:399: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
+	bhi	.L70		@,
+@ Pokedex.c:470: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
 	ldr	r3, [r7, #8]	@ tmp231, areaBitfield_A
 	ldr	r2, [r3]	@ _25, *areaBitfield_A_42(D)
-@ Pokedex.c:399: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
+@ Pokedex.c:470: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
 	adds	r3, r7, r6	@ tmp232,, tmp273
 	ldrb	r3, [r3]	@ _26, Chapter
 	movs	r1, #1	@ tmp233,
 	lsls	r1, r1, r3	@ tmp233, tmp233, _26
 	movs	r3, r1	@ _27, tmp233
-@ Pokedex.c:399: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
+@ Pokedex.c:470: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
 	orrs	r2, r3	@ _28, _27
-@ Pokedex.c:399: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
+@ Pokedex.c:470: 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
 	ldr	r3, [r7, #8]	@ tmp234, areaBitfield_A
 	str	r2, [r3]	@ _28, *areaBitfield_A_42(D)
-.L52:
-@ Pokedex.c:401: 				if ((Chapter > 63) && (Chapter < 127))
+.L70:
+@ Pokedex.c:472: 				if ((Chapter > 63) && (Chapter < 127))
 	movs	r1, #21	@ tmp275,
 	adds	r3, r7, r1	@ tmp235,, tmp275
 	ldrb	r3, [r3]	@ tmp238, Chapter
 	cmp	r3, #63	@ tmp238,
-	bls	.L51		@,
-@ Pokedex.c:401: 				if ((Chapter > 63) && (Chapter < 127))
+	bls	.L69		@,
+@ Pokedex.c:472: 				if ((Chapter > 63) && (Chapter < 127))
 	adds	r3, r7, r1	@ tmp239,, tmp276
 	ldrb	r3, [r3]	@ tmp242, Chapter
 	cmp	r3, #126	@ tmp242,
-	bhi	.L51		@,
-@ Pokedex.c:403: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
+	bhi	.L69		@,
+@ Pokedex.c:474: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
 	ldr	r3, [r7, #4]	@ tmp243, areaBitfield_B
 	ldr	r2, [r3]	@ _29, *areaBitfield_B_44(D)
-@ Pokedex.c:403: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
+@ Pokedex.c:474: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
 	adds	r3, r7, r1	@ tmp244,, tmp277
 	ldrb	r3, [r3]	@ _30, Chapter
 	movs	r1, #1	@ tmp245,
 	lsls	r1, r1, r3	@ tmp245, tmp245, _30
 	movs	r3, r1	@ _31, tmp245
-@ Pokedex.c:403: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
+@ Pokedex.c:474: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
 	orrs	r2, r3	@ _32, _31
-@ Pokedex.c:403: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
+@ Pokedex.c:474: 					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
 	ldr	r3, [r7, #4]	@ tmp246, areaBitfield_B
 	str	r2, [r3]	@ _32, *areaBitfield_B_44(D)
-.L51:
-@ Pokedex.c:387: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
+.L69:
+@ Pokedex.c:458: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
 	movs	r1, #22	@ tmp279,
 	adds	r3, r7, r1	@ tmp247,, tmp279
-	ldrh	r2, [r3]	@ i.6_33, i
+	ldrh	r2, [r3]	@ i.17_33, i
 	adds	r3, r7, r1	@ tmp248,, tmp280
 	adds	r2, r2, #1	@ tmp249,
 	strh	r2, [r3]	@ tmp250, i
-.L50:
-@ Pokedex.c:387: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
+.L68:
+@ Pokedex.c:458: 	for (u16 i = 0 ; i <= 0x80 ; i++) 
 	movs	r3, #22	@ tmp281,
 	adds	r3, r7, r3	@ tmp251,, tmp281
 	ldrh	r3, [r3]	@ tmp254, i
 	cmp	r3, #128	@ tmp254,
-	bhi	.LCB1255	@
-	b	.L53	@long jump	@
-.LCB1255:
-@ Pokedex.c:408: 	return;
+	bhi	.LCB1725	@
+	b	.L71	@long jump	@
+.LCB1725:
+@ Pokedex.c:479: 	return;
 	nop	
-@ Pokedex.c:409: }
+@ Pokedex.c:480: }
 	mov	sp, r7	@,
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L56:
+.L74:
 	.align	2
-.L55:
+.L73:
 	.word	MonsterSpawnTable
 	.size	Pokedex_RetrieveAreasFound, .-Pokedex_RetrieveAreasFound
+	.align	1
+	.syntax unified
+	.code	16
+	.thumb_func
+	.fpu softvfp
+	.type	GetNumLines, %function
+GetNumLines:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 16
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}	@
+	sub	sp, sp, #16	@,,
+	add	r7, sp, #0	@,,
+	str	r0, [r7, #4]	@ string, string
+@ Pokedex.c:485: 	int sum = 1;
+	movs	r3, #1	@ tmp121,
+	str	r3, [r7, #12]	@ tmp121, sum
+@ Pokedex.c:486: 	for ( int i = 0 ; string[i] ; i++ )
+	movs	r3, #0	@ tmp122,
+	str	r3, [r7, #8]	@ tmp122, i
+@ Pokedex.c:486: 	for ( int i = 0 ; string[i] ; i++ )
+	b	.L76		@
+.L78:
+@ Pokedex.c:488: 		if ( string[i] == NL ) { sum++; }
+	ldr	r3, [r7, #8]	@ i.18_1, i
+	ldr	r2, [r7, #4]	@ tmp123, string
+	adds	r3, r2, r3	@ _2, tmp123, i.18_1
+	ldrb	r3, [r3]	@ _3, *_2
+@ Pokedex.c:488: 		if ( string[i] == NL ) { sum++; }
+	cmp	r3, #1	@ _3,
+	bne	.L77		@,
+@ Pokedex.c:488: 		if ( string[i] == NL ) { sum++; }
+	ldr	r3, [r7, #12]	@ tmp125, sum
+	adds	r3, r3, #1	@ tmp124,
+	str	r3, [r7, #12]	@ tmp124, sum
+.L77:
+@ Pokedex.c:486: 	for ( int i = 0 ; string[i] ; i++ )
+	ldr	r3, [r7, #8]	@ tmp127, i
+	adds	r3, r3, #1	@ tmp126,
+	str	r3, [r7, #8]	@ tmp126, i
+.L76:
+@ Pokedex.c:486: 	for ( int i = 0 ; string[i] ; i++ )
+	ldr	r3, [r7, #8]	@ i.19_4, i
+	ldr	r2, [r7, #4]	@ tmp128, string
+	adds	r3, r2, r3	@ _5, tmp128, i.19_4
+	ldrb	r3, [r3]	@ _6, *_5
+@ Pokedex.c:486: 	for ( int i = 0 ; string[i] ; i++ )
+	cmp	r3, #0	@ _6,
+	bne	.L78		@,
+@ Pokedex.c:490: 	return sum;
+	ldr	r3, [r7, #12]	@ _14, sum
+@ Pokedex.c:491: }
+	movs	r0, r3	@, <retval>
+	mov	sp, r7	@,
+	add	sp, sp, #16	@,,
+	@ sp needed	@
+	pop	{r7}
+	pop	{r1}
+	bx	r1
+	.size	GetNumLines, .-GetNumLines
 	.ident	"GCC: (devkitARM release 56) 11.1.0"
 	.code 16
 	.align	1
 .L13:
 	bx	r3
-.L34:
+.L40:
 	bx	r4

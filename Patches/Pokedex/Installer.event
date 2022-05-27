@@ -90,7 +90,7 @@ AreaEntry(PokemonTowerF5Ch, 19, 10)
 
 
 
-#define DexEntry(ClassID, IndexNumber) "PUSH; ORG PokedexTable+(4*ClassID); BYTE IndexNumber; POP"
+#define DexEntry(ClassID, IndexNumber) "PUSH; ORG PokedexTable+(4*ClassID); BYTE IndexNumber 0; SHORT BulbaDesc2; POP"
 
 ALIGN 4
 PokedexTable:

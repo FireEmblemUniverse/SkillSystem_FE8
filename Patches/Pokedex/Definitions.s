@@ -5,6 +5,10 @@
 
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
 
+SET_FUNC LoadMapSpritePalettes, (0x8026628+1)
+
+SET_FUNC UnpackChapterMapPalette, (0x8019974+1)
+
 SET_FUNC CanUnitUseWeapon, (0x8016750+1)
 
 SET_FUNC CanUnitUseStaff, (0x8016800 + 1)

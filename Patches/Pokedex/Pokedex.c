@@ -3,10 +3,12 @@
 static int  PokedexIdle (MenuProc* menu, MenuCommandProc* command);
 static int  PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command);
 static void PokedexDraw(struct MenuProc* menu, struct MenuCommandProc* command);
+static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command);
 static void PokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command);
 static void DrawRawText(TextHandle handle, char* string, int x, int y);
 
-
+static void DrawMultiline(TextHandle* handles, char* string, int lines);
+static int GetNumLines(char* string);
 
 extern u16 gBG0MapBuffer[32][32]; // 0x02022CA8. Snek: Ew why does FE-CLib-master not do it like this?
 extern u16 gBG1MapBuffer[32][32]; // 0x020234A8.
@@ -38,8 +40,7 @@ struct PokedexTable_Struct
 {
     u8 IndexNumber;
     u8 Unk1;
-    u8 Unk2;
-    u8 Unk3;
+    u16 textID;
 };
 
 struct AreaTable_Struct
@@ -100,7 +101,7 @@ static const struct MenuCommandDefinition MenuCommands_Pokedex[] =
 
         .onDraw = PokedexDraw,
         .onIdle = PokedexIdle,
-        //.onEffect = PokedexEvent,
+        .onEffect = CallPokedexMenuEnd,
     },
 
     {} //END
@@ -206,12 +207,12 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
     if (!title) {
 		Text_SetXCursor(&command->text, 0xC);
 		Text_DrawString(&command->text, "???");
-        //Text_DrawNumberOr2Dashes(&command->text, PokedexTable[proc->menuIndex].IndexNumber);
+        //
 		Text_Display(&command->text, out); // Class name 
     }
 
 
- 
+	
 	//DrawUiNumber(&gBG0MapBuffer[5][21],TEXT_COLOR_GOLD,  5); 
 
 	int tile = 40;
@@ -233,8 +234,9 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	
 	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
 	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
-	Text_Display(&command->text,out);
-	Text_Display(&command->text,out);
+	
+
+	
 	
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &PokedexSeenCaughtBox, 0);
 	EndFaceById(0);
@@ -287,13 +289,62 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 			}
 		}
 	}
+	DrawUiNumber(&gBG0MapBuffer[10][25], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+
+
+	//Text_DrawString(&descNameHandle, GetStringFromIndex(PokedexTable[proc->menuIndex].textID));
 	
-	//ObjInsert(0, 64, 80, &gObj_8x8, TILEREF(0x65, 0));
+	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
+	int lines = GetNumLines(string);
+	//int lines = 4;
+	//int tile = 0;
+	TextHandle handles[lines];
+	for ( int i = 0 ; i < lines ; i++ )
+	{
+		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
+		handles[i].xCursor = 0;
+		handles[i].colorId = TEXT_COLOR_NORMAL;
+		handles[i].tileWidth = 10;
+		handles[i].useDoubleBuffer = 0;
+		handles[i].currentBufferId = 0;
+		handles[i].unk07 = 0;
+		tile += 10;
+		Text_Clear(&handles[i]);
+	}
 	
 	
+	DrawMultiline(handles, string, lines);
 	
+	for ( int i = 0 ; i < lines ; i++ )
+	{
+		Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
+	}
 	
     return ME_NONE;
+}
+
+enum {
+NL = 1, // Text control code for new line.
+};
+
+static void DrawMultiline(TextHandle* handles, char* string, int lines) // There's a TextHandle for every line we need to pass in.
+{
+    // We're going to copy each line of the string to gGenericBuffer then draw the string from there.
+    int j = 0;
+    for ( int i = 0 ; i < lines ; i++ )
+    {
+        int k = 0;
+        for ( ; string[j] && string[j] != NL ; k++ )
+        {
+            gGenericBuffer[k] = string[j];
+            j++;
+        }
+        gGenericBuffer[k] = 0;
+        Text_InsertString(handles,0,handles->colorId,(char*)gGenericBuffer);
+        //Text_DrawString(handles,(char*)gGenericBuffer);
+        handles++;
+        j++;
+    }
 }
 
 extern const u8 WorldMap_img[];
@@ -309,7 +360,7 @@ int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
 	proc->TotalCaught = CountCaught();
 	proc->TotalSeen = CountSeen();
 	
-	Decompress(WorldMap_img,(void*)0x6008000);
+	Decompress(WorldMap_img,(void*)0x600C000);
 	
 	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
 	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
@@ -327,8 +378,8 @@ int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
 			}
 		}
 	}
-	BgMap_ApplyTsa(gBg3MapBuffer,gGenericBuffer, 6<<12);
-	SetBgTileDataOffset(2,0x8000);
+	BgMap_ApplyTsa(gBg2MapBuffer,gGenericBuffer, 6<<12);
+	SetBgTileDataOffset(2,0xC000);
 	
 	struct LCDIOBuffer* LCDIOBuffer = &gLCDIOBuffer;
 	LCDIOBuffer->bgOffset[3].x = 0; // make offset as 0, rather than scrolled to the right
@@ -337,7 +388,7 @@ int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
 	
 	
 	LoadIconPalettes(4);
-	EnableBgSyncByMask(BG_SYNC_BIT(3)); // sync bg 3 
+	EnableBgSyncByMask(BG_SYNC_BIT(2)); // sync bg 3 
 	EnablePaletteSync();
 
 
@@ -352,10 +403,30 @@ static void PokedexDraw(struct MenuProc* menu, struct MenuCommandProc* command) 
 }
 
 //For the final things before exiting the menu
+static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
+	PokedexMenuEnd(menu, command);
+	struct Proc* const proc = (void*) menu->parent; // latter makes more sense, but gives warning as EndProc expects Proc*, not PokedexProc* 
+	//struct PokedexProc* const proc = (void*) menu->parent;
+	EndProc(proc);
+	UnlockGameLogic();
+	UnlockGameGraphicsLogic(); 
+	return true;
+}
+
 static void PokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
 	EndFaceById(0);
-	RenderBmMap();
-	UpdateBmMapDisplay();
+	FillBgMap(gBg0MapBuffer,0);
+	FillBgMap(gBg1MapBuffer,0);
+	FillBgMap(gBg2MapBuffer,0);
+	EnableBgSyncByMask(1|2|4);
+	UnpackChapterMapPalette(gChapterData.chapterIndex); 
+	UnpackChapterMapGraphics(gChapterData.chapterIndex); // 1 frame of messed up graphics 
+
+	//RenderBmMap();
+	//SMS_UpdateFromGameData();
+	//MU_EndAll();
+	//LoadMapSpritePalettes();
+
     return;
 }
 
@@ -407,5 +478,18 @@ static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* are
 	}
 	return;
 }
+
+
+static int GetNumLines(char* string) // Basically count the number of NL codes.
+{
+	int sum = 1;
+	for ( int i = 0 ; string[i] ; i++ )
+	{
+		if ( string[i] == NL ) { sum++; }
+	}
+	return sum;
+}
+
+
 
 
