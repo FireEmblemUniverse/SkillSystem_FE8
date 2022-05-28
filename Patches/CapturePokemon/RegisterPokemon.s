@@ -5,6 +5,23 @@
   .short 0xf800
 .endm
 
+.global FillPokedex
+.type FillPokedex, %function 
+FillPokedex:
+push {r4, lr}
+mov r4, #0
+FillLoop:
+add r4, #1 
+cmp r4, #255 
+bgt BreakLoop
+mov r0, r4 
+bl RegisterPokemon
+b FillLoop
+BreakLoop:
+pop {r4}
+pop {r0}
+bx r0 
+
 
 .ltorg
 .align

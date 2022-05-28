@@ -35,6 +35,15 @@ PokedexSeenCaughtBox:
 #incbin "SeenCaughtBox.dmp"
 
 ALIGN 4
+PokedexDescBox:
+#incbin "DescBox.dmp"
+
+ALIGN 4
+PokedexNumberBox:
+#incbin "NumberBox.dmp"
+
+
+ALIGN 4
 gWorldMapPaletteCount:
 BYTE 5
 

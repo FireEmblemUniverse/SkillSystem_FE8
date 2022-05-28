@@ -34,6 +34,8 @@ struct TSA
 	Tile tiles[];
 };
 extern TSA PokedexPortraitBox;
+extern TSA PokedexDescBox;
+extern TSA PokedexNumberBox;
 extern TSA PokedexSeenCaughtBox;
 
 struct PokedexTable_Struct
@@ -241,6 +243,9 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	FaceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
 	
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &PokedexPortraitBox, 0);
+	BgMap_ApplyTsa(&gBG1MapBuffer[14][12], &PokedexDescBox, 0);
+	
+
 	
 	if (!seen)
 	{ 
@@ -286,7 +291,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 			}
 		}
 	}
-	DrawUiNumber(&gBG0MapBuffer[12][18], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	BgMap_ApplyTsa(&gBG1MapBuffer[0][2], &PokedexNumberBox, 0);
+	DrawUiNumber(&gBG0MapBuffer[1][5], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
 
 	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
 	int lines = GetNumLines(string);
@@ -296,7 +302,7 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	for ( int i = 0 ; i < lines ; i++ )
 	{
 		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
-		handles[i].xCursor = 0;
+		handles[i].xCursor = 3;
 		handles[i].colorId = TEXT_COLOR_NORMAL;
 		handles[i].tileWidth = 18;
 		handles[i].useDoubleBuffer = 0;
