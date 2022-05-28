@@ -110,7 +110,7 @@ static const struct MenuCommandDefinition MenuCommands_Pokedex[] =
 
 static const struct MenuDefinition Menu_Pokedex =
 {
-    .geometry = { 9, 1, 11 },
+    .geometry = { 20, 10, 10 },
     .commandList = MenuCommands_Pokedex,
 
     //.onEnd = PokedexMenuEnd,
@@ -222,23 +222,20 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 		.tileWidth = 4
 	};
 	tile += 4;
-	DrawRawText(caughtNameHandle," Seen",1,1);
+	DrawRawText(caughtNameHandle," Seen",1,16);
 
 	TextHandle seenNameHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 5
 	};
 	tile += 5;
-	DrawRawText(seenNameHandle," Caught",1,3);
+	DrawRawText(seenNameHandle," Caught",1,18);
+	
+	DrawUiNumber(&gBG0MapBuffer[16][9],TEXT_COLOR_GOLD,  proc->TotalSeen); 
+	DrawUiNumber(&gBG0MapBuffer[18][9],TEXT_COLOR_GOLD,  proc->TotalCaught);
+	BgMap_ApplyTsa(&gBG1MapBuffer[16][1], &PokedexSeenCaughtBox, 0);
 	
 	
-	DrawUiNumber(&gBG0MapBuffer[1][7],TEXT_COLOR_GOLD,  proc->TotalSeen); 
-	DrawUiNumber(&gBG0MapBuffer[3][7],TEXT_COLOR_GOLD,  proc->TotalCaught);
-	
-
-	
-	
-	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &PokedexSeenCaughtBox, 0);
 	EndFaceById(0);
 	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
 	FaceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
@@ -258,8 +255,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	ClearIcons();
 	EnableBgSyncByMask(BG0_SYNC_BIT);
 	
-	for (int x = 0; x < 30; x++) { // clear out most of bg0 
-		for (int y = 5; y < 20; y++) { 
+	for (int x = 0; x < 20; x++) { // clear out most of bg0 
+		for (int y = 0; y < 15; y++) { 
 			gBG0MapBuffer[y][x] = 0;
 		}
 	}
@@ -267,13 +264,13 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	if (caught)
 	{
 		DrawIcon(
-		out + TILEMAP_INDEX(7, 0),
+		out + TILEMAP_INDEX(6, 0),
 		0xAB, TILEREF(0, 4));
 	}
 	else
 	{
 		DrawIcon(
-		out + TILEMAP_INDEX(7, 0),
+		out + TILEMAP_INDEX(6, 0),
 		0xAA, TILEREF(0, 4));
 	}
 	//ObjClear();
@@ -289,11 +286,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 			}
 		}
 	}
-	DrawUiNumber(&gBG0MapBuffer[10][25], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	DrawUiNumber(&gBG0MapBuffer[12][18], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
 
-
-	//Text_DrawString(&descNameHandle, GetStringFromIndex(PokedexTable[proc->menuIndex].textID));
-	
 	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
 	int lines = GetNumLines(string);
 	//int lines = 4;
@@ -304,11 +298,11 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
 		handles[i].xCursor = 0;
 		handles[i].colorId = TEXT_COLOR_NORMAL;
-		handles[i].tileWidth = 10;
+		handles[i].tileWidth = 18;
 		handles[i].useDoubleBuffer = 0;
 		handles[i].currentBufferId = 0;
 		handles[i].unk07 = 0;
-		tile += 10;
+		tile += 18;
 		Text_Clear(&handles[i]);
 	}
 	
@@ -317,7 +311,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	
 	for ( int i = 0 ; i < lines ; i++ )
 	{
-		Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
+		Text_Display(&handles[i],&gBG0MapBuffer[14+2*i][12]);
+		//Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
 	}
 	
     return ME_NONE;
