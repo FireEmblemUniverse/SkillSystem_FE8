@@ -279,7 +279,8 @@ ENUT SaffronArrived
 ENUT CinnabarArrived
 ENUT IndigoPlateauArrived
 
-ASMC FillPokedex
+//ASMC FillPokedex
+ASMC SeePokedex
 
 Write_Byte(13, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(35, YCoordNewArea)  

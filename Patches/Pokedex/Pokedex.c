@@ -53,13 +53,8 @@ struct AreaTable_Struct
 extern struct AreaTable_Struct AreaTable[0xFF];
 
 
+static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* areaBitfield_B, int* areaBitfield_C, int* areaBitfield_D);
 
-struct PokemonLocation 
-{
-	u32 areaBitfield_A;
-	u32 areaBitfield_B;
-};
-static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* areaBitfield_B);
 
 extern u32 CheckIfSeen(u8 ClassID); 
 extern u32 CheckIfCaught(u8 ClassID); 
@@ -78,9 +73,13 @@ struct PokedexProc
     /* 30 */ u8 menuIndex;
 	u8 TotalSeen;
 	u8 TotalCaught; 
-	u8 padding;
+	u8 cycle;
 	/* 34 */ int areaBitfield_A;
 	/* 38 */ int areaBitfield_B;
+	/* 3C */ int areaBitfield_C;
+	/* 40 */ int areaBitfield_D;
+	bool caught;
+	bool seen; 
 };
 
 static const struct ProcInstruction Proc_ChapterPokedex[] =
@@ -126,37 +125,120 @@ static int PokedexIdle (MenuProc* menu, MenuCommandProc* command) {
 
     //TODO update graphics in a cleaner way
     if (gKeyState.repeatedKeys & KEY_DPAD_LEFT) {
-        if (proc->menuIndex < 0xFF) {
-            proc->menuIndex--;
-			while (!PokedexTable[proc->menuIndex].IndexNumber)
+        if (proc->menuIndex < 0xFF) { proc->menuIndex--; }
+		while (!PokedexTable[proc->menuIndex].IndexNumber)
+		{
+			if (proc->menuIndex > 1) 
 			{
-				if (proc->menuIndex > 2) 
-				{
-					proc->menuIndex--;
-				}
-				else { proc->menuIndex = 0xFF; }
+				proc->menuIndex--;
 			}
-            PokedexDraw(menu, command);
-            PlaySfx(0x6B);
-        }
+			else { proc->menuIndex = 0xFF; }
+		}
+		PokedexDraw(menu, command);
+		PlaySfx(0x6B);
     }
 
     if (gKeyState.repeatedKeys & KEY_DPAD_RIGHT) {
-        if (proc->menuIndex < 0xFF) {
-            proc->menuIndex++;
-			while (!PokedexTable[proc->menuIndex].IndexNumber)
+        if (proc->menuIndex < 0xFF) { proc->menuIndex++; }
+		while (!PokedexTable[proc->menuIndex].IndexNumber)
+		{
+			if (proc->menuIndex < 0xFF) 
 			{
-				if (proc->menuIndex < 0xFF) 
+				proc->menuIndex++;
+			}
+			else { proc->menuIndex = 1; }
+		}
+		PokedexDraw(menu, command);
+		PlaySfx(0x6B);
+    }
+    if (gKeyState.repeatedKeys & KEY_DPAD_UP) {
+		u8 c = 0;
+		while (c<10) {
+			if (proc->menuIndex > 1) 
+				{
+					proc->menuIndex--;
+				}
+			else { proc->menuIndex = 0xFF; }
+			
+			if (PokedexTable[proc->menuIndex].IndexNumber) { c++; } 
+		}
+		PokedexDraw(menu, command);
+		PlaySfx(0x6B);
+	}
+    if (gKeyState.repeatedKeys & KEY_DPAD_DOWN) {
+		u8 c = 0;
+		while (c<10) {
+			if (proc->menuIndex < 0xFF) 
 				{
 					proc->menuIndex++;
 				}
-				else { proc->menuIndex = 1; }
-			}
-            PokedexDraw(menu, command);
-            PlaySfx(0x6B);
-        }
-    }
+			else { proc->menuIndex = 1; }
+			
+			if (PokedexTable[proc->menuIndex].IndexNumber) { c++; } 
+		}
+		PokedexDraw(menu, command);
+		PlaySfx(0x6B);
+	}
 
+    
+	
+	
+	if (proc->cycle >=50) { proc->cycle = 0; } 
+	
+	proc->cycle++; 
+	if ( (proc-> cycle < 25) & proc->seen) 
+	{ 
+		//ObjClear();
+		
+		if (proc->areaBitfield_A)
+		{
+			for (int i = 0; i<32; i++)
+			{
+				if (proc->areaBitfield_A & 1<<i)
+				{
+					u8 xx = AreaTable[i].xx;
+					u8 yy = AreaTable[i].yy;
+					ObjInsertSafe(0, xx*8, yy*8, &gObj_8x8, TILEREF(0x65, 0)); // + icon 
+				}
+			}
+		}
+		if (proc->areaBitfield_B)
+		{
+			for (int i = 0; i<32; i++)
+			{
+				if (proc->areaBitfield_B & 1<<i)
+				{
+					u8 xx = AreaTable[i+32].xx; // bitpacked chapters, so add +32
+					u8 yy = AreaTable[i+32].yy;
+					ObjInsertSafe(0, xx*8, yy*8, &gObj_8x8, TILEREF(0x65, 0)); // + icon 
+				}
+			}
+		}
+		if (proc->areaBitfield_C)
+		{
+			for (int i = 0; i<32; i++)
+			{
+				if (proc->areaBitfield_C & 1<<i)
+				{
+					u8 xx = AreaTable[i+64].xx; // bitpacked chapters, so add +64 
+					u8 yy = AreaTable[i+64].yy;
+					ObjInsertSafe(0, xx*8, yy*8, &gObj_8x8, TILEREF(0x65, 0)); // + icon 
+				}
+			}
+		}
+		if (proc->areaBitfield_D)
+		{
+			for (int i = 0; i<32; i++)
+			{
+				if (proc->areaBitfield_D & 1<<i)
+				{
+					u8 xx = AreaTable[i+96].xx; // bitpacked chapters, so add +96 
+					u8 yy = AreaTable[i+96].yy;
+					ObjInsertSafe(0, xx*8, yy*8, &gObj_8x8, TILEREF(0x65, 0)); // + icon 
+				}
+			}
+		}
+	}
     return ME_NONE;
 }
 
@@ -175,10 +257,13 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 
 	int* areaBitfield_A = &proc->areaBitfield_A;
 	int* areaBitfield_B = &proc->areaBitfield_B;
-	*areaBitfield_A = 0;
-	*areaBitfield_B = 0;
+	int* areaBitfield_C = &proc->areaBitfield_C;
+	int* areaBitfield_D = &proc->areaBitfield_D;
 	proc->areaBitfield_A = 0;
 	proc->areaBitfield_B = 0;
+	proc->areaBitfield_C = 0;
+	proc->areaBitfield_D = 0;
+	proc->cycle = 0;
 	
 	bool caught = CheckIfCaught(proc->menuIndex);
 	bool seen = CheckIfSeen(proc->menuIndex);
@@ -189,8 +274,7 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	Text_ResetTileAllocation(); // 0x08003D20
 	
 	
-	Pokedex_RetrieveAreasFound(proc->menuIndex, areaBitfield_A, areaBitfield_B);
-	//asm("mov r11, r11");
+	Pokedex_RetrieveAreasFound(proc->menuIndex, areaBitfield_A, areaBitfield_B, areaBitfield_C, areaBitfield_D);
 	
 	
 	if (proc->menuIndex)
@@ -213,9 +297,6 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 		Text_Display(&command->text, out); // Class name 
     }
 
-
-	
-	//DrawUiNumber(&gBG0MapBuffer[5][21],TEXT_COLOR_GOLD,  5); 
 
 	int tile = 40;
 	
@@ -249,7 +330,6 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	
 	if (!seen)
 	{ 
-		//FaceProc->pPortraitData->pPortraitPalette = 
 		int paletteID = 22*32;
 		int paletteSize = 32; 
 		CopyToPaletteBuffer(MyPalette, paletteID, paletteSize); // source pointer, palette offset, size 
@@ -260,7 +340,7 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	ClearIcons();
 	EnableBgSyncByMask(BG0_SYNC_BIT);
 	
-	for (int x = 0; x < 20; x++) { // clear out most of bg0 
+	for (int x = 0; x < 17; x++) { // clear out most of bg0 
 		for (int y = 0; y < 15; y++) { 
 			gBG0MapBuffer[y][x] = 0;
 		}
@@ -278,47 +358,43 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 		out + TILEMAP_INDEX(6, 0),
 		0xAA, TILEREF(0, 4));
 	}
-	//ObjClear();
-	if (proc->areaBitfield_A)
-	{
-		for (int i = 0; i<64; i++)
-		{
-			if (proc->areaBitfield_A & 1<<i)
-			{
-				u8 xx = AreaTable[i].xx;
-				u8 yy = AreaTable[i].yy;
-				DrawIcon(&gBG0MapBuffer[yy][xx],0xC,TILEREF(0, 0x4));
-			}
-		}
-	}
+
+
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][2], &PokedexNumberBox, 0);
 	DrawUiNumber(&gBG0MapBuffer[1][5], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
 
+	
 	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
 	int lines = GetNumLines(string);
-	//int lines = 4;
-	//int tile = 0;
 	TextHandle handles[lines];
 	for ( int i = 0 ; i < lines ; i++ )
 	{
 		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
-		handles[i].xCursor = 3;
+		handles[i].xCursor = 0;
 		handles[i].colorId = TEXT_COLOR_NORMAL;
-		handles[i].tileWidth = 18;
+		handles[i].tileWidth = 17;
 		handles[i].useDoubleBuffer = 0;
 		handles[i].currentBufferId = 0;
 		handles[i].unk07 = 0;
-		tile += 18;
+		tile += 17;
 		Text_Clear(&handles[i]);
 	}
-	
-	
-	DrawMultiline(handles, string, lines);
-	
-	for ( int i = 0 ; i < lines ; i++ )
-	{
-		Text_Display(&handles[i],&gBG0MapBuffer[14+2*i][12]);
-		//Text_Display(&handles[i],&gBG0MapBuffer[12+2*i][20]);
+	if (seen & (!caught)) { 
+		DrawMultiline(handles, string, 1);
+		DrawRawText(handles[1],"   ...   ...   ...   ...   ...   ...   ...   ...   ...",12,16);
+		DrawRawText(handles[2],"              MISSING DATA",12,18);
+		Text_Display(&handles[0],&gBG0MapBuffer[14+2*0][12]);
+	}
+	if (!(seen | caught)) { 
+		DrawRawText(handles[0],"No Data",12,14);
+	} 
+	if (caught) {
+		DrawMultiline(handles, string, lines);
+		
+		for ( int i = 0 ; i < lines ; i++ )
+		{
+			Text_Display(&handles[i],&gBG0MapBuffer[14+2*i][12]);
+		}
 	}
 	
     return ME_NONE;
@@ -360,6 +436,8 @@ int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
     proc->menuIndex = 1;
 	proc->TotalCaught = CountCaught();
 	proc->TotalSeen = CountSeen();
+	proc->caught = CheckIfCaught(proc->menuIndex);
+	proc->seen = CheckIfSeen(proc->menuIndex);
 	
 	Decompress(WorldMap_img,(void*)0x600C000);
 	
@@ -454,7 +532,7 @@ struct MonsterSpawnTable_Struct
 
 extern struct MonsterSpawnTable_Struct MonsterSpawnTable[0xFF];
 
-static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* areaBitfield_B)
+static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* areaBitfield_B, int* areaBitfield_C, int* areaBitfield_D)
 { 
 	for (u16 i = 0 ; i <= 0x80 ; i++) 
 	{
@@ -464,16 +542,23 @@ static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* are
 			//asm("mov r11, r11");
 			if ((MonsterSpawnTable[i].Class_1 == classID) | (MonsterSpawnTable[i].Class_2 == classID) | (MonsterSpawnTable[i].Class_3 == classID) | (MonsterSpawnTable[i].Class_4 == classID) | (MonsterSpawnTable[i].Class_5 == classID))
 			{
-				if (Chapter <= 63)
+				if (Chapter < 32)
 				{
-					//*areaBitfield_A = 1;
-					//asm("mov r11, r11");
 					*areaBitfield_A = *areaBitfield_A | 1<<Chapter;
 				}
-				if ((Chapter > 63) && (Chapter < 127))
+				if ((Chapter >= 32) && (Chapter < 64))
 				{
-					*areaBitfield_B = *areaBitfield_B | 1<<Chapter;
+					*areaBitfield_B = *areaBitfield_B | 1<<(Chapter-32);
 				}
+				if ((Chapter >= 64) && (Chapter < 96))
+				{
+					*areaBitfield_C = *areaBitfield_C | 1<<(Chapter-64);
+				}
+				if ((Chapter >= 96) && (Chapter < 128))
+				{
+					*areaBitfield_D = *areaBitfield_D | 1<<(Chapter-96);
+				}
+				
 			}
 		}
 	}

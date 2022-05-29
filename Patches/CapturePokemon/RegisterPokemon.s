@@ -22,6 +22,24 @@ pop {r4}
 pop {r0}
 bx r0 
 
+.ltorg 
+
+.global SeePokedex
+.type SeePokedex, %function 
+SeePokedex:
+push {r4, lr}
+mov r4, #0
+FillLoop2:
+add r4, #1 
+cmp r4, #120
+bgt BreakLoop2
+mov r0, r4 
+bl SeePokemon
+b FillLoop2
+BreakLoop2:
+pop {r4}
+pop {r0}
+bx r0 
 
 .ltorg
 .align
