@@ -473,9 +473,10 @@ static void DisplayTextNow(void)
 
 static void PrepareText(TextHandle* handle, char* string)
 {
-	handle->tileWidth = (Text_GetStringTextWidth(string)+7)/8;
 	
-	Text_InitClear(handle, handle->tileWidth); // to do: replace with TextInit(&handle, size); 
+	Text_InitClear(handle, handle->tileWidth); 
+        handle->tileWidth = (Text_GetStringTextWidth(string)+7)/8;
+	
 	Text_SetColorId(handle,TEXT_COLOR_GOLD);
 	Text_DrawString(handle,string);
 	//Text_Display(&handle,&gBG0MapBuffer[y][x]);
