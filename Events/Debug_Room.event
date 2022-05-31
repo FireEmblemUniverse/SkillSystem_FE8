@@ -92,7 +92,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  RaticateID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [SacredStone,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  ChanseyID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [SacredStone,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -279,12 +279,18 @@ ENUT SaffronArrived
 ENUT CinnabarArrived
 ENUT IndigoPlateauArrived
 
-ASMC FillPokedex
+//ASMC FillPokedex
 //ASMC SeePokedex
 
 Write_Byte(13, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(35, YCoordNewArea)  
-MNC2 Route24Ch
+Write_Byte(11, YCoordNewArea)  
+
+//MNC2 Route15Ch
+//MNC2 Route24Ch
+//MNC2 CeruleanCh
+//MNC2 SaffronCh
+//MNC2 SafariNCh
+MNC2 CinnabarCh
 //MNC2 SilphCo5FCh
 //MNC2 Route10Ch
 //MNC2 Route8Ch

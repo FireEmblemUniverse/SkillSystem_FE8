@@ -190,12 +190,12 @@ UNIT
 
 EnemyTrainersA:
 UNIT 0xE1 blackbeltID 		0x0  Level(0, Enemy, 1) [8,4]  0b 0x0	0 0	[0,0,0x0,0x0] 		DoNothingAI
-UNIT 0xD0 MachokeID 		0x0  Level(0, Enemy, 1) [8,5]  0b 0x0	0 0	[PetalDance,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [6,5]  0b 0x0	0 0 [MegaDrain,Constrict,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 HitmonchanID 	0xD0 Level(0, Enemy, 1) [10,5]  0b 0x0	0 0	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 GolduckID 		0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0 0 0	[Psybeam,MagicalLeaf,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 PinsirID 		0xD0 Level(0, Enemy, 1) [11,7]  0b 0x0	0 0	[XScissor, Slash, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 PrimeapeID 		0xD0 Level(0, Enemy, 1) [8,8]  0b 0x0	0 0	[Ancientpower,Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xD0 MachokeID 		0x0  Level(0, Enemy, 1) [8,5]  0b 0x0	0 0	[Submission,DoubleEdge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [6,5]  0b 0x0	0 0 [MegaKick,JumpKick,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 HitmonchanID 		0xD0 Level(0, Enemy, 1) [10,5]  0b 0x0	0 0	[IcePunch,ThunderPunch,FirePunch,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 GolduckID 		0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0 0 0	[BodySlam, Surf,Psybeam,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 PinsirID 			0xD0 Level(0, Enemy, 1) [11,7]  0b 0x0	0 0	[XScissor, Submission, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 PrimeapeID 		0xD0 Level(0, Enemy, 1) [8,8]  0b 0x0	0 0	[KarateChop,Leer,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 

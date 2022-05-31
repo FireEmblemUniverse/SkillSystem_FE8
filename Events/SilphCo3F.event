@@ -134,7 +134,7 @@ MineTrap(31,10)
 MineTrap(30,11)
 MineTrap(31,11)
 
-EnterTrap(23,4, OutOfServiceText)
+EnterTutTrap(23,4, OutOfServiceText)
 
 BlankExamineTrap(13,19,SilphCo_3F_Report_A)
 BlankExamineTrap(23,20,SilphCo_3F_Report_B)

@@ -146,7 +146,7 @@ BlankExamineTrap(30,19,SilphCo_2F_Report)
 
 //StrengthBoulder(4,3)
 
-EnterTrap(23,4, OutOfServiceText)
+EnterTutTrap(23,4, OutOfServiceText)
 
 
 RedPokeballTrap(31,20, (ChapterID*2)+1, LinkStone) 

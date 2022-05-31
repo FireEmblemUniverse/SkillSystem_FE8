@@ -129,7 +129,7 @@ MineTrap(23,13)
 MineTrap(22,14)
 MineTrap(23,14)
 
-EnterTrap(25,4, OutOfServiceText)
+EnterTutTrap(25,4, OutOfServiceText)
 
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)

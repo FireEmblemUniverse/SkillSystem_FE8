@@ -145,6 +145,11 @@ RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(2,2,20,18)) //grass patch
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
+CheckTrainerFlag(0xEE) // based on unit IDs 0xE0-0xEF per chapter 
+BNE 10 rC r0 
+LOAD1 0x1 BossGroup //  & Marowak 
+ENUN 
+LABEL 10 
 LOAD1 0x1 HumanTrainers //  & Marowak 
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
@@ -216,6 +221,9 @@ TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [15,5]  0b 0x0	0x1 REDA15R5 [NineRangeWep,0x0,0x0,0x0] TrainerAI  
+UNIT
+
+BossGroup:
 UNIT 0xEE MarowakID 0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 [Bonemerang,Bonemerang,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 

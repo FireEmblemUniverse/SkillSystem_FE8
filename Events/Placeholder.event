@@ -136,7 +136,7 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-//House(0,GiveExp, 11,11)
+House(0,GiveExp, 11,11)
 //House(0,SelectCharEvent, 11,11)
 
 
@@ -262,7 +262,8 @@ SetUnitStatus(2, CurrentHP, 5)
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 
-//SetUnitStatus(1, 0x2a, Ember)
+//SetUnitStatus(1, 0x28, Flamethrower)
+
 SetUnitStatus(3, 0x29, RecoverMove)
 SetUnitStatus(0x50, 0x16, 20)
 
@@ -293,7 +294,6 @@ ENUT 0xAE
 //CAM1 [23,26]
 //CAM1 [23, 0]
 //CAM1 0 // Unit 0 
-
 NoFade
 ENDA
 

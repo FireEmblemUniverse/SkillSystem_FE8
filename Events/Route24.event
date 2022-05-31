@@ -162,6 +162,8 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds
  // Bushes  
 LOAD1 0x1 BossUnit
 ENUN
+UnmarkTrainerAsDefeated(0xEE)
+
 RandomizeEnemyCoords(Shallow, Range(0,0,5,5), Range(4,32,8,35)) //suspicious water 
 LOAD1 0x1 HumanTrainers
 ENUN 

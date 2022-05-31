@@ -5,18 +5,22 @@ static int  PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command);
 static void PokedexDraw(struct MenuProc* menu, struct MenuCommandProc* command);
 static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command);
 static void PokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command);
-static void DrawRawText(TextHandle handle, char* string, int x, int y);
-
+static void PrepareText(TextHandle* handle, char* string);
+static void DrawWorldMap(void);
 static void DrawMultiline(TextHandle* handles, char* string, int lines);
 static int GetNumLines(char* string);
+static void DisplayTextNow(void);
 
 extern u16 gBG0MapBuffer[32][32]; // 0x02022CA8. Snek: Ew why does FE-CLib-master not do it like this?
 extern u16 gBG1MapBuffer[32][32]; // 0x020234A8.
+extern u16 gBG2MapBuffer[32][32]; // 0x020234A8.
 
 extern const u16 MyPalette[]; 
 extern u8 gPaletteSyncFlag;
 
 enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
+enum { BG1_SYNC_BIT = BG_SYNC_BIT(1) };
+enum { BG2_SYNC_BIT = BG_SYNC_BIT(2) };
 
 typedef struct Tile Tile;
 typedef struct TSA TSA;
@@ -56,6 +60,10 @@ extern struct AreaTable_Struct AreaTable[0xFF];
 static void Pokedex_RetrieveAreasFound(u8 classID, int* areaBitfield_A, int* areaBitfield_B, int* areaBitfield_C, int* areaBitfield_D);
 
 
+extern const u8 WorldMap_img[];
+extern const u16 WorldMap_pal[];
+extern const u8 gWorldMapPaletteCount;
+extern const u8 WorldMap_tsa[];
 extern u32 CheckIfSeen(u8 ClassID); 
 extern u32 CheckIfCaught(u8 ClassID); 
 extern u32 CountSeen(); 
@@ -80,6 +88,27 @@ struct PokedexProc
 	/* 40 */ int areaBitfield_D;
 	bool caught;
 	bool seen; 
+	/* 48 */ 
+	TextHandle* commandText;
+	TextHandle* caughtNameHandle;
+	TextHandle* seenNameHandle;
+	TextHandle* handles0;
+	TextHandle* handles1;
+	TextHandle* handles2;
+};
+
+struct PokedexProcText
+{
+	PROC_HEADER;
+};
+
+static const struct ProcInstruction Proc_PokedexText[] =
+{
+	PROC_YIELD,
+	PROC_CALL_ROUTINE(DisplayTextNow),
+	PROC_SLEEP(1),
+	
+    PROC_END,
 };
 
 static const struct ProcInstruction Proc_ChapterPokedex[] =
@@ -93,6 +122,8 @@ static const struct ProcInstruction Proc_ChapterPokedex[] =
 	PROC_CALL_ROUTINE(UnlockGameGraphicsLogic), 
     PROC_END,
 };
+
+
 
 //For selecting what each menu command does.
 static const struct MenuCommandDefinition MenuCommands_Pokedex[] =
@@ -108,6 +139,8 @@ static const struct MenuCommandDefinition MenuCommands_Pokedex[] =
     {} //END
 
 };
+
+
 
 static const struct MenuDefinition Menu_Pokedex =
 {
@@ -243,13 +276,7 @@ static int PokedexIdle (MenuProc* menu, MenuCommandProc* command) {
 }
 
 
-static void DrawRawText(TextHandle handle, char* string, int x, int y)
-{
-	Text_Clear(&handle);
-	Text_SetColorId(&handle,TEXT_COLOR_GOLD);
-	Text_DrawString(&handle,string);
-	Text_Display(&handle,&gBG0MapBuffer[y][x]);
-}
+
 
 static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
     struct PokedexProc* const proc = (void*) menu->parent;
@@ -268,10 +295,20 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	bool caught = CheckIfCaught(proc->menuIndex);
 	bool seen = CheckIfSeen(proc->menuIndex);
 
+	
+	
+	DrawWorldMap();
+	
+
+
+
+
+
+
 	const struct ClassData* ClassData = GetClassData(proc->menuIndex);
-	u16 title = 0;
-    Text_Clear(&command->text);
-	Text_ResetTileAllocation(); // 0x08003D20
+	u16 className = 0;
+    Text_InitClear(&command->text, command->text.tileWidth);
+	
 	
 	
 	Pokedex_RetrieveAreasFound(proc->menuIndex, areaBitfield_A, areaBitfield_B, areaBitfield_C, areaBitfield_D);
@@ -281,50 +318,27 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	{
 		if (seen)
 		{
-			title = ClassData->nameTextId;
-			Text_DrawString(&command->text, GetStringFromIndex(title));
-			Text_Display(&command->text, out); // Class name 
+			className = ClassData->nameTextId;
+			Text_DrawString(&command->text, GetStringFromIndex(className));
+			
 		}
 	}
 	
 	
 	
     Text_SetColorId(&command->text, TEXT_COLOR_NORMAL);
-    if (!title) {
-		Text_SetXCursor(&command->text, 0xC);
-		Text_DrawString(&command->text, "???");
-        //
-		Text_Display(&command->text, out); // Class name 
+    if (!className) {
+		PrepareText(&command->text, " ???        ");
     }
-
-
-	int tile = 40;
 	
-	TextHandle caughtNameHandle = {
-		.tileIndexOffset = gpCurrentFont->tileNext+tile,
-		.tileWidth = 4
-	};
-	tile += 4;
-	DrawRawText(caughtNameHandle," Seen",1,16);
 
-	TextHandle seenNameHandle = {
-		.tileIndexOffset = gpCurrentFont->tileNext+tile,
-		.tileWidth = 5
-	};
-	tile += 5;
-	DrawRawText(seenNameHandle," Caught",1,18);
-	
-	DrawUiNumber(&gBG0MapBuffer[16][9],TEXT_COLOR_GOLD,  proc->TotalSeen); 
-	DrawUiNumber(&gBG0MapBuffer[18][9],TEXT_COLOR_GOLD,  proc->TotalCaught);
-	BgMap_ApplyTsa(&gBG1MapBuffer[16][1], &PokedexSeenCaughtBox, 0);
 	
 	
 	EndFaceById(0);
 	struct FaceProc* FaceProc = StartFace(0, ClassData->defaultPortraitId, 200, 4, 1);
 	FaceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
 	
-	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &PokedexPortraitBox, 0);
-	BgMap_ApplyTsa(&gBG1MapBuffer[14][12], &PokedexDescBox, 0);
+
 	
 
 	
@@ -340,12 +354,66 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	ClearIcons();
 	EnableBgSyncByMask(BG0_SYNC_BIT);
 	
+	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+		for (int y = 0; y < 20; y++) { 
+			gBG0MapBuffer[y][x] = 0;
+		}
+	}
+	
 	for (int x = 0; x < 17; x++) { // clear out most of bg0 
 		for (int y = 0; y < 15; y++) { 
 			gBG0MapBuffer[y][x] = 0;
 		}
 	}
 	
+
+	
+
+
+	
+	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
+	int lines = GetNumLines(string);
+	TextHandle handles[lines];
+		
+	for ( int i = 0 ; i < lines ; i++ )
+	{
+		handles[i].xCursor = 0;
+		handles[i].colorId = TEXT_COLOR_NORMAL;
+		handles[i].useDoubleBuffer = 0;
+		handles[i].currentBufferId = 0;
+		handles[i].unk07 = 0;
+	}
+
+
+	if (seen & (!caught)) { 
+		DrawMultiline(handles, string, lines);
+		PrepareText(&handles[1], "   ...   ...   ...   ...   ...   ...   ...   ...   ...");
+		PrepareText(&handles[2], "              MISSING DATA");
+	}
+	
+	if (!(seen | caught)) { 
+		DrawMultiline(handles, string, lines);
+		PrepareText(&handles[0], " No Data");
+		PrepareText(&handles[1], "");
+		PrepareText(&handles[2], "");
+	} 
+	
+	if (caught) {
+		DrawMultiline(handles, string, lines);
+	}
+
+
+
+	TextHandle caughtNameHandle = {};
+	PrepareText(&caughtNameHandle, " Seen");
+
+	TextHandle seenNameHandle = {};
+	PrepareText(&seenNameHandle, " Caught");
+
+
+
+	
+
 	if (caught)
 	{
 		DrawIcon(
@@ -360,45 +428,60 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	}
 
 
+
+	BgMap_ApplyTsa(&gBG1MapBuffer[16][1], &PokedexSeenCaughtBox, 0);
+	
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][2], &PokedexNumberBox, 0);
-	DrawUiNumber(&gBG0MapBuffer[1][5], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	
 
 	
-	char* string = GetStringFromIndex(PokedexTable[proc->menuIndex].textID);
-	int lines = GetNumLines(string);
-	TextHandle handles[lines];
+	proc->commandText = &command->text;
+	proc->caughtNameHandle = &caughtNameHandle;
+	proc->seenNameHandle = &seenNameHandle;
+	proc->handles0 = &handles[0];
+	proc->handles1 = &handles[1];
+	proc->handles2 = &handles[2];
+	
+	BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &PokedexPortraitBox, 0);
+	BgMap_ApplyTsa(&gBG1MapBuffer[14][12], &PokedexDescBox, 0);
+	
+	Text_Display(&command->text, &gBG0MapBuffer[11][21]);
+	DrawUiNumber(&gBG0MapBuffer[16][9],TEXT_COLOR_GOLD,  proc->TotalSeen); 
+	DrawUiNumber(&gBG0MapBuffer[18][9],TEXT_COLOR_GOLD,  proc->TotalCaught);
+	DrawUiNumber(&gBG0MapBuffer[1][5], TEXT_COLOR_GOLD, PokedexTable[proc->menuIndex].IndexNumber);
+	Text_Display(proc->caughtNameHandle,&gBG0MapBuffer[16][1]);
+	Text_Display(proc->seenNameHandle,&gBG0MapBuffer[18][1]);
+	
+
 	for ( int i = 0 ; i < lines ; i++ )
 	{
-		handles[i].tileIndexOffset = gpCurrentFont->tileNext+tile;
-		handles[i].xCursor = 0;
-		handles[i].colorId = TEXT_COLOR_NORMAL;
-		handles[i].tileWidth = 17;
-		handles[i].useDoubleBuffer = 0;
-		handles[i].currentBufferId = 0;
-		handles[i].unk07 = 0;
-		tile += 17;
-		Text_Clear(&handles[i]);
+		Text_Display(&handles[i],&gBG0MapBuffer[14+i*2][12]);
 	}
-	if (seen & (!caught)) { 
-		DrawMultiline(handles, string, 1);
-		DrawRawText(handles[1],"   ...   ...   ...   ...   ...   ...   ...   ...   ...",12,16);
-		DrawRawText(handles[2],"              MISSING DATA",12,18);
-		Text_Display(&handles[0],&gBG0MapBuffer[14+2*0][12]);
-	}
-	if (!(seen | caught)) { 
-		DrawRawText(handles[0],"No Data",12,14);
-	} 
-	if (caught) {
-		DrawMultiline(handles, string, lines);
-		
-		for ( int i = 0 ; i < lines ; i++ )
-		{
-			Text_Display(&handles[i],&gBG0MapBuffer[14+2*i][12]);
-		}
-	}
+	
+	//struct PokedexProcText* procText = (void*) ProcStartBlocking(Proc_PokedexText, menu);
 	
     return ME_NONE;
 }
+
+static void DisplayTextNow(void)
+{
+	struct PokedexProc* const proc = (void*)ProcFind(&Proc_ChapterPokedex);
+
+
+}
+
+
+static void PrepareText(TextHandle* handle, char* string)
+{
+	handle->tileWidth = (Text_GetStringTextWidth(string)+7)/8;
+	
+	Text_InitClear(handle, handle->tileWidth); // to do: replace with TextInit(&handle, size); 
+	Text_SetColorId(handle,TEXT_COLOR_GOLD);
+	Text_DrawString(handle,string);
+	//Text_Display(&handle,&gBG0MapBuffer[y][x]);
+}
+
+
 
 enum {
 NL = 1, // Text control code for new line.
@@ -407,7 +490,7 @@ NL = 1, // Text control code for new line.
 static void DrawMultiline(TextHandle* handles, char* string, int lines) // There's a TextHandle for every line we need to pass in.
 {
     // We're going to copy each line of the string to gGenericBuffer then draw the string from there.
-    int j = 0;
+	int j = 0;
     for ( int i = 0 ; i < lines ; i++ )
     {
         int k = 0;
@@ -417,17 +500,72 @@ static void DrawMultiline(TextHandle* handles, char* string, int lines) // There
             j++;
         }
         gGenericBuffer[k] = 0;
-        Text_InsertString(handles,0,handles->colorId,(char*)gGenericBuffer);
-        //Text_DrawString(handles,(char*)gGenericBuffer);
-        handles++;
+
+		u32 width = ((Text_GetStringTextWidth((char*)gGenericBuffer))+7)/8;
+
+		Text_InitClear(&handles[i], width);
+		handles[i].tileWidth = width;
+		//handles[i].xCursor = 0;
+		//handles[i].colorId = TEXT_COLOR_NORMAL;
+		//handles[i].useDoubleBuffer = 0;
+		//handles[i].currentBufferId = 0;
+		//handles[i].unk07 = 0;
+		
+        Text_InsertString(&handles[i],0,handles->colorId,(char*)gGenericBuffer);
+        //Text_DrawString(&handles[i],(char*)gGenericBuffer);
+        //handles++;
         j++;
     }
 }
 
-extern const u8 WorldMap_img[];
-extern const u16 WorldMap_pal[];
-extern const u8 gWorldMapPaletteCount;
-extern const u8 WorldMap_tsa[];
+void DrawWorldMap() {
+	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
+	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
+	EnablePaletteSync();
+	
+
+	
+	Text_ResetTileAllocation();
+	ClearTileRegistry();
+	RegisterFillTile(0, (void*)0x6001000, 0x5000); // so text can be here 
+	CPU_FILL(0, gGenericBuffer, 0x2000, 32)
+	Decompress(WorldMap_img,(void*)gGenericBuffer+800);
+	RegisterTileGraphics(gGenericBuffer+800, (void*)0x6008000, 0x2000); //! FE8U = 0x8002055
+	//Text_ResetTileAllocation();
+	SyncRegisteredTiles();
+	
+	//RegisterTileGraphics(WorldMap_img, (void*)0x6008000, 0x4B2); // src, dst, size 
+
+	
+	memcpy(gGenericBuffer+1600, WorldMap_tsa, 0x4B2); // dst, src, size 
+	//Decompress(WorldMap_tsa,gGenericBuffer);
+	TSA* tsaBuffer = (TSA*)gGenericBuffer+1600;
+	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
+	{
+		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
+		{
+			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
+			{
+				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
+			}
+		}
+	}
+	BgMap_ApplyTsa(gBg2MapBuffer,gGenericBuffer+1600, 6<<12);
+	SetBgTileDataOffset(2,0x8000);
+	
+	
+	
+	struct LCDIOBuffer* LCDIOBuffer = &gLCDIOBuffer;
+	LCDIOBuffer->bgOffset[2].x = 0; // make offset as 0, rather than scrolled to the right
+	LCDIOBuffer->bgOffset[2].y = 0; 
+
+	
+	
+	LoadIconPalettes(4);
+	EnableBgSyncByMask(BG_SYNC_BIT(2)); // sync bg 2 
+	//EnablePaletteSync();
+
+}
 
 //Initializes menu
 int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
@@ -439,37 +577,8 @@ int Pokedex_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command) {
 	proc->caught = CheckIfCaught(proc->menuIndex);
 	proc->seen = CheckIfSeen(proc->menuIndex);
 	
-	Decompress(WorldMap_img,(void*)0x600C000);
-	
-	CopyToPaletteBuffer(WorldMap_pal,0x20*6,(gWorldMapPaletteCount-2)*32);
-	CopyToPaletteBuffer(WorldMap_pal+(gWorldMapPaletteCount-1)*16,0x20*15,32);
-	
-	memcpy(gGenericBuffer, WorldMap_tsa, 0x4B2);
-	//Decompress(WorldMap_tsa,gGenericBuffer);
-	TSA* tsaBuffer = (TSA*)gGenericBuffer;
-	for ( int i = 0 ; i < tsaBuffer->height+1 ; i++ )
-	{
-		for ( int j = 0 ; j < tsaBuffer->width+1 ; j++ )
-		{
-			if ( tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID == 16-6 )
-			{
-				tsaBuffer->tiles[i*(tsaBuffer->width+1)+j].paletteID--;
-			}
-		}
-	}
-	BgMap_ApplyTsa(gBg2MapBuffer,gGenericBuffer, 6<<12);
-	SetBgTileDataOffset(2,0xC000);
-	
-	struct LCDIOBuffer* LCDIOBuffer = &gLCDIOBuffer;
-	LCDIOBuffer->bgOffset[3].x = 0; // make offset as 0, rather than scrolled to the right
-	LCDIOBuffer->bgOffset[3].y = 0; 
-
-	
-	
-	LoadIconPalettes(4);
-	EnableBgSyncByMask(BG_SYNC_BIT(2)); // sync bg 3 
-	EnablePaletteSync();
-
+	// // 0x08003D20
+	DrawWorldMap();
 
     StartMenuChild(&Menu_Pokedex, (void*) proc);
 
@@ -483,10 +592,11 @@ static void PokedexDraw(struct MenuProc* menu, struct MenuCommandProc* command) 
 
 //For the final things before exiting the menu
 static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
-	PokedexMenuEnd(menu, command);
+
 	struct Proc* const proc = (void*) menu->parent; // latter makes more sense, but gives warning as EndProc expects Proc*, not PokedexProc* 
 	//struct PokedexProc* const proc = (void*) menu->parent;
 	EndProc(proc);
+	PokedexMenuEnd(menu, command);
 	UnlockGameLogic();
 	UnlockGameGraphicsLogic(); 
 	return true;
@@ -494,13 +604,18 @@ static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* com
 
 static void PokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
 	EndFaceById(0);
+	UnpackChapterMapPalette(gChapterData.chapterIndex); 
 	FillBgMap(gBg0MapBuffer,0);
 	FillBgMap(gBg1MapBuffer,0);
 	FillBgMap(gBg2MapBuffer,0);
-	EnableBgSyncByMask(1|2|4);
-	UnpackChapterMapPalette(gChapterData.chapterIndex); 
+	//FillBgMap(gBg3MapBuffer,0); // causes gfx glitch once you scroll 
+	EnablePaletteSync();
+	SetBgTileDataOffset(2, 0); // fixes gfx glitch in some cases, as we offset to 0x8000 earlier 
+	
+	EnableBgSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT|BG2_SYNC_BIT); // sync bgs
+	
 	UnpackChapterMapGraphics(gChapterData.chapterIndex); // 1 frame of messed up graphics 
-
+	
 	//RenderBmMap();
 	//SMS_UpdateFromGameData();
 	//MU_EndAll();

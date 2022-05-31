@@ -2,6 +2,8 @@
 
 #define BG_SYNC_BIT(aBg) (1 << (aBg))
 enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
+void EventNow();
+void ReturnEventNow();
 
 extern void ReloadMap(void); 
 extern const u16 MyPalette[]; 
@@ -27,6 +29,7 @@ static int FlyCommandUpdate(struct FlyCommandProc* proc);
 
 static int FlyMenuStart(struct FlyCommandProc* proc);
 static void FlyEnablePresses(struct FlyCommandProc* proc);
+static void FlyDisablePresses(struct FlyCommandProc* proc);
 static void FlyIdle(struct FlyCommandProc* proc);
 
 extern u32 gProc_FadeInBlack;
@@ -179,29 +182,46 @@ static const struct ProcInstruction Proc_FlyCommand[] =
     PROC_YIELD,
 	PROC_CALL_ROUTINE(FlyMenuStart),
 	PROC_LABEL(0),
+	PROC_CALL_ROUTINE(FlyDisablePresses),
+	PROC_SLEEP(10),
 	PROC_CALL_ROUTINE(0x08013D81), // StartFadeInBlackFast, 0x8013D81
 	PROC_LOOP_ROUTINE(0x08014069), // Wait for fade.
 	//PROC_SLEEP(10),
 	PROC_CALL_ROUTINE(FlyCommandUpdate),
 	PROC_CALL_ROUTINE(0x08013DA5), // StartOutFromBlackFast
 	PROC_LOOP_ROUTINE(0x08014069), // Wait for fade.
-
+	PROC_SLEEP(10),
+	PROC_CALL_ROUTINE(FlyEnablePresses),
 	PROC_LOOP_ROUTINE(FlyIdle),
 	PROC_LABEL(1),
-	PROC_LOOP_ROUTINE(FlyIdle),
 	PROC_CALL_ROUTINE(FlyEnablePresses),
+	PROC_LOOP_ROUTINE(FlyIdle),
+	PROC_LABEL(3),
+	PROC_SLEEP(10),
+	PROC_CALL_ROUTINE(FlyEnablePresses),
+	PROC_LOOP_ROUTINE(FlyIdle),
 
  // We always break this loop with a ProcGoto from a menu option effect.
 // We're using a non-bloking menu to enable presses sometimes on a timer (Unless we're in the class menu).
-	
+	PROC_LABEL(4),
+	PROC_SLEEP(10),
+	PROC_CALL_ROUTINE(EventNow),
+	PROC_GOTO(5),
 	PROC_LABEL(2),
-	
+	PROC_SLEEP(10),
+	PROC_CALL_ROUTINE(ReturnEventNow),
+	PROC_LABEL(5),
 	PROC_CALL_ROUTINE(UnlockGameLogic),
 	PROC_CALL_ROUTINE(UnlockGameGraphicsLogic), 
 	PROC_CALL_ROUTINE(MU_AllEnable),
     PROC_END,
 };
 void FlyEnablePresses(struct FlyCommandProc* proc)
+{
+	proc->isPressDisabled = 1;
+}
+
+void FlyDisablePresses(struct FlyCommandProc* proc)
 {
 	proc->isPressDisabled = 0;
 }
@@ -211,7 +231,7 @@ void FlyIdle(struct FlyCommandProc* proc)
 	// Burn some RNs!
 	//if ( proc->cycle < 15 ) { proc->cycle++; }
 	//else { proc->cycle = 0; RandNext(); }
-	
+	if ( proc->isPressDisabled ) { ProcGoto((Proc*)proc,3); }
 	if(gChapterData.chapterIndex != FlyLocationTable[proc->commandIndex*4])
 	{
 		ProcGoto((Proc*)proc,0); // fade 
@@ -252,7 +272,7 @@ static int FlyMenuIdle(struct MenuProc* menu, struct MenuCommandProc* command)
 
 	//struct FlyCommandProc* const proc = (void*) menu->parent;
 	struct FlyCommandProc* const proc = ProcFind(Proc_FlyCommand); //Proc_FlyCommand[]
-	if ( proc->isPressDisabled ) { return 0; }
+	//if ( proc->isPressDisabled ) { return 0; }
 	if(gChapterData.chapterIndex != FlyLocationTable[menu->commandIndex*4])
 	{
 		//asm("mov r11,r11");
@@ -268,7 +288,7 @@ static int FlyMenuIdle(struct MenuProc* menu, struct MenuCommandProc* command)
 
 static int FlyCommandUpdate(struct FlyCommandProc* proc)
 {
-
+	if ( proc->isPressDisabled ) { ProcGoto((Proc*)proc,3); }
     //struct FlyCommandProc* const proc = (void*) menu->parent;
 	if(gChapterData.chapterIndex != FlyLocationTable[proc->commandIndex*4])
 	{	
@@ -356,6 +376,10 @@ static void SwitchToMap(u16 xx, u16 yy, u8 Chapter)
 extern int EmptyEvent;
 static int FlyCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
+	
+	struct FlyCommandProc* const proc = ProcFind(Proc_FlyCommand); //Proc_FlyCommand[]
+	if ( proc->isPressDisabled ) { ProcGoto((Proc*)proc,3); }
+	//FlyCommandUpdate(proc);
     int eventList[12] = {
     0x003C1721, //FADI 60
 	0x00020540, //SVAL 2
@@ -374,16 +398,19 @@ static int FlyCommandSelect(struct MenuProc* menu, struct MenuCommandProc* comma
 
     memcpy((void*)0x202B670, &eventList, 48); //  RAM FEBuilder uses to store temporary event data for chapter jumping
 
-    CallMapEventEngine((void*) (0x202B670), 1);
-	struct FlyCommandProc* const proc = ProcFind(Proc_FlyCommand); //Proc_FlyCommand[]
-	ProcGoto((Proc*)proc,2); // Destructor sequence 
+    //CallMapEventEngine((void*) (0x202B670), 1);
+
+	ProcGoto((Proc*)proc,4); // Destructor sequence 
 	//UnlockGameGraphicsLogic();
 	//UnlockGameLogic();
     return ME_END;
 
 }
 
-
+void EventNow()
+{
+	CallMapEventEngine((void*) (0x202B670), 1);
+}
 
 static void EndFlyMenu(struct MenuProc* menu)
 {
@@ -395,6 +422,11 @@ static void EndFlyMenu(struct MenuProc* menu)
 	u8 Chapter = gEventSlot[0x5];
 	gEventSlot[2] = gEventSlot[0x5];
 	//SwitchToMap(xx, yy, Chapter); 
+
+}
+
+void ReturnEventNow()
+{
 	CallMapEventEngine((void*) ((int)&FlyReturnEvent), 1);
 }
 
