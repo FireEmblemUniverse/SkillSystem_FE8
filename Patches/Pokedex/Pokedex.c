@@ -473,9 +473,9 @@ static void DisplayTextNow(void)
 
 static void PrepareText(TextHandle* handle, char* string)
 {
-	
-	Text_InitClear(handle, handle->tileWidth); 
-        handle->tileWidth = (Text_GetStringTextWidth(string)+7)/8;
+	u32 width = (Text_GetStringTextWidth(string)+7)/8;
+	Text_InitClear(handle, width); 
+    handle->tileWidth = width;
 	
 	Text_SetColorId(handle,TEXT_COLOR_GOLD);
 	Text_DrawString(handle,string);
