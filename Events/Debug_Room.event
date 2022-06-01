@@ -282,15 +282,15 @@ ENUT IndigoPlateauArrived
 //ASMC FillPokedex
 //ASMC SeePokedex
 
-Write_Byte(13, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(11, YCoordNewArea)  
+Write_Byte(28, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(15, YCoordNewArea)  
 
-//MNC2 Route15Ch
+MNC2 Route8Ch
 //MNC2 Route24Ch
 //MNC2 CeruleanCh
 //MNC2 SaffronCh
 //MNC2 SafariNCh
-MNC2 CinnabarCh
+//MNC2 CinnabarCh
 //MNC2 SilphCo5FCh
 //MNC2 Route10Ch
 //MNC2 Route8Ch

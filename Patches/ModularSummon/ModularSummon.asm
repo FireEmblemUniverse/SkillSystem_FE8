@@ -242,15 +242,15 @@ pop {r2}
 ldr r1, =TrainerDifficultyBonusLink
 ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
 mul r1, r0 @ 0 for easy, 5 for normal, 10 for hard 
-add r2, r1 @ including bonus hidden levels 
+
 
 ldr r0, [r6] @ unit ID 
 ldrb r0, [r0, #4] 
 cmp r0, #0xA0 
 bge NoReduction 
-lsr r2, #1 @ 1/2 bonus levels for capturable mons 
+lsr r1, #1 @ 1/2 bonus levels for capturable mons 
 NoReduction:
-
+add r2, r1 @ visible levels + bonus levels 
 
 ldr r1, [r6, #4]
 ldrb r1, [r1, #4] @ class id of summon 
