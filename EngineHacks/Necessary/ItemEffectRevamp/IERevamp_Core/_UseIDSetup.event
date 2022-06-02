@@ -111,7 +111,7 @@
 	SHORT $20FF $7001 $BC30 $BD00
 	BYTE $6C $A5 $3 $2 $58 $A9 $3 $2
 	
-	//If spell anim
+	//If spell anim subsitutions are installed, don't use the hook
 	#ifndef SPELL_ANIM_SUBSTITUTION
 		//set up a separate animation association table for item effects
 		ORG $5800C
