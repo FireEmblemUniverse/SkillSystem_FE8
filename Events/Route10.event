@@ -220,7 +220,7 @@ SHORT 600 // Gold
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 lassID 0x0 Level(0, Enemy, 1) [6,26]  0b 0x0	0x1 REDA6R26 [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 lassID 0x0 Level(0, Enemy, 1) [6,26]  0b 0x0	0x1 REDA6R26 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 

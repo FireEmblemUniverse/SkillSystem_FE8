@@ -221,10 +221,10 @@ static int PokedexIdle (MenuProc* menu, MenuCommandProc* command) {
     
 	
 	
-	if (proc->cycle >=50) { proc->cycle = 0; } 
+	if (proc->cycle >=40) { proc->cycle = 0; } 
 	
 	proc->cycle++; 
-	if ( (proc-> cycle < 25) & proc->seen) 
+	if ( (proc->cycle < 20) & proc->seen) 
 	{ 
 		//ObjClear();
 		
@@ -300,6 +300,8 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
 	
 	bool caught = CheckIfCaught(proc->menuIndex);
 	bool seen = CheckIfSeen(proc->menuIndex);
+	proc->caught = caught;
+	proc->seen = seen;
 
 	//gpCurrentFont->tileNext = proc->tileStart; // makes it so you don't need to use Text_ResetTileAllocation
 	//gSpecialUiCharAllocationTable[0] = 0xFF; // dunno what this does or if I am using it right 
@@ -611,7 +613,10 @@ static void PokedexDraw(struct MenuProc* menu, struct MenuCommandProc* command) 
 
 //For the final things before exiting the menu
 static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
+	return false;
+}
 
+/*
 	struct Proc* const proc = (void*) menu->parent; // latter makes more sense, but gives warning as EndProc expects Proc*, not PokedexProc* 
 	//struct PokedexProc* const proc = (void*) menu->parent;
 	EndProc(proc);
@@ -620,6 +625,7 @@ static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* com
 	UnlockGameGraphicsLogic(); 
 	return true;
 }
+*/
 
 static void PokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* command) {
 	EndFaceById(0);

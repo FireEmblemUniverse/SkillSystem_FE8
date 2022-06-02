@@ -119,6 +119,7 @@ BerryTree(27,9,5)
 BerryTree(10,14,5)
 
 SignTrap(39,11, TrainerTip_TMs_2)
+SignTrap(34,21, TrainerTip_WildBosses)
 
 
 ENDTRAP
@@ -271,7 +272,7 @@ TDQ_TableTerminator ; }
 
 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(0, Enemy, 1) [39,17]  0b 0x0	0x1 REDA39R17 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 bug_catcherID 0x0 Level(0, Enemy, 1) [39,17]  0b 0x0	0x1 REDA39R17 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 

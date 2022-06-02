@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
@@ -113,6 +113,8 @@
 #define XCoordNewArea 			0x30017ac
 #define YCoordNewArea 			0x30017ad
 
+#define TrainerLowerRange 0xE0 
+#define TrainerUpperRange 0xEF // unit IDs reserved for trainers 
 
 
 #define LunarBrace 0x98
@@ -191,10 +193,12 @@
 
 
 #define CasualModeFlagOn 0xB0 
+#define TrainerMovementDebuffFlag 0xB1 // when active, trainers have halved movement 
 
-#define MarshbadgeObtained 0xB4
 #define DojoDefeated 0xB2
 #define PsychicObtained 0xB3 
+#define MarshbadgeObtained 0xB4
+
 
 #define CinnabarArrived 0xB9  
 #define VolcanobadgeObtained 0xBA 

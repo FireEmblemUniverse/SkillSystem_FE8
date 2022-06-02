@@ -31,6 +31,12 @@ push  {lr}
 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
+
+mov r0, #0x13 
+ldsb r0, [r3, r0] @ current hp 
+cmp r0, #0 
+ble Return @ do nothing if unit is dead due to mine etc. 
+
 ldrb r0, [r3, #0x10] 
 ldrb r1, [r3, #0x11] 
 

@@ -129,10 +129,23 @@ b SetMovementDecision
 
 
 MoveTowardsEnemyNow:
-mov r0, r3 
+push {r3}
+ldr r0, =TrainerMovementDebuffFlag
+lsl r0, #16 
+lsr r0, #16 
+blh SetEventId
+pop {r0} 
+
 add r0, #0x45 
 
 blh AIScript12_Move_Towards_Enemy @0x803ce18 
+
+ldr r0, =TrainerMovementDebuffFlag
+lsl r0, #16 
+lsr r0, #16 
+blh UnsetEventId
+
+
 ldr r3, =0x203AA96 @ AI decision +0x92 (XX) 
 ldrb r0, [r3, #0x0] @ XX 
 ldrb r1, [r3, #0x1] @ YY 
@@ -162,6 +175,54 @@ ExitTrainerSummonAI:
 pop {r4-r6}
 pop {r1} 
 bx r1 
+
+.ltorg 
+.equ SetEventId, 0x8083D80
+.equ UnsetEventId, 0x8083D94
+@.equ CheckEventId, 0x8083DA8
+	
+
+
+.global TrainerMovementBane
+.type TrainerMovementBane, %function 
+TrainerMovementBane:
+push {r4-r5, lr}
+@ r0 = movement 
+@ r1 = unit 
+
+mov r4, r0 
+mov r5, r1 
+ldr r0, [r5] @ char 
+ldrb r0, [r0, #4] @ unit ID 
+ldr r1, =TrainerLowerRange
+ldr r2, =TrainerUpperRange
+lsl r1, #16 
+lsr r1, #16 
+lsl r2, #16 
+lsr r2, #16 
+cmp r0, r1 
+blt Exit 
+cmp r0, r2 
+bgt Exit 
+ldr r0, =TrainerMovementDebuffFlag 
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId
+cmp r0, #1 
+bne Exit 
+add r4, #3 
+lsr r4, #2 
+add r4, #1 @ only move 1/4 range + 1 
+@ eg. 3-4 tiles 
+
+Exit:
+mov r0, r4 
+
+@ returns new movement 
+pop {r4-r5}
+pop {r1}
+bx r1 
+.ltorg 
 
 .global TrainerSpotsYouFunction
 .type TrainerSpotsYouFunction, %function 

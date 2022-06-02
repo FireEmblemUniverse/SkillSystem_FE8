@@ -87,7 +87,7 @@ EscapeTileTerminator ; }
 
 NW_StatsDrained:
 PlayerInRange
-DebuffUnit(0x7FFF, 0x005AA000) // -5 luk, -10 def/skl/str
+DebuffUnit(0x7FFF, 0x005AA000) // -5 luk, -10 def/res
 TutText(DefFeelsSapped)
 NoFade 
 ENDA 
@@ -190,6 +190,7 @@ CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter
 BNE 10 rC r0 
 LOAD1 0x1 GiovanniBattleUnitGroup 
 ENUN 
+SetUnitStatus(0xEF, MovBonus, 8)
 LABEL 10 
 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
@@ -269,7 +270,7 @@ BD(0xF, SilphCo_Giovanni_Defeat, 5000)
 TDQ_TableTerminator ; } 
 
 GiovanniBattleUnitGroup:
-UNIT 0xEF giovanniID 0x0 Level(0, Enemy, 1) [8,7]  0b 0x0	0x1 REDA8R7 [SevenRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xEF giovanniID 0x0 Level(0, Enemy, 1) [8,8]  0b 0x0	0x1 REDA8R8 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 //UNIT GenericB	SquirtleID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 

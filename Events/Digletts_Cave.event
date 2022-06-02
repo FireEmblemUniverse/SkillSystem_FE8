@@ -99,7 +99,7 @@ StatAccessoryTrap(14,4, (ChapterID*2)+1, EnergyBand_BoostIndex)
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 
 
 SignBTrap(10,3, ChapterID, 0x0) //no extra text 
-SignATrap(27,27, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(29,29, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 

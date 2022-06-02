@@ -16,11 +16,28 @@
 	.global CustomGetActiveUnit
 	.type   CustomGetActiveUnit, function
 
-CustomGetActiveUnit:
+CustomGetActiveUnit: @ even if dead 
 	push {lr}
 
-ldr r0, =GetActiveUnitPointer
-ldr r0, [r0] 
+ldr r3, =GetActiveUnitPointer
+ldr r0, [r3] 
+b Exit 
+
+	.global GetActiveUnitIfAlive
+	.type   GetActiveUnitIfAlive, function
+
+GetActiveUnitIfAlive:
+	push {lr}
+
+ldr r3, =GetActiveUnitPointer
+ldr r0, [r3] 
+mov r1, #0x13 @ current hp 
+ldsb r1, [r0, r1] 
+cmp r1, #0 @ if current unit is dead, there is no active unit 
+ble NoUnit 
+b Exit 
+NoUnit:
+mov r0, #0 
 b Exit 
 
 	push {r4-r7, lr}

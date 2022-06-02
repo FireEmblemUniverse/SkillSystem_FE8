@@ -170,14 +170,16 @@ ENDA
 
 ALIGN 4
 SetBushHpEvent:
-// Terminates when no unit is found 
+// skips blank units, terminates at 0xF9 
 SVAL r2 0xEF 
+SVAL s7 0xF9
 SVAL r6 1 
 LABEL 0 // Loop Start 
 // SVAL rC 0 
 SADD r2 r2 r6 // current unit ID in r2 / counter 
+BGT 99 s2 s7 // only up to 0xF9 
 CHECK_EXISTS 0x7FFD 
-BEQ 0x63 rC r0 
+BEQ 0 rC r0 
 SetUnitStatus(0x7FFD, AI2Counter, 5)
 SetUnitStatus(0x7FFD, CurrentHP, 1)
 GOTO 0 

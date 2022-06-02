@@ -118,7 +118,7 @@ RedPokeballTrap(8,21, (ChapterID*2)+1, LeafStone)
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
 SignBTrap(2,49, ChapterID, 0x0) //no extra text 
-SignATrap(12,13, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(18,10, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
@@ -129,7 +129,7 @@ BerryTree(8,39,5)
 BerryTree(7,42,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-SpellScrollTrap(18,9, (ChapterID*2)+1, LeafBlade)
+SpellScrollTrap(19,9, (ChapterID*2)+1, LeafBlade)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -267,9 +267,9 @@ TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 picnickerID 0x0 Level(0, Enemy, 1) [15,11]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 cooltrainer_fID 0x0 Level(0, Enemy, 1) [18,32]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 policemanID 0x0 Level(0, Enemy, 1) [11,39]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 cooltrainer_fID 0x0 Level(0, Enemy, 1) [13,47]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 cooltrainer_fID 0x0 Level(0, Enemy, 1) [18,32]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 policemanID 0x0 Level(0, Enemy, 1) [11,39]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 cooltrainer_fID 0x0 Level(0, Enemy, 1) [13,47]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 // Pidgeotto, Gloom, Weepinbell (route 13) 

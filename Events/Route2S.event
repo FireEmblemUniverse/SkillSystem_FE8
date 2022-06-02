@@ -266,14 +266,14 @@ TDQ_TableTerminator ; }
 
 
 GaryBattleUnitGroup:
-UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [9,28]  0b 0x0	0x1 REDA9R28 [NineRangeWep,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
+UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [9,28]  0b 0x0	0x1 REDA9R28 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI // Item 2 has 1-11 range 
 //UNIT GenericB	SquirtleID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 
 UNIT 
 
 HumanTrainers:
-UNIT 0xE1 lassID 0x0 Level(0, Enemy, 1) [4,18]  0b 0x0	0x1 REDA4R18 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 lassID 0x0 Level(0, Enemy, 1) [4,18]  0b 0x0	0x1 REDA4R18 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 
