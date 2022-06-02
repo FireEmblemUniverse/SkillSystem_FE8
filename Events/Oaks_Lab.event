@@ -501,9 +501,16 @@ CompareTactText(GastonName)
 BNE 47 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsGaston|IsPointer
-GOTO 200
 
 Label 47
+CompareTactText(FabulaName) 
+BNE 48 rC r7
+CALL PlaytesterCommonMessage
+SVAL r2 UnitsFabula|IsPointer
+
+GOTO 200
+
+Label 48
 
 Label 199
 
@@ -723,6 +730,10 @@ UnitsGaston:
 UNIT 0x02 VenonatID BonusUnitParameters 
 UNIT 
 
+ALIGN 4
+UnitsFabula:
+UNIT 0x02 PonytaID BonusUnitParameters 
+UNIT 
 
 ALIGN 4
 UnitsMystery_001:
