@@ -263,45 +263,45 @@ CanCastSpellNow:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ SpellSystem.c:197: 	int type = GetItemType(spell);
+@ SpellSystem.c:198: 	int type = GetItemType(spell);
 	movs	r0, r1	@, spell
 	ldr	r3, .L27	@ tmp122,
-@ SpellSystem.c:195: {
+@ SpellSystem.c:196: {
 	movs	r4, r1	@ spell, tmp135
-@ SpellSystem.c:197: 	int type = GetItemType(spell);
+@ SpellSystem.c:198: 	int type = GetItemType(spell);
 	bl	.L14		@
-@ SpellSystem.c:200: 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
+@ SpellSystem.c:201: 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
 	movs	r1, r4	@, spell
 	ldr	r5, .L27+4	@ tmp134,
-@ SpellSystem.c:198: 	if ( type != ITYPE_STAFF )
+@ SpellSystem.c:199: 	if ( type != ITYPE_STAFF )
 	cmp	r0, #4	@ tmp136,
 	beq	.L22		@,
-@ SpellSystem.c:200: 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
+@ SpellSystem.c:201: 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
 	ldr	r0, [r5]	@, gActiveUnit
 	ldr	r3, .L27+8	@ tmp124,
 	bl	.L14		@
-@ SpellSystem.c:200: 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
+@ SpellSystem.c:201: 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
 	cmp	r0, #0	@ <retval>,
 	beq	.L21		@,
-@ SpellSystem.c:202: 		MakeTargetListForWeapon(gActiveUnit,spell);
+@ SpellSystem.c:203: 		MakeTargetListForWeapon(gActiveUnit,spell);
 	movs	r1, r4	@, spell
 	ldr	r0, [r5]	@, gActiveUnit
 	ldr	r3, .L27+12	@ tmp126,
 	bl	.L14		@
-@ SpellSystem.c:203: 		return GetTargetListSize() != 0;
+@ SpellSystem.c:204: 		return GetTargetListSize() != 0;
 	ldr	r3, .L27+16	@ tmp127,
 	bl	.L14		@
-@ SpellSystem.c:203: 		return GetTargetListSize() != 0;
+@ SpellSystem.c:204: 		return GetTargetListSize() != 0;
 	subs	r3, r0, #1	@ tmp130, tmp138
 	sbcs	r0, r0, r3	@ <retval>, tmp138, tmp130
 .L21:
-@ SpellSystem.c:209: }
+@ SpellSystem.c:210: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
 .L22:
-@ SpellSystem.c:207: 		return CanUnitUseItem(gActiveUnit,spell);
+@ SpellSystem.c:208: 		return CanUnitUseItem(gActiveUnit,spell);
 	ldr	r0, [r5]	@, gActiveUnit
 	ldr	r3, .L27+20	@ tmp132,
 	bl	.L14		@
@@ -328,45 +328,45 @@ CanCastSpell:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ SpellSystem.c:213: 	int type = GetItemType(spell);
+@ SpellSystem.c:214: 	int type = GetItemType(spell);
 	movs	r0, r1	@, spell
 	ldr	r3, .L35	@ tmp122,
-@ SpellSystem.c:212: {
+@ SpellSystem.c:213: {
 	movs	r4, r1	@ spell, tmp135
-@ SpellSystem.c:213: 	int type = GetItemType(spell);
+@ SpellSystem.c:214: 	int type = GetItemType(spell);
 	bl	.L14		@
-@ SpellSystem.c:216: 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
+@ SpellSystem.c:217: 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
 	movs	r1, r4	@, spell
 	ldr	r5, .L35+4	@ tmp134,
-@ SpellSystem.c:214: 	if ( type != ITYPE_STAFF )
+@ SpellSystem.c:215: 	if ( type != ITYPE_STAFF )
 	cmp	r0, #4	@ tmp136,
 	beq	.L30		@,
-@ SpellSystem.c:216: 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
+@ SpellSystem.c:217: 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
 	ldr	r0, [r5]	@, gActiveUnit
 	ldr	r3, .L35+8	@ tmp124,
 	bl	.L14		@
-@ SpellSystem.c:216: 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
+@ SpellSystem.c:217: 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
 	cmp	r0, #0	@ <retval>,
 	beq	.L29		@,
-@ SpellSystem.c:218: 		MakeTargetListForWeapon(gActiveUnit,spell);
+@ SpellSystem.c:219: 		MakeTargetListForWeapon(gActiveUnit,spell);
 	movs	r1, r4	@, spell
 	ldr	r0, [r5]	@, gActiveUnit
 	ldr	r3, .L35+12	@ tmp126,
 	bl	.L14		@
-@ SpellSystem.c:219: 		return GetTargetListSize() != 0;
+@ SpellSystem.c:220: 		return GetTargetListSize() != 0;
 	ldr	r3, .L35+16	@ tmp127,
 	bl	.L14		@
-@ SpellSystem.c:219: 		return GetTargetListSize() != 0;
+@ SpellSystem.c:220: 		return GetTargetListSize() != 0;
 	subs	r3, r0, #1	@ tmp130, tmp138
 	sbcs	r0, r0, r3	@ <retval>, tmp138, tmp130
 .L29:
-@ SpellSystem.c:225: }
+@ SpellSystem.c:226: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
 .L30:
-@ SpellSystem.c:207: 		return CanUnitUseItem(gActiveUnit,spell);
+@ SpellSystem.c:208: 		return CanUnitUseItem(gActiveUnit,spell);
 	ldr	r0, [r5]	@, gActiveUnit
 	ldr	r3, .L35+20	@ tmp132,
 	bl	.L14		@
@@ -482,30 +482,30 @@ GetSpellType:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SpellSystem.c:279: 	int wType = GetItemType(spell);
+@ SpellSystem.c:280: 	int wType = GetItemType(spell);
 	ldr	r3, .L52	@ tmp117,
-@ SpellSystem.c:278: {
+@ SpellSystem.c:279: {
 	push	{r4, lr}	@
-@ SpellSystem.c:279: 	int wType = GetItemType(spell);
+@ SpellSystem.c:280: 	int wType = GetItemType(spell);
 	bl	.L14		@
-@ SpellSystem.c:280: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
+@ SpellSystem.c:281: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
 	movs	r2, #2	@ tmp118,
 	movs	r3, r0	@ tmp127, tmp127
-@ SpellSystem.c:280: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
+@ SpellSystem.c:281: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
 	movs	r0, #1	@ <retval>,
-@ SpellSystem.c:280: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
+@ SpellSystem.c:281: 	if ( wType == ITYPE_ANIMA || wType == ITYPE_DARK ) { return BLACK_MAGIC; }
 	bics	r3, r2	@ tmp127, tmp118
 	cmp	r3, #5	@ _6,
 	beq	.L48		@,
-@ SpellSystem.c:281: 	else if ( wType == ITYPE_STAFF || wType == ITYPE_LIGHT) { return WHITE_MAGIC; }
+@ SpellSystem.c:282: 	else if ( wType == ITYPE_STAFF || wType == ITYPE_LIGHT) { return WHITE_MAGIC; }
 	movs	r0, r2	@ <retval>, tmp118
-@ SpellSystem.c:281: 	else if ( wType == ITYPE_STAFF || wType == ITYPE_LIGHT) { return WHITE_MAGIC; }
+@ SpellSystem.c:282: 	else if ( wType == ITYPE_STAFF || wType == ITYPE_LIGHT) { return WHITE_MAGIC; }
 	cmp	r3, #4	@ _6,
 	beq	.L48		@,
-@ SpellSystem.c:282: 	else { return -1; }
+@ SpellSystem.c:283: 	else { return -1; }
 	subs	r0, r0, #3	@ <retval>,
 .L48:
-@ SpellSystem.c:283: }
+@ SpellSystem.c:284: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
@@ -739,116 +739,116 @@ NewGetUnitUseFlags:
 	movs	r3, r0	@ _72, unit
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
 	movs	r6, r0	@ ivtmp.231, unit
-@ SpellSystem.c:109: {
+@ SpellSystem.c:110: {
 	movs	r5, r0	@ unit, tmp181
-@ SpellSystem.c:110: 	u32 ret = 0;
+@ SpellSystem.c:111: 	u32 ret = 0;
 	movs	r4, #0	@ <retval>,
-@ SpellSystem.c:114: 		if ( attributes & IA_WEAPON )
+@ SpellSystem.c:115: 		if ( attributes & IA_WEAPON )
 	movs	r7, #1	@ tmp179,
 	adds	r3, r3, #40	@ _72,
 	str	r3, [sp, #4]	@ _72, %sfp
 	adds	r6, r6, #30	@ ivtmp.231,
 .L79:
-@ SpellSystem.c:111: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
+@ SpellSystem.c:112: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	ldrh	r0, [r6]	@ _11, MEM[base: _68, offset: 0B]
-@ SpellSystem.c:111: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
+@ SpellSystem.c:112: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	cmp	r0, #0	@ _11,
 	beq	.L82		@,
-@ SpellSystem.c:113: 		u32 attributes = GetItemAttributes(unit->items[i]);
+@ SpellSystem.c:114: 		u32 attributes = GetItemAttributes(unit->items[i]);
 	ldr	r3, .L106	@ tmp145,
 	bl	.L14		@
-@ SpellSystem.c:114: 		if ( attributes & IA_WEAPON )
+@ SpellSystem.c:115: 		if ( attributes & IA_WEAPON )
 	tst	r0, r7	@ attributes, tmp179
 	beq	.L80		@,
-@ SpellSystem.c:116: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
+@ SpellSystem.c:117: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
 	movs	r0, r5	@, unit
 	ldrh	r1, [r6]	@ MEM[base: _68, offset: 0B], MEM[base: _68, offset: 0B]
 	ldr	r3, .L106+4	@ tmp149,
 	bl	.L14		@
-@ SpellSystem.c:116: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
+@ SpellSystem.c:117: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
 	cmp	r0, #0	@ tmp183,
 	beq	.L81		@,
-@ SpellSystem.c:116: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
+@ SpellSystem.c:117: 			if ( CanUnitUseWeaponNow(unit,unit->items[i]) ) { ret |= 1; }
 	orrs	r4, r7	@ <retval>, tmp179
 .L81:
-@ SpellSystem.c:111: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
+@ SpellSystem.c:112: 	for ( int i = 0 ; i < 5 && unit->items[i] ; i++ )
 	ldr	r3, [sp, #4]	@ _72, %sfp
 	adds	r6, r6, #2	@ ivtmp.231,
 	cmp	r6, r3	@ ivtmp.231, _72
 	bne	.L79		@,
 .L82:
-@ SpellSystem.c:124: 	u8* spells = SpellsGetter(unit,-1);
+@ SpellSystem.c:125: 	u8* spells = SpellsGetter(unit,-1);
 	movs	r1, #1	@,
 	movs	r0, r5	@, unit
 	rsbs	r1, r1, #0	@,
 	bl	SpellsGetter		@
-@ SpellSystem.c:128: 		if ( attributes & IA_WEAPON )
+@ SpellSystem.c:129: 		if ( attributes & IA_WEAPON )
 	movs	r7, #1	@ tmp177,
-@ SpellSystem.c:124: 	u8* spells = SpellsGetter(unit,-1);
+@ SpellSystem.c:125: 	u8* spells = SpellsGetter(unit,-1);
 	movs	r6, r0	@ ivtmp.225, tmp185
 .L84:
-@ SpellSystem.c:125: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:126: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r6]	@ _24, MEM[base: _60, offset: 0B]
-@ SpellSystem.c:125: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:126: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _24,
 	bne	.L87		@,
-@ SpellSystem.c:138: }
+@ SpellSystem.c:139: }
 	@ sp needed	@
 	movs	r0, r4	@, <retval>
 	pop	{r1, r2, r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
 .L80:
-@ SpellSystem.c:118: 		else if ( attributes & IA_STAFF )
+@ SpellSystem.c:119: 		else if ( attributes & IA_STAFF )
 	movs	r3, #4	@ tmp192,
 	tst	r0, r3	@ attributes, tmp192
 	beq	.L81		@,
-@ SpellSystem.c:120: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
+@ SpellSystem.c:121: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
 	movs	r0, r5	@, unit
 	ldrh	r1, [r6]	@ MEM[base: _68, offset: 0B], MEM[base: _68, offset: 0B]
 	ldr	r3, .L106+8	@ tmp156,
 	bl	.L14		@
-@ SpellSystem.c:120: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
+@ SpellSystem.c:121: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
 	cmp	r0, #0	@ tmp184,
 	beq	.L81		@,
-@ SpellSystem.c:120: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
+@ SpellSystem.c:121: 			if ( CanUnitUseStaffNow(unit,unit->items[i]) ) { ret |= 2; }
 	movs	r3, #2	@ tmp159,
 	orrs	r4, r3	@ <retval>, tmp159
 	b	.L81		@
 .L87:
-@ SpellSystem.c:127: 		u32 attributes = GetItemAttributes(spells[i]);
+@ SpellSystem.c:128: 		u32 attributes = GetItemAttributes(spells[i]);
 	ldr	r3, .L106	@ tmp161,
 	bl	.L14		@
-@ SpellSystem.c:128: 		if ( attributes & IA_WEAPON )
+@ SpellSystem.c:129: 		if ( attributes & IA_WEAPON )
 	tst	r0, r7	@ attributes, tmp177
 	beq	.L85		@,
-@ SpellSystem.c:130: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
+@ SpellSystem.c:131: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
 	movs	r0, r5	@, unit
 	ldrb	r1, [r6]	@ MEM[base: _60, offset: 0B], MEM[base: _60, offset: 0B]
 	ldr	r3, .L106+4	@ tmp165,
 	bl	.L14		@
-@ SpellSystem.c:130: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
+@ SpellSystem.c:131: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
 	cmp	r0, #0	@ tmp187,
 	beq	.L86		@,
-@ SpellSystem.c:130: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
+@ SpellSystem.c:131: 			if ( CanUnitUseWeaponNow(unit,spells[i]) ) { ret |= 1; }
 	orrs	r4, r7	@ <retval>, tmp177
 .L86:
 	adds	r6, r6, #1	@ ivtmp.225,
 	b	.L84		@
 .L85:
-@ SpellSystem.c:132: 		else if ( attributes & IA_STAFF )
+@ SpellSystem.c:133: 		else if ( attributes & IA_STAFF )
 	movs	r3, #4	@ tmp195,
 	tst	r0, r3	@ attributes, tmp195
 	beq	.L86		@,
-@ SpellSystem.c:134: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
+@ SpellSystem.c:135: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
 	movs	r0, r5	@, unit
 	ldrb	r1, [r6]	@ MEM[base: _60, offset: 0B], MEM[base: _60, offset: 0B]
 	ldr	r3, .L106+8	@ tmp172,
 	bl	.L14		@
-@ SpellSystem.c:134: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
+@ SpellSystem.c:135: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
 	cmp	r0, #0	@ tmp188,
 	beq	.L86		@,
-@ SpellSystem.c:134: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
+@ SpellSystem.c:135: 			if ( CanUnitUseStaffNow(unit,spells[i]) ) { ret |= 2; }
 	movs	r3, #2	@ tmp175,
 	orrs	r4, r3	@ <retval>, tmp175
 	b	.L86		@
@@ -871,42 +871,42 @@ CanUseAttackSpellsNow:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ SpellSystem.c:228: {
+@ SpellSystem.c:229: {
 	movs	r5, r0	@ unit, tmp128
-@ SpellSystem.c:229: 	u8* spells = SpellsGetter(unit,type);
+@ SpellSystem.c:230: 	u8* spells = SpellsGetter(unit,type);
 	bl	SpellsGetter		@
 	movs	r4, r0	@ ivtmp.239, tmp130
 .L109:
-@ SpellSystem.c:230: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:231: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r4]	@ _8, MEM[base: _25, offset: 0B]
-@ SpellSystem.c:230: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:231: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _8,
 	bne	.L113		@,
 .L108:
-@ SpellSystem.c:238: }
+@ SpellSystem.c:239: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
 .L113:
-@ SpellSystem.c:232: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
+@ SpellSystem.c:233: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	ldr	r3, .L115	@ tmp125,
 	bl	.L14		@
-@ SpellSystem.c:232: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
+@ SpellSystem.c:233: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	cmp	r0, #4	@ tmp131,
 	bne	.L110		@,
 .L112:
 	adds	r4, r4, #1	@ ivtmp.239,
 	b	.L109		@
 .L110:
-@ SpellSystem.c:232: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
+@ SpellSystem.c:233: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	movs	r0, r5	@, unit
 	ldrb	r1, [r4]	@ MEM[base: _25, offset: 0B], MEM[base: _25, offset: 0B]
 	bl	CanCastSpellNow		@
-@ SpellSystem.c:232: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
+@ SpellSystem.c:233: 		if ( GetItemType(spells[i]) != ITYPE_STAFF && CanCastSpellNow(unit,spells[i]) )
 	cmp	r0, #0	@ tmp132,
 	beq	.L112		@,
-@ SpellSystem.c:234: 			return 1;
+@ SpellSystem.c:235: 			return 1;
 	movs	r0, #1	@ <retval>,
 	b	.L108		@
 .L116:
@@ -926,51 +926,51 @@ GetNthUsableSpell:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ SpellSystem.c:243: {
+@ SpellSystem.c:244: {
 	movs	r7, r1	@ n, tmp125
 	movs	r1, r2	@ type, tmp126
 	movs	r5, r0	@ unit, tmp124
-@ SpellSystem.c:244: 	u8* spells = SpellsGetter(unit,type);
+@ SpellSystem.c:245: 	u8* spells = SpellsGetter(unit,type);
 	bl	SpellsGetter		@
-@ SpellSystem.c:245: 	int k = -1;
+@ SpellSystem.c:246: 	int k = -1;
 	movs	r6, #1	@ k,
-@ SpellSystem.c:246: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:247: 	for ( int i = 0 ; spells[i] ; i++ )
 	movs	r4, #0	@ <retval>,
-@ SpellSystem.c:244: 	u8* spells = SpellsGetter(unit,type);
+@ SpellSystem.c:245: 	u8* spells = SpellsGetter(unit,type);
 	str	r0, [sp, #4]	@ tmp127, %sfp
-@ SpellSystem.c:245: 	int k = -1;
+@ SpellSystem.c:246: 	int k = -1;
 	rsbs	r6, r6, #0	@ k, k
 .L118:
-@ SpellSystem.c:246: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:247: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldr	r3, [sp, #4]	@ spells, %sfp
 	ldrb	r1, [r3, r4]	@ _6, MEM[base: spells_17, index: _1, offset: 0B]
-@ SpellSystem.c:246: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:247: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r1, #0	@ _6,
 	bne	.L121		@,
-@ SpellSystem.c:254: 	return -1;
+@ SpellSystem.c:255: 	return -1;
 	movs	r4, #1	@ <retval>,
 	rsbs	r4, r4, #0	@ <retval>, <retval>
 .L117:
-@ SpellSystem.c:255: }
+@ SpellSystem.c:256: }
 	movs	r0, r4	@, <retval>
 	@ sp needed	@
 	pop	{r1, r2, r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
 .L121:
-@ SpellSystem.c:248: 		if ( CanCastSpellNow(unit,spells[i]) )
+@ SpellSystem.c:249: 		if ( CanCastSpellNow(unit,spells[i]) )
 	movs	r0, r5	@, unit
 	bl	CanCastSpellNow		@
-@ SpellSystem.c:248: 		if ( CanCastSpellNow(unit,spells[i]) )
+@ SpellSystem.c:249: 		if ( CanCastSpellNow(unit,spells[i]) )
 	cmp	r0, #0	@ tmp128,
 	beq	.L119		@,
-@ SpellSystem.c:250: 			k++;
+@ SpellSystem.c:251: 			k++;
 	adds	r6, r6, #1	@ k,
-@ SpellSystem.c:251: 			if ( k == n ) { return i; }
+@ SpellSystem.c:252: 			if ( k == n ) { return i; }
 	cmp	r6, r7	@ k, n
 	beq	.L117		@,
 .L119:
-@ SpellSystem.c:246: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:247: 	for ( int i = 0 ; spells[i] ; i++ )
 	adds	r4, r4, #1	@ <retval>,
 	b	.L118		@
 	.size	GetNthUsableSpell, .-GetNthUsableSpell
@@ -986,31 +986,31 @@ DoesUnitKnowSpell:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SpellSystem.c:267: {
+@ SpellSystem.c:268: {
 	movs	r4, r1	@ spell, tmp123
-@ SpellSystem.c:269: 	u8* spells = SpellsGetter(unit,-1);
+@ SpellSystem.c:270: 	u8* spells = SpellsGetter(unit,-1);
 	movs	r1, #1	@,
 	rsbs	r1, r1, #0	@,
 	bl	SpellsGetter		@
 	movs	r3, r0	@ ivtmp.253, tmp124
 .L126:
-@ SpellSystem.c:270: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:271: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r3]	@ _3, MEM[base: _15, offset: 0B]
-@ SpellSystem.c:270: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:271: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _3,
 	bne	.L128		@,
 .L125:
-@ SpellSystem.c:275: }
+@ SpellSystem.c:276: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
 .L128:
-@ SpellSystem.c:272: 		if ( spell == spells[i] ) { return 1; }
+@ SpellSystem.c:273: 		if ( spell == spells[i] ) { return 1; }
 	adds	r3, r3, #1	@ ivtmp.253,
 	cmp	r0, r4	@ _3, spell
 	bne	.L126		@,
-@ SpellSystem.c:272: 		if ( spell == spells[i] ) { return 1; }
+@ SpellSystem.c:273: 		if ( spell == spells[i] ) { return 1; }
 	movs	r0, #1	@ <retval>,
 	b	.L125		@
 	.size	DoesUnitKnowSpell, .-DoesUnitKnowSpell
@@ -1025,73 +1025,73 @@ InitGaidenSpellLearnPopup:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SpellSystem.c:173: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
+@ SpellSystem.c:174: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	ldr	r3, .L140	@ tmp131,
 	movs	r2, r3	@ tmp134, tmp131
-@ SpellSystem.c:169: {
+@ SpellSystem.c:170: {
 	push	{r4, lr}	@
-@ SpellSystem.c:173: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
+@ SpellSystem.c:174: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	adds	r2, r2, #112	@ tmp134,
 	ldrb	r1, [r2]	@ tmp135,
-@ SpellSystem.c:173: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
+@ SpellSystem.c:174: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	movs	r2, #8	@ tmp137,
 	ldrsb	r2, [r3, r2]	@ tmp137,
-@ SpellSystem.c:172: 	BattleUnit* subject = NULL;
+@ SpellSystem.c:173: 	BattleUnit* subject = NULL;
 	movs	r0, #0	@ subject,
-@ SpellSystem.c:173: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
+@ SpellSystem.c:174: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	cmp	r1, r2	@ tmp135, tmp137
 	beq	.L131		@,
-@ SpellSystem.c:173: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
+@ SpellSystem.c:174: 	if ( gBattleActor.levelPrevious != gBattleActor.unit.level ) { subject = &gBattleActor; }
 	movs	r0, r3	@ subject, tmp131
 .L131:
-@ SpellSystem.c:174: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
+@ SpellSystem.c:175: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	ldr	r3, .L140+4	@ tmp138,
 	movs	r2, r3	@ tmp141, tmp138
 	adds	r2, r2, #112	@ tmp141,
 	ldrb	r1, [r2]	@ tmp142,
-@ SpellSystem.c:174: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
+@ SpellSystem.c:175: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	movs	r2, #8	@ tmp144,
 	ldrsb	r2, [r3, r2]	@ tmp144,
-@ SpellSystem.c:174: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
+@ SpellSystem.c:175: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	cmp	r1, r2	@ tmp142, tmp144
 	bne	.L136		@,
-@ SpellSystem.c:175: 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
+@ SpellSystem.c:176: 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
 	cmp	r0, #0	@ subject,
 	bne	.L132		@,
 .L134:
-@ SpellSystem.c:175: 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
+@ SpellSystem.c:176: 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
 	movs	r0, #0	@ <retval>,
 .L130:
-@ SpellSystem.c:184: }
+@ SpellSystem.c:185: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
 .L136:
-@ SpellSystem.c:174: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
+@ SpellSystem.c:175: 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	movs	r0, r3	@ subject, tmp138
 .L132:
-@ SpellSystem.c:177: 	u8* spells = SpellsGetterForLevel(&subject->unit,subject->unit.level,-1);
+@ SpellSystem.c:178: 	u8* spells = SpellsGetterForLevel(&subject->unit,subject->unit.level,-1);
 	movs	r1, #8	@ tmp146,
 	movs	r2, #1	@,
 	ldrsb	r1, [r0, r1]	@ tmp146,
 	rsbs	r2, r2, #0	@,
 	bl	SpellsGetterForLevel		@
-@ SpellSystem.c:179: 	if ( *spells )
+@ SpellSystem.c:180: 	if ( *spells )
 	ldrb	r2, [r0]	@ _12, *spells_22
-@ SpellSystem.c:179: 	if ( *spells )
+@ SpellSystem.c:180: 	if ( *spells )
 	cmp	r2, #0	@ _12,
 	beq	.L134		@,
-@ SpellSystem.c:181: 		gPopupItem = *spells|0xFF00;
+@ SpellSystem.c:182: 		gPopupItem = *spells|0xFF00;
 	ldr	r3, .L140+8	@ tmp150,
 	orrs	r3, r2	@ tmp149, _12
-@ SpellSystem.c:181: 		gPopupItem = *spells|0xFF00;
+@ SpellSystem.c:182: 		gPopupItem = *spells|0xFF00;
 	ldr	r2, .L140+12	@ tmp147,
-@ SpellSystem.c:182: 		return 1;
+@ SpellSystem.c:183: 		return 1;
 	movs	r0, #1	@ <retval>,
-@ SpellSystem.c:181: 		gPopupItem = *spells|0xFF00;
+@ SpellSystem.c:182: 		gPopupItem = *spells|0xFF00;
 	strh	r3, [r2]	@ tmp149, gPopupItem
-@ SpellSystem.c:182: 		return 1;
+@ SpellSystem.c:183: 		return 1;
 	b	.L130		@
 .L141:
 	.align	2
@@ -1113,16 +1113,16 @@ GetSpellCost:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SpellSystem.c:287: 	return GaidenSpellCostTable[GetItemIndex(spell)];
+@ SpellSystem.c:288: 	return GaidenSpellCostTable[GetItemIndex(spell)];
 	ldr	r3, .L143	@ tmp118,
-@ SpellSystem.c:288: }
+@ SpellSystem.c:289: }
 	@ sp needed	@
-@ SpellSystem.c:287: 	return GaidenSpellCostTable[GetItemIndex(spell)];
+@ SpellSystem.c:288: 	return GaidenSpellCostTable[GetItemIndex(spell)];
 	bl	.L14		@
-@ SpellSystem.c:287: 	return GaidenSpellCostTable[GetItemIndex(spell)];
+@ SpellSystem.c:288: 	return GaidenSpellCostTable[GetItemIndex(spell)];
 	ldr	r3, .L143+4	@ tmp122,
 	ldrb	r0, [r3, r0]	@ tmp121, GaidenSpellCostTable
-@ SpellSystem.c:288: }
+@ SpellSystem.c:289: }
 	pop	{r4}
 	pop	{r1}
 	bx	r1
@@ -1144,19 +1144,19 @@ HasSufficientHP:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SpellSystem.c:189: 	return unit->curHP > GetSpellCost(spell);
+@ SpellSystem.c:190: 	return unit->curHP > GetSpellCost(spell);
 	movs	r4, #19	@ _2,
 	ldrsb	r4, [r0, r4]	@ _2,* _2
-@ SpellSystem.c:189: 	return unit->curHP > GetSpellCost(spell);
+@ SpellSystem.c:190: 	return unit->curHP > GetSpellCost(spell);
 	movs	r0, r1	@, spell
 	bl	GetSpellCost		@
-@ SpellSystem.c:189: 	return unit->curHP > GetSpellCost(spell);
+@ SpellSystem.c:190: 	return unit->curHP > GetSpellCost(spell);
 	movs	r3, #1	@ tmp121,
 	cmp	r4, r0	@ _2, tmp130
 	bgt	.L146		@,
 	movs	r3, #0	@ tmp121,
 .L146:
-@ SpellSystem.c:190: }
+@ SpellSystem.c:191: }
 	@ sp needed	@
 	movs	r0, r3	@, tmp121
 	pop	{r4}
@@ -1320,52 +1320,52 @@ SetRoundForSpell:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ SpellSystem.c:152: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
+@ SpellSystem.c:153: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	movs	r6, r0	@ tmp137, unit
 	adds	r6, r6, #72	@ tmp137,
-@ SpellSystem.c:151: {
+@ SpellSystem.c:152: {
 	movs	r4, r1	@ buffer, tmp159
-@ SpellSystem.c:152: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
+@ SpellSystem.c:153: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	ldrh	r1, [r6]	@ tmp138,
-@ SpellSystem.c:151: {
+@ SpellSystem.c:152: {
 	movs	r5, r0	@ unit, tmp158
-@ SpellSystem.c:152: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
+@ SpellSystem.c:153: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	bl	HasSufficientHP		@
-@ SpellSystem.c:152: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
+@ SpellSystem.c:153: 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	cmp	r0, #0	@ tmp160,
 	beq	.L168		@,
-@ SpellSystem.c:154: 		int cost = GetSpellCost(unit->weapon);
+@ SpellSystem.c:155: 		int cost = GetSpellCost(unit->weapon);
 	ldrh	r0, [r6]	@ tmp142,
 	bl	GetSpellCost		@
-@ SpellSystem.c:156: 		buffer->attributes |= BATTLE_HIT_ATTR_HPSTEAL; // "HP drain" bit.
+@ SpellSystem.c:157: 		buffer->attributes |= BATTLE_HIT_ATTR_HPSTEAL; // "HP drain" bit.
 	movs	r3, #128	@ tmp145,
 	ldr	r2, [r4]	@ tmp164,* buffer
 	lsls	r3, r3, #1	@ tmp145, tmp145,
 	orrs	r3, r2	@ tmp143, tmp164
 	str	r3, [r4]	@ tmp143,* buffer
-@ SpellSystem.c:158: 		unit->unit.curHP -= cost;
+@ SpellSystem.c:159: 		unit->unit.curHP -= cost;
 	lsls	r3, r0, #24	@ _21, tmp161,
 	ldrb	r2, [r5, #19]	@ tmp148,
 	lsrs	r3, r3, #24	@ _21, _21,
 	subs	r2, r2, r3	@ tmp149, tmp148, _21
 	strb	r2, [r5, #19]	@ tmp149, unit_8(D)->unit.curHP
-@ SpellSystem.c:159: 		buffer->damage -= cost;
+@ SpellSystem.c:160: 		buffer->damage -= cost;
 	ldrb	r0, [r4, #5]	@ tmp152,
 	subs	r3, r0, r3	@ tmp153, tmp152, _21
 	strb	r3, [r4, #5]	@ tmp153, buffer_11(D)->damage
 .L167:
-@ SpellSystem.c:166: }
+@ SpellSystem.c:167: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
 .L168:
-@ SpellSystem.c:164: 		buffer->attributes |= BATTLE_HIT_ATTR_5; // This bit is checked in an external hack I've made.
+@ SpellSystem.c:165: 		buffer->attributes |= BATTLE_HIT_ATTR_5; // This bit is checked in an external hack I've made.
 	movs	r3, #32	@ tmp157,
 	ldr	r2, [r4]	@ tmp165,* buffer
 	orrs	r3, r2	@ tmp155, tmp165
 	str	r3, [r4]	@ tmp155,* buffer
-@ SpellSystem.c:166: }
+@ SpellSystem.c:167: }
 	b	.L167		@
 	.size	SetRoundForSpell, .-SetRoundForSpell
 	.align	1
@@ -1380,22 +1380,22 @@ Proc_GaidenMagicHPCost:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
-@ SpellSystem.c:144: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
+@ SpellSystem.c:145: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	ldr	r3, .L172	@ tmp119,
-@ SpellSystem.c:142: {
+@ SpellSystem.c:143: {
 	movs	r4, r0	@ attacker, tmp120
 	movs	r5, r2	@ buffer, tmp121
-@ SpellSystem.c:144: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
+@ SpellSystem.c:145: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	bl	.L14		@
-@ SpellSystem.c:144: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
+@ SpellSystem.c:145: 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	cmp	r0, #9	@ tmp122,
 	bne	.L170		@,
-@ SpellSystem.c:146: 		SetRoundForSpell(attacker,buffer);
+@ SpellSystem.c:147: 		SetRoundForSpell(attacker,buffer);
 	movs	r1, r5	@, buffer
 	movs	r0, r4	@, attacker
 	bl	SetRoundForSpell		@
 .L170:
-@ SpellSystem.c:148: }
+@ SpellSystem.c:149: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
@@ -1416,32 +1416,32 @@ GetFirstAttackSpell:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-@ SpellSystem.c:292: 	u8* spells = SpellsGetter(unit,-1);
+@ SpellSystem.c:293: 	u8* spells = SpellsGetter(unit,-1);
 	movs	r1, #1	@,
-@ SpellSystem.c:291: {
+@ SpellSystem.c:292: {
 	push	{r4, r5, r6, lr}	@
-@ SpellSystem.c:292: 	u8* spells = SpellsGetter(unit,-1);
+@ SpellSystem.c:293: 	u8* spells = SpellsGetter(unit,-1);
 	rsbs	r1, r1, #0	@,
 	bl	SpellsGetter		@
 	movs	r4, r0	@ ivtmp.295, tmp126
 .L175:
-@ SpellSystem.c:294: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:295: 	for ( int i = 0 ; spells[i] ; i++ )
 	ldrb	r0, [r4]	@ _7, MEM[base: _6, offset: 0B]
 	movs	r5, r4	@ _6, ivtmp.295
-@ SpellSystem.c:294: 	for ( int i = 0 ; spells[i] ; i++ )
+@ SpellSystem.c:295: 	for ( int i = 0 ; spells[i] ; i++ )
 	cmp	r0, #0	@ _7,
 	beq	.L174		@,
-@ SpellSystem.c:296: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
+@ SpellSystem.c:297: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
 	ldr	r3, .L180	@ tmp123,
 	bl	.L14		@
-@ SpellSystem.c:296: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
+@ SpellSystem.c:297: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
 	adds	r4, r4, #1	@ ivtmp.295,
 	cmp	r0, #4	@ tmp127,
 	beq	.L175		@,
-@ SpellSystem.c:296: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
+@ SpellSystem.c:297: 		if ( GetItemType(spells[i]) != ITYPE_STAFF ) { spell = spells[i]; break; } // Ensure that the spell we could counter with would be an attack spell.
 	ldrb	r0, [r5]	@ <retval>, *_6
 .L174:
-@ SpellSystem.c:299: }
+@ SpellSystem.c:300: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
@@ -1465,23 +1465,23 @@ NewGetUnitEquippedWeapon:
 	push	{r4, r5, r6, lr}	@
 @ SpellSystem.c:45: {
 	movs	r6, r0	@ unit, tmp163
-@ SpellSystem.c:259: 	for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:260: 	for ( int i = 0 ; i < 5 ; i++ )
 	movs	r5, #0	@ i,
 .L185:
-@ SpellSystem.c:261: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
+@ SpellSystem.c:262: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	movs	r3, r6	@ tmp135, unit
-@ SpellSystem.c:261: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
+@ SpellSystem.c:262: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	lsls	r2, r5, #1	@ tmp136, i,
-@ SpellSystem.c:261: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
+@ SpellSystem.c:262: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	adds	r3, r3, #30	@ tmp135,
 	ldrh	r1, [r3, r2]	@ MEM[base: _28, index: _37, offset: 0B], MEM[base: _28, index: _37, offset: 0B]
 	movs	r0, r6	@, unit
 	ldr	r3, .L200	@ tmp138,
 	bl	.L14		@
 	subs	r4, r0, #0	@ <retval>, tmp164,
-@ SpellSystem.c:261: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
+@ SpellSystem.c:262: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	beq	.L183		@,
-@ SpellSystem.c:261: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
+@ SpellSystem.c:262: 		if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return unit->items[i]; }
 	adds	r5, r5, #12	@ tmp139,
 	lsls	r5, r5, #1	@ tmp140, tmp139,
 	adds	r5, r6, r5	@ tmp141, unit, tmp140
@@ -1531,9 +1531,9 @@ NewGetUnitEquippedWeapon:
 	pop	{r1}
 	bx	r1
 .L183:
-@ SpellSystem.c:259: 	for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:260: 	for ( int i = 0 ; i < 5 ; i++ )
 	adds	r5, r5, #1	@ i,
-@ SpellSystem.c:259: 	for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:260: 	for ( int i = 0 ; i < 5 ; i++ )
 	cmp	r5, #5	@ i,
 	bne	.L185		@,
 	b	.L184		@
@@ -1588,124 +1588,133 @@ NewGetUnitEquippedWeaponSlot:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r0, r1, r2, r4, r5, r6, r7, lr}	@
-@ SpellSystem.c:76: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
-	ldr	r3, .L219	@ tmp142,
-@ SpellSystem.c:76: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
+	ldr	r3, .L219	@ tmp144,
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
 	ldrb	r3, [r3]	@ UsingSpellMenu, UsingSpellMenu
 @ SpellSystem.c:75: {
-	movs	r5, r0	@ unit, tmp180
-	ldr	r6, .L219+4	@ tmp176,
-@ SpellSystem.c:76: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
+	movs	r5, r0	@ unit, tmp185
+	ldr	r6, .L219+4	@ tmp181,
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
 	cmp	r3, #0	@ UsingSpellMenu,
 	bne	.L203		@,
-.L207:
-@ SpellSystem.c:78: 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
-	ldr	r7, .L219+8	@ tmp144,
-@ SpellSystem.c:78: 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
+.L206:
+@ SpellSystem.c:79: 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
+	ldr	r7, .L219+8	@ tmp146,
+@ SpellSystem.c:79: 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
 	ldrh	r2, [r7]	@ gBattleStats, gBattleStats
-	movs	r1, r5	@ tmp178, unit
-	movs	r3, #3	@ tmp148,
-	movs	r4, r2	@ tmp150, gBattleStats
-	adds	r1, r1, #30	@ tmp178,
-	str	r1, [sp, #4]	@ tmp178, %sfp
-	ands	r4, r3	@ tmp150, tmp148
-	tst	r2, r3	@ gBattleStats, tmp148
+	movs	r1, r5	@ tmp183, unit
+	movs	r3, #3	@ tmp150,
+	movs	r4, r2	@ tmp152, gBattleStats
+	adds	r1, r1, #30	@ tmp183,
+	str	r1, [sp, #4]	@ tmp183, %sfp
+	ands	r4, r3	@ tmp152, tmp150
+	tst	r2, r3	@ gBattleStats, tmp150
 	bne	.L204		@,
 .L211:
-@ SpellSystem.c:101: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
-	ldr	r2, [sp, #4]	@ tmp178, %sfp
-@ SpellSystem.c:101: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
-	lsls	r3, r4, #1	@ tmp172, <retval>,
-@ SpellSystem.c:101: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
+@ SpellSystem.c:102: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
+	ldr	r2, [sp, #4]	@ tmp183, %sfp
+@ SpellSystem.c:102: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
+	lsls	r3, r4, #1	@ tmp177, <retval>,
+@ SpellSystem.c:102: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
 	movs	r0, r5	@, unit
-	ldrh	r1, [r2, r3]	@ MEM[base: _39, index: _45, offset: 0B], MEM[base: _39, index: _45, offset: 0B]
+	ldrh	r1, [r2, r3]	@ MEM[base: _41, index: _48, offset: 0B], MEM[base: _41, index: _48, offset: 0B]
 	bl	.L15		@
-@ SpellSystem.c:101: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
-	cmp	r0, #0	@ tmp185,
+@ SpellSystem.c:102: 			if ( CanUnitUseWeapon(unit,unit->items[i]) ) { return i; }
+	cmp	r0, #0	@ tmp190,
 	bne	.L202		@,
-@ SpellSystem.c:99: 		for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:100: 		for ( int i = 0 ; i < 5 ; i++ )
 	adds	r4, r4, #1	@ <retval>,
-@ SpellSystem.c:99: 		for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:100: 		for ( int i = 0 ; i < 5 ; i++ )
 	cmp	r4, #5	@ <retval>,
 	bne	.L211		@,
 	b	.L212		@
 .L203:
-@ SpellSystem.c:76: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
-	ldr	r3, .L219+12	@ tmp152,
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
+	movs	r2, #11	@ tmp155,
+	ldr	r3, .L219+12	@ tmp154,
+	ldrb	r3, [r3, #11]	@ tmp156,
+	ldrsb	r2, [r0, r2]	@ tmp155,
+	lsls	r3, r3, #24	@ tmp156, tmp156,
+	asrs	r3, r3, #24	@ tmp156, tmp156,
+	cmp	r2, r3	@ tmp155, tmp156
+	bne	.L206		@,
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
+	ldr	r3, .L219+16	@ tmp157,
 	ldrb	r1, [r3]	@ SelectedSpell, SelectedSpell
 	bl	.L15		@
-@ SpellSystem.c:76: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
-	cmp	r0, #0	@ tmp181,
-	beq	.L207		@,
-.L206:
-@ SpellSystem.c:76: 	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
+	cmp	r0, #0	@ tmp186,
+	beq	.L206		@,
+.L207:
+@ SpellSystem.c:77: 	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
 	movs	r4, #9	@ <retval>,
 	b	.L202		@
 .L204:
-@ SpellSystem.c:78: 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
-	movs	r2, #11	@ tmp156,
-	ldr	r3, .L219+16	@ tmp155,
-	ldrb	r3, [r3, #11]	@ tmp157,
-	ldrsb	r2, [r5, r2]	@ tmp156,
-	lsls	r3, r3, #24	@ tmp157, tmp157,
+@ SpellSystem.c:79: 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
+	movs	r2, #11	@ tmp161,
+	ldr	r3, .L219+20	@ tmp160,
+	ldrb	r3, [r3, #11]	@ tmp162,
+	ldrsb	r2, [r5, r2]	@ tmp161,
+	lsls	r3, r3, #24	@ tmp162, tmp162,
 	movs	r4, #0	@ <retval>,
-	asrs	r3, r3, #24	@ tmp157, tmp157,
-	cmp	r2, r3	@ tmp156, tmp157
+	asrs	r3, r3, #24	@ tmp162, tmp162,
+	cmp	r2, r3	@ tmp161, tmp162
 	bne	.L211		@,
-@ SpellSystem.c:80: 		int spell = GetFirstAttackSpell(unit);
+@ SpellSystem.c:81: 		int spell = GetFirstAttackSpell(unit);
 	movs	r0, r5	@, unit
 	bl	GetFirstAttackSpell		@
-	str	r0, [sp]	@ tmp182, %sfp
+	str	r0, [sp]	@ tmp187, %sfp
 .L210:
-@ SpellSystem.c:85: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
-	ldr	r2, [sp, #4]	@ tmp178, %sfp
-@ SpellSystem.c:85: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
-	lsls	r3, r4, #1	@ tmp159, <retval>,
-@ SpellSystem.c:85: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
+@ SpellSystem.c:86: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
+	ldr	r2, [sp, #4]	@ tmp183, %sfp
+@ SpellSystem.c:86: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
+	lsls	r3, r4, #1	@ tmp164, <retval>,
+@ SpellSystem.c:86: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
 	movs	r0, r5	@, unit
-	ldrh	r1, [r2, r3]	@ MEM[base: _46, index: _21, offset: 0B], MEM[base: _46, index: _21, offset: 0B]
+	ldrh	r1, [r2, r3]	@ MEM[base: _49, index: _23, offset: 0B], MEM[base: _49, index: _23, offset: 0B]
 	bl	.L15		@
-@ SpellSystem.c:85: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
-	cmp	r0, #0	@ tmp183,
+@ SpellSystem.c:86: 			if ( CanUnitUseWeapon(unit,unit->items[i]) )
+	cmp	r0, #0	@ tmp188,
 	beq	.L208		@,
-@ SpellSystem.c:88: 				if ( !gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) )
-	movs	r3, r4	@ tmp164, <retval>
-	adds	r3, r3, #12	@ tmp164,
-	lsls	r3, r3, #1	@ tmp165, tmp164,
-	adds	r3, r5, r3	@ tmp166, unit, tmp165
-@ SpellSystem.c:88: 				if ( !gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) )
-	ldrh	r0, [r3, #6]	@ tmp168, *unit_30(D)
-	ldr	r3, .L219+20	@ tmp169,
+@ SpellSystem.c:89: 				if ( !gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) )
+	movs	r3, r4	@ tmp169, <retval>
+	adds	r3, r3, #12	@ tmp169,
+	lsls	r3, r3, #1	@ tmp170, tmp169,
+	adds	r3, r5, r3	@ tmp171, unit, tmp170
+@ SpellSystem.c:89: 				if ( !gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) )
+	ldrh	r0, [r3, #6]	@ tmp173, *unit_32(D)
+	ldr	r3, .L219+24	@ tmp174,
 	movs	r2, r5	@, unit
-	ldrb	r1, [r7, #2]	@ tmp163,
+	ldrb	r1, [r7, #2]	@ tmp168,
 	ldr	r3, [r3]	@ gCan_Attack_Target, gCan_Attack_Target
 	bl	.L14		@
-@ SpellSystem.c:88: 				if ( !gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) )
-	cmp	r0, #0	@ tmp184,
+@ SpellSystem.c:89: 				if ( !gCan_Attack_Target(unit->items[i],gBattleStats.range,unit) )
+	cmp	r0, #0	@ tmp189,
 	bne	.L202		@,
-@ SpellSystem.c:90: 					return ( spell ? 9 : i );
+@ SpellSystem.c:91: 					return ( spell ? 9 : i );
 	ldr	r3, [sp]	@ spell, %sfp
 	cmp	r3, #0	@ spell,
-	bne	.L206		@,
+	bne	.L207		@,
 .L202:
-@ SpellSystem.c:105: }
+@ SpellSystem.c:106: }
 	@ sp needed	@
 	movs	r0, r4	@, <retval>
 	pop	{r1, r2, r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
 .L208:
-@ SpellSystem.c:83: 		for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:84: 		for ( int i = 0 ; i < 5 ; i++ )
 	adds	r4, r4, #1	@ <retval>,
-@ SpellSystem.c:83: 		for ( int i = 0 ; i < 5 ; i++ )
+@ SpellSystem.c:84: 		for ( int i = 0 ; i < 5 ; i++ )
 	cmp	r4, #5	@ <retval>,
 	bne	.L210		@,
-@ SpellSystem.c:95: 		return ( spell ? 9 : -1 );
+@ SpellSystem.c:96: 		return ( spell ? 9 : -1 );
 	ldr	r3, [sp]	@ spell, %sfp
 	cmp	r3, #0	@ spell,
-	bne	.L206		@,
+	bne	.L207		@,
 .L212:
-@ SpellSystem.c:95: 		return ( spell ? 9 : -1 );
+@ SpellSystem.c:96: 		return ( spell ? 9 : -1 );
 	movs	r4, #1	@ <retval>,
 	rsbs	r4, r4, #0	@ <retval>, <retval>
 	b	.L202		@
@@ -1715,6 +1724,7 @@ NewGetUnitEquippedWeaponSlot:
 	.word	UsingSpellMenu
 	.word	CanUnitUseWeapon
 	.word	gBattleStats
+	.word	gBattleActor
 	.word	SelectedSpell
 	.word	gBattleTarget
 	.word	gCan_Attack_Target
@@ -1731,37 +1741,37 @@ Target_Routine_For_Fortify:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
-@ SpellSystem.c:304: 	if ( UsingSpellMenu )
+@ SpellSystem.c:305: 	if ( UsingSpellMenu )
 	ldr	r3, .L224	@ tmp123,
-@ SpellSystem.c:304: 	if ( UsingSpellMenu )
+@ SpellSystem.c:305: 	if ( UsingSpellMenu )
 	ldrb	r3, [r3]	@ UsingSpellMenu, UsingSpellMenu
 	cmp	r3, #0	@ UsingSpellMenu,
 	beq	.L222		@,
-@ SpellSystem.c:306: 		item = SelectedSpell|0xFF00;
+@ SpellSystem.c:307: 		item = SelectedSpell|0xFF00;
 	ldr	r3, .L224+4	@ tmp125,
 	ldrb	r2, [r3]	@ SelectedSpell, SelectedSpell
-@ SpellSystem.c:306: 		item = SelectedSpell|0xFF00;
+@ SpellSystem.c:307: 		item = SelectedSpell|0xFF00;
 	movs	r3, #255	@ tmp128,
 	lsls	r3, r3, #8	@ tmp128, tmp128,
 	orrs	r2, r3	@ item, tmp128
 .L223:
-@ SpellSystem.c:312: 	gHealStaff_RangeSetup(unit,0,item);
+@ SpellSystem.c:313: 	gHealStaff_RangeSetup(unit,0,item);
 	ldr	r3, .L224+8	@ tmp137,
-@ SpellSystem.c:313: }
+@ SpellSystem.c:314: }
 	@ sp needed	@
-@ SpellSystem.c:312: 	gHealStaff_RangeSetup(unit,0,item);
+@ SpellSystem.c:313: 	gHealStaff_RangeSetup(unit,0,item);
 	movs	r1, #0	@,
 	ldr	r3, [r3]	@ gHealStaff_RangeSetup, gHealStaff_RangeSetup
 	bl	.L14		@
-@ SpellSystem.c:313: }
+@ SpellSystem.c:314: }
 	pop	{r4}
 	pop	{r0}
 	bx	r0
 .L222:
-@ SpellSystem.c:310: 		item = unit->unit.items[gActionData.itemSlotIndex];
+@ SpellSystem.c:311: 		item = unit->unit.items[gActionData.itemSlotIndex];
 	ldr	r3, .L224+12	@ tmp131,
 	ldrb	r3, [r3, #18]	@ tmp132,
-@ SpellSystem.c:310: 		item = unit->unit.items[gActionData.itemSlotIndex];
+@ SpellSystem.c:311: 		item = unit->unit.items[gActionData.itemSlotIndex];
 	adds	r3, r3, #12	@ tmp133,
 	lsls	r3, r3, #1	@ tmp134, tmp133,
 	adds	r3, r0, r3	@ tmp135, unit, tmp134
@@ -1787,20 +1797,20 @@ GaidenZeroOutSpellVariables:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
-@ SpellSystem.c:317: 	UsingSpellMenu = 0;
+@ SpellSystem.c:318: 	UsingSpellMenu = 0;
 	movs	r3, #0	@ tmp114,
-@ SpellSystem.c:320: }
+@ SpellSystem.c:321: }
 	@ sp needed	@
-@ SpellSystem.c:317: 	UsingSpellMenu = 0;
+@ SpellSystem.c:318: 	UsingSpellMenu = 0;
 	ldr	r2, .L227	@ tmp113,
 	strb	r3, [r2]	@ tmp114, UsingSpellMenu
-@ SpellSystem.c:318: 	SelectedSpell = 0;
+@ SpellSystem.c:319: 	SelectedSpell = 0;
 	ldr	r2, .L227+4	@ tmp116,
 	strb	r3, [r2]	@ tmp114, SelectedSpell
-@ SpellSystem.c:319: 	DidSelectSpell = 0;
+@ SpellSystem.c:320: 	DidSelectSpell = 0;
 	ldr	r2, .L227+8	@ tmp119,
 	strb	r3, [r2]	@ tmp114, DidSelectSpell
-@ SpellSystem.c:320: }
+@ SpellSystem.c:321: }
 	bx	lr
 .L228:
 	.align	2
@@ -2636,9 +2646,9 @@ SpellOnHover:
 	str	r0, [sp, #12]	@ tmp371, %sfp
 @ SpellMenu.c:79: 	if ( spellType != ITYPE_STAFF )
 	cmp	r0, #4	@ spellType,
-	bne	.LCB2120	@
+	bne	.LCB2129	@
 	b	.L301	@long jump	@
-.LCB2120:
+.LCB2129:
 @ SpellMenu.c:81: 		BattleGenerateUiStats(gActiveUnit,9); // 9 is using a Gaiden spell.
 	ldr	r3, .L315	@ tmp401,
 	movs	r1, #9	@,
