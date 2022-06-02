@@ -1,0 +1,49 @@
+#ifdef SPELL_ANIM_SUBSTITUTION
+
+//Spell Anim Substitution by Stan Hash. Adapted by Contro
+
+/*
+NOTE: This version only works with the Item Effect Revamp installed.
+It is not intended to be used outside of the skills system.
+If you are not using the skills system, get the standalone version.
+*/
+
+PUSH
+    //New function for getting spell animations during combat
+    ORG $57FF8
+        #include "asm/GetSpellAssocAnim.lyn.event"
+        POIN pRangeAssocList pClassAssocList
+POP
+
+#define ClassAnimSubstitute(aClass, aBaseAnim, aSubAnim) "SHORT aBaseAnim aClass aSubAnim"
+#define ClassAnimSubstituteEnd "SHORT 0xFFFF"
+
+#define RangeAnimSubstitute(aBaseAnim, aSubAnim) "SHORT aBaseAnim aSubAnim"
+#define RangeAnimSubstituteEnd "SHORT 0xFFFF"
+
+ALIGN 4
+pRangeAssocList:
+    //RangeAnimSubstitute(0x16, 0x19) // Fire animation becomes thunder at close range
+RangeAnimSubstituteEnd
+
+ALIGN 4
+pClassAssocList:
+    // Including vanilla javelin substitutes
+    ClassAnimSubstitute(Cavalier,      0x3, 0x4)
+    ClassAnimSubstitute(Cavalier_F,    0x3, 0x4)
+    ClassAnimSubstitute(Paladin,       0x3, 0x6)
+    ClassAnimSubstitute(Paladin_F,     0x3, 0xD)
+    ClassAnimSubstitute(General,       0x3, 0xB)
+    ClassAnimSubstitute(General_F,     0x3, 0xB)
+    ClassAnimSubstitute(WyvernRider,   0x3, 0x9)
+    ClassAnimSubstitute(WyvernRider_F, 0x3, 0x9)
+    ClassAnimSubstitute(WyvernLord,    0x3, 0xA)
+    ClassAnimSubstitute(WyvernLord_F,  0x3, 0xA)
+    ClassAnimSubstitute(PegasusKnight, 0x3, 0x7)
+    ClassAnimSubstitute(FalcoKnight,   0x3, 0x8)
+    ClassAnimSubstitute(Soldier,       0x3, 0x5)
+
+    // Add new animation substitutes here
+ClassAnimSubstituteEnd
+
+#endif //SPELL_ANIM_SUBSTITUTION
