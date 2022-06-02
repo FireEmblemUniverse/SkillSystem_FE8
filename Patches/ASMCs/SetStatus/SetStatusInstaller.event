@@ -11,6 +11,7 @@
 
 #include "GetUnitStatus.lyn.event"
 #include "SetUnitStatus.lyn.event"
+#include "AddUnitStatus.lyn.event"
 #include "SetUnitStatusAll.lyn.event"
 #include "OnAllUnitState.lyn.event"
 #include "OffAllUnitState.lyn.event"
@@ -75,6 +76,10 @@ SetUnitStatusAll(0xAABD, MovBonus, 6, AnyDeployed, EnemyArmy, 0x5266, Area(1,3,1
 
 #define SetUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC SetUnitStatus"
 #define SetUnitStatus(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatus"
+
+// intended for use on stats (caps them at 127, then ensures no stat is over the class cap) 
+#define AddUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC AddUnitStatus"
+#define SubUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC SubUnitStatus"
 
 
 

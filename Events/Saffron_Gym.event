@@ -170,8 +170,6 @@ ASMC 0x80160D1 // Return to map BGM
 ENUT 0x10 // don't make tile change yet 
 CAM1 [7,12] 
 
-SetUnitStatus(1, CurrentHP, 1)
-
 
 LABEL 0x63
 NoFade
