@@ -36,7 +36,7 @@
 // Helpers 
 #define Coord(XX,YY) "YY<<16|XX" 
 // impossible allegiance of 5 if current hp is 0 
-#define PlayerInRange "GetUnitStatus(0x7fff, CurrentHP); BNE 0 sC s0; SVAL s2 5; GOTO 1; LABEL 0; SVAL r2 0; LABEL 1; CALL 0x89EE1B8" // When matching allegiance stops in range - Eg. if not player, ENDB 
+#define PlayerInRange "CALL CheckIfPlayerInRange"
 #define NPCInRange "SVAL r2 1; CALL 0x89EE1B8" 
 #define EnemyInRange "SVAL r2 2; CALL 0x89EE1B8" 
 #define Area(LowerX, LowerY, UpperX, UpperY) "LowerX<<24|LowerY<<16|UpperX<<8|UpperY"

@@ -1,4 +1,7 @@
 
+// may 2, 2022 - you set the unit's XX coord to 35 with a map width of ~15 and it treated the unit like it was at -31 x or something weird 
+
+
 PUSH 
 // EXPERIMENTAL 
     // prevent debuffs and loading issue (Kirb)
@@ -24,6 +27,7 @@ PUSH
 //      WORD 0x203ED40
       WORD 0x0202A6AC //text buffer
 POP 
+
 
 
 

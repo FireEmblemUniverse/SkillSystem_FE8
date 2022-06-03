@@ -27,8 +27,8 @@
 	EventParameterTable:
 	// These mimick vanilla behavior. Each takes the key as a parameter and should return a character struct pointer.
 	EventParameter(0,EventParametersGetLeader) // Gets the party leader via $33258.
-	//EventParameter(-1,EventParameterGetActive) // Get current unit.
-	EventParameter(-1,GetActiveUnitIfAlive) // Get current unit.
+	EventParameter(-1,EventParameterGetActive) // Get current unit.
+	//EventParameter(-1,GetActiveUnitIfAlive) // Get current unit.
 	//EventParameter(-2,EventParameterGetCoordsInSlotB) // Get unit at coordinates in memory slot 0xB.
 	EventParameter(-2,GetFFFEsBCoordsUnit) // Get sB coords unit.
 	EventParameter(-3,EventParameterGetUnitInSlot2) // Get unit in memory slot 0x2.

@@ -53,6 +53,10 @@
 //leave prep chapter - auto equip accessories 
 //grey out unusable skill scrolls ? 
 
+CheckIfPlayerInRange:
+GetUnitStatus(0x7fff, CurrentHP); BNE 10 sC s0; SVAL s2 5; GOTO 11; LABEL 10; SVAL r2 0; LABEL 11; CALL 0x89EE1B8; NoFade; ENDA // When matching allegiance stops in range - Eg. if not player, ENDB 
+
+
 ReleasePokemonEvent:
 EVBIT_MODIFY 4
 CURSOR_FLASHING 0x7FFF // Shiny frame ? 
