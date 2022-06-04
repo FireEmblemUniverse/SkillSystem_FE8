@@ -1,0 +1,15 @@
+ALIGN 4
+PUSH 
+ORG CurrentOffset+1 
+GetTargetCoords:
+POP 
+#incbin "GetTargetCoords.dmp"
+
+
+
+
+
+
+
+
+
