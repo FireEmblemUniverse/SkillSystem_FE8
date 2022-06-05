@@ -243,8 +243,15 @@
 {
 #include "Route20E.event"
 }
-
-
+{
+#include "SeafoamB1.event"
+}
+{
+#include "Route20W.event"
+}
+{
+#include "Cinnabar.event"
+}
 
 
 

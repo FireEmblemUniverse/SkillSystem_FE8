@@ -34,14 +34,14 @@
 
 // Enable/Disable all DR if select is pressed while
 // hovering over a non-enemy unit or an empty tile.
-#define NonEnemySELECT AllDR
+#define NonEnemySELECT NearbyDR
 
 // If there are more than this amount of tiles between
 // enemy and nearest ally or NPC, don't mark this enemy, when
 //  - using SetNearbyDR ASMC.
 //  - pressing select whilst no DR is set and NonEnemySELECT
 //    is set to NearbyDR.
-#define NearbyTiles 13
+#define NearbyTiles 14
 
 // Set to True if you have Modular Stat Getters active.
 // Set to False otherwise.

@@ -9,9 +9,9 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', default="MapPalette.dmp", help='Input tileset palette file. default is MapPalette.dmp')
 parser.add_argument('-o', default="MapPalette2.dmp", help='Output tileset palette file. default is MapPalette2.dmp')
-parser.add_argument('-r', default=4, type=int, help='Red value modifier, [-31, 31]. Default is 4')
-parser.add_argument('-g', default=-16, type=int, help='Green value modifier, [-31, 31]. Default is -16')
-parser.add_argument('-b', default=-16, type=int, help='Blue value modifier, [-31, 31]. Default is -16')
+parser.add_argument('-r', default=12, type=int, help='Red value modifier, [-31, 31]. Default is 4')
+parser.add_argument('-g', default=-8, type=int, help='Green value modifier, [-31, 31]. Default is -16')
+parser.add_argument('-b', default=-8, type=int, help='Blue value modifier, [-31, 31]. Default is -16')
 args = parser.parse_args()
 
 
