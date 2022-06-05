@@ -208,11 +208,11 @@
 #define mrfujiID 0xD0
 #define bikerID 0xD1
 #define giovanniID 0xD2
-#define Unused39ID 0xD3
-#define Unused40ID 0xD4
-#define Unused41ID 0xD5
-#define Unused42ID 0xD6
-#define Unused43ID 0xD7
+#define swimmer_f_landID 0xD3
+#define swimmer_f_waterID 0xD4
+#define swimmer_m_landID 0xD5
+#define swimmer_m_waterID 0xD6
+#define tuber_m_waterID 0xD7
 #define Unused1ID 0xD8
 #define Unused2ID 0xD9
 #define Unused44ID 0xDA

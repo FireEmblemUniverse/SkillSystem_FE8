@@ -150,6 +150,18 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define ClassRoute8WildA 0x4D 
 #define ClassRoute8WildB 0x4E 
 
+#define ClassRoute19WildA 0x4F 
+#define ClassRoute19WildB 0x50
+#define ClassRoute20EWildA 0x51 
+#define ClassRoute20EWildB 0x52 
+#define ClassRoute20WWildA 0x53 
+#define ClassRoute20WWildB 0x54 
+#define ClassSeafoamWildA 0x55 
+#define ClassSeafoamWildB 0x56 
+#define ClassMansionWildA 0x57 
+#define ClassMansionWildB 0x58 
+#define ClassRoute21WildA 0x59 
+#define ClassRoute21WildB 0x5A 
 
 
 
@@ -210,6 +222,11 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitCyclingRoadWild 0x83
 #define UnitRoute7Wild 0x84
 #define UnitRoute8Wild 0x85 
+#define UnitRoute19Wild 0x86
+#define UnitRoute20Wild 0x87
+#define UnitRoute21Wild 0x88
+#define UnitMansionWild 0x89
+#define UnitSeafoamWild 0x8A
 
 
 #define UnitRoute1Trainer 0xA0
@@ -244,10 +261,14 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitRoute7Trainer 0xBB
 #define UnitRoute8Trainer 0xBC 
 #define UnitCeladonGymTrainer 0xBD 
-
-
-
 // avoid 0xBE and 0xBF // formotiis? 
+#define UnitRoute19Trainer 0xC0 
+#define UnitRoute20Trainer 0xC1 
+#define UnitRoute21Trainer 0xC2 
+#define UnitSeafoamTrainer 0xC3 
+#define UnitMansionTrainer 0xC4 
+
+
  
 
 

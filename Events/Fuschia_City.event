@@ -88,8 +88,8 @@ ToRoute15:
 ChapterTransition(Route15Ch, 9, 11)
 
 ToRoute19:
-CALL ClosedArea 
-ChapterTransition(Route19Ch, 15, 0)
+//CALL ClosedArea 
+ChapterTransition(Route19Ch, 12, 1)
 
 
 ToRoute18:

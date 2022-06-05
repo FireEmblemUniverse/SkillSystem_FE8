@@ -269,11 +269,11 @@ SetSMS(hikerSMS, 1 ,   hikerStanding)
 SetSMS(mrfujiSMS , 1 ,    mrfujiStanding)
 SetSMS(bikerSMS , 2 ,    bikerStanding)
 SetSMS(giovanniSMS , 1 ,    giovanniStanding)
-SetSMS(Unused39SMS , 0 ,    m1Standing)
-SetSMS(Unused40SMS , 0 ,    m1Standing)
-SetSMS(Unused41SMS , 0 ,    m1Standing)
-SetSMS(Unused42SMS , 0 ,    m1Standing)
-SetSMS(Unused43SMS , 0 ,    m1Standing)
+SetSMS(swimmer_f_landSMS , 1 ,   swimmer_f_landStanding)
+SetSMS(swimmer_f_waterSMS , 1 ,    swimmer_f_waterStanding)
+SetSMS(swimmer_m_landSMS , 1 ,    swimmer_m_landStanding)
+SetSMS(swimmer_m_waterSMS , 1 ,    swimmer_m_waterStanding)
+SetSMS(tuber_m_waterSMS , 1 ,    tuber_m_waterStanding)
 SetSMS(Unused1SMS , 0 ,    m1Standing)
 SetSMS(Unused2SMS , 0 ,    m1Standing)
 SetSMS(Unused44SMS , 0 ,    m1Standing)
@@ -542,11 +542,11 @@ SetMMS(hikerMMS,    hikerMoving,        DemonKingAP)
 SetMMS(mrfujiMMS ,     mrfujiMoving,        DemonKingAP)
 SetMMS(bikerMMS ,     bikerMoving,        DemonKingAP)
 SetMMS(giovanniMMS ,     giovanniMoving,        DemonKingAP)
-SetMMS(Unused39MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused40MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused41MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused42MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused43MMS ,     r1Moving,        DemonKingAP)
+SetMMS(swimmer_f_landMMS ,     swimmer_f_landMoving,        DemonKingAP)
+SetMMS(swimmer_f_waterMMS ,     swimmer_f_waterMoving,        DemonKingAP)
+SetMMS(swimmer_m_landMMS ,     swimmer_m_landMoving,        DemonKingAP)
+SetMMS(swimmer_m_waterMMS ,     swimmer_m_waterMoving,        DemonKingAP)
+SetMMS(tuber_m_waterMMS ,     tuber_m_waterMoving,        DemonKingAP)
 SetMMS(Unused1MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused2MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused44MMS ,     r1Moving,        DemonKingAP)
@@ -1414,6 +1414,22 @@ bikerMoving:
 ALIGN 4
 giovanniMoving:
 #incbin "Trainer_MMS/MMS_giovanni.dmp"
+ALIGN 4
+swimmer_f_landMoving:
+#incbin "Trainer_MMS/MMS_swimmer_f_land.dmp"
+ALIGN 4
+swimmer_f_waterMoving:
+#incbin "Trainer_MMS/MMS_swimmer_f_water.dmp"
+ALIGN 4
+swimmer_m_landMoving:
+#incbin "Trainer_MMS/MMS_swimmer_m_land.dmp"
+ALIGN 4
+swimmer_m_waterMoving:
+#incbin "Trainer_MMS/MMS_swimmer_m_water.dmp"
+ALIGN 4
+tuber_m_waterMoving:
+#incbin "Trainer_MMS/MMS_tuber_m_water.dmp"
+
 
 
 //Map sprites
@@ -2157,6 +2173,25 @@ bikerStanding:
 ALIGN 4
 giovanniStanding:
 #incbin "Trainer_SMS/SMS_giovanni.dmp"
+
+ALIGN 4
+tuber_m_waterStanding:
+#incbin "Trainer_SMS/SMS_tuber_m_water.dmp"
+ALIGN 4
+swimmer_f_landStanding:
+#incbin "Trainer_SMS/SMS_swimmer_f_land.dmp"
+ALIGN 4
+swimmer_f_waterStanding:
+#incbin "Trainer_SMS/SMS_swimmer_f_water.dmp"
+ALIGN 4
+swimmer_m_landStanding:
+#incbin "Trainer_SMS/SMS_swimmer_m_land.dmp"
+ALIGN 4
+swimmer_m_waterStanding:
+#incbin "Trainer_SMS/SMS_swimmer_m_water.dmp"
+
+
+
 
 //SYSTEM PALETTES 
 

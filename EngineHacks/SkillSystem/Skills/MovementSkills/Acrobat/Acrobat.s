@@ -15,6 +15,15 @@ mov   r0, r2 @if the active unit is 0, we're being called from dangerzone
 NoDZ:
 ldr   r0,MarshbadgeObtained
 .short  0xF800
+
+ldr   r1,CurrentCharPtr
+ldr   r1,[r1]
+ldrb r1, [r1, #0x0B] @ deployment byte 
+lsr r1, #6 @ NPC/Enemies only 
+cmp r1, #0 
+beq Player
+mov r0, #1 @ enemies always have acrobat i guess lol 
+Player:
 mov   r1,#0x0       @counter
 ldr   r5,MoveCostLoc
 Loop1: @ store each value into the movement table in ram  
