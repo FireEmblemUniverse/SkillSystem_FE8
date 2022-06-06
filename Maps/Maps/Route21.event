@@ -2,7 +2,17 @@
 
 #include eastdlib.event
 
-SetChapterData(Route21Ch,Route21Obj,0,Route21Pal,Route21Conf,Route21Map,Map,0,0,0)
+SetChapterData(Route21Ch,Route21Obj,0,Route21Pal,Route21Conf,Route21Map,Map,0,0,Route21MapChanges)
+MapChangesPointerTable(Route21MapChanges, MapChanges)
 Map:
 #incbin "Route21_data.dmp"
+
+MapChanges:
+TileMap(1,8,17,10,3,Tile_Layer_2)
+TileMapEnd
+
+Tile_Layer_2:
+SHORT 0x188 0x14 0x198 0x19c 0x2a0 0x300 0x29c 0x14 0x20c 0x210 0x20c 0x210 0x184 0x188 0x20c 0x210 0x198 0x19c 0x214 0x218 0x214 0x218 0x14 0x14 0x214 0x218 0x184 0x188 0x14 0x14 
+ALIGN 4
+
 Map_Pointer_Table(Route21Map,Map)
