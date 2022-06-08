@@ -3,7 +3,7 @@
 #define GenericB UnitRoute5Trainer
 #define ClassA ClassRoute5WildA
 #define ClassB ClassRoute5WildB
-#define WildLvl 16 
+#define WildLvl 15
 #define TrainerL 16
 
 
@@ -110,7 +110,9 @@ CutBush(16,0)
 
 
 
-//RockSmash(3,2)
+RockSmash(12,3)
+RockSmash(15,3)
+RockSmash(17,22)
 //StrengthBoulder(4,3)
 
 //RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
@@ -122,7 +124,7 @@ CutBush(16,0)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
-SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 
+SkillScrollTrap(16,24, (ChapterID*2)+1, PerfectionistID) 
 
 SignBTrap(19,30, ChapterID, 0x0) //no extra text 
 SignATrap(9,0, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
@@ -155,10 +157,10 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(10,5,17,11)) //w patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(10,5,17,13)) //w patch 
 LOAD1 0x1 EnemyUnitsB
 ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(10,12,17,17)) //w patch 
+RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(10,13,17,20)) //w patch 
 
 
 
@@ -208,13 +210,17 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 
@@ -251,15 +257,16 @@ UNIT
 
 
 EnemyTrainers0: // super nerd
-UNIT GenericB 	VoltorbID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	PikachuID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	PikachuID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	VoltorbID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	PikachuID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
 EnemyTrainers1: // battle girl 
-UNIT GenericB 	WartortleID 0xE1 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	IvysaurID 0xE1 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	CharmeleonID 0xE1 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	BulbasaurID 0xE1 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	CharmanderID 0xE1 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	SquirtleID 0xE1 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	EeveeID 0xE1 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 

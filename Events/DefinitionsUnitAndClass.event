@@ -162,7 +162,8 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define ClassMansionWildB 0x58 
 #define ClassRoute21WildA 0x59 
 #define ClassRoute21WildB 0x5A 
-
+#define ClassPowerPlantWildA 0x5B
+#define ClassPowerPlantWildB 0x5C
 
 
 //Enemy unit IDs 
