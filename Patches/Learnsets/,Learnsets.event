@@ -205,7 +205,7 @@ BYTE 0 0
 ALIGN 4
 WeedleLearnset:
 BYTE 1 Harden
-BYTE 2 PoisonSting
+BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
 BYTE 8 GuardMove 

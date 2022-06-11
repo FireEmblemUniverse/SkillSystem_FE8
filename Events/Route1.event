@@ -348,14 +348,7 @@ NoFade
 ENDA
 
 
-Restore_Options: // AFEV - if cutscene, restore options after acting. 
-PlayerInRange
-CHECK_EVENTID PlayableCutsceneFlag
-BEQ 0 sC s0
-CALL MyTutorial_Cleanup
-LABEL 0
-NoFade 
-ENDA 
+
 
 MyTutorial5:
 CALL MyTutorial_Cleanup // If they don't select the unit right away, they need to be able to press B 
@@ -435,28 +428,35 @@ ENDA
 
 MyTutorial9:
 TutText_B(CatchPokemonTutorial_6)
-EnqueneTutorialEvent_0_PhaseSwitch(MyTutorial_End)
-EnqueneTutorialEvent_2_OnSelect(MyTutorial_Cleanup)
+ENUF PlayableCutsceneFlag
+ENUT Route1Tutorial_A
+//EnqueneTutorialEvent_0_PhaseSwitch(MyTutorial_EndA)
+//EnqueneTutorialEvent_2_OnSelect(MyTutorial_EndB) // I am guessing neither of these work because an event is called when capturing a pokemon
 SVAL 0xC 0x1
 NoFade 
 ENDA
 
-
-
-MyTutorial_End:
-TutText_B(CatchPokemonTutorial_7)
-ENUT Route1Tutorial_A
-ENUF PlayableCutsceneFlag
-CALL MyTutorial_Cleanup 
+Restore_Options: // AFEV - if not cutscene, restore options after acting. 
+PlayerInRange
+CHECK_EVENTID PlayableCutsceneFlag
+BNE 0 sC s0
+CALL MyTutorial_Cleanup
+LABEL 0
 NoFade 
 ENDA 
+
+MyTutorial_EndA:
+//TutText_B(CatchPokemonTutorial_7)
+CALL MyTutorial_Cleanup
+NoFade
+ENDA 
+
 
 
 MyTutorial_Cleanup:
 DISABLEOPTIONS 0 // Re-enable options 
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
-
 NoFade 
 ENDA
 

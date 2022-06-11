@@ -17,7 +17,8 @@ POIN PostCombatSkills
 
 ALIGN 4
 PostCombatSkills:
-POIN CapturePokemon
+POIN CheckIfGameOver
+POIN CapturePokemon 
 POIN IsTrainersTeamDefeated
 POIN RockyHelmetFunc
 POIN SavageBlow  //I like having savage blow as the first one because it makes the activation sound play first

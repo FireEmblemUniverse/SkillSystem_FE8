@@ -18,7 +18,7 @@ POIN LungeUpdate
 #ifdef GAIDEN_MAGIC
 	POIN GaidenZeroOutSpellVariables
 #endif // GAIDEN_MAGIC
-POIN CheckIfGameOver
+//POIN CheckIfGameOver // actions don't occur when you die 
 
 
 

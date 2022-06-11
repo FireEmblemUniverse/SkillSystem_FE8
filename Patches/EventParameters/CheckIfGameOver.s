@@ -10,7 +10,6 @@
 .global CheckIfGameOver
 CheckIfGameOver:
 push {lr} 
-
 bl Get1stUnit
 cmp r0, #0 
 bne Exit 

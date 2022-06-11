@@ -2433,8 +2433,8 @@
 09136C30 MugLoadingFunctions
 09136C39 PostActionCalcLoop
 09136C74 PostActionCalcFunctions
-09136C8C PostCombatLoop
-09136D0C PostCombatSkills
+09136C88 PostCombatLoop
+09136D08 PostCombatSkills
 09136D58 BtlLoopParent
 09136DA0 BtlLoopTable
 09136ED8 DamageModifierCalcLoop
@@ -5386,7 +5386,7 @@
 093B87E0 Traps2_Empty
 093B87E4 EndingScene_Empty
 093B87EC Units1_Empty
-093DB2FC DebugCommandEvent
+093DB254 DebugCommandEvent
 08057FC0 .thumb
 08057FC0 lookup_table_battle_bg_16_pointer
 0880D12B lookup_table_battle_bg_16_address
