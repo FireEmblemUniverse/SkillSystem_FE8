@@ -17,6 +17,9 @@
 .global BurnIconFunc
 .type BurnIconFunc, %function 
 
+.global TrappedIconFunc
+.type TrappedIconFunc, %function 
+
 TrappedIconFunc:
 mov r3, #0x30 @ previous where music icon was 
 push {r3}

@@ -8,6 +8,9 @@
 #include "PB_Calc_Loop_Effects/Installer.event"
 #include "Heal_CalcLoop/Installer.event"
 
+#include "StatusDamageLoop.lyn.event" 
+
+
 ALIGN 4 
 UnitTryHealLowerCap:
 #incbin "UnitTryHeal.dmp"
@@ -15,6 +18,11 @@ UnitTryHealLowerCap:
 
 PUSH 
 
+ORG $25A1C
+callHack_r3(StatusDamageLoop)
+
+ORG $25A29
+BYTE $D0 // Beq instead of BNE 
 
 ORG $193B8 
 callHack_r3(UnitTryHealLowerCap|1)

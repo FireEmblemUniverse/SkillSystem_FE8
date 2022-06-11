@@ -267,6 +267,16 @@ LABEL 0x63
 SetUnitStatus(1, CurrentHP, 5)
 
 SetUnitStatus(2, CurrentHP, 5)
+
+SetUnitStatus(1, BadStatusType, PoisonStatusID) 
+SetUnitStatus(2, BadStatusType, PoisonStatusID) 
+SetUnitStatus(3, BadStatusType, PoisonStatusID) 
+SetUnitStatus(4, BadStatusType, PoisonStatusID) 
+SetUnitStatus(1, BadStatusTurn, 4) 
+SetUnitStatus(2, BadStatusTurn, 4) 
+SetUnitStatus(3, BadStatusTurn, 4) 
+SetUnitStatus(4, BadStatusTurn, 4) 
+
 //AutoLevelUnits(19, True, 0x120) // all 
 CALL SetBushHpEvent
 

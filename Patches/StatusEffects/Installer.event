@@ -1,5 +1,34 @@
 #include "StatusEffectDebuffs.lyn.event" 
 
+
+ALIGN 4 
+VortexAnimation:
+#incbin "PoisonAnimation.dmp"
+#incbin "VortexAnimation.dmp"
+
+ALIGN 4 
+BurnAnimation:
+#incbin "BurnAnimation.dmp"
+
+#include "PoisonAnimHook.lyn.event"
+
+PUSH 
+
+ORG $7CCD0 
+callHack_r3(PoisonAnimHook)
+
+ORG $9A50AE // from this proc 9A508C 
+BYTE 30 // default 50 Frames to wait during poison anim before hp drains 
+ORG $9A50BE 
+BYTE 15 // default 30 frames before hp bar disappears 
+ORG $9A50CE 
+BYTE 5 // default 44 frames to wait before going to the next unit 
+
+
+POP 
+
+
+
 //#define BurnStatusID_Def 5
 //#define ParalyzeStatusID_Def 6
 //#define SleepStatusID_Def 2
@@ -51,6 +80,8 @@ ORG $276EC // 2nd ring effect switch case for what icon to display
 //WORD 0x8027754 // Silence
 //WORD 0x80277F8 // Berserk
 POIN ParalysisIconFunc
+ORG $276F4 
+POIN TrappedIconFunc
 
 POP 
 
