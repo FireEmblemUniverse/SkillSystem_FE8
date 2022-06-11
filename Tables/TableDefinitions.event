@@ -194,6 +194,7 @@
 #define BurnStatusID 5
 #define ParalyzeStatusID 6
 #define FreezeStatusID 7
+#define TrappedStatusID 8 
 
 //for setting what status effect 
 //status staves will give 

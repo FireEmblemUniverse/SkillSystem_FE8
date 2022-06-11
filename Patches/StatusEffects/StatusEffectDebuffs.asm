@@ -116,6 +116,36 @@ bx r3
 .ltorg
 .align
 
+.type TrappedStatus, %function 
+.global TrappedStatus 
+
+TrappedStatus:
+push {r4-r5, lr}
+mov r5, r0 @stat
+mov r4, r1 @unit
+cmp r0, #0 
+blt End_TestTrapped
+
+
+mov r0,r4
+ldr r1, =TrappedStatusID_Link 
+ldr r1, [r1] 
+bl IsStatusApplicable 
+cmp r0, #1 
+bne End_TestTrapped
+add r5, #2 
+lsr r5, #2 @ 1/4 movement stat 
+
+End_TestTrapped:
+mov r0, r5
+mov r1, r4
+pop {r4-r5}
+pop {r3}
+bx r3 
+.ltorg
+.align
+
+
 ParalyzeStatus:
 push {r4-r5, lr}
 mov r5, r0 @stat
@@ -211,6 +241,13 @@ pop {r3}
 bx r3 
 .ltorg
 .align
+
+
+
+
+
+
+
 
 .type IsStatusApplicable, %function 
 .global IsStatusApplicable 

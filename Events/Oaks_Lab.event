@@ -444,7 +444,7 @@ GOTO 200
 Label 39
 
 #ifndef ALT_TITLESCREEN
-GOTO 60
+GOTO 45
 #endif 
 CompareTactText(MysteryName_001) 
 BNE 40 rC r7
@@ -486,9 +486,9 @@ CompareTactText(MysteryName_006)
 BNE 45 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsMystery_006|IsPointer
-
+GOTO 200
 Label 45
-Label 60 // End of mystery names 
+//Label 60 // End of mystery names 
 
 CompareTactText(LuisName) 
 BNE 46 rC r7
@@ -501,13 +501,14 @@ CompareTactText(GastonName)
 BNE 47 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsGaston|IsPointer
+GOTO 200
+
 
 Label 47
 CompareTactText(FabulaName) 
 BNE 48 rC r7
 CALL PlaytesterCommonMessage
 SVAL r2 UnitsFabula|IsPointer
-
 GOTO 200
 
 Label 48

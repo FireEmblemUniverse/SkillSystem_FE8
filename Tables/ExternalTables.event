@@ -27,7 +27,6 @@ defWeaponDebuffs(0,0,0,0,0,0,0) //0x0: let 0-index entry be no debuffs.
 
 #define WeakDefResDebuff 0x16
 #define MedDefResDebuff 0x17
-
 #define CannotDouble 0xC
 
 
@@ -51,13 +50,13 @@ defWeaponDebuffs(0,0,0,0,0,0,10) //0xE: Mag debuff
 defWeaponDebuffs(15,0,0,0,0,0,0) //0xF: Str debuff 
 defWeaponDebuffs(0,15,0,0,0,0,0) //0x10: Skl debuff
 defWeaponDebuffs(0,0,15,0,0,0,0) //0x11: Speed debuff 
-defWeaponDebuffs(0,0,0,15,0,0,0) //0x14: Luk debuff 
-defWeaponDebuffs(0,0,0,0,15,0,0) //0x12: Def debuff 
-defWeaponDebuffs(0,0,0,0,0,15,0) //0x13: Res debuff.
+defWeaponDebuffs(0,0,0,15,0,0,0) //0x12: Luk debuff 
+defWeaponDebuffs(0,0,0,0,15,0,0) //0x13: Def debuff 
+defWeaponDebuffs(0,0,0,0,0,15,0) //0x14: Res debuff.
 defWeaponDebuffs(0,0,0,0,0,0,15) //0x15: Mag debuff 
 
-defWeaponDebuffs(0,0,0,0,5,5,0) //0x15: Mag debuff 
-defWeaponDebuffs(0,0,0,0,10,10,0) //0x15: Mag debuff 
+defWeaponDebuffs(0,0,0,0,5,5,0) //0x16: Mag debuff 
+
 
 
 

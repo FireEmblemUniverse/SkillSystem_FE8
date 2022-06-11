@@ -35,6 +35,8 @@ PoisonStatusID_Link:
 WORD PoisonStatusID_Def
 FreezeStatusID_Link:
 WORD FreezeStatusID_Def
+TrappedStatusID_Link:
+WORD TrappedStatusID 
 
 
 #include "IconDisplay.lyn.event" 

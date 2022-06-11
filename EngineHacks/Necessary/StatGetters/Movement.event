@@ -14,6 +14,7 @@ pMovModifiers: // Movement
 	POIN StairsMoveDebuff-1
 	#endif
 	POIN prNullifyIfFreeze
+	POIN TrappedStatus
 	POIN TrainerMovementBane
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero

@@ -21,6 +21,7 @@ WORD PoisonStatusID_Def
 WORD FreezeStatusID_Def
 
 
+StatusEntry(FireSpin, TrappedStatusID, 100)
 
 StatusEntry(Glare, ParalyzeStatusID_Def, 100)
 StatusEntry(Ember, BurnStatusID_Def, 10)
@@ -28,7 +29,7 @@ StatusEntry(FirePunch, BurnStatusID_Def, 10)
 StatusEntry(FlameWheel, BurnStatusID_Def, 10)
 StatusEntry(Scorch, BurnStatusID_Def, 10)
 StatusEntry(Flamethrower, BurnStatusID_Def, 10)
-StatusEntry(FireSpin, BurnStatusID_Def, 10)
+
 StatusEntry(FireBlast, BurnStatusID_Def, 10)
 StatusEntry(SacredFire, BurnStatusID_Def, 25)
 StatusEntry(Thundershock, ParalyzeStatusID_Def, 10)
