@@ -22,6 +22,8 @@ WORD FreezeStatusID_Def
 
 
 StatusEntry(FireSpin, TrappedStatusID, 100)
+StatusEntry(Constrict, TrappedStatusID, 100)
+StatusEntry(Clamp, TrappedStatusID, 100)
 
 StatusEntry(Glare, ParalyzeStatusID_Def, 100)
 StatusEntry(Ember, BurnStatusID_Def, 10)

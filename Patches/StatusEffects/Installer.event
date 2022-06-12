@@ -1,4 +1,6 @@
 #include "StatusEffectDebuffs.lyn.event" 
+#include "PoisonDamageHook.lyn.event"
+
 
 
 ALIGN 4 
@@ -29,6 +31,10 @@ BurnPal:
 #include "PoisonAnimHook.lyn.event"
 
 PUSH 
+
+ORG $25a34 
+callHack_r3(PoisonDamageHook) 
+
 
 ORG $7CCD0 
 callHack_r3(PoisonAnimHook)

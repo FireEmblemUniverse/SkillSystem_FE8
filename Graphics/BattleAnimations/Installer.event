@@ -1,6 +1,6 @@
 
 
-#define classAnim(classID,animPointer) "ORG classTable +classID*(72) + 48; WORD $08000000 + animPointer"
+#define classAnim(classID,animPointer)  "ORG classTable +classID*(72)  + 48; WORD $08000000 + animPointer"
 
 
 #define  NormalAnim    0
@@ -31,112 +31,636 @@
 
 #define  DarkAnim 0x27
 
-#define weaponTypeAnim(weaponType, ID) "BYTE weaponType 1; SHORT ID;"
-#define weaponAnim(weaponID, ID) "BYTE weaponID 0; SHORT ID;"
+#define wTA(weaponType, ID)  "BYTE weaponType 1; SHORT ID;"
+#define wA(weaponID, ID)  "BYTE weaponID 0; SHORT ID;"
+
+// for all weapon types 
+// wA(0x28, ID) is for handaxes 
+#define animEntry(ID) "wA(0x28, ID); wTA(ItemAnim,ID); wTA(NormalAnim,ID); wTA(ElectricAnim,ID); wTA(WaterAnim,ID); wTA(FireAnim,ID); wTA(StaffAnim,ID); wTA(GrassAnim,ID); wTA(GroundAnim,ID); wTA(PsychicAnim,ID); wTA(FightingAnim,ID); wTA(SteelAnim,ID); wTA(IceAnim,ID); wTA(FlyingAnim,ID); wTA(FairyAnim,ID); wTA(PoisonAnim,ID); wTA(RockAnim,ID); wTA(GhostAnim,ID); wTA(DragonAnim,ID); wTA(BugAnim,ID); wTA(DarkAnim,ID)"
+
+
 #define weaponAnimEnd "WORD 0"
 
 ALIGN 4
-
 animAnyClass:
-weaponAnim(0x28,$09) //Hand axe 
-weaponTypeAnim(ItemAnim,$09)
-weaponTypeAnim(NormalAnim,$09)
-weaponTypeAnim(ElectricAnim,$09)
-weaponTypeAnim(WaterAnim,$09)
-weaponTypeAnim(FireAnim,$09)
-weaponTypeAnim(StaffAnim,$09)
-weaponTypeAnim(GrassAnim,$09)
-weaponTypeAnim(GroundAnim,$09)
-weaponTypeAnim(PsychicAnim,$09)
-weaponTypeAnim(FightingAnim,$09)
-weaponTypeAnim(SteelAnim,$09)
-weaponTypeAnim(IceAnim,$09)
-weaponTypeAnim(FlyingAnim,$09)
-weaponTypeAnim(FairyAnim,$09)
-weaponTypeAnim(PoisonAnim,$09)
-weaponTypeAnim(RockAnim,$09)
-weaponTypeAnim(GhostAnim,$09)
-weaponTypeAnim(DragonAnim,$09)
-weaponTypeAnim(BugAnim,$09)
-weaponTypeAnim(DarkAnim,$09)
+animEntry(152)
 weaponAnimEnd
 
 ALIGN 4
-animBulbasaurClass:
-weaponAnim(0x28,$04) //Hand axe 
-weaponTypeAnim(ItemAnim,$04)
-weaponTypeAnim(NormalAnim,$04)
-weaponTypeAnim(ElectricAnim,$04)
-weaponTypeAnim(WaterAnim,$04)
-weaponTypeAnim(FireAnim,$04)
-weaponTypeAnim(StaffAnim,$04)
-weaponTypeAnim(GrassAnim,$04)
-weaponTypeAnim(GroundAnim,$04)
-weaponTypeAnim(PsychicAnim,$04)
-weaponTypeAnim(FightingAnim,$04)
-weaponTypeAnim(SteelAnim,$04)
-weaponTypeAnim(IceAnim,$04)
-weaponTypeAnim(FlyingAnim,$04)
-weaponTypeAnim(FairyAnim,$04)
-weaponTypeAnim(PoisonAnim,$04)
-weaponTypeAnim(RockAnim,$04)
-weaponTypeAnim(GhostAnim,$04)
-weaponTypeAnim(DragonAnim,$04)
-weaponTypeAnim(BugAnim,$04)
-weaponTypeAnim(DarkAnim,$04)
+anim1:
+animEntry(1)
 weaponAnimEnd
-ALIGN 4
-animCharmanderClass:
-weaponAnim(0x28,$05) //Hand axe 
-weaponTypeAnim(ItemAnim,$05)
-weaponTypeAnim(NormalAnim,$05)
-weaponTypeAnim(ElectricAnim,$05)
-weaponTypeAnim(WaterAnim,$05)
-weaponTypeAnim(FireAnim,$05)
-weaponTypeAnim(StaffAnim,$05)
-weaponTypeAnim(GrassAnim,$05)
-weaponTypeAnim(GroundAnim,$05)
-weaponTypeAnim(PsychicAnim,$05)
-weaponTypeAnim(FightingAnim,$05)
-weaponTypeAnim(SteelAnim,$05)
-weaponTypeAnim(IceAnim,$05)
-weaponTypeAnim(FlyingAnim,$05)
-weaponTypeAnim(FairyAnim,$05)
-weaponTypeAnim(PoisonAnim,$05)
-weaponTypeAnim(RockAnim,$05)
-weaponTypeAnim(GhostAnim,$05)
-weaponTypeAnim(DragonAnim,$05)
-weaponTypeAnim(BugAnim,$05)
-weaponTypeAnim(DarkAnim,$05)
-weaponAnimEnd
+
+
 
 ALIGN 4
-animSquirtleClass:
-weaponAnim(0x28,$06) //Hand axe 
-weaponTypeAnim(ItemAnim,$06)
-weaponTypeAnim(NormalAnim,$06)
-weaponTypeAnim(ElectricAnim,$06)
-weaponTypeAnim(WaterAnim,$06)
-weaponTypeAnim(FireAnim,$06)
-weaponTypeAnim(StaffAnim,$06)
-weaponTypeAnim(GrassAnim,$06)
-weaponTypeAnim(GroundAnim,$06)
-weaponTypeAnim(PsychicAnim,$06)
-weaponTypeAnim(FightingAnim,$06)
-weaponTypeAnim(SteelAnim,$06)
-weaponTypeAnim(IceAnim,$06)
-weaponTypeAnim(FlyingAnim,$06)
-weaponTypeAnim(FairyAnim,$06)
-weaponTypeAnim(PoisonAnim,$06)
-weaponTypeAnim(RockAnim,$06)
-weaponTypeAnim(GhostAnim,$06)
-weaponTypeAnim(DragonAnim,$06)
-weaponTypeAnim(BugAnim,$06)
-weaponTypeAnim(DarkAnim,$06)
+anim2:
+animEntry(2)
+weaponAnimEnd
+ALIGN 4
+anim3:
+animEntry(3)
+weaponAnimEnd
+ALIGN 4
+anim4:
+animEntry(4)
+weaponAnimEnd
+ALIGN 4
+anim5:
+animEntry(5)
+weaponAnimEnd
+ALIGN 4
+anim6:
+animEntry(6)
+weaponAnimEnd
+ALIGN 4
+anim7:
+animEntry(7)
+weaponAnimEnd
+ALIGN 4
+anim8:
+animEntry(8)
+weaponAnimEnd
+ALIGN 4
+anim9:
+animEntry(9)
+weaponAnimEnd
+ALIGN 4
+anim10:
+animEntry(10)
+weaponAnimEnd
+ALIGN 4
+anim11:
+animEntry(11)
+weaponAnimEnd
+ALIGN 4
+anim12:
+animEntry(12)
+weaponAnimEnd
+ALIGN 4
+anim13:
+animEntry(13)
+weaponAnimEnd
+ALIGN 4
+anim14:
+animEntry(14)
+weaponAnimEnd
+ALIGN 4
+anim15:
+animEntry(15)
+weaponAnimEnd
+ALIGN 4
+anim16:
+animEntry(16)
+weaponAnimEnd
+ALIGN 4
+anim17:
+animEntry(17)
+weaponAnimEnd
+ALIGN 4
+anim18:
+animEntry(18)
+weaponAnimEnd
+ALIGN 4
+anim19:
+animEntry(19)
+weaponAnimEnd
+ALIGN 4
+anim20:
+animEntry(20)
+weaponAnimEnd
+ALIGN 4
+anim21:
+animEntry(21)
+weaponAnimEnd
+ALIGN 4
+anim22:
+animEntry(22)
+weaponAnimEnd
+ALIGN 4
+anim23:
+animEntry(23)
+weaponAnimEnd
+ALIGN 4
+anim24:
+animEntry(24)
+weaponAnimEnd
+ALIGN 4
+anim25:
+animEntry(25)
+weaponAnimEnd
+ALIGN 4
+anim26:
+animEntry(26)
+weaponAnimEnd
+ALIGN 4
+anim27:
+animEntry(27)
+weaponAnimEnd
+ALIGN 4
+anim28:
+animEntry(28)
+weaponAnimEnd
+ALIGN 4
+anim29:
+animEntry(29)
+weaponAnimEnd
+ALIGN 4
+anim30:
+animEntry(30)
+weaponAnimEnd
+ALIGN 4
+anim31:
+animEntry(31)
+weaponAnimEnd
+ALIGN 4
+anim32:
+animEntry(32)
+weaponAnimEnd
+ALIGN 4
+anim33:
+animEntry(33)
+weaponAnimEnd
+ALIGN 4
+anim34:
+animEntry(34)
+weaponAnimEnd
+ALIGN 4
+anim35:
+animEntry(35)
+weaponAnimEnd
+ALIGN 4
+anim36:
+animEntry(36)
+weaponAnimEnd
+ALIGN 4
+anim37:
+animEntry(37)
+weaponAnimEnd
+ALIGN 4
+anim38:
+animEntry(38)
+weaponAnimEnd
+ALIGN 4
+anim39:
+animEntry(39)
+weaponAnimEnd
+ALIGN 4
+anim40:
+animEntry(40)
+weaponAnimEnd
+ALIGN 4
+anim41:
+animEntry(41)
+weaponAnimEnd
+ALIGN 4
+anim42:
+animEntry(42)
+weaponAnimEnd
+ALIGN 4
+anim43:
+animEntry(43)
+weaponAnimEnd
+ALIGN 4
+anim44:
+animEntry(44)
+weaponAnimEnd
+ALIGN 4
+anim45:
+animEntry(45)
+weaponAnimEnd
+ALIGN 4
+anim46:
+animEntry(46)
+weaponAnimEnd
+ALIGN 4
+anim47:
+animEntry(47)
+weaponAnimEnd
+ALIGN 4
+anim48:
+animEntry(48)
+weaponAnimEnd
+ALIGN 4
+anim49:
+animEntry(49)
+weaponAnimEnd
+ALIGN 4
+anim50:
+animEntry(50)
+weaponAnimEnd
+ALIGN 4
+anim51:
+animEntry(51)
+weaponAnimEnd
+ALIGN 4
+anim52:
+animEntry(52)
+weaponAnimEnd
+ALIGN 4
+anim53:
+animEntry(53)
+weaponAnimEnd
+ALIGN 4
+anim54:
+animEntry(54)
+weaponAnimEnd
+ALIGN 4
+anim55:
+animEntry(55)
+weaponAnimEnd
+ALIGN 4
+anim56:
+animEntry(56)
+weaponAnimEnd
+ALIGN 4
+anim57:
+animEntry(57)
+weaponAnimEnd
+ALIGN 4
+anim58:
+animEntry(58)
+weaponAnimEnd
+ALIGN 4
+anim59:
+animEntry(59)
+weaponAnimEnd
+ALIGN 4
+anim60:
+animEntry(60)
+weaponAnimEnd
+ALIGN 4
+anim61:
+animEntry(61)
+weaponAnimEnd
+ALIGN 4
+anim62:
+animEntry(62)
+weaponAnimEnd
+ALIGN 4
+anim63:
+animEntry(63)
+weaponAnimEnd
+ALIGN 4
+anim64:
+animEntry(64)
+weaponAnimEnd
+ALIGN 4
+anim65:
+animEntry(65)
+weaponAnimEnd
+ALIGN 4
+anim66:
+animEntry(66)
+weaponAnimEnd
+ALIGN 4
+anim67:
+animEntry(67)
+weaponAnimEnd
+ALIGN 4
+anim68:
+animEntry(68)
+weaponAnimEnd
+ALIGN 4
+anim69:
+animEntry(69)
+weaponAnimEnd
+ALIGN 4
+anim70:
+animEntry(70)
+weaponAnimEnd
+ALIGN 4
+anim71:
+animEntry(71)
+weaponAnimEnd
+ALIGN 4
+anim72:
+animEntry(72)
+weaponAnimEnd
+ALIGN 4
+anim73:
+animEntry(73)
+weaponAnimEnd
+ALIGN 4
+anim74:
+animEntry(74)
+weaponAnimEnd
+ALIGN 4
+anim75:
+animEntry(75)
+weaponAnimEnd
+ALIGN 4
+anim76:
+animEntry(76)
+weaponAnimEnd
+ALIGN 4
+anim77:
+animEntry(77)
+weaponAnimEnd
+ALIGN 4
+anim78:
+animEntry(78)
+weaponAnimEnd
+ALIGN 4
+anim79:
+animEntry(79)
+weaponAnimEnd
+ALIGN 4
+anim80:
+animEntry(80)
+weaponAnimEnd
+ALIGN 4
+anim81:
+animEntry(81)
+weaponAnimEnd
+ALIGN 4
+anim82:
+animEntry(82)
+weaponAnimEnd
+ALIGN 4
+anim83:
+animEntry(83)
+weaponAnimEnd
+ALIGN 4
+anim84:
+animEntry(84)
+weaponAnimEnd
+ALIGN 4
+anim85:
+animEntry(85)
+weaponAnimEnd
+ALIGN 4
+anim86:
+animEntry(86)
+weaponAnimEnd
+ALIGN 4
+anim87:
+animEntry(87)
+weaponAnimEnd
+ALIGN 4
+anim88:
+animEntry(88)
+weaponAnimEnd
+ALIGN 4
+anim89:
+animEntry(89)
+weaponAnimEnd
+ALIGN 4
+anim90:
+animEntry(90)
+weaponAnimEnd
+ALIGN 4
+anim91:
+animEntry(91)
+weaponAnimEnd
+ALIGN 4
+anim92:
+animEntry(92)
+weaponAnimEnd
+ALIGN 4
+anim93:
+animEntry(93)
+weaponAnimEnd
+ALIGN 4
+anim94:
+animEntry(94)
+weaponAnimEnd
+ALIGN 4
+anim95:
+animEntry(95)
+weaponAnimEnd
+ALIGN 4
+anim96:
+animEntry(96)
+weaponAnimEnd
+ALIGN 4
+anim97:
+animEntry(97)
+weaponAnimEnd
+ALIGN 4
+anim98:
+animEntry(98)
+weaponAnimEnd
+ALIGN 4
+anim99:
+animEntry(99)
+weaponAnimEnd
+ALIGN 4
+anim100:
+animEntry(100)
+weaponAnimEnd
+ALIGN 4
+anim101:
+animEntry(101)
+weaponAnimEnd
+ALIGN 4
+anim102:
+animEntry(102)
+weaponAnimEnd
+ALIGN 4
+anim103:
+animEntry(103)
+weaponAnimEnd
+ALIGN 4
+anim104:
+animEntry(104)
+weaponAnimEnd
+ALIGN 4
+anim105:
+animEntry(105)
+weaponAnimEnd
+ALIGN 4
+anim106:
+animEntry(106)
+weaponAnimEnd
+ALIGN 4
+anim107:
+animEntry(107)
+weaponAnimEnd
+ALIGN 4
+anim108:
+animEntry(108)
+weaponAnimEnd
+ALIGN 4
+anim109:
+animEntry(109)
+weaponAnimEnd
+ALIGN 4
+anim110:
+animEntry(110)
+weaponAnimEnd
+ALIGN 4
+anim111:
+animEntry(111)
+weaponAnimEnd
+ALIGN 4
+anim112:
+animEntry(112)
+weaponAnimEnd
+ALIGN 4
+anim113:
+animEntry(113)
+weaponAnimEnd
+ALIGN 4
+anim114:
+animEntry(114)
+weaponAnimEnd
+ALIGN 4
+anim115:
+animEntry(115)
+weaponAnimEnd
+ALIGN 4
+anim116:
+animEntry(116)
+weaponAnimEnd
+ALIGN 4
+anim117:
+animEntry(117)
+weaponAnimEnd
+ALIGN 4
+anim118:
+animEntry(118)
+weaponAnimEnd
+ALIGN 4
+anim119:
+animEntry(119)
+weaponAnimEnd
+ALIGN 4
+anim120:
+animEntry(120)
+weaponAnimEnd
+ALIGN 4
+anim121:
+animEntry(121)
+weaponAnimEnd
+ALIGN 4
+anim122:
+animEntry(122)
+weaponAnimEnd
+ALIGN 4
+anim123:
+animEntry(123)
+weaponAnimEnd
+ALIGN 4
+anim124:
+animEntry(124)
+weaponAnimEnd
+ALIGN 4
+anim125:
+animEntry(125)
+weaponAnimEnd
+ALIGN 4
+anim126:
+animEntry(126)
+weaponAnimEnd
+ALIGN 4
+anim127:
+animEntry(127)
+weaponAnimEnd
+ALIGN 4
+anim128:
+animEntry(128)
+weaponAnimEnd
+ALIGN 4
+anim129:
+animEntry(129)
+weaponAnimEnd
+ALIGN 4
+anim130:
+animEntry(130)
+weaponAnimEnd
+ALIGN 4
+anim131:
+animEntry(131)
+weaponAnimEnd
+ALIGN 4
+anim132:
+animEntry(132)
+weaponAnimEnd
+ALIGN 4
+anim133:
+animEntry(133)
+weaponAnimEnd
+ALIGN 4
+anim134:
+animEntry(134)
+weaponAnimEnd
+ALIGN 4
+anim135:
+animEntry(135)
+weaponAnimEnd
+ALIGN 4
+anim136:
+animEntry(136)
+weaponAnimEnd
+ALIGN 4
+anim137:
+animEntry(137)
+weaponAnimEnd
+ALIGN 4
+anim138:
+animEntry(138)
+weaponAnimEnd
+ALIGN 4
+anim139:
+animEntry(139)
+weaponAnimEnd
+ALIGN 4
+anim140:
+animEntry(140)
+weaponAnimEnd
+ALIGN 4
+anim141:
+animEntry(141)
+weaponAnimEnd
+ALIGN 4
+anim142:
+animEntry(142)
+weaponAnimEnd
+ALIGN 4
+anim143:
+animEntry(143)
+weaponAnimEnd
+ALIGN 4
+anim144:
+animEntry(144)
+weaponAnimEnd
+ALIGN 4
+anim145:
+animEntry(145)
+weaponAnimEnd
+ALIGN 4
+anim146:
+animEntry(146)
+weaponAnimEnd
+ALIGN 4
+anim147:
+animEntry(147)
+weaponAnimEnd
+ALIGN 4
+anim148:
+animEntry(148)
+weaponAnimEnd
+ALIGN 4
+anim149:
+animEntry(149)
+weaponAnimEnd
+ALIGN 4
+anim150:
+animEntry(150)
+weaponAnimEnd
+ALIGN 4
+anim151:
+animEntry(151)
+weaponAnimEnd
+ALIGN 4
+anim152:
+animEntry(152)
 weaponAnimEnd
 
 
-#define AnimTableEntry(index) "ORG ClassAnimTable + ((index-1) * 0x20)"
+
+#define AnimTableEntry(index)  "ORG ClassAnimTable + ((index)  * 0x20)"
 
 #include "_Master Animation Installer.event"
 #include "handaxs_wildcard/Installer.event"

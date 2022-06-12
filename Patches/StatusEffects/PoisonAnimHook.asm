@@ -15,7 +15,7 @@ push {r4, lr}
 ldr r0, =0x203A958 @ gActionData 
 ldrb r0, [r0, #0x0C] @ subject index 
 blh GetUnit 
-mov r11, r11 
+
 cmp r0, #0 
 beq PoisonAnim
 mov r4, r0 
@@ -28,14 +28,16 @@ tst r0, r1
 bne PoisonAnim 
 mov r1, #0x30 @ status 
 ldrb r0, [r4, r1] 
+lsl r0, #28 
+lsr r0, #28 @ duration|statusID 
 ldr r1, =BurnStatusID_Link
 ldrb r1, [r1] 
-tst r0, r1 
-bne BurnAnim 
+cmp r0, r1 
+beq BurnAnim 
 ldr r1, =TrappedStatusID_Link
 ldrb r1, [r1] 
-tst r0, r1 
-bne VortexAnim 
+cmp r0, r1 
+beq VortexAnim 
 b PoisonAnim @ if all else fails, default to poison 
 
 VortexAnim:
