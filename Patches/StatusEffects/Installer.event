@@ -3,12 +3,28 @@
 
 ALIGN 4 
 VortexAnimation:
-#incbin "PoisonAnimation.dmp"
 #incbin "VortexAnimation.dmp"
+
+ALIGN 4 
+VortexPal:
+#incbin "VortexAnimation_pal.dmp"
+
+ALIGN 4 
+PoisonAnimation:
+#incbin "PoisonAnimation.dmp"
+
+ALIGN 4 
+PoisonPal:
+#incbin "PoisonAnimation_pal.dmp"
+
 
 ALIGN 4 
 BurnAnimation:
 #incbin "BurnAnimation.dmp"
+
+ALIGN 4 
+BurnPal:
+#incbin "BurnAnimation_pal.dmp"
 
 #include "PoisonAnimHook.lyn.event"
 
