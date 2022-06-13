@@ -9,6 +9,7 @@
 #include "SplitPromoItems/Installer.event"
 
 #include "RNGRandomizer/RNGRandomizerInstaller.event" //this broke suspend for some reason 
+
 #include "_Routines/Installer.event"
 #include "RingRework/Installer.event"
 #include "StatusEffects/Installer.event" 

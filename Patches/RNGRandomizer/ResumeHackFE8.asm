@@ -23,7 +23,7 @@ bx r3
 
 .align 4
 ReturnAddress:
-.long 0x08000C42|1
+.long 0x08000C44|1
 AttackerData:
 .long 0x0203A4EC
 ActiveUnitDeploymentNumber:
