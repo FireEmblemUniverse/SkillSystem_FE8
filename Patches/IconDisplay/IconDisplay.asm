@@ -8,7 +8,7 @@
 
 .equ gChapterData, 0x202BCF0
 .equ CheckEventId, 0x8083da8
-.equ MemorySlot, 0x30004B8
+.equ GetChapterDefinition, 0x8034618 
 
 push {r4-r6, lr} 
 
@@ -20,9 +20,9 @@ mov r2, #0xFF
 and r1, r2 @ end of vanilla 
 push {r0-r1} @ save vanilla values 
 
-ldr r3, =MemorySlot 
-add r3, #0x0C*4 
-ldr r4, [r3] @ unit pointer 
+mov r4, r9 @ unit pointer 
+cmp r4, #0xFF 
+ble DefaultBehaviour
 
 ldr r5, IconDisplayList 
 mov r6, #0 
@@ -86,10 +86,15 @@ b Exit
 DefaultBehaviour: 
 ldr r3, =0x811 
 Exit: 
-
-
+push {r3} 
+ldr r2, =gChapterData
+ldrb r0, [r2, #0xE] @ chapter ID 
+blh GetChapterDefinition
+add r0, #0x8E @ unit ID to defend default 
+ldrb r0, [r0] 
+mov r9, r0 @ restore r9 to what it was 
+pop {r3} 
 pop {r0-r1} 
-
 pop {r4-r6}
 pop {r2} 
 bx r2 

@@ -21,7 +21,7 @@ PUSH; ORG CurrentOffset+1
 UnitDisplay:
 POP; #incbin "UnitDisplay.dmp"
 POIN IconDisplayList
-
+POIN CheckTrainerFlag
 
 ALIGN 4 
 PUSH; ORG CurrentOffset+1
@@ -41,14 +41,25 @@ IconDisplayList:
 //BYTE 0 // padding 
 //BYTE 0 // Padding 
 
-/*
-BYTE 1 0; SHORT 0; 		BYTE 0xFF 0xFF 0 0 // Unit ID 1 to always display default icon for unit to defend 
-BYTE 2 0; SHORT 0; 		BYTE 0xFF 0x76 0 0
-BYTE 3 0; SHORT 0; 		BYTE 0xFF 0x77 0 0
-BYTE 4 0; SHORT 0; 		BYTE 0xFF 0x4  0 0
-BYTE 5 0; SHORT 0; 		BYTE 0xFF 0x51 0 0
-BYTE 6 0; SHORT 0; 	BYTE 0xFF 3 0 0  // Any unit ID, class, any flag
-*/
+
+BYTE 0xE0 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE1 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE2 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE3 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE4 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE5 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE6 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE7 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE8 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xE9 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xEA 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xEB 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xEC 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xED 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xEE 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+BYTE 0xEF 	0; SHORT 0; 		BYTE 0xFF 0x50 1 0 
+
+
 WORD 0xFFFFFFFF 0xFFFFFFFF // terminator 
 
 

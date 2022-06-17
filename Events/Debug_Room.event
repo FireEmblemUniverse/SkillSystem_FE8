@@ -284,7 +284,7 @@ ENUT MarshbadgeObtained
 //ASMC SeePokedex
 
 Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(1, YCoordNewArea)  
+Write_Byte(5, YCoordNewArea)  
 //MNC2 PewterGymCh
 MNC2 CinnabarCh
 //MNC2 Route5Ch
