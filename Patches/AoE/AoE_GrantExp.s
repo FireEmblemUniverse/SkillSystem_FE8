@@ -184,6 +184,11 @@ b XLoop
 
 Healing: 
 @ are units allied 24D8C
+ldrb r1, [r0, #8] @ level 
+ldrb r2, [r3, #8] @ level 
+cmp r1, r2 @ target, actor 
+bge XLoop 
+
 mov r2, #0x80 
 ldrb r1, [r0, #0x0B] @ deployment byte 
 ldrb r3, [r3, #0x0B] @ deployment byte 
