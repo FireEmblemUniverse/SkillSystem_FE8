@@ -94,7 +94,7 @@ Paralyze[X]
 # 0x51D FreezeStatScreenName
 Freeze[X]
 
-# 0x51E TrappedStatScreenName * 
+# 0x51E TrappedStatScreenName ^ 
 Entangled[X]
 
 # 0x558 BurnRTextDesc
@@ -107,7 +107,7 @@ Chance of a missed turn.[X]
 Frozen. Def/Res are halved.[N]
 Unable to move.[X]
 
-# 0x55B TrappedRTextDesc
+# 0x55B TrappedRTextDesc 
 Entangled. Damaged each turn.[N]
 Difficult to move.[X]
 

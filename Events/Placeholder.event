@@ -264,14 +264,14 @@ ENUN
 AutoLevelUnits(30, True, 0x50FF)
 RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-SetUnitStatus(1, CurrentHP, 5)
+SetUnitStatus(1, CurrentHP, 25)
 
-SetUnitStatus(2, CurrentHP, 5)
+SetUnitStatus(2, CurrentHP, 25)
 
 SetUnitStatus(1, BadStatusType, TrappedStatusID) 
-SetUnitStatus(2, BadStatusType, TrappedStatusID) 
-SetUnitStatus(3, BadStatusType, TrappedStatusID) 
-SetUnitStatus(4, BadStatusType, TrappedStatusID) 
+//SetUnitStatus(2, BadStatusType, TrappedStatusID) 
+SetUnitStatus(3, BadStatusType, BurnStatusID) 
+//SetUnitStatus(4, BadStatusType, TrappedStatusID) 
 
 
 //AutoLevelUnits(19, True, 0x120) // all 
