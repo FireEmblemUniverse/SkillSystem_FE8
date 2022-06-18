@@ -1,0 +1,38 @@
+#include "EAstdlib.event" 
+
+#define KNOCKBACK_ADJACENT_ONLY False
+
+
+ALIGN 4 
+MovementCalcLoop:
+POIN KnockbackEffect
+POIN DigEffect 
+WORD 0 // Terminator 
+
+
+
+#include "MovementCalcLoop.lyn.event" 
+WORD KNOCKBACK_ADJACENT_ONLY 
+
+
+ALIGN 4 
+KnockbackItemList:
+BYTE Scratch 
+BYTE 0 
+
+ALIGN 4 
+DigItemList:
+BYTE SevenRangeWep
+//BYTE NightShade Dig Fly 
+BYTE 0 // Terminator 
+
+
+
+PUSH 
+ORG $18758
+callHack_r3(MovementCalcLoopFunc) 
+
+ORG $81538 
+callHack_r3(MovementCalcLoopMMSUpdate)
+
+POP 

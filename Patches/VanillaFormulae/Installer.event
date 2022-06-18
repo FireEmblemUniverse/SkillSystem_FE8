@@ -9,16 +9,13 @@
 #include "Heal_CalcLoop/Installer.event"
 
 #include "StatusDamageLoop.lyn.event" 
-#include "DigEffect.lyn.event" 
 
-ALIGN 4 
-DigItemList:
-BYTE NightShade Dig Fly 
-BYTE 0 // Terminator 
 
 ALIGN 4 
 UnitTryHealLowerCap:
 #incbin "UnitTryHeal.dmp"
+
+
 
 
 PUSH 

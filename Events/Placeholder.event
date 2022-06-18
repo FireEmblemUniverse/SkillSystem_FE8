@@ -206,7 +206,7 @@ UNIT
 EnemyUnits:
 //UNIT 0x50 ClassRoute2NWildA 0x0 Level(0, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
 //UNIT 0x50 ParasectID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 MachopID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [ThreeRangeWep,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 MachopID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [0x0,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0x50 BeedrillID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0x61 ButterfreeID 0x0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x01 REDA14R12 [0x0,0x0,0x0,0x0] [0,0,0,32]
 
@@ -261,16 +261,16 @@ LOAD1 1 EnemyUnits
 ENUN 
 //LOAD1 1 Units3 
 //ENUN 
-AutoLevelUnits(30, True, 0x50FF)
+AutoLevelUnits(20, True, 0x50FF)
 RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-SetUnitStatus(1, CurrentHP, 25)
+//SetUnitStatus(1, CurrentHP, 25)
 
-SetUnitStatus(2, CurrentHP, 25)
+//SetUnitStatus(2, CurrentHP, 25)
 
 SetUnitStatus(1, BadStatusType, TrappedStatusID) 
 //SetUnitStatus(2, BadStatusType, TrappedStatusID) 
-SetUnitStatus(3, BadStatusType, BurnStatusID) 
+SetUnitStatus(2, BadStatusType, BurnStatusID) 
 //SetUnitStatus(4, BadStatusType, TrappedStatusID) 
 
 
@@ -279,7 +279,9 @@ CALL SetBushHpEvent
 
 //SetUnitStatus(1, 0x28, Flamethrower)
 
-SetUnitStatus(3, 0x29, RecoverMove)
+SetUnitStatus(2, 0x29, Scratch)
+SetUnitStatus(4, 0x29, SevenRangeWep)
+SetUnitStatus(4, 0x2A, Bolting)
 SetUnitStatus(0x50, 0x16, 20)
 
 SetUnitStatus(0x50, 0x8, 20)

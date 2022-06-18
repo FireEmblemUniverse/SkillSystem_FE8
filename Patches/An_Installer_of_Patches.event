@@ -1,6 +1,6 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 #include "IconDisplay/Installer.event"
-
+#include "MovementCalcLoop/Installer.event" 
 
 #include "Pokedex/Installer.event"
 #include "Learnsets/SpellScrolls.event"
