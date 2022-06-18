@@ -63,15 +63,6 @@ PUSH
   SHORT $2187
 POP
 
-//change staff battle init to not give 0xFF status on miss
-  PUSH
-  ORG $2CBAC
-  SHORT 0x2100 //mov r1,#1 -> mov r1,#0
-  SHORT 0x46C0 //neg r1,r1 -> nop
-  ORG $2A5FE  
-  SHORT 0x2000 //mov r0,#0xFF -> mov r0,#0
-  POP
-
 //Break HP Cap for Players/NPCs (credit Solum)
   // ORG $181ee
   // SHORT $1c11
