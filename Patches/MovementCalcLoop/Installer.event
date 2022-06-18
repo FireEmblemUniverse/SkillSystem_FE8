@@ -3,11 +3,9 @@
 #define KNOCKBACK_ADJACENT_ONLY False
 
 
-ALIGN 4 
-MovementCalcLoop:
-POIN KnockbackEffect
-POIN DigEffect 
-WORD 0 // Terminator 
+
+
+
 
 
 
@@ -17,22 +15,45 @@ WORD KNOCKBACK_ADJACENT_ONLY
 
 ALIGN 4 
 KnockbackItemList:
-BYTE Scratch 
+BYTE Rapier //Scratch 
 BYTE 0 
 
 ALIGN 4 
 DigItemList:
-BYTE SevenRangeWep
+BYTE IronSword //SevenRangeWep
 //BYTE NightShade Dig Fly 
 BYTE 0 // Terminator 
 
-
+#ifndef callHack_r3
+	#define BLRange(pointer) "((pointer - CURRENTOFFSET - 4)>>1)"
+	#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xD18CC); SHORT 0xE001; POIN (offset|0x1)"
+#endif 
 
 PUSH 
-ORG $18758
-callHack_r3(MovementCalcLoopFunc) 
-
 ORG $81538 
 callHack_r3(MovementCalcLoopMMSUpdate)
 
 POP 
+
+ALIGN 4 
+MovementCalcLoop:
+POIN KnockbackEffect
+POIN DigEffect 
+WORD 0 // Terminator 
+
+PUSH 
+ORG $18758
+callHack_r3(MovementCalcLoopFunc) 
+POP 
+
+#ifndef FIND_FREE_TILE
+	#define FIND_FREE_TILE 
+	#include "Src/FindFreeTile.lyn.event" 
+
+	ALIGN 4
+	GenericMovCost: // used in FindFreeTile code 
+	BYTE $FF $01 $01 $0F $0F $01 $01 $01 $01 $01 $01 $01 $01 $0F $01 $01 $0F $0F $0F $01 $01 $0F $02 $01 $01 $FF $0F $0F $01 $01 $0F $01 $01 $01 $0F $01 $01 $01 $0F $01 $01 $01 $01 $01 $FF $01 $FF $01 $01 $0F $FF $0F $01 $0F $0F $01 $01 $0F $0F $0F $0F $0F $01 $0F $0F $FF
+#endif 
+
+

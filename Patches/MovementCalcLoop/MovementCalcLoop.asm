@@ -209,10 +209,6 @@ ldr r2, =Defender @ only effect this unit
 str r2, [r3] 
 str r0, [r3, #4] @ coords to place into 
 
-
-
-
-
 ExitKnockbackEffect: 
 
 
@@ -226,16 +222,45 @@ bx r0
 .type MovementCalcLoopMMSUpdate, %function 
 MovementCalcLoopMMSUpdate:
 push {r4, lr}
+
+bl DigEffect 
+ldr r0, =0x89A2C48 @gProc_MoveUnit
+ldr r1, =UpdateMMSCoordDig
+blh ForEach6C
+
+
+ldr r3, =MemorySlot
+mov r0, #0 
+str r0, [r3, #4*0x08]
+str r0, [r3, #4*0x09]
+
 bl KnockbackEffect 
-
-
-
 
 ldr r0, =0x89A2C48 @gProc_MoveUnit
 ldr r1, =UpdateMMSCoord
 blh ForEach6C
-cmp r0, #0 
-beq BreakMoveUnitUpdate
+
+
+
+@ldr r3, =Attacker 
+@ldrb r0, [r3, #0x0B] @ deployment byte 
+@blh GetUnit 
+@cmp r0, #0 
+@beq SkipAttacker
+@ldr r3, =Attacker 
+@ldrh r1, [r3, #0x10] 
+@strh r1, [r0, #0x10] @ overwrite coords 
+@
+@SkipAttacker: 
+@ldr r3, =Defender
+@ldrb r0, [r3, #0x0B] @ deployment byte 
+@blh GetUnit 
+@cmp r0, #0 
+@beq BreakMoveUnitUpdate
+@ldr r3, =Defender 
+@ldrh r1, [r3, #0x10] 
+@strh r1, [r0, #0x10] @ overwrite coords 
+
 
 BreakMoveUnitUpdate: 
 ldr r0, =gMapAnimStruct @ vanilla 
@@ -259,6 +284,8 @@ push {r4-r7, lr}
 mov r4, r0 @ MMS proc 
 add r0, #0x2C 
 ldr r5, [r0] @ unit struct 
+cmp r5, #0 
+beq ExitUpdateMMSCoord
 
 ldr r3, =MemorySlot
 add r3, #0x8*4 
@@ -286,11 +313,42 @@ bx r0
 
 .ltorg 
 
+.global UpdateMMSCoordDig
+.type UpdateMMSCoordDig, %function 
+
+UpdateMMSCoordDig: @ Copy unit struct coords over into MMS coords 
+push {r4-r7, lr}
+mov r4, r0 @ MMS proc 
+add r0, #0x2C 
+ldr r5, [r0] @ unit struct 
+cmp r5, #0 
+beq ExitUpdateMMSCoordDig
+ldrb r0, [r5, #0x10] @ XX 
+
+lsl r0, #8 
+mov r2, r4 
+add r2, #0x4C @ XX * 256 
+strh r0, [r2] 
+ldrb r0, [r5, #0x11] @ YY
+
+lsl r0, #8 
+strh r0, [r2, #2] @ YY  
+
+
+ExitUpdateMMSCoordDig: 
+
+pop {r4-r7}
+pop {r0}
+bx r0 
+
+.ltorg 
+
+
 CanWeMoveThere:
 push {r4-r6, lr}
 mov r5, r0 @ XX 
 mov r6, r1 @ YY  
-mov r4, r2 @ unit struct with desired coordinates 
+mov r4, r2 @ unit struct
 mov r0, r5 
 mov r1, r6 
 @r0 x, r1 y coord to move unit to 
@@ -334,10 +392,12 @@ bx r1
 .type   DigEffect, function
 
 DigEffect:	
-push {r4-r6, lr} 
+push {r4-r7, lr} 
 ldr r4, =Attacker
 ldr r5, =Defender
 ldr r6, =gActionData
+mov r7, sp 
+sub sp, #8 
 @r4 = attacker, r5 = defender, r6 = action struct 
 
 
@@ -380,25 +440,22 @@ add r0, r1
 cmp r0, #1 
 ble Exit @ exit if already nearby 
 
-
+mov r11, r11 
 ldrh r0, [r4, #0x10] @ XXYY 
 push {r0} 
 ldrh r0, [r5, #0x10] 
 strh r0, [r4, #0x10] 
 
 mov r0, r4 @ Unit to place 
-ldr r1, =MemorySlot 
-add r1, #4*0x0A @ XX in sA
-add r2, r1, #4 @ YY in sB 
+mov r1, r7 @ XX 
+add r2, r1, #4 @ YY 
 ldr r3, =0xFFFFFFFF @ (-1) as failed value 
 str r3, [r1]
 str r3, [r2] 
 bl FindFreeTile @FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
-ldr r3, =MemorySlot 
-add r3, #4*0x0A @ sA 
-ldr r1, [r3] @ X
-ldr r2, [r3, #4] @ Y 
+ldr r1, [r7] @ X
+ldr r2, [r7, #4] @ Y 
 pop {r0} @ original coords 
 
 lsr r3, r1, #8 
@@ -416,18 +473,15 @@ ldr r3, =CurrentUnit
 ldr r3, [r3] 
 strb r1, [r3, #0x10]
 strb r2, [r3, #0x11]
-
-ldr r0, =UnitMap
-ldr r0, [r0] 
-mov r1, #0
-blh FillMap 
-blh UpdateUnitMapAndVision 
-blh UpdateTrapHiddenStates 
-blh SMS_UpdateFromGameData
-blh UpdateGameTilesGraphics 
+strb r1, [r4, #0x10] 
+strb r2, [r4, #0x11] 
+ldr r3, =gActionData 
+strb r1, [r3, #0xE] 
+strb r2, [r3, #0xF] 
 
 Exit: 
-pop {r4-r6} 
+add sp, #8 
+pop {r4-r7} 
 pop {r0} 
 bx r0 
 .ltorg 
