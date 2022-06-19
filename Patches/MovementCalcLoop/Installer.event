@@ -15,13 +15,27 @@ WORD KNOCKBACK_ADJACENT_ONLY
 
 ALIGN 4 
 KnockbackItemList:
-BYTE Rapier //Scratch 
+BYTE Rapier Tackle
+BYTE 0 
+
+ALIGN 4
+PullBackItemList:
+BYTE Scratch
+BYTE 0 
+
+ALIGN 4 
+HitAndRunItemList:
+BYTE MegaPunch 
+BYTE 0 
+
+ALIGN 4 
+PivotItemList:
+BYTE Slash
 BYTE 0 
 
 ALIGN 4 
 DigItemList:
-BYTE IronSword //SevenRangeWep
-//BYTE NightShade Dig Fly 
+BYTE IronSword SevenRangeWep
 BYTE 0 // Terminator 
 
 #ifndef callHack_r3
@@ -38,13 +52,15 @@ POP
 
 ALIGN 4 
 MovementCalcLoop:
-POIN KnockbackEffect
+// Get coordinates from real unit during map anim battle and save to Attacker/Defender
+POIN KnockbackEffect PullBackEffect HitAndRunEffect PivotEffect 
 POIN DigEffect 
+// After battle, re-run whole loop and update real units to match attacker/defender 
 WORD 0 // Terminator 
 
 PUSH 
 ORG $18758
-callHack_r3(MovementCalcLoopFunc) 
+callHack_r3(PostBattleMovementCalcLoopFunc) 
 POP 
 
 #ifndef FIND_FREE_TILE
