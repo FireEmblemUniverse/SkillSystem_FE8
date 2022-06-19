@@ -359,6 +359,7 @@ mov r5, r0
 
 mov r0, r5 
 add r0, #0x41 @ ai4 byte 
+ldrb r0, [r0] 
 mov r1, #0x20 @ bossAI 
 tst r0, r1 
 bne ExitKnockbackEffect 
@@ -617,8 +618,9 @@ strh r0, [r2, #0x10] @ XXYY
 
 mov r0, r5 
 add r0, #0x41 @ ai4 byte 
-mov r1, #0x20 @ bossAI 
-tst r0, r1 
+ldrb r0, [r0] 
+mov r2, #0x20 @ bossAI 
+tst r0, r2 
 bne ExitPullBackEffect 
 
 strh r1, [r3, #0x10] @ XXYY 
