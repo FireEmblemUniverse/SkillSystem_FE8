@@ -81,6 +81,8 @@
 #define SeafoamB3Ch 0x50
 #define SeafoamB4Ch 0x51
 #define SeafoamB5Ch 0x52
-#define CinnabarMansionACh 0x53
-#define CinnabarMansionBCh 0x54
-#define CinnabarMansionCCh 0x55
+#define MansionB1Ch 0x53
+#define MansionB2Ch 0x54
+#define MansionB3Ch 0x55
+#define MansionB4Ch 0x56
+#define DebugCh 0x57

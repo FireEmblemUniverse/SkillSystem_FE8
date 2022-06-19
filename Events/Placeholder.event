@@ -92,9 +92,11 @@ EventPointerTable(SeafoamB2Ch                    ,ThisChapter)
 EventPointerTable(SeafoamB3Ch                    ,ThisChapter)
 EventPointerTable(SeafoamB4Ch                    ,ThisChapter)
 EventPointerTable(SeafoamB5Ch                    ,ThisChapter)
-EventPointerTable(CinnabarMansionACh                    ,ThisChapter)
-EventPointerTable(CinnabarMansionBCh                    ,ThisChapter)
-EventPointerTable(CinnabarMansionCCh                    ,ThisChapter)
+EventPointerTable(MansionB1Ch                    ,ThisChapter)
+EventPointerTable(MansionB2Ch                    ,ThisChapter)
+EventPointerTable(MansionB3Ch                    ,ThisChapter)
+EventPointerTable(MansionB4Ch                    ,ThisChapter)
+EventPointerTable(DebugCh                    ,ThisChapter)
 
 
 ALIGN 4

@@ -1,6 +1,6 @@
 #include "EAstdlib.event" 
 
-#define KNOCKBACK_ADJACENT_ONLY False
+#define KNOCKBACK_ADJACENT_ONLY True
 
 
 
@@ -15,27 +15,27 @@ WORD KNOCKBACK_ADJACENT_ONLY
 
 ALIGN 4 
 KnockbackItemList:
-BYTE Rapier Tackle
+BYTE Tackle BodySlam Headbutt MegaPunch MegaKick 
 BYTE 0 
 
 ALIGN 4
 PullBackItemList:
-BYTE Scratch
+BYTE Constrict Clamp FireSpin 
 BYTE 0 
 
 ALIGN 4 
 HitAndRunItemList:
-BYTE MegaPunch 
+BYTE ThiefAtt ShadowPunch UTurn
 BYTE 0 
 
 ALIGN 4 
 PivotItemList:
-BYTE Slash
+BYTE Rollout RollingKick HiJumpKick
 BYTE 0 
 
 ALIGN 4 
 DigItemList:
-BYTE IronSword SevenRangeWep
+BYTE Dig Fly
 BYTE 0 // Terminator 
 
 #ifndef callHack_r3

@@ -286,7 +286,7 @@ ENUT MarshbadgeObtained
 Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(5, YCoordNewArea)  
 //MNC2 PewterGymCh
-MNC2 CinnabarCh
+MNC2 DebugCh
 //MNC2 Route5Ch
 //MNC2 Route24Ch
 //MNC2 FuschiaCh

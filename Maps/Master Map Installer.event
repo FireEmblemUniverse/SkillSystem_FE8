@@ -28,6 +28,9 @@
 #include "Maps\CinnabarGym.event"
 }
 {
+#include "Maps\Debug.event"
+}
+{
 #include "Maps\DiglettsCave.event"
 }
 {
@@ -38,6 +41,18 @@
 }
 {
 #include "Maps\Lavender.event"
+}
+{
+#include "Maps\MansionB1.event"
+}
+{
+#include "Maps\MansionB2.event"
+}
+{
+#include "Maps\MansionB3.event"
+}
+{
+#include "Maps\MansionB4.event"
 }
 {
 #include "Maps\MtMoonB1.event"
