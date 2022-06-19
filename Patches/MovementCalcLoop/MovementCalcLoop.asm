@@ -356,6 +356,13 @@ blh GetUnit
 cmp r0, #0 
 beq ExitKnockbackEffect
 mov r5, r0 
+
+mov r0, r5 
+add r0, #0x41 @ ai4 byte 
+mov r1, #0x20 @ bossAI 
+tst r0, r1 
+bne ExitKnockbackEffect 
+
 ldrh r0, [r5, #0x10] @ defaults to coordinates they were already at 
 str r0, [r7] 
 
@@ -606,6 +613,14 @@ ldrh r1, [r7, #2] @ XXYY
 ldr r2, =Attacker
 ldr r3, =Defender
 strh r0, [r2, #0x10] @ XXYY 
+
+
+mov r0, r5 
+add r0, #0x41 @ ai4 byte 
+mov r1, #0x20 @ bossAI 
+tst r0, r1 
+bne ExitPullBackEffect 
+
 strh r1, [r3, #0x10] @ XXYY 
 
 
