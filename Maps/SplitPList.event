@@ -66,6 +66,7 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 
 
 #define Map_Pointer_Table(aId, apointer) "PUSH; ORG MapPLIST+(4*aId); POIN apointer; POP"
+#define Map_Pointer_Table2(aId, apointer) "PUSH; ORG MapPLIST+(4*aId); WORD apointer; POP"
 
 // By default, TMX2EA generates this: 
 //EventPointerTable(ViridianForestNCh, MapChanges)

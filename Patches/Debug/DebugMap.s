@@ -25,51 +25,58 @@
 	.type	DebugMap_ASMC, %function
 DebugMap_ASMC:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 8
+	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{r7, lr}	@
-	sub	sp, sp, #8	@,,
+	sub	sp, sp, #16	@,,
 	add	r7, sp, #0	@,,
-	str	r0, [r7, #4]	@ proc, proc
-@ DebugMap.c:11: 	asm("mov r11, r11");
+	str	r0, [r7, #4]	@ dst, dst
+@ DebugMap.c:39: 	asm("mov r11, r11");
 	.syntax divided
-@ 11 "DebugMap.c" 1
+@ 39 "DebugMap.c" 1
 	mov r11, r11
 @ 0 "" 2
-@ DebugMap.c:12: 	memcpy(MyMapBuffer, DebugMapLabel, 660); // dst, src, size 
+@ DebugMap.c:40: 	for (int i = 1; i<300; i++)
 	.thumb
 	.syntax unified
-	movs	r3, #165	@ tmp117,
-	lsls	r2, r3, #2	@ tmp113, tmp117,
-	ldr	r1, .L2	@ tmp114,
-	ldr	r3, .L2+4	@ tmp115,
-	movs	r0, r3	@, tmp115
-	ldr	r3, .L2+8	@ tmp116,
-	bl	.L4		@
-@ DebugMap.c:14: 	asm("mov r11, r11");
+	movs	r3, #1	@ tmp116,
+	str	r3, [r7, #12]	@ tmp116, i
+@ DebugMap.c:40: 	for (int i = 1; i<300; i++)
+	b	.L2		@
+.L3:
+@ DebugMap.c:42: 		dst[i] = 0x4; 
+	ldr	r3, [r7, #12]	@ i.0_1, i
+	lsls	r3, r3, #1	@ _2, i.0_1,
+	ldr	r2, [r7, #4]	@ tmp117, dst
+	adds	r3, r2, r3	@ _3, tmp117, _2
+@ DebugMap.c:42: 		dst[i] = 0x4; 
+	movs	r2, #4	@ tmp118,
+	strh	r2, [r3]	@ tmp119, *_3
+@ DebugMap.c:40: 	for (int i = 1; i<300; i++)
+	ldr	r3, [r7, #12]	@ tmp121, i
+	adds	r3, r3, #1	@ tmp120,
+	str	r3, [r7, #12]	@ tmp120, i
+.L2:
+@ DebugMap.c:40: 	for (int i = 1; i<300; i++)
+	ldr	r2, [r7, #12]	@ tmp122, i
+	movs	r3, #150	@ tmp124,
+	lsls	r3, r3, #1	@ tmp123, tmp124,
+	cmp	r2, r3	@ tmp122, tmp123
+	blt	.L3		@,
+@ DebugMap.c:44: 	asm("mov r11, r11");
 	.syntax divided
-@ 14 "DebugMap.c" 1
+@ 44 "DebugMap.c" 1
 	mov r11, r11
 @ 0 "" 2
-@ DebugMap.c:15: }
+@ DebugMap.c:46: }
 	.thumb
 	.syntax unified
 	nop	
 	mov	sp, r7	@,
-	add	sp, sp, #8	@,,
+	add	sp, sp, #16	@,,
 	@ sp needed	@
 	pop	{r7}
 	pop	{r0}
 	bx	r0
-.L3:
-	.align	2
-.L2:
-	.word	DebugMapLabel
-	.word	MyMapBuffer
-	.word	memcpy
 	.size	DebugMap_ASMC, .-DebugMap_ASMC
 	.ident	"GCC: (devkitARM release 56) 11.1.0"
-	.code 16
-	.align	1
-.L4:
-	bx	r3

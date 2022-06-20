@@ -34,6 +34,7 @@ SET_FUNC RTextRight, (0x080893E4+1)
 
 //@ Data declarations:
 SET_DATA MyMapBuffer, 0x203F548
+SET_DATA MyMapBuffer2, 0x2010000
 
 
 SET_DATA gVeslyUnit, 0x30017BC
