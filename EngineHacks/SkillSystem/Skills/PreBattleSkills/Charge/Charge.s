@@ -33,17 +33,17 @@ beq End
 
 @How we get damage to add depends on allegiance of the unit
 
-mov r0,r4 @attacker
-ldrb r0,[r0,#0xB] @allegiance byte
-lsr r0,#6 @just the allegiance
-cmp r0,#0
-bne AltMovementCheck
+@mov r0,r4 @attacker
+@ldrb r0,[r0,#0xB] @allegiance byte
+@lsr r0,#6 @just the allegiance
+@cmp r0,#0
+@bne AltMovementCheck
 @fast, but only works for player units
 ldr r3,=0x203a968 @Spaces Moved
 ldrb r2,[r3]
-b FinishCharge
+@b FinishCharge
 
-
+/*
 AltMovementCheck:
 @we need trigonometry to get our movement distance since we can't use spaces moved
 @this only works assuming straight lines but not many reasonable other options
@@ -65,6 +65,7 @@ swi 8 @sqrt
 mov r2,r0 @for consistency in finishing
 
 FinishCharge:
+*/
 lsr r2,#0x1
 mov r1, #0x5A
 ldrh r0, [r4, r1]
