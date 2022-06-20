@@ -30,7 +30,7 @@ cmp r0, #0
 beq End
 
 @Add damage
-
+/*
 @How we get damage to add depends on allegiance of the unit
 
 mov r0,r4 @attacker
@@ -65,6 +65,7 @@ swi 8 @sqrt
 mov r2,r0 @for consistency in finishing
 
 FinishCharge:
+*/
 lsr r2,#0x1
 mov r1, #0x5A
 ldrh r0, [r4, r1]
