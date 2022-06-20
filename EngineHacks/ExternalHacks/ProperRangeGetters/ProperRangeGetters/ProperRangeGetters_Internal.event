@@ -354,7 +354,7 @@ PUSH
 	ALIGN 4
 	_pr3AC66Hook:
 		SHORT 0xB500 // push {lr}
-		SHORT 0x1C29 // mov r1, r5
+		SHORT 0x1C21 // mov r1, r4
 		SHORT 0x181D // add r5, r3, r0
 		SHORT 0x1C30 // mov r0, r6
 		BL(_prMaxRangeGetterProxy) // bl Item_GetMaxRange
