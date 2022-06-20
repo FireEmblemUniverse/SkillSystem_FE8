@@ -8,11 +8,26 @@ Map:
 #incbin "MansionB2_data.dmp"
 
 MapChanges:
-TileMap(0,24,14,3,2,Tile_Layer_2)
+TileMap(0,24,14,3,2,TileChange0)
+TileMap(1,24,9,3,2,TileChange1)
+TileMap(2,12,4,1,5,TileChange2)
+TileMap(2,12,4,1,5,TileChange3)
 TileMapEnd
 
-Tile_Layer_2:
+TileChange0:
 SHORT 0xb4 0x180 0x180 0xb4 0x180 0x180 
+ALIGN 4
+
+TileChange1:
+SHORT 0x314 0x318 0x31c 0x324 0x328 0x32c 
+ALIGN 4
+
+TileChange2:
+SHORT 0x48c 0x490 0x494 0x49c 0x4a0 
+ALIGN 4
+
+TileChange3:
+SHORT 0x1b8 0x23c 0xb4 0x180 0x190 
 ALIGN 4
 
 Map_Pointer_Table(MansionB2Map,Map)

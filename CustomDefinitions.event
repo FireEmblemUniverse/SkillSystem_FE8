@@ -86,7 +86,8 @@
 #define ConvoyExpansionRAMAddr $0203B200
 #define ConvoyRamSize $190  
 
-#define PokemblemRamLocation 0x203F548 
+//#define PokemblemRamLocation 0x203F548 
+#define PokemblemRamLocation 0x203B548 
 #define PokemblemRamSize $27F 
 
 #define CoinsFlagOffset 0x0 
@@ -102,7 +103,8 @@
 
 
 #define BuffDepletePerTurnAmount 2 // -2 from buffs per turn 
-#define BuffTable 0x0203F7C8 // end of pokemblem ram - 0x203F99F // [203F7C7..203F9A0]!
+//#define BuffTable 0x0203F7C8 // end of pokemblem ram - 0x203F99F // [203F7C7..203F9A0]!
+#define BuffTable 0x0203ffff // end of pokemblem ram - 0x203F99F // [203F7C7..203F9A0]!
 #define BuffTableSize 0x1D8 // Pokemblem - 50 players/enemies, 15 NPCs - regular would be $21C i think 
 #define BuffTableEntrySize 4 
 

@@ -9,9 +9,19 @@ Map:
 
 MapChanges:
 TileMap(0,27,18,3,2,Tile_Layer_2)
+TileMap(1,22,10,3,2,Copy_of_Tile_Layer_2)
+TileMap(2,32,18,3,2,Copy_of_Copy_of_Tile_Layer_2)
 TileMapEnd
 
 Tile_Layer_2:
+SHORT 0xb4 0x180 0x180 0xb4 0x180 0x180 
+ALIGN 4
+
+Copy_of_Tile_Layer_2:
+SHORT 0xb4 0x180 0x180 0xb4 0x180 0x180 
+ALIGN 4
+
+Copy_of_Copy_of_Tile_Layer_2:
 SHORT 0xb4 0x180 0x180 0xb4 0x180 0x180 
 ALIGN 4
 
