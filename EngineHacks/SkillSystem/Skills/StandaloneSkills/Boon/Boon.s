@@ -28,12 +28,14 @@ push {r1-r3}
 # Are we petrified?
 mov r0, #0xF
 and r0, r3 @ status index low 4 bits
-cmp r0, #0x9 @ petrify index
+cmp r0, #0xB @ petrify index
+beq YesPetrify
+cmp r0, #0xD @ also petrify index
 bne NoPetrify
 
+YesPetrify:
 # We are petrified so unset state bits
-mov r2, #1
-lsl r2, #6 @ US_HAS_MOVED
+mov r2, #2
 mvn r2, r2
 
 ldr r0, [r4, #0xC] @ unit state
