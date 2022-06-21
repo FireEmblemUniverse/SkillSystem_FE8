@@ -31,7 +31,6 @@
 
     //Maps
     #include "Maps/SplitPList.event"
-	#include "Patches/Debug/Installer.event"
 
     //Patches
 	#define InstallPatches 

@@ -1,0 +1,65 @@
+//Generated - do not edit!
+ 
+ 
+ 
+ALIGN 4 
+MapPiecesTable: 
+POIN Arena_data 
+POIN Armoury_data 
+POIN Debug2_data 
+POIN Forest2by2_data 
+POIN Forest3by3_data 
+POIN Grass1_data 
+POIN Grass2_data 
+POIN Grass3_data 
+POIN Grass4_data 
+POIN RedHouse_data 
+POIN Ruins_data 
+POIN Shop_data 
+POIN Throne_data 
+POIN YellowHouse_data 
+WORD 0 
+ 
+ 
+ALIGN 4 
+Arena_data: 
+#incbin "Arena_data.dmp" 
+ALIGN 4 
+Armoury_data: 
+#incbin "Armoury_data.dmp" 
+ALIGN 4 
+Debug2_data: 
+#incbin "Debug2_data.dmp" 
+ALIGN 4 
+Forest2by2_data: 
+#incbin "Forest2by2_data.dmp" 
+ALIGN 4 
+Forest3by3_data: 
+#incbin "Forest3by3_data.dmp" 
+ALIGN 4 
+Grass1_data: 
+#incbin "Grass1_data.dmp" 
+ALIGN 4 
+Grass2_data: 
+#incbin "Grass2_data.dmp" 
+ALIGN 4 
+Grass3_data: 
+#incbin "Grass3_data.dmp" 
+ALIGN 4 
+Grass4_data: 
+#incbin "Grass4_data.dmp" 
+ALIGN 4 
+RedHouse_data: 
+#incbin "RedHouse_data.dmp" 
+ALIGN 4 
+Ruins_data: 
+#incbin "Ruins_data.dmp" 
+ALIGN 4 
+Shop_data: 
+#incbin "Shop_data.dmp" 
+ALIGN 4 
+Throne_data: 
+#incbin "Throne_data.dmp" 
+ALIGN 4 
+YellowHouse_data: 
+#incbin "YellowHouse_data.dmp" 

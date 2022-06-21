@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="35" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="../TilesetPreviews/UpdatedVillage" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
-  <image source="../TilesetPreviews/UpdatedVillage.png" trans="ffffff" width="512" height="512"/>
+  <image source="UpdatedVillage.png" trans="ffffff" width="512" height="512"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="35" height="35">
   <properties>
@@ -49,9 +49,14 @@
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
+   <tile gid="33"/>
+   <tile gid="34"/>
+   <tile gid="35"/>
+   <tile gid="36"/>
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
+   <tile gid="155"/>
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
@@ -79,6 +84,10 @@
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
+   <tile gid="65"/>
+   <tile gid="66"/>
+   <tile gid="67"/>
+   <tile gid="68"/>
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
@@ -110,19 +119,10 @@
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
-   <tile gid="129"/>
+   <tile gid="97"/>
+   <tile gid="98"/>
+   <tile gid="99"/>
+   <tile gid="100"/>
    <tile gid="129"/>
    <tile gid="129"/>
    <tile gid="129"/>
