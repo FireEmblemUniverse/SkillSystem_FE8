@@ -37,9 +37,20 @@ void DebugMap_ASMC(u16 dst[]) // ASMC
 	// 2 bytes are the map's XX / YY 
 	// then it's just SHORTs of the different tileset IDs in a row 
 	asm("mov r11, r11");
-	for (int i = 1; i<300; i++)
-	{
-		dst[i] = 0x4; 
+	// uncompressed size is 0x512 / #1298 
+	u8 x = (dst[0] & 0xFF); 
+	u8 y = ((dst[0] & 0xFF00) >>8); // no -1 since compare as less than 
+	
+	for (int iy = 0; iy<y; iy++) {
+		for (int ix = 0; ix < x; ix++) {
+			if (ix | iy) {  // if they are both 0, then it will overwrite coordinates 
+				u16 value = 0;
+				while (value == 0) { // never be 0 
+					value = NextRN_N(31) <<6 | NextRN_N(31);
+				}
+				dst[iy*x+ix] = value; 
+			} 
+		}
 	}
 	asm("mov r11, r11");
 

@@ -1,5 +1,6 @@
 ALIGN 4
 WaterTilesetAnimation:
+{
 ConfAnimsTiles(32,0x400,Water1)
 ConfAnimsTiles(32,0x400,Water2)
 ConfAnimsTiles(32,0x400,Water3)
@@ -34,3 +35,4 @@ Water7:
 ALIGN 4
 Water8:
 #incbin "anims_007.dmp"
+}

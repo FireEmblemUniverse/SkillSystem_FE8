@@ -54,9 +54,10 @@
 #define SilphCoConf 0x36
 #define SlotMachineConf 0x37
 #define SSAnneConf 0x38
-#define VermillionConf 0x39
-#define VermillionGymConf 0x3A
-#define ViridianConf 0x3B
-#define ViridianForestNConf 0x3C
-#define ViridianForestSConf 0x3D
-#define ViridianGymConf 0x3E
+#define UpdatedVillageConf 0x39
+#define VermillionConf 0x3A
+#define VermillionGymConf 0x3B
+#define ViridianConf 0x3C
+#define ViridianForestNConf 0x3D
+#define ViridianForestSConf 0x3E
+#define ViridianGymConf 0x3F

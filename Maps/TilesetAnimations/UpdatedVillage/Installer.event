@@ -1,0 +1,70 @@
+ALIGN 4
+UpdatedVillageTilesetAnimation:
+{ ; 
+ConfAnimsTiles(28,4096,Water0)
+ConfAnimsTiles(28,4096,Water1)
+ConfAnimsTiles(28,4096,Water2)
+ConfAnimsTiles(28,4096,Water3)
+ConfAnimsTiles(28,4096,Water4)
+ConfAnimsTiles(28,4096,Water5)
+ConfAnimsTiles(28,4096,Water6)
+ConfAnimsTiles(28,4096,Water7)
+ConfAnimsTiles(28,4096,Water8)
+ConfAnimsTiles(28,4096,Water9)
+ConfAnimsTiles(28,4096,Water10)
+ConfAnimsTiles(28,4096,Water11)
+ConfAnimsTiles(28,4096,Water12)
+ConfAnimsTiles(28,4096,Water13)
+ConfAnimsTiles(28,4096,Water14)
+ConfAnimsTiles(28,4096,Water15)
+WORD 0x00 0x00
+
+ALIGN 4
+Water0: // None of these are compressed
+#incbin "Anim.mapanime 1_000.dmp"
+ALIGN 4
+Water1: // None of these are compressed
+#incbin "Anim.mapanime 1_001.dmp"
+ALIGN 4
+Water2: // None of these are compressed
+#incbin "Anim.mapanime 1_002.dmp"
+ALIGN 4
+Water3: // None of these are compressed
+#incbin "Anim.mapanime 1_003.dmp"
+ALIGN 4
+Water4: // None of these are compressed
+#incbin "Anim.mapanime 1_004.dmp"
+ALIGN 4
+Water5: // None of these are compressed
+#incbin "Anim.mapanime 1_005.dmp"
+ALIGN 4
+Water6: // None of these are compressed
+#incbin "Anim.mapanime 1_006.dmp"
+ALIGN 4
+Water7: // None of these are compressed
+#incbin "Anim.mapanime 1_007.dmp"
+ALIGN 4
+Water8: // None of these are compressed
+#incbin "Anim.mapanime 1_008.dmp"
+ALIGN 4
+Water9: // None of these are compressed
+#incbin "Anim.mapanime 1_009.dmp"
+ALIGN 4
+Water10: // None of these are compressed
+#incbin "Anim.mapanime 1_010.dmp"
+ALIGN 4
+Water11: // None of these are compressed
+#incbin "Anim.mapanime 1_011.dmp"
+ALIGN 4
+Water12: // None of these are compressed
+#incbin "Anim.mapanime 1_012.dmp"
+ALIGN 4
+Water13: // None of these are compressed
+#incbin "Anim.mapanime 1_013.dmp"
+ALIGN 4
+Water14: // None of these are compressed
+#incbin "Anim.mapanime 1_014.dmp"
+ALIGN 4
+Water15: // None of these are compressed
+#incbin "Anim.mapanime 1_015.dmp"
+} 
