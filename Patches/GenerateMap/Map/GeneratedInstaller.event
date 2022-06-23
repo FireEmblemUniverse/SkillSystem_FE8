@@ -6,14 +6,37 @@ ALIGN 4
 MapPiecesTable: 
 POIN Arena_data 
 POIN Armoury_data 
-POIN Debug2_data 
+POIN BuildingDLT_data 
+POIN BuildingDL_data 
+POIN BuildingDRT_data 
+POIN BuildingDR_data 
+POIN BuildingDT_data 
+POIN BuildingD_data 
+POIN CliffLeft1_data 
+POIN CliffLeft2_data 
+POIN CliffRight1_data 
+POIN CliffRight2_data 
+POIN FenceGardenDL_data 
+POIN FenceGardenDR_data 
+POIN FenceGardenLR_data 
+POIN FenceHorizontal_data 
+POIN FenceVertical_data 
+POIN Forest1_data 
 POIN Forest2by2_data 
+POIN Forest2_data 
 POIN Forest3by3_data 
+POIN Forest3_data 
 POIN Grass1_data 
 POIN Grass2_data 
 POIN Grass3_data 
 POIN Grass4_data 
+POIN Pond1_data 
+POIN Pond2_data 
 POIN RedHouse_data 
+POIN RiverHorizontalB_data 
+POIN RiverHorizontal_data 
+POIN RiverVerticalB_data 
+POIN RiverVertical_data 
 POIN Ruins_data 
 POIN Shop_data 
 POIN Throne_data 
@@ -28,14 +51,65 @@ ALIGN 4
 Armoury_data: 
 #incbin "Armoury_data.dmp" 
 ALIGN 4 
-Debug2_data: 
-#incbin "Debug2_data.dmp" 
+BuildingDLT_data: 
+#incbin "BuildingDLT_data.dmp" 
+ALIGN 4 
+BuildingDL_data: 
+#incbin "BuildingDL_data.dmp" 
+ALIGN 4 
+BuildingDRT_data: 
+#incbin "BuildingDRT_data.dmp" 
+ALIGN 4 
+BuildingDR_data: 
+#incbin "BuildingDR_data.dmp" 
+ALIGN 4 
+BuildingDT_data: 
+#incbin "BuildingDT_data.dmp" 
+ALIGN 4 
+BuildingD_data: 
+#incbin "BuildingD_data.dmp" 
+ALIGN 4 
+CliffLeft1_data: 
+#incbin "CliffLeft1_data.dmp" 
+ALIGN 4 
+CliffLeft2_data: 
+#incbin "CliffLeft2_data.dmp" 
+ALIGN 4 
+CliffRight1_data: 
+#incbin "CliffRight1_data.dmp" 
+ALIGN 4 
+CliffRight2_data: 
+#incbin "CliffRight2_data.dmp" 
+ALIGN 4 
+FenceGardenDL_data: 
+#incbin "FenceGardenDL_data.dmp" 
+ALIGN 4 
+FenceGardenDR_data: 
+#incbin "FenceGardenDR_data.dmp" 
+ALIGN 4 
+FenceGardenLR_data: 
+#incbin "FenceGardenLR_data.dmp" 
+ALIGN 4 
+FenceHorizontal_data: 
+#incbin "FenceHorizontal_data.dmp" 
+ALIGN 4 
+FenceVertical_data: 
+#incbin "FenceVertical_data.dmp" 
+ALIGN 4 
+Forest1_data: 
+#incbin "Forest1_data.dmp" 
 ALIGN 4 
 Forest2by2_data: 
 #incbin "Forest2by2_data.dmp" 
 ALIGN 4 
+Forest2_data: 
+#incbin "Forest2_data.dmp" 
+ALIGN 4 
 Forest3by3_data: 
 #incbin "Forest3by3_data.dmp" 
+ALIGN 4 
+Forest3_data: 
+#incbin "Forest3_data.dmp" 
 ALIGN 4 
 Grass1_data: 
 #incbin "Grass1_data.dmp" 
@@ -49,8 +123,26 @@ ALIGN 4
 Grass4_data: 
 #incbin "Grass4_data.dmp" 
 ALIGN 4 
+Pond1_data: 
+#incbin "Pond1_data.dmp" 
+ALIGN 4 
+Pond2_data: 
+#incbin "Pond2_data.dmp" 
+ALIGN 4 
 RedHouse_data: 
 #incbin "RedHouse_data.dmp" 
+ALIGN 4 
+RiverHorizontalB_data: 
+#incbin "RiverHorizontalB_data.dmp" 
+ALIGN 4 
+RiverHorizontal_data: 
+#incbin "RiverHorizontal_data.dmp" 
+ALIGN 4 
+RiverVerticalB_data: 
+#incbin "RiverVerticalB_data.dmp" 
+ALIGN 4 
+RiverVertical_data: 
+#incbin "RiverVertical_data.dmp" 
 ALIGN 4 
 Ruins_data: 
 #incbin "Ruins_data.dmp" 

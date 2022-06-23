@@ -24,7 +24,7 @@ pop {r0} @ source
 blh 0x08012F50   //UnLZ77Decompress
 
 mov r0, r4 
-blh DebugMap_ASMC
+blh GenerateMap
 
 Skip2: 
 LDR r5, =0x202E4D4 @  # pointer:080198FC -> 0202E4D4 (gMapSize )

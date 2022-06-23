@@ -277,9 +277,9 @@ LABEL 0x63
 
 //SetUnitStatus(2, CurrentHP, 25)
 
-SetUnitStatus(1, BadStatusType, TrappedStatusID) 
+//SetUnitStatus(1, BadStatusType, TrappedStatusID) 
 //SetUnitStatus(2, BadStatusType, TrappedStatusID) 
-SetUnitStatus(2, BadStatusType, BurnStatusID) 
+//SetUnitStatus(2, BadStatusType, BurnStatusID) 
 //SetUnitStatus(4, BadStatusType, TrappedStatusID) 
 
 

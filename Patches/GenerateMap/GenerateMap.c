@@ -13,18 +13,10 @@
 
 
 
+void GemerateMap(u16 dst[]);
+void CopyMapPiece(u16 dst[], u8 xx, u8 yy, u8 map_size_x, u8 map_size_y, u16 defaultTile);
 
-
-
-
-void DebugMap_ASMC(u16 dst[]); // ASMC 
-void CopyMapPiece(u16 dst[], u8 xx, u8 yy, u8 real_x_max_size, u8 real_y_max_size, u16 defaultTile);
-// SET_DATA MyMapBuffer, 0x203A000 in definitions.s 
-extern const u8 DebugMapLabel[];
-extern u8 MyMapBuffer[];
-extern u8 MyMapBuffer2[];
 extern int NumberOfMapPieces; 
-
 struct MapPieces_Struct
 {
 	u8 x; 
@@ -34,7 +26,7 @@ struct MapPieces_Struct
 extern struct MapPieces_Struct* MapPiecesTable[0xFF];
 
 
-void DebugMap_ASMC(u16 dst[]) // ASMC 
+void GenerateMap(u16 dst[]) // ASMC 
 {
 	//memset(gGenericBuffer, 0, 1600);
 	//memcpy(gGenericBuffer, DebugMapLabel, 660); // dst, src, size 
@@ -47,14 +39,15 @@ void DebugMap_ASMC(u16 dst[]) // ASMC
 	// 2 bytes are the map's XX / YY 
 	// then it's just SHORTs of the different tileset IDs in a row 
 	//asm("mov r11, r11");
-	// uncompressed size is 0x512 / #1298 
-	dst[0] = (((NextRN_N(25)+10)<<8) | (NextRN_N(20)+15)); 
-	u8 x = (dst[0] & 0xFF); 
-	u8 y = ((dst[0] & 0xFF00) >>8); // no -1 since compare as less than 
+	// uncompressed size is 0x512 / #1298
+	dst[0] = 0xa0F;
+	//dst[0] = (((NextRN_N(25)+10)<<8) | (NextRN_N(20)+15)); 
+	u8 map_size_x = (dst[0] & 0xFF); 
+	u8 map_size_y = ((dst[0] & 0xFF00) >>8); // no -1 since compare as less than 
 	
 	// creates a randomized map 
-	for (int iy = 0; iy<y; iy++) {
-		for (int ix = 0; ix < x; ix++) {
+	for (int iy = 0; iy<map_size_y; iy++) {
+		for (int ix = 0; ix < map_size_x; ix++) {
 			//if ((ix | iy) & (dst[iy*x+ix] == 0x200)) {  // if they are both 0, then it will overwrite coordinates 
 			if (ix | iy){  // if they are both 0, then it will overwrite coordinates 
 				u16 value = 0;
@@ -65,32 +58,33 @@ void DebugMap_ASMC(u16 dst[]) // ASMC
 				if (NextRN_N(5) == 0 ) { 
 					//dst[iy*x+ix] = value; 
 					//u8 dst2[0xFF] = &dst[iy*x+ix];
-					CopyMapPiece(dst, ix, iy, x, y, dst[y*x+x]); // bottom right tile as default tile 
+					CopyMapPiece(dst, ix, iy, map_size_x, map_size_y, dst[map_size_y*map_size_x+map_size_x]); // bottom right tile as default tile 
 				} // + NextRN_N(3); 
+				//else { dst[iy * map_size_x + iy] = dst[map_size_y*map_size_x+map_size_x]; } 
 			} 
 		}
 	}
 }
 
-void CopyMapPiece(u16 dst[], u8 xx, u8 yy, u8 real_x_max_size, u8 real_y_max_size, u16 defaultTile)
+void CopyMapPiece(u16 dst[], u8 placement_x, u8 placement_y, u8 map_size_x, u8 map_size_y, u16 defaultTile)
 {
 	struct MapPieces_Struct* T = MapPiecesTable[NextRN_N(NumberOfMapPieces)];
-	u8 size_x = T->x;
-	u8 size_y = T->y;
+	u8 piece_size_x = (T->x);
+	u8 piece_size_y = (T->y);
+	asm("mov r11, r11");
 	u8 exit = false; // false 
 	
-	
-	for (u8 y = 0; y<size_y; y++) {
-		for (u8 x = 0; x < size_x; x++) { // if any tile is not the default, then immediately exit 
-			if (!(dst[((yy+y) * real_x_max_size) + xx+x] == defaultTile)) { exit = true; } 
+	for (u8 y = 0; y < piece_size_y; y++) {
+		for (u8 x = 0; x < piece_size_x; x++) { // if any tile is not the default, then immediately exit 
+			if ((dst[((placement_y+y) * map_size_x) + placement_x+x] != defaultTile)) { exit = true; } 
 		}
 	}
 		
 		// this is to stop it from drawing outside the map / from one side to another 
-	if (!((size_x + xx >= real_x_max_size) | (size_y + yy >= real_y_max_size) | (exit)))  { 
-		for (u8 y = 0; y<size_y; y++) {
-			for (u8 x = 0; x < size_x; x++) {
-				dst[((yy+y) * real_x_max_size) + xx+x] = T->data[y*size_x+x]; 
+	if (((piece_size_x + placement_x) < map_size_x) && ((piece_size_y + placement_y) < map_size_y) && (exit == false))  { 
+		for (u8 y = 0; y<piece_size_y; y++) {
+			for (u8 x = 0; x < piece_size_x; x++) {
+				dst[((placement_y+y) * map_size_x) + placement_x+x] = T->data[y*piece_size_x+x]; 
 			}
 		}
 	}

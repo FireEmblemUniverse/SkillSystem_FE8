@@ -12,14 +12,14 @@ jumpToHack(NewLoadChapterMap)
 POP 
 
 
-#define NumberOfMapPiecesDef 13 
+#define NumberOfMapPiecesDef 37 
 ALIGN 4 
 NumberOfMapPieces:
 WORD NumberOfMapPiecesDef 
 
 
 
-#include "DebugMap.lyn.event"
+#include "GenerateMap.lyn.event"
 
 #include "Map/GeneratedInstaller.event"
 

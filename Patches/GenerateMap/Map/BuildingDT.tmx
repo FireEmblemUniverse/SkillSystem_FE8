@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="2021.01.13" orientation="orthogonal" renderorder="right-down" width="7" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="UpdatedVillage.png" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="UpdatedVillage.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="7" height="7">
+  <data encoding="csv">
+717,623,624,99,624,624,718,
+688,528,529,130,528,529,688,
+688,560,590,529,527,527,656,
+656,560,945,560,945,560,688,
+656,560,529,526,529,592,656,
+688,560,592,526,592,558,656,
+749,624,750,560,749,623,750
+</data>
+ </layer>
+</map>
