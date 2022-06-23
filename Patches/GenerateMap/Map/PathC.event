@@ -24,8 +24,8 @@
 
 ALIGN 4
 MapData:
-  #incbin "Debug2_data.dmp"
+  #incbin "PathC_data.dmp"
 
-SetChapterData(Debug2Ch, UpdatedVillageObj, 0, UpdatedVillagePal, UpdatedVillageConf, Debug2Map, MapData, UpdatedVillageAnimations, 0, 0)
+SetChapterData(ChapterID, ObjectType, 0, PaletteID, TileConfig, map_id, MapData, 0, 0, 0)
 
 }

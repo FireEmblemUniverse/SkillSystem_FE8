@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="3" height="2" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="UpdatedVillage.png" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="UpdatedVillage.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="3" height="2">
+  <properties>
+   <property name="Main" value=""/>
+  </properties>
+  <data>
+   <tile gid="129"/>
+   <tile gid="203"/>
+   <tile gid="138"/>
+   <tile gid="427"/>
+   <tile gid="230"/>
+   <tile gid="170"/>
+  </data>
+ </layer>
+</map>

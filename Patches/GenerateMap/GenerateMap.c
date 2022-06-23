@@ -13,7 +13,7 @@
 
 
 
-void GemerateMap(u16 dst[]);
+
 void CopyMapPiece(u16 dst[], u8 xx, u8 yy, u8 map_size_x, u8 map_size_y, u16 defaultTile);
 
 extern int NumberOfMapPieces; 
@@ -25,8 +25,16 @@ struct MapPieces_Struct
 };
 extern struct MapPieces_Struct* MapPiecesTable[0xFF];
 
+struct Map_Struct
+{
+	u8 x; 
+	u8 y; 
+	u16 data[0xff]; 
+};
+void GenerateMap(struct Map_Struct* dst);
 
-void GenerateMap(u16 dst[]) // ASMC 
+
+void GenerateMap(struct Map_Struct* dst)
 {
 	//memset(gGenericBuffer, 0, 1600);
 	//memcpy(gGenericBuffer, DebugMapLabel, 660); // dst, src, size 
@@ -40,28 +48,27 @@ void GenerateMap(u16 dst[]) // ASMC
 	// then it's just SHORTs of the different tileset IDs in a row 
 	//asm("mov r11, r11");
 	// uncompressed size is 0x512 / #1298
-	dst[0] = 0xa0F;
-	//dst[0] = (((NextRN_N(25)+10)<<8) | (NextRN_N(20)+15)); 
-	u8 map_size_x = (dst[0] & 0xFF); 
-	u8 map_size_y = ((dst[0] & 0xFF00) >>8); // no -1 since compare as less than 
+
+	dst->x = (NextRN_N(20)+15);
+	dst->y = (NextRN_N(25)+10);
+
+	u8 map_size_x = dst->x;
+	u8 map_size_y = dst->y; 
 	
 	// creates a randomized map 
 	for (int iy = 0; iy<map_size_y; iy++) {
 		for (int ix = 0; ix < map_size_x; ix++) {
-			//if ((ix | iy) & (dst[iy*x+ix] == 0x200)) {  // if they are both 0, then it will overwrite coordinates 
-			if (ix | iy){  // if they are both 0, then it will overwrite coordinates 
-				u16 value = 0;
-				while (!value) { // never be 0 
-					value = NextRN_N(32) <<7 | (NextRN_N(32)<<2); // I think NextRN_N is 0-indexed, so given 4 it will return max 3 
-				}
-				//dst[iy*x+ix] = 0x268 + NextRN_N(3); //value; 
-				if (NextRN_N(5) == 0 ) { 
-					//dst[iy*x+ix] = value; 
-					//u8 dst2[0xFF] = &dst[iy*x+ix];
-					CopyMapPiece(dst, ix, iy, map_size_x, map_size_y, dst[map_size_y*map_size_x+map_size_x]); // bottom right tile as default tile 
-				} // + NextRN_N(3); 
-				//else { dst[iy * map_size_x + iy] = dst[map_size_y*map_size_x+map_size_x]; } 
-			} 
+			u16 value = 0;
+			while (!value) { // never be 0 
+				value = NextRN_N(32) <<7 | (NextRN_N(32)<<2); // I think NextRN_N is 0-indexed, so given 4 it will return max 3 
+			}
+			//dst->data[iy*x+ix] = 0x268 + NextRN_N(3); //value;
+			if (NextRN_N(5) == 0 ) { 
+				//dst->data[iy*x+ix] = value; 
+				CopyMapPiece(dst->data, ix, iy, map_size_x, map_size_y, dst->data[map_size_y*map_size_x+map_size_x]); // bottom right tile as default tile 
+			}  
+			//else { dst->data[iy * map_size_x + iy] = dst->data[map_size_y*map_size_x+map_size_x]; } 
+		
 		}
 	}
 }
@@ -71,19 +78,28 @@ void CopyMapPiece(u16 dst[], u8 placement_x, u8 placement_y, u8 map_size_x, u8 m
 	struct MapPieces_Struct* T = MapPiecesTable[NextRN_N(NumberOfMapPieces)];
 	u8 piece_size_x = (T->x);
 	u8 piece_size_y = (T->y);
-	asm("mov r11, r11");
-	u8 exit = false; // false 
 	
-	for (u8 y = 0; y < piece_size_y; y++) {
-		for (u8 x = 0; x < piece_size_x; x++) { // if any tile is not the default, then immediately exit 
-			if ((dst[((placement_y+y) * map_size_x) + placement_x+x] != defaultTile)) { exit = true; } 
+	u8 exit = false; // default to false 
+
+	u8 border_y = placement_y;
+	u8 border_x = placement_x;
+	if (placement_y) { // border of 1 tile on left/above 
+		border_y = placement_y - 1; 
+	}
+	if (placement_x) { 
+		border_x = placement_x - 1; 
+	} 
+	for (u8 y = 0; y <= piece_size_y+1; y++) {
+		for (u8 x = 0; x <= piece_size_x+1; x++) { // if any tile is not the default, then immediately exit 
+			if (dst[(border_y+y) * map_size_x + border_x+x] != defaultTile) { exit = true; } 
 		}
 	}
-		
+	
 		// this is to stop it from drawing outside the map / from one side to another 
-	if (((piece_size_x + placement_x) < map_size_x) && ((piece_size_y + placement_y) < map_size_y) && (exit == false))  { 
+	if (!(((piece_size_x + placement_x) > map_size_x) || ((piece_size_y + placement_y) > map_size_y) || (exit)))  {
 		for (u8 y = 0; y<piece_size_y; y++) {
 			for (u8 x = 0; x < piece_size_x; x++) {
+				//dst[((placement_y+y) * map_size_x) + placement_x+x] = T->data[y*piece_size_x+x]; 
 				dst[((placement_y+y) * map_size_x) + placement_x+x] = T->data[y*piece_size_x+x]; 
 			}
 		}

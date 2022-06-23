@@ -24,12 +24,12 @@ POIN FenceVertical_data
 POIN Forest1_data 
 POIN Forest2by2_data 
 POIN Forest2_data 
-POIN Forest3by3_data 
 POIN Forest3_data 
-POIN Grass1_data 
-POIN Grass2_data 
-POIN Grass3_data 
-POIN Grass4_data 
+POIN OpenGarden_data 
+POIN Path1_data 
+POIN PathB_data 
+POIN PathC_data 
+POIN PathD_data 
 POIN Pond1_data 
 POIN Pond2_data 
 POIN RedHouse_data 
@@ -39,10 +39,10 @@ POIN RiverVerticalB_data
 POIN RiverVertical_data 
 POIN Ruins_data 
 POIN Shop_data 
-POIN Throne_data 
 POIN YellowHouse_data 
 WORD 0 
  
+#define NumberOfMapPiecesDef 36 
  
 ALIGN 4 
 Arena_data: 
@@ -105,23 +105,23 @@ ALIGN 4
 Forest2_data: 
 #incbin "Forest2_data.dmp" 
 ALIGN 4 
-Forest3by3_data: 
-#incbin "Forest3by3_data.dmp" 
-ALIGN 4 
 Forest3_data: 
 #incbin "Forest3_data.dmp" 
 ALIGN 4 
-Grass1_data: 
-#incbin "Grass1_data.dmp" 
+OpenGarden_data: 
+#incbin "OpenGarden_data.dmp" 
 ALIGN 4 
-Grass2_data: 
-#incbin "Grass2_data.dmp" 
+Path1_data: 
+#incbin "Path1_data.dmp" 
 ALIGN 4 
-Grass3_data: 
-#incbin "Grass3_data.dmp" 
+PathB_data: 
+#incbin "PathB_data.dmp" 
 ALIGN 4 
-Grass4_data: 
-#incbin "Grass4_data.dmp" 
+PathC_data: 
+#incbin "PathC_data.dmp" 
+ALIGN 4 
+PathD_data: 
+#incbin "PathD_data.dmp" 
 ALIGN 4 
 Pond1_data: 
 #incbin "Pond1_data.dmp" 
@@ -149,9 +149,6 @@ Ruins_data:
 ALIGN 4 
 Shop_data: 
 #incbin "Shop_data.dmp" 
-ALIGN 4 
-Throne_data: 
-#incbin "Throne_data.dmp" 
 ALIGN 4 
 YellowHouse_data: 
 #incbin "YellowHouse_data.dmp" 

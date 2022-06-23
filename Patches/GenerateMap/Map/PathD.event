@@ -24,8 +24,8 @@
 
 ALIGN 4
 MapData:
-  #incbin "Debug3_data.dmp"
+  #incbin "PathD_data.dmp"
 
-SetChapterData(Debug2Ch, CinnabarObj, 0, CinnabarPal, CinnabarConf, Debug2Map, MapData, WaterAnimation, 0, 0)
+SetChapterData(ChapterID, ObjectType, 0, PaletteID, TileConfig, map_id, MapData, 0, 0, 0)
 
 }
