@@ -87,9 +87,9 @@ b GoBack
 .ltorg
 
 AltRetTrueCondition:
-ldr r0,=0xFFFEFFF3
-and r1,r0
-str r1,[r2,#0xC]
+@ldr r0,=0xFFFEFFF3
+@and r1,r0
+@str r1,[r2,#0xC]
 b ReturnTrue
 
 LoopStart:
