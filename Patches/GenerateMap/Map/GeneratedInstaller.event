@@ -39,10 +39,21 @@ POIN RiverVerticalB_data
 POIN RiverVertical_data 
 POIN Ruins_data 
 POIN Shop_data 
+POIN TreesA0_data 
+POIN TreesA1_data 
+POIN TreesA2_data 
+POIN TreesA3_data 
+POIN TreesA4_data 
+POIN TreesA_data 
+POIN TreesB0_data 
+POIN TreesB1_data 
+POIN TreesB2_data 
+POIN TreesB3_data 
+POIN TreesB_data 
 POIN YellowHouse_data 
 WORD 0 
  
-#define NumberOfMapPiecesDef 36 
+#define NumberOfMapPiecesDef 47 
  
 ALIGN 4 
 Arena_data: 
@@ -149,6 +160,39 @@ Ruins_data:
 ALIGN 4 
 Shop_data: 
 #incbin "Shop_data.dmp" 
+ALIGN 4 
+TreesA0_data: 
+#incbin "TreesA0_data.dmp" 
+ALIGN 4 
+TreesA1_data: 
+#incbin "TreesA1_data.dmp" 
+ALIGN 4 
+TreesA2_data: 
+#incbin "TreesA2_data.dmp" 
+ALIGN 4 
+TreesA3_data: 
+#incbin "TreesA3_data.dmp" 
+ALIGN 4 
+TreesA4_data: 
+#incbin "TreesA4_data.dmp" 
+ALIGN 4 
+TreesA_data: 
+#incbin "TreesA_data.dmp" 
+ALIGN 4 
+TreesB0_data: 
+#incbin "TreesB0_data.dmp" 
+ALIGN 4 
+TreesB1_data: 
+#incbin "TreesB1_data.dmp" 
+ALIGN 4 
+TreesB2_data: 
+#incbin "TreesB2_data.dmp" 
+ALIGN 4 
+TreesB3_data: 
+#incbin "TreesB3_data.dmp" 
+ALIGN 4 
+TreesB_data: 
+#incbin "TreesB_data.dmp" 
 ALIGN 4 
 YellowHouse_data: 
 #incbin "YellowHouse_data.dmp" 

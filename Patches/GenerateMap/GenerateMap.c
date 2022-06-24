@@ -17,6 +17,18 @@
 void CopyMapPiece(u16 dst[], u8 xx, u8 yy, u8 map_size_x, u8 map_size_y, u16 defaultTile);
 
 extern int NumberOfMapPieces; 
+extern int FrequencyOfObjects_Link; 
+
+struct GeneratedMapDimensions_Struct
+{
+	u8 min_x; 
+	u8 min_y; 
+	u8 max_x; 
+	u8 max_y; 
+};
+
+extern struct GeneratedMapDimensions_Struct GeneratedMapDimensions;
+
 struct MapPieces_Struct
 {
 	u8 x; 
@@ -36,25 +48,24 @@ void GenerateMap(struct Map_Struct* dst);
 
 void GenerateMap(struct Map_Struct* dst)
 {
-	//memset(gGenericBuffer, 0, 1600);
-	//memcpy(gGenericBuffer, DebugMapLabel, 660); // dst, src, size 
-	//
-	//memset(gGenericBuffer+1600, 0, 1600);
-	//Decompress(gGenericBuffer,(void*)gGenericBuffer+1600);
-	//gGenericBuffer[2] = 0; 
-	//memcpy(dst, gGenericBuffer+1600, 1298); // dst, src, size 
-	
-	// 2 bytes are the map's XX / YY 
-	// then it's just SHORTs of the different tileset IDs in a row 
-	//asm("mov r11, r11");
+	// 2 bytes are the map's XX / YY size
+	// then it's just SHORTs of the different tileset IDs in a row as YY << 7 | XX << 2
 	// uncompressed size is 0x512 / #1298
-
-	dst->x = (NextRN_N(20)+15);
-	dst->y = (NextRN_N(25)+10);
+	struct GeneratedMapDimensions_Struct dimensions = GeneratedMapDimensions;
+	
+	dst->x = (NextRN_N(dimensions.max_x-dimensions.min_x)+dimensions.min_x); 
+	dst->y = (NextRN_N(dimensions.max_y-dimensions.min_y)+dimensions.min_y);
+	u16 c = 0; 
+	while (((dst->x * dst->y) > 1500) && (c<255)) { // redo if it will exceed max map size 
+		dst->x = (NextRN_N(dimensions.max_x-dimensions.min_x)+dimensions.min_x); 
+		dst->y = (NextRN_N(dimensions.max_y-dimensions.min_y)+dimensions.min_y);
+		c++; 
+	}
+	if (c == 255) { dst->y = 10; }  // if we try 255 times and fail, make height the min of 10. 
 
 	u8 map_size_x = dst->x;
 	u8 map_size_y = dst->y; 
-	
+	//int FrequencyOfObjects_Link; 
 	// creates a randomized map 
 	for (int iy = 0; iy<map_size_y; iy++) {
 		for (int ix = 0; ix < map_size_x; ix++) {
@@ -63,7 +74,7 @@ void GenerateMap(struct Map_Struct* dst)
 				value = NextRN_N(32) <<7 | (NextRN_N(32)<<2); // I think NextRN_N is 0-indexed, so given 4 it will return max 3 
 			}
 			//dst->data[iy*x+ix] = 0x268 + NextRN_N(3); //value;
-			if (NextRN_N(5) == 0 ) { 
+			if (FrequencyOfObjects_Link > NextRN_N(100)) { 
 				//dst->data[iy*x+ix] = value; 
 				CopyMapPiece(dst->data, ix, iy, map_size_x, map_size_y, dst->data[map_size_y*map_size_x+map_size_x]); // bottom right tile as default tile 
 			}  
@@ -83,10 +94,10 @@ void CopyMapPiece(u16 dst[], u8 placement_x, u8 placement_y, u8 map_size_x, u8 m
 
 	u8 border_y = placement_y;
 	u8 border_x = placement_x;
-	if (placement_y) { // border of 1 tile on left/above 
+	if ((placement_y) && ((piece_size_y > 1)||(piece_size_x > 1))) { // border of 1 tile on left/above 
 		border_y = placement_y - 1; 
 	}
-	if (placement_x) { 
+	if ((placement_x) && ((piece_size_y > 1)||(piece_size_x > 1))) { 
 		border_x = placement_x - 1; 
 	} 
 	for (u8 y = 0; y <= piece_size_y+1; y++) {

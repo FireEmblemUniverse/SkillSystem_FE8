@@ -1,6 +1,29 @@
 #include "GenerateMap.lyn.event"
 #include "Map/GeneratedInstaller.event"
 
+#define RandomizedChapterID_Def 0x58 // Debug2 ChID  
+#define Minimum_X_Size 15 
+#define Minimum_Y_Size 10
+#define Maximum_X_Size 50
+#define Maximum_Y_Size 50
+
+
+#define FrequencyOfObjects 100 // percent 
+// note that this is just how often it will attempt to place things 
+// there will always be empty tiles 
+
+
+ALIGN 4 
+GeneratedMapDimensions:
+BYTE Minimum_X_Size Minimum_Y_Size Maximum_X_Size Maximum_Y_Size 
+
+ALIGN 4 
+FrequencyOfObjects_Link:
+WORD FrequencyOfObjects 
+
+ALIGN 4 
+RandomizedChapterID_Link:
+WORD RandomizedChapterID_Def
 
 ALIGN 4
 PUSH; ORG CurrentOffset+1
