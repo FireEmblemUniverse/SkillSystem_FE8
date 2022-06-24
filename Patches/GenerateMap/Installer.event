@@ -4,8 +4,10 @@
 #define RandomizedChapterID_Def 0x58 // Debug2 ChID  
 #define Minimum_X_Size 15 
 #define Minimum_Y_Size 10
-#define Maximum_X_Size 50
-#define Maximum_Y_Size 50
+#define Maximum_X_Size 35
+#define Maximum_Y_Size 35
+
+
 
 
 #define FrequencyOfObjects 100 // percent 
@@ -30,21 +32,39 @@ PUSH; ORG CurrentOffset+1
 NewLoadChapterMap: ; POP 
 #include "LoadChapterMap.lyn.event"
 
+#include "InitClockAndMap.lyn.event" 
+
+
 
 PUSH 
+
 ORG $198AC 
 jumpToHack(NewLoadChapterMap)
+
+ORG $30E94
+jumpToHack(InitClockAndMap)
+
+ORG $d5731 // compare tact name patch uses this 
+strcmp:
+StringCompare:
+
 POP 
 
+//ALIGN 4 
+//hashArray:
+//WORD 0
 
 
 ALIGN 4 
-NumberOfMapPieces: // defined in GeneratedInstaller.event 
+NumberOfMapPieces: // automatically defined in GeneratedInstaller.event 
 WORD NumberOfMapPiecesDef 
 
 
-
-
+// no longer used 
+// #define GenerateMapRam 0x203F7C4
+//ALIGN 4 
+//GenerateMapRam_Link:
+//WORD GenerateMapRam
 
 
 

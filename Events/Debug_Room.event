@@ -67,7 +67,7 @@ LocationBasedEvents:
 //Armory(ArmoryItems,10,26)
 //Village(0x8,VillageEvent,18,27)
 //House(0,HouseEvent,6,24)
-//Seize(10,2)
+Seize(0, EndingScene, 3,3)
 END_MAIN
 
 MiscBasedEvents:
@@ -444,10 +444,7 @@ ENDA
 
 
 EndingScene:
-ASMC 0x85C71 0x381F5 0x37CF9 //show records screen
-STAL 120
-EVBIT_F 0x2
-MNTS 0x1 //return to title screen
+MNC2 Debug2Ch 
 NoFade
 ENDA
 
