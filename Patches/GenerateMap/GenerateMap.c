@@ -66,20 +66,15 @@ void GenerateMap(struct Map_Struct* dst)
 	// then it's just SHORTs of the different tileset IDs in a row as YY << 7 | XX << 2
 	// uncompressed size is 0x512 / #1298
 	extern struct ChapterState gChapterData; 
-	
-	//202BCF0
-	
-	//int clockTime = GetGameClock();
+
 	int t_start = gChapterData._u04;
 	// hooked InitChapterMap to update gChapterData._u04 right before LoadChapterMap instead of right after 
-	//if ((clockTime < t_start+30) || (*GenerateMapRam_Link[0] == 0)) { // if chapter start and clock time are within 30 frames, save RNG state 
-		//*GenerateMapRam_Link[0] = gChapterData._u04;
-		//asm("mov r11, r11"); 
-	//}
-	//else { t_start = *GenerateMapRam_Link[0]; } 
-
+	int clock = GetGameClock(); 
+	asm("mov r11, r11"); 
 	// GmDataInit 0x80BC81C at BC884 calls SetRandState();
 	// 300534D
+	u16 saveRandState[3]; 
+	GetRandState(saveRandState);
 	
 	u16 var[3]; 
 	var[0] = ((t_start-0xF0F0F0F0) & 0xFFFF); // clock at start of chapter 
@@ -120,6 +115,7 @@ void GenerateMap(struct Map_Struct* dst)
 		
 		}
 	}
+	SetRandState(saveRandState); 
 }
 
 

@@ -44,10 +44,9 @@ jumpToHack(NewLoadChapterMap)
 ORG $30E94
 jumpToHack(InitClockAndMap)
 
-ORG $d5731 // compare tact name patch uses this 
-strcmp:
-StringCompare:
-
+//ORG $AA0DC
+ORG $A9498 // ProcsSaveMenu
+jumpToHack(NewInitRNG)
 POP 
 
 //ALIGN 4 

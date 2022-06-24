@@ -228,8 +228,8 @@ push {r4-r7, lr}
 ldr r4, =Attacker
 ldr r5, =Defender
 ldr r6, =gActionData
-mov r7, sp 
 sub sp, #8 
+mov r7, sp 
 @r4 = attacker, r5 = defender, r6 = action struct 
 
 
@@ -322,9 +322,9 @@ bx r0
 .type KnockbackEffect, %function 
 KnockbackEffect: @ knocks back the defender if the attacker has a specific weapon 
 push {r4-r7, lr} 
-mov r7, sp 
-sub sp, #4 
 
+sub sp, #4 
+mov r7, sp 
 
 ldr r3, =gActionData
 ldrb r0, [r3, #0x11] 
@@ -479,8 +479,8 @@ bx r0
 .type PullBackEffect, %function 
 PullBackEffect:
 push {r4-r7, lr} 
-mov r7, sp 
 sub sp, #4 
+mov r7, sp 
 
 ldr r3, =gActionData
 ldrb r0, [r3, #0x11] 
@@ -638,8 +638,8 @@ bx r0
 .type HitAndRunEffect, %function 
 HitAndRunEffect:
 push {r4-r7, lr} 
-mov r7, sp 
 sub sp, #4 
+mov r7, sp 
 
 ldr r3, =gActionData
 ldrb r0, [r3, #0x11] 
@@ -787,8 +787,8 @@ bx r0
 .type PivotEffect, %function 
 PivotEffect:
 push {r4-r7, lr} 
-mov r7, sp 
 sub sp, #4 
+mov r7, sp 
 
 ldr r3, =gActionData
 ldrb r0, [r3, #0x11] 
