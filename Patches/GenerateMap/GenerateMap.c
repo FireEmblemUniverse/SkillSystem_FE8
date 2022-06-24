@@ -77,13 +77,13 @@ void GenerateMap(struct Map_Struct* dst)
 	int clock = GetGameClock(); 
 	int t_start = gChapterData._u04;
 	//asm("mov r11, r11"); 
-	if (t_start != clock) { 
-		u16 var[3]; 
-		var[0] = ((t_start-0xF0F0F0F0) & 0xFFFF); // clock at start of chapter 
-		var[1] = (((t_start-0x0F0F0F0F) & 0xFFFF0000)>>16); 
-		var[2] = hashCode(&gChapterData.playerName[0]);
-		SetRandState(var); //! FE8U = (0x08000C4C+1)
-	} 
+	//if (t_start != clock) { 
+	u16 var[3]; 
+	var[0] = ((t_start-0xF0F0F0F0) & 0xFFFF); // clock at start of chapter 
+	var[1] = (((t_start-0x0F0F0F0F) & 0xFFFF0000)>>16); 
+	var[2] = hashCode(&gChapterData.playerName[0]);
+	SetRandState(var); //! FE8U = (0x08000C4C+1)
+	//} 
 	
 	struct GeneratedMapDimensions_Struct dimensions = GeneratedMapDimensions;
 	
