@@ -46,7 +46,7 @@ jumpToHack(InitClockAndMap)
 
 //ORG $AA0DC
 ORG $A9498 // ProcsSaveMenu
-jumpToHack(NewInitRNG)
+//jumpToHack(NewInitRNG) // attempt to mess with RNG but idk if it does anything lol 
 POP 
 
 //ALIGN 4 

@@ -37,6 +37,8 @@ bx r3
 NewInitRNG:
 push {r4, lr} 
 blh GetGameClock
+ldr r1, =0x12345678
+mul r0, r1 
 sub sp, #12 
 mov r4, sp 
 add r1, r4, #4 

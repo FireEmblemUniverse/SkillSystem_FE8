@@ -67,21 +67,23 @@ void GenerateMap(struct Map_Struct* dst)
 	// uncompressed size is 0x512 / #1298
 	extern struct ChapterState gChapterData; 
 
-	int t_start = gChapterData._u04;
 	// hooked InitChapterMap to update gChapterData._u04 right before LoadChapterMap instead of right after 
-	int clock = GetGameClock(); 
-	asm("mov r11, r11"); 
+	
+	
 	// GmDataInit 0x80BC81C at BC884 calls SetRandState();
 	// 300534D
 	u16 saveRandState[3]; 
-	GetRandState(saveRandState);
-	
-	u16 var[3]; 
-	var[0] = ((t_start-0xF0F0F0F0) & 0xFFFF); // clock at start of chapter 
-	var[1] = (((t_start-0x0F0F0F0F) & 0xFFFF0000)>>16); 
-	var[2] = hashCode(&gChapterData.playerName[0]);
-	SetRandState(var); //! FE8U = (0x08000C4C+1)
-
+	//GetRandState(saveRandState);
+	int clock = GetGameClock(); 
+	int t_start = gChapterData._u04;
+	//asm("mov r11, r11"); 
+	if (t_start != clock) { 
+		u16 var[3]; 
+		var[0] = ((t_start-0xF0F0F0F0) & 0xFFFF); // clock at start of chapter 
+		var[1] = (((t_start-0x0F0F0F0F) & 0xFFFF0000)>>16); 
+		var[2] = hashCode(&gChapterData.playerName[0]);
+		SetRandState(var); //! FE8U = (0x08000C4C+1)
+	} 
 	
 	struct GeneratedMapDimensions_Struct dimensions = GeneratedMapDimensions;
 	
