@@ -48,6 +48,12 @@
 #define GiveItemWithDurability(UnitID) "SVAL r1 8; SLSL r4 r4 r1; SADD r3 r3 r4; CALL $591F40; GIVEITEMTO UnitID" // s3 as item, s4 as durability 
 
 
+// this is at |2 addresses, not align-4. Needs to add +7 to lr at end. 
+#define jumpToHackNew(offset) "BYTE $FE $46 $00 $4B $18 $47; POIN (offset|0x1)" // requires you add +7 to your return address after you pop lr into a lo register 
+// this works with fe8u, fe8j etc. 
+#define callHackNew(offset) "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+
+
 
 // Pokemblem stuff: 
 #define TrainerPostBattleTalk(char2) "CHAR 0 TrainerPostBattleTalkEvent [0x0, char2] 0"

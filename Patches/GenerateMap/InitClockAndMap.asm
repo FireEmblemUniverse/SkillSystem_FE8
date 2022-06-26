@@ -17,6 +17,8 @@
 .global InitClockAndMap
 InitClockAndMap: 
 PUSH {r4, lr}  
+mov r0, #0xE 
+ldsb r0, [r5, r0] 
 mov r4, r0 
 blh GetGameClock
 str r0, [r5, #4] @ vanilla 
@@ -27,7 +29,9 @@ blh AddSnagsAndWalls
 mov r2, #0
 pop {r4}  
 pop {r3}
-ldr r3, =0x8030EA5 
+@add r3, #7
+mov r11, r11 
+@ldr r3, =0x8030EA5 
 bx r3  
 
 .ltorg 

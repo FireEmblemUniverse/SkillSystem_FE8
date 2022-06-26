@@ -35,14 +35,18 @@ NewLoadChapterMap: ; POP
 #include "InitClockAndMap.lyn.event" 
 
 
-
 PUSH 
 
 ORG $198AC 
 jumpToHack(NewLoadChapterMap)
 
 ORG $30E94
-jumpToHack(InitClockAndMap)
+
+ORG $30E90
+callHackNew(InitClockAndMap)
+SHORT $46C0 $46C0 $46C0 $46C0 
+
+//jumpToHack(InitClockAndMap)
 
 //ORG $AA0DC
 ORG $A9498 // ProcsSaveMenu
