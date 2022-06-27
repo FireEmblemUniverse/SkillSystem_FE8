@@ -8,17 +8,22 @@
 .equ furydamage, 6
 .thumb
 push	{lr}
-@check if dead
+
+@ r4 = attacker
+@ r5 = defender
+@ r6 = actiondata
+
+@check if the action was an attack
+ldrb  r0, [r6,#0x11]  @action taken this turn
+cmp r0, #0x2 @attack
+bne End
+
+@check if attacker dead
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
-beq	End
+beq	CheckDefender
 
-@check if attacked this turn
-ldrb 	r0, [r6,#0x11]	@action taken this turn
-cmp	r0, #0x2 @attack
-bne	End
-
-@check for skill
+@check attacker for skill
 mov	r0, r4
 ldr	r1, FuryID
 ldr	r3, SkillTester
@@ -57,7 +62,12 @@ mov	r1, #0x01		@0x01 = wait for events
 .short	0xF800
 
 CheckDefender:
-@check for skill
+@check if defender dead
+ldrb  r0, [r5,#0x13]
+cmp r0, #0x00
+beq End
+
+@check defender for skill
 mov r0, r5
 ldr r1, FuryID
 ldr r3, SkillTester
