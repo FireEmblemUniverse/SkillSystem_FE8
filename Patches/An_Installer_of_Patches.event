@@ -1,6 +1,7 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 
 #include "GenerateMap/Installer.event"
+#include "GenerateMines/Installer.event"
 
 #include "IconDisplay/Installer.event"
 #include "MovementCalcLoop/Installer.event" 

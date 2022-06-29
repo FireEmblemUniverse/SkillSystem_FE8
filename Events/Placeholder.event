@@ -159,8 +159,7 @@ House(0,GiveExp, 11,11)
 END_MAIN
 
 GiveExp:
-ASMC RandomlyPlaceMines|1
-//GiveEXP((-1), 100)
+GiveEXP((-1), 100)
 NoFade 
 ENDA 
 

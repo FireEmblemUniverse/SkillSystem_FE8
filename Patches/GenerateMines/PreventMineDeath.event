@@ -1,0 +1,16 @@
+
+#include "PreventMineDeath.lyn.event" 
+
+
+PUSH 
+ORG $37588 
+jumpToHack(PreventMineDeath)
+
+ORG $375A4 
+jumpToHack(PreventMineDeath2) 
+POP 
+
+
+
+
+

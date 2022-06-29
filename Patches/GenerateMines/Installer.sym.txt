@@ -1,0 +1,16 @@
+ClearMines=$1188C81
+RandomlyPlaceMines=$1188D69
+initializeMinesProc=$1189079
+clearMinesHookNew=$11890A5
+CallMinesFunc=$11890C9
+initializeMines2=$11890F5
+initializeMines=$1189111
+hookForMines=$1189127
+hookForMines2=$1189149
+hookForMines3=$1189179
+clearMinesHook=$118919D
+removeMinesHook=$11891BD
+FREQUENCY_OF_MINES=$11891DC
+DefaultMovementCost=$11891E0
+CreateMinesProc=$1189224
+CallMinesProcName=$1189254

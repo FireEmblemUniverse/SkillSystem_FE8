@@ -141,9 +141,6 @@ bx r3
 hookForMines2: 
 push {lr} 
 push {r0-r2} 
-ldr r0, =PlaceMinesEvent 
-mov r1, #1 
-@blh EventEngine 
 bl  RandomlyPlaceMines
 pop {r0-r2} 
 blh EnsureCameraOntoPosition
@@ -203,9 +200,6 @@ Exit:
 pop {r3} 
 bx r3 
 .ltorg 
-
-
-
 
 
 
