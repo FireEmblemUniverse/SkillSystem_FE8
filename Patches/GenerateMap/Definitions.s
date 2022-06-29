@@ -3,6 +3,8 @@
 
 //@ Vanilla function declarations:
 
+SET_FUNC GetUnitStructFromEventParameter, 0x800BC51
+
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
 
 SET_FUNC LoadMapSpritePalettes, (0x8026628+1)

@@ -30,7 +30,6 @@ mov r2, #0
 pop {r4}  
 pop {r3}
 @add r3, #7
-mov r11, r11 
 @ldr r3, =0x8030EA5 
 bx r3  
 

@@ -159,7 +159,8 @@ House(0,GiveExp, 11,11)
 END_MAIN
 
 GiveExp:
-GiveEXP((-1), 100)
+ASMC RandomlyPlaceMines|1
+//GiveEXP((-1), 100)
 NoFade 
 ENDA 
 
@@ -216,7 +217,7 @@ EnemyUnits:
 //UNIT 0x50 ClassRoute2NWildA 0x0 Level(0, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
 //UNIT 0x50 ParasectID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0x50 MachopID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [Berry,0x0,0x0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
-//UNIT 0x50 BeedrillID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0x50 BeedrillID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0x61 ButterfreeID 0x0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x01 REDA14R12 [0x0,0x0,0x0,0x0] [0,0,0,32]
 
 
@@ -255,8 +256,8 @@ ENUF SkipIntroFlag
 //ENUT 0xAC // Fast Movement 
 //ENUT 0xAB 
 
-Write_Byte(15, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(10, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(11, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(11, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //21, 19
 //Write_Byte(21, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
@@ -266,7 +267,7 @@ CALL GlobalBeginningScene
 CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
 //RandomizePlayerCoords(Ground, Range(0,0,2,2), Range(2,2,15,10)) //somewhere possible, hopefully ? 
-//LOAD1 1 EnemyUnits 
+LOAD1 1 EnemyUnits 
 ENUN 
 //LOAD1 1 Units3 
 //ENUN 
@@ -325,6 +326,7 @@ ENUT 0xAE
 //CAM1 [23,26]
 //CAM1 [23, 0]
 //CAM1 0 // Unit 0 
+
 NoFade
 ENDA
 

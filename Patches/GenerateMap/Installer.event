@@ -35,6 +35,8 @@ NewLoadChapterMap: ; POP
 #include "InitClockAndMap.lyn.event" 
 
 
+
+
 PUSH 
 
 ORG $198AC 
@@ -71,5 +73,75 @@ WORD NumberOfMapPiecesDef
 
 
 
+
+
+PUSH 
+
+ORG $1D308 
+jumpToHack(clearMinesHookNew) 
+
+ORG $1CC20 
+//callHackNew(initializeMinesProc)
+
+ORG $1C948 // player phase main loop 
+//callHackNew(initializeMines2) 
+
+
+ORG $1DE18 
+//jumpToHack(removeMinesHook) 
+//SHORT $46c0 $46c0 
+
+ORG $1CC30
+//callHackNew(initializeMines)
+
+
+ORG $1CD20 
+//callHackNew(hookForMines)
+ORG $1CE3C 
+callHackNew(hookForMines2) 
+SHORT 0x46C0 
+
+ORG $1CD84 
+//callHackNew(hookForMines3) 
+
+//ORG $1CEB8 
+//jumpToHack(clearMinesHook) 
+
+POP 
+
+
+PlaceMinesEvent:
+ASMC RandomlyPlaceMines|1 
+NoFade 
+ENDA 
+
+#include "hookForMines.lyn.event" 
+
+#define FREQUENCY_OF_MINES_DEF 50 // % of tiles will have mines 
+
+ALIGN 4 
+FREQUENCY_OF_MINES:
+WORD FREQUENCY_OF_MINES_DEF
+
+
+ALIGN 4; 
+DefaultMovementCost:
+BYTE 255 1 1 1 255 1 1 1 1 1 2 1 2 255 1 2 5 4 255 1 255 255 255 1 1 255 255 255 1 2 255 1 1 1 255 1 1 2 255 2 2 2 1 1 255 1 255 1 1 255 255 255 1 255 255 1 1 255 255 255 255 255 1 255 255 //01 Lord
+
+ALIGN 4
+CreateMinesProc:
+PROC_YIELD // Buffer.
+PROC_SET_NAME(CallMinesProcName)
+PROC_SLEEP(0)
+//PROC_LOOP_ROUTINE(CallMinesFunc)
+//PROC_CALL_ROUTINE(RandomlyPlaceMines|1)
+PROC_LOOP_ROUTINE(CallMinesFunc)
+PROC_SLEEP(0)
+PROC_END
+
+
+CallMinesProcName:
+String("Minesweeper") ; BYTE 0
+ALIGN 4
 
 
