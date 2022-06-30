@@ -1,62 +1,62 @@
-#include "gbafe.h"
+#include "SkillTester.h"
 
-typedef struct SkillBuffer SkillBuffer;
-typedef struct AuraSkillBuffer AuraSkillBuffer;
+/*Helper functions*/
+static int  absolute(int value)        {return value < 0 ? -value : value;}
+static bool IsSkillIDValid(u8 skillID) {return skillID != 0 && skillID != 255;}
+static bool IsBattleReal()          {return gBattleStats.config & 3;}
 
-extern s8 AreAllegiancesEqual(int factionA, int factionB);
-extern int AreUnitsAllied(int, int) __attribute__((long_call));
-extern int IsSameAllegience(int, int) __attribute__((long_call)); // forgive the typo
-static int absolute(int value) {return value < 0 ? -value : value;}
-static bool IsSkillIDValid(int skillID) {return skillID != 0 && skillID != 255;}
+//Checks if given skillID is in given skill buffer
+bool IsSkillInBuffer(SkillBuffer* buffer, u8 skillID) {
+    for (int i = 0; buffer->skills[i] != 0; ++i) {
+        if (buffer->skills[i] == skillID) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 
-struct BWLData {
-    u8 unk1;
-    u8 skills[4];
-    u8 pad[11];
-};
+//Checks if the given skillID is negated by Nihil
+//If it is, the unit's opponent's skill buffer is searched through for nihil
+bool NihilTester(Unit* unit, u8 skillID) {
+    //Check if in battle and if the skill in question can be negated
+    if ((gBattleStats.config & 3) && NegatedSkills[skillID]) {
+        SkillBuffer* buffer = gDefenderSkillBuffer;
 
-struct AuraSkillBuffer {
-    u8 skillID;
-    u8 distance;
-    u8 faction;
-    u8 pad;
-};
+        //If unit is the defender, check the attacker skill buffer instead
+        if (unit->index == gBattleTarget.unit.index)
+            buffer = gAttackerSkillBuffer;
 
-extern struct BWLData gBWLDataArray[];
+        return IsSkillInBuffer(buffer, NihilIDLink);
+    }
+    return FALSE;
+}
 
-extern u8 gAttackerSkillBuffer[];
-extern u8 gDefenderSkillBuffer[];
-extern u8 gUnitRangeBuffer[];
-extern AuraSkillBuffer gAuraSkillBuffer[];
-
-//TODO: Separate this RAM address from SkillGetter
-extern u8 SkillAttackerCache;
-extern u8 SkillDefenderCache;
-
-extern u8 AuraSkillTable[];
-extern u8 NegatedSkills[];
-
-extern u8 NihilIDLink;
+/*Main functions*/
 
 //Makes skill buffer at a given location.
-u8* MakeSkillBuffer(Unit* unit, u8* buffer) {
-    int unitNum = unit->pCharacterData->number, count = 0, temp;
-    
+SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
+    int unitNum = unit->pCharacterData->number;
+    int count = 0, temp = 0;
+    buffer->lastUnitChecked = unit->index;
+
+    //Personal skill
     temp = PersonalSkillTable[unitNum].skillID;
     if (IsSkillIDValid(temp)) {
-        buffer[count++] = temp;
+        buffer->skills[count++] = temp;
     }
 
+    //Class skill
     temp = ClassSkillTable[unit->pClassData->number].skillID;
     if (IsSkillIDValid(temp)) {
-        buffer[count++] = temp;
+        buffer->skills[count++] = temp;
     }
 
+    //Learned skills (In RAM)
     for (int i = 0; i < 4; ++i) {
         if (!IsSkillIDValid(gBWLDataArray[unitNum].skills[i])) {
             break;
         }
-        buffer[count++] = gBWLDataArray[unitNum].skills[i];
+        buffer->skills[count++] = gBWLDataArray[unitNum].skills[i];
     }
 
     //Item passive skills
@@ -65,41 +65,38 @@ u8* MakeSkillBuffer(Unit* unit, u8* buffer) {
         //TODO: Make this load an EA literal for the bit check
         if ((GetItemAttributes(temp) & 0x00800000)) {
             if (IsSkillIDValid(GetItemData(temp & 0xFF)->skill)) {
-                buffer[count++] = GetItemData(temp & 0xFF)->skill;
+                buffer->skills[count++] = GetItemData(temp & 0xFF)->skill;
             }
         }
     }
 
-    //Extra checks made special for range skills so Gaiden Magic won't crash
-    if (gBattleStats.config & 3) {
-        if (unit->index == gBattleActor.unit.index) {
-            temp = GetItemData(gBattleActor.weaponBefore & 0xFF)->skill;
-        }
-        else if (unit->index == gBattleTarget.unit.index) {
-            temp = GetItemData(gBattleTarget.weaponBefore & 0xFF)->skill;
-        }
-        else {
-            temp = GetItemData(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
-        }
+    //Equipped weapon skills
+    //If unit is in combat, use the equipped weapon short
+    if (unit->index == gBattleActor.unit.index && IsBattleReal()) {
+        temp = GetItemData(gBattleActor.weaponBefore & 0xFF)->skill;
     }
-
-    //If the unit isn't in combat, use GetUnitEquippedWeapon
+    else if (unit->index == gBattleTarget.unit.index && IsBattleReal()) {
+        temp = GetItemData(gBattleTarget.weaponBefore & 0xFF)->skill;
+    }
+    //Otherwise, get the equipped weapon via a vanilla function
     else {
         temp = GetItemData(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
     }
 
+    //Check if equipped weapon skill is valid
     if (IsSkillIDValid(temp)) {
-        buffer[count++] = temp;
+        buffer->skills[count++] = temp;
     }
 
-    //Terminator
-    buffer[count++] = 0;
+    //Add terminator to end of list
+    buffer->skills[count++] = 0;
 
     return buffer;
 }
 
 //Creates an aura skill buffer with skill coordinates relative to a unit
 AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
+    SkillBuffer* buffer = gAttackerSkillBuffer;
     u8 count = 0;
 
     for (int i = 0; i < 0x100; ++i) {
@@ -118,12 +115,12 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
             continue;
 
         //If the unit is actually on the field, make a skill buffer for them
-        u8* skills = MakeSkillBuffer(other, gAttackerSkillBuffer);
+        buffer = MakeSkillBuffer(other, buffer);
 
         //For every skill in the buffer, index AuraSkillTable to find a match
-        for (int j = 0; skills[j] != 0; ++j) {
-            if (AuraSkillTable[skills[j]]) {
-                gAuraSkillBuffer[count].skillID = skills[j];
+        for (int j = 0; buffer->skills[j] != 0; ++j) {
+            if (AuraSkillTable[buffer->skills[j]]) {
+                gAuraSkillBuffer[count].skillID = buffer->skills[j];
                 gAuraSkillBuffer[count].distance = absolute(other->xPos - unit->xPos)
                                                  + absolute(other->yPos - unit->yPos);
                 gAuraSkillBuffer[count].faction = UNIT_FACTION(other);
@@ -131,88 +128,63 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
             }
         }
     }
-    
-    SkillAttackerCache = 0;
+
+    //Cleanup to avoid caching issues
+    buffer->lastUnitChecked = 0;
     return gAuraSkillBuffer;
 }
 
-//Checks for skills already added to the buffer without needing a full skill test
+//Checks for skills in an in progress buffer
 //Used by the weapon usability calc loop
-bool CheckSkillBuffer(Unit* unit, int skillID) {
+bool CheckSkillBuffer(Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
 
-    u8* buffer = gAttackerSkillBuffer;
+    SkillBuffer* buffer = gAttackerSkillBuffer;
 
-    if (unit->index == SkillDefenderCache) {
+    //lastUnitChecked is already set, so no need for extra checks
+    if (unit->index == gDefenderSkillBuffer->lastUnitChecked) {
         buffer = gDefenderSkillBuffer;
     }
 
-    for (int i = 0; buffer[i] != 0; ++i) {
-        if (buffer[i] == skillID) {
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
-//Checks if the given skill is negated by Nihil
-//If it is, the unit's opponent's skill buffer is searched through for nihil
-bool NihilTester(Unit* unit, int skillID) {
-    if ((gBattleStats.config & 3) && NegatedSkills[skillID]) {
-        u8* buffer = gDefenderSkillBuffer;
-
-        //If the unit is the defender, check the attacker skill buffer instead
-        if (unit->index == SkillDefenderCache)
-            buffer = gAttackerSkillBuffer;
-
-        for (int i = 0; buffer[i]; i++) {
-            if (buffer[i] == NihilIDLink)
-                return TRUE;
-        }
-    }
-    return FALSE;
+    return IsSkillInBuffer(buffer, skillID);
 }
 
 //Checks unit for a given skill.
-//If the unit tested is the same as time, uses the previous skill buffer
+//If the unit tested is the same as last time, uses the previous skill buffer
 bool SkillTester(Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
 
     int index = unit->index;
-    u8* buffer = gAttackerSkillBuffer;
+    SkillBuffer* buffer = gAttackerSkillBuffer;
 
     //If unit is the defender, use the defender buffer
-    if (index == gBattleTarget.unit.index && (gBattleStats.config & 3)) {
+    if (index == gBattleTarget.unit.index && IsBattleReal()) {
         buffer = gDefenderSkillBuffer;
-        if (index != SkillDefenderCache) {
-            SkillDefenderCache = index;
+        if (index != buffer->lastUnitChecked) {
             MakeSkillBuffer(unit, buffer);
         }
     }
 
     //Otherwise, default to the attacker buffer
     else {
-        if (index != SkillAttackerCache) {
-            SkillAttackerCache = index;
+        if (index != buffer->lastUnitChecked) {
             MakeSkillBuffer(unit, buffer);
         }
     }
 
-    //Check buffer for matching skill
-    for (int i = 0; buffer[i] != 0; ++i) {
-        if (buffer[i] == skillID) {
-            return !NihilTester(unit, skillID);
-        }
+    //Check if matching skill is in buffer
+    if (IsSkillInBuffer(buffer, skillID)) {
+        //Reverse check since NihilTester returns true if nihil is found
+        return !NihilTester(unit, skillID);
     }
-
     return FALSE;
 }
 
 //Loops through premade aura skill buffer to find matching aura skills within range
-bool NewAuraSkillCheck(Unit* unit, int skillID, int param, int maxRange) {
-    const s8(*pAllegianceChecker)(int, int) = ((param & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
+bool NewAuraSkillCheck(Unit* unit, u8 skillID, int allyOption, int maxRange) {
+    const s8(*pAllegianceChecker)(int, int) = ((allyOption & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
 
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
@@ -223,7 +195,7 @@ bool NewAuraSkillCheck(Unit* unit, int skillID, int param, int maxRange) {
             //NOTE: This is checking bits
             int check = pAllegianceChecker(unit->index, gAuraSkillBuffer[i].faction);
 
-            if (param & 2)
+            if (allyOption & 2)
                 check = !check;
 
             if (check)
@@ -238,19 +210,19 @@ bool NewAuraSkillCheck(Unit* unit, int skillID, int param, int maxRange) {
 void InitializePreBattleLoop(Unit* attacker, Unit* defender) {
     MakeAuraSkillBuffer(attacker);
     MakeSkillBuffer(attacker, gAttackerSkillBuffer);
-    SkillAttackerCache = attacker->index;
-    SkillDefenderCache = 0;
+    gDefenderSkillBuffer->lastUnitChecked = 0;
 
-    if ((gBattleStats.config & 3)) {
+    if (IsBattleReal()) {
         MakeSkillBuffer(&gBattleTarget.unit, gDefenderSkillBuffer);
-        SkillDefenderCache = gBattleTarget.unit.index;
     }
 }
 
-u8* GetUnitsInRange(Unit* unit, int param, int range) {
-    const s8(*pAllegianceChecker)(int, int) = ((param & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
+//Finds units in a radius and returns a list of matching unit's indexes
+u8* GetUnitsInRange(Unit* unit, int allyOption, int range) {
+    const s8(*pAllegianceChecker)(int, int) = ((allyOption & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
 
     int count = 0;
+    int check = 0;
 
     for (int i = 0; i < 0x100; ++i) {
         Unit* other = gUnitLookup[i];
@@ -267,9 +239,13 @@ u8* GetUnitsInRange(Unit* unit, int param, int range) {
         if (unit->index == i)
             continue;
 
-        //Done in a way that check is always true when a unit matching the critera is found
-        int check = (param & 2) ? !pAllegianceChecker(unit->index, other->index) :
-                                   pAllegianceChecker(unit->index, other->index);
+        //Check if other matches allyOption's criteria
+        if (allyOption & 2) {
+            check = !pAllegianceChecker(unit->index, other->index);
+        }
+        else {
+            check =  pAllegianceChecker(unit->index, other->index);
+        }
 
         if (check) {
             if ((absolute(other->xPos - unit->xPos)
@@ -279,7 +255,8 @@ u8* GetUnitsInRange(Unit* unit, int param, int range) {
         }
     }
 
-    gUnitRangeBuffer[count] = 0;
+    //Terminator
+    gUnitRangeBuffer[count++] = 0;
     if (!gUnitRangeBuffer[0])
         return FALSE;
 
