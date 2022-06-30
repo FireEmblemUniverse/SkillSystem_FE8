@@ -28,6 +28,8 @@ Charge:
 POIN SkillTester
 WORD ChargeID
 
+#include "Charge/AIMoveDistance/AIMoveDistance.event"
+
 #include "CriticalSkills/CriticalSkills.event"
 
 ALIGN 4
