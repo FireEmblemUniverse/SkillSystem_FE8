@@ -1,0 +1,19 @@
+
+PUSH 
+
+ORG $B30044
+jumpToHack(applystatus|1)
+
+POP 
+
+ALIGN 4 
+applystatus: 
+#incbin "applystatus.dmp" 
+
+
+
+
+
+
+
+
