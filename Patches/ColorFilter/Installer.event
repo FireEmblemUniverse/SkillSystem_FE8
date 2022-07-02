@@ -2,6 +2,8 @@
 #include "Extensions/Hack Installation.txt" 
 // void CopyToPaletteBuffer(const u16 src[], unsigned targetOffset, unsigned size); //! FE8U = 0x8000DB9
 
+// FilterPalette.asm is by Huichelaar
+
 #include "HookCopyToPaletteBuffer.lyn.event" 
 #include "FilterPalette.lyn.event" 
 
