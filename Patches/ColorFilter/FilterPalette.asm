@@ -27,7 +27,10 @@ mov r3, r0
 
 mov   r0, sp
 ldr   r4, [r0, #0x24]
-mov   r5, #0x1F
+ldr r5, [r0, #0x28] @ sp+4 - size in WORDs 
+
+lsl r5, #2 @ size in BYTEs 
+mov   r2, #0x1F
 mov   r6, #0x0
 
 Loop:
@@ -37,9 +40,9 @@ Loop:
   
   @ Red
   mov   r0, r7
-  and   r0, r5
+  and   r0, r2
   add   r0, r8
-  cmp   r0, #0x1F
+  cmp   r0, r2
   bgt   L7
     cmp   r0, #0x0
     blt   L8
@@ -55,9 +58,9 @@ Loop:
   
   @ Green
   lsr   r0, r7, #0x5
-  and   r0, r5
+  and   r0, r2
   add   r0, r9
-  cmp   r0, #0x1F
+  cmp   r0, r2
   bgt   L4
     cmp   r0, #0x0
     blt   L5
@@ -75,7 +78,7 @@ Loop:
   @ Blue
   lsr   r0, r7, #0xA
   add   r0, r10
-  cmp   r0, #0x1F
+  cmp   r0, r2
   bgt   L1
     cmp   r0, #0x0
     blt   L2
@@ -94,7 +97,7 @@ Loop:
   strh  r1, [r3, r6]
   
   add   r6, #0x2
-  cmp   r6, #0x20
+  cmp   r6, r5
   blt   Loop
 
 

@@ -4,7 +4,9 @@
   mov lr, \reg
   .short 0xf800
 .endm
-.global HookCopyToPaletteBuffer
+.global HookCopyToPaletteBuffer 
+@ void CopyToPaletteBuffer(const u16 src[], unsigned targetOffset, unsigned size); //! FE8U = 0x8000DB9
+
 .type HookCopyToPaletteBuffer, %function 
 .equ ProcFind, 0x08002E9C
 
@@ -35,24 +37,26 @@ blh ProcFind
 cmp r0, #0 
 bne DontFilter
 
-mov r0, #10 
+mov r0, #Variance
 blh NextRN_N 
-sub r0, #7 
+sub r0, #Variance_Sub
 push {r0} 
-mov r0, #10 
+mov r0, #Variance
 blh NextRN_N 
-sub r0, #7 
+sub r0, #Variance_Sub
 push {r0} 
-mov r0, #10 
+mov r0, #Variance
 blh NextRN_N 
-sub r0, #7 
+sub r0, #Variance_Sub
 mov r3, r0 
 pop {r1-r2} @ random numbers as colour filters 
-sub sp, #4 
+sub sp, #8 
 str r4, [sp] 
+str r6, [sp, #4] @ size in WORDs 
 mov r0, r5 @ dst 
+
 bl FilterPalette
-add sp, #4 
+add sp, #8
 DontFilter: 
 
 pop {r4-r7} 
@@ -68,6 +72,8 @@ bx r3
 
 .global HookCopyToPaletteBuffer2
 .type HookCopyToPaletteBuffer2, %function 
+.equ Variance, 6 
+.equ Variance_Sub, 2 
 
 HookCopyToPaletteBuffer2: @ hooks $DEC  
 push {r4-r7, lr} 
@@ -99,24 +105,26 @@ blh ProcFind
 cmp r0, #0 
 bne DontFilter2
 
-mov r0, #10 
+mov r0, #Variance
 blh NextRN_N 
-sub r0, #7 
+sub r0, #Variance_Sub
 push {r0} 
-mov r0, #10 
+mov r0, #Variance
 blh NextRN_N 
-sub r0, #7 
+sub r0, #Variance_Sub
 push {r0} 
-mov r0, #10 
+mov r0, #Variance
 blh NextRN_N 
-sub r0, #7
+sub r0, #Variance_Sub
 mov r3, r0 
 pop {r1-r2} @ random numbers as colour filters 
-sub sp, #4 
+sub sp, #8 
 str r4, [sp] 
+str r6, [sp, #4] @ size in WORDs 
 mov r0, r5 @ dst 
+
 bl FilterPalette
-add sp, #4 
+add sp, #8 
 DontFilter2: 
 pop {r4-r7} 
 pop {r3} 
