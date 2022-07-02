@@ -1,0 +1,37 @@
+#include "EAstdlib.event" 
+#include "Extensions/Hack Installation.txt" 
+// void CopyToPaletteBuffer(const u16 src[], unsigned targetOffset, unsigned size); //! FE8U = 0x8000DB9
+
+#include "HookCopyToPaletteBuffer.lyn.event" 
+#include "FilterPalette.lyn.event" 
+
+PUSH 
+
+ORG $DCC 
+callHack_r0(HookCopyToPaletteBuffer)
+SHORT $46C0 $46C0
+ORG $DEC 
+callHack_r0(HookCopyToPaletteBuffer2)
+SHORT $46C0 $46C0 $46C0
+POP 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
