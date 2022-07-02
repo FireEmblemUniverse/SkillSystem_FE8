@@ -14,28 +14,28 @@ PUSH
 ORG $1D308 
 jumpToHack(clearMinesHookNew) 
 
-ORG $1CC20 
+//ORG $1CC20 
 //callHackNew(initializeMinesProc)
 
-ORG $1C948 // player phase main loop 
+//ORG $1C948 // player phase main loop 
 //callHackNew(initializeMines2) 
 
 
-ORG $1DE18 
+//ORG $1DE18 
 //jumpToHack(removeMinesHook) 
 //SHORT $46c0 $46c0 
 
-ORG $1CC30
+//ORG $1CC30
 //callHackNew(initializeMines)
 
 
-ORG $1CD20 
+//ORG $1CD20 
 //callHackNew(hookForMines)
 ORG $1CE3C 
 callHackNew(hookForMines2) 
 SHORT 0x46C0 
 
-ORG $1CD84 
+//ORG $1CD84 
 //callHackNew(hookForMines3) 
 
 //ORG $1CEB8 
