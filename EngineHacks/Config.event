@@ -201,6 +201,9 @@
 // Setting the 0x00800000 bit in the item ability bitfield will enable passive boosts.
 // #define DONT_STACK_BOOSTS
 
+// If uncommented all boss kills will play critical hit animations.
+// #define FLASHY_MODE
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
