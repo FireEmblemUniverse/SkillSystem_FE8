@@ -57,6 +57,11 @@
     //Events
 	#include "Events/EventsInstaller.event"
 	#include "A_Debug_Command.event"
+
+ALIGN 4
+WORD 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 // Prevent NUPS from cutting off the last 6 bytes
+
+
 	
     MESSAGE Used free space ends at currentOffset
 #else
