@@ -1,8 +1,11 @@
+#include "ASMCs/DebuffUnit/Installer.event"
+#include "ASMCs/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
+
 
 #include "ASMCs/GetRand/Installer.event"
 #include "Draw/Installer.event"
 
-#include "ASMCs/DebuffUnit/Installer.event"
+
 #include "ASMCs/MapCameraPreview/Installer.event"
 
 #include "ASMCs/SilentGiveItem/Installer.event"
@@ -17,7 +20,7 @@
 
 
 #include "ASMCs/RandomizeCoords/RandomizeCoordsInstaller.event"
-#include "ASMCs/AutoLevelUnits/AutoLevelUnitsInstaller.event" 
+
 
 
 #include "ASMCs/UseItemEffect/Installer.event" 

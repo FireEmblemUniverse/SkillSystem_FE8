@@ -1,34 +1,6 @@
 // [0203A534]?!!
 // 8035812 
 
-#define NormalTypeWep 0x00
-#define FightingTypeWep 0x20
 
-#define ElectricTypeWep 0x01
-#define SteelTypeWep 0x21 
-
-#define WaterTypeWep 0x02
-#define IceTypeWep 0x22
-
-#define FireTypeWep 0x03
-#define FlyingTypeWep 0x13
-#define DragonTypeWep 0x23
-
-#define StaffTypeWep 0x04
-#define FairyTypeWep 0x14 
-
-#define GrassTypeWep 0x05
-#define PoisonTypeWep 0x15
-#define BugTypeWep 0x25
-
-#define GroundTypeWep 0x06
-#define RockTypeWep 0x16
-
-#define PsychicTypeWep 0x07
-#define GhostTypeWep 0x17
-#define DarkTypeWep 0x27
-
-
-#define ItemTypeWep 0x09
 
 

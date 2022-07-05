@@ -11,8 +11,10 @@
 # - Add support for C++-style comments ('// <comment>' at the end of lines)
 
 # modified by Bly for use with Scraiza's narrow font hack and MintX's extension
-
+from pathlib import Path
 import os, sys, re
+INPUT_ENCODING = "utf-8"
+OUTPUT_ENCODING = "utf-8"
 
 def show_exception_and_exit(exc_type, exc_value, tb):
 	import traceback
@@ -91,7 +93,7 @@ class Preprocessor:
 		if self.doTrace:
 			sys.stderr.write("TRACE: [preprocess] opening `{}`\n".format(fileName))
 
-		with open(fileName, 'r') as f:
+		with open(fileName, 'r', encoding=INPUT_ENCODING) as f:
 			for iLine, line in enumerate(f.readlines()):
 				line = self.strip_comment(line)
 				stripped = line.strip()
@@ -396,7 +398,7 @@ def main(args):
 					if os.path.exists(textFileName):
 						textModifyTime = os.path.getmtime(textFileName)
 
-						with open(textFileName, 'r') as tf:
+						with open(textFileName, 'r', encoding=OUTPUT_ENCODING) as tf:
 							if str(tf.read()) == entry.text:
 								textNeedsUpdate = False
 
@@ -409,7 +411,7 @@ def main(args):
 					if verbose:
 						sys.stderr.write("TRACE: [write] output `{}`\n".format(textFileName))
 
-					with open(textFileName, 'w') as tf:
+					with open(textFileName, 'w', encoding=OUTPUT_ENCODING) as tf:
 						tf.write(entry.text)
 
 				# Write parsed data if we have a parser
@@ -426,9 +428,9 @@ def main(args):
 				f.write("{}:\n".format(textDataLabel))
 
 				if hasParser:
-					f.write('#incbin "{}"\n'.format(os.path.relpath(dataFileName, os.path.dirname(outputPath))))
+					f.write('#incbin "{}"\n'.format(str(Path(os.path.relpath(dataFileName, os.path.dirname(outputPath))).as_posix())))
 				else:
-					f.write('#incext ParseFile "{}"\n'.format(os.path.relpath(textFileName, os.path.dirname(outputPath))))
+					f.write('#incext ParseFile "{}"\n'.format(str(Path(os.path.relpath(textFileName, os.path.dirname(outputPath))).as_posix())))
 
 				f.write("setText(${:X}, {})\n\n".format(entry.stringId, textDataLabel))
 

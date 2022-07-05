@@ -10,955 +10,955 @@
 {
 
 __TEXTPROCESS1200:
-#incbin ".TextEntries\text_buildfile1200.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1200.fetxt.dmp"
 setText($1200, __TEXTPROCESS1200)
 
 __TEXTPROCESS1201:
-#incbin ".TextEntries\text_buildfile1201.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1201.fetxt.dmp"
 setText($1201, __TEXTPROCESS1201)
 
 __TEXTPROCESS1202:
-#incbin ".TextEntries\text_buildfile1202.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1202.fetxt.dmp"
 setText($1202, __TEXTPROCESS1202)
 
 __TEXTPROCESS1203:
-#incbin ".TextEntries\text_buildfile1203.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1203.fetxt.dmp"
 setText($1203, __TEXTPROCESS1203)
 
 __TEXTPROCESS1204:
-#incbin ".TextEntries\text_buildfile1204.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1204.fetxt.dmp"
 setText($1204, __TEXTPROCESS1204)
 
 __TEXTPROCESS1205:
-#incbin ".TextEntries\text_buildfile1205.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1205.fetxt.dmp"
 setText($1205, __TEXTPROCESS1205)
 
 __TEXTPROCESS1206:
-#incbin ".TextEntries\text_buildfile1206.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1206.fetxt.dmp"
 setText($1206, __TEXTPROCESS1206)
 
 __TEXTPROCESS1207:
-#incbin ".TextEntries\text_buildfile1207.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1207.fetxt.dmp"
 setText($1207, __TEXTPROCESS1207)
 
 __TEXTPROCESS1208:
-#incbin ".TextEntries\text_buildfile1208.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1208.fetxt.dmp"
 setText($1208, __TEXTPROCESS1208)
 
 __TEXTPROCESS1209:
-#incbin ".TextEntries\text_buildfile1209.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1209.fetxt.dmp"
 setText($1209, __TEXTPROCESS1209)
 
 __TEXTPROCESS120A:
-#incbin ".TextEntries\text_buildfile120A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile120A.fetxt.dmp"
 setText($120A, __TEXTPROCESS120A)
 
 __TEXTPROCESS120B:
-#incbin ".TextEntries\text_buildfile120B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile120B.fetxt.dmp"
 setText($120B, __TEXTPROCESS120B)
 
 __TEXTPROCESS120C:
-#incbin ".TextEntries\text_buildfile120C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile120C.fetxt.dmp"
 setText($120C, __TEXTPROCESS120C)
 
 __TEXTPROCESS120D:
-#incbin ".TextEntries\text_buildfile120D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile120D.fetxt.dmp"
 setText($120D, __TEXTPROCESS120D)
 
 __TEXTPROCESS120E:
-#incbin ".TextEntries\text_buildfile120E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile120E.fetxt.dmp"
 setText($120E, __TEXTPROCESS120E)
 
 __TEXTPROCESS120F:
-#incbin ".TextEntries\text_buildfile120F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile120F.fetxt.dmp"
 setText($120F, __TEXTPROCESS120F)
 
 __TEXTPROCESS1210:
-#incbin ".TextEntries\text_buildfile1210.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1210.fetxt.dmp"
 setText($1210, __TEXTPROCESS1210)
 
 __TEXTPROCESS1211:
-#incbin ".TextEntries\text_buildfile1211.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1211.fetxt.dmp"
 setText($1211, __TEXTPROCESS1211)
 
 __TEXTPROCESS1212:
-#incbin ".TextEntries\text_buildfile1212.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1212.fetxt.dmp"
 setText($1212, __TEXTPROCESS1212)
 
 __TEXTPROCESS1213:
-#incbin ".TextEntries\text_buildfile1213.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1213.fetxt.dmp"
 setText($1213, __TEXTPROCESS1213)
 
 __TEXTPROCESS1214:
-#incbin ".TextEntries\text_buildfile1214.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1214.fetxt.dmp"
 setText($1214, __TEXTPROCESS1214)
 
 __TEXTPROCESS1215:
-#incbin ".TextEntries\text_buildfile1215.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1215.fetxt.dmp"
 setText($1215, __TEXTPROCESS1215)
 
 __TEXTPROCESS1216:
-#incbin ".TextEntries\text_buildfile1216.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1216.fetxt.dmp"
 setText($1216, __TEXTPROCESS1216)
 
 __TEXTPROCESS1217:
-#incbin ".TextEntries\text_buildfile1217.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1217.fetxt.dmp"
 setText($1217, __TEXTPROCESS1217)
 
 __TEXTPROCESS1218:
-#incbin ".TextEntries\text_buildfile1218.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1218.fetxt.dmp"
 setText($1218, __TEXTPROCESS1218)
 
 __TEXTPROCESS1219:
-#incbin ".TextEntries\text_buildfile1219.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1219.fetxt.dmp"
 setText($1219, __TEXTPROCESS1219)
 
 __TEXTPROCESS121A:
-#incbin ".TextEntries\text_buildfile121A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile121A.fetxt.dmp"
 setText($121A, __TEXTPROCESS121A)
 
 __TEXTPROCESS121B:
-#incbin ".TextEntries\text_buildfile121B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile121B.fetxt.dmp"
 setText($121B, __TEXTPROCESS121B)
 
 __TEXTPROCESS121C:
-#incbin ".TextEntries\text_buildfile121C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile121C.fetxt.dmp"
 setText($121C, __TEXTPROCESS121C)
 
 __TEXTPROCESS121D:
-#incbin ".TextEntries\text_buildfile121D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile121D.fetxt.dmp"
 setText($121D, __TEXTPROCESS121D)
 
 __TEXTPROCESS121E:
-#incbin ".TextEntries\text_buildfile121E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile121E.fetxt.dmp"
 setText($121E, __TEXTPROCESS121E)
 
 __TEXTPROCESS121F:
-#incbin ".TextEntries\text_buildfile121F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile121F.fetxt.dmp"
 setText($121F, __TEXTPROCESS121F)
 
 __TEXTPROCESS1220:
-#incbin ".TextEntries\text_buildfile1220.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1220.fetxt.dmp"
 setText($1220, __TEXTPROCESS1220)
 
 __TEXTPROCESS1221:
-#incbin ".TextEntries\text_buildfile1221.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1221.fetxt.dmp"
 setText($1221, __TEXTPROCESS1221)
 
 __TEXTPROCESS1222:
-#incbin ".TextEntries\text_buildfile1222.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1222.fetxt.dmp"
 setText($1222, __TEXTPROCESS1222)
 
 __TEXTPROCESS1223:
-#incbin ".TextEntries\text_buildfile1223.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1223.fetxt.dmp"
 setText($1223, __TEXTPROCESS1223)
 
 __TEXTPROCESS1224:
-#incbin ".TextEntries\text_buildfile1224.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1224.fetxt.dmp"
 setText($1224, __TEXTPROCESS1224)
 
 __TEXTPROCESS1225:
-#incbin ".TextEntries\text_buildfile1225.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1225.fetxt.dmp"
 setText($1225, __TEXTPROCESS1225)
 
 __TEXTPROCESS1226:
-#incbin ".TextEntries\text_buildfile1226.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1226.fetxt.dmp"
 setText($1226, __TEXTPROCESS1226)
 
 __TEXTPROCESS1227:
-#incbin ".TextEntries\text_buildfile1227.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1227.fetxt.dmp"
 setText($1227, __TEXTPROCESS1227)
 
 __TEXTPROCESS1228:
-#incbin ".TextEntries\text_buildfile1228.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1228.fetxt.dmp"
 setText($1228, __TEXTPROCESS1228)
 
 __TEXTPROCESS1229:
-#incbin ".TextEntries\text_buildfile1229.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1229.fetxt.dmp"
 setText($1229, __TEXTPROCESS1229)
 
 __TEXTPROCESS122A:
-#incbin ".TextEntries\text_buildfile122A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile122A.fetxt.dmp"
 setText($122A, __TEXTPROCESS122A)
 
 __TEXTPROCESS122B:
-#incbin ".TextEntries\text_buildfile122B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile122B.fetxt.dmp"
 setText($122B, __TEXTPROCESS122B)
 
 __TEXTPROCESS122C:
-#incbin ".TextEntries\text_buildfile122C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile122C.fetxt.dmp"
 setText($122C, __TEXTPROCESS122C)
 
 __TEXTPROCESS122D:
-#incbin ".TextEntries\text_buildfile122D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile122D.fetxt.dmp"
 setText($122D, __TEXTPROCESS122D)
 
 __TEXTPROCESS122E:
-#incbin ".TextEntries\text_buildfile122E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile122E.fetxt.dmp"
 setText($122E, __TEXTPROCESS122E)
 
 __TEXTPROCESS122F:
-#incbin ".TextEntries\text_buildfile122F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile122F.fetxt.dmp"
 setText($122F, __TEXTPROCESS122F)
 
 __TEXTPROCESS1230:
-#incbin ".TextEntries\text_buildfile1230.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1230.fetxt.dmp"
 setText($1230, __TEXTPROCESS1230)
 
 __TEXTPROCESS1231:
-#incbin ".TextEntries\text_buildfile1231.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1231.fetxt.dmp"
 setText($1231, __TEXTPROCESS1231)
 
 __TEXTPROCESS1232:
-#incbin ".TextEntries\text_buildfile1232.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1232.fetxt.dmp"
 setText($1232, __TEXTPROCESS1232)
 
 __TEXTPROCESS1233:
-#incbin ".TextEntries\text_buildfile1233.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1233.fetxt.dmp"
 setText($1233, __TEXTPROCESS1233)
 
 __TEXTPROCESS1234:
-#incbin ".TextEntries\text_buildfile1234.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1234.fetxt.dmp"
 setText($1234, __TEXTPROCESS1234)
 
 __TEXTPROCESS1235:
-#incbin ".TextEntries\text_buildfile1235.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1235.fetxt.dmp"
 setText($1235, __TEXTPROCESS1235)
 
 __TEXTPROCESS1236:
-#incbin ".TextEntries\text_buildfile1236.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1236.fetxt.dmp"
 setText($1236, __TEXTPROCESS1236)
 
 __TEXTPROCESS1237:
-#incbin ".TextEntries\text_buildfile1237.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1237.fetxt.dmp"
 setText($1237, __TEXTPROCESS1237)
 
 __TEXTPROCESS1238:
-#incbin ".TextEntries\text_buildfile1238.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1238.fetxt.dmp"
 setText($1238, __TEXTPROCESS1238)
 
 __TEXTPROCESS1239:
-#incbin ".TextEntries\text_buildfile1239.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1239.fetxt.dmp"
 setText($1239, __TEXTPROCESS1239)
 
 __TEXTPROCESS123A:
-#incbin ".TextEntries\text_buildfile123A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile123A.fetxt.dmp"
 setText($123A, __TEXTPROCESS123A)
 
 __TEXTPROCESS123B:
-#incbin ".TextEntries\text_buildfile123B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile123B.fetxt.dmp"
 setText($123B, __TEXTPROCESS123B)
 
 __TEXTPROCESS123C:
-#incbin ".TextEntries\text_buildfile123C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile123C.fetxt.dmp"
 setText($123C, __TEXTPROCESS123C)
 
 __TEXTPROCESS123D:
-#incbin ".TextEntries\text_buildfile123D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile123D.fetxt.dmp"
 setText($123D, __TEXTPROCESS123D)
 
 __TEXTPROCESS123E:
-#incbin ".TextEntries\text_buildfile123E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile123E.fetxt.dmp"
 setText($123E, __TEXTPROCESS123E)
 
 __TEXTPROCESS123F:
-#incbin ".TextEntries\text_buildfile123F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile123F.fetxt.dmp"
 setText($123F, __TEXTPROCESS123F)
 
 __TEXTPROCESS1240:
-#incbin ".TextEntries\text_buildfile1240.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1240.fetxt.dmp"
 setText($1240, __TEXTPROCESS1240)
 
 __TEXTPROCESS1241:
-#incbin ".TextEntries\text_buildfile1241.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1241.fetxt.dmp"
 setText($1241, __TEXTPROCESS1241)
 
 __TEXTPROCESS1242:
-#incbin ".TextEntries\text_buildfile1242.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1242.fetxt.dmp"
 setText($1242, __TEXTPROCESS1242)
 
 __TEXTPROCESS1243:
-#incbin ".TextEntries\text_buildfile1243.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1243.fetxt.dmp"
 setText($1243, __TEXTPROCESS1243)
 
 __TEXTPROCESS1244:
-#incbin ".TextEntries\text_buildfile1244.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1244.fetxt.dmp"
 setText($1244, __TEXTPROCESS1244)
 
 __TEXTPROCESS1245:
-#incbin ".TextEntries\text_buildfile1245.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1245.fetxt.dmp"
 setText($1245, __TEXTPROCESS1245)
 
 __TEXTPROCESS1246:
-#incbin ".TextEntries\text_buildfile1246.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1246.fetxt.dmp"
 setText($1246, __TEXTPROCESS1246)
 
 __TEXTPROCESS1247:
-#incbin ".TextEntries\text_buildfile1247.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1247.fetxt.dmp"
 setText($1247, __TEXTPROCESS1247)
 
 __TEXTPROCESS1248:
-#incbin ".TextEntries\text_buildfile1248.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1248.fetxt.dmp"
 setText($1248, __TEXTPROCESS1248)
 
 __TEXTPROCESS1249:
-#incbin ".TextEntries\text_buildfile1249.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1249.fetxt.dmp"
 setText($1249, __TEXTPROCESS1249)
 
 __TEXTPROCESS124A:
-#incbin ".TextEntries\text_buildfile124A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile124A.fetxt.dmp"
 setText($124A, __TEXTPROCESS124A)
 
 __TEXTPROCESS124B:
-#incbin ".TextEntries\text_buildfile124B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile124B.fetxt.dmp"
 setText($124B, __TEXTPROCESS124B)
 
 __TEXTPROCESS124C:
-#incbin ".TextEntries\text_buildfile124C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile124C.fetxt.dmp"
 setText($124C, __TEXTPROCESS124C)
 
 __TEXTPROCESS124D:
-#incbin ".TextEntries\text_buildfile124D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile124D.fetxt.dmp"
 setText($124D, __TEXTPROCESS124D)
 
 __TEXTPROCESS124E:
-#incbin ".TextEntries\text_buildfile124E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile124E.fetxt.dmp"
 setText($124E, __TEXTPROCESS124E)
 
 __TEXTPROCESS124F:
-#incbin ".TextEntries\text_buildfile124F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile124F.fetxt.dmp"
 setText($124F, __TEXTPROCESS124F)
 
 __TEXTPROCESS1250:
-#incbin ".TextEntries\text_buildfile1250.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1250.fetxt.dmp"
 setText($1250, __TEXTPROCESS1250)
 
 __TEXTPROCESS1251:
-#incbin ".TextEntries\text_buildfile1251.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1251.fetxt.dmp"
 setText($1251, __TEXTPROCESS1251)
 
 __TEXTPROCESS1252:
-#incbin ".TextEntries\text_buildfile1252.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1252.fetxt.dmp"
 setText($1252, __TEXTPROCESS1252)
 
 __TEXTPROCESS1253:
-#incbin ".TextEntries\text_buildfile1253.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1253.fetxt.dmp"
 setText($1253, __TEXTPROCESS1253)
 
 __TEXTPROCESS1254:
-#incbin ".TextEntries\text_buildfile1254.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1254.fetxt.dmp"
 setText($1254, __TEXTPROCESS1254)
 
 __TEXTPROCESS1255:
-#incbin ".TextEntries\text_buildfile1255.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1255.fetxt.dmp"
 setText($1255, __TEXTPROCESS1255)
 
 __TEXTPROCESS1256:
-#incbin ".TextEntries\text_buildfile1256.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1256.fetxt.dmp"
 setText($1256, __TEXTPROCESS1256)
 
 __TEXTPROCESS1257:
-#incbin ".TextEntries\text_buildfile1257.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1257.fetxt.dmp"
 setText($1257, __TEXTPROCESS1257)
 
 __TEXTPROCESS1258:
-#incbin ".TextEntries\text_buildfile1258.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1258.fetxt.dmp"
 setText($1258, __TEXTPROCESS1258)
 
 __TEXTPROCESS1259:
-#incbin ".TextEntries\text_buildfile1259.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1259.fetxt.dmp"
 setText($1259, __TEXTPROCESS1259)
 
 __TEXTPROCESS125A:
-#incbin ".TextEntries\text_buildfile125A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile125A.fetxt.dmp"
 setText($125A, __TEXTPROCESS125A)
 
 __TEXTPROCESS125B:
-#incbin ".TextEntries\text_buildfile125B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile125B.fetxt.dmp"
 setText($125B, __TEXTPROCESS125B)
 
 __TEXTPROCESS125C:
-#incbin ".TextEntries\text_buildfile125C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile125C.fetxt.dmp"
 setText($125C, __TEXTPROCESS125C)
 
 __TEXTPROCESS125D:
-#incbin ".TextEntries\text_buildfile125D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile125D.fetxt.dmp"
 setText($125D, __TEXTPROCESS125D)
 
 __TEXTPROCESS125E:
-#incbin ".TextEntries\text_buildfile125E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile125E.fetxt.dmp"
 setText($125E, __TEXTPROCESS125E)
 
 __TEXTPROCESS125F:
-#incbin ".TextEntries\text_buildfile125F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile125F.fetxt.dmp"
 setText($125F, __TEXTPROCESS125F)
 
 __TEXTPROCESS1260:
-#incbin ".TextEntries\text_buildfile1260.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1260.fetxt.dmp"
 setText($1260, __TEXTPROCESS1260)
 
 __TEXTPROCESS1261:
-#incbin ".TextEntries\text_buildfile1261.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1261.fetxt.dmp"
 setText($1261, __TEXTPROCESS1261)
 
 __TEXTPROCESS1262:
-#incbin ".TextEntries\text_buildfile1262.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1262.fetxt.dmp"
 setText($1262, __TEXTPROCESS1262)
 
 __TEXTPROCESS1263:
-#incbin ".TextEntries\text_buildfile1263.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1263.fetxt.dmp"
 setText($1263, __TEXTPROCESS1263)
 
 __TEXTPROCESS1264:
-#incbin ".TextEntries\text_buildfile1264.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1264.fetxt.dmp"
 setText($1264, __TEXTPROCESS1264)
 
 __TEXTPROCESS1265:
-#incbin ".TextEntries\text_buildfile1265.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1265.fetxt.dmp"
 setText($1265, __TEXTPROCESS1265)
 
 __TEXTPROCESS1266:
-#incbin ".TextEntries\text_buildfile1266.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1266.fetxt.dmp"
 setText($1266, __TEXTPROCESS1266)
 
 __TEXTPROCESS1267:
-#incbin ".TextEntries\text_buildfile1267.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1267.fetxt.dmp"
 setText($1267, __TEXTPROCESS1267)
 
 __TEXTPROCESS1268:
-#incbin ".TextEntries\text_buildfile1268.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1268.fetxt.dmp"
 setText($1268, __TEXTPROCESS1268)
 
 __TEXTPROCESS1269:
-#incbin ".TextEntries\text_buildfile1269.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1269.fetxt.dmp"
 setText($1269, __TEXTPROCESS1269)
 
 __TEXTPROCESS1270:
-#incbin ".TextEntries\text_buildfile1270.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1270.fetxt.dmp"
 setText($1270, __TEXTPROCESS1270)
 
 __TEXTPROCESS1271:
-#incbin ".TextEntries\text_buildfile1271.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1271.fetxt.dmp"
 setText($1271, __TEXTPROCESS1271)
 
 __TEXTPROCESS1272:
-#incbin ".TextEntries\text_buildfile1272.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1272.fetxt.dmp"
 setText($1272, __TEXTPROCESS1272)
 
 __TEXTPROCESS1273:
-#incbin ".TextEntries\text_buildfile1273.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1273.fetxt.dmp"
 setText($1273, __TEXTPROCESS1273)
 
 __TEXTPROCESS1274:
-#incbin ".TextEntries\text_buildfile1274.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1274.fetxt.dmp"
 setText($1274, __TEXTPROCESS1274)
 
 __TEXTPROCESS1275:
-#incbin ".TextEntries\text_buildfile1275.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1275.fetxt.dmp"
 setText($1275, __TEXTPROCESS1275)
 
 __TEXTPROCESS1276:
-#incbin ".TextEntries\text_buildfile1276.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1276.fetxt.dmp"
 setText($1276, __TEXTPROCESS1276)
 
 __TEXTPROCESS1277:
-#incbin ".TextEntries\text_buildfile1277.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1277.fetxt.dmp"
 setText($1277, __TEXTPROCESS1277)
 
 __TEXTPROCESS1278:
-#incbin ".TextEntries\text_buildfile1278.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1278.fetxt.dmp"
 setText($1278, __TEXTPROCESS1278)
 
 __TEXTPROCESS1279:
-#incbin ".TextEntries\text_buildfile1279.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1279.fetxt.dmp"
 setText($1279, __TEXTPROCESS1279)
 
 __TEXTPROCESS127A:
-#incbin ".TextEntries\text_buildfile127A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile127A.fetxt.dmp"
 setText($127A, __TEXTPROCESS127A)
 
 __TEXTPROCESS127B:
-#incbin ".TextEntries\text_buildfile127B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile127B.fetxt.dmp"
 setText($127B, __TEXTPROCESS127B)
 
 __TEXTPROCESS127C:
-#incbin ".TextEntries\text_buildfile127C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile127C.fetxt.dmp"
 setText($127C, __TEXTPROCESS127C)
 
 __TEXTPROCESS127D:
-#incbin ".TextEntries\text_buildfile127D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile127D.fetxt.dmp"
 setText($127D, __TEXTPROCESS127D)
 
 __TEXTPROCESS127E:
-#incbin ".TextEntries\text_buildfile127E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile127E.fetxt.dmp"
 setText($127E, __TEXTPROCESS127E)
 
 __TEXTPROCESS127F:
-#incbin ".TextEntries\text_buildfile127F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile127F.fetxt.dmp"
 setText($127F, __TEXTPROCESS127F)
 
 __TEXTPROCESS1280:
-#incbin ".TextEntries\text_buildfile1280.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1280.fetxt.dmp"
 setText($1280, __TEXTPROCESS1280)
 
 __TEXTPROCESS1281:
-#incbin ".TextEntries\text_buildfile1281.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1281.fetxt.dmp"
 setText($1281, __TEXTPROCESS1281)
 
 __TEXTPROCESS1282:
-#incbin ".TextEntries\text_buildfile1282.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1282.fetxt.dmp"
 setText($1282, __TEXTPROCESS1282)
 
 __TEXTPROCESS1283:
-#incbin ".TextEntries\text_buildfile1283.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1283.fetxt.dmp"
 setText($1283, __TEXTPROCESS1283)
 
 __TEXTPROCESS1284:
-#incbin ".TextEntries\text_buildfile1284.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1284.fetxt.dmp"
 setText($1284, __TEXTPROCESS1284)
 
 __TEXTPROCESS1285:
-#incbin ".TextEntries\text_buildfile1285.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1285.fetxt.dmp"
 setText($1285, __TEXTPROCESS1285)
 
 __TEXTPROCESS1286:
-#incbin ".TextEntries\text_buildfile1286.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1286.fetxt.dmp"
 setText($1286, __TEXTPROCESS1286)
 
 __TEXTPROCESS1287:
-#incbin ".TextEntries\text_buildfile1287.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1287.fetxt.dmp"
 setText($1287, __TEXTPROCESS1287)
 
 __TEXTPROCESS1288:
-#incbin ".TextEntries\text_buildfile1288.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1288.fetxt.dmp"
 setText($1288, __TEXTPROCESS1288)
 
 __TEXTPROCESS1289:
-#incbin ".TextEntries\text_buildfile1289.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1289.fetxt.dmp"
 setText($1289, __TEXTPROCESS1289)
 
 __TEXTPROCESS128A:
-#incbin ".TextEntries\text_buildfile128A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile128A.fetxt.dmp"
 setText($128A, __TEXTPROCESS128A)
 
 __TEXTPROCESS128B:
-#incbin ".TextEntries\text_buildfile128B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile128B.fetxt.dmp"
 setText($128B, __TEXTPROCESS128B)
 
 __TEXTPROCESS128C:
-#incbin ".TextEntries\text_buildfile128C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile128C.fetxt.dmp"
 setText($128C, __TEXTPROCESS128C)
 
 __TEXTPROCESS128D:
-#incbin ".TextEntries\text_buildfile128D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile128D.fetxt.dmp"
 setText($128D, __TEXTPROCESS128D)
 
 __TEXTPROCESS128E:
-#incbin ".TextEntries\text_buildfile128E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile128E.fetxt.dmp"
 setText($128E, __TEXTPROCESS128E)
 
 __TEXTPROCESS128F:
-#incbin ".TextEntries\text_buildfile128F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile128F.fetxt.dmp"
 setText($128F, __TEXTPROCESS128F)
 
 __TEXTPROCESS1290:
-#incbin ".TextEntries\text_buildfile1290.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1290.fetxt.dmp"
 setText($1290, __TEXTPROCESS1290)
 
 __TEXTPROCESS1291:
-#incbin ".TextEntries\text_buildfile1291.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1291.fetxt.dmp"
 setText($1291, __TEXTPROCESS1291)
 
 __TEXTPROCESS1292:
-#incbin ".TextEntries\text_buildfile1292.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1292.fetxt.dmp"
 setText($1292, __TEXTPROCESS1292)
 
 __TEXTPROCESS1293:
-#incbin ".TextEntries\text_buildfile1293.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1293.fetxt.dmp"
 setText($1293, __TEXTPROCESS1293)
 
 __TEXTPROCESS1294:
-#incbin ".TextEntries\text_buildfile1294.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1294.fetxt.dmp"
 setText($1294, __TEXTPROCESS1294)
 
 __TEXTPROCESS1295:
-#incbin ".TextEntries\text_buildfile1295.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1295.fetxt.dmp"
 setText($1295, __TEXTPROCESS1295)
 
 __TEXTPROCESS1296:
-#incbin ".TextEntries\text_buildfile1296.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1296.fetxt.dmp"
 setText($1296, __TEXTPROCESS1296)
 
 __TEXTPROCESS1297:
-#incbin ".TextEntries\text_buildfile1297.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1297.fetxt.dmp"
 setText($1297, __TEXTPROCESS1297)
 
 __TEXTPROCESS1298:
-#incbin ".TextEntries\text_buildfile1298.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1298.fetxt.dmp"
 setText($1298, __TEXTPROCESS1298)
 
 __TEXTPROCESS1299:
-#incbin ".TextEntries\text_buildfile1299.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile1299.fetxt.dmp"
 setText($1299, __TEXTPROCESS1299)
 
 __TEXTPROCESS129A:
-#incbin ".TextEntries\text_buildfile129A.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile129A.fetxt.dmp"
 setText($129A, __TEXTPROCESS129A)
 
 __TEXTPROCESS129B:
-#incbin ".TextEntries\text_buildfile129B.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile129B.fetxt.dmp"
 setText($129B, __TEXTPROCESS129B)
 
 __TEXTPROCESS129C:
-#incbin ".TextEntries\text_buildfile129C.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile129C.fetxt.dmp"
 setText($129C, __TEXTPROCESS129C)
 
 __TEXTPROCESS129D:
-#incbin ".TextEntries\text_buildfile129D.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile129D.fetxt.dmp"
 setText($129D, __TEXTPROCESS129D)
 
 __TEXTPROCESS129E:
-#incbin ".TextEntries\text_buildfile129E.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile129E.fetxt.dmp"
 setText($129E, __TEXTPROCESS129E)
 
 __TEXTPROCESS129F:
-#incbin ".TextEntries\text_buildfile129F.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile129F.fetxt.dmp"
 setText($129F, __TEXTPROCESS129F)
 
 __TEXTPROCESS12A0:
-#incbin ".TextEntries\text_buildfile12A0.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A0.fetxt.dmp"
 setText($12A0, __TEXTPROCESS12A0)
 
 __TEXTPROCESS12A1:
-#incbin ".TextEntries\text_buildfile12A1.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A1.fetxt.dmp"
 setText($12A1, __TEXTPROCESS12A1)
 
 __TEXTPROCESS12A2:
-#incbin ".TextEntries\text_buildfile12A2.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A2.fetxt.dmp"
 setText($12A2, __TEXTPROCESS12A2)
 
 __TEXTPROCESS12A3:
-#incbin ".TextEntries\text_buildfile12A3.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A3.fetxt.dmp"
 setText($12A3, __TEXTPROCESS12A3)
 
 __TEXTPROCESS12A4:
-#incbin ".TextEntries\text_buildfile12A4.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A4.fetxt.dmp"
 setText($12A4, __TEXTPROCESS12A4)
 
 __TEXTPROCESS12A5:
-#incbin ".TextEntries\text_buildfile12A5.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A5.fetxt.dmp"
 setText($12A5, __TEXTPROCESS12A5)
 
 __TEXTPROCESS12A6:
-#incbin ".TextEntries\text_buildfile12A6.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A6.fetxt.dmp"
 setText($12A6, __TEXTPROCESS12A6)
 
 __TEXTPROCESS12A7:
-#incbin ".TextEntries\text_buildfile12A7.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A7.fetxt.dmp"
 setText($12A7, __TEXTPROCESS12A7)
 
 __TEXTPROCESS12A8:
-#incbin ".TextEntries\text_buildfile12A8.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A8.fetxt.dmp"
 setText($12A8, __TEXTPROCESS12A8)
 
 __TEXTPROCESS12A9:
-#incbin ".TextEntries\text_buildfile12A9.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile12A9.fetxt.dmp"
 setText($12A9, __TEXTPROCESS12A9)
 
 __TEXTPROCESS13AA:
-#incbin ".TextEntries\text_buildfile13AA.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13AA.fetxt.dmp"
 setText($13AA, __TEXTPROCESS13AA)
 
 __TEXTPROCESS13AB:
-#incbin ".TextEntries\text_buildfile13AB.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13AB.fetxt.dmp"
 setText($13AB, __TEXTPROCESS13AB)
 
 __TEXTPROCESS13AC:
-#incbin ".TextEntries\text_buildfile13AC.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13AC.fetxt.dmp"
 setText($13AC, __TEXTPROCESS13AC)
 
 __TEXTPROCESS13AD:
-#incbin ".TextEntries\text_buildfile13AD.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13AD.fetxt.dmp"
 setText($13AD, __TEXTPROCESS13AD)
 
 __TEXTPROCESS13AE:
-#incbin ".TextEntries\text_buildfile13AE.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13AE.fetxt.dmp"
 setText($13AE, __TEXTPROCESS13AE)
 
 __TEXTPROCESS13AF:
-#incbin ".TextEntries\text_buildfile13AF.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13AF.fetxt.dmp"
 setText($13AF, __TEXTPROCESS13AF)
 
 __TEXTPROCESS13B0:
-#incbin ".TextEntries\text_buildfile13B0.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B0.fetxt.dmp"
 setText($13B0, __TEXTPROCESS13B0)
 
 __TEXTPROCESS13B1:
-#incbin ".TextEntries\text_buildfile13B1.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B1.fetxt.dmp"
 setText($13B1, __TEXTPROCESS13B1)
 
 __TEXTPROCESS13B2:
-#incbin ".TextEntries\text_buildfile13B2.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B2.fetxt.dmp"
 setText($13B2, __TEXTPROCESS13B2)
 
 __TEXTPROCESS13B3:
-#incbin ".TextEntries\text_buildfile13B3.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B3.fetxt.dmp"
 setText($13B3, __TEXTPROCESS13B3)
 
 __TEXTPROCESS13B4:
-#incbin ".TextEntries\text_buildfile13B4.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B4.fetxt.dmp"
 setText($13B4, __TEXTPROCESS13B4)
 
 __TEXTPROCESS13B5:
-#incbin ".TextEntries\text_buildfile13B5.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B5.fetxt.dmp"
 setText($13B5, __TEXTPROCESS13B5)
 
 __TEXTPROCESS13B6:
-#incbin ".TextEntries\text_buildfile13B6.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B6.fetxt.dmp"
 setText($13B6, __TEXTPROCESS13B6)
 
 __TEXTPROCESS13B7:
-#incbin ".TextEntries\text_buildfile13B7.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B7.fetxt.dmp"
 setText($13B7, __TEXTPROCESS13B7)
 
 __TEXTPROCESS13B8:
-#incbin ".TextEntries\text_buildfile13B8.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B8.fetxt.dmp"
 setText($13B8, __TEXTPROCESS13B8)
 
 __TEXTPROCESS13B9:
-#incbin ".TextEntries\text_buildfile13B9.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13B9.fetxt.dmp"
 setText($13B9, __TEXTPROCESS13B9)
 
 __TEXTPROCESS13BA:
-#incbin ".TextEntries\text_buildfile13BA.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13BA.fetxt.dmp"
 setText($13BA, __TEXTPROCESS13BA)
 
 __TEXTPROCESS13BB:
-#incbin ".TextEntries\text_buildfile13BB.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13BB.fetxt.dmp"
 setText($13BB, __TEXTPROCESS13BB)
 
 __TEXTPROCESS13BC:
-#incbin ".TextEntries\text_buildfile13BC.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13BC.fetxt.dmp"
 setText($13BC, __TEXTPROCESS13BC)
 
 __TEXTPROCESS13BD:
-#incbin ".TextEntries\text_buildfile13BD.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13BD.fetxt.dmp"
 setText($13BD, __TEXTPROCESS13BD)
 
 __TEXTPROCESS13BE:
-#incbin ".TextEntries\text_buildfile13BE.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13BE.fetxt.dmp"
 setText($13BE, __TEXTPROCESS13BE)
 
 __TEXTPROCESS13BF:
-#incbin ".TextEntries\text_buildfile13BF.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13BF.fetxt.dmp"
 setText($13BF, __TEXTPROCESS13BF)
 
 __TEXTPROCESS13C0:
-#incbin ".TextEntries\text_buildfile13C0.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C0.fetxt.dmp"
 setText($13C0, __TEXTPROCESS13C0)
 
 __TEXTPROCESS13C1:
-#incbin ".TextEntries\text_buildfile13C1.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C1.fetxt.dmp"
 setText($13C1, __TEXTPROCESS13C1)
 
 __TEXTPROCESS13C2:
-#incbin ".TextEntries\text_buildfile13C2.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C2.fetxt.dmp"
 setText($13C2, __TEXTPROCESS13C2)
 
 __TEXTPROCESS13C3:
-#incbin ".TextEntries\text_buildfile13C3.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C3.fetxt.dmp"
 setText($13C3, __TEXTPROCESS13C3)
 
 __TEXTPROCESS13C4:
-#incbin ".TextEntries\text_buildfile13C4.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C4.fetxt.dmp"
 setText($13C4, __TEXTPROCESS13C4)
 
 __TEXTPROCESS13C5:
-#incbin ".TextEntries\text_buildfile13C5.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C5.fetxt.dmp"
 setText($13C5, __TEXTPROCESS13C5)
 
 __TEXTPROCESS13C6:
-#incbin ".TextEntries\text_buildfile13C6.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C6.fetxt.dmp"
 setText($13C6, __TEXTPROCESS13C6)
 
 __TEXTPROCESS13C7:
-#incbin ".TextEntries\text_buildfile13C7.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C7.fetxt.dmp"
 setText($13C7, __TEXTPROCESS13C7)
 
 __TEXTPROCESS13C8:
-#incbin ".TextEntries\text_buildfile13C8.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C8.fetxt.dmp"
 setText($13C8, __TEXTPROCESS13C8)
 
 __TEXTPROCESS13C9:
-#incbin ".TextEntries\text_buildfile13C9.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13C9.fetxt.dmp"
 setText($13C9, __TEXTPROCESS13C9)
 
 __TEXTPROCESS13CA:
-#incbin ".TextEntries\text_buildfile13CA.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13CA.fetxt.dmp"
 setText($13CA, __TEXTPROCESS13CA)
 
 __TEXTPROCESS13CB:
-#incbin ".TextEntries\text_buildfile13CB.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13CB.fetxt.dmp"
 setText($13CB, __TEXTPROCESS13CB)
 
 __TEXTPROCESS13CC:
-#incbin ".TextEntries\text_buildfile13CC.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13CC.fetxt.dmp"
 setText($13CC, __TEXTPROCESS13CC)
 
 __TEXTPROCESS13CD:
-#incbin ".TextEntries\text_buildfile13CD.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13CD.fetxt.dmp"
 setText($13CD, __TEXTPROCESS13CD)
 
 __TEXTPROCESS13CE:
-#incbin ".TextEntries\text_buildfile13CE.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13CE.fetxt.dmp"
 setText($13CE, __TEXTPROCESS13CE)
 
 __TEXTPROCESS13CF:
-#incbin ".TextEntries\text_buildfile13CF.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13CF.fetxt.dmp"
 setText($13CF, __TEXTPROCESS13CF)
 
 __TEXTPROCESS13D0:
-#incbin ".TextEntries\text_buildfile13D0.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D0.fetxt.dmp"
 setText($13D0, __TEXTPROCESS13D0)
 
 __TEXTPROCESS13D1:
-#incbin ".TextEntries\text_buildfile13D1.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D1.fetxt.dmp"
 setText($13D1, __TEXTPROCESS13D1)
 
 __TEXTPROCESS13D2:
-#incbin ".TextEntries\text_buildfile13D2.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D2.fetxt.dmp"
 setText($13D2, __TEXTPROCESS13D2)
 
 __TEXTPROCESS13D3:
-#incbin ".TextEntries\text_buildfile13D3.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D3.fetxt.dmp"
 setText($13D3, __TEXTPROCESS13D3)
 
 __TEXTPROCESS13D4:
-#incbin ".TextEntries\text_buildfile13D4.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D4.fetxt.dmp"
 setText($13D4, __TEXTPROCESS13D4)
 
 __TEXTPROCESS13D5:
-#incbin ".TextEntries\text_buildfile13D5.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D5.fetxt.dmp"
 setText($13D5, __TEXTPROCESS13D5)
 
 __TEXTPROCESS13D6:
-#incbin ".TextEntries\text_buildfile13D6.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D6.fetxt.dmp"
 setText($13D6, __TEXTPROCESS13D6)
 
 __TEXTPROCESS13D7:
-#incbin ".TextEntries\text_buildfile13D7.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D7.fetxt.dmp"
 setText($13D7, __TEXTPROCESS13D7)
 
 __TEXTPROCESS13D8:
-#incbin ".TextEntries\text_buildfile13D8.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D8.fetxt.dmp"
 setText($13D8, __TEXTPROCESS13D8)
 
 __TEXTPROCESS13D9:
-#incbin ".TextEntries\text_buildfile13D9.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13D9.fetxt.dmp"
 setText($13D9, __TEXTPROCESS13D9)
 
 __TEXTPROCESS13DA:
-#incbin ".TextEntries\text_buildfile13DA.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13DA.fetxt.dmp"
 setText($13DA, __TEXTPROCESS13DA)
 
 __TEXTPROCESS13DB:
-#incbin ".TextEntries\text_buildfile13DB.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13DB.fetxt.dmp"
 setText($13DB, __TEXTPROCESS13DB)
 
 __TEXTPROCESS13DC:
-#incbin ".TextEntries\text_buildfile13DC.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13DC.fetxt.dmp"
 setText($13DC, __TEXTPROCESS13DC)
 
 __TEXTPROCESS13DD:
-#incbin ".TextEntries\text_buildfile13DD.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13DD.fetxt.dmp"
 setText($13DD, __TEXTPROCESS13DD)
 
 __TEXTPROCESS13DE:
-#incbin ".TextEntries\text_buildfile13DE.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13DE.fetxt.dmp"
 setText($13DE, __TEXTPROCESS13DE)
 
 __TEXTPROCESS13DF:
-#incbin ".TextEntries\text_buildfile13DF.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13DF.fetxt.dmp"
 setText($13DF, __TEXTPROCESS13DF)
 
 __TEXTPROCESS13E0:
-#incbin ".TextEntries\text_buildfile13E0.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E0.fetxt.dmp"
 setText($13E0, __TEXTPROCESS13E0)
 
 __TEXTPROCESS13E1:
-#incbin ".TextEntries\text_buildfile13E1.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E1.fetxt.dmp"
 setText($13E1, __TEXTPROCESS13E1)
 
 __TEXTPROCESS13E2:
-#incbin ".TextEntries\text_buildfile13E2.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E2.fetxt.dmp"
 setText($13E2, __TEXTPROCESS13E2)
 
 __TEXTPROCESS13E3:
-#incbin ".TextEntries\text_buildfile13E3.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E3.fetxt.dmp"
 setText($13E3, __TEXTPROCESS13E3)
 
 __TEXTPROCESS13E4:
-#incbin ".TextEntries\text_buildfile13E4.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E4.fetxt.dmp"
 setText($13E4, __TEXTPROCESS13E4)
 
 __TEXTPROCESS13E5:
-#incbin ".TextEntries\text_buildfile13E5.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E5.fetxt.dmp"
 setText($13E5, __TEXTPROCESS13E5)
 
 __TEXTPROCESS13E6:
-#incbin ".TextEntries\text_buildfile13E6.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E6.fetxt.dmp"
 setText($13E6, __TEXTPROCESS13E6)
 
 __TEXTPROCESS13E7:
-#incbin ".TextEntries\text_buildfile13E7.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E7.fetxt.dmp"
 setText($13E7, __TEXTPROCESS13E7)
 
 __TEXTPROCESS13E8:
-#incbin ".TextEntries\text_buildfile13E8.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E8.fetxt.dmp"
 setText($13E8, __TEXTPROCESS13E8)
 
 __TEXTPROCESS13E9:
-#incbin ".TextEntries\text_buildfile13E9.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13E9.fetxt.dmp"
 setText($13E9, __TEXTPROCESS13E9)
 
 __TEXTPROCESS13EA:
-#incbin ".TextEntries\text_buildfile13EA.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13EA.fetxt.dmp"
 setText($13EA, __TEXTPROCESS13EA)
 
 __TEXTPROCESS13EB:
-#incbin ".TextEntries\text_buildfile13EB.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13EB.fetxt.dmp"
 setText($13EB, __TEXTPROCESS13EB)
 
 __TEXTPROCESS13EC:
-#incbin ".TextEntries\text_buildfile13EC.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13EC.fetxt.dmp"
 setText($13EC, __TEXTPROCESS13EC)
 
 __TEXTPROCESS13ED:
-#incbin ".TextEntries\text_buildfile13ED.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13ED.fetxt.dmp"
 setText($13ED, __TEXTPROCESS13ED)
 
 __TEXTPROCESS13EE:
-#incbin ".TextEntries\text_buildfile13EE.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13EE.fetxt.dmp"
 setText($13EE, __TEXTPROCESS13EE)
 
 __TEXTPROCESS13EF:
-#incbin ".TextEntries\text_buildfile13EF.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13EF.fetxt.dmp"
 setText($13EF, __TEXTPROCESS13EF)
 
 __TEXTPROCESS13F0:
-#incbin ".TextEntries\text_buildfile13F0.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13F0.fetxt.dmp"
 setText($13F0, __TEXTPROCESS13F0)
 
 __TEXTPROCESS13F1:
-#incbin ".TextEntries\text_buildfile13F1.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13F1.fetxt.dmp"
 setText($13F1, __TEXTPROCESS13F1)
 
 __TEXTPROCESS13F2:
-#incbin ".TextEntries\text_buildfile13F2.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13F2.fetxt.dmp"
 setText($13F2, __TEXTPROCESS13F2)
 
 __TEXTPROCESS13F3:
-#incbin ".TextEntries\text_buildfile13F3.fetxt.dmp"
+#incbin ".TextEntries/text_buildfile13F3.fetxt.dmp"
 setText($13F3, __TEXTPROCESS13F3)
 
 }

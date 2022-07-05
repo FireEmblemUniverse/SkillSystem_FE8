@@ -16,7 +16,7 @@ PUSH
 	//Change stats at 2020108 from shorts to bytes
 	//WRITES
 	ORG $7369A
-	#incbin "WritePromotoRAM.dmp"
+	#incbin "WritePromotoRAM.bin"
 	SHORT 0xE012
 	
 	ORG $736C4 
@@ -226,7 +226,7 @@ POIN MagClassTable
 	ALIGN 4
 	NewLevelUpTsa:
 	//#incext compress "NewLevelupTsaDecomp.dmp"
-	#incbin "NewLevelupTsaDecompASDF.dmp"
+	#incbin "NewLevelupTsaDecompASDF.bin"
 	//if I ever use this I will need to get the .dmp 
 #endif
 	
@@ -260,7 +260,7 @@ POIN 0x7EC44 0x7EC48 0x7EC64 0x7ED0C 0x7EC80 0x7EC9C 0x7ECB8 0x7ECD4 0x7ECF0
 
 ALIGN 4
 Promo_Stat_Name_Table:
-#incbin "PromoStatNameTable.dmp"
+#incbin "PromoStatNameTable.bin"
 POIN Mov_Text_ID_Pointer
 	
 /*ALIGN 4 // See note on this code's hook.

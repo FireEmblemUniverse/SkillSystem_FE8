@@ -16,47 +16,47 @@ WORD 0 0 0
 
 ALIGN 4 
 claw0000_Data: 
-#incbin "dmp\claw0000.dmp" 
+#incbin "dmp/claw0000.dmp" 
  
 ALIGN 4 
 claw0000_pal: 
-#incbin "dmp\claw0000_pal.dmp" 
+#incbin "dmp/claw0000_pal.dmp" 
  
  
 ALIGN 4 
 claw0001_Data: 
-#incbin "dmp\claw0001.dmp" 
+#incbin "dmp/claw0001.dmp" 
  
 ALIGN 4 
 claw0001_pal: 
-#incbin "dmp\claw0001_pal.dmp" 
+#incbin "dmp/claw0001_pal.dmp" 
  
  
 ALIGN 4 
 claw0002_Data: 
-#incbin "dmp\claw0002.dmp" 
+#incbin "dmp/claw0002.dmp" 
  
 ALIGN 4 
 claw0002_pal: 
-#incbin "dmp\claw0002_pal.dmp" 
+#incbin "dmp/claw0002_pal.dmp" 
  
  
 ALIGN 4 
 claw0003_Data: 
-#incbin "dmp\claw0003.dmp" 
+#incbin "dmp/claw0003.dmp" 
  
 ALIGN 4 
 claw0003_pal: 
-#incbin "dmp\claw0003_pal.dmp" 
+#incbin "dmp/claw0003_pal.dmp" 
  
  
 ALIGN 4 
 claw0004_Data: 
-#incbin "dmp\claw0004.dmp" 
+#incbin "dmp/claw0004.dmp" 
  
 ALIGN 4 
 claw0004_pal: 
-#incbin "dmp\claw0004_pal.dmp" 
+#incbin "dmp/claw0004_pal.dmp" 
  
  
 
@@ -77,47 +77,47 @@ WORD 0 0 0
 
 ALIGN 4 
 fire_plume0000_Data: 
-#incbin "dmp\fire_plume0000.dmp" 
+#incbin "dmp/fire_plume0000.dmp" 
  
 ALIGN 4 
 fire_plume0000_pal: 
-#incbin "dmp\fire_plume0000_pal.dmp" 
+#incbin "dmp/fire_plume0000_pal.dmp" 
  
  
 ALIGN 4 
 fire_plume0001_Data: 
-#incbin "dmp\fire_plume0001.dmp" 
+#incbin "dmp/fire_plume0001.dmp" 
  
 ALIGN 4 
 fire_plume0001_pal: 
-#incbin "dmp\fire_plume0001_pal.dmp" 
+#incbin "dmp/fire_plume0001_pal.dmp" 
  
  
 ALIGN 4 
 fire_plume0002_Data: 
-#incbin "dmp\fire_plume0002.dmp" 
+#incbin "dmp/fire_plume0002.dmp" 
  
 ALIGN 4 
 fire_plume0002_pal: 
-#incbin "dmp\fire_plume0002_pal.dmp" 
+#incbin "dmp/fire_plume0002_pal.dmp" 
  
  
 ALIGN 4 
 fire_plume0003_Data: 
-#incbin "dmp\fire_plume0003.dmp" 
+#incbin "dmp/fire_plume0003.dmp" 
  
 ALIGN 4 
 fire_plume0003_pal: 
-#incbin "dmp\fire_plume0003_pal.dmp" 
+#incbin "dmp/fire_plume0003_pal.dmp" 
  
  
 ALIGN 4 
 fire_plume0004_Data: 
-#incbin "dmp\fire_plume0004.dmp" 
+#incbin "dmp/fire_plume0004.dmp" 
  
 ALIGN 4 
 fire_plume0004_pal: 
-#incbin "dmp\fire_plume0004_pal.dmp" 
+#incbin "dmp/fire_plume0004_pal.dmp" 
  
  
 
@@ -144,38 +144,38 @@ WORD 0 0 0
 
 ALIGN 4 
 poison_small0000_Data: 
-#incbin "dmp\poison_small0000.dmp" 
+#incbin "dmp/poison_small0000.dmp" 
  
 ALIGN 4 
 poison_small0000_pal: 
-#incbin "dmp\poison_small0000_pal.dmp" 
+#incbin "dmp/poison_small0000_pal.dmp" 
  
  
 ALIGN 4 
 poison_small0001_Data: 
-#incbin "dmp\poison_small0001.dmp" 
+#incbin "dmp/poison_small0001.dmp" 
  
 ALIGN 4 
 poison_small0001_pal: 
-#incbin "dmp\poison_small0001_pal.dmp" 
+#incbin "dmp/poison_small0001_pal.dmp" 
  
  
 ALIGN 4 
 poison_small0002_Data: 
-#incbin "dmp\poison_small0002.dmp" 
+#incbin "dmp/poison_small0002.dmp" 
  
 ALIGN 4 
 poison_small0002_pal: 
-#incbin "dmp\poison_small0002_pal.dmp" 
+#incbin "dmp/poison_small0002_pal.dmp" 
  
  
 ALIGN 4 
 poison_small0003_Data: 
-#incbin "dmp\poison_small0003.dmp" 
+#incbin "dmp/poison_small0003.dmp" 
  
 ALIGN 4 
 poison_small0003_pal: 
-#incbin "dmp\poison_small0003_pal.dmp" 
+#incbin "dmp/poison_small0003_pal.dmp" 
  
  
 
@@ -201,74 +201,74 @@ WORD 0 0 0
 
 ALIGN 4 
 water_small0000_Data: 
-#incbin "dmp\water_small0000.dmp" 
+#incbin "dmp/water_small0000.dmp" 
  
 ALIGN 4 
 water_small0000_pal: 
-#incbin "dmp\water_small0000_pal.dmp" 
+#incbin "dmp/water_small0000_pal.dmp" 
  
  
 ALIGN 4 
 water_small0001_Data: 
-#incbin "dmp\water_small0001.dmp" 
+#incbin "dmp/water_small0001.dmp" 
  
 ALIGN 4 
 water_small0001_pal: 
-#incbin "dmp\water_small0001_pal.dmp" 
+#incbin "dmp/water_small0001_pal.dmp" 
  
  
 ALIGN 4 
 water_small0002_Data: 
-#incbin "dmp\water_small0002.dmp" 
+#incbin "dmp/water_small0002.dmp" 
  
 ALIGN 4 
 water_small0002_pal: 
-#incbin "dmp\water_small0002_pal.dmp" 
+#incbin "dmp/water_small0002_pal.dmp" 
  
  
 ALIGN 4 
 water_small0003_Data: 
-#incbin "dmp\water_small0003.dmp" 
+#incbin "dmp/water_small0003.dmp" 
  
 ALIGN 4 
 water_small0003_pal: 
-#incbin "dmp\water_small0003_pal.dmp" 
+#incbin "dmp/water_small0003_pal.dmp" 
  
  
 ALIGN 4 
 water_small0004_Data: 
-#incbin "dmp\water_small0004.dmp" 
+#incbin "dmp/water_small0004.dmp" 
  
 ALIGN 4 
 water_small0004_pal: 
-#incbin "dmp\water_small0004_pal.dmp" 
+#incbin "dmp/water_small0004_pal.dmp" 
  
  
 ALIGN 4 
 water_small0005_Data: 
-#incbin "dmp\water_small0005.dmp" 
+#incbin "dmp/water_small0005.dmp" 
  
 ALIGN 4 
 water_small0005_pal: 
-#incbin "dmp\water_small0005_pal.dmp" 
+#incbin "dmp/water_small0005_pal.dmp" 
  
  
 ALIGN 4 
 water_small0006_Data: 
-#incbin "dmp\water_small0006.dmp" 
+#incbin "dmp/water_small0006.dmp" 
  
 ALIGN 4 
 water_small0006_pal: 
-#incbin "dmp\water_small0006_pal.dmp" 
+#incbin "dmp/water_small0006_pal.dmp" 
  
  
 ALIGN 4 
 water_small0007_Data: 
-#incbin "dmp\water_small0007.dmp" 
+#incbin "dmp/water_small0007.dmp" 
  
 ALIGN 4 
 water_small0007_pal: 
-#incbin "dmp\water_small0007_pal.dmp" 
+#incbin "dmp/water_small0007_pal.dmp" 
  
  
 
@@ -291,47 +291,47 @@ WORD 0 0 0
 
 ALIGN 4 
 debuff0000_Data: 
-#incbin "dmp\debuff0000.dmp" 
+#incbin "dmp/debuff0000.dmp" 
  
 ALIGN 4 
 debuff0000_pal: 
-#incbin "dmp\debuff0000_pal.dmp" 
+#incbin "dmp/debuff0000_pal.dmp" 
  
  
 ALIGN 4 
 debuff0001_Data: 
-#incbin "dmp\debuff0001.dmp" 
+#incbin "dmp/debuff0001.dmp" 
  
 ALIGN 4 
 debuff0001_pal: 
-#incbin "dmp\debuff0001_pal.dmp" 
+#incbin "dmp/debuff0001_pal.dmp" 
  
  
 ALIGN 4 
 debuff0002_Data: 
-#incbin "dmp\debuff0002.dmp" 
+#incbin "dmp/debuff0002.dmp" 
  
 ALIGN 4 
 debuff0002_pal: 
-#incbin "dmp\debuff0002_pal.dmp" 
+#incbin "dmp/debuff0002_pal.dmp" 
  
  
 ALIGN 4 
 debuff0003_Data: 
-#incbin "dmp\debuff0003.dmp" 
+#incbin "dmp/debuff0003.dmp" 
  
 ALIGN 4 
 debuff0003_pal: 
-#incbin "dmp\debuff0003_pal.dmp" 
+#incbin "dmp/debuff0003_pal.dmp" 
  
  
 ALIGN 4 
 debuff0004_Data: 
-#incbin "dmp\debuff0004.dmp" 
+#incbin "dmp/debuff0004.dmp" 
  
 ALIGN 4 
 debuff0004_pal: 
-#incbin "dmp\debuff0004_pal.dmp" 
+#incbin "dmp/debuff0004_pal.dmp" 
  
  
 
@@ -351,38 +351,38 @@ WORD 0 0 0
 
 ALIGN 4 
 dragon0000_Data: 
-#incbin "dmp\dragon0000.dmp" 
+#incbin "dmp/dragon0000.dmp" 
  
 ALIGN 4 
 dragon0000_pal: 
-#incbin "dmp\dragon0000_pal.dmp" 
+#incbin "dmp/dragon0000_pal.dmp" 
  
  
 ALIGN 4 
 dragon0001_Data: 
-#incbin "dmp\dragon0001.dmp" 
+#incbin "dmp/dragon0001.dmp" 
  
 ALIGN 4 
 dragon0001_pal: 
-#incbin "dmp\dragon0001_pal.dmp" 
+#incbin "dmp/dragon0001_pal.dmp" 
  
  
 ALIGN 4 
 dragon0002_Data: 
-#incbin "dmp\dragon0002.dmp" 
+#incbin "dmp/dragon0002.dmp" 
  
 ALIGN 4 
 dragon0002_pal: 
-#incbin "dmp\dragon0002_pal.dmp" 
+#incbin "dmp/dragon0002_pal.dmp" 
  
  
 ALIGN 4 
 dragon0003_Data: 
-#incbin "dmp\dragon0003.dmp" 
+#incbin "dmp/dragon0003.dmp" 
  
 ALIGN 4 
 dragon0003_pal: 
-#incbin "dmp\dragon0003_pal.dmp" 
+#incbin "dmp/dragon0003_pal.dmp" 
  
  
 
@@ -410,56 +410,56 @@ WORD 0 0 0
 
 ALIGN 4 
 electric0000_Data: 
-#incbin "dmp\electric0000.dmp" 
+#incbin "dmp/electric0000.dmp" 
  
 ALIGN 4 
 electric0000_pal: 
-#incbin "dmp\electric0000_pal.dmp" 
+#incbin "dmp/electric0000_pal.dmp" 
  
  
 ALIGN 4 
 electric0001_Data: 
-#incbin "dmp\electric0001.dmp" 
+#incbin "dmp/electric0001.dmp" 
  
 ALIGN 4 
 electric0001_pal: 
-#incbin "dmp\electric0001_pal.dmp" 
+#incbin "dmp/electric0001_pal.dmp" 
  
  
 ALIGN 4 
 electric0002_Data: 
-#incbin "dmp\electric0002.dmp" 
+#incbin "dmp/electric0002.dmp" 
  
 ALIGN 4 
 electric0002_pal: 
-#incbin "dmp\electric0002_pal.dmp" 
+#incbin "dmp/electric0002_pal.dmp" 
  
  
 ALIGN 4 
 electric0003_Data: 
-#incbin "dmp\electric0003.dmp" 
+#incbin "dmp/electric0003.dmp" 
  
 ALIGN 4 
 electric0003_pal: 
-#incbin "dmp\electric0003_pal.dmp" 
+#incbin "dmp/electric0003_pal.dmp" 
  
  
 ALIGN 4 
 electric0004_Data: 
-#incbin "dmp\electric0004.dmp" 
+#incbin "dmp/electric0004.dmp" 
  
 ALIGN 4 
 electric0004_pal: 
-#incbin "dmp\electric0004_pal.dmp" 
+#incbin "dmp/electric0004_pal.dmp" 
  
  
 ALIGN 4 
 electric0005_Data: 
-#incbin "dmp\electric0005.dmp" 
+#incbin "dmp/electric0005.dmp" 
  
 ALIGN 4 
 electric0005_pal: 
-#incbin "dmp\electric0005_pal.dmp" 
+#incbin "dmp/electric0005_pal.dmp" 
  
  
 
@@ -481,56 +481,56 @@ WORD 0 0 0
 
 ALIGN 4 
 fighting0000_Data: 
-#incbin "dmp\fighting0000.dmp" 
+#incbin "dmp/fighting0000.dmp" 
  
 ALIGN 4 
 fighting0000_pal: 
-#incbin "dmp\fighting0000_pal.dmp" 
+#incbin "dmp/fighting0000_pal.dmp" 
  
  
 ALIGN 4 
 fighting0001_Data: 
-#incbin "dmp\fighting0001.dmp" 
+#incbin "dmp/fighting0001.dmp" 
  
 ALIGN 4 
 fighting0001_pal: 
-#incbin "dmp\fighting0001_pal.dmp" 
+#incbin "dmp/fighting0001_pal.dmp" 
  
  
 ALIGN 4 
 fighting0002_Data: 
-#incbin "dmp\fighting0002.dmp" 
+#incbin "dmp/fighting0002.dmp" 
  
 ALIGN 4 
 fighting0002_pal: 
-#incbin "dmp\fighting0002_pal.dmp" 
+#incbin "dmp/fighting0002_pal.dmp" 
  
  
 ALIGN 4 
 fighting0003_Data: 
-#incbin "dmp\fighting0003.dmp" 
+#incbin "dmp/fighting0003.dmp" 
  
 ALIGN 4 
 fighting0003_pal: 
-#incbin "dmp\fighting0003_pal.dmp" 
+#incbin "dmp/fighting0003_pal.dmp" 
  
  
 ALIGN 4 
 fighting0004_Data: 
-#incbin "dmp\fighting0004.dmp" 
+#incbin "dmp/fighting0004.dmp" 
  
 ALIGN 4 
 fighting0004_pal: 
-#incbin "dmp\fighting0004_pal.dmp" 
+#incbin "dmp/fighting0004_pal.dmp" 
  
  
 ALIGN 4 
 fighting0005_Data: 
-#incbin "dmp\fighting0005.dmp" 
+#incbin "dmp/fighting0005.dmp" 
  
 ALIGN 4 
 fighting0005_pal: 
-#incbin "dmp\fighting0005_pal.dmp" 
+#incbin "dmp/fighting0005_pal.dmp" 
  
  
 
@@ -551,47 +551,47 @@ WORD 0 0 0
 
 ALIGN 4 
 fire0000_Data: 
-#incbin "dmp\fire0000.dmp" 
+#incbin "dmp/fire0000.dmp" 
  
 ALIGN 4 
 fire0000_pal: 
-#incbin "dmp\fire0000_pal.dmp" 
+#incbin "dmp/fire0000_pal.dmp" 
  
  
 ALIGN 4 
 fire0001_Data: 
-#incbin "dmp\fire0001.dmp" 
+#incbin "dmp/fire0001.dmp" 
  
 ALIGN 4 
 fire0001_pal: 
-#incbin "dmp\fire0001_pal.dmp" 
+#incbin "dmp/fire0001_pal.dmp" 
  
  
 ALIGN 4 
 fire0002_Data: 
-#incbin "dmp\fire0002.dmp" 
+#incbin "dmp/fire0002.dmp" 
  
 ALIGN 4 
 fire0002_pal: 
-#incbin "dmp\fire0002_pal.dmp" 
+#incbin "dmp/fire0002_pal.dmp" 
  
  
 ALIGN 4 
 fire0003_Data: 
-#incbin "dmp\fire0003.dmp" 
+#incbin "dmp/fire0003.dmp" 
  
 ALIGN 4 
 fire0003_pal: 
-#incbin "dmp\fire0003_pal.dmp" 
+#incbin "dmp/fire0003_pal.dmp" 
  
  
 ALIGN 4 
 fire0004_Data: 
-#incbin "dmp\fire0004.dmp" 
+#incbin "dmp/fire0004.dmp" 
  
 ALIGN 4 
 fire0004_pal: 
-#incbin "dmp\fire0004_pal.dmp" 
+#incbin "dmp/fire0004_pal.dmp" 
  
  
 
@@ -612,47 +612,47 @@ WORD 0 0 0
 
 ALIGN 4 
 ghost0000_Data: 
-#incbin "dmp\ghost0000.dmp" 
+#incbin "dmp/ghost0000.dmp" 
  
 ALIGN 4 
 ghost0000_pal: 
-#incbin "dmp\ghost0000_pal.dmp" 
+#incbin "dmp/ghost0000_pal.dmp" 
  
  
 ALIGN 4 
 ghost0001_Data: 
-#incbin "dmp\ghost0001.dmp" 
+#incbin "dmp/ghost0001.dmp" 
  
 ALIGN 4 
 ghost0001_pal: 
-#incbin "dmp\ghost0001_pal.dmp" 
+#incbin "dmp/ghost0001_pal.dmp" 
  
  
 ALIGN 4 
 ghost0002_Data: 
-#incbin "dmp\ghost0002.dmp" 
+#incbin "dmp/ghost0002.dmp" 
  
 ALIGN 4 
 ghost0002_pal: 
-#incbin "dmp\ghost0002_pal.dmp" 
+#incbin "dmp/ghost0002_pal.dmp" 
  
  
 ALIGN 4 
 ghost0003_Data: 
-#incbin "dmp\ghost0003.dmp" 
+#incbin "dmp/ghost0003.dmp" 
  
 ALIGN 4 
 ghost0003_pal: 
-#incbin "dmp\ghost0003_pal.dmp" 
+#incbin "dmp/ghost0003_pal.dmp" 
  
  
 ALIGN 4 
 ghost0004_Data: 
-#incbin "dmp\ghost0004.dmp" 
+#incbin "dmp/ghost0004.dmp" 
  
 ALIGN 4 
 ghost0004_pal: 
-#incbin "dmp\ghost0004_pal.dmp" 
+#incbin "dmp/ghost0004_pal.dmp" 
  
  
 
@@ -677,83 +677,83 @@ WORD 0 0 0
 
 ALIGN 4 
 grass0000_Data: 
-#incbin "dmp\grass0000.dmp" 
+#incbin "dmp/grass0000.dmp" 
  
 ALIGN 4 
 grass0000_pal: 
-#incbin "dmp\grass0000_pal.dmp" 
+#incbin "dmp/grass0000_pal.dmp" 
  
  
 ALIGN 4 
 grass0001_Data: 
-#incbin "dmp\grass0001.dmp" 
+#incbin "dmp/grass0001.dmp" 
  
 ALIGN 4 
 grass0001_pal: 
-#incbin "dmp\grass0001_pal.dmp" 
+#incbin "dmp/grass0001_pal.dmp" 
  
  
 ALIGN 4 
 grass0002_Data: 
-#incbin "dmp\grass0002.dmp" 
+#incbin "dmp/grass0002.dmp" 
  
 ALIGN 4 
 grass0002_pal: 
-#incbin "dmp\grass0002_pal.dmp" 
+#incbin "dmp/grass0002_pal.dmp" 
  
  
 ALIGN 4 
 grass0003_Data: 
-#incbin "dmp\grass0003.dmp" 
+#incbin "dmp/grass0003.dmp" 
  
 ALIGN 4 
 grass0003_pal: 
-#incbin "dmp\grass0003_pal.dmp" 
+#incbin "dmp/grass0003_pal.dmp" 
  
  
 ALIGN 4 
 grass0004_Data: 
-#incbin "dmp\grass0004.dmp" 
+#incbin "dmp/grass0004.dmp" 
  
 ALIGN 4 
 grass0004_pal: 
-#incbin "dmp\grass0004_pal.dmp" 
+#incbin "dmp/grass0004_pal.dmp" 
  
  
 ALIGN 4 
 grass0005_Data: 
-#incbin "dmp\grass0005.dmp" 
+#incbin "dmp/grass0005.dmp" 
  
 ALIGN 4 
 grass0005_pal: 
-#incbin "dmp\grass0005_pal.dmp" 
+#incbin "dmp/grass0005_pal.dmp" 
  
  
 ALIGN 4 
 grass0006_Data: 
-#incbin "dmp\grass0006.dmp" 
+#incbin "dmp/grass0006.dmp" 
  
 ALIGN 4 
 grass0006_pal: 
-#incbin "dmp\grass0006_pal.dmp" 
+#incbin "dmp/grass0006_pal.dmp" 
  
  
 ALIGN 4 
 grass0007_Data: 
-#incbin "dmp\grass0007.dmp" 
+#incbin "dmp/grass0007.dmp" 
  
 ALIGN 4 
 grass0007_pal: 
-#incbin "dmp\grass0007_pal.dmp" 
+#incbin "dmp/grass0007_pal.dmp" 
  
  
 ALIGN 4 
 grass0008_Data: 
-#incbin "dmp\grass0008.dmp" 
+#incbin "dmp/grass0008.dmp" 
  
 ALIGN 4 
 grass0008_pal: 
-#incbin "dmp\grass0008_pal.dmp" 
+#incbin "dmp/grass0008_pal.dmp" 
  
  
 
@@ -774,47 +774,47 @@ WORD 0 0 0
 
 ALIGN 4 
 ground0000_Data: 
-#incbin "dmp\ground0000.dmp" 
+#incbin "dmp/ground0000.dmp" 
  
 ALIGN 4 
 ground0000_pal: 
-#incbin "dmp\ground0000_pal.dmp" 
+#incbin "dmp/ground0000_pal.dmp" 
  
  
 ALIGN 4 
 ground0001_Data: 
-#incbin "dmp\ground0001.dmp" 
+#incbin "dmp/ground0001.dmp" 
  
 ALIGN 4 
 ground0001_pal: 
-#incbin "dmp\ground0001_pal.dmp" 
+#incbin "dmp/ground0001_pal.dmp" 
  
  
 ALIGN 4 
 ground0002_Data: 
-#incbin "dmp\ground0002.dmp" 
+#incbin "dmp/ground0002.dmp" 
  
 ALIGN 4 
 ground0002_pal: 
-#incbin "dmp\ground0002_pal.dmp" 
+#incbin "dmp/ground0002_pal.dmp" 
  
  
 ALIGN 4 
 ground0003_Data: 
-#incbin "dmp\ground0003.dmp" 
+#incbin "dmp/ground0003.dmp" 
  
 ALIGN 4 
 ground0003_pal: 
-#incbin "dmp\ground0003_pal.dmp" 
+#incbin "dmp/ground0003_pal.dmp" 
  
  
 ALIGN 4 
 ground0004_Data: 
-#incbin "dmp\ground0004.dmp" 
+#incbin "dmp/ground0004.dmp" 
  
 ALIGN 4 
 ground0004_pal: 
-#incbin "dmp\ground0004_pal.dmp" 
+#incbin "dmp/ground0004_pal.dmp" 
  
  
 
@@ -838,74 +838,74 @@ WORD 0 0 0
 
 ALIGN 4 
 Healing0000_Data: 
-#incbin "dmp\Healing0000.dmp" 
+#incbin "dmp/Healing0000.dmp" 
  
 ALIGN 4 
 Healing0000_pal: 
-#incbin "dmp\Healing0000_pal.dmp" 
+#incbin "dmp/Healing0000_pal.dmp" 
  
  
 ALIGN 4 
 Healing0001_Data: 
-#incbin "dmp\Healing0001.dmp" 
+#incbin "dmp/Healing0001.dmp" 
  
 ALIGN 4 
 Healing0001_pal: 
-#incbin "dmp\Healing0001_pal.dmp" 
+#incbin "dmp/Healing0001_pal.dmp" 
  
  
 ALIGN 4 
 Healing0002_Data: 
-#incbin "dmp\Healing0002.dmp" 
+#incbin "dmp/Healing0002.dmp" 
  
 ALIGN 4 
 Healing0002_pal: 
-#incbin "dmp\Healing0002_pal.dmp" 
+#incbin "dmp/Healing0002_pal.dmp" 
  
  
 ALIGN 4 
 Healing0003_Data: 
-#incbin "dmp\Healing0003.dmp" 
+#incbin "dmp/Healing0003.dmp" 
  
 ALIGN 4 
 Healing0003_pal: 
-#incbin "dmp\Healing0003_pal.dmp" 
+#incbin "dmp/Healing0003_pal.dmp" 
  
  
 ALIGN 4 
 Healing0004_Data: 
-#incbin "dmp\Healing0004.dmp" 
+#incbin "dmp/Healing0004.dmp" 
  
 ALIGN 4 
 Healing0004_pal: 
-#incbin "dmp\Healing0004_pal.dmp" 
+#incbin "dmp/Healing0004_pal.dmp" 
  
  
 ALIGN 4 
 Healing0005_Data: 
-#incbin "dmp\Healing0005.dmp" 
+#incbin "dmp/Healing0005.dmp" 
  
 ALIGN 4 
 Healing0005_pal: 
-#incbin "dmp\Healing0005_pal.dmp" 
+#incbin "dmp/Healing0005_pal.dmp" 
  
  
 ALIGN 4 
 Healing0006_Data: 
-#incbin "dmp\Healing0006.dmp" 
+#incbin "dmp/Healing0006.dmp" 
  
 ALIGN 4 
 Healing0006_pal: 
-#incbin "dmp\Healing0006_pal.dmp" 
+#incbin "dmp/Healing0006_pal.dmp" 
  
  
 ALIGN 4 
 Healing0007_Data: 
-#incbin "dmp\Healing0007.dmp" 
+#incbin "dmp/Healing0007.dmp" 
  
 ALIGN 4 
 Healing0007_pal: 
-#incbin "dmp\Healing0007_pal.dmp" 
+#incbin "dmp/Healing0007_pal.dmp" 
  
  
 
@@ -926,47 +926,47 @@ WORD 0 0 0
 
 ALIGN 4 
 ice0000_Data: 
-#incbin "dmp\ice0000.dmp" 
+#incbin "dmp/ice0000.dmp" 
  
 ALIGN 4 
 ice0000_pal: 
-#incbin "dmp\ice0000_pal.dmp" 
+#incbin "dmp/ice0000_pal.dmp" 
  
  
 ALIGN 4 
 ice0001_Data: 
-#incbin "dmp\ice0001.dmp" 
+#incbin "dmp/ice0001.dmp" 
  
 ALIGN 4 
 ice0001_pal: 
-#incbin "dmp\ice0001_pal.dmp" 
+#incbin "dmp/ice0001_pal.dmp" 
  
  
 ALIGN 4 
 ice0002_Data: 
-#incbin "dmp\ice0002.dmp" 
+#incbin "dmp/ice0002.dmp" 
  
 ALIGN 4 
 ice0002_pal: 
-#incbin "dmp\ice0002_pal.dmp" 
+#incbin "dmp/ice0002_pal.dmp" 
  
  
 ALIGN 4 
 ice0003_Data: 
-#incbin "dmp\ice0003.dmp" 
+#incbin "dmp/ice0003.dmp" 
  
 ALIGN 4 
 ice0003_pal: 
-#incbin "dmp\ice0003_pal.dmp" 
+#incbin "dmp/ice0003_pal.dmp" 
  
  
 ALIGN 4 
 ice0004_Data: 
-#incbin "dmp\ice0004.dmp" 
+#incbin "dmp/ice0004.dmp" 
  
 ALIGN 4 
 ice0004_pal: 
-#incbin "dmp\ice0004_pal.dmp" 
+#incbin "dmp/ice0004_pal.dmp" 
  
  
 
@@ -987,47 +987,47 @@ WORD 0 0 0
 
 ALIGN 4 
 Normal0000_Data: 
-#incbin "dmp\Normal0000.dmp" 
+#incbin "dmp/Normal0000.dmp" 
  
 ALIGN 4 
 Normal0000_pal: 
-#incbin "dmp\Normal0000_pal.dmp" 
+#incbin "dmp/Normal0000_pal.dmp" 
  
  
 ALIGN 4 
 Normal0001_Data: 
-#incbin "dmp\Normal0001.dmp" 
+#incbin "dmp/Normal0001.dmp" 
  
 ALIGN 4 
 Normal0001_pal: 
-#incbin "dmp\Normal0001_pal.dmp" 
+#incbin "dmp/Normal0001_pal.dmp" 
  
  
 ALIGN 4 
 Normal0002_Data: 
-#incbin "dmp\Normal0002.dmp" 
+#incbin "dmp/Normal0002.dmp" 
  
 ALIGN 4 
 Normal0002_pal: 
-#incbin "dmp\Normal0002_pal.dmp" 
+#incbin "dmp/Normal0002_pal.dmp" 
  
  
 ALIGN 4 
 Normal0003_Data: 
-#incbin "dmp\Normal0003.dmp" 
+#incbin "dmp/Normal0003.dmp" 
  
 ALIGN 4 
 Normal0003_pal: 
-#incbin "dmp\Normal0003_pal.dmp" 
+#incbin "dmp/Normal0003_pal.dmp" 
  
  
 ALIGN 4 
 Normal0004_Data: 
-#incbin "dmp\Normal0004.dmp" 
+#incbin "dmp/Normal0004.dmp" 
  
 ALIGN 4 
 Normal0004_pal: 
-#incbin "dmp\Normal0004_pal.dmp" 
+#incbin "dmp/Normal0004_pal.dmp" 
  
  
 
@@ -1055,92 +1055,92 @@ WORD 0 0 0
 
 ALIGN 4 
 gust0000_Data: 
-#incbin "dmp\gust0000.dmp" 
+#incbin "dmp/gust0000.dmp" 
  
 ALIGN 4 
 gust0000_pal: 
-#incbin "dmp\gust0000_pal.dmp" 
+#incbin "dmp/gust0000_pal.dmp" 
  
  
 ALIGN 4 
 gust0001_Data: 
-#incbin "dmp\gust0001.dmp" 
+#incbin "dmp/gust0001.dmp" 
  
 ALIGN 4 
 gust0001_pal: 
-#incbin "dmp\gust0001_pal.dmp" 
+#incbin "dmp/gust0001_pal.dmp" 
  
  
 ALIGN 4 
 gust0002_Data: 
-#incbin "dmp\gust0002.dmp" 
+#incbin "dmp/gust0002.dmp" 
  
 ALIGN 4 
 gust0002_pal: 
-#incbin "dmp\gust0002_pal.dmp" 
+#incbin "dmp/gust0002_pal.dmp" 
  
  
 ALIGN 4 
 gust0003_Data: 
-#incbin "dmp\gust0003.dmp" 
+#incbin "dmp/gust0003.dmp" 
  
 ALIGN 4 
 gust0003_pal: 
-#incbin "dmp\gust0003_pal.dmp" 
+#incbin "dmp/gust0003_pal.dmp" 
  
  
 ALIGN 4 
 gust0004_Data: 
-#incbin "dmp\gust0004.dmp" 
+#incbin "dmp/gust0004.dmp" 
  
 ALIGN 4 
 gust0004_pal: 
-#incbin "dmp\gust0004_pal.dmp" 
+#incbin "dmp/gust0004_pal.dmp" 
  
  
 ALIGN 4 
 gust0005_Data: 
-#incbin "dmp\gust0005.dmp" 
+#incbin "dmp/gust0005.dmp" 
  
 ALIGN 4 
 gust0005_pal: 
-#incbin "dmp\gust0005_pal.dmp" 
+#incbin "dmp/gust0005_pal.dmp" 
  
  
 ALIGN 4 
 gust0006_Data: 
-#incbin "dmp\gust0006.dmp" 
+#incbin "dmp/gust0006.dmp" 
  
 ALIGN 4 
 gust0006_pal: 
-#incbin "dmp\gust0006_pal.dmp" 
+#incbin "dmp/gust0006_pal.dmp" 
  
  
 ALIGN 4 
 gust0007_Data: 
-#incbin "dmp\gust0007.dmp" 
+#incbin "dmp/gust0007.dmp" 
  
 ALIGN 4 
 gust0007_pal: 
-#incbin "dmp\gust0007_pal.dmp" 
+#incbin "dmp/gust0007_pal.dmp" 
  
  
 ALIGN 4 
 gust0008_Data: 
-#incbin "dmp\gust0008.dmp" 
+#incbin "dmp/gust0008.dmp" 
  
 ALIGN 4 
 gust0008_pal: 
-#incbin "dmp\gust0008_pal.dmp" 
+#incbin "dmp/gust0008_pal.dmp" 
  
  
 ALIGN 4 
 gust0009_Data: 
-#incbin "dmp\gust0009.dmp" 
+#incbin "dmp/gust0009.dmp" 
  
 ALIGN 4 
 gust0009_pal: 
-#incbin "dmp\gust0009_pal.dmp" 
+#incbin "dmp/gust0009_pal.dmp" 
  
  
 
@@ -1165,74 +1165,74 @@ WORD 0 0 0
 
 ALIGN 4 
 powder0000_Data: 
-#incbin "dmp\powder0000.dmp" 
+#incbin "dmp/powder0000.dmp" 
  
 ALIGN 4 
 powder0000_pal: 
-#incbin "dmp\powder0000_pal.dmp" 
+#incbin "dmp/powder0000_pal.dmp" 
  
  
 ALIGN 4 
 powder0001_Data: 
-#incbin "dmp\powder0001.dmp" 
+#incbin "dmp/powder0001.dmp" 
  
 ALIGN 4 
 powder0001_pal: 
-#incbin "dmp\powder0001_pal.dmp" 
+#incbin "dmp/powder0001_pal.dmp" 
  
  
 ALIGN 4 
 powder0002_Data: 
-#incbin "dmp\powder0002.dmp" 
+#incbin "dmp/powder0002.dmp" 
  
 ALIGN 4 
 powder0002_pal: 
-#incbin "dmp\powder0002_pal.dmp" 
+#incbin "dmp/powder0002_pal.dmp" 
  
  
 ALIGN 4 
 powder0003_Data: 
-#incbin "dmp\powder0003.dmp" 
+#incbin "dmp/powder0003.dmp" 
  
 ALIGN 4 
 powder0003_pal: 
-#incbin "dmp\powder0003_pal.dmp" 
+#incbin "dmp/powder0003_pal.dmp" 
  
  
 ALIGN 4 
 powder0004_Data: 
-#incbin "dmp\powder0004.dmp" 
+#incbin "dmp/powder0004.dmp" 
  
 ALIGN 4 
 powder0004_pal: 
-#incbin "dmp\powder0004_pal.dmp" 
+#incbin "dmp/powder0004_pal.dmp" 
  
  
 ALIGN 4 
 powder0005_Data: 
-#incbin "dmp\powder0005.dmp" 
+#incbin "dmp/powder0005.dmp" 
  
 ALIGN 4 
 powder0005_pal: 
-#incbin "dmp\powder0005_pal.dmp" 
+#incbin "dmp/powder0005_pal.dmp" 
  
  
 ALIGN 4 
 powder0006_Data: 
-#incbin "dmp\powder0006.dmp" 
+#incbin "dmp/powder0006.dmp" 
  
 ALIGN 4 
 powder0006_pal: 
-#incbin "dmp\powder0006_pal.dmp" 
+#incbin "dmp/powder0006_pal.dmp" 
  
  
 ALIGN 4 
 powder0007_Data: 
-#incbin "dmp\powder0007.dmp" 
+#incbin "dmp/powder0007.dmp" 
  
 ALIGN 4 
 powder0007_pal: 
-#incbin "dmp\powder0007_pal.dmp" 
+#incbin "dmp/powder0007_pal.dmp" 
  
  
 
@@ -1258,38 +1258,38 @@ WORD 0 0 0
 
 ALIGN 4 
 Psychic0000_Data: 
-#incbin "dmp\Psychic0000.dmp" 
+#incbin "dmp/Psychic0000.dmp" 
  
 ALIGN 4 
 Psychic0000_pal: 
-#incbin "dmp\Psychic0000_pal.dmp" 
+#incbin "dmp/Psychic0000_pal.dmp" 
  
  
 ALIGN 4 
 Psychic0001_Data: 
-#incbin "dmp\Psychic0001.dmp" 
+#incbin "dmp/Psychic0001.dmp" 
  
 ALIGN 4 
 Psychic0001_pal: 
-#incbin "dmp\Psychic0001_pal.dmp" 
+#incbin "dmp/Psychic0001_pal.dmp" 
  
  
 ALIGN 4 
 Psychic0002_Data: 
-#incbin "dmp\Psychic0002.dmp" 
+#incbin "dmp/Psychic0002.dmp" 
  
 ALIGN 4 
 Psychic0002_pal: 
-#incbin "dmp\Psychic0002_pal.dmp" 
+#incbin "dmp/Psychic0002_pal.dmp" 
  
  
 ALIGN 4 
 Psychic0003_Data: 
-#incbin "dmp\Psychic0003.dmp" 
+#incbin "dmp/Psychic0003.dmp" 
  
 ALIGN 4 
 Psychic0003_pal: 
-#incbin "dmp\Psychic0003_pal.dmp" 
+#incbin "dmp/Psychic0003_pal.dmp" 
  
  
 
@@ -1310,47 +1310,47 @@ WORD 0 0 0
 
 ALIGN 4 
 rock0000_Data: 
-#incbin "dmp\rock0000.dmp" 
+#incbin "dmp/rock0000.dmp" 
  
 ALIGN 4 
 rock0000_pal: 
-#incbin "dmp\rock0000_pal.dmp" 
+#incbin "dmp/rock0000_pal.dmp" 
  
  
 ALIGN 4 
 rock0001_Data: 
-#incbin "dmp\rock0001.dmp" 
+#incbin "dmp/rock0001.dmp" 
  
 ALIGN 4 
 rock0001_pal: 
-#incbin "dmp\rock0001_pal.dmp" 
+#incbin "dmp/rock0001_pal.dmp" 
  
  
 ALIGN 4 
 rock0002_Data: 
-#incbin "dmp\rock0002.dmp" 
+#incbin "dmp/rock0002.dmp" 
  
 ALIGN 4 
 rock0002_pal: 
-#incbin "dmp\rock0002_pal.dmp" 
+#incbin "dmp/rock0002_pal.dmp" 
  
  
 ALIGN 4 
 rock0003_Data: 
-#incbin "dmp\rock0003.dmp" 
+#incbin "dmp/rock0003.dmp" 
  
 ALIGN 4 
 rock0003_pal: 
-#incbin "dmp\rock0003_pal.dmp" 
+#incbin "dmp/rock0003_pal.dmp" 
  
  
 ALIGN 4 
 rock0004_Data: 
-#incbin "dmp\rock0004.dmp" 
+#incbin "dmp/rock0004.dmp" 
  
 ALIGN 4 
 rock0004_pal: 
-#incbin "dmp\rock0004_pal.dmp" 
+#incbin "dmp/rock0004_pal.dmp" 
  
  
 
