@@ -4,9 +4,20 @@
 	// BYTE 1 2 0 3
 #define MovementArrowTrapID 113 
 SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
-SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
+SetTrapMapSprite(MovementArrowTrapID,BlankSMS)
 SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
 #define MovementArrow(XX,YY, Dir) "BYTE MovementArrowTrapID XX YY Dir; SHORT 0x0"
+
+#define IceTrapID 114 
+SetTrapEventInit(IceTrapID,MovementArrowInitialization)
+SetTrapMapSprite(IceTrapID,SavePointSMS)
+SetTrapMapSpritePalette(IceTrapID,NPCTrapPaletteWord)
+#define IceTrap(XX,YY) "BYTE IceTrapID XX YY 0; SHORT 0x0"
+
+#define TeleTrapID 115 
+SetTrapEventInit(TeleTrapID,MovementArrowInitialization)
+SetTrapMapSprite(TeleTrapID,BerryTreeSMS)
+SetTrapMapSpritePalette(TeleTrapID,NPCTrapPaletteWord)
 
 PUSH 
 ORG $1A1B0 
@@ -19,6 +30,8 @@ ORG 0x037660 // this check is for when things actually happen
 jumpToHack(prThingEffectCheck)
 POP 
 
+
+
 ALIGN 4
 prThingEffectCheck:
 	#include "src/effect.lyn.event"
@@ -30,12 +43,13 @@ ALIGN 4
 #include "src/handle_trap.lyn.event"
 
 
-#define IceTrapID 114 
-SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
-SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
-SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
 
-#define TeleTrapID 115 
-SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
-SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
-SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
+
+ALIGN 4 
+HiddenTrapList:
+BYTE IceTrapID MovementArrowTrapID MineTrapID TeleTrapID
+BYTE 0 // Terminator 
+
+
+
+

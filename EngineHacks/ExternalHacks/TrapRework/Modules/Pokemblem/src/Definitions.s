@@ -2,6 +2,7 @@
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 
 //@ Vanilla function declarations:
+SET_DATA gProc_MoveUnit, 0x89A2C48
 
 SET_FUNC GetUnitStructFromEventParameter, 0x800BC51
 
@@ -35,6 +36,8 @@ SET_FUNC RTextRight, (0x080893E4+1)
 
 
 //@ Data declarations:
+SET_DATA gpMovementArrowData, 0x859DBA0
+
 SET_DATA MyMapBuffer, 0x203F548
 SET_DATA MyMapBuffer2, 0x2010000
 

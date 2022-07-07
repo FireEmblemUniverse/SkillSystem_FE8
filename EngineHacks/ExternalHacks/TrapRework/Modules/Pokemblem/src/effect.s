@@ -16,10 +16,18 @@ Start:
 	ldr r3, =#GetTriggeredTrapType
 	bl BXR3
 	
-	ldr r3, EAL_TRAPINDEX
-	cmp r0, r3
+	ldr r2, =HiddenTrapList 
+	sub r2, #1 
+	Loop: 
+	add r2, #1 
+	ldrb r1, [r2] 
+	cmp r1, #0 
+	beq False 
+	cmp r0, r1
 	beq HandleMySuperTrap
+	b Loop 
 
+False: 
 	@ Dirty but idc
 	ldr r3, =#Return
 BXR3:

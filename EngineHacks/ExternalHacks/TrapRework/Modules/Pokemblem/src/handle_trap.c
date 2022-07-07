@@ -1,5 +1,29 @@
 #include "unit_mover.h"
 
+
+extern struct MovementArrowStruct MoveArrow; 
+struct MovementArrowStruct { 
+	PROC_FIELDS 
+	u8 cursorX; // cursor after reaching destination 
+	u8 cursorY; 
+	u8 remainingMove; 
+	s8 count; // count of entries 
+	s8 xdata[20]; 
+	s8 ydata[20]; 
+	s8 movecost[20]; 
+}; 
+/*
+Movement Arrow Data Layout:
+	+29 | byte       | last cursor x pos
+	+2A | byte       | last cursor y pos
+	+2B | byte       | Active Unit Remaining Movement (In vanilla: ClassBase+MoveBonus-AlreadyMovedAmount)
+	+2C | sbyte      | last entry index of the point arrays
+	+2D | sbyte[20?] | array of point x coords
+	+41 | sbyte[20?] | array of point y coords
+	+55 | sbyte[20?] | array of point movement costs
+*/ 
+
+
 typedef struct _TrapHandlerProc TrapHandlerProc;
 struct _TrapHandlerProc {
 	PROC_FIELDS
@@ -75,8 +99,7 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 		
 		if (gMapHidden[result.y][result.x] & 2) // check for a hidden trap such as a mine
 			break;
-	}
-	
+	} 
 	return result;
 }
 
@@ -90,15 +113,57 @@ void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 	newProc->idk   = idk;
 }
 
+extern struct MovementArrowStruct *gpMovementArrowData; 
+extern const ProcInstruction gProc_MoveUnit;
+typedef struct MUProc muProc; 
+
+
 void TrapHandlerCheck(TrapHandlerProc* proc) {
-	Trap* trap = GetTrapAt(proc->pUnit->xPos, proc->pUnit->yPos);
-	
+	u8 x = proc->pUnit->xPos;
+	u8 y = proc->pUnit->yPos;
+	Trap* trap = GetTrapAt(x, y);
+	u8 previousTileX = x; 
+	u8 previousTileY = y; 
+	u8 direction = trap->data[0]; 
 	if (trap) {
-		// NewUnitMoveAnim(proc->pUnit, OppositeDirectionTable[trap->data[0]], (Proc*) proc);
 		
-		struct Vec2 pos = GetPushPosition(proc->pUnit, trap->data[0], 0);
 		
-		if (pos.x == proc->pUnit->xPos && pos.y == proc->pUnit->yPos) {
+		if (trap->type == 114) { // ice trap 
+			struct MovementArrowStruct MoveArrow = *gpMovementArrowData; // does a memcpy but works lol gpMovementArrowData 0859dba0
+			//asm("mov r11, r11"); 
+			for (int i = MoveArrow.count; i>=0; i--) { 
+				if ((MoveArrow.xdata[i] == x) && (MoveArrow.ydata[i] == y)) { 
+					if (i>0) { 
+						previousTileX = MoveArrow.xdata[i-1]; // use entry immediately before our current location 
+						previousTileY = MoveArrow.ydata[i-1]; // then discern direction from this 
+						//asm("mov r11, r11"); 
+					} 
+				}
+			} 
+			// right, down, left, up
+			// BYTE 1 2 0 3
+			
+			if (previousTileX < x) { direction = 1; } // right 
+			if (previousTileX > x) { direction = 0; } // left 
+			if (previousTileY < y) { direction = 2; } // down 
+			if (previousTileY > y) { direction = 3; } // up
+		}
+		struct Vec2 dest = GetPushPosition(proc->pUnit, direction, 0);
+		struct Vec2 start;
+		start.x = x; 
+		start.y = y; 
+		//asm("mov r11, r11"); 
+	    struct MUProc* muProc = (void*)ProcFind(&gProc_MoveUnit);
+		if ( !muProc ) { // starting the MUProc (without using it i guess) breaks the game 
+			muProc = (void*)MU_Create(proc->pUnit); // If the proc doesn't exist yet, make one.
+		} 
+		
+		NewUnitMoveAnim(muProc, start, dest, (Proc*) proc);
+		
+		
+		
+		
+		if ((dest.x == x) && (dest.y == y)) {
 			ProcGoto((Proc*) proc, 1);
 		} else {
 			// FIXME: write definitions for the whole AI pre-action struct thingy
@@ -106,8 +171,8 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 			uint8_t* const pAIX = (uint8_t*) 0x0203AA96;
 			uint8_t* const pAIY = (uint8_t*) 0x0203AA97;
 			
-			(*pAIX) = proc->pUnit->xPos = gActionData.xMove = pos.x;
-			(*pAIY) = proc->pUnit->yPos = gActionData.yMove = pos.y;
+			(*pAIX) = proc->pUnit->xPos = gActionData.xMove = dest.x;
+			(*pAIY) = proc->pUnit->yPos = gActionData.yMove = dest.y;
 		}
 	} else
 		ProcGoto((Proc*) proc, 1);

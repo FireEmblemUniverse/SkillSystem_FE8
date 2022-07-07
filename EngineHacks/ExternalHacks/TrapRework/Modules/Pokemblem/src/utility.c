@@ -2,28 +2,32 @@
 
 static int sign(int value) { return (value>>31) - (-value>>31); }
 static int abs(int value) { return value < 0 ? -value : value; }
-//static int sqr(int value) { return value * value; }
+static int sqr(int value) { return value * value; }
 
 int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
 	x = x << 8;
 	y = y << 8;
+	int xDistance = abs(x - moveunit->xSubPosition);
+	int yDistance = abs(y - moveunit->ySubPosition);
 
 	int xSign = sign(x - moveunit->xSubPosition);
 	int ySign = sign(y - moveunit->ySubPosition);
 
 	moveunit->xSubPosition += xSign << speed;
 	moveunit->ySubPosition += ySign << speed;
-
+	asm("mov r11, r11"); 
+	if ((xDistance < xSign<<speed) && (yDistance < ySign<<speed)) { return FALSE; } 
 	return xSign | ySign;
 }
+extern int SVC_Sqrt(int); 
 
 // needs testing
 int MoveUnitUnitTowards2(MoveUnitProc* moveunit, int x, int y, int speed) {
 	int xDistance = (0x100 * x) - moveunit->xSubPosition;
 	int yDistance = (0x100 * y) - moveunit->ySubPosition;
 
-	//int distance = SVC_Sqrt(sqr(abs(xDistance)) + sqr(abs(yDistance)));
-	int distance = abs(xDistance) + abs(yDistance);
+	int distance = SVC_Sqrt(sqr(abs(xDistance)) + sqr(abs(yDistance)));
+	//int distance = abs(xDistance) + abs(yDistance);
 
 
 	int factor = Div(speed, distance);

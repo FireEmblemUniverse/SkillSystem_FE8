@@ -13,7 +13,6 @@ push {r4-r5, lr}
 
 mov r2, #0x80 
 blh CopyToPaletteBuffer 
-mov r11, r11 
 ldr r4, =0xFFFFFFFF @ terminator 
 ldr r5, AllegiancePaletteList 
 sub r5, #8 

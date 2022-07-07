@@ -53,21 +53,29 @@ UpdateTrapHiddenHook:
 ldr r6, =0x202E4D8 @ gMapUnit 
 ldr r5, =0x202E4EC @ gMapHidden 
 ldrb r0, [r3, #2] 
-cmp r0, #0xB @ mine 
-beq Continue 
-cmp r0, #113 
-beq Continue 
-cmp r0, #0xFF 
-Exit: 
-ldr r1, =0x801A1B9 
-bx r1 
-
-
-Continue: 
-mov r1, #0 
+ldr r2, =HiddenTrapList 
+sub r2, #1 
+Loop: 
+add r2, #1 
+ldrb r1, [r2] 
 cmp r1, #0 
+beq False 
+cmp r0, r1
+beq True 
+b Loop 
+
+False: 
+mov r1, #1 
 b Exit 
 
+True: 
+mov r1, #0 
+b Exit 
+
+Exit: 
+cmp r1, #0 
+ldr r1, =0x801A1B9 
+bx r1 
 
 
 ExecuteEvent:

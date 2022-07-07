@@ -13,10 +13,12 @@ UnitMoveAnimProc* NewUnitMoveAnim(MoveUnitState* moveunit, struct Vec2 from, str
 	UnitMoveAnimProc* moveAnimProc = 0;
 
 	// making 6C
+	
 	if (parent) {
 		moveAnimProc = (UnitMoveAnimProc*) ProcStartBlocking(ProcCode_UnitMoveAnim, parent);
 		moveAnimProc->locks = 0;
 	} else {
+		
 		moveAnimProc = (UnitMoveAnimProc*) ProcStart(ProcCode_UnitMoveAnim, ROOT_PROC_3);
 		
 		moveAnimProc->locks = 1;
@@ -24,8 +26,9 @@ UnitMoveAnimProc* NewUnitMoveAnim(MoveUnitState* moveunit, struct Vec2 from, str
 	}
 	
 	// making linked MOVEUNIT
-	// MoveUnitProc* moveunit = NewMoveUnitForMapUnit(unit);
-	// MU_SetFacing(moveunit, facing);
+	//MoveUnitProc* moveunit = NewMoveUnitForMapUnit(unit);
+	u8 facing = 0;
+	MU_SetFacing(moveunit, facing);
 	
 	MU_SetDisplayPosition(moveunit, from.x, from.y);
 	
@@ -46,7 +49,9 @@ void UnitMoveAnim_OnDestruct(UnitMoveAnimProc* proc) {
 
 void UnitMoveAnim_OnLoop(UnitMoveAnimProc* proc) {
 	// TODO: check for fast/slow speed option
-	if (!MoveMoveUnitTowards(proc->pMoveUnit, proc->to.x, proc->to.y, 5))
+	
+	//if (!MoveUnitUnitTowards2(proc->pMoveUnit, proc->to.x, proc->to.y, 5))
+	if (!MoveMoveUnitTowards(proc->pMoveUnit, proc->to.x, proc->to.y, 4))
 		BreakProcLoop((Proc*) proc);
 	// else {
 		// int localTime = (proc->timer++) % 4;
