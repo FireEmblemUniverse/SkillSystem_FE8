@@ -157,9 +157,10 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 		if ( !muProc ) { // starting the MUProc (without using it i guess) breaks the game 
 			muProc = (void*)MU_Create(proc->pUnit); // If the proc doesn't exist yet, make one.
 		} 
+
 		
 		NewUnitMoveAnim(muProc, start, dest, (Proc*) proc);
-		
+
 		
 		
 		

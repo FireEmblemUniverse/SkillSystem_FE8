@@ -5,19 +5,25 @@ static int abs(int value) { return value < 0 ? -value : value; }
 static int sqr(int value) { return value * value; }
 
 int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
-	x = x << 8;
+	x = x << 8; 
 	y = y << 8;
-	int xDistance = abs(x - moveunit->xSubPosition);
-	int yDistance = abs(y - moveunit->ySubPosition);
 
 	int xSign = sign(x - moveunit->xSubPosition);
 	int ySign = sign(y - moveunit->ySubPosition);
 
 	moveunit->xSubPosition += xSign << speed;
 	moveunit->ySubPosition += ySign << speed;
-	asm("mov r11, r11"); 
-	if ((xDistance < xSign<<speed) && (yDistance < ySign<<speed)) { return FALSE; } 
-	return xSign | ySign;
+	
+	//if ((xDistance < xSign) && (yDistance < ySign)) { return FALSE; } 
+	if (!(xSign | ySign)) { 
+		MU_End(moveunit); 
+		moveunit->pUnit->state = moveunit->pUnit->state & 0xFFFFFFFE; // remove hide bitflag 
+		RefreshUnitsOnBmMap();
+		//RefreshMinesOnBmMap(); 
+		SMS_UpdateFromGameData();
+		RenderBmMap();
+	} 
+	return (xSign | ySign);
 }
 extern int SVC_Sqrt(int); 
 

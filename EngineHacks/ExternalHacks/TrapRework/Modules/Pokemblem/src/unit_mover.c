@@ -29,14 +29,15 @@ UnitMoveAnimProc* NewUnitMoveAnim(MoveUnitState* moveunit, struct Vec2 from, str
 	//MoveUnitProc* moveunit = NewMoveUnitForMapUnit(unit);
 	u8 facing = 0;
 	MU_SetFacing(moveunit, facing);
-	
-	MU_SetDisplayPosition(moveunit, from.x, from.y);
-	
 	// writing fields to the proc struct
 	moveAnimProc->pMoveUnit = moveunit;
 	moveAnimProc->from      = from;
 	moveAnimProc->to        = to;
 	moveAnimProc->clock     = 0;
+	
+	MU_SetDisplayPosition(moveunit, from.x<<4, from.y<<4);
+	
+
 	
 	// Returning
 	return moveAnimProc;
