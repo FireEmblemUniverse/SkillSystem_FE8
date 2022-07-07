@@ -1,0 +1,41 @@
+#include "asm/MovementTrap.lyn.event" // Initialize trap & hook gTrapHidden updater 
+
+	// right, down, left, up
+	// BYTE 1 2 0 3
+#define MovementArrowTrapID 113 
+SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
+SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
+SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
+#define MovementArrow(XX,YY, Dir) "BYTE MovementArrowTrapID XX YY Dir; SHORT 0x0"
+
+PUSH 
+ORG $1A1B0 
+jumpToHack_r1(UpdateTrapHiddenHook)
+ORG $1A1E4 
+BYTE $E4 // change branch to start of hook 
+
+
+ORG 0x037660 // this check is for when things actually happen
+jumpToHack(prThingEffectCheck)
+POP 
+
+ALIGN 4
+prThingEffectCheck:
+	#include "src/effect.lyn.event"
+	WORD MovementArrowTrapID // trap id
+	
+ALIGN 4
+#include "src/utility.lyn.event"
+#include "src/unit_mover.lyn.event"
+#include "src/handle_trap.lyn.event"
+
+
+#define IceTrapID 114 
+SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
+SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
+SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
+
+#define TeleTrapID 115 
+SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
+SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
+SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)

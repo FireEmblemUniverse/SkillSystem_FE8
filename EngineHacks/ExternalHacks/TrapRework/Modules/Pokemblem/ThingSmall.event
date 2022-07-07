@@ -1,0 +1,73 @@
+#ifndef HAX_TRAP_SMALL_THING_THING
+#define HAX_TRAP_SMALL_THING_THING
+
+#include "Extensions/Hack Installation.txt"
+#include "Extensions/6CDefinitions.txt"
+
+#include "EAstdlib.event"
+
+#define THINGTRAP(aX, aY, aDir) "BYTE 0x20 aX aY aDir 0 0"
+
+{
+
+PUSH
+	ORG 0x037868 // second entry in trap initialization pointer array
+		POIN (prThingTrapInitialization)
+
+	ORG 0x01A1B6 // making so that when stepping on one, you stop (unless you're a thief, which is neat)
+		SHORT $280B
+		#include "src/hidden.lyn.event"
+	
+	ORG 0x037660 // this check is for when things actually happen
+		jumpToHack(prThingEffectCheck)
+POP
+
+ALIGN 4
+prThingTrapInitialization:
+	#include "src/init.lyn.event"
+	WORD 0x20 // trap id
+
+ALIGN 4
+prThingEffectCheck:
+	#include "src/effect.lyn.event"
+	WORD 0x20 // trap id
+
+// p6C_TrapHandler:
+	// _6C_YIELD
+	
+// _6C_LABEL(0)
+	// _6C_CALL_ROUTINE(TrapHandlerCheck)
+	// _6C_WHILE_ROUTINE(0x078720+1) // Blocking MoveUnit 6C Exists
+	// _6C_GOTO(0)
+	
+// _6C_LABEL(1)
+	// _6C_END
+
+// ALIGN 4
+// pFacingRotTable:
+	// right, down, left, up
+	// BYTE 1 2 0 3
+
+// ALIGN 4
+// pDirectionStepTable:
+	// Daily reminder to put parenthesis around this kind of stuff
+	// SHORT (-1) (0) // left
+	// SHORT (+1) (0) // right
+	// SHORT (0) (+1) // down
+	// SHORT (0) (-1) // up
+
+// ALIGN 4
+// pOppositeDirectionTable:
+	// BYTE 1 // left -> right
+	// BYTE 0 // right -> left
+	// BYTE 3 // down -> up
+	// BYTE 2 // up -> down
+
+ALIGN 4
+#include "src/utility.lyn.event"
+#include "src/unit_mover.lyn.event"
+#include "src/handle_trap.lyn.event"
+
+}
+
+#endif // HAX_TRAP_SMALL_THING_THING

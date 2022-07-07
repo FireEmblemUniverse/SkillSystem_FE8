@@ -26441,6 +26441,8 @@
 08B12B9C Procs__E_guMenu2ReWriteFirst
 08B12B3C Procs__E_guMenu1ReWrite
 08B12C3C Procs__E_guMess3ReWrite
+090003D4 Procs
+09000764 Procs__Stan:MovingTrapHandler
 085A9BA0 Procs_SioTerm
 085A979C Procs_SioPra
 085A971C Procs
@@ -30834,6 +30836,10 @@
 080CE2F0 .thumb
 080CE2F0 Procs__E_guMenu1ReWrite_CallASM
 08207168 E_guMess3ReWrite
+09000360 Procs_010003D4_CallASM
+09000388 Procs_010003D4_CallASM
+0900074C Stan:MovingTrapHandler
+09000620 Procs__Stan:MovingTrapHandler_CallASM
 080D9E94 .thumb
 080D9E94 SIOTERM
 08043308 .thumb
@@ -31215,4 +31221,3 @@
 080A7BC0 3B_DarkMapMiniMapTerrain
 080A7B8A .thumb
 080A7B8A 3C_WaterMapMiniMapTerrain
-09000018 AllegiancePalette@Installer.event

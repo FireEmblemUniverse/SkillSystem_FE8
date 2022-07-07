@@ -192,31 +192,6 @@ SetTrapMapSprite(BerryTreeTrapID,BerryTreeSMS)
 SetTrapMapSpritePalette(BerryTreeTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(BerryTreeTrapID)
 
-#define MovementArrowTrapID 113 
-SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
-SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
-SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
-#define MovementArrow(XX,YY) "BYTE MovementArrowTrapID XX YY 0; SHORT 0x0"
-
-PUSH 
-ORG $1A1B0 
-jumpToHack_r1(UpdateTrapHiddenHook)
-ORG $1A1E4 
-BYTE $E4 // change branch to start of hook 
-POP 
-
-
-
-#define IceTrapID 114 
-SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
-SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
-SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
-
-#define TeleTrapID 115 
-SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
-SetTrapMapSprite(MovementArrowTrapID,BerryTreeSMS)
-SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
-
 
 
 
@@ -401,6 +376,8 @@ ALIGN 4
 #include "asm/DisplayText.lyn.event" 
 #include "asm/EnterText.lyn.event"
 
-#include "asm/Arrow.lyn.event" 
+#include "MovementTraps.event" 
+
+
 #include "GiveItemEvent.event"
 #include "ShowTextEvent.event"

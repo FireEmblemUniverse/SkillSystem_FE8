@@ -225,7 +225,7 @@ UNIT
 
 Traps1:
 MineTrap(15,16) // [202fe0c..202fe0f]!!
-MovementArrow(15,17) 
+MovementArrow(15,17, 2) 
 ENDTRAP
 ALIGN 4
 
