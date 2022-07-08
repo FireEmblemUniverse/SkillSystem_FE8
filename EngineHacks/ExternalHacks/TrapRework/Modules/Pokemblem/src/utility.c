@@ -19,7 +19,6 @@ int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
 		MU_End(moveunit); 
 		moveunit->pUnit->state = moveunit->pUnit->state & 0xFFFFFFFE; // remove hide bitflag 
 		RefreshUnitsOnBmMap();
-		//RefreshMinesOnBmMap(); 
 		SMS_UpdateFromGameData();
 		RenderBmMap();
 	} 

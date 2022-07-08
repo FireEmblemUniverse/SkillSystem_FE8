@@ -15,7 +15,7 @@ Start:
 	mov r0, r5
 	ldr r3, =#GetTriggeredTrapType
 	bl BXR3
-	
+
 	ldr r2, =HiddenTrapList 
 	sub r2, #1 
 	Loop: 

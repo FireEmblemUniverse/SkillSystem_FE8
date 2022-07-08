@@ -52,7 +52,7 @@ bx r3
 UpdateTrapHiddenHook:
 ldr r6, =0x202E4D8 @ gMapUnit 
 ldr r5, =0x202E4EC @ gMapHidden 
-ldrb r0, [r3, #2] 
+ldrb r0, [r3, #2] @ jumps to this hack with r1, not r3 
 ldr r2, =HiddenTrapList 
 sub r2, #1 
 Loop: 

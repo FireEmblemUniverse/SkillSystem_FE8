@@ -226,6 +226,7 @@ UNIT
 Traps1:
 //MineTrap(15,16) // [202fe0c..202fe0f]!!
 MovementArrow(15,16, 2) 
+StopSlidingTrap(15,19)
 IceTrap(13,16) 
 
 ENDTRAP

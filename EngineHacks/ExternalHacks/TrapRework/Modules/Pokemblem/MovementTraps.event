@@ -19,6 +19,13 @@ SetTrapEventInit(TeleTrapID,MovementArrowInitialization)
 SetTrapMapSprite(TeleTrapID,BerryTreeSMS)
 SetTrapMapSpritePalette(TeleTrapID,NPCTrapPaletteWord)
 
+
+#define StopSlidingID 116 
+SetTrapEventInit(StopSlidingID,MovementArrowInitialization)
+SetTrapMapSprite(StopSlidingID,BerryTreeSMS)
+SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
+#define StopSlidingTrap(XX,YY) "BYTE StopSlidingID XX YY 0; SHORT 0x0"
+
 PUSH 
 ORG $1A1B0 
 jumpToHack_r1(UpdateTrapHiddenHook)
@@ -30,6 +37,17 @@ ORG 0x037660 // this check is for when things actually happen
 jumpToHack(prThingEffectCheck)
 POP 
 
+ALIGN 4 
+MoveArrowType:
+WORD MovementArrowTrapID 
+
+ALIGN 4 
+IceTrapType:
+WORD IceTrapID 
+
+ALIGN 4 
+StopSlidingTrapType:
+WORD StopSlidingID 
 
 
 ALIGN 4

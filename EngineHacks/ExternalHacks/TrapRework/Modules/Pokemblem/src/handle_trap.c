@@ -1,5 +1,8 @@
 #include "unit_mover.h"
 
+extern u32 MoveArrowType; 
+extern u32 IceTrapType; 
+extern u32 StopSlidingTrapType; 
 
 extern struct MovementArrowStruct MoveArrow; 
 struct MovementArrowStruct { 
@@ -34,6 +37,7 @@ struct _TrapHandlerProc {
 
 void HandleTrap(Proc* proc, Unit* unit, int idk);
 void TrapHandlerCheck(TrapHandlerProc* proc);
+void TrapCleanup(TrapHandlerProc* proc);
 
 static const struct Vec2 DirectionStepTable[] = {
 	{ -1,  0 }, // left
@@ -63,6 +67,7 @@ PROC_LABEL(0),
 	PROC_GOTO(0),
 	
 PROC_LABEL(1),
+	PROC_CALL_ROUTINE(TrapCleanup),
 	PROC_END
 };
 
@@ -87,18 +92,21 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 		unit->xPos,
 		unit->yPos
 	};
-	
 	const struct Vec2 step = DirectionStepTable[direction];
 	
 	while (CanUnitBeOnPosition(unit, (result.x + step.x), (result.y + step.y))) {
 		result.x += step.x;
 		result.y += step.y;
-		
-		if (!(--moveAmount))
+		if (!(--moveAmount)) 
 			break;
-		
 		if (gMapHidden[result.y][result.x] & 2) // check for a hidden trap such as a mine
 			break;
+		Trap* trap = GetTrapAt(result.x, result.y);
+		if (trap->type == StopSlidingTrapType) {
+			moveAmount = -1;
+			break;
+		}
+		
 	} 
 	return result;
 }
@@ -113,10 +121,20 @@ void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 	newProc->idk   = idk;
 }
 
+
 extern struct MovementArrowStruct *gpMovementArrowData; 
 extern const ProcInstruction gProc_MoveUnit;
 typedef struct MUProc muProc; 
 
+void TrapCleanup(TrapHandlerProc* proc) { 
+	//moveunit->pUnit->state = moveunit->pUnit->state & 0xFFFFFFFE; // remove hide bitflag 
+	proc->pUnit->state = (proc->pUnit->state & 0xFFFFFFFE) | 0x2; // remove hide bitflag 
+	
+	RefreshUnitsOnBmMap();
+	//RefreshMinesOnBmMap(); 
+	SMS_UpdateFromGameData();
+	RenderBmMap();
+} 
 
 void TrapHandlerCheck(TrapHandlerProc* proc) {
 	u8 x = proc->pUnit->xPos;
@@ -128,7 +146,7 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 	if (trap) {
 		
 		
-		if (trap->type == 114) { // ice trap 
+		if (trap->type == IceTrapType) { // ice trap 
 			struct MovementArrowStruct MoveArrow = *gpMovementArrowData; // does a memcpy but works lol gpMovementArrowData 0859dba0
 			//asm("mov r11, r11"); 
 			for (int i = MoveArrow.count; i>=0; i--) { 
@@ -148,33 +166,41 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 			if (previousTileY < y) { direction = 2; } // down 
 			if (previousTileY > y) { direction = 3; } // up
 		}
-		struct Vec2 dest = GetPushPosition(proc->pUnit, direction, 0);
-		struct Vec2 start;
-		start.x = x; 
-		start.y = y; 
-		//asm("mov r11, r11"); 
-	    struct MUProc* muProc = (void*)ProcFind(&gProc_MoveUnit);
-		if ( !muProc ) { // starting the MUProc (without using it i guess) breaks the game 
-			muProc = (void*)MU_Create(proc->pUnit); // If the proc doesn't exist yet, make one.
-		} 
-
-		
-		NewUnitMoveAnim(muProc, start, dest, (Proc*) proc);
-
-		
-		
-		
-		if ((dest.x == x) && (dest.y == y)) {
-			ProcGoto((Proc*) proc, 1);
-		} else {
-			// FIXME: write definitions for the whole AI pre-action struct thingy
+		if ((trap->type == IceTrapType) | (trap->type == MoveArrowType)) { 
+			u32 bicState = ~0x42; // canto / ended turn already 
+			proc->pUnit->state = (proc->pUnit->state & bicState) | 0x1; // add hide bitflag if it wasn't already there (eg. for chained movements) 
 			
-			uint8_t* const pAIX = (uint8_t*) 0x0203AA96;
-			uint8_t* const pAIY = (uint8_t*) 0x0203AA97;
 			
-			(*pAIX) = proc->pUnit->xPos = gActionData.xMove = dest.x;
-			(*pAIY) = proc->pUnit->yPos = gActionData.yMove = dest.y;
+			struct Vec2 dest = GetPushPosition(proc->pUnit, direction, 0);
+			struct Vec2 start;
+			start.x = x; 
+			start.y = y; 
+			//asm("mov r11, r11"); 
+			struct MUProc* muProc = (void*)ProcFind(&gProc_MoveUnit);
+			if ( !muProc ) { // starting the MUProc (without using it i guess) breaks the game 
+				muProc = (void*)MU_Create(proc->pUnit); // If the proc doesn't exist yet, make one.
+			} 
+
+			
+			NewUnitMoveAnim(muProc, start, dest, (Proc*) proc);
+			SMS_UpdateFromGameData();
+			
+			
+			
+			if ((dest.x == x) && (dest.y == y)) {
+				ProcGoto((Proc*) proc, 1);
+			} else {
+				// FIXME: write definitions for the whole AI pre-action struct thingy
+				
+				uint8_t* const pAIX = (uint8_t*) 0x0203AA96;
+				uint8_t* const pAIY = (uint8_t*) 0x0203AA97;
+				
+				(*pAIX) = proc->pUnit->xPos = gActionData.xMove = dest.x;
+				(*pAIY) = proc->pUnit->yPos = gActionData.yMove = dest.y;
+			}
 		}
+		else 
+			ProcGoto((Proc*) proc, 1);
 	} else
 		ProcGoto((Proc*) proc, 1);
 }

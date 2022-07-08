@@ -35,7 +35,7 @@ UnitMoveAnimProc* NewUnitMoveAnim(MoveUnitState* moveunit, struct Vec2 from, str
 	moveAnimProc->to        = to;
 	moveAnimProc->clock     = 0;
 	
-	MU_SetDisplayPosition(moveunit, from.x<<4, from.y<<4);
+	MU_SetDisplayPosition(moveunit, from.x<<4, from.y<<4); // starting position 
 	
 
 	
