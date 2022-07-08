@@ -4,7 +4,12 @@ static int sign(int value) { return (value>>31) - (-value>>31); }
 static int abs(int value) { return value < 0 ? -value : value; }
 static int sqr(int value) { return value * value; }
 
+extern void MuCtr_StartMoveTowards(Unit* unit, int x, int y, int speed); 
+extern void CenterCameraOntoPosition(Proc* proc, int x, int y); 
+extern int EnsureCameraOntoPosition(Proc* proc, int x, int y); 
+
 int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
+	
 	x = x << 8; 
 	y = y << 8;
 
@@ -14,8 +19,21 @@ int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
 	moveunit->xSubPosition += xSign << speed;
 	moveunit->ySubPosition += ySign << speed;
 	
-	MU_EnableAttractCamera(moveunit);
-	moveunit->pMUConfig->currentCommand = MU_COMMAND_MOVE_BASE | MU_COMMAND_CAMERA_ON; 
+	EnsureCameraOntoPosition(moveunit, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
+	//CenterCameraOntoPosition(moveunit, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
+	
+	/*
+	int x2 = x >> 8; 
+	int y2 = y >> 8; 
+	x2 += xSign; 
+	y2 += ySign; 
+	
+	MuCtr_StartMoveTowards(moveunit->pUnit, x2, y2, 5);
+	*/
+	
+	//moveunit->pMUConfig->currentCommand = MU_COMMAND_MOVE_UP; // | MU_COMMAND_CAMERA_ON; 
+	//moveunit->moveConfig = MU_STATE_MOVEMENT; 
+	//MU_EnableAttractCamera(moveunit);
 	
 	//if ((xDistance < xSign) && (yDistance < ySign)) { return FALSE; } 
 	if (!(xSign | ySign)) { 

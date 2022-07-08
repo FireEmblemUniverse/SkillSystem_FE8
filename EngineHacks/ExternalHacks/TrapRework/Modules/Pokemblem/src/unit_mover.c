@@ -1,6 +1,7 @@
 #include "unit_mover.h"
 
 extern const uint8_t pFacingTable[];
+extern void MuCtr_StartMoveTowards(Unit* unit, int x, int y, int speed); 
 
 const ProcInstruction ProcCode_UnitMoveAnim[] = {
 	PROC_SET_DESTRUCTOR(UnitMoveAnim_OnDestruct), // Delet
@@ -27,8 +28,7 @@ UnitMoveAnimProc* NewUnitMoveAnim(MoveUnitState* moveunit, struct Vec2 from, str
 	
 	// making linked MOVEUNIT
 	//MoveUnitProc* moveunit = NewMoveUnitForMapUnit(unit);
-	u8 facing = 0;
-	MU_SetFacing(moveunit, facing);
+
 	
 	// writing fields to the proc struct
 	moveAnimProc->pMoveUnit = moveunit;
@@ -36,8 +36,10 @@ UnitMoveAnimProc* NewUnitMoveAnim(MoveUnitState* moveunit, struct Vec2 from, str
 	moveAnimProc->to        = to;
 	moveAnimProc->clock     = 0;
 	
+	u8 facing = 0;
+	MU_SetFacing(moveunit, facing);
 	MU_SetDisplayPosition(moveunit, from.x<<4, from.y<<4); // starting position 
-	
+	//MuCtr_StartMoveTowards(moveunit->pUnit, to.x, to.y, 5);
 
 	
 	// Returning
