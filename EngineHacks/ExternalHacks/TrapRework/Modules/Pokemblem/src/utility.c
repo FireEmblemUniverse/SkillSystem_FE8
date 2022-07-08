@@ -14,6 +14,9 @@ int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
 	moveunit->xSubPosition += xSign << speed;
 	moveunit->ySubPosition += ySign << speed;
 	
+	MU_EnableAttractCamera(moveunit);
+	moveunit->pMUConfig->currentCommand = MU_COMMAND_MOVE_BASE | MU_COMMAND_CAMERA_ON; 
+	
 	//if ((xDistance < xSign) && (yDistance < ySign)) { return FALSE; } 
 	if (!(xSign | ySign)) { 
 		MU_End(moveunit); 

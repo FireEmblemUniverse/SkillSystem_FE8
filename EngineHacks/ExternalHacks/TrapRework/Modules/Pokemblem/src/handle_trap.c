@@ -154,7 +154,6 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 					if (i>0) { 
 						previousTileX = MoveArrow.xdata[i-1]; // use entry immediately before our current location 
 						previousTileY = MoveArrow.ydata[i-1]; // then discern direction from this 
-						//asm("mov r11, r11"); 
 					} 
 				}
 			} 
@@ -175,7 +174,6 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 			struct Vec2 start;
 			start.x = x; 
 			start.y = y; 
-			//asm("mov r11, r11"); 
 			struct MUProc* muProc = (void*)ProcFind(&gProc_MoveUnit);
 			if ( !muProc ) { // starting the MUProc (without using it i guess) breaks the game 
 				muProc = (void*)MU_Create(proc->pUnit); // If the proc doesn't exist yet, make one.

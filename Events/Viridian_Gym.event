@@ -1,0 +1,222 @@
+#define ChapterID ViridianGymCh
+
+#define WildLvl 5 
+#define TrainerL 45
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+//AFEV 0 GlobalAfev 0
+DefeatAll(EndingScene) 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToViridian [15,20][15,20] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(15,20) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToViridian:
+ChapterTransition(ViridianCh, 30,11)
+
+Traps1:
+MovementArrow(0,20, Up) 
+MovementArrow(1,20, Up) 
+MovementArrow(1,10, Down) 
+MovementArrow(4,9, Down) 
+MovementArrow(5,5, Down) 
+MovementArrow(4,18, Right) 
+MovementArrow(5,17, Right) 
+MovementArrow(6,7, Right) 
+MovementArrow(6,8, Up) 
+MovementArrow(6,8, Up) 
+MovementArrow(11,5,Down) 
+MovementArrow(14,7,Down) 
+MovementArrow(14,1,Down) 
+MovementArrow(9,9,Left) 
+MovementArrow(11,8,Left) 
+MovementArrow(11,10,Left) 
+MovementArrow(10,11,Up) 
+MovementArrow(11,13,Right) 
+MovementArrow(12,3,Right) 
+MovementArrow(17,2,Left) 
+MovementArrow(16,3,Down) 
+MovementArrow(17,14,Up) 
+
+StopSlidingTrap(0,11)
+StopSlidingTrap(1,13)
+StopSlidingTrap(5,10)
+StopSlidingTrap(4,17)
+StopSlidingTrap(11,17)
+StopSlidingTrap(11,18)
+StopSlidingTrap(14,13)
+StopSlidingTrap(16,14)
+StopSlidingTrap(10,2)
+StopSlidingTrap(12,2)
+StopSlidingTrap(15,3)
+StopSlidingTrap(17,3)
+
+//IceTrap(13,16) 
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+CHECK_EVENTID EarthbadgeObtained
+BNE 0x63 rC r0 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [5,6] 
+
+
+LOAD1 0x1 EnemyTrainersA
+ENUN 
+AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(ViridianGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+//AutoLevelUnits(3, False, 0x90EF) 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveSkillAccessory(0xD0, AmaterasuID)
+SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+
+
+MUSCFAST IntroBGM 
+ShowMap
+Text(Giovanni_Gym_ChallengeText)
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12] 
+
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+EndingScene: 
+CHECK_EVENTID EarthbadgeObtained 
+BNE 0x63 rC r0 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+Text(Giovanni_GymDefeatText)
+GiveItemWithDurability(0, SpellScroll, PetalDance)
+ENUT EarthbadgeObtained 
+SVAL r3 6000 
+GIVETOMAIN 0 
+TEXTSHOW Giovanni_GymWaitText
+TEXTEND 
+REMA
+GiveSkillAccessory(0, AmaterasuID)
+TEXTSTART
+TEXTSHOW Giovanni_GymRewardText
+TEXTEND 
+FADI 4 
+REMA 
+ForcedChapterTransition(ViridianCh, 9, 27)
+LABEL 0x63 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+EnemyTrainersA:
+UNIT 0xD0 NidokingID 0x0 Level(0, Enemy, 1) [3,3]  0b 0x0	0x0 0 	[Earthquake,PoisonJab,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 RhydonID 	0xD0 Level(0, Enemy, 1) [3,6]  0b 0x0	0x0 0 	[RockSlide, Earthquake,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA1 SandslashID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x0 0 	[Dig, Slash,0x0,0x0] 					ZoningHeal50GroupOneAI
+UNIT 0xA2 PoliwrathID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0 0x0 0	[Submission, Waterfall,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA3 PersianID 0xD0 Level(0, Enemy, 1) [5,3]  0b 0x0	0x0 0 	[Slash, TailWhip, 0x0 ,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xA4 DugtrioID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x0 0 	[Earthquake, RockSlide,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT
+
+EnemyTrainersB: // rematch 
+UNIT 0xD0 NidokingID 0x0 Level(0, Enemy, 1) [3,3]  0b 0x0	0x0 0 	[Earthquake,PoisonJab,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 RhydonID 	0xD0 Level(0, Enemy, 1) [3,6]  0b 0x0	0x0 0 	[RockSlide, Earthquake,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA1 SandslashID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x0 0 	[Dig, Slash,0x0,0x0] 					ZoningHeal50GroupOneAI
+UNIT 0xA2 PoliwrathID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0 0x0 0	[Submission, Waterfall,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA3 PersianID 0xD0 Level(0, Enemy, 1) [5,3]  0b 0x0	0x0 0 	[Slash, TailWhip, 0x0 ,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xA4 DugtrioID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x0 0 	[Earthquake, RockSlide,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT
+	
+
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

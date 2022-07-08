@@ -260,7 +260,9 @@
 
 
 
-
+{
+#include "Viridian_Gym.event" 
+}
 
 {
 #include "Pokecenter.event"

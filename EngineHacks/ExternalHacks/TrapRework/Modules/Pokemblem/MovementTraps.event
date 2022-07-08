@@ -1,7 +1,10 @@
 #include "asm/MovementTrap.lyn.event" // Initialize trap & hook gTrapHidden updater 
 
-	// right, down, left, up
-	// BYTE 1 2 0 3
+// By Vesly & Stan 
+
+	// right, down, left, up are all defined in EA already 
+	// (1 2 0 3)
+	
 #define MovementArrowTrapID 113 
 SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
 SetTrapMapSprite(MovementArrowTrapID,BlankSMS)
