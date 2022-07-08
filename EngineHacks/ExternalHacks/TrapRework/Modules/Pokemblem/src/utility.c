@@ -19,8 +19,8 @@ int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
 	moveunit->xSubPosition += xSign << speed;
 	moveunit->ySubPosition += ySign << speed;
 	
-	EnsureCameraOntoPosition(moveunit, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
-	//CenterCameraOntoPosition(moveunit, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
+	EnsureCameraOntoPosition(moveunit->parent, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
+	//CenterCameraOntoPosition(moveunit->parent, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
 	
 	/*
 	int x2 = x >> 8; 
