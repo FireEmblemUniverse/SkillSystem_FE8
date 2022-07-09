@@ -264,7 +264,7 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(22, True, 0x145) // all 
+AutoLevelUnits(44, True, 0x145) // all 
 SetUnitStatus(1, 0x29, FireSpin)
 //SetUnitStatus(1, 0x28, Earthquake)
 //SetUnitStatus(2, 0x28, Earthquake)
@@ -283,8 +283,8 @@ ENUT MarshbadgeObtained
 //ASMC FillPokedex
 //ASMC SeePokedex
 
-Write_Byte(16, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(19, YCoordNewArea)  
+Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(15, YCoordNewArea)  
 //MNC2 PewterGymCh
 //ASMC DebugMap_ASMC
 MNC2 ViridianGymCh

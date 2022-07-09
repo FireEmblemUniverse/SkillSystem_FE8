@@ -257,15 +257,15 @@ ENUF SkipIntroFlag
 //ENUT 0xAC // Fast Movement 
 //ENUT 0xAB 
 
-Write_Byte(16, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
-Write_Byte(19, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(14, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
+Write_Byte(14, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 //21, 19
 //Write_Byte(21, XCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 //Write_Byte(19, YCoordNewArea)    //@DUNGEON_STRUCT_STRUCT 
 
 CALL GlobalBeginningScene
-CALL CityBeginningScene
+//CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
 //RandomizePlayerCoords(Ground, Range(0,0,2,2), Range(2,2,15,10)) //somewhere possible, hopefully ? 
 LOAD1 1 EnemyUnits 
@@ -330,6 +330,12 @@ ENUT 0xAE
 
 NoFade
 ENDA
+
+PUSH 
+ORG $D8192 
+BYTE 1 
+POP 
+
 
 TalkEvent:
 NoFade

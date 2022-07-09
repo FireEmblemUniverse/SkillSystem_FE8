@@ -91,8 +91,9 @@ NuAiFillDangerMap:
 	ldr r4, =gUnitArray
 
 	@これいる?
-	LDR  r0, =gActiveUnitIndex
-	LDRB r0, [r0, #0x0]  @ ActiveUnit->Number
+	@LDR  r0, =gActiveUnitIndex
+	@LDRB r0, [r0, #0x0]  @ ActiveUnit->Number
+	mov r0, #1 
 	mov r10, r0          @ ActiveUnit->Number
 
 	LDR     r0, =gActiveUnit
@@ -125,6 +126,35 @@ NuAiFillDangerMap:
 	add     r6, r5, r1    @loop end item addr
 	mov     r7, r0        @best item might
 	mov     r8, r0        @item temp
+	
+	
+	@ pokemblem gaiden magic: players should use wexp bytes instead of weapons 
+	sub sp, #12 
+	ldrb r1, [r4, #0xB] @ deployment byte 
+	lsr r1, #6 
+	cmp r1, #0 
+	bne ItemLoop 
+	mov r5, sp  
+	mov r3, #10  
+	lsl r3, #8 @ 10 durability 
+	mov r2, #0 
+	CopySpellsToWepsLoop: 
+	cmp r2, #5
+	bge DoneCopyingSpellsToWeps
+	mov r0, #0x28
+	add r0, r2 
+	ldrb r1, [r4, r0] 
+	lsl r0, r2, #1 @ 2x 
+	orr r1, r3 
+	strh r1, [r5, r0]
+	add r2, #1 
+	b CopySpellsToWepsLoop 
+	
+	DoneCopyingSpellsToWeps: 
+	mov r1, #2 * 5 
+	add r6, r5, r1 @ end address 
+	
+	
 
 	ItemLoop:
 		ldrh    r1, [r5]
@@ -154,6 +184,8 @@ NuAiFillDangerMap:
 		b       ItemLoop
 
 	BreakItemLoop:
+	add sp, #12 @ pokemblem gaiden magic added 
+	
 	mov r0, r9  @best item
 	cmp r0, #0x0
 	beq ContinueNextUnit
