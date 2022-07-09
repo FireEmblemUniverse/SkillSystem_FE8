@@ -426,62 +426,9 @@ pop {r4-r7}
 pop {r1}
 bx r1 
 
-.ltorg 
-.align 
-
-
 
 @ 803D880 AiFillUnitStandingRangeWithWeapon
 @ target?, short wep 
-
-.type IsActiveUnitInDanger, %function 
-IsActiveUnitInDanger:
-push {lr} 
-
-@ If you want the AI to act differently when players/npcs can target you, use this. 
-@ It is turn dependent, so on player phase it will get enemy range and vice versa 
-
-@ 202E4E4 range map 
-@ 202E4F0 @ ai danger map - 0203AA04 + 7A | byte | 1 if the second movement map is readable as the "danger" map (0 if not)
-@ dunno what toggles that  but we aren't using it here so whatever 
-
-@ldr r3, =0x203AA75 @ldr r2, =0x202E4F0 @ enemy danger map? 
-@ldrb r0, [r3] 
-
-
-mov r0, #0 @ arg r0 = staff range?
-blh FillRangeMapForDangerZone 
-
-ldr r0, =gMapMovement
-ldr r0, [r0]
-mov r1, #1
-neg r1, r1            @ arg r1 = -1
-blh BmMapFill @ Make movement impossible..? 
-
-ldr r3, =CurrentUnit 
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] 
-ldrb r1, [r3, #0x11] 
-
-ldr r2, =0x202E4E4 @ Range map 
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-
-cmp r0, #0 
-bne ActiveUnitIsInDanger 
-mov r0, #0 
-b EndIsActiveUnitInDanger
-
-ActiveUnitIsInDanger:
-mov r0, #1 
-EndIsActiveUnitInDanger:
-
-pop {r1} 
-bx r1 
 
 
 JudgeInRangeBranch:

@@ -308,7 +308,9 @@
 	SetLightSourceTrap(TorchStaffTrapID)
 	
 	//Macro for setting traps as impassable, like light runes
-	#define SetImpassableTrap(trapID) "PUSH; ORG (TrapLightRuneImpassableTable+trapID); BYTE 1; POP"
+	#define SetImpassableTrap(trapID) "PUSH; ORG (TrapLightRuneImpassableTable+trapID); BYTE 0x19; POP" // @ terrain type Fence
+	#define SetExpensiveTerrainForAI(trapID) "PUSH; ORG (TrapLightRuneImpassableTable+trapID); BYTE 0x17; POP" // terrain type Ground2 
+	// costs 3 for NPCs/Enemies but 1 for players. This discourages AI from walking over these tiles. 
 	
 
 	SetImpassableTrap(LightRuneTrapID)

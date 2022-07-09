@@ -356,15 +356,14 @@ cmp r0,#0
 beq LightRunes_GoBack
 
 ldr r4,=gMapTerrain
-mov r3,#0x19 @ terrain type Fence
 
 LightRunes_LoopStart:
 ldrb r0,[r2,#2]
 ldr r1,=TrapLightRuneImpassableTable
 add r1,r0
-ldrb r0,[r1]
-cmp r0,#1
-bne LightRunes_LoopRestart
+ldrb r3,[r1]
+cmp r3,#0
+beq LightRunes_LoopRestart
 
 LightRunes_LoopCont:
 ldrb r0,[r2,#1]

@@ -13,11 +13,14 @@ cmp   r0, #0
 bne   NoDZ
 mov   r0, r2 @if the active unit is 0, we're being called from dangerzone
 NoDZ:
-ldr   r0,MarshbadgeObtained
+ldr r0,MarshbadgeObtained
 .short  0xF800
 
-ldr   r1,CurrentCharPtr
-ldr   r1,[r1]
+ldr r1,CurrentCharPtr
+ldr r1,[r1]
+cmp r1, #0 
+beq Player @ error so do things normally 
+
 ldrb r1, [r1, #0x0B] @ deployment byte 
 lsr r1, #6 @ NPC/Enemies only 
 cmp r1, #0 
@@ -26,20 +29,53 @@ mov r0, #1 @ enemies always have acrobat i guess lol
 Player:
 mov   r1,#0x0       @counter
 ldr   r5,MoveCostLoc
-Loop1: @ store each value into the movement table in ram  
+
+cmp r0, #1 
+beq Acrobat 
+b NoAcrobat 
+
+Acrobat: 
 add   r2,r4,r1
 add   r3,r5,r1
 ldrb  r2,[r2]
-cmp   r0,#0x0
-beq   NoAcrobat
-cmp   r2,#0xFF
-beq   NoAcrobat
+cmp   r2,#0x80
+bge   Store @ if >127, acrobat does nothing 
 mov   r2,#0x1
-NoAcrobat:
+Store: 
 strb  r2,[r3]
 add   r1,#0x1
 cmp   r1,#0x40
-ble   Loop1
+ble   Acrobat
+b FinishUp
+
+NoAcrobat: @ store each value into the movement table in ram  
+add   r2,r4,r1
+add   r3,r5,r1
+ldrb  r2,[r2]
+strb  r2,[r3]
+add   r1,#0x1
+cmp   r1,#0x40
+ble   NoAcrobat
+
+FinishUp: 
+
+ldr r0,CurrentCharPtr
+ldr r0,[r0]
+cmp r0, #0 
+beq Exit 
+ldrb r0, [r0, #0x0B] @ deployment byte 
+lsr r0, #6 @ NPC/Enemies only 
+cmp r0, #0 
+beq Exit 
+
+mov r1, #0x17 @ traps for AI to avoid 
+add r3, r5, r1 
+mov r2, #3 @ costs 3 
+strb r2, [r3] 
+
+
+
+Exit: 
 pop   {r4-r5}
 pop   {r0}
 bx    r0

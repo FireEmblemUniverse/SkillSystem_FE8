@@ -15,13 +15,15 @@ int MoveMoveUnitTowards(MoveUnitState* moveunit, int x, int y, int speed) {
 
 	int xSign = sign(x - moveunit->xSubPosition);
 	int ySign = sign(y - moveunit->ySubPosition);
-
+	if (xSign | ySign) { // this needs to be done before position is updated to avoid weird camera bug at end of movement 
+		EnsureCameraOntoPosition(moveunit->parent, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
+	}
+	
 	moveunit->xSubPosition += xSign << speed;
 	moveunit->ySubPosition += ySign << speed;
-	
-	EnsureCameraOntoPosition(moveunit->parent, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
+
 	//CenterCameraOntoPosition(moveunit->parent, moveunit->xSubPosition>>8, moveunit->ySubPosition>>8); 
-	
+	// SET_FUNC EnsureCameraOntoActiveUnitPosition, 0x801D31D
 	/*
 	int x2 = x >> 8; 
 	int y2 = y >> 8; 

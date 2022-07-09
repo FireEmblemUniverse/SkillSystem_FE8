@@ -9,19 +9,22 @@
 SetTrapEventInit(MovementArrowTrapID,MovementArrowInitialization)
 SetTrapMapSprite(MovementArrowTrapID,BlankSMS)
 SetTrapMapSpritePalette(MovementArrowTrapID,NPCTrapPaletteWord)
+SetExpensiveTerrainForAI(MovementArrowTrapID)
 #define MovementArrow(XX,YY, Dir) "BYTE MovementArrowTrapID XX YY Dir; SHORT 0x0"
+
 
 #define IceTrapID 114 
 SetTrapEventInit(IceTrapID,MovementArrowInitialization)
 SetTrapMapSprite(IceTrapID,SavePointSMS)
 SetTrapMapSpritePalette(IceTrapID,NPCTrapPaletteWord)
+SetExpensiveTerrainForAI(IceTrapID)
 #define IceTrap(XX,YY) "BYTE IceTrapID XX YY 0; SHORT 0x0"
 
 #define TeleTrapID 115 
 SetTrapEventInit(TeleTrapID,MovementArrowInitialization)
 SetTrapMapSprite(TeleTrapID,BerryTreeSMS)
 SetTrapMapSpritePalette(TeleTrapID,NPCTrapPaletteWord)
-
+SetExpensiveTerrainForAI(TeleTrapID)
 
 #define StopSlidingID 116 
 SetTrapEventInit(StopSlidingID,MovementArrowInitialization)
