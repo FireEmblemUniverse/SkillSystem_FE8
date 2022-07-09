@@ -6,7 +6,7 @@
 
 .thumb
 .equ AiGetPositionUnitSafetyWeight, 0x803E114 
-
+.equ FillAiDangerMap, 0x803E320 
 .equ gpAiBattleWeightFactorTable, 0x30017D8 
 .equ gMapMove2, 0x202E4F0 @ 3e190 
 .equ AiData, 0x203AA04 
@@ -41,11 +41,13 @@ ldrb r0, [r4, #0x0B]
 lsr r0, #7 @ enemy only 
 cmp r0, #0 
 beq EndLink @ [30017d8]!! @gpAiBattleWeightFactorTable 
-mov r11, r11 @ 
 ldr r3, =0x203AA7E @gAiData.dangerMapActive
 ldrb r0, [r3] 
 cmp r0, #0 
 beq EndLink 
+ldr r3, =0x2030478 
+ldr r0, [r3] 
+mov r11, r11 
 
 @ copied from ComputeAiAttack at 803E178 
 ldr r2, =gpAiBattleWeightFactorTable @ ram 
@@ -58,16 +60,18 @@ lsl r0, #2
 ldr r1, =ai3_address 
 add r0, r1 @ 0x80D818C @ AiBattleWeightFactorTable 
 str r0, [r2] 
+mov r11, r11 
 
+@ [2030478..203047B]!! 
+blh FillAiDangerMap 
 
-
-
-
-
+mov r11, r11 
 ldrb r0, [r4, #0x10] 
 ldrb r1, [r4, #0x11] 
+blh 0x803E0B4 
+@ 803E0B4   //AiBattleGetDamageTakenWeight
+@ blh AiGetPositionUnitSafetyWeight
 mov r11, r11 
-blh AiGetPositionUnitSafetyWeight
 cmp r0, #0 
 bne ActivateGroup 
 b End 
