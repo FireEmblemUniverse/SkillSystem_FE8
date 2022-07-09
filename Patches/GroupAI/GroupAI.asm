@@ -5,6 +5,12 @@
 .endm
 
 .thumb
+.equ AiGetPositionUnitSafetyWeight, 0x803E114 
+
+.equ gpAiBattleWeightFactorTable, 0x30017D8 
+.equ gMapMove2, 0x202E4F0 @ 3e190 
+.equ AiData, 0x203AA04 
+.equ ai3_address, 0x80D8178 
 push	{r4-r6,lr}
 
 mov r0, #0x41
@@ -34,10 +40,54 @@ CheckInDanger:
 ldrb r0, [r4, #0x0B] 
 lsr r0, #7 @ enemy only 
 cmp r0, #0 
+beq EndLink @ [30017d8]!! @gpAiBattleWeightFactorTable 
+mov r11, r11 @ 
+ldr r3, =0x203AA7E @gAiData.dangerMapActive
+ldrb r0, [r3] 
+cmp r0, #0 
 beq EndLink 
+
+@ copied from ComputeAiAttack at 803E178 
+ldr r2, =gpAiBattleWeightFactorTable @ ram 
+ldr r0, =AiData 
+add r0, #0x7D 
+ldrb r1, [r0] 
+lsl r0, r1, #2 
+add r0, r1 
+lsl r0, #2 
+ldr r1, =ai3_address 
+add r0, r1 @ 0x80D818C @ AiBattleWeightFactorTable 
+str r0, [r2] 
+
+
+
+
+
+
+ldrb r0, [r4, #0x10] 
+ldrb r1, [r4, #0x11] 
 mov r11, r11 
-mov r0, r4 
-bl IsUnitInDanger
+blh AiGetPositionUnitSafetyWeight
+cmp r0, #0 
+bne ActivateGroup 
+b End 
+
+ldr		r2, =gMapMove2	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+mov r11, r11 
+cmp r0, #0 
+bne ActivateGroup 
+
+b End 
+
+
+@mov r0, r4 
+@bl IsUnitInDanger
 mov r11, r11 
 cmp r0, #0 
 bne ActivateGroup @ even if didn't attack this turn 
