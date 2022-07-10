@@ -91,9 +91,9 @@ NuAiFillDangerMap:
 	ldr r4, =gUnitArray
 
 	@これいる?
-	@LDR  r0, =gActiveUnitIndex
-	@LDRB r0, [r0, #0x0]  @ ActiveUnit->Number
-	mov r0, #1 
+	LDR  r0, =gActiveUnitIndex
+	LDRB r0, [r0, #0x0]  @ ActiveUnit->Number
+	@mov r0, #1 
 	mov r10, r0          @ ActiveUnit->Number
 
 	LDR     r0, =gActiveUnit
