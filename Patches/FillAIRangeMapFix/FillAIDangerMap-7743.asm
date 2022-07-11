@@ -89,12 +89,7 @@ NuAiFillDangerMap:
 	push {r4,r5,r6,r7}
 
 	ldr r4, =gUnitArray
-
-	@これいる?
-	LDR  r0, =gActiveUnitIndex
-	LDRB r0, [r0, #0x0]  @ ActiveUnit->Number
-	@mov r0, #1 
-	mov r10, r0          @ ActiveUnit->Number
+	mov r10, r4 
 
 	LDR     r0, =gActiveUnit
 	LDR     r0, [r0, #0x0]  @ active unit
@@ -111,10 +106,11 @@ NuAiFillDangerMap:
 	TST     r2, r3
 	BNE     ContinueNextUnit    @ if unit->state & (hidden|dead|undeployed|bit12)
 
-	mov     r0, r10
-	LDRB    r1, [r4, #0xB]      @unit->Number
+	mov     r0, r11 @ active unit 
+	ldrb r0, [r0, #0xB] 
+	LDRB    r1, [r4, #0xB]      @ unit we're investigating 
 	BL      AreUnitsAllied
-	CMP     r0, #0x1
+	CMP     r0, #0x0
 	BNE     ContinueNextUnit    @ if allied with activeUnit
 
 	@check items
@@ -135,8 +131,8 @@ NuAiFillDangerMap:
 	cmp r1, #0 
 	bne ItemLoop 
 	mov r5, sp  
-	mov r3, #10  
-	lsl r3, #8 @ 10 durability 
+	@mov r3, #10  
+	@lsl r3, #8 @ 10 durability 
 	mov r2, #0 
 	CopySpellsToWepsLoop: 
 	cmp r2, #5
@@ -145,7 +141,7 @@ NuAiFillDangerMap:
 	add r0, r2 
 	ldrb r1, [r4, r0] 
 	lsl r0, r2, #1 @ 2x 
-	orr r1, r3 
+	@orr r1, r3 
 	strh r1, [r5, r0]
 	add r2, #1 
 	b CopySpellsToWepsLoop 
@@ -237,6 +233,8 @@ NuAiFillDangerMap:
 			cmp     r0, #0x0
 			beq     LoopX         @ gMapRange[iy][ix] == 0
 
+			
+
 			ldr     r0, [r5, r2]
 			ldrb    r1, [r0, r3]
 			add     r1, r7
@@ -244,8 +242,10 @@ NuAiFillDangerMap:
 			b       LoopX
 
 	ContinueNextUnit:
+	mov r4, r10 
 	add r4, #SizeOfUnitStruct   @unit++  @next unit
-
+	mov r10, r4 
+	
 	ldr r0, =gUnitArrayTerm	@Player+Enemy+NPC
 	cmp r4, r0
 	blt UnitLoop

@@ -8,6 +8,7 @@
 .equ AiGetPositionUnitSafetyWeight, 0x803E114 
 .equ AiBattleGetDamageTakenWeight, 0x803E0B4 
 
+.equ SetupAiDangerMap, 0x803E2F4 
 .equ FillAiDangerMap, 0x803E320 
 .equ gpAiBattleWeightFactorTable, 0x30017D8 
 .equ gMapMove2, 0x202E4F0 @ 3e190 @ 2030448 
@@ -21,6 +22,7 @@ push	{r4-r6,lr}
 @ldr r4, =Attacker 
 ldr r5, =Defender 
 ldr r6, =ActionStruct 
+
 
 mov r0, #0x41
 ldrb r6, [r4,r0]
@@ -36,7 +38,7 @@ mov r0, #0x1F
 and r6, r0
 cmp r6, #0x0
 bne ActivateGroupIfAttacked 
-b CheckInDanger 
+b End 
 
 ActivateGroupIfAttacked: 
 @check if attacked this turn
@@ -44,93 +46,8 @@ ldr r3, =0x203A958 @ gAction
 ldrb r0, [r3,#0x11]	@action taken this turn
 cmp	r0, #0x2 @attack
 beq ActivateGroup 
-
-CheckInDanger: 
-ldrb r0, [r4, #0x0B] 
-lsr r0, #7 @ enemy only 
-cmp r0, #0 
-beq EndLink 
-
-
-
-mov r11, r11 
-ldr r0, =gMapMove2 
-mov r1, #0 
-blh bmMapFill 
-blh FillAiDangerMap 
-
-@ copied from ComputeAiAttack at 803E178 
-ldr r2, =gpAiBattleWeightFactorTable @ ram 
-ldr r0, =AiData 
-add r0, #0x7D 
-ldrb r1, [r0] 
-lsl r0, r1, #2 
-add r0, r1 
-lsl r0, #2 
-ldr r1, =ai3_address 
-add r0, r1 @ 0x80D818C @ AiBattleWeightFactorTable 
-str r0, [r2] 
-
-ldr r3, =0x203AA7E @gAiData.dangerMapActive
-ldrb r0, [r3] 
-cmp r0, #0 
-beq EndLink 
-
-blh AiGetPositionUnitSafetyWeight
-mov r11, r11 
-cmp r0, #0 
-bne ActivateGroup 
-b EndLink 
-
-
-
-ldrb r0, [r4, #0x10] 
-ldrb r1, [r4, #0x11] 
-ldr		r2, =0x202E4F0 @gMapMove2	@Load the location in the table of tables of the map you want
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@load datum at those coordinates
-
-cmp r0, #0 
-bne ActivateGroup 
-b EndLink 
-
-
-
-
-
-
-
-@ [2030478..203047B]!! 
-@blh FillAiDangerMap - this is already filled 
-mov r11, r11 
-blh AiGetPositionUnitSafetyWeight
-mov r11, r11 
-
-ldrb r0, [r4, #0x10] 
-ldrb r1, [r4, #0x11] 
-blh AiBattleGetDamageTakenWeight
-@ 803E0B4   //AiBattleGetDamageTakenWeight
-@ blh AiGetPositionUnitSafetyWeight
-mov r11, r11 
-cmp r0, #0 
-bne ActivateGroup 
 b End 
 
-
-
-
-mov r11, r11 
-mov r0, r4 
-bl IsUnitInDanger
-mov r11, r11 
-cmp r0, #0 
-bne ActivateGroup @ even if didn't attack this turn 
-EndLink: 
-b End 
 
 ActivateGroup:
 mov r4, #0x80 @first enemy unit

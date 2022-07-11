@@ -331,10 +331,7 @@ ENUT 0xAE
 NoFade
 ENDA
 
-PUSH 
-ORG $D8192 
-BYTE 1 
-POP 
+
 
 
 TalkEvent:
