@@ -3,7 +3,7 @@
 /*Helper functions*/
 static int  absolute(int value)        {return value < 0 ? -value : value;}
 static bool IsSkillIDValid(u8 skillID) {return skillID != 0 && skillID != 255;}
-static bool IsBattleReal()          {return gBattleStats.config & 3;}
+static bool IsBattleReal()             {return gBattleStats.config & 3;}
 
 //Checks if given skillID is in given skill buffer
 bool IsSkillInBuffer(SkillBuffer* buffer, u8 skillID) {
@@ -62,10 +62,13 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
     //Item passive skills
     for (int i = 0; i < 5 && unit->items[i]; ++i) {
         temp = unit->items[i];
-        //TODO: Make this load an EA literal for the bit check
-        if ((GetItemAttributes(temp) & 0x00800000)) {
+        if ((GetItemAttributes(temp) & PassiveSkillBit)) {
             if (IsSkillIDValid(GetItemData(temp & 0xFF)->skill)) {
                 buffer->skills[count++] = GetItemData(temp & 0xFF)->skill;
+                //If passive skills don't stack, stop looping
+                if (!PassiveSkillStack) {
+                    break;
+                }
             }
         }
     }

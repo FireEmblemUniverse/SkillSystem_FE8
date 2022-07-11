@@ -37,3 +37,5 @@ extern u8 AuraSkillTable[];
 extern u8 NegatedSkills[];
 
 extern u8 NihilIDLink;
+extern u32 PassiveSkillBit;
+extern u32 PassiveSkillStack;
