@@ -103,8 +103,6 @@ Skill_Getter: // gets a list of skills
 	POIN ClassSkillTable
 	POIN (GetInitialSkillList|1)
 
-//ability flag for passive item skills
-#define PASSIVE_ITEM_SKILL_ATTR 0x00800000
 
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
