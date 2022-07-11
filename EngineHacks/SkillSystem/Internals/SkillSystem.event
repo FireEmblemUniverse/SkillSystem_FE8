@@ -109,20 +109,6 @@ Skill_Getter: // gets a list of skills
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
 ALIGN 4
-gAttackerSkillBuffer:
-WORD 0x02026B90
-
-gDefenderSkillBuffer:
-WORD 0x02026C00
-
-gAuraSkillBuffer:
-WORD 0x02027200
-
-gUnitRangeBuffer:
-WORD 0x0202764C
-
-
-ALIGN 4
 PassiveSkillBit:
 WORD PASSIVE_ITEM_SKILL_ATTR
 
