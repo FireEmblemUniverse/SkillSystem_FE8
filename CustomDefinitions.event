@@ -205,6 +205,9 @@
 #define CinnabarArrived 0xB9  
 #define VolcanobadgeObtained 0xBA 
 #define SecretKeyObtained 0xBB 
+#define ToggleMansionFlag 0xBC 
+
+
 
 #define EarthbadgeObtained 0xC0 
 #define IndigoPlateauArrived 0xC9 
@@ -214,6 +217,9 @@
 
 #define DebugPlaceUnitsFlag 0xAA 
 #define DebugPlaceUnitsFlagMenu 0xAB 
+
+
+
 
 
 #define HiredPokemonUnitID 0x41

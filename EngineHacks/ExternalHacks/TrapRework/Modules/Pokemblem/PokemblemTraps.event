@@ -240,6 +240,7 @@ SetImpassableTrap(SkillAccessoryTrapID)
 // Display + block your path 
 #define OpenPokeball(XX,YY) "BYTE OpenPokeballItemID XX YY 0x0 OpenBallSMS 0x0"
 #define Sign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 SignSMS EventIndex"
+#define InvisibleSign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 BlankSMS EventIndex"
 #define Save(XX,YY) "BYTE SaveTrapID XX YY 0x0 BlankSMS 1"
 #define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 1"
 

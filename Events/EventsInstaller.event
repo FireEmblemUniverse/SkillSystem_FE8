@@ -250,8 +250,16 @@
 #include "Route20W.event"
 }
 {
-//#include "Cinnabar.event"
+#include "Cinnabar.event"
 }
+{
+#include "MansionB1.event"
+}
+
+
+
+
+
 {
 #include "Route21.event"
 }

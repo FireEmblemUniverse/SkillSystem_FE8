@@ -120,6 +120,10 @@ GenericEffect(0, TestCase) // This does work
 GenericEffect(1, VisitPokecenter) // 
 GenericEffect(2, VisitPokecenter) // 
 GenericEffect(3, TestCase) // 
+//GenericEffect(4, CallToggleMansionB1) // 
+//GenericEffect(5, CallToggleMansionB2) // 
+//GenericEffect(6, CallToggleMansionB3) // 
+//GenericEffect(7, CallToggleMansionB4) // 
 
 GenericDisappearEffect(2, VisitPokecenter) //
 //GenericEffect(1, VisitPokecenter) // 
