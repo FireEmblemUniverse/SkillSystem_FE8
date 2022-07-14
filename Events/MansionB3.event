@@ -1,4 +1,4 @@
-#define ChapterID MansionB2Ch
+#define ChapterID MansionB3Ch
 #define GenericA UnitMansionWild
 #define GenericB UnitMansionTrainer
 #define ClassA ClassRoute20WWildA
@@ -45,36 +45,31 @@ AllTrainersPostBattleTalk
 END_MAIN
 
 
-GenericEffect(5, CallToggleMansionB2) 
-CallToggleMansionB2:
+GenericEffect(6, CallToggleMansionB3) 
+CallToggleMansionB3:
 CALL ToggleMansionFlagEvent // swap flags 
-CALL SetMansionB2TileChanges
+CALL SetMansionB3TileChanges
 NoFade 
 ENDA 
 
-SetMansionB2TileChanges: 
+SetMansionB3TileChanges: 
 CHECK_EVENTID ToggleMansionFlag 
 BEQ 0 sC s0 
 TILECHANGE 0 
 TILECHANGE 1
-TILECHANGE 2 
-TILECHANGE 3 
 GOTO 99 
 LABEL 0 
 TILEREVERSE 0 // reverse ones that were on 
 TILEREVERSE 1 
-TILEREVERSE 2 
-TILEREVERSE 3 
 LABEL 99 
 NoFade 
 ENDA 
 
 
 LocationBasedEvents:
-House(0, ToB1, 5, 14)
-House(0, ToB3_N, 10, 3)
-House(0, ToB3_S, 10, 14)
-House(0, ToB3_E, 35, 22)
+House(0, ToB2_N, 7, 3)
+House(0, ToB2_S, 10, 11)
+House(0, ToB2_E, 33, 18)
 END_MAIN
 
 MiscBasedEvents:
@@ -83,25 +78,28 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToB1 [18,18] [24,18] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(5, 14)
-EscapeTileEntry(10, 3)
-EscapeTileEntry(10,14)
-EscapeTileEntry(35,22)
+EscapeTileEntry(19, 18)
+EscapeTileEntry(23, 18)
+EscapeTileEntry(24, 18)
+EscapeTileEntry(7, 3)
+EscapeTileEntry(10, 11)
+EscapeTileEntry(33, 18)
 EscapeTileTerminator ; } 
 #endif 
 ToB1:
-ChapterTransition(MansionB1Ch, 8, 11)
+ForcedChapterTransition(MansionB1Ch, 21, 21)
 
-ToB3_N:
+ToB2_N:
 ChapterTransition(MansionB3Ch, 8, 3)
 
-ToB3_S:
+ToB2_S:
 ChapterTransition(MansionB3Ch, 11, 11)
 
-ToB3_E:
+ToB2_E:
 ChapterTransition(MansionB3Ch, 34, 18)
 
 
@@ -113,9 +111,14 @@ ChapterTransition(MansionB3Ch, 34, 18)
 // Traps that do not reference ram do not have this limit 
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
-CoinsTrap(31,18,ChapterID*2,2500)
-//CoinsTrap(57,15,(ChapterID*2)+1,600)
 
+//CoinsTrap(57,15,(ChapterID*2)+1,600)
+StopSlidingTrap(18, 18) // so you can't walk along the empty floor 
+StopSlidingTrap(19, 18)
+StopSlidingTrap(20, 18)
+StopSlidingTrap(23, 18)
+StopSlidingTrap(24, 18)
+// IceTrap 
 //Mansion: FireStone 
 //Mansion: ShadowBall, GrislyWoundSS
 
@@ -124,10 +127,9 @@ CoinsTrap(31,18,ChapterID*2,2500)
 
 //StrengthBoulder(4,3)
 
-//StatAccessoryTrap(24, 6, (ChapterID*2), StuddedShield_BoostIndex) 
-//StatAccessoryTrap(24, 6, (ChapterID*2), StuddedShield_BoostIndex) 
+StatAccessoryTrap(24, 6, (ChapterID*2), StuddedShield_BoostIndex) 
 
-RedPokeballTrap(26, 5, (ChapterID*2)+1, FireStone) 
+//RedPokeballTrap(26, 5, (ChapterID*2)+1, FireStone) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
@@ -137,16 +139,16 @@ RedPokeballTrap(26, 5, (ChapterID*2)+1, FireStone)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(30,20, ChapterID, 0x0) //no extra text 
-SignATrap(11,16, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(30,18, ChapterID, 0x0) //no extra text 
+SignATrap(14, 3, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)
 
-SkillScrollTrap(3, 24, ChapterID*2, GrislyWoundID)
-//SpellScrollTrap(7, 17, (ChapterID*2)+1, Sludge)
+//SkillScrollTrap(3, 24, ChapterID*2, GrislyWoundID)
+SpellScrollTrap(7, 17, (ChapterID*2)+1, Sludge)
 
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
@@ -167,7 +169,7 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-CALL SetMansionB2TileChanges
+CALL SetMansionB3TileChanges
 
 LOAD1 0x1 EnemyUnitsA
 ENUN

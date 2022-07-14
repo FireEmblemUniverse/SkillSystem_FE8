@@ -1081,7 +1081,7 @@
    <tile gid="6"/>
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="38" height="28" visible="0">
+ <layer id="2" name="Tile Layer 2" width="38" height="28">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="0"/>
@@ -2156,7 +2156,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Copy of Tile Layer 2" width="38" height="28" visible="0">
+ <layer id="3" name="Copy of Tile Layer 2" width="38" height="28">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="1"/>
@@ -3231,7 +3231,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Copy of Copy of Tile Layer 2" width="38" height="28" visible="0">
+ <layer id="4" name="Copy of Copy of Tile Layer 2" width="38" height="28">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="2"/>

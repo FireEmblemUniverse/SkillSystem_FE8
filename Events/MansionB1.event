@@ -49,8 +49,8 @@ END_MAIN
 LocationBasedEvents:
 House(0, ToCinnabar, 8,26)
 House(0, ToCinnabar, 34,26)
-House(0, ToB2_E, 24,20)
-House(0, ToB2_W, 11,13)
+House(0, ToB4, 24,20)
+House(0, ToB2, 11,13)
 END_MAIN
 
 MiscBasedEvents:
@@ -69,11 +69,11 @@ EscapeTileEntry(11,13)
 EscapeTileTerminator ; } 
 #endif 
 
-ToB2_W:
+ToB2:
 ChapterTransition(MansionB2Ch, 6, 14)
 
-ToB2_E:
-ChapterTransition(MansionB2Ch, 25,20)
+ToB4:
+ChapterTransition(MansionB4Ch, 33,26)
 
 ToCinnabar:
 ENUF ToggleMansionFlag 
@@ -133,35 +133,12 @@ InvisibleSign(5,5, 4)
 ENDTRAP
 ALIGN 4
 
-GenericEffect(4, CallToggleMansionB1) // 
-GenericEffect(5, CallToggleMansionB2) // 
-GenericEffect(6, CallToggleMansionB3) // 
-GenericEffect(7, CallToggleMansionB4) // 
-
+GenericEffect(4, CallToggleMansionB1) 
 CallToggleMansionB1:
 CALL ToggleMansionFlagEvent // swap flags 
 CALL SetMansionB1TileChanges
 NoFade 
 ENDA 
-
-CallToggleMansionB2:
-CALL ToggleMansionFlagEvent // swap flags 
-CALL SetMansionB2TileChanges
-NoFade 
-ENDA 
-
-CallToggleMansionB3:
-CALL ToggleMansionFlagEvent // swap flags 
-CALL SetMansionB3TileChanges
-NoFade 
-ENDA 
-
-CallToggleMansionB4:
-CALL ToggleMansionFlagEvent // swap flags 
-CALL SetMansionB4TileChanges
-NoFade 
-ENDA 
-
 
 SetMansionB1TileChanges: 
 CHECK_EVENTID ToggleMansionFlag 
@@ -174,66 +151,6 @@ LABEL 0
 TILECHANGE 0 
 TILEREVERSE 1 // reverse ones that were on 
 TILEREVERSE 2 
-LABEL 99 
-NoFade 
-ENDA 
-
-SetMansionB2TileChanges: 
-CHECK_EVENTID ToggleMansionFlag 
-BEQ 0 sC s0 
-TILECHANGE 0 
-TILECHANGE 1
-TILECHANGE 2 
-TILECHANGE 3 
-GOTO 99 
-LABEL 0 
-TILEREVERSE 0 // reverse ones that were on 
-TILEREVERSE 1 
-TILEREVERSE 2 
-TILEREVERSE 3 
-LABEL 99 
-NoFade 
-ENDA 
-
-SetMansionB3TileChanges: 
-CHECK_EVENTID ToggleMansionFlag 
-BEQ 0 sC s0 
-TILECHANGE 0 
-TILECHANGE 1
-GOTO 99 
-LABEL 0 
-TILEREVERSE 0 // reverse ones that were on 
-TILEREVERSE 1 
-LABEL 99 
-NoFade 
-ENDA 
-
-SetMansionB4TileChanges: 
-CHECK_EVENTID ToggleMansionFlag 
-BEQ 0 sC s0 
-TILECHANGE 0 
-TILECHANGE 1
-TILECHANGE 2 
-TILECHANGE 3
-TILECHANGE 4
-GOTO 99 
-LABEL 0 
-TILEREVERSE 0 // reverse ones that were on 
-TILEREVERSE 1 
-TILEREVERSE 2 
-TILEREVERSE 3 
-TILEREVERSE 4 
-LABEL 99 
-NoFade 
-ENDA 
-
-ToggleMansionFlagEvent:
-CHECK_EVENTID ToggleMansionFlag 
-BEQ 0 sC s0 // if off, turn on 
-ENUF ToggleMansionFlag 
-GOTO 99 
-LABEL 0 
-ENUT ToggleMansionFlag 
 LABEL 99 
 NoFade 
 ENDA 

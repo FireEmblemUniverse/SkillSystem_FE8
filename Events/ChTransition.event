@@ -125,7 +125,9 @@ GenericEffect(3, TestCase) //
 //GenericEffect(6, CallToggleMansionB3) // 
 //GenericEffect(7, CallToggleMansionB4) // 
 
+
 GenericDisappearEffect(2, VisitPokecenter) //
+//GenericDisappearEffect(3, ObtainSecretKeyEvent) // 
 //GenericEffect(1, VisitPokecenter) // 
 
 TestCase:
@@ -133,6 +135,18 @@ GiveEXP(0x7FFF, 100)
 //CALL VisitPokecenter
 NoFade 
 ENDA 
+
+ToggleMansionFlagEvent:
+CHECK_EVENTID ToggleMansionFlag 
+BEQ 0 sC s0 // if off, turn on 
+ENUF ToggleMansionFlag 
+GOTO 99 
+LABEL 0 
+ENUT ToggleMansionFlag 
+LABEL 99 
+NoFade 
+ENDA 
+
 
 InitiateCutscene:
 CHECK_EVENTID -1 // Flag in s2 

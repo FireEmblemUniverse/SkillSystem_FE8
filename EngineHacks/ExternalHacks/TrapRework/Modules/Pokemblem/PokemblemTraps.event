@@ -47,7 +47,9 @@
 
 	SetTrapEventInit(FoodID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(BlueWaitID,GenericTrapDisappearInitialization)
-	SetTrapEventInit(Placeholder41ID,GenericTrapDisappearInitialization)
+	#define TakeTriggerID 41 
+	
+	SetTrapEventInit(TakeTriggerID,GenericTrapDisappearCompletionInitialization)
 	SetTrapEventInit(Placeholder42ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder43ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder44ID,GenericTrapDisappearInitialization)
@@ -94,6 +96,8 @@
 
 #define GenericDisappear(XX,YY,EffectID) "BYTE CutBushTrapID XX YY 0x0 0x0 EffectID"
 #define GenericDisappear(XX,YY,ReqFlag, Sprite, EffectID) "BYTE CutBushTrapID XX YY ReqFlag Sprite EffectID"
+#define GenericDisappearCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE TakeTriggerID XX YY CompletionFlag Sprite EffectID"
+
 #define GenericDisappearEffect(id, event) "PUSH; ORG GenericTrapDisappearTableOffset + (4 * id); POIN event; POP"
 
 
@@ -369,6 +373,9 @@ WORD RedPokeballItemID
 POIN GiveItemEvent
 
 ALIGN 4
+#include "asm/GenericTrapDisappearCompletion.lyn.event" 
+POIN GenericTrapDisappearTableOffset
+
 #include "asm/ObtainCoins.lyn.event"
 #include "asm/BerryTree.lyn.event"
 #include "asm/ObtainScroll.lyn.event" 

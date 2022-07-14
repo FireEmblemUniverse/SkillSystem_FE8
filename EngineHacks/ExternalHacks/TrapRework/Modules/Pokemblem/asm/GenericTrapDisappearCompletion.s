@@ -1,35 +1,18 @@
 .thumb
 .align
 
-.global GenericTrapDisappearInitialization
-.type GenericTrapDisappearInitialization, %function
+.global GenericTrapDisappearCompletionInitialization
+.type GenericTrapDisappearCompletionInitialization, %function
 
-.global GenericTrapDisappearUsability0x20
-.type GenericTrapDisappearUsability0x20, %function
-.global GenericTrapDisappearUsability0x21
-.type GenericTrapDisappearUsability0x21, %function
-.global GenericTrapDisappearUsability0x22
-.type GenericTrapDisappearUsability0x22, %function
-.global GenericTrapDisappearUsability0x23
-.type GenericTrapDisappearUsability0x23, %function
-.global GenericTrapDisappearUsability0x24
-.type GenericTrapDisappearUsability0x24, %function
-.global GenericTrapDisappearUsability0x25
-.type GenericTrapDisappearUsability0x25, %function
-.global GenericTrapDisappearUsability0x26
-.type GenericTrapDisappearUsability0x26, %function
-.global GenericTrapDisappearUsability0x27
-.type GenericTrapDisappearUsability0x27, %function
-.global GenericTrapDisappearUsability0x28
-.type GenericTrapDisappearUsability0x28, %function
+.global GenericTrapDisappearCompletionUsability0x29
+.type GenericTrapDisappearCompletionUsability0x29, %function
 
 
+.global GenericTrapDisappearCompletionEffect
+.type GenericTrapDisappearCompletionEffect, %function
 
-.global GenericTrapDisappearEffect
-.type GenericTrapDisappearEffect, %function
-
-.global GenericTrapDisappearSpriteFunc
-.type GenericTrapDisappearSpriteFunc, %function
+.global GenericTrapDisappearCompletionSpriteFunc
+.type GenericTrapDisappearCompletionSpriteFunc, %function
 
 
 .macro blh to, reg=r3
@@ -50,8 +33,14 @@
 .equ Init_ReturnPoint,0x8037901
 @.equ GiveItemEvent, ObtainItemID+4
 
-GenericTrapDisappearInitialization:
-
+GenericTrapDisappearCompletionInitialization:
+ldrb r0, [r5, #3] @ trap completion flag 
+cmp r0, #0 
+beq Skip 
+blh CheckEventId 
+cmp r0, #1 
+beq ReturnPoint 
+Skip: 
 @r5 = pointer to trap data in events
 ldrb r0,[r5,#1] @x coord
 ldrb r1,[r5,#2] @y coord
@@ -100,7 +89,7 @@ b ReturnA
 CheckA:
 mov r2, #0x29
 cmp r1, r2
-blt RetTrap
+ble RetTrap
 
 ReturnA:
 
@@ -119,7 +108,7 @@ b ReturnB
 CheckB:
 mov r2, #0x29
 cmp r1, r2
-blt RetTrap
+ble RetTrap
 
 ReturnB:
 
@@ -138,7 +127,7 @@ b ReturnC
 CheckC:
 mov r2, #0x29
 cmp r1, r2
-blt RetTrap
+ble RetTrap
 ReturnC:
 
 mov r0,r5
@@ -156,7 +145,7 @@ b ReturnD
 CheckD:
 mov r2, #0x29
 cmp r1, r2
-blt RetTrap
+ble RetTrap
 
 ReturnD:
 mov r0,#0	@no trap so return 0
@@ -245,45 +234,13 @@ bx r1
 
 
 
-GenericTrapDisappearUsability0x20:
+GenericTrapDisappearCompletionUsability0x29:
 push {r4,r7,r14}
-mov r7, #0x20
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x21:
-push {r4,r7,r14}
-mov r7, #0x21
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x22:
-push {r4,r7,r14}
-mov r7, #0x22
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x23:
-push {r4,r7,r14}
-mov r7, #0x23
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x24:
-push {r4,r7,r14}
-mov r7, #0x24
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x25:
-push {r4,r7,r14}
-mov r7, #0x25
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x26:
-push {r4,r7,r14}
-mov r7, #0x26
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x27:
-push {r4,r7,r14}
-mov r7, #0x27
-b GenericTrapDisappearUsability
-GenericTrapDisappearUsability0x28:
-push {r4,r7,r14}
-mov r7, #0x28
-b GenericTrapDisappearUsability
+mov r7, #0x29
+b GenericTrapDisappearCompletionUsability
 
 
-GenericTrapDisappearUsability:
+GenericTrapDisappearCompletionUsability:
 ldr r4,=#0x3004E50
 ldr r0,[r4]
 bl GetAdjacentTrapIndividual
@@ -292,13 +249,13 @@ cmp r0,#0
 beq Usability_RetFalse
 
 
-ldrb r0, [r4, #0x3]     @Required Flag
+ldrb r0, [r4, #0x3]     @Completion flag
 
 cmp r0, #0
 beq CantoCheck
 
 blh CheckEventId
-cmp r0, #1
+cmp r0, #0
 bne Usability_RetFalse
 
 CantoCheck:
@@ -328,7 +285,7 @@ bx r1
 .align
 
 
-GenericTrapDisappearEffect:
+GenericTrapDisappearCompletionEffect:
 push {r4, lr}
 @Basically the execute event routine.
 
@@ -376,13 +333,15 @@ mov r0, r4
 ldr r3, RemoveTrap
 bl goto_r3
 
+ldrb r0, [r4, #3] @ flag 
+blh SetFlag 
 
 
 Continue:
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x10
 strb r0, [r1,#0x11]
-@mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
+@mov r0, #0x17	@makes the unit wait?? makes the menu DisappearCompletion after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 
 pop {r4}
@@ -390,14 +349,7 @@ pop {r3}
 goto_r3:
 bx r3
 
-
-
-
-
-
-.ltorg
-.align
-
+.ltorg 
 ExecuteEvent:
 	.long 0x800D07D @AF5D
 CurrentUnitFateData:
@@ -408,6 +360,8 @@ GetTrap:
     .long 0x802E1F1
 RemoveTrap:
     .long 0x802EA91
+.ltorg
+.align
 GTDTable:
     @.long 0xDEADBEEF @Should be defined in the install file
 

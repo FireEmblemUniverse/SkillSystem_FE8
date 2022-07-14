@@ -4,6 +4,7 @@
   mov lr, \reg
   .short 0xf800
 .endm
+.equ gpAiBattleWeightFactorTable, 0x30017D8 
 .equ ActionStruct, 0x203A958
 .equ gActiveUnit, 0x03004E50	@{U}
 .equ gMapMove2, 0x202E4F0 
@@ -20,6 +21,12 @@ ldr r3, =gActiveUnit
 ldr r3, [r3] 
 cmp r3, #0 
 beq End 
+
+ldr r2, =gpAiBattleWeightFactorTable 
+ldr r2, [r2] 
+ldrb r2, [r2, #6] @ should ai ignore dangerous tiles 
+cmp r2, #0 
+beq End @ if the ai does not care about dangerous tiles, then they won't all trigger when one enters opposing attack range 
 
 mov r0, #0x41
 ldrb r6, [r3,r0] @ ai4 byte 
