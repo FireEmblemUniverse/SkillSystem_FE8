@@ -51,12 +51,14 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
         buffer->skills[count++] = temp;
     }
 
-    //Learned skills (In RAM)
-    for (int i = 0; i < 4; ++i) {
-        if (!IsSkillIDValid(gBWLDataArray[unitNum].skills[i])) {
-            break;
+    //Learned skills (In BWL data)
+    if (unitNum < 0x46) {
+        for (int i = 0; i < 4; ++i) {
+            if (!IsSkillIDValid(gBWLDataArray[unitNum].skills[i])) {
+                break;
+            }
+            buffer->skills[count++] = gBWLDataArray[unitNum].skills[i];
         }
-        buffer->skills[count++] = gBWLDataArray[unitNum].skills[i];
     }
 
     //Item passive skills
