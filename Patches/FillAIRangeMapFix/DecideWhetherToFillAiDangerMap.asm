@@ -19,12 +19,21 @@
 @.equ gActiveUnit, 0x03004E50	@{U}
 @
 @.equ AiDecision, 0x203AA94 @ [203AA96..203AA97]!!
-
+@ basic version that does not need to push/pop 
 ldr r2, =AiData+0x7A 
 ldrb r1, [r2] 
 cmp r1, #0 
-beq Start
-mov r1, #0 
+beq Start @ version that calls 
+ldr r3, =gpAiBattleWeightFactorTable 
+ldr r1, [r3] 
+cmp r1, #0 
+beq RetZero 
+ldrb r1, [r1, #6] @ Penalty: range and attack power of opponents 
+cmp r1, #0 
+beq RetZero 
+ldrb r0, [r0] 
+lsr r1, r0, #3 
+RetZero: 
 bx lr 
 
 Start: 
