@@ -161,10 +161,18 @@ mov r1,r5
 mov r2,r6
 mov lr,r3
 .short 0xF800
+@Returns 0 if cannot wield, 1 if can, and 2 if soft lock exists. 
+@We return 2 for soft lock because of the amische skill, which returns 1 if the unit can use the weapon i.e. they do not have the skill
 cmp r0,#0
 beq CannotWield
+@Soft lock exists, so we exit and set r0 to 1 so the weapon can be used
+cmp r0,#2
+beq ExitLoopSoft
 add r7,#4
 b ExternalLoopStart
+
+ExitLoopSoft:
+mov r0,#1
 
 ExitLoop:
 mov r1,#1

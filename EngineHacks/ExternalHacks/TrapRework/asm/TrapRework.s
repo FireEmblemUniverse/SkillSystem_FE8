@@ -23,7 +23,7 @@
 .type TrapRework_NewRefreshTrapFogVision, %function
 
 .global TrapRework_NewUpdateAllLightRunes
-.type NewUpdateAllLightRunes, %function
+.type TrapRework_NewUpdateAllLightRunes, %function
 
 
 .macro blh to, reg=r3

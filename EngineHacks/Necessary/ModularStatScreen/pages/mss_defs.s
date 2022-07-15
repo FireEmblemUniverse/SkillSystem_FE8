@@ -1309,18 +1309,16 @@
   mov     r0, #0
   sub     r0, #1
   DrawHP:
-  mov     r4, #0x89
-  lsl     r4, #3
-  add     r4, r8
+  mov     r2, r0
+  ldr     r0, =(0x20*2*\tile_y)+(2*\tile_x)
+  add     r0, r8
   @ldr     r0, [r7, #0xC]    @unit pointer
   @blh     CurHPGetter
-  mov     r2, r0
-  mov     r0, r4
   mov     r1, #2
   blh     DrawDecNumber
 .endm
 
-.macro draw_max_hp
+.macro draw_max_hp, tile_x, tile_y
   ldr     r0, [r7, #0xC]    @unit pointer
   blh     MaxHPGetter
   cmp     r0, #100
@@ -1328,9 +1326,9 @@
   mov     r0, #0
   sub     r0, #1
   DrawMaxHP:
-  ldr     r4, =#0x20230F6 @somewhere in bg0 buffer
   mov     r2, r0
-  mov     r0, r4
+  ldr     r0, =(0x20*2*\tile_y)+(2*\tile_x)
+  add     r0, r8
   mov     r1, #2
   blh     DrawDecNumber
   DrawMaxHP_End:

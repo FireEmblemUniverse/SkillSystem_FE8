@@ -49,6 +49,9 @@
 //If uncommented, will enable Display Weapon Rank on Level Up.
 #define WRANK_ON_LEVELUP
 
+//If uncommented, will enable Spell Anim Substitutions
+#define SPELL_ANIM_SUBSTITUTION
+
 //If uncommented, will use Trap Rework.
 //This is automatically used if Dragon Veins or Heal Tiles are uncommented.
 #define TRAP_REWORK
@@ -198,6 +201,9 @@
 // Setting the 0x00800000 bit in the item ability bitfield will enable passive boosts.
 // #define DONT_STACK_BOOSTS
 
+// If uncommented all boss kills will play critical hit animations.
+// #define FLASHY_MODE
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
@@ -263,7 +269,7 @@
 
 //If uncommented, ModularPreBattleSkill will be installed.
 //This modularly affects combat arts. See: SkillSystem\Skills\PreBattleSkills\ModularPreBattleSkills
-#define MODULAR_PRE_BATTLE_SKILLS
+// #define MODULAR_PRE_BATTLE_SKILLS
 
 // If uncommented, the range skills checker will use SkillTester2 instead of SkillTester.
 // This will prevent this function from checking for equipped weapon skills to prevent potential infinite recursion.

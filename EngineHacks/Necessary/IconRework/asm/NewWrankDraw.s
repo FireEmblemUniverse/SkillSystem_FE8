@@ -130,6 +130,7 @@ mov r1,r6
 mov r0,#4 @sheet ID
 lsl r0,r0,#8 @shifted 8 bits left
 orr r1,r0
+sub r1,#1
 mov r0,r10
 add r0,#8
 mov r2,#0xA0
