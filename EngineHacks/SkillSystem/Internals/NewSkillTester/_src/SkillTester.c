@@ -203,7 +203,7 @@ bool NewAuraSkillCheck(Unit* unit, u8 skillID, int allyOption, int maxRange) {
             if (allyOption & 2)
                 check = !check;
 
-            if (check)
+            if (check || (allyOption & 4))
                 return TRUE;
         }
     }
@@ -252,7 +252,7 @@ u8* GetUnitsInRange(Unit* unit, int allyOption, int range) {
             check =  pAllegianceChecker(unit->index, other->index);
         }
 
-        if (check) {
+        if (check || (allyOption & 4)) {
             if ((absolute(other->xPos - unit->xPos)
                + absolute(other->yPos - unit->yPos)) <= range) {
                 gUnitRangeBuffer[count++] = i;

@@ -80,6 +80,9 @@ Bit 0x1:
 
 Bit 0x2:
     If set, reverse the outcome of the previous check (Mainly for checking enemies)
+
+Bit 0x4:
+    If set, the faction check is ignored and all units pass the faction test
 ```
 
 Returns true if a match is found or skillID is 0.  
@@ -96,6 +99,9 @@ Bit 0x1:
 
 Bit 0x2:
     If set, reverse the outcome of the previous check (Mainly for checking enemies)
+
+Bit 0x4:
+    If set, all units within range are added to UnitRangeBuffer
 ```
 
 Returns a pointer to `UnitRangeBuffer` if at least one matching unit is found.  
