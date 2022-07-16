@@ -37,7 +37,7 @@ Checks a unit for skills, stores found skills in the given buffer, then returns 
 If the unit is in battle, the equipped weapon data is gotten from the battle unit struct.  
 Stores the RAM unitID of the last unit checked in `SkillBuffer.lastUnitChecked` for future reference.  
 
-Returns the `SkillBuffer` pointer passed to it.
+Returns the `SkillBuffer` pointer passed to it.  
 
 
 ### MakeAuraSkillBuffer (Unit* unit)
@@ -48,8 +48,9 @@ If an aura skill is found, a new entry in `AuraSkillBuffer` is made to save rele
 Returns a pointer to `AuraSkillBuffer`.  
 
 `AuraSkillTable` can be found in  
-`Root/EngineHacks/Necessary/CalcLoops/PreBattleCalcLoop/PreBattleCalcLoop.event`
+`Root/EngineHacks/Necessary/CalcLoops/PreBattleCalcLoop/PreBattleCalcLoop.event`  
 
+`MakeAuraSkillBuffer` can be called directly from any calcloop.  
 
 ### SkillTester (Unit* unit, int skillID)
 Checks if unit has the given skill.  
@@ -70,7 +71,7 @@ Returns false if no match is found or skillID is 255.
 
 
 ### NewAuraSkillCheck (Unit* unit, int skillID, int allyOption, int maxRange)
-Loops through the AuraSkillBuffer to find a matching skill holder who matches the specified requirements.
+Loops through the AuraSkillBuffer to find a matching skill holder who matches the specified requirements.  
 
 allyOption options are:
 ```
@@ -89,8 +90,16 @@ Returns true if a match is found or skillID is 0.
 Returns false if no match is found or skillID is 255.  
 
 
+### InitializePreBattleLoop(Unit* attacker, Unit* defender)
+Calls `AuraSkillBuffer` and `MakeSkillBuffer` for the attacker. If a real battle is happening, it calls `MakeSkillBuffer` for the defender as well.  
+
+This function is used to initialize the PreBattle loop and not have to rely on MSG calling `SkillTester` on the defender.  
+
+Does not return a value.
+
 ### GetUnitsInRange (Unit* unit, int allyOption, int range)
-Loops through each unit and checks if they meet the given requirements, and if so, their RAM unitID gets added to the `UnitRangeBuffer`.
+Loops through each unit and checks if they meet the given requirements, and if so, their RAM unitID gets added to the `UnitRangeBuffer`.  
+
 allyOption options are:
 ```
 Bit 0x1:
