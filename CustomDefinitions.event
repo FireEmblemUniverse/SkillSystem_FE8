@@ -126,8 +126,6 @@
 // Attribute for defining items with passive skills
 #define PASSIVE_ITEM_SKILL_ATTR 0x00800000
 
-// this is for if you use the legacy way of define item attributes in your table (this is for byte 3)
-#define PassiveBoosts 0x80
 
 
 #define StatBonus(HPB,StrB,MagB,SklB,SpdB,DefB,ResB,LckB,MovB,ConB) "BYTE HPB StrB SklB SpdB DefB ResB LckB MovB ConB MagB 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0"

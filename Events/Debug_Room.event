@@ -215,7 +215,8 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 SilentGiveItemWithDurability(6, StatAccessory, WiseGlasses_BoostIndex|0x80)
 
-SilentGiveSkillAccessory(1, AmaterasuID)
+SilentGiveSkillAccessory(1, FuryID)
+SilentGiveItemWithDurability(1, SkillScroll, FuryID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)

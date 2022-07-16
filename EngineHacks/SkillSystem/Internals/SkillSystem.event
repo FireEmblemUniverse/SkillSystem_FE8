@@ -117,17 +117,7 @@ PassiveSkillStack:
 WORD PASSIVE_SKILLS_STACK
 
 
-ItemSkill_Getter:
-#include "GetItemSkills.lyn.event"
-POIN GetItemSkillBuffer
-POIN GetItemPassiveSkill
-POIN ResetEquipItemSkill
-#ifdef ACCESSORIES_AND_FORGING
-	POIN AccessorySkillGetter
-#endif 
-#ifndef ACCESSORIES_AND_FORGING
-WORD 0 
-#endif 
+
 
 
 gAuraSkillBufferLimit:
@@ -165,10 +155,24 @@ SkillTester2:
 #include "nihilTester2.lyn.event"
 POIN SkillTesterOriginal2 NegatedSkills
 WORD NihilID CatchEmAllID
+
+
+
+ItemSkill_Getter:
+#include "GetItemSkills.lyn.event"
+POIN GetItemSkillBuffer
+POIN GetItemPassiveSkill
+POIN ResetEquipItemSkill
+#ifdef ACCESSORIES_AND_FORGING
+	POIN AccessorySkillGetter
+#endif 
+#ifndef ACCESSORIES_AND_FORGING
+WORD 0 
+#endif 
+
+
 */
-ALIGN 4
-NihilIDLink:
-WORD NihilID
+
 
 
 ALIGN 4
@@ -277,7 +281,7 @@ NegatedSkillEntry(BlackMagicID)
 NegatedSkillEntry(FortressDefenseID)
 NegatedSkillEntry(FortressResistanceID)
 NegatedSkillEntry(ForesightID)
-NegatedSkillEntry(AxefaithID)
+NegatedSkillEntry(AxeFaithID)
 NegatedSkillEntry(FullMetalBodyID)
 NegatedSkillEntry(LiquidOozeID)
 NegatedSkillEntry(DevilsLuckID)

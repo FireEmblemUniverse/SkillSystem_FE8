@@ -12,18 +12,12 @@ jumpToHack(BtlLoopParent)
 // SHORT 0x280C 0xD005
 POP
 
-POIN BtlLoopList
-
-ALIGN 4
-BtlLoopList:
-POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_Support BC_WRank BC_Status //these are the existing battle calculation routines
-POIN InitializePreBattleLoop
-
 
 
 ALIGN 4
 BtlLoopParent:
 #incbin "FE8_battle_calc_loop.dmp"
+POIN BtlLoopList
 
 ALIGN 4
 BtlLoopList:
@@ -129,34 +123,6 @@ POIN MinimumDamage
 POIN FixedDamageWeapons
 POIN 0 
 
-
-#define AuraSkillEntry(skillID) "PUSH; ORG AuraSkillTable + skillID; BYTE 0x1; POP"
-
-ALIGN 4
-AuraSkillTable:
-FILL 0xFF
-
-AuraSkillEntry(CharmID)
-AuraSkillEntry(DemoiselleID)
-AuraSkillEntry(GentilhommeID)
-AuraSkillEntry(InspirationID)
-AuraSkillEntry(LilysPoiseID)
-AuraSkillEntry(SpurStrID)
-AuraSkillEntry(SpurMagID)
-AuraSkillEntry(SpurSpdID)
-AuraSkillEntry(SpurDefID)
-AuraSkillEntry(SpurResID)
-AuraSkillEntry(NiceThighsID)
-AuraSkillEntry(DauntID)
-AuraSkillEntry(MaleficAuraID)
-AuraSkillEntry(IntimidateID)
-AuraSkillEntry(SolidarityID)
-AuraSkillEntry(VoiceOfPeaceID)
-AuraSkillEntry(AnathemaID)
-AuraSkillEntry(LilysPoiseID)
-AuraSkillEntry(CharismaID)
-AuraSkillEntry(HexID)
-AuraSkillEntry(BlueFlameID)
 
 
 PUSH
