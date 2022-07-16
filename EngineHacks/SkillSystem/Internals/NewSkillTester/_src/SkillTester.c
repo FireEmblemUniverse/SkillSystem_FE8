@@ -124,7 +124,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
         //For every skill in the buffer, index AuraSkillTable to find a match
         for (int j = 0; buffer->skills[j] != 0; ++j) {
-            if (AuraSkillTable[buffer->skills[j]]) {
+            if (AuraSkillTable[buffer->skills[j]] && count < gAuraSkillBufferLimit) {
                 gAuraSkillBuffer[count].skillID = buffer->skills[j];
                 gAuraSkillBuffer[count].distance = absolute(other->xPos - unit->xPos)
                                                  + absolute(other->yPos - unit->yPos);
@@ -162,21 +162,17 @@ bool SkillTester(Unit* unit, u8 skillID) {
     if (skillID == 255) {return FALSE;}
 
     int index = unit->index;
+
+    //Default to the attacker buffer
     SkillBuffer* buffer = gAttackerSkillBuffer;
 
     //If unit is the defender, use the defender buffer
     if (index == gBattleTarget.unit.index && IsBattleReal()) {
         buffer = gDefenderSkillBuffer;
-        if (index != buffer->lastUnitChecked) {
-            MakeSkillBuffer(unit, buffer);
-        }
     }
 
-    //Otherwise, default to the attacker buffer
-    else {
-        if (index != buffer->lastUnitChecked) {
-            MakeSkillBuffer(unit, buffer);
-        }
+    if (index != buffer->lastUnitChecked) {
+        MakeSkillBuffer(unit, buffer);
     }
 
     //Check if matching skill is in buffer

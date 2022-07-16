@@ -106,12 +106,18 @@ Skill_Getter: // gets a list of skills
 
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
+//Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 4 bytes long
+#define AuraSkillBufferLimit 480
+
 ALIGN 4
 PassiveSkillBit:
 WORD PASSIVE_ITEM_SKILL_ATTR
 
 PassiveSkillStack:
 WORD PASSIVE_SKILLS_STACK
+
+gAuraSkillBufferLimit:
+WORD AuraSkillBufferLimit
 
 #define NegatedSkillEntry(skillID) "PUSH; ORG NegatedSkills + skillID; BYTE 0x1; POP"
 

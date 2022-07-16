@@ -50,6 +50,8 @@ Returns a pointer to `AuraSkillBuffer`.
 `AuraSkillTable` can be found in  
 `Root/EngineHacks/Necessary/CalcLoops/PreBattleCalcLoop/PreBattleCalcLoop.event`  
 
+The maximum number of `AuraSkillBuffer` entries can be set in `EngineHacks/SkillSystem/Internals/Skillsystem.event`.
+
 `MakeAuraSkillBuffer` can be called directly from any calcloop.  
 
 ### SkillTester (Unit* unit, int skillID)
