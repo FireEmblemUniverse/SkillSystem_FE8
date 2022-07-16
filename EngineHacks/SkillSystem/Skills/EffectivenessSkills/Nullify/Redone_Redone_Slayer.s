@@ -59,7 +59,7 @@ bne		NullifyCheck
 b		RetFalse
 
 NullifyCheck:
-mov		r0,r4
+mov		r0,r5
 ldr		r1,NullifyID
 ldr		r3,SkillTester
 mov		r14,r3

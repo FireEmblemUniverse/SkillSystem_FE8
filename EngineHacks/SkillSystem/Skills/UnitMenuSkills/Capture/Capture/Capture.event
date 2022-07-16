@@ -6,7 +6,13 @@
 	#include "Extensions/Hack Installation.txt"
 	#include EAstdlib.event
 	#include "Tools/Tool Helpers.txt"
-	
+	#include "Extensions/ProcDefinitions.txt" 
+
+	//Reward for drop a enemy unit.
+	//If you don't need it, set it to 0.
+	//Maximum value is 100
+	#define  GIVE_DROP_EXP	10
+
 	PUSH
 
 	//ORG $59D1F8 //Don't need this because the skill system has its own
@@ -31,10 +37,10 @@
 	ORG $328F0
 	callHack_r3(After_Battle_Rescue)
 	SHORT 0xE014
-	
+
 	//Prevent enemy character data pointer from being zero'd out after dying (set byte 0x4 instead) (NOTE: This may lead to issues with saving/endgame? I hope not)
-	ORG $18400
-	jumpToHack(Should_Dead_Unit_Be_Cleared)
+//	ORG $18400
+//	jumpToHack(Should_Dead_Unit_Be_Cleared)
 	
 	//Set bit 0x1 of byte 0xC if dropping a dead enemy
 	ORG $183B0
@@ -53,6 +59,13 @@
 	callHack_r3(Trade_Portrait_Fix1)
 	ORG $2D7EC
 	callHack_r3(Trade_Portrait_Fix2)
+	
+	//Stop DeathQuote
+	ORG 0x846E4
+	jumpToHack(StopDeathQuote)
+	
+	ORG 0x32264
+	jumpToHack(GiveDropExp)
 	
 	POP
 	
@@ -142,10 +155,28 @@
 	Trade_Portrait_Fix2:
 	#incbin "Trade_Portrait_Fix2.dmp"
 	
-	ALIGN 4
-	Should_Dead_Unit_Be_Cleared:
-	#incbin "Should_Dead_Unit_Be_Cleared.dmp"
+//	ALIGN 4
+//	Should_Dead_Unit_Be_Cleared:
+//	#incbin "Should_Dead_Unit_Be_Cleared.dmp"
 	
+	ALIGN 4
+	StopDeathQuote:
+	#incbin "StopDeathQuote.dmp"
+	POIN Is_Capture_Set
+	
+	ALIGN 4
+	GiveDropExp:
+	#incbin "GiveDropExp.dmp"
+	WORD GIVE_DROP_EXP			//add exp
+	POIN give_drop_exp_proc
+
+	ALIGN 4
+	give_drop_exp_proc:
+	PROC_CALL_ROUTINE(0x8015360|1) // LockGameLogic	//{U}
+	PROC_SLEEP(5)
+	PROC_JUMP(0x89A35B0) // gProc_MapAnimEnd	//{U}
+	PROC_END
+
 	ALIGN 4
 	Blank_Portrait:
 	//#incext PortraitFormatter "blank_portrait.png"

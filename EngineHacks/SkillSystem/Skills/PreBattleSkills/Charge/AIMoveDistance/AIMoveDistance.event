@@ -1,0 +1,10 @@
+ALIGN 4
+#include "AIMoveDistance.lyn.event"
+
+PUSH
+ORG 0x39C44
+jumpToHack(AIMoveDistance)
+ORG Unset_Attack_Flag_2 // EngineHacks/SkillSystem/Internals/SkillSystem.event
+//SHORT 0x4600 // NOP
+jumpToHack(NewClearAttackFlag)
+POP

@@ -39,6 +39,7 @@ NonMiss:
 	@ Getting Armsthrift proc chance (=luck)
 	ldrb r0, [r5, #0x19] @ BattleUnit.luck
 @	lsl  r0, #1          @ multiply by 2
+	mov r1, r5           @ get attacker for future checks
 
 	@ ROLL
 	ldr r3, =RollBattleRN

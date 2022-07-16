@@ -31,6 +31,7 @@
 @getters
 .equ UnitHasMagicRank, 0x08018A58
 .equ MountedIconHelper, 0x08018AF0
+.equ MagCheck, 0x8018A58
 .equ AidCheck, 0x080189B8
 .equ CurHPGetter, 0x08019150
 .equ MaxHPGetter, 0x08019190       
@@ -80,6 +81,8 @@
 .equ gCurrentTextString, 0x202A6AC 
 .equ Const_2022D40, 0x2022D40
 .equ Const_2023D40, 0x2023D40
+.equ Const_2003D2C, 0x2003D2C
+.equ Const_200472C, 0x200472C
 
 @With this in mind, any unlabeled RAM addresses beginning with 0x200 can reasonably be assumed to be offsets within the tilemap
 
@@ -1306,18 +1309,16 @@
   mov     r0, #0
   sub     r0, #1
   DrawHP:
-  mov     r4, #0x89
-  lsl     r4, #3
-  add     r4, r8
+  mov     r2, r0
+  ldr     r0, =(0x20*2*\tile_y)+(2*\tile_x)
+  add     r0, r8
   @ldr     r0, [r7, #0xC]    @unit pointer
   @blh     CurHPGetter
-  mov     r2, r0
-  mov     r0, r4
   mov     r1, #2
   blh     DrawDecNumber
 .endm
 
-.macro draw_max_hp
+.macro draw_max_hp, tile_x, tile_y
   ldr     r0, [r7, #0xC]    @unit pointer
   blh     MaxHPGetter
   cmp     r0, #100
@@ -1325,9 +1326,9 @@
   mov     r0, #0
   sub     r0, #1
   DrawMaxHP:
-  ldr     r4, =#0x20230F6 @somewhere in bg0 buffer
   mov     r2, r0
-  mov     r0, r4
+  ldr     r0, =(0x20*2*\tile_y)+(2*\tile_x)
+  add     r0, r8
   mov     r1, #2
   blh     DrawDecNumber
   DrawMaxHP_End:

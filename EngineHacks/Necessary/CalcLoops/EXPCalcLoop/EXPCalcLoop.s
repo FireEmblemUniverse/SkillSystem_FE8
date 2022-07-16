@@ -18,8 +18,9 @@ EXPCalcLoop: @ Autohook to 0x0802b960. This is gonna be kinda weird tbh.
 mov r6, r5
 add r6, r6, #0x6E @ r6 is used later in the vanilla function to load EXP. Use r4 and r5.
 push { r7 }
-cmp r0, #0x00
-beq AttackerStore @ Immediately end if 0 EXP is passed through.
+@cmp r0, #0x00
+@beq AttackerStore @ Immediately end if 0 EXP is passed through.
+@NO, this means that any AI units are never check on their phase
 @ Now to loop through all functions in EXPCalcFunctions for the attacker.
 ldr r7, =EXPCalcFunctions
 AttackerLoop:
@@ -43,15 +44,15 @@ strb r0, [ r6 ]
 mov r0, r4 @ Defense struct
 mov r1, r5 @ Attack struct
 blh ComputeEXPFromBattle, r2
-cmp r0, #0x00
-beq DefenderStore @ Immediately end if 0 EXP is passed through.
+@cmp r0, #0x00
+@beq DefenderStore @ Immediately end if 0 EXP is passed through.
 ldr r7, =EXPCalcFunctions
 DefenderLoop:
 ldr r3, [ r7 ]
 cmp r3, #0x00
 beq EndDefenderLoop
 	mov r1, r4 @ Defense struct
-	mov r2, r4 @ Attack struct.
+	mov r2, r5 @ Attack struct.
 	mov lr, r3
 	.short 0xF800 @ Each function takes EXP as the first parameter and returns their edited value.
 	add r7, r7, #0x04

@@ -1,3 +1,5 @@
 #include "Nullify/NullifyPokemblem.event" //includes effectiveness rework installation
 
+#ifdef ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
 #include "EffectivenessRework.event" //for setting up reworked effectiveness
+#endif // ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK

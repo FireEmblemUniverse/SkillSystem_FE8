@@ -10,6 +10,7 @@ bne Normal
 
 @if freeze, only reduce on player phase
 ldr r2, =0x202bcff @current phase
+ldrb r2, [r2]
 cmp r2, #0x0 @if player phase, reduce as usual
 beq Normal
 @otherwise do nothing.

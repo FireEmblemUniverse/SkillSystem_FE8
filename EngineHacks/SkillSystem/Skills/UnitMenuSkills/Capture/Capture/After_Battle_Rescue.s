@@ -34,6 +34,7 @@
 	and		r0,r1
 	str		r0,[r5,#0xC]		@remove the 'is capturing' bit from attacker
 
+
 	ldrb	r0,[r4,#0x13]		@is defender dead?
 	cmp		r0,#0x0
 	bne End
@@ -52,7 +53,11 @@
 	mov		r0,r5
 	mov		r1,r7
 	.short	0xF800
-	
+
+	@Set HP to 1 and don't die.
+	mov		r0,#0x1
+	strb	r0,[r7,#0x13]
+
 	mov		r7,#0x0				@captured units don't drop anything
 	b End
 

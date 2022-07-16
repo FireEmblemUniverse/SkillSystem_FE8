@@ -1,6 +1,6 @@
 @Tantivy: +10 hit/avo if no allies in 3 tiles.
-.equ AuraSkillCheck, SkillTester+4
-.equ TantivyID, AuraSkillCheck+4
+.equ GetUnitsInRange, SkillTester+4
+.equ TantivyID, GetUnitsInRange+4
 .thumb
 push {r4-r7,lr}
 @goes in the battle loop.
@@ -20,12 +20,11 @@ cmp r0, #0
 beq Done
 
 @Check if there are allies in 3 spaces
-ldr r0, AuraSkillCheck
+ldr r0, GetUnitsInRange
 mov lr, r0
 mov r0, r4 @attacker
-mov r1, #0
-mov r2, #0 @can_trade
-mov r3, #3 @range
+mov r1, #0 @can_trade
+mov r2, #3 @range
 .short 0xf800
 cmp r0, #0
 bne Done
@@ -49,5 +48,5 @@ bx r0
 .ltorg
 SkillTester:
 @ POIN SkillTester
-@ POIN AuraSkillCheck
+@ POIN GetUnitsInRange
 @ WORD TantivyID

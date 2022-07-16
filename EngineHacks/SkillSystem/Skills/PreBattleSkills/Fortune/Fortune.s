@@ -10,6 +10,12 @@ push {r4-r7,lr}
 mov r4, r0
 mov r5, r1
 
+ldr	 r0,=#0x203A4D4	@pre-battle data pointer, gonna check if a target has been selected or the fight has started (0x02 if targeting someone, 0x01 if battle started)
+ldrb r0,[r0]
+mov  r1,#0x3
+tst  r0,r1
+beq	 GoBack
+
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4

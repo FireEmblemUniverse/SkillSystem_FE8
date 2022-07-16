@@ -7,7 +7,7 @@ mov		r14,r0
 ldr		r0,[r4,#0x2C]
 .short 	0xF800
 mov		r1,r7
-add		r1,#0x2E
+add		r1,#0x2D
 strb	r0,[r1]
 ldr		r0,[r4,#0x2C]
 mov		r1,#0x1D
@@ -16,7 +16,7 @@ ldr		r0,[r0,#0x4]
 ldrb	r0,[r0,#0x12]
 add		r0,r0,r1
 mov		r1,r7
-add		r1,#0x35
+add		r1,#0x34
 strb	r0,[r1]
 ldr		r0,[r4,#0x2C]
 ldr		r1,[r4,#0x30]

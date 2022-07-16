@@ -115,9 +115,6 @@ POP
   //Stairs
   #include "ExternalHacks/Stairs/Stairs.event"
 
-  //PromoteOnLevelUp
-  #include "ExternalHacks/PromoteOnLevelUp/PromoteOnLevelUp.event"
-
   //Raid
   #include "ExternalHacks/Raid/Raid.event"
   
@@ -184,6 +181,9 @@ POP
     #include "ExternalHacks/CritCap/CritCap.event"
   #endif
   
+  //Spell Animation Rework
+  #include "ExternalHacks/SpellAnimSubstitution/SpellAnimSubstitution.event"
+
   //Item Effect Revamp by Teraspark
   #include "Necessary/ItemEffectRevamp/IERevamp_Installer.event"
   

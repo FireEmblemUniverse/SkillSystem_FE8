@@ -162,14 +162,14 @@ ldrb	r1,[r0]
 mov		r2,#0x5
 orr		r1,r2
 strb	r1,[r0]
-ldr		r0,=CopyToBG
+ldr		r0,=BgMapFillRect
 mov		r14,r0
 ldr		r0,=Const_2003D2C
 ldr		r1,=Const_2022D40
 mov		r2,#0x12
 mov		r3,#0x12
 .short	0xF800
-ldr		r0,=CopyToBG
+ldr		r0,=BgMapFillRect
 mov		r14,r0
 ldr		r0,=Const_200472C
 ldr		r1,=Const_2023D40

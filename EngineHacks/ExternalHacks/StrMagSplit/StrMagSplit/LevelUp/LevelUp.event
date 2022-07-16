@@ -150,6 +150,11 @@ PUSH
 	/*//Add mag boost in battle struct // This has been incorporated into MSS -> Write_Growths_To_Battle_Struct. - Snek
 	ORG $2BB44
 	callHack_r3(Write_Mag_Growth)*/
+	
+	//Check Mag Cap
+    ORG $2C008
+    jumpToHack(LevelupMagCap)
+	
 POP
 
 ALIGN 4
@@ -276,3 +281,8 @@ WORD Mov_Text_ID
 ALIGN 4
 LevelUpWriteBackMag:
 #include "LevelUpWriteBackMag.event"
+
+ALIGN 4
+LevelupMagCap:
+#incbin "LevelupMagCap.dmp"
+POIN MagClassTable

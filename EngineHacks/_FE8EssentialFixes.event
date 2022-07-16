@@ -23,7 +23,7 @@ POP
 //Fix MNC2 Freezing glitch (breaks skirmishes!)
   ORG $BD070
   SHORT $E0B8
-  
+ 
   //Fixes the world map chapter ID being loaded instead of the actual chapter ID.
 ORG 0x897B2
 BYTE 0x0 0x0 0x0 0x0
@@ -33,17 +33,95 @@ BYTE 0x0 0x0 0x0 0x0
 ORG 0x897C4
 BYTE 0x0E 0x20 0x20 0x56
 
+//Fix coordinate loading in WARP codes when not loading from slot B (by hypergammaspaces)
+ORG $10C18
+SHORT $7891 $78D2 $0608
+
+// Remove hardcoded checks for chapter 5x (by Stan)
+    
+	// do not display 0 gold in 5x
+    ORG $024DF2
+        SHORT $46C0 // nop
+    
+	// allow convoy access in 5x
+    ORG $03164E
+        SHORT $E003 // b 0x08031658
+
+  //Fixes the world map chapter ID being loaded instead of the actual chapter ID.
+ORG 0x897B2
+BYTE 0x0 0x0 0x0 0x0
+
+
+//Fixes the game considering some chapters postgame.
+ORG 0x897C4
+BYTE 0x0E 0x20 0x20 0x56
+
+//Fix coordinate loading in WARP codes when not loading from slot B (by hypergammaspaces)
+ORG $10C18
+SHORT $7891 $78D2 $0608
+
+// Remove hardcoded checks for chapter 5x (by Stan)
+    
+	// do not display 0 gold in 5x
+    ORG $024DF2
+        SHORT $46C0 // nop
+    
+	// allow convoy access in 5x
+    ORG $03164E
+        SHORT $E003 // b 0x08031658
+
+
 //Set Default Options
   ORG $30d8a  //animations type 2
   SHORT $3306
   ORG $30da6  //Game/text speed Fast, Autocursor off
   SHORT $22d0
-  
+
 //Allow Visit from any tile
   PUSH
   ORG $23072
   SHORT $e00d
   POP
+
+//Allow Visit from any tile (this is broken atm, also allows visits to destroyed villages)
+//  PUSH
+//  ORG $23072
+//  SHORT $e00d
+//  POP
+
+//Make attacks at 2-15 range not use long-range anims by default (by Sme)
+//use the Uncounterable flag for long-range anims instead
+PUSH
+  ORG $57314
+  BYTE 0xF
+POP
+
+//Disallow using ballistae while cantoing
+PUSH
+  ORG $248DE
+  SHORT $2187
+POP
+
+//Allow Visit from any tile
+  PUSH
+  ORG $23072
+  SHORT $e00d
+  POP
+
+
+//Make attacks at 2-15 range not use long-range anims by default (by Sme)
+//use the Uncounterable flag for long-range anims instead
+PUSH
+  ORG $57314
+  BYTE 0xF
+POP
+
+//Disallow using ballistae while cantoing
+PUSH
+  ORG $248DE
+  SHORT $2187
+POP
+
 
 //Break HP Cap for Players/NPCs (credit Solum)
   // ORG $181ee

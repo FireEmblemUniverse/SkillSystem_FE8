@@ -2,7 +2,7 @@
 ALIGN 4
 Shadowgift: //Also includes Lumina
 #incbin "Shadowgift/shadowgift.dmp"
-POIN SkillTester2
+POIN CheckSkillBuffer
 WORD ShadowgiftID
 WORD LuminaID
 WORD SHADOWGIFT_VIA_STAFF_RANK
@@ -12,7 +12,7 @@ POIN ItemTable
 ALIGN 4
 Amische:
 #incbin "Amische/Amische.dmp"
-POIN SkillTester2
+POIN CheckSkillBuffer
 WORD AmischeID
 POIN IronWeaponsList
 

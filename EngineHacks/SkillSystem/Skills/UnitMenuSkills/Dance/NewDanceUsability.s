@@ -35,6 +35,9 @@ cmp r1,#0
 beq ReturnFalse
 
 @vanilla dancer bit check
+ldr r0,=gActiveUnit
+ldr r0,[r0]
+
 ldr r1,[r0]
 ldr r2,[r0,#4]
 ldr r0,[r1,#0x28]
