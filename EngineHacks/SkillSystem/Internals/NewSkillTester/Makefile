@@ -10,7 +10,7 @@ endif
 include $(DEVKITARM)/base_tools
 
 # defining path of lyn
-LYN := "$(abspath .)/lyn"
+LYN := "C:/devkitPro/lyn.exe"
 LYNREF :="$(abspath .)/reference/SkillsRef.o"
 
 # setting up compilation flags

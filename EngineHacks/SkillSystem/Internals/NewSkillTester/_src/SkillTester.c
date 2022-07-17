@@ -5,6 +5,8 @@ static int  absolute(int value)        {return value < 0 ? -value : value;}
 static bool IsSkillIDValid(u8 skillID) {return skillID != 0 && skillID != 255;}
 static bool IsBattleReal()             {return gBattleStats.config & 3;}
 
+extern int AccessorySkillGetter(struct Unit *unit);
+
 //Checks if given skillID is in given skill buffer
 bool IsSkillInBuffer(SkillBuffer* buffer, u8 skillID) {
     for (int i = 0; buffer->skills[i] != 0; ++i) {
@@ -74,6 +76,12 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
             }
         }
     }
+	
+	temp = AccessorySkillGetter(unit);
+	if (temp) { 
+		if (IsSkillIDValid(temp)) { buffer->skills[count++] = temp; 
+		}
+	} 
 
     //Equipped weapon skills
     //If unit is in combat, use the equipped weapon short
