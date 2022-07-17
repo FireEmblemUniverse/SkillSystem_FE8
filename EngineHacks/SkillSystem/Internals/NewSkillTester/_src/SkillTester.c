@@ -103,6 +103,7 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
 AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
     SkillBuffer* buffer = gAttackerSkillBuffer;
     u8 count = 0;
+    u8 distance = 0;
 
     for (int i = 0; i < 0x100; ++i) {
         Unit* other = gUnitLookup[i];
@@ -126,9 +127,16 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
         for (int j = 0; buffer->skills[j] != 0; ++j) {
             if (AuraSkillTable[buffer->skills[j]] && count < gAuraSkillBufferLimit) {
                 gAuraSkillBuffer[count].skillID = buffer->skills[j];
-                gAuraSkillBuffer[count].distance = absolute(other->xPos - unit->xPos)
-                                                 + absolute(other->yPos - unit->yPos);
-                gAuraSkillBuffer[count].faction = UNIT_FACTION(other);
+
+                distance = (absolute(other->xPos - unit->xPos) + absolute(other->yPos - unit->yPos));
+                if (distance > 63) {
+                    distance = 63;
+                }
+
+                //No need to `& 0x3F` because of the limit
+                gAuraSkillBuffer[count].distance = distance;
+                 //Shifting for storage
+                gAuraSkillBuffer[count].faction = UNIT_FACTION(other) >> 6;
                 ++count;
             }
         }

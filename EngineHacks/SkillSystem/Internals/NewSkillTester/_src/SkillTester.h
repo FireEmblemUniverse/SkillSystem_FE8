@@ -21,9 +21,8 @@ struct BWLData {
 
 struct AuraSkillBuffer {
 /*00*/  u8 skillID;
-/*01*/  u8 distance; //Relative to main unit
-/*02*/  u8 faction;
-/*03*/  u8 pad;
+/*01*/  u8 distance : 6; //Relative to main unit
+/*01*/  u8 faction  : 2;
 };
 
 extern struct BWLData gBWLDataArray[];

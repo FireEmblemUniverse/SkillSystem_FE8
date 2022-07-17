@@ -106,7 +106,7 @@ Skill_Getter: // gets a list of skills
 
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
-//Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 4 bytes long
+//Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 2 bytes long
 #define AuraSkillBufferLimit 480
 
 ALIGN 4
