@@ -1,5 +1,9 @@
 .thumb
-.org 0x0
+.macro blh to, reg=r3
+    ldr \reg, \to
+    mov lr, \reg 
+    .short 0xF800
+.endm
 
 @jumped to from 7BED6
 @want to write this stuff to bg0, has name and hp numbers/graphics
@@ -167,6 +171,32 @@ strh  r1,[r0,#0x2]
 add   r1,#0x1
 strh  r1,[r0,#0x4]
 
+@ Vesly 
+@DrawIcon(&gBG0MapBuffer[iconY][iconX],GetItemIconId((unit->items[i])),TILEREF(0, 0xC));
+mov r0, r6 
+ldrb  r1,[r5,#0x10] @x coord of box
+ldrb  r2,[r5,#0x11] @y coord of box
+blh DrawWeaponAtBottom @ unit struct, x coord of box, y coord of box 
+
+@mov r0, #0x4A @ wep 
+@ldrh r0, [r6, r0] 
+@blh GetItemIconId @ 
+@mov r1, r0 @ Icon 
+@push {r1} 
+@mov   r0,#0x1
+@mov   r1,#0x7
+@mov   r2,r5
+@bl    CoordsToNum
+@add r0, r4 @ r4 already has BG0Buffer 
+@pop {r1} 
+@
+@mov r2, #0xC 
+@lsl r2, #12 @ palette is 12th bit // #define TILEREF(aChar, aPal) ((aChar) + ((aPal) << 12))
+@blh DrawIcon 
+@mov r0, #0xC 
+@blh LoadIconPalettes 
+
+
 GoBack:
 pop   {r3-r5}
 mov   r8,r3
@@ -175,6 +205,13 @@ mov   r10,r5
 pop   {r4-r6}
 pop   {r0}
 bx    r0
+
+.ltorg 
+@ Vesly 
+.equ gBG0MapBuffer, 0x02022CA8
+.equ DrawIcon, 0x80036BC
+.equ GetItemIconId, 0x8017700 
+.equ LoadIconPalettes, 0x80035BC 
 
 .align
 Bg0Buffer:
@@ -275,6 +312,7 @@ ldr   r0,Battle_Name_Graphics
 ldr   r1,Battle_Name_Graphics+4
 bx    r14
 
+.equ DrawWeaponAtBottom, Battle_Name_Graphics+8 
 .align
 Battle_Name_Graphics:
 @.long 0x088025D8

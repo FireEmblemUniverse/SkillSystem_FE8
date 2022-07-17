@@ -58,7 +58,11 @@
 	ALIGN 4
 	Show_Battle_Stats:
 	#incbin "Show_Battle_Stats.dmp"
-	POIN Battle_Name_Graphics Battle_Name_Palette
+	POIN Battle_Name_Graphics 
+	POIN Battle_Name_Palette
+	POIN DrawWeaponAtBottom 
+	
+	#include "src/DrawWeaponAtBottom.lyn.event" 
 	
 	ALIGN 4
 	Battle_Name_Graphics:
