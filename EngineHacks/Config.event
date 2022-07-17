@@ -49,9 +49,6 @@
 //If uncommented, will enable Display Weapon Rank on Level Up.
 #define WRANK_ON_LEVELUP
 
-//If uncommented, will enable Spell Anim Substitutions
-#define SPELL_ANIM_SUBSTITUTION
-
 //If uncommented, will use Trap Rework.
 //This is automatically used if Dragon Veins or Heal Tiles are uncommented.
 #define TRAP_REWORK

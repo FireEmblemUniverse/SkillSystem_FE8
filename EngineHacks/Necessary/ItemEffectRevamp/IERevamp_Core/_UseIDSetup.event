@@ -110,16 +110,13 @@
 	BL($178F4)
 	SHORT $20FF $7001 $BC30 $BD00
 	BYTE $6C $A5 $3 $2 $58 $A9 $3 $2
-	
-	//If spell anim subsitutions are installed, don't use the hook
-	#ifndef SPELL_ANIM_SUBSTITUTION
-		//set up a separate animation association table for item effects
-		ORG $5800C
-			BL($78258)	//use spell anim id getter instead of manually looping
-			SHORT 0x1C02
-			B($5802E)	//skip loop since the getter is called insead
-			//might overwrite the loop with something else later
-	#endif //SPELL_ANIM_SUBSTITUTION
+
+	//set up a separate animation association table for item effects
+	ORG $5800C
+		BL($78258)	//use spell anim id getter instead of manually looping
+		SHORT 0x1C02
+		B($5802E)	//skip loop since the getter is called insead
+		//might overwrite the loop with something else later
 
 	ORG $78214
 		#include "ItemAnimAssociation_p1.lyn.event"
