@@ -1,7 +1,13 @@
 //FE8 Show battle stats when animations are off
 //By Tequila
+#include "eastdlib.event" 
+#ifndef BATTLE_STATS 
+	#define BATTLE_STATS 
+#endif 
 
 #ifdef BATTLE_STATS
+
+#define UseWeaponTriangleForArrowsDef False // If false, approximates whether the battle is beneficial or not 
 
 // #ifdef _FE8_
 	
@@ -29,9 +35,9 @@
 	
 	//Make the box not overlap active units or go off-screen (will probably have to fiddle with this later)
 	ORG $7AB8A
-	SHORT 0x283f //cmp r0,#0x5F rather than 0x6F
+	SHORT 0x2847 //cmp r0,#0x5F rather than 0x6F
 	ORG $7AB98
-	SHORT 0x3860 //sub r0,#0x40 rather than 0x28
+	SHORT 0x3840 //sub r0,#0x40 rather than 0x28
 	ORG $7ABA2
 	SHORT 0x2008 //mov r0,0x8; should cover all the funny cases
 	
@@ -65,6 +71,13 @@
 	POIN DrawWeaponAtBottom 
 	
 	#include "src/DrawWeaponAtBottom.lyn.event" 
+	
+	
+	
+	ALIGN 4 
+	UseWeaponTriangleForArrows:
+	WORD UseWeaponTriangleForArrowsDef 
+	
 	ALIGN 4 
 	gArrows: 
 	POIN Arrows 

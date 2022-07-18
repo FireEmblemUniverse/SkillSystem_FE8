@@ -37,6 +37,8 @@ SET_FUNC RTextRight, (0x080893E4+1)
 
 
 //@ Data declarations:
+SET_DATA icon_palette_pointer, 0x80035D0 
+
 SET_DATA MyMapBuffer, 0x203F548
 SET_DATA MyMapBuffer2, 0x2010000
 
