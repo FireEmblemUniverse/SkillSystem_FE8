@@ -1,7 +1,7 @@
 #ifndef HAX_ICON_REWORK
 #define HAX_ICON_REWORK
 
-#define ICON_SHEET_COUNT 5 // #0 for item icons & #1 for skill icons & #2 for affinity icons & #3 for mount type icons & #4 for weapon type icons
+#define ICON_SHEET_COUNT 11 // #0 for item icons & #1 for skill icons & #2 for affinity icons & #3 for mount type icons & #4 for weapon type icons
 
 #include "IconRework_Internal.event"
 
