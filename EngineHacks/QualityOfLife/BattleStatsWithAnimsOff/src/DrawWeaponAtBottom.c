@@ -5,10 +5,9 @@ extern u16 gBG1MapBuffer[32][32]; // 0x020234A8.
 static void PrepareText(TextHandle* handle, char* string);
 void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy); 
 
-extern const u16* gSmile;
-extern const u16* Smile;
+extern const u16* gArrows;
 extern const u16* NewItemIcons; 
-
+extern void RegisterObjectTileGraphics(const void* source, void* target, int width, int height); // 8012FF4
 
 
 // PushToHiOAM(u16 xBase, u16 yBase, const struct ObjData* data, u16 tileBase);
@@ -38,23 +37,32 @@ void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy) {
 			//PushToHiOAM(u16 xBase, u16 yBase, const struct ObjData* data, u16 tileBase);
 			//u16* source = (void*)0x6010980;
 			
-			u8 xDimension = 2; 
+			u8 xDimension = 1; 
 			u8 yDimension = 2; 
+			u8 xImageSize = 4; 
 			
-			int entries = 128; 
-			u16 source[entries]; 
-			for (u8 i = 0; i < entries; i++) { 
-				source[i] = 0x5020; 
-			} 
+			//int entries = 128; 
+			//u16 source[entries]; 
+			//for (u8 i = 0; i < entries; i++) { 
+			//	source[i] = 0x5020; 
+			//} 
+
+			u16 tileStart = 0x4A; // edit for various arrows 
+			
+			RegisterTileGraphics(gArrows, (void*)(0x6000000 | (tileStart*0x20)), 256);
+			
+			
+			//RegisterObjectTileGraphics(gSmile, (void*)0x6010980, 2, 2); 
+			//RegisterFillTile(0x12345678, (void*)0x6006000, 4);
+			SyncRegisteredTiles();
 			for (u8 y = 0; y < yDimension; y++) { 
 				for (u8 x = 0; x < xDimension; x++) { 
 			
-					gBG0MapBuffer[y][x] = 0x5020; 
+					gBG0MapBuffer[y+yy+6][x+xx+10] = tileStart + x + (xDimension * xImageSize * y); 
+					//gBG0MapBuffer[y][x] = tileStart + (0x20 * x) + (0x20 * xDimension * xImageSize * y); 
 				}
 			} 
-			//RegisterTileGraphics(Smile, (void*)0x6000, 4);
-			RegisterFillTile(0xFFFF, (void*)0x6006000, 4);
-			SyncRegisteredTiles();
+			
 			
 			// Just tileIndex, no address for tileBase 
 			//u16 tile = (0xC << 12) | 2; // Bits 12-15 as palette  
@@ -63,7 +71,9 @@ void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy) {
 			
 			//RegisterTileGraphics(Smile, (void*)0x6006000, 128);
 			//SyncRegisteredTiles();
-			//BgMapCopyRect((void*)0x6006000, &gBG0MapBuffer[1][1], 2, 2); // happy 
+			
+			
+			//BgMapCopyRect(&gBG1MapBuffer[4][2], &gBG0MapBuffer[1][1], 2, 2); // happy 
 			//BgMapCopyRect(&source[0], &gBG0MapBuffer[1][1], 2, 2); // happy 
 		//} 
 		if (unit->battleAttack < opponent->battleAttack) { 
@@ -71,7 +81,7 @@ void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy) {
 			//BgMapCopyRect(NewItemIcons, &gBG0MapBuffer[yy+6][xx+9], 2, 2); // sad
 			//BgMapCopyRect(NewItemIcons, &gBG0MapBuffer[4][4], 2, 2); // sad
 		} 
-		
+		EnableBgSyncByIndex(0); 
 	} 
 } 
 
