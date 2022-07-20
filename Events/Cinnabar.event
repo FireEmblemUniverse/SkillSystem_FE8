@@ -35,11 +35,14 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-//TrainerPostBattleTalk(0xE0) // NPC talk again 
-//TrainerPostBattleTalk(0xE1) // NPC talk again 
-//TrainerPostBattleTalk(0xE2) // NPC talk again 
-AllTrainersPostBattleTalk
+CHAR 0x10 OldManTalk [0x0, 0xE0] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
 END_MAIN
+
+OldManTalk:
+BottomWallText(MissingNoHintText) 
+NoFade 
+ENDA 
 
 
 
@@ -64,8 +67,7 @@ ENDA
 
 
 EnterMansion:
-CALL ClosedArea
-//ForcedChapterTransition(SilphCo1FCh, 8,19)
+ForcedChapterTransition(MansionB1Ch, 8,25)
 NoFade 
 ENDA 
 
@@ -114,6 +116,9 @@ Traps1:
 
 Save(14,17) // Pokecenter 
 
+
+BlankExamineTrap(20,11, DoorLockedText) // cannot walk through 
+
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 StatAccessoryTrap(16,9, ChapterID*2, WiseGlassesT3_BoostIndex)
@@ -127,6 +132,8 @@ SignATrap(13,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 SpellScrollTrap(11,17, (ChapterID*2)+1, Ancientpower)
 //OpenPokeball(8,3)
+
+
 
 BlankExamineTrap(22,12,	SaffronGymSignText)
 BlankExamineTrap(9,16,	SaffronDojoSignText)
@@ -154,10 +161,16 @@ CALL LoadAndPlacePlayers
 CALL CityBeginningScene 
 
 CHECK_EVENTID SecretKeyObtained
+BEQ 0 sC s0 
+RemoveTrap(20,11)
+LABEL 0
+
+CHECK_EVENTID VolcanobadgeObtained
 BNE 0 sC s0 
-LOAD1 1 RocketBlockingGym
+LOAD1 1 OldMan
 ENUN
 LABEL 0
+
 
 LABEL 0x63
 MarkTrainerAsDefeated(0xE0)
@@ -167,8 +180,8 @@ NoFade
 ENDA
 
 
-RocketBlockingGym:
-UNIT 0xE0 balding_manID 0x0 Level(0, Enemy, 1) [20,11]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+OldMan:
+UNIT 0xE0 balding_manID 0x0 Level(0, Enemy, 1) [21,13]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 
@@ -179,7 +192,7 @@ BQ(0, SSA_0xE0_BQ) // unused
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0, SaffronRocket_0, 1) 
+BD(0, CinnabarOldManText2, 1) 
 TDQ_TableTerminator
 }
 

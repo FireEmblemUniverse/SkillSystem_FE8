@@ -142,7 +142,7 @@ StatAccessoryTrap(24, 6, (ChapterID*2), StuddedShield_BoostIndex)
 SignBTrap(30,18, ChapterID, 0x0) //no extra text 
 SignATrap(14, 3, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-
+InvisibleSign(12,5, 6) 
 
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)

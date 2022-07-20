@@ -548,17 +548,17 @@
    <tile gid="353"/>
    <tile gid="15"/>
    <tile gid="9"/>
+   <tile gid="11"/>
+   <tile gid="11"/>
+   <tile gid="11"/>
+   <tile gid="164"/>
    <tile gid="332"/>
-   <tile gid="332"/>
-   <tile gid="332"/>
-   <tile gid="332"/>
-   <tile gid="332"/>
    <tile gid="353"/>
    <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
+   <tile gid="196"/>
+   <tile gid="11"/>
+   <tile gid="11"/>
+   <tile gid="11"/>
    <tile gid="33"/>
    <tile gid="11"/>
    <tile gid="11"/>
@@ -586,17 +586,17 @@
    <tile gid="358"/>
    <tile gid="240"/>
    <tile gid="9"/>
+   <tile gid="36"/>
+   <tile gid="36"/>
+   <tile gid="36"/>
+   <tile gid="171"/>
    <tile gid="332"/>
    <tile gid="353"/>
    <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
+   <tile gid="201"/>
+   <tile gid="36"/>
+   <tile gid="36"/>
+   <tile gid="36"/>
    <tile gid="33"/>
    <tile gid="36"/>
    <tile gid="36"/>
@@ -625,16 +625,16 @@
    <tile gid="258"/>
    <tile gid="9"/>
    <tile gid="332"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
    <tile gid="353"/>
    <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
-   <tile gid="353"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
    <tile gid="33"/>
    <tile gid="332"/>
    <tile gid="332"/>
@@ -1233,7 +1233,7 @@
    <tile gid="420"/>
   </data>
  </layer>
- <layer id="2" name="TileChange0" width="38" height="32" visible="0">
+ <layer id="2" name="TileChange0" width="38" height="32">
   <properties>
    <property name="Height" value="5"/>
    <property name="ID" value="0"/>
@@ -6484,10 +6484,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="198"/>
-   <tile gid="199"/>
-   <tile gid="199"/>
-   <tile gid="200"/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
    <tile/>
    <tile/>
    <tile/>
@@ -6522,10 +6522,10 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="417"/>
-   <tile gid="418"/>
-   <tile gid="418"/>
-   <tile gid="419"/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
    <tile/>
    <tile/>
    <tile/>

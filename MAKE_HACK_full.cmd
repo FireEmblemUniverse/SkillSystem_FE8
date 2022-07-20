@@ -10,6 +10,7 @@ set "source_rom=%~dp0FE8_clean.gba"
 set "main_event=%~dp0ROMBuildfile.event"
 set "target_rom=%~dp0FE8Hack.gba"
 set "target_ups=%~dp0Pokemblem.ups"
+set "target_sym=%~dp0FE8Hack.sym"
 
 @rem defining tools
 
@@ -18,6 +19,7 @@ set "textprocess=%~dp0Tools\TextProcess\text-process-classic.exe"
 set "ups=%~dp0Tools\ups\ups.exe"
 set "parsefile=%~dp0EventAssembler\Tools\ParseFile.exe"
 set "tmx2ea=%~dp0Tools\tmx2ea\tmx2ea.exe"
+set "symcombo=%~dp0Tools\sym\SymCombo.exe"
 
 @rem set %~dp0 into a variable because batch is stupid and messes with it when using conditionals?
 
@@ -52,7 +54,7 @@ echo Assembling
 
 cd "%base_dir%EventAssembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times"
-type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
+@rem type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
 SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
 copy /y "%~dp0FE8Hack.sym" %destDir%\comment_.txt
 
@@ -64,6 +66,10 @@ echo Generating patch
 cd "%base_dir%"
 "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
 
+echo:
+echo Generating sym file
+
+echo: | ( "%symcombo%" "%target_sym%" "%target_sym%" "%base_dir%\Tools\sym\VanillaOffsets.sym" )
 
 
 echo:

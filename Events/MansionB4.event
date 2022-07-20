@@ -133,11 +133,11 @@ RedPokeballTrap(18, 4, (ChapterID*2)+1, ExoticCandy)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(30,20, ChapterID, 0x0) //no extra text 
-SignATrap(11,16, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(3,10, ChapterID, 0x0) //no extra text 
+SignATrap(30,24, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
-
+InvisibleSign(5,5, 4) 
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)
 
@@ -150,7 +150,8 @@ SpellScrollTrap(18, 23, (ChapterID*2)+1, ShadowBall)
 //Save(10,4)
 //SaveCost(47,5) 
 
-
+InvisibleSign(27,5, 7) 
+InvisibleSign(24,26, 7) 
 
 //Flower(18,10)
 

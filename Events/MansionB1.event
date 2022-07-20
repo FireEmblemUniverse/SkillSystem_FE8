@@ -114,6 +114,7 @@ SignATrap(30,21, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 
 
 InvisibleSign(5,5, 4) 
+InvisibleSign(28,24, 4) 
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)
 
@@ -143,14 +144,16 @@ ENDA
 SetMansionB1TileChanges: 
 CHECK_EVENTID ToggleMansionFlag 
 BEQ 0 sC s0 
-TILEREVERSE 0
+TILECHANGE 0
 TILECHANGE 1 
 TILECHANGE 2  
+TILECHANGE 3  
 GOTO 99 
 LABEL 0 
-TILECHANGE 0 
-TILEREVERSE 1 // reverse ones that were on 
+TILEREVERSE 0 // reverse ones that were on 
+TILEREVERSE 1 
 TILEREVERSE 2 
+TILEREVERSE 3 
 LABEL 99 
 NoFade 
 ENDA 
