@@ -27,7 +27,7 @@
 	//Modify the numbers to use - rather than ?
 	ORG $7BA20
 	POIN New_Numbers
-	
+	// 8037910 LoadChapterBallistae / traps 
 	//TSA for the right and left boxes, respectively
 	ORG $9A3680
 	POIN New_Battle_Anims_Off_Right_TSA

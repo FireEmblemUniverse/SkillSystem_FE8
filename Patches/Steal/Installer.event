@@ -1,0 +1,18 @@
+#include "Steal.lyn.event" 
+
+#define callHackNew(offset) "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+
+
+PUSH 
+
+ORG $32500 
+callHackNew(StealWithFullInv) 
+
+ORG $241CA 
+SHORT $2807 // allow steal while full inv 
+POP 
+
+
+
+
+
