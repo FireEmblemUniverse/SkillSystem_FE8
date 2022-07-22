@@ -1,17 +1,22 @@
 #include "Steal.lyn.event" 
+#include "Extensions/ProcDefinitions.txt"
 
-#define callHackNew(offset) "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-
+CallSteal2: 
+//STAL 10 
+ASMC Steal2 
+NoFade 
+ENDA 
 
 PUSH 
 
-ORG $32500 
-callHackNew(StealWithFullInv) 
+ORG $32506 
+SHORT $46c0 $46c0 
+ORG $9a3618 
+PROC_CALL_ROUTINE(StealInvFull)
 
 ORG $241CA 
 SHORT $2807 // allow steal while full inv 
 POP 
-
 
 
 
