@@ -26,6 +26,7 @@ mov r4, r0 @ unit
 ldrh r0, [r4, #0x26] 
 cmp r0, #0 
 bne SupplyItem 
+mov r0, r4 
 mov r1, r6 @ item 
 blh UnitAddItem 
 b Error 
