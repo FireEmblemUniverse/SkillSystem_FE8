@@ -224,7 +224,7 @@ SilentGiveItemWithDurability(1, SkillScroll, FuryID)
 
 //SilentGiveItemWithDurability(1, SpellScroll, RockTomb)
 //SilentGiveSkillAccessory(1, RenewalID)
-SilentGiveItemWithDurability(1, Protein, 1)
+SilentGiveItemWithDurability(1, ExoticCandy, 1)
 
 //SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
 SilentGiveItemWithDurability(2, RedGem, 0x7) // Pikachu 
@@ -299,8 +299,8 @@ Write_Byte(5, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(5, YCoordNewArea)  
 //MNC2 PewterGymCh
 //ASMC DebugMap_ASMC
-MNC2 MansionB4Ch
-//MNC2 DebugCh
+//MNC2 MansionB4Ch
+MNC2 DebugCh
 //MNC2 Route5Ch
 //MNC2 Route24Ch
 //MNC2 FuschiaCh

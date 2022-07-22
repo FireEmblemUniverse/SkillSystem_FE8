@@ -1,8 +1,12 @@
 
 // may 2, 2022 - you set the unit's XX coord to 35 with a map width of ~15 and it treated the unit like it was at -31 x or something weird 
 
+// 2F9E0 ExecJunaFruits break on 1F9F0
 
 PUSH 
+
+
+
 // EXPERIMENTAL 
     // prevent debuffs and loading issue (Kirb)
     //0x203ED40 is not sufficient, use 0x0202A6AC text buffer . BY 7743

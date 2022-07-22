@@ -90,8 +90,8 @@ CoinsTrap(22,14,ChapterID*2,1220)
 
 //StrengthBoulder(4,3)
 
-StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
-//RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+//StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
+RedPokeballTrap(43,13, (ChapterID*2)+1, ExoticCandy) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 

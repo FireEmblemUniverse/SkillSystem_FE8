@@ -1,6 +1,7 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 #include "AllegiancePalette/Installer.event"
 
+#include "RareCandy/Installer.event" 
 //#include "ColorFilter/Installer.event" // every time CopyToPaletteBuffer is used, applies a random filter lol 
 #include "GenerateMap/Installer.event"
 //#include "GenerateMines/Installer.event" // when a tile is selected, mines are spawned randomly. after moving somewhere, mines are removed (so enemies are almost never hit by them) 
