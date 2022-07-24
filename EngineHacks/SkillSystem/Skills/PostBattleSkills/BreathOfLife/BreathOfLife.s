@@ -5,7 +5,7 @@
 .endm
 .equ BreathOfLifeID, SkillTester+4
 .equ BreathOfLifeEvent, BreathOfLifeID+4
-.equ AuraSkillCheck, BreathOfLifeEvent+4
+.equ GetUnitsInRange, BreathOfLifeEvent+4
 .thumb
 push	{r4-r7,lr}
 @check if dead
@@ -32,18 +32,15 @@ cmp	r0,#0x00
 beq	End
 
 @Check if there are allies in 2 spaces
-ldr	r0, AuraSkillCheck
+ldr	r0, GetUnitsInRange
 mov	lr, r0
 mov	r0, r4		@attacker
-mov	r1, #0x00
-mov	r2, #0x00	@can_trade
-mov	r3, #0x02	@range
+mov	r1, #0x00   @can_trade
+mov	r2, #0x02	@range
 .short	0xf800
 
 BreathOfLifeDamage:
-mov	r4, r0		@number of units
-ldr	r1,=#0x202B256
-mov	r5, r1		@start of buffer
+mov	r5, r0		@start of buffer
 mov	r6, #0x00	@counter
 cmp	r0, #0x00
 beq	End
@@ -51,6 +48,8 @@ beq	End
 
 CheckEventLoop:		@check if all units in range are at full hp and if so do not play sound
 ldrb	r0, [r5,r6]
+cmp r0, #0x00
+beq End
 add	r6,#1
 ldr	r2,=#0x8019430
 mov	lr, r2
@@ -59,8 +58,6 @@ ldrb	r2,[r0,#0x13]	@current hp
 ldrb  r0,[r0,#0x12] @max hp
 cmp r2, r0
 blt	Event
-cmp	r6,r4
-beq	End
 b	CheckEventLoop
 
 Event:
@@ -73,6 +70,8 @@ mov	r1, #0x01		@0x01 = wait for events
 
 BOL_loop:
 ldrb	r0, [r5,r6]
+cmp r0, #0x00
+beq End
 ldr	r2,=#0x8019430
 mov	lr, r2
 .short	0xf800
@@ -92,8 +91,7 @@ mov	r1, r0	@cap hp at max
 NextLoop:
 strb	r1, [r7,#0x13]
 add	r6, #0x01
-cmp	r6, r4
-blt	BOL_loop
+b	BOL_loop
 
 End:
 pop	{r4-r7}
@@ -105,4 +103,4 @@ SkillTester:
 @POIN SkillTester
 @WORD BreathOfLifeID
 @POIN BreathOfLifeEvent
-@POIN AuraSkillCheck
+@POIN GetUnitsInRange

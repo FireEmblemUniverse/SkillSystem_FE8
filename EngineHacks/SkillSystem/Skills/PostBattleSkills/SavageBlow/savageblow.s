@@ -5,7 +5,7 @@
 .endm
 .equ SavageBlowID, SkillTester+4
 .equ SavageBlowEvent, SavageBlowID+4
-.equ AuraSkillCheck, SavageBlowEvent+4
+.equ GetUnitsInRange, SavageBlowEvent+4
 .thumb
 push	{r4-r7,lr}
 @check if dead
@@ -32,18 +32,15 @@ cmp	r0,#0x00
 beq	End
 
 @Check if there are enemies in 2 spaces
-ldr	r0, AuraSkillCheck
+ldr	r0, GetUnitsInRange
 mov	lr, r0
 mov	r0, r4		@attacker
-mov	r1, #0x00
-mov	r2, #0x03	@are_enemies
-mov	r3, #0x02	@range
+mov	r1, #0x03   @are_enemies
+mov	r2, #0x02	@range
 .short	0xf800
 
 SavageBlowDamage:
-mov	r4, r0		@number of units
-ldr	r1,=#0x202B256
-mov	r5, r1		@start of buffer
+mov	r5, r0		@start of buffer
 mov	r6, #0x00	@counter
 cmp	r0, #0x00
 beq	End
@@ -51,6 +48,8 @@ beq	End
 
 CheckEventLoop:		@check if all units in range are dead (or have 1 hp) and if so do not play sound
 ldrb	r0, [r5,r6]
+cmp r0, #0x00
+beq End
 add	r6,#1
 ldr	r2,=#0x8019430
 mov	lr, r2
@@ -59,8 +58,6 @@ ldrb	r0,[r0,#0x13]	@current hp
 mov	r1,#1
 cmp	r0,r1
 bhi	Event
-cmp	r6,r4
-beq	End
 b	CheckEventLoop
 
 Event:
@@ -73,6 +70,8 @@ mov	r1, #0x01		@0x01 = wait for events
 
 Savage_loop:
 ldrb	r0, [r5,r6]
+cmp r0, #0x00
+beq End
 ldr	r2,=#0x8019430
 mov	lr, r2
 .short	0xf800
@@ -91,8 +90,7 @@ mov	r1, #0x01	@min of 1 hp
 NextLoop:
 strb	r1, [r7,#0x13]
 add	r6, #0x01
-cmp	r6, r4
-blt	Savage_loop
+b	Savage_loop
 
 End:
 pop	{r4-r7}
@@ -104,4 +102,4 @@ SkillTester:
 @POIN SkillTester
 @WORD SavageBlowID
 @POIN SavageBlowEvent
-@POIN AuraSkillCheck
+@POIN GetUnitsInRange
