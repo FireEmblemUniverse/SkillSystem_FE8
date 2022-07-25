@@ -81,10 +81,17 @@ AIMoveDistance:
 NewClearAttackFlag:
 
 	ldr r3, =gChapterData
+	@Check if in preps
+	ldrb r1, [r3, #0x14]
+	mov r2, #0x10
+	tst r1, r2
+	bne Clear
+	@Check if in player phase
 	ldrb r3, [r3, #0xF]
 	cmp r3, #0
 	bne DontClear
 	
+	Clear:
 	strb r5, [r0, #0x10]
 
 	DontClear:
