@@ -43,4 +43,4 @@ extern u8 NegatedSkills[];
 extern u8 NihilIDLink;
 extern u32 PassiveSkillBit;
 extern u32 PassiveSkillStack;
-extern u32 GenricLearnedSkillLimit;
+extern u32 GenericLearnedSkillLimit;
