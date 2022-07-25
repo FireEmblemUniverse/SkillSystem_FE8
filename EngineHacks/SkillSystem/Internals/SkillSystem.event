@@ -107,6 +107,7 @@ Skill_Getter: // gets a list of skills
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
 //Pointer with thumb bit set for NewSkillTester to use
+ALIGN 4
 GetInitialSkillList_Pointer:
 POIN (GetInitialSkillList|1)
 
