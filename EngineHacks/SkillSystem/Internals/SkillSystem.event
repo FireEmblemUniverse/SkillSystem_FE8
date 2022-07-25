@@ -106,8 +106,16 @@ Skill_Getter: // gets a list of skills
 
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
+//Pointer with thumb bit set for NewSkillTester to use
+ALIGN 4
+GetInitialSkillList_Pointer:
+POIN (GetInitialSkillList|1)
+
 //Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 2 bytes long
 #define AuraSkillBufferLimit 480
+
+//Determines the max number of skills generics get from learned skills
+#define MaxGenericLearnedSkills 4
 
 ALIGN 4
 PassiveSkillBit:
@@ -118,6 +126,9 @@ WORD PASSIVE_SKILLS_STACK
 
 gAuraSkillBufferLimit:
 WORD AuraSkillBufferLimit
+
+GenericLearnedSkillLimit:
+WORD MaxGenericLearnedSkills
 
 #define NegatedSkillEntry(skillID) "PUSH; ORG NegatedSkills + skillID; BYTE 0x1; POP"
 
