@@ -22,12 +22,12 @@ PUSH
 
 ORG $25A1C
 callHack_r3(StatusDamageLoop)
-
-ORG $25A29
+ORG $25A29 // make poison target list 
 BYTE $D0 // Beq instead of BNE 
 
 ORG $193B8 
-callHack_r3(UnitTryHealLowerCap|1)
+callHack_r3(UnitTryHealLowerCap|1) // hooking a skillsys edited function 
+PROTECT $193B8 $193BF 
 
 /*
 ORG $3D46C 

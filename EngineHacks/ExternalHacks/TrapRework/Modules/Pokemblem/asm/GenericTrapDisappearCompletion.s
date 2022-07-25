@@ -6,6 +6,8 @@
 
 .global GenericTrapDisappearCompletionUsability0x29
 .type GenericTrapDisappearCompletionUsability0x29, %function
+.global GenericTrapDisappearCompletionUsability0x2A
+.type GenericTrapDisappearCompletionUsability0x2A, %function
 
 
 .global GenericTrapDisappearCompletionEffect
@@ -82,12 +84,12 @@ blh GetTrapAt
 mov r1, #0
 ldrb r1,[r0,#2]
 
-mov r2, #0x20
+mov r2, #0x29
 cmp r1, r2
 bge CheckA 
 b ReturnA
 CheckA:
-mov r2, #0x29
+mov r2, #0x2A
 cmp r1, r2
 ble RetTrap
 
@@ -101,12 +103,12 @@ blh GetTrapAt
 mov r1, #0
 ldrb r1,[r0,#2]
 
-mov r2, #0x20
+mov r2, #0x29
 cmp r1, r2
 bge CheckB 
 b ReturnB
 CheckB:
-mov r2, #0x29
+mov r2, #0x2A
 cmp r1, r2
 ble RetTrap
 
@@ -120,12 +122,12 @@ blh GetTrapAt
 mov r1, #0
 ldrb r1,[r0,#2]
 
-mov r2, #0x20
+mov r2, #0x29
 cmp r1, r2
 bge CheckC 
 b ReturnC
 CheckC:
-mov r2, #0x29
+mov r2, #0x2A
 cmp r1, r2
 ble RetTrap
 ReturnC:
@@ -138,12 +140,12 @@ blh GetTrapAt
 mov r1, #0
 ldrb r1,[r0,#2]
 
-mov r2, #0x20
+mov r2, #0x29
 cmp r1, r2
 bge CheckD 
 b ReturnD
 CheckD:
-mov r2, #0x29
+mov r2, #0x2A
 cmp r1, r2
 ble RetTrap
 
@@ -237,6 +239,10 @@ bx r1
 GenericTrapDisappearCompletionUsability0x29:
 push {r4,r7,r14}
 mov r7, #0x29
+b GenericTrapDisappearCompletionUsability
+GenericTrapDisappearCompletionUsability0x2A:
+push {r4,r7,r14}
+mov r7, #0x2A
 b GenericTrapDisappearCompletionUsability
 
 

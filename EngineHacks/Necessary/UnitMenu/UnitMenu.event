@@ -138,6 +138,7 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 
   //UM_Interact_Disappear
   MenuCommand(UM_Take2,UM_Take2Desc,BlueText, GenericTrapDisappearCompletionUsability0x29, GenericTrapDisappearCompletionEffect)
+  MenuCommand(UM_Examine,UM_ExamineDesc,BlueText, GenericTrapDisappearCompletionUsability0x2A, GenericTrapDisappearCompletionEffect)
 
 //Does not disappear
 

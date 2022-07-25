@@ -16,7 +16,7 @@ Start:
 	ldr r3, =#GetTriggeredTrapType
 	bl BXR3
 
-	ldr r2, =HiddenTrapList 
+	ldr r2, =SuperTrapList 
 	sub r2, #1 
 	Loop: 
 	add r2, #1 
@@ -39,6 +39,7 @@ HandleMySuperTrap:
 	mov r2, r4
 	
 	bl HandleTrap
+	b End 
 	
 End:
 	mov r0, #0

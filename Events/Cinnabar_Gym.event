@@ -1,4 +1,4 @@
-#define ChapterID CeladonGymCh
+#define ChapterID CinnabarGymCh
 
 #define WildLvl 5 
 #define TrainerL 30
@@ -44,8 +44,44 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToCeladon [7,18] [7,18] 
+AREA 0 DebuffUnitEvent_A [26,7][27,8]
+AREA 0 DebuffUnitEvent_B [17,8][18,9]
+AREA 0 DebuffUnitEvent_C [10,13][12,14]
 END_MAIN
+
+DebuffUnitEvent_A:
+PlayerInRange
+CHECK_EVENTID 0x10 
+BNE 0 sC s0 
+TutText(MagicFeelsDrained)
+//DebuffUnit(0x7FFF, 0x09876543) // -9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
+DebuffUnit(0x7FFF, 0x0A5A0A00) // -10 mag/res/spd, -5 luk 
+LABEL 0 
+NoFade 
+ENDA 
+
+DebuffUnitEvent_B:
+PlayerInRange
+CHECK_EVENTID 0x11 
+BNE 0 sC s0 
+TutText(StrFeelsSapped)
+DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk LABEL 0 
+LABEL 0 
+NoFade 
+ENDA 
+
+DebuffUnitEvent_C:
+PlayerInRange
+CHECK_EVENTID 0x12 
+BNE 0 sC s0 
+TutText(StatsSapped)
+DebuffUnit(0x7FFF, 0x0AAAAAAA) // -10 str/def/skl, -5 luk LABEL 0 
+LABEL 0 
+NoFade 
+ENDA 
+
+
+
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(7,18) 
@@ -56,51 +92,100 @@ ToCeladon:
 ChapterTransition(CeladonCh, 9,27)
 
 Traps1:
-BerryTree(6,8,5)
-BerryTree(8,8,5)
-BerryTree(5,6,5)
-BerryTree(7,6,5)
-BerryTree(9,6,5)
-BerryTree(10,13,5)
-BerryTree(4,13,5)
-BerryTree(7,14,5)
-BerryTree(6,11,5)
-BerryTree(8,11,5)
+MineTrap(26,7) // 37540 - 1f6b8 1f6e8 
+MineTrap(26,8)
+MineTrap(27,7)
+MineTrap(27,8)
+MineTrap(17,8)
+MineTrap(17,9)
+MineTrap(18,8)
+MineTrap(18,9)
+MineTrap(10,13)
+MineTrap(10,14)
+MineTrap(11,13)
+MineTrap(11,14)
+MineTrap(12,13)
+MineTrap(12,14)
+ExamineDisappearCompletion(22,9,  0x13 , BlankSMS,	4) 
+ExamineDisappearCompletion(23,9,  0x13 , BlankSMS,	4) 
+ExamineDisappearCompletion(15,2,  0x14 , BlankSMS,	5) 
+ExamineDisappearCompletion(16,2,  0x14 , BlankSMS,	5) 
+ExamineDisappearCompletion(13,10, 0x15 , BlankSMS, 	6) 
+ExamineDisappearCompletion(14,10, 0x15 , BlankSMS, 	6) 
 
-Flower(11,13)
-Flower(12,13)
-Flower(2,13)
-Flower(3,13)
 
-Flower(3,12)
-Flower(4,12)
-Flower(5,12)
-
-Flower(9,12)
-Flower(10,12)
-Flower(11,12)
-Flower(12,12)
-
-Flower(12,5)
-Flower(12,7)
-Flower(12,9)
-Flower(11,6)
-Flower(11,8)
-
-Flower(2,5)
-Flower(2,7)
-Flower(2,9)
-Flower(3,6)
-Flower(3,8)
 
 ENDTRAP
 ALIGN 4
+
+GenericDisappearEffect(4, CinnabarGymQuiz_A) // 
+GenericDisappearEffect(5, CinnabarGymQuiz_B) // 
+GenericDisappearEffect(6, CinnabarGymQuiz_C) // 
+
+CinnabarGymQuiz_A:
+EVBIT_MODIFY 4
+EVBIT_F 2 
+SVAL s7 1 
+TutText(TombstonerText) 
+BNE 0 sC s7 
+RemoveTrap(26,7)
+RemoveTrap(26,8)
+RemoveTrap(27,7)
+RemoveTrap(27,8)
+ENUT 0x10 // if yes, set flag 0x10 so no debuffs 
+GOTO 99 
+LABEL 0 // if not yes, do stuff here 
+TutText(StatsSapped)
+DebuffUnit(0x7FFF, 0x0AAAAAAA)
+LABEL 99 
+NoFade 
+ENDA 
+
+CinnabarGymQuiz_B:
+EVBIT_MODIFY 4
+EVBIT_F 2 
+SVAL s7 1 
+TutText(TombstonerText) 
+BNE 0 sC s7 
+RemoveTrap(17,8)
+RemoveTrap(17,9)
+RemoveTrap(18,8)
+RemoveTrap(18,9)
+ENUT 0x11 // if yes, set flag 0x10 so no debuffs 
+GOTO 99 
+LABEL 0 // if not yes, do stuff here 
+TutText(StatsSapped)
+DebuffUnit(0x7FFF, 0x0AAAAAAA)
+LABEL 99 
+NoFade 
+ENDA 
+
+CinnabarGymQuiz_C:
+EVBIT_MODIFY 4
+EVBIT_F 2 
+SVAL s7 1 
+TutText(TombstonerText) 
+BNE 0 sC s7 
+RemoveTrap(10,13)
+RemoveTrap(10,14)
+RemoveTrap(11,13)
+RemoveTrap(11,14)
+RemoveTrap(12,13)
+RemoveTrap(12,14)
+ENUT 0x12 // if yes, set flag 0x10 so no debuffs 
+GOTO 99 
+LABEL 0 // if not yes, do stuff here 
+TutText(StatsSapped)
+DebuffUnit(0x7FFF, 0x0AAAAAAA)
+LABEL 99 
+NoFade 
+ENDA 
 
 
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-CHECK_EVENTID RainbowbadgeObtained
+CHECK_EVENTID VolcanobadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
@@ -110,7 +195,7 @@ CAM1 [8,6]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(CeladonGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+AutoLevelUnits(CinnabarGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
@@ -170,13 +255,13 @@ TEXTSHOW BlaineWaitText
 TEXTEND 
 REMA
 //GiveSkillAccessory(0, ?)
-GiveStatAccessory(0, EnergyBandT3_BoostIndex)
+GiveItemWithDurability(0, StatAccessory, EnergyBandT3_BoostIndex)
 TEXTSTART
 TEXTSHOW ErikaRewardText
 TEXTEND 
 FADI 4 
 REMA 
-ForcedChapterTransition(CeladonCh, 9, 27)
+ForcedChapterTransition(CinnabarCh, 9, 27)
 LABEL 0x63 
 NoFade
 ENDA
@@ -201,7 +286,7 @@ UNIT
 EnemyTrainersA:
 UNIT 0xD0 ArcanineID 0x0 Level(0, Enemy, 1) 	[5,3]  0b 0x0	0 0	[TakeDown,FireBlast,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 NinetalesID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0	0 0 [TailWhip, Flamethrower,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[Stomp, FlameWheel,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[BodySlam, FlameWheel,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, DoubleEdge, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,5]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
@@ -210,7 +295,7 @@ UNIT
 EnemyTrainersB: // rematch 
 UNIT 0xD0 ArcanineID 0x0 Level(0, Enemy, 1) 	[5,3]  0b 0x0	0 0	[TakeDown,FireBlast,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 NinetalesID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0	0 0 [TailWhip, Flamethrower,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[Stomp, FlameWheel,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[BodySlam, FlameWheel,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, DoubleEdge, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,5]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI

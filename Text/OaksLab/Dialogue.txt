@@ -2215,6 +2215,10 @@ sapped...[A][X]
 Your defences feel[N]
 weak...[A][X]
 
+## StatsSapped
+You feel drained...[A][X]
+
+
 // 11 rockets, 3 scientists 
 
 ## SilphCo_2F_0xE0_BQ
@@ -2682,7 +2686,16 @@ do these ole bones some good.[A][N]
 I'm terrified of it, now.[N]
 Perhaps I should head home soon..[A][X]
 
+## TombstonerText
+Is tombstoner the ultimate[N]
+unreleased move?[N]
+[Yes][X]
 
+## BlaineDefeatText
+Aggh[A][X]
+
+## BlaineWaitText
+Wait[A][X]
 
 ## Giovanni_Gym_ChallengeText
 [OpenMidRight][LoadGiovanni][OpenMidRight]Ah, [Tact]![N]

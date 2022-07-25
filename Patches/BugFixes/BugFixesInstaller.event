@@ -49,6 +49,29 @@ POP
 
 PUSH
 
+
+ORG $2E300 // bugfix RemoveTrap at 2E2FC 
+SHORT $E003 $6881 $68C2 $C006 $7883 $2B00 
+//mov r3, r0 
+//b Check
+//Start: 
+//ldr r1, [r0, #8] 
+//ldr r2, [r0, #0x0C] 
+//stmia r0, {r1, r2} 
+//ldrb r3, [r0, #2] 
+//Check: 
+//cmp r3, #0 
+//bne Start 
+
+
+
+
+
+
+
+
+
+
 // Disable monsters from appearing on map 
 ORG 0x0C18F8
 BYTE 0 0 0 0

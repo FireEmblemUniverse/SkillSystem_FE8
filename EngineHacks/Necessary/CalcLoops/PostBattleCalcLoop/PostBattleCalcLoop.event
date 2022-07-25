@@ -1,6 +1,13 @@
 
 	/* Post-battle calculation loop*/
 
+//change a strange canto bitflag check when triggering mines to a different, redundant flag
+PUSH
+ORG $37760
+BYTE 8
+POP
+
+
 PUSH 
 ORG $37748 // HandlePostActionTraps occurs before the hook at $1D308 and sets action to "wait" when standing on a trap 
 jumpToHack(PostCombatLoop)

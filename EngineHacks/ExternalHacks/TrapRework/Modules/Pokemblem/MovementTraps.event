@@ -68,10 +68,14 @@ ALIGN 4
 
 
 
+ALIGN 4 
+SuperTrapList: 
+BYTE IceTrapID MovementArrowTrapID TeleTrapID // these traps will be taken over 
+BYTE 0 
 
 ALIGN 4 
 HiddenTrapList:
-BYTE IceTrapID MovementArrowTrapID MineTrapID TeleTrapID
+BYTE IceTrapID MovementArrowTrapID TeleTrapID MineTrapID // these traps will block you on gMapHidden 
 BYTE 0 // Terminator 
 
 

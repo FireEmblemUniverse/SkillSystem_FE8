@@ -126,9 +126,13 @@ GenericEffect(3, TestCase) //
 //GenericEffect(7, CallToggleMansionB4) // 
 
 
+
 GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(3, ObtainSecretKeyEvent) // 
-//GenericEffect(1, VisitPokecenter) // 
+//GenericDisappearEffect(4, CinnabarGymQuiz_A) // 
+//GenericDisappearEffect(5, CinnabarGymQuiz_B) // 
+//GenericDisappearEffect(6, CinnabarGymQuiz_C) // 
+
 
 TestCase:
 GiveEXP(0x7FFF, 100)
