@@ -2331,7 +2331,7 @@ my cover![A][X]
 
  ## SilphCo_4F_0xE2_Unused // Hiding scientist 
 Oh! Hi! You're not a ROCKET![N]
-You came to save us?\l"
+You came to save us?[A][Clear]
 Why, thank you![A][N]
 I want you to have this Pok[Eaccent]mon[N]
 for saving us.[A][N]
@@ -2683,7 +2683,7 @@ L-shaped and spooky like...[A][X]
 My home's back in Viridian.[A][N]
 I thought this 'ere sea would[N]
 do these ole bones some good.[A][N]
-I'm terrified of it, now.[N]
+I'm terrified of it, now.[N]co
 Perhaps I should head home soon..[A][X]
 
 ## TombstonerText
@@ -2691,30 +2691,75 @@ Is tombstoner the ultimate[N]
 unreleased move?[N]
 [Yes][X]
 
+## DiscordText
+Have you joined the[N]
+project's Discord?[N]
+[Yes][X]
+
+## MissingNoQuestionText
+MissingNo is[N]
+Normal/Flying type?[N]
+[Yes][X]
+
+## BlaineChallengeText
+[OpenMidRight][LoadBlaine][OpenMidRight]Hah![A][N]
+I am BLAINE, the red-hot LEADER[N]
+of CINNABAR GYM![A][N]
+My fiery Pok[Eaccent]mon are all rough[N]
+and ready with intense heat![A][N]
+They incinerate all challengers![A][N]
+Hah![N]
+You better have BURN HEAL![A][X]
+
 ## BlaineDefeatText
-Aggh[A][X]
+[OpenMidRight][LoadBlaine][OpenMidRight]I have burned down to nothing![N]
+Not even ashes remain![A][N]
+You have earned the VOLCANOBADGE.[A][X]
 
 ## BlaineWaitText
-Wait[A][X]
+[OpenMidRight][LoadBlaine][OpenMidRight]Here, you can have this, too![A][X]
+
+## BlaineRewardText
+[OpenMidRight][LoadBlaine][OpenMidRight]This headband will[N]
+fire you up![A][X]
+
+
+
+
 
 ## Giovanni_Gym_ChallengeText
-[OpenMidRight][LoadGiovanni][OpenMidRight]Ah, [Tact]![N]
-So we meet at last![A][N]
-I must say, I am impressed you[N]
-got here.[A][N]
-But you should keep your nose out of[N]
-grown-up matters...[A][N]
-Or, experience a world of pain![A][X]
+[OpenMidRight][LoadGiovanni][OpenMidRight]Fwahahaha! Welcome to my[N]
+hideout, [Tact]![A][N]
+It shall be so until I can restore[N]
+TEAM ROCKET to its former glory.[A][N]
+But, you have found me again.[N]
+So be it.[A][Clear]
+This time, I'm not holding back![A][N]
+Once more, you shall face[N]
+GIOVANNI, the greatest TRAINER![A][X]
 
 
 ## Giovanni_GymDefeatText
-Defeat[A][X]
+[OpenMidRight][LoadGiovanni][OpenMidRight]Ha![N]
+That was a truly intense fight.[A][Clear]
+You have won![A][N]
+As proof, here is the EARTHBADGE![A][X]
+
+
 ## Giovanni_GymWaitText
-Wait[A][X]
+[OpenMidRight][LoadGiovanni][OpenMidRight]Consider this a gift for your Pok[Eaccent]mon[N]
+LEAGUE challenge.[A][X]
+
 ## Giovanni_GymRewardText
-Reward[A][X]
-
-
+[OpenMidRight][LoadGiovanni][OpenMidRight]Having lost in this fashion, [N]
+I can't face my followers.[A][Clear]
+I have betrayed their trust.[A][N]
+As of today, TEAM ROCKET is[N]
+finished forever![A][N]
+As for myself, I shall dedicate[N]
+my life to training again.[A][N]
+Let us meet again someday![N]
+Farewell![A][X]
 
 
 

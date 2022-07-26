@@ -20,7 +20,7 @@
 #define UnitPointerRam 0x30017BC // - BF
 #define WepRamLocat 0x30017C0 
 //#define PostTrainerBattleRamLocat 0x30017C4 //- c7 
-// past this is volatile? 
+// past this is volatile?
 
 // ASMC 0x80160D1 // Return to map BGM 
 // SCOORD rB [5, 6]

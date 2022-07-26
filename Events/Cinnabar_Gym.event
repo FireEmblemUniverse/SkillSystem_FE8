@@ -92,7 +92,21 @@ ToCeladon:
 ChapterTransition(CeladonCh, 9,27)
 
 Traps1:
-MineTrap(26,7) // 37540 - 1f6b8 1f6e8 
+MineTrap(26,7) 
+MineTrap(26,8)
+MineTrap(27,7)
+MineTrap(27,8)
+MineTrap(17,8)
+MineTrap(17,9)
+MineTrap(18,8)
+MineTrap(18,9)
+MineTrap(10,13)
+MineTrap(10,14)
+MineTrap(11,13)
+MineTrap(11,14)
+MineTrap(12,13)
+MineTrap(12,14)
+MineTrap(26,7) 
 MineTrap(26,8)
 MineTrap(27,7)
 MineTrap(27,8)
@@ -132,6 +146,10 @@ RemoveTrap(26,7)
 RemoveTrap(26,8)
 RemoveTrap(27,7)
 RemoveTrap(27,8)
+RemoveTrap(26,7)
+RemoveTrap(26,8)
+RemoveTrap(27,7)
+RemoveTrap(27,8)
 ENUT 0x10 // if yes, set flag 0x10 so no debuffs 
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
@@ -145,8 +163,12 @@ CinnabarGymQuiz_B:
 EVBIT_MODIFY 4
 EVBIT_F 2 
 SVAL s7 1 
-TutText(TombstonerText) 
+TutText(DiscordText) 
 BNE 0 sC s7 
+RemoveTrap(17,8)
+RemoveTrap(17,9)
+RemoveTrap(18,8)
+RemoveTrap(18,9)
 RemoveTrap(17,8)
 RemoveTrap(17,9)
 RemoveTrap(18,8)
@@ -164,17 +186,23 @@ CinnabarGymQuiz_C:
 EVBIT_MODIFY 4
 EVBIT_F 2 
 SVAL s7 1 
-TutText(TombstonerText) 
-BNE 0 sC s7 
+TutText(MissingNoQuestionText) 
+BEQ 0 sC s7 
 RemoveTrap(10,13)
 RemoveTrap(10,14)
 RemoveTrap(11,13)
 RemoveTrap(11,14)
 RemoveTrap(12,13)
 RemoveTrap(12,14)
-ENUT 0x12 // if yes, set flag 0x10 so no debuffs 
+RemoveTrap(10,13)
+RemoveTrap(10,14)
+RemoveTrap(11,13)
+RemoveTrap(11,14)
+RemoveTrap(12,13)
+RemoveTrap(12,14)
+ENUT 0x12 // if no, set flag so no debuffs 
 GOTO 99 
-LABEL 0 // if not yes, do stuff here 
+LABEL 0 // if yes, do stuff here 
 TutText(StatsSapped)
 DebuffUnit(0x7FFF, 0x0AAAAAAA)
 LABEL 99 
@@ -218,7 +246,7 @@ SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 MUSCFAST IntroBGM 
 ShowMap
-Text(ErikaChallengeText)
+Text(BlaineChallengeText)
 
 
 
@@ -257,7 +285,7 @@ REMA
 //GiveSkillAccessory(0, ?)
 GiveItemWithDurability(0, StatAccessory, EnergyBandT3_BoostIndex)
 TEXTSTART
-TEXTSHOW ErikaRewardText
+TEXTSHOW BlaineRewardText
 TEXTEND 
 FADI 4 
 REMA 
