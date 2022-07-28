@@ -92,6 +92,14 @@ AuraSkillEntry(LilysPoiseID)
 AuraSkillEntry(CharismaID)
 AuraSkillEntry(HexID)
 AuraSkillEntry(BlueFlameID)
+AuraSkillEntry(DriveStrID)
+AuraSkillEntry(DriveMagID)
+AuraSkillEntry(DriveSpdID)
+AuraSkillEntry(DriveDefID)
+AuraSkillEntry(DriveResID)
+AuraSkillEntry(BloodTideID)
+AuraSkillEntry(WhitePoolID)
+AuraSkillEntry(NightTideID)
 
 PUSH
 ORG 0x2a3f8
