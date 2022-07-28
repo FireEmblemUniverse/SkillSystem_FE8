@@ -2762,12 +2762,26 @@ Let us meet again someday![N]
 Farewell![A][X]
 
 
+## GaryRoute22ChallengeText
+[OpenMidRight][LoadGaryPoint][OpenMidRight]What? [Tact]![N]
+What a surprise to see you here![A][N]
+[LoadGaryShrug]So you're going to the Pok[Eaccent]mon[N]
+LEAGUE?[A][N]
+You collected all the BADGES, too?[N]
+That's cool![A][N]
+[LoadGaryBattle]Then I'll whip you as a warm-up[N]
+for the Pok[Eaccent]mon LEAGUE![A][N]
+Come on![A][X]
 
-
-
-
-
-
+## GaryRoute22DefeatText
+[LoadGaryPoint]What!?[A][N]
+I was just careless, you![A][Clear]
+[LoadGaryShrug]That loosened me up.[N]
+I'm ready for the Pok[Eaccent]mon LEAGUE![A][N]
+[Tact], you[N]
+need more practice.[A][N]
+But hey, you know that![N]
+I'm out of here. Smell ya![A][X]
 
 
 

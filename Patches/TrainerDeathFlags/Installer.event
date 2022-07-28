@@ -53,8 +53,9 @@ GOTO 0x63
 
 LABEL 20 // Playable cutscene eg. rival battle 
 ENUT PlayableCutsceneFlag
-TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
+STAL 20 
 CURE
+TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 ASMC ModularSummonEffect 
 GOTO 0x63 
 

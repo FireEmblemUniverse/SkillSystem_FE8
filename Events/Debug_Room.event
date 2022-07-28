@@ -92,7 +92,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  CharmeleonID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [Slash,Ember,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  WeedleID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -265,8 +265,8 @@ LABEL 0x63
 
 SetTactName(VeslyName)
 
-AutoLevelUnits(44, True, 0x145) // all 
-SetUnitStatus(1, 0x28, Slash)
+AutoLevelUnits(40, True, 0x145) // all 
+SetUnitStatus(1, 0x28, PoisonSting)
 SetUnitStatus(1, 0x29, Ember)
 SetUnitStatus(1, 0x2A, 0)
 SetUnitStatus(1, 0x2B, 0)
@@ -295,13 +295,14 @@ ENUT MarshbadgeObtained
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 
-Write_Byte(23, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(12, YCoordNewArea)  
+Write_Byte(37, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(7, YCoordNewArea)  
 //MNC2 PewterGymCh
 //ASMC DebugMap_ASMC
 //MNC2 MansionB4Ch
-MNC2 CinnabarGymCh
-//MNC2 DebugCh
+//MNC2 Route22Ch
+//MNC2 CinnabarGymCh
+MNC2 DebugCh
 //MNC2 Route5Ch
 //MNC2 Route24Ch
 //MNC2 FuschiaCh

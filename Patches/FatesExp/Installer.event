@@ -3,6 +3,9 @@
 PUSH
 ORG 0x2C534
 gotoHack(expRoutine)
+
+ORG $2B9F4
+jumpToHack(CanGainExpVesly) 
 POP
 
 ALIGN 4
@@ -10,8 +13,10 @@ expRoutine:
 #incbin "Fates EXP Approximation.dmp"
 
 
-
-
+ALIGN 4 
+PUSH ; ORG CurrentOffset+1; 
+CanGainExpVesly: ; POP 
+#include "CanGainExpVesly.lyn.event" 
 
 
 

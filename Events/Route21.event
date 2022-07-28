@@ -136,7 +136,10 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-
+CHECK_EVENTID VolcanobadgeObtained 
+BNE 0 sC s0 
+TILECHANGE 0 
+LABEL 0 
 
 LOAD1 0x1 EnemyUnitsA
 ENUN

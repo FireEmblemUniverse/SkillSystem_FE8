@@ -8,7 +8,7 @@ Map:
 #incbin "Route21_data.dmp"
 
 MapChanges:
-TileMap(1,8,17,10,3,Tile_Layer_2)
+TileMap(0,8,17,10,3,Tile_Layer_2)
 TileMapEnd
 
 Tile_Layer_2:
