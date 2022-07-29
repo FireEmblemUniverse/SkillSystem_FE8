@@ -6,11 +6,8 @@
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
-//PROTECT $843EC $84440
-//PROTECT 0x0E120 // tutorial disabler? 
-//PROTECT $18100 $181FF
-//PROTECT $A4C $A8C
-//PROTECT $C3C $C7C
+
+
 
 //PROTECT $37744 $377C4
 // 968 / $3C8 bytes used? - free range

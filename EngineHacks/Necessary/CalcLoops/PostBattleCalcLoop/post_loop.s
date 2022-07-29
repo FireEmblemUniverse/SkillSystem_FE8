@@ -48,10 +48,12 @@ str	r0, [r4,#0x0C]
 @changes attacker and defender around for every routine call
 @(currently commented out because no skill makes use of it, but has been tested)
 Loop:
-ldr	r0, [r7]	@load pointer to routine
-cmp	r0, #0x00	@if terminator, end
+ldr	r3, [r7]	@load pointer to routine
+cmp	r3, #0x00	@if terminator, end
 beq	End
-mov	lr, r0
+mov	lr, r3
+mov r0, r4 @ actor 
+mov r1, r5 @ possibly defender 
 .short	0xf800
 	@mov	r0, r4		@swap pointers around
 	@mov	r1, r5

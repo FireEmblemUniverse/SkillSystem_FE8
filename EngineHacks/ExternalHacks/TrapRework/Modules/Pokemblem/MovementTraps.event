@@ -1,4 +1,4 @@
-#include "asm/MovementTrap.lyn.event" // Initialize trap & hook gTrapHidden updater 
+
 
 // By Vesly & Stan 
 
@@ -32,7 +32,12 @@ SetTrapMapSprite(StopSlidingID,BerryTreeSMS)
 SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
 #define StopSlidingTrap(XX,YY) "BYTE StopSlidingID XX YY 0; SHORT 0x0"
 
+#include "asm/MovementTrap.lyn.event" // Initialize trap & hook gTrapHidden updater 
+
 PUSH 
+ORG $1a1a4 
+jumpToHack(UpdateHiddenGlaciers)
+
 ORG $1A1B0 
 jumpToHack_r1(UpdateTrapHiddenHook)
 ORG $1A1E4 

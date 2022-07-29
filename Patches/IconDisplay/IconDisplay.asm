@@ -5,12 +5,26 @@
   mov lr, \reg
   .short 0xf800
 .endm
-
+	.equ GetUnit, 0x8019430
 .equ gChapterData, 0x202BCF0
 .equ CheckEventId, 0x8083da8
 .equ GetChapterDefinition, 0x8034618 
+.equ CallARM_PushToSecondaryOAM, 0x8002BB8 
+.equ OamTableSomething, 0x8590F44 
 
+pop {r3} @ pushed it immediately before this 
 push {r4-r6, lr} 
+
+lsl r0, #1 
+cmp r1, r0 
+bhi SkipAll
+mov r0, r2 
+add r0, #0x10 
+cmp r0, #0xB0 
+bhi SkipAll 
+ldr r5, =0x209 
+add r0, r3, r5 
+
 
 ldr r1, =0x1FF @ vanilla 
 and r0, r1 
@@ -20,9 +34,12 @@ mov r2, #0xFF
 and r1, r2 @ end of vanilla 
 push {r0-r1} @ save vanilla values 
 
-mov r4, r9 @ unit pointer 
-cmp r4, #0xFF 
-ble DefaultBehaviour
+mov r0, r8 @ unit deployment byte 
+
+blh GetUnit 
+cmp r0, #0 
+beq SkipAll 
+mov r4, r0 @ unit pointer 
 
 ldr r5, IconDisplayList 
 mov r6, #0 
@@ -86,18 +103,15 @@ b Exit
 DefaultBehaviour: 
 ldr r3, =0x811 
 Exit: 
-push {r3} 
-ldr r2, =gChapterData
-ldrb r0, [r2, #0xE] @ chapter ID 
-blh GetChapterDefinition
-add r0, #0x8E @ unit ID to defend default 
-ldrb r0, [r0] 
-mov r9, r0 @ restore r9 to what it was 
-pop {r3} 
 pop {r0-r1} 
+ldr r2, =OamTableSomething 
+blh CallARM_PushToSecondaryOAM, r4 
+
+SkipAll: 
 pop {r4-r6}
 pop {r2} 
-bx r2 
+ldr r3, =0x80279FD @ return address 
+bx r3 
 .ltorg 
 
 IconDisplayList: 

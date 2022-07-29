@@ -100,7 +100,9 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 		if (!(--moveAmount)) 
 			break;
 		if (gMapHidden[result.y][result.x] & 2) // check for a hidden trap such as a mine
-			break;
+			if (!(gMapTerrain[result.y][result.x] == 0x2F)) { 
+				break;
+			} 
 		Trap* trap = GetTrapAt(result.x, result.y);
 		if (trap->type == StopSlidingTrapType) {
 			moveAmount = -1;

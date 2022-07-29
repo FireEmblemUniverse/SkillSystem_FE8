@@ -18,16 +18,13 @@
 
 	.global SetNewFlag
 	.type   SetNewFlag, function
-
-SetNewFlag:	@Set to ON
+SetNewFlag:	
 	push {lr}
-
 	mov r2, #0 @Set
 	b Start
 	
 	.global UnsetNewFlag
 	.type   UnsetNewFlag, function
-
 UnsetNewFlag:	@turn OFF
 	push {lr}	
 	mov r2, #1 @Unset
@@ -38,6 +35,27 @@ UnsetNewFlag:	@turn OFF
 CheckNewFlag:	@Check whether ON or OFF 
 	push 	{lr}	
 	mov 	r2, #2 @Check
+	b 		Start
+
+	.global SetNewFlag_No_sC
+	.type   SetNewFlag_No_sC, function
+SetNewFlag_No_sC:	
+	push {lr}
+	mov r2, #3 @Set
+	b Start
+	
+	.global UnsetNewFlag_No_sC
+	.type   UnsetNewFlag_No_sC, function
+UnsetNewFlag_No_sC:	@turn OFF
+	push {lr}	
+	mov r2, #4 @Unset
+	b Start
+	
+	.global CheckNewFlag_No_sC
+	.type   CheckNewFlag_No_sC, function
+CheckNewFlag_No_sC:	@Check whether ON or OFF 
+	push 	{lr}	
+	mov 	r2, #5 @Check
 	b 		Start
 
 Start:
@@ -56,10 +74,18 @@ Start:
 
 	cmp 	r2, #1
 	beq 	Off 
+	cmp 	r2, #4 
+	beq 	Off 
+	
 	cmp 	r2, #2 
 	beq 	Check
-	@cmp 	r2, #0
-	@beq 	On 
+	cmp 	r2, #5 
+	beq 	Check 
+	
+	cmp 	r2, #3 
+	beq 	On 
+	cmp 	r2, #0
+	beq 	On 
 	
 	On:
 	orr r0, r1 @any bits that were loaded before or added now should be set 
@@ -81,18 +107,22 @@ Start:
 	beq 	StoreZero
 	mov 	r0, #1 @flag was set 
 	ldr r3, =MemorySlot 
-	mov r1, #4*0x0C
-	mov r2, #1 @True
-	str r2, [r3, r1]
+	add r3, #4*0x0C
+	cmp r2, #3 
+	bge Exit 
+	mov r1, #1 @True
+	str r1, [r3]
 	b 		Exit 
 	
 	StoreZero:
 	mov r0, #0 
 	
 	ldr r3, =MemorySlot 
-	mov r1, #4*0x0C
-	mov r2, #0 @False
-	str r2, [r3, r1]
+	add r3, #4*0x0C
+	cmp r2, #3 
+	bge Exit 
+	mov r1, #0 @False
+	str r1, [r3]
 	@b Exit 
 
 	Exit:	

@@ -10,10 +10,11 @@
   mov lr, \reg
   .short 0xf800
 .endm
-
+@ [30004E8]?!!
 .equ gChapterData, 0x202BCF0
 .equ CheckEventId, 0x8083da8
-.equ MemorySlot, 0x30004B8
+.equ CheckTrainerFlag, IconDisplayList+4 
+@.equ MemorySlot, 0x30004B8
 
 push {r4-r6, lr}
 
@@ -82,10 +83,6 @@ cmp r0, #1
 beq ReturnFalse 
 
 ReturnTrue: 
-
-@ save unit struct to be used in IconDisplay 
-mov r9, r4 
-
 mov r1, #0x10 @ XX coord ? 
 
 pop {r4-r6}
@@ -104,5 +101,5 @@ bx r3
 .ltorg 
 
 IconDisplayList: 
-.equ CheckTrainerFlag, IconDisplayList+4 
+
 

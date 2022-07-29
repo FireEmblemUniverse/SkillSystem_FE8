@@ -24,6 +24,7 @@ POIN PostCombatSkills
 
 ALIGN 4
 PostCombatSkills:
+POIN SpawnIceIfIce
 POIN CheckIfGameOver
 POIN CapturePokemon 
 POIN IsTrainersTeamDefeated

@@ -98,9 +98,7 @@ Traps1:
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
 SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
-// ORG 2B806 
-// if "attacks res" or "uncounterable" is set, deplete durability even if missed 
-// mov r1, #0 - don't treat this in a special way 
+
 
 Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)

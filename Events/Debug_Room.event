@@ -1,4 +1,8 @@
-
+// aoe musing 
+// for each tile, calculate damage dealt (max 255) on all tiles to be effected surrounding that tile 
+// save this value to the secondary map
+// loop through this map to find the highest value and use that as a target 
+// 0 if untargetable, 1+ if targetable 
 
 Dunno1_Empty:
 END_MAIN 
@@ -92,18 +96,18 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  WeedleID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  VenusaurID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
 
 
 Units2:
-//UNIT 2  MankeyID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-//UNIT 3  DiglettID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-//UNIT 4  GastlyID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 5  ScytherID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [Slash,Ember,0x0,0x0] [0x0,0x0,0x0,0x0]
-//UNIT 6  SnorlaxID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  PrimeapeID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  LaprasID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4  GengarID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 5  ScytherID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6  SnorlaxID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 //UNIT 7  SnorlaxID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
@@ -213,7 +217,7 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveSkillAccessory(2, RenewalID)
 
 
-SilentGiveItemWithDurability(6, StatAccessory, WiseGlasses_BoostIndex|0x80)
+SilentGiveItemWithDurability(1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
 SilentGiveItemWithDurability(1, SkillScroll, FuryID)
@@ -264,19 +268,21 @@ LABEL 0x63
 //GIVETOMAIN 0
 
 SetTactName(VeslyName)
-
+// 203A4EC+6e [203a55a]?!!
+// 203A56C+6e [203a5da]?!!
+// [203AE
 AutoLevelUnits(40, True, 0x145) // all 
-SetUnitStatus(1, 0x28, PoisonSting)
-SetUnitStatus(1, 0x29, Ember)
-SetUnitStatus(1, 0x2A, 0)
-SetUnitStatus(1, 0x2B, 0)
-SetUnitStatus(1, 0x2C, 0)
-
-SetUnitStatus(2, 0x28, Slash)
-SetUnitStatus(2, 0x29, Ember)
-SetUnitStatus(2, 0x2A, 0)
-SetUnitStatus(2, 0x2B, 0)
-SetUnitStatus(2, 0x2C, 0)
+//SetUnitStatus(1, 0x28, PoisonSting)
+//SetUnitStatus(1, 0x29, Ember)
+//SetUnitStatus(1, 0x2A, 0)
+//SetUnitStatus(1, 0x2B, 0)
+//SetUnitStatus(1, 0x2C, 0)
+//
+//SetUnitStatus(2, 0x28, Slash)
+//SetUnitStatus(2, 0x29, Ember)
+//SetUnitStatus(2, 0x2A, 0)
+//SetUnitStatus(2, 0x2B, 0)
+//SetUnitStatus(2, 0x2C, 0)
 
 //SetUnitStatus(1, 0x28, Earthquake)
 //SetUnitStatus(2, 0x28, Earthquake)
@@ -285,24 +291,33 @@ SetUnitStatus(2, 0x2C, 0)
 //SetUnitStatus(5, 0x28, Earthquake)
 //SetUnitStatus(6, 0x28, Earthquake)
 
+
+ENUT BoulderbadgeObtained 
+ENUT CascadebadgeObtained 
+ENUT ThunderbadgeObtained 
+ENUT SoulbadgeObtained 
+ENUT RainbowbadgeObtained 
+ENUT MarshbadgeObtained
 Write_Byte(4, GaryStarterClass) 
 ENUT FlyFlag
 ENUT SaffronArrived
-ENUT CinnabarArrived
-ENUT IndigoPlateauArrived
-ENUT MarshbadgeObtained
+//ENUT CinnabarArrived
+//ENUT IndigoPlateauArrived
+
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 
-Write_Byte(37, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(7, YCoordNewArea)  
+Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(10, YCoordNewArea)  
+MNC2 LoreleiCh 
+// MNC2 FuschiaCh
 //MNC2 PewterGymCh
 //ASMC DebugMap_ASMC
 //MNC2 MansionB4Ch
 //MNC2 Route22Ch
 //MNC2 CinnabarGymCh
-MNC2 DebugCh
+//MNC2 DebugCh
 //MNC2 Route5Ch
 //MNC2 Route24Ch
 //MNC2 FuschiaCh

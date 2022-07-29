@@ -438,7 +438,7 @@ lsr r3, #24
 lsl r1, r3, #3 @ 8 flags per byte so +0x500 
 add r0, r1 @ Full offset 
 mov r5, r0 
-blh CheckNewFlag 
+blh CheckNewFlag_No_sC @ icon display needs to not write to sC constantly lol 
 b ExitCheckTrainerFlag 
 
 

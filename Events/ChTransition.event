@@ -963,12 +963,10 @@ CALL 0x89EE1B8 // When matching allegiance stops in range
 
 
 EVBIT_MODIFY 4
-SVAL r7 1 
 EVBIT_F 2 
-
+SVAL r7 1 
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
-
 
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0

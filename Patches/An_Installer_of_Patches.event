@@ -135,9 +135,7 @@
 
 
 #include "TutorialDisabler.event"
-
-// Conflicts and I don't use fog anyway 
-//#include "Less Annoying Fog/Less Annoying Fog Installer.event"
+#include "LessAnnoyingFog/Installer.event"
 
 #include "SkipOpening.event"
 #include "DifficultySelection.event"
