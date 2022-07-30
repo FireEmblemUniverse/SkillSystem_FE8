@@ -35,6 +35,11 @@ SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
 #include "asm/MovementTrap.lyn.event" // Initialize trap & hook gTrapHidden updater 
 
 PUSH 
+
+ORG $1D4BE 
+SHORT $46C0 
+jumpToHack(MovementCalcLoop) 
+
 ORG $1a1a4 
 jumpToHack(UpdateHiddenGlaciers)
 

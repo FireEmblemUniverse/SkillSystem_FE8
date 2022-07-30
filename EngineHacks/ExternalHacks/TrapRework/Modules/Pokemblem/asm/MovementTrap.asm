@@ -178,3 +178,26 @@ pop {r4}
 pop {r0} 
 bx r0 
 .ltorg 
+
+.equ RunPostMoveEvents, 0x8084508 
+.type MovementCalcLoop, %function 
+.global MovementCalcLoop 
+MovementCalcLoop: 
+push {r4-r7, lr} 
+
+blh RunPostMoveEvents 
+lsl r0, #24 
+asr r0, #24 
+
+
+
+
+pop {r4-r7} 
+pop {r1} 
+cmp r0, #1 
+bx r1 
+.ltorg 
+
+
+
+
