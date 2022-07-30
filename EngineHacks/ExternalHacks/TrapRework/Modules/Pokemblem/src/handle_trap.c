@@ -37,8 +37,8 @@ struct _TrapHandlerProc {
 
 void HandleTrap(Proc* proc, Unit* unit, int idk);
 void TrapHandlerCheck(TrapHandlerProc* proc);
-void TrapCleanup(TrapHandlerProc* proc);
-void TrapCleanup2(TrapHandlerProc* proc);
+void TrapUnitMenu(TrapHandlerProc* proc);
+void TrapCleanup(Unit* unit);
 
 static const struct Vec2 DirectionStepTable[] = {
 	{ -1,  0 }, // left
@@ -68,7 +68,7 @@ PROC_LABEL(0),
 	PROC_GOTO(0),
 	
 PROC_LABEL(1),
-	PROC_CALL_ROUTINE(TrapCleanup),
+	PROC_CALL_ROUTINE(TrapUnitMenu),
 	PROC_END
 };
 
@@ -94,21 +94,49 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 		unit->yPos
 	};
 	const struct Vec2 step = DirectionStepTable[direction];
+	bool StopIfNotIce = false; 
+	
+	Trap* trap = GetTrapAt(result.x, result.y);
+	if (trap) { 
+		if (trap->type == IceTrapType) { 
+			RemoveTrap(trap);
+			StopIfNotIce = true; 
+		} 
+	} 
+	
 	
 	while (CanUnitBeOnPosition(unit, (result.x + step.x), (result.y + step.y))) {
+		trap = GetTrapAt(result.x, result.y);
+		if (trap) { 
+			if (trap->type == IceTrapType) { 
+				RemoveTrap(trap);
+				StopIfNotIce = true; 
+			} 
+		} 
+		
 		result.x += step.x;
 		result.y += step.y;
 		if (!(--moveAmount)) 
 			break;
-		if (gMapHidden[result.y][result.x] & 2) // check for a hidden trap such as a mine
-			if (!(gMapTerrain[result.y][result.x] == 0x2F)) { 
+		
+		if (trap) { 
+			if (trap->type == StopSlidingTrapType) {
+				moveAmount = -1;
 				break;
-			} 
-		Trap* trap = GetTrapAt(result.x, result.y);
-		if (trap->type == StopSlidingTrapType) {
-			moveAmount = -1;
-			break;
+			}
+		} 
+		if ((!(gMapTerrain[result.y][result.x] == 0x2F)) & StopIfNotIce) {
+			break; 
 		}
+
+
+		if (gMapHidden[result.y][result.x] & 2) { // check for a hidden trap such as a mine
+			if (!(gMapTerrain[result.y][result.x] == 0x2F)) { // if gMapHidden and not ice, stop here 
+				break; 
+			} 
+		} 
+		
+		
 		
 	} 
 	return result;
@@ -117,37 +145,49 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 	RefreshEntityBmMaps();
 	MU_EndAll();
-	
-	TrapHandlerProc* newProc = (TrapHandlerProc*) ProcStartBlocking(ProcCode_TrapHandler, proc);
-	
-	newProc->pUnit = unit;
-	newProc->idk   = idk;
+	//if ((unit->state && US_HAS_MOVED_AI)) { 
+	// unit state 0x1E US_Processing_Movement ? 
+	if ((gActionData.unitActionType == 0x1E)) { 
+		TrapHandlerProc* newProc = (TrapHandlerProc*) ProcStartBlocking(ProcCode_TrapHandler, proc);
+		gActionData.unitActionType = 0x1F; 
+		//unit->state = unit->state | US_HAS_MOVED_AI; 
+		newProc->pUnit = unit;
+		newProc->idk   = idk;
+	} 
+	else { 
+		TrapCleanup(unit); 
+		//Trap* trap = GetTrapAt(x, y);
+		//RemoveTrap(struct Trap* trap);
+	} 
 }
 
 
 extern struct MovementArrowStruct *gpMovementArrowData; 
 extern const ProcInstruction gProc_MoveUnit;
+//extern const ProcInstruction gProc_PlayerPhase;
 extern const MenuDefinition gMenu_UnitMenu; 
 extern MenuProc* StartMenu_AndDoSomethingCommands(const MenuDefinition*, int xScreen, int xLeft, int xRight); //! FE8U = 0x804F64D
 
 typedef struct MUProc muProc; 
 
-void TrapCleanup(TrapHandlerProc* proc) { 
+void TrapUnitMenu(TrapHandlerProc* proc) { 
 
 	int x1 = gGameState._unk1C.x; 
 	int x2 = gGameState.cameraRealPos.x; 
 	x1 = x1 - x2; 
 	
 	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu, x1, 1, 20); //! FE8U = 0x804F64D
-	//TrapCleanup2(proc); 
+	Proc* playerPhaseProc = ProcFind(&gProc_PlayerPhase[0]); //! FE8U = (0x08002E9C+1)
+	ProcGoto(playerPhaseProc, 7); // apply unit action etc. //! FE8U = (0x08002F24+1)
+
 } 
 
-void TrapCleanup2(TrapHandlerProc* proc) { 
+void TrapCleanup(Unit* unit) { 
 
 	
 	//moveunit->pUnit->state = moveunit->pUnit->state & 0xFFFFFFFE; // remove hide bitflag 
 	//gActionData.unitActionType = UNIT_ACTION_TRADED; 
-	//proc->pUnit->state = (proc->pUnit->state & 0xFFFFFFFE); // | 0x2; // remove hide bitflag 
+	unit->state = (unit->state & 0xFFFFFFFE) | 0x2; // remove hide bitflag 
 	
 	RefreshUnitsOnBmMap();
 	//RefreshMinesOnBmMap(); 
@@ -168,7 +208,7 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 		if (trap->type == IceTrapType) { // ice trap 
 			struct MovementArrowStruct MoveArrow = *gpMovementArrowData; // does a memcpy but works lol gpMovementArrowData 0859dba0
 			//asm("mov r11, r11"); 
-			for (int i = MoveArrow.count; i>=0; i--) { 
+			for (int i = MoveArrow.count; i>0; i--) { 
 				if ((MoveArrow.xdata[i] == x) && (MoveArrow.ydata[i] == y)) { 
 					if (i>0) { 
 						previousTileX = MoveArrow.xdata[i-1]; // use entry immediately before our current location 

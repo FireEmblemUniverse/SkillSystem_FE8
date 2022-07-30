@@ -28,6 +28,15 @@ Start:
 	b Loop 
 
 False: 
+	ldr r2, =gActionData @ from $37798, which we nop out  
+	ldrb r0, [r2, #0x11] 
+	cmp r0, #1 
+	blt Skip 
+	cmp r0, #3 
+	bgt Skip 
+	mov r0, #1 
+	strb r0, [r2, #0x11] @ if 1, 2, or 3 we do trap immediately, otherwise we wait ? 
+	Skip: 
 	@ Dirty but idc
 	ldr r3, =#Return
 BXR3:

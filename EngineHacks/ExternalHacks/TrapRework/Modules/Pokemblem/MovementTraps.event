@@ -36,6 +36,9 @@ SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
 
 PUSH 
 
+ORG $3779E 
+SHORT $46C0 // don't store #1 to gActionData+0x11 action taken just yet 
+
 ORG $1D4BE 
 //SHORT $46C0 
 //jumpToHack(TrapMovementCalcLoop) 
