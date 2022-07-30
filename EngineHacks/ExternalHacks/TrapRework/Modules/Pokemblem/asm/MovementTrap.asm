@@ -180,9 +180,9 @@ bx r0
 .ltorg 
 
 .equ RunPostMoveEvents, 0x8084508 
-.type MovementCalcLoop, %function 
-.global MovementCalcLoop 
-MovementCalcLoop: 
+.type TrapMovementCalcLoop, %function 
+.global TrapMovementCalcLoop 
+TrapMovementCalcLoop: 
 push {r4-r7, lr} 
 
 blh RunPostMoveEvents 
@@ -195,6 +195,7 @@ asr r0, #24
 pop {r4-r7} 
 pop {r1} 
 cmp r0, #1 
+ldr r1, =0x801D4C9 
 bx r1 
 .ltorg 
 

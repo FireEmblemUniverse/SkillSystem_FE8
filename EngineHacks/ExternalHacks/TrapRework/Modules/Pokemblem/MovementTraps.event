@@ -37,8 +37,8 @@ SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
 PUSH 
 
 ORG $1D4BE 
-SHORT $46C0 
-jumpToHack(MovementCalcLoop) 
+//SHORT $46C0 
+//jumpToHack(TrapMovementCalcLoop) 
 
 ORG $1a1a4 
 jumpToHack(UpdateHiddenGlaciers)

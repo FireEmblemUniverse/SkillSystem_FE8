@@ -38,6 +38,7 @@ struct _TrapHandlerProc {
 void HandleTrap(Proc* proc, Unit* unit, int idk);
 void TrapHandlerCheck(TrapHandlerProc* proc);
 void TrapCleanup(TrapHandlerProc* proc);
+void TrapCleanup2(TrapHandlerProc* proc);
 
 static const struct Vec2 DirectionStepTable[] = {
 	{ -1,  0 }, // left
@@ -126,11 +127,27 @@ void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 
 extern struct MovementArrowStruct *gpMovementArrowData; 
 extern const ProcInstruction gProc_MoveUnit;
+extern const MenuDefinition gMenu_UnitMenu; 
+extern MenuProc* StartMenu_AndDoSomethingCommands(const MenuDefinition*, int xScreen, int xLeft, int xRight); //! FE8U = 0x804F64D
+
 typedef struct MUProc muProc; 
 
 void TrapCleanup(TrapHandlerProc* proc) { 
+
+	int x1 = gGameState._unk1C.x; 
+	int x2 = gGameState.cameraRealPos.x; 
+	x1 = x1 - x2; 
+	
+	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu, x1, 1, 20); //! FE8U = 0x804F64D
+	//TrapCleanup2(proc); 
+} 
+
+void TrapCleanup2(TrapHandlerProc* proc) { 
+
+	
 	//moveunit->pUnit->state = moveunit->pUnit->state & 0xFFFFFFFE; // remove hide bitflag 
-	proc->pUnit->state = (proc->pUnit->state & 0xFFFFFFFE) | 0x2; // remove hide bitflag 
+	//gActionData.unitActionType = UNIT_ACTION_TRADED; 
+	//proc->pUnit->state = (proc->pUnit->state & 0xFFFFFFFE); // | 0x2; // remove hide bitflag 
 	
 	RefreshUnitsOnBmMap();
 	//RefreshMinesOnBmMap(); 
