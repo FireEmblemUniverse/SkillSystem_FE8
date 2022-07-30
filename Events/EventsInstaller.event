@@ -287,6 +287,12 @@
 }
 
 {
+#include "Lorelei.event"
+} 
+
+
+
+{
 #include "Pokecenter.event"
 }
 

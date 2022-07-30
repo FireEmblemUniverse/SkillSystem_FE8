@@ -53,10 +53,9 @@ echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
-ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times"
-@rem type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
-SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
-copy /y "%~dp0FE8Hack.sym" %destDir%\comment_.txt
+ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym" "--build-times"
+rem type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
+
 
 
 
@@ -71,6 +70,8 @@ echo Generating sym file
 
 echo: | ( "%symcombo%" "%target_sym%" "%target_sym%" "%base_dir%\Tools\sym\VanillaOffsets.sym" )
 
+SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
+copy /y "%~dp0FE8Hack.sym" %destDir%\comment_.txt
 
 echo:
 echo Done!

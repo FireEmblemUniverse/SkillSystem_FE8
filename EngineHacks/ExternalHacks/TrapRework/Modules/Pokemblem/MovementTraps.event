@@ -15,7 +15,7 @@ SetExpensiveTerrainForAI(MovementArrowTrapID)
 
 #define IceTrapID 114 
 SetTrapEventInit(IceTrapID,MovementArrowInitialization)
-SetTrapMapSprite(IceTrapID,SavePointSMS)
+SetTrapMapSprite(IceTrapID,BlankSMS)
 SetTrapMapSpritePalette(IceTrapID,NPCTrapPaletteWord)
 SetExpensiveTerrainForAI(IceTrapID)
 #define IceTrap(XX,YY) "BYTE IceTrapID XX YY 0; SHORT 0x0"
@@ -28,9 +28,21 @@ SetExpensiveTerrainForAI(TeleTrapID)
 
 #define StopSlidingID 116 
 SetTrapEventInit(StopSlidingID,MovementArrowInitialization)
-SetTrapMapSprite(StopSlidingID,BerryTreeSMS)
+SetTrapMapSprite(StopSlidingID,BlankSMS)
 SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
 #define StopSlidingTrap(XX,YY) "BYTE StopSlidingID XX YY 0; SHORT 0x0"
+
+#define BrokenIceID 117 
+SetTrapEventInit(BrokenIceID,MovementArrowInitialization)
+SetTrapMapSprite(BrokenIceID,BerryTreeSMS)
+SetTrapMapSpritePalette(BrokenIceID,NPCTrapPaletteWord)
+#define BrokenIceTrap(XX,YY) "BYTE BrokenIceID XX YY 0; SHORT 0x0"
+
+#define PuddleID 118 
+SetTrapEventInit(PuddleID,MovementArrowInitialization)
+SetTrapMapSprite(PuddleID,puddleSMS)
+SetTrapMapSpritePalette(PuddleID,NPCTrapPaletteWord)
+#define PuddleTrap(XX,YY) "BYTE PuddleID XX YY 0; SHORT 0x0"
 
 #include "asm/MovementTrap.lyn.event" // Initialize trap & hook gTrapHidden updater 
 
@@ -39,7 +51,7 @@ PUSH
 ORG $3779E 
 SHORT $46C0 // don't store #1 to gActionData+0x11 action taken just yet 
 
-ORG $1D4BE 
+//ORG $1D4BE 
 //SHORT $46C0 
 //jumpToHack(TrapMovementCalcLoop) 
 
@@ -68,6 +80,13 @@ ALIGN 4
 StopSlidingTrapType:
 WORD StopSlidingID 
 
+ALIGN 4 
+BrokenIceTrapType:
+WORD BrokenIceID 
+
+ALIGN 4 
+PuddleTrapType:
+WORD PuddleID 
 
 ALIGN 4
 prThingEffectCheck:

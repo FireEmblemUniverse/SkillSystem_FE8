@@ -3,6 +3,10 @@
 extern u32 MoveArrowType; 
 extern u32 IceTrapType; 
 extern u32 StopSlidingTrapType; 
+extern u32 BrokenIceTrapType; 
+extern u32 PuddleTrapType; 
+
+extern struct MovementArrowStruct *gpMovementArrowData; 
 
 extern struct MovementArrowStruct MoveArrow; 
 struct MovementArrowStruct { 
@@ -96,13 +100,15 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 	const struct Vec2 step = DirectionStepTable[direction];
 	bool StopIfNotIce = false; 
 	
-	Trap* trap = GetTrapAt(result.x, result.y);
+	struct MovementArrowStruct MoveArrow = *gpMovementArrowData;
+	Trap* trap = GetTrapAt(MoveArrow.xdata[0], MoveArrow.ydata[0]);
 	if (trap) { 
 		if (trap->type == IceTrapType) { 
 			RemoveTrap(trap);
 			StopIfNotIce = true; 
 		} 
 	} 
+	
 	
 	
 	while (CanUnitBeOnPosition(unit, (result.x + step.x), (result.y + step.y))) {
@@ -121,6 +127,12 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 		
 		if (trap) { 
 			if (trap->type == StopSlidingTrapType) {
+				moveAmount = -1;
+				break;
+			}
+			if (trap->type == BrokenIceTrapType) {
+				RemoveTrap(trap);
+				AddTrap(result.x, result.y, PuddleTrapType, 0);
 				moveAmount = -1;
 				break;
 			}
@@ -147,7 +159,7 @@ void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 	MU_EndAll();
 	//if ((unit->state && US_HAS_MOVED_AI)) { 
 	// unit state 0x1E US_Processing_Movement ? 
-	if ((gActionData.unitActionType == 0x1E)) { 
+	if (gActionData.unitActionType == 0x1E) { 
 		TrapHandlerProc* newProc = (TrapHandlerProc*) ProcStartBlocking(ProcCode_TrapHandler, proc);
 		gActionData.unitActionType = 0x1F; 
 		//unit->state = unit->state | US_HAS_MOVED_AI; 
@@ -162,8 +174,8 @@ void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 }
 
 
-extern struct MovementArrowStruct *gpMovementArrowData; 
-extern const ProcInstruction gProc_MoveUnit;
+
+//extern const ProcInstruction gProc_MoveUnit;
 //extern const ProcInstruction gProc_PlayerPhase;
 extern const MenuDefinition gMenu_UnitMenu; 
 extern MenuProc* StartMenu_AndDoSomethingCommands(const MenuDefinition*, int xScreen, int xLeft, int xRight); //! FE8U = 0x804F64D
@@ -172,14 +184,15 @@ typedef struct MUProc muProc;
 
 void TrapUnitMenu(TrapHandlerProc* proc) { 
 
-	int x1 = gGameState._unk1C.x; 
-	int x2 = gGameState.cameraRealPos.x; 
-	x1 = x1 - x2; 
-	
-	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu, x1, 1, 20); //! FE8U = 0x804F64D
-	Proc* playerPhaseProc = ProcFind(&gProc_PlayerPhase[0]); //! FE8U = (0x08002E9C+1)
-	ProcGoto(playerPhaseProc, 7); // apply unit action etc. //! FE8U = (0x08002F24+1)
-
+	if (!(proc->pUnit->index >> 6)) { 
+		int x1 = gGameState._unk1C.x; 
+		int x2 = gGameState.cameraRealPos.x; 
+		x1 = x1 - x2; 
+		StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu, x1, 1, 20); //! FE8U = 0x804F64D
+		Proc* playerPhaseProc = ProcFind(&gProc_PlayerPhase[0]); //! FE8U = (0x08002E9C+1)
+		ProcGoto(playerPhaseProc, 7); // apply unit action etc. //! FE8U = (0x08002F24+1)
+	} 
+	else { TrapCleanup(proc->pUnit); } 
 } 
 
 void TrapCleanup(Unit* unit) { 
@@ -207,7 +220,7 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 		
 		if (trap->type == IceTrapType) { // ice trap 
 			struct MovementArrowStruct MoveArrow = *gpMovementArrowData; // does a memcpy but works lol gpMovementArrowData 0859dba0
-			//asm("mov r11, r11"); 
+			asm("mov r11, r11"); 
 			for (int i = MoveArrow.count; i>0; i--) { 
 				if ((MoveArrow.xdata[i] == x) && (MoveArrow.ydata[i] == y)) { 
 					if (i>0) { 
@@ -233,7 +246,7 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 			struct Vec2 start;
 			start.x = x; 
 			start.y = y; 
-			struct MUProc* muProc = (void*)ProcFind(&gProc_MoveUnit);
+			struct MUProc* muProc = (void*)ProcFind(&gProc_MoveUnit[0]);
 			if ( !muProc ) { // starting the MUProc (without using it i guess) breaks the game 
 				muProc = (void*)MU_Create(proc->pUnit); // If the proc doesn't exist yet, make one.
 			} 

@@ -215,7 +215,7 @@
 #define tuber_m_waterSMS 0xD6
 #define Unused1SMS 0xD7
 #define Unused2SMS 0xD8
-#define Unused44SMS 0xD9
+#define puddleSMS 0xD9
 #define Unused45SMS 0xDA
 #define Unused46SMS 0xDB
 #define Unused47SMS 0xDC
@@ -469,7 +469,7 @@
 #define tuber_m_waterMMS 0xD7
 #define Unused1MMS 0xD8
 #define Unused2MMS 0xD9
-#define Unused44MMS 0xDA
+#define puddleMMS 0xDA
 #define Unused45MMS 0xDB
 #define Unused46MMS 0xDC
 #define Unused47MMS 0xDD
