@@ -18,6 +18,9 @@
 .equ CheckEventId,0x8083da8
 .equ GetItemAfterUse, 0x08016AEC
 .equ SetFlag, 0x8083D80
+.equ gMapUnit, 0x202E4D8
+.equ CurrentUnit, 0x3004E50 
+.equ GetTrap, 0x802E1F0
 
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
@@ -85,11 +88,9 @@ ExecuteEvent:
 	.long 0x800D07D @AF5D
 CurrentUnitFateData:
 	.long 0x203A958
-CurrentUnitPointer:
-	.long 0x3004E50
-.equ GetTrap, 0x802E1F0
-RemoveTrap:
-    .long 0x802EA91
+
+.equ RemoveTrap, 0x802EA90 
+
 
 .type UpdateHiddenGlaciers, %function 
 .global UpdateHiddenGlaciers 
@@ -121,6 +122,16 @@ add r1, r2 @ address of terrain
 ldrb r1, [r1] 
 cmp r1, #0x2F @ is this ice? 
 bne XLoop 
+ldr r0, =gMapUnit @ if unit is on ice, not slippery 
+ldr r0, [r0] 
+lsl r1, r3, #2 
+add r1, r0 
+ldr r1, [r1] 
+add r1, r2 
+ldrb r0, [r1] 
+cmp r0, #0 
+bne XLoop @ if unit is on ice, not slippery  
+
 ldr r0, =gMapHidden 
 ldr r0, [r0] 
 lsl r1, r3, #2 @ y * 4 
@@ -145,6 +156,7 @@ ldr r1, =0x801A1B1
 bx r1
 .ltorg 
 
+.equ UpdateAllLightRunes, 0x802E470
 .equ AddTrap, 0x802E2B8 
 .type SpawnIceIfIce, %function 
 .global SpawnIceIfIce 
@@ -165,9 +177,35 @@ cmp r0, #0x2f @ ice
 bne End 
 ldrb r0, [r4, #0x10] @ XX 
 ldrb r1, [r4, #0x11] @ Y 
-ldr r2, =IceTrapID 
-lsl r2, #24 
-lsr r2, #24 
+blh GetTrapAt 
+cmp r0, #0 
+beq Skip 
+ldrb r1, [r0, #2] @ trap type 
+ldr r2, =PuddleTrapType 
+ldr r2, [r2] 
+cmp r1, r2 
+beq End @ if there is a puddle here already, don't add an ice trap 
+ldr r2, =BrokenIceTrapType 
+ldr r2, [r2] 
+cmp r1, r2 
+bne Skip 
+@ delete and replace with puddle 
+blh RemoveTrap 
+ldrb r0, [r4, #0x10] @ XX 
+ldrb r1, [r4, #0x11] @ Y 
+ldr r2, =PuddleTrapType
+ldr r2, [r2] 
+mov r3, #0 
+blh AddTrap, r4  
+blh UpdateAllLightRunes 
+
+b End 
+
+Skip: 
+ldrb r0, [r4, #0x10] @ XX 
+ldrb r1, [r4, #0x11] @ Y 
+ldr r2, =IceTrapType
+ldr r2, [r2] 
 mov r3, #0 
 blh AddTrap, r4  
 
@@ -199,6 +237,57 @@ ldr r1, =0x801D4C9
 bx r1 
 .ltorg 
 
+.type BumpMapHidden, %function 
+.global BumpMapHidden 
+BumpMapHidden:
+push {r2-r7, lr} 
 
+ldr r4, =gMapHidden 
+ldr r4, [r4] 
+add r0, r2, r4 
+ldr r0, [r0] 
+add r0, r3 
+ldrb r1, [r0] 
+mov r0, #2 
+and r0, r1 
+mov r4, r0 @ vanilla value to compare to 0 as true mine/false no mine 
 
+ldr r0, =gTerrainMap 
+ldr r0, [r0] 
+add r0, r2 
+ldr r0, [r0] 
+add r0, r3 
+ldrb r1, [r0] 
+ldr r0, =IceTerrainTypeLink 
+ldr r0, [r0] 
+cmp r1, r0 
+bne NotIce
+
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldr r1, [r3, #4] @ class pointer 
+mov r0, #0x50 
+add r0, r1 @ type 
+ldr r0, [r0] 
+ldr r2, =IceTypeLink 
+ldr r2, [r2] 
+ldr r1, =FlyingTypeLink 
+ldr r1, [r1] 
+orr r1, r2 
+ldr r2, =WaterTypeLink 
+ldr r2, [r2] 
+orr r1, r2 
+tst r0, r1 
+beq NotIce 
+
+NoIssue:
+mov r4, #0 
+
+NotIce: 
+mov r0, r4 
+
+pop {r2-r7} 
+pop {r1} 
+bx r1 
+.ltorg 
 

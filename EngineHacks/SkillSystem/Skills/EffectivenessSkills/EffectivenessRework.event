@@ -39,28 +39,17 @@ ItemEffectivenessPtr(DryingPan, WaterProtection)
 
 #define SetWeaponEffectiveness(type_list, coefficient_times_2) "BYTE 0 coefficient_times_2; SHORT type_list"
 
-//typings 
-#define FireType 0x01
-#define WaterType 0x02
-#define ElectricType 0x04
-#define FightingType 0x08
-#define PoisonType 0x10
-#define GroundType 0x20
-#define FlyingType 0x40
-#define RockType 0x80 
+ALIGN 4 
+IceTypeLink:
+WORD IceType 
 
-#define GhostType 0x100
-#define NormalType 0x200
-#define DragonType 0x400
-#define GrassType 0x800
-#define IceType 0x1000
-#define SteelType 0x2000
-#define PsychicType 0x4000 
-#define BugType 0x8000
+ALIGN 4 
+FlyingTypeLink:
+WORD FlyingType 
 
-//unused
-#define DarkType 0x100000
-#define FairyType 0x200000
+ALIGN 4 
+WaterTypeLink:
+WORD WaterType 
 
 
 #define Immune 0x01 

@@ -73,6 +73,10 @@ add r3, r5, r1
 mov r2, #3 @ costs 3 
 strb r2, [r3] 
 
+mov r1, #0x2f @ traps for AI to avoid 
+add r3, r5, r1 
+mov r2, #2 @ costs 2
+strb r2, [r3] 
 
 
 Exit: 

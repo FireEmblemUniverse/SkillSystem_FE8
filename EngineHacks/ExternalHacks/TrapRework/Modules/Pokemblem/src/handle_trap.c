@@ -37,6 +37,7 @@ struct _TrapHandlerProc {
 	
 	Unit* pUnit;
 	int   idk;
+	u8 direction; 
 };
 
 void HandleTrap(Proc* proc, Unit* unit, int idk);
@@ -102,22 +103,18 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 	
 	struct MovementArrowStruct MoveArrow = *gpMovementArrowData;
 	Trap* trap = GetTrapAt(MoveArrow.xdata[0], MoveArrow.ydata[0]);
-	if (trap) { 
-		if (trap->type == IceTrapType) { 
-			RemoveTrap(trap);
-			StopIfNotIce = true; 
-		} 
+	if (trap->type == IceTrapType) { 
+		RemoveTrap(trap);
+		StopIfNotIce = true; 
 	} 
 	
 	
 	
 	while (CanUnitBeOnPosition(unit, (result.x + step.x), (result.y + step.y))) {
 		trap = GetTrapAt(result.x, result.y);
-		if (trap) { 
-			if (trap->type == IceTrapType) { 
-				RemoveTrap(trap);
-				StopIfNotIce = true; 
-			} 
+		if (trap->type == IceTrapType) { 
+			RemoveTrap(trap);
+			StopIfNotIce = true; 
 		} 
 		
 		result.x += step.x;
@@ -125,24 +122,29 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 		if (!(--moveAmount)) 
 			break;
 		
-		if (trap) { 
-			if (trap->type == StopSlidingTrapType) {
-				moveAmount = -1;
-				break;
-			}
-			if (trap->type == BrokenIceTrapType) {
-				RemoveTrap(trap);
-				AddTrap(result.x, result.y, PuddleTrapType, 0);
-				moveAmount = -1;
-				break;
-			}
-		} 
+
+		if (trap->type == StopSlidingTrapType) {
+			//asm("mov r11, r11"); 
+			moveAmount = -1;
+			break;
+		}
+		
+		if (trap->type == BrokenIceTrapType) {
+			//asm("mov r11, r11"); 
+			//RemoveTrap(trap);
+			//AddTrap(result.x, result.y, PuddleTrapType, 0);
+			result.x -= step.x; 
+			result.y -= step.y; 
+			moveAmount = -1;
+			break;
+		}
+
 		if ((!(gMapTerrain[result.y][result.x] == 0x2F)) & StopIfNotIce) {
 			break; 
 		}
 
 
-		if (gMapHidden[result.y][result.x] & 2) { // check for a hidden trap such as a mine
+		if (gMapHidden[result.y][result.x] && 2) { // check for a hidden trap such as a mine
 			if (!(gMapTerrain[result.y][result.x] == 0x2F)) { // if gMapHidden and not ice, stop here 
 				break; 
 			} 
@@ -156,7 +158,8 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 
 void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 	RefreshEntityBmMaps();
-	MU_EndAll();
+
+	
 	//if ((unit->state && US_HAS_MOVED_AI)) { 
 	// unit state 0x1E US_Processing_Movement ? 
 	if (gActionData.unitActionType == 0x1E) { 
@@ -165,18 +168,25 @@ void HandleTrap(ProcState* proc, Unit* unit, int idk) {
 		//unit->state = unit->state | US_HAS_MOVED_AI; 
 		newProc->pUnit = unit;
 		newProc->idk   = idk;
+		struct MUProc* muProc = MU_GetByUnit(unit);
+		if (muProc) { newProc->direction = muProc->facingId; } 
+		MU_EndAll();
 	} 
+	
+
 	else { 
 		TrapCleanup(unit); 
 		//Trap* trap = GetTrapAt(x, y);
 		//RemoveTrap(struct Trap* trap);
 	} 
+	
 }
 
 
 
 //extern const ProcInstruction gProc_MoveUnit;
 //extern const ProcInstruction gProc_PlayerPhase;
+extern void UpdateAllLightRunes(void); 
 extern const MenuDefinition gMenu_UnitMenu; 
 extern MenuProc* StartMenu_AndDoSomethingCommands(const MenuDefinition*, int xScreen, int xLeft, int xRight); //! FE8U = 0x804F64D
 
@@ -192,18 +202,21 @@ void TrapUnitMenu(TrapHandlerProc* proc) {
 		Proc* playerPhaseProc = ProcFind(&gProc_PlayerPhase[0]); //! FE8U = (0x08002E9C+1)
 		ProcGoto(playerPhaseProc, 7); // apply unit action etc. //! FE8U = (0x08002F24+1)
 	} 
-	else { TrapCleanup(proc->pUnit); } 
+
+	// else 
+	if (proc->pUnit->index >> 6) {  TrapCleanup(proc->pUnit); } 
 } 
 
 void TrapCleanup(Unit* unit) { 
 
-	
+	MU_EndAll();
 	//moveunit->pUnit->state = moveunit->pUnit->state & 0xFFFFFFFE; // remove hide bitflag 
 	//gActionData.unitActionType = UNIT_ACTION_TRADED; 
 	unit->state = (unit->state & 0xFFFFFFFE) | 0x2; // remove hide bitflag 
-	
+	RefreshEntityBmMaps();
 	RefreshUnitsOnBmMap();
 	//RefreshMinesOnBmMap(); 
+	
 	SMS_UpdateFromGameData();
 	RenderBmMap();
 } 
@@ -212,30 +225,39 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 	u8 x = proc->pUnit->xPos;
 	u8 y = proc->pUnit->yPos;
 	Trap* trap = GetTrapAt(x, y);
-	u8 previousTileX = x; 
-	u8 previousTileY = y; 
+	//u8 previousTileX = x; 
+	//u8 previousTileY = y; 
 	u8 direction = trap->data[0]; 
-	if (trap) {
+	
+	if (trap->type) {
 		
+		if (trap->type == BrokenIceTrapType) { 
+			//RemoveTrap(trap);
+			//AddTrap(x, y, PuddleTrapType, 0);
+			//UpdateAllLightRunes();
+		} 
 		
 		if (trap->type == IceTrapType) { // ice trap 
-			struct MovementArrowStruct MoveArrow = *gpMovementArrowData; // does a memcpy but works lol gpMovementArrowData 0859dba0
-			asm("mov r11, r11"); 
-			for (int i = MoveArrow.count; i>0; i--) { 
-				if ((MoveArrow.xdata[i] == x) && (MoveArrow.ydata[i] == y)) { 
-					if (i>0) { 
-						previousTileX = MoveArrow.xdata[i-1]; // use entry immediately before our current location 
-						previousTileY = MoveArrow.ydata[i-1]; // then discern direction from this 
-					} 
-				}
-			} 
-			// right, down, left, up
-			// BYTE 1 2 0 3
-			
-			if (previousTileX < x) { direction = 1; } // right 
-			if (previousTileX > x) { direction = 0; } // left 
-			if (previousTileY < y) { direction = 2; } // down 
-			if (previousTileY > y) { direction = 3; } // up
+			direction = proc->direction; 
+			//struct MovementArrowStruct MoveArrow = *gpMovementArrowData; // does a memcpy but works lol gpMovementArrowData 0859dba0
+			//asm("mov r11, r11"); 
+			//for (int i = MoveArrow.count; i>0; i--) { 
+			//	if ((MoveArrow.xdata[i] == x) && (MoveArrow.ydata[i] == y)) { 
+			//		if (i>0) { 
+			//			previousTileX = MoveArrow.xdata[i-1]; // use entry immediately before our current location 
+			//			previousTileY = MoveArrow.ydata[i-1]; // then discern direction from this 
+			//		} 
+			//	}
+			//} 
+			//
+			//// right, down, left, up
+			//// BYTE 1 2 0 3
+			//
+			//if (previousTileX < x) { direction = 1; } // right 
+			//if (previousTileX > x) { direction = 0; } // left 
+			//if (previousTileY < y) { direction = 2; } // down 
+			//if (previousTileY > y) { direction = 3; } // up
+
 		}
 		if ((trap->type == IceTrapType) | (trap->type == MoveArrowType)) { 
 			u32 bicState = ~0x42; // canto / ended turn already 

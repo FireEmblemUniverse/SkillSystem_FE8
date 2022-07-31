@@ -228,6 +228,37 @@
 #define HiredPokemonUnitID 0x41
 #define OaksPikachuUnitID 0x4F 
 
+// Terrain 
+#define Ground 0x01 // Plains 
+#define Grass 0x0C // Forest 
+#define Sea 0x15 // Sea 
+#define Shallow 0x16 // River 
+#define Lake 0x16 
+
+//typings (effectiveness rework) 
+#define FireType 0x01
+#define WaterType 0x02
+#define ElectricType 0x04
+#define FightingType 0x08
+#define PoisonType 0x10
+#define GroundType 0x20
+#define FlyingType 0x40
+#define RockType 0x80 
+
+#define GhostType 0x100
+#define NormalType 0x200
+#define DragonType 0x400
+#define GrassType 0x800
+#define IceType 0x1000
+#define SteelType 0x2000
+#define PsychicType 0x4000 
+#define BugType 0x8000
+
+//unused
+#define DarkType 0x100000
+#define FairyType 0x200000
+
+
 #define NormalTypeWep 0x00
 #define FightingTypeWep 0x20
 

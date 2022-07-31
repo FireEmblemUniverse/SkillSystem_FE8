@@ -78,7 +78,7 @@ BYTE 0 // Terminator
 
 
 ALIGN 4
-FlyingTypeLink:
+//FlyingTypeLink:
 WORD FlyingType 
 
 ALIGN 4 

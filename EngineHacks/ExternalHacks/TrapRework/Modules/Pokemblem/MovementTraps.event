@@ -34,7 +34,7 @@ SetTrapMapSpritePalette(StopSlidingID,NPCTrapPaletteWord)
 
 #define BrokenIceID 117 
 SetTrapEventInit(BrokenIceID,MovementArrowInitialization)
-SetTrapMapSprite(BrokenIceID,BerryTreeSMS)
+SetTrapMapSprite(BrokenIceID,BlankSMS)
 SetTrapMapSpritePalette(BrokenIceID,NPCTrapPaletteWord)
 #define BrokenIceTrap(XX,YY) "BYTE BrokenIceID XX YY 0; SHORT 0x0"
 
@@ -50,6 +50,9 @@ PUSH
 
 ORG $3779E 
 SHORT $46C0 // don't store #1 to gActionData+0x11 action taken just yet 
+
+ORG $1A890 
+callHackNew_r0(BumpMapHidden)
 
 //ORG $1D4BE 
 //SHORT $46C0 
@@ -67,6 +70,15 @@ BYTE $E4 // change branch to start of hook
 ORG 0x037660 // this check is for when things actually happen
 jumpToHack(prThingEffectCheck)
 POP 
+
+#define IceTerrainType 0x2F 
+
+SetTerrainForTrap(PuddleID, Shallow)
+SetTerrainForTrap(IceTrapID, IceTerrainType)
+
+ALIGN 4 
+IceTerrainTypeLink: 
+WORD IceTerrainType
 
 ALIGN 4 
 MoveArrowType:
@@ -102,7 +114,7 @@ ALIGN 4
 
 ALIGN 4 
 SuperTrapList: 
-BYTE IceTrapID MovementArrowTrapID TeleTrapID // these traps will be taken over 
+BYTE IceTrapID MovementArrowTrapID TeleTrapID BrokenIceID // these traps will be taken over 
 BYTE 0 
 
 ALIGN 4 

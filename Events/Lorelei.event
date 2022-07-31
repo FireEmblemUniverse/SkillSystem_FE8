@@ -62,7 +62,7 @@ AREA 0 ToSaffron [8,19][8,19]
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(8,19) 
+//EscapeTileEntry(8,19) 
 EscapeTileTerminator ; } 
 #endif 
 
@@ -71,9 +71,52 @@ ChapterTransition(SaffronCh, 24,6)
 
 Traps1:
 
-//StopSlidingTrap(19, 18)
+BrokenIceTrap(16,6)
+BrokenIceTrap(8,7)
+BrokenIceTrap(19,7)
+BrokenIceTrap(5,8)
+BrokenIceTrap(10,8)
+BrokenIceTrap(17,8)
+BrokenIceTrap(6,9)
+BrokenIceTrap(9,9)
+BrokenIceTrap(18,9)
+BrokenIceTrap(20,9)
+BrokenIceTrap(4,10)
+BrokenIceTrap(9,10)
+BrokenIceTrap(10,10)
+BrokenIceTrap(15,10)
+BrokenIceTrap(20,10)
+BrokenIceTrap(21,10)
+BrokenIceTrap(10,11)
+BrokenIceTrap(13,11)
+BrokenIceTrap(14,11)
+BrokenIceTrap(16,11)
+BrokenIceTrap(20,11)
+BrokenIceTrap(3,12)
+BrokenIceTrap(4,12)
+BrokenIceTrap(7,12)
+BrokenIceTrap(15,12)
+BrokenIceTrap(17,12)
+BrokenIceTrap(22,12)
+BrokenIceTrap(4,13)
+BrokenIceTrap(9,13)
+BrokenIceTrap(6,14)
 BrokenIceTrap(13,14)
-PuddleTrap(14, 16)
+BrokenIceTrap(18,14)
+BrokenIceTrap(19,14)
+BrokenIceTrap(6,15)
+BrokenIceTrap(7,15)
+BrokenIceTrap(15,15)
+BrokenIceTrap(18,15)
+BrokenIceTrap(3,16)
+BrokenIceTrap(6,16)
+BrokenIceTrap(20,16)
+BrokenIceTrap(10,17)
+BrokenIceTrap(17,17)
+
+
+
+//PuddleTrap(14, 16)
 
 ENDTRAP
 ALIGN 4
@@ -99,23 +142,23 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 
 
-SilentGiveItemWithDurability(0xD0, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Machoke 
+SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, StatAccessory, MuscleBandT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, StatAccessory, MuscleBandT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, StatAccessory, MuscleBandT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, StatAccessory, MuscleBandT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, StatAccessory, MuscleBandT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 
 MUSCFAST IntroBGM 
 ShowMap
-BottomWallText(KiyoChallengeText)
+Text(LoreleiChallengeText)
 MarkTrainerAsDefeated(0xE1)
 
 
@@ -139,8 +182,8 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 CAM1 [8,6] 
-BottomWallText(KiyoDefeatText)
-SVAL r3 1000 
+Text(LoreleiDefeatText)
+SVAL r3 5000 
 GIVETOMAIN 0 
 NoFade
 ENDA
@@ -163,13 +206,14 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xE1 blackbeltID 		0x0  Level(0, Enemy, 1) [8,4]  0b 0x0	0 0	[0,0,0x0,0x0] 		DoNothingAI
-UNIT 0xD0 MachokeID 		0x0  Level(0, Enemy, 1) [8,5]  0b 0x0	0 0	[Submission,DoubleEdge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [6,5]  0b 0x0	0 0 [MegaKick,JumpKick,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 HitmonchanID 		0xD0 Level(0, Enemy, 1) [10,5]  0b 0x0	0 0	[IcePunch,ThunderPunch,FirePunch,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 GolduckID 		0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0 0 0	[BodySlam, Surf,Psybeam,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 PinsirID 			0xD0 Level(0, Enemy, 1) [11,7]  0b 0x0	0 0	[XScissor, Submission, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 PrimeapeID 		0xD0 Level(0, Enemy, 1) [8,8]  0b 0x0	0 0	[KarateChop,Leer,0x0,0x0] 		ZoningHeal50GroupOneAI
+//UNIT 0xE1 blackbeltID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	0 0	[0,0,0x0,0x0] 		DoNothingAI
+
+UNIT 0xD0 LaprasID 		0x0  Level(0, Enemy, 1) [12,5]  0b 0x0	0 0	[Blizzard, Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 DewgongID 		0xD0 Level(0, Enemy, 1) [11,10]  0b 0x0	0 0 [IceBeam, TailWhip,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 JynxID 			0xD0 Level(0, Enemy, 1) [13,10]  0b 0x0	0 0	[IcePunch,Psychic,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 VaporeonID 		0xD0 Level(0, Enemy, 1) [11,6]  0b 0x0 	0 0	[BodySlam, Surf,0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 SlowbroID 		0xD0 Level(0, Enemy, 1) [13,6]  0b 0x0	0 0	[FireBlast, Surf, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 CloysterID 		0xD0 Level(0, Enemy, 1) [12,8]  0b 0x0	0 0	[IceBeam, Waterfall,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 
@@ -184,7 +228,7 @@ BQ(1, GarySilphCoDefeatText)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(1, KiyoTalkText, 600) 
+BD(1, LoreleiTalkText, 600) 
 TDQ_TableTerminator ; }
 	
 
