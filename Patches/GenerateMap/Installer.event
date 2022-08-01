@@ -1,7 +1,7 @@
 #include "GenerateMap.lyn.event"
 #include "Map/GeneratedInstaller.event"
 
-#define RandomizedChapterID_Def 0x58 // Debug2 ChID  
+#define RandomizedChapterID_Def Debug2Ch // Debug2 ChID  
 #define Minimum_X_Size 15 
 #define Minimum_Y_Size 10
 #define Maximum_X_Size 35

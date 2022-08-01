@@ -1,0 +1,38 @@
+ALIGN 4
+WaterTilesetAnimation:
+{
+ConfAnimsTiles(32,1024,Water1)
+ConfAnimsTiles(32,1024,Water2)
+ConfAnimsTiles(32,1024,Water3)
+ConfAnimsTiles(32,1024,Water4)
+ConfAnimsTiles(32,1024,Water5)
+ConfAnimsTiles(32,1024,Water6)
+ConfAnimsTiles(32,1024,Water7)
+ConfAnimsTiles(32,1024,Water8)
+WORD 0x00 0x00
+
+ALIGN 4
+Water1: // None of these are compressed
+#incbin "anime.mapanime1_000.dmp"
+ALIGN 4
+Water2:
+#incbin "anime.mapanime1_001.dmp"
+ALIGN 4
+Water3:
+#incbin "anime.mapanime1_002.dmp"
+ALIGN 4
+Water4:
+#incbin "anime.mapanime1_003.dmp"
+ALIGN 4
+Water5:
+#incbin "anime.mapanime1_004.dmp"
+ALIGN 4
+Water6:
+#incbin "anime.mapanime1_005.dmp"
+ALIGN 4
+Water7:
+#incbin "anime.mapanime1_006.dmp"
+ALIGN 4
+Water8:
+#incbin "anime.mapanime1_007.dmp"
+}

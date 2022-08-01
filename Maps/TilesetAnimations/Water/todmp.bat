@@ -1,11 +1,11 @@
 
 @echo off
 
-set png2dmp="Png2Dmp.exe"
+@set "Png2Dmp=%~dp0/../../../EventAssembler/Tools/Png2Dmp.exe"
 
-for %%a in (%*) do (
-	echo Assembling "%%~nxa"...
-	%png2dmp% %%a
-)
+@dir *.png /b > png.txt
+@for /f "tokens=*" %%m in (png.txt) do ("%Png2Dmp%" "%%m")
+@del png.txt
+
 
 pause

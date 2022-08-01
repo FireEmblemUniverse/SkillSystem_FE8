@@ -110,16 +110,19 @@ ORG MapChangesPLIST + (0x4 * 0xFF)
 //#define CaveTileAnims 1
 //TileAnimPointerTable(CaveTileAnims, CaveTileAnimsData)
 
-#include "TilesetAnimations/Water/WaterAnimsInstaller.event"
+#include "TilesetAnimations/Water/Installer.event"
+#include "TilesetAnimations/Beach/Installer.event"
 
-#include "TilesetAnimations/UpdatedVillage/Installer.event"
+//#include "TilesetAnimations/UpdatedVillage/Installer.event"
 
 #define WaterAnimations 1 
 #define WaterAnimation 1
 #define UpdatedVillageAnimations 2
+#define BeachAnimationID 3 
 
 TileAnimPointerTable(WaterAnimations, WaterTilesetAnimation)
-TileAnimPointerTable(UpdatedVillageAnimations, UpdatedVillageTilesetAnimation)
+//TileAnimPointerTable(UpdatedVillageAnimations, UpdatedVillageTilesetAnimation)
+TileAnimPointerTable(BeachAnimationID, BeachAnimation)
 TileAnimPointerTable(5, 0x59D498)
 TileAnimPointerTable(0x12, 0x0859D568)
 TileAnimPointerTable(0x1C, 0x0859D6F8)
