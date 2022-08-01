@@ -111,8 +111,8 @@ mov	r2,#0		@can_trade
 mov	r3,#1		@range
 .short	0xf800
 mov	r6,r0
-cmp	r6,#1
-beq	Set
+cmp	r6,#0
+bne	Set
 
 notArmor:
 @check if the unit has the skill
