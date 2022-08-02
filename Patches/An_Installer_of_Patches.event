@@ -1,5 +1,8 @@
 //#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
 #include "AllegiancePalette/Installer.event"
+#include "ReplaceMoves/Installer.event"
+#include "ReorderMoves/Installer.event" 
+#include "FindFreeTile/Installer.event" 
 
 #include "RareCandy/Installer.event" 
 //#include "ColorFilter/Installer.event" // every time CopyToPaletteBuffer is used, applies a random filter lol 

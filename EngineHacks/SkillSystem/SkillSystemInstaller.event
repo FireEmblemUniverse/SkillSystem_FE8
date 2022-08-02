@@ -6,8 +6,9 @@
 #include "skill_icons.event"
 #include "skill_animations.event"
 
-#include "ReplaceMovesMenu/DebugSkillEdit.event"
+
 #include "Skills/MasterSkillInstaller.event"
+
 
 #include "RemoveSkillMenu/RemoveSkillMenu.event"
 
@@ -15,7 +16,7 @@
   #include "DebugSkillEdit/DebugSkillEdit.event"
 #endif
 
-#include "ReorderMovesMenu/Installer.event" 
+
 
 #include "SkillScrolls/SkillScrolls.event"
 

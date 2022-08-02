@@ -53,7 +53,17 @@ void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy) {
 		//asm("mov r11, r11");
 		int opponentHp = (((opponent->hpInitial - (unit->battleAttack - opponent->battleDefense)) * 100 / unit->battleEffectiveHitRate) * 100 / opponentA->maxHP ); 
 		//asm("mov r11, r11");
-		u8 advantage = ((unitHp > opponentHp) && (unit->canCounter)) || (!opponent->canCounter); 
+		int advantage = ((unitHp > opponentHp) && (unit->canCounter)) || (!opponent->canCounter); 
+		
+		// pokemblem type effectiveness 
+		int effective = IsItemEffectiveAgainst(unit->weaponBefore, opponent);
+		advantage = effective; 
+		bool disadvantage = ((effective == 7) | (effective == 2) | (effective == 1));
+		if (disadvantage) { advantage = -1; } 
+		
+		if (advantage == 9) { advantage = 0; } 
+
+
 		if (UseWeaponTriangleForArrows) { advantage = (unit->wTriangleDmgBonus > opponent->wTriangleDmgBonus); }  // for others 
 		
 		if (!UseWeaponTriangleForArrows || (UseWeaponTriangleForArrows && (unit->wTriangleDmgBonus != 0))) { 
@@ -65,7 +75,7 @@ void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy) {
 				} 
 			
 			} 
-			if (!advantage) { 
+			if (advantage < 0) { 
 				for (u8 y = 0; y < yDimension; y++) { 
 					for (u8 x = 0; x < xDimension; x++) { 
 						gBG0MapBuffer[y+yy+6][x+xx+10] = tileStart+3 + x + (xDimension * xImageSize * y); 
@@ -80,7 +90,7 @@ void DrawWeaponAtBottom(BattleUnit* unit, u8 xx, u8 yy) {
 
 void PrepareText(TextHandle* handle, char* string)
 {
-	u32 width = (Text_GetStringTextWidth(string)+7)/8;
+	u32 width = (Text_GetStringTextWidth(string)+8)/8;
 	Text_InitClear(handle, width); 
     handle->tileWidth = width;
 	

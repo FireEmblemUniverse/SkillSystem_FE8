@@ -271,12 +271,12 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(60, True, 0x145) // all 
-//SetUnitStatus(1, 0x28, PoisonSting)
-//SetUnitStatus(1, 0x29, Ember)
-//SetUnitStatus(1, 0x2A, 0)
-//SetUnitStatus(1, 0x2B, 0)
-//SetUnitStatus(1, 0x2C, 0)
+AutoLevelUnits(5, True, 0x145) // all 
+SetUnitStatus(1, 0x28, PoisonSting)
+SetUnitStatus(1, 0x29, Ember)
+SetUnitStatus(1, 0x2A, Growl)
+SetUnitStatus(1, 0x2B, Scratch)
+SetUnitStatus(1, 0x2C, Tackle)
 //
 //SetUnitStatus(2, 0x28, Slash)
 //SetUnitStatus(2, 0x29, Ember)
@@ -312,7 +312,8 @@ Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(19, YCoordNewArea)  
 //Write_Byte(11, YCoordNewArea)  
 
-MNC2 LoreleiCh
+//MNC2 LoreleiCh
+MNC2 DebugCh 
 //MNC2 CeruleanCaveB1Ch 
 // MNC2 FuschiaCh
 //MNC2 PewterGymCh

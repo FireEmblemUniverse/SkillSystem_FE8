@@ -5,21 +5,21 @@ PUSH
 ORG $D8178 // AI3 00 PrioritizeDamage (Accuracy) 
 BYTE 1 // Lethal 
 BYTE 1 // Defender's remaining HP
-BYTE 1 // Near allied units
-BYTE 1 // Defender's class (unused) 
+BYTE 0 // Near allied units
+BYTE 0 // Defender's class (unused) 
 BYTE 0 // Turn count 
-BYTE 1 // Defender can't counter + defender's expected damage
-BYTE 1 // Penalty: Range and attack power of opponents
-BYTE 1 // Penalty: Attacker's remaining HP 
+BYTE 0 // Defender can't counter + defender's expected damage
+BYTE 0 // Penalty: Range and attack power of opponents
+BYTE 0 // Penalty: Attacker's remaining HP 
 
 // Gyms / Trainers 
 ORG $D818C // 08 Standard 
-BYTE 1 // Lethal 
+BYTE 2 // Lethal 
 BYTE 2 // Defender's remaining HP
 BYTE 2 // Near allied units
 BYTE 0 // Defender's class (unused) 
 BYTE 0 // Turn count 
-BYTE 1 // Defender can't counter + defender's expected damage
+BYTE 0 // Defender can't counter + defender's expected damage
 BYTE 2 // Penalty: Range and attack power of opponents
 BYTE 1 // Penalty: Attacker's remaining HP 
 

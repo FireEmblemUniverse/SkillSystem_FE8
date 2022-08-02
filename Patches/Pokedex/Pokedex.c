@@ -1,4 +1,5 @@
 #include "gbafe.h"
+extern void UnpackChapterMapPalette(u8 chapterID); 
 
 static int  PokedexIdle (MenuProc* menu, MenuCommandProc* command);
 static int  PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command);
@@ -10,7 +11,7 @@ static void PrepareText(TextHandle* handle, char* string);
 static void DrawWorldMap(void);
 static void DrawMultiline(TextHandle* handles, char* string, int lines);
 static int GetNumLines(char* string);
-static void DisplayTextNow(void);
+//static void DisplayTextNow(void);
 
 extern u8 gSpecialUiCharAllocationTable[]; // 02028E78.
 
@@ -106,6 +107,7 @@ struct PokedexProcText
 	PROC_HEADER;
 };
 
+/*
 static const struct ProcInstruction Proc_PokedexText[] =
 {
 	PROC_YIELD,
@@ -114,6 +116,7 @@ static const struct ProcInstruction Proc_PokedexText[] =
 	
     PROC_END,
 };
+*/
 
 static const struct ProcInstruction Proc_ChapterPokedex[] =
 {
@@ -477,17 +480,19 @@ static int PokedexDrawIdle(MenuProc* menu, MenuCommandProc* command) {
     return ME_NONE;
 }
 
+/*
 static void DisplayTextNow(void)
 {
-	struct PokedexProc* const proc = (void*)ProcFind(&Proc_ChapterPokedex);
+	struct PokedexProc* const proc = (void*)ProcFind(&Proc_ChapterPokedex[0]);
 
 
 }
+*/
 
 
 static void PrepareText(TextHandle* handle, char* string)
 {
-	u32 width = (Text_GetStringTextWidth(string)+7)/8;
+	u32 width = (Text_GetStringTextWidth(string)+8)/8;
 	Text_InitClear(handle, width); 
     handle->tileWidth = width;
 	
@@ -624,6 +629,7 @@ static int CallPokedexMenuEnd(struct MenuProc* menu, struct MenuCommandProc* com
 	UnlockGameLogic();
 	UnlockGameGraphicsLogic(); 
 	return true;
+	
 }
 */
 

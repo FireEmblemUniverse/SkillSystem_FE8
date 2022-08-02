@@ -5,6 +5,7 @@ enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
 void EventNow();
 void ReturnEventNow();
 
+extern bool CheckEventId_(u16 flag); 
 extern void ReloadMap(void); 
 extern const u16 MyPalette[]; 
 extern unsigned gEventSlot[];
@@ -183,14 +184,14 @@ static const struct ProcInstruction Proc_FlyCommand[] =
 	PROC_CALL_ROUTINE(FlyMenuStart),
 	PROC_LABEL(0),
 	PROC_CALL_ROUTINE(FlyDisablePresses),
-	PROC_SLEEP(10),
+	//PROC_SLEEP(10),
 	PROC_CALL_ROUTINE(0x08013D81), // StartFadeInBlackFast, 0x8013D81
 	PROC_LOOP_ROUTINE(0x08014069), // Wait for fade.
-	//PROC_SLEEP(10),
+	////PROC_SLEEP(10),
 	PROC_CALL_ROUTINE(FlyCommandUpdate),
 	PROC_CALL_ROUTINE(0x08013DA5), // StartOutFromBlackFast
 	PROC_LOOP_ROUTINE(0x08014069), // Wait for fade.
-	PROC_SLEEP(10),
+	//PROC_SLEEP(10),
 	PROC_CALL_ROUTINE(FlyEnablePresses),
 	PROC_LOOP_ROUTINE(FlyIdle),
 	PROC_LABEL(1),
@@ -231,8 +232,9 @@ void FlyIdle(struct FlyCommandProc* proc)
 	// Burn some RNs!
 	//if ( proc->cycle < 15 ) { proc->cycle++; }
 	//else { proc->cycle = 0; RandNext(); }
-	if ( proc->isPressDisabled ) { ProcGoto((Proc*)proc,3); }
-	if(gChapterData.chapterIndex != FlyLocationTable[proc->commandIndex*4])
+	//if ( proc->isPressDisabled ) { ProcGoto((Proc*)proc,3); }
+	u16 active = gKeyState.timeSinceNonStartSelect;
+	if((gChapterData.chapterIndex != FlyLocationTable[proc->commandIndex*4]) & (active>20))
 	{
 		ProcGoto((Proc*)proc,0); // fade 
 	}
@@ -429,4 +431,3 @@ void ReturnEventNow()
 {
 	CallMapEventEngine((void*) ((int)&FlyReturnEvent), 1);
 }
-

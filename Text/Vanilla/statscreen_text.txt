@@ -85,17 +85,17 @@ This character's current age.[X]
 ## HeightDesc
 This character's height.[X]
 
-# 0x51B BurnStatScreenName
+# 0x51B BurnStatScreenName *
 Burn[X]
 
 # 0x51C ParalyzeStatScreenName *
 Paralyze[X]
 
-# 0x51D FreezeStatScreenName
+# 0x51D FreezeStatScreenName *
 Freeze[X]
 
 # 0x51E TrappedStatScreenName ^ 
-Entangled[X]
+Entangle[X]
 
 # 0x558 BurnRTextDesc
 Strength is halved.[N]
