@@ -2,49 +2,11 @@
 #include "gbafe.h"
 
 
-enum { UNIT_SKILL_COUNT = 8 };
-
-#define BG_SYNC_BIT(aBg) (1 << (aBg))
-enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
-
-enum { BG1_SYNC_BIT = BG_SYNC_BIT(1) };
+enum { UNIT_SKILL_COUNT = 5 };
 
 
-
-
-typedef unsigned char u8;
-#define PUSH(reg) \
-    __asm__ __volatile__("push\t{" #reg "}");
-#define POP(reg) \
-    __asm__ __volatile__("pop\t{" #reg "}");
-#define POPVAR(var) \
-    __asm__ __volatile__("pop\t{%0}" : "=r" (var));
-
-
-
-/*
-
-*/
-	
-/* 
-int someInt;
-PUSH(T9);
-POPVAR(someInt);
-someFunc(someInt);
-*/
-
-
-/*
-#define Icons_Spacing 2 
-#define menu_tile_X 1
-#define menu_tile_Y 11
-#define menu_Length 16
-
-#define portrait_pos_a 72 
-#define portrait_pos_b 16 
-
-
-*/
+extern u16 gBG0MapBuffer[32][32];
+extern u16 gBG1MapBuffer[32][32]; // 0x020234A8.
 
 
 #define Icons_Spacing 0
@@ -134,12 +96,7 @@ static void NewMoveDetailsDraw(struct MenuProc* menu, struct MenuCommandProc* co
 static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command);
 static int MoveCommandConfirm(struct MenuProc* menu, struct MenuCommandProc* command);
 static int MoveCommandDecline(struct MenuProc* menu, struct MenuCommandProc* command);
-static int List_0_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
-static int List_1_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
-static int List_2_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
-static int List_3_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
-static int List_4_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
-static int List_5_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
+static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
 
 static int SkillListCommandIdle(struct MenuProc* menu, struct MenuCommandProc* command);
 static int SkillListCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command);
@@ -165,22 +122,16 @@ struct SkillDebugProc
 
 
 			
-			int hover_move_Updated;
+			int hover_move_Updated; // 0x38 
 
-			int move_hovering;
-			
-			
-
-	
-			/*#define PUSH(reg) \
-				__asm__ __volatile__("addiu\t$sp, $sp, 0xfffc"); \
-				__asm__ __volatile__("sw\t" #reg ", 0x0000 ($sp)")
-			#define POP(reg) \
-				__asm__ __volatile__("lw\t" #reg ", 0x0000 ($sp)"); \
-				__asm__ __volatile__("addiu\t$sp, $sp, 0x0004")
-			#define POPVAR(var) \
-				__asm__ __volatile__("lw\t%0, 0x0000 ($sp)" : "=r" (var)); \
-				__asm__ __volatile__("addiu\t$sp, $sp, 0x0004") */	
+			int move_hovering; // 0x3c 
+			int a; // 0x40  
+			int b; // 0x44 
+			int c; // 0x48 
+			int d; // 0x4c 
+			int e; // 0x50 
+			int f; // 0x54 
+			u32 weapon; // 0x58 
 };
 
 /*
@@ -224,7 +175,7 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
         .isAvailable = MenuCommandAlwaysUsable,
         .onEffect = SkillListCommandSelect,
         .onDraw = ReplaceSkillCommandDraw,
-		.onIdle = List_0_Idle
+		.onIdle = List_Idle
         /*.onIdle = ReplaceSkillCommandIdle,*/
 
     },
@@ -233,7 +184,7 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
         .isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_1,
-		.onIdle = List_1_Idle,
+		.onIdle = List_Idle,
         .onEffect = MoveCommandSelect,
     },
 	
@@ -242,7 +193,7 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_1,
-		.onIdle = List_2_Idle,
+		.onIdle = List_Idle,
 		
         .onEffect = MoveCommandSelect,
     },
@@ -251,7 +202,7 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_1,
-		.onIdle = List_3_Idle,
+		.onIdle = List_Idle,
         .onEffect = MoveCommandSelect,
     },
 	
@@ -260,14 +211,14 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_1,
-		.onIdle = List_4_Idle,
+		.onIdle = List_Idle,
         .onEffect = MoveCommandSelect,
     },
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = SkillListCommandDraw_1,
-		.onIdle = List_5_Idle,
+		.onIdle = List_Idle,
         .onEffect = MoveCommandSelect,
     },
 
@@ -275,7 +226,7 @@ static const struct MenuCommandDefinition MenuCommands_SkillDebug[] =
     {} // END
 };
 
-void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct SkillDebugProc* proc);
+void DrawItemInfo(struct SkillDebugProc* proc);
 
 static void NewMoveDetailsDraw(struct MenuProc* menu, struct MenuCommandProc* command)
 {
@@ -285,7 +236,7 @@ static void NewMoveDetailsDraw(struct MenuProc* menu, struct MenuCommandProc* co
 
     Text_Clear(&command->text);
 
-    Text_DrawString(&command->text, " Learn");
+    Text_DrawString(&command->text, " Learnwetr");
 
 
 
@@ -323,12 +274,12 @@ static const struct MenuDefinition Menu_SkillDebug =
 	.onBPress = (void*) (BPressForgetOldMoveMenu), // Now in the proc call routine 
 };
 
-
-
+extern const ProcCode gProc_8A01650[]; 
 int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
     struct SkillDebugProc* proc = (void*) ProcStart(Proc_SkillDebug, ROOT_PROC_3);
-
+    //struct SkillDebugProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
+	//proc2->weapon = 0x01; 
 	
 	int* gVeslyUnit = (int*) 0x30017BC;
 	int* gVeslySkill = (int*) 0x0202BCDE;	
@@ -350,6 +301,7 @@ int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* co
 	
     proc->movesUpdated = FALSE;
     proc->skillSelected = 0;
+	
     /*proc->skillReplacement = 1; // assumes skill #1 is valid */
 	
 	proc->hover_move_Updated = FALSE; 
@@ -358,181 +310,137 @@ int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* co
     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
-static int List_0_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
+static void PrepareText(TextHandle* handle, char* string)
 {
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(proc->skillReplacement));
-	}
-    return ME_NONE;
-}
-
-
-static int List_1_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
-{
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);		
-	if (proc->move_hovering != 0)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 0;
-		/*         proc->movesUpdated = TRUE; */
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-    return ME_NONE;
-}
-
-
-static int List_2_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
-{
+	u32 width = (Text_GetStringTextWidth(string)+8)/8;
+	Text_InitClear(handle, width); 
+    handle->tileWidth = width;
 	
-	
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-	DrawItemInfo(menu, command, proc); 
-    u8* const moves = UnitGetMoveList(proc->unit);		
-	if (proc->move_hovering != 1)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 1;
-		/*         proc->movesUpdated = TRUE; */
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-    return ME_NONE;
-}
-
-static int List_3_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
-{
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);		
-	if (proc->move_hovering != 2)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 2;
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-
-	
-	
-    return ME_NONE;
-}
-
-static int List_4_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
-{
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);		
-	if (proc->move_hovering != 3)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 3;
-		/*         proc->movesUpdated = TRUE; */
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-    return ME_NONE;
-}
-
-static int List_5_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
-{
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);		
-	if (proc->move_hovering != 4)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 4;
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-    return ME_NONE;
-}
-
-static int List_6_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
-{
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);	
-	if (proc->move_hovering != 5)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 5;
-		
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-
-
-    return ME_NONE;
+	Text_SetColorId(handle,TEXT_COLOR_GOLD);
+	Text_DrawString(handle,string);
+	//Text_Display(&handle,&gBG0MapBuffer[y][x]);
 }
 
 
-static int List_7_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
+// stuff from A00AD0 HelpTextBubble
+// 203E784
+extern void* gHelpBox_RMenu; // RMenu(up,down,left,right,xcoord,ycoord,SlotID,Looper,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT SlotID; POIN Looper|1 Getter|1"
+
+extern void* gText_HelpBox; // 0x203E794 
+extern void* gText_HelpBoxTextOffset; //  0x203E7AC
+
+extern void StartDrawDialogProcs(int item, u16 descTextId); // 0x808A0FC
+
+extern void DrawHelpBoxWeaponStatLabels(int item); // 0x8089C40 
+extern void MakeHelpDialog_WeaponDetail(int item); // 0x8089CD4
+typedef struct Tile Tile;
+typedef struct TSA TSA;
+struct Tile
 {
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);	
-	if (proc->move_hovering != 6)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 6;
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-    return ME_NONE;
-}
+	u16 tileID : 10;
+	u16 horizontalFlip : 1;
+	u16 verticalFlip : 1;
+	u16 paletteID : 4;
+};
 
-static int List_8_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
+struct TSA
 {
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit);	
-	if (proc->move_hovering != 7)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = 7;
-	}
-	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
-		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
-	}
-    return ME_NONE;
-}
+	u8 width, height;
+	Tile tiles[];
+};
+extern TSA ReplaceMovesTSA;
 
-
-static void SkillListCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command)
+void DrawItemInfo(struct SkillDebugProc* proc)
 {
-    struct SkillDebugProc* const proc = (void*) menu->parent;
-
-    u8* const moves = UnitGetMoveList(proc->unit);
-	int i = proc->move_hovering;
-    u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-
-    Text_Clear(&command->text);
-	Text_SetXCursor(&command->text, new_item_desc_offset);
-    Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-    Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	Text_Display(&command->text, out); 
-	Text_SetXCursor(&command->text, 0);
-
-    LoadIconPalettes(4); /* Icon palette */
-
-	if (IsMove(moves[i])) {
-		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
-		Text_SetXCursor(&command->text, item_name_offset);
-		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
-		Text_DrawString(&command->text, GetItemName(moves[i])); 
+	for (int x = 0; x < 30; x++) { // clear out most of bg0 
+		for (int y = 14; y < 20; y++) { 
+			gBG0MapBuffer[y][x] = 0;
 		}
-	else {
-		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
-		Text_DrawString(&command->text, " No Move");
 	}
+	BgMap_ApplyTsa(&gBG1MapBuffer[14][5], &ReplaceMovesTSA, 0);
+	
+	
+	Text_ResetTileAllocation();
+	u8 hover = proc->move_hovering-1; 
+	
+	if (proc->move_hovering > UNIT_SKILL_COUNT) { 
+		proc->weapon = proc->skillReplacement;
+	} 
+	else { 
+		proc->weapon = UnitGetMoveList(proc->unit)[hover];
+	} 
+	u16 item = proc->weapon; 
+	
+	//StartDrawDialogProcs(0x01, 0x14A7); // weapon, descID 
+	//gHelpBox_RMenu = ST_Level; 
+	
 
+	TextHandle handles[20] = {};
+	for ( int i = 0 ; i < 20 ; i++ )
+	{
+		handles[i].xCursor = 0;
+		//handles[i].tileIndexOffset = 0x180;
+		handles[i].colorId = TEXT_COLOR_NORMAL;
+		handles[i].useDoubleBuffer = 0;
+		handles[i].currentBufferId = 0;
+		handles[i].unk07 = 0;
+	}
+	
+	u8 i = 0; 
+	u8 x = 6; 
+	PrepareText(&handles[i], GetWeaponTypeDisplayString(GetItemType(item)));
+	Text_Display(&handles[i], &gBG0MapBuffer[15][0+x]); i++; 
+	PrepareText(&handles[i], GetItemDisplayRankString(item));
+	Text_Display(&handles[i], &gBG0MapBuffer[15][5+x]); i++; 
+	
+	PrepareText(&handles[i], " Rng");
+	Text_Display(&handles[i], &gBG0MapBuffer[15][7+x]); i++; 
+	PrepareText(&handles[i], GetItemDisplayRangeString(item));
+	Text_Display(&handles[i], &gBG0MapBuffer[15][10+x]); i++; 
+	
+	PrepareText(&handles[i], " Wt");
+	Text_Display(&handles[i], &gBG0MapBuffer[15][14+x]); i++; 
+	DrawUiNumber(&gBG0MapBuffer[15][18+x], TEXT_COLOR_GOLD, GetItemWeight(item)); 
+	
+	PrepareText(&handles[i], "Dmg");
+	Text_Display(&handles[i], &gBG0MapBuffer[17][0+x]); i++; 
+	DrawUiNumber(&gBG0MapBuffer[17][5+x], TEXT_COLOR_GOLD, GetItemMight(item));
+	
+	
+	PrepareText(&handles[i], " Hit");
+	Text_Display(&handles[i], &gBG0MapBuffer[17][7+x]); i++; 
+	DrawUiNumber(&gBG0MapBuffer[17][12+x], TEXT_COLOR_GOLD, GetItemHit(item)); 
+	
+	PrepareText(&handles[i], " Crit");
+	Text_Display(&handles[i], &gBG0MapBuffer[17][14+x]); i++; 
+	DrawUiNumber(&gBG0MapBuffer[17][18+x], TEXT_COLOR_GOLD, GetItemCrit(item)); 
+	
+	EnableBgSyncByMask(BG0_SYNC_BIT);
+	EnableBgSyncByMask(BG1_SYNC_BIT);
+
+} 
+
+
+
+static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
+{
+    struct SkillDebugProc* const proc = (void*) menu->parent;
+    u8* const moves = UnitGetMoveList(proc->unit);		
+	if (proc->move_hovering != menu->commandIndex)
+	{   
+		proc->hover_move_Updated = TRUE;
+		proc->move_hovering = menu->commandIndex;
+		DrawItemInfo(proc); 
+		/*         proc->movesUpdated = TRUE; */
+	}
+	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
+		MenuCallHelpBox(menu, GetItemDescId(moves[proc->move_hovering]));
+	}
+	
+	
+    return ME_NONE;
 }
+
 
 static void SkillListCommandDraw_1(struct MenuProc* menu, struct MenuCommandProc* command)
 {
@@ -566,31 +474,7 @@ static void SkillListCommandDraw_1(struct MenuProc* menu, struct MenuCommandProc
 
 
 
-static void PrepareText(TextHandle* handle, char* string)
-{
-	u32 width = (Text_GetStringTextWidth(string)+8)/8;
-	Text_InitClear(handle, width); 
-    handle->tileWidth = width;
-	
-	Text_SetColorId(handle,TEXT_COLOR_GOLD);
-	Text_DrawString(handle,string);
-	//Text_Display(&handle,&gBG0MapBuffer[y][x]);
-}
-extern u16 gBG0MapBuffer[32][32];
-extern void* gText_HelpBox; 
-extern void DrawHelpBoxWeaponStatLabels(int item); // 0x8089C40 
-extern void MakeHelpDialog_WeaponDetail(int item); // 0x8089CD4
-void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct SkillDebugProc* proc)
-{
-	if (!(proc->hover_move_Updated)) { 
-		gText_HelpBox = 0; 
-		DrawHelpBoxWeaponStatLabels(0x01);
-		MakeHelpDialog_WeaponDetail(0x01); 
-		TextHandle caughtNameHandle = {};
-		PrepareText(&caughtNameHandle, " Seen");
-		Text_Display(&caughtNameHandle, &gBG0MapBuffer[16][1]);
-	} 
-} 
+
 
 
 
@@ -775,14 +659,15 @@ static void ReplaceSkillCommandDraw(struct MenuProc* menu, struct MenuCommandPro
     u8* const moves = UnitGetMoveList(proc->unit);
     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 
-    Text_Clear(&command->text);
+    //Text_Clear(&command->text);
 	
-	Text_SetXCursor(&command->text, new_item_desc_offset);
+	Text_SetXCursor(&command->text, 0);
 	Text_SetColorId(&command->text, TEXT_COLOR_GREEN);
     Text_DrawString(&command->text, "Learn ");
 	Text_Display(&command->text, out); 
 
-	Text_SetXCursor(&command->text, new_item_desc_offset+new_item_name_offset);
+	//Text_SetXCursor(&command->text, new_item_desc_offset+new_item_name_offset);
+	Text_SetXCursor(&command->text, new_item_name_offset);
     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
     Text_DrawString(&command->text, GetItemName(proc->skillReplacement)); 
 	Text_Display(&command->text, out); 
@@ -802,7 +687,7 @@ static void ReplaceSkillCommandDraw(struct MenuProc* menu, struct MenuCommandPro
         out + TILEMAP_INDEX(new_item_icon_offset, 0), 
         GetItemIconId(proc->skillReplacement), TILEREF(0, 4)); 
 		
-
+	List_Idle(menu, command); 
 
 }
 

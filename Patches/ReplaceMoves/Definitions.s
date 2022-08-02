@@ -3,9 +3,14 @@
 
 //@ Vanilla function declarations:
 
+SET_DATA gHelpBox_RMenu, 0x203E784
+SET_DATA gText_HelpBox, 0x203E794
+SET_DATA gText_HelpBoxTextOffset, 0x203E7AC
+SET_FUNC StartDrawDialogProcs, (0x808A0FC+1)
 SET_FUNC MakeHelpDialog_WeaponDetail, (0x8089CD4+1) 
 SET_FUNC DrawHelpBoxWeaponStatLabels, (0x8089C40+1) 
-SET_DATA gText_HelpBox, 0x203E7AC
+
+
 
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
 
@@ -50,6 +55,7 @@ SET_DATA SpellTargetSelection, 0x0859D3F8
 SET_DATA StatScreenBufferMap, 0x02003C94
 
 SET_DATA gBG0MapBuffer, 0x02022CA8
+SET_DATA gBG1MapBuffer, 0x020234A8
 
 SET_DATA gpCurrentRound, 0x0203A608
 

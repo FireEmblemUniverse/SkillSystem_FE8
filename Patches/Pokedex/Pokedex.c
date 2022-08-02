@@ -521,7 +521,7 @@ static void DrawMultiline(TextHandle* handles, char* string, int lines) // There
         }
         gGenericBuffer[k] = 0;
 
-		u32 width = ((Text_GetStringTextWidth((char*)gGenericBuffer))+7)/8;
+		u32 width = ((Text_GetStringTextWidth((char*)gGenericBuffer))+8)/8;
 
 		Text_InitClear(&handles[i], width);
 		handles[i].tileWidth = width;
