@@ -11,7 +11,6 @@ SET_FUNC MakeHelpDialog_WeaponDetail, (0x8089CD4+1)
 SET_FUNC DrawHelpBoxWeaponStatLabels, (0x8089C40+1) 
 
 
-
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
 
 SET_FUNC CanUnitUseWeapon, (0x8016750+1)
