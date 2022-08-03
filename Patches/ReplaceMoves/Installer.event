@@ -1,11 +1,5 @@
-#ifndef DEBUG_SKILL_EDIT_INCLUDED
-#define DEBUG_SKILL_EDIT_INCLUDED
 
-// In-game learned skill editor for debugging
-// hack by stan
 
-// Add the following to your unit menu
-// MenuCommand(<name id>, <desc id>, OrangeText, $04F449, SkillDebugCommand_OnSelect)
 #include "PostMenu.event"
 #include "ReturnTM.lyn.event"
 #include "ReplaceMovesMenu.lyn.event"
@@ -16,13 +10,7 @@ ALIGN 4
 ReplaceMovesTSA:
 #incbin "DescBox.dmp"
 
-#endif // DEBUG_SKILL_EDIT_INCLUDED
 
-
-
-
-// 0x19 / Fence / -- is impassible traps 
-// FF 01 01 FA FA 01 01 01 01 01 01 01 01 32 01 01 0A 0F 32 01 01 0A 03 01 01 FF FA FA 01 01 FA 01 01 01 FA 01 01 01 FA 01 01 01 01 01 FF 01 FF 01 01 FA FF FA 01 32 32 01 01 32 32 32 0A 0A 01 FA FA FF
 
 
 

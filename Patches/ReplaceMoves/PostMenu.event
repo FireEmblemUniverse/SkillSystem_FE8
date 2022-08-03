@@ -14,7 +14,7 @@ GOTO 0x63
 LABEL 0 
 //ASMC 0x80311a9 // ReloadGameCoreGraphics is the one we want here 
 
-ASMC SkillDebugCommand_OnSelect
+ASMC ReplaceMoveCommand_OnSelect
 LABEL 0x63 
 EVBIT_MODIFY 4 
 NoFade
@@ -36,7 +36,7 @@ GOTO 0x63
 LABEL 0 
 //ASMC 0x80311a9 // ReloadGameCoreGraphics is the one we want here 
 // Selected "no" 
-ASMC SkillDebugCommand_OnSelect
+ASMC ReplaceMoveCommand_OnSelect
 LABEL 0x63 
 EVBIT_MODIFY 4 
 

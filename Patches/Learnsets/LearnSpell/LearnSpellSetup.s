@@ -10,7 +10,7 @@
 	lpProcLearnNewSpell			= EALiterals+0x00
 	LearnNewSpell      			= EALiterals+0x04
 	pProc_ReplaceSpellLearn		= EALiterals+0x08
-	SkillDebugCommand_OnSelect	= EALiterals+0x0C
+	ReplaceMoveCommand_OnSelect	= EALiterals+0x0C
 
 LearnSpellSetup:
 	@ Arguments: r0 = Unit, r1 = Spell Index, r2 = Parent proc
@@ -118,5 +118,5 @@ EALiterals:
 	@ POIN p6CLearnNewSpell
 	@ POIN LearnNewSpell
 	@ POIN pProc_ReplaceSpellLearn		
-	@ POIN SkillDebugCommand_OnSelect	
+	@ POIN ReplaceMoveCommand_OnSelect	
 	

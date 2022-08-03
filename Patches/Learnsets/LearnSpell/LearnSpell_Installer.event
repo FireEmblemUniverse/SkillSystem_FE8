@@ -14,9 +14,8 @@ prLearnNewSpell:
 	#incbin "LearnSpellSetup.dmp" 
 	POIN pProc_NewSpellLearn
 	POIN (LearnNewSpell|1)
-	//POIN Proc_SkillDebug
 	POIN pProc_ReplaceSpellLearn
-	POIN (SkillDebugCommand_OnSelect|1)
+	POIN (ReplaceMoveCommand_OnSelect|1)
 
 ALIGN 4 
 pProc_NewSpellLearn:
@@ -34,7 +33,7 @@ _psName:
 ALIGN 4 
 pProc_ReplaceSpellLearn:
 	//_6C_SET_NAME(_psName)
-	_6C_CALL_ROUTINE_2(SkillDebugCommand_OnSelect|1)
+	_6C_CALL_ROUTINE_2(ReplaceMoveCommand_OnSelect|1)
 	//_6C_CALL_ROUTINE_2(ClearSpellLearnedRam|1)
 	_6C_END
 	
