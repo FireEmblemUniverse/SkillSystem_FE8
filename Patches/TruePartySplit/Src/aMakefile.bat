@@ -1,10 +1,10 @@
 @echo off
 
-make "TpsAsmc.lyn.event" 
+rem make "TpsAsmc.lyn.event" 
 make "TpsCore.lyn.event"
-make "TpsHook.lyn.event"
+rem make "TpsHook.lyn.event"
 make "TpsMenu.lyn.event" 
-make "TpsSave.lyn.event" 
+rem make "TpsSave.lyn.event" 
 
 
 
