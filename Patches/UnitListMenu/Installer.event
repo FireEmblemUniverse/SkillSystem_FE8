@@ -1,0 +1,17 @@
+
+
+#include "PostMenu.event"
+#include "ReturnTM.lyn.event"
+#include "ReplaceMovesMenu.lyn.event"
+
+
+
+ALIGN 4
+ReplaceMovesTSA:
+#incbin "DescBox.dmp"
+
+
+
+
+
+

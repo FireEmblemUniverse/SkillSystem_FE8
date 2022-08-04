@@ -68,21 +68,14 @@ static void ReplaceMoveMenuEnd(struct MenuProc* menu);
 struct ReplaceMoveProc
 {
     /* 00 */ PROC_HEADER; // this ends at +29
-	    /* 2C */ short moveReplacement;
-    /* 30 */ struct Unit* unit;
+    /* 2C */ struct Unit* unit;
     /* 30 */ u8 movesUpdated;
 			u8 moveSelected;
 			u8 hover_move_Updated; 
 			u8 move_hovering; // 
-			u16 weapon; // 0x34
-			u16 tileNext; // 0x36 
-			struct TextHandle handle1; // 0x38 0x3C 
-			struct TextHandle handle2;// 0x40 
-			struct TextHandle handle3; // 0x48 
-			struct TextHandle handle4; // 0x50 
-			struct TextHandle handle5; // 0x58 
-			struct TextHandle handle6; // 0x60 
-			struct TextHandle handle7; // 0x48 
+			u16 moveReplacement; // 0x34 
+			u16 tileNext; 
+			struct TextHandle handle[3]; // 0x38 - 0x4F 
 };
 
 
@@ -175,7 +168,6 @@ int ReplaceMoveCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* c
 {
     struct ReplaceMoveProc* proc = (void*) ProcStart(Proc_ReplaceMove, ROOT_PROC_3);
     //struct ReplaceMoveProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
-	//proc2->weapon = 0x01; 
 	
 	int* gVeslyUnit = (int*) 0x30017BC;
 	int* gVeslySkill = (int*) 0x0202BCDE;	
@@ -368,6 +360,7 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 	
 } 
 
+/*
 static void PrepareNum(TextHandle* handle, int num)
 {
 	u32 width = 1; 
@@ -384,6 +377,7 @@ static void PrepareNum(TextHandle* handle, int num)
 	Text_SetColorId(handle,TEXT_COLOR_GOLD);
 	Text_DrawNumber(handle, num);
 }
+*/
 
 extern u8 gSpecialUiCharAllocationTable[]; // 0x2028E78
 
@@ -402,12 +396,13 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 	
 	gpCurrentFont->tileNext = proc->tileNext; 
 	u8 hover = proc->move_hovering-1; 
+	u16 item; 
 	
 	if (proc->move_hovering == 0) { // UNIT_MOVE_COUNT) { 
-		proc->weapon = proc->moveReplacement;
+		item = proc->moveReplacement;
 	} 
 	else { 
-		proc->weapon = UnitGetMoveList(proc->unit)[hover];
+		item = UnitGetMoveList(proc->unit)[hover];
 	} 
 	
 	TextHandle handles[5] = {};
@@ -435,37 +430,25 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 	Text_Display(&handles[i], &gBG0MapBuffer[17][7+x]); i++; 
 	PrepareText(&handles[i], " Crit");
 	Text_Display(&handles[i], &gBG0MapBuffer[17][14+x]); i++; 
-	
-	u16 item = proc->weapon;
+
 	
 
 	
 	 
-	PrepareText(&proc->handle1, GetItemDisplayRankString(item));
-	Text_Display(&proc->handle1, &gBG0MapBuffer[15][5+x]); i++; 
+	PrepareText(&proc->handle[0], GetItemDisplayRankString(item));
+	Text_Display(&proc->handle[0], &gBG0MapBuffer[15][5+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 
 	// 0x8004AE8 = POIN gSpecialUiCharAllocationTable 
-	PrepareText(&proc->handle2, GetItemDisplayRangeString(item));
-	Text_Display(&proc->handle2, &gBG0MapBuffer[15][10+x]); i++; 
+	PrepareText(&proc->handle[1], GetItemDisplayRangeString(item));
+	Text_Display(&proc->handle[1], &gBG0MapBuffer[15][10+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 
 
-	PrepareText(&proc->handle3, GetWeaponTypeDisplayString(GetItemType(item)));
-	Text_Display(&proc->handle3, &gBG0MapBuffer[15][0+x]); i++; 
+	PrepareText(&proc->handle[2], GetWeaponTypeDisplayString(GetItemType(item)));
+	Text_Display(&proc->handle[2], &gBG0MapBuffer[15][0+x]); i++; 
 	
 	
 	gSpecialUiCharAllocationTable[0] = 0xFF; //no clue but it made DrawUiNumber work properly 
-	
-	//Text_DrawNumber(struct TextHandle*, int);
-	//PrepareNum(&proc->handle4, GetItemWeight(item));
-	//Text_Display(&proc->handle4, &gBG0MapBuffer[15][18+x]); i++; 
-	//PrepareNum(&proc->handle5, GetItemMight(item));
-	//Text_Display(&proc->handle5, &gBG0MapBuffer[17][5+x]); i++; 
-	//PrepareNum(&proc->handle6, GetItemHit(item)); 
-	//Text_Display(&proc->handle6, &gBG0MapBuffer[17][12+x]); i++; 
-	//PrepareNum(&proc->handle7, GetItemCrit(item)); 
-	//Text_Display(&proc->handle3, &gBG0MapBuffer[17][18+x]); i++; 
-	
-	
+
 	DrawUiNumber(&gBG0MapBuffer[15][18+x], TEXT_COLOR_GOLD, GetItemWeight(item)); 
 	DrawUiNumber(&gBG0MapBuffer[17][5+x], TEXT_COLOR_GOLD, GetItemMight(item));
 	DrawUiNumber(&gBG0MapBuffer[17][12+x], TEXT_COLOR_GOLD, GetItemHit(item)); 

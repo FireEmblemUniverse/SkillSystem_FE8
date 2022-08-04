@@ -1,0 +1,51 @@
+
+// True Party Split system (asmc collection and menu)
+// hack by stan
+
+#ifndef TPS_STATE_ADDR
+  #define TPS_STATE_ADDR 0x03003B48
+#endif
+
+#include "Src/TpsCore.lyn.event"
+#include "Src/TpsAsmc.lyn.event"
+#include "Src/TpsMenu.lyn.event"
+#include "Src/TpsSave.lyn.event"
+#include "Src/TpsHook.lyn.event"
+
+#ifndef HookProtectDefined
+  #define HookProtectDefined
+
+  #ifdef DEBUG
+    #ifdef __COLORZ_CORE__
+      #define HookProtect(aFrom, aTo) "PROTECT (aFrom) (aTo); ASSERT (aTo) - CURRENTOFFSET"
+    #else
+      // Stan!Core breaks PROTECT, and there's no proper way of recognizing a Stan!Core from a legacy Core
+      #define HookProtect(aFrom, aTo) "ASSERT (aTo) - CURRENTOFFSET"
+    #endif
+  #else
+    #define HookProtect(aFrom, aTo) " "
+  #endif
+#endif // HookProtectDefined
+
+PUSH
+
+    ORG $0102EC
+        POIN TpsHook_EvtHideUnit
+        POIN TpsHook_EvtShowUnit
+        HookProtect($0102EC, $0102F4)
+
+    ORG $0177E8
+        WORD $47184B00; POIN TpsHook_PostClearUnits
+        HookProtect($0177E8, $0177F0)
+
+POP
+
+ALIGN 4
+
+/*
+  uses free RAM space at TPS_STATE_ADDR
+  size of used space: 0x04+(0x46/2) = 0x27 bytes
+  note that the packed size stored to SRAM is only 0x24 bytes
+*/
+g_tps_current_party: WORD TPS_STATE_ADDR
+g_tps_party_array: WORD TPS_STATE_ADDR+4

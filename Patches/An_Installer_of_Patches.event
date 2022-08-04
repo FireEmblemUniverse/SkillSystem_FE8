@@ -4,6 +4,8 @@
 #include "ReorderMoves/Installer.event" 
 #include "FindFreeTile/Installer.event" 
 
+#include "TruePartySplit/Installer.event" 
+
 #include "RareCandy/Installer.event" 
 //#include "ColorFilter/Installer.event" // every time CopyToPaletteBuffer is used, applies a random filter lol 
 #include "GenerateMap/Installer.event"
