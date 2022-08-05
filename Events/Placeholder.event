@@ -375,16 +375,15 @@ ALIGN 4
 
 
 ExamplePartySplitEvent:
-SVAL s2 Ephraim // unit ID 
+SVAL s2 5 // unit ID 
 SVAL s3 1 // party 1 
-//ASMC Asmc_Tps_SetUnitParty
+ASMC Asmc_Tps_SetUnitParty
 SVAL s2 6 // unit ID 
 SVAL s3 1 // party 1 
 ASMC Asmc_Tps_SetUnitParty
-SVAL s2 7  // unit ID 
+SVAL s2 7 // unit ID 
 SVAL s3 1 // party 1 
 ASMC Asmc_Tps_SetUnitParty
-
 SVAL s2 TpsInfo|IsPointer // data above: Party1 led by Eirika and Party2 led by Ephraim 
 ASMC Asmc_Tps_StartMenu
 

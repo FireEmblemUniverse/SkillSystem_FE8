@@ -3,7 +3,8 @@
 // hack by stan
 
 #ifndef TPS_STATE_ADDR
-  #define TPS_STATE_ADDR 0x03003B48
+  //#define TPS_STATE_ADDR 0x03003B48
+  #define TPS_STATE_ADDR 0x203F0D9
 #endif
 
 #include "Src/TpsCore.lyn.event"
