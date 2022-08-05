@@ -25,7 +25,7 @@ struct TpsUidStorageProc
 {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 forced_amt;
-    /* 2A */ u8 uids[0x40];
+    /* 2A */ u8 uids[0x40]; // this is unit struct + 0x0B "deployment byte" (not unit id) 
 };
 
 struct TpsUidStorageMasterProc
@@ -792,25 +792,25 @@ void TpsMenu_SelectedLoop(struct TpsMenuProc* proc)
         else
         {
 
-			
-			
-            
-			
 			// update unit on right side to be in party Y 
-			u8 uid = proc->unit_list_proc[proc->hover_col]->uid_storage->uids[proc->hover_row];
-			u8 party = proc->info->party_info_list[proc->select_col]->party_num; 
-			//u8 party = proc->info->party_info_list[proc->current_party_select[proc->hover_col]]->party_num;
-			asm("mov r11, r11");
-			if (uid)
+			u8 party; 
+			u8 uid; 
+			u8 deploy_id = proc->unit_list_proc[proc->hover_col]->uid_storage->uids[proc->hover_row];
+			if (deploy_id) { 
+				uid = GetUnit(deploy_id)->pCharacterData->number;
+				party = proc->info->party_info_list[proc->select_col]->party_num; 
+				//asm("mov r11, r11"); // break point 
 				TpsSetPartyByPid(uid, party);
+			} 
 			
 			// update unit on left side to be in party X 
-			uid = proc->unit_list_proc[proc->select_col]->uid_storage->uids[proc->select_row];
-			party = proc->info->party_info_list[proc->hover_col]->party_num; 
-			asm("mov r11, r11");
-			if (uid)
+			deploy_id = proc->unit_list_proc[proc->select_col]->uid_storage->uids[proc->select_row];
+			if (deploy_id) { 
+				uid = GetUnit(deploy_id)->pCharacterData->number;
+				party = proc->info->party_info_list[proc->hover_col]->party_num; 
+				//asm("mov r11, r11");
 				TpsSetPartyByPid(uid, party);
-			
+			} 
 			
 			TpsMenu_DoSwapUids(proc);
 			

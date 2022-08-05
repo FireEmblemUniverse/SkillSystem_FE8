@@ -45,71 +45,12 @@ void TpsSetPartyByPid(int pid, int party)
     TpsSetPartyRawForPid(pid, val);
 }
 
-int TpsGetPartyRawByPid2(int pid) 
-{
-    static int const mask = 0xF; //4 bits 
 
-    int const slot = pid >> 1; //divide by 2
-    int const shift = ((pid & 1) ^ 1) << 2; //4 if an even number, 0 otherwise 
-	//int const shift = (pid % (8 / BITS_PER_PARTY_ID)) * BITS_PER_PARTY_ID;
-
-    return (g_tps_party_array[slot] >> shift) & mask;
-}
-
-void TpsSetPartyRawForPid2(int pid, int party)
-{
-	
-    static int const mask = 0xF; //4 bits 
-
-    int const slot = pid >> 1; //divide by 2
-    int const shift = ((pid & 1) ^ 1) << 2; //4 if an even number, 0 otherwise 
-	//int const shift = (pid % (8 / BITS_PER_PARTY_ID)) * BITS_PER_PARTY_ID;
-
-// 0 mod 2 = 0 
-// 1 mod 2 = 1 
-// 2 mod 2 = 0 
-// 3 mod 2 = 1 
-
-// 0 xor 1 = 1 
-// 1 xor 1 = 0 
-// 0 xor 1 = 1 
-// 1 xor 1 = 0 
-//Party1<<4|Party0 instead of Party0<<4|Party1
-
-
-    g_tps_party_array[slot] &= ~(mask << shift); //clear the bits we are about to set
-    g_tps_party_array[slot] |= (party & mask) << shift; //set the bits
-}
-
-int TpsGetPartyByPid2(int pid)
-{
-	int val = TpsGetPartyRawByPid(pid);
-	//return val; 
-    return PARTY_ID(val);
-}
-
-void TpsSetPartyByPid2(int pid, int party)
-{
-    //static int const mask = (1 << (BITS_PER_PARTY_ID-1)) - 1;
-    static int const mask = 0xF;
-
-    //int val = TpsGetPartyRawByPid(pid);
-    int disabled = PARTY_RM(TpsGetPartyRawByPid(pid));
-    int val = TpsGetPartyByPid(pid);
-
-// ~7 
-
-    val &= ~mask; // 0xF8 
-    val |= party & mask;
-
-    //TpsSetPartyRawForPid(pid, party);
-    TpsSetPartyRawForPid(pid, val);
-}
 
 int TpsIsDisabledByPid(int pid)
 {
     return !!(TpsGetPartyRawByPid(pid) & (1 << (BITS_PER_PARTY_ID-1)));
-}
+} // !! is 0 if 0, 1 if anything but 0 
 
 void TpsSetDisabledByPid(int pid, int disabled)
 {
@@ -120,6 +61,8 @@ void TpsSetDisabledByPid(int pid, int disabled)
 
     TpsSetPartyRawForPid(pid, val);
 }
+
+
 
 void TpsRefreshUnitAwayBits(void)
 {
