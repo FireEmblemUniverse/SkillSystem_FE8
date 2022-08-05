@@ -802,14 +802,14 @@ void TpsMenu_SelectedLoop(struct TpsMenuProc* proc)
 			//u8 party = proc->info->party_info_list[proc->current_party_select[proc->hover_col]]->party_num;
 			asm("mov r11, r11");
 			if (uid)
-				TpsSetPartyByPid(uid, party);
+				TpsSetPartyRawForPid(uid, party);
 			
 			// update unit on left side to be in party X 
 			uid = proc->unit_list_proc[proc->select_col]->uid_storage->uids[proc->select_row];
 			party = proc->info->party_info_list[proc->hover_col]->party_num; 
 			asm("mov r11, r11");
 			if (uid)
-				TpsSetPartyByPid(uid, party);
+				TpsSetPartyRawForPid(uid, party);
 			
 			TpsRefreshUnitAwayBits();
 			TpsMenu_DoSwapUids(proc);

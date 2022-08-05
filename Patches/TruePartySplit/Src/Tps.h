@@ -18,6 +18,7 @@ struct TpsMenuInfo
 
 int TpsGetPartyByPid(int pid);
 void TpsSetPartyByPid(int pid, int party);
+void TpsSetPartyRawForPid(int pid, int party);
 int TpsIsDisabledByPid(int pid);
 void TpsSetDisabledByPid(int pid, int disabled);
 void TpsRefreshUnitAwayBits(void);
