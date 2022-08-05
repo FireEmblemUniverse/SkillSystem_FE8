@@ -368,14 +368,14 @@ Party2Info:
     WORD 1 // party id
     POIN Party2Forced
 ALIGN 4 
-Party1Forced: BYTE Eirika 0
+Party1Forced: BYTE 0 Eirika 0
 ALIGN 4 
-Party2Forced: BYTE Ephraim 0
+Party2Forced: BYTE 0 Ephraim 0
 ALIGN 4 
 
 
 ExamplePartySplitEvent:
-SVAL s2 5 // unit ID 
+SVAL s2 0xF // unit ID 
 SVAL s3 1 // party 1 
 ASMC Asmc_Tps_SetUnitParty
 SVAL s2 6 // unit ID 

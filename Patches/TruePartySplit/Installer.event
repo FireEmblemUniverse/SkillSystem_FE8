@@ -29,7 +29,8 @@
 #endif // HookProtectDefined
 
 PUSH
-
+//r0=0x801032C in func $10298 
+// I don't think this hook actually does anything 
     ORG $0102EC
         POIN TpsHook_EvtHideUnit
         POIN TpsHook_EvtShowUnit

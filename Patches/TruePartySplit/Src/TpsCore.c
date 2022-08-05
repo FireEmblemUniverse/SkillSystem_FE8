@@ -5,7 +5,7 @@ enum { BITS_PER_PARTY_ID = 4 };
 
 #define PARTY_ID(party) (party & ((1 << (BITS_PER_PARTY_ID-1))-1)) // & 0x7 
 #define PARTY_RM(party) (party & ((1 << (BITS_PER_PARTY_ID-1)))) // & 0x8
-
+ 
 
 int TpsGetPartyRawByPid(int pid)
 {
