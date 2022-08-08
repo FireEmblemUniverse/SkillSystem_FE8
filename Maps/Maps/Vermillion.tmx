@@ -5,7 +5,7 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="42" height="34">
   <properties>
-   <property name="Anims1" value="WaterAnimation"/>
+   <property name="Anims1" value="WaterAnimationID"/>
    <property name="ChapterID" value="VermillionCh"/>
    <property name="Main" value=""/>
    <property name="MapID" value="VermillionMap"/>

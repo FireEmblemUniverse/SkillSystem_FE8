@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(CeruleanCh,CeruleanObj,0,CeruleanPal,CeruleanConf,CeruleanMap,Map,WaterAnimations,0,0)
+SetChapterData(CeruleanCh,CeruleanObj,0,CeruleanPal,CeruleanConf,CeruleanMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "Cerulean_data.dmp"
 Map_Pointer_Table(CeruleanMap,Map)

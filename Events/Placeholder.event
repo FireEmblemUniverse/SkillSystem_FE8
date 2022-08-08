@@ -327,18 +327,6 @@ ENUN
 ENUT 0xAE  
 
 
-
-ShowMap
-//ASMC Asmc_Tps_ResetParties|1
-//SVAL s2 2 
-//SVAL s3 1 // party 
-//ASMC Asmc_Tps_SetUnitParty|1
-//SVAL s2 1 
-//ASMC Asmc_Tps_StartMenu|1
-
-
-    // in event
-CALL ExamplePartySplitEvent
 	
 
 //EVBIT_T 9 //Follow moving units 
@@ -355,43 +343,6 @@ CALL ExamplePartySplitEvent
 NoFade
 ENDA
 
-ALIGN 4
-TpsInfo: POIN TpsInfoList
-TpsInfoList:
-    POIN Party1Info
-    POIN Party2Info
-    WORD 0 // end
-Party1Info:
-    WORD 0 // party id
-    POIN Party1Forced
-Party2Info:
-    WORD 1 // party id
-    POIN Party2Forced
-ALIGN 4 
-Party1Forced: BYTE 0 Eirika 0
-ALIGN 4 
-Party2Forced: BYTE 0 Ephraim 0
-ALIGN 4 
-
-
-ExamplePartySplitEvent:
-SVAL s2 0xF // unit ID 
-SVAL s3 1 // party 1 
-ASMC Asmc_Tps_SetUnitParty
-SVAL s2 6 // unit ID 
-SVAL s3 1 // party 1 
-ASMC Asmc_Tps_SetUnitParty
-SVAL s2 7 // unit ID 
-SVAL s3 1 // party 1 
-ASMC Asmc_Tps_SetUnitParty
-SVAL s2 TpsInfo|IsPointer // data above: Party1 led by Eirika and Party2 led by Ephraim 
-ASMC Asmc_Tps_StartMenu
-
-SVAL s2 1 // party 1 instead of 0 
-ASMC Asmc_Tps_SetActiveParty
-
-NoFade 
-ENDA 
 
 
 TalkEvent:

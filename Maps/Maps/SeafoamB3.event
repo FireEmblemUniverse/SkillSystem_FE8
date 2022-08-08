@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(SeafoamB3Ch,SeafoamObj,0,SeafoamPal,SeafoamConf,SeafoamB3Map,Map,WaterAnimations,0,0)
+SetChapterData(SeafoamB3Ch,SeafoamObj,0,SeafoamPal,SeafoamConf,SeafoamB3Map,Map,WaterAnimationID,0,0)
 Map:
 #incbin "SeafoamB3_data.dmp"
 Map_Pointer_Table(SeafoamB3Map,Map)

@@ -311,12 +311,13 @@ ENUT IndigoPlateauArrived
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 
-Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(19, YCoordNewArea)  
+Write_Byte(28, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(5, YCoordNewArea)  
 //Write_Byte(11, YCoordNewArea)  
-
+//MNC2 SeafoamB2Ch
 //MNC2 LoreleiCh
-MNC2 DebugCh 
+MNC2 MtMoonB3Ch
+//MNC2 DebugCh 
 //MNC2 CeruleanCaveB1Ch 
 // MNC2 FuschiaCh
 //MNC2 PewterGymCh

@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(Route12SCh,Route12Obj,0,Route12Pal,Route12Conf,Route12SMap,Map,WaterAnimations,0,0)
+SetChapterData(Route12SCh,Route12Obj,0,Route12Pal,Route12Conf,Route12SMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "Route12S_data.dmp"
 Map_Pointer_Table(Route12SMap,Map)

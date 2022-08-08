@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(SafariECh,SafariObj,0,SafariPal,SafariConf,SafariEMap,Map,WaterAnimations,0,0)
+SetChapterData(SafariECh,SafariObj,0,SafariPal,SafariConf,SafariEMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "SafariE_data.dmp"
 Map_Pointer_Table(SafariEMap,Map)

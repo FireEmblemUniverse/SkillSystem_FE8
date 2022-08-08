@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="38" height="24">
   <properties>
-   <property name="Anims1" value="WaterAnimations"/>
+   <property name="Anims1" value="SeafoamWaterID"/>
    <property name="ChapterID" value="SeafoamB4Ch"/>
    <property name="Main" value=""/>
    <property name="MapID" value="SeafoamB4Map"/>
@@ -723,8 +723,8 @@
   <tile gid="38"/>
   <tile gid="201"/>
   <tile gid="43"/>
-  <tile gid="202"/>
-  <tile gid="203"/>
+  <tile gid="33"/>
+  <tile gid="33"/>
   <tile gid="38"/>
   <tile gid="201"/>
   <tile gid="43"/>
@@ -761,8 +761,8 @@
   <tile gid="37"/>
   <tile gid="1"/>
   <tile gid="35"/>
-  <tile gid="225"/>
-  <tile gid="226"/>
+  <tile gid="36"/>
+  <tile gid="36"/>
   <tile gid="37"/>
   <tile gid="1"/>
   <tile gid="35"/>
@@ -799,8 +799,8 @@
   <tile gid="200"/>
   <tile gid="1"/>
   <tile gid="35"/>
-  <tile gid="225"/>
-  <tile gid="226"/>
+  <tile gid="36"/>
+  <tile gid="36"/>
   <tile gid="37"/>
   <tile gid="1"/>
   <tile gid="166"/>
@@ -837,8 +837,8 @@
   <tile gid="5"/>
   <tile gid="1"/>
   <tile gid="35"/>
-  <tile gid="225"/>
-  <tile gid="226"/>
+  <tile gid="36"/>
+  <tile gid="36"/>
   <tile gid="37"/>
   <tile gid="1"/>
   <tile gid="1"/>
@@ -875,8 +875,8 @@
   <tile gid="201"/>
   <tile gid="204"/>
   <tile gid="35"/>
-  <tile gid="225"/>
-  <tile gid="226"/>
+  <tile gid="36"/>
+  <tile gid="36"/>
   <tile gid="37"/>
   <tile gid="228"/>
   <tile gid="201"/>

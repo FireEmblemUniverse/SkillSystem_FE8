@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(VermillionCh,VermillionObj,0,VermillionPal,VermillionConf,VermillionMap,Map,WaterAnimation,0,0)
+SetChapterData(VermillionCh,VermillionObj,0,VermillionPal,VermillionConf,VermillionMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "Vermillion_data.dmp"
 Map_Pointer_Table(VermillionMap,Map)

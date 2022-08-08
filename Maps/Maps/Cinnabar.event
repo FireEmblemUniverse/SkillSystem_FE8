@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(CinnabarCh,CinnabarObj,0,CinnabarPal,CinnabarConf,CinnabarMap,Map,WaterAnimation,0,0)
+SetChapterData(CinnabarCh,CinnabarObj,0,CinnabarPal,CinnabarConf,CinnabarMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "Cinnabar_data.dmp"
 Map_Pointer_Table(CinnabarMap,Map)

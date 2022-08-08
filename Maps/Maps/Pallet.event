@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(PalletCh,PalletObj,0,PalletPal,PalletConf,PalletMap,Map,WaterAnimations,0,0)
+SetChapterData(PalletCh,PalletObj,0,PalletPal,PalletConf,PalletMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "Pallet_data.dmp"
 Map_Pointer_Table(PalletMap,Map)
