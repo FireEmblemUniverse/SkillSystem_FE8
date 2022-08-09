@@ -92,7 +92,11 @@ POIN Proc_Corrosion //skills that don't affect damage
 
 
 POIN Proc_Counter Proc_CounterMagic	//counters are last
-POIN Proc_FlashyMode
+
+#ifdef FLASHY_MODE
+	POIN Proc_FlashyMode
+#endif
+
 POIN Proc_Finish 0	//end
 
 //POIN Chargeups, chargeup not working? so I just removed them for now

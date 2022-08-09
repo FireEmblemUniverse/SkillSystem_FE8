@@ -106,8 +106,17 @@ Skill_Getter: // gets a list of skills
 
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
-//Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 4 bytes long
+
+//Pointer with thumb bit set for NewSkillTester to use
+ALIGN 4
+GetInitialSkillList_Pointer:
+POIN (GetInitialSkillList|1)
+
+//Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 2 bytes long
 #define AuraSkillBufferLimit 480
+
+//Determines the max number of skills generics get from learned skills
+#define MaxGenericLearnedSkills 4
 
 ALIGN 4
 PassiveSkillBit:
@@ -116,64 +125,13 @@ WORD PASSIVE_ITEM_SKILL_ATTR
 PassiveSkillStack:
 WORD PASSIVE_SKILLS_STACK
 
-
-
-
-
 gAuraSkillBufferLimit:
 WORD AuraSkillBufferLimit
 
+GenericLearnedSkillLimit:
+WORD MaxGenericLearnedSkills
+
 #define NegatedSkillEntry(skillID) "PUSH; ORG NegatedSkills + skillID; BYTE 0x1; POP"
-
-
-
-
-/*
-SkillTesterOriginal: //does unit have X skill?
-#include "skillTester.lyn.event"
-POIN Skill_Getter
-POIN ItemSkill_Getter EquipSkill_Getter
-
-
-
-SkillTester: //does enemy have Nihil? if so, does Nihil negate X skill?
-#incbin nihilTester.dmp
-POIN SkillTesterOriginal
-WORD NihilID
-POIN Skill_Getter
-POIN NegatedSkills
-POIN SkillTester
-WORD CatchEmAllID
-
-//this version does not check for equipped weapons
-SkillTesterOriginal2:
-#include "skillTester2.lyn.event"
-POIN Skill_Getter ItemSkill_Getter
-
-
-SkillTester2:
-#include "nihilTester2.lyn.event"
-POIN SkillTesterOriginal2 NegatedSkills
-WORD NihilID CatchEmAllID
-
-
-
-ItemSkill_Getter:
-#include "GetItemSkills.lyn.event"
-POIN GetItemSkillBuffer
-POIN GetItemPassiveSkill
-POIN ResetEquipItemSkill
-#ifdef ACCESSORIES_AND_FORGING
-	POIN AccessorySkillGetter
-#endif 
-#ifndef ACCESSORIES_AND_FORGING
-WORD 0 
-#endif 
-
-
-*/
-
-
 
 ALIGN 4
 NihilIDLink:

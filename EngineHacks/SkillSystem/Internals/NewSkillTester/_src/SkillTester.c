@@ -6,6 +6,16 @@ static bool IsSkillIDValid(u8 skillID) {return skillID != 0 && skillID != 255;}
 static bool IsBattleReal()             {return gBattleStats.config & 3;}
 
 extern int AccessorySkillGetter(struct Unit *unit);
+//Checks if given unit is on the field
+static bool IsUnitOnField(Unit* unit) {
+    if (!unit || !unit->pCharacterData)
+        return FALSE;
+
+    if (unit->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
+        return FALSE;
+
+    return TRUE;
+}
 
 //Checks if given skillID is in given skill buffer
 bool IsSkillInBuffer(SkillBuffer* buffer, u8 skillID) {
@@ -63,6 +73,17 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
         }
     }
 
+    //If generic, load skills from learned list
+    else {
+        u8* tempBuffer = GetInitialSkillList_Pointer(unit, gTempSkillBuffer);
+        for (int i = 0; i < GenericLearnedSkillLimit; ++i) {
+            if (!IsSkillIDValid(tempBuffer[i])) {
+                break;
+            }
+            buffer->skills[count++] = tempBuffer[i];
+        }
+    }
+
     //Item passive skills
     for (int i = 0; i < 5 && unit->items[i]; ++i) {
         temp = unit->items[i];
@@ -111,21 +132,13 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
 AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
     SkillBuffer* buffer = gAttackerSkillBuffer;
     u8 count = 0;
+    u8 distance = 0;
 
     for (int i = 0; i < 0x100; ++i) {
         Unit* other = gUnitLookup[i];
-
-        if (!other)
+        if (!IsUnitOnField(other) || unit->index == i) {
             continue;
-
-        if (!other->pCharacterData)
-            continue;
-        
-        if (other->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
-            continue;
-
-        if (unit->index == i)
-            continue;
+        }
 
         //If the unit is actually on the field, make a skill buffer for them
         buffer = MakeSkillBuffer(other, buffer);
@@ -137,6 +150,18 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
                 gAuraSkillBuffer[count].distance = absolute(other->xPos - unit->xPos)
                                                  + absolute(other->yPos - unit->yPos);
                 gAuraSkillBuffer[count].faction = UNIT_FACTION(other);
+
+                distance = absolute(other->xPos - unit->xPos) +
+                           absolute(other->yPos - unit->yPos);
+
+                if (distance > 63) {
+                    distance = 63;
+                }
+
+                //No need to `& 0x3F` because of the limit
+                gAuraSkillBuffer[count].distance = distance;
+                 //Shifting for storage
+                gAuraSkillBuffer[count].faction = UNIT_FACTION(other) >> 6;
                 ++count;
             }
         }
@@ -202,7 +227,7 @@ bool NewAuraSkillCheck(Unit* unit, u8 skillID, int allyOption, int maxRange) {
         if (gAuraSkillBuffer[i].distance <= maxRange && gAuraSkillBuffer[i].skillID == skillID) {
 
             //NOTE: This is checking bits
-            int check = pAllegianceChecker(unit->index, gAuraSkillBuffer[i].faction);
+            int check = pAllegianceChecker(unit->index, gAuraSkillBuffer[i].faction << 6);
 
             if (allyOption & 2)
                 check = !check;
@@ -236,17 +261,9 @@ u8* GetUnitsInRange(Unit* unit, int allyOption, int range) {
     for (int i = 0; i < 0x100; ++i) {
         Unit* other = gUnitLookup[i];
 
-        if (!other)
+        if (!IsUnitOnField(other) || unit->index == i) {
             continue;
-
-        if (!other->pCharacterData)
-            continue;
-        
-        if (other->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
-            continue;
-
-        if (unit->index == i)
-            continue;
+        }
 
         //Check if other matches allyOption's criteria
         if (allyOption & 2) {

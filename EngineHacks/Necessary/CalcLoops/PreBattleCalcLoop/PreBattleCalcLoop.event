@@ -81,7 +81,6 @@ POIN CriticalCheck
 #endif // CANNOT_CRIT
 POIN 0
 
-
 #define AuraSkillEntry(skillID) "PUSH; ORG AuraSkillTable + skillID; BYTE 0x1; POP"
 
 ALIGN 4
@@ -109,7 +108,14 @@ AuraSkillEntry(LilysPoiseID)
 AuraSkillEntry(CharismaID)
 AuraSkillEntry(HexID)
 AuraSkillEntry(BlueFlameID)
-
+AuraSkillEntry(DriveStrID)
+AuraSkillEntry(DriveMagID)
+AuraSkillEntry(DriveSpdID)
+AuraSkillEntry(DriveDefID)
+AuraSkillEntry(DriveResID)
+AuraSkillEntry(BloodTideID)
+AuraSkillEntry(WhitePoolID)
+AuraSkillEntry(NightTideID)
 
 // Occurs once both attacker and defender are confirmed. If weapons negate def, will occur after def is negated. 
 ALIGN 4 
@@ -122,6 +128,8 @@ POIN ScaledBackFunc
 POIN MinimumDamage
 POIN FixedDamageWeapons
 POIN 0 
+
+
 
 
 
