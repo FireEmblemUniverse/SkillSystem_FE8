@@ -74,7 +74,9 @@
 #define WeaponLock3 0x10
 #define WeaponLock4 0x20
 #define IsAccessory 0x40
-#define PassiveBoosts 0x80 // These use the same def... 
+#ifndef PassiveBoosts 
+	#define PassiveBoosts 0x80 // These use the same def... 
+#endif 
 // Best not use the one below 
 #define Accessory_DepleteUsesOnDefense 0x80
 
