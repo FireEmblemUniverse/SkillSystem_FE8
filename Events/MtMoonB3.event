@@ -49,9 +49,9 @@ END_MAIN
 LocationBasedEvents:
 
 
-House(0, ToMtMoonB2_NW, 23,12) 
+House(0, ToMtMoonB2_NE, 23,13) 
 House(0, ToMtMoonB2_ME, 21,20) 
-House(0, ToMtMoonB2_SW, 12,30) 
+House(0, ToMtMoonB2_SW, 11,30) 
 House(0, ToMtMoonB2_Exit, 5,9) 
 END_MAIN
 
@@ -64,9 +64,9 @@ AFEV 0 GlobalAfev 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(23,12) 
+EscapeTileEntry(23,13) 
 EscapeTileEntry(21,20) 
-EscapeTileEntry(12,30) 
+EscapeTileEntry(11,30) 
 EscapeTileEntry(5,9) 
 EscapeTileTerminator ; } 
 #endif 
@@ -79,7 +79,7 @@ ToMtMoonB2_SW:
 ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 11, 30)
 
-ToMtMoonB2_NW:
+ToMtMoonB2_NE:
 ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 13, 14)
 
