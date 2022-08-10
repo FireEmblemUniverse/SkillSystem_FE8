@@ -151,7 +151,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
                 //No need to `& 0x3F` because of the limit
                 gAuraSkillBuffer[count].distance = distance;
-                 //Shifting for storage
+                //Shifting for storage
                 gAuraSkillBuffer[count].faction = UNIT_FACTION(other) >> 6;
                 ++count;
             }
@@ -160,6 +160,8 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
     //Cleanup to avoid caching issues
     buffer->lastUnitChecked = 0;
+    gAuraSkillBuffer[count++].skillID = 0;
+
     return gAuraSkillBuffer;
 }
 
