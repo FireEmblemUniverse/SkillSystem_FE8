@@ -1,7 +1,7 @@
 WorldMapPointerTable(0,WM_Events)
 
 WM_Events:
-ENUT SkipIntroFlag
+ENUT 0x86 // Pokemblem SkipIntroFlag 
 EVBIT_MODIFY 0x1
 _0xC220
 WM_SPAWNLORD 0x0 0x0 0x1 0x0 0x0

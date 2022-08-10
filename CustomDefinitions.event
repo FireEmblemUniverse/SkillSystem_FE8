@@ -6,7 +6,9 @@
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
-
+// add [N] to a text dump 
+//([^#0-9\n]+)([^X]{3})\n
+//$1$2[NL]\n
 
 //PROTECT $37744 $377C4
 // 968 / $3C8 bytes used? - free range
