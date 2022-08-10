@@ -45,7 +45,8 @@ str r0, [r4, #0xC]
 
 NoPetrify:
 pop {r1-r3}
-mov r0,#0 @otherwise, status is over
+mov r0,#0xF @otherwise, status is over
+and r0,r3 @the status nybble must be preserved so the cured status FX can work
 strb r0,[r1]
 b GoBack
 
@@ -55,6 +56,8 @@ lsr r0,r3,#4
 sub r0,#1
 cmp r0,#0
 bne KeepStatus
+mov r0,#0xF
+and r0,r3 @the status nybble must be preserved so the cured status FX can work
 strb r0,[r1]
 b GoBack
 KeepStatus:
