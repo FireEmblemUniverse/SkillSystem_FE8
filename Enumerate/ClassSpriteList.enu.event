@@ -216,7 +216,7 @@
 #define Unused1SMS 0xD7
 #define Unused2SMS 0xD8
 #define puddleSMS 0xD9
-#define Unused45SMS 0xDA
+#define LoreleiSMS 0xDA
 #define Unused46SMS 0xDB
 #define Unused47SMS 0xDC
 #define Unused48SMS 0xDD
@@ -470,7 +470,7 @@
 #define Unused1MMS 0xD8
 #define Unused2MMS 0xD9
 #define puddleMMS 0xDA
-#define Unused45MMS 0xDB
+#define LoreleiMMS 0xDB
 #define Unused46MMS 0xDC
 #define Unused47MMS 0xDD
 #define Unused48MMS 0xDE

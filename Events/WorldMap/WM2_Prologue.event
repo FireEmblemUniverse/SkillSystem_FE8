@@ -4,5 +4,5 @@ WorldMapIntroPointerTable(1,Intro)
 Intro:
 EVBIT_MODIFY 0x1
 ENUT 0x88 // Skip castle frelia 1 
-ENUT 0x89 //WordMapInitialized
+ENUT 0x89 //WorldMapInitialized
 ENDA

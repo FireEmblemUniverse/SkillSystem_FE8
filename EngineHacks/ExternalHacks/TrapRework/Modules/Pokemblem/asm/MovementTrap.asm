@@ -20,7 +20,7 @@
 .equ SetFlag, 0x8083D80
 .equ gMapUnit, 0x202E4D8
 .equ CurrentUnit, 0x3004E50 
-.equ GetTrap, 0x802E1F0
+.equ GetTrap, 0x802EB8C
 
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
@@ -57,8 +57,9 @@ bx r3
 UpdateTrapHiddenHook:
 ldr r6, =0x202E4D8 @ gMapUnit 
 ldr r5, =0x202E4EC @ gMapHidden 
-
-ldrb r0, [r3, #2] @ jumps to this hack with r1, not r3 
+cmp r0, #0 
+beq False 
+@ldrb r0, [r3, #2] @ jumps to this hack with r1, not r3 
 ldr r2, =HiddenTrapList 
 sub r2, #1 
 Loop: 
@@ -147,7 +148,7 @@ b XLoop
 Break: 
 mov r0, #0 
 blh GetTrap 
-add r3, r0 
+mov r3, r0 
 ldrb r0, [r3, #2] 
 
 pop {r4-r7} 

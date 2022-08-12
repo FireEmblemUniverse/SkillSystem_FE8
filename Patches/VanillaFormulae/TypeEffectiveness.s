@@ -45,7 +45,8 @@ beq Immune
 b SuperEffective
 
 Immune:
-lsr r0, #2 @ 1/4 dmg 
+mov r0, #0
+@lsr r0, #2 @ 1/4 dmg 
 b Store
 
 Ineffective:
@@ -83,7 +84,13 @@ mov r2, #0
 NoCapEnemyDef:
 add r2, #1 
 lsr r2, #2 @ 1/4 of enemy def added to att 
-lsl r0, #1 
+mov r1, r0 
+add r1, #1 @ rounding 
+lsr r1, #2 @ 1/4 att 
+add r1, r1 @ 2/4 
+add r1, r1 @ 3/4 
+@ lsr r1, r0, #1 @ half att 
+add r0, r1 @ 1.75x att 
 add r0, r2 
 b Store 
 

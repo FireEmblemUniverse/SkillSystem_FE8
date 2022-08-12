@@ -123,8 +123,8 @@ bne	Break
 
 @check that we killed the enemy 
 ldrb	r0, [r5,#0x13]	@currhp
-cmp	r0, #0
-bne	Break
+cmp	r0, #1
+bgt	Break
 
 @check that we're capturing the enemy 
 ldrb 	r0, [r5, #0x0C] @unit state 

@@ -277,7 +277,7 @@ SetSMS(tuber_m_waterSMS , 1 ,    tuber_m_waterStanding)
 SetSMS(Unused1SMS , 0 ,    m1Standing)
 SetSMS(Unused2SMS , 0 ,    m1Standing)
 SetSMS(puddleSMS , 0 ,    puddleStanding)
-SetSMS(Unused45SMS , 0 ,    m1Standing)
+SetSMS(LoreleiSMS , 1 ,    LoreleiStanding)
 SetSMS(Unused46SMS , 0 ,    m1Standing)
 SetSMS(Unused47SMS , 0 ,    m1Standing)
 SetSMS(Unused48SMS , 0 ,    m1Standing)
@@ -550,7 +550,7 @@ SetMMS(tuber_m_waterMMS ,     tuber_m_waterMoving,        DemonKingAP)
 SetMMS(Unused1MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused2MMS ,     r1Moving,        DemonKingAP)
 SetMMS(puddleMMS ,     puddleMoving,        DemonKingAP)
-SetMMS(Unused45MMS ,     r1Moving,        DemonKingAP)
+SetMMS(LoreleiMMS ,     LoreleiMoving,        DemonKingAP)
 SetMMS(Unused46MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused47MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused48MMS ,     r1Moving,        DemonKingAP)
@@ -1432,7 +1432,9 @@ tuber_m_waterMoving:
 ALIGN 4
 puddleMoving:
 #incbin "More MMS/puddle.dmp"
-
+ALIGN 4 
+LoreleiMoving:
+#incbin "Trainer_MMS/MMS_Lorelei.dmp"
 
 
 //Map sprites
@@ -2195,7 +2197,9 @@ swimmer_m_waterStanding:
 ALIGN 4
 puddleStanding:
 #incbin "More SMS/puddle.dmp"
-
+ALIGN 4 
+LoreleiStanding:
+#incbin "Trainer_SMS/SMS_Lorelei.dmp"
 
 
 

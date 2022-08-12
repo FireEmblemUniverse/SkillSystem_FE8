@@ -17,7 +17,7 @@
 		ALIGN 4
 		StairCameraEvent:
 		WARP_OUT 
-		STAL 12
+		STAL 18
 		EndMMS
 		STAL 10
 		BEQ 0 sB sA // Skip warp in if going to identical coordinates 

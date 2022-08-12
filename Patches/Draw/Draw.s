@@ -519,6 +519,14 @@ ldrh r2, [r3]
 add r1, r2 
 cmp r2, #0 
 beq ExitAnimation
+
+@ aug 2022 
+add r2, #2 
+lsr r2, #2 @ make animations take 1.25x as long 
+add r1, r2 
+@
+
+
 cmp r0, r1 @ once current frame is less than the frame offset, we have our frame offset 
 bgt TryNextFrameLoop @ nov 14 - swapped from bge to bgt i guess 
 mov r7, r3 @ Table offset 

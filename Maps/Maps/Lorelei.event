@@ -2,7 +2,17 @@
 
 #include eastdlib.event
 
-SetChapterData(LoreleiCh,LoreleiObj,0,LoreleiPal,LoreleiConf,LoreleiMap,Map,0,0,0)
+SetChapterData(LoreleiCh,LoreleiObj,0,LoreleiPal,LoreleiConf,LoreleiMap,Map,0,0,LoreleiMapChanges)
+MapChangesPointerTable(LoreleiMapChanges, MapChanges)
 Map:
 #incbin "Lorelei_data.dmp"
+
+MapChanges:
+TileMap(0,12,1,1,2,TileChange0)
+TileMapEnd
+
+TileChange0:
+SHORT 0x18 0x94 
+ALIGN 4
+
 Map_Pointer_Table(LoreleiMap,Map)

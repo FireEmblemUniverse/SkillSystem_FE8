@@ -119,6 +119,11 @@ LoadDefOrRes:
 ldrb r1, [r7, r1] @ Def or Res 
 
 mov r0, r5 @ dmg 
+cmp r0, r1 
+bgt NoWorries @ cap before the damage modifier 
+mov r0, r1 
+add r0, #1 @ min 1 damage 
+NoWorries: 
 sub r0, r1 @ Dmg to deal 
 
 mov r1, r7 @ target 
