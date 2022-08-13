@@ -86,8 +86,8 @@ nin_i_exp:
 	bne	noexp
 
 	mov	r0, r4
-@	blh	0x0802B93C          @CanUnitNotLevelUp	{J}
-	blh	0x0802b9f4          @CanUnitNotLevelUp	{U}
+@	blh	0x0802B93C          @CanUnitLevelUp	{J}
+	blh	0x0802b9f4          @CanUnitLevelUp	{U}
 
 	lsl	r0, r0, #0x18
 	cmp	r0, #0

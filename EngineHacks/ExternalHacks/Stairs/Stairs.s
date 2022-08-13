@@ -247,6 +247,7 @@ strh r2, [r3, #6] @ sB yy
 strb r0, [ r4, #0x10 ]
 strb r1, [ r4, #0x11 ]
 
+ldr r2, =#0x0203A958
 ldrb r2, [ r2, #0x10 ] @ Has squares moved.
 cmp r2, #0x00
 bne SquaresMoved

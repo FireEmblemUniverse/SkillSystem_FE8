@@ -300,8 +300,10 @@ ENUT CascadebadgeObtained
 ENUT ThunderbadgeObtained 
 ENUT SoulbadgeObtained 
 ENUT RainbowbadgeObtained 
-//ENUT MarshbadgeObtained
+ENUT MarshbadgeObtained
 Write_Byte(4, GaryStarterClass) 
+ENUT VolcanobadgeObtained 
+ENUT EarthbadgeObtained 
 ENUT FlyFlag
 ENUT SaffronArrived
 ENUT CinnabarArrived
@@ -310,14 +312,16 @@ ENUT IndigoPlateauArrived
 
 //ASMC FillPokedex // 3e2F4 
 ASMC SeePokedex
-
-Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(21, YCoordNewArea)  
+//[203A57f]?!!
+//[0202D0A7]?!!
+Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(16, YCoordNewArea)  
 
 //MNC2 SeafoamB2Ch
+MNC2 Route1Ch
 //MNC2 SaffronGymCh
 //MNC2 SaffronCh 
-MNC2 LoreleiCh
+//MNC2 LoreleiCh
 //MNC2 MtMoonB3Ch
 //MNC2 DebugCh 
 //MNC2 CeruleanCaveB1Ch 

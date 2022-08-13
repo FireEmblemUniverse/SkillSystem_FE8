@@ -55,7 +55,7 @@
 	.short	0xF800
 
 	@Set HP to 1 and don't die.
-	mov		r0,#0x1
+	mov		r0,#0x0
 	strb	r0,[r7,#0x13]
 
 	mov		r7,#0x0				@captured units don't drop anything

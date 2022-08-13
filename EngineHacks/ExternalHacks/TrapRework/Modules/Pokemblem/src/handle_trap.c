@@ -101,22 +101,26 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 	const struct Vec2 step = DirectionStepTable[direction];
 	bool StopIfNotIce = false; 
 	
-	struct MovementArrowStruct MoveArrow = *gpMovementArrowData;
-	Trap* trap = GetTrapAt(MoveArrow.xdata[0], MoveArrow.ydata[0]);
+	//struct MovementArrowStruct MoveArrow = *gpMovementArrowData;
+	//Trap* trap = GetTrapAt(MoveArrow.xdata[0], MoveArrow.ydata[0]);
+	//if (trap->type == IceTrapType) { 
+	//	RemoveTrap(trap);
+	//	StopIfNotIce = true; 
+	//} 
+	Trap* trap;
+	trap = GetTrapAt(result.x, result.y);
 	if (trap->type == IceTrapType) { 
 		RemoveTrap(trap);
 		StopIfNotIce = true; 
 	} 
-	
-	
-	
+
 	while (CanUnitBeOnPosition(unit, (result.x + step.x), (result.y + step.y))) {
 		trap = GetTrapAt(result.x, result.y);
 		if (trap->type == IceTrapType) { 
 			RemoveTrap(trap);
 			StopIfNotIce = true; 
 		} 
-		
+	
 		result.x += step.x;
 		result.y += step.y;
 		if (!(--moveAmount)) 
@@ -149,10 +153,12 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 				break; 
 			} 
 		} 
-		
-		
-		
+	}
+	trap = GetTrapAt(result.x, result.y);
+	if (trap->type == IceTrapType) { 
+		RemoveTrap(trap);
 	} 
+		
 	return result;
 }
 

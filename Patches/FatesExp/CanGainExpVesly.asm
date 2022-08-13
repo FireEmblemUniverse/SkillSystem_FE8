@@ -4,6 +4,7 @@
   mov lr, \reg
   .short 0xf800
 .endm
+	.equ gActionStruct, 0x203A958 
 	.equ CheckEventId,0x8083da8
 push {r4-r7, lr} 
 mov r4, r0 @ unit 
@@ -31,6 +32,10 @@ cmp r0, #0
 bne False 
 
 MaybeTrue: 
+ldr r0, =gActionStruct 
+ldrb r0, [r0, #0x11] 
+cmp r0, #0x1A @ used item (eg. rare candy) this turn 
+beq True 
 
 ldr r0, =BoulderbadgeObtained
 lsl r0, #16 

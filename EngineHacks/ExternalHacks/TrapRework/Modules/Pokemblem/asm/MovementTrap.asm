@@ -159,11 +159,16 @@ bx r1
 
 .equ UpdateAllLightRunes, 0x802E470
 .equ AddTrap, 0x802E2B8 
+.equ gActionStruct, 0x203A958 
 .type SpawnIceIfIce, %function 
 .global SpawnIceIfIce 
 SpawnIceIfIce:
 push {r4, lr} 
 mov r4, r0 
+ldr r3, =gActionStruct 
+ldrb r0, [r3, #0x11] 
+cmp r0, #0x1E 
+bne End @ do nothing if we're not mid-movement 
 
 ldrb r0, [r4, #0x10] @ XX 
 ldrb r1, [r4, #0x11] @ Y 

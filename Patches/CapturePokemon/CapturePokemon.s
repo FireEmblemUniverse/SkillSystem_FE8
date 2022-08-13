@@ -123,7 +123,7 @@ bne	Break
 
 @check that we killed the enemy 
 ldrb	r0, [r5,#0x13]	@currhp
-cmp	r0, #1
+cmp	r0, #0
 bgt	Break
 
 @check that we're capturing the enemy 
