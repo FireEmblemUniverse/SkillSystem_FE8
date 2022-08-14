@@ -1,0 +1,16 @@
+
+
+PUSH 
+ORG $899C0
+BYTE 0x40 // max 4 lines 
+
+ORG $89AE0 
+//POIN 0x8590F8C // vanilla 
+//POIN 0x8590F54 // 32x32 image? - draws a little more at the bottom this way 
+
+POP 
+
+
+
+
+
