@@ -7,6 +7,9 @@ Prep: list (starts at 6012000)
 Shop: starts at 6013000, should start at 6012000 
 Supply: should 6012000 
 
+203E794+0x30 (203E7C4) is a short of palette<<12 | vramTile (eg. 6013000 = 0x180) 
+
+
 StartStatScreenHelpTextBubble 0x80889A0 
 	
 

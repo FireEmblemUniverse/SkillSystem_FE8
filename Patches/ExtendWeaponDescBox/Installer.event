@@ -61,8 +61,34 @@ BYTE MaxDescLines<<4
 ORG $899C0
 BYTE MaxDescLines<<4
 
-ORG $898A4 
-WORD VramAddrDef 
+// [203E7C4]!!
+ORG $898A4 // default: used by shop, stat screen, send item to supply, itemMenu, and trading on map 
+//WORD 0x6012000 //VramAddrDef // 13000 vanilla
+// shop and stat screen should use 12000 
+// send item to supply and itemMenu should use 13000 [r0=6014800]
+
+// This makes trading display normally 
+ORG $2D2EA // mov r1, #0x90 
+BYTE 0xE1			// lsl r1, #7  = 0x4800 as vram offset to use // 7080 
+//ORG $ADB7C // StartSmallBrownNameBoxes (for trading) is called shortly after the prior org 
+
+
+ORG $89F0C4 
+WORD VramAddrDef // 12000 vanilla
+
+//ORG $98998 
+//WORD VramAddrDef // 14000 vanilla
+
+ORG $9B970 // Preps 
+WORD 0x6012000 
+//VramAddrDef // 14000 vanilla 
+
+//ORG $9D9FC // Supply 
+//WORD 0x6012000 // 13000 vanilla 
+
+ORG $9F0C4 // List 
+WORD VramAddrDef // 12000 vanilla 
+
 
 
 POP 
