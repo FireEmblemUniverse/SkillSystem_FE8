@@ -1,12 +1,69 @@
 
 
-PUSH 
-ORG $899C0
-BYTE 0x40 // max 4 lines 
+#define MaxDescLines 4 // vanilla is 3 
+#define VramAddrDef 0x6013000 // vanilla 
+//#define VramAddrDef 0x6013000 
+// 6015880 // 6016080
 
-ORG $89AE0 
-//POIN 0x8590F8C // vanilla 
-//POIN 0x8590F54 // 32x32 image? - draws a little more at the bottom this way 
+#ifndef CallHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+
+
+
+
+// 12e6a 
+ALIGN 4 
+InitItemDescVram: 
+#incbin "InitItemDescVram.dmp" 
+WORD MaxDescLines 
+WORD VramAddrDef 
+
+ALIGN 4 
+InitProcTextHandles:
+#incbin "InitProcTextHandles.dmp" 
+WORD MaxDescLines 
+
+
+ALIGN 4 
+InitWepDescTextHandles:
+#incbin "InitWepDescTextHandles.dmp" 
+WORD MaxDescLines 
+
+ALIGN 4 
+YPosDescBox:
+#incbin "YPosDescBox.dmp" 
+
+
+
+
+
+PUSH 
+ORG $31644 // unlock supply 
+BYTE 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+
+ORG $8A126 
+SHORT $46C0 // nop 
+callHackNew(InitItemDescVram|1)
+SHORT $46C0 $46C0 $46C0 
+
+ORG $8A064 
+callHackNew(InitProcTextHandles|1) 
+
+ORG $89874 
+callHackNew(InitWepDescTextHandles|1) 
+
+ORG $88C88 
+callHackNew(YPosDescBox|1) // make it 0 if it's negative 
+
+ORG $899BC 
+BYTE MaxDescLines<<4
+ORG $899C0
+BYTE MaxDescLines<<4
+
+ORG $898A4 
+WORD VramAddrDef 
+
 
 POP 
 
