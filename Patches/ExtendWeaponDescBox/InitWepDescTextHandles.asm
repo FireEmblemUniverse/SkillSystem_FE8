@@ -17,9 +17,9 @@ blh Text_Init2DLine
 mov r0, r4
 add r0, #0x38
 blh Text_Init2DLine 
-ldr r0, MaxDescLines 
-cmp r0, #4 
-ble Exit 
+ldr r0, FiveDescLines
+cmp r0, #1 
+bne Exit 
 mov r0, r4 
 add r0, #0x40 
 blh Text_Init2DLine 
@@ -30,5 +30,5 @@ pop {r0}
 bx r0 
 
 .ltorg 
-MaxDescLines: 
+FiveDescLines: 
 

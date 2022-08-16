@@ -15,7 +15,7 @@ mov r3, r12
 blh GetValueFromEasingFunction, r4 
 cmp r0, #0 
 bge NoCap 
-mov r0, #0 
+mov r0, #0x0
 NoCap: 
 
 strh r0, [r6, #0x32] 

@@ -27,7 +27,6 @@
     #include "Tables/TableInstaller.event"
     MESSAGE Used table space ends at currentOffset
 	
-	
 	#include "Patches/ASMCs_Installer.event"
 	
 	#include "Patches/DebugCommand/Debug.lyn.event"

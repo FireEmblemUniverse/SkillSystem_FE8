@@ -34,10 +34,10 @@ mov r1, #6
 blh Text_SetColorId 
 mov r0, r6 
 
-ldr r0, MaxDescLines
-cmp r0, #4 
-ble Exit 
-
+ldr r0, FiveDescLines
+cmp r0, #1 
+bne Exit 
+mov r0, #0 
 strb r0, [r6, #10] 
 add r6, #8 
 mov r0, r6  
@@ -54,5 +54,5 @@ pop {r0}
 bx r0 
 
 .ltorg 
-MaxDescLines: 
+FiveDescLines: 
 

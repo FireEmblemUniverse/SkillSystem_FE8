@@ -1,95 +1,141 @@
+#include "EAstdlib.event" 
+// Comment out to use only 4 description lines max instead. 
+// 5 seems to work so far, but there will likely be some graphical glitches found in the future from more obscure r-text. 
+// Using only 4 lines is therefore less likely to display graphical glitches. 
+#define USE_FIVE_DESC_LINES 
 
 
-#define MaxDescLines 4 // vanilla is 3 
-#define VramAddrDef 0x6013000 // vanilla 
-//#define VramAddrDef 0x6013000 
-// 6015880 // 6016080
+// If these procs are active, don't use the extra vram. 
+// If you experience graphical glitches, the solution is 
+// to look in FEBuilder's debugger to see what procs are running,
+// then add the relevant proc(s) to this exception list. 
+#define gProc_SaveMenu $a200b8 
+#define gProc_SaveMenu2 $A203A8 
+#define gProc_ChapterMenuUnit $A17B08 
+#define gProc_ChapterMenuStatus $A01B54
 
-#ifndef CallHackNew 
+ALIGN 4 
+ProcExceptionsList:
+POIN gProc_SaveMenu gProc_SaveMenu2 gProc_ChapterMenuUnit gProc_ChapterMenuStatus
+WORD 0 // Terminator 
+
+
+
+#ifndef callHackNew 
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+#ifdef USE_FIVE_DESC_LINES 
+	#define FiveDescLines True 
+#endif 
+#ifndef USE_FIVE_DESC_LINES 
+	#define FiveDescLines False 
+#endif 
 
-
-
-// 12e6a 
 ALIGN 4 
 InitItemDescVram: 
 #incbin "InitItemDescVram.dmp" 
-WORD MaxDescLines 
-WORD VramAddrDef 
+WORD FiveDescLines 
+POIN ProcExceptionsList
 
 ALIGN 4 
 InitProcTextHandles:
 #incbin "InitProcTextHandles.dmp" 
-WORD MaxDescLines 
+WORD FiveDescLines 
 
 
 ALIGN 4 
 InitWepDescTextHandles:
 #incbin "InitWepDescTextHandles.dmp" 
-WORD MaxDescLines 
+WORD FiveDescLines 
 
 ALIGN 4 
 YPosDescBox:
 #incbin "YPosDescBox.dmp" 
 
-
-
+ALIGN 4 
+LoadDialogueBoxGfxHook:
+#incbin "LoadDialogueBoxGfxHook.dmp" 
 
 
 PUSH 
-ORG $31644 // unlock supply 
-BYTE 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
-
 ORG $8A126 
-SHORT $46C0 // nop 
+SHORT $46C0 
 callHackNew(InitItemDescVram|1)
 SHORT $46C0 $46C0 $46C0 
+PROTECT $8A126 $8A126+28 
 
 ORG $8A064 
 callHackNew(InitProcTextHandles|1) 
+PROTECT $8A064 $8A064+12
 
 ORG $89874 
 callHackNew(InitWepDescTextHandles|1) 
-
+PROTECT $89874 $89874+12 
 ORG $88C88 
 callHackNew(YPosDescBox|1) // make it 0 if it's negative 
+PROTECT $88C88 $88C88+12 
+ORG $8980C 
+callHackNew(LoadDialogueBoxGfxHook|1)
+PROTECT $8980C $8980C+12 
 
 ORG $899BC 
-BYTE MaxDescLines<<4
+BYTE (FiveDescLines+4)<<4
 ORG $899C0
-BYTE MaxDescLines<<4
+BYTE (FiveDescLines+4)<<4
+
 
 // [203E7C4]!!
-ORG $898A4 // default: used by shop, stat screen, send item to supply, itemMenu, and trading on map 
-//WORD 0x6012000 //VramAddrDef // 13000 vanilla
-// shop and stat screen should use 12000 
-// send item to supply and itemMenu should use 13000 [r0=6014800]
+//ORG $898A4 // default: used by shop, stat screen, send item to supply, itemMenu, and trading on map 
+//WORD 0x6012000 // 13000 vanilla
 
 // This makes trading display normally 
+#ifdef USE_FIVE_DESC_LINES 
+	ORG $2D7FC // target of trade to not show their portrait 
+	SHORT $46C0 $46C0 
+#endif 
 ORG $2D2EA // mov r1, #0x90 
 BYTE 0xE1			// lsl r1, #7  = 0x4800 as vram offset to use // 7080 
 //ORG $ADB7C // StartSmallBrownNameBoxes (for trading) is called shortly after the prior org 
 
-
 ORG $89F0C4 
-WORD VramAddrDef // 12000 vanilla
+WORD 0x6013000 // 12000 vanilla
 
 //ORG $98998 
-//WORD VramAddrDef // 14000 vanilla
+//WORD 0x6012000 // 14000 vanilla
 
 ORG $9B970 // Preps 
-WORD 0x6012000 
-//VramAddrDef // 14000 vanilla 
+WORD 0x6012000 // 14000 vanilla 
 
-//ORG $9D9FC // Supply 
-//WORD 0x6012000 // 13000 vanilla 
+ORG $9D9FC // Supply 
+WORD 0x6012000 // 13000 vanilla 
 
-ORG $9F0C4 // List 
-WORD VramAddrDef // 12000 vanilla 
+//ORG $9F0C4 // List 
+//WORD 0x6013000 // 12000 vanilla 
 
+ORG $355A4 // "Select an item to send to supply / discard" 
+WORD 0x6015800 // 14800 vanilla 
+ORG $354D8 
+SHORT 0x42C0 // vanilla 0x4240 
 
+// managed to keep this vanilla by hooking LoadDialogueBoxGfx 
+// Shop/Armoury 
+//ORG $B4C74 // mov r0, #0x90 
+//BYTE $E0 // 
+//// lsl r0, #2
+// 
+////ORG $B53A8 // mov r2, #0xC9 
+////BYTE $CE // new locat for spinny arrows on shop 
+//// lsl r2, #6 = 3240 
+//ORG $B4E74 
+//WORD 0x6015000 // vanilla 14C00 
+////r0=0x4260 at B52BC in B52A4 
+//// called by looking for pointer to B52A5 
+//// which is A394C4 in A394C0 proc called from gProc_Shop at 0x8A39210 
+//// poin to A394C0 is at B4A34 (destructor), B4E78, B5AF4, and B5BF8 
+//ORG $B4E7C // shop vram address as #0xAC 
+//SHORT 0x4280 
+//ORG $B53BC 
 
 POP 
 
