@@ -127,6 +127,8 @@ ENDTRAP
 ALIGN 4
 
 
+
+
 BeginningScene:
 ENUF SkipIntroFlag
 CALL GlobalBeginningScene

@@ -1,0 +1,46 @@
+[203A024]!! starting address as tile (eg. r3=0C080) 
+[203A030]+8
+[203A03C] 
+274A2 
+
+27416 leads to a jump table 
+
+2742c 
+27430 regular 
+
+
+SMS_SyncDirect 26F2C 
+
+27248 stores tile to use 
+
+SMS Register Usage 267FC 
+takes sms index to use 
+returns tile id to use 
+
+201f148 is SMS something 
+seems to store what tile id to use ?  
+[201f148..201f157]!!
+266a6 
+
+
+26884 caps it as max 32 sprites ? 
+2689E stores tile ID to use to the sms buffer at 201f148 
+
+[203a014]!!
+[201f153]?!! // this is 0x80 
+
+3rd time of 26B86 of bl CpuFast causes it to erase 203A014 
+
+26B7C lsl r4, r3, #0xD makes max 0x4000 
+
+PUSH 
+ORG $266a6 
+BYTE 0x7F 
+
+ORG $26884
+BYTE 0x3E 
+
+ORG $26888 
+BYTE 0x3E 
+
+POP 

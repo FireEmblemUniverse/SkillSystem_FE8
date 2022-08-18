@@ -1,0 +1,80 @@
+
+// vanilla buffer 
+//02034010 gSMSGfxBuffer_Frame1
+//02036010 gSMSGfxBuffer_Frame2
+//02038010 gSMSGfxBuffer_Frame3
+
+#define SMS_Buffer_Size 0x2000 
+
+//#define SMS_Frame1_Buffer 0x2020188 // battle anim buffer 
+//#define SMS_Frame1_Buffer 0x203EFB8
+#define SMS_Frame1_Buffer 0x203AAA4 // link arena 
+//#define SMS_Frame1_Buffer 0x2034010
+#define SMS_Frame2_Buffer SMS_Frame1_Buffer+SMS_Buffer_Size
+#define SMS_Frame3_Buffer SMS_Frame2_Buffer+SMS_Buffer_Size 
+
+
+PUSH 
+ORG $266a6 
+BYTE 0x7F 
+
+ORG $26884
+BYTE 0x3E 
+
+ORG $26888 
+BYTE 0x3E 
+
+POP 
+
+
+
+PUSH 
+// SMS frame 1 buffer 
+ORG $26958
+WORD SMS_Frame1_Buffer 
+ORG $26a2c 
+WORD SMS_Frame1_Buffer 
+ORG $26b24 
+WORD SMS_Frame1_Buffer 
+ORG $26c18 
+WORD SMS_Frame1_Buffer 
+ORG $26d0c
+WORD SMS_Frame1_Buffer 
+ORG $26dfc
+WORD SMS_Frame1_Buffer 
+ORG $26f14
+WORD SMS_Frame1_Buffer 
+ORG $26f84
+WORD SMS_Frame1_Buffer 
+ORG $26fec
+WORD SMS_Frame1_Buffer 
+ORG $27058
+WORD SMS_Frame1_Buffer 
+ORG $270d4
+WORD SMS_Frame1_Buffer 
+ORG $27138
+WORD SMS_Frame1_Buffer 
+
+ORG $26F8C
+WORD SMS_Frame2_Buffer 
+ORG $26FD0 
+WORD SMS_Frame2_Buffer 
+ORG $2705C 
+WORD SMS_Frame2_Buffer 
+ORG $27094 
+WORD SMS_Frame2_Buffer 
+ORG $27108 
+WORD SMS_Frame2_Buffer 
+
+ORG $26F90 
+WORD SMS_Frame3_Buffer 
+ORG $26FB8
+WORD SMS_Frame3_Buffer 
+ORG $27060
+WORD SMS_Frame3_Buffer 
+ORG $27088 
+WORD SMS_Frame3_Buffer 
+ORG $270FC 
+WORD SMS_Frame3_Buffer 
+
+POP 
