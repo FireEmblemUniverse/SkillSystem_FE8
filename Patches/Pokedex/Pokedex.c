@@ -22,9 +22,6 @@ extern u16 gBG2MapBuffer[32][32]; // 0x020234A8.
 extern const u16 MyPalette[]; 
 extern u8 gPaletteSyncFlag;
 
-enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
-enum { BG1_SYNC_BIT = BG_SYNC_BIT(1) };
-enum { BG2_SYNC_BIT = BG_SYNC_BIT(2) };
 
 typedef struct Tile Tile;
 typedef struct TSA TSA;

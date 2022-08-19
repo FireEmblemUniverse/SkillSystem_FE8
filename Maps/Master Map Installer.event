@@ -10,6 +10,12 @@
 #define SetChapterData(ChapterID,ObjectType1,ObjectType2,PaletteID,TileConfig,MapID,MapPointer,Anims1,Anims2,MapChanges) "PUSH; ORG ChapterDataTable+(ChapterID*148)+4; BYTE ObjectType1 ObjectType2 PaletteID TileConfig MapID Anims1 Anims2 MapChanges; MapChangesPointerTable(MapID,MapPointer); POP" 
 
 {
+#include "Maps\Agatha.event"
+}
+{
+#include "Maps\Bruno.event"
+}
+{
 #include "Maps\Celadon.event"
 }
 {
@@ -31,6 +37,9 @@
 #include "Maps\CeruleanGym.event"
 }
 {
+#include "Maps\Champion.event"
+}
+{
 #include "Maps\Cinnabar.event"
 }
 {
@@ -50,6 +59,12 @@
 }
 {
 #include "Maps\FuschiaGym.event"
+}
+{
+#include "Maps\HallOfFame.event"
+}
+{
+#include "Maps\Lance.event"
 }
 {
 #include "Maps\Lavender.event"

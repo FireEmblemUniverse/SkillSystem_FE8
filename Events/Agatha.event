@@ -1,0 +1,238 @@
+#define ChapterID AgathaCh
+
+#define WildLvl 5 
+#define TrainerL 55
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+AllTrainersPostBattleTalk
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+END_MAIN
+
+CheckIfNoEnemiesLeft:
+CHECK_ENEMIES
+SVAL s1 1 
+BNE 0 sC s1 
+CALL EndingScene 
+GOTO 99 
+LABEL 0 
+ENUF 0xA // so this can run again 
+LABEL 99 
+NoFade 
+ENDA 
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+//AFEV 0 GlobalAfev 0
+DefeatAll(EndingScene) 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AFEV 0xA CheckIfNoEnemiesLeft 0
+//AFEV 0 RefreshIfNotInDanger 0 
+AREA 0 ToSaffron [8,19][8,19] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+//EscapeTileEntry(8,19) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToSaffron:
+ChapterTransition(SaffronCh, 24,6)
+
+Traps1:
+
+BrokenIceTrap(16,6)
+BrokenIceTrap(8,7)
+BrokenIceTrap(19,7)
+BrokenIceTrap(5,8)
+BrokenIceTrap(10,8)
+BrokenIceTrap(17,8)
+BrokenIceTrap(6,9)
+BrokenIceTrap(9,9)
+BrokenIceTrap(18,9)
+BrokenIceTrap(20,9)
+BrokenIceTrap(4,10)
+BrokenIceTrap(9,10)
+BrokenIceTrap(10,10)
+BrokenIceTrap(15,10)
+BrokenIceTrap(20,10)
+BrokenIceTrap(21,10)
+BrokenIceTrap(10,11)
+BrokenIceTrap(13,11)
+BrokenIceTrap(14,11)
+BrokenIceTrap(16,11)
+BrokenIceTrap(20,11)
+BrokenIceTrap(3,12)
+BrokenIceTrap(4,12)
+BrokenIceTrap(7,12)
+BrokenIceTrap(15,12)
+BrokenIceTrap(17,12)
+BrokenIceTrap(22,12)
+BrokenIceTrap(4,13)
+BrokenIceTrap(9,13)
+BrokenIceTrap(6,14)
+BrokenIceTrap(13,14)
+BrokenIceTrap(18,14)
+BrokenIceTrap(19,14)
+BrokenIceTrap(6,15)
+BrokenIceTrap(7,15)
+BrokenIceTrap(15,15)
+BrokenIceTrap(18,15)
+BrokenIceTrap(3,16)
+BrokenIceTrap(6,16)
+BrokenIceTrap(20,16)
+BrokenIceTrap(10,17)
+BrokenIceTrap(17,17)
+
+
+
+//PuddleTrap(14, 16)
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [8,6] 
+
+
+LOAD1 0x1 EnemyTrainersA
+ENUN 
+AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+//AutoLevelUnits(3, False, 0x90EF) 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+
+
+SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
+SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+
+
+MUSCFAST IntroBGM 
+ShowMap
+Text(AgathaChallengeText)
+MarkTrainerAsDefeated(0xE1)
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+//CAM1 [8,18] 
+
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+EndingScene: 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+CAM1 [8,6] 
+Text(AgathaDefeatText)
+TILECHANGE 0
+SVAL r3 5000 
+GIVETOMAIN 0 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+EnemyTrainersA:
+UNIT 0xE1 AgathaID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
+
+UNIT 0xD0 LaprasID 		0x0  Level(0, Enemy, 1) [12,8]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 DewgongID 		0xD0 Level(0, Enemy, 1) [11,10]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 JynxID 			0xD0 Level(0, Enemy, 1) [11,6]  0b 0x0	0 0	[Psychic,IceBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
+//UNIT 0xA2 VaporeonID 		0xD0 Level(0, Enemy, 1) [11,6]  0b 0x0 	0 0	[Surf, IceBeam,0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 SlowbroID 		0xD0 Level(0, Enemy, 1) [13,6]  0b 0x0	0 0	[FireBlast, Surf, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 CloysterID 		0xD0 Level(0, Enemy, 1) [13,10]  0b 0x0	0 0	[Clamp, AuroraBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT
+
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(1, GarySilphCoDefeatText) 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(1, AgathaTalkText, 600) 
+TDQ_TableTerminator ; }
+	
+
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

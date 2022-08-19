@@ -5,7 +5,8 @@
   .short 0xf800
 .endm
 
-.equ GetValueFromEasingFunction, 0x8012DCC 
+.equ GetValueFromEasingFunction, 0x8012DCC	@{U}
+@.equ GetValueFromEasingFunction, 0x08012E84	@{J}
 push {r4, lr} 
 
 sub sp, #4 

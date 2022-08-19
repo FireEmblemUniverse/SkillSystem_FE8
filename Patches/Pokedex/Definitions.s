@@ -33,7 +33,7 @@ SET_FUNC RTextRight, (0x080893E4+1)
 
 
 //@ Data declarations:
-
+SET_DATA textHandles, 0x203E794
 SET_DATA gVeslyUnit, 0x30017BC
 SET_DATA gVeslySkill, 0x0202BCDE
 

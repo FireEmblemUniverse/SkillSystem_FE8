@@ -4,8 +4,12 @@
   mov lr, \reg
   .short 0xf800
 .endm
-.equ Text_SetColorId, 0x8003E60
-.equ Text_Init2DLine, 0x80045D8 
+
+.equ Text_SetColorId, 0x8003E60	@{U}
+@.equ Text_SetColorId, 0x8003D90	@{J}
+.equ Text_Init2DLine, 0x80045D8	@{U}
+@.equ Text_Init2DLine, 0x80044E0	@{J}
+
 push {r6, lr} 
 @ we don't need to push/pop r4/r5 
 str r5, [r4, #0x30] 
@@ -15,7 +19,7 @@ mov r1, r8
 str r1, [r4, #0x38] 
 str r6, [r4, #0x3C] 
 
-// [202534C..2025353]?!! no hits on the proc fields +0x40 / +0x44 being read or written to (how lucky!) 
+@ [202534C..2025353]?!! no hits on the proc fields +0x40 / +0x44 being read or written to (how lucky!) 
 @ added 
 mov r6, r5 
 add r6, #0x38 @ [203E7CC..203E7DB]!! no hits 
@@ -34,9 +38,6 @@ mov r1, #6
 blh Text_SetColorId 
 mov r0, r6 
 
-ldr r0, FiveDescLines
-cmp r0, #1 
-bne Exit 
 mov r0, #0 
 strb r0, [r6, #10] 
 add r6, #8 
@@ -54,5 +55,3 @@ pop {r0}
 bx r0 
 
 .ltorg 
-FiveDescLines: 
-

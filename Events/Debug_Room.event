@@ -184,7 +184,7 @@ LOAD1 0x1 Units2
 ENUN
 
 //LOAD1 0x1 Units3
-ENUN
+//ENUN
 UNCM(0x12, 0x9)
 UNCM(0x13, 0x9)
 UNCM(0x14, 0x9)
@@ -317,8 +317,8 @@ ASMC SeePokedex
 Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(16, YCoordNewArea)  
 
-
-MNC2 DebugCh
+MNC2 BrunoCh
+//MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch
 //MNC2 SaffronGymCh

@@ -6,6 +6,9 @@
  <tileset firstgid="111" name="elite4tiles" tilewidth="16" tileheight="16" tilecount="1024" columns="8">
   <image source="elite4tileset.png" trans="ffffff" width="128" height="2048"/>
  </tileset>
+ <tileset firstgid="1135" name="tileset" tilewidth="16" tileheight="16" tilecount="1024" columns="8">
+  <image source="../Elite4/tileset" trans="ffffff" width="128" height="2048"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="25" height="23">
   <properties>
    <property name="Main" value=""/>
@@ -33,9 +36,9 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="1785"/>
+   <tile gid="1789"/>
+   <tile gid="1787"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -58,9 +61,9 @@
    <tile gid="5"/>
    <tile gid="6"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="1793"/>
+   <tile gid="1797"/>
+   <tile gid="1795"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
