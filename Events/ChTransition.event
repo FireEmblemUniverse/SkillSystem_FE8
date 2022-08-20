@@ -853,7 +853,7 @@ CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
 
-MNC2 PokecenterCh 
+MNC2 PCBoxCh 
 NoFade 
 ENDA 
 

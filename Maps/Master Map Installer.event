@@ -100,6 +100,9 @@
 #include "Maps\Pallet.event"
 }
 {
+#include "Maps\PCBox.event"
+}
+{
 #include "Maps\Pewter.event"
 }
 {
@@ -107,6 +110,9 @@
 }
 {
 #include "Maps\Pokecenter.event"
+}
+{
+#include "Maps\PokecenterLeague.event"
 }
 {
 #include "Maps\PokemonTowerF1.event"
@@ -293,6 +299,15 @@
 }
 {
 #include "Maps\VermillionGym.event"
+}
+{
+#include "Maps\VictoryRoadB1.event"
+}
+{
+#include "Maps\VictoryRoadB2.event"
+}
+{
+#include "Maps\VictoryRoadB3.event"
 }
 {
 #include "Maps\Viridian.event"
