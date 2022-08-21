@@ -1,0 +1,185 @@
+08098050 B4E0   PUSH {r5,r6,r7}
+08098052 B081   SUB SP, #0x4
+08098054 4681   MOV r9, r0
+08098056 482A   LDR r0, [PC, #0xA8] # pointer:08098100 -> 02012914
+08098058 4680   MOV r8, r0
+0809805A 482A   LDR r0, [PC, #0xA8] # pointer:08098104 -> 02012F56
+0809805C 2100   MOV r1, #0x0
+0809805E 8001   STRH r1, [r0, #0x0]
+08098060 2400   MOV r4, #0x0
+08098062 4929   LDR r1, [PC, #0xA4] # pointer:08098108 -> 02012F54 (gPrepScreenItemListSize )
+08098064 4682   MOV r10, r0
+08098066 1C0A   MOV r2 ,r1
+08098068 8811   LDRH r1, [r2, #0x0] # pointer:02012F54 (gPrepScreenItemListSize )
+0809806A 428C   CMP r4 ,r1
+0809806C DA22   BGE #0x80980B4
+    0809806E 4927   LDR r1, [PC, #0x9C] # pointer:0809810C -> 08A188C0
+    08098070 464B   MOV r3, r9
+    08098072 0098   LSL r0 ,r3 ,#0x2
+    08098074 1846   ADD r6 ,r0, R1
+    08098076 4657   MOV r7, r10
+    08098078 4925   LDR r1, [PC, #0x94] # pointer:08098110 -> 020122D4 (gPrepScreenItemList )
+    0809807A 00A0   LSL r0 ,r4 ,#0x2
+    0809807C 1845   ADD r5 ,r0, R1
+    0809807E 8868   LDRH r0, [r5, #0x2] # pointer:020122D6
+    08098080 9200   STR r2,[SP, #0x0]
+    08098082 F77F FA61   BL 0x08017548   //GetItemWType
+    08098086 0600   LSL r0 ,r0 ,#0x18
+    08098088 0E00   LSR r0 ,r0 ,#0x18
+    0809808A 9A00   LDR r2,[SP, #0x0]
+    0809808C 7831   LDRB r1, [r6, #0x0] # pointer:08A188C0 -> 00000000
+    0809808E 4288   CMP r0 ,r1
+    08098090 D30B   BCC #0x80980AA
+        08098092 7873   LDRB r3, [r6, #0x1] # pointer:08A188C1 -> 01000000
+        08098094 4298   CMP r0 ,r3
+        08098096 D808   BHI #0x80980AA
+            08098098 6828   LDR r0, [r5, #0x0] # pointer:020122D4 (gPrepScreenItemList )
+            0809809A 4641   MOV r1, r8
+            0809809C 3104   ADD r1, #0x4
+            0809809E 4688   MOV r8, r1
+            080980A0 3904   SUB r1, #0x4
+            080980A2 C101   STMIA r1,{r0}
+            080980A4 8838   LDRH r0, [r7, #0x0] # pointer:02012F56
+            080980A6 3001   ADD r0, #0x1
+            080980A8 8038   STRH r0, [r7, #0x0]
+    080980AA 3401   ADD r4, #0x1
+    080980AC 4816   LDR r0, [PC, #0x58] # pointer:08098108 -> 02012F54 (gPrepScreenItemListSize )
+    080980AE 8800   LDRH r0, [r0, #0x0] # pointer:02012F54 (gPrepScreenItemListSize )
+    080980B0 4284   CMP r4 ,r0
+    080980B2 DBE1   BLT #0x8098078
+080980B4 2400   MOV r4, #0x0
+080980B6 8812   LDRH r2, [r2, #0x0] # pointer:02012F54 (gPrepScreenItemListSize )
+080980B8 4294   CMP r4 ,r2
+080980BA DA1C   BGE #0x80980F6
+    080980BC 4913   LDR r1, [PC, #0x4C] # pointer:0809810C -> 08A188C0
+    080980BE 464A   MOV r2, r9
+    080980C0 0090   LSL r0 ,r2 ,#0x2
+    080980C2 1846   ADD r6 ,r0, R1
+    080980C4 4912   LDR r1, [PC, #0x48] # pointer:08098110 -> 020122D4 (gPrepScreenItemList )
+    080980C6 00A0   LSL r0 ,r4 ,#0x2
+    080980C8 1845   ADD r5 ,r0, R1
+    080980CA 8868   LDRH r0, [r5, #0x2] # pointer:020122D6
+    080980CC F77F FA3C   BL 0x08017548   //GetItemWType
+    080980D0 0600   LSL r0 ,r0 ,#0x18
+    080980D2 0E00   LSR r0 ,r0 ,#0x18
+    080980D4 7833   LDRB r3, [r6, #0x0] # pointer:08A188C0 -> 00000000
+    080980D6 4298   CMP r0 ,r3
+    080980D8 D302   BCC #0x80980E0
+        080980DA 7871   LDRB r1, [r6, #0x1] # pointer:08A188C1 -> 01000000
+        080980DC 4288   CMP r0 ,r1
+        080980DE D905   BLS #0x80980EC
+        080980E0 6828   LDR r0, [r5, #0x0] # pointer:020122D4 (gPrepScreenItemList )
+        080980E2 4642   MOV r2, r8
+        080980E4 3204   ADD r2, #0x4
+        080980E6 4690   MOV r8, r2
+        080980E8 3A04   SUB r2, #0x4
+        080980EA C201   STMIA r2,{r0}
+    080980EC 3401   ADD r4, #0x1
+    080980EE 4806   LDR r0, [PC, #0x18] # pointer:08098108 -> 02012F54 (gPrepScreenItemListSize )
+    080980F0 8800   LDRH r0, [r0, #0x0] # pointer:02012F54 (gPrepScreenItemListSize )
+    080980F2 4284   CMP r4 ,r0
+    080980F4 DBE6   BLT #0x80980C4
+080980F6 2201   MOV r2, #0x1
+080980F8 4D01   LDR r5, [PC, #0x4] # pointer:08098100 -> 02012914
+080980FA 4B02   LDR r3, [PC, #0x8] # pointer:08098104 -> 02012F56
+080980FC 469A   MOV r10, r3
+080980FE E00C   B 0x809811A
+08098100 2914 0201   //LDRDATA
+08098104 2F56 0201   //LDRDATA
+08098108 2F54 0201   //LDRDATA
+0809810C 88C0 08A1   //LDRDATA
+08098110 22D4 0201   //LDRDATA
+08098114 0050   LSL r0 ,r2 ,#0x1
+08098116 1880   ADD r0 ,r0, R2
+08098118 1C42   ADD r2 ,r0, #0x1
+0809811A 4651   MOV r1, r10
+0809811C 8808   LDRH r0, [r1, #0x0] # pointer:02012F56
+0809811E 2103   MOV r1, #0x3
+08098120 9200   STR r2,[SP, #0x0]
+08098122 F039 FCD7   BL 0x080D1AD4   //__udivsi3
+08098126 0400   LSL r0 ,r0 ,#0x10
+08098128 0C00   LSR r0 ,r0 ,#0x10
+0809812A 9A00   LDR r2,[SP, #0x0]
+0809812C 4282   CMP r2 ,r0
+0809812E DBF1   BLT #0x8098114
+08098130 2A00   CMP r2, #0x0
+08098132 DD43   BLE #0x80981BC
+    08098134 1C14   MOV r4 ,r2
+    08098136 4653   MOV r3, r10
+    08098138 881B   LDRH r3, [r3, #0x0] # pointer:02012F56
+    0809813A 429A   CMP r2 ,r3
+    0809813C DA37   BGE #0x80981AE
+        0809813E 4826   LDR r0, [PC, #0x98] # pointer:080981D8 -> 02012F56
+        08098140 4682   MOV r10, r0
+        08098142 1AA7   SUB r7 ,r4, R2
+        08098144 3401   ADD r4, #0x1
+        08098146 46A1   MOV r9, r4
+        08098148 2F00   CMP r7, #0x0
+        0809814A DB2A   BLT #0x80981A2
+            0809814C 4923   LDR r1, [PC, #0x8C] # pointer:080981DC -> 02012914
+            0809814E 4688   MOV r8, r1
+            08098150 00B8   LSL r0 ,r7 ,#0x2
+            08098152 4643   MOV r3, r8
+            08098154 18C6   ADD r6 ,r0, R3
+            08098156 8870   LDRH r0, [r6, #0x2] # pointer:02012916
+            08098158 9200   STR r2,[SP, #0x0]
+            0809815A F77F F9C7   BL 0x080174EC   //GetItemIndex
+            0809815E 1C04   MOV r4 ,r0
+            08098160 9A00   LDR r2,[SP, #0x0]
+            08098162 18B8   ADD r0 ,r7, R2
+            08098164 0080   LSL r0 ,r0 ,#0x2
+            08098166 4641   MOV r1, r8
+            08098168 1845   ADD r5 ,r0, R1
+            0809816A 8868   LDRH r0, [r5, #0x2] # pointer:02012926
+            0809816C F77F F9BE   BL 0x080174EC   //GetItemIndex
+            08098170 9A00   LDR r2,[SP, #0x0]
+            08098172 4284   CMP r4 ,r0
+            08098174 DC0E   BGT #0x8098194
+                08098176 8870   LDRH r0, [r6, #0x2] # pointer:02012916
+                08098178 9200   STR r2,[SP, #0x0]
+                0809817A F77F F9B7   BL 0x080174EC   //GetItemIndex
+                0809817E 1C04   MOV r4 ,r0
+                08098180 8868   LDRH r0, [r5, #0x2] # pointer:02012926
+                08098182 F77F F9B3   BL 0x080174EC   //GetItemIndex
+                08098186 9A00   LDR r2,[SP, #0x0]
+                08098188 4284   CMP r4 ,r0
+                0809818A D10A   BNE #0x80981A2
+                    0809818C 8870   LDRH r0, [r6, #0x2] # pointer:02012916
+                    0809818E 886B   LDRH r3, [r5, #0x2] # pointer:02012926
+                    08098190 4298   CMP r0 ,r3
+                    08098192 D903   BLS #0x809819C
+                    08098194 6831   LDR r1, [r6, #0x0] # pointer:02012914
+                    08098196 6828   LDR r0, [r5, #0x0] # pointer:02012924
+                    08098198 6030   STR r0, [r6, #0x0]
+                    0809819A 6029   STR r1, [r5, #0x0]
+                0809819C 1ABF   SUB r7 ,r7, R2
+                0809819E 2F00   CMP r7, #0x0
+                080981A0 DAD6   BGE #0x8098150
+        080981A2 464C   MOV r4, r9
+        080981A4 480C   LDR r0, [PC, #0x30] # pointer:080981D8 -> 02012F56
+        080981A6 4D0D   LDR r5, [PC, #0x34] # pointer:080981DC -> 02012914
+        080981A8 8800   LDRH r0, [r0, #0x0] # pointer:02012F56
+        080981AA 4284   CMP r4 ,r0
+        080981AC DBC9   BLT #0x8098142
+    080981AE 1C10   MOV r0 ,r2
+    080981B0 2103   MOV r1, #0x3
+    080981B2 F039 FBA3   BL 0x080D18FC   //__divsi3
+    080981B6 1C02   MOV r2 ,r0
+    080981B8 2A00   CMP r2, #0x0
+    080981BA DCBB   BGT #0x8098134
+080981BC 4908   LDR r1, [PC, #0x20] # pointer:080981E0 -> 020122D4 (gPrepScreenItemList )
+080981BE 22C8   MOV r2, #0xC8
+080981C0 0052   LSL r2 ,r2 ,#0x1
+080981C2 1C28   MOV r0 ,r5
+080981C4 F039 FA56   BL 0x080D1674   //CPUFastSet
+080981C8 B001   ADD SP, #0x4
+080981CA BC38   POP {r3,r4,r5}
+080981CC 4698   MOV r8, r3
+080981CE 46A1   MOV r9, r4
+080981D0 46AA   MOV r10, r5
+080981D2 BCF0   POP {r4,r5,r6,r7}
+080981D4 BC01   POP {r0}
+080981D6 4700   BX r0
+080981D8 2F56 0201   //LDRDATA
+080981DC 2914 0201   //LDRDATA
+080981E0 22D4 0201   //LDRDATA
