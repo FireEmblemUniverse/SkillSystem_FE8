@@ -1,8 +1,8 @@
 
 // 0x38 
-//#define PokecenterCh 0x38 
+//#define PCBoxCh 0x38 
 
-EventPointerTable(PokecenterCh,ThisChapter)
+EventPointerTable(PCBoxCh,ThisChapter)
 
 ALIGN 4
 NewChName:
