@@ -12,10 +12,12 @@
 //#define gProc_ChapterMenuUnit $A93854	//{J}
 #define gProc_ChapterMenuStatus $A01B54	//{U}
 //#define gProc_ChapterMenuStatus $A73C0C	//{J}
-
+#define gProc_PrepSomethingUnknown $A1898C 
+#define gProc_PrepSomethingUnknown2 $A18944 // backup 
 ALIGN 4 
 ProcExceptionsList:
 POIN gProc_SaveMenu gProc_SaveMenu2 gProc_ChapterMenuUnit gProc_ChapterMenuStatus
+POIN gProc_PrepSomethingUnknown 
 WORD 0 // Terminator 
 
 
@@ -104,6 +106,11 @@ BYTE 0xE1			// lsl r1, #7  = 0x4800 as vram offset to use // 7080
 ORG $89F0C4		//{U}
 //ORG $8F361C		//{J}
 WORD 0x6013000 // 12000 vanilla
+
+
+ORG $9846C 
+//WORD 0x6014000 // Prep - 13000 vanilla 
+
 
 ORG $98998		//{U}
 //ORG $9AC70		//{J}

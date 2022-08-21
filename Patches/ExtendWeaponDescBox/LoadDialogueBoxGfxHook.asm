@@ -11,6 +11,8 @@
 @.equ gProc_StatScreen, 0x8A72A90	@{J}
 .equ gProc_Shop, 0x8a39210			@{U}
 @.equ gProc_Shop, 0x8ABC808			@{J}
+@.equ gProc_PrepScreen, 0x59DBBC
+
 push {lr} 
 cmp r1, #0 
 bge Param2Provided

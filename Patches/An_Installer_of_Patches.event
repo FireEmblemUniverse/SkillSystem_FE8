@@ -22,6 +22,8 @@
 
 #include "SplitPromoItems/Installer.event"
 
+
+// 8b363c at 346c6 
 #include "RNGRandomizer/RNGRandomizerInstaller.event" //this broke suspend for some reason 
 
 #include "_Routines/Installer.event"
