@@ -217,7 +217,36 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 //EquipNewSkillAccessory(2, RenewalID) // GiveSkillAccessory(0, RenewalID)
 
-//SilentGiveSkillAccessory(2, RenewalID)
+SilentGiveSkillAccessory(2, RenewalID)
+SilentGiveSkillAccessory(2, WaryFighterID)
+SilentGiveSkillAccessory(2, FuryID)
+SilentGiveSkillAccessory(2, RockyHelmetSkillID)
+
+SupplyItem(ExoticCandy)
+SupplyItem(RedGem)
+SupplyItem(MoonStone)
+SupplyItem(FireStone)
+SupplyItem(Berry)
+SupplyItem(Berry)
+SupplyItem(JellyDonut)
+SupplyItem(JellyDonut)
+SupplyItem(DryingPan)
+SupplyItem(SuperPotion)
+SupplyItem(SuperPotion)
+SupplyItem(HyperPotion)
+SupplyItem(HyperPotion)
+SupplyItem(MaxPotion)
+SupplyItemWithDurability(StatAccessory, WiseGlasses_BoostIndex)
+SupplyItemWithDurability(StatAccessory, MuscleBand_BoostIndex)
+SupplyItemWithDurability(StatAccessory, LeatherShield_BoostIndex)
+SupplyItemWithDurability(SkillScroll, GaleforceID)
+SupplyItemWithDurability(SkillScroll, RenewalID)
+SupplyItemWithDurability(SkillScroll, TantivyID)
+SupplyItemWithDurability(SpellScroll, LeafFlurry)
+SupplyItemWithDurability(SpellScroll, Scorch)
+SupplyItemWithDurability(SpellScroll, WaterGun)
+SupplyItemWithDurability(SpellScroll, Spark)
+SupplyItemWithDurability(SpellScroll, KarateChop)
 
 
 SilentGiveItemWithDurability(1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
@@ -317,9 +346,9 @@ ASMC SeePokedex
 Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(16, YCoordNewArea)  
 
-MNC2 PCBoxCh
+//MNC2 PCBoxCh
 
-//MNC2 DebugCh
+MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch
 //MNC2 SaffronGymCh

@@ -1,14 +1,28 @@
+#include "SortSupply.lyn.event" 
+
 PUSH
 
 //Chop off the first digit when viewing items in supply 
 //Eg. 0x21 becomes 0x01 and will show up with lances. 
 //AUTHOR=Vesly
 
-ORG 0x98086
-BYTE 0x00 0x07 0x00 0x0F
+//ORG 0x98086
+//BYTE 0x00 0x07 0x00 0x0F
+//
+//ORG 0x980D0
+//BYTE 0x00 0x07 0x00 0x0F
 
-ORG 0x980D0
-BYTE 0x00 0x07 0x00 0x0F
+ORG $98080
+callHackNew(SortSupply)
+
+ORG $980C8
+callHackNew(SortSupply2)
+
+
+
+
+
+
 
 POP 
 
