@@ -1,5 +1,8 @@
 #include "SortSupply.lyn.event" 
 
+
+
+
 PUSH
 
 //Chop off the first digit when viewing items in supply 
@@ -12,19 +15,38 @@ PUSH
 //ORG 0x980D0
 //BYTE 0x00 0x07 0x00 0x0F
 
+
+// This version takes over how sorting supply is done 
 ORG $98080
 callHackNew(SortSupply)
 
 ORG $980C8
 callHackNew(SortSupply2)
 
-
-
-
-
-
-
 POP 
+
+// SortSupply: 
+// 0 - Healing - Potion icon 
+// 1 - Stat Equipment - Headband 
+// 2 - Skill Equipment - Leftovers 
+// 3 - Spell Scrolls - Metis Scroll 
+// 4 - Skill Scrolls - Luna 
+// 5 - Stat boosters - Carbos 
+// 6 - Promotion Items - Fire Stone 
+// 7 - Pokeballs - Pokeball 
+// 8 - Misc. - 
+
+ALIGN 4 
+PromotionItemsList:
+BYTE MoonStone LinkStone ThunderStone LeafStone WaterStone SacredStone FireStone 
+BYTE 0 // Terminator 
+
+ALIGN 4 
+StatBoostersItemList:
+BYTE HPUp Protein SecretTonic Carbos Luck Iron Zinc Calcium 
+BYTE RareCandy 
+BYTE 0 // Terminator 
+
 
 // Examine items past 0x0D fix 
 // Author = Sme

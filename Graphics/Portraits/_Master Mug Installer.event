@@ -125,13 +125,14 @@ GiovanniData:
 #incbin "Dmp/Giovanni_minimug.dmp" 
 setMugEntry(170, GiovanniData, 9, 9, 9, 9)
 
+// 171 is reserved for convoy 
 ALIGN 16 
-LoreleiData: 
-#incbin "Dmp/Lorelei_mug.dmp" 
-#incbin "Dmp/Lorelei_frames.dmp" 
-#incbin "Dmp/Lorelei_palette.dmp" 
-#incbin "Dmp/Lorelei_minimug.dmp" 
-setMugEntry(171, LoreleiData, 9, 9, 9, 9)
+SupplyData:
+#incbin "Dmp/Supply_mug.dmp" 
+#incbin "Dmp/Supply_frames.dmp" 
+#incbin "Dmp/Supply_palette.dmp" 
+#incbin "Dmp/Supply_minimug.dmp" 
+setMugEntry(171, SupplyData, 9, 9, 9, 9)
 
 ALIGN 16 
 BrunoData: 
@@ -156,6 +157,15 @@ LanceData:
 #incbin "Dmp/Lance_palette.dmp" 
 #incbin "Dmp/Lance_minimug.dmp" 
 setMugEntry(174, LanceData, 9, 9, 9, 9)
+
+
+ALIGN 16 
+LoreleiData: 
+#incbin "Dmp/Lorelei_mug.dmp" 
+#incbin "Dmp/Lorelei_frames.dmp" 
+#incbin "Dmp/Lorelei_palette.dmp" 
+#incbin "Dmp/Lorelei_minimug.dmp" 
+setMugEntry(175, LoreleiData, 9, 9, 9, 9)
 
 // Reserved 
 ALIGN 16 

@@ -90,6 +90,35 @@ cmp r1, #0xA4
 bgt NotHealing 
 mov r0, #0 @ Potion, Berry, JellyDonut, HyperPotion, MaxPotion 
 NotHealing: 
+mov r3, #0 
+ldr r4, =PromotionItemsList
+PromoLoop: 
+ldrb r2, [r4, r3] 
+add r3, #1 
+cmp r2, #0 
+beq BreakPromoLoop 
+cmp r1, r2 
+beq PromoItem 
+b PromoLoop 
+PromoItem: 
+mov r0, #6 @ column 6 for promo items 
+b Exit 
+BreakPromoLoop: 
+mov r3, #0 
+ldr r4, =StatBoostersItemList
+StatBoosterLoop: 
+ldrb r2, [r4, r3] 
+add r3, #1 
+cmp r2, #0 
+beq BreakStatBoostersLoop 
+cmp r1, r2 
+beq StatBoosterItem 
+b StatBoosterLoop 
+StatBoosterItem: 
+mov r0, #5 @ column 6 for promo items 
+b Exit 
+BreakStatBoostersLoop: 
+
 
 Exit: 
 
