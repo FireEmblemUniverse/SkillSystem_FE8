@@ -95,12 +95,13 @@ SADD rA rC r0
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
 SADD s8 sB s0 
 CUMO 0x7ffE
+STAL 20 
+CURE 
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
 
 LABEL 10
 BottomWallS2Text
-CURE
 BNE 34 rA r0  // award 1/4 gold for rematches 
 GOTO 35 
 LABEL 34 
@@ -125,14 +126,12 @@ LABEL 21
 ENUF PlayableCutsceneFlag 
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 FADI 8 
-CURE
 DISA 0xEF 
 FADU 10
 GOTO 0x63 
 
 LABEL 22 
 //BottomWallS2Text
-CURE
 TutText(AuraDissipated)
 SADD sB s8 s0 
 GetUnitStatus(0x7FFe, UnitPointer)

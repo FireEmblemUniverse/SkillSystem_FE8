@@ -1,8 +1,8 @@
 #define ChapterID Route22Ch
-#define GenericA UnitRoute22Wild
-#define GenericB UnitRoute22Trainer
-#define ClassA ClassRoute22WildA
-#define ClassB ClassRoute22WildB
+#define GenericA UnitRoute21Wild
+#define GenericB UnitRoute21Trainer
+#define ClassA ClassRoute21WildA
+#define ClassB ClassRoute21WildB
 #define WildLvl 38
 #define TrainerL 50
 
@@ -100,9 +100,7 @@ SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID)
 SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
 
-//Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
-
-
+Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)

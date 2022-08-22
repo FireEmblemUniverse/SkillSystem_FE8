@@ -172,7 +172,13 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define ClassRoute21WildB 0x5A 
 #define ClassPowerPlantWildA 0x5B
 #define ClassPowerPlantWildB 0x5C
-
+#define ClassRoute22WildA 0x5D 
+#define ClassRoute22WildB 0x5E 
+#define ClassRoute23WildA 0x5F 
+#define ClassRoute23WildB 0x60 
+#define ClassVictoryRoadWildA 0x61 
+#define ClassVictoryRoadWildB 0x62 
+#define ClassVictoryRoadWildC 0x63 
 
 
 //Enemy unit IDs 
@@ -237,6 +243,9 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitRoute21Wild 0x88
 #define UnitMansionWild 0x89
 #define UnitSeafoamWild 0x8A
+#define UnitRoute22Wild 0x8B 
+#define UnitRoute23Wild 0x8C 
+#define UnitVictoryRoadWild 0x8D 
 
 
 #define UnitRoute1Trainer 0xA0
@@ -277,7 +286,10 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitRoute21Trainer 0xC2 
 #define UnitSeafoamTrainer 0xC3 
 #define UnitMansionTrainer 0xC4 
-
+#define UnitRoute22Trainer 0xC5 
+#define UnitRoute23Trainer 0xC6 
+#define UnitVictoryRoadTrainer 0xC7 
+#define UnitElite4Trainer 0xC8 
 
  
 

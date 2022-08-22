@@ -1,8 +1,8 @@
-#define ChapterID Route22Ch
-#define GenericA UnitRoute22Wild
-#define GenericB UnitRoute22Trainer
-#define ClassA ClassRoute22WildA
-#define ClassB ClassRoute22WildB
+#define ChapterID Route23NCh
+#define GenericA UnitRoute23Wild
+#define GenericB UnitRoute23Trainer
+#define ClassA ClassRoute23WildA
+#define ClassB ClassRoute23WildB
 #define WildLvl 38
 #define TrainerL 50
 
@@ -47,7 +47,9 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToRoute23S, 8, 5) 
+House(0, ToVictoryRoadB1, 5,45) 
+House(0, ToVictoryRoadB3, 18,45) 
+House(0, ToPokecenterLeague, 11,5) 
 END_MAIN
 
 MiscBasedEvents:
@@ -56,27 +58,27 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToViridian [47,6][47,9] 
+AREA 0 ToRoute23M [3,59][9,59] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(47,8) 
-EscapeTileEntry(8,5) 
+EscapeTileEntry(4,59) 
+EscapeTileEntry(6,59) 
+EscapeTileEntry(5,45) 
+EscapeTileEntry(18,45) 
+EscapeTileEntry(11,5) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToViridian:
-ChapterTransition(ViridianCh, 1, 17)
+ToVictoryRoadB1:
+ChapterTransition(VictoryRoadB1Ch, 11, 20)
+ToVictoryRoadB3:
+ChapterTransition(VictoryRoadB2Ch, 38,12)
+ToPokecenterLeague:
+ChapterTransition(PokecenterLeagueCh, 11,16)
+ToRoute23M:
+ChapterTransition(Route23MCh, 5,1)
 
-ToRoute23S:
-CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
-BEQ 20 rC r0 
-ChapterTransition(Route23SCh, 8, 55)
-LABEL 20 // Cutscene prevents escape 
-CALL CannotEscapeTrainerBattleEvent
-LABEL 63 
-NoFade 
-ENDA 
 
 
 
@@ -100,9 +102,7 @@ SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID)
 SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
 
-//Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
-
-
+Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
@@ -217,11 +217,11 @@ MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-BQ(0xF, GaryRoute22ChallengeText)
+BQ(0xF, DebugText)
 TDQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0xF, GaryRoute22DefeatText, 3000) 
+BD(0xF, DebugText, 3000) 
 TDQ_TableTerminator ; } 
 
 GaryBattleUnitGroup:
