@@ -1,4 +1,4 @@
-#define ChapterID AgathaCh
+#define ChapterID ChampionCh
 
 #define WildLvl 5 
 #define TrainerL 55
@@ -37,7 +37,7 @@ END_MAIN
 
 LocationBasedEvents:
 //House(0, ToPokecenterLeague, 11,16) 
-House(0, ToLance, 12, 2) 
+House(0, ToHallOfFame, 13,3) 
 END_MAIN
 
 CheckIfNoEnemiesLeft:
@@ -60,69 +60,23 @@ DefeatAll(EndingScene)
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0xA CheckIfNoEnemiesLeft 0
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToBruno [11,22][13,22] 
+AREA 0 ToLance [5,30][21,30] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(12,2) 
-EscapeTileEntry(12,22) 
+EscapeTileEntry(13,30) 
+EscapeTileEntry(7,30) 
+EscapeTileEntry(19,30) 
+EscapeTileEntry(13,3) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToBruno:
-ChapterTransition(BrunoCh, 12,3)
 ToLance:
-ChapterTransition(LanceCh, 12,19)
-
+ChapterTransition(LanceCh, 12,3)
+ToHallOfFame:
+ChapterTransition(HallOfFameCh, 9,25)
 
 Traps1:
-
-BrokenIceTrap(16,6)
-BrokenIceTrap(8,7)
-BrokenIceTrap(19,7)
-BrokenIceTrap(5,8)
-BrokenIceTrap(10,8)
-BrokenIceTrap(17,8)
-BrokenIceTrap(6,9)
-BrokenIceTrap(9,9)
-BrokenIceTrap(18,9)
-BrokenIceTrap(20,9)
-BrokenIceTrap(4,10)
-BrokenIceTrap(9,10)
-BrokenIceTrap(10,10)
-BrokenIceTrap(15,10)
-BrokenIceTrap(20,10)
-BrokenIceTrap(21,10)
-BrokenIceTrap(10,11)
-BrokenIceTrap(13,11)
-BrokenIceTrap(14,11)
-BrokenIceTrap(16,11)
-BrokenIceTrap(20,11)
-BrokenIceTrap(3,12)
-BrokenIceTrap(4,12)
-BrokenIceTrap(7,12)
-BrokenIceTrap(15,12)
-BrokenIceTrap(17,12)
-BrokenIceTrap(22,12)
-BrokenIceTrap(4,13)
-BrokenIceTrap(9,13)
-BrokenIceTrap(6,14)
-BrokenIceTrap(13,14)
-BrokenIceTrap(18,14)
-BrokenIceTrap(19,14)
-BrokenIceTrap(6,15)
-BrokenIceTrap(7,15)
-BrokenIceTrap(15,15)
-BrokenIceTrap(18,15)
-BrokenIceTrap(3,16)
-BrokenIceTrap(6,16)
-BrokenIceTrap(20,16)
-BrokenIceTrap(10,17)
-BrokenIceTrap(17,17)
-
-
-
-//PuddleTrap(14, 16)
 
 ENDTRAP
 ALIGN 4

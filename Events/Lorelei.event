@@ -36,6 +36,8 @@ END_MAIN
 
 
 LocationBasedEvents:
+//House(0, ToPokecenterLeague, 11,16) 
+House(0, ToBruno, 12, 2) 
 END_MAIN
 
 CheckIfNoEnemiesLeft:
@@ -58,19 +60,21 @@ DefeatAll(EndingScene)
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0xA CheckIfNoEnemiesLeft 0
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSaffron [8,19][8,19] 
+AREA 0 ToPokecenterLeague [11,22][13,22] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-//EscapeTileEntry(8,19) 
+EscapeTileEntry(12,2) 
+EscapeTileEntry(12,22) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToSaffron:
-ChapterTransition(SaffronCh, 24,6)
+ToPokecenterLeague:
+ChapterTransition(PokecenterLeagueCh, 4,3)
+ToBruno:
+ChapterTransition(BrunoCh, 12,19)
 
 Traps1:
-
 BrokenIceTrap(16,6)
 BrokenIceTrap(8,7)
 BrokenIceTrap(19,7)
@@ -113,11 +117,6 @@ BrokenIceTrap(6,16)
 BrokenIceTrap(20,16)
 BrokenIceTrap(10,17)
 BrokenIceTrap(17,17)
-
-
-
-//PuddleTrap(14, 16)
-
 ENDTRAP
 ALIGN 4
 

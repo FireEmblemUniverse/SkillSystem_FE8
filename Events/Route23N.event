@@ -48,7 +48,7 @@ END_MAIN
 
 LocationBasedEvents:
 House(0, ToVictoryRoadB1, 5,45) 
-House(0, ToVictoryRoadB3, 18,45) 
+House(0, ToVictoryRoadB2, 18,45) 
 House(0, ToPokecenterLeague, 11,5) 
 END_MAIN
 
@@ -72,7 +72,7 @@ EscapeTileTerminator ; }
 
 ToVictoryRoadB1:
 ChapterTransition(VictoryRoadB1Ch, 11, 20)
-ToVictoryRoadB3:
+ToVictoryRoadB2:
 ChapterTransition(VictoryRoadB2Ch, 38,12)
 ToPokecenterLeague:
 ChapterTransition(PokecenterLeagueCh, 11,16)

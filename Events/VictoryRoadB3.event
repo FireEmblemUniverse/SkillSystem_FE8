@@ -70,8 +70,16 @@ EscapeTileEntry(31,17)
 EscapeTileTerminator ; } 
 #endif 
 
+ToVictoryRoadB2_NW:
+ChapterTransition(VictoryRoadB2Ch, 4,3)
+ToVictoryRoadB2_M:
+ChapterTransition(VictoryRoadB2Ch, 25,10)
 ToVictoryRoadB2_E:
-ChapterTransition(ViridianCh, 1, 17)
+ChapterTransition(VictoryRoadB2Ch, 30,11)
+ToVictoryRoadB2_SE:
+ChapterTransition(VictoryRoadB2Ch, 23, 17)
+ToVictoryRoadB2_Hole:
+ChapterTransition(VictoryRoadB2Ch, 20,19)
 
 
 

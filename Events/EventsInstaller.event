@@ -275,6 +275,11 @@
 {
 #include "Route21.event"
 }
+
+{
+#include "Viridian_Gym.event" 
+}
+
 {
 #include "Route22.event"
 }
@@ -303,9 +308,6 @@
 
 
 
-{
-#include "Viridian_Gym.event" 
-}
 
 {
 #include "Lorelei.event"
@@ -313,6 +315,19 @@
 {
 #include "Bruno.event"
 } 
+
+{
+#include "Agatha.event" 
+}
+{
+#include "Lance.event" 
+}
+{
+#include "Champion.event" 
+}
+{
+#include "HallOfFame.event" 
+}
 
 
 

@@ -36,6 +36,8 @@ END_MAIN
 
 
 LocationBasedEvents:
+//House(0, ToPokecenterLeague, 11,16) 
+House(0, ToAgatha, 12, 2) 
 END_MAIN
 
 CheckIfNoEnemiesLeft:
@@ -58,17 +60,19 @@ DefeatAll(EndingScene)
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AFEV 0xA CheckIfNoEnemiesLeft 0
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSaffron [8,19][8,19] 
+AREA 0 ToLorelei [11,22][13,22] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-//EscapeTileEntry(8,19) 
+EscapeTileEntry(12,2) 
+EscapeTileEntry(12,22) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToSaffron:
-ChapterTransition(SaffronCh, 24,6)
-
+ToLorelei:
+ChapterTransition(LoreleiCh, 12,3)
+ToAgatha:
+ChapterTransition(AgathaCh, 12,19)
 Traps1:
 RockSmash(17,7)
 RockSmash(7,8)
