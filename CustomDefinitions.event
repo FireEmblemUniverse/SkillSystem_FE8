@@ -71,7 +71,8 @@
 
 //#define MoveListTable 1 
 
-
+// Proc skill that replaces misses with half damage. 
+#define ReplaceMissWithHalfDamage 
 
 #define RareCandy ExoticCandy 
 

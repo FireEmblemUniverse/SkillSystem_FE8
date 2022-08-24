@@ -350,7 +350,8 @@ Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(16, YCoordNewArea)  
 
 //MNC2 PCBoxCh
-MNC2 Route23NCh 
+// MNC2 Route23NCh 
+MNC2 LoreleiCh 
 //MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch

@@ -9,7 +9,7 @@
 #include "Heal_CalcLoop/Installer.event"
 
 #include "StatusDamageLoop.lyn.event" 
-
+#include "NeverMiss.lyn.event" 
 
 ALIGN 4 
 UnitTryHealLowerCap:

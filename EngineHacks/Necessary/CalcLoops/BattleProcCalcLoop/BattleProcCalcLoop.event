@@ -49,6 +49,9 @@ POIN Proc_Vengeance //more damage
 #endif // COMBAT_ARTS
 
 POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
+#ifdef ReplaceMissWithHalfDamage
+POIN NeverMiss
+#endif 
 
 POIN Proc_CapDamage	//check that damage is not over cap
 
