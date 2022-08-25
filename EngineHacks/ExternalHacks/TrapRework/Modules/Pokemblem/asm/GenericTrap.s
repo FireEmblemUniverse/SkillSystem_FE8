@@ -287,9 +287,17 @@ push {r4,r7,r14}
 mov r7, #0x32
 b GenericTrapUsability
 
-GenericTrapUsability0x33:
+GenericTrapUsability0x33: // CompletionObstacleID
 push {r4,r7,r14}
 mov r7, #0x33
+ldr r4,=#0x3004E50
+ldr r0,[r4]
+bl GetAdjacentTrapIndividual
+mov r4, r0  @&The DV
+cmp r0,#0
+beq Usability_RetFalse
+b CantoCheck @ can use regardless of flag, though it should never spawn if flag was on 
+
 b GenericTrapUsability
 
 GenericTrapUsability0x34:

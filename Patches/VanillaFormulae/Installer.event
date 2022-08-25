@@ -8,6 +8,7 @@
 #include "PB_Calc_Loop_Effects/Installer.event"
 #include "Heal_CalcLoop/Installer.event"
 
+#include "ExplosionEffect.lyn.event" 
 #include "StatusDamageLoop.lyn.event" 
 #include "NeverMiss.lyn.event" 
 

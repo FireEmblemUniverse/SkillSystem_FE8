@@ -147,6 +147,7 @@ BYTE Growl      debuff_ID
 BYTE Leer       debuff_ID
 BYTE SandAttack debuff_ID
 BYTE TailWhip   debuff_ID
+BYTE Explosion CauterizeAnimID 
 
 /*
 BYTE FireSpin   debuff_ID

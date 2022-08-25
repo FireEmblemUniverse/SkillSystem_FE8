@@ -51,10 +51,12 @@
 DisplayTextInitialization:
 mov r0, #0x3
 ldrb r0, [r5, r0]     @Completion flag
-blh CheckNewFlag
+cmp r0, #0 
+beq SkipCheckEventId 
+blh CheckEventId 
 cmp r0, #1 
 beq ReturnPoint @if completion flag is true, then we do not spawn this trap :-) 
-
+SkipCheckEventId: 
 @r5 = pointer to trap data in events
 ldrb r0,[r5,#1] @x coord
 ldrb r1,[r5,#2] @y coord

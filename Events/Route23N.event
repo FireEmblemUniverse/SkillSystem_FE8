@@ -28,15 +28,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-
-
 END_MAIN
-
-//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
-{ ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnitsA, 2, 4) 
-Reinforce(0xF1, 1, ReinforcementUnitsA, 3, 4) 
-}
 
 
 CharacterBasedEvents:
@@ -95,22 +87,27 @@ Traps1:
 
 //StrengthBoulder(4,3)
 
-//StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
+// Route 23S: VoiceOfPeaceAcc, DoubleEdge 
+// Route 23M: MaxPotion, 1800g 
+// Route 23N: EnergyBandT3 
+//VictoryRoad: DarkPulse, RareCandy 
+//VictoryRoad: Outrage, Protein, Iron 
+//VictoryRoad: Megahorn 
+
+
+StatAccessoryTrap(11,10, (ChapterID*2), EnergyBandT3_BoostIndex) 
 //RedPokeballTrap(11,21, (ChapterID*2)+1, ExoticCandy) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
-SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
-SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
 
-Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(10,12, ChapterID, 0x0) //no extra text 
-SignATrap(42,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(9,7, ChapterID, 0x0) //no extra text 
+SignATrap(3, 48, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
@@ -142,21 +139,10 @@ CALL LoadAndPlacePlayers
 
 CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
 BNE 10 rC r0 
-LOAD1 0x1 GaryBattleUnitGroup 
+LOAD1 0x1 VeslyUnitGroup 
 ENUN 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 LABEL 10 
-
-
-LOAD1 0x1 EnemyUnitsA
-ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
-
-LOAD1 0x1 EnemyUnitsB
-ENUN 
-AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
-
-CALL SetBushHpEvent
-
 LABEL 0x63
 NoFade
 ENDA
@@ -193,27 +179,9 @@ UNIT
 
 
 
-EnemyUnitsA:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsB:
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-ReinforcementUnitsA:
-UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
-UNIT 
-
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsA) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsB) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsC) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, VeslyUnits) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
@@ -221,53 +189,25 @@ BQ(0xF, DebugText)
 TDQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0xF, DebugText, 3000) 
+BD(0xF, DebugText, 5000) 
 TDQ_TableTerminator ; } 
 
-GaryBattleUnitGroup:
-UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [26,4]  0b 0x0	0x1 REDA26R4 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
+VeslyUnitGroup: // Self-insert time... 
+UNIT 0xEF RedID 0x0 Level(0, Enemy, 1) [11,10]  0b 0x0	0x1 REDA11R10 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
 //UNIT GenericB	SquirtleID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT 
+UNIT // creator 
 
 
 
-GaryUnitsA:
-UNIT GenericB	VenusaurID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ArcanineID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	GyaradosID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+VeslyUnits:
+UNIT GenericB	GrimerID 	0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [Explosion,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	GolemID 	0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 	 [Explosion,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	ElectrodeID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [Explosion,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	WeezingID 	0xEF Level(0, Enemy, 1)	  [11,10]  0b	0x0 0x0  0x0 [Explosion,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	SnorlaxID 	0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [Explosion,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [Explosion,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT
-
-GaryUnitsB:
-UNIT GenericB	CharizardID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	GyaradosID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
-
-GaryUnitsC:
-UNIT GenericB	BlastoiseID 0xEF Level(0, Enemy, 1)   [9,9] 	0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ArcanineID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
-
-GaryUnitsD:
-UNIT GenericB	JolteonID 0xEF Level(0, Enemy, 1)   [9,9] 		0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ArcanineID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
-
 
 	
 #undef GenericA 

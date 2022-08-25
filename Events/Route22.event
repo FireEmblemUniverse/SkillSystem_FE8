@@ -101,7 +101,7 @@ SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID)
 
 
 //Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
-
+BlankExamineTrap(8,5, EarthbadgeObtained, DoorLockedText) // cannot walk through 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
@@ -144,6 +144,8 @@ CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter
 BNE 10 rC r0 
 LOAD1 0x1 GaryBattleUnitGroup 
 ENUN 
+AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
+
 LABEL 10 
 
 

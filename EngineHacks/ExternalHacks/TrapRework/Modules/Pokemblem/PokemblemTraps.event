@@ -65,7 +65,6 @@
 	
 	SetTrapEventInit(FlowerTrapID,GenericTrapInitialization)
 	
-	SetTrapEventInit(51,GenericTrapInitialization)
 	SetTrapEventInit(52,GenericTrapInitialization)
 	SetTrapEventInit(53,GenericTrapInitialization)
 	SetTrapEventInit(54,GenericTrapInitialization)
@@ -94,11 +93,18 @@
 #define Generic(XX,YY,ReqFlag, Sprite, EffectID) "BYTE CustomTrapID XX YY ReqFlag Sprite EffectID"
 #define GenericEffect(id, event) "PUSH; ORG GenericTrapTableOffset + (4 * id); POIN event; POP"
 
+#define CompletionObstacleID 51 
+#define GenericCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE CompletionObstacleID XX YY CompletionFlag Sprite EffectID"
+SetTrapEventInit(CompletionObstacleID, GenericTrapDisappearCompletionInitialization)
+SetTrapMapSpritePalette(CompletionObstacleID,NPCTrapPaletteWord)
+SetImpassableTrap(CompletionObstacleID)
+
 
 #define GenericDisappear(XX,YY,EffectID) "BYTE CutBushTrapID XX YY 0x0 0x0 EffectID"
 #define GenericDisappear(XX,YY,ReqFlag, Sprite, EffectID) "BYTE CutBushTrapID XX YY ReqFlag Sprite EffectID"
 #define GenericDisappearCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE TakeTriggerID XX YY CompletionFlag Sprite EffectID"
 #define ExamineDisappearCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE Examine2ID XX YY CompletionFlag Sprite EffectID"
+
 
 #define GenericDisappearEffect(id, event) "PUSH; ORG GenericTrapDisappearTableOffset + (4 * id); POIN event; POP"
 
@@ -239,7 +245,7 @@ SetImpassableTrap(SkillAccessoryTrapID)
 #define Sign2Trap(XX,YY,CompletionFlag, TextID) "BYTE Sign2TrapID XX YY CompletionFlag; SHORT TextID"
 #define Sign2Trap(XX,YY, TextID) "BYTE Sign2TrapID XX YY 0x0; SHORT TextID"
 
-#define BlankExamineTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankExamineID XX YY CompletionFlag; SHORT TextID"
+#define BlankExamineTrap(XX,YY,CompletionFlag, TextID) "BYTE BlankExamineID XX YY CompletionFlag; SHORT TextID" // won't spawn if flag is set 
 #define BlankExamineTrap(XX,YY, TextID) "BYTE BlankExamineID XX YY 0x0; SHORT TextID"
 
 

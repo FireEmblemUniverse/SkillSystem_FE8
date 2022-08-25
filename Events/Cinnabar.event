@@ -117,7 +117,7 @@ Traps1:
 Save(14,17) // Pokecenter 
 
 
-BlankExamineTrap(20,11, DoorLockedText) // cannot walk through 
+BlankExamineTrap(20,11, SecretKeyObtained, DoorLockedText) // cannot walk through 
 
 //RockSmash(3,2)
 //StrengthBoulder(4,3)

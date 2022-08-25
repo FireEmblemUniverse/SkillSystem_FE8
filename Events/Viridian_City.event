@@ -146,8 +146,8 @@ SignATrap(16,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
 
-Generic(21,18,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
-
+//GenericCompletion(21,18,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
+BlankExamineTrap(21, 18, VolcanobadgeObtained, DoorLockedText) // cannot walk through 
 
 Flower(35,13)
 Flower(34,14)

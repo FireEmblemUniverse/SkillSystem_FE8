@@ -96,7 +96,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  BlastoiseID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  ElectrodeID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -307,7 +307,7 @@ SetTactName(VeslyName)
 // 203A56C+6e [203a5da]?!!
 // [203AE
 AutoLevelUnits(60, True, 0x145) // all 
-//SetUnitStatus(1, 0x28, PoisonSting)
+SetUnitStatus(1, 0x28, Explosion)
 //SetUnitStatus(1, 0x29, Ember)
 //SetUnitStatus(1, 0x2A, Growl)
 //SetUnitStatus(1, 0x2B, Scratch)
@@ -346,13 +346,15 @@ ENUT IndigoPlateauArrived
 ASMC SeePokedex
 //[203A57f]?!!
 //[0202D0A7]?!!
-Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(16, YCoordNewArea)  
+Write_Byte(9, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(32, YCoordNewArea)  
 
 //MNC2 PCBoxCh
 // MNC2 Route23NCh 
-MNC2 LoreleiCh 
-//MNC2 DebugCh
+//MNC2 Route23NCh 
+//MNC2 Route22Ch 
+//MNC2 LoreleiCh 
+MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch
 //MNC2 SaffronGymCh
