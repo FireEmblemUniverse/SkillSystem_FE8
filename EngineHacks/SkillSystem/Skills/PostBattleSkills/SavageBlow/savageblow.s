@@ -11,7 +11,7 @@ push	{r4-r7,lr}
 @check if dead
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
-beq	End
+@beq	End
 
 @check if attacked this turn
 ldrb 	r0, [r6,#0x11]	@action taken this turn
@@ -35,7 +35,7 @@ beq	End
 ldr	r0, GetUnitsInRange
 mov	lr, r0
 mov	r0, r4		@attacker
-mov	r1, #0x03   @are_enemies
+mov	r1, #4 @ all units in range @#0x03   @are_enemies
 mov	r2, #0x02	@range
 .short	0xf800
 
@@ -62,6 +62,11 @@ b	CheckEventLoop
 
 Event:
 mov	r6, #0x00		@reset counter
+
+ldrb	r0, [r4,#0x13]
+cmp	r0, #0x00
+beq	Savage_loop @ if user has died, skip event, as otherwise it will stal while camera is centered on target 
+
 ldr	r0,=#0x800D07C		@event engine thingy
 mov	lr, r0
 ldr	r0, SavageBlowEvent	@this event is just "play some sound effects"

@@ -238,7 +238,6 @@ TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated
 BD(0xF, GaryLavenderDefeatText, 2000) 
 SHORT SSA_0xE0_BD // gary
 SHORT 1800 // Gold 
-
 TDQ_TableTerminator ;
 
 TQ_Nuzlocke_ChEntry(ChapterID)

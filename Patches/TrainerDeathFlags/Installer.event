@@ -20,13 +20,16 @@ ASMC ModularSummon_UnhideActive
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 CUMO 0x7fff
 ASMC 0x80790a5 //MU_EndAll //deselect unit
+STAL 20 
+CURE
 SVAL s5 0 // Pokeball animation as the default 
 CHECK_ACTIVE 
 SVAL r7 0xEF 
 BEQ 20 rC r7 // If unit is 0xEF, always considered cutscene I guess 
 SVAL s7 0xEE // Wild Boss pokemon that can only be attacked once its summons are defeated 
 BEQ 21 sC s7 
-
+SVAL s7 0xED // Wild Boss pokemon that can only be attacked once its summons are defeated 
+BEQ 22 sC s7 
 LABEL 0
 
 SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
@@ -42,7 +45,6 @@ BNE 10 rC r7
 
 LABEL 5 
 REMA 
-CURE
 ASMC ModularSummonEffect
 GOTO 0x63 
 
@@ -53,8 +55,6 @@ GOTO 0x63
 
 LABEL 20 // Playable cutscene eg. rival battle 
 ENUT PlayableCutsceneFlag
-STAL 20 
-CURE
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 ASMC ModularSummonEffect 
 GOTO 0x63 
@@ -66,16 +66,21 @@ BNE 60 rC r0 // If flag is unset, always call modular summon
 ENUT PlayableCutsceneFlag
 SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
 REMA 
-CURE
 SVAL s1 0 //3<<8Attack in range  //0 pursue and attack  
 CHAI 0xEE
 TutText(AuraFlareText)
 
 SVAL s5 1 // not pokeball 
 ASMC ModularSummonEffect
+GOTO 0x63 
 
-
-
+LABEL 22 // Vesly self-insert
+ENUT PlayableCutsceneFlag
+STAL 20 
+CURE
+SVAL 0xB 0x0000FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND 
+REMA 
+ASMC ModularSummonEffect 
 GOTO 0x63 
 
 LABEL 60 
@@ -121,12 +126,21 @@ SVAL r7 0xEF
 BEQ 21 r7 r9 // Only if unit is 0xEF
 SVAL s7 0xEE 
 BEQ 22 s7 s9 // if unit is wild boss pkmn 
+SVAL s7 0xED 
+BEQ 23 s7 s9 // if unit is Vesly 
 GOTO 10
 LABEL 21 
 ENUF PlayableCutsceneFlag 
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 FADI 8 
 DISA 0xEF 
+FADU 10
+GOTO 0x63 
+
+LABEL 23 // Vesly unit 0xED before league 
+SVAL 0xB 0x0000FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND 
+FADI 8 
+DISA 0xED 
 FADU 10
 GOTO 0x63 
 
