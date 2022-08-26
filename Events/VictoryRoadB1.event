@@ -79,30 +79,34 @@ ChapterTransition(VictoryRoadB2Ch, 1, 9)
 // Traps that do not reference ram do not have this limit 
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
-//CoinsTrap(22,14,ChapterID*2,1220)
+CoinsTrap(14,1,ChapterID*2,2000)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
+//VictoryRoad:  Iron, RareCandy, 2000g
+//VictoryRoad: Outrage, Protein, 
+//VictoryRoad: Megahorn DarkPulse
 
 //RockSmash(29,9)
 
 //StrengthBoulder(4,3)
 
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
-//RedPokeballTrap(11,21, (ChapterID*2)+1, ExoticCandy) 
-//RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
-SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
-SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
+RedPokeballTrap(12,3, (ChapterID*2)+1, ExoticCandy) 
+RedPokeballTrap(12,10, (ChapterID*2), Iron) 
 
 
-Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
+//SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
+//SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
+
+
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(10,12, ChapterID, 0x0) //no extra text 
-SignATrap(42,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(3,5, ChapterID, 0x0) //no extra text 
+SignATrap(11,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 

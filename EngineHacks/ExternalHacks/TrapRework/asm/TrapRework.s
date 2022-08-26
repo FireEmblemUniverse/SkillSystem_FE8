@@ -61,7 +61,8 @@ mov r2,r0 @r2 = trap ID
 
 @add special cases here for your traps, if needed
 @check to display as normal, hide on completion, or display sprite from 0x04 byte of trap 
-mov r1, #0x10		@custom traps 0x10 - 0x1F to use 0x3 as completion flag / hidden sprite on compl.
+mov r1, #0x20		@custom traps 0x10 - 0x1F to use 0x3 as completion flag / hidden sprite on compl.
+@ 2022 update: nevermind 
 cmp r2, r1
 blt HealTiles
 mov r1, #0x50 

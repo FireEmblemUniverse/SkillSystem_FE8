@@ -41,7 +41,7 @@
 //  - using SetNearbyDR ASMC.
 //  - pressing select whilst no DR is set and NonEnemySELECT
 //    is set to NearbyDR.
-#define NearbyTiles 14
+#define NearbyTiles 22
 
 // Set to True if you have Modular Stat Getters active.
 // Set to False otherwise.
