@@ -96,9 +96,9 @@ ClassRoute22WildA 0x5D ,NidoranMID,NidoranFID,RattataID,0x00,0x00,25,25,50,0,0,R
 ClassRoute22WildB 0x5E ,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route22Ch,0
 ClassRoute23WildA 0x5F ,FearowID,SandslashID,ArbokID,0x00,0x00,35,25,40,0,0,Route23NCh,0
 ClassRoute23WildB 0x60 ,PsyduckID,SlowpokeID,0x00,0x00,0x00,0,0,0,0,0,Route23SCh,0
-ClassVictoryRoadWildA 0x61,OnixID,MachokeID,GravellerID,SandslashID,MarowakID,20,20,20,20,20,VictoryRoadB1Ch,0
-ClassVictoryRoadWildB 0x62,GeodudeID,GolbatID,VenomothID,0x00,0x00,30,60,10,0,0,VictoryRoadB1Ch,0
-ClassVictoryRoadWildC 0x63,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0
+ClassVictoryRoadWildA 0x61,OnixID,MachokeID,GravellerID,SandslashID,0x00,30,30,10,30,0,VictoryRoadB1Ch,0
+ClassVictoryRoadWildB 0x62,GravellerID,ZubatID,0x00,0x00,0x00,50,50,0,0,0,VictoryRoadB1Ch,0
+ClassVictoryRoadWildC 0x63,VenomothID,GolbatID,MarowakID,0x00,0x00,25,40,35,0,0,VictoryRoadB1Ch,0
 ClassCeruleanCaveWildA 0x64 ,GolbatID,GravellerID,MagnetonID,HypnoID,RhydonID,20,20,20,20,20,CeruleanCaveB1Ch,0
 ClassCeruleanCaveWildB 0x65 ,ArbokID,VenomothID,DodrioID,ParasectID,LickitungID,20,20,20,20,20,CeruleanCaveB1Ch,0
 ClassCeruleanCaveWildC 0x66 ,RaichuID,SandslashID,GloomID,WeepinbellID,ChanseyID,20,20,20,20,20,CeruleanCaveB1Ch,0
