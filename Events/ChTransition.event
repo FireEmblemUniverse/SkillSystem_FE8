@@ -1001,12 +1001,12 @@ CALL PlacePlayers
 NoFade 
 ENDA 
 
-
+#define RefreshTerrainBmMap 0x8019A65 
 LoadAndPlacePlayers:
 //EVBIT_T 0x2 //Scene skipping 
 //FADU -1 
 //FADI -1 
-
+ASMC RefreshTerrainBmMap //0x8019A64
 CALL CheckDeployed 
 
 CALL PlacePlayers 

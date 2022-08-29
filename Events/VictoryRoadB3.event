@@ -60,6 +60,7 @@ AFEV 0 GlobalAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToVictoryRoadB2_Hole [26,18][26,18]
+AREA 0 DropBoulderInHoleEvent [24,16][26,19] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -79,11 +80,34 @@ ChapterTransition(VictoryRoadB2Ch, 30,11)
 ToVictoryRoadB2_SE:
 ChapterTransition(VictoryRoadB2Ch, 23, 17)
 ToVictoryRoadB2_Hole:
-ChapterTransition(VictoryRoadB2Ch, 20,19)
+EndMMS 
+EARTHQUAKE_START 0 // 0 - Sway, 1 - Tremor 
+STARTFADE 
+FADECOLORS 0x1006 5 135 110 110 // non-sprites? 
+FADI 16 
+ENDFADE 
+EARTHQUAKE_END 
+ForcedChapterTransition(VictoryRoadB2Ch, 20,19)
 
 
+DropBoulderInHoleEvent: 
 
-
+CHECK_EVENTID VR_BoulderInHoleFlag // if already set, exit 
+BNE 99 sC s0 
+GetTrapIDAt(26,18)
+SVAL s1 StrengthBoulderTrapID 
+BNE 99 sC s1 
+ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
+STAL 5 
+EARTHQUAKE_START 1
+ENUT VR_BoulderInHoleFlag 
+RemoveTrap(26,18)
+ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
+STAL 35
+EARTHQUAKE_END 
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -97,7 +121,15 @@ Traps1:
 //VictoryRoadB2: Outrage, Protein, Megahorn
 //VictoryRoadB3: DarkPulse, MaxPotion 
 
-//RockSmash(29,9)
+Rock(12,14) 
+RockSmash(32,3)
+StrengthBoulder(24,4) 
+StrengthBoulder(19,15) 
+StrengthBoulder(28,13) 
+StrengthBoulder(24,18) // Conditionally deleted 
+BoulderReceptacle(7,7, 12,14) // Coord, Affected Rock Coord  
+
+Hole(26, 18) // boulders should come before holes, i think ? 
 
 //StrengthBoulder(4,3)
 
@@ -145,18 +177,20 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
-BNE 10 rC r0 
-LOAD1 0x1 GaryBattleUnitGroup 
-ENUN 
-LABEL 10 
+CHECK_EVENTID VR_BoulderInHoleFlag
+BEQ 0 sC s0 
+RemoveTrap(24,18) // Boulder was dropped already 
+LABEL 0 
 
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(2,2,6,13)) 
 
 LOAD1 0x1 EnemyUnitsB
+ENUN 
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(2,2,6,13)) 
+LOAD1 0x1 EnemyBurrows
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
@@ -202,11 +236,16 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
+
+EnemyBurrows:
+UNIT 0xF0 BurrowID 0x0 Level(0, Enemy, 1)   [28,6]  0b	0x0 0x01 REDA28R6  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BurrowID 0x0 Level(0, Enemy, 1)   [19,18]  0b	0x0 0x01 REDA19R18  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 ReinforcementUnitsA:

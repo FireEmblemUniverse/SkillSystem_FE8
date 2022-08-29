@@ -119,7 +119,7 @@ BYTE 0
 
 ALIGN 4 
 HiddenTrapList:
-BYTE MineTrapID IceTrapID MovementArrowTrapID TeleTrapID  // these traps will block you on gMapHidden 
+BYTE MineTrapID IceTrapID MovementArrowTrapID TeleTrapID HoleID // these traps will block you on gMapHidden 
 BYTE 0 // Terminator 
 
 

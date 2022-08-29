@@ -151,7 +151,7 @@
 	SetTrapMapSprite(RockSmashTrapID,RockSmashSMS)
 	SetTrapMapSprite(StrengthBoulderTrapID,StrengthBoulderSMS)
 	SetTrapMapSprite(BreakableFloorID,0x72)
-	SetTrapMapSprite(HoleID,0x73)
+	SetTrapMapSprite(HoleID,BlankSMS)
 	SetTrapMapSprite(BoulderReceptacleID,0x74)
 
 	SetTrapMapSprite(FoodID,0x75)
@@ -320,7 +320,7 @@
 	SetImpassableTrap(RockSmashTrapID)
 	SetImpassableTrap(StrengthBoulderTrapID)
 	SetImpassableTrap(BreakableFloorID)
-	SetImpassableTrap(HoleID)
+	//SetImpassableTrap(HoleID)
 	//SetImpassableTrap(BoulderReceptacleID)
 
 	SetImpassableTrap(FoodID)

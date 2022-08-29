@@ -42,6 +42,7 @@
 .equ GetTrapAt,0x802e1f0 	@r0 = x coord, r1 = y coord
 .equ AddTrap,0x802e2b8 		@r0 = x coord, r1 = y coord, r2 = trap ID
 .equ RemoveTrap,0x802e2fc 	@r0 = pointer to trap data
+.equ RemoveTrapUpdateTerrain, 0x802EA90 	@r0 = pointer to trap data
 
 .equ MemorySlot1,0x30004BC	@contains trap ID paramters
 .equ MemorySlotB,0x30004E4	@contains coordinate parameters, formatted 0xYYYYXXXX
@@ -236,7 +237,7 @@ ldr r0,=MemorySlotB
 ldrh r1,[r0, #2] @ YY 
 ldrh r0,[r0] @ XX 
 blh GetTrapAt @r0 = pointer to trap data
-blh RemoveTrap
+blh RemoveTrapUpdateTerrain
 pop {r0}
 bx r0
 

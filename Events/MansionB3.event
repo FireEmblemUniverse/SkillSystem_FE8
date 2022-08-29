@@ -91,6 +91,13 @@ EscapeTileEntry(33, 18)
 EscapeTileTerminator ; } 
 #endif 
 ToB1:
+EndMMS  
+EARTHQUAKE_START 0 // 0 - Sway, 1 - Tremor 
+STARTFADE 
+FADECOLORS 0x1006 5 135 110 110 // non-sprites? 
+FADI 16 
+ENDFADE 
+EARTHQUAKE_END 
 ForcedChapterTransition(MansionB1Ch, 21, 21)
 
 ToB2_N:
@@ -113,11 +120,11 @@ ChapterTransition(MansionB3Ch, 34, 18)
 Traps1:
 
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
-StopSlidingTrap(18, 18) // so you can't walk along the empty floor 
-StopSlidingTrap(19, 18)
-StopSlidingTrap(20, 18)
-StopSlidingTrap(23, 18)
-StopSlidingTrap(24, 18)
+Hole(18, 18) // so you can't walk along the empty floor 
+Hole(19, 18)
+Hole(20, 18)
+Hole(23, 18)
+Hole(24, 18)
 // IceTrap 
 //Mansion: FireStone 
 //Mansion: ShadowBall, GrislyWoundSS

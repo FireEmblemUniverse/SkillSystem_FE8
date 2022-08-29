@@ -66,6 +66,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToRoute23N:
+ENUF VR_BoulderInHoleFlag
 ChapterTransition(Route23NCh, 5,46)
 ToVictoryRoadB2:
 ChapterTransition(VictoryRoadB2Ch, 1, 9)
@@ -91,7 +92,9 @@ CoinsTrap(14,1,ChapterID*2,2000)
 //StrengthBoulder(4,3)
 
 Rock(9,15) 
+RockSmash(14,3)
 StrengthBoulder(17,17) 
+StrengthBoulder(4,12) 
 BoulderReceptacle(20, 16, 9, 15) // Coord, Affected Rock Coord  
 
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
@@ -140,18 +143,16 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
-BNE 10 rC r0 
-LOAD1 0x1 GaryBattleUnitGroup 
-ENUN 
-LABEL 10 
-
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(4,2,22,11)) 
 
 LOAD1 0x1 EnemyUnitsB
+ENUN 
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(2,12,20,18)) 
+
+LOAD1 0x1 EnemyBurrows
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
@@ -197,11 +198,16 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
+
+EnemyBurrows:
+UNIT 0xF0 BurrowID 0x0 Level(0, Enemy, 1)   [18,0]  0b	0x0 0x01 REDA18R0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BurrowID 0x0 Level(0, Enemy, 1)   [8,9]  0b	0x0 0x01 REDA8R9  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 ReinforcementUnitsA:

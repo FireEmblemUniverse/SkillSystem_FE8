@@ -93,6 +93,8 @@
 #define Generic(XX,YY,ReqFlag, Sprite, EffectID) "BYTE CustomTrapID XX YY ReqFlag Sprite EffectID"
 #define GenericEffect(id, event) "PUSH; ORG GenericTrapTableOffset + (4 * id); POIN event; POP"
 
+#define Hole(XX,YY) "BYTE HoleID XX YY 0 0 0" 
+
 #define CompletionObstacleID 51 
 #define GenericCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE CompletionObstacleID XX YY CompletionFlag Sprite EffectID"
 SetTrapEventInit(CompletionObstacleID, GenericTrapDisappearCompletionInitialization)
@@ -288,10 +290,9 @@ SetImpassableTrap(SkillAccessoryTrapID)
 //#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 //#define GoldPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
 
-// 
-// 00 ??? 
 
 RemoveRockEvent: 
+EARTHQUAKE_START 1 // 0 - Sway, 1 - Tremor 
 ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
 STAL 20 
 ASMC ModularSummon_CenterCameraASMC
@@ -300,6 +301,7 @@ ASMC RemoveTrapAtCoordsASMC
 ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
 ASMC 0x8019A65 // RefreshTerrainBmMap, 0x8019A65
 STAL 25 
+EARTHQUAKE_END 
 NoFade 
 ENDA 
 
