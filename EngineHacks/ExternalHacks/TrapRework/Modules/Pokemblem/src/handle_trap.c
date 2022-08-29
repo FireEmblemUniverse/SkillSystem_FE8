@@ -77,7 +77,10 @@ PROC_LABEL(1),
 	PROC_END
 };
 
-int CanUnitBeOnPosition(Unit* unit, int x, int y) {
+
+
+
+const int CanUnitBeOnPosition(Unit* unit, int x, int y) { // also used by strength boulders 
 	if (x < 0 || y < 0)
 		return 0; // position out of bounds
 	

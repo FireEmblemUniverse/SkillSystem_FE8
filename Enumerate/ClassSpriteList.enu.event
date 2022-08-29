@@ -213,7 +213,7 @@
 #define swimmer_m_landSMS 0xD4
 #define swimmer_m_waterSMS 0xD5
 #define tuber_m_waterSMS 0xD6
-#define Unused1SMS 0xD7
+#define rockSMS 0xD7
 #define Unused2SMS 0xD8
 #define puddleSMS 0xD9
 #define LoreleiSMS 0xDA
@@ -467,7 +467,7 @@
 #define swimmer_m_landMMS 0xD5
 #define swimmer_m_waterMMS 0xD6
 #define tuber_m_waterMMS 0xD7
-#define Unused1MMS 0xD8
+#define rockMMS 0xD8
 #define Unused2MMS 0xD9
 #define puddleMMS 0xDA
 #define LoreleiMMS 0xDB

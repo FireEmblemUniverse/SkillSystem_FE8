@@ -90,6 +90,10 @@ CoinsTrap(14,1,ChapterID*2,2000)
 
 //StrengthBoulder(4,3)
 
+Rock(9,15) 
+StrengthBoulder(17,17) 
+BoulderReceptacle(20, 16, 9, 15) // Coord, Affected Rock Coord  
+
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
 RedPokeballTrap(12,3, (ChapterID*2)+1, ExoticCandy) 
 RedPokeballTrap(12,10, (ChapterID*2), Iron) 

@@ -110,16 +110,20 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, EnterTextUsability0x5D, EnterTextEffect0x5D) //Enter  
   UM_Vendor
   
+  //UM_Strength
+  MenuCommand(UM_Strength,UM_StrengthDesc,BlueText, GenericTrapDisappearUsability0x22, StrengthBoulderEffect) 
 
-MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+
   
 //Disappear after use
   //UM_Cut
   MenuCommand(UM_Cut,UM_CutDesc,BlueText, GenericTrapDisappearUsability0x20, GenericTrapDisappearEffect)
   //UM_RockSmash
   MenuCommand(UM_RockSmash,UM_RockSmashDesc,BlueText, GenericTrapDisappearUsability0x21, GenericTrapDisappearEffect)
-  //UM_Strength
-  MenuCommand(UM_Strength,UM_StrengthDesc,BlueText, GenericTrapDisappearUsability0x22, GenericTrapDisappearEffect)
+
+
+MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+
   //UM_Step-on
   MenuCommand(UM_StepOn,UM_StepOnDesc,BlueText, GenericTrapDisappearUsability0x23, GenericTrapDisappearEffect)
 

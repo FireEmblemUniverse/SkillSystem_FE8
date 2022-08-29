@@ -218,10 +218,11 @@
 
 
 #define EarthbadgeObtained 0xC0 
+#define StrengthBoulderFlag 0xC1 
 #define IndigoPlateauArrived 0xC9 
 
 //#define RockSmashFlag 0x20
-#define StrengthBoulderFlag 0x21
+//#define StrengthBoulderFlag 0x21
 
 #define DebugPlaceUnitsFlag 0xAA 
 #define DebugPlaceUnitsFlagMenu 0xAB 

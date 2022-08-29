@@ -124,7 +124,7 @@ GenericEffect(3, TestCase) //
 //GenericEffect(5, CallToggleMansionB2) // 
 //GenericEffect(6, CallToggleMansionB3) // 
 //GenericEffect(7, CallToggleMansionB4) // 
-
+GenericEffect(8, CallSuspiciousRockEvent) // for rocks that strength boulder triggers will disappear 
 
 
 GenericDisappearEffect(2, VisitPokecenter) //
@@ -132,6 +132,11 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(4, CinnabarGymQuiz_A) // 
 //GenericDisappearEffect(5, CinnabarGymQuiz_B) // 
 //GenericDisappearEffect(6, CinnabarGymQuiz_C) // 
+
+CallSuspiciousRockEvent: 
+TutText_B(SuspiciousRockText)
+NoFade 
+ENDA 
 
 
 TestCase:

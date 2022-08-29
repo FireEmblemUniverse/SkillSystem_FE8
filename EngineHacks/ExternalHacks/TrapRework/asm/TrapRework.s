@@ -68,6 +68,12 @@ blt HealTiles
 mov r1, #0x50 
 cmp r2, r1 
 bge HealTiles 
+ldr r1, =BoulderReceptacleID 
+lsl r1, #24 
+lsr r1, #24 
+cmp r2, r1 
+beq End @ nothing for receptacle 
+
 mov r1, #0x20 		@custom traps 0x20 and greater to use 0x3 as req'd flag and 0x4 as sprite 
 cmp r2, r1
 bge SpriteToDisplay

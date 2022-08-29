@@ -260,6 +260,7 @@ SetImpassableTrap(SkillAccessoryTrapID)
 
 // NPCs 
 #define Gary(XX,YY) "BYTE ObstacleID XX YY 0x0 GarySMS 0x0"
+
 #define RocketA(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 RocketASMS EventIndex"
 #define RocketB(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 RocketBSMS EventIndex"
 #define RocketC(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 RocketCSMS EventIndex"
@@ -280,7 +281,8 @@ SetImpassableTrap(SkillAccessoryTrapID)
 
 #define StrengthBoulder(XX,YY) "BYTE StrengthBoulderTrapID XX YY StrengthBoulderFlag StrengthBoulderSMS 0x0"
 #define StrengthBoulderEffect(XX,YY, EffectIndex) "BYTE StrengthBoulderTrapID XX YY StrengthBoulderFlag StrengthBoulderSMS EffectIndex"
-
+#define Rock(XX,YY) "BYTE ObstacleID XX YY 0x0 rockSMS 0x8" // "A suspicious looking rock..." 
+#define BoulderReceptacle(XX, YY, X2, Y2) "BYTE BoulderReceptacleID XX YY X2 Y2 0" 
 
 // Items 
 //#define RedPokeballEvent(XX,YY, Flag, ItemID, EventIndex) "BYTE RedPokeballItemID XX YY Flag ItemID EventIndex"
@@ -289,7 +291,17 @@ SetImpassableTrap(SkillAccessoryTrapID)
 // 
 // 00 ??? 
 
-
+RemoveRockEvent: 
+ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
+STAL 20 
+ASMC ModularSummon_CenterCameraASMC
+STAL 15 
+ASMC RemoveTrapAtCoordsASMC
+ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
+ASMC 0x8019A65 // RefreshTerrainBmMap, 0x8019A65
+STAL 25 
+NoFade 
+ENDA 
 
 #define CoinsTrap(XX,YY, Flag, CoinsAmount) "BYTE CoinsTrapID XX YY Flag; SHORT CoinsAmount"
 #define SignATrap(XX,YY,Flag, TextID) "BYTE TeleportSignAID XX YY Flag; SHORT TextID"
@@ -391,6 +403,7 @@ POIN GenericTrapDisappearTableOffset
 #include "asm/TeleportSign.lyn.event"
 #include "asm/DisplayText.lyn.event" 
 #include "asm/EnterText.lyn.event"
+#include "asm/StrengthBoulderEffect.lyn.event"
 
 #include "MovementTraps.event" 
 

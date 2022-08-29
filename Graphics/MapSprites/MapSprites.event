@@ -274,7 +274,7 @@ SetSMS(swimmer_f_waterSMS , 1 ,    swimmer_f_waterStanding)
 SetSMS(swimmer_m_landSMS , 1 ,    swimmer_m_landStanding)
 SetSMS(swimmer_m_waterSMS , 1 ,    swimmer_m_waterStanding)
 SetSMS(tuber_m_waterSMS , 1 ,    tuber_m_waterStanding)
-SetSMS(Unused1SMS , 0 ,    m1Standing)
+SetSMS(rockSMS , 0 ,    rockStanding)
 SetSMS(Unused2SMS , 0 ,    m1Standing)
 SetSMS(puddleSMS , 0 ,    puddleStanding)
 SetSMS(LoreleiSMS , 1 ,    LoreleiStanding)
@@ -547,7 +547,7 @@ SetMMS(swimmer_f_waterMMS ,     swimmer_f_waterMoving,        DemonKingAP)
 SetMMS(swimmer_m_landMMS ,     swimmer_m_landMoving,        DemonKingAP)
 SetMMS(swimmer_m_waterMMS ,     swimmer_m_waterMoving,        DemonKingAP)
 SetMMS(tuber_m_waterMMS ,     tuber_m_waterMoving,        DemonKingAP)
-SetMMS(Unused1MMS ,     r1Moving,        DemonKingAP)
+SetMMS(rockMMS ,     rockMoving,        DemonKingAP)
 SetMMS(Unused2MMS ,     r1Moving,        DemonKingAP)
 SetMMS(puddleMMS ,     puddleMoving,        DemonKingAP)
 SetMMS(LoreleiMMS ,     LoreleiMoving,        DemonKingAP)
@@ -1432,6 +1432,9 @@ tuber_m_waterMoving:
 ALIGN 4
 puddleMoving:
 #incbin "More MMS/puddle.dmp"
+ALIGN 4
+rockMoving:
+#incbin "More MMS/rock.dmp"
 ALIGN 4 
 LoreleiMoving:
 #incbin "Trainer_MMS/MMS_Lorelei.dmp"
@@ -2197,6 +2200,10 @@ swimmer_m_waterStanding:
 ALIGN 4
 puddleStanding:
 #incbin "More SMS/puddle.dmp"
+ALIGN 4
+rockStanding:
+#incbin "More SMS/rock.dmp"
+
 ALIGN 4 
 LoreleiStanding:
 #incbin "Trainer_SMS/SMS_Lorelei.dmp"
