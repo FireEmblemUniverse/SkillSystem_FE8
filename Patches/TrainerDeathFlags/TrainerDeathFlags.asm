@@ -675,11 +675,13 @@ bge Exit_Aura
 b FoundUnit
 
 FoundUnit:
+ldr r3, =MemorySlot
+str r1, [r3, #4*6] @ unit ID that is dying in s6 
 cmp r1, #0xE0 
 bge NoAdd
 add r1, #0x10 
 NoAdd:
-ldr r3, =MemorySlot
+
 str r1, [r3, #4*1] @ unit ID to mark as defeated 
 
 sub r1, #0xE0 @ we only have x from unit IDs 0xD0 - 0xDF 

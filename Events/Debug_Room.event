@@ -346,12 +346,12 @@ ENUT IndigoPlateauArrived
 ASMC SeePokedex
 //[203A57f]?!!
 //[0202D0A7]?!!
-Write_Byte(9, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(20, YCoordNewArea)  
+Write_Byte(13, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(5, YCoordNewArea)  
 
 //MNC2 PCBoxCh
 // MNC2 Route23NCh 
-MNC2 VictoryRoadB1Ch 
+MNC2 VictoryRoadB2Ch 
 //MNC2 Route22Ch 
 //MNC2 LoreleiCh 
 //MNC2 DebugCh

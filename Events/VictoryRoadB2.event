@@ -59,6 +59,7 @@ END_MAIN
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
+AFEV 0 MoltresFledEvent 0 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
@@ -73,6 +74,41 @@ EscapeTileEntry(30,10)
 EscapeTileEntry(38,13) 
 EscapeTileTerminator ; } 
 #endif 
+
+MoltresFledEvent: 
+CHECK_EVENTID MoltresFledFlag 
+BNE 99 rC r0 
+
+GetTargetID
+SADD s2 sC s0 
+SVAL s1 MoltresID 
+CHECK_CLASS 0x7ffd 
+BEQ 0 sC s1 
+
+CHECK_ACTIVE 
+SADD s2 sC s0 
+CHECK_CLASS 0x7ffd
+BEQ 0 sC s1 
+GOTO 99 
+
+LABEL 0 // unit ID in s2 where class is Moltres and Moltres has never been defeated 
+
+// Check if legendary is at low hp. If so, flee. 
+// Proc skill for legendaries prevents them from getting KO'd 
+GetUnitStatus(0x7ffd, CurrentHP) 
+SADD sA sC s0 
+GetUnitStatus(0x7ffd, MaxHP) 
+SVAL s1 3 
+SDIV s9 sC s1 
+BGE 99 sA s9 // if over 1/3rd hp, do nothing  
+ENUT MoltresFledFlag // 1/3rd or less hp, so flee 
+
+CALL ModularSummonWildTrainerEvent // looks for unit ID of attacker or defender from 0xD0 - 0xDF, originally 0xE0 - 0xEF 
+
+
+LABEL 99 
+NoFade 
+ENDA 
 
 ToVictoryRoadB1:
 ChapterTransition(VictoryRoadB1Ch, 4,2)
@@ -182,6 +218,13 @@ LOAD1 0x1 EnemyBurrows
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds 
 
+CheckTrainerFlag(0xEE) // based on unit IDs 0xE0-0xEF per chapter 
+BNE 10 rC r0 
+LOAD1 0x1 MoltresBattleUnitGroup 
+ENUN 
+LABEL 10 
+
+
 LOAD1 1 EnemyTrainers 
 ENUN  
 AutoLevelUnits(WildLvl, True, 0xE0EF) // Trainers 
@@ -252,7 +295,7 @@ UNIT
 //super_nerdID
 
 EnemyTrainers:
-UNIT 0xE0 hikerID 0x0 Level(0, Enemy, 1) [14,11]  0b 0x0	1 REDA14R11  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE0 hikerID 0x0 Level(0, Enemy, 1) [14,12]  0b 0x0	1 REDA14R12  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [24,12]  0b 0x0	1 REDA24R12  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 super_nerdID 0x0 Level(0, Enemy, 1) [30,2]  0b 0x0	1 REDA30R2  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 super_nerdID 0x0 Level(0, Enemy, 1) [35,9]  0b 0x0	1 REDA35R9  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
@@ -265,9 +308,11 @@ MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0)
 MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
 MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
 MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, MoltresUnits) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xE, MoltresChallengeText)
 SHORT VRB2_0xE0_BQ
 SHORT VRB2_0xE1_BQ
 SHORT VRB2_0xE2_BQ
@@ -275,6 +320,7 @@ SHORT VRB2_0xE3_BQ
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xE, MoltresDefeatText, 0) 
 SHORT VRB2_0xE0_BD 
 SHORT 1600 // Gold 
 SHORT VRB2_0xE1_BD 
@@ -285,10 +331,21 @@ SHORT VRB2_0xE3_BD
 SHORT 900 // Gold 
 TDQ_TableTerminator ; }
 
+MoltresBattleUnitGroup:
+UNIT 0xEE MoltresID 0x0 Level(0, Enemy, 1) [17,5]  0b 0x0	0x1 REDA17R5 [Leer,FireBlast,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 
+
+MoltresUnits: 
+UNIT GenericB 	FlareonID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	GravellerID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	MachokeID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	SandslashID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	MagmarID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT
 
 
 // wild B1: GravellerID	ZubatID
-// wild B2: Moltres, OnixID	MachokeID	GravellerID	SandslashID 
+// wild B2: Moltres, OnixID	MachokeID	GravellerID	SandslashID, Flareon, Magmar 
 // wild B3: OnixID	MachokeID	GravellerID	SandslashID VenomothID	GolbatID	MarowakID
 // trainer B1: machoke, dragonair, venomoth, pinsir, scyther 
 

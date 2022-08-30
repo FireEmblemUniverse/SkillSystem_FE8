@@ -219,6 +219,11 @@
 
 #define EarthbadgeObtained 0xC0 
 #define StrengthBoulderFlag 0xC1 
+#define MoltresFledFlag 0xC2 
+#define ArticunoFledFlag 0xC3
+#define ZapdosFledFlag 0xC4
+#define MewFledFlag 0xC5
+
 #define IndigoPlateauArrived 0xC9 
 
 //#define RockSmashFlag 0x20

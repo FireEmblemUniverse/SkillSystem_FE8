@@ -10,6 +10,7 @@
 #define QuickSave "ASMC 0x80B5D5D"
 #define RefreshSMS "ASMC 0x8026689" //SMS_Init - refresh SMS OBJ space in case we've exceeded because >16 'mons 
 
+
 // Text 
 #define TutText(text) "SVAL 0xB 0xFFFFFFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 #define TutText_B(text) "SVAL 0xB 0x00B0FFFF; TUTORIALTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Bottom-Centered 
@@ -23,8 +24,9 @@
 #define BottomWallS2Text "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND; REMA"
 #define CGText(text, BGIndex) "FlashBlack; ShowCG(BGIndex); CGTEXTSTART; TEXTSHOW text; TEXTEND; REMA; ClearBackgroundSmooth"
 
+// Useful vanilla events 
 #define ShowMap "CALL 0x8592140" // Fade from black if faded in & clean background if any 
-
+#define WarpOutEvent "CALL 0x89EE51C" // slot 2 unit ID is warped out and REMU'd 
 
 // Debugging 
 #define Break "CALL 0x89EE1D4" // ENDB and unsets completion flag of event 

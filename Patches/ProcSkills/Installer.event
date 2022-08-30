@@ -1,0 +1,22 @@
+
+
+
+#include "ExplosionEffect.lyn.event" 
+
+#include "CannotDie.lyn.event" 
+
+ALIGN 4 
+CannotDieList: 
+BYTE MoltresID MoltresFledFlag 
+BYTE ArticunoID ArticunoFledFlag 
+BYTE ZapdosID ZapdosFledFlag 
+BYTE MewID MewFledFlag 
+BYTE 00 00 
+
+
+
+
+
+
+
+

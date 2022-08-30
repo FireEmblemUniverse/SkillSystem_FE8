@@ -177,27 +177,40 @@ ENDA
 
 
 
-ModularSummonWildTrainerEvent:
+ModularSummonWildTrainerEvent: // death quote for unit id 0xDE 
 ENUF PlayableCutsceneFlag
-ASMC WildAuraMonDefeatQuoteFunc
+ASMC WildAuraMonDefeatQuoteFunc // puts defeated unit's unitID into s6 
 ASMC MarkTrainerAsDefeated_ASMC
-BEQ 0x63 s2 s0 // If no quote, skip 
+BEQ 99 s2 s0 // If no quote, skip 
 CUMO 0x7ffE
 BottomWallS2Text
 CURE
-LABEL 0x63 
+SADD s2 s6 s0 // defeated unit ID 
+
+// Special cases 
+CHECK_CLASS 0x7ffd 
+SVAL s1 MoltresID 
+BEQ 0 sC s1 
+
+
+
+
+GOTO 99 
+
+LABEL 0 // Moltres 
+ENUT MoltresFledFlag 
+GOTO 10 
+
+
+
+LABEL 10 // Unit ID to teleport in s2 
+WarpOutEvent 
+LABEL 99
 NoFade 
 ENDA 
 
-ModularSummonWildTrainerEvent_LeaderDefeated:
-ENUF PlayableCutsceneFlag
-ASMC WildAuraMonDefeatQuoteFunc
-ASMC MarkTrainerAsDefeated_ASMC
-BEQ 0x63 s2 s0 // If no quote, skip 
-CUMO 0x7ffE
-BottomWallS2Text
-CURE
-LABEL 0x63 
+ModularSummonWildTrainerEvent_LeaderDefeated: // death quote for unit id 0xEE 
+CALL ModularSummonWildTrainerEvent // identical for now 
 NoFade 
 ENDA 
 
