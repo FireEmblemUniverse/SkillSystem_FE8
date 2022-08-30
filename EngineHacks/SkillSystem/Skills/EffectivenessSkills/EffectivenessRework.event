@@ -147,7 +147,6 @@ SetWeaponEffectiveness(BugType|FireType|FlyingType|IceType, SupEff)
 WORD 0
 
 SteelAdv:
-SetWeaponEffectiveness(PoisonType, Immune)
 SetWeaponEffectiveness(ElectricType|FireType|SteelType|WaterType, Resist)
 SetWeaponEffectiveness(IceType|RockType, SupEff)
 WORD 0
