@@ -132,6 +132,10 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(4, CinnabarGymQuiz_A) // 
 //GenericDisappearEffect(5, CinnabarGymQuiz_B) // 
 //GenericDisappearEffect(6, CinnabarGymQuiz_C) // 
+//GenericDisappearEffect(7, PowerPlant) // spawn voltorbs 
+//GenericDisappearEffect(8, PowerPlant) // spawn voltorbs 
+//GenericDisappearEffect(9, PowerPlant) // spawn voltorbs 
+//GenericDisappearEffect(10, PowerPlant) // spawn voltorbs 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)

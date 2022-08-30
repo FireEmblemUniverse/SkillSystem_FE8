@@ -342,6 +342,21 @@ bl goto_r3
 ldrb r0, [r4, #3] @ flag 
 blh SetFlag 
 
+@ update unit map to have active unit at coord 
+@ this is needed for events that load units with REDAs 
+ldr r0, CurrentUnitPointer
+ldr r0, [r0]
+ldrb r3, [r0, #0x0B] @ deployment 
+ldrb r1, [r0, #0x11] @ yy 
+ldrb r0, [r0, #0x10] @ xx 
+ldr r2, =0x202E4D8 @ unit map 
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+@ldrb	r0,[r2]			@load datum at those coordinates
+strb r3, [r2] 
 
 Continue:
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine

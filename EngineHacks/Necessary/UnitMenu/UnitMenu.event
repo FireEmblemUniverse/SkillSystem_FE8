@@ -122,7 +122,6 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_RockSmash,UM_RockSmashDesc,BlueText, GenericTrapDisappearUsability0x21, GenericTrapDisappearEffect)
 
 
-MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
 
   //UM_Step-on
   MenuCommand(UM_StepOn,UM_StepOnDesc,BlueText, GenericTrapDisappearUsability0x23, GenericTrapDisappearEffect)
@@ -141,60 +140,69 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   MenuCommand(UM_Eat, UM_EatDesc,BlueText, GenericTrapDisappearUsability0x28, GenericTrapDisappearEffect)
 
   //UM_Interact_Disappear
-  MenuCommand(UM_Take2,UM_Take2Desc,BlueText, GenericTrapDisappearCompletionUsability0x29, GenericTrapDisappearCompletionEffect)
-  MenuCommand(UM_Examine,UM_ExamineDesc,BlueText, GenericTrapDisappearCompletionUsability0x2A, GenericTrapDisappearCompletionEffect)
+  MenuCommand(UM_Take2,UM_Take2Desc,NormalText, GenericTrapDisappearCompletionUsability0x29, GenericTrapDisappearCompletionEffect)
+
+  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainSkillUsability0x6A, ObtainSkillEffect) //Take
+  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainSpellUsability0x6B, ObtainSpellEffect) //Take (Gold pokeball) 
+  
+
+
 
 //Does not disappear
+
+
+
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainStatAccessoryUsability0x13, ObtainStatAccessoryEffect) //take accessory  
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainSkillAccessoryUsability0x14, ObtainSkillAccessoryEffect) //take accessory 
+  
+  MenuCommand(UM_PickBerry, UM_PickBerryDesc, BlueText, BerryTreeUsability, PickBerryTreeEffect) //Enter  
+//  ## UM_EatBerry
+// Eat[X]
+//## UM_EatBerryDesc
+//Eat from the tree.[X]
+  //Obtain Item
+
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainItemUsability0x10, ObtainItemEffect) //Take
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainItemUsability0x11, ObtainItemEffect) //Take (Gold pokeball) 
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
+  
+  
+  MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
+
+  
+  
+  MenuCommand(UM_Examine,UM_ExamineDesc,BlueText, GenericTrapDisappearCompletionUsability0x2A, GenericTrapDisappearCompletionEffect)
+
+  MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
+  MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine
+  
+  
+  MenuCommand(UM_Enter, UM_EnterDesc, BlueText, GenericTrapUsability0x35, GenericTrapEffect) //Enter
+  MenuCommand(UM_Exit2, UM_Exit2Desc, BlueText, GenericTrapUsability0x36, GenericTrapEffect) //Exit
+  MenuCommand(UM_Confirm, UM_ConfirmDesc, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
+  
 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x50, DisplayTextEffect) //Examine 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x51, DisplayTextEffect) //Examine 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect) //Read 
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect) //Talk 
 
-
-  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainStatAccessoryUsability0x13, ObtainStatAccessoryEffect) //take accessory  
-  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainSkillAccessoryUsability0x14, ObtainSkillAccessoryEffect) //take accessory 
-  
-  MenuCommand(UM_PickBerry, UM_PickBerryDesc, NormalText, BerryTreeUsability, PickBerryTreeEffect) //Enter  
-//  ## UM_EatBerry
-// Eat[X]
-//## UM_EatBerryDesc
-//Eat from the tree.[X]
-  
-  
-  
-
-  
-  MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
-  MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine
-  
-  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainSkillUsability0x6A, ObtainSkillEffect) //Take
-  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainSpellUsability0x6B, ObtainSpellEffect) //Take (Gold pokeball) 
-  
-
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
   MenuCommand(UM_Interact, UM_InteractDesc, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, GenericTrapUsability0x32, GenericTrapEffect) //GreenTalk
   MenuCommand(UM_Talk2, UM_Talk2Desc, NormalText, GenericTrapUsability0x33, GenericTrapEffect) //Talk
-  MenuCommand(UM_Attack2, UM_Attack2Desc, NormalText, GenericTrapUsability0x34, GenericTrapEffect) //Attack
-  MenuCommand(UM_Enter, UM_EnterDesc, BlueText, GenericTrapUsability0x35, GenericTrapEffect) //Enter
-  MenuCommand(UM_Exit2, UM_Exit2Desc, BlueText, GenericTrapUsability0x36, GenericTrapEffect) //Exit
-  MenuCommand(UM_Confirm, UM_ConfirmDesc, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
+
   MenuCommand(UM_Read, UM_ReadDesc, NormalText, GenericTrapUsability0x38, GenericTrapEffect) //Read
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x39, GenericTrapEffect) //Examine
   //MenuCommand(UM_Use, UM_UseDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Use
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, GenericTrapUsability0x3C, GenericTrapEffect) //Enter
   MenuCommand(UM_Exit2, UM_Exit2Desc, GreenText, GenericTrapUsability0x3D, GenericTrapEffect) //Exit
 
-//Obtain Item
 
-  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainItemUsability0x10, ObtainItemEffect) //Take
-  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainItemUsability0x11, ObtainItemEffect) //Take (Gold pokeball) 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, ObtainItemUsability0x12, ObtainItemEffect) //Examine
 //dummy ones 
 
-  MenuCommand(UM_Take2, UM_Take2Desc, GreenText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
-  
+
   //Pickup 11ED 11EE 
   //Examine 11EF 11F0 
   
@@ -206,7 +214,8 @@ MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
   //MenuCommand(0x67b, 0x6c0, NormalText, $249ac, AttackEffect, $22c31, $22c99) //to clear flags
   // UM_Attack_Ballista 
   MenuCommand(0x67b, 0x6c0, NormalText, $24a28, AttackEffect, $22c31, $22c99)
-  
+  MenuCommand(UM_Attack2, UM_Attack2Desc, NormalText, GenericTrapUsability0x34, GenericTrapEffect) //Attack
+
   
   
 

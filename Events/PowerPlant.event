@@ -1,0 +1,430 @@
+#define ChapterID PowerPlantCh
+#define GenericA UnitVictoryRoadWild
+#define GenericB UnitVictoryRoadTrainer
+#define ClassA ClassVictoryRoadWildA
+#define ClassB ClassVictoryRoadWildB
+#define WildLvl 38
+#define TrainerL 50
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+{ ; ReinforceEntry(ChapterID)
+Reinforce(0xF0, 1, ReinforcementUnitsA, 2, 4) 
+Reinforce(0xF1, 1, ReinforcementUnitsA, 3, 4) 
+Reinforce(0xF2, 1, ReinforcementUnitsA, 3, 4) 
+}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0, ToRoute10, 1,11) 
+House(0, ToRoute10, 5,29) 
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+AFEV 0 ZapdosFledEvent 0 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(1,11) 
+EscapeTileEntry(5,29) 
+EscapeTileTerminator ; } 
+#endif 
+
+ZapdosFledEvent: 
+CHECK_EVENTID ZapdosFledFlag 
+BNE 99 rC r0 
+
+GetTargetID
+SADD s2 sC s0 
+SVAL s1 ZapdosID 
+CHECK_CLASS 0x7ffd 
+BEQ 0 sC s1 
+
+CHECK_ACTIVE 
+SADD s2 sC s0 
+CHECK_CLASS 0x7ffd
+BEQ 0 sC s1 
+GOTO 99 
+
+LABEL 0 // unit ID in s2 where class is Zapdos and Zapdos has never been defeated 
+
+// Check if legendary is at low hp. If so, flee. 
+// Proc skill for legendaries prevents them from getting KO'd 
+GetUnitStatus(0x7ffd, CurrentHP) 
+SADD sA sC s0 
+GetUnitStatus(0x7ffd, MaxHP) 
+SVAL s1 3 
+SDIV s9 sC s1 
+BGE 99 sA s9 // if over 1/3rd hp, do nothing  
+ENUT ZapdosFledFlag // 1/3rd or less hp, so flee 
+
+CALL ModularSummonWildTrainerEvent // looks for unit ID of attacker or defender from 0xD0 - 0xDF, originally 0xE0 - 0xEF 
+
+
+LABEL 99 
+NoFade 
+ENDA 
+
+
+ToRoute10:
+ChapterTransition(Route10Ch, 7,42)
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+
+
+// Thunder, VintageBoots, ThunderStone, Carbos 
+
+
+//StrengthBoulder(4,3)
+GenericDisappearCompletion(12, 28, 0, RedPokeballSMS, 7) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(18, 28, 0, RedPokeballSMS, 8) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(35, 28, 0, RedPokeballSMS, 9) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(30, 23, 0, RedPokeballSMS, 10) // xx, yy, flag, sprite, effectID 
+
+StatAccessoryTrap(22,16, (ChapterID*2), VintageBoots_BoostIndex) 
+RedPokeballTrap(30,26, (ChapterID*2)+1, Carbos) 
+RedPokeballTrap(14,27, (ChapterID*2), ThunderStone) 
+SpellScrollTrap(5,5, (ChapterID*2)+1, Thunder)
+
+//RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
+//SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
+//SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
+
+
+//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
+//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+
+//SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
+
+SignBTrap(35,9, ChapterID, 0x0) //no extra text 
+SignATrap(5,13, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+
+
+//BerryTree(32,11,5)
+//BerryTree(36,11,5)
+
+//SkillScrollTrap(6,18, ChapterID*2, RockyHelmetSkillID)
+//SpellScrollTrap(6,18, (ChapterID*2), Megahorn)
+//OpenPokeball(8,3)
+//Sign(8,4, 2)
+
+//Save(10,4)
+//SaveCost(47,5) 
+
+
+
+//Flower(18,10)
+
+
+ENDTRAP
+ALIGN 4
+
+GenericDisappearEffect(7, PowerPlantLeftVoltorb)
+GenericDisappearEffect(8, PowerPlantRightVoltorb)
+GenericDisappearEffect(10, PowerPlantLeftElectrode)
+GenericDisappearEffect(9, PowerPlantRightElectrode)
+
+EndActionEvent: 
+CHECK_COORDS 0x7FFf
+SADD rB rC r0 
+SET_CURSOR_SB
+SET_ACTIVE 0 
+NoFade 
+ENDA 
+
+PowerPlantLeftVoltorb:
+ENUT AttackedThisTurnFlag
+LOAD1 1 VoltorbLeftUnitGroup 
+ENUN 
+AutoLevelUnits(WildLvl, True, 0x9B9B) // Wilds 
+NoFade 
+ENDA 
+
+PowerPlantRightVoltorb:
+ENUT AttackedThisTurnFlag
+LOAD1 1 VoltorbRightUnitGroup 
+ENUN 
+AutoLevelUnits(WildLvl, True, 0x9C9C) // Wilds 
+NoFade 
+ENDA 
+
+
+PowerPlantLeftElectrode:
+ENUT AttackedThisTurnFlag
+LOAD1 1 ElectrodeLeftUnitGroup 
+ENUN 
+AutoLevelUnits(WildLvl, True, 0x9D9D) // Wilds 
+NoFade 
+ENDA 
+
+PowerPlantRightElectrode:
+ENUT AttackedThisTurnFlag
+LOAD1 1 ElectrodeRightUnitGroup 
+ENUN 
+AutoLevelUnits(WildLvl, True, 0x9E9E) // Wilds 
+NoFade 
+ENDA 
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+CHECK_EVENTID VR_BoulderInHoleFlag
+BNE 0 sC s0 
+RemoveTrap(19,19) // Boulder not dropped yet 
+LABEL 0 
+
+
+
+LOAD1 0x1 EnemyUnitsA
+ENUN
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(24,1,39,15)) 
+LOAD1 0x1 EnemyUnitsB
+ENUN 
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(2,10,22,20)) 
+
+LOAD1 0x1 EnemyBurrows
+ENUN 
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds 
+
+CheckTrainerFlag(0xEE) // based on unit IDs 0xE0-0xEF per chapter 
+BNE 10 rC r0 
+LOAD1 0x1 ZapdosBattleUnitGroup 
+ENUN 
+LABEL 10 
+
+
+LOAD1 1 EnemyTrainers 
+ENUN  
+AutoLevelUnits(WildLvl, True, 0xE0EF) // Trainers 
+
+CALL SetBushHpEvent
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+EnemyUnitsA:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
+
+EnemyUnitsB:
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
+
+VoltorbLeftUnitGroup:
+UNIT 0x9B VoltorbID 0x0 Level(0, Enemy, 1)   [12,28] 00b	0x0 0x01 REDA12R28 [0] AttackInRangeAI
+UNIT 0x9B VoltorbID 0x0 Level(0, Enemy, 1)   [12,28] 00b	0x0 0x01 REDA13R28 [0] AttackInRangeAI
+UNIT 0x9B VoltorbID 0x0 Level(0, Enemy, 1)   [12,28] 00b	0x0 0x01 REDA12R29 [0] AttackInRangeAI
+UNIT 
+
+VoltorbRightUnitGroup:
+UNIT 0x9C VoltorbID 0x0 Level(0, Enemy, 1)   [18,28] 00b	0x0 0x01 REDA18R28 [Spark,Leer,0x0,0x0] AttackInRangeAI
+UNIT 0x9C VoltorbID 0x0 Level(0, Enemy, 1)   [18,28] 00b	0x0 0x01 REDA19R28 [Spark,Leer,0x0,0x0] AttackInRangeAI
+UNIT 0x9C VoltorbID 0x0 Level(0, Enemy, 1)   [18,28] 00b	0x0 0x01 REDA18R29 [Spark,Leer,0x0,0x0] AttackInRangeAI
+UNIT 
+
+ElectrodeRightUnitGroup:
+UNIT 0x9D ElectrodeID 0x0 Level(0, Enemy, 1)   [35,28] 00b	0x0 0x01 REDA35R28 [Thunderbolt,Screech,0x0,0x0] AttackInRangeAI
+UNIT 0x9D ElectrodeID 0x0 Level(0, Enemy, 1)   [35,28] 00b	0x0 0x01 REDA34R28 [Thunderbolt,Screech,0x0,0x0] AttackInRangeAI
+UNIT 0x9D ElectrodeID 0x0 Level(0, Enemy, 1)   [35,28] 00b	0x0 0x01 REDA34R29 [Thunderbolt,Screech,0x0,0x0] AttackInRangeAI
+UNIT 
+
+ElectrodeLeftUnitGroup:
+UNIT 0x9E ElectrodeID 0x0 Level(0, Enemy, 1)   [30,23] 00b	0x0 0x01 REDA30R23 [Thunderbolt,Screech,0x0,0x0] AttackInRangeAI
+UNIT 0x9E ElectrodeID 0x0 Level(0, Enemy, 1)   [30,23] 00b	0x0 0x01 REDA30R22 [Thunderbolt,Screech,0x0,0x0] AttackInRangeAI
+UNIT 0x9E ElectrodeID 0x0 Level(0, Enemy, 1)   [30,23] 00b	0x0 0x01 REDA31R23 [Thunderbolt,Screech,0x0,0x0] AttackInRangeAI
+UNIT 
+
+EnemyBurrows:
+UNIT 0xF0 BurrowID 0x0 Level(0, Enemy, 1)   [11,13]  0b	0x0 0x01 REDA11R13  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 BurrowID 0x0 Level(0, Enemy, 1)   [16,1]  0b	0x0 0x01 REDA16R1  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF2 BurrowID 0x0 Level(0, Enemy, 1)   [30,0]  0b	0x0 0x01 REDA30R0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 
+
+ReinforcementUnitsA:
+UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
+
+
+//battle_girlID
+//blackbeltID
+//hikerID
+//super_nerdID
+
+EnemyTrainers:
+UNIT 0xE0 hikerID 0x0 Level(0, Enemy, 1) [14,12]  0b 0x0	1 REDA14R12  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [24,12]  0b 0x0	1 REDA24R12  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 super_nerdID 0x0 Level(0, Enemy, 1) [30,2]  0b 0x0	1 REDA30R2  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 super_nerdID 0x0 Level(0, Enemy, 1) [35,9]  0b 0x0	1 REDA35R9  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT
+
+// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
+{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
+// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
+MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
+MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
+MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, ZapdosUnits) 
+MS_TableTerminator ; } 
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0xE, ZapdosChallengeText)
+SHORT VRB2_0xE0_BQ
+SHORT VRB2_0xE1_BQ
+SHORT VRB2_0xE2_BQ
+SHORT VRB2_0xE3_BQ
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0xE, ZapdosDefeatText, 0) 
+SHORT VRB2_0xE0_BD 
+SHORT 1600 // Gold 
+SHORT VRB2_0xE1_BD 
+SHORT 2100 // Gold 
+SHORT VRB2_0xE2_BD 
+SHORT 1700 // Gold 
+SHORT VRB2_0xE3_BD 
+SHORT 900 // Gold 
+TDQ_TableTerminator ; }
+
+ZapdosBattleUnitGroup:
+UNIT 0xEE ZapdosID 0x0 Level(0, Enemy, 1) [17,5]  0b 0x0	0x1 REDA17R5 [Leer,FireBlast,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 
+
+ZapdosUnits: 
+UNIT GenericB 	FlareonID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	GravellerID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	MachokeID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	SandslashID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+//UNIT GenericB 	MagmarID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT
+
+
+// wild B1: GravellerID	ZubatID
+// wild B2: Zapdos, OnixID	MachokeID	GravellerID	SandslashID, Flareon, Magmar 
+// wild B3: OnixID	MachokeID	GravellerID	SandslashID VenomothID	GolbatID	MarowakID
+// trainer B1: machoke, dragonair, venomoth, pinsir, scyther 
+
+EnemyTrainers0: // hiker
+UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+UNIT
+
+EnemyTrainers1: // hiker
+UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	GravellerID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	SandslashID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	MachokeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT
+
+EnemyTrainers2: // super_nerd
+UNIT GenericB 	SandslashID 		0xE2 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	SandslashID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	OnixID 	0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT GenericB 	SandslashID 		0xE2 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+UNIT
+
+EnemyTrainers3: // super_nerd
+UNIT GenericB 	OnixID 		0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	OnixID 	0xE3 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	SandslashID 		0xE3 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	MachokeID 		0xE3 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT
+
+
+
+
+
+	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID
