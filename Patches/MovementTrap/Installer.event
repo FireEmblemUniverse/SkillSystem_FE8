@@ -1,0 +1,13 @@
+#define callHack(offset)         "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+
+
+PUSH
+ORG $37786 
+BYTE 0xFF // always do the following exec trap stuff 
+
+ORG $377b4
+callHack(MyHack)
+POP
+
+MyHack:
+#incbin "MovementTrap.dmp"
