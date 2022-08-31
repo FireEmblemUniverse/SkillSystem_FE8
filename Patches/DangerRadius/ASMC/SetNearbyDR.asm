@@ -43,6 +43,10 @@ Loop:
     cmp   r1, #0x0
     beq   NextIteration
 	
+	ldr r1, [r0, #0x0C] 
+	ldr r2, =0x1000C
+	tst r1, r2 
+	bne NextIteration
     
       @ Check if DR-bit already set.
       ldrb  r1, [r0, r5]

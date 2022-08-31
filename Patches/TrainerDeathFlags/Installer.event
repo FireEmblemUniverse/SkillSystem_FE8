@@ -190,14 +190,36 @@ SADD s2 s6 s0 // defeated unit ID
 // Special cases 
 CHECK_CLASS 0x7ffd 
 SVAL s1 MoltresID 
+BEQ 3 sC s1 
+
+// Special cases 
+CHECK_CLASS 0x7ffd 
+SVAL s1 ArticunoID 
+BEQ 1 sC s1 
+
+// Special cases 
+CHECK_CLASS 0x7ffd 
+SVAL s1 ZapdosID 
+BEQ 2 sC s1 
+
+// Special cases 
+CHECK_CLASS 0x7ffd 
+SVAL s1 MewID 
 BEQ 0 sC s1 
-
-
 
 
 GOTO 99 
 
-LABEL 0 // Moltres 
+LABEL 0
+ENUT MewFledFlag 
+GOTO 10 
+LABEL 1
+ENUT ArticunoFledFlag 
+GOTO 10 
+LABEL 2
+ENUT ZapdosFledFlag 
+GOTO 10 
+LABEL 3 // Moltres 
 ENUT MoltresFledFlag 
 GOTO 10 
 

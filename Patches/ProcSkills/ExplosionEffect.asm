@@ -66,6 +66,13 @@ ldrsh r1, [r7, r0]
 lsl r2, r1, #1 @ 2x 
 add r1, r2 
 lsr r1, #1 @ 1.5x damage always 
+
+ldrb r0, [r5, #0x13] @ current hp 
+cmp r0, r1 
+bgt NoCap 
+mov r1, r0 @ take damage equal to remaining health 
+NoCap: 
+
 strh r1, [r7, #4] 
 @sub r1, #1 
 @mov r1, #9 

@@ -905,7 +905,11 @@ mov r2, #2
 and r1, r2 
 cmp r1, #0 
 bne ExitDraw_NumberDuringBattle
-ldrb r0, [r3, #3] @ dmg? 
+
+ldr r2, =0x203A4D4 @ battle data 
+ldrh r0, [r2, #4] @ battle damage 
+
+@ldrb r0, [r3, #3] @ dmg? 
 
 cmp r0, #99 
 ble NoCap 

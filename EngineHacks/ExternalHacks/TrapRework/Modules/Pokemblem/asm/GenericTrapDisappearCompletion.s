@@ -33,6 +33,8 @@
 .equ SetFlag, 0x8083D80
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
+.equ UpdateGameTilesGraphics, 0x8019C3C 
+
 @.equ GiveItemEvent, ObtainItemID+4
 
 GenericTrapDisappearCompletionInitialization:
@@ -332,6 +334,8 @@ AlwaysEvent:
 ldr r3, ExecuteEvent
 bl goto_r3
 
+@blh 0x801A1F4 @RefreshFogAndUnitMaps
+@blh UpdateGameTilesGraphics 
 
 DeleteTrap:
 @Remove the DV trap from the map.

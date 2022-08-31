@@ -136,6 +136,8 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(8, PowerPlant) // spawn voltorbs 
 //GenericDisappearEffect(9, PowerPlant) // spawn voltorbs 
 //GenericDisappearEffect(10, PowerPlant) // spawn voltorbs 
+//GenericDisappearEffect(11, PowerPlant) // spawn voltorbs 
+//GenericDisappearEffect(12, PowerPlant) // spawn voltorbs 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)

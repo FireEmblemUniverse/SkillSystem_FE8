@@ -140,10 +140,10 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Eat, UM_EatDesc,BlueText, GenericTrapDisappearUsability0x28, GenericTrapDisappearEffect)
 
   //UM_Interact_Disappear
-  MenuCommand(UM_Take2,UM_Take2Desc,NormalText, GenericTrapDisappearCompletionUsability0x29, GenericTrapDisappearCompletionEffect)
+  MenuCommand(UM_Take2,UM_Take2Desc,BlueText, GenericTrapDisappearCompletionUsability0x29, GenericTrapDisappearCompletionEffect)
 
-  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainSkillUsability0x6A, ObtainSkillEffect) //Take
-  MenuCommand(UM_Take2, UM_Take2Desc, NormalText, ObtainSpellUsability0x6B, ObtainSpellEffect) //Take (Gold pokeball) 
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainSkillUsability0x6A, ObtainSkillEffect) //Take
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainSpellUsability0x6B, ObtainSpellEffect) //Take (Gold pokeball) 
   
 
 

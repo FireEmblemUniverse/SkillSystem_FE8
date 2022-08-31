@@ -306,8 +306,8 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(60, True, 0x145) // all 
-SetUnitStatus(1, 0x28, Explosion)
+AutoLevelUnits(45, True, 0x145) // all 
+//SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x29, Ember)
 //SetUnitStatus(1, 0x2A, Growl)
 //SetUnitStatus(1, 0x2B, Scratch)
