@@ -28,6 +28,10 @@ ldr r3, =ActionStruct
 ldrb r0, [r3, #0x11] @ action type 
 cmp r0, #0x23 @ new action types start here? 
 blt Exit 
+cmp r0, #0x28 
+bge Exit @ future proofing 
+cmp r0, #0x24 @ pivot 
+beq Exit 
 
 ldrb r0, [r3, #0x0D] @ target 
 blh GetUnit 
