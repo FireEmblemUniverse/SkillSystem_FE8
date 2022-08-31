@@ -1,13 +1,37 @@
 #define callHack(offset)         "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 
+#include "Extensions/6CDefinitions.txt" 
 
 PUSH
-ORG $37786 
-BYTE 0xFF // always do the following exec trap stuff 
+//ORG $37786 
+//BYTE 0xFF // always do the following exec trap stuff 
 
-ORG $377b4
-callHack(MyHack)
+//ORG $377b4
+//callHack(MyHack)
+
+
+ORG $59ABE0
+_6C_CALL_ROUTINE_2(MyHack|1) // gotta bump everything else down in playerphase proc 59AAD8 
+_6C_CALL_ROUTINE_2(0x8037745) //  HandlePostActionTraps
+_6C_CALL_ROUTINE_2(0x801D301) //  RunPotentialWaitEvents
+_6C_CALL_ROUTINE_2(CleanupHack|1) //  EnsureCameraOntoActiveUnitPosition + 801D345 routine 
+
+
+
 POP
 
+ALIGN 4 
 MyHack:
 #incbin "MovementTrap.dmp"
+
+ALIGN 4 
+CleanupHack: 
+#incbin "CleanupHack.dmp" 
+
+
+
+
+
+
+
+
