@@ -98,7 +98,7 @@ FADECOLORS 0x1006 5 135 110 110 // non-sprites?
 FADI 16 
 ENDFADE 
 EARTHQUAKE_END 
-ForcedChapterTransition(MansionB1Ch, 21, 21)
+ForcedChapterTransitionHole(MansionB1Ch, 21, 21)
 
 ToB2_N:
 ChapterTransition(MansionB3Ch, 8, 3)

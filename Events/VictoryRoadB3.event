@@ -80,32 +80,12 @@ ChapterTransition(VictoryRoadB2Ch, 30,11)
 ToVictoryRoadB2_SE:
 ChapterTransition(VictoryRoadB2Ch, 23, 17)
 ToVictoryRoadB2_Hole:
-EndMMS 
-EARTHQUAKE_START 0 // 0 - Sway, 1 - Tremor 
-STARTFADE 
-FADECOLORS 0x1006 5 135 110 110 // non-sprites? 
-FADI 16 
-ENDFADE 
-EARTHQUAKE_END 
-ForcedChapterTransition(VictoryRoadB2Ch, 20,19)
+CALL FallInHoleEffect
+ForcedChapterTransitionHole(VictoryRoadB2Ch, 20,19)
 
 
 DropBoulderInHoleEvent: 
-
-CHECK_EVENTID VR_BoulderInHoleFlag // if already set, exit 
-BNE 99 sC s0 
-GetTrapIDAt(26,18)
-SVAL s1 StrengthBoulderTrapID 
-BNE 99 sC s1 
-ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
-STAL 5 
-EARTHQUAKE_START 1
-ENUT VR_BoulderInHoleFlag 
-RemoveTrap(26,18)
-ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
-STAL 35
-EARTHQUAKE_END 
-LABEL 99 
+BoulderHoleEvent(26,18, VR_BoulderInHoleFlag)  
 NoFade 
 ENDA 
 

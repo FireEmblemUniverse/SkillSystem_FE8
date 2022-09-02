@@ -1,14 +1,14 @@
 ALIGN 4
 SeafoamAnimation:
 {
-ConfAnimsTiles(4,2048,Water1)
-ConfAnimsTiles(4,2048,Water2)
-ConfAnimsTiles(4,2048,Water3)
-ConfAnimsTiles(4,2048,Water4)
-ConfAnimsTiles(4,2048,Water5)
-ConfAnimsTiles(4,2048,Water6)
-ConfAnimsTiles(4,2048,Water7)
-ConfAnimsTiles(4,2048,Water8)
+ConfAnimsTiles(6,2048,Water1)
+ConfAnimsTiles(6,2048,Water2)
+ConfAnimsTiles(6,2048,Water3)
+ConfAnimsTiles(6,2048,Water4)
+ConfAnimsTiles(6,2048,Water5)
+ConfAnimsTiles(6,2048,Water6)
+ConfAnimsTiles(6,2048,Water7)
+ConfAnimsTiles(6,2048,Water8)
 WORD 0x00 0x00
 
 ALIGN 4

@@ -187,21 +187,37 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-CHECK_EVENTID VR_BoulderInHoleFlag
-BNE 0 sC s0 
-RemoveTrap(19,19) // Boulder not dropped yet 
-LABEL 0 
+CHECK_EVENTID B4_BoulderAFlag
+BNE 2 sC s0 // if on, spawn
+RemoveTrap(4,17)
+LABEL 2 
 
+CHECK_EVENTID B4_BoulderBFlag
+BNE 3 sC s0 // if on, spawn 
+RemoveTrap(12,16)
+LABEL 3
+
+
+CHECK_EVENTID B4_BoulderAFlag 
+BEQ 4 sC s0 
+CHECK_EVENTID B4_BoulderBFlag 
+BEQ 4 sC s0 
+TILECHANGE 0 // change the current if both flags are on 
+LABEL 4 
 
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(24,1,39,15)) 
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(11,7,24,20)) 
+LOAD1 0x1 EnemyUnitsC
+ENUN
+RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(21,1,33,6)) 
+
 LOAD1 0x1 EnemyUnitsB
 ENUN 
-RandomizeEnemyCoords(Ground, Range(0,0,3,3), Range(2,10,22,20)) 
+RandomizeEnemyCoords(Sea, Range(0,0,3,3), Range(21,7,34,18)) 
 
-LOAD1 0x1 EnemyBurrows
+//LOAD1 0x1 EnemyBurrows
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds 
 
@@ -258,6 +274,11 @@ UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
+EnemyUnitsC:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
+
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
@@ -296,7 +317,7 @@ TDQ_TableTerminator ; }
 
 
 ArticunoBattleUnitGroup:
-UNIT 0xEE ArticunoID 0x0 Level(0, Enemy, 1) [17,5]  0b 0x0	0x1 REDA17R5 [Leer,FireBlast,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 0xEE ArticunoID 0x0 Level(0, Enemy, 1) [10,2]  0b 0x0	0x1 REDA10R2 [Leer,Blizzard,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
 ArticunoUnits: 

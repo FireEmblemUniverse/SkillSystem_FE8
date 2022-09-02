@@ -61,6 +61,8 @@ AFEV 0 GlobalAfev 0
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToSeafoamB2MidHole [21,8][21,8] 
 AREA 0 ToSeafoamB2EHole [30,8][30,8] 
+AREA 0 DropBoulderInWestHoleEvent [19,8][23,10] 
+AREA 0 DropBoulderInEastHoleEvent [28,6][32,10] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -86,30 +88,38 @@ ToSeafoamB2E:
 ChapterTransition(SeafoamB2Ch, 31,5)
 
 ToSeafoamB2MidHole:
-ForcedChapterTransition(SeafoamB2Ch, 22,6)
+CALL FallInHoleEffect
+ForcedChapterTransitionHole(SeafoamB2Ch, 22,6)
 ToSeafoamB2EHole:
-ForcedChapterTransition(SeafoamB2Ch, 29,6)
+CALL FallInHoleEffect
+ForcedChapterTransitionHole(SeafoamB2Ch, 29,6)
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
-CoinsTrap(54, 12,ChapterID*2,1080)
+//CoinsTrap(54, 12,ChapterID*2,1080)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
 
 
 //CutBush(12,10)
 //RockSmash(29,9)
 
-StrengthBoulder(8, 13)
-StrengthBoulder(9, 13)
+//RockSmash(8, 13)
+//RockSmash(9, 13)
 StrengthBoulder(17, 8)
 StrengthBoulder(31,12)
-RockSmash(24,16)
-RockSmash(25,16)
+//RockSmash(24,16)
+//RockSmash(25,16)
 
-StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
+
+
+Hole(21,8) // boulders should come before holes, i think ? 
+Hole(30,8) 
+
+
+//StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
 //RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
@@ -146,12 +156,31 @@ ALIGN 4
 
 
 
+DropBoulderInWestHoleEvent: 
+BoulderHoleEvent(21,8, B1_BoulderAFlag)
+NoFade 
+ENDA 
+
+DropBoulderInEastHoleEvent: 
+BoulderHoleEvent(30,8, B1_BoulderBFlag)
+NoFade 
+ENDA 
+
 
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
 
+CHECK_EVENTID B1_BoulderAFlag
+BEQ 0 sC s0 // if on, do not spawn 
+RemoveTrap(17,8)
+LABEL 0 
+
+CHECK_EVENTID B1_BoulderBFlag
+BEQ 1 sC s0 // if on, do not spawn 
+RemoveTrap(31,12)
+LABEL 1 
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
@@ -208,13 +237,13 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BurrowID 0x0 Level(0, Enemy, 1)   [34,2]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+//UNIT 0xF0 BurrowID 0x0 Level(0, Enemy, 1)   [34,2]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
+//UNIT 0xF1 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 
@@ -226,103 +255,6 @@ UNIT Reinforcement0 ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 
 UNIT 
 
  
-HumanTrainers:
-UNIT 0xE0 tuber_m_waterID 0x0 Level(0, Enemy, 1) [51, 7]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 swimmer_m_waterID 0x0 Level(0, Enemy, 1) [38, 6]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 swimmer_f_waterID 0x0 Level(0, Enemy, 1) [31, 9]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-//UNIT 0xE3 cooltrainer_fID 0x0 Level(0, Enemy, 1) [33,10]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-//UNIT 0xE4 picnickerID 0x0 Level(0, Enemy, 1) [26,11]  0b 0x0	0x1 REDA26R11  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-//UNIT 0xE5 camperID 0x0 Level(0, Enemy, 1) [18,9]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT
-
-// ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
-{ ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
-// MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
-MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
-MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
-//MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
-//MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4) 
-//MS_TableEntry(0xE5, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers5) 
-MS_TableTerminator ; } 
-
-{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-SHORT R15_0xE0_BQ // 0xE0 
-SHORT R15_0xE1_BQ // 0xE0 
-SHORT R15_0xE2_BQ // 0xE0 
-//SHORT R15_0xE3_BQ // 0xE0 
-//SHORT R15_0xE4_BQ // 0xE0 
-//SHORT R15_0xE5_BQ // 0xE0 
-TDQ_TableTerminator
-
-TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-SHORT R15_0xE0_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R15_0xE1_BD // 0xE0 
-SHORT 600 // Gold 
-SHORT R15_0xE2_BD // 0xE0 
-SHORT 600 // Gold 
-//SHORT R15_0xE3_BD // 0xE0 
-//SHORT 600 // Gold 
-//SHORT R15_0xE4_BD // 0xE0 
-//SHORT 600 // Gold 
-//SHORT R15_0xE5_BD // 0xE0 
-//SHORT 600 // Gold 
-TDQ_TableTerminator ; }
-
-
-// Route 19 encounters / trainer's mons 
-// TentacoolID	HorseaID	KrabbyID	MagikarpID
-// SlowpokeID	StaryuID	PsyduckID	0x00
-
-// 20:
-// TentacruelID	SeadraID	SeakingID	0x00
-// GyaradosID	PoliwhirlID	GolduckID	KinglerID
-
-
-EnemyTrainers0: // tuberID
-UNIT GenericB 	HorseaID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	MagikarpID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	KrabbyID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT
-
-EnemyTrainers1: // swimmer_m_water
-UNIT GenericB 	TentacoolID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	TentacoolID		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	TentacoolID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	TentacoolID		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT
-
-
-EnemyTrainers2: // swimmer_f_water
-UNIT GenericB 	StaryuID 		0xE2 		Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	SlowpokeID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	PsyduckID 		0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	HorseaID 		0xE2 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT
-
-/*
-EnemyTrainers3: // cooltrainer_fID
-UNIT GenericB 	NidorinoID 	0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	FearowID 		0xE3 		Level(0, Enemy, 1) [11,11]   0b 0x0 0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	GyaradosID 		0xE3 		Level(0, Enemy, 1) [9,9]     0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	NidorinoID 	0xE3 		Level(0, Enemy, 1) [11,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT
-
-EnemyTrainers4: // picnickerID
-UNIT GenericB 	VenonatID 		0xE4 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	SlowpokeID 		0xE4 		Level(0, Enemy, 1) [11,11]   0b 0x0 0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	ExeggcuteID 		0xE4 		Level(0, Enemy, 1) [9,9]     0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	VenonatID 		0xE4 		Level(0, Enemy, 1) [11,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT
-
-EnemyTrainers5: // camperID
-UNIT GenericB 	VenonatID 		0xE5 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	SlowpokeID 		0xE5 		Level(0, Enemy, 1) [11,11]   0b 0x0 0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	SlowpokeID 		0xE5 		Level(0, Enemy, 1) [9,9]     0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT GenericB 	VenonatID 		0xE5 		Level(0, Enemy, 1) [11,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-UNIT
-*/
 	
 #undef GenericA 
 #undef GenericB 

@@ -299,8 +299,9 @@
 	
 	#define RemoveTrap "ASMC RemoveTrapAtCoordsASMC"
 	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
+	#define IsTrapAtCoordMatchingType(x, y, ID) "SVAL 0xB (x|(y<<16)); SVAL s1 ID; ASMC ASMC_IsTrapAtCoordMatchingType"
 	#define GetTrapExt1At(X,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
-	
+	#define RemoveMatchingTrapTypeAtCoord(x, y, ID) "SVAL 0xB (x|(y<<16)); SVAL s1 ID; ASMC ASMC_RemoveMatchingTrapTypeAtCoord"
 	
 	//Macro for setting traps as light sources (uses ext1 for vision range)
 	#define SetLightSourceTrap(trapID) "PUSH; ORG (TrapFogLightSourceTable+trapID); BYTE 1; POP"

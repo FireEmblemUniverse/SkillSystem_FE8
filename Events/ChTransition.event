@@ -263,6 +263,45 @@ LABEL 63
 NoFade 
 ENDA 
 
+HoleInOneEffect:
+CHECK_ALLEGIANCE 0x7fff
+BNE 10 sC s0 // not player 
+SADD sA sB s0 
+ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
+STAL 5 
+EARTHQUAKE_START 1
+SADD sB sA s0 
+RemoveTrap
+ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
+STAL 35
+EARTHQUAKE_END
+GOTO 99  
+LABEL 10 
+DISA 0x7fff 
+LABEL 99 
+NoFade 
+ENDA 
+
+#define BoulderHoleEvent(X, Y, EventID) "CHECK_EVENTID EventID; BNE 99 sC s0 ; IsTrapAtCoordMatchingType(X, Y, StrengthBoulderTrapID); BEQ 99 sC s0 ; ENUT EventID; CALL HoleInOneEffect; RemoveMatchingTrapTypeAtCoord(X, Y, StrengthBoulderTrapID); LABEL 99 " 
+
+
+FallInHoleEffect:
+CHECK_ALLEGIANCE 0x7fff
+BNE 10 sC s0 // not player 
+EndMMS 
+EARTHQUAKE_START 0 // 0 - Sway, 1 - Tremor 
+STARTFADE 
+FADECOLORS 0x1006 5 135 110 110 // non-sprites? 
+FADI 16 
+ENDFADE 
+EARTHQUAKE_END 
+GOTO 99 
+LABEL 10 
+DISA 0x7FFF 
+LABEL 99 
+NoFade 
+ENDA 
+
 EventBEnd:
 NoFade 
 ENDB 
@@ -946,6 +985,7 @@ ENDA
 
 #define ChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA" 
 #define ForcedChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
+#define ForcedChapterTransitionHole(DestChapter, DestX, DestY) "PlayerInRange; Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 
 ForceChTransition:
 ENUF TrainerBattleActiveFlag

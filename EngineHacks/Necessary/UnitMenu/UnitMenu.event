@@ -127,7 +127,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_StepOn,UM_StepOnDesc,BlueText, GenericTrapDisappearUsability0x23, GenericTrapDisappearEffect)
 
   //UM_Jump
-  MenuCommand(UM_Jump,UM_JumpDesc,BlueText, GenericTrapDisappearUsability0x24, GenericTrapDisappearEffect)
+  //MenuCommand(UM_Jump,UM_JumpDesc,BlueText, GenericTrapDisappearUsability0x24, GenericTrapDisappearEffect)
   //UM_Eat
   MenuCommand(UM_Eat, UM_EatDesc,BlueText, GenericTrapDisappearUsability0x25, GenericTrapDisappearEffect)
 

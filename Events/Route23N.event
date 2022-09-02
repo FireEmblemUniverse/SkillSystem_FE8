@@ -119,7 +119,7 @@ SignATrap(3, 48, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //Sign(8,4, 2)
 
 //Save(10,4)
-//SaveCost(47,5) 
+SaveCost(19,47) 
 
 
 

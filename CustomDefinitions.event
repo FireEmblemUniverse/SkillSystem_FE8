@@ -209,20 +209,29 @@
 #define PsychicObtained 0xB3 
 #define MarshbadgeObtained 0xB4
 
+#define B1_BoulderAFlag 0xB5 
+#define B1_BoulderBFlag 0xB6
+#define B2_BoulderAFlag 0xB7
+#define B2_BoulderBFlag 0xB8
+#define B3_BoulderAFlag 0xB9
+#define B3_BoulderBFlag 0xBA
+#define B4_BoulderAFlag 0xBB
+#define B4_BoulderBFlag 0xBC
 
-#define CinnabarArrived 0xB9  
-#define VolcanobadgeObtained 0xBA 
-#define SecretKeyObtained 0xBB 
-#define ToggleMansionFlag 0xBC 
-#define VR_BoulderInHoleFlag 0xBD 
+
+#define CinnabarArrived 0xC9  
+#define VolcanobadgeObtained 0xCA 
+#define SecretKeyObtained 0xCB 
+#define ToggleMansionFlag 0xCC 
+#define VR_BoulderInHoleFlag 0xCD 
 
 
-#define EarthbadgeObtained 0xC0 
-#define StrengthBoulderFlag 0xC1 
-#define MoltresFledFlag 0xC2 
-#define ArticunoFledFlag 0xC3
-#define ZapdosFledFlag 0xC4
-#define MewFledFlag 0xC5
+#define EarthbadgeObtained 0xD0 
+#define StrengthBoulderFlag 0xD1 
+#define MoltresFledFlag 0xD2 
+#define ArticunoFledFlag 0xD3
+#define ZapdosFledFlag 0xD4
+#define MewFledFlag 0xD5
 
 #define IndigoPlateauArrived 0xC9 
 

@@ -302,9 +302,82 @@ bx r0
 .ltorg
 .align
 
+.type ASMC_IsTrapAtCoordMatchingType, %function 
+.global ASMC_IsTrapAtCoordMatchingType 
+ASMC_IsTrapAtCoordMatchingType: @memory slot B = coords
+push {r14}
+mov r0, #0 
+blh GetTrap @ start of trap data 
+ldr r3, =MemorySlot 
+mov r1, #0 
+str r1, [r3, #4*0x0C] @ sC 
+ldrh r1, [r3, #4*0x0B] 
+ldrh r2, [r3, #4*0x0B+2]
+lsl r2, #8 
+orr r1, r2 @ YYXX  
+ldr r2, [r3, #4] @ s1 as trap ID 
+mov r3, r1 @ YYXX 
+
+sub r0, #8 
+Loop: 
+add r0, #8 
+ldr r1, [r0] 
+cmp r1, #0 
+beq Exit 
+ldrb r1, [r0, #2] @ trap ID 
+cmp r1, r2 
+bne Loop 
+ldrh r1, [r0] @ YYXX 
+cmp r1, r3 
+bne Loop 
+mov r0, #1
+ldr r3, =MemorySlotC  
+str r0, [r3] 
+
+Exit: 
+
+pop {r0}
+bx r0
+
+.ltorg
+.align
 
 
+.type ASMC_RemoveMatchingTrapTypeAtCoord, %function 
+.global ASMC_RemoveMatchingTrapTypeAtCoord
+ASMC_RemoveMatchingTrapTypeAtCoord: @memory slot B = coords
+push {r14}
+mov r0, #0 
+blh GetTrap @ start of trap data 
+ldr r3, =MemorySlot 
+ldrh r1, [r3, #4*0x0B] 
+ldrh r2, [r3, #4*0x0B+2]
+lsl r2, #8 
+orr r1, r2 @ YYXX  
+ldr r2, [r3, #4] @ s1 as trap ID 
+mov r3, r1 @ YYXX 
 
+sub r0, #8 
+Loop2: 
+add r0, #8 
+ldr r1, [r0] 
+cmp r1, #0 
+beq Exit2
+ldrb r1, [r0, #2] @ trap ID 
+cmp r1, r2 
+bne Loop2
+ldrh r1, [r0] @ YYXX 
+cmp r1, r3 
+bne Loop2
+blh RemoveTrap 
+
+Exit2: 
+
+pop {r0}
+bx r0
+
+.ltorg
+.align
 
 
 
