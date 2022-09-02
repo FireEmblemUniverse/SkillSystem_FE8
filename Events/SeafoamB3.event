@@ -1,4 +1,4 @@
-#define ChapterID SeafoamB1Ch
+#define ChapterID SeafoamB3Ch
 #define GenericA UnitSeafoamWild
 #define GenericB UnitSeafoamTrainer
 #define ClassA ClassSeafoamWildA
@@ -47,10 +47,13 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToRoute20E, 6, 22)
-House(0, ToRoute20W, 32, 22)
-House(0, ToSeafoamB2W, 10,6)
-House(0, ToSeafoamB2E, 31,4)
+House(0, ToSeafoamB2E, 32,14)
+House(0, ToSeafoamB2S, 25,19)
+House(0, ToSeafoamB2M, 17,9)
+House(0, ToSeafoamB2W, 7,4)
+House(0, ToSeafoamB4E, 32,4)
+House(0, ToSeafoamB4W, 7,17)
+House(0, ToSeafoamB4SE, 31,17)
 END_MAIN
 
 MiscBasedEvents:
@@ -59,36 +62,45 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSeafoamB2MidHole [21,8][21,8] 
-AREA 0 ToSeafoamB2EHole [30,8][30,8] 
+AREA 0 ToSeafoamB4EHole [27,8][27,8] 
+AREA 0 ToSeafoamB4WHole [24,8][24,8] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(6,22) 
-EscapeTileEntry(32,22) 
-EscapeTileEntry(10,6) 
-EscapeTileEntry(31,4) 
+EscapeTileEntry(32,14) 
+EscapeTileEntry(25,19) 
+EscapeTileEntry(17,9) 
+EscapeTileEntry(7,4) 
+EscapeTileEntry(32,4) 
+EscapeTileEntry(7,17) 
+EscapeTileEntry(31,17) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToRoute20E:
-ENUF VR_BoulderInHoleFlag
-ChapterTransition(Route20ECh, 10, 9)
-
-ToRoute20W:
-ENUF VR_BoulderInHoleFlag
-ChapterTransition(Route20WCh, 53, 15)
-
-ToSeafoamB2W:
-ChapterTransition(SeafoamB2Ch, 9,7)
-
 ToSeafoamB2E:
-ChapterTransition(SeafoamB2Ch, 31,5)
+ChapterTransition(SeafoamB2Ch, 32,13)
+ToSeafoamB2S:
+ChapterTransition(SeafoamB2Ch, 24,19)
+ToSeafoamB2M:
+ChapterTransition(SeafoamB2Ch, 17,10)
+ToSeafoamB2W:
+ChapterTransition(SeafoamB2Ch, 6,4)
 
-ToSeafoamB2MidHole:
-ForcedChapterTransition(SeafoamB2Ch, 22,6)
-ToSeafoamB2EHole:
-ForcedChapterTransition(SeafoamB2Ch, 29,6)
+ToSeafoamB4E:
+ChapterTransition(SeafoamB4Ch, 29,4)
+ToSeafoamB4W:
+ChapterTransition(SeafoamB4Ch, 7,13)
+ToSeafoamB4SE:
+ChapterTransition(SeafoamB4Ch, 30,15)
+
+ToSeafoamB4EHole:
+ForcedChapterTransition(SeafoamB4Ch, 27,9)
+
+ToSeafoamB4WHole:
+ForcedChapterTransition(SeafoamB4Ch, 24,10)
+
+
+
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 

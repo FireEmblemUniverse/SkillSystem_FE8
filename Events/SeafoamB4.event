@@ -1,4 +1,4 @@
-#define ChapterID SeafoamB1Ch
+#define ChapterID SeafoamB4Ch
 #define GenericA UnitSeafoamWild
 #define GenericB UnitSeafoamTrainer
 #define ClassA ClassSeafoamWildA
@@ -47,10 +47,11 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToRoute20E, 6, 22)
-House(0, ToRoute20W, 32, 22)
-House(0, ToSeafoamB2W, 10,6)
-House(0, ToSeafoamB2E, 31,4)
+House(0, ToSeafoamB5E, 29,5)
+House(0, ToSeafoamB5W, 12,9)
+House(0, ToSeafoamB3E, 31,4)
+House(0, ToSeafoamB3SE, 31,16)
+House(0, ToSeafoamB3W, 8,14)
 END_MAIN
 
 MiscBasedEvents:
@@ -59,36 +60,38 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToSeafoamB2MidHole [21,8][21,8] 
-AREA 0 ToSeafoamB2EHole [30,8][30,8] 
+AREA 0 ToSeafoamB5EHole [9,18][9,18] 
+AREA 0 ToSeafoamB5EHole [6,18][6,18] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(6,22) 
-EscapeTileEntry(32,22) 
-EscapeTileEntry(10,6) 
+EscapeTileEntry(29,5) 
+EscapeTileEntry(12,9) 
 EscapeTileEntry(31,4) 
+EscapeTileEntry(8,14) 
+EscapeTileEntry(31,16) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToRoute20E:
-ENUF VR_BoulderInHoleFlag
-ChapterTransition(Route20ECh, 10, 9)
+ToSeafoamB5E:
+ChapterTransition(SeafoamB5Ch, 31,5)
+ToSeafoamB5W:
+ChapterTransition(SeafoamB5Ch, 15,10)
 
-ToRoute20W:
-ENUF VR_BoulderInHoleFlag
-ChapterTransition(Route20WCh, 53, 15)
+ToSeafoamB3E:
+ChapterTransition(SeafoamB3Ch, 32,5)
+ToSeafoamB3SE:
+ChapterTransition(SeafoamB3Ch, 31,16)
+ToSeafoamB3W:
+ChapterTransition(SeafoamB3Ch, 8,17)
 
-ToSeafoamB2W:
-ChapterTransition(SeafoamB2Ch, 9,7)
+ToSeafoamB5EHole:
+ForcedChapterTransition(SeafoamB5Ch, 9,17)
 
-ToSeafoamB2E:
-ChapterTransition(SeafoamB2Ch, 31,5)
+ToSeafoamB5WHole:
+ForcedChapterTransition(SeafoamB5Ch, 8,17)
 
-ToSeafoamB2MidHole:
-ForcedChapterTransition(SeafoamB2Ch, 22,6)
-ToSeafoamB2EHole:
-ForcedChapterTransition(SeafoamB2Ch, 29,6)
+
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 

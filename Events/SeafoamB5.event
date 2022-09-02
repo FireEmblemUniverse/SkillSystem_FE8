@@ -1,8 +1,8 @@
-#define ChapterID VictoryRoadB2Ch
-#define GenericA UnitVictoryRoadWild
-#define GenericB UnitVictoryRoadTrainer
-#define ClassA ClassVictoryRoadWildA
-#define ClassB ClassVictoryRoadWildB
+#define ChapterID SeafoamB5Ch
+#define GenericA UnitSeafoamWild
+#define GenericB UnitSeafoamTrainer
+#define ClassA ClassSeafoamWildA
+#define ClassB ClassSeafoamWildB
 #define WildLvl 38
 #define TrainerL 50
 
@@ -48,40 +48,40 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToVictoryRoadB1, 1,9) 
-House(0, ToVictoryRoadB3_NW, 3,3) 
-House(0, ToVictoryRoadB3_S, 24,17) 
-House(0, ToVictoryRoadB3_M, 26,10) 
-House(0, ToVictoryRoadB3_E, 30,10) 
-House(0, ToRoute23N, 38,13) 
+House(0, ToSeafoamB4E, 32,5) 
+House(0, ToSeafoamB4W, 15,9) 
 END_MAIN
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
-AFEV 0 MoltresFledEvent 0 
+AFEV 0 ArticunoFledEvent 0 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(1,9) 
-EscapeTileEntry(3,3) 
-EscapeTileEntry(24,17) 
-EscapeTileEntry(26,10) 
-EscapeTileEntry(30,10) 
-EscapeTileEntry(38,13) 
+EscapeTileEntry(32,5) 
+EscapeTileEntry(15,9) 
 EscapeTileTerminator ; } 
 #endif 
 
-MoltresFledEvent: 
-CHECK_EVENTID MoltresFledFlag 
+
+ToSeafoamB4E:
+ChapterTransition(SeafoamB4Ch, 29,4)
+ToSeafoamB4W:
+ChapterTransition(SeafoamB4Ch, 11,9)
+
+
+
+ArticunoFledEvent: 
+CHECK_EVENTID ArticunoFledFlag 
 BNE 99 rC r0 
 
 GetTargetID
 SADD s2 sC s0 
-SVAL s1 MoltresID 
+SVAL s1 ArticunoID 
 CHECK_CLASS 0x7ffd 
 BEQ 0 sC s1 
 
@@ -91,7 +91,7 @@ CHECK_CLASS 0x7ffd
 BEQ 0 sC s1 
 GOTO 99 
 
-LABEL 0 // unit ID in s2 where class is Moltres and Moltres has never been defeated 
+LABEL 0 // unit ID in s2 where class is Articuno and Articuno has never been defeated 
 
 // Check if legendary is at low hp. If so, flee. 
 // Proc skill for legendaries prevents them from getting KO'd 
@@ -101,7 +101,7 @@ GetUnitStatus(0x7ffd, MaxHP)
 SVAL s1 3 
 SDIV s9 sC s1 
 BGE 99 sA s9 // if over 1/3rd hp, do nothing  
-ENUT MoltresFledFlag // 1/3rd or less hp, so flee 
+ENUT ArticunoFledFlag // 1/3rd or less hp, so flee 
 
 CALL ModularSummonWildTrainerEvent // looks for unit ID of attacker or defender from 0xD0 - 0xDF, originally 0xE0 - 0xEF 
 
@@ -110,20 +110,7 @@ LABEL 99
 NoFade 
 ENDA 
 
-ToVictoryRoadB1:
-ChapterTransition(VictoryRoadB1Ch, 4,2)
-ToVictoryRoadB3_NW:
-ChapterTransition(VictoryRoadB3Ch, 5,3)
-ToVictoryRoadB3_S:
-ChapterTransition(VictoryRoadB3Ch, 31,16)
-ToVictoryRoadB3_M:
-ChapterTransition(VictoryRoadB3Ch, 25,9)
-ToVictoryRoadB3_E:
-ChapterTransition(VictoryRoadB3Ch, 29,10)
 
-ToRoute23N:
-ENUF VR_BoulderInHoleFlag
-ChapterTransition(Route23NCh, 18,46)
 
 
 
@@ -220,13 +207,11 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds
 
 CheckTrainerFlag(0xEE) // based on unit IDs 0xE0-0xEF per chapter 
 BNE 10 rC r0 
-LOAD1 0x1 MoltresBattleUnitGroup 
+LOAD1 0x1 ArticunoBattleUnitGroup 
 ENUN 
 LABEL 10 
 
 
-LOAD1 1 EnemyTrainers 
-ENUN  
 AutoLevelUnits(WildLvl, True, 0xE0EF) // Trainers 
 
 CALL SetBushHpEvent
@@ -270,12 +255,12 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 
 
 EnemyBurrows:
@@ -288,94 +273,41 @@ ReinforcementUnitsA:
 UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
-
-//battle_girlID
-//blackbeltID
-//hikerID
-//super_nerdID
-
-EnemyTrainers:
-UNIT 0xE0 hikerID 0x0 Level(0, Enemy, 1) [14,12]  0b 0x0	1 REDA14R12  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [24,12]  0b 0x0	1 REDA24R12  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 super_nerdID 0x0 Level(0, Enemy, 1) [30,2]  0b 0x0	1 REDA30R2  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 super_nerdID 0x0 Level(0, Enemy, 1) [35,9]  0b 0x0	1 REDA35R9  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT
+ReinforcementUnitsB:
+UNIT Reinforcement0 ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xE0, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers0) 
-MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers1) 
-MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2) 
-MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
-MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, MoltresUnits) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, ArticunoUnits) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-BQ(0xE, MoltresChallengeText)
-SHORT VRB2_0xE0_BQ
-SHORT VRB2_0xE1_BQ
-SHORT VRB2_0xE2_BQ
-SHORT VRB2_0xE3_BQ
+BQ(0xE, ArticunoChallengeText)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0xE, MoltresDefeatText, 0) 
-SHORT VRB2_0xE0_BD 
-SHORT 1600 // Gold 
-SHORT VRB2_0xE1_BD 
-SHORT 2100 // Gold 
-SHORT VRB2_0xE2_BD 
-SHORT 1700 // Gold 
-SHORT VRB2_0xE3_BD 
-SHORT 900 // Gold 
+BD(0xE, ArticunoDefeatText, 0) 
 TDQ_TableTerminator ; }
 
-MoltresBattleUnitGroup:
-UNIT 0xEE MoltresID 0x0 Level(0, Enemy, 1) [17,5]  0b 0x0	0x1 REDA17R5 [Leer,FireBlast,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+//ShellderID	SeelID	SlowpokeID	GolbatID
+//JynxID	DewgongID	SlowbroID	0x00
+
+
+ArticunoBattleUnitGroup:
+UNIT 0xEE ArticunoID 0x0 Level(0, Enemy, 1) [17,5]  0b 0x0	0x1 REDA17R5 [Leer,FireBlast,Screech,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
-MoltresUnits: 
-UNIT GenericB 	FlareonID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	GravellerID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	MachokeID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	SandslashID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	MagmarID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+ArticunoUnits: 
+UNIT GenericB 	VaporeonID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	DewgongID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	JynxID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	SlowbroID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	CloysterID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
 UNIT
 
 
-// wild B1: GravellerID	ZubatID
-// wild B2: Moltres, OnixID	MachokeID	GravellerID	SandslashID, Flareon, Magmar 
-// wild B3: OnixID	MachokeID	GravellerID	SandslashID VenomothID	GolbatID	MarowakID
-// trainer B1: machoke, dragonair, venomoth, pinsir, scyther 
-
-EnemyTrainers0: // hiker
-UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	OnixID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT
-
-EnemyTrainers1: // hiker
-UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GravellerID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	SandslashID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	MachokeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT
-
-EnemyTrainers2: // super_nerd
-UNIT GenericB 	SandslashID 		0xE2 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	SandslashID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	OnixID 	0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	SandslashID 		0xE2 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT
-
-EnemyTrainers3: // super_nerd
-UNIT GenericB 	OnixID 		0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	OnixID 	0xE3 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	SandslashID 		0xE3 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	MachokeID 		0xE3 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT
 
 
 
