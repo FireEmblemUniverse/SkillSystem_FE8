@@ -3,10 +3,11 @@
 	#include "FindFreeTile.lyn.event" 
 
 #define ASMC_FindFreeTile(unit, xx, yy) "SVAL s1 unit; SVAL sB yy<<16|xx; ASMC ASMC_FindFreeTile"
+#define ASMC_FindFreeTile(unit) "SVAL s1 unit; ASMC ASMC_FindFreeTile"
 
 
 	ALIGN 4
 	GenericMovCost: // used in FindFreeTile code 
-	BYTE $FF $01 $01 $0F $0F $01 $01 $01 $01 $01 $01 $01 $01 $0F $01 $01 $0F $0F $0F $01 $01 $0F $02 $01 $01 $FF $0F $0F $01 $01 $0F $01 $01 $01 $0F $01 $01 $01 $0F $01 $01 $01 $01 $01 $FF $01 $FF $01 $01 $0F $FF $0F $01 $0F $0F $01 $01 $0F $0F $0F $0F $0F $01 $0F $0F $FF
+	BYTE $FF $01 $01 $0F $0F $01 $01 $01 $01 $01 $01 $01 $01 $0F $01 $01 $0F $0F $0F $01 $01 $0F $02 $01 $01 $FF $0F $0F $01 $01 $0F $01 $01 $01 $0F $01 $01 $01 $0F $01 $01 $01 $01 $01 $FF $01 $FF $01 $01 $0F $FF $0F $01 $0F $0F $01 $01 $0F $0F $0F $05 $0F $01 $0F $0F $FF
 #endif 
 

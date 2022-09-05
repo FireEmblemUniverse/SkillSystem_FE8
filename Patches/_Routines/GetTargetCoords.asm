@@ -7,6 +7,7 @@
 .endm
 .equ GetUnit, 0x8019430
 .equ MemorySlot,0x30004B8
+.equ gActionStruct, 0x203A958
 
 GetTargetCoords:
 push {lr}
@@ -39,4 +40,3 @@ str r0, [r3]
 pop {r0}
 bx r0 
 .ltorg 
-

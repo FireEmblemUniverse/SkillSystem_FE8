@@ -2,23 +2,36 @@
 
 #define ABS(aValue) ((aValue) >= 0 ? (aValue) : -(aValue))
 #define RECT_DISTANCE(aXA, aYA, aXB, aYB) (ABS((aXA) - (aXB)) + ABS((aYA) - (aYB)))
+
+void FindFreeTile(struct Unit *unit, int* xOut, int* yOut);
+
+extern struct Unit* GetUnitStructFromEventParameter(int ID); 
+
+
 //void FindFreeTile(struct Unit *unit, struct Unit *rescuee, int* xOut, int* yOut)
 void const ASMC_FindFreeTile(void) 
 { 
 	int result = false; // default 
-	unitID = gEventSlot[1]; 
+	int unitID = gEventSlot[1]; 
 	struct Unit* unit = GetUnitStructFromEventParameter(unitID); 
-	if (unit & unit->pCharacter) { 
-	result = unit->yPos << 16 | unit->xPos; 
-	int* xOut = gEventSlot[0xB] & 0xFFFF; 
-	int* yOut = gEventSlot[0xB] & 0xFFFF0000;
-	FindFreeTile(unit, xOut, yOut); 
-		if (xOut != 9999 & yOut != 9999) {
-			result = yOut << 16 | xOut; 
+	if ((unit != 0) & (unit->pCharacterData != 0)) { 
+		result = unit->yPos << 16 | unit->xPos; 
+		int xOut; 
+		xOut = gEventSlot[0xB] & 0xFFFF; 
+		int yOut; 
+		yOut = (gEventSlot[0xB] & 0xFFFF0000) >> 16;
+		unit->xPos = xOut; 
+		unit->yPos = yOut; 
+		FindFreeTile(unit, &xOut, &yOut); 
+		unit->xPos = result & 0xFFFF; 
+		unit->yPos = (result & 0xFFFF0000) >> 16; 
+		
+		if ((xOut != 9999) & (yOut != 9999)) {
+			result = (yOut << 16) | xOut; 
 		}
 	} 
 	gEventSlot[0xC] = result; // if no unit, return 0 as coord 
-
+	ClearMenuCommandOverride();
 } 
 
 void const FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
@@ -65,7 +78,7 @@ void const FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
         }
     }
 
-	if (*xOut == 0xFFFFFFFF) { 
+	if (*xOut == 9999) { 
 
 
 		// Fill the movement map

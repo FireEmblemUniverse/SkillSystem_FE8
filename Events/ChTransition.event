@@ -247,6 +247,27 @@ CALL CannotEscapeEvent
 NoFade 
 ENDA 
 
+EnqueueREDAFromCoords: {
+	// Coords in sB
+	SVAL s3 16
+	SLSR slotsParam(s3, sB, s3)
+
+	SVAL s1 6
+	SLSL slotsParam(s3, s3, s1)
+	
+	SVAL s1 0xFFFF
+	SAND slotsParam(s1, sB, s1)
+
+	// Slot1 = (Coords & 0xFFFF) | (Coords >> 16 << 6);
+	SORR slotsParam(s1, s1, s3)
+	SAVETOQUEUE
+
+	SVAL s1 0
+	SAVETOQUEUE
+
+	NoFade
+	ENDA
+}
 
 CannotEscapeEvent: // given s1 unit ID and s2 text to display that prevents escape, check if trainer undefeated, and if so, prevent escape 
 CHECK_EVENTID PlayableCutsceneFlag

@@ -64,10 +64,6 @@ AREA 0 ToSeafoamB5EHole [9,18][9,18]
 AREA 0 ToSeafoamB5EHole [6,18][6,18] 
 AREA 0 DropBoulderInWestHoleEvent [4,16][7,21] 
 AREA 0 DropBoulderInEastHoleEvent [7,16][11,20] 
-AREA 0 MovePlayersToShore [25,12][28,13] 
-AREA 0 MovePlayersToShore [25,14][26,14] 
-AREA 0 MovePlayersToShore [19,11][24,13] 
-AREA 0 MovePlayersToShore [23,8][24,10] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -229,6 +225,13 @@ LABEL 0x63
 NoFade
 ENDA
 
+Dunno3:
+AREA 0 MovePlayersToShore [25,12][28,13] 
+AREA 0 MovePlayersToShore [25,14][26,14] 
+AREA 0 MovePlayersToShore [19,11][24,13] 
+AREA 0 MovePlayersToShore [23,8][24,10] 
+END_MAIN
+
 MovePlayersToShore:
 CHECK_EVENTID B3_BoulderAFlag 
 BEQ 4 sC s0 
@@ -236,13 +239,31 @@ CHECK_EVENTID B3_BoulderBFlag
 BEQ 4 sC s0 
 GOTO 99 
 LABEL 4 
-EndMMS 
-SCOORD sB [27,11] 
+EVBIT_MODIFY 1 
+//EndMMS 
+
+SCOORD sB [27,11] // it will find the nearest tile to this coordinate 
+// this is in the water, so it will prefer not the water 
 ASMC_FindFreeTile(0x7fff)
-MOVE_SLOTB 12 0x7fff 
-ENUN 
-//ASMC CallCommandEffect
-SET_ACTIVE 0 
+SADD sB sC s0 
+SADD sA sC s0 
+SVAL sD 0
+
+CALL EnqueueREDAFromCoords
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
+//SET_ACTIVE 0 
+
+//EndMMS 
+SADD sB sA s0 
+
+//SET_CURSOR_SB
+ASMC SetActorCoords 
+//UNCM(0x7FFE, 0x43) 
+MOVEFORCED 3 0x7FFF 0
+ENUN
+
+
 LABEL 99 
 NoFade 
 ENDA 
@@ -262,9 +283,8 @@ ENDA
 
 Dunno1:
 END_MAIN
+
 Dunno2:
-END_MAIN
-Dunno3:
 END_MAIN
 Tutorial:
 END_MAIN

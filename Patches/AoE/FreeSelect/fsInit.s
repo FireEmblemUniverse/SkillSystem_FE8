@@ -3,7 +3,6 @@
 
 .set pTCS_PositionSelectCursor, 0x085A0EA0	@{U}
 @.set pTCS_PositionSelectCursor, 0x085C93C0	@{J}
-
 FreeSelect6C_Init:
 	push 	{r4, lr}
 	
@@ -24,6 +23,11 @@ FreeSelect6C_Init:
 	strh 	r1, [r0, #0x22]
 	
 	ldr 	r3, =pGameDataStruct
+	
+	
+	
+	
+	
 	ldr 	r2, =ppRangeMapRows
 	ldr 	r2, [r2]
 	ldrh 	r0, [r3, #0x16]
