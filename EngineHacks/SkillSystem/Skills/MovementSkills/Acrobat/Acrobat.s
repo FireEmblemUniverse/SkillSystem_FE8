@@ -13,8 +13,7 @@ cmp   r0, #0
 bne   NoDZ
 mov   r0, r2 @if the active unit is 0, we're being called from dangerzone
 NoDZ:
-ldr r0,MarshbadgeObtained
-.short  0xF800
+mov r0, #0 @ default as no acrobat 
 
 ldr r1,CurrentCharPtr
 ldr r1,[r1]
@@ -59,6 +58,18 @@ ble   NoAcrobat
 
 FinishUp: 
 
+ldr 	r0, =CheckEventId
+mov   r14,r0
+ldr r0,MarshbadgeObtained
+.short  0xF800
+cmp r0, #0 
+beq NoSurf 
+mov r1, #0x15 @ sea
+add r3, r5, r1 
+mov r2, #1 @ costs 1 
+strb r2, [r3] 
+
+NoSurf: 
 ldr r0,CurrentCharPtr
 ldr r0,[r0]
 cmp r0, #0 

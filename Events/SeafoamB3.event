@@ -64,6 +64,8 @@ AFEV 0 GlobalAfev 0
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToSeafoamB4EHole [27,8][27,8] 
 AREA 0 ToSeafoamB4WHole [24,8][24,8] 
+AREA 0 DropBoulderInWestHoleEvent [22,6][26,10] 
+AREA 0 DropBoulderInEastHoleEvent [27,6][29,10] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -101,7 +103,15 @@ ToSeafoamB4WHole:
 CALL FallInHoleEffect
 ForcedChapterTransitionHole(SeafoamB4Ch, 24,10)
 
+DropBoulderInWestHoleEvent: 
+BoulderHoleEvent(24,8, B3_BoulderAFlag)
+NoFade 
+ENDA 
 
+DropBoulderInEastHoleEvent: 
+BoulderHoleEvent(27,8, B3_BoulderBFlag)
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
