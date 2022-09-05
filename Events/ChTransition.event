@@ -247,7 +247,7 @@ CALL CannotEscapeEvent
 NoFade 
 ENDA 
 
-
+ 
 CannotEscapeEvent: // given s1 unit ID and s2 text to display that prevents escape, check if trainer undefeated, and if so, prevent escape 
 CHECK_EVENTID PlayableCutsceneFlag
 BNE 20 sC s0 
