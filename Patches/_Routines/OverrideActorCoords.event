@@ -1,0 +1,9 @@
+
+ALIGN 4 
+PUSH; ORG CURRENTOFFSET+1; 
+SetActorCoords: ; POP 
+#incbin "SetActorCoords.dmp" 
+
+#define OverrideActorCoords "ASMC SetActorCoords" 
+#define OverrideActorCoords(xx, yy) "SVAL sB yy<<16|xx; ASMC SetActorCoords" 
+
