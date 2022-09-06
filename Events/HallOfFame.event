@@ -59,7 +59,7 @@ CauseGameOverIfLordDies
 DefeatAll(EndingScene) 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
-AFEV 0xA CheckIfNoEnemiesLeft 0
+//AFEV 0xA CheckIfNoEnemiesLeft 0
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -83,46 +83,46 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-ENUT TrainerBattleActiveFlag
-MUSC 0x7FFF // Mute 
-CAM1 [8,6] 
+//ENUT TrainerBattleActiveFlag
+//MUSC 0x7FFF // Mute 
+//CAM1 [8,6] 
+//
+//
+//LOAD1 0x1 EnemyTrainersA
+//ENUN 
+//AutoLevelUnits(TrainerL, True, 0x90EF) 
+//AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+////AutoLevelUnits(3, False, 0x90EF) 
+//CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+//
+//SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+//// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+//
+//
+//
+//SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+//SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+//SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+//
+//
+//MUSCFAST IntroBGM 
+//ShowMap
+//Text(LoreleiChallengeText)
+//MarkTrainerAsDefeated(0xE1)
+//
+//
+//ASMC 0x80160D1 // Return to map BGM 
 
 
-LOAD1 0x1 EnemyTrainersA
-ENUN 
-AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
-//AutoLevelUnits(3, False, 0x90EF) 
-CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
-
-SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
-// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
-
-
-
-SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
-SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
-
-
-MUSCFAST IntroBGM 
-ShowMap
-Text(LoreleiChallengeText)
-MarkTrainerAsDefeated(0xE1)
-
-
-ASMC 0x80160D1 // Return to map BGM 
-
-//CAM1 [8,18] 
 
 
 
@@ -134,16 +134,16 @@ ENDA
 
 
 EndingScene: 
-#ifdef UnsetAllDangerRadius
-UnsetAllDangerRadius
-#endif 
-UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
-ASMC 0x80790a5 //MU_EndAll //deselect unit
-CAM1 [8,6] 
-Text(LoreleiDefeatText)
-TILECHANGE 0
-SVAL r3 5000 
-GIVETOMAIN 0 
+//#ifdef UnsetAllDangerRadius
+//UnsetAllDangerRadius
+//#endif 
+//UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+//ASMC 0x80790a5 //MU_EndAll //deselect unit
+//CAM1 [8,6] 
+//Text(LoreleiDefeatText)
+//TILECHANGE 0
+//SVAL r3 5000 
+//GIVETOMAIN 0 
 NoFade
 ENDA
 

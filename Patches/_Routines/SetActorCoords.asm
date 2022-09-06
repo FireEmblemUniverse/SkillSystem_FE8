@@ -19,6 +19,9 @@
 .equ gUnitMap, 0x202E4D8
 .equ FillMap, 0x080197E4	
 .equ UpdateUnitMapAndVision, 0x8019FA0 
+.equ ProcFind, 0x8002E9D
+.equ gProc_MoveUnit, 0x89A2C48
+
 @ [202BCCC..202BCCF]!!
 .type SetActorCoords, %function 
 .global SetActorCoords 
@@ -70,7 +73,17 @@ mov r1, #0x0
 blh FillMap
 blh UpdateUnitMapAndVision 
 
-blh MMS_EndAll 
+ldr r0, =gProc_MoveUnit
+blh ProcFind 
+cmp r0, #0 
+beq SkipHidingInProc
+add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D5
+mov r1, #1 
+strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DD
+
+SkipHidingInProc: 
+
+@blh MMS_EndAll 
  
 pop {r0} 
 bx r0 

@@ -276,7 +276,7 @@
    <tile gid="228"/>
    <tile gid="237"/>
    <tile gid="200"/>
-   <tile gid="227"/>
+   <tile gid="228"/>
    <tile gid="195"/>
    <tile gid="228"/>
    <tile gid="227"/>
@@ -378,12 +378,12 @@
    <tile gid="195"/>
    <tile gid="237"/>
    <tile gid="200"/>
-   <tile gid="227"/>
+   <tile gid="228"/>
    <tile gid="228"/>
    <tile gid="228"/>
    <tile gid="228"/>
    <tile gid="195"/>
-   <tile gid="227"/>
+   <tile gid="228"/>
    <tile gid="228"/>
    <tile gid="237"/>
    <tile gid="200"/>
@@ -592,7 +592,7 @@
    <tile gid="1"/>
   </data>
  </layer>
- <layer id="2" name="TileChange" width="25" height="23">
+ <layer id="2" name="TileChange" width="25" height="23" visible="0">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="0"/>

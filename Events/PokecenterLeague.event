@@ -90,20 +90,21 @@ Traps1:
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
 //RedPokeballTrap(11,21, (ChapterID*2)+1, ExoticCandy) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
-SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
-SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
+//SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
+//SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
 
-Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
+//Generic(8,5,EarthbadgeObtained, BlankSMS, 0) // 0 sprite ID 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(10,12, ChapterID, 0x0) //no extra text 
-SignATrap(42,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+//SignBTrap(10,12, ChapterID, 0x0) //no extra text 
+//SignATrap(42,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
+SaveCost(7,12)
 
 
 //BerryTree(32,11,5)
@@ -132,22 +133,22 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
-BNE 10 rC r0 
-LOAD1 0x1 GaryBattleUnitGroup 
-ENUN 
-LABEL 10 
-
-
-LOAD1 0x1 EnemyUnitsA
-ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
-
-LOAD1 0x1 EnemyUnitsB
-ENUN 
-AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
-
-CALL SetBushHpEvent
+//CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 
+//BNE 10 rC r0 
+//LOAD1 0x1 GaryBattleUnitGroup 
+//ENUN 
+//LABEL 10 
+//
+//
+//LOAD1 0x1 EnemyUnitsA
+//ENUN
+//RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
+//
+//LOAD1 0x1 EnemyUnitsB
+//ENUN 
+//AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+//
+//CALL SetBushHpEvent
 
 LABEL 0x63
 NoFade

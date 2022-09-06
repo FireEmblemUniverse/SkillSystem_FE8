@@ -168,12 +168,12 @@ UNIT
 EnemyTrainersA:
 UNIT 0xE1 LoreleiID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
 
-UNIT 0xD0 LaprasID 		0x0  Level(0, Enemy, 1) [12,8]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 DewgongID 		0xD0 Level(0, Enemy, 1) [11,10]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 JynxID 			0xD0 Level(0, Enemy, 1) [11,6]  0b 0x0	0 0	[Psychic,IceBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
-//UNIT 0xA2 VaporeonID 		0xD0 Level(0, Enemy, 1) [11,6]  0b 0x0 	0 0	[Surf, IceBeam,0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 SlowbroID 		0xD0 Level(0, Enemy, 1) [13,6]  0b 0x0	0 0	[FireBlast, Surf, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 CloysterID 		0xD0 Level(0, Enemy, 1) [13,10]  0b 0x0	0 0	[Clamp, AuroraBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xD0 DragoniteID 		0x0  Level(0, Enemy, 1) [12,6]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 CharizardID 		0xD0 Level(0, Enemy, 1) [13,8]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 AerodactylID 	0xD0 Level(0, Enemy, 1) [11,8]  0b 0x0	0 0	[Psychic,IceBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 GyaradosID 		0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Surf, IceBeam,0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 DragonairID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[FireBlast, Surf, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 DragonairID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0	[Clamp, AuroraBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 
