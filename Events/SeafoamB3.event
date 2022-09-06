@@ -101,7 +101,19 @@ ForcedChapterTransitionHole(SeafoamB4Ch, 27,9)
 
 ToSeafoamB4WHole:
 CALL FallInHoleEffect
+CHECK_EVENTID B3_BoulderAFlag 
+BEQ 4 sC s0 
+CHECK_EVENTID B3_BoulderBFlag 
+BEQ 4 sC s0 
 ForcedChapterTransitionHole(SeafoamB4Ch, 24,10)
+GOTO 99 
+LABEL 4 
+ForcedChapterTransitionHole(SeafoamB5Ch, 27,18) // current sends you here 
+LABEL 99 
+NoFade 
+ENDA 
+
+
 
 DropBoulderInWestHoleEvent: 
 BoulderHoleEvent(24,8, B3_BoulderAFlag)
@@ -133,8 +145,8 @@ StrengthBoulder(28,8)
 Hole(24,8) // boulders should come before holes, i think ? 
 Hole(27,8) 
 
-StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
-//RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+//StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
+RedPokeballTrap(15,8, (ChapterID*2)+1, Calcium) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 

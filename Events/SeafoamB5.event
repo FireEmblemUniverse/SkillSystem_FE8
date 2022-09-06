@@ -127,23 +127,20 @@ Traps1:
 //VictoryRoadB2: Outrage, Protein, Megahorn
 //VictoryRoadB3: DarkPulse, 
 
-RockSmash(8,15)
+//RockSmash(8,15)
 
-Rock(21,17) 
-Rock(27,15) 
-StrengthBoulder(5,16) 
-StrengthBoulder(8,5) 
-StrengthBoulder(19,19) // Conditionally deleted 
+//Rock(21,17) 
+//Rock(27,15) 
+StrengthBoulder(8,18) 
+StrengthBoulder(9,18) 
+// Conditionally deleted 
  
-BoulderReceptacle(2,19, 27,15) // Coord, Affected Rock Coord  
-BoulderReceptacle(12,19, 21,17) // Coord, Affected Rock Coord  
-
 
 
 //StrengthBoulder(4,3)
 
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
-RedPokeballTrap(29,8, (ChapterID*2)+1, Protein) 
+//RedPokeballTrap(29,8, (ChapterID*2)+1, Protein) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
 //SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
@@ -155,17 +152,17 @@ RedPokeballTrap(29,8, (ChapterID*2)+1, Protein)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(35,9, ChapterID, 0x0) //no extra text 
-SignATrap(5,13, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(12,8, ChapterID, 0x0) //no extra text 
+SignATrap(30,3, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)
 
-SkillScrollTrap(6,18, ChapterID*2, RockyHelmetSkillID)
-SpellScrollTrap(19,7, (ChapterID*2)+1, Outrage)
-//SpellScrollTrap(6,18, (ChapterID*2), Megahorn)
+//SkillScrollTrap(6,18, ChapterID*2, RockyHelmetSkillID)
+//SpellScrollTrap(19,7, (ChapterID*2)+1, Outrage)
+SpellScrollTrap(13,18, (ChapterID*2), Blizzard)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -189,12 +186,12 @@ CALL LoadAndPlacePlayers
 
 CHECK_EVENTID B4_BoulderAFlag
 BNE 2 sC s0 // if on, spawn
-RemoveTrap(4,17)
+RemoveTrap(8,18)
 LABEL 2 
 
 CHECK_EVENTID B4_BoulderBFlag
 BNE 3 sC s0 // if on, spawn 
-RemoveTrap(12,16)
+RemoveTrap(9,18)
 LABEL 3
 
 
@@ -250,11 +247,35 @@ EndingScene: //Unused but must exist
 NoFade
 ENDA
 
+WaterCurrent_East: 
+SCOORD sB [27,18] // it will find the nearest tile to this coordinate 
+CALL SendActorToNearestCoord
+NoFade 
+ENDA 
+
+WaterCurrent_West: 
+CHECK_EVENTID B4_BoulderAFlag 
+BEQ 4 sC s0 
+CHECK_EVENTID B4_BoulderBFlag 
+BEQ 4 sC s0 
+GOTO 99 
+LABEL 4 
+SCOORD sB [12,13] // it will find the nearest tile to this coordinate 
+CALL SendActorToNearestCoord
+LABEL 99 
+NoFade 
+ENDA 
+
+
 Dunno1:
 END_MAIN
 Dunno2:
 END_MAIN
 Dunno3:
+AREA 0 WaterCurrent_East [26,19][28,21] 
+AREA 0 WaterCurrent_West [3,13][16,16] 
+AREA 0 WaterCurrent_West [8,17][9,21] 
+AREA 0 WaterCurrent_West [3,5][9,12] 
 END_MAIN
 Tutorial:
 END_MAIN
@@ -322,10 +343,10 @@ UNIT
 
 ArticunoUnits: 
 UNIT GenericB 	VaporeonID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	DewgongID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	JynxID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	SlowbroID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
-//UNIT GenericB 	CloysterID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	DewgongID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	JynxID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	SlowbroID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
+UNIT GenericB 	CloysterID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFiveAI
 UNIT
 
 

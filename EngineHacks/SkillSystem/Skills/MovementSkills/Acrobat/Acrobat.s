@@ -66,6 +66,10 @@ cmp r0, #0
 beq NoSurf 
 mov r1, #0x15 @ sea
 add r3, r5, r1 
+ldrb r1, [r3] 
+lsr r1, #7 
+cmp r1, #0 
+bne NoSurf @ if movement cost is >127, then don't change it 
 mov r2, #1 @ costs 1 
 strb r2, [r3] 
 

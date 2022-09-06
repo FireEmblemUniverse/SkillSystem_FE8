@@ -1,6 +1,5 @@
 #include "OverrideActorCoords.event" 
 
-
 ALIGN 4
 PUSH 
 ORG CurrentOffset+1

@@ -129,8 +129,8 @@ StrengthBoulder(13,16)
 Hole(6,18) // boulders should come before holes, i think ? 
 Hole(9,18) 
 
-StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
-//RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
+//StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
+RedPokeballTrap(15,9, (ChapterID*2)+1, MaxPotion) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
@@ -216,9 +216,9 @@ BEQ 4 sC s0
 TILECHANGE 0 // change the current if both flags are on 
 GOTO 5
 LABEL 4 
-MOVE -1 0x101 [27,11] 
-ENUN 
-ASMC CallCommandEffect
+//MOVE -1 0x101 [27,11] 
+//ENUN 
+//ASMC CallCommandEffect
 LABEL 5 
 
 LABEL 0x63
@@ -239,30 +239,18 @@ CHECK_EVENTID B3_BoulderBFlag
 BEQ 4 sC s0 
 GOTO 99 
 LABEL 4 
-EVBIT_MODIFY 1 
-//EndMMS 
 
-SCOORD sB [27,11] // it will find the nearest tile to this coordinate 
-// this is in the water, so it will prefer not the water 
-ASMC_FindFreeTile(0x7fff)
-SADD sB sC s0 
-SADD sA sC s0 
-SVAL sD 0
+ASMC 0x804EF21 // EndAllMenus 
+ASMC 0x804E885 //ClearBG0BG1
 
-CALL EnqueueREDAFromCoords
-CHECK_COORDS 0x7FFF 
-SADD sB sC s0 
+SCOORD sB [25,15] // it will find the nearest tile to this coordinate 
+
+CALL SendActorToNearestCoord
+
+
+//ASMC 0x8019c3d   //@UpdateGameTilesGraphics
 //SET_ACTIVE 0 
-
-//EndMMS 
-SADD sB sA s0 
-
-//SET_CURSOR_SB
-ASMC SetActorCoords 
-//UNCM(0x7FFE, 0x43) 
-MOVEFORCED 3 0x7FFF 0
-ENUN
-
+ForcedChapterTransition(SeafoamB5Ch, 27, 18) 
 
 LABEL 99 
 NoFade 

@@ -269,6 +269,26 @@ EnqueueREDAFromCoords: {
 	ENDA
 }
 
+SendActorToNearestCoord:
+EVBIT_MODIFY 1 
+ASMC_FindFreeTile(0x7fff)
+SADD sB sC s0 
+SADD sA sC s0 
+SVAL sD 0
+CALL EnqueueREDAFromCoords
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
+//SET_ACTIVE 0 
+SADD sB sA s0 
+//SET_CURSOR_SB
+ASMC SetActorCoords 
+//UNCM(0x7FFE, 0x43) 
+MOVEFORCED 3 0x7FFF 0
+ENUN
+NoFade 
+ENDA 
+
+
 CannotEscapeEvent: // given s1 unit ID and s2 text to display that prevents escape, check if trainer undefeated, and if so, prevent escape 
 CHECK_EVENTID PlayableCutsceneFlag
 BNE 20 sC s0 
