@@ -278,22 +278,22 @@ SetSMS(rockSMS , 0 ,    rockStanding)
 SetSMS(Unused2SMS , 0 ,    m1Standing)
 SetSMS(puddleSMS , 0 ,    puddleStanding)
 SetSMS(LoreleiSMS , 1 ,    LoreleiStanding)
-SetSMS(Unused46SMS , 0 ,    m1Standing)
-SetSMS(Unused47SMS , 0 ,    m1Standing)
-SetSMS(Unused48SMS , 0 ,    m1Standing)
-SetSMS(Unused49SMS , 0 ,    m1Standing)
-SetSMS(Unused50SMS , 0 ,    m1Standing)
-SetSMS(Unused51SMS , 0 ,    m1Standing)
-SetSMS(Unused52SMS , 0 ,    m1Standing)
-SetSMS(Unused53SMS , 0 ,    m1Standing)
-SetSMS(Unused54SMS , 0 ,    m1Standing)
-SetSMS(Unused55SMS , 0 ,    m1Standing)
-SetSMS(Unused56SMS , 0 ,    m1Standing)
-SetSMS(Unused57SMS , 0 ,    m1Standing)
-SetSMS(Unused58SMS , 0 ,    m1Standing)
-SetSMS(Unused59SMS , 0 ,    m1Standing)
-SetSMS(Unused60SMS , 0 ,    m1Standing)
-SetSMS(Unused61SMS , 0 ,    m1Standing)
+SetSMS(BrunoSMS , 1 ,    BrunoStanding)
+SetSMS(AgathaSMS , 1 ,    AgathaStanding)
+SetSMS(LanceSMS , 1 ,    LanceStanding)
+SetSMS(BrockSMS , 1 ,    BrockStanding)
+SetSMS(MistySMS , 1 ,    MistyStanding)
+SetSMS(LtSurgeSMS , 1 ,    LtSurgeStanding)
+SetSMS(KogaSMS , 1 ,    KogaStanding)
+SetSMS(ErikaSMS , 1 ,    ErikaStanding)
+SetSMS(SabrinaSMS , 1 ,    SabrinaStanding)
+SetSMS(BlaineSMS , 1 ,    BlaineStanding)
+SetSMS(BrendanSMS , 1 ,    BrendanStanding)
+SetSMS(MaySMS , 1 ,    MayStanding)
+SetSMS(MomSMS , 1 ,    MomStanding)
+SetSMS(NurseSMS , 1 ,    NurseStanding)
+SetSMS(ReceptionistSMS , 1 ,    ReceptionistStanding)
+SetSMS(ClerkSMS , 1 ,    ClerkStanding)
 SetSMS(Unused62SMS , 0 ,    m1Standing)
 SetSMS(Unused63SMS , 0 ,    m1Standing)
 SetSMS(Unused64SMS , 0 ,    m1Standing)
@@ -551,22 +551,22 @@ SetMMS(rockMMS ,     rockMoving,        DemonKingAP)
 SetMMS(Unused2MMS ,     r1Moving,        DemonKingAP)
 SetMMS(puddleMMS ,     puddleMoving,        DemonKingAP)
 SetMMS(LoreleiMMS ,     LoreleiMoving,        DemonKingAP)
-SetMMS(Unused46MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused47MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused48MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused49MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused50MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused51MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused52MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused53MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused54MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused55MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused56MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused57MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused58MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused59MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused60MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused61MMS ,     r1Moving,        DemonKingAP)
+SetMMS(BrunoMMS ,     BrunoMoving,        DemonKingAP)
+SetMMS(AgathaMMS ,     AgathaMoving,        DemonKingAP)
+SetMMS(LanceMMS ,     LanceMoving,        DemonKingAP)
+SetMMS(BrockMMS ,     BrockMoving,        DemonKingAP)
+SetMMS(MistyMMS ,     MistyMoving,        DemonKingAP)
+SetMMS(LtSurgeMMS ,     LtSurgeMoving,        DemonKingAP)
+SetMMS(KogaMMS ,     KogaMoving,        DemonKingAP)
+SetMMS(ErikaMMS ,     ErikaMoving,        DemonKingAP)
+SetMMS(SabrinaMMS ,     SabrinaMoving,        DemonKingAP)
+SetMMS(BlaineMMS ,     BlaineMoving,        DemonKingAP)
+SetMMS(BrendanMMS ,     BrendanMoving,        DemonKingAP)
+SetMMS(MayMMS ,     MayMoving,        DemonKingAP)
+SetMMS(MomMMS ,     MomMoving,        DemonKingAP)
+SetMMS(NurseMMS ,     NurseMoving,        DemonKingAP)
+SetMMS(ReceptionistMMS ,     ReceptionistMoving,        DemonKingAP)
+SetMMS(ClerkMMS ,     ClerkMoving,        DemonKingAP)
 SetMMS(Unused62MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused63MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused64MMS ,     r1Moving,        DemonKingAP)
@@ -1438,7 +1438,54 @@ rockMoving:
 ALIGN 4 
 LoreleiMoving:
 #incbin "Trainer_MMS/MMS_Lorelei.dmp"
-
+ALIGN 4 
+BrunoMoving:
+#incbin "Trainer_MMS/MMS_Bruno.dmp"
+ALIGN 4 
+AgathaMoving:
+#incbin "Trainer_MMS/MMS_Agatha.dmp"
+ALIGN 4 
+LanceMoving:
+#incbin "Trainer_MMS/MMS_Lance.dmp"
+ALIGN 4 
+BrockMoving:
+#incbin "Trainer_MMS/MMS_Brock.dmp"
+ALIGN 4 
+MistyMoving:
+#incbin "Trainer_MMS/MMS_Misty.dmp"
+ALIGN 4 
+LtSurgeMoving:
+#incbin "Trainer_MMS/MMS_LtSurge.dmp"
+ALIGN 4 
+KogaMoving:
+#incbin "Trainer_MMS/MMS_Koga.dmp"
+ALIGN 4 
+ErikaMoving:
+#incbin "Trainer_MMS/MMS_Erika.dmp"
+ALIGN 4 
+SabrinaMoving:
+#incbin "Trainer_MMS/MMS_Sabrina.dmp"
+ALIGN 4 
+BlaineMoving:
+#incbin "Trainer_MMS/MMS_Blaine.dmp"
+ALIGN 4 
+BrendanMoving:
+#incbin "Trainer_MMS/MMS_Brendan.dmp"
+ALIGN 4 
+MayMoving:
+#incbin "Trainer_MMS/MMS_May.dmp"
+ALIGN 4 
+MomMoving:
+#incbin "Trainer_MMS/MMS_Mom.dmp"
+ALIGN 4 
+NurseMoving:
+#incbin "Trainer_MMS/MMS_Nurse.dmp"
+ALIGN 4 
+ReceptionistMoving:
+#incbin "Trainer_MMS/MMS_Receptionist.dmp"
+ALIGN 4 
+ClerkMoving:
+#incbin "Trainer_MMS/MMS_Clerk.dmp"
 
 //Map sprites
 
@@ -2207,6 +2254,55 @@ rockStanding:
 ALIGN 4 
 LoreleiStanding:
 #incbin "Trainer_SMS/SMS_Lorelei.dmp"
+
+ALIGN 4 
+BrunoStanding:
+#incbin "Trainer_SMS/SMS_Bruno.dmp"
+ALIGN 4 
+AgathaStanding:
+#incbin "Trainer_SMS/SMS_Agatha.dmp"
+ALIGN 4 
+LanceStanding:
+#incbin "Trainer_SMS/SMS_Lance.dmp"
+ALIGN 4 
+BrockStanding:
+#incbin "Trainer_SMS/SMS_Brock.dmp"
+ALIGN 4 
+MistyStanding:
+#incbin "Trainer_SMS/SMS_Misty.dmp"
+ALIGN 4 
+LtSurgeStanding:
+#incbin "Trainer_SMS/SMS_LtSurge.dmp"
+ALIGN 4 
+KogaStanding:
+#incbin "Trainer_SMS/SMS_Koga.dmp"
+ALIGN 4 
+ErikaStanding:
+#incbin "Trainer_SMS/SMS_Erika.dmp"
+ALIGN 4 
+SabrinaStanding:
+#incbin "Trainer_SMS/SMS_Sabrina.dmp"
+ALIGN 4 
+BlaineStanding:
+#incbin "Trainer_SMS/SMS_Blaine.dmp"
+ALIGN 4 
+BrendanStanding:
+#incbin "Trainer_SMS/SMS_Brendan.dmp"
+ALIGN 4 
+MayStanding:
+#incbin "Trainer_SMS/SMS_May.dmp"
+ALIGN 4 
+MomStanding:
+#incbin "Trainer_SMS/SMS_Mom.dmp"
+ALIGN 4 
+NurseStanding:
+#incbin "Trainer_SMS/SMS_Nurse.dmp"
+ALIGN 4 
+ReceptionistStanding:
+#incbin "Trainer_SMS/SMS_Receptionist.dmp"
+ALIGN 4 
+ClerkStanding:
+#incbin "Trainer_SMS/SMS_Clerk.dmp"
 
 
 

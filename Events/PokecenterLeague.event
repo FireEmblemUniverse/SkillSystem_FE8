@@ -34,8 +34,6 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnitsA, 2, 4) 
-Reinforce(0xF1, 1, ReinforcementUnitsA, 3, 4) 
 }
 
 
@@ -44,11 +42,106 @@ CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 AllTrainersPostBattleTalk
 END_MAIN
 
+ALIGN 4
+ShopItems_A:  // Supplies + StatBoosters 
+//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+SHLI SuperPotion JellyDonut HyperPotion MaxPotion FullHeal HPUp Protein Calcium Carbos Iron Zinc RareCandy
+//SHLI MoonStone FireStone WaterStone ThunderStone LeafStone LinkStone 
+BYTE $0 0; ALIGN 4
+
+
+ALIGN 4
+ShopItems_B: // TMs CDs 
+//SpellScroll IceBeam SpellScroll TriAttack
+BYTE SpellScroll Psychic SpellScroll PetalDance
+BYTE SpellScroll Screech SpellScroll SwordsDance
+BYTE SpellScroll BugBuzz SpellScroll CalmMind
+BYTE SpellScroll HiJumpKick SpellScroll BulkUp
+BYTE SpellScroll Thunder SpellScroll HoneClaws
+BYTE SpellScroll EarthPower SpellScroll Blizzard
+BYTE SpellScroll XScissor SpellScroll HydroPump
+BYTE SpellScroll HyperBeam SpellScroll Sludge
+BYTE SpellScroll ShadowBall SpellScroll FireBlast
+BYTE SpellScroll Earthquake SpellScroll Megahorn 
+//BYTE SpellScroll DoubleEdge SpellScroll Outrage
+//BYTE SpellScroll DarkPulse SpellScroll Ancientpower
+//BYTE SpellScroll MeteorMash SpellScroll Megahorn 
+BYTE $0 0; ALIGN 4
+
+ALIGN 4
+ShopItems_C: // Skill Scrolls 
+// 2nd store in Viridian? Or at league? 
+BYTE SkillScroll DartingStanceID SkillScroll ChargeID SkillScroll PursuitID
+BYTE SkillScroll WrathID SkillScroll SilentPrideID SkillScroll CharmID 
+BYTE SkillScroll GrislyWoundID SkillScroll FieryBloodID 
+BYTE $0 0; ALIGN 4
+
+
+
+
+/*
+LuckyBracerT3, EvoStones 
+, AmaterasuAcc, 
+Route7: WrathSS
+, Surf, MaxPotion
+, LinkStone 
+ , SilentPrideSS, Calcium, HPUp, SteelShield, 3000g
+SilphCo5F: SilphScope 
+ , MuscleBandT3 
+ , HoplonGuard 
+Route8: CharmSS, LeafStone, 800g
+PowerPlant: , VintageBoots, ThunderStone, Carbos 
+Route20E: EnhancedWard
+Seafoam: WaterStone , Calcium, MaxPotion , 
+Route20W:  , ExoticCandy 
+Cinnabar:  , WiseGlassesT3
+Mansion:  , Zinc, 1500g , FireStone 
+Mansion:  , GrislyWoundSS, StuddedShield 
+CinnabarGym: , FieryBloodSS
+Route21:  , ExoticCandy 
+ViridianGym: , , Fury 
+Route22: GaleforceAcc, BlossomAcc
+Route 23S: VoiceOfPeaceAcc,  
+Route 23M: MaxPotion,  
+VictoryRoadB1: RareCandy, Iron, 2000g
+VictoryRoadB2:  , Protein, RockyHelmetSS 
+VictoryRoadB3:  , MaxPotion 
+Route 23N: EnergyBandT3
+*/
+
+
+
+
+ALIGN 4
+ShopItems_D: // StatAccessories 
+BYTE StatAccessory MuscleBand_BoostIndex 
+BYTE StatAccessory MuscleBandT3_BoostIndex 
+BYTE StatAccessory WiseGlassesT3_BoostIndex
+BYTE StatAccessory EnergyBandT3_BoostIndex 
+BYTE StatAccessory StuddedShield_BoostIndex
+BYTE StatAccessory SteelShield_BoostIndex 
+BYTE StatAccessory EnhancedWard_BoostIndex 
+BYTE StatAccessory VintageBoots_BoostIndex 
+BYTE StatAccessory SilphScope_BoostIndex 
+BYTE StatAccessory LuckyBracerT3_BoostIndex
+BYTE $0 0; ALIGN 4
+
+ALIGN 4
+ShopItems_E: // SkillAccessories ? 
+BYTE SkillAccTwo RenewalID
+BYTE $0 0; ALIGN 4
+
 
 
 LocationBasedEvents:
 House(0, ToRoute23N, 11,16) 
-House(0, ToLorelei, 4,1) 
+House(0, ToLorelei, 6,1) 
+Vendor(ShopItems_A,0,9)
+Vendor(ShopItems_B,1,9)
+Vendor(ShopItems_C,2,9)
+Vendor(ShopItems_D,10,9)
+Vendor(ShopItems_E,11,9)
 END_MAIN
 
 MiscBasedEvents:
@@ -61,7 +154,7 @@ END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(11,16) 
-EscapeTileEntry(4,1) 
+EscapeTileEntry(6,1) 
 EscapeTileTerminator ; } 
 #endif 
 
@@ -140,8 +233,8 @@ CALL LoadAndPlacePlayers
 //LABEL 10 
 //
 //
-//LOAD1 0x1 EnemyUnitsA
-//ENUN
+LOAD1 0x1 UnitsA
+ENUN
 //RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
 //
 //LOAD1 0x1 EnemyUnitsB
@@ -155,14 +248,6 @@ NoFade
 ENDA
 
 
-
-ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
-ALIGN 4
-
-ArmoryItems:
-SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
-ALIGN 4
 
 EndingScene: //Unused but must exist 
 NoFade
@@ -186,27 +271,24 @@ UNIT
 
 
 
-EnemyUnitsA:
+UnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+UNIT GenericA NurseID 0x0 Level(0, NPC, 1)   [17,10] 0	0x0 0x01 REDA17R10 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT GenericA ClerkID 0x0 Level(0, NPC, 1)   [0,7] 0	0x0 0x01 REDA0R7 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT GenericA ClerkID 0x0 Level(0, NPC, 1)   [1,7] 0	0x0 0x01 REDA1R7 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT GenericA ClerkID 0x0 Level(0, NPC, 1)   [2,7] 0	0x0 0x01 REDA2R7 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT GenericA ClerkID 0x0 Level(0, NPC, 1)   [10,7] 0	0x0 0x01 REDA10R7 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT GenericA ClerkID 0x0 Level(0, NPC, 1)   [11,7] 0	0x0 0x01 REDA11R7 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT 
 
-EnemyUnitsB:
-UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
-UNIT 
 
-ReinforcementUnitsA:
-UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
-UNIT 
 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsA) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsB) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsC) 
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryUnitsD) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryBattleUnitGroup) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryBattleUnitGroup) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryBattleUnitGroup) 
+MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, GaryBattleUnitGroup) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
@@ -225,41 +307,7 @@ UNIT
 
 
 
-GaryUnitsA:
-UNIT GenericB	VenusaurID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ArcanineID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	GyaradosID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
 
-GaryUnitsB:
-UNIT GenericB	CharizardID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	GyaradosID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
-
-GaryUnitsC:
-UNIT GenericB	BlastoiseID 0xEF Level(0, Enemy, 1)   [9,9] 	0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ArcanineID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
-
-GaryUnitsD:
-UNIT GenericB	JolteonID 0xEF Level(0, Enemy, 1)   [9,9] 		0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	PidgeotID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ArcanineID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	AlakazamID 0xEF 	Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	NidokingID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	ExeggutorID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT
 
 
 	

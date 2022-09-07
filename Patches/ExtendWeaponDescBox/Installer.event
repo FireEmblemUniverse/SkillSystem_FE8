@@ -1,5 +1,5 @@
 #include "EAstdlib.event" 
-
+/*
 // If these procs are active, don't use the extra vram. 
 // If you experience graphical glitches, the solution is 
 // to look in FEBuilder's debugger to see what procs are running,
@@ -156,3 +156,4 @@ SHORT 0x42C0 // vanilla 0x4240
 
 POP 
 
+*/

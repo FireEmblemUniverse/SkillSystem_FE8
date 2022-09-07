@@ -70,7 +70,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToPokecenterLeague:
-ChapterTransition(PokecenterLeagueCh, 4,3)
+ChapterTransition(PokecenterLeagueCh, 6,3)
 ToBruno:
 ChapterTransition(BrunoCh, 12,19)
 
