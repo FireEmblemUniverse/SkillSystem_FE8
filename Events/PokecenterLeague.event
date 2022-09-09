@@ -115,7 +115,6 @@ Route 23N: EnergyBandT3
 
 ALIGN 4
 ShopItems_D: // StatAccessories 
-BYTE StatAccessory MuscleBand_BoostIndex 
 BYTE StatAccessory MuscleBandT3_BoostIndex 
 BYTE StatAccessory WiseGlassesT3_BoostIndex
 BYTE StatAccessory EnergyBandT3_BoostIndex 
@@ -127,10 +126,27 @@ BYTE StatAccessory SilphScope_BoostIndex
 BYTE StatAccessory LuckyBracerT3_BoostIndex
 BYTE $0 0; ALIGN 4
 
+#define SkillAccShop(SkillID) "SkillAccOne + (SkillID >> 6) (SkillID & 0x3F)" 
 ALIGN 4
 ShopItems_E: // SkillAccessories ? 
-BYTE SkillAccTwo RenewalID
+BYTE SkillAccShop(RockyHelmetSkillID)
+BYTE SkillAccShop(FuryID)
+BYTE SkillAccShop(WaryFighterID)
+BYTE SkillAccShop(RenewalID)
+//SealSpdAccessory 
+BYTE SkillAccShop(PoisonStrikeID)
+BYTE SkillAccShop(VantagePlusID)
+BYTE SkillAccShop(DazzleID)
+BYTE SkillAccShop(BreathOfLifeID)
+BYTE SkillAccShop(MiracleID)
+BYTE SkillAccShop(CounterMagicID)
+BYTE SkillAccShop(AmaterasuID)
+BYTE SkillAccShop(BlossomID)
+BYTE SkillAccShop(VoiceOfPeaceID)
+BYTE HoplonShield 1 
 BYTE $0 0; ALIGN 4
+
+
 
 
 

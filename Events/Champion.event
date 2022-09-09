@@ -118,7 +118,7 @@ SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 MUSCFAST IntroBGM 
 ShowMap
-Text(LoreleiChallengeText)
+Text(GaryChallengeText)
 MarkTrainerAsDefeated(0xE1)
 
 
@@ -142,7 +142,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 CAM1 [8,6] 
-Text(LoreleiDefeatText)
+Text(GaryDefeatText)
 TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
@@ -218,7 +218,7 @@ BQ(0xF, GarySilphCoDefeatText)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0xF, LoreleiTalkText, 600) 
+BD(0xF, GaryTalkText, 600) 
 TDQ_TableTerminator ; }
 	
 

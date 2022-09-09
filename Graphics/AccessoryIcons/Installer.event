@@ -31,30 +31,70 @@ BYTE PlaceholderIcon64
 PUSH
 AccessoryIcon(MuscleBand_BoostIndex) // Str
 #incbin "dmp/MuscleBand.dmp"
+AccessoryIcon(MuscleBandT2_BoostIndex) // Str
+#incbin "dmp/MuscleBand.dmp"
+AccessoryIcon(MuscleBandT3_BoostIndex) // Str
+#incbin "dmp/MuscleBand.dmp"
 
 AccessoryIcon(WiseGlasses_BoostIndex) // Mag 
+#incbin "dmp/WiseGlasses.dmp"
+AccessoryIcon(WiseGlassesT2_BoostIndex) // Mag 
+#incbin "dmp/WiseGlasses.dmp"
+AccessoryIcon(WiseGlassesT3_BoostIndex) // Mag 
 #incbin "dmp/WiseGlasses.dmp"
 
 AccessoryIcon(LuckyBracer_BoostIndex) // Luck 
 #incbin "dmp/LuckyBracer.dmp"
+AccessoryIcon(LuckyBracerT3_BoostIndex) // Luck 
+#incbin "dmp/LuckyBracer.dmp"
 
 AccessoryIcon(LeatherShield_BoostIndex) // Def/Res
 #incbin "dmp/LeatherShield.dmp"
+AccessoryIcon(PaddedShield_BoostIndex) // Def/Res
+#incbin "dmp/SagesShield.dmp"
+AccessoryIcon(StuddedShield_BoostIndex) // Def/Res
+#incbin "dmp/Ho-ohShield.dmp"
+
 
 AccessoryIcon(BronzeShield_BoostIndex) // Def 
 #incbin "dmp/BronzeShield.dmp"
+AccessoryIcon(IronShield_BoostIndex) // Def
+#incbin "dmp/IronShield.dmp"
+AccessoryIcon(SteelShield_BoostIndex) // Def
+#incbin "dmp/SteelShield.dmp"
 
 AccessoryIcon(OldWard_BoostIndex) // Res 
 #incbin "dmp/OldWard.dmp"
+AccessoryIcon(MagicWard_BoostIndex) // Res 
+#incbin "dmp/ResShield.dmp"
+AccessoryIcon(EnhancedWard_BoostIndex) // Res 
+#incbin "dmp/LugiaShield.dmp"
+
+
 
 AccessoryIcon(WornBoots_BoostIndex) // Speed 
 #incbin "dmp/SpeedyBoots.dmp"
+AccessoryIcon(QuickBoots_BoostIndex) // Speed 
+#incbin "dmp/SpeedyBoots.dmp"
+AccessoryIcon(VintageBoots_BoostIndex) // Speed 
+#incbin "dmp/SpeedyBoots.dmp"
+
 
 AccessoryIcon(OldScope_BoostIndex) // Skl 
 #incbin "dmp/ScopePlaceholder.dmp"
+AccessoryIcon(SightScope_BoostIndex) // Skl 
+#incbin "dmp/ScopeLens.dmp"
+AccessoryIcon(SilphScope_BoostIndex) // Skl 
+#incbin "dmp/ScopeLens.dmp"
 
 AccessoryIcon(EnergyBand_BoostIndex) // Def 
 #incbin "dmp/MuscleBand.dmp"
+AccessoryIcon(EnergyBandT2_BoostIndex) // Def 
+#incbin "dmp/MuscleBand.dmp"
+AccessoryIcon(EnergyBandT3_BoostIndex) // Def 
+#incbin "dmp/MuscleBand.dmp"
+
+
 
 
 

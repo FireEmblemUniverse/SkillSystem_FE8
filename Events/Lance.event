@@ -117,7 +117,7 @@ SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 MUSCFAST IntroBGM 
 ShowMap
-Text(LoreleiChallengeText)
+Text(LanceChallengeText)
 MarkTrainerAsDefeated(0xE1)
 
 
@@ -141,7 +141,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 CAM1 [8,6] 
-Text(LoreleiDefeatText)
+Text(LanceDefeatText)
 TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
@@ -166,7 +166,7 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xE1 LoreleiID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
+UNIT 0xE1 LanceID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
 
 UNIT 0xD0 DragoniteID 		0x0  Level(0, Enemy, 1) [12,6]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 CharizardID 		0xD0 Level(0, Enemy, 1) [13,8]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
@@ -188,7 +188,7 @@ BQ(1, GarySilphCoDefeatText)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(1, LoreleiTalkText, 600) 
+BD(1, LanceTalkText, 600) 
 TDQ_TableTerminator ; }
 	
 
