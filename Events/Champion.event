@@ -85,9 +85,14 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+
+
+CHECK_EVENTID ChampionDefeatedTemp 
+BNE 99 sC s0 
+
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
-CAM1 [8,6] 
+CAM1 [12,0] 
 
 
 LOAD1 0x1 EnemyTrainersA
@@ -102,19 +107,19 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 
 
-SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
-SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
-
+//SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+//SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+//SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+//
 
 MUSCFAST IntroBGM 
 ShowMap
@@ -136,16 +141,21 @@ ENDA
 
 
 EndingScene: 
+CHECK_EVENTID ChampionDefeatedTemp 
+BNE 99 sC s0 
 #ifdef UnsetAllDangerRadius
 UnsetAllDangerRadius
 #endif 
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-CAM1 [8,6] 
+CAM1 [12,0] 
 Text(GaryDefeatText)
 TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
+ENUT ChampionDefeatedTemp
+ENUT ChampionDefeated
+LABEL 99 
 NoFade
 ENDA
 
@@ -167,7 +177,7 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xEF blueID 		0x0  Level(0, Enemy, 1) [13,7]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
+UNIT 0xE1 blueID 		0x0  Level(0, Enemy, 1) [13,7]  0b 0x0	1 REDA13R7	[0,0,0x0,0x0] 		DoNothingAI
 UNIT 
 
 GaryUnitsA:
@@ -210,11 +220,11 @@ UNIT
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
 // MS_TableEntry(UnitID, ClassID, LevelReq, FlagReq, PosType, MatchLvl, ResetStats, AllowDuplicates, UnitGroup)
-MS_TableEntry(0xEF, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
+MS_TableEntry(0xE1, 0, 0, 0, 1, 1, 0, 1, EnemyTrainersA) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
-BQ(0xF, GarySilphCoDefeatText) 
+BQ(0x1, GarySilphCoDefeatText) 
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  

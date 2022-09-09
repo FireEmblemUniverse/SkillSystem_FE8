@@ -84,9 +84,15 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+
+LOAD1 1 BossTrainer
+ENUN 
+CHECK_EVENTID LanceDefeatedTemp 
+BNE 99 sC s0 
+
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
-CAM1 [8,6] 
+CAM1 [12,0] 
 
 
 LOAD1 0x1 EnemyTrainersA
@@ -101,17 +107,17 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 
 
-SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+SilentGiveItemWithDurability(0xD0, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Machoke 
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA0, StatAccessory, EnergyBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA1, StatAccessory, EnergyBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA2, StatAccessory, EnergyBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA3, StatAccessory, EnergyBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 
@@ -135,16 +141,20 @@ ENDA
 
 
 EndingScene: 
+CHECK_EVENTID LanceDefeatedTemp 
+BNE 99 sC s0 
 #ifdef UnsetAllDangerRadius
 UnsetAllDangerRadius
 #endif 
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-CAM1 [8,6] 
+CAM1 [12,0] 
 Text(LanceDefeatText)
 TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
+ENUT LanceDefeatedTemp
+LABEL 99 
 NoFade
 ENDA
 
@@ -165,10 +175,13 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
-EnemyTrainersA:
-UNIT 0xE1 LanceID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
 
-UNIT 0xD0 DragoniteID 		0x0  Level(0, Enemy, 1) [12,6]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
+BossTrainer:
+UNIT 0xE1 LanceID 		0x0  Level(0, Enemy, 1) [12,5]  0b 0x0	1 REDA12R5	[0,0,0x0,0x0] 		DoNothingAI
+UNIT
+
+EnemyTrainersA:
+UNIT 0xD0 DragoniteID 		0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 CharizardID 		0xD0 Level(0, Enemy, 1) [13,8]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA1 AerodactylID 	0xD0 Level(0, Enemy, 1) [11,8]  0b 0x0	0 0	[Psychic,IceBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA2 GyaradosID 		0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Surf, IceBeam,0,0x0] 	ZoningHeal50GroupOneAI

@@ -2949,10 +2949,14 @@ Sorry about this.[A][X]
 You can exit anytime, but if you leave[N]
 Lorelei's room, your progress resets.[A][X]
 
-
+## Elite4ExitText
+If you exit, your progress[N]
+will be reset.[A][Clear]
+Will you leave?[N]
+[No][X]
 
 ## LoreleiChallengeText
-[OpenMidRight][LoadLorelei][OpenMidRight]Welcome to the Pok[Eaccent]mon LEAGUE.[A][N]
+[OpenMidLeft][LoadLorelei][OpenMidLeft]Welcome to the Pok[Eaccent]mon LEAGUE.[A][N]
 I am LORELEI of the ELITE FOUR.[A][N]
 No one can best me when it comes[N]
 to icy Pok[Eaccent]mon.[A][N]
@@ -2963,7 +2967,7 @@ Hahaha![N]
 Are you ready?[A][X]
 
 ## LoreleiDefeatText 
-[OpenMidRight][LoadLorelei][OpenMidRight]You're better than I thought.[N]
+[OpenMidLeft][LoadLorelei][OpenMidLeft]You're better than I thought.[N]
 Go on ahead.[A][N]
 You only got a taste of the[N]
 Pok[Eaccent]mon LEAGUE's power.[A][X]
@@ -2976,7 +2980,7 @@ Pok[Eaccent]mon LEAGUE's power.[A][X]
 
 
 ## BrunoChallengeText
-I am BRUNO of the ELITE FOUR![A][N]
+[OpenMidLeft][LoadBruno][OpenMidLeft]I am BRUNO of the ELITE FOUR![A][N]
 Through rigorous training, people and[N]
 Pok[Eaccent]mon can overcome any limit.[A][N]
 I've lived and trained with my[N]
@@ -2989,20 +2993,18 @@ Hoo hah![A][X]
 	
 
 ## BrunoDefeatText
-Why?[N]
+[OpenMidLeft][LoadBruno][OpenMidLeft]Why?[N]
 How could I lose?[A][N]
 My job is done.[N]
 Go face your next challenge.[A][X]
 
 ## BrunoTalkText
-Why?[N]
-How could I lose?[A][N]
 My job is done.[N]
 Go face your next challenge.[A][X]
 
 
 ## AgathaChallengeText
-I am AGATHA of the ELITE FOUR.[A][N]
+[OpenMidLeft][LoadAgatha][OpenMidLeft]I am AGATHA of the ELITE FOUR.[A][N]
 I hear OAK's taken a lot of[N]
 interest in you, child.[A][N]
 That old duff was once tough and[N]
@@ -3018,7 +3020,7 @@ TRAINER battles![A][X]
 
 
 ## AgathaDefeatText
-Oh, my! You win![N]
+[OpenMidLeft][LoadAgatha][OpenMidLeft]Oh, my! You win![N]
 You're something special, child![A][N]
 I see what the old duff[N]
 sees in you now.[A][N]
@@ -3026,15 +3028,13 @@ I have nothing else to say.[N]
 Run along now, child![A][X]
 
 ## AgathaTalkText
-Oh, my! You win![N]
-You're something special, child![A][N]
 I see what the old duff[N]
 sees in you now.[A][N]
 I have nothing else to say.[N]
 Run along now, child![A][X]
 	
 ## LanceChallengeText
-Ah! I've heard about you,[N]
+[OpenMidLeft][LoadLance][OpenMidLeft]Ah! I've heard about you,[N]
 [Tact]![A][N]
 I lead the ELITE FOUR.[A][N]
 You can call me LANCE the dragon[N]
@@ -3051,7 +3051,7 @@ me, [Tact]![A][X]
 
 
 ## LanceDefeatText
-That's it![A][N]
+[OpenMidLeft][LoadLance][OpenMidLeft]That's it![A][N]
 I hate to admit it, but you are a[N]
 Pok[Eaccent]mon master![A][N]
 I still can't believe my dragons[N]
@@ -3069,9 +3069,6 @@ He is the real Pok[Eaccent]mon LEAGUE[N]
 CHAMPION.[A][X]
 
 ## LanceTalkText
-That's it![A][N]
-I hate to admit it, but you are a[N]
-Pok[Eaccent]mon master![A][N]
 I still can't believe my dragons[N]
 lost to you, [Tact].[A][N]
 You are now the Pok[Eaccent]mon LEAGUE[N]
@@ -3088,7 +3085,7 @@ CHAMPION.[A][X]
 
 
 ## GaryChallengeText
-Hey, [Tact]![A][N]
+[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hey, [Tact]![A][N]
 I was looking forward to seeing[N]
 you, [Tact].[A][N]
 My rival should be strong to keep[N]
@@ -3102,16 +3099,16 @@ I'm the Pok[Eaccent]mon LEAGUE CHAMPION![A][N]
 [Tact]![N]
 Do you know what that means?[A][N]
 I'll tell you.[A][N]
-I am the most powerful TRAINER in[N]
+[OpenMidLeft][LoadGaryBattle]I am the most powerful TRAINER in[N]
 the world![A][X]
 
 ## GaryDefeatText
-NO![N]
+[OpenMidLeft][LoadGaryBattle][OpenMidLeft]NO![N]
 Impossible![A][Clear]
 I CAN'T LOSE![A][X]
 
 ## GaryDefeatText2
-You beat me at my best![A][N]
+[OpenMidLeft][LoadGaryPoint][OpenMidLeft]You beat me at my best![A][N]
 After all that work to become[N]
 the LEAGUE CHAMP?[A][N]
 My reign is over already?[N]
@@ -3140,7 +3137,7 @@ Although I don't like to admit it...[A][X]
 
 
 ## OakLeagueText
-OAK: [Tact]![A][N]
+[OpenMidRight][LoadOak][OpenMidRight]OAK: [Tact]![A][N]
 OAK: So, you've won![N]
 Sincerely, congratulations![A][N]
 You're the new Pok[Eaccent]mon LEAGUE[N]
@@ -3152,7 +3149,7 @@ left to work on your Pok[Eaccent]dex.[A]N]
 [Tact], you have come of age![A][X]
 
 ## OakLeagueText2 
-OAK: Gary...[N]
+[OpenMidRight][LoadOak][OpenMidRight]OAK: Gary...[N]
 I'm disappointed in you.[A][N]
 I came when I heard you'd beaten[N]
 the ELITE FOUR.[A][N]
@@ -3166,7 +3163,7 @@ Without them, you will never[N]
 become a CHAMP again![A][X]
 
 ## OakLeagueText3
-OAK: [Tact].[A][N]
+[OpenMidRight][LoadOak][OpenMidRight]OAK: [Tact].[A][N]
 You understand that your victory[N]
 was not just your own doing.[A][N]
 The bond you share with your[N]
@@ -3176,7 +3173,7 @@ Come with me![A][X]
 
 
 ## OakLeagueText4
-OAK: Er-hem![N]
+[OpenMidRight][LoadOak][OpenMidRight]OAK: Er-hem![N]
 Congratulations, [Tact]![A][N]
 This floor is the Pok[Eaccent]mon HALL OF[N]
 FAME.[A][N]

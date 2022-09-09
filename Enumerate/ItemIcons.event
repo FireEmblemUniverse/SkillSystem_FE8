@@ -63,7 +63,7 @@
 #define image_palIcon 0xDA
 
 #define RepelIcon 0xDA
-#define SuperRepelIcon 0xDB
+#define SuperRepelIcon 0xD5 // 0xDB is hoplon guard 
 //#define SkillScrollIcon 0xDC 
 #define MaximumRepelIcon 0xDD
 #define ReviveIcon 0xDE

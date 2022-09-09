@@ -70,7 +70,20 @@ EscapeTileTerminator ; }
 #endif 
 
 ToPokecenterLeague:
-ChapterTransition(PokecenterLeagueCh, 6,3)
+EVBIT_MODIFY 4 
+TutText(Elite4ExitText)
+SVAL s1 1 
+BNE 99 sC s1 
+ENUF LoreleiDefeatedTemp 
+ENUF BrunoDefeatedTemp 
+ENUF AgathaDefeatedTemp 
+ENUF LanceDefeatedTemp 
+ENUF ChampionDefeatedTemp 
+ForcedChapterTransition(PokecenterLeagueCh, 6,3)
+LABEL 99 
+NoFade 
+ENDA 
+
 ToBruno:
 ChapterTransition(BrunoCh, 12,19)
 
@@ -124,9 +137,15 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+
+LOAD1 1 BossTrainer
+ENUN 
+CHECK_EVENTID LoreleiDefeatedTemp 
+BNE 99 sC s0 
+
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
-CAM1 [8,6] 
+CAM1 [12,0] 
 
 
 LOAD1 0x1 EnemyTrainersA
@@ -175,16 +194,20 @@ ENDA
 
 
 EndingScene: 
+CHECK_EVENTID LoreleiDefeatedTemp 
+BNE 99 sC s0 
 #ifdef UnsetAllDangerRadius
 UnsetAllDangerRadius
 #endif 
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-CAM1 [8,6] 
+CAM1 [12,0] 
 Text(LoreleiDefeatText)
 TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
+ENUT LoreleiDefeatedTemp
+LABEL 99 
 NoFade
 ENDA
 
@@ -204,10 +227,11 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
+BossTrainer:
+UNIT 0xE1 LoreleiID 		0x0  Level(0, Enemy, 1) [12,5]  0b 0x0	1 REDA12R5	[0,0,0x0,0x0] 		DoNothingAI
+UNIT
 
 EnemyTrainersA:
-UNIT 0xE1 LoreleiID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
-
 UNIT 0xD0 LaprasID 		0x0  Level(0, Enemy, 1) [12,8]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 DewgongID 		0xD0 Level(0, Enemy, 1) [11,10]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA1 JynxID 			0xD0 Level(0, Enemy, 1) [11,6]  0b 0x0	0 0	[Psychic,IceBeam,0x0,0x0] 		ZoningHeal50GroupOneAI

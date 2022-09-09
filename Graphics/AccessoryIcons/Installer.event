@@ -81,11 +81,11 @@ AccessoryIcon(VintageBoots_BoostIndex) // Speed
 
 
 AccessoryIcon(OldScope_BoostIndex) // Skl 
-#incbin "dmp/ScopePlaceholder.dmp"
+#incbin "dmp/CrackedLens.dmp"
 AccessoryIcon(SightScope_BoostIndex) // Skl 
-#incbin "dmp/ScopeLens.dmp"
+#incbin "dmp/Lens.dmp"
 AccessoryIcon(SilphScope_BoostIndex) // Skl 
-#incbin "dmp/ScopeLens.dmp"
+#incbin "dmp/ZoomLens.dmp"
 
 AccessoryIcon(EnergyBand_BoostIndex) // Def 
 #incbin "dmp/MuscleBand.dmp"
@@ -103,6 +103,32 @@ SkillAccessoryIcons(RenewalID)
 
 SkillAccessoryIcons(RockyHelmetSkillID)
 #incbin "dmp/RockyHelmet.dmp"
+
+SkillAccessoryIcons(BreathOfLifeID)
+#incbin "dmp/ShellBell.dmp"
+SkillAccessoryIcons(MiracleID)
+#incbin "dmp/FocusBand.dmp"
+
+
+SkillAccessoryIcons(FuryID)
+#incbin "dmp/CleanseTag.dmp"
+SkillAccessoryIcons(PoisonStrikeID)
+#incbin "dmp/Metronome.dmp"
+
+
+SkillAccessoryIcons(CounterMagicID)
+#incbin "dmp/BrightPowder.dmp"
+SkillAccessoryIcons(AmaterasuID)
+#incbin "dmp/Leftovers.dmp"
+SkillAccessoryIcons(BlossomID)
+#incbin "dmp/LuckyEgg.dmp"
+SkillAccessoryIcons(VoiceOfPeaceID)
+#incbin "dmp/SootheBell.dmp"
+
+
+
+
+
 
 SkillAccessoryIcons(VantagePlusID)
 #incbin "dmp/QuickClaw.dmp"

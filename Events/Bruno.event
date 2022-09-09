@@ -76,11 +76,13 @@ ChapterTransition(AgathaCh, 12,19)
 Traps1:
 RockSmash(17,7)
 RockSmash(7,8)
-RockSmash(11,9)
+//RockSmash(11,9)
+RockSmash(11,10)
 RockSmash(16,9)
-RockSmash(9,10)
-RockSmash(13,10)
-RockSmash(8,11)
+RockSmash(4,10)
+//RockSmash(9,10)
+//RockSmash(13,10)
+//RockSmash(8,11)
 RockSmash(18,11)
 RockSmash(6,12)
 RockSmash(15,12)
@@ -88,9 +90,9 @@ RockSmash(12,13)
 RockSmash(20,13)
 RockSmash(7,14)
 RockSmash(10,14)
-RockSmash(16,14)
+//RockSmash(16,14)
 RockSmash(4,15)
-RockSmash(14,15)
+//RockSmash(14,15)
 RockSmash(19,15)
 RockSmash(6,17)
 
@@ -102,9 +104,16 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+
+
+CHECK_EVENTID BrunoDefeatedTemp 
+BNE 99 sC s0 
+
+LOAD1 1 BossTrainer
+ENUN 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
-CAM1 [8,6] 
+CAM1 [12,0] 
 
 
 LOAD1 0x1 EnemyTrainersA
@@ -119,24 +128,24 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 
 
-SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+SilentGiveItemWithDurability(0xD0, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Machoke 
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA0, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA1, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA2, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA3, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA4, StatAccessory, MuscleBandT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 
 MUSCFAST IntroBGM 
 ShowMap
 Text(BrunoChallengeText)
-MarkTrainerAsDefeated(0xE1)
+//MarkTrainerAsDefeated(0xE1)
 
 
 ASMC 0x80160D1 // Return to map BGM 
@@ -153,16 +162,21 @@ ENDA
 
 
 EndingScene: 
+CHECK_EVENTID BrunoDefeatedTemp 
+BNE 99 sC s0 
 #ifdef UnsetAllDangerRadius
 UnsetAllDangerRadius
 #endif 
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-CAM1 [8,6] 
+CAM1 [12,0] 
 Text(BrunoDefeatText)
 TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
+MarkTrainerAsDefeated(0xE1)
+ENUT BrunoDefeatedTemp
+LABEL 99 
 NoFade
 ENDA
 
@@ -183,15 +197,18 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
-EnemyTrainersA:
-UNIT 0xE1 BrunoID 		0x0  Level(0, Enemy, 1) [12,4]  0b 0x0	1 REDA12R4	[0,0,0x0,0x0] 		DoNothingAI
 
-UNIT 0xD0 MachampID 			0x0  Level(0, Enemy, 1) [12,6]  0b 0x0	0 0	[Submission] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0 [HiJumpKick] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 HitmonchanID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[FirePunch, IcePunch, ThunderPunch] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 OnixID 				0xD0 Level(0, Enemy, 1) [10,7]  0b 0x0 	0 0	[Earthquake, RockSlide] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 GolemID 				0xD0 Level(0, Enemy, 1) [14,7]  0b 0x0	0 0	[Rollout, BodySlam] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 KangaskhanID 		0xD0 Level(0, Enemy, 1) [12,8]  0b 0x0	0 0	[DoubleEdge] 		ZoningHeal50GroupOneAI
+BossTrainer:
+UNIT 0xE1 BrunoID 		0x0  Level(0, Enemy, 1) [12,5]  0b 0x0	1 REDA12R5	[0,0,0x0,0x0] 		DoNothingAI
+UNIT
+
+EnemyTrainersA:
+UNIT 0xD0 MachampID 			0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[Submission] 		ZoningHeal50GroupOneAI
+//UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0 [HiJumpKick] 	ZoningHeal50GroupOneAI
+//UNIT 0xA1 HitmonchanID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[FirePunch, IcePunch, ThunderPunch] 		ZoningHeal50GroupOneAI
+//UNIT 0xA2 OnixID 				0xD0 Level(0, Enemy, 1) [10,7]  0b 0x0 	0 0	[Earthquake, RockSlide] 	ZoningHeal50GroupOneAI
+//UNIT 0xA3 GolemID 				0xD0 Level(0, Enemy, 1) [14,7]  0b 0x0	0 0	[Rollout, BodySlam] 		ZoningHeal50GroupOneAI
+//UNIT 0xA4 KangaskhanID 		0xD0 Level(0, Enemy, 1) [12,9]  0b 0x0	0 0	[DoubleEdge] 		ZoningHeal50GroupOneAI
 UNIT
 
 

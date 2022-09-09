@@ -232,6 +232,12 @@
 #define ArticunoFledFlag 0xD3
 #define ZapdosFledFlag 0xD4
 #define MewFledFlag 0xD5
+#define LoreleiDefeatedTemp 0xD6 
+#define BrunoDefeatedTemp 0xD7
+#define AgathaDefeatedTemp 0xD8 
+#define LanceDefeatedTemp 0xD9
+#define ChampionDefeatedTemp 0xDA 
+#define ChampionDefeated 0xDB 
 
 #define IndigoPlateauArrived 0xC9 
 
