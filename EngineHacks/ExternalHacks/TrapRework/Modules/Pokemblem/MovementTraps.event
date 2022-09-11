@@ -114,8 +114,9 @@ ALIGN 4
 
 ALIGN 4 
 SuperTrapList: 
-BYTE IceTrapID MovementArrowTrapID TeleTrapID BrokenIceID // these traps will be taken over 
+BYTE IceTrapID MovementArrowTrapID TeleTrapID BrokenIceID PuddleID // these traps will be taken over 
 BYTE 0 
+// puddle just opens the UnitMenu 
 
 ALIGN 4 
 HiddenTrapList:

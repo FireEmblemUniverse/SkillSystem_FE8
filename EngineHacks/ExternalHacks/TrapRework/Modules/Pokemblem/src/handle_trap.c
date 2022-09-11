@@ -207,6 +207,21 @@ void TrapUnitMenu(TrapHandlerProc* proc) {
 		int x1 = gGameState._unk1C.x; 
 		int x2 = gGameState.cameraRealPos.x; 
 		x1 = x1 - x2; 
+		
+		// added Sept 2022 so walking 1 tile onto cracked ice / puddles etc. opens the unit menu 
+		//proc->pUnit->state = (proc->pUnit->state & 0xFFFFFFFE) | 1; // add hide bitflag 
+		proc->pUnit->state = (proc->pUnit->state | 1); // add hide bitflag 
+		//RefreshEntityBmMaps();
+		//RefreshUnitsOnBmMap();
+		SMS_UpdateFromGameData();
+		
+		MU_EndAll();
+		struct MUProc* muProc = MU_Create(proc->pUnit);
+		MU_EnableAttractCamera(muProc);
+		//muProc->boolAttractCamera = true; 
+		muProc->boolForceMaxSpeed = true; 
+		//MU_StartActionAnim(muProc);
+		
 		StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu, x1, 1, 20); //! FE8U = 0x804F64D
 		Proc* playerPhaseProc = ProcFind(&gProc_PlayerPhase[0]); //! FE8U = (0x08002E9C+1)
 		ProcGoto(playerPhaseProc, 7); // apply unit action etc. //! FE8U = (0x08002F24+1)
@@ -284,7 +299,7 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 
 			
 			NewUnitMoveAnim(muProc, start, dest, (Proc*) proc);
-			SMS_UpdateFromGameData();
+			
 			
 			
 			

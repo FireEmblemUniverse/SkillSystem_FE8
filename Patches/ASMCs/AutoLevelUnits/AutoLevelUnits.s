@@ -184,7 +184,7 @@ mov r1, r7
 ldr r2, =Get_Skl_Growth
 mov r3, #0x1d
 bl Get_Growth_With_Evolutions
-
+@ 90bef74
 mov r1, r7 
 blh EnemyAutoLevel @takes r1 as # of levels and r0 as growth for that level 
 mov r2, #0x15
@@ -347,6 +347,8 @@ mov r5, r9
 mov r6, r10 
 push {r4-r5} 
 mov r4, r0 @ unit struct 
+
+
 mov r5, r1 @ levels 
 @r2 as growth getter function 
 mov r9, r3 @ class stat growth offset 
@@ -361,6 +363,11 @@ mov lr, r2 @ growth getter function given as a parameter
 .short 0xf800 @ blh to the growth getter function 
 mov r7, r0 @ natural growth in final class
 
+ldr r0, =0x202d04c 
+cmp r0, r4 
+bne SkipThis 
+mov r11, r11 
+SkipThis: 
 
 ldr r3, =AutolevelTable 
 ldr r0, [r4, #4] @ Class pointer 
@@ -404,7 +411,7 @@ blh 0x8019444 @GetClassData
 @ r0 as class data pointer for 2nd class 
 mov r2, r9 @ growth offset byte 
 
-cmp r2, #0x3a 
+cmp r2, #0x3a @ 202d04c
 bne NotMag1
 mov r3, r8 @ table 
 ldrb r0, [r3, #2] @ 1st stage 'mon 
@@ -420,7 +427,10 @@ ldrb r0, [r0, r2] @ this growth until
 add r0, r7 @ growth bonuses 
 mov r3, r8 @ table 
 ldrb r1, [r3, #3] 	@ this level 
+cmp r1, #1 
+blt NoSub
 sub r1, #1 @ No level-up from level 0 to 1. 
+NoSub: 
 mul r0, r1 @ Levels * growth 
 mov r6, r0 
 
@@ -453,6 +463,14 @@ add r0, r7 @ growth bonuses
 mov r3, r8 @ table 
 ldrb r1, [r3, #1] 	@ this level 
 ldrb r2, [r3, #3] @ always 0 if no 2nd pre-evolution 
+cmp r1, r5 
+ble NoCapOnLevels1 
+mov r1, r5 @ 
+NoCapOnLevels1: 
+cmp r1, r2 
+bge LevelsInPenultimateForm 
+mov r2, r1 @ 0 levels in this form if we're lower level than evolution level 
+LevelsInPenultimateForm: 
 sub r1, r2 @ X levels as penultimate form 
 mul r0, r1 @ levels * growth 
 mov r2, r6 @ current levels * growth 
@@ -480,6 +498,15 @@ add r0, r7 @ growth bonuses
 mov r1, r5 @ final expected level 
 mov r3, r8 @ table 
 ldrb r2, [r3, #1] @ always 0 if no pre-evolution 
+cmp r1, r5 
+ble NoCapOnLevels2
+mov r1, r5 @ 
+NoCapOnLevels2: 
+cmp r1, r2 
+bge LevelsInCurrentForm 
+mov r2, r1 @ 0 levels in this form if we're lower level than evolution level, thereby having levels only in pre-evo stage 
+LevelsInCurrentForm: 
+
 sub r1, r2 @ Number of levels in current stage 
 mul r0, r1 @ levels * growth 
 mov r2, r6 @ current levels * growth 
@@ -489,19 +516,31 @@ mov r6, r2
 @ divide by number of levels to get final average growth 
 mov r0, r6 @ growths*levels in various stages 
 mov r1, r5 @ number of levels to gain 
+cmp r1, #1
+blt NoSub2 
 sub r1, #1 @ no level-up for level 0 to 1 
+NoSub2: 
 swi 6 @ divide 
 mov r7, r0 @ average growth 
 
 
 FullGrowth:
 mov r0, r7 @ Growth 
+cmp r0, #200  
+blt NoBreak 
+@cmp r0, #0 
+@bge NoBreak 
+mov r11, r11 @ if you hit this break point, then you have negative growths which will break things 
+mov r0, #0 
+NoBreak: 
+
 pop {r4-r5} 
 mov r8, r4
 mov r9, r5 
 pop {r4-r7} 
 pop {r1}
 bx r1 
+.ltorg 
 .align 
 
 

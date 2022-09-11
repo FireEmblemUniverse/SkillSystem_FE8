@@ -96,7 +96,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  ElectrodeID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MewtwoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -347,7 +347,7 @@ ASMC SeePokedex
 //[203A57f]?!!
 //[0202D0A7]?!!
 Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(12, YCoordNewArea)  
+Write_Byte(22, YCoordNewArea)  
 
 //MNC2 PCBoxCh
 // MNC2 Route23NCh 
