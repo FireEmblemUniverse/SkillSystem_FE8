@@ -14,10 +14,13 @@
 //#define gProc_ChapterMenuStatus $A73C0C	//{J}
 #define gProc_PrepSomethingUnknown $A1898C 
 #define gProc_PrepSomethingUnknown2 $A18944 // backup 
+#define gProc_PrepItemUseScreen $A19064
 ALIGN 4 
 ProcExceptionsList:
 POIN gProc_SaveMenu gProc_SaveMenu2 gProc_ChapterMenuUnit gProc_ChapterMenuStatus
 POIN gProc_PrepSomethingUnknown 
+POIN gProc_PrepSomethingUnknown2 
+//POIN gProc_PrepItemUseScreen
 WORD 0 // Terminator 
 
 
@@ -50,6 +53,11 @@ LoadDialogueBoxGfxHook:
 #incbin "LoadDialogueBoxGfxHook.dmp" 
 
 PUSH 
+
+ORG $9C640 // remove portrait from supply "use" screen 
+SHORT $46c0 $46c0 
+
+
 ORG $8A126		//{U}
 //ORG $8C436		//{J}
 SHORT $46C0 

@@ -363,11 +363,7 @@ mov lr, r2 @ growth getter function given as a parameter
 .short 0xf800 @ blh to the growth getter function 
 mov r7, r0 @ natural growth in final class
 
-ldr r0, =0x202d04c 
-cmp r0, r4 
-bne SkipThis 
-mov r11, r11 
-SkipThis: 
+
 
 ldr r3, =AutolevelTable 
 ldr r0, [r4, #4] @ Class pointer 
