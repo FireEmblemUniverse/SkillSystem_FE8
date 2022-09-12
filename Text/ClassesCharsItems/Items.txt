@@ -871,7 +871,10 @@ Peck[X]
 ## SkyAttackName ^
 Sky Attack[X]
 ## SkyAttackDesc
-*{)}A powerful attack from above.[X]
+*{)}A powerful attack from above[N]
+that may debuff the user.[N]
+-15 Str/Mag if it doesn't KO.[X]
+
 ## MirrorMoveName ^
 Mirror Move[X]
 ## WingAttackName ^
@@ -1117,7 +1120,9 @@ Always Critical Hits.[X]
 *{(}Turns a horn into a powerful drill.[X]
 
 ## HyperBeamDesc
-*{)}A powerful beam that tires the user.[X]
+*{)}A powerful beam that[N]
+may debuff the user.[N]
+-15 Str/Mag if it doesn't KO.[X]
 
 ## HyperFangDesc
 *{(}Bites with superior fangs.[X]
@@ -1262,7 +1267,9 @@ Waterfall[X]
 *{(}A cutting blade of sharp leaves.[X]
 
 ## SolarBeamDesc
-*{)}A beam of charged solar power.[X]
+*{)}A beam of solar power that[N]
+may debuff the user.[N]
+-15 Str/Mag if it doesn't KO.[X]
 
 ## RazorLeafDesc
 *{(}A barrage of cutting leaves.[X]

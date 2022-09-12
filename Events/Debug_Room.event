@@ -96,7 +96,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  MewtwoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [Explosion,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MewtwoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 
 UNIT
@@ -308,8 +308,9 @@ SetTactName(VeslyName)
 // [203AE
 AutoLevelUnits(45, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
-//SetUnitStatus(1, 0x29, Ember)
-//SetUnitStatus(1, 0x2A, Growl)
+SetUnitStatus(1, 0x29, HyperBeam)
+SetUnitStatus(1, 0x2B, SkyAttack)
+SetUnitStatus(1, 0x2A, SolarBeam)
 //SetUnitStatus(1, 0x2B, Scratch)
 //SetUnitStatus(1, 0x2C, Tackle)
 //
