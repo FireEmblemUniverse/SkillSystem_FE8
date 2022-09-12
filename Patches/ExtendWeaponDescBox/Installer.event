@@ -14,13 +14,12 @@
 //#define gProc_ChapterMenuStatus $A73C0C	//{J}
 #define gProc_PrepSomethingUnknown $A1898C 
 #define gProc_PrepSomethingUnknown2 $A18944 // backup 
-#define gProc_PrepItemUseScreen $A19064
+
 ALIGN 4 
 ProcExceptionsList:
 POIN gProc_SaveMenu gProc_SaveMenu2 gProc_ChapterMenuUnit gProc_ChapterMenuStatus
 POIN gProc_PrepSomethingUnknown 
 POIN gProc_PrepSomethingUnknown2 
-//POIN gProc_PrepItemUseScreen
 WORD 0 // Terminator 
 
 
@@ -54,9 +53,9 @@ LoadDialogueBoxGfxHook:
 
 PUSH 
 
-ORG $9C640 // remove portrait from supply "use" screen 
-SHORT $46c0 $46c0 
-
+ORG $9C63C
+//ORG 0x09E8E2    //{J}
+BYTE 1 
 
 ORG $8A126		//{U}
 //ORG $8C436		//{J}
@@ -115,11 +114,6 @@ ORG $89F0C4		//{U}
 //ORG $8F361C		//{J}
 WORD 0x6013000 // 12000 vanilla
 
-
-ORG $9846C 
-//WORD 0x6014000 // Prep - 13000 vanilla 
-
-
 ORG $98998		//{U}
 //ORG $9AC70		//{J}
 //WORD 0x6012000 // 14000 vanilla
@@ -162,5 +156,12 @@ SHORT 0x42C0 // vanilla 0x4240
 //SHORT 0x4280 
 //ORG $B53BC 
 
+//Obsoleted by vesly-ExtendWeaponDescBox-tradefix.
+//ORG 0x09C63C	//{U}
+////ORG 0x09E8E2	//{J}
+//BYTE 0x1
+
+
 POP 
 
+#include "vesly-ExtendWeaponDescBox-tradefix/tradefix.event"
