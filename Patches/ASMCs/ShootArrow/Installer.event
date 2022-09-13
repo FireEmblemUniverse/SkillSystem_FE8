@@ -8,7 +8,7 @@
 // blh 0x801A1F4 RefreshEntityMaps 
 // blh 0x2EA28 CheckForDeadUnitsAndGameOver 
 
-#include "Extensions/ProcDefinitions.txt" 
+#include "ProcDefinitions.txt" 
 
 ALIGN 4 
 ShootArrow_ASMC: 
@@ -19,20 +19,65 @@ ALIGN 4
 ShootArrow_Main: 
 #incbin "ShootArrow.dmp" 
 
-#define ShootArrow(xx, yy) "SCOORD sB [xx, yy]; ASMC ShootArrow_ASMC|1" 
+#define ShootArrow(xx, yy, dmg) "SCOORD sB [xx, yy]; SVAL s1 dmg; ASMC ShootArrow_ASMC|1" 
+#define ShootArrow(xx, yy) "SCOORD sB [xx, yy]; SVAL s1 10; ASMC ShootArrow_ASMC|1" 
 
 
 ALIGN 4 
 gProc_ShootArrowASMC:
-PROC_YIELD
+//PROC_YIELD
 PROC_CALL_ROUTINE(ShootArrow_Main|1) 
-PROC_NEW_CHILD(0x859E490) //.equ gProc_ShowArrowAnimation, 
+//PROC_NEW_CHILD_BLOCKING(0x859E490) //.equ gProc_ShowArrowAnimation, 
+PROC_NEW_CHILD_BLOCKING(CopyOf_59E490) //.equ gProc_ShowArrowAnimation, 
+// +0x4C is target iteration SHORT eg 0th, 1st, 2nd, 3rd etc. 
 PROC_CALL_ROUTINE(0x801A1F5) // .equ RefreshEntityMaps, 0x801A1F4 
 PROC_CALL_ROUTINE(0x802EA29) // .equ CheckForDeadUnitsAndGameOver, 0x802EA28 
 PROC_END 
 
 
+// WHILE_EXISTS 9A3288 // SelfDamageMapAnim 
+// 9A3688 // gProc-MapAnimBattleInfoBox 
+// 9A5154 // MapAnim_WaitForHPToEndChangingMaybe
 
+
+#define TrapDamageDisplay_Init 0x803629C|1
+#define TrapDamageDisplay_Check 0x80362A4|1
+#define TrapDamageDisplay_Watch 0x8036334|1
+#define TrapDamageDisplay_Display 0x8036364|1 
+#define FinishDamageDisplay 0x8035F40|1
+#define TrapDamageDisplay_Next 0x8036474|1 
+
+
+ALIGN 4 
+CopyOf_59E490: 
+PROC_CALL_ROUTINE(TrapDamageDisplay_Init) // 0803629C
+PROC_LABEL(0)
+PROC_SLEEP(0)
+PROC_CALL_ROUTINE(TrapDamageDisplay_Check) // 080362A4
+PROC_CALL_ROUTINE(TrapDamageDisplay_Watch) // 08036334
+PROC_SLEEP(0)
+PROC_CALL_ROUTINE(TrapDamageDisplay_Display) // 08036364
+
+
+PROC_CALL_ROUTINE(0x8003C95) //Text_InitFont
+
+// these two work without the following PROC_SLEEP, but hide map sprites for a frame 
+PROC_WHILE_EXISTS(0x89A2C48) // MovingUnitGfx 
+//PROC_WHILE_EXISTS(0x89A3288) // SelfDamageMapAnim 
+
+//PROC_SLEEP(4)
+// these two only work with PROC_SLEEP 
+// they aren't quite as safe, but they don't hide map sprites for a frame 
+// yeah turns out this doesn't work for when units die, so whatever 
+// just going to do the version that hides map sprites for a frame 
+//PROC_WHILE_EXISTS(0x89A3688) // gProc-MapAnimBattleInfoBox 
+//PROC_WHILE_EXISTS(0x89A5154) // MapAnim_WaitForHPToEndChangingMaybe
+PROC_CALL_ROUTINE(FinishDamageDisplay) // 08035F40
+PROC_LABEL(1)
+//PROC_WHILE_EXISTS(0x89A2C48) // MovingUnitGfx 
+PROC_CALL_ROUTINE(TrapDamageDisplay_Next) // 08036474
+PROC_GOTO(0)
+PROC_END
 
 
 

@@ -178,7 +178,7 @@ CAM1 0xE1
 MOVE 3 0xE1 [12,8]
 ENUN 
 
-ShootArrow(13,0)
+ShootArrow(13,20)
 
 ASMC 0x80160D1 // Return to map BGM 
 
