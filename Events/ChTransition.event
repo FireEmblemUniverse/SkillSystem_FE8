@@ -1125,6 +1125,23 @@ STAL 10
 NoFade 
 ENDA 
 
+LightruneAnimSlotB:
+CAM1 0x7FFE 
+EmoticonSlotB(PokeballGraphic)
+STAL 14 
+EmoticonSlotB(OpenPokeballGraphic)
+STAL 18
+UNCR(0x7FFE, Hide) 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+STAL 22 
+RemoveTrap 
+
+DISA 0xFC 
+STAL 10
+NoFade 
+ENDA 
+
 SomeSignsAllowFastTravelEvent:
 TutText(SignsFastTravel)
 NoFade 

@@ -85,6 +85,14 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+MOVE (-1) 0x101 [13,29]
+MOVE (-1) 0x102 [13,30]
+MOVE (-1) 0x103 [19,29]
+MOVE (-1) 0x104 [19,30]
+MOVE (-1) 0x105 [7,29]
+MOVE (-1) 0x106 [7,30]
+MOVE (-1) 0x107 [7,30]
+
 
 
 CHECK_EVENTID ChampionDefeatedTemp 
@@ -97,6 +105,27 @@ CAM1 [12,0]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+
+MarkTrainerAsDefeated(0xE1)
+
+Read_Byte(GaryStarterClass)
+SADD sA sC s0 
+SVAL s1 BulbasaurID 
+SVAL s2 GaryUnitsA|IsPointer 
+BEQ 0 sA s1 
+SVAL s1 CharmanderID 
+SVAL s2 GaryUnitsB|IsPointer 
+BEQ 0 sA s1 
+SVAL s1 SquirtleID 
+SVAL s2 GaryUnitsC|IsPointer 
+BEQ 0 sA s1 
+
+LABEL 0 
+LOAD_S2 1 
+SetUnitStatusAll(0xA0DF, State, Hide, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+ENUN 
+
+
 AutoLevelUnits(TrainerL, True, 0x90EF) 
 AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
@@ -124,8 +153,32 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 MUSCFAST IntroBGM 
 ShowMap
 Text(GaryChallengeText)
-MarkTrainerAsDefeated(0xE1)
 
+
+CHECK_COORDS 0xA1 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA0
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA4 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA5 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA3 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA2 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+
+CAM1 0xE1 
+MOVE 3 0xE1 [12,8]
+ENUN 
+
+ShootArrow(13,0)
 
 ASMC 0x80160D1 // Return to map BGM 
 
@@ -182,39 +235,39 @@ UNIT 0xE1 blueID 		0x0  Level(0, Enemy, 1) [13,7]  0b 0x0	1 REDA13R7	[0,0,0x0,0x
 UNIT 
 
 GaryUnitsA:
-UNIT 0xA0	VenusaurID 0xE1 Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [PetalDance,Sludge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	PidgeotID 	0xE1 Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	ArcanineID 0xE1 Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	AlakazamID 0xE1 Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	RhydonID 	0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	GyaradosID 0xE1 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [HydroPump, HyperBeam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA0	VenusaurID 0xE1 Level(0, Enemy, 1)   [14,11] 0b	0x0 	0x0  0x0 [PetalDance,Sludge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA1 	PidgeotID 	0xE1 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA2 	ArcanineID 0xE1 Level(0, Enemy, 1)   [15,14]  0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA3 	AlakazamID 0xE1 Level(0, Enemy, 1)   [11,14]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA4 	RhydonID 	0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA5 	GyaradosID 0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [HydroPump, HyperBeam,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsB:
-UNIT 0xA0	CharizardID 	0xE1 Level(0, Enemy, 1)   [9,9]  0b	0x0 0x0  0x0 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	GyaradosID 	0xE1 Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [HydroPump, HyperBeam,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	RhydonID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA0	CharizardID 	0xE1 Level(0, Enemy, 1)   [14,11] 0b	0x0 0x0  0x0 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA1 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA2 	GyaradosID 	0xE1 Level(0, Enemy, 1)   [15,14] 0b	0x0 0x0  0x0 [HydroPump, HyperBeam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA3 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,14]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA4 	RhydonID 		0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA5 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsC:
-UNIT 0xA0	BlastoiseID 	0xE1 Level(0, Enemy, 1)   [9,9] 	0b	0x0 0x0  0x0 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	ArcanineID 	0xE1 Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	RhydonID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA0	BlastoiseID 	0xE1 Level(0, Enemy, 1)   [14,11]	0b	0x0 0x0  0x0 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA1 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA2 	ArcanineID 	0xE1 Level(0, Enemy, 1)   [15,14] 0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA3 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,14]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA4 	RhydonID 		0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA5 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsD:
-UNIT 0xA0	JolteonID 		0xE1 Level(0, Enemy, 1)   [9,9]  0b	0x0 0x0  0x0 [Thunder, TakeDown,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	ArcanineID 	0xE1 Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,10]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	RhydonID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA0 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA0	JolteonID 		0xE1 Level(0, Enemy, 1)   [14,11] 0b	0x0 0x0  0x0 [Thunder, TakeDown,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA1 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA2 	ArcanineID 	0xE1 Level(0, Enemy, 1)   [15,14] 0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA3 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,14]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA4 	RhydonID 		0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA5 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 

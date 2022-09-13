@@ -1,0 +1,38 @@
+// proc 59BDA0 CountDownTraps 
+// proc 59E490 ? 
+// from 2E83C 
+// blh 0x802E710 AddArrowTrapTargetsToTargetList r0 = x, r1 = y, r2 = trap type (7 for arrow) 
+// blh 0x2EA1C BWL_AddLossFromTrap ? 
+// blh 0x2E8A8 GenerateDisplayedTrapDamageTargets
+// NewChild 0x859E490 ShowArrowAnimation ? 
+// blh 0x801A1F4 RefreshEntityMaps 
+// blh 0x2EA28 CheckForDeadUnitsAndGameOver 
+
+#include "Extensions/ProcDefinitions.txt" 
+
+ALIGN 4 
+ShootArrow_ASMC: 
+#incbin "ShootArrowASMC.dmp" 
+POIN gProc_ShootArrowASMC 
+
+ALIGN 4 
+ShootArrow_Main: 
+#incbin "ShootArrow.dmp" 
+
+#define ShootArrow(xx, yy) "SCOORD sB [xx, yy]; ASMC ShootArrow_ASMC|1" 
+
+
+ALIGN 4 
+gProc_ShootArrowASMC:
+PROC_YIELD
+PROC_CALL_ROUTINE(ShootArrow_Main|1) 
+PROC_NEW_CHILD(0x859E490) //.equ gProc_ShowArrowAnimation, 
+PROC_CALL_ROUTINE(0x801A1F5) // .equ RefreshEntityMaps, 0x801A1F4 
+PROC_CALL_ROUTINE(0x802EA29) // .equ CheckForDeadUnitsAndGameOver, 0x802EA28 
+PROC_END 
+
+
+
+
+
+
