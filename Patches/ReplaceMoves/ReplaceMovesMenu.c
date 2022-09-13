@@ -11,12 +11,12 @@ extern u16 gBG1MapBuffer[32][32]; // 0x020234A8.
 
 #define item_name_offset 16
 #define new_item_name_offset 48
-#define new_item_icon_offset 13
+#define new_item_icon_offset 0 //13
 #define new_item_desc_offset 72
 
 #define menu_tile_X 1
 #define menu_tile_Y 0
-#define menu_Length 29 //29
+#define menu_Length 10 //29
 
 
 
@@ -229,6 +229,7 @@ struct TSA
 	Tile tiles[];
 };
 extern TSA ReplaceMovesTSA;
+extern TSA DescBoxTSA;
 
 static void PrepareText(TextHandle* handle, char* string)
 {
@@ -253,6 +254,7 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 		}
 	}
 	BgMap_ApplyTsa(&gBG1MapBuffer[14][5], &ReplaceMovesTSA, 0);
+	BgMap_ApplyTsa(&gBG1MapBuffer[1][10], &DescBoxTSA, 0);
 	// [2000932..2000933]!!
 	// [2028E6a..2028E6b]!! 
 	// 0x8004a9e 
@@ -265,7 +267,7 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 
 	menu->pCommandProc[0]->text.tileIndexOffset = gpCurrentFont->tileNext; 
 	
-	menu->pCommandProc[0]->text.tileWidth = 92;
+	menu->pCommandProc[0]->text.tileWidth = 0; //92;
 	// update tileNext to be whatever we offset it to 
 	// in this case it's 0, but it would be important if it wasn't 
 	// menu starts at tileNext as 0 (and draws spaces as needed) 
@@ -297,14 +299,18 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 	u8 i = 0; 
 	u8 x = 6; 
 	
+
 	
-	u32 width = (Text_GetStringTextWidth("Learn ")+8)/8;
+	u32 width = (Text_GetStringTextWidth(GetStringFromIndex(GetItemDescId(proc->moveReplacement)))+8)/8;
+	/*
 	Text_InitClear(&handles[i], width); 
     handles[i].tileWidth = width;
-	//Text_SetXCursor(&handles[i], 0);
+	Text_SetXCursor(&handles[i], 0);
 	Text_SetColorId(&handles[i], TEXT_COLOR_GREEN);
-    Text_DrawString(&handles[i], "Learn ");
-	Text_Display(&handles[i], &gBG0MapBuffer[1][8]); i++; 
+    Text_DrawString(&handles[i], GetStringFromIndex(GetItemDescId(proc->moveReplacement)));
+	Text_Display(&handles[i], &gBG0MapBuffer[1][14]); 
+	i++; 
+	*/
 
 
 	//Text_SetXCursor(&handles[i], new_item_desc_offset+new_item_name_offset);
@@ -312,9 +318,9 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 	Text_InitClear(&handles[i], width); 
     handles[i].tileWidth = width;
 	//Text_SetXCursor(&handles[i], new_item_name_offset);
-    Text_SetColorId(&handles[i], TEXT_COLOR_BLUE);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GREEN);
     Text_DrawString(&handles[i], GetItemName(proc->moveReplacement)); 
-	Text_Display(&handles[i], &gBG0MapBuffer[1][17]); i++; 	
+	Text_Display(&handles[i], &gBG0MapBuffer[1][4]); i++; 	
 	
 
 	
@@ -380,12 +386,61 @@ static void PrepareNum(TextHandle* handle, int num)
 */
 
 extern u8 gSpecialUiCharAllocationTable[]; // 0x2028E78
+enum {
+NL = 1, // Text control code for new line.
+};
+
+static void DrawMultiline(TextHandle* handles, char* string, int lines) // There's a TextHandle for every line we need to pass in.
+{
+    // We're going to copy each line of the string to gGenericBuffer then draw the string from there.
+	int j = 0;
+    for ( int i = 0 ; i < lines ; i++ )
+    {
+        int k = 0;
+        for ( ; string[j] && string[j] != NL ; k++ )
+        {
+            gGenericBuffer[k] = string[j];
+            j++;
+        }
+        gGenericBuffer[k] = 0;
+
+		u32 width = ((Text_GetStringTextWidth((char*)gGenericBuffer))+8)/8;
+
+		Text_InitClear(&handles[i], width);
+		handles[i].tileWidth = width;
+		//handles[i].xCursor = 0;
+		//handles[i].colorId = TEXT_COLOR_NORMAL;
+		//handles[i].useDoubleBuffer = 0;
+		//handles[i].currentBufferId = 0;
+		//handles[i].unk07 = 0;
+		
+        Text_InsertString(&handles[i],0,handles->colorId,(char*)gGenericBuffer);
+        //Text_DrawString(&handles[i],(char*)gGenericBuffer);
+        //handles++;
+        j++;
+    }
+}
+static int GetNumLines(char* string) // Basically count the number of NL codes.
+{
+	int sum = 1;
+	for ( int i = 0 ; string[i] ; i++ )
+	{
+		if ( string[i] == NL ) { sum++; }
+	}
+	return sum;
+}
+
 
 void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct ReplaceMoveProc* proc)
 {
 
 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
 		for (int y = 14; y < 20; y++) { 
+			gBG0MapBuffer[y][x] = 0;
+		}
+	}
+	for (int x = 11; x < 30; x++) { // clear out most of bg0 
+		for (int y = 0; y < 10; y++) { 
 			gBG0MapBuffer[y][x] = 0;
 		}
 	}
@@ -405,8 +460,8 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 		item = UnitGetMoveList(proc->unit)[hover];
 	} 
 	
-	TextHandle handles[5] = {};
-	for ( int i = 0 ; i < 5 ; i++ )
+	TextHandle handles[8] = {};
+	for ( int i = 0 ; i < 8 ; i++ )
 	{
 		//handles[i].tileIndexOffset = tile; // offset to start at 
 		handles[i].xCursor = 0;
@@ -431,10 +486,31 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 	PrepareText(&handles[i], " Crit");
 	Text_Display(&handles[i], &gBG0MapBuffer[17][14+x]); i++; 
 
-	
 
+	char* string = GetStringFromIndex(GetItemDescId(item));
+	int lines = GetNumLines(string);
+	DrawMultiline(&handles[i], string, lines);
 	
-	 
+	
+/*
+	PrepareText(&handles[i], ); 
+	Text_Display(&handles[i], &gBG0MapBuffer[2][12]); i++;
+	char* strcpy(char* dest, const char* src);
+	unsigned strlen(const char* cstr);
+	PrepareText(&handles[i], Text_GetStringNextLine(GetStringFromIndex(GetItemDescId(item)))); 
+	Text_Display(&handles[i], &gBG0MapBuffer[4][12]); i++;
+	PrepareText(&handles[i], Text_GetStringNextLine(Text_GetStringNextLine(GetStringFromIndex(GetItemDescId(item))))); 
+	Text_Display(&handles[i], &gBG0MapBuffer[6][12]); i++;
+*/ 
+
+
+	for ( int c = 0 ; c < lines ; c++ )
+	{
+		Text_Display(&handles[c+i],&gBG0MapBuffer[2+c*2][11]);
+	}
+	i++; i++; i++; 
+	
+	
 	PrepareText(&proc->handle[0], GetItemDisplayRankString(item));
 	Text_Display(&proc->handle[0], &gBG0MapBuffer[15][5+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 
@@ -446,13 +522,15 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 	PrepareText(&proc->handle[2], GetWeaponTypeDisplayString(GetItemType(item)));
 	Text_Display(&proc->handle[2], &gBG0MapBuffer[15][0+x]); i++; 
 	
+
+	
 	
 	gSpecialUiCharAllocationTable[0] = 0xFF; //no clue but it made DrawUiNumber work properly 
 
 	DrawUiNumber(&gBG0MapBuffer[15][18+x], TEXT_COLOR_GOLD, GetItemWeight(item)); 
 	DrawUiNumber(&gBG0MapBuffer[17][5+x], TEXT_COLOR_GOLD, GetItemMight(item));
 	DrawUiNumber(&gBG0MapBuffer[17][12+x], TEXT_COLOR_GOLD, GetItemHit(item)); 
-	DrawUiNumber(&gBG0MapBuffer[17][18+x], TEXT_COLOR_GOLD, GetItemCrit(item)); 
+	DrawUiNumberOrDoubleDashes(&gBG0MapBuffer[17][18+x], TEXT_COLOR_GOLD, GetItemCrit(item)); 
 	
 
 
@@ -492,25 +570,29 @@ static void MoveListCommandDraw(struct MenuProc* menu, struct MenuCommandProc* c
 	int i = (command->commandDefinitionIndex)-1;
     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
 
+	/*
     Text_Clear(&command->text);
 	Text_SetXCursor(&command->text, new_item_desc_offset);
     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
     Text_DrawString(&command->text, GetStringFromIndex(GetItemDescId(moves[i]))); 
-	Text_Display(&command->text, out); 
-	Text_SetXCursor(&command->text, 0);
-
+	*/ 
+	//Text_SetXCursor(&command->text, 0);
+	
+	Text_Display(&command->text, out); // this needs to be before DrawIcon, as otherwise it will overwrite the icon with spaces 
     LoadIconPalettes(4); /* Icon palette */
-
 	if (IsMove(moves[i])) {
-		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
 		Text_SetXCursor(&command->text, item_name_offset);
 		Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
 		Text_DrawString(&command->text, GetItemName(moves[i])); 
+		Text_SetXCursor(&command->text, 0);
+		DrawIcon(out + TILEMAP_INDEX(0, 0), GetItemIconId(moves[i]), TILEREF(0, 4)); 
 		}
 	else {
 		Text_SetColorId(&command->text, TEXT_COLOR_GRAY);
 		Text_DrawString(&command->text, " No Move");
 	}
+	
+	EnableBgSyncByMask(BG0_SYNC_BIT);
 
 }
 

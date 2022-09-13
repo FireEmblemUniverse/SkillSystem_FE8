@@ -11,9 +11,9 @@ FILL(4*0xFF)
 
 #define SelfDebuffEntry(ItemID, Value) "PUSH; ORG SelfDebuffTable + (4 * ItemID); WORD Value; POP" 
 // @ Empty Mag, Luck Res, Def Spd, Skl Str 
-SelfDebuffEntry(HyperBeam, 0x0A00000A) 
-SelfDebuffEntry(SolarBeam, 0x0A00000A) 
-SelfDebuffEntry(SkyAttack, 0x0A00000A) 
+SelfDebuffEntry(HyperBeam, 0x08000008) 
+SelfDebuffEntry(SolarBeam, 0x08000008) 
+SelfDebuffEntry(SkyAttack, 0x08000008) 
 // WORD DebuffValue 
 
 

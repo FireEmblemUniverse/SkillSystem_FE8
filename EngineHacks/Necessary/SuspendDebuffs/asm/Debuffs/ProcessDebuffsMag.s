@@ -52,6 +52,15 @@ cmp r1, #0x0
 beq noDebuff
 lsr r1, r0
 sub r1, #0x1    @decrement if there
+cmp r1, #0 
+beq DoneDecrementing 
+sub r1, #1 
+cmp r1, #0 
+beq DoneDecrementing 
+sub r1, #1 @ decrement by 3 each turn 
+
+DoneDecrementing: 
+
 lsl r1, r0
 orr r4, r1
 noDebuff: 
@@ -81,6 +90,12 @@ and r0, r1 @ Clear rally mag flag
 cmp r0, #0x00
 beq NoMagDebuff
 	sub r0, r0, #0x01
+	cmp r0, #0 
+	beq NoMagDebuff 
+	sub r0, #1 @ restore by 3 each turn 
+	cmp r0, #0 
+	beq NoMagDebuff 
+	sub r0, #1 
 NoMagDebuff:
 strb r0, [ r3, #0x05 ]
 

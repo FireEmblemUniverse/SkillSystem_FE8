@@ -871,9 +871,9 @@ Peck[X]
 ## SkyAttackName ^
 Sky Attack[X]
 ## SkyAttackDesc
-*{)}A powerful attack from above[N]
-that may debuff the user.[N]
--15 Str/Mag if it doesn't KO.[X]
+*{)}A powerful, flying attack that[N]
+debuffs the user by 15 Str/Mag[N]
+if it doesn't KO. Cannot double.[X]
 
 ## MirrorMoveName ^
 Mirror Move[X]
@@ -1101,8 +1101,8 @@ Crush Claw[X]
 *{(}A large egg is hurled at the foe.[X]
 
 ## ExplosionDesc
-*{(}The user explodes at the enemy.[N]
-Always Critical Hits.[X]
+*{(}The user explodes at the[N]
+enemy. Always Critical Hits.[X]
 
 ## GlareDesc
 *{(}Paralyzes the foe.[X]
@@ -1121,8 +1121,8 @@ Always Critical Hits.[X]
 
 ## HyperBeamDesc
 *{)}A powerful beam that[N]
-may debuff the user.[N]
--15 Str/Mag if it doesn't KO.[X]
+debuffs the user by 15 Str/Mag[N]
+if it doesn't KO. Cannot double.[X]
 
 ## HyperFangDesc
 *{(}Bites with superior fangs.[X]
@@ -1268,8 +1268,8 @@ Waterfall[X]
 
 ## SolarBeamDesc
 *{)}A beam of solar power that[N]
-may debuff the user.[N]
--15 Str/Mag if it doesn't KO.[X]
+debuffs the user by 15 Str/Mag[N]
+if it doesn't KO. Cannot double.[X]
 
 ## RazorLeafDesc
 *{(}A barrage of cutting leaves.[X]

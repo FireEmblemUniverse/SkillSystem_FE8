@@ -8,8 +8,12 @@
 
 ALIGN 4
 ReplaceMovesTSA:
-#incbin "DescBox.dmp"
+#incbin "WepDetailsBox.dmp"
 
+
+ALIGN 4
+DescBoxTSA:
+#incbin "DescBox.dmp"
 
 
 
