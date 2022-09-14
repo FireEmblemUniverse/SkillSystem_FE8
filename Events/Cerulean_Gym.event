@@ -55,6 +55,9 @@ ToCerulean:
 ChapterTransition(CeruleanCh, 24, 20)
 
 Traps1:
+// flag 6 turns on/off automatically depending on if there are enemies or not 
+GenericCompletion(9,5,MistySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+
 ENDTRAP
 ALIGN 4
 
@@ -152,7 +155,7 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 		[BubbleBeam,Confusion,Leer,0x0] ZoningHeal80GroupOneAI
+UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[BubbleBeam,Confusion,Leer,0x0] ZoningHeal80GroupOneAI
 UNIT 0xA0 SeelID 0xD0 Level(0, Enemy, 1) [4,7]  0b 0x0	0x1 REDA4R7 	[AuroraBeam,WaterGun,Tackle,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA1 PsyduckID 0xD0 Level(0, Enemy, 1) [14,5]  0b 0x0	0x1 REDA14R5 	[WaterGun,Confusion,TailWhip,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA2 HorseaID 0xD0 Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Bubble,Leer,Tackle,0x0] ZoningHeal50GroupOneAI

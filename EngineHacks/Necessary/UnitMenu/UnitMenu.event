@@ -190,7 +190,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
   MenuCommand(UM_Interact, UM_InteractDesc, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, GenericTrapUsability0x32, GenericTrapEffect) //GreenTalk
-  MenuCommand(UM_Talk2, UM_Talk2Desc, NormalText, GenericTrapUsability0x33, GenericTrapEffect) //Talk
+  MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, GenericTrapUsability0x33, TalkTextEffect0x33) //Talk
 
   MenuCommand(UM_Read, UM_ReadDesc, NormalText, GenericTrapUsability0x38, GenericTrapEffect) //Read
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x39, GenericTrapEffect) //Examine

@@ -59,6 +59,9 @@ ToPewter:
 ChapterTransition(PewterCh, 12, 16)
 
 Traps1:
+// flag 6 turns on/off automatically depending on if there are enemies or not 
+GenericCompletion(7,5,BrockSMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+
 ENDTRAP
 ALIGN 4
 

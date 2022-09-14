@@ -75,6 +75,10 @@ lsr r1, #24
 cmp r2, r1 
 beq End @ nothing for receptacle 
 
+mov r1, #0x33 @ trainer trap ID 
+cmp r2, r1 
+beq TrainerSpriteToDisplay
+
 mov r1, #0x20 		@custom traps 0x20 and greater to use 0x3 as req'd flag and 0x4 as sprite 
 cmp r2, r1
 bge SpriteToDisplay
@@ -88,8 +92,13 @@ cmp r0,#0
 bne End
 b GeneralTrapMapSpriteCase
 
+TrainerSpriteToDisplay: 
+ldrb r0,[r4,#0x3]	@0x3 Sprite to display 
+cmp r0, #0
+beq End			@if no sprite to display, then display nothing 
+b TrapMapSpriteCheck 
+
 SpriteToDisplay:
-mov r0, #0
 ldrb r0,[r4,#0x4]	@0x04 Sprite to display 
 cmp r0, #0
 beq End			@if no sprite to display, then display nothing 

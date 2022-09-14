@@ -330,15 +330,15 @@ SetUnitStatus(1, 0x2C, Growth)
 //SetUnitStatus(6, 0x28, Earthquake)
 
 ENUT StrengthBoulderFlag
-ENUT BoulderbadgeObtained 
-ENUT CascadebadgeObtained 
-ENUT ThunderbadgeObtained 
-ENUT SoulbadgeObtained 
-ENUT RainbowbadgeObtained 
-ENUT MarshbadgeObtained
-Write_Byte(4, GaryStarterClass) 
-ENUT VolcanobadgeObtained 
-ENUT EarthbadgeObtained 
+//ENUT BoulderbadgeObtained 
+//ENUT CascadebadgeObtained 
+//ENUT ThunderbadgeObtained 
+//ENUT SoulbadgeObtained 
+//ENUT RainbowbadgeObtained 
+//ENUT MarshbadgeObtained
+//Write_Byte(4, GaryStarterClass) 
+//ENUT VolcanobadgeObtained 
+//ENUT EarthbadgeObtained 
 ENUT FlyFlag
 ENUT SaffronArrived
 ENUT CinnabarArrived
@@ -350,7 +350,7 @@ ASMC SeePokedex
 //[203A57f]?!!
 //[0202D0A7]?!!
 Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(22, YCoordNewArea)  
+Write_Byte(12, YCoordNewArea)  
 
 //MNC2 ChampionCh
 //MNC2 PCBoxCh
@@ -361,7 +361,8 @@ Write_Byte(22, YCoordNewArea)
 //MNC2 VictoryRoadB2Ch 
 //MNC2 Route22Ch 
 //MNC2 LoreleiCh 
-MNC2 DebugCh
+MNC2 CeruleanGymCh
+//MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch
 //MNC2 SaffronGymCh

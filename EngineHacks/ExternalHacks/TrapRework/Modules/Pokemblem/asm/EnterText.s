@@ -91,23 +91,23 @@ mov r0,r5
 mov r1,r6
 blh GetTrapAt
 cmp r0, #0 
-beq ReturnFalse 
+beq ReturnFalse3
 mov r1, #0
 ldrb r1,[r0,#2]
 
 mov r2, #0x5A
 cmp r1, r2
-blt ReturnFalse 
+blt ReturnFalse3 
 
 mov r2, #0x5F
 cmp r1, r2
-ble RetTrap
+ble RetTrap3
 
-ReturnFalse:
+ReturnFalse3:
 mov r0,#0x0	@no trap so return 0x0
 
 
-RetTrap:
+RetTrap3:
 pop {r4-r6}
 pop {r1}
 bx r1
@@ -234,6 +234,114 @@ push {r4-r5, lr}
 mov r5, #0x4
 b EnterTextEffect
 
+.global TalkTextEffect0x33 
+.type TalkTextEffect0x33, %function 
+TalkTextEffect0x33:
+push {r4-r5, lr}
+mov r5, #0x4
+ldr r0, CurrentUnitPointer
+ldr r0, [r0]
+bl GetAdjacentTrap
+b Skip
+
+
+GetAdjacentTrap: @r0 = unit we're checking for adjacency to
+push {r4-r6,r14}
+mov r4,r0
+
+ldr r4,=#0x3004E50
+ldr r0,[r4]
+
+mov r4, r0
+
+ldrb r5,[r4,#0x10] @x coord
+ldrb r6,[r4,#0x11] @y coord
+
+
+mov r0,r5
+sub r0,#1
+mov r1,r6
+blh GetTrapAt
+
+mov r1, #0
+ldrb r1,[r0,#2]
+
+mov r2, #0x33
+cmp r1, r2
+bge CheckA 
+b ReturnA
+CheckA:
+mov r2, #0x33
+cmp r1, r2
+ble RetTrap
+
+ReturnA:
+
+mov r0,r5
+mov r1,r6
+sub r1,#1
+blh GetTrapAt
+
+mov r1, #0
+ldrb r1,[r0,#2]
+
+mov r2, #0x33
+cmp r1, r2
+bge CheckB 
+b ReturnB
+CheckB:
+mov r2, #0x33
+cmp r1, r2
+ble RetTrap
+
+ReturnB:
+
+mov r0,r5
+add r0,#1
+mov r1,r6
+blh GetTrapAt
+
+mov r1, #0
+ldrb r1,[r0,#2]
+
+mov r2, #0x33
+cmp r1, r2
+bge CheckC 
+b ReturnC
+CheckC:
+mov r2, #0x33
+cmp r1, r2
+ble RetTrap
+ReturnC:
+
+mov r0,r5
+mov r1,r6
+add r1,#1
+blh GetTrapAt
+
+mov r1, #0
+ldrb r1,[r0,#2]
+
+mov r2, #0x33
+cmp r1, r2
+bge CheckD 
+b ReturnD
+CheckD:
+mov r2, #0x33
+cmp r1, r2
+ble RetTrap
+
+ReturnD:
+mov r0,#0	@no trap so return 0
+
+
+RetTrap:
+pop {r4-r6}
+pop {r1}
+bx r1
+
+.ltorg
+.align
 
 EnterTextEffect:
 @Basically the execute event routine.
@@ -243,23 +351,10 @@ ldr r0, CurrentUnitPointer
 ldr r0, [r0]
 bl GetTrap2
 
+Skip: 
 mov r4, r0  @&The DV
-
-b TextToShow
-@turn on completion flag 
-mov r0, #0x03			
-ldrb r0, [r4, r0]     @Completion flag
-cmp r0, #0
-beq TextToShow
-blh SetNewFlag
-
-TextToShow:
-mov r2, #0			@empty it first 
-ldr r1,=MemorySlot2
-str r2,[r1]		@overwrite s2 with 0
-
 mov r1, #0x4 
-ldrh r2, [r4, r1]     @gold amount 
+ldrh r2, [r4, r1]     @textID
 cmp r2, #0
 beq Continue 
 ldr r1,=MemorySlot2

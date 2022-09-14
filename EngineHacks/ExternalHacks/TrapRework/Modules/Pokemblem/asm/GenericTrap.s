@@ -296,7 +296,12 @@ bl GetAdjacentTrapIndividual
 mov r4, r0  @&The DV
 cmp r0,#0
 beq Usability_RetFalse
-b CantoCheck @ can use regardless of flag, though it should never spawn if flag was on 
+
+mov r0, #6 @ defeated all enemies 
+blh CheckEventId
+cmp r0, #0
+beq Usability_RetFalse
+b CantoCheck @ can only talk to when flag is on 
 
 b GenericTrapUsability
 

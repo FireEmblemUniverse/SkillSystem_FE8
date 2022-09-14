@@ -96,7 +96,8 @@
 #define Hole(XX,YY) "BYTE HoleID XX YY 0 0 0" 
 
 #define CompletionObstacleID 51 
-#define GenericCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE CompletionObstacleID XX YY CompletionFlag Sprite EffectID"
+//#define GenericCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE CompletionObstacleID XX YY CompletionFlag Sprite EffectID"
+#define GenericCompletion(XX,YY,Sprite, TextID) "BYTE CompletionObstacleID XX YY Sprite; SHORT TextID"
 SetTrapEventInit(CompletionObstacleID, GenericTrapDisappearCompletionInitialization)
 SetTrapMapSpritePalette(CompletionObstacleID,NPCTrapPaletteWord)
 SetImpassableTrap(CompletionObstacleID)
