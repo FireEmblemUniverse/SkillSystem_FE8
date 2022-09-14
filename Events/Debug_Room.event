@@ -352,7 +352,7 @@ ASMC SeePokedex
 Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(22, YCoordNewArea)  
 
-MNC2 ChampionCh
+//MNC2 ChampionCh
 //MNC2 PCBoxCh
 // MNC2 Route23NCh 
 //MNC2 LoreleiCh
@@ -361,7 +361,7 @@ MNC2 ChampionCh
 //MNC2 VictoryRoadB2Ch 
 //MNC2 Route22Ch 
 //MNC2 LoreleiCh 
-//MNC2 DebugCh
+MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch
 //MNC2 SaffronGymCh

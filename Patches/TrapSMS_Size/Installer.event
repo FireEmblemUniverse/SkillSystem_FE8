@@ -1,0 +1,31 @@
+
+
+PUSH 
+ORG $2733C
+jumpToHack(TrapSizeHook|1) 
+
+ORG $268B0 
+SHORT $1832 $7810 // Make SMS_RegisterUsage return SMS ram+index in r2 
+
+POP 
+
+ALIGN 4 
+TrapSizeHook: 
+#incbin "TrapSizeHook.dmp" 
+
+
+
+
+
+
+/*
+notes: 
+201F148 + 0x77 ? 
+
+at 27342 strb r0, [r5, #0xB] 
+
+at 2729A ldr r7, =SMS table entry 0x5B empty ballista size 
++ 0x58 as light rune size 
+*/ 
+
+

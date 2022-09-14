@@ -238,7 +238,16 @@ UNIT 0x50 BeedrillID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0
 UNIT
 
 
+
+
 Traps1:
+GenericDisappearCompletion(12, 5, 0, GarySMS, 0) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(13, 5, 0, PidgeotSMS, 0) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(16, 7, 0, SuspiciousWaterSMS, 0) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(13, 7, 0, sailorSMS, 0) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(12, 8, 0, FlowerSMS, 0) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(13, 9, 0, BerryTreeSMS, 0) // xx, yy, flag, sprite, effectID 
+GenericDisappearCompletion(12, 9, 0, policemanSMS, 0) // xx, yy, flag, sprite, effectID 
 
 
 ENDTRAP
