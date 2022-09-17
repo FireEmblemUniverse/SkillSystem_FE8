@@ -1,6 +1,6 @@
 
 #include <stddef.h>
-#include "FE-Clib-master/include/gbafe.h"
+#include "FE-CLib-master/include/gbafe.h"
 
 typedef struct SpellList SpellList;
 typedef struct MenuItemPanelProc MenuItemPanelProc;
