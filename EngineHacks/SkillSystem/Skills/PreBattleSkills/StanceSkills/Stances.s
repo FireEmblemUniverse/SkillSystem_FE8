@@ -173,7 +173,7 @@ strh r0, [ r4, r1 ]
 CheckSpectrumStance:
 bl CheckNextStance
 cmp r0, #0x00
-beq End
+beq CheckAlertStance
 mov r1, #0x5A
 ldrh r0, [ r4, r1 ]
 add r0, #0x02 @ Add 2 attack.
@@ -194,7 +194,7 @@ strh r0, [ r4, r1 ]
 CheckAlertStance:
 bl CheckNextStance
 cmp r0, #0x00
-beq End
+beq CheckAlertStancePlus
 mov r1, #0x62
 ldrh r0, [ r4, r1 ]
 add r0, #15 @ Add 15 avoid.

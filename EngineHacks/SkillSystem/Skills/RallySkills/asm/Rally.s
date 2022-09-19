@@ -14,8 +14,6 @@
 	gActiveUnit = 0x03004E50
 	gActionData = 0x0203A958
 
-	gAuraUnitListOut = 0x0202B256
-
 	.type   RallyCommandUsability, function
 	.global RallyCommandUsability
 
@@ -243,14 +241,13 @@ GetUnitRallyBits.end:
 	.pool
 
 RallyAuraCheck:
-	ldr r0, =AuraSkillCheck
+	ldr r0, =GetUnitsInRange
 	mov ip, r0
 
 	ldr r0, =gActiveUnit
 	ldr r0, [r0]                @ arg r0 = unit
-	mov r1, #0                  @ arg r1 = skill
-	mov r2, #0                  @ arg r2 = check type
-	mov r3, #RALLY_EFFECT_RANGE @ arg r3 = range
+	mov r1, #0                  @ arg r1= check type
+	mov r2, #RALLY_EFFECT_RANGE @ arg r2 = range
 
 	bx  ip @ jump (it will return to wherever this was called)
 
@@ -265,7 +262,7 @@ ForEachRalliedUnit:
 
 	bl RallyAuraCheck
 
-	ldr r4, =gAuraUnitListOut
+	mov r4, r0
 
 ForEachRalliedUnit.lop:
 	ldrb r0, [r4]

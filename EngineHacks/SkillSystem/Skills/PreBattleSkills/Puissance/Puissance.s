@@ -1,6 +1,8 @@
 .thumb
 .equ PuissanceID, SkillTester+4
 
+.equ gBattleData, 0x203A4D4
+
 push {r4-r7, lr}
 mov r4, r0 @atkr
 mov r5, r1 @dfdr

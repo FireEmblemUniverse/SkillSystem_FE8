@@ -96,7 +96,6 @@ ALIGN 4
 SPD_ProcDisplayTiles:
 #incbin "Graphics/ProcDisplayTiles.dmp"    // Uncompressed image.
 
-
 ALIGN 4
 Skill_Getter: // gets a list of skills
 	#incbin "asm/GetSkills.dmp"
@@ -104,83 +103,211 @@ Skill_Getter: // gets a list of skills
 	POIN ClassSkillTable
 	POIN (GetInitialSkillList|1)
 
-//ability flag for passive item skills
-#define PASSIVE_ITEM_SKILL_ATTR 0x00800000
-GetItemSkill:
-#include "ItemSkillGetter.lyn.event"
 
-#include "skillItemCounter.lyn.event"
+#include "NewSkillTester/_src/SkillTester.lyn.event"
+
+//Pointer with thumb bit set for NewSkillTester to use
+ALIGN 4
+GetInitialSkillList_Pointer:
+POIN (GetInitialSkillList|1)
+
+//Determines the maximum number of entries the AuraSkillBuffer can take up. Each entry is 2 bytes long
+#define AuraSkillBufferLimit 480
+
+//Determines the max number of skills generics get from learned skills
+#define MaxGenericLearnedSkills 4
+
+ALIGN 4
+PassiveSkillBit:
 WORD PASSIVE_ITEM_SKILL_ATTR
 
-#include "ItemSkillBuffer.lyn.event"
-WORD 0x2026BC0 //offest of item skill buffer's location
+PassiveSkillStack:
+WORD PASSIVE_SKILLS_STACK
 
-ItemSkill_Getter:
-#include "GetItemSkills.lyn.event"
-POIN GetItemSkillBuffer
-POIN GetItemPassiveSkill
-POIN ResetEquipItemSkill
+gAuraSkillBufferLimit:
+WORD AuraSkillBufferLimit
 
-EquipSkill_Getter: //Returns the equipped weapon's skill
-#include "GetEquipItemSkill.lyn.event"
-POIN ItemSkill_Getter
-POIN IsItemSkillPassive
-POIN GetItemSkill
+GenericLearnedSkillLimit:
+WORD MaxGenericLearnedSkills
 
-SkillTesterOriginal: //does unit have X skill?
-#include "skillTester.lyn.event"
-POIN Skill_Getter
-POIN ItemSkill_Getter EquipSkill_Getter
-/*
-#incbin skillTester.dmp
-POIN Skill_Getter
-POIN ItemTable
-*/
+#define NegatedSkillEntry(skillID) "PUSH; ORG NegatedSkills + skillID; BYTE 0x1; POP"
 
-SkillTester: //does enemy have Nihil? if so, does Nihil negate X skill?
-#incbin nihilTester.dmp
-POIN SkillTesterOriginal
+ALIGN 4
+NihilIDLink:
 WORD NihilID
-POIN Skill_Getter
-POIN NegatedSkills
-POIN SkillTester
-WORD CatchEmAllID
 
-//this version does not check for equipped weapons
-SkillTesterOriginal2:
-#include "skillTester2.lyn.event"
-POIN Skill_Getter ItemSkill_Getter
-
-SkillTester2:
-#include "nihilTester2.lyn.event"
-POIN SkillTesterOriginal2 NegatedSkills
-WORD NihilID CatchEmAllID
-
+ALIGN 4
 NegatedSkills: //comment or uncomment skills to your liking, this should come with an updated list of skills that work with nihil and are meant to
 //Confirmed working and grouped by type for easier adding/removing from the NegatedSkills list
 //please note that I have only tested one or two skills of each group so if there is any issue with any of them please let me know
-BYTE VantageID VantagePlusID DesperationID WrathID//if hp < 50%
-BYTE SwordbreakerID LancebreakerID AxebreakerID BowbreakerID TomebreakerID//breaker
-BYTE SwordfaireID LancefaireID AxefaireID BowfaireID TomefaireID//faire
-BYTE DuelistsBlowID DeathBlowID DartingBlowID WardingBlowID CertainBlowID ArmoredBlowID//blow
-BYTE ElbowRoomID NaturalCoverID//terrain dependant
-BYTE QuickDrawID//when initiating attack
-BYTE StrongRiposteID PatienceID PursuitID//when under attack
-BYTE CounterID CounterMagicID//counter
-BYTE SureShotID IgnisID ColossusID ImpaleID PaviseID AegisID AstraID SolID LunaID AetherID AdeptID LethalityID//Astra and friends aka Stat(/2)% activation
-BYTE SolidarityID MaleficAuraID VoiceOfPeaceID IntimidateID AnathemaID//auras that affect the one that makes them
-BYTE LifetakerID GaleforceID DespoilID//after defeating enemy
-BYTE SavageBlowID//after combat, prevents activating but not effects if it was already activated
-BYTE SealStrID SealSklID SealSpdID SealLukID SealDefID SealResID//seal
-BYTE CritUpID WaryFighterID FrenzyID MiracleID LifeAndDeathID TantivyID FocusID FieryBloodID WindDiscipleID HawkeyeID LightWeightID KillingMachineID CriticalForceID ChivalryID PragmaticID OpportunistID TrampleID //other combat skills
-BYTE MoonbowID//charge up skills, I don't really know how they work so I don't know if this prevents them from getting charge or lossing it or not, it does prevent moonbow from triggering
-BYTE DownWithArchID
-BYTE LuckySevenID OddRhythmID EvenRhythmID QuickBurnID SlowBurnID//turn based boosts
-BYTE BracingStanceID DartingStanceID FierceStanceID KestrelStanceID MirrorStanceID ReadyStanceID SteadyStanceID SturdyStanceID SwiftStanceID WardingStanceID SpectrumStanceID // Stance skills (add stats if under attack)
-BYTE ExpertiseID
-BYTE SlayerID NullifyID //effectiveness stuff
-BYTE BlackMagicID
-BYTE FortressDefenseID FortressResistanceID ForesightID AxefaithID FullMetalBodyID LiquidOozeID DevilsLuckID DevilsPactID DevilsWhimID PoisonStrikeID GrislyWoundID HexID BarricadeID BarricadePlusID PointBlankID PerfectionistID PuissanceID BattleVeteranID HolyAuraID SilentPrideID LoyaltyID ThunderstormID OutriderID HeavyStrikesID ChargeID InfiltratorID VanityID MageSlayerID KnightAspirantID DisciplinePlusID HeroID SealMagID DriveStrID DriveMagID DriveSpdID DriveDefID DriveResID QuickRiposteID ResolveID InsightID VigilanceID DauntID BloodTideID WhitePoolID NightTideID PrescienceID DefiantAvoID DefiantCritID DefiantStrID DefiantMagID DefiantSklID DefiantSpdID DefiantLckID DefiantDefID DefiantResID ShortShieldID TowerShieldID TowerShieldPlusID IndoorFighterID OutdoorFighterID TomeRangeUpID AlertStanceID AlertStancePlusID CoronaID FlareID TempestID SerenityID PetrifyID EnrageID DeadeyeID DragonFangID FortuneID //this hasnt been updated in like a year and a half lol
+FILL 0xFF
+
+NegatedSkillEntry(VantageID)
+NegatedSkillEntry(VantagePlusID)
+NegatedSkillEntry(DesperationID)
+NegatedSkillEntry(WrathID)
+NegatedSkillEntry(SwordbreakerID)
+NegatedSkillEntry(LancebreakerID)
+NegatedSkillEntry(AxebreakerID)
+NegatedSkillEntry(BowbreakerID)
+NegatedSkillEntry(TomebreakerID)
+NegatedSkillEntry(SwordfaireID)
+NegatedSkillEntry(LancefaireID)
+NegatedSkillEntry(AxefaireID)
+NegatedSkillEntry(BowfaireID)
+NegatedSkillEntry(TomefaireID)
+NegatedSkillEntry(DuelistsBlowID)
+NegatedSkillEntry(DeathBlowID)
+NegatedSkillEntry(DartingBlowID)
+NegatedSkillEntry(WardingBlowID)
+NegatedSkillEntry(CertainBlowID)
+NegatedSkillEntry(ArmoredBlowID)
+NegatedSkillEntry(ElbowRoomID)
+NegatedSkillEntry(NaturalCoverID)
+NegatedSkillEntry(QuickDrawID) 
+NegatedSkillEntry(StrongRiposteID)
+NegatedSkillEntry(PatienceID)
+NegatedSkillEntry(PursuitID)
+NegatedSkillEntry(CounterID)
+NegatedSkillEntry(CounterMagicID)
+NegatedSkillEntry(SureShotID)
+NegatedSkillEntry(IgnisID)
+NegatedSkillEntry(ColossusID)
+NegatedSkillEntry(ImpaleID)
+NegatedSkillEntry(PaviseID)
+NegatedSkillEntry(AegisID)
+NegatedSkillEntry(AstraID)
+NegatedSkillEntry(SolID)
+NegatedSkillEntry(LunaID)
+NegatedSkillEntry(AetherID)
+NegatedSkillEntry(AdeptID)
+NegatedSkillEntry(LethalityID)
+NegatedSkillEntry(SolidarityID)
+NegatedSkillEntry(MaleficAuraID)
+NegatedSkillEntry(VoiceOfPeaceID)
+NegatedSkillEntry(IntimidateID)
+NegatedSkillEntry(AnathemaID)
+NegatedSkillEntry(LifetakerID)
+NegatedSkillEntry(GaleforceID)
+NegatedSkillEntry(DespoilID)
+NegatedSkillEntry(SavageBlowID)
+NegatedSkillEntry(SealStrID)
+NegatedSkillEntry(SealSklID)
+NegatedSkillEntry(SealSpdID)
+NegatedSkillEntry(SealLukID)
+NegatedSkillEntry(SealDefID)
+NegatedSkillEntry(SealResID)
+NegatedSkillEntry(CritUpID)
+NegatedSkillEntry(WaryFighterID)
+NegatedSkillEntry(FrenzyID)
+NegatedSkillEntry(MiracleID)
+NegatedSkillEntry(LifeAndDeathID)
+NegatedSkillEntry(TantivyID)
+NegatedSkillEntry(FocusID)
+NegatedSkillEntry(FieryBloodID)
+NegatedSkillEntry(WindDiscipleID)
+NegatedSkillEntry(HawkeyeID)
+NegatedSkillEntry(LightWeightID)
+NegatedSkillEntry(KillingMachineID)
+NegatedSkillEntry(CriticalForceID)
+NegatedSkillEntry(ChivalryID)
+NegatedSkillEntry(PragmaticID)
+NegatedSkillEntry(OpportunistID)
+NegatedSkillEntry(TrampleID)
+NegatedSkillEntry(MoonbowID)
+NegatedSkillEntry(DownWithArchID)
+NegatedSkillEntry(LuckySevenID)
+NegatedSkillEntry(OddRhythmID)
+NegatedSkillEntry(EvenRhythmID)
+NegatedSkillEntry(SlowBurnID)
+NegatedSkillEntry(QuickBurnID)
+NegatedSkillEntry(BracingStanceID)
+NegatedSkillEntry(DartingStanceID)
+NegatedSkillEntry(FierceStanceID)
+NegatedSkillEntry(KestrelStanceID)
+NegatedSkillEntry(MirrorStanceID)
+NegatedSkillEntry(ReadyStanceID)
+NegatedSkillEntry(SteadyStanceID)
+NegatedSkillEntry(SturdyStanceID)
+NegatedSkillEntry(SwiftStanceID)
+NegatedSkillEntry(WardingStanceID)
+NegatedSkillEntry(SpectrumStanceID)
+NegatedSkillEntry(ExpertiseID)
+NegatedSkillEntry(SlayerID)
+NegatedSkillEntry(NullifyID)
+NegatedSkillEntry(BlackMagicID)
+NegatedSkillEntry(FortressDefenseID)
+NegatedSkillEntry(FortressResistanceID)
+NegatedSkillEntry(ForesightID)
+NegatedSkillEntry(AxefaithID)
+NegatedSkillEntry(FullMetalBodyID)
+NegatedSkillEntry(LiquidOozeID)
+NegatedSkillEntry(DevilsLuckID)
+NegatedSkillEntry(DevilsPactID)
+NegatedSkillEntry(DevilsWhimID)
+NegatedSkillEntry(PoisonStrikeID)
+NegatedSkillEntry(GrislyWoundID)
+NegatedSkillEntry(HexID)
+NegatedSkillEntry(BarricadeID)
+NegatedSkillEntry(BarricadePlusID)
+NegatedSkillEntry(PointBlankID)
+NegatedSkillEntry(PerfectionistID)
+NegatedSkillEntry(PuissanceID)
+NegatedSkillEntry(BattleVeteranID)
+NegatedSkillEntry(HolyAuraID)
+NegatedSkillEntry(SilentPrideID)
+NegatedSkillEntry(LoyaltyID)
+NegatedSkillEntry(ThunderstormID)
+NegatedSkillEntry(OutriderID)
+NegatedSkillEntry(HeavyStrikesID)
+NegatedSkillEntry(ChargeID)
+NegatedSkillEntry(InfiltratorID)
+NegatedSkillEntry(VanityID)
+NegatedSkillEntry(MageSlayerID)
+NegatedSkillEntry(KnightAspirantID)
+NegatedSkillEntry(DisciplinePlusID)
+NegatedSkillEntry(HeroID)
+NegatedSkillEntry(SealMagID)
+NegatedSkillEntry(DriveStrID)
+NegatedSkillEntry(DriveMagID)
+NegatedSkillEntry(DriveSpdID)
+NegatedSkillEntry(DriveDefID)
+NegatedSkillEntry(DriveResID)
+NegatedSkillEntry(QuickRiposteID)
+NegatedSkillEntry(ResolveID)
+NegatedSkillEntry(InsightID)
+NegatedSkillEntry(VigilanceID)
+NegatedSkillEntry(DauntID)
+NegatedSkillEntry(BloodTideID)
+NegatedSkillEntry(WhitePoolID)
+NegatedSkillEntry(NightTideID)
+NegatedSkillEntry(PrescienceID)
+NegatedSkillEntry(DefiantAvoID)
+NegatedSkillEntry(DefiantCritID)
+NegatedSkillEntry(DefiantStrID)
+NegatedSkillEntry(DefiantMagID)
+NegatedSkillEntry(DefiantSklID)
+NegatedSkillEntry(DefiantSpdID)
+NegatedSkillEntry(DefiantLckID)
+NegatedSkillEntry(DefiantDefID)
+NegatedSkillEntry(DefiantResID)
+NegatedSkillEntry(ShortShieldID)
+NegatedSkillEntry(TowerShieldID)
+NegatedSkillEntry(TowerShieldPlusID)
+NegatedSkillEntry(IndoorFighterID)
+NegatedSkillEntry(OutdoorFighterID)
+NegatedSkillEntry(AlertStanceID)
+NegatedSkillEntry(AlertStancePlusID)
+NegatedSkillEntry(CoronaID)
+NegatedSkillEntry(FlareID)
+NegatedSkillEntry(TempestID)
+NegatedSkillEntry(SerenityID)
+NegatedSkillEntry(PetrifyID)
+NegatedSkillEntry(EnrageID)
+NegatedSkillEntry(DeadeyeID)
+NegatedSkillEntry(DragonFangID)
+NegatedSkillEntry(FortuneID)
+
 /*
 //NOT WORKING (or they should not be affected by nihil)
 BYTE ProvokeID//this is kinda it's own thing really (works)

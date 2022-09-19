@@ -49,9 +49,6 @@
 //If uncommented, will enable Display Weapon Rank on Level Up.
 #define WRANK_ON_LEVELUP
 
-//If uncommented, will enable Spell Anim Substitutions
-#define SPELL_ANIM_SUBSTITUTION
-
 //If uncommented, will use Trap Rework.
 //This is automatically used if Dragon Veins or Heal Tiles are uncommented.
 #define TRAP_REWORK
@@ -207,6 +204,10 @@
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
+
+// If set to false, passive skills will not stack and only the first item with one will have an effect.
+// Setting the 0x00800000 bit in the item ability bitfield will enable passive skills.
+#define PASSIVE_SKILLS_STACK True
 
 // if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
 // #define ENABLE_GALEFORCE_AUTOSELECT

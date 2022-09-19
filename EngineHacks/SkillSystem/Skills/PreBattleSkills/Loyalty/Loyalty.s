@@ -1,6 +1,6 @@
 .thumb
-.equ AuraSkillCheck, SkillTester+4
-.equ LoyaltyID, AuraSkillCheck+4
+.equ UnitRangeCheck, SkillTester+4
+.equ LoyaltyID, UnitRangeCheck+4
 
 push {r4-r7, lr}
 mov r4, r0 @atkr
@@ -17,21 +17,20 @@ cmp r0, #0
 beq End
 
 @now check for the skill
-ldr r0, AuraSkillCheck
+ldr r0, UnitRangeCheck
 mov lr, r0
 mov r0, r4 @attacker
-mov r1, #0x0
-mov r2, #0 @are allies
-mov r3, #2 @range
+mov r1, #0 @are allies
+mov r2, #2 @range
 .short 0xf800
 cmp r0, #0
 beq End
 
 Loop:
-ldrb r2,[r1]
+ldrb r2,[r0]
 cmp r2,#0x0
 beq End
-add r1,#0x1
+add r0,#0x1
 
 mov r3,#0x48
 ldr r5,CharData

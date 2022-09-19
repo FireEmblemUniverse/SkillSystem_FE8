@@ -182,9 +182,6 @@ POP
   #ifdef CRIT_CAP
     #include "ExternalHacks/CritCap/CritCap.event"
   #endif
-  
-  //Spell Animation Rework
-  #include "ExternalHacks/SpellAnimSubstitution/SpellAnimSubstitution.event"
 
   //Item Effect Revamp by Teraspark
   #include "Necessary/ItemEffectRevamp/IERevamp_Installer.event"
