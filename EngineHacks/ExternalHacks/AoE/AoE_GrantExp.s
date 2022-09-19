@@ -99,13 +99,6 @@ ldrb r0, [r1, r4] @ Xcoord to check
 cmp r0, #0xFF 
 beq XLoop_2
 
-mov r1, r8 
-add r1, #1 
-mov r8, r1 
-cmp r1, #8 
-blt NoBreak 
-b BreakYLoop @ 8+ as max exp 
-NoBreak:
 @ ValidCoord:
 @ We found a valid tile 
 mov r0, r4 @ XX 
@@ -121,10 +114,20 @@ add		r2,r1			@so that we can get the correct row pointer
 ldr		r2,[r2]			@Now we're at the beginning of the row data
 add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq XLoop 
 
 blh GetUnit 
 cmp r0, #0 
 beq XLoop
+
+mov r1, r8 
+add r1, #1 
+mov r8, r1 
+cmp r1, #8 
+blt NoBreak 
+b BreakYLoop @ 8+ as max exp 
+NoBreak:
 
 ldr r3, =CurrentUnit
 ldr r3, [r3]
@@ -193,6 +196,17 @@ mov r10, r0
 b XLoop
 
 Healing: 
+
+ldrb r1, [r0, #0x12] @ Max HP 
+ldrb r2, [r0, #0x13] @ Current HP 
+cmp r1, r2 
+beq XLoop @ If target is at full hp, do not grant exp 
+
+ldrb r1, [r0, #8] @ level 
+ldrb r2, [r3, #8] @ actor's level 
+cmp r1, r2 
+bge XLoop @ grant no exp for healing unless the target is a higher level than you 
+
 @ are units allied 24D8C
 mov r2, #0x80 
 ldrb r1, [r0, #0x0B] @ deployment byte 
