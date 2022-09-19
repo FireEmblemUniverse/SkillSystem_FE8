@@ -1,12 +1,11 @@
-.equ ppRangeMapRows, 0x0202E4E4
-.equ pActionStruct, 0x0203A958
+.include "./_TargetSelectionDefinitions.s"
+
 .macro blh to, reg=r3
   ldr \reg, =\to
   mov lr, \reg
   .short 0xf800
 .endm
-	.equ EventEngine, 0x800D07C
-	.equ MemorySlot,0x30004B8
+
 .thumb
 @A button case
 
@@ -29,10 +28,10 @@ beq BadTile
 
 push {r0-r2}
 
-mov r0, r1 // r0 - xCoord
-mov r1, r2 // r1 - yCoord
+mov r0, r1 @ r0 - xCoord
+mov r1, r2 @ r1 - yCoord
     
-//blh CheckFunc
+@blh CheckFunc
 ldr r3, CheckFunc
 mov lr, r3
 .short 0xF800
@@ -85,21 +84,30 @@ bl AoE_ClearGraphics
 @
 
 mov r0, #0xb7 
-
-
-
 @mov 	r0, #0x6
 b End
 
 BadTile:
-bl AoE_ClearGraphics
-blh AoE_FS6C_ButtonPress_Cancel
+@bl AoE_ClearGraphics
+@blh AoE_FS6C_ButtonPress_Cancel
+@mov r0, #0xb7 
 
+ldr  	r0, =pChapterDataStruct
+add  	r0, #0x41
+ldrb 	r0, [r0]
 
+@ Options set to "no sound effect"
+lsl 	r0, #0x1E
+cmp 	r0, #0x0
+blt 	NoSound
 
+mov r0, #0x6c  @error sound
+blh PlaySoundEffect
 
-mov 	r0, #0x10
-mov r0, #0xb7 
+NoSound:
+
+@I don't want the parent routine to do anything, so it returns 0.
+mov  r0, #0x0
 
 End:
 pop 	{r4}

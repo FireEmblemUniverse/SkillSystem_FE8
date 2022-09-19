@@ -9,7 +9,8 @@
   .short 0xf800
 .endm
 
-@ 0802a95c FillPreBattleStats ?
+@ 0802a95c FillPreBattleStats ?	@{U}
+@@ 0802A8C8 FillPreBattleStats ?	@{J}
 
 
 

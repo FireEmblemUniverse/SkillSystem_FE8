@@ -1,7 +1,8 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
-.set pTCS_PositionSelectCursor, 0x085A0EA0
+.set pTCS_PositionSelectCursor, 0x085A0EA0	@{U}
+@.set pTCS_PositionSelectCursor, 0x085C93C0	@{J}
 
 FreeSelect6C_Init:
 	push 	{r4, lr}

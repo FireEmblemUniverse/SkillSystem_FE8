@@ -28,22 +28,26 @@
 .equ HitResBool, 0x10
 .equ DepleteItemBool, 0x20
 .equ UsableOnlyIfStationaryBool, 0x40 
+.equ KeepHP1NotDieBool, 0x80
 
 
 
-
-	.equ CurrentUnit, 0x3004E50
-	.equ MemorySlot,0x30004B8
-	.equ EventEngine, 0x800D07C
-	.equ CheckEventId,0x8083da8
+	.equ CurrentUnit, 0x3004E50	@{U}
+@	.equ CurrentUnit, 0x3004DF0	@{J}
+	.equ MemorySlot,0x30004B8	@{U}
+@	.equ MemorySlot,0x30004B0	@{J}
+	.equ EventEngine, 0x800D07C	@{U}
+@	.equ EventEngine, 0x800D340	@{J}
+	.equ CheckEventId,0x8083da8	@{U}
+@	.equ CheckEventId,0x80860D0	@{J}
 	
-	.equ NextRN_100, 0x8000c64 @NextRN_100	
+	.equ NextRN_100, 0x8000c64 @NextRN_100	@{U}
+@	.equ NextRN_100, 0x8000C3C @NextRN_100	@{J}
 	
-	.equ pActionStruct, 0x203A958	
-	.equ CurrentUnitFateData, 0x203A958
-
-
-
+	.equ pActionStruct, 0x203A958	@{U}
+@	.equ pActionStruct, 0x203A954	@{J}
+	.equ CurrentUnitFateData, 0x203A958	@{U}
+@	.equ CurrentUnitFateData, 0x203A954	@{J}
 
 
 

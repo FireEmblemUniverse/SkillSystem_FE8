@@ -1,4 +1,5 @@
-.equ ppRangeMapRows, 0x0202E4E4
+.equ ppRangeMapRows, 0x0202E4E4	@{U}
+@.equ ppRangeMapRows, 0x0202E4E0	@{J}
 
 .thumb
 
@@ -14,10 +15,10 @@
     cmp     r0, #0
     beq Invalid 
     
-    mov r0, r1 // r0 - xCoord
-    mov r1, r2 // r1 - yCoord
+    mov r0, r1 @ r0 - xCoord
+    mov r1, r2 @ r1 - yCoord
     
-    //blh CheckFunc
+    @blh CheckFunc
     ldr r3, CheckFunc
     mov lr, r3
     .short 0xF800

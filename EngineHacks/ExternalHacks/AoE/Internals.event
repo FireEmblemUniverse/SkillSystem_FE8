@@ -1,32 +1,50 @@
+// Most users should not need to edit this file. 
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+#include "Extensions/ProcDefinitions.txt"
+
+
 
 #define AoE_EntrySizeDef 16 // 16 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
-#define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 
+#define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 	//{U}
+//#define AoE_RamAddressDef "0x0203F0FD" // Also used by combat art menu. 	//{J}
 
-// Most users should not need to edit this file. 
+
+
+
+
 
 ALIGN 4
 AoE_SkillTester: 
 #ifdef SKILLSYSTEM_SKILL_TESTER
 	POIN SkillTester
-#else; WORD 0; #endif 
+#endif 
+#ifndef SKILLSYSTEM_SKILL_TESTER
+	WORD 0
+#endif 
 
 
 ALIGN 4
 AoE_Pokemblem_MoveTester: 
 #ifdef Pokemblem_MoveTester
 	POIN MoveTester
-#else; WORD 0; #endif 
+#endif
+#ifndef Pokemblem_MoveTester
+	WORD 0
+#endif 
 
 
 #include	"TilePalettes/_1D9DC_Loop6C_MoveLimitView.lyn.event"
 
 PUSH 
 
-ORG $1DA98 
+ORG $1DA98	//{U}
+//ORG $1D6FC	//{J}
 jumpToHack(PurpleMovementSquares|1)
 
-ORG	$1D9DC
+ORG	$1D9DC	//{U}
+//ORG	$1D640	//{J}
 jumpToHack(_1D9DC_Loop6C_MoveLimitView)
 
 POP 
@@ -57,56 +75,36 @@ PurpleMovementSquares:
 #include "CreateMoveMapFromTemplate.lyn.event" 
 
 
-#include "AoE_RangeTemplates.event"
+#include "RangeTemplates.event"
 #include "AoE_CallSubmenuEffect.lyn.event"
 #include "AoE_DamageEffect.lyn.event" 
 
-
+#ifndef UNIT_MENU_DEFINITIONS
+	#define NormalText 0x0
+	#define GrayText 0x1
+	#define BlueText 0x2
+	#define OrangeText 0x3
+	#define GreenText 0x4
+	#define BlackText 0x5
+	#define MenuCommand(name,description,colour,usability,effect, unknown1, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"
+	#define UM_Separator  "WORD 0 0 0 0 0 0 0 0 0"
+#endif 
 
 /*
-Vanilla animations:
-(Grabbed from Febuilder)
-
-ASMC 0x8080475 // Play Demon King sealing Effect
-ASMC 0x807FCC1 // Play Demon King summon Effect (floor)
-ASMC 0x807F879 // Play Demon King summon Effect 
-ASMX 0x8085BFD // Torch item Effect
-
-ASMC 0x5DB19 //Elfire 
-
-ASMC 0x5D065 //Fire Breath
-
-
-*/ 
-/*
-ThunderEvent:
-//STARTFADE
-//COLORFADE_FADE [0,32] 0xFF00 128 128 128
-//STAL 0x10
-SET_ACTIVE 0
-ASMC 0x801d6fd //PlayerPhase_ReloadGameGfx - just in case they didn't cleanup their gfx 
- 
-STARTFADE
-COLORFADE_FADE [0,32] 0xFF00 128 128 128
-STAL 0x10
-
-//SVAL 0xB 0x00040003
-ASMC EventStartAnime|1
-//ENDFADE 
-
-
+GenericASMC_DrawEvent:
+ASMC ASMC_Draw
 NoFade 
-ENDA 
+ENDA
 */
 
-
 Call_AoE_ExternalAnimationEvent:
+EVBIT_MODIFY 4
 ASMC AoE_ExternalAnimation 
 NoFade 
 ENDA 
 
 Clear_sBEvent:
-ASMC 0x801d6fd //PlayerPhase_ReloadGameGfx - just in case they didn't cleanup their gfx 
+EVBIT_MODIFY 0
 SVAL rB 0 
 NoFade 
 ENDA 
@@ -116,7 +114,9 @@ ASMC AoE_StartBlockingProc
 NoFade 
 ENDA 
 
-
+#ifndef PROC_YIELD
+	#define PROC_YIELD "PROC_YEILD"
+#endif 
 
 
 ALIGN 4
@@ -126,6 +126,7 @@ PROC_SET_NAME(AoE_MainProcName)
 PROC_SLEEP(0)
 PROC_LOOP_ROUTINE(AoE_PauseForAnimation)
 PROC_CALL_ROUTINE(AoE_GenericEffect)
+PROC_LOOP_ROUTINE(AoE_RemoveDeadUnitLoop)
 PROC_END
 
 
@@ -155,9 +156,12 @@ POIN AoEMenuCommandsList //menu commands ptr
 WORD 0 //OnInit
 WORD 0 //OnEnd
 WORD 0 //Unknown
-POIN 0x22861 //On B Press
-POIN 0x4f521 //On R Press
-POIN 0x4f459 //On Help Box
+POIN 0x22861 //On B Press	//{U}
+//POIN 0x22829 //On B Press	//{J}
+POIN 0x4f521 //On R Press	//{U}
+//POIN 0x50295 //On R Press	//{J}
+POIN 0x4f459 //On Help Box	//{U}
+//POIN 0x501CD //On Help Box	//{J}
 
 
 ALIGN 4
@@ -212,3 +216,17 @@ TargetTileConfirm_2:
 #include "TargetTileConfirm.lyn.event"
 POIN OptionalAdditionalRangeSelectionCheck
 
+ALIGN 4 
+AoE_SpecificUsability:
+#include "AoE_SpecificUsability.lyn.event"
+
+ALIGN 4
+AoE_SpecificEffect:
+#include "AoE_SpecificEffect.lyn.event"
+
+ALIGN 4
+AoE_SpecificHover:
+#include "AoE_SpecificHover.lyn.event"
+
+ALIGN 4
+#include "AoE_ASMC.lyn.event"

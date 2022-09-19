@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 
 
@@ -151,7 +151,7 @@ NoDelete:
 	beq 	NoBeep
 	
 	mov 	r0, #0x6A
-	_blh PlaySound
+	_blh PlaySoundEffect
 	
 NoBeep:
 	mov 	r0, #8
@@ -159,7 +159,7 @@ NoBeep:
 	beq NoBoop
 	
 	mov 	r0, #0x6B
-	_blh PlaySound
+	_blh PlaySoundEffect
 	
 NoBoop:
 	mov 	r0, #0x10 
@@ -167,7 +167,7 @@ NoBoop:
 	beq NoGurr
 	
 	mov 	r0, #0x6C
-	_blh PlaySound
+	_blh PlaySoundEffect
 	
 NoGurr:
 NoSound:

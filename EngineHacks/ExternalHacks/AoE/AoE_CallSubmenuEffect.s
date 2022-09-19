@@ -14,13 +14,18 @@ ldr r4,=AoEMenuCommandsList
 add r4,#0xC @usability of first menu option
 
 LoopStart:
-ldr r0,[r4]
-cmp r0,#0
+ldr r3,[r4]
+cmp r3,#0
 beq RetFalse
-mov r14,r0
+
+mov r0, r4
+sub r0, #0xC @r0=this menu struct
+mov r14,r3
 .short 0xF800
+
 cmp r0,#1
 beq GoBack
+
 add r4,#36
 b LoopStart
 
@@ -37,7 +42,8 @@ bx r1
 
 
 
-.equ StartMenuAdjusted,0x804EB98
+.equ StartMenuAdjusted,0x804EB98	@{U}
+@.equ StartMenuAdjusted,0x804F924	@{J}
 .global AoE_Effect
 .type AoE_Effect, %function
 

@@ -134,6 +134,17 @@ bne InventoryLoop
 @ They have said item, so continue
 ValidItem:
 
+@CheckHPCost
+ldrb r0, [r4, #HpCostByte] @ Hp Cost 
+cmp r0, #0 
+beq ValidHPCost
+
+ldrb r1, [r5, #0x13] @ Curr HP
+cmp r1, r0 
+ble ReturnFalse
+ValidHPCost:
+
+
 
 ReturnTrue: 
 mov r0, #1 
@@ -156,21 +167,14 @@ bx r1
 .type AoE_ClearBG2, %function 
 AoE_ClearBG2:
 push {lr}
-ldr r0, =0x02024cb0 @gBg2MapTarget
+ldr r0, =0x02024cb0 @gBg2MapTarget	@{U}
+@ldr r0, =0x02024CB0 @gBg2MapTarget	@{J}
 ldr r0, [r0]
 mov r1, #0 
-blh 0x8001220 @FillBgMap	@FillBgMap(gBg2MapBuffer,0);
+blh 0x8001220 @FillBgMap	@FillBgMap(gBg2MapBuffer,0);	@{U}
+@blh 0x80011D0 @FillBgMap	@FillBgMap(gBg2MapBuffer,0);	@{J}
 pop {r0}
 bx r0 
-
-
-@ 801d624 PlayerPhase_DisplayUnitMovement
-@ 801d6fc PlayerPhase_ReloadGameGfx
-@ 801d9dc Loop6C_MoveLimitView
-@0801d89c Load6CRangeDisplaySquareGfx
-@0801d92c Setup6CRangeDisplayGfx
-@801da98 DisplayMoveRangeGraphics
-
 
 
 .align 4
@@ -211,12 +215,15 @@ mov r6, r2 @ AoE_GetTableEntryPointer
 mov r7, r3 @ rotation byte 
 
 
-ldr r0, =0x202E4E0 @ Movement map 
+ldr r0, =0x202E4E0 @ Movement map	@{U}
+@ldr r0, =0x202E4DC @ Movement map 	@{J}
+
 ldr r0, [r0] 
 mov r1, #0xFF
 blh FillMap
 
-ldr r0, =0x202E4F0 @ Backup Movement map 
+ldr r0, =0x202E4F0 @ Backup Movement map	@{U}
+@ldr r0, =0x202E4EC @ Backup Movement map	@{J}
 ldr r0, [r0] 
 mov r1, #0xFF
 blh FillMap
@@ -236,12 +243,6 @@ ldr r2, [r1, r2] @ POIN to the RangeMask we want
 mov r0, r4 @ XX 
 mov r1, r5  @ YY 
 bl CreateMoveMapFromTemplate
-@bl CreateMoveMap2FromTemplate
-@@ new vesly 
-@ldr r0, =0x202E4F0 @ Previous map 
-@ldr r1, =0x202E4E0 @ New Map 
-@mov r2, r6 
-@bl RotateMoveMap 
 
 ldrb r1, [r6, #ConfigByte] @ Stationary bool 
 mov r0, #HealBool
@@ -254,7 +255,8 @@ DisplayRed:
 mov r0, #0x42 @ red / purple
 DisplayColour:
 @ purple now, thanks to huichelaar & mokha 
-blh 0x801da98 @DisplayMoveRangeGraphics
+blh 0x801da98 @DisplayMoveRangeGraphics	@{U}
+@blh 0x801D6FC @DisplayMoveRangeGraphics	@{J}
 
 
 pop {r4-r7}
@@ -303,8 +305,8 @@ mov r3, #2 @ Down (Direction)
 @ 0 = left, 1 = right, 2 = down, 3 = up
 mov r0, r4 @ Parent proc 
 
-blh 0x0801F780, r7 @FE8U Show_BrokenWall_Effect
-@ldr  r3,=0x0801F3D8		@FE8J Show_BrokenWall_Effect
+blh 0x0801F780, r7 @FE8U Show_BrokenWall_Effect	@{U}
+@blh  0x0801F3D8		@FE8J Show_BrokenWall_Effect	@{J}
 
 add sp, #0x4
 
@@ -348,8 +350,8 @@ mov r3, #1 @ right (Direction)
 @ 0 = left, 1 = right, 2 = down, 3 = up
 mov r0, r4 @ Parent proc 
 
-blh 0x0801F780, r7 @FE8U Show_BrokenWall_Effect
-@ldr  r3,=0x0801F3D8		@FE8J Show_BrokenWall_Effect
+blh 0x0801F780, r7 @FE8U Show_BrokenWall_Effect	@{U}
+@blh 0x0801F3D8		@FE8J Show_BrokenWall_Effect	@{J}
 
 ADD SP, #0x4
 
@@ -368,11 +370,13 @@ push {r4-r7, lr}
 @ given r0 = XX, r1 = yy, r2 = direction to search, return the number of tiles in the move map that are not 0xFF 
 
 mov r5, r2 @ direction 
-ldr r3, =0x202E4D4 @ Map Size 
+ldr r3, =0x202E4D4 @ Map Size @{U}
+@ldr r3, =0x202E4D0 @ Map Size @{J}
 ldrh r6, [r3] @ XX 
 ldrh r7, [r3, #2] @ YY 
 
-ldr r4, =0x202E4E0 @ Movement Map pointer  
+ldr r4, =0x202E4E0 @ Movement Map pointer	@{U}
+@ldr r4, =0x202E4DC @ Movement Map pointer 	@{J}
 ldr r4, [r4] @ movement map 
 
 cmp r5, #2 
@@ -449,7 +453,8 @@ push {r4-r7, lr}
 mov r7, r8 
 push {r7} 
 
-ldr r3, =0x202E4D4 @ Map Size 
+ldr r3, =0x202E4D4 @ Map Size @{U}
+@ldr r3, =0x202E4D0 @ Map Size @{J}
 ldrh r6, [r3] @ XX 
 ldrh r3, [r3, #2] @ YY 
 mov r8, r3 
@@ -463,7 +468,9 @@ ldr r1, =MemorySlot
 add r1, #0x04*0x0C @ Slot C 
 str r0, [r1] 
 
-ldr r4, =0x202E4E0 @ Movement Map 
+
+ldr r4, =0x202E4E0 @ Movement Map	@{U}
+@ldr r4, =0x202E4DC @ Movement Map 	@{J}
 ldr r4, [r4] @ movement map [0,0] 
 
 mov r3, #0 @ Y coord 
@@ -537,7 +544,8 @@ push {r4-r7, lr}
 mov r7, r8 
 push {r7} 
 
-ldr r3, =0x202E4D4 @ Map Size 
+ldr r3, =0x202E4D4 @ Map Size @{U}
+@ldr r3, =0x202E4D0 @ Map Size @{J}
 ldrh r6, [r3] @ XX 
 ldrh r3, [r3, #2] @ YY 
 mov r8, r3 
@@ -551,7 +559,8 @@ ldr r1, =MemorySlot
 add r1, #0x04*0x0C @ Slot C 
 str r0, [r1] 
 
-ldr r4, =0x202E4E0 @ Movement Map 
+ldr r4, =0x202E4E0 @ Movement Map	@{U}
+@ldr r4, =0x202E4DC @ Movement Map 	@{J}
 ldr r4, [r4] @ movement map [0,0] 
 
 mov r2, #0 @ X coord 
@@ -614,7 +623,8 @@ pop {r4-r7}
 pop {r3}
 bx r3
 
-	.equ pr6C_New, 0x08002C7C
+	.equ pr6C_New, 0x08002C7C	@{U}
+@	.equ pr6C_New, 0x08002BCC	@{J}
 .align 4
 .global AoE_Setup 
 .type AoE_Setup, %function 
@@ -696,7 +706,8 @@ ldrb r1, [r3] @ XX
 ldrb r2, [r3, #2] @ YY 
 
 @r0 as parent 
-blh 0x8015D84 @CenterCameraOntoPosition
+blh 0x8015D84 @CenterCameraOntoPosition	@{U}
+@blh 0x8015D90 @CenterCameraOntoPosition	@{J}
 
 pop {r0} 
 bx r0 
@@ -708,6 +719,9 @@ bx r0
 AoE_Animation:
 push {r4-r7, lr} 
 
+ldr r3, =MemorySlot
+ldr r1, =0xFFFFFFFF 
+str r1, [r3, #8] @ Slot 2 to have the value of "0xFFFFFFFF" 
 
 
 @mov r0, #0
@@ -716,17 +730,22 @@ push {r4-r7, lr}
 @ldrb r1, [r3] @ XX 
 @ldrb r2, [r3, #2] @ YY 
 @@r0 as parent 
-@blh 0x08015e0c @EnsureCameraOntoPosition
+@blh 0x08015e0c @EnsureCameraOntoPosition	@{U}
+@@blh 0x08015E18 @EnsureCameraOntoPosition	@{J}
 
 
 bl AoE_GetTableEntryPointer
 mov r4, r0 
 
 
+ldrb r0, [r4, #Animation_IDByte] 
+ldr r3, =MemorySlot 
+str r0, [r3, #4*1] 
 
-
-@blh 0x8015e0c @EnsureCameraOntoPosition
-
+@ldr r0, =GenericASMC_DrawEvent
+@mov r1, #1
+@blh EventEngine
+@b NoSound
 
 ldr r0, =Call_AoE_ExternalAnimationEvent
 mov r1, #1 
@@ -753,7 +772,8 @@ cmp r0, #0
 beq NoSound
 
 mov r1, #0 
-blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown
+blh 0x080024D4  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown	@{U}
+@blh 0x08002424  @ //Switch BGM void r0=BGM Number:MUSIC r1=Unknown	@{J}
 
 
 NoSound: 
@@ -769,7 +789,8 @@ pop {r0}
 bx r0 
 
 @ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
-.equ New6CBlocking,                0x08002CE0
+.equ New6CBlocking,                0x08002CE0	@{U}
+@.equ New6CBlocking,                0x08002C30	@{J}
 
 .align 4
 .global AoE_StartBlockingProc
@@ -787,7 +808,8 @@ pop {r4-r5}
 pop {r0} 
 bx r0 
 
-	.equ BreakProcLoop, 0x08002E94
+	.equ BreakProcLoop, 0x08002E94	@{U}
+@	.equ BreakProcLoop, 0x08002DE4	@{J}
 
 .align 
 .ltorg
@@ -888,7 +910,8 @@ b Start_ForEachUnitInRange
 DamageUnits: 
 ldr r0, =AoE_DamageUnitsInRange
 Start_ForEachUnitInRange:
-blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask? 
+blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask?	{U}
+@blh 0x8024E5C @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask?	@{J}
 
 End_AoE:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
@@ -919,11 +942,16 @@ pop {r1}
 bx r1 
 
 
-.equ ProcFind, 0x08002E9C
-.equ ClearBG0BG1, 0x0804E884
-.equ SetFont, 0x8003D38
-.equ Font_ResetAllocation, 0x8003D20  
-.equ EndAllMenus, 0x804EF20 
+.equ ProcFind, 0x08002E9C	@{U}
+@.equ ProcFind, 0x08002DEC	@{J}
+.equ ClearBG0BG1, 0x0804E884	@{U}
+@.equ ClearBG0BG1, 0x0804F610	@{J}
+.equ SetFont, 0x8003D38	@{U}
+@.equ SetFont, 0x8003C68	@{J}
+.equ Font_ResetAllocation, 0x8003D20  	@{U}
+@.equ Font_ResetAllocation, 0x8003C50  	@{J}
+.equ EndAllMenus, 0x804EF20 	@{U}
+@.equ EndAllMenus, 0x804FCAC 	@{J}
 
 .align 4
 .global AoE_ClearGraphics
@@ -931,7 +959,8 @@ bx r1
 AoE_ClearGraphics:
 push {lr} 
 bl AoE_ClearRangeMap
-blh 0x801dacc @HideMoveRangeGraphics
+blh 0x801dacc @HideMoveRangeGraphics	@{U}
+@blh 0x801D730 @HideMoveRangeGraphics	@{J}
 
 bl AoE_ClearBG2 
 @ this would probably be better to use if we encounter bugs 
@@ -940,7 +969,8 @@ bl AoE_ClearBG2
 
 
 
-blh 0x8019b18 @UpdateGameTileGfx
+blh 0x8019b18 @UpdateGameTileGfx	@{U}
+@blh 0x80197F0 @UpdateGameTileGfx	@{J}
 
 @blh ClearBG0BG1
 @ copied from vanilla item 'use'
@@ -948,10 +978,13 @@ blh 0x8019b18 @UpdateGameTileGfx
 @blh SetFont 
 @blh Font_ResetAllocation 
 @blh EndAllMenus
-@blh 0x801a1f4 @RefreshEntityMaps
-@blh  0x08019c3c   @DrawTileGraphics
+@blh 0x801a1f4 @RefreshEntityMaps	@{U}
+@@blh 0x08019ECC @RefreshEntityMaps	@{J}
+blh  0x08019c3c   @DrawTileGraphics	@{U}
+@blh  0x08019914   @DrawTileGraphics	@{J}
 
-@blh 0x80271a0 @SMS_UpdateFromGameData
+@blh 0x80271a0 @SMS_UpdateFromGameData	@{U}
+@@blh 0x8027144 @SMS_UpdateFromGameData	@{J}
 
 @bl AoE_EndTargetSelection 
 
@@ -965,10 +998,12 @@ bx r0
 
 AoE_ClearRangeMap:
 push {lr} 
-ldr r0, =0x202E4E4 @ range map pointer 
+ldr r0, =0x202E4E4 @ range map pointer @{U}
+@ldr r0, =0x202E4E0 @ range map pointer @{J}
 ldr r0, [r0]
 mov r1, #0
-blh 0x80197E4 @MapFill
+blh 0x80197E4 @MapFill	@{U}
+@blh 0x80194BC @MapFill	@{J}
 pop {r0}
 bx r0 
 
@@ -978,11 +1013,14 @@ bx r0
 
 AoE_ClearMoveMap:
 push {lr} 
-ldr r0, =0x202E4E0 @ range map pointer 
+
+ldr r0, =0x202E4E0 @ range map pointer	@{U}
+@ldr r0, =0x202E4DC @ range map pointer	@{J}
 ldr r0, [r0]
 mov r1, #0
 sub r1, #1
-blh 0x80197E4 @MapFill
+blh 0x80197E4 @MapFill	@{U}
+@blh 0x80194BC @MapFill	@{J}
 pop {r0}
 bx r0 
 
@@ -1043,12 +1081,14 @@ cmp r2, r0
 bne InventoryLoop_DepleteItem
 ldrh r0, [r5, r1] 
 mov r6, r1 
-blh 0x8016aec @GetItemAfterUse
+blh 0x8016aec @GetItemAfterUse	@{U}
+@blh 0x08016894 @GetItemAfterUse	@{J}
 strh r0, [r5, r6] 
 cmp r0, #0 
 bne Done_DepleteItem
 mov r0, r5 
-blh 0x8017984 @RemoveUnitBlankItems
+blh 0x8017984 @RemoveUnitBlankItems	@{U}
+@blh 0x801772C @RemoveUnitBlankItems	@{J}
 
 Done_DepleteItem:
 
@@ -1090,7 +1130,8 @@ bne AlwaysDamage @ If friendly fire is on, then we heal regardless of allegiance
 mov r2, #0x0B @ Allegiance byte 
 ldsb r0, [r6, r2] 
 ldsb r1, [r7, r2] 
-blh 0x8024d8c @AreAllegiancesAllied
+blh 0x8024d8c @AreAllegiancesAllied	@{U}
+@blh 0x8024D3C @AreAllegiancesAllied	@{J}
 cmp r0, #1 
 beq DoNotDamageTarget
 
@@ -1124,15 +1165,144 @@ sub r0, r1, r0
 
 cmp r0, #0 
 bgt NoCapHP
+
+ldrb r2, [r5, #ConfigByte] 
+mov r3, #KeepHP1NotDieBool
+tst r3, r2
+bne SetHP1
+
+mov r0, #0x0
+strb r0, [r7, #0x13] @ curr hp 
+b Exit
+
+SetHP1:
 mov r0, #1 
 NoCapHP:
 strb r0, [r7, #0x13] @ curr hp 
 
 DoNotDamageTarget:
+Exit:
 
 pop {r4-r7}
 pop {r0}
 bx r0 
+
+
+@Let the dead unit speak death Quote to erase it.
+@We will take a reliable method even if it is a little inefficient.
+
+@To make it look good, deathQuote is run in bulk at the end.
+@The loop starts with DEATHQUOTE_NONE and is set to DEATHQUOTE_RELOOP with delayQuote.
+@If there is DEATHQUOTE_RELOOP after the end of the loop, set it to DEATHQUOTE_FIRE to execute deathQuote and loop again.
+.equ DEATHQUOTE_NONE, 0x0
+.equ DEATHQUOTE_RELOOP, 0x1
+.equ DEATHQUOTE_FIRE, 0x2
+
+.align 4
+.global AoE_RemoveDeadUnitLoop
+.type AoE_RemoveDeadUnitLoop, %function 
+AoE_RemoveDeadUnitLoop:
+push {r4-r7, lr} 
+
+mov r4, r0	@this procs
+
+@DeathQuote runs on the BattleEventEngine, so wait for it to finish.
+blh 0x0800D1B0	@BattleEventEngineExists	{U}
+@blh 0x0800D474	@BattleEventEngineExists	{J}
+cmp r0, #0x1
+beq AoE_RemoveDeadUnitLoop_Exit
+
+mov r7, #DEATHQUOTE_NONE
+
+AoE_RemoveDeadUnitLoop_Setup:
+@foeach all units
+ldr r5, =0x0202BE4C	@Units {U}
+@ldr r5, =0x0202BE48	@Units {J}
+ldr r6, =0x0202DDCC+(0x48*0x14)	@Units {U}
+@ldr r6, =0x0202DDC8+(0x48*0x14)	@Units {J}
+
+AoE_RemoveDeadUnitLoop_Loop:
+ldr r0, [r5]
+cmp r0, #0x0
+beq AoE_RemoveDeadUnitLoop_Next
+
+ldrb r0, [r5, #0x13] @ curr hp 
+cmp  r0, #0x0
+bne  AoE_RemoveDeadUnitLoop_Next
+
+ldrb r0, [r5, #0xC] @ curr state 
+mov  r1, #0x01 @hide flag
+and  r1, r0
+bne  AoE_RemoveDeadUnitLoop_Next
+
+ldrb r0, [r5, #0x10] @ curr X 
+cmp  r0, #0xff
+beq  AoE_RemoveDeadUnitLoop_Next
+
+AoE_RemoveDeadUnitLoop_Match:
+@This unit has 0 HP but has not died, so let it die.
+ldr  r0, [r5, #0x0] @targetUnit->unit
+ldrb r0, [r0, #0x4] @targetUnit->unit->id
+blh 0x080835A8	@ShouldDisplayDeathQuoteForChar	@{U}
+@blh 0x080858e0	@ShouldDisplayDeathQuoteForChar	@{J}
+
+cmp r0, #0x0
+beq AoE_RemoveDeadUnitLoop_KillUnit_Remove
+
+cmp r7, #DEATHQUOTE_FIRE
+beq AoE_RemoveDeadUnitLoop_FireDeathQuote
+
+@Death quotes will be executed together later.
+mov r7, #DEATHQUOTE_RELOOP
+b   AoE_RemoveDeadUnitLoop_Next
+
+AoE_RemoveDeadUnitLoop_FireDeathQuote:
+ldr  r0, [r5, #0x0] @targetUnit->unit
+ldrb r0, [r0, #0x4] @targetUnit->unit->id
+blh 0x080835DC   @DisplayDeathQuoteForChar	@{U}
+@blh 0x08085914   @DisplayDeathQuoteForChar	@{J}
+
+AoE_RemoveDeadUnitLoop_KillUnit_Remove:
+mov r0 ,r5
+blh 0x08078464   @MakeMOVEUNITForMapUnit	@{U}
+@blh 0x0807a888   @MakeMOVEUNITForMapUnit	@{J}
+blh 0x0807959C   @StartMoveUnitDeathBlend2	@{U}
+@blh 0x0807b9b0   @StartMoveUnitDeathBlend2	@{J}
+
+mov r0, r5
+blh 0x08032750   @KillUnitIfNoHealth    {U}
+@blh 0x0803269C   @KillUnitIfNoHealth    {J}
+
+blh 0x080321C8   @UpdateMapAndUnit    {U}
+@blh 0x08032114   @UpdateMapAndUnit    {J}	
+
+b AoE_RemoveDeadUnitLoop_Exit
+
+AoE_RemoveDeadUnitLoop_Next:
+add r5, #0x48
+cmp r5,r6
+blt AoE_RemoveDeadUnitLoop_Loop
+
+@The loop is over.
+@If the unit that has DeathQuote is dead and you are putting it off, DEATHQUOTE_RELOOP is defined, so after setting it to DEATHQUOTE_FIRE, turn the loop again.
+
+cmp r7, #DEATHQUOTE_RELOOP
+bne AoE_RemoveDeadUnitLoop_BreakProcLoop
+
+mov r7, #DEATHQUOTE_FIRE
+b   AoE_RemoveDeadUnitLoop_Setup
+
+AoE_RemoveDeadUnitLoop_BreakProcLoop:
+
+@Now that all the units have been explored, we're done.
+mov r0, r4 @  @ parent to break from 
+blh BreakProcLoop
+
+AoE_RemoveDeadUnitLoop_Exit:
+pop {r4-r7}
+pop {r0}
+bx r0
+
 
 
 .align 4
@@ -1158,7 +1328,8 @@ bne AlwaysHeal @ If friendly fire is on, then we heal regardless of allegiance
 mov r2, #0x0B 
 ldsb r0, [r6, r2] 
 ldsb r1, [r7, r2] 
-blh 0x8024d8c @AreAllegiancesAllied
+blh 0x8024d8c @AreAllegiancesAllied	@{U}
+@blh 0x8024D3C @AreAllegiancesAllied	@{J}
 cmp r0, #0 
 beq DoNotHealTarget
 
@@ -1180,7 +1351,8 @@ bne CleanupHealing @ Fixed Damage means to not use Str/Mag for staves
 mov r0, #MagBasedBool 
 tst r0, r1 
 beq UseStr 
-mov r1, #0x3A
+mov r1, #0x3A		@{U}
+@mov r1, #0x1A		@{J}
 ldrb r0, [r6, r1] @ Use Mag 
 add r4, r0 
 b CleanupHealing 

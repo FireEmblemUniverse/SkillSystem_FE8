@@ -182,7 +182,7 @@
 
 // If uncommented, Area of Effect (AoE) attacks will be enabled. 
 // See ExternalHacks/AoE/Installer.event for details. 
-//#define INSTALL_AoE
+#define INSTALL_AoE
 
 // If uncommented, Unlock staves will work on chests.
 // #define UNLOCK_WORKS_ON_CHESTS
