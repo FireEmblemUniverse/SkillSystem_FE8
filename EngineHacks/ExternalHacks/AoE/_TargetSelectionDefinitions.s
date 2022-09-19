@@ -20,6 +20,8 @@
 .set GetItemAttributes, 0x801756C 
 .set CanUnitUseWeapon, 0x8016574
 .set CanUnitUseStaff, 0x80167A4
+.set MovementMap, 0x202E4E0 
+.set BackupMovementMap, 0x202E4F0 
 
 @----------------------------------------------------------
 @Relevant Ram Offsets

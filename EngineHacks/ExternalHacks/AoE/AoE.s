@@ -228,8 +228,91 @@ pop {r4-r6}
 pop {r0}
 bx r0 
 
+.ltorg 
+.global AoE_DrawDamageDealt
+.type AoE_DrawDamageDealt, %function 
+AoE_DrawDamageDealt: 
+push {r4-r7, lr} 
+mov r4, r9 
+push {r4} 
+
+bl Draw_LoadNumbers @ so palette etc will be ready 
+
+@ find all affected tiles in movement map and display a number there 
+ldr r4, =MovementMap @ Movement Map	@{U}
+ldr r4, [r4] 
+mov r9, r4 
+
+ldr r3, =0x202E4D4 @ Map Size	@{U}
+@ldr r3, =0x202E4D0 @ Map Size	@{J}
+ldrh r6, [r3] @ XX Boundary size 
+ldrh r7, [r3, #2] @ YY Boundary size 
 
 
+
+mov r5, #0 @ Y coord 
+sub r5, #1 
+
+DamageDealt_YLoop:
+add r5, #1 
+cmp r5, r7 
+bge BreakDamageDealtLoop
+
+mov r4, #0 
+sub r4, #1 
+DamageDealt_XLoop:
+lsl r0, r5, #2 @ 4 times Y coord 
+mov r3, r9 @ movement map 
+ldr r1, [r3, r0] @ beginning of Y row 
+
+DamageDealt_XLoop_2:
+add r4, #1 
+cmp r4, r6 
+bge DamageDealt_YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r1, r4] @ Xcoord to check 
+cmp r0, #0xFF 
+beq DamageDealt_XLoop_2
+
+@ We found a valid tile 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+
+
+ldr 	r2, =UnitMapRows
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq DamageDealt_XLoop 
+
+
+@ drawing part 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+@ r0 = xx coord 
+@ r1 = yy coord 
+mov r2, #1 @ frames since started 
+mov r3, #13 @ damage to display 
+bl Draw_NumberDuringAoE
+
+b DamageDealt_XLoop 
+
+
+BreakDamageDealtLoop: 
+
+pop {r4} 
+mov r9, r4 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+@ while hovering, this is only called when hovering over a new menu option 
+@ while in free select, this is called each frame 
 .align 4
 .global AoE_DisplayDamageArea
 .type AoE_DisplayDamageArea, %function 
@@ -243,6 +326,7 @@ mov r4, r0
 mov r5, r1 
 mov r6, r2 @ AoE_GetTableEntryPointer
 mov r7, r3 @ rotation byte 
+
 
 
 ldr r0, =0x202E4E0 @ Movement map	@{U}
@@ -288,6 +372,7 @@ DisplayColour:
 blh 0x801da98 @DisplayMoveRangeGraphics	@{U}
 @blh 0x801D6FC @DisplayMoveRangeGraphics	@{J}
 
+bl AoE_DrawDamageDealt 
 
 pop {r4-r7}
 pop {r0} 

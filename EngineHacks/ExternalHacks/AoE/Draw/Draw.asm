@@ -101,6 +101,12 @@ bx r1
 .equ RegisterObjectTileGraphics, 0x08012FF4	@{U}
 @.equ RegisterObjectTileGraphics, 0x080130AC	@{J}
 
+.global Draw_LoadNumbers
+.type Draw_LoadNumbers, %function 
+Draw_LoadNumbers: 
+push {r4-r7, lr}
+b SkipStoringTime
+
 .global Draw_StoreToBuffer
 .type Draw_StoreToBuffer, %function 
 Draw_StoreToBuffer:
@@ -112,7 +118,7 @@ mov r1, #0
 str r1, [r0, #0x30] @ store 0 to Proc + 0x68
 @ initial game time 
 
-
+SkipStoringTime: 
 
 
 
@@ -816,7 +822,7 @@ blh CpuFastSet, r4
 pop   {r4}
 pop   {r1}
 bx    r1
-
+.ltorg 
 
 
 
@@ -832,8 +838,6 @@ bx    r1
 
 .global Draw_NumberDuringBattle
 .type Draw_NumberDuringBattle, %function 
-
-
 Draw_NumberDuringBattle:
 push {r4-r7, lr}
 
@@ -958,6 +962,121 @@ pop {r1}
 bx r1 
 
 .ltorg
+
+.global Draw_NumberDuringAoE
+.type Draw_NumberDuringAoE, %function 
+Draw_NumberDuringAoE:
+push {r4-r7, lr}
+
+mov r6, r2 @ frames since started 
+mov r7, r3 @ damage to display 
+
+lsl r0, #4 
+lsl r1, #4 
+
+ldr r3, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
+@ldr r3, =0x202BCB8 @(gCurrentRealCameraPos )	@{J}
+ldrh r2, [r3]
+ldrh r3, [r3, #2] 
+
+sub r0, r2 
+sub r1, r3 
+
+lsl r0, #24 @ only 9 bits used for coords 
+lsr r0, #24 
+lsl r1, #24 
+lsr r1, #24 
+
+
+mov r4, r0 @ XX 
+mov r5, r1 @ YY 
+
+@If the flag 0xEE is enabled, the numbers will not be drawn.
+ldr r0, =BATTLE_MAPANIMATION_NUMBERS_FLAGLink
+ldr r0, [r0]
+blh CheckEventId
+cmp r0, #0x0
+bne ExitDraw_NumberDuringAoE
+
+
+
+
+blh GetGameClock 
+mov r2, r6 @ frames since started 
+sub r0, r2 @ Number of frames since animation started 
+mov r6, r0 
+lsr r6, #1 @ every 2 frames move upwards 
+cmp r6, #12 
+blt Continue_DrawNumber2
+mov r6, #12 @ max height is +12 above 
+Continue_DrawNumber2:
+sub r5, r6 
+
+lsr r0, r6, #1 
+
+add r0, #4 
+DivisionLoop2:
+sub r0, #4 
+cmp r0, #4 
+bgt DivisionLoop2 
+
+add r4, #4 
+sub r4, r0 @ subtract or add based on the remainder so that it will wiggle ? 
+
+
+mov r0, r7 @ damage to display 
+
+cmp r0, #99 
+ble NoCap2 
+mov r0, #99 @ Max damage to display, i guess 
+NoCap2:
+mov r7, r0 @ Damage to deal 
+
+mov r1, r7 
+cmp r7, #10 
+blt SkipTensDigit2
+
+add r1, #10 
+mov r2, #0 @ counter
+sub r2, #1 
+
+ 
+GetRemainderLoop2:
+sub r1, #10 
+add r2, #1 
+cmp r1, #10 
+bge GetRemainderLoop2 
+@r2 as Top digit only 
+mov r7, r1 @ remainder only 
+
+
+
+mov r0, r4 
+mov r1, r5 
+
+
+bl Draw_NumberOAM
+
+SkipTensDigit2:
+mov r0, r4 
+mov r1, r5 
+add r0, #8 @ 8 pixels to the right for ones column 
+mov r2, r7 
+bl Draw_NumberOAM
+
+ExitDraw_NumberDuringAoE:
+
+pop {r4-r7}
+pop {r1}
+bx r1 
+
+
+
+
+
+
+
+
 .align 4
 
 @Returns the exact damage r0.
@@ -1071,6 +1190,8 @@ GetDisplayDamage:
 .equ SpriteData8x8,			0x08590F44	@{U}
 @.equ SpriteData8x8,			0x085B8CDC	@{J}
 
+.type Draw_NumberOAM, %function 
+.global Draw_NumberOAM 
 Draw_NumberOAM:
 @ referenced Zane's MMB function for this 
 .type	Draw_NumberOAM, %function
