@@ -8,6 +8,8 @@
 // define BATTLE_MAPANIMATION_NUMBERS_FLAG as desired (default is 0xEE) 
 #include "Draw/Installer.event" 
 
+#include "QoL_Testing.event" 
+
 // Install text if you are using FEBuilder. 
 #ifdef FEBUILDER_EXTRA_ORG
 #include "FEBuilderGBA/EN.event"	//{U}
@@ -140,8 +142,8 @@ Animation_IDByte, #15
 ALIGN 4 
 AoE_Table:
 // Entry 0
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 0 0 IronSword
+BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
 BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
 BYTE 5 5 // damage range 
 BYTE 3 7 // Attack range 
@@ -149,8 +151,8 @@ BYTE 0 1 // Index of RangeMask, Animation
 
 
 // Entry 1
-BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
+BYTE 0 0 0 Heal 
+BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
 BYTE 5 5 // damage range 
 BYTE 0 4 // Attack range 

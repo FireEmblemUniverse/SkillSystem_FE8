@@ -17,7 +17,7 @@
 .type AoE_Usability, %function 
 
 AoE_Usability:
-push {r4-r5, lr} 
+push {r4-r6, lr} 
 @ given r0 = specific AoE table entry we want 
 mov r4, r0 
 
@@ -131,7 +131,37 @@ cmp r2, #0
 beq ReturnFalse
 cmp r2, r0 
 bne InventoryLoop
-@ They have said item, so continue
+@ They have said item, so check if can wield / is staff 
+ldrh r6, [r5, r1] @ item SHORT 
+mov r0, r6 
+blh GetItemAttributes
+mov r1, #5 @ Equippable / Staff 
+tst r0, r1 
+beq ValidItem 
+
+mov r1, #4 @ Staff 
+tst r0, r1 
+bne IsStaff
+
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
+mov r1, r6 
+blh CanUnitUseWeapon
+cmp r0, #1 
+beq ValidItem 
+b ReturnFalse 
+
+
+IsStaff: 
+
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
+mov r1, r6 
+blh CanUnitUseStaff
+cmp r0, #1 
+beq ValidItem 
+b ReturnFalse 
+
 ValidItem:
 
 @CheckHPCost
@@ -156,10 +186,10 @@ mov r0, #3
 
 
 Finish_Usability: 
-pop {r4-r5}
+pop {r4-r6}
 pop {r1} 
 bx r1 
-
+.ltorg 
 
 
 .align 4
