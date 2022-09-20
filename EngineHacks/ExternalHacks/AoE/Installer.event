@@ -3,6 +3,8 @@
 // briefly uses a byte in ram at 0x0203F101, which combat arts also use. 
 // it should not conflict with combat arts. 
 
+
+
 // This hack is required for animations 
 // Numbers will display over map battles unless flag BATTLE_MAPANIMATION_NUMBERS_FLAG is on. 
 // define BATTLE_MAPANIMATION_NUMBERS_FLAG as desired (default is 0xEE) 
@@ -144,8 +146,8 @@ AoE_Table:
 // Entry 0
 BYTE 0 0 0 IronSword
 BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
-BYTE 5 5 // damage range 
+BYTE 0 0 //FriendlyFireBool|DepleteItemBool
+BYTE 15 15 // damage range 
 BYTE 3 7 // Attack range 
 BYTE 0 1 // Index of RangeMask, Animation
 
@@ -162,7 +164,7 @@ BYTE 1 1 // Index of RangeMask, Animation
 BYTE 0 0 0 0 
 BYTE 0 0 0 0 // Always usable by anyone 
 BYTE 0 FriendlyFireBool
-BYTE 5 10 // damage range 
+BYTE 5 5 // damage range 
 BYTE 0 4 // Attack range 
 BYTE 2 2 // Index of RangeMask, AnimationALL,
 

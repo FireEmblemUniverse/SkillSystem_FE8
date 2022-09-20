@@ -1194,7 +1194,6 @@ GetDisplayDamage:
 .global Draw_NumberOAM 
 Draw_NumberOAM:
 @ referenced Zane's MMB function for this 
-.type	Draw_NumberOAM, %function
 
 @ Inputs:
 @ r0: X coordinate
@@ -1235,6 +1234,109 @@ pop		{r0}
 bx		r0
 
 
+.type Draw_HPBar_AoE, %function 
+.global Draw_HPBar_AoE
+Draw_HPBar_AoE:
+@ Inputs:
+@ r0: X coordinate
+@ r1: Y coordinate
+@ r2: z / 12 as amount of bar to show 
+
+push	{r4-r6, lr}
+
+mov r4, r2 @ z/12 as remaining hp 
+
+@cmp r2, #12 
+@beq ExitAoE_DrawHPBars
+
+
+lsl r0, #4 @ xx,yy in 16x16 squares, not in pixels 
+lsl r1, #4 
+
+
+ldr r3, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
+@ldr r3, =0x202BCB8 @(gCurrentRealCameraPos )	@{J}
+ldrh r2, [r3]
+ldrh r3, [r3, #2] 
+
+sub r0, r2 
+sub r1, r3 
+add r1, #10 @ pixels down 
+
+lsl r0, #24 @ only 9 bits used for coords 
+lsr r0, #24 
+lsl r1, #24 
+lsr r1, #24 
+
+mov r5, r0 @ xx 
+mov r6, r1 @ yy 
+
+cmp r4, #12 
+bne SkipHorizontalFlip
+@x coord bit 12    Horizontal Flip      (0=Normal, 1=Mirrored)
+mov r2, #1 
+lsl r2, #12 
+orr r0, r2 @ horizontal flip 
+SkipHorizontalFlip: 
+
+@ We'll need all scratch registers,
+@ so we set lr first
+
+ldr		r3, =PushToSecondaryOAM 
+mov		lr, r3
+
+lsl		r2,r4,#1
+ldr		r3,=HPBarsTiles_Left		@EA defined
+add		r2,r3
+ldrh	r3,[r2]
+
+
+mov r2, #16 @ palette # 16 is used for hp bars 
+lsl r2, #12 @ bits 12-15 
+orr r3, r2 
+
+@ palette | flips | tile 
+
+ldr		r2, =SpriteData8x8 @ OAM data for a single 8x8 sprite
+.short 0xf800
+
+ldr		r3, =PushToSecondaryOAM 
+mov		lr, r3
+mov r0, r5 
+mov r1, r6 
+add r0, #8 @ 8 pixels right 
+
+cmp r4, #0 
+bne SkipHorizontalFlip2
+@x coord bit 12    Horizontal Flip      (0=Normal, 1=Mirrored)
+mov r2, #1 
+lsl r2, #12 
+orr r0, r2 @ horizontal flip 
+SkipHorizontalFlip2: 
+
+
+lsl		r2,r4,#1
+ldr		r3,=HPBarsTiles_Right		@EA defined
+add		r2,r3
+ldrh	r3,[r2]
+
+
+
+mov r2, #16 @ palette # 16 is used for hp bars 
+lsl r2, #12 @ bits 12-15 
+orr r3, r2 
+ldr		r2, =SpriteData8x8 @ OAM data for a single 8x8 sprite
+.short 0xF800 
+
+ExitAoE_DrawHPBars:
+
+pop {r4-r6} 
+
+pop		{r0}
+bx		r0
+
+
+.equ gOAM_16x16Obj, 0x8590f4c 
 
 
 .global Draw_Cleanup

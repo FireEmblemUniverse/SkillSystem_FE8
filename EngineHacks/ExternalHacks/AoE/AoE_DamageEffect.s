@@ -70,11 +70,14 @@ mov r4, r0
 @r0 = table effect address 
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
+@r3 = do min damage bool 
 mov r6, r1 
 mov r7, r2 
 
 
 ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound mt 
+cmp r3, #1 
+beq FoundMt @ always return minimum damage in this case 
 ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound mt
 cmp r0, r1 
 bgt FoundMt @ if lower bound is higher than upper bound because of user error, then we just use the lower bound 

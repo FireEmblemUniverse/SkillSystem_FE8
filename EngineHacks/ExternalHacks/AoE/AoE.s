@@ -233,8 +233,13 @@ bx r0
 .type AoE_DrawDamageDealt, %function 
 AoE_DrawDamageDealt: 
 push {r4-r7, lr} 
-mov r4, r9 
+mov r4, r8 
 push {r4} 
+mov r5, r9
+push {r5} 
+mov r6, r10 
+push {r6} 
+mov r8, r0 @ aoe table entry 
 
 bl Draw_LoadNumbers @ so palette etc will be ready 
 
@@ -288,24 +293,65 @@ add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@deployment byte 
 cmp r0, #0 
 beq DamageDealt_XLoop 
-
+blh GetUnit 
+cmp r0, #0 
+beq DamageDealt_XLoop 
+mov r10, r0 @ Target 
 
 @ drawing part 
-mov r0, r4 @ XX 
-mov r1, r5 @ YY
+
+
+
+
+ldr r0, =CurrentUnit 
+ldr r0, [r0] @ actor 
+mov r1, r10 @ target 
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage / highest possible hp left 
+bl AoE_CalcTargetRemainingHP
+
+mov r3, r10 @ target 
+ldrb r3, [r3, #0x13] @ Current HP 
+cmp r3, r0 
+beq DamageDealt_XLoop @ show nothing for 0 damage 
+
+sub r3, r0 @ damage
+
+@mov r0, r4 @ XX 
+@mov r1, r5 @ YY
 @ r0 = xx coord 
 @ r1 = yy coord 
-mov r2, #1 @ frames since started 
-mov r3, #13 @ damage to display 
-bl Draw_NumberDuringAoE
+@mov r2, #0 @ frames since started 
+@ r3 = damage to deal 
+@bl Draw_NumberDuringAoE
+
+@ r0 as remaining hp 
+mov r0, r3 @ damage 
+mov r1, #12 
+mul r0, r1 
+mov r3, r10 @ target 
+ldrb r1, [r3, #0x12] @ Max HP 
+cmp r1, #0 
+beq DamageDealt_XLoop @ do not divide by 0 
+swi #6 @ @remaining hp*12/maxHP
+mov r2, r0 @ fraction of hp bar to use 
+
+
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+bl Draw_HPBar_AoE
 
 b DamageDealt_XLoop 
 
 
 BreakDamageDealtLoop: 
-
+pop {r6}
+mov r10, r6 
+pop {r5}
+mov r9, r5 
 pop {r4} 
-mov r9, r4 
+mov r8, r4 
 pop {r4-r7} 
 pop {r0} 
 bx r0 
@@ -372,6 +418,7 @@ DisplayColour:
 blh 0x801da98 @DisplayMoveRangeGraphics	@{U}
 @blh 0x801D6FC @DisplayMoveRangeGraphics	@{J}
 
+mov r0, r6 @ aoe table entry 
 bl AoE_DrawDamageDealt 
 
 pop {r4-r7}
@@ -1211,31 +1258,25 @@ pop {r4-r6}
 pop {r0} 
 bx r0 
 
-
+.ltorg 
 @ hp cost 
 @ wexp/item type req ?
 
 
 
-
-
-
-.align 4
-.global AoE_DamageUnitsInRange
-.type AoE_DamageUnitsInRange, %function 
-AoE_DamageUnitsInRange:
+.type AoE_CalcTargetRemainingHP, %function 
+.global AoE_CalcTargetRemainingHP 
+AoE_CalcTargetRemainingHP:
 push {r4-r7, lr} 
 
-@ given r0 unit found in range, damage them 
-
-
-
-mov r7, r0 @ target 
-ldr r6, =CurrentUnit 
-ldr r6, [r6] @ actor
-
-bl AoE_GetTableEntryPointer
-mov r5, r0 @ table effect address 
+@ r0 = actor 
+@ r1 = target 
+@ r2 = AoE table effect address 
+@ r3 = do min damage bool 
+mov r7, r1 @ target 
+mov r6, r0 @ actor 
+mov r5, r2 @ table 
+mov r4, r3 @ do min damage bool 
 
 ldrb r1, [r5, #ConfigByte] 
 mov r0, #FriendlyFireBool
@@ -1263,6 +1304,7 @@ mov r2, r7 @ target
 @r0 = effect index
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
+mov r3, r4 @ do min damage bool 
 bl AoE_RegularDamage @ Returns damage to deal 
 b CleanupDamage 
 
@@ -1279,7 +1321,7 @@ ldrb r1, [r7, #0x13] @ curr hp
 sub r0, r1, r0 
 
 cmp r0, #0 
-bgt NoCapHP
+bgt ReturnRemainingHP 
 
 ldrb r2, [r5, #ConfigByte] 
 mov r3, #KeepHP1NotDieBool
@@ -1287,16 +1329,50 @@ tst r3, r2
 bne SetHP1
 
 mov r0, #0x0
-strb r0, [r7, #0x13] @ curr hp 
-b Exit
+b ReturnRemainingHP 
 
 SetHP1:
 mov r0, #1 
+b ReturnRemainingHP 
+
+DoNotDamageTarget: 
+ldrb r0, [r7, #0x13] @ curr hp 
+
 NoCapHP:
+
+ReturnRemainingHP: 
+
+pop {r4-r7}
+pop {r1} 
+bx r1 
+.ltorg 
+
+
+
+.align 4
+.global AoE_DamageUnitsInRange
+.type AoE_DamageUnitsInRange, %function 
+AoE_DamageUnitsInRange:
+push {r4-r7, lr} 
+
+@ given r0 unit found in range, damage them 
+
+
+
+mov r7, r0 @ target 
+ldr r6, =CurrentUnit 
+ldr r6, [r6] @ actor
+
+bl AoE_GetTableEntryPointer
+mov r5, r0 @ table effect address 
+
+mov r0, r6 @ actor 
+mov r1, r7 @ target 
+mov r2, r5 @ table 
+mov r3, #0 @ return damage range 
+bl AoE_CalcTargetRemainingHP
 strb r0, [r7, #0x13] @ curr hp 
 
-DoNotDamageTarget:
-Exit:
 
 pop {r4-r7}
 pop {r0}

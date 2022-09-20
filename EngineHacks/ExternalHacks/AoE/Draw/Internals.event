@@ -36,6 +36,103 @@ AnimTable2:
 WORD 0 0 // 0th animation is blank 
 FillTwentyEntries 
 
+ALIGN 4 
+HPBarsTiles_Left: 
+
+SHORT 0x12
+SHORT 0x12
+SHORT 0x14
+SHORT 0x16
+SHORT 0x32
+SHORT 0x34
+SHORT 0x36
+SHORT 0x52
+SHORT 0x54
+SHORT 0x56
+SHORT 0x72
+SHORT 0x74
+SHORT 0x75 // flipped horizontally 
+
+
+SHORT 0x75 // flipped horizontally 
+SHORT 0x74 
+SHORT 0x72 
+SHORT 0x56 
+SHORT 0x54 
+SHORT 0x52 
+SHORT 0x36 
+SHORT 0x34 
+SHORT 0x32 
+SHORT 0x16 
+SHORT 0x14 
+SHORT 0x12 
+SHORT 0x12 
+
+
+
+ALIGN 4 
+HPBarsTiles_Right: 
+SHORT 0x12
+SHORT 0x13
+SHORT 0x15
+SHORT 0x17
+SHORT 0x33
+SHORT 0x35
+SHORT 0x37
+SHORT 0x53
+SHORT 0x55
+SHORT 0x57
+SHORT 0x73
+SHORT 0x75
+SHORT 0x75
+
+
+
+SHORT 0x75 
+SHORT 0x75 
+SHORT 0x73 
+SHORT 0x57 
+SHORT 0x55 
+SHORT 0x53 
+SHORT 0x37 
+SHORT 0x35 
+SHORT 0x33 
+SHORT 0x17 
+SHORT 0x15 
+SHORT 0x13 
+SHORT 0x12 // should be 0x12 flipped horizontally 
+
+
+
+
+
+
+
+
+
+
+
+/*
+  ALIGN 4
+  HPFrames2:
+    #incbin "HPFrames.bin"
+
+  ALIGN 4
+  HPFramePointers2:
+    POIN HPFrames2
+    POIN HPFrames2+8
+    POIN HPFrames2+16
+    POIN HPFrames2+24
+    POIN HPFrames2+32
+    POIN HPFrames2+40
+    POIN HPFrames2+48
+    POIN HPFrames2+56
+    POIN HPFrames2+64
+    POIN HPFrames2+72
+    POIN HPFrames2+80
+    POIN HPFrames2+88
+*/
+
 
 #ifndef PROC_YIELD
 	#define PROC_YIELD "PROC_YEILD"
