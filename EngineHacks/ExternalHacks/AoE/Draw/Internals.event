@@ -38,8 +38,6 @@ FillTwentyEntries
 
 ALIGN 4 
 HPBarsTiles_Left: 
-
-SHORT 0x12
 SHORT 0x12
 SHORT 0x14
 SHORT 0x16
@@ -51,28 +49,12 @@ SHORT 0x54
 SHORT 0x56
 SHORT 0x72
 SHORT 0x74
-SHORT 0x75 // flipped horizontally 
-
-
-SHORT 0x75 // flipped horizontally 
-SHORT 0x74 
-SHORT 0x72 
-SHORT 0x56 
-SHORT 0x54 
-SHORT 0x52 
-SHORT 0x36 
-SHORT 0x34 
-SHORT 0x32 
-SHORT 0x16 
-SHORT 0x14 
-SHORT 0x12 
-SHORT 0x12 
-
+SHORT 0x75 // empty bar special case: flipped horizontally 
+SHORT 0x12 // full 
 
 
 ALIGN 4 
 HPBarsTiles_Right: 
-SHORT 0x12
 SHORT 0x13
 SHORT 0x15
 SHORT 0x17
@@ -84,32 +66,8 @@ SHORT 0x55
 SHORT 0x57
 SHORT 0x73
 SHORT 0x75
-SHORT 0x75
-
-
-
-SHORT 0x75 
-SHORT 0x75 
-SHORT 0x73 
-SHORT 0x57 
-SHORT 0x55 
-SHORT 0x53 
-SHORT 0x37 
-SHORT 0x35 
-SHORT 0x33 
-SHORT 0x17 
-SHORT 0x15 
-SHORT 0x13 
-SHORT 0x12 // should be 0x12 flipped horizontally 
-
-
-
-
-
-
-
-
-
+SHORT 0x75 // empty special case 
+SHORT 0x12 // full hp bar and flipped horizontally 
 
 
 /*

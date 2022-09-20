@@ -1244,10 +1244,8 @@ Draw_HPBar_AoE:
 
 push	{r4-r6, lr}
 
-mov r4, r2 @ z/12 as remaining hp 
+mov r4, r2 @ z/11 as remaining hp 
 
-@cmp r2, #12 
-@beq ExitAoE_DrawHPBars
 
 
 lsl r0, #4 @ xx,yy in 16x16 squares, not in pixels 
@@ -1271,7 +1269,7 @@ lsr r1, #24
 mov r5, r0 @ xx 
 mov r6, r1 @ yy 
 
-cmp r4, #12 
+cmp r4, #11 
 bne SkipHorizontalFlip
 @x coord bit 12    Horizontal Flip      (0=Normal, 1=Mirrored)
 mov r2, #1 
@@ -1306,7 +1304,7 @@ mov r0, r5
 mov r1, r6 
 add r0, #8 @ 8 pixels right 
 
-cmp r4, #0 
+cmp r4, #12 @ special case: full hp bar 
 bne SkipHorizontalFlip2
 @x coord bit 12    Horizontal Flip      (0=Normal, 1=Mirrored)
 mov r2, #1 

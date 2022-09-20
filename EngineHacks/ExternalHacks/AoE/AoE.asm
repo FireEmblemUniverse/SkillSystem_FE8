@@ -313,7 +313,9 @@ bl AoE_CalcTargetRemainingHP
 mov r3, r10 @ target 
 ldrb r3, [r3, #0x13] @ Current HP 
 cmp r3, r0 
-beq DamageDealt_XLoop @ show nothing for 0 damage 
+beq DamageDealt_ShowFull @ show nothing for 0 damage 
+cmp r0, #0 
+beq DamageDealt_ShowEmpty 
 
 sub r3, r0 @ damage
 
@@ -326,19 +328,38 @@ sub r3, r0 @ damage
 @bl Draw_NumberDuringAoE
 
 @ r0 as remaining hp 
-mov r0, r3 @ damage 
-mov r1, #12 
-mul r0, r1 
 mov r3, r10 @ target 
 ldrb r1, [r3, #0x12] @ Max HP 
-cmp r1, #0 
+mov r3, r1 
+sub r3, r0 @ max hp - final hp = damage taken 
+mov r0, r3 
+
+mov r2, #11
+mul r0, r2 
+mov r3, r10 @ target 
+
+cmp r1, #0 @ max hp 
 beq DamageDealt_XLoop @ do not divide by 0 
-swi #6 @ @remaining hp*12/maxHP
-mov r2, r0 @ fraction of hp bar to use 
+swi #6 @ @damage*12/maxHP
+mov r2, r0 @ fraction of hp bar to be damaged by 
+b CallDrawHpBar 
+
+DamageDealt_ShowEmpty:
+mov r2, #11 
+b CallDrawHpBar 
+DamageDealt_ShowFull:
+mov r2, #12
+b CallDrawHpBar 
 
 
+CallDrawHpBar: 
 mov r0, r4 @ XX 
 mov r1, r5 @ YY
+
+cmp r2, #12 
+beq SkipThis 
+mov r11, r11 
+SkipThis: 
 
 bl Draw_HPBar_AoE
 
