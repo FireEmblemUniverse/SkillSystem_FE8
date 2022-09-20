@@ -129,6 +129,14 @@ PROC_CALL_ROUTINE(AoE_GenericEffect)
 PROC_LOOP_ROUTINE(AoE_RemoveDeadUnitLoop)
 PROC_END
 
+ALIGN 4
+AoE_DrawDamageProc:
+PROC_YIELD // Buffer.
+PROC_LABEL(0)
+PROC_LOOP_ROUTINE(AoE_DrawDamageFunc)
+PROC_LABEL(1) 
+PROC_END
+
 
 AoE_MainProcName:
 String("AoE_MainProc") ; BYTE 0

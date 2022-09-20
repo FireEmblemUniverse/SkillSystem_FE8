@@ -967,9 +967,44 @@ mov r1, #1
 blh EventEngine 
 
 
+
 pop {r4-r7}
 pop {r0} 
 bx r0 
+
+.type AoE_DrawDamageFunc, %function 
+.global AoE_DrawDamageFunc 
+AoE_DrawDamageFunc: 
+push {r4-r7, lr} 
+mov r4, r0 
+ldr r3, =MemorySlot 
+add r3, #4*0x0B @ sB 
+ldr r0, [r3] 
+beq Break 
+ldrh r0, [r3] @ XX 
+ldrh r1, [r3, #2] @ YY 
+mov r2, #0 @ frames since started 
+mov r3, #13 @ damage to display 
+bl Draw_NumberDuringAoE
+b Loop_AoE_DrawDamageFunc
+Break: 
+mov r0, r4 @ parent 
+mov r1, #1 
+blh ProcGoto
+b Exit_AoE_DrawDamageFunc 
+Loop_AoE_DrawDamageFunc: 
+mov r1, #0 
+mov r0, r4 
+blh ProcGoto
+
+Exit_AoE_DrawDamageFunc: 
+
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+.equ ProcGoto, 0x8002F24 
 
 @ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
 .equ New6CBlocking,                0x08002CE0	@{U}
@@ -990,6 +1025,21 @@ blh New6CBlocking
 pop {r4-r5}
 pop {r0} 
 bx r0 
+
+.global AoE_StartDrawingProc
+.type AoE_StartDrawingProc, %function 
+AoE_StartDrawingProc:
+push {lr} 
+mov r1, #3 @ root proc 3 
+ldr r0, =AoE_DrawDamageProc
+@ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
+blh New6C
+
+
+pop {r0} 
+bx r0 
+.ltorg 
+
 
 	.equ BreakProcLoop, 0x08002E94	@{U}
 @	.equ BreakProcLoop, 0x08002DE4	@{J}

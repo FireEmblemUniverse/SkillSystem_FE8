@@ -57,7 +57,7 @@ add r3, #2
 strh r2, [r3] @ YY 
 
 bl AoE_Animation
-
+bl AoE_StartDrawingProc
 
 ldr r3, =MemorySlot
 mov r2, #0x68 @ byte 0x68 of Proc  
