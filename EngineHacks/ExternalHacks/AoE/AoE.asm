@@ -1747,8 +1747,7 @@ mov r0, r5
 blh 0x08032750   @KillUnitIfNoHealth    {U}
 @blh 0x0803269C   @KillUnitIfNoHealth    {J}
 
-blh 0x080321C8   @UpdateMapAndUnit    {U}
-@blh 0x08032114   @UpdateMapAndUnit    {J}	
+
 
 b AoE_RemoveDeadUnitLoop_Exit
 
@@ -1783,12 +1782,129 @@ bx r0
 .equ BATTLE_HandleItemDrop, 0x80328D0 
 .equ gProcPlayerPhase, 0x859AAD8 
 
-.type AoE_GotItemDropLoopInit, %function 
-.global AoE_GotItemDropLoopInit
-AoE_GotItemDropLoopInit:
-mov r1, #2 
-str r1, [r0, #0x40] @ count down for droppable items 
-bx lr 
+.type AoE_GotItemDropInit, %function 
+.global AoE_GotItemDropInit
+AoE_GotItemDropInit:
+push {r4-r7, lr} 
+mov r4, r8
+mov r5, r9 
+mov r6, r10 
+mov r7, r11 
+push {r4-r7} 
+mov r8, r0 @ parent proc 
+mov r0, #0 
+mov r11, r0 @ count of units 
+
+mov r3, r8
+add r3, #0x2c @ set as 0 
+str r0, [r3] 
+str r0, [r3, #4] @ 34 
+str r0, [r3, #8] @ 38 
+str r0, [r3, #12] @ 3C 
+str r0, [r3, #16] @ 40 
+str r0, [r3, #20] @ 40 
+
+
+@ find all affected tiles in range map 
+@ldr r4, =RangeMapRows 
+ldr r4, =MovementMap
+ldr r4, [r4] 
+mov r9, r4 
+
+ldr r3, =0x202E4D4 @ Map Size	@{U}
+@ldr r3, =0x202E4D0 @ Map Size	@{J}
+ldrh r6, [r3] @ XX Boundary size 
+ldrh r7, [r3, #2] @ YY Boundary size 
+
+
+
+mov r5, #0 @ Y coord 
+sub r5, #1 
+
+GotItem_YLoop:
+add r5, #1 
+cmp r5, r7 
+bge BreakGotItemLoop
+
+mov r4, #0 
+sub r4, #1 
+GotItem_XLoop:
+lsl r0, r5, #2 @ 4 times Y coord 
+mov r3, r9 @ movement map 
+ldr r1, [r3, r0] @ beginning of Y row 
+
+GotItem_XLoop_2:
+add r4, #1 
+cmp r4, r6 
+bge GotItem_YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r1, r4] @ Xcoord to check 
+cmp r0, #0xFF 
+beq GotItem_XLoop_2
+
+@ We found a valid tile 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+
+@ 0x80321c8 
+
+
+ldr 	r2, =UnitMapRows
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq GotItem_XLoop 
+mov r10, r0 @ target deployment byte 
+blh GetUnit 
+cmp r0, #0 
+beq GotItem_XLoop 
+ldr r1, [r0, #0xC] 
+mov r2, #0x10 
+lsl r2, #8 @ 0x1000 is DropItem bitflag 
+tst r1, r2 
+beq GotItem_XLoop 
+ldrb r1, [r0, #0x13] @ current HP 
+cmp r1, #0 
+bne GotItem_XLoop 
+
+mov r1, r10 @ target deployment byte 
+
+
+
+mov r2, r11 @ count of targets 
+
+
+mov r3, r8 @ proc 
+add r3, #0x30 
+strb r1, [r3, r2] @ count down for droppable items 
+
+add r2, #1 
+mov r11, r2 
+
+mov r10, r0 @ Target 
+
+cmp r2, #16 
+bge BreakGotItemLoop @ up to 16 dropped items at once 
+b GotItem_XLoop 
+
+
+BreakGotItemLoop: 
+
+blh 0x080321C8 @UpdateMapAndUnit    {U}
+@blh 0x08032114   @UpdateMapAndUnit    {J}	
+
+pop {r4-r7} 
+mov r8, r4 
+mov r9, r5 
+mov r10, r6 
+mov r11, r7 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
 .ltorg 
 
 .type AoE_GotItemDrop, %function 
@@ -1799,53 +1915,42 @@ mov r4, r0 @ parent proc
 
 @ loop through affected units and find Nth case 
 @ try drop item for each 0 hp unit 
-ldr r0, [r4, #0x40] @ count down 
-cmp r0, #2 
-beq FirstCase
-b SecondCase 
 
-FirstCase: 
-mov r0, #1 
-blh GetUnit 
-mov r1, r0 @ unit 
+ldr r1, =CurrentUnit 
+ldr r1, [r1] @ unit 
 ldr r0, =Attacker 
 str r1, [r4, #0x54] @ unit used in gProcGotItemPopup 
 blh InitBattleUnitFromUnit
 
-mov r0, #0x82 @ ONeil 
+ldr r0, [r4, #0x2C] @ index
+
+
+mov r1, r4 
+add r1, #0x30 
+ldrb r0, [r1, r0] 
+cmp r0, #0 
+bne Continue_GotItemDrop 
+mov r0, #16 
+str r0, [r4, #0x2C] 
+b Exit_GotItemDropNow
+
+Continue_GotItemDrop: 
 blh GetUnit 
 mov r1, r0 
 ldr r0, =Defender 
-ldrh r3, [r1, #0x1E] @ item 
-mov r2, r4 
-add r2, #0x58 
-strh r3, [r2] @ item to drop 
-blh InitBattleUnitFromUnit
-b DisplayPopup
 
-SecondCase: 
-mov r0, #1 
-blh GetUnit 
-mov r1, r0 @ unit 
-ldr r0, =Attacker 
-str r1, [r4, #0x54] @ unit used in gProcGotItemPopup 
-blh InitBattleUnitFromUnit
 
-mov r0, #0x83 @ Breguet 
-blh GetUnit 
-mov r1, r0 
-ldr r0, =Defender 
 ldrh r3, [r1, #0x1E] @ item 
 mov r2, r4 
 add r2, #0x58 
 strh r3, [r2] @ item to drop 
 blh InitBattleUnitFromUnit
 
-DisplayPopup: 
+
 ldr r0, =gProcPlayerPhase 
 blh ProcFind 
-mov r1, r0 @ parent proc 
-
+mov r5, r0 @ parent proc 
+mov r1, r5 @ player phase proc 
 mov r0, r4 
 @blh BATTLE_HandleItemDrop
 
@@ -1856,10 +1961,15 @@ ldr r0, =0x859DB08 @ poin to some proc we want
 ldr r0, [r0] 
 blh New6CBlocking
 mov r0, r4 @ proc to store deployment bytes of attacker and defender in +0x64 and +0x66 
-ldr r0, [r4, #0x40] @ count down 
-sub r0, #1 
-str r0, [r4, #0x40] 
+ldr r0, [r4, #0x2c] @ index  
+add r0, #1 
+str r0, [r4, #0x2c] 
 
+@mov r0, r5 @ player phase proc 
+@mov r1, #7 @ label 
+@blh ProcGoto 
+
+Exit_GotItemDropNow:
 
 pop {r4-r7} 
 pop {r0} 
@@ -1893,11 +2003,11 @@ beq NextUnit
 b Exit_GotItemDrop 
 
 NextUnit: 
-ldr r0, [r4, #0x40] @ some value 
-cmp r0, #0 
-beq Break_GotItemDrop 
+ldr r0, [r4, #0x2c] @ index of Nth unit dropping an item 
+cmp r0, #16 
+bge Break_GotItemDrop 
 mov r0, r4 @ parent 
-mov r1, #0 
+mov r1, #1 
 blh ProcGoto 
 b Exit_GotItemDrop
 
@@ -1905,7 +2015,7 @@ b Exit_GotItemDrop
 
 Break_GotItemDrop: 
 mov r0, r4 @ parent 
-mov r1, #1 
+mov r1, #2 
 blh ProcGoto 
 
 Exit_GotItemDrop: 
