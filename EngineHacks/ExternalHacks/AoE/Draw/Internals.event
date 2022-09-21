@@ -5,6 +5,20 @@
 #include "EAstdlib.event"
 #include "ProcDefinitions.event"
 
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+
+// proc 9A3508 at 9A3580 call 807A8F1 MapAnim_DisplayRoundAnim
+// some proc 9A4A54 called when using a heal staff on a unit 
+
+PUSH 
+ORG $7D844 // vulnerary from 7D82C
+callHackNew(CallShowHealsplatProc) 
+POP 
+
+
+
 // Vanilla's default is 28 frames here. 
 ALIGN 4
 MinimumFramesLink:
@@ -68,6 +82,28 @@ SHORT 0x73
 SHORT 0x75
 SHORT 0x75 // empty special case 
 SHORT 0x12 // full hp bar and flipped horizontally 
+
+
+
+
+ALIGN 4 
+ShowHealsplatProc:
+PROC_YIELD 
+PROC_SET_NAME(ShowHealsplatProcName)
+PROC_CALL_ROUTINE(0x8015681) //LoadObjUiGfx just in case it isn't loaded already 
+PROC_CALL_ROUTINE(LoadBlueNumbers) 
+PROC_LABEL(0)
+PROC_SLEEP(1) 
+PROC_LOOP_ROUTINE(DrawHealsplatFunc)
+
+PROC_LABEL(1) 
+PROC_END
+
+//PROC_WHILE_EXISTS(0x89A49FC) //MapAnimBattle (also used for vulneraries and poison damage etc.) 
+ShowHealsplatProcName:
+String("HealsplatProc") ; BYTE 0
+ALIGN 4
+
 
 
 /*
@@ -200,7 +236,12 @@ SaveScreenNumbers:
 
 ALIGN 4
 SaveScreenNumbersPal:
-#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" // same thing but only 32 bytes instead of 512 from png2dmp		//HINT=BIN
+#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" //HINT=BIN
+
+
+ALIGN 4
+SaveScreenNumbersPal_Blue:
+BYTE $0E $52 $A4 $1C $e9 $7f $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
 
 #ifdef FEBUILDER_DATA_ORG
 POP

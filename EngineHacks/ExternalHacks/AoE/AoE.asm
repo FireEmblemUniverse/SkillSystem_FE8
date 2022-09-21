@@ -356,10 +356,6 @@ CallDrawHpBar:
 mov r0, r4 @ XX 
 mov r1, r5 @ YY
 
-cmp r2, #12 
-beq SkipThis 
-mov r11, r11 
-SkipThis: 
 
 bl Draw_HPBar_AoE
 
@@ -374,6 +370,217 @@ mov r9, r5
 pop {r4} 
 mov r8, r4 
 pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+.global AoE_DrawNumber
+.type AoE_DrawNumber, %function 
+AoE_DrawNumber: 
+push {r4-r7, lr} 
+mov r4, r8 
+push {r4} 
+mov r5, r9
+push {r5} 
+mov r6, r10 
+push {r6} 
+mov r7, r11 
+push {r7} 
+mov r8, r0 @ aoe table entry 
+mov r11, r1 @ parent proc 
+
+
+ldrb r0, [r0, #ConfigByte]
+mov r1, #HealBool
+tst r0, r1 
+beq Yellow
+bl LoadBlueNumbers @ healing uses blue numbers 
+b DoneLoadingNumbers 
+
+Yellow: 
+bl Draw_LoadNumbers @ so palette etc will be ready 
+
+DoneLoadingNumbers: 
+
+@ find all affected tiles in movement map and display a number there 
+ldr r4, =MovementMap @ Movement Map	@{U}
+ldr r4, [r4] 
+mov r9, r4 
+
+ldr r3, =0x202E4D4 @ Map Size	@{U}
+@ldr r3, =0x202E4D0 @ Map Size	@{J}
+ldrh r6, [r3] @ XX Boundary size 
+ldrh r7, [r3, #2] @ YY Boundary size 
+
+
+
+mov r5, #0 @ Y coord 
+sub r5, #1 
+
+Number_YLoop:
+add r5, #1 
+cmp r5, r7 
+bge BreakNumberLoop
+
+mov r4, #0 
+sub r4, #1 
+Number_XLoop:
+lsl r0, r5, #2 @ 4 times Y coord 
+mov r3, r9 @ movement map 
+ldr r1, [r3, r0] @ beginning of Y row 
+
+Number_XLoop_2:
+add r4, #1 
+cmp r4, r6 
+bge Number_YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r1, r4] @ Xcoord to check 
+cmp r0, #0xFF 
+beq Number_XLoop_2
+
+@ We found a valid tile 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+
+
+ldr 	r2, =UnitMapRows
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq Number_XLoop 
+blh GetUnit 
+cmp r0, #0 
+beq Number_XLoop 
+mov r10, r0 @ Target 
+
+@ drawing part 
+
+
+
+
+ldr r0, =CurrentUnit 
+ldr r0, [r0] @ actor 
+mov r1, r10 @ target 
+
+
+mov r3, r8 @ table 
+ldrb r3, [r3, #ConfigByte]
+mov r2, #HealBool
+tst r3, r2 
+beq DamageNotHeal
+
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage 
+bl AoE_HealedTargetFinalHp
+mov r3, r10 @ target 
+ldrb r2, [r3, #0x12] @ max hp 
+ldrb r3, [r3, #0x13] 
+cmp r2, r3 
+beq Number_XLoop @ if full hp, don't draw a number 
+sub r3, r0, r3 @ amount healed  
+b ContinueDrawNumber 
+
+DamageNotHeal: 
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage / highest possible hp left 
+bl AoE_CalcTargetRemainingHP
+@ need the actual damage that we did 
+@ r0 as remaining hp of target 
+mov r3, r10 @ target 
+ldrb r3, [r3, #0x13] 
+sub r3, r0 @ damage 
+
+ContinueDrawNumber: 
+
+
+
+
+mov r2, r11 @ parent proc 
+ldr r2, [r2, #0x2c] @ start time 
+
+
+
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+bl Draw_NumberDuringAoE
+
+b Number_XLoop 
+
+
+BreakNumberLoop: 
+pop {r7} 
+mov r11, r7 
+pop {r6}
+mov r10, r6 
+pop {r5}
+mov r9, r5 
+pop {r4} 
+mov r8, r4 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+.type AoE_DrawDamageFunc, %function 
+.global AoE_DrawDamageFunc 
+AoE_DrawDamageFunc: 
+push {r4, lr} 
+mov r4, r0 
+ldr r3, =MemorySlot 
+add r3, #4*0x0B @ sB 
+ldr r0, [r3] 
+cmp r0, #0 
+beq Break 
+
+bl AoE_GetTableEntryPointer
+@ r0 = entry 
+mov r1, r4 @ parent proc 
+bl AoE_DrawNumber 
+
+
+b Loop_AoE_DrawDamageFunc
+
+Break: 
+mov r0, r4 @ parent 
+mov r1, #1 
+blh ProcGoto
+b Exit_AoE_DrawDamageFunc 
+
+
+
+Loop_AoE_DrawDamageFunc: 
+mov r1, #0 
+mov r0, r4 
+blh ProcGoto
+
+Exit_AoE_DrawDamageFunc: 
+
+pop {r4} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
+.global AoE_StartDrawingProc
+.type AoE_StartDrawingProc, %function 
+AoE_StartDrawingProc:
+push {lr} 
+mov r1, #3 @ root proc 3 
+ldr r0, =AoE_DrawDamageProc
+@ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
+blh New6C
+push {r0} 
+blh GetGameClock 
+pop {r1}
+str r0, [r1, #0x2c] @ start time 
+
 pop {r0} 
 bx r0 
 .ltorg 
@@ -879,6 +1086,18 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
+.global AoEInitNumber
+.type AoEInitNumber, %function 
+AoEInitNumber: 
+push {r4, lr} 
+mov r4, r0 
+blh GetGameClock 
+str r0, [r4, #0x2c] 
+pop {r4} 
+pop {r0} 
+bx r0 
+.ltorg 
+
 .global AoE_Camera
 .type AoE_Camera, %function
 AoE_Camera:
@@ -891,9 +1110,26 @@ ldrb r2, [r3, #2] @ YY
 @r0 as parent 
 blh 0x8015D84 @CenterCameraOntoPosition	@{U}
 @blh 0x8015D90 @CenterCameraOntoPosition	@{J}
+mov r0, #0 
 
-pop {r0} 
-bx r0 
+pop {r1} 
+bx r1
+
+.global AoE_Camera2
+.type AoE_Camera2, %function
+AoE_Camera2:
+push {lr}
+ldr r3, =MemorySlot
+add r3, #4*0x0B
+ldrb r1, [r3] @ XX 
+ldrb r2, [r3, #2] @ YY 
+
+@r0 as parent 
+blh 0x08015e0c @EnsureCameraOntoPosition	@{U}
+@blh 0x08015E18 @EnsureCameraOntoPosition	@{J}
+
+pop {r1} 
+bx r1
 
 @ this starts right away 
 .align 4
@@ -972,39 +1208,9 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
-.type AoE_DrawDamageFunc, %function 
-.global AoE_DrawDamageFunc 
-AoE_DrawDamageFunc: 
-push {r4-r7, lr} 
-mov r4, r0 
-ldr r3, =MemorySlot 
-add r3, #4*0x0B @ sB 
-ldr r0, [r3] 
-beq Break 
-ldrh r0, [r3] @ XX 
-ldrh r1, [r3, #2] @ YY 
-mov r2, #0 @ frames since started 
-mov r3, #13 @ damage to display 
-bl Draw_NumberDuringAoE
-b Loop_AoE_DrawDamageFunc
-Break: 
-mov r0, r4 @ parent 
-mov r1, #1 
-blh ProcGoto
-b Exit_AoE_DrawDamageFunc 
-Loop_AoE_DrawDamageFunc: 
-mov r1, #0 
-mov r0, r4 
-blh ProcGoto
 
-Exit_AoE_DrawDamageFunc: 
 
-pop {r4-r7} 
-pop {r0} 
-bx r0 
-.ltorg 
 
-.equ ProcGoto, 0x8002F24 
 
 @ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
 .equ New6CBlocking,                0x08002CE0	@{U}
@@ -1026,19 +1232,7 @@ pop {r4-r5}
 pop {r0} 
 bx r0 
 
-.global AoE_StartDrawingProc
-.type AoE_StartDrawingProc, %function 
-AoE_StartDrawingProc:
-push {lr} 
-mov r1, #3 @ root proc 3 
-ldr r0, =AoE_DrawDamageProc
-@ arguments: r0 = pointer to ROM 6C code, r1 = parent; returns: r0 = new 6C pointer (0 if no space available)
-blh New6C
 
-
-pop {r0} 
-bx r0 
-.ltorg 
 
 
 	.equ BreakProcLoop, 0x08002E94	@{U}
@@ -1383,6 +1577,7 @@ DoFixedDmg:
 mov r0, r5 
 mov r1, r6 
 mov r2, r7 
+mov r3, #0 @ don't return minimum; return a number within the range of dmg 
 bl AoE_FixedDamage 
 
 
@@ -1564,24 +1759,16 @@ AoE_RemoveDeadUnitLoop_Exit:
 pop {r4-r7}
 pop {r0}
 bx r0
+.ltorg 
 
-
-
-.align 4
-.global AoE_HealUnitsInRange
-.type AoE_HealUnitsInRange, %function 
-AoE_HealUnitsInRange:
+.global AoE_HealedTargetFinalHp
+.type AoE_HealedTargetFinalHp, %function 
+AoE_HealedTargetFinalHp:
 push {r4-r7, lr} 
-
-@ given r0 unit found in range, heal them 
-
-
-mov r7, r0 @ target 
-ldr r6, =CurrentUnit 
-ldr r6, [r6] @ actor 
-
-bl AoE_GetTableEntryPointer
-mov r5, r0 @ table effect address 
+mov r6, r0 @ actor 
+mov r7, r1 @ target 
+mov r5, r2 @ table 
+mov r4, r3 @ always return minimum bool 
 
 ldrb r1, [r5, #ConfigByte]  
 mov r0, #FriendlyFireBool
@@ -1600,6 +1787,7 @@ AlwaysHeal:
 mov r0, r5 
 mov r1, r6 
 mov r2, r7 
+mov r3, r4 
 @r0 = effect index
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
@@ -1623,12 +1811,45 @@ b CleanupHealing
 UseStr: @ Seems silly to use str, but non str/mag split users will appreciate 
 ldrb r0, [r6, #0x14] @ Str 
 add r4, r0 @ 
+b CleanupHealing 
+
+DoNotHealTarget:
+mov r4, #0 
+
 
 CleanupHealing:
-mov r0, r4 @ Amount to heal 
+ldrb r0, [r7, #0x13] 
+add r0, r4 @ final hp 
 
-ldrb r1, [r7, #0x13] 
-add r0, r1, r0 
+
+pop {r4-r7} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+
+.align 4
+.global AoE_HealUnitsInRange
+.type AoE_HealUnitsInRange, %function 
+AoE_HealUnitsInRange:
+push {r4-r7, lr} 
+
+@ given r0 unit found in range, heal them 
+
+
+mov r7, r0 @ target 
+ldr r6, =CurrentUnit 
+ldr r6, [r6] @ actor 
+
+bl AoE_GetTableEntryPointer
+mov r5, r0 @ table effect address 
+
+mov r1, r7 @ target 
+mov r0, r6 @ actor 
+mov r2, r5 @ table 
+mov r3, #0 @ don't return minimum dmg 
+bl AoE_HealedTargetFinalHp
+
 ldrb r1, [r7, #0x12] @ Max HP 
 cmp r0, r1
 ble NoCapHP_Healing
@@ -1636,7 +1857,6 @@ mov r0, r1 @ Healed to full
 NoCapHP_Healing:
 strb r0, [r7, #0x13] 
 
-DoNotHealTarget:
 
 pop {r4-r7}
 pop {r0}

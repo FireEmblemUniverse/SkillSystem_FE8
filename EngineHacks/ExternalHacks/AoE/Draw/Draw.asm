@@ -115,7 +115,7 @@ push {r4-r7, lr}
 
 
 mov r1, #0 
-str r1, [r0, #0x30] @ store 0 to Proc + 0x68
+str r1, [r0, #0x30] @ store 0 to Proc + 0x30
 @ initial game time 
 
 SkipStoringTime: 
@@ -159,6 +159,34 @@ blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset
 pop {r4-r7}
 pop {r1}
 bx r1 
+.ltorg 
+
+.global LoadBlueNumbers
+.type LoadBlueNumbers, %function 
+LoadBlueNumbers: 
+push {r4, lr} 
+
+ldr r0, =SaveScreenNumbers 
+ldr r1, =0x6013800 @ tile where numbers are usually 
+mov r2, #6
+mov r3, #2
+@ Arguments: r0 = Source gfx (uncompressed), r1 = Target pointer, r2 = Tile Width, r3 = Tile Height
+blh RegisterObjectTileGraphics, r4
+
+@ default 8x8 sprite uses 24th palette? 
+@ we should set the palette to something, at least 
+@ 24th palette used by transformed myrrh 
+@ldr r0, =0x80A8EE4 @ poin to save menu palette (for the numbers to draw)	{U}
+ldr r0, =SaveScreenNumbersPal_Blue
+mov r1, #27 @ usual palette # 
+lsl r1, #5 @ multiply by #0x20
+mov	r2,#0x20
+blh CopyToPaletteBuffer @Arguments: r0 = source pointer, r1 = destination offset, r2 = size (0x20 per full palette)
+
+pop {r4} 
+pop {r0} 
+bx r0 
+
 
 
 
@@ -968,7 +996,7 @@ bx r1
 Draw_NumberDuringAoE:
 push {r4-r7, lr}
 
-mov r6, r2 @ frames since started 
+mov r6, r2 @ start time 
 mov r7, r3 @ damage to display 
 
 lsl r0, #4 
@@ -1072,9 +1100,160 @@ bx r1
 
 
 
+.type CallShowHealsplatProc, %function 
+.global CallShowHealsplatProc 
+CallShowHealsplatProc: 
+push {r4-r5, lr} 
+
+@ vanilla hook 
+str r5, [r0, #0x2C]
+str r6, [r0, #0x50] 
+mov r1, r8 
+str r1, [r0, #0x54] 
+add r0, #0x58 
+strh r4, [r0] 
+@ end of vanilla 
+
+@If the flag 0xEE is enabled, the numbers will not be drawn.
+ldr r0, =BATTLE_MAPANIMATION_NUMBERS_FLAGLink
+ldr r0, [r0]
+blh CheckEventId
+cmp r0, #0x0
+bne ExitShowHealsplatProc
+
+
+ldr r3, =gMapAnimData 
+ldrb r2, [r3, #0x0D] @ current hp 
+
+ldr r0, [r3] @ battle struct of unit 
+ldrb r1, [r0, #0x13] @ final hp 
+sub r1, r2 @ amount to heal or be damaged by 
+
+cmp r1, #0 
+bne StoreHealsplatData 
+
+add r3, #0x14 @ 2nd actor 
+ldrb r2, [r3, #0x0D] @ current hp 
+ldr r0, [r3] @ battle struct of unit 
+ldrb r1, [r0, #0x13] @ final hp 
+sub r1, r2 @ amount to heal or be damaged by 
+cmp r1, #0 
+beq ExitShowHealsplatProc @ neither unit is being healed nor damaged 
+
+StoreHealsplatData: 
+mov r5, r0 @ unit battle struct 
+mov r4, r1 
+
+cmp r4, #0 
+blt ExitShowHealsplatProc 
+
+
+@ load ShowHitsplatProc instead for damage ? 
+
+
+ldr r0, =ShowHealsplatProc 
+mov r1, #3 
+blh New6C
+push {r0} 
+blh GetGameClock 
+pop {r1} 
+
+add r1, #0x2C 
+str r0, [r1] @ start time 
+str r5, [r1, #4] @ unit to proc + 0x30 
+strb r4, [r1, #8] @ damage stored to proc + 0x34 
+
+
+ExitShowHealsplatProc: 
+pop {r4-r5} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+.equ New6C, 0x8002c7c 
+@.equ gProcMapAnimBattle, 0x89A3508 // master 
+.equ gProcMapAnimBattle_Vulnerary, 0x89A49FC // also forts etc. 
+.equ gProcMapAnimBattle_Elixir,    0x89A49A4
+.equ gProcMapAnimBattle_HealStaff, 0x89A4A54 
+.equ gProcMapAnimBattle_Mend,      0x89A4ABC 
+.equ gProcMapAnimBattle_Recover,   0x89A4B24
+.equ gProcMapAnimBattle_Physic,    0x89A4B8C
+
+.equ ProcGoto, 0x8002F24 
+.equ gMapAnimData, 0x203E1F0
+
+@ gate works, vuln works, elixir works
+@ physic, recover, mend, heal  
+@ latona & fortify don't apply 
+
+.type DrawHealsplatFunc, %function 
+.global DrawHealsplatFunc
+DrawHealsplatFunc:
+push {r4-r7, lr} 
+mov r4, r0 @ parent proc 
+
+@ run until none of these procs exist 
+ldr r0, =gProcMapAnimBattle_HealStaff 
+blh ProcFind 
+mov r5, r0 
+
+ldr r0, =gProcMapAnimBattle_Mend
+blh ProcFind 
+orr r5, r0 
+
+ldr r0, =gProcMapAnimBattle_Recover 
+blh ProcFind 
+orr r5, r0 
+
+ldr r0, =gProcMapAnimBattle_Physic
+blh ProcFind 
+orr r5, r0 
+
+ldr r0, =gProcMapAnimBattle_Vulnerary 
+blh ProcFind 
+orr r5, r0 
+
+ldr r0, =gProcMapAnimBattle_Elixir 
+blh ProcFind 
+orr r5, r0 
+
+cmp r5, #0 
+beq Break_DrawHealsplatFunc 
+
+mov r0, r4 
+mov r1, #0x2C 
+
+ldr r2, [r0, r1] @ start time 
+mov r1, #0x34 
+ldsb r3, [r0, r1] @ amount to heal or damage (negative) by 
+mov r1, #0x30 
+ldr r1, [r0, r1] @ unit battle struct 
+
+ldrb r0, [r1, #0x10] @ XX 
+ldrb r1, [r1, #0x11] @ YY 
+
+
+bl Draw_NumberDuringAoE
+
+
+b Exit_DrawHealsplatFunc 
+
+Break_DrawHealsplatFunc: 
+mov r0, r4 @ parent 
+mov r1, #1 
+blh ProcGoto
 
 
 
+
+
+Exit_DrawHealsplatFunc: 
+
+
+pop {r4-r7}
+pop {r0} 
+bx r0 
+.ltorg 
 
 
 .align 4

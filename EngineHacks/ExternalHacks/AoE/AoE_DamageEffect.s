@@ -24,10 +24,12 @@ push {r4, lr}
 @r0 = table effect address 
 mov r4, r0 
 ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound dmg 
+cmp r3, #1 
+beq ReturnMinimum
 ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound dmg 
 bl GetRandBetweenXAndY
 @ returns the dmg dealt 
-
+ReturnMinimum: 
 pop {r4} 
 pop {r1} 
 bx r1

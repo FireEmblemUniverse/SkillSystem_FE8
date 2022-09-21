@@ -1,0 +1,242 @@
+// Originally by 7743 
+// Rewritten by Vesly 
+
+#define MaxMovementValue 19
+
+#ifdef _FE8_
+
+#include "EAstdlib.event"
+#include "Extensions/Hack Installation.txt"
+
+
+#include "GetUnitStatus.lyn.event"
+#include "SetUnitStatus.lyn.event"
+#include "AddUnitStatus.lyn.event"
+#include "SetUnitStatusAll.lyn.event"
+#include "OnAllUnitState.lyn.event"
+#include "OffAllUnitState.lyn.event"
+#include "SetMaxMove.lyn.event"
+
+
+
+#define SetMaxMove "SVAL r1 0; ASMC SetMaxMove_ASMC" 
+
+
+// 
+/* 
+Example usages: 
+
+GetUnitStatus(Eirika, Strength) 
+
+SetUnitStatus(Seth,Item1,SilverSword) 
+
+SetUnitStatusAll(Eirika*0x100+Ephraim , CurrentHP        , 12, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)  
+SetUnitStatusAll(0x010F				, 0x13; SVAL 4 0x03, 12, 0xFF    , 0xFF   , 0xFF    , 0xFF    , 0xFF   )  
+// Affects unit IDs 0x01 - 0x0F and sets their current hp to 12 
+
+SetUnitStatusAll(AnyUnit, SwordExp, 181, 0x02, AnyArmy, AnyClass, AnyRange, AnyItem)
+// Affects any unit that has moved that turn (state 0x02) and sets their SwordExp to 181 (A rank) 
+
+
+SetUnitStatusAll(Any, Level, 3, AnyDeployed, NPCArmy, 0x191E, AnyRange, IronBow) 
+// Affects NPC units from class ID 0x19 (Archer) to 0x1E (RangerF) that are holding IronBows and sets their level to 3 
+
+SetUnitStatusAll(0xAABD, MovBonus, 6, AnyDeployed, EnemyArmy, 0x5266, Area(1,3,12,15), AnyItem) 
+// Affects Enemy units from 0xAA to 0xBD ("Monster") that are classes 0x52 - 0x66 (Revenant - Demon King) in area 1x3y to 12x15y and sets their MovBonus to 6. 
+
+
+
+*/ 
+
+//#define AnyDeployed "0xF3" 
+#define AnyDeployed "0xFF" 
+
+#define AnyArmy "0xFF" 
+#define AnyClass "0xFF" 
+#define AnyRange "0xFF" 
+#define AnyItem "0xFF" 
+#define AnyUnit "0xFF" 
+#define AnyState "0xFF"
+
+
+
+#define PlayerArmy "0x00"
+#define EnemyArmy "0x01" 
+#define NPCArmy "0x02" 
+
+
+#define GetUnitStatus(UnitId, StatusDefinition) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; ASMC GetUnitStatus"
+// If no definition, get a BYTE "SVAL 4 0x03" 
+
+#define GetUnitStatus(UnitId, StatusB, TypeByteShortWord) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; ASMC GetUnitStatus"
+
+
+//to value in r5 
+#define SetUnitStatus(UnitId, StatusDefinition) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; ASMC SetUnitStatus"
+
+#define SetUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC SetUnitStatus"
+#define SetUnitStatus(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatus"
+
+// intended for use on stats (caps them at 127, then ensures no stat is over the class cap) 
+#define AddUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC AddUnitStatus"
+#define SubUnitStatus(UnitId, StatusDefinition, Value) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; ASMC SubUnitStatus"
+
+
+
+#define OnAllUnitState(UnitId, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC OnAllUnitState"
+#define OffAllUnitState(UnitId, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC OffAllUnitState"
+
+#define SetUnitStatusAll(UnitId, StatusDefinition, Value, State, Faction, ClassID, Range, ItemID) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC SetUnitStatusAll"
+
+//#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value, State, Faction, ClassID, LowerX, LowerY, UpperX, UpperY, ItemID) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value;  SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 LowerX*0x1000000+LowerY*0x10000+UpperX*0x100+UpperY; SVAL 10 ItemID; ASMC SetUnitStatusAll"
+#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value, State, Faction, ClassID, Range, ItemID) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value;  SVAL 6 State; SVAL 7 Faction; SVAL 8 ClassID; SVAL 9 Range; SVAL 10 ItemID; ASMC SetUnitStatusAll"
+
+//#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatusAll"
+//#define SetUnitStatusAll(UnitId, StatusB, TypeByteShortWord, Value) "SVAL 1 UnitId; SVAL 3 StatusB; SVAL 4 TypeByteShortWord; SVAL 5 Value; ASMC SetUnitStatusAll"
+//#define SetUnitStatusAll(UnitId, StatusDefinition, Value, State, Faction) "SVAL 4 0x03; SVAL 1 UnitId; SVAL 3 StatusDefinition; SVAL 5 Value; SVAL 6 State; SVAL 7 Faction; ASMC SetUnitStatusAll"
+
+
+// These definitions are for convenience 
+// In GetUnitStatus, SVAL 4 is Nibble/Byte/Short/Word, so we define that here for ease of use 
+
+#define Any "0xFF"
+
+
+#define Hide 0x1 
+#define Acted 0x2 
+#define Dead 0x4 
+#define Undeployed 0x8 
+#define RescuingUnit 0x10 
+#define Rescued 0x20 
+#define Cantoing 0x40 
+#define UnderRoof 0x80 
+
+#define ShowMovementSquares 0x100 
+#define HideInLinkArena 0x200 
+#define UnknownAIRelated 0x400 
+#define RidingBallista 0x800 
+#define WillDropItem 0x1000 
+#define GrowthBonus 0x2000 
+#define SoloAnim1 0x4000 
+#define SoloAnim2 0x8000 
+
+#define Escaped 0x10000 
+#define UsedInSuperArena1 0x20000 
+#define UsedInSuperArena2 0x40000 
+#define SuperArena 0x80000 
+#define PreviouslyUndeployedA 0x100000 
+#define PreviouslyUndeployedB 0x200000 
+#define UnknownUnitCreation 0x400000
+#define NextPortrait 0x800000
+
+#define ShakeMapSprite 0x1000000
+#define Undeployable 0x2000000
+#define Captured 0x4000000 //also used in remu
+#define LinkArenaPalette 0x8000000
+#define Unknown35 0x10000000
+#define Unknown36 0x20000000
+#define Unknown37 0x40000000
+#define Unknown38 0x80000000 //7743's summon 
+#define InParty 0x40000000
+#define Fainted 0x80000000
+
+
+
+#define UnitPointer "0x00; SVAL 4 0x05"
+
+#define ClassPointer "0x04; SVAL 4 0x05"
+
+#define Level "0x08; SVAL 4 0x03"
+#define Exp "0x09; SVAL 4 0x03"
+#define RecoveryMode "0x0A; SVAL 4 0x03"
+#define UnitTableID "0x0B; SVAL 4 0x03"
+#define State "0x0C; SVAL 4 0x05"
+
+#define XCoord 			"0x10; SVAL 4 0x03"
+#define YCoord 			"0x11; SVAL 4 0x03"
+#define MaxHP			"0x12; SVAL 4 0x03"
+
+#define CurrentHP		"0x13; SVAL 4 0x03"
+#define Strength		"0x14; SVAL 4 0x03"
+#define Skill			"0x15; SVAL 4 0x03"
+#define Speed 			"0x16; SVAL 4 0x03"
+#define DefenseStat 		"0x17; SVAL 4 0x03"
+#define Defence 		"0x17; SVAL 4 0x03"
+#define Resistance 	"0x18; SVAL 4 0x03"
+#define LuckStat 			"0x19; SVAL 4 0x03"
+#define ConBonus 		"0x1A; SVAL 4 0x03"
+#define Rescuing 		"0x1B; SVAL 4 0x03"
+#define Nazo1 			"0x1C; SVAL 4 0x03"
+#define MovBonus 	"0x1D; SVAL 4 0x03"
+
+#define Item1 		"0x1E; SVAL 4 0x03"
+#define Item1Uses 	"0x1F; SVAL 4 0x03"
+#define Item2 		"0x20; SVAL 4 0x03"
+#define Item2Uses 	"0x21; SVAL 4 0x03"
+#define Item3 		"0x22; SVAL 4 0x03"
+#define Item3Uses 	"0x23; SVAL 4 0x03"
+#define Item4 		"0x24; SVAL 4 0x03"
+#define Item4Uses 	"0x25; SVAL 4 0x03"
+#define Item5 		"0x26; SVAL 4 0x03"
+#define Item5Uses 	"0x27; SVAL 4 0x03"
+
+
+
+
+#define SwordExp 		"0x28; SVAL 4 0x03"
+#define LanceExp 		"0x29; SVAL 4 0x03"
+#define AxeExp 			"0x2A; SVAL 4 0x03"
+#define BowExp 			"0x2B; SVAL 4 0x03"
+#define StaffExp 		"0x2C; SVAL 4 0x03"
+#define AnimaExp 		"0x2D; SVAL 4 0x03"
+#define LightExp 		"0x2E; SVAL 4 0x03"
+#define DarkExp 		"0x2F; SVAL 4 0x03"
+
+#define BadStatus 			"0x30; SVAL 4 0x03"
+#define BadStatusType 		"0x30; SVAL 4 0x01"
+#define BadStatusTurn 		"0x30; SVAL 4 0x02"
+#define HolyWaterTorch 	"0x31; SVAL 4 0x03"
+#define Support1 			"0x32; SVAL 4 0x03"
+#define Support2 			"0x33; SVAL 4 0x03"
+#define Support3 			"0x34; SVAL 4 0x03"
+#define Support4 			"0x35; SVAL 4 0x03"
+#define Support5 			"0x36; SVAL 4 0x03"
+#define Support6 			"0x37; SVAL 4 0x03"
+#define Support7 			"0x38; SVAL 4 0x03"
+#define SupportFlag 		"0x39; SVAL 4 0x03"
+#define Nazo2 				"0x3A; SVAL 4 0x03"
+#define Nazo3 				"0x3B; SVAL 4 0x03"
+
+#define Magic 				"0x3A; SVAL 4 0x03"
+
+#define Nazo4 				"0x3C; SVAL 4 0x03"
+#define Nazo5 				"0x3D; SVAL 4 0x03"
+#define Nazo6 				"0x3E; SVAL 4 0x03"
+#define Nazo7 				"0x3F; SVAL 4 0x03"
+
+#define AI3 				"0x40; SVAL 4 0x03"
+#define AI4 				"0x41; SVAL 4 0x03"
+#define AI1 				"0x42; SVAL 4 0x03"
+#define AI1Counter 		"0x43; SVAL 4 0x03"
+#define AI2 				"0x44; SVAL 4 0x03"
+#define AI2Counter 		"0x45; SVAL 4 0x03"
+#define Nazo8 				"0x46; SVAL 4 0x03"
+#define Nazo9 				"0x47; SVAL 4 0x03"
+
+#define Con					"0x50; SVAL 4 0x04"
+#define ConByte 			"0x51; SVAL 4 0x03"
+#define Mov 				"0x52; SVAL 4 0x04"
+#define MovByte 			"0x53; SVAL 4 0x03"
+
+
+
+
+
+//#define AddStatus(UNITID, Status, Value) "BYTE 0x40 0x0D UNITID Status ; POIN get_status_param|1; BYTE 0x40 0x05 0x02 0x00 Value 0x20 0x06 0xC2 0x02 0x40 0x0D UNITID Status ; POIN set_status_param_Install|1;" 
+
+//#define AddStatus(UNITID, Status, Value) "BYTE 0x40 0x0D UNITID Status ; POIN get_status_param|1; BYTE 0x40 0x05 0x02 0x00 ; WORD Value ; BYTE 0x20 0x06 0xC2 0x02 0x40 0x0D UNITID Status ; POIN set_status_param_Install|1;"
+
+
+#else
+    ERROR This version of Selection Quotes is for FE8!
+#endif

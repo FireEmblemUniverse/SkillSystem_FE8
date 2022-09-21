@@ -34,7 +34,8 @@ POP
 #define FreezeAnimID 15 
 #define FeatherAnimID 16
 #define CauterizeAnimID 17
-#define NumberOfAnimIDs 17
+#define HealAnimID 18 
+#define NumberOfAnimIDs 18
 
 ALIGN 4
 WeaponTypeAnimations:
@@ -72,6 +73,7 @@ AnimTable_Entry(Splash2AnimID,Splash2_Small_Anim)
 AnimTable_Entry(FlashAnimID,Flash_Anim)
 AnimTable_Entry(Impact1AnimID,Impact1_Small_Anim)
 AnimTable_Entry(Shards1AnimID,Shards1_Small_Anim)
+AnimTable_Entry(HealAnimID,healing_Anim)
 #ifdef INSTALL_BONUS_ANIMATIONS 
 AnimTable_Entry(Hit2AnimID,Hit2_Small_Anim)
 AnimTable_Entry(Break2AnimID,Break2_Small_Anim)

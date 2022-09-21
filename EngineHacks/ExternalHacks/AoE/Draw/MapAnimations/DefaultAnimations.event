@@ -1,4 +1,88 @@
 ALIGN 4 
+healing_Anim: 
+BYTE 3 0; SHORT 0; POIN Healing0000_Data Healing0000_pal 
+BYTE 3 0; SHORT 0; POIN Healing0001_Data Healing0001_pal 
+BYTE 3 0; SHORT 0; POIN Healing0002_Data Healing0002_pal 
+BYTE 3 0; SHORT 0; POIN Healing0003_Data Healing0003_pal 
+BYTE 3 0; SHORT 0; POIN Healing0004_Data Healing0004_pal 
+BYTE 3 0; SHORT 0; POIN Healing0005_Data Healing0005_pal 
+BYTE 3 0; SHORT 0; POIN Healing0006_Data Healing0006_pal 
+BYTE 3 0; SHORT 0; POIN Healing0007_Data Healing0007_pal 
+WORD 0 0 0 
+
+ALIGN 4 
+Healing0000_Data: 
+#incbin "dmp/Healing0000.dmp" 
+ 
+ALIGN 4 
+Healing0000_pal: 
+#incbin "dmp/Healing0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0001_Data: 
+#incbin "dmp/Healing0001.dmp" 
+ 
+ALIGN 4 
+Healing0001_pal: 
+#incbin "dmp/Healing0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0002_Data: 
+#incbin "dmp/Healing0002.dmp" 
+ 
+ALIGN 4 
+Healing0002_pal: 
+#incbin "dmp/Healing0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0003_Data: 
+#incbin "dmp/Healing0003.dmp" 
+ 
+ALIGN 4 
+Healing0003_pal: 
+#incbin "dmp/Healing0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0004_Data: 
+#incbin "dmp/Healing0004.dmp" 
+ 
+ALIGN 4 
+Healing0004_pal: 
+#incbin "dmp/Healing0004_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0005_Data: 
+#incbin "dmp/Healing0005.dmp" 
+ 
+ALIGN 4 
+Healing0005_pal: 
+#incbin "dmp/Healing0005_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0006_Data: 
+#incbin "dmp/Healing0006.dmp" 
+ 
+ALIGN 4 
+Healing0006_pal: 
+#incbin "dmp/Healing0006_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0007_Data: 
+#incbin "dmp/Healing0007.dmp" 
+ 
+ALIGN 4 
+Healing0007_pal: 
+#incbin "dmp/Healing0007_pal.dmp" 
+
+
+ALIGN 4 
 Break1_Small_Anim: 
 BYTE 2 0; SHORT 0; POIN small_break1_000_Data small_break1_000_pal 
 BYTE 2 0; SHORT 0; POIN small_break1_001_Data small_break1_000_pal 

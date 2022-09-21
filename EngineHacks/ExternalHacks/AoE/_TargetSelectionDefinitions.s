@@ -23,6 +23,10 @@
 .set MovementMap, 0x202E4E0 
 .set BackupMovementMap, 0x202E4F0 
 
+.equ GetGameClock, 0x08000D28	@{U}
+@.equ GetGameClock, 0x08000CD8	@{J}
+.equ ProcGoto, 0x8002F24 
+
 @----------------------------------------------------------
 @Relevant Ram Offsets
 	.set ChapterDataStruct,            0x0202BCF0 		@{U}

@@ -132,10 +132,16 @@ PROC_END
 ALIGN 4
 AoE_DrawDamageProc:
 PROC_YIELD // Buffer.
+PROC_CALL_ROUTINE(0x8015681) //LoadObjUiGfx just in case it isn't loaded already 
+//PROC_CALL_ROUTINE_2(AoE_Camera2) // will only proceed once camera is on position 
+PROC_CALL_ROUTINE_2(AoE_Camera) // will proceed on next frame if returns 0, continues immediately if non-zero 
+PROC_CALL_ROUTINE(AoEInitNumber)
 PROC_LABEL(0)
 PROC_LOOP_ROUTINE(AoE_DrawDamageFunc)
 PROC_LABEL(1) 
 PROC_END
+
+
 
 
 AoE_MainProcName:

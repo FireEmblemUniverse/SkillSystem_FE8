@@ -3,14 +3,14 @@
 // briefly uses a byte in ram at 0x0203F101, which combat arts also use. 
 // it should not conflict with combat arts. 
 
-
+// proc 9A49FC - vuln speed? 
 
 // This hack is required for animations 
 // Numbers will display over map battles unless flag BATTLE_MAPANIMATION_NUMBERS_FLAG is on. 
 // define BATTLE_MAPANIMATION_NUMBERS_FLAG as desired (default is 0xEE) 
 #include "Draw/Installer.event" 
 
-#include "QoL_Testing.event" 
+
 
 // Install text if you are using FEBuilder. 
 #ifdef FEBUILDER_EXTRA_ORG
@@ -158,7 +158,7 @@ BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
 BYTE 5 5 // damage range 
 BYTE 0 4 // Attack range 
-BYTE 1 1 // Index of RangeMask, Animation
+BYTE 6 0xC // Index of RangeMask, Animation
 
 // Entry 2
 BYTE 0 0 0 0 
@@ -425,7 +425,7 @@ ENDA
 
 ALIGN 4 
 AoE_EventAnime2_GrantEXP:
-SVAL r1 0x2 //AnimationID
+SVAL r1 18 //Healing AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade

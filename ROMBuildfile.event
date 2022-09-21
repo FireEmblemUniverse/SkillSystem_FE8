@@ -17,6 +17,8 @@
     //Engine Hacks
     #include "EngineHacks/_MasterHackInstaller.event"
     MESSAGE Used hax space ends at currentOffset
+	
+	#include "Patches/Installer.event" 
 
 	#ifdef USE_TEST_MAP
     //Events
