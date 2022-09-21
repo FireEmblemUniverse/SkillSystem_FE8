@@ -147,16 +147,16 @@ AoE_Table:
 BYTE 0 0 0 IronSword
 BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
 BYTE 0 0 //FriendlyFireBool|DepleteItemBool
-BYTE 15 15 // damage range 
+BYTE 40 40 // damage range 
 BYTE 3 7 // Attack range 
-BYTE 0 1 // Index of RangeMask, Animation
+BYTE 0 0x1 // Index of RangeMask, Animation
 
 
 // Entry 1
 BYTE 0 0 0 Heal 
 BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 5 5 // damage range 
+BYTE 10 15 // damage range 
 BYTE 0 4 // Attack range 
 BYTE 6 0xC // Index of RangeMask, Animation
 

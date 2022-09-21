@@ -1419,7 +1419,7 @@ Draw_HPBar_AoE:
 @ Inputs:
 @ r0: X coordinate
 @ r1: Y coordinate
-@ r2: z / 12 as amount of bar to show 
+@ r2: z / 11 as amount of bar to show 
 
 push	{r4-r6, lr}
 

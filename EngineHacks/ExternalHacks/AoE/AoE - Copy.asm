@@ -1783,28 +1783,21 @@ bx r0
 .equ BATTLE_HandleItemDrop, 0x80328D0 
 .equ gProcPlayerPhase, 0x859AAD8 
 
-.type AoE_GotItemDropLoopInit, %function 
-.global AoE_GotItemDropLoopInit
-AoE_GotItemDropLoopInit:
-mov r1, #2 
-str r1, [r0, #0x40] @ count down for droppable items 
-bx lr 
-.ltorg 
-
-.type AoE_GotItemDrop, %function 
-.global AoE_GotItemDrop
-AoE_GotItemDrop:
+.type AoE_GotItemDropLoop, %function 
+.global AoE_GotItemDropLoop
+AoE_GotItemDropLoop:
 push {r4-r7, lr} 
 mov r4, r0 @ parent proc 
 
-@ loop through affected units and find Nth case 
-@ try drop item for each 0 hp unit 
-ldr r0, [r4, #0x40] @ count down 
-cmp r0, #2 
-beq FirstCase
-b SecondCase 
+// BATTLE_HandleItemDropwait for 85922D0 gProcGotItemPopup to end 
+ldr r0, =gProcGotItemPopup 
+blh ProcFind 
+cmp r0, #0 
+beq NextUnit 
+b Break_GotItemDrop 
 
-FirstCase: 
+NextUnit: 
+
 mov r0, #1 
 blh GetUnit 
 mov r1, r0 @ unit 
@@ -1816,32 +1809,17 @@ mov r0, #0x82 @ ONeil
 blh GetUnit 
 mov r1, r0 
 ldr r0, =Defender 
+
+
+
 ldrh r3, [r1, #0x1E] @ item 
 mov r2, r4 
 add r2, #0x58 
 strh r3, [r2] @ item to drop 
-blh InitBattleUnitFromUnit
-b DisplayPopup
+mov r11, r11 
 
-SecondCase: 
-mov r0, #1 
-blh GetUnit 
-mov r1, r0 @ unit 
-ldr r0, =Attacker 
-str r1, [r4, #0x54] @ unit used in gProcGotItemPopup 
 blh InitBattleUnitFromUnit
 
-mov r0, #0x83 @ Breguet 
-blh GetUnit 
-mov r1, r0 
-ldr r0, =Defender 
-ldrh r3, [r1, #0x1E] @ item 
-mov r2, r4 
-add r2, #0x58 
-strh r3, [r2] @ item to drop 
-blh InitBattleUnitFromUnit
-
-DisplayPopup: 
 ldr r0, =gProcPlayerPhase 
 blh ProcFind 
 mov r1, r0 @ parent proc 
@@ -1856,49 +1834,7 @@ ldr r0, =0x859DB08 @ poin to some proc we want
 ldr r0, [r0] 
 blh New6CBlocking
 mov r0, r4 @ proc to store deployment bytes of attacker and defender in +0x64 and +0x66 
-ldr r0, [r4, #0x40] @ count down 
-sub r0, #1 
-str r0, [r4, #0x40] 
-
-
-pop {r4-r7} 
-pop {r0} 
-bx r0 
-.ltorg 
-
-.type CallAoE_DroppedItemsProc, %function 
-.global CallAoE_DroppedItemsProc
-CallAoE_DroppedItemsProc:
-push {lr} 
-ldr r0, =AoE_DroppedItemsProc
-mov r1, #3 @ root proc 3 
-blh New6C 
-pop {r0} 
-bx r0 
-.ltorg 
-
-
-.type AoE_GotItemDropLoop, %function 
-.global AoE_GotItemDropLoop
-AoE_GotItemDropLoop:
-push {r4-r7, lr} 
-mov r4, r0 @ parent proc 
-
-// BATTLE_HandleItemDropwait for 85922D0 gProcGotItemPopup to end 
-ldr r0, =0x859DB08 @ poin to some proc we want 
-ldr r0, [r0] 
-blh ProcFind 
-cmp r0, #0 
-beq NextUnit 
-b Exit_GotItemDrop 
-
-NextUnit: 
-ldr r0, [r4, #0x40] @ some value 
-cmp r0, #0 
-beq Break_GotItemDrop 
-mov r0, r4 @ parent 
-mov r1, #0 
-blh ProcGoto 
+@blh BATTLE_HandleItemDropwait 
 b Exit_GotItemDrop
 
 
