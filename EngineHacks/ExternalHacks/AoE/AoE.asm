@@ -1432,6 +1432,8 @@ blh  0x08019c3c   @DrawTileGraphics	@{U}
 
 @bl AoE_EndTargetSelection 
 
+bl Draw_RoundCleanup
+
 pop {r0}
 bx r0 
 
@@ -1923,7 +1925,8 @@ str r1, [r4, #0x54] @ unit used in gProcGotItemPopup
 blh InitBattleUnitFromUnit
 
 ldr r0, [r4, #0x2C] @ index
-
+cmp r0, #2 
+bge SendRemainingItemsToSupply 
 
 mov r1, r4 
 add r1, #0x30 
@@ -1933,6 +1936,61 @@ bne Continue_GotItemDrop
 mov r0, #16 
 str r0, [r4, #0x2C] 
 b Exit_GotItemDropNow
+SendRemainingItemsToSupply: 
+sub r0, #1 
+str r0, [r4, #0x2C] @ index
+
+SendRemainingItemsToSupplyLoop: 
+ldr r0, [r4, #0x2C] @ index
+add r0, #1 
+str r0, [r4, #0x2C] @ index
+mov r1, r4 
+add r1, #0x30 
+ldrb r0, [r1, r0] 
+cmp r0, #0 
+bne ContinueSendRemainingItemsToSupply 
+mov r0, #16 
+str r0, [r4, #0x2C] 
+b Exit_GotItemDropNow
+ContinueSendRemainingItemsToSupply: 
+blh GetUnit 
+
+mov r3, #0x1C
+DroppableItemLoop:
+add r3, #2 @ SHORT 
+ldrh r1, [r0, r3] @ item 
+cmp r3, #0x28 
+bge SendRemainingItemsToSupplyLoop 
+cmp r1, #0 
+bne DroppableItemLoop 
+
+sub r3, #2 
+ldrh r6, [r0, r3] @ item 
+
+@	ldr  r3, =0x8031508 @size of convoy	{J}
+	ldr  r3, =0x80315bc @size of convoy	{U}
+	ldrb r3, [r3] @normally 0x63
+
+@	ldr  r0, =0x8031500 @pointer to convoy	{J}
+	ldr  r0, =0x80315b4 @pointer to convoy	{U}
+	ldr  r0, [r0]
+
+	lsl  r3, #0x01            @end = size*2 + convoy
+	add  r3, r0
+
+SupplyItemLoop:
+	cmp  r0,r3
+	bgt  SendRemainingItemsToSupplyLoop
+	ldrb r1,[r0]
+	cmp  r1,#0x00
+	beq  StoreItem
+	add  r0,#0x02
+	b    SupplyItemLoop
+
+StoreItem:                    @アイテムを書き込む
+	strh r6,[r0]
+b SendRemainingItemsToSupplyLoop
+
 
 Continue_GotItemDrop: 
 blh GetUnit 

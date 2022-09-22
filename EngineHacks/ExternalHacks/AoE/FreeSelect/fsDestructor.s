@@ -10,7 +10,7 @@ FreeSelect6C_Destructor:
 	
 	_blh UnlockGameLogic
 	
-bl AoE_ClearGraphics
+bl AoE_ClearGraphics @ 
 	
 	@pop {r4}
 	pop {r3}

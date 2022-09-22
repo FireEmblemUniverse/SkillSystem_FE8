@@ -22,8 +22,9 @@
 
 
 // Add this to your Unit Menu 
-// MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
-
+//#define MenuCommand_BPress(name,description,colour,usability,effect, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 0 unknown2|1"
+//  MenuCommand_BPress(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect, AoE_ClearGraphics)
+  
 // Text entries:
 /*
 ## UM_AoEName
@@ -147,7 +148,7 @@ AoE_Table:
 BYTE 0 0 0 IronSword
 BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
 BYTE 0 0 //FriendlyFireBool|DepleteItemBool
-BYTE 40 40 // damage range 
+BYTE 45 45 // damage range 
 BYTE 3 7 // Attack range 
 BYTE 0 0x1 // Index of RangeMask, Animation
 
