@@ -5,7 +5,7 @@
 
 
 
-#define AoE_EntrySizeDef 16 // 16 bytes per AoE table entry 
+#define AoE_EntrySizeDef 20 // 20 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
 #define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 	//{U}
 //#define AoE_RamAddressDef "0x0203F0FD" // Also used by combat art menu. 	//{J}
@@ -126,25 +126,14 @@ PROC_SET_NAME(AoE_MainProcName)
 PROC_SLEEP(0)
 PROC_LOOP_ROUTINE(AoE_PauseForAnimation)
 PROC_CALL_ROUTINE(AoE_GenericEffect)
-PROC_LOOP_ROUTINE(AoE_RemoveDeadUnitLoop)
+//PROC_LOOP_ROUTINE(AoE_WaitForEvents)
 PROC_CALL_ROUTINE(CallAoE_DroppedItemsProc)
-PROC_END
-
-ALIGN 4 
-AoE_DroppedItemsProc:
-PROC_YIELD // Buffer.
-PROC_SET_NAME(AoE_MainProcName)
-PROC_LABEL(0)
-PROC_CALL_ROUTINE(AoE_GotItemDropInit) 
-PROC_LABEL(1)
-PROC_CALL_ROUTINE(AoE_GotItemDrop) 
-PROC_LOOP_ROUTINE(AoE_GotItemDropLoop) 
-PROC_LABEL(2) 
 PROC_END
 
 ALIGN 4
 AoE_DrawDamageProc:
 PROC_YIELD // Buffer.
+PROC_SET_NAME(AoE_DrawDamageName)
 PROC_CALL_ROUTINE(0x8015681) //LoadObjUiGfx just in case it isn't loaded already 
 //PROC_CALL_ROUTINE_2(AoE_Camera2) // will only proceed once camera is on position 
 PROC_CALL_ROUTINE_2(AoE_Camera) // will proceed on next frame if returns 0, continues immediately if non-zero 
@@ -154,6 +143,36 @@ PROC_LOOP_ROUTINE(AoE_DrawDamageFunc)
 PROC_LABEL(1) 
 PROC_END
 
+ALIGN 4 
+AoE_EventQueueProc:
+PROC_YIELD 
+PROC_SET_NAME(AoE_EventQueueName)
+PROC_LABEL(0) 
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE(AoE_TryEventLoop)
+PROC_LABEL(1) 
+PROC_SLEEP(1)
+PROC_LOOP_ROUTINE(AoE_RemoveDeadUnitLoop)
+PROC_CALL_ROUTINE(0x080321C9) //@UpdateMapAndUnit    {U}
+//@blh 0x08032114   @UpdateMapAndUnit    {J}	
+PROC_LABEL(2) 
+PROC_END
+
+
+ALIGN 4 
+AoE_DroppedItemsProc:
+PROC_YIELD // Buffer.
+PROC_SET_NAME(AoE_DroppedItemsName)
+PROC_LABEL(0)
+PROC_CALL_ROUTINE(AoE_GotItemDropInit) 
+PROC_LABEL(1)
+PROC_CALL_ROUTINE(AoE_GotItemDrop) 
+PROC_LOOP_ROUTINE(AoE_GotItemDropLoop) 
+PROC_LABEL(2) 
+PROC_END
+
+
+
 
 
 
@@ -161,7 +180,17 @@ AoE_MainProcName:
 String("AoE_MainProc") ; BYTE 0
 ALIGN 4
 
+AoE_DroppedItemsName:
+String("AoE_DroppedItems") ; BYTE 0
+ALIGN 4
 
+AoE_DrawDamageName:
+String("AoE_DrawDamage") ; BYTE 0
+ALIGN 4
+
+AoE_EventQueueName:
+String("AoE_EventQueue") ; BYTE 0
+ALIGN 4
 
 
 ALIGN 4

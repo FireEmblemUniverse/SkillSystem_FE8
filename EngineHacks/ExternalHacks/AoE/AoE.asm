@@ -1047,7 +1047,7 @@ bl AoE_GetTableEntryPointer
 mov r5, r0 
 bl AoE_ClearMoveMap 
 
-ldrb r1, [r5, #ConfigByte] @ Stationary bool 
+ldrb r1, [r5, #ConfigByte] 
 mov r0, #HealBool
 ldr r3, =AoE_FreeSelect @ Proc list 
 tst r0, r1 
@@ -1354,8 +1354,14 @@ b Start_ForEachUnitInRange
 DamageUnits: 
 ldr r0, =AoE_DamageUnitsInRange
 Start_ForEachUnitInRange:
-blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask?	{U}
-@blh 0x8024E5C @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask?	@{J}
+blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask	{U}
+@blh 0x8024E5C @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask	@{J}
+
+ldrb r1, [r4, #EventIndex]
+cmp r1, #0 
+beq End_AoE 
+ldr r0, =AoE_EventForUnitsInRange 
+blh 0x8024eac @ForEachUnitInRange
 
 End_AoE:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
@@ -1367,6 +1373,156 @@ strb r0, [r1,#0x11]
 pop {r4-r5}
 pop {r0} 
 bx r0 
+.ltorg 
+
+.global AoE_EventForUnitsInRange 
+.type AoE_EventForUnitsInRange, %function 
+AoE_EventForUnitsInRange: 
+push {r4-r7, lr} 
+mov r4, r0 @ Target 
+bl AoE_GetTableEntryPointer 
+mov r5, r0 @ entry 
+
+ldr r0, =AoE_EventQueueProc 
+blh ProcFind 
+cmp r0, #0 
+beq NewEventQueueProc
+b StoreIntoEventQueueProc
+
+NewEventQueueProc: 
+ldr r0, =gProcPlayerPhase 
+blh ProcFind 
+cmp r0, #0
+beq Exit_EventQueueProc
+mov r1, r0 @ block player phase proc from continuing 
+
+ldr r0, =AoE_EventQueueProc 
+@mov r1, #3 @ root 3 
+blh New6CBlocking
+mov r1, #0 
+mov r2, r0 
+add r2, #0x28  @ zero out all the fields 
+strb r1, [r2, #1] 
+strb r1, [r2, #2] 
+strb r1, [r2, #3] 
+str r1, [r2, #4] @ 0x2c 
+str r1, [r2, #8] @ 30
+str r1, [r2, #12] @ 34
+str r1, [r2, #16] @ 38
+str r1, [r2, #20] @ 3c
+str r1, [r2, #24] @ 40
+str r1, [r2, #28] @ 44
+str r1, [r2, #32] @ 48
+str r1, [r2, #36] @ 4c
+str r1, [r2, #40] @ 50
+str r1, [r2, #44] @ 54
+str r1, [r2, #48] @ 58
+str r1, [r2, #52] @ 5c
+str r1, [r2, #56] @ 60
+str r1, [r2, #60] @ 64
+str r1, [r2, #64] @ 68
+
+StoreIntoEventQueueProc: 
+mov r6, r0 @ EventQueueProc 
+add r0, #0x29
+
+ldrb r1, [r0] @ Index of what we've stored 
+add r1, #1 @ we've done 1 more 
+strb r1, [r0] 
+sub r1, #1 @ index we're currently on 
+
+cmp r1, #64
+bgt Exit_EventQueueProc @ we can only queue an event for up to 64 bytes / units 
+
+mov r3, r6 
+add r3, #0x2c 
+ldrb r0, [r4, #0x0B] 
+strb r0, [r3, r1] @ deployment ID 
+
+
+Exit_EventQueueProc: 
+
+pop {r4-r7}
+pop {r0} 
+bx r0 
+.ltorg 
+
+.global AoE_TryEventLoop
+.type AoE_TryEventLoop, %function 
+AoE_TryEventLoop:
+push {r4-r7, lr} 
+mov r7, r0 @ Proc 
+
+ldr r0, =gProcEventEngine
+blh ProcFind 
+cmp r0, #0 
+bne ContinueEventLoop @ stall until currently running events are done 
+
+mov r0, r7 
+add r0, #0x29 
+@ldrb r1, [r0] @ Total 
+ldrb r1, [r0, #1] @ Current Index of unit that we're on 
+cmp r1, #64 
+bgt BreakEventLoop 
+add r1, #1 
+strb r1, [r0, #1] @ save our next index 
+sub r1, #1 @ back to our current index 
+mov r0, r7 
+add r0, #0x2c 
+ldrb r2, [r0, r1] 
+cmp r2, #0 
+beq BreakEventLoop @ we've gone through every unit in the queue 
+mov r0, r2 @ deployment id 
+blh GetUnit 
+cmp r0, #0 
+beq ContinueEventLoop @ skip doing anything
+mov r4, r0 @ Unit to act upon 
+
+bl AoE_GetTableEntryPointer 
+mov r5, r0 @ entry 
+ldrb r0, [r5, #EventIndex]
+lsl r0, #2 @ 4 bytes for an event address 
+ldr r6, =AoE_EventsTable
+add r6, r0 @ address for the specific event we want 
+
+
+
+ldr r3, =MemorySlot 
+ldr r0, [r4] @ unit pointer 
+ldrb r0, [r0, #4] @ unit ID 
+str r0, [r3, #4*2] @ s2 as unit ID 
+add r3, #0x0B*4 @ sB 
+ldrb r0, [r4, #0x10] @ XX 
+ldrb r1, [r4, #0x11] @ YY 
+strh r0, [r3] 
+strh r1, [r3, #2] @ target coordinates in sB 
+ldr r0, [r6] @ event to run 
+mov r1, #1 
+blh EventEngine 
+@ start our event 
+
+
+
+b ContinueEventLoop 
+
+BreakEventLoop: 
+@ldr r0, =AoE_EventQueueProc
+mov r0, r7 
+mov r1, #1 @ label 
+blh ProcGoto
+b ExitEventLoop 
+
+ContinueEventLoop: 
+mov r0, r7 
+mov r1, #0 @ label 
+blh ProcGoto
+
+ExitEventLoop:
+pop {r4-r7}
+pop {r0}
+bx r0 
+.ltorg 
+
 
 .align 4
 .global AoE_GetTableEntryPointer 
@@ -1651,6 +1807,28 @@ ldr r6, [r6] @ actor
 bl AoE_GetTableEntryPointer
 mov r5, r0 @ table effect address 
 
+ldrb r1, [r5, #ConfigByte]  
+mov r0, #FriendlyFireBool
+tst r0, r1 
+bne AlwaysDamageInRange @ If friendly fire is on, then we heal regardless of allegiance 
+mov r2, #0x0B 
+ldsb r0, [r6, r2] 
+ldsb r1, [r7, r2] 
+blh 0x8024d8c @AreAllegiancesAllied	@{U}
+@blh 0x8024D3C @AreAllegiancesAllied	@{J}
+cmp r0, #0 
+bne DoNotDamageTargetInRange
+AlwaysDamageInRange: 
+
+ldrb r0, [r5, #Status]
+cmp r0, #0 
+beq DoNotInflictStatus
+mov r1, r7 @ target 
+add r1, #0x30 @ status byte 
+strb r0, [r1] @ new status 
+
+DoNotInflictStatus: 
+
 mov r0, r6 @ actor 
 mov r1, r7 @ target 
 mov r2, r5 @ table 
@@ -1658,6 +1836,7 @@ mov r3, #0 @ return damage range
 bl AoE_CalcTargetRemainingHP
 strb r0, [r7, #0x13] @ curr hp 
 
+DoNotDamageTargetInRange: 
 
 pop {r4-r7}
 pop {r0}
@@ -1779,6 +1958,23 @@ pop {r0}
 bx r0
 .ltorg 
 
+.global AoE_WaitForEvents
+.type AoE_WaitForEvents, %function 
+AoE_WaitForEvents:
+push {r4, lr} 
+mov r4, r0 
+ldr r0, =AoE_EventQueueProc
+blh ProcFind 
+cmp r0, #0 
+bne WaitForEvents
+mov r0, r4 @  @ parent to break from 
+blh BreakProcLoop
+WaitForEvents: 
+pop {r4} 
+pop {r0} 
+bx r0 
+.ltorg 
+
 .equ gProcGotItemPopup, 0x85922D0 
 .equ InitBattleUnitFromUnit, 0x802A584 
 .equ BATTLE_HandleItemDrop, 0x80328D0 
@@ -1895,9 +2091,6 @@ b GotItem_XLoop
 
 
 BreakGotItemLoop: 
-
-blh 0x080321C8 @UpdateMapAndUnit    {U}
-@blh 0x08032114   @UpdateMapAndUnit    {J}	
 
 pop {r4-r7} 
 mov r8, r4 
@@ -2166,6 +2359,87 @@ ldr r6, [r6] @ actor
 bl AoE_GetTableEntryPointer
 mov r5, r0 @ table effect address 
 
+ldrb r1, [r5, #ConfigByte]  
+mov r0, #FriendlyFireBool
+tst r0, r1 
+bne AlwaysHealInRange @ If friendly fire is on, then we heal regardless of allegiance 
+mov r2, #0x0B 
+ldsb r0, [r6, r2] 
+ldsb r1, [r7, r2] 
+blh 0x8024d8c @AreAllegiancesAllied	@{U}
+@blh 0x8024D3C @AreAllegiancesAllied	@{J}
+cmp r0, #0 
+beq DoNotHealTargetInRange
+AlwaysHealInRange: 
+
+
+ldrb r0, [r5, #Status]
+cmp r0, #0 
+beq DoNotRestoreStatus
+mov r1, r7 @ target 
+add r1, #0x30 @ status byte 
+
+lsl r2, r0, #28 
+lsr r2, #28 @ status type only 
+cmp r2, #0xF
+beq RestoreAnyStatusTypeButRings
+
+ldrb r2, [r1] 
+lsl r2, #28 
+lsr r2, #28 @ status only 
+lsl r3, r0, #28 
+lsr r3, #28 @ status only 
+cmp r3, r2 
+bne DoNotRestoreStatus 
+ 
+ldrb r2, [r1] 
+lsr r0, #4 
+lsl r0, #4 @ turns only 
+lsr r3, r2, #4 
+lsl r3, #4 
+cmp r0, r3
+bge StoreZeroStatus 
+sub r3, r0 
+lsl r2, #28 
+lsr r2, #28 @ status only 
+orr r2, r3 @ new number of turns 
+@ restore status by number of turns provided 
+strb r2, [r1] @ new status 
+b DoNotRestoreStatus 
+RestoreAnyStatusTypeButRings: 
+ldrb r0, [r1] 
+lsl r3, r0, #28 
+lsr r3, #28 @ status only 
+cmp r3, #5 
+beq DoNotRestoreStatus @ don't restore AtkRingStatus 
+cmp r3, #6
+beq DoNotRestoreStatus @ don't restore AtkRingStatus 
+cmp r3, #7 
+beq DoNotRestoreStatus @ don't restore AtkRingStatus 
+cmp r3, #8 
+beq DoNotRestoreStatus @ don't restore AtkRingStatus 
+ldrb r0, [r5, #Status]
+ldrb r2, [r1] 
+lsr r0, #4 
+lsl r0, #4 @ turns only 
+lsr r3, r2, #4 
+lsl r3, #4 
+cmp r0, r3
+bge StoreZeroStatus 
+sub r3, r0 
+lsl r2, #28 
+lsr r2, #28 @ status only 
+orr r2, r3 @ new number of turns 
+@ restore status by number of turns provided 
+strb r2, [r1] @ new status 
+b DoNotRestoreStatus
+
+StoreZeroStatus: 
+mov r0, #0 
+strb r0, [r1] @ empty out status 
+DoNotRestoreStatus: 
+
+
 mov r1, r7 @ target 
 mov r0, r6 @ actor 
 mov r2, r5 @ table 
@@ -2179,6 +2453,7 @@ mov r0, r1 @ Healed to full
 NoCapHP_Healing:
 strb r0, [r7, #0x13] 
 
+DoNotHealTargetInRange: 
 
 pop {r4-r7}
 pop {r0}
@@ -2237,6 +2512,10 @@ ldr r3, [r3]
 ldrb r0, [r3, #0x10] @ XX 
 ldrb r1, [r3, #0x11] @ YY 
 ldrb r2, [r4, #MinRangeByte] @ Min range 
+cmp r2, #0 
+beq NoSubRangeByte
+sub r2, #1 
+NoSubRangeByte: 
 ldrb r3, [r4, #MaxRangeByte] @ Max range 
 @ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
 blh CreateRangeMapFromRange, r4
@@ -2258,6 +2537,10 @@ ldr r3, [r3]
 ldrb r0, [r3, #0x10] @ XX 
 ldrb r1, [r3, #0x11] @ YY 
 ldrb r2, [r4, #MinRangeByte] @ Min range 
+cmp r2, #0 
+beq NoSubRangeByte2
+sub r2, #1 
+NoSubRangeByte2: 
 ldrb r3, [r4, #MaxRangeByte] @ Max range  
 @ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
 blh CreateRangeMapFromRange, r4

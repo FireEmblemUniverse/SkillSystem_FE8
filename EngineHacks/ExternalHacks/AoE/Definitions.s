@@ -19,6 +19,10 @@
 .equ MaxRangeByte, 13 
 .equ RangeMaskByte, 14 
 .equ Animation_IDByte, 15
+.equ DamagePercent, 16 
+.equ Status, 17
+.equ DebuffID, 18 
+.equ EventIndex, 19 
 
 @ Config Bools 
 .equ HealBool, 0x01

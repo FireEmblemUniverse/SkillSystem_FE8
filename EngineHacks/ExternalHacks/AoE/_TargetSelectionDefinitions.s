@@ -17,6 +17,7 @@
 	mov lr, \reg
 	.short 0xF800
 .endm
+.set gProcEventEngine, 0x8591AC0
 .set GetItemAttributes, 0x801756C 
 .set CanUnitUseWeapon, 0x8016574
 .set CanUnitUseStaff, 0x80167A4

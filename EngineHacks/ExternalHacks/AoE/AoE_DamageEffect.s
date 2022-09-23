@@ -30,6 +30,13 @@ ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound dmg
 bl GetRandBetweenXAndY
 @ returns the dmg dealt 
 ReturnMinimum: 
+ldrb r1, [r4, #DamagePercent] 
+cmp r1, #100 
+beq SkipPercent
+mul r0, r1 
+mov r1, #100 
+swi 6 
+SkipPercent:
 pop {r4} 
 pop {r1} 
 bx r1
@@ -116,6 +123,15 @@ ldrb r1, [r7, r1] @ Def or Res
 
 mov r0, r5 @ dmg 
 sub r0, r1 @ Dmg to deal 
+
+ldrb r1, [r4, #DamagePercent] 
+cmp r1, #100 
+beq SkipPercent2
+mul r0, r1 
+mov r1, #100 
+swi 6 
+SkipPercent2:
+
 cmp r0, #0 
 bgt NoCap 
 mov r0, #1 @ Always deal at least 1 damage 
