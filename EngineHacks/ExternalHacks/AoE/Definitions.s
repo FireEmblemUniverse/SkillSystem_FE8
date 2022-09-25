@@ -23,6 +23,10 @@
 .equ Status, 17
 .equ DebuffID, 18 
 .equ EventIndex, 19 
+.equ WeaponType, 20 
+.equ WEXP_Req, 21 
+.equ Pad1, 22 
+.equ Pad2, 23 
 
 @ Config Bools 
 .equ HealBool, 0x01

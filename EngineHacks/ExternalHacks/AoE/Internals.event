@@ -5,7 +5,7 @@
 
 
 
-#define AoE_EntrySizeDef 20 // 20 bytes per AoE table entry 
+#define AoE_EntrySizeDef 24 // 24 bytes per AoE table entry 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
 #define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 	//{U}
 //#define AoE_RamAddressDef "0x0203F0FD" // Also used by combat art menu. 	//{J}

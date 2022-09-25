@@ -160,17 +160,25 @@ CURE
 NoFade 
 ENDA 
 
+#define Sword 0 
+#define Axe 1 
+#define Lance 2 
+
 ALIGN 4 
 AoE_Table:
 // Entry 0
-BYTE 0 0 0 IronSword
+BYTE 0 0 0 0
 BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
-BYTE 0 0 //FriendlyFireBool|DepleteItemBool
+BYTE 0 FriendlyFireBool|DepleteItemBool
 BYTE 45 45 // damage range 
 BYTE 1 1 // Attack range 
 BYTE 0 0x1 // Index of RangeMask, Animation
 BYTE 50 0x36 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE Sword 31 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
+// Effectiveness short? 
+// armor, horse, flier, dragon/wyvern, monster, sword 
 
 
 // Entry 1
@@ -182,6 +190,8 @@ BYTE 0 4 // Attack range
 BYTE 6 0xC // Index of RangeMask, Animation
 BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 // Entry 2
 BYTE 0 0 0 0 
@@ -192,6 +202,8 @@ BYTE 0 4 // Attack range
 BYTE 2 2 // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 // Entry 3
 BYTE 0 0 0 0
@@ -202,6 +214,8 @@ BYTE 3 7 // Attack range
 BYTE 3 3 // Index of RangeMask, Animation
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 
 // Entry 4
@@ -213,6 +227,8 @@ BYTE 0 4 // Attack range
 BYTE 4 4 // Index of RangeMask, Animation
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 // Entry 5
 BYTE 0 0 0 0
@@ -223,6 +239,8 @@ BYTE 0 4 // Attack range
 BYTE 5 5 // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 // Entry 6
 BYTE 0 0 0 0
@@ -233,6 +251,8 @@ BYTE 3 7 // Attack range
 BYTE 6 6 // Index of RangeMask, Animation
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 
 // Entry 7
@@ -244,6 +264,8 @@ BYTE 0 4 // Attack range
 BYTE 7 7 // Index of RangeMask, Animation
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 // Entry 8
 BYTE 0 0 0 0
@@ -254,6 +276,8 @@ BYTE 0 4 // Attack range
 BYTE 8 8 // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
 
 // Entry 9
 BYTE 0 0 0 0
@@ -264,6 +288,9 @@ BYTE 0 4 // Attack range
 BYTE 9 9 // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 0 0 // Padding 
+
 AoE_TableTerminator
 
 

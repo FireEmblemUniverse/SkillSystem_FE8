@@ -25,6 +25,8 @@
 .set BackupMovementMap, 0x202E4F0 
 .set Attacker, 0x203A4EC 
 .set Defender, 0x203A56C
+.set GetItemType, 0x8017548
+.set GetItemRequiredExp, 0x80176B8
 
 .equ GetGameClock, 0x08000D28	@{U}
 @.equ GetGameClock, 0x08000CD8	@{J}

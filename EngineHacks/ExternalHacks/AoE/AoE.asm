@@ -17,7 +17,7 @@
 .type AoE_Usability, %function 
 
 AoE_Usability:
-push {r4-r6, lr} 
+push {r4-r7, lr} 
 @ given r0 = specific AoE table entry we want 
 mov r4, r0 
 
@@ -38,8 +38,10 @@ ldr r0, [r0]
 mov lr, r3 
 .short 0xf800 
 cmp r0, #0 
-beq ReturnFalse
-
+beq ReturnFalseLadder
+b SkipSkillTester
+ReturnFalseLadder: 
+b ReturnFalse 
 
 SkipSkillTester:
 
@@ -143,9 +145,8 @@ mov r1, #4 @ Staff
 tst r0, r1 
 bne IsStaff
 
-ldr r0, =CurrentUnit 
-ldr r0, [r0] 
-mov r1, r6 
+mov r0, r5 @ unit 
+mov r1, r6 @ item 
 blh CanUnitUseWeapon
 cmp r0, #1 
 beq ValidItem 
@@ -154,8 +155,7 @@ b ReturnFalse
 
 IsStaff: 
 
-ldr r0, =CurrentUnit 
-ldr r0, [r0] 
+mov r0, r5 
 mov r1, r6 
 blh CanUnitUseStaff
 cmp r0, #1 
@@ -174,8 +174,40 @@ cmp r1, r0
 ble ReturnFalse
 ValidHPCost:
 
+ldrb r0, [r4, #WeaponType] @ usable if you have this weapon type in inventory 
+cmp r0, #0xFF 
+beq ValidWeaponType 
+ldrb r1, [r4, #WEXP_Req] @ Required weapon rank / exp in this weapon type
+cmp r1, #0 
+beq ValidWeaponType
 
 
+mov r7, #0x1c @ almost items 
+WeaponTypeLoop: 
+add r7, #2 
+cmp r7, #0x26 
+bgt ReturnFalse 
+ldrh r6, [r5, r7] 
+mov r0, r6 @ weapon ID 
+blh GetItemType
+ldrb r1, [r4, #WeaponType] 
+cmp r0, r1 
+bne WeaponTypeLoop 
+@ weapon type is the same, but can we use this weapon? 
+
+mov r0, r5 @ unit 
+mov r1, r6 @ weapon ID 
+blh CanUnitUseWeapon
+cmp r0, #1 
+bne WeaponTypeLoop 
+mov r0, r6 @ weapon ID 
+blh GetItemRequiredExp
+ldrb r1, [r4, #WEXP_Req]
+cmp r0, r1 
+blt WeaponTypeLoop @ the weapon is a lower rank than what we require 
+b ValidWeaponType 
+
+ValidWeaponType: 
 ReturnTrue: 
 mov r0, #1 
 b Finish_Usability 
@@ -186,7 +218,7 @@ mov r0, #3
 
 
 Finish_Usability: 
-pop {r4-r6}
+pop {r4-r7}
 pop {r1} 
 bx r1 
 .ltorg 
@@ -1315,9 +1347,7 @@ ldr r0, [r1, r2] @ POIN to the RangeMask we want
 @ parameters: r0 = RangeMaskPointer 
 bl AoE_EffectCreateRangeMap
 
-ldrb r0, [r4, #ItemByte] 
-cmp r0, #0 
-beq DoNotDepleteItem
+
 
 ldrb r1, [r4, #ConfigByte]
 mov r0, #DepleteItemBool
@@ -1658,8 +1688,8 @@ bx r0
 .align 4
 .global AoE_DepleteItem
 AoE_DepleteItem:
-
-push {r4-r6, lr}
+@ only called if the deplete item bool is set 
+push {r4-r7, lr}
 @ r0 = table entry 
 
 mov r4, r0  
@@ -1668,6 +1698,62 @@ mov r4, r0
 ldr r0, =CurrentUnit
 ldr r5, [r0] 
 
+@ we want to deplete the lowest weapon rank item 
+ldrb r0, [r4, #WeaponType] 
+cmp r0, #0xFF @ no weapon type required 
+beq ExitWeaponTypeSection
+ldrb r1, [r4, #WEXP_Req]
+cmp r1, #0 @ no weapon exp required 
+beq ExitWeaponTypeSection 
+
+mov r7, #0 @ prev wep to deplete 
+mov r6, #0x1c @ almost items 
+WeaponTypeLoop_DepleteItem: 
+add r6, #2 
+cmp r6, #0x26 
+bgt MaybeExitWeaponTypeSection 
+ldrh r0, [r5, r6] @ weapon ID 
+blh GetItemType
+ldrb r1, [r4, #WeaponType] 
+cmp r0, r1 
+bne WeaponTypeLoop_DepleteItem 
+@ weapon type is the same, but can we use this weapon? 
+
+mov r0, r5 @ unit 
+ldrh r1, [r5, r6] @ weapon ID 
+blh CanUnitUseWeapon
+cmp r0, #1 
+bne WeaponTypeLoop_DepleteItem 
+ldrh r0, [r5, r6] @ weapon ID 
+blh GetItemRequiredExp
+ldrb r1, [r4, #WEXP_Req]
+cmp r0, r1 
+blt WeaponTypeLoop_DepleteItem @ the weapon is a lower rank than what we require 
+cmp r7, #0 @ no item 
+beq Skip_CompareForLowestWEXP
+push {r0} 
+ldrh r0, [r5, r7] @ weapon ID 
+blh GetItemRequiredExp
+mov r1, r0 
+pop {r0} 
+@ r1 = prev wep required wexp 
+@ r0 = current 
+cmp r0, r1 
+bgt WeaponTypeLoop_DepleteItem 
+Skip_CompareForLowestWEXP: 
+mov r7, r6 @ counter 
+b WeaponTypeLoop_DepleteItem 
+
+MaybeExitWeaponTypeSection:
+cmp r7, #0 
+beq ExitWeaponTypeSection 
+mov r6, r7 
+ldrh r0, [r5, r6] @ weapon ID 
+b DepleteItemNow 
+
+
+
+ExitWeaponTypeSection: 
 ldrb r0, [r4, #ItemByte] @ Req Item 
 cmp r0, #0 
 beq Done_DepleteItem
@@ -1683,6 +1769,8 @@ cmp r2, r0
 bne InventoryLoop_DepleteItem
 ldrh r0, [r5, r1] 
 mov r6, r1 
+DepleteItemNow: 
+@ r0 as item, r6 as counter 
 blh 0x8016aec @GetItemAfterUse	@{U}
 @blh 0x08016894 @GetItemAfterUse	@{J}
 strh r0, [r5, r6] 
@@ -1694,7 +1782,7 @@ blh 0x8017984 @RemoveUnitBlankItems	@{U}
 
 Done_DepleteItem:
 
-pop {r4-r6}
+pop {r4-r7}
 pop {r0} 
 bx r0 
 
