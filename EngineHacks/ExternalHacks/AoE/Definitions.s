@@ -25,7 +25,7 @@
 .equ EventIndex, 19 
 .equ WeaponType, 20 
 .equ WEXP_Req, 21 
-.equ Pad1, 22 
+.equ DepleteItemAmount, 22 
 .equ Pad2, 23 
 
 @ Config Bools 
@@ -37,7 +37,6 @@
 .equ DepleteItemBool, 0x20
 .equ UsableOnlyIfStationaryBool, 0x40 
 .equ KeepHP1NotDieBool, 0x80
-
 
 
 	.equ CurrentUnit, 0x3004E50	@{U}

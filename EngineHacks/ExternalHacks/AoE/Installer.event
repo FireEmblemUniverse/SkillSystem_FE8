@@ -134,6 +134,10 @@ DamagePercent, 16
 Status, 17
 DebuffID, 18 
 EventIndex, 19 
+WeaponType, 20 
+WEXP_Req, 21 
+DepleteItemAmount, 22 
+Padding, 23 
 */
 
 // Bitfield for more config options 
@@ -148,10 +152,12 @@ EventIndex, 19
 
 ALIGN 4 
 AoE_EventsTable:
-POIN 0 // Index 0 
+POIN 0// Index 0 
 POIN MyTestEvent // Index 1 
 POIN 0 // Index 2 etc. 
 WORD 0 
+
+
 
 MyTestEvent: 
 CUMO (-2) 
@@ -159,6 +165,12 @@ STAL 30
 CURE 
 NoFade 
 ENDA 
+
+ALIGN 4 
+AoE_DebuffTable:
+WORD 0 
+WORD 0x1234567 // Mag, Luk, Res, Def, Spd, Skl, Str 
+WORD 0x2345678 
 
 #define Sword 0 
 #define Axe 1 
@@ -171,12 +183,13 @@ BYTE 0 0 0 0
 BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
 BYTE 45 45 // damage range 
-BYTE 1 1 // Attack range 
+BYTE 1 8 // Attack range 
 BYTE 0 0x1 // Index of RangeMask, Animation
 BYTE 50 0x36 // DamagePercent, Status 
-BYTE 0 0 // DebuffID, EventIndex 
+BYTE 1 0 // DebuffID, EventIndex 
 BYTE Sword 31 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
+BYTE 25 // Amount of weapon uses to deplete. 
+BYTE 0 // Padding 
 // Effectiveness short? 
 // armor, horse, flier, dragon/wyvern, monster, sword 
 

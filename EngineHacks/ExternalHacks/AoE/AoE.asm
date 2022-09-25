@@ -1387,10 +1387,7 @@ Start_ForEachUnitInRange:
 blh 0x8024eac @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask	{U}
 @blh 0x8024E5C @ForEachUnitInRange @ maybe this calls AoE_DamageUnitsInRange for each unit found in the range mask	@{J}
 
-ldrb r1, [r4, #EventIndex]
-cmp r1, #0 
-beq End_AoE 
-ldr r0, =AoE_EventForUnitsInRange 
+ldr r0, =AoE_EventForUnitsInRange @ also does the death fade 
 blh 0x8024eac @ForEachUnitInRange
 
 End_AoE:
@@ -1412,6 +1409,128 @@ push {r4-r7, lr}
 mov r4, r0 @ Target 
 bl AoE_GetTableEntryPointer 
 mov r5, r0 @ entry 
+
+mov r0, r4 @ Unit 
+ldr r3, =AoE_GetDebuffs 
+ldr r3, [r3] 
+cmp r3, #0 
+beq NoDebuffsPossible 
+mov lr, r3 
+.short 0xF800 @ blh 
+mov r6, r0 @ debuffs pointer 
+ldrb r0, [r5, #DebuffID]
+ldr r3, =AoE_DebuffTable
+mov r1, #4 @ 4 bytes per entry 
+mul r0, r1 
+add r3, r0 @ Specific entry 
+ldr r7, [r3] 
+lsl r1, r7, #4 @ mag only 
+lsr r1, #28 @ mag only 
+ldrb r2, [r6, #5] @ RallyMag/Mag 
+mov r3, #0xF
+and r3, r2 @ mag debuff only 
+cmp r1, r3 
+blt NoMagDebuff @ they have a worse debuff already 
+mov r3, #0xF0 
+and r3, r2 @ rally mag only 
+orr r1, r3 @ rally mag/mag debuff 
+strb r1, [r6, #5] @ mag stored back in 
+NoMagDebuff: 
+
+
+
+ldrb r0, [r6] @ str 
+mov r1, r0 
+mov r2, #0xF 
+and r1, r2 
+and r2, r7 @ str only 
+cmp r1, r2 
+bgt NoStrDebuff 
+mov r1, #0xF0 
+and r0, r1 
+orr r0, r2 
+strb r0, [r6] 
+NoStrDebuff: 
+
+ldrb r0, [r6] @ str 
+mov r1, r0 
+mov r2, #0xF0 
+and r1, r2 
+and r2, r7 @ str only 
+cmp r1, r2 
+bgt NoSklDebuff 
+mov r1, #0xF
+and r0, r1 
+orr r0, r2 
+strb r0, [r6] 
+NoSklDebuff: 
+
+
+
+lsr r7, #8 
+
+ldrb r0, [r6, #1] @ str 
+mov r1, r0 
+mov r2, #0xF
+and r1, r2 
+and r2, r7 @ str only 
+cmp r1, r2 
+bgt NoSpdDebuff 
+mov r1, #0xF0
+and r0, r1 
+orr r0, r2 
+strb r0, [r6, #1] 
+NoSpdDebuff: 
+
+ldrb r0, [r6, #1] 
+mov r1, r0 
+mov r2, #0xF0
+and r1, r2 
+and r2, r7 
+cmp r1, r2 
+bgt NoDefDebuff 
+mov r1, #0xF
+and r0, r1 
+orr r0, r2 
+strb r0, [r6, #1] 
+NoDefDebuff: 
+
+lsr r7, #8 
+
+ldrb r0, [r6, #2] 
+mov r1, r0 
+mov r2, #0xF
+and r1, r2 
+and r2, r7 
+cmp r1, r2 
+bgt NoResDebuff 
+mov r1, #0xF0
+and r0, r1 
+orr r0, r2 
+strb r0, [r6, #2] 
+NoResDebuff: 
+
+ldrb r0, [r6, #2] 
+mov r1, r0 
+mov r2, #0xF0
+and r1, r2 
+and r2, r7
+cmp r1, r2 
+bgt NoLukDebuff 
+mov r1, #0xF
+and r0, r1 
+orr r0, r2 
+strb r0, [r6, #2] 
+NoLukDebuff: 
+
+
+@0-2: Debuffs, 4 bits each (str/skl/spd/def/res/luk)
+@3: Rallys (bit 7 = rally move, bit 8 = rally spectrum)
+@4: Str/Skl Silver Debuff (6 bits), bit 7 = half strength, HO bit = Hexing Rod
+@5: (RallyMag<<4)||MagDebuff
+
+NoDebuffsPossible: 
+
 
 ldr r0, =AoE_EventQueueProc 
 blh ProcFind 
@@ -1527,6 +1646,8 @@ ldrb r1, [r4, #0x11] @ YY
 strh r0, [r3] 
 strh r1, [r3, #2] @ target coordinates in sB 
 ldr r0, [r6] @ event to run 
+cmp r0, #0 
+beq ContinueEventLoop 
 mov r1, #1 
 blh EventEngine 
 @ start our event 
@@ -1771,8 +1892,24 @@ ldrh r0, [r5, r1]
 mov r6, r1 
 DepleteItemNow: 
 @ r0 as item, r6 as counter 
-blh 0x8016aec @GetItemAfterUse	@{U}
-@blh 0x08016894 @GetItemAfterUse	@{J}
+ldrb r1, [r4, #DepleteItemAmount] 
+cmp r1, #0 
+bne AlreadyDepletingByAtLeastOne
+mov r1, #1 
+AlreadyDepletingByAtLeastOne: 
+lsr r2, r0, #8 @ durability only 
+cmp r1, r2 
+blt DontSetUsesToZero
+mov r0, #0
+mov r1, #0
+mov r2, #0 
+DontSetUsesToZero: 
+sub r2, r1 
+mov r1, #0xFF 
+and r0, r1 
+lsl r2, #8 
+orr r0, r2 
+
 strh r0, [r5, r6] 
 cmp r0, #0 
 bne Done_DepleteItem
