@@ -2781,6 +2781,11 @@ push {r0}
 mov r0, r6 @ wep 
 blh GetItemMaxRange 
 mov r3, r0 
+cmp r3, #0
+bne ContinueItemMaxRange
+mov r3, #5 @ for physic staff lol. 
+
+ContinueItemMaxRange: 
 pop {r2} @ min range 
 cmp r2, #0 
 beq NoSubRangeByte3 
