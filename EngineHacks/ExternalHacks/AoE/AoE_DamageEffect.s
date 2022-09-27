@@ -2,6 +2,7 @@
 .thumb
 
 .include "Definitions.s"
+.include "_TargetSelectionDefinitions.s"
 
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -20,16 +21,41 @@
 .global AoE_FixedDamage
 .type AoE_FixedDamage, %function
 AoE_FixedDamage:
-push {r4, lr} 
+push {r4-r6, lr} 
 @r0 = table effect address 
 mov r4, r0 
-ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound dmg 
-cmp r3, #1 
-beq ReturnMinimum
-ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound dmg 
-bl GetRandBetweenXAndY
+mov r5, r3 
+mov r6, r1 @ actor 
+
+ldrb r0, [r4, #Config2] 
+mov r1, #UseWepMt
+and r0, r1 
+cmp r0, #0 
+beq UseAoEPower
+
+mov r0, r4 @ table 
+bl AoE_GetItemUsedOffset
+cmp r0, #0 
+beq SkipPercent @ 0 mt if no item found 
+ldrh r0, [r6, r0] @ item used 
+
+
+blh GetItemMight 
+cmp r5, #1 
+beq ReturnFixedDamage
+ldrb r1, [r4, #RandAddedMt] @ @ amount of added random dmg 
+bl GetRandBetweenXAndXPlusY
+b ReturnFixedDamage
+
+
+UseAoEPower: 
+ldrb r0, [r4, #MtByte] @ base Mt 
+cmp r5, #1 
+beq ReturnFixedDamage
+ldrb r1, [r4, #RandAddedMt] @ @ amount of added random dmg 
+bl GetRandBetweenXAndXPlusY
 @ returns the dmg dealt 
-ReturnMinimum: 
+ReturnFixedDamage: 
 ldrb r1, [r4, #DamagePercent] 
 cmp r1, #100 
 beq SkipPercent
@@ -37,18 +63,20 @@ mul r0, r1
 mov r1, #100 
 swi 6 
 SkipPercent:
-pop {r4} 
+pop {r4-r6} 
 pop {r1} 
 bx r1
 
-.global GetRandBetweenXAndY
-.type GetRandBetweenXAndY, %function
-GetRandBetweenXAndY:
+.global GetRandBetweenXAndXPlusY
+.type GetRandBetweenXAndXPlusY, %function
+GetRandBetweenXAndXPlusY:
 
 push {r4-r5, lr}
 
-mov r4, r0 @ lower bound
+mov r4, r0 @ Base Mt 
+add r1, r0 @ Mt+Rand = upper bound 
 mov r5, r1 @ upper bound
+
 blh NextRN_100
 @r0 as 0-100 i guess 
 
@@ -80,20 +108,78 @@ mov r4, r0
 @r1 = attacker / current unit ram 
 @r2 = current target unit ram
 @r3 = do min damage bool 
+mov r5, r3 @ do min dmg bool 
 mov r6, r1 
-mov r7, r2 
+mov r7, r2 @ target 
 
 
-ldrb r0, [r4, #PowerLowerBoundByte] @ lower bound mt 
-cmp r3, #1 
+ldrb r0, [r4, #Config2] 
+mov r1, #UseWepMt
+and r0, r1 
+cmp r0, #0 
+beq UseAoERegularPower
+
+
+mov r0, r4 @ table 
+bl AoE_GetItemUsedOffset
+cmp r0, #0 
+beq FoundMt @ 0 mt if no item found 
+
+
+mov r1, r5 @ return min dmg? 
+push {r1} 
+mov r5, r0 @ item offset 
+
+ldrh r0, [r6, r5] @ item used 
+
+blh GetItemMight 
+
+push {r0} @ item mt 
+
+@ might be better to use BattleLoadAttack 802aabc which would calculate effectiveness anyway 
+@ however, this would fill in the battle struct for attacker & defender each frame where HpBars are displayed in AoE 
+@ I dunno if this matters, but 3x effective dmg is probably fine 
+
+
+ldrb r1, [r4, #Config2] 
+mov r2, #UseWepEffectiveness
+and r2, r1 
+cmp r2, #0 
+beq CalcMt 
+
+@PossiblyEffective: 
+ldrh r0, [r6, r5] @ item used 
+mov r1, r7 @ target 
+blh IsWeaponEffective 
+mov r2, r0 @ effectiveness 
+
+pop {r0} @ item mt 
+pop {r3} @ return min dmg? 
+
+CalcMt: 
+cmp r2, #0 
+beq NoMultiplyMt 
+mov r1, #3 @ 3x mt 
+mul r0, r1 
+NoMultiplyMt:  
+
+cmp r3, #1 @ always return minimum damage in this case 
+beq FoundMt
+ldrb r1, [r4, #RandAddedMt] @ @ amount of added random dmg 
+bl GetRandBetweenXAndXPlusY
+b FoundMt
+
+
+
+
+UseAoERegularPower: 
+ldrb r0, [r4, #MtByte] @ base mt 
+cmp r5, #1 
 beq FoundMt @ always return minimum damage in this case 
-ldrb r1, [r4, #PowerUpperBoundByte] @ upper bound mt
-cmp r0, r1 
-bgt FoundMt @ if lower bound is higher than upper bound because of user error, then we just use the lower bound 
-bl GetRandBetweenXAndY
+ldrb r1, [r4, #RandAddedMt] @ amount of added random dmg 
+bl GetRandBetweenXAndXPlusY
 FoundMt:
 mov r5, r0 @ mt 
-
 
 
 
@@ -112,17 +198,27 @@ add r5, r0 @ dmg to deal
 @ get unit def/res 
 @ add to terrain bonus
 
+mov r0, r7 @ unit 
 ldrb r2, [r4, #ConfigByte] 
 mov r3, #HitResBool 
 mov r1, #0x17  @ Def as default 
 tst r3, r2 
-beq LoadDefOrRes
-mov r1, #0x18 @ Res 
-LoadDefOrRes: 
-ldrb r1, [r7, r1] @ Def or Res 
+beq LoadDef
 
-mov r0, r5 @ dmg 
-sub r0, r1 @ Dmg to deal 
+@ r0 = target 
+blh GetUnitResistance
+b LoadedBattleDef 
+
+LoadDef: 
+@ r0 = target 
+blh GetUnitDefense 
+
+LoadedBattleDef: 
+
+
+mov r1, r5 @ dmg 
+sub r1, r0 @ Dmg to deal 
+mov r0, r1 
 
 ldrb r1, [r4, #DamagePercent] 
 cmp r1, #100 

@@ -1804,28 +1804,24 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 
+.type AoE_GetItemUsedOffset, %function 
+.global AoE_GetItemUsedOffset 
+AoE_GetItemUsedOffset:
+push {r4-r7, lr} 
 
-.type AoE_DepleteItem, %function 
-.align 4
-.global AoE_DepleteItem
-AoE_DepleteItem:
-@ only called if the deplete item bool is set 
-push {r4-r7, lr}
 @ r0 = table entry 
-
 mov r4, r0  
-
-
 ldr r0, =CurrentUnit
 ldr r5, [r0] 
+mov r6, #0 @ default as none 
 
 @ we want to deplete the lowest weapon rank item 
 ldrb r0, [r4, #WeaponType] 
 cmp r0, #0xFF @ no weapon type required 
 beq ExitWeaponTypeSection
 ldrb r1, [r4, #WEXP_Req]
-cmp r1, #0 @ no weapon exp required 
-beq ExitWeaponTypeSection 
+@ no weapon exp required could be prf weapons 
+
 
 mov r7, #0 @ prev wep to deplete 
 mov r6, #0x1c @ almost items 
@@ -1870,27 +1866,55 @@ cmp r7, #0
 beq ExitWeaponTypeSection 
 mov r6, r7 
 ldrh r0, [r5, r6] @ weapon ID 
-b DepleteItemNow 
+b ReturnItemUsed
 
 
 
 ExitWeaponTypeSection: 
 ldrb r0, [r4, #ItemByte] @ Req Item 
 cmp r0, #0 
-beq Done_DepleteItem
+beq ReturnItemUsed
 mov r1, #0x1C 
 InventoryLoop_DepleteItem: 
 add r1, #2 
 cmp r1, #0x28 
-bge Done_DepleteItem
+bge ReturnItemUsed
 ldrb r2, [r5, r1] 
 cmp r2, #0 
-beq Done_DepleteItem
+beq ReturnItemUsed
 cmp r2, r0 
 bne InventoryLoop_DepleteItem
 ldrh r0, [r5, r1] 
 mov r6, r1 
-DepleteItemNow: 
+
+ReturnItemUsed: 
+mov r0, r6 
+pop {r4-r7} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+
+.type AoE_DepleteItem, %function 
+.align 4
+.global AoE_DepleteItem
+AoE_DepleteItem:
+@ only called if the deplete item bool is set 
+push {r4-r7, lr}
+@ r0 = table entry 
+mov r4, r0  
+ldr r0, =CurrentUnit
+ldr r5, [r0] 
+
+mov r0, r4 @ table 
+bl AoE_GetItemUsedOffset
+cmp r0, #0 
+beq Done_DepleteItem 
+
+mov r6, r0 @ offset
+ldrh r0, [r5, r6] @ item  
+
+
 @ r0 as item, r6 as counter 
 ldrb r1, [r4, #DepleteItemAmount] 
 cmp r1, #0 

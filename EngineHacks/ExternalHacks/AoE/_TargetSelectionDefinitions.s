@@ -26,7 +26,13 @@
 .set Attacker, 0x203A4EC 
 .set Defender, 0x203A56C
 .set GetItemType, 0x8017548
+.set GetItemMight, 0x80175DC
 .set GetItemRequiredExp, 0x80176B8
+
+.set GetUnitDefense, 0x8019250
+.set GetUnitResistance, 0x8019270
+.set IsWeaponEffective, 0x08016BEC   
+
 
 .equ GetGameClock, 0x08000D28	@{U}
 @.equ GetGameClock, 0x08000CD8	@{J}
