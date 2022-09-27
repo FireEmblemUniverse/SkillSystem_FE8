@@ -2177,7 +2177,8 @@ mov r0, r5
 blh 0x08032750   @KillUnitIfNoHealth    {U}
 @blh 0x0803269C   @KillUnitIfNoHealth    {J}
 
-
+blh 0x080321C8   @UpdateMapAndUnit    {U}
+@blh 0x08032114   @UpdateMapAndUnit    {J}
 
 b AoE_RemoveDeadUnitLoop_Exit
 
@@ -2752,24 +2753,10 @@ bx	r3
 .type AoE_RangeSetup, %function 
 
 AoE_RangeSetup:
-push {r4, lr}
-bl AoE_ClearRangeMap
+push {lr}
 bl AoE_GetTableEntryPointer
-mov r4, r0 
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ XX 
-ldrb r1, [r3, #0x11] @ YY 
-ldrb r2, [r4, #MinRangeByte] @ Min range 
-cmp r2, #0 
-beq NoSubRangeByte
-sub r2, #1 
-NoSubRangeByte: 
-ldrb r3, [r4, #MaxRangeByte] @ Max range 
-@ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
-blh CreateRangeMapFromRange, r4
+bl AoE_RangeSetup_Hover 
 
-pop {r4} 
 pop {r3}
 bx r3
 
@@ -2778,13 +2765,39 @@ bx r3
 .type AoE_RangeSetup_Hover, %function 
 
 AoE_RangeSetup_Hover:
-push {r4, lr}
+push {r4-r6, lr}
 mov r4, r0 @ AoE_Table Entry 
 bl AoE_ClearRangeMap
-ldr r3, =CurrentUnit
-ldr r3, [r3] 
-ldrb r0, [r3, #0x10] @ XX 
-ldrb r1, [r3, #0x11] @ YY 
+ldr r5, =CurrentUnit
+ldr r5, [r5] 
+
+
+ldrb r2, [r4, #Config2]
+mov r3, #UseWepRange 
+tst r2, r3 
+beq UseAoERange 
+mov r0, r4 @ table 
+bl AoE_GetItemUsedOffset
+ldrh r6, [r5, r0] @ weapon 
+mov r0, r6 @ wep 
+blh GetItemMinRange 
+push {r0} 
+mov r0, r6 @ wep 
+blh GetItemMaxRange 
+mov r3, r0 
+pop {r2} @ min range 
+cmp r2, #0 
+beq NoSubRangeByte3 
+sub r2, #1 
+NoSubRangeByte3: 
+ldrb r0, [r5, #0x10] @ XX 
+ldrb r1, [r5, #0x11] @ YY 
+blh CreateRangeMapFromRange, r4
+b Exit_RangeSetup_Hover
+
+UseAoERange: 
+ldrb r0, [r5, #0x10] @ XX 
+ldrb r1, [r5, #0x11] @ YY 
 ldrb r2, [r4, #MinRangeByte] @ Min range 
 cmp r2, #0 
 beq NoSubRangeByte2
@@ -2794,7 +2807,9 @@ ldrb r3, [r4, #MaxRangeByte] @ Max range
 @ Arguments: r0 = x, r1 = y, r2 = min, r3 = max
 blh CreateRangeMapFromRange, r4
 
-pop {r4} 
+Exit_RangeSetup_Hover:
+
+pop {r4-r6} 
 pop {r3}
 bx r3
 

@@ -81,16 +81,18 @@ Select an area to Heal. Press L/R to Rotate.[X]
 // These are the submenu options that appear:
 ALIGN 4
 AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
-MenuCommandID(UM_AoEName0, UM_AoEDesc, NormalText, 0x0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName1, UM_AoEDesc, NormalText, 0x1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName2, UM_AoEDesc, NormalText, 0x2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 0x3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 0x4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 0x5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 0x6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 0x7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 0x8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 0x9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName0, UM_AoEDesc, NormalText, 0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName1, UM_AoEDesc, NormalText, 1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName2, UM_AoEDesc, NormalText, 2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 10, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 11, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 // ASMC Usage:
@@ -130,14 +132,14 @@ MinRangeByte, #12
 MaxRangeByte, #13 
 RangeMask_IDByte, #14 
 Animation_IDByte, #15
-DamagePercent, 16 
-Status, 17
-DebuffID, 18 
-EventIndex, 19 
-WeaponType, 20 
-WEXP_Req, 21 
-DepleteItemAmount, 22 
-Padding, 23 
+DamagePercent, #16 
+Status, #17
+DebuffID, #18 
+EventIndex, #19 
+WeaponType, #20 
+WEXP_Req, #21 
+DepleteItemAmount, #22 
+Config2, #23 
 */
 
 // Bitfield for more config options 
@@ -153,6 +155,7 @@ Padding, 23
 // Config2 options 
 #define UseWepEffectiveness 0x01 
 #define UseWepMt 0x02 
+#define UseWepRange 0x04 
 
 ALIGN 4 
 AoE_EventsTable:
@@ -177,28 +180,112 @@ WORD 0x1234567 // Mag, Luk, Res, Def, Spd, Skl, Str
 WORD 0x2345678 
 
 #define Sword 0 
-#define Axe 1 
-#define Lance 2 
+#define Lance 1
+#define Axe 2 
+#define Bow 3 
+// Staff is not a valid weapon type used by AoE 
+#define AnimaMagic 5
+#define LightMagic 6 
+#define DarkMagic 7 
+#define MonsterWep 0x0B 
 
 ALIGN 4 
 AoE_Table:
 // Entry 0
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying an IronSword they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
 BYTE 45 0 // mt, randMt 
-BYTE 1 8 // Attack range 
+BYTE 1 1 // Attack range 
 BYTE 0 0x1 // Index of RangeMask, Animation
-BYTE 100 0x36 // DamagePercent, Status 
-BYTE 1 0 // DebuffID, EventIndex 
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
 BYTE Sword 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 25 // Amount of weapon uses to deplete. 
-BYTE UseWepMt|UseWepEffectiveness // Config2 - UseWepEffectiveness 
-// Effectiveness short? 
-// armor, horse, flier, dragon/wyvern, monster, sword 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+// Next entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool
+BYTE 45 0 // mt, randMt 
+BYTE 1 1 // Attack range 
+BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE Axe 0 // Weapon Type and WEXP to use this. 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
-// Entry 1
+// Next entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool
+BYTE 45 0 // mt, randMt 
+BYTE 1 1 // Attack range 
+BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE Lance 0 // Weapon Type and WEXP to use this. 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+// Next entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool
+BYTE 45 0 // mt, randMt 
+BYTE 1 1 // Attack range 
+BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE Bow 0 // Weapon Type and WEXP to use this. 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+// Next entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool
+BYTE 45 0 // mt, randMt 
+BYTE 1 1 // Attack range 
+BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE AnimaMagic 0 // Weapon Type and WEXP to use this. 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+// Next entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool
+BYTE 45 0 // mt, randMt 
+BYTE 1 1 // Attack range 
+BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE LightMagic 0 // Weapon Type and WEXP to use this. 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+
+// Next entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 0 // Usable by anyone carrying a D rank dark tome they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool
+BYTE 45 0 // mt, randMt 
+BYTE 1 2 // Attack range 
+BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE DarkMagic 31 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ dark tome can use 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+
+// Next entry 
 BYTE 0 0 0 Heal 
 BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
 BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
@@ -208,105 +295,61 @@ BYTE 6 0xC // Index of RangeMask, Animation
 BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepRange // Config2 
 
-// Entry 2
-BYTE 0 0 0 0 
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 0 // mt, randMt 
+// Next entry 
+BYTE 0 0 0 Mend  
+BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 10 0 // mt, randMt 
 BYTE 0 4 // Attack range 
-BYTE 2 2 // Index of RangeMask, AnimationALL,
-BYTE 100 0 // DamagePercent, Status 
+BYTE 6 0xC // Index of RangeMask, Animation
+BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepRange // Config2 
 
-// Entry 3
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
-BYTE 5 0 // mt, randMt 
-BYTE 3 7 // Attack range 
-BYTE 3 3 // Index of RangeMask, Animation
-BYTE 100 0 // DamagePercent, Status 
-BYTE 0 0 // DebuffID, EventIndex 
-BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
-
-
-// Entry 4
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool
-BYTE 5 0 // mt, randMt 
+// Next entry 
+BYTE 0 0 0 Physic
+BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 10 0 // mt, randMt 
 BYTE 0 4 // Attack range 
-BYTE 4 4 // Index of RangeMask, Animation
-BYTE 100 0 // DamagePercent, Status 
+BYTE 6 0xC // Index of RangeMask, Animation
+BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepRange // Config2 
 
-// Entry 5
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 0 // mt, randMt 
+// Next entry 
+BYTE 0 0 0 Recover 
+BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 10 0 // mt, randMt 
 BYTE 0 4 // Attack range 
-BYTE 5 5 // Index of RangeMask, AnimationALL,
-BYTE 100 0 // DamagePercent, Status 
+BYTE 6 0xC // Index of RangeMask, Animation
+BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepRange // Config2 
 
-// Entry 6
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool|DepleteItemBool
-BYTE 5 0 // mt, randMt 
-BYTE 3 7 // Attack range 
-BYTE 6 6 // Index of RangeMask, Animation
-BYTE 100 0 // DamagePercent, Status 
-BYTE 0 0 // DebuffID, EventIndex 
-BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
-
-
-// Entry 7
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool|MagBasedBool
-BYTE 5 0 // mt, randMt 
+// Next entry 
+BYTE 0 0 0 Fortify 
+BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
+BYTE 10 0 // mt, randMt 
 BYTE 0 4 // Attack range 
-BYTE 7 7 // Index of RangeMask, Animation
-BYTE 100 0 // DamagePercent, Status 
+BYTE 6 0xC // Index of RangeMask, Animation
+BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
+BYTE 3 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepRange // Config2 
 
-// Entry 8
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 8 8 // Index of RangeMask, AnimationALL,
-BYTE 100 0 // DamagePercent, Status 
-BYTE 0 0 // DebuffID, EventIndex 
-BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
-
-// Entry 9
-BYTE 0 0 0 0
-BYTE 0 0 0 0 // Always usable by anyone 
-BYTE 0 FriendlyFireBool
-BYTE 5 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 9 9 // Index of RangeMask, AnimationALL,
-BYTE 100 0 // DamagePercent, Status 
-BYTE 0 0 // DebuffID, EventIndex 
-BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 0 0 // Padding 
 
 AoE_TableTerminator
 

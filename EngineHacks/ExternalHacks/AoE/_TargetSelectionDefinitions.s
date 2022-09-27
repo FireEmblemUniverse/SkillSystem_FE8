@@ -28,6 +28,8 @@
 .set GetItemType, 0x8017548
 .set GetItemMight, 0x80175DC
 .set GetItemRequiredExp, 0x80176B8
+.set GetItemMinRange, 0x801766C
+.set GetItemMaxRange, 0x8017684
 
 .set GetUnitDefense, 0x8019250
 .set GetUnitResistance, 0x8019270

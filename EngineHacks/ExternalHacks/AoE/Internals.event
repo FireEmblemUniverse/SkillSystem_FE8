@@ -164,8 +164,6 @@ PROC_CALL_ROUTINE(AoE_TryEventLoop)
 PROC_LABEL(1) 
 PROC_SLEEP(1)
 PROC_LOOP_ROUTINE(AoE_RemoveDeadUnitLoop)
-PROC_CALL_ROUTINE(0x080321C9) //@UpdateMapAndUnit    {U}
-//@blh 0x08032114   @UpdateMapAndUnit    {J}	
 PROC_LABEL(2) 
 PROC_END
 

@@ -41,6 +41,7 @@
 @ Config2 Bools 
 .equ UseWepEffectiveness, 0x01 
 .equ UseWepMt, 0x02 
+.equ UseWepRange, 0x04 
 
 
 	.equ CurrentUnit, 0x3004E50	@{U}
