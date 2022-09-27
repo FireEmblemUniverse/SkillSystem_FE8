@@ -177,10 +177,6 @@ ValidHPCost:
 ldrb r0, [r4, #WeaponType] @ usable if you have this weapon type in inventory 
 cmp r0, #0xFF 
 beq ValidWeaponType 
-ldrb r1, [r4, #WEXP_Req] @ Required weapon rank / exp in this weapon type
-cmp r1, #0 
-beq ValidWeaponType
-
 
 mov r7, #0x1c @ almost items 
 WeaponTypeLoop: 
@@ -2368,7 +2364,7 @@ str r1, [r4, #0x54] @ unit used in gProcGotItemPopup
 blh InitBattleUnitFromUnit
 
 ldr r0, [r4, #0x2C] @ index
-cmp r0, #2 
+cmp r0, #1
 bge SendRemainingItemsToSupply 
 
 mov r1, r4 

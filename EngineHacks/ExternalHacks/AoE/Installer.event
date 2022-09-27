@@ -81,18 +81,23 @@ Select an area to Heal. Press L/R to Rotate.[X]
 // These are the submenu options that appear:
 ALIGN 4
 AoEMenuCommandsList: // Specific Commands. Probably want new names for them. 
-MenuCommandID(UM_AoEName0, UM_AoEDesc, NormalText, 0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName1, UM_AoEDesc, NormalText, 1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName2, UM_AoEDesc, NormalText, 2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName3, UM_AoEDesc, NormalText, 3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName4, UM_AoEDesc, NormalText, 4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName5, UM_AoEDesc, NormalText, 5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName6, UM_AoEDesc, NormalText, 6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName7, UM_AoEDesc, NormalText, 7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName8, UM_AoEDesc, NormalText, 8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 10, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(UM_AoEName9, UM_AoEDesc, NormalText, 11, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoESlash, 		UM_AoEDesc, NormalText, 0, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoECleave, 		UM_AoEDesc, NormalText, 1, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEImpale, UM_AoEDesc, NormalText, 2, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEShoot, UM_AoEDesc, NormalText, 3, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEBlast, UM_AoEDesc, NormalText, 4, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEExpel, UM_AoEDesc, NormalText, 5, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEHex, UM_AoEDesc, NormalText, 6, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEHeal, UM_AoEDesc, NormalText, 7, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoERestore, UM_AoEDesc, NormalText, 8, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEMend, UM_AoEDesc, NormalText, 9, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEPhysic, UM_AoEDesc, NormalText, 10, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoERecover, UM_AoEDesc, NormalText, 11, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEFortify, UM_AoEDesc, NormalText, 12, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEExcalibur, UM_AoEDesc, NormalText, 13, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEElfire, UM_AoEDesc, NormalText, 14, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEThunder, UM_AoEDesc, NormalText, 15, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(UM_AoEFimbulvetr, UM_AoEDesc, NormalText, 16, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 // ASMC Usage:
@@ -189,170 +194,263 @@ WORD 0x2345678
 #define DarkMagic 7 
 #define MonsterWep 0x0B 
 
+
+#define SwordAnimEventID 1 
+#define LanceAnimEventID 2
+#define AxeAnimEventID 3
+#define BowAnimEventID  4
+#define AnimaAnimEventID 5 
+#define LightAnimEventID 6
+#define DarkAnimEventID 7
+#define HealAnimEventID 8
+#define WindAnimEventID 9
+#define ElfireAnimEventID 10 
+#define ThunderAnimEventID  11
+#define IceAnimEventID  12
+
+// See "RangeTemplates.event" 
+//#define MedTriangle 0 
+//#define SmallCurve 1 
+//#define SmallTriangle 4 
+//#define Square 6 
+//#define MedLine 8 
+//#define SmallCross 9
+//#define SmallX 11 
+//#define SmallLine 14 
+
+
 ALIGN 4 
 AoE_Table:
 // Entry 0
 BYTE 0 0 0 0
 BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 1 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallLine SwordAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE Sword 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 1 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallLine LanceAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE Axe 0 // Weapon Type and WEXP to use this. 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
 // Next entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 1 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallLine AxeAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE Lance 0 // Weapon Type and WEXP to use this. 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 1 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallCross BowAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE Bow 0 // Weapon Type and WEXP to use this. 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
-BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 1 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallTriangle AnimaAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE AnimaMagic 0 // Weapon Type and WEXP to use this. 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
 
 // Next entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a lance they can wield 
-BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 1 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallTriangle LightAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE LightMagic 0 // Weapon Type and WEXP to use this. 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
 // Next entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 0 // Usable by anyone carrying a D rank dark tome they can wield 
-BYTE 0 FriendlyFireBool|DepleteItemBool
-BYTE 45 0 // mt, randMt 
-BYTE 1 2 // Attack range 
-BYTE 0 0x1 // Index of RangeMask, Animation
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallTriangle DarkAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE DarkMagic 31 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ dark tome can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
 
 // Next entry 
 BYTE 0 0 0 Heal 
 BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 10 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 6 0xC // Index of RangeMask, Animation
-BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallCross HealAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepRange // Config2 
+
+// Next entry 
+BYTE 0 0 0 Restore
+BYTE 0 0 0 0 // Always usable by anyone who using a Heal staff 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE Square HealAnimEventID // Index of RangeMask, Animation
+BYTE 25 0xFF // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 Mend  
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 10 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 6 0xC // Index of RangeMask, Animation
-BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE Square HealAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 Physic
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 10 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 6 0xC // Index of RangeMask, Animation
-BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE Square HealAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 Recover 
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 10 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 6 0xC // Index of RangeMask, Animation
-BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE Square HealAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 Fortify 
 BYTE 0 0 0 0 // Always usable by anyone using the aforementioned staff 
-BYTE 0 FriendlyFireBool|MagBasedBool|HealBool
-BYTE 10 0 // mt, randMt 
-BYTE 0 4 // Attack range 
-BYTE 6 0xC // Index of RangeMask, Animation
-BYTE 100 0x2F // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
+BYTE 0 FriendlyFireBool|MagBasedBool|HealBool|DepleteItemBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE Square HealAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status - for Healing, it restores status. Use 0xFF to fully restore any (except rings) status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. Eg. All units carrying a D rank+ sword can use 
-BYTE 3 // Amount of weapon uses to deplete. 
+BYTE 2 // Amount of weapon uses to deplete. 
 BYTE UseWepMt|UseWepRange // Config2 
 
 
-AoE_TableTerminator
+// Next entry 
+BYTE 0 0 0 Excalibur
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE MedTriangle WindAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 2 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
 
+// Next entry 
+BYTE 0 0 0 Elfire
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE MedLine ElfireAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 2 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+
+// Next entry 
+BYTE 0 0 0 Thunder
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE SmallCurve ThunderAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 2 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+// Next entry 
+BYTE 0 0 0 Fimbulvetr
+BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
+BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
+BYTE 0 0 // mt, randMt 
+BYTE 0 0 // Attack range 
+BYTE MedTriangle IceAnimEventID // Index of RangeMask, Animation
+BYTE 75 0 // DamagePercent, Status 
+BYTE 0 0 // DebuffID, EventIndex 
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 2 // Amount of weapon uses to deplete. 
+BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+
+
+
+AoE_TableTerminator
 
 
 
@@ -364,102 +462,62 @@ SHORT 0 //Bgm/Sfx
 SHORT 1 // so we don't hide data in febuilder early 
 
 POIN 0 //Entry 1 
-POIN AoE_EventAnime1
+POIN AoE_SwordAnimEvent
 SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 2
-POIN AoE_EventAnime2
+POIN AoE_LanceAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 //0x807AD09 // Entry 3 - summon gfx 
-POIN AoE_EventAnime3
+POIN AoE_AxeAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 //Entry 4
-POIN AoE_EventAnime4
+POIN AoE_BowAnimEvent
 SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 5
-POIN AoE_EventAnime5
+POIN AoE_AnimaAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 // Entry 6
-POIN AoE_EventAnime6
+POIN AoE_LightAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 //Entry 7
-POIN AoE_EventAnime7
+POIN AoE_DarkAnimEvent 
 SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry 8
-POIN AoE_EventAnime8
+POIN AoE_HealingAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 // Entry 9
-POIN AoE_EventAnime9
+POIN AoE_WindAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 // Entry A
-POIN AoE_EventAnimeA
+POIN AoE_ElfireAnimEvent
 SHORT 0 
 SHORT 1 
 
 POIN 0 //Entry B 
-POIN AoE_EventAnime1_GrantEXP
+POIN AoE_ThunderAnimEvent
 SHORT 0 // Bgm  
 SHORT 1 
 
 POIN 0 // Entry C
-POIN AoE_EventAnime2_GrantEXP
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry D
-POIN AoE_EventAnime3_GrantEXP
-SHORT 0 
-SHORT 1 
-
-POIN 0 //Entry E
-POIN AoE_EventAnime4_GrantEXP
-SHORT 0 // Bgm  
-SHORT 1 
-
-POIN 0 // Entry F
-POIN AoE_EventAnime5_GrantEXP
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry 10
-POIN AoE_EventAnime6_GrantEXP
-SHORT 0 
-SHORT 1 
-
-POIN 0 //Entry 11
-POIN AoE_EventAnime7_GrantEXP
-SHORT 0 // Bgm  
-SHORT 1 
-
-POIN 0 // Entry 12
-POIN AoE_EventAnime8_GrantEXP
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry 13
-POIN AoE_EventAnime9_GrantEXP
-SHORT 0 
-SHORT 1 
-
-POIN 0 // Entry 14
-POIN AoE_EventAnimeA_GrantEXP
+POIN AoE_IceAnimEvent
 SHORT 0 
 SHORT 1 
 
@@ -469,155 +527,101 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 // Note that Memory Slot 3 is used to pass the rotation to the effect. 
 // If your animation event overwrites Memory Slot 3, you will get a random rotation. 
 
-
 ALIGN 4 
-AoE_EventAnime1:
-SVAL r1 0x1 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime2:
-SVAL r1 0x2 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime3:
-SVAL r1 0x3 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime4:
-SVAL r1 0x4 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime5:
-SVAL r1 0x5 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime6:
-SVAL r1 0x6 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime7:
-SVAL r1 0x7 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime8:
-SVAL r1 0x8 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnime9:
-SVAL r1 0x9 //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-ALIGN 4 
-AoE_EventAnimeA:
-SVAL r1 0xA //AnimationID
-ASMC ASMC_Draw|1
-NoFade
-ENDA
-
-
-ALIGN 4 
-AoE_EventAnime1_GrantEXP:
-SVAL r1 0x1 //AnimationID
+AoE_SwordAnimEvent:
+SVAL r1 ThinSlashAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime2_GrantEXP:
-SVAL r1 18 //Healing AnimationID
+AoE_LanceAnimEvent:
+SVAL r1 Hit1AnimID // Lance 
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime3_GrantEXP:
-SVAL r1 0x3 //AnimationID
+AoE_AxeAnimEvent:
+SVAL r1 Shards2AnimID // Axe 
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime4_GrantEXP:
-SVAL r1 0x4 //AnimationID
+AoE_BowAnimEvent:
+SVAL r1 Break1AnimID // Bow 
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime5_GrantEXP:
-SVAL r1 0x5 //AnimationID
+AoE_AnimaAnimEvent:
+SVAL r1 FireAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime6_GrantEXP:
-SVAL r1 0x6 //AnimationID
+AoE_LightAnimEvent:
+SVAL r1 FlashAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime7_GrantEXP:
-SVAL r1 0x7 //AnimationID
+AoE_DarkAnimEvent:
+SVAL r1 DarkAnimID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+
+ALIGN 4 
+AoE_HealingAnimEvent:
+SVAL r1 HealAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime8_GrantEXP:
-SVAL r1 0x8 //AnimationID
+AoE_WindAnimEvent:
+SVAL r1 WindAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnime9_GrantEXP:
-SVAL r1 0x9 //AnimationID
+AoE_ThunderAnimEvent:
+SVAL r1 ThunderAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
 
 ALIGN 4 
-AoE_EventAnimeA_GrantEXP:
-SVAL r1 0xA //AnimationID
+AoE_IceAnimEvent:
+SVAL r1 IceAnimID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
+
+ALIGN 4 
+AoE_ElfireAnimEvent:
+SVAL r1 ElfireAnimID
+ASMC ASMC_Draw|1
+ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
 

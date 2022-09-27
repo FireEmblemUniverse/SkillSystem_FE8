@@ -6,7 +6,6 @@
 
 
 #define AoE_EntrySizeDef 24 // 24 bytes per AoE table entry 
-#define DebuffTableEntrySize 8 
 #define AoE_TableTerminator "WORD 0 0 0 0 0 0 0 0"
 #define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 	//{U}
 //#define AoE_RamAddressDef "0x0203F0FD" // Also used by combat art menu. 	//{J}
@@ -20,10 +19,6 @@ AoE_GetDebuffs:
 #endif 
 
 
-
-ALIGN 4 
-DebuffTableEntrySizeLink:
-WORD DebuffTableEntrySize
 
 
 ALIGN 4

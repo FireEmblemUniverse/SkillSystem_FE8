@@ -1,6 +1,6 @@
 
 
-
+#include "MapAnimations/v2Animations.event" 
 #include "Draw.lyn.event"
 #include "EAstdlib.event"
 #include "ProcDefinitions.event"
@@ -41,14 +41,14 @@ WORD BATTLE_MAPANIMATION_NUMBERS_FLAG
 #define AnimTable_Entry(ID, SpecificAnimationTable) "PUSH; ORG AnimTable2 + (ID*8); POIN SpecificAnimationTable; SHORT 0 0; POP"
 
 #define FillWithZeroes "WORD 0 0 0 0 0 0 0 0" // 4 entries 
-#define FillTwentyEntries "FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes"
+#define FillFortyEntries "FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes"
 
 
 
 ALIGN 4
 AnimTable2:
 WORD 0 0 // 0th animation is blank 
-FillTwentyEntries 
+FillFortyEntries 
 
 ALIGN 4 
 HPBarsTiles_Left: 

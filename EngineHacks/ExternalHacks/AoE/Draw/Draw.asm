@@ -1423,7 +1423,8 @@ Draw_HPBar_AoE:
 
 push	{r4-r6, lr}
 
-mov r4, r2 @ z/11 as remaining hp 
+mov r4, r2 @ z/11 as remaining hp where z is max #10 
+@ 0xB and 0xC are special cases 
 
 
 

@@ -6,6 +6,17 @@
 //@ Data:
 //@   [UByte array]: 1 if in range, 0 if not
 
+#define MedTriangle 0 
+#define SmallCurve 1 
+#define SmallTriangle 4 
+#define Square 6 
+#define MedLine 8 
+#define SmallCross 9
+#define SmallX 11 
+#define SmallLine 14 
+
+
+
 ALIGN 16 
 RangeTemplateIndexList:
 POIN RangeTemplateTable_Triangle1 // 0
@@ -66,37 +77,36 @@ POIN RangeTemplateTable_VerticalLine
 
 
 
-
-ALIGN 16; POIN RangeTemplateTable_SmallCross
+ALIGN 16; POIN RangeTemplateTable_SmallCross //9
 POIN RangeTemplateTable_SmallCross
 POIN RangeTemplateTable_SmallCross
 POIN RangeTemplateTable_SmallCross
 
 
-ALIGN 16; POIN RangeTemplateTable_Cross
+ALIGN 16; POIN RangeTemplateTable_Cross //10 
 POIN RangeTemplateTable_Cross
 POIN RangeTemplateTable_Cross
 POIN RangeTemplateTable_Cross
 
-ALIGN 16; POIN RangeTemplateTable_SmallX
+ALIGN 16; POIN RangeTemplateTable_SmallX //11 
 POIN RangeTemplateTable_SmallX
 POIN RangeTemplateTable_SmallX
 POIN RangeTemplateTable_SmallX
 
 
-ALIGN 16; POIN RangeTemplateTable_X
+ALIGN 16; POIN RangeTemplateTable_X //12 
 POIN RangeTemplateTable_X
 POIN RangeTemplateTable_X
 POIN RangeTemplateTable_X
 
 
-ALIGN 16; POIN RangeTemplateTable_Diamond
+ALIGN 16; POIN RangeTemplateTable_Diamond //13 
 POIN RangeTemplateTable_Diamond
 POIN RangeTemplateTable_Diamond
 POIN RangeTemplateTable_Diamond
 
 
-ALIGN 16; POIN RangeTemplateTable_SmallHorizontalLine
+ALIGN 16; POIN RangeTemplateTable_SmallHorizontalLine //14 
 POIN RangeTemplateTable_SmallVerticalLine
 POIN RangeTemplateTable_SmallHorizontalLine
 POIN RangeTemplateTable_SmallVerticalLine
@@ -105,22 +115,22 @@ POIN RangeTemplateTable_SmallVerticalLine
 
 
 
-ALIGN 16; POIN RangeTemplateTable_Smile1
+ALIGN 16; POIN RangeTemplateTable_Smile1 //15 
 POIN RangeTemplateTable_Smile2
 POIN RangeTemplateTable_Smile3
 POIN RangeTemplateTable_Smile4
 
-ALIGN 16; POIN RangeTemplateTable_Expressionless
+ALIGN 16; POIN RangeTemplateTable_Expressionless //16 
 POIN RangeTemplateTable_Expressionless
 POIN RangeTemplateTable_Expressionless
 POIN RangeTemplateTable_Expressionless
 
-ALIGN 16; POIN RangeTemplateTable_MediumCone1
+ALIGN 16; POIN RangeTemplateTable_MediumCone1 //17 
 POIN RangeTemplateTable_MediumCone2
 POIN RangeTemplateTable_MediumCone3
 POIN RangeTemplateTable_MediumCone4
 
-ALIGN 16; POIN RangeTemplateTable_LargeCone1
+ALIGN 16; POIN RangeTemplateTable_LargeCone1 //18 
 POIN RangeTemplateTable_LargeCone2
 POIN RangeTemplateTable_LargeCone3
 POIN RangeTemplateTable_LargeCone4
@@ -361,6 +371,7 @@ BYTE 0 1 1
 BYTE 1 1 1    
 BYTE 0 1 1 
 BYTE 0 0 1
+ 
 
 ALIGN 4
 RangeTemplateTable_Triangle2:
@@ -369,6 +380,9 @@ BYTE 2 0
 BYTE 0 0 1 0 0            
 BYTE 0 1 1 1 0             
 BYTE 1 1 1 1 1    
+
+
+
 
 ALIGN 4
 RangeTemplateTable_Triangle3:
@@ -380,6 +394,8 @@ BYTE 1 1 1
 BYTE 1 1 0 
 BYTE 1 0 0
 
+
+
 ALIGN 4
 RangeTemplateTable_Triangle4:
 BYTE 5 3 
@@ -387,7 +403,7 @@ BYTE 2 2
 BYTE 1 1 1 1 1
 BYTE 0 1 1 1 0             
 BYTE 0 0 1 0 0    
-
+        
 
 
 ALIGN 4
