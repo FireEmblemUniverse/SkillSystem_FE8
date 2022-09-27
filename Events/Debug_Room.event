@@ -213,7 +213,7 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 //SilentGiveItemWithDurability(Eirika, MoonStone, 1)
 
-//SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
+SilentGiveItemWithDurability(2, SpellScroll, AttackPulse)
 
 //EquipNewSkillAccessory(2, RenewalID) // GiveSkillAccessory(0, RenewalID)
 
@@ -313,6 +313,11 @@ SetUnitStatus(1, 0x29, HyperBeam)
 SetUnitStatus(1, 0x2A, Psychic)
 SetUnitStatus(1, 0x2B, BodySlam)
 SetUnitStatus(1, 0x2C, Growth)
+
+
+
+
+
 //SetUnitStatus(1, 0x2B, Scratch)
 //SetUnitStatus(1, 0x2C, Tackle)
 //
@@ -361,7 +366,8 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 VictoryRoadB2Ch 
 //MNC2 Route22Ch 
 //MNC2 LoreleiCh 
-MNC2 CeruleanGymCh
+//MNC2 CeruleanGymCh
+MNC2 PalletCh 
 //MNC2 DebugCh
 //MNC2 SeafoamB2Ch
 //MNC2 Route1Ch

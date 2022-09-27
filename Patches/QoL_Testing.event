@@ -5,6 +5,12 @@ ORG 0x0E120
 BYTE 0x00 0x00
 
 
+//Skip very begining world map
+ORG $A39768
+EVBIT_MODIFY 0x1
+SKIPWN
+ENDA
+
 // Autosave killer by Laquier 
 ORG 0x154FE 
 BYTE 0x00 0x00 0x00 0x00
