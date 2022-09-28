@@ -103,14 +103,23 @@ bx r1
 AoE_RegularDamage:
 push {r4-r7, lr} 
 
-mov r4, r0 
-@r0 = table effect address 
-@r1 = attacker / current unit ram 
-@r2 = current target unit ram
-@r3 = do min damage bool 
+mov r4, r0 @r0 = table effect address 
 mov r5, r3 @ do min dmg bool 
-mov r6, r1 
-mov r7, r2 @ target 
+mov r6, r1 @r1 = attacker / current unit ram 
+mov r7, r2 @ target unit ram
+
+
+
+ldr r3, AoE_PokemblemDamageModifier+4 @ POIN PokemblemAoEMtGetter
+cmp r3, #0 
+beq NoMtGetter
+mov lr, r3 
+ldrb r0, [r4, #MtByte] @ lower bound mt 
+ldrb r1, [r4, #RandAddedMt] @ upper bound mt
+ldrb r2, [r4, #GaidenSpellWexpByte] @ required item
+.short 0xf800 
+b FoundMt 
+NoMtGetter:
 
 
 ldrb r0, [r4, #Config2] 
@@ -228,6 +237,17 @@ mov r1, #100
 swi 6 
 SkipPercent2:
 
+
+ldr r3, AoE_PokemblemDamageModifier @ Given r0 dmg, r1, target, and r2 'equipped' weapon, recalc dmg 
+cmp r3, #0 
+beq NoModifier
+mov lr, r3 
+mov r1, r7 @ target 
+ldrb r2, [r4, #GaidenSpellWexpByte] @ required item - used for effectiveness 
+.short 0xF800 
+NoModifier:
+
+
 cmp r0, #0 
 bgt NoCap 
 mov r0, #1 @ Always deal at least 1 damage 
@@ -237,3 +257,7 @@ pop {r4-r7}
 pop {r1} 
 bx r1
 
+.ltorg 
+.align 
+AoE_PokemblemDamageModifier:
+@ POIN modifier function 

@@ -2035,57 +2035,7 @@ bx r1
 
 
 
-.align 4
-.global AoE_DamageUnitsInRange
-.type AoE_DamageUnitsInRange, %function 
-AoE_DamageUnitsInRange:
-push {r4-r7, lr} 
 
-@ given r0 unit found in range, damage them 
-
-
-
-mov r7, r0 @ target 
-ldr r6, =CurrentUnit 
-ldr r6, [r6] @ actor
-
-bl AoE_GetTableEntryPointer
-mov r5, r0 @ table effect address 
-
-ldrb r1, [r5, #ConfigByte]  
-mov r0, #FriendlyFireBool
-tst r0, r1 
-bne AlwaysDamageInRange @ If friendly fire is on, then we heal regardless of allegiance 
-mov r2, #0x0B 
-ldsb r0, [r6, r2] 
-ldsb r1, [r7, r2] 
-blh 0x8024d8c @AreAllegiancesAllied	@{U}
-@blh 0x8024D3C @AreAllegiancesAllied	@{J}
-cmp r0, #0 
-bne DoNotDamageTargetInRange
-AlwaysDamageInRange: 
-
-ldrb r0, [r5, #Status]
-cmp r0, #0 
-beq DoNotInflictStatus
-mov r1, r7 @ target 
-add r1, #0x30 @ status byte 
-strb r0, [r1] @ new status 
-
-DoNotInflictStatus: 
-
-mov r0, r6 @ actor 
-mov r1, r7 @ target 
-mov r2, r5 @ table 
-mov r3, #0 @ return damage range 
-bl AoE_CalcTargetRemainingHP
-strb r0, [r7, #0x13] @ curr hp 
-
-DoNotDamageTargetInRange: 
-
-pop {r4-r7}
-pop {r0}
-bx r0 
 
 
 @Let the dead unit speak death Quote to erase it.
@@ -2163,6 +2113,13 @@ blh 0x080835DC   @DisplayDeathQuoteForChar	@{U}
 @blh 0x08085914   @DisplayDeathQuoteForChar	@{J}
 
 AoE_RemoveDeadUnitLoop_KillUnit_Remove:
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldr r0, [r3, #0x0C] @ state 
+mov r1, #1 @ hide 
+bic r0, r1 
+str r0, [r3, #0x0C] @ so active unit isn't hidden during death fades
+
 mov r0 ,r5
 blh 0x08078464   @MakeMOVEUNITForMapUnit	@{U}
 @blh 0x0807a888   @MakeMOVEUNITForMapUnit	@{J}
@@ -2816,5 +2773,72 @@ bx r3
 
 
 .ltorg
+
+.global AoE_DamageUnitsInRange
+.type AoE_DamageUnitsInRange, %function 
+AoE_DamageUnitsInRange:
+push {r4-r7, lr} 
+
+@ given r0 unit found in range, damage them 
+
+
+
+mov r7, r0 @ target 
+
+ldr r3, AoE_PokemblemImmuneTargets
+cmp r3, #0 
+beq NotImmune
+mov lr, r3 
+.short 0xF800 
+cmp r0, #0
+beq NotImmune
+b DoNotDamageTargetInRange
+NotImmune:
+
+ldr r6, =CurrentUnit 
+ldr r6, [r6] @ actor
+
+bl AoE_GetTableEntryPointer
+mov r5, r0 @ table effect address 
+
+ldrb r1, [r5, #ConfigByte]  
+mov r0, #FriendlyFireBool
+tst r0, r1 
+bne AlwaysDamageInRange @ If friendly fire is on, then we heal regardless of allegiance 
+mov r2, #0x0B 
+ldsb r0, [r6, r2] 
+ldsb r1, [r7, r2] 
+blh 0x8024d8c @AreAllegiancesAllied	@{U}
+@blh 0x8024D3C @AreAllegiancesAllied	@{J}
+cmp r0, #0 
+bne DoNotDamageTargetInRange
+AlwaysDamageInRange: 
+
+ldrb r0, [r5, #Status]
+cmp r0, #0 
+beq DoNotInflictStatus
+mov r1, r7 @ target 
+add r1, #0x30 @ status byte 
+strb r0, [r1] @ new status 
+
+DoNotInflictStatus: 
+
+mov r0, r6 @ actor 
+mov r1, r7 @ target 
+mov r2, r5 @ table 
+mov r3, #0 @ return damage range 
+bl AoE_CalcTargetRemainingHP
+strb r0, [r7, #0x13] @ curr hp 
+
+DoNotDamageTargetInRange: 
+
+pop {r4-r7}
+pop {r0}
+bx r0 
+
+.ltorg 
+
 .align
+AoE_PokemblemImmuneTargets:
+@ POIN address to bl to 
 

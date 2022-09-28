@@ -33,43 +33,11 @@
 ## UM_AoEDesc
 Hit multiple units.[X]
 
-
-
 ## UM_AoEHelp
 Select an area to Attack. Press L/R to Rotate.[X]
 
 ## UM_AoEHealHelp
 Select an area to Heal. Press L/R to Rotate.[X]
-
-## UM_AoEName0
- AoE0[X]
-
-## UM_AoEName1
- AoE1[X]
-
-## UM_AoEName2
- AoE2[X]
-
-## UM_AoEName3
- AoE3[X]
-
-## UM_AoEName4
- AoE4[X]
-
-## UM_AoEName5
- AoE5[X]
-
-## UM_AoEName6
- AoE6[X]
-
-## UM_AoEName7
- AoE7[X]
-
-## UM_AoEName8
- AoE8[X]
-
-## UM_AoEName9
- AoE9[X]
 */
 
 #define HideMoveRangeGraphicsWrapper 0x8022C98	//{U}
@@ -399,14 +367,14 @@ BYTE UseWepMt|UseWepRange // Config2
 BYTE 0 0 0 Excalibur
 BYTE 0 0 0 0 // Usable by anyone carrying a sword they can wield 
 BYTE 0 FriendlyFireBool|DepleteItemBool|MagBasedBool|HitResBool
-BYTE 0 0 // mt, randMt 
+BYTE 45 0 // mt, randMt 
 BYTE 0 0 // Attack range 
 BYTE MedTriangle WindAnimEventID // Index of RangeMask, Animation
 BYTE 75 0 // DamagePercent, Status 
 BYTE 0 0 // DebuffID, EventIndex 
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 2 // Amount of weapon uses to deplete. 
-BYTE UseWepMt|UseWepEffectiveness|UseWepRange // Config2 
+BYTE UseWepEffectiveness|UseWepRange // Config2 
 
 // Next entry 
 BYTE 0 0 0 Elfire

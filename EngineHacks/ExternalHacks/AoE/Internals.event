@@ -40,6 +40,18 @@ AoE_Pokemblem_MoveTester:
 	WORD 0
 #endif 
 
+#ifdef Pokemblem_MoveTester
+	ALIGN 4
+	AoE_PokemblemImmuneTargets:
+	#incbin "AoE_PokemblemImmuneTargets.dmp"
+	ALIGN 4
+	AoE_PokemblemMtGetter:
+	#incbin "AoE_PokemblemMtGetter.dmp" 
+	ALIGN 4 
+	AoE_PokemblemDamageModifier:
+	#include "AoE_PokemblemDamageModifier.lyn.event"
+#endif 
+
 
 #include	"TilePalettes/_1D9DC_Loop6C_MoveLimitView.lyn.event"
 
@@ -77,6 +89,15 @@ PurpleMovementSquares:
 
 
 #include "AoE.lyn.event"
+ALIGN 4
+ // This must occur immediately after AoE.lyn.event 
+#ifdef Pokemblem_MoveTester
+	POIN AoE_PokemblemImmuneTargets|1
+#endif 
+#ifndef Pokemblem_MoveTester
+	WORD 0
+#endif 
+
 #include "CreateRangeMapFromTemplateByStanH.lyn.event" 
 #include "CreateMoveMapFromTemplate.lyn.event" 
 
@@ -84,6 +105,16 @@ PurpleMovementSquares:
 #include "RangeTemplates.event"
 #include "AoE_CallSubmenuEffect.lyn.event"
 #include "AoE_DamageEffect.lyn.event" 
+ALIGN 4
+ // This must occur immediately after AoE_DamageEffect.lyn.event
+#ifdef Pokemblem_MoveTester
+	POIN AoE_PokemblemDamageModifier|1
+	POIN AoE_PokemblemMtGetter|1
+#endif 
+#ifndef Pokemblem_MoveTester
+	WORD 0
+	WORD 0
+#endif 
 
 #ifndef UNIT_MENU_DEFINITIONS
 	#define NormalText 0x0
@@ -159,6 +190,7 @@ PROC_CALL_ROUTINE(AoE_TryEventLoop)
 PROC_LABEL(1) 
 PROC_SLEEP(1)
 PROC_LOOP_ROUTINE(AoE_RemoveDeadUnitLoop)
+//PROC_SLEEP(32)
 PROC_LABEL(2) 
 PROC_END
 
