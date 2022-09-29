@@ -13,7 +13,8 @@
 @.equ CurrentUnit,                0x03004DF0	@{J}
 .equ EventEngine,                0x0800D07C	@{U}
 @.equ EventEngine,                0x0800D340	@{J}
-.equ GetUnit, 0x8019430 
+.equ GetUnit, 0x8019430	@{U}
+@.equ GetUnit, 0x8019108	@{J}
 
 
 .equ AoE_RamAddress, AoE_GrantExpEvent+4
@@ -57,8 +58,10 @@ NotHealing:
 
 ldr r3, =CurrentUnit
 ldr r1, [r3]
-ldr r0, =0x203A4EC
-blh 0x802A584 @CopyUnitToBattleStruct
+ldr r0, =0x203A4EC	@{U}
+@ldr r0, =0x203A4E8	@{J}
+blh 0x0802A584 @CopyUnitToBattleStruct	@{U}
+@blh 0x0802A4F0 @CopyUnitToBattleStruct	@{J}
 
 
 ldr r4, =0x202E4E0 @ Movement Map	@{U}
@@ -96,13 +99,6 @@ ldrb r0, [r1, r4] @ Xcoord to check
 cmp r0, #0xFF 
 beq XLoop_2
 
-mov r1, r8 
-add r1, #1 
-mov r8, r1 
-cmp r1, #8 
-blt NoBreak 
-b BreakYLoop @ 8+ as max exp 
-NoBreak:
 @ ValidCoord:
 @ We found a valid tile 
 mov r0, r4 @ XX 
@@ -110,17 +106,28 @@ mov r1, r5 @ YY
 
 
 
-ldr		r2,=0x202E4D8 @ Unit Map	@Load the location in the table of tables of the map you want
+ldr		r2,=0x0202E4D8 @ Unit Map	@Load the location in the table of tables of the map you want	@{U}
+@ldr		r2,=0x0202E4D4 @ Unit Map	@Load the location in the table of tables of the map you want	@{J}
 ldr		r2,[r2]			@Offset of map's table of row pointers
 lsl		r1,#0x2			@multiply y coordinate by 4
 add		r2,r1			@so that we can get the correct row pointer
 ldr		r2,[r2]			@Now we're at the beginning of the row data
 add		r2,r0			@add x coordinate
 ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq XLoop 
 
 blh GetUnit 
 cmp r0, #0 
 beq XLoop
+
+mov r1, r8 
+add r1, #1 
+mov r8, r1 
+cmp r1, #8 
+blt NoBreak 
+b BreakYLoop @ 8+ as max exp 
+NoBreak:
 
 ldr r3, =CurrentUnit
 ldr r3, [r3]
@@ -144,26 +151,32 @@ NotAllied:
 
 
 mov r1, r0
-ldr r0, =0x203A56C
-blh 0x802A584 @CopyUnitToBattleStruct
+ldr r0, =0x203A56C	@{U}
+@ldr r0, =0x203A568	@{J}
+blh 0x0802A584 @CopyUnitToBattleStruct	@{U}
+@blh 0x0802A4F0 @CopyUnitToBattleStruct	@{J}
 
 
-ldr r0, =0x203A4EC
+ldr r0, =0x203A4EC	@{U}
+@ldr r0, =0x203A4E8	@{J}
 mov r2, #0x7c
 add r2, r0
 mov r3, #1
 strb r3, [r2]
 
-ldr r1, =0x203A56C
+ldr r1, =0x203A56C	@{U}
+@ldr r1, =0x203A568	@{J}
 
-blh 0x802c534 @ComputeExpFromBattle
+blh 0x802c534 @ComputeExpFromBattle	@{U}
+@blh 0x802C46C @ComputeExpFromBattle	@{J}
 
 
 
 @add r0, #3 @ round up 
 @lsr r0, #2 @ 1/4 exp  
 
-ldr r3, =0x203A56C @ dfdr 
+ldr r3, =0x203A56C	@ dfdr	{U}
+@ldr r3, =0x203A568	@ dfdr	@{J}
 ldrb r2, [r3, #0x13] @ Current hp 
 cmp r2, #0 
 bne NoBonus @ 4x damaging exp  "damaging" exp for killing units via AoE. 1x damaging exp otherwise. 
@@ -183,12 +196,18 @@ mov r10, r0
 b XLoop
 
 Healing: 
-@ are units allied 24D8C
-ldrb r1, [r0, #8] @ level 
-ldrb r2, [r3, #8] @ level 
-cmp r1, r2 @ target, actor 
-bge XLoop 
 
+ldrb r1, [r0, #0x12] @ Max HP 
+ldrb r2, [r0, #0x13] @ Current HP 
+cmp r1, r2 
+beq XLoop @ If target is at full hp, do not grant exp 
+
+ldrb r1, [r0, #8] @ level 
+ldrb r2, [r3, #8] @ actor's level 
+cmp r1, r2 
+bge XLoop @ grant no exp for healing unless the target is a higher level than you 
+
+@ are units allied 24D8C
 mov r2, #0x80 
 ldrb r1, [r0, #0x0B] @ deployment byte 
 ldrb r3, [r3, #0x0B] @ deployment byte 
@@ -238,8 +257,8 @@ pop {r0}
 bx r0 
 
 
-.align
 .ltorg 
+.align 4
 
 AoE_GrantExpEvent:
 

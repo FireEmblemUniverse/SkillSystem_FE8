@@ -4,6 +4,10 @@
 #define MinimumFrames 35 //35 //28 // Vanilla does 28 frames 
 #define TargetCursorFrames 0 // Vanilla does 45 
 
+#ifndef BATTLE_MAPANIMATION_NUMBERS_FLAG 
+	#define BATTLE_MAPANIMATION_NUMBERS_FLAG 0xEE
+#endif 
+
 PUSH 
 
 ORG $39e92 

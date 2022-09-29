@@ -155,6 +155,8 @@ mov 	r0,r7
 pop		{r7}
 cmp		r2,r0
 bge		CheckIfSelected			@if hp is max, don't show the bar
+cmp r2, #0 
+beq 	CheckIfSelected 
 mov		r1,r0 @ arg r1 = mhp
 sub		r0,r2
 mov		r2,#11

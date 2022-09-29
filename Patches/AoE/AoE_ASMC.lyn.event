@@ -21,3 +21,5 @@ SHORT ((CreateMoveMapFromTemplate-4-CURRENTOFFSET>>12)&$7FF)|$F000 ((CreateMoveM
 SHORT $BCF0
 WORD $4700BC01 $202E4E0 $80197E4 $202E4F0
 POIN RangeTemplateIndexList
+
+

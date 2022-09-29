@@ -1,5 +1,6 @@
 
 
+
 #ifndef GiveEXP_ASMC 
 	#define GiveEXP_ASMC 
 
@@ -20,9 +21,11 @@
 	give_exp_proc:
 	//#incbin "event_fe8j.bin" //HINT=PROCS
 	//#incbin "event_fe8u.bin" //HINT=PROCS
-	PROC_CALL_ROUTINE(0x8015361) // LockGameLogic
+	PROC_CALL_ROUTINE(0x8015360|1) // LockGameLogic	//{U}
+//	PROC_CALL_ROUTINE(0x8015384|1) // LockGameLogic	//{J}
 	PROC_SLEEP(5)
-	PROC_JUMP(0x89A35B0) // gProc_MapAnimEnd
+	PROC_JUMP(0x89A35B0) // gProc_MapAnimEnd	//{U}
+//	PROC_JUMP(0x8A13C38) // gProc_MapAnimEnd	//{J}
 	PROC_END
 
 
@@ -36,7 +39,8 @@
 #endif
 
 #ifndef AoE_RamAddressDef
-	#define AoE_RamAddressDef "0x0203F101"
+	#define AoE_RamAddressDef "0x0203F101" // Also used by combat art menu. 	//{U}
+	//#define AoE_RamAddressDef "0x0203F0FD" // Also used by combat art menu. 	//{J}
 #endif 
 
 #ifndef AoE_EntrySizeDef
@@ -56,7 +60,12 @@ WORD AoE_EntrySizeDef
 POIN AoE_Table
 
 AoE_GrantExpEvent:
-GiveEXP(0x7fff)
+#ifndef Pokemblem_MoveTester
+GiveEXP((-1))
+#endif 
+#ifdef Pokemblem_MoveTester
+GiveEXP(0x7FFF)
+#endif 
 NoFade
 ENDA
 

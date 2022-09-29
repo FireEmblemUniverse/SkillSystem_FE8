@@ -17,7 +17,28 @@
 	mov lr, \reg
 	.short 0xF800
 .endm
+.set gProcEventEngine, 0x8591AC0
+.set GetItemAttributes, 0x801756C 
+.set CanUnitUseWeapon, 0x8016574
+.set CanUnitUseStaff, 0x80167A4
+.set MovementMap, 0x202E4E0 
+.set BackupMovementMap, 0x202E4F0 
+.set Attacker, 0x203A4EC 
+.set Defender, 0x203A56C
+.set GetItemType, 0x8017548
+.set GetItemMight, 0x80175DC
+.set GetItemRequiredExp, 0x80176B8
+.set GetItemMinRange, 0x801766C
+.set GetItemMaxRange, 0x8017684
 
+.set GetUnitDefense, 0x8019250
+.set GetUnitResistance, 0x8019270
+.set IsWeaponEffective, 0x08016BEC   
+
+
+.equ GetGameClock, 0x08000D28	@{U}
+@.equ GetGameClock, 0x08000CD8	@{J}
+.equ ProcGoto, 0x8002F24 
 
 @----------------------------------------------------------
 @Relevant Ram Offsets

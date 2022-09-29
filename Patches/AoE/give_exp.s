@@ -14,11 +14,13 @@
 	push	{r4,r5,r6,lr}     @ Event parameter in memory slot 0x1, EXP to grant in slot 0x4. Keep the unit in r4 and the EXP to give in r6.
 	mov  r5, r0               @Current Procs
 	
-	ldr r0, =#0x30004B8     @ gMemorySlot.
+@	ldr r0, =0x030004B0     @ gMemorySlot.	@{J}
+	ldr r0, =0x030004B8     @ gMemorySlot.	@{U}
 	ldr r6, [ r0, #4*0x04 ]   @ Get EXP from memory slot 0x4.
 	mov r1, #0x04
     ldsh r0, [ r0, r1 ]  @ Get the event parameter from slot 0x1.
-    blh 0x800BC50           @ GetUnitStructFromEventParameter
+@    blh 0x0800BF3C           @ GetUnitStructFromEventParameter	@{J}
+    blh 0x800BC50           @ GetUnitStructFromEventParameter	@{U}
     mov r4, r0	
 	
 Change:
@@ -182,17 +184,23 @@ bl HideMMSFunc
 	pop	{r4-r5,pc}
 	
 	
-.equ CurrentUnit,                0x03004E50	@{U}
 @.equ CurrentUnit,                0x03004DF0	@{J}
-.equ ProcFind, 0x8002E9D
-.equ gProc_MoveUnit, 0x89A2C48
-
+.equ CurrentUnit,                0x03004E50	@{U}
+@.equ ProcFind, 0x8002dec	@{J}
+.equ ProcFind, 0x8002E9C	@{U}
+@.equ gProc_MoveUnit, 0x8A132D0	@{J}
+.equ gProc_MoveUnit, 0x89A2C48	@{U}
+.ltorg
+.align 
+.type HideMMSFunc, %function 
 HideMMSFunc:
 	@ Arguments: nothing 
 	@ Returns:   nothing
 push {lr} 
 @ even if giving exp to a unit that is not the active unit, we only want to show sms for the active unit 
-blh 0x80790a4 @ End MMS 
+@blh 0x0807B4B8 @ ClearMOVEUNITs	@{J}
+blh 0x080790a4 @ ClearMOVEUNITs	@{U}
+
 ldr r0, =gProc_MoveUnit
 blh ProcFind 
 cmp r0, #0 
@@ -212,19 +220,20 @@ bic r1, r2 @ Show SMS
 str r1, [r3, #0x0C] 
 
 Exit:
-ldr r0, =0x202E4D8 @ Unit map	{U}
-ldr r0, [r0] 
-mov r1, #0
-blh 0x080197E4 @ FillMap 
-blh 0x08019FA0   //UpdateUnitMapAndVision
-blh 0x0801A1A0   //UpdateTrapHiddenStates
-blh  0x080271a0   @SMS_UpdateFromGameData
-blh  0x08019c3c   @UpdateGameTilesGraphics
+@blh 0x08019C78   @UpdateUnitMapAndVision	@{J}
+@blh 0x08019E78   @UpdateTrapHiddenStates	@{J}
+@blh  0x08027144   @SMS_UpdateFromGameData	@{J}
+@blh  0x08019914   @UpdateGameTilesGraphics	@{J}
+
+blh 0x08019FA0   @UpdateUnitMapAndVision	@{U}
+blh 0x0801A1A0   @UpdateTrapHiddenStates	@{U}
+blh  0x080271a0   @SMS_UpdateFromGameData	@{U}
+blh  0x08019c3c   @UpdateGameTilesGraphics	@{U}
 
 pop {r0}
 bx r0
 
-.align 
 .ltorg 
+.align 4
 
 give_exp_proc:

@@ -13,12 +13,20 @@
 .equ HpCostByte, 8
 .equ ConfigByte, 9
 
-.equ PowerLowerBoundByte, 10
-.equ PowerUpperBoundByte, 11 
+.equ MtByte, 10
+.equ RandAddedMt, 11 
 .equ MinRangeByte, 12
 .equ MaxRangeByte, 13 
 .equ RangeMaskByte, 14 
 .equ Animation_IDByte, 15
+.equ DamagePercent, 16 
+.equ Status, 17
+.equ DebuffID, 18 
+.equ EventIndex, 19 
+.equ WeaponType, 20 
+.equ WEXP_Req, 21 
+.equ DepleteItemAmount, 22 
+.equ Config2, 23 
 
 @ Config Bools 
 .equ HealBool, 0x01
@@ -30,6 +38,10 @@
 .equ UsableOnlyIfStationaryBool, 0x40 
 .equ KeepHP1NotDieBool, 0x80
 
+@ Config2 Bools 
+.equ UseWepEffectiveness, 0x01 
+.equ UseWepMt, 0x02 
+.equ UseWepRange, 0x04 
 
 
 	.equ CurrentUnit, 0x3004E50	@{U}

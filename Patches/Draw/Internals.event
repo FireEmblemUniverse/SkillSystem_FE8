@@ -1,10 +1,23 @@
 
 
-
+//#include "MapAnimations/v2Animations.event" 
 #include "Draw.lyn.event"
 #include "EAstdlib.event"
-//#include "Extensions/ProcDefinitions.txt"
 #include "ProcDefinitions.event"
+
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+
+// proc 9A3508 at 9A3580 call 807A8F1 MapAnim_DisplayRoundAnim
+// some proc 9A4A54 called when using a heal staff on a unit 
+
+PUSH 
+ORG $7D844 // vulnerary from 7D82C
+callHackNew(CallShowHealsplatProc) 
+POP 
+
+
 
 // Vanilla's default is 28 frames here. 
 ALIGN 4
@@ -15,6 +28,10 @@ ALIGN 4
 VRAM_Address_Link:
 WORD VRAM_Address 
 
+ALIGN 4
+BATTLE_MAPANIMATION_NUMBERS_FLAGLink:
+WORD BATTLE_MAPANIMATION_NUMBERS_FLAG
+
 
 #ifndef SilverSword 
 	#define SilverSword 4 
@@ -23,8 +40,8 @@ WORD VRAM_Address
 
 #define AnimTable_Entry(ID, SpecificAnimationTable) "PUSH; ORG AnimTable2 + (ID*8); POIN SpecificAnimationTable; SHORT 0 0; POP"
 
-#define FillWithZeroes "WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0" // 8 entries 
-#define FillFortyEntries "FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes"
+#define FillWithZeroes "WORD 0 0 0 0 0 0 0 0" // 4 entries 
+#define FillFortyEntries "FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes"
 
 
 
@@ -32,7 +49,60 @@ ALIGN 4
 AnimTable2:
 WORD 0 0 // 0th animation is blank 
 FillFortyEntries 
-FillFortyEntries
+
+ALIGN 4 
+HPBarsTiles_Left: 
+SHORT 0x12
+SHORT 0x14
+SHORT 0x16
+SHORT 0x32
+SHORT 0x34
+SHORT 0x36
+SHORT 0x52
+SHORT 0x54
+SHORT 0x56
+SHORT 0x72
+SHORT 0x74
+SHORT 0x75 // empty bar special case: flipped horizontally 
+SHORT 0x12 // full 
+
+
+ALIGN 4 
+HPBarsTiles_Right: 
+SHORT 0x13
+SHORT 0x15
+SHORT 0x17
+SHORT 0x33
+SHORT 0x35
+SHORT 0x37
+SHORT 0x53
+SHORT 0x55
+SHORT 0x57
+SHORT 0x73
+SHORT 0x75
+SHORT 0x75 // empty special case 
+SHORT 0x12 // full hp bar and flipped horizontally 
+
+
+
+
+ALIGN 4 
+ShowHealsplatProc:
+PROC_YIELD 
+PROC_SET_NAME(ShowHealsplatProcName)
+PROC_CALL_ROUTINE(0x8015681) //LoadObjUiGfx just in case it isn't loaded already 
+PROC_CALL_ROUTINE(LoadBlueNumbers) 
+PROC_LABEL(0)
+PROC_SLEEP(1) 
+PROC_LOOP_ROUTINE(DrawHealsplatFunc)
+
+PROC_LABEL(1) 
+PROC_END
+
+//PROC_WHILE_EXISTS(0x89A49FC) //MapAnimBattle (also used for vulneraries and poison damage etc.) 
+ShowHealsplatProcName:
+String("HealsplatProc") ; BYTE 0
+ALIGN 4
 
 #ifndef PROC_YIELD
 	#define PROC_YIELD "PROC_YEILD"
@@ -99,6 +169,7 @@ PROC_SLEEP(1)
 PROC_CALL_ROUTINE($8081535) // Move away	{U}
 //PROC_CALL_ROUTINE($8083875) // Move away	{J}
 PROC_LOOP_ROUTINE(Draw_WaitXFrames)
+PROC_CALL_ROUTINE(Draw_RoundCleanup)	//cleaup palette
 PROC_END
 
 
@@ -141,7 +212,12 @@ SaveScreenNumbers:
 
 ALIGN 4
 SaveScreenNumbersPal:
-#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" // same thing but only 32 bytes instead of 512 from png2dmp		//HINT=BIN
+#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" //HINT=BIN
+
+
+ALIGN 4
+SaveScreenNumbersPal_Blue:
+BYTE $0E $52 $A4 $1C $e9 $7f $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
 
 #ifdef FEBUILDER_DATA_ORG
 POP

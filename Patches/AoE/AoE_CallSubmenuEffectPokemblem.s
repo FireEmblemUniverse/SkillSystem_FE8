@@ -1,6 +1,10 @@
 .thumb
 .align
-
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
 
 .global AoE_AreAnyUsable
 .type AoE_AreAnyUsable, %function
@@ -8,8 +12,11 @@
 AoE_AreAnyUsable:
 push {r4,r14}
 
-@loop through all menu command usabilities looking for one that returns true
+bl IsPeaceful
+cmp r0, #1
+beq RetFalse
 
+@loop through all menu command usabilities looking for one that returns true
 ldr r4,=AoEMenuCommandsList
 add r4,#0xC @usability of first menu option
 
@@ -60,7 +67,7 @@ mov r2,#0
 mov r3,#0
 .short 0xF800
 
-mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+mov r0,#0xB7		@play beep sound & end menu on next frame & clear menu graphics
 pop {r1}
 bx r1
 
