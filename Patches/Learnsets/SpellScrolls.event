@@ -6,6 +6,17 @@
 
 #include ",Learnsets.event" 
 
+// Make r-text for skill scrolls show the weapon details 
+ALIGN 4 
+ShowWepDesc: 
+#include "ShowWepDesc.lyn.event" 
+PUSH 
+ORG $8A100
+callHackNew(ShowWepDesc|1) 
+
+ORG $891B4 
+callHackNew(ShowWepDesc2)
+POP 
 
 
 #include "UsabilityByType.lyn.event"

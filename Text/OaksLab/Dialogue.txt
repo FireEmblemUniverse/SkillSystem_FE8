@@ -10,6 +10,10 @@ Skip catching tutorial?[NL]
 Rematch trainer?[NL]
 [Yes][X]
 
+## SavingHelpText
+Your emulator's save type should be[N]
+"auto" for them to work properly.[A][X]
+
 ## GuideMenuEffectivenessTitleText
 Dmg Mdfy[X]
 
@@ -21,7 +25,8 @@ Super Effectiveness[X]
 
 ## GuideMenuEffectivenessBodyText
 Super effective attacks[NL]
-deal MT*2 + 3 damage.[X]
+deal around 200% damage.[N]
+The user takes 75% damage.[X]
 
 ## GuideMenuResistTitleText
 Dmg Mdfy[X]
@@ -34,7 +39,7 @@ Resistance[X]
 
 ## GuideMenuResistBodyText
 Resisted attacks[NL]
-deal 5 less damage.[X]
+deal 50% damage.[X]
 
 ## PalletTrainerTipsText 
 Save by visiting home or a Pokecenter.[NL]

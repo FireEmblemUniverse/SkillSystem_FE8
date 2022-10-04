@@ -251,11 +251,11 @@ SupplyItemWithDurability(SpellScroll, WaterGun)
 SupplyItemWithDurability(SpellScroll, Spark)
 SupplyItemWithDurability(SpellScroll, KarateChop)
 
-
+SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
 SilentGiveItemWithDurability(1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
-SilentGiveItemWithDurability(1, SkillScroll, FuryID)
+SilentGiveItemWithDurability(1, SkillScroll, StrongRiposteID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)
