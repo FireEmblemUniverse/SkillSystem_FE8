@@ -458,8 +458,8 @@ bl FindFreeTile @FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
 ldr r0, =MemorySlot 
 add r0, #4*0x0A 
-ldr r1, [r0] @ X
-ldr r2, [r0, #0x4] @ Y 
+ldrh r1, [r0] @ X
+ldrh r2, [r0, #0x4] @ Y 
 
 cmp r1, #63 
 ble GetUnitDropLocationWasProbablySuccessful 

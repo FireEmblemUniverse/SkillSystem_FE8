@@ -19,6 +19,13 @@ ALIGN 4
 ShootArrow_Main: 
 #incbin "ShootArrow.dmp" 
 
+ALIGN 4 
+ShootArrowActive: 
+#incbin "ShootArrowActive.dmp" 
+ALIGN 4 
+ShootArrowActive2: 
+#incbin "ShootArrowActive2.dmp" 
+
 #define ShootArrow(xx, yy, dmg) "SCOORD sB [xx, yy]; SVAL s1 dmg; ASMC ShootArrow_ASMC|1" 
 #define ShootArrow(xx, yy) "SCOORD sB [xx, yy]; SVAL s1 10; ASMC ShootArrow_ASMC|1" 
 
@@ -50,6 +57,7 @@ PROC_END
 
 ALIGN 4 
 CopyOf_59E490: 
+PROC_SET_DESTRUCTOR(ShootArrowActive2|1) // MMSEndAll added to account for active units 
 PROC_CALL_ROUTINE(TrapDamageDisplay_Init) // 0803629C
 PROC_LABEL(0)
 PROC_SLEEP(0)
@@ -73,6 +81,7 @@ PROC_WHILE_EXISTS(0x89A2C48) // MovingUnitGfx
 //PROC_WHILE_EXISTS(0x89A3688) // gProc-MapAnimBattleInfoBox 
 //PROC_WHILE_EXISTS(0x89A5154) // MapAnim_WaitForHPToEndChangingMaybe
 PROC_CALL_ROUTINE(FinishDamageDisplay) // 08035F40
+PROC_CALL_ROUTINE(ShootArrowActive|1) 
 PROC_LABEL(1)
 //PROC_WHILE_EXISTS(0x89A2C48) // MovingUnitGfx 
 PROC_CALL_ROUTINE(TrapDamageDisplay_Next) // 08036474

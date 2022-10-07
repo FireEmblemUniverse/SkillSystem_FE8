@@ -35,6 +35,7 @@
   #define ConditionGetter 0x88a2d
   #define StrMagGetter 0x88b09
 
+#include "PageTwo.event" 
 
   #ifndef USE_STRMAG_SPLIT
 

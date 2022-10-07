@@ -61,6 +61,9 @@ DefeatAll(EndingScene)
 AFEV 0xA CheckIfNoEnemiesLeft 0
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToLance [5,30][21,30] 
+AREA 0 LeftArrow  [7,3][7,29]
+AREA 0 MidArrow   [13,3][13,29]
+AREA 0 RightArrow [19,3][19,29]
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -70,6 +73,36 @@ EscapeTileEntry(19,30)
 EscapeTileEntry(13,3) 
 EscapeTileTerminator ; } 
 #endif 
+
+LeftArrow:
+PlayerInRange
+CHECK_EVENTID ChampionDefeatedTemp 
+BNE 99 sC s0 
+//SET_ACTIVE 0 
+ShootArrow( 7,3, 15)
+LABEL 99 
+NoFade 
+ENDA 
+
+MidArrow:
+PlayerInRange
+CHECK_EVENTID ChampionDefeatedTemp 
+BNE 99 sC s0 
+//SET_ACTIVE 0 
+ShootArrow(13,3, 15)
+LABEL 99 
+NoFade 
+ENDA 
+
+RightArrow:
+PlayerInRange
+CHECK_EVENTID ChampionDefeatedTemp 
+BNE 99 sC s0 
+//SET_ACTIVE 0 
+ShootArrow(19,3, 15)
+LABEL 99 
+NoFade 
+ENDA 
 
 ToLance:
 ChapterTransition(LanceCh, 12,3)
@@ -85,13 +118,13 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-MOVE (-1) 0x101 [13,29]
-MOVE (-1) 0x102 [13,30]
-MOVE (-1) 0x103 [19,29]
-MOVE (-1) 0x104 [19,30]
-MOVE (-1) 0x105 [7,29]
-MOVE (-1) 0x106 [7,30]
-MOVE (-1) 0x107 [7,30]
+MOVE (-1) 0x101 [13,28]
+MOVE (-1) 0x102 [13,29]
+MOVE (-1) 0x103 [19,28]
+MOVE (-1) 0x104 [19,29]
+MOVE (-1) 0x105 [7,28]
+MOVE (-1) 0x106 [7,29]
+
 
 
 
@@ -178,7 +211,9 @@ CAM1 0xE1
 MOVE 3 0xE1 [12,8]
 ENUN 
 
-ShootArrow(13,20)
+ShootArrow(13,3, 15)
+//ShootArrow( 7,3, 20)
+//ShootArrow(19,3, 20)
 
 ASMC 0x80160D1 // Return to map BGM 
 

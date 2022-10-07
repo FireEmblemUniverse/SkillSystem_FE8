@@ -65,6 +65,7 @@ NoFade
 ENDA 
 
 EnterSaffronEHouse:
+MUSCFAST 0x7FFF 
 EVBIT_MODIFY 2 // Prevent text fast forward, but allow skipping 
 GetGameOption(TextSpeedOption)
 SADD sA sC s0 // save to sA 
@@ -73,6 +74,8 @@ TutText_M(SaffronEHouseText)
 SADD s3 sA s0 
 SetGameOption(TextSpeedOption)
 //GiveItemWithDurability(0, SpellScroll, Sleep2)
+LABEL 99 
+ASMC 0x80160D1 // Return to map BGM 
 NoFade 
 ENDA 
 
@@ -207,7 +210,7 @@ UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [30,5]  0b 0x0	0x1 REDA30R5 [0x0,0x0
 UNIT 0xE1 rocket_fID 0x0 Level(0, Enemy, 1) [7,16]  0b 0x0	0x1 REDA7R16 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 RocketBlockingSilphCo:
-UNIT 0xE2 rocket_mID 0x0 Level(0, Enemy, 1) [17,24]  0b 0x0	0x1 REDA17R24 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xE2 rocket_mID 0x0 Level(0, Enemy, 1) [17,23]  0b 0x0	0x1 REDA17R23 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 

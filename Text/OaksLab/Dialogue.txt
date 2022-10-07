@@ -152,8 +152,13 @@ to see their weaknesses.[N]
 
 		
 ## TrainerTip_MoveMapFaster
-Hold [Red]B[Red] with the map[N]
-open to move it faster.[N]
+Hold [Red]B[Red] to move[N]
+the cursor faster.[N]
+        - Trainer's Tips.[A][X]
+		
+## TrainerTip_CursorJump
+Press [Red]L[Red] to jump the cursor[N]
+to the next unit.[N]
         - Trainer's Tips.[A][X]
 		
 ## TrainerTip_MaxPokemon
@@ -883,7 +888,7 @@ All I found was rocks...[A][X]
 ## GaryCeruleanChallengeText
 // Rival Gary 
 [OpenMidRight][LoadGaryPoint][OpenMidRight]Hey! It's whatsyourface![A][NL]
-I kicked your ass back[NL]
+I stomped you back[NL]
 in Viridian.[A][NL]
 [LoadGaryShrug]Hm? What are you[NL]
 blabbering about.[A][NL]
@@ -3090,21 +3095,21 @@ CHAMPION.[A][X]
 
 
 ## GaryChallengeText
-[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hey, [Tact]![A][N]
-I was looking forward to seeing[N]
-you, [Tact].[A][N]
-My rival should be strong to keep[N]
-me sharp.[A][N]
-While working on my Pok[Eaccent]dex, I[N]
-looked all over for Pok[Eaccent]mon.[A][N]
+[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hey, [Tact]![A][Clear]
+I was looking forward to meeting[N]
+you here, [Tact].[A][N]
+My rival should be strong[N]
+to keep me sharp.[A][N]
+While working on my Pok[Eaccent]dex,[N]
+I looked all over for Pok[Eaccent]mon.[A][N]
 Not only that, I assembled teams[N]
 that would beat any Pok[Eaccent]mon type.[A][N]
 And now...[A][N]
-I'm the Pok[Eaccent]mon LEAGUE CHAMPION![A][N]
+I'm the Pok[Eaccent]mon League Champion![A][N]
 [Tact]![N]
 Do you know what that means?[A][N]
 I'll tell you.[A][N]
-[OpenMidLeft][LoadGaryBattle]I am the most powerful TRAINER in[N]
+[OpenMidLeft][LoadGaryBattle]I am the most powerful trainer in[N]
 the world![A][X]
 
 ## GaryDefeatText

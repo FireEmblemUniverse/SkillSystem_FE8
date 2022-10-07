@@ -1,0 +1,53 @@
+#define ItemMenuRtextGetter 0x88A00
+#define ItemMenuRtextLooper 0x88B40
+ 
+// copied from Gamma 
+PUSH 
+ORG $A00D14 //sidebar
+//IT_Name:
+  RMenu(0,IT_Class,0,InventoryRtext4,0x18,0x50,0x0,NameDescGetter)
+IT_Name: 
+IT_Class:
+  //RMenu(IT_Name,IT_Level,0,Inventory_Rng,0x6,0x68,0x6E8,ClassDescGetter)
+  RMenu(0,IT_Level,0,Inventory_Rng,0x18,0x50,0x6E8,ClassDescGetter) 
+  // I moved the IT_Name label for Pokemblem so that it only ever goes to IT_Class 
+
+
+IT_Level:
+  RMenu(IT_Class,IT_HP,0,IT_Exp,0x6,0x78,0x542)
+IT_Exp:
+  RMenu(IT_Class,IT_HP,IT_Level,Inventory_Atk,0x26,0x78,0x543)
+IT_HP:
+  RMenu(IT_Level,0,0,Inventory_Hit,0x6,0x88,0x544)
+
+ORG $A00DA0 //items start here
+InventoryRtext1:
+  RMenu(0,InventoryRtext2,IT_Name,0,0x68,0x18,0x00,ItemMenuRtextLooper,ItemMenuRtextGetter)
+InventoryRtext2:
+  RMenu(InventoryRtext1,InventoryRtext3,IT_Name,0,0x68,0x28,0x0001,ItemMenuRtextLooper,ItemMenuRtextGetter)
+InventoryRtext3:
+  RMenu(InventoryRtext2,InventoryRtext4,IT_Name,0,0x68,0x38,0x0002,ItemMenuRtextLooper,ItemMenuRtextGetter)
+InventoryRtext4:
+  RMenu(InventoryRtext3,InventoryRtext5,IT_Name,0,0x68,0x48,0x0003,ItemMenuRtextLooper,ItemMenuRtextGetter)
+InventoryRtext5:
+  RMenu(InventoryRtext4,Inventory_Atk,IT_Name,Inventory_Rng,0x68,0x58,0x0004,ItemMenuRtextLooper,ItemMenuRtextGetter)
+
+ORG $A00E2C //bottom thing with atk/crit/etc
+Inventory_Atk:
+  RMenu(InventoryRtext5,Inventory_Hit,IT_Exp,Inventory_Crt,0x76,0x78,0x55C)
+Inventory_Hit:
+  RMenu(Inventory_Atk,0,IT_HP,Inventory_Avo,0x76,0x88,0x55D)
+Inventory_Rng:
+  RMenu(InventoryRtext5,Inventory_Crt,IT_Class,0,0xae,0x68,0x55E)
+Inventory_Crt:
+  RMenu(Inventory_Rng,Inventory_Avo,Inventory_Atk,0,0xae,0x78,0x55F)
+Inventory_Avo:
+  RMenu(Inventory_Crt,0,Inventory_Hit,0,0xae,0x88,0x560)
+
+POP 
+
+
+
+
+
+
