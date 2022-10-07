@@ -12,8 +12,8 @@ jumpToHack(display_version)
 //If you do not make UPS with FEBuilderGBA, please rewrite this string by yourself.
 //ORG $DC110	//{J}
 ORG $D74D0	//{U}
-#inctext DateTimeSetter
-//String(DEBUG BUILD            ) ; BYTE 0
+//#inctext DateTimeSetter
+//String(VersionNumber            ) ; BYTE 0
 
 POP
 

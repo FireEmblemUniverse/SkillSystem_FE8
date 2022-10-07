@@ -4,6 +4,10 @@
 
 // Comment out for public releases
 #define DEBUG_MODE 
+
+PUSH; ORG $D74D0	//{U}
+String("Version 0.98    Oct 2022") ; BYTE 0; POP 
+
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 
