@@ -314,8 +314,13 @@ SetUnitStatus(1, 0x2A, Psychic)
 SetUnitStatus(1, 0x2B, BodySlam)
 SetUnitStatus(1, 0x2C, Growth)
 
+InitializeNewGameRam 
+CheckNewGameFlag(2)
 
+SetNewGameFlag(2)
 
+CheckSaveSlotFlag(31)
+SetSaveSlotFlag(31)
 
 
 //SetUnitStatus(1, 0x2B, Scratch)

@@ -1,0 +1,82 @@
+#define NewGameRam 0xE000050 
+#define NewGameRamSize 16 
+
+#define InitializeNewGameRam "ASMC InitializeNewGameRamFunc" 
+#define CheckNewGameFlag(FlagID) "SVAL s1 FlagID; ASMC CheckNewGameFlag" 
+#define SetNewGameFlag(FlagID) "SVAL s1 FlagID; ASMC SetNewGameFlag" 
+#define UnsetNewGameFlag(FlagID) "SVAL s1 FlagID; ASMC UnsetNewGameFlag" 
+
+#define CheckSaveSlotFlag(FlagID) "SVAL s1 FlagID; ASMC CheckSaveSlotFlag" 
+#define SetSaveSlotFlag(FlagID) "SVAL s1 FlagID; ASMC SetSaveSlotFlag" 
+#define UnsetSaveSlotFlag(FlagID) "SVAL s1 FlagID; ASMC UnsetSaveSlotFlag" 
+
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+CheckNewGameFlag: ; POP 
+#incbin "CheckNewGameFlag.dmp" 
+POIN GetFlagOffset
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+SetNewGameFlag: ; POP 
+#incbin "SetNewGameFlag.dmp" 
+POIN GetFlagOffset
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+UnsetNewGameFlag: ; POP 
+#incbin "UnsetNewGameFlag.dmp" 
+POIN GetFlagOffset
+
+
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+CheckSaveSlotFlag: ; POP 
+#incbin "CheckSaveSlotFlag.dmp" 
+POIN GetSaveSlotFlagOffset
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+SetSaveSlotFlag: ; POP 
+#incbin "SetSaveSlotFlag.dmp" 
+POIN GetSaveSlotFlagOffset
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+UnsetSaveSlotFlag: ; POP 
+#incbin "UnsetSaveSlotFlag.dmp" 
+POIN GetSaveSlotFlagOffset
+
+
+
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+GetFlagOffset: ; POP 
+#incbin "GetFlagOffset.dmp" 
+WORD NewGameRam
+WORD NewGameRamSize*8
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+GetSaveSlotFlagOffset: ; POP 
+#incbin "GetSaveSlotFlagOffset.dmp" 
+WORD NewGameRam
+WORD NewGameRamSize*8
+
+ALIGN 4 
+PUSH; ORG CurrentOffset+1; 
+InitializeNewGameRamFunc: ; POP 
+#incbin "InitializeRam.dmp" 
+WORD NewGameRam
+WORD NewGameRamSize*8
+
+
+
+
+
+
+
+

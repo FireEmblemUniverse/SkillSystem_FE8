@@ -26,13 +26,13 @@ b End
 
 Read_S:
 ldrh r2, [r1]
-strh r2, [r0,#4*0x0C]
+str r2, [r0,#4*0x0C]
 b End
 
 Read_B:
 ldrb r2, [r1]
 mov r3, #4*0x0C 
-strb r2, [r0, r3]
+str r2, [r0, r3]
 
 End:
 bx lr
