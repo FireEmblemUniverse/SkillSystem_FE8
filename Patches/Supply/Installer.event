@@ -23,7 +23,11 @@ callHackNew(SortSupply)
 ORG $980C8
 callHackNew(SortSupply2)
 
+ORG $9801C 
+jumpToHack(SortSupply3) 
+
 POP 
+
 
 // SortSupply: 
 // 0 - Healing - Potion icon 

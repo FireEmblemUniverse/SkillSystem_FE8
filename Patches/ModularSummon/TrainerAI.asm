@@ -318,6 +318,7 @@ bx r0
 MoveTowardsCommanderAIFunc:
 push {lr} 
 
+@bl MakeAIWait
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
 mov r2, #0x38 @ Commander 
@@ -332,9 +333,10 @@ ldrb r0, [r3, #0x10] @ XX coord of commander
 ldrb r1, [r3, #0x11] @ YY coord of commander 
 
 bl MoveTowardsGivenCoord 
-
+b ExitAiFunc 
 DoNothingInstead: 
 
+ExitAiFunc: 
 mov r0, #1 
 
 pop {r1}

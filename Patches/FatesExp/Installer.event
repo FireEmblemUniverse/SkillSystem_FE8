@@ -10,7 +10,8 @@ POP
 
 ALIGN 4
 expRoutine:
-#incbin "Fates EXP Approximation.dmp"
+#include "Fates Exp Approximation.lyn.event" 
+// #incbin "Fates EXP Approximation.dmp"
 
 
 ALIGN 4 
@@ -18,11 +19,23 @@ PUSH ; ORG CurrentOffset+1;
 CanGainExpVesly: ; POP 
 #include "CanGainExpVesly.lyn.event" 
 
+ALIGN 4 
+maxLevelTableHard:
+BYTE 12 // Boulderbadge 
+BYTE 18
+BYTE 24
+BYTE 30 
+BYTE 35
+BYTE 40 
+BYTE 45 
+BYTE 50  
+BYTE 100 
 
 
 
 
-
-
+ALIGN 4 
+BadgeFlagLink:
+BYTE BoulderbadgeObtained CascadebadgeObtained ThunderbadgeObtained SoulbadgeObtained RainbowbadgeObtained MarshbadgeObtained VolcanobadgeObtained EarthbadgeObtained
 
 

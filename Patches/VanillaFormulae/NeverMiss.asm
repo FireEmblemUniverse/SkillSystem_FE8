@@ -44,9 +44,9 @@ ldrh r1, [r7, #8] @final def
 lsl r1, #0x10
 asr r1, #0x10
 sub r0, r1 @calc damage
-cmp r0, #0 
+cmp r0, #2 
 bge NoFloor 
-mov r0, #0 
+mov r0, #2 
 NoFloor: 
 lsr r0, #1 @ half dmg
 @check for crit

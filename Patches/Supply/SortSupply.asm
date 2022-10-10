@@ -32,23 +32,38 @@ bx r3
 .type SortSupply2, %function
 .global SortSupply2 
 SortSupply2: 
-push {r4, lr}
-mov r4, r0 @ weapon id  
+push {lr}
 ADD r5 ,r0, R1
 LDRH r0, [r5, #0x2] @# pointer:020122D6
 blh GetItemWType 
 LSL r0 ,r0 ,#28
 LSR r0 ,r0 ,#28
-mov r1, r4 
+LDRH r1, [r5, #0x2] @# pointer:020122D6
 bl GetAdjustedWepTypeForSupply 
 
-pop {r4} 
+
 pop {r3} 
 bx r3 
 .ltorg 
 
-GetAdjustedWepTypeForSupply:
+.type SortSupply3, %function 
+.global SortSupply3 
+
+SortSupply3:
 push {lr} 
+mov r0, r6 
+blh GetItemWType 
+mov r1, r6 
+bl GetAdjustedWepTypeForSupply 
+ldrb r1, [r4] 
+pop {r3}
+ldr r3, =0x8098025 
+bx r3 
+.ltorg 
+
+
+GetAdjustedWepTypeForSupply:
+push {r4, lr} 
 @ r0 as current weapon type 
 @ r1 as item ID 
 
@@ -122,6 +137,7 @@ BreakStatBoostersLoop:
 
 Exit: 
 
+pop {r4} 
 pop {r1} 
 bx r1 
 .ltorg 

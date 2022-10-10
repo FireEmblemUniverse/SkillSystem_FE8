@@ -33,10 +33,10 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, GrassReinforcementUnits, 5, 4) // Mid Grass 
-Reinforce(0xF1, 1, GrassReinforcementUnits, 6, 4) // East Grass 
+Reinforce(0xF0, 1, GrassReinforcementUnits, 7, 4) // Mid Grass 
+Reinforce(0xF1, 1, GrassReinforcementUnits, 10, 4) // East Grass 
 Reinforce(0xF2, 1, BurrowReinforcementUnits, 3, 4) // West burrow 
-Reinforce(0xF3, 1, BurrowReinforcementUnits, 7, 4) // Mid-W Burrow 
+Reinforce(0xF3, 1, BurrowReinforcementUnits, 5, 4) // Mid-W Burrow 
 Reinforce(0xF4, 1, BurrowReinforcementUnits, 8, 4) // Mid-E Burrow 
 Reinforce(0xF5, 1, BurrowReinforcementUnits, 9, 4) // East burrow 
 }

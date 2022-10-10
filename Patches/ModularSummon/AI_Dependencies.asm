@@ -316,7 +316,9 @@ mov r8, r1
 cmp r1, #1 
 beq SetupPlayerRamAddresses
 cmp r1, #2 
-beq SetupNPCRamAddresses
+beq SetupEnemyRamAddresses @ skip over NPCs 
+
+@beq SetupNPCRamAddresses
 cmp r1, #3 
 beq SetupEnemyRamAddresses
 b BreakAnyoneWithinRangeLoop 

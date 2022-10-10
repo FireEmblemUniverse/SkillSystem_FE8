@@ -1,12 +1,14 @@
 #ifndef UNIT_MENU
 #define UNIT_MENU
 
+#define AlwaysUsable 0x804f449
+#define NeverUsable  0x804f451 
+
 #include "Extensions/Hack Installation.txt"
 #include "_UnitMenuDefs.event"
 #include "SubMenu/Installer.event"
 
-#define AlwaysUsable 0x804f449
-#define NeverUsable  0x804f451 
+
 
 
 PUSH

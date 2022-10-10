@@ -290,6 +290,9 @@ cmp r0, #0x64
 ble end
 mov r0, #0x64
 end:
+mov r1, r4 @ unit 
+bl ExpModifyBasedOnBadges
+
 pop {r4-r7}
 pop {r1}
 gotoR1:

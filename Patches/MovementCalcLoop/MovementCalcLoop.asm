@@ -204,7 +204,7 @@ add	 r3,r1			@so that we can get the correct row pointer
 ldr	 r3,[r3]			@Now we're at the beginning of the row data
 add	 r3,r0			@add x coordinate
 ldrb r1,[r3]			@load datum at those coordinates
-mov r0, r5 @ unit struct 
+mov r0, r4 @ unit struct 
 blh CanUnitCrossTerrain @0x801949c @ r1 terrain type, r0 unit 
 cmp r0, #1
 bne CannotMoveThere

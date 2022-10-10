@@ -12,7 +12,7 @@ BYTE 0 // Defender can't counter + defender's expected damage
 BYTE 0 // Penalty: Range and attack power of opponents
 BYTE 0 // Penalty: Attacker's remaining HP 
 
-// Gyms / Trainers 
+// Gyms 
 ORG $D818C // 08 Standard 
 BYTE 2 // Lethal 
 BYTE 2 // Defender's remaining HP
@@ -23,16 +23,16 @@ BYTE 0 // Defender can't counter + defender's expected damage
 BYTE 2 // Penalty: Range and attack power of opponents
 BYTE 1 // Penalty: Attacker's remaining HP 
 
-// Rarely used if at all 
+// Trainers
 ORG $D81A0 
-BYTE 1 // Lethal 
+BYTE 2 // Lethal 
 BYTE 2 // Defender's remaining HP
 BYTE 2 // Near allied units
 BYTE 0 // Defender's class (unused) 
 BYTE 0 // Turn count 
-BYTE 2 // Defender can't counter + defender's expected damage
-BYTE 1 // Penalty: Range and attack power of opponents
-BYTE 2 // Penalty: Attacker's remaining HP 
+BYTE 0 // Defender can't counter + defender's expected damage
+BYTE 0 // Penalty: Range and attack power of opponents
+BYTE 0 // Penalty: Attacker's remaining HP 
 
 // 28 Archers / rarely used 
 BYTE 2 // Lethal 
@@ -89,18 +89,20 @@ POP
 #define ZoningGroupNineAI					[0x00,0x18,0x0A,0x09]
 #define ZoningGroupTenAI						[0x00,0x18,0x0A,0x0A]
 
+// group ai in danger was triggering the safest zoning ai 
+// trainer summons 4 mons: 1 mon waits beside trainer (in danger) which aggros the others 
+// therefore, I've made it so trainer mon's don't care about danger 
 
-
-#define SafestZoningGroupOneAI 					[32,24,0x0A,0x01] // Retreat for 1st turn
-#define SafestZoningGroupTwoAI 					[32,24,0x0A,0x02]
-#define SafestZoningGroupThreeAI				[32,24,0x0A,0x03]
-#define SafestZoningGroupFourAI					[32,24,0x0A,0x04]
-#define SafestZoningGroupFiveAI					[32,24,0x0A,0x05]
-#define SafestZoningGroupSixAI					[32,24,0x0A,0x06]
-#define SafestZoningGroupSevenAI				[32,24,0x0A,0x07]
-#define SafestZoningGroupEightAI				[32,24,0x0A,0x08]
-#define SafestZoningGroupNineAI					[32,24,0x0A,0x09]
-#define SafestZoningGroupTenAI					[32,24,0x0A,0x0A]
+#define SafestZoningGroupOneAI 					[32,24,0x12,0x01] // Retreat for 1st turn
+#define SafestZoningGroupTwoAI 					[32,24,0x12,0x02]
+#define SafestZoningGroupThreeAI				[32,24,0x12,0x03]
+#define SafestZoningGroupFourAI					[32,24,0x12,0x04]
+#define SafestZoningGroupFiveAI					[32,24,0x12,0x05]
+#define SafestZoningGroupSixAI					[32,24,0x12,0x06]
+#define SafestZoningGroupSevenAI				[32,24,0x12,0x07]
+#define SafestZoningGroupEightAI				[32,24,0x12,0x08]
+#define SafestZoningGroupNineAI					[32,24,0x12,0x09]
+#define SafestZoningGroupTenAI					[32,24,0x12,0x0A]
 
 
 
