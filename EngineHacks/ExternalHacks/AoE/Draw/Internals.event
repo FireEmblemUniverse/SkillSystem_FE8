@@ -104,30 +104,6 @@ ShowHealsplatProcName:
 String("HealsplatProc") ; BYTE 0
 ALIGN 4
 
-
-
-/*
-  ALIGN 4
-  HPFrames2:
-    #incbin "HPFrames.bin"
-
-  ALIGN 4
-  HPFramePointers2:
-    POIN HPFrames2
-    POIN HPFrames2+8
-    POIN HPFrames2+16
-    POIN HPFrames2+24
-    POIN HPFrames2+32
-    POIN HPFrames2+40
-    POIN HPFrames2+48
-    POIN HPFrames2+56
-    POIN HPFrames2+64
-    POIN HPFrames2+72
-    POIN HPFrames2+80
-    POIN HPFrames2+88
-*/
-
-
 #ifndef PROC_YIELD
 	#define PROC_YIELD "PROC_YEILD"
 #endif 

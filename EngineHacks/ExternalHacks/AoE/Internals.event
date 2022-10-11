@@ -50,8 +50,13 @@ AoE_Pokemblem_MoveTester:
 	ALIGN 4 
 	AoE_PokemblemDamageModifier:
 	#include "AoE_PokemblemDamageModifier.lyn.event"
+	
+	#include "AoE_CallSubmenuEffectPokemblem.lyn.event"
 #endif 
 
+#ifndef Pokemblem_MoveTester
+	#include "AoE_CallSubmenuEffect.lyn.event"
+#endif 
 
 #include	"TilePalettes/_1D9DC_Loop6C_MoveLimitView.lyn.event"
 
@@ -103,7 +108,7 @@ ALIGN 4
 
 
 #include "RangeTemplates.event"
-#include "AoE_CallSubmenuEffect.lyn.event"
+
 #include "AoE_DamageEffect.lyn.event" 
 ALIGN 4
  // This must occur immediately after AoE_DamageEffect.lyn.event

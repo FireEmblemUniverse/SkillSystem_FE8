@@ -60,7 +60,12 @@ WORD AoE_EntrySizeDef
 POIN AoE_Table
 
 AoE_GrantExpEvent:
+#ifndef Pokemblem_MoveTester
 GiveEXP((-1))
+#endif 
+#ifdef Pokemblem_MoveTester
+GiveEXP(0x7FFF)
+#endif 
 NoFade
 ENDA
 

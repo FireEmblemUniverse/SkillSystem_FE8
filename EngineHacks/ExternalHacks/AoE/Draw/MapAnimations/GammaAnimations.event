@@ -1,0 +1,425 @@
+ALIGN 4
+Map_Sword_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_1 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_2 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_3 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_4 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_5 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_6 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_7 Map_Sword_Pal
+BYTE 2 0; SHORT 0; POIN Map_Sword_Img_8 Map_Sword_Pal
+BYTE 12 0; SHORT 0; POIN Map_BlankImg Map_Sword_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_BlankImg: 
+#incbin "dmp/blank.img.bin"
+
+ALIGN 4 
+Map_Sword_Pal: 
+#incbin "dmp/sword.pal.bin"
+ALIGN 4 
+Map_Sword_Img_1: 
+#incbin "dmp/sword_01.img.bin"
+ALIGN 4 
+Map_Sword_Img_2: 
+#incbin "dmp/sword_02.img.bin"
+ALIGN 4 
+Map_Sword_Img_3: 
+#incbin "dmp/sword_03.img.bin"
+ALIGN 4 
+Map_Sword_Img_4: 
+#incbin "dmp/sword_04.img.bin"
+ALIGN 4 
+Map_Sword_Img_5: 
+#incbin "dmp/sword_05.img.bin"
+ALIGN 4 
+Map_Sword_Img_6: 
+#incbin "dmp/sword_06.img.bin"
+ALIGN 4 
+Map_Sword_Img_7: 
+#incbin "dmp/sword_07.img.bin"
+ALIGN 4 
+Map_Sword_Img_8: 
+#incbin "dmp/sword_08.img.bin"
+
+
+
+ALIGN 4
+Map_Lance_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_1 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_2 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_3 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_4 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_5 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_6 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_7 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_8 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_9 Map_Lance_Pal
+BYTE 2 0; SHORT 0; POIN Map_Lance_Img_10 Map_Lance_Pal
+BYTE 8 0; SHORT 0; POIN Map_BlankImg Map_Lance_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Lance_Pal: 
+#incbin "dmp/lance.pal.bin"
+ALIGN 4 
+Map_Lance_Img_1: 
+#incbin "dmp/lance_01.img.bin"
+ALIGN 4 
+Map_Lance_Img_2: 
+#incbin "dmp/lance_02.img.bin"
+ALIGN 4 
+Map_Lance_Img_3: 
+#incbin "dmp/lance_03.img.bin"
+ALIGN 4 
+Map_Lance_Img_4: 
+#incbin "dmp/lance_04.img.bin"
+ALIGN 4 
+Map_Lance_Img_5: 
+#incbin "dmp/lance_05.img.bin"
+ALIGN 4 
+Map_Lance_Img_6: 
+#incbin "dmp/lance_06.img.bin"
+ALIGN 4 
+Map_Lance_Img_7: 
+#incbin "dmp/lance_07.img.bin"
+ALIGN 4 
+Map_Lance_Img_8: 
+#incbin "dmp/lance_08.img.bin"
+ALIGN 4 
+Map_Lance_Img_9: 
+#incbin "dmp/lance_09.img.bin"
+ALIGN 4 
+Map_Lance_Img_10: 
+#incbin "dmp/lance_10.img.bin"
+
+
+
+ALIGN 4
+Map_Axe_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_1 Map_Axe_Pal
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_2 Map_Axe_Pal
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_3 Map_Axe_Pal
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_4 Map_Axe_Pal
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_5 Map_Axe_Pal
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_6 Map_Axe_Pal
+BYTE 2 0; SHORT 0; POIN Map_Axe_Img_7 Map_Axe_Pal
+BYTE 14 0; SHORT 0; POIN Map_BlankImg Map_Axe_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Axe_Pal: 
+#incbin "dmp/axe.pal.bin"
+ALIGN 4 
+Map_Axe_Img_1: 
+#incbin "dmp/axe_01.img.bin"
+ALIGN 4 
+Map_Axe_Img_2: 
+#incbin "dmp/axe_02.img.bin"
+ALIGN 4 
+Map_Axe_Img_3: 
+#incbin "dmp/axe_03.img.bin"
+ALIGN 4 
+Map_Axe_Img_4: 
+#incbin "dmp/axe_04.img.bin"
+ALIGN 4 
+Map_Axe_Img_5: 
+#incbin "dmp/axe_05.img.bin"
+ALIGN 4 
+Map_Axe_Img_6: 
+#incbin "dmp/axe_06.img.bin"
+ALIGN 4 
+Map_Axe_Img_7: 
+#incbin "dmp/axe_07.img.bin"
+
+
+
+ALIGN 4
+Map_Bow_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_1 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_2 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_3 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_4 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_5 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_6 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_7 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_8 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_9 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_10 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_11 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_12 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_13 Map_Bow_Pal
+BYTE 2 0; SHORT 0; POIN Map_Bow_Img_14 Map_Bow_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Bow_Pal: 
+#incbin "dmp/bow.pal.bin"
+ALIGN 4 
+Map_Bow_Img_1: 
+#incbin "dmp/bow_01.img.bin"
+ALIGN 4 
+Map_Bow_Img_2: 
+#incbin "dmp/bow_02.img.bin"
+ALIGN 4 
+Map_Bow_Img_3: 
+#incbin "dmp/bow_03.img.bin"
+ALIGN 4 
+Map_Bow_Img_4: 
+#incbin "dmp/bow_04.img.bin"
+ALIGN 4 
+Map_Bow_Img_5: 
+#incbin "dmp/bow_05.img.bin"
+ALIGN 4 
+Map_Bow_Img_6: 
+#incbin "dmp/bow_06.img.bin"
+ALIGN 4 
+Map_Bow_Img_7: 
+#incbin "dmp/bow_07.img.bin"
+ALIGN 4 
+Map_Bow_Img_8: 
+#incbin "dmp/bow_08.img.bin"
+ALIGN 4 
+Map_Bow_Img_9: 
+#incbin "dmp/bow_09.img.bin"
+ALIGN 4 
+Map_Bow_Img_10: 
+#incbin "dmp/bow_10.img.bin"
+ALIGN 4 
+Map_Bow_Img_11: 
+#incbin "dmp/bow_11.img.bin"
+ALIGN 4 
+Map_Bow_Img_12: 
+#incbin "dmp/bow_12.img.bin"
+ALIGN 4 
+Map_Bow_Img_13: 
+#incbin "dmp/bow_13.img.bin"
+ALIGN 4 
+Map_Bow_Img_14: 
+#incbin "dmp/bow_14.img.bin"
+
+
+
+ALIGN 4
+Map_Magic_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_1 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_2 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_3 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_4 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_5 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_6 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_7 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_8 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_9 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_10 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_11 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_12 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_Magic_Img_13 Map_Magic_Pal
+BYTE 2 0; SHORT 0; POIN Map_BlankImg Map_Magic_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Magic_Pal: 
+#incbin "dmp/magic.pal.bin"
+ALIGN 4 
+Map_Magic_Img_1: 
+#incbin "dmp/magic_01.img.bin"
+ALIGN 4 
+Map_Magic_Img_2: 
+#incbin "dmp/magic_02.img.bin"
+ALIGN 4 
+Map_Magic_Img_3: 
+#incbin "dmp/magic_03.img.bin"
+ALIGN 4 
+Map_Magic_Img_4: 
+#incbin "dmp/magic_04.img.bin"
+ALIGN 4 
+Map_Magic_Img_5: 
+#incbin "dmp/magic_05.img.bin"
+ALIGN 4 
+Map_Magic_Img_6: 
+#incbin "dmp/magic_06.img.bin"
+ALIGN 4 
+Map_Magic_Img_7: 
+#incbin "dmp/magic_07.img.bin"
+ALIGN 4 
+Map_Magic_Img_8: 
+#incbin "dmp/magic_08.img.bin"
+ALIGN 4 
+Map_Magic_Img_9: 
+#incbin "dmp/magic_09.img.bin"
+ALIGN 4 
+Map_Magic_Img_10: 
+#incbin "dmp/magic_10.img.bin"
+ALIGN 4 
+Map_Magic_Img_11: 
+#incbin "dmp/magic_11.img.bin"
+ALIGN 4 
+Map_Magic_Img_12: 
+#incbin "dmp/magic_12.img.bin"
+ALIGN 4 
+Map_Magic_Img_13: 
+#incbin "dmp/magic_13.img.bin"
+
+
+
+ALIGN 4
+Map_Light_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_1 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_2 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_3 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_4 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_5 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_6 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_7 Map_Light_Pal
+BYTE 2 0; SHORT 0; POIN Map_Light_Img_8 Map_Light_Pal
+BYTE 12 0; SHORT 0; POIN Map_BlankImg Map_Light_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Light_Pal: 
+#incbin "dmp/light.pal.bin"
+ALIGN 4 
+Map_Light_Img_1: 
+#incbin "dmp/light_01.img.bin"
+ALIGN 4 
+Map_Light_Img_2: 
+#incbin "dmp/light_02.img.bin"
+ALIGN 4 
+Map_Light_Img_3: 
+#incbin "dmp/light_03.img.bin"
+ALIGN 4 
+Map_Light_Img_4: 
+#incbin "dmp/light_04.img.bin"
+ALIGN 4 
+Map_Light_Img_5: 
+#incbin "dmp/light_05.img.bin"
+ALIGN 4 
+Map_Light_Img_6: 
+#incbin "dmp/light_06.img.bin"
+ALIGN 4 
+Map_Light_Img_7: 
+#incbin "dmp/light_07.img.bin"
+ALIGN 4 
+Map_Light_Img_8: 
+#incbin "dmp/light_08.img.bin"
+
+
+
+ALIGN 4
+Map_Dark_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_1 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_2 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_3 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_4 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_5 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_6 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_7 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_8 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_9 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_10 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_11 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_12 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_Dark_Img_13 Map_Dark_Pal
+BYTE 2 0; SHORT 0; POIN Map_BlankImg Map_Dark_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Dark_Pal: 
+#incbin "dmp/dark.pal.bin"
+ALIGN 4 
+Map_Dark_Img_1: 
+#incbin "dmp/dark_01.img.bin"
+ALIGN 4 
+Map_Dark_Img_2: 
+#incbin "dmp/dark_02.img.bin"
+ALIGN 4 
+Map_Dark_Img_3: 
+#incbin "dmp/dark_03.img.bin"
+ALIGN 4 
+Map_Dark_Img_4: 
+#incbin "dmp/dark_04.img.bin"
+ALIGN 4 
+Map_Dark_Img_5: 
+#incbin "dmp/dark_05.img.bin"
+ALIGN 4 
+Map_Dark_Img_6: 
+#incbin "dmp/dark_06.img.bin"
+ALIGN 4 
+Map_Dark_Img_7: 
+#incbin "dmp/dark_07.img.bin"
+ALIGN 4 
+Map_Dark_Img_8: 
+#incbin "dmp/dark_08.img.bin"
+ALIGN 4 
+Map_Dark_Img_9: 
+#incbin "dmp/dark_09.img.bin"
+ALIGN 4 
+Map_Dark_Img_10: 
+#incbin "dmp/dark_10.img.bin"
+ALIGN 4 
+Map_Dark_Img_11: 
+#incbin "dmp/dark_11.img.bin"
+ALIGN 4 
+Map_Dark_Img_12: 
+#incbin "dmp/dark_12.img.bin"
+ALIGN 4 
+Map_Dark_Img_13: 
+#incbin "dmp/dark_13.img.bin"
+
+
+
+ALIGN 4
+Map_Monster_FrameData:
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_1 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_2 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_3 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_4 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_5 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_6 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_7 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_8 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_9 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_10 Map_Monster_Pal
+BYTE 2 0; SHORT 0; POIN Map_Monster_Img_11 Map_Monster_Pal
+BYTE 6 0; SHORT 0; POIN Map_BlankImg Map_Monster_Pal
+WORD 0 0 0
+
+ALIGN 4 
+Map_Monster_Pal: 
+#incbin "dmp/monster.pal.bin"
+ALIGN 4 
+Map_Monster_Img_1: 
+#incbin "dmp/monster_01.img.bin"
+ALIGN 4 
+Map_Monster_Img_2: 
+#incbin "dmp/monster_02.img.bin"
+ALIGN 4 
+Map_Monster_Img_3: 
+#incbin "dmp/monster_03.img.bin"
+ALIGN 4 
+Map_Monster_Img_4: 
+#incbin "dmp/monster_04.img.bin"
+ALIGN 4 
+Map_Monster_Img_5: 
+#incbin "dmp/monster_05.img.bin"
+ALIGN 4 
+Map_Monster_Img_6: 
+#incbin "dmp/monster_06.img.bin"
+ALIGN 4 
+Map_Monster_Img_7: 
+#incbin "dmp/monster_07.img.bin"
+ALIGN 4 
+Map_Monster_Img_8: 
+#incbin "dmp/monster_08.img.bin"
+ALIGN 4 
+Map_Monster_Img_9: 
+#incbin "dmp/monster_09.img.bin"
+ALIGN 4 
+Map_Monster_Img_10: 
+#incbin "dmp/monster_10.img.bin"
+ALIGN 4 
+Map_Monster_Img_11: 
+#incbin "dmp/monster_11.img.bin"
+
