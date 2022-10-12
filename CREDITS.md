@@ -47,6 +47,7 @@ Difficulty Selection - Halbreadier
 Spriter’s resource FRLG (link) 1.
 Maps originally ripped by: Bob799, Sapphire_Dragon, fabnt, Axmarrone, Hoeloe, GaryXCJK, Wess, LF
 FR/LG Trainers originally ripped by: Sapphire_Dragon
+Mega Sprites from: https://www.pokecommunity.com/showthread.php?t=314422
 
 Misc.
 AI4 as group ai - PhantomSentine
