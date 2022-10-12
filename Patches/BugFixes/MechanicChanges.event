@@ -125,6 +125,7 @@ ORG 0x482BA
 BYTE 0x9 //max cursor position
 
 
+/*
 //Damage preview Flooring to 1 (battle preview) 
   ORG $2B53E
   BYTE $01
@@ -147,6 +148,7 @@ BYTE 0x9 //max cursor position
   ORG $5781E
   BYTE $01
   //thanks 7743
+*/
   
 
 // Armor triangle - 7743 

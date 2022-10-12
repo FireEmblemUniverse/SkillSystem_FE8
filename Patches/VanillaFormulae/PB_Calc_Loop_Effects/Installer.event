@@ -1,6 +1,7 @@
 #include "WeakChipDmg.lyn.event"
 #include "ScaledBack.lyn.event"
 //#include "Piercing.lyn.event"
+#include "ImmuneToDamage.lyn.event" 
 
 ALIGN 4
 ChipDamageWeaponList:

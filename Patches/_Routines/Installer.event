@@ -7,6 +7,8 @@ GetDifficulty:
 POP
 #incbin "GetDifficulty.dmp"
 
+ALIGN 4; PUSH; ORG CurrentOffset+1; SaveGame_ASMC: ; POP 
+#incbin "SaveGame.dmp" 
 
 
 ALIGN 4

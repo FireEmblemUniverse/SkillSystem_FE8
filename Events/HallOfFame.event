@@ -88,6 +88,23 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+
+
+//ASMC SaveGame_ASMC
+//LOMA HallOfFameCh 
+//FADU 16 
+Text(OakLeagueText4)
+
+FADU 16 
+//LOMA PalletCh 
+//MOVE (-1) 0x101 [6,8]
+
+SCOORD sB [6,7]
+CALL ConvertFromMemSlotBCoord
+SVAL s2 PalletCh 
+Write_Byte(CurrentChapter)
+
+MNC2 PCBoxCh 
 //ENUT TrainerBattleActiveFlag
 //MUSC 0x7FFF // Mute 
 //CAM1 [8,6] 

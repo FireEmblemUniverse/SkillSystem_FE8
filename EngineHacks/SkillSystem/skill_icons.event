@@ -5,6 +5,12 @@ SkillIcons:
 //Icon graphics are uncompressed
 #define SkillIcon(skillID) "128*skillID+SkillIcons"
 
+ORG SkillIcon(WonderGuardID)
+#incbin "SkillIcons/WonderGuard.dmp"
+ORG SkillIcon(SturdyID)
+#incbin "SkillIcons/Sturdy.dmp"
+
+
 ORG SkillIcon(WeakChipDmgID)
 #incbin "SkillIcons/Acrobat.dmp"
 

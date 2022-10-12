@@ -347,6 +347,7 @@ ENUT FlyFlag
 ENUT SaffronArrived
 ENUT CinnabarArrived
 ENUT IndigoPlateauArrived
+ENUT SecretKeyObtained
 //ENUF CasualModeFlag 
 
 //ASMC FillPokedex // 3e2F4 
@@ -356,7 +357,8 @@ ENUT IndigoPlateauArrived
 Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(11, YCoordNewArea)  
 //MNC2 MansionB4Ch 
-MNC2 ChampionCh
+MNC2 CinnabarCh
+//MNC2 ChampionCh
 //MNC2 PCBoxCh
 // MNC2 Route23NCh 
 //MNC2 LoreleiCh
