@@ -3113,9 +3113,9 @@ I'll tell you.[A][N]
 the world![A][X]
 
 ## GaryDefeatPhaseOneText
-[OpenMidLeft][LoadGaryBattle][OpenMidLeft][ToggleColorInvert]NO![N]
+[OpenMidRight][LoadGaryPoint][OpenMidRight][ToggleColorInvert]NO![N]
 Impossible![A][Clear]
-I won't lose![A][ToggleColorInvert][X]
+[LoadGaryBattle]I won't lose![A][ToggleColorInvert][X]
 
 ## GaryDefeatText
 [OpenMidLeft][LoadGaryPoint][OpenMidLeft]You beat me at my best![A][N]

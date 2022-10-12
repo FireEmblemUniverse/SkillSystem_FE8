@@ -17,7 +17,7 @@ POP
 // Eg. FILL(0xFF) 12*Number_Of_Entries 
 // Vanilla has 0x35 / #53 entries by default 
 // 0x37 has hardcoding, so I'd start at 0x38 / #56 
-#define Number_Of_New_BG_Images 50
+#define Number_Of_New_BG_Images 60
 
 ALIGN 12 // for easy feb terminator
 NewBGTable:
@@ -91,10 +91,12 @@ WORD 0xFFFFFFFF // Febuilder terminator
 #define GaryHouseBG 56 
 #define ViridianForestBG 57 
 #define WorldMapBG 58
+#define ChampionsRoomBG 59 
 // Or new entries go here if you want to put the index number at the start :-) 
 BGEntry(56, LoserWorldMap_img, LoserWorldMap_tsa, LoserWorldMap_pal)
 BGEntry(57, ViridianForestBG_img, ViridianForestBG_tsa, ViridianForestBG_pal)
 BGEntry(58, WorldMap_img, WorldMap_tsa, WorldMap_pal)
+BGEntry(59, ChampionsRoom_img, ChampionsRoom_tsa, ChampionsRoom_pal)
 
 
 
@@ -124,6 +126,18 @@ ALIGN 4
 ViridianForestBG_pal:
 #incbin "dmp/ViridianForest_pal.dmp"
 
+
+ALIGN 4 
+ChampionsRoom_img:
+#incbin "dmp/ChampionsRoom.dmp"
+
+ALIGN 4 
+ChampionsRoom_tsa:
+#incbin "dmp/ChampionsRoom_tsa.dmp"
+
+ALIGN 4 
+ChampionsRoom_pal:
+#incbin "dmp/ChampionsRoom_pal.dmp"
 
 
 // just copy paste the export with undo buffer output, replacing ORG with your label 

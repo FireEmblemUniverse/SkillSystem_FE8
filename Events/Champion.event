@@ -244,9 +244,12 @@ CAM1 [12,9]
 
 
 MUSI; 
-SMOV 0x2 1; // background 
+SMOV 0x2 ChampionsRoomBG; // background 
 CALL $9EE2E8; 
 
+CHECK_COORDS 0x101
+SADD sB sC s0 
+CALL WarpCharacterOutEvent
 
 MOVE (-1) 0x101 [13,28]
 MOVE (-1) 0x102 [13,29]
