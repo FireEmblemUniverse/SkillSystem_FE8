@@ -53,15 +53,12 @@ EscapeTileTerminator ; }
 #endif 
 
 ToRoute21Water:
-//CALL ClosedArea
 ChapterTransition(Route21Ch, 8, 1)
 
 ToRoute21EBush:
-//CALL ClosedArea
 ChapterTransition(Route21Ch, 11, 1)
 
 ToRoute21WBush:
-//CALL ClosedArea
 ChapterTransition(Route21Ch, 6, 1)
 
 ToRoute1:

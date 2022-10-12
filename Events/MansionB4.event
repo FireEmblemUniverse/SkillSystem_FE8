@@ -72,6 +72,7 @@ NoFade
 ENDA 
 
 ObtainSecretKeyEvent: 
+ENUT SecretKeyObtained
 TutText(ObtainedSecretKeyText) 
 NoFade 
 ENDA 
@@ -165,6 +166,11 @@ CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
 CALL SetMansionB4TileChanges
+
+CHECK_EVENTID SecretKeyObtained
+BEQ 0 sC s0 
+RemoveTrap(6,8)
+LABEL 0
 
 LOAD1 0x1 EnemyUnitsA
 ENUN

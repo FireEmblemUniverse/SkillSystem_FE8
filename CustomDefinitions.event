@@ -241,8 +241,10 @@ String("Version 0.98    Oct 2022") ; BYTE 0; POP
 #define BrunoDefeatedTemp 0xD7
 #define AgathaDefeatedTemp 0xD8 
 #define LanceDefeatedTemp 0xD9
-#define ChampionDefeatedTemp 0xDA 
-#define ChampionDefeated 0xDB 
+#define ChampionDefeatedPhaseOne 0xDA
+#define ChampionDefeatedTemp 0xDB
+#define CompletedPokemonLeague 0xDC
+
 
 #define IndigoPlateauArrived 0xC9 
 

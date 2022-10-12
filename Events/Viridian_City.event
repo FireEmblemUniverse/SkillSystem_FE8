@@ -98,9 +98,7 @@ ChapterTransition(Route1Ch, 12, 0)
 
 ToRoute2S:
 ChapterTransition(Route2SCh, 10, 36)
-//TutText(ClosedAreaText)
-//NoFade 
-//ENDA 
+
 
 ToRoute22:
 ChapterTransition(Route22Ch, 47, 8)

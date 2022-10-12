@@ -45,17 +45,10 @@ END_MAIN
 LocationBasedEvents:
 House(ThunderbadgeObtained,EnterGym,12,23) //
 Vendor(ShopItems,27,11)
-//House(0,ClosedArea,7,4) // old rod ? 
-//House(0,ClosedArea,10,15) // Fan club 
-//House(0,ClosedArea,17,15) //
-//House(0,ClosedArea,23,18) //
-
-
 END_MAIN
 
 EnterGym:
 ENUF ThunderbadgeObtained 
-//CALL ClosedArea
 ForcedChapterTransition(VermillionGymCh, 7,24)
 NoFade 
 ENDA 

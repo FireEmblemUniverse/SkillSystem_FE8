@@ -294,13 +294,13 @@ SetSMS(MomSMS , 1 ,    MomStanding)
 SetSMS(NurseSMS , 1 ,    NurseStanding)
 SetSMS(ReceptionistSMS , 1 ,    ReceptionistStanding)
 SetSMS(ClerkSMS , 1 ,    ClerkStanding)
-SetSMS(Unused62SMS , 0 ,    m1Standing)
-SetSMS(Unused63SMS , 0 ,    m1Standing)
-SetSMS(Unused64SMS , 0 ,    m1Standing)
-SetSMS(Unused65SMS , 0 ,    m1Standing)
-SetSMS(Unused66SMS , 0 ,    m1Standing)
-SetSMS(Unused67SMS , 0 ,    m1Standing)
-SetSMS(Unused68SMS , 0 ,    m1Standing)
+SetSMS(ShedinjaSMS , 2 ,    ShedinjaStanding)
+SetSMS(SableyeSMS , 2 ,    SableyeStanding)
+SetSMS(MegaAlakazamSMS , 2 ,    MegaAlakazamStanding)
+SetSMS(MegaPidgeotSMS , 2 ,    MegaPidgeotStanding)
+SetSMS(MegaVenusaurSMS , 2 ,    MegaVenusaurStanding)
+SetSMS(MegaBlastoiseSMS , 2 ,    MegaBlastoiseStanding)
+SetSMS(MegaCharizardXSMS , 2 ,    MegaCharizardXStanding)
 SetSMS(Unused69SMS , 0 ,    m1Standing)
 SetSMS(Unused70SMS , 0 ,    m1Standing)
 SetSMS(Unused71SMS , 0 ,    m1Standing)
@@ -567,13 +567,13 @@ SetMMS(MomMMS ,     MomMoving,        DemonKingAP)
 SetMMS(NurseMMS ,     NurseMoving,        DemonKingAP)
 SetMMS(ReceptionistMMS ,     ReceptionistMoving,        DemonKingAP)
 SetMMS(ClerkMMS ,     ClerkMoving,        DemonKingAP)
-SetMMS(Unused62MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused63MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused64MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused65MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused66MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused67MMS ,     r1Moving,        DemonKingAP)
-SetMMS(Unused68MMS ,     r1Moving,        DemonKingAP)
+SetMMS(ShedinjaMMS ,     ShedinjaMoving,        DemonKingAP)
+SetMMS(SableyeMMS ,     SableyeMoving,        DemonKingAP)
+SetMMS(MegaAlakazamMMS ,     MegaAlakazamMoving,        DemonKingAP)
+SetMMS(MegaPidgeotMMS ,     MegaPidgeotMoving,        DemonKingAP)
+SetMMS(MegaVenusaurMMS ,     MegaVenusaurMoving,        DemonKingAP)
+SetMMS(MegaBlastoiseMMS ,     MegaBlastoiseMoving,        DemonKingAP)
+SetMMS(MegaCharizardXMMS ,     MegaCharizardXMoving,        DemonKingAP)
 SetMMS(Unused69MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused70MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused71MMS ,     r1Moving,        DemonKingAP)
@@ -1487,6 +1487,32 @@ ALIGN 4
 ClerkMoving:
 #incbin "Trainer_MMS/MMS_Clerk.dmp"
 
+ALIGN 4
+ShedinjaMoving:
+#incbin "More MMS/Shedinja.dmp"
+ALIGN 4
+SableyeMoving:
+#incbin "More MMS/Sableye.dmp"
+ALIGN 4
+MegaAlakazamMoving:
+#incbin "More MMS/MegaAlakazam.dmp"
+ALIGN 4
+MegaPidgeotMoving:
+#incbin "More MMS/MegaPidgeot.dmp"
+ALIGN 4
+MegaVenusaurMoving:
+#incbin "More MMS/MegaVenusaur.dmp"
+ALIGN 4
+MegaBlastoiseMoving:
+#incbin "More MMS/MegaBlastoise.dmp"
+ALIGN 4
+MegaCharizardXMoving:
+#incbin "More MMS/MegaCharizardX.dmp"
+
+
+
+
+
 //Map sprites
 
 
@@ -2303,6 +2329,29 @@ ReceptionistStanding:
 ALIGN 4 
 ClerkStanding:
 #incbin "Trainer_SMS/SMS_Clerk.dmp"
+
+ALIGN 4
+ShedinjaStanding:
+#incbin "More SMS/Shedinja.dmp"
+ALIGN 4
+SableyeStanding:
+#incbin "More SMS/Sableye.dmp"
+ALIGN 4
+MegaAlakazamStanding:
+#incbin "More SMS/MegaAlakazam.dmp"
+ALIGN 4
+MegaPidgeotStanding:
+#incbin "More SMS/MegaPidgeot.dmp"
+ALIGN 4
+MegaVenusaurStanding:
+#incbin "More SMS/MegaVenusaur.dmp"
+ALIGN 4
+MegaBlastoiseStanding:
+#incbin "More SMS/MegaBlastoise.dmp"
+ALIGN 4
+MegaCharizardXStanding:
+#incbin "More SMS/MegaCharizardX.dmp"
+
 
 
 

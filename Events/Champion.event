@@ -44,6 +44,13 @@ CheckIfNoEnemiesLeft:
 CHECK_ENEMIES
 SVAL s1 1 
 BNE 0 sC s1 
+
+CHECK_EVENTID ChampionDefeatedPhaseOne 
+BNE 10 sC s0 
+CALL ChampionPhaseTwo
+GOTO 99 
+
+LABEL 10 
 CALL EndingScene 
 GOTO 99 
 LABEL 0 
@@ -110,7 +117,9 @@ ToHallOfFame:
 ChapterTransition(HallOfFameCh, 9,25)
 
 Traps1:
-
+ArrowTrap(7 , 2, 1)
+ArrowTrap(13, 2, 1)
+ArrowTrap(19, 2, 1) 
 ENDTRAP
 ALIGN 4
 
@@ -188,6 +197,9 @@ ShowMap
 Text(GaryChallengeText)
 
 
+
+
+
 CHECK_COORDS 0xA1 
 SADD sB sC s0 
 CALL LightruneAnimSlotB
@@ -226,7 +238,94 @@ NoFade
 ENDA
 
 
+ChampionPhaseTwo: 
+CAM1 [12,9] 
 
+
+
+MUSI; 
+SMOV 0x2 1; // background 
+CALL $9EE2E8; 
+
+
+MOVE (-1) 0x101 [13,28]
+MOVE (-1) 0x102 [13,29]
+MOVE (-1) 0x103 [19,28]
+MOVE (-1) 0x104 [19,29]
+MOVE (-1) 0x105 [7,28]
+MOVE (-1) 0x106 [7,29]
+
+
+
+
+TEXTSTART 
+TEXTSHOW GaryDefeatPhaseOneText
+TEXTEND 
+
+
+
+FADI 16 
+Read_Byte(GaryStarterClass)
+SADD sA sC s0 
+SVAL s1 BulbasaurID 
+SVAL s2 GaryUnitsTwoA|IsPointer 
+BEQ 0 sA s1 
+SVAL s1 CharmanderID 
+SVAL s2 GaryUnitsTwoB|IsPointer 
+BEQ 0 sA s1 
+SVAL s1 SquirtleID 
+SVAL s2 GaryUnitsTwoC|IsPointer 
+BEQ 0 sA s1 
+
+LABEL 0 
+LOAD_S2 1 
+SetUnitStatusAll(0xA6AA, State, Hide, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+ENUN 
+
+
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
+SET_ACTIVE 0 
+SET_CURSOR_SB
+
+
+// TEXTSTART 
+CLEAN 
+MUNO
+FADU 16 
+
+REMA 
+
+AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+//AutoLevelUnits(3, False, 0x90EF) 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+
+
+CHECK_COORDS 0xA6
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA7 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA8 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xA9 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+CHECK_COORDS 0xAA 
+SADD sB sC s0 
+CALL LightruneAnimSlotB
+
+SetUnitStatus(0xA9, MaxHP, 1) // Shedinja 
+SetUnitStatus(0xA9, CurrentHP, 1)
+
+
+LABEL 99 
+NoFade
+ENDA
 
 EndingScene: 
 CHECK_EVENTID ChampionDefeatedTemp 
@@ -243,7 +342,7 @@ SVAL r3 5000
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
 ENUT ChampionDefeatedTemp
-ENUT ChampionDefeated
+ENUT CompletedPokemonLeague
 LABEL 99 
 NoFade
 ENDA
@@ -289,11 +388,35 @@ UNIT
 
 GaryUnitsC:
 UNIT 0xA0	BlastoiseID 	0xE1 Level(0, Enemy, 1)   [14,11]	0b	0x0 0x0  0x0 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA1 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA2 	ArcanineID 	0xE1 Level(0, Enemy, 1)   [15,14] 0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA3 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,14]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA4 	RhydonID 		0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA5 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
+//UNIT 0xA1 	PidgeotID 		0xE1 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x0  0x0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+//UNIT 0xA2 	ArcanineID 	0xE1 Level(0, Enemy, 1)   [15,14] 0b	0x0 0x0  0x0 [FireBlast,TakeDown,0x0,0x0] PursueWithoutHeedAI 
+//UNIT 0xA3 	AlakazamID 	0xE1 Level(0, Enemy, 1)   [11,14]  0b	0x0 0x0  0x0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+//UNIT 0xA4 	RhydonID 		0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthquake, RockSlide,0x0,0x0] PursueWithoutHeedAI 
+//UNIT 0xA5 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+
+// sturdy Shedinja 
+// wonder guard Sableye 
+GaryUnitsTwoA:
+UNIT 0xA6	MegaVenusaurID 		0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [PetalDance,Sludge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA9 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xAA 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+GaryUnitsTwoB:
+UNIT 0xA6	MegaCharizardXID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [SacredFire,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA9 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xAA 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+GaryUnitsTwoC:
+UNIT 0xA6	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA9 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xAA 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 GaryUnitsD:
@@ -305,6 +428,13 @@ UNIT 0xA4 	RhydonID 		0xE1 Level(0, Enemy, 1)   [10,12] 0b	0x0 0x0  0x0 [Earthqu
 UNIT 0xA5 	ExeggutorID 	0xE1 Level(0, Enemy, 1)   [16,12] 0b	0x0 0x0  0x0 [MegaDrain, BodySlam,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
+GaryUnitsTwoD:
+UNIT 0xA6	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA9 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xAA 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 

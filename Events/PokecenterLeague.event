@@ -54,9 +54,9 @@ BYTE $0 0; ALIGN 4
 ALIGN 4
 ShopItems_B: // TMs CDs 
 //SpellScroll IceBeam SpellScroll TriAttack
-BYTE SpellScroll Psychic SpellScroll PetalDance
-BYTE SpellScroll Screech SpellScroll SwordsDance
-BYTE SpellScroll BugBuzz SpellScroll CalmMind
+//BYTE SpellScroll Psychic SpellScroll PetalDance
+//BYTE SpellScroll Screech SpellScroll SwordsDance
+//BYTE SpellScroll BugBuzz SpellScroll CalmMind
 BYTE SpellScroll HiJumpKick SpellScroll BulkUp
 BYTE SpellScroll Thunder SpellScroll HoneClaws
 BYTE SpellScroll EarthPower SpellScroll Blizzard
@@ -64,9 +64,9 @@ BYTE SpellScroll XScissor SpellScroll HydroPump
 BYTE SpellScroll HyperBeam SpellScroll Sludge
 BYTE SpellScroll ShadowBall SpellScroll FireBlast
 BYTE SpellScroll Earthquake SpellScroll Megahorn 
-//BYTE SpellScroll DoubleEdge SpellScroll Outrage
-//BYTE SpellScroll DarkPulse SpellScroll Ancientpower
-//BYTE SpellScroll MeteorMash SpellScroll Megahorn 
+BYTE SpellScroll DoubleEdge SpellScroll Outrage
+BYTE SpellScroll DarkPulse SpellScroll Ancientpower
+BYTE SpellScroll MeteorMash SpellScroll Megahorn 
 BYTE $0 0; ALIGN 4
 
 ALIGN 4

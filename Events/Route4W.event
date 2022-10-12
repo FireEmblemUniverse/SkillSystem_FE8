@@ -97,7 +97,6 @@ EscapeTileTerminator ; }
 #endif 
 
 ToMtMoonB1:
-//CALL ClosedArea
 ChapterTransition(MtMoonB1Ch, 13,32)
 
 ToRoute3:

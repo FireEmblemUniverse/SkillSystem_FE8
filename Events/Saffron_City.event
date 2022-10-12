@@ -82,7 +82,6 @@ ENDA
 
 EnterGym:
 ENUF MarshbadgeObtained  
-//CALL ClosedArea
 ForcedChapterTransition(SaffronGymCh, 6,17)
 NoFade 
 ENDA 

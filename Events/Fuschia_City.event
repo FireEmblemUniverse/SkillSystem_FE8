@@ -46,17 +46,12 @@ LocationBasedEvents:
 House(SoulbadgeObtained,EnterGym,8,29) 
 House(0,EnterSafariZone,21,4) 
 Vendor(ShopItems,19,16)
-//House(0,ClosedArea,7,4) // old rod ? 
-//House(0,ClosedArea,10,15) // Fan club 
-//House(0,ClosedArea,17,15) //
-//House(0,ClosedArea,23,18) //
 
 
 END_MAIN
 
 EnterGym:
 ENUF SoulbadgeObtained 
-//CALL ClosedArea
 ForcedChapterTransition(FuschiaGymCh, 8,21)
 NoFade 
 ENDA 
@@ -88,16 +83,13 @@ ToRoute15:
 ChapterTransition(Route15Ch, 9, 11)
 
 ToRoute19:
-//CALL ClosedArea 
 ChapterTransition(Route19Ch, 12, 1)
 
 
 ToRoute18:
-//CALL ClosedArea 
 ChapterTransition(Route18Ch, 59,9)
 
 EnterSafariZone:
-//CALL ClosedArea 
 TutText(EnterSafariZoneText)
 ChapterTransition(SafariSCh, 20,25)
 NoFade 

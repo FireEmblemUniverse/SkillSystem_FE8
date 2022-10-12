@@ -167,6 +167,23 @@ LoreleiData:
 #incbin "Dmp/Lorelei_minimug.dmp" 
 setMugEntry(175, LoreleiData, 9, 9, 9, 9)
 
+ALIGN 16 
+ShedinjaData: 
+#incbin "Dmp/Shedinja_mug.dmp" 
+#incbin "Dmp/Shedinja_frames.dmp" 
+#incbin "Dmp/Shedinja_palette.dmp" 
+#incbin "Dmp/Shedinja_minimug.dmp" 
+setMugEntry(176, ShedinjaData, 9, 9, 9, 9)
+
+ALIGN 16 
+SableyeData: 
+#incbin "Dmp/Sableye_mug.dmp" 
+#incbin "Dmp/Sableye_frames.dmp" 
+#incbin "Dmp/Sableye_palette.dmp" 
+#incbin "Dmp/Sableye_minimug.dmp" 
+setMugEntry(177, SableyeData, 9, 9, 9, 9)
+
+
 // Reserved 
 ALIGN 16 
 DexData: // 001

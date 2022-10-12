@@ -109,8 +109,8 @@ RedPokeballTrap(33,11, (ChapterID*2)+1, Zinc)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(5,10, ChapterID, 0x0) //no extra text 
-SignATrap(30,21, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(30,21, ChapterID, 0x0) //no extra text 
+SignATrap(10,20, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 InvisibleSign(5,5, 4) 
