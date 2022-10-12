@@ -204,11 +204,11 @@ UNIT
 
 EnemyTrainersA:
 UNIT 0xD0 MachampID 			0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[Submission] 		ZoningHeal50GroupOneAI
-//UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0 [HiJumpKick] 	ZoningHeal50GroupOneAI
-//UNIT 0xA1 HitmonchanID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[FirePunch, IcePunch, ThunderPunch] 		ZoningHeal50GroupOneAI
-//UNIT 0xA2 OnixID 				0xD0 Level(0, Enemy, 1) [10,7]  0b 0x0 	0 0	[Earthquake, RockSlide] 	ZoningHeal50GroupOneAI
-//UNIT 0xA3 GolemID 				0xD0 Level(0, Enemy, 1) [14,7]  0b 0x0	0 0	[Rollout, BodySlam] 		ZoningHeal50GroupOneAI
-//UNIT 0xA4 KangaskhanID 		0xD0 Level(0, Enemy, 1) [12,9]  0b 0x0	0 0	[DoubleEdge] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 HitmonleeID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0 [HiJumpKick] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 HitmonchanID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[FirePunch, IcePunch, ThunderPunch] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 OnixID 				0xD0 Level(0, Enemy, 1) [10,7]  0b 0x0 	0 0	[Earthquake, RockSlide] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 GolemID 				0xD0 Level(0, Enemy, 1) [14,7]  0b 0x0	0 0	[Rollout, BodySlam] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 KangaskhanID 		0xD0 Level(0, Enemy, 1) [12,9]  0b 0x0	0 0	[DoubleEdge] 		ZoningHeal50GroupOneAI
 UNIT
 
 

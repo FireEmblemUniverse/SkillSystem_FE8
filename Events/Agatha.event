@@ -229,12 +229,12 @@ UNIT 0xE1 AgathaID 		0x0  Level(0, Enemy, 1) [12,5]  0b 0x0	1 REDA12R5	[0,0,0x0,
 UNIT
 
 EnemyTrainersA:
-UNIT 0xD0 GengarID 		0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[Blizzard, Waterfall,BodySlam,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 GolbatID 		0xD0 Level(0, Enemy, 1) [10,8]  0b 0x0	0 0 [Growl, TailWhip, AuroraBeam,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 LickitungID 		0xD0 Level(0, Enemy, 1) [14,8]  0b 0x0	0 0	[Psychic,IceBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ArbokID 			0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Surf, IceBeam,0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 HaunterID 		0xD0 Level(0, Enemy, 1) [8,9]  0b 0x0	0 0	[FireBlast, Surf, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 HaunterID 		0xD0 Level(0, Enemy, 1) [16,9]  0b 0x0	0 0	[Clamp, AuroraBeam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xD0 GengarID 		0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[ShadowBall,DarkPulse,0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA0 GolbatID 		0xD0 Level(0, Enemy, 1) [10,8]  0b 0x0	0 0 [SkyAttack,Bite,Lick,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 LickitungID 		0xD0 Level(0, Enemy, 1) [14,8]  0b 0x0	0 0	[BodySlam,Lick,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 ArbokID 			0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Glare,Lick,0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA3 HaunterID 		0xD0 Level(0, Enemy, 1) [8,9]  0b 0x0	0 0	[ShadowBall, ConfuseRay, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 HaunterID 		0xD0 Level(0, Enemy, 1) [16,9]  0b 0x0	0 0	[ShadowBall, ConfuseRay,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 
