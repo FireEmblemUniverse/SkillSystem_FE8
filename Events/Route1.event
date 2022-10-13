@@ -110,6 +110,8 @@ SignTrap(20, 8, TrainerTip_Berries)
 
 BerryTree(20,2,5)
 BerryTree(16,15,5)
+
+HealTile(15,23,25) // 25% heal 
 BerryTree(15,25,5)
 BerryTree(8,33,5)
 

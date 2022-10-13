@@ -241,6 +241,9 @@ UNIT
 
 
 Traps1:
+
+SaveWithoutHeal(11,10) 
+
 //GenericDisappearCompletion(12, 5, 0, GarySMS, 0) // xx, yy, flag, sprite, effectID 
 //GenericDisappearCompletion(13, 5, 0, PidgeotSMS, 0) // xx, yy, flag, sprite, effectID 
 //GenericDisappearCompletion(16, 7, 0, SuspiciousWaterSMS, 0) // xx, yy, flag, sprite, effectID 
@@ -318,6 +321,7 @@ LABEL 0x63
 CALL SetBushHpEvent
 
 //SetUnitStatus(1, 0x28, Flamethrower)
+ 
 
 SetUnitStatus(2, 0x28, Tackle)
 SetUnitStatus(2, 0x29, Scratch)

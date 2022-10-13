@@ -301,7 +301,7 @@ SetSMS(MegaPidgeotSMS , 2 ,    MegaPidgeotStanding)
 SetSMS(MegaVenusaurSMS , 2 ,    MegaVenusaurStanding)
 SetSMS(MegaBlastoiseSMS , 2 ,    MegaBlastoiseStanding)
 SetSMS(MegaCharizardXSMS , 2 ,    MegaCharizardXStanding)
-SetSMS(Unused69SMS , 0 ,    m1Standing)
+SetSMS(HealingTileSMS , 0 ,    HealingTileStanding)
 SetSMS(Unused70SMS , 0 ,    m1Standing)
 SetSMS(Unused71SMS , 0 ,    m1Standing)
 SetSMS(Unused72SMS , 0 ,    m1Standing)
@@ -574,7 +574,7 @@ SetMMS(MegaPidgeotMMS ,     MegaPidgeotMoving,        DemonKingAP)
 SetMMS(MegaVenusaurMMS ,     MegaVenusaurMoving,        DemonKingAP)
 SetMMS(MegaBlastoiseMMS ,     MegaBlastoiseMoving,        DemonKingAP)
 SetMMS(MegaCharizardXMMS ,     MegaCharizardXMoving,        DemonKingAP)
-SetMMS(Unused69MMS ,     r1Moving,        DemonKingAP)
+SetMMS(HealingTileMMS ,     HealingTileMoving,        DemonKingAP)
 SetMMS(Unused70MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused71MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused72MMS ,     r1Moving,        DemonKingAP)
@@ -1508,7 +1508,9 @@ MegaBlastoiseMoving:
 ALIGN 4
 MegaCharizardXMoving:
 #incbin "More MMS/MegaCharizardX.dmp"
-
+ALIGN 4 
+HealingTileMoving:
+#incbin "More MMS/HealingTile.dmp"
 
 
 
@@ -2351,7 +2353,9 @@ MegaBlastoiseStanding:
 ALIGN 4
 MegaCharizardXStanding:
 #incbin "More SMS/MegaCharizardX.dmp"
-
+ALIGN 4 
+HealingTileStanding:
+#incbin "More SMS/HealingTile.dmp" 
 
 
 

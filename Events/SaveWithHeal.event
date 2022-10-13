@@ -2,7 +2,7 @@
 // 0x38 
 //#define PCBoxCh 0x38 
 
-EventPointerTable(PCBoxCh,ThisChapter)
+EventPointerTable(SaveWithHealCh,ThisChapter)
 
 ALIGN 4
 NewChName:
@@ -37,17 +37,8 @@ END_MAIN
 
 BeginningScene:		// Since our party is so small and you can release/delete units, only LOAD3 works here 
 					// Otherwise it'll spawn Seth if you have no P-02
-OffAllUnitState(0x0145, 0x4210008, Any, Any, Any, Any, Any) // Remove escaped, departed, undeployed last ch, undeployed (does not remove death) 
-ASMC RegisterAllOwnedPokemon // for old save files 
-		
-ENUF PlayableCutsceneFlag	
-LOAD3 0x0 Units1 // Do not load dead / non-existent units 
-ENUN 
-ASMC UnequipAccessories 
-//ENUT SkipIntroFlag
-GotoPrepScreen
 
-ASMC AutoEquipAccessories 
+
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
@@ -83,6 +74,7 @@ MNC2 (-1) // uses s2
 
 LABEL 0x63
 NoFade
+ENDA
 
 EndingScene: //Unused but must exist 
 NoFade

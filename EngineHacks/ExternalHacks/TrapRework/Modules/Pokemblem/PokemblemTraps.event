@@ -204,6 +204,7 @@ SetImpassableTrap(ObtainSpellID)
 #define BerryTreeTrapID 112 //0x70
 SetTrapEventInit(BerryTreeTrapID,BerryTreeInitialization)
 SetTrapMapSprite(BerryTreeTrapID,BerryTreeSMS)
+//SetTrapMapSprite(BerryTreeTrapID,HealingTileSMS)
 SetTrapMapSpritePalette(BerryTreeTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(BerryTreeTrapID)
 
@@ -257,7 +258,9 @@ SetImpassableTrap(SkillAccessoryTrapID)
 #define Sign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 SignSMS EventIndex"
 #define InvisibleSign(XX,YY, EventIndex) "BYTE ObstacleID XX YY 0x0 BlankSMS EventIndex"
 #define Save(XX,YY) "BYTE SaveTrapID XX YY 0x0 BlankSMS 1"
-#define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 1"
+#define SaveCost(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 2"
+#define SaveWithHeal(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 2"
+#define SaveWithoutHeal(XX,YY) "BYTE SaveCostID XX YY 0x0 SavePointSMS 3"
 
 //#define Enter(XX,YY) 
 

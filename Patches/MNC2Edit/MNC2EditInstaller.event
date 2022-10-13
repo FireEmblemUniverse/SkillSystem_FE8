@@ -1,15 +1,44 @@
 
+
+#include "SaveOnlyAtTheseChapters.lyn.event" 
+
+ALIGN 4 
+SaveOnlyAtTheseChapters_List:
+PokecenterChLabel:
+BYTE PCBoxCh 
+BYTE SaveWithHealCh 
+BYTE SaveWithoutHealCh 
+BYTE 0xFF // Terminator 
+
+ALIGN 4 
+HealOnlyAtTheseChapters_List:
+BYTE PCBoxCh 
+BYTE SaveWithHealCh 
+BYTE 0xFF 
+
+
+
 PUSH
 
+ORG $854A4 //basically the same code as $3127C 
+callHackNew(HealOnlyAtTheseChapters)
+SHORT $46C0 
+
+ORG $3127C 
+callHackNew(HealOnlyAtTheseChapters)
+SHORT $46C0 
+
+ORG $9DE8 //CallActualSaveMenu GameControl_CallPostChapterSaveMenu
+callHackNew(SaveOnlyAtTheseChapters)
+SHORT $46C0 
 //save only at specified chapter 
 
 ORG 0x9DEF
-BYTE 0xD1 //BEQ -> BNE (so now we only save when moving to castle frelia)
+//BYTE 0xD1 //BEQ -> BNE (so now we only save when moving to castle frelia)
 
 
 ORG 0x9DEC 
-PokecenterChLabel:
-BYTE PCBoxCh //chapter to save at 
+//BYTE PCBoxCh //chapter to save at 
 
 //Kill PrepareBlankTile patch by 7743 (fixes a minor graphical glitch)
 ORG 0x35728

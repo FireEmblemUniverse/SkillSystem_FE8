@@ -348,6 +348,12 @@
 
 
 {
-#include "Pokecenter.event"
+#include "SaveWithPrep.event"
+}
+{
+#include "SaveWithHeal.event"
+}
+{
+#include "SaveWithoutHeal.event"
 }
 

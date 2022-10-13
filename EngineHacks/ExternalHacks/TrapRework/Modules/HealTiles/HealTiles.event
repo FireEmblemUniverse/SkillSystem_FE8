@@ -19,9 +19,13 @@ BYTE HealTilesTrapID
 #include "HealTiles.lyn.event"
 
 
-SetTrapEventInit(HealTilesTrapID,$378EC)
-SetTrapMapSprite(HealTilesTrapID,HealMapSpriteID)
-SetTrapMapSpritePalette(HealTilesTrapID,EnemyTrapPaletteWord)
+SetTrapEventInit(HealTilesTrapID, BerryTreeInitialization) //$378EC)
+
+SetTrapMapSprite(HealTilesTrapID,HealingTileSMS) // Vesly's gfx here 
+SetTrapMapSpritePalette(HealTilesTrapID,NPCTrapPaletteWord)
+
+//SetTrapMapSprite(HealTilesTrapID,HealMapSpriteID)
+//SetTrapMapSpritePalette(HealTilesTrapID,EnemyTrapPaletteWord)
 SetTrapMapSpriteFunc(HealTilesTrapID,HealTiles_MapSpriteFunc)
 
 

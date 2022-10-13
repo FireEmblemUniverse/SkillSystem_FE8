@@ -100,5 +100,7 @@
 #define ChampionCh 0x63
 #define PokecenterCh 0x64
 #define HallOfFameCh 0x65
-#define DebugCh 0x66
-#define Debug2Ch 0x67
+#define SaveWithHealCh 0x66
+#define SaveWithoutHealCh 0x67
+#define DebugCh 0x68
+#define Debug2Ch 0x69

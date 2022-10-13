@@ -1,0 +1,121 @@
+
+// 0x38 
+//#define PCBoxCh 0x38 
+
+EventPointerTable(PCBoxCh,ThisChapter)
+
+ALIGN 4
+NewChName:
+String("Pokecenter")
+BYTE 0
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+END_MAIN
+
+CharacterBasedEvents:
+END_MAIN
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+END_MAIN
+
+BeginningScene:		// Since our party is so small and you can release/delete units, only LOAD3 works here 
+					// Otherwise it'll spawn Seth if you have no P-02
+OffAllUnitState(0x0145, 0x4210008, Any, Any, Any, Any, Any) // Remove escaped, departed, undeployed last ch, undeployed (does not remove death) 
+ASMC RegisterAllOwnedPokemon // for old save files 
+		
+ENUF PlayableCutsceneFlag	
+LOAD3 0x0 Units1 // Do not load dead / non-existent units 
+ENUN 
+ASMC UnequipAccessories 
+//ENUT SkipIntroFlag
+GotoPrepScreen
+
+ASMC AutoEquipAccessories 
+DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
+IGNORE_KEYS 0
+Write_Byte(0, DisableMenuOptionsRam) 
+//GetNthUnit(1)
+//SADD r2 rC r0 
+//Write_Byte(Player1UnitID)
+//GetNthUnit(2)
+//SADD r2 rC r0 
+//Write_Byte(Player2UnitID)
+//GetNthUnit(3)
+//SADD r2 rC r0 
+//Write_Byte(Player3UnitID)
+//GetNthUnit(4)
+//SADD r2 rC r0 
+//Write_Byte(Player4UnitID)
+//GetNthUnit(5)
+//SADD r2 rC r0 
+//Write_Byte(Player5UnitID)
+//GetNthUnit(6)
+//SADD r2 rC r0 
+//Write_Byte(Player6UnitID)
+
+
+	//Return 
+Read_Byte(CurrentChapter)
+SADD r2 rC r0 
+Write_Byte(TeleportChapter)
+Write_Byte(RetreatChapter)
+
+Read_Byte(CurrentChapter)
+SADD r2 rC r0 
+MNC2 (-1) // uses s2 
+
+LABEL 0x63
+NoFade
+ENDA
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+
+ALIGN 4
+Traps1:
+ENDTRAP
+ALIGN 4
+
+Traps2:
+ENDTRAP
+ALIGN 4
+
+
+Units1: //player placement 
+UNIT Seth  0x7 0x1 0xA1     [4,3] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT Seth  0x7 0x1 0xA1     [7,3] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT Seth  0x7 0x1 0xA1     [10,3] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT Seth  0x7 0x1 0xA1     [4,6] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT Seth  0x7 0x1 0xA1     [7,6] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT Seth  0x7 0x1 0xA1     [10,6] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+
+UNIT 
+
+
+

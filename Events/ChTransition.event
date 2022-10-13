@@ -118,8 +118,8 @@ ENDA
 
 GenericEffect(0, TestCase) // This does work 
 GenericEffect(1, VisitPokecenter) // 
-GenericEffect(2, VisitPokecenter) // 
-GenericEffect(3, TestCase) // 
+GenericEffect(2, SaveWithHeal) // 
+GenericEffect(3, SaveWithoutHeal) // 
 //GenericEffect(4, CallToggleMansionB1) // 
 //GenericEffect(5, CallToggleMansionB2) // 
 //GenericEffect(6, CallToggleMansionB3) // 
@@ -959,6 +959,29 @@ CityAfev:
 NoFade 
 ENDA 
 
+SaveWithHeal:
+CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+CALL ConvertFromMemSlotBCoord
+CHECK_CHAPTER_NUMBER
+SADD r2 rC r0 
+Write_Byte(CurrentChapter)
+
+MNC2 SaveWithHealCh 
+NoFade 
+ENDA 
+
+SaveWithoutHeal:
+CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+CALL ConvertFromMemSlotBCoord
+CHECK_CHAPTER_NUMBER
+SADD r2 rC r0 
+Write_Byte(CurrentChapter)
+
+MNC2 SaveWithoutHealCh 
+NoFade 
+ENDA 
 
 VisitPokecenter:
 

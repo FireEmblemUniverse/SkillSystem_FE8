@@ -6,9 +6,9 @@
  <layer name="Tile Layer 1" width="15" height="10">
   <properties>
    <property name="Anims1" value="0"/>
-   <property name="ChapterID" value="PCBoxCh"/>
+   <property name="ChapterID" value="SaveWithoutHealCh"/>
    <property name="Main" value=""/>
-   <property name="MapID" value="PCBoxMap"/>
+   <property name="MapID" value="SaveWithoutHealMap"/>
    <property name="ObjectType" value="PCBoxObj"/>
    <property name="PaletteID" value="PCBoxPal"/>
    <property name="TileConfig" value="PCBoxConf"/>
