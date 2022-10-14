@@ -803,6 +803,10 @@ mov r2, #26 @ palette # 26 - or 27 is the light rune palette i think
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 @ palette | flips | tile 
 
+mov r2, #2 
+lsl r2, #10 
+orr r3, r2 @ priority 2 (display above unit sprites but below battle stats with anims off etc) 
+
 ldr r2, =0x8590f54 @gOAM_32x32Obj - seems to work fine for 64x64 objects, too	@{U}
 @ldr r2, =0x85B8CEC @gOAM_32x32Obj - seems to work fine for 64x64 objects, too	@{J}
 @mov r2, sp 
@@ -1402,6 +1406,11 @@ mov r2, #27 @ palette # 26 - or 27 is the light rune palette i think
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 
 
+mov r2, #2 
+lsl r2, #10 
+orr r3, r2 @ priority 2 (display above unit sprites but below battle stats with anims off etc) 
+
+
 @ palette | flips | tile 
 
 ldr		r2, =SpriteData8x8 @ OAM data for a single 8x8 sprite
@@ -1472,6 +1481,7 @@ ldrh	r3,[r2]
 mov r2, #16 @ palette # 16 is used for hp bars 
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 
+
 
 @ palette | flips | tile 
 

@@ -41,36 +41,58 @@ POP
 #define WindAnimID 22 
 #define ElfireAnimID 23 
 #define DarkAnimID 24 
-#define NumberOfAnimIDs 24
-
-ALIGN 4
-WeaponTypeAnimations:
-BYTE 0 ThinSlashAnimID // Sword 
-BYTE 1 Hit1AnimID // Lance 
-BYTE 2 Shards2AnimID // Axe 
-BYTE 3 Break1AnimID // Bow  
-BYTE 5 Splash2AnimID // Anima 
-BYTE 6 FlashAnimID // Light 
-BYTE 7 Impact1AnimID // Dark 
-BYTE $B Shards1AnimID // Monster 
-BYTE $11 Shards1AnimID // Dragonstone 
-SHORT 0xFFFF // Terminator 
+#define MapSword 25 
+#define MapLance 26
+#define MapAxe 27
+#define MapBow 28
+#define MapMagic 29 
+#define MapLight 30
+#define MapDark 31
+#define MapMonster 32
 
 
 
 
+
+
+#define NumberOfAnimIDs 32
 ALIGN 4
 SpecificWeaponAnimations:
 BYTE SilverSword Shards1AnimID // Silver sword will always use the Shards1 animation 
 SHORT 0xFFFF // Terminator 
 
-
-
-
-
+ALIGN 4
+WeaponTypeAnimations:
+BYTE 0 MapSword
+BYTE 1 MapLance 
+BYTE 2 MapAxe 
+BYTE 3 MapBow 
+BYTE 5 MapMagic 
+BYTE 6 MapLight 
+BYTE 7 MapDark 
+BYTE $B MapMonster 
+BYTE $11 MapMonster // Dragonstone 
+//BYTE 0 ThinSlashAnimID // Sword // old entries 
+//BYTE 1 Hit1AnimID // Lance 
+//BYTE 2 Shards2AnimID // Axe 
+//BYTE 3 Break1AnimID // Bow  
+//BYTE 5 Splash2AnimID // Anima 
+//BYTE 6 FlashAnimID // Light 
+//BYTE 7 Impact1AnimID // Dark 
+//BYTE $B Shards1AnimID // Monster 
+//BYTE $11 Shards1AnimID // Dragonstone 
+SHORT 0xFFFF // Terminator 
 // Animation IDs are defined above 
 // Animations and Palettes are included in "MapAnimations/Installer.event"
 
+AnimTable_Entry(MapSword, Map_Sword_FrameData)
+AnimTable_Entry(MapLance, Map_Lance_FrameData) 
+AnimTable_Entry(MapAxe, Map_Axe_FrameData) 
+AnimTable_Entry(MapBow, Map_Bow_FrameData)
+AnimTable_Entry(MapMagic, Map_Magic_FrameData)
+AnimTable_Entry(MapLight, Map_Light_FrameData)
+AnimTable_Entry(MapDark, Map_Dark_FrameData)
+AnimTable_Entry(MapMonster, Map_Monster_FrameData) 
 AnimTable_Entry(ThinSlashAnimID,Slashing_A_Anim)
 AnimTable_Entry(Hit1AnimID,Hit1_Small_Anim)
 AnimTable_Entry(Shards2AnimID,Shards2_Small_Anim)
