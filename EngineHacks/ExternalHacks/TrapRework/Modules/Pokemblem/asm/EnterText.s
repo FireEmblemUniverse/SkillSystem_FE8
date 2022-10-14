@@ -350,7 +350,8 @@ EnterTextEffect:
 ldr r0, CurrentUnitPointer
 ldr r0, [r0]
 bl GetTrap2
-
+cmp r0, #0 
+beq Continue 
 Skip: 
 mov r4, r0  @&The DV
 mov r1, #0x4 

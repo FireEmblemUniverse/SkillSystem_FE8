@@ -144,7 +144,13 @@ ENUN
 //MarkTrainerAsDefeated(0xE1)
 
 CHECK_EVENTID ChampionDefeatedTemp 
-BNE 98 sC s0 
+BEQ 10 sC s0 
+MarkTrainerAsDefeated(0xE1)
+TILECHANGE 0
+AddTrapExt(SaveCostID, 12, 6, 0, SavePointSMS, 2)
+GOTO 99 
+LABEL 10 
+
 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
@@ -229,13 +235,6 @@ ENUN
 ShootArrow(13,3, 15)
 //ShootArrow( 7,3, 20)
 //ShootArrow(19,3, 20)
-
-
-
-GOTO 99 
-LABEL 98 
-TILECHANGE 0 
-//CAM1 [8,18] 
 
 
 
@@ -407,6 +406,7 @@ TILECHANGE 0
 SVAL r3 25000 
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
+AddTrapExt(SaveCostID, 12, 6, 0, SavePointSMS, 2)
 ENUT ChampionDefeatedTemp
 ENUT CompletedPokemonLeague
 Text(OakLeagueText)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="47" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="47" height="33" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="1">
  <tileset firstgid="1" name="10001112" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/ViridianForestNTileset" trans="ffffff" width="512" height="512"/>
  </tileset>
@@ -930,7 +930,7 @@
    <tile gid="455"/>
    <tile gid="456"/>
    <tile gid="457"/>
-   <tile gid="458"/>
+   <tile gid="699"/>
    <tile gid="459"/>
    <tile gid="668"/>
    <tile gid="669"/>

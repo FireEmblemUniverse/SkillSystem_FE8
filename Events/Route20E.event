@@ -116,7 +116,7 @@ SignATrap(55,7, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 
 //Save(10,4)
 SaveCost(16,5) 
-
+HealTile(47,8)
 
 
 //Flower(18,10)

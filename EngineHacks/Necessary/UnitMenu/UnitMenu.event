@@ -157,6 +157,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainStatAccessoryUsability0x13, ObtainStatAccessoryEffect) //take accessory  
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainSkillAccessoryUsability0x14, ObtainSkillAccessoryEffect) //take accessory 
   
+  MenuCommand(UM_HealTile, UM_HealTileDesc, GreenText, HealTileUsability, HealTileEffect) //Enter  
   MenuCommand(UM_PickBerry, UM_PickBerryDesc, BlueText, BerryTreeUsability, PickBerryTreeEffect) //Enter  
 //  ## UM_EatBerry
 // Eat[X]

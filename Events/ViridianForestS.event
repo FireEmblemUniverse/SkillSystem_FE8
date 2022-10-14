@@ -87,6 +87,7 @@ ChapterTransition(ViridianForestNCh, 37, 32)
 // Traps that do not reference ram do not have this limit 
 // Eg. flowers are not obtained once, so you can spam them 
 Traps1:
+HealTile(43,25)
 
 CoinsTrap(42,13,(ChapterID*2)+1,400)
 

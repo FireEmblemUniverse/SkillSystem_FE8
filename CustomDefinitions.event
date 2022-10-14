@@ -3,7 +3,7 @@
 
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 
 PUSH; ORG $D74D0	//{U}
 String("Version 0.98    Oct 2022") ; BYTE 0; POP 
@@ -263,10 +263,11 @@ String("Version 0.98    Oct 2022") ; BYTE 0; POP
 
 // Terrain 
 #define Ground 0x01 // Plains 
-#define Grass 0x0C // Forest 
-#define Sea 0x15 // Sea 
+#define Grass 0x0C // Forest +5 avo to encourage units to stand on grass sometimes 
+#define Sea 0x15 // Sea // +10 avo to encourage units to stand on it where possible 
 #define Shallow 0x16 // River 
 #define Lake 0x16 
+#define HealingGround 0x18 // +10 avo to encourage units to stand on it 
 
 //typings (effectiveness rework) 
 #define FireType 0x01

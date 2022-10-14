@@ -283,7 +283,9 @@
 	#define AddTrap(trapID,x,y) "SVAL 1 trapID; SVAL 0xB (x|(y<<16)); ASMC AddTrapASMC"
 	#define AddTrap(trapID) "SVAL 1 trapID; ASMC AddTrapASMC"
 	#define AddAnimTrap(trapID) "SVAL 1 trapID; ASMC AnimLightRuneASMC" //; ASMC RemoveTrapAtCoordsASMC"
-	
+	#define AddTrapExt(trapID, x, y, ext1, ext2, ext3, ext4, ext5) "SVAL s1 trapID; SVAL 0xB (x|(y<<16)); SVAL s2 ext1; SVAL s3 ext2; SVAL s4 ext3; SVAL s5 ext4; SVAL s6 ext5; ASMC AddTrapExtASMC"  
+	#define AddTrapExt(trapID, x, y, ext1, ext2, ext3, ext4) "SVAL s1 trapID; SVAL 0xB (x|(y<<16)); SVAL s2 ext1; SVAL s3 ext2; SVAL s4 ext3; SVAL s5 ext4; SVAL s6 ext5; ASMC AddTrapExtASMC"  
+	#define AddTrapExt(trapID, x, y, ext1, ext2, ext3) "SVAL s1 trapID; SVAL 0xB (x|(y<<16)); SVAL s2 ext1; SVAL s3 ext2; SVAL s4 ext3; SVAL s5 0; SVAL s6 0; ASMC AddTrapExtASMC"  
 	
 	
 	//BYTE $40 0D 0D $01 // $01 is animated 
@@ -381,6 +383,8 @@
 	//Example usages
 	#include "Modules/DragonVeins/DragonVeins.event"
 	#include "Modules/HealTiles/HealTiles.event"
+	SetTerrainForTrap(HealTileTrapID, HealingGround)
+	
 	#include "Modules/TelliusTorches/TelliusTorches.event"
 	#include "Modules/Pokemblem/PokemblemTraps.event"
 	

@@ -149,7 +149,7 @@ SpellScrollTrap(18, 23, (ChapterID*2)+1, ShadowBall)
 //Sign(8,4, 2)
 
 //Save(10,4)
-//SaveCost(47,5) 
+SaveCost(31,25) 
 
 InvisibleSign(27,5, 7) 
 InvisibleSign(24,26, 7) 

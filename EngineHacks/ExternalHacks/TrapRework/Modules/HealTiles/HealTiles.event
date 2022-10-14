@@ -3,12 +3,17 @@
 //Heal Tiles by Snakey1
 //Converted to Trap Rework by Sme
 
+//#define AoE_ASMC(Unit, AoE_ID, RotationID, CoordX, CoordY) "SVAL s1 Unit; SVAL s6 AoE_ID; SVAL s7 RotationID; SVAL sB CoordY<<16|CoordX; ASMC AoE_ASMC"
+
+
 
 
 #define HealMapSpriteID 0x68
 #define HealTilesTrapID 0xE
 #define HealTileTrapID HealTilesTrapID //aaaaa
 
+#define DefaultHealPercentage 25 
+#define HealTile(XX,YY) "BYTE HealTileTrapID XX YY 0x0 DefaultHealPercentage 0x0"
 #define HealTile(XX,YY,HealPercent) "BYTE HealTileTrapID XX YY 0x0 HealPercent 0x0"
 #define HealTile(XX,YY,HealPercent,EventID) "BYTE HealTileTrapID XX YY 0x0 HealPercent EventID"
 
@@ -26,7 +31,7 @@ SetTrapMapSpritePalette(HealTilesTrapID,NPCTrapPaletteWord)
 
 //SetTrapMapSprite(HealTilesTrapID,HealMapSpriteID)
 //SetTrapMapSpritePalette(HealTilesTrapID,EnemyTrapPaletteWord)
-SetTrapMapSpriteFunc(HealTilesTrapID,HealTiles_MapSpriteFunc)
+//SetTrapMapSpriteFunc(HealTilesTrapID,HealTiles_MapSpriteFunc)
 
 
 PUSH

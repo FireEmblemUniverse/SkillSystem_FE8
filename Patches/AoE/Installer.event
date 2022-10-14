@@ -124,12 +124,14 @@ MenuCommandID(PayDayName, 		UM_AoEDesc, NormalText, 75, AoE_SpecificUsability|1,
 MenuCommandID(SlashName, 		UM_AoEDesc, NormalText, 76, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(AttackPulseName, 		UM_AoEDesc, NormalText, 77, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(SwiftName, 		UM_AoEDesc, NormalText, 78, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+//MenuCommandID(HealTileName, 		UM_HealTile, NormalText, 79, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
 //#include "AoE_ASMC.lyn.event"
 // ASMC Usage:
 #define AoE_ASMC(Unit, AoE_ID, RotationID, CoordX, CoordY) "SVAL s1 Unit; SVAL s6 AoE_ID; SVAL s7 RotationID; SVAL sB CoordY<<16|CoordX; ASMC AoE_ASMC"
+#define AoE_ASMC(Unit, AoE_ID, RotationID) "SVAL s1 Unit; SVAL s6 AoE_ID; SVAL s7 RotationID; ASMC AoE_ASMC"
 /*
 SVAL s1 (-1) // Unit
 SVAL s6 0 // AoE ID
@@ -137,6 +139,15 @@ SVAL s7 0 // Rotation
 SCOORD sB [10, 11] // Coords
 ASMC AoE_ASMC
 */
+
+ALIGN 4 
+HealTileEffectEvent:
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
+AoE_ASMC(0x7FFF, 79, 0)
+NoFade 
+ENDA 
+
 #define AoE_RotationID_LEFT   0
 #define AoE_RotationID_TOP    1
 #define AoE_RotationID_RIGHT  2
@@ -227,6 +238,7 @@ Config2, #23
 #define flyingAnimationID 17
 #define bugAnimationID 18
 #define darkAnimationID 19
+#define HealingTileAnimationID 20 
 
 
 
@@ -250,7 +262,7 @@ AoE_Table:
 // Entry 0 - RecoverMove 
 BYTE 0 0 0 0
 BYTE 0 0 0 RecoverMove 
-BYTE 0 HealBool|MagBasedBool //|FixedDamageBool
+BYTE 0 HealBool|MagBasedBool // no friendly fire so bushes aren't healed 
 BYTE 2 5 // damage range: 4 mt + (1/2 mag) 
 BYTE 1 1 // Attack range
 BYTE SmallLine HealingAnimationID // Index of RangeMask, Animation
@@ -1295,6 +1307,22 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
 
+
+// Entry 79
+BYTE 0 0 0 0 
+BYTE 0 0 0 0xFF // Not usable by anyone 
+BYTE 0 HealBool|MagBasedBool
+BYTE 50 0 // damage range 
+BYTE 0 4 // Attack range 
+BYTE Square HealingTileAnimationID // Index of RangeMask, AnimationALL,
+BYTE 100 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+
+
 AoE_TableTerminator
 
 
@@ -1331,6 +1359,7 @@ AnimTableEntry2(AoE_powderAnimation)
 AnimTableEntry2(AoE_flyingAnimation)
 AnimTableEntry2(AoE_bugAnimation)
 AnimTableEntry2(AoE_darkAnimation)
+AnimTableEntry2(AoE_HealingTileAnimation) 
 
 
 
@@ -1493,6 +1522,14 @@ AoE_darkAnimation:
 SVAL r1 dark_ID //AnimationID
 ASMC ASMC_Draw|1
 ASMC AoE_GrantExp|1
+NoFade
+ENDA
+
+
+ALIGN 4 
+AoE_HealingTileAnimation:
+SVAL r1 healing_ID //AnimationID
+ASMC ASMC_Draw|1
 NoFade
 ENDA
 

@@ -92,6 +92,7 @@ ChapterTransition(ViridianCh, 17, 0)
 Traps1:
 //CoinsTrap(8,19,ChapterID*2,250)
 //CoinsTrap(20,35,(ChapterID*2)+1,250)
+HealTile(3,24)
 
 CutBush(15,26)
 CutBush(16,21)

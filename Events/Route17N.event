@@ -92,7 +92,7 @@ ChapterTransition(Route17SCh, 19,1)
 Traps1:
 //CoinsTrap(29,18,ChapterID*2,450)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
-
+HealTile(15,13)
 
 //Route17N: Flamethrower Carbos 
 //Route16: Fly, PaddedShieldT2 

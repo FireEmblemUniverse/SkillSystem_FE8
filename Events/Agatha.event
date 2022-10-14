@@ -135,8 +135,12 @@ CALL LoadAndPlacePlayers
 LOAD1 1 BossTrainer
 ENUN 
 CHECK_EVENTID AgathaDefeatedTemp 
-BNE 99 sC s0 
-
+BEQ 10 sC s0 
+MarkTrainerAsDefeated(0xE1)
+TILECHANGE 0
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+GOTO 99 
+LABEL 10 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [12,0] 
@@ -201,6 +205,7 @@ TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
 ENUT AgathaDefeatedTemp
 
 LABEL 99 

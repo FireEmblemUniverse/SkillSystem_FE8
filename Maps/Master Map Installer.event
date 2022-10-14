@@ -259,6 +259,12 @@
 #include "Maps\SaffronGym.event"
 }
 {
+#include "Maps\SaveWithHeal.event"
+}
+{
+#include "Maps\SaveWithoutHeal.event"
+}
+{
 #include "Maps\SeafoamB1.event"
 }
 {

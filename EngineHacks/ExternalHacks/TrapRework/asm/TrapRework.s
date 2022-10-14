@@ -188,7 +188,7 @@ bx r3
 
 
 AddTrapASMC: @memory slot 1 = trap ID, memory slot B = coords
-push {r14}
+push {r4, r14}
 ldr r0,=MemorySlot1
 ldr r2,[r0] @r2 = trap ID
 ldr r1,=MemorySlotB
@@ -197,12 +197,46 @@ ldr r1,[r1]
 lsr r1,r1,#16 @r1 = y coord
 lsl r0,r0,#16
 lsr r0,r0,#16 @r0 = x coord
-blh AddTrap
+mov r3, #0 
+blh AddTrap, r4
+pop {r4} 
 pop {r0}
 bx r0
 
 .ltorg
 .align
+.global AddTrapExtASMC
+.type AddTrapExtASMC, %function 
+AddTrapExtASMC: @memory slot 1 = trap ID, memory slot B = coords
+push {r4, r14}
+ldr r0,=MemorySlot1
+ldr r2,[r0] @r2 = trap ID
+ldr r1,=MemorySlotB
+ldr r0,[r1]
+ldr r1,[r1]
+lsr r1,r1,#16 @r1 = y coord
+lsl r0,r0,#16
+lsr r0,r0,#16 @r0 = x coord
+blh AddTrap, r4
+ldr r3, =MemorySlot 
+ldr r1, [r3, #4*2] @ ext1 
+strb r1, [r0, #3] 
+ldr r1, [r3, #4*3] @ ext2
+strb r1, [r0, #4] 
+ldr r1, [r3, #4*4] @ ext3
+strb r1, [r0, #5] 
+ldr r1, [r3, #4*5] @ ext4
+strb r1, [r0, #6] 
+ldr r1, [r3, #4*6] @ ext5
+strb r1, [r0, #7] 
+
+pop {r4} 
+pop {r0}
+bx r0
+
+.ltorg
+.align
+
 
 
 AnimLightRuneASMC: @memory slot 1 = trap ID, memory slot B = coords
