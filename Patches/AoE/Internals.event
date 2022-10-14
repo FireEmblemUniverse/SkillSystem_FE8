@@ -93,14 +93,17 @@ PurpleMovementSquares:
 #endif 
 
 
+
 #include "AoE.lyn.event"
 ALIGN 4
  // This must occur immediately after AoE.lyn.event 
 #ifdef Pokemblem_MoveTester
 	POIN AoE_PokemblemImmuneTargets|1
+	POIN AoE_PokemblemTrainerPostBattle|1
+	#include "AoE_PokemblemTrainerPostBattle.lyn.event"
 #endif 
 #ifndef Pokemblem_MoveTester
-	WORD 0
+	WORD 0 0
 #endif 
 
 #include "CreateRangeMapFromTemplateByStanH.lyn.event" 
