@@ -2829,6 +2829,13 @@ mov r2, r5 @ table
 mov r3, #0 @ return damage range 
 bl AoE_CalcTargetRemainingHP
 strb r0, [r7, #0x13] @ curr hp 
+ldr r3, AoE_PokemblemTrainerPostBattle
+cmp r3, #0 
+beq DoNotDamageTargetInRange 
+mov lr, r3 
+mov r0, r6 @ actor 
+mov r1, r7 @ target 
+.short 0xF800 
 
 DoNotDamageTargetInRange: 
 
@@ -2839,6 +2846,7 @@ bx r0
 .ltorg 
 
 .align
+.equ AoE_PokemblemTrainerPostBattle, AoE_PokemblemImmuneTargets+4 
 AoE_PokemblemImmuneTargets:
 @ POIN address to bl to 
 
