@@ -35,6 +35,7 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(0, ToCinnabar, 25,14)
 END_MAIN
 
 MiscBasedEvents:
@@ -84,12 +85,12 @@ ENDA
 
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,18) 
+EscapeTileEntry(25,14) 
 EscapeTileTerminator ; } 
 #endif 
 
-ToCeladon:
-ChapterTransition(CeladonCh, 9,27)
+ToCinnabar:
+ChapterTransition(CinnabarCh, 20,12)
 
 Traps1:
 MineTrap(26,7) 
@@ -289,7 +290,7 @@ TEXTSHOW BlaineRewardText
 TEXTEND 
 FADI 4 
 REMA 
-ForcedChapterTransition(CinnabarCh, 9, 27)
+ForcedChapterTransition(CinnabarCh, 20,12)
 LABEL 0x63 
 NoFade
 ENDA

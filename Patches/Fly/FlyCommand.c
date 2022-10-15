@@ -1,7 +1,6 @@
 #include "gbafe.h"
 
 #define BG_SYNC_BIT(aBg) (1 << (aBg))
-enum { BG0_SYNC_BIT = BG_SYNC_BIT(0) };
 void EventNow();
 void ReturnEventNow();
 

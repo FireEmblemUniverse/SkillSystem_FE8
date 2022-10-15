@@ -165,10 +165,10 @@ RemoveTrap(20,11)
 LABEL 0
 
 CHECK_EVENTID VolcanobadgeObtained
-BNE 0 sC s0 
+BNE 1 sC s0 
 LOAD1 1 OldMan
 ENUN
-LABEL 0
+LABEL 1
 
 
 LABEL 0x63

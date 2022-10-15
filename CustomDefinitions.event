@@ -3,7 +3,7 @@
 
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 
 PUSH; ORG $D74D0	//{U}
 String("Version 0.98    Oct 2022") ; BYTE 0; POP 
@@ -229,7 +229,7 @@ String("Version 0.98    Oct 2022") ; BYTE 0; POP
 #define SecretKeyObtained 0xCB 
 #define ToggleMansionFlag 0xCC 
 #define VR_BoulderInHoleFlag 0xCD 
-
+#define IndigoPlateauArrived 0xCE 
 
 #define EarthbadgeObtained 0xD0 
 #define StrengthBoulderFlag 0xD1 
@@ -246,7 +246,7 @@ String("Version 0.98    Oct 2022") ; BYTE 0; POP
 #define CompletedPokemonLeague 0xDC
 
 
-#define IndigoPlateauArrived 0xC9 
+
 
 //#define RockSmashFlag 0x20
 //#define StrengthBoulderFlag 0x21
