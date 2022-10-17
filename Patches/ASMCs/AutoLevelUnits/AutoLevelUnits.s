@@ -31,6 +31,18 @@
 	.equ MemorySlot3,0x30004C4    @item ID to give @[0x30004C4]!!?
 	.equ DivisionRoutine, 0x080D18FC
 
+.global AutoLevelSummonedUnit
+.type AutoLevelSummonedUnit, %function 
+AutoLevelSummonedUnit: 
+push {r4-r7, lr} 
+
+mov r6, #0xFF @ so we don't repeat 
+mov r5, r0 @ unit 
+mov r7, r1 @ levels 
+
+b Start 
+
+
 	.global AutoLevelUnits
 	.type   AutoLevelUnits, function
 

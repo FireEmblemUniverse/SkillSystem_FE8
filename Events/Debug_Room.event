@@ -357,8 +357,8 @@ Write_Byte(11, YCoordNewArea)
 //MNC2 MansionB4Ch 
 //MNC2 CinnabarCh
 SetUnitStatus(1, CurrentHP, 5)
-MNC2 CinnabarCh
-//MNC2 Route1Ch
+//MNC2 CinnabarCh
+MNC2 Route3Ch
 //MNC2 DebugCh 
 //MNC2 SaveWithHealCh
 //MNC2 ChampionCh

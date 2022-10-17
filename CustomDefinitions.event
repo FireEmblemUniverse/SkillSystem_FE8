@@ -18,7 +18,10 @@ String("Version 0.98    Oct 2022") ; BYTE 0; POP
 //PROTECT $37744 $377C4
 // 968 / $3C8 bytes used? - free range
 //PROTECT $1ACBC $1B084
+#define GymDifficultyBonusDef 10
 #define TrainerDifficultyBonusDef 10
+#define TrainerMov 7 
+#define BaseMov 5
 
 #define PortraitTable NewPortraitTable // Portrait table is an EA def, so no need to #undef it 
 

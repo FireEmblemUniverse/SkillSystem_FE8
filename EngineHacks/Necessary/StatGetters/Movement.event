@@ -10,6 +10,7 @@ pMovModifiers: // Movement
 		// So accessories cannot grant movement bonuses 
 		//POIN prAddAccessoryMovement
 	#endif 
+	POIN EnemyMovementBane // lower enemies movement by 1 because it is more fun tbh 
 	#ifdef STAIRS_ASM
 	POIN StairsMoveDebuff-1
 	#endif

@@ -243,7 +243,6 @@ ldr r1, =TrainerDifficultyBonusLink
 ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
 mul r1, r0 @ 0 for easy, 5 for normal, 10 for hard 
 
-
 ldr r0, [r6] @ unit ID 
 ldrb r0, [r0, #4] 
 cmp r0, #0xA0 
@@ -252,11 +251,20 @@ lsr r1, #1 @ 1/2 bonus levels for capturable mons
 NoReduction:
 add r2, r1 @ visible levels + bonus levels 
 
-ldr r1, [r6, #4]
-ldrb r1, [r1, #4] @ class id of summon 
-mov r0, r6 @ Summon unit pointer 
-blh IncreaseUnitStatsByLevelCount @ // str/mag split compatible
+@ldr r1, [r6, #4]
+@ldrb r1, [r1, #4] @ class id of summon 
+@mov r0, r6 @ Summon unit pointer 
+@blh IncreaseUnitStatsByLevelCount @ // str/mag split compatible
 
+ldr r3, =MemorySlot 
+mov r0, #0 
+str r0, [r3, #4*3] @ s3 as increase level: false 
+
+mov r0, r6 @ unit 
+mov r1, r2 @ levels 
+bl AutoLevelSummonedUnit
+
+	
 
 mov r0, r6
 blh EnsureNoUnitStatCapOverflow

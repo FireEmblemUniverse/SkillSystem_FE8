@@ -224,6 +224,37 @@ pop {r1}
 bx r1 
 .ltorg 
 
+.global EnemyMovementBane
+.type EnemyMovementBane, %function 
+EnemyMovementBane:
+push {r4-r5, lr}
+@ r0 = movement 
+@ r1 = unit 
+
+mov r4, r0 
+mov r5, r1 
+ldrb r0, [r5, #0x0B] 
+lsr r0, #7 
+cmp r0, #0 
+beq Exit_EnemyMovementBane
+ldr r0, [r5] @ unit pointer 
+ldrb r0, [r0, #4] @ unit ID 
+cmp r0, #0xD0 
+bge Exit_EnemyMovementBane 
+
+cmp r4, #0 
+ble Exit_EnemyMovementBane 
+sub r4, #1 @ enemies get -1 movement 
+
+Exit_EnemyMovementBane:
+mov r0, r4 
+
+@ returns new movement 
+pop {r4-r5}
+pop {r1}
+bx r1 
+.ltorg 
+
 .global TrainerSpotsYouFunction
 .type TrainerSpotsYouFunction, %function 
 
