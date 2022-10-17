@@ -87,6 +87,7 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToRoute4E_Walk [0,19] [0,21] 
 AREA 0 ToRoute4E_Swim [0,1] [0,3] 
 AREA 0 ToRoute24_Walk [15,0] [17,0] 
+AREA 0 ToRoute24_Walk_E [19,0] [21,0] 
 AREA 0 ToRoute24_Swim [9,0] [13,0] 
 AREA 0 ToRoute9W [31,10] [31,18] 
 AREA 0 ToRoute5 [19,31] [19,31] // Cut bush 
@@ -122,6 +123,16 @@ ToRoute24_Walk:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
 ChapterTransition(Route24Ch, 12, 39)
+LABEL 20 // Cutscene prevents escape 
+CALL CannotEscapeTrainerBattleEvent
+LABEL 63 
+NoFade 
+ENDA 
+
+ToRoute24_Walk_E:
+CHECK_EVENTID PlayableCutsceneFlag 
+BNE 20 rC r0 
+ChapterTransition(Route24Ch, 15, 38)
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent
 LABEL 63 
@@ -276,7 +287,7 @@ UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [SevenRangeW
 UNIT 
 
 OfficerUnitGroup:
-UNIT 0xE1 policemanID 0x0 Level(0, Enemy, 1) [23,11]  0b 0x0	0x1 REDA23R11 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xE1 policemanID 0x0 Level(0, Enemy, 1) [23,10]  0b 0x0	0x1 REDA23R10 [0x0,0x0,0x0,0x0] DoNothing
 UNIT 
 
  // Accidentally set Pidgey's Autolevel to false, which made it have no commander and not end the Gary fight 

@@ -24,8 +24,8 @@ ALIGN 4
 
 #define VanillaAutoLevel(UnitID, Levels, VisibleOrNot) "SVAL 1 UnitID; SVAL 3 Levels; SVAL 4 VisibleOrNot; ASMC ASMC_ApplyBonusLevels"
 
-#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 0; ASMC AutoLevelUnits" 
+#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange) "ENUT FIXED_GROWTHS_FLAG_ID; SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 0; ASMC AutoLevelUnits; ENUF FIXED_GROWTHS_FLAG_ID" 
 
-#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange, Coordinate) "SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 Coordinate; ASMC AutoLevelUnits" 
+#define AutoLevelUnits(Levels, IncreaseDisplayedLevelBoolean, UnitIDRange, Coordinate) "ENUT FIXED_GROWTHS_FLAG_ID; SVAL 1 Levels; SVAL 3 IncreaseDisplayedLevelBoolean; SVAL 4 UnitIDRange; SVAL 5 Coordinate; ASMC AutoLevelUnits; ENUF FIXED_GROWTHS_FLAG_ID" 
 
 

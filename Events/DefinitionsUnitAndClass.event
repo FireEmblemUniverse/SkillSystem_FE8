@@ -1,19 +1,19 @@
 
 
-#define PewterGymLevel 5 // 11 
-#define CeruleanGymLevel 11 // 17 
-#define VermillionGymLevel 17 // 23 
-#define FuschiaGymLevel 24 // 29 
-#define CeladonGymLevel 30 // 35 
-#define SaffronGymLevel 35 // 41 
-#define CinnabarGymLevel 40 // 47 
-#define ViridianGymLevel 46 // 53 
+#define PewterGymLevel 11 // 11 
+#define CeruleanGymLevel 17 // 17 
+#define VermillionGymLevel 23 // 23 
+#define FuschiaGymLevel 29 // 29 
+#define CeladonGymLevel 35 // 35 
+#define SaffronGymLevel 41 // 41 
+#define CinnabarGymLevel 47 // 47 
+#define ViridianGymLevel 53 // 53 
 
 
-#define SaffronDojoLevel 34 
+#define SaffronDojoLevel 40
 
 // hidden levels applied to gyms 
-#define VermillionGymBonus 4
+#define VermillionGymBonus 2
 #define FuschiaGymBonus 5
 #define CeladonGymBonus 6
 #define SaffronGymBonus 7 

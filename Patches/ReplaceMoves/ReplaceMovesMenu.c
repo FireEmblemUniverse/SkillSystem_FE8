@@ -697,7 +697,7 @@ static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* comm
     //UnitGetMoveList(proc->unit)[proc->move_hovering] = proc->moveReplacement;
 	int* MemorySlot5 = (int*) 0x30004CC; 
 	
-	*MemorySlot5 = proc->move_hovering; 
+	*MemorySlot5 = proc->move_hovering-1; 
 	
 	int* MemorySlot6 = (int*) 0x30004D0; 
 	

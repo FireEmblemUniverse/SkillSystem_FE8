@@ -222,7 +222,7 @@ lsr r2, #30
 sub r2, #1 
 mov r3, #1 
 and r2, r3 
-lsl r2, #1 @ to 1/4 
+@lsl r2, #1 @ to 1/4 
 lsr r0, r2 @ if autolevels are hidden, 1/4 Def/Res/Spd/Hp growths 
 
 mov r1, r7 
@@ -249,7 +249,7 @@ lsr r2, #30
 sub r2, #1 
 mov r3, #1 
 and r2, r3 
-lsl r2, #1 @ to 1/4 
+@lsl r2, #1 @ to 1/4 
 lsr r0, r2 @ if autolevels are hidden, 1/4 Def/Res/Spd/Hp growths 
 
 mov r1, r7 
@@ -276,7 +276,7 @@ lsr r2, #30
 sub r2, #1 
 mov r3, #1 
 and r2, r3 
-lsl r2, #1 @ to 1/4 
+@lsl r2, #1 @ to 1/4 
 lsr r0, r2 @ if autolevels are hidden, 1/4 Def/Res/Spd/Hp growths 
 
 mov r1, r7 
@@ -540,8 +540,8 @@ FullGrowth:
 mov r0, r7 @ Growth 
 cmp r0, #200  
 blt NoBreak 
-@cmp r0, #0 
-@bge NoBreak 
+cmp r0, #0 
+bge NoBreak 
 mov r11, r11 @ if you hit this break point, then you have negative growths which will break things 
 mov r0, #0 
 NoBreak: 

@@ -8,19 +8,25 @@ push {lr}
 mov r0, r2 @ unit struct 
 add r0, #0x30 
 ldrb r3, [r0] 
+mov r1, #0xF 
+and r3, r1 
 
 ldr r1, =PoisonStatusID_Link
 ldrb r0, [r1] 
+cmp r0, r3 
+beq ReturnTrue
 
 ldr r1, =TrappedStatusID_Link 
-ldrb r1, [r1] 
-orr r0, r1 
-ldr r1, =BurnStatusID_Link
-ldrb r1, [r1] 
-orr r0, r1 
+ldrb r0, [r1] 
+cmp r0, r3 
+beq ReturnTrue 
 
-tst r0, r3
-beq ReturnFalse
+ldr r1, =BurnStatusID_Link
+ldrb r0, [r1] 
+cmp r0, r3 
+beq ReturnTrue 
+b ReturnFalse 
+ReturnTrue: 
 mov r0, #1 
 b Exit 
 
