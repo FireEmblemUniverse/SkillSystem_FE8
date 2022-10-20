@@ -6,7 +6,7 @@
 //#define DEBUG_MODE 
 
 PUSH; ORG $D74D0	//{U}
-String("Version 0.99    Oct 2022") ; BYTE 0; POP 
+String("Version 1.00    Oct 2022") ; BYTE 0; POP 
 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
@@ -18,8 +18,11 @@ String("Version 0.99    Oct 2022") ; BYTE 0; POP
 //PROTECT $37744 $377C4
 // 968 / $3C8 bytes used? - free range
 //PROTECT $1ACBC $1B084
-#define GymDifficultyBonusDef 10
-#define TrainerDifficultyBonusDef 10
+#define GymDifficultyBonusDef_Hard 12
+#define GymDifficultyBonusDef_Lunatic 18
+#define TrainerDifficultyBonusDef_Hard 12
+#define TrainerDifficultyBonusDef_Lunatic 18
+
 #define TrainerMov 7 
 #define BaseMov 5
 

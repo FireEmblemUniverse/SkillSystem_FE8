@@ -3,7 +3,7 @@
 #define GenericB UnitRoute15Trainer
 #define ClassA ClassRoute15WildA
 #define ClassB ClassRoute15WildB
-#define WildLvl 26
+#define WildLvl 23
 #define TrainerL 26
 
 
@@ -96,7 +96,7 @@ Traps1:
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
-RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
+RedPokeballTrap(34,7, (ChapterID*2), LinkStone) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
@@ -228,11 +228,11 @@ UNIT
 
  
 HumanTrainers:
-UNIT 0xE0 cooltrainer_fID 0x0 Level(0, Enemy, 1) [48,5]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE0 cooltrainer_fID 0x0 Level(0, Enemy, 1) [48,5]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 picnickerID 0x0 Level(0, Enemy, 1) [47,11]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 camperID 0x0 Level(0, Enemy, 1) [38,9]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE2 camperID 0x0 Level(0, Enemy, 1) [38,9]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 cooltrainer_fID 0x0 Level(0, Enemy, 1) [33,10]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE4 picnickerID 0x0 Level(0, Enemy, 1) [26,11]  0b 0x0	0x1 REDA26R11  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE4 picnickerID 0x0 Level(0, Enemy, 1) [26,11]  0b 0x0	0x1 REDA26R11  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE5 camperID 0x0 Level(0, Enemy, 1) [18,9]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 

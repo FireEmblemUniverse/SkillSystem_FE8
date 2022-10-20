@@ -3,7 +3,7 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute8WildA
 #define ClassB ClassRoute8WildB
-#define WildLvl 35
+#define WildLvl 31
 #define TrainerL 35
 
 
@@ -72,8 +72,14 @@ ToLavender:
 ChapterTransition(LavenderCh, 1,40)
 
 ToSaffron:
+CHECK_EVENTID RainbowbadgeObtained
+BNE 10 sC s0 
+TutText(CompleteGymFirst)
+GOTO 99 
 ChapterTransition(SaffronCh, 35,20)
-
+LABEL 99
+NoFade 
+ENDA 
 
 ToRoute7:
 ChapterTransition(Route7Ch, 7,15)

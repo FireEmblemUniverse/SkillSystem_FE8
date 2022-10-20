@@ -56,7 +56,10 @@
 	SetTrapEventInit(Placeholder44ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder45ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder46ID,GenericTrapDisappearInitialization)
-	SetTrapEventInit(Placeholder47ID,GenericTrapDisappearInitialization)
+	
+	#define NoMenuOptionObstacleID 47
+	SetTrapEventInit(NoMenuOptionObstacleID,GenericTrapDisappearInitialization)
+#define InvisibleObstacle(XX,YY) "BYTE NoMenuOptionObstacleID XX YY 0x0 BlankSMS 0"
 
 
 	SetTrapEventInit(GenericID,GenericTrapInitialization)
@@ -273,7 +276,6 @@ SetImpassableTrap(SkillAccessoryTrapID)
 #define BugCatcher(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 BugCatcherSMS EventIndex"
 #define Fighter(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 FighterSMS EventIndex"
 #define Hiker(XX,YY, EventIndex) "BYTE NPCTalkID XX YY 0x0 HikerSMS EventIndex"
-
 
 
 // HMs 

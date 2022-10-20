@@ -3,7 +3,7 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute18WildA
 #define ClassB ClassRoute18WildB
-#define WildLvl 30
+#define WildLvl 26
 #define TrainerL 30
 
 
@@ -52,6 +52,11 @@ House(0, EnterGateW, 41, 9)
 END_MAIN
 
 EnterGateE:
+CHECK_EVENTID SoulbadgeObtained
+BNE 10 sC s0 
+TutText(CompleteGymFirst)
+GOTO 99 
+LABEL 10 
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
@@ -59,6 +64,7 @@ SET_ACTIVE 0
 MOVE (-1) 0x7FFE [41,9]
 ENUN
 SET_CURSOR [41,9]
+LABEL 99 
 NoFade 
 ENDA 
 

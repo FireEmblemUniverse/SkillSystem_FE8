@@ -31,34 +31,35 @@
 #define IronIcon 244 
 #define JellyDonutIcon 245 
 #define LeafStoneIcon 246 
-#define LuckIcon 247 
-#define LuckyBracerIcon 248 
-#define MaximumRepelIcon 249 
-#define MoonStoneIcon 250 
-#define MuscleBandIcon 251 
-#define NormalTypeIcon 252 
-#define OpenPokeballIcon 253 
-#define PoisonTypeIcon 254 
-#define PokeballIcon 255 
-#define PokemonLocationIcon 256 
-#define PotionIcon 257 
-#define ProteinIcon 258 
-#define PsychicTypeIcon 259 
-#define QuickClawIcon 260 
-#define RareCandyIcon 261 
-#define RepelIcon 262 
-#define ReviveIcon 263 
-#define RockTypeIcon 264 
-#define SacredStoneIcon 265 
-#define SecretTonicIcon 266 
-#define SteelTypeIcon 267 
-#define SuperPotionIcon 268 
-#define SuperRepelIcon 269 
-#define ThunderStoneIcon 270 
-#define WaterStoneIcon 271 
-#define WaterTypeIcon 272 
-#define WiseGlassesIcon 273 
-#define ZincIcon 274 
+#define LinkStoneIcon 247 
+#define LuckIcon 248 
+#define LuckyBracerIcon 249 
+#define MaximumRepelIcon 250 
+#define MoonStoneIcon 251 
+#define MuscleBandIcon 252 
+#define NormalTypeIcon 253 
+#define OpenPokeballIcon 254 
+#define PoisonTypeIcon 255 
+#define PokeballIcon 256 
+#define PokemonLocationIcon 257 
+#define PotionIcon 258 
+#define ProteinIcon 259 
+#define PsychicTypeIcon 260 
+#define QuickClawIcon 261 
+#define RareCandyIcon 262 
+#define RepelIcon 263 
+#define ReviveIcon 264 
+#define RockTypeIcon 265 
+#define SacredStoneIcon 266 
+#define SecretTonicIcon 267 
+#define SteelTypeIcon 268 
+#define SuperPotionIcon 269 
+#define SuperRepelIcon 270 
+#define ThunderStoneIcon 271 
+#define WaterStoneIcon 272 
+#define WaterTypeIcon 273 
+#define WiseGlassesIcon 274 
+#define ZincIcon 275 
 */ 
  
  
@@ -142,6 +143,9 @@ ItemIconEntry(JellyDonutIcon)
  
 ItemIconEntry(LeafStoneIcon) 
 #incbin "dmp/LeafStone.dmp" 
+ 
+ItemIconEntry(LinkStoneIcon) 
+#incbin "dmp/LinkStone.dmp" 
  
 ItemIconEntry(LuckIcon) 
 #incbin "dmp/Luck.dmp" 

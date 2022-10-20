@@ -3,7 +3,7 @@
 #define GenericB UnitRoute12Trainer
 #define ClassA ClassRoute12WildA
 #define ClassB ClassRoute12WildB
-#define WildLvl 24
+#define WildLvl 21
 #define TrainerL 24
 
 
@@ -61,6 +61,7 @@ END_MAIN
 AggroSnorlaxEvent:
 CHECK_EVENTID PokefluteFlag 
 BEQ 10 sC s0 
+RemoveTrap(9,6)
 SVAL s1 TrainerAI_chai
 CHAI 0xEE
 UnmarkTrainerAsDefeated(0xEE)
@@ -108,7 +109,7 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToRoute11 [0,3] [0,5] 
 AREA 0 ToRoute12N [14,0] [15,0] 
 AREA 0 ToRoute13 [14,53] [15,53] 
-AFEV 0 SnorlaxRestEvent 0
+//AFEV 0 SnorlaxRestEvent 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -163,7 +164,7 @@ SignATrap(10,7, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 
 
 
-BerryTree(16,19,5)
+BerryTree(16,18,5)
 BerryTree(9,34,5)
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
@@ -172,9 +173,9 @@ BerryTree(9,34,5)
 //Sign(8,4, 2)
 
 //Save(10,4)
-SaveCost(16,18) // beside house  
+SaveCost(16,19) // beside house  
 
-
+InvisibleObstacle(9,6)
 
 
 ENDTRAP
@@ -311,7 +312,7 @@ HumanTrainers:
 UNIT 0xE0 fisherID 0x0 Level(0, Enemy, 1) [10,18]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [17,27]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 fisherID 0x0 Level(0, Enemy, 1) [10,39]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 fisherID 0x0 Level(0, Enemy, 1) [18,37]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE3 fisherID 0x0 Level(0, Enemy, 1) [18,37]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 SnorlaxGroup:

@@ -2,8 +2,12 @@
 // By Vesly       :-] 
 
 ALIGN 4
-TrainerDifficultyBonusLink:
-WORD TrainerDifficultyBonusDef
+TrainerDifficultyBonusLink_Hard:
+WORD TrainerDifficultyBonusDef_Hard
+
+ALIGN 4
+TrainerDifficultyBonusLink_Lunatic:
+WORD TrainerDifficultyBonusDef_Lunatic
 
 // Add this to your Unit Menu: root\EngineHacks\Necessary\UnitMenu
 // Modular Summon 

@@ -215,15 +215,15 @@ GenericAutolevelEvent:
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 
-AutoLevelUnits(0*GymDifficultyBonusDef, False, 0x90EF) // Not wilds given +0 invisible levels on easy 
+AutoLevelUnits(0, False, 0x90EF) // Not wilds given +0 invisible levels on easy 
 GOTO 0x63 
 LABEL 0 
 CHECK_HARD 
 BEQ 1 rC r0 
-AutoLevelUnits(2*GymDifficultyBonusDef, False, 0x90EF) // Not wilds given +10 invisible levels on hard 
+AutoLevelUnits(GymDifficultyBonusDef_Lunatic, False, 0x90EF) // Not wilds given +10 invisible levels on hard 
 GOTO 0x63 
 LABEL 1 
-AutoLevelUnits(1*GymDifficultyBonusDef, False, 0x90EF) // Not wilds given +5 invisible levels on normal 
+AutoLevelUnits(GymDifficultyBonusDef_Hard, False, 0x90EF) // Not wilds given +5 invisible levels on normal 
 LABEL 0x63 
 //ASMC RemoveFoughtTrainers
 //SADD r2 rC r0 // Don't think this is necessary even though rC is pretty volatile 
@@ -234,15 +234,15 @@ GenericAutolevelEvent_Earlygame:
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 
-AutoLevelUnits(0*GymDifficultyBonusDef, False, 0x90EF) // Not wilds given +0 invisible levels on easy 
+AutoLevelUnits(0, False, 0x90EF) // Not wilds given +0 invisible levels on easy 
 GOTO 0x63 
 LABEL 0 
 CHECK_HARD 
 BEQ 1 rC r0 
-AutoLevelUnits((GymDifficultyBonusDef/2), False, 0x90EF) // Not wilds given +10 invisible levels on hard 
+AutoLevelUnits((GymDifficultyBonusDef_Lunatic/2), False, 0x90EF) // Not wilds given +10 invisible levels on hard 
 GOTO 0x63 
 LABEL 1 
-AutoLevelUnits((GymDifficultyBonusDef/2), False, 0x90EF) // Not wilds given +5 invisible levels on normal 
+AutoLevelUnits((GymDifficultyBonusDef_Hard/2), False, 0x90EF) // Not wilds given +5 invisible levels on normal 
 LABEL 0x63 
 //ASMC RemoveFoughtTrainers
 //SADD r2 rC r0 // Don't think this is necessary even though rC is pretty volatile 
@@ -978,29 +978,7 @@ CityAfev:
 NoFade 
 ENDA 
 
-SaveWithHeal:
-CHECK_COORDS 0x7FFF
-SADD rB rC r0 
-CALL ConvertFromMemSlotBCoord
-CHECK_CHAPTER_NUMBER
-SADD r2 rC r0 
-Write_Byte(CurrentChapter)
 
-MNC2 SaveWithHealCh 
-NoFade 
-ENDA 
-
-SaveWithoutHeal:
-CHECK_COORDS 0x7FFF
-SADD rB rC r0 
-CALL ConvertFromMemSlotBCoord
-CHECK_CHAPTER_NUMBER
-SADD r2 rC r0 
-Write_Byte(CurrentChapter)
-
-MNC2 SaveWithoutHealCh 
-NoFade 
-ENDA 
 
 VisitPokecenter:
 
@@ -1105,7 +1083,7 @@ MNC2 (-1)
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
-ENUF PlayableCutsceneFlag 
+ENUF TrainerBattleActiveFlag
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
@@ -1130,7 +1108,6 @@ BNE 0x63 rC r7
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
-
 ENUF TrainerBattleActiveFlag
 SADD 2 9 0 
 
@@ -1144,6 +1121,43 @@ GOTO 0x63
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
+ENDA 
+
+
+SaveWithHeal:
+CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+CALL ConvertFromMemSlotBCoord
+
+DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
+IGNORE_KEYS 0
+Write_Byte(0, DisableMenuOptionsRam) 
+ENUF TrainerBattleActiveFlag
+
+CHECK_CHAPTER_NUMBER
+SADD r2 rC r0 
+Write_Byte(CurrentChapter)
+
+MNC2 SaveWithHealCh 
+NoFade 
+ENDA 
+
+SaveWithoutHeal:
+CHECK_COORDS 0x7FFF
+SADD rB rC r0 
+CALL ConvertFromMemSlotBCoord
+
+DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
+IGNORE_KEYS 0
+Write_Byte(0, DisableMenuOptionsRam) 
+ENUF TrainerBattleActiveFlag
+
+CHECK_CHAPTER_NUMBER
+SADD r2 rC r0 
+Write_Byte(CurrentChapter)
+
+MNC2 SaveWithoutHealCh 
+NoFade 
 ENDA 
 
 LoadMainUnit:

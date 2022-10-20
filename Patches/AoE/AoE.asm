@@ -325,6 +325,15 @@ blh GetUnit
 cmp r0, #0 
 beq DamageDealt_XLoop 
 mov r10, r0 @ Target 
+ldr r1, [r0] @ char 
+ldrb r1, [r1, #4] @ unit ID 
+cmp r1, #0xE0 
+blt NotTrainer2 
+cmp r1, #0xF0 
+bge NotTrainer2 
+b DamageDealt_XLoop 
+NotTrainer2: 
+
 
 @ drawing part 
 ldr r0, =CurrentUnit 
@@ -502,6 +511,16 @@ blh GetUnit
 cmp r0, #0 
 beq Number_XLoop 
 mov r10, r0 @ Target 
+
+ldr r1, [r0] @ char pointer 
+ldrb r1, [r1, #4] @ unit ID 
+cmp r1, #0xE0 
+blt NotTrainer
+cmp r1, #0xF0 
+bge NotTrainer 
+b Number_XLoop 
+
+NotTrainer: 
 
 @ drawing part 
 

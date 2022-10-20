@@ -4,7 +4,7 @@
 #define ClassA ClassRoute1WildA
 #define ClassB ClassRoute1WildB
 #define WildLvl 1 
-#define TrainerL 0
+#define TrainerL 1
 EventPointerTable(ChapterID,ThisChapter)
 
 ALIGN 4

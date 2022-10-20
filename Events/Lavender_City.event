@@ -106,7 +106,7 @@ RockSmash(2,40)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(13,27, ChapterID*2, DazzleID)
 
-RedPokeballTrap(11,12, (ChapterID*2)+1, LinkStone) 
+RedPokeballTrap(11,12, (ChapterID*2)+1, SuperPotion) 
 
 SignBTrap(3,35, ChapterID, 0x0) //no extra text 
 SignATrap(11,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

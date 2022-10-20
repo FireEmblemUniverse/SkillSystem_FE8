@@ -3,7 +3,7 @@
 #define GenericB UnitRoute7Trainer
 #define ClassA ClassRoute7WildA
 #define ClassB ClassRoute7WildB
-#define WildLvl 32
+#define WildLvl 28
 #define TrainerL 32
 
 
@@ -70,7 +70,14 @@ EscapeTileTerminator ; }
 #endif 
 
 ToSaffron:
+CHECK_EVENTID RainbowbadgeObtained
+BNE 10 sC s0 
+TutText(CompleteGymFirst)
+GOTO 99 
 ChapterTransition(SaffronCh, 2, 20)
+LABEL 99
+NoFade 
+ENDA 
 
 ToCeladon:
 ChapterTransition(CeladonCh, 43,12)

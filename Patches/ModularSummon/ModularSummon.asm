@@ -239,10 +239,18 @@ add r2, r0
 push {r2}
 bl GetDifficulty
 pop {r2}
-ldr r1, =TrainerDifficultyBonusLink
-ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
-mul r1, r0 @ 0 for easy, 5 for normal, 10 for hard 
+mov r1, #0 
+cmp r0, #0 
+beq NoMoreBonusLevels
 
+ldr r1, =TrainerDifficultyBonusLink_Hard
+ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
+cmp r0, #1 
+beq NoMoreBonusLevels
+ldr r1, =TrainerDifficultyBonusLink_Lunatic
+ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
+
+NoMoreBonusLevels: 
 ldr r0, [r6] @ unit ID 
 ldrb r0, [r0, #4] 
 cmp r0, #0xA0 

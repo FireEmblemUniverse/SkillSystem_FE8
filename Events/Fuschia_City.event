@@ -113,7 +113,9 @@ CutBush(27,7)
 CutBush(18,10)
 Save(22,27) // Pokecenter 
 
-//RockSmash(3,2)
+RockSmash(1,15)
+RockSmash(1,17)
+RockSmash(2,16)
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)

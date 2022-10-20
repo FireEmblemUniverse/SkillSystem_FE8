@@ -261,19 +261,19 @@ cmp r0, #0x0
 bge positive
 mov r0, #0x0
 positive:
-cmp r0, #10
-bge Not4x
-lsl r0, #2 @ 4x exp 
-b boundaryCheck2
-Not4x:
-cmp r0, #20
-bge Not3x
-mov r1, r0 
-lsl r1, #1 @ 2x 
-add r0, r1 @ 3x exp 
-b boundaryCheck2
-Not3x:
-lsl r0, #1 @ 2x exp 
+@cmp r0, #10
+@bge Not4x
+@lsl r0, #2 @ 4x exp 
+@b boundaryCheck2
+@Not4x:
+@cmp r0, #20
+@bge Not3x
+@mov r1, r0 
+@lsl r1, #1 @ 2x 
+@add r0, r1 @ 3x exp 
+@b boundaryCheck2
+@Not3x:
+@lsl r0, #1 @ 2x exp 
 
 boundaryCheck2:
 ldr r1, [r5] @ unit pointer 
@@ -281,9 +281,7 @@ ldrb r1, [r1, #4] @ unit ID
 mov r2, #0xA0
 cmp r1, r2 
 blt NoTrainerBonus
-add r0, r0 
-add r0, r0 @ 3x 
-lsr r0, #1 @ 1.5x exp against trainers 
+lsl r0, #1 @ 2x exp against trainers 
 NoTrainerBonus:
 
 cmp r0, #0x64
