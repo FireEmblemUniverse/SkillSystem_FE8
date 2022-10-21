@@ -151,6 +151,7 @@ ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [12,0] 
 
+ReorderParty
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
@@ -212,6 +213,7 @@ SVAL r3 5000
 GIVETOMAIN 0 
 ENUT LoreleiDefeatedTemp
 MarkTrainerAsDefeated(0xE1)
+ReviveParty 
 AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
 LABEL 99 
 NoFade

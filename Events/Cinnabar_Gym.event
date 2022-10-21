@@ -284,7 +284,7 @@ MUSCSLOW GymBGM
 Text(BlaineDefeatText)
 GiveItemWithDurability(0, SpellScroll, FireBlast)
 ENUT VolcanobadgeObtained
-SVAL r3 6000 
+SVAL r3 9000 
 GIVETOMAIN 0 
 TEXTSHOW BlaineWaitText
 TEXTEND 

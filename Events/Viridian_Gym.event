@@ -116,23 +116,23 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0x90EF) 
 AutoLevelUnits(ViridianGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
-CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveSkillAccessory(0xD0, AmaterasuID)
+//SilentGiveSkillAccessory(0xD0, AmaterasuID)
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, Berry,0x8A)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, Berry,0x8A)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, Berry,0x8A)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, Berry,0x8A)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, Berry,0x8A)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+SilentGiveItemWithDurability(0xA0, SuperPotion,0x1)
+//SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+SilentGiveItemWithDurability(0xA1, SuperPotion,0x1)
+//SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+SilentGiveItemWithDurability(0xA2, SuperPotion,0x1)
+//SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+SilentGiveItemWithDurability(0xA3, SuperPotion,0x1)
+//SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+SilentGiveItemWithDurability(0xA4, SuperPotion,0x1)
 
 
 MUSCFAST IntroBGM 
@@ -166,20 +166,21 @@ UNCR(0x7FFF, 0x43) // Show SMS & Refresh
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(Giovanni_GymDefeatText)
-GiveItemWithDurability(0, SpellScroll, PetalDance)
+GiveItemWithDurability(0, SpellScroll, Fissure)
 ENUT EarthbadgeObtained 
-SVAL r3 6000 
+ENUT StrengthBoulderFlag
+SVAL r3 10000 
 GIVETOMAIN 0 
 TEXTSHOW Giovanni_GymWaitText
 TEXTEND 
 REMA
-GiveSkillAccessory(0, AmaterasuID)
+GiveSkillAccessory(0, BlossomID)
 TEXTSTART
 TEXTSHOW Giovanni_GymRewardText
 TEXTEND 
 FADI 4 
 REMA 
-ForcedChapterTransition(ViridianCh, 9, 27)
+ForcedChapterTransition(ViridianCh, 30,11)
 LABEL 0x63 
 NoFade
 ENDA

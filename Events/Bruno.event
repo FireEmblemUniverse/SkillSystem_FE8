@@ -181,6 +181,7 @@ TILECHANGE 0
 SVAL r3 5000 
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
+ReviveParty 
 AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
 ENUT BrunoDefeatedTemp
 LABEL 99 

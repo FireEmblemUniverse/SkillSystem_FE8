@@ -3,8 +3,8 @@
 #define GenericB UnitMansionTrainer
 #define ClassA ClassMansionWildA
 #define ClassB ClassMansionWildB
-#define WildLvl 38
-#define TrainerL 38
+#define WildLvl 44
+#define TrainerL 44
 
 
 
@@ -101,13 +101,13 @@ EARTHQUAKE_END
 ForcedChapterTransitionHole(MansionB1Ch, 21, 21)
 
 ToB2_N:
-ChapterTransition(MansionB3Ch, 8, 3)
+ChapterTransition(MansionB2Ch, 8, 3)
 
 ToB2_S:
-ChapterTransition(MansionB3Ch, 11, 11)
+ChapterTransition(MansionB2Ch, 11, 11)
 
 ToB2_E:
-ChapterTransition(MansionB3Ch, 34, 18)
+ChapterTransition(MansionB2Ch, 34, 18)
 
 
 
