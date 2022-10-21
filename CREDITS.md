@@ -20,6 +20,8 @@ Map/chapter transitions - Huichelaar
 
 # Assets
 
+Most item icons - Lukirioh
+
 Pokemart Clerk, Beta Trainer Sprites, Choice Band, Muscle Band - Zaim
 
 Tileset water animations, Evolution stones, Jelly Donut, Drying Pan - N426
@@ -43,10 +45,6 @@ Quick Claw - HusbandoEmblem
 Difficulty Selection - Halbreadier
 
 # Sources:
-
-Spriter’s resource FRLG (link) 1.
-Maps originally ripped by: Bob799, Sapphire_Dragon, fabnt, Axmarrone, Hoeloe, GaryXCJK, Wess, LF
-FR/LG Trainers originally ripped by: Sapphire_Dragon
 Mega Sprites from: https://www.pokecommunity.com/showthread.php?t=314422
 
 Misc.
@@ -59,28 +57,41 @@ Hide portraits during promotion - Tequila
 CheckInDanger - Stanh
 
 # Playtesters
+Akim
 Ariadna
-MournfulRelic
-bpat
-YourHiro
-Elzaim
-ScubaLuigi
-Leche
-MikiBrock
-Tbone
+Aqua 
+BayouPup 
+bpat 
+bowser for lesbians
+ChilanBerry 
+Contro 
+darknight97 
+Elzaim 
+FabulaFares 
+FickleRick 
+FlamingZelda 
+Fpkfor 
+Gaston
 LackadasicalDerp
-Aqua
-TheIcyCharmander
-TheGreatUncleYga
-Akim2007
-ChilanBerry
-Piku
-mitltl
-darknight97
-
+Leche  
+Luis
+Kyle 
+Miki Brock 
+Missiri 
+mitltl 
+MournfulRelic
+Paulean
+Pf987  
+Piku 
+Rurouni 
+Scub 
+Tbone
+TheIcyCharmander 
+TheGreatUncleYga 
+YourHiro 
 
 # Additional Thanks to: 
-Sme, Tequila, Pikmin1211, 
+Sme, Tequila, Pikmin1211
 
 # Patches
 
