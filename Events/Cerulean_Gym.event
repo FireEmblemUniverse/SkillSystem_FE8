@@ -34,6 +34,7 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(0,ToCerulean,9,17)
 END_MAIN
 
 MiscBasedEvents:
@@ -43,11 +44,10 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToCerulean [9,18] [9,18] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(9,18) 
+EscapeTileEntry(9,17) 
 EscapeTileTerminator ; } 
 #endif 
 

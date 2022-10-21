@@ -1233,7 +1233,7 @@
    <tile gid="420"/>
   </data>
  </layer>
- <layer id="2" name="TileChange0" width="38" height="32">
+ <layer id="2" name="TileChange0" width="38" height="32" visible="0">
   <properties>
    <property name="Height" value="5"/>
    <property name="ID" value="0"/>
@@ -2460,7 +2460,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="TileChange1" width="38" height="32">
+ <layer id="3" name="TileChange1" width="38" height="32" visible="0">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="1"/>
@@ -3687,13 +3687,13 @@
    <tile/>
   </data>
  </layer>
- <layer id="6" name="TileChange2" width="38" height="32">
+ <layer id="6" name="TileChange2" width="38" height="32" visible="0">
   <properties>
-   <property name="Height" value="5"/>
+   <property name="Height" value="9"/>
    <property name="ID" value="2"/>
-   <property name="Width" value="1"/>
+   <property name="Width" value="11"/>
    <property name="X" value="16"/>
-   <property name="Y" value="23"/>
+   <property name="Y" value="20"/>
   </properties>
   <data>
    <tile/>
@@ -4472,6 +4472,17 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="136"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="137"/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="193"/>
+   <tile gid="3"/>
+   <tile gid="3"/>
+   <tile gid="197"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4499,6 +4510,17 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="33"/>
+   <tile gid="34"/>
+   <tile gid="34"/>
+   <tile gid="164"/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="196"/>
+   <tile gid="11"/>
+   <tile gid="11"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4526,39 +4548,17 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="71"/>
+   <tile gid="43"/>
+   <tile gid="43"/>
+   <tile gid="171"/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="201"/>
+   <tile gid="44"/>
+   <tile gid="234"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4587,16 +4587,16 @@
    <tile/>
    <tile/>
    <tile gid="292"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="335"/>
+   <tile gid="335"/>
+   <tile gid="332"/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="332"/>
+   <tile gid="333"/>
+   <tile gid="334"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4625,16 +4625,16 @@
    <tile/>
    <tile/>
    <tile gid="293"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="361"/>
+   <tile gid="362"/>
+   <tile gid="363"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4663,16 +4663,16 @@
    <tile/>
    <tile/>
    <tile gid="387"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="332"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="135"/>
+   <tile gid="295"/>
+   <tile gid="130"/>
+   <tile gid="366"/>
+   <tile gid="354"/>
+   <tile gid="353"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4701,16 +4701,16 @@
    <tile/>
    <tile/>
    <tile gid="389"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="367"/>
+   <tile gid="135"/>
+   <tile gid="129"/>
+   <tile gid="130"/>
+   <tile gid="360"/>
+   <tile gid="359"/>
+   <tile gid="360"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4739,6 +4739,16 @@
    <tile/>
    <tile/>
    <tile gid="390"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="353"/>
+   <tile gid="368"/>
+   <tile gid="385"/>
+   <tile gid="386"/>
+   <tile gid="360"/>
+   <tile gid="423"/>
+   <tile gid="424"/>
+   <tile gid="33"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4766,27 +4776,17 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="235"/>
+   <tile gid="355"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="356"/>
+   <tile gid="235"/>
    <tile/>
    <tile/>
    <tile/>
@@ -4914,7 +4914,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="TileChange3" width="38" height="32">
+ <layer id="5" name="TileChange3" width="38" height="32" visible="0">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="3"/>
@@ -6141,7 +6141,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="TileChange4" width="38" height="32">
+ <layer id="4" name="TileChange4" width="38" height="32" visible="0">
   <properties>
    <property name="Height" value="2"/>
    <property name="ID" value="4"/>

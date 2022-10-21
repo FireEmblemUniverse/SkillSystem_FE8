@@ -34,6 +34,7 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(0,ToVermillion,7,24)
 END_MAIN
 
 MiscBasedEvents:
@@ -43,7 +44,7 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToVermillion [7,24] [7,24] 
+//AREA 0 ToVermillion [7,24] [7,24] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -55,6 +56,8 @@ ToVermillion:
 ChapterTransition(VermillionCh, 12,23)
 
 Traps1:
+GenericCompletion(7,3,LtSurgeSMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+
 ENDTRAP
 ALIGN 4
 

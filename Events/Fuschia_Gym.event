@@ -34,6 +34,7 @@ END_MAIN
 
 
 LocationBasedEvents:
+House(0,ToFuschia, 8,21)
 END_MAIN
 
 MiscBasedEvents:
@@ -43,7 +44,6 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToFuschia [8,21] [8,21] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -55,6 +55,8 @@ ToFuschia:
 ChapterTransition(FuschiaCh, 8, 30)
 
 Traps1:
+GenericCompletion(8,9,KogaSMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+
 ENDTRAP
 ALIGN 4
 

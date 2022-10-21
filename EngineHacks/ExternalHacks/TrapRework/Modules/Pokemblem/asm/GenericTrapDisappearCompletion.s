@@ -305,6 +305,9 @@ bl GetAdjacentTrap
 
 mov r4, r0  @&The DV
 
+ldrb r0, [r4, #3] @ flag 
+blh SetFlag  @ this must occur before the event is executed, as when it is, the trap could be shifted around 
+
 EventTime:
 
 @ldr r1, =MemorySlot3	@[0x30004C4]!!
@@ -314,6 +317,14 @@ EventTime:
 
 mov r1, #0
 ldrb r1, [r4, #0x5]     @effect id
+
+push {r1}
+@Remove the DV trap from the map.
+mov r0, r4
+ldr r3, RemoveTrap
+bl goto_r3
+pop {r1} 
+
 lsl r1, #0x2	@4 bytes per table extry, so effectID * 4 = entry 
 ldr r0, GTDTable
 ldr r0, [r0, r1]
@@ -331,6 +342,7 @@ beq DeleteTrap
 
 @At this point, r0 should be the pointer to the event to execute.
 AlwaysEvent:
+mov r1, #1 @ wait for event 
 ldr r3, ExecuteEvent
 bl goto_r3
 
@@ -338,13 +350,9 @@ bl goto_r3
 @blh UpdateGameTilesGraphics 
 
 DeleteTrap:
-@Remove the DV trap from the map.
-mov r0, r4
-ldr r3, RemoveTrap
-bl goto_r3
 
-ldrb r0, [r4, #3] @ flag 
-blh SetFlag 
+
+
 
 @ update unit map to have active unit at coord 
 @ this is needed for events that load units with REDAs 
