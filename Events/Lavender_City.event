@@ -160,7 +160,9 @@ BYTE JellyDonut 5
 BYTE SkillScroll PatienceID 
 BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
 BYTE SpellScroll Headbutt 
-BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion
+BYTE SpellScroll ShadowPunch SpellScroll RockTomb SpellScroll JumpKick
+BYTE SpellScroll BubbleBeam SpellScroll MudBomb 
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

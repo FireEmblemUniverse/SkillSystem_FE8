@@ -228,17 +228,22 @@ ldrb r0, [r2, #8] @ Summoner's level
 ldrb r1, [r6, #8] @ Summon's level 
 cmp r1, r0 
 bge DoNotMatchSummonsLevel 
-add r0, r1 @ combine their lvls
-strb r0, [r6, #8] @ Summon as same lvl as summoner 
+
 sub r0, r1 @ yes we do this twice dw 
 sub r2, r0, r1 @ Number of levels to increase by 
 mov r1, #0x2F 
 ldrb r0, [r6, r1] @ Dark WEXP as bonus levels? 
 add r2, r0 
+ldr r3, =MemorySlot 
+mov r1, #1 @ true 
+str r1, [r3, #3*0x04] @ s3  
 
-push {r2}
+mov r1, r2 @ levels 
+mov r0, r6 @ unit 
+bl AutoLevelSummonedUnit
+
+
 bl GetDifficulty
-pop {r2}
 mov r1, #0 
 cmp r0, #0 
 beq NoMoreBonusLevels
@@ -257,7 +262,7 @@ cmp r0, #0xA0
 bge NoReduction 
 lsr r1, #1 @ 1/2 bonus levels for capturable mons 
 NoReduction:
-add r2, r1 @ visible levels + bonus levels 
+mov r2, r1 @ bonus levels 
 
 @ldr r1, [r6, #4]
 @ldrb r1, [r1, #4] @ class id of summon 
@@ -272,7 +277,11 @@ mov r0, r6 @ unit
 mov r1, r2 @ levels 
 bl AutoLevelSummonedUnit
 
-	
+@ ensure they are the same level 
+ldr r2, =CurrentUnit 
+ldr r2, [r2]
+ldrb r0, [r2, #8] @ Summoner's level 
+strb r0, [r6, #8] @ Summon as same lvl as summoner 
 
 mov r0, r6
 blh EnsureNoUnitStatCapOverflow

@@ -3,7 +3,7 @@
 #define GenericB UnitVictoryRoadTrainer
 #define ClassA ClassVictoryRoadWildA
 #define ClassB ClassVictoryRoadWildB
-#define WildLvl 44
+#define WildLvl 48
 #define TrainerL 50
 
 
@@ -177,7 +177,7 @@ SignATrap(5,13, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)
 
-SkillScrollTrap(6,18, ChapterID*2, RockyHelmetSkillID)
+SkillScrollTrap(6,18, ChapterID*2, RenewalID)
 SpellScrollTrap(19,7, (ChapterID*2)+1, Outrage)
 //SpellScrollTrap(6,18, (ChapterID*2), Megahorn)
 //OpenPokeball(8,3)
@@ -297,9 +297,9 @@ UNIT
 
 EnemyTrainers:
 UNIT 0xE0 hikerID 0x0 Level(0, Enemy, 1) [14,12]  0b 0x0	1 REDA14R12  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [24,12]  0b 0x0	1 REDA24R12  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [24,12]  0b 0x0	1 REDA24R12  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT 0xE2 super_nerdID 0x0 Level(0, Enemy, 1) [30,2]  0b 0x0	1 REDA30R2  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 super_nerdID 0x0 Level(0, Enemy, 1) [35,9]  0b 0x0	1 REDA35R9  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE3 super_nerdID 0x0 Level(0, Enemy, 1) [36,9]  0b 0x0	1 REDA36R9  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 

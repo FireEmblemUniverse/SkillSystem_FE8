@@ -1,7 +1,7 @@
 #define ChapterID LoreleiCh
 
 #define WildLvl 5 
-#define TrainerL 5
+#define TrainerL 55
 
 
 
@@ -156,16 +156,16 @@ ReorderParty
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+AutoLevelUnits(LoreleiBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
-CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
 
 
-SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) 
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
 SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)

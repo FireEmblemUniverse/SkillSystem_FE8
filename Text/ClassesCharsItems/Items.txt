@@ -115,7 +115,7 @@ Press R for details.[X]
 ## EnergyBandNameText
 Energy Band[X]
 ## EnergyBandDescText
-Str/Skl/Spd + 2.[X]
+Str/Skl/Spd/Mag+2.[X]
 
 
 ## PerfectionistAccNameText
@@ -220,7 +220,7 @@ Mag+5.[X]
 ## EnergyBandT2NameText
 Energy Band[X]
 ## EnergyBandT2DescText
-Str/Skl/Spd+4.[X]
+Str/Skl/Spd/Mag+4.[X]
 ## PaddedShieldNameText ^
 Padded Shield[X]
 ## PaddedShieldDescText
@@ -252,7 +252,12 @@ Mag+8.[X]
 ## EnergyBandT3NameText
 Energy Band[X]
 ## EnergyBandT3DescText
-Str/Skl/Spd+6.[X]
+Str/Skl/Spd/Mag+6.[X]
+## EnergyBandT4NameText
+Energy Band[X]
+## EnergyBandT4DescText
+Str/Skl/Spd/Mag+8.[X]
+
 ## StuddedShieldNameText
 Studded Shield[X]
 ## StuddedShieldDescText
@@ -1341,7 +1346,7 @@ Chip damage. Badly poisons target on hit.[X]
 *{(}Shatters techtonics to destroy foes.[X]
 
 ## FissureDesc
-*{(}Creates an earthen rift to swallow foes.[X]
+*{(}Creates an earthen rift.[X]
 
 ## EarthPowerDesc
 *{)}Strikes by shaking the earth itself.[X]

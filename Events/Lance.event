@@ -103,7 +103,7 @@ CAM1 [12,0]
 LOAD1 0x1 EnemyTrainersA
 ENUN 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+AutoLevelUnits(LanceBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
@@ -192,7 +192,7 @@ EnemyTrainersA:
 UNIT 0xD0 DragoniteID 		0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[Outrage, Screech, 0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 CharizardID 		0xD0 Level(0, Enemy, 1) [13,8]  0b 0x0	0 0 [FireBlast,SkyAttack,0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA1 AerodactylID 	0xD0 Level(0, Enemy, 1) [11,8]  0b 0x0	0 0	[RockSlide,WingAttack,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 GyaradosID 		0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[HydroPump, HyperBeam,0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA2 GyaradosID 		0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Waterfall, HyperBeam,0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA3 DragonairID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[DragonRage,IceBeam, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA4 DragonairID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0	[DragonRage,BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT

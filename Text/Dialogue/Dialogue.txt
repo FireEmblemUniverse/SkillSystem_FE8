@@ -2803,7 +2803,7 @@ I wonder if you are good enough[N]
 for me?[A][X]
 
 ## VRB1_0xE0_BD
-I lost out...[A][Clear]
+I lost out...[A][N][Clear]
 I never wanted to lose to anybody,[N]
 especially to a younger kid...[A][X]
 
@@ -2823,7 +2823,7 @@ This here is VICTORY ROAD.[N]
 It's the final test for TRAINERS![A][X]
 
 ## VRB2_0xE0_BD
-Atcho![A][Clear]
+Atcho![A][N][Clear]
 If you get stuck, try moving some[N]
 boulders around.[A][X]
 
@@ -2855,7 +2855,7 @@ I'll never forgive you![A][X]
 
 
 ## VRB2_0xE3_BD
-Ahh!![A][Clear]
+Ahh!![A][N][Clear]
 Hmm? Who am I?[N]
 Yeah, right.[A][N]
 Like you could forget your rival...[A][X]
@@ -2865,7 +2865,7 @@ Like you could forget your rival...[A][X]
 Is VICTORY ROAD too tough?[A][X]
 
 ## VRB3_0xE0_BD 
-Well done![A][Clear]
+Well done![A][N][Clear]
 Many TRAINERS give up their[N]
 challenge here and go home.[A][X]
 	
@@ -2878,7 +2878,7 @@ challenge here and go home.[A][X]
 I heard rumors of a child prodigy.[A][X]
 
 ## VRB3_0xE1_BD
-The rumors were true![A][Clear]
+The rumors were true![A][N][Clear]
 So, it was you who beat GIOVANNI[N]
 of TEAM ROCKET?[A][X]
 
@@ -2896,7 +2896,7 @@ I'll show you just how good you[N]
 are. Not![A][X]
 
 ## VRB3_0xE3_BD 
-I'm furious![A][Clear]
+I'm furious![A][N][Clear]
 You showed me just how good[N]
 I was...[A][X]
 
@@ -2904,7 +2904,7 @@ I was...[A][X]
 Only the chosen can pass here![A][X]
 
 ## VRB3_0xE4_BD
-I don't believe it![A][Clear]
+I don't believe it![A][N][Clear]
 All TRAINERS here are headed to[N]
 the Pok[Eaccent]mon League.[A][N]
 Don't let down your guard.[A][X]
@@ -2946,7 +2946,7 @@ Of course, this wouldn't be complete[N]
 without a battle, would it?[A][X]
 
 ## VeslyRoute23DefeatText 
-I never had a chance, did I?[A][N]
+I never had a chance, did I?[A][N][Clear]
 It seems you're ready.[N]
 Ready to challenge the Elite Four.[A][N]
 Good luck, [Tact].[A][X]
@@ -2965,7 +2965,7 @@ Lorelei's room, your progress resets.[A][X]
 If you exit, your progress[N]
 will be reset.[A][Clear]
 Will you leave?[N]
-[No][X]
+[Yes][X]
 
 ## LoreleiChallengeText
 [OpenMidLeft][LoadLorelei][OpenMidLeft]Welcome to the Pok[Eaccent]mon League.[A][N]

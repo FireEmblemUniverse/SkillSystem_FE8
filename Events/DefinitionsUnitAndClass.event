@@ -18,7 +18,14 @@
 #define CeladonGymBonus 2
 #define SaffronGymBonus 2 
 #define CinnabarGymBonus 6
-#define ViridianGymBonus 3
+#define ViridianGymBonus 3 // + 9 as half of usual lategame bonuses 
+
+#define LoreleiBonus 1 // +9 as half of usual lategame bonuses 
+#define BrunoBonus 2 
+#define AgathaBonus 2
+#define LanceBonus 1
+#define ChampionBonus 2 
+
 
 
 /*

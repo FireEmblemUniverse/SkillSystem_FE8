@@ -3,7 +3,7 @@
 #define GenericB UnitRoute23Trainer
 #define ClassA ClassRoute23WildA
 #define ClassB ClassRoute23WildB
-#define WildLvl 42
+#define WildLvl 45
 #define TrainerL 50
 
 
@@ -94,7 +94,7 @@ Traps1:
 //VictoryRoad: Outrage, Protein, Iron 
 //VictoryRoad: Megahorn 
 
-StatAccessoryTrap(11,10, (ChapterID*2), EnergyBandT3_BoostIndex) 
+StatAccessoryTrap(11,10, (ChapterID*2), EnergyBandT4_BoostIndex) 
 //RedPokeballTrap(11,21, (ChapterID*2)+1, ExoticCandy) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 

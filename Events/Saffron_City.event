@@ -234,10 +234,12 @@ ShopItems:
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
-BYTE SkillScroll PrescienceID 
-BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
-BYTE SpellScroll Headbutt 
-BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
+BYTE SpellScroll Screech SpellScroll FirePunch SpellScroll ThunderPunch SpellScroll IcePunch 
+BYTE SpellScroll ShadowPunch SpellScroll JumpKick
+BYTE SpellScroll BubbleBeam SpellScroll DrillPeck
+BYTE SpellScroll HealPulse SpellScroll RockSlide SpellScroll Dragonbreath
+BYTE SpellScroll Psybeam SpellScroll BugBite SpellScroll PoisonJab 
+BYTE SpellScroll LeafBlade
 //SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

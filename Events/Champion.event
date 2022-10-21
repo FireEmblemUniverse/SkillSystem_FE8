@@ -178,7 +178,7 @@ ENUN
 
 
 AutoLevelUnits(TrainerL, True, 0x90EF) 
-AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+AutoLevelUnits(ChampionBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 
@@ -266,6 +266,7 @@ TEXTEND
 REMA 
 TutText(GaryGamesharkText)
 ReviveParty
+RefreshSMS
 FADI 16 
 Read_Byte(GaryStarterClass)
 SADD sA sC s0 
@@ -377,14 +378,14 @@ SetUnitStatus(0xD0, MaxHP, 1) // Shedinja
 SetUnitStatus(0xD1, MaxHP, 30) // Sableye
 SetUnitStatus(0xD0, CurrentHP, 1)
 SetUnitStatus(0xD1, CurrentHP, 30)
-SetUnitStatus(0xA6, Defence, 45)
-SetUnitStatus(0xA6, Resistance, 45)
+SetUnitStatus(0xA6, Defence, 40)
+SetUnitStatus(0xA6, Resistance, 40)
 
 
 SCOORD sB [13,28]
 SET_CURSOR_SB
 CAM1 [13,28]
-
+SetNearbyDangerRadius
 
 
 
@@ -412,7 +413,7 @@ ENUT CompletedPokemonLeague
 Text(OakLeagueText)
 Text(OakLeagueText2)
 Text(OakLeagueText3)
-
+ReviveParty
 ForcedChapterTransition(HallOfFameCh, 9,25)
 LABEL 99 
 NoFade

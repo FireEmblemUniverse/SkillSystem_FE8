@@ -221,14 +221,11 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 //SilentGiveItemWithDurability(Eirika, MoonStone, 1)
 
-SilentGiveItemWithDurability(2, SpellScroll, AttackPulse)
+//SilentGiveItemWithDurability(2, SpellScroll, AttackPulse)
 
 //EquipNewSkillAccessory(2, RenewalID) // GiveSkillAccessory(0, RenewalID)
 
 //SilentGiveSkillAccessory(2, RenewalID)
-SilentGiveSkillAccessory(2, WaryFighterID)
-SilentGiveSkillAccessory(2, FuryID)
-SilentGiveSkillAccessory(2, RockyHelmetSkillID)
 
 SupplyItem(ExoticCandy)
 SupplyItem(RedGem)
@@ -259,11 +256,16 @@ SupplyItemWithDurability(SpellScroll, WaterGun)
 SupplyItemWithDurability(SpellScroll, Spark)
 SupplyItemWithDurability(SpellScroll, KarateChop)
 
-SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
-SilentGiveItemWithDurability(1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
+//SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
+SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(2, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(3, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(4, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(5, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
-SilentGiveItemWithDurability(1, SkillScroll, StrongRiposteID)
+//SilentGiveItemWithDurability(1, SkillScroll, StrongRiposteID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)
@@ -271,14 +273,14 @@ SilentGiveItemWithDurability(1, SkillScroll, StrongRiposteID)
 
 //SilentGiveItemWithDurability(1, SpellScroll, RockTomb)
 //SilentGiveSkillAccessory(1, RenewalID)
-SilentGiveItemWithDurability(1, ExoticCandy, 1)
+//SilentGiveItemWithDurability(1, ExoticCandy, 1)
 
 //SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
-SilentGiveItemWithDurability(2, RedGem, 0x7) // Pikachu 
-SilentGiveItemWithDurability(3, Berry, 0x7) // Pikachu 
-SilentGiveItemWithDurability(4, Berry, 0x6) // Oddish
-SilentGiveItemWithDurability(5, Berry, 0x9) // Pidgey 
-SilentGiveItemWithDurability(6, Berry, 0x9) // Pidgey 
+//SilentGiveItemWithDurability(2, RedGem, 0x7) // Pikachu 
+//SilentGiveItemWithDurability(3, Berry, 0x7) // Pikachu 
+//SilentGiveItemWithDurability(4, Berry, 0x6) // Oddish
+//SilentGiveItemWithDurability(5, Berry, 0x9) // Pidgey 
+//SilentGiveItemWithDurability(6, Berry, 0x9) // Pidgey 
 
 //SilentGiveItemWithDurability(2, SpellScroll, Headbutt)
 //SilentGiveItemWithDurability(2, SpellScroll, Dig)
@@ -314,7 +316,7 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(41, True, 0x145) // all 
+AutoLevelUnits(49, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)
@@ -334,12 +336,18 @@ AutoLevelUnits(41, True, 0x145) // all
 //SetUnitStatus(2, 0x2B, 0)
 //SetUnitStatus(2, 0x2C, 0)
 
-//SetUnitStatus(1, 0x28, Earthquake)
-//SetUnitStatus(2, 0x28, Earthquake)
+SetUnitStatus(1, 0x28, FireBlast) // Charizard 
+SetUnitStatus(1, 0x29, Slash)
+SetUnitStatus(2, 0x28, PetalDance) // Victreebel 
+
 //SetUnitStatus(3, 0x28, Earthquake)
-//SetUnitStatus(4, 0x28, Earthquake)
-//SetUnitStatus(5, 0x28, Earthquake)
-//SetUnitStatus(6, 0x28, Earthquake)
+SetUnitStatus(4, 0x28, Thunderbolt) // Raichu 
+SetUnitStatus(5, 0x28, Psychic) // Alakazam 
+SetUnitStatus(6, 0x28, Thunderbolt) // Gengar 
+SetUnitStatus(6, 0x29, Psychic)
+SetUnitStatus(6, 0x2A, ShadowBall)
+
+
 ENUT PokefluteFlag
 //ENUT StrengthBoulderFlag
 ENUT BoulderbadgeObtained 
@@ -362,28 +370,14 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(35, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(11, YCoordNewArea)  
+Write_Byte(7, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(7, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 CinnabarCh
 //SetUnitStatus(1, CurrentHP, 5)
-//MNC2 CinnabarCh
-MNC2 Route22Ch 
-//MNC2 Route17SCh 
-//MNC2 CinnabarCh
-//MNC2 Route3Ch
-//MNC2 Route14Ch 
-//MNC2 Route2SCh
-//MNC2 FuschiaCh 
-//MNC2 Route12SCh
-//MNC2 CeruleanGymCh 
-//MNC2 DebugCh 
-//MNC2 SaveWithHealCh
-//MNC2 ChampionCh
-//MNC2 PCBoxCh
-// MNC2 Route23NCh 
-//MNC2 LoreleiCh
-//MNC2 PokecenterLeagueCh 
+MNC2 Route1Ch 
+//MNC2 ChampionCh 
+
 //MNC2 SeafoamB1Ch 
 //MNC2 VictoryRoadB2Ch 
 //MNC2 Route22Ch 

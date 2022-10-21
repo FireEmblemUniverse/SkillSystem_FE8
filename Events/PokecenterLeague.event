@@ -213,7 +213,7 @@ Traps1:
 //SignBTrap(10,12, ChapterID, 0x0) //no extra text 
 //SignATrap(42,11, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-SaveCost(7,12)
+Save(17,11)
 
 
 //BerryTree(32,11,5)

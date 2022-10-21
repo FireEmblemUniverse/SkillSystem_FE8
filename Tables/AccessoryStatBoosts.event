@@ -25,6 +25,7 @@
 #define VintageBoots_BoostIndex 24
 #define SilphScope_BoostIndex 25
 #define LuckyBracerT3_BoostIndex 26 
+#define EnergyBandT4_BoostIndex 27 
 
 #define STR2_8 "POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2; POIN STR2"
 #define STR2_Fill "STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8; STR2_8" 
@@ -71,7 +72,7 @@ Durb_StatBonus_Entry(EnhancedWard_BoostIndex, RES10)
 Durb_StatBonus_Entry(VintageBoots_BoostIndex, SPD10)
 Durb_StatBonus_Entry(SilphScope_BoostIndex, SKL10)
 Durb_StatBonus_Entry(LuckyBracerT3_BoostIndex, LUK10) 
-
+Durb_StatBonus_Entry(EnergyBandT4_BoostIndex, STRSKLSPD8) 
 
 
 

@@ -10,15 +10,19 @@ StatBonus(2,2,2,2,2,2,2,2,0,0)
 
 ALIGN 4
 STRSKLSPD2:
-StatBonus(0,2,0,2,2,0,0,0,0,0)
+StatBonus(0,2,2,2,2,0,0,0,0,0)
 
 ALIGN 4
 STRSKLSPD4:
-StatBonus(0,4,0,4,4,0,0,0,0,0)
+StatBonus(0,4,4,4,4,0,0,0,0,0)
 
 ALIGN 4
 STRSKLSPD6:
-StatBonus(0,6,0,6,6,0,0,0,0,0)
+StatBonus(0,6,6,6,6,0,0,0,0,0)
+
+ALIGN 4
+STRSKLSPD8:
+StatBonus(0,8,8,8,8,0,0,0,0,0)
 
 
 ALIGN 4

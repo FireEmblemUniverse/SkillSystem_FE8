@@ -3,7 +3,7 @@
 #define GenericB UnitVictoryRoadTrainer
 #define ClassA ClassVictoryRoadWildA
 #define ClassB ClassVictoryRoadWildB
-#define WildLvl 45
+#define WildLvl 48
 #define TrainerL 50
 
 
@@ -115,7 +115,7 @@ Hole(26, 18) // boulders should come before holes, i think ?
 
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
 //RedPokeballTrap(11,21, (ChapterID*2)+1, ExoticCandy) 
-RedPokeballTrap(30,7, (ChapterID*2), MaxPotion) 
+RedPokeballTrap(31,7, (ChapterID*2), MaxPotion) 
 //SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
 //SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
@@ -237,7 +237,7 @@ UNIT
 EnemyTrainers:
 UNIT 0xE0 battle_girlID 0x0 Level(0, Enemy, 1) 	[24,3]  0b 0x0	1 REDA24R3  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 blackbeltID 0x0 Level(0, Enemy, 1) 	[14,5]  0b 0x0	1 REDA14R5  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 hikerID 0x0 Level(0, Enemy, 1) 		[9,16]  0b 0x0	1 REDA9R16  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE2 hikerID 0x0 Level(0, Enemy, 1) 		[9,16]  0b 0x0	1 REDA9R16  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 battle_girlID 0x0 Level(0, Enemy, 1) 	[16,17]  0b 0  1 REDA16R17 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE4 blackbeltID 0x0 Level(0, Enemy, 1) 	[30,12]  0b 0  1 REDA30R12 [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT
