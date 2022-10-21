@@ -159,10 +159,6 @@ CALL LoadAndPlacePlayers
 
 CALL CityBeginningScene 
 
-CHECK_EVENTID SecretKeyObtained
-BEQ 0 sC s0 
-RemoveTrap(20,11)
-LABEL 0
 
 CHECK_EVENTID VolcanobadgeObtained
 BNE 1 sC s0 

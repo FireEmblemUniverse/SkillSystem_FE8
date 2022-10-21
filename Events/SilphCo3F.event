@@ -87,10 +87,10 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToSilphCo2F_TeleA [18,18][18,18] 
 AREA 0 ToSilphCo2F_TeleB [4,10][4,10] 
 AREA 0 ToSilphCo4F_Tele [19,7][19,7] 
-AREA 0 NW_StatsDrained [4,15][5,16] // w 
-AREA 0 NW_StatsDrained [15,11][16,12] // mid n  
-AREA 0 NW_StatsDrained [15,15][16,16] // mid s  
-AREA 0 NW_StatsDrained [30,10][31,11] // ne 
+AREA 0 NW_StatsDrained [4,16][5,16] // w 
+AREA 0 NW_StatsDrained [15,12][16,12] // mid n  
+AREA 0 NW_StatsDrained [15,16][16,16] // mid s  
+AREA 0 NW_StatsDrained [30,11][31,11] // ne 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -114,23 +114,23 @@ ENDA
 // Eg. flowers are not obtained once, so you can spam them 
 
 Traps1:
-MineTrap(4,15)
-MineTrap(5,15)
+//MineTrap(4,15)
+//MineTrap(5,15)
 MineTrap(4,16)
 MineTrap(5,16)
 
-MineTrap(15,11)
-MineTrap(16,11)
+//MineTrap(15,11)
+//MineTrap(16,11)
 MineTrap(15,12)
 MineTrap(16,12)
 
-MineTrap(15,15)
-MineTrap(16,15)
+//MineTrap(15,15)
+//MineTrap(16,15)
 MineTrap(15,16)
 MineTrap(16,16)
 
-MineTrap(30,10)
-MineTrap(31,10)
+//MineTrap(30,10)
+//MineTrap(31,10)
 MineTrap(30,11)
 MineTrap(31,11)
 

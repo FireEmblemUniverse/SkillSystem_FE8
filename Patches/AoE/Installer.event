@@ -256,6 +256,7 @@ WORD 0x1234567 // Mag, Luk, Res, Def, Spd, Skl, Str
 WORD 0x2345678
 
 #define AoEPercentDmg 75 
+#define AoEPercentHeal 50 
 
 ALIGN 4 
 AoE_Table:
@@ -266,7 +267,7 @@ BYTE 0 HealBool|MagBasedBool // no friendly fire so bushes aren't healed
 BYTE 2 5 // damage range: 4 mt + (1/2 mag) 
 BYTE 1 1 // Attack range
 BYTE SmallLine HealingAnimationID // Index of RangeMask, Animation
-BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE AoEPercentHeal 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
@@ -279,7 +280,7 @@ BYTE 0 HealBool|MagBasedBool
 BYTE 1 7 // damage range 
 BYTE 1 2 // Attack range
 BYTE SmallTriangle HealingAnimationID // Index of RangeMask, Animation
-BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE AoEPercentHeal 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
@@ -292,7 +293,7 @@ BYTE 0 HealBool|MagBasedBool
 BYTE 5 10 // damage range 
 BYTE 0 4 // Attack range 
 BYTE MedTriangle HealingAnimationID // Index of RangeMask, AnimationALL,
-BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE AoEPercentHeal 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.

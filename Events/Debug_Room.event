@@ -96,13 +96,13 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  ExeggutorID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  CharizardID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
-UNIT 2  PrimeapeID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  VictreebelID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 5  AlakazamID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 6  GengarID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 3  ArcanineID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 4  PidgeotID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  DugtrioID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4  RaichuID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 Units_Earlygame: 
@@ -178,7 +178,7 @@ BeginningScene:
 ENUT CasualModeFlag
 ENUT CasualModeFlag_2
 
-Write_Word(10000, 0x202BCF8)
+Write_Word(30000, 0x202BCF8)
 ENUT BracketedGrowthsFlag
 ENUT DebugPlaceUnitsFlagMenu
 
@@ -186,9 +186,9 @@ ENUT DebugPlaceUnitsFlagMenu
 ENUF SkipIntroFlag
 
 
-//LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
-//ENUN
-LOAD1 0x1 Units_Earlygame
+LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+
+//LOAD1 0x1 Units_Earlygame
 ENUN
 
 //LOAD1 0x1 Units3
@@ -314,7 +314,7 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(4, True, 0x145) // all 
+AutoLevelUnits(41, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)
@@ -343,14 +343,14 @@ AutoLevelUnits(4, True, 0x145) // all
 ENUT PokefluteFlag
 //ENUT StrengthBoulderFlag
 ENUT BoulderbadgeObtained 
-//ENUT CascadebadgeObtained 
+ENUT CascadebadgeObtained 
 ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
 
 ENUT SoulbadgeObtained 
-//ENUT RainbowbadgeObtained 
-//ENUT MarshbadgeObtained
-//Write_Byte(4, GaryStarterClass) 
+ENUT RainbowbadgeObtained 
+ENUT MarshbadgeObtained
+Write_Byte(SquirtleID, GaryStarterClass) 
 //ENUT VolcanobadgeObtained 
 //ENUT EarthbadgeObtained 
 ENUT FlyFlag
@@ -362,15 +362,17 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(26, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 CinnabarCh
 //SetUnitStatus(1, CurrentHP, 5)
+MNC2 ViridianCh 
+//MNC2 Route17SCh 
 //MNC2 CinnabarCh
 //MNC2 Route3Ch
 //MNC2 Route14Ch 
-MNC2 Route2SCh
+//MNC2 Route2SCh
 //MNC2 FuschiaCh 
 //MNC2 Route12SCh
 //MNC2 CeruleanGymCh 

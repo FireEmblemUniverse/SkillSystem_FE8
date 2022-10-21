@@ -60,6 +60,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
+BYTE 21 Scorch 
 BYTE 25 FlameWheel
 BYTE 28 Slash
 BYTE 34 Flamethrower
@@ -73,6 +74,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
+BYTE 21 Scorch 
 BYTE 25 FlameWheel
 BYTE 28 Slash
 BYTE 34 Flamethrower
@@ -87,6 +89,7 @@ BYTE 4 Growl
 BYTE 4 AirSlash
 BYTE 7 Ember
 BYTE 14 DragonRage
+BYTE 21 Scorch 
 BYTE 25 FlameWheel
 BYTE 28 Slash
 BYTE 34 Flamethrower
@@ -155,7 +158,7 @@ BYTE 16 Gust
 //BYTE 22 Rescue //?Buff (Whirlwind)
 BYTE 24 Psybeam
 BYTE 28 SignalBeam
-BYTE 30 Tailwind
+//BYTE 30 Tailwind
 BYTE 34 RecoverMove //?Buff (Safeguard)
 BYTE 36 Snarl
 BYTE 40 BugBuzz
@@ -175,7 +178,7 @@ BYTE 16 Gust
 //BYTE 22 Rescue //?Buff (Whirlwind)
 BYTE 24 Psybeam
 BYTE 28 SignalBeam
-BYTE 30 Tailwind
+//BYTE 30 Tailwind
 BYTE 34 RecoverMove //?Buff (Safeguard)
 BYTE 36 Snarl
 BYTE 40 BugBuzz
@@ -196,7 +199,7 @@ BYTE 16 Gust
 //BYTE 22 Rescue //?Buff (Whirlwind)
 BYTE 24 Psybeam
 BYTE 28 SignalBeam
-BYTE 30 Tailwind
+//BYTE 30 Tailwind
 BYTE 34 RecoverMove //?Buff (Safeguard)
 BYTE 36 Snarl
 BYTE 40 BugBuzz
@@ -258,7 +261,7 @@ BYTE 25 WingAttack
 BYTE 29 Agility
 BYTE 33 Slash
 BYTE 37 RecoverMove //?Buff (Roost)
-BYTE 43 Tailwind
+//BYTE 43 Tailwind
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
 BYTE 0 0
@@ -274,7 +277,7 @@ BYTE 25 WingAttack
 BYTE 29 Agility
 BYTE 33 Slash
 BYTE 37 RecoverMove //?Buff (Roost)
-BYTE 43 Tailwind
+//BYTE 43 Tailwind
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
 BYTE 0 0
@@ -290,7 +293,7 @@ BYTE 25 WingAttack
 BYTE 29 Agility
 BYTE 33 Slash
 BYTE 37 RecoverMove //?Buff (Roost)
-BYTE 43 Tailwind
+//BYTE 43 Tailwind
 //BYTE 45 Resv //MirrorMove
 BYTE 49 AirSlash
 BYTE 0 0
@@ -2408,7 +2411,7 @@ BYTE 36 Agility //?Buff
 BYTE 43 IceBeam
 //BYTE 50 Reflect
 BYTE 57 RecoverMove //?Buff (Roost)
-BYTE 64 Tailwind
+//BYTE 64 Tailwind
 BYTE 71 Blizzard
 BYTE 78 Guillotine
 BYTE 0 0

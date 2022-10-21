@@ -5,7 +5,35 @@
 
 PUSH 
 
+ORG $114FA // frames to show "got item" popup 
+BYTE 45 //96 is vanilla 
+ORG $1166C // frames to show "got gold" popup 
+BYTE 45 //96 is vanilla 
 
+ORG $7BCE2 // double speed of vuln animation 
+BYTE 0x08 0x34 0x24 0x04 0x24 0x0c 0x00 0x00 0x00 0x00 0x8c 0x42 0x09 0xda
+
+ORG 0x07F464
+BYTE 15 // Frames to show the level up screen 
+
+
+ORG 0x9A352A // speed up map battle anim start? 
+BYTE 0x01
+ORG 0x9A3542 
+BYTE 0x03
+ORG 0x9A356A 
+BYTE 0x07
+ORG 0x9A360A 
+BYTE 0x08	//do not change!
+ORG 0x9A362A 
+BYTE 0x01
+
+ORG 0x9A47B6 // delay between rounds for map battle anims 
+BYTE 0x01
+ORG 0x9A47C6
+BYTE 0x04
+ORG 0x9A480E
+BYTE 0x0A
 
 // EXPERIMENTAL 
     // prevent debuffs and loading issue (Kirb)

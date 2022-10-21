@@ -76,6 +76,7 @@ CHECK_EVENTID RainbowbadgeObtained
 BNE 10 sC s0 
 TutText(CompleteGymFirst)
 GOTO 99 
+LABEL 10 
 ChapterTransition(SaffronCh, 35,20)
 LABEL 99
 NoFade 

@@ -69,10 +69,14 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AREA 0 ToSilphCo2F_Tele [23,19][23,19] 
 AREA 0 ToSilphCo3F_Tele [12,18][12,18] 
-AREA 0 NW_StatsDrained [3,11][4,12] // nw 
-AREA 0 NW_StatsDrained [8,17][9,18] // sw
-AREA 0 NW_StatsDrained [22,7][23,8] // ne 
-AREA 0 NW_StatsDrained [22,13][23,14] // se 
+AREA 0 NW_StatsDrained [4,11][4,12] // nw 
+//AREA 0 NW_StatsDrained [3,11][4,12] // nw 
+AREA 0 NW_StatsDrained [9,17][9,18] // sw
+//AREA 0 NW_StatsDrained [8,17][9,18] // sw
+AREA 0 NW_StatsDrained [22,8][23,8] // ne 
+//AREA 0 NW_StatsDrained [22,7][23,8] // ne 
+AREA 0 NW_StatsDrained [22,14][23,14] // se 
+//AREA 0 NW_StatsDrained [22,13][23,14] // se 
 AREA 0 HealActive [2,17][2,18]
 AREA 0 HealActive [4,17][4,18]
 //AFEV flagID eventOffset activationFlag
@@ -109,23 +113,23 @@ ENDA
 
 Traps1:
 
-MineTrap(3,11)
+//MineTrap(3,11)
 MineTrap(4,11)
-MineTrap(3,12)
+//MineTrap(3,12)
 MineTrap(4,12)
 
-MineTrap(8,17)
+//MineTrap(8,17)
 MineTrap(9,17)
-MineTrap(8,18)
+//MineTrap(8,18)
 MineTrap(9,18)
 
-MineTrap(22,7)
-MineTrap(23,7)
+//MineTrap(22,7)
+//MineTrap(23,7)
 MineTrap(22,8)
 MineTrap(23,8)
 
-MineTrap(22,13)
-MineTrap(23,13)
+//MineTrap(22,13)
+//MineTrap(23,13)
 MineTrap(22,14)
 MineTrap(23,14)
 

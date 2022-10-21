@@ -83,10 +83,10 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToSilphCo3F_TeleA [3,7] [3,7] 
 AREA 0 ToSilphCo3F_TeleB [34,7] [34,7] 
 AREA 0 ToSilphCo4F_Tele [8,20][8,20] 
-AREA 0 NW_StatsDrained [6,9][7,10]
-AREA 0 NW_StatsDrained [30,9][31,10] // ne 
-AREA 0 NW_StatsDrained [6,16][7,17] // sw 
-AREA 0 NW_StatsDrained [27,18][28,19] // se 
+AREA 0 NW_StatsDrained [6,10][7,10]
+AREA 0 NW_StatsDrained [30,10][31,10] // ne 
+AREA 0 NW_StatsDrained [6,17][7,17] // sw 
+AREA 0 NW_StatsDrained [28,18][28,19] // se 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -111,24 +111,24 @@ ENDA
 
 Traps1:
 
-MineTrap(6,9)
-MineTrap(7,9)
+//MineTrap(6,9)
+//MineTrap(7,9)
 MineTrap(6,10)
 MineTrap(7,10)
 
 
-MineTrap(6,16)
-MineTrap(7,16)
+//MineTrap(6,16)
+//MineTrap(7,16)
 MineTrap(6,17)
 MineTrap(7,17)
 
-MineTrap(27,18)
+//MineTrap(27,18)
 MineTrap(28,18)
-MineTrap(27,19)
+//MineTrap(27,19)
 MineTrap(28,19)
 
-MineTrap(30,9)
-MineTrap(31,9)
+//MineTrap(30,9)
+//MineTrap(31,9)
 MineTrap(30,10)
 MineTrap(31,10)
 
