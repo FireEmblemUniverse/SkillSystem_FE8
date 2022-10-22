@@ -125,6 +125,7 @@ MenuCommandID(SlashName, 		UM_AoEDesc, NormalText, 76, AoE_SpecificUsability|1, 
 MenuCommandID(AttackPulseName, 		UM_AoEDesc, NormalText, 77, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(SwiftName, 		UM_AoEDesc, NormalText, 78, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 //MenuCommandID(HealTileName, 		UM_HealTile, NormalText, 79, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ShockWaveName, 		UM_AoEDesc, NormalText, 80, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
@@ -1323,6 +1324,18 @@ BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
 
 
+// Entry 80
+BYTE 0 0 0 0
+BYTE 0 0 0 ShockWave // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 2 2 // Attack range
+BYTE SmallLine electricAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
 
 AoE_TableTerminator
 

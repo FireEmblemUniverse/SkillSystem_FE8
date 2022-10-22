@@ -48,9 +48,9 @@ b Neutral
 
 Neutral:
 @ modify to be 3/4 of damage 
-lsr r1, r4, #2 @ 1/4 
+@lsr r1, r4, #2 @ 1/4 
 mov r0, r4 
-sub r0, r1 @ 3/4 
+@sub r0, r1 @ 3/4 
 pop {r4-r6}
 pop {r1}
 bx r1 

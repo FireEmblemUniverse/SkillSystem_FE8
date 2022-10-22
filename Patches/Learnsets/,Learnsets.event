@@ -60,7 +60,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
-BYTE 21 Scorch 
+BYTE 19 Scorch 
 BYTE 25 FlameWheel
 BYTE 28 Slash
 BYTE 34 Flamethrower
@@ -74,7 +74,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
-BYTE 21 Scorch 
+BYTE 19 Scorch 
 BYTE 25 FlameWheel
 BYTE 28 Slash
 BYTE 34 Flamethrower
@@ -89,7 +89,7 @@ BYTE 4 Growl
 BYTE 4 AirSlash
 BYTE 7 Ember
 BYTE 14 DragonRage
-BYTE 21 Scorch 
+BYTE 19 Scorch 
 BYTE 25 FlameWheel
 BYTE 28 Slash
 BYTE 34 Flamethrower
@@ -381,6 +381,7 @@ BYTE 3 Growl
 BYTE 5 TailWhip
 BYTE 10 ThunderWave
 BYTE 13 QuickAttack
+BYTE 16 ShockWave
 BYTE 21 Slam
 BYTE 26 Thunderbolt
 BYTE 32 Agility
@@ -395,6 +396,7 @@ BYTE 3 Growl
 BYTE 5 TailWhip
 BYTE 10 ThunderWave
 BYTE 13 QuickAttack
+BYTE 16 ShockWave
 BYTE 21 Slam
 BYTE 26 Thunderbolt
 BYTE 32 Agility
