@@ -229,6 +229,12 @@ mov r1, r5 @ dmg
 sub r1, r0 @ Dmg to deal 
 mov r0, r1 
 
+cmp r0, #0 
+bgt NoCap1 
+mov r0, #1 @ Always deal at least 1 damage 
+NoCap1:
+
+
 ldrb r1, [r4, #DamagePercent] 
 cmp r1, #100 
 beq SkipPercent2
