@@ -260,7 +260,8 @@ ldr r0, [r6] @ unit ID
 ldrb r0, [r0, #4] 
 cmp r0, #0xA0 
 bge NoReduction 
-lsr r1, #1 @ 1/2 bonus levels for capturable mons 
+add r1, #2 @ rounding 
+lsr r1, #2 @ 1/4 bonus levels for capturable mons 
 NoReduction:
 mov r2, r1 @ bonus levels 
 

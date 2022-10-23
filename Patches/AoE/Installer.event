@@ -256,7 +256,7 @@ WORD 0
 WORD 0x1234567 // Mag, Luk, Res, Def, Spd, Skl, Str
 WORD 0x2345678
 
-#define AoEPercentDmg 75 
+#define AoEPercentDmg 67
 #define AoEPercentHeal 50 
 
 ALIGN 4 
@@ -1286,9 +1286,9 @@ BYTE 0 // Config2
 // Entry 
 BYTE 0 0 0 0
 BYTE 0 0 0 AttackPulse // Always usable by anyone 
-BYTE 0 FriendlyFireBool
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool 
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
-BYTE 1 1 // Attack range
+BYTE 2 2 // Attack range
 BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex

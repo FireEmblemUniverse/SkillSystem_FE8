@@ -243,7 +243,7 @@ ldr r0, [r5]
 ldrb r0, [r0, #4] 	
 str r0, [r2, #4*0x02] @unit ID in s2 
 
-ldr	r0, =PCBoxFullEvent	@this event is 
+ldr	r0, =PartyFullEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
 blh EventEngine 
 

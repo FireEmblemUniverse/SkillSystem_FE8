@@ -83,6 +83,9 @@ sub r2, r3 @ mov bonus to give
 mov r1, #0x1D @move bonus  
 strb r2, [r6, r1]
 
+mov r0, r6 
+bl EnsureMovementCap 
+
 NextUnit:
 add r4,#1
 cmp r4,#0xAF

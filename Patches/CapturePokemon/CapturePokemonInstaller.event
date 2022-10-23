@@ -2,7 +2,7 @@
 #include "RegisterPokemon.lyn.event"
 
 ALIGN 4
-PCBoxFullEvent:
+PartyFullEvent:
 EVBIT_MODIFY 1
 CUSA 0x7FFD //enemy to player 
 CAM1 0xFFFF
@@ -14,6 +14,13 @@ GIVETOSLOT3 // Take 300 gold from the player
 NoFade
 ENDA
 
+ALIGN 4
+PCBoxFullEvent:
+EVBIT_MODIFY 1
+DISA 0x7FFD //enemy to player 
+Text(CannotCaptureText)
+NoFade
+ENDA
 
 #include "CapturePokemon.lyn.event"
 

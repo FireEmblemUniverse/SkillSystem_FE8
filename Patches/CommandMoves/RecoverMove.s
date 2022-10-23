@@ -53,8 +53,8 @@ push {r4-r7, lr}
 ldr r3, =CurrentUnit
 ldr r4, [r3] 
 ldrb r0, [r4, #0x12] @ Max HP 
-add r0, #2 @ for some rounding 
-lsr r0, #2 @ 1/4 max hp 
+add r0, #1 @ for some rounding 
+lsr r0, #1 @ 1/2 max hp 
 ldr r3, =MemorySlot 
 str r0, [r3, #4*0x06] @ s6 as amount to heal 
 

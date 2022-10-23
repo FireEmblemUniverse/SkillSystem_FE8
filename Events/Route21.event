@@ -58,7 +58,9 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToPallet [6,0][11,0] 
+AREA 0 ToPallet_W [6,0][6,0] 
+AREA 0 ToPallet_E [11,0][11,0] 
+AREA 0 ToPallet_Water [7,0][10,0] 
 AREA 0 ToCinnabar [4,52][17,52] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -70,8 +72,14 @@ EscapeTileEntry(13,52)
 EscapeTileTerminator ; } 
 #endif 
 
-ToPallet:
+ToPallet_Water:
 ChapterTransition(PalletCh, 8, 18)
+
+ToPallet_E:
+ChapterTransition(PalletCh, 11, 18)
+
+ToPallet_W:
+ChapterTransition(PalletCh, 6, 18)
 
 ToCinnabar:
 ChapterTransition(CinnabarCh, 12, 1)

@@ -9,6 +9,9 @@
 #include "Extensions/Hack Installation.txt"
 
 
+#include "EnsureMovementCap.lyn.event" 
+#define EnsureMovementCap(unitID) "SVAL s1 unitID; ASMC EnsureMovementCap|1" 
+
 #include "GetUnitStatus.lyn.event"
 #include "SetUnitStatus.lyn.event"
 #include "AddUnitStatus.lyn.event"

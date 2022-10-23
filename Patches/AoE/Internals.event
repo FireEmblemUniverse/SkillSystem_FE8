@@ -46,7 +46,7 @@ AoE_Pokemblem_MoveTester:
 	#incbin "AoE_PokemblemImmuneTargets.dmp"
 	ALIGN 4
 	AoE_PokemblemMtGetter:
-	#incbin "AoE_PokemblemMtGetter.dmp" 
+	#include "AoE_PokemblemMtGetter.lyn.event" 
 	ALIGN 4 
 	AoE_PokemblemDamageModifier:
 	#include "AoE_PokemblemDamageModifier.lyn.event"

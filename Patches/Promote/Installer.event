@@ -51,6 +51,7 @@ ALIGN 4
 PromotionMenuEvent:
 ASMC PromoteStart
 ASMC PromoteFinish 
+EnsureMovementCap(0x7FFF)
 NoFade 
 ENDA 
 

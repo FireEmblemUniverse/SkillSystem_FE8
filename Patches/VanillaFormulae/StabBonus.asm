@@ -60,6 +60,8 @@ add r1, r0
 pop {r2} 
 bx r2 
 
+.type ShouldWeaponHaveStabBonus, %function 
+.global ShouldWeaponHaveStabBonus 
 
 ShouldWeaponHaveStabBonus:
 @ given r0 = wep id and r1 = class id, determine if they should have stab bonus or not 

@@ -122,7 +122,7 @@ StrengthBoulder(24,8) // only once dropped
 
 StrengthBoulder(4,17) // until dropped 
 StrengthBoulder(12,16)
-StrengthBoulder(13,16)
+//StrengthBoulder(13,16) // this one caused a softlock 
 
 
 

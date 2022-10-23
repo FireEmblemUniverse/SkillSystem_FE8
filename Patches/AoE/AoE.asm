@@ -2541,12 +2541,23 @@ beq UseStr
 mov r1, #0x3A		@{U}
 @mov r1, #0x1A		@{J}
 ldrb r0, [r6, r1] @ Use Mag 
+
+PercentToHeal: 
+ldrb r1, [r5, #DamagePercent] 
+cmp r1, #100 
+beq SkipPercent
+mul r0, r1 
+mov r1, #100 
+swi 6 
+SkipPercent:
+
 add r4, r0 
 b CleanupHealing 
 
-
 UseStr: @ Seems silly to use str, but non str/mag split users will appreciate 
 ldrb r0, [r6, #0x14] @ Str 
+b PercentToHeal
+
 add r4, r0 @ 
 b CleanupHealing 
 
