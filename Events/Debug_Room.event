@@ -96,13 +96,16 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  OddishID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  ExeggcuteID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [LeafStone,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
-UNIT 2  VictreebelID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 5  AlakazamID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 6  GengarID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 3  DugtrioID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 4  RaichuID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 2  GyaradosID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 4  AlakazamID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  GengarID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6  MarowakID 0x1 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 5  RaichuID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 7  DragonairID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 8  PidgeotID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+//UNIT 9  PidgeotID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 Units_Earlygame: 
@@ -110,7 +113,7 @@ UNIT 1  SquirtleID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,
 UNIT 2  MankeyID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 5  PidgeyID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 6  CaterpieID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 3  SlowpokeID 0x0 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 3  SlowpokeID 0x1 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  PidgeyID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 
 
@@ -214,7 +217,7 @@ BeginningScene:
 ENUT CasualModeFlag
 ENUT CasualModeFlag_2
 
-Write_Word(30000, 0x202BCF8)
+Write_Word(90000, 0x202BCF8)
 ENUT BracketedGrowthsFlag
 ENUT DebugPlaceUnitsFlagMenu
 
@@ -226,14 +229,14 @@ LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep s
 //LOAD1 0x1 Units_Earlygame
 ENUN
 
-LOAD1 0x1 Units3
-ENUN 
-LOAD1 0x1 Units4
-ENUN 
-LOAD1 0x1 Units5
-ENUN 
+//LOAD1 0x1 Units3
+//ENUN 
+//LOAD1 0x1 Units4
+//ENUN 
+//LOAD1 0x1 Units5
+//ENUN 
 //LOAD1 0x1 Units6
-ENUN
+//ENUN
 UNCM(0x12, 0x9)
 UNCM(0x13, 0x9)
 UNCM(0x14, 0x9)
@@ -269,12 +272,23 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveSkillAccessory(2, RenewalID)
 
 SupplyItem(ExoticCandy)
-SupplyItem(RedGem)
+SupplyItem(ExoticCandy)
+SupplyItem(ExoticCandy)
+SupplyItem(ExoticCandy)
+SupplyItem(ExoticCandy)
+//SupplyItem(RedGem)
 SupplyItem(MoonStone)
 SupplyItem(FireStone)
 SupplyItem(WaterStone)
 SupplyItem(Protein)
-SupplyItem(Iron)
+SupplyItem(Protein)
+SupplyItem(Protein)
+SupplyItem(Carbos)
+SupplyItem(Carbos)
+SupplyItem(Carbos)
+SupplyItem(Calcium)
+SupplyItem(Calcium)
+SupplyItem(Calcium)
 SupplyItem(Berry)
 SupplyItem(Berry)
 SupplyItem(JellyDonut)
@@ -285,25 +299,25 @@ SupplyItem(SuperPotion)
 SupplyItem(HyperPotion)
 SupplyItem(HyperPotion)
 SupplyItem(MaxPotion)
-SupplyItemWithDurability(StatAccessory, WiseGlasses_BoostIndex)
-SupplyItemWithDurability(StatAccessory, MuscleBand_BoostIndex)
-SupplyItemWithDurability(StatAccessory, LeatherShield_BoostIndex)
-SupplyItemWithDurability(SkillScroll, GaleforceID)
-SupplyItemWithDurability(SkillScroll, RenewalID)
-SupplyItemWithDurability(SkillScroll, TantivyID)
-SupplyItemWithDurability(SpellScroll, LeafFlurry)
-SupplyItemWithDurability(SpellScroll, Scorch)
-SupplyItemWithDurability(SpellScroll, WaterGun)
-SupplyItemWithDurability(SpellScroll, Spark)
-SupplyItemWithDurability(SpellScroll, KarateChop)
+SupplyItemWithDurability(StatAccessory, WiseGlassesT3_BoostIndex)
+SupplyItemWithDurability(StatAccessory, MuscleBandT3_BoostIndex)
+SupplyItemWithDurability(StatAccessory, QuickBoots_BoostIndex)
+//SupplyItemWithDurability(SkillScroll, GaleforceID)
+//SupplyItemWithDurability(SkillScroll, RenewalID)
+//SupplyItemWithDurability(SkillScroll, TantivyID)
+//SupplyItemWithDurability(SpellScroll, LeafFlurry)
+//SupplyItemWithDurability(SpellScroll, Scorch)
+//SupplyItemWithDurability(SpellScroll, WaterGun)
+//SupplyItemWithDurability(SpellScroll, Spark)
+//SupplyItemWithDurability(SpellScroll, KarateChop)
 
 //SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
 //SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(2, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(3, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(4, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(5, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+//SilentGiveItemWithDurability(3, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+//SilentGiveItemWithDurability(4, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+//SilentGiveItemWithDurability(5, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+//SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
 //SilentGiveItemWithDurability(1, SkillScroll, StrongRiposteID)
@@ -357,7 +371,7 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(3, True, 0x145) // all 
+AutoLevelUnits(43, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)
@@ -377,16 +391,44 @@ AutoLevelUnits(3, True, 0x145) // all
 //SetUnitStatus(2, 0x2B, 0)
 //SetUnitStatus(2, 0x2C, 0)
 
-SetUnitStatus(2, 0x2C, RecoverMove) // Charizard 
-SetUnitStatus(1, 0x29, Slash)
-SetUnitStatus(3, 0x28, PetalDance) // Victreebel 
+SetUnitStatus(1, 0x28, Flamethrower)
+SetUnitStatus(1, 0x29, DragonRage)
+SetUnitStatus(1, 0x2A, GuardMove)
+SetUnitStatus(1, 0x2B, Growl)
+SetUnitStatus(1, 0x2C, FlameWheel)
 
-//SetUnitStatus(3, 0x28, Earthquake)
-SetUnitStatus(4, 0x28, Thunderbolt) // Raichu 
-SetUnitStatus(5, 0x28, Psychic) // Alakazam 
-SetUnitStatus(6, 0x28, Thunderbolt) // Gengar 
-SetUnitStatus(6, 0x29, Psychic)
-SetUnitStatus(6, 0x2A, ShadowBall)
+SetUnitStatus(2, 0x28, Waterfall)
+SetUnitStatus(2, 0x29, Surf)
+SetUnitStatus(2, 0x2A, Outrage)
+SetUnitStatus(2, 0x2B, Avalanche)
+SetUnitStatus(2, 0x2C, Leer)
+
+SetUnitStatus(3, 0x28, ShadowBall)
+SetUnitStatus(3, 0x29, DarkPulse)
+SetUnitStatus(3, 0x2A, Sludge)
+SetUnitStatus(3, 0x2B, Confusion)
+SetUnitStatus(3, 0x2C, Snarl)
+
+SetUnitStatus(4, 0x28, Psychic)
+SetUnitStatus(4, 0x29, RecoverMove)
+SetUnitStatus(4, 0x2A, ShadowBall)
+SetUnitStatus(4, 0x2B, CalmMind)
+SetUnitStatus(4, 0x2C, Leer)
+
+
+
+SetUnitStatus(5, 0x28, Thunderbolt)
+SetUnitStatus(5, 0x29, ThunderWave)
+SetUnitStatus(5, 0x2A, TailWhip)
+SetUnitStatus(5, 0x2B, Agility)
+SetUnitStatus(5, 0x2C, Leer)
+
+SetUnitStatus(6, 0x28, Bonemerang)
+SetUnitStatus(6, 0x29, Earthquake)
+SetUnitStatus(6, 0x2A, RockSlide)
+SetUnitStatus(6, 0x2B, SwordsDance)
+SetUnitStatus(6, 0x2C, Leer)
+
 
 
 ENUT PokefluteFlag
@@ -395,13 +437,14 @@ ENUT BoulderbadgeObtained
 ENUT CascadebadgeObtained 
 ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
+ENUT CutHmFlag
 
 ENUT SoulbadgeObtained 
 ENUT RainbowbadgeObtained 
 ENUT MarshbadgeObtained
 Write_Byte(SquirtleID, GaryStarterClass) 
 ENUT VolcanobadgeObtained 
-ENUT EarthbadgeObtained 
+//ENUT EarthbadgeObtained 
 ENUT FlyFlag
 ENUT SaffronArrived
 ENUT CinnabarArrived
@@ -414,9 +457,11 @@ ENUT SecretKeyObtained
 Write_Byte(7, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(7, YCoordNewArea)  
 //MNC2 MansionB4Ch 
-//MNC2 CinnabarCh
-SetUnitStatus(1, CurrentHP, 5)
-MNC2 DebugCh 
+
+MNC2 MansionB3Ch
+//MNC2 ViridianCh
+//SetUnitStatus(1, CurrentHP, 5)
+//MNC2 DebugCh 
 //MNC2 PewterCh 
 //MNC2 ChampionCh 
 

@@ -17,6 +17,7 @@ POIN LungeUpdate
 //POIN PromoteOnLevelUp // Now a unit menu command 
 #endif // PROMOTE_LEVELUP
 
+
 #ifdef GAIDEN_MAGIC
 	POIN GaidenZeroOutSpellVariables
 #endif // GAIDEN_MAGIC

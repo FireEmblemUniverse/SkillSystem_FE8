@@ -5,6 +5,14 @@
 
 PUSH 
 
+// footsteps table by 7743 
+ORG $78D84 
+SHORT 0xE01C 
+ORG $078DC2
+BYTE  $00;
+ORG $078DC4
+BYTE  $FE;
+
 
 // by Vesly 
 // speed for battle map anim rounds 

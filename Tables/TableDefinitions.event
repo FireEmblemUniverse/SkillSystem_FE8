@@ -6,6 +6,13 @@
 #include "StatDefinitions.event" 
 
 
+#define FootstepsNormal 0x8078FEC 
+#define FootstepsSilent 0x8079022
+#define FootstepsKnight 0x8078FD4
+#define FootstepsFleet  0x8078FDC
+#define FootstepsPegasus  0x8078DB8
+#define FootstepsFlying  0x8078DB8
+
 /*
 #ifndef SoundRoomTable
 	#define SoundRoomTable 0xA20E74

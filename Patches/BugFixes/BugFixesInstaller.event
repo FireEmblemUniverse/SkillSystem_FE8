@@ -1,5 +1,34 @@
 #include "MechanicChanges.event" 
 #include "HPClassLimit/Installer.event"
+
+
+PUSH 
+ORG $A644C // makes it so if checksum for a save file is bad, it will still load the save file 
+SHORT $2001 // mov r0, #1 
+
+ORG $A2D9C // makes it so if your metadata is bad, it will still load your resume data 
+SHORT $2001 // mov r0, #1 
+
+ORG $AB932 // Remove support viewer 
+BYTE 0x00 0x00 0x00 0x20
+ORG $AB90E // Remove link arena 
+BYTE 0x00 0x00 0x00 0x20
+ORG $AB944 // Remove creature campaign 
+BYTE 0x00 0x00 0x00 0x20
+
+POP 
+
+
+
+
+
+
+
+
+
+
+
+
 //gSMSGfxIndexLookup 02033F40
 //SoundRoom Buffer 0201F148
 // by 7743 

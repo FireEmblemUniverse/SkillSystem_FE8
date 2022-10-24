@@ -24,6 +24,7 @@ POIN PostCombatSkills
 
 ALIGN 4
 PostCombatSkills:
+POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce
 POIN CheckIfGameOver
 POIN CapturePokemon 

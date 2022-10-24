@@ -1,0 +1,62 @@
+
+main break: 80A2D22 checksum16 
+
+pokemblem 
+E98A, 0000, 0000, 0080, 
+0000, E98A, E98A, (HS) 0080, 
+E98A, E98A, E98A, E98A, 
+0000, 
+
+vanilla 
+E98A, 0000, 0000, 04CC
+0000, E98A, (HS screen) 04CC, 04CC
+E98A, E98A, E98A, 0000
+
+immediate pause: 80000D8 
+
+??? 0x80A40A8 
+LoadGeneralGameMetadata 0x80A2D28 
+	IsSramWorking 
+	ComputeChecksum16 0x80A2D74: E9CA 
+LoadBonusContentData 0x80A38F4 <- the problem? 
+	IsEnableExtraMenuNetworkArena 0x80A32F0 
+	ComputeChecksum16: 0000 
+VerifySavedRankingChecksum 0x80A3898 
+
+a40d6 BL SaveRankings 
+
+
+0x80A3FA8 
+
+so by the time we get to LoadBonusContentData, the save is wiped ? 
+
+080AED64 B5F0   PUSH {r4,r5,r6,r7,lr}   //Show list of songs in sound room
+	0xAEDE0 sound room 100% unlocked 
+
+0xA3FE0 
+A6AAE 
+
+0x80A3DD8 SaveEndgameRankingsMaybe ? 
+
+0xA3E4C gets 0x0D0E as the checksum result 
+
+
+
+
+// in SaveMetadata_Load at 0x80A2EF8 
+// r13 goes to r4 
+// sp + 4 should have 0x200A, otherwise save file is bad? 
+
+/* these don't do anything useful if using 
+// A2F88 as mov r0, #1 makes some save file appear 
+// ignore checksums 
+//ORG $A2F80
+//SHORT $2001 // mov r0, #1 
+//ORG $A2F88 
+//SHORT $2001 // mov r0, #1 
+
+
+//ORG $A2D9C // - makes it so if your metadata is bad, it will still load your resume data 
+//SHORT $2001 // mov r0, #1 
+*/ 
+

@@ -36,7 +36,7 @@ MaybeTrainer1:
 cmp r0, #0xEF 
 ble ReturnTrue 
 MaybeTrainer2: 
-b NotTrainer @ for now trainers cannot walk through players 
+@b NotTrainer @ for now trainers cannot walk through players 
 
 @ allow trainers to walk through players 
 cmp r2, #0xE0 

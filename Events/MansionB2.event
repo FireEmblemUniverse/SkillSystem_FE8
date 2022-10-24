@@ -93,7 +93,7 @@ EscapeTileEntry(35,22)
 EscapeTileTerminator ; } 
 #endif 
 ToB1:
-ChapterTransition(MansionB1Ch, 8, 11)
+ChapterTransition(MansionB1Ch, 9, 13)
 
 ToB3_N:
 ChapterTransition(MansionB3Ch, 8, 3)

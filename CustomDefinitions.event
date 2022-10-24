@@ -6,7 +6,7 @@
 //#define DEBUG_MODE 
 
 PUSH; ORG $D74D0	//{U}
-String("Version 1.00    Oct 2022") ; BYTE 0; POP 
+String("Version 1.01    Oct 2022") ; BYTE 0; POP 
 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
@@ -333,32 +333,8 @@ String("Version 1.00    Oct 2022") ; BYTE 0; POP
 #define SpiritDust Calcium
 
 
-/*
-//mov costs & bonuses 
-#define NormMov 0x80b808
-#define NormRainMov 0x80bc59
-#define NormSnowMov 0x80c069
-#define NormAvoBon 0x80c479
-#define NormDefBon 0x80c4ba
-#define NormResBon 0x80c4fb
 
-#define FlierMov 0x80bb96
-#define FlierRainMov 0x80bfe7
-#define FlierSnowMov 0x80c3f7
-#define FlierAvoBon 0x80c53c
-#define FlierDefBon 0x80c57d
-#define FlierResBon 0x80c5be			
 
-#define SwimmerMov 0x80b90c
-#define SwimmerRainMov 0x80bd5d
-#define SwimmerSnowMov 0x80c16d
-#define SwimmerAvoBon 0x80c479
-#define SwimmerDefBon 0x80c4ba
-#define SwimmerResBon 0x80c4fb
-
-#define TerrainHealing 0x80C744
-#define TerrainRecoverStatus 0x80C785
-*/
 
 
 #define jumpToHack_r0(offset) "SHORT 0x4800 0x4700 ; POIN (offset|1)"
