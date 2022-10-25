@@ -26,7 +26,7 @@ beq GoBack
   mov lr, r0
   mov r0, r4 @unit
   mov r1, #0 @same_team
-  mov r3, #2 @range
+  mov r2, #2 @range
   .short 0xf800
   cmp r0, #0
   bne GoBack
