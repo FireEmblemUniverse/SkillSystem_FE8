@@ -44,7 +44,7 @@ END_MAIN
 
 ALIGN 4
 ShopItems_A:  // Supplies + StatBoosters 
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 SHLI SuperPotion JellyDonut HyperPotion MaxPotion FullHeal HPUp Protein Calcium Carbos Iron Zinc RareCandy
 //SHLI MoonStone FireStone WaterStone ThunderStone LeafStone LinkStone 
@@ -58,7 +58,7 @@ ShopItems_B: // TMs CDs
 //BYTE SpellScroll Screech SpellScroll SwordsDance
 //BYTE SpellScroll BugBuzz SpellScroll CalmMind
 BYTE SpellScroll HiJumpKick SpellScroll BulkUp
-BYTE SpellScroll Thunder SpellScroll HoneClaws
+BYTE SpellScroll ThunderMove SpellScroll HoneClaws
 BYTE SpellScroll EarthPower SpellScroll Blizzard
 BYTE SpellScroll XScissor SpellScroll HydroPump
 BYTE SpellScroll HyperBeam SpellScroll Sludge

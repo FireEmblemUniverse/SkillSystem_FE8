@@ -14,6 +14,14 @@ push { lr }
 ldrb r1, [ r4, #0x13 ]
 cmp r1, #0x00
 beq EndInjureAttacker @ Leave if the attacker is already dead.
+ldr r1, [r4] @ unit 
+ldrb r1, [r1, #4] @ unit id 
+cmp r1, #0xE0 
+blt Continue 
+cmp r1, #0xEF 
+ble EndInjureAttacker @ don't hit trainers 
+Continue: 
+
 @ I also need to check if the defender did no damage.
 mov r2, #0x5A
 ldrh r1, [ r7, r2 ] @ Get attack
@@ -51,6 +59,14 @@ push { lr }
 ldrb r1, [ r5, #0x13 ]
 cmp r1, #0x00
 beq EndInjureDefender @ Leave if the defender is already dead.
+ldr r1, [r5] @ unit 
+ldrb r1, [r1, #4] @ unit id 
+cmp r1, #0xE0 
+blt Continue 
+cmp r1, #0xEF 
+ble EndInjureDefender @ don't hit trainers 
+Continue2: 
+
 @ I also need to check if the attacker did no damage.
 mov r2, #0x5A
 ldrh r1, [ r6, r2 ] @ Get attack

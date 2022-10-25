@@ -35,7 +35,7 @@ beq	End
 ldr	r0, GetUnitsInRange
 mov	lr, r0
 mov	r0, r4		@attacker
-mov	r1, #4 @ all units in range @#0x03   @are_enemies
+mov	r1, #0x03   @are_enemies
 mov	r2, #0x02	@range
 .short	0xf800
 

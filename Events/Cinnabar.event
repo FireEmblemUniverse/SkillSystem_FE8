@@ -93,7 +93,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToRoute21:
-ChapterTransition(Route21Ch, 12,51)
+ChapterTransition(Route21Ch, 11,51)
 ToRoute20:
 ChapterTransition(Route20WCh, 1,12)
 
@@ -194,7 +194,7 @@ TDQ_TableTerminator
 
 ALIGN 4
 ShopItems:
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 BYTE HyperPotion 5 
 BYTE SuperPotion 5 
@@ -203,7 +203,7 @@ BYTE SpellScroll IceBeam SpellScroll TriAttack
 BYTE SpellScroll Psychic SpellScroll PetalDance
 BYTE SpellScroll Screech SpellScroll SwordsDance
 BYTE SpellScroll BugBuzz SpellScroll CalmMind
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
 

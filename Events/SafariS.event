@@ -242,7 +242,7 @@ BD(0xE, 0x00, 0)
 TDQ_TableTerminator ; }
  
 ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 ALIGN 4
 
 ArmoryItems:

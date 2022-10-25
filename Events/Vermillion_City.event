@@ -154,7 +154,7 @@ ENDA
 
 ALIGN 4
 ShopItems:
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
@@ -162,7 +162,7 @@ BYTE SkillScroll PatienceID
 BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
 BYTE SpellScroll Headbutt 
 BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
 

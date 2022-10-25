@@ -119,7 +119,7 @@ ChapterTransition(Route10Ch, 1,38)
 Traps1:
 
 
-// Thunder, VintageBoots, ThunderStone, Carbos 
+// ThunderMove, VintageBoots, ThunderStone, Carbos 
 
 
 //StrengthBoulder(4,3)
@@ -134,7 +134,7 @@ StatAccessoryTrap(22,16, (ChapterID*2), VintageBoots_BoostIndex)
 RedPokeballTrap(30,26, (ChapterID*2)+1, Carbos) 
 RedPokeballTrap(14,27, (ChapterID*2), ThunderStone) 
 //RedPokeballTrap(22,16, (ChapterID*2), ThunderStone) 
-SpellScrollTrap(5,5, (ChapterID*2)+1, Thunder)
+SpellScrollTrap(5,5, (ChapterID*2)+1, ThunderMove)
 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
@@ -281,7 +281,7 @@ ENDA
 
 
 ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 ALIGN 4
 
 ArmoryItems:
@@ -386,7 +386,7 @@ BD(0xE, ZapdosDefeatText, 0)
 TDQ_TableTerminator ; }
 
 ZapdosBattleUnitGroup:
-UNIT 0xEE ZapdosID 0x0 Level(0, Enemy, 1) [6,11]  0b 0x0	0x1 REDA6R11 [Leer,Thunder,DrillPeck,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT 0xEE ZapdosID 0x0 Level(0, Enemy, 1) [6,11]  0b 0x0	0x1 REDA6R11 [Leer,ThunderMove,DrillPeck,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
 ZapdosUnits: 

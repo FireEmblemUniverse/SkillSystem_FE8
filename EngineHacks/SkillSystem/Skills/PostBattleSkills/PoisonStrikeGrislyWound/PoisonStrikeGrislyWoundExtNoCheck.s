@@ -14,6 +14,14 @@ push { lr }
 ldrb r1, [ r4, #0x13 ]
 cmp r1, #0x00
 beq EndInjureAttacker @ Leave if the attacker is already dead.
+ldr r1, [r4] @ unit 
+ldrb r1, [r1, #4] @ unit id 
+cmp r1, #0xE0 
+blt Continue 
+cmp r1, #0xEF 
+ble EndInjureAttacker @ don't hit trainers 
+Continue: 
+
 ldrb r0, [ r4, #0x12 ] @ Max HP
 lsl r0, r0, #1 @ Multiply by 2
 mov r1, #10
@@ -42,6 +50,14 @@ push { lr }
 ldrb r1, [ r5, #0x13 ]
 cmp r1, #0x00
 beq EndInjureDefender @ Leave if the defender is already dead.
+ldr r1, [r5] @ unit 
+ldrb r1, [r1, #4] @ unit id 
+cmp r1, #0xE0 
+blt Continue2 
+cmp r1, #0xEF 
+ble EndInjureDefender @ don't hit trainers 
+Continue2: 
+
 ldrb r0, [ r5, #0x12 ] @ Max HP
 lsl r0, r0, #1 @ Multiply by 2
 mov r1, #10

@@ -131,7 +131,7 @@
 #define SolarBeam 0x83
 #define RazorLeaf 0x84
 #define VineWhip 0x85
-#define ThunderX 0x86
+#define ThunderMove 0x86
 #define ThunderPunch 0x87
 #define SacredStone 0x88
 #define MetisTome2 0x89
@@ -201,7 +201,7 @@
 #define WingAttack 0xC9
 #define FocusEnergy 0xCA
 #define Confusion 0xCB
-#define UNUSEDSLOT 0xCC
+#define Hurricane 0xCC
 #define Hypnosis 0xCD
 #define ShockWave 0xCE
 #define Reflect 0xCF

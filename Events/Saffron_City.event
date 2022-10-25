@@ -230,7 +230,7 @@ TDQ_TableTerminator
 
 ALIGN 4
 ShopItems:
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
@@ -240,7 +240,7 @@ BYTE SpellScroll BubbleBeam SpellScroll DrillPeck
 BYTE SpellScroll HealPulse SpellScroll RockSlide SpellScroll Dragonbreath
 BYTE SpellScroll Psybeam SpellScroll BugBite SpellScroll PoisonJab 
 BYTE SpellScroll LeafBlade
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
 

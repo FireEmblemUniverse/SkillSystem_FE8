@@ -183,7 +183,7 @@ ENDA
 
 
 ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 ALIGN 4
 
 ArmoryItems:
@@ -224,7 +224,7 @@ UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0
 UNIT 
 
 BossUnit:
-UNIT 0xEE TangelaID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 0xEE TangelaID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] TrainerAI
 UNIT
 
 EnemyUnitsC:
@@ -274,6 +274,7 @@ MS_TableEntry(0xE2, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers2)
 MS_TableEntry(0xE3, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers3) 
 MS_TableEntry(0xE4, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers4) 
 MS_TableEntry(0xE5, 0, 0, 0, 1, 1, 0, 1, EnemyTrainers5) 
+MS_TableEntry(0xEE, 0, 0, 0, 1, 1, 0, 1, BossSummons) 
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
@@ -283,6 +284,7 @@ BQ(2, R21_0xE2_BQ)
 BQ(3, R21_0xE3_BQ)
 BQ(4, R21_0xE4_BQ)
 BQ(5, R21_0xE5_BQ)
+BQ(0xE, 0)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
@@ -292,8 +294,16 @@ BD(2, R21_0xE2_BD, 600)
 BD(3, R21_0xE3_BD, 600)
 BD(4, R21_0xE4_BD, 600)
 BD(5, R21_0xE5_BD, 600)
+BD(0xE, 0, 0)
 TDQ_TableTerminator ; }
 
+BossSummons: 
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [10,10]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT GenericB 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSixAI
+UNIT
 
 // 21:
 // TangelaID	PoliwhirlID	MrMimeID

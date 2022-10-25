@@ -10,13 +10,14 @@ Proc_MultiHit:
 POIN SkillTester
 WORD MultiHitID
 
-
+ALIGN 4
 Proc_Absorb:
 #incbin "Absorb/proc_Absorb.dmp"
 POIN SkillTester
 WORD AbsorbID
 WORD LiquidOozeID
 
+ALIGN 4
 Proc_Drain:
 #incbin "Drain/proc_Drain.dmp"
 POIN SkillTester

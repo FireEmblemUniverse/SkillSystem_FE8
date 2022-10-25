@@ -149,7 +149,10 @@ RunAway
 Goto(0)
 ALIGN 32 
 
-
+PUSH 
+ORG $5A9184 // so default fallback does not attack trainers ? (untested) 
+POIN AttackInRangeExceptF0toFF
+POP 
 
 ALIGN 32
 AttackInRangeExceptF0toFF:

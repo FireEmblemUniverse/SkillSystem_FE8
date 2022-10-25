@@ -60,11 +60,14 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
-BYTE 19 Scorch 
-BYTE 25 FlameWheel
+BYTE 18 Scorch 
+BYTE 24 FlameWheel
 BYTE 28 Slash
-BYTE 34 Flamethrower
-BYTE 37 FireSpin
+BYTE 32 Flamethrower
+BYTE 36 WingAttack
+BYTE 39 FireSpin
+BYTE 44 AirSlash
+BYTE 50 Hurricane 
 BYTE 0 0
 
 ALIGN 4
@@ -74,11 +77,14 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
 BYTE 14 DragonRage
-BYTE 19 Scorch 
-BYTE 25 FlameWheel
+BYTE 18 Scorch 
+BYTE 24 FlameWheel
 BYTE 28 Slash
-BYTE 34 Flamethrower
-BYTE 37 FireSpin
+BYTE 32 Flamethrower
+BYTE 36 WingAttack
+BYTE 39 FireSpin
+BYTE 44 AirSlash
+BYTE 50 Hurricane 
 BYTE 0 0
 
 ALIGN 4
@@ -86,15 +92,16 @@ CharizardLearnset:
 BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
-BYTE 4 AirSlash
 BYTE 7 Ember
 BYTE 14 DragonRage
-BYTE 19 Scorch 
-BYTE 25 FlameWheel
+BYTE 18 Scorch 
+BYTE 24 FlameWheel
 BYTE 28 Slash
-BYTE 34 Flamethrower
+BYTE 32 Flamethrower
 BYTE 36 WingAttack
-BYTE 37 FireSpin
+BYTE 39 FireSpin
+BYTE 44 AirSlash
+BYTE 50 Hurricane 
 BYTE 0 0
 
 ALIGN 4
@@ -256,14 +263,15 @@ BYTE 1 Tackle
 BYTE 5 Gust
 BYTE 9 SandAttack
 BYTE 13 QuickAttack
+BYTE 17 AirSlash
 BYTE 21 Twister
 BYTE 25 WingAttack
 BYTE 29 Agility
 BYTE 33 Slash
 BYTE 37 RecoverMove //?Buff (Roost)
+BYTE 39 Hurricane 
 //BYTE 43 Tailwind
 //BYTE 45 Resv //MirrorMove
-BYTE 49 AirSlash
 BYTE 0 0
 
 ALIGN 4
@@ -272,14 +280,15 @@ BYTE 1 Tackle
 BYTE 5 Gust
 BYTE 9 SandAttack
 BYTE 13 QuickAttack
+BYTE 17 AirSlash
 BYTE 21 Twister
 BYTE 25 WingAttack
 BYTE 29 Agility
 BYTE 33 Slash
 BYTE 37 RecoverMove //?Buff (Roost)
+BYTE 39 Hurricane 
 //BYTE 43 Tailwind
 //BYTE 45 Resv //MirrorMove
-BYTE 49 AirSlash
 BYTE 0 0
 
 ALIGN 4
@@ -288,14 +297,15 @@ BYTE 1 Tackle
 BYTE 5 Gust
 BYTE 9 SandAttack
 BYTE 13 QuickAttack
+BYTE 17 AirSlash
 BYTE 21 Twister
 BYTE 25 WingAttack
 BYTE 29 Agility
 BYTE 33 Slash
 BYTE 37 RecoverMove //?Buff (Roost)
+BYTE 39 Hurricane 
 //BYTE 43 Tailwind
 //BYTE 45 Resv //MirrorMove
-BYTE 49 AirSlash
 BYTE 0 0
 
 ALIGN 4
@@ -330,7 +340,7 @@ BYTE 15 WingAttack
 //BYTE 21 Resv //MirrorMove
 BYTE 25 Agility
 BYTE 29 NightSlash
-BYTE 33 Restore //?Buff (Roost)
+//BYTE 33 RecoverMove //Restore //?Buff (Roost)
 BYTE 37 DrillPeck
 BYTE 0 0
 
@@ -344,7 +354,7 @@ BYTE 15 WingAttack
 //BYTE 21 Resv //MirrorMove
 BYTE 25 Agility
 BYTE 29 NightSlash
-BYTE 33 Restore //?Buff (Roost)
+//BYTE 33 RecoverMove //Restore //?Buff (Roost)
 BYTE 37 DrillPeck
 BYTE 0 0
 
@@ -386,7 +396,7 @@ BYTE 21 Slam
 BYTE 26 Thunderbolt
 BYTE 32 Agility
 //BYTE 38 LightScreen
-BYTE 43 Thunder 
+BYTE 43 ThunderMove 
 BYTE 0 0
 
 ALIGN 4
@@ -401,7 +411,7 @@ BYTE 21 Slam
 BYTE 26 Thunderbolt
 BYTE 32 Agility
 //BYTE 38 LightScreen
-BYTE 43 Thunder 
+BYTE 43 ThunderMove 
 BYTE 0 0
 
 ALIGN 4
@@ -659,31 +669,31 @@ BYTE 0 0
 ALIGN 4
 ZubatLearnset:
 BYTE 1 LeechLife
-BYTE 5 Pound 
+BYTE 5 Gust
 BYTE 9 Lick 
 BYTE 13 Bite 
 BYTE 17 WingAttack 
 BYTE 21 ConfuseRay
-BYTE 25 Gust
+BYTE 25 AirSlash 
 BYTE 29 SandAttack
 BYTE 33 Toxic //PoisonFang
 //BYTE 37 Resv //Haze
-BYTE 41 AirSlash
+BYTE 41 Hurricane
 BYTE 0 0
 
 ALIGN 4
 GolbatLearnset:
 BYTE 1 LeechLife
-BYTE 5 Pound 
+BYTE 5 Gust
 BYTE 9 Lick 
 BYTE 13 Bite 
 BYTE 17 WingAttack 
 BYTE 21 ConfuseRay
-BYTE 25 Gust
+BYTE 25 AirSlash 
 BYTE 29 SandAttack
 BYTE 33 Toxic //PoisonFang
 //BYTE 37 Resv //Haze
-BYTE 41 AirSlash
+BYTE 41 Hurricane
 BYTE 0 0
 
 ALIGN 4
@@ -1301,7 +1311,7 @@ BYTE 38 Thunderbolt
 BYTE 43 MirrorShot
 // BYTE 46 Resv MagnetRise
 BYTE 49 MeteorMash // GyroBall
-BYTE 54 Thunder // Zap Cannon
+BYTE 54 ThunderMove // Zap Cannon
 BYTE 0 0 // Magnezone gets Mirror Coat and Barrier if you wanna incorporate that in this line
 
 ALIGN 4
@@ -1320,7 +1330,7 @@ BYTE 38 Thunderbolt
 BYTE 43 MirrorShot
 // BYTE 46 Resv MagnetRise
 BYTE 49 MeteorMash // GyroBall
-BYTE 54 Thunder // Zap Cannon
+BYTE 54 ThunderMove // Zap Cannon
 BYTE 0 0 // Magnezone gets Mirror Coat and Barrier if you wanna incorporate that in this line
 
 ALIGN 4
@@ -1335,12 +1345,13 @@ BYTE 9 ThiefAtt // KnockOff
 BYTE 13 WingAttack // Aerial Ace
 BYTE 19 Slash
 BYTE 21 Gust // Air Cutter
-BYTE 25 SwordsDance
+BYTE 24 SwordsDance
+BYTE 28 AirSlash
 BYTE 31 Agility
 BYTE 33 NightSlash
-BYTE 37 AirSlash
 BYTE 43 QuickAttack // Feint
 BYTE 45 Guillotine // FalseSwipe
+BYTE 47 Hurricane
 BYTE 0 0
 
 ALIGN 4
@@ -1574,7 +1585,7 @@ BYTE 32 Headbutt // Don't look at me.
 // BYTE 37 Resv Swagger
 BYTE 40 Psychic
 BYTE 43 DarkPulse
-BYTE 50 Warp // ZenHeadbutt
+//BYTE 50 Warp // ZenHeadbutt
 BYTE 53 RecoverMove // Resv FutureSight
 BYTE 0 0
 
@@ -1592,7 +1603,7 @@ BYTE 32 Headbutt // Don't look at me.
 // BYTE 37 Resv Swagger
 BYTE 40 Psychic
 BYTE 43 DarkPulse
-BYTE 50 Warp // ZenHeadbutt
+//BYTE 50 Warp // ZenHeadbutt
 BYTE 53 RecoverMove // Resv FutureSight
 BYTE 0 0 // Gets Nightmare and Switcheroo on evo in Gen 4, also should probably look at Butterfree as well if warp is not meant to be allowed
 
@@ -1645,7 +1656,7 @@ BYTE 19 Screech
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 Swift
-BYTE 36 Thunder // Resv MagnetRise
+BYTE 36 ThunderMove // Resv MagnetRise
 BYTE 36 Explosion // 29 selfdestruct + 43 explosion /2 = 36
 BYTE 40 MirrorShot // GyroBall
 // BYTE 43 Explosion
@@ -1664,7 +1675,7 @@ BYTE 19 Screech
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 Swift
-BYTE 36 Thunder // Resv MagnetRise
+BYTE 36 ThunderMove // Resv MagnetRise
 BYTE 36 Explosion // 29 selfdestruct + 43 explosion /2 = 36
 BYTE 40 MirrorShot // GyroBall
 // BYTE 43 Explosion
@@ -2073,13 +2084,13 @@ BYTE 21 WingAttack
 BYTE 25 FuryCutter
 BYTE 29 Slash
 BYTE 33 Swift // RazorWind
-// BYTE 37 Resv DoubleTeam
+BYTE 37 AirSlash //DoubleTeam
 BYTE 41 XScissor
 BYTE 45 NightSlash
+BYTE 47 SwordsDance
 BYTE 49 DoubleHit
-BYTE 53 AirSlash
-BYTE 57 SwordsDance
-BYTE 61 QuickAttack // Feint
+BYTE 53 Hurricane
+//BYTE 61 QuickAttack // Feint
 BYTE 0 0
 
 ALIGN 4
@@ -2116,7 +2127,7 @@ BYTE 28 ThunderPunch
 BYTE 37 ThunderWave // Discharge
 BYTE 43 Thunderbolt
 // BYTE 52 Resv Screech
-BYTE 58 Thunder
+BYTE 58 ThunderMove
 BYTE 0 0
 
 ALIGN 4
@@ -2266,7 +2277,7 @@ BYTE 43 Spark // ThunderFang
 BYTE 50 DoubleEdge // LastResort
 BYTE 57 ThunderWave
 BYTE 64 Agility
-BYTE 71 Thunder
+BYTE 71 ThunderMove
 BYTE 78 VoltTackle // Discharge
 BYTE 0 0
 
@@ -2304,7 +2315,7 @@ BYTE 40 Spark // Discharge
 BYTE 45 Flash // BYTE 45 Resv LockOn
 BYTE 51 TriAttack
 // BYTE 56 Resv MagicCoat
-BYTE 62 Thunder // ZapCannon
+BYTE 62 ThunderMove // ZapCannon
 BYTE 0 0
 
 ALIGN 4
@@ -2410,8 +2421,8 @@ BYTE 1 AuroraBeam
 //BYTE 22 ??? ?Buff (Mind Reader)
 BYTE 29 Ancientpower
 BYTE 36 Agility //?Buff
-BYTE 43 IceBeam
-//BYTE 50 Reflect
+BYTE 43 Hurricane // Reflect 
+BYTE 50 IceBeam
 BYTE 57 RecoverMove //?Buff (Roost)
 //BYTE 64 Tailwind
 BYTE 71 Blizzard
@@ -2427,25 +2438,29 @@ BYTE 8 ThunderWave
 BYTE 22 WingAttack 
 BYTE 29 Ancientpower
 //BYTE 36 ??? ?Buff (Charge)
-BYTE 43 Agility //?Buff
+BYTE 35 Agility 
+BYTE 43 Hurricane 
+//BYTE 43 Agility //?Buff
 BYTE 50 Thunderbolt
 BYTE 57 RecoverMove //?Buff (Roost)
 //BYTE 64 LightScreen //?Buff
 BYTE 71 DrillPeck
-BYTE 78 Thunder
+BYTE 78 ThunderMove
 BYTE 0 0
 
 ALIGN 4
 MoltresLearnset:
 BYTE 1 WingAttack 
 BYTE 1 Ember 
+BYTE 1 Gust 
 BYTE 8 FireSpin 
 BYTE 15 Agility //?Buff 
 BYTE 22 RecoverMove //?Buff (RecoverMove) 
+BYTE 25 AirSlash 
 BYTE 29 Ancientpower 
-BYTE 36 Flamethrower 
 //BYTE 43 Barrier //?Buff (Safeguard) 
-BYTE 50 AirSlash 
+BYTE 43 Hurricane
+BYTE 50 Flamethrower 
 BYTE 57 RecoverMove //?Buff (Roost) 
 BYTE 64 FireBlast 
 BYTE 71 SolarBeam 

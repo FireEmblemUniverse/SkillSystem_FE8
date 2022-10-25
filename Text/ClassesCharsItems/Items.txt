@@ -89,7 +89,7 @@ Amnesia[X]
 Recover[X]
 
 ## RecoverDescText
-Restore 25% HP.[X]
+Restore 50% HP.[X]
 
 
 ## HeavyWardName ^
@@ -1402,6 +1402,13 @@ Night Daze[X]
 
 ## BindDesc
 *{(}Traps the foe in a binding grip.[X]
+
+## HurricaneName
+Hurricane[X]
+
+## HurricaneDesc
+*{)}A fierce wind attack.[N]
+May confuse the foe.[X]
 
 
 ## MoonStoneName ^

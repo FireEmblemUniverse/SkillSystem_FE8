@@ -320,7 +320,7 @@ SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 //SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
-//SilentGiveItemWithDurability(1, SkillScroll, StrongRiposteID)
+SilentGiveItemWithDurability(1, SkillScroll, SavageBlowID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)
@@ -458,9 +458,9 @@ Write_Byte(7, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(7, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 
-MNC2 MansionB3Ch
+MNC2 DebugCh
 //MNC2 ViridianCh
-//SetUnitStatus(1, CurrentHP, 5)
+SetUnitStatus(1, CurrentHP, 5)
 //MNC2 DebugCh 
 //MNC2 PewterCh 
 //MNC2 ChampionCh 
@@ -685,7 +685,7 @@ ENDA
 
 
 ShopItems:
-SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 ALIGN 4
 
 ArmoryItems:

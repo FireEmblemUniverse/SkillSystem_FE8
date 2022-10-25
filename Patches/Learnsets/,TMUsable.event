@@ -137,13 +137,13 @@ BYTE 0
 
 ALIGN 4
 RattataTMs:
-BYTE IronTail LeechLife ShadowBall UTurn ThunderX Thunderbolt ThunderWave Dig Magnitude MudShot
+BYTE IronTail LeechLife ShadowBall UTurn ThunderMove Thunderbolt ThunderWave Dig Magnitude MudShot
 BYTE Blizzard IceBeam Bite
 BYTE 0
 
 ALIGN 4
 RaticateTMs:
-BYTE IronTail LeechLife ShadowBall UTurn ThunderX Thunderbolt ThunderWave Dig Magnitude MudShot
+BYTE IronTail LeechLife ShadowBall UTurn ThunderMove Thunderbolt ThunderWave Dig Magnitude MudShot
 BYTE Blizzard IceBeam Bite
 BYTE 0
 
@@ -197,13 +197,13 @@ BYTE 0
 
 ALIGN 4
 NidoranFTMs:
-BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut Growl Scratch Tackle DoubleHit TailWhip ThunderX
+BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut Growl Scratch Tackle DoubleHit TailWhip ThunderMove
 BYTE Thunderbolt Blizzard IceBeam DoubleKick Dig Magnitude MudShot Bite HoneClaws
 BYTE 0
 
 ALIGN 4
 NidorinaTMs:
-BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut Growl Scratch Tackle DoubleHit TailWhip ThunderX
+BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut Growl Scratch Tackle DoubleHit TailWhip ThunderMove
 BYTE Thunderbolt Blizzard IceBeam DoubleKick Dig Magnitude MudShot Bite HoneClaws
 BYTE 0
 
@@ -211,19 +211,19 @@ ALIGN 4
 NidoqueenTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Avalanche RockTomb Sandstorm ShadowBall Cut
 BYTE BodySlam Growl HyperBeam SignalBeam Scratch Tackle DoubleHit TailWhip FirePunch MegaPunch Dig Magnitude MudShot
-BYTE Flamethrower Ember Scorch FireBlast Surf ThunderX ThunderPunch Thunderbolt
+BYTE Flamethrower Ember Scorch FireBlast Surf ThunderMove ThunderPunch Thunderbolt
 BYTE Blizzard IceBeam IcePunch DoubleKick SeismicToss KarateChop RockSlide Bite HoneClaws
 BYTE 0
 
 ALIGN 4
 NidoranMTMs:
-BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut HornAttack HornDrill Leer Tackle DoubleHit ThunderX
+BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut HornAttack HornDrill Leer Tackle DoubleHit ThunderMove
 BYTE Thunderbolt Blizzard IceBeam DoubleKick Dig Magnitude MudShot Peck Bite HoneClaws
 BYTE 0
 
 ALIGN 4
 NidorinoTMs:
-BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut HornAttack HornDrill Leer Tackle DoubleHit ThunderX
+BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Cut HornAttack HornDrill Leer Tackle DoubleHit ThunderMove
 BYTE Thunderbolt Blizzard IceBeam DoubleKick Dig Magnitude MudShot Peck Bite HoneClaws
 BYTE 0
 
@@ -231,7 +231,7 @@ ALIGN 4
 NidokingTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam Avalanche RockTomb Sandstorm ShadowBall Cut
 BYTE Megahorn HornAttack HornDrill HyperBeam SignalBeam Leer Tackle DoubleHit Thrash Bite
-BYTE FirePunch MegaPunch Flamethrower Ember Scorch FireBlast Surf ThunderX ThunderPunch Dig Magnitude MudShot
+BYTE FirePunch MegaPunch Flamethrower Ember Scorch FireBlast Surf ThunderMove ThunderPunch Dig Magnitude MudShot
 BYTE Thunderbolt Blizzard IceBeam IcePunch DoubleKick SeismicToss KarateChop Peck  HoneClaws
 BYTE RockSlide
 BYTE 0
@@ -239,7 +239,7 @@ BYTE 0
 ALIGN 4
 ClefairyTMs:
 BYTE IronTail LeechLife MeteorMash WaterPulse WaterGun Bubble BubbleBeam Rollout PinMissile ShadowBall Flash AttackPulse FirePunch MegaPunch
-BYTE Flamethrower Ember Scorch FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch Blizzard
+BYTE Flamethrower Ember Scorch FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch Blizzard
 BYTE Thunderbolt ThunderWave IceBeam IcePunch SeismicToss KarateChop Dig Magnitude MudShot Reflect
 BYTE DreamEater LightScreen Psychic Confusion WaterGun Wish CalmMind 
 BYTE 0
@@ -247,7 +247,7 @@ BYTE 0
 ALIGN 4
 ClefableTMs:
 BYTE IronTail LeechLife MeteorMash WaterPulse WaterGun Bubble BubbleBeam Rollout PinMissile ShadowBall Flash AttackPulse FirePunch MegaPunch
-BYTE Flamethrower Ember Scorch FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch Blizzard
+BYTE Flamethrower Ember Scorch FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch Blizzard
 BYTE Thunderbolt ThunderWave IceBeam IcePunch SeismicToss KarateChop Dig Magnitude MudShot Reflect
 BYTE DreamEater LightScreen Psychic Confusion Wish CalmMind 
 BYTE 0
@@ -266,14 +266,14 @@ BYTE 0
 ALIGN 4
 JigglypuffTMs:
 BYTE WaterPulse WaterGun Bubble BubbleBeam Rollout PinMissile ShadowBall Flash AttackPulse FirePunch MegaPunch Flamethrower Ember Scorch
-BYTE FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX Thunderbolt ThunderWave IceBeam Dig Magnitude MudShot
+BYTE FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove Thunderbolt ThunderWave IceBeam Dig Magnitude MudShot
 BYTE IcePunch SeismicToss KarateChop DreamEater LightScreen Reflect Psychic Confusion Rest Wish 
 BYTE 0
 
 ALIGN 4
 WigglytuffTMs:
 BYTE WaterPulse WaterGun Bubble BubbleBeam Rollout PinMissile ShadowBall Flash AttackPulse FirePunch MegaPunch Flamethrower Ember Scorch
-BYTE FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX Thunderbolt ThunderWave IceBeam Dig Magnitude MudShot
+BYTE FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove Thunderbolt ThunderWave IceBeam Dig Magnitude MudShot
 BYTE IcePunch SeismicToss KarateChop DreamEater LightScreen Reflect Psychic Confusion Rest Wish
 BYTE 0
 
@@ -337,13 +337,13 @@ BYTE 0
 ALIGN 4
 MeowthTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam ShadowBall UTurn NightSlash DarkPulse Flash AttackPulse
-BYTE ThunderX Thunderbolt Dig Magnitude MudShot DreamEater Bite HoneClaws
+BYTE ThunderMove Thunderbolt Dig Magnitude MudShot DreamEater Bite HoneClaws
 BYTE 0
 
 ALIGN 4
 PersianTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam ShadowBall UTurn NightSlash DarkPulse Flash AttackPulse
-BYTE ThunderX Thunderbolt Dig Magnitude MudShot DreamEater Bite HoneClaws
+BYTE ThunderMove Thunderbolt Dig Magnitude MudShot DreamEater Bite HoneClaws
 BYTE 0
 
 ALIGN 4
@@ -361,13 +361,13 @@ BYTE 0
 ALIGN 4
 MankeyTMs:
 BYTE PoisonJab RockTomb UTurn Covet Leer Scratch Thrash FirePunch MegaPunch Dig Magnitude MudShot
-BYTE ThunderX ThunderPunch Thunderbolt IcePunch Earthquake RockSlide HoneClaws
+BYTE ThunderMove ThunderPunch Thunderbolt IcePunch Earthquake RockSlide HoneClaws
 BYTE 0
 
 ALIGN 4
 PrimeapeTMs:
 BYTE PoisonJab RockTomb UTurn Covet HyperBeam SignalBeam Leer Rage Scratch Thrash
-BYTE FirePunch MegaPunch ThunderX ThunderPunch Thunderbolt IcePunch Dig Magnitude MudShot HoneClaws
+BYTE FirePunch MegaPunch ThunderMove ThunderPunch Thunderbolt IcePunch Dig Magnitude MudShot HoneClaws
 BYTE Earthquake RockSlide
 BYTE 0
 
@@ -541,7 +541,7 @@ BYTE 0
 
 ALIGN 4
 GrimerTMs:
-BYTE MudBomb RockTomb ShadowBall Explosion Pound FirePunch MegaPunch ThunderX
+BYTE MudBomb RockTomb ShadowBall Explosion Pound FirePunch MegaPunch ThunderMove
 BYTE Flamethrower Ember Scorch FireBlast ThunderPunch Thunderbolt IcePunch Dig Magnitude MudShot
 BYTE RockSlide
 BYTE 0
@@ -549,7 +549,7 @@ BYTE 0
 ALIGN 4
 MukTMs:
 BYTE MudBomb RockTomb ShadowBall DarkPulse Explosion HyperBeam SignalBeam Pound
-BYTE FirePunch MegaPunch Flamethrower Ember Scorch FireBlast ThunderX ThunderPunch IcePunch
+BYTE FirePunch MegaPunch Flamethrower Ember Scorch FireBlast ThunderMove ThunderPunch IcePunch
 BYTE Thunderbolt Dig Magnitude MudShot RockSlide
 BYTE 0
 
@@ -565,19 +565,19 @@ BYTE 0
 
 ALIGN 4
 GastlyTMs:
-BYTE DarkPulse Explosion FirePunch MegaPunch ThunderX ThunderPunch Thunderbolt
+BYTE DarkPulse Explosion FirePunch MegaPunch ThunderMove ThunderPunch Thunderbolt
 BYTE IcePunch DreamEater Hypnosis Psychic Confusion AttackPulse
 BYTE 0
 
 ALIGN 4
 HaunterTMs:
-BYTE DarkPulse Explosion FirePunch MegaPunch ThunderX ThunderPunch Thunderbolt
+BYTE DarkPulse Explosion FirePunch MegaPunch ThunderMove ThunderPunch Thunderbolt
 BYTE IcePunch DreamEater Hypnosis Psychic Confusion AttackPulse
 BYTE 0
 
 ALIGN 4
 GengarTMs:
-BYTE DarkPulse Explosion HyperBeam SignalBeam FirePunch MegaPunch ThunderX ThunderPunch
+BYTE DarkPulse Explosion HyperBeam SignalBeam FirePunch MegaPunch ThunderMove ThunderPunch
 BYTE Thunderbolt IcePunch SeismicToss KarateChop DreamEater Hypnosis Psychic Confusion AttackPulse
 BYTE 0
 
@@ -659,7 +659,7 @@ BYTE 0
 ALIGN 4
 LickitungTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam RockTomb Rollout PinMissile Sandstorm ShadowBall Constrict
-BYTE FirePunch MegaPunch Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX IcePunch
+BYTE FirePunch MegaPunch Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove IcePunch
 BYTE ThunderPunch Thunderbolt Blizzard IceBeam SeismicToss KarateChop Dig Magnitude MudShot Lick
 BYTE Earthquake DreamEater RockSlide
 BYTE 0
@@ -667,33 +667,33 @@ BYTE 0
 ALIGN 4
 KoffingTMs:
 BYTE Rollout PinMissile ShadowBall DarkPulse Explosion Flash AttackPulse Tackle DoubleHit Flamethrower Ember Scorch
-BYTE FireBlast ThunderX Thunderbolt
+BYTE FireBlast ThunderMove Thunderbolt
 BYTE 0
 
 ALIGN 4
 WeezingTMs:
 BYTE Rollout PinMissile ShadowBall DarkPulse DoubleHit Explosion Flash AttackPulse HyperBeam SignalBeam
-BYTE Tackle DoubleHit Flamethrower Ember Scorch FireBlast ThunderX Thunderbolt
+BYTE Tackle DoubleHit Flamethrower Ember Scorch FireBlast ThunderMove Thunderbolt
 BYTE 0
 
 ALIGN 4
 RhyhornTMs:
 BYTE Megahorn HornAttack HornDrill SwordsDance TailWhip TakeDown
-BYTE Flamethrower Ember Scorch FireBlast ThunderX Thunderbolt Blizzard IceBeam
+BYTE Flamethrower Ember Scorch FireBlast ThunderMove Thunderbolt Blizzard IceBeam
 BYTE 0
 
 ALIGN 4
 RhydonTMs:
 BYTE Avalanche PoisonJab Megahorn Cut HornAttack HornDrill HyperBeam SignalBeam
 BYTE SwordsDance TailWhip TakeDown FirePunch MegaPunch Flamethrower Ember Scorch FireBlast
-BYTE Surf ThunderX ThunderPunch Thunderbolt Blizzard IceBeam IcePunch
+BYTE Surf ThunderMove ThunderPunch Thunderbolt Blizzard IceBeam IcePunch
 BYTE SeismicToss KarateChop
 BYTE 0
 
 ALIGN 4
 ChanseyTMs:
 BYTE WaterPulse WaterGun Bubble BubbleBeam Rollout PinMissile Sandstorm ShadowBall Flash AttackPulse FirePunch MegaPunch IceBeam
-BYTE Flamethrower Ember Scorch FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch IcePunch
+BYTE Flamethrower Ember Scorch FireBlast LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch IcePunch
 BYTE Thunderbolt ThunderWave Blizzard SeismicToss KarateChop Dig Magnitude MudShot DreamEater
 BYTE LightScreen Psychic Confusion RockSlide CalmMind Wish HealPulse
 BYTE 0
@@ -707,7 +707,7 @@ BYTE 0
 ALIGN 4
 KangaskhanTMs:
 BYTE WaterPulse WaterGun Bubble BubbleBeam Avalanche RockTomb Sandstorm ShadowBall FirePunch MegaPunch Dig Magnitude MudShot
-BYTE Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch
+BYTE Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch
 BYTE Thunderbolt Blizzard IceBeam IcePunch SeismicToss KarateChop Earthquake Bite
 BYTE RockSlide
 BYTE 0
@@ -736,13 +736,13 @@ BYTE 0
 
 ALIGN 4
 StaryuTMs:
-BYTE FlashCannon Rollout PinMissile Flash AttackPulse Tackle DoubleHit ThunderX Thunderbolt ThunderWave
+BYTE FlashCannon Rollout PinMissile Flash AttackPulse Tackle DoubleHit ThunderMove Thunderbolt ThunderWave
 BYTE Blizzard IceBeam LightScreen Psychic Confusion
 BYTE 0
 
 ALIGN 4
 StarmieTMs:
-BYTE FlashCannon Avalanche Rollout PinMissile Flash AttackPulse HyperBeam SignalBeam Tackle DoubleHit ThunderX
+BYTE FlashCannon Avalanche Rollout PinMissile Flash AttackPulse HyperBeam SignalBeam Tackle DoubleHit ThunderMove
 BYTE Thunderbolt ThunderWave Blizzard IceBeam LightScreen Psychic Confusion
 BYTE ConfuseRay
 BYTE 0
@@ -750,7 +750,7 @@ BYTE 0
 ALIGN 4
 MrMimeTMs:
 BYTE MagicalLeaf ShadowBall Doubleslap Flash AttackPulse HyperBeam SignalBeam FirePunch MegaPunch
-BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch Thunderbolt ThunderWave IcePunch
+BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch Thunderbolt ThunderWave IcePunch
 BYTE SeismicToss KarateChop
 BYTE 0
 
@@ -787,7 +787,7 @@ BYTE 0
 ALIGN 4
 TaurosTMs:
 BYTE WaterPulse WaterGun Bubble BubbleBeam RockTomb Sandstorm Flamethrower Ember Scorch FireBlast Surf IceBeam
-BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX Thunderbolt Blizzard Earthquake Rest RockSlide
+BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove Thunderbolt Blizzard Earthquake Rest RockSlide
 BYTE 0
 
 ALIGN 4
@@ -798,7 +798,7 @@ BYTE 0
 ALIGN 4
 GyaradosTMs:
 BYTE Avalanche Sandstorm Twister DarkPulse HyperBeam SignalBeam Leer Tackle DoubleHit
-BYTE Thrash Flamethrower Ember Scorch FireBlast ThunderX Thunderbolt ThunderWave
+BYTE Thrash Flamethrower Ember Scorch FireBlast ThunderMove Thunderbolt ThunderWave
 BYTE Blizzard IceBeam Earthquake DragonRage Bite
 BYTE 0
 
@@ -839,7 +839,7 @@ BYTE 0
 
 ALIGN 4
 PorygonTMs:
-BYTE IronTail LeechLife ShadowBall Flash AttackPulse LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX Psybeam
+BYTE IronTail LeechLife ShadowBall Flash AttackPulse LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove Psybeam
 BYTE Thunderbolt ThunderWave Blizzard IceBeam DreamEater Psychic Confusion
 BYTE 0
 
@@ -876,7 +876,7 @@ BYTE 0
 ALIGN 4
 SnorlaxTMs:
 BYTE WaterPulse WaterGun Bubble BubbleBeam RockTomb Rollout PinMissile Sandstorm ShadowBall FirePunch MegaPunch
-BYTE Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch Lick
+BYTE Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch Lick
 BYTE Thunderbolt Blizzard IceBeam IcePunch SeismicToss KarateChop Earthquake Rest
 BYTE Psychic Confusion RockSlide
 BYTE 0
@@ -899,20 +899,20 @@ BYTE 0
 ALIGN 4
 DratiniTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam HyperBeam SignalBeam Leer Slam Flamethrower Ember Scorch FireBlast
-BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX Thunderbolt ThunderWave Blizzard IceBeam
+BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove Thunderbolt ThunderWave Blizzard IceBeam
 BYTE 0
 
 ALIGN 4
 DragonairTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam HyperBeam SignalBeam Leer Slam Flamethrower Ember Scorch FireBlast
-BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX Thunderbolt ThunderWave Blizzard IceBeam
+BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove Thunderbolt ThunderWave Blizzard IceBeam
 BYTE 0
 
 ALIGN 4
 DragoniteTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam RockTomb Sandstorm DragonClaw Cut HyperBeam SignalBeam
 BYTE Leer Slam FirePunch MegaPunch Flamethrower Ember Scorch FireBlast Surf LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance
-BYTE ThunderX ThunderPunch Thunderbolt ThunderWave Blizzard IceBeam
+BYTE ThunderMove ThunderPunch Thunderbolt ThunderWave Blizzard IceBeam
 BYTE IcePunch Earthquake HoneClaws
 BYTE 0
 
@@ -920,7 +920,7 @@ ALIGN 4
 MewtwoTMs:
 BYTE IronTail LeechLife WaterPulse WaterGun Bubble BubbleBeam BulkUp Avalanche PoisonJab RockTomb Sandstorm
 BYTE ShadowBall Flash AttackPulse HyperBeam SignalBeam Swift FirePunch MegaPunch Flamethrower Ember Scorch FireBlast
-BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderX ThunderPunch Thunderbolt ThunderWave Blizzard
+BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance ThunderMove ThunderPunch Thunderbolt ThunderWave Blizzard
 BYTE IceBeam IcePunch SeismicToss KarateChop Earthquake Rest RockSlide BulkUp
 BYTE 0
 
@@ -936,7 +936,7 @@ BYTE Tackle DoubleHit TailWhip TakeDown Thrash TriAttack FirePunch MegaPunch Cla
 BYTE FlameWheel Flamethrower Ember Scorch FireSpin FireBlast SacredFire Surf
 BYTE Clamp Crabhammer HydroPump Waterfall Absorb
 BYTE WaterPulse WaterGun Bubble BubbleBeam GrassKnot LeafBlade
-BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance VineWhip ThunderX ThunderPunch
+BYTE LeafFlurry MegaDrain MagicalLeaf RazorLeaf PetalDance VineWhip ThunderMove ThunderPunch
 BYTE Thundershock Thunderbolt VoltTackle ThunderWave Spark Blizzard
 BYTE AuroraBeam IceBeam IcePunch Avalanche KarateChop DoubleKick Acid
 BYTE HiJumpKick JumpKick LowKick RollingKick SeismicToss KarateChop ShadowBall

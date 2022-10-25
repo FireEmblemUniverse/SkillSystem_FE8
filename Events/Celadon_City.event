@@ -284,7 +284,7 @@ ENDA
 
 ALIGN 4
 ShopItems_A: // Supplies + Evo stones / Stones 
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
@@ -338,7 +338,7 @@ BYTE SkillScroll WrathID SkillScroll SilentPrideID SkillScroll CharmID
 BYTE SkillScroll GrislyWoundID SkillScroll FieryBloodID 
 BYTE $00; ALIGN 4
 
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 
 
@@ -347,7 +347,7 @@ BYTE $00; ALIGN 4
 
 ALIGN 4
 ShopItems_D: // Accessories ? 
-//SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 SHLI HPUp Protein Calcium Carbos Iron Zinc 
 // Tonics if they are ever added 
 BYTE $00; ALIGN 4

@@ -56,6 +56,10 @@ beq End
 mov     r2, #4
 ldrsh   r3, [r7, r2]
 asr     r3, #1 @damage halved
+cmp r3, #0 
+bgt NoLowerBound 
+mov r3, #1 
+NoLowerBound: 
 strh    r3, [r7, #4]
 
 @ lsl     r3, #0x18
@@ -101,6 +105,10 @@ AlreadyAstra:
 mov     r2, #4
 ldrsh   r3, [r7, r2]
 asr     r3, #1 @damage halved
+cmp r3, #0 
+bgt NoLowerBound2 
+mov r3, #1 
+NoLowerBound2: 
 strh    r3, [r7, #4]
 
 ldrb    r0,[r6,#6] @attacks remaining
