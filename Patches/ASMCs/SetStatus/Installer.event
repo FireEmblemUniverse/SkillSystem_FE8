@@ -8,7 +8,7 @@
 #include "EAstdlib.event"
 #include "Extensions/Hack Installation.txt"
 
-
+#include "CopyWepsToWEXP.lyn.event"
 #include "EnsureMovementCap.lyn.event" 
 #define EnsureMovementCap(unitID) "SVAL s1 unitID; ASMC EnsureMovementCap|1" 
 

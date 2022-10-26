@@ -51,7 +51,7 @@ House(0, ToSeafoamB1E, 31,4)
 House(0, ToSeafoamB1W, 10,6)
 House(0, ToSeafoamB3E, 32,14)
 House(0, ToSeafoamB3S, 25,19)
-House(0, ToSeafoamB3M, 17,19)
+House(0, ToSeafoamB3M, 17,9)
 House(0, ToSeafoamB3W, 7,3)
 END_MAIN
 
@@ -72,7 +72,7 @@ EscapeTileEntry(31,4)
 EscapeTileEntry(10,6) 
 EscapeTileEntry(32,14) 
 EscapeTileEntry(25,19) 
-EscapeTileEntry(17,19) 
+EscapeTileEntry(17,9) 
 EscapeTileEntry(7,3) 
 EscapeTileTerminator ; } 
 #endif 

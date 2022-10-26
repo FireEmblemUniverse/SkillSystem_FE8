@@ -102,7 +102,7 @@ Traps1:
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(11,25, ChapterID, 0x0) //no extra text 
+SignBTrap(12,35, ChapterID, 0x0) //no extra text 
 SignATrap(16,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
@@ -111,7 +111,7 @@ SignATrap(16,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //BerryTree(36,11,5)
 
 //SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
-SpellScrollTrap(12, 28, (ChapterID*2)+1, HoneClaws)
+SpellScrollTrap(11, 25, (ChapterID*2)+1, HoneClaws)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

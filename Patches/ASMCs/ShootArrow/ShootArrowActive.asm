@@ -42,6 +42,14 @@ push {lr}
 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
+ldr r0, [r3] 
+cmp r0, #0 
+beq Exit 
+ldrb r0, [r3, #0x13] 
+cmp r0, #0 
+beq Exit 
+
+
 mov r0, r3
 blh MU_Create 
 

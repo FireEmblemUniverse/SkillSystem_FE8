@@ -71,7 +71,7 @@ PROC_CALL_ROUTINE(0x8003C95) //Text_InitFont
 
 // these two work without the following PROC_SLEEP, but hide map sprites for a frame 
 PROC_WHILE_EXISTS(0x89A2C48) // MovingUnitGfx 
-//PROC_WHILE_EXISTS(0x89A3288) // SelfDamageMapAnim 
+PROC_WHILE_EXISTS(0x89A3288) // SelfDamageMapAnim 
 
 //PROC_SLEEP(4)
 // these two only work with PROC_SLEEP 

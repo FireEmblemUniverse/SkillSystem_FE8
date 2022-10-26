@@ -249,6 +249,7 @@ CALL LoadAndPlacePlayers
 //LABEL 10 
 //
 //
+ENUT IndigoPlateauArrived
 LOAD1 0x1 UnitsA
 ENUN
 //RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 

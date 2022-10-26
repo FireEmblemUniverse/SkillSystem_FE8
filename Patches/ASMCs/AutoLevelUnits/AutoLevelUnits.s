@@ -347,7 +347,9 @@ mov r0, r5
 blh CheckCaps 
 mov r0, r5 
 
-blh AutolevelSpells
+bl AutolevelSpells
+mov r0, r5 
+bl CopyWepsToWEXP
 b NextUnit 
 
 

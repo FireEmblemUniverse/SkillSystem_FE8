@@ -284,7 +284,15 @@ ldr r2, =WaterTypeLink
 ldr r2, [r2] 
 orr r1, r2 
 tst r0, r1 
-beq NotIce 
+bne NoIssue @ they can traverse it no problem 
+
+ldr r1, [r3, #4] @ class pointer 
+ldr r1, [r1, #0x38] @ movement cost pointer 
+ldr r0, =IceTerrainTypeLink 
+ldr r0, [r0] 
+ldrb r0, [r1, r0] @ glacier cost? 
+cmp r0, #1 
+bne NotIce @ if it costs the unit only 1 to walk on ice, then they can walk on it freely (eg. fliers) 
 
 NoIssue:
 mov r4, #0 

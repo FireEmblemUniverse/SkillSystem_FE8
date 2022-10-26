@@ -2,6 +2,12 @@
 #include "ScaledBack.lyn.event"
 //#include "Piercing.lyn.event"
 #include "ImmuneToDamage.lyn.event" 
+#include "WeaponsThatAlwaysDouble.lyn.event" 
+
+ALIGN 4 
+WeaponsThatAlwaysDoubleList:
+BYTE DoubleHit Bonemerang DoubleKick
+BYTE 0 
 
 ALIGN 4
 ChipDamageWeaponList:

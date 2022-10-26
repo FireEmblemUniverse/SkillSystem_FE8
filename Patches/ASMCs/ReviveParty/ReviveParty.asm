@@ -26,8 +26,7 @@ tst r1,r2
 bne NextUnit
 @ if you got here, unit exists and is not dead, so go ham
 
-
-mov r2, #0x9 @ undeployed / hide 
+ldr r2, =0x4010009 @ departed / escaped / undeployed / hide 
 bic r1, r2 
 str r1, [r0, #0x0C] 
 ldrb r1, [r0, #0x12] @ max hp 

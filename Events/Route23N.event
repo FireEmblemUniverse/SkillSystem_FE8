@@ -133,6 +133,7 @@ ALIGN 4
 
 
 BeginningScene:
+ReviveParty
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 

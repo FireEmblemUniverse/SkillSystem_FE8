@@ -132,6 +132,8 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 
 		if (trap->type == StopSlidingTrapType) {
 			//asm("mov r11, r11"); 
+			result.x -= step.x; 
+			result.y -= step.y; 
 			moveAmount = -1;
 			break;
 		}
@@ -286,7 +288,7 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 		if ((trap->type == IceTrapType) | (trap->type == MoveArrowType)) { 
 			u32 bicState = ~0x42; // canto / ended turn already 
 			proc->pUnit->state = (proc->pUnit->state & bicState) | 0x1; // add hide bitflag if it wasn't already there (eg. for chained movements) 
-			
+			SMS_UpdateFromGameData(); // so they will be hidden during chained movement 
 			
 			struct Vec2 dest = GetPushPosition(proc->pUnit, direction, 0);
 			struct Vec2 start;

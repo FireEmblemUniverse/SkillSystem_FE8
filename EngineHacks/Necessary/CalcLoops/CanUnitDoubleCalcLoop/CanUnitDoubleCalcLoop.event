@@ -15,6 +15,7 @@ CanUnitDoubleCalcLoop: //r0 = attacker unit ptr, r1 = defender unit ptr, r2 = AS
 POIN IsDefenderSnag IsAttackerEclipsing IsAttackerUsingStone //vanilla checks externalized to here
 POIN IsAttackerWeaponUnableToDouble //makes weapon effect 0xC make it unable to double
 POIN WaryFighter MoonlightDoublingFunc //skills
+
 //#ifdef ACCESSORIES_AND_FORGING
 	//POIN BattleGetFollowUpOrder // Accessories - doesn't work by default without any debugging whatsoever 
 //#endif 

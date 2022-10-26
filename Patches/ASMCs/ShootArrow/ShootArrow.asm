@@ -34,6 +34,14 @@ ldr r3, =CurrentUnit
 ldr r3, [r3] 
 cmp r3, #0 
 beq NoActiveUnit 
+ldr r0, [r3] 
+cmp r0, #0 
+beq NoActiveUnit 
+ldrb r0, [r3, #0x13] @ current hp 
+cmp r0, #0 
+beq NoActiveUnit 
+
+
 ldrb r0, [r3, #0x10] @ XX 
 ldrb r1, [r3, #0x11] @ YY 
 

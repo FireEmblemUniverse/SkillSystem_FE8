@@ -1,7 +1,7 @@
 #define ChapterID CinnabarGymCh
 
 #define WildLvl 5 
-#define TrainerL 30
+#define TrainerL CinnabarGymLevel
 
 
 
@@ -229,7 +229,7 @@ CAM1 [8,6]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
-AutoLevelUnits(TrainerL, True, 0x90EF) 
+AutoLevelUnits(CinnabarGymLevel, True, 0x90EF) 
 AutoLevelUnits(CinnabarGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
@@ -239,16 +239,16 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 SilentGiveSkillAccessory(0xD0, AmaterasuID)
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-SilentGiveItemWithDurability(0xA0, Berry,0x8A)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA1, Berry,0x8A)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA2, Berry,0x8A)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA3, Berry,0x8A)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
-SilentGiveItemWithDurability(0xA4, Berry,0x8A)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+//SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+SilentGiveItemWithDurability(0xA0, HyperPotion,0x1)
+//SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+SilentGiveItemWithDurability(0xA1, HyperPotion,0x1)
+//SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+SilentGiveItemWithDurability(0xA2, HyperPotion,0x1)
+//SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+SilentGiveItemWithDurability(0xA3, HyperPotion,0x1)
+//SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+SilentGiveItemWithDurability(0xA4, HyperPotion,0x1)
 
 
 MUSCFAST IntroBGM 
@@ -320,20 +320,20 @@ UNIT
 
 EnemyTrainersA:
 UNIT 0xD0 ArcanineID 0x0 Level(0, Enemy, 1) 	[5,5]  0b 0x0	0 0	[TakeDown,FireBlast,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,7]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 NinetalesID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0	0 0 [TailWhip, Flamethrower,0x0,0x0] 	[0,0,8,1]
 UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[BodySlam, FlameWheel,0x0,0x0] 		[0,0,8,1]
-UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, DoubleEdge, 0x0 ,0x0] 		[0,0,8,1] // pursue 
-UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,7]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 EnemyTrainersB: // rematch 
 UNIT 0xD0 ArcanineID 0x0 Level(0, Enemy, 1) 	[5,5]  0b 0x0	0 0	[TakeDown,FireBlast,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,7]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 NinetalesID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0	0 0 [TailWhip, Flamethrower,0x0,0x0] 	[0,0,8,1]
 UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[BodySlam, FlameWheel,0x0,0x0] 		[0,0,8,1]
-UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, DoubleEdge, 0x0 ,0x0] 		[0,0,8,1]
-UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,7]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, DoubleEdge, 0x0 ,0x0] 		[0,0,8,1] // pursue 
 UNIT
 	
 

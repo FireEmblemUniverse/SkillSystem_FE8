@@ -120,6 +120,7 @@ AuraSkillEntry(NightTideID)
 // Occurs once both attacker and defender are confirmed. If weapons negate def, will occur after def is negated. 
 ALIGN 4 
 DamageModifierCalcLoop:
+POIN WeaponsThatAlwaysDouble
 POIN WeakChipDmg
 POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
 POIN TypeEffectiveness // also caps moves to deal max 99 

@@ -14,6 +14,13 @@ ldr r3, =CurrentUnit
 ldr r3, [r3] 
 cmp r3, #0 
 beq Exit 
+ldrb r0, [r3, #0x13] @ current hp 
+cmp r0, #0 
+beq Exit 
+ldr r0, [r3] 
+cmp r0, #0 
+beq Exit 
+
 ldr r0, [r3, #0x0C] @ state 
 mov r1, #1 
 @orr r0, r1 @ hide 
@@ -23,11 +30,13 @@ str r0, [r3, #0x0C]
 mov r0, r3 @ unit 
 blh ShowUnitSMS 
 
+Exit: 
 blh RefreshEntityMaps 
 blh EndMMS 
+
 blh SMS_UpdateFromGameData 
 
-Exit: 
+
 pop {r0} 
 bx r0 
 .ltorg 

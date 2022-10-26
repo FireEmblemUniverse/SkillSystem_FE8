@@ -96,7 +96,7 @@ Units1:
 UNIT Eirika  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  ExeggcuteID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [LeafStone,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  ExeggutorID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [LeafStone,0,0,0] [0x0,0x0,0x0,0x0]
 #endif 
 UNIT 2  GyaradosID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  AlakazamID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
@@ -371,7 +371,7 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(43, True, 0x145) // all 
+AutoLevelUnits(59, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)
@@ -391,43 +391,43 @@ AutoLevelUnits(43, True, 0x145) // all
 //SetUnitStatus(2, 0x2B, 0)
 //SetUnitStatus(2, 0x2C, 0)
 
-SetUnitStatus(1, 0x28, Flamethrower)
-SetUnitStatus(1, 0x29, DragonRage)
-SetUnitStatus(1, 0x2A, GuardMove)
-SetUnitStatus(1, 0x2B, Growl)
-SetUnitStatus(1, 0x2C, FlameWheel)
-
-SetUnitStatus(2, 0x28, Waterfall)
-SetUnitStatus(2, 0x29, Surf)
-SetUnitStatus(2, 0x2A, Outrage)
-SetUnitStatus(2, 0x2B, Avalanche)
-SetUnitStatus(2, 0x2C, Leer)
-
-SetUnitStatus(3, 0x28, ShadowBall)
-SetUnitStatus(3, 0x29, DarkPulse)
-SetUnitStatus(3, 0x2A, Sludge)
-SetUnitStatus(3, 0x2B, Confusion)
-SetUnitStatus(3, 0x2C, Snarl)
-
-SetUnitStatus(4, 0x28, Psychic)
-SetUnitStatus(4, 0x29, RecoverMove)
-SetUnitStatus(4, 0x2A, ShadowBall)
-SetUnitStatus(4, 0x2B, CalmMind)
-SetUnitStatus(4, 0x2C, Leer)
-
-
-
-SetUnitStatus(5, 0x28, Thunderbolt)
-SetUnitStatus(5, 0x29, ThunderWave)
-SetUnitStatus(5, 0x2A, TailWhip)
-SetUnitStatus(5, 0x2B, Agility)
-SetUnitStatus(5, 0x2C, Leer)
-
+//SetUnitStatus(1, 0x28, Flamethrower)
+//SetUnitStatus(1, 0x29, DragonRage)
+//SetUnitStatus(1, 0x2A, GuardMove)
+//SetUnitStatus(1, 0x2B, Growl)
+//SetUnitStatus(1, 0x2C, FlameWheel)
+//
+//SetUnitStatus(2, 0x28, Waterfall)
+//SetUnitStatus(2, 0x29, Surf)
+//SetUnitStatus(2, 0x2A, Outrage)
+//SetUnitStatus(2, 0x2B, Avalanche)
+//SetUnitStatus(2, 0x2C, Leer)
+//
+//SetUnitStatus(3, 0x28, ShadowBall)
+//SetUnitStatus(3, 0x29, DarkPulse)
+//SetUnitStatus(3, 0x2A, Sludge)
+//SetUnitStatus(3, 0x2B, Confusion)
+//SetUnitStatus(3, 0x2C, Snarl)
+//
+//SetUnitStatus(4, 0x28, Psychic)
+//SetUnitStatus(4, 0x29, RecoverMove)
+//SetUnitStatus(4, 0x2A, ShadowBall)
+//SetUnitStatus(4, 0x2B, CalmMind)
+//SetUnitStatus(4, 0x2C, Leer)
+//
+//
+//
+//SetUnitStatus(5, 0x28, Thunderbolt)
+//SetUnitStatus(5, 0x29, ThunderWave)
+//SetUnitStatus(5, 0x2A, TailWhip)
+//SetUnitStatus(5, 0x2B, Agility)
+//SetUnitStatus(5, 0x2C, Leer)
+//
 SetUnitStatus(6, 0x28, Bonemerang)
-SetUnitStatus(6, 0x29, Earthquake)
-SetUnitStatus(6, 0x2A, RockSlide)
-SetUnitStatus(6, 0x2B, SwordsDance)
-SetUnitStatus(6, 0x2C, Leer)
+//SetUnitStatus(6, 0x29, Earthquake)
+//SetUnitStatus(6, 0x2A, RockSlide)
+//SetUnitStatus(6, 0x2B, SwordsDance)
+//SetUnitStatus(6, 0x2C, Leer)
 
 
 
@@ -454,13 +454,16 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(7, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(7, YCoordNewArea)  
+Write_Byte(37, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(12, YCoordNewArea)  
 //MNC2 MansionB4Ch 
-
-MNC2 DebugCh
+//MNC2 Route10Ch
+//MNC2 SeafoamB3Ch
+//MNC2 DebugCh
+MNC2 ChampionCh 
+//MNC2 VictoryRoadB2Ch 
 //MNC2 ViridianCh
-SetUnitStatus(1, CurrentHP, 5)
+//SetUnitStatus(1, CurrentHP, 5)
 //MNC2 DebugCh 
 //MNC2 PewterCh 
 //MNC2 ChampionCh 
