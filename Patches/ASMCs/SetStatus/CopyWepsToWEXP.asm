@@ -19,6 +19,10 @@ ldrb r1, [r4, #0x0B]
 lsr r1, #6 
 cmp r1, #0 
 beq Exit @ if player unit, do nothing 
+ldr r1, [r4] @ unit pointer 
+ldrb r1, [r1, #4] @ unit id 
+cmp r1, #0xE0 
+bge Exit 
 
 mov r5, #0x27
 mov r6, #0x1c 
