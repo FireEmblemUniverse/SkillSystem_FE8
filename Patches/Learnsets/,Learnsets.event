@@ -6,16 +6,17 @@ BYTE 1 GuardMove
 BYTE 1 Tackle // Goes at the start of each learnset
 
 BYTE 4 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
-BYTE 7 VineWhip
-//BYTE 9 LeechSeed
-BYTE 13 PoisonPowder
-BYTE 15 TakeDown
-BYTE 19 RazorLeaf
+BYTE 7 Leaf Flurry
+BYTE 9 PoisonPowder
+BYTE 13 Growth
+BYTE 15 MegaDrain
+BYTE 19 TakeDown
 //BYTE 21 Sleep2 //SleepPowder
-BYTE 25 Growth
-BYTE 27 DoubleEdge
+BYTE 25 Sludge
+BYTE 29 Petal Dance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
-BYTE 37 SolarBeam
+BYTE 37 EarthPower
+BYTE 44 SolarBeam
 BYTE 0 0// Goes at the end of each learnset 
 	
 
@@ -24,16 +25,17 @@ IvysaurLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 Growl  
-BYTE 7 VineWhip
-//BYTE 9 LeechSeed
-BYTE 13 PoisonPowder
-BYTE 15 TakeDown
-BYTE 19 RazorLeaf
+BYTE 7 Leaf Flurry
+BYTE 9 PoisonPowder
+BYTE 13 Growth
+BYTE 15 MegaDrain
+BYTE 19 TakeDown
 //BYTE 21 Sleep2 //SleepPowder
-BYTE 25 Growth
-BYTE 27 DoubleEdge
+BYTE 25 Sludge
+BYTE 29 Petal Dance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
-BYTE 37 SolarBeam
+BYTE 37 EarthPower
+BYTE 44 SolarBeam
 BYTE 0 0
 
 ALIGN 4
@@ -41,16 +43,17 @@ VenusaurLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 Growl  
-BYTE 7 VineWhip
-//BYTE 9 LeechSeed
-BYTE 13 PoisonPowder
-BYTE 15 TakeDown
-BYTE 19 RazorLeaf
+BYTE 7 Leaf Flurry
+BYTE 9 PoisonPowder
+BYTE 13 Growth
+BYTE 15 MegaDrain
+BYTE 19 TakeDown
 //BYTE 21 Sleep2 //SleepPowder
-BYTE 25 Growth
-BYTE 27 DoubleEdge
+BYTE 25 Sludge
+BYTE 29 Petal Dance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
-BYTE 37 SolarBeam
+BYTE 37 EarthPower
+BYTE 44 SolarBeam
 BYTE 0 0
 
 ALIGN 4
@@ -59,15 +62,16 @@ BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
+BYTE 10 Snarl
 BYTE 14 DragonRage
 BYTE 18 Scorch 
-BYTE 24 FlameWheel
-BYTE 28 Slash
+BYTE 21 Dragonbreath
+BYTE 24 Slash
+BYTE 28 FireSpin
 BYTE 32 Flamethrower
-BYTE 36 WingAttack
-BYTE 39 FireSpin
-BYTE 44 AirSlash
-BYTE 50 Hurricane 
+BYTE 36 AirSlash
+BYTE 39 FireBlast
+BYTE 44 Hurricane 
 BYTE 0 0
 
 ALIGN 4
@@ -76,15 +80,16 @@ BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
+BYTE 10 Snarl
 BYTE 14 DragonRage
 BYTE 18 Scorch 
-BYTE 24 FlameWheel
-BYTE 28 Slash
+BYTE 21 Dragonbreath
+BYTE 24 Slash
+BYTE 28 FireSpin
 BYTE 32 Flamethrower
-BYTE 36 WingAttack
-BYTE 39 FireSpin
-BYTE 44 AirSlash
-BYTE 50 Hurricane 
+BYTE 36 AirSlash
+BYTE 39 FireBlast
+BYTE 44 Hurricane 
 BYTE 0 0
 
 ALIGN 4
@@ -93,15 +98,16 @@ BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 7 Ember
+BYTE 10 Snarl
 BYTE 14 DragonRage
 BYTE 18 Scorch 
-BYTE 24 FlameWheel
-BYTE 28 Slash
+BYTE 21 Dragonbreath
+BYTE 24 Slash
+BYTE 28 FireSpin
 BYTE 32 Flamethrower
-BYTE 36 WingAttack
-BYTE 39 FireSpin
-BYTE 44 AirSlash
-BYTE 50 Hurricane 
+BYTE 36 AirSlash
+BYTE 39 FireBlast
+BYTE 44 Hurricane 
 BYTE 0 0
 
 ALIGN 4
@@ -110,14 +116,16 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip 
 BYTE 7 Bubble
-//BYTE 10 Resv //Withdraw
-BYTE 13 WaterGun
-BYTE 16 Bite
+BYTE 10 Headbutt
+BYTE 12 WaterGun
+BYTE 15 RecoverMove //Withdraw
+BYTE 18 WaterPulse
 //BYTE 22 ??? ?Buff (Protect)
-BYTE 25 WaterPulse
-BYTE 28 Waterfall
-BYTE 31 TakeDown
-BYTE 37 HydroPump
+BYTE 25 TakeDown
+BYTE 28 Surf
+BYTE 32 DarkPulse
+BYTE 37 FlashCannon
+BYTE 44 HydroPump
 BYTE 0 0
 
 ALIGN 4
@@ -126,14 +134,16 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip 
 BYTE 7 Bubble
-//BYTE 10 Resv //Withdraw
-BYTE 13 WaterGun
-BYTE 16 Bite
+BYTE 10 Headbutt
+BYTE 12 WaterGun
+BYTE 15 RecoverMove //Withdraw
+BYTE 18 WaterPulse
 //BYTE 22 ??? ?Buff (Protect)
-BYTE 25 WaterPulse
-BYTE 28 Waterfall
-BYTE 31 TakeDown
-BYTE 37 HydroPump
+BYTE 25 TakeDown
+BYTE 28 Surf
+BYTE 32 DarkPulse
+BYTE 37 FlashCannon
+BYTE 44 HydroPump
 BYTE 0 0
 
 ALIGN 4
@@ -142,14 +152,16 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip 
 BYTE 7 Bubble
-//BYTE 10 Resv //Withdraw
-BYTE 13 WaterGun
-BYTE 16 Bite
+BYTE 10 Headbutt
+BYTE 12 WaterGun
+BYTE 15 RecoverMove //Withdraw
+BYTE 18 WaterPulse
 //BYTE 22 ??? ?Buff (Protect)
-BYTE 25 WaterPulse
-BYTE 28 Waterfall
-BYTE 31 TakeDown
-BYTE 37 HydroPump
+BYTE 25 TakeDown
+BYTE 28 Surf
+BYTE 32 DarkPulse
+BYTE 37 FlashCannon
+BYTE 44 HydroPump
 BYTE 0 0
 
 ALIGN 4
