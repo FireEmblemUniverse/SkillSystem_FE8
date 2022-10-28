@@ -4,9 +4,9 @@
 #include "_Common.event"
 
 pMaxHPModifiers: // Maximum HP
-	POIN prAddUnitMaxHP prHexingRodEffect prAddEquipHP prItemPassiveHp
+	POIN prAddUnitMaxHP //prHexingRodEffect prAddEquipHP prItemPassiveHp // sometimes trainer mons spawn with half hp for some reason 
 	#ifdef ACCESSORIES_AND_FORGING
-		POIN prAddAccessoryHP
+		//POIN prAddAccessoryHP
 	#endif 
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero

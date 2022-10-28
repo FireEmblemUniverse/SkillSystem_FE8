@@ -96,7 +96,12 @@ Traps1:
 //StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
 //RedPokeballTrap(11,21, (ChapterID*2)+1, ExoticCandy) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
-SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
+
+
+
+//SkillAccessoryTrap(26,4, (ChapterID*2)+1, GaleforceID) 
+SkillScrollTrap(26,4, (ChapterID*2)+1, GaleforceID)
+
 //SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
 

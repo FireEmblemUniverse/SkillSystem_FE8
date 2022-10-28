@@ -58,3 +58,22 @@ pop {r0}
 bx r0 
 .ltorg 
 
+
+
+
+.global MaxMovCap
+.type MaxMovCap, %function 
+MaxMovCap:
+@ r0 = movement 
+@ r1 = unit 
+ldr r2, =MaxMovementValue
+lsl r2, #24 
+lsr r2, #24 
+cmp r0, r2 
+ble NoCapHere
+mov r0, r2 
+NoCapHere: 
+@ returns new movement 
+bx lr 
+.ltorg 
+

@@ -4,7 +4,9 @@
 #include "_Common.event"
 ALIGN 4
 pMovModifiers: // Movement
-	POIN prAddUnitBaseMov prAddUnitMovBonus (prGetItemMovBonus-1) prItemPassiveMov prRallyMov prSkillCelerity prSkillPoise prNullifyIfGuardAI prArmorMarchCheck 
+	POIN prAddUnitBaseMov prAddUnitMovBonus 
+	//POIN prGetItemMovBonus prItemPassiveMov prRallyMov prSkillCelerity prSkillPoise  prArmorMarchCheck 
+	POIN prNullifyIfGuardAI
 	#ifdef ACCESSORIES_AND_FORGING
 		// This doesn't work out of the box and I cba to debug it 
 		// So accessories cannot grant movement bonuses 
@@ -12,13 +14,14 @@ pMovModifiers: // Movement
 	#endif 
 	POIN EnemyMovementBane // lower enemies movement by 1 because it is more fun tbh 
 	#ifdef STAIRS_ASM
-	POIN StairsMoveDebuff-1
+	POIN StairsMoveDebuff
 	#endif
 	POIN prNullifyIfFreeze
 	POIN TrappedStatus
 	POIN TrainerMovementBane
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
+	POIN MaxMovCap
 	#endif
 WORD 0
 

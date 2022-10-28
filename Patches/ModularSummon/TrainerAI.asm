@@ -243,7 +243,9 @@ cmp r0, #0xD0
 bge Exit_EnemyMovementBane 
 
 cmp r4, #0 
-ble Exit_EnemyMovementBane 
+bgt Continue 
+b Exit_EnemyMovementBane 
+Continue: 
 sub r4, #1 @ enemies get -1 movement 
 
 Exit_EnemyMovementBane:
@@ -254,6 +256,7 @@ pop {r4-r5}
 pop {r1}
 bx r1 
 .ltorg 
+
 
 .global TrainerSpotsYouFunction
 .type TrainerSpotsYouFunction, %function 
