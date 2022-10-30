@@ -6,14 +6,14 @@ BYTE 1 GuardMove
 BYTE 1 Tackle // Goes at the start of each learnset
 
 BYTE 4 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
-BYTE 7 Leaf Flurry
+BYTE 7 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
 BYTE 19 TakeDown
 //BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Sludge
-BYTE 29 Petal Dance
+BYTE 29 PetalDance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
 BYTE 44 SolarBeam
@@ -25,14 +25,14 @@ IvysaurLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 Growl  
-BYTE 7 Leaf Flurry
+BYTE 7 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
 BYTE 19 TakeDown
 //BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Sludge
-BYTE 29 Petal Dance
+BYTE 29 PetalDance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
 BYTE 44 SolarBeam
@@ -43,14 +43,14 @@ VenusaurLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 Growl  
-BYTE 7 Leaf Flurry
+BYTE 7 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
 BYTE 19 TakeDown
 //BYTE 21 Sleep2 //SleepPowder
 BYTE 25 Sludge
-BYTE 29 Petal Dance
+BYTE 29 PetalDance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
 BYTE 44 SolarBeam
