@@ -863,7 +863,7 @@ BYTE 15 RazorLeaf
 BYTE 17 Growth
 BYTE 20 Dig
 BYTE 22 Slash
-BYTE 25 Sleep2 //Spore
+//BYTE 25 Sleep2 //Spore
 BYTE 27 XScissor
 BYTE 29 Toxic //Growth
 BYTE 33 LeafBlade
@@ -882,7 +882,7 @@ BYTE 15 RazorLeaf
 BYTE 17 Growth
 BYTE 20 Dig
 BYTE 22 Slash
-BYTE 25 Sleep2 //Spore
+//BYTE 25 Sleep2 //Spore
 BYTE 27 XScissor
 BYTE 29 Toxic //Growth
 BYTE 33 LeafBlade
