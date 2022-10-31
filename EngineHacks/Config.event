@@ -209,7 +209,7 @@
 // Setting the 0x00800000 bit in the item ability bitfield will enable passive skills.
 #define PASSIVE_SKILLS_STACK True
 
-// If set to false, units under roof tiles will not be counted during aura skill checks
+// If set to true, units under roof tiles will be considered for aura skills
 #define ROOF_UNIT_AURAS True
 
 // if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
