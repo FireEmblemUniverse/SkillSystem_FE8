@@ -645,7 +645,7 @@ BYTE 7 AttackPulse
 BYTE 10 Confusion
 BYTE 13 CalmMind
 BYTE 16 Swift
-//BYTE 19 Resv //Minimize
+BYTE 19 MirrorShot
 BYTE 22 Psybeam
 //BYTE 25 Barrier
 BYTE 28 RecoverMove
@@ -654,7 +654,7 @@ BYTE 31 TriAttack
 BYTE 37 Psychic
 BYTE 40 HealPulse
 //BYTE 43 LightScreen
-BYTE 46 FlashCannon
+BYTE 45 FlashCannon
 BYTE 0 0
 
 ALIGN 4
@@ -666,7 +666,7 @@ BYTE 7 AttackPulse
 BYTE 10 Confusion
 BYTE 13 CalmMind
 BYTE 16 Swift
-//BYTE 19 Resv //Minimize
+BYTE 19 MirrorShot
 BYTE 22 Psybeam
 //BYTE 25 Barrier
 BYTE 28 RecoverMove
@@ -675,7 +675,7 @@ BYTE 31 TriAttack
 BYTE 37 Psychic
 BYTE 40 HealPulse
 //BYTE 43 LightScreen
-BYTE 46 FlashCannon
+BYTE 45 FlashCannon
 BYTE 0 0
 
 ALIGN 4
@@ -727,16 +727,16 @@ BYTE 7 Snarl
 BYTE 9 RecoverMove 
 BYTE 11 Swift
 BYTE 13 MagicalLeaf
-BYTE 17 SignalBeam
-BYTE 21 HealPulse //?Support Rest
+BYTE 17 WaterPulse
+BYTE 21 Amnesia
 BYTE 25 Screech
 BYTE 29 TriAttack
-BYTE 33 WaterPulse
-BYTE 37 Psychic
-BYTE 39 ShadowBall
-BYTE 41 FlashCannon
-BYTE 43 Amnesia
-BYTE 45 DarkPulse
+BYTE 33 PetalDance
+BYTE 37 SeismicToss
+BYTE 39 Explosion
+BYTE 41 HealPulse //?Support Rest
+BYTE 43 Surf
+BYTE 45 HyperBeam
 BYTE 0 0
 
 ALIGN 4
@@ -748,16 +748,16 @@ BYTE 7 Snarl
 BYTE 9 RecoverMove 
 BYTE 11 Swift
 BYTE 13 MagicalLeaf
-BYTE 17 SignalBeam
-BYTE 21 HealPulse //?Support Rest
+BYTE 17 WaterPulse
+BYTE 21 Amnesia
 BYTE 25 Screech
 BYTE 29 TriAttack
-BYTE 33 WaterPulse
-BYTE 37 Psychic
-BYTE 39 ShadowBall
-BYTE 41 FlashCannon
-BYTE 43 Amnesia
-BYTE 45 DarkPulse
+BYTE 33 PetalDance
+BYTE 37 SeismicToss
+BYTE 39 Explosion
+BYTE 41 HealPulse //?Support Rest
+BYTE 43 Surf
+BYTE 45 HyperBeam
 BYTE 0 0
 
 ALIGN 4
