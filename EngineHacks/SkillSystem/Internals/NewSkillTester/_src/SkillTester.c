@@ -12,8 +12,12 @@ static bool IsUnitOnField(Unit* unit) {
     if (!unit || !unit->pCharacterData)
         return FALSE;
 
-    if (unit->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | US_UNDER_A_ROOF | 0x00010000))
+    if (unit->state & (US_RESCUED | US_NOT_DEPLOYED | US_DEAD | 0x00010000))
         return FALSE;
+
+    if ((unit->state & US_UNDER_A_ROOF) && (!gSkillTestConfig.roofUnitAuras)) {
+        return FALSE;
+    }
 
     return TRUE;
 }
@@ -79,7 +83,7 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
     //If generic, load skills from learned list
     else {
         u8* tempBuffer = GetInitialSkillList_Pointer(unit, gTempSkillBuffer);
-        for (int i = 0; i < GenericLearnedSkillLimit; ++i) {
+        for (int i = 0; i < gSkillTestConfig.genericLearnedSkillLimit; ++i) {
             if (!IsSkillIDValid(tempBuffer[i])) {
                 break;
             }
@@ -94,7 +98,7 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
             if (IsSkillIDValid(GetItemData(temp & 0xFF)->skill)) {
                 buffer->skills[count++] = GetItemData(temp & 0xFF)->skill;
                 //If passive skills don't stack, stop looping
-                if (!PassiveSkillStack) {
+                if (!gSkillTestConfig.passiveSkillStack) {
                     break;
                 }
             }
@@ -144,7 +148,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
         //For every skill in the buffer, index AuraSkillTable to find a match
         for (int j = 0; buffer->skills[j] != 0; ++j) {
-            if (AuraSkillTable[buffer->skills[j]] && count < gAuraSkillBufferLimit) {
+            if (AuraSkillTable[buffer->skills[j]] && count < gSkillTestConfig.auraSkillBufferLimit) {
                 auraBuffer[count].skillID = buffer->skills[j];
 
                 distance = absolute(other->xPos - unit->xPos) +
