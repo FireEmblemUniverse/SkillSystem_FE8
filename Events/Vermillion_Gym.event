@@ -77,7 +77,7 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0x90EF) 
 AutoLevelUnits(VermillionGymBonus, False, 0x90EF) 
 //AutoLevelUnits(3, False, 0x90EF) 
-CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 

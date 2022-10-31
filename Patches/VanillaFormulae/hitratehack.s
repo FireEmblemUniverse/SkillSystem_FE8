@@ -21,7 +21,9 @@ add r0, r1 @
 
 mov r2,#0x15
 ldsb r2,[r4,r2] @ Skill in r2 
+mov r3, r2 @ skill 
 lsl r2, #1 @ 2x skill added 
+add r2, r3 @ 3x skill 
 
 add r2,r0 
 @ Needs r2 as hit value when returning 

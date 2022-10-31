@@ -129,7 +129,7 @@ SignATrap(13,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
-SpellScrollTrap(11,17, (ChapterID*2)+1, Ancientpower)
+SpellScrollTrap(11,17, (ChapterID*2), SolarBeam)
 //OpenPokeball(8,3)
 
 
@@ -202,7 +202,8 @@ BYTE JellyDonut 5
 BYTE SpellScroll IceBeam SpellScroll TriAttack
 BYTE SpellScroll Psychic SpellScroll PetalDance
 BYTE SpellScroll Screech SpellScroll SwordsDance
-BYTE SpellScroll BugBuzz SpellScroll CalmMind
+BYTE SpellScroll BugBuzz SpellScroll CalmMind SpellScroll Ancientpower
+BYTE SpellScroll GrassKnot SpellScroll Surf 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

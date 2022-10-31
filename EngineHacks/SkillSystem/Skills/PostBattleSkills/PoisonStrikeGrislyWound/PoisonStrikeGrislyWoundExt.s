@@ -32,9 +32,10 @@ ldrh r0, [ r6, r2 ] @ Get defense
 cmp r0, r1
 bge EndInjureAttacker @ Leave if the defender isn't doing damage. The defense is greater than the attack
 ldrb r0, [ r4, #0x12 ] @ Max HP
-lsl r0, r0, #1 @ Multiply by 2
-mov r1, #10
-blh #0x080D18FC, r3 @ r0 has 20% of the max HP
+lsr r0, #2 @ 1/4 hp 
+@lsl r0, r0, #1 @ Multiply by 2
+@mov r1, #10
+@blh #0x080D18FC, r3 @ r0 has 20% of the max HP
 ldrb r1, [ r4, #0x13 ]
 cmp r0, r1
 bge SetAttacker1HP
@@ -62,7 +63,7 @@ beq EndInjureDefender @ Leave if the defender is already dead.
 ldr r1, [r5] @ unit 
 ldrb r1, [r1, #4] @ unit id 
 cmp r1, #0xE0 
-blt Continue 
+blt Continue2 
 cmp r1, #0xEF 
 ble EndInjureDefender @ don't hit trainers 
 Continue2: 
@@ -77,9 +78,10 @@ ldrh r0, [ r7, r2 ] @ Get defense
 cmp r0, r1
 bge EndInjureDefender @ Leave if the attacker isn't doing damage.
 ldrb r0, [ r5, #0x12 ] @ Max HP of defender
-lsl r0, r0, #1 @ Multiply by 2
-mov r1, #10
-blh #0x080D18FC, r3 @ r0 has 20% of the max HP
+lsr r0, #2 @ 1/4 hp 
+@lsl r0, r0, #1 @ Multiply by 2
+@mov r1, #10
+@blh #0x080D18FC, r3 @ r0 has 20% of the max HP
 ldrb r1, [ r5, #0x13 ]
 cmp r0, r1
 bge SetDefender1HP

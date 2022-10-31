@@ -138,7 +138,8 @@ ChapterTransition(Route8Ch, 3, 10)
 Traps1:
 //CoinsTrap(28,14,ChapterID*2,350)
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
-RedPokeballTrap(4,3, ChapterID*2, MaxPotion)
+//RedPokeballTrap(4,3, ChapterID*2, MaxPotion)
+SpellScrollTrap(4,3, (ChapterID*2)+1, GrassKnot)
 
 CutBush(4,7)
 CutBush(13,7)

@@ -204,7 +204,7 @@ beq XLoop @ If target is at full hp, do not grant exp
 
 ldrb r1, [r0, #8] @ level 
 ldrb r2, [r3, #8] @ actor's level 
-cmp r1, r2 
+cmp r2, r1 
 bge XLoop @ grant no exp for healing unless the target is a higher level than you 
 
 @ are units allied 24D8C

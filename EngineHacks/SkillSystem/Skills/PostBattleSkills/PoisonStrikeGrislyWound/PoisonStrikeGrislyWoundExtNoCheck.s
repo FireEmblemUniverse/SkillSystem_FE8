@@ -23,9 +23,10 @@ ble EndInjureAttacker @ don't hit trainers
 Continue: 
 
 ldrb r0, [ r4, #0x12 ] @ Max HP
-lsl r0, r0, #1 @ Multiply by 2
-mov r1, #10
-blh #0x080D18FC, r3 @ r0 has 20% of the max HP
+lsr r0, #2 @ 1/4 hp 
+@lsl r0, r0, #1 @ Multiply by 2
+@mov r1, #10
+@blh #0x080D18FC, r3 @ r0 has 20% of the max HP
 ldrb r1, [ r4, #0x13 ]
 cmp r0, r1
 bge SetAttacker1HP
@@ -59,9 +60,10 @@ ble EndInjureDefender @ don't hit trainers
 Continue2: 
 
 ldrb r0, [ r5, #0x12 ] @ Max HP
-lsl r0, r0, #1 @ Multiply by 2
-mov r1, #10
-blh #0x080D18FC, r3 @ r0 has 20% of the max HP
+lsr r0, #2 @ 1/4 hp 
+@lsl r0, r0, #1 @ Multiply by 2
+@mov r1, #10
+@blh #0x080D18FC, r3 @ r0 has 20% of the max HP
 ldrb r1, [ r5, #0x13 ]
 cmp r0, r1
 bge SetDefender1HP

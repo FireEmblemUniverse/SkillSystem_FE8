@@ -2,16 +2,16 @@ INLINE MonsterSpawnTable,Class1,Class2,Class3,Class4,Class5,C1Chance,C2Chance,C3
 PalletTownWild 0x0,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0
 RouteOneWildA 0x1,PidgeyID,RattataID,MankeyID,0x00,0x00,38,38,24,0,0,Route1Ch,0
 RouteOneWildB 0x2,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route1Ch,0
-RouteTwoSouthWildA 0x3,PidgeyID,RattataID,MankeyID,NidoranMID,0x00,25,25,25,25,0,Route2SCh,0
+RouteTwoSouthWildA 0x3,SpearowID,NidoranMID,0x00,0x00,0x00,50,50,0,0,0,Route2SCh,0
 RouteTwoSouthWildB 0x4,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,0,0
 ViridianForestSouthWildA 0x5,CaterpieID,WeedleID,PikachuID,0x00,0x00,42,42,16,0,0,ViridianForestSCh,0
 ViridianForestSouthWildB 0x6,MetapodID,KakunaID,PikachuID,0x00,0x00,42,42,16,0,0,ViridianForestSCh,0
 ViridianForestNorthWildA 0x7,CaterpieID,WeedleID,PikachuID,0x00,0x00,42,42,16,0,0,ViridianForestNCh,0
 ViridianForestNorthWildB 0x8,MetapodID,KakunaID,PikachuID,0x00,0x00,42,42,16,0,0,ViridianForestNCh,0
-RouteTwoNorthWildA 0x9,OddishID,SandshrewID,EkansID,NidoranMID,0x00,40,25,10,25,0,Route2NCh,0
+RouteTwoNorthWildA 0x9,OddishID,SandshrewID,EkansID,NidoranMID,0x00,40,30,10,20,0,Route2NCh,0
 RouteTwoNorthWildB 0xA,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route2NCh,0
-RouteThreeWildA 0xB,OddishID,SandshrewID,0x00,0x00,0x00,35,65,0,0,0,Route3Ch,0
-RouteThreeWildA 0xC,OddishID,SandshrewID,0x00,0x00,0x00,35,65,0,0,0,Route3Ch,0
+RouteThreeWildA 0xB,OddishID,JigglypuffID,0x00,0x00,0x00,35,65,0,0,0,Route3Ch,0
+RouteThreeWildB 0xC,OddishID,JigglypuffID,0x00,0x00,0x00,35,65,0,0,0,Route3Ch,0
 MtMoonB1 WildA 0xD,ZubatID,GeodudeID,0x00,0x00,0x00,70,30,0,0,0,MtMoonB1Ch,0
 MtMoonB1N 0xE,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,MtMoonB1Ch,0
 MtMoonB2 WildA 0xF,ZubatID,ParasID,0x00,0x00,0x00,50,50,0,0,0,MtMoonB2Ch,0

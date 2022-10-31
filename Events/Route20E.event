@@ -89,8 +89,8 @@ CoinsTrap(54, 12,ChapterID*2,1080)
 //RockSmash(29,9)
 
 //StrengthBoulder(4,3)
-
-//StatAccessoryTrap(43, 13, (ChapterID*2), EnhancedWard_BoostIndex) 
+RedPokeballTrap(5,7, (ChapterID*2)+1, ExoticCandy) 
+//StatAccessoryTrap(5,7, (ChapterID*2), EnhancedWard_BoostIndex) 
 //RedPokeballTrap(49,9, (ChapterID*2)+1, Zinc) 
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
@@ -110,7 +110,7 @@ SignATrap(55,7, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 //BerryTree(36,11,5)
 
 //SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
-//SpellScrollTrap(12, 28, (ChapterID*2)+1, HoneClaws)
+SpellScrollTrap(34,9, (ChapterID*2)+1, Surf)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

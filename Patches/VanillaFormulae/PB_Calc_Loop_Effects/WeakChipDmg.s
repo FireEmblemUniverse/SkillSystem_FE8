@@ -58,20 +58,23 @@ StrHigher:
 
 @r0 has Str or Mag 
 
-add r0, #3 @ ceiling up 
-lsr r0, #2 @ 1/4 
+add r0, #7 @ ceiling up 
+lsr r0, #3 @ 1/8 
 
 ldrb r1, [r4, #0x17] @ def 
 ldrb r2, [r4, #0x18] @ res 
-add r1, #3 @ round 
+add r1, #7 @ round 
 lsr r1, #3 @ 1/8 
-add r2, #3 @ round 
+add r2, #7 @ round 
 lsr r2, #3 @ 1/8 
 
 
 add r0, r1 
 add r0, r2 
-@ 1/4 str + 1/8 def + 1/8 res 
+ldrb r1, [r5, #0x12] @ max hp 
+add r1, #15 
+lsr r1, #4 @ 1/16 hp 
+@ 1/8 str + 1/8 def + 1/8 res + 1/16 enemy max hp 
 
 ldrb r1, [r5, #0x18] @ Res 
 lsr r1, #1 @ 1/2 res 
@@ -85,6 +88,9 @@ NoCap:
 cmp r2, r1 
 blt NoCombination
 
+@ if battle def > (1/2 res) 
+@ battle def - (1/2 res) 
+@ add this # to dmg 
 sub r2, r1 
 @add r2, #1 @ ceiling 
 @lsr r2, #1 @ average of def+res 

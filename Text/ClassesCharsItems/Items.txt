@@ -133,44 +133,44 @@ Prevents counterattacks.[X]
 Strength Seal[X]
 ## SealStrAccDescText
 Debuffs enemy Str[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 ## SealMagAccNameText
 Magic Seal[X]
 ## SealMagAccDescText
 Debuffs enemy Mag[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 ## SealSklAccNameText
 Skill Seal[X]
 ## SealSklAccDescText
 Debuffs enemy Skl[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 ## SealSpdAccNameText
 Speed Seal[X]
 ## SealSpdAccDescText
 Debuffs enemy Spd[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 ## SealLukAccNameText
 Luck Seal[X]
 ## SealLukAccDescText
 Debuffs enemy Luk[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 ## SealResAccNameText
 Resistance Seal[X]
 ## SealResAccDescText
 Debuffs enemy Res[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 
 ## SealDefAccNameText
 Defence Seal[X]
 ## SealDefAccDescText
 Debuffs enemy Def[NL]
-by 6 after combat.[X]
+by 8 after combat.[X]
 
 
 
@@ -292,7 +292,7 @@ Berserk Gene[X]
 Rocky Helmet[X]
 
 ## RockyHelmetDescText
-Opponents take 20% HP[NL]
+Opponents take 25% HP[NL]
 after attacking the holder.[X]
 
 ## SurgesSigilNameText
@@ -737,22 +737,27 @@ Seismic Toss[X]
 Submission[X]
 
 ## ConstrictDesc
-Chip damage. Debuffs Spd by 5.[X]
+Chip damage.[N]
+Debuffs Spd by 8.[X]
 
 
 ## DoubleHitDesc
 Hits twice.[X]
 ## LeerDesc
-Chip damage. Debuffs Def by 5.[X]
+Chip damage.[N]
+Debuffs Def/Res by 6.[X]
 ## TailWhipDesc
-Chip damage. Debuffs Def by 5.[X]
+Chip damage.[N]
+Debuffs Def/Res by 6.[X]
 
 ## FlashDesc
-Chip damage. Greatly debuffs Skl.[X]
+Chip damage.[N]
+Debuffs Skill by 15.[X]
 
 
 ## GrowlDesc
-Chip damage. Debuffs Str by 5.[X]
+Chip damage.[N]
+Debuffs Str by 8.[X]
 
 ## VineWhipDesc
 *{(}A weak whipping attack.[X]
@@ -776,7 +781,8 @@ Chip damage. Debuffs Str by 5.[X]
 
 
 ## SandAttackDesc
-Chip damage. Debuffs Skl by 5.[X]
+Chip damage.[N]
+Debuffs Skl by 15.[X]
 ## ScratchDesc
 *{(}A weak scratch.[X]
 
@@ -803,12 +809,13 @@ Chip damage. Debuffs Skl by 5.[X]
 ## ThundershockDesc
 *{)}A weak jolt of electricity.[X]
 ## AcidDesc
-*{)}Debuffs Res by 5.[X]
+*{)}Debuffs Res by 6.[X]
 
 ## PoisonStingDesc
 *{(}A weak, venomous sting.[X]
 ## SmogDesc
-Chip damage. Debuffs Res.[X]
+Chip damage.[N]
+May Poison.[X]
 
 ## WaterGunDesc
 *{)}A weak spout of water.[X]
@@ -966,7 +973,8 @@ Lick[X]
 ## NightShadeName ^
 Night Shade[X]
 ## NightShadeDesc
-*{)}A ghostly pulse.[X]
+*{)}A ghostly pulse.[N]
+Negates 50% Def. Cannot double.[X]
 ## NightmareName ^
 Nightmare[X]
 ## NightmareDesc
@@ -1034,7 +1042,8 @@ Signal Beam[X]
 ## StringShotName ^
 String Shot[X]
 ## StringShotDesc
-Chip damage. Debuffs Spd by 5.  [X]
+Chip damage.[N]
+Debuffs Spd by 8.[X]
 ## UTurnName ^
 U-Turn[X]
 ## UTurnDesc
@@ -1313,7 +1322,8 @@ if it doesn't KO. Cannot double.[X]
 *{(}User rolls about unleashing kicks.[X]
 
 ## SeismicTossDesc
-*{(}A hardy judo throw.[X]
+*{(}A hardy judo throw.[N]
+Negates 50% Def. Cannot double.[X]
 
 ## SubmissionDesc
 *{(}Throws the foe with all their might.[X]

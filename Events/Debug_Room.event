@@ -225,8 +225,8 @@ ENUT DebugPlaceUnitsFlagMenu
 ENUF SkipIntroFlag
 
 
-LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
-//LOAD1 0x1 Units_Earlygame
+//LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+LOAD1 0x1 Units_Earlygame
 ENUN
 
 //LOAD1 0x1 Units3
@@ -320,7 +320,7 @@ SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 //SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
-SilentGiveItemWithDurability(1, SkillScroll, SavageBlowID)
+SilentGiveItemWithDurability(1, SkillScroll, PoisonStrikeID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)
@@ -371,7 +371,7 @@ SetTactName(VeslyName)
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(59, True, 0x145) // all 
+AutoLevelUnits(5, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)

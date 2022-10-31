@@ -112,6 +112,7 @@ SignATrap(16,2, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 
 //SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
 SpellScrollTrap(11, 25, (ChapterID*2)+1, HoneClaws)
+SpellScrollTrap(16, 4, (ChapterID*2), Ancientpower)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

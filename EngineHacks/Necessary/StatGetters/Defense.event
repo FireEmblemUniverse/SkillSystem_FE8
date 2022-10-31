@@ -9,6 +9,7 @@ pDefenseModifiers: // Defense
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryDefense
 	#endif 
+	POIN PoisonStatus
 	POIN SleepStatus FreezeStatus
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero

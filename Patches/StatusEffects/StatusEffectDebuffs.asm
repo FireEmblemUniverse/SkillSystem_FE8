@@ -40,6 +40,8 @@ cmp r6, r1
 beq TestTypeNow
 
 ldr r0, =ElectricType
+ldr r3, =GroundType
+orr r0, r3 @ Electric and ground types as immune to freeze. 
 lsl r0, #8 
 lsr r0, #8 
 ldr r1, =ParalyzeStatusID_Link 
@@ -105,7 +107,7 @@ bl IsStatusApplicable
 cmp r0, #1 
 bne End_TestBurn 
 add r5, #1 
-lsr r5, #1 @ halved stat 
+lsr r5, #2 @ 1/4 stat 
 
 End_TestBurn:
 mov r0, r5
@@ -158,8 +160,8 @@ ldr r1, [r1]
 bl IsStatusApplicable 
 cmp r0, #1 
 bne End_TestParalyze
-add r5, #1 
-lsr r5, #1 @ halved stat 
+add r5, #1
+lsr r5, #2 @ 1/4 stat 
 
 End_TestParalyze:
 mov r0, r5
@@ -206,8 +208,10 @@ ldr r1, [r1]
 bl IsStatusApplicable 
 cmp r0, #1 
 bne End_TestPoison
-add r5, #1 
-lsr r5, #1 @ halved stat 
+mov r0, r5 
+add r0, #3 
+lsr r0, #2 @ 1/4 
+sub r5, r0 @ 3/4 Def/Res when poisoned 
 
 End_TestPoison:
 mov r0, r5

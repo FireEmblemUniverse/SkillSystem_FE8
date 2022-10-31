@@ -96,24 +96,28 @@ Freeze[X]
 
 # 0x51E TrappedStatScreenName ^ 
 Entangle[X]
+# 0x553 
+Damaged each turn.[N]
+75% Def/Res.[X]
 
 # 0x558 BurnRTextDesc
-Strength is halved.[N]
-Damaged each turn.[X]
+Damaged each turn.[N]
+25% Strength.[X]
+
 # 0x559 ParalysisRTextDesc
-Speed is halved.[N]
-Chance of a missed turn.[X]
+Chance of a missed turn.[N]
+25% Speed.[X]
 # 0x55A FreezeRTextDesc
 Frozen. Def/Res are halved.[N]
 Unable to move.[X]
 
 # 0x55B TrappedRTextDesc 
 Entangled. Damaged each turn.[N]
-Difficult to move.[X]
+25% Speed/Mov.[X]
 
 # 0x503
 // Previously Mt for battle forecast 
-Dmg[X]
+Pow[X]
 
 # 0x4F5 // Previously Avoid
 Avo[X]
