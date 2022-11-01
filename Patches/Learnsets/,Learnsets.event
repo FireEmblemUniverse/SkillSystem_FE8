@@ -1913,9 +1913,9 @@ BYTE 22 Screech
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 TriAttack
-BYTE 36 ThunderMove // Resv MagnetRise
 BYTE 36 Explosion // 29 selfdestruct + 43 explosion /2 = 36
-BYTE 40 FlashCannon // GyroBall
+BYTE 40 ThunderMove // Resv MagnetRise
+BYTE 43 FlashCannon // GyroBall
 // BYTE 43 Explosion
 // BYTE 47 Resv Mirror Coat
 BYTE 0 0
@@ -1934,9 +1934,9 @@ BYTE 22 Screech
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
 BYTE 33 TriAttack
-BYTE 36 ThunderMove // Resv MagnetRise
 BYTE 36 Explosion // 29 selfdestruct + 43 explosion /2 = 36
-BYTE 40 FlashCannon // GyroBall
+BYTE 40 ThunderMove // Resv MagnetRise
+BYTE 43 FlashCannon // GyroBall
 // BYTE 43 Explosion
 // BYTE 47 Resv Mirror Coat
 BYTE 0 0
