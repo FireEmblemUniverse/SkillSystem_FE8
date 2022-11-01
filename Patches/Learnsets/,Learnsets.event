@@ -2194,22 +2194,24 @@ BYTE 0 0
 ALIGN 4
 ChanseyLearnset:
 BYTE 1 Pound
-BYTE 1 Growl
-BYTE 5 TailWhip
-BYTE 9 HealPulse 
+BYTE 1 Snarl
+BYTE 8 Doubleslap
 // BYTE 9 Resv Refresh
-BYTE 12 RecoverMove
-BYTE 16 Doubleslap
-BYTE 20 Snarl
-BYTE 22 NightShade
+BYTE 12 TailWhip
+BYTE 15 Growl
+BYTE 18 RecoverMove
+BYTE 20 NightShade
 // BYTE 20 Resv Minimize
 // BYTE 23 Sleep2 // Sing
-BYTE 25 FireSpin
+BYTE 23 HealPulse 
 BYTE 27 ThunderWave
+BYTE 29 ConfuseRay
 // BYTE 31 Resv DefenseCurl
-BYTE 30 Amnesia
-BYTE 34 Toxic
-BYTE 38 TriAttack // EggBomb 
+BYTE 31 TriAttack
+BYTE 33 Amnesia
+BYTE 35 Toxic
+BYTE 38 HyperBeam
+BYTE 42 Blizzard
 // BYTE 42 Resv HealingWish
 BYTE 45 Explosion
 BYTE 0 0
