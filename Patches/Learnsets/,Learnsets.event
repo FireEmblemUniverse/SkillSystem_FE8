@@ -2788,13 +2788,22 @@ BYTE 0 0
 ALIGN 4
 SnorlaxLearnset:
 BYTE 1 Tackle 
+BYTE 4 GuardMove
+BYTE 6 Lick
+BYTE 8 Bite
 BYTE 9 Amnesia //?Buff 
-BYTE 12 Lick 
+BYTE 12 BodySlam 
+BYTE 15 Magnitude
+BYTE 18 Rollout
 //BYTE 20 ??? (Yawn) 
-BYTE 25 Rest 
+BYTE 23 Rest 
+BYTE 25 TakeDown
 //BYTE 28 ??? (Sleep2 Talk) 
 //BYTE 28 ??? (Snore) 
-BYTE 25 BodySlam 
+BYTE 28 Submission
+BYTE 30 MeteorMash
+BYTE 35 Earthquake
+BYTE 37 HyperBeam
 BYTE 40 DoubleEdge
 BYTE 42 NightSlash //?Dark 
 BYTE 45 Explosion
@@ -2802,142 +2811,206 @@ BYTE 0 0
 
 ALIGN 4
 ArticunoLearnset:
-BYTE 1 Gust 
+BYTE 1 Peck
 BYTE 1 AuroraBeam 
+BYTE 1 Gust
+BYTE 5 ConfuseRay
+BYTE 10 RecoverMove
 //BYTE 8 Resv //Haze 
 //BYTE 22 ??? ?Buff (Mind Reader)
-BYTE 29 Ancientpower
-BYTE 36 Agility //?Buff
-BYTE 43 Hurricane // Reflect 
-BYTE 50 IceBeam
-BYTE 57 RecoverMove //?Buff (Roost)
+BYTE 15 AirSlash
+BYTE 20 Fly
+BYTE 25 Agility //?Buff
+BYTE 30 Ancientpower
+BYTE 35 Avalanche
+BYTE 40 Psychic
+BYTE 45 IceBeam
+BYTE 50 SkyAttack
+BYTE 55 Hurricane
+BYTE 60 Blizzard
 //BYTE 64 Tailwind
-BYTE 71 Blizzard
-BYTE 78 Guillotine
 BYTE 0 0
 
 ALIGN 4
 ZapdosLearnset:
 BYTE 1 Peck 
-BYTE 1 Thundershock 
-BYTE 8 ThunderWave 
+BYTE 1 ShockWave 
+BYTE 1 Gust 
+BYTE 5 ThunderWave
+BYTE 10 RecoverMove
 //BYTE 15 ??? ?Buff (Detect)
-BYTE 22 WingAttack 
-BYTE 29 Ancientpower
-//BYTE 36 ??? ?Buff (Charge)
-BYTE 35 Agility 
-BYTE 43 Hurricane 
-//BYTE 43 Agility //?Buff
-BYTE 50 Thunderbolt
-BYTE 57 RecoverMove //?Buff (Roost)
+BYTE 15 AirSlash
+BYTE 20 Fly
+BYTE 25 Agility
+BYTE 30 Ancientpower
+BYTE 35 VoltTackle
+BYTE 40 WaterPulse
+BYTE 45 Thunderbolt
+BYTE 50 SkyAttack
+BYTE 55 Hurricane
+BYTE 60 ThunderMove
 //BYTE 64 LightScreen //?Buff
-BYTE 71 DrillPeck
-BYTE 78 ThunderMove
 BYTE 0 0
 
 ALIGN 4
 MoltresLearnset:
-BYTE 1 WingAttack 
-BYTE 1 Ember 
+BYTE 1 Peck
+BYTE 1 Scorch
 BYTE 1 Gust 
-BYTE 8 FireSpin 
-BYTE 15 Agility //?Buff 
-BYTE 22 RecoverMove //?Buff (RecoverMove) 
-BYTE 25 AirSlash 
-BYTE 29 Ancientpower 
+BYTE 5 FireSpin
+BYTE 10 RecoverMove
+BYTE 15 AirSlash
+BYTE 20 Fly
+BYTE 25 Agility
+BYTE 30 AncientPower
+BYTE 35 SacredFire 
 //BYTE 43 Barrier //?Buff (Safeguard) 
-BYTE 43 Hurricane
-BYTE 50 Flamethrower 
-BYTE 57 RecoverMove //?Buff (Roost) 
-BYTE 64 FireBlast 
-BYTE 71 SolarBeam 
-BYTE 78 SkyAttack 
+BYTE 40 SolarBeam
+BYTE 45 Flamethrower 
+BYTE 50 SkyAttack
+BYTE 55 Hurricane
+BYTE 60 FireBlast 
 BYTE 0 0
 
 ALIGN 4
 DratiniLearnset:
 BYTE 1 Constrict 
 BYTE 1 Leer
+BYTE 1 Tackle
 BYTE 5 ThunderWave 
-BYTE 11 Twister 
-BYTE 15 DragonRage 
-BYTE 21 Slam 
+BYTE 7 Twister
+BYTE 9 Scorch 
+BYTE 11 Headbutt
+BYTE 13 DragonRage
+BYTE 16 Dragonbreath
+BYTE 21 Slam
+BYTE 23 BubbleBeam
 BYTE 25 Agility //?Buff 
-BYTE 31 Waterfall 
+BYTE 28 ShockWave
+BYTE 30 Fly 
+BYTE 32 Waterfall
 BYTE 35 DragonClaw
+BYTE 38 AirSlash
+BYTE 40 IceBeam
+BYTE 45 DoubleEdge
+BYTE 48 TriAttack
 //BYTE 41 Barrier //?Buff (Safeguard) 
 //BYTE 45 Resv //DragonDance //?Buff
-BYTE 51 Outrage
+BYTE 50 Outrage
 BYTE 55 HyperBeam
+BYTE 56 SacredFire
+BYTE 57 Hurricane
+BYTE 58 VoltTackle
+BYTE 60 SkyAttack
 BYTE 0 0
 
 ALIGN 4
 DragonairLearnset:
 BYTE 1 Constrict 
 BYTE 1 Leer
+BYTE 1 Tackle
 BYTE 5 ThunderWave 
-BYTE 11 Twister 
-BYTE 15 DragonRage 
-BYTE 21 Slam 
+BYTE 7 Twister
+BYTE 9 Scorch 
+BYTE 11 Headbutt
+BYTE 13 DragonRage
+BYTE 16 Dragonbreath
+BYTE 21 Slam
+BYTE 23 BubbleBeam
 BYTE 25 Agility //?Buff 
-BYTE 31 Waterfall 
+BYTE 28 ShockWave
+BYTE 30 Fly 
+BYTE 32 Waterfall
 BYTE 35 DragonClaw
+BYTE 38 AirSlash
+BYTE 40 IceBeam
+BYTE 45 DoubleEdge
+BYTE 48 TriAttack
 //BYTE 41 Barrier //?Buff (Safeguard) 
 //BYTE 45 Resv //DragonDance //?Buff
-BYTE 51 Outrage
+BYTE 50 Outrage
 BYTE 55 HyperBeam
+BYTE 56 SacredFire
+BYTE 57 Hurricane
+BYTE 58 VoltTackle
+BYTE 60 SkyAttack
 BYTE 0 0
 
 ALIGN 4
 DragoniteLearnset:
 BYTE 1 Constrict 
 BYTE 1 Leer
+BYTE 1 Tackle
 BYTE 5 ThunderWave 
-BYTE 11 Twister 
-BYTE 15 DragonRage 
-BYTE 21 Slam 
+BYTE 7 Twister
+BYTE 9 Scorch 
+BYTE 11 Headbutt
+BYTE 13 DragonRage
+BYTE 16 Dragonbreath
+BYTE 21 Slam
+BYTE 23 BubbleBeam
 BYTE 25 Agility //?Buff 
-BYTE 31 Waterfall 
+BYTE 28 ShockWave
+BYTE 30 Fly 
+BYTE 32 Waterfall
 BYTE 35 DragonClaw
+BYTE 38 AirSlash
+BYTE 40 IceBeam
+BYTE 45 DoubleEdge
+BYTE 48 TriAttack
 //BYTE 41 Barrier //?Buff (Safeguard) 
 //BYTE 45 Resv //DragonDance //?Buff
-BYTE 51 Outrage
+BYTE 50 Outrage
 BYTE 55 HyperBeam
+BYTE 56 SacredFire
+BYTE 57 Hurricane
+BYTE 58 VoltTackle
+BYTE 60 SkyAttack
 BYTE 0 0
 
 ALIGN 4
 MewtwoLearnset:
 BYTE 1 Confusion
-BYTE 8 RecoverMove
-//BYTE 8 Barrier //?Buff (Barrier...?)
-BYTE 15 Swift
-BYTE 22 Psybeam
-//BYTE 29 ??? ?Buff (Psych Up)
-//BYTE 36 ??? ?Buff (Miracle Eye)
-//BYTE 43 Resv //Haze
-//BYTE 50 ??? (Psycho Cut)
-BYTE 57 Amnesia
+BYTE 5 Swift
+BYTE 10 RecoverMove
+BYTE 15 CalmMind
+BYTE 20 Psybeam
+BYTE 25 TriAttack
+BYTE 30 SeismicToss
+BYTE 35 HealPulse
+BYTE 40 ShadowBall
+BYTE 45 Psychic
+BYTE 50 DarkPulse
+BYTE 55 Amnesia
+BYTE 60 FlashCannon
+BYTE 65 HyperBeam
 //BYTE 64 ??? ?Buff (Power Swap, Guard Swap)
-BYTE 71 Psychic
 //BYTE 79 ??? ?Buff (Me First)
-BYTE 86 Fortify //?Buff (RecoverMove)
 //BYTE 93 ??? ?Buff (Safeguard)
-BYTE 100 SeismicToss
 BYTE 0 0
 
 ALIGN 4
 MewLearnset:
 BYTE 1 Pound
-BYTE 10 MegaPunch
-//BYTE 20 Resv //Metronome
+BYTE 5 AncientPower
+BYTE 10 BugBuzz
+BYTE 15 Hurricane
+BYTE 20 PoisonJab
+BYTE 25 HiJumpKick
 BYTE 30 Psychic
-BYTE 40 RecoverMove //?Buff (Barrier...?)
-BYTE 50 Ancientpower
-BYTE 60 Amnesia
-//BYTE 70 ??? ?Buff (Me First)
-//BYTE 80 ??? ?Buff (Baton Pass)
-//BYTE 90 ??? ?Buff (Nasty Plot)
-BYTE 100 SeismicToss
+BYTE 35 ShadowBall
+BYTE 40 DarkPulse
+BYTE 45 FlashCannon
+BYTE 50 Earthquake
+BYTE 55 Amnesia
+BYTE 60 FireBlast
+BYTE 65 ThunderMove
+BYTE 70 Blizzard
+BYTE 75 HydroPump
+BYTE 80 SolarBeam
+BYTE 85 Outrage
+BYTE 90 HyperBeam
+BYTE 95 Explosion
 BYTE 0 0
 
 ALIGN 4 
