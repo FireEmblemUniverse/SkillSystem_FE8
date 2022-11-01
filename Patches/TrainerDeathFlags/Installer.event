@@ -61,6 +61,12 @@ GOTO 0x63
 
 LABEL 21 // Wild Boss pokemon that can only be attacked once its summons are defeated 
 
+CHECK_EVENTID BossPokemonWarningFlag
+BNE 41 sC s0 
+TutText(BossPokemonWarningText)
+ENUT BossPokemonWarningFlag 
+LABEL 41 
+
 ASMC CallCheckTrainerFlag 
 BNE 60 rC r0 // If flag is unset, always call modular summon
 ENUT PlayableCutsceneFlag

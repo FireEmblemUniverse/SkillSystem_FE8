@@ -42,8 +42,22 @@ END_MAIN
 
 LocationBasedEvents:
 House(BoulderbadgeObtained,EnterGym,12,16)  
+House(0,OldAmberEvent,22,4)
 Vendor(ShopItems,24,20)
 END_MAIN
+
+OldAmberEvent:
+CHECK_EVENTID OldAmberFlag 
+BNE 0 sC s0 
+BottomWallText(ObtainOldAmber)
+TutText(ObtainOldAmber2)
+ENUT OldAmberFlag 
+LABEL 0 
+BottomWallText(AlreadyObtainedOldAmber)
+
+LABEL 99 
+NoFade 
+ENDA 
 
 EnterGym:
 ENUF BoulderbadgeObtained 
@@ -122,8 +136,9 @@ SignTrap(26, 20, TrainerTip_Mart)
 
 EnterWallTrap(14,6, PewterMuseumText) // Museum
 EnterWallTrap(29,11, PewterNEHouseText) // Ne house trade 
+
 EnterWallTrap(6,31, PewterSWHouseText) // sw coin house  
-EnterWallTrap(22,4, PewterSWHouseText) // sw coin house  
+//EnterWallTrap(22,4, PewterSWHouseText) // sw coin house  
 
 
 Save(16,24) // Pokecenter 

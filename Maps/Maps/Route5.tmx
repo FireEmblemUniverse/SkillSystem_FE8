@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="route 5 tileset 2" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../TilesetPreviews/Route5.png" trans="ffffff" width="512" height="512"/>
  </tileset>
+ <tileset firstgid="1025" name="0C000D0F" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="../TilesetPreviews/0C000D0F.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="32" height="40">
   <properties>
    <property name="Anims1" value="0"/>
@@ -35,9 +38,9 @@
    <tile gid="4"/>
    <tile gid="4"/>
    <tile gid="4"/>
-   <tile gid="4"/>
-   <tile gid="4"/>
-   <tile gid="4"/>
+   <tile gid="5"/>
+   <tile gid="11"/>
+   <tile gid="3"/>
    <tile gid="4"/>
    <tile gid="4"/>
    <tile gid="4"/>

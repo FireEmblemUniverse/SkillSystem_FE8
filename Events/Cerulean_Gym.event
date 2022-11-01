@@ -65,6 +65,7 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+EVBIT_MODIFY 4 
 CHECK_EVENTID CascadebadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag

@@ -1346,8 +1346,10 @@ GetDisplayDamage:
   and  r1, r2
   cmp  r1, #0x0
   beq  GetDisplayDamage_CapCheck
-     mov  r2, #0x3
-     mul  r0, r2         @Critical Damage 3x
+	 mov r2, r0 @ 1x 
+	 lsl r0, #1 @ 2x 
+     add r0, r2 @ 3x 
+	 lsr r0, #1 @ 1.5x dmg critical dmg
 
      GetDisplayDamage_CapCheck:
      cmp  r0, #0x7f

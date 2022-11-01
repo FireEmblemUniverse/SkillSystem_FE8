@@ -18,6 +18,9 @@ Map/chapter transitions - Huichelaar
 # Special Thanks
 7743, without whom this project would not be possible. He’s added many features and patches to FEBuilder that I greedily requested, and has always offered support when I was having trouble.
 
+# Learnsets 
+FabulaFares, ScubaLuigi, ChilanBerry, Rurouni
+
 # Assets
 
 Most item icons - Lukirioh

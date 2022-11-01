@@ -107,12 +107,12 @@ Traps1:
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-SkillAccessoryTrap(7,33, (ChapterID*2)+1, CertainBlowID) 
+SkillAccessoryTrap(5,5, (ChapterID*2)+1, CertainBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SpellScrollTrap(7,33, (ChapterID*2)+1, DoubleHit)
 
-SkillAccessoryTrap(5,5, (ChapterID*2), SealSpdID)
+SkillAccessoryTrap(7,33, (ChapterID*2), SealSpdID)
 
 
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 

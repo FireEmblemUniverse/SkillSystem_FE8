@@ -62,6 +62,7 @@ ENDA
 
 
 LocationBasedEvents:
+House(0,ViridianUpperHouseEvent, 21,11)
 House(EarthbadgeObtained,EnterGym,30,10) 
 Vendor(ShopItems,30,19)
 /*
@@ -72,6 +73,19 @@ House(0,HouseEvent,6,24)
 Seize(10,2)
 */
 END_MAIN
+
+ViridianUpperHouseEvent: 
+CHECK_EVENTID VolcanobadgeObtained 
+BNE 0 sC s0
+TutText(ViridianUpperHouseText)
+GOTO 99 
+LABEL 0 
+TutText(ViridianUpperHouseText_Lategame)
+LABEL 99 
+NoFade
+ENDA 
+
+
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
@@ -123,7 +137,7 @@ SignTrap(15,4, TrainerTip_CursorJump)
 
 BlankExamineTrap(26,10, ViridianGymText)
 //BlankExamineTrap(30,10, DoorLockedText) // Gym 
-EnterWallTrap(21,11, ViridianUpperHouseText) 
+//EnterWallTrap(21,11, ViridianUpperHouseText) 
 EnterWallTrap(21,18, ViridianGrumpyManText) 
 Save(23,24) // 1N of Pokecenter - you can save while adjacent 
 //SaveCost(24,26)

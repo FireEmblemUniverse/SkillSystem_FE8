@@ -1,8 +1,8 @@
 #define ChapterID Route2SCh
 #define GenericA UnitViridianForestSWild
 #define GenericB UnitViridianForestSTrainer
-#define ClassA ClassRoute1WildA
-#define ClassB ClassRoute1WildB
+#define ClassA ClassRoute2SWildA
+#define ClassB ClassRoute2SWildB
 #define WildLvl 1 
 #define TrainerL 2
 
@@ -107,6 +107,8 @@ SignTrap(5,23, TrainerTip_DangerZone)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
+
+StatAccessoryTrap(13,8, (ChapterID*2), WiseGlasses_BoostIndex)
 
 RedPokeballTrap(21,31, ChapterID*2, ExoticCandy) // Requires Cut / diglett's cave 
 

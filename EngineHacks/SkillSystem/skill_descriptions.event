@@ -10,6 +10,7 @@ ORG 2*0xFF+SkillNameTable
 
 #define SkillDescription(skillID,description) "PUSH; ORG 2*skillID+SkillDescTable; SHORT description; POP"
 #define SkillName(skillID,name) "PUSH; ORG 2*skillID+SkillNameTable; SHORT name; POP"
+SkillDescription(PowerfulAuraID, SD_PowerfulAura)
 SkillDescription(WonderGuardID, SD_WonderGuard)
 SkillDescription(SturdyID, SD_Sturdy)
 SkillDescription(WeakChipDmgID,SD_WeakChipDmg)
@@ -321,6 +322,7 @@ SkillDescription(WindBoostID, SD_WindBoost)
 SkillDescription(EarthBoostID,SD_EarthBoost)
 SkillDescription(WaterBoostID,SD_WaterBoost)
 
+SkillName(PowerfulAuraID, SN_PowerfulAura)
 SkillName(WonderGuardID, SN_WonderGuard)
 SkillName(SturdyID, SN_Sturdy)
 SkillName(WeakChipDmgID,SN_WeakChipDmg)

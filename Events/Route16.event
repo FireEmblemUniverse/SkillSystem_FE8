@@ -58,12 +58,12 @@ END_MAIN
 SecretHouse:
 BottomWallText(SecretHouseFlyText)
 TutText(LearnFlyText) // learn to fly 
-//ENUT FlyFlag 
+BottomWallText(UseFlyText)
 NoFade 
 ENDA 
 
 SecretHouse2:
-BottomWallText(UseFlyText) // use fly from the menu 
+BottomWallText(UseFlyText) 
 NoFade 
 ENDA 
 

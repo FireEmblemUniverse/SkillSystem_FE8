@@ -75,7 +75,15 @@ ChapterTransition(Route9WCh, 40,11)
 ToRoute9W_B:
 ChapterTransition(Route9WCh, 40,14)
 
+GenericDisappearEffect(13, ObtainHelixFossilEvent)
 
+ObtainHelixFossilEvent:
+TutText(WordsEchoedText)
+Text(ThisIsntTheTimeText)
+TutText(ObtainHelixFossilText) 
+ENUT HelixFossilFlag 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -95,6 +103,7 @@ RockSmash(34,10)
 RockSmash(29,9)
 
 //StrengthBoulder(4,3)
+GenericDisappearCompletion(19,16, HelixFossilFlag, RedPokeballSMS, 13) // xx, yy, flag, sprite, effectID 
 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
@@ -140,7 +149,10 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-
+CHECK_EVENTID HelixFossilFlag
+BEQ 0 sC s0 
+RemoveTrap(19,16)
+LABEL 0
 
 LOAD1 0x1 EnemyUnitsA
 ENUN

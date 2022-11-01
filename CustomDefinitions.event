@@ -6,7 +6,7 @@
 //#define DEBUG_MODE 
 
 PUSH; ORG $D74D0	//{U}
-String("Version 1.02    Oct 2022") ; BYTE 0; POP 
+String("Version 1.02    Nov 2022") ; BYTE 0; POP 
 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
@@ -199,12 +199,24 @@ String("Version 1.02    Oct 2022") ; BYTE 0; POP
 
 #define PokefluteFlag 0x99 
 
+#define BossPokemonWarningFlag 0x9A 
+
 #define SoulbadgeObtained 0x9D 
 #define RockSmashFlag 0x9E 
 
 #define FlyFlag 0x9F 
 #define RainbowbadgeObtained 0xA0 
 #define ObtainedEeveeFlag 0xA1 
+
+
+#define DomeFossilFlag 0xA2 
+#define HelixFossilFlag 0xA3
+#define OldAmberFlag 0xA4 
+#define ObtainedKabutoFlag 0xA5 
+#define ObtainedOmanyteFlag 0xA6 
+#define ObtainedAerodactylFlag 0xA7
+#define ViridianTopHouseLategame 0xA8  
+
 #define SaffronArrived 0xA9
 
 #define ToyBoxOnFlag 0xAA 

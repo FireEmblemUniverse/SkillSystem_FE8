@@ -94,7 +94,7 @@ POP
 
 
 
-			PUSH 
+PUSH 
 
 ORG $255DA // $255D6 to allow it for silenced units 
 SHORT $46C0 // Allow "talk" to sleeping units. 
@@ -105,7 +105,7 @@ SHORT $4770 // bx lr
 
 
 ORG $178EA 
-BYTE 0x30 // Status as 3 turns default. - 7743 
+BYTE 0x40 // Status as 4 turns default. - 7743 
 
 
 // Promote without weapon ? 

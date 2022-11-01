@@ -58,8 +58,8 @@ StrHigher:
 
 @r0 has Str or Mag 
 
-add r0, #7 @ ceiling up 
-lsr r0, #3 @ 1/8 
+add r0, #3 @ ceiling up 
+lsr r0, #2 @ 1/4
 
 ldrb r1, [r4, #0x17] @ def 
 ldrb r2, [r4, #0x18] @ res 
@@ -74,7 +74,7 @@ add r0, r2
 ldrb r1, [r5, #0x12] @ max hp 
 add r1, #15 
 lsr r1, #4 @ 1/16 hp 
-@ 1/8 str + 1/8 def + 1/8 res + 1/16 enemy max hp 
+@ 1/4 str + 1/8 def + 1/8 res + 1/16 enemy max hp 
 
 ldrb r1, [r5, #0x18] @ Res 
 lsr r1, #1 @ 1/2 res 

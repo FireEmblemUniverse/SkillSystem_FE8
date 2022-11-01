@@ -1,6 +1,7 @@
 #ifndef EVENT_WRITER
 #define EVENT_WRITER
 
+#include "InitRam.lyn.event" 
 #include "ClearVRAM.lyn.event" 
 
 /* 

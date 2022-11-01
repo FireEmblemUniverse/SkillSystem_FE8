@@ -2,6 +2,12 @@
 ## DebugText
 Debug[A][X]
 
+## BossPokemonWarningText
+Wild [ToggleRed]boss Pok[Eaccent]mon[ToggleRed] shield themselves with a[N]
+powerful aura and cannot be caught.[A][N]
+They are immune to attacks until[N]
+their spawns are defeated.[A][X]
+
 ## SkipTutorialText
 Skip catching tutorial?[NL]
 [No][X]
@@ -393,6 +399,10 @@ closed quite a while.[A][NL]
 Shouldn't the league[NL]
 appoint somebody new?[A][X]
 
+## ViridianUpperHouseText_Lategame
+The new gym leader here[N]
+is shrouded in mystery...[A][X]
+
 ## ViridianGrumpyManText
 HMM? Whatcha doin' bargin'[NL]
 up in here like ya own the place?[A][NL]
@@ -411,7 +421,8 @@ Evolution takes millions of years.[.....][NL]
 You're thinking of [ToggleRed]Metamorphosis.[A][X]
 
 ## PewterSWHouseText
-It's empty.[A][X]
+Life here's pretty peaceful, y'know?[N]
+Being an NPC's not bad![A][X]
 
 ## PewterNEHouseText
 I'll trade my Haunter [NL]
@@ -922,7 +933,7 @@ Bicycle Shop[A][X]
 
 ## BicycleShopText
 Want to buy a Bicycle?[NL]
-That'll be 1,000,000$![A][X]
+That'll be 1,000,000*{'}![A][X]
 
 
 
@@ -937,8 +948,8 @@ And you shouldn't eat[N]
 candy you find on the ground.[A][N]
 It isn't healthy.[A][X]
 
-## UNUSEDCeruleanText
-You're a TRAINER, too?[A][NL]
+## CeruleanCityWHouseText
+You're a Trainer, too?[A][NL]
 Collecting, battling...[NL]
 It's a tough life, isn't it?[A][X]
 	
@@ -1989,10 +2000,91 @@ that birds can fly.[A][X]
 I don't know why everyone[N]
 needs me to tell them that...[A][X]
 
+## YouAlreadyRevivedThisPokemonText
+You already revived[N]
+this Pok[Eaccent]mon.[A][X]
 
+## YouDontHaveThisFossilText
+Hmm? You don't seem[N]
+to have this fossil.[A][X]
 
+## DomeFossilChoice
+I have this dome fossil...[X]
 
+## HelixFossilChoice
+I have this helix fossil...[X]
 
+## OldAmberChoice
+I have this old amber...[X]
+
+## ExitChoice
+Exit[X]
+
+## CinnabarLabIntroText
+We're an important facility.[N]
+We study Pok[Eaccent]mon fossils![A][N]
+Have you got a fossil for us?[A][X]
+	
+	
+
+## PurchaseKabutoText
+I can revive that fossil for you[N]
+but you'll need to fund our research.[A][X]
+
+## No_PurchasedKabutoText
+Okay. Enjoy your hunk of rock.[A][X]
+
+## Yes_PurchasedKabutoText
+Thank you! Take good[N]
+care of Kabuto![A][X]
+
+## PurchaseOmanyteText
+I can revive that fossil for you[N]
+but you'll need to fund our research.[A][X]
+
+## No_PurchasedOmanyteText
+Okay. Enjoy your hunk of rock.[A][X]
+
+## Yes_PurchasedOmanyteText
+Thank you! Take good[N]
+care of Omanyte![A][X]
+
+## PurchaseAerodactylText
+I can revive that fossil for you[N]
+but you'll need to fund our research.[A][X]
+
+## No_PurchasedAerodactylText
+Okay. Enjoy your hunk of amber.[A][X]
+
+## Yes_PurchasedAerodactylText
+Thank you! Take good[N]
+care of Aerodactyl![A][X]
+
+## ObtainOldAmber
+The strategy guide told me to[N]
+collect this, but I don't want it.[A][N]
+I only use OU Pok[Eaccent]mon,[N]
+so you can have it.[A][X]
+
+## ObtainOldAmber2
+Obtained the Old Amber.[A][X]
+
+## AlreadyObtainedOldAmber
+Who needs strategy guides, anyway?[A][X]
+
+## WordsEchoedText
+Words echoed in your mind...[A][X]
+
+## ReleaseThemText
+Release.. them...[A][X]
+
+## ThisIsntTheTimeText
+[OpenMidRight][LoadOak][OpenMidRight][ToggleColorInvert]This isn't the time to use that![ToggleColorInvert][A][X]
+
+## ObtainHelixFossilText
+Obtained the Helix Fossil.[A][X]
+## ObtainDomeFossilText
+Obtained the Dome Fossil.[A][X]
 
 ## PurchaseEeveeText
 I found this Eevee wandering[N]

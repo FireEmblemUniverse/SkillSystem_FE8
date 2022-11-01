@@ -70,6 +70,16 @@ EscapeTileEntry(30,19)
 EscapeTileTerminator ; } 
 #endif 
 
+GenericDisappearEffect(14, ObtainDomeFossilEvent)
+
+ObtainDomeFossilEvent:
+TutText(WordsEchoedText)
+Text(ReleaseThemText)
+TutText(ObtainDomeFossilText) 
+ENUT DomeFossilFlag 
+NoFade 
+ENDA 
+
 ToRockTunnelB1_NE:
 ChapterTransition(RockTunnelB1Ch, 40,3)
 
@@ -103,6 +113,7 @@ RockSmash(29,23)
 
 //Save(15,5) 
 
+GenericDisappearCompletion(8,7, DomeFossilFlag, RedPokeballSMS, 14) // xx, yy, flag, sprite, effectID 
 
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
@@ -147,7 +158,10 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-
+CHECK_EVENTID DomeFossilFlag
+BEQ 0 sC s0 
+RemoveTrap(8,7)
+LABEL 0
 
 LOAD1 0x1 EnemyUnitsA
 ENUN

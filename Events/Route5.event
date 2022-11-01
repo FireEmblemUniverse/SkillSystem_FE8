@@ -126,8 +126,8 @@ RockSmash(17,22)
 
 SkillScrollTrap(16,24, (ChapterID*2)+1, PerfectionistID) 
 
-SignBTrap(19,30, ChapterID, 0x0) //no extra text 
-SignATrap(9,0, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(20,32, ChapterID, 0x0) //no extra text 
+SignATrap(22,0, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 

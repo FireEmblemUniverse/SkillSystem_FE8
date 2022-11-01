@@ -39,6 +39,8 @@ SHORT $46C0 $46C0 // nop nop
 ORG $2ABB8
 jumpToHack(HitRateLabel)
 
+ORG $2AC24
+callHackNew(CritRateLabel|1) 
 //ORG $2ABE8
 //jumpToHack(AvoidLabel)
 
@@ -86,6 +88,10 @@ POP
 ALIGN 4
 HitRateLabel:
 #incbin "hitratehack.dmp"
+
+ALIGN 4 
+CritRateLabel: 
+#incbin "crithack.dmp" 
 
 ALIGN 4
 AvoidLabel:

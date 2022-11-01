@@ -2,7 +2,8 @@
 
 #define WildLvl 5 
 #define TrainerL 55
-
+#define ShedinjaUnitID 0xD5 
+#define SableyeUnitID 0xD6 
 
 
 
@@ -187,8 +188,8 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 
 
-//SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
-//SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+//SilentGiveItemWithDurability(ShedinjaUnitID, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
+//SilentGiveItemWithDurability(ShedinjaUnitID, MaxPotion,0x1)
 //SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
 //SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
 //SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
@@ -290,14 +291,16 @@ BNE 12 sC s0
 CHECK_HARD 
 BNE 13 sC s0 
 AutoLevelUnits(30, True, 0x90EF) 
-DISA 0xD1 // only 1 hackmon on difficult 
+DISA SableyeUnitID // only 1 hackmon on difficult 
 // Difficult mode 
+SetUnitStatus(ShedinjaUnitID, XCoord, 13)
+SetUnitStatus(ShedinjaUnitID, YCoord, 12)
 GOTO 14 
 
 LABEL 12 // Normal mode 
 AutoLevelUnits(21, True, 0x90EF) 
-DISA 0xD0 
-DISA 0xD1 
+DISA ShedinjaUnitID 
+DISA SableyeUnitID 
 GOTO 14 
 LABEL 13 
 AutoLevelUnits(99, True, 0x90EF) // lvl 99 on Lunatic only 
@@ -390,17 +393,17 @@ CALL LightruneAnimSlotB
 CHECK_COORDS 0xA8 
 SADD sB sC s0 
 CALL LightruneAnimSlotB
-CHECK_COORDS 0xD0 
+CHECK_COORDS ShedinjaUnitID 
 SADD sB sC s0 
 CALL LightruneAnimSlotB
-CHECK_COORDS 0xD1
+CHECK_COORDS SableyeUnitID
 SADD sB sC s0 
 CALL LightruneAnimSlotB
 
-SetUnitStatus(0xD0, MaxHP, 1) // Shedinja 
-SetUnitStatus(0xD1, MaxHP, 30) // Sableye
-SetUnitStatus(0xD0, CurrentHP, 1)
-SetUnitStatus(0xD1, CurrentHP, 30)
+SetUnitStatus(ShedinjaUnitID, MaxHP, 1) // Shedinja 
+SetUnitStatus(SableyeUnitID, MaxHP, 30) // Sableye
+SetUnitStatus(ShedinjaUnitID, CurrentHP, 1)
+SetUnitStatus(SableyeUnitID, CurrentHP, 30)
 
 
 
@@ -505,22 +508,22 @@ GaryUnitsTwoA:
 UNIT 0xA6	MegaVenusaurID 		0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [PetalDance,Sludge,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD0 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD1 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT ShedinjaUnitID 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT SableyeUnitID 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 GaryUnitsTwoB:
 UNIT 0xA6	MegaCharizardXID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [SacredFire,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD0 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD1 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT ShedinjaUnitID 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT SableyeUnitID 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 GaryUnitsTwoC:
 UNIT 0xA6	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD0 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD1 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT ShedinjaUnitID 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT SableyeUnitID 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 
@@ -528,8 +531,8 @@ GaryUnitsTwoD:
 UNIT 0xA6	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [HydroPump,BodySlam,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA7 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA8 	MegaAlakazamID 		0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD0 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD1 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT ShedinjaUnitID 	ShedinjaID 			0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT SableyeUnitID 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 

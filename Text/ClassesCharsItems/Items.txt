@@ -738,26 +738,31 @@ Submission[X]
 
 ## ConstrictDesc
 Chip damage.[N]
-Debuffs Spd by 8.[X]
+Debuffs Spd by 8.[N]
+AoE: Debuffs Spd by 4.[X]
 
 
 ## DoubleHitDesc
 Hits twice.[X]
 ## LeerDesc
 Chip damage.[N]
-Debuffs Def/Res by 6.[X]
+Debuffs Def/Res by 6.[N]
+AoE: Debuffs Def/Res by 3.[X]
 ## TailWhipDesc
 Chip damage.[N]
-Debuffs Def/Res by 6.[X]
+Debuffs Def/Res by 6.[N]
+AoE: Debuffs Def/Res by 3.[X]
 
 ## FlashDesc
 Chip damage.[N]
-Debuffs Skill by 15.[X]
+Debuffs Skill by 15.[N]
+AoE:Debuffs Skl by 8.[X]
 
 
 ## GrowlDesc
 Chip damage.[N]
-Debuffs Str by 8.[X]
+Debuffs Str/Mag by 8.[N]
+AoE: Debuffs Str/Mag by 4.[X]
 
 ## VineWhipDesc
 *{(}A weak whipping attack.[X]
@@ -775,19 +780,23 @@ Debuffs Str by 8.[X]
 *{)}A powerful bolt of electricity.[X]
 
 ## PoundDesc
-*{(}Debuffs Luk.[X]
+*Chip damage.[N]
+Debuffs Luk by 15.[N]
+AoE: Debuffs Luk by 8.[X]
 ## QuickAttackDesc
 *{(}Strike first when attacked.[X]
 
 
 ## SandAttackDesc
 Chip damage.[N]
-Debuffs Skl by 15.[X]
+Debuffs Skl by 15.[N]
+AoE: Debuffs Skl by 8.[X]
 ## ScratchDesc
 *{(}A weak scratch.[X]
 
 ## BodySlamDesc
-*{(}A full body slam.[.][X]
+*{(}A full body slam.[N]
+May paralyze.[X]
 ## SlashDesc
 *{(}High critical hit ratio.[X]
 
@@ -808,8 +817,11 @@ Debuffs Skl by 15.[X]
 
 ## ThundershockDesc
 *{)}A weak jolt of electricity.[X]
+
 ## AcidDesc
-*{)}Debuffs Res by 6.[X]
+Chip damage.[N]
+Debuffs Def/Res by 6.[N]
+AoE: Debuffs Def/Res by 3.[X]
 
 ## PoisonStingDesc
 *{(}A weak, venomous sting.[X]
@@ -953,7 +965,8 @@ Ancientpower[X]
 ## RockTombName ^
 Rock Tomb[X]
 ## RockTombDesc
-*{(}Debuffs Spd.[X]
+*{(}Debuffs Spd by 8.[N]
+AoE: Debuffs Spd by 4.[X]
 ## RolloutName ^
 Rollout[X]
 ## RolloutDesc
@@ -1059,12 +1072,16 @@ X-Scissor[X]
 Screech[X]
 
 ## ScreechDesc
-Chip damage. Greatly debuffs Def/Res.[X]
+Chip damage.[N]
+Debuffs Def/Res by 12.[N]
+AoE: Debuffs Def/Res by 6.[X]
 
 ## ThunderWaveName ^
 Thunder Wave[X]
 ## ThunderWaveDesc
-Chip damage. Greatly debuffs Spd.[X]
+Chip damage.[N]
+Paralyzes the foe for 4 turns.[N]
+AoE: Paralyze for 2 turns.[X]
 ## MagicalLeafName ^
 Magical Leaf[X]
 ## MagicalLeafDesc
@@ -1091,7 +1108,9 @@ Thief[X]
 Snarl[X]
 
 ## SnarlDesc
-Chip damage. Debuffs Mag.[X]
+Chip damage.[N]
+Debuffs Str/Mag by 8.[N]
+AoE: Debuffs Str/Mag by 4.[X]
 
 ## CometPunchDesc 
 *{(}Flurry of 2-5 strikes.[X]
@@ -1335,7 +1354,9 @@ Negates 50% Def. Cannot double.[X]
 Poison Powder[X]
 
 ## PoisonPowderDesc
-Chip damage. A poisonous powder.[X]
+Chip damage.[N]
+Poisons the foe for 4 turns.[N]
+AoE: Poisons for 2 turns.[X]
 
 ## SludgeDesc
 *{)}A poisonous goo hurled at the foe.[X]

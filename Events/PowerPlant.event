@@ -212,7 +212,7 @@ PowerPlantLeftElectrode:
 ENUT AttackedThisTurnFlag
 LOAD1 1 ElectrodeLeftUnitGroup 
 ENUN 
-AutoLevelUnits(WildLvl, True, 0x9D9D) // Wilds 
+AutoLevelUnits(WildLvl, True, 0x9E9E) // Wilds 
 UnsetAllDangerRadius
 SetNearbyDangerRadius
 NoFade 
@@ -222,7 +222,7 @@ PowerPlantRightElectrode:
 ENUT AttackedThisTurnFlag
 LOAD1 1 ElectrodeRightUnitGroup 
 ENUN 
-AutoLevelUnits(WildLvl, True, 0x9E9E) // Wilds 
+AutoLevelUnits(WildLvl, True, 0x9D9D) // Wilds 
 UnsetAllDangerRadius
 SetNearbyDangerRadius
 NoFade 

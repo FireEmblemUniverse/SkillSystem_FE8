@@ -217,7 +217,7 @@ BeginningScene:
 ENUT CasualModeFlag
 ENUT CasualModeFlag_2
 
-Write_Word(90000, 0x202BCF8)
+Write_Word(90000, 0x202BCF8) // money 
 ENUT BracketedGrowthsFlag
 ENUT DebugPlaceUnitsFlagMenu
 
@@ -391,8 +391,8 @@ AutoLevelUnits(5, True, 0x145) // all
 //SetUnitStatus(2, 0x2B, 0)
 //SetUnitStatus(2, 0x2C, 0)
 
-//SetUnitStatus(1, 0x28, Flamethrower)
-//SetUnitStatus(1, 0x29, DragonRage)
+SetUnitStatus(1, 0x29, Growl)
+SetUnitStatus(1, 0x28, Confusion)
 //SetUnitStatus(1, 0x2A, GuardMove)
 //SetUnitStatus(1, 0x2B, Growl)
 //SetUnitStatus(1, 0x2C, FlameWheel)
@@ -459,8 +459,12 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 //MNC2 SeafoamB3Ch
-//MNC2 DebugCh
-MNC2 Route1Ch 
+MNC2 DebugCh
+ENUT DomeFossilFlag 
+//MNC2 Route9ECh 
+//MNC2 ViridianForestSCh
+//MNC2 Route1Ch 
+//MNC2 ChampionCh 
 //MNC2 ChampionCh 
 //MNC2 VictoryRoadB2Ch 
 //MNC2 ViridianCh

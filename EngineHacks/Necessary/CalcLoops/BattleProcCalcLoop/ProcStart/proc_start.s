@@ -169,6 +169,9 @@ blh SkillTester, r3
 mov r1, #4
 ldrsh r1, [r7, r1]
 lsl r2, r1, #1 @ 2x 
+add r2, r1 @ 3x 
+add r2, #1 @ rounding 
+lsr r2, #1 @ 1.5x dmg 
 cmp r0,#0
 beq StoreDamage
 add r2, r1 @ 3x 

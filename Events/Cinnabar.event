@@ -44,6 +44,163 @@ BottomWallText(MissingNoHintText)
 NoFade 
 ENDA 
 
+EnterLab:
+EVBIT_MODIFY 4 
+BottomWallText(CinnabarLabIntroText)
+
+ASMC FossilMenu_ASMC|1
+SVAL s7 0 
+BEQ 0 sC s7 
+SVAL s7 1 
+BEQ 1 sC s7 
+SVAL s7 2 
+BEQ 2 sC s7 
+SVAL s7 3 
+BEQ 3 sC s7 
+GOTO 99 
+
+LABEL 0 // Kabuto 
+CHECK_EVENTID ObtainedKabutoFlag
+BNE 10 sC s0 
+CHECK_EVENTID DomeFossilFlag 
+BEQ 11 sC s0 // we don't have the flag 
+CALL KabutoEvent 
+ENUT ObtainedKabutoFlag
+GOTO 99 
+
+LABEL 1 // Omanyte 
+CHECK_EVENTID ObtainedOmanyteFlag
+BNE 10 sC s0 
+CHECK_EVENTID HelixFossilFlag 
+BEQ 11 sC s0 // we don't have the flag 
+CALL OmanyteEvent 
+ENUT ObtainedOmanyteFlag
+GOTO 99 
+
+LABEL 2 // Aerodactyl 
+
+CHECK_EVENTID ObtainedAerodactylFlag
+BNE 10 sC s0 
+CHECK_EVENTID OldAmberFlag 
+BEQ 11 sC s0 // we don't have the flag 
+CALL AerodactylEvent 
+ENUT ObtainedAerodactylFlag
+GOTO 99 
+
+LABEL 3 // Exit 
+GOTO 99 
+
+
+
+LABEL 10 // Already have Aerodactyl 
+TutText(YouAlreadyRevivedThisPokemonText)
+GOTO 99 
+
+LABEL 11 // no Old Amber obtained 
+TutText(YouDontHaveThisFossilText)
+GOTO 99 
+
+
+LABEL 99 
+NoFade 
+ENDA 
+
+KabutoEvent:
+EVBIT_MODIFY 4 
+WallText(PurchaseKabutoText)
+LOAD1 1 KabutoUnitGroup  
+ENUN 
+AutoLevelUnits(34, True, TempAlly<<8|TempAlly) // 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 5000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedKabutoText)
+ENUF ObtainedKabutoFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+WARP_OUT
+SET_ACTIVE 0
+WallText(Yes_PurchasedKabutoText)
+
+UNCM(TempAlly, 0x10009) // Undeploy + escape the mon
+SVAL s1 TempAlly 
+ASMC ChangeS1UnitIntoLowestUnitID
+LABEL 63 
+NoFade
+ENDA 
+
+OmanyteEvent:
+EVBIT_MODIFY 4 
+WallText(PurchaseOmanyteText)
+LOAD1 1 OmanyteUnitGroup  
+ENUN 
+AutoLevelUnits(34, True, TempAlly<<8|TempAlly) // 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 5000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedOmanyteText)
+ENUF ObtainedOmanyteFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+WARP_OUT
+SET_ACTIVE 0
+WallText(Yes_PurchasedOmanyteText)
+
+UNCM(TempAlly, 0x10009) // Undeploy + escape the mon
+SVAL s1 TempAlly 
+ASMC ChangeS1UnitIntoLowestUnitID
+LABEL 63 
+NoFade
+ENDA 
+
+AerodactylEvent:
+EVBIT_MODIFY 4 
+WallText(PurchaseAerodactylText)
+LOAD1 1 AerodactylUnitGroup  
+ENUN 
+AutoLevelUnits(34, True, TempAlly<<8|TempAlly) // 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 10000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedAerodactylText)
+ENUF ObtainedAerodactylFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sB sC s0  
+WARP_OUT
+SET_ACTIVE 0
+WallText(Yes_PurchasedAerodactylText)
+
+UNCM(TempAlly, 0x10009) // Undeploy + escape the mon
+SVAL s1 TempAlly 
+ASMC ChangeS1UnitIntoLowestUnitID
+LABEL 63 
+NoFade
+ENDA 
+
 
 
 LocationBasedEvents:
@@ -70,10 +227,7 @@ ForcedChapterTransition(MansionB1Ch, 8,25)
 NoFade 
 ENDA 
 
-EnterLab:
-CALL ClosedArea
-NoFade 
-ENDA 
+
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
@@ -232,8 +386,20 @@ ALIGN 4
 
 Units1: //only used for a pointless POIN at start 
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 
+UNIT
 
+KabutoUnitGroup:
+UNIT TempAlly KabutoID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+OmanyteUnitGroup:
+UNIT TempAlly OmanyteID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+ 
+
+AerodactylUnitGroup:
+UNIT TempAlly AerodactylID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 
 
