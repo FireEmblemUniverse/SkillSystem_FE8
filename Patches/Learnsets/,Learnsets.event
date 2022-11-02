@@ -2549,13 +2549,13 @@ BYTE 15 Tackle
 BYTE 21 WaterPulse
 BYTE 22 Bite
 BYTE 23 DragonRage
-BYTE 24 Twister 
+BYTE 24 Fly
 BYTE 25 Thrash
-BYTE 30 Fly 
+BYTE 30 Waterfall // AquaTail
 BYTE 32 Avalanche // IceFang
-BYTE 35 Waterfall // AquaTail
-BYTE 38 Surf // Resv RainDance
-BYTE 40 Hurricane
+BYTE 35 Surf // Resv RainDance
+BYTE 38 Hurricane
+BYTE 40 SkyAttack
 BYTE 43 HydroPump
 BYTE 45 Outrage // Resv DragonDance
 BYTE 0 0
@@ -2568,13 +2568,13 @@ BYTE 15 Tackle
 BYTE 21 WaterPulse
 BYTE 22 Bite
 BYTE 23 DragonRage
-BYTE 24 Twister 
+BYTE 24 Fly
 BYTE 25 Thrash
-BYTE 30 Fly 
+BYTE 30 Waterfall // AquaTail
 BYTE 32 Avalanche // IceFang
-BYTE 35 Waterfall // AquaTail
-BYTE 38 Surf // Resv RainDance
-BYTE 40 Hurricane
+BYTE 35 Surf // Resv RainDance
+BYTE 38 Hurricane
+BYTE 40 SkyAttack
 BYTE 43 HydroPump
 BYTE 45 Outrage // Resv DragonDance
 BYTE 0 0
