@@ -108,7 +108,7 @@ SignTrap(5,23, TrainerTip_DangerZone)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-StatAccessoryTrap(13,8, (ChapterID*2), WiseGlasses_BoostIndex)
+StatAccessoryTrap(13,18, (ChapterID*2), WiseGlasses_BoostIndex)
 
 RedPokeballTrap(21,31, ChapterID*2, ExoticCandy) // Requires Cut / diglett's cave 
 
