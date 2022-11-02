@@ -14,7 +14,7 @@ pMovModifiers: // Movement
 	#endif 
 	POIN EnemyMovementBane // lower enemies movement by 1 because it is more fun tbh 
 	#ifdef STAIRS_ASM
-	POIN StairsMoveDebuff
+	//POIN StairsMoveDebuff
 	#endif
 	POIN prNullifyIfFreeze
 	POIN TrappedStatus

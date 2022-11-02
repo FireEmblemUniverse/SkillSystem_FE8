@@ -1,0 +1,42 @@
+
+// Each class randomized into a different one based on: 
+// Seed (time at which you finish entering your name + the name itself) 
+// ChapterID 
+
+// https://github.com/FireEmblemUniverse/SelfRandomizingRom-fe8/blob/master/Rom%20Buildfile_COnly.event
+// as reference
+
+#include "RandomizeClass.lyn.event" 
+#include "Hash.lyn.event" 
+
+
+PUSH
+ORG $17ad8
+callHackNew(RandomizeClassHack_Monster) //give a random class!
+ORG $17D74 
+jumpToHack(RandomizeClassHack_Load) 
+
+POP
+
+
+ALIGN 4
+RandomizeClassesFlagLabel:
+WORD RandomizeClassesFlag
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -460,7 +460,7 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 Route10Ch
 //MNC2 SeafoamB3Ch
 MNC2 MtMoonB3Ch
-ENUT DomeFossilFlag 
+ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 //MNC2 Route9ECh 
 //MNC2 ViridianForestSCh
 //MNC2 Route1Ch 

@@ -3,7 +3,7 @@
 
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 
 PUSH; ORG $D74D0	//{U}
 String("Version 1.02    Nov 2022") ; BYTE 0; POP 
@@ -224,6 +224,7 @@ String("Version 1.02    Nov 2022") ; BYTE 0; POP
 
 #define SilphCoDefeated 0xAC
 
+#define RandomizeClassesFlag 0xAD 
 
 #define CasualModeFlagOn 0xB0 
 #define TrainerMovementDebuffFlag 0xB1 // when active, trainers have halved movement 
