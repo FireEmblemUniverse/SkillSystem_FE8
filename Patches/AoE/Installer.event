@@ -138,8 +138,9 @@ MenuCommandID(ConstrictName, 		UM_AoEDesc, NormalText, 89, AoE_SpecificUsability
 MenuCommandID(RockTombName, 		UM_AoEDesc, NormalText, 90, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(StringShotName, 		UM_AoEDesc, NormalText, 91, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(PoundName, 		UM_AoEDesc, NormalText, 92, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(PoisonPowderName, 		UM_AoEDesc, NormalText, 93, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(ThunderWaveName, 		UM_AoEDesc, NormalText, 94, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(MetalSoundName, 		UM_AoEDesc, NormalText, 93, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PoisonPowderName, 		UM_AoEDesc, NormalText, 94, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ThunderWaveName, 		UM_AoEDesc, NormalText, 95, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
@@ -1417,7 +1418,7 @@ BYTE 3 T1AoE_Var // variance range of 0 - 2
 BYTE 1 2 // Attack range
 BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
-BYTE GrowlDebuffID 0 // DebuffID, EventIndex
+BYTE LeerDebuffID 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE DebuffConfigTwoByte // Config2
@@ -1492,7 +1493,7 @@ BYTE 0 0 0 0
 BYTE 0 0 0 RockTomb // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool
 BYTE 3 T1AoE_Var // variance range of 0 - 2 
-BYTE 1 2 // Attack range
+BYTE 1 1 // Attack range
 BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
 BYTE StringShotDebuffID 0 // DebuffID, EventIndex
@@ -1518,7 +1519,7 @@ BYTE 0 0 0 0
 BYTE 0 0 0 Pound // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool
 BYTE 3 T1AoE_Var // variance range of 0 - 2 
-BYTE 1 2 // Attack range
+BYTE 1 1 // Attack range
 BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
 BYTE PoundDebuffID 0 // DebuffID, EventIndex
@@ -1526,9 +1527,22 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE DebuffConfigTwoByte // Config2
 
-
-
 // Entry 93
+BYTE 0 0 0 0
+BYTE 0 0 0 MetalSound // Always usable by anyone 
+BYTE 0 FriendlyFireBool|FixedDamageBool
+BYTE 3 T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range
+BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
+BYTE 100 0 // DamagePercent, Status
+BYTE ScreechDebuffID 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE DebuffConfigTwoByte // Config2
+
+
+
+// Entry 94
 BYTE 0 0 0 0
 BYTE 0 0 0 PoisonPowder // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool
@@ -1541,7 +1555,7 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
 
-// Entry 94
+// Entry 95
 BYTE 0 0 0 0
 BYTE 0 0 0 ThunderWave // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool

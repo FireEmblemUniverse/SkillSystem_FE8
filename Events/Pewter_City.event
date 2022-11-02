@@ -225,7 +225,8 @@ ALIGN 4
 ShopItems:
 BYTE JellyDonut 4
 BYTE SkillScroll PatienceID
-BYTE SpellScroll Tackle SpellScroll Bite SpellScroll MudShot SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+
+BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
 BYTE SpellScroll Gust SpellScroll Confusion 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
