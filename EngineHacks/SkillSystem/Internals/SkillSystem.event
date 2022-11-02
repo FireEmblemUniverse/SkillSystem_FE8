@@ -117,18 +117,17 @@ POIN (GetInitialSkillList|1)
 //Determines the max number of skills generics get from learned skills
 #define MaxGenericLearnedSkills 4
 
+//SkillTester configs
+ALIGN 4
+gSkillTestConfig:
+SHORT AuraSkillBufferLimit
+BYTE  MaxGenericLearnedSkills
+BYTE  PASSIVE_SKILLS_STACK
+BYTE  ROOF_UNIT_AURAS
+
 ALIGN 4
 PassiveSkillBit:
 WORD PASSIVE_ITEM_SKILL_ATTR
-
-PassiveSkillStack:
-WORD PASSIVE_SKILLS_STACK
-
-gAuraSkillBufferLimit:
-WORD AuraSkillBufferLimit
-
-GenericLearnedSkillLimit:
-WORD MaxGenericLearnedSkills
 
 #define NegatedSkillEntry(skillID) "PUSH; ORG NegatedSkills + skillID; BYTE 0x1; POP"
 
