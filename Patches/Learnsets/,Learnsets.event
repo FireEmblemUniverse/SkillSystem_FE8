@@ -716,7 +716,7 @@ BYTE 7 NightShade
 BYTE 11 QuickAttack
 BYTE 14 Scorch
 BYTE 17 ConfuseRay
-BYTE 19 Hex
+BYTE 19 HexMove
 BYTE 21 FireSpin
 BYTE 24 Flamethrower
 BYTE 26 Psybeam
@@ -737,7 +737,7 @@ BYTE 7 NightShade
 BYTE 11 QuickAttack
 BYTE 14 Scorch
 BYTE 17 ConfuseRay
-BYTE 19 Hex
+BYTE 19 HexAtt
 BYTE 21 FireSpin
 BYTE 24 Flamethrower
 BYTE 26 Psybeam
@@ -801,9 +801,9 @@ BYTE 10 ConfuseRay
 BYTE 13 WingAttack 
 BYTE 15 MegaDrain
 BYTE 17 Bite
-BYTE 20 Sludge
+BYTE 20 Fly 
 BYTE 22 UTurn
-BYTE 25 Fly 
+BYTE 25 Sludge 
 BYTE 27 Screech
 BYTE 29 PoisonJab
 BYTE 31 HyperFang
@@ -823,9 +823,9 @@ BYTE 10 ConfuseRay
 BYTE 13 WingAttack 
 BYTE 15 MegaDrain
 BYTE 17 Bite
-BYTE 20 Sludge
+BYTE 20 Fly 
 BYTE 22 UTurn
-BYTE 25 Fly 
+BYTE 25 Sludge 
 BYTE 27 Screech
 BYTE 29 PoisonJab
 BYTE 31 HyperFang
@@ -845,11 +845,11 @@ BYTE 11 Acid
 BYTE 14 MagicalLeaf
 BYTE 17 PoisonPowder
 //BYTE 17 Sleep2 //SleepPowder
-BYTE 21 MegaDrain
-BYTE 25 RecoverMove //?Support LuckyChant 
-BYTE 29 BodySlam
+BYTE 19 MegaDrain
+BYTE 22 RecoverMove //?Support LuckyChant 
+BYTE 25 BodySlam
+BYTE 29 PetalDance
 BYTE 33 Sludge
-BYTE 37 PetalDance
 BYTE 39 DarkPulse
 BYTE 0 0
 
@@ -862,11 +862,11 @@ BYTE 11 Acid
 BYTE 14 MagicalLeaf
 BYTE 17 PoisonPowder
 //BYTE 17 Sleep2 //SleepPowder
-BYTE 21 MegaDrain
-BYTE 25 RecoverMove //?Support LuckyChant 
-BYTE 29 BodySlam
+BYTE 19 MegaDrain
+BYTE 22 RecoverMove //?Support LuckyChant 
+BYTE 25 BodySlam
+BYTE 29 PetalDance
 BYTE 33 Sludge
-BYTE 37 PetalDance
 BYTE 39 DarkPulse
 BYTE 0 0
 
@@ -879,11 +879,11 @@ BYTE 11 Acid
 BYTE 14 MagicalLeaf
 BYTE 17 PoisonPowder
 //BYTE 17 Sleep2 //SleepPowder
-BYTE 21 MegaDrain
-BYTE 25 RecoverMove //?Support LuckyChant 
-BYTE 29 BodySlam
+BYTE 19 MegaDrain
+BYTE 22 RecoverMove //?Support LuckyChant 
+BYTE 25 BodySlam
+BYTE 29 PetalDance
 BYTE 33 Sludge
-BYTE 37 PetalDance
 BYTE 39 DarkPulse
 BYTE 0 0
 
@@ -1305,8 +1305,8 @@ BYTE 10 Bite
 BYTE 13 Acid
 BYTE 15 RazorLeaf
 BYTE 17 LeechLife
-BYTE 19 Sludge
-BYTE 21 Growth
+BYTE 19 Growth
+BYTE 21 Sludge
 BYTE 24 LeafBlade
 BYTE 27 PoisonJab
 BYTE 29 RecoverMove //?Support SweetScent
@@ -1325,8 +1325,8 @@ BYTE 10 Bite
 BYTE 13 Acid
 BYTE 15 RazorLeaf
 BYTE 17 LeechLife
-BYTE 19 Sludge
-BYTE 21 Growth
+BYTE 19 Growth
+BYTE 21 Sludge
 BYTE 24 LeafBlade
 BYTE 27 PoisonJab
 BYTE 29 RecoverMove //?Support SweetScent
@@ -1345,8 +1345,8 @@ BYTE 10 Bite
 BYTE 13 Acid
 BYTE 15 RazorLeaf
 BYTE 17 LeechLife
-BYTE 19 Sludge
-BYTE 21 Growth
+BYTE 19 Growth
+BYTE 21 Sludge
 BYTE 24 LeafBlade
 BYTE 27 PoisonJab
 BYTE 29 RecoverMove //?Support SweetScent
@@ -1366,11 +1366,11 @@ BYTE 12 Acid
 BYTE 15 BubbleBeam
 BYTE 18 ShockWave
 BYTE 20 RecoverMove
-BYTE 23 Sludge
+BYTE 23 PoisonJab
 BYTE 25 MegaDrain
 BYTE 27 Screech
-BYTE 29 Hex
-BYTE 31 PoisonJab
+BYTE 29 HexAtt
+BYTE 31 Sludge
 BYTE 33 Surf
 BYTE 36 Toxic
 BYTE 40 DarkPulse
@@ -1387,11 +1387,11 @@ BYTE 12 Acid
 BYTE 15 BubbleBeam
 BYTE 18 ShockWave
 BYTE 20 RecoverMove
-BYTE 23 Sludge
+BYTE 23 PoisonJab
 BYTE 25 MegaDrain
 BYTE 27 Screech
-BYTE 29 Hex
-BYTE 31 PoisonJab
+BYTE 29 HexAtt
+BYTE 31 Sludge
 BYTE 33 Surf
 BYTE 36 Toxic
 BYTE 40 DarkPulse
@@ -1638,11 +1638,11 @@ BYTE 15 MudShot
 BYTE 17 RecoverMove // Resv Encore
 BYTE 21 WaterPulse
 // BYTE 21 Resv Rest
-BYTE 23 SignalBeam
+BYTE 23 Avalanche
 BYTE 25 Waterfall // AquaJet
 BYTE 28 IceBeam
 BYTE 31 Surf // Brine
-BYTE 33 Avalanche
+BYTE 33 SignalBeam
 BYTE 35 MudBomb
 BYTE 37 HornDrill
 BYTE 41 Blizzard
@@ -1659,11 +1659,11 @@ BYTE 15 MudShot
 BYTE 17 RecoverMove // Resv Encore
 BYTE 21 WaterPulse
 // BYTE 21 Resv Rest
-BYTE 23 SignalBeam
+BYTE 23 Avalanche
 BYTE 25 Waterfall // AquaJet
 BYTE 28 IceBeam
 BYTE 31 Surf // Brine
-BYTE 33 Avalanche
+BYTE 33 SignalBeam
 BYTE 35 MudBomb
 BYTE 37 HornDrill
 BYTE 41 Blizzard
@@ -1681,11 +1681,11 @@ BYTE 15 BodySlam
 // BYTE 17 Resv Minimize
 BYTE 20 Sludge
 BYTE 23 MudBomb
-BYTE 26 PoisonJab
+BYTE 26 Toxic
 BYTE 28 Bite // Fling
 BYTE 30 Earthquake
 BYTE 33 Screech
-BYTE 36 Toxic // SludgeBomb
+BYTE 36 PoisonJab
 // BYTE 39 Resv Acid Armor
 BYTE 40 ShadowPunch
 BYTE 45 Explosion // Resv Memento
@@ -1702,11 +1702,11 @@ BYTE 15 BodySlam
 // BYTE 17 Resv Minimize
 BYTE 20 Sludge
 BYTE 23 MudBomb
-BYTE 26 PoisonJab
+BYTE 26 Toxic
 BYTE 28 Bite // Fling
 BYTE 30 Earthquake
 BYTE 33 Screech
-BYTE 36 Toxic // SludgeBomb
+BYTE 36 PoisonJab
 // BYTE 39 Resv Acid Armor
 BYTE 40 ShadowPunch
 BYTE 45 Explosion // Resv Memento
@@ -2121,16 +2121,16 @@ BYTE 1 PoisonGas
 BYTE 1 Tackle
 BYTE 6 Smog
 BYTE 9 SandAttack // SmokeScreen
-BYTE 12 Sludge
+BYTE 12 Snarl
 BYTE 15 Scorch
 BYTE 18 NightDaze // Assurance
-BYTE 24 Toxic
-BYTE 26 Hex
-BYTE 28 AuroraBeam // Resv Haze
+BYTE 24 AuroraBeam
+BYTE 26 HexAtt
+BYTE 28 Toxic
 BYTE 30 Flamethrower
 BYTE 33 MudBomb
 BYTE 35 Explosion
-BYTE 42 Toxic // SludgeBomb
+BYTE 42 Sludge
 BYTE 40 ShadowBall // DestinyBond
 BYTE 45 DarkPulse // Memento
 BYTE 0 0
@@ -2141,16 +2141,16 @@ BYTE 1 PoisonGas
 BYTE 1 Tackle
 BYTE 6 Smog
 BYTE 9 SandAttack // SmokeScreen
-BYTE 12 Sludge
+BYTE 12 Snarl
 BYTE 15 Scorch
 BYTE 18 NightDaze // Assurance
-BYTE 24 Toxic
-BYTE 26 Hex
-BYTE 28 AuroraBeam // Resv Haze
+BYTE 24 AuroraBeam
+BYTE 26 HexAtt
+BYTE 28 Toxic
 BYTE 30 Flamethrower
 BYTE 33 MudBomb
 BYTE 35 Explosion
-BYTE 42 Toxic // SludgeBomb
+BYTE 42 Sludge
 BYTE 40 ShadowBall // DestinyBond
 BYTE 45 DarkPulse // Memento
 BYTE 0 0
@@ -2490,13 +2490,13 @@ BYTE 1 Ember
 BYTE 7 SandAttack // SmokeScreen
 BYTE 10 Scorch
 BYTE 13 ConfuseRay
-BYTE 16 NightDaze // FaintAttack
+BYTE 16 FireSpin
 BYTE 18 FlameWheel
-BYTE 21 FireSpin
-BYTE 23 RollingKick
-BYTE 25 Sludge
-BYTE 28 FirePunch
-BYTE 33 PoisonJab
+BYTE 21 RollingKick
+BYTE 23 FirePunch
+BYTE 25 PoisonJab
+BYTE 28 NightDaze // FaintAttack
+BYTE 33 Sludge
 BYTE 36 Flamethrower // LavaPlume
 BYTE 40 SacredFire
 BYTE 45 FireBlast
