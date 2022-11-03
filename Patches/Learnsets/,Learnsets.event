@@ -803,12 +803,14 @@ BYTE 0 0
 ALIGN 4
 ZubatLearnset:
 BYTE 1 LeechLife
+BYTE 1 Lick 
+BYTE 3 Absorb
 BYTE 5 Gust
-BYTE 7 Lick 
-BYTE 10 ConfuseRay
+BYTE 7 ConfuseRay
+BYTE 10 Bite
 BYTE 13 WingAttack 
 BYTE 15 MegaDrain
-BYTE 17 Bite
+BYTE 17 NightShade
 BYTE 20 Fly 
 BYTE 22 UTurn
 BYTE 25 Sludge 
@@ -825,12 +827,14 @@ BYTE 0 0
 ALIGN 4
 GolbatLearnset:
 BYTE 1 LeechLife
+BYTE 1 Lick 
+BYTE 3 Absorb
 BYTE 5 Gust
-BYTE 7 Lick 
-BYTE 10 ConfuseRay
+BYTE 7 ConfuseRay
+BYTE 10 Bite
 BYTE 13 WingAttack 
 BYTE 15 MegaDrain
-BYTE 17 Bite
+BYTE 17 NightShade
 BYTE 20 Fly 
 BYTE 22 UTurn
 BYTE 25 Sludge 
