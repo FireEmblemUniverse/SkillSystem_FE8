@@ -437,15 +437,18 @@ BYTE 0 0
 ALIGN 4
 EkansLearnset:
 BYTE 1 Constrict
-BYTE 3 Leer
-BYTE 5 PoisonSting 
+BYTE 1 Leer
+BYTE 3 PoisonSting 
+BYTE 5 Absorb
 BYTE 7 LeechLife
 BYTE 9 Bite
-BYTE 13 Glare
+BYTE 11 Glare
+BYTE 13 MegaDrain
 BYTE 16 Acid
-BYTE 22 Dig
-BYTE 24 Screech
-BYTE 28 PoisonJab
+BYTE 19 Dig
+BYTE 22 Screech
+BYTE 25 PoisonJab
+BYTE 28 Thrash
 //BYTE 28 Resv //Haze
 BYTE 32 NightSlash
 BYTE 35 IronTail
@@ -455,15 +458,18 @@ BYTE 0 0
 ALIGN 4
 ArbokLearnset:
 BYTE 1 Constrict
-BYTE 3 Leer
-BYTE 5 PoisonSting 
+BYTE 1 Leer
+BYTE 3 PoisonSting 
+BYTE 5 Absorb
 BYTE 7 LeechLife
 BYTE 9 Bite
-BYTE 13 Glare
+BYTE 11 Glare
+BYTE 13 MegaDrain
 BYTE 16 Acid
-BYTE 22 Dig
-BYTE 24 Screech
-BYTE 28 PoisonJab
+BYTE 19 Dig
+BYTE 22 Screech
+BYTE 25 PoisonJab
+BYTE 28 Thrash
 //BYTE 28 Resv //Haze
 BYTE 32 NightSlash
 BYTE 35 IronTail
