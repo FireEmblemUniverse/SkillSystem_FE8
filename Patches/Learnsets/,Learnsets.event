@@ -762,6 +762,7 @@ ALIGN 4
 JigglypuffLearnset:
 //BYTE 1 Sleep2 //Sing
 BYTE 1 Leer
+BYTE 3 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
@@ -783,6 +784,7 @@ ALIGN 4
 WigglytuffLearnset:
 //BYTE 1 Sleep2 //Sing
 BYTE 1 Leer
+BYTE 3 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
