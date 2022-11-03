@@ -1135,8 +1135,9 @@ ALIGN 4
 GrowlitheLearnset:
 BYTE 1 Bite
 BYTE 1 Growl
+BYTE 1 Ember
 BYTE 4 QuickAttack
-BYTE 6 Ember
+BYTE 6 DoubleKick
 BYTE 9 Leer
 BYTE 11 RecoverMove //?Support HelpingHand
 BYTE 14 FlameWheel
@@ -1155,8 +1156,9 @@ ALIGN 4
 ArcanineLearnset:
 BYTE 1 Bite
 BYTE 1 Growl
+BYTE 1 Ember
 BYTE 4 QuickAttack
-BYTE 6 Ember
+BYTE 6 DoubleKick
 BYTE 9 Leer
 BYTE 11 RecoverMove //?Support HelpingHand
 BYTE 14 FlameWheel
