@@ -518,13 +518,14 @@ BYTE 4 Magnitude
 BYTE 6 MudShot
 BYTE 7 Leer 
 BYTE 8 PoisonSting 
-BYTE 11 QuickAttack
+BYTE 11 Rollout
+BYTE 13 FuryCutter
 BYTE 16 Dig
-BYTE 19 DoubleHit
-BYTE 21 Rollout
-BYTE 23 HoneClaws
-BYTE 25 FuryCutter
-BYTE 28 Slash
+BYTE 19 Slash
+BYTE 21 HoneClaws
+BYTE 23 SeismicToss
+BYTE 25 MudBomb
+BYTE 28 PoisonJab
 BYTE 31 Earthquake
 BYTE 33 MeteorMash
 BYTE 38 NightSlash
@@ -539,13 +540,14 @@ BYTE 4 Magnitude
 BYTE 6 MudShot
 BYTE 7 Leer 
 BYTE 8 PoisonSting 
-BYTE 11 QuickAttack
+BYTE 11 Rollout
+BYTE 13 FuryCutter
 BYTE 16 Dig
-BYTE 19 DoubleHit
-BYTE 21 Rollout
-BYTE 23 HoneClaws
-BYTE 25 FuryCutter
-BYTE 28 Slash
+BYTE 19 Slash
+BYTE 21 HoneClaws
+BYTE 23 SeismicToss
+BYTE 25 MudBomb
+BYTE 28 PoisonJab
 BYTE 31 Earthquake
 BYTE 33 MeteorMash
 BYTE 38 NightSlash
@@ -2026,11 +2028,12 @@ BYTE 21 Bonemerang
 BYTE 23 Bite
 BYTE 25 TakeDown
 BYTE 27 RockSlide
+BYTE 29 ThunderPunch
 BYTE 31 SwordsDance
 BYTE 33 NightSlash // Fling
 BYTE 37 Earthquake // Bone Rush
 // BYTE 41 Resv Endeavor
-BYTE 40 DoubleEdge
+BYTE 43 DoubleEdge
 BYTE 45 Submission
 BYTE 0 0
 
@@ -2047,11 +2050,12 @@ BYTE 21 Bonemerang
 BYTE 23 Bite
 BYTE 25 TakeDown
 BYTE 27 RockSlide
+BYTE 29 ThunderPunch
 BYTE 31 SwordsDance
 BYTE 33 NightSlash // Fling
 BYTE 37 Earthquake // Bone Rush
 // BYTE 41 Resv Endeavor
-BYTE 40 DoubleEdge
+BYTE 43 DoubleEdge
 BYTE 45 Submission
 BYTE 0 0
 
