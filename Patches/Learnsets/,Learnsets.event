@@ -12,8 +12,8 @@ BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
 BYTE 17 RazorLeaf
-BYTE 20 Sludge
-BYTE 24 DoubleEdge
+BYTE 20 DoubleEdge
+BYTE 24 Sludge
 BYTE 29 PetalDance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
@@ -32,8 +32,8 @@ BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
 BYTE 17 RazorLeaf
-BYTE 20 Sludge
-BYTE 24 DoubleEdge
+BYTE 20 DoubleEdge
+BYTE 24 Sludge
 BYTE 29 PetalDance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
@@ -51,8 +51,8 @@ BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
 BYTE 17 RazorLeaf
-BYTE 20 Sludge
-BYTE 24 DoubleEdge
+BYTE 20 DoubleEdge
+BYTE 24 Sludge
 BYTE 29 PetalDance
 BYTE 33 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
@@ -764,10 +764,10 @@ BYTE 21 Amnesia
 BYTE 25 Screech
 BYTE 29 TriAttack
 BYTE 33 PetalDance
-BYTE 37 SeismicToss
-BYTE 39 Explosion
+BYTE 37 Surf
+BYTE 39 SeismicToss
 BYTE 41 HealPulse //?Support Rest
-BYTE 43 Surf
+BYTE 43 Explosion
 BYTE 45 HyperBeam
 BYTE 0 0
 
@@ -785,10 +785,10 @@ BYTE 21 Amnesia
 BYTE 25 Screech
 BYTE 29 TriAttack
 BYTE 33 PetalDance
-BYTE 37 SeismicToss
-BYTE 39 Explosion
+BYTE 37 Surf
+BYTE 39 SeismicToss
 BYTE 41 HealPulse //?Support Rest
-BYTE 43 Surf
+BYTE 43 Explosion
 BYTE 45 HyperBeam
 BYTE 0 0
 
