@@ -2709,9 +2709,9 @@ BYTE 22 MirrorShot
 BYTE 25 Psybeam
 // BYTE 34 Resv Recycle // Hammerne for Recycle?
 BYTE 28 TriAttack
-BYTE 32 DarkPulse
+BYTE 32 Thunderbolt
 BYTE 35 FlashCannon
-BYTE 38 Thunderbolt
+BYTE 38 DarkPulse
 BYTE 42 HyperBeam
 BYTE 45 ThunderMove // ZapCannon
 BYTE 0 0
