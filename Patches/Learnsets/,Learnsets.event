@@ -896,9 +896,10 @@ BYTE 0 0
 ALIGN 4
 ParasLearnset:
 BYTE 1 Scratch 
-BYTE 3 LeechLife
+BYTE 1 LeechLife
+BYTE 3 Absorb
 BYTE 6 PoisonPowder  
-BYTE 10 FuryCutter
+BYTE 10 BugBite
 BYTE 13 RazorLeaf
 BYTE 15 Growth
 BYTE 18 UTurn
@@ -916,9 +917,10 @@ BYTE 0 0
 ALIGN 4
 ParasectLearnset:
 BYTE 1 Scratch 
-BYTE 3 LeechLife
+BYTE 1 LeechLife
+BYTE 3 Absorb
 BYTE 6 PoisonPowder  
-BYTE 10 FuryCutter
+BYTE 10 BugBite
 BYTE 13 RazorLeaf
 BYTE 15 Growth
 BYTE 18 UTurn
