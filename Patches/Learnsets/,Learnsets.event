@@ -1679,8 +1679,8 @@ BYTE 7 Magnitude // Mud-Slap
 BYTE 12 RecoverMove // Resv Disable
 BYTE 15 BodySlam
 // BYTE 17 Resv Minimize
-BYTE 20 Sludge
-BYTE 23 MudBomb
+BYTE 20 MudBomb
+BYTE 23 Sludge
 BYTE 26 Toxic
 BYTE 28 Bite // Fling
 BYTE 30 Earthquake
@@ -1700,8 +1700,8 @@ BYTE 7 Magnitude // Mud-Slap
 BYTE 12 RecoverMove // Resv Disable
 BYTE 15 BodySlam
 // BYTE 17 Resv Minimize
-BYTE 20 Sludge
-BYTE 23 MudBomb
+BYTE 20 MudBomb
+BYTE 23 Sludge
 BYTE 26 Toxic
 BYTE 28 Bite // Fling
 BYTE 30 Earthquake
