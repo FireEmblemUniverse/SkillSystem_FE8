@@ -186,12 +186,13 @@ BYTE 16 MegaDrain
 BYTE 20 SignalBeam
 BYTE 22 RecoverMove
 BYTE 24 Psybeam
-BYTE 28 AirSlash
+BYTE 26 AirSlash
+BYTE 28 BugBuzz
 //BYTE 30 Tailwind
 BYTE 34 HealPulse //?Buff (Safeguard)
-BYTE 36 BugBuzz
-BYTE 40 Hurricane
-BYTE 42 Psychic
+BYTE 38 CalmMind
+BYTE 40 Psychic
+BYTE 42 Hurricane
 BYTE 0 0
 
 ALIGN 4
@@ -207,12 +208,13 @@ BYTE 16 MegaDrain
 BYTE 20 SignalBeam
 BYTE 22 RecoverMove
 BYTE 24 Psybeam
-BYTE 28 AirSlash
+BYTE 26 AirSlash
+BYTE 28 BugBuzz
 //BYTE 30 Tailwind
 BYTE 34 HealPulse //?Buff (Safeguard)
-BYTE 36 BugBuzz
-BYTE 40 Hurricane
-BYTE 42 Psychic
+BYTE 38 CalmMind
+BYTE 40 Psychic
+BYTE 42 Hurricane
 BYTE 0 0
 
 ALIGN 4
@@ -228,12 +230,13 @@ BYTE 16 MegaDrain
 BYTE 20 SignalBeam
 BYTE 22 RecoverMove
 BYTE 24 Psybeam
-BYTE 28 AirSlash
+BYTE 26 AirSlash
+BYTE 28 BugBuzz
 //BYTE 30 Tailwind
 BYTE 34 HealPulse //?Buff (Safeguard)
-BYTE 36 BugBuzz
-BYTE 40 Hurricane
-BYTE 42 Psychic
+BYTE 38 CalmMind
+BYTE 40 Psychic
+BYTE 42 Hurricane
 BYTE 0 0
 
 ALIGN 4
@@ -243,16 +246,17 @@ BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
 BYTE 8 GuardMove 
-BYTE 10 FuryCutter
+BYTE 10 BugBite
 BYTE 12 Peck
-BYTE 15 ThiefAtt
-BYTE 19 PinMissile
-BYTE 22 DoubleHit
+BYTE 15 PinMissile
+BYTE 17 ThiefAtt
+BYTE 19 DoubleHit
+BYTE 22 Agility
 BYTE 24 UTurn
 BYTE 26 PoisonJab
-BYTE 28 Toxic
-BYTE 33 Agility
-BYTE 36 XScissor
+BYTE 28 XScissor
+BYTE 33 HornDrill
+BYTE 36 Toxic
 BYTE 40 NightSlash
 BYTE 42 DrillPeck
 BYTE 0 0
@@ -264,16 +268,17 @@ BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
 BYTE 8 GuardMove 
-BYTE 10 FuryCutter
+BYTE 10 BugBite
 BYTE 12 Peck
-BYTE 15 ThiefAtt
-BYTE 19 PinMissile
-BYTE 22 DoubleHit
+BYTE 15 PinMissile
+BYTE 17 ThiefAtt
+BYTE 19 DoubleHit
+BYTE 22 Agility
 BYTE 24 UTurn
 BYTE 26 PoisonJab
-BYTE 28 Toxic
-BYTE 33 Agility
-BYTE 36 XScissor
+BYTE 28 XScissor
+BYTE 33 HornDrill
+BYTE 36 Toxic
 BYTE 40 NightSlash
 BYTE 42 DrillPeck
 BYTE 0 0
@@ -285,16 +290,17 @@ BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
 BYTE 8 GuardMove 
-BYTE 10 FuryCutter
+BYTE 10 BugBite
 BYTE 12 Peck
-BYTE 15 ThiefAtt
-BYTE 19 PinMissile
-BYTE 22 DoubleHit
+BYTE 15 PinMissile
+BYTE 17 ThiefAtt
+BYTE 19 DoubleHit
+BYTE 22 Agility
 BYTE 24 UTurn
 BYTE 26 PoisonJab
-BYTE 28 Toxic
-BYTE 33 Agility
-BYTE 36 XScissor
+BYTE 28 XScissor
+BYTE 33 HornDrill
+BYTE 36 Toxic
 BYTE 40 NightSlash
 BYTE 42 DrillPeck
 BYTE 0 0
