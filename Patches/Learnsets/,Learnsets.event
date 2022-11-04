@@ -1443,11 +1443,12 @@ BYTE 12 Magnitude
 BYTE 15 Rollout
 BYTE 17 MegaPunch
 BYTE 20 Dig
-BYTE 23 RockSlide
-BYTE 27 Earthquake
-BYTE 31 Explosion
-BYTE 36 DoubleEdge
-BYTE 39 Submission
+BYTE 23 TakeDown
+BYTE 27 RockSlide
+BYTE 30 Earthquake
+BYTE 33 DoubleEdge
+BYTE 37 Explosion
+BYTE 42 Submission
 BYTE 0 0
 
 ALIGN 4
@@ -1851,22 +1852,27 @@ BYTE 0 0
 ALIGN 4
 OnixLearnset:
 BYTE 1 Tackle
-//BYTE 1 Growl 
+BYTE 1 Growl 
 BYTE 1 Constrict // Bind 
-BYTE 6 TailWhip
-BYTE 7 RockTomb 
-Byte 9 Rage
+BYTE 1 TailWhip
+BYTE 4 RockTomb 
+BYTE 6 Rage
+BYTE 8 Magnitude
 BYTE 12 RockThrow 
-BYTE 14 Magnitude
+BYTE 14 Bite
 BYTE 17 Slam
-BYTE 21 Bite
-BYTE 23 Dig
+BYTE 19 Dig
+BYTE 21 BulkUp
+BYTE 25 RockSlide
 BYTE 28 PoisonJab
+BYTE 30 Earthquake
 //BYTE 33 ??? //Curse
-BYTE 35 DoubleEdge
+BYTE 32 DoubleEdge
+BYTE 35 NightSlash
 BYTE 38 IronTail
-BYTE 41 RockSlide
-BYTE 45 Earthquake
+BYTE 40 Outrage
+BYTE 42 Explosion
+
 BYTE 0 0
 
 ALIGN 4
@@ -2207,11 +2213,11 @@ BYTE 13 DoubleHit // FuryAttack
 BYTE 21 Glare // ScaryFace
 BYTE 25 RockThrow // Rock Blast
 BYTE 28 Dig
-BYTE 33 TakeDown 
-BYTE 35 HornDrill
-BYTE 36 Submission // Hammer Arm
-BYTE 38 RockSlide // Stone Edge
-BYTE 40 Earthquake
+BYTE 30 TakeDown 
+BYTE 33 RockSlide // Stone Edge
+BYTE 35 Earthquake
+BYTE 38 HornDrill
+BYTE 40 Submission // Hammer Arm
 BYTE 45 Megahorn
 BYTE 0 0
 
@@ -2225,11 +2231,11 @@ BYTE 13 DoubleHit // FuryAttack
 BYTE 21 Glare // ScaryFace
 BYTE 25 RockThrow // Rock Blast
 BYTE 28 Dig
-BYTE 33 TakeDown 
-BYTE 35 HornDrill
-BYTE 36 Submission // Hammer Arm
-BYTE 38 RockSlide // Stone Edge
-BYTE 40 Earthquake
+BYTE 30 TakeDown 
+BYTE 33 RockSlide // Stone Edge
+BYTE 35 Earthquake
+BYTE 38 HornDrill
+BYTE 40 Submission // Hammer Arm
 BYTE 45 Megahorn
 BYTE 0 0
 
@@ -2576,12 +2582,14 @@ BYTE 11 Glare // ScaryFace
 BYTE 13 Magnitude
 BYTE 15 ThiefAtt
 // BYTE 19 Resv Rest
-BYTE 24 TakeDown// Payback
-// BYTE 29 ZenHeadbutt
-BYTE 32 Thrash
-BYTE 35 TakeDown
-BYTE 41 Earthquake
-BYTE 45 DoubleEdge // GigaImpact
+BYTE 20 BulkUp
+BYTE 25 Thrash
+// BYTE 27 ZenHeadbutt
+BYTE 30 TakeDown
+BYTE 35 NightSlash
+BYTE 38 DoubleEdge
+BYTE 40 Earthquake
+BYTE 45 HornDrill
 BYTE 0 0
 
 ALIGN 4
@@ -2806,7 +2814,7 @@ BYTE 0 0
 ALIGN 4
 KabutoLearnset:
 BYTE 1 Scratch 
-//BYTE 1 Guard 
+BYTE 1 GuardMove
 BYTE 1 WaterGun
 BYTE 4 RockTomb
 BYTE 6 LeechLife 
@@ -2814,20 +2822,21 @@ BYTE 9 Clamp
 BYTE 11 Leer 
 BYTE 13 RockThrow
 BYTE 16 Magnitude 
+BYTE 18 MetalSound
 BYTE 21 Slash
-BYTE 23 MetalSound
-BYTE 26 RecoverMove //?Support (RecoverMove)
+BYTE 23 RecoverMove //?Support (RecoverMove)
+BYTE 26 RockSlide
 BYTE 28 Waterfall
 BYTE 32 Ancientpower
 BYTE 36 XScissor  
-BYTE 40 RockSlide
+BYTE 40 SwordsDance
 BYTE 45 Crabhammer 
 BYTE 0 0
 
 ALIGN 4
 KabutopsLearnset:
 BYTE 1 Scratch 
-//BYTE 1 Guard 
+BYTE 1 GuardMove
 BYTE 1 WaterGun
 BYTE 4 RockTomb
 BYTE 6 LeechLife 
@@ -2835,14 +2844,15 @@ BYTE 9 Clamp
 BYTE 11 Leer 
 BYTE 13 RockThrow
 BYTE 16 Magnitude 
+BYTE 18 MetalSound
 BYTE 21 Slash
-BYTE 23 MetalSound
-BYTE 26 RecoverMove //?Support (RecoverMove)
+BYTE 23 RecoverMove //?Support (RecoverMove)
+BYTE 26 RockSlide
 BYTE 28 Waterfall
 BYTE 32 Ancientpower
 BYTE 36 XScissor  
-BYTE 40 RockSlide
-BYTE 45 Crabhammer 
+BYTE 40 SwordsDance
+BYTE 45 Crabhammer  
 BYTE 0 0
 
 ALIGN 4
