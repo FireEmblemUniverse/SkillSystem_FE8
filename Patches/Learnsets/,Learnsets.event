@@ -720,10 +720,11 @@ ALIGN 4
 VulpixLearnset:
 BYTE 1 Ember
 BYTE 4 TailWhip
-BYTE 7 NightShade
-BYTE 11 QuickAttack
-BYTE 14 Scorch
-BYTE 17 ConfuseRay
+BYTE 7 QuickAttack
+BYTE 9 Confusion
+BYTE 11 NightShade
+BYTE 13 Scorch
+BYTE 16 ConfuseRay
 BYTE 19 HexAtt
 BYTE 21 FireSpin
 BYTE 24 Flamethrower
@@ -741,10 +742,11 @@ ALIGN 4
 NinetalesLearnset:
 BYTE 1 Ember
 BYTE 4 TailWhip
-BYTE 7 NightShade
-BYTE 11 QuickAttack
-BYTE 14 Scorch
-BYTE 17 ConfuseRay
+BYTE 7 QuickAttack
+BYTE 9 Confusion
+BYTE 11 NightShade
+BYTE 13 Scorch
+BYTE 16 ConfuseRay
 BYTE 19 HexAtt
 BYTE 21 FireSpin
 BYTE 24 Flamethrower
