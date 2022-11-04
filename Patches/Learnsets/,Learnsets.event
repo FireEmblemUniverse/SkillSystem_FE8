@@ -763,6 +763,7 @@ BYTE 0 0
 ALIGN 4
 JigglypuffLearnset:
 //BYTE 1 Sleep2 //Sing
+BYTE 1 Pound
 BYTE 1 Leer
 BYTE 3 Bubble
 BYTE 5 AttackPulse
@@ -785,6 +786,7 @@ BYTE 0 0
 ALIGN 4
 WigglytuffLearnset:
 //BYTE 1 Sleep2 //Sing
+BYTE 1 Pound
 BYTE 1 Leer
 BYTE 3 Bubble
 BYTE 5 AttackPulse
@@ -1178,7 +1180,8 @@ BYTE 0 0
 ALIGN 4
 PoliwagLearnset:
 BYTE 1 Growl 
-BYTE 5 Bubble 
+BYTE 1 Bubble 
+BYTE 3 DoubleSlap
 //BYTE 8 Sleep2 
 BYTE 11 BubbleBeam
 BYTE 15 DoubleKick
@@ -1196,7 +1199,8 @@ BYTE 0 0
 ALIGN 4
 PoliwhirlLearnset:
 BYTE 1 Growl 
-BYTE 5 Bubble 
+BYTE 1 Bubble 
+BYTE 3 DoubleSlap
 //BYTE 8 Sleep2 
 BYTE 11 BubbleBeam
 BYTE 15 DoubleKick
@@ -1214,7 +1218,8 @@ BYTE 0 0
 ALIGN 4
 PoliwrathLearnset:
 BYTE 1 Growl 
-BYTE 5 Bubble 
+BYTE 1 Bubble 
+BYTE 3 DoubleSlap
 //BYTE 8 Sleep2 
 BYTE 11 BubbleBeam
 BYTE 15 DoubleKick
@@ -1232,6 +1237,7 @@ BYTE 0 0
 ALIGN 4
 AbraLearnset:
 BYTE 1 Leer 
+BYTE 1 AttackPulse
 BYTE 16 Confusion
 BYTE 18 Swift
 BYTE 23 Psybeam
@@ -1245,6 +1251,7 @@ BYTE 0 0
 ALIGN 4
 KadabraLearnset:
 BYTE 1 Leer 
+BYTE 1 AttackPulse
 BYTE 16 Confusion
 BYTE 18 Swift
 BYTE 23 Psybeam
@@ -1258,6 +1265,7 @@ BYTE 0 0
 ALIGN 4
 AlakazamLearnset:
 BYTE 1 Leer 
+BYTE 1 AttackPulse
 BYTE 16 Confusion
 BYTE 18 Swift
 BYTE 23 Psybeam
@@ -2030,6 +2038,7 @@ BYTE 0 0
 ALIGN 4
 CuboneLearnset:
 BYTE 1 Growl
+BYTE 1 Scratch
 BYTE 3 TailWhip
 BYTE 7 Magnitude // BoneClub
 BYTE 9  Leer
@@ -2052,6 +2061,7 @@ BYTE 0 0
 ALIGN 4
 MarowakLearnset:
 BYTE 1 Growl
+BYTE 1 Scratch
 BYTE 3 TailWhip
 BYTE 7 Magnitude // BoneClub
 BYTE 9  Leer
@@ -2376,7 +2386,7 @@ ALIGN 4
 StaryuLearnset:
 BYTE 1 Tackle
 BYTE 1 Harden
-BYTE 6 WaterGun
+BYTE 5 WaterGun
 BYTE 10 Confusion
 BYTE 13 RecoverMove
 BYTE 17 BubbleBeam
@@ -2397,7 +2407,7 @@ ALIGN 4
 StarmieLearnset:
 BYTE 1 Tackle
 BYTE 1 Harden
-BYTE 6 WaterGun
+BYTE 5 WaterGun
 BYTE 10 Confusion
 BYTE 13 RecoverMove
 BYTE 17 BubbleBeam
@@ -2449,7 +2459,7 @@ BYTE 1 QuickAttack
 BYTE 1 Leer
 BYTE 5 FocusEnergy
 BYTE 8 ThiefAtt // Pursuit 
-BYTE 12 FuryCutter
+BYTE 10 FuryCutter
 BYTE 13 TakeDown // FalseSwipe
 BYTE 17 Agility
 BYTE 19 Swift
@@ -2534,7 +2544,8 @@ BYTE 1 FocusEnergy
 BYTE 4 Constrict // Bind
 BYTE 6 FuryCutter
 BYTE 8 RollingKick // BrickBreak
-BYTE 13 Harden
+BYTE 10 Harden
+BYTE 13 BugBite
 BYTE 15 BodySlam
 // BYTE 18 Revenge
 BYTE 21 SeismicToss
@@ -2828,10 +2839,11 @@ BYTE 0 0
 
 ALIGN 4
 AerodactylLearnset:
-BYTE 1 WingAttack
+BYTE 1 Gust
 BYTE 1 Bite
-BYTE 1 RockTomb
+BYTE 4 RockTomb
 //BYTE 9 Resv //Roar
+BYTE 12 WingAttack
 BYTE 14 RockThrow
 BYTE 17 Agility 
 BYTE 19 TakeDown
