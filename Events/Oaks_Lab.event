@@ -135,6 +135,7 @@ SVAL r7 0
 BNE 0 rC r7 
 
 	CALL StuffInCommon
+	Write_Byte( CharmanderID, GaryStarterClass)
 	SCOORD rB [6,9]
 	SVAL r2 UnitLeftCharmanderEnemy|IsPointer
 	CALL SendOutPkmnSlotB
@@ -150,8 +151,9 @@ BNE 0 rC r7
 Label 0 
 SVAL r7 1 
 BNE 1 rC r7 
-
+//30017b2
 	CALL StuffInCommon
+	Write_Byte( SquirtleID, GaryStarterClass)
 	SCOORD rB [6,9]
 	SVAL r2 UnitLeftSquirtleEnemy|IsPointer
 	CALL SendOutPkmnSlotB
@@ -167,6 +169,7 @@ Label 1
 SVAL r7 2 
 BNE 2 rC r7 
 	CALL StuffInCommon
+	Write_Byte(BulbasaurID, GaryStarterClass)
 	SCOORD rB [6,9]
 	SVAL r2 UnitLeftBulbasaurEnemy|IsPointer
 	CALL SendOutPkmnSlotB
@@ -185,9 +188,7 @@ TutText(UhOhText)
 SADD rB rA r0 
 CALL SendOutPkmnSlotB
 
-CHECK_CLASS 0xA0 // Starter choice 
-SADD r2 rC r0 
-Write_Byte(GaryStarterClass)
+
 
 UNCR(2, Hide) 
 EVBIT_MODIFY 0

@@ -37,12 +37,7 @@ mov		r1,r4
 .short	0xF800
 cmp		r0,#0x0
 beq		NextWeapon
-mov		r0,r4
-ldr		r1,=#0x801766C		@get min range
-mov		r14,r1
-.short	0xF800
-cmp		r0,#0x1
-bne		NextWeapon			@can only capture at 1 range
+
 ldr		r0,Fill_Capture_Range_Map		@Fill_Capture_Range_Map
 mov		r14,r0
 mov		r0,r5
@@ -65,6 +60,7 @@ pop		{r1}
 bx		r1
 
 .ltorg
+.align
 CurrentCharPtr:
 .long 0x03004E50
 Weapon_Wield_Check:
@@ -74,3 +70,4 @@ TargetQueueCounter:
 Fill_Capture_Range_Map:
 @SkillTester
 @CaptureID
+

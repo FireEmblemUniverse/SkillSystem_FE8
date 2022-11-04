@@ -7,7 +7,8 @@
 #define ENABLE_RANDOMIZER 
 
 PUSH; ORG $D74D0	//{U}
-String("Version 1.02    Nov 2022") ; BYTE 0; POP 
+String("Version 1.03    Nov 2022") ; BYTE 0; POP 
+
 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
@@ -23,7 +24,7 @@ String("Version 1.02    Nov 2022") ; BYTE 0; POP
 #define GymDifficultyBonusDef_Lunatic 18
 #define TrainerDifficultyBonusDef_Hard 12
 #define TrainerDifficultyBonusDef_Lunatic 18
-
+#define DoubleSlap Doubleslap
 #define TrainerMov 7 
 #define BaseMov 5
 
@@ -36,6 +37,7 @@ String("Version 1.02    Nov 2022") ; BYTE 0; POP
 #define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
 
 #include "Enumerate/ItemListPokemon.enu.event"
+
 #include "Enumerate/ClassIDList.enu.event"
 
 #include "Enumerate/ClassSpriteList.enu.event"

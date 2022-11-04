@@ -242,7 +242,7 @@ UNIT
 
 Traps1:
 
-SaveWithoutHeal(11,10) 
+//SaveWithoutHeal(11,10) 
 
 //GenericDisappearCompletion(12, 5, 0, GarySMS, 0) // xx, yy, flag, sprite, effectID 
 //GenericDisappearCompletion(13, 5, 0, PidgeotSMS, 0) // xx, yy, flag, sprite, effectID 
@@ -253,7 +253,7 @@ SaveWithoutHeal(11,10)
 //GenericDisappearCompletion(12, 9, 0, policemanSMS, 0) // xx, yy, flag, sprite, effectID 
 
 // flag 6 turns on/off automatically depending on if there are enemies or not 
-GenericCompletion(12,9,GarySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+//GenericCompletion(12,9,GarySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
 
 //BlankExamineTrap(21, 18, VolcanobadgeObtained, DoorLockedText) // cannot walk through 
 

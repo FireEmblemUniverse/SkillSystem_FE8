@@ -140,6 +140,10 @@ NoFade
 ENDA 
 
 SlotMachineEvent:
+CHECK_EVENTID RandomizeClassesFlag
+BEQ 0 sC s0 
+TutText(SlotMachineDoesntWorkProperly)
+LABEL 0 
 CALL SlotMachine_Main
 //TutText(ComingSoonText)
 NoFade 
