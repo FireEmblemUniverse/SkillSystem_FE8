@@ -1742,16 +1742,17 @@ BYTE 7 WaterGun
 BYTE 10 RockThrow
 BYTE 12 Clamp
 BYTE 15 AuroraBeam
-BYTE 17 PinMissile
-BYTE 22 WaterPulse
-BYTE 25 Avalanche // IceShard
-BYTE 28 PoisonJab // Resv Spikes
+BYTE 17 WaterPulse
+BYTE 21 PinMissile
+BYTE 23 Bite
+BYTE 25 RockSlide
+BYTE 28 Avalanche // IceShard
 BYTE 32 IceBeam // AuroraBeam
-BYTE 35 Surf
-BYTE 37 Waterfall // Whirlpool
-BYTE 40 MirrorShot // IronDefense
-BYTE 42 Blizzard
-BYTE 44 HydroPump // Brine
+BYTE 36 Waterfall // Whirlpool
+BYTE 39 Surf
+BYTE 41 MirrorShot // IronDefense
+BYTE 43 Blizzard
+BYTE 45 HydroPump // Brine
 BYTE 0 0
 
 ALIGN 4
@@ -1764,16 +1765,17 @@ BYTE 7 WaterGun
 BYTE 10 RockThrow
 BYTE 12 Clamp
 BYTE 15 AuroraBeam
-BYTE 17 PinMissile
-BYTE 22 WaterPulse
-BYTE 25 Avalanche // IceShard
-BYTE 28 PoisonJab // Resv Spikes
+BYTE 17 WaterPulse
+BYTE 21 PinMissile
+BYTE 23 Bite
+BYTE 25 RockSlide
+BYTE 28 Avalanche // IceShard
 BYTE 32 IceBeam // AuroraBeam
-BYTE 35 Surf
-BYTE 37 Waterfall // Whirlpool
-BYTE 40 MirrorShot // IronDefense
-BYTE 42 Blizzard
-BYTE 44 HydroPump // Brine
+BYTE 36 Waterfall // Whirlpool
+BYTE 39 Surf
+BYTE 41 MirrorShot // IronDefense
+BYTE 43 Blizzard
+BYTE 45 HydroPump // Brine
 BYTE 0 0
 
 ALIGN 4
