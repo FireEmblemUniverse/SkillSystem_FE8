@@ -56,6 +56,7 @@ END_MAIN
 ObtainPsychicEvent:
 BottomWallText(PsychicSaffronText)
 GiveItemWithDurability(0x7fff, SpellScroll, Psychic)
+BottomWallText(PsychicSaffronText2)
 NoFade
 ENDA 
 
