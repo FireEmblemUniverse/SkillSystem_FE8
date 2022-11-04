@@ -966,12 +966,13 @@ BYTE 19 NightDaze
 BYTE 22 CalmMind
 //BYTE 23 ??? //StunSpore
 BYTE 25 Sludge
-BYTE 30 DarkPulse
+BYTE 30 BugBuzz
 BYTE 32 AirSlash
-BYTE 35 BugBuzz
+BYTE 35 DarkPulse
 //BYTE 37 DreamEater
 BYTE 37 Toxic //PoisonFang
 BYTE 40 Psychic
+BYTE 42 Amnesia
 BYTE 0 0
 
 ALIGN 4
@@ -987,12 +988,13 @@ BYTE 19 NightDaze
 BYTE 22 CalmMind
 //BYTE 23 ??? //StunSpore
 BYTE 25 Sludge
-BYTE 30 DarkPulse
+BYTE 30 BugBuzz
 BYTE 32 AirSlash
-BYTE 35 BugBuzz
+BYTE 35 DarkPulse
 //BYTE 37 DreamEater
 BYTE 37 Toxic //PoisonFang
 BYTE 40 Psychic
+BYTE 42 Amnesia
 BYTE 0 0
 
 ALIGN 4
