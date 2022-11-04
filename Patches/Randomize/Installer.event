@@ -23,9 +23,321 @@ ALIGN 4
 RandomizeClassesFlagLabel:
 WORD RandomizeClassesFlag
 
+ALIGN 4 
+StartTimeSeedRamLabel:
+WORD StartTimeSeedRam
+
+#define CB_Entry(ClassID, Tier) "BYTE Tier" 
+
+#define DoNotRandomize 0 
+#define Stage1 1 
+#define Stage2 2 
+#define Stage3 3 
+#define Stage4 4 
+#define Legendary 5 
+
+ALIGN 4 
+StagePoinTable: 
+POIN 0
+POIN Stage1_List 
+POIN Stage2_List 
+POIN Stage3_List 
+POIN Stage4_List 
+POIN Legendary_List 
+
+// ekans 1b -> eevee ac -> blastoise 09 
+ALIGN 4 
+Stage1_List: 
+BYTE BulbasaurID CharmanderID SquirtleID CaterpieID MetapodID WeedleID KakunaID PidgeyID RattataID SpearowID 
+BYTE EkansID PikachuID SandshrewID NidoranFID NidoranMID ClefairyID VulpixID JigglypuffID ZubatID OddishID ParasID 
+BYTE VenonatID DiglettID MeowthID PsyduckID MankeyID GrowlitheID PoliwagID AbraID MachopID BellsproutID TentacoolID 
+BYTE GeodudeID PonytaID SlowpokeID MagnemiteID DoduoID SeelID GrimerID ShellderID GastlyID DrowzeeID KrabbyID 
+BYTE VoltorbID ExeggcuteID CuboneID KoffingID RhyhornID HorseaID GoldeenID StaryuID MagikarpID EeveeID OmanyteID 
+BYTE KabutoID DratiniID 0
+
+ALIGN 4 
+Stage2_List: 
+BYTE IvysaurID CharmeleonID WartortleID ButterfreeID BeedrillID PidgeottoID RaticateID FearowID ArbokID NidorinaID 
+BYTE NidorinoID GolbatID GloomID ParasectID PoliwhirlID KadabraID MachokeID WeepinbellID GravellerID HaunterID OnixID 
+BYTE ChanseyID GyaradosID DragonairID 0 
+
+ALIGN 4 
+Stage3_List: 
+BYTE RaichuID ClefableID SandslashID NinetalesID WigglytuffID VenomothID DugtrioID PersianID GolduckID PrimeapeID 
+BYTE ArcanineID TentacruelID RapidashID SlowbroID MagnetonID FarfetchdID DodrioID DewgongID MukID CloysterID 
+BYTE HypnoID KinglerID ElectrodeID ExeggutorID MarowakID LickitungID WeezingID RhydonID TangelaID KangaskhanID 
+BYTE SeadraID SeakingID StarmieID MrMimeID ScytherID PinsirID TaurosID VaporeonID JolteonID FlareonID OmastarID 
+BYTE KabutopsID PorygonID 0 
+
+ALIGN 4 
+Stage4_List: 
+BYTE VenusaurID CharizardID BlastoiseID PidgeotID NidoqueenID NidokingID VileplumeID PoliwrathID AlakazamID 
+BYTE MachampID VictreebelID GolemID GengarID HitmonleeID HitmonchanID JynxID ElectabuzzID MagmarID LaprasID 
+BYTE AerodactylID SnorlaxID DragoniteID 0
+
+ALIGN 4 
+Legendary_List: 
+BYTE ArticunoID ZapdosID MoltresID MewtwoID MewID 0 
 
 
-
+ALIGN 4 
+ClassRandomizerBalanceTable: 
+BYTE 0 // since class ID counts from 0 
+CB_Entry(BulbasaurID             , Stage1      )
+CB_Entry(IvysaurID               , Stage2      )
+CB_Entry(VenusaurID              , Stage4      )
+CB_Entry(CharmanderID            , Stage1      )
+CB_Entry(CharmeleonID            , Stage2      )
+CB_Entry(CharizardID             , Stage4      )
+CB_Entry(SquirtleID              , Stage1      )
+CB_Entry(WartortleID             , Stage2      )
+CB_Entry(BlastoiseID             , Stage4      )
+CB_Entry(CaterpieID              , Stage1      )
+CB_Entry(MetapodID               , Stage1      )
+CB_Entry(ButterfreeID            , Stage2      )
+CB_Entry(WeedleID                , Stage1      )
+CB_Entry(KakunaID                , Stage1      )
+CB_Entry(BeedrillID              , Stage2      )
+CB_Entry(PidgeyID                , Stage1      )
+CB_Entry(PidgeottoID             , Stage2      )
+CB_Entry(PidgeotID               , Stage4      )
+CB_Entry(SuspiciousWaterID       , DoNotRandomize      )
+CB_Entry(CrobatID                , DoNotRandomize      )
+CB_Entry(RedID                   , DoNotRandomize      )
+CB_Entry(Unused4ID               , DoNotRandomize      )
+CB_Entry(RattataID               , Stage1      )
+CB_Entry(RaticateID              , Stage2      )
+CB_Entry(SpearowID               , Stage1      )
+CB_Entry(FearowID                , Stage2      )
+CB_Entry(EkansID                 , Stage1      )
+CB_Entry(ArbokID                 , Stage2      )
+CB_Entry(PikachuID               , Stage1      )
+CB_Entry(RaichuID                , Stage3      )
+CB_Entry(SandshrewID             , Stage1      )
+CB_Entry(SandslashID             , Stage3      )
+CB_Entry(NidoranFID              , Stage1      )
+CB_Entry(NidorinaID              , Stage2      )
+CB_Entry(NidoqueenID             , Stage4      )
+CB_Entry(NidoranMID              , Stage1      )
+CB_Entry(NidorinoID              , Stage2      )
+CB_Entry(NidokingID              , Stage4      )
+CB_Entry(ClefairyID              , Stage1      )
+CB_Entry(ClefableID              , Stage3      )
+CB_Entry(VulpixID                , Stage1      )
+CB_Entry(NinetalesID             , Stage3      )
+CB_Entry(JigglypuffID            , Stage1      )
+CB_Entry(WigglytuffID            , Stage3      )
+CB_Entry(ZubatID                 , Stage1      )
+CB_Entry(GolbatID                , Stage2      )
+CB_Entry(OddishID                , Stage1      )
+CB_Entry(GloomID                 , Stage2      )
+CB_Entry(VileplumeID             , Stage4      )
+CB_Entry(ParasID                 , Stage1      )
+CB_Entry(ParasectID              , Stage2      )
+CB_Entry(GorgonEggID             , DoNotRandomize     )
+CB_Entry(VenonatID               , Stage1      )
+CB_Entry(VenomothID              , Stage3      )
+CB_Entry(DiglettID               , Stage1      )
+CB_Entry(DugtrioID               , Stage3      )
+CB_Entry(MeowthID                , Stage1      )
+CB_Entry(PersianID               , Stage3      )
+CB_Entry(PsyduckID               , Stage1      )
+CB_Entry(GolduckID               , Stage3      )
+CB_Entry(MankeyID                , Stage1      )
+CB_Entry(PrimeapeID              , Stage3      )
+CB_Entry(GrowlitheID             , Stage1      )
+CB_Entry(ArcanineID              , Stage3      )
+CB_Entry(PoliwagID               , Stage1      )
+CB_Entry(PoliwhirlID             , Stage2      )
+CB_Entry(PoliwrathID             , Stage4      )
+CB_Entry(AbraID                  , Stage1      )
+CB_Entry(KadabraID               , Stage2      )
+CB_Entry(AlakazamID              , Stage4      )
+CB_Entry(MachopID                , Stage1      )
+CB_Entry(MachokeID               , Stage2      )
+CB_Entry(MachampID               , Stage4      )
+CB_Entry(BellsproutID            , Stage1      )
+CB_Entry(WeepinbellID            , Stage2      )
+CB_Entry(VictreebelID            , Stage4      )
+CB_Entry(TentacoolID             , Stage1      )
+CB_Entry(TentacruelID            , Stage3      )
+CB_Entry(GeodudeID               , Stage1      )
+CB_Entry(GravellerID             , Stage2      )
+CB_Entry(PhantomID               , DoNotRandomize      )
+CB_Entry(GolemID                 , Stage4      )
+CB_Entry(PonytaID                , Stage1      )
+CB_Entry(RapidashID              , Stage3      )
+CB_Entry(SlowpokeID              , Stage1      )
+CB_Entry(SlowbroID               , Stage3      )
+CB_Entry(MagnemiteID             , Stage1      )
+CB_Entry(MagnetonID              , Stage3      )
+CB_Entry(FarfetchdID             , Stage3      )
+CB_Entry(DoduoID                 , Stage1      )
+CB_Entry(DodrioID                , Stage3      )
+CB_Entry(SeelID                  , Stage1      )
+CB_Entry(DewgongID               , Stage3      )
+CB_Entry(GrimerID                , Stage1      )
+CB_Entry(CutBushID               , DoNotRandomize      )
+CB_Entry(RockSmashID             , DoNotRandomize      )
+CB_Entry(StrengthBoulderID       , DoNotRandomize      )
+CB_Entry(GorgonEgg2ID            , DoNotRandomize      )
+CB_Entry(Unused8ID               , DoNotRandomize      )
+CB_Entry(DeathgoyleID            , DoNotRandomize      )
+CB_Entry(DracoZombieID           , DoNotRandomize      )
+CB_Entry(DemonKingID             , DoNotRandomize      )
+CB_Entry(lassID                  , DoNotRandomize      )
+CB_Entry(picnickerID             , DoNotRandomize      )
+CB_Entry(policemanID             , DoNotRandomize      )
+CB_Entry(prof_oakID              , DoNotRandomize      )
+CB_Entry(rockerID                , DoNotRandomize      )
+CB_Entry(rocket_fID              , DoNotRandomize      )
+CB_Entry(rocket_mID              , DoNotRandomize      )
+CB_Entry(sailorID                , DoNotRandomize      )
+CB_Entry(scientistID             , DoNotRandomize      )
+CB_Entry(super_nerdID            , DoNotRandomize      )
+CB_Entry(BurrowID                , DoNotRandomize      )
+CB_Entry(FlowerID                , DoNotRandomize      )
+CB_Entry(BerryTreeID             , DoNotRandomize      )
+CB_Entry(sfxID                   , DoNotRandomize      )
+CB_Entry(OpenBallID              , DoNotRandomize      )
+CB_Entry(RedPokeballID           , DoNotRandomize      )
+CB_Entry(GoldPokeballID          , DoNotRandomize      )
+CB_Entry(GaryID                  , DoNotRandomize      )
+CB_Entry(PlatformID              , DoNotRandomize      )
+CB_Entry(BlankID                 , DoNotRandomize      )
+CB_Entry(SavePointID             , DoNotRandomize      )
+CB_Entry(BushID                  , DoNotRandomize      )
+CB_Entry(SignID                  , DoNotRandomize      )
+CB_Entry(Sign2ID                 , DoNotRandomize      )
+CB_Entry(CoinsID                 , DoNotRandomize      )
+CB_Entry(MukID                   , Stage3      )
+CB_Entry(ShellderID              , Stage1      )
+CB_Entry(CloysterID              , Stage3      )
+CB_Entry(GastlyID                , Stage1      )
+CB_Entry(HaunterID               , Stage2      )
+CB_Entry(GengarID                , Stage4      )
+CB_Entry(OnixID                  , Stage2      )
+CB_Entry(DrowzeeID               , Stage1      )
+CB_Entry(HypnoID                 , Stage3      )
+CB_Entry(KrabbyID                , Stage1      )
+CB_Entry(KinglerID               , Stage3      )
+CB_Entry(VoltorbID               , Stage1      )
+CB_Entry(ElectrodeID             , Stage3      )
+CB_Entry(ExeggcuteID             , Stage1      )
+CB_Entry(ExeggutorID             , Stage3      )
+CB_Entry(CuboneID                , Stage1      )
+CB_Entry(MarowakID               , Stage3      )
+CB_Entry(HitmonleeID             , Stage4      )
+CB_Entry(HitmonchanID            , Stage4      )
+CB_Entry(LickitungID             , Stage3      )
+CB_Entry(KoffingID               , Stage1      )
+CB_Entry(WeezingID               , Stage3      )
+CB_Entry(RhyhornID               , Stage1      )
+CB_Entry(RhydonID                , Stage3      )
+CB_Entry(ChanseyID               , Stage2      )
+CB_Entry(TangelaID               , Stage3      )
+CB_Entry(KangaskhanID            , Stage3      )
+CB_Entry(HorseaID                , Stage1      )
+CB_Entry(SeadraID                , Stage3      )
+CB_Entry(GoldeenID               , Stage1      )
+CB_Entry(SeakingID               , Stage3      )
+CB_Entry(StaryuID                , Stage1      )
+CB_Entry(StarmieID               , Stage3      )
+CB_Entry(MrMimeID                , Stage3      )
+CB_Entry(ScytherID               , Stage3      )
+CB_Entry(JynxID                  , Stage4      )
+CB_Entry(ElectabuzzID            , Stage4      )
+CB_Entry(MagmarID                , Stage4      )
+CB_Entry(PinsirID                , Stage3      )
+CB_Entry(TaurosID                , Stage3      )
+CB_Entry(MagikarpID              , Stage1      )
+CB_Entry(GyaradosID              , Stage4      )
+CB_Entry(LaprasID                , Stage4      )
+CB_Entry(DittoID                 , DoNotRandomize      )
+CB_Entry(EeveeID                 , Stage1      )
+CB_Entry(VaporeonID              , Stage3      )
+CB_Entry(JolteonID               , Stage3      )
+CB_Entry(FlareonID               , Stage3      )
+CB_Entry(PorygonID               , Stage3      )
+CB_Entry(OmanyteID               , Stage1      )
+CB_Entry(OmastarID               , Stage4      )
+CB_Entry(KabutoID                , Stage1      )
+CB_Entry(KabutopsID              , Stage4      )
+CB_Entry(AerodactylID            , Stage4      )
+CB_Entry(SnorlaxID               , Stage4      )
+CB_Entry(ArticunoID              , DoNotRandomize      )
+CB_Entry(ZapdosID                , DoNotRandomize      )
+CB_Entry(MoltresID               , DoNotRandomize      )
+CB_Entry(DratiniID               , Stage1      )
+CB_Entry(DragonairID             , Stage2      )
+CB_Entry(DragoniteID             , Stage4      )
+CB_Entry(MewtwoID                , DoNotRandomize      )
+CB_Entry(MewID                   , DoNotRandomize      )
+CB_Entry(balding_manID           , DoNotRandomize      )
+CB_Entry(battle_girlID           , DoNotRandomize      )
+CB_Entry(beautyID                , DoNotRandomize      )
+CB_Entry(billID                  , DoNotRandomize      )
+CB_Entry(blackbeltID             , DoNotRandomize      )
+CB_Entry(blueID                  , DoNotRandomize      )
+CB_Entry(boyID                   , DoNotRandomize      )
+CB_Entry(bug_catcherID           , DoNotRandomize      )
+CB_Entry(camperID                , DoNotRandomize      )
+CB_Entry(captainID               , DoNotRandomize      )
+CB_Entry(channelerID             , DoNotRandomize      )
+CB_Entry(chefID                  , DoNotRandomize      )
+CB_Entry(cooltrainer_fID         , DoNotRandomize      )
+CB_Entry(fat_manID               , DoNotRandomize      )
+CB_Entry(fisherID                , DoNotRandomize      )
+CB_Entry(gentlemanID             , DoNotRandomize      )
+CB_Entry(hikerID                 , DoNotRandomize      )
+CB_Entry(mrfujiID                , DoNotRandomize      )
+CB_Entry(bikerID                 , DoNotRandomize      )
+CB_Entry(giovanniID              , DoNotRandomize      )
+CB_Entry(swimmer_f_landID        , DoNotRandomize      )
+CB_Entry(swimmer_f_waterID       , DoNotRandomize      )
+CB_Entry(swimmer_m_landID        , DoNotRandomize      )
+CB_Entry(swimmer_m_waterID       , DoNotRandomize      )
+CB_Entry(tuber_m_waterID         , DoNotRandomize      )
+CB_Entry(rockID                  , DoNotRandomize      )
+CB_Entry(Unused2ID               , DoNotRandomize      )
+CB_Entry(puddleID                , DoNotRandomize      )
+CB_Entry(LoreleiID               , DoNotRandomize      )
+CB_Entry(BrunoID                 , DoNotRandomize      )
+CB_Entry(AgathaID                , DoNotRandomize      )
+CB_Entry(LanceID                 , DoNotRandomize      )
+CB_Entry(BrockID                 , DoNotRandomize      )
+CB_Entry(MistyID                 , DoNotRandomize      )
+CB_Entry(LtSurgeID               , DoNotRandomize      )
+CB_Entry(KogaID                  , DoNotRandomize      )
+CB_Entry(ErikaID                 , DoNotRandomize      )
+CB_Entry(SabrinaID               , DoNotRandomize      )
+CB_Entry(BlaineID                , DoNotRandomize      )
+CB_Entry(BrendanID               , DoNotRandomize      )
+CB_Entry(MayID                   , DoNotRandomize      )
+CB_Entry(MomID                   , DoNotRandomize      )
+CB_Entry(NurseID                 , DoNotRandomize      )
+CB_Entry(ReceptionistID          , DoNotRandomize      )
+CB_Entry(ClerkID                 , DoNotRandomize      )
+CB_Entry(ShedinjaID              , DoNotRandomize      )
+CB_Entry(SableyeID               , DoNotRandomize      )
+CB_Entry(MegaAlakazamID          , DoNotRandomize      )
+CB_Entry(MegaPidgeotID           , DoNotRandomize      )
+CB_Entry(MegaVenusaurID          , DoNotRandomize      )
+CB_Entry(MegaCharizardXID        , DoNotRandomize      )
+CB_Entry(MegaBlastoiseID         , DoNotRandomize      )
+CB_Entry(HealingTileClassID      , DoNotRandomize      )
+CB_Entry(Unused70ID              , DoNotRandomize      )
+CB_Entry(Unused71ID              , DoNotRandomize      )
+CB_Entry(Unused72ID              , DoNotRandomize      )
+CB_Entry(Unused73ID              , DoNotRandomize      )
+CB_Entry(Unused74ID              , DoNotRandomize      )
+CB_Entry(Unused75ID              , DoNotRandomize      )
+CB_Entry(Unused76ID              , DoNotRandomize      )
+CB_Entry(Unused77ID              , DoNotRandomize      )
+CB_Entry(Unused78ID              , DoNotRandomize      )
+CB_Entry(Unused79ID              , DoNotRandomize      )
+CB_Entry(SnagID                  , DoNotRandomize      )
+CB_Entry(Unused80ID              , DoNotRandomize      )
 
 
 

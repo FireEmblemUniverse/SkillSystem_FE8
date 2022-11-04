@@ -49,6 +49,31 @@ bx r0
 .ltorg 
 .align 
 
+.global CanCapturedUnitMove
+.type CanCapturedUnitMove, %function 
+CanCapturedUnitMove: 
+push {r4-r7, lr} 
+
+ldr r0, =0x7FFE @ by coordinate in sB 
+blh GetUnitByEventParameter 
+cmp r0, #0 
+beq Return_CanCapturedUnitMove 
+
+@ if unit is on a terrain that they cannot cross, then they cannot move 
+@ Arguments: r0 = Unit Struct, r1 = xPosition, r2 = yPosition
+ldrb r1, [r0, #0x10] @ XX 
+ldrb r2, [r0, #0x11] @ YY
+bl CanUnitStandOnPosition @ by StanH 
+
+
+Return_CanCapturedUnitMove: 
+ldr r1, =MemorySlot 
+str r0, [r1, #0x04*0x0C] 
+
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
 
 
 .global FindFreeSlot
@@ -107,31 +132,31 @@ CapturePokemon:	@Make
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
 bne Continue 
-b Break 
+b Break_Ladder 
 Continue:
 @ [203A969]!! - handle post action trap was changing action to "wait" if you'd stepped on a trap 
 @check if attacked this turn
 ldrb 	r0, [r6,#0x11]	@action taken this turn
 cmp	r0, #0x2 @attack
-bne	Break
+bne	Break_Ladder
 ldrb 	r0, [r6,#0x0C]	@allegiance byte of the current character taking action
 ldrb	r1, [r4,#0x0B]	@allegiance byte of the character we are checking
 cmp	r0, r1		@check if same character
-bne	Break
+bne	Break_Ladder
 
 
 
 @check that we killed the enemy 
 ldrb	r0, [r5,#0x13]	@currhp
 cmp	r0, #0
-bgt	Break
+bgt	Break_Ladder
 
 @check that we're capturing the enemy 
 ldrb 	r0, [r5, #0x0C] @unit state 
 mov r1, #0x20 @being rescued 
 and r1, r0
 cmp r1, #0
-beq Break 		@if they are not being rescued, Break 
+beq Break_Ladder 		@if they are not being rescued, Break 
 
 
 mov r3, #0x1D 
@@ -142,8 +167,12 @@ add r3, #1 @start at #0x1E
 strb r0, [r5, r3]
 cmp r3, #0x27 
 blt WipeInventoryLoop
+b RemoveRescuee 
+Break_Ladder: 
+b Break 
 
-	
+
+RemoveRescuee: 
 @remove rescuee/er for player & enemy 
 mov r0, #0
 mov r1, #0x1B
@@ -220,7 +249,18 @@ add r0, #6 @0x106
 blh GetUnitByEventParameter @ 0x0800BC51
 @mov r11, r11
 cmp r0, #0 
-beq AddToParty @no 6th deployed unit, so add to party 
+beq MaybeAddToParty @no 6th deployed unit, so add to party 
+b SendToPCBox 
+MaybeAddToParty: 
+mov r0, r5 @ new unit 
+ldrb	r1, [r4,#0x10]		@load x coordinate of character
+ldrb	r2, [r4,#0x11]		@load y coordinate of character
+bl CanUnitStandOnPosition @ by StanH 
+cmp r0, #1 
+beq AddToParty 
+
+SendToPCBox: 
+
 @otherwise, add 'Escaped, Undeployed' flags
 ldr 	r0, [r5, #0xC]
 mov 	r1, #1 
@@ -327,4 +367,4 @@ Break:
 	pop {r4-r7}
 	pop {r0}
 	bx r0 
-	
+.ltorg 

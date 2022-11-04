@@ -5,26 +5,53 @@
   .short 0xf800
 .endm
 
+.equ GetGameClock, 0x8000D28 
+.type SaveGameSeed, %function 
+.global SaveGameSeed 
+SaveGameSeed: 
+push {lr} 
+blh GetGameClock 
+ldr r3, =StartTimeSeedRamLabel
+ldr r3, [r3] 
+str r0, [r3] 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
 .type RandomizeClassNow, %function 
 .global RandomizeClassNow
 RandomizeClassNow: 
 push {r4-r7, lr} 
+mov r4, r0 @ class id 
+ldr r3, =ClassRandomizerBalanceTable 
+add r3, r4 @ entry 
+ldrb r5, [r3] 
+cmp r5, #0 
+beq DoNotRandomize 
+ldrb r1, [r3] 
 
+ldr r6, =StagePoinTable 
+lsl r0, r5, #2 @ 4 bytes per entry 
+add r6, r0 @ which list to use? 
+ldr r6, [r6] 
 
-@ r0 as class id 
-ldr r1, =0x9235364
-mov r1, #1 @ clock time ? 
-mov r2, #30 @ max 
-
+mov r0, r6 @ list 
+mov r1, #0 @ terminator  
+bl CountListSize_Byte 
+mov r1, r0 @ max 
+mov r0, r4 @ class id 
 
 bl HashByte_N 
-@(u8 number, u8 noise, int max)
-
-
-
+@(u8 number, int max)
 lsl r0, #24 
 lsr r0, #24 @ byte only 
 
+ldrb r0, [r6, r0] @ class ID from the balanced list to use 
+mov r4, r0 @ result 
+
+DoNotRandomize: 
+mov r0, r4 
 
 
 pop {r4-r7} 
@@ -32,6 +59,18 @@ pop {r1}
 bx r1 
 .ltorg 
 
+CountListSize_Byte:
+@ given list in r0 and terminator in r1, count the size 
+mov r2, #0 
+sub r2, #1 
+Loop_CountListSize: 
+add r2, #1 
+ldrb r3, [r0, r2] 
+cmp r3, r1 
+bne Loop_CountListSize
+mov r0, r2 
+bx lr 
+.ltorg 
 
 .equ ClassTablePOIN, 0x8017DBC
 .global RandomizeClassHack_Load

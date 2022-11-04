@@ -50,9 +50,6 @@ EmoticonSlotB(PokeballGraphic)
 STAL 0x32 
 SPAWN_NPC 0xFD [-1, -1] 
 //SPAWN_ALLY 0xFD [-1, -1] 
-
- 
-//Text(DebugTextHere)
 MOVENEXTTO 7 0x7FFD 0x7FFE
 ENUN 
 DISA 0xFD 

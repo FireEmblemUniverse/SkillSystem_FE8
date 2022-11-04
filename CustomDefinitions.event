@@ -3,7 +3,8 @@
 
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
+#define ENABLE_RANDOMIZER 
 
 PUSH; ORG $D74D0	//{U}
 String("Version 1.02    Nov 2022") ; BYTE 0; POP 
@@ -124,6 +125,7 @@ String("Version 1.02    Nov 2022") ; BYTE 0; POP
 
 #define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
 #define PostTrainerBattleRamLocat 0x30017b3 
+#define StartTimeSeedRam 0x30017C4 // - c7 used in RandomizeClass 
 
 #define XCoordNewArea 			0x30017ac
 #define YCoordNewArea 			0x30017ad

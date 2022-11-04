@@ -1,256 +1,256 @@
 INLINE ClassLevelUpSkillTable,Skill Pointer
-0x00 Separator/Nothing,0x0
-0x01 Ephraim Lord,BulbasaurSkillList|IsPointer
-0x02 Eirika Lord,EphraimLordSkillList|IsPointer
-0x03 Ephraim Great Lord,EphraimLordSkillList|IsPointer
-0x04 Eirika Great Lord,CharmanderSkillList|IsPointer
-0x05 Cavalier,EphraimLordSkillList|IsPointer
-0x06 Cavalier (F),EphraimLordSkillList|IsPointer
-0x07 Paladin,SquirtleSkillList|IsPointer
-0x08 Paladin (F),EphraimLordSkillList|IsPointer
-0x09 Armour Knight,EphraimLordSkillList|IsPointer
-0x0A Armour Knight (F),EphraimLordSkillList|IsPointer
-0x0B General,EphraimLordSkillList|IsPointer
-0x0C General (F),EphraimLordSkillList|IsPointer
-0x0D Thief,EphraimLordSkillList|IsPointer
-0x0E Manakete,EphraimLordSkillList|IsPointer
-0x0F Mercenary,EphraimLordSkillList|IsPointer
-0x10 Mercenary (F),EphraimLordSkillList|IsPointer
-0x11 Hero,EphraimLordSkillList|IsPointer
-0x12 Hero (F),EphraimLordSkillList|IsPointer
-0x13 Myrmidon,EphraimLordSkillList|IsPointer
-0x14 Myrmidon (F),EphraimLordSkillList|IsPointer
-0x15 Swordmaster,EphraimLordSkillList|IsPointer
-0x16 Swordmaster (F),EphraimLordSkillList|IsPointer
-0x17 Assassin,EphraimLordSkillList|IsPointer
-0x18 Assassin (F),EphraimLordSkillList|IsPointer
-0x19 Archer,EphraimLordSkillList|IsPointer
-0x1A Archer (F),EphraimLordSkillList|IsPointer
-0x1B Sniper,EphraimLordSkillList|IsPointer
-0x1C Sniper (F),EphraimLordSkillList|IsPointer
-0x1D Ranger,EphraimLordSkillList|IsPointer
-0x1E Ranger (F),EphraimLordSkillList|IsPointer
-0x1F Wyvern Rider,EphraimLordSkillList|IsPointer
-0x20 Wyvern Rider (F),EphraimLordSkillList|IsPointer
-0x21 Wyvern Lord,EphraimLordSkillList|IsPointer
-0x22 Wyvern Lord (F),EphraimLordSkillList|IsPointer
-0x23 Wyvern Knight,EphraimLordSkillList|IsPointer
-0x24 Wyvern Knight (F),EphraimLordSkillList|IsPointer
-0x25 Mage,EphraimLordSkillList|IsPointer
-0x26 Mage (F),EphraimLordSkillList|IsPointer
-0x27 Sage,EphraimLordSkillList|IsPointer
-0x28 Sage (F),EphraimLordSkillList|IsPointer
-0x29 Mage Knight,EphraimLordSkillList|IsPointer
-0x2A Mage Knight (F),EphraimLordSkillList|IsPointer
-0x2B Bishop,EphraimLordSkillList|IsPointer
-0x2C Bishop (F),EphraimLordSkillList|IsPointer
-0x2D Shaman,EphraimLordSkillList|IsPointer
-0x2E Shaman (F),EphraimLordSkillList|IsPointer
-0x2F Druid,EphraimLordSkillList|IsPointer
-0x30 Druid (F),EphraimLordSkillList|IsPointer
-0x31 Summoner,EphraimLordSkillList|IsPointer
-0x32 Summoner (F),EphraimLordSkillList|IsPointer
-0x33 Rogue,EphraimLordSkillList|IsPointer
-0x34 Gorgon Egg,EphraimLordSkillList|IsPointer
-0x35 Great Knight,EphraimLordSkillList|IsPointer
-0x36 Great Knight (F),EphraimLordSkillList|IsPointer
-0x37 Recruit (2),EphraimLordSkillList|IsPointer
-0x38 Journeyman (3),EphraimLordSkillList|IsPointer
-0x39 Pupil (3),EphraimLordSkillList|IsPointer
-0x3A Recruit (3),EphraimLordSkillList|IsPointer
-0x3B Manakete,EphraimLordSkillList|IsPointer
-0x3C Manakete (F),EphraimLordSkillList|IsPointer
-0x3D Journeyman (1),EphraimLordSkillList|IsPointer
-0x3E Pupil (1),EphraimLordSkillList|IsPointer
-0x3F Fighter,EphraimLordSkillList|IsPointer
-0x40 Warrior,EphraimLordSkillList|IsPointer
-0x41 Brigand,EphraimLordSkillList|IsPointer
-0x42 Pirate,EphraimLordSkillList|IsPointer
-0x43 Berserker,EphraimLordSkillList|IsPointer
-0x44 Monk,EphraimLordSkillList|IsPointer
-0x45 Priest,EphraimLordSkillList|IsPointer
-0x46 Bard,EphraimLordSkillList|IsPointer
-0x47 Recruit (1),EphraimLordSkillList|IsPointer
-0x48 Pegasus Knight,EphraimLordSkillList|IsPointer
-0x49 Falcon Knight,EphraimLordSkillList|IsPointer
-0x4A Cleric,EphraimLordSkillList|IsPointer
-0x4B Troubadour,EphraimLordSkillList|IsPointer
-0x4C Valkyrie,EphraimLordSkillList|IsPointer
-0x4D Dancer,EphraimLordSkillList|IsPointer
-0x4E Soldier,EphraimLordSkillList|IsPointer
-0x4F Necromancer,EphraimLordSkillList|IsPointer
-0x50 Fleet,EphraimLordSkillList|IsPointer
-0x51 Phantom,EphraimLordSkillList|IsPointer
-0x52 Revenant,EphraimLordSkillList|IsPointer
-0x53 Entombed,EphraimLordSkillList|IsPointer
-0x54 Bonewalker,EphraimLordSkillList|IsPointer
-0x55 Bonewalker (Bow),EphraimLordSkillList|IsPointer
-0x56 Wight,EphraimLordSkillList|IsPointer
-0x57 Wight (Bow),EphraimLordSkillList|IsPointer
-0x58 Bael,EphraimLordSkillList|IsPointer
-0x59 Elder Bael,EphraimLordSkillList|IsPointer
-0x5A Cyclops,EphraimLordSkillList|IsPointer
-0x5B Mauthe Doog,EphraimLordSkillList|IsPointer
-0x5C Gwyllgi,EphraimLordSkillList|IsPointer
-0x5D Tarvos,EphraimLordSkillList|IsPointer
-0x5E Maelduin,EphraimLordSkillList|IsPointer
-0x5F Mogall,EphraimLordSkillList|IsPointer
-0x60 Arch Mogall,EphraimLordSkillList|IsPointer
-0x61 Gorgon,EphraimLordSkillList|IsPointer
-0x62 Gorgon Egg,NPCObjectSkillList|IsPointer
-0x63 Gargoyle,NPCObjectSkillList|IsPointer
-0x64 Deathgoyle,NPCObjectSkillList|IsPointer
-0x65 Dracozombie,NPCObjectSkillList|IsPointer
-0x66 Demon King,NPCObjectSkillList|IsPointer
-0x67 Archer on Ballista,NPCObjectSkillList|IsPointer
-0x68 Archer on Iron Ballista,NPCObjectSkillList|IsPointer
-0x69 Archer on Killer Ballista,NPCObjectSkillList|IsPointer
-0x6A Ballista,NPCObjectSkillList|IsPointer
-0x6B Iron Ballista,NPCObjectSkillList|IsPointer
-0x6C Killer Ballista,NPCObjectSkillList|IsPointer
-0x6D Civilian,NPCObjectSkillList|IsPointer
-0x6E Civilian (F),NPCObjectSkillList|IsPointer
-0x6F Civilian,NPCObjectSkillList|IsPointer
-0x70 Civilian (F),NPCObjectSkillList|IsPointer
-0x71 Civilian,NPCObjectSkillList|IsPointer
-0x72 Civilian (F),NPCObjectSkillList|IsPointer
-0x73 Peer,NPCObjectSkillList|IsPointer
-0x74 Queen,NPCObjectSkillList|IsPointer
-0x75 Prince,NPCObjectSkillList|IsPointer
-0x76 Queen,NPCObjectSkillList|IsPointer
-0x77 (empty),NPCObjectSkillList|IsPointer
-0x78 Fallen Prince,NPCObjectSkillList|IsPointer
-0x79 Tent,NPCObjectSkillList|IsPointer
-0x7A Pontifex,NPCObjectSkillList|IsPointer
-0x7B Fallen Peer,NPCObjectSkillList|IsPointer
-0x7C Cyclops 2,NPCObjectSkillList|IsPointer
-0x7D Elder Bael 2,NPCObjectSkillList|IsPointer
-0x7E Journeyman (2),NPCObjectSkillList|IsPointer
--,NPCObjectSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
--,EphraimLordSkillList|IsPointer
+None,0x0
+BulbasaurID,BulbasaurSkillList|IsPointer
+IvysaurID,EphraimLordSkillList|IsPointer
+VenusaurID,EphraimLordSkillList|IsPointer
+CharmanderID,CharmanderSkillList|IsPointer
+CharmeleonID,EphraimLordSkillList|IsPointer
+CharizardID,EphraimLordSkillList|IsPointer
+SquirtleID,SquirtleSkillList|IsPointer
+WartortleID,EphraimLordSkillList|IsPointer
+BlastoiseID,EphraimLordSkillList|IsPointer
+CaterpieID,EphraimLordSkillList|IsPointer
+MetapodID,EphraimLordSkillList|IsPointer
+ButterfreeID,EphraimLordSkillList|IsPointer
+WeedleID,EphraimLordSkillList|IsPointer
+KakunaID,EphraimLordSkillList|IsPointer
+BeedrillID,EphraimLordSkillList|IsPointer
+PidgeyID,EphraimLordSkillList|IsPointer
+PidgeottoID,EphraimLordSkillList|IsPointer
+PidgeotID,EphraimLordSkillList|IsPointer
+SuspiciousWaterID,EphraimLordSkillList|IsPointer
+CrobatID,EphraimLordSkillList|IsPointer
+RedID,EphraimLordSkillList|IsPointer
+Unused4ID,EphraimLordSkillList|IsPointer
+RattataID,EphraimLordSkillList|IsPointer
+RaticateID,EphraimLordSkillList|IsPointer
+SpearowID,EphraimLordSkillList|IsPointer
+FearowID,EphraimLordSkillList|IsPointer
+EkansID,EphraimLordSkillList|IsPointer
+ArbokID,EphraimLordSkillList|IsPointer
+PikachuID,EphraimLordSkillList|IsPointer
+RaichuID,EphraimLordSkillList|IsPointer
+SandshrewID,EphraimLordSkillList|IsPointer
+SandslashID,EphraimLordSkillList|IsPointer
+NidoranFID,EphraimLordSkillList|IsPointer
+NidorinaID,EphraimLordSkillList|IsPointer
+NidoqueenID,EphraimLordSkillList|IsPointer
+NidoranMID,EphraimLordSkillList|IsPointer
+NidorinoID,EphraimLordSkillList|IsPointer
+NidokingID,EphraimLordSkillList|IsPointer
+ClefairyID,EphraimLordSkillList|IsPointer
+ClefableID,EphraimLordSkillList|IsPointer
+VulpixID,EphraimLordSkillList|IsPointer
+NinetalesID,EphraimLordSkillList|IsPointer
+JigglypuffID,EphraimLordSkillList|IsPointer
+WigglytuffID,EphraimLordSkillList|IsPointer
+ZubatID,EphraimLordSkillList|IsPointer
+GolbatID,EphraimLordSkillList|IsPointer
+OddishID,EphraimLordSkillList|IsPointer
+GloomID,EphraimLordSkillList|IsPointer
+VileplumeID,EphraimLordSkillList|IsPointer
+ParasID,EphraimLordSkillList|IsPointer
+ParasectID,EphraimLordSkillList|IsPointer
+GorgonEggID,EphraimLordSkillList|IsPointer
+VenonatID,EphraimLordSkillList|IsPointer
+VenomothID,EphraimLordSkillList|IsPointer
+DiglettID,EphraimLordSkillList|IsPointer
+DugtrioID,EphraimLordSkillList|IsPointer
+MeowthID,EphraimLordSkillList|IsPointer
+PersianID,EphraimLordSkillList|IsPointer
+PsyduckID,EphraimLordSkillList|IsPointer
+GolduckID,EphraimLordSkillList|IsPointer
+MankeyID,EphraimLordSkillList|IsPointer
+PrimeapeID,EphraimLordSkillList|IsPointer
+GrowlitheID,EphraimLordSkillList|IsPointer
+ArcanineID,EphraimLordSkillList|IsPointer
+PoliwagID,EphraimLordSkillList|IsPointer
+PoliwhirlID,EphraimLordSkillList|IsPointer
+PoliwrathID,EphraimLordSkillList|IsPointer
+AbraID,EphraimLordSkillList|IsPointer
+KadabraID,EphraimLordSkillList|IsPointer
+AlakazamID,EphraimLordSkillList|IsPointer
+MachopID,EphraimLordSkillList|IsPointer
+MachokeID,EphraimLordSkillList|IsPointer
+MachampID,EphraimLordSkillList|IsPointer
+BellsproutID,EphraimLordSkillList|IsPointer
+WeepinbellID,EphraimLordSkillList|IsPointer
+VictreebelID,EphraimLordSkillList|IsPointer
+TentacoolID,EphraimLordSkillList|IsPointer
+TentacruelID,EphraimLordSkillList|IsPointer
+GeodudeID,EphraimLordSkillList|IsPointer
+GravellerID,EphraimLordSkillList|IsPointer
+PhantomID,EphraimLordSkillList|IsPointer
+GolemID,EphraimLordSkillList|IsPointer
+PonytaID,EphraimLordSkillList|IsPointer
+RapidashID,EphraimLordSkillList|IsPointer
+SlowpokeID,EphraimLordSkillList|IsPointer
+SlowbroID,EphraimLordSkillList|IsPointer
+MagnemiteID,EphraimLordSkillList|IsPointer
+MagnetonID,EphraimLordSkillList|IsPointer
+FarfetchdID,EphraimLordSkillList|IsPointer
+DoduoID,EphraimLordSkillList|IsPointer
+DodrioID,EphraimLordSkillList|IsPointer
+SeelID,EphraimLordSkillList|IsPointer
+DewgongID,EphraimLordSkillList|IsPointer
+GrimerID,EphraimLordSkillList|IsPointer
+CutBushID,NPCObjectSkillList|IsPointer
+RockSmashID,NPCObjectSkillList|IsPointer
+StrengthBoulderID,NPCObjectSkillList|IsPointer
+GorgonEgg2ID,NPCObjectSkillList|IsPointer
+Unused8ID,NPCObjectSkillList|IsPointer
+DeathgoyleID,NPCObjectSkillList|IsPointer
+DracoZombieID,NPCObjectSkillList|IsPointer
+DemonKingID,NPCObjectSkillList|IsPointer
+lassID,NPCObjectSkillList|IsPointer
+picnickerID,NPCObjectSkillList|IsPointer
+policemanID,NPCObjectSkillList|IsPointer
+prof_oakID,NPCObjectSkillList|IsPointer
+rockerID,NPCObjectSkillList|IsPointer
+rocket_fID,NPCObjectSkillList|IsPointer
+rocket_mID,NPCObjectSkillList|IsPointer
+sailorID,NPCObjectSkillList|IsPointer
+scientistID,NPCObjectSkillList|IsPointer
+super_nerdID,NPCObjectSkillList|IsPointer
+BurrowID,NPCObjectSkillList|IsPointer
+FlowerID,NPCObjectSkillList|IsPointer
+BerryTreeID,NPCObjectSkillList|IsPointer
+sfxID,NPCObjectSkillList|IsPointer
+OpenBallID,NPCObjectSkillList|IsPointer
+RedPokeballID,NPCObjectSkillList|IsPointer
+GoldPokeballID,NPCObjectSkillList|IsPointer
+GaryID,NPCObjectSkillList|IsPointer
+PlatformID,NPCObjectSkillList|IsPointer
+BlankID,NPCObjectSkillList|IsPointer
+SavePointID,NPCObjectSkillList|IsPointer
+BushID,NPCObjectSkillList|IsPointer
+SignID,NPCObjectSkillList|IsPointer
+Sign2ID,NPCObjectSkillList|IsPointer
+CoinsID,NPCObjectSkillList|IsPointer
+MukID,EphraimLordSkillList|IsPointer
+ShellderID,EphraimLordSkillList|IsPointer
+CloysterID,EphraimLordSkillList|IsPointer
+GastlyID,EphraimLordSkillList|IsPointer
+HaunterID,EphraimLordSkillList|IsPointer
+GengarID,EphraimLordSkillList|IsPointer
+OnixID,EphraimLordSkillList|IsPointer
+DrowzeeID,EphraimLordSkillList|IsPointer
+HypnoID,EphraimLordSkillList|IsPointer
+KrabbyID,EphraimLordSkillList|IsPointer
+KinglerID,EphraimLordSkillList|IsPointer
+VoltorbID,EphraimLordSkillList|IsPointer
+ElectrodeID,EphraimLordSkillList|IsPointer
+ExeggcuteID,EphraimLordSkillList|IsPointer
+ExeggutorID,EphraimLordSkillList|IsPointer
+CuboneID,EphraimLordSkillList|IsPointer
+MarowakID,EphraimLordSkillList|IsPointer
+HitmonleeID,EphraimLordSkillList|IsPointer
+HitmonchanID,EphraimLordSkillList|IsPointer
+LickitungID,EphraimLordSkillList|IsPointer
+KoffingID,EphraimLordSkillList|IsPointer
+WeezingID,EphraimLordSkillList|IsPointer
+RhyhornID,EphraimLordSkillList|IsPointer
+RhydonID,EphraimLordSkillList|IsPointer
+ChanseyID,EphraimLordSkillList|IsPointer
+TangelaID,EphraimLordSkillList|IsPointer
+KangaskhanID,EphraimLordSkillList|IsPointer
+HorseaID,EphraimLordSkillList|IsPointer
+SeadraID,EphraimLordSkillList|IsPointer
+GoldeenID,EphraimLordSkillList|IsPointer
+SeakingID,EphraimLordSkillList|IsPointer
+StaryuID,EphraimLordSkillList|IsPointer
+StarmieID,EphraimLordSkillList|IsPointer
+MrMimeID,EphraimLordSkillList|IsPointer
+ScytherID,EphraimLordSkillList|IsPointer
+JynxID,EphraimLordSkillList|IsPointer
+ElectabuzzID,EphraimLordSkillList|IsPointer
+MagmarID,EphraimLordSkillList|IsPointer
+PinsirID,EphraimLordSkillList|IsPointer
+TaurosID,EphraimLordSkillList|IsPointer
+MagikarpID,EphraimLordSkillList|IsPointer
+GyaradosID,EphraimLordSkillList|IsPointer
+LaprasID,EphraimLordSkillList|IsPointer
+DittoID,EphraimLordSkillList|IsPointer
+EeveeID,EphraimLordSkillList|IsPointer
+VaporeonID,EphraimLordSkillList|IsPointer
+JolteonID,EphraimLordSkillList|IsPointer
+FlareonID,EphraimLordSkillList|IsPointer
+PorygonID,EphraimLordSkillList|IsPointer
+OmanyteID,EphraimLordSkillList|IsPointer
+OmastarID,EphraimLordSkillList|IsPointer
+KabutoID,EphraimLordSkillList|IsPointer
+KabutopsID,EphraimLordSkillList|IsPointer
+AerodactylID,EphraimLordSkillList|IsPointer
+SnorlaxID,EphraimLordSkillList|IsPointer
+ArticunoID,EphraimLordSkillList|IsPointer
+ZapdosID,EphraimLordSkillList|IsPointer
+MoltresID,EphraimLordSkillList|IsPointer
+DratiniID,EphraimLordSkillList|IsPointer
+DragonairID,EphraimLordSkillList|IsPointer
+DragoniteID,EphraimLordSkillList|IsPointer
+MewtwoID,EphraimLordSkillList|IsPointer
+MewID,EphraimLordSkillList|IsPointer
+balding_manID,NPCObjectSkillList|IsPointer
+battle_girlID,NPCObjectSkillList|IsPointer
+beautyID,NPCObjectSkillList|IsPointer
+billID,NPCObjectSkillList|IsPointer
+blackbeltID,NPCObjectSkillList|IsPointer
+blueID,NPCObjectSkillList|IsPointer
+boyID,NPCObjectSkillList|IsPointer
+bug_catcherID,NPCObjectSkillList|IsPointer
+camperID,NPCObjectSkillList|IsPointer
+captainID,NPCObjectSkillList|IsPointer
+channelerID,NPCObjectSkillList|IsPointer
+chefID,NPCObjectSkillList|IsPointer
+cooltrainer_fID,NPCObjectSkillList|IsPointer
+fat_manID,NPCObjectSkillList|IsPointer
+fisherID,NPCObjectSkillList|IsPointer
+gentlemanID,NPCObjectSkillList|IsPointer
+hikerID,NPCObjectSkillList|IsPointer
+mrfujiID,NPCObjectSkillList|IsPointer
+bikerID,NPCObjectSkillList|IsPointer
+giovanniID,NPCObjectSkillList|IsPointer
+swimmer_f_land,NPCObjectSkillList|IsPointer
+swimmer_f_water,NPCObjectSkillList|IsPointer
+swimmer_m_land,NPCObjectSkillList|IsPointer
+swimmer_m_water,NPCObjectSkillList|IsPointer
+tuber_m_water,NPCObjectSkillList|IsPointer
+rockID,NPCObjectSkillList|IsPointer
+Unused2ID,NPCObjectSkillList|IsPointer
+puddleID,NPCObjectSkillList|IsPointer
+LoreleiID,NPCObjectSkillList|IsPointer
+BrunoID,NPCObjectSkillList|IsPointer
+AgathaID,NPCObjectSkillList|IsPointer
+LanceID,NPCObjectSkillList|IsPointer
+BrockID,NPCObjectSkillList|IsPointer
+MistyID,NPCObjectSkillList|IsPointer
+LtSurgeID,NPCObjectSkillList|IsPointer
+KogaID,NPCObjectSkillList|IsPointer
+ErikaID,NPCObjectSkillList|IsPointer
+SabrinaID,NPCObjectSkillList|IsPointer
+BlaineID,NPCObjectSkillList|IsPointer
+BrendanID,NPCObjectSkillList|IsPointer
+MayID,NPCObjectSkillList|IsPointer
+MomID,NPCObjectSkillList|IsPointer
+NurseID,NPCObjectSkillList|IsPointer
+ReceptionistID,NPCObjectSkillList|IsPointer
+ClerkID,NPCObjectSkillList|IsPointer
+ShedinjaID,EphraimLordSkillList|IsPointer
+SableyeID,EphraimLordSkillList|IsPointer
+MegaAlakazamID,EphraimLordSkillList|IsPointer
+MegaPidgeotID,EphraimLordSkillList|IsPointer
+MegaVenusaurID,EphraimLordSkillList|IsPointer
+MegaCharizardXID,EphraimLordSkillList|IsPointer
+MegaBlastoiseID,EphraimLordSkillList|IsPointer
+Unused69ID,NPCObjectSkillList|IsPointer
+Unused70ID,NPCObjectSkillList|IsPointer
+Unused71ID,NPCObjectSkillList|IsPointer
+Unused72ID,NPCObjectSkillList|IsPointer
+Unused73ID,NPCObjectSkillList|IsPointer
+Unused74ID,NPCObjectSkillList|IsPointer
+Unused75ID,NPCObjectSkillList|IsPointer
+Unused76ID,NPCObjectSkillList|IsPointer
+Unused77ID,NPCObjectSkillList|IsPointer
+Unused78ID,NPCObjectSkillList|IsPointer
+Unused79ID,NPCObjectSkillList|IsPointer
+SnagID,NPCObjectSkillList|IsPointer

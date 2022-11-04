@@ -81,6 +81,7 @@ CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
+
 SilentGiveSkillAccessory(0xD0, RenewalID)
 SilentGiveItemWithDurability(0xD0, JellyDonut,0x1)
 SilentGiveItemWithDurability(0xA0, Berry,0x81)
@@ -157,10 +158,10 @@ UNIT
 
 EnemyTrainersA:
 UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[BubbleBeam,Confusion,Leer,0x0] ZoningHeal80GroupOneAI
-UNIT 0xA0 SeelID 0xD0 Level(0, Enemy, 1) [4,7]  0b 0x0	0x1 REDA4R7 	[AuroraBeam,WaterGun,Tackle,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 PsyduckID 0xD0 Level(0, Enemy, 1) [14,5]  0b 0x0	0x1 REDA14R5 	[WaterGun,Confusion,TailWhip,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 SeelID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[AuroraBeam,WaterGun,Tackle,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 PsyduckID 0xD0 Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[WaterGun,Confusion,TailWhip,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA2 HorseaID 0xD0 Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Bubble,Leer,Tackle,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 GoldeenID 0xD0 Level(0, Enemy, 1) [13,11]  0b 0x0	0x1 REDA13R11 	[Headbutt,WaterGun,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 GoldeenID 0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[Headbutt,WaterGun,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA4 DratiniID 0xD0 Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[Leer,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 

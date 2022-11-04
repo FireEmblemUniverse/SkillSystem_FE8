@@ -26,6 +26,29 @@ push	{r4-r7,lr}
 	ldrb r7, [r4, #0x0B] @ Allegiance 
 	lsr r7, #6 @ only need top two bits 
 	@
+	cmp r7, #0 
+	beq RandomizerDoesntMatter
+	ldr r0, =RandomizeClassesFlag
+	lsl r0, #24 
+	lsr r0, #24 
+	blh CheckEventId 
+	cmp r0, #0 
+	beq RandomizerDoesntMatter 
+	ldr r0, [r4] @ unit 
+	ldrb r0, [r0, #4] @ unit ID 
+	cmp r0, #0xE0 
+	blt ClearInvOnRandomizer
+	cmp r0, #0xED 
+	ble RandomizerDoesntMatter @ don't overwrite trainer's items 
+	ClearInvOnRandomizer: 
+	mov r0, #0 
+	strh r0, [r4, #0x1E] 
+	strh r0, [r4, #0x20] 
+	strh r0, [r4, #0x22] 
+	strh r0, [r4, #0x24] 
+	strh r0, [r4, #0x26] 
+	
+	RandomizerDoesntMatter: 
 	ldrh r0, [r4, #0x1E] @ inv slot 1
 	cmp r0, #0 
 	beq Start
@@ -79,7 +102,7 @@ push	{r4-r7,lr}
 	mov r3, r7 
 	FindFreeInventorySpaceLoop:
 	add r3, #2 
-	cmp r3, #0x28 
+	cmp r3, #0x26 @ enemies only learn 4 moves so they have 1 free inv space 
 	bge BreakFindFreeInventorySpaceLoop
 	ldrh r7, [r4, r3] 
 	cmp r7, #0 

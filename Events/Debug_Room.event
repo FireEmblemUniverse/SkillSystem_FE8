@@ -224,6 +224,12 @@ ENUT DebugPlaceUnitsFlagMenu
 
 ENUF SkipIntroFlag
 
+SetTactName(VeslyName)
+ASMC SaveGameSeed
+
+
+
+ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 
 //LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
 LOAD1 0x1 Units_Earlygame
@@ -367,7 +373,7 @@ LABEL 0x63
 //SVAL r3 15500 
 //GIVETOMAIN 0
 
-SetTactName(VeslyName)
+
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
@@ -434,7 +440,7 @@ SetUnitStatus(6, 0x28, Bonemerang)
 ENUT PokefluteFlag
 //ENUT StrengthBoulderFlag
 ENUT BoulderbadgeObtained 
-ENUT CascadebadgeObtained 
+//ENUT CascadebadgeObtained 
 ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
 ENUT CutHmFlag
@@ -459,8 +465,9 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 //MNC2 SeafoamB3Ch
-MNC2 MtMoonB3Ch
-ENUT RandomizeClassesFlag // this should only be set once tact name is set 
+
+//MNC2 CeruleanGymCh
+
 //MNC2 Route9ECh 
 //MNC2 ViridianForestSCh
 //MNC2 Route1Ch 
@@ -497,7 +504,7 @@ ENUT RandomizeClassesFlag // this should only be set once tact name is set
 //MNC2 CinnabarGymCh
 //MNC2 DebugCh
 //MNC2 Route5Ch
-//MNC2 Route24Ch
+MNC2 Route19Ch
 //MNC2 FuschiaCh
 //MNC2 SeafoamB1Ch
 //MNC2 Route20ECh

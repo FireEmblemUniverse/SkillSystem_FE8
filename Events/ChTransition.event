@@ -19,6 +19,7 @@
 #define DRSingleRam 			0x30017bb
 #define UnitPointerRam 0x30017BC // - BF
 #define WepRamLocat 0x30017C0 
+//#define StartTimeSeedRam 0x30017C4 // - c7 
 //#define PostTrainerBattleRamLocat 0x30017C4 //- c7 
 // past this is volatile?
 
