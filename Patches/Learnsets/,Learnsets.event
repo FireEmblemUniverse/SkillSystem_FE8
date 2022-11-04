@@ -741,7 +741,7 @@ BYTE 34 Psychic
 //BYTE 36 Resv //Captivate
 BYTE 38 ShadowBall
 BYTE 40 CalmMind
-BYTE 45 FireBlast
+BYTE 44 FireBlast
 BYTE 0 0
 
 ALIGN 4
@@ -763,7 +763,7 @@ BYTE 34 Psychic
 //BYTE 36 Resv //Captivate
 BYTE 38 ShadowBall
 BYTE 40 CalmMind
-BYTE 45 FireBlast
+BYTE 44 FireBlast
 BYTE 0 0
 
 ALIGN 4
@@ -1493,9 +1493,9 @@ BYTE 7 DoubleHit
 BYTE 10 FireSpin
 BYTE 12 FlameWheel
 BYTE 15 Magnitude
-BYTE 17 TakeDown // Stomp
 BYTE 19 JumpKick
 BYTE 24 Flamethrower
+BYTE 26 DoubleEdge
 BYTE 28 HornDrill
 BYTE 32 PoisonJab 
 BYTE 33 Agility
@@ -1513,9 +1513,9 @@ BYTE 7 DoubleHit
 BYTE 10 FireSpin
 BYTE 12 FlameWheel
 BYTE 15 Magnitude
-BYTE 17 TakeDown // Stomp
 BYTE 19 JumpKick
 BYTE 24 Flamethrower
+BYTE 26 DoubleEdge
 BYTE 28 HornDrill
 BYTE 32 PoisonJab 
 BYTE 33 Agility
@@ -1541,8 +1541,8 @@ BYTE 25 Psybeam
 BYTE 28 MudBomb
 BYTE 31 Waterfall
 BYTE 34 Surf
-BYTE 38 Amnesia 
-BYTE 42 Psychic
+BYTE 38 Psychic
+BYTE 42 Amnesia 
 BYTE 45 HydroPump // Resv RainDance
 // BYTE 47 Resv Psych Up 
 BYTE 0 0
@@ -1564,8 +1564,8 @@ BYTE 25 Psybeam
 BYTE 28 MudBomb
 BYTE 31 Waterfall
 BYTE 34 Surf
-BYTE 38 Amnesia 
-BYTE 42 Psychic
+BYTE 38 Psychic
+BYTE 42 Amnesia 
 BYTE 45 HydroPump // Resv RainDance
 // BYTE 47 Resv Psych Up 
 BYTE 0 0
@@ -1640,10 +1640,11 @@ BYTE 10 Rage
 BYTE 14 DoubleHit // FuryAttack
 BYTE 19 ThiefAtt // Pursuit
 BYTE 23 Swift // Uproar
+BYTE 27 DrillPeck
 // BYTE 28 Resv Acupressure
-BYTE 32 DoubleEdge
-BYTE 34 DrillPeck
-BYTE 37 Agility
+BYTE 30 Thrash
+BYTE 32 Agility
+BYTE 38 DoubleEdge
 BYTE 41 JumpKick
 // BYTE 46 Endeavor
 BYTE 0 0 
@@ -1656,11 +1657,12 @@ BYTE 5 QuickAttack
 BYTE 10 Rage
 BYTE 14 DoubleHit // FuryAttack
 BYTE 19 ThiefAtt // Pursuit
-BYTE 23 Thrash // Uproar
+BYTE 23 Swift // Uproar
+BYTE 27 DrillPeck
 // BYTE 28 Resv Acupressure
-BYTE 32 DoubleEdge
-BYTE 34 DrillPeck
-BYTE 37 Agility
+BYTE 30 Thrash
+BYTE 32 Agility
+BYTE 38 DoubleEdge
 BYTE 41 JumpKick
 // BYTE 46 Endeavor
 BYTE 0 0 
@@ -1864,14 +1866,13 @@ BYTE 17 Slam
 BYTE 19 Dig
 BYTE 21 BulkUp
 BYTE 25 RockSlide
-BYTE 28 PoisonJab
-BYTE 30 Earthquake
+BYTE 27 PoisonJab
+BYTE 29 DoubleEdge
+BYTE 31 Earthquake
 //BYTE 33 ??? //Curse
-BYTE 32 DoubleEdge
 BYTE 35 NightSlash
-BYTE 38 IronTail
-BYTE 40 Outrage
-BYTE 42 Explosion
+BYTE 40 IronTail
+BYTE 45 Outrage
 
 BYTE 0 0
 
@@ -2175,12 +2176,11 @@ BYTE 18 NightDaze // Assurance
 BYTE 24 AuroraBeam
 BYTE 26 HexAtt
 BYTE 28 Toxic
-BYTE 30 Flamethrower
-BYTE 33 MudBomb
-BYTE 35 Explosion
-BYTE 42 Sludge
-BYTE 40 ShadowBall // DestinyBond
-BYTE 45 DarkPulse // Memento
+BYTE 31 MudBomb
+BYTE 35 Flamethrower
+BYTE 40 Sludge
+BYTE 42 DarkPulse // Memento
+BYTE 45 Explosion
 BYTE 0 0
 
 ALIGN 4
@@ -2195,12 +2195,11 @@ BYTE 18 NightDaze // Assurance
 BYTE 24 AuroraBeam
 BYTE 26 HexAtt
 BYTE 28 Toxic
-BYTE 30 Flamethrower
-BYTE 33 MudBomb
-BYTE 35 Explosion
-BYTE 42 Sludge
-BYTE 40 ShadowBall // DestinyBond
-BYTE 45 DarkPulse // Memento
+BYTE 31 MudBomb
+BYTE 35 Flamethrower
+BYTE 40 Sludge
+BYTE 42 DarkPulse // Memento
+BYTE 45 Explosion
 BYTE 0 0
 
 ALIGN 4
@@ -2478,6 +2477,7 @@ BYTE 13 TakeDown // FalseSwipe
 BYTE 17 Agility
 BYTE 19 Swift
 BYTE 21 WingAttack
+BYTE 25 BugBite
 BYTE 29 Slash
 BYTE 33 UTurn
 BYTE 35 AirSlash
