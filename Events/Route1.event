@@ -176,6 +176,8 @@ LOAD1 0x1 EnemyUnitsF
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(20,32,21,35))  //bottom e - prev 18x 
 
+CHECK_EVENTID  RandomizeClassesFlag
+BNE 0 sC s0 // if on, skip tutorial 
 CHECK_EXISTS 0x102 
 BNE 0 sC s0 // If more than 1 unit, don't do the tutorial & don't load the extra mankey. 
 CHECK_EVENTID Route1Tutorial_A
@@ -192,6 +194,8 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CALL SetBushHpEvent
 
+CHECK_EVENTID  RandomizeClassesFlag
+BNE 0x63 sC s0 // if on, skip tutorial 
 CHECK_EXISTS 0x102 
 BNE 0x63 sC s0 // If more than 1 unit, don't do the tutorial.
 CHECK_EVENTID Route1Tutorial_A

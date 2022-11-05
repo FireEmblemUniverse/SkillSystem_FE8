@@ -34,12 +34,17 @@ push	{r4-r7,lr}
 	blh CheckEventId 
 	cmp r0, #0 
 	beq RandomizerDoesntMatter 
+	@mov r11, r11 
 	ldr r0, [r4] @ unit 
 	ldrb r0, [r0, #4] @ unit ID 
 	cmp r0, #0xE0 
 	blt ClearInvOnRandomizer
-	cmp r0, #0xED 
-	ble RandomizerDoesntMatter @ don't overwrite trainer's items 
+	cmp r0, #0xEE
+	beq ClearInvOnRandomizer 
+	cmp r0, #0xEF 
+	bgt ClearInvOnRandomizer 
+	b RandomizerDoesntMatter
+@ don't overwrite trainer's items 
 	ClearInvOnRandomizer: 
 	mov r0, #0 
 	strh r0, [r4, #0x1E] 
