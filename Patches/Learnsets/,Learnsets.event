@@ -924,6 +924,7 @@ BYTE 18 UTurn
 BYTE 20 Dig
 BYTE 22 Slash
 //BYTE 25 Sleep2 //Spore
+BYTE 25 Screech
 BYTE 27 XScissor
 BYTE 29 Toxic //Growth
 BYTE 33 LeafBlade
@@ -945,6 +946,7 @@ BYTE 18 UTurn
 BYTE 20 Dig
 BYTE 22 Slash
 //BYTE 25 Sleep2 //Spore
+BYTE 25 Screech
 BYTE 27 XScissor
 BYTE 29 Toxic //Growth
 BYTE 33 LeafBlade
@@ -961,9 +963,10 @@ BYTE 5 Pound
 BYTE 7 Confusion
 BYTE 11 PoisonPowder
 BYTE 13 SignalBeam
-BYTE 17 Psybeam
-BYTE 19 NightDaze
-BYTE 22 CalmMind
+BYTE 15 Psybeam
+BYTE 17 NightDaze
+BYTE 19 CalmMind
+BYTE 22 Screech
 //BYTE 23 ??? //StunSpore
 BYTE 25 Sludge
 BYTE 30 BugBuzz
@@ -983,9 +986,10 @@ BYTE 5 Pound
 BYTE 7 Confusion
 BYTE 11 PoisonPowder
 BYTE 13 SignalBeam
-BYTE 17 Psybeam
-BYTE 19 NightDaze
-BYTE 22 CalmMind
+BYTE 15 Psybeam
+BYTE 17 NightDaze
+BYTE 19 CalmMind
+BYTE 22 Screech
 //BYTE 23 ??? //StunSpore
 BYTE 25 Sludge
 BYTE 30 BugBuzz
@@ -1006,6 +1010,7 @@ BYTE 7 Magnitude
 BYTE 12 ConfuseRay
 BYTE 15 MudShot
 BYTE 18 Dig
+BYTE 20 Screech
 BYTE 23 ThiefAtt
 BYTE 26 EarthPower
 BYTE 29 NightSlash
@@ -1023,6 +1028,7 @@ BYTE 7 Magnitude
 BYTE 12 ConfuseRay
 BYTE 15 MudShot
 BYTE 18 Dig
+BYTE 20 Screech
 BYTE 23 ThiefAtt
 BYTE 26 EarthPower
 BYTE 29 NightSlash
@@ -1040,6 +1046,7 @@ BYTE 9 DoubleHit
 BYTE 12 HoneClaws
 BYTE 14 FuryCutter
 BYTE 17 Slash
+BYTE 20 Screech
 BYTE 22 Glare
 BYTE 25 PayDay
 BYTE 28 Dig
@@ -1058,6 +1065,7 @@ BYTE 9 DoubleHit
 BYTE 12 HoneClaws
 BYTE 14 FuryCutter
 BYTE 17 Slash
+BYTE 20 Screech
 BYTE 22 Glare
 BYTE 25 PayDay
 BYTE 28 Dig
@@ -1076,7 +1084,8 @@ BYTE 8 Confusion
 BYTE 10 ConfuseRay
 BYTE 12 WaterGun 
 BYTE 16 SandAttack
-BYTE 22 WaterPulse
+BYTE 19 WaterPulse
+BYTE 23 Screech
 BYTE 25 SignalBeam
 BYTE 27 Psybeam
 BYTE 32 Surf
@@ -1095,7 +1104,8 @@ BYTE 8 Confusion
 BYTE 10 ConfuseRay
 BYTE 12 WaterGun 
 BYTE 16 SandAttack
-BYTE 22 WaterPulse
+BYTE 19 WaterPulse
+BYTE 23 Screech
 BYTE 25 SignalBeam
 BYTE 27 Psybeam
 BYTE 32 Surf
@@ -1113,9 +1123,10 @@ BYTE 6 Leer
 BYTE 9 Doubleslap
 BYTE 13 RollingKick
 BYTE 17 ThiefAtt
+BYTE 19 UTurn
 BYTE 21 SeismicToss
-BYTE 23 UTurn
-BYTE 25 MegaPunch
+BYTE 23 MegaPunch
+BYTE 25 Screech
 BYTE 28 Dig
 BYTE 33 Agility //Swagger
 BYTE 37 JumpKick
@@ -1132,9 +1143,10 @@ BYTE 6 Leer
 BYTE 9 Doubleslap
 BYTE 13 RollingKick
 BYTE 17 ThiefAtt
+BYTE 19 UTurn
 BYTE 21 SeismicToss
-BYTE 23 UTurn
-BYTE 25 MegaPunch
+BYTE 23 MegaPunch
+BYTE 25 Screech
 BYTE 28 Dig
 BYTE 33 Agility //Swagger
 BYTE 37 JumpKick
@@ -1865,6 +1877,7 @@ BYTE 14 Bite
 BYTE 17 Slam
 BYTE 19 Dig
 BYTE 21 BulkUp
+BYTE 21 Screech
 BYTE 25 RockSlide
 BYTE 27 PoisonJab
 BYTE 29 DoubleEdge
@@ -2059,8 +2072,9 @@ BYTE 7 Magnitude // BoneClub
 BYTE 9  Leer
 BYTE 11 Headbutt
 BYTE 13 DoubleKick
-BYTE 17 FocusEnergy
-BYTE 21 Bonemerang
+BYTE 15 FocusEnergy
+BYTE 17 Bonemerang
+BYTE 20 Screech
 BYTE 23 Bite
 BYTE 25 TakeDown
 BYTE 27 RockSlide
@@ -2082,8 +2096,9 @@ BYTE 7 Magnitude // BoneClub
 BYTE 9  Leer
 BYTE 11 Headbutt
 BYTE 13 DoubleKick
-BYTE 17 FocusEnergy
-BYTE 21 Bonemerang
+BYTE 15 FocusEnergy
+BYTE 17 Bonemerang
+BYTE 20 Screech
 BYTE 23 Bite
 BYTE 25 TakeDown
 BYTE 27 RockSlide
@@ -2172,7 +2187,8 @@ BYTE 6 Smog
 BYTE 9 SandAttack // SmokeScreen
 BYTE 12 Snarl
 BYTE 15 Scorch
-BYTE 18 NightDaze // Assurance
+BYTE 17 NightDaze // Assurance
+BYTE 20 Screech
 BYTE 24 AuroraBeam
 BYTE 26 HexAtt
 BYTE 28 Toxic
@@ -2191,7 +2207,8 @@ BYTE 6 Smog
 BYTE 9 SandAttack // SmokeScreen
 BYTE 12 Snarl
 BYTE 15 Scorch
-BYTE 18 NightDaze // Assurance
+BYTE 17 NightDaze // Assurance
+BYTE 20 Screech
 BYTE 24 AuroraBeam
 BYTE 26 HexAtt
 BYTE 28 Toxic
@@ -2494,16 +2511,17 @@ BYTE 1 ConfuseRay
 BYTE 5 Confusion 
 BYTE 9 AuroraBeam
 // BYTE 8 Resv LovelyKiss 
-BYTE 12 NightShade
+BYTE 12 Flash
 BYTE 15 Doubleslap
-BYTE 18 Flash
+BYTE 18 Psybeam
 // BYTE 21 Resv MeanLook
 BYTE 22 IcePunch // PowderSnow  11 + Avalanche 33 /2 = 22
 // BYTE 25 Resv FakeTears 
-BYTE 25 Psybeam
-BYTE 28 SeismicToss // WakeUpSlap
-BYTE 33 IceBeam
-BYTE 40 Psychic
+BYTE 25 NightShade
+BYTE 30 SeismicToss // WakeUpSlap
+BYTE 34 Psychic
+BYTE 38 Screech
+BYTE 40 IceBeam
 BYTE 42 HyperBeam // WringOut
 // BYTE 49 Resv PerishSong
 BYTE 45 Blizzard
@@ -2521,9 +2539,9 @@ BYTE 15 ShockWave
 BYTE 18 ThunderWave
 BYTE 22 SeismicToss
 //BYTE 25 LightScreen
-BYTE 25 Screech
-BYTE 28 ThunderPunch
-BYTE 32 Thunderbolt
+BYTE 25 ThunderPunch
+BYTE 28 Thunderbolt
+BYTE 32 Screech
 BYTE 35 Submission
 // BYTE 52 Resv Screech
 BYTE 38 VoltTackle
