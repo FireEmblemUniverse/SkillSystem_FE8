@@ -57,7 +57,8 @@ ldr		r0,[r0]
 
 
 cmp		r0,#0x0
-beq		NextWeapon
+beq RetFalse 
+@beq		NextWeapon
 mov		r0,#0x1
 b		GoBack
 NextWeapon:

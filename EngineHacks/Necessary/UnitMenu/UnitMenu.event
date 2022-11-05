@@ -74,10 +74,7 @@ UnitMenuTable:
   
       //MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
     
-#ifdef DEBUG_MODE
-	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
-	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, AlwaysUsable, DebugCommandEffect) // Debug Command
-#endif 
+
 
 
 // Modular Summon 
@@ -98,10 +95,21 @@ UnitMenuTable:
 #ifdef GAIDEN_MAGIC
 MenuCommand(UM_GaidenBlackMagic,UM_GaidenMagicDesc,NormalText,GaidenBlackMagicUMUsability,GaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
 
+  #ifdef DEBUG_MODE
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
+#endif 
+
 // Capture uses GaidenMagic stuff 
 MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsability,CaptureGaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
 //MenuCommand(UM_GaidenWhiteMagic,UM_GaidenMagicDesc,NormalText,GaidenWhiteMagicUMUsability,GaidenWhiteMagicUMEffect,GaidenWhiteMagicUMHover,GaidenMagicUMUnhover)
 #endif // GAIDEN_MAGIC
+
+#ifdef DEBUG_MODE
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
+#endif 
+
 
   MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Save
   MenuCommand(UM_Save, UM_SaveDesc, GreenText, GenericTrapUsability0x3B, GenericTrapEffect) //Save
@@ -220,7 +228,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Attack2, UM_Attack2Desc, NormalText, GenericTrapUsability0x34, GenericTrapEffect) //Attack
 
   
-  
+
 
   #ifdef COMBAT_ARTS
 	MenuCommand(UM_CombatArts, UM_CombatArtsDesc, NormalText, CombatArtsUsability, CombatArtsEffect, $22c31, $22c99)
@@ -358,6 +366,9 @@ MenuCommand(UM_FocusEnergyName, UM_FocusEnergyDesc, BlueText, FocusEnergyCommand
   //UM_Supply
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
 MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+
+
+
 // Wait (edited to show an arrow) 
 BYTE 0x94 0x7D 0xD 0x8 0x95 0x6 0xBF 0x6 0x0 0x6B 0x0 0x0 0x49 0xF4 0x4 0x8; POIN DisplayedWaitmarkIfSubMenu+1; BYTE 0x39 0x27 0x2 0x8 0 0 0 0 0 0 0 0 0 0 0 0	//	待機 wait
 
