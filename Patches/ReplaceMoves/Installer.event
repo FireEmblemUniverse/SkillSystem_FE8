@@ -16,6 +16,8 @@ DescBoxTSA:
 #incbin "DescBox.dmp"
 
 
-
+ALIGN 4
+PkmnDetailsTSA:
+#incbin "PkmnDetailsBox.dmp"
 
 

@@ -448,8 +448,16 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	//FaceProc* faceProc = StartFace(0, GetUnitPortraitId(unit), 200, 8, 2);
 	faceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
 	
+	int tile = 40; // Why ??????????????? 
 	
-
+	TextHandle levelHandle = {
+		.tileIndexOffset = gpCurrentFont->tileNext+tile,
+		.tileWidth = 2
+	};
+	tile +=2;
+	Text_InitClear(&levelHandle, 1);
+	DrawStatNames(levelHandle,"L.",1,1);
+	DrawUiNumber(&gBG0MapBuffer[1][3],TEXT_COLOR_GOLD,	(unit->level	));
 	
 	
 	// Draw stats / growths 
@@ -487,7 +495,7 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 
 
 	
-	int tile = 40; // Why ??????????????? 
+
 	int cost = gEventSlot[i+6]; // Cost in gold to purchase character 
 
 

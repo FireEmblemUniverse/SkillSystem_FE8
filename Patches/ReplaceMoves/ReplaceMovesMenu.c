@@ -230,6 +230,7 @@ struct TSA
 };
 extern TSA ReplaceMovesTSA;
 extern TSA DescBoxTSA;
+extern TSA PkmnDetailsTSA;
 
 static void PrepareText(TextHandle* handle, char* string)
 {
@@ -253,6 +254,7 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 			gBG0MapBuffer[y][x] = 0;
 		}
 	}
+	BgMap_ApplyTsa(&gBG1MapBuffer[9][11], &PkmnDetailsTSA, 0); 
 	BgMap_ApplyTsa(&gBG1MapBuffer[14][5], &ReplaceMovesTSA, 0);
 	BgMap_ApplyTsa(&gBG1MapBuffer[1][10], &DescBoxTSA, 0);
 	// [2000932..2000933]!!
@@ -297,7 +299,7 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 	}
 	
 	u8 i = 0; 
-	u8 x = 6; 
+	u8 x = 7; 
 	
 
 	
@@ -323,10 +325,35 @@ void DrawItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, struct
 	Text_Display(&handles[i], &gBG0MapBuffer[1][4]); i++; 	
 	
 
+	char* className = GetStringFromIndex(proc->unit->pClassData->nameTextId); 
+	width = (Text_GetStringTextWidth(className)+8+24)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 24);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GREEN);
+    Text_DrawString(&handles[i], className); 
+	Text_Display(&handles[i], &gBG0MapBuffer[9][11]); i++; 	
 	
+	char* strName = &"Str"; 
+	width = (Text_GetStringTextWidth(strName)+8+8)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 4);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
+    Text_DrawString(&handles[i], strName); 
+	Text_Display(&handles[i], &gBG0MapBuffer[11][11]); i++; 	
 	
+	char* magName = &"Mag"; 
+	width = (Text_GetStringTextWidth(magName)+8+8)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 4);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
+    Text_DrawString(&handles[i], magName); 
+	Text_Display(&handles[i], &gBG0MapBuffer[11][17]); i++; 	
 	
-
+	DrawUiNumber(&gBG0MapBuffer[11][15],TEXT_COLOR_GOLD,	(proc->unit->pow	));
+	DrawUiNumber(&gBG0MapBuffer[11][22],TEXT_COLOR_GOLD, (proc->unit->unk3A	)); // Magic.
 	
 
 	
@@ -440,7 +467,7 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 		}
 	}
 	for (int x = 11; x < 30; x++) { // clear out most of bg0 
-		for (int y = 0; y < 10; y++) { 
+		for (int y = 0; y < 8; y++) { 
 			gBG0MapBuffer[y][x] = 0;
 		}
 	}

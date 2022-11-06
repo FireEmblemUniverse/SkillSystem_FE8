@@ -117,6 +117,7 @@ bx r1
 
 
 .align 
+	.equ GetUnit, 0x8019430
 .global TieredLevelUp
 .type TieredLevelUp, %function
 
@@ -130,8 +131,12 @@ push {r4-r7, lr}
 mov r7, r2 
 mov r6, r3 @ growth function 
 mov r4, r1
-ldrb r2, [r7, r1] 
+mov r5, r0 @ avg stat 
 
+ldrb r0, [r7, #0x0B] 
+blh GetUnit 
+ldrb r2, [r0, r4] @ base stat (attacker/defender has stat bonuses included) 
+mov r0, r5 
 
 
 cmp r2, r0  

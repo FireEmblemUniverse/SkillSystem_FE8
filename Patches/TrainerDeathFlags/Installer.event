@@ -89,7 +89,8 @@ REMA
 ASMC ModularSummonEffect 
 GOTO 0x63 
 
-LABEL 60 
+LABEL 60 // if you got here, you probably just forgot to unmark 0xEE boss pkmn flag as defeated in your start event 
+// UnmarkTrainerAsDefeated(0xEE)
 TutText(ErrorText) // Error 
 
 LABEL 0x63 

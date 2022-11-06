@@ -93,12 +93,17 @@ UnitMenuTable:
   MenuCommand(UMText_DV, UMText_DVDesc, GreenText, VeinUsability, VeinEffect)
   #endif // DRAGON_VEINS
 #ifdef GAIDEN_MAGIC
-MenuCommand(UM_GaidenBlackMagic,UM_GaidenMagicDesc,NormalText,GaidenBlackMagicUMUsability,GaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
 
   #ifdef DEBUG_MODE
 	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
-	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
 #endif 
+MenuCommand(UM_GaidenBlackMagic,UM_GaidenMagicDesc,NormalText,GaidenBlackMagicUMUsability,GaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
+#ifdef DEBUG_MODE
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
+#endif 
+
 
 // Capture uses GaidenMagic stuff 
 MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsability,CaptureGaidenBlackMagicUMEffect,GaidenBlackMagicUMHover,GaidenMagicUMUnhover)
@@ -107,7 +112,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 
 #ifdef DEBUG_MODE
 	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
-	MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
+	//MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, BreakPointUsability, DebugCommandEffect) // Debug Command
 #endif 
 
 

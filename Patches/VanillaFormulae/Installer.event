@@ -128,7 +128,7 @@ NegateDefEntry(Growl         , 63)
 NegateDefEntry(Leer          ,  63)
 NegateDefEntry(SandAttack    , 63)
 NegateDefEntry(TailWhip      , 63)
-NegateDefEntry(FireSpin      , 63)
+//NegateDefEntry(FireSpin      , 63)
 NegateDefEntry(StringShot      , 63)
 NegateDefEntry(MetalSound      , 63)
 NegateDefEntry(Smog      , 63)
@@ -138,6 +138,7 @@ NegateDefEntry(Acid          , 63)
 NegateDefEntry(PoisonPowder          , 63) 
 NegateDefEntry(FireSpin          , 63) 
 NegateDefEntry(ConfuseRay          , 63) 
+NegateDefEntry(Glare          , 63) 
 
 
 
