@@ -684,8 +684,9 @@ ALIGN 4
 ClefairyLearnset:
 BYTE 1 Pound
 BYTE 1 Growl
-BYTE 4 ConfuseRay
-BYTE 7 AttackPulse
+BYTE 1 AttackPulse
+BYTE 4 DoubleSlap
+BYTE 7 ConfuseRay
 BYTE 10 Confusion
 BYTE 13 CalmMind
 BYTE 16 Swift
@@ -705,8 +706,9 @@ ALIGN 4
 ClefableLearnset:
 BYTE 1 Pound
 BYTE 1 Growl
-BYTE 4 ConfuseRay
-BYTE 7 AttackPulse
+BYTE 1 AttackPulse
+BYTE 4 DoubleSlap
+BYTE 7 ConfuseRay
 BYTE 10 Confusion
 BYTE 13 CalmMind
 BYTE 16 Swift
@@ -771,7 +773,7 @@ JigglypuffLearnset:
 //BYTE 1 Sleep2 //Sing
 BYTE 1 Pound
 BYTE 1 Leer
-BYTE 3 Bubble
+BYTE 1 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
@@ -794,7 +796,7 @@ WigglytuffLearnset:
 //BYTE 1 Sleep2 //Sing
 BYTE 1 Pound
 BYTE 1 Leer
-BYTE 3 Bubble
+BYTE 1 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
@@ -1723,6 +1725,7 @@ BYTE 0 0
 
 ALIGN 4
 GrimerLearnset:
+BYTE 1 Tackle
 BYTE 1 PoisonGas
 BYTE 1 Pound
 BYTE 4 Harden
@@ -1744,6 +1747,7 @@ BYTE 0 0
 
 ALIGN 4
 MukLearnset:
+BYTE 1 Tackle
 BYTE 1 PoisonGas
 BYTE 1 Pound
 BYTE 4 Harden
@@ -1891,6 +1895,7 @@ BYTE 0 0
 
 ALIGN 4
 DrowzeeLearnset:
+BYTE 1 Tackle
 BYTE 1 Pound
 // BYTE 1 Sleep2 // Hypnosis
 BYTE 5 PoisonGas
@@ -1913,6 +1918,7 @@ BYTE 0 0
 
 ALIGN 4
 HypnoLearnset:
+BYTE 1 Tackle
 BYTE 1 Pound
 // BYTE 1 Sleep2 // Hypnosis
 BYTE 5 PoisonGas
@@ -2137,7 +2143,7 @@ ALIGN 4
 HitmonchanLearnset:
 BYTE 1 Pound
 // BYTE 1 Resv Revenge
-BYTE 4 KarateChop
+BYTE 1 KarateChop
 BYTE 6 Agility
 //BYTE 6 RecoverMove // Resv Agility
 BYTE 11 ThiefAtt // Pursuit
@@ -2303,6 +2309,7 @@ BYTE 0 0 // Tangrowth gets Block
 
 ALIGN 4
 KangaskhanLearnset:
+BYTE 1 Tackle
 BYTE 1 Pound
 BYTE 1 Leer
 BYTE 1 TailWhip
