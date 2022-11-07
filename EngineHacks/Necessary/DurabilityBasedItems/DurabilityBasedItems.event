@@ -1,5 +1,6 @@
 #include "DurabilityChest/Installer.event"
 #include "DurabilityShop/ShopDurability.event"
+#include "SetUnitItemDurability/Installer.event"
 
 #include "ScrollNames.lyn.event"
 #include "ScrollDurability.lyn.event"

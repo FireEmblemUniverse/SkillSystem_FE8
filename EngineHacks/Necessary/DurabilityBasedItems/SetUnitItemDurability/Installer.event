@@ -1,0 +1,6 @@
+ALIGN 4
+SetDurability:
+#incbin "SetDurability.dmp"
+
+#define SetUnitItemDurability(xcoord, ycoord, itemslot, durability) "SVAL 0xB (ycoord<<16)|xcoord; SVAL 0xC (-2); SVAL 0x1 itemslot; SVAL 0x2 durability; ASMC SetDurability|1"
+#define SetUnitItemDurability(unitid, itemslot, durability) "SVAL 0xC unitid; SVAL 0x1 itemslot; SVAL 0x2 durability; ASMC SetDurability|1"
