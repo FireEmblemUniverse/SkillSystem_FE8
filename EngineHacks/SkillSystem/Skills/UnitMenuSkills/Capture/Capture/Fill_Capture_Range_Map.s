@@ -23,15 +23,25 @@ ldr		r0,[r0]
 mov		r1,#0x0
 .short	0xF800
 
+ldr		r0,Const1
+ldr r0, [r0] @ unit 
+mov r1, #0 
+sub r1, #1 @(-1)
+@r0 has char data, r1 has slot # (-1 in this case)
+bl All_Weapons_One_Square 
+@ fills range map for all weapons 
+
+@ldr r1, Const1 
+@ldr r0, [r1] @ unit 
+@blh FillMapAttackRangeForUnit 
+
+@extern u32 GetWeaponRangeMask(int item); // 0x080170D4.
+
+@extern void MakeTargetListForWeapon(Unit* unit, int item); // 0x080251B4.
+
 mov r0, r4 
 mov r1, r5 
 blh 0x804F8A4 @ Init Targets 
-
-
-ldr r1, Const1 
-ldr r0, [r1] @ unit 
-blh FillMapAttackRangeForUnit 
-
 
 @mov r0, r4 
 @mov r1, r5 

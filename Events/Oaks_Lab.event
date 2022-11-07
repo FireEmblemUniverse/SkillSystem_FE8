@@ -98,20 +98,24 @@ ENUF SkipIntroFlag
 //FADU 44 
 MUSCFAST 0x16 // Intro 
 
-CALL NameInputEvent
-ASMC SaveGameSeed
-
-CAM1 [8,11]
-FADU 44 
-
 #ifdef ENABLE_RANDOMIZER 
+FADU 44 
 EVBIT_MODIFY 4 
 TutText(EnableRandomizerText)
 SVAL s7 1 
 BNE 73 sC s7 
 ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 LABEL 73 
+FADI 16
 #endif 
+
+CALL NameInputEvent
+ASMC SaveGameSeed
+
+CAM1 [8,11]
+FADU 44 
+
+
 
 EVBIT_MODIFY 3 // Dialogue skipping & fast-forwarding allowed 
 
@@ -535,6 +539,7 @@ GOTO 0x63
 
 
 Label 200 
+ENUT BonusUnitObtainedFlag
 FADU 12 
 LOAD_S2 1 
 ENUN 

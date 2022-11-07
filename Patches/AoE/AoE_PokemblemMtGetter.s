@@ -46,6 +46,29 @@ bx r2
 
 .ltorg 
 .align 
+.global Pokemblem_Usability_Ram
+.type Pokemblem_Usability_Ram, %function 
+Pokemblem_Usability_Ram:
+
+ldr r0, =DisableMenuOptionsRamLink
+ldr r0, [r0] 
+ldrb r0, [r0] 
+mov r1, #0x1 @ AoE bitflag 
+and r0, r1
+cmp r0, #0 
+beq Usable_True 
+b Usable_False 
+
+Usable_True: 
+mov r0, #1 
+b Usable_Exit 
+Usable_False: 
+mov r0, #0
+
+Usable_Exit: 
+
+bx lr 
+.ltorg 
 
 
 

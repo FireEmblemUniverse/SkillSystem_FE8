@@ -20,9 +20,6 @@ add r0, r1 @ Specific entry
 bl AoE_Usability
 
 
-
-End: 
-
 pop {r1} 
 bx r1 
 

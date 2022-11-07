@@ -176,6 +176,8 @@ LOAD1 0x1 EnemyUnitsF
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(20,32,21,35))  //bottom e - prev 18x 
 
+CHECK_EVENTID BonusUnitObtainedFlag
+BNE 0 sC s0 // if on, skip tutorial 
 CHECK_EVENTID  RandomizeClassesFlag
 BNE 0 sC s0 // if on, skip tutorial 
 CHECK_EXISTS 0x102 
@@ -194,6 +196,8 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CALL SetBushHpEvent
 
+CHECK_EVENTID BonusUnitObtainedFlag
+BNE 0x63 sC s0 // if on, skip tutorial 
 CHECK_EVENTID  RandomizeClassesFlag
 BNE 0x63 sC s0 // if on, skip tutorial 
 CHECK_EXISTS 0x102 
@@ -261,6 +265,7 @@ Capture Pokemon tutorial
 #define Call_Off 8
 #define Submenu_Off 0x10 
 #define Supply_Off 0x20 
+#define AoE_Off 0x1 // maybe 0x40 later  
 
 ALIGN 4
 MyTutorial1:

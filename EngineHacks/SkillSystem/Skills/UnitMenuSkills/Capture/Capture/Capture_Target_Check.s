@@ -22,7 +22,7 @@ ldsb	r0,[r5,r1]
 ldsb	r1,[r4,r1]
 .short	0xF800
 cmp		r0,#0x0
-bne		GoBack
+bne		GoBack @ allied unit should not be added to the target list 
 
 ldr r0, [r4] @ Unit Struct 
 ldrb r0, [r0, #4] @ Unit ID 

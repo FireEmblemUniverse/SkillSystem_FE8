@@ -88,7 +88,8 @@
 
 	ALIGN 4
 	Fill_Capture_Range_Map:
-	#incbin "Fill_Capture_Range_Map.dmp"
+	#include "Fill_Capture_Range_Map.lyn.event" 
+	//#incbin "Fill_Capture_Range_Map.dmp"
 	POIN Capture_Target_Check|1
 	
 	ALIGN 4

@@ -16,6 +16,14 @@ bl IsPeaceful
 cmp r0, #1
 beq RetFalse
 
+bl Pokemblem_Usability_Ram
+cmp r0, #0 
+beq RetFalse 
+
+
+End: 
+
+
 @loop through all menu command usabilities looking for one that returns true
 ldr r4,=AoEMenuCommandsList
 add r4,#0xC @usability of first menu option
