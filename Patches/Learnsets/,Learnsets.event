@@ -128,8 +128,9 @@ BYTE 10 Bite
 BYTE 15 WaterPulse
 BYTE 18 MudBomb
 BYTE 22 Waterfall
+BYTE 25 Surf
 //BYTE 25 ??? ?Buff (Protect)
-BYTE 28 Surf
+BYTE 28 IceBeam
 BYTE 32 DarkPulse
 BYTE 37 FlashCannon
 BYTE 44 HydroPump
@@ -139,7 +140,7 @@ ALIGN 4
 WartortleLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 4 TailWhip 
+BYTE 4 TailWhip
 BYTE 5 Growl  
 BYTE 7 WaterGun
 BYTE 10 Bite
@@ -147,8 +148,9 @@ BYTE 10 Bite
 BYTE 15 WaterPulse
 BYTE 18 MudBomb
 BYTE 22 Waterfall
+BYTE 25 Surf
 //BYTE 25 ??? ?Buff (Protect)
-BYTE 28 Surf
+BYTE 28 IceBeam
 BYTE 32 DarkPulse
 BYTE 37 FlashCannon
 BYTE 44 HydroPump
@@ -159,15 +161,16 @@ BlastoiseLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip
-BYTE 5 Growl   
+BYTE 5 Growl  
 BYTE 7 WaterGun
 BYTE 10 Bite
 //BYTE 12 RecoverMove //Withdraw
 BYTE 15 WaterPulse
 BYTE 18 MudBomb
 BYTE 22 Waterfall
+BYTE 25 Surf
 //BYTE 25 ??? ?Buff (Protect)
-BYTE 28 Surf
+BYTE 28 IceBeam
 BYTE 32 DarkPulse
 BYTE 37 FlashCannon
 BYTE 44 HydroPump
@@ -1542,8 +1545,9 @@ ALIGN 4
 SlowpokeLearnset:
 BYTE 1 Tackle
 BYTE 1 RecoverMove // Resv Yawn
-BYTE 3 Bubble
-BYTE 6 Growl
+BYTE 1 Bubble
+BYTE 3 Growl
+BYTE 5 IcyWind
 BYTE 8 Headbutt
 BYTE 10 WaterGun 
 BYTE 13 Confusion
@@ -1565,8 +1569,9 @@ ALIGN 4
 SlowbroLearnset:
 BYTE 1 Tackle
 BYTE 1 RecoverMove // Resv Yawn
-BYTE 3 Bubble
-BYTE 6 Growl
+BYTE 1 Bubble
+BYTE 3 Growl
+BYTE 5 IcyWind
 BYTE 8 Headbutt
 BYTE 10 WaterGun 
 BYTE 13 Confusion
@@ -1683,6 +1688,7 @@ BYTE 0 0
 
 ALIGN 4
 SeelLearnset:
+BYTE 1 IcyWind
 BYTE 1 Headbutt
 BYTE 3 Growl
 BYTE 7 WaterGun // Resv WaterSport
@@ -1704,6 +1710,7 @@ BYTE 0 0
 
 ALIGN 4
 DewgongLearnset:
+BYTE 1 IcyWind
 BYTE 1 Headbutt
 BYTE 3 Growl
 BYTE 7 WaterGun // Resv WaterSport
@@ -1769,6 +1776,7 @@ BYTE 0 0
 
 ALIGN 4
 ShellderLearnset:
+BYTE 1 IcyWind
 BYTE 1 Tackle 
 BYTE 1 Bubble
 BYTE 2 PoisonSting // Resv Protect
@@ -1792,6 +1800,7 @@ BYTE 0 0
 
 ALIGN 4
 CloysterLearnset:
+BYTE 1 IcyWind
 BYTE 1 Tackle 
 BYTE 1 Bubble
 BYTE 2 PoisonSting // Resv Protect
@@ -2512,6 +2521,7 @@ BYTE 0 0
 
 ALIGN 4
 JynxLearnset:
+BYTE 1 IcyWind
 BYTE 1 Pound
 BYTE 1 Lick
 BYTE 1 ConfuseRay
@@ -2659,6 +2669,7 @@ ALIGN 4
 LaprasLearnset:
 BYTE 1 WaterGun
 BYTE 1 Growl 
+BYTE 1 IcyWind
 // BYTE 1 Sleep2 // Sing
 // BYTE 4 Resv Mist
 BYTE 7 ConfuseRay
