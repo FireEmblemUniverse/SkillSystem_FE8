@@ -46,6 +46,8 @@ b IndoorMapLoop
 
 WeAreOutdoors:
 
+b HasFlyingPokemon @ always allow Fly even without a flier 'cause QoL I guess 
+
 bl Get1stUnit
 cmp r0, #0 
 beq Skip_1

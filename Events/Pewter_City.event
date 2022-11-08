@@ -223,10 +223,13 @@ ENDA
 
 ALIGN 4
 ShopItems:
+BYTE StatAccessory MuscleBand_BoostIndex 
+BYTE StatAccessory WiseGlasses_BoostIndex
 BYTE JellyDonut 4
 BYTE SkillScroll PatienceID
 
-BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot 
+BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
 BYTE SpellScroll Gust SpellScroll Confusion 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion

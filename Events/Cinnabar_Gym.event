@@ -237,7 +237,8 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveSkillAccessory(0xD0, AmaterasuID)
+SilentGiveItemWithDurability(0xD0, StatAccessory, 0x80|EnergyBandT3_BoostIndex)
+//SilentGiveSkillAccessory(0xD0, AmaterasuID)
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
 //SilentGiveItemWithDurability(0xA0, Berry,0x8A)
 SilentGiveItemWithDurability(0xA0, HyperPotion,0x1)

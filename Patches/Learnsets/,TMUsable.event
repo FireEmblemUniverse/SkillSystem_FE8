@@ -33,6 +33,7 @@
 #define Counter 255
 #define Barrage 255 
 #define LightScreen 255 
+#define Reflect 255 
 
 
 ALIGN 4
@@ -78,21 +79,21 @@ BYTE 0
 ALIGN 4
 SquirtleTMs:
 BYTE BodySlam DoubleEdge Headbutt MegaKick MegaPunch Rage IronTail Tackle TailWhip Leer TakeDown Blizzard IceBeam IcePunch SeismicToss Submission Dig Rest RockTomb Rollout Bite Counter DoubleHit
-BYTE LowKick MudShot RockThrow GuardMove
+BYTE LowKick MudShot RockThrow GuardMove IcyWind 
 BYTE MudBomb DarkPulse FlashCannon
 BYTE 0
 
 ALIGN 4
 WartortleTMs:
 BYTE BodySlam DoubleEdge Headbutt MegaKick MegaPunch Rage IronTail Tackle TailWhip Leer TakeDown Blizzard IceBeam IcePunch SeismicToss Submission Dig Rest RockTomb Rollout Bite Counter DoubleHit
-BYTE LowKick MudShot RockThrow GuardMove
+BYTE LowKick MudShot RockThrow GuardMove IcyWind 
 BYTE MudBomb DarkPulse FlashCannon
 BYTE 0
 
 ALIGN 4
 BlastoiseTMs:
 BYTE BodySlam DoubleEdge Headbutt HyperBeam MegaKick MegaPunch Rage IronTail FlashCannon Tackle TailWhip Leer TakeDown Blizzard IceBeam IcePunch Avalanche SeismicToss Submission Dig Earthquake Fissure Rest RockSlide RockTomb Rollout Outrage SignalBeam Bite Roar Counter DoubleHit
-BYTE LowKick Magnitude MudShot RockThrow GuardMove
+BYTE LowKick Magnitude MudShot RockThrow GuardMove IcyWind 
 BYTE MudBomb DarkPulse FlashCannon
 BYTE 0
 
@@ -389,14 +390,14 @@ BYTE 0
 ALIGN 4
 PsyduckTMs:
 BYTE CalmMind BodySlam Amnesia Screech DoubleEdge Flash Headbutt MegaKick MegaPunch PayDay Rage Scratch IronTail Swift TailWhip Leer TakeDown HoneClaws Blizzard IceBeam IcePunch SeismicToss Submission Dig Confusion Psychic Rest SignalBeam Counter AttackPulse
-BYTE LowKick
+BYTE LowKick IcyWind 
 BYTE ConfuseRay SandAttack Psybeam RecoverMove
 BYTE 0
 
 ALIGN 4
 GolduckTMs:
 BYTE CalmMind BodySlam Amnesia Screech DoubleEdge Flash Headbutt HyperBeam MegaKick MegaPunch PayDay Rage Scratch IronTail Swift TailWhip Leer TakeDown HoneClaws Blizzard IceBeam IcePunch SeismicToss Submission Dig Confusion Psychic Rest FuryCutter SignalBeam Counter AttackPulse
-BYTE LowKick
+BYTE LowKick IcyWind 
 BYTE ConfuseRay SandAttack Psybeam RecoverMove
 BYTE 0
 

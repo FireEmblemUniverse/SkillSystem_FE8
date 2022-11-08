@@ -16,6 +16,13 @@ FirstEntry[X]
 // Items use ^ for narrowfont I guess, while classes use * 
 ## DebugTextHere
  Debug[A][X]
+ 
+## IcyWindName
+Icy Wind[X]
+## IcyWindDesc
+*{(}A chilling wind attack.
+Debuffs Spd by 8.[N]
+AoE: Debuffs Spd by 4.[X]
 
 ## SwordsDanceName ^
 Swords Dance[X]

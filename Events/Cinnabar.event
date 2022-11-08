@@ -350,6 +350,8 @@ ALIGN 4
 ShopItems:
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE SkillAccShop(BreathOfLifeID)
+BYTE SkillAccShop(AmaterasuID)
 BYTE HyperPotion 5 
 BYTE SuperPotion 5 
 BYTE JellyDonut 5

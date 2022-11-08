@@ -156,6 +156,9 @@ ALIGN 4
 ShopItems:
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE SkillAccShop(RockyHelmetSkillID)
+BYTE SkillAccShop(FuryID)
+BYTE SkillAccShop(WaryFighterID)
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SkillScroll PatienceID 

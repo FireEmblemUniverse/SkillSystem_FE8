@@ -153,6 +153,9 @@ TileAnimPointerTable(0xD3, 0x0859D520)
 // they just need to be put in the definitions automation part 
 // functionally it doesn't really matter what numbers they have 
 // so you could probably just do WhicheverCh and it'd work fine 
+
+// note that opening and closing the Fly Menu (not available indoors) will remove any tile changes that have occurred 
+
 #define ViridianForestNMapChanges 120 
 #define SaffronGymMapChanges 121 
 #define Route21MapChanges 122

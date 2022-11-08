@@ -84,7 +84,7 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
+ENUF ChampionDefeatedPhaseOne
 LOAD1 1 BossTrainer
 ENUN 
 CHECK_EVENTID LanceDefeatedTemp 

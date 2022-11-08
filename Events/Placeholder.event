@@ -333,7 +333,7 @@ SetUnitStatus(0x50, MaxHP, 99)
 SetUnitStatus(0x50, CurrentHP, 99)
 SetUnitStatus(0x50, Defence, 15)
 
-SetUnitStatus(0x50, 0x8, 20)
+SetUnitStatus(0x50, 0x8, 60)
 //SetUnitStatus(2, 0x2A, Agility)
 //SetUnitStatus(2, 0x2A, RecoverMove)
 //SetUnitStatus(1, 0x30, (5<<4)|ParalyzeStatusID_Def)

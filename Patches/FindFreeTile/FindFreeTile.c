@@ -46,7 +46,7 @@ void const FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
 
 	// idk
-	FillMovementMapForUnit(unit); // fill with flier movement & own movement 
+	FillMovementMapForUnitAndMovement(unit, 15); // fill with flier movement & own movement 
 	// Find "nearest" free tile based on movement costs provided 
     for (iy = gMapSize.y - 1; iy >= 0; --iy)
     {
@@ -78,8 +78,7 @@ void const FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
         }
     }
 
-	if (*xOut == 9999) { 
-
+	if (*xOut == (-1)) { 
 
 		// Fill the movement map
 		extern const u8 GenericMovCost[];

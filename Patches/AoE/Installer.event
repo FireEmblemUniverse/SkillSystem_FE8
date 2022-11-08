@@ -141,6 +141,9 @@ MenuCommandID(PoundName, 		UM_AoEDesc, NormalText, 92, AoE_SpecificUsability|1, 
 MenuCommandID(MetalSoundName, 		UM_AoEDesc, NormalText, 93, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(PoisonPowderName, 		UM_AoEDesc, NormalText, 94, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(ThunderWaveName, 		UM_AoEDesc, NormalText, 95, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PoisonGasName, 		UM_AoEDesc, NormalText, 96, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ToxicName, 		UM_AoEDesc, NormalText, 97, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(IcyWindName, 		UM_AoEDesc, NormalText, 98, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
@@ -721,7 +724,7 @@ BYTE 0 // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 Acid // Always usable by anyone 
+BYTE 0 0 0 0xFE // Always usable by anyone 
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 2 2 // Attack range
@@ -1429,7 +1432,7 @@ BYTE 0 0 0 Acid // Always usable by anyone
 BYTE 0 FriendlyFireBool|FixedDamageBool
 BYTE 3 T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range
-BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallTriangle poisonAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
 BYTE LeerDebuffID 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1491,11 +1494,11 @@ BYTE DebuffConfigTwoByte // Config2
 // Entry 90
 BYTE 0 0 0 0
 BYTE 0 0 0 RockTomb // Always usable by anyone 
-BYTE 0 FriendlyFireBool|FixedDamageBool
-BYTE 3 T1AoE_Var // variance range of 0 - 2 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
-BYTE 100 0 // DamagePercent, Status
+BYTE SmallMeleeLine rockAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE StringShotDebuffID 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
@@ -1567,6 +1570,45 @@ BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
+
+// Entry 96
+BYTE 0 0 0 0
+BYTE 0 0 0 PoisonGas // Always usable by anyone 
+BYTE 0 FriendlyFireBool|FixedDamageBool
+BYTE 2 T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range
+BYTE Square poisonAnimationID // Index of RangeMask, AnimationALL,
+BYTE 100 0x21 // poison 2 turns 
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 97
+BYTE 0 0 0 0
+BYTE 0 0 0 Toxic // Always usable by anyone 
+BYTE 0 FriendlyFireBool|FixedDamageBool
+BYTE 5 T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range
+BYTE Square poisonAnimationID // Index of RangeMask, AnimationALL,
+BYTE 100 0x21 // poison 2 turns 
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 98
+BYTE 0 0 0 0
+BYTE 0 0 0 IcyWind // Always usable by anyone 
+BYTE 0 FriendlyFireBool|HitResBool|MagBasedBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 2 2 // Attack range
+BYTE SmallLine iceAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE StringShotDebuffID 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE DebuffConfigTwoByte // Config2
 
 
 AoE_TableTerminator

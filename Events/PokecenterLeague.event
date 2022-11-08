@@ -67,15 +67,15 @@ BYTE SpellScroll ShadowBall SpellScroll FireBlast
 BYTE SpellScroll Earthquake SpellScroll Megahorn 
 BYTE SpellScroll DoubleEdge SpellScroll Outrage
 BYTE SpellScroll DarkPulse
-BYTE SpellScroll MeteorMash SpellScroll Megahorn 
+BYTE SpellScroll MeteorMash 
 BYTE $0 0; ALIGN 4
 
 ALIGN 4
 ShopItems_C: // Skill Scrolls 
 // 2nd store in Viridian? Or at league? 
 BYTE SkillScroll DartingStanceID SkillScroll ChargeID SkillScroll PursuitID
-BYTE SkillScroll WrathID SkillScroll SilentPrideID SkillScroll CharmID 
-BYTE SkillScroll GrislyWoundID SkillScroll FieryBloodID 
+BYTE SkillScroll WrathID SkillScroll SilentPrideID SkillScroll QuickDrawID 
+BYTE SkillScroll GrislyWoundID SkillScroll FieryBloodID SkillScroll RenewalID 
 BYTE $0 0; ALIGN 4
 
 
@@ -127,7 +127,7 @@ BYTE StatAccessory SilphScope_BoostIndex
 BYTE StatAccessory LuckyBracerT3_BoostIndex
 BYTE $0 0; ALIGN 4
 
-#define SkillAccShop(SkillID) "SkillAccOne + (SkillID >> 6) (SkillID & 0x3F)" 
+
 ALIGN 4
 ShopItems_E: // SkillAccessories ? 
 BYTE SkillAccShop(RockyHelmetSkillID)
@@ -141,6 +141,7 @@ BYTE SkillAccShop(DazzleID)
 BYTE SkillAccShop(BreathOfLifeID)
 BYTE SkillAccShop(MiracleID)
 BYTE SkillAccShop(CounterMagicID)
+BYTE SkillAccShop(CounterID)
 BYTE SkillAccShop(AmaterasuID)
 BYTE SkillAccShop(BlossomID)
 BYTE SkillAccShop(VoiceOfPeaceID)

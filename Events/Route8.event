@@ -114,7 +114,7 @@ RedPokeballTrap(31,11, (ChapterID*2)+1, LeafStone)
 //SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
-SkillScrollTrap(48,14, (ChapterID*2)+1, CharmID) 
+SkillScrollTrap(48,14, (ChapterID*2)+1, QuickDrawID) 
 
 SignBTrap(55,8, ChapterID, 0x0) //no extra text 
 SignATrap(5,7, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

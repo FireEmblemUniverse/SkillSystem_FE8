@@ -27,7 +27,10 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(0xA,CheckIfNoEnemiesLeft,0,255)
 END_MAIN
+
+
 
 CharacterBasedEvents:
 AllTrainersPostBattleTalk
@@ -114,7 +117,6 @@ NoFade
 ENDA 
 
 ToLance:
-ENUF ChampionDefeatedPhaseOne
 ChapterTransition(LanceCh, 12,3)
 ToHallOfFame:
 ChapterTransition(HallOfFameCh, 9,25)
@@ -433,6 +435,7 @@ SVAL r3 25000
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
 AddTrapExt(SaveCostID, 12, 6, 0, SavePointSMS, 2)
+ENUT 0xA // prevent repeated ending scenes (but we just cutscene the rest so redundant) 
 ENUT ChampionDefeatedTemp
 ENUT CompletedPokemonLeague
 Text(OakLeagueText)

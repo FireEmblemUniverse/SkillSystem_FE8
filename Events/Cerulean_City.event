@@ -245,14 +245,18 @@ ALIGN 4
 ShopItems:
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE StatAccessory MuscleBand_BoostIndex 
+BYTE StatAccessory WiseGlasses_BoostIndex
+BYTE StatAccessory EnergyBand_BoostIndex
+
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SkillScroll TantivyID 
 
-BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
-BYTE SpellScroll AttackPulse SpellScroll WaterGun
+BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll Ember SpellScroll WaterGun  SpellScroll LeafFlurry
+BYTE SpellScroll AttackPulse
 BYTE SpellScroll DoubleHit SpellScroll SignalBeam SpellScroll MagicalLeaf 
-BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion 
+BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion // 19 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

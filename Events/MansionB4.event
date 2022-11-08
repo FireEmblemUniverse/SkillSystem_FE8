@@ -142,7 +142,7 @@ InvisibleSign(5,5, 4)
 //BerryTree(32,11,5)
 //BerryTree(36,11,5)
 
-SkillScrollTrap(3, 24, ChapterID*2, GrislyWoundID)
+SkillScrollTrap(3, 24, ChapterID*2, FieryBloodID)
 SpellScrollTrap(18, 23, (ChapterID*2)+1, ShadowBall)
 
 //OpenPokeball(8,3)

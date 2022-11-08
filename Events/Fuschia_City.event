@@ -119,7 +119,7 @@ RockSmash(2,17)
 RockSmash(3,16)
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
-SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
+SkillAccessoryTrap(8,20, ChapterID*2, GrislyWoundID)
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
@@ -131,8 +131,8 @@ SignATrap(38,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //OpenPokeball(8,3)
 
 BlankExamineTrap(4,28,FuschiaGymSignText)
-BlankExamineTrap(28,28,FuschiaSafariSignText)
-SignTrap(19,6, FuschiaSESignText) // Safari Zone 
+BlankExamineTrap(28,28,FuschiaSESignText)
+SignTrap(19,6,FuschiaSafariSignText ) // Safari Zone 
 
 EnterWallTrap(13,28, FuschiaWHouseAText) // 
 EnterWallTrap(17,28, FuschiaWHouseBText) // 
@@ -179,6 +179,8 @@ ALIGN 4
 ShopItems:
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE SkillAccShop(DazzleID)
+BYTE SkillAccShop(VantagePlusID)
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SkillScroll PrescienceID 

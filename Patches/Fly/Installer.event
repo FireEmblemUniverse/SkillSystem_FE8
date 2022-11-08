@@ -137,6 +137,8 @@ ALIGN 4
 FlyReturnEvent:
 FADI 60
 LOMA (-1)
+ASMC TrapRework_NewUpdateAllLightRunes
+//ASMC 0x802EB51 // NullAllLightRunesTerrain
 NoFade 
 ENDA 
 

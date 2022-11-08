@@ -46,6 +46,16 @@ push	{r4-r7,lr}
 	b RandomizerDoesntMatter
 @ don't overwrite trainer's items 
 	ClearInvOnRandomizer: 
+	
+@ only clear their Inventory if they were actually randomized into a different unit 
+ldr r0, [r4, #4] @ class 
+ldrb r0, [r0, #4] @ class id 
+ldr r3, =ClassRandomizerBalanceTable 
+add r3, r0 @ entry 
+ldrb r0, [r3] 
+cmp r0, #0 
+beq RandomizerDoesntMatter
+	
 	mov r0, #0 
 	strh r0, [r4, #0x1E] 
 	strh r0, [r4, #0x20] 

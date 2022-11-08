@@ -290,6 +290,10 @@ ALIGN 4
 ShopItems_A: // Supplies + Evo stones / Stones 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE StatAccessory MuscleBandT2_BoostIndex 
+BYTE StatAccessory WiseGlassesT2_BoostIndex
+BYTE StatAccessory EnergyBandT2_BoostIndex
+BYTE SkillAccShop(RenewalID)
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE HyperPotion 4

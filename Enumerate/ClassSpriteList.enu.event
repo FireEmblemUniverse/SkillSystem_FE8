@@ -19,7 +19,7 @@
 #define SuspiciousWaterSMS 0x12
 #define CrobatSMS 0x13
 #define RedSMS 0x14
-#define Unused4SMS 0x15
+#define TeleporterSMS 0x15
 #define RattataSMS 0x16
 #define RaticateSMS 0x17
 #define SpearowSMS 0x18
@@ -273,7 +273,7 @@
 #define SuspiciousWaterMMS 0x13
 #define CrobatMMS 0x14
 #define RedMMS 0x15
-#define Unused4MMS 0x16
+#define TeleporterMMS 0x16
 #define RattataMMS 0x17
 #define RaticateMMS 0x18
 #define SpearowMMS 0x19

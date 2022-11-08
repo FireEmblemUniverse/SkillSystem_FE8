@@ -91,7 +91,8 @@ RedPokeballTrap(18,18, ChapterID*2, Carbos)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-StatAccessoryTrap(14,4, (ChapterID*2)+1, EnergyBand_BoostIndex)
+//StatAccessoryTrap(14,4, (ChapterID*2)+1, EnergyBand_BoostIndex)
+
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 

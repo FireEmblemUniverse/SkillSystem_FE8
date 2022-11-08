@@ -195,8 +195,8 @@ ENDA
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT 0xF0 BlankID 0x0 Level(0, Enemy, 1)   [12,18]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
-UNIT 0xF1 BlankID 0x0 Level(0, Enemy, 1)   [23,19]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF0 TeleporterID 0x0 Level(0, Enemy, 1)   [11,19]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
+UNIT 0xF1 TeleporterID 0x0 Level(0, Enemy, 1)   [21,19]  0b	0x0 0 0  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 // Teleporter / blank unit to spawn Porygons? 

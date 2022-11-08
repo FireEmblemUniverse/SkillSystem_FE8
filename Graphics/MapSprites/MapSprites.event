@@ -80,7 +80,7 @@ SetSMS(PidgeotSMS , 2 ,   m18Standing)
 SetSMS(SuspiciousWaterSMS, 0 ,  SuspiciousWaterStanding) // Treeko ? 
 SetSMS(CrobatSMS, 2 ,  CrobatStanding)
 SetSMS(RedSMS , 1 ,  red_normalStanding)
-SetSMS(Unused4SMS , 2 ,  m1Standing)
+SetSMS(TeleporterSMS , 0 ,  TeleporterStanding)
 SetSMS(RattataSMS , 2 ,    m19Standing) 
 SetSMS(RaticateSMS , 2 ,    m20Standing) 
 SetSMS(SpearowSMS , 2 ,   m21Standing)
@@ -353,7 +353,7 @@ SetMMS(PidgeotMMS ,    r18Moving,        DemonKingAP)
 SetMMS(SuspiciousWaterMMS,   SuspiciousWaterMoving,        DemonKingAP) 
 SetMMS(CrobatMMS,   CrobatMoving,        DemonKingAP)
 SetMMS(RedMMS ,   red_normalMoving,        DemonKingAP)
-SetMMS(Unused4MMS ,   r1Moving,        DemonKingAP)
+SetMMS(TeleporterMMS ,   TeleporterMoving,        DemonKingAP)
 SetMMS(RattataMMS ,     r19Moving,        DemonKingAP) 
 SetMMS(RaticateMMS ,     r20Moving,        DemonKingAP) 
 SetMMS(SpearowMMS ,    r21Moving,        DemonKingAP)
@@ -1511,7 +1511,9 @@ MegaCharizardXMoving:
 ALIGN 4 
 HealingTileMoving:
 #incbin "More MMS/HealingTile.dmp"
-
+ALIGN 4 
+TeleporterMoving:
+#incbin "More MMS/Teleporter.dmp" 
 
 
 
@@ -2356,7 +2358,9 @@ MegaCharizardXStanding:
 ALIGN 4 
 HealingTileStanding:
 #incbin "More SMS/HealingTile.dmp" 
-
+ALIGN 4 
+TeleporterStanding:
+#incbin "More SMS/Teleporter.dmp" 
 
 
 //SYSTEM PALETTES 

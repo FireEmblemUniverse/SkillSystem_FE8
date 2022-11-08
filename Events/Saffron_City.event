@@ -234,8 +234,10 @@ ALIGN 4
 ShopItems:
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE SkillAccShop(MiracleID)
+BYTE SkillAccShop(CounterMagicID)
+BYTE SkillAccShop(CounterID)
 BYTE SuperPotion 5 
-BYTE JellyDonut 5
 BYTE SpellScroll Screech SpellScroll FirePunch SpellScroll ThunderPunch SpellScroll IcePunch 
 BYTE SpellScroll ShadowPunch SpellScroll JumpKick
 BYTE SpellScroll BubbleBeam SpellScroll DrillPeck

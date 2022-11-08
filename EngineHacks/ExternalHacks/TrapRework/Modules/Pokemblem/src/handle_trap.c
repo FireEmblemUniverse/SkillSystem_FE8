@@ -205,7 +205,7 @@ typedef struct MUProc muProc;
 
 void TrapUnitMenu(TrapHandlerProc* proc) { 
 
-	if (!(proc->pUnit->index >> 6)) { 
+	if (!(proc->pUnit->index >> 6) & (proc->pUnit->statusIndex != UNIT_STATUS_BERSERK)) { 
 		int x1 = gGameState._unk1C.x; 
 		int x2 = gGameState.cameraRealPos.x; 
 		x1 = x1 - x2; 

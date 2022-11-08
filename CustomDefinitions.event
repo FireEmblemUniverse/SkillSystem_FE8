@@ -7,7 +7,7 @@
 #define ENABLE_RANDOMIZER 
 
 PUSH; ORG $D74D0	//{U}
-String("Version 1.03    Nov 2022") ; BYTE 0; POP 
+String("Version 1.04    Nov 2022") ; BYTE 0; POP 
 
 
 //#define ALT_TITLESCREEN
@@ -50,7 +50,7 @@ String("Version 1.03    Nov 2022") ; BYTE 0; POP
 		//PROTECT $3E320 // ai danger map 
 
 //PROTECT 
-
+#define SkillAccShop(SkillID) "SkillAccOne + (SkillID >> 6) (SkillID & 0x3F)" 
 #define Ves_SkillBlockOne_ItemID 0xFC
 #define Ves_SkillBlockTwo_ItemID 0xFD 
 #define Ves_SkillBlockThree_ItemID 0xFE
