@@ -66,7 +66,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 5 TailWhip 
 BYTE 7 Ember
-BYTE 10 Snarl
+BYTE 10 SandAttack
 BYTE 14 DragonRage
 BYTE 18 Scorch 
 BYTE 21 FlameWheel
@@ -85,7 +85,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 5 TailWhip 
 BYTE 7 Ember
-BYTE 10 Snarl
+BYTE 10 SandAttack
 BYTE 14 DragonRage
 BYTE 18 Scorch 
 BYTE 21 FlameWheel
@@ -104,7 +104,7 @@ BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 5 TailWhip 
 BYTE 7 Ember
-BYTE 10 Snarl
+BYTE 10 SandAttack
 BYTE 14 DragonRage
 BYTE 18 Scorch 
 BYTE 21 FlameWheel
@@ -256,7 +256,7 @@ BYTE 24 UTurn
 BYTE 26 PoisonJab
 BYTE 28 XScissor
 BYTE 33 HornDrill
-BYTE 36 Toxic
+BYTE 36 SwordsDance
 BYTE 40 NightSlash
 BYTE 42 DrillPeck
 BYTE 0 0
@@ -278,7 +278,7 @@ BYTE 24 UTurn
 BYTE 26 PoisonJab
 BYTE 28 XScissor
 BYTE 33 HornDrill
-BYTE 36 Toxic
+BYTE 36 SwordsDance
 BYTE 40 NightSlash
 BYTE 42 DrillPeck
 BYTE 0 0
@@ -300,7 +300,7 @@ BYTE 24 UTurn
 BYTE 26 PoisonJab
 BYTE 28 XScissor
 BYTE 33 HornDrill
-BYTE 36 Toxic
+BYTE 36 SwordsDance
 BYTE 40 NightSlash
 BYTE 42 DrillPeck
 BYTE 0 0
@@ -571,9 +571,9 @@ BYTE 13 Leer
 BYTE 16 Dig
 BYTE 19 Bite
 BYTE 21 DoubleHit
-BYTE 23 Toxic
-BYTE 25 RecoverMove //?Support HelpingHand
-BYTE 31 SeismicToss
+BYTE 23 RecoverMove //?Support HelpingHand
+BYTE 25 SeismicToss
+BYTE 31 Sludge
 BYTE 33 Earthquake
 BYTE 35 PoisonJab
 //BYTE 43 Resv //Captivate
@@ -591,9 +591,9 @@ BYTE 13 Leer
 BYTE 16 Dig
 BYTE 19 Bite
 BYTE 21 DoubleHit
-BYTE 23 Toxic
-BYTE 25 RecoverMove //?Support HelpingHand
-BYTE 31 SeismicToss
+BYTE 23 RecoverMove //?Support HelpingHand
+BYTE 25 SeismicToss
+BYTE 31 Sludge
 BYTE 33 Earthquake
 BYTE 35 PoisonJab
 //BYTE 43 Resv //Captivate
@@ -611,9 +611,9 @@ BYTE 13 Leer
 BYTE 16 Dig
 BYTE 19 Bite
 BYTE 21 DoubleHit
-BYTE 23 Toxic
-BYTE 25 RecoverMove //?Support HelpingHand
-BYTE 31 SeismicToss
+BYTE 23 RecoverMove //?Support HelpingHand
+BYTE 25 SeismicToss
+BYTE 31 Sludge
 BYTE 33 Earthquake
 BYTE 35 PoisonJab
 //BYTE 43 Resv //Captivate
@@ -630,10 +630,10 @@ BYTE 9 DoubleKick
 BYTE 13 Growl 
 BYTE 16 Dig
 BYTE 19 HornAttack
-BYTE 21 Toxic
-BYTE 23 PinMissile
-BYTE 25 RecoverMove //?Support HelpingHand
-//BYTE 31 Resv //ToxicSpikes
+BYTE 21 PinMissile
+BYTE 23 RecoverMove //?Support HelpingHand
+//BYTE 27 Resv //ToxicSpikes
+BYTE 30 Sludge
 BYTE 33 PoisonJab
 BYTE 35 Earthquake
 //BYTE 43 Resv //Captivate
@@ -650,10 +650,10 @@ BYTE 9 DoubleKick
 BYTE 13 Growl 
 BYTE 16 Dig
 BYTE 19 HornAttack
-BYTE 21 Toxic
-BYTE 23 PinMissile
-BYTE 25 RecoverMove //?Support HelpingHand
-//BYTE 31 Resv //ToxicSpikes
+BYTE 21 PinMissile
+BYTE 23 RecoverMove //?Support HelpingHand
+//BYTE 27 Resv //ToxicSpikes
+BYTE 30 Sludge
 BYTE 33 PoisonJab
 BYTE 35 Earthquake
 //BYTE 43 Resv //Captivate
@@ -670,10 +670,10 @@ BYTE 9 DoubleKick
 BYTE 13 Growl 
 BYTE 16 Dig
 BYTE 19 HornAttack
-BYTE 21 Toxic
-BYTE 23 PinMissile
-BYTE 25 RecoverMove //?Support HelpingHand
-//BYTE 31 Resv //ToxicSpikes
+BYTE 21 PinMissile
+BYTE 23 RecoverMove //?Support HelpingHand
+//BYTE 27 Resv //ToxicSpikes
+BYTE 30 Sludge
 BYTE 33 PoisonJab
 BYTE 35 Earthquake
 //BYTE 43 Resv //Captivate
@@ -831,7 +831,7 @@ BYTE 25 Sludge
 BYTE 27 Screech
 BYTE 29 PoisonJab
 BYTE 31 HyperFang
-BYTE 33 Toxic //PoisonFang
+BYTE 33 ShadowBall
 //BYTE 37 Resv //Haze
 BYTE 35 Hurricane
 BYTE 38 NightSlash
@@ -855,7 +855,7 @@ BYTE 25 Sludge
 BYTE 27 Screech
 BYTE 29 PoisonJab
 BYTE 31 HyperFang
-BYTE 33 Toxic //PoisonFang
+BYTE 33 ShadowBall
 //BYTE 37 Resv //Haze
 BYTE 35 Hurricane
 BYTE 38 NightSlash
@@ -928,7 +928,7 @@ BYTE 22 Slash
 //BYTE 25 Sleep2 //Spore
 BYTE 25 Screech
 BYTE 27 XScissor
-BYTE 29 Toxic //Growth
+BYTE 29 Sludge
 BYTE 33 LeafBlade
 BYTE 35 RecoverMove //?Support Aromatherapy
 BYTE 38 NightSlash
@@ -950,7 +950,7 @@ BYTE 22 Slash
 //BYTE 25 Sleep2 //Spore
 BYTE 25 Screech
 BYTE 27 XScissor
-BYTE 29 Toxic //Growth
+BYTE 29 Sludge
 BYTE 33 LeafBlade
 BYTE 35 RecoverMove //?Support Aromatherapy
 BYTE 38 NightSlash
@@ -975,7 +975,7 @@ BYTE 30 BugBuzz
 BYTE 32 AirSlash
 BYTE 35 DarkPulse
 //BYTE 37 DreamEater
-BYTE 37 Toxic //PoisonFang
+//BYTE 37 Toxic //PoisonFang
 BYTE 40 Psychic
 BYTE 42 Amnesia
 BYTE 0 0
@@ -998,7 +998,7 @@ BYTE 30 BugBuzz
 BYTE 32 AirSlash
 BYTE 35 DarkPulse
 //BYTE 37 DreamEater
-BYTE 37 Toxic //PoisonFang
+//BYTE 37 Toxic //PoisonFang
 BYTE 40 Psychic
 BYTE 42 Amnesia
 BYTE 0 0
@@ -1422,7 +1422,7 @@ BYTE 27 Screech
 BYTE 29 HexAtt
 BYTE 31 Sludge
 BYTE 33 Surf
-BYTE 36 Toxic
+BYTE 36 ShadowBall
 BYTE 40 DarkPulse
 BYTE 45 HydroPump
 BYTE 0 0
@@ -1443,7 +1443,7 @@ BYTE 27 Screech
 BYTE 29 HexAtt
 BYTE 31 Sludge
 BYTE 33 Surf
-BYTE 36 Toxic
+BYTE 36 ShadowBall
 BYTE 40 DarkPulse
 BYTE 45 HydroPump
 BYTE 0 0
@@ -1735,7 +1735,7 @@ BYTE 15 BodySlam
 // BYTE 17 Resv Minimize
 BYTE 20 MudBomb
 BYTE 23 Sludge
-BYTE 26 Toxic
+BYTE 26 Dig
 BYTE 28 Bite // Fling
 BYTE 30 Earthquake
 BYTE 33 Screech
@@ -1757,7 +1757,7 @@ BYTE 15 BodySlam
 // BYTE 17 Resv Minimize
 BYTE 20 MudBomb
 BYTE 23 Sludge
-BYTE 26 Toxic
+BYTE 26 Dig
 BYTE 28 Bite // Fling
 BYTE 30 Earthquake
 BYTE 33 Screech
@@ -2197,7 +2197,7 @@ BYTE 17 NightDaze // Assurance
 BYTE 20 Screech
 BYTE 24 AuroraBeam
 BYTE 26 HexAtt
-BYTE 28 Toxic
+BYTE 28 RecoverMove
 BYTE 31 MudBomb
 BYTE 35 Flamethrower
 BYTE 40 Sludge
@@ -2217,7 +2217,7 @@ BYTE 17 NightDaze // Assurance
 BYTE 20 Screech
 BYTE 24 AuroraBeam
 BYTE 26 HexAtt
-BYTE 28 Toxic
+BYTE 28 RecoverMove
 BYTE 31 MudBomb
 BYTE 35 Flamethrower
 BYTE 40 Sludge
@@ -2279,7 +2279,7 @@ BYTE 29 ConfuseRay
 // BYTE 31 Resv DefenseCurl
 BYTE 31 TriAttack
 BYTE 33 Amnesia
-BYTE 35 Toxic
+BYTE 35 SeismicToss
 BYTE 38 HyperBeam
 BYTE 42 Blizzard
 // BYTE 42 Resv HealingWish
@@ -2303,7 +2303,7 @@ BYTE 31 PetalDance
 BYTE 36 Ancientpower
 BYTE 40 DoubleEdge
 // BYTE 47 Resv Tickle
-BYTE 43 Toxic
+BYTE 43 SolarBeam
 BYTE 45 HyperBeam // WringOut
 BYTE 0 0 // Tangrowth gets Block
 
@@ -2330,49 +2330,49 @@ BYTE 0 0
 
 ALIGN 4
 HorseaLearnset:
+BYTE 1 SandAttack // SmokeScreen
 BYTE 1 Bubble 
 BYTE 3 FocusEnergy
-BYTE 4 SandAttack // SmokeScreen
 BYTE 6 Twister
 BYTE 8 Leer
-BYTE 11 WaterGun
+BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
 BYTE 18 BubbleBeam
 BYTE 22 PoisonJab 
-BYTE 24 Toxic
-BYTE 26 Agility
+BYTE 24 Agility
+BYTE 26 Waterfall
 BYTE 30 Surf // Brine
-BYTE 32 Waterfall
+BYTE 32 Sludge
 BYTE 35 IceBeam
 BYTE 37 SignalBeam
+// BYTE 38 Resv DragonDance
 BYTE 42 Outrage // DragonPulse
 BYTE 45 HydroPump
-// BYTE 38 Resv DragonDance
 BYTE 0 0 // Kingdra gets Yawn
 
 ALIGN 4
 SeadraLearnset:
+BYTE 1 SandAttack // SmokeScreen
 BYTE 1 Bubble 
 BYTE 3 FocusEnergy
-BYTE 4 SandAttack // SmokeScreen
 BYTE 6 Twister
 BYTE 8 Leer
-BYTE 11 WaterGun
+BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
 BYTE 18 BubbleBeam
 BYTE 22 PoisonJab 
-BYTE 24 Toxic
-BYTE 26 Agility
+BYTE 24 Agility
+BYTE 26 Waterfall
 BYTE 30 Surf // Brine
-BYTE 32 Waterfall
+BYTE 32 Sludge
 BYTE 35 IceBeam
 BYTE 37 SignalBeam
+// BYTE 38 Resv DragonDance
 BYTE 42 Outrage // DragonPulse
 BYTE 45 HydroPump
-// BYTE 38 Resv DragonDance
-// BYTE 38 Resv DragonDance
+BYTE 0 0 // Kingdra gets Yawn
 BYTE 0 0
 
 ALIGN 4
