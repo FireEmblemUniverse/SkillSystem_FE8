@@ -2330,12 +2330,12 @@ BYTE 0 0
 
 ALIGN 4
 HorseaLearnset:
+BYTE 1 SandAttack // SmokeScreen
 BYTE 1 Bubble 
 BYTE 3 FocusEnergy
-BYTE 4 SandAttack // SmokeScreen
 BYTE 6 Twister
 BYTE 8 Leer
-BYTE 11 WaterGun
+BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
 BYTE 18 BubbleBeam
@@ -2353,12 +2353,12 @@ BYTE 0 0 // Kingdra gets Yawn
 
 ALIGN 4
 SeadraLearnset:
+BYTE 1 SandAttack // SmokeScreen
 BYTE 1 Bubble 
 BYTE 3 FocusEnergy
-BYTE 4 SandAttack // SmokeScreen
 BYTE 6 Twister
 BYTE 8 Leer
-BYTE 11 WaterGun
+BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
 BYTE 18 BubbleBeam
@@ -2372,6 +2372,7 @@ BYTE 37 SignalBeam
 // BYTE 38 Resv DragonDance
 BYTE 42 Outrage // DragonPulse
 BYTE 45 HydroPump
+BYTE 0 0 // Kingdra gets Yawn
 BYTE 0 0
 
 ALIGN 4
