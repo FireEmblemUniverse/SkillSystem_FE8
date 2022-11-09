@@ -72,7 +72,7 @@ MultiSpellScrollEffect: @hybridized from some Tequila code
 
 @r4 = action struct, r6 = parent proc
 
-push {r4-r7}
+push {r4-r7, lr}
 
 ldr        r0,Get_Char_Data
 mov        r14,r0
@@ -116,6 +116,7 @@ mov 		lr, r3
 
 
 pop {r4-r7}
+pop {r0} 
 ldr        r0,GoBackLoc
 bx        r0
 

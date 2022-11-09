@@ -21,13 +21,23 @@ mov r4, r0
 mov r5, r1 
 
 
+mov r2, #0x27 
+CheckIfAlreadyLearnedLoop:
+add r2, #1 
+cmp r2, #0x2D 
+bge Continue 
+ldrb r0, [r4, r2] 
+cmp r0, r5 
+beq False 
+b CheckIfAlreadyLearnedLoop 
 
-mov r2, #0x28 
+Continue: 
+mov r2, #0x27 
 
 FindEmptyWEXPLoop:
-cmp r2, #0x2C @ We use first 5 ranks only 
-bge SetForForgetting 
 add r2, #1 
+cmp r2, #0x2D @ We use first 5 ranks only 
+bge SetForForgetting 
 ldrb r0, [r4, r2]
 cmp r0, #0 
 bne FindEmptyWEXPLoop 

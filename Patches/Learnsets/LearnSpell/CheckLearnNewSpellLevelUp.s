@@ -38,6 +38,7 @@ check_acting:
 	ldrb r1, [r0, #0x08] @ Current level 
 	cmp r1, r2 
 	beq check_target 
+	
 	ldrb r0, [r0, #0x0B] @ Unit Index
 	mov r1, #0xC0
 	tst r0, r1
@@ -74,6 +75,14 @@ check_target:
 AlivePlayer:
 	blh prUnit_GetStruct
 	mov r5, r0 
+
+	ldr r1, [r5] @ unit pointer 
+	ldrb r1, [r1, #4] @ unit ID 
+	mov r2, #0x46 
+	cmp r1, r2 
+	bge Exit @ unit ID is 0x46 or greater, so they cannot learn spells by level up 
+	
+	
 	ldr r3, =ReturnTMRam
 	mov r1, #0 
 	strb r1, [r3] @ Do not return TM when 'no' is selected 
@@ -84,6 +93,8 @@ AlivePlayer:
 	
 	ldr r3, =MoveListTable @ A bunch of POINs
 	ldr r3, [r3, r1] @ Class ID entry 
+	cmp r3, #0 
+	beq Exit @ no poin error, so exit 
 	mov r2, #0 @ Counter 
 	
 	ldrb r0, [r5, #0x08] @ Unit's level 
@@ -121,3 +132,4 @@ pop {r4-r5}
 
 pop {r1}
 bx r1 
+.ltorg 

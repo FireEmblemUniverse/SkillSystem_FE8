@@ -12,7 +12,9 @@
 .equ EventEngine, 0x800D07C
 .equ CurrentUnitFateData, 0x203A958 
 .equ ActionStruct, 0x203A958 
-
+.equ Attacker, 0x203A4EC 
+.equ Defender, 0x203A56C 
+.equ GetUnitEquippedWeapon, 0x8016B28 
 push {r4, lr}
 mov r4, r0 
 ldr r3, =CurrentUnit
@@ -35,6 +37,15 @@ strb r0, [r3, #0x12] @ Inventory slot #0
 
 mov r0, r4 
 blh PromoteActiveUnit
+
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
+blh GetUnitEquippedWeapon 
+ldr r3, =Defender  
+add r3, #0x48 
+@strh r0, [r3] 
+strh r0, [r3, #2] 
+
 blh EndMMS 
 
 

@@ -20,7 +20,19 @@ UsabilityByType:
 push {r4-r5, lr} 
 mov r4, r0 
 mov r5, r1 @ item ID 
-mov r0, r1 		@ Item ID 
+
+mov r2, #0x27 
+CheckIfAlreadyLearnedLoop:
+add r2, #1 
+cmp r2, #0x2D 
+bge Continue 
+ldrb r0, [r4, r2] 
+cmp r0, r5 
+beq RetFalse 
+b CheckIfAlreadyLearnedLoop 
+Continue:
+
+mov r0, r5 		@ Item ID 
 @blh GetItemIndex 			@ GetItemIndex. r0 = item ID.
 blh GetItemData 			@ GetItemData. r0 = pointer to ROM item data.
 ldrb r0, [ r0, #0x07 ] 	@ r0 = this item's weapon type.

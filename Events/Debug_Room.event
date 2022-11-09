@@ -109,7 +109,7 @@ UNIT 5  RaichuID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0]
 UNIT
 
 Units_Earlygame: 
-UNIT 1  SquirtleID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT 1  PikachuID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 UNIT 2  MankeyID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 5  PidgeyID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 //UNIT 6  CaterpieID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
@@ -229,10 +229,10 @@ ASMC SaveGameSeed
 
 
 
-ENUT RandomizeClassesFlag // this should only be set once tact name is set 
+//ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 
-LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
-//LOAD1 0x1 Units_Earlygame
+//LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
+LOAD1 0x1 Units_Earlygame
 ENUN
 
 //LOAD1 0x1 Units3
@@ -317,9 +317,14 @@ SupplyItemWithDurability(StatAccessory, QuickBoots_BoostIndex)
 //SupplyItemWithDurability(SpellScroll, Spark)
 //SupplyItemWithDurability(SpellScroll, KarateChop)
 
-//SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
+SilentGiveItemWithDurability(1, ThunderStone, 1)
+SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
+SilentGiveItemWithDurability(1, SpellScroll, Thunderbolt)
+SilentGiveItemWithDurability(1, SpellScroll, ThunderMove)
 //SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+
+
 //SilentGiveItemWithDurability(3, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 //SilentGiveItemWithDurability(4, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 //SilentGiveItemWithDurability(5, StatAccessory, EnergyBandT4_BoostIndex|0x80)
@@ -377,7 +382,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(55, True, 0x145) // all 
+AutoLevelUnits(77, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)
@@ -460,11 +465,14 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(9, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(6, YCoordNewArea)  
+Write_Byte(31, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(18, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 ViridianCh
-MNC2 CinnabarGymCh
+
+
+//SetUnitStatus(1, CurrentHP, 5)
+MNC2 ViridianForestNCh
 //MNC2 SeafoamB3Ch
 
 //MNC2 CeruleanGymCh
@@ -476,7 +484,7 @@ MNC2 CinnabarGymCh
 //MNC2 ChampionCh 
 //MNC2 VictoryRoadB2Ch 
 //MNC2 ViridianCh
-//SetUnitStatus(1, CurrentHP, 5)
+//
 //MNC2 DebugCh 
 //MNC2 PewterCh 
 //MNC2 ChampionCh 

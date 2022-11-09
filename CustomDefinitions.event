@@ -229,7 +229,8 @@ String("Version 1.04    Nov 2022") ; BYTE 0; POP
 #define SilphCoDefeated 0xAC
 
 #define RandomizeClassesFlag 0xAD 
-#define BonusUnitObtainedFlag 0xAE 
+//#define BracketedGrowthsFlag 0xAE 
+#define BonusUnitObtainedFlag 0xAF 
 
 #define CasualModeFlagOn 0xB0 
 #define TrainerMovementDebuffFlag 0xB1 // when active, trainers have halved movement 

@@ -3,7 +3,7 @@
 // There is probably a better way to do this lol 
 
 ItemNameTable:
-SHORT 0x00
+SHORT 0
 SHORT 0x0354
 SHORT 0x0354
 SHORT CalmMindName
@@ -78,13 +78,13 @@ SHORT GrassKnotName
 SHORT MegaDrainName
 SHORT PetalDanceName
 SHORT LeafFlurryName
-SHORT 0x03C2
+SHORT HealPulseName
 SHORT 0x03C3
 SHORT 0x03C4
 SHORT 0x03C5
 SHORT 0x03C6
 SHORT 0x03C7
-SHORT SingName
+SHORT 0x03C8
 SHORT SingName
 SHORT 0x03CA
 SHORT 0x03CB
@@ -207,10 +207,10 @@ SHORT AirSlashName
 SHORT WingAttackName
 SHORT FocusEnergyName
 SHORT ConfusionName
-SHORT DreamEaterName
+SHORT HurricaneName
 SHORT HypnosisName
-SHORT LightScreenName
-SHORT ReflectName
+SHORT ShockWaveName
+SHORT IcyWindName
 SHORT PsybeamName
 SHORT PsychicName
 SHORT RestName
@@ -344,14 +344,14 @@ SHORT GrassKnotDesc
 SHORT MegaDrainDesc
 SHORT PetalDanceDesc
 SHORT LeafFlurryDesc
-SHORT 0x0471
+SHORT HealPulseDesc
 SHORT 0x0472
 SHORT 0x0473
 SHORT 0x0474
 SHORT 0x0475
 SHORT 0x0476
 SHORT 0x0477
-SHORT 0x0478
+SHORT SingDesc
 SHORT 0x0479
 SHORT 0x047A
 SHORT 0x047B
@@ -473,10 +473,10 @@ SHORT AirSlashDesc
 SHORT WingAttackDesc
 SHORT FocusEnergyDesc
 SHORT ConfusionDesc
-SHORT DreamEaterDesc
+SHORT HurricaneDesc
 SHORT HypnosisDesc
-SHORT LightScreenDesc
-SHORT ReflectDesc
+SHORT ShockWaveDesc
+SHORT IcyWindDesc
 SHORT PsybeamDesc
 SHORT PsychicDesc
 SHORT RestDesc
@@ -525,6 +525,7 @@ SHORT 0xFFFC
 SHORT 0xFFFB
 SHORT 0xFFFA
 SHORT 0xFFF9
+
 
 
 

@@ -1162,6 +1162,8 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.equ EnsureCameraOntoPosition,0x08015e0d @ r0 = 0, r1 x, r2 y	@{U}
+@.equ EnsureCameraOntoPosition,0x08015E19 @ r0 = 0, r1 x, r2 y	@{J}
 .global AoE_Camera
 .type AoE_Camera, %function
 AoE_Camera:
@@ -1172,12 +1174,16 @@ ldrb r1, [r3] @ XX
 ldrb r2, [r3, #2] @ YY 
 
 @r0 as parent 
-blh 0x8015D84 @CenterCameraOntoPosition	@{U}
+mov r0, #0 @ if r0 is non-zero, it will be interpreted as a parent proc to block 
+blh EnsureCameraOntoPosition 
+@blh 0x8015D84 @CenterCameraOntoPosition	@{U}
 @blh 0x8015D90 @CenterCameraOntoPosition	@{J}
 mov r0, #0 
 
 pop {r1} 
 bx r1
+
+
 
 .global AoE_Camera2
 .type AoE_Camera2, %function
