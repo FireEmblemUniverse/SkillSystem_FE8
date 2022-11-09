@@ -1,6 +1,6 @@
 
 
-
+#include "MapAnimations/v2Animations.event" 
 #include "Draw.lyn.event"
 #include "EAstdlib.event"
 #include "ProcDefinitions.event"
@@ -205,7 +205,6 @@ ORG FEBUILDER_DATA_ORG
 
 //This line should occur before this #include: #define INSTALL_BONUS_ANIMATIONS (if installing them)
 #include "MapAnimations/Installer.event" 
-#include "MapAnimations/v2Animations.event" 
 
 ALIGN 4
 SaveScreenNumbers:

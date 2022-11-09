@@ -498,7 +498,7 @@ WORD 0 0 0 // INDEXED, so no terminator actually needed
 ALIGN 4 
 AoE_SwordAnimEvent:
 SVAL r1 ThinSlashAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -506,7 +506,7 @@ ENDA
 ALIGN 4 
 AoE_LanceAnimEvent:
 SVAL r1 Hit1AnimID // Lance 
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -514,7 +514,7 @@ ENDA
 ALIGN 4 
 AoE_AxeAnimEvent:
 SVAL r1 Shards2AnimID // Axe 
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -522,7 +522,7 @@ ENDA
 ALIGN 4 
 AoE_BowAnimEvent:
 SVAL r1 Break1AnimID // Bow 
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -530,7 +530,7 @@ ENDA
 ALIGN 4 
 AoE_AnimaAnimEvent:
 SVAL r1 FireAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -538,7 +538,7 @@ ENDA
 ALIGN 4 
 AoE_LightAnimEvent:
 SVAL r1 FlashAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -546,7 +546,7 @@ ENDA
 ALIGN 4 
 AoE_DarkAnimEvent:
 SVAL r1 DarkAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -555,7 +555,7 @@ ENDA
 ALIGN 4 
 AoE_HealingAnimEvent:
 SVAL r1 HealAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -563,7 +563,7 @@ ENDA
 ALIGN 4 
 AoE_WindAnimEvent:
 SVAL r1 WindAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -571,7 +571,7 @@ ENDA
 ALIGN 4 
 AoE_ThunderAnimEvent:
 SVAL r1 ThunderAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -579,7 +579,7 @@ ENDA
 ALIGN 4 
 AoE_IceAnimEvent:
 SVAL r1 IceAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
@@ -587,7 +587,7 @@ ENDA
 ALIGN 4 
 AoE_ElfireAnimEvent:
 SVAL r1 ElfireAnimID
-ASMC ASMC_Draw|1
+ASMC Draw_ASMC|1
 ASMC AoE_GrantExp|1
 NoFade
 ENDA
