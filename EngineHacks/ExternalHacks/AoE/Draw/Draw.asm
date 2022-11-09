@@ -1403,7 +1403,7 @@ sub r2, #6
 GotOffset:
 add		r3, r2, r3
 
-@ change this line to #26 to not use 27 palette 
+@ comment - change this line to #26 to not use 27 palette 
 mov r2, #27 @ palette # 26 - or 27 is the light rune palette i think 
 lsl r2, #12 @ bits 12-15 
 orr r3, r2 
