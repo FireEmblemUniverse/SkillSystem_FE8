@@ -5,7 +5,7 @@
 
 ALIGN 4
 prNewFreeSelect:
-{
+
 	#incbin "fsConstructor.dmp"
 	POIN p6C_FreeSelect
 
@@ -48,6 +48,6 @@ _prFreeSelect6C_Loop:
 ALIGN 4
 _prFreeSelect6C_Destruct:
 	#include "fsDestructor.lyn.event"
-}
+
 
 #endif // HAX_FREE_SELECT_6C_EVENT

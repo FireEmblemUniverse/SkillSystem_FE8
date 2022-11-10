@@ -6,17 +6,21 @@
 FreeSelect6C_Loop:
 	push 	{r4-r6, r14}
 
+
 	mov 	r4, r0		@hold onto 6c pointer
 
 	ldr 	r0, =pGameDataStruct
 	ldr 	r5, [r0, #0x14]
+	mov r6, r5 
 @cursor movement
 	_blh HandlePPCursorMovement
+	
 
 @ (r1, r2) = Cursor Map Pos
 	ldr 	r0, =pGameDataStruct
 	ldrh 	r1, [r0, #0x14]
 	ldrh 	r2, [r0, #0x16]
+
 
 @ r0 = New Key Presses
 	ldr  r0, =pKeyStatusBuffer
@@ -68,7 +72,7 @@ NoBPress:
 	
 	ldr 	r3, [r4, #0x2C]
 	ldr 	r3, [r3, #0x14] @ OnRPress
-	mov r6, r5 
+
 	
 	cmp 	r3, #0x0
 	beq 	NoRPress

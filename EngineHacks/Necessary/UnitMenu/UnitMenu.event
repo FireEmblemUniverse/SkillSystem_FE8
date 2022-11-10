@@ -6,33 +6,50 @@
 
 #include "Extensions/Hack Installation.txt"
 #include "_UnitMenuDefs.event"
+
+
+#define UnitMenuWidth 8 
+#define ChMenuWidth 9
+#define UnitMenuLeft 2 // submenu ignores this 
+#define UnitMenuRight 21 
+#define ChMenuRight 21
+
 #include "SubMenu/Installer.event"
-
-
-
 
 PUSH
   // Repoint Unit Menu
-
   ORG $59D1F8
     POIN UnitMenuTable
 
-  // Make the unit menu wider (to fit longer words)
+// Make all menus that are too far to the right to start at this x coord 
+ORG $4EBB6 
+//BYTE GeneralMenusLeft 
 
+// Make the chapter menu wider 
+ORG $59D216 
+BYTE ChMenuWidth 
+ORG $1CA86 
+BYTE ChMenuRight // 0x17 default 
+
+
+
+
+
+  // Make the unit menu wider (to fit longer words)
   ORG $59d1f2 
-    BYTE 0x9 // width
+    BYTE UnitMenuWidth
 
   ORG $1d4fa
-    BYTE $01 // left x coord (open 1)
+    BYTE UnitMenuLeft // left x coord (open 1)
 
   ORG $1d4fc
-    BYTE $14 // right x coord (open 1)
+    BYTE UnitMenuRight // right x coord (open 1)
 
   ORG $1D44E
-    BYTE $01 // left x coord (open 2)
+    BYTE UnitMenuLeft // left x coord (open 2)
 
   ORG $1D450
-    BYTE $14 // right x coord (open 2)
+    BYTE UnitMenuRight // right x coord (open 2)
 
   /*
 
@@ -40,29 +57,27 @@ PUSH
 
   ORG $22882
     BYTE $01 // left x coord (go back 1)
-
-  ORG $22884
-    BYTE $14 // right x coord (go back 1)
-
   */
+ORG $22884 // Capture returns here 
+BYTE UnitMenuRight // Capture 
 
   ORG $22818
-    BYTE $01 // left x coord (go back 2)
+    BYTE UnitMenuLeft // left x coord (go back 2)
 
   ORG $2281A
-    BYTE $14 // right x coord (go back 2)
+    BYTE UnitMenuRight // right x coord (go back 2)
 
   ORG $22772
-    BYTE $01 // left x coord (go back 3)
+    BYTE UnitMenuLeft // left x coord (go back 3)
 
   ORG $22774
-    BYTE $14 // right x coord (go back 3)
+    BYTE UnitMenuRight // right x coord (go back 3)
 
   ORG $23660
-    BYTE $01 // left x coord (go back 4)
+    BYTE UnitMenuLeft // left x coord (go back 4)
 
   ORG $23662
-    BYTE $14 // right x coord (go back 4)
+    BYTE UnitMenuRight // right x coord (go back 4)
 
 POP
 

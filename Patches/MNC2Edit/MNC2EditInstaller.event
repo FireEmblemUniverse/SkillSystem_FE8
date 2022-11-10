@@ -40,9 +40,9 @@ ORG 0x9DEF
 ORG 0x9DEC 
 //BYTE PCBoxCh //chapter to save at 
 
-//Kill PrepareBlankTile patch by 7743 (fixes a minor graphical glitch)
-ORG 0x35728
-BYTE 0x00 0x00 0x00 0x00
+//Kill PrepareBlankTile patch by 7743 (fixes a minor graphical glitch with improper tilesets, but breaks black bar for Warp and AoE at bottom of the screen)
+//ORG 0x35728
+//BYTE 0x00 0x00 0x00 0x00
 
 
 

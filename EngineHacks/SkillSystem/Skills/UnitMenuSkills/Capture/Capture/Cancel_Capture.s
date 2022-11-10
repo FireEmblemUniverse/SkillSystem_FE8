@@ -18,7 +18,10 @@ ldsh	r1,[r2,r3]
 mov		r3,#0xC
 ldsh	r2,[r2,r3]
 sub		r1,r1,r2
-mov		r2,#0x1
+ldr r2, =0x801d4fa 
+ldrb r2, [r2] @ UnitMenuLeftCoord 
+ldr r3, =0x801d4fc
+ldrb r3, [r3] @ UnitMenuRightCoord
 bx		r14
 
 .align

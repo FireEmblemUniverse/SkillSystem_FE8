@@ -4,7 +4,7 @@ PUSH
 //サブメニューの幅 Submenu's width
 //ORG 0x5C5492	//{J}
 ORG 0x59CFB2	//{U}
-BYTE 0x8
+BYTE UnitMenuWidth
 
 //ORG 0x5C5498	//{J}
 ORG 0x59CFB8	//{U}
@@ -92,7 +92,7 @@ MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,AlwaysUsable,ReorderMovesEf
   UM_Give
   UM_Take
   UM_Drop
-UM_Item
+//UM_Item
 MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, AlwaysUsable, ReleaseCommandEffect)
  
 /*

@@ -24,6 +24,8 @@ int SpellDrawingRoutine(MenuProc* menu, MenuCommandProc* menuCommand)
 	return 0;
 }
 
+extern u8 UnitMenuLeft; //0x801d4fa
+extern u8 UnitMenuRight; //0x801d4fc
 int MagicMenuBPress(void)
 {
 
@@ -36,7 +38,7 @@ int MagicMenuBPress(void)
 	EnableBgSyncByMask(4);
 	Text_ResetTileAllocation();
 	// Refer to the Skill System's repointed unit menu.
-	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x,1,16);
+	StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu,gGameState._unk1C.x - gGameState.cameraRealPos.x, UnitMenuLeft, UnitMenuRight);
 	HideMoveRangeGraphics();
 	SelectedSpell = 0;
 	UsingSpellMenu = 0;

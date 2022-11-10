@@ -27,8 +27,10 @@ ldsh r1, [r2, r3] @(BattleMapState@gGameState._unk1C )
 mov r3, #0xc
 ldsh r2, [r2, r3] @(BattleMapState@gGameState.cameraRealPos )
 sub r1 ,r1, r2
-mov r2, #0x1
-mov r3, #0x16
+ldr r2, =0x801d4fa 
+ldrb r2, [r2] @ UnitMenuLeftCoord 
+ldr r3, =0x801d4fc
+ldrb r3, [r3] @ UnitMenuRightCoord
 @blh 0x080503c0,r4  @NewMenu_AndDoSomethingCommands	{J}
 @blh 0x0801d730,r4  @HideMoveRangeGraphics	{J}
 blh 0x0804F64C,r4  @NewMenu_AndDoSomethingCommands	{U}

@@ -149,12 +149,6 @@ ORG 0x7F264
 BYTE 0x01 0x21 
 
 
-// Chapter Menu Window Width by Kirb 
-ORG 0x59D216
-BYTE 0x7 // Default is 7 
-// Needs the whole menu to be shifted over to look decent with width > 7 
-
-
 // Disable sound room by Aera 
 ORG 0x0AB920
 BYTE 0x00 0x00 0x00 0x20

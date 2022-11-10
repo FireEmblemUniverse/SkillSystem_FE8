@@ -248,9 +248,9 @@ WORD AoE_RamAddressDef
 
 ALIGN 4
 AoESubmenuDef:
-BYTE 0 //x coord ? 
+BYTE 0 //x coord ? // r0=859D1F0, 1D4FC as #20 
 BYTE 3 //y coord
-BYTE 8 //width
+BYTE 9 //width
 BYTE 0 //height
 WORD 0 //Unknown
 POIN AoEMenuCommandsList //menu commands ptr
