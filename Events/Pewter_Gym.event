@@ -78,8 +78,12 @@ CAM1 [7,0]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
 SilentGiveItemWithDurability(0xD0, DryingPan,0x81)
 SilentGiveItemWithDurability(0xD0, JellyDonut,0x2)

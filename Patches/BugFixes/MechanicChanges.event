@@ -5,6 +5,11 @@
 
 PUSH 
 
+ORG $35728 // Kill Prepare Blank Tile by 7743  
+WORD 0 
+
+
+
 // footsteps table by 7743 
 ORG $78D84 
 SHORT 0xE01C 

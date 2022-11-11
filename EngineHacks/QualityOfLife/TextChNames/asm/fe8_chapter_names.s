@@ -14,6 +14,11 @@ push    {r7}                @@ 0808230C B480
 add     sp,#-0x4                @@ 0808230E B081     
 mov     r4,r0               @@ 08082310 1C04     
 mov     r0,r1               @@ 08082312 1C08    
+
+@mov r11, r11 
+@ldr r0, ChapterID_Ram
+@ldrb r0, [r0] @ chapter we last saved at 
+
 mov		r1,r2 
 bl      LoadChapterName               @@ 08082314 F7FFFFC6 @not in fe8?? 
 mov     r7,r0               @@ 08082318 1C07     
@@ -574,3 +579,5 @@ bx      r14               @@ 080820E2 4770
 Font_Graphic_Ptr:
 .set FontDimensionsTable, Font_Graphic_Ptr+4
 .set AltChapterTitleTable, FontDimensionsTable+4
+.set ChapterID_Ram, AltChapterTitleTable+4 
+

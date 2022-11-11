@@ -40,10 +40,16 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR 0 CallRevivePartyCostEvent [0x0, 0xE2] 0 // NPC
 AllTrainersPostBattleTalk
 END_MAIN
 
-
+CallRevivePartyCostEvent:
+SVAL s2 MtMoonNurseJoyText
+SVAL s3 2000 // amount it costs 
+CALL RevivePartyCostEvent
+NoFade 
+ENDA 
 
 LocationBasedEvents:
 House(0, ToRoute4E, 28,5) 
@@ -178,7 +184,7 @@ LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
-
+MarkTrainerAsDefeated(0xE2) 
 LABEL 0x63
 NoFade
 ENDA
@@ -251,6 +257,7 @@ MS_TableTerminator ; }
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 SHORT MMB2_0xE0_BQ // 0xE0 
 SHORT MMB2_0xE1_BQ // 0xE1
+SHORT MMB2_0xE1_BQ // 0xE1
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
@@ -258,11 +265,14 @@ SHORT MMB2_0xE0_BD // 0xE0
 SHORT 300 // Gold 
 SHORT MMB2_0xE1_BD // 0xE1
 SHORT 550 // Gold 
+SHORT MMB2_0xE1_BD // 0xE1
+SHORT 550 // Gold 
 TDQ_TableTerminator ; }
 
 HumanTrainers:
 UNIT 0xE0 super_nerdID 0x0 Level(0, Enemy, 1) [10,20]  0b 0x0	0x1 REDA10R20 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 super_nerdID 0x0 Level(0, Enemy, 1) [26,28]  0b 0x0	0x1 REDA26R28 [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE2 ReceptionistID 0x0 Level(0, NPC, 1)   [5,7] 0	0x0 0x01 REDA5R7 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT
 
 

@@ -10,6 +10,7 @@ jumpToHack(display_version)
 //FEBuilderGBA‚ÅUPS‚ğì‚ç‚È‚¢ê‡‚ÍA©•ª‚Å‚±‚Ì’l‚ğ‘‚«‘Ö‚¦‚Ä‚­‚¾‚³‚¢B
 //This value is automatically updated when you create a UPS with FEBuilderGBA.
 //If you do not make UPS with FEBuilderGBA, please rewrite this string by yourself.
+// B2C POIN DC110 and something in this file POINs to it too 
 //ORG $DC110	//{J}
 ORG $D74D0	//{U}
 //#inctext DateTimeSetter
@@ -23,8 +24,8 @@ ALIGN 4
 POIN display_version_info
 
 display_version_info:
-BYTE 3  //X
-BYTE 18  //Y
+BYTE 0  //X
+BYTE 19  //Y
 BYTE 0x9 //PAL
 BYTE 0x01 //Show
 

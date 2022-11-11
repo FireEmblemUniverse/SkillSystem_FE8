@@ -7,7 +7,7 @@
 #define ENABLE_RANDOMIZER 
 
 PUSH; ORG $D74D0	//{U}
-String("Version 1.04    Nov 2022") ; BYTE 0; POP 
+String("V1.04                 Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 
 //#define ALT_TITLESCREEN
@@ -124,7 +124,10 @@ String("Version 1.04    Nov 2022") ; BYTE 0; POP
 #define BuffTableSize 0x1D8 // Pokemblem - 50 players/enemies, 15 NPCs - regular would be $21C i think 
 #define BuffTableEntrySize 4 
 
-
+#define CurrentChapter 		0x30017ae
+#define TeleportChapter 		0x30017af 
+#define RetreatChapter 		0x30017b0
+#define DigChapter 			0x30017b1 
 #define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
 #define PostTrainerBattleRamLocat 0x30017b3 
 #define StartTimeSeedRam 0x30017C4 // - c7 used in RandomizeClass 

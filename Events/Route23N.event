@@ -33,8 +33,24 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR 0 CallRevivePartyCostEvent [0x0, 0xE0] 0 // NPC
+CHAR 0 CallRevivePartyCostEvent2 [0x0, 0xE1] 0 // NPC
+//AllTrainersPostBattleTalk
 END_MAIN
+
+CallRevivePartyCostEvent:
+SVAL s2 VictoryRoadNurseJoyText_A
+SVAL s3 5000 // amount it costs 
+CALL RevivePartyCostEvent
+NoFade 
+ENDA 
+
+CallRevivePartyCostEvent2:
+SVAL s2 VictoryRoadNurseJoyText_B
+SVAL s3 5000 // amount it costs 
+CALL RevivePartyCostEvent
+NoFade 
+ENDA 
 
 
 
@@ -133,7 +149,12 @@ ALIGN 4
 
 
 BeginningScene:
-ReviveParty
+LOAD1 1 NurseUnits 
+ENUN 
+MarkTrainerAsDefeated(0xE0) 
+MarkTrainerAsDefeated(0xE1)
+ 
+
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
@@ -177,6 +198,19 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
+ALIGN 4
+REDA7R48:
+REDA [7,48] 0x0 0x0 0x0 0x0
+
+ALIGN 4
+REDA19R46:
+REDA [19,46] 0x0 0x0 0x0 0x0
+
+NurseUnits:
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT 0xE0 ReceptionistID 0x0 Level(0, NPC, 1)   [7,48] 0	0x0 0x01 REDA7R48 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT 0xE1 ReceptionistID 0x0 Level(0, NPC, 1)   [19,46] 0	0x0 0x01 REDA19R46 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT
 
 
 { ; MS_ChTableEntry(ChapterID) // Modular Summon table per chapter 
@@ -185,10 +219,14 @@ MS_TableEntry(0xED, 0, 0, 0, 1, 1, 0, 1, VeslyUnits)
 MS_TableTerminator ; } 
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+BQ(0, VeslyRoute23ChallengeText )
+BQ(1, VeslyRoute23ChallengeText )
 BQ(0xD, VeslyRoute23ChallengeText )
 TDQ_TableTerminator; 
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD(0, VeslyRoute23DefeatText , 0) 
+BD(1, VeslyRoute23DefeatText , 0) 
 BD(0xD, VeslyRoute23DefeatText , 5000) 
 TDQ_TableTerminator 
 

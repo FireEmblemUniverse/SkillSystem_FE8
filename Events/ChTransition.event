@@ -5,10 +5,10 @@
 
 //#define XCoordNewArea 			0x30017ac
 //#define YCoordNewArea 			0x30017ad
-#define CurrentChapter 		0x30017ae
-#define TeleportChapter 		0x30017af 
-#define RetreatChapter 		0x30017b0
-#define DigChapter 			0x30017b1 
+//#define CurrentChapter 		0x30017ae
+//#define TeleportChapter 		0x30017af 
+//#define RetreatChapter 		0x30017b0
+//#define DigChapter 			0x30017b1 
 #define GaryStarterClass 		0x30017b2 //we can set this at the beginning and then add 1 a couple times to evolve, maybe? 
 //#define Player1UnitID 			0x30017b3 // PostTrainerBattleRamLocat now a byte 
 //#define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
@@ -335,6 +335,18 @@ ENUN
 NoFade 
 ENDA 
 
+RevivePartyCostEvent: 
+EVBIT_MODIFY 4
+EVBIT_F 2 
+SVAL r7 1 
+BottomWallS2Text
+BNE 0x63 rC r7
+GIVETOSLOT3 
+ReviveParty
+ASMC CallCommandEffect
+LABEL 99 
+NoFade 
+ENDA 
 
 CannotEscapeEvent: // given s1 unit ID and s2 text to display that prevents escape, check if trainer undefeated, and if so, prevent escape 
 CHECK_EVENTID PlayableCutsceneFlag

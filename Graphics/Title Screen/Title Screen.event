@@ -8,6 +8,12 @@ GameTitle:
 #incbin "Dmp/EmptyScroll.dmp"
 
 PUSH
+
+ORG $C5496 
+BYTE $46 // vanilla is $48 
+ORG $C5498 // Press start Y position 
+BYTE $8C // vanilla is $7C
+
 ORG 0xC5808
 POIN GameLogo
 
