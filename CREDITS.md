@@ -23,6 +23,8 @@ FabulaFares, ScubaLuigi, ChilanBerry, Rurouni
 
 # Assets
 
+Title screen - redppr 
+
 Most item icons - Lukirioh
 
 Pokemart Clerk, Beta Trainer Sprites, Choice Band, Muscle Band - Zaim
