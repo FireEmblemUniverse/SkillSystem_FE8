@@ -43,6 +43,8 @@ gSaveBlockDecl:
 	SHORT $691C 2    // 5: link arena
 	SHORT $7400 3    // 6: potentially interesting stuff that nobody really understands (save based chapters!)
 
+// Vesly note: Chapter Titles uses offsets from here to figure out what new chapter title to use 
+// poor form but whatever 
 ALIGN 4
 gSaveBlockTypeSizeLookup:
 	SHORT $1344 // type 0: game

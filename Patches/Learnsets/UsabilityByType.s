@@ -21,6 +21,7 @@ push {r4-r5, lr}
 mov r4, r0 
 mov r5, r1 @ item ID 
 
+
 mov r2, #0x27 
 CheckIfAlreadyLearnedLoop:
 add r2, #1 

@@ -133,8 +133,8 @@ SpellScrollTrap(7,6, (ChapterID*2), BodySlam)
 
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 
 
-//SignBTrap(9,33, ChapterID, 0x0) //no extra text 
-//SignATrap(21,15, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(8,21, ChapterID, 0x0) //no extra text 
+SignATrap(20,4, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 //BerryTree(8,22,5)
@@ -327,7 +327,7 @@ EnemyTrainers4: // sailor
 UNIT GenericB 	TentacoolID 0xE4 	Level(0, Enemy, 1) [8,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT GenericB 	RattataID 0xE4		Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT GenericB 	PidgeyID 0xE4 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	TentacoolID 0xE4 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+//UNIT GenericB 	TentacoolID 0xE4 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT
 	
 	

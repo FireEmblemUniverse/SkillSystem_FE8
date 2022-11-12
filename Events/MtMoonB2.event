@@ -136,8 +136,8 @@ RedPokeballTrap(29,22, ChapterID*2, Iron)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
-//SignBTrap(54,11, ChapterID, 0x0) //no extra text 
-//SignATrap(4,8, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignBTrap(20,20, ChapterID, 0x0) //no extra text 
+SignATrap(2,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
 SpellScrollTrap(5,14, (ChapterID*2)+1, Harden)

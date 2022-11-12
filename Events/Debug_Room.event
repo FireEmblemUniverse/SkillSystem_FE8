@@ -403,7 +403,7 @@ AutoLevelUnits(77, True, 0x145) // all
 //SetUnitStatus(2, 0x2C, 0)
 
 SetUnitStatus(1, 0x29, Growl)
-SetUnitStatus(1, 0x28, PayDay)
+SetUnitStatus(1, 0x28, Ember)
 //SetUnitStatus(1, 0x2A, GuardMove)
 //SetUnitStatus(1, 0x2B, Growl)
 //SetUnitStatus(1, 0x2C, FlameWheel)
@@ -444,7 +444,7 @@ ENUT DomeFossilFlag
 
 ENUT PokefluteFlag
 //ENUT StrengthBoulderFlag
-ENUT BoulderbadgeObtained 
+//ENUT BoulderbadgeObtained 
 //ENUT CascadebadgeObtained 
 ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
@@ -465,14 +465,14 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(9, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(9, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 ViridianCh
 
 
 //SetUnitStatus(1, CurrentHP, 5)
-MNC2 ViridianForestSCh
+MNC2 Route1Ch
 //MNC2 MtMoonB2Ch
 //MNC2 SeafoamB3Ch
 

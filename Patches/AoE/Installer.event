@@ -144,6 +144,7 @@ MenuCommandID(ThunderWaveName, 		UM_AoEDesc, NormalText, 95, AoE_SpecificUsabili
 MenuCommandID(PoisonGasName, 		UM_AoEDesc, NormalText, 96, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(ToxicName, 		UM_AoEDesc, NormalText, 97, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(IcyWindName, 		UM_AoEDesc, NormalText, 98, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(WaterPulseName, 		UM_AoEDesc, NormalText, 99, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 UM_Separator 
 
 
@@ -1335,7 +1336,7 @@ BYTE 0 0 0 0
 BYTE 0 0 0 Swift // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
-BYTE 1 1 // Attack range
+BYTE 2 2 // Attack range
 BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
@@ -1610,6 +1611,18 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE DebuffConfigTwoByte // Config2
 
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 WaterPulse // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 2 2 // Attack range
+BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
 
 AoE_TableTerminator
 

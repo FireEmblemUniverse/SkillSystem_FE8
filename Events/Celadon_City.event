@@ -93,9 +93,9 @@ EVBIT_MODIFY 4
 WallText(PurchasePrizeText)
 LOAD1 1 PrizesUnitGroup  
 ENUN 
-AutoLevelUnits(20, True, TempAlly_A<<8|TempAlly_E) // 
-// Abra, Clefairy, Eevee, Dratini, Porygon
-SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 6500, 9000, 12000, 5000) // Porygon for cheap since in SilphCo for free 
+AutoLevelUnits(19, True, TempAlly_A<<8|TempAlly_E) // 
+// Abra, Clefairy, Dratini, Lickitung, Snorlax
+SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 6500, 9000, 15000, 30000) // Porygon for cheap since in SilphCo for free 
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20
@@ -390,9 +390,9 @@ UNIT
 PrizesUnitGroup:
 UNIT TempAlly_A AbraID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT TempAlly_B ClefairyID 0x0 Level(0, Ally, 1) [0,1]  0b 0x0	0x1 REDA0R1 [0x0,0x0,0x0,0x0] DoNothing
-UNIT TempAlly_C EeveeID 0x0 Level(0, Ally, 1) [0,2]  0b 0x0	0x1 REDA0R2 [0x0,0x0,0x0,0x0] DoNothing
-UNIT TempAlly_D DratiniID 0x0 Level(0, Ally, 1) [0,3]  0b 0x0	0x1 REDA0R3 [0x0,0x0,0x0,0x0] DoNothing
-UNIT TempAlly_E PorygonID 0x0 Level(0, Ally, 1) [0,4]  0b 0x0	0x1 REDA0R4 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_C DratiniID 0x0 Level(0, Ally, 1) [0,2]  0b 0x0	0x1 REDA0R2 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_D LickitungID 0x0 Level(0, Ally, 1) [0,3]  0b 0x0	0x1 REDA0R3 [0x0,0x0,0x0,0x0] DoNothing
+UNIT TempAlly_E SnorlaxID 0x0 Level(0, Ally, 1) [0,4]  0b 0x0	0x1 REDA0R4 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 // Abra, Clefairy, Eevee, Dratini, Porygon

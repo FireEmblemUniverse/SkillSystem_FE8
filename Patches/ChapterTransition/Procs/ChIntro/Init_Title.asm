@@ -1,6 +1,9 @@
 @ Mostly mimic 0x20778, but load palette in slot 0xF
 .thumb
-
+.set    gpBG0MapBuffer, 0x02022CA8
+.set    BG_Fill, 0x08001221
+.set    ChapterData, 0x0202BCF0
+.set    EnableBackgroundSyncById, 0x08001FBD
 push  {r4-r6, r14}
 
 ldr   r4, =gpBG0MapBuffer
@@ -23,6 +26,7 @@ mov   r5, r0
 mov   r0, #0xA0
 lsl   r0, #0x2
 mov   r1, r5
+ldr r2, =0x8012345
 ldr   r6, =0x0808966D
 bl    GOTO_R6
 

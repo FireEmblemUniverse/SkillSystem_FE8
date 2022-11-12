@@ -18,25 +18,59 @@ mov     r7,r8               @@ 0808230A 4647
 push    {r7}                @@ 0808230C B480     
 add     sp,#-0x4                @@ 0808230E B081  
 mov     r4,r0               @@ 08082310 1C04    
-ldrb r0, [r1]  
-mov     r0,r1               @@ 08082312 1C08    
-mov r11, r11 
-cmp r2, #1 @ we only change the save filename for the save screen 
-bne VanillaBehaviour 
+mov     r5,r1               @@ 08082312 1C08    
+
+ldr r0, =0x8012345
+cmp r0, r2 
+beq VanillaBehaviour @ ChapterTransition now gives this value in r2 lol 
+
+ldr r0, =0x280 
+cmp r4, r0 
+beq TryThisVRAM
+ldr r1, =0x2C0 
+cmp r4, r1 
+beq TryThisVRAM 
+ldr r1, =0x300 
+cmp r4, r1 
+beq TryThisVRAM 
+
+ldr r0, =0xB40 
+cmp r4, r0 
+beq TryThisVRAM 
+ldr r1, =0xB80 
+cmp r4, r1 
+beq TryThisVRAM 
+ldr r1, =0xBC0 
+cmp r4, r1 
+beq TryThisVRAM 
+b VanillaBehaviour 
 
 
-mov r1, #0 
-sub r1, #1 
-cmp r0, r1 
+
+TryThisVRAM:
+mov r1, r4 
+sub r1, r0 @ 0, 0x40, or 0x80 
+lsr r1, #6 @ 0, 1, or 2 
+@cmp r2, #1 @ we only change the save filename for the save screen 
+@bne VanillaBehaviour 
+
+
+mov r0, #0 
+sub r0, #1 
+cmp r5, r0 
 beq VanillaBehaviour 
-cmp r0, #0x4A 
+cmp r5, #0x4A 
 beq VanillaBehaviour 
 @mov r11, r11 
-ldr r0, ChapterID_Ram
-@ldr r1, SaveslotOffset 
 
-ldrb r0, [r0] @ chapter we last saved at 
+
+ldr r0, SaveslotSize 
+mul r0, r1 
+ldr r1, ChapterID_Ram
+add r0, r1 
+ldrb r5, [r0] @ chapter we last saved at 
 VanillaBehaviour: 
+mov r0, r5 @ chapter ID 
 
 mov		r1,r2 
 bl      LoadChapterName               @@ 08082314 F7FFFFC6 @not in fe8?? 
@@ -599,4 +633,4 @@ Font_Graphic_Ptr:
 .set FontDimensionsTable, Font_Graphic_Ptr+4
 .set AltChapterTitleTable, FontDimensionsTable+4
 .set ChapterID_Ram, AltChapterTitleTable+4 
-
+.set SaveslotSize, ChapterID_Ram+4 

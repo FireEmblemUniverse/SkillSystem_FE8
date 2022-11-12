@@ -3,7 +3,7 @@
 #define GenericB UnitRoute21Trainer
 #define ClassA ClassRoute21WildA
 #define ClassB ClassRoute21WildB
-#define WildLvl 35
+#define WildLvl 30
 #define TrainerL 38
 
 
@@ -177,6 +177,9 @@ ENUN
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
 
+CHECK_EVENTID RockSmashFlag
+BNE 0x63 sC s0 
+SetUnitStatus(0xEE, Level, 30) 
 LABEL 0x63
 NoFade
 ENDA

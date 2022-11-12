@@ -130,6 +130,8 @@ SignATrap(38,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
 
+RedPokeballTrap(29,11, ChapterID*2, FireStone)
+
 BlankExamineTrap(4,28,FuschiaGymSignText)
 BlankExamineTrap(28,28,FuschiaSESignText)
 SignTrap(19,6,FuschiaSafariSignText ) // Safari Zone 

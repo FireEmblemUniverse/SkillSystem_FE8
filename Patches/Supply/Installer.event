@@ -1,9 +1,34 @@
 #include "SortSupply.lyn.event" 
-
-
-
+#include "IsTMUsable.lyn.event" 
+// 16F6C end of IsItemUsable ? 
+// 8016EE4 
+// 9D37A IsItemUsable 
+// if so, Black Text, if not Grey 
+// 0809DB26 PrepScreenItemsMenu CallASM
 
 PUSH
+
+ORG $16EE4
+SHORT $B570 // Push r4-r6 
+SHORT 0x1C06 // mov r6, r0 
+
+ORG $16F02 
+BYTE $30 // mov r0, r6 
+ORG $16F18 
+BYTE $30 // mov r0, r6 
+ORG $16F2C 
+BYTE $30 
+ORG $16F3E 
+SHORT $6832 
+SHORT $6873 
+
+
+ORG $16F60 
+callHackNew(IsTMUsable)
+
+ORG $16F74 
+BYTE $70 // Pop r4-r6 
+
 
 //Chop off the first digit when viewing items in supply 
 //Eg. 0x21 becomes 0x01 and will show up with lances. 
