@@ -235,9 +235,11 @@ blh GetUnit
 cmp r0, #0 
 beq False_IsTrainersTeamDefeated
 mov r5, r0 
+
 ldrb r0, [r5, #0x13] @ CurrentHP 
 cmp r0, #0 
 bne False_IsTrainersTeamDefeated @ so loading the dmg preview and then waiting doesn't count the unit as defeated 
+CapturedSoNotDead: 
 
 @ Commander should be the same for Dfdr / unit 
 @ this is done because battle struct doesn't get cleared after battle 

@@ -27,8 +27,8 @@ PostCombatSkills:
 POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce
 POIN CheckIfGameOver
-POIN CapturePokemon 
 POIN IsTrainersTeamDefeated
+POIN CapturePokemon // needs to be after IsTrainersTeamDefeated 
 POIN RockyHelmetFunc
 POIN SavageBlow  //I like having savage blow as the first one because it makes the activation sound play first
 POIN SelfDebuffMoves

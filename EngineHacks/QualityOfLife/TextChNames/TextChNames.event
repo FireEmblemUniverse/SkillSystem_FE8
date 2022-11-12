@@ -22,8 +22,11 @@
     POIN ChFont
     POIN ChTable
 	POIN ChTable 
-	WORD 0x3000000 + $05e1 + $E // Savefile 1 + offset to chapter ID 
-
+	WORD 0xE000000 + $352F // Savefile 1 + offset to chapter ID 
+	WORD $1344 // size 
+	// savefile 2: 4873 
+	// savefile 3: 5BB7 
+// suspend: E00015A 
   ChFont:
     //#incext Png2Dmp "bin/font.png" --lz77
     #incbin "bin/font-extended.dmp"

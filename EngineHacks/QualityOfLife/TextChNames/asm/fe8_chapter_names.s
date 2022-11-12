@@ -7,17 +7,36 @@ sub_8082308:
 @r0 is 0xb40 (position?)
 @r1 is chapter number. 0x54 is no data?
 @r2 is a bool; true for save screen and false otherwise. The purpose of this is so that you cannot see the chapter's name from the save screen; instead, you put something generic like 'Chapter 1' and then the actual name appears on the fancy intro thingy. Idea courtesy of PwnageKirby.
+@ 2024F77, 78, 79 
+
+@ 808966E 
+@ 80A8A9C calls this without anything in r2 lol 
+@ same with 80A96EC 
 
 push    {r4-r7,r14}               @@ 08082308 B5F0     
 mov     r7,r8               @@ 0808230A 4647     
 push    {r7}                @@ 0808230C B480     
-add     sp,#-0x4                @@ 0808230E B081     
-mov     r4,r0               @@ 08082310 1C04     
+add     sp,#-0x4                @@ 0808230E B081  
+mov     r4,r0               @@ 08082310 1C04    
+ldrb r0, [r1]  
 mov     r0,r1               @@ 08082312 1C08    
+mov r11, r11 
+cmp r2, #1 @ we only change the save filename for the save screen 
+bne VanillaBehaviour 
 
+
+mov r1, #0 
+sub r1, #1 
+cmp r0, r1 
+beq VanillaBehaviour 
+cmp r0, #0x4A 
+beq VanillaBehaviour 
 @mov r11, r11 
-@ldr r0, ChapterID_Ram
-@ldrb r0, [r0] @ chapter we last saved at 
+ldr r0, ChapterID_Ram
+@ldr r1, SaveslotOffset 
+
+ldrb r0, [r0] @ chapter we last saved at 
+VanillaBehaviour: 
 
 mov		r1,r2 
 bl      LoadChapterName               @@ 08082314 F7FFFFC6 @not in fe8?? 
