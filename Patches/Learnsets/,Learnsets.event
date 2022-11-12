@@ -2724,6 +2724,7 @@ BYTE 7 Swift
 BYTE 10 QuickAttack
 BYTE 12 RecoverMove
 BYTE 15 WaterGun
+BYTE 18 BodySlam
 BYTE 20 Bite
 BYTE 22 WaterPulse
 BYTE 25 AuroraBeam
@@ -2731,9 +2732,10 @@ BYTE 28 MudBomb
 BYTE 30 Amnesia
 BYTE 32 DoubleEdge
 BYTE 35 Surf
-BYTE 38 Waterfall
-BYTE 40 HyperBeam
-BYTE 45 HydroPump
+BYTE 38 TriAttack
+BYTE 40 Waterfall
+BYTE 42 HydroPump
+BYTE 45 HyperBeam
 BYTE 0 0
 
 ALIGN 4
@@ -2746,16 +2748,18 @@ BYTE 7 Swift
 BYTE 10 QuickAttack
 BYTE 12 RecoverMove
 BYTE 15 Thundershock
+BYTE 18 BodySlam
 BYTE 20 Bite
 BYTE 22 ShockWave
 BYTE 25 SignalBeam
-BYTE 28 JumpKick
+BYTE 28 WaterPulse
 BYTE 30 Agility
 BYTE 32 DoubleEdge
 BYTE 35 Thunderbolt
-BYTE 38 VoltTackle
-BYTE 40 HyperBeam
-BYTE 45 ThunderMove
+BYTE 38 TriAttack
+BYTE 40 VoltTackle
+BYTE 42 ThunderMove
+BYTE 45 HyperBeam
 BYTE 0 0
 
 ALIGN 4
@@ -2767,16 +2771,18 @@ BYTE 7 Swift
 BYTE 10 QuickAttack
 BYTE 12 RecoverMove
 BYTE 15 Ember
+BYTE 18 BodySlam
 BYTE 20 Bite
 BYTE 22 FlameWheel
 BYTE 25 Dig
 BYTE 28 PoisonJab
 BYTE 30 SwordsDance
-BYTE 32 DoubleEdge // LastResort
+BYTE 32 DoubleEdge
 BYTE 35 FireSpin
-BYTE 38 FireBlast
-BYTE 40 HyperBeam
-BYTE 45 SacredFire
+BYTE 38 TriAttack
+BYTE 40 FireBlast
+BYTE 42 SacredFire
+BYTE 45 HyperBeam
 BYTE 0 0
 
 ALIGN 4
