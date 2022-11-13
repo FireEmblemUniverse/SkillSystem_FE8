@@ -94,9 +94,33 @@ SummonStuff:
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 
 
+
 mov r0, #0
-mov r1, #0x1E @ Weapon  
-strh r0, [r3, r1]
+mov r1, r3 
+add r1, #0x1E @ Weapon  
+strh r0, [r1, #0]
+
+
+ldr r2, [r3] 
+ldrb r2, [r2, #4] 
+cmp r2, #0xEE 
+beq SkipThis 
+cmp r2, #0xED 
+beq SkipThis 
+cmp r2, #0xE0 
+blt SkipThis 
+cmp r2, #0xF0 
+bge SkipThis 
+
+strh r0, [r1, #2]
+strh r0, [r1, #4]
+strh r0, [r1, #6]
+strh r0, [r1, #8]
+strh r0, [r1, #10] @ known moves 
+strh r0, [r1, #12]
+strb r0, [r1, #13]
+
+SkipThis: 
 
 mov r0, r3 
 blh RemoveUnitBlankItems
