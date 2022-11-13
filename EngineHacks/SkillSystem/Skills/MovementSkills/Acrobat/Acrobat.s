@@ -3,24 +3,20 @@
 	.equ CheckEventId,0x8083da8
 .equ AcrobatID, SkillChecker+4
 @r0=movement cost table. Function originally at 1A4CC, now jumped to here (jumpToHack)
-push  {r4,r5,r14}
+push  {r4-r6,r14}
 mov   r4,r0
 ldr 	r0, =CheckEventId
 mov   r14,r0
 ldr   r0,CurrentCharPtr
-ldr   r0,[r0]
-cmp   r0, #0
+ldr   r6,[r0]
+cmp   r6, #0
 bne   NoDZ
-mov   r0, r2 @if the active unit is 0, we're being called from dangerzone
+mov   r6, r2 @if the active unit is 0, we're being called from dangerzone
 NoDZ:
 mov r0, #0 @ default as no acrobat 
 
-ldr r1,CurrentCharPtr
-ldr r1,[r1]
-cmp r1, #0 
-beq Player @ error so do things normally 
 
-ldrb r1, [r1, #0x0B] @ deployment byte 
+ldrb r1, [r6, #0x0B] @ deployment byte 
 lsr r1, #6 @ NPC/Enemies only 
 cmp r1, #0 
 beq Player
@@ -74,11 +70,7 @@ mov r2, #1 @ costs 1
 strb r2, [r3] 
 
 NoSurf: 
-ldr r0,CurrentCharPtr
-ldr r0,[r0]
-cmp r0, #0 
-beq Exit 
-ldrb r0, [r0, #0x0B] @ deployment byte 
+ldrb r0, [r6, #0x0B] @ deployment byte 
 lsr r0, #6 @ NPC/Enemies only 
 cmp r0, #0 
 beq Exit 
@@ -95,7 +87,7 @@ strb r2, [r3]
 
 
 Exit: 
-pop   {r4-r5}
+pop   {r4-r6}
 pop   {r0}
 bx    r0
 

@@ -3,7 +3,7 @@
 
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 #define ENABLE_RANDOMIZER 
 
 PUSH; ORG $D74D0	//{U}
