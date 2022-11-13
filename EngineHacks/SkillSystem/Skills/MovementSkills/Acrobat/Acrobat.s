@@ -15,7 +15,6 @@ mov   r6, r2 @if the active unit is 0, we're being called from dangerzone
 NoDZ:
 mov r0, #0 @ default as no acrobat 
 
-
 ldrb r1, [r6, #0x0B] @ deployment byte 
 lsr r1, #6 @ NPC/Enemies only 
 cmp r1, #0 

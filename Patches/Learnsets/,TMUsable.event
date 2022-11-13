@@ -196,13 +196,13 @@ BYTE 0
 ALIGN 4
 PikachuTMs:
 BYTE BodySlam Agility DoubleEdge Flash Growl Headbutt MegaKick MegaPunch PayDay QuickAttack Rage IronTail Slam Swift TailWhip Leer TakeDown GrassKnot SeismicToss Submission Dig Rest Rollout SignalBeam Counter LightScreen AttackPulse
-BYTE LeafFlurry DoubleKick
+BYTE LeafFlurry DoubleKick MudShot 
 BYTE 0
 
 ALIGN 4
 RaichuTMs:
 BYTE BodySlam Agility DoubleEdge Flash Growl Headbutt HyperBeam MegaKick MegaPunch PayDay QuickAttack Rage IronTail Slam Swift TailWhip Leer TakeDown GrassKnot SeismicToss Submission Dig Rest Rollout SignalBeam ThiefAtt Counter LightScreen AttackPulse
-BYTE LeafFlurry DoubleKick
+BYTE LeafFlurry DoubleKick MudShot 
 BYTE 0
 
 ALIGN 4
@@ -390,14 +390,14 @@ BYTE 0
 ALIGN 4
 PsyduckTMs:
 BYTE CalmMind BodySlam Amnesia Screech DoubleEdge Flash Headbutt MegaKick MegaPunch PayDay Rage Scratch IronTail Swift TailWhip Leer TakeDown HoneClaws Blizzard IceBeam IcePunch SeismicToss Submission Dig Confusion Psychic Rest SignalBeam Counter AttackPulse
-BYTE LowKick IcyWind 
+BYTE LowKick IcyWind MudShot 
 BYTE ConfuseRay SandAttack Psybeam RecoverMove
 BYTE 0
 
 ALIGN 4
 GolduckTMs:
 BYTE CalmMind BodySlam Amnesia Screech DoubleEdge Flash Headbutt HyperBeam MegaKick MegaPunch PayDay Rage Scratch IronTail Swift TailWhip Leer TakeDown HoneClaws Blizzard IceBeam IcePunch SeismicToss Submission Dig Confusion Psychic Rest FuryCutter SignalBeam Counter AttackPulse
-BYTE LowKick IcyWind 
+BYTE LowKick IcyWind MudShot 
 BYTE ConfuseRay SandAttack Psybeam RecoverMove
 BYTE 0
 
