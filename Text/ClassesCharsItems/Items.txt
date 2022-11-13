@@ -1215,7 +1215,8 @@ Chip damage.[N]
 Debuffs Def/Res by 12.[X]
 
 ## SlamDesc
-*{(}Slams the foe with a powerful tackle.[X]
+*{(}Slams the foe with a[N]
+powerful tackle.[X]
 
 ## SplashDesc
 Does nothing.[X]
@@ -1302,7 +1303,8 @@ Waterfall[X]
 *{)}Drains the health of the foe.[X]
 
 ## PetalDanceDesc
-*{)}A powerful display of plant power.[X]
+*{)}A powerful display of plant[N]
+power.[X]
 
 ## LeafBladeDesc
 *{(}A cutting blade of sharp leaves.[X]
@@ -1316,7 +1318,7 @@ if it doesn't KO. Cannot double.[X]
 *{(}A barrage of cutting leaves.[X]
 
 ## ThunderDesc
-*{)}A fierce but shaky electric strike.[X]
+*{)}A fierce but shaky bolt.[X]
 
 ## VoltTackleDesc
 *{(}A powerful electric tackle.[X]
@@ -1367,7 +1369,8 @@ Poisons the foe for 4 turns.[N]
 AoE: Poisons for 2 turns.[X]
 
 ## SludgeDesc
-*{)}A poisonous goo hurled at the foe.[X]
+*{)}A poisonous goo hurled[N]
+at the foe.[X]
 
 ## PoisonJabDesc
 *{(}A poisonous strike.[X]

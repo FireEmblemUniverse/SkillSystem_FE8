@@ -30,7 +30,21 @@ static
 u8* UnitGetMoveList(struct Unit* unit, int offset)
 {
 
-	return MoveListTable[(unit->pClassData->number)]; //[offset]; 
+	return &MoveListTable[(unit->pClassData->number)][offset*2]; //[offset]; 
+}
+
+u8 UnitGetMoveListSize(struct Unit* unit)
+{
+	u8* list = UnitGetMoveList(unit, 0); 
+	int c = 0; 
+	for (int i = 0; i < 255; i+=2) {
+		if ((list[i]) | (list[i+1])) 
+		{ 
+			c++; 
+		} 
+		else  { break; } 
+	}
+	return c; 
 }
 
 static
@@ -60,17 +74,17 @@ static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* comm
 //static int MoveCommandConfirm(struct MenuProc* menu, struct MenuCommandProc* command);
 //static int MoveCommandDecline(struct MenuProc* menu, struct MenuCommandProc* command);
 static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command);
-static void ReplaceMoveCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command);
-static void ReplaceMoveMenuEnd(struct MenuProc* menu);
+static void ViewLearnsetCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command);
+static void ViewLearnsetMenuEnd(struct MenuProc* menu);
 
 
 
-struct ReplaceMoveProc
+struct ViewLearnsetProc
 {
     /* 00 */ PROC_HEADER; // this ends at +29
     /* 2C */ struct Unit* unit;
     /* 30 */ u8 movesUpdated;
-			u8 moveSelected;
+			u8 ListSize;
 			u8 hover_move_Updated; 
 			u8 move_hovering; // 
 			u16 offset; // 0x34 
@@ -79,7 +93,7 @@ struct ReplaceMoveProc
 };
 
 
-static const struct ProcInstruction Proc_ReplaceMove[] =
+static const struct ProcInstruction Proc_ViewLearnset[] =
 {
     PROC_CALL_ROUTINE(LockGameLogic),
 
@@ -88,11 +102,15 @@ static const struct ProcInstruction Proc_ReplaceMove[] =
     PROC_END,
 };
 
-static const struct MenuCommandDefinition MenuCommands_ReplaceMove[] =
+void static DoNothing(struct MenuProc* menu, struct MenuCommandProc* command) {
+	return;
+} 
+
+static const struct MenuCommandDefinition MenuCommands_ViewLearnset[] =
 {
     {
         .isAvailable = MenuCommandAlwaysUsable,
-        .onDraw = ReplaceMoveCommandDraw,
+        .onDraw = ViewLearnsetCommandDraw,
 		.onIdle = List_Idle
 
     },
@@ -100,7 +118,7 @@ static const struct MenuCommandDefinition MenuCommands_ReplaceMove[] =
     {
         .isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = MoveListCommandDraw,
+        .onDraw = DoNothing,
 		.onIdle = List_Idle,
         //.onEffect = MoveCommandSelect,
     },
@@ -109,7 +127,7 @@ static const struct MenuCommandDefinition MenuCommands_ReplaceMove[] =
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = MoveListCommandDraw,
+        .onDraw = DoNothing,
 		.onIdle = List_Idle,
 		
         //.onEffect = MoveCommandSelect,
@@ -118,7 +136,7 @@ static const struct MenuCommandDefinition MenuCommands_ReplaceMove[] =
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = MoveListCommandDraw,
+        .onDraw = DoNothing,
 		.onIdle = List_Idle,
         //.onEffect = MoveCommandSelect,
     },
@@ -127,14 +145,14 @@ static const struct MenuCommandDefinition MenuCommands_ReplaceMove[] =
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = MoveListCommandDraw,
+        .onDraw = DoNothing,
 		.onIdle = List_Idle,
         //.onEffect = MoveCommandSelect,
     },
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
-        .onDraw = MoveListCommandDraw,
+        .onDraw = DoNothing,
 		.onIdle = List_Idle,
         //.onEffect = MoveCommandSelect,
     },
@@ -143,16 +161,16 @@ static const struct MenuCommandDefinition MenuCommands_ReplaceMove[] =
     {} // END
 };
 
-void DrawItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ReplaceMoveProc* proc);
-void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ReplaceMoveProc* proc);
+void DrawItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ViewLearnsetProc* proc);
+void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ViewLearnsetProc* proc);
 
 
-static const struct MenuDefinition Menu_ReplaceMoveDebug =
+static const struct MenuDefinition Menu_ViewLearnsetDef =
 {
     .geometry = { menu_tile_X, menu_tile_Y, menu_Length },
-    .commandList = MenuCommands_ReplaceMove,
+    .commandList = MenuCommands_ViewLearnset,
 
-    .onEnd = ReplaceMoveMenuEnd,
+    .onEnd = ViewLearnsetMenuEnd,
 	
     .onBPress = (void*) (0x08022860+1), // FIXME
 };
@@ -160,19 +178,41 @@ static const struct MenuDefinition Menu_ReplaceMoveDebug =
 extern const ProcCode gProc_8A01650[]; 
 int ViewLearnsetCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-    struct ReplaceMoveProc* proc = (void*) ProcStart(Proc_ReplaceMove, ROOT_PROC_3);
-    //struct ReplaceMoveProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
+    struct ViewLearnsetProc* proc = (void*) ProcStart(Proc_ViewLearnset, ROOT_PROC_3);
+    //struct ViewLearnsetProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
 	
 	int* gCurrentUnit = (int*) 0x3004E50;
     proc->unit = (struct Unit*) *gCurrentUnit; // Struct UnitRamPointer 
-	proc->offset = 0;
+
     proc->movesUpdated = FALSE;
-    proc->moveSelected = 0;
-	
-	
+    proc->ListSize = UnitGetMoveListSize(proc->unit)-6;
+    if (proc->ListSize<0) proc->ListSize = 0;
 	proc->hover_move_Updated = FALSE; 
 	proc->move_hovering = 0;
-    StartMenuChild(&Menu_ReplaceMoveDebug, (void*) proc);
+	proc->offset = 0;
+	proc->tileNext = 0; 
+	
+	//struct TextHandle handle[3]; // 0x38 - 0x4F 
+	
+	//Text_Clear(&command->text);
+	//Text_Clear(&menu->pCommandProc[1]->text);
+	//Text_Clear(&menu->pCommandProc[2]->text);
+	//Text_Clear(&menu->pCommandProc[3]->text);
+	//Text_Clear(&menu->pCommandProc[4]->text);
+	//Text_Clear(&menu->pCommandProc[5]->text);
+	//Text_Clear(&menu->pCommandProc[6]->text);
+	//Text_Clear(&menu->pCommandProc[7]->text);
+	//Text_Clear(&menu->pCommandProc[8]->text);
+	//Text_Clear(&menu->pCommandProc[9]->text);
+	//Text_Clear(&menu->pCommandProc[10]->text);
+	//Text_Clear(&menu->pCommandProc[11]->text);
+	//gpCurrentFont->tileNext = 0; 
+	
+
+	Text_ResetTileAllocation();
+	
+	
+    StartMenuChild(&Menu_ViewLearnsetDef, (void*) proc);
     return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
 
@@ -215,7 +255,7 @@ static void PrepareText(TextHandle* handle, char* string)
 {
 	//Text_Clear(handle);
 	//Text_InitClear(handle, handle->tileWidth); 
-	u32 width = (Text_GetStringTextWidth(string)+8)/8;
+	u32 width = (Text_GetStringTextWidth(string)+16)/8;
 	Text_InitClear(handle, width); 
     handle->tileWidth = width;
 	
@@ -226,7 +266,7 @@ static void PrepareText(TextHandle* handle, char* string)
 
 
 
-void DrawItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ReplaceMoveProc* proc)
+void DrawItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ViewLearnsetProc* proc)
 {
 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
 		for (int y = 0; y < 20; y++) { 
@@ -240,94 +280,36 @@ void DrawItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* comman
 	// [2028E6a..2028E6b]!! 
 	// 0x8004a9e 
 	
-	Text_ResetTileAllocation();
-
-	//u16 tile = gpCurrentFont->tileNext; 
-	// u16 tileNext starts at 0 when ResetTileAllocation is used (vram 0x6001000) 
-	// 
-
-	menu->pCommandProc[0]->text.tileIndexOffset = gpCurrentFont->tileNext; 
 	
-	menu->pCommandProc[0]->text.tileWidth = 0; //92;
-	// update tileNext to be whatever we offset it to 
-	// in this case it's 0, but it would be important if it wasn't 
-	// menu starts at tileNext as 0 (and draws spaces as needed) 
-	for (u8 c = 0; c < menu->commandCount; c++) { 
-		gpCurrentFont->tileNext = menu->pCommandProc[c]->text.tileIndexOffset + menu->pCommandProc[c]->text.tileWidth; 
-		menu->pCommandProc[c]->text.tileIndexOffset =  gpCurrentFont->tileNext; 
-	} 
-	//menu->pCommandProc[1]->text.currentBufferId = 0; //handles[i].currentBufferId;
-	MoveListCommandDraw(menu, menu->pCommandProc[0]); 
-	//MoveListCommandDraw(menu, menu->pCommandProc[1]); 
-	//MoveListCommandDraw(menu, menu->pCommandProc[2]); 
-	//MoveListCommandDraw(menu, menu->pCommandProc[3]); 
-	//MoveListCommandDraw(menu, menu->pCommandProc[4]); 
-	//MoveListCommandDraw(menu, menu->pCommandProc[5]); 
+
+
+	u16 tile = gpCurrentFont->tileNext; 
+
+
 	
 	//u16 tile = menu->tileBase+20;  
 	
-	TextHandle handles[4] = {};
-	for ( int i = 0 ; i < 4 ; i++ )
-	{
-		//handles[i].tileIndexOffset = tile; // offset to start at 
-		handles[i].xCursor = 0;
-		//handles[i].tileIndexOffset = 0x180;
-		handles[i].colorId = TEXT_COLOR_NORMAL;
-		handles[i].useDoubleBuffer = 0;
-		handles[i].currentBufferId = 0;
-		handles[i].unk07 = 0;
-	}
 	
-	u8 i = 0; 
+	//TextHandle handles[4] = {};
+	//for ( int i = 0 ; i < 4 ; i++ )
+	//{
+	//	//handles[i].tileIndexOffset = tile; // offset to start at 
+	//	handles[i].xCursor = 0;
+	//	//handles[i].tileIndexOffset = 0x180;
+	//	handles[i].colorId = TEXT_COLOR_NORMAL;
+	//	handles[i].useDoubleBuffer = 0;
+	//	handles[i].currentBufferId = 0;
+	//	handles[i].unk07 = 0;
+	//}
+	//
+	//u8 i = 0; 
 
 	
 	
 
-	char* className = GetStringFromIndex(proc->unit->pClassData->nameTextId); 
-	u32 width = (Text_GetStringTextWidth(className)+8+8)/8;
-	Text_InitClear(&handles[i], width); 
-    handles[i].tileWidth = width;
-	Text_SetXCursor(&handles[i], 4);
-    Text_SetColorId(&handles[i], TEXT_COLOR_GREEN);
-    Text_DrawString(&handles[i], className); 
-	Text_Display(&handles[i], &gBG0MapBuffer[9][11]); i++; 	
-	
-	char* strName = &"Str"; 
-	width = (Text_GetStringTextWidth(strName)+8+8)/8;
-	Text_InitClear(&handles[i], width); 
-    handles[i].tileWidth = width;
-	Text_SetXCursor(&handles[i], 4);
-    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
-    Text_DrawString(&handles[i], strName); 
-	Text_Display(&handles[i], &gBG0MapBuffer[11][11]); i++; 	
-	
-	char* magName = &"Mag"; 
-	width = (Text_GetStringTextWidth(magName)+8+8)/8;
-	Text_InitClear(&handles[i], width); 
-    handles[i].tileWidth = width;
-	Text_SetXCursor(&handles[i], 4);
-    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
-    Text_DrawString(&handles[i], magName); 
-	Text_Display(&handles[i], &gBG0MapBuffer[11][17]); i++; 	
-	
-
-	
-	char* lvlName = &"Lvl"; 
-	width = (Text_GetStringTextWidth(lvlName)+8+8)/8;
-	Text_InitClear(&handles[i], width); 
-    handles[i].tileWidth = width;
-	Text_SetXCursor(&handles[i], 4);
-    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
-    Text_DrawString(&handles[i], lvlName); 
-	Text_Display(&handles[i], &gBG0MapBuffer[9][17]); i++; 
-	
-	
-	
-
-	
 
 
-	proc->tileNext = gpCurrentFont->tileNext; 
+	
 	
 	//PrepareText(&handles[i], " Rng");
 	//Text_Display(&handles[i], &gBG0MapBuffer[15][7+x]); i++; 
@@ -350,30 +332,13 @@ void DrawItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* comman
 	//asm("mov r11, r11");
 	
 	
-	//UpdateItemInfo_Learnset(menu, command, proc); 
+	UpdateItemInfo_Learnset(menu, command, proc); 
 
 	
 	
 } 
 
-/*
-static void PrepareNum(TextHandle* handle, int num)
-{
-	u32 width = 1; 
-	for (int n = num; n>0;) {
-		n = n/10;
-		width++; 
-	} 
- 
-	//(Text_GetStringTextWidth(string)+8)/8;
-	Text_InitClear(handle, width); 
-    //handle->tileWidth = width;
 
-	
-	Text_SetColorId(handle,TEXT_COLOR_GOLD);
-	Text_DrawNumber(handle, num);
-}
-*/
 
 extern u8 gSpecialUiCharAllocationTable[]; // 0x2028E78
 enum {
@@ -421,32 +386,22 @@ static int GetNumLines(char* string) // Basically count the number of NL codes.
 }
 
 
-void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ReplaceMoveProc* proc)
+void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* command, struct ViewLearnsetProc* proc)
 {
 
 	for (int x = 0; x < 30; x++) { // clear out most of bg0 
-		for (int y = 14; y < 20; y++) { 
+		for (int y = 0; y < 20; y++) { 
 			gBG0MapBuffer[y][x] = 0;
 		}
 	}
-	for (int x = 11; x < 30; x++) { // clear out most of bg0 
-		for (int y = 0; y < 8; y++) { 
-			gBG0MapBuffer[y][x] = 0;
-		}
-	}
-
-	u8 x = 6;
+	Text_ResetTileAllocation();
 	
-	u8 i = 0; 
-	
-	gpCurrentFont->tileNext = proc->tileNext; 
-	u8 hover = proc->move_hovering; 
-	u16 item; 
-	
-
-	item = UnitGetMoveList(proc->unit, 0)[(hover*2)+1]; 
-	
-	TextHandle handles[8] = {};
+	//for (int x = 11; x < 30; x++) { // clear out most of bg0 
+	//	for (int y = 0; y < 8; y++) { 
+	//		gBG0MapBuffer[y][x] = 0;
+	//	}
+	//}
+	TextHandle handles[12] = {};
 	for ( int i = 0 ; i < 8 ; i++ )
 	{
 		//handles[i].tileIndexOffset = tile; // offset to start at 
@@ -457,6 +412,92 @@ void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* comm
 		handles[i].currentBufferId = 0;
 		handles[i].unk07 = 0;
 	}
+	
+	
+	MoveListCommandDraw(menu, menu->pCommandProc[0]); 
+	MoveListCommandDraw(menu, menu->pCommandProc[1]); 
+	MoveListCommandDraw(menu, menu->pCommandProc[2]); 
+	MoveListCommandDraw(menu, menu->pCommandProc[3]); 
+	MoveListCommandDraw(menu, menu->pCommandProc[4]); 
+	MoveListCommandDraw(menu, menu->pCommandProc[5]); 
+	
+	
+		// u16 tileNext starts at 0 when ResetTileAllocation is used (vram 0x6001000) 
+	// 
+
+	//menu->pCommandProc[0]->text.tileIndexOffset = gpCurrentFont->tileNext; 
+	
+	//menu->pCommandProc[0]->text.tileWidth = 0; //92;
+	
+	
+	// update tileNext to be whatever we offset it to 
+	// in this case it's 0, but it would be important if it wasn't 
+	// menu starts at tileNext as 0 (and draws spaces as needed) 
+	for (u8 c = 0; c < menu->commandCount; c++) { 
+		gpCurrentFont->tileNext = menu->pCommandProc[c]->text.tileIndexOffset + menu->pCommandProc[c]->text.tileWidth; 
+		menu->pCommandProc[c]->text.tileIndexOffset =  gpCurrentFont->tileNext; 
+	} 
+	//menu->pCommandProc[1]->text.currentBufferId = 0; //handles[i].currentBufferId;
+	
+	//proc->tileNext = gpCurrentFont->tileNext; 
+	//gpCurrentFont->tileNext = 40; //proc->tileNext; 
+	
+	u8 i = 0; 
+	
+	char* className = GetStringFromIndex(proc->unit->pClassData->nameTextId); 
+	u32 width = (Text_GetStringTextWidth(className)+8+8)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 4);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GREEN);
+    Text_DrawString(&handles[i], className); 
+	Text_Display(&handles[i], &gBG0MapBuffer[9][11]); i++; 	
+	
+	char* strName = "Str"; 
+	width = (Text_GetStringTextWidth(strName)+8+8)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 4);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
+    Text_DrawString(&handles[i], strName); 
+	Text_Display(&handles[i], &gBG0MapBuffer[11][11]); i++; 	
+	
+	char* magName = "Mag"; 
+	width = (Text_GetStringTextWidth(magName)+8+8)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 4);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
+    Text_DrawString(&handles[i], magName); 
+	Text_Display(&handles[i], &gBG0MapBuffer[11][17]); i++; 	
+	
+
+	
+	char* lvlName = "Lvl"; 
+	width = (Text_GetStringTextWidth(lvlName)+8+8)/8;
+	Text_InitClear(&handles[i], width); 
+    handles[i].tileWidth = width;
+	Text_SetXCursor(&handles[i], 4);
+    Text_SetColorId(&handles[i], TEXT_COLOR_GOLD);
+    Text_DrawString(&handles[i], lvlName); 
+	Text_Display(&handles[i], &gBG0MapBuffer[9][17]); i++; 
+	
+
+
+
+
+	u8 x = 6;
+	
+
+	
+	
+	u8 hover = proc->move_hovering; 
+	u16 item; 
+	
+
+	item = UnitGetMoveList(proc->unit, proc->offset)[(hover*2)+1]; 
+	
+
 	
 	
 	PrepareText(&handles[i], " Rng");
@@ -512,7 +553,7 @@ void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* comm
 	
 	
 	gSpecialUiCharAllocationTable[0] = 0xFF; //no clue but it made DrawUiNumber work properly 
-	DrawUiNumber(&gBG0MapBuffer[9][22],TEXT_COLOR_GOLD, (hover*2)); 
+
 	DrawUiNumber(&gBG0MapBuffer[15][18+x], TEXT_COLOR_GOLD, GetItemWeight(item)); 
 	DrawUiNumber(&gBG0MapBuffer[17][5+x], TEXT_COLOR_GOLD, GetItemMight(item));
 	DrawUiNumber(&gBG0MapBuffer[17][12+x], TEXT_COLOR_GOLD, GetItemHit(item)); 
@@ -520,20 +561,56 @@ void UpdateItemInfo_Learnset(struct MenuProc* menu, struct MenuCommandProc* comm
 	
 	DrawUiNumber(&gBG0MapBuffer[11][15],TEXT_COLOR_GOLD,	(proc->unit->pow	));
 	DrawUiNumber(&gBG0MapBuffer[11][22],TEXT_COLOR_GOLD, (proc->unit->unk3A	)); // Magic.
-
+	DrawUiNumber(&gBG0MapBuffer[9][22],TEXT_COLOR_GOLD, (UnitGetMoveList(proc->unit, proc->offset)[(hover*2)])); // level it's learned at 
 
 	EnableBgSyncByMask(BG0_SYNC_BIT);
 }
 
 static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-    struct ReplaceMoveProc* const proc = (void*) menu->parent;
-    u8* const moves = UnitGetMoveList(proc->unit, 0);		
+    struct ViewLearnsetProc* const proc = (void*) menu->parent;
+    u8* const moves = UnitGetMoveList(proc->unit, 0);	
 	if (proc->move_hovering != menu->commandIndex)
-	{   
-		proc->hover_move_Updated = TRUE;
-		proc->move_hovering = menu->commandIndex;
-		UpdateItemInfo_Learnset(menu, command, proc); 
+	{  
+		if (gKeyState.repeatedKeys & KEY_DPAD_DOWN) { 
+			if (menu->commandIndex == 0) { // we looped back to the start 
+				menu->commandIndex = 5; 
+				menu->prevCommandIndex = 4; 
+				if (proc->offset < proc->ListSize) {
+				proc->offset = proc->offset + 1; 
+				proc->hover_move_Updated = TRUE;
+				proc->move_hovering = menu->commandIndex;
+				UpdateItemInfo_Learnset(menu, command, proc); 
+				}
+			}
+			else { 
+				proc->hover_move_Updated = TRUE;
+				proc->move_hovering = menu->commandIndex;
+				UpdateItemInfo_Learnset(menu, command, proc); 
+			}
+		} 
+		if (gKeyState.repeatedKeys & KEY_DPAD_UP) { 
+			if (menu->commandIndex == 5) { // we looped back to the start 
+				menu->commandIndex = 0; 
+				menu->prevCommandIndex = 1; 
+				if (proc->offset > 0) {
+				proc->offset = proc->offset - 1; 
+				proc->hover_move_Updated = TRUE;
+				proc->move_hovering = menu->commandIndex;
+				UpdateItemInfo_Learnset(menu, command, proc); 
+				} 
+			}
+			else { 
+				proc->hover_move_Updated = TRUE;
+				proc->move_hovering = menu->commandIndex;
+				UpdateItemInfo_Learnset(menu, command, proc); 
+			}
+		} 
+ 
+		
+		
+		
+		
 		/*         proc->movesUpdated = TRUE; */
 	}
 	if (gKeyState.repeatedKeys & KEY_BUTTON_R) { 
@@ -552,15 +629,21 @@ static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
 
 static void MoveListCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-    struct ReplaceMoveProc* const proc = (void*) menu->parent;
+    struct ViewLearnsetProc* const proc = (void*) menu->parent;
 	int offset = proc->offset; 
     u8* const moves = UnitGetMoveList(proc->unit, offset);
 	int i = (command->commandDefinitionIndex);
 	
     u16* const out = gBg0MapBuffer + TILEMAP_INDEX(command->xDrawTile, command->yDrawTile);
-
-	
-    Text_Clear(&command->text);
+	u32 width; 
+	if (IsMove(moves[(i*2)+1])) {
+		width = (Text_GetStringTextWidth(GetItemName(moves[(i*2)+1]))+32)/8;
+	}
+	else 
+	{ 
+		width = (Text_GetStringTextWidth("No Move")+32)/8;
+	}
+	Text_InitClear(&command->text, width);
 	/*
 	Text_SetXCursor(&command->text, new_item_desc_offset);
     Text_SetColorId(&command->text, TEXT_COLOR_BLUE);
@@ -586,9 +669,9 @@ static void MoveListCommandDraw(struct MenuProc* menu, struct MenuCommandProc* c
 
 }
 
-static void ReplaceMoveCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command)
+static void ViewLearnsetCommandDraw(struct MenuProc* menu, struct MenuCommandProc* command)
 {
-    struct ReplaceMoveProc* const proc = (void*) menu->parent;
+    struct ViewLearnsetProc* const proc = (void*) menu->parent;
 	DrawItemInfo_Learnset(menu, command, proc); 
 }
 
@@ -611,7 +694,7 @@ static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* comm
 
 
 
-static void ReplaceMoveMenuEnd(struct MenuProc* menu)
+static void ViewLearnsetMenuEnd(struct MenuProc* menu)
 {
     EndFaceById(0);
 }

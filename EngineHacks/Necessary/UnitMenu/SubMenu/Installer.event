@@ -93,9 +93,7 @@ MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,AlwaysUsable,ReorderMovesEf
   UM_Take
   UM_Drop
 //UM_Item
-#ifdef DEBUG_MODE 
 MenuCommand(UM_Learnset, UM_LearnsetDesc, NormalText, AlwaysUsable, ViewLearnsetCommand_OnSelect)
-#endif 
 MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, AlwaysUsable, ReleaseCommandEffect)
  
 /*

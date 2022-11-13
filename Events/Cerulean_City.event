@@ -213,13 +213,15 @@ CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
 CHECK_EVENTID CascadebadgeObtained
-BNE 0 rC r0 
+BEQ 0 rC r0 
 CHECK_EVENTID SSAnneTicketFlag
-BNE 0 rC r0 
+BEQ 0 rC r0 
+GOTO 1 
+LABEL 0
 LOAD1 0x1 OfficerUnitGroup
 ENUN 
 MarkTrainerAsDefeated(0xE1) 
-LABEL 0
+LABEL 1
 
 
 CheckTrainerFlag(0xEF) // based on unit IDs 0xE0-0xEF per chapter 

@@ -7,7 +7,7 @@
 #define ENABLE_RANDOMIZER 
 
 PUSH; ORG $D74D0	//{U}
-String("V1.04                 Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.05                 Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 
 //#define ALT_TITLESCREEN
