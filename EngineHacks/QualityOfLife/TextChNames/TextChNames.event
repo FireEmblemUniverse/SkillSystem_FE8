@@ -4,6 +4,7 @@
 // Chapter Names as Text.
 // Hack by circleseverywhere
 // Extended Latin charset support by hypergammaspaces
+#include "asm/status_screen.lyn.event" 
 
 #ifdef _FE8_
 
@@ -13,6 +14,9 @@
   #include "Extensions/Hack Installation.txt"
 
   PUSH
+  ORG $8E7F4 
+  jumpToHack(status_screen_ch_name) 
+  
     ORG $89624
       jumpToHack(Chname)
   POP
