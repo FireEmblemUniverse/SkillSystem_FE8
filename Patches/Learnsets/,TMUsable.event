@@ -304,14 +304,14 @@ BYTE 0
 ALIGN 4
 ZubatTMs:
 BYTE DoubleEdge Rage SuperFang Swift TakeDown MegaDrain Rest ConfuseRay ShadowBall Twister LeechLife UTurn ThiefAtt Bite Haze
-BYTE Absorb HexAtt MegaDrain
+BYTE Absorb HexAtt
 BYTE Lick Screech HyperFang NightSlash
 BYTE 0
 
 ALIGN 4
 GolbatTMs:
 BYTE Screech DoubleEdge HyperBeam Rage SuperFang Swift TakeDown MegaDrain Rest ConfuseRay ShadowBall Twister LeechLife UTurn ThiefAtt Bite Haze
-BYTE Absorb HexAtt MegaDrain
+BYTE Absorb HexAtt
 BYTE Lick Screech HyperFang NightSlash
 BYTE 0
 
@@ -511,14 +511,14 @@ BYTE 0
 ALIGN 4
 TentacoolTMs:
 BYTE Constrict Screech DoubleEdge Rage SwordsDance TakeDown MegaDrain Blizzard IceBeam Rest HexAtt ThiefAtt Cut Barrier4
-BYTE Absorb IcyWind HexAtt ShadowBall DarkPulse
+BYTE Absorb IcyWind ShadowBall DarkPulse
 BYTE Pound RecoverMove Leer
 BYTE 0
 
 ALIGN 4
 TentacruelTMs:
 BYTE Constrict Screech DoubleEdge HyperBeam Rage SwordsDance TakeDown MegaDrain Blizzard IceBeam Rest HexAtt ThiefAtt Cut Barrier4
-BYTE Absorb IcyWind HexAtt ShadowBall DarkPulse
+BYTE Absorb IcyWind ShadowBall DarkPulse
 BYTE Pound RecoverMove Leer
 BYTE 0
 
@@ -612,14 +612,14 @@ BYTE 0
 ALIGN 4
 GrimerTMs:
 BYTE BodySlam Screech Harden Explosion Pound Rage FirePunch Flamethrower FireBlast MegaDrain ThunderMove ThunderPunch Thunderbolt IcePunch Dig MudBomb ShockWave Rest RockSlide RockTomb ShadowBall ThiefAtt Minimize
-BYTE Ember Scorch Absorb Thundershock MudShot RockThrow HexAtt Earthquake Dig
+BYTE Ember Scorch Absorb Thundershock MudShot RockThrow HexAtt Earthquake
 BYTE RecoverMove Bite DarkPulse
 BYTE 0
 
 ALIGN 4
 MukTMs:
 BYTE BodySlam Screech Harden Explosion HyperBeam Pound Rage FirePunch Flamethrower FireBlast MegaDrain ThunderMove ThunderPunch Thunderbolt IcePunch Dig MudBomb ShockWave Rest RockSlide RockTomb ShadowBall ThiefAtt DarkPulse Minimize
-BYTE Ember Scorch Absorb Thundershock MudShot RockThrow HexAtt Earthquake Dig
+BYTE Ember Scorch Absorb Thundershock MudShot RockThrow HexAtt Earthquake
 BYTE RecoverMove Bite
 BYTE 0
 
@@ -632,27 +632,27 @@ BYTE 0
 ALIGN 4
 CloysterTMs:
 BYTE DoubleEdge Explosion HyperBeam Leer Rage Swift Tackle TakeDown TriAttack PoisonJab Rest SignalBeam Teleport DoubleHit
-BYTE Pound PoisonSting Avalanche MirrorShot Doubleslap RockSlide RockThrow
+BYTE Pound PoisonSting MirrorShot Doubleslap RockSlide RockThrow
 BYTE 0
 
 ALIGN 4
 GastlyTMs:
 BYTE Explosion Rage FirePunch MegaDrain ThunderMove Thunderbolt Hypnosis Psychic Rest ThiefAtt DarkPulse DreamEater AttackPulse
-BYTE Absorb Thundershock Confusion IcyWind
+BYTE Absorb Thundershock Confusion
 BYTE Snarl
 BYTE 0
 
 ALIGN 4
 HaunterTMs:
 BYTE Explosion Rage FirePunch MegaDrain ThunderMove Thunderbolt Hypnosis Psychic Rest ThiefAtt DarkPulse DreamEater AttackPulse
-BYTE Absorb Thundershock Confusion IcyWind
+BYTE Absorb Thundershock Confusion
 BYTE Snarl
 BYTE 0
 
 ALIGN 4
 GengarTMs:
 BYTE BodySlam DoubleEdge Explosion Headbutt HyperBeam MegaKick MegaPunch Rage TakeDown FirePunch MegaDrain ThunderMove ThunderPunch Thunderbolt IcePunch SeismicToss Submission Hypnosis Psychic Rest ThiefAtt DarkPulse DreamEater Metronome Counter AttackPulse
-BYTE Absorb Thundershock LowKick Confusion IcyWind
+BYTE Absorb Thundershock LowKick Confusion
 BYTE Snarl
 BYTE 0
 
@@ -753,14 +753,14 @@ BYTE 0
 ALIGN 4
 KoffingTMs:
 BYTE Explosion Flash Rage Tackle Flamethrower FireBlast ThunderMove Thunderbolt ShockWave Rest Rollout ShadowBall ThiefAtt DarkPulse Haze AttackPulse DoubleHit
-BYTE Ember Scorch Thundershock HexAtt Flamethrower
+BYTE Ember Scorch Thundershock HexAtt
 BYTE SandAttack Bite AuroraBeam MirrorShot
 BYTE 0
 
 ALIGN 4
 WeezingTMs:
 BYTE DoubleHit Explosion Flash HyperBeam Rage Tackle Flamethrower FireBlast ThunderMove Thunderbolt ShockWave Rest Rollout ShadowBall ThiefAtt DarkPulse Haze AttackPulse
-BYTE Ember Scorch Thundershock HexAtt Flamethrower
+BYTE Ember Scorch Thundershock HexAtt
 BYTE SandAttack Bite AuroraBeam MirrorShot
 BYTE 0
 
@@ -892,7 +892,7 @@ BYTE 0
 ALIGN 4
 GyaradosTMs:
 BYTE BodySlam DoubleEdge Headbutt HyperBeam Leer Rage Tackle TakeDown Thrash Flamethrower FireBlast ThunderMove Thunderbolt ThunderWave Blizzard IceBeam Avalanche Earthquake Rest DragonRage Dragonbreath Outrage Twister DarkPulse Bite Sandstorm Roar DragonDance DoubleHit
-BYTE Ember Scorch Thundershock Magnitude IcyWind Outrage
+BYTE Ember Scorch Thundershock Magnitude IcyWind
 BYTE 0
 
 ALIGN 4
@@ -936,7 +936,7 @@ BYTE 0
 ALIGN 4
 PorygonTMs:
 BYTE Agility IronTail ThunderMove Thunderbolt ThunderWave Blizzard IceBeam ShockWave Confusion Psybeam Psychic Rest Nightmare4 ShadowBall SignalBeam ThiefAtt DreamEater Teleport
-BYTE HexAtt Thundershock Confusion IcyWind MirrorShot DarkPulse
+BYTE HexAtt Thundershock IcyWind MirrorShot DarkPulse
 BYTE Spark
 BYTE 0
 
