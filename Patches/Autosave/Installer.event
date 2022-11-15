@@ -9,11 +9,21 @@ POP
 ALIGN 4; PUSH; ORG CurrentOffset+1; SaveGame_ASMC: ; POP 
 #incbin "SaveGame.dmp" 
 
-ALIGN 4 
-CurrentPartySize_Link: 
-WORD CurrentPartySize
 
-#include "Autosave.lyn.event" 
+#ifndef QuicksaveToggleFlag
+	#define QuicksaveToggleFlag 0 
+#endif 
+#ifndef CurrentPartySizeRam 
+	#define CurrentPartySizeRam 0x202bd33
+#endif 
+#ifndef callHackNew  
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+
+ALIGN 4; PUSH; ORG CurrentOffset+1; AutosaveFunc: ; POP 
+#incbin "Autosave.dmp" 
+WORD CurrentPartySizeRam 
+WORD QuicksaveToggleFlag
 
 //When resuming from an interruption, add a setting that can be returned at the beginning of the turn, not the last action.
 //The original version allows players to switch by hijacking terrain options, but this version doesn't.

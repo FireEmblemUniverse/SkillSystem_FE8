@@ -16,20 +16,19 @@ cmp r0, #0
 bne Exit 
 
 bl CountDeployedPlayerUnits 
-ldr r2, =CurrentPartySize_Link 
-ldr r2, [r2] @ ram 
+ldr r2, CurrentPartySize_Link 
 ldrb r1, [r2] 
 strb r0, [r2] 
 cmp r0, r1 
 blt Exit @ we don't autosave if we have fewer party members than last time 
 
-ldr r0, =QuicksaveToggleFlag 
-lsl r0, #24 
-lsr r0, #24 
+ldr r0, QuicksaveToggleFlag 
+cmp r0, #0 
+beq Skip 
 blh CheckEventId 
 cmp r0, #0 
 bne Exit 
-
+Skip: 
 
 
 ldr r1, =0x203A958 
@@ -49,7 +48,7 @@ CountDeployedPlayerUnits:
 mov r4,#1 @ deployment id
 mov r5,#0 @ counter
 
-mov r6, #6 @6th deployed valid unit - we don't count past this 
+mov r6, #50 @50th deployed valid unit - we don't count past this 
 
 LoopThroughUnits:
 mov r0,r4
@@ -79,7 +78,9 @@ pop {r1}
 bx r1
 
 .ltorg
-
+.equ QuicksaveToggleFlag, CurrentPartySize_Link+4 
+.align 
+CurrentPartySize_Link: 
 
 
 
