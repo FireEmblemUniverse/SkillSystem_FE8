@@ -12,7 +12,7 @@
 #define GaryStarterClass 		0x30017b2 //we can set this at the beginning and then add 1 a couple times to evolve, maybe? 
 //#define Player1UnitID 			0x30017b3 // PostTrainerBattleRamLocat now a byte 
 //#define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
-#define Player6UnitID 			0x30017b8 
+
 #define BerryDurabilityToggleRam 			0x30017b9 
 
 #define ReturnTMRam 			0x30017ba // Also used for enemy AI 
@@ -495,7 +495,7 @@ LABEL 3
 
 CHECK_EVENTID QuicksaveToggleFlag
 BNE 2 sC s0 
-QuickSave
+//QuickSave
 LABEL 2 
 #endif 
 CHECK_EVENTID CallCountdownFlag_2 

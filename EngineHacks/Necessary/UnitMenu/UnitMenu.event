@@ -88,10 +88,6 @@ UnitMenuTable:
   //MenuCommand(DualAtkTxtID,DualAtkDescId,0,DualAtkCheck,DualAtkSelected) 
   
       //MenuCommand(UM_EditSkill, UM_EditSkillDesc, OrangeText, $04F449, SkillDebugCommand_OnSelect)
-    
-#ifdef DEBUG_MODE 
-MenuCommand(UM_Learnset, UM_LearnsetDesc, NormalText, AlwaysUsable, ViewLearnsetCommand_OnSelect)
-#endif 
 
 
 // Modular Summon 

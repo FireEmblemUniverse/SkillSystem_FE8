@@ -1,7 +1,8 @@
 //#include "SMS/Installer.event" 
+#include "Autosave/Installer.event" 
 #include "Randomize/Installer.event" 
 
-#include "AutosaveKiller.event"
+//#include "AutosaveKiller.event"
 
 #include "NewGameFlag/Installer.event"
 #include "TrapSMS_Size/Installer.event" 

@@ -6,6 +6,7 @@
 //#define DEBUG_MODE 
 #define ENABLE_RANDOMIZER 
 
+
 PUSH; ORG $D74D0	//{U}
 String("V1.05                 Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
@@ -129,6 +130,8 @@ String("V1.05                 Nov 2022") ; BYTE 0; POP // this overflows into th
 #define RetreatChapter 		0x30017b0
 #define DigChapter 			0x30017b1 
 #define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
+#define CurrentPartySize 			0x30017b8 // used to check whether to autosave 
+
 #define PostTrainerBattleRamLocat 0x30017b3 
 #define StartTimeSeedRam 0x30017C4 // - c7 used in RandomizeClass 
 
