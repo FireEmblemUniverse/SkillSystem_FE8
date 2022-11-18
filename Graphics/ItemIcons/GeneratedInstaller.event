@@ -56,10 +56,11 @@
 #define SuperPotionIcon 269 
 #define SuperRepelIcon 270 
 #define ThunderStoneIcon 271 
-#define WaterStoneIcon 272 
-#define WaterTypeIcon 273 
-#define WiseGlassesIcon 274 
-#define ZincIcon 275 
+#define TMIcon 272 
+#define WaterStoneIcon 273 
+#define WaterTypeIcon 274 
+#define WiseGlassesIcon 275 
+#define ZincIcon 276 
 */ 
  
  
@@ -218,6 +219,9 @@ ItemIconEntry(SuperRepelIcon)
  
 ItemIconEntry(ThunderStoneIcon) 
 #incbin "dmp/ThunderStone.dmp" 
+ 
+ItemIconEntry(TMIcon) 
+#incbin "dmp/TM.dmp" 
  
 ItemIconEntry(WaterStoneIcon) 
 #incbin "dmp/WaterStone.dmp" 
