@@ -26,10 +26,11 @@ ldrb r1, [r1, #4] @ Class ID
 bl ShouldWeaponHaveStabBonus
 cmp r0, #0 
 beq Exit 
-mov r0, r7 
-add r0, r7 @ 2x 
-add r7, r0 @ 3x 
-lsr r7, #1 
+lsl r7, #1 @ 2x mt 
+@mov r0, r7 
+@add r0, r7 @ 2x 
+@add r7, r0 @ 3x 
+@lsr r7, #1 
 
 Exit: 
 add r4, r7 @ lower bound with mt 

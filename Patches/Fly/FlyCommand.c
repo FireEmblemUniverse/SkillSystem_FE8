@@ -109,7 +109,7 @@ static const struct MenuCommandDefinition MenuCommands_FlyCommand[] =
     },
 	{
         .isAvailable = MenuCommandAlwaysUsable,
-		.rawName = " Vermillion City",
+		.rawName = " Vermilion City",
         .onIdle = FlyMenuIdle,
         .onEffect = FlyCommandSelect,
     },

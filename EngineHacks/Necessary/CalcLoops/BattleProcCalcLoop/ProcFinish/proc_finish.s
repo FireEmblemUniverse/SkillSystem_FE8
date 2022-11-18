@@ -15,9 +15,9 @@ mov r7, r3 @battle data
 
 mov r1, #4
 ldrsh r0, [r7,r1] @damage
-cmp r0, #0x7f
+cmp r0, #99
 ble UnderDMGCap
-mov r0, #0x7f
+mov r0, #99
 strh r0, [r7,r1] @damage is capped at 127
 UnderDMGCap:
 cmp r0, #0

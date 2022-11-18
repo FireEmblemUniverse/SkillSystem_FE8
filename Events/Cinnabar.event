@@ -288,13 +288,13 @@ SpellScrollTrap(11,17, (ChapterID*2), SolarBeam)
 
 
 
-BlankExamineTrap(22,12,	SaffronGymSignText)
-BlankExamineTrap(9,16,	SaffronDojoSignText)
-BlankExamineTrap(10,16,	SaffronDojoSignText)
-BlankExamineTrap(9,17,	SaffronDojoSignText)
-BlankExamineTrap(10,17,	SaffronDojoSignText)
+BlankExamineTrap(22,12,	CinnabarGymSignText)
+BlankExamineTrap(9,16,	CinnabarMansionSignText)
+BlankExamineTrap(10,16,	CinnabarMansionSignText)
+BlankExamineTrap(9,17,	CinnabarMansionSignText)
+BlankExamineTrap(10,17,	CinnabarMansionSignText)
 
-SignTrap(12,10, SilphCoSignText) 
+SignTrap(12,10, CinnabarLabSignText) 
 
 
 

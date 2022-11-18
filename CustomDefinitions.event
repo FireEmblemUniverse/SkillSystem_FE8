@@ -5,10 +5,11 @@
 // Comment out for public releases
 //#define DEBUG_MODE 
 #define ENABLE_RANDOMIZER 
+#define ENABLE_DAMAGE_REDUCTION
 
 
 PUSH; ORG $D74D0	//{U}
-String("V1.05                 Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.06 beta            Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 
 //#define ALT_TITLESCREEN

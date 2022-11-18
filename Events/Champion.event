@@ -292,7 +292,7 @@ CHECK_TUTORIAL
 BNE 12 sC s0 
 CHECK_HARD 
 BNE 13 sC s0 
-AutoLevelUnits(30, True, 0x90EF) 
+AutoLevelUnits(39, True, 0x90EF) 
 DISA SableyeUnitID // only 1 hackmon on difficult 
 // Difficult mode 
 SetUnitStatus(ShedinjaUnitID, XCoord, 13)
@@ -300,7 +300,7 @@ SetUnitStatus(ShedinjaUnitID, YCoord, 12)
 GOTO 14 
 
 LABEL 12 // Normal mode 
-AutoLevelUnits(21, True, 0x90EF) 
+AutoLevelUnits(30, True, 0x90EF) 
 DISA ShedinjaUnitID 
 DISA SableyeUnitID 
 GOTO 14 
@@ -308,8 +308,8 @@ LABEL 13
 AutoLevelUnits(99, True, 0x90EF) // lvl 99 on Lunatic only 
 //AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
-SetUnitStatus(0xA6, Defence, 40)
-SetUnitStatus(0xA6, Resistance, 40)
+SetUnitStatus(0xA6, Defence, 50)
+SetUnitStatus(0xA6, Resistance, 50)
 LABEL 14 
 
 

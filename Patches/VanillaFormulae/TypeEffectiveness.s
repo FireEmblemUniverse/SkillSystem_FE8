@@ -12,7 +12,8 @@
 .type TypeEffectiveness, %function 
 TypeEffectiveness:
 push {r4-r7, lr}
-
+@ 203a546 
+@ 203a5c8
 
 mov r4, r0 @ Atkr 
 mov r5, r1 @ dfdr 
@@ -28,11 +29,6 @@ mov r3, #0x5A @ att
 ldsh r0, [r4, r3] 
 cmp r0, #0 
 blt DoNothing @ if negative for some reason, do nothing 
-mov r2, #0x5C 
-ldsh r1, [r5, r2] @ def 
-sub r0, r1 
-cmp r0, #0 
-blt DoNothing 
 
 cmp r6, #9
 beq DoNothing
@@ -45,15 +41,32 @@ beq Immune
 b SuperEffective
 
 Immune:
+mov r2, #0x5C 
+ldsh r1, [r5, r2] @ def 
+sub r0, r1 
+cmp r0, #0 
+blt DoNothing 
 mov r0, #0
 @lsr r0, #2 @ 1/4 dmg 
 b Store
 
 Ineffective:
+mov r2, #0x5C 
+ldsh r1, [r5, r2] @ def 
+sub r0, r1 
+cmp r0, #0 
+blt DoNothing 
 lsr r0, #1 
 b Store 
 
 SuperEffective:
+mov r2, #0x5C 
+ldsh r1, [r5, r2] @ def 
+lsr r1, #1 
+sub r0, r1 
+cmp r0, #0 
+blt DoNothing 
+
 mov r3, #0x68 @ critical avoid 
 ldsh r2, [r4, r3] 
 cmp r2, #0 
@@ -71,10 +84,8 @@ bge NoCapEnemyAtt
 mov r2, #0 
 NoCapEnemyAtt:
 add r2, #1 
-lsr r1, r2, #1 @ Half att 
-add r2, #2 
-lsr r2, #2 @ 1/4 of att 
-add r2, r1 @ 3/4 att with friendly rounding 
+lsr r1, r2, #2 @ 1/4 enemy att 
+sub r2, r1 @ 3/4 att with friendly rounding 
 strh r2, [r5, r3] @ 3/4 att for enemy when using a SE move against them 
 mov r3, #0x5c @ def
 ldsh r2, [r5, r3]  
@@ -82,17 +93,21 @@ cmp r2, #0
 bge NoCapEnemyDef
 mov r2, #0 
 NoCapEnemyDef:
-add r2, #1 
-lsr r2, #2 @ 1/4 of enemy def added to att 
+
+@add r2, #1 
+@lsr r2, #1 @ 1/2 of enemy def added to att 
 mov r1, r0 
-add r1, #1 @ rounding 
-lsr r1, #2 @ 1/4 att 
-add r1, r1 @ 2/4 
-add r1, r1 @ 3/4 
-@ lsr r1, r0, #1 @ half att 
-add r0, r1 @ 1.75x att 
-add r0, r2 
-b Store 
+lsr r1, #1 @ 1/2 att 
+lsl r0, #1 @ 2x att 
+sub r0, r1 @ (att + 1/2 enemy def) * 1.5   
+
+mov r3, #0x5A @ att 
+mov r2, #0x5C 
+ldsh r1, [r5, r2] @ def 
+lsr r1, #1 @ half 
+add r0, r1 @ add back def after 
+strh r0, [r4, r3] @ 2x att 
+b Exit
 
 Store: 
 @ given r0 as att to store 
@@ -103,32 +118,31 @@ add r0, r1 @ add back def after
 strh r0, [r4, r3] @ 2x att 
 
 DoNothing:
-mov r3, #0x5A @ att 
-ldsh r2, [r4, r3]  
-mov r1, #0x5C @ def 
-ldsh r0, [r5, r1] 
-cmp r2, r0 
-ble Exit 
-sub r2, r0 
-cmp r2, #99 
-ble NoUpperCapAtkr
-mov r2, #99 
-add r2, r0 
-strh r2, [r4, r3] 
-NoUpperCapAtkr:
-
-
-ldsh r2, [r5, r3]  
-ldsh r0, [r4, r1] 
-cmp r2, r0 
-ble Exit 
-sub r2, r0 
-cmp r2, #99 
-ble NoUpperCapDfdr
-mov r2, #99 
-add r2, r0 
-strh r2, [r5, r3] 
-NoUpperCapDfdr:
+@mov r3, #0x5A @ att 
+@ldsh r2, [r4, r3]  
+@mov r1, #0x5C @ def 
+@ldsh r0, [r5, r1] 
+@cmp r2, r0 
+@ble Exit 
+@sub r2, r0 
+@cmp r2, #255
+@ble NoUpperCapAtkr
+@mov r2, #255 
+@add r2, r0 
+@strh r2, [r4, r3] 
+@NoUpperCapAtkr:
+@
+@ldsh r2, [r5, r3]  
+@ldsh r0, [r4, r1] 
+@cmp r2, r0 
+@ble Exit 
+@sub r2, r0 
+@cmp r2, #255
+@ble NoUpperCapDfdr
+@mov r2, #255 
+@add r2, r0 
+@strh r2, [r5, r3] 
+@NoUpperCapDfdr:
 
 
 Exit: 

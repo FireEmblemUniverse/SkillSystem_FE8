@@ -3,6 +3,9 @@
 //#include "Piercing.lyn.event"
 #include "ImmuneToDamage.lyn.event" 
 #include "WeaponsThatAlwaysDouble.lyn.event" 
+#ifdef ENABLE_DAMAGE_REDUCTION
+	#include "LevelDamageReduction.lyn.event" 
+#endif 
 
 ALIGN 4 
 WeaponsThatAlwaysDoubleList:

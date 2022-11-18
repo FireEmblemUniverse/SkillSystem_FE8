@@ -69,6 +69,34 @@ bx r3
 .align
 .ltorg 
 
+.global MaximumDamage
+.type MaximumDamage, %function 
+MaximumDamage:
+push {r4-r5, lr} 
+mov r4, r0 
+mov r5, r1 
+mov r1, #0x5A @ Att 
+mov r3, #0x5C @ Def 
+ldsh r0, [r4, r1] @ Att
+ldsh r2, [r5, r3] @ Def
+cmp r0, r2 
+blt NoMaxDmg 
+sub r0, r2 
+cmp r0, #99 
+ble NoMaxDmg 
+mov r0, #99 
+strh r0, [r4, r1] 
+mov r2, #0 
+strh r2, [r5, r3] 
+
+NoMaxDmg: 
+
+pop {r4-r5} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
 .global DamageModifierCalcLoopHook
 .type DamageModifierCalcLoopHook, %function
 
@@ -145,7 +173,6 @@ push {r4-r6, lr}
 mov r4, r0 
 mov r5, r1 
 
-
 sub sp, #8 
 str r4, [sp] 
 str r5, [sp, #4] 
@@ -160,6 +187,13 @@ add sp, #8
 cmp r1, #1 
 bne Exit 
 
+
+mov r3, #0x48 
+ldrh r0, [r4, r3] 
+blh 0x8017724 @ GetItemWeaponEffect(int item); //! FE8U = 0x8017725
+cmp r0, #0xC 
+beq Exit @ if weapon is "cannot double", then we never reduce damage 
+
 mov r3, #0x5A @ att 
 ldsh r0, [r4, r3] 
 mov r2, #0x5C 
@@ -168,11 +202,9 @@ sub r0, r1
 cmp r0, #0 
 blt Exit @ they will deal min damage twice 
 
-add r0, #1 
-lsr r1, r0, #1 @ Half att 
-add r0, #2 
-lsr r0, #2 @ 1/4 
-add r0, r1 @ 3/4 dmg per attack for doubling 
+
+lsr r1, r0, #2 @ 1/4th 
+sub r0, r1 @ 6/8ths  
 mov r2, #0x5C 
 ldsh r1, [r5, r2] @ def 
 cmp r1, #0 
