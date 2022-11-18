@@ -49,7 +49,7 @@ b Neutral
 Neutral:
 @ modify to be 3/4 of damage 
 @lsr r1, r4, #2 @ 1/4 
-bl CheckDifficulty
+bl GetDifficulty
 ldrb r1, [r5, #8] @ lvl 
 cmp r1, #50 
 ble NoCap 
