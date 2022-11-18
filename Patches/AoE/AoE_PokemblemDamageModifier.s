@@ -75,10 +75,11 @@ mov r0, r4
 mul r0, r1 
 mov r1, #100 
 swi 6 
-mov r1, r0 
-lsl r1, #1 
-add r0, r1 @ 3x 
-lsr r0, #2 @ 1 - (50% * 75%) or 62.5% (47% at worst vs 50%)
+@mov r1, r0 
+@lsl r1, #1 
+@add r0, r1 @ 3x 
+@lsr r0, #2 @ 1 - (50% * 75%) or 62.5% (47% at worst vs 50%)
+
 sub r4, r0 
 b Easy 
 

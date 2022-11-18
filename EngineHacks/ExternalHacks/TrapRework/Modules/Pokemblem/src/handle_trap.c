@@ -95,6 +95,7 @@ const int CanUnitBeOnPosition(Unit* unit, int x, int y) { // also used by streng
 	
 	return CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
 }
+extern void UpdateCursor(int x, int y); 
 
 struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 	struct Vec2 result = {
@@ -163,7 +164,14 @@ struct Vec2 GetPushPosition(Unit* unit, int direction, int moveAmount) {
 	if (trap->type == IceTrapType) { 
 		RemoveTrap(trap);
 	} 
-		
+	UpdateCursor(result.x, result.y); 
+
+	
+	gActiveUnitMoveOrigin.x = result.x; 
+	gActiveUnitMoveOrigin.y = result.y; 
+	gActionData.xMove = result.x; 
+	gActionData.yMove = result.y; 
+	
 	return result;
 }
 
