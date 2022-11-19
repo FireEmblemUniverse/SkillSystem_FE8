@@ -159,17 +159,18 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 
 SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Machoke 
-SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
 SilentGiveItemWithDurability(0xA0, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA1, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA3, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA4, StatAccessory, WiseGlassesT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+
+SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA1, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA2, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA3, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA4, MaxPotion,0x1)
 
 
 MUSCFAST IntroBGM 
