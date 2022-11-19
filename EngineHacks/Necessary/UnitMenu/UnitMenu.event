@@ -8,7 +8,7 @@
 #include "_UnitMenuDefs.event"
 
 
-#define UnitMenuWidth 8 
+#define UnitMenuWidth 9 
 #define ChMenuWidth 9
 #define UnitMenuLeft 2 // submenu ignores this 
 #define UnitMenuRight 21 

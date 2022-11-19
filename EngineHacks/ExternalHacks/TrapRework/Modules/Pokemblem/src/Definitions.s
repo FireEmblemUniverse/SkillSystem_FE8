@@ -3,6 +3,7 @@
 
 //@ Vanilla function declarations:
 SET_DATA gProc_MoveUnit, 0x89A2C48
+SET_FUNC UpdateCursor, 0x8015BBD
 SET_FUNC MuCtr_StartMoveTowards, 0x8079DDD
 
 SET_FUNC GetUnitStructFromEventParameter, 0x800BC51
