@@ -83,6 +83,8 @@ ldr		r1,CanMoveMap
 ldr		r1,[r1]
 ldr		r0,UnknownPtr
 str		r1,[r0]
+
+bl LineOfSight 
 pop		{r7}
 mov		r8,r7
 pop		{r4-r7}

@@ -100,6 +100,9 @@ mov 	r2, r4
 ldr 	r3, DrawRange
 bl	Jump
 
+
+bl LineOfSight @ this is called for each weapon, which seems wasteful 
+
 mov 	r0, r7
 cmp 	r0, #0x0	@skip check if no targeting condition
 beq End

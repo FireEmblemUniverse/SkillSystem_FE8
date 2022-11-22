@@ -204,6 +204,8 @@ UNIT
 
 
 Traps1:
+RockSmash(11,12)
+
 ENDTRAP
 ALIGN 4
 
@@ -482,7 +484,7 @@ Write_Byte(9, YCoordNewArea)
 //MNC2 Route9ECh 
 //MNC2 ViridianForestSCh
 //MNC2 Route1Ch 
-MNC2 LoreleiCh 
+MNC2 DebugCh 
 //MNC2 ChampionCh 
 //MNC2 VictoryRoadB2Ch 
 //MNC2 ViridianCh

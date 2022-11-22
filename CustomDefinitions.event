@@ -7,7 +7,7 @@
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
 
-
+//PROTECT $2517C //AddUnitToTargetListIfNotAllied
 PUSH; ORG $D74D0	//{U}
 String("V1.06 beta            Nov 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 

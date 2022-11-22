@@ -477,7 +477,7 @@ ENDA
 GlobalBeginningScene:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 #ifdef DEBUG_MODE 
-SetMaxMove
+//SetMaxMove
 #endif 
 ASMC RegisterAllOwnedPokemon
 NoFade 

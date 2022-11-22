@@ -18,7 +18,7 @@
 .type PreventAttacking, %function 
 
 
-PreventAttacking:
+PreventAttacking: // this gets called like 18x lol 
 
 push {r4-r7, lr}
 
@@ -27,6 +27,13 @@ push {r4-r7, lr}
 mov r4, r0 @ target 
 ldr r0, =0x2033F3C @ gUnitSubject 
 ldr r5, [r0] 
+
+@mov r0, r4 @ target 
+@mov r1, r5 @ actor 
+@bl PreventOneRangeAttacking 
+@cmp r0, #0 
+@beq CannotAttack 
+
 ldrb r0, [r5, #0x0B] @ Deployment byte 
 mov r1, #0x0B 
 ldsb r1, [r4, r1] @ Deployment byte 
@@ -136,6 +143,16 @@ CannotAttack:
 pop {r4-r7}
 pop {r0}
 bx r0 
+.ltorg 
+
+PreventOneRangeAttacking:
+push {r4-r7, lr} 
+
+mov r0, #0 
 
 
+pop {r4-r7} 
+pop {r1} 
+bx r1 
+.ltorg 
 
