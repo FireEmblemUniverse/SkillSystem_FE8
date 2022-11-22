@@ -18,7 +18,7 @@
 .equ Attacker, 0x203A4EC
 .equ Defender, 0x203A56C
 .equ bmMapFill, 0x80197E4 
-push	{r4-r6,lr}
+push	{r4-r7,lr}
 @ldr r4, =Attacker 
 ldr r5, =Defender 
 ldr r6, =ActionStruct 
@@ -41,6 +41,16 @@ bne ActivateGroupIfAttacked
 b End 
 
 ActivateGroupIfAttacked: 
+ldrb r0, [r4, #0x0B] 
+ldrb r1, [r5, #0x0B]
+mov r2, #0x40 
+and r0, r2 
+mov r7, r0 @ if attacker is npc, do not add to ai list 
+and r1, r2 
+orr r0, r1 
+cmp r0, #0 
+bne End @ if npc attacking or defending, do not activate group
+
 @check if attacked this turn
 ldr r3, =0x203A958 @ gAction 
 ldrb r0, [r3,#0x11]	@action taken this turn
@@ -80,6 +90,8 @@ mov r2, #0x44
 mov r3, #0x0
 strb r3, [r0,r2]
 
+cmp r7, #0 
+bne NotInGroup @ don't add enemies to ai list on ally phase
 @add unit to the AI list so enemies act twice
 ldr	r2,=0x203AA03
 ldrb	r1, [r0,#0x0B]	@allegiance byte of the character we are checking
@@ -98,7 +110,7 @@ cmp r4, #0xBF
 ble NextUnit
 
 End:
-pop	{r4-r6}
+pop	{r4-r7}
 pop	{r0}
 bx	r0
 
