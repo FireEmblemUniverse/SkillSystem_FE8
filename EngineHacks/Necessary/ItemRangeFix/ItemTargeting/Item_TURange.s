@@ -100,7 +100,7 @@ mov 	r2, r4
 ldr 	r3, DrawRange
 bl	Jump
 
-
+mov r0, r4 @ range 
 bl LineOfSight @ this is called for each weapon, which seems wasteful 
 
 mov 	r0, r7

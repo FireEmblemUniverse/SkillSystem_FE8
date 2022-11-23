@@ -84,6 +84,7 @@ ldr		r1,[r1]
 ldr		r0,UnknownPtr
 str		r1,[r0]
 
+mov r0, r8 @ range halfword 
 bl LineOfSight 
 pop		{r7}
 mov		r8,r7

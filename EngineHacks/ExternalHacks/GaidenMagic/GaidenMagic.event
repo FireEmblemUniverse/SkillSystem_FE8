@@ -45,7 +45,11 @@
 	gCan_Attack_Target: // We do these to ensure the top bit is set.
 	POIN Can_Attack_Target|1
 	gGet_Item_Range:
-	POIN Get_Item_Range|1
+	POIN Get_Item_Range|1 
+	gGet_Item_Range_minmax: 
+	POIN ItemRangeGetter|1 
+	//POIN GetItemRangeM|1
+	//POIN Get_Item_Range|1
 	gAll_Weapons_One_Square:
 	POIN All_Weapons_One_Square|1
 	gAll_Staffs_One_Square:
