@@ -12,7 +12,7 @@ void LineOfSight(int range) {
 	//FillMovementMapForUnit(unit);
 	
 	// MakeTargetListForWeapon 
-	//asm("mov r11, r11"); 
+	asm("mov r11, r11"); 
 	int range_min = range & 0xFF; 
 	int range_max = range & 0xFF0000; 
 	//asm("mov r11, r11"); 
@@ -29,7 +29,7 @@ void LineOfSight(int range) {
 	int originX;
 	int originY;
 	
-	bool actionPartial = (gActionData.moveCount); // DangerRadius hook sets this up early? 
+	bool actionPartial = (gActionData.moveCount); 
 	
 	//if ((actionType == 0x1F) || (actionType == 0x1E) || (actionType == 0)) { 
 	if (actionPartial) { 
@@ -61,10 +61,10 @@ void LineOfSight(int range) {
 			
 			// find nearest tile in movement map to use as our origin if we haven't moved yet 
 			int foundOrigin = false; 
-			for (int xOffset = 0; xOffset <= 15; xOffset+=1) { 
+			for (int xOffset = range_min; xOffset <= range_max; xOffset+=1) { 
 			//for (int xOffset = range_min; xOffset <= range_max; xOffset+=1) { 
 				if (foundOrigin || (xOffset+terrainX >= sizeX) || (terrainX-xOffset < 0)) break; 
-				for (int yOffset = 0; yOffset <= 15; yOffset+=1) { 
+				for (int yOffset = range_min; yOffset <= range_max; yOffset+=1) { 
 				//for (int yOffset = range_min; yOffset <= range_max; yOffset+=1) { 
 					if ((yOffset+terrainY >= sizeY) || (terrainY-yOffset < 0)) break; 
 					if (gMapMovement[terrainY+yOffset][terrainX] != 0xFF) {
@@ -100,7 +100,6 @@ void LineOfSight(int range) {
 			int endHereY = originY;
 			int xDiff=0; // badness if we are standing on the wall? but it should be in movemap always 
 			int yDiff=0; 
-			
 			if (originX > terrainX) { 
 				// draw from terrainX-- until 0 
 				xDiff = (-1); 
@@ -127,11 +126,10 @@ void LineOfSight(int range) {
 			
 			if (line_x_length > line_y_length) {  
 				int lineY; 
-				for (int lineX = xDiff; ((terrainX+lineX) != endHereX); lineX+=xDiff) { 
+				for (int lineX = xDiff; (terrainX+lineX) != endHereX; lineX+=xDiff) { 
 					if (yDiff>0) lineY = ((ABS(lineX) * line_y_length) / line_x_length);
 					else lineY = 0 - ((ABS(lineX) * line_y_length) / line_x_length);
-					// if we've reached a percentage that makes a full num, we add it
-					if (ABS(lineY + lineX) > range_max) break; 
+					// if we've reached a percentage that makes a full num, we add it 
 					gMapRange[lineY+terrainY][lineX+terrainX] = 0; 
 				} 
 			} 
@@ -139,11 +137,10 @@ void LineOfSight(int range) {
 			
 			if (line_y_length >= line_x_length) {  
 				int lineX;
-				for (int lineY = yDiff; ((terrainY+lineY) != endHereY && terrainY+lineY != 0 && terrainY+lineY != sizeY); lineY+=yDiff) { 
+				for (int lineY = yDiff; (terrainY+lineY) != endHereY; lineY+=yDiff) { 
 					if (xDiff>0) lineX = ((ABS(lineY) * line_x_length) / line_y_length );
 					else lineX = 0 - ((ABS(lineY) * line_x_length) / line_y_length );
 					// if we've reached a percentage that makes a full num, we add it 
-					if (ABS(lineY + lineX) > range_max) break; 
 					gMapRange[lineY+terrainY][lineX+terrainX] = 0; 
 				} 
 				

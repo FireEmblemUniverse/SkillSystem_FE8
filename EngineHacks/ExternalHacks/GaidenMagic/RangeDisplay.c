@@ -18,10 +18,7 @@ long long Return_Range_Bitfield(Unit* unit, int slot, int(*usability)(Unit* unit
 				current = IncorporateNewRange(current,gGet_Item_Range(unit,unit->items[i]));
 			}
 		}
-		asm("mov r11, r11");
 		return ( slot == -1 ? IncorporateNewRange(current,GetUnitRangeMaskForSpells(unit,usability)) : current );
-		//return GetUnitRangeMaskForSpells(unit,usability);
-		//return IncorporateNewRange(current,GetUnitRangeMaskForSpells(unit,usability));
 	}
 	else
 	{
@@ -33,13 +30,11 @@ long long Return_Range_Bitfield(Unit* unit, int slot, int(*usability)(Unit* unit
 		else
 		{
 			// Specifically return all the Gaiden magic that's usable.
-			
-			return GetUnitRangeMaskForSpells(unit,usability); // : current;
+			return GetUnitRangeMaskForSpells(unit,usability);
 		}
 	}
 }
 
-extern int* gGet_Item_Range_minmax(Unit* unit, int item); 
 // r0 = mask, r1 = minmax. See ReturnRangeBitfield.
 long long GetUnitRangeMaskForSpells(Unit* unit, int(*usability)(Unit* unit, int item))
 {
@@ -50,17 +45,11 @@ long long GetUnitRangeMaskForSpells(Unit* unit, int(*usability)(Unit* unit, int 
 		int spell = spells[i]|0xFF00;
 		if ( usability == NULL )
 		{
-			if ( CanCastSpell(unit,spell) ) { 
-			current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); 
-			return (1 ? current : gGet_Item_Range_minmax(unit,spell)); 
-			}
+			if ( CanCastSpell(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
 		}
 		else
 		{
-			if ( usability(unit,spell) ) { 
-			current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); 
-			return (1 ? current : gGet_Item_Range_minmax(unit,spell)); 
-			}
+			if ( usability(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
 		}
 	}
 	return current;

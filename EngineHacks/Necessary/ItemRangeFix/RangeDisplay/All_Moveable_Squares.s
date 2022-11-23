@@ -84,7 +84,56 @@ ldr		r1,[r1]
 ldr		r0,UnknownPtr
 str		r1,[r0]
 
-mov r0, r8 @ range halfword 
+
+mov r1, r8 
+cmp r1, #0 
+bne Continue 
+
+mov r6, r7 @ range bitfield 
+
+NoRangeHalfword: @ this crap copied from WriteRange 
+mov		r0,#0xF
+lsl		r0,r0,#0x10
+add		r6,r6,r0
+BitfieldMagic:
+lsr		r2,r6,#0x10
+lsl		r0,r6,#0x10
+lsr		r0,r2
+lsl		r0,r0,#0x10
+mov		r3,#0x1
+lsl		r3,r3,#0x10
+sub		r6,r6,r3
+MaxBit:
+cmp		r0,#0x0
+blt		BitFound1
+sub		r2,#0x1
+sub		r6,r6,r3
+lsl		r0,r0,#0x1
+b		MaxBit
+BitFound1:
+push {r2}
+lsr		r2,r6,#0x10
+lsl		r0,r6,#0x10
+lsr		r0,r2
+lsl		r0,r0,#0x10
+mov		r3,#0x1
+lsl		r3,r3,#0x10
+sub		r6,r6,r3
+MinBit:
+cmp		r0,#0x0
+bge		BitFound2
+sub		r2,#0x1
+sub		r6,r6,r3
+lsl		r0,r0,#0x1
+b		MinBit
+BitFound2:
+mov r0, r2 
+pop {r2} 
+lsl r2, #16 
+orr r0, r2 
+
+
+Continue: 
 bl LineOfSight 
 pop		{r7}
 mov		r8,r7
