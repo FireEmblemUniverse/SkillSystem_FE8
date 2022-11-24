@@ -40,9 +40,9 @@ void LineOfSight(int range) {
 	originX = unit->xPos; // used to make a line between point A and point B 
 	originY = unit->yPos;
 	} 
-	
-	for (int terrainY = 0; terrainY < sizeY; terrainY++) { 
-		for (int terrainX = 0; terrainX < sizeX; terrainX++) {
+	// start at originX - rangeMax, originY - rangeMax (unless this is < 0) 
+	for (int terrainY = (originX - range_max >= 0 ? originX - range_max : 0); terrainY < sizeY; terrainY++) { 
+		for (int terrainX = (originY - range_max >= 0 ? originY - range_max : 0); terrainX < sizeX; terrainX++) {
 			u8 currTerrain = gMapTerrain[terrainY][terrainX]; 
 		if (((currTerrain == 0) || (currTerrain == 0x2E) || (currTerrain==0x1A)) && ((originX != terrainX) || (originY != terrainY))) { 
 			// && gMapMovement[terrainY][terrainX] == 0xFF) { // should always be -1 movement at these terrains 
@@ -56,41 +56,34 @@ void LineOfSight(int range) {
 			// eg. player is at [1,3] 
 			// bad terrain at 7,3 
 			// fill 8, 9, 10 etc. x coords with 0 
-		
+			
 			if (!(actionPartial)) { // 9208BAC
 			
 			// find nearest tile in movement map to use as our origin if we haven't moved yet 
 			int foundOrigin = false; 
-			for (int xOffset = 0; xOffset <= 15; xOffset+=1) { 
+			for (int xOffset = 0; xOffset <= 15; xOffset++) { 
 			//for (int xOffset = range_min; xOffset <= range_max; xOffset+=1) { 
 				if (foundOrigin || (xOffset+terrainX >= sizeX) || (terrainX-xOffset < 0)) break; 
-				for (int yOffset = 0; yOffset <= 15; yOffset+=1) { 
-				//for (int yOffset = range_min; yOffset <= range_max; yOffset+=1) { 
+				for (int yOffset = 0; yOffset <= 15; yOffset++) { 
+				//for (yOffset = range_min; yOffset <= range_max; yOffset+=1) { 
 					if ((yOffset+terrainY >= sizeY) || (terrainY-yOffset < 0)) break; 
-					if (gMapMovement[terrainY+yOffset][terrainX] != 0xFF) {
-						foundOrigin = true; 
-						originY = terrainY + yOffset; 
-						originX = terrainX; 
-					}
-					if (gMapMovement[terrainY][terrainX+xOffset] != 0xFF) {
-						foundOrigin = true; 
-						originY = terrainY; 
-						originX = terrainX + xOffset; 
-					}
-					if (gMapMovement[terrainY+yOffset][terrainX+xOffset] != 0xFF) {
-						foundOrigin = true; 
-						originY = terrainY + yOffset; 
-						originX = terrainX + xOffset; 
-					}
-					if (gMapMovement[terrainY-yOffset][terrainX-xOffset] != 0xFF) {
-						foundOrigin = true; 
-						originY = terrainY - yOffset; 
-						originX = terrainX - xOffset; 
-					}
-				
+					
+					// check every tile in a square 
+					for (int cx = 0 - xOffset; (cx <= xOffset); cx++) { 
+						for (int cy = 0 - yOffset; cy <= yOffset; cy++) { 
+							if (gMapMovement[terrainY+cy][terrainX+cx] != 0xFF) {
+							foundOrigin = true; 
+							originY = terrainY + cy; 
+							originX = terrainX + cx; 
+							}
+						
+						} 
+					} 
+					
 				
 				} 
 			}
+			
 			} 
 			
 			// don't remove range for tiles farther away than range_max from current position 
@@ -132,19 +125,35 @@ void LineOfSight(int range) {
 					else lineY = 0 - ((ABS(lineX) * line_y_length) / line_x_length);
 					// if we've reached a percentage that makes a full num, we add it
 					if (ABS(lineY + lineX) > range_max) break; 
+					if (actionPartial) gMapRange[lineY+terrainY][lineX+terrainX] = 0; 
+					
+					else { 
+					if (gMapMovement[terrainY+lineY][terrainX+lineX+1] == 0xFF)
+					if (gMapMovement[terrainY+lineY][terrainX+lineX-1] == 0xFF)
+					if (gMapMovement[terrainY+lineY+1][terrainX+lineX] == 0xFF)
+					if (gMapMovement[terrainY+lineY-1][terrainX+lineX] == 0xFF)
 					gMapRange[lineY+terrainY][lineX+terrainX] = 0; 
+					} 
 				} 
 			} 
 			
 			
 			if (line_y_length >= line_x_length) {  
 				int lineX;
-				for (int lineY = yDiff; ((terrainY+lineY) != endHereY && terrainY+lineY != 0 && terrainY+lineY != sizeY); lineY+=yDiff) { 
+				for (int lineY = yDiff; ((terrainY+lineY) != endHereY); lineY+=yDiff) { 
 					if (xDiff>0) lineX = ((ABS(lineY) * line_x_length) / line_y_length );
 					else lineX = 0 - ((ABS(lineY) * line_x_length) / line_y_length );
 					// if we've reached a percentage that makes a full num, we add it 
 					if (ABS(lineY + lineX) > range_max) break; 
+					if (actionPartial) gMapRange[lineY+terrainY][lineX+terrainX] = 0; 
+					
+					else { 
+					if (gMapMovement[terrainY+lineY][terrainX+lineX+1] == 0xFF)
+					if (gMapMovement[terrainY+lineY][terrainX+lineX-1] == 0xFF)
+					if (gMapMovement[terrainY+lineY+1][terrainX+lineX] == 0xFF)
+					if (gMapMovement[terrainY+lineY-1][terrainX+lineX] == 0xFF)
 					gMapRange[lineY+terrainY][lineX+terrainX] = 0; 
+					}
 				} 
 				
 				
