@@ -310,6 +310,7 @@ AutoLevelUnits(99, True, 0x90EF) // lvl 99 on Lunatic only
 //CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 SetUnitStatus(0xA6, Defence, 50)
 SetUnitStatus(0xA6, Resistance, 50)
+SilentGiveItemWithDurability(SableyeUnitID, 0x80|Berry,5)
 LABEL 14 
 
 

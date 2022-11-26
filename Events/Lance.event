@@ -110,20 +110,21 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-
-
 SilentGiveItemWithDurability(0xD0, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Machoke 
-SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
 SilentGiveItemWithDurability(0xA0, StatAccessory, EnergyBandT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA1, StatAccessory, EnergyBandT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA2, StatAccessory, EnergyBandT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA3, StatAccessory, EnergyBandT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x2)
 SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT2_BoostIndex|0x80)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
+
+SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA0, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA1, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA2, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA3, MaxPotion,0x1)
+SilentGiveItemWithDurability(0xA4, MaxPotion,0x1)
+
+
 
 
 MUSCFAST IntroBGM 
@@ -192,7 +193,7 @@ EnemyTrainersA:
 UNIT 0xD0 DragoniteID 		0x0  Level(0, Enemy, 1) [12,7]  0b 0x0	0 0	[Outrage, Screech, 0,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA0 CharizardID 		0xD0 Level(0, Enemy, 1) [13,8]  0b 0x0	0 0 [FireBlast,SkyAttack,0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA1 AerodactylID 	0xD0 Level(0, Enemy, 1) [11,8]  0b 0x0	0 0	[RockSlide,WingAttack,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 GyaradosID 		0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Waterfall, HyperBeam,0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA2 GyaradosID 		0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0 	0 0	[Waterfall, Leer,0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA3 DragonairID 		0xD0 Level(0, Enemy, 1) [9,9]  0b 0x0	0 0	[DragonRage,IceBeam, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
 UNIT 0xA4 DragonairID 		0xD0 Level(0, Enemy, 1) [15,9]  0b 0x0	0 0	[DragonRage,BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
