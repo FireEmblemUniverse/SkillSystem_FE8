@@ -106,9 +106,9 @@ WORD 0x505 // nothing should use this 0x0C
 WORD 0x505 // nothing should use this 0x0D
 WORD 0x505 // nothing should use this 0x0E
 WORD 0x505 // nothing should use this 0x0F
-WORD 0x505 //yes
-WORD SteelTypeText 
-WORD IceTypeText //yes
+WORD 0x505 // nothing should use this 
+WORD SteelTypeText // nothing should use this 0x11
+WORD IceTypeText // nothing should use this 0x22
 WORD FlyingTypeText //yes
 WORD FairyTypeText 
 WORD PoisonTypeText //yes
@@ -122,9 +122,9 @@ WORD 0x505 // nothing should use this 0x1C
 WORD 0x505 // nothing should use this 0x1D 
 WORD 0x505 // nothing should use this 0x1E 
 WORD 0x505 // nothing should use this 0x1F
-WORD FightingTypeText // nothing should use this 0x20
-WORD 0x505 // nothing should use this 0x21
-WORD 0x505 // nothing should use this 0x22
+WORD FightingTypeText // 0x20
+WORD SteelTypeText // 0x21
+WORD IceTypeText // 0x22
 WORD DragonTypeText//yes
 WORD 0x505 // nothing should use this 0x24
 WORD BugTypeText //yes

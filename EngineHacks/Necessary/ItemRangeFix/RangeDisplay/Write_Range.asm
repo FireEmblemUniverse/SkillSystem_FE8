@@ -115,7 +115,6 @@ ldr		r4,WriteRange
 bl		goto_r4
 pop		{r4}
 EndRangeWrite:
-
 pop		{r7}
 mov		r8,r7
 pop		{r4-r7}
