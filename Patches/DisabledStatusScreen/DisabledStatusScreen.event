@@ -6,12 +6,15 @@
 PUSH
 ORG 0x874AC
 jumpToHack(DrawUnitItemScreen)
+PROTECT $874ac $874ac+7
 
 ORG 0x879C4
 jumpToHack_r1(DisabledStatusScreen2)
+PROTECT $879c4 $879c4+7
 
 ORG 0x1C92C
 jumpToHack(DisabledStatusScreen)
+PROTECT $1c92c $1c92c+7
 
 POP
 

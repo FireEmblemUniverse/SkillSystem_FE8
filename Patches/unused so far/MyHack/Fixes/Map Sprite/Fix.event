@@ -1,9 +1,0 @@
-  //Fix Map Sprites past 0x80
-PUSH
-  ORG 0x268E4
-  SHORT 0x2000
-  ORG 0x26A52
-  SHORT 0x2000
-  ORG 0x26B42
-  SHORT 0x2000
-POP

@@ -53,8 +53,10 @@ PUSH
   // Not sure why they changed the pointer.
   ORG $1CF04
 	SHORT 0 $7804
+PROTECT $1CF04 
 	ORG $1CF48
 	WORD $202BE44
+PROTECT $1CF48 
   
 POP
 

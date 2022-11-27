@@ -26,7 +26,7 @@ PUSH
 // a unit is selected 
 ORG 0x1CC24 
 callHack_r3(DecideToHideActiveUnitRangeDisplay) 
-
+PROTECT $1cc24 $1cc24+11
 // This hooks CheckEventDefinitions at 8082EC4
 // If we're checking for "when player has decided to move" 
 //ORG 0x82EEC 
@@ -35,10 +35,12 @@ callHack_r3(DecideToHideActiveUnitRangeDisplay)
 ORG $844C8 // on select tile to move to 
 callHack_r1(InsertEventOnTileSelect)
 SHORT $46c0 //noop 
+PROTECT $844c8 $844c8+13
 
 ORG $84474 //- on select unit 
 callHack_r1(InsertEventOnUnitSelect)
 SHORT $46c0 //noop 
+PROTECT $84474 $84474+13
 
 POP 
 

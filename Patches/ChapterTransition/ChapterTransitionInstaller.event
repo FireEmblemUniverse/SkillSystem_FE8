@@ -26,6 +26,7 @@
     //ORG 0x59A31C          // MNC3
     ORG 0x15540           // MNC2
     POIN Proc_ChIntro
+	PROTECT $15540
     
 	POP
   
