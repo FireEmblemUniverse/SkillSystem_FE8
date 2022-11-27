@@ -10,13 +10,8 @@
 	#include "repointedTextTable.event"
 	#include "Music/Text/ExtraText.event" 
 
-
-    //Text first for Text ID definitions
-	#include "TextDump/InstallTextData.event" //Pokemblem dump
-	
-	MESSAGE Pokemblem text dump space ends at currentOffset
-	#undef TEXT_DEFINITIONS_TEXT_BUILDFILE_TXT
-	#undef TEXT_INSTALLER_TEXT_BUILDFILE_TXT
+	//#undef TEXT_DEFINITIONS_TEXT_BUILDFILE_TXT
+	//#undef TEXT_INSTALLER_TEXT_BUILDFILE_TXT
 
     #include "Text/InstallTextData.event"
     MESSAGE Used text space ends at currentOffset

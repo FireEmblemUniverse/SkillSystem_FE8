@@ -19,7 +19,7 @@ ldsb	r1,[r4,r1]
 @ldr		r4,ReturnRangeBitfield+4	@Actually the "Range Write" function
 @bl		goto_r4
 bl		Write_Range
-bl LineOfSight 
+@bl LineOfSight 
 pop		{r4}
 pop		{r0}
 bx		r0
