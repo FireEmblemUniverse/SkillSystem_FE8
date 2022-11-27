@@ -6,6 +6,8 @@
 #define DEBUG_MODE 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
+#define USE_HGSS_SPRITES
+
 
 //PROTECT $2517C //AddUnitToTargetListIfNotAllied
 PUSH; ORG $D74D0	//{U}
