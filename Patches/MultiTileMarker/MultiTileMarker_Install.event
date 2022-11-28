@@ -8,7 +8,6 @@
 PUSH
 ORG $27534        //FE8U
 jumpToHack(MultiTileMarker|1)
-PROTECT $27534 $27534+7
 POP
 
 ALIGN 4
