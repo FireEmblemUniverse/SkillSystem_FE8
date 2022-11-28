@@ -14,14 +14,14 @@
 
 //Takes 0xC bytes
 #ifdef _FE8_
-	#define callHack_r0(offset) "SHORT 0x4801; BL(0xD18C0); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r1(offset) "SHORT 0x4901; BL(0xD18C4); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xD18C8); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xD18CC); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r4(offset) "SHORT 0x4C01; BL(0xD18D0); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xD18D4); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xD18D8); SHORT 0xE001; POIN (offset|0x1)"
-	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xD18DC); SHORT 0xE001; POIN (offset|0x1)"
+	#define callHack_r0(offset) "SHORT 0x4801; BL(0xD18C0); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r1(offset) "SHORT 0x4901; BL(0xD18C4); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r2(offset) "SHORT 0x4A01; BL(0xD18C8); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r3(offset) "SHORT 0x4B01; BL(0xD18CC); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r4(offset) "SHORT 0x4C01; BL(0xD18D0); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r5(offset) "SHORT 0x4D01; BL(0xD18D4); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r6(offset) "SHORT 0x4E01; BL(0xD18D8); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+	#define callHack_r7(offset) "SHORT 0x4F01; BL(0xD18DC); SHORT 0xE001; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
 #endif
 
 
