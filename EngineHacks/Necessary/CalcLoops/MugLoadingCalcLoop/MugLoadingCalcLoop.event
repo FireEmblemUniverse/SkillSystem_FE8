@@ -8,7 +8,7 @@ MugLoadingFunctions: // Each function will check for a passed in control code, r
 #ifdef PORTRAIT_SELECTION
 	POIN PortraitSelection
 #endif // PORTRAIT_SELECTION
-POIN RandomMug3 // Associated with Identity Problems
+//POIN RandomMug3 // Associated with Identity Problems
 WORD 0 // Terminator
 
 PROTECT 0x7898 0x78A8

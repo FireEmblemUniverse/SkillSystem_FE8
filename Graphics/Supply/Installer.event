@@ -14,8 +14,8 @@ ORG $9F0E0
 POIN SupplyImageBig 
 
 ORG $A1A084 // palette for supply image big 
-BYTE $55 $53 $98 $00 $00 $00 $2A $21 $DE $7F $E2 $7D $37 $6F $38 $62 $B1 $19 $30 $4E $15 $77 $BE $3B $56 $16 $1F $7C $E0 $7F $FF $7F
-
+//BYTE $55 $53 $98 $00 $00 $00 $2A $21 $DE $7F $E2 $7D $37 $6F $38 $62 $B1 $19 $30 $4E $15 $77 $BE $3B $56 $16 $1F $7C $E0 $7F $FF $7F
+#incbin "SupplyImage_Big.png.pal.dmp" 
 
 POP 
 
@@ -23,7 +23,7 @@ POP
 // or use export with EA 
 ALIGN 4 
 SupplyImageBig:
-#incbin "supplyimage_big.dmp" 
+#incbin "supplyimage_big.png.dmp" 
 
 ALIGN 4
 SupplyImageOne:

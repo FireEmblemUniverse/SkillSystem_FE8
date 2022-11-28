@@ -68,8 +68,8 @@ SHORT 0 //nop the 0x200000
 ORG $17ef4
 jumpToHack(HookUnitLoading)
 
-ORG $2B3EC
-jumpToHack(Rerun_Battle_Calcs)
+//ORG $2B3EC // hooked by BattleProcCalcLoop 
+//jumpToHack(Rerun_Battle_Calcs)
 
 ORG $22862
 BL(Unset_Attack_Flag) //this is in masterhackinstaller
@@ -367,9 +367,6 @@ GetUnitLevelSkills:
 RTextLoop:
 #incbin "rtextloop.dmp"
 POIN Skill_Getter
-
-Rerun_Battle_Calcs:
-#incbin "Rerun_Battle_Calcs.dmp"
 
 Unset_Attack_Flag_2:
 #incbin "clearAttackFlag.dmp"

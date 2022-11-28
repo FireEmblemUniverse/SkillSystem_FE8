@@ -8,7 +8,63 @@
 .equ ActionStruct, 0x203A958
 .equ gActiveUnit, 0x03004E50	@{U}
 .equ gMapMove2, 0x202E4F0 
+.equ gChapterData, 0x202BCF0
 .equ AiDecision, 0x203AA94 @ [203AA96..203AA97]!!
+
+@ copied from AiMoveDistance (used by the Charge skill) 
+	// r0 - x coord
+	// r1 - y coord
+
+	// hook at 39C44
+
+	// new code
+
+	ldr r2, =ActionStruct
+
+	// x and y moved to
+	strb r0, [r2, #0xE]
+	strb r1, [r2, #0xF]
+
+	// total distance
+
+	push {r4}
+	mov r4, #0
+
+	ldr r2, =gActiveUnit
+	ldr r2, [r2]
+	ldrb r3, [r2, #0x11]
+	ldrb r2, [r2, #0x10]
+
+	cmp r0, r2
+	beq GetYDistance
+	bgt XMovedBackwards
+	sub r2, r0
+	add r4, r2
+	b GetYDistance
+
+	XMovedBackwards:
+	sub r0, r2
+	add r4, r0
+
+	GetYDistance:
+	cmp r1, r3
+	beq EndGetDistance
+	bgt YMovedBackwards
+	sub r3, r1
+	add r4, r3
+	b EndGetDistance
+
+	YMovedBackwards:
+	sub r1, r3
+	add r4, r1
+
+	EndGetDistance:
+	ldr r2, =ActionStruct
+	strb r4, [r2, #0x10]
+	
+pop {r4} 
+@ copied from AiMoveDistance (used by the Charge skill) 
+
 mov r0, r8 @ vanilla 
 strb r0, [r4, #8] 
 mov r0, r9 

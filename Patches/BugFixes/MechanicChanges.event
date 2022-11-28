@@ -8,6 +8,8 @@ PUSH
 ORG $35728 // Kill Prepare Blank Tile by 7743  
 WORD 0 
 
+ORG $A42BC // Kill GetNextChapterWinDataEntryIndex
+SHORT $2001 $4770 // mov r0, #1 - bx lr 
 
 
 // footsteps table by 7743 
