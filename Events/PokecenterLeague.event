@@ -75,7 +75,7 @@ ShopItems_C: // Skill Scrolls
 // 2nd store in Viridian? Or at league? 
 BYTE SkillScroll DartingStanceID SkillScroll ChargeID SkillScroll PursuitID
 BYTE SkillScroll WrathID SkillScroll SilentPrideID SkillScroll QuickDrawID 
-BYTE SkillScroll GrislyWoundID SkillScroll FieryBloodID SkillScroll RenewalID 
+BYTE SkillScroll FieryBloodID SkillScroll RenewalID 
 BYTE $0 0; ALIGN 4
 
 
@@ -98,7 +98,7 @@ Seafoam: WaterStone , Calcium, MaxPotion ,
 Route20W:  , ExoticCandy 
 Cinnabar:  , WiseGlassesT3
 Mansion:  , Zinc, 1500g , FireStone 
-Mansion:  , GrislyWoundSS, StuddedShield 
+Mansion:  , , StuddedShield 
 CinnabarGym: , FieryBloodSS
 Route21:  , ExoticCandy 
 ViridianGym: , , Fury 

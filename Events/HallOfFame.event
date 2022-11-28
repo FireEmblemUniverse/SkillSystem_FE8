@@ -94,7 +94,11 @@ CALL LoadAndPlacePlayers
 //LOMA HallOfFameCh 
 //FADU 16 
 Text(OakLeagueText4)
-
+ENUF LoreleiDefeatedTemp 
+ENUF BrunoDefeatedTemp 
+ENUF AgathaDefeatedTemp 
+ENUF LanceDefeatedTemp 
+ENUF ChampionDefeatedTemp 
 FADU 16 
 //LOMA PalletCh 
 //MOVE (-1) 0x101 [6,8]

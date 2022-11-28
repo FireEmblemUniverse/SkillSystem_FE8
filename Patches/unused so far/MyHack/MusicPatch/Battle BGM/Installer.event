@@ -1,6 +1,0 @@
-PUSH
-ORG $726CA
-#incbin "726CA.bin"
-ORG $72700
-#incbin "72700.bin"
-POP

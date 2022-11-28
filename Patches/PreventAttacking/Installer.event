@@ -1,10 +1,11 @@
-
-
+ 
+//#include "LineOfSight.lyn.event" 
+#include "RangeGetterGaiden.lyn.event" 
 
 
 PUSH
 ORG $2517C 
-jumpToHack(PreventAttacking) 
+jumpToHack(PreventAttacking) // called by ForEachUnitInRange 
 
 ORG $24EE4
 jumpToHack(PreventAttTradeRescueEtc_Ver2)

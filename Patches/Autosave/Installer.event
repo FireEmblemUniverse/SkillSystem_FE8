@@ -31,32 +31,41 @@ WORD QuicksaveToggleFlag
 PUSH
 ORG 0x1c89e
 BYTE  0x00 0x00 0x00 0x00
+PROTECT $1c89e
 ORG 0x1d22c
 BYTE  0x00 0x00 0x00 0x00
+PROTECT $1d22c
 ORG 0x2CDDE
 BYTE  0x00 0x00 0x00 0x00
+PROTECT $2cdde
 
 ORG 0x31F06
 BYTE  0x00 0x00 0x00 0x00
+PROTECT $31f06
 ORG 0x377A2
 BYTE  0x00 0x00 0x00 0x00
+PROTECT $377a2
 ORG 0x39af4
 BYTE  0x00 0x00 0x00 0x00
+PROTECT $39af4
 
 ORG 0x154F8
 callHackNew(AutosaveFunc) 
 SHORT $BC01 // pop {r0} 
 SHORT $4700 // bx r0 // i've gone over a SHORT of padding 
+PROTECT $154f8 $154f8+(4*4)
 
 
 //ActionData@gActionData.suspendPointType = 9 にするために、この値を参照できるようにする
 //ORG	0x015534  //J
 ORG 0x015510      //U
 SHORT	$481C	//ldr	r0, [$080155a8]
+PROTECT $15510
 
 //ORG	0x015560
 ORG	0x01553C
 //WORD	$0203A954
 WORD $0203A958
+PROTECT $1553c
 
 POP

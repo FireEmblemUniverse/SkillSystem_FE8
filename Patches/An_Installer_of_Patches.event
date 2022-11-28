@@ -122,10 +122,6 @@
 
 
 
-
-#include "EscapeArrive/EscapeMenu/EA.txt"
-
-
 #include "FatesExp/Installer.event"
 
 
@@ -153,7 +149,7 @@
 
 
 #include "TutorialDisabler.event"
-#include "LessAnnoyingFog/Installer.event"
+//#include "LessAnnoyingFog/Installer.event"
 
 #include "SkipOpening.event"
 #include "DifficultySelection.event"

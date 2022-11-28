@@ -19,6 +19,7 @@ PUSH
 
 ORG $26630 
 callHackNew(AllegiancePalette|1) 
+PROTECT $26630 $2663B
 
 POP 
 

@@ -53,11 +53,10 @@
 // this is at |2 addresses, not align-4. Needs to add +7 to lr at end. 
 #define jumpToHackNew(offset) "BYTE $FE $46 $00 $4B $18 $47; POIN (offset|0x1)" // requires you add +7 to your return address after you pop lr into a lo register 
 // this works with fe8u, fe8j etc. 
-#define callHackNew_r0(offset) 	"BYTE $01 $48 $86 $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-#define callHackNew_r1(offset) 	"BYTE $01 $49 $8E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-#define callHackNew_r2(offset) 	"BYTE $01 $4A $96 $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-
+#define callHackNew_r0(offset) 	"BYTE $01 $48 $86 $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew_r1(offset) 	"BYTE $01 $49 $8E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew_r2(offset) 	"BYTE $01 $4A $96 $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
 
 
 // Pokemblem stuff: 

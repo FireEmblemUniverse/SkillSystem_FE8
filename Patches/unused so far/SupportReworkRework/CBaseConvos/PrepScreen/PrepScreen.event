@@ -1,8 +1,0 @@
-
-#ifndef PREP_SCREEN_HAX
-	#define PREP_SCREEN_HAX
-	
-	// Be sure to have the Prep Screen Table CSV!
-	#include "PrepScreen.lyn.event"
-	
-#endif

@@ -3,9 +3,11 @@
 PUSH
 ORG 0x2C534
 gotoHack(expRoutine)
+PROTECT $2c534 $2c534+7
 
 ORG $2B9F4
 jumpToHack(CanGainExpVesly) 
+PROTECT $2b9f4 $2b9f4+7
 POP
 
 ALIGN 4

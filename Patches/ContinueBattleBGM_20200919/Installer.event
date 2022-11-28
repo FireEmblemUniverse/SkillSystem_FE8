@@ -6,6 +6,7 @@
 PUSH
 ORG $71A68
 jumpToHack(Cbbgm)
+PROTECT $71a68 $71a68+7
 POP
 
 ALIGN 4

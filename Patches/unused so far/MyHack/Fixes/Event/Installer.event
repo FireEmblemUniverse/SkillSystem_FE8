@@ -1,9 +1,0 @@
-PUSH
-  //Prevent character event freezes
-  ORG $F25C
-  BYTE 0x00 0x20
-  ORG $102D4
-  BYTE 0x00 0x20
-  ORG $10804
-  BYTE 0x00 0x20
-POP

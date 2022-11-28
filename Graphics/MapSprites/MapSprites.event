@@ -597,7 +597,619 @@ POP
 
 
 //Moving sprites
+#ifdef USE_HGSS_SPRITES 
+ALIGN 4
+r1Moving:
+#incbin "HGSS/MMS/r1.dmp"
 
+ALIGN 4
+r2Moving:
+#incbin "HGSS/MMS/r2.dmp"
+
+ALIGN 4
+r3Moving:
+#incbin "HGSS/MMS/r3.dmp"
+
+ALIGN 4
+r4Moving:
+#incbin "HGSS/MMS/r4.dmp"
+
+ALIGN 4
+r5Moving:
+#incbin "HGSS/MMS/r5.dmp"
+
+ALIGN 4
+r6Moving:
+#incbin "HGSS/MMS/r6.dmp"
+
+ALIGN 4
+r7Moving:
+#incbin "HGSS/MMS/r7.dmp"
+
+ALIGN 4
+r8Moving:
+#incbin "HGSS/MMS/r8.dmp"
+
+ALIGN 4
+r9Moving:
+#incbin "HGSS/MMS/r9.dmp"
+
+
+
+ALIGN 4
+r10Moving:
+#incbin "HGSS/MMS/r10.dmp"
+
+ALIGN 4
+r11Moving:
+#incbin "HGSS/MMS/r11.dmp"
+
+ALIGN 4
+r12Moving:
+#incbin "HGSS/MMS/r12.dmp"
+
+ALIGN 4
+r13Moving:
+#incbin "HGSS/MMS/r13.dmp"
+
+ALIGN 4
+r14Moving:
+#incbin "HGSS/MMS/r14.dmp"
+
+ALIGN 4
+r15Moving:
+#incbin "HGSS/MMS/r15.dmp"
+
+ALIGN 4
+r16Moving:
+#incbin "HGSS/MMS/r16.dmp"
+
+ALIGN 4
+r17Moving:
+#incbin "HGSS/MMS/r17.dmp"
+
+ALIGN 4
+r18Moving:
+#incbin "HGSS/MMS/r18.dmp"
+
+ALIGN 4
+r19Moving:
+#incbin "HGSS/MMS/r19.dmp"
+
+ALIGN 4
+r20Moving:
+#incbin "HGSS/MMS/r20.dmp"
+
+ALIGN 4
+r21Moving:
+#incbin "HGSS/MMS/r21.dmp"
+
+ALIGN 4
+r22Moving:
+#incbin "HGSS/MMS/r22.dmp"
+
+ALIGN 4
+r23Moving:
+#incbin "HGSS/MMS/r23.dmp"
+
+ALIGN 4
+r24Moving:
+#incbin "HGSS/MMS/r24.dmp"
+
+ALIGN 4
+r25Moving:
+#incbin "HGSS/MMS/r25.dmp"
+
+ALIGN 4
+r26Moving:
+#incbin "HGSS/MMS/r26.dmp"
+
+ALIGN 4
+r27Moving:
+#incbin "HGSS/MMS/r27.dmp"
+
+ALIGN 4
+r28Moving:
+#incbin "HGSS/MMS/r28.dmp"
+
+ALIGN 4
+r29Moving:
+#incbin "HGSS/MMS/r29.dmp"
+
+ALIGN 4
+r30Moving:
+#incbin "HGSS/MMS/r30.dmp"
+
+ALIGN 4
+r31Moving:
+#incbin "HGSS/MMS/r31.dmp"
+
+ALIGN 4
+r32Moving:
+#incbin "HGSS/MMS/r32.dmp"
+
+ALIGN 4
+r33Moving:
+#incbin "HGSS/MMS/r33.dmp"
+
+ALIGN 4
+r34Moving:
+#incbin "HGSS/MMS/r34.dmp"
+
+ALIGN 4
+r35Moving:
+#incbin "HGSS/MMS/r35.dmp"
+
+ALIGN 4
+r36Moving:
+#incbin "HGSS/MMS/r36.dmp"
+
+ALIGN 4
+r37Moving:
+#incbin "HGSS/MMS/r37.dmp"
+
+ALIGN 4
+r38Moving:
+#incbin "HGSS/MMS/r38.dmp"
+
+ALIGN 4
+r39Moving:
+#incbin "HGSS/MMS/r39.dmp"
+
+ALIGN 4
+r40Moving:
+#incbin "HGSS/MMS/r40.dmp"
+
+ALIGN 4
+r41Moving:
+#incbin "HGSS/MMS/r41.dmp"
+
+ALIGN 4
+r42Moving:
+#incbin "HGSS/MMS/r42.dmp"
+
+ALIGN 4
+r43Moving:
+#incbin "HGSS/MMS/r43.dmp"
+
+ALIGN 4
+r44Moving:
+#incbin "HGSS/MMS/r44.dmp"
+
+ALIGN 4
+r45Moving:
+#incbin "HGSS/MMS/r45.dmp"
+
+ALIGN 4
+r46Moving:
+#incbin "HGSS/MMS/r46.dmp"
+
+ALIGN 4
+r47Moving:
+#incbin "HGSS/MMS/r47.dmp"
+
+ALIGN 4
+r48Moving:
+#incbin "HGSS/MMS/r48.dmp"
+
+ALIGN 4
+r49Moving:
+#incbin "HGSS/MMS/r49.dmp"
+
+ALIGN 4
+r50Moving:
+#incbin "HGSS/MMS/r50.dmp"
+
+ALIGN 4
+r51Moving:
+#incbin "HGSS/MMS/r51.dmp"
+
+ALIGN 4
+r52Moving:
+#incbin "HGSS/MMS/r52.dmp"
+
+ALIGN 4
+r53Moving:
+#incbin "HGSS/MMS/r53.dmp"
+
+ALIGN 4
+r54Moving:
+#incbin "HGSS/MMS/r54.dmp"
+
+ALIGN 4
+r55Moving:
+#incbin "HGSS/MMS/r55.dmp"
+
+ALIGN 4
+r56Moving:
+#incbin "HGSS/MMS/r56.dmp"
+
+ALIGN 4
+r57Moving:
+#incbin "HGSS/MMS/r57.dmp"
+
+ALIGN 4
+r58Moving:
+#incbin "HGSS/MMS/r58.dmp"
+
+ALIGN 4
+r59Moving:
+#incbin "HGSS/MMS/r59.dmp"
+
+ALIGN 4
+r60Moving:
+#incbin "HGSS/MMS/r60.dmp"
+
+ALIGN 4
+r61Moving:
+#incbin "HGSS/MMS/r61.dmp"
+
+ALIGN 4
+r62Moving:
+#incbin "HGSS/MMS/r62.dmp"
+
+ALIGN 4
+r63Moving:
+#incbin "HGSS/MMS/r63.dmp"
+
+ALIGN 4
+r64Moving:
+#incbin "HGSS/MMS/r64.dmp"
+
+ALIGN 4
+r65Moving:
+#incbin "HGSS/MMS/r65.dmp"
+
+ALIGN 4
+r66Moving:
+#incbin "HGSS/MMS/r66.dmp"
+
+ALIGN 4
+r67Moving:
+#incbin "HGSS/MMS/r67.dmp"
+
+ALIGN 4
+r68Moving:
+#incbin "HGSS/MMS/r68.dmp"
+
+ALIGN 4
+r69Moving:
+#incbin "HGSS/MMS/r69.dmp"
+
+ALIGN 4
+r70Moving:
+#incbin "HGSS/MMS/r70.dmp"
+
+ALIGN 4
+r71Moving:
+#incbin "HGSS/MMS/r71.dmp"
+
+ALIGN 4
+r72Moving:
+#incbin "HGSS/MMS/r72.dmp"
+
+ALIGN 4
+r73Moving:
+#incbin "HGSS/MMS/r73.dmp"
+
+ALIGN 4
+r74Moving:
+#incbin "HGSS/MMS/r74.dmp"
+
+ALIGN 4
+r75Moving:
+#incbin "HGSS/MMS/r75.dmp"
+
+ALIGN 4
+r76Moving:
+#incbin "HGSS/MMS/r76.dmp"
+
+ALIGN 4
+r77Moving:
+#incbin "HGSS/MMS/r77.dmp"
+
+ALIGN 4
+r78Moving:
+#incbin "HGSS/MMS/r78.dmp"
+
+ALIGN 4
+r79Moving:
+#incbin "HGSS/MMS/r79.dmp"
+
+ALIGN 4
+r80Moving:
+#incbin "HGSS/MMS/r80.dmp"
+
+ALIGN 4
+r81Moving:
+#incbin "HGSS/MMS/r81.dmp"
+
+ALIGN 4
+r82Moving:
+#incbin "HGSS/MMS/r82.dmp"
+
+ALIGN 4
+r83Moving:
+#incbin "HGSS/MMS/r83.dmp"
+
+ALIGN 4
+r84Moving:
+#incbin "HGSS/MMS/r84.dmp"
+
+ALIGN 4
+r85Moving:
+#incbin "HGSS/MMS/r85.dmp"
+
+ALIGN 4
+r86Moving:
+#incbin "HGSS/MMS/r86.dmp"
+
+ALIGN 4
+r87Moving:
+#incbin "HGSS/MMS/r87.dmp"
+
+ALIGN 4
+r88Moving:
+#incbin "HGSS/MMS/r88.dmp"
+
+ALIGN 4
+r89Moving:
+#incbin "HGSS/MMS/r89.dmp"
+
+ALIGN 4
+r90Moving:
+#incbin "HGSS/MMS/r90.dmp"
+
+ALIGN 4
+r91Moving:
+#incbin "HGSS/MMS/r91.dmp"
+
+ALIGN 4
+r92Moving:
+#incbin "HGSS/MMS/r92.dmp"
+
+ALIGN 4
+r93Moving:
+#incbin "HGSS/MMS/r93.dmp"
+
+ALIGN 4
+r94Moving:
+#incbin "HGSS/MMS/r94.dmp"
+
+ALIGN 4
+r95Moving:
+#incbin "HGSS/MMS/r95.dmp"
+
+ALIGN 4
+r96Moving:
+#incbin "HGSS/MMS/r96.dmp"
+
+ALIGN 4
+r97Moving:
+#incbin "HGSS/MMS/r97.dmp"
+
+ALIGN 4
+r98Moving:
+#incbin "HGSS/MMS/r98.dmp"
+
+ALIGN 4
+r99Moving:
+#incbin "HGSS/MMS/r99.dmp"
+
+ALIGN 4
+r100Moving:
+#incbin "HGSS/MMS/r100.dmp"
+
+ALIGN 4
+r101Moving:
+#incbin "HGSS/MMS/r101.dmp"
+
+ALIGN 4
+r102Moving:
+#incbin "HGSS/MMS/r102.dmp"
+
+ALIGN 4
+r103Moving:
+#incbin "HGSS/MMS/r103.dmp"
+
+ALIGN 4
+r104Moving:
+#incbin "HGSS/MMS/r104.dmp"
+
+ALIGN 4
+r105Moving:
+#incbin "HGSS/MMS/r105.dmp"
+
+ALIGN 4
+r106Moving:
+#incbin "HGSS/MMS/r106.dmp"
+
+ALIGN 4
+r107Moving:
+#incbin "HGSS/MMS/r107.dmp"
+
+ALIGN 4
+r108Moving:
+#incbin "HGSS/MMS/r108.dmp"
+
+ALIGN 4
+r109Moving:
+#incbin "HGSS/MMS/r109.dmp"
+
+ALIGN 4
+r110Moving:
+#incbin "HGSS/MMS/r110.dmp"
+
+ALIGN 4
+r111Moving:
+#incbin "HGSS/MMS/r111.dmp"
+
+ALIGN 4
+r112Moving:
+#incbin "HGSS/MMS/r112.dmp"
+
+ALIGN 4
+r113Moving:
+#incbin "HGSS/MMS/r113.dmp"
+
+ALIGN 4
+r114Moving:
+#incbin "HGSS/MMS/r114.dmp"
+
+ALIGN 4
+r115Moving:
+#incbin "HGSS/MMS/r115.dmp"
+
+ALIGN 4
+r116Moving:
+#incbin "HGSS/MMS/r116.dmp"
+
+ALIGN 4
+r117Moving:
+#incbin "HGSS/MMS/r117.dmp"
+
+ALIGN 4
+r118Moving:
+#incbin "HGSS/MMS/r118.dmp"
+
+ALIGN 4
+r119Moving:
+#incbin "HGSS/MMS/r119.dmp"
+
+ALIGN 4
+r120Moving:
+#incbin "HGSS/MMS/r120.dmp"
+
+ALIGN 4
+r121Moving:
+#incbin "HGSS/MMS/r121.dmp"
+
+ALIGN 4
+r122Moving:
+#incbin "HGSS/MMS/r122.dmp"
+
+ALIGN 4
+r123Moving:
+#incbin "HGSS/MMS/r123.dmp"
+
+ALIGN 4
+r124Moving:
+#incbin "HGSS/MMS/r124.dmp"
+
+ALIGN 4
+r125Moving:
+#incbin "HGSS/MMS/r125.dmp"
+
+ALIGN 4
+r126Moving:
+#incbin "HGSS/MMS/r126.dmp"
+
+ALIGN 4
+r127Moving:
+#incbin "HGSS/MMS/r127.dmp"
+
+
+ALIGN 4
+r128Moving:
+#incbin "HGSS/MMS/r128.dmp"
+
+ALIGN 4
+r129Moving:
+#incbin "HGSS/MMS/r129.dmp"
+
+ALIGN 4
+r130Moving:
+#incbin "HGSS/MMS/r130.dmp"
+
+ALIGN 4
+r131Moving:
+#incbin "HGSS/MMS/r131.dmp"
+
+ALIGN 4
+r132Moving:
+#incbin "HGSS/MMS/r132.dmp"
+
+ALIGN 4
+r133Moving:
+#incbin "HGSS/MMS/r133.dmp"
+
+ALIGN 4
+r134Moving:
+#incbin "HGSS/MMS/r134.dmp"
+
+ALIGN 4
+r135Moving:
+#incbin "HGSS/MMS/r135.dmp"
+
+ALIGN 4
+r136Moving:
+#incbin "HGSS/MMS/r136.dmp"
+
+ALIGN 4
+r137Moving:
+#incbin "HGSS/MMS/r137.dmp"
+
+ALIGN 4
+r138Moving:
+#incbin "HGSS/MMS/r138.dmp"
+
+ALIGN 4
+r139Moving:
+#incbin "HGSS/MMS/r139.dmp"
+
+ALIGN 4
+r140Moving:
+#incbin "HGSS/MMS/r140.dmp"
+
+ALIGN 4
+r141Moving:
+#incbin "HGSS/MMS/r141.dmp"
+
+ALIGN 4
+r142Moving:
+#incbin "HGSS/MMS/r142.dmp"
+
+ALIGN 4
+r143Moving:
+#incbin "HGSS/MMS/r143.dmp"
+
+ALIGN 4
+r144Moving:
+#incbin "HGSS/MMS/r144.dmp"
+
+ALIGN 4
+r145Moving:
+#incbin "HGSS/MMS/r145.dmp"
+
+ALIGN 4
+r146Moving:
+#incbin "HGSS/MMS/r146.dmp"
+
+ALIGN 4
+r147Moving:
+#incbin "HGSS/MMS/r147.dmp"
+
+ALIGN 4
+r148Moving:
+#incbin "HGSS/MMS/r148.dmp"
+
+ALIGN 4
+r149Moving:
+#incbin "HGSS/MMS/r149.dmp"
+
+
+
+
+ALIGN 4
+r150Moving:
+#incbin "HGSS/MMS/r150.dmp"
+
+ALIGN 4
+r151Moving:
+#incbin "HGSS/MMS/r151.dmp"
+#endif 
+
+#ifndef USE_HGSS_SPRITES 
 ALIGN 4
 r1Moving:
 #incbin "MMS/r1.dmp"
@@ -1207,6 +1819,9 @@ r150Moving:
 ALIGN 4
 r151Moving:
 #incbin "MMS/r151.dmp"
+#endif 
+
+
 
 
 ALIGN 4
@@ -1519,7 +2134,619 @@ TeleporterMoving:
 
 //Map sprites
 
+#ifdef USE_HGSS_SPRITES 
+ALIGN 4
+m1Standing:
+#incbin "HGSS/SMS/1.dmp"
 
+ALIGN 4
+m2Standing:
+#incbin "HGSS/SMS/2.dmp"
+
+ALIGN 4
+m3Standing:
+#incbin "HGSS/SMS/3.dmp"
+
+ALIGN 4
+m4Standing:
+#incbin "HGSS/SMS/4.dmp"
+
+ALIGN 4
+m5Standing:
+#incbin "HGSS/SMS/5.dmp"
+
+ALIGN 4
+m6Standing:
+#incbin "HGSS/SMS/6.dmp"
+
+ALIGN 4
+m7Standing:
+#incbin "HGSS/SMS/7.dmp"
+
+ALIGN 4
+m8Standing:
+#incbin "HGSS/SMS/8.dmp"
+
+ALIGN 4
+m9Standing:
+#incbin "HGSS/SMS/9.dmp"
+
+
+
+ALIGN 4
+m10Standing:
+#incbin "HGSS/SMS/10.dmp"
+
+ALIGN 4
+m11Standing:
+#incbin "HGSS/SMS/11.dmp"
+
+ALIGN 4
+m12Standing:
+#incbin "HGSS/SMS/12.dmp"
+
+ALIGN 4
+m13Standing:
+#incbin "HGSS/SMS/13.dmp"
+
+ALIGN 4
+m14Standing:
+#incbin "HGSS/SMS/14.dmp"
+
+ALIGN 4
+m15Standing:
+#incbin "HGSS/SMS/15.dmp"
+
+ALIGN 4
+m16Standing:
+#incbin "HGSS/SMS/16.dmp"
+
+ALIGN 4
+m17Standing:
+#incbin "HGSS/SMS/17.dmp"
+
+ALIGN 4
+m18Standing:
+#incbin "HGSS/SMS/18.dmp"
+
+ALIGN 4
+m19Standing:
+#incbin "HGSS/SMS/19.dmp"
+
+ALIGN 4
+m20Standing:
+#incbin "HGSS/SMS/20.dmp"
+
+ALIGN 4
+m21Standing:
+#incbin "HGSS/SMS/21.dmp"
+
+ALIGN 4
+m22Standing:
+#incbin "HGSS/SMS/22.dmp"
+
+ALIGN 4
+m23Standing:
+#incbin "HGSS/SMS/23.dmp"
+
+ALIGN 4
+m24Standing:
+#incbin "HGSS/SMS/24.dmp"
+
+ALIGN 4
+m25Standing:
+#incbin "HGSS/SMS/25.dmp"
+
+ALIGN 4
+m26Standing:
+#incbin "HGSS/SMS/26.dmp"
+
+ALIGN 4
+m27Standing:
+#incbin "HGSS/SMS/27.dmp"
+
+ALIGN 4
+m28Standing:
+#incbin "HGSS/SMS/28.dmp"
+
+ALIGN 4
+m29Standing:
+#incbin "HGSS/SMS/29.dmp"
+
+ALIGN 4
+m30Standing:
+#incbin "HGSS/SMS/30.dmp"
+
+ALIGN 4
+m31Standing:
+#incbin "HGSS/SMS/31.dmp"
+
+ALIGN 4
+m32Standing:
+#incbin "HGSS/SMS/32.dmp"
+
+ALIGN 4
+m33Standing:
+#incbin "HGSS/SMS/33.dmp"
+
+ALIGN 4
+m34Standing:
+#incbin "HGSS/SMS/34.dmp"
+
+ALIGN 4
+m35Standing:
+#incbin "HGSS/SMS/35.dmp"
+
+ALIGN 4
+m36Standing:
+#incbin "HGSS/SMS/36.dmp"
+
+ALIGN 4
+m37Standing:
+#incbin "HGSS/SMS/37.dmp"
+
+ALIGN 4
+m38Standing:
+#incbin "HGSS/SMS/38.dmp"
+
+ALIGN 4
+m39Standing:
+#incbin "HGSS/SMS/39.dmp"
+
+ALIGN 4
+m40Standing:
+#incbin "HGSS/SMS/40.dmp"
+
+ALIGN 4
+m41Standing:
+#incbin "HGSS/SMS/41.dmp"
+
+ALIGN 4
+m42Standing:
+#incbin "HGSS/SMS/42.dmp"
+
+ALIGN 4
+m43Standing:
+#incbin "HGSS/SMS/43.dmp"
+
+ALIGN 4
+m44Standing:
+#incbin "HGSS/SMS/44.dmp"
+
+ALIGN 4
+m45Standing:
+#incbin "HGSS/SMS/45.dmp"
+
+ALIGN 4
+m46Standing:
+#incbin "HGSS/SMS/46.dmp"
+
+ALIGN 4
+m47Standing:
+#incbin "HGSS/SMS/47.dmp"
+
+ALIGN 4
+m48Standing:
+#incbin "HGSS/SMS/48.dmp"
+
+ALIGN 4
+m49Standing:
+#incbin "HGSS/SMS/49.dmp"
+
+ALIGN 4
+m50Standing:
+#incbin "HGSS/SMS/50.dmp"
+
+ALIGN 4
+m51Standing:
+#incbin "HGSS/SMS/51.dmp"
+
+ALIGN 4
+m52Standing:
+#incbin "HGSS/SMS/52.dmp"
+
+ALIGN 4
+m53Standing:
+#incbin "HGSS/SMS/53.dmp"
+
+ALIGN 4
+m54Standing:
+#incbin "HGSS/SMS/54.dmp"
+
+ALIGN 4
+m55Standing:
+#incbin "HGSS/SMS/55.dmp"
+
+ALIGN 4
+m56Standing:
+#incbin "HGSS/SMS/56.dmp"
+
+ALIGN 4
+m57Standing:
+#incbin "HGSS/SMS/57.dmp"
+
+ALIGN 4
+m58Standing:
+#incbin "HGSS/SMS/58.dmp"
+
+ALIGN 4
+m59Standing:
+#incbin "HGSS/SMS/59.dmp"
+
+ALIGN 4
+m60Standing:
+#incbin "HGSS/SMS/60.dmp"
+
+ALIGN 4
+m61Standing:
+#incbin "HGSS/SMS/61.dmp"
+
+ALIGN 4
+m62Standing:
+#incbin "HGSS/SMS/62.dmp"
+
+ALIGN 4
+m63Standing:
+#incbin "HGSS/SMS/63.dmp"
+
+ALIGN 4
+m64Standing:
+#incbin "HGSS/SMS/64.dmp"
+
+ALIGN 4
+m65Standing:
+#incbin "HGSS/SMS/65.dmp"
+
+ALIGN 4
+m66Standing:
+#incbin "HGSS/SMS/66.dmp"
+
+ALIGN 4
+m67Standing:
+#incbin "HGSS/SMS/67.dmp"
+
+ALIGN 4
+m68Standing:
+#incbin "HGSS/SMS/68.dmp"
+
+ALIGN 4
+m69Standing:
+#incbin "HGSS/SMS/69.dmp"
+
+ALIGN 4
+m70Standing:
+#incbin "HGSS/SMS/70.dmp"
+
+ALIGN 4
+m71Standing:
+#incbin "HGSS/SMS/71.dmp"
+
+ALIGN 4
+m72Standing:
+#incbin "HGSS/SMS/72.dmp"
+
+ALIGN 4
+m73Standing:
+#incbin "HGSS/SMS/73.dmp"
+
+ALIGN 4
+m74Standing:
+#incbin "HGSS/SMS/74.dmp"
+
+ALIGN 4
+m75Standing:
+#incbin "HGSS/SMS/75.dmp"
+
+ALIGN 4
+m76Standing:
+#incbin "HGSS/SMS/76.dmp"
+
+ALIGN 4
+m77Standing:
+#incbin "HGSS/SMS/77.dmp"
+
+ALIGN 4
+m78Standing:
+#incbin "HGSS/SMS/78.dmp"
+
+ALIGN 4
+m79Standing:
+#incbin "HGSS/SMS/79.dmp"
+
+ALIGN 4
+m80Standing:
+#incbin "HGSS/SMS/80.dmp"
+
+ALIGN 4
+m81Standing:
+#incbin "HGSS/SMS/81.dmp"
+
+ALIGN 4
+m82Standing:
+#incbin "HGSS/SMS/82.dmp"
+
+ALIGN 4
+m83Standing:
+#incbin "HGSS/SMS/83.dmp"
+
+ALIGN 4
+m84Standing:
+#incbin "HGSS/SMS/84.dmp"
+
+ALIGN 4
+m85Standing:
+#incbin "HGSS/SMS/85.dmp"
+
+ALIGN 4
+m86Standing:
+#incbin "HGSS/SMS/86.dmp"
+
+ALIGN 4
+m87Standing:
+#incbin "HGSS/SMS/87.dmp"
+
+ALIGN 4
+m88Standing:
+#incbin "HGSS/SMS/88.dmp"
+
+ALIGN 4
+m89Standing:
+#incbin "HGSS/SMS/89.dmp"
+
+ALIGN 4
+m90Standing:
+#incbin "HGSS/SMS/90.dmp"
+
+ALIGN 4
+m91Standing:
+#incbin "HGSS/SMS/91.dmp"
+
+ALIGN 4
+m92Standing:
+#incbin "HGSS/SMS/92.dmp"
+
+ALIGN 4
+m93Standing:
+#incbin "HGSS/SMS/93.dmp"
+
+ALIGN 4
+m94Standing:
+#incbin "HGSS/SMS/94.dmp"
+
+ALIGN 4
+m95Standing:
+#incbin "HGSS/SMS/95.dmp"
+
+ALIGN 4
+m96Standing:
+#incbin "HGSS/SMS/96.dmp"
+
+ALIGN 4
+m97Standing:
+#incbin "HGSS/SMS/97.dmp"
+
+ALIGN 4
+m98Standing:
+#incbin "HGSS/SMS/98.dmp"
+
+ALIGN 4
+m99Standing:
+#incbin "HGSS/SMS/99.dmp"
+
+ALIGN 4
+m100Standing:
+#incbin "HGSS/SMS/100.dmp"
+
+ALIGN 4
+m101Standing:
+#incbin "HGSS/SMS/101.dmp"
+
+ALIGN 4
+m102Standing:
+#incbin "HGSS/SMS/102.dmp"
+
+ALIGN 4
+m103Standing:
+#incbin "HGSS/SMS/103.dmp"
+
+ALIGN 4
+m104Standing:
+#incbin "HGSS/SMS/104.dmp"
+
+ALIGN 4
+m105Standing:
+#incbin "HGSS/SMS/105.dmp"
+
+ALIGN 4
+m106Standing:
+#incbin "HGSS/SMS/106.dmp"
+
+ALIGN 4
+m107Standing:
+#incbin "HGSS/SMS/107.dmp"
+
+ALIGN 4
+m108Standing:
+#incbin "HGSS/SMS/108.dmp"
+
+ALIGN 4
+m109Standing:
+#incbin "HGSS/SMS/109.dmp"
+
+ALIGN 4
+m110Standing:
+#incbin "HGSS/SMS/110.dmp"
+
+ALIGN 4
+m111Standing:
+#incbin "HGSS/SMS/111.dmp"
+
+ALIGN 4
+m112Standing:
+#incbin "HGSS/SMS/112.dmp"
+
+ALIGN 4
+m113Standing:
+#incbin "HGSS/SMS/113.dmp"
+
+ALIGN 4
+m114Standing:
+#incbin "HGSS/SMS/114.dmp"
+
+ALIGN 4
+m115Standing:
+#incbin "HGSS/SMS/115.dmp"
+
+ALIGN 4
+m116Standing:
+#incbin "HGSS/SMS/116.dmp"
+
+ALIGN 4
+m117Standing:
+#incbin "HGSS/SMS/117.dmp"
+
+ALIGN 4
+m118Standing:
+#incbin "HGSS/SMS/118.dmp"
+
+ALIGN 4
+m119Standing:
+#incbin "HGSS/SMS/119.dmp"
+
+ALIGN 4
+m120Standing:
+#incbin "HGSS/SMS/120.dmp"
+
+ALIGN 4
+m121Standing:
+#incbin "HGSS/SMS/121.dmp"
+
+ALIGN 4
+m122Standing:
+#incbin "HGSS/SMS/122.dmp"
+
+ALIGN 4
+m123Standing:
+#incbin "HGSS/SMS/123.dmp"
+
+ALIGN 4
+m124Standing:
+#incbin "HGSS/SMS/124.dmp"
+
+ALIGN 4
+m125Standing:
+#incbin "HGSS/SMS/125.dmp"
+
+ALIGN 4
+m126Standing:
+#incbin "HGSS/SMS/126.dmp"
+
+ALIGN 4
+m127Standing:
+#incbin "HGSS/SMS/127.dmp"
+
+
+ALIGN 4
+m128Standing:
+#incbin "HGSS/SMS/128.dmp"
+
+ALIGN 4
+m129Standing:
+#incbin "HGSS/SMS/129.dmp"
+
+ALIGN 4
+m130Standing:
+#incbin "HGSS/SMS/130.dmp"
+
+ALIGN 4
+m131Standing:
+#incbin "HGSS/SMS/131.dmp"
+
+ALIGN 4
+m132Standing:
+#incbin "HGSS/SMS/132.dmp"
+
+ALIGN 4
+m133Standing:
+#incbin "HGSS/SMS/133.dmp"
+
+ALIGN 4
+m134Standing:
+#incbin "HGSS/SMS/134.dmp"
+
+ALIGN 4
+m135Standing:
+#incbin "HGSS/SMS/135.dmp"
+
+ALIGN 4
+m136Standing:
+#incbin "HGSS/SMS/136.dmp"
+
+ALIGN 4
+m137Standing:
+#incbin "HGSS/SMS/137.dmp"
+
+ALIGN 4
+m138Standing:
+#incbin "HGSS/SMS/138.dmp"
+
+ALIGN 4
+m139Standing:
+#incbin "HGSS/SMS/139.dmp"
+
+ALIGN 4
+m140Standing:
+#incbin "HGSS/SMS/140.dmp"
+
+ALIGN 4
+m141Standing:
+#incbin "HGSS/SMS/141.dmp"
+
+ALIGN 4
+m142Standing:
+#incbin "HGSS/SMS/142.dmp"
+
+ALIGN 4
+m143Standing:
+#incbin "HGSS/SMS/143.dmp"
+
+ALIGN 4
+m144Standing:
+#incbin "HGSS/SMS/144.dmp"
+
+ALIGN 4
+m145Standing:
+#incbin "HGSS/SMS/145.dmp"
+
+ALIGN 4
+m146Standing:
+#incbin "HGSS/SMS/146.dmp"
+
+ALIGN 4
+m147Standing:
+#incbin "HGSS/SMS/147.dmp"
+
+ALIGN 4
+m148Standing:
+#incbin "HGSS/SMS/148.dmp"
+
+ALIGN 4
+m149Standing:
+#incbin "HGSS/SMS/149.dmp"
+
+
+
+
+ALIGN 4
+m150Standing:
+#incbin "HGSS/SMS/150.dmp"
+
+ALIGN 4
+m151Standing:
+#incbin "HGSS/SMS/151.dmp"
+#endif 
+
+#ifndef USE_HGSS_SPRITES 
 ALIGN 4
 m1Standing:
 #incbin "SMS/1.dmp"
@@ -2129,7 +3356,7 @@ m150Standing:
 ALIGN 4
 m151Standing:
 #incbin "SMS/151.dmp"
-
+#endif 
 
 
 
@@ -2371,25 +3598,6 @@ ORG $59EE20
 #incbin "Palette/all_five_pal.dmp"
 
 // I copied them into one .dmp, which was unnecessary 
-
-/*
-//enemy
-//ORG $59EE40
-//#incbin "1_pal.png"
-
-//npc
-//ORG $59EE60
-//#incbin "1_pal.png"
-
-//grey
-//ORG $59EE80
-//#incbin "SMS/grey.png" --palette-only
-
-//fourth
-//ORG $59EEA0
-//#incbin "SMS/fourth.png" --palette-only
-*/
-
 
 POP
 
