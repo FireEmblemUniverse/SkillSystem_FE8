@@ -341,9 +341,9 @@ bx r1
 .type DefeatedTrainerRoutine, %function 
 
 DefeatedTrainerRoutine:
-push {r4-r7, lr}
+push {r4, lr}
 
-mov r6, r0 @ Defeated trainer 
+mov r4, r0 @ Defeated trainer 
 
 mov r1, #0x2D 
 ldrb r0, [r6, r1] 
@@ -352,7 +352,7 @@ beq ExitDefeatedTrainer
 
 ldr r3, =PostTrainerBattleRamLocatLink
 ldr r3, [r3] @ @ my ram 
-ldrb r0, [r6, #0x0B] 
+ldrb r0, [r4, #0x0B] 
 strb r0, [r3] @ my ram 2
 @ 903cfe6
 
@@ -364,7 +364,7 @@ ExitDefeatedTrainer:
 
 
 
-pop {r4-r7}
+pop {r4}
 pop {r1}
 bx r1 
 .ltorg

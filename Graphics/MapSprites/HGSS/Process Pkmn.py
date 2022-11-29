@@ -1,10 +1,7 @@
-import PIL
-from PIL import Image, ImageDraw, ImageOps, ImageEnhance, ImageFilter
-import sys 
+
+from PIL import Image
 from os import scandir
-import os 
-import png
-import libimagequant as liq
+
 
 
 
@@ -16,8 +13,6 @@ frame_height = 42
 #border_y = 10 # extra pixels below each frame
 height_fe8 = 32
 width_fe8 = 32
-
-palettedata = [ 0, 0, 0, 255, 0, 0, 255, 255, 0, 0, 255, 0, 255, 255, 255,85,255,85, 255,85,85, 255,255,85] 
 
 dir_entries = scandir(directory)
 for entry in dir_entries:
@@ -103,6 +98,8 @@ for entry in dir_entries:
             
             blank_sms.close()
             im.close()
+
+input('Press Enter to exit')
 
 
 
