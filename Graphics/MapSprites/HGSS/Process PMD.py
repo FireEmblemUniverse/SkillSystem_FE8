@@ -1,5 +1,5 @@
 
-from PIL import Image
+from PIL import Image, ImageChops
 from os import scandir
 
 
@@ -27,6 +27,8 @@ def quantizetopalette(silf, palette, dither=False):
 
 
 
+    
+
 dir_entries = scandir(directory)
 for entry in dir_entries:
     if entry.is_dir():
@@ -44,11 +46,17 @@ for entry in dir_entries:
         
         blank_sms = Image.open("BlankSMS.png")
         blank_mms = Image.open("BlankMMS.png")
+        im = Image.open(sprite_filename)
         
-        im = quantizetopalette(Image.open(sprite_filename), blank_sms, dither=False)
+        color = Image.new('RGB',im.size,(128,160,128))
+        im = Image.composite(im,color,im).convert('RGB')
 
-        column = 1
-        row = 0
+
+
+        
+        im = quantizetopalette(im, blank_sms, dither=False)
+
+
         
         frame_width = im.size[0]/4 # defaults
         frame_height = im.size[1]/8
@@ -90,14 +98,16 @@ for entry in dir_entries:
         if pkmn_id in divide_5_list:
             frame_width = im.size[0]/5
         
-
-            
-        frame_1 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
-        column = 2
-        frame_2 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        row = 7
         column = 3
+        frame_1 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 0
+        frame_2 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 1
         frame_3 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
-        # SMS 
+
+
+        # SMS
         processed_sms = blank_sms
         processed_sms.paste(frame_1)
         processed_sms.paste(frame_2, (0,height_fe8*1))
@@ -106,32 +116,48 @@ for entry in dir_entries:
 
         
         # MMS
-        # down 
-        #frame_4 = im.crop((frame_width*3, 0, frame_width*4, frame_height))
-        #frame_5 = im.crop((frame_width*4, 0, frame_width*5, frame_height))
-
         # up
         row = 4
-        column = 0
-        frame_4 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
         column = 1
-        frame_5 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        frame_4 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
         column = 2
-        frame_6 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        frame_5 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
         column = 3
+        frame_6 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 2
         frame_7 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
 
         # Sideways
         row = 6
-        column = 0
-        frame_8 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
         column = 1
-        frame_9 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        frame_8 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
         column = 2
-        frame_10 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        frame_9 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
         column = 3
+        frame_10 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 2
         frame_11 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
 
+        # down
+        row = 0
+        column = 1
+        frame_12 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 2
+        frame_13 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 3
+        frame_14 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 2
+        frame_15 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+
+        # hover
+        row = 0
+        column = 3
+        frame_16 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 0
+        frame_17 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        column = 1
+        frame_18 = im.crop((column*frame_width,row*frame_height,(column+1)*frame_width,(row+1)*frame_height))
+        
         # sideways 
         processed_mms = blank_mms
         processed_mms.paste(frame_8, (0, height_fe8*0))
@@ -140,10 +166,10 @@ for entry in dir_entries:
         processed_mms.paste(frame_11, (0, height_fe8*3))
         
         # down 
-        processed_mms.paste(frame_1, (0, height_fe8*4))
-        processed_mms.paste(frame_2, (0, height_fe8*5))
-        processed_mms.paste(frame_2, (0, height_fe8*6))
-        processed_mms.paste(frame_3, (0, height_fe8*7))
+        processed_mms.paste(frame_12, (0, height_fe8*4))
+        processed_mms.paste(frame_13, (0, height_fe8*5))
+        processed_mms.paste(frame_14, (0, height_fe8*6))
+        processed_mms.paste(frame_15, (0, height_fe8*7))
         
         # up 
         processed_mms.paste(frame_4, (0, height_fe8*8))
@@ -152,9 +178,9 @@ for entry in dir_entries:
         processed_mms.paste(frame_7, (0, height_fe8*11))
         
         # hover
-        processed_mms.paste(frame_1, (0, height_fe8*12))
-        processed_mms.paste(frame_2, (0, height_fe8*13))
-        processed_mms.paste(frame_3, (0, height_fe8*14))
+        processed_mms.paste(frame_16, (0, height_fe8*12))
+        processed_mms.paste(frame_17, (0, height_fe8*13))
+        processed_mms.paste(frame_18, (0, height_fe8*14))
         processed_mms.save("MMS/r"+new_filename+".png", quality=100, optimize=True)
         
 
