@@ -15,7 +15,38 @@ bne DecrementStatusTimer @if you don't have Boon, do vanilla
 
 BoonEffect:
 pop {r1-r3}
-mov r0,#0 @otherwise, status is over
+
+@ Issue #374
+@ Boon needs to unset petrify state bits
+
+@ r1 - Address unit.status
+@ r3 - Value unit.status
+@ r4 - unit*
+
+push {r1-r3}
+
+# Are we petrified?
+mov r0, #0xF
+and r0, r3 @ status index low 4 bits
+cmp r0, #0xB @ petrify index
+beq YesPetrify
+cmp r0, #0xD @ also petrify index
+bne NoPetrify
+
+YesPetrify:
+# We are petrified so unset state bits
+mov r2, #2
+mvn r2, r2
+
+ldr r0, [r4, #0xC] @ unit state
+
+and r0, r2
+str r0, [r4, #0xC]
+
+NoPetrify:
+pop {r1-r3}
+mov r0,#0xF @otherwise, status is over
+and r0,r3 @the status nybble must be preserved so the cured status FX can work
 strb r0,[r1]
 b GoBack
 
@@ -25,6 +56,8 @@ lsr r0,r3,#4
 sub r0,#1
 cmp r0,#0
 bne KeepStatus
+mov r0,#0xF
+and r0,r3 @the status nybble must be preserved so the cured status FX can work
 strb r0,[r1]
 b GoBack
 KeepStatus:

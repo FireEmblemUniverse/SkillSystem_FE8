@@ -71,9 +71,20 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 	}
 }
 
+/*
+I'm adding some clarity comments here because the intended behavior here is a little confusing. - Snek
+	For the attacker:
+		Check to see if we're using the spell menu, and return 9 for using gaiden magic if we can use the selected spell.
+	For the defender:
+		Check to see whether the defender can retaliate with the standard equipped item (the first weapon in inventory they can use generally).
+			If they can, use that.
+		If they can NOT retaliate with that weapon (or if there isn't one), return their first attack gaiden spell (so not a staff lol).
+			If the defender has insufficient HP, the battle rounds will naturally not occur for them.
+*/
 int NewGetUnitEquippedWeaponSlot(Unit* unit) // Autohook to 0x08016B58.
 {
-	if ( UsingSpellMenu && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; } // If we're using the spell menu, return using Gaiden magic.
+	 // If we're using the spell menu (AND THIS UNIT IS THE ACTOR, adding this check fixes an edge case bug on retaliation), return using Gaiden magic.
+	if ( UsingSpellMenu && unit->index == gBattleActor.unit.index && CanUnitUseWeapon(unit,SelectedSpell) ) { return 9; }
 	// This function appears only to be called in simulated and real battes (and on the stat screen)?
 	if ( (gBattleStats.config & (BATTLE_CONFIG_REAL|BATTLE_CONFIG_SIMULATE)) && unit->index == gBattleTarget.unit.index )
 	{
@@ -154,8 +165,7 @@ void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
 		int cost = GetSpellCost(unit->weapon);
 		// Let's set the HP depletion bit.
 		buffer->attributes |= BATTLE_HIT_ATTR_HPSTEAL; // "HP drain" bit.
-		// Now let's subtract the cost from their HP. The check before gurantees they have enough HP to cast right now.
-		unit->unit.curHP -= cost;
+		// Now let's subtract the cost from the HP change. The check before gurantees they have enough HP to cast right now.
 		buffer->damage -= cost;
 	}
 	else

@@ -28,6 +28,8 @@ Charge:
 POIN SkillTester
 WORD ChargeID
 
+#include "Charge/AIMoveDistance/AIMoveDistance.event"
+
 #include "CriticalSkills/CriticalSkills.event"
 
 ALIGN 4
@@ -151,7 +153,7 @@ ALIGN 4
 Loyalty:
 #incbin "Loyalty/Loyalty.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN GetUnitsInRange
 WORD LoyaltyID
 
 ALIGN 4
@@ -323,7 +325,7 @@ Thighdeology:
 #incbin "Thighdeology/Thighdeology.dmp"
 POIN SkillTester
 WORD ThighdeologyID
-POIN AuraSkillCheck
+POIN NewAuraSkillCheck
 WORD NiceThighsID
 
 ALIGN 4

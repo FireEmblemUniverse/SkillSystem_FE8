@@ -13,9 +13,22 @@ mov		r14,r2
 .short	0xF800
 cmp		r0,#0x0
 bne		GoBack			@if they're already on the same side, no need to check if captured
-ldrb	r1,[r4,#0x13]
-cmp		r1,#0x0
-bne		GoBack
+
+ldrb	r2,[r4,#0xB]
+cmp		r2,#0x80	@Check Enemy
+blt		GoBack
+
+ldrb	r2,[r4,#0x13]
+cmp		r2,#0x1		@HP 1 <=
+bgt		GoBack
+
+ldrb	r2,[r4,#0x1B] @Trv
+cmp		r2,#0x0
+beq		GoBack
+
+cmp		r2,#0x40	@Check Trv is PlayerUnit
+bge		GoBack
+
 mov		r0,#0x1
 GoBack:
 pop		{r1}

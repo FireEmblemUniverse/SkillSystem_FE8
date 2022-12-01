@@ -2,7 +2,7 @@ ALIGN 4
 Armorboost:
 #incbin "Armorboost.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN GetUnitsInRange
 WORD ArmorboostID
 WORD ArmorType
 
@@ -10,7 +10,7 @@ ALIGN 4
 Horseguard:
 #incbin "Horseguard.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN GetUnitsInRange
 WORD HorseguardID
 WORD HorseType
 
@@ -18,6 +18,6 @@ ALIGN 4
 Skyguard:
 #incbin "Skyguard.dmp"
 POIN SkillTester
-POIN AuraSkillCheck
+POIN GetUnitsInRange
 WORD SkyguardID
 WORD FlierType

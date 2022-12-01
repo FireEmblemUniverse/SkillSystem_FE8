@@ -26,6 +26,11 @@ lsr r0,r0,#6
 cmp r0,#0 @only Canto+ if player unit
 bne End
 
+@check if waited
+ldrb  r0, [r6,#0x11]  @action taken this turn
+cmp r0, #0x1
+beq End
+
 @check if moved all the squares
 ldr	r0,=#0x8019224	@mov getter
 mov	lr, r0

@@ -16,4 +16,9 @@
 		WORD 0 0
 	#endif
 
+#else  // UNLOCK_WORKS_ON_CHESTS
+	ALIGN 4
+	UnlockPostCombat:
+	SHORT 0x4770 //bx lr
+	
 #endif // UNLOCK_WORKS_ON_CHESTS

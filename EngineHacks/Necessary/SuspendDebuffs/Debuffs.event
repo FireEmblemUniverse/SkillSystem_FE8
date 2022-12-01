@@ -12,14 +12,15 @@ TeamDebuffTables:
   #define MaxEnemyUnits 50+1
   #define MaxGreenUnits 20+1
   
+  #define DebuffEntrySize 8 //still assumed to be 8 in some places, beware if changing
   #define PUDebuffTable DebuffTable
-  #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*8)"
-  #define GUDebuffTable "EUDebuffTable + (MaxEnemyUnits*8)"
-  #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*8)"
+  #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*DebuffEntrySize)"
+  #define GUDebuffTable "EUDebuffTable + (MaxEnemyUnits*DebuffEntrySize)"
+  #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*DebuffEntrySize)"
   ALIGN 4
   WORD PUDebuffTable
-  WORD EUDebuffTable
   WORD GUDebuffTable
+  WORD EUDebuffTable
   WORD OUDebuffTable
   }
   

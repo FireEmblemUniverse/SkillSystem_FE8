@@ -75,6 +75,25 @@ beq RetFalse
 
 LoopSuccess:
 pop {r0}
+@check if monster weapon as they do not have weapon ranks
+mov r1,#0xFF
+and r1,r5
+mov r0,#0x24
+mul r1,r0
+ldr r0,=ItemTable
+add r0,r1
+add r0,#7
+ldrb r0,[r0]
+cmp r0,#0x0B
+beq RetTrue
+
+@If unit does not have rank in weapon with soft rank, prevent use with soft lock.
+cmp r2,#0
+beq RetFalse
+
+@Return 2 to prevent conflict with Amische skill
+mov r0,#2
+b GoBack
 
 RetTrue:
 mov r0,#1
