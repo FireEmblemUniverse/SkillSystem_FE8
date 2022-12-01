@@ -2,7 +2,7 @@
 .org 0x0
 .equ FrenzyID, SkillTester+4
 push  {r4,r14} @ r0 = battle struct
-mov   r0,r4
+mov   r4,r0
 ldr   r1, FrenzyID
 ldr   r2,SkillTester
 mov   r14,r2
