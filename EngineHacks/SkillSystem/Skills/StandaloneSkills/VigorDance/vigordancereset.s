@@ -30,26 +30,12 @@ mov r0,r4
 ldr r1,=GetUnit
 mov lr,r1
 .short 0xf800
-ldr r1,DebuffTable
-mov lr,r1
-.short 0xf800
-@ ldr	r0,DebuffTable
-@ mov	r1,r3
-@ ldr	r2,EntrySize
-@ mul	r1,r2
-@ add	r0,r1		@debuff table entry for this unit
-push	{r0}
-ldr	r0,VigorDanceBit
-mov	r1,#8
-swi	6		@get the byte
-pop	{r2}
-add	r0,r2		@byte we are modifying
-mov	r2,#1
-lsl	r2,r1		@bit to unset
-ldrb	r1,[r0]
-mvn	r2,r2
-and	r1,r2
-strb	r1,[r0]		@unset the bit
+cmp r0, #0 
+beq Next 
+bl GetUnitDebuffEntry 
+ldr r1, =VigorDanceBitOffset_Link
+ldr r1, [r1] 
+bl UnsetBit 
 
 Next:
 add	r4,#1

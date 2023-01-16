@@ -39,7 +39,7 @@ RallyFxPaletteLookup:
 	#endif // USE_STRMAG_SPLIT
 
 gpRallyDebuffsAddr:
-	WORD DebuffTable
+	WORD DebuffTableRam
 
 ALIGN 4
 gRallyPreviewPalette:

@@ -68,7 +68,6 @@
 .equ DrawWeaponRank, 0x08087788
 
 @RAM
-.equ DebuffTable, 0x203F100
 .equ gActiveBattleUnit, 0x203A4EC
 .equ StatScreenStruct, 0x2003BFC
 .equ BgBitfield, 0x300000D
