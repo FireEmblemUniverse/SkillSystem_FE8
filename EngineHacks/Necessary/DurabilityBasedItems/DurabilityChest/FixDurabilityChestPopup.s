@@ -45,11 +45,11 @@ ldr r3,[r0,#8] @LocationBasedEvents
 
 @cycle through LocationBasedEvents until we find a chest at active unit's current position
 @!!! this may break an unlock staff that works on chests if the chest has durability set !!!
+@so instead, let's grab target coords from the action struct and use those
 
-ldr r0,=#0x3004E50
-ldr r0,[r0]
-ldrb r5,[r0,#0x10] @active unit x coord
-ldrb r6,[r0,#0x11] @active unit y coord
+ldr r0,=#0x203A958 @action struct
+ldrb r5,[r0,#0x13] @target x coord
+ldrb r6,[r0,#0x14] @target y coord
 
 LoopStart:
 ldrb r0,[r3,#0xA]
