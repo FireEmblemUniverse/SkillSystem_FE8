@@ -33,7 +33,7 @@ setDebuffs:
 #incbin "Set Debuffs.dmp"
 WORD Extra_Data_Location
 POIN ItemTable
-POIN DebuffTable
+POIN DebuffTableRam
 
 DebuffTable:
 defWeaponDebuffs(0,0,0,0,0,0) //let 0-index entry be no debuffs.

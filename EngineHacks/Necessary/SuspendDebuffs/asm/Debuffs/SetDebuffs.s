@@ -1,18 +1,16 @@
 .thumb
 
-GetDebuffs = EALiterals+0x0
-ItemTableLocation = EALiterals+0x4
-WeaponDebuffTable = EALiterals+0x8
+ItemTableLocation = EALiterals+0
 
 push {r0, lr}
 @r5 = attacker
 @r4 = defender
 mov r0, r5
 mov r1, r4
-bl ApplyDebuffs
+bl ApplyWeaponDebuffs
 mov r0, r4
 mov r1, r5
-bl ApplyDebuffs
+bl ApplyWeaponDebuffs
 pop {r0}
 @From original routine
 lsl     r0,r0,#0x1
@@ -26,154 +24,271 @@ pop {r2}
 BXR2:
 bx r2
 
-.align
-ApplyDebuffs:
-@First apply own debuffs
-push {r4-r7,lr}
-mov r4, r0          @r4 = one to update
-mov r5, r1          @r5 = other
 
-ldr r2, GetDebuffs
-bl BXR2
+.global ApplyWeaponDebuffs 
+.type ApplyWeaponDebuffs, %function 
+.ltorg 
+ApplyWeaponDebuffs:
+@ Apply debuffs based on each units weapon 
+push {r4-r7,lr}
+mov r4, r0          @r4 = unit to update
+mov r5, r1          @r5 = other unit
+
+bl GetUnitDebuffEntry 
 mov r6,r0
-@ ldr r6, ExtraDataLocation
-@ ldrb r0, [r4, #0xB]
-@ lsl r0, #0x3        @8 bytes per unit
-@ add r6, r0          @r6 = &extra data
+
+mov r0, r5 @ other unit 
+bl GetUnitDebuffEntry 
+mov r7, r0 
 
 mov r0, #0x48       @Equipped item after battle
 ldrh r0, [r4, r0]   
-mov r1, #0xFF
-and r0, r1
-ldr r2, ItemTableLocation
-mov r1, #0x24
-mul r0, r1
-add r2, r0          @r2 = &Item Data
-mov r0, #0x21       @Offset of debuff data
-ldrb r0, [r2, r0]
-@r0 = debuff data.
+bl GetWepDebuffByte
+cmp r0, #0 
+beq OppositeUnit 
 
-ldrb r1, [r6, #0x4]
-mov r2, #0x40       @str/2 for status data
-and r2, r1
-cmp r2, #0x0
-beq checkHalveStrength
-@Str was already  halved so unhalve it.
-mov r2, #0xCF
-and r1, r2
-strb r1, [r6, #0x4]
-b magicHalvingDebuff
-checkHalveStrength:
-mov r1, #0x80       @str/2 for weapon debuff data.
-and r1, r0
-cmp r1, #0x0        @No str/2 debuff
-beq magicHalvingDebuff
-ldrb r1, [r6, #0x4] @reload the debuff
-mov r2, #0x40       @set the str/2 bit
-orr r1, r2
-strb r1, [r6, #0x4]
+mov r1, #0x80 
+tst r0, r1 
+beq DontHalveStr 
 
-magicHalvingDebuff:
-@TODO: Implement mag/2 debuffs
+mov r0, r6 
+ldr r1, =HalfStrBitOffset_Link 
+ldr r1, [r1] 
+@ given r0 = address 
+@ r1 = bitoffset 
+bl SetBit
+b FinishedHalfStr
 
-silverDebuff:
-mov r1, #0x20
-and r1, r0
-cmp r1, #0x0
-beq noSilverDebuff
-ldrb r1, [r6, #0x4]
-mov r2, #0x1F       @silver debuff only
-and r2, r1
-mov r3, #0xE0       @H.o. bits only
-and r1, r3
-add r2, #0x2
-cmp r2, #0x1F
-ble storeSilverDebuff
-mov r2, #0x1F
-storeSilverDebuff:
-orr r1, r2
-strb r1, [r6, #0x4]
-noSilverDebuff:
+DontHalveStr: 
+@Str was possibly halved so unhalve it (no point checking) 
+mov r0, r6 
+ldr r1, =HalfStrBitOffset_Link 
+ldr r1, [r1] 
+@ given r0 = address 
+@ r1 = bitoffset 
+bl UnsetBit
 
-@Now the enemy weapon's debuffs.
-mov r0, #0x7C       @damage/hit data
-ldrb r0, [r5, r0]
-mov r1, #0x2
-and r0, r1
-cmp r0, #0x0
-beq noHit
+FinishedHalfStr: 
+
+mov r0, #0x48       @Equipped item after battle
+ldrh r0, [r4, r0]   
+bl GetWepDebuffByte
+mov r1, #0x40 
+tst r0, r1 
+beq DontHalveMag 
+
+mov r0, r6 
+ldr r1, =HalfMagBitOffset_Link 
+ldr r1, [r1] 
+@ given r0 = address 
+@ r1 = bitoffset 
+bl SetBit
+b FinishedHalfMag
+
+DontHalveMag: 
+@Mag was possibly halved so unhalve it (no point checking) 
+mov r0, r6 
+ldr r1, =HalfMagBitOffset_Link 
+ldr r1, [r1] 
+@ given r0 = address 
+@ r1 = bitoffset 
+bl UnsetBit
+FinishedHalfMag: 
+
+
+mov r0, #0x48       @Equipped item after battle
+ldrh r0, [r4, r0]   
+bl GetWepDebuffByte
+@r0 @wep debuff byte 
+mov r1, r4 @ unit 
+mov r2, r6 @ ram 
+mov r3, r7 @ ram 
+bl ProcessDebuffs 
+
+OppositeUnit: 
 mov r0, #0x48       @Equipped item after battle
 ldrh r0, [r5, r0]   
-mov r1, #0xFF
-and r0, r1
-ldr r2, ItemTableLocation
-mov r1, #0x24
-mul r0, r1
-add r2, r0          @r2 = &Item Data
-mov r0, #0x21       @Offset of debuff data
-ldrb r0, [r2, r0]
-@r0 = debuff data.
+bl GetWepDebuffByte
 mov r1, #0x1F
-and r0, r1
-lsl r1, r0, #0x1
-add r1, r0          @Each entry is 0x3 bytes
-ldr r0, WeaponDebuffTable
-add r0, r1          @r0 = offset in debuff table
-@construct the data
-ldrb r2, [r0, #0x2]
-lsl r2, #0x10
-ldrb r1, [r0, #0x1]
-lsl r1, #0x8
-ldrb r0, [r0]
-orr r0, r1
-orr r0, r2
+and r0, r1 @wep debuff byte 
+mov r1, r5 @ unit 
+mov r2, r7 @ ram 
+mov r3, r6 @ ram 
+bl ProcessDebuffs 
 
-ldr r1, [r6]
-mov r2, #0x0        @loop counter
 
-push {r6}
-mov r6, #0x0        @accumulator
-@TODO: maybe implement negative chain?
-debuffLoop:
-mov r3, #0xF
-lsl r4, r2, #0x2    @bits in a nibble
-lsl r3, r4          @this many to the left
-mov r5, r3          @existing debuffs
-mov r7, r3          @maybe new debuffs
-and r5, r1
-and r7, r0
-cmp r7, r5
-bge takeNew         @should work since shifted by same amount
-mov r7, r5          @keep old debuffs
-takeNew:
-orr r6, r7          @Set the chosen debuff
-
-add r2, #0x1
-cmp r2, #0x6
-blt debuffLoop
-mov r0, r6
-pop {r6}
-ldr r1, [r6]        @we only want to store 3 bytes, so...
-mov r2, #0xFF
-lsl r2, #0x18       @push into 4th byte
-and r2, r1
-orr r0, r2
-str r0, [r6]        @store new debuffs
-noHit:
 pop {r4-r7}
 pop {r0}
 bx r0
+.ltorg 
+
+@ ApplyWeaponDebuffs
+
+ProcessDebuffs: 
+push {r4-r7, lr} 
+mov r4, #0x1f 
+and r4, r0 @ wep debuff entry 
+
+mov r0, #0x7C       @damage/hit data
+ldrb r0, [r5, r0] @ always called by ApplyWeaponDebuffs 
+
+mov r5, r8 
+push {r5} 
+
+
+
+mov r5, r1 @ unit 
+mov r6, r2 @ unitA debuff ram 
+mov r7, r3 @ unitB debuff ram 
+
+
+mov r1, #0x1
+and r0, r1
+
+ldr r1, =RequireDamageToDebuff_Link 
+ldr r1, [r1] 
+cmp r1, #1 
+bne AlwaysDebuff
+
+cmp r0, #0x0
+beq BreakLoop
+AlwaysDebuff:
+ldr r2, =DebuffNumberOfStats_Link
+ldr r1, [r2] @ max 
+mov r8, r1 
+
+mov r2, #0x40 @ no 0x40 bitflag of Swap 
+ldr r3, =NewWeaponDebuffTable
+
+lsl r4, #3 @ 8 bytes per entry 
+add r4, r3 @ entry we care about 
+
+mov r5, #0 @ counter 
+sub r5, #1 
+
+Loop:
+add r5, #1 
+cmp r5, r8 
+bge BreakLoop  
+
+mov r0, r6 @ debuff entry 
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r2, [r2] 
+mov r1, r5 @ counter 
+mul r1, r2 @ bit offset 
+bl UnpackData_Signed 
+@ r0 as data 
+mov r2, #0x40 
+ldrb r1, [r4, r5] @ table data uses a byte per stat 
+
+
+@ positive affects user 
+@ positive swap affects opponent 
+@ negative affects enemy 
+@ negative swap affects self 
+
+@ if new value is positive 
+@ > positive old value, replace 
+@ < positive old value, ignore 
+@ negative old value, add 
+
+@ if new value is negative 
+@ > old value, ignore 
+@ < old value, replace 
+@ positive old value, add 
+
+cmp r1, #0 
+beq Loop 
+cmp r1, #0x80 
+bge NegativeA 
+
+@ new value is positive 
+mov r3, r1 
+bic r3, r2 @ remove 0x40 swap bitflag 
+cmp r0, #0 
+bge DontAddToValue 
+adc r3, r0 @ to remove negatives first 
+DontAddToValue: 
+cmp r3, r0 
+blt Loop @ if buffed stat is worse than what we already had, do nothing 
+tst r1, r2 
+beq AffectUser
+b AffectEnemy
+
+NegativeA: @ new value will be negative 
+mov r3, #0x3F 
+and r3, r1 
+neg r3, r3 
+cmp r0, #0 
+ble DontAddToValue_Negative
+adc r3, r0 @ to remove positives first 
+DontAddToValue_Negative: 
+cmp r3, r0 
+bgt Loop @ if debuffed stat is less bad than before (a higher # since we're negative), do nothing 
+tst r1, r2 
+beq AffectEnemy 
+
+AffectUser:  
+mov r0, r6 @ debuff entry 
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r2, [r2] 
+mov r1, r5 @ counter 
+mul r1, r2 @ bit offset 
+bl PackData_Signed 
+b Loop 
+
+
+
+
+AffectEnemy: 
+mov r0, r7 @ debuff entry 
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r2, [r2] 
+mov r1, r5 @ counter 
+mul r1, r2 @ bit offset 
+@push {r3} 
+bl PackData_Signed 
+mov r0, r7 @ debuff entry 
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r2, [r2] 
+mov r1, r5 @ counter 
+mul r1, r2 @ bit offset 
+bl UnpackData_Signed 
+@pop {r1} 
+@mov r11, r11 @ this was done for testing that inputted value = outputted value 
+
+b Loop 
+
+BreakLoop: 
+pop {r5} 
+mov r8, r5 
+
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
+
+
+GetWepDebuffByte: @ r0 = weapon id 
+mov r1, #0xFF
+and r0, r1
+ldr r2, ItemTableLocation
+mov r1, #0x24
+mul r0, r1
+add r2, r0          @r2 = &Item Data
+mov r0, #0x21       @Offset of debuff data
+ldrb r0, [r2, r0]
+@r0 = debuff data.
+bx lr 
+.ltorg 
 
 .align
 EALiterals:
-@.long GetDebuffs
 @.long ItemTableLocation
-@.long WeaponDebuffTable
 
-@ ExtraDataLocation:
-@ .long 0x0203F100
 @ ItemTableLocation:
 @ .long 0x08809B10
-@ DebuffTableLocation:
-@.long 0xDEADBEEF
 

@@ -1,5 +1,9 @@
 @Originally at 188A8
 .thumb
+.global ProcessDebuffs
+.type ProcessDebuffs, %function 
+ProcessDebuffs: 
+
 @This should do what the code in place did
 cmp     r0,#0x0
 beq     noBarrier
@@ -22,58 +26,183 @@ add     r3,#0x31
 strb r0, [r3]
 
 @Now the debuffs
-ldr r3, GetUnitDebuffs
-mov r0,r4
-bl BXR3
-mov r3,r0
-@ ldr r3, debuffTable
-@ ldrb r2, [r4, #0xB] @Deployment number
-@ lsl r2, #0x3
-@ add r3, r2
-ldr r2, [r3]
-mov r0, #0x0
+mov r0,r4 @ unit 
+push {r4-r6, lr} 
+bl GetUnitDebuffEntry
+mov r5,r0
 
-push {r4}
-mov r4, #0x0    @r4 = acc
-@0-2: Debuffs, 4 bits each (str/skl/spd/def/res/luk)
-@3: Rallys (bit 7 = rally move, bit 8 = rally spectrum)
-processDebuffLoop:
-mov r1, #0xF    @One stat's debuff
-lsl r1, r0
-and r1, r2
-cmp r1, #0x0
-beq noDebuff
-lsr r1, r0
-sub r1, #0x1    @decrement if there
-lsl r1, r0
-orr r4, r1
-noDebuff: 
-add r0, #0x4    @next nibble
-cmp r0, #0x14
-ble processDebuffLoop
-str r4, [r3]    @Store processed debuffs/no rallies
-pop {r4}
-    
-@4: Str/Skl Silver Debuff (6 bits), bit 7 = half strength, HO bit = Hexing Rod
-@5: Magic
-ldrb r0, [r3, #0x4]
-mov r1, #0x3F       @lower 6 bits
-and r1, r0
-cmp r1, #0x0
-beq noSilverDebuff
-sub r1, #0x1
-mov r2, #0xC0       @higher 2 bits
-and r0, r2          @preserve
-orr r0, r1          @Set the new debuff
-strb r0, [r3, #0x4] @Store back
-noSilverDebuff:
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r6, [r2] 
+
+@ I dont think a loop would be any more efficient in terms of speed 
+@ (but it would look nicer and take fewer lines of code) 
+ldr r1, =DebuffStatBitOffset_Mag
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Mag
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Str
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Str
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Skl
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Skl
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Spd
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Spd
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Def
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Def
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Res
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Res
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Luk
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Luk
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+ldr r1, =DebuffStatBitOffset_Mov
+ldr r1, [r1] 
+mov r0, r5 @ unit debuff entry ram 
+mov r2, r6 
+bl UnpackData_Signed @ given r0 = address, r1 = bit offset, r2 = number of bits, return that data 
+bl GetNewTemporaryStatValue @ r0 = value for a debuffed/buffed stat 
+mov r3, r0 @ to store back 
+mov r0, r5 
+mov r2, r6 @ # of bits 
+ldr r1, =DebuffStatBitOffset_Mov
+ldr r1, [r1] 
+bl PackData_Signed 
+
+
+
+@BreakLoop: 
+@
+@8: Rallies (str/skl/spd/def/res/luk) (bit 7 = rally move, bit 8 = rally spectrum)
+@9: Str/Skl Silver Debuff (6 bits), bit 7 = RallyMag, bit 8 = free 
+ldr r1, =RalliesOffset_Link 
+ldr r1, [r1] 
+mov r3, #0 @ value 
+mov r0, r5 @ debuff entry for unit 
+ldr r2, =RalliesNumberOfBits_Link 
+ldr r2, [r2] 
+bl PackData
+@10: mag/str/skl/spd/def/res/luk/hp tonics (+2 in each, +4 luk, +5 hp) 
+@11: bit 1 = half str, bit 2 = half mag, bit 3 = hexing rod, bits 4-8 are free 
+
+pop {r4-r6}
+pop {r3} 
 @no need to do anything
 ldr r3, ReturnLocation
 BXR3:
 bx r3
+.ltorg 
+
+.global GetNewTemporaryStatValue
+.type GetNewTemporaryStatValue, %function 
+GetNewTemporaryStatValue:
+@ given r0 as a signed buff, restore towards 0 
+cmp r0, #0 
+beq GotStatValue 
+cmp r0, #0 
+bgt DecrementBuff @ is this positive? 
+
+@ DecrementDebuff 
+ldr r2, =DebuffRestorePerTurnAmount_Link
+ldr r2, [r2] 
+add r0, r2 
+cmp r0, #0 
+ble GotStatValue 
+mov r0, #0 
+b GotStatValue 
+
+DecrementBuff: 
+ldr r2, =BuffDepletePerTurnAmount_Link
+ldr r2, [r2] 
+sub r0, r2 
+cmp r0, #0 
+bge GotStatValue 
+mov r0, #0 
+b GotStatValue 
+
+GotStatValue: 
+bx lr 
+.ltorg 
+
 
 .align
 ReturnLocation:
     .long 0x80188E1
-GetUnitDebuffs:
-    @Handled by installer
