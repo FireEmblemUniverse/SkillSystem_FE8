@@ -25,6 +25,8 @@
   */
 
   //#include "EAstdlib.event"
+  
+  #include "RTextGetters/RTextGetters.event"
 
   #define RMenu(up,down,left,right,xcoord,ycoord,TID) "POIN up down left right;BYTE xcoord ycoord; SHORT TID; WORD 0 0;"
   #define RMenu(up,down,left,right,xcoord,ycoord,TID,Getter) "POIN up down left right; BYTE xcoord ycoord; SHORT TID; POIN 0 Getter|1"
@@ -75,7 +77,7 @@
       RMenu(ST_Def,ST_Mov,ST_Exp,ST_Skills,0x66,0x68,0x54c)
 
     ST_Mov:
-      RMenu(ST_Res,ST_Con,ST_Exp,ST_Skill1,0x66,0x78,0x54d)
+      RMenu(ST_Res,ST_Con,ST_Exp,ST_Skill1,0x66,0x78,0x54d,MovHPDescGetter)
 
     ST_Con:
       RMenu(ST_Mov,0,ST_HP,ST_Skill4,0x66,0x88,0x54e)
@@ -129,10 +131,10 @@
 
   #ifdef PRESS_SELECT_TO_VIEW_GROWTHS
     PersonalDataRText:
-      RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc1)
+      RMenu(0,ST_Str,ST_Name,0,0x76,0x4,PersonalDataDesc1)
   #else
     PersonalDataRText:
-      RMenu(0,ST_Str,0,0,0x76,0x4,PersonalDataDesc2)
+      RMenu(0,ST_Str,ST_Name,0,0x76,0x4,PersonalDataDesc2)
   #endif
   
 #else // USE_STRMAG_SPLIT
@@ -166,7 +168,7 @@ ST_Def:
 ST_Res:
   RMenu(ST_Def,ST_Mov,ST_Exp,ST_Skill1,0x66,0x78,0x54c)
 ST_Mov:
-  RMenu(ST_Res,ST_Con,ST_Exp,ST_Skill1,0x66,0x88,0x54d)
+  RMenu(ST_Res,ST_Con,ST_Exp,ST_Skill1,0x66,0x88,0x54d,MovHPDescGetter)
 POP
 
 //the rest of these are here because space
