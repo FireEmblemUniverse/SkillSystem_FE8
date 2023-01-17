@@ -71,6 +71,8 @@ ALIGN 4
 AuraSkillTable:
 FILL 0xFF
 
+AuraSkillEntry(CantoID)
+AuraSkillEntry(CantoPlusID)
 AuraSkillEntry(CharmID)
 AuraSkillEntry(DemoiselleID)
 AuraSkillEntry(GentilhommeID)
