@@ -149,7 +149,7 @@ WORD BlueFlameID
 ALIGN 4
 KeepUp:
 #include "KeepUp/KeepUp.lyn.event"
-POIN AuraSkillCheck // NewAuraSkillCheck does not work here 
+POIN NewAuraSkillCheck
 POIN SkillTester
 POIN ArmorMarchList
 POIN IndoorTerrainList
