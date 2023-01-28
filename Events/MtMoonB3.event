@@ -114,7 +114,7 @@ SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 SpellScrollTrap(32,24, (ChapterID*2)+1, KarateChop)
 
 SignBTrap(10,12, ChapterID, 0x0) //no extra text 
-SignATrap(21,18, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+SignATrap(21,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
 //SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)

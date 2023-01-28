@@ -141,6 +141,11 @@ POIN RangeTemplateTable_LargeCone2
 POIN RangeTemplateTable_LargeCone3
 POIN RangeTemplateTable_LargeCone4
 
+ALIGN 16; POIN RangeTemplateTable_All //20 
+POIN RangeTemplateTable_All
+POIN RangeTemplateTable_All
+POIN RangeTemplateTable_All
+
 WORD 0 0 0 0 // Terminator 
 
 ALIGN 4
@@ -625,7 +630,19 @@ BYTE 0 0 1 0 0
 BYTE 0 0 1 0 0
 
 
-
+ALIGN 4
+RangeTemplateTable_All:
+BYTE 9 9
+BYTE 5 5 
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
+BYTE 1 1 1 1 1 1 1 1 1
 
 
 
