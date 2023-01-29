@@ -74,7 +74,7 @@ bx lr
 .global PackData_Signed 
 .type PackData_Signed, %function 
 PackData_Signed: 
-push {r4-r6}
+push {r4-r7}
 
 
 mov r4, r1 
@@ -96,6 +96,9 @@ mov r3, #7
 add r3, r2 @ number of bits + 7 for rounding 
 add r3, r4 @ bit offset (ignoring bits that made a byte) 
 lsr r3, #3 @ bits / 8 rounded up as # of bytes to load 
+mov r7, r3 
+
+
 @ r3 as the number of bytes to load (0-indexed) 
 cmp r3, #3 
 ble NoCap2 
@@ -168,11 +171,11 @@ Loop3:
 strb r1, [r2, r3] 
 lsr r1, #8 
 add r3, #1 
-cmp r1, #0 
-bne Loop3 
+cmp r3, r7 
+blt Loop3 
 
 Exit: 
-pop {r4-r6} 
+pop {r4-r7} 
 bx lr
 .ltorg 
 
@@ -300,7 +303,7 @@ bx lr
 .global PackData
 .type PackData, %function 
 PackData: 
-push {r4-r6}
+push {r4-r7}
 
 
 mov r4, r1 
@@ -321,6 +324,7 @@ mov r3, #7
 add r3, r2 @ number of bits + 7 for rounding 
 add r3, r4 @ bit offset (ignoring bits that made a byte) 
 lsr r3, #3 @ bits / 8 rounded up as # of bytes to load 
+mov r7, r3 
 @ r3 as the number of bytes to load (0-indexed) 
 
 cmp r3, #3 
@@ -377,11 +381,11 @@ Loop5:
 strb r1, [r2, r3] 
 add r3, #1 
 lsr r1, #8 
-cmp r1, #0 
-bne Loop5 
+cmp r3, r7 
+blt Loop5 
 
 Exit2: 
-pop {r4-r6} 
+pop {r4-r7} 
 bx lr
 .ltorg 
 
