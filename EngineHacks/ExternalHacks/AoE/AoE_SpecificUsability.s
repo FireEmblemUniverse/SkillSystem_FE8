@@ -10,8 +10,7 @@
 AoE_SpecificUsability:
 push {lr}
 
-ldr r0, =AoE_SpecificEffectIndex 
-ldrb r0, [r0]
+ldrb r0 , [r0,#0x9] @Menu->MenuID AoETableID
 ldr r1, =AoE_EntrySize 
 ldrb r1, [r1]
 mul r1, r0 @ Offset for the entry we want 
@@ -29,8 +28,4 @@ bx r1
 
 .ltorg
 .align 4 
-
-
-AoE_SpecificEffectIndex:
-@WORD ID 
 

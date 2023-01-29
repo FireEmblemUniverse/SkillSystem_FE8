@@ -3,7 +3,7 @@
 @create target selection 6c
 
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 @.equ RangeBuilder, OffsetList
 @.equ TargetTextID, OffsetList + 0x4
@@ -31,7 +31,7 @@ mov 	r4, r0
 @ldr 	r0, TargetTextID
 @cmp 	r0, #0x0
 @beq 	NoHelpText
-@ldr 	r3, =#0x800A240 @GetInTextBuffer
+@ldr 	r3, =0x800A240 @GetInTextBuffer
 @mov 	r14, r3
 @.short 0xF800
 @mov 	r1, r0
@@ -43,7 +43,8 @@ mov 	r4, r0
 
 SoundCheck:
 @check if sounds are turned off?
-ldr 	r0, =#0x202BCF0 	@chapter data in ram
+ldr 	r0, =0x202BCF0 	@chapter data in ram	@{U}
+@ldr 	r0, =0x202BCEC 	@chapter data in ram	@{J}
 add 	r0, #0x41
 ldrb	r0, [r0]
 lsl 	r0, r0, #0x1E
@@ -51,7 +52,7 @@ cmp 	r0, #0x0
 blt 	Muted
 @play sound effect?
 mov 	r0, #0x6A
-ldr 	r3, =#PlaySound
+ldr 	r3, =PlaySoundEffect
 mov 	r14, r3
 .short 0xF800
 Muted:

@@ -27,7 +27,7 @@
 // If uncommented, a full str/split will be implemented without replacing any stats
 // TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
-// #define USE_STRMAG_SPLIT
+//#define USE_STRMAG_SPLIT
 
 //If uncommented, will enable Battle Stats with Animations Off.
 #define BATTLE_STATS

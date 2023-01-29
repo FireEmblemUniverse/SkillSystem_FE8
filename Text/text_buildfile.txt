@@ -14,7 +14,7 @@ Learned  [X]
 
 #include "statscreen_text.txt"
 
-#include "unitmenu_text.txt"
+
 
 #0xd4c LikesText
 //first text ID in the free block
@@ -115,6 +115,8 @@ Cost[X]
 ## SkillScrollDesc
 A scroll that teaches[N]
 a skill when used.[X]
+
+#include "unitmenu_text.txt"
 
 #include "skilldesc_text.txt"
 

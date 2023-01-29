@@ -33,10 +33,13 @@
 
 
 
-.equ FE8U_Memcopy,       0x080D1C0C
+.equ FE8U_Memcopy,       0x080D1C0C	@{U}
+@.equ FE8U_Memcopy,       0x080D6908	@{J}
 
-.equ FE8U_MapSizeStruct, 0x0202E4D4
-.equ FE8U_RangeMapRows,  0x0202E4E4
+.equ FE8U_MapSizeStruct, 0x0202E4D4	@{U}
+@.equ FE8U_MapSizeStruct, 0x0202E4D0	@{J}
+.equ FE8U_RangeMapRows,  0x0202E4E4	@{U}
+@.equ FE8U_RangeMapRows,  0x0202E4E0	@{J}
 
 @ Ok so, definition time:
 @ Header:
@@ -379,7 +382,8 @@ End:
 
 .thumb
 
-.equ FE8U_FillRangeMap, 0x0801AABC
+.equ FE8U_FillRangeMap, 0x0801AABC	@{U}
+@.equ FE8U_FillRangeMap, 0x0801A798	@{J}
 
 .global CreateRangeMapFromRange
 .type CreateRangeMapFromRange, %function 

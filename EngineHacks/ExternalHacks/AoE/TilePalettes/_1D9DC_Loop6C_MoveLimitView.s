@@ -1,6 +1,5 @@
 .thumb
 .include 	"_Definitions.h.s"
-@.include 	"../../_FuncLib/MokhaRAMSpace.s"
 SET_FUNC_INLINE		_1D9DC_Loop6C_MoveLimitView
 
 @ new_MapMovement: 	0x1 Blue/ 	0x20 Red/ 	0x40 Green
