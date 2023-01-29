@@ -2,7 +2,7 @@
 //Instead of going in stat getters, these go in pre-battle and affect the numbers post-calc with rallied stats to emulate negating the stat boosts (you can't check a defender when doing stat boost modifiers)
 
 ALIGN 4
-#inctext lyn "Lull.elf"
+#include "Lull.lyn.event" 
 
 LullDefIDLink:
 BYTE LullDefID
@@ -20,8 +20,7 @@ LullSpectrumIDLink:
 BYTE LullSpectrumID
 LullMagIDLink:
 BYTE LullMagID
-LullDebuffTableLink:
-WORD DebuffTable
+
 
 
 

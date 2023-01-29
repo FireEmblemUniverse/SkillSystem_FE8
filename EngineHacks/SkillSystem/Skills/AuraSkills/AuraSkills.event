@@ -148,11 +148,8 @@ WORD BlueFlameID
 
 ALIGN 4
 KeepUp:
-#incbin "KeepUp/KeepUp.dmp"
+#include "KeepUp/KeepUp.lyn.event"
 POIN NewAuraSkillCheck
-WORD DebuffTable
-WORD ArmorMarchBit
-WORD 8 //size of debuff table entry
 POIN SkillTester
 POIN ArmorMarchList
 POIN IndoorTerrainList
