@@ -7,6 +7,43 @@
 
 #ifdef _FE8_
 
+
+
+ALIGN 4 
+DebuffRestorePerTurnAmount_Link:
+WORD 2 
+
+ALIGN 4 
+BuffDepletePerTurnAmount_Link:
+WORD 1 
+
+#define RequireDamageToDebuff True 
+RequireDamageToDebuff_Link: 
+WORD RequireDamageToDebuff
+
+
+
+SpecRallyAmount_Link: 
+WORD 2 
+MagRallyAmount_Link: 
+WORD 4 
+StrRallyAmount_Link: 
+WORD 4 
+SklRallyAmount_Link: 
+WORD 4 
+SpdRallyAmount_Link: 
+WORD 4 
+
+DefRallyAmount_Link: 
+WORD 4 
+ResRallyAmount_Link: 
+WORD 4 
+LukRallyAmount_Link: 
+WORD 8 
+MovRallyAmount_Link: 
+WORD 2 
+
+
 #define DebuffEntrySize 8 // Number of bytes 
 
 // NOTE: If you wish to use more bits in the debuff table, please use the provided functions for ease of use. 
@@ -177,7 +214,7 @@ TeamDebuffTables:
       jumpToHack(damagedThisTurn)
 
     ORG 0x2B422
-      #incbin "asm/Debuffs/SetHitThisTurn.dmp"
+      #incbin "asm/SetHitThisTurn.dmp"
 
     // ORG 0x2C086
       // SHORT 0x46C0 // nop
@@ -191,7 +228,7 @@ TeamDebuffTables:
 
   ALIGN 4
   damagedThisTurn:
-    #incbin "asm/Debuffs/SetDamagedThisTurn.dmp"
+    #incbin "asm/SetDamagedThisTurn.dmp"
 
 
 
@@ -215,14 +252,14 @@ TeamDebuffTables:
 
   ALIGN 4
   setDebuffs:
-    #include "asm/Debuffs/SetDebuffs.lyn.event"
+    #include "asm/SetDebuffs.lyn.event"
     POIN ItemTable
 
-	#include "asm/Debuffs/Reload.lyn.event"
-	#include "asm/Debuffs/InitDebuffs.lyn.event"
-    #include "asm/Debuffs/ClearDebuffs.lyn.event"
-    #include "asm/Debuffs/GetUnitDebuffEntry.lyn.event"
-	#include "asm/Debuffs/ProcessDebuffs.lyn.event"
+	#include "asm/Reload.lyn.event"
+	#include "asm/InitDebuffs.lyn.event"
+    #include "asm/ClearDebuffs.lyn.event"
+    #include "asm/GetUnitDebuffEntry.lyn.event"
+	#include "asm/ProcessDebuffs.lyn.event"
 
 
 ALIGN 4 
@@ -243,39 +280,6 @@ DebuffTableSize_Link:
 WORD DebuffTableSize 
 
 
-ALIGN 4 
-DebuffRestorePerTurnAmount_Link:
-WORD 3 
-
-ALIGN 4 
-BuffDepletePerTurnAmount_Link:
-WORD 2 
-
-#define RequireDamageToDebuff True 
-RequireDamageToDebuff_Link: 
-WORD RequireDamageToDebuff
-
-
-
-SpecRallyAmount_Link: 
-WORD 2 
-MagRallyAmount_Link: 
-WORD 4 
-StrRallyAmount_Link: 
-WORD 4 
-SklRallyAmount_Link: 
-WORD 4 
-SpdRallyAmount_Link: 
-WORD 4 
-
-DefRallyAmount_Link: 
-WORD 4 
-ResRallyAmount_Link: 
-WORD 4 
-LukRallyAmount_Link: 
-WORD 8 
-MovRallyAmount_Link: 
-WORD 2 
 
 
 #else // _FE8_
