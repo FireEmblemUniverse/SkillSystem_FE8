@@ -2440,9 +2440,9 @@ BYTE 17 BubbleBeam
 BYTE 19 Flash // Resv Camouflage
 BYTE 20 ConfuseRay
 BYTE 24 Psybeam
-BYTE 28 BubbleBeam
+BYTE 28 HealPulse
 // BYTE 33 Resv Minimize
-BYTE 33 HealPulse
+BYTE 33 Surf
 BYTE 37 MirrorShot // GyroBall
 //BYTE 42 LightScreen
 BYTE 42 Ancientpower
@@ -2461,9 +2461,9 @@ BYTE 17 BubbleBeam
 BYTE 19 Flash // Resv Camouflage
 BYTE 20 ConfuseRay
 BYTE 24 Psybeam
-BYTE 28 BubbleBeam
+BYTE 28 HealPulse
 // BYTE 33 Resv Minimize
-BYTE 33 HealPulse
+BYTE 33 Surf
 BYTE 37 MirrorShot // GyroBall
 //BYTE 42 LightScreen
 BYTE 42 Ancientpower
