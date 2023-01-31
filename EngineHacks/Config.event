@@ -196,6 +196,12 @@
 // If uncommented all boss kills will play critical hit animations.
 // #define FLASHY_MODE
 
+// If uncommented, the unit load buffer will be repointed.
+// The location it is repointed to is also defined here. The default location is
+// the area that stores turn count information, and WILL break turn counts.
+// #define REPOINT_UNIT_LOAD_BUFFER
+// #define NewUnitLoadBufferLoc 0x203ED40
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
