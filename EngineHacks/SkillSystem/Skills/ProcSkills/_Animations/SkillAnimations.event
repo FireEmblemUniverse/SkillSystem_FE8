@@ -59,8 +59,3 @@ AegisAnim:
   #include "Aegis/AegisAnim.event"
 }
 
-ALIGN 4
-SureShotAnim:
-{
-  #include "SureShot/SureShotAnim.event"
-}

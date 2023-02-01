@@ -8,9 +8,9 @@ POIN PalettesList
 WORD 0x3d1 //sound id
 
 Frames:    //SHORT image duration
-SHORT 0 5
-SHORT 1 10
-SHORT 2 15
+SHORT 0 3
+SHORT 1 6
+SHORT 2 9
 SHORT 0xFFFF
 ALIGN 4
 
