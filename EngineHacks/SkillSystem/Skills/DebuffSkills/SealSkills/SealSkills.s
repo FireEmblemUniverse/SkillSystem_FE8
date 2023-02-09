@@ -92,6 +92,7 @@ SealLoop:
     mov r0, r6
 	ldr r1, =DebuffAmount 
 	ldr r1, [r1] 
+    mov r2, r5 @nth seal
     bl ApplyDebuff
   NextLoop:
   add r5, #1
@@ -104,28 +105,53 @@ pop {r0}
 bx r0
 .ltorg
 
+.global ApplyDebuff
+.type ApplyDebuff, %function 
 ApplyDebuff:
 @r0 is unit data, r1 is amount, r2 is nth stat
-push {r4-r5, lr}
+push {r4-r6, lr}
 @ r0 = unit 
 mov r4, r1
 mov r5, r2
 bl GetUnitDebuffEntry @ r0 = unit struct 
-
+mov r6, r0 @ debuff entry 
 lsl r3, r5, #2 @ 4 bytes per 
 ldr r1, =SealDebuffIndex @ table of POINs 
 add r1, r3 
 ldr r1, [r1] @ address of the debuff offset 
 ldr r1, [r1] @ debuff offset 
-mov r3, r4 @ value 
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r2, [r2] 
+bl UnpackData_Signed 
+mov r3, r0 @ value 
+cmp r3, #0 
+blt Negative 
+sub r3, r4 @ new value 
+mov r4, r3 
+b NowStoreDebuff 
+Negative: 
+mov r1, #0 
+sub r1, r4 @ to compare 
+cmp r3, r1 
+blt EndApplyDebuff @ we had a lower value / worse debuff already 
+mov r4, r1 @ new value to store 
+
+NowStoreDebuff: 
+mov r0, r6 @ debuff entry 
+lsl r2, r5, #2 @ 4 bytes per 
+ldr r1, =SealDebuffIndex @ table of POINs 
+add r1, r2 
+ldr r1, [r1] @ address of the debuff offset 
+ldr r1, [r1] @ debuff offset 
+mov r3, r4
 ldr r2, =DebuffStatNumberOfBits_Link
 ldr r2, [r2] 
  
 @ given r0 = address, r1 = bit offset, r2 = number of bits, r3 = data to store
-bl PackData 
+bl PackData_Signed
 
 EndApplyDebuff:
-pop {r4-r5}
+pop {r4-r6}
 pop {r0} 
 bx r0 
 .ltorg 
