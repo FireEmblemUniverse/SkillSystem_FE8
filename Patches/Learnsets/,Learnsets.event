@@ -1477,11 +1477,12 @@ BYTE 12 Magnitude
 BYTE 15 Rollout
 BYTE 17 MegaPunch
 BYTE 20 Dig
-BYTE 23 RockSlide
-BYTE 27 Earthquake
-BYTE 31 Explosion
-BYTE 36 DoubleEdge
-BYTE 39 Submission
+BYTE 23 TakeDown
+BYTE 27 RockSlide
+BYTE 30 Earthquake
+BYTE 33 DoubleEdge
+BYTE 37 Explosion
+BYTE 42 Submission
 BYTE 0 0
 
 ALIGN 4
@@ -1493,11 +1494,12 @@ BYTE 12 Magnitude
 BYTE 15 Rollout
 BYTE 17 MegaPunch
 BYTE 20 Dig
-BYTE 23 RockSlide
-BYTE 27 Earthquake
-BYTE 31 Explosion
-BYTE 36 DoubleEdge
-BYTE 39 Submission
+BYTE 23 TakeDown
+BYTE 27 RockSlide
+BYTE 30 Earthquake
+BYTE 33 DoubleEdge
+BYTE 37 Explosion
+BYTE 42 Submission
 BYTE 0 0
 
 
