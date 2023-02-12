@@ -40,20 +40,27 @@ struct MapAuraFxUnitProc
 static void MapAuraFx_Unit_OnInit(struct MapAuraFxUnitProc* proc);
 static void MapAuraFx_Unit_OnLoop(struct MapAuraFxUnitProc* proc);
 static void MapAuraFx_Unit_OnEnd(struct MapAuraFxUnitProc* proc);
+static void MapAuraFx_EnsureCameraOntoPosition(struct MapAuraFxUnitProc* proc);
 
 static const struct ProcInstruction sProc_MapAuraFx_Unit[] = {
 	PROC_SET_NAME("Map Aura Fx Unit"),
 
 	PROC_SLEEP(0),
-
+	//PROC_CALL_ROUTINE(MapAuraFx_EnsureCameraOntoPosition), 
+//PROC_SLEEP(15),
 	PROC_CALL_ROUTINE(MapAuraFx_Unit_OnInit),
 	PROC_SET_DESTRUCTOR(MapAuraFx_Unit_OnEnd),
-
+	
 	PROC_LOOP_ROUTINE(MapAuraFx_Unit_OnLoop),
 
 	PROC_END
 };
 
+void MapAuraFx_EnsureCameraOntoPosition(struct MapAuraFxUnitProc* proc)
+{
+	EnsureCameraOntoPosition(proc, proc->pUnit->xPos, proc->pUnit->yPos);
+
+} 
 static void UnpackGraphics(void)
 {
 	static const void* const gfx = (const void* const) (0x08A032AC);
@@ -65,38 +72,41 @@ static void UnpackGraphics(void)
 	Decompress(gfx, (void*) (VRAM + FX_TILE_ROOT * 0x20));
 	CopyToPaletteBuffer(pal, FX_PALETTE_ROOT * 0x20, 0x20);
 
-	BgTileMap_ApplyTSA(gBg2MapBuffer, tsa, TILEMAP_BASE);
+	BgMap_ApplyTsa(gBg2MapBuffer, tsa, TILEMAP_BASE);
 
 	// This is probably not the most efficient way of doing this but whatever
 
 	for (unsigned ix = 1; ix < 16; ++ix)
-		BgTileMap_CopyRect(gBg2MapBuffer, BG_LOCATED_TILE(gBg2MapBuffer, ix*2, 0), 2, 4);
+		BgMapCopyRect(gBg2MapBuffer, BG_LOCATED_TILE(gBg2MapBuffer, ix*2, 0), 2, 4);
 
 	for (unsigned iy = 1; iy < 8; ++iy)
-		BgTileMap_CopyRect(gBg2MapBuffer, BG_LOCATED_TILE(gBg2MapBuffer, 0, iy*4), 32, 4);
+		BgMapCopyRect(gBg2MapBuffer, BG_LOCATED_TILE(gBg2MapBuffer, 0, iy*4), 32, 4);
 
 	EnableBgSyncByIndex(2);
 }
 
 static void InitSpecialEffects(void)
 {
-	gLCDIOBuffer.dispControl.win0_on = FALSE;
-	gLCDIOBuffer.dispControl.win1_on = FALSE;
-	gLCDIOBuffer.dispControl.objWin_on = TRUE;
+	
 
-	gLCDIOBuffer.winControl.wout_bg0_on = TRUE;
-	gLCDIOBuffer.winControl.wout_bg1_on = TRUE;
-	gLCDIOBuffer.winControl.wout_bg2_on = FALSE;
-	gLCDIOBuffer.winControl.wout_bg3_on = TRUE;
-	gLCDIOBuffer.winControl.wout_obj_on = TRUE;
-	gLCDIOBuffer.winControl.wout_blend_on = FALSE;
+	
+	gLCDIOBuffer.dispControl.enableWin0 = FALSE;
+	gLCDIOBuffer.dispControl.enableWin1 = FALSE;
+	gLCDIOBuffer.dispControl.enableObjWin = TRUE;
 
-	gLCDIOBuffer.winControl.objw_bg0_on = TRUE;
-	gLCDIOBuffer.winControl.objw_bg1_on = TRUE;
-	gLCDIOBuffer.winControl.objw_bg2_on = TRUE;
-	gLCDIOBuffer.winControl.objw_bg3_on = TRUE;
-	gLCDIOBuffer.winControl.objw_obj_on = TRUE;
-	gLCDIOBuffer.winControl.objw_blend_on = TRUE;
+	gLCDIOBuffer.winControl.wout_enableBg0 = TRUE;
+	gLCDIOBuffer.winControl.wout_enableBg1 = TRUE;
+	gLCDIOBuffer.winControl.wout_enableBg2 = FALSE;
+	gLCDIOBuffer.winControl.wout_enableBg3 = TRUE;
+	gLCDIOBuffer.winControl.wout_enableObj = TRUE;
+	gLCDIOBuffer.winControl.wout_enableBlend = FALSE;
+
+	gLCDIOBuffer.winControl.wobj_enableBg0 = TRUE;
+	gLCDIOBuffer.winControl.wobj_enableBg1 = TRUE;
+	gLCDIOBuffer.winControl.wobj_enableBg2 = TRUE;
+	gLCDIOBuffer.winControl.wobj_enableBg3 = TRUE;
+	gLCDIOBuffer.winControl.wobj_enableObj = TRUE;
+	gLCDIOBuffer.winControl.wobj_enableBlend = TRUE;
 
 	gLCDIOBuffer.bgControl[2].priority = 1;
 
@@ -125,9 +135,9 @@ static void MapAuraFx_OnLoop(struct MapAuraFxProc* proc)
 
 static void MapAuraFx_OnEnd(struct MapAuraFxProc* proc)
 {
-	gLCDIOBuffer.dispControl.win0_on = FALSE;
-	gLCDIOBuffer.dispControl.win1_on = FALSE;
-	gLCDIOBuffer.dispControl.objWin_on = FALSE;
+	gLCDIOBuffer.dispControl.enableWin0 = FALSE;
+	gLCDIOBuffer.dispControl.enableWin1 = FALSE;
+	gLCDIOBuffer.dispControl.enableObjWin = FALSE;
 
 	FillBgMap(gBg2MapBuffer, 0);
 	EnableBgSyncByIndex(2);
@@ -171,9 +181,16 @@ static void MapAuraFx_Unit_OnEnd(struct MapAuraFxUnitProc* proc)
  * ====================
  */
 
+struct MapAuraFxProc* FindMapAuraProc(void)
+{
+	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) ProcFind(sProc_MapAuraFx);
+	return proc; 
+}
+
+
 void StartMapAuraFx(void)
 {
-	StartProc(sProc_MapAuraFx, ROOT_PROC_3);
+	ProcStart(sProc_MapAuraFx, ROOT_PROC_3);
 }
 
 void EndMapAuraFx(void)
@@ -183,12 +200,12 @@ void EndMapAuraFx(void)
 
 int IsMapAuraFxActive(void)
 {
-	return FindProc(sProc_MapAuraFx) ? TRUE : FALSE;
+	return ProcFind(sProc_MapAuraFx) ? TRUE : FALSE;
 }
 
 void SetMapAuraFxSpeed(int speed)
 {
-	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) FindProc(sProc_MapAuraFx);
+	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) ProcFind(sProc_MapAuraFx);
 
 	if (proc)
 	{
@@ -198,7 +215,7 @@ void SetMapAuraFxSpeed(int speed)
 
 void SetMapAuraFxBlend(unsigned blend)
 {
-	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) FindProc(sProc_MapAuraFx);
+	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) ProcFind(sProc_MapAuraFx);
 
 	if (proc)
 	{
@@ -208,7 +225,7 @@ void SetMapAuraFxBlend(unsigned blend)
 
 void SetMapAuraFxPalette(const u16 palette[])
 {
-	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) FindProc(sProc_MapAuraFx);
+	struct MapAuraFxProc* proc = (struct MapAuraFxProc*) ProcFind(sProc_MapAuraFx);
 
 	if (proc)
 	{
@@ -220,12 +237,12 @@ void AddMapAuraFxUnit(struct Unit* unit)
 {
 	if (UNIT_IS_VALID(unit) && unit->pMapSpriteHandle)
 	{
-		struct Proc* parent = FindProc(sProc_MapAuraFx);
+		struct Proc* parent = ProcFind(sProc_MapAuraFx);
 
 		if (parent)
 		{
 			struct MapAuraFxUnitProc* unitProc =
-				(struct MapAuraFxUnitProc*) StartProc(sProc_MapAuraFx_Unit, parent);
+				(struct MapAuraFxUnitProc*) ProcStart(sProc_MapAuraFx_Unit, parent);
 
 			unitProc->pUnit = unit;
 		}

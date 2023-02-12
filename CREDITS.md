@@ -20,6 +20,7 @@ adding yourself!
 - Sme
 - Ganzap
 - Mikey Seregon
+- Vesly 
 
 # Other
 
@@ -33,6 +34,8 @@ adding yourself!
 - vlak: Drives
 - Pikmin1211: Miscellaneous
 - 2WB: Miscellaneous
+- Someone: Taker, Hone, Oath, Rouse 
+- VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
 

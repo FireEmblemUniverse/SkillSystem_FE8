@@ -18,3 +18,14 @@ WORD ResolveID
 #include "PushSkills/PushSkills.event"
 
 #include "LullSkills/LullSkills.event"
+
+#include "Guts/Guts.lyn.event" 
+ALIGN 4 
+StrongConAmount_Link: 
+WORD 5 
+GutsAmount_Link:
+WORD 5 
+StrongConID_Link: 
+WORD StrongConstitutionID 
+GutsID_Link:
+WORD GutsID 

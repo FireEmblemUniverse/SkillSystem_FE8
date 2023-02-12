@@ -20,7 +20,9 @@ WORD 1
 #define RequireDamageToDebuff True 
 RequireDamageToDebuff_Link: 
 WORD RequireDamageToDebuff
-
+ALIGN 4 
+EternalVanity_Link: 
+WORD EternalVanityID 
 
 
 SpecRallyAmount_Link: 
@@ -182,7 +184,7 @@ TeamDebuffTables:
       gotoHackWithR3(ReloadDebuffs)
 
     ORG 0x188A8 // This is for decreasing the debuffs each turn/ending rally
-      jumpToHack(ProcessDebuffs)
+      jumpToHack(ProcessPureWater)
 
     ORG 0x59A308 // Clear debuffs on chapter switch
       WORD $0D; POIN MapMainClearProc

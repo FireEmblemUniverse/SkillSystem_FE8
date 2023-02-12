@@ -103,7 +103,7 @@ bl GetWepDebuffByte
 mov r1, r4 @ unit 
 mov r2, r6 @ ram 
 mov r3, r7 @ ram 
-bl ProcessDebuffs 
+bl ProcessCombatDebuffs 
 
 OppositeUnit: 
 mov r0, #0x48       @Equipped item after battle
@@ -114,7 +114,7 @@ and r0, r1 @wep debuff byte
 mov r1, r5 @ unit 
 mov r2, r7 @ ram 
 mov r3, r6 @ ram 
-bl ProcessDebuffs 
+bl ProcessCombatDebuffs 
 
 
 pop {r4-r7}
@@ -124,7 +124,7 @@ bx r0
 
 @ ApplyWeaponDebuffs
 
-ProcessDebuffs: 
+ProcessCombatDebuffs: 
 push {r4-r7, lr} 
 mov r4, #0x1f 
 and r4, r0 @ wep debuff entry 

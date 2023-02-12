@@ -1,0 +1,126 @@
+PUSH
+ORG $59A294 
+POIN NewgProc_PhaseSwitchGfx 
+POP
+
+
+
+
+
+ALIGN 4 
+StartOfTurnCalcLoop: 
+// End of turn effects first 
+//POIN HoardersBane // also heal like a vulnerary does not update hp at the end of the animation like it does in events 
+
+// Start of turn ones begin below 
+POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset // Standalone things that loop through all units 
+POIN CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table 
+POIN CallRallyChaosProc // 
+WORD 0 
+
+
+ALIGN 4 
+NewgProc_PhaseSwitchGfx: // Had to repoint this. I tried having my custom proc call this vanilla one as a child, which caused bugs to occur. 
+// For example, enemies were teleporting to their target rather than walking 
+PROC_YIELD // Buffer.
+PROC_NEW_CHILD_BLOCKING(StartOfTurnCalcLoop_Proc) // Our new stuff 
+PROC_CALL_ROUTINE(0x801F2AD) // Vanilla below 
+PROC_CALL_ROUTINE(0x801F2CD) 
+PROC_NEW_CHILD(0x859AEF8)
+PROC_NEW_CHILD(0x859AF40)
+PROC_NEW_CHILD(0x859AF60)
+PROC_CALL_ROUTINE(0x801F3A9) 
+PROC_LOOP_ROUTINE(0x801F491) 
+PROC_CALL_ROUTINE(0x80160D1) 
+PROC_END 
+
+
+
+ALIGN 4
+StartOfTurnCalcLoop_Proc: // Loops through each function and starts a proc for it 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(StartOfTurnCalcLoopName)
+PROC_CALL_ROUTINE(StartOfTurnCalcLoop_Init)
+PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
+PROC_END
+
+ALIGN 4
+StartOfTurnCalcLoop_SomeFunctionProc: // Block this proc if you'd like to show animations 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(StartOfTurnCalcLoopName)
+PROC_SLEEP(0)
+PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_SomeFunction)
+PROC_END
+
+
+ALIGN 4
+BuffAnimationSkillProc: // Block this proc if you'd like to show animations 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(BuffAnimationSkillName)
+PROC_SLEEP(0)
+PROC_CALL_ROUTINE(BuffAnimationSkillInit) 
+PROC_LABEL(0)
+PROC_CALL_ROUTINE(BuffAnimationSkillLoop)
+//PROC_CALL_ROUTINE_2(Buff_EnsureCamera)
+PROC_SLEEP(0)
+PROC_LOOP_ROUTINE(BuffAnimationIdle) // wait for rally animation to end. If done, goto label 0. If destructor is set (+0x30), goto label 1. 
+PROC_LABEL(1) // Destructor 
+PROC_END
+
+
+StartOfTurnCalcLoopName:
+String("StartOfTurnCalcLoop") ; BYTE 0
+ALIGN 4
+
+BuffAnimationSkillName:
+String("BuffAnimationSkill") ; BYTE 0
+ALIGN 4
+
+
+// Below is optional but more efficient 
+// Executes a function where the unit has already been deemed to be on the field with the relevant skill 
+// loops through all units, checks if fielded, creates a buffer of skills, then runs the function for each skill ID that has an entry here 
+ALIGN 4 
+StartOfTurn_SkillTable: 
+FILL(256*4) 
+
+#define StartOfTurnFunctionEntry(skillID, function) "PUSH; ORG StartOfTurn_SkillTable+(skillID*4); POIN function|1; POP" 
+
+StartOfTurnFunctionEntry(HoneMagID, HoneMag) 
+StartOfTurnFunctionEntry(HoneStrID, HoneStr) 
+StartOfTurnFunctionEntry(HoneSklID, HoneSkl) 
+StartOfTurnFunctionEntry(HoneSpdID, HoneSpd) 
+StartOfTurnFunctionEntry(HoneDefID, HoneDef) 
+StartOfTurnFunctionEntry(HoneResID, HoneRes) 
+StartOfTurnFunctionEntry(HoneLukID, HoneLuk) 
+StartOfTurnFunctionEntry(HoneMovID, HoneMov) 
+StartOfTurnFunctionEntry(MagOathID, OathMag) 
+StartOfTurnFunctionEntry(StrOathID, OathStr) 
+StartOfTurnFunctionEntry(SklOathID, OathSkl) 
+StartOfTurnFunctionEntry(SpdOathID, OathSpd) 
+StartOfTurnFunctionEntry(DefOathID, OathDef) 
+StartOfTurnFunctionEntry(ResOathID, OathRes) 
+StartOfTurnFunctionEntry(LukOathID, OathLuk) 
+StartOfTurnFunctionEntry(MovOathID, OathMov) 
+StartOfTurnFunctionEntry(RouseMagID, RouseMag) 
+StartOfTurnFunctionEntry(RouseStrID, RouseStr) 
+StartOfTurnFunctionEntry(RouseSklID, RouseSkl) 
+StartOfTurnFunctionEntry(RouseSpdID, RouseSpd) 
+StartOfTurnFunctionEntry(RouseDefID, RouseDef) 
+StartOfTurnFunctionEntry(RouseResID, RouseRes) 
+StartOfTurnFunctionEntry(RouseLukID, RouseLuk) 
+StartOfTurnFunctionEntry(RouseMovID, RouseMov) 
+
+StartOfTurnFunctionEntry(CleverInitID	, CleverInit) 
+StartOfTurnFunctionEntry(StrongInitID	, StrongInit) 
+StartOfTurnFunctionEntry(DeftInitID		, DeftInit	) 
+StartOfTurnFunctionEntry(QuickInitID		, QuickInit	) 
+StartOfTurnFunctionEntry(LuckyInitID		, LuckyInit	) 
+StartOfTurnFunctionEntry(SturdyInitID	, SturdyInit) 
+StartOfTurnFunctionEntry(CalmInitID		, CalmInit	) 
+StartOfTurnFunctionEntry(NimbleInitID	, NimbleInit) 
+StartOfTurnFunctionEntry(SpectrumInitID	, SpectrumInit) 
+
+#include "StartOfTurn_CalcLoop.lyn.event" 
+
+

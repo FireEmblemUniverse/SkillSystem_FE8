@@ -1,0 +1,32 @@
+#include "UseItemEffect/Installer.event" 
+#include "dmp/RallyChaos.lyn.event" 
+#include "dmp/HoardersBane.lyn.event" 
+
+ALIGN 4 
+RallyChaosID_Link: 
+WORD RallyChaosID 
+
+
+
+
+ALIGN 4
+RallyChaosProc: // Block this proc if you'd like to show animations 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(RallyChaosName)
+PROC_SLEEP(0)
+PROC_CALL_ROUTINE(RallyChaosInit) 
+PROC_LABEL(0)
+PROC_CALL_ROUTINE(RallyChaosFunc)
+PROC_LOOP_ROUTINE(RallyChaosIdle)
+PROC_LABEL(1) // Destructor 
+PROC_END
+
+
+RallyChaosName:
+String("RallyChaos") ; BYTE 0
+ALIGN 4
+
+
+
+
+

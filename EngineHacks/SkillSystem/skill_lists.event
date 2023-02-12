@@ -1,4 +1,11 @@
 
+ALIGN 4 
+SethSkillList:
+BYTE 21 StrTakerID
+BYTE 21 SpectrumInitID
+BYTE 00 00 
+ALIGN 4 
+
 EphraimLordSkillList:
 BYTE 00 00
 ALIGN 4
