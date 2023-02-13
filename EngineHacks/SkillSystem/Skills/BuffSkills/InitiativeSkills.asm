@@ -185,6 +185,12 @@ bx r0
 .global SpectrumInit 
 .type SpectrumInit, %function 
 SpectrumInit: 
+ldr r3, =ChapterData 
+ldrh r3, [r3, #0x10] @ Turn # 
+cmp r3, #1 @ turn starts at 1 
+beq ProceedSpec 
+bx lr @ do nothing if not first turn 
+ProceedSpec: 
 push {r4, lr} 
 mov r4, r0 @ unit
 
@@ -251,12 +257,6 @@ bx r0
 
 
 InitiativeForStat: 
-ldr r3, =ChapterData 
-ldrh r3, [r3, #0x10] @ Turn # 
-cmp r3, #1 @ turn starts at 1 
-beq Proceed 
-bx lr @ do nothing if not first turn 
-Proceed: 
 push {r4-r7, lr} 
 
 

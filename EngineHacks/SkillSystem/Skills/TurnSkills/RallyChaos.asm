@@ -56,6 +56,9 @@ RallyChaosInit:
 mov r1, #0 
 str r1, [r0, #0x2C] @ unit deployment byte 
 str r1, [r0, #0x30] @ destructor = false 
+str r1, [r0, #0x34] @ 
+str r1, [r0, #0x38] @ 
+str r1, [r0, #0x3C] @ 
 bx lr 
 .ltorg 
 
@@ -96,13 +99,24 @@ bl SkillTester
 cmp r0, #0 
 beq RallyChaos_Loop 
 
-mov r0, #8 
-blh NextRN_N
-mov r1, #1 
-lsl r1, r0 @ some random rally bit to set  
 
-mov r0, r7
-bl RallyCommandEffect_NoneActive
+mov r0, r7 @ unit 
+mov r1, #0 @ can trade 
+mov r2, #2 @ range 
+bl GetUnitsInRange 
+cmp r0, #0 
+beq RallyChaos_Loop 
+ldrb r1, [r0] 
+cmp r1, #0 
+beq RallyChaos_Loop @ next unit 
+
+str r7, [r4, #0x3C] @ unit 
+
+mov r0, r4 
+mov r1, #2 @ label 
+blh ProcGoto 
+
+
 @bl StartBuffFx
 @ now wait for rally before continuing the loop 
 @bl RallyCommandEffect_NoneActive @ r0 = unit, r1 = rally bits 
@@ -118,6 +132,21 @@ Exit_RallyChaos:
 pop {r4-r7} 
 pop {r0} 
 bx r0
+.ltorg 
+.global RallyChaosExecute
+.type RallyChaosExecute, %function 
+RallyChaosExecute:
+push {r4, lr} 
+mov r4, r0 
+mov r0, #8 
+blh NextRN_N
+mov r1, #1 
+lsl r1, r0 @ some random rally bit to set  
+ldr r0, [r4, #0x3C] @ unit 
+bl RallyCommandEffect_NoneActive
+pop {r4} 
+pop {r0} 
+bx r0 
 .ltorg 
 
 

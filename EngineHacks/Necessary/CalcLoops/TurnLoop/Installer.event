@@ -10,7 +10,7 @@ POP
 ALIGN 4 
 StartOfTurnCalcLoop: 
 // End of turn effects first 
-//POIN HoardersBane // also heal like a vulnerary does not update hp at the end of the animation like it does in events 
+POIN HoardersBane // also heal like a vulnerary does not update hp at the end of the animation like it does in events 
 
 // Start of turn ones begin below 
 POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset // Standalone things that loop through all units 
@@ -58,11 +58,18 @@ BuffAnimationSkillProc: // Block this proc if you'd like to show animations
 PROC_YIELD // Buffer.
 PROC_SET_NAME(BuffAnimationSkillName)
 PROC_SLEEP(0)
+//PROC_LOOP_ROUTINE(BuffWaitForCamera)
 PROC_CALL_ROUTINE(BuffAnimationSkillInit) 
 PROC_LABEL(0)
 PROC_CALL_ROUTINE(BuffAnimationSkillLoop)
-//PROC_CALL_ROUTINE_2(Buff_EnsureCamera)
 PROC_SLEEP(0)
+PROC_LOOP_ROUTINE(BuffAnimationIdle) // wait for rally animation to end. If done, goto label 0. If destructor is set (+0x30), goto label 1. 
+PROC_LABEL(2) 
+PROC_END_ALL(0x859A548) // destroy camera proc that moves to Lord at start of phase 
+PROC_CALL_ROUTINE(Buff_EnsureCamera)
+PROC_LOOP_ROUTINE(BuffWaitForCamera)
+PROC_LABEL(3)
+PROC_CALL_ROUTINE(BuffExecuteFunc) 
 PROC_LOOP_ROUTINE(BuffAnimationIdle) // wait for rally animation to end. If done, goto label 0. If destructor is set (+0x30), goto label 1. 
 PROC_LABEL(1) // Destructor 
 PROC_END

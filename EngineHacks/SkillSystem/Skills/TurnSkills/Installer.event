@@ -6,6 +6,11 @@ ALIGN 4
 RallyChaosID_Link: 
 WORD RallyChaosID 
 
+ALIGN 4 
+HoardersBaneHealEvent: 
+CALL UseVulneraryEvent
+NoFade 
+ENDA 
 
 
 
@@ -18,6 +23,15 @@ PROC_CALL_ROUTINE(RallyChaosInit)
 PROC_LABEL(0)
 PROC_CALL_ROUTINE(RallyChaosFunc)
 PROC_LOOP_ROUTINE(RallyChaosIdle)
+
+PROC_LABEL(2) 
+PROC_END_ALL(0x859A548) // destroy camera proc that moves to Lord at start of phase 
+PROC_CALL_ROUTINE(Buff_EnsureCamera)
+PROC_LOOP_ROUTINE(BuffWaitForCamera)
+PROC_LABEL(3) 
+PROC_CALL_ROUTINE(RallyChaosExecute) 
+PROC_LOOP_ROUTINE(RallyChaosIdle)
+
 PROC_LABEL(1) // Destructor 
 PROC_END
 
@@ -26,6 +40,21 @@ RallyChaosName:
 String("RallyChaos") ; BYTE 0
 ALIGN 4
 
+
+ALIGN 4
+WaitForVulneraryEndProc:	//HINT=PROCS
+PROC_SET_NAME(WaitForVulneraryEndName)
+PROC_YIELD // Buffer 
+PROC_END_ALL(0x859A548) // destroy camera proc 
+PROC_SLEEP(2)
+PROC_CALL_ROUTINE(Buff_EnsureCamera)
+PROC_LOOP_ROUTINE(BuffWaitForCamera)
+PROC_LOOP_ROUTINE(WaitForVulneraryEnd)
+PROC_END
+
+ALIGN 4
+WaitForVulneraryEndName:
+String(WaitForVulneraryEnd);	BYTE 0x0
 
 
 

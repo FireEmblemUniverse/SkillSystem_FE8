@@ -21,9 +21,9 @@
 .equ ProcStartBlocking, 0x8002CE0 
 .equ ProcStart, 0x8002C7C
 .equ ProcBreakLoop, 0x8002E94 
-.equ ChapterData, 0x202BCF0 
-.equ Delete6C, 0x8002D6C 
 .equ GetPhaseAbleUnitCount, 0x8024CEC 
+.equ gCameraProc, 0x859A548 
+.equ ShouldMoveCamPos, 0x8015E9C 
 
 
 .global StartOfTurnCalcLoop_Init 
@@ -161,32 +161,20 @@ bx r0
 .ltorg 
 
 
-
-.global HoardersBane3
-.type HoardersBane3, %function 
-HoardersBane3: 
-push {r4-r7, lr} 
-mov r4, r0 @ parent proc 
-
-mov r1, #0 @ X 
-mov r2, #25 @ Y 
-blh EnsureCameraOntoPosition
-
-mov r0, #1 @ has a child proc 
-pop {r4-r7} 
-pop {r1} 
-bx r1
-.ltorg 
-
-
 .type CallBuffAnimationSkillLoop, %function 
 .global CallBuffAnimationSkillLoop
 CallBuffAnimationSkillLoop: 
-push {lr} 
+push {r4, lr} 
+mov r4, r0 @ proc 
 mov r1, r0 @ to block 
 ldr r0, =BuffAnimationSkillProc
 blh ProcStartBlocking 
+ldr r1, [r4, #0x34] @ phase 
+add r0, #0x40 
+str r1, [r0] @ phase ending   
+
 mov r0, #1 @ has blocking proc 
+pop {r4} 
 pop {r1} 
 bx r1 
 .ltorg 
@@ -219,13 +207,56 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global BuffWaitForCamera
+.type BuffWaitForCamera, %function 
+BuffWaitForCamera: 
+push {r4, lr} 
+mov r4, r0 @ parent proc 
+
+ldr r0, =gCameraProc 
+blh ProcFind 
+cmp r0, #0 
+bne DontBreakCameraLoop 
+@ldr r3, [r4, #0x3C] @ unit 
+@ldrb r0, [r3, #0x10] @ xx 
+@ldrb r1, [r3, #0x11] @ yy 
+@blh ShouldMoveCamPos @ failsafe? 
+@cmp r0, #0 
+@bne DontBreakCameraLoop 
+
+mov r0, r4 @ proc 
+@mov r1, #3 @ label 
+@blh ProcGoto 
+blh ProcBreakLoop 
+
+DontBreakCameraLoop:
+pop {r4}  
+pop {r0} 
+bx r0 
+.ltorg 
+
 .global BuffAnimationSkillInit
 .type BuffAnimationSkillInit, %function 
 BuffAnimationSkillInit: 
 mov r1, #0 
 str r1, [r0, #0x2C] @ unit deployment byte & mid-loop counter 
+ldr r3, =ChapterData 
+ldrb r3, [r3, #0x0F] 
+cmp r3, #0x0 
+beq NoSub 
+sub r3, #1 @ to start at 0x40/0x80 instead of 0x41/0x81 (since players start at 0x01, not 0x00) 
+NoSub: 
+mov r2, #0x2C 
+add r2, r0 
+strb r3, [r2] @ phase as deployment byte to start at 
+add r3, #0x40 @ end point 
+strb r3, [r2, #2] @ ending place 
+
 str r1, [r0, #0x30] @ destructor = false 
 str r1, [r0, #0x34] @ skill buffer 
+str r1, [r0, #0x38] @ function to run 
+str r1, [r0, #0x3C] @ unit 
+@ +0x40 is phase ending 
 bx lr 
 .ltorg 
 
@@ -234,13 +265,11 @@ bx lr
 Buff_EnsureCamera: 
 push {r4, lr} 
 mov r4, r0 @ proc 
-add r4, #0x2c 
-ldrb r0, [r4] 
-blh GetUnit 
+ldr r0, [r4, #0x3C] 
 ldrb r1, [r0, #0x10] @ xx 
 ldrb r2, [r0, #0x11] @ yy 
 mov r0, #0 
-@mov r0, r4 @ proc 
+mov r0, r4 @ proc 
 blh EnsureCameraOntoPosition 
 mov r0, #0 
 pop {r4} 
@@ -268,7 +297,8 @@ b BufferLoop @ we just came out of pausing for some animation
 UnitLoop: 
 ldrb r0, [r4] 
 add r0, #1 
-cmp r0, #0xC0 
+ldrb r1, [r4, #2] 
+cmp r0, r1 
 bge BreakLoop 
 strb r0, [r4] @ deployment id 
 blh GetUnit 
@@ -300,9 +330,15 @@ cmp r0, #0
 beq BufferLoop @ do nothing if not a function 
 strb r7, [r4, #1] @ we're in the buffer loop atm 
 
-mov lr, r0 
-mov r0, r5 @ unit 
-.short 0xF800 @ execute the function 
+str r0, [r4, #12] @ function to run 
+str r5, [r4, #16] @ unit 
+@mov lr, r0 
+@mov r0, r5 @ unit 
+@.short 0xF800 @ execute the function 
+mov r0, r4 
+sub r0, #0x2C 
+mov r1, #2 @ label to go to 
+blh ProcGoto 
 
 @ need to pause here and resume after animation 
 b ExitAnimationSkillLoop 
@@ -322,6 +358,28 @@ pop {r4-r7}
 pop {r0} 
 bx r0 
 .ltorg 
+
+.type BuffExecuteFunc, %function 
+.global BuffExecuteFunc
+BuffExecuteFunc: 
+push {r4, lr} 
+mov r4, r0 @ proc 
+ldr r1, [r4, #0x38] @ function to run 
+cmp r1, #0 
+beq ExitExecuteFunc 
+ldr r0, [r4, #0x3C] @ unit 
+mov lr, r1 
+.short 0xf800 
+ExitExecuteFunc: 
+
+pop {r4} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
+
 
 
 

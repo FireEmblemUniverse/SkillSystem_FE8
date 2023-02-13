@@ -12,7 +12,7 @@ mov r4 ,r0
 
 @ 0x2Cで指定しているアニメーションProcsが終わるまで待ちます
 @ arg r0 = target proc 
-ldr r0, [r4, #0x2c]
+ldr r0, [r4, #0x2czz]
 blh 0x08002e9c	@Fin6C	{U}
 
 

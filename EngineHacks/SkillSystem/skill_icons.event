@@ -1017,6 +1017,18 @@ ORG SkillIcon(NimbleInitID)
 ORG SkillIcon(SpectrumInitID)
 #incbin "SkillIcons/SpectrumInit.dmp"
 
+ORG SkillIcon(EternalVanityID)
+#incbin "SkillIcons/EternalVanity.dmp"
+ORG SkillIcon(GutsID)
+#incbin "SkillIcons/Guts.dmp"
+ORG SkillIcon(StrongConstitutionID)
+#incbin "SkillIcons/StrongConstitution.dmp"
+ORG SkillIcon(ShrewdPotentialID)
+#incbin "SkillIcons/ShrewdPotential.dmp"
+ORG SkillIcon(RallyChaosID)
+#incbin "SkillIcons/RallyChaos.dmp"
+ORG SkillIcon(HoardersBaneID)
+#incbin "SkillIcons/HoardersBane.dmp"
 
 
 

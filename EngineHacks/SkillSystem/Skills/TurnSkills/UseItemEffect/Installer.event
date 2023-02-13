@@ -51,7 +51,7 @@ POIN WaitForMotionEndProc
 
 ALIGN 4  
 UseVulneraryEvent:
-UseVulnerary(0x7FFF)
+UseVulnerary(2, 18)
 NoFade 
 ENDA 
 
