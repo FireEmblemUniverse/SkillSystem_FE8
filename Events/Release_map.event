@@ -36,7 +36,19 @@ POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
 TurnBasedEvents:
+TurnEventPlayer(0,SomeEvent,0,255)
 END_MAIN
+
+
+SomeEvent: 
+//SetBuffUnit(Seth, SpdBuffOffset_ASMC, 99)
+//SetDebuffUnit(Seth, SklBuffOffset_ASMC, 8) 
+//BuffUnit(Seth, StrBuffOffset_ASMC, 8)
+//DebuffUnit(Seth, DefBuffOffset_ASMC, 8)
+
+//OverwriteBuffUnit(unitID, value1, value2) 
+NoFade 
+ENDA 
 
 CharacterBasedEvents:
 CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)

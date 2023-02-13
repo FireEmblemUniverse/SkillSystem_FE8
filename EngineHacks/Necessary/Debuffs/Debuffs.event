@@ -20,6 +20,31 @@ WORD 1
 #define RequireDamageToDebuff True 
 RequireDamageToDebuff_Link: 
 WORD RequireDamageToDebuff
+
+
+
+// the "stat" field in the ASMCs below 
+#define MagBuffOffset_ASMC 0 
+#define StrBuffOffset_ASMC 1
+#define SklBuffOffset_ASMC 2 
+#define SpdBuffOffset_ASMC 3 
+#define DefBuffOffset_ASMC 4 
+#define ResBuffOffset_ASMC 5 
+#define LukBuffOffset_ASMC 6 
+#define MovBuffOffset_ASMC 7
+ 
+#define SetBuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 amount; ASMC SetUnitDebuff_ASMC" 
+#define SetDebuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 (-amount); ASMC SetUnitDebuff_ASMC" 
+
+#define BuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 amount; ASMC AddUnitDebuff_ASMC" 
+#define DebuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 amount; ASMC SubUnitDebuff_ASMC" 
+
+// Overwrites all buffs/debuffs/rallies etc. 
+#define OverwriteBuffUnit(unitID, value1, value2) "SVAL s1 unitID; SVAL s3 value1; SVAL s4 value2; ASMC OverwriteUnitDebuff_ASMC"
+
+
+
+
 ALIGN 4 
 EternalVanity_Link: 
 WORD EternalVanityID 
@@ -266,6 +291,7 @@ TeamDebuffTables:
     #include "asm/ClearDebuffs.lyn.event"
     #include "asm/GetUnitDebuffEntry.lyn.event"
 	#include "asm/ProcessDebuffs.lyn.event"
+	#include "asm/SetUnitDebuffASMC.lyn.event" 
 
 
 ALIGN 4 
