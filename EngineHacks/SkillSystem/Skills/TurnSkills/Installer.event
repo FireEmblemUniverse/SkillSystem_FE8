@@ -6,6 +6,9 @@ ALIGN 4
 RallyChaosID_Link: 
 WORD RallyChaosID 
 
+HoardersBaneID_Link: 
+WORD HoardersBaneID 
+
 ALIGN 4 
 HoardersBaneHealEvent: 
 CALL UseVulneraryEvent
@@ -41,16 +44,30 @@ String("RallyChaos") ; BYTE 0
 ALIGN 4
 
 
+ALIGN 4 
+HoardersBaneProc:
+PROC_SET_NAME(HoardersBaneName)
+PROC_YIELD // Buffer 
+PROC_LABEL(0) 
+PROC_CALL_ROUTINE_2(HoardersBaneFunc) // Yield for a frame if returns 0; this is required for blocking children 
+//PROC_CALL_BLOCKING_CHILD(WaitForVulneraryEndProc)
+PROC_GOTO(0)
+PROC_LABEL(1)
+PROC_END
+
+
 ALIGN 4
 WaitForVulneraryEndProc:	//HINT=PROCS
 PROC_SET_NAME(WaitForVulneraryEndName)
 PROC_YIELD // Buffer 
-PROC_END_ALL(0x859A548) // destroy camera proc 
-PROC_SLEEP(2)
 PROC_CALL_ROUTINE(Buff_EnsureCamera)
 PROC_LOOP_ROUTINE(BuffWaitForCamera)
 PROC_LOOP_ROUTINE(WaitForVulneraryEnd)
 PROC_END
+
+ALIGN 4
+HoardersBaneName:
+String(HoardersBane);	BYTE 0x0
 
 ALIGN 4
 WaitForVulneraryEndName:

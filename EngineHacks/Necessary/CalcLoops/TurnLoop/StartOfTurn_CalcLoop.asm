@@ -65,15 +65,14 @@ b CheckIfPhaseExists
 
 
 CheckIfPhaseExists: @ r0 as ChData+0xF 
+ldr r0, =ChapterData 
+ldrb r0, [r0, #0xF] 
 blh GetPhaseAbleUnitCount 
-cmp r0, #0 
-bne ContinueProc 
-mov r0, r4 
-add r0, #0x30 
-mov r1, #1 
-str r1, [r0] @ skip loop 
-@b ExitThisProc 
-ContinueProc: 
+str r0, [r4, #0x44] @ # of units for start of this phase 
+ldr r0, [r4, #0x34] 
+blh GetPhaseAbleUnitCount 
+str r0, [r4, #0x40] @ # of units for end of this phase 
+
 
 ExitThisProc: 
 pop {r4} 
@@ -81,26 +80,116 @@ pop {r0}
 bx r0 
 .ltorg 
 
+
+.global StartOfTurnCalcLoop_SilentFunctions
+.type StartOfTurnCalcLoop_SilentFunctions, %function 
+StartOfTurnCalcLoop_SilentFunctions: 
+push {r4, lr} 
+ldr r4, =TurnCalcLoop_Silent
+sub r4, #4 
+SilentLoop: 
+add r4, #4 
+ldr r0, [r4] 
+cmp r0, #0 
+beq BreakSilent 
+mov lr, r0 
+.short 0xf800 
+b SilentLoop 
+BreakSilent: 
+
+
+pop {r4} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
+.global EndOfTurnCalcLoop_Main
+.type EndOfTurnCalcLoop_Main, %function 
+EndOfTurnCalcLoop_Main: 
+push {r4-r7, lr} 
+mov r4, r0 @ parent proc 
+add r0, #0x2C @ counter 
+ldr r2, [r0, #4] @ destructor if phase is to be skipped over 
+cmp r2, #0 
+bne GotoBreakProcLoop 
+
+ldr r0, [r4, #0x40] @ skip end of this phase? 
+cmp r0, #0 
+beq GotoBreakEndProcLoop 
+
+EndCalcLoop_SkippedFunc: 
+ldr r1, [r4, #0x2c] 
+
+add r1, #2 
+str r1, [r4, #0x2c] 
+sub r1, #2 @ current one to care about 
+ldr r3, =EndOfTurnCalcLoop 
+lsl r1, #2 @ 4 bytes per entry 
+add r1, #4 @ effect 
+ldr r5, [r3, r1] 
+cmp r5, #0 
+beq GotoBreakEndProcLoop 
+sub r1, #4 @ usability heuristic 
+ldr r0, [r3, r1] 
+mov lr, r0 
+.short 0xf800 
+cmp r0, #0 
+beq EndCalcLoop_SkippedFunc
+b RunEndFunc 
+
+GotoBreakEndProcLoop: 
+mov r0, r4 
+blh ProcBreakLoop 
+b ExitEndLoop 
+
+RunEndFunc: 
+mov lr, r5 @ function to run 
+mov r0, r4 @ proc to block 
+.short 0xf800 
+
+ExitEndLoop: 
+
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
 .global StartOfTurnCalcLoop_Main
 .type StartOfTurnCalcLoop_Main, %function 
 StartOfTurnCalcLoop_Main: 
 push {r4-r7, lr} 
 mov r4, r0 @ parent proc 
 add r0, #0x2C @ counter 
-ldr r1, [r0] 
 ldr r2, [r0, #4] @ destructor if phase is to be skipped over 
 cmp r2, #0 
 bne GotoBreakProcLoop 
 
+ldr r0, [r4, #0x44] @ skip start of this phase? 
+cmp r0, #0 
+beq GotoBreakProcLoop 
 
-add r1, #1 
-str r1, [r0] 
-sub r1, #1 @ current one to care about 
+MainCalcLoop_SkippedFunc: 
+ldr r1, [r4, #0x2c] 
+
+add r1, #2 
+str r1, [r4, #0x2c] 
+sub r1, #2 @ current one to care about 
 ldr r3, =StartOfTurnCalcLoop 
 lsl r1, #2 @ 4 bytes per entry 
+add r1, #4 @ effect 
 ldr r5, [r3, r1] 
 cmp r5, #0 
-bne RunFunc 
+beq GotoBreakProcLoop 
+sub r1, #4 @ usability heuristic 
+ldr r0, [r3, r1] 
+mov lr, r0 
+.short 0xf800 
+cmp r0, #0 
+beq MainCalcLoop_SkippedFunc
+b RunFunc 
 
 GotoBreakProcLoop: 
 mov r0, r4 
@@ -108,58 +197,44 @@ blh ProcBreakLoop
 b ExitLoop 
 
 RunFunc: 
-ldr r0, =StartOfTurnCalcLoop_SomeFunctionProc
-mov r1, r4 @ parent proc 
-blh ProcStartBlocking 
-add r0, #0x2C 
-str r5, [r0] 
-ldr r1, [r4, #0x34] @ end of which phase? 
-str r1, [r0, #8] @ end of which phase? 
+
+mov lr, r5 @ function to run 
+mov r0, r4 @ proc to block 
+.short 0xf800 
+
+@ldr r0, =StartOfTurnCalcLoop_SomeFunctionProc
+@mov r1, r4 @ parent proc 
+@blh ProcStartBlocking 
+@add r0, #0x2C 
+@str r5, [r0] 
+@ldr r1, [r4, #0x34] @ end of which phase? 
+@str r1, [r0, #8] @ end of which phase? 
 
 ExitLoop: 
 
 pop {r4-r7} 
-pop {r1} 
-bx r1 
-.ltorg 
-
-.global StartOfTurnCalcLoop_SomeFunction
-.type StartOfTurnCalcLoop_SomeFunction, %function 
-StartOfTurnCalcLoop_SomeFunction: 
-push {r4, lr}
-mov r4, r0 
-mov r1, #0
-str r1, [r4, #0x38] @ init some variable 
-
-OptionalLoop:  
-mov r1, #0x2C 
-add r1, r4 
-ldr r2, [r1] 
-mov r3, #0 
-str r3, [r1] 
-cmp r2, #0 
-beq BreakSomeFunc 
-mov lr, r2
-.short 0xf800 
-@ run whatever function was in proc + 0x2c 
-@ r0 = parent proc 
-@ child function should call a blocking proc if desired ? 
-@ if not, return 0 in r0 
-cmp r0, #0 
-beq OptionalLoop 
-b ExitSomeFunc 
-BreakSomeFunc: 
-mov r0, r4 
-blh ProcBreakLoop 
-
-
-ExitSomeFunc: 
-
-pop {r4} 
 pop {r0} 
 bx r0 
 .ltorg 
 
+.global BreakHere 
+.type BreakHere, %function 
+BreakHere:
+mov r11, r11 
+bx lr 
+.ltorg 
+
+.global IsTrue 
+.type IsTrue, %function 
+IsTrue: 
+mov r0, #1 
+bx lr 
+
+.global IsFalse
+.type IsFalse, %function 
+IsFalse: 
+mov r0, #0 
+bx lr 
 
 .type CallBuffAnimationSkillLoop, %function 
 .global CallBuffAnimationSkillLoop

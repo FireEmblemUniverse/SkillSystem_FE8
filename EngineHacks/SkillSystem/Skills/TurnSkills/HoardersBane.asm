@@ -4,67 +4,137 @@
   mov lr, \reg
   .short 0xf800
 .endm
-	.equ EventEngine, 0x800D07C
+.equ EventEngine, 0x800D07C
 .equ ActionData, 0x203A958 
-.global HoardersBane
-.type HoardersBane, %function 
-HoardersBane: 
-push {r4-r5, lr} 
-mov r4, r0 @ parent proc 
-@b HoardersBane_False
+.equ VulneraryHealAmount, 0x802FEC6 
+.equ ProcStartBlocking, 0x8002CE0 
+.equ ProcGoto, 0x8002F24 
+.equ GetUnitFromEventParam, 0x800BC50 
 
-mov r0, #2 
-blh  0x0800BC50   @GetUnitFromEventParam	{U}
+.global CallHoardersBane
+.type CallHoardersBane, %function 
+CallHoardersBane: 
+push {r4, lr} 
+mov r4, r0 @ proc 
+
+bl ShouldCallHoardersBane 
+cmp r0, #1 
+beq ContinueHoardersBane 
+mov r0, #0 @ no blocking proc 
+b DontCallHoardersBane 
+ContinueHoardersBane: 
+
+mov r1, r4 @ to block 
+ldr r0, =HoardersBaneProc
+blh ProcStartBlocking 
+
+ldr r2, [r4, #0x34] @ end of what phase 
+str r2, [r0, #0x34] @ end of what phase 
+
+mov r1, #0 
+str r1, [r0, #0x2C] @ deployment byte & counter 
+str r1, [r0, #0x30] @ destructor ? 
+str r1, [r0, #0x3C] @ unit 
+str r1, [r0, #0x44] @ some routine to execute later on 
+
+mov r0, #1 @ has blocking proc 
+DontCallHoardersBane: 
+
+pop {r4} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+.global ShouldCallHoardersBane
+.type ShouldCallHoardersBane, %function 
+ShouldCallHoardersBane: 
+ldr r1, =HoardersBaneID_Link 
+ldr r1, [r1] 
+cmp r1, #0xFF 
+beq NeverCallHoardersBane 
+mov r0, #1 
+b ExitShouldCallHoardersBane 
+
+NeverCallHoardersBane: 
+mov r0, #0
+ExitShouldCallHoardersBane: 
+bx lr 
+.ltorg 
+
+
+
+.global HoardersBaneFunc
+.type HoardersBaneFunc, %function 
+HoardersBaneFunc: 
+push {r4-r5, lr}  
+mov r4, r0 @ parent proc 
+add r4, #0x2C 
+
+UnitLoop: 
+ldrb r0, [r4] @ deployment byte 
+add r0, #1 
+strb r0, [r4] 
+cmp r0, #0xC0 
+bge BreakHoardersBane 
+
+blh  GetUnitFromEventParam 
 mov r5, r0 @ unit 
 
-ldrb r1, [r0, #0x0B] @ deployment byte 
-ldr r2, [r4, #0x34] @ end of what phase 
-mov r3, #0xC0 
-and r1, r3 
-cmp r2, r1 
-bne HoardersBane_False 
-
-
-mov r1, #5 
-strb r1, [r0, #0x13] @ current hp 
-ldrb r1, [r0, #0x0B] @ deployment byte 
-ldr r2, =ActionData 
-strb r1, [r2, #0x0C] @ deployment byte 
+mov r0, r5 @ unit 
+bl IsUnitOnField 
+cmp r0, #1 
+bne UnitLoop 
 
 
 
-ldr  r3, =0x30004B8	@MemorySlot	{U}
-mov r0, #2 
-str r0, [r3, #4] 
-mov r0, #18 
-str r0, [r3, #4*6] @ slot6 HealValue 
+@ldrb r1, [r5, #0x0B] @ deployment byte 
+@ldr r2, [r4, #8] @ end of what phase 
+@mov r3, #0xC0 
+@and r1, r3 
+@cmp r2, r1 
+@bne UnitLoop 
+
+
+
+
+ldrb r0, [r5, #0x13] @ curr hp 
+ldrb r1, [r5, #0x12] @ max hp 
+cmp r0, r1 
+bge UnitLoop 
+
+mov r0, r5 @ unit 
+ldr r1, =HoardersBaneID_Link 
+ldr r1, [r1] 
+bl SkillTester 
+cmp r0, #0 
+beq UnitLoop 
+
 
 str r5, [r4, #0x3C] @ unit 
-
 mov r0, r4 @ proc 
+mov r1, #0x2C 
+sub r0, r1 
 mov r1, r5 @ unit 
-mov r2, #10 @ amount 
-bl HealAnim 
-@ldr r0, =HoardersBaneHealEvent 
-@mov r1, #1 
-@blh EventEngine 
-@blh ASMC_HealLikeVulnerary
-
-mov r0, #2 
-blh  0x0800BC50   @GetUnitFromEventParam	{U}
-@mov r1, #23 
-@strb r1, [r0, #0x13] @ current hp 
-@ldr r0, =0x03004E50
-@str r5, [r0] 
+ldr r2, =VulneraryHealAmount 
+ldrb r2, [r2] 
+bl HealAnim @ starts a blocking proc 
+b HoardersBane_True 
 
 
+BreakHoardersBane: 
+mov r0, r4 
+sub r0, #0x2C 
+mov r1, #1 @ label 
+blh ProcGoto 
+mov r0, #1
+b HoardersBane_False @ don't yield for a frame 
 
 
 HoardersBane_True: 
-mov r0, #1 @ has a child proc 
+mov r0, #0 @ has a child proc, so yield for a frame (0) 
 b ExitHoardersBane 
 HoardersBane_False: 
-mov r0, #0 @ skipped this time 
+mov r0, #1 @ skipped this time 
 
 ExitHoardersBane: 
 pop {r4-r5} 
@@ -78,10 +148,7 @@ HealAnim:
 	mov  r4, r0 @ var r4 = proc
 	mov  r5, r1 @ var r5 = unit
 	mov r6, r2 @ var r6 = heal amount 
-	ldrb r0, [r5, #0x13] @ curr hp 
-	ldrb r1, [r5, #0x12] @ max hp 
-	cmp r0, r1 
-	bge Exit 
+
 
 mov r1, r6 
 	mov  r0 ,r5       @arg1: Unit
@@ -102,41 +169,40 @@ mov r1, r6
 	mov r0, r5 
 	blh 0x8028130 @ ShowUnitSMS
 
-ldr r0, =0x89A2C48 @gProc_MoveUnit
-blh 0x8002E9C @ ProcFind 
-cmp r0, #0 
-beq SkipHidingInProc
-add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D4
-mov r1, #1 
-strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DC
-SkipHidingInProc: 
-ldr r1, [r5, #0x0C] @ Unit state 
-mov r2, #1 @ Hide 
-bic r1, r2 @ Show SMS @ 
-str r1, [r5, #0x0C] 
-
-	
-ldr r3, =0x03004E50 @CurrentUnit 
-ldr r3, [r3] 
-cmp r3, #0 
-beq NoActiveUnit
-
-ldr r1, [r3, #0x0C] @ Unit state 
-mov r2, #0x3 @ Hide, Acted
-bic r1, r2 @ Show SMS @ 
-str r1, [r3, #0x0C] 
-	@mov r0, r3 @ I don't think this part is needed? 
+@ldr r0, =0x89A2C48 @gProc_MoveUnit
+@blh 0x8002E9C @ ProcFind 
+@cmp r0, #0 
+@beq SkipHidingInProc
+@add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D4
+@mov r1, #1 
+@strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DC
+@SkipHidingInProc: 
+@ldr r1, [r5, #0x0C] @ Unit state 
+@mov r2, #1 @ Hide 
+@bic r1, r2 @ Show SMS @ 
+@str r1, [r5, #0x0C] 
+@
+@	
+@ldr r3, =0x03004E50 @CurrentUnit 
+@ldr r3, [r3] 
+@cmp r3, #0 
+@beq NoActiveUnit
+@
+@ldr r1, [r3, #0x0C] @ Unit state 
+@mov r2, #0x3 @ Hide, Acted
+@bic r1, r2 @ Show SMS @ 
+@str r1, [r3, #0x0C] 
+@	@mov r0, r3 @ I don't think this part is needed? 
 	@blh 0x8028130 @ ShowUnitSMS
 NoActiveUnit:
-Exit: 
-ldr r0, =0x202E4D8 @ Unit map	{U}
-ldr r0, [r0] 
-mov r1, #0
-blh 0x080197E4 @ FillMap 
-blh 0x08019FA0   @UpdateUnitMapAndVision
-blh 0x0801A1A0   @UpdateTrapHiddenStates
-blh  0x080271a0   @SMS_UpdateFromGameData
-blh  0x08019c3c   @UpdateGameTilesGraphics
+@ldr r0, =0x202E4D8 @ Unit map	{U}
+@ldr r0, [r0] 
+@mov r1, #0
+@blh 0x080197E4 @ FillMap 
+@blh 0x08019FA0   @UpdateUnitMapAndVision
+@blh 0x0801A1A0   @UpdateTrapHiddenStates
+@blh  0x080271a0   @SMS_UpdateFromGameData
+@blh  0x08019c3c   @UpdateGameTilesGraphics
 pop {r4-r6} 
 pop {r0} 
 bx r0 

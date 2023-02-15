@@ -10,6 +10,22 @@
 .equ ChapterData, 0x202BCF0 
 .equ NextRN_N, 0x8000C80 
 
+.global ShouldCallRallyChaos
+.type ShouldCallRallyChaos, %function 
+ShouldCallRallyChaos: 
+ldr r1, =RallyChaosID_Link 
+ldr r1, [r1] 
+cmp r1, #0xFF 
+beq NeverCallRallyChaos 
+mov r0, #1 
+b ExitShouldCallRallyChaos 
+
+NeverCallRallyChaos: 
+mov r0, #0
+ExitShouldCallRallyChaos: 
+bx lr 
+.ltorg 
+
 .global CallRallyChaosProc
 .type CallRallyChaosProc, %function 
 CallRallyChaosProc: 

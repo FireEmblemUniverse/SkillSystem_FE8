@@ -1,29 +1,46 @@
+
 PUSH
+ORG $59A288 // where "ResetCursorPos" was 
+PROC_NEW_CHILD_BLOCKING(StartOfTurnCalcLoop_Proc)
 ORG $59A294 
-POIN NewgProc_PhaseSwitchGfx 
+POIN NewgProc_PhaseSwitchGfx // Put ResetCursorPos at the start of this proc 
 POP
 
 
 
+ALIGN 4 
+TurnCalcLoop_Silent: // Effects that do not pause the game 
+//POIN BreakHere 
+POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset // Standalone things that loop through all units and do not pause the game 
+WORD 0 
 
 
 ALIGN 4 
-StartOfTurnCalcLoop: 
+EndOfTurnCalcLoop: 
 // End of turn effects first 
-POIN HoardersBane // also heal like a vulnerary does not update hp at the end of the animation like it does in events 
+#ifdef INSTALL_HOARDERS_BANE
+POIN ShouldCallHoardersBane CallHoardersBane // check proc(passed in r0)+0x34 as end of which phase - only proceed for units that match the phase. 
+#endif 
+//Otherwise it is ran at the end of EVERY phase 
+POIN 0 0 
 
+ALIGN 4 
+StartOfTurnCalcLoop: 
+// Each entry (when actually called) take a few frames to run 
 // Start of turn ones begin below 
-POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset // Standalone things that loop through all units 
-POIN CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table 
-POIN CallRallyChaosProc // 
-WORD 0 
+//POIN IsTrue ExitIfNoPhase // skip the rest of the effects if no units of this allegiance 
+POIN IsTrue CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table and to show a buff animation 
+#ifdef INSTALL_RALLY_CHAOS
+POIN ShouldCallRallyChaos CallRallyChaosProc // 
+#endif 
+WORD 0 0 
 
 
 ALIGN 4 
 NewgProc_PhaseSwitchGfx: // Had to repoint this. I tried having my custom proc call this vanilla one as a child, which caused bugs to occur. 
 // For example, enemies were teleporting to their target rather than walking 
 PROC_YIELD // Buffer.
-PROC_NEW_CHILD_BLOCKING(StartOfTurnCalcLoop_Proc) // Our new stuff 
+PROC_NEW_CHILD(0x859AE00) // ResetCursorPos 
 PROC_CALL_ROUTINE(0x801F2AD) // Vanilla below 
 PROC_CALL_ROUTINE(0x801F2CD) 
 PROC_NEW_CHILD(0x859AEF8)
@@ -41,15 +58,13 @@ StartOfTurnCalcLoop_Proc: // Loops through each function and starts a proc for i
 PROC_YIELD // Buffer.
 PROC_SET_NAME(StartOfTurnCalcLoopName)
 PROC_CALL_ROUTINE(StartOfTurnCalcLoop_Init)
+PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
+//PROC_CALL_ROUTINE(BreakHere)
+#ifdef INSTALL_TURN_SKILLS
+PROC_LOOP_ROUTINE(EndOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
 PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
-PROC_END
-
-ALIGN 4
-StartOfTurnCalcLoop_SomeFunctionProc: // Block this proc if you'd like to show animations 
-PROC_YIELD // Buffer.
-PROC_SET_NAME(StartOfTurnCalcLoopName)
-PROC_SLEEP(0)
-PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_SomeFunction)
+//PROC_CALL_ROUTINE(BreakHere)
+#endif 
 PROC_END
 
 
