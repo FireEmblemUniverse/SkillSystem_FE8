@@ -48,11 +48,13 @@ ALIGN 4
 HoardersBaneProc:
 PROC_SET_NAME(HoardersBaneName)
 PROC_YIELD // Buffer 
+PROC_CALL_ROUTINE_2(HoardersBane_ExecuteFirstUnitHeal)
 PROC_LABEL(0) 
-PROC_CALL_ROUTINE_2(HoardersBaneFunc) // Yield for a frame if returns 0; this is required for blocking children 
+PROC_CALL_ROUTINE_2(EndOfTurn_HealLoop_IterateLoop) // Yield for a frame if returns 0; this is required for blocking children 
 //PROC_CALL_BLOCKING_CHILD(WaitForVulneraryEndProc)
 PROC_GOTO(0)
 PROC_LABEL(1)
+PROC_CALL_ROUTINE(EndOfTurn_HealLoop_End) // tell the parent we've finished this function 
 PROC_END
 
 

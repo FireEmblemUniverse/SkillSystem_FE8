@@ -11,70 +11,107 @@
 .equ ProcGoto, 0x8002F24 
 .equ GetUnitFromEventParam, 0x800BC50 
 
+
+.equ DeployByte, 			0  @ 0x2c 
+.equ FuncCoun, 				1  @ 0x2d 
+.equ Destructor, 			2  @ 0x2e 
+.equ TryPhaseBool, 			3  @ 0x2f 
+.equ EndOfDeployByte, 		4  @ 0x30 
+.equ SkillBufferCounter, 	5  @ 0x31 
+.equ SkillBuffer, 			8  @ 0x34 
+.equ pUnit, 				12 @ 0x38 
+.equ FirstFunc, 			16 @ 0x3c 
+
+
 .global CallHoardersBane
 .type CallHoardersBane, %function 
 CallHoardersBane: 
 push {r4, lr} 
 mov r4, r0 @ proc 
-
-bl ShouldCallHoardersBane 
-cmp r0, #1 
-beq ContinueHoardersBane 
-mov r0, #0 @ no blocking proc 
-b DontCallHoardersBane 
-ContinueHoardersBane: 
-
 mov r1, r4 @ to block 
 ldr r0, =HoardersBaneProc
 blh ProcStartBlocking 
+add r0, #0x2c 
+add r4, #0x2c 
 
-ldr r2, [r4, #0x34] @ end of what phase 
-str r2, [r0, #0x34] @ end of what phase 
+ldrb r1, [r4, #DeployByte] 
+strb r1, [r0, #DeployByte] 
+ldrb r1, [r4, #FuncCoun] 
+strb r1, [r0, #FuncCoun] 
+ldrb r1, [r4, #Destructor] 
+strb r1, [r0, #Destructor] 
+ldrb r1, [r4, #TryPhaseBool] 
+strb r1, [r0, #TryPhaseBool] 
+ldrb r1, [r4, #EndOfDeployByte] 
+strb r1, [r0, #EndOfDeployByte] 
+ldrb r1, [r4, #SkillBufferCounter] 
+strb r1, [r0, #SkillBufferCounter] 
+ldr r1, [r4, #SkillBuffer] 
+str r1, [r0, #SkillBuffer] 
+ldr r1, [r4, #pUnit] 
+str r1, [r0, #pUnit] 
+ldr r1, [r4, #FirstFunc] 
+str r1, [r0, #FirstFunc] 
 
-mov r1, #0 
-str r1, [r0, #0x2C] @ deployment byte & counter 
-str r1, [r0, #0x30] @ destructor ? 
-str r1, [r0, #0x3C] @ unit 
-str r1, [r0, #0x44] @ some routine to execute later on 
 
-mov r0, #1 @ has blocking proc 
-DontCallHoardersBane: 
 
 pop {r4} 
-pop {r1} 
-bx r1 
+pop {r0} 
+bx r0 
 .ltorg 
 
-.global ShouldCallHoardersBane
-.type ShouldCallHoardersBane, %function 
-ShouldCallHoardersBane: 
-ldr r1, =HoardersBaneID_Link 
-ldr r1, [r1] 
-cmp r1, #0xFF 
-beq NeverCallHoardersBane 
-mov r0, #1 
-b ExitShouldCallHoardersBane 
+.global EndOfTurnCalcLoop_CanUnitHeal
+.type EndOfTurnCalcLoop_CanUnitHeal, %function 
+EndOfTurnCalcLoop_CanUnitHeal:
+@ given r0 = valid unit 
+ldrb r1, [r0, #0x13] @ curr hp 
+ldrb r2, [r0, #0x12] @ max 
+cmp r1, r2 
+bge CannotHeal 
+mov r0, #1 @ can heal 
+b Exit_CanUnitHeal 
 
-NeverCallHoardersBane: 
-mov r0, #0
-ExitShouldCallHoardersBane: 
+CannotHeal: 
+mov r0, #0 
+Exit_CanUnitHeal: 
 bx lr 
 .ltorg 
 
 
-.global HoardersBane_FindNextValidUnit
-.type HoardersBane_FindNextValidUnit, %function 
-HoardersBane_FindNextValidUnit: 
+.global HoardersBane_CanUnitHeal 
+.type HoardersBane_CanUnitHeal, %function 
+HoardersBane_CanUnitHeal: 
 push {r4-r5, lr} 
+@ given r0 = valid unit with the skill 
+@ check if they meet any other requirements (eg. have vulneraries in supply & aren't at full hp) 
+
+mov r0, #1 
+
+
+
+pop {r4-r5} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+
+
+.global EndOfTurn_HealLoop_FindNextValidUnit
+.type EndOfTurn_HealLoop_FindNextValidUnit, %function 
+EndOfTurn_HealLoop_FindNextValidUnit: 
+push {r4-r6, lr} 
 @ given r0 = deployment byte to search from, 
 @ r1 = deployment byte to stop at 
 @ find the next unit meeting the criteria 
+
+mov r4, r0 @ deployment byte 
+mov r6, r1 @ where to stop 
 
 UnitLoop: 
 mov r5, #0 
 mov r0, r4 @ deployment byte 
 add r0, #1 
-cmp r0, #0xC0 
+cmp r0, r6
 bge NoValidUnit 
 
 blh GetUnitFromEventParam 
@@ -84,45 +121,85 @@ mov r0, r5 @ unit
 bl IsUnitOnField 
 cmp r0, #1 
 bne UnitLoop 
-
-
-ldrb r0, [r5, #0x13] @ curr hp 
-ldrb r1, [r5, #0x12] @ max hp 
-cmp r0, r1 
-bge UnitLoop 
-
 mov r0, r5 @ unit 
-ldr r1, =HoardersBaneID_Link 
-ldr r1, [r1] 
-bl SkillTester 
+bl EndOfTurnCalcLoop_CanUnitHeal
 cmp r0, #0 
 beq UnitLoop 
+
+mov r0, r5 @ unit 
+ldr r1, [r4, #SkillBuffer]
+bl MakeSkillBuffer 
+
+ 
+ldr r1, [r4, #SkillBuffer] 
+ldrb r2, [r4, #SkillBufferCounter] 
+add r2, #1 
+strb r2, [r4, #SkillBufferCounter] 
+ldrb r0, [r1, r2] @ current skill 
+ldr r3, =EndOfTurn_HealSkillTable
+lsl r0, #3 @ 8 bytes per 
+add r3, r0 
+ldr r0, [r3] @ usability 
+cmp r0, #0 
+beq UnitLoop 
+mov lr, r0 
+mov r0, r5 @ unit 
+.short 0xf800 
+cmp r0, #0 
+beq UnitLoop 
+@ r5 has a valid unit 
 
 NoValidUnit: 
 mov r0, r5 
 
-pop {r4-r5} 
+pop {r4-r6} 
 pop {r1} 
 bx r1 
 .ltorg 
 
+.global HoardersBane_ExecuteFirstUnitHeal 
+.type HoardersBane_ExecuteFirstUnitHeal, %function 
+HoardersBane_ExecuteFirstUnitHeal: 
+push {lr} 
 
-.global HoardersBaneFunc
-.type HoardersBaneFunc, %function 
-HoardersBaneFunc: 
+ldr r1, [r0, #pUnit] 
+ldr r2, =VulneraryHealAmount 
+ldrb r2, [r2] 
+bl HealAnim @ starts a blocking proc 
+
+mov r0, #0 @ always yield 
+pop {r1} 
+bx r1 
+.ltorg 
+
+.global EndOfTurn_HealLoop_End
+.type EndOfTurn_HealLoop_End, %function 
+EndOfTurn_HealLoop_End: 
+ldr r1, [r0, #0x14] @ parent proc 
+add r1, #0x2c 
+ldrb r2, [r1, #FuncCoun] 
+add r2, #1 @ we finished this function 
+strb r2, [r1, #FuncCoun] 
+bx lr 
+.ltorg 
+
+.global EndOfTurn_HealLoop_IterateLoop
+.type EndOfTurn_HealLoop_IterateLoop, %function 
+EndOfTurn_HealLoop_IterateLoop: 
 push {r4-r5, lr}  
 mov r4, r0 @ parent proc 
 add r4, #0x2C 
-ldrb r0, [r4] 
-bl HoardersBane_FindNextValidUnit
+ldrb r0, [r4, #DeployByte] 
+bl EndOfTurn_HealLoop_FindNextValidUnit
 cmp r0, #0 
 beq BreakHoardersBane 
 ldrb r1, [r0, #0x0B] @ deployment byte 
-strb r1, [r4] @ next search will start +1 higher 
+strb r1, [r4, #DeployByte] @ next search will start +1 higher 
 
 
 
-str r0, [r4, #0x10] @ unit +0x3C 
+str r0, [r4, #pUnit] @ unit +0x3C 
+mov r5, r0 @ unit 
 mov r0, r4 @ proc 
 mov r1, #0x2C 
 sub r0, r1 
