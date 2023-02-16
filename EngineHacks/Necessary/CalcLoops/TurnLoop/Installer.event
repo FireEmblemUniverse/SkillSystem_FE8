@@ -1,7 +1,7 @@
 
 PUSH
 ORG $59A288 // where "ResetCursorPos" was 
-PROC_NEW_CHILD_BLOCKING(StartOfTurnCalcLoop_Proc)
+PROC_CALL_ROUTINE_2(TurnLoopMaster)
 ORG $59A294 
 POIN NewgProc_PhaseSwitchGfx // Put ResetCursorPos at the start of this proc 
 POP
@@ -18,9 +18,9 @@ WORD 0
 ALIGN 4 
 EndOfTurnCalcLoop: 
 // End of turn effects first 
-#ifdef INSTALL_HOARDERS_BANE
-POIN ShouldCallHoardersBane CallHoardersBane // check proc(passed in r0)+0x34 as end of which phase - only proceed for units that match the phase. 
-#endif 
+//#ifdef INSTALL_HOARDERS_BANE
+POIN HoardersBane_FindNextValidUnit CallHoardersBane // check proc(passed in r0)+0x34 as end of which phase - only proceed for units that match the phase. 
+//#endif 
 //Otherwise it is ran at the end of EVERY phase 
 POIN 0 0 
 
@@ -29,10 +29,10 @@ StartOfTurnCalcLoop:
 // Each entry (when actually called) take a few frames to run 
 // Start of turn ones begin below 
 //POIN IsTrue ExitIfNoPhase // skip the rest of the effects if no units of this allegiance 
-POIN IsTrue CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table and to show a buff animation 
-#ifdef INSTALL_RALLY_CHAOS
-POIN ShouldCallRallyChaos CallRallyChaosProc // 
-#endif 
+POIN CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table and to show a buff animation 
+//#ifdef INSTALL_RALLY_CHAOS
+POIN CallRallyChaosProc // 
+//#endif 
 WORD 0 0 
 
 
@@ -54,17 +54,22 @@ PROC_END
 
 
 ALIGN 4
-StartOfTurnCalcLoop_Proc: // Loops through each function and starts a proc for it 
+TurnCalcLoop_Proc: // Loops through each function and starts a proc for it 
 PROC_YIELD // Buffer.
 PROC_SET_NAME(StartOfTurnCalcLoopName)
-PROC_CALL_ROUTINE(StartOfTurnCalcLoop_Init)
-PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
-//PROC_CALL_ROUTINE(BreakHere)
-#ifdef INSTALL_TURN_SKILLS
+//PROC_CALL_ROUTINE(StartOfTurnCalcLoop_Init)
+PROC_LOOP_ROUTINE(TurnLoop_Idle) // Do nothing until ProcGoto is used. 
+PROC_LABEL(0) 
 PROC_LOOP_ROUTINE(EndOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
+
+//PROC_CALL_ROUTINE(BreakHere)
+//#ifdef INSTALL_TURN_SKILLS
+PROC_LABEL(1) 
+PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
+PROC_LABEL(2) 
 PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
 //PROC_CALL_ROUTINE(BreakHere)
-#endif 
+//#endif 
 PROC_END
 
 
@@ -97,6 +102,14 @@ ALIGN 4
 BuffAnimationSkillName:
 String("BuffAnimationSkill") ; BYTE 0
 ALIGN 4
+
+
+ALIGN 4 
+EndOfTurn_SkillTable:
+FILL(256*4) 
+
+#define EndOfTurnFunctionEntry(skillID, function) "PUSH; ORG EndOfTurn_SkillTable+(skillID*4); POIN function|1; POP" 
+EndOfTurnFunctionEntry(HoardersBaneID, HoardersBaneFunc) 
 
 
 // Below is optional but more efficient 

@@ -62,39 +62,28 @@ bx lr
 .ltorg 
 
 
-
-.global HoardersBaneFunc
-.type HoardersBaneFunc, %function 
-HoardersBaneFunc: 
-push {r4-r5, lr}  
-mov r4, r0 @ parent proc 
-add r4, #0x2C 
+.global HoardersBane_FindNextValidUnit
+.type HoardersBane_FindNextValidUnit, %function 
+HoardersBane_FindNextValidUnit: 
+push {r4-r5, lr} 
+@ given r0 = deployment byte to search from, 
+@ r1 = deployment byte to stop at 
+@ find the next unit meeting the criteria 
 
 UnitLoop: 
-ldrb r0, [r4] @ deployment byte 
+mov r5, #0 
+mov r0, r4 @ deployment byte 
 add r0, #1 
-strb r0, [r4] 
 cmp r0, #0xC0 
-bge BreakHoardersBane 
+bge NoValidUnit 
 
-blh  GetUnitFromEventParam 
+blh GetUnitFromEventParam 
 mov r5, r0 @ unit 
 
 mov r0, r5 @ unit 
 bl IsUnitOnField 
 cmp r0, #1 
 bne UnitLoop 
-
-
-
-@ldrb r1, [r5, #0x0B] @ deployment byte 
-@ldr r2, [r4, #8] @ end of what phase 
-@mov r3, #0xC0 
-@and r1, r3 
-@cmp r2, r1 
-@bne UnitLoop 
-
-
 
 
 ldrb r0, [r5, #0x13] @ curr hp 
@@ -109,8 +98,31 @@ bl SkillTester
 cmp r0, #0 
 beq UnitLoop 
 
+NoValidUnit: 
+mov r0, r5 
 
-str r5, [r4, #0x3C] @ unit 
+pop {r4-r5} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+
+.global HoardersBaneFunc
+.type HoardersBaneFunc, %function 
+HoardersBaneFunc: 
+push {r4-r5, lr}  
+mov r4, r0 @ parent proc 
+add r4, #0x2C 
+ldrb r0, [r4] 
+bl HoardersBane_FindNextValidUnit
+cmp r0, #0 
+beq BreakHoardersBane 
+ldrb r1, [r0, #0x0B] @ deployment byte 
+strb r1, [r4] @ next search will start +1 higher 
+
+
+
+str r0, [r4, #0x10] @ unit +0x3C 
 mov r0, r4 @ proc 
 mov r1, #0x2C 
 sub r0, r1 
