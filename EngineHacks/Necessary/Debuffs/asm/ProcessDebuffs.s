@@ -60,28 +60,19 @@ mov r0, r7
 blh GetUnit 
 mov r4, r0 @ unit 
 
-ldr r0, [r0] 
+bl IsUnitOnField @(Unit* unit)
 cmp r0, #0 
 beq UnitLoop 
-ldrb r1, [r0, #4] @ unit id 
-cmp r1, #0 
-beq UnitLoop 
-ldr r0, [r5, #0x0C] 
-ldr r1, =0x1000C @ escaped, undeployed, dead 
-tst r0, r1 
-bne UnitLoop 
-@bl IsUnitOnField @(Unit* unit)
-@cmp r0, #0 
-@beq UnitLoop 
 
-
+mov r0, r4 
 bl GetUnitDebuffEntry
+mov r5,r0
 mov r0, r4 @ unit 
 ldr r1, =EternalVanity_Link 
 ldr r1, [r1] 
 bl SkillTester 
 mov r4, r0 @ @ if true, do not deplete buffed stats 
-mov r5,r0
+
 
 ldr r2, =DebuffStatNumberOfBits_Link
 ldr r6, [r2] 
@@ -207,9 +198,6 @@ ldr r1, =DebuffStatBitOffset_Mov
 ldr r1, [r1] 
 bl PackData_Signed 
 
-
-
-@BreakLoop: 
 ldr r1, =RalliesOffset_Link 
 ldr r1, [r1] 
 mov r3, #0 @ value 

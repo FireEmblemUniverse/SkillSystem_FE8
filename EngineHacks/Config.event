@@ -316,14 +316,6 @@
 //	This list can be edited, and is located in
 //	SkillSystem/Skills/WeaponUsabilitySkills/WeaponUsabilitySkills.event.
 
-//Having turn skills enabled (eg. Oath, Rouse, Initiative, and Hone) causes a few frames of lag every phase switch. 
-// Therefore it is commented out by default. 
-//#define INSTALL_TURN_SKILLS
-// Rally Chaos causes a few frames of lag every phase switch. Therefore it is commented out by default. 
-//#define INSTALL_RALLY_CHAOS
-// Hoarder's Bane causes a few frames of lag every phase switch. Therefore it is commented out by default. 
-//#define INSTALL_HOARDERS_BANE
-
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =

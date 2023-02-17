@@ -9,7 +9,7 @@
 .equ VulneraryHealAmount, 0x802FEC6 
 .equ ProcStartBlocking, 0x8002CE0 
 .equ ProcGoto, 0x8002F24 
-.equ GetUnitFromEventParam, 0x800BC50 
+.equ GetUnit, 0x8019430
 
 
 .equ DeployByte, 			0  @ 0x2c 
@@ -122,7 +122,7 @@ add r4, #1
 cmp r0, r6
 bge NoValidUnit 
 
-blh GetUnitFromEventParam 
+blh GetUnit
 mov r5, r0 @ unit 
 
 mov r0, r5 @ unit 
@@ -182,7 +182,6 @@ ldrb r0, [r7, #healAmount]
 cmp r0, #0 
 beq UnitLoop 
 
-
 NoValidUnit: 
 mov r0, r5 
 
@@ -222,7 +221,7 @@ EndOfTurn_HealLoop_End:
 ldr r1, [r0, #0x14] @ parent proc 
 add r1, #0x2c 
 ldrb r2, [r1, #FuncCoun] 
-add r2, #1 @ we finished this function 
+add r2, #2 @ we finished this function 
 strb r2, [r1, #FuncCoun] 
 bx lr 
 .ltorg 
@@ -292,10 +291,13 @@ mov r1, r6
 	mov r1 ,r4
 	blh  0x08002ce0	@NewBlocking6C	@{U}
 	@blh  0x08002C30	@NewBlocking6C	@{J}
+	
 
 	ldr r1, =0x89A3874	@MapAnimBattleWithMapEvents	{U}
 	@ldr r1, =0x08A13EFC	@MapAnimBattleWithMapEvents	{J}
-	str	r1, [r0, #0x44]
+	add r0, #0x2c 
+	str	r1, [r0, #FirstFunc]
+	str	r5, [r0, #pUnit]
 	
 	mov r0, r5 
 	blh 0x8028130 @ ShowUnitSMS
@@ -350,7 +352,8 @@ mov r4 ,r0
 
 @ 0x2Cで指定しているアニメーションProcsが終わるまで待ちます
 @ arg r0 = target proc 
-ldr r0, [r4, #0x44]
+add r0, #0x2c 
+ldr r0, [r0, #FirstFunc]
 blh 0x08002e9c	@Fin6C	{U}
 
 

@@ -10,31 +10,20 @@ POP
 
 ALIGN 4 
 TurnCalcLoop_Silent: // Effects that do not pause the game 
-//POIN BreakHere 
 POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset // Standalone things that loop through all units and do not pause the game 
 WORD 0 
 
 
 ALIGN 4 
 EndOfTurnCalcLoop: 
-// End of turn effects first 
-//#ifdef INSTALL_HOARDERS_BANE
-// end of turn calc loop 
 POIN EndOfTurn_HealSkillTable CallEndOfTurnHealLoop
-//#endif 
-//Otherwise it is ran at the end of EVERY phase 
 POIN 0 0 
 
 ALIGN 4 
 StartOfTurnCalcLoop: 
 // Each entry (when actually called) take a few frames to run 
 // Start of turn ones begin below 
-//POIN IsTrue ExitIfNoPhase // skip the rest of the effects if no units of this allegiance 
 POIN StartOfTurn_BuffSkillTable CallBuffAnimationSkillLoop
-//CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table and to show a buff animation 
-//#ifdef INSTALL_RALLY_CHAOS
-//POIN CallRallyChaosProc // 
-//#endif 
 WORD 0 0 
 
 
@@ -59,21 +48,15 @@ ALIGN 4
 TurnCalcLoop_Proc: // Loops through each function and starts a proc for it 
 PROC_YIELD // Buffer.
 PROC_SET_NAME(StartOfTurnCalcLoopName)
-//PROC_CALL_ROUTINE(StartOfTurnCalcLoop_Init)
 PROC_LOOP_ROUTINE(TurnLoop_Idle) // Do nothing until ProcGoto is used. 
 PROC_LABEL(0) 
 PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
 PROC_LOOP_ROUTINE(EndOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
-
-//PROC_CALL_ROUTINE(BreakHere)
-//#ifdef INSTALL_TURN_SKILLS
 PROC_LABEL(1) 
 PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
 PROC_LABEL(2) 
 PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
 PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
-//PROC_CALL_ROUTINE(BreakHere)
-//#endif 
 PROC_END
 
 
@@ -82,7 +65,6 @@ BuffAnimationSkillProc: // Block this proc if you'd like to show animations
 PROC_YIELD // Buffer.
 PROC_SET_NAME(BuffAnimationSkillName)
 PROC_SLEEP(0)
-//PROC_LOOP_ROUTINE(BuffWaitForCamera)
 PROC_CALL_ROUTINE(BuffAnimationSkillInit) 
 PROC_LABEL(0)
 PROC_CALL_ROUTINE(BuffAnimationSkillLoop)
@@ -158,6 +140,7 @@ StartOfTurnBuffFunctionEntry(SturdyInitID	, IsInitApplicable,		SturdyInit)
 StartOfTurnBuffFunctionEntry(CalmInitID		, IsInitApplicable,		CalmInit	) 
 StartOfTurnBuffFunctionEntry(NimbleInitID	, IsInitApplicable,		NimbleInit) 
 StartOfTurnBuffFunctionEntry(SpectrumInitID	, IsInitApplicable,		SpectrumInit) 
+StartOfTurnBuffFunctionEntry(RallyChaosID	, IsRallyApplicable,	RallyChaosFunc) 
 
 #include "StartOfTurn_CalcLoop.lyn.event" 
 

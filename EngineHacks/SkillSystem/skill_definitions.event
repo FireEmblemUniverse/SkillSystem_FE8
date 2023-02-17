@@ -172,7 +172,7 @@
 // Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
 // Author: Vesly 
 #define HoneMagID  255 
-#define HoneStrID  255
+#define HoneStrID  81
 #define HoneSklID  255 
 #define HoneSpdID  255 
 #define HoneDefID  255 
@@ -183,7 +183,7 @@
 // _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
 // Author: Vesly 
 #define MagOathID  255 
-#define StrOathID  81
+#define StrOathID  255
 #define SklOathID  255 
 #define SpdOathID  255 
 #define DefOathID  255 

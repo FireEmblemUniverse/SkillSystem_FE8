@@ -237,7 +237,6 @@ cmp r0, #0
 beq SkipStartOfTurn 
 
 StartOfTurnUnitLoop: @ no proc started 
-mov r11, r11 
 mov r0, r5 @ deployment byte 
 mov r3, r10 
 cmp r5, r3 
@@ -314,6 +313,7 @@ strb r2, [r4, #TryPhaseBool]
 mov r2, r10 
 strb r2, [r4, #EndOfDeployByte] 
 mov r2, r11 
+sub r2, #1 
 strb r2, [r4, #SkillBufferCounter] 
 ldr r2, =gAttackerSkillBuffer
 str r2, [r4, #SkillBuffer] @ SkillBuffer
@@ -325,7 +325,7 @@ str r3, [r4, #FirstFunc] @ starts a blocking proc
 
 mov r0, r4 @ new proc 
 sub r0, #0x2c 
-mov r1, r8 @ proc label (0 = silent, 1 = EndOfTurn, 2 = StartOfTurn) 
+mov r1, r8 @ proc label (0 = EndOfTurn, 1 = silent, 2 = StartOfTurn) 
 blh ProcGoto @ skip part of the proc if we went through and found nothing 
 
 
@@ -438,7 +438,9 @@ cmp r1, #0
 beq EndOfTurnProcUnitLoop
 
 ldr r3, =EndOfTurnCalcLoop 
-mov r2, r6 @ function we're on 
+mov r2, #FuncCoun 
+ldsb r2, [r4, r2] 
+sub r2, #2 
 lsl r2, #2 @ 4 bytes per 
 add r3, r2 
 ldr r3, [r3] @ table of skills relevant to the current animation loop 
@@ -498,6 +500,8 @@ ExecuteFirstFunc:
 push {r4, lr} 
 mov r4, r0 
 add r4, #0x2c 
+ldrb r0, [r4, #FuncCoun] 
+
 ldr r0, [r4, #FirstFunc] 
 cmp r0, #0 
 beq DontExecuteFirstFunc
@@ -577,7 +581,9 @@ cmp r1, #0
 beq StartOfTurnProcUnitLoop
 
 ldr r3, =StartOfTurnCalcLoop 
-mov r2, r6 @ function we're on 
+mov r2, #FuncCoun 
+ldsb r2, [r4, r2] 
+sub r2, #2 
 lsl r2, #2 @ 4 bytes per 
 add r3, r2 
 ldr r3, [r3] @ table of skills relevant to the current animation loop 
@@ -659,7 +665,8 @@ ldrb r1, [r4, #TryPhaseBool]
 strb r1, [r0, #TryPhaseBool] 
 ldrb r1, [r4, #EndOfDeployByte] 
 strb r1, [r0, #EndOfDeployByte] 
-ldrb r1, [r4, #SkillBufferCounter] 
+@ldrb r1, [r4, #SkillBufferCounter] 
+mov r1, #0 @ always start the proc at the start of the buffer because it's easier and solves a bug 
 strb r1, [r0, #SkillBufferCounter] 
 ldr r1, [r4, #SkillBuffer] 
 str r1, [r0, #SkillBuffer] 
@@ -739,25 +746,6 @@ bx r0
 .global BuffAnimationSkillInit
 .type BuffAnimationSkillInit, %function 
 BuffAnimationSkillInit: 
-mov r1, #0 
-str r1, [r0, #0x2C] @ unit deployment byte & mid-loop counter 
-ldr r3, =ChapterData 
-ldrb r3, [r3, #0x0F] 
-cmp r3, #0x0 
-beq NoSub 
-sub r3, #1 @ to start at 0x40/0x80 instead of 0x41/0x81 (since players start at 0x01, not 0x00) 
-NoSub: 
-mov r2, #0x2C 
-add r2, r0 
-strb r3, [r2] @ phase as deployment byte to start at 
-add r3, #0x40 @ end point 
-strb r3, [r2, #2] @ ending place 
-
-str r1, [r0, #0x30] @ destructor = false 
-str r1, [r0, #0x34] @ skill buffer 
-str r1, [r0, #0x38] @ function to run 
-str r1, [r0, #0x3C] @ unit 
-@ +0x40 is phase ending 
 bx lr 
 .ltorg 
 
@@ -766,10 +754,10 @@ bx lr
 Buff_EnsureCamera: 
 push {r4, lr} 
 mov r4, r0 @ proc 
-ldr r0, [r4, #0x3C] 
+add r0, #0x2c 
+ldr r0, [r0, #pUnit] 
 ldrb r1, [r0, #0x10] @ xx 
 ldrb r2, [r0, #0x11] @ yy 
-mov r0, #0 
 mov r0, r4 @ proc 
 blh EnsureCameraOntoPosition 
 mov r0, #0 
@@ -797,16 +785,14 @@ b BufferLoop @ we just came out of pausing for some animation
 @ run a function for the skill 
 UnitLoop: 
 ldrb r0, [r4, #DeployByte] 
-add r0, #1 
 ldrb r1, [r4, #EndOfDeployByte] 
 cmp r0, r1 
 bge BreakLoop 
-strb r0, [r4] @ deployment id 
 blh GetUnit 
 mov r5, r0 @ unit 
 bl IsUnitOnField @(Unit* unit)
 cmp r0, #0 
-beq UnitLoop 
+beq GotoUnitLoop 
 
 mov r0, r5 @ unit 
 ldr r1, =gAttackerSkillBuffer
@@ -851,14 +837,17 @@ blh ProcGoto
 b ExitAnimationSkillLoop 
 
 GotoUnitLoop: 
+ldrb r0, [r4, #DeployByte] 
+add r0, #1 
+strb r0, [r4, #DeployByte] @ deployment id 
 mov r7, #0 
-strb r7, [r4, #1] @ not in buffer loop atm 
+strb r7, [r4, #SkillBufferCounter] @ not in buffer loop atm 
 b UnitLoop 
 
 
 BreakLoop: 
 mov r0, #1 @ break loop 
-str r0, [r4, #4] @ +0x30 as destructor 
+strb r0, [r4, #Destructor] 
 
 ExitAnimationSkillLoop:
 pop {r4-r7} 

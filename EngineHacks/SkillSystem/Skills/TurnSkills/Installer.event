@@ -17,33 +17,6 @@ ENDA
 
 
 
-ALIGN 4
-RallyChaosProc: // Block this proc if you'd like to show animations 
-PROC_YIELD // Buffer.
-PROC_SET_NAME(RallyChaosName)
-PROC_SLEEP(0)
-PROC_CALL_ROUTINE(RallyChaosInit) 
-PROC_LABEL(0)
-PROC_CALL_ROUTINE(RallyChaosFunc)
-PROC_LOOP_ROUTINE(RallyChaosIdle)
-
-PROC_LABEL(2) 
-PROC_END_ALL(0x859A548) // destroy camera proc that moves to Lord at start of phase 
-PROC_CALL_ROUTINE(Buff_EnsureCamera)
-PROC_LOOP_ROUTINE(BuffWaitForCamera)
-PROC_LABEL(3) 
-PROC_CALL_ROUTINE(RallyChaosExecute) 
-PROC_LOOP_ROUTINE(RallyChaosIdle)
-
-PROC_LABEL(1) // Destructor 
-PROC_END
-
-
-RallyChaosName:
-String("RallyChaos") ; BYTE 0
-ALIGN 4
-
-
 ALIGN 4 
 EndOfTurnHealLoopProc:
 PROC_SET_NAME(EndOfTurnHealLoopName)
