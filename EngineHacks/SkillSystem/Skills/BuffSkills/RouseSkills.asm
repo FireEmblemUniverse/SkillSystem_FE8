@@ -149,6 +149,23 @@ bx r0
 .ltorg 
 
 
+.global IsRouseApplicable
+.type IsRouseApplicable, %function 
+IsRouseApplicable: 
+push {lr} 
+mov r1, #0 @ Can trade 
+mov r2, #1 @ adjacent 
+bl GetUnitsInRange 
+cmp r0, #0 
+bne Rouse_False
+mov r0, #1 
+b ExitRouse 
+Rouse_False: 
+mov r0, #0 
+ExitRouse: 
+pop {r1} 
+bx r1 
+.ltorg 
 
 
 @ Rouse _ : At the start of your turn, gain up to +4 _ if not adjacent to an ally.

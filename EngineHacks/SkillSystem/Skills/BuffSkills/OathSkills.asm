@@ -148,6 +148,24 @@ bx r0
 .ltorg 
 
 
+.global IsOathApplicable
+.type IsOathApplicable, %function 
+IsOathApplicable: 
+push {lr} 
+mov r1, #0 @ Can trade 
+mov r2, #1 @ adjacent 
+bl GetUnitsInRange 
+cmp r0, #0 
+beq Oath_False
+mov r0, #1 
+b ExitOath 
+Oath_False: 
+mov r0, #0 
+ExitOath: 
+pop {r1} 
+bx r1 
+.ltorg 
+
 
 @ _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
 OathStat: 

@@ -45,10 +45,10 @@ ALIGN 4
 
 
 ALIGN 4 
-HoardersBaneProc:
-PROC_SET_NAME(HoardersBaneName)
+EndOfTurnHealLoopProc:
+PROC_SET_NAME(EndOfTurnHealLoopName)
 PROC_YIELD // Buffer 
-PROC_CALL_ROUTINE_2(HoardersBane_ExecuteFirstUnitHeal)
+//PROC_CALL_ROUTINE_2(HoardersBane_ExecuteFirstUnitHeal)
 PROC_LABEL(0) 
 PROC_CALL_ROUTINE_2(EndOfTurn_HealLoop_IterateLoop) // Yield for a frame if returns 0; this is required for blocking children 
 //PROC_CALL_BLOCKING_CHILD(WaitForVulneraryEndProc)
@@ -68,8 +68,8 @@ PROC_LOOP_ROUTINE(WaitForVulneraryEnd)
 PROC_END
 
 ALIGN 4
-HoardersBaneName:
-String(HoardersBane);	BYTE 0x0
+EndOfTurnHealLoopName:
+String(EndOfTurnHealLoop);	BYTE 0x0
 
 ALIGN 4
 WaitForVulneraryEndName:

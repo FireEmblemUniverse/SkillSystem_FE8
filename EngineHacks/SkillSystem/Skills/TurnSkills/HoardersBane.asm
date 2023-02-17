@@ -18,18 +18,19 @@
 .equ TryPhaseBool, 			3  @ 0x2f 
 .equ EndOfDeployByte, 		4  @ 0x30 
 .equ SkillBufferCounter, 	5  @ 0x31 
+.equ healAmount, 			7  @ 0x32 
 .equ SkillBuffer, 			8  @ 0x34 
 .equ pUnit, 				12 @ 0x38 
 .equ FirstFunc, 			16 @ 0x3c 
 
 
-.global CallHoardersBane
-.type CallHoardersBane, %function 
-CallHoardersBane: 
+.global CallEndOfTurnHealLoop
+.type CallEndOfTurnHealLoop, %function 
+CallEndOfTurnHealLoop: 
 push {r4, lr} 
 mov r4, r0 @ proc 
 mov r1, r4 @ to block 
-ldr r0, =HoardersBaneProc
+ldr r0, =EndOfTurnHealLoopProc
 blh ProcStartBlocking 
 add r0, #0x2c 
 add r4, #0x2c 
@@ -52,6 +53,9 @@ ldr r1, [r4, #pUnit]
 str r1, [r0, #pUnit] 
 ldr r1, [r4, #FirstFunc] 
 str r1, [r0, #FirstFunc] 
+
+mov r1, #0 
+strb r1, [r0, #healAmount] 
 
 
 
@@ -99,18 +103,22 @@ bx r1
 .global EndOfTurn_HealLoop_FindNextValidUnit
 .type EndOfTurn_HealLoop_FindNextValidUnit, %function 
 EndOfTurn_HealLoop_FindNextValidUnit: 
-push {r4-r6, lr} 
+push {r4-r7, lr} 
 @ given r0 = deployment byte to search from, 
 @ r1 = deployment byte to stop at 
 @ find the next unit meeting the criteria 
 
 mov r4, r0 @ deployment byte 
+@ r5 = unit 
 mov r6, r1 @ where to stop 
+
+mov r7, r2 @ proc + 0x2c 
 
 UnitLoop: 
 mov r5, #0 
+strb r5, [r7, #healAmount] 
 mov r0, r4 @ deployment byte 
-add r0, #1 
+add r4, #1 
 cmp r0, r6
 bge NoValidUnit 
 
@@ -127,44 +135,80 @@ cmp r0, #0
 beq UnitLoop 
 
 mov r0, r5 @ unit 
-ldr r1, [r4, #SkillBuffer]
+ldr r1, [r7, #SkillBuffer]
 bl MakeSkillBuffer 
 
- 
-ldr r1, [r4, #SkillBuffer] 
-ldrb r2, [r4, #SkillBufferCounter] 
+SkillBufferLoop: 
+ldr r1, [r7, #SkillBuffer] 
+ldrb r2, [r7, #SkillBufferCounter] 
 add r2, #1 
-strb r2, [r4, #SkillBufferCounter] 
+strb r2, [r7, #SkillBufferCounter] 
 ldrb r0, [r1, r2] @ current skill 
+cmp r0, #0 
+beq MaybeHeal 
 ldr r3, =EndOfTurn_HealSkillTable
 lsl r0, #3 @ 8 bytes per 
 add r3, r0 
 ldr r0, [r3] @ usability 
 cmp r0, #0 
-beq UnitLoop 
+beq SkillBufferLoop 
 mov lr, r0 
 mov r0, r5 @ unit 
+push {r3} 
+.short 0xf800 @ returns if usable or not 
+pop {r3} 
+cmp r0, #0 
+beq SkillBufferLoop
+ldr r0, [r3, #4] @ returns amount to heal 
+mov lr, r0 
+mov r0, r5 @ unit (in case it matters fsr) 
 .short 0xf800 
 cmp r0, #0 
-beq UnitLoop 
+beq SkillBufferLoop 
+@r0 = amount to heal 
+
+
 @ r5 has a valid unit 
+ldrb r1, [r7, #healAmount] 
+add r1, r0 
+cmp r1, #127 
+blt NoCap 
+mov r1, #127 
+NoCap: 
+strb r1, [r7, #healAmount] 
+b SkillBufferLoop 
+MaybeHeal: 
+ldrb r0, [r7, #healAmount] 
+cmp r0, #0 
+beq UnitLoop 
+
 
 NoValidUnit: 
 mov r0, r5 
 
-pop {r4-r6} 
+pop {r4-r7} 
 pop {r1} 
-bx r1 
+bx r1
 .ltorg 
 
-.global HoardersBane_ExecuteFirstUnitHeal 
-.type HoardersBane_ExecuteFirstUnitHeal, %function 
-HoardersBane_ExecuteFirstUnitHeal: 
-push {lr} 
+.global HoardersBane_HealAmount
+.type HoardersBane_HealAmount, %function 
+HoardersBane_HealAmount: 
+ldr r0, =VulneraryHealAmount 
+ldrb r0, [r0] 
+bx lr 
+.ltorg 
 
-ldr r1, [r0, #pUnit] 
-ldr r2, =VulneraryHealAmount 
-ldrb r2, [r2] 
+.global ExecuteFirstUnitHeal 
+.type ExecuteFirstUnitHeal, %function 
+ExecuteFirstUnitHeal: 
+push {lr} 
+mov r3, #0x2C 
+add r3, r0
+ldrb r2, [r3, #healAmount] 
+mov r1, #0 
+strb r1, [r3, #healAmount] 
+ldr r1, [r3, #pUnit] 
 bl HealAnim @ starts a blocking proc 
 
 mov r0, #0 @ always yield 
@@ -190,22 +234,20 @@ push {r4-r5, lr}
 mov r4, r0 @ parent proc 
 add r4, #0x2C 
 ldrb r0, [r4, #DeployByte] 
+ldrb r1, [r4, #EndOfDeployByte] 
+mov r2, r4 @ parent proc + 0x2c 
 bl EndOfTurn_HealLoop_FindNextValidUnit
 cmp r0, #0 
 beq BreakHoardersBane 
 ldrb r1, [r0, #0x0B] @ deployment byte 
 strb r1, [r4, #DeployByte] @ next search will start +1 higher 
-
-
-
 str r0, [r4, #pUnit] @ unit +0x3C 
 mov r5, r0 @ unit 
 mov r0, r4 @ proc 
 mov r1, #0x2C 
 sub r0, r1 
 mov r1, r5 @ unit 
-ldr r2, =VulneraryHealAmount 
-ldrb r2, [r2] 
+ldrb r2, [r4, #healAmount] 
 bl HealAnim @ starts a blocking proc 
 b HoardersBane_True 
 
@@ -258,40 +300,40 @@ mov r1, r6
 	mov r0, r5 
 	blh 0x8028130 @ ShowUnitSMS
 
-@ldr r0, =0x89A2C48 @gProc_MoveUnit
-@blh 0x8002E9C @ ProcFind 
-@cmp r0, #0 
-@beq SkipHidingInProc
-@add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D4
-@mov r1, #1 
-@strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DC
-@SkipHidingInProc: 
-@ldr r1, [r5, #0x0C] @ Unit state 
-@mov r2, #1 @ Hide 
-@bic r1, r2 @ Show SMS @ 
-@str r1, [r5, #0x0C] 
-@
-@	
-@ldr r3, =0x03004E50 @CurrentUnit 
-@ldr r3, [r3] 
-@cmp r3, #0 
-@beq NoActiveUnit
-@
-@ldr r1, [r3, #0x0C] @ Unit state 
-@mov r2, #0x3 @ Hide, Acted
-@bic r1, r2 @ Show SMS @ 
-@str r1, [r3, #0x0C] 
-@	@mov r0, r3 @ I don't think this part is needed? 
+ldr r0, =0x89A2C48 @gProc_MoveUnit
+blh 0x8002E9C @ ProcFind 
+cmp r0, #0 
+beq SkipHidingInProc
+add r0, #0x40 @this is what MU_Hide does @MU_Hide, 0x80797D4
+mov r1, #1 
+strb r1, [r0] @ store back 0 to show active MMS again aka @MU_Show, 0x80797DC
+SkipHidingInProc: 
+ldr r1, [r5, #0x0C] @ Unit state 
+mov r2, #1 @ Hide 
+bic r1, r2 @ Show SMS @ 
+str r1, [r5, #0x0C] 
+
+	
+ldr r3, =0x03004E50 @CurrentUnit 
+ldr r3, [r3] 
+cmp r3, #0 
+beq NoActiveUnit
+
+ldr r1, [r3, #0x0C] @ Unit state 
+mov r2, #0x3 @ Hide, Acted
+bic r1, r2 @ Show SMS @ 
+str r1, [r3, #0x0C] 
+	@mov r0, r3 @ I don't think this part is needed? 
 	@blh 0x8028130 @ ShowUnitSMS
 NoActiveUnit:
-@ldr r0, =0x202E4D8 @ Unit map	{U}
-@ldr r0, [r0] 
-@mov r1, #0
-@blh 0x080197E4 @ FillMap 
-@blh 0x08019FA0   @UpdateUnitMapAndVision
-@blh 0x0801A1A0   @UpdateTrapHiddenStates
-@blh  0x080271a0   @SMS_UpdateFromGameData
-@blh  0x08019c3c   @UpdateGameTilesGraphics
+ldr r0, =0x202E4D8 @ Unit map	{U}
+ldr r0, [r0] 
+mov r1, #0
+blh 0x080197E4 @ FillMap 
+blh 0x08019FA0   @UpdateUnitMapAndVision
+blh 0x0801A1A0   @UpdateTrapHiddenStates
+blh  0x080271a0   @SMS_UpdateFromGameData
+blh  0x08019c3c   @UpdateGameTilesGraphics
 pop {r4-r6} 
 pop {r0} 
 bx r0 

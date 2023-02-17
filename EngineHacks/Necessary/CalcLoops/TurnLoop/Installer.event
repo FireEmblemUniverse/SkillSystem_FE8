@@ -20,8 +20,7 @@ EndOfTurnCalcLoop:
 // End of turn effects first 
 //#ifdef INSTALL_HOARDERS_BANE
 // end of turn calc loop 
-POIN EndOfTurn_HealSkillTable
-//HoardersBane_FindNextValidUnit CallHoardersBane // check proc(passed in r0)+0x34 as end of which phase - only proceed for units that match the phase. 
+POIN EndOfTurn_HealSkillTable CallEndOfTurnHealLoop
 //#endif 
 //Otherwise it is ran at the end of EVERY phase 
 POIN 0 0 
@@ -31,7 +30,7 @@ StartOfTurnCalcLoop:
 // Each entry (when actually called) take a few frames to run 
 // Start of turn ones begin below 
 //POIN IsTrue ExitIfNoPhase // skip the rest of the effects if no units of this allegiance 
-POIN StartOfTurn_BuffSkillTable
+POIN StartOfTurn_BuffSkillTable CallBuffAnimationSkillLoop
 //CallBuffAnimationSkillLoop // Skills that have been optimized to have their effects ran from a table and to show a buff animation 
 //#ifdef INSTALL_RALLY_CHAOS
 //POIN CallRallyChaosProc // 
@@ -71,8 +70,8 @@ PROC_LOOP_ROUTINE(EndOfTurnCalcLoop_Main) // Skipped over if there are no units 
 PROC_LABEL(1) 
 PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
 PROC_LABEL(2) 
-//PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
-//PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
+PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
+PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
 //PROC_CALL_ROUTINE(BreakHere)
 //#endif 
 PROC_END
@@ -114,7 +113,7 @@ EndOfTurn_HealSkillTable:
 FILL(256*8) 
 
 #define EndOfTurnHealFunctionEntry(skillID, usability, effect) "PUSH; ORG EndOfTurn_HealSkillTable+(skillID*8); POIN usability|1 effect|1; POP" 
-EndOfTurnHealFunctionEntry(HoardersBaneID, HoardersBane_CanUnitHeal, CallHoardersBane) 
+EndOfTurnHealFunctionEntry(HoardersBaneID, HoardersBane_CanUnitHeal, HoardersBane_HealAmount) 
 
 
 // Executes a function where the unit has already been deemed to be on the field with the relevant skill 
@@ -123,42 +122,42 @@ ALIGN 4
 StartOfTurn_BuffSkillTable: 
 FILL(256*8) 
 
-#define StartOfTurnBuffFunctionEntry(skillID, function) "PUSH; ORG StartOfTurn_BuffSkillTable+(skillID*8); POIN function|1; POP" 
+#define StartOfTurnBuffFunctionEntry(skillID, usability, effect) "PUSH; ORG StartOfTurn_BuffSkillTable+(skillID*8); POIN usability|1 effect|1; POP" 
 
-StartOfTurnBuffFunctionEntry(HoneMagID, HoneMag) 
-StartOfTurnBuffFunctionEntry(HoneStrID, HoneStr) 
-StartOfTurnBuffFunctionEntry(HoneSklID, HoneSkl) 
-StartOfTurnBuffFunctionEntry(HoneSpdID, HoneSpd) 
-StartOfTurnBuffFunctionEntry(HoneDefID, HoneDef) 
-StartOfTurnBuffFunctionEntry(HoneResID, HoneRes) 
-StartOfTurnBuffFunctionEntry(HoneLukID, HoneLuk) 
-StartOfTurnBuffFunctionEntry(HoneMovID, HoneMov) 
-StartOfTurnBuffFunctionEntry(MagOathID, OathMag) 
-StartOfTurnBuffFunctionEntry(StrOathID, OathStr) 
-StartOfTurnBuffFunctionEntry(SklOathID, OathSkl) 
-StartOfTurnBuffFunctionEntry(SpdOathID, OathSpd) 
-StartOfTurnBuffFunctionEntry(DefOathID, OathDef) 
-StartOfTurnBuffFunctionEntry(ResOathID, OathRes) 
-StartOfTurnBuffFunctionEntry(LukOathID, OathLuk) 
-StartOfTurnBuffFunctionEntry(MovOathID, OathMov) 
-StartOfTurnBuffFunctionEntry(RouseMagID, RouseMag) 
-StartOfTurnBuffFunctionEntry(RouseStrID, RouseStr) 
-StartOfTurnBuffFunctionEntry(RouseSklID, RouseSkl) 
-StartOfTurnBuffFunctionEntry(RouseSpdID, RouseSpd) 
-StartOfTurnBuffFunctionEntry(RouseDefID, RouseDef) 
-StartOfTurnBuffFunctionEntry(RouseResID, RouseRes) 
-StartOfTurnBuffFunctionEntry(RouseLukID, RouseLuk) 
-StartOfTurnBuffFunctionEntry(RouseMovID, RouseMov) 
+StartOfTurnBuffFunctionEntry(HoneMagID, IsHoneApplicable, HoneMag) 
+StartOfTurnBuffFunctionEntry(HoneStrID, IsHoneApplicable, HoneStr) 
+StartOfTurnBuffFunctionEntry(HoneSklID, IsHoneApplicable, HoneSkl) 
+StartOfTurnBuffFunctionEntry(HoneSpdID, IsHoneApplicable, HoneSpd) 
+StartOfTurnBuffFunctionEntry(HoneDefID, IsHoneApplicable, HoneDef) 
+StartOfTurnBuffFunctionEntry(HoneResID, IsHoneApplicable, HoneRes) 
+StartOfTurnBuffFunctionEntry(HoneLukID, IsHoneApplicable, HoneLuk) 
+StartOfTurnBuffFunctionEntry(HoneMovID, IsHoneApplicable, HoneMov) 
+StartOfTurnBuffFunctionEntry(MagOathID, IsOathApplicable, OathMag) 
+StartOfTurnBuffFunctionEntry(StrOathID, IsOathApplicable, OathStr) 
+StartOfTurnBuffFunctionEntry(SklOathID, IsOathApplicable, OathSkl) 
+StartOfTurnBuffFunctionEntry(SpdOathID, IsOathApplicable, OathSpd) 
+StartOfTurnBuffFunctionEntry(DefOathID, IsOathApplicable, OathDef) 
+StartOfTurnBuffFunctionEntry(ResOathID, IsOathApplicable, OathRes) 
+StartOfTurnBuffFunctionEntry(LukOathID, IsOathApplicable, OathLuk) 
+StartOfTurnBuffFunctionEntry(MovOathID, IsOathApplicable, OathMov) 
+StartOfTurnBuffFunctionEntry(RouseMagID, IsRouseApplicable, RouseMag) 
+StartOfTurnBuffFunctionEntry(RouseStrID, IsRouseApplicable, RouseStr) 
+StartOfTurnBuffFunctionEntry(RouseSklID, IsRouseApplicable, RouseSkl) 
+StartOfTurnBuffFunctionEntry(RouseSpdID, IsRouseApplicable, RouseSpd) 
+StartOfTurnBuffFunctionEntry(RouseDefID, IsRouseApplicable, RouseDef) 
+StartOfTurnBuffFunctionEntry(RouseResID, IsRouseApplicable, RouseRes) 
+StartOfTurnBuffFunctionEntry(RouseLukID, IsRouseApplicable, RouseLuk) 
+StartOfTurnBuffFunctionEntry(RouseMovID, IsRouseApplicable, RouseMov) 
 
-StartOfTurnBuffFunctionEntry(CleverInitID	, CleverInit) 
-StartOfTurnBuffFunctionEntry(StrongInitID	, StrongInit) 
-StartOfTurnBuffFunctionEntry(DeftInitID		, DeftInit	) 
-StartOfTurnBuffFunctionEntry(QuickInitID		, QuickInit	) 
-StartOfTurnBuffFunctionEntry(LuckyInitID		, LuckyInit	) 
-StartOfTurnBuffFunctionEntry(SturdyInitID	, SturdyInit) 
-StartOfTurnBuffFunctionEntry(CalmInitID		, CalmInit	) 
-StartOfTurnBuffFunctionEntry(NimbleInitID	, NimbleInit) 
-StartOfTurnBuffFunctionEntry(SpectrumInitID	, SpectrumInit) 
+StartOfTurnBuffFunctionEntry(CleverInitID	, IsInitApplicable,		CleverInit) 
+StartOfTurnBuffFunctionEntry(StrongInitID	, IsInitApplicable,		StrongInit) 
+StartOfTurnBuffFunctionEntry(DeftInitID		, IsInitApplicable,		DeftInit	) 
+StartOfTurnBuffFunctionEntry(QuickInitID	, IsInitApplicable,		QuickInit	) 
+StartOfTurnBuffFunctionEntry(LuckyInitID	, IsInitApplicable,		LuckyInit	) 
+StartOfTurnBuffFunctionEntry(SturdyInitID	, IsInitApplicable,		SturdyInit) 
+StartOfTurnBuffFunctionEntry(CalmInitID		, IsInitApplicable,		CalmInit	) 
+StartOfTurnBuffFunctionEntry(NimbleInitID	, IsInitApplicable,		NimbleInit) 
+StartOfTurnBuffFunctionEntry(SpectrumInitID	, IsInitApplicable,		SpectrumInit) 
 
 #include "StartOfTurn_CalcLoop.lyn.event" 
 

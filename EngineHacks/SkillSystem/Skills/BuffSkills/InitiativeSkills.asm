@@ -19,6 +19,8 @@
 .equ MagAnim, 0x1
 
 
+
+
 .global CleverInit 
 .type CleverInit, %function 
 CleverInit: 
@@ -180,6 +182,24 @@ ldr r2, [r2]
 bl InitiativeForStat
 pop {r0} 
 bx r0 
+.ltorg 
+
+
+.global IsInitApplicable
+.type IsInitApplicable, %function 
+IsInitApplicable: 
+push {lr} 
+ldr r3, =ChapterData 
+ldrh r3, [r3, #0x10] @ Turn # 
+cmp r3, #1 @ turn starts at 1 
+bne Init_False
+mov r0, #1 
+b ExitInit
+Init_False: 
+mov r0, #0 
+ExitInit: 
+pop {r1} 
+bx r1 
 .ltorg 
 
 .global SpectrumInit 

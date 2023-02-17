@@ -154,7 +154,23 @@ pop {r0}
 bx r0 
 .ltorg 
 
-
+.global IsHoneApplicable
+.type IsHoneApplicable, %function 
+IsHoneApplicable: 
+push {lr} 
+mov r1, #0 @ Can trade 
+mov r2, #1 @ adjacent 
+bl GetUnitsInRange 
+cmp r0, #0 
+beq Hone_False
+mov r0, #1 
+b ExitHone 
+Hone_False: 
+mov r0, #0 
+ExitHone: 
+pop {r1} 
+bx r1 
+.ltorg 
 
 HoneStat: 
 push {r4-r7, lr} 

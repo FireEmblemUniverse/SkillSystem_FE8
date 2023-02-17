@@ -136,7 +136,7 @@
 #define GutsID 80
 //Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
 // Author: Vesly 
-#define StrongConstitutionID 81
+#define StrongConstitutionID 255
 // Shrewd Potential: Stat boosters provide +1 more than usual. 
 // Author: Vesly 
 #define ShrewdPotentialID 82 
@@ -183,7 +183,7 @@
 // _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
 // Author: Vesly 
 #define MagOathID  255 
-#define StrOathID  255
+#define StrOathID  81
 #define SklOathID  255 
 #define SpdOathID  255 
 #define DefOathID  255 

@@ -36,7 +36,13 @@ POIN $0 $0 $0
 POIN BeginningScene EndingScene
 
 TurnBasedEvents:
+TurnEventPlayer(0, SethHp, 1, 1) 
 END_MAIN
+
+SethHp:
+ASMC SethLowHp
+NoFade 
+ENDA 
 
 CharacterBasedEvents:
 CharacterEventBothWays(0x10,TalkEvent, Eirika, Ephraim)

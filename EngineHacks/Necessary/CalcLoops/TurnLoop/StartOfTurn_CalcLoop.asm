@@ -26,10 +26,35 @@
 .equ ShouldMoveCamPos, 0x8015E9C 
 
 
+.equ DeployByte, 			0  @ 0x2c 
+.equ FuncCoun, 				1  @ 0x2d 
+.equ Destructor, 			2  @ 0x2e 
+.equ TryPhaseBool, 			3  @ 0x2f 
+.equ EndOfDeployByte, 		4  @ 0x30 
+.equ SkillBufferCounter, 	5  @ 0x31 
+.equ healAmount, 			6  @ 0x32 used by EndOfTurnCalcLoop 
+.equ MidUnitLoopBool, 		7  @ 0x33 used by Buff Anim loop 
+.equ SkillBuffer, 			8  @ 0x34 
+.equ pUnit, 				12 @ 0x38 
+.equ FirstFunc, 			16 @ 0x3c function that starts a blocking proc 
+
+.global SethLowHp 
+.type SethLowHp, %function 
+SethLowHp:
+push {lr} 
+
+mov r0, #3
+blh GetUnit
+mov r1, #5 
+strb r1, [r0, #0x13] @ seth hp 
+pop {r0} 
+bx r0 
+.ltorg 
+
 .global TurnLoopMaster
 .type TurnLoopMaster, %function 
 TurnLoopMaster:
-mov r11, r11 
+@mov r11, r11 
 push {r4-r7, lr} 
 mov r4, r8 
 mov r5, r9 
@@ -38,11 +63,14 @@ mov r7, r11
 push {r4-r7}  
 
 mov r4, r0 @ proc to possibly block (MapMain) 
+
+
+
 mov r5, #0 @ deployment byte starts at 0+1 
 mov r8, r5 @ proc label starts at 0 
 mov r11, r5 @ skill buffer starts at 0+1 
 mov r6, #0 @ function counter 
-sub r6, #1 @ add 1 in the start of the loop 
+sub r6, #2 @ add 1 in the start of the loop 
 ldr r7, =gAttackerSkillBuffer
 @ r5 = unit deployment byte 
 @ r6 = function counter 
@@ -106,7 +134,7 @@ beq SkipEndOfTurn
 @ then call the indexed function for that skill 
 
 NextEndOfTurnFunction: 
-add r6, #1 
+add r6, #2 
 lsl r2, r6, #2 @ 4 bytes per 
 ldr r3, =EndOfTurnCalcLoop 
 add r3, r2 
@@ -148,34 +176,22 @@ lsl r2, #2 @ 4 bytes per
 add r3, r2 
 ldr r3, [r3] @ table of skills relevant to the current animation loop 
 lsl r1, #3 @ 8 bytes per entry 
-ldr r2, [r3] @ usability 
+ldr r2, [r3, r1] @ usability 
 cmp r2, #0 
 beq EndOfTurn_SkillBufferLoop
-push {r3} 
-
 mov r0, r7 @ unit 
 mov lr, r2 
-.short 0xF800 
-pop {r3} 
+.short 0xF800  
 cmp r0, #0 
 beq EndOfTurn_SkillBufferLoop
+ldr r3, =EndOfTurnCalcLoop 
+mov r2, r6 @ function we're on 
+lsl r2, #2 @ 4 bytes per 
+add r3, r2 
+ldr r3, [r3, #4] @ function that starts a child proc 
 
-
-@ true, so we start the proc ! 
+@ true, so we start the proc which will execute whatever's in r3 then continue the loop within its proc 
 b StartBlockingProc 
-
-
-
-
-
-
-@ 
-
-cmp r0, #0 
-beq SkipEndOfTurn 
-mov r5, r0 @ pUnit 
-b StartBlockingProc 
-
 
 SkipEndOfTurn: 
 
@@ -191,21 +207,90 @@ bl StartOfTurnCalcLoop_SilentFunctions
 
 @ Start of Turn part 
 mov r6, #0 
-sub r6, #1
+sub r6, #2
 mov r0, #2 @ if we start the proc, start from the Start of Turn functions label 
 mov r8, r0 
 ldr r0, =ChapterData 
 ldrb r0, [r0, #0xF] 
+mov r5, r0 @ deployment byte to start at 
+cmp r5, #0 
+bne NoIssue
+add r5, #1 
+NoIssue: 
 add r0, #0x40 
 mov r10, r0 @ deployment byte to stop at 
 
 @ start of turn calc loop goes here 
 
 
-b Master_DoNotBlock @ if we reached here, do nothing and exit 
+@ for each animation loop, loop through each unit 
+@ create a buffer of skill IDs 
+@ then call the indexed function for that skill 
 
+NextStartOfTurnFunction: 
+add r6, #2 
+lsl r2, r6, #2 @ 4 bytes per 
+ldr r3, =StartOfTurnCalcLoop 
+add r3, r2 
+ldr r0, [r3] 
+cmp r0, #0 
+beq SkipStartOfTurn 
 
+StartOfTurnUnitLoop: @ no proc started 
+mov r11, r11 
+mov r0, r5 @ deployment byte 
+mov r3, r10 
+cmp r5, r3 
+bge NextStartOfTurnFunction 
+add r5, #1 @ for next time 
+blh GetUnit 
+mov r7, r0 @ unit 
+bl IsUnitOnField 
+cmp r0, #0 
+beq StartOfTurnUnitLoop
+
+mov r2, #0 
+mov r11, r2 @ reset buffer counter I guess 
+
+mov r0, r7 @ unit 
+ldr r1, =gAttackerSkillBuffer
+bl MakeSkillBuffer 
+
+StartOfTurn_SkillBufferLoop: 
+mov r1, r11 @ buffer counter 
+add r1, #1 
+mov r11, r1 
+ldr r3, =gAttackerSkillBuffer 
+ldrb r1, [r3, r1] @ skill we have 
+cmp r1, #0 
+beq StartOfTurnUnitLoop
+
+ldr r3, =StartOfTurnCalcLoop 
+mov r2, r6 @ function we're on 
+lsl r2, #2 @ 4 bytes per 
+add r3, r2 
+ldr r3, [r3] @ table of skills relevant to the current animation loop 
+lsl r1, #3 @ 8 bytes per entry 
+ldr r2, [r3, r1] @ usability 
+cmp r2, #0 
+beq StartOfTurn_SkillBufferLoop
+mov r0, r7 @ unit 
+mov lr, r2 
+.short 0xF800 
+cmp r0, #0 
+beq StartOfTurn_SkillBufferLoop
+
+ldr r3, =StartOfTurnCalcLoop 
+mov r2, r6 @ function we're on 
+lsl r2, #2 @ 4 bytes per 
+add r3, r2 
+ldr r3, [r3, #4] @ function that starts a child proc 
+
+@ true, so we start the proc which will execute whatever's in r3 then continue the loop within its proc 
 b StartBlockingProc 
+
+SkipStartOfTurn: 
+b Master_DoNotBlock @ if we reached here, do nothing and exit 
 
 
 StartBlockingProc: 
@@ -219,6 +304,7 @@ add r4, #0x2C
 
 
 @ initialize the proc 
+sub r5, #1 @ we already added 1 for next time, but we need the current unit for the effect 
 strb r5, [r4, #DeployByte]  
 strb r6, [r4, #FuncCoun] 
 mov r2, #0 
@@ -233,7 +319,7 @@ ldr r2, =gAttackerSkillBuffer
 str r2, [r4, #SkillBuffer] @ SkillBuffer
 str r7, [r4, #pUnit]
 pop {r3} 
-str r3, [r4, #FirstFunc] 
+str r3, [r4, #FirstFunc] @ starts a blocking proc 
 
 
 
@@ -252,7 +338,7 @@ Master_DoNotBlock:
 mov r0, #1 @ do not yield 
 
 Master_Exit: 
-mov r11, r11 
+@mov r11, r11 
 pop {r4-r7} 
 mov r8, r4 
 mov r9, r5 
@@ -270,15 +356,7 @@ bx lr
 .ltorg 
 
 
-.equ DeployByte, 			0  @ 0x2c 
-.equ FuncCoun, 				1  @ 0x2d 
-.equ Destructor, 			2  @ 0x2e 
-.equ TryPhaseBool, 			3  @ 0x2f 
-.equ EndOfDeployByte, 		4  @ 0x30 
-.equ SkillBufferCounter, 	5  @ 0x31 
-.equ SkillBuffer, 			8  @ 0x34 
-.equ pUnit, 				12 @ 0x38 
-.equ FirstFunc, 			16 @ 0x3c 
+
 
 
 
@@ -314,13 +392,14 @@ mov r4, r0 @ parent proc
 add r4, #0x2C @ counter 
 ldrb r2, [r4, #Destructor] @ destructor if phase is to be skipped over 
 cmp r2, #0 
-bne GotoBreakProcLoop 
+bne GotoBreakEndProcLoop 
 
 NextEndOfTurnProcFunction: 
 mov r2, #FuncCoun 
 ldsb r1, [r4, r2] 
-add r1, #1 
+add r1, #2 
 strb r1, [r4, r2] 
+sub r1, #2 
 ldr r3, =EndOfTurnCalcLoop 
 lsl r1, #2 @ 4 bytes per entry 
 ldr r0, [r3, r1] 
@@ -364,7 +443,7 @@ lsl r2, #2 @ 4 bytes per
 add r3, r2 
 ldr r3, [r3] @ table of skills relevant to the current animation loop 
 lsl r1, #3 @ 8 bytes per entry 
-ldr r2, [r3] @ usability 
+ldr r2, [r3, r1] @ usability 
 cmp r2, #0 
 beq EndOfTurnProc_SkillBufferLoop
 
@@ -384,7 +463,7 @@ blh ProcBreakLoop
 
 @ initialize stuff for StartOfTurnLoop 
 mov r0, #0 
-sub r0, #1 
+sub r0, #2 
 strb r0, [r4, #FuncCoun] @ start at 0 for the StartOfTurn loop  
 ldr r0, =ChapterData 
 ldrb r0, [r0, #0xF] 
@@ -394,8 +473,14 @@ strb r0, [r4, #EndOfDeployByte]
 b ExitEndLoop 
 
 RunEndFunc: 
-mov r1, r0 @ pUnit 
-mov lr, r5 @ function to run 
+
+ldr r3, =EndOfTurnCalcLoop 
+ldrb r2, [r4, #FuncCoun] 
+sub r2, #2 @ one we're currently on 
+lsl r2, #2 @ 4 bytes per 
+add r3, r2 
+ldr r3, [r3, #4] @ function that starts a child proc 
+mov lr, r3 
 mov r0, r4 @ proc to block 
 sub r0, #0x2C @ actual proc address instead of +0x2C offset 
 .short 0xf800 
@@ -414,15 +499,23 @@ push {r4, lr}
 mov r4, r0 
 add r4, #0x2c 
 ldr r0, [r4, #FirstFunc] 
+cmp r0, #0 
+beq DontExecuteFirstFunc
 mov lr, r0 
 ldr r1, [r4, #pUnit] 
 mov r0, r4 
 sub r0, #0x2c 
 .short 0xf800 @ execute this function with r0 = proc, r1 = pUnit 
 
-mov r0, #0 @ always yield for the first function 
+mov r0, #0 @ yield if a function was ran 
+str r0, [r4, #FirstFunc] @ don't execute this again 
+b Exit_ExecuteFirstFunc 
+DontExecuteFirstFunc:
+mov r0, #1 
+Exit_ExecuteFirstFunc:
 pop {r4} 
 pop {r1} 
+bx r1 
 .ltorg 
 
 
@@ -434,41 +527,87 @@ mov r4, r0 @ parent proc
 add r4, #0x2C @ counter 
 ldrb r2, [r4, #Destructor] @ destructor if phase is to be skipped over 
 cmp r2, #0 
-bne GotoBreakProcLoop 
+bne GotoBreakStartProcLoop 
 
 ldrb r0, [r4, #TryPhaseBool] @ skip start of this phase? 
 cmp r0, #0 
-beq GotoBreakProcLoop 
+beq GotoBreakStartProcLoop 
 
-MainCalcLoop_SkippedFunc: 
+NextStartOfTurnProcFunction: 
 mov r2, #FuncCoun 
 ldsb r1, [r4, r2] 
-
-add r1, #1 
+add r1, #2 
 strb r1, [r4, r2] 
+sub r1, #2 
 ldr r3, =StartOfTurnCalcLoop 
 lsl r1, #2 @ 4 bytes per entry 
-add r1, #4 @ effect 
-ldr r5, [r3, r1] 
-cmp r5, #0 
-beq GotoBreakProcLoop 
-sub r1, #4 @ usability 
 ldr r0, [r3, r1] 
-mov lr, r0 
+cmp r0, #0 
+beq GotoBreakStartProcLoop 
+
+
+StartOfTurnProcUnitLoop: 
+ldrb r0, [r4, #DeployByte] 
 ldrb r1, [r4, #EndOfDeployByte] 
+cmp r0, r1 
+bge NextStartOfTurnProcFunction 
+mov r1, #1 
+add r1, r0 
+strb r1, [r4, #DeployByte] 
+blh GetUnit 
+str r0, [r4, #pUnit] 
+bl IsUnitOnField 
+cmp r0, #0 
+beq StartOfTurnProcUnitLoop
+
+mov r2, #0 
+strb r2, [r4, #SkillBufferCounter] 
+
+ldr r0, [r4, #pUnit] 
+ldr r1, [r4, #SkillBuffer] 
+bl MakeSkillBuffer 
+
+StartOfTurnProc_SkillBufferLoop: 
+ldrb r1, [r4, #SkillBufferCounter] 
+add r1, #1 
+strb r1, [r4, #SkillBufferCounter] 
+ldr r3, [r4, #SkillBuffer] 
+ldrb r1, [r3, r1] @ skill we have 
+cmp r1, #0 
+beq StartOfTurnProcUnitLoop
+
+ldr r3, =StartOfTurnCalcLoop 
+mov r2, r6 @ function we're on 
+lsl r2, #2 @ 4 bytes per 
+add r3, r2 
+ldr r3, [r3] @ table of skills relevant to the current animation loop 
+lsl r1, #3 @ 8 bytes per entry 
+ldr r2, [r3, r1] @ usability 
+cmp r2, #0 
+beq StartOfTurnProc_SkillBufferLoop
+
+ldr r0, [r4, #pUnit] 
+mov lr, r2 @ function of usability 
 .short 0xf800 
 cmp r0, #0 
-beq MainCalcLoop_SkippedFunc
-b RunFunc 
+beq StartOfTurnProc_SkillBufferLoop
+@ returns pUnit in r0 
+b RunStartFunc 
 
-GotoBreakProcLoop: 
+GotoBreakStartProcLoop: 
 mov r0, r4 
+sub r0, #0x2c 
 blh ProcBreakLoop 
 b ExitLoop 
 
-RunFunc: 
-mov r1, r0 @ pUnit 
-mov lr, r5 @ function to run 
+RunStartFunc: 
+ldr r3, =StartOfTurnCalcLoop 
+ldrb r2, [r4, #FuncCoun] 
+sub r2, #2 @ one we're currently on 
+lsl r2, #2 @ 4 bytes per 
+add r3, r2 
+ldr r3, [r3, #4] @ function that starts a child proc 
+mov lr, r3 
 mov r0, r4 @ proc to block 
 sub r0, #0x2C @ actual proc address instead of +0x2C offset 
 .short 0xf800 
@@ -507,9 +646,30 @@ mov r4, r0 @ proc
 mov r1, r0 @ to block 
 ldr r0, =BuffAnimationSkillProc
 blh ProcStartBlocking 
-ldr r1, [r4, #0x34] @ phase 
-add r0, #0x40 
-str r1, [r0] @ phase ending   
+add r4, #0x2c 
+add r0, #0x2c 
+
+ldrb r1, [r4, #DeployByte] 
+strb r1, [r0, #DeployByte] 
+ldrb r1, [r4, #FuncCoun] 
+strb r1, [r0, #FuncCoun] 
+ldrb r1, [r4, #Destructor] 
+strb r1, [r0, #Destructor] 
+ldrb r1, [r4, #TryPhaseBool] 
+strb r1, [r0, #TryPhaseBool] 
+ldrb r1, [r4, #EndOfDeployByte] 
+strb r1, [r0, #EndOfDeployByte] 
+ldrb r1, [r4, #SkillBufferCounter] 
+strb r1, [r0, #SkillBufferCounter] 
+ldr r1, [r4, #SkillBuffer] 
+str r1, [r0, #SkillBuffer] 
+ldr r1, [r4, #pUnit] 
+str r1, [r0, #pUnit] 
+ldr r1, [r4, #FirstFunc] 
+str r1, [r0, #FirstFunc] 
+
+mov r1, #0 
+strb r1, [r0, #MidUnitLoopBool] 
 
 mov r0, #1 @ has blocking proc 
 pop {r4} 
@@ -523,19 +683,22 @@ bx r1
 BuffAnimationIdle: 
 push {r4, lr} 
 mov r4, r0 @ parent proc 
-ldr r0, [r4, #0x30] 
+add r4, #0x2c 
+ldrb r0, [r4, #Destructor] 
 cmp r0, #0 
 bne DestructBuffAnimation 
 bl FindMapAuraProc
 cmp r0, #0 
 bne ContinueIdleBuffAnimation 
 mov r0, r4 @ proc 
+sub r0, #0x2c 
 mov r1, #0 @ wait for rally anim 
 blh ProcGoto 
 @ProcGoto((Proc*)proc,1);
 b ContinueIdleBuffAnimation 
 DestructBuffAnimation: 
 mov r0, r4 @ proc 
+sub r0, #0x2c 
 mov r1, #1 @ label 
 blh ProcGoto 
 
@@ -621,11 +784,11 @@ BuffAnimationSkillLoop:
 push {r4-r7, lr} 
 mov r4, r0 @ proc 
 add r4, #0x2C 
-ldrb r7, [r4, #1] @ buffer ? 
+ldrb r7, [r4, #SkillBufferCounter] @ buffer ? 
 cmp r7, #0 
 beq UnitLoop 
-ldr r6, [r4, #8] @ buffer itself 
-ldrb r0, [r4] 
+ldr r6, [r4, #SkillBuffer] @ buffer itself 
+ldrb r0, [r4, #DeployByte] 
 blh GetUnit 
 mov r5, r0 @ unit 
 b BufferLoop @ we just came out of pausing for some animation 
@@ -633,9 +796,9 @@ b BufferLoop @ we just came out of pausing for some animation
 @ check for relevant skill(s) 
 @ run a function for the skill 
 UnitLoop: 
-ldrb r0, [r4] 
+ldrb r0, [r4, #DeployByte] 
 add r0, #1 
-ldrb r1, [r4, #2] 
+ldrb r1, [r4, #EndOfDeployByte] 
 cmp r0, r1 
 bge BreakLoop 
 strb r0, [r4] @ deployment id 
@@ -649,7 +812,7 @@ mov r0, r5 @ unit
 ldr r1, =gAttackerSkillBuffer
 bl MakeSkillBuffer @(Unit* unit, SkillBuffer* buffer)
 mov r6, r0 @ skill buffer 
-str r6, [r4, #8] @ buffer 
+str r6, [r4, #SkillBuffer] @ buffer 
 @ possibly need to remove duplicate skills here 
 @ /*00*/  u8 lastUnitChecked;
 @ /*01*/  u8 skills[11];
@@ -661,18 +824,24 @@ ldrb r0, [r6, r7]
 cmp r0, #0 @ should not have any gaps 
 beq GotoUnitLoop 
 ldr r3, =StartOfTurn_BuffSkillTable
-lsl r0, #2 @ 4 bytes per POIN 
+lsl r0, #3 @ 8 bytes per entry
 add r3, r0 
-ldr r0, [r3] @ specific entry 
+ldr r0, [r3] @ specific entry usability 
 cmp r0, #0 
 beq BufferLoop @ do nothing if not a function 
-strb r7, [r4, #1] @ we're in the buffer loop atm 
+push {r3} 
+mov lr, r0 
+mov r0, r5 @ unit 
+.short 0xf800 
+pop {r3} 
+cmp r0, #0 
+beq BufferLoop 
+ldr r0, [r3, #4] 
+strb r7, [r4, #SkillBufferCounter] @ we're in the buffer loop atm 
+str r5, [r4, #pUnit] @ unit 
 
-str r0, [r4, #12] @ function to run 
-str r5, [r4, #16] @ unit 
-@mov lr, r0 
-@mov r0, r5 @ unit 
-@.short 0xF800 @ execute the function 
+str r0, [r4, #FirstFunc] 
+
 mov r0, r4 
 sub r0, #0x2C 
 mov r1, #2 @ label to go to 
@@ -702,10 +871,11 @@ bx r0
 BuffExecuteFunc: 
 push {r4, lr} 
 mov r4, r0 @ proc 
-ldr r1, [r4, #0x38] @ function to run 
+add r4, #0x2c 
+ldr r1, [r4, #FirstFunc] @ function to run 
 cmp r1, #0 
 beq ExitExecuteFunc 
-ldr r0, [r4, #0x3C] @ unit 
+ldr r0, [r4, #pUnit] @ unit 
 mov lr, r1 
 .short 0xf800 
 ExitExecuteFunc: 
