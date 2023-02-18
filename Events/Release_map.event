@@ -41,6 +41,9 @@ END_MAIN
 
 SethHp:
 ASMC SethLowHp
+CAM1 [9,28]
+BuffAnim(Eirika, 1, 0) // UnitID, RallyBit, Range (0 = user) 
+BuffAnim(Ephraim, 2) // UnitID, RallyBit, Range (0 = user) 
 NoFade 
 ENDA 
 

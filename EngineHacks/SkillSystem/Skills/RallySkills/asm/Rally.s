@@ -9,7 +9,34 @@
 	@ requires MapAuraFx functions to be visible
 
 	RALLY_EFFECT_RANGE = 2
-	
+
+.global BuffAnim_ASMC
+.type BuffAnim_ASMC, %function 
+BuffAnim_ASMC:
+push {r4-r5, lr} 
+ldr r4, =MemorySlot 
+ldr r0, [r4, #4*1] @ s1 as unit 
+blh GetUnitByEventParameter 
+mov r5, r0 
+bl IsUnitOnField 
+cmp r0, #0 
+beq Break_ASMC
+mov r0, r5 @ unit 
+mov r1, #1 
+ldr r3, [r4, #4*3] @ s3 as rally bit 
+lsl r2, r1, #9 @ 0x200 
+lsl r1, r3 @ 0x01 - 0x100 
+cmp r1, r2 
+bge Break_ASMC 
+ldr r2, [r4, #4*4] @ s4 as range (0 = self) 
+bl StartBuffFx
+
+Break_ASMC: 
+pop {r4-r5} 
+pop {r0} 
+bx r0 
+.ltorg 
+
 .equ MemorySlot, 0x30004B8
 .equ GetUnitByEventParameter, 0x0800BC50
 	GetUnit = 0x08019430|1
