@@ -10,7 +10,11 @@
 .equ ProcStartBlocking, 0x8002CE0 
 .equ ProcGoto, 0x8002F24 
 .equ GetUnit, 0x8019430
-
+.equ HasConvoyAccess, 0x803161c 
+.equ ConvoySize, 0x80315bc 
+.equ ConvoyPointer, 0x80315b4 
+.equ GetItemAfterUse, 0x8016aec
+.equ RemoveUnitBlankItems, 0x8017984 
 
 .equ DeployByte, 			0  @ 0x2c 
 .equ FuncCoun, 				1  @ 0x2d 
@@ -81,19 +85,103 @@ Exit_CanUnitHeal:
 bx lr 
 .ltorg 
 
+FindItemInInv:
+@ r0 = unit 
+@ r1 = item ID 
+mov r2, #0x1C @ inv - 2
+InvLoop: 
+add r2, #2 
+cmp r2, #0x28 @ wexp start 
+bge BreakInvLoop2 
+ldrh r3, [r0, r2] 
+cmp r3, #0 
+beq BreakInvLoop2 
+lsl r3, #24 
+lsr r3, #24 @ item id only 
+and r1, r0 @ item ID 
+cmp r1, r6 
+bne InvLoop 
+mov r0, r2 @ unit offset 
+b ExitFindItemInInv
+
+BreakInvLoop2: 
+mov r0, #0 @ no item 
+
+ExitFindItemInInv: 
+bx lr 
+.ltorg 
+
+
+FindItemInConvoy: 
+@ r0 = item ID 
+ldr  r3, =ConvoySize 	
+ldrb r3, [r3] @normally 0x63
+ldr  r2, =ConvoyPointer	
+ldr  r2, [r2]
+lsl  r3, #0x01            @end = size*2 + convoy
+add  r3, r2
+ConvoyLoop: 
+add r2, #2 
+cmp r2, r3 
+bgt NoItemFoundInConvoy 
+ldrb r1, [r2] 
+cmp r1, r0 
+bne ConvoyLoop 
+ldr r0, =ConvoyPointer @pointer to convoy	
+ldr r0, [r0] 
+sub r2, r0 @ offset 
+mov r0, r2 
+b ExitFoundInConvoy
+
+
+NoItemFoundInConvoy: 
+mov r0, #0 
+sub r0, #1 
+ExitFoundInConvoy: 
+bx lr 
+.ltorg 
+
+
+
 
 .global HoardersBane_CanUnitHeal 
 .type HoardersBane_CanUnitHeal, %function 
 HoardersBane_CanUnitHeal: 
-push {r4-r5, lr} 
+push {r4-r6, lr} 
 @ given r0 = valid unit with the skill 
 @ check if they meet any other requirements (eg. have vulneraries in supply & aren't at full hp) 
 
+mov r4, r0 @ unit 
+ldr r5, =VulneraryItemID_Link 
+ldr r5, [r5] 
+mov r1, r5 
+bl FindItemInInv 
+cmp r0, #0 
+bne HoardersBaneUsability_True
+
+BreakInvLoop: 
+mov r0, r4 @ unit 
+blh HasConvoyAccess 
+cmp r0, #0 
+beq HoardersBaneUsability_False 
+@ search convoy for vulnerary 
+mov r0, r5 @ vuln item ID 
+bl FindItemInConvoy
+mov r1, #0 
+sub r1, #1 
+cmp r0, r1
+bne HoardersBaneUsability_True
+
+HoardersBaneUsability_False:
+mov r0, #0 
+b HoardersBaneUsability_Exit
+
+HoardersBaneUsability_True:
 mov r0, #1 
 
+HoardersBaneUsability_Exit: 
 
-
-pop {r4-r5} 
+pop {r4-r6} 
 pop {r1} 
 bx r1 
 .ltorg 
@@ -193,9 +281,63 @@ bx r1
 .global HoardersBane_HealAmount
 .type HoardersBane_HealAmount, %function 
 HoardersBane_HealAmount: 
+push {r4-r6, lr} 
+@ remove 1 use of vulnerary, wherever it may be 
+mov r4, r0 @ unit id 
+ldr r5, =VulneraryItemID_Link 
+ldr r5, [r5] 
+mov r1, r5 
+bl FindItemInInv 
+cmp r0, #0 
+beq TrySupply 
+mov r6, r0 @ item offset 
+ldrh r0, [r4, r6] 
+blh GetItemAfterUse 
+strh r0, [r4, r6] 
+cmp r0, #0 
+bne NoPack 
+mov r0, r4 
+blh RemoveUnitBlankItems 
+NoPack: 
+b Exit_HoardersBane_HealAmount 
+TrySupply: 
+mov r0, r5 @ vuln 
+bl FindItemInConvoy @ returns offset in convoy if found, 0xFFFFFFFF otherwise 
+mov r1, #0 
+sub r1, #1 
+cmp r0, r1
+beq Exit_HoardersBane_HealAmount 
+mov r6, r0 
+ldr r5, =ConvoyPointer 
+ldr r5, [r5] 
+ldrh r0, [r5, r6] 
+blh GetItemAfterUse 
+strh r0, [r5, r6] 
+cmp r0, #0 
+bne NoPackSupply 
+
+ldr r4, =ConvoySize 
+ldrb r4, [r4] 
+lsl r4, #1 @ 2 bytes per entry 
+add r4, r5 @ end of convoy 
+add r5, r6 @ where to start 
+PackSupplyLoop: 
+
+ldrh r0, [r5, #2]
+strh r0, [r5] 
+add r5, #2  
+cmp r5, r4 
+bgt NoPackSupply 
+b PackSupplyLoop 
+NoPackSupply: 
+
+Exit_HoardersBane_HealAmount: 
+@ this is the only part the parent calls about 
 ldr r0, =VulneraryHealAmount 
 ldrb r0, [r0] 
-bx lr 
+pop {r4-r6}
+pop {r1} 
+bx r1 
 .ltorg 
 
 .global ExecuteFirstUnitHeal 

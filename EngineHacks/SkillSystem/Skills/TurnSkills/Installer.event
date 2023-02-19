@@ -9,6 +9,9 @@ WORD RallyChaosID
 HoardersBaneID_Link: 
 WORD HoardersBaneID 
 
+VulneraryItemID_Link:
+WORD Vulnerary 
+
 ALIGN 4 
 HoardersBaneHealEvent: 
 CALL UseVulneraryEvent
