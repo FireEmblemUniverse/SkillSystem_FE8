@@ -65,6 +65,10 @@ mov 	r0, r6
 cmp 	r0, #0x0
 beq PromoClassListCheck 	@skip this check
 bl 	Item_GetStat_EPV_Jump
+cmp 	r0,#0
+bne SkipDefaultPromoLevel
+mov		r0,#10
+SkipDefaultPromoLevel:
 mov 	r1, #0x8
 ldsb 	r1, [r7,r1]
 cmp 	r1, r0

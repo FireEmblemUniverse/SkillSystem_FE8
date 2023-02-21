@@ -1,5 +1,5 @@
 .thumb
-.include "_Definitions.h.s"
+.include "Definitions.h.s"
 
 .set prUnitPushAnim_New,         EALiterals+0x00
 .set prPushAnim_BeginTargetPush, EALiterals+0x04
@@ -46,6 +46,34 @@ PushAction:
 	ldr r3, prUnitPushAnim_New
 	_blr r3
 	
+	@ Decrement Sleep If Applicable
+	mov r0, r4
+	add r0, #0x0D @ Target unit
+	ldrb r0, [r0]
+	
+	ldr r3, =prUnit_GetStruct
+	_blr r3
+	
+	mov r3, r0
+	add r3, #0x30
+	ldrb r0, [r3] @ Status
+	mov r1, #0xF 
+	and r1, r0 @isolate status ID
+	cmp r1, #2 @Sleep
+	bne SkipDecrement
+	lsr r1, r0, #4 @isolate status duration
+	sub r1, #1 @subtract 1
+	cmp r1, #0
+	bne SkipClearStatus
+	mov r0, #0
+	SkipClearStatus:
+	lsl r1, #4
+	mov r2, #0xF
+	and r0, r2
+	orr r0, r1
+	strb r0, [r3]
+	
+	SkipDecrement:
 	@ Setting future call to animate push
 	
 	ldr r0, prPushAnim_BeginTargetPush
