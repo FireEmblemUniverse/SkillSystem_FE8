@@ -1,6 +1,8 @@
-#include "UseItemEffect/Installer.event" 
 #include "dmp/RallyChaos.lyn.event" 
 #include "dmp/HoardersBane.lyn.event" 
+WORD HOARDERS_BANE_USE_CONVOY 
+#include "dmp/DarkBargain.lyn.event" 
+#include "dmp/SoulSap.lyn.event" 
 
 ALIGN 4 
 RallyChaosID_Link: 
@@ -12,11 +14,6 @@ WORD HoardersBaneID
 VulneraryItemID_Link:
 WORD Vulnerary 
 
-ALIGN 4 
-HoardersBaneHealEvent: 
-CALL UseVulneraryEvent
-NoFade 
-ENDA 
 
 
 

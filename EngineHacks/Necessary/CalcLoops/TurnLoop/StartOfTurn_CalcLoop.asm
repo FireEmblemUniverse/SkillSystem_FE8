@@ -24,7 +24,7 @@
 .equ GetPhaseAbleUnitCount, 0x8024CEC 
 .equ gCameraProc, 0x859A548 
 .equ ShouldMoveCamPos, 0x8015E9C 
-
+.equ ConvoyPointer, 0x80315b4 
 
 .equ DeployByte, 			0  @ 0x2c 
 .equ FuncCoun, 				1  @ 0x2d 
@@ -42,11 +42,23 @@
 .type SethLowHp, %function 
 SethLowHp:
 push {lr} 
-
+@ this function is for testing purposes and is not normally called 
 mov r0, #3
 blh GetUnit
-mov r1, #5 
+mov r1, #5
 strb r1, [r0, #0x13] @ seth hp 
+
+mov r1, #21
+strb r1, [r0, #9] @ exp 
+
+ldr r3, =ConvoyPointer 
+ldr r3, [r3] 
+mov r1, #0x6C 
+mov r2, #0x1 
+lsl r2, #8 
+orr r1, r2 @ vuln 
+strh r1, [r3] 
+
 pop {r0} 
 bx r0 
 .ltorg 

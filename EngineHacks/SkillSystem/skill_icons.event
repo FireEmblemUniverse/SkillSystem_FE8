@@ -1029,6 +1029,10 @@ ORG SkillIcon(RallyChaosID)
 #incbin "SkillIcons/RallyChaos.dmp"
 ORG SkillIcon(HoardersBaneID)
 #incbin "SkillIcons/HoardersBane.dmp"
+ORG SkillIcon(DarkBargainID)
+#incbin "SkillIcons/DarkBargain.dmp"
+ORG SkillIcon(SoulSapID)
+#incbin "SkillIcons/SoulSap.dmp"
 
 
 

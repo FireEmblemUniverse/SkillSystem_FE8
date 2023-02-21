@@ -131,32 +131,31 @@
 
 
 
-//Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
-// Author: Vesly 
-#define GutsID 80
-//Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
-// Author: Vesly 
-#define StrongConstitutionID 255
-// Shrewd Potential: Stat boosters provide +1 more than usual. 
-// Author: Vesly 
-#define ShrewdPotentialID 82 
+
+
 
 
 	// Turn Skills \\ 
 // Rally Chaos: At the start of your turn, perform a random rally. 
 // Author: Vesly 
-#define RallyChaosID 79
+#define RallyChaosID 255
 
 //Hoarder's Bane: At the end of your turn, consume a vulnerary from the supply if below full health.
 // Author: Vesly 
-#define HoardersBaneID 83
+#define HoardersBaneID 255
+
+// Dark Bargain: At the end of your turn, sacrifice extra exp to heal by that much.
+// Author: Vesly 
+#define DarkBargainID 255
+
+#define SoulSapID 255
 
 
 	// Buff Skills \\ 
 
 //Eternal Vanity: Your buffed stats do not deplete each turn. 
 // Author: Vesly 
-#define EternalVanityID 84
+#define EternalVanityID 255
 
 // _ Taker: After attacking and defeating an enemy, gain +4 _. (Max +10) 
 // Author: Vesly 
@@ -172,7 +171,7 @@
 // Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
 // Author: Vesly 
 #define HoneMagID  255 
-#define HoneStrID  81
+#define HoneStrID  255
 #define HoneSklID  255 
 #define HoneSpdID  255 
 #define HoneDefID  255 
@@ -212,22 +211,13 @@
 #define SturdyInitID 255 // Def 
 #define CalmInitID 255 // Res 
 #define NimbleInitID 255 // Mov 
-#define SpectrumInitID 85 // All stats  
+#define SpectrumInitID 255 // All stats  
 
 
 //Debuff Skills
 
 //Seal Skills: Debuff opponent's stat by 6 after combat. (Recover 1/turn)
 //Author Unknown (Initial Commit)
-#define SealStrID 255
-#define SealSklID 255
-#define SealSpdID 255
-#define SealLukID 255
-#define SealDefID 255
-#define SealResID 255
-//By Snakey1
-#define SealMagID 255
-
 //#define SealStrID 79
 //#define SealSklID 81
 //#define SealSpdID 82
@@ -941,6 +931,13 @@
 #define LullResID 255
 #define LullSpectrumID 155
 
+//Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
+// Author: Vesly 
+#define GutsID 255
+//Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
+// Author: Vesly 
+#define StrongConstitutionID 255
+
 
 //Unit Menu Skills
 
@@ -1141,6 +1138,10 @@
 
 //Triangle Attack: Allows this unit to perform a triangle attack with 2 other units who have this skill.
 #define TriangleAttackID 6
+
+// Shrewd Potential: Stat boosters provide +1 more than usual. 
+// Author: Vesly 
+#define ShrewdPotentialID 255
 
 
 //Biorhythm Skills: Double or halve biorhythm effects.

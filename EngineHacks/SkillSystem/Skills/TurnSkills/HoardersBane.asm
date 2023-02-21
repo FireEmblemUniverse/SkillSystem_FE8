@@ -98,8 +98,7 @@ cmp r3, #0
 beq BreakInvLoop2 
 lsl r3, #24 
 lsr r3, #24 @ item id only 
-and r1, r0 @ item ID 
-cmp r1, r6 
+cmp r1, r3
 bne InvLoop 
 mov r0, r2 @ unit offset 
 b ExitFindItemInInv
@@ -120,10 +119,11 @@ ldr  r2, =ConvoyPointer
 ldr  r2, [r2]
 lsl  r3, #0x01            @end = size*2 + convoy
 add  r3, r2
+sub r2, #2 
 ConvoyLoop: 
 add r2, #2 
 cmp r2, r3 
-bgt NoItemFoundInConvoy 
+bge NoItemFoundInConvoy 
 ldrb r1, [r2] 
 cmp r1, r0 
 bne ConvoyLoop 
@@ -160,6 +160,11 @@ cmp r0, #0
 bne HoardersBaneUsability_True
 
 BreakInvLoop: 
+
+ldr r3, HoardersBane_UseConvoyLink 
+cmp r3, #0 
+beq HoardersBaneUsability_False
+
 mov r0, r4 @ unit 
 blh HasConvoyAccess 
 cmp r0, #0 
@@ -187,6 +192,67 @@ bx r1
 .ltorg 
 
 
+.global HoardersBane_HealAmount
+.type HoardersBane_HealAmount, %function 
+HoardersBane_HealAmount: 
+push {r4-r6, lr} 
+@ remove 1 use of vulnerary, wherever it may be 
+mov r4, r0 @ unit id 
+ldr r5, =VulneraryItemID_Link 
+ldr r5, [r5] 
+mov r1, r5 
+bl FindItemInInv 
+cmp r0, #0 
+beq TrySupply 
+mov r6, r0 @ item offset 
+ldrh r0, [r4, r6] 
+blh GetItemAfterUse 
+strh r0, [r4, r6] 
+cmp r0, #0 
+bne NoPack 
+mov r0, r4 
+blh RemoveUnitBlankItems 
+NoPack: 
+b Exit_HoardersBane_HealAmount 
+TrySupply: 
+mov r0, r5 @ vuln 
+bl FindItemInConvoy @ returns offset in convoy if found, 0xFFFFFFFF otherwise 
+mov r1, #0 
+sub r1, #1 
+cmp r0, r1
+beq Exit_HoardersBane_HealAmount 
+mov r6, r0 
+ldr r5, =ConvoyPointer 
+ldr r5, [r5] 
+ldrh r0, [r5, r6] 
+blh GetItemAfterUse 
+strh r0, [r5, r6] 
+cmp r0, #0 
+bne NoPackSupply 
+
+ldr r4, =ConvoySize 
+ldrb r4, [r4] 
+lsl r4, #1 @ 2 bytes per entry 
+add r4, r5 @ end of convoy 
+add r5, r6 @ where to start 
+PackSupplyLoop: 
+
+ldrh r0, [r5, #2]
+strh r0, [r5] 
+add r5, #2  
+cmp r5, r4 
+bge NoPackSupply 
+b PackSupplyLoop 
+NoPackSupply: 
+
+Exit_HoardersBane_HealAmount: 
+@ this is the only part the parent cares about 
+ldr r0, =VulneraryHealAmount 
+ldrb r0, [r0] 
+pop {r4-r6}
+pop {r1} 
+bx r1 
+.ltorg 
 
 .global EndOfTurn_HealLoop_FindNextValidUnit
 .type EndOfTurn_HealLoop_FindNextValidUnit, %function 
@@ -197,6 +263,7 @@ push {r4-r7, lr}
 @ find the next unit meeting the criteria 
 
 mov r4, r0 @ deployment byte 
+
 @ r5 = unit 
 mov r6, r1 @ where to stop 
 
@@ -205,6 +272,7 @@ mov r7, r2 @ proc + 0x2c
 UnitLoop: 
 mov r5, #0 
 strb r5, [r7, #healAmount] 
+strb r5, [r7, #SkillBufferCounter] 
 mov r0, r4 @ deployment byte 
 add r4, #1 
 cmp r0, r6
@@ -278,67 +346,6 @@ pop {r1}
 bx r1
 .ltorg 
 
-.global HoardersBane_HealAmount
-.type HoardersBane_HealAmount, %function 
-HoardersBane_HealAmount: 
-push {r4-r6, lr} 
-@ remove 1 use of vulnerary, wherever it may be 
-mov r4, r0 @ unit id 
-ldr r5, =VulneraryItemID_Link 
-ldr r5, [r5] 
-mov r1, r5 
-bl FindItemInInv 
-cmp r0, #0 
-beq TrySupply 
-mov r6, r0 @ item offset 
-ldrh r0, [r4, r6] 
-blh GetItemAfterUse 
-strh r0, [r4, r6] 
-cmp r0, #0 
-bne NoPack 
-mov r0, r4 
-blh RemoveUnitBlankItems 
-NoPack: 
-b Exit_HoardersBane_HealAmount 
-TrySupply: 
-mov r0, r5 @ vuln 
-bl FindItemInConvoy @ returns offset in convoy if found, 0xFFFFFFFF otherwise 
-mov r1, #0 
-sub r1, #1 
-cmp r0, r1
-beq Exit_HoardersBane_HealAmount 
-mov r6, r0 
-ldr r5, =ConvoyPointer 
-ldr r5, [r5] 
-ldrh r0, [r5, r6] 
-blh GetItemAfterUse 
-strh r0, [r5, r6] 
-cmp r0, #0 
-bne NoPackSupply 
-
-ldr r4, =ConvoySize 
-ldrb r4, [r4] 
-lsl r4, #1 @ 2 bytes per entry 
-add r4, r5 @ end of convoy 
-add r5, r6 @ where to start 
-PackSupplyLoop: 
-
-ldrh r0, [r5, #2]
-strh r0, [r5] 
-add r5, #2  
-cmp r5, r4 
-bgt NoPackSupply 
-b PackSupplyLoop 
-NoPackSupply: 
-
-Exit_HoardersBane_HealAmount: 
-@ this is the only part the parent calls about 
-ldr r0, =VulneraryHealAmount 
-ldrb r0, [r0] 
-pop {r4-r6}
-pop {r1} 
-bx r1 
-.ltorg 
 
 .global ExecuteFirstUnitHeal 
 .type ExecuteFirstUnitHeal, %function 
@@ -390,6 +397,9 @@ sub r0, r1
 mov r1, r5 @ unit 
 ldrb r2, [r4, #healAmount] 
 bl HealAnim @ starts a blocking proc 
+ldrb r0, [r4, #DeployByte] 
+add r0, #1 
+strb r0, [r4, #DeployByte] 
 b HoardersBane_True 
 
 
@@ -569,3 +579,4 @@ pop {r0}
 bx r0
 
 .ltorg 
+HoardersBane_UseConvoyLink: 

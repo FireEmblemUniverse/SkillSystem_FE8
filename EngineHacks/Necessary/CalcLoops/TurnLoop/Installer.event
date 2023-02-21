@@ -96,6 +96,8 @@ FILL(256*8)
 
 #define EndOfTurnHealFunctionEntry(skillID, usability, effect) "PUSH; ORG EndOfTurn_HealSkillTable+(skillID*8); POIN usability|1 effect|1; POP" 
 EndOfTurnHealFunctionEntry(HoardersBaneID, HoardersBane_CanUnitHeal, HoardersBane_HealAmount) 
+EndOfTurnHealFunctionEntry(DarkBargainID, DarkBargain_CanUnitHeal, DarkBargain_HealAmount) 
+EndOfTurnHealFunctionEntry(SoulSapID, SoulSap_CanUnitHeal, SoulSap_HealAmount) 
 
 
 // Executes a function where the unit has already been deemed to be on the field with the relevant skill 

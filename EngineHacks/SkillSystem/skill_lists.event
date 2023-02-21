@@ -1,13 +1,5 @@
 
 ALIGN 4 
-SethSkillList:
-//BYTE 21 EternalVanityID
-BYTE 21 SpectrumInitID
-BYTE 21 HoneStrID
-BYTE 21 RallyChaosID
-BYTE 21 HoardersBaneID
-BYTE 00 00 
-ALIGN 4 
 
 EphraimLordSkillList:
 BYTE 00 00
