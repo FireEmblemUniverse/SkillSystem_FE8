@@ -1,0 +1,53 @@
+#include "dmp/RallyChaos.lyn.event" 
+#include "dmp/HoardersBane.lyn.event" 
+WORD HOARDERS_BANE_USE_CONVOY 
+#include "dmp/DarkBargain.lyn.event" 
+#include "dmp/SoulSap.lyn.event" 
+
+ALIGN 4 
+RallyChaosID_Link: 
+WORD RallyChaosID 
+
+HoardersBaneID_Link: 
+WORD HoardersBaneID 
+
+VulneraryItemID_Link:
+WORD Vulnerary 
+
+
+
+
+ALIGN 4 
+EndOfTurnHealLoopProc:
+PROC_SET_NAME(EndOfTurnHealLoopName)
+PROC_YIELD // Buffer 
+//PROC_CALL_ROUTINE_2(HoardersBane_ExecuteFirstUnitHeal)
+PROC_LABEL(0) 
+PROC_CALL_ROUTINE_2(EndOfTurn_HealLoop_IterateLoop) // Yield for a frame if returns 0; this is required for blocking children 
+//PROC_CALL_BLOCKING_CHILD(WaitForVulneraryEndProc)
+PROC_GOTO(0)
+PROC_LABEL(1)
+PROC_CALL_ROUTINE(EndOfTurn_HealLoop_End) // tell the parent we've finished this function 
+PROC_END
+
+
+ALIGN 4
+WaitForVulneraryEndProc:	//HINT=PROCS
+PROC_SET_NAME(WaitForVulneraryEndName)
+PROC_YIELD // Buffer 
+PROC_CALL_ROUTINE(Buff_EnsureCamera)
+PROC_LOOP_ROUTINE(BuffWaitForCamera)
+PROC_LOOP_ROUTINE(WaitForVulneraryEnd)
+PROC_END
+
+ALIGN 4
+EndOfTurnHealLoopName:
+String(EndOfTurnHealLoop);	BYTE 0x0
+
+ALIGN 4
+WaitForVulneraryEndName:
+String(WaitForVulneraryEnd);	BYTE 0x0
+
+
+
+

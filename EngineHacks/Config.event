@@ -316,6 +316,10 @@
 //	This list can be edited, and is located in
 //	SkillSystem/Skills/WeaponUsabilitySkills/WeaponUsabilitySkills.event.
 
+// If true, Hoarders Bane will consume vulneraries from your inventory and the supply (as long as your party can access the supply). 
+// If false, it will only consume vulneraries from your inventory. 
+#define HOARDERS_BANE_USE_CONVOY True
+
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =
