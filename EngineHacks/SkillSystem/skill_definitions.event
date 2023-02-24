@@ -218,14 +218,14 @@
 
 //Seal Skills: Debuff opponent's stat by 6 after combat. (Recover 1/turn)
 //Author Unknown (Initial Commit)
-//#define SealStrID 79
-//#define SealSklID 81
-//#define SealSpdID 82
-//#define SealLukID 85
-//#define SealDefID 83
-//#define SealResID 84
+#define SealStrID 79
+#define SealSklID 81
+#define SealSpdID 82
+#define SealLukID 85
+#define SealDefID 83
+#define SealResID 84
 ////By Snakey1
-//#define SealMagID 80
+#define SealMagID 80
 
 //Full Metal Body: This unit is immune to all the Seal skills.
 //By Leonarth
