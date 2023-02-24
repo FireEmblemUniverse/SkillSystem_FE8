@@ -129,13 +129,8 @@
 #define ArmorBoostID ArmorboostID //Alias\
 
 
+// Turn Skills
 
-
-
-
-
-
-	// Turn Skills \\ 
 // Rally Chaos: At the start of your turn, perform a random rally. 
 // Author: Vesly 
 #define RallyChaosID 255
@@ -151,7 +146,7 @@
 #define SoulSapID 255
 
 
-	// Buff Skills \\ 
+// Buff Skills
 
 //Eternal Vanity: Your buffed stats do not deplete each turn. 
 // Author: Vesly 
