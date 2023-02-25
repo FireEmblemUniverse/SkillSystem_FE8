@@ -369,6 +369,26 @@ WORD HeavyBladeID
 
 #include "ElementBoost/ElementBoost.event"
 
+#include "AirRaid/AirRaidSkills.event"
+
+ALIGN 4
+ChaosStyle:
+#incbin "ChaosStyle/ChaosStyle.dmp"
+POIN SkillTester
+WORD ChaosStyleID
+
+ALIGN 4
+Dragonskin:
+#incbin "Dragonskin/DragonSkin.dmp"
+POIN SkillTester
+WORD DragonSkinID
+
+ALIGN 4
+StunningSmile:
+#incbin "StunningSmile/StunningSmile.dmp"
+POIN SkillTester
+WORD StunningSmileID
+
 #ifdef MODULAR_PRE_BATTLE_SKILLS
 	ALIGN 4
 	#include "ModularPreBattleSkills/ModularPreBattleSkill.event"

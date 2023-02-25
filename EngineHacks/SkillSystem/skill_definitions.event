@@ -693,6 +693,29 @@
 //By Mikey Seregon
 #define WaterBoostID 255
 
+//Air Raid: Grants +5 or +15 on a stat when on a tile enemy cannot enter
+//By Jopettajah
+#define AirRaidAtkID 255
+#define AirRaidSpdID 255
+#define AirRaidDefID 255
+#define AirRaidCriID 255
+#define AirRaidHitID 255
+#define AirRaidAvoID 255
+#define AirRaidResID 255
+
+//Chaos Style: AS +3 during combat with a physical weapon against a foe armed with magic or vice versa.
+//By Jopettajah
+#define ChaosStyleID 255
+
+//Dragonskin: Halve damage taken
+//By Jopettajah
+#define DragonSkinID 255
+#define DragonskinID DragonSkinID //Alias
+
+//Stunning Smile: If foe is male, inflicts Avo-20 on that foe during combat.
+//By Jopettajah
+#define StunningSmileID 255
+
 
 //Proc Skills
 
