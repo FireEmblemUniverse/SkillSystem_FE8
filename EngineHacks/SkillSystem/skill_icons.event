@@ -164,6 +164,9 @@ ORG SkillIcon(MaleficAuraID)
 ORG SkillIcon(InspirationID)
 #incbin "SkillIcons/Inspiration.dmp"
 
+ORG SkillIcon(DivinelyInspiringID)
+#incbin "SkillIcons/DivinelyInspiring.dmp"
+
 ORG SkillIcon(CharmID)
 #incbin "SkillIcons/Charm.dmp"
 
