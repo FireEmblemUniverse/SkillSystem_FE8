@@ -73,7 +73,7 @@
 
 //Divinely Inspiring: Adjacent allies deal +3 damage and receive -1 damage.
 //By Dragz
-#define DivinelyInspiringID 206
+#define DivinelyInspiringID 255
 
 //Intimidate: -10 Avoid to all enemies within 2 tiles.
 //Author Unknown (Initial Commit)
@@ -81,7 +81,7 @@
 
 //Lily's Poise: Adjacent allies gain +1/-3 damage dealt/received.
 //Author Unknown (Initial Commit)
-#define LilysPoiseID 255
+#define LilysPoiseID 206
 
 //Malefic Aura: Enemies within 2 tiles receive +2 magic damage.
 //Author Unknown (Initial Commit)
