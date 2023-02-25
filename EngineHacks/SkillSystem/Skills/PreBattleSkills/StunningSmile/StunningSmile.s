@@ -38,7 +38,7 @@ bne End @skip if female
 mov r0, r4
 add r0,#0x60	@attacker hit
 ldrh r3,[r0]
-add r3,#15		@add +20 hit
+add r3,#20		@add +20 hit
 strh r3,[r0]
 
 End:
