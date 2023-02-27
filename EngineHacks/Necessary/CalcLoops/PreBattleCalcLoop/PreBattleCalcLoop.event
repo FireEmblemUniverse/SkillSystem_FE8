@@ -34,14 +34,15 @@ POIN DefendingCheck
 POIN Wrath SpurStr SpurMag SpurSpd SpurDef SpurRes
 POIN DriveStr DriveMag DriveSpd DriveDef DriveRes
 POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
-POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex Loyalty Infiltrator
+POIN Demoiselle Gentilhomme MaleficAura Intimidate Tantivy Focus Inspiration DivinelyInspiring Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex Loyalty Infiltrator
 POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant AssassinateDamageBonus ArcaneBlade
-POIN Daunt BloodTide WhitePool NightTide Insight Prescience Vigilance DefiantAvo DefiantCrit TowerShield ShortShield IndoorFighter OutdoorFighter Deadeye Fortune
+POIN Daunt BloodTide WhitePool NightTide Insight Prescience Vigilance DefiantAvo DefiantCrit TowerShield ShortShield IndoorFighter OutdoorFighter Deadeye Fortune ChaosStyle StunningSmile
 POIN BlueFlame BlueFlameAura DoubleLion Cultured Thighdeology Thotslayer KeepUp Armorboost Horseguard Skyguard ForeignPrincess ChargePlus
 POIN Frenzy // This was moved here because Str/Mag Split conflict, and... I'm not sure why it wouldn't be here in the first place.
 POIN UpWithArch
 POIN AxefaithHit
 POIN StancesASM
+POIN AirRaidSkillCheck
 #ifdef ENABLE_GBA_LETHALITY
 POIN LethalitySkill Bane
 #else
@@ -55,9 +56,10 @@ POIN LethalitySkill NonGBALethalitySkill Bane
 
 //quick riposte goes after everything that might touch AS
 POIN QuickRiposte
-
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
+// Dragonskin goes after anything effecting atk or def
+POIN Dragonskin
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT
@@ -71,10 +73,13 @@ ALIGN 4
 AuraSkillTable:
 FILL 0xFF
 
+AuraSkillEntry(CantoID)
+AuraSkillEntry(CantoPlusID)
 AuraSkillEntry(CharmID)
 AuraSkillEntry(DemoiselleID)
 AuraSkillEntry(GentilhommeID)
 AuraSkillEntry(InspirationID)
+AuraSkillEntry(DivinelyInspiringID)
 AuraSkillEntry(LilysPoiseID)
 AuraSkillEntry(SpurStrID)
 AuraSkillEntry(SpurMagID)

@@ -1,0 +1,507 @@
+
+ALIGN 4 
+healing_Anim: 
+BYTE 5 0; SHORT 0; POIN Healing0000_Data Healing0000_pal 
+BYTE 5 0; SHORT 0; POIN Healing0001_Data Healing0001_pal 
+BYTE 5 0; SHORT 0; POIN Healing0002_Data Healing0002_pal 
+BYTE 5 0; SHORT 0; POIN Healing0003_Data Healing0003_pal 
+BYTE 5 0; SHORT 0; POIN Healing0004_Data Healing0004_pal 
+BYTE 5 0; SHORT 0; POIN Healing0005_Data Healing0005_pal 
+BYTE 5 0; SHORT 0; POIN Healing0006_Data Healing0006_pal 
+BYTE 5 0; SHORT 0; POIN Healing0007_Data Healing0007_pal 
+WORD 0 0 0 
+
+ALIGN 4 
+Healing0000_Data: 
+#incbin "dmp/Healing0000.dmp" 
+ 
+ALIGN 4 
+Healing0000_pal: 
+#incbin "dmp/Healing0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0001_Data: 
+#incbin "dmp/Healing0001.dmp" 
+ 
+ALIGN 4 
+Healing0001_pal: 
+#incbin "dmp/Healing0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0002_Data: 
+#incbin "dmp/Healing0002.dmp" 
+ 
+ALIGN 4 
+Healing0002_pal: 
+#incbin "dmp/Healing0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0003_Data: 
+#incbin "dmp/Healing0003.dmp" 
+ 
+ALIGN 4 
+Healing0003_pal: 
+#incbin "dmp/Healing0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0004_Data: 
+#incbin "dmp/Healing0004.dmp" 
+ 
+ALIGN 4 
+Healing0004_pal: 
+#incbin "dmp/Healing0004_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0005_Data: 
+#incbin "dmp/Healing0005.dmp" 
+ 
+ALIGN 4 
+Healing0005_pal: 
+#incbin "dmp/Healing0005_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0006_Data: 
+#incbin "dmp/Healing0006.dmp" 
+ 
+ALIGN 4 
+Healing0006_pal: 
+#incbin "dmp/Healing0006_pal.dmp" 
+ 
+ 
+ALIGN 4 
+Healing0007_Data: 
+#incbin "dmp/Healing0007.dmp" 
+ 
+ALIGN 4 
+Healing0007_pal: 
+#incbin "dmp/Healing0007_pal.dmp" 
+
+
+
+
+ALIGN 4 
+fire_plume_Anim: 
+BYTE 8 0; SHORT 0; POIN fire_plume0000_Data fire_plume0000_pal 
+BYTE 8 0; SHORT 0; POIN fire_plume0001_Data fire_plume0001_pal 
+BYTE 8 0; SHORT 0; POIN fire_plume0002_Data fire_plume0002_pal 
+BYTE 8 0; SHORT 0; POIN fire_plume0003_Data fire_plume0003_pal 
+BYTE 8 0; SHORT 0; POIN fire_plume0004_Data fire_plume0004_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+fire_plume0000_Data: 
+#incbin "dmp/fire_plume0000.dmp" 
+ 
+ALIGN 4 
+fire_plume0000_pal: 
+#incbin "dmp/fire_plume0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire_plume0001_Data: 
+#incbin "dmp/fire_plume0001.dmp" 
+ 
+ALIGN 4 
+fire_plume0001_pal: 
+#incbin "dmp/fire_plume0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire_plume0002_Data: 
+#incbin "dmp/fire_plume0002.dmp" 
+ 
+ALIGN 4 
+fire_plume0002_pal: 
+#incbin "dmp/fire_plume0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire_plume0003_Data: 
+#incbin "dmp/fire_plume0003.dmp" 
+ 
+ALIGN 4 
+fire_plume0003_pal: 
+#incbin "dmp/fire_plume0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire_plume0004_Data: 
+#incbin "dmp/fire_plume0004.dmp" 
+ 
+ALIGN 4 
+fire_plume0004_pal: 
+#incbin "dmp/fire_plume0004_pal.dmp" 
+ 
+ 
+
+ALIGN 4 
+fire_Anim: 
+BYTE 8 0; SHORT 0; POIN fire0000_Data fire0000_pal 
+BYTE 8 0; SHORT 0; POIN fire0001_Data fire0001_pal 
+BYTE 8 0; SHORT 0; POIN fire0002_Data fire0002_pal 
+BYTE 8 0; SHORT 0; POIN fire0003_Data fire0003_pal 
+BYTE 8 0; SHORT 0; POIN fire0004_Data fire0004_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+fire0000_Data: 
+#incbin "dmp/fire0000.dmp" 
+ 
+ALIGN 4 
+fire0000_pal: 
+#incbin "dmp/fire0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire0001_Data: 
+#incbin "dmp/fire0001.dmp" 
+ 
+ALIGN 4 
+fire0001_pal: 
+#incbin "dmp/fire0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire0002_Data: 
+#incbin "dmp/fire0002.dmp" 
+ 
+ALIGN 4 
+fire0002_pal: 
+#incbin "dmp/fire0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire0003_Data: 
+#incbin "dmp/fire0003.dmp" 
+ 
+ALIGN 4 
+fire0003_pal: 
+#incbin "dmp/fire0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+fire0004_Data: 
+#incbin "dmp/fire0004.dmp" 
+ 
+ALIGN 4 
+fire0004_pal: 
+#incbin "dmp/fire0004_pal.dmp" 
+ 
+ 
+
+ALIGN 4 
+ghost_Anim: 
+BYTE 8 0; SHORT 0; POIN ghost0000_Data ghost0000_pal 
+BYTE 8 0; SHORT 0; POIN ghost0001_Data ghost0001_pal 
+BYTE 8 0; SHORT 0; POIN ghost0002_Data ghost0002_pal 
+BYTE 8 0; SHORT 0; POIN ghost0003_Data ghost0003_pal 
+BYTE 8 0; SHORT 0; POIN ghost0004_Data ghost0004_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+ghost0000_Data: 
+#incbin "dmp/ghost0000.dmp" 
+ 
+ALIGN 4 
+ghost0000_pal: 
+#incbin "dmp/ghost0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ghost0001_Data: 
+#incbin "dmp/ghost0001.dmp" 
+ 
+ALIGN 4 
+ghost0001_pal: 
+#incbin "dmp/ghost0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ghost0002_Data: 
+#incbin "dmp/ghost0002.dmp" 
+ 
+ALIGN 4 
+ghost0002_pal: 
+#incbin "dmp/ghost0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ghost0003_Data: 
+#incbin "dmp/ghost0003.dmp" 
+ 
+ALIGN 4 
+ghost0003_pal: 
+#incbin "dmp/ghost0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ghost0004_Data: 
+#incbin "dmp/ghost0004.dmp" 
+ 
+ALIGN 4 
+ghost0004_pal: 
+#incbin "dmp/ghost0004_pal.dmp" 
+ 
+ 
+ 
+
+ALIGN 4 
+ice_Anim: 
+BYTE 8 0; SHORT 0; POIN ice0000_Data ice0000_pal 
+BYTE 8 0; SHORT 0; POIN ice0001_Data ice0001_pal 
+BYTE 8 0; SHORT 0; POIN ice0002_Data ice0002_pal 
+BYTE 8 0; SHORT 0; POIN ice0003_Data ice0003_pal 
+BYTE 8 0; SHORT 0; POIN ice0004_Data ice0004_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+ice0000_Data: 
+#incbin "dmp/ice0000.dmp" 
+ 
+ALIGN 4 
+ice0000_pal: 
+#incbin "dmp/ice0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ice0001_Data: 
+#incbin "dmp/ice0001.dmp" 
+ 
+ALIGN 4 
+ice0001_pal: 
+#incbin "dmp/ice0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ice0002_Data: 
+#incbin "dmp/ice0002.dmp" 
+ 
+ALIGN 4 
+ice0002_pal: 
+#incbin "dmp/ice0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ice0003_Data: 
+#incbin "dmp/ice0003.dmp" 
+ 
+ALIGN 4 
+ice0003_pal: 
+#incbin "dmp/ice0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+ice0004_Data: 
+#incbin "dmp/ice0004.dmp" 
+ 
+ALIGN 4 
+ice0004_pal: 
+#incbin "dmp/ice0004_pal.dmp" 
+ 
+ 
+
+
+ALIGN 4 
+electric_Anim: 
+BYTE 4 0; SHORT 0; POIN electric0000_Data electric0000_pal 
+BYTE 4 0; SHORT 0; POIN electric0001_Data electric0001_pal 
+BYTE 4 0; SHORT 0; POIN electric0000_Data electric0000_pal 
+BYTE 4 0; SHORT 0; POIN electric0001_Data electric0001_pal 
+BYTE 4 0; SHORT 0; POIN electric0002_Data electric0002_pal 
+BYTE 4 0; SHORT 0; POIN electric0003_Data electric0003_pal 
+BYTE 4 0; SHORT 0; POIN electric0002_Data electric0002_pal 
+BYTE 4 0; SHORT 0; POIN electric0003_Data electric0003_pal 
+BYTE 3 0; SHORT 0; POIN electric0004_Data electric0004_pal 
+BYTE 3 0; SHORT 0; POIN electric0005_Data electric0005_pal 
+BYTE 3 0; SHORT 0; POIN electric0004_Data electric0004_pal 
+BYTE 3 0; SHORT 0; POIN electric0005_Data electric0005_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+electric0000_Data: 
+#incbin "dmp/electric0000.dmp" 
+ 
+ALIGN 4 
+electric0000_pal: 
+#incbin "dmp/electric0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+electric0001_Data: 
+#incbin "dmp/electric0001.dmp" 
+ 
+ALIGN 4 
+electric0001_pal: 
+#incbin "dmp/electric0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+electric0002_Data: 
+#incbin "dmp/electric0002.dmp" 
+ 
+ALIGN 4 
+electric0002_pal: 
+#incbin "dmp/electric0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+electric0003_Data: 
+#incbin "dmp/electric0003.dmp" 
+ 
+ALIGN 4 
+electric0003_pal: 
+#incbin "dmp/electric0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+electric0004_Data: 
+#incbin "dmp/electric0004.dmp" 
+ 
+ALIGN 4 
+electric0004_pal: 
+#incbin "dmp/electric0004_pal.dmp" 
+ 
+ 
+ALIGN 4 
+electric0005_Data: 
+#incbin "dmp/electric0005.dmp" 
+ 
+ALIGN 4 
+electric0005_pal: 
+#incbin "dmp/electric0005_pal.dmp" 
+ 
+ 
+
+ALIGN 4 
+gust_Anim: 
+BYTE 4 0; SHORT 0; POIN gust0000_Data gust0000_pal 
+BYTE 4 0; SHORT 0; POIN gust0001_Data gust0001_pal 
+BYTE 4 0; SHORT 0; POIN gust0002_Data gust0002_pal 
+BYTE 4 0; SHORT 0; POIN gust0003_Data gust0003_pal 
+BYTE 4 0; SHORT 0; POIN gust0004_Data gust0004_pal 
+BYTE 4 0; SHORT 0; POIN gust0005_Data gust0005_pal 
+BYTE 4 0; SHORT 0; POIN gust0006_Data gust0006_pal 
+BYTE 4 0; SHORT 0; POIN gust0007_Data gust0007_pal 
+BYTE 4 0; SHORT 0; POIN gust0008_Data gust0008_pal 
+BYTE 4 0; SHORT 0; POIN gust0009_Data gust0009_pal 
+WORD 0 0 0 
+
+
+//Image Data 
+
+ALIGN 4 
+gust0000_Data: 
+#incbin "dmp/gust0000.dmp" 
+ 
+ALIGN 4 
+gust0000_pal: 
+#incbin "dmp/gust0000_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0001_Data: 
+#incbin "dmp/gust0001.dmp" 
+ 
+ALIGN 4 
+gust0001_pal: 
+#incbin "dmp/gust0001_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0002_Data: 
+#incbin "dmp/gust0002.dmp" 
+ 
+ALIGN 4 
+gust0002_pal: 
+#incbin "dmp/gust0002_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0003_Data: 
+#incbin "dmp/gust0003.dmp" 
+ 
+ALIGN 4 
+gust0003_pal: 
+#incbin "dmp/gust0003_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0004_Data: 
+#incbin "dmp/gust0004.dmp" 
+ 
+ALIGN 4 
+gust0004_pal: 
+#incbin "dmp/gust0004_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0005_Data: 
+#incbin "dmp/gust0005.dmp" 
+ 
+ALIGN 4 
+gust0005_pal: 
+#incbin "dmp/gust0005_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0006_Data: 
+#incbin "dmp/gust0006.dmp" 
+ 
+ALIGN 4 
+gust0006_pal: 
+#incbin "dmp/gust0006_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0007_Data: 
+#incbin "dmp/gust0007.dmp" 
+ 
+ALIGN 4 
+gust0007_pal: 
+#incbin "dmp/gust0007_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0008_Data: 
+#incbin "dmp/gust0008.dmp" 
+ 
+ALIGN 4 
+gust0008_pal: 
+#incbin "dmp/gust0008_pal.dmp" 
+ 
+ 
+ALIGN 4 
+gust0009_Data: 
+#incbin "dmp/gust0009.dmp" 
+ 
+ALIGN 4 
+gust0009_pal: 
+#incbin "dmp/gust0009_pal.dmp" 
+ 
+ 
+
+
+
+
+

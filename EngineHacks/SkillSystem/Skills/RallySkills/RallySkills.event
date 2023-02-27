@@ -10,6 +10,11 @@
 #include "asm/Rally.lyn.event"
 #include "asm/RallyFx.lyn.event"
 
+// Note that the event engine *does not* wait for the animation to end for the ASMC. So STAL 34 is included in the macro. 
+#define BuffAnim(unitID, rallyAnim, range) "SVAL s1 unitID; SVAL s3 rallyAnim; SVAL s4 range; ASMC BuffAnim_ASMC; STAL 34"
+#define BuffAnim(unitID, rallyAnim) "SVAL s1 unitID; SVAL s3 rallyAnim; SVAL s4 0; ASMC BuffAnim_ASMC; STAL 34"
+
+
 RallySkillList: 
 	BYTE RallyStrID
 	BYTE RallySklID
@@ -39,7 +44,7 @@ RallyFxPaletteLookup:
 	#endif // USE_STRMAG_SPLIT
 
 gpRallyDebuffsAddr:
-	WORD DebuffTable
+	WORD DebuffTableRam
 
 ALIGN 4
 gRallyPreviewPalette:

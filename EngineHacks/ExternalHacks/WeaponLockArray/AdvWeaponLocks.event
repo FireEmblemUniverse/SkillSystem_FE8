@@ -9,8 +9,24 @@ ORG 0x16DD8
 BYTE $00 $3C $3D $FF 
 POP
 
+LockIDGetter:
+#ifdef CONSOLIDATED_ADV_WEAPON_LOCKS
+	#include "LockIDGetter.lyn.event"
+#else // CONSOLIDATED_ADV_WEAPON_LOCKS
+	#include "LockIDGetter_Classic.lyn.event"
+#endif // CONSOLIDATED_ADV_WEAPON_LOCKS
 
-#inctext lyn "AdvWeaponLocks.elf"
+// This is only used when consolidated adv weapon locks are on, add the lock ID with the macro here for the item ID
+LockAssociationTable:
+FILL 256
+
+#define SetLockAssociation(itemID,lockID) "PUSH; ORG LockAssociationTable+itemID; BYTE lockID; POP"
+
+// e.g. `SetLockAssociation(IronSword,1)`
+// Then instead of putting this in byte 4 of the weapon ability word just set bit 0x01000000
+
+
+#include "AdvWeaponLocks.lyn.event"
 
 #define SoftCharLock 0
 #define HardCharLock 1

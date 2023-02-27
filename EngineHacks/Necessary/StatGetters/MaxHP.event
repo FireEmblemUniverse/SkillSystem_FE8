@@ -4,7 +4,7 @@
 #include "_Common.event"
 
 pMaxHPModifiers: // Maximum HP
-	POIN prAddUnitMaxHP prHexingRodEffect prAddEquipHP prItemPassiveHp
+	POIN prAddUnitMaxHP HalfHpFunc prAddEquipHP prItemPassiveHp
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -16,9 +16,7 @@ prAddUnitMaxHP:
 prAddEquipHP:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemHPBonus)))
 
-prHexingRodEffect:
-	#incbin "_asm/HexingRod.bin"
-	WORD DebuffTable
+
 
 prItemPassiveHp:
 #ifndef DONT_STACK_BOOSTS

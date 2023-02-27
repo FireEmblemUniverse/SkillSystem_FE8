@@ -1,0 +1,101 @@
+EXTERNAL DATA STRUCT / "DEBUFF TABLE" (203F100)
+
+// Default with 6 bits per stat (+31 / -31 in a stat) 
+Byte  Bit-offset   Desc 		  
++0x00 	0x01	Signed Mag Buff		
+		0x40 	Signed Str Buff		
++0x01 	0x10 	Signed Skl Buff		
++0x02 	0x04 	Signed Spd Buff		
++0x03 	0x01 	Signed Def Buff		
+		0x40 	Signed Res Buff		
++0x04 	0x10 	Signed Luk Buff		
++0x05 	0x04 	Signed Mov Buff		
++0x06 	0x01    Rally Str			
+        0x02    Rally Skl
+        0x04    Rally Spd
+        0x08    Rally Def
+        0x10    Rally Res
+        0x20    Rally Lck
+        0x40    Rally Mov
+        0x80    Rally Spectrum
++0x07 	0x01 	Rally Mag 
+		0x02 	Half Str 
+		0x04 	Half Mag 
+		0x08 	Half Hp (used only by hp stat getter; nothing inflicts this. It was planned for hexing rod) 
+		0x10 	Armor March (+2 mov)
+		0x20 	Vigor Dance (+2 str/mag/def)
+		0x40 	FREE 
+		0x80 	FREE 
+
+
+
+Note that below is *not* the default structure, but can be used by changing the number of bits each stat uses. 
+Eg. If each stat used 5 bits, you could have up to +15 / -15 in a stat. 
+
+		Other possible structures: 
+// Default with 5 bits per stat (+15 / -15 in a stat) 
+Byte  Bit-offset   Desc 		   
++0x00 	0x01	Signed Mag Buff		 
+		0x20 	Signed Str Buff		 
++0x01 	0x04 	Signed Skl Buff		 
+		0x80 	Signed Spd Buff		 
++0x02 	0x10 	Signed Def Buff		 
++0x03 	0x02 	Signed Res Buff		 
+		0x40 	Signed Luk Buff		 
++0x04 	0x08 	Signed Mov Buff		 
++0x05 	0x01    Rally Str			
+        0x02    Rally Skl
+        0x04    Rally Spd
+        0x08    Rally Def
+        0x10    Rally Res
+        0x20    Rally Lck
+        0x40    Rally Mov
+        0x80    Rally Spectrum
++0x06 	0x01 	Rally Mag 
+		0x02 	Half Str 
+		0x04 	Half Mag 
+		0x08 	Half Hp (used only by hp stat getter; nothing inflicts this. It was planned for hexing rod) 
+		0x10 	Armor March (+2 mov)
+		0x20 	Vigor Dance (+2 str/mag/def)
+		0x40 	FREE 
+		0x80 	FREE 
++0x07   0x01 	FREE 
+		0x02 	FREE 
+		0x04 	FREE 
+		0x08 	FREE 
+		0x10 	FREE 
+		0x20 	FREE 
+		0x40 	FREE 
+		0x80 	FREE 
+
+
+// Default with 7 bits per stat (+63 / -63 in a stat) 
+// You must increase the size of the debuff table & its entries to use this size! 
+// Eg. size as 0x550 (10 bytes * 136 entries) and entry size as 10 bytes 
+Byte  Bit-offset   Desc 		   
++0x00 	0x01	Signed Mag Buff		
++0x01	0x20 	Signed Str Buff		
++0x02 	0x04 	Signed Skl Buff		
++0x03	0x80 	Signed Spd Buff		
++0x04 	0x10 	Signed Def Buff		
++0x05 	0x02 	Signed Res Buff		
++0x06	0x40 	Signed Luk Buff		
++0x07 	0x08 	Signed Mov Buff		
++0x08 	0x01    Rally Str			
+        0x02    Rally Skl
+        0x04    Rally Spd
+        0x08    Rally Def
+        0x10    Rally Res
+        0x20    Rally Lck
+        0x40    Rally Mov
+        0x80    Rally Spectrum
++0x09 	0x01 	Rally Mag 
+		0x02 	Half Str 
+		0x04 	Half Mag 
+		0x08 	Half Hp (used only by hp stat getter; nothing inflicts this. It was planned for hexing rod) 
+		0x10 	Armor March (+2 mov)
+		0x20 	Vigor Dance (+2 str/mag/def)
+		0x40 	FREE 
+		0x80 	FREE 
+
+

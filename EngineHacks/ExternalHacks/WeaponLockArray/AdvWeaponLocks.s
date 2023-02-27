@@ -1,6 +1,7 @@
 .thumb
 .align
 
+
 .global AdvWeaponLocks
 .type AdvWeaponLocks, %function
 AdvWeaponLocks: @return usability bool in r0
@@ -10,16 +11,8 @@ mov r4,r0 @character pointer
 mov r5,r1 @item halfword
 mov r6,r2 @character wrank
 
-@load weapon ability word @@@@@this is not an attacker struct we can't use the version in ram!!!
-mov r1,#0xFF
-and r1,r5
-mov r0,#0x24
-mul r1,r0
-ldr r0,=ItemTable
-add r0,r1
-add r0,#8
-ldr r0,[r0]
-lsr r0,#24 @r0 = ability byte 4
+mov r0,r5
+bl LockIDGetter
 cmp r0,#0
 beq RetTrue
 
@@ -75,6 +68,16 @@ beq RetFalse
 
 LoopSuccess:
 pop {r0}
+cmp r0,#0
+beq SucceededSoftLock
+cmp r0,#1
+beq RetTrue
+cmp r0,#2
+beq SucceededSoftLock
+cmp r0,#3
+beq RetTrue
+
+SucceededSoftLock:
 @check if monster weapon as they do not have weapon ranks
 mov r1,#0xFF
 and r1,r5
@@ -84,14 +87,16 @@ ldr r0,=ItemTable
 add r0,r1
 add r0,#7
 ldrb r0,[r0]
-cmp r0,#0x0B
+cmp r0,#0x0B @monster weapon type
 beq RetTrue
 
 @If unit does not have rank in weapon with soft rank, prevent use with soft lock.
 cmp r2,#0
 beq RetFalse
+cmp r2,#2
+beq RetFalse
 
-@Return 2 to prevent conflict with Amische skill
+RetSoftLock:
 mov r0,#2
 b GoBack
 

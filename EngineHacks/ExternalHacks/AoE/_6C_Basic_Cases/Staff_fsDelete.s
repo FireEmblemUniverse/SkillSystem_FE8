@@ -1,7 +1,8 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
-.set PurgeVRAM, 0x8003D20
+.set PurgeVRAM, 0x8003D20	@{U}
+@.set PurgeVRAM, 0x08003C50	@{J}
 
 push {r4,r14}
 mov 	r4, r0

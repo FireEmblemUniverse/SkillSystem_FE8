@@ -4,7 +4,9 @@
 #include "_Common.event"
 
 pDefenseModifiers: // Defense
-	POIN prAddUnitDefense prHalveIfCapturing prDebuffDef prAddEquipDefense prItemPassiveDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef prDefiantDef prPushDef
+	POIN prAddUnitDefense prHalveIfCapturing 
+	POIN prDebuffDef StrongCon
+	POIN prAddEquipDefense prItemPassiveDefense prRallyDef prLifeAndDeathMinus VigorDanceCheck prSkillFury prFortressDefenseDef prDefiantDef prPushDef
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -16,13 +18,6 @@ prAddUnitDefense:
 prAddEquipDefense:
 	rAdd(rForUnitEquipped(rCallExternal(prGetItemDefBonus)))
 
-prDebuffDef:
-	#include "_asm/DebuffDef.lyn.event"
-	POIN GetDebuffs|1
-
-prRallyDef:
-	#include "_asm/RallyDef.lyn.event"
-	POIN GetDebuffs|1
 	
 prFortressDefenseDef:
 	_testSkill(FortressDefenseID,5,0)

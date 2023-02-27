@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 
 
@@ -10,6 +10,7 @@ FreeSelect6C_Loop:
 
 	ldr 	r0, =pGameDataStruct
 	ldr 	r5, [r0, #0x14]
+	mov r6, r5 
 @cursor movement
 	_blh HandlePPCursorMovement
 
@@ -68,7 +69,6 @@ NoBPress:
 	
 	ldr 	r3, [r4, #0x2C]
 	ldr 	r3, [r3, #0x14] @ OnRPress
-	mov r6, r5 
 	
 	cmp 	r3, #0x0
 	beq 	NoRPress
@@ -93,7 +93,6 @@ NoLPress:
 
 	ldr 	r0, =pGameDataStruct
 	ldr 	r0, [r0, #0x14] @ r0 = Cursor Position Pair
-	mov r6, r5 @ cursor coords 
 	cmp 	r0, r5
 	beq NoCursorMovement
 	
@@ -151,7 +150,7 @@ NoDelete:
 	beq 	NoBeep
 	
 	mov 	r0, #0x6A
-	_blh PlaySound
+	_blh PlaySoundEffect
 	
 NoBeep:
 	mov 	r0, #8
@@ -159,7 +158,7 @@ NoBeep:
 	beq NoBoop
 	
 	mov 	r0, #0x6B
-	_blh PlaySound
+	_blh PlaySoundEffect
 	
 NoBoop:
 	mov 	r0, #0x10 
@@ -167,7 +166,7 @@ NoBoop:
 	beq NoGurr
 	
 	mov 	r0, #0x6C
-	_blh PlaySound
+	_blh PlaySoundEffect
 	
 NoGurr:
 NoSound:

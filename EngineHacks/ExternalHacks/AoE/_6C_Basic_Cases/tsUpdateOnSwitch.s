@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 .equ UpdateItemBox, OffsetList + 0x0
 .equ ICondition, OffsetList + 0x4
@@ -10,7 +10,8 @@ mov 	r0, #0x0
 ldsb 	r0, [r4, r0]
 mov 	r1, #0x1
 ldsb 	r1, [r4, r1]
-_blh 	0x801F50C
+_blh 	0x801F50C	@{U}
+@_blh 	0x801F164	@{J}
 mov 	r0, #0x2
 ldsb 	r0, [r4, r0]
 _blh GetUnit

@@ -45,6 +45,12 @@ POIN NewAuraSkillCheck
 WORD InspirationID
 
 ALIGN 4
+DivinelyInspiring:
+#incbin "DivinelyInspiring/DivinelyInspiring.dmp"
+POIN NewAuraSkillCheck
+WORD DivinelyInspiringID
+
+ALIGN 4
 Charm:
 #incbin "Charm/Charm.dmp"
 POIN NewAuraSkillCheck
@@ -148,11 +154,8 @@ WORD BlueFlameID
 
 ALIGN 4
 KeepUp:
-#incbin "KeepUp/KeepUp.dmp"
+#include "KeepUp/KeepUp.lyn.event"
 POIN NewAuraSkillCheck
-WORD DebuffTable
-WORD ArmorMarchBit
-WORD 8 //size of debuff table entry
 POIN SkillTester
 POIN ArmorMarchList
 POIN IndoorTerrainList

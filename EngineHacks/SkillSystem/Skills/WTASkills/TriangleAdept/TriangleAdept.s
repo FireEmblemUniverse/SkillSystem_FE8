@@ -25,7 +25,7 @@ cmp        r0,#0
 bne        SetTriAdeptPlusBonus
 
 ldr        r6,SkillTester
-mov        r0,r4
+mov        r0,r5
 ldr        r1,TriangleAdeptPlusID
 mov        r14,r6
 .short    0xF800

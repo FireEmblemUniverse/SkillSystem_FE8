@@ -20,6 +20,8 @@ adding yourself!
 - Sme
 - Ganzap
 - Mikey Seregon
+- Vesly 
+- Dragz
 
 # Other
 
@@ -33,6 +35,10 @@ adding yourself!
 - vlak: Drives
 - Pikmin1211: Miscellaneous
 - 2WB: Miscellaneous
+- Someone: Taker, Hone, Oath, Rouse, Guts, StrongCon, RallyChaos, HoardersBane
+ShrewdPotential, EternalVanity 
+- Alice: Dancing/Heavy Blade 
+- VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
-
+- Dragz: Divinely Inspiring

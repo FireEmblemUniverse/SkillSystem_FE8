@@ -1,7 +1,5 @@
 .equ ArmorMarchID, AuraSkillCheck+4
-.equ DebuffTable, ArmorMarchID+4
-.equ ArmorMarchBit, DebuffTable+4
-.equ SkillTester, ArmorMarchBit+4
+.equ SkillTester, ArmorMarchID+4
 .equ ArmorMarchList, SkillTester+4
 .thumb
 
@@ -12,21 +10,10 @@
 	@returns:
 		@r0 = unit pointer
 
-@my really ugly hook
-push	{lr}
-ldr	r1,=#0x8015395
-mov	lr,r1
-ldr	r2,=gChapterData
-ldrb	r0,[r2,#0xF]
-mov	r1,pc
-add	r1,#7
-push	{r1}
-cmp	r0,#0x40
-bx	lr
-Back:
 
-push	{r4-r6}
 
+ArmorMarch_StartOfTurn: 
+push	{r4-r6, lr}
 @unset everyone
 mov	r4,#1
 unsetLoop:
@@ -38,26 +25,10 @@ mov lr,r2
 .short 0xf800
 cmp r0,#0
 beq unsetReit
-ldr	r2,DebuffTable
-mov lr,r2
-.short 0xf800
-@ mov	r1,r4
-@ ldr	r2,EntrySize
-@ mul	r1,r2
-@ add	r0,r1		@debuff table entry for this unit
-push	{r0}
-ldr	r0,ArmorMarchBit
-mov	r1,#8
-swi	6		@get the byte
-pop	{r2}
-add	r0,r2		@byte we are modifying
-mov	r2,#1
-lsl	r2,r1		@bit to set
-ldrb	r1,[r0]
-mvn	r2,r2
-and	r1,r2
-strb	r1,[r0]		@unset the bit
-
+bl GetUnitDebuffEntry 
+ldr r1, =ArmorMarchBitOffset_Link
+ldr r1, [r1] 
+bl UnsetBit 
 unsetReit:
 add	r4,#1
 cmp	r4,#0xB3
@@ -83,9 +54,8 @@ ldr	r0,[r5]
 cmp	r0,#0
 beq	Next
 ldrb	r0,[r5,#0x0C]
-mov	r1,#4
-and	r0,r1
-cmp	r0,#0
+mov	r1,#0xC @ dead or undeployed 
+tst r0, r1 
 bne	Next
 
 @check if this unit is an armor
@@ -168,38 +138,21 @@ mov	r6,#1
 
 
 Set:
-@set or unest the bit for this skill in the debuff table entry for the unit
+@set or unset the bit for this skill in the debuff table entry for the unit
 mov r0,r4
 ldr r2,=GetUnit
 mov lr,r2
 .short 0xf800
-ldr	r2,DebuffTable
-mov lr,r2
-.short 0xf800
-@ ldr	r0,DebuffTable
-@ mov	r1,r4
-@ ldr	r2,EntrySize
-@ mul	r1,r2
-@ add	r0,r1		@debuff table entry for this unit
-push	{r0}
-ldr	r0,ArmorMarchBit
-mov	r1,#8
-swi	6		@get the byte
-pop	{r2}
-add	r0,r2		@byte we are modifying
-mov	r2,#1
-lsl	r2,r1		@bit to set
-ldrb	r1,[r0]
+bl GetUnitDebuffEntry 
+ldr r1, =ArmorMarchBitOffset_Link
+ldr r1, [r1] 
 cmp	r6,#0		@check if the skill check was successful or not
 beq	Unset
-orr	r1,r2
-strb	r1,[r0]		@set the bit
+bl SetBit 
 b	Next
 
 Unset:
-mvn	r2,r2
-and	r1,r2
-strb	r1,[r0]		@unset the bit
+bl UnsetBit 
 
 Next:
 add	r4,#1
@@ -213,16 +166,15 @@ b	Loop
 
 
 End:
+mov r0, #0 @ no blocking proc / animation 
 pop	{r4-r6}
-pop	{r0}
-bx	r0
+pop	{r1}
+bx	r1
 
 .align
 .ltorg
 AuraSkillCheck:
 @POIN AuraSkillCheck
 @WORD ArmorMarchID
-@POIN DebuffTable
-@WORD ArmorMarchBit
 @POIN SkillTester
 @POIN ArmorMarchList

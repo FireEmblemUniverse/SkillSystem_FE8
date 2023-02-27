@@ -68,8 +68,8 @@ beq   End                   @ if not healing or taking damage, skip this
   ldrb  r1, [r4, #0x12]     @ attacker max HP
   ldrb  r2, [r4, #0x13]     @ attacker cur HP
   add   r2, r0
-  cmp   r2, #0x0
-  blt   HPmin
+  cmp   r2, r3
+  ble   HPmin
     cmp   r2, r1
     bgt   HPmax
       b     StoreVal
