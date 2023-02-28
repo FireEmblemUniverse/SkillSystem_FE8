@@ -74,6 +74,7 @@
 .equ TileBufferBase, 0x2003C2C
 .equ tile_origin, 0x2003C94
 .equ gpStatScreenPageBg0Map, 0x2003D2C
+.equ gpStatScreenPageBg1Map, 0x200422C
 .equ gpStatScreenPageBg2Map, 0x200472C
 .equ gGenericBuffer, 0x2020188
 .equ gBg0MapBuffer, 0x2022CA8
@@ -120,6 +121,17 @@
   ldr     r0, [r5, #0xC]
   mov     r8, r0              @r8 contains the current unit's data
   clear_buffers
+  ldr     r0, =StatScreenStruct
+  ldrb    r0, [r0]            @r0 contains current pagenumber.
+  lsl     r0, #0x2
+  ldr     r1, =SSS_PageTSATable
+  ldr     r0, [r0, r1]        @pointer to TSA for right page.
+  ldr     r1, =gGenericBuffer
+  blh     Decompress
+  ldr     r0, =gpStatScreenPageBg1Map
+  ldr     r1, =gGenericBuffer
+  ldr     r2, =0x1000
+  blh     BgMap_ApplyTsa      @ Apply right page tsa.
 .endm
 
 .macro page_end
@@ -961,6 +973,8 @@
   GorgonEggSkip_ItemList:
   b       SS_FinishItemsList
   
+  .ltorg
+  
   SS_LoopItemsList:
   ldr     r2, [r7, #0xC]
   ldr     r0, [r2, #0xC]
@@ -1038,6 +1052,12 @@
   ldr     r1, =0x6001380
   ldr     r2, =0x1000a68
   swi     0xC @clear vram
+  mov     r0, #0
+  str     r0, [sp]
+  mov     r0, sp
+  ldr     r1, =gpStatScreenPageBg1Map
+  ldr     r2, =0x1000140
+  swi     0xC @clear BG1TSA (0x878CC only clears BG0 and BG2)
 .endm
 
 

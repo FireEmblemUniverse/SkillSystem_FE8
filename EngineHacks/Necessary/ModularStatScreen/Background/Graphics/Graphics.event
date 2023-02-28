@@ -1,0 +1,18 @@
+// Scrolling background.
+ALIGN 4; SSS_MuralGfx:
+#incbin "Relief.dmp"
+ALIGN 4; SSS_MuralPal:
+#incbin "Relief_pal.dmp"
+
+// Page on the right.
+ALIGN 4; SSS_PageAndPortraitGfx:
+#incbin "Tiled/Tilesets/PageAndPortraitBoxTilesFE6.dmp"
+ALIGN 4; SSS_PageTallTSA:
+#incbin "Tiled/Tilemaps/PageTallTSA.dmp"
+ALIGN 4; SSS_PageShortTSA:
+#incbin "Tiled/Tilemaps/PageShortTSA.dmp"
+ALIGN 4; SSS_PageWepSupportTSA:
+#incbin "Tiled/Tilemaps/PageWepSupportTSA.dmp"
+ALIGN 4; SSS_PageTSATable:
+POIN SSS_PageTallTSA SSS_PageTallTSA SSS_PageWepSupportTSA SSS_PageShortTSA
+POIN SSS_PageTallTSA SSS_PageTallTSA SSS_PageTallTSA SSS_PageTallTSA              // Enough for eight pages.
