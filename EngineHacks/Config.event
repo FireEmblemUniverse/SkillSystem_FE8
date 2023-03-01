@@ -20,6 +20,10 @@
 // = HACK INSTALLATION CONFIGURATION =
 // ===================================
 
+// If uncommented, the statscreen will have a moving background similar to FE6 and FE7.
+// Customization of graphical assets used is possible in Necessary/ModularStatScreen/Background/Graphics/Graphics.event.
+#define SCROLLING_STATSCREEN_BACKGROUND
+
 // If commented, slayer and effectiveness will remain the same as they are in vanilla
 // Look at SkillSystem/Skills/EffectivenessSkills/Nullify/_README.txt for the full ramifications of uncommenting this
 #define ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK

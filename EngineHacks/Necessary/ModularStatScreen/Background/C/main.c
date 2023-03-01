@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "main.h"
 
-// FIXME, need to end proc.
-
 const struct ProcInstruction SSS_mainProc[] = {
   PROC_SET_NAME("SSS_Main"),
   PROC_CALL_ROUTINE(SSS_init),
@@ -16,7 +14,7 @@ void SSS_init(struct SSS_MainProcState* proc) {
   SetBgPosition(1, 0, 0);
   SetBgPosition(3, 0, 0);
   
-  // Scrolling Mural
+  // Initialize Scrolling Mural.
   Decompress(&SSS_MuralGfx, (void*)0x600B000);
   ApplyPalette(SSS_MuralPal, 12);
   for (int i = 0; i < 20; i++) {
@@ -25,13 +23,18 @@ void SSS_init(struct SSS_MainProcState* proc) {
     }
   }
   
+  // Initialize Portrait box.
+  Decompress(&SSS_PortraitBoxTSA, gGenericBuffer);
+  CpuFastFill(0, gBg1MapBuffer, 0x800);               // Clear screen entries.
+  BgMap_ApplyTsa(gBg1MapBuffer, gGenericBuffer, 0x0000);
+  
   // Initialize right page.
   Decompress(&SSS_PageAndPortraitGfx, (void*)0x6000000);
-  CpuFastFill(0, gBg1MapBuffer, 0x800);               // Clear screen entries.
+  ApplyPalette(SSS_PageAndPortraitPal, 1);
   CpuFastFill(0, gpStatScreenPageBg1Map, 0x280);      // Clear screen entries.
-  u8 pageNumber = *(u8*)0x2003BFC;    // This is the first byte of the StatScreenStruct. Not yet in FE-Clib.
+  u8 pageNumber = StatScreenStruct[0];
   Decompress(SSS_PageTSATable[pageNumber], gGenericBuffer);
-  BgMap_ApplyTsa(gpStatScreenPageBg1Map, gGenericBuffer, 0x1000);
+  BgMap_ApplyTsa(gpStatScreenPageBg1Map, gGenericBuffer, 0x0000);
   BgMapCopyRect(&gpStatScreenPageBg1Map[0], &gBg1MapBuffer[0x4C], 18, gGenericBuffer[1]+1);   // Height differs.
   
   EnableBgSyncByMask(7);
@@ -58,10 +61,26 @@ void SSS_UpdateBG1Tiles(int leftOffset, int rightOffset, int width) {
   BgMapCopyRect(&gpStatScreenPageBg2Map[leftOffset>>1], &gBg2MapBuffer[0x4C + (rightOffset>>1)], width, 18);
 }
 
+// Scroll BG1 when vertically scrolling.
+// Hook also replaces scrolling BG0 and BG2. So that's in here too.
+void SSS_ScrollBG1(s16 vOffs) {
+  SetBgPosition(0, 0, vOffs);
+  SetBgPosition(1, 0, vOffs);
+  SetBgPosition(2, 0, vOffs);
+}
 
-
-
-
+// Setup BLDCNT, EVA and EVB for bottom-left box.
+// Hook overwrites some other stuff that we take care of as well.
+void SSS_BlendMMSBox() {
+  // Overwritten by hook
+  gLCDIOBuffer.bgControl[3].priority = 3;
+  SetDefaultColorEffects();
+  StatScreenStruct[8] = 0;
+  
+  // TODO
+  
+  //void SetColorEffectsParameters(int id, int eva, int evb, int evy); //! FE8U = 0x8001EA1
+}
 
 
 

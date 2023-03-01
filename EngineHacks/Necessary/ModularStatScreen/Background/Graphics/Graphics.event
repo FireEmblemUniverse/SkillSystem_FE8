@@ -7,6 +7,10 @@ ALIGN 4; SSS_MuralPal:
 // Page on the right.
 ALIGN 4; SSS_PageAndPortraitGfx:
 #incbin "Tiled/Tilesets/PageAndPortraitBoxTilesFE6.dmp"
+ALIGN 4; SSS_PageAndPortraitPal:
+#incbin "Tiled/Tilesets/PageAndPortraitBoxTilesFE6Pal.dmp"
+ALIGN 4; SSS_PortraitBoxTSA:
+#incbin "Tiled/Tilemaps/PortraitBoxTSA.dmp"
 ALIGN 4; SSS_PageTallTSA:
 #incbin "Tiled/Tilemaps/PageTallTSA.dmp"
 ALIGN 4; SSS_PageShortTSA:
@@ -16,3 +20,9 @@ ALIGN 4; SSS_PageWepSupportTSA:
 ALIGN 4; SSS_PageTSATable:
 POIN SSS_PageTallTSA SSS_PageTallTSA SSS_PageWepSupportTSA SSS_PageShortTSA
 POIN SSS_PageTallTSA SSS_PageTallTSA SSS_PageTallTSA SSS_PageTallTSA              // Enough for eight pages.
+
+// Bottom-left box.
+ALIGN 4; SSS_MMSBoxOAM:
+SHORT 0x2
+SHORT 0x4000 0x8000 0x4E8F
+SHORT 0x44E5 0x81C0 0x2EC9

@@ -31,8 +31,8 @@ main.o main.s: main.c \
  c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\sys\sched.h \
  c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\machine\types.h \
  c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\sys\stdio.h \
- main.h C\:/FE-CLib/include/gbafeext.h C\:/FE-CLib/include/gbafe.h \
- C\:/FE-CLib/include/gba/gba.h C\:/FE-CLib/include/gba/types.h \
+ main.h C\:/FE-CLib/include/gbafe.h C\:/FE-CLib/include/gba/gba.h \
+ C\:/FE-CLib/include/gba/types.h \
  c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\lib\gcc\arm-none-eabi\10.2.0\include\stdbool.h \
  c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\lib\gcc\arm-none-eabi\10.2.0\include\stdnoreturn.h \
  C\:/FE-CLib/include/gba/defines.h C\:/FE-CLib/include/gba/ioreg.h \
@@ -64,7 +64,7 @@ main.o main.s: main.c \
  C\:/FE-CLib/include/gbafe/event.h C\:/FE-CLib/include/gbafe/battle.h \
  C\:/FE-CLib/include/gbafe/support.h C\:/FE-CLib/include/gbafe/wm.h \
  C\:/FE-CLib/include/gbafe/dialogue.h \
- C\:/FE-CLib/include/gbafe/drawutils.h C\:/FE-CLib/include/extra/FE8.h
+ C\:/FE-CLib/include/gbafe/drawutils.h
 c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\stdio.h:
 c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\_ansi.h:
 c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\newlib.h:
@@ -98,7 +98,6 @@ c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-n
 c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\machine\types.h:
 c\:\users\steffens\desktop\map\gamestuff\fe\romhacking\devkitpro\devkitarm\arm-none-eabi\include\sys\stdio.h:
 main.h:
-C\:/FE-CLib/include/gbafeext.h:
 C\:/FE-CLib/include/gbafe.h:
 C\:/FE-CLib/include/gba/gba.h:
 C\:/FE-CLib/include/gba/types.h:
@@ -153,4 +152,3 @@ C\:/FE-CLib/include/gbafe/support.h:
 C\:/FE-CLib/include/gbafe/wm.h:
 C\:/FE-CLib/include/gbafe/dialogue.h:
 C\:/FE-CLib/include/gbafe/drawutils.h:
-C\:/FE-CLib/include/extra/FE8.h:

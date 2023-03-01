@@ -116,22 +116,27 @@
   mov     r7, r8
   push    {r7}
   add     sp, #-0x50     
-  ldr     r7, =TileBufferBase @r7 contains the latest buffer. starts at 2003c2c.
+  ldr     r7, =TileBufferBase     @r7 contains the latest buffer. starts at 2003c2c.
   ldr     r5, =StatScreenStruct
   ldr     r0, [r5, #0xC]
-  mov     r8, r0              @r8 contains the current unit's data
+  mov     r8, r0                  @r8 contains the current unit's data
   clear_buffers
-  ldr     r0, =StatScreenStruct
-  ldrb    r0, [r0]            @r0 contains current pagenumber.
-  lsl     r0, #0x2
-  ldr     r1, =SSS_PageTSATable
-  ldr     r0, [r0, r1]        @pointer to TSA for right page.
-  ldr     r1, =gGenericBuffer
-  blh     Decompress
-  ldr     r0, =gpStatScreenPageBg1Map
-  ldr     r1, =gGenericBuffer
-  ldr     r2, =0x1000
-  blh     BgMap_ApplyTsa      @ Apply right page tsa.
+  ldr     r0, =SSS_PageTSATable
+  ldr     r0, [r0]
+  cmp     r0, #0x0                  @ If no Scrolling StatScreen, no TSA unpackaging.
+  beq     PageStartEnd
+    ldr     r0, =StatScreenStruct   @Update PageTSA. TODO make depend on condition SSS is defined!
+    ldrb    r0, [r0]                @r0 contains current pagenumber.
+    lsl     r0, #0x2
+    ldr     r1, =SSS_PageTSATable
+    ldr     r0, [r0, r1]            @pointer to TSA for right page.
+    ldr     r1, =gGenericBuffer
+    blh     Decompress
+    ldr     r0, =gpStatScreenPageBg1Map
+    ldr     r1, =gGenericBuffer
+    mov     r2, #0x0
+    blh     BgMap_ApplyTsa          @ Apply right page tsa.
+  PageStartEnd:
 .endm
 
 .macro page_end
@@ -1052,12 +1057,17 @@
   ldr     r1, =0x6001380
   ldr     r2, =0x1000a68
   swi     0xC @clear vram
-  mov     r0, #0
-  str     r0, [sp]
-  mov     r0, sp
-  ldr     r1, =gpStatScreenPageBg1Map
-  ldr     r2, =0x1000140
-  swi     0xC @clear BG1TSA (0x878CC only clears BG0 and BG2)
+  ldr     r0, =SSS_PageTSATable
+  ldr     r0, [r0]
+  cmp     r0, #0x0                  @ If no Scrolling StatScreen, no TSA clearing.
+  beq     ClearBuffersEnd
+    mov     r0, #0
+    str     r0, [sp]
+    mov     r0, sp
+    ldr     r1, =gpStatScreenPageBg1Map
+    ldr     r2, =0x1000140
+    swi     0xC @clear BG1TSA (0x878CC only clears BG0 and BG2)
+  ClearBuffersEnd:
 .endm
 
 
