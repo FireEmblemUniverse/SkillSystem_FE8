@@ -1,27 +1,31 @@
 // For ScrollingStatScreen. Prefix SSS.
-#ifndef SCROLLING_STATSCREEN_BACKGROUND // We use the SSS_PageTSATable label to signify to mss_defs.s
-  ALIGN 4; SSS_PageTSATable:            // to not bother Applying/Clearing RightPageTSA, which is only 
-  WORD 0x0                              // relevant when SCROLLING_STATSCREEN_BACKGROUND is enabled/defined.
+#ifndef SCROLLING_STATSCREEN_BACKGROUND
+  ALIGN 4; SSS_Flag:                    // This flag indicates to mss_defs.s and mss_threepageconditional.s
+  WORD 0x0                              // Which behaviour to use.
+
+  ALIGN 4; SSS_PageTSATable:            // These labels are used in mss_defs.s and mss_threepageconditional.s
+  WORD 0x0                              // and therefore still need to exist, or EA won't find them.
+
+  ALIGN 4; SSS_StatsBoxTSA:             // ^
+  WORD 0x0
 #else
+  ALIGN 4; SSS_Flag:
+  WORD 0x1
 
   // Customizeable parameters.
     // Moves the location of the portrait during StatScreen.
-    #define SSS_PortraitOffsetX 1
-    #define SSS_PortraitOffsetY 1
-
-  // C.
-  #include "C/main.lyn.event"
-  #include "Graphics/Graphics.event"
-
-  // asm.
-  // TODO
+    #define SSS_portraitOffsetX 1
+    #define SSS_portraitOffsetY 1
 
   // Other.
+  #include "C/main.lyn.event"
+  #include "Graphics/Graphics.event"
+  
   PUSH
     
     // Place portrait.
     ORG 0x886D0
-    WORD (0x2023CA8 + ((SSS_PortraitOffsetX + (SSS_PortraitOffsetY * 32)) * 2))
+    WORD (0x2023CA8 + ((SSS_portraitOffsetX + (SSS_portraitOffsetY * 32)) * 2))
     
     // Let GlowyProc immediately end which frees up BG1.
     ORG 0xA00844
@@ -42,12 +46,12 @@
     
     // Clear BG1 tiles when horizontally flipping pages.
     ORG 0x879EC
-    callHack_r0(SSS_ClearBG1Tiles)
+    callHack_r0(SSS_clearBG1Tiles)
     
     // Update BG1 tiles when horizontally flipping pages.
     ORG 0x87A76
     SHORT 0x1C28 0x1C21 0x1C3A
-    callHack_r3(SSS_UpdateBG1Tiles)
+    callHack_r3(SSS_updateBG1Tiles)
     
     // Don't disable BG1 when we exit StatScreen.
     ORG 0x8875A
@@ -56,18 +60,26 @@
     // Scroll BG1 when vertically scrolling.
     ORG 0x88932
     SHORT 0x1C20          // mov r0, r4  @ r0: vOffs
-    callHack_r3(SSS_ScrollBG1)
+    callHack_r3(SSS_scrollBG1)
     SHORT 0x46C0          // nop
     
     // Set alphablend parameters for Bottom-left (MovingMapSpriteBox).
     ORG 0x87E60
-    callHack_r0(SSS_BlendMMSBox)
+    callHack_r0(SSS_blendMMSBox)
     
     // Bottom-left (MovingMapSpriteBox), draw plateau + box.
     ORG 0x88368
     SHORT 0x2000
     ORG 0x8837C
     POIN SSS_MMSBoxOAM
+    
+    // Don't reset BLDCNT upon exiting StatScreen.
+    ORG 0x88776
+    SHORT 0x46C0 0x46C0
+    
+    // Repoint Equipment-stats box tiles.
+    ORG 0x88658
+    POIN SSS_StatsBoxGfx
     
   POP
 

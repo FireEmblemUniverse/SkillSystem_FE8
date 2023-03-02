@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="12" height="13" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" source="../Tilesets/PageAndPortraitBoxTiles.tsx"/>
+ <tileset firstgid="1" source="../../Tilesets/FE6/PageAndPortrait/PageAndPortrait.tsx"/>
  <layer id="1" name="Tile Layer 1" width="12" height="13">
   <data encoding="csv">
 11,12,12,12,12,12,12,12,12,12,12,13,

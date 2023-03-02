@@ -121,7 +121,7 @@
   ldr     r0, [r5, #0xC]
   mov     r8, r0                  @r8 contains the current unit's data
   clear_buffers
-  ldr     r0, =SSS_PageTSATable
+  ldr     r0, =SSS_Flag
   ldr     r0, [r0]
   cmp     r0, #0x0                  @ If no Scrolling StatScreen, no TSA unpackaging.
   beq     PageStartEnd
@@ -733,7 +733,15 @@
 .endm
 
 .macro draw_stats_box showBallista=0
-  ldr     r0, =#0x8A02204     @box TSA
+  ldr     r0, =SSS_Flag
+  ldr     r0, [r0]
+  cmp     r0, #0x0
+  beq     DefaultBox
+    ldr     r0, =SSS_StatsBoxTSA
+    b       DecompressBoxTSA
+  DefaultBox:
+    ldr     r0, =#0x8A02204   @box TSA
+  DecompressBoxTSA:
   ldr     r4, =gGenericBuffer
   mov     r1, r4
   blh     Decompress
@@ -1057,7 +1065,7 @@
   ldr     r1, =0x6001380
   ldr     r2, =0x1000a68
   swi     0xC @clear vram
-  ldr     r0, =SSS_PageTSATable
+  ldr     r0, =SSS_Flag
   ldr     r0, [r0]
   cmp     r0, #0x0                  @ If no Scrolling StatScreen, no TSA clearing.
   beq     ClearBuffersEnd

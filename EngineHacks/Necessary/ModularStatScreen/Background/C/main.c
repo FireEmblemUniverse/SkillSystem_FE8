@@ -24,23 +24,29 @@ void SSS_init(struct SSS_MainProcState* proc) {
   }
   
   // Initialize Portrait box.
+  Decompress(SSS_PageAndPortraitGfxTable[gChapterData.windowColour], (void*)0x6000000);
+  ApplyPalette(SSS_PageAndPortraitPalTable[gChapterData.windowColour], 1);
   Decompress(&SSS_PortraitBoxTSA, gGenericBuffer);
   CpuFastFill(0, gBg1MapBuffer, 0x800);               // Clear screen entries.
   BgMap_ApplyTsa(gBg1MapBuffer, gGenericBuffer, 0x0000);
   
   // Initialize right page.
-  Decompress(&SSS_PageAndPortraitGfx, (void*)0x6000000);
-  ApplyPalette(SSS_PageAndPortraitPal, 1);
   CpuFastFill(0, gpStatScreenPageBg1Map, 0x280);      // Clear screen entries.
   u8 pageNumber = StatScreenStruct[0];
   Decompress(SSS_PageTSATable[pageNumber], gGenericBuffer);
   BgMap_ApplyTsa(gpStatScreenPageBg1Map, gGenericBuffer, 0x0000);
   BgMapCopyRect(&gpStatScreenPageBg1Map[0], &gBg1MapBuffer[0x4C], 18, gGenericBuffer[1]+1);   // Height differs.
   
+  // Load palette for bottom-leftbox.
+  ApplyPalette(SSS_PageAndPortraitPalTable[gChapterData.windowColour], 18);
+  
+  // Load palette for Equipment-statsbox.
+  ApplyPalette(SSS_StatsBoxPalTable[gChapterData.windowColour], 3);
+  
   EnableBgSyncByMask(7);
 }
 
-// Scroll BG3. TODO make customizable.
+// Scroll BG3. TODO make customizable (vertical, diagonal, path-tracking scrolling!)
 void SSS_loop(struct SSS_MainProcState* proc) {
   proc->iterator += 1;
   u16 xPos = proc->iterator >> 2;
@@ -49,21 +55,21 @@ void SSS_loop(struct SSS_MainProcState* proc) {
 
 // Clear BG1Tiles when horizontally flipping pages.
 // Hook also replaces clearing BG2Tiles. So we clear those too.
-void SSS_ClearBG1Tiles() {
+void SSS_clearBG1Tiles() {
   BgMapFillRect(&gBg1MapBuffer[0x4C], 18, 18, 0);
   BgMapFillRect(&gBg2MapBuffer[0x4C], 18, 18, 0);
 }
 
 // Update BG1Tiles when horizontally flipping pages.
 // Hook also replaces updating BG2Tiles. So we update those too.
-void SSS_UpdateBG1Tiles(int leftOffset, int rightOffset, int width) {
+void SSS_updateBG1Tiles(int leftOffset, int rightOffset, int width) {
   BgMapCopyRect(&gpStatScreenPageBg1Map[leftOffset>>1], &gBg1MapBuffer[0x4C + (rightOffset>>1)], width, 18);
   BgMapCopyRect(&gpStatScreenPageBg2Map[leftOffset>>1], &gBg2MapBuffer[0x4C + (rightOffset>>1)], width, 18);
 }
 
 // Scroll BG1 when vertically scrolling.
 // Hook also replaces scrolling BG0 and BG2. So that's in here too.
-void SSS_ScrollBG1(s16 vOffs) {
+void SSS_scrollBG1(s16 vOffs) {
   SetBgPosition(0, 0, vOffs);
   SetBgPosition(1, 0, vOffs);
   SetBgPosition(2, 0, vOffs);
@@ -71,17 +77,17 @@ void SSS_ScrollBG1(s16 vOffs) {
 
 // Setup BLDCNT, EVA and EVB for bottom-left box.
 // Hook overwrites some other stuff that we take care of as well.
-void SSS_BlendMMSBox() {
-  // Overwritten by hook
+void SSS_blendMMSBox() {
+  // Overwritten by hook.
   gLCDIOBuffer.bgControl[3].priority = 3;
   SetDefaultColorEffects();
   StatScreenStruct[8] = 0;
   
-  // TODO
-  
-  //void SetColorEffectsParameters(int id, int eva, int evb, int evy); //! FE8U = 0x8001EA1
+  // Enable alphablend.
+  SetColorEffectsParameters(0, 6, 8, 0);                    // EVA = 6, EVB = 8.
+  SetColorEffectsFirstTarget(0, 0, 1, 0, 0);                // First target BG2.
+  SetColorEffectBackdropFirstTarget(1);                     // First target Backdrop.
+  SetColorEffectsSecondTarget(0, 0, 0, 1, 0);               // Second target BG3.
+  SetColorEffectBackdropSecondTarget(0);
+  gLCDIOBuffer.blendControl.effect = BLEND_EFFECT_ALPHA;    // Enable alphablending.
 }
-
-
-
-

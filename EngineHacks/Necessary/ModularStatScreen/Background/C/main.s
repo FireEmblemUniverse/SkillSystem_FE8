@@ -105,62 +105,93 @@ SSS_init:
 	adds	r2, r2, #64
 	cmp	r4, r5
 	bne	.L6
-	movs	r5, #0
+	movs	r2, #12
 	@ sp needed
-	ldr	r4, .L10+32
-	ldr	r7, .L10+12
-	movs	r1, r4
-	ldr	r0, .L10+36
-	bl	.L13
-	ldr	r6, .L10+40
-	mov	r0, sp
-	movs	r1, r6
-	ldr	r2, .L10+44
-	ldr	r3, .L10+48
-	str	r5, [sp]
-	bl	.L4
-	movs	r2, r5
-	movs	r1, r4
-	movs	r0, r6
-	ldr	r3, .L10+52
-	bl	.L4
 	movs	r1, #192
-	ldr	r0, .L10+56
+	ldr	r4, .L10+32
+	adds	r4, r4, #65
+	ldrb	r3, [r4]
+	ands	r3, r2
+	ldr	r2, .L10+36
 	lsls	r1, r1, #19
-	bl	.L13
-	movs	r2, #32
-	ldr	r0, .L10+60
+	ldr	r0, [r3, r2]
+	ldr	r3, .L10+12
+	bl	.L4
+	movs	r2, #12
+	movs	r6, #0
+	ldrb	r3, [r4]
+	ldr	r0, .L10+40
+	ands	r3, r2
+	adds	r2, r2, #20
 	movs	r1, r2
+	ldr	r0, [r3, r0]
 	ldr	r3, .L10+20
 	bl	.L4
-	ldr	r6, .L10+64
-	add	r0, sp, #4
-	movs	r1, r6
-	ldr	r2, .L10+68
-	ldr	r3, .L10+48
-	str	r5, [sp, #4]
+	ldr	r5, .L10+44
+	ldr	r0, .L10+48
+	movs	r1, r5
+	ldr	r3, .L10+12
 	bl	.L4
-	ldr	r3, .L10+72
+	ldr	r7, .L10+52
+	mov	r0, sp
+	movs	r1, r7
+	ldr	r2, .L10+56
+	ldr	r3, .L10+60
+	str	r6, [sp]
+	bl	.L4
+	movs	r2, r6
+	movs	r1, r5
+	movs	r0, r7
+	ldr	r3, .L10+64
+	bl	.L4
+	ldr	r7, .L10+68
+	add	r0, sp, #4
+	movs	r1, r7
+	ldr	r2, .L10+72
+	ldr	r3, .L10+60
+	str	r6, [sp, #4]
+	bl	.L4
+	ldr	r3, .L10+76
 	ldrb	r3, [r3]
-	ldr	r2, .L10+76
+	ldr	r2, .L10+80
 	lsls	r3, r3, #2
 	ldr	r0, [r3, r2]
-	movs	r1, r4
-	bl	.L13
-	movs	r2, r5
-	movs	r0, r6
-	movs	r1, r4
-	ldr	r3, .L10+52
+	movs	r1, r5
+	ldr	r3, .L10+12
 	bl	.L4
-	ldrb	r3, [r4, #1]
-	movs	r0, r6
+	movs	r2, r6
+	movs	r0, r7
+	movs	r1, r5
+	ldr	r3, .L10+64
+	bl	.L4
+	ldrb	r3, [r5, #1]
+	movs	r0, r7
+	ldr	r5, .L10+84
 	movs	r2, #18
-	ldr	r1, .L10+80
-	ldr	r4, .L10+84
+	ldr	r1, .L10+88
 	adds	r3, r3, #1
-	bl	.L14
+	bl	.L12
+	movs	r2, #12
+	movs	r1, #144
+	ldrb	r3, [r4]
+	ldr	r0, .L10+40
+	ands	r3, r2
+	ldr	r0, [r3, r0]
+	adds	r2, r2, #20
+	ldr	r3, .L10+20
+	lsls	r1, r1, #2
+	bl	.L4
+	movs	r2, #12
+	ldrb	r3, [r4]
+	ldr	r0, .L10+92
+	ands	r3, r2
+	movs	r1, #96
+	ldr	r0, [r3, r0]
+	adds	r2, r2, #20
+	ldr	r3, .L10+20
+	bl	.L4
 	movs	r0, #7
-	ldr	r3, .L10+88
+	ldr	r3, .L10+96
 	bl	.L4
 	pop	{r0, r1, r2, r4, r5, r6, r7}
 	pop	{r0}
@@ -176,30 +207,32 @@ SSS_init:
 	.word	CopyToPaletteBuffer
 	.word	gBg3MapBuffer
 	.word	-16384
+	.word	gChapterData
+	.word	SSS_PageAndPortraitGfxTable
+	.word	SSS_PageAndPortraitPalTable
 	.word	gGenericBuffer
 	.word	SSS_PortraitBoxTSA
 	.word	gBg1MapBuffer
 	.word	16777728
 	.word	CpuFastSet
 	.word	BgMap_ApplyTsa
-	.word	SSS_PageAndPortraitGfx
-	.word	SSS_PageAndPortraitPal
 	.word	gpStatScreenPageBg1Map
 	.word	16777376
 	.word	StatScreenStruct
 	.word	SSS_PageTSATable
-	.word	gBg1MapBuffer+152
 	.word	BgMapCopyRect
+	.word	gBg1MapBuffer+152
+	.word	SSS_StatsBoxPalTable
 	.word	EnableBgSyncByMask
 	.size	SSS_init, .-SSS_init
 	.align	1
-	.global	SSS_ClearBG1Tiles
+	.global	SSS_clearBG1Tiles
 	.syntax unified
 	.code	16
 	.thumb_func
 	.fpu softvfp
-	.type	SSS_ClearBG1Tiles, %function
-SSS_ClearBG1Tiles:
+	.type	SSS_clearBG1Tiles, %function
+SSS_clearBG1Tiles:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -207,33 +240,33 @@ SSS_ClearBG1Tiles:
 	push	{r4, lr}
 	movs	r1, r2
 	@ sp needed
-	ldr	r4, .L16
+	ldr	r4, .L14
 	movs	r3, #0
-	ldr	r0, .L16+4
-	bl	.L14
+	ldr	r0, .L14+4
+	bl	.L16
 	movs	r2, #18
 	movs	r3, #0
 	movs	r1, r2
-	ldr	r0, .L16+8
-	bl	.L14
+	ldr	r0, .L14+8
+	bl	.L16
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L17:
+.L15:
 	.align	2
-.L16:
+.L14:
 	.word	BgMapFillRect
 	.word	gBg1MapBuffer+152
 	.word	gBg2MapBuffer+152
-	.size	SSS_ClearBG1Tiles, .-SSS_ClearBG1Tiles
+	.size	SSS_clearBG1Tiles, .-SSS_clearBG1Tiles
 	.align	1
-	.global	SSS_UpdateBG1Tiles
+	.global	SSS_updateBG1Tiles
 	.syntax unified
 	.code	16
 	.thumb_func
 	.fpu softvfp
-	.type	SSS_UpdateBG1Tiles, %function
-SSS_UpdateBG1Tiles:
+	.type	SSS_updateBG1Tiles, %function
+SSS_updateBG1Tiles:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -243,42 +276,42 @@ SSS_UpdateBG1Tiles:
 	asrs	r0, r0, #1
 	asrs	r4, r1, #1
 	lsls	r5, r0, #1
-	ldr	r1, .L19
-	ldr	r0, .L19+4
+	ldr	r1, .L18
+	ldr	r0, .L18+4
 	adds	r4, r4, #76
 	lsls	r4, r4, #1
-	ldr	r7, .L19+8
+	ldr	r7, .L18+8
 	adds	r0, r5, r0
 	adds	r1, r4, r1
 	movs	r3, #18
-	bl	.L13
-	ldr	r1, .L19+12
-	ldr	r0, .L19+16
+	bl	.L20
+	ldr	r1, .L18+12
+	ldr	r0, .L18+16
 	movs	r2, r6
 	adds	r0, r5, r0
 	movs	r3, #18
 	adds	r1, r4, r1
-	bl	.L13
+	bl	.L20
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L20:
-	.align	2
 .L19:
+	.align	2
+.L18:
 	.word	gBg1MapBuffer
 	.word	gpStatScreenPageBg1Map
 	.word	BgMapCopyRect
 	.word	gBg2MapBuffer
 	.word	gpStatScreenPageBg2Map
-	.size	SSS_UpdateBG1Tiles, .-SSS_UpdateBG1Tiles
+	.size	SSS_updateBG1Tiles, .-SSS_updateBG1Tiles
 	.align	1
-	.global	SSS_ScrollBG1
+	.global	SSS_scrollBG1
 	.syntax unified
 	.code	16
 	.thumb_func
 	.fpu softvfp
-	.type	SSS_ScrollBG1, %function
-SSS_ScrollBG1:
+	.type	SSS_scrollBG1, %function
+SSS_scrollBG1:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
@@ -306,31 +339,64 @@ SSS_ScrollBG1:
 	.align	2
 .L22:
 	.word	SetBgPosition
-	.size	SSS_ScrollBG1, .-SSS_ScrollBG1
+	.size	SSS_scrollBG1, .-SSS_scrollBG1
 	.align	1
-	.global	SSS_BlendMMSBox
+	.global	SSS_blendMMSBox
 	.syntax unified
 	.code	16
 	.thumb_func
 	.fpu softvfp
-	.type	SSS_BlendMMSBox, %function
-SSS_BlendMMSBox:
+	.type	SSS_blendMMSBox, %function
+SSS_blendMMSBox:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	movs	r3, #3
-	ldr	r2, .L25
-	ldrb	r1, [r2, #24]
-	orrs	r3, r1
-	push	{r4, lr}
-	strb	r3, [r2, #24]
+	push	{r0, r1, r4, r5, r6, lr}
+	movs	r4, #0
 	@ sp needed
+	ldr	r5, .L25
+	ldrb	r2, [r5, #24]
+	orrs	r3, r2
+	strb	r3, [r5, #24]
 	ldr	r3, .L25+4
 	bl	.L4
-	movs	r2, #0
 	ldr	r3, .L25+8
-	strb	r2, [r3, #8]
-	pop	{r4}
+	movs	r0, r4
+	strb	r4, [r3, #8]
+	movs	r2, #8
+	movs	r3, r4
+	movs	r1, #6
+	ldr	r6, .L25+12
+	bl	.L27
+	movs	r1, r4
+	movs	r3, r4
+	movs	r2, #1
+	movs	r0, r4
+	str	r4, [sp]
+	ldr	r6, .L25+16
+	bl	.L27
+	movs	r0, #1
+	ldr	r3, .L25+20
+	bl	.L4
+	movs	r2, r4
+	movs	r1, r4
+	movs	r0, r4
+	ldr	r6, .L25+24
+	movs	r3, #1
+	str	r4, [sp]
+	bl	.L27
+	movs	r0, r4
+	ldr	r3, .L25+28
+	bl	.L4
+	movs	r2, #63
+	adds	r5, r5, #60
+	ldrb	r3, [r5]
+	ands	r2, r3
+	movs	r3, #64
+	orrs	r3, r2
+	strb	r3, [r5]
+	pop	{r0, r1, r4, r5, r6}
 	pop	{r0}
 	bx	r0
 .L26:
@@ -339,10 +405,15 @@ SSS_BlendMMSBox:
 	.word	gLCDIOBuffer
 	.word	SetDefaultColorEffects
 	.word	StatScreenStruct
-	.size	SSS_BlendMMSBox, .-SSS_BlendMMSBox
+	.word	SetColorEffectsParameters
+	.word	SetColorEffectsFirstTarget
+	.word	SetColorEffectBackdropFirstTarget
+	.word	SetColorEffectsSecondTarget
+	.word	SetColorEffectBackdropSecondTarget
+	.size	SSS_blendMMSBox, .-SSS_blendMMSBox
 	.global	SSS_mainProc
 	.section	.rodata.str1.1,"aMS",%progbits,1
-.LC32:
+.LC41:
 	.ascii	"SSS_Main\000"
 	.section	.rodata
 	.align	2
@@ -351,7 +422,7 @@ SSS_BlendMMSBox:
 SSS_mainProc:
 	.short	1
 	.short	0
-	.word	.LC32
+	.word	.LC41
 	.short	2
 	.short	0
 	.word	SSS_init
@@ -367,9 +438,11 @@ SSS_mainProc:
 	.align	1
 .L4:
 	bx	r3
-.L14:
+.L16:
 	bx	r4
 .L12:
 	bx	r5
-.L13:
+.L27:
+	bx	r6
+.L20:
 	bx	r7
