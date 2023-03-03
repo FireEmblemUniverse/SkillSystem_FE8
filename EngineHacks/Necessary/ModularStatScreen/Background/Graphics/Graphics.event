@@ -1,0 +1,88 @@
+// Scrolling background.
+ALIGN 4; SSS_MuralGfx:
+#incbin "Relief.dmp"
+ALIGN 4; SSS_MuralPal:
+#incbin "Relief_pal.dmp"
+
+// Page on the right.
+  // Tiles. Indexed by window option.
+  ALIGN 4; SSS_PageAndPortraitGfx1:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/Blue.dmp"
+  ALIGN 4; SSS_PageAndPortraitGfx2:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/Orange.dmp"
+  ALIGN 4; SSS_PageAndPortraitGfx3:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/Green.dmp"
+  ALIGN 4; SSS_PageAndPortraitGfx4:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/Grey.dmp"
+  ALIGN 4; SSS_PageAndPortraitGfxTable:
+  POIN SSS_PageAndPortraitGfx1 SSS_PageAndPortraitGfx2
+  POIN SSS_PageAndPortraitGfx3 SSS_PageAndPortraitGfx4
+
+  // Palettes. Indexed by window option.
+  ALIGN 4; SSS_PageAndPortraitPal1:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/BluePal.dmp"
+  ALIGN 4; SSS_PageAndPortraitPal2:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/OrangePal.dmp"
+  ALIGN 4; SSS_PageAndPortraitPal3:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/GreenPal.dmp"
+  ALIGN 4; SSS_PageAndPortraitPal4:
+  #incbin "Tiled/Tilesets/FE6/PageAndPortrait/GreyPal.dmp"
+  ALIGN 4; SSS_PageAndPortraitPalTable:
+  POIN SSS_PageAndPortraitPal1 SSS_PageAndPortraitPal2
+  POIN SSS_PageAndPortraitPal3 SSS_PageAndPortraitPal4
+  
+  // TSA. Indexed by pagenumber.
+  ALIGN 4; SSS_PortraitBoxTSA:
+  #incbin "Tiled/Tilemaps/FE6/PortraitBox.dmp"
+  ALIGN 4; SSS_PageTallTSA:
+  #incbin "Tiled/Tilemaps/FE6/Page/Tall.dmp"
+  ALIGN 4; SSS_PageShortTSA:
+  #incbin "Tiled/Tilemaps/FE6/Page/Short.dmp"
+  ALIGN 4; SSS_PageWepSupportTSA:
+  #incbin "Tiled/Tilemaps/FE6/Page/WepSupport.dmp"
+  ALIGN 4; SSS_PageTSATable:
+  POIN SSS_PageTallTSA SSS_PageTallTSA SSS_PageWepSupportTSA SSS_PageShortTSA
+  POIN SSS_PageTallTSA SSS_PageTallTSA SSS_PageTallTSA SSS_PageTallTSA              // Enough for eight pages.
+
+// Equipment-stats box.
+  // Palettes. Indexed by window option.
+  ALIGN 4; SSS_StatsBoxPal1:
+  #incbin "Tiled/Tilesets/FE6/EquipmentBox/MagentaPal.dmp"
+  ALIGN 4; SSS_StatsBoxPal2:
+  #incbin "Tiled/Tilesets/FE6/EquipmentBox/CyanPal.dmp"
+  ALIGN 4; SSS_StatsBoxPal3:
+  #incbin "Tiled/Tilesets/FE6/EquipmentBox/RedPal.dmp"
+  ALIGN 4; SSS_StatsBoxPal4:
+  #incbin "Tiled/Tilesets/FE6/EquipmentBox/YellowPal.dmp"
+  ALIGN 4; SSS_StatsBoxPalTable:
+  POIN SSS_StatsBoxPal1 SSS_StatsBoxPal2
+  POIN SSS_StatsBoxPal3 SSS_StatsBoxPal4
+  
+  // Other.
+  ALIGN 4; SSS_StatsBoxGfx:
+  #incbin "Tiled/Tilesets/FE6/EquipmentBox/EquipmentBox.dmp"
+  ALIGN 4; SSS_StatsBoxTSA:
+  #incbin "Tiled/Tilemaps/FE6/EquipmentBox.dmp"
+
+// Bottom-left box.
+ALIGN 4; SSS_MMSBoxOAM:
+SHORT 0x11
+SHORT 0x4000 0x8000 0x4E8F          // Platform
+
+SHORT 0x44FD 0x41C8 0x2EA9          // Top Bar.
+SHORT 0x44FD 0x51E0 0x2EA9          // ^
+SHORT 0x440D 0x41C8 0x2EA9          // Bottom Bar.
+SHORT 0x440D 0x51E0 0x2EA9          // ^
+
+SHORT 0x44E5 0x81C0 0x2EC9          // Transparant box filler.
+SHORT 0x44E5 0x81E0 0x2EC9          // ^
+SHORT 0x44E5 0x8200 0x2EC9          // ^
+SHORT 0x44F5 0x81C0 0x2EC9          // ^
+SHORT 0x44F5 0x81E0 0x2EC9          // ^
+SHORT 0x44F5 0x8200 0x2EC9          // ^
+SHORT 0x4405 0x81C0 0x2EC9          // ^
+SHORT 0x4405 0x81E0 0x2EC9          // ^
+SHORT 0x4405 0x8200 0x2EC9          // ^
+SHORT 0x84E5 0x0220 0x2ECE          // Transparant box edges.
+SHORT 0x84F5 0x0220 0x2ECD          // ^
+SHORT 0x8405 0x2220 0x2ECE          // ^
