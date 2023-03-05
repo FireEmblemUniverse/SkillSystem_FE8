@@ -57,10 +57,10 @@ mov	r0,r4
 lsr	r0,#0x01	@divide skill by 2 to get our chance
 
 
-@mov r1, r4 @skill user
-@blh d100Result
-@cmp r0, #1		@check if roll was successful
-@bne End
+mov r1, r4 @skill user
+blh d100Result
+cmp r0, #1		@check if roll was successful
+bne End
 
 
 @if we proc, set offensive skill flag

@@ -735,7 +735,7 @@
 //Author Unknown (Initial Commit)
 #define AstraID 15
 
-//Bane: Leave the opponent at 1 HP. (Skill/2 % activation)
+//Bane: Leave the opponent at 1 HP if the attack would kill. (Skill/2 % activation)
 //Author Unknown (Initial Commit)
 #define BaneID 20
 
@@ -766,6 +766,7 @@
 //Countermagic: Reflect magic damage when attacked at 1-2 range.
 //Author Unknown (Initial Commit)
 #define CounterMagicID 19
+#define CountermagicID CounterMagicID //Alias
 
 //Deadeye: Doubles hit rate. Skill% chance to inflict sleep.
 //By Sme
