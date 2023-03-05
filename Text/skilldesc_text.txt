@@ -53,7 +53,8 @@ Lethality: Instantly kill opponent.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Bane
-Bane: Leave the opponent at 1 HP.[N]
+Bane: Leave the opponent at[N]
+1 HP if the attack would kill.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Luna
