@@ -21,6 +21,7 @@ adding yourself!
 - Ganzap
 - Mikey Seregon
 - Vesly 
+- Dragz
 
 # Other
 
@@ -40,4 +41,4 @@ ShrewdPotential, EternalVanity
 - VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
-
+- Dragz: Divinely Inspiring

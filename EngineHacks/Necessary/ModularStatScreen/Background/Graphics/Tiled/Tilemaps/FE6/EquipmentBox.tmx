@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="2020.12.18" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="../../Tilesets/FE6/EquipmentBox/EquipmentBox.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="16" height="6">
+  <data encoding="csv">
+2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+5,6,6,6,6,6,6,6,6,13,14,14,14,14,15,7,
+5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,
+5,6,13,14,14,14,14,15,6,13,14,14,14,14,15,7,
+5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,
+8,6,13,14,14,14,14,15,6,13,14,14,14,14,15,9
+</data>
+ </layer>
+</map>

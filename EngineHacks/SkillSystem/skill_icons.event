@@ -164,6 +164,9 @@ ORG SkillIcon(MaleficAuraID)
 ORG SkillIcon(InspirationID)
 #incbin "SkillIcons/Inspiration.dmp"
 
+ORG SkillIcon(DivinelyInspiringID)
+#incbin "SkillIcons/DivinelyInspiring.dmp"
+
 ORG SkillIcon(CharmID)
 #incbin "SkillIcons/Charm.dmp"
 
@@ -1034,9 +1037,26 @@ ORG SkillIcon(DarkBargainID)
 ORG SkillIcon(SoulSapID)
 #incbin "SkillIcons/SoulSap.dmp"
 
-
-
-
+ORG SkillIcon(AirRaidAtkID)
+#incbin "SkillIcons/AirRaidAtk.dmp"
+ORG SkillIcon(AirRaidSpdID)
+#incbin "SkillIcons/AirRaidSpd.dmp"
+ORG SkillIcon(AirRaidDefID)
+#incbin "SkillIcons/AirRaidDef.dmp"
+ORG SkillIcon(AirRaidCriID)
+#incbin "SkillIcons/AirRaidCri.dmp"
+ORG SkillIcon(AirRaidHitID)
+#incbin "SkillIcons/AirRaidHit.dmp"
+ORG SkillIcon(AirRaidAvoID)
+#incbin "SkillIcons/AirRaidAvo.dmp"
+ORG SkillIcon(AirRaidResID)
+#incbin "SkillIcons/AirRaidRes.dmp"
+ORG SkillIcon(ChaosStyleID)
+#incbin "SkillIcons/ChaosStyle.dmp"
+ORG SkillIcon(DragonskinID)
+#incbin "SkillIcons/DragonSkin.dmp"
+ORG SkillIcon(StunningSmileID)
+#incbin "SkillIcons/StunningSmile.dmp"
 
 ORG SkillIcons+0x8000
 
