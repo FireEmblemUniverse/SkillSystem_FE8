@@ -3,6 +3,7 @@
 
 	gBattleActor  = 0x0203A4EC
 	gBattleTarget = 0x0203A56C
+	gActionData   = 0x0203A958
 	gPopupItem    = 0x030005F4
 
 	lGetUnitLevelSkills = EALiterals+0x00
@@ -21,6 +22,14 @@ InitLevelUpSkillPopup:
 	cmp r0, #0
 	bne yes
 
+	@ Check if action was use item
+
+	ldr r0, =gActionData
+	ldrb r0, [r0, #0x11] @ r0 = Current action type
+
+	cmp r0, #0x1A @Use item
+	beq no
+	
 	@ Check target battle unit
 
 	ldr r0, =gBattleTarget
