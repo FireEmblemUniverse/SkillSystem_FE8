@@ -3,8 +3,9 @@
 
 	gBattleActor  = 0x0203A4EC
 	gBattleTarget = 0x0203A56C
-	gActionData   = 0x0203A958
 	gPopupItem    = 0x030005F4
+
+	GetSpellAssocCharCount = 0x8078249
 
 	lGetUnitLevelSkills = EALiterals+0x00
 	lAddSkill           = EALiterals+0x04
@@ -22,13 +23,19 @@ InitLevelUpSkillPopup:
 	cmp r0, #0
 	bne yes
 
-	@ Check if action was use item
+	@ Check if action involves two units
 
-	ldr r0, =gActionData
-	ldrb r0, [r0, #0x11] @ r0 = Current action type
+	ldr r3, =GetSpellAssocCharCount
+	mov ip, r3
 
-	cmp r0, #0x1A @Use item
-	beq no
+	ldr r0, =gBattleActor
+	mov r1, #0x4A
+	ldrh r0, [r0, r1] @ r0 = Currently used item/weapon
+
+	bl  BXIP @ r0 = Units in battle
+
+	cmp r0, #2
+	bne no
 	
 	@ Check target battle unit
 
