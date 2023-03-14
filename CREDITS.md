@@ -37,7 +37,7 @@ adding yourself!
 - 2WB: Miscellaneous
 - Someone: Taker, Hone, Oath, Rouse, Guts, StrongCon, RallyChaos, HoardersBane
 ShrewdPotential, EternalVanity 
-- Alice: Dancing/Heavy Blade 
+- Alice: Dancing/Heavy Blade, DarkBargain, SoulSap 
 - VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
