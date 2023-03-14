@@ -61,7 +61,18 @@ mov	lr, r3
 cmp	r0,#0x00
 beq	End
 
+@ if this is off, only refresh unit if player 
+ldr r3, =CantoAI_Label
+ldr r3, [r3] 
 
+@check if enemy or not
+ldrb r2, [r4,#0x0B]
+lsr r2,r2,#6
+cmp r3, #1 
+beq Refresh 
+cmp r2, #0 
+bne End @ no canto ai and not a player 
+Refresh: 
 @if canto, unset 0x2 and set 0x40
 ldr	r0, [r4,#0x0C]	@status bitfield
 mov	r1, #0x02
@@ -70,13 +81,8 @@ and	r0, r1		@unset bit 0x2
 mov	r1, #0x40	@set canto bit
 orr	r0, r1
 str	r0, [r4,#0x0C]
-
-
-@check if enemy or not
-ldrb r0, [r4,#0x0B]
-lsr r0,r0,#6
-cmp r0,#0 @only Canto+ if player unit
-beq End
+cmp r2, #0 
+beq End @ player who has been refreshed, so no need for ai 
 
 mov r0, r4 @ unit 
 add r0, #0x41 
@@ -113,6 +119,8 @@ bne End @ do not canto if cannot move
 @
 @StoreNow: 
 @strb	r1, [r0]
+
+
 
 @ debuff movement while finding the ideal place to move to after attacking 
 ldr r0, =CurrentUnit 

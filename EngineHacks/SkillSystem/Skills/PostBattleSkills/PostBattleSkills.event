@@ -93,11 +93,15 @@ CantoPlus:
 POIN SkillTester
 WORD CantoPlusID
 
+CantoAI_Label:
+WORD CANTO_AI 
+
 MoveActiveTo_sBCoords: 
 EVBIT_MODIFY 1 
 EVBIT_T 9 // follow camera 
 ASMC MoveActorToCoords_sB
 ENUN 
+SET_ENDTURN (-1) 
 //ASMC SetActorCoords 
 NoFade 
 ENDA 
