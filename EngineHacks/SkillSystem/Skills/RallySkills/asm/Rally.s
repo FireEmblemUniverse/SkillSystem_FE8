@@ -1,11 +1,44 @@
 
 	.thumb
-
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
 	@ build using lyn
 	@ requires MapAuraFx functions to be visible
 
 	RALLY_EFFECT_RANGE = 2
 
+.global BuffAnim_ASMC
+.type BuffAnim_ASMC, %function 
+BuffAnim_ASMC:
+push {r4-r5, lr} 
+ldr r4, =MemorySlot 
+ldr r0, [r4, #4*1] @ s1 as unit 
+blh GetUnitByEventParameter 
+mov r5, r0 
+bl IsUnitOnField 
+cmp r0, #0 
+beq Break_ASMC
+mov r0, r5 @ unit 
+mov r1, #1 
+ldr r3, [r4, #4*3] @ s3 as rally bit 
+lsl r2, r1, #9 @ 0x200 
+lsl r1, r3 @ 0x01 - 0x100 
+cmp r1, r2 
+bge Break_ASMC 
+ldr r2, [r4, #4*4] @ s4 as range (0 = self) 
+bl StartBuffFx
+
+Break_ASMC: 
+pop {r4-r5} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+.equ MemorySlot, 0x30004B8
+.equ GetUnitByEventParameter, 0x0800BC50
 	GetUnit = 0x08019430|1
 	StartProc = 0x08002C7C|1
 	FindProc = 0x08002E9C|1
@@ -33,6 +66,34 @@
 	.global ForEachRalliedUnit
 
 	.type RallyAuraCheck, function
+
+.global BuffFx_ASMC
+.type BuffFx_ASMC, %function 
+BuffFx_ASMC: 
+push {r4, lr} 
+ldr r0, =MemorySlot 
+ldr r0, [r0, #4] @ slot 1 as unit 
+blh GetUnitByEventParameter 
+mov r4, r0 
+bl IsUnitOnField 
+cmp r0, #0 
+beq Exit_StrBuffFx 
+ldr r3, =MemorySlot 
+ldr r1, [r3, #4*3] @ s3 as bitfield to use for the anim (see StrAnim, SklAnim, etc.) 
+ldr r2, [r3, #4*4] @ s4 as range (0 for self) 
+mov r3, #2 
+lsl r3, #8 @ 0x200 
+cmp r1, r3 
+bge Exit_StrBuffFx @ ensure slot3 was valid 
+mov r0, r4 
+bl StartBuffFx 
+
+Exit_StrBuffFx: 
+pop {r4} 
+pop {r0} 
+bx r0 
+.ltorg 
+
 
 RallyCommandUsability:
 	push {lr}
@@ -90,9 +151,10 @@ RallyCommandEffect:
 
 	mov r1, r0 @ arg r1 = user argument
 
-	adr r0, RallyCommandEffect.apply
+	adr r0, RallyCommandEffect_apply
 	add r0, #1 @ arg r0 = function
-
+	ldr r2, =gActiveUnit
+	ldr r2, [r2] @ arg r2 = active unit
 	bl ForEachRalliedUnit
 
 	ldr r3, =StartRallyFx
@@ -106,25 +168,72 @@ RallyCommandEffect:
 
 	pop {r1}
 	bx r1
+	
+.equ ProcFind, 0x8002E9C
+.ltorg 
+.global RallyCommandEffect_NoneActive
+.type RallyCommandEffect_NoneActive, %function 
+RallyCommandEffect_NoneActive:
+	push {r4-r5, lr}
+	mov r4, r0 @ unit 
+	mov r5, r1 @ r1 = rally bits 
+
+
+	adr r0, RallyCommandEffect_apply
+	add r0, #1 @ arg r0 = function
+	mov r2, r4 @ unit 
+	mov r1, #RALLY_EFFECT_RANGE
+	bl ForEachRalliedUnit_NoneActive
+
+	ldr r0, =BuffFxProc
+	blh ProcFind 
+	cmp r0, #0 
+	beq NewProc 
+	
+	str r4, [r0, #0x30] 
+	str r5, [r0, #0x34] 
+	bl BuffFx_OnInit 
+	
+	b ExitRallyCommandEffect_NoneActive
+	
+	NewProc: 
+	mov r0, r4 @ unit 
+	mov r1, r5 @ bits 
+	mov r2, #RALLY_EFFECT_RANGE 
+	ldr r3, =StartBuffFx
+	bl  BXR3
+
+	ExitRallyCommandEffect_NoneActive: 
+	mov r0, #0x17
+	pop {r4-r5} 
+	pop {r1}
+	bx r1
 
 	.align
-
-RallyCommandEffect.apply:
+.global RallyCommandEffect_apply
+.type RallyCommandEffect_apply, %function 
+RallyCommandEffect_apply:
 	@ args: r0 = unit, r1 = rally bits
 
-	push {r4,lr}
+	push {r4-r5,lr}
 	mov r4,r1
 	@ r0 = unit struct 
 	bl GetUnitDebuffEntry
-
+	mov r5, r0 @ debuff entry 
 	ldr r1, =RalliesOffset_Link
 	ldr r1, [r1] 
 	ldr r2, =RalliesNumberOfBits_Link
 	ldr r2, [r2] 
-	mov r3, r4 @ data to store 
+	bl UnpackData 
+	mov r3, r0 @ data 
+	mov r0, r5 @ debuff entry 
+	ldr r1, =RalliesOffset_Link
+	ldr r1, [r1] 
+	ldr r2, =RalliesNumberOfBits_Link
+	ldr r2, [r2] 
+	orr r3, r4 @ data to store 
 	bl PackData 
-		
-	pop {r4}
+	pop {r4-r5}
 	pop {r0}
 	bx r0
 
@@ -237,15 +346,44 @@ RallyAuraCheck:
 
 	.pool
 	.align
+	
+RallyAuraCheck_NoneActive:
+	ldr r0, =GetUnitsInRange
+	mov ip, r0
+
+	mov r0, r2 					@ arg r0 = unit 
+	mov r2, r1 					@ arg r2 = range
+	mov r1, #0                  @ arg r1= check type
+
+
+	bx  ip @ jump (it will return to wherever this was called)
+
+	.pool
+	.align
+
+.global ForEachRalliedUnit_NoneActive
+.type ForEachRalliedUnit_NoneActive, %function 
+ForEachRalliedUnit_NoneActive:
+	@ Arguments: r0 = function (void(*)(struct Unit*, void*)), r1 = second argument to give to function
+	@ r2 = unit, r1 = rally effect range 
+	@ Returns:   nothing
+
+	push {r0-r1, r4-r5, lr} @ note: [sp] = function, [sp+4] = second argument
+	mov r5, r2 @ unit 
+	bl RallyAuraCheck_NoneActive
+	cmp r0, #0 
+	beq ForEachRalliedUnit.end
+	b NextPart
 
 ForEachRalliedUnit:
 	@ Arguments: r0 = function (void(*)(struct Unit*, void*)), r1 = second argument to give to function
 	@ Returns:   nothing
 
-	push {r0-r1, r4, lr} @ note: [sp] = function, [sp+4] = second argument
-
+	push {r0-r1, r4-r5, lr} @ note: [sp] = function, [sp+4] = second argument
+	mov r5, r2 @ unit 
 	bl RallyAuraCheck
 
+	NextPart: 
 	mov r4, r0
 
 ForEachRalliedUnit.lop:
@@ -262,10 +400,9 @@ ForEachRalliedUnit.lop:
 	@ implied @ ret r0 = unit
 
 	ldr r3, [sp]
-
 	@ implied        @ arg r0 = unit
+	@mov r0, r5 @ unit 
 	ldr r1, [sp, #4] @ arg r1 = extra data
-
 	bl BXR3
 
 	add r4, #1
@@ -273,7 +410,7 @@ ForEachRalliedUnit.lop:
 	b ForEachRalliedUnit.lop
 
 ForEachRalliedUnit.end:
-	pop {r1-r2, r4}
+	pop {r1-r2, r4-r5}
 
 	pop {r1}
 	bx r1
@@ -312,7 +449,8 @@ RallyPreviewFx_OnInit:
 
 	ldr r0, =AddMapAuraFxUnit @ arg r0 = function
 	@ unused                  @ arg r1 = user argument
-
+	ldr r2, =gActiveUnit
+	ldr r2, [r2] @ arg r2 = active unit
 	bl ForEachRalliedUnit
 
 	@ set map aura fx palette

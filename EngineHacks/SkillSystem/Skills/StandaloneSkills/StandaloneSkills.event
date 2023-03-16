@@ -32,8 +32,6 @@ jumpToHack(Vantage)
 //Inspiring Tune
 ORG $32364
 jumpToHack(VigorDanceSkill) //set a bit in the debuff entries to danced units
-ORG $15428
-jumpToHack(VigorDanceReset) //unset it when the turn starts again
 
 #ifndef VANILLA_TRIANGLE_ATTACK
 //Triangle Attack
@@ -51,6 +49,9 @@ callHack_r0(ParagonMisc)
 //Synchronize
 ORG $2C214
 jumpToHack(Synchronize)
+
+ORG $2F840 
+jumpToHack(ShrewdPotential) 
 
 POP
 
@@ -123,3 +124,10 @@ BYTE ParagonID
 #include "Synchronize/Synchronize.lyn.event"
 SynchronizeIDLink:
 BYTE SynchronizeID
+
+#include "ShrewdPotential/ShrewdPotential.lyn.event" 
+ALIGN 4 
+ShrewdPotentialID_Link: 
+WORD ShrewdPotentialID 
+ShrewdPotentialAmount_Link: 
+WORD 1

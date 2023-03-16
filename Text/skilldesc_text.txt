@@ -53,7 +53,8 @@ Lethality: Instantly kill opponent.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Bane
-Bane: Leave the opponent at 1 HP.[N]
+Bane: Leave the opponent at[N]
+1 HP if the attack would kill.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Luna
@@ -224,6 +225,10 @@ tiles receive +2 magic damage.[X]
 ## SD_Inspiration
 Inspiration: Allies within 2 tiles[N]
 deal +2 damage and receive -2 damage.[X]
+
+## SD_DivinelyInspiring
+Divinely Inspiring: Adjacent allies[N]
+deal +3 damage and receive -1 damage.[X]
 
 ## SD_Charm
 Charm: Allies within 2[N]
@@ -412,31 +417,31 @@ when on terrain with effects.[X]
 
 ## SD_SealStr
 Seal Strength: Debuff opponent's Str[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_SealSkl
 Seal Skill: Debuff opponent's Skl[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_SealSpd
 Seal Speed: Debuff opponent's Spd[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_SealLuk
 Seal Luck: Debuff opponent's Luck[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_SealDef
 Seal Defense: Debuff opponent's Def[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_SealRes
 Seal Resistance: Debuff opponent's Res[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_SealMag
 Seal Magic: Debuff opponent's Mag[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 6 after combat. (Recover 2/turn)[X]
 
 ## SD_Gamble
 Gamble: A reckless attack with[N]
@@ -1269,3 +1274,281 @@ least 3 higher than the enemy's.[X]
 Water Boost: Grants +6 Resistance[N]
 if unit's current HP is at[N]
 least 3 higher than the enemy's.[X]
+
+
+## SD_MagTaker
+Magic Taker: After attacking and[N]
+defeating an enemy, gain +4 Mag.[N]
+(Max +10)[X]
+
+## SD_StrTaker
+Strength Taker: After attacking and[N]
+defeating an enemy, gain +4 Str.[N]
+(Max +10)[X]
+
+## SD_SklTaker
+Skill Taker: After attacking and[N]
+defeating an enemy, gain +4 Skl.[N]
+(Max +10)[X]
+
+## SD_SpdTaker
+Speed Taker: After attacking and[N]
+defeating an enemy, gain +4 Spd.[N]
+(Max +10)[X]
+
+## SD_DefTaker
+Defense Taker: After attacking and[N]
+defeating an enemy, gain +4 Def.[N]
+(Max +10)[X]
+
+## SD_ResTaker
+Resistance Taker: After attacking and[N]
+defeating an enemy, gain +4 Res.[N]
+(Max +10)[X]
+
+## SD_LukTaker
+Luck Taker: After attacking and[N]
+defeating an enemy, gain +4 Luk.[N]
+(Max +10)[X]
+
+## SD_MovTaker
+Movement Taker: After attacking and[N]
+defeating an enemy, gain +3 Mov.[N]
+(Max +10)[X]
+
+
+
+## SD_MagOath
+Magic Oath: At the start of[N]
+your turn, gain up to +4 Mag if[N]
+adjacent to an ally.[X]
+
+## SD_StrOath
+Strength Oath: At the start of[N]
+your turn, gain up to +4 Str if[N]
+adjacent to an ally.[X]
+
+## SD_SklOath
+Skill Oath: At the start of[N]
+your turn, gain up to +4 Skl if[N]
+adjacent to an ally.[X]
+
+## SD_SpdOath
+Speed Oath: At the start of[N]
+your turn, gain up to +4 Spd if[N]
+adjacent to an ally.[X]
+
+## SD_DefOath
+Defense Oath: At the start of[N]
+your turn, gain up to +4 Def if[N]
+adjacent to an ally.[X]
+
+## SD_ResOath
+Resistance Oath: At the start of[N]
+your turn, gain up to +4 Res if[N]
+adjacent to an ally.[X]
+
+## SD_LukOath
+Luck Oath: At the start of[N]
+your turn, gain up to +4 Luk if[N]
+adjacent to an ally.[X]
+
+## SD_MovOath
+Movement Oath: At the start of[N]
+your turn, gain up to +4 Mov if[N]
+adjacent to an ally.[X]
+
+
+## SD_CleverInit
+Clever Initiative: Begin the[N]
+chapter with +7 Mag.[X]
+
+## SD_StrongInit
+Strong Initiative: Begin the[N]
+chapter with +7 Str.[X]
+
+## SD_DeftInit
+Deft Initiative: Begin the[N]
+chapter with +7 Skl.[X]
+
+## SD_QuickInit
+Quick Initiative: Begin the[N]
+chapter with +7 Spd.[X]
+
+## SD_SturdyInit
+Sturdy Initiative: Begin the[N]
+chapter with +7 Def.[X]
+
+## SD_CalmInit
+Calm Initiative: Begin the[N]
+chapter with +7 Res.[X]
+
+## SD_LuckyInit
+Lucky Initiative: Begin the[N]
+chapter with +7 Luk.[X]
+
+## SD_NimbleInit
+Nimble Initiative: Begin the[N]
+chapter with +7 Mov.[X]
+
+## SD_SpectrumInit
+Spectrum Initiative: Begin the[N]
+chapter with +7 in all stats.[X]
+
+
+## SD_RouseMag
+Rouse Magic: At the start of[N]
+your turn, gain up to +4 Mag if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseStr
+Rouse Strength: At the start of[N]
+your turn, gain up to +4 Str if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseSkl
+Rouse Skill: At the start of[N]
+your turn, gain up to +4 Skl if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseSpd
+Rouse Speed: At the start of[N]
+your turn, gain up to +4 Spd if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseDef
+Rouse Defense: At the start of[N]
+your turn, gain up to +4 Def if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseRes
+Rouse Resistance: At the start of[N]
+your turn, gain up to +4 Res if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseLuk
+Rouse Luck: At the start of[N]
+your turn, gain up to +4 Luk if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseMov
+Rouse Movement: At the start of[N]
+your turn, gain up to +4 Mov if[N]
+not adjacent to an ally.[X]
+
+
+## SD_HoneMag
+Hone Magic: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Mag.[X]
+
+## SD_HoneStr
+Hone Strength: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Str.[X]
+
+## SD_HoneSkl
+Hone Skill: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Skl.[X]
+
+## SD_HoneSpd
+Hone Speed: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Spd.[X]
+
+## SD_HoneDef
+Hone Defense: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Def.[X]
+
+## SD_HoneRes
+Hone Resistance: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Res.[X]
+
+## SD_HoneLuk
+Hone Luck: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Luk.[X]
+
+## SD_HoneMov
+Hone Movement: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Mov.[X]
+
+## SD_EternalVanity
+Eternal Vanity: Your temporary[N]
+stat buffs do not deplete.[X]
+
+## SD_Guts
+Guts: +5 Str while afflicted[N]
+by any status condition.[X]
+
+## SD_StrongConstitution 
+Strong Constitution: +5[N]
+Def/Res while afflicted by[N]
+any status condition.[X]
+
+## SD_ShrewdPotential
+Shrewd Potential: Stat Boosters[N]
+grant +1 more for this unit.[X]
+
+## SD_RallyChaos
+Rally Chaos: At the start of[N]
+your turn, perform a random rally.[X]
+
+## SD_HoardersBane
+Hoarder's Bane: At the end of your[N]
+turn, consume a Vulnerary if below[N]
+full health.[X]
+
+## SD_DarkBargain
+Dark Bargain: At the end of your[N]
+turn, sacrifice extra exp to[N]
+heal by that much.[X]
+
+## SD_SoulSap
+Soul Sap: At the end of your turn,[N]
+drain up to 10% health from every[N]
+unit within two tiles.[X]
+
+## SD_AirRaidAtk
+Air Raid (Atk): Grants +5 Atk when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidSpd
+Air Raid (Spd): Grants +5 AS when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidDef
+Air Raid (Def): Grants +5 Def when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidCri
+Air Raid (Crit): Grants +15 Crit when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidHit
+Air Raid (Hit): Grants +15 Hit when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidAvo
+Air Raid (Avo): Grants +15 Avo when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidRes
+Air Raid (Res): Grants +5 Res when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_ChaosStyle
+Chaos Style: AS +3 during combat with[N]
+a physical weapon against a foe armed[N]
+with magic or vice versa.[X]
+
+## SD_Dragonskin
+Dragonskin: Halves damage taken.[X]
+
+## SD_StunningSmile
+Stunning Smile: If foe is male, inflicts[N]
+Avo -20 on that foe during combat.[X]

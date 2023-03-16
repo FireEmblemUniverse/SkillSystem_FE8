@@ -6,13 +6,6 @@ POIN SkillTester
 WORD AxeFaithID
 
 ALIGN 4
-Bane: //skill/2% of leaving the enemy with 1hp if the normal damage would not have killed (bane is ignored if the unit has lethality)
-#incbin "Bane/Bane.dmp"
-POIN SkillTester
-WORD LethalityID
-WORD BaneID
-
-ALIGN 4
 BattleVeteran:
 #incbin "BattleVeteran/BattleVeteran.dmp"
 POIN SkillTester
@@ -368,6 +361,26 @@ POIN SkillTester
 WORD HeavyBladeID
 
 #include "ElementBoost/ElementBoost.event"
+
+#include "AirRaid/AirRaidSkills.event"
+
+ALIGN 4
+ChaosStyle:
+#incbin "ChaosStyle/ChaosStyle.dmp"
+POIN SkillTester
+WORD ChaosStyleID
+
+ALIGN 4
+Dragonskin:
+#incbin "Dragonskin/DragonSkin.dmp"
+POIN SkillTester
+WORD DragonSkinID
+
+ALIGN 4
+StunningSmile:
+#incbin "StunningSmile/StunningSmile.dmp"
+POIN SkillTester
+WORD StunningSmileID
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS
 	ALIGN 4

@@ -29,6 +29,10 @@
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
 //#define USE_STRMAG_SPLIT
 
+// If uncommented, the statscreen will have a moving background similar to FE6 and FE7.
+// Customization of graphical assets is possible in Necessary/ModularStatScreen/Background/Graphics/Graphics.event.
+// #define SCROLLING_STATSCREEN_BACKGROUND
+
 //If uncommented, will enable Battle Stats with Animations Off.
 #define BATTLE_STATS
 
@@ -149,6 +153,9 @@
 //If uncommented, AdvWeaponLocks will be implemented.
 //This is a rewrite of venno's array-based weapon locks.
 // #define ADV_WEAPON_LOCKS
+//If uncommented, AdvWeaponLocks will use only the lowest bit of the weapon ability word's 4th byte rather than the entire thing.
+//Requires additional configuration in WeaponLockArray/AdvWeaponLocks.event.
+// #define CONSOLIDATED_ADV_WEAPON_LOCKS
 
 //If uncommented, Status-Inflicting Weapons will be implemented.
 //Setting weapon effect 0xD will apply the effect ID at item data +0x22.
@@ -316,6 +323,12 @@
 //	This list can be edited, and is located in
 //	SkillSystem/Skills/WeaponUsabilitySkills/WeaponUsabilitySkills.event.
 
+// If true, Hoarders Bane will consume vulneraries from your inventory and the supply (as long as your party can access the supply). 
+// If false, it will only consume vulneraries from your inventory. 
+#define HOARDERS_BANE_USE_CONVOY True
+
+// If true, enemies/npcs with Canto+ will retreat to their safest tile with any remaining movement after their action. 
+#define CANTO_AI True
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =

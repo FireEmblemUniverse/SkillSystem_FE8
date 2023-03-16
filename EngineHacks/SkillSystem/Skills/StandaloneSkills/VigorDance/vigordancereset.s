@@ -1,22 +1,14 @@
 .equ VigorDanceBit, DebuffTable+4
 .equ EntrySize, VigorDanceBit+4
 .thumb
-
+@ VigorDanceReset
 .set gChapterData,           0x0202BCF0
 .set GetUnit,                0x08019430
 	@ arguments:
 		@r0 = unit deployment id
 	@returns:
 		@r0 = unit pointer
-
-cmp	r0,#1
-beq	set0
-mov	r0,#1
-b	doneSet
-set0:
-mov	r0,#0
-doneSet:
-push	{r0,r4}
+push	{r4, lr}
 
 @r3 is our counter
 ldr	r0,=gChapterData
@@ -48,7 +40,8 @@ beq	End
 b	Loop
 
 End:
-pop	{r0,r4}
+mov r0, #0 @ no blocking proc / animation 
+pop	{r4}
 pop	{r1}
 bx	r1
 

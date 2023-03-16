@@ -21,3 +21,7 @@
 
 #include "HPRestorationCalcLoop/HPRestorationCalcLoop.event"
 
+#include "TurnLoop/Installer.event" 
+
+#include "RangeCalcLoop/RangeCalcLoop.event"
+
