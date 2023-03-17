@@ -5,6 +5,8 @@
   .short 0xf800
 .endm
 .equ EclipseID, SkillTester+4
+.equ CounterID, EclipseID+4
+.equ CounterMagicID, CounterID+4
 .equ d100Result, 0x802a52c
 
 @ r0 is attacker, r1 is defender, r2 is current buffer, r3 is battle data
@@ -30,6 +32,23 @@ ldrb r0,[r0]
 ldrb r1,[r7,#4]
 cmp r0,r1
 ble End
+
+@check for counter and countermagic, they give problems
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r5 @defender data
+ldr r1, CounterID
+.short 0xf800
+cmp r0, #0x01
+beq End
+
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r5 @defender data
+ldr r1, CounterMagicID
+.short 0xf800
+cmp r0, #0x01
+beq End
 
 @check for Eclipse proc
 ldr r0, SkillTester

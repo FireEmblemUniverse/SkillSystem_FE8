@@ -29,6 +29,10 @@
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
 //#define USE_STRMAG_SPLIT
 
+// If uncommented, the statscreen will have a moving background similar to FE6 and FE7.
+// Customization of graphical assets is possible in Necessary/ModularStatScreen/Background/Graphics/Graphics.event.
+// #define SCROLLING_STATSCREEN_BACKGROUND
+
 //If uncommented, will enable Battle Stats with Animations Off.
 #define BATTLE_STATS
 
@@ -323,6 +327,8 @@
 // If false, it will only consume vulneraries from your inventory. 
 #define HOARDERS_BANE_USE_CONVOY True
 
+// If true, enemies/npcs with Canto+ will retreat to their safest tile with any remaining movement after their action. 
+#define CANTO_AI True
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =

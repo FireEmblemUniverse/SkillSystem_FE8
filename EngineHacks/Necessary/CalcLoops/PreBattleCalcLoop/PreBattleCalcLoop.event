@@ -44,9 +44,9 @@ POIN AxefaithHit
 POIN StancesASM
 POIN AirRaidSkillCheck
 #ifdef ENABLE_GBA_LETHALITY
-POIN LethalitySkill Bane
+POIN LethalitySkill 
 #else
-POIN LethalitySkill NonGBALethalitySkill Bane
+POIN LethalitySkill NonGBALethalitySkill 
 #endif
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS

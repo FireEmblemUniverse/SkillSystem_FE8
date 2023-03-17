@@ -1,0 +1,25 @@
+
+//Options Menu reconfiguration by Vesly
+
+#define GameOptionsMaxEntries 0x12 // There are a couple places where the game checks the size of this table. 
+#define NumberOfOptionsToDisplay 13
+
+#include "Internals.event"
+
+ALIGN 4
+GameOptionsOrderList:
+BYTE AnimationOpt
+BYTE GameSpeedOpt 
+BYTE TextSpeedOpt 
+BYTE TerrainOpt 
+BYTE UnitOpt
+BYTE CombatOpt 
+BYTE ShowObjectiveOpt
+BYTE HPBarsOpt 
+BYTE AutocursorOpt 
+BYTE AutoendTurnsOpt
+BYTE MusicOpt 
+BYTE SoundFXOpt 
+BYTE WindowColorOpt
+
+BYTE 0 0  // Terminator

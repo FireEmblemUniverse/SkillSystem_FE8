@@ -29,8 +29,6 @@ ldrb	r1,[r4,r1]
 mov	r5,#0xFF
 cmp	r1,#0x7F	@I set the value to FF in the battle calculations if crit is to be ignored (skill% based activation)
 bhi	RollRN
-cmp	r1,#0x7F	@check if Bane triggered
-beq	End
 cmp	r1,#0x00	@check if 0 chance
 beq	End
 
@@ -55,23 +53,6 @@ blh d100Result
 cmp r0, #1		@check if roll was successful
 bne End
 
-
-@ @check for Lethality proc - this check may be done elsewhere...
-@ ldr r0, SkillTester
-@ mov lr, r0
-@ mov r0, r4 @attacker data
-@ ldr r1, LethalityID
-@ .short 0xf800
-@ cmp r0, #0
-@ beq End
-@ @if user has lethality:
-
-@ mov r0, r4	@commented this out because it now checks for lethality ability to determine immunity (no demon king/necromancer immunity if they don't have lethality)
-@ mov r1, r5
-@ blh 0x802B38C @check for demon king/necromancer
-@ cmp r0, #0
-@ beq End
-
 @if we proc, set offensive skill flag
 ldr     r2,[r6]    
 lsl     r1,r2,#0xD                @ 0802B42C 0351     
@@ -83,9 +64,6 @@ ldr     r0,=#0xFFF80000                @ 0802B434 4804
 and     r0,r2                @ 0802B436 4010     
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018  
-
-mov	r0,#0xFF	@no animation!
-strb	r0,[r6,#4]
 
 @if we proc, set the lethality flag
 ldr     r3,[r6]    

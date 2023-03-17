@@ -4,7 +4,9 @@ adding yourself!
 
 # Skill contributors
 
+- circleseverywhere
 - Tequila
+- Colorz
 - Rossendale
 - StanH
 - Leonarth
@@ -28,17 +30,18 @@ adding yourself!
 - 7743: various bugfixes
 - RobertFPY, Pikmin1211, and Snakey1: Str/Mag Split Finalization
 
-# Icons
+# Graphics
 
 - Monkeybard, Black Mage
 - Blaze: Stances
 - vlak: Drives
 - Pikmin1211: Miscellaneous
 - 2WB: Miscellaneous
-- Someone: Taker, Hone, Oath, Rouse, Guts, StrongCon, RallyChaos, HoardersBane
-ShrewdPotential, EternalVanity 
-- Alice: Dancing/Heavy Blade 
+- Someone: Taker, Hone, Oath, Rouse, Guts, Strong Con, Rally Chaos, Hoarders Bane, Shrewd Potential, Eternal Vanity 
+- Alice: Dancing/Heavy Blade, Dark Bargain, Soul Sap 
 - VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
 - Dragz: Divinely Inspiring
+- circleseverywhere: Skill Animations
+
