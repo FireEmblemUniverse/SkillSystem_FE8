@@ -5,9 +5,16 @@
 .global AoE_AreAnyUsable
 .type AoE_AreAnyUsable, %function
 
+.equ CurrentUnit, 0x3004E50 
 AoE_AreAnyUsable:
 push {r4,r14}
 
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldr r0, [r3, #0x0C] @ state 
+mov r1, #0x40 @ canto 
+tst r0, r1 
+bne RetFalse 
 @loop through all menu command usabilities looking for one that returns true
 
 ldr r4,=AoEMenuCommandsList
