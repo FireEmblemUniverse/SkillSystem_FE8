@@ -274,5 +274,5 @@ bx		r14
 
 .ltorg
 
-.include "GetTalkee.asm"
+.include "GetTalkee.s"
 
