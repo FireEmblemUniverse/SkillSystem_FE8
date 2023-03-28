@@ -62,6 +62,14 @@ blh d100Result
 cmp r0, #1		@check if roll was successful
 bne End
 
+mov r0, r4 @skill user
+ldr r1, BaneID @skill ID
+ldr r2, SkillTester
+mov lr, r2
+.short 0xf800
+cmp r0,#1
+bne End
+
 
 @if we proc, set offensive skill flag
 ldr     r2,[r6]    
