@@ -19,11 +19,20 @@
 	ORG $1802C
 	callHack_r3(Class_Mag_Autolevel)
 	
+	ORG $180AC
+	jumpToHack(Write_Bases_For_Penalty)
+
 	POP
 	
 	ALIGN 4
 	Write_Bases_to_RAM:
 	#incbin "WriteBasestoRAM.dmp"
+	POIN MagCharTable
+	POIN MagClassTable
+
+	ALIGN 4
+	Write_Bases_For_Penalty:
+	#incbin "WriteBasesForPenalty.dmp"
 	POIN MagCharTable
 	POIN MagClassTable
 	
