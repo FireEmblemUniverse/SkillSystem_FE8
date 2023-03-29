@@ -16,7 +16,6 @@ typedef struct CharacterData CharacterData;
 typedef struct ClassData ClassData;
 
 struct SMSHandle;
-struct SupportData;
 
 enum {
 	// Config
@@ -34,14 +33,6 @@ enum {
 // Meaningful constants
 enum {
 	UNIT_EXP_DISABLED = 0xFF
-};
-
-struct PersonalSkillData {
-	u8 skillID;
-};
-
-struct ClassSkillData {
-	u8 skillID;
 };
 
 struct CharacterData {
@@ -82,13 +73,8 @@ struct CharacterData {
 
 	/* 28 */ u32 attributes;
 
-	/* 2C */ const struct SupportData* pSupportData;
+	/* 2C */ void* pSupportData;
 	/* 30 */ void* pUnk30;
-};
-
-struct CharacterMagicData {
-	/* 00 */ s8 baseMag;
-	/* 01 */ s8 growthMag;
 };
 
 struct ClassData {
@@ -149,22 +135,15 @@ struct ClassData {
 	/* 50 */ const void* pUnk50;
 };
 
-struct ClassMagicData {
-	/* 00 */ s8 baseMag;
-	/* 01 */ s8 growthMag;
-	/* 02 */ s8 maxMag;
-	/* 03 */ u8 promotionMag; 
-};
-
 struct Unit {
 	/* 00 */ const struct CharacterData* pCharacterData;
 	/* 04 */ const struct ClassData* pClassData;
 
 	/* 08 */ s8 level;
 	/* 09 */ u8 exp;
-	/* 0A */ u8 aiFlag;
+	/* 0A */ u8 unk0A_saved;
 
-	/* 0B */ u8 index;
+	/* 0B */ s8 index;
 
 	/* 0C */ u32 state;
 
@@ -194,11 +173,13 @@ struct Unit {
 	/* 31 */ u8 torchDuration : 4;
 	/* 31 */ u8 barrierDuration : 4;
 
-	/* 32 */ u8 supports[6];
-	/* 38 */ u8 unitLeader;
+								// EDITS FOR SUPPORT REWORK
+	/* 32 */ u16 supportLevels;
+	/* 34 */ u8 supports[5]; // 38 is also character leader. Unioning to the last index of this array sounds oof, so eeeehhhhh.
+	
 	/* 39 */ u8 supportBits;
-	/* 3A */ s8 mag;
-	/* 3B */ u8 fatigue;
+	/* 3A */ u8 unk3A;
+	/* 3B */ u8 unk3B;
 
 	/* 3C */ struct SMSHandle* pMapSpriteHandle;
 
@@ -220,13 +201,13 @@ struct UnitDefinition {
 	/* 03 */ u8  allegiance : 2;
 	/* 03 */ u8  level	  : 5;
 
-	/* 04 */ u32 xPosition  : 6; /* 04:0 to 04:5 */
-	/* 04 */ u32 yPosition  : 6; /* 04:6 to 05:3 */
-	/* 05 */ u32 genMonster : 1; /* 05:4 */
-	/* 05 */ u32 itemDrop   : 1; /* 05:5 */
-	/* 05 */ u32 sumFlag	: 1; /* 05:6 */
-	/* 05 */ u32 extraData  : 9; /* 05:7 to 06:7 */
-	/* 07 */ u32 redaCount  : 8;
+	/* 04 */ u16 xPosition  : 6; /* 04:0 to 04:5 */
+	/* 04 */ u16 yPosition  : 6; /* 04:6 to 05:3 */
+	/* 05 */ u16 genMonster : 1; /* 05:4 */
+	/* 05 */ u16 itemDrop   : 1; /* 05:5 */
+	/* 05 */ u16 sumFlag	: 1; /* 05:6 */
+	/* 05 */ u16 extraData  : 9; /* 05:7 to 06:7 */
+	/* 07 */ u16 redaCount  : 8;
 
 	/* 08 */ const void* redas;
 
@@ -255,22 +236,22 @@ enum {
 	US_CANTOING	 = US_HAS_MOVED, // Alias
 	US_UNDER_A_ROOF = (1 << 7),
 	US_BIT8 = (1 << 8),
-	US_BIT9 = (1 << 9),
+	// = (1 << 9),
 	US_HAS_MOVED_AI = (1 << 10),
 	US_IN_BALLISTA  = (1 << 11),
-	US_DROP_ITEM    = (1 << 12),
+	US_DROP_ITEM	= (1 << 12),
 	US_GROWTH_BOOST = (1 << 13),
 	US_SOLOANIM_1   = (1 << 14),
 	US_SOLOANIM_2   = (1 << 15),
-	US_BIT16 = (1 << 16),
-	US_BIT17 = (1 << 17),
-	US_BIT18 = (1 << 18),
-	US_BIT19 = (1 << 19),
-	US_BIT20 = (1 << 20),
-	US_BIT21 = (1 << 21),
-	US_BIT22 = (1 << 22),
-	US_BIT23 = (1 << 23),
-	US_BIT24 = (1 << 24),
+	US_BIT16		= (1 << 16),
+	US_BIT17		= (1 << 17),
+	US_BIT18		= (1 << 18),
+	US_BIT19		= (1 << 19),
+	US_BIT20		= (1 << 20),
+	US_BIT21		= (1 << 21),
+	US_BIT22		= (1 << 22),
+	// = (1 << 23),
+	// = (1 << 24),
 	US_BIT25 = (1 << 25),
 	US_BIT26 = (1 << 26),
 	// = (1 << 27),
@@ -387,19 +368,11 @@ enum {
 
 #define UNIT_ARENA_LEVEL(aUnit) (((aUnit)->state >> 17) & 0x7)
 
-#define UNIT_SUPPORT_DATA(aUnit) ((aUnit)->pCharacterData->pSupportData)
-
 // Compat with old FE-CLib
 #define UNIT_ATTRIBUTES(aUnit) UNIT_CATTRIBUTES(aUnit)
 
 extern const struct CharacterData gCharacterData[];
 extern const struct ClassData gClassData[];
-
-extern const struct ClassMagicData MagClassTable[];
-extern const struct CharacterMagicData MagCharTable[];
-
-extern const struct PersonalSkillData PersonalSkillTable[];
-extern const struct ClassSkillData ClassSkillTable[];
 
 extern struct Unit gUnitArrayBlue[]; //! FE8U = 0x202BE4C
 extern struct Unit* gActiveUnit; //! FE8U = 0x3004E50
@@ -450,7 +423,6 @@ int CanUnitRescue(const struct Unit*, const struct Unit*); //! FE8U = 0x801831D
 void UnitRescue(struct Unit*, struct Unit*); //! FE8U = 0x801834D
 void UnitDrop(struct Unit*, int x, int y); //! FE8U = 0x8018371
 void UnitGive(struct Unit*, struct Unit*); //! FE8U = 0x80183C9
-void UnitKill(struct Unit*); //!< FE8U:080183FD
 void UnitChangeFaction(struct Unit* unit, int faction); //! FE8U = 0x8018431
 void UnitFinalizeMovement(struct Unit*); //! FE8U = 0x801849D
 

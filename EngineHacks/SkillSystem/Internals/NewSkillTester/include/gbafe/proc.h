@@ -93,14 +93,6 @@ void EndEachProc(const ProcInstruction*); //! FE8U = (0x08003078+1)
 void BreakEachProcLoop(const ProcInstruction*); //! FE8U = (0x08003094+1)
 void SetProcCycleHandler(Proc*, void(*)(Proc*)); //! FE8U = (0x08003450+1)
 
-// helper macros (to bypass need for casts everywhere)
-
-#define START_PROC(aProcScr, aParent) (void*)(ProcStart((aProcScr), (struct Proc*)(aParent)))
-#define START_PROC_BLOCKING(aProcScr, aParent) (void*)(ProcStartBlocking((aProcScr), (struct Proc*)(aParent)))
-#define END_PROC(aProc) EndProc((struct Proc*)(aProc))
-#define BREAK_PROC(aProc) BreakProcLoop((struct Proc*)(aProc))
-#define FOR_EACH_PROC(aProcScr, aFunc) ForEachProc((aProcScr), (void(*)(struct Proc*))(aFunc))
-
 // compat with decomp
 
 #define PROC_HEADER PROC_FIELDS

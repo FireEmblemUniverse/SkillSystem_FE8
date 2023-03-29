@@ -58,13 +58,13 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
     buffer->lastUnitChecked = unit->index;
 
     //Personal skill
-    temp = PersonalSkillTable[unitNum].skillID;
+    temp = PersonalSkillTable[unitNum];
     if (IsSkillIDValid(temp)) {
         buffer->skills[count++] = temp;
     }
 
     //Class skill
-    temp = ClassSkillTable[unit->pClassData->number].skillID;
+    temp = ClassSkillTable[unit->pClassData->number];
     if (IsSkillIDValid(temp)) {
         buffer->skills[count++] = temp;
     }
