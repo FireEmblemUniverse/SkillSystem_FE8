@@ -1,25 +1,5 @@
 PUSH
 
-  // Repoint weapon rank Description Getter RTexts
-  ORG 0xA00F5C
-  POIN WeaponDescGetter+0x1
-  ORG 0xA00F78
-  POIN WeaponDescGetter+0x1
-  ORG 0xA00F94
-  POIN WeaponDescGetter+0x1
-  ORG 0xA00FB0
-  POIN WeaponDescGetter+0x1
-  
-  // Repoint weapon rank Looper RTexts
-  ORG 0xA00F58
-  POIN WeaponDescLooper+0x1
-  ORG 0xA00F74
-  POIN WeaponDescLooper+0x1
-  ORG 0xA00F90
-  POIN WeaponDescLooper+0x1
-  ORG 0xA00FAC
-  POIN WeaponDescLooper+0x1
-
   // Re-designate helptextIDs to match the new weaponrankdraw function which draws rows instead of columns.
   ORG 0xA00F72
   SHORT 0x2
