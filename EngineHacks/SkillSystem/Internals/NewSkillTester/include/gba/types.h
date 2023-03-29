@@ -67,7 +67,7 @@ struct BgControl
     unsigned mosaic : 1;
     unsigned colorMode : 1;
     unsigned mapBaseBlock : 5;
-    unsigned wrap : 1;
+    unsigned areaOverflowMode : 1;
     unsigned screenSize : 2;
 };
 
@@ -125,16 +125,6 @@ struct BlendControl
     unsigned target2_backdrop : 1;
 
     unsigned : 2;
-};
-
-enum
-{
-    // for use with BlendControl::effect
-
-    BLEND_EFFECT_NONE     = 0,
-    BLEND_EFFECT_ALPHA    = 1,
-    BLEND_EFFECT_BRIGHTEN = 2,
-    BLEND_EFFECT_DARKEN   = 3,
 };
 
 struct BlendAlpha
