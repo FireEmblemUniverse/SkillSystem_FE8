@@ -4,7 +4,7 @@
 
 .equ MagClassTable, MagCharTable+4
 
-@r0 = Base res total
+@r0 = Base res total | Must be 0xB during return
 @r2 = Level Count | Preserve
 @r3 = Character Data | Preserve (Overwritten by jump)
 @r4 = Unit Pointer | Preserve
@@ -36,6 +36,7 @@ mov   r1, #0x3A         @r1 = Unit magic offset
 strb  r0, [r4, r1]      @Store base magic total
 
 @Cleanup
+mov   r0, #0xB          @r0 = Unit level offset
 ldr   r3, [r4]          @r3 = Character Data pointer
 
 @Return
