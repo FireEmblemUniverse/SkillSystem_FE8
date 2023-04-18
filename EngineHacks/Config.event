@@ -327,6 +327,8 @@
 // If false, it will only consume vulneraries from your inventory. 
 #define HOARDERS_BANE_USE_CONVOY True
 
+// If true, enemies/npcs with Canto+ will retreat to their safest tile with any remaining movement after their action. 
+#define CANTO_AI True
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =

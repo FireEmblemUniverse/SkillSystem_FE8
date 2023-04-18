@@ -61,14 +61,14 @@ struct BattleUnit {
 	/* 77 */ s8 changeDef;
 	/* 78 */ s8 changeRes;
 	/* 79 */ s8 changeLck;
-	/* 7A */ s8 changeMag;
+	/* 7A */ s8 changeCon;
 
 	/* 7B */ s8 wexpMultiplier;
 	/* 7C */ s8 nonZeroDamage;
 	/* 7D */ s8 weaponBroke;
 
-	/* 7E */ u8 attacksMade;
-	/* 7F */ u8 hitsTaken;
+	/* 7E */ s8 hasItemEffectTarget;
+	/* 7F */ /* pad */
 };
 
 struct BattleStats {
@@ -92,7 +92,7 @@ enum {
 
 	BATTLE_CONFIG_REAL = (1 << 0),
 	BATTLE_CONFIG_SIMULATE = (1 << 1),
-	BATTLE_CONFIG_SOLO = (1 << 2),
+	BATTLE_CONFIG_BIT2 = (1 << 2),
 	BATTLE_CONFIG_BALLISTA = (1 << 3),
 	BATTLE_CONFIG_BIT4 = (1 << 4),
 	BATTLE_CONFIG_ARENA = (1 << 5),

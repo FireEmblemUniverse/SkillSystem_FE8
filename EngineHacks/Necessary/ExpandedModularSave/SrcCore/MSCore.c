@@ -148,7 +148,7 @@ void MS_SaveSuspend(unsigned slot) {
 
 	SaveMetadata_Save(&sbm, slot);
 
-	gGameState._unk3C = FALSE; // TODO: figure out. This is set on resume. May be "no suspend since resume" flag
+	gGameState.boolHasJustResumed = FALSE;
 }
 
 void MS_LoadSuspend(unsigned slot) {

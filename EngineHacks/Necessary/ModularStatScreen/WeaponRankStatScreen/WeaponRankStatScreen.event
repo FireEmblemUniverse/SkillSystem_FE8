@@ -10,7 +10,4 @@
 	ORG FreeSpace
 #endif
 
-{
-
 #include "asm/asm.event"
-}

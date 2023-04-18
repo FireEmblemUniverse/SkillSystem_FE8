@@ -18,12 +18,12 @@ void VBlankIntrWait(void);
 
 unsigned GetBiosChecksum(void);
 
-int Div(int a, int b) PUREFUNC;
-int Mod(int a, int b) PUREFUNC;
-int DivArm(int b, int a) PUREFUNC;
-int Sqrt(int n) PUREFUNC;
-int ArcTan(int n) PUREFUNC;
-int ArcTan2(int x, int y) PUREFUNC;
+int Div(int a, int b);
+int Mod(int a, int b);
+int DivArm(int b, int a);
+int Sqrt(int n);
+int ArcTan(int n);
+int ArcTan2(int x, int y);
 
 void BitUnPack(const void* src, void* dst, const struct BitUnPackInfo* info);
 void LZ77UnComp8bit(const void* src, void* dst);

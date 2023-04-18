@@ -1,4 +1,5 @@
 #define FreeSpace 0xb2a610
+#define FreeSpaceEnd 0xC00000
 #define FreeSpaceBLRange 0x1c1ec0
 
 #define ChapterTileset(chapter, object, palette, config) "PUSH; ORG 0x8b0890 + (148* chapter) + 4; SHORT object; BYTE palette config; POP"
@@ -40,3 +41,4 @@
 #include "EngineHacks/SkillSystem/skill_definitions.event"
 
 // #define __DEBUG__ // Uncomment to get the Debug startup menu :p
+
