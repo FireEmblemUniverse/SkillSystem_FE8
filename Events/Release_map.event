@@ -232,5 +232,8 @@ SHLI Thunder Elfire Nosferatu Divine Mend Physic PureWater Elixir
 ALIGN 4
 
 ArmoryItems:
-SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+
+BYTE SteelAxe 0
+BYTE SkillScroll 20
+SHLI SteelLance SteelBow SteelSword HandAxe Javelin
 ALIGN 4
