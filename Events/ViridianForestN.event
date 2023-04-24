@@ -29,7 +29,8 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
+TurnEventPlayer(DisableTutFlag_B, TutMsg2, 0, 255) // 
 
 END_MAIN
 
@@ -83,6 +84,52 @@ ChapterTransition(ViridianForestSCh, 41, 0)
 
 ToViridianForestS_B:
 ChapterTransition(ViridianForestSCh, 35, 0)
+
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(19,3,35,23) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [26,21]
+CUMO [26,21]
+STAL 30
+CURE  
+TutText(TrainerTip_DangerZone2)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(36,13,45,32) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+CAM1 [41,22]
+CUMO [41,22]
+STAL 30
+CURE  
+TutText(TrainerTip_Zoning) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 

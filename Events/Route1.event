@@ -22,6 +22,8 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
+TurnEventPlayer(DisableTutFlag_B, TutMsg2, 0, 255) // 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -56,11 +58,8 @@ AFEV 0 GlobalAfev 0
 AFEV 0 Restore_Options 0
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
-AREA 0 TutMsg1 [2,21] [21, 30] 
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
-
-
 
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -80,16 +79,49 @@ ChapterTransition(ViridianCh, 19, 35)
 
 
 TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
 SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
 ASMC CheckNewFlag_ASMC 
 BNE 99 sC s0 
+CountPlayersInRange_ASMC(2, 21, 21, 30) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [13,23]
+CUMO [13,23]
+STAL 30
+CURE  
 TutText(TrainerTip_Quicksave)
 SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
 ASMC SetNewFlag_ASMC 
-
 LABEL 99 
 NoFade 
 ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(2, 6, 21, 14) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+CAM1 [20,8]
+CUMO [20,8]
+STAL 30
+CURE  
+TutText(TrainerTip_Berries) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 

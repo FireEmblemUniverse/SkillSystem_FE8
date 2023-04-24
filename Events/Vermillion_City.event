@@ -27,7 +27,6 @@ POIN BeginningScene EndingScene
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
 
-
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -63,7 +62,9 @@ AFEV 0 GlobalAfev 0
 AREA 0 ToRoute6 [20,0] [22,0] 
 AREA 0 ToRoute11 [41,13] [41,16] 
 AREA 0 ToSSAnne [20,33] [22,33] 
-
+AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_B TutMsg2 0
+AFEV 0x19 TutMsg3 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -85,7 +86,71 @@ ToSSAnne:
 ChapterTransition(SSAnneCh, 19,3)
 
 
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(25,12, 41,16) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [32,13]
+CUMO [32,13]
+STAL 30
+CURE  
+TutText(TrainerTip_ReorderMoves)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(25,12, 41,16) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+CAM1 [30,12]
+CUMO [30,12]
+STAL 30
+CURE  
+TutText(TrainerTip_Release) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg3: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF 0x19
+SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(25,12, 41,16) 
+BEQ 99 sC s0 
+ENUT 0x19
+EVBIT_MODIFY 4
+CAM1 [34,12]
+CUMO [34,12]
+STAL 30
+CURE  
+TutText(TrainerTip_ReorderMoves) 
+SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -99,9 +164,9 @@ Traps1:
 CutBush(17,22)
 Save(13,3) // Pokecenter 
 
-SignTrap(32,13, TrainerTip_Submenu)
-SignTrap(30,12, TrainerTip_Release)
-SignTrap(34,12, TrainerTip_ReorderMoves)
+TutSign(32,13,ChapterID*2, TrainerTip_Submenu)
+TutSign(30,12,ChapterID*2+1, TrainerTip_Release)
+TutSign(34,12,ChapterID*2+3, TrainerTip_ReorderMoves)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)

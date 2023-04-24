@@ -29,6 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -83,6 +84,29 @@ ChapterTransition(CeruleanCh, 1,2)
 ToCeruleanCity:
 ChapterTransition(CeruleanCh, 0,20)
 
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(20,3,38,18) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [32,7]
+CUMO [32,7]
+STAL 30
+CURE  
+TutText(TrainerTip_MaxPokemon)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -103,7 +127,7 @@ CutBush(9,6)
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 SkillScrollTrap(14,2, (ChapterID*2)+1, WindDiscipleID) 
-SignTrap(32,7, TrainerTip_MaxPokemon)
+TutSign(32,7, ChapterID*2,TrainerTip_MaxPokemon)
 
 
 SkillAccessoryTrap(37,3, ChapterID*2, FuryID) // Berserk Gene ?  

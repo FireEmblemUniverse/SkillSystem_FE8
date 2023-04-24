@@ -29,6 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -83,6 +84,30 @@ ForcedChapterTransition(DiglettsCaveCh, 4, 1)
 ToRoute2S:
 ChapterTransition(Route2SCh, 19, 5)
 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(2, 2, 11, 12) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [9,7]
+CUMO [9,7]
+STAL 30
+CURE  
+TutText(TrainerTip_Accessory)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -96,7 +121,7 @@ CutBush(11,13)
 CutBush(21,10)
 
 //RockSmash(3,2)
-SignTrap(9,7, TrainerTip_Accessory)
+TutSign(9,7,ChapterID*2, TrainerTip_Accessory)
 
 //StrengthBoulder(4,3)
 

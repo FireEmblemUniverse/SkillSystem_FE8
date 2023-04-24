@@ -20,6 +20,7 @@ POIN BeginningScene EndingScene
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
 
+
 END_MAIN
 
 CharacterBasedEvents:
@@ -97,6 +98,9 @@ AFEV 0 CityAfev 0
 AREA 0 ToRoute2S [15,0] [19,0] 
 AREA 0 ToRoute1 [18,37] [21,37] 
 AREA 0 ToRoute22 [0,16] [0,18] 
+AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_B TutMsg2 0
+AFEV 0x19 TutMsg3 0
 END_MAIN
 
 #ifdef MultiTileMarker_Installer
@@ -122,6 +126,74 @@ EnterGym:
 ENUF EarthbadgeObtained 
 ForcedChapterTransition(ViridianGymCh, 15,19)
 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(8,5,24,19) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [19,13]
+CUMO [19,13]
+STAL 30
+CURE  
+TutText(TrainerTip_Catch)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(7,19,26,34) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+CAM1 [15,25]
+CUMO [15,25]
+STAL 30
+CURE  
+TutText(TrainerTip_Water) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg3: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF 0x19
+SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(8,0,19,11) 
+BEQ 99 sC s0 
+ENUT 0x19
+EVBIT_MODIFY 4
+CAM1 [15,4]
+CUMO [15,4]
+STAL 30
+CURE  
+TutText(TrainerTip_CursorJump) 
+SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -129,9 +201,9 @@ ForcedChapterTransition(ViridianGymCh, 15,19)
 Traps1:
 
 //SignTrap(15,17, ViridianCityText)
-SignTrap(19,13, TrainerTip_Catch)
-SignTrap(15,25, TrainerTip_Water)
-SignTrap(15,4, TrainerTip_CursorJump)
+TutSign(19,13, ChapterID*2,TrainerTip_Catch)
+TutSign(15,25, ChapterID*2,TrainerTip_Water)
+TutSign(15,4, ChapterID*2+3,TrainerTip_CursorJump)
 //SignTrap(15,25, TrainerTip_Skills)
 
 

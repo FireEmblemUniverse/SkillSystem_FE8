@@ -1099,6 +1099,8 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF DisableTutFlag_A
+ENUF DisableTutFlag_B
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
@@ -1124,6 +1126,8 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF DisableTutFlag_A
+ENUF DisableTutFlag_B
 SADD 2 9 0 
 
 MNC2 (-1) 

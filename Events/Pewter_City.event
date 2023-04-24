@@ -74,6 +74,8 @@ AFEV 0 CityAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AREA 0 ToRoute2N [17,37] [21,37] 
 AREA 0 ToRoute3W [39,19] [39,22] 
+AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_B TutMsg2 0
 //AREA 0 ToPewterGym [12,16] [12,16] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -99,6 +101,51 @@ CUMO [38,19]
 CAM1 [38,19]
 BottomWallText(NoBoulderbadgeText)
 CURE 
+NoFade 
+ENDA 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(3,12,18,33) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [17,18]
+CUMO [17,18]
+STAL 30
+CURE  
+TutText(TrainerTip_Def)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(19,8,35,33) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+CAM1 [26,20]
+CUMO [26,20]
+STAL 30
+CURE  
+TutText(TrainerTip_Mart) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
 NoFade 
 ENDA 
 
@@ -131,8 +178,8 @@ BlankExamineTrap(8,16,PewterGymSignText)
 
 SignTrap(16,7, PewterMuseumSignText) // Metal ? 
 SignTrap(27,27, PewterFlowerSignText) // Wooden 
-SignTrap(17,18, TrainerTip_Def)
-SignTrap(26, 20, TrainerTip_Mart)
+TutSign(17,18,ChapterID*2, TrainerTip_Def)
+TutSign(26, 20,ChapterID*2+1, TrainerTip_Mart)
 
 EnterWallTrap(14,6, PewterMuseumText) // Museum
 EnterWallTrap(29,11, PewterNEHouseText) // Ne house trade 

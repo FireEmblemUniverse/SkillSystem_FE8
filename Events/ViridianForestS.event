@@ -29,7 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 
 END_MAIN
 
@@ -82,6 +82,28 @@ ChapterTransition(ViridianForestNCh, 43, 31)
 ToViridianForestN_B:
 ChapterTransition(ViridianForestNCh, 37, 32)
 
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(35,0,45,27) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [39,11]
+CUMO [39,11]
+STAL 30
+CURE  
+TutText(TrainerTip_TMs_2)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -119,8 +141,8 @@ SaveCost(42,7)
 BerryTree(27,9,5)
 BerryTree(10,14,5)
 
-SignTrap(39,11, TrainerTip_TMs_2)
-SignTrap(25,24, TrainerTip_WildBosses)
+TutSign(39,11,ChapterID*2, TrainerTip_TMs_2)
+TutSign(25,24,ChapterID*2+1, TrainerTip_WildBosses)
 
 
 ENDTRAP

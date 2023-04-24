@@ -91,6 +91,7 @@ AREA 0 ToRoute24_Walk_E [19,0] [21,0]
 AREA 0 ToRoute24_Swim [9,0] [13,0] 
 AREA 0 ToRoute9W [31,10] [31,18] 
 AREA 0 ToRoute5 [19,31] [19,31] // Cut bush 
+AFEV DisableTutFlag_A TutMsg1 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -144,7 +145,27 @@ ToRoute24_Swim:
 ChapterTransition(Route24Ch,6, 38)
 
 
-
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(0,16,31,31) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [25,31]
+CUMO [25,31]
+STAL 30
+CURE  
+TutText(TrainerTip_FourSkills)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -175,7 +196,7 @@ SignATrap(1,22, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 
 BlankExamineTrap(20,20,CeruleanGymSignText)
 SignTrap(4,27, CeruleanBicycleShopSignText) // Wooden 
-SignTrap(25,31, CeruleanBottomSignText) // Wooden 
+TutSign(25,31, ChapterID*2, TrainerTip_FourSkills) // Wooden 
 //Sign2Trap(16,7, PewterMuseumSignText) // Metal ? 
 EnterWallTrap(3,10, CeruleanCityNWHouseText) // 
 EnterWallTrap(10,10, CeruleanCityNHouseText) // 

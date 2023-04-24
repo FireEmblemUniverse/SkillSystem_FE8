@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
 //#define USE_HGSS_SPRITES
@@ -257,7 +257,9 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #define B3_BoulderBFlag 0xBA
 #define B4_BoulderAFlag 0xBB
 #define B4_BoulderBFlag 0xBC
-
+#define DisableTutMsgsFlag 0xBD 
+#define DisableTutFlag_A 0xBE 
+#define DisableTutFlag_B 0xBF
 
 #define CinnabarArrived 0xC9  
 #define VolcanobadgeObtained 0xCA 

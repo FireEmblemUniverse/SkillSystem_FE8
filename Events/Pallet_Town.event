@@ -41,6 +41,7 @@ AREA 0 ToRoute21WBush [6,19] [6,19]
 AREA 0 ToRoute21EBush [11,19] [11,19] 
 AREA 0 ToRoute21Water [7,19] [10,19] 
 AREA 0 ToRoute1 [12,0] [13,0] 
+AFEV DisableTutFlag_A TutMsg1 0
 END_MAIN
 
 #ifdef MultiTileMarker_Installer
@@ -101,6 +102,30 @@ Seize(10,2)
 */
 END_MAIN
 
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(0,0,23,19) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+CAM1 [5,14]
+CUMO [5,14]
+STAL 30
+CURE  
+TutText(PalletTrainerTipsText)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+
 Traps1:
 //CoinsTrap(8,2,3,65535)
 //RedPokeballTrap(5,9, 1, Vulnerary)
@@ -123,7 +148,7 @@ EnterTrap(16,13, EnterOaksLabText)
 BlankExamineTrap(4,7,RedHouseText)
 BlankExamineTrap(13,7,GaryHouseText)
 
-SignTrap(5,14, PalletTrainerTipsText)
+TutSign(5,14, ChapterID*2,PalletTrainerTipsText)
 Sign2Trap(9, 11, PalletTownText) 
 
 
