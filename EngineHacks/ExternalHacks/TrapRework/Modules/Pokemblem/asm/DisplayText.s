@@ -296,7 +296,7 @@ beq Usability_RetFalse
 
 mov r0, #0x3 
 ldrb r0, [r4, r0]     @Completion flag
-blh CheckNewFlag
+blh CheckNewFlag_No_sC
 cmp r0, #0
 bne Usability_RetFalse
 
@@ -334,12 +334,13 @@ bx r1
 DisplayTextEffect0x54:
 push {lr} 
 bl DisplayTextEffect 
-ldrb r0, [r4, #3] @ flag to set 
+ldrb r0, [r1, #3] @ flag to set 
+mov r11, r11 
 ldr r1, =HelpMsgFlagOffset
 lsl r1, #16 
 lsr r1, #16 
 lsl r1, #3 @8 flags per byte 
-
+orr r0, r1 
 bl SetNewFlag 
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
 pop {r3} 
@@ -397,7 +398,7 @@ mov r0, #0x10
 strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
-
+mov r1, r4 
 pop {r4}
 pop {r3}
 goto_r3:

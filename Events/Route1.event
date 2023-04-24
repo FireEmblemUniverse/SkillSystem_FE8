@@ -56,6 +56,7 @@ AFEV 0 GlobalAfev 0
 AFEV 0 Restore_Options 0
 AREA 0 ToViridian [10,0] [13,0] 
 AREA 0 ToPallet [12,39] [13,39] 
+AREA 0 TutMsg1 [2,21] [21, 30] 
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 
@@ -77,6 +78,18 @@ ToViridian:
 ENUT Route1Tutorial_A
 ChapterTransition(ViridianCh, 19, 35)
 
+
+TutMsg1: 
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+TutText(TrainerTip_Quicksave)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
