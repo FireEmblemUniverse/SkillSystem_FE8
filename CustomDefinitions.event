@@ -2,7 +2,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
 //#define USE_HGSS_SPRITES
@@ -10,7 +10,7 @@
 
 
 PUSH; ORG $D74D0	//{U}
-String("V1.06                 Dec 2022") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 
 //#define ALT_TITLESCREEN
@@ -118,7 +118,7 @@ String("V1.06                 Dec 2022") ; BYTE 0; POP // this overflows into th
 #define ObtainAccessoryFlagOffset 0x1A0 // should use 0x20 bytes (128 * (1/4)) 
 #define PokedexCaughtFlagOffset 0x1C0 // RegisterPokemon in trap rework because most pokemblem ram usage is there i guess 
 #define PokedexSeenFlagOffset 0x1E0 
-
+#define HelpMsgFlagOffset 0x200 // until 0x220 
 
 
 #define BuffDepletePerTurnAmount 2 // -2 from buffs per turn 

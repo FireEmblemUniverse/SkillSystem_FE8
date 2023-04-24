@@ -3,6 +3,8 @@
 
 .global DisplayTextInitialization
 .type DisplayTextInitialization, %function
+.global DisplayTextInitialization0x54
+.type DisplayTextInitialization0x54, %function
 
 .global DisplayTextUsability0x50
 .type DisplayTextUsability0x50, %function
@@ -47,6 +49,8 @@
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
 @.equ GiveCoinsEvent, DisplayTextID+4
+DisplayTextInitialization0x54:
+b SkipCheckEventId 
 
 DisplayTextInitialization:
 mov r0, #0x3
@@ -270,7 +274,12 @@ b DisplayTextUsability
 DisplayTextUsability0x54:
 push {r4,r7,r14}
 mov r7, #0x54
-b DisplayTextUsability
+ldr r4,=#0x3004E50
+ldr r0,[r4]
+mov r1, r7 
+bl GetAdjacentTrapIndividual
+mov r4, r0  @&The DV
+b Usability_RetTrue 
 
 
 
@@ -320,7 +329,22 @@ bx r1
 .ltorg
 .align
 
+.global DisplayTextEffect0x54
+.type DisplayTextEffect0x54, %function 
+DisplayTextEffect0x54:
+push {lr} 
+bl DisplayTextEffect 
+ldrb r0, [r4, #3] @ flag to set 
+ldr r1, =HelpMsgFlagOffset
+lsl r1, #16 
+lsr r1, #16 
+lsl r1, #3 @8 flags per byte 
 
+bl SetNewFlag 
+mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+pop {r3} 
+bx r3 
+.ltorg 
 
 DisplayTextEffect:
 push {r4, lr}

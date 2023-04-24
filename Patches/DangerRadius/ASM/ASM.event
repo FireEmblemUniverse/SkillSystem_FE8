@@ -82,7 +82,7 @@ PUSH
   // Update DR after moving a unit
   // and before committing to an action.
   ORG 0x1D47C
-	callHack_r0(UpdateDRMove)
+	callHackNew(CallUpdateDRMoveProc)
   SHORT 0x46C0
   
 POP
@@ -129,12 +129,25 @@ ALIGN 4
 InitializeDR:
 #include "InitializeDR.lyn.event"
 
-
+#include "CallUpdateDRMoveProc.lyn.event" 
 
 
 #include "RefreshUnit.lyn.event"
 
 
+#include "ProcDefinitions.txt" 
+ALIGN 4 
+UpdateDRProc: 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(UpdateDRProcName)
+PROC_SLEEP(0)
+PROC_LOOP_ROUTINE(UpdateDRProc_WaitForMenu)
+PROC_END
+
+ALIGN 4 
+UpdateDRProcName:
+String("UpdateDRProc") ; BYTE 0
+ALIGN 4
 
 
 

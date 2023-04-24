@@ -149,11 +149,19 @@ SetTrapMapSprite(BlankExamineID,BlankSMS)
 SetTrapMapSpritePalette(BlankExamineID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankExamineID)
 
-#define BlankTalkID 83 //0x52
+#define BlankTalkID 83 //0x53
 SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
 SetTrapMapSprite(BlankTalkID,BlankSMS)
 SetTrapMapSpritePalette(BlankTalkID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankTalkID)
+
+#define TutSignID 84 // 0x54 
+SetTrapEventInit(TutSignID,DisplayTextInitialization0x54) // always initialize even if flag is on 
+SetTrapMapSprite(TutSignID,SignSMS)
+SetTrapMapSpritePalette(TutSignID,NPCTrapPaletteWord)
+SetImpassableTrap(TutSignID)
+
+#define TutSign(XX,YY,CompletionFlag, TextID) "BYTE TutSignID XX YY CompletionFlag; SHORT TextID"
 
 // same but not adjacent: on instead 
 #define BlankCGEnterID 90 //0x5A 
