@@ -18,9 +18,8 @@
 
 .global Draw_ASMC
 .type Draw_ASMC, %function 
-
 Draw_ASMC:
-push {r4-r5, lr} 
+push {r4, lr} 
 mov r4, r0 
 mov r1, r4 @ Parent proc 
 ldr r0, =DrawSpriteProc
@@ -28,11 +27,21 @@ ldr r0, =DrawSpriteProc
 blh pr6C_NewBlocking
 @mov r1, #3 
 @blh pr6C_New
-
-
-pop {r4-r5}
+pop {r4}
 pop {r0} 
 bx r0 
+.ltorg 
+
+.global Draw_ASMC_NoPause
+.type Draw_ASMC_NoPause, %function 
+Draw_ASMC_NoPause:
+push {lr} 
+ldr r0, =DrawSpriteProc
+mov r1, #3 
+blh pr6C_New
+pop {r0} 
+bx r0 
+.ltorg 
 
 .align 4
 .global Draw_SetupMemorySlots
