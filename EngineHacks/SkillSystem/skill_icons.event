@@ -23,6 +23,9 @@ ORG SkillIcon(SureShotID)
 ORG SkillIcon(ProvokeID)
 #incbin "SkillIcons/Provoke.dmp"
 
+ORG SkillIcon(ProvokePlusID)
+#incbin "SkillIcons/ProvokePlus.dmp"
+
 ORG SkillIcon(SaviorID)
 #incbin "SkillIcons/Savior.dmp"
 

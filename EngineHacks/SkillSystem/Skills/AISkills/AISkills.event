@@ -4,6 +4,10 @@ PUSH
 ORG $3DF78
 jumpToHack(ProvokeShade)
 
+//Provoke+
+ORG $3DF38 
+jumpToHack(ProvokePlus) 
+
 //LungeAI
 ORG $3A094
 jumpToHack(LungeAI)
@@ -26,6 +30,12 @@ ProvokeShade:
 POIN SkillTester
 WORD ProvokeID
 WORD ShadeID 
+
+ALIGN 4 
+ProvokePlus: 
+#incbin "ProvokePlus/ProvokePlus.dmp" 
+POIN SkillTester 
+WORD ProvokePlusID 
 
 ALIGN 4
 LungeAI:

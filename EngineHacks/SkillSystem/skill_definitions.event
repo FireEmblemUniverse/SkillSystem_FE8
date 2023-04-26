@@ -7,7 +7,11 @@
 //Provoke: Enemies are more likely to target this unit.
 //(They will expect to deal twice as much damage as they would have normally dealt, but will still prefer lethal attacks.)
 //By Tequila
-#define ProvokeID 43
+#define ProvokeID 255
+
+//Provoke+: Enemies will always target this unit. 
+//By Vesly 
+#define ProvokePlusID 43 
 
 //Shade: Enemies are less likely to target this unit. 
 //(They will expect to deal half as much damage as they would have normally dealt, except for lethal attacks.)
