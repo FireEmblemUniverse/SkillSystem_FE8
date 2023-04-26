@@ -21,8 +21,8 @@ bx r1
 .ltorg 
 
 ReturnTrue: 
-mov r1, #0xFF 
-lsl r1, #8 @ 0xFF00 priority lol 
+mov r1, #0x8 
+lsl r1, #8 @ 0x800 priority lol 
 Lethal: 
 ldr r2, =0x803DF85 
 bx r2 
