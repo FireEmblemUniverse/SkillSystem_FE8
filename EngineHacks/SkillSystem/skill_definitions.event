@@ -5,10 +5,12 @@
 //AI Skills
 
 //Provoke: Enemies are more likely to target this unit.
+//(They will expect to deal twice as much damage as they would have normally dealt, but will still prefer lethal attacks.)
 //By Tequila
 #define ProvokeID 43
 
-//Shade: Enemies are less likely to target this unit.
+//Shade: Enemies are less likely to target this unit. 
+//(They will expect to deal half as much damage as they would have normally dealt, except for lethal attacks.)
 //By Sme
 #define ShadeID 44
 

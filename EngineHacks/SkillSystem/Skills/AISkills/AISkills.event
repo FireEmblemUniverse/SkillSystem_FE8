@@ -2,15 +2,15 @@ PUSH
 
 //Provoke
 ORG $3DF78
-jumpToHack(Provoke)
+jumpToHack(ProvokeShade)
 
 //LungeAI
 ORG $3A094
 jumpToHack(LungeAI)
 
 //Shade
-ORG $3E154
-callHack_r1(Shade)
+//ORG $3E154
+//callHack_r1(Shade)
 
 //Shade+
 ORG $3D5A0
@@ -21,22 +21,17 @@ SHORT 0x0E00
 POP
 
 ALIGN 4
-Provoke:
-#incbin "Provoke/Provoke.dmp"
+ProvokeShade:
+#incbin "ProvokeShade/ProvokeShade.dmp"
 POIN SkillTester
 WORD ProvokeID
+WORD ShadeID 
 
 ALIGN 4
 LungeAI:
 #incbin "LungeAI/lungeAI.dmp"
 POIN SkillTester
 WORD LungeID
-
-ALIGN 4
-Shade:
-#incbin "Shade/Shade.dmp"
-POIN SkillTester
-WORD ShadeID
 
 ALIGN 4
 ShadePlus:
