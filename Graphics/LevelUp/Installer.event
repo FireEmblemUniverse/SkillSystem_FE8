@@ -1,0 +1,28 @@
+
+// imported via febuilder, then opened in graphics editor and data dump selected 
+
+PUSH 
+ORG $73D88 
+POIN NewLevelUpIMG 
+ORG $7EB84 // maybe there's two because of promotions? 
+POIN NewLevelUpIMG 
+ORG $73DA0 
+POIN NewLevelUpPAL
+ORG $7EB94 
+POIN NewLevelUpPAL
+ORG $73D90 
+POIN NewLevelUpTSA
+ORG $7EB8C 
+POIN NewLevelUpTSA 
+POP 
+
+ALIGN 4 
+NewLevelUpTSA: 
+#incbin "LevelUpByLukirioh_TSA.dmp" 
+ALIGN 4 
+NewLevelUpIMG: 
+#incbin "LevelUpByLukirioh_img.dmp" 
+ALIGN 4 
+NewLevelUpPAL: 
+#incbin "LevelUpByLukirioh_pal.dmp" 
+

@@ -5,6 +5,13 @@
 
 PUSH 
 
+ORG $86B84 
+SHORT $3801 // Make things that normally scroll left instead scroll right (such as the prep screen bg) 
+ORG $86B8C
+SHORT $46c0 $46c0 $46c0 
+ORG $86BA2 
+SHORT $46C0 $46c0 $46c0 
+
 ORG $3798C // kill GetBallistaItemAt 
 SHORT $2000 // mov r0, #0 
 SHORT $4770 // bx lr 

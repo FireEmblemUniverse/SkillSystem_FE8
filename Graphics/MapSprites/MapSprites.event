@@ -4840,7 +4840,12 @@ PUSH
 ORG $59EE20
 #incbin "Palette/all_five_pal.dmp"
 
-// I copied them into one .dmp, which was unnecessary 
+// this was broken so I made into one .dmp 
+//#incbin "Palette/Player.dmp"
+//#incbin "Palette/Enemy.dmp"
+//#incbin "Palette/NPC.dmp"
+//#incbin "Palette/Gray.dmp"
+//#incbin "Palette/Fourth.dmp"
 
 POP
 

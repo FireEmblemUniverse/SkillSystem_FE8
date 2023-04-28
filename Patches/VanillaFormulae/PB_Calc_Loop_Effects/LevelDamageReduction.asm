@@ -56,6 +56,11 @@ cmp r0, #0
 blt Exit @ they will deal min damage twice 
 mov r6, r0 @ dmg 
 ldrb r1, [r5, #8] @ level 
+cmp r7, #0 
+bne GotLevel 
+add r1, #25 @ on easy mode, start with 25% dmg reduction (maxes at 50% dmg reduction by lvl 25) 
+GotLevel: 
+
 cmp r1, #50 
 blt NoCapLevel 
 mov r1, #50 
