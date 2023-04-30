@@ -148,15 +148,38 @@ static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
 };
 
 
-
-
+struct ProcPromoSel
+{
+    PROC_HEADER;
+    s8 _u29;
+    s8 _u2a;
+    s8 _u2b;
+    u16 u2c[3];
+    u16 u32[3];
+    s16 msg_desc[3];
+    u16 _u3e;
+    u8 u40;
+    u8 menu_index;
+    u16 pid;
+    u16 u44;
+    u8 u46;
+    u8 u47;
+    u16 u48;
+    u8 u4a[3];
+    u8 _u4d[3];
+    u32 u50;
+    Proc* menu_proc;
+    /* ... more maybe */
+};
+extern NewLoadBattleSpritesForBranchScreen(struct ProcPromoSel *proc); 
 
 static const struct ProcInstruction ProcInstruction_CreatorClassProc[] =
 {
 	PROC_YIELD,
 	PROC_CALL_ROUTINE(SwitchInCharacter), 
 	PROC_CALL_ROUTINE(StartPlatform),
-	PROC_LOOP_ROUTINE(CreatorClassDisplayLoop),
+	//PROC_LOOP_ROUTINE(CreatorClassDisplayLoop),
+	PROC_LOOP_ROUTINE(NewLoadBattleSpritesForBranchScreen),
 	PROC_CALL_ROUTINE(CreatorClassEndProc),
 	PROC_END, 
 }; 
@@ -281,7 +304,7 @@ void StartPlatform(CreatorClassProcStruct* proc)
 	for ( int i = 0 ; i < 5 ; i++ ) { proc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; }
 	proc->menuItem = parent_proc->currOptionIndex;
 	proc->charID = parent_proc->list[proc->menuItem].unitRam->pCharacterData->number;
-	
+	proc->mode = 1; 
 	//proc->menuItem = creator->lastClassIndex;
 	//proc->charID = creator->tempUnit->pCharacterData->number;
 	SetupMovingPlatform(0,-1,0x1F6,0x58,6);
@@ -783,6 +806,7 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	if ( !classProc ) { ProcStart(ProcInstruction_CreatorClassProc,(Proc*)parent_proc); } // If the creator class proc doesn't exist yet, make one.
 	else
 	{
+		
 		// Otherwise, update relevant fields.
 		classProc->mode = 1;
 		for ( int i = 0 ; i < 5 ; i++ ) { classProc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; } 
@@ -792,6 +816,7 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 		//classProc->menuItem = commandProc->commandDefinitionIndex;
 		classProc->charID = parent_proc->list[parent_proc->currOptionIndex].unitRam->pCharacterData->number;
 		//classProc->charID = parent_proc->list[commandProc->commandDefinitionIndex].unitRam->pCharacterData->number;
+		
 	}
 	
 	

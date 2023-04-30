@@ -5,6 +5,17 @@
 
 PUSH 
 
+// make goal window text slightly longer 
+ORG $8D2A6 
+BYTE 10 // Width of line 1 (Vanilla is 8)
+ORG $8D2B2 
+BYTE 10 // Width of line 2 (Vanilla is 8)
+ORG $8D2F6 
+BYTE $48 // length in pixels? (Vanilla is 0x40)
+ORG $8D3E8 
+BYTE $48 // length in pixels for "Last turn" (Vanilla is 0x40)
+ 
+
 ORG $86B84 
 SHORT $3801 // Make things that normally scroll left instead scroll right (such as the prep screen bg) 
 ORG $86B8C
