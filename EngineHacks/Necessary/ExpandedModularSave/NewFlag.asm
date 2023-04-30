@@ -22,7 +22,6 @@ push {lr}
 ldr r2, =MemorySlot 
 ldr r0, [r2, #4] @ s1 
 mov r2, #2 @ check and store to sC 
-mov r11, r11 
 b Start
 .ltorg 
 

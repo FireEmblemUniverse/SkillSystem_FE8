@@ -109,6 +109,9 @@ extern void sub_80CD408(u32, s16, s16);
 extern u8 sub_805A96C(struct Unknown_030053A0 *);
 extern void sub_805A990(struct Unknown_030053A0 *);
 extern void LoadClassNameInClassReelFont(struct ProcPromoSel *proc);
+extern u8 gCharacterSelectorPlatformHeight;
+
+
 
 void NewLoadBattleSpritesForBranchScreen(struct ProcPromoSel *proc) {
     u32 a;
@@ -166,7 +169,7 @@ void NewLoadBattleSpritesForBranchScreen(struct ProcPromoSel *proc) {
                     break;
                 }
             }
-            sub_80CD47C((s16) ret, (s16) sp58, (s16) (p2->u32[0] + 0x28), 0x58, 6);
+            sub_80CD47C((s16) ret, (s16) sp58, (s16) (p2->u32[0] + 0x28), gCharacterSelectorPlatformHeight, 6);
             sub_805AE14(&gUnknown_0201FADC);
             sub_80CD408(proc->u50, p2->u32[0], p2->msg_desc[1]);
         } else {
@@ -195,7 +198,7 @@ D1AC:
     if ((u8) sub_805A96C(tmp)) {
         sub_805A990(tmp);
     }
-    LoadClassNameInClassReelFont(proc);
+    //LoadClassNameInClassReelFont(proc);
     return;
 }
 

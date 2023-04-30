@@ -47,16 +47,30 @@ struct TSA
 };
 struct CreatorClassProcStruct
 {
-	PROC_HEADER
-	u8 destructorBool;
-	u8 unk1[0x2C-0x2a]; // 0x29.
-	u16 classes[5]; // 0x2C.
-	u8 unk2[0x40 - 0x36]; // 0x36.
-	u8 mode; // 0x40.
-	u8 menuItem; // 0x41.
-	u16 charID; // 0x42.
-	u8 unk3[0x50 - 0x44]; // 0x44.
-	u8 platformType; // 0x50.
+	
+    PROC_HEADER;
+    s8 destructorBool;
+    s8 _u2a;
+    s8 _u2b;
+	u16 classes[5]; // 0x2c, 0x2e, 0x30, 0x32, 0x34 
+    //u16 u2c[3];
+    //u16 u32[3];
+    //s16 msg_desc[3];
+    //u16 _u3e;
+    u8 unk2[0x40 - 0x36]; // 0x36.
+	u8 mode;
+    u8 menuItem;
+    u16 charID;
+    u16 u44;
+    u8 u46;
+    u8 u47;
+    u16 u48;
+    u8 u4a[3];
+    u8 _u4d[3];
+    u32 platformType;
+    Proc* menu_proc;
+	
+	
 };
 
 struct SomeAISStruct {};
@@ -112,6 +126,7 @@ struct Struct_SelectCharacterProc
 	{
 		Unit* unitRam; // 0x30, 0x34, 0x38, 0x3c, 0x40, 0x44 
 	} list[5];
+	Proc* menu_proc; 
 };
 
 struct Struct_ConfirmationProc
@@ -305,9 +320,39 @@ void StartPlatform(CreatorClassProcStruct* proc)
 	proc->menuItem = parent_proc->currOptionIndex;
 	proc->charID = parent_proc->list[proc->menuItem].unitRam->pCharacterData->number;
 	proc->mode = 1; 
+	
+	
+    proc->destructorBool = 0;
+    proc->_u2a = 0;
+    proc->_u2b = 0;
+	proc->unk2[0] = 0; 
+	proc->unk2[1] = 0; 
+	proc->unk2[2] = 0; 
+	proc->unk2[3] = 0; 
+	proc->unk2[4] = 0; 
+	proc->unk2[5] = 0; 
+	proc->unk2[6] = 0; 
+	proc->unk2[7] = 0; 
+	proc->unk2[8] = 0; 
+	
+    //proc->unk2[0x40 - 0x36]; // 0x36.
+    proc->u44 = 0;
+    proc->u46 = 0;
+    proc->u47 = 0;
+    proc->u48 = 0;
+    proc->u4a[0] = 0;
+    proc->u4a[1] = 0;
+    proc->u4a[2] = 0;
+    proc->_u4d[0] = 0;
+    proc->_u4d[1] = 0;
+    proc->_u4d[2] = 0;
+    proc->menu_proc = parent_proc->menu_proc;
+	
+	
 	//proc->menuItem = creator->lastClassIndex;
 	//proc->charID = creator->tempUnit->pCharacterData->number;
-	SetupMovingPlatform(0,-1,0x1F6,0x58,6);
+	//SetupMovingPlatform(0,-1,0x1F6,0x58,6);
+	SetupMovingPlatform(0,-1,0x1F6,gCharacterSelectorPlatformHeight,6);
 	StartMovingPlatform(proc->platformType,0x118,gCharacterSelectorPlatformHeight);
 }
 
@@ -337,6 +382,7 @@ void CallSwitchInCharacter(MenuProc* proc)
 	
 	
 	Struct_SelectCharacterProc* parent_proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
+	parent_proc->menu_proc = proc; 
 
 
 	//struct Struct_SelectCharacterProc* parent_proc = (void*) proc->parent;
@@ -803,7 +849,11 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	
 	
 	CreatorClassProcStruct* classProc = (CreatorClassProcStruct*)ProcFind(ProcInstruction_CreatorClassProc);
-	if ( !classProc ) { ProcStart(ProcInstruction_CreatorClassProc,(Proc*)parent_proc); } // If the creator class proc doesn't exist yet, make one.
+	if ( !classProc ) { 
+		
+		struct CreatorClassProcStruct* newProc = ProcStart(ProcInstruction_CreatorClassProc,(Proc*)parent_proc); 
+		newProc->menu_proc = parent_proc->menu_proc; 
+	} // If the creator class proc doesn't exist yet, make one.
 	else
 	{
 		
