@@ -128,6 +128,7 @@ Fix LZ77 - Tequila
 GetPressedKeys - Shuusuke, 7743
 GetDifficulty - 7743
 GetUnitDistance - Snakey1
+HigherPromoBonuses - Scraiza 
 RescueEvent - circles
 EMS - Stan
 Ai & LeaderAI fix - Stan
