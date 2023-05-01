@@ -101,13 +101,8 @@ bx r3
 
 GetAdjacentTrap: @r0 = unit we're checking for adjacency to
 push {r4-r6,r14}
-mov r4,r0
-
 ldr r4,=#0x3004E50
-ldr r0,[r4]
-
-mov r4, r0
-
+ldr r4,[r4]
 ldrb r5,[r4,#0x10] @x coord
 ldrb r6,[r4,#0x11] @y coord
 
@@ -457,7 +452,7 @@ ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x10
 strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
-mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+mov r0,#0x97		@play beep sound & end menu on next frame & clear menu graphics
 
 pop {r4}
 pop {r3}

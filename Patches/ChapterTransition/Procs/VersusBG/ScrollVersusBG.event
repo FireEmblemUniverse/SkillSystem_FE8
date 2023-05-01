@@ -1,6 +1,7 @@
 // Set up TitleBG in BG
-PROC_CALL_ROUTINE(Init_VersusBG+0x1)
-PROC_LOOP_ROUTINE(Loop_ScrollInVersusBG+0x1)
-PROC_LOOP_ROUTINE(Loop_ScrollVersusBG+0x1)
+PROC_YIELD
+PROC_CALL_ROUTINE(Init_VersusBG|0x1)
+PROC_LOOP_ROUTINE(Loop_ScrollInVersusBG|0x1)
+PROC_LOOP_ROUTINE(Loop_ScrollVersusBG|0x1)
 SkipVersusBG:
 PROC_END
