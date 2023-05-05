@@ -101,7 +101,7 @@ Save(6,34) // Pokecenter
 //RockSmash(3,2)
 RockSmash(1,39)
 RockSmash(1,41)
-RockSmash(2,40)
+RockSmash(0,40)
 
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(13,27, ChapterID*2, DazzleID)
