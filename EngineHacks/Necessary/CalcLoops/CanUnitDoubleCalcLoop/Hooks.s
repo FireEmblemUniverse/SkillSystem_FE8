@@ -1,0 +1,1 @@
+SET_FUNC NewBattleGetFollowUpOrder, 0x802AF91
