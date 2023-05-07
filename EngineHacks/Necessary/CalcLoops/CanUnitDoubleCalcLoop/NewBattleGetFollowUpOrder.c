@@ -1,4 +1,5 @@
 #include "gbafe.h" 
+#include <stdlib.h> 
 // see https://github.com/FireEmblemUniverse/fireemblem8u/blob/f3fc2db675198eba47b075e3a94a6284f576df90/src/bmbattle.c#L825
 
 extern int DoublingThresholdLink; 
@@ -11,7 +12,7 @@ extern void BattleForecastHitCountUpdate(struct BattleUnit* battleUnit, u8* hits
 extern int IsUnitEffectiveAgainst(struct BattleUnit* attacker, struct BattleUnit* defender);
 
 int IsAttackerWeaponUnableToDouble(struct BattleUnit* bunitA);
-int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB, int threshold);
+int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB);
 s8 BattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
  
 
@@ -31,6 +32,8 @@ CannotDouble = 0,
 ForceDouble = 1, 
 NoChange = 2,
 }; 
+
+
 
 struct BattleForecastProc {
     /* 00 */ PROC_HEADER;
@@ -52,7 +55,12 @@ struct BattleForecastProc {
     /* 53 */ s8 isEffectiveB;
 };
 
-
+enum 
+{ 
+NoFollowUp = 0, 
+OneFollowUp = 1, 
+BothFollowUp = 2,
+}; 
 
 
 void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
@@ -69,16 +77,16 @@ void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
     proc->isEffectiveA = 0;
 
     if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke)) {
-        BattleForecastHitCountUpdate(&gBattleActor, &proc->hitCountA, &usesA);
+        BattleForecastHitCountUpdate(&gBattleActor, (u8*)&proc->hitCountA, &usesA);
 
         if ((followUp != 0) && (buFirst == &gBattleActor)) {
-            BattleForecastHitCountUpdate(buFirst, &proc->hitCountA, &usesA);
+            BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountA, &usesA);
         }
 		if (followUp != 0) { 
-			BattleForecastHitCountUpdate(buSecond, &proc->hitCountB, &usesB);
+			BattleForecastHitCountUpdate(buSecond, (u8*)&proc->hitCountB, &usesB);
 		} 
 
-        if (IsUnitEffectiveAgainst(&gBattleActor.unit, &gBattleTarget.unit) != 0) {
+        if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleActor.unit, (struct BattleUnit*)&gBattleTarget.unit) != 0) {
             proc->isEffectiveA = 1;
         }
 
@@ -95,13 +103,15 @@ void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
     proc->isEffectiveB = 0;
 
     if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke)) {
-        BattleForecastHitCountUpdate(&gBattleTarget, &proc->hitCountB, &usesB);
+        BattleForecastHitCountUpdate(&gBattleTarget, (u8*)&proc->hitCountB, &usesB);
         if ((followUp != 0) && (buFirst == &gBattleTarget)) {
-            BattleForecastHitCountUpdate(buFirst, &proc->hitCountB, &usesB);
-			BattleForecastHitCountUpdate(buSecond, &proc->hitCountA, &usesA);
+            BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountB, &usesB);
+        }
+        if ((followUp == BothFollowUp)) { // added 
+            BattleForecastHitCountUpdate(buSecond, (u8*)&proc->hitCountB, &usesB);
         }
 
-        if (IsUnitEffectiveAgainst(&gBattleTarget.unit, &gBattleActor.unit) != 0) {
+        if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleTarget.unit, (struct BattleUnit*)&gBattleActor.unit) != 0) {
             proc->isEffectiveB = 1;
         }
 
@@ -117,9 +127,21 @@ void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
     return;
 }
 
+extern int SkillTester(struct Unit* unit, int id); 
+extern int AssassinateID_Link; 
+extern int DesperationID_Link; 
+int DoesUnitImmediatelyFollowUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+// Desperation and Assassinate skills 
+	int result = false; 
+    int dist = abs(bunitA->unit.xPos - bunitB->unit.xPos) + abs(bunitA->unit.yPos - bunitB->unit.yPos); 
+	if ((SkillTester(&bunitA->unit, DesperationID_Link) && (bunitA->hpInitial < (bunitA->unit.maxHP/2))) || (SkillTester(&bunitA->unit, AssassinateID_Link) && (dist == 1))) { 
+	result = true; } 
+	return result; 
 
 
-void BattleUnwind(void) {
+} 
+
+void NewBattleUnwind(void) {
     ClearBattleHits();
 
     // this do { ... } while (0); is required for match
@@ -135,74 +157,75 @@ void BattleUnwind(void) {
 
         if (!BattleGenerateRoundHits(attacker, defender)) { // attacker hits defender 
 			// if not the initial hit: 
-            gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE; 
+			if (DoesUnitImmediatelyFollowUp(attacker, defender)) { 
+				int atkrDouble = false; 
+				if (CanUnitDouble(attacker, defender)) {
+					gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+					atkrDouble = BattleGenerateRoundHits(attacker, defender);
+				}
+			
+				//int followUpHits = BattleGetFollowUpOrder(&attacker, &defender);
+				gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE; 
+				int countered = BattleGenerateRoundHits(&gBattleTarget, &gBattleActor); // defender (potentially) counter attacks 
+				if (!countered) {
+					if ((!atkrDouble) && (CanUnitDouble(&gBattleTarget, &gBattleActor))) { 
+						gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+						BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
+					} 
+				} 
+			}
+		 
+			else { 
+			gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE; 
 			int countered = BattleGenerateRoundHits(defender, attacker); // defender (potentially) counter attacks 
 			if (!countered) {
 				//if not the counter attack, follow up attack 
-				gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-				int atkrDouble = BattleGenerateRoundHits(&gBattleActor, &gBattleTarget); 
-				if (!atkrDouble) { 
-						gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-						BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
 				
-				/*
-				int counterattacks = BattleGetFollowUpOrder(&attacker, &defender);
-				if (counterattacks) {
+				int followUpHits = BattleGetFollowUpOrder(&attacker, &defender);
+				if (followUpHits) { 
 					gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-					//BattleGenerateRoundHits(attacker, defender);
-					BattleGenerateRoundHits(&gBattleActor, &gBattleTarget);            
-					if (counterattacks > 1) { 
+					int atkrDouble = BattleGenerateRoundHits(attacker, defender); 
+					if ((!atkrDouble) && (followUpHits == BothFollowUp)) { 
 						gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-						BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
-					}
-				}
-				*/
+						BattleGenerateRoundHits(defender, attacker);
+					} 
 				}	
 			}
+			} 
         }
     } while (FALSE);
 
     gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
+	
+	asm("mov r0, #0"); // This is what a hook for Barricade did  
+	asm("mov r11, r0"); // for some reason it sets r11 to 0. r11 is not used by this function. 
+	// "Barricade uses r11 for various things through combat. This unsets it afterward."
 }
+
 
 
 
 s8 NewBattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender) {
-    //if (gBattleTarget.battleSpeed > 250) {
-		//return FALSE; } 
-	int threshold = DoublingThresholdLink;
-
-	int attackerDouble = CanUnitDouble((&gBattleActor), (&gBattleTarget), threshold); 
-	if (attackerDouble) { 
-	    *outAttacker = &gBattleActor;
-		*outDefender = &gBattleTarget;
-	} 
-
-	int defenderDouble = CanUnitDouble((*outAttacker), (*outDefender), threshold); 
+	int result = NoFollowUp; // default 
+	int defenderDouble = CanUnitDouble((&gBattleTarget), (&gBattleActor)); 
 	if (defenderDouble) { 
+		result += OneFollowUp;
 		*outAttacker = &gBattleTarget;
 		*outDefender = &gBattleActor;
 	} 
 	
-	// if both can double each other: 
-	/*
-	if (attackerDouble && defenderDouble) { 
-		asm("mov r11, r11"); 
-		gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-		BattleGenerateRoundHits(&gBattleActor, &gBattleTarget); // make the attacker double first 
-		gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-		BattleGenerateRoundHits(&gBattleTarget, &gBattleActor); // make the attacker double first 
-	}
-	*/
-	
-	
-	return (attackerDouble + defenderDouble); // if this is true, then *outAttacker will double *outDefender. 
+	int attackerDouble = CanUnitDouble((&gBattleActor), (&gBattleTarget)); 
+	if (attackerDouble) { 
+		result += OneFollowUp; 
+	    *outAttacker = &gBattleActor;
+		*outDefender = &gBattleTarget;
+	} 	
+	return result; // if this is true, then *outAttacker will double *outDefender. 
 }
 
 
-int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB, int threshold) { 
-	return true; 
-
+int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	int threshold = DoublingThresholdLink; 
 	if ((bunitA->battleSpeed - threshold) < bunitB->battleSpeed) 
 		return false; 
 

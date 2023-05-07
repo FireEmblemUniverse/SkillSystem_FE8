@@ -6,6 +6,11 @@
 ALIGN 4 
 DoublingThresholdLink:
 WORD AS_DOUBLING_THRESHOLD
+AssassinateID_Link:
+WORD AssassinateID 
+DesperationID_Link: 
+WORD DesperationID 
+
 
 ALIGN 4
 CanUnitDoubleCalcLoop: //r0 = attacker unit ptr, r1 = defender unit ptr, r2 = AS check result; return 0 for forcing unable to double, 1 for forcing able to double, 2 for keeping AS result/no change

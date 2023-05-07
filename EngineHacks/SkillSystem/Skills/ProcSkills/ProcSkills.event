@@ -1,9 +1,6 @@
 
 
 ALIGN 4
-#include "Barricade/BarricadeHook.lyn.event" // Barricade uses r11 for various things through combat. This unsets it afterward.
-
-ALIGN 4
 Proc_Devil:
 #incbin "Devil/proc_devil.dmp"
 POIN SkillTester
