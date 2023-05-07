@@ -82,9 +82,6 @@ void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
         if ((followUp != 0) && (buFirst == &gBattleActor)) {
             BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountA, &usesA);
         }
-		if (followUp != 0) { 
-			BattleForecastHitCountUpdate(buSecond, (u8*)&proc->hitCountB, &usesB);
-		} 
 
         if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleActor.unit, (struct BattleUnit*)&gBattleTarget.unit) != 0) {
             proc->isEffectiveA = 1;
@@ -132,6 +129,11 @@ extern int AssassinateID_Link;
 extern int DesperationID_Link; 
 int DoesUnitImmediatelyFollowUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 // Desperation and Assassinate skills 
+// ldr r3, [sp]
+// ldr r0, =0x203a4ec @no vantage + desp shenanigans, that's unfair lol
+// cmp r3, r0
+// bne NoSkill 
+
 	int result = false; 
     int dist = abs(bunitA->unit.xPos - bunitB->unit.xPos) + abs(bunitA->unit.yPos - bunitB->unit.yPos); 
 	if ((SkillTester(&bunitA->unit, DesperationID_Link) && (bunitA->hpInitial < (bunitA->unit.maxHP/2))) || (SkillTester(&bunitA->unit, AssassinateID_Link) && (dist == 1))) { 
@@ -220,7 +222,7 @@ s8 NewBattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit*
 	    *outAttacker = &gBattleActor;
 		*outDefender = &gBattleTarget;
 	} 	
-	return result; // if this is true, then *outAttacker will double *outDefender. 
+	return result; 
 }
 
 
