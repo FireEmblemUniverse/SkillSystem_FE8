@@ -3,25 +3,32 @@
 // see https://github.com/FireEmblemUniverse/fireemblem8u/blob/f3fc2db675198eba47b075e3a94a6284f576df90/src/bmbattle.c#L825
 
 extern int DoublingThresholdLink; 
-extern int CallRoutine(void* functionToCall, void* a, void* b, void* c, void* d); // call some arbitrary routine 
+
 
 extern s8 BattleGenerateRoundHits(struct BattleUnit* attacker, struct BattleUnit* defender);
 extern void BattleGetBattleUnitOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
 extern void ClearBattleHits(void); 
 extern void BattleForecastHitCountUpdate(struct BattleUnit* battleUnit, u8* hitsCounter, int* usesCounter); 
 extern int IsUnitEffectiveAgainst(struct BattleUnit* attacker, struct BattleUnit* defender);
+extern s8 BattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
 
+
+int DoesUnitImmediatelyFollowUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB);
 int IsAttackerWeaponUnableToDouble(struct BattleUnit* bunitA);
 int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB);
-s8 BattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
- 
+s8 NewBattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
+
+
+void NewBattleUnwind(void); 
+extern int SkillTester(struct Unit* unit, int id); 
+extern int AssassinateID_Link; 
+extern int DesperationID_Link; 
+
 
 struct UnitDoubleCalcLoop_Struct { 
-	void* function;
+	int(*function)(struct BattleUnit* attacker, struct BattleUnit* defender);
 };
-
 extern struct UnitDoubleCalcLoop_Struct CanUnitDoubleCalcLoop[]; 
-
 // @functions in the loop can either 
 //@A. set to always false (0)
 //@B. set to always true (1)
@@ -35,114 +42,27 @@ NoChange = 2,
 
 
 
-struct BattleForecastProc {
-    /* 00 */ PROC_HEADER;
 
-    /* 2C */ int unk_2C;
-    /* 30 */ s8 x;
-    /* 31 */ s8 y;
-    /* 32 */ u8 frameKind;
-    /* 33 */ s8 ready;
-    /* 34 */ s8 needContentUpdate;
-    /* 35 */ s8 side; // -1 is left, +1 is right
-    /* 36 */ s8 unk_36;
-    /* 38 */ struct TextHandle unitNameTextA;
-    /* 40 */ struct TextHandle unitNameTextB;
-    /* 48 */ struct TextHandle itemNameText;
-    /* 50 */ s8 hitCountA;
-    /* 51 */ s8 hitCountB;
-    /* 52 */ s8 isEffectiveA;
-    /* 53 */ s8 isEffectiveB;
-};
 
+
+
+
+
+int DoesUnitImmediatelyFollowUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	int result = false; 
+    int dist = gBattleStats.range; 
+	int hasDesperation = (SkillTester(&bunitA->unit, DesperationID_Link) && (bunitA->hpInitial < (bunitA->unit.maxHP/2)));
+	int hasAssassinate = (SkillTester(&bunitA->unit, AssassinateID_Link) && (dist == 1) && (bunitA == &gBattleActor)); // assassinate only works while attacking 
+	if (hasDesperation || hasAssassinate) { 
+		result = true; } 
+	return result; 
+} 
 enum 
 { 
 NoFollowUp = 0, 
 OneFollowUp = 1, 
 BothFollowUp = 2,
 }; 
-
-
-void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
-    struct BattleUnit* buFirst;
-    struct BattleUnit* buSecond;
-
-
-    int usesA = GetItemUses(gBattleActor.weaponBefore);
-    int usesB = GetItemUses(gBattleTarget.weaponBefore);
-
-    s8 followUp = BattleGetFollowUpOrder(&buFirst, &buSecond);
-
-    proc->hitCountA = 0;
-    proc->isEffectiveA = 0;
-
-    if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke)) {
-        BattleForecastHitCountUpdate(&gBattleActor, (u8*)&proc->hitCountA, &usesA);
-
-        if ((followUp != 0) && (buFirst == &gBattleActor)) {
-            BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountA, &usesA);
-        }
-
-        if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleActor.unit, (struct BattleUnit*)&gBattleTarget.unit) != 0) {
-            proc->isEffectiveA = 1;
-        }
-
-        if (IsItemEffectiveAgainst(gBattleActor.weaponBefore, &gBattleTarget.unit) != 0) {
-            proc->isEffectiveA = 1;
-        }
-
-        if ((gBattleActor.wTriangleHitBonus > 0) && (gBattleActor.weaponAttributes & IA_REVERTTRIANGLE) != 0) {
-            proc->isEffectiveA = 1;
-        }
-    }
-
-    proc->hitCountB = 0;
-    proc->isEffectiveB = 0;
-
-    if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke)) {
-        BattleForecastHitCountUpdate(&gBattleTarget, (u8*)&proc->hitCountB, &usesB);
-        if ((followUp != 0) && (buFirst == &gBattleTarget)) {
-            BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountB, &usesB);
-        }
-        if ((followUp == BothFollowUp)) { // added 
-            BattleForecastHitCountUpdate(buSecond, (u8*)&proc->hitCountB, &usesB);
-        }
-
-        if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleTarget.unit, (struct BattleUnit*)&gBattleActor.unit) != 0) {
-            proc->isEffectiveB = 1;
-        }
-
-        if (IsItemEffectiveAgainst(gBattleTarget.weaponBefore, &gBattleActor.unit) != 0) {
-            proc->isEffectiveB = 1;
-        }
-
-        if ((gBattleTarget.wTriangleHitBonus > 0) && (gBattleTarget.weaponAttributes & IA_REVERTTRIANGLE) != 0) {
-            proc->isEffectiveB = 1;
-        }
-    }
-
-    return;
-}
-
-extern int SkillTester(struct Unit* unit, int id); 
-extern int AssassinateID_Link; 
-extern int DesperationID_Link; 
-int DoesUnitImmediatelyFollowUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
-// Desperation and Assassinate skills 
-// ldr r3, [sp]
-// ldr r0, =0x203a4ec @no vantage + desp shenanigans, that's unfair lol
-// cmp r3, r0
-// bne NoSkill 
-
-	int result = false; 
-    int dist = abs(bunitA->unit.xPos - bunitB->unit.xPos) + abs(bunitA->unit.yPos - bunitB->unit.yPos); 
-	if ((SkillTester(&bunitA->unit, DesperationID_Link) && (bunitA->hpInitial < (bunitA->unit.maxHP/2))) || (SkillTester(&bunitA->unit, AssassinateID_Link) && (dist == 1))) { 
-	result = true; } 
-	return result; 
-
-
-} 
-
 void NewBattleUnwind(void) {
     ClearBattleHits();
 
@@ -228,8 +148,9 @@ s8 NewBattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit*
 
 int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	int threshold = DoublingThresholdLink; 
+	int result = true; 
 	if ((bunitA->battleSpeed - threshold) < bunitB->battleSpeed) 
-		return false; 
+		result = false; 
 
     if (GetItemWeaponEffect(bunitA->weaponBefore) == WPN_EFFECT_HPHALVE)
         return false;
@@ -237,11 +158,11 @@ int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
     if (GetItemIndex(bunitA->weapon) == 0xB5) { //ITEM_MONSTER_STONE)
 	return false; } 
 	
-	for (int i = 0; i<255; i++) { 
-		struct UnitDoubleCalcLoop_Struct doubleCalcLoop = CanUnitDoubleCalcLoop[i]; 
-		if (!(doubleCalcLoop.function)) { // WORD 0 as terminator 
+	for (int i = 0; ; i++) { 
+		struct UnitDoubleCalcLoop_Struct* doubleCalcLoop = &CanUnitDoubleCalcLoop[i]; 
+		if (!(doubleCalcLoop->function)) { // WORD 0 as terminator 
 		break; }
-		switch (CallRoutine(doubleCalcLoop.function, bunitA, bunitB, (void*)threshold, 0)) { 
+		switch (doubleCalcLoop->function(bunitA, bunitB)) { 
 			case NoChange:
 				break; // keep trying functions 
 			case ForceDouble: 
@@ -250,7 +171,7 @@ int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 				return false; 
 		} 
 	}
-    return true;
+    return result;
 } 
 
 
@@ -260,5 +181,88 @@ int IsAttackerWeaponUnableToDouble(struct BattleUnit* bunitA) {
 	return NoChange; 
 } 
 
+
+
+struct BattleForecastProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int unk_2C;
+    /* 30 */ s8 x;
+    /* 31 */ s8 y;
+    /* 32 */ u8 frameKind;
+    /* 33 */ s8 ready;
+    /* 34 */ s8 needContentUpdate;
+    /* 35 */ s8 side; // -1 is left, +1 is right
+    /* 36 */ s8 unk_36;
+    /* 38 */ struct TextHandle unitNameTextA;
+    /* 40 */ struct TextHandle unitNameTextB;
+    /* 48 */ struct TextHandle itemNameText;
+    /* 50 */ s8 hitCountA;
+    /* 51 */ s8 hitCountB;
+    /* 52 */ s8 isEffectiveA;
+    /* 53 */ s8 isEffectiveB;
+};
+void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc); 
+
+void NewInitBattleForecastBattleStats(struct BattleForecastProc* proc) {
+    struct BattleUnit* buFirst;
+    struct BattleUnit* buSecond;
+
+
+    int usesA = GetItemUses(gBattleActor.weaponBefore);
+    int usesB = GetItemUses(gBattleTarget.weaponBefore);
+
+    s8 followUp = BattleGetFollowUpOrder(&buFirst, &buSecond);
+
+    proc->hitCountA = 0;
+    proc->isEffectiveA = 0;
+
+    if ((gBattleActor.weapon != 0) || (gBattleActor.weaponBroke)) {
+        BattleForecastHitCountUpdate(&gBattleActor, (u8*)&proc->hitCountA, &usesA);
+
+        if ((followUp != 0) && (buFirst == &gBattleActor)) {
+            BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountA, &usesA);
+        }
+
+        if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleActor.unit, (struct BattleUnit*)&gBattleTarget.unit) != 0) {
+            proc->isEffectiveA = 1;
+        }
+
+        if (IsItemEffectiveAgainst(gBattleActor.weaponBefore, &gBattleTarget.unit) != 0) {
+            proc->isEffectiveA = 1;
+        }
+
+        if ((gBattleActor.wTriangleHitBonus > 0) && (gBattleActor.weaponAttributes & IA_REVERTTRIANGLE) != 0) {
+            proc->isEffectiveA = 1;
+        }
+    }
+
+    proc->hitCountB = 0;
+    proc->isEffectiveB = 0;
+
+    if ((gBattleTarget.weapon != 0) || (gBattleTarget.weaponBroke)) {
+        BattleForecastHitCountUpdate(&gBattleTarget, (u8*)&proc->hitCountB, &usesB);
+        if ((followUp != 0) && (buFirst == &gBattleTarget)) {
+            BattleForecastHitCountUpdate(buFirst, (u8*)&proc->hitCountB, &usesB);
+        }
+        if ((followUp == BothFollowUp)) { // added 
+            BattleForecastHitCountUpdate(buSecond, (u8*)&proc->hitCountB, &usesB);
+        }
+
+        if (IsUnitEffectiveAgainst((struct BattleUnit*)&gBattleTarget.unit, (struct BattleUnit*)&gBattleActor.unit) != 0) {
+            proc->isEffectiveB = 1;
+        }
+
+        if (IsItemEffectiveAgainst(gBattleTarget.weaponBefore, &gBattleActor.unit) != 0) {
+            proc->isEffectiveB = 1;
+        }
+
+        if ((gBattleTarget.wTriangleHitBonus > 0) && (gBattleTarget.weaponAttributes & IA_REVERTTRIANGLE) != 0) {
+            proc->isEffectiveB = 1;
+        }
+    }
+
+    return;
+}
 
 

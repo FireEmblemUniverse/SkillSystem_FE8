@@ -1,7 +1,6 @@
 
-// Hooks / takes over 0x802AF90 
+// Takes over these functions: 0x802AF90, 0x80366a0, and 0x802aed0
 #include "NewBattleGetFollowUpOrder.lyn.event"
-#include "CallRoutine.lyn.event" 
 
 ALIGN 4 
 DoublingThresholdLink:
