@@ -47,8 +47,8 @@ NoChange = 2,
 
 int RecklessFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (SkillTester(&bunitA->unit, RecklessFighterID_Link) || SkillTester(&bunitB->unit, RecklessFighterID_Link)) { 
-		return true; } 
-	return false; 
+		return ForceDouble; } 
+	return NoChange; 
 } 
 
 
@@ -153,8 +153,8 @@ s8 NewBattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit*
 int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	int threshold = DoublingThresholdLink; 
 	int result = true; 
-	if ((bunitA->battleSpeed - threshold) < bunitB->battleSpeed) 
-		result = false; 
+	if ((bunitA->battleSpeed - threshold) < bunitB->battleSpeed) {
+	result = false; } 
 
     if (GetItemWeaponEffect(bunitA->weaponBefore) == WPN_EFFECT_HPHALVE)
         return false;
