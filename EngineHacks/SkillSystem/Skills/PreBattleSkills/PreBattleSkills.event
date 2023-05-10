@@ -382,6 +382,9 @@ StunningSmile:
 POIN SkillTester
 WORD StunningSmileID
 
+#include "KeenFighter/Installer.event" 
+
+
 #ifdef MODULAR_PRE_BATTLE_SKILLS
 	ALIGN 4
 	#include "ModularPreBattleSkills/ModularPreBattleSkill.event"

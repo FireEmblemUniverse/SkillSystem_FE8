@@ -1057,6 +1057,12 @@ ORG SkillIcon(DragonskinID)
 #incbin "SkillIcons/DragonSkin.dmp"
 ORG SkillIcon(StunningSmileID)
 #incbin "SkillIcons/StunningSmile.dmp"
+ORG SkillIcon(RecklessFighterID)
+#incbin "SkillIcons/RecklessFighter.dmp"
+ORG SkillIcon(KeenFighterID)
+#incbin "SkillIcons/KeenFighter.dmp"
+
+
 
 ORG SkillIcons+0x8000
 

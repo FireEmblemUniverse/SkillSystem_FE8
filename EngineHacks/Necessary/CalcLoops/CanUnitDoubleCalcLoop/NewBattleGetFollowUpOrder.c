@@ -23,7 +23,7 @@ void NewBattleUnwind(void);
 extern int SkillTester(struct Unit* unit, int id); 
 extern int AssassinateID_Link; 
 extern int DesperationID_Link; 
-
+extern int RecklessFighterID_Link; 
 
 struct UnitDoubleCalcLoop_Struct { 
 	int(*function)(struct BattleUnit* attacker, struct BattleUnit* defender);
@@ -45,7 +45,11 @@ NoChange = 2,
 
 
 
-
+int RecklessFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, RecklessFighterID_Link) || SkillTester(&bunitB->unit, RecklessFighterID_Link)) { 
+		return true; } 
+	return false; 
+} 
 
 
 int DoesUnitImmediatelyFollowUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 

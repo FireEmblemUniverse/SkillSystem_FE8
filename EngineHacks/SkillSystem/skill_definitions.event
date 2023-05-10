@@ -890,7 +890,7 @@
 
 //Dazzle: Opponents cannot counterattack this unit.
 //By circleseverywhere
-#define DazzleID 140
+#define DazzleID 255//140
 
 //Desperation: If HP < 50%, double attacks occur immediately.
 //By ??? (Initial Commit)
@@ -900,10 +900,28 @@
 //By Zeta
 #define AssassinateID 139
 
+
+
+// Doubling Skills 
+
 //Moonlight: Cannot double but opponent cannot counterattack.
 //By Sme
 #define MoonlightID 142
 
+// Reckless Fighter: Both units in combat always double. 
+// By Vesly 
+#define RecklessFighterID 140
+
+
+//Wary Fighter: Unit cannot double or be doubled.
+//By Tequila
+#define WaryFighterID 111
+
+
+// Prebattle 
+// Keen Fighter: Unit takes 75% damage if the opponent can double. 
+// By Vesly 
+#define KeenFighterID 153 
 
 
 //Stat Modifier Skills
@@ -920,7 +938,7 @@
 
 //Resolve: When HP < 50%, gain 1.5x Str, Skl, & Spd.
 //By Sme
-#define ResolveID 153
+#define ResolveID 255//153
 
 //Fortress Defense: +5 Def, -3 Str/Mag
 //By Leonarth
@@ -1038,10 +1056,6 @@
 
 
 //Miscellaneous Skills
-
-//Wary Fighter: Unit cannot double or be doubled.
-//By Tequila
-#define WaryFighterID 111
 
 //Savior: Can rescue without penalties.
 //Author Unknown (Initial Commit)
