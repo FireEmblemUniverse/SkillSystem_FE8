@@ -900,7 +900,9 @@
 //By Zeta
 #define AssassinateID 139
 
-
+// Prideful Warrior: This unit always attacks after the enemy, but always doubles.
+// By Vesly 
+#define PridefulWarriorID 154
 
 // Doubling Skills 
 
@@ -918,10 +920,16 @@
 #define WaryFighterID 111
 
 
+
+
 // Prebattle 
 // Keen Fighter: Unit takes 75% damage if the opponent can double. 
 // By Vesly 
 #define KeenFighterID 153 
+
+// Steady Brawler: Unit deals 25% less damage while doubling, but 25% more when not. 
+
+
 
 
 //Stat Modifier Skills
@@ -950,7 +958,7 @@
 
 //Life and Death: Grants +5 Atk/Mag/Spd, -5 Def/Res.
 //By Leonarth
-#define HeroesLifeAndDeathID 154
+#define HeroesLifeAndDeathID 255//154
 
 //Push Skills: When HP is full, gain +5 to the given stat.
 //By Sme

@@ -24,6 +24,7 @@ extern int SkillTester(struct Unit* unit, int id);
 extern int AssassinateID_Link; 
 extern int DesperationID_Link; 
 extern int RecklessFighterID_Link; 
+extern int PridefulWarriorID_Link; 
 
 struct UnitDoubleCalcLoop_Struct { 
 	int(*function)(struct BattleUnit* attacker, struct BattleUnit* defender);
@@ -42,7 +43,11 @@ NoChange = 2,
 
 
 
-
+int PridefulWarrior(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, PridefulWarriorID_Link)) { 
+		return ForceDouble; } 
+	return NoChange; 
+} 
 
 
 int RecklessFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
@@ -78,6 +83,11 @@ void NewBattleUnwind(void) {
         struct BattleUnit* defender;
 
         BattleGetBattleUnitOrder(&attacker, &defender);
+		int hasPridefulWarrior = (SkillTester(&attacker->unit, PridefulWarriorID_Link)); 
+		if (hasPridefulWarrior) { 
+			attacker = &gBattleTarget;
+			defender = &gBattleActor; 
+		} 
 
         gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
 
