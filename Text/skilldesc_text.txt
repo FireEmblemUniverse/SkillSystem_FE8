@@ -906,7 +906,7 @@ all growth rates.[X]
 ## SD_QuickRiposte
 Quick Riposte: If defending and[N]
 HP is 50% or higher, unit doubles[N]
-and attacker does not double.[X]
+and attacker may not double.[X]
 
 ## SD_Resolve
 Resolve: When HP < 50%,[N]
@@ -1577,8 +1577,8 @@ also doubles.[X]
 Bold Fighter: When attacking,[N]
 this unit always doubles.[X]
 
-## SD_CalculatedAmbusher
-Calculated Ambusher: When defending,[N]
+## SD_VengefulFighter
+Vengeful Fighter: When defending,[N]
 this unit always doubles.[X]
 
 
@@ -1587,7 +1587,14 @@ Steady Brawler: This unit deals[N]
 25% less damage while doubling,[N]
 but 25% more when not.[X]
 
+## SD_QuickLearner
+Quick Learner: When attacking a[N]
+higher leveled enemy, this unit doubles.[X]
 
+## SD_PassionsFlow
+Passion's Flow: If gaining support[N]
+bonuses, this unit always doubles[N]
+while attacking.[X]
 
 
 

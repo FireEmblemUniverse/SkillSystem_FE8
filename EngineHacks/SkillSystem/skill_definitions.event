@@ -890,7 +890,7 @@
 
 //Dazzle: Opponents cannot counterattack this unit.
 //By circleseverywhere
-#define DazzleID 255//140
+#define DazzleID 140
 
 //Desperation: If HP < 50%, double attacks occur immediately.
 //By ??? (Initial Commit)
@@ -912,7 +912,7 @@
 
 // Reckless Fighter: Both units in combat always double. 
 // By Vesly 
-#define RecklessFighterID 140
+#define RecklessFighterID 255
 
 
 //Wary Fighter: Unit cannot double or be doubled.
@@ -925,20 +925,28 @@
 
 // Bold Fighter: When attacking, this unit always doubles. 
 // By Vesly 
-#define BoldFighterID 153 
+#define BoldFighterID 255 
 
-// Calculated Ambusher: When defending, this unit always doubles. 
+// Vengeful Fighter: When defending, this unit always doubles. 
 // By Vesly 
-#define CalculatedAmbusherID 154
+#define VengefulFighterID 255
 
 // Prebattle 
 // Keen Fighter: Unit takes 75% damage if the opponent can double. 
 // By Vesly 
-#define KeenFighterID 255 
+#define KeenFighterID 255
 
 // Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
 // By Vesly 
-#define SteadyBrawlerID 255 
+#define SteadyBrawlerID 255
+
+// Quick Learner: When attacking a higher leveled enemy, this unit doubles.
+// By Vesly 
+#define QuickLearnerID 255
+
+// Passion's Flow: If gaining support bonuses, this unit always doubles while attacking.
+// by Vesly 
+#define PassionsFlowID 255
 
 
 
@@ -956,7 +964,7 @@
 
 //Resolve: When HP < 50%, gain 1.5x Str, Skl, & Spd.
 //By Sme
-#define ResolveID 255//153
+#define ResolveID 153
 
 //Fortress Defense: +5 Def, -3 Str/Mag
 //By Leonarth
@@ -968,7 +976,7 @@
 
 //Life and Death: Grants +5 Atk/Mag/Spd, -5 Def/Res.
 //By Leonarth
-#define HeroesLifeAndDeathID 255//154
+#define HeroesLifeAndDeathID 154
 
 //Push Skills: When HP is full, gain +5 to the given stat.
 //By Sme

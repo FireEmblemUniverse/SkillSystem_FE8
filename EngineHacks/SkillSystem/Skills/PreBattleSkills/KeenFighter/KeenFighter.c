@@ -5,7 +5,6 @@ extern int CanUnitDouble(struct BattleUnit* bunitA, struct BattleUnit* bunitB);
 extern int KeenFighterID_Link; 
 extern int SteadyBrawlerID_Link; 
 
-
 void KeenFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 
 	if (SkillTester(&bunitB->unit, KeenFighterID_Link)) { 
@@ -20,21 +19,24 @@ void KeenFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 } 
 
 void SteadyBrawler(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
-	if (SkillTester(&bunitA->unit, SteadyBrawlerID_Link)) { 
-		if (CanUnitDouble(bunitA, bunitB)) { 
-			int dmg = bunitA->battleAttack - bunitB->battleDefense; 
+	if (SkillTester(&bunitB->unit, SteadyBrawlerID_Link)) { 
+		if (gBattleTarget.battleDefense) { // if def isn't calculated yet, do nothing 
+			if (CanUnitDouble(bunitB, bunitA)) { 
+			int dmg = bunitB->battleAttack - bunitA->battleDefense; 
 			if (dmg < 0) dmg = 0; 
-			int newDmg = (dmg * 3)/4; 
-			bunitA->battleAttack += (dmg-newDmg); 
-		} 
-		else { 
-			int dmg = bunitA->battleAttack - bunitB->battleDefense; 
-			if (dmg < 0) dmg = 0; 
-			int newDmg = (dmg * 5)/4; 
-			bunitA->battleAttack += (dmg-newDmg); 
-		} 
+			int subDmg = (dmg/4); 
+			bunitB->battleAttack -= subDmg; 
+			} 
+			else { 
+				int dmg = bunitB->battleAttack - bunitA->battleDefense; 
+				if (dmg < 0) dmg = 0; 
+				int addDmg = (dmg+2)/4; // for rounding 
+				bunitB->battleAttack += addDmg; 
+			} 
+		}
 	} 
 } 
+
 
 
 

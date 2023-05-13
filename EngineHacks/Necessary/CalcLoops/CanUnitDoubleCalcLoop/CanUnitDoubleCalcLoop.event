@@ -17,8 +17,12 @@ LastWordID_Link:
 WORD LastWordID 
 BoldFighterID_Link:
 WORD BoldFighterID 
-CalculatedAmbusherID_Link: 
-WORD CalculatedAmbusherID 
+VengefulFighterID_Link: 
+WORD VengefulFighterID 
+QuickLearnerID_Link:
+WORD QuickLearnerID 
+PassionsFlowID_Link:
+WORD PassionsFlowID 
 
 
 ALIGN 4
@@ -26,8 +30,8 @@ CanUnitDoubleCalcLoop: //r0 = attacker unit ptr, r1 = defender unit ptr, r2 = AS
 //POIN IsDefenderSnag IsAttackerEclipsing IsAttackerUsingStone //vanilla checks externalized to here
 POIN IsAttackerWeaponUnableToDouble //makes weapon effect 0xC make it unable to double
 POIN WaryFighter MoonlightDoublingFunc //skills
-POIN CombatArtsRestrictDoubling RecklessFighter PridefulWarrior
-POIN LastWord 
+POIN CombatArtsRestrictDoubling RecklessFighter PridefulWarrior BoldFighter VengefulFighter 
+POIN LastWord QuickLearner PassionsFlow 
 WORD 0 //terminator
 
 

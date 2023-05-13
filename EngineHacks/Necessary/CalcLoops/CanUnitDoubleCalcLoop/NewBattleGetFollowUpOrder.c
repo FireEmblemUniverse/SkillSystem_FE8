@@ -27,7 +27,9 @@ extern int RecklessFighterID_Link;
 extern int PridefulWarriorID_Link; 
 extern int LastWordID_Link;
 extern int BoldFighterID_Link; 
-extern int CalculatedAmbusherID_Link; 
+extern int VengefulFighterID_Link; 
+extern int QuickLearnerID_Link; 
+extern int PassionsFlowID_Link; 
 
 struct UnitDoubleCalcLoop_Struct { 
 	int(*function)(struct BattleUnit* attacker, struct BattleUnit* defender);
@@ -44,6 +46,37 @@ ForceDouble = 1,
 NoChange = 2,
 }; 
 
+
+int PassionsFlow(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, PassionsFlowID_Link)) { 
+		if (bunitA == &gBattleActor) { 
+			struct SupportBonuses* bonuses = 0; 
+			// this function returns true if any bonuses are found and also puts the bonuses into the provided ram 
+			if (GetUnitSupportBonuses(&bunitA->unit, bonuses)) {  
+				return ForceDouble; 
+			}
+		} 
+	}
+	return NoChange; 
+} 
+
+int GetEffLvl(struct BattleUnit* bunitA) { 
+	u32 attrb = UNIT_CATTRIBUTES(&bunitA->unit);
+	int result = bunitA->unit.level+10; 
+	result -= 10*(attrb & CA_MAXLEVEL10); 
+	result += 20*(attrb & CA_PROMOTED); 
+	return result; 
+} 
+
+int QuickLearner(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, QuickLearnerID_Link)) { 
+		if (GetEffLvl(bunitA) < GetEffLvl(bunitB)) { 
+			return ForceDouble; 
+		} 
+	} 
+	return NoChange; 
+} 
+
 int BoldFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (SkillTester(&bunitA->unit, BoldFighterID_Link)) { 
 		if (bunitA == &gBattleActor) { 
@@ -53,8 +86,8 @@ int BoldFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 	return NoChange; 
 } 
 
-int CalculatedAmbush(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
-	if (SkillTester(&bunitA->unit, CalculatedAmbusherID_Link)) { 
+int VengefulFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, VengefulFighterID_Link)) { 
 		if (bunitA == &gBattleTarget) { 
 			return ForceDouble; 
 		} 
