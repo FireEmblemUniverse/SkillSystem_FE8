@@ -902,7 +902,7 @@
 
 // Prideful Warrior: This unit always attacks after the enemy, but always doubles.
 // By Vesly 
-#define PridefulWarriorID 154
+#define PridefulWarriorID 255
 
 // Doubling Skills 
 
@@ -919,16 +919,26 @@
 //By Tequila
 #define WaryFighterID 111
 
+// Last Word: When doubled, this unit also doubles.
+// By Vesly 
+#define LastWordID 255
 
+// Bold Fighter: When attacking, this unit always doubles. 
+// By Vesly 
+#define BoldFighterID 153 
 
+// Calculated Ambusher: When defending, this unit always doubles. 
+// By Vesly 
+#define CalculatedAmbusherID 154
 
 // Prebattle 
 // Keen Fighter: Unit takes 75% damage if the opponent can double. 
 // By Vesly 
-#define KeenFighterID 153 
+#define KeenFighterID 255 
 
-// Steady Brawler: Unit deals 25% less damage while doubling, but 25% more when not. 
-
+// Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
+// By Vesly 
+#define SteadyBrawlerID 255 
 
 
 

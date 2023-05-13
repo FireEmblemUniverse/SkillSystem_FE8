@@ -25,6 +25,9 @@ extern int AssassinateID_Link;
 extern int DesperationID_Link; 
 extern int RecklessFighterID_Link; 
 extern int PridefulWarriorID_Link; 
+extern int LastWordID_Link;
+extern int BoldFighterID_Link; 
+extern int CalculatedAmbusherID_Link; 
 
 struct UnitDoubleCalcLoop_Struct { 
 	int(*function)(struct BattleUnit* attacker, struct BattleUnit* defender);
@@ -41,7 +44,33 @@ ForceDouble = 1,
 NoChange = 2,
 }; 
 
+int BoldFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, BoldFighterID_Link)) { 
+		if (bunitA == &gBattleActor) { 
+			return ForceDouble; 
+		} 
+	} 
+	return NoChange; 
+} 
 
+int CalculatedAmbush(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, CalculatedAmbusherID_Link)) { 
+		if (bunitA == &gBattleTarget) { 
+			return ForceDouble; 
+		} 
+	} 
+	return NoChange; 
+} 
+
+
+int LastWord(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (SkillTester(&bunitA->unit, LastWordID_Link)) { 
+		if (CanUnitDouble(bunitB, bunitA)) { 
+			return ForceDouble; 
+		} 
+	} 
+	return NoChange; 
+} 
 
 int PridefulWarrior(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (SkillTester(&bunitA->unit, PridefulWarriorID_Link)) { 

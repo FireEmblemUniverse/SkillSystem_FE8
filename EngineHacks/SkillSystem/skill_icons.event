@@ -1061,7 +1061,17 @@ ORG SkillIcon(RecklessFighterID)
 #incbin "SkillIcons/RecklessFighter.dmp"
 ORG SkillIcon(KeenFighterID)
 #incbin "SkillIcons/KeenFighter.dmp"
+ORG SkillIcon(PridefulWarriorID)
+#incbin "SkillIcons/PridefulWarrior.dmp"
 
+ORG SkillIcon(LastWordID)
+#incbin "SkillIcons/LastWord.dmp"
+ORG SkillIcon(BoldFighterID)
+#incbin "SkillIcons/BoldFighter.dmp"
+ORG SkillIcon(CalculatedAmbusherID)
+#incbin "SkillIcons/CalculatedAmbush.dmp"
+ORG SkillIcon(SteadyBrawlerID)
+#incbin "SkillIcons/SteadyBrawler.dmp"
 
 
 ORG SkillIcons+0x8000
