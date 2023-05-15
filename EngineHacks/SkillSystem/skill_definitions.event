@@ -716,6 +716,14 @@
 //By Jopettajah
 #define StunningSmileID 255
 
+// Keen Fighter: Unit takes 75% damage if the opponent can double. 
+// By Vesly 
+#define KeenFighterID 255
+
+// Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
+// By Vesly 
+#define SteadyBrawlerID 255
+
 
 //Proc Skills
 
@@ -931,15 +939,6 @@
 // By Vesly 
 #define VengefulFighterID 255
 
-// Prebattle 
-// Keen Fighter: Unit takes 75% damage if the opponent can double. 
-// By Vesly 
-#define KeenFighterID 255
-
-// Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
-// By Vesly 
-#define SteadyBrawlerID 255
-
 // Quick Learner: When attacking a higher leveled enemy, this unit doubles.
 // By Vesly 
 #define QuickLearnerID 255
@@ -947,6 +946,10 @@
 // Passion's Flow: If gaining support bonuses, this unit always doubles while attacking.
 // by Vesly 
 #define PassionsFlowID 255
+
+// Biding Blow: If the opponent cannot counterattack, this unit doubles. 
+// By Vesly 
+#define BidingBlowID 255
 
 
 

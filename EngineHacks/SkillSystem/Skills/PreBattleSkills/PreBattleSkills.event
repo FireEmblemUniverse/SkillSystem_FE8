@@ -343,12 +343,6 @@ POIN SkillTester
 WORD ForeignPrincessID
 
 ALIGN 4
-QuickRiposte:
-#incbin "QuickRiposte/QuickRiposte.dmp"
-POIN SkillTester
-WORD QuickRiposteID
-
-ALIGN 4
 DancingBlade:
 #incbin "DancingBlade/DancingBlade.dmp"
 POIN SkillTester

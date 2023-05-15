@@ -30,6 +30,8 @@ extern int BoldFighterID_Link;
 extern int VengefulFighterID_Link; 
 extern int QuickLearnerID_Link; 
 extern int PassionsFlowID_Link; 
+extern int QuickRiposteID_Link; 
+extern int BidingBlowID_Link; 
 
 struct UnitDoubleCalcLoop_Struct { 
 	int(*function)(struct BattleUnit* attacker, struct BattleUnit* defender);
@@ -46,6 +48,18 @@ ForceDouble = 1,
 NoChange = 2,
 }; 
 
+int BidingBlow(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) {
+		if (SkillTester(&bunitA->unit, BidingBlowID_Link)) { 
+			if (bunitA == &gBattleActor) { 
+				if (!bunitB->canCounter) {  
+					return ForceDouble; 
+				}
+			} 
+		}
+	}
+	return NoChange; 
+} 
 
 int PassionsFlow(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (SkillTester(&bunitA->unit, PassionsFlowID_Link)) { 
@@ -83,6 +97,28 @@ int BoldFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 			return ForceDouble; 
 		} 
 	} 
+	return NoChange; 
+} 
+
+int QuickRiposte(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) { // Quick Riposte as asm did this for some reason:
+	//@pre-battle data pointer, gonna check if a target has been selected or the fight has started (0x02 if targeting someone, 0x01 if battle started)
+		if (bunitA->hpInitial >= (bunitA->unit.maxHP / 2)) { 
+			if (SkillTester(&bunitA->unit, QuickRiposteID_Link)) { 
+				if (bunitA == &gBattleTarget) { 
+					return ForceDouble; 
+				} 
+			} 
+		} 
+		if (bunitB->hpInitial >= (bunitB->unit.maxHP / 2)) { 
+			if (SkillTester(&bunitB->unit, QuickRiposteID_Link)) { 
+				if (bunitB == &gBattleTarget) { 
+					return CannotDouble; 
+				} 
+			} 
+		} 
+	} 
+	
 	return NoChange; 
 } 
 
