@@ -410,8 +410,7 @@ void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
 		int cost = GetSpellCost(unit->weapon);
 		// Let's set the HP depletion bit.
 		buffer->attributes |= BATTLE_HIT_ATTR_HPSTEAL; // "HP drain" bit.
-		// Now let's subtract the cost from their HP. The check before gurantees they have enough HP to cast right now.
-		unit->unit.curHP -= cost;
+		// Now let's subtract the cost from the HP change. The check before gurantees they have enough HP to cast right now.
 		buffer->damage -= cost;
 	}
 	else

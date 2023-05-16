@@ -4,9 +4,9 @@
 @jumptohack at 802c864
 
 .thumb
+ldr r4, =0x203a4ec
 push {r4-r7}
 @original stuff
-ldr r4, =0x203a4ec
 mov r5, r12
 ldr r0, [r4, #0x4c]
 ldr r1, [r5, #0x4c] @if EITHER one has uncounterable weapon

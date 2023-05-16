@@ -4,7 +4,7 @@ prArmorMarchCheck: //check if the bit is set and if so give the unit some stats
 #incbin "ArmorMarch/armormarchcheck.dmp"
 WORD DebuffTable
 WORD ArmorMarchBit
-WORD 8 //size of a debuff table entry
+WORD DebuffEntrySize
 WORD 2 //amount of movement to grant
 
 #include "DefiantSkills/DefiantSkills.event"

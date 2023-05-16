@@ -455,7 +455,11 @@ POP
 	HammerneStaff_RangeSetup:
 		rfItemRangeSetup(0x262FD,Item_TURange)
 	UnlockStaff_RangeSetup:
+		#ifndef UNLOCK_WORKS_ON_CHESTS
 		rfItemRangeSetup(0x25795,Item_TTRange)
+		#else // UNLOCK_WORKS_ON_CHESTS
+		rfItemRangeSetup(TryAddToUnlockTargetList,Item_TTRange)
+		#endif // UNLOCK_WORKS_ON_CHESTS
 	BarrierStaff_RangeSetup:
 		rfItemRangeSetup(0x2601D,Item_TURange)
 	DancerRing_RangeSetup:

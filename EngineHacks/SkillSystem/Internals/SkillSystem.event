@@ -118,18 +118,17 @@ POIN (GetInitialSkillList|1)
 //Determines the max number of skills generics get from learned skills
 #define MaxGenericLearnedSkills 4
 
+//SkillTester configs
+ALIGN 4
+gSkillTestConfig:
+SHORT AuraSkillBufferLimit
+BYTE  MaxGenericLearnedSkills
+BYTE  PASSIVE_SKILLS_STACK
+BYTE  ROOF_UNIT_AURAS
+
 ALIGN 4
 PassiveSkillBit:
 WORD PASSIVE_ITEM_SKILL_ATTR
-
-PassiveSkillStack:
-WORD PASSIVE_SKILLS_STACK
-
-gAuraSkillBufferLimit:
-WORD AuraSkillBufferLimit
-
-GenericLearnedSkillLimit:
-WORD MaxGenericLearnedSkills
 
 #define NegatedSkillEntry(skillID) "PUSH; ORG NegatedSkills + skillID; BYTE 0x1; POP"
 
@@ -326,14 +325,6 @@ BYTE SaviorID//works, but changes are not displayed in the pre-battle numbers (t
 BYTE ForeignPrincessID
 */
 BYTE 0x00//terminator
-ALIGN 4
-
-ALIGN 4
-SkillDescGetter: //given skill number, get description text ID
-#incbin skillDescGetter.dmp
-POIN SkillDescTable
-POIN Skill_Getter
-WORD SS_SkillsDefaultRText
 
 ALIGN 4
 SkillAdder: //given chardata in r0, skill in r1, add skill if possible
