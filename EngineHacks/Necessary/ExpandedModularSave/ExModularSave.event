@@ -110,7 +110,7 @@ gSaveBlockTypeSizeLookup:
 #endif // USE_STRMAG_SPLIT
 
 DebuffTablePointer: // required for debuffs module
-	WORD DebuffTable
+	WORD DebuffTableRam
 
 // ===============
 // = SAVE CHUNKS =

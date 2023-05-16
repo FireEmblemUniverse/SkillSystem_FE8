@@ -92,30 +92,23 @@ POIN SkillTester
 WORD VantageID
 WORD VantagePlusID
 
-#define VigorDanceBit "(8*7)+0" //8*byte + bit of the debuff table to use
+#define VigorDanceBit "(8*9)+5" //8*byte + bit of the debuff table to use
 
 ALIGN 4
 VigorDanceSkill: //set a bit in the debuff table's entry for the refreshed unit
 #include "VigorDance/vigordanceskill.lyn.event"
 POIN SkillTester
 WORD VigorDanceID
-POIN GetDebuffs // WORD DebuffTable
-WORD VigorDanceBit
-// WORD 8 //size of a debuff table entry
 
 ALIGN 4
 VigorDanceCheck: //check if the bit is set and if so give the unit some stats
 #include "VigorDance/vigordancecheck.lyn.event"
-POIN GetDebuffs // WORD DebuffTable
-WORD VigorDanceBit
-// WORD 8 //size of a debuff table entry
 
 ALIGN 4
 VigorDanceReset:
 #include "VigorDance/vigordancereset.lyn.event"
-POIN GetDebuffs // WORD DebuffTable
-WORD VigorDanceBit
-// WORD 8 //size of a debuff table entry
+
+
 
 #include "TriangleAttack/TriangleAttack.lyn.event"
 ALIGN 4

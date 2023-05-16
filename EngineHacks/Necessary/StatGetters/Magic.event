@@ -4,8 +4,10 @@
 #include "_Common.event"
 
 pMagicModifiers: // Magic
-	POIN prAddUnitMagic prAddEquipMagic prDebuffMag-1 prRallyMag-1 prSkillFury prFortressDefensePow prFortressResistancePow prItemPassiveMag VigorDanceCheck prLifeAndDeathBonus prDefiantMag prPushMag
-	POIN prMagBuff
+	POIN prAddUnitMagic prAddEquipMagic 
+	POIN prDebuffMag 
+	POIN prRallyMag prSkillFury prFortressDefensePow prFortressResistancePow prItemPassiveMag VigorDanceCheck prLifeAndDeathBonus prDefiantMag prPushMag
+	//POIN prMagBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryMagic
 	#endif 

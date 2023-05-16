@@ -7,8 +7,6 @@ jumpToHack(ArmorMarchSkill) //set or unset a bit in the debuff entries to give m
 POP
 
 
-#define ArmorMarchBit "(8*7)+1" //8*byte + bit of the debuff table to use
-
 ALIGN 4
 ArmorMarchList:
 BYTE Knight Knight_F General General_F GreatKnight GreatKnight_F 0
@@ -18,8 +16,5 @@ ArmorMarchSkill: //set a bit in the debuff table's entry for the refreshed unit
 #include "armormarchskill.lyn.event"
 POIN AuraSkillCheck
 WORD ArmorMarchID
-POIN GetDebuffs // WORD DebuffTable
-WORD ArmorMarchBit
-// WORD 8 //size of a debuff table entry
 POIN SkillTester
 POIN ArmorMarchList //list of classes that should be affected by armor march

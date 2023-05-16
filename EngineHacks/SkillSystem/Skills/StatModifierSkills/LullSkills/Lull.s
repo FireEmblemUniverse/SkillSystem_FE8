@@ -10,16 +10,16 @@ Lull:
 push {r4-r7,r14}
 mov r4, r0 @ Attacker
 mov r5, r1 @ Defender
-ldr r6, =LullDebuffTableLink
-ldr r6, [ r6 ]
-ldrb r0, [ r4, #0x0B ] @ Allegiance byte.
-lsl r0, r0, #0x03 @ Multiply by 8.
-add r6, r0, r6 @ r6 = this DebuffTable entry.
 
-@ Rally mag is at the 5th byte at the 5th bit
-ldrb r0, [ r6, #0x05 ]
-mov r1, #0x10 @ 10000b
-tst r0, r1
+bl GetUnitDebuffEntry 
+mov r6, r0 
+
+@ Rally mag 
+mov r0, r6 
+ldr r1, =MagRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq NoRallyMag
 
 	@check enemy for relevant lull skills
@@ -59,9 +59,11 @@ beq NoRallyMag
 	strh r1,[r0]
 	
 NoRallyMag:
-ldrb r0, [ r6, #0x03 ]
-mov r1, #0x80
-tst r0, r1
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq RallyStr
 
 	@check enemy for relevant lull skills
@@ -102,11 +104,11 @@ beq RallyStr
 
 RallyStr:
 
-@LO byte of the 3rd byte
-ldrb r1, [r6, #0x3]
-mov r0, #0x1
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =StrRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq noStrRally
 
 	@check enemy for relevant lull skills
@@ -145,10 +147,11 @@ beq noStrRally
 	strh r1,[r0]
 
 noStrRally:
-@Rally Spectrum
-mov r0, #0x80
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq RallySpd
 
 	@check enemy for relevant lull skills
@@ -188,11 +191,11 @@ beq RallySpd
 
 RallySpd:
 
-@LO byte of the 3rd byte
-ldrb r1, [r6, #0x3]
-mov r0, #0x4
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpdRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq noSpdRally
 
 	@check enemy for relevant lull skills
@@ -242,9 +245,11 @@ beq noSpdRally
 
 noSpdRally:
 @Rally Spectrum
-mov r0, #0x80
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq SklRally
 
 	@check enemy for relevant lull skills
@@ -293,11 +298,11 @@ beq SklRally
 
 SklRally:
 
-@LO byte of the 3rd byte
-ldrb r1, [r6, #0x3]
-mov r0, #0x2
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SklRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq noSklRally
 
 	@check enemy for relevant lull skills
@@ -335,9 +340,11 @@ beq noSklRally
 
 noSklRally:
 @Rally Spectrum
-mov r0, #0x80
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq LckRally
 
 	@check enemy for relevant lull skills
@@ -374,11 +381,11 @@ beq LckRally
 	strh r1,[r0]
 
 LckRally:
-@LO byte of the 3rd byte
-ldrb r1, [r6, #0x3]
-mov r0, #0x20
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =LukRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq noLuckRally
 
 	@check enemy for relevant lull skills
@@ -424,9 +431,11 @@ beq noLuckRally
 
 noLuckRally:
 @Rally Spectrum
-mov r0, #0x80
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq ResRally
 
 	@check enemy for relevant lull skills
@@ -470,11 +479,11 @@ beq ResRally
 	strh r1,[r0]
 
 ResRally:
-@LO byte of the 3rd byte
-ldrb r1, [r6, #0x3]
-mov r0, #0x10
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =ResRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq noResRally
 
 	@check enemy for relevant lull skills
@@ -497,7 +506,7 @@ beq noResRally
 	cmp r0,#0
 	beq noResRally
 
-	@we subtract 4 defense if either magic bit is set on opponent's weapon (this works with or without strmag split)
+	@we subtract 4 defense if either magic bit is set on opponents weapon (this works with or without strmag split)
 	mov r0,r5
 	add r0,#0x4C
 	ldr r0,[r0]
@@ -515,9 +524,11 @@ beq noResRally
 
 noResRally:
 @Rally Spectrum
-mov r0, #0x80
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq DefRally
 
 	@check enemy for relevant lull skills
@@ -557,11 +568,11 @@ beq DefRally
 
 DefRally:
 
-@LO byte of the 3rd byte
-ldrb r1, [r6, #0x3]
-mov r0, #0x8
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =DefRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq noDefRally
 
 	@check enemy for relevant lull skills
@@ -600,10 +611,11 @@ beq noDefRally
 	strb r1,[r0]
 
 noDefRally:
-@Rally Spectrum
-mov r0, #0x80
-and r0, r1
-cmp r0, #0x0
+mov r0, r6 
+ldr r1, =SpecRallyOffset_Link
+ldr r1, [r1] 
+bl CheckBit
+cmp r0, #0 
 beq GoBack
 
 	@check enemy for relevant lull skills

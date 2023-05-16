@@ -5,14 +5,14 @@
 ALIGN 4
 pMovModifiers: // Movement
 	POIN prAddUnitBaseMov prAddUnitMovBonus 
-	//POIN prGetItemMovBonus prItemPassiveMov prRallyMov prSkillCelerity prSkillPoise  prArmorMarchCheck 
-	POIN prNullifyIfGuardAI
 	#ifdef ACCESSORIES_AND_FORGING
 		// This doesn't work out of the box and I cba to debug it 
 		// So accessories cannot grant movement bonuses 
 		//POIN prAddAccessoryMovement
 	#endif 
 	POIN EnemyMovementBane // lower enemies movement by 1 because it is more fun tbh 
+	POIN prDebuffMov 
+	//POIN prItemPassiveMov prRallyMov prSkillCelerity prSkillPoise prArmorMarchCheck
 	#ifdef STAIRS_ASM
 	//POIN StairsMoveDebuff
 	#endif
@@ -23,7 +23,12 @@ pMovModifiers: // Movement
 	POIN prMinZero
 	POIN MaxMovCap
 	#endif
+	POIN MaxMovCap
 WORD 0
+
+ALIGN 4 
+MaxMovementValue_Link: 
+WORD 15 // Above this may break the game, though Pokemblem does 19 and has not attributed any bugs to it 
 
 prAddUnitBaseMov: // byte 0x12 in ROM class data is base class movement
 	rAdd(rForWordAt(UNIT_ROMCLASS, rSByteAt(0x12))) 
@@ -48,10 +53,6 @@ prNullifyIfGuardAI:
 prNullifyIfFreeze:
 	rIfUnitHasStatus(0x9)
 		rConstant(0)
-
-prRallyMov:
-	#include "_asm/RallyMov.lyn.event"
-	POIN GetDebuffs|1
 
 ALIGN 4
 prAddEquipMov:

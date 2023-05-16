@@ -26,25 +26,10 @@ beq	End
 
 @set the bit for this skill in the debuff table entry for the refreshed unit
 mov	r0,r4
-ldr	r1,DebuffTable
-mov lr,r1
-.short 0xf800
-@ ldr	r0,DebuffTable
-@ ldrb	r1,[r4,#0xB]	@allegiance byte of refreshed unit
-@ ldr	r2,EntrySize
-@ mul	r1,r2
-@ add	r0,r1		@debuff table entry for this unit
-push	{r0}
-ldr	r0,VigorDanceBit
-mov	r1,#8
-swi	6		@get the byte
-pop	{r2}
-add	r0,r2		@byte we are modifying
-mov	r2,#1
-lsl	r2,r1		@bit to set
-ldrb	r1,[r0]
-orr	r1,r2
-strb	r1,[r0]		@set the bit
+bl GetUnitDebuffEntry 
+ldr r1, =VigorDanceBitOffset_Link
+ldr r1, [r1] 
+bl SetBit 
 
 End:
 pop	{r0,r4}

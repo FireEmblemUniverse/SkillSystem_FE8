@@ -1,5 +1,38 @@
-WeaponDebuffTable:
-defWeaponDebuffs(0,0,0,0,0,0,0) //0x0: let 0-index entry be no debuffs.
+
+//WeaponDebuffTable: // old version 
+//defWeaponDebuffs(0,0,0,0,0,0,0) // old version 
+#define BuffEnemy 0x40 
+#define DebuffSelf 0xC0 
+#define DebuffEnemy 0x80 
+
+#define WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov) "BYTE (mag|DebuffEnemy) (str|DebuffEnemy) (skl|DebuffEnemy) (spd|DebuffEnemy) (def|DebuffEnemy) (res|DebuffEnemy) (luk|DebuffEnemy) (mov|DebuffEnemy)" 
+#define WepBuffEntry(mag, str, skl, spd, def, res, luk, mov) "BYTE mag str skl spd def res luk mov" 
+// optional macros 
+
+// max boost is +63/-63 and is definable based on # of bits (31 and 15 also work) 
+// the default is 31, so >31 but <63 will just be treated as 31 
+// values above the max will just be capped 
+ALIGN 4 
+NewWeaponDebuffTable: 
+// 	mag, str, skl, spd, def, res, luk, mov
+BYTE 0 0 0 0 0 0 0 0 // do nothing for 0th entry 
+WepDebuffEntry(0,0,1,1,2,2,0,0) //0x1: Bronze Shuriken debuff.
+WepDebuffEntry(0,2,0,0,3,3,0,0) //0x2: Iron Shuriken debuff.
+WepDebuffEntry(0,3,0,0,4,4,0,0) //0x3: Steel Shuriken debuff.
+WepDebuffEntry(0,0,0,4,4,4,0,0) //0x4: Silver Shuriken debuff.
+WepDebuffEntry(0,4,0,4,4,4,0,0) //0x5: Pebble debuff.
+BYTE 31 31|DebuffSelf 23|DebuffEnemy 24|BuffEnemy 25 26 27 28 // +31 Mag, -31 Str, -23 Skl for enemy, +24 Spd for enemy, +25/+26/+27/+28 Def/Res/Luk/Mov for user 
+WORD 0xFFFFFFFF 0xFFFFFFFF // For FEBuilder to show no further data with 
+
+
+//WeaponDebuffTable: // This is the old weapon debuff table 
+//// Pow, Skl, Spd, Luk, Def, Res, Mag 
+//defWeaponDebuffs(0,0,0,0,0,0,0) //0x0: let 0-index entry be no debuffs.
+//defWeaponDebuffs(0,1,1,0,2,2,0) //0x1: Bronze Shuriken debuff.
+//defWeaponDebuffs(2,0,0,0,3,3,0) //0x2: Iron Shuriken debuff.
+//defWeaponDebuffs(3,0,0,0,4,4,0) //0x3: Steel Shuriken debuff.
+//defWeaponDebuffs(0,0,4,0,4,4,0) //0x4: Silver Shuriken debuff.
+//defWeaponDebuffs(4,0,4,0,4,4,0) //0x5: Pebble debuff.
 
 #define WeakStrDebuff 1
 #define WeakSkillDebuff 2 

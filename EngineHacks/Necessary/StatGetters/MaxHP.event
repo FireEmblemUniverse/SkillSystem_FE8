@@ -8,6 +8,7 @@ pMaxHPModifiers: // Maximum HP
 	#ifdef ACCESSORIES_AND_FORGING
 		//POIN prAddAccessoryHP
 	#endif 
+	POIN prAddEquipHP prItemPassiveHp
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif

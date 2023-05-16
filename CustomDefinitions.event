@@ -66,7 +66,6 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #endif
 
 
-
 #define ItemTable NewItemTable 
 #undef ClassTable 
 #define ClassTable NewClassTable
@@ -97,8 +96,8 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 
 #define Test235 0x203F0D9
 
-#ifndef DebuffTable
-  #define DebuffTable     0x0203F100
+#ifndef DebuffTableRam
+  #define DebuffTableRam     0x0203F100
   #define DebuffTableSize 0x000003B0 // 0x438? 0x440? 0x448? default with 62 player units & 20 NPCs 
 #endif
 
