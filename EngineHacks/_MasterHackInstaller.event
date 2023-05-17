@@ -219,6 +219,5 @@ POP
   #include "Necessary/CalcLoops/CalcLoops.event"
 
   // Save/Suspend Expansion
-    MESSAGE "Using EMS Save/Suspend Expansion"
     #include "Necessary/ExpandedModularSave/ExModularSave.event"
 

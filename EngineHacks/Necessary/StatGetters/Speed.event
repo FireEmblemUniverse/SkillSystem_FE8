@@ -9,7 +9,6 @@ pSpeedModifiers: // Speed
 	POIN ParalyzeStatus
 	POIN prDebuffSpd 
 	POIN prAddEquipSpeed prItemPassiveSpeed prRallySpd prLifeAndDeathBonus prSkillFury prResolve prDefiantSpd prPushSpd
-	POIN prSpdBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessorySpeed
 	#endif 
@@ -29,14 +28,6 @@ prAddEquipSpeed:
 prAddAccessorySpeed:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilitySpdBonus-1)))
 	#endif 
-
-prDebuffSpd:
-	#include "_asm/DebuffSpd.lyn.event"
-	POIN GetDebuffs|1
-
-prRallySpd:
-	#include "_asm/RallySpd.lyn.event"
-	POIN GetDebuffs|1
 
 prItemPassiveSpeed:
 #ifndef DONT_STACK_BOOSTS

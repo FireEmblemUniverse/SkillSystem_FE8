@@ -27,14 +27,6 @@ prAddAccessorySkill:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilitySklBonus-1)))
 	#endif 
 
-prDebuffSkl:
-	#include "_asm/DebuffSkl.lyn.event"
-	POIN GetDebuffs|1
-
-prRallySkl:
-	#include "_asm/RallySkl.lyn.event"
-	POIN GetDebuffs|1
-
 prItemPassiveSkl:
 #ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(STAT_SKILL)

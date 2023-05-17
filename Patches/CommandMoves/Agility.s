@@ -13,6 +13,16 @@
 .equ EventEngine, 0x800D07C
 .equ CurrentUnitFateData, 0x203A958 
 
+.global GetBuff 
+.type GetBuff, %function 
+GetBuff: 
+push {lr} 
+
+bl GetUnitDebuffEntry 
+pop {r1} 
+bx r1 
+.ltorg 
+
 	
 .global AgilityCommandUsability 
 .type AgilityCommandUsability, %function 

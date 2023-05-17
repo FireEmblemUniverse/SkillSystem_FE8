@@ -5,8 +5,8 @@
 
 pLuckModifiers: // Luck
 	POIN prAddUnitLuck prHalveIfCapturing 
-	POIN prDebuffLck 
-	POIN prAddEquipLuck prItemPassiveLuck prRallyLck prDefiantLck
+	POIN prDebuffLuk 
+	POIN prAddEquipLuck prItemPassiveLuck prRallyLuk prDefiantLck
 	//POIN prLukBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryLuck
@@ -26,14 +26,6 @@ prAddEquipLuck:
 prAddAccessoryLuck:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityLckBonus-1)))
 	#endif 
-
-prDebuffLck:
-	#include "_asm/DebuffLck.lyn.event"
-	POIN GetDebuffs|1
-
-prRallyLck:
-	#include "_asm/RallyLck.lyn.event"
-	POIN GetDebuffs|1
 
 prItemPassiveLuck:
 #ifndef DONT_STACK_BOOSTS

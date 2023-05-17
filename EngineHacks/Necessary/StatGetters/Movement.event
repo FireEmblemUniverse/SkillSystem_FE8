@@ -28,7 +28,7 @@ WORD 0
 
 ALIGN 4 
 MaxMovementValue_Link: 
-WORD 15 // Above this may break the game, though Pokemblem does 19 and has not attributed any bugs to it 
+WORD 19 // Above this may break the game, though Pokemblem does 19 and has not attributed any bugs to it 
 
 prAddUnitBaseMov: // byte 0x12 in ROM class data is base class movement
 	rAdd(rForWordAt(UNIT_ROMCLASS, rSByteAt(0x12))) 

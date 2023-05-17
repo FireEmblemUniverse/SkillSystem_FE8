@@ -27,10 +27,6 @@ prAddAccessoryMagic:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityMagBonus-1)))
 	#endif 
 
-#include "_asm/Mag.lyn.event" // Contains prDebuffMag and prRallyMag
-MagDebuffTableLink:
-POIN GetDebuffs|1
-
 prItemPassiveMag:
 #ifndef DONT_STACK_BOOSTS
 	rPassiveStatBoostsStacking(0x09)

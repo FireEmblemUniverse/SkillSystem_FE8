@@ -28,16 +28,6 @@ prAddAccessoryPower:
 	//rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemPowBonus)))
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityPowBonus-1))) // -1 because rCallExternal adds +1 to make it thumb, I guess 
 	#endif 
-	
-	
-
-prDebuffStr:
-	#include "_asm/DebuffStr.lyn.event"
-	POIN GetDebuffs|1
-
-prRallyStr:
-	#include "_asm/RallyStr.lyn.event"
-	POIN GetDebuffs|1
 
 prLifeAndDeathBonus:
 	_testSkill(HeroesLifeAndDeathID,5,0)

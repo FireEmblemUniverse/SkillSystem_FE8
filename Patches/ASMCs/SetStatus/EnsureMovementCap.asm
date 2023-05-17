@@ -61,9 +61,9 @@ bx r0
 
 
 
-.global MaxMovCap
-.type MaxMovCap, %function 
-MaxMovCap:
+.global MaxMovCap2
+.type MaxMovCap2, %function 
+MaxMovCap2:
 @ r0 = movement 
 @ r1 = unit 
 ldr r2, =MaxMovementValue

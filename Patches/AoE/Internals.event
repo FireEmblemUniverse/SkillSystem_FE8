@@ -13,7 +13,7 @@
 ALIGN 4 
 AoE_GetDebuffs: 
 #ifdef DEBUFFS_HACK
-	POIN GetDebuffs|1 
+	POIN GetUnitDebuffEntry|1 
 #else 
 	WORD 0 
 #endif 
