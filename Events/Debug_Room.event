@@ -320,7 +320,7 @@ SupplyItemWithDurability(StatAccessory, QuickBoots_BoostIndex)
 //SupplyItemWithDurability(SpellScroll, KarateChop)
 
 SilentGiveItemWithDurability(1, ThunderStone, 1)
-SilentGiveItemWithDurability(1, SpellScroll, AttackPulse)
+SilentGiveItemWithDurability(1, SpellScroll, HyperBeam)
 SilentGiveItemWithDurability(1, SpellScroll, Thunderbolt)
 SilentGiveItemWithDurability(1, SpellScroll, ThunderMove)
 //SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)

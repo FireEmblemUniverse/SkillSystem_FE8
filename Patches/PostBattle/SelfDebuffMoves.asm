@@ -15,22 +15,19 @@
 SelfDebuffMoves: 
 push {r4-r7, lr}
 @normally r4 = attacker, r5 = defender, r6 = action struct 
+ 
 ldr r4, =Attacker 
 ldr r5, =Defender 
-@ r6 = actiondata
-mov r4, r8 
-push {r4} 
-
 @check if the action was an attack
 ldrb  r0, [r6,#0x11]  @action taken this turn
 cmp r0, #0x2 @attack
 bne End
 
+mov r6, #0 
+
 ldrb  r0, [r5,#0x13] @ if defender is dead, do nothing to attacker 
 cmp r0, #0x00
 beq End
-
-mov r7, #0 
 @if attacker is dead but defender is alive, do nothing to defender 
 ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
@@ -42,16 +39,15 @@ add r0, #0x4A
 ldrh r0, [r0] @ item|durb 
 mov r1, #0xFF @ itemID 
 and r0, r1 
-mov r4, r0 @ entry ID 
+mov r7, r0 @ entry ID 
 
 
 lsl r0, #3 @ bytes per entry 
 ldr r3, =SelfDebuffTable 
-add r3, r0 
-mov r7, r3 
-ldr r3, [r7] @ amount to debuff by 
+add r0, r3 
+ldr r0, [r0] @ amount to debuff by 
 
-cmp r3, #0 
+cmp r0, #0 
 beq CheckDefender @ skip GetUnit etc. if no debuff 
 
 ldrb r0, [r4, #0x0B] @ deployment byte 
@@ -59,29 +55,61 @@ blh GetUnit
 
 
 blh GetUnitDebuffEntry
-mov r6, r0 @ unit to debuff 
+@mov r6, r0 @ unit debuff entry 
+ldr r1, =SelfDebuffTable 
+mov r2, r7 @ entry ID 
+
+
+bl DebuffGivenTableEntry 
 
 
 
 
 
-AlwaysDebuff:
+
+
+CheckDefender:
+cmp r6, #0 
+bne Exit
+mov r6, #1 
+ldr r4, =Defender 
+b SelfDebuff 
+
+
+
+
+
+Exit: 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+.global DebuffGivenTableEntry
+.type DebuffGivenTableEntry, %function 
+DebuffGivenTableEntry: 
+push {r4-r7, lr} 
+mov r6, r0 @ debuff entry 
+@r1 debuff table to use 
+@r2 entry ID of the given table 
+
+lsl r2, #3 @ 8 bytes per entry 
+add r1, r2 @ table entry we desire 
+mov r7, r1 @ table entry 
+
+@ r5 = counter of which stat we're on 
 ldr r2, =DebuffNumberOfStats_Link
 ldr r1, [r2] @ max 
-mov r8, r1 
+mov r4, r1 
 
 mov r2, #0x40 @ no 0x40 bitflag of Swap 
-ldr r3, =SelfDebuffTable
-
-lsl r4, #3 @ 8 bytes per entry 
-add r4, r3 @ entry we care about 
 
 mov r5, #0 @ counter 
 sub r5, #1 
 
 Loop:
 add r5, #1 
-cmp r5, r8 
+cmp r5, r4 
 bge End
 
 mov r0, r6 @ debuff entry 
@@ -92,7 +120,7 @@ mul r1, r2 @ bit offset
 bl UnpackData_Signed 
 @ r0 as data 
 mov r2, #0x40 
-ldrb r1, [r4, r5] @ table data uses a byte per stat 
+ldrb r1, [r7, r5] @ table data uses a byte per stat 
 
 
 @ positive affects user 
@@ -126,7 +154,7 @@ cmp r3, r0
 blt Loop @ if buffed stat is worse than what we already had, do nothing 
 tst r1, r2 
 beq AffectUser
-b CheckDefender
+b End
 
 NegativeA: @ new value will be negative 
 mov r3, #0x3F 
@@ -139,7 +167,7 @@ DontAddToValue_Negative:
 cmp r3, r0 
 bgt Loop @ if debuffed stat is less bad than before (a higher # since we're negative), do nothing 
 tst r1, r2 
-beq CheckDefender 
+beq End 
 
 AffectUser:  
 mov r0, r6 @ debuff entry 
@@ -150,33 +178,8 @@ mul r1, r2 @ bit offset
 bl PackData_Signed 
 b Loop 
 
-
-
-
-
-
-
-
-
-
-
-
-CheckDefender:
-cmp r7, #0 
-bne End 
-mov r7, #1 
-mov r4, r5 
-b SelfDebuff 
-
-
-
-
-
-
 End: 
 
-pop {r4} 
-mov r8, r4 
 pop {r4-r7} 
 pop {r0} 
 bx r0 

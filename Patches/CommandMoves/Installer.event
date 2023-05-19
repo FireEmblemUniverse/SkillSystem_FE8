@@ -5,10 +5,25 @@
 #include "MoveTester.lyn.event"
 
 #include "HardenMove.lyn.event"
+ALIGN 4 
+HardenBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     0,   0,    0,   5,    0,   0,   0)
+
 #include "GuardMove.lyn.event"
+ALIGN 4 
+GuardMoveBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     0,   0,    0,   4,    4,   0,   0)
+
 #include "Growth.lyn.event"
+ALIGN 4 
+GrowthBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  5,     5,   0,    5,   0,    0,   0,   0)
 
 #include "RecoverMove.lyn.event" 
+
 
 #include "SplashMove.lyn.event"
 
@@ -18,12 +33,47 @@ WORD DisableMenuOptionsRam // gaiden, capture, submenu, (guard & call use defini
 
 
 #include "Agility.lyn.event"
+ALIGN 4 
+AgilityBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     0,   0,    10,   0,    0,   0,   0)
+
 #include "Amnesia.lyn.event"
+ALIGN 4 
+AmnesiaBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  10,     0,   0,    0,   0,   10,   0,   0)
+
 #include "SwordsDance.lyn.event"
+ALIGN 4 
+SwordsDanceBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     10,   0,    0,   0,    0,   0,   0)
+
 #include "BulkUp.lyn.event"
+ALIGN 4 
+BulkUpBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     5,   0,    0,   5,    0,   0,   0)
+
 #include "CalmMind.lyn.event"
+ALIGN 4 
+CalmMindBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  5,     0,   0,    0,   0,    5,   0,   0)
+
 #include "HoneClaws.lyn.event"
+ALIGN 4 
+HoneClawsBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     5,   10,    0,   0,    0,   0,   0)
+
 #include "FocusEnergy.lyn.event"
+ALIGN 4 
+FocusEnergyBuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepBuffEntry(  0,     0,   10,    0,   0,    0,   0,   0)
+
 
 UseSplashEvent:
 TutText(SplashMeterRisingText)
