@@ -1,18 +1,40 @@
 
-#include "CanUnitDoubleCalcLoop.lyn.event"
+// Takes over these functions: 0x802AF90, 0x80366a0, and 0x802aed0
+#include "NewBattleGetFollowUpOrder.lyn.event"
 
-PUSH
-ORG $2AF94
-jumpToHack(CanUnitDoubleCalcLoopFunc)
-POP
-
+ALIGN 4 
 DoublingThresholdLink:
-BYTE AS_DOUBLING_THRESHOLD
+WORD AS_DOUBLING_THRESHOLD
+AssassinateID_Link:
+WORD AssassinateID 
+DesperationID_Link: 
+WORD DesperationID 
+RecklessFighterID_Link:
+WORD RecklessFighterID 
+PridefulWarriorID_Link: 
+WORD PridefulWarriorID 
+LastWordID_Link:
+WORD LastWordID 
+BoldFighterID_Link:
+WORD BoldFighterID 
+VengefulFighterID_Link: 
+WORD VengefulFighterID 
+QuickLearnerID_Link:
+WORD QuickLearnerID 
+PassionsFlowID_Link:
+WORD PassionsFlowID 
+QuickRiposteID_Link:
+WORD QuickRiposteID 
+BidingBlowID_Link:
+WORD BidingBlowID 
 
 ALIGN 4
 CanUnitDoubleCalcLoop: //r0 = attacker unit ptr, r1 = defender unit ptr, r2 = AS check result; return 0 for forcing unable to double, 1 for forcing able to double, 2 for keeping AS result/no change
-POIN IsDefenderSnag IsAttackerEclipsing IsAttackerUsingStone //vanilla checks externalized to here
+//POIN IsDefenderSnag IsAttackerEclipsing IsAttackerUsingStone //vanilla checks externalized to here
 POIN IsAttackerWeaponUnableToDouble //makes weapon effect 0xC make it unable to double
-POIN WaryFighter MoonlightDoublingFunc //skills
-POIN CombatArtsRestrictDoubling
+POIN WaryFighter CombatArtsRestrictDoubling MoonlightDoublingFunc  QuickRiposte //skills that prevent doubling first 
+POIN RecklessFighter PridefulWarrior BoldFighter VengefulFighter 
+POIN LastWord QuickLearner PassionsFlow BidingBlow 
 WORD 0 //terminator
+
+

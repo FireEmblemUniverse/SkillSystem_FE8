@@ -1,0 +1,4 @@
+SET_FUNC NewBattleGetFollowUpOrder, 0x802AF91
+SET_FUNC NewInitBattleForecastBattleStats, 0x80366A1
+SET_FUNC NewBattleUnwind, 0x802AED1
+
