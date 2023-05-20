@@ -260,6 +260,7 @@ TeamDebuffTables:
     #include "asm/ClearDebuffs.lyn.event"
     #include "asm/GetUnitDebuffEntry.lyn.event"
 	#include "asm/ProcessDebuffs.lyn.event"
+	#include "asm/DebuffGivenTableEntry.lyn.event" 
 
 
 ALIGN 4 

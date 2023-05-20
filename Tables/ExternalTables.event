@@ -8,6 +8,8 @@
 #define WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov) "BYTE (mag|DebuffEnemy) (str|DebuffEnemy) (skl|DebuffEnemy) (spd|DebuffEnemy) (def|DebuffEnemy) (res|DebuffEnemy) (luk|DebuffEnemy) (mov|DebuffEnemy)" 
 #define WepBuffEntry(mag, str, skl, spd, def, res, luk, mov) "BYTE mag str skl spd def res luk mov" 
 #define DebuffSelfEntry(mag, str, skl, spd, def, res, luk, mov) "BYTE mag|DebuffSelf str|DebuffSelf skl|DebuffSelf spd|DebuffSelf def|DebuffSelf res|DebuffSelf luk|DebuffSelf mov|DebuffSelf" 
+#define DebuffUnitEntry(mag, str, skl, spd, def, res, luk, mov) "BYTE mag|DebuffSelf str|DebuffSelf skl|DebuffSelf spd|DebuffSelf def|DebuffSelf res|DebuffSelf luk|DebuffSelf mov|DebuffSelf" 
+
 // optional macros 
 
 // max boost is +63/-63 and is definable based on # of bits (31 and 15 also work) 

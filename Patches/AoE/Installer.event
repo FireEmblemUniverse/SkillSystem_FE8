@@ -279,16 +279,16 @@ ENDA
 
 ALIGN 4
 AoE_DebuffTable:
-WORD 0
-WORD 0x04000004 // -4 mag/str from Growl/Snarl 
-WORD 0x00033000 // -3 Res/Def Leer/Tail whip/Acid 
-WORD 0x00066000 // -6 Res/Def from Screech 
-WORD 0x00000080 // -8 Skl from Sand Attack/Flash 
-WORD 0x00000400 // -4 Spd from Constrict/Rock Tomb/String Shot 
-WORD 0x00800000 // -8 Luk from Pound 
- 
-WORD 0x1234567 // Mag, Luk, Res, Def, Spd, Skl, Str
-WORD 0x2345678
+WORD 0 0 
+//DebuffUnitEntry(mag, str, skl, spd, def, res, luk, mov)
+DebuffUnitEntry(5, 5, 0,0,0,0,0,0)// -5 mag/str from Growl/Snarl 
+DebuffUnitEntry(0,0,0,0, 4, 4, 0,0)// -4 Res/Def Leer/Tail whip/Acid 
+DebuffUnitEntry(0,0,0,0, 8, 8, 0,0)// -8 Res/Def from Screech 
+DebuffUnitEntry(0,0, 8, 0, 0,0,0,0)// -8 Skl from Sand Attack/Flash 
+DebuffUnitEntry(0,0,0, 5, 0,0,0,0)// -5 Spd from Constrict/Rock Tomb/String Shot/IcyWind 
+DebuffUnitEntry(0,0,0,0, 0,0,8,0)// -8 Luk from Pound 
+WORD 0xFFFFFFFF 0xFFFFFFFF 
+
 
 #define AoEPercentDmg 67
 #define AoEPercentHeal 50 

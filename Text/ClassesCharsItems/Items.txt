@@ -22,7 +22,7 @@ Icy Wind[X]
 ## IcyWindDesc
 *{)}A chilling wind attack.[N]
 Debuffs Spd by 8.[N]
-AoE: Debuffs Spd by 4.[X]
+AoE: Debuffs Spd by 5.[X]
 
 ## SwordsDanceName ^
 Swords Dance[X]
@@ -746,7 +746,7 @@ Submission[X]
 ## ConstrictDesc
 Chip damage.[N]
 Debuffs Spd by 8.[N]
-AoE: Debuffs Spd by 4.[X]
+AoE: Debuffs Spd by 5.[X]
 
 
 ## DoubleHitDesc
@@ -754,11 +754,11 @@ Hits twice.[X]
 ## LeerDesc
 Chip damage.[N]
 Debuffs Def/Res by 6.[N]
-AoE: Debuffs Def/Res by 3.[X]
+AoE: Debuffs Def/Res by 4.[X]
 ## TailWhipDesc
 Chip damage.[N]
 Debuffs Def/Res by 6.[N]
-AoE: Debuffs Def/Res by 3.[X]
+AoE: Debuffs Def/Res by 4.[X]
 
 ## FlashDesc
 Chip damage.[N]
@@ -769,7 +769,7 @@ AoE:Debuffs Skl by 8.[X]
 ## GrowlDesc
 Chip damage.[N]
 Debuffs Str/Mag by 8.[N]
-AoE: Debuffs Str/Mag by 4.[X]
+AoE: Debuffs Str/Mag by 5.[X]
 
 ## VineWhipDesc
 *{(}A weak whipping attack.[X]
@@ -828,7 +828,7 @@ May paralyze.[X]
 ## AcidDesc
 Chip damage.[N]
 Debuffs Def/Res by 6.[N]
-AoE: Debuffs Def/Res by 3.[X]
+AoE: Debuffs Def/Res by 4.[X]
 
 ## PoisonStingDesc
 *{(}A weak, venomous sting.[X]
@@ -973,7 +973,7 @@ Ancientpower[X]
 Rock Tomb[X]
 ## RockTombDesc
 *{(}Debuffs Spd by 8.[N]
-AoE: Debuffs Spd by 4.[X]
+AoE: Debuffs Spd by 5.[X]
 ## RolloutName ^
 Rollout[X]
 ## RolloutDesc
@@ -1063,7 +1063,8 @@ Signal Beam[X]
 String Shot[X]
 ## StringShotDesc
 Chip damage.[N]
-Debuffs Spd by 8.[X]
+Debuffs Spd by 8.[N]
+AoE: Debuffs Spd by 5.[X]
 ## UTurnName ^
 U-Turn[X]
 ## UTurnDesc
@@ -1081,7 +1082,7 @@ Screech[X]
 ## ScreechDesc
 Chip damage.[N]
 Debuffs Def/Res by 12.[N]
-AoE: Debuffs Def/Res by 6.[X]
+AoE: Debuffs Def/Res by 8.[X]
 
 ## ThunderWaveName ^
 Thunder Wave[X]
@@ -1117,7 +1118,7 @@ Snarl[X]
 ## SnarlDesc
 Chip damage.[N]
 Debuffs Str/Mag by 8.[N]
-AoE: Debuffs Str/Mag by 4.[X]
+AoE: Debuffs Str/Mag by 5.[X]
 
 ## CometPunchDesc 
 *{(}Flurry of 2-5 strikes.[X]
