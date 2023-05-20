@@ -1,6 +1,7 @@
 PUSH
 ORG $88638
 POIN StatScreen
+
 ORG $88640
 POIN StatScreenPal
 ORG $88644
@@ -11,6 +12,7 @@ ORG $88658
 POIN NewEquipWindow
 ORG $8859C
 jumpToHack(StatscreenAlleg)
+
 
 ORG $A06460
 #incbin "Dmp/Lukirioh_StatScreen.png.pal.dmp" 
@@ -23,7 +25,6 @@ StatScreen:
 //#incbin "Dmp/StatScreen.dmp"
 //#incbin "Dmp/SD9K_StatScreen.dmp"
 #incbin "Dmp/Lukirioh_StatScreen.png.dmp" 
-
 
 ALIGN 4
 StatScreenPal:
