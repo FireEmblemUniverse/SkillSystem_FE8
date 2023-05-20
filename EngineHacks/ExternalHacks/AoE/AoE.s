@@ -1418,116 +1418,12 @@ beq NoDebuffsPossible
 mov lr, r3 
 .short 0xF800 @ blh 
 mov r6, r0 @ debuffs pointer 
-ldrb r0, [r5, #DebuffID]
-ldr r3, =AoE_DebuffTable
-mov r1, #4 @ 4 bytes per entry 
-mul r0, r1 
-add r3, r0 @ Specific entry 
-ldr r7, [r3] 
-lsl r1, r7, #4 @ mag only 
-lsr r1, #28 @ mag only 
-ldrb r2, [r6, #5] @ RallyMag/Mag 
-mov r3, #0xF
-and r3, r2 @ mag debuff only 
-cmp r1, r3 
-blt NoMagDebuff @ they have a worse debuff already 
-mov r3, #0xF0 
-and r3, r2 @ rally mag only 
-orr r1, r3 @ rally mag/mag debuff 
-strb r1, [r6, #5] @ mag stored back in 
-NoMagDebuff: 
-
-
-
-ldrb r0, [r6] @ str 
-mov r1, r0 
-mov r2, #0xF 
-and r1, r2 
-and r2, r7 @ str only 
-cmp r1, r2 
-bgt NoStrDebuff 
-mov r1, #0xF0 
-and r0, r1 
-orr r0, r2 
-strb r0, [r6] 
-NoStrDebuff: 
-
-ldrb r0, [r6] @ str 
-mov r1, r0 
-mov r2, #0xF0 
-and r1, r2 
-and r2, r7 @ str only 
-cmp r1, r2 
-bgt NoSklDebuff 
-mov r1, #0xF
-and r0, r1 
-orr r0, r2 
-strb r0, [r6] 
-NoSklDebuff: 
-
-
-
-lsr r7, #8 
-
-ldrb r0, [r6, #1] @ str 
-mov r1, r0 
-mov r2, #0xF
-and r1, r2 
-and r2, r7 @ str only 
-cmp r1, r2 
-bgt NoSpdDebuff 
-mov r1, #0xF0
-and r0, r1 
-orr r0, r2 
-strb r0, [r6, #1] 
-NoSpdDebuff: 
-
-ldrb r0, [r6, #1] 
-mov r1, r0 
-mov r2, #0xF0
-and r1, r2 
-and r2, r7 
-cmp r1, r2 
-bgt NoDefDebuff 
-mov r1, #0xF
-and r0, r1 
-orr r0, r2 
-strb r0, [r6, #1] 
-NoDefDebuff: 
-
-lsr r7, #8 
-
-ldrb r0, [r6, #2] 
-mov r1, r0 
-mov r2, #0xF
-and r1, r2 
-and r2, r7 
-cmp r1, r2 
-bgt NoResDebuff 
-mov r1, #0xF0
-and r0, r1 
-orr r0, r2 
-strb r0, [r6, #2] 
-NoResDebuff: 
-
-ldrb r0, [r6, #2] 
-mov r1, r0 
-mov r2, #0xF0
-and r1, r2 
-and r2, r7
-cmp r1, r2 
-bgt NoLukDebuff 
-mov r1, #0xF
-and r0, r1 
-orr r0, r2 
-strb r0, [r6, #2] 
-NoLukDebuff: 
-
-
-@0-2: Debuffs, 4 bits each (str/skl/spd/def/res/luk)
-@3: Rallys (bit 7 = rally move, bit 8 = rally spectrum)
-@4: Str/Skl Silver Debuff (6 bits), bit 7 = half strength, HO bit = Hexing Rod
-@5: (RallyMag<<4)||MagDebuff
+ldr r1, =AoE_DebuffTable
+ldrb r2, [r5, #DebuffID]
+@r0 @ debuff entry 
+@r1 debuff table to use 
+@r2 entry ID of the given table 
+bl DebuffGivenTableEntry 
 
 NoDebuffsPossible: 
 

@@ -38,13 +38,6 @@
     ORG $87f40
       POIN NewPageNamePalette
 
-    ORG $889d0
-      SHORT $e010 //Temporary r-text fix to prevent freezing
-
-    ORG $889f2  
-      SHORT $BD30
-      BL(RText_Page4_ladder) //this has to be in bl range somewhere
-
     // Make all the arrows line up with the stats and stuff
 
     ORG $883C0
@@ -77,26 +70,6 @@
 
     ORG $888BC //Stores byte to store 1 before stat screen struct
       callHack_r3(Store_Page)
-
-    // Display an R-button text about pressing Select, since I can't seem to fit it nicely, and make that the default
-
-    ORG $889D8
-      POIN PersonalDataRText
-
-    // HP name color
-	// This now gets called from within the left stat screen page
-    //ORG $86ED4
-    //  callHack_r3(HP_Name_Color)
-
-    ORG $2BA28
-      jumpToHack(Write_Growths_To_Battle_Struct)
-
-    ORG $2B9C4
-      jumpToHack(Enemy_Autolevel)
-
-    ORG $17E98
-      callHack_r3(New_Unit_Exp)
-      SHORT 0xE005
 	  
 	#ifdef ENABLE_PERSONAL_INFO
 	

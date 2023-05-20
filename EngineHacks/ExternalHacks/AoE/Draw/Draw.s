@@ -18,9 +18,8 @@
 
 .global Draw_ASMC
 .type Draw_ASMC, %function 
-
 Draw_ASMC:
-push {r4-r5, lr} 
+push {r4, lr} 
 mov r4, r0 
 mov r1, r4 @ Parent proc 
 ldr r0, =DrawSpriteProc
@@ -28,11 +27,21 @@ ldr r0, =DrawSpriteProc
 blh pr6C_NewBlocking
 @mov r1, #3 
 @blh pr6C_New
-
-
-pop {r4-r5}
+pop {r4}
 pop {r0} 
 bx r0 
+.ltorg 
+
+.global Draw_ASMC_NoPause
+.type Draw_ASMC_NoPause, %function 
+Draw_ASMC_NoPause:
+push {lr} 
+ldr r0, =DrawSpriteProc
+mov r1, #3 
+blh pr6C_New
+pop {r0} 
+bx r0 
+.ltorg 
 
 .align 4
 .global Draw_SetupMemorySlots
@@ -59,9 +68,19 @@ str r0, [r3, #4] @ slot 1 - animation ID
 
 
 @ copied from function 080815C0 //MapAnim_MoveCameraOnTarget MapAnim_MoveCameraOnTarget
+
 ldr r3, =0x203E1F0 @(gMapAnimStruct )	{U}
 @ldr r3, =0x0203E1EC @(gMapAnimStruct )	{J}
 
+mov r2, r3 
+add r2, #0x5E
+ldrb r2, [r2]
+cmp r2, #1 
+bgt VanillaBehaviour
+ldr r2, =0x203A56C @ dfdr 
+b LoadTargetCoords
+
+VanillaBehaviour: 
 mov r1, r3 
 add r1, #0x59 
 ldrb r2, [r1]
@@ -69,13 +88,13 @@ lsl r1, r2, #2
 add r1, r2 
 lsl r1, #2 
 add r1, r3 
-ldr r2, [r1] 
+ldr r2, [r1]
+
+LoadTargetCoords:  
 mov r1, #0x10 
 ldsb r0, [r2, r1] @ XX 
 ldrb r1, [r2, #0x11] @ YY 
-lsl r1, #24 
-asr r1, #24 
-@ bl EnsureCameraOntoPosition - this is what the function usually does 
+
 
 
 ldr r3, =MemorySlot 
@@ -348,8 +367,18 @@ bx r1
 Draw_GetActiveCoords:
 push {lr}
 
-ldr r3, =0x203E1F0 @(gMapAnimStruct )	@{U}
-@ldr r3, =0x0203E1EC @(gMapAnimStruct )	@{J}
+ldr r3, =0x203E1F0 @(gMapAnimStruct )	{U}
+@ldr r3, =0x0203E1EC @(gMapAnimStruct )	{J}
+
+mov r2, r3 
+add r2, #0x5E
+ldrb r2, [r2]
+cmp r2, #1 
+bgt VanillaBehaviour2
+ldr r2, =0x203A56C @ dfdr 
+b LoadTargetCoords2
+
+VanillaBehaviour2: 
 mov r1, r3 
 add r1, #0x59 
 ldrb r2, [r1]
@@ -357,12 +386,13 @@ lsl r1, r2, #2
 add r1, r2 
 lsl r1, #2 
 add r1, r3 
-ldr r2, [r1] 
+ldr r2, [r1]
+
+LoadTargetCoords2:  
 mov r1, #0x10 
 ldsb r0, [r2, r1] @ XX 
 ldrb r1, [r2, #0x11] @ YY 
-lsl r1, #24 
-asr r1, #24 
+
 
 
 pop {r2}

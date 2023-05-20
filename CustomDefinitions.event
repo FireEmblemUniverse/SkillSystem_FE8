@@ -1,3 +1,4 @@
+
 //#define FreeSpace 0xb2a610
 //#define FreeSpaceBLRange 0x1c1ec0
 
@@ -34,6 +35,10 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #define PortraitTable NewPortraitTable // Portrait table is an EA def, so no need to #undef it 
 
 #define FreeSpace 0x01081420
+
+//#define FreeSpace 0xb2a610
+//#define FreeSpaceEnd 0xC00000
+
 #define FreeSpaceBLRange 0x1c1ec0
 
 #define ChapterTileset(chapter, object, palette, config) "PUSH; ORG 0x8b0890 + (148* chapter) + 4; SHORT object; BYTE palette config; POP"
@@ -374,4 +379,5 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 
 
 
- //#define __DEBUG__ // Uncomment to get the Debug startup menu :p
+// #define __DEBUG__ // Uncomment to get the Debug startup menu :p
+

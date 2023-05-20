@@ -230,4 +230,4 @@ Proc_CmbArtHpCost:
 //BYTE 0x8 //not exactly sure what this is, but it makes berserk palette only last for one round, rather than throughout, and this fixes it
 //Note to self: if poison bit is set in rounds data, 0x2000 is set at...somewhere, and that's later checked at 55342. 55350 = mov r1,#1; replace 1 with status id
 
-#include "Animations/SkillAnimations.event"
+#include "_Animations/SkillAnimations.event"

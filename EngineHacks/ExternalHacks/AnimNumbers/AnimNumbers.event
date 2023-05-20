@@ -24,6 +24,14 @@
     ORG 0x552D0
     jumpToHack(BAN_KillDigits)
     
+    // NULL DamageMoji proc +0x60 pointer
+    // when the proc it points to gets de-allocated.
+    // Otherwise BAN_KillDigits might delete an unrelated
+    // proc that takes the newly freed procstatearray's slot.
+    ORG 0x6C70C
+    jumpToHack(BAN_DeAllocPointer)
+    SHORT 0x46C0
+    
     // Delay NODAMGEMIS graphics.
     ORG 0x6C636
     SHORT 0x2103 0xF796 0xFB20
@@ -64,6 +72,9 @@
   BAN_DisplayDamage:
   #include "asm/DisplayDamage.lyn.event"
   
+  ALIGN 4
+  BAN_DeAllocPointer:
+  #include "asm/DeAllocPointer.lyn.event"
   ALIGN 4
   BAN_KillDigits:
   #include "asm/KillDigits.lyn.event"
