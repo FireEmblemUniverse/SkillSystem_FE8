@@ -738,6 +738,14 @@
 //By Jopettajah
 #define StunningSmileID 255
 
+// Keen Fighter: Unit takes 75% damage if the opponent can double. 
+// By Vesly 
+#define KeenFighterID 255
+
+// Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
+// By Vesly 
+#define SteadyBrawlerID 255
+
 
 //Proc Skills
 
@@ -922,9 +930,48 @@
 //By Zeta
 #define AssassinateID 139
 
+// Prideful Warrior: This unit always attacks after the enemy, but always doubles.
+// By Vesly 
+#define PridefulWarriorID 255
+
+// Doubling Skills 
+
 //Moonlight: Cannot double but opponent cannot counterattack.
 //By Sme
 #define MoonlightID 142
+
+// Reckless Fighter: Both units in combat always double. 
+// By Vesly 
+#define RecklessFighterID 255
+
+
+//Wary Fighter: Unit cannot double or be doubled.
+//By Tequila
+#define WaryFighterID 111
+
+// Last Word: When doubled, this unit also doubles.
+// By Vesly 
+#define LastWordID 255
+
+// Bold Fighter: When attacking, this unit always doubles. 
+// By Vesly 
+#define BoldFighterID 255 
+
+// Vengeful Fighter: When defending, this unit always doubles. 
+// By Vesly 
+#define VengefulFighterID 255
+
+// Quick Learner: When attacking a higher leveled enemy, this unit doubles.
+// By Vesly 
+#define QuickLearnerID 255
+
+// Passion's Flow: If gaining support bonuses, this unit always doubles while attacking.
+// by Vesly 
+#define PassionsFlowID 255
+
+// Biding Blow: If the opponent cannot counterattack, this unit doubles. 
+// By Vesly 
+#define BidingBlowID 255
 
 
 
@@ -1060,10 +1107,6 @@
 
 
 //Miscellaneous Skills
-
-//Wary Fighter: Unit cannot double or be doubled.
-//By Tequila
-#define WaryFighterID 111
 
 //Savior: Can rescue without penalties.
 //Author Unknown (Initial Commit)

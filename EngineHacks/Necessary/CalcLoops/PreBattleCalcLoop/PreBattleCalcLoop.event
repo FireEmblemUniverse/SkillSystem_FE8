@@ -64,9 +64,7 @@ POIN LethalitySkill NonGBALethalitySkill
 #endif // MODULAR_PRE_BATTLE_SKILLS
 //add any new ones before here
 
-//quick riposte goes after everything that might touch AS
-POIN QuickRiposte
-
+POIN KeenFighter SteadyBrawler // % Damage reduction if doubling goes near end 
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 
