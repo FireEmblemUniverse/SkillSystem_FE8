@@ -65,7 +65,7 @@ ldr r1, =GuardMoveBuffs
 mov r2, #0 
 bl DebuffGivenTableEntry 
 
-blh StartBuffFx
+bl StartBuffFxUser
 
 ldr r3, =CurrentUnit 
 ldr r3, [r3] 

@@ -57,7 +57,7 @@ ldr r1, =HardenBuffs
 mov r2, #0 
 bl DebuffGivenTableEntry 
 
-blh StartBuffFx
+bl StartBuffFxUser
 
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1
