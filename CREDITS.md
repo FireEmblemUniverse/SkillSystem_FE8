@@ -171,6 +171,11 @@ Skill Systems Contributors:
 - Kirb
 - Sme
 - Ganzap
+- Mikey Seregon
+- Vesly 
+
+# Other
+
 - 7743: various bugfixes
 - RobertFPY, Pikmin1211, and Snakey1: Str/Mag Split Finalization
 
@@ -180,6 +185,10 @@ Skill Systems Contributors:
 - vlak: Drives
 - Pikmin1211: Miscellaneous
 - 2WB: Miscellaneous
+- Someone: Taker, Hone, Oath, Rouse, Guts, StrongCon, RallyChaos, HoardersBane
+ShrewdPotential, EternalVanity 
+- Alice: Dancing/Heavy Blade 
+- VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
 

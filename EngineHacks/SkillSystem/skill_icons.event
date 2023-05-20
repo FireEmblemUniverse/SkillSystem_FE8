@@ -937,5 +937,120 @@ ORG SkillIcon(EarthBoostID)
 ORG SkillIcon(FireBoostID)
 #incbin "SkillIcons/FireBoost.dmp"
 
+
+ORG SkillIcon(StrTakerID)
+#incbin "SkillIcons/StrTaker.dmp"
+ORG SkillIcon(SklTakerID)
+#incbin "SkillIcons/SklTaker.dmp"
+ORG SkillIcon(SpdTakerID)
+#incbin "SkillIcons/SpdTaker.dmp"
+ORG SkillIcon(DefTakerID)
+#incbin "SkillIcons/DefTaker.dmp"
+ORG SkillIcon(ResTakerID)
+#incbin "SkillIcons/ResTaker.dmp"
+ORG SkillIcon(LukTakerID)
+#incbin "SkillIcons/LukTaker.dmp"
+ORG SkillIcon(MagTakerID)
+#incbin "SkillIcons/MagTaker.dmp"
+ORG SkillIcon(MovTakerID)
+#incbin "SkillIcons/MovTaker.dmp"
+
+
+
+
+ORG SkillIcon(HoneMagID)
+#incbin "SkillIcons/HoneMag.dmp"
+ORG SkillIcon(HoneStrID)
+#incbin "SkillIcons/HoneStr.dmp"
+ORG SkillIcon(HoneSklID)
+#incbin "SkillIcons/HoneSkl.dmp"
+ORG SkillIcon(HoneSpdID)
+#incbin "SkillIcons/HoneSpd.dmp"
+ORG SkillIcon(HoneDefID)
+#incbin "SkillIcons/HoneDef.dmp"
+ORG SkillIcon(HoneResID)
+#incbin "SkillIcons/HoneRes.dmp"
+ORG SkillIcon(HoneLukID)
+#incbin "SkillIcons/HoneLuk.dmp"
+ORG SkillIcon(HoneMovID)
+#incbin "SkillIcons/HoneMov.dmp"
+
+
+ORG SkillIcon(MagOathID)
+#incbin "SkillIcons/MagOath.dmp"
+ORG SkillIcon(StrOathID)
+#incbin "SkillIcons/StrOath.dmp"
+ORG SkillIcon(SklOathID)
+#incbin "SkillIcons/SklOath.dmp"
+ORG SkillIcon(SpdOathID)
+#incbin "SkillIcons/SpdOath.dmp"
+ORG SkillIcon(DefOathID)
+#incbin "SkillIcons/DefOath.dmp"
+ORG SkillIcon(ResOathID)
+#incbin "SkillIcons/ResOath.dmp"
+ORG SkillIcon(LukOathID)
+#incbin "SkillIcons/LukOath.dmp"
+ORG SkillIcon(MovOathID)
+#incbin "SkillIcons/MovOath.dmp"
+
+
+ORG SkillIcon(RouseMagID)
+#incbin "SkillIcons/RouseMag.dmp"
+ORG SkillIcon(RouseStrID)
+#incbin "SkillIcons/RouseStr.dmp"
+ORG SkillIcon(RouseSklID)
+#incbin "SkillIcons/RouseSkl.dmp"
+ORG SkillIcon(RouseSpdID)
+#incbin "SkillIcons/RouseSpd.dmp"
+ORG SkillIcon(RouseDefID)
+#incbin "SkillIcons/RouseDef.dmp"
+ORG SkillIcon(RouseResID)
+#incbin "SkillIcons/RouseRes.dmp"
+ORG SkillIcon(RouseLukID)
+#incbin "SkillIcons/RouseLuk.dmp"
+ORG SkillIcon(RouseMovID)
+#incbin "SkillIcons/RouseMov.dmp"
+
+
+ORG SkillIcon(CleverInitID)
+#incbin "SkillIcons/CleverInit.dmp"
+ORG SkillIcon(StrongInitID)
+#incbin "SkillIcons/StrongInit.dmp"
+ORG SkillIcon(DeftInitID)
+#incbin "SkillIcons/DeftInit.dmp"
+ORG SkillIcon(QuickInitID)
+#incbin "SkillIcons/QuickInit.dmp"
+ORG SkillIcon(LuckyInitID)
+#incbin "SkillIcons/LuckyInit.dmp"
+ORG SkillIcon(SturdyInitID)
+#incbin "SkillIcons/SturdyInit.dmp"
+ORG SkillIcon(CalmInitID)
+#incbin "SkillIcons/CalmInit.dmp"
+ORG SkillIcon(NimbleInitID)
+#incbin "SkillIcons/NimbleInit.dmp"
+ORG SkillIcon(SpectrumInitID)
+#incbin "SkillIcons/SpectrumInit.dmp"
+
+ORG SkillIcon(EternalVanityID)
+#incbin "SkillIcons/EternalVanity.dmp"
+ORG SkillIcon(GutsID)
+#incbin "SkillIcons/Guts.dmp"
+ORG SkillIcon(StrongConstitutionID)
+#incbin "SkillIcons/StrongConstitution.dmp"
+ORG SkillIcon(ShrewdPotentialID)
+#incbin "SkillIcons/ShrewdPotential.dmp"
+ORG SkillIcon(RallyChaosID)
+#incbin "SkillIcons/RallyChaos.dmp"
+ORG SkillIcon(HoardersBaneID)
+#incbin "SkillIcons/HoardersBane.dmp"
+ORG SkillIcon(DarkBargainID)
+#incbin "SkillIcons/DarkBargain.dmp"
+ORG SkillIcon(SoulSapID)
+#incbin "SkillIcons/SoulSap.dmp"
+
+
+
+
+
 ORG SkillIcons+0x8000
 

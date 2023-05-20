@@ -6,7 +6,7 @@
 pResistanceModifiers: // Resistance
 	POIN prAddUnitResistance prHalveIfCapturing 
 	POIN PoisonStatus FreezeStatus
-	POIN prDebuffRes 
+	POIN prDebuffRes StrongCon 
 	POIN prAddEquipResistance prItemPassiveResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury prFortressResistanceRes prDefiantRes prPushRes
 	//POIN prResBuff
 	#ifdef ACCESSORIES_AND_FORGING

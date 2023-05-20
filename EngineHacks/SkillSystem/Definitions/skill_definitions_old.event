@@ -146,6 +146,85 @@
 #define ArmorBoostID ArmorboostID //Alias\
 
 
+// Turn Skills
+
+// Rally Chaos: At the start of your turn, perform a random rally. 
+// Author: Vesly 
+#define RallyChaosID 255
+
+//Hoarder's Bane: At the end of your turn, consume a vulnerary from the supply if below full health.
+// Author: Vesly 
+#define HoardersBaneID 255
+
+// Dark Bargain: At the end of your turn, sacrifice extra exp to heal by that much.
+// Author: Vesly 
+#define DarkBargainID 255
+
+#define SoulSapID 255
+
+
+// Buff Skills
+
+//Eternal Vanity: Your buffed stats do not deplete each turn. 
+// Author: Vesly 
+#define EternalVanityID 255
+
+// _ Taker: After attacking and defeating an enemy, gain +4 _. (Max +10) 
+// Author: Vesly 
+#define StrTakerID 255
+#define SklTakerID 255 
+#define SpdTakerID 255 
+#define DefTakerID 255 
+#define ResTakerID 255 
+#define LukTakerID 255 
+#define MagTakerID 255 
+#define MovTakerID 255 
+
+// Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
+// Author: Vesly 
+#define HoneMagID  255 
+#define HoneStrID  255
+#define HoneSklID  255 
+#define HoneSpdID  255 
+#define HoneDefID  255 
+#define HoneResID  255 
+#define HoneLukID  255 
+#define HoneMovID  255 
+
+// _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
+// Author: Vesly 
+#define MagOathID  255 
+#define StrOathID  255
+#define SklOathID  255 
+#define SpdOathID  255 
+#define DefOathID  255 
+#define ResOathID  255 
+#define LukOathID  255 
+#define MovOathID  255 
+
+// Rouse _ : At the start of your turn, gain up to +4 _ if not adjacent to an ally.
+// Author: Vesly 
+#define RouseMagID 255 
+#define RouseStrID 255
+#define RouseSklID 255 
+#define RouseSpdID 255 
+#define RouseDefID 255 
+#define RouseResID 255 
+#define RouseLukID 255 
+#define RouseMovID 255 
+
+// _ Initiative: Begin the chapter with +7 __. 
+// Author: Vesly 
+#define CleverInitID 255 // Mag
+#define StrongInitID 255 // Str 
+#define DeftInitID 255 // Skl 
+#define QuickInitID 255 // Spd 
+#define LuckyInitID 255 // Luk 
+#define SturdyInitID 255 // Def 
+#define CalmInitID 255 // Res 
+#define NimbleInitID 255 // Mov 
+#define SpectrumInitID 255 // All stats  
+
 
 //Debuff Skills
 
@@ -157,7 +236,7 @@
 #define SealLukID 85
 #define SealDefID 83
 #define SealResID 84
-//By Snakey1
+////By Snakey1
 #define SealMagID 80
 
 //Full Metal Body: This unit is immune to all the Seal skills.
@@ -869,6 +948,13 @@
 #define LullResID 255
 #define LullSpectrumID 155
 
+//Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
+// Author: Vesly 
+#define GutsID 255
+//Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
+// Author: Vesly 
+#define StrongConstitutionID 255
+
 
 //Unit Menu Skills
 
@@ -1069,6 +1155,10 @@
 
 //Triangle Attack: Allows this unit to perform a triangle attack with 2 other units who have this skill.
 #define TriangleAttackID 6
+
+// Shrewd Potential: Stat boosters provide +1 more than usual. 
+// Author: Vesly 
+#define ShrewdPotentialID 255
 
 
 //Biorhythm Skills: Double or halve biorhythm effects.
