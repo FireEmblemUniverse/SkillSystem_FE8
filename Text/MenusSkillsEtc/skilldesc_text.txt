@@ -1,10 +1,11 @@
 ## SD_PowerfulAura
+Powerful Aura: Temporarily[N]
+immune to attacks![X]
+
 // used these for skill names 
 //([:][^\n]*[\[X\]])
 //([:][^\n]*[\n][^\n]*[\[X\]])
 //([:][^\n]*[\n][^\n]*[\n][^\n]*[\[X\]])
-Powerful Aura: Temporarily[N]
-immune to attacks![X]
 
 ## SD_WonderGuard
 Wonder Guard: Immune to[N]
@@ -1758,8 +1759,6 @@ Prideful Warrior: This unit always[N]
 attacks after the enemy, but[N]
 always doubles.[X]
 
-
-
 ## SD_LastWord
 Last Word: When doubled, this unit[N]
 also doubles.[X]
@@ -1794,9 +1793,4 @@ Biding Blow: If the opponent[N]
 cannot counter, this unit doubles.[X]
 
 
-
-
-
-
-Text/MenusSkillsEtc/skilldesc_text.txt
 

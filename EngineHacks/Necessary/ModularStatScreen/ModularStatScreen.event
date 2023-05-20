@@ -16,7 +16,7 @@
   #define Trv_Icon_Y 0x2E
   
   #include "DisplayGrowthsOptions/DisplayGrowthsOptions.event"
-  //#include "WeaponRankStatScreen/WeaponRankStatScreen.event"
+  #include "WeaponRankStatScreen/WeaponRankStatScreen.event"
   #include "Background/Background.event"
  
   PUSH
@@ -259,6 +259,7 @@ ALIGN 4
   Class_Level_Cap_Table:
     #incbin "Display Growths Options/Class_Level_Cap_Table.dmp"
 */
+/*
   ALIGN 4
   Enemy_Autolevel:
     #incbin "asm/Enemy_Autolevel.dmp"
@@ -268,6 +269,7 @@ ALIGN 4
   New_Unit_Exp:
     #incbin "asm/New_Unit_Exp.dmp"
     POIN Class_Level_Cap_Table
+*/
 
   ALIGN 4
   Growth_Color_Table:

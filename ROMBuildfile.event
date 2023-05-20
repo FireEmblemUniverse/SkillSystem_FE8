@@ -5,6 +5,7 @@
 	ORG 0x01000000
 	#include "Music/MusicInstaller.event"
 	MESSAGE Pokemblem music space ends at currentOffset
+	ASSERT (FreeSpace - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
     ORG FreeSpace
 	
 	#include "repointedTextTable.event"
@@ -63,7 +64,7 @@ WORD 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 // Prevent NUPS from cutting off the last 6
 
 
 	
-	ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
+	//ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
 	
     MESSAGE Used free space ends at currentOffset
 #else

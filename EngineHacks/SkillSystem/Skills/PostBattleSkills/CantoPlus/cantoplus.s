@@ -206,7 +206,7 @@ add sp, #4
 ldr r3, =MemorySlot 
 ldrh r0, [r3, #0x0B*4]
 ldrh r1, [r3, #0x0B*4+2]
-bl SetActorCoords
+bl SetActorCoords_AI
 pop {r4} 
 pop {r1} 
 bx r1 
@@ -235,9 +235,9 @@ bx r1
 .equ ProcFind, 0x8002E9C
 .equ gProc_MoveUnit, 0x89A2C48
 
-.global SetActorCoords 
-.type SetActorCoords, %function 
-SetActorCoords:
+.global SetActorCoords_AI 
+.type SetActorCoords_AI, %function 
+SetActorCoords_AI:
 push {lr} 
 @ given r0 = xx, r1 = yy 
 ldr r2, =gActionStruct 
