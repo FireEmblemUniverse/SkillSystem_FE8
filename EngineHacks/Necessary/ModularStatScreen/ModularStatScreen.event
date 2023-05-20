@@ -169,6 +169,10 @@
   
   #include "pages/mss_leftstatscreen.lyn.event"
   
+    ALIGN 4
+  DontBlinkLeft:
+  #incbin "asm/DontBlinkLeft.dmp"
+  
 
   ALIGN 4
   NewPageNameGraphic:

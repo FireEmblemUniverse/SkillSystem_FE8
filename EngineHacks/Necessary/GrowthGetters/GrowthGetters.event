@@ -94,7 +94,7 @@
 	POIN Growth_Bonus_CalcLoop
 
   ALIGN 4
-  Write_Growths_To_Battle_Struct:
+  //Write_Growths_To_Battle_Struct:
     #incbin "asm/Write_Growths_To_Battle_Struct.dmp"
         POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth
 	#ifdef USE_STRMAG_SPLIT
