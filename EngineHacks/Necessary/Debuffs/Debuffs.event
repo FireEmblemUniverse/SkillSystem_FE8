@@ -190,19 +190,23 @@ TeamDebuffTables:
     ORG 0x59191C // Clear debuffs on chapter switch
       WORD $0D; POIN GameCtrlClearProc
 
-    // prevent debuffs and loading issue (Kirb)
+	#ifdef REPOINT_UNIT_LOAD_BUFFER
 
-    ORG 0xBA30
-      WORD 0x203ED40
+		// prevent debuffs and loading issue (Kirb)
 
-    ORG 0xBA54
-      WORD 0x203ED40
+		ORG 0xBA30
+		  WORD NewUnitLoadBufferLoc
 
-    ORG 0xFA34
-      WORD 0x203ED40
+		ORG 0xBA54
+		  WORD NewUnitLoadBufferLoc
 
-    ORG 0xD5B80
-      WORD 0x203ED40
+		ORG 0xFA34
+		  WORD NewUnitLoadBufferLoc
+
+		ORG 0xD5B80
+		  WORD NewUnitLoadBufferLoc
+	
+	#endif // REPOINT_UNIT_LOAD_BUFFER
 
     // new stat getters
     // see modular stat getters

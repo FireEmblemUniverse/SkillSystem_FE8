@@ -11,14 +11,16 @@ AoE_SpecificEffect:
 push {lr}
 ldr r2, =AoE_RamAddress @ pointer 
 ldr r2, [r2] 
-ldr r3, =AoE_SpecificEffectIndex
-ldrb r3, [r3] 
+
+ldr  r0, [r1, #0x30] @get current menu struct
+ldrb r3, [r0, #0x9]  @Menu->MenuID AoETableID
 strb r3, [r2]
 
 
 
 bl AoE_Setup
-@blh 0x8022b30 @ Copied from combat arts - take/give menu stuff ? 
+@blh 0x8022b30 @ Copied from combat arts - take/give menu stuff ? 	@{U}
+@@blh 0x8022AF8 @ Copied from combat arts - take/give menu stuff ? 	@{J}
 
 @Effect/Idle Routine Return Value (r0 Bitfield):
 @        & 0x01 | Does things? idunno - pause the hand selector ? 
@@ -41,6 +43,3 @@ bx r1
 
 .ltorg
 .align 4
-
-AoE_SpecificEffectIndex:
-@WORD ID

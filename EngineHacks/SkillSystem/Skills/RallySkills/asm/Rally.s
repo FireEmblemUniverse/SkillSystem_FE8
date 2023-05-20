@@ -112,19 +112,25 @@ RallyCommandEffect:
 RallyCommandEffect.apply:
 	@ args: r0 = unit, r1 = rally bits
 
-	push {r4,lr}
+	push {r4-r5,lr}
 	mov r4,r1
 	@ r0 = unit struct 
 	bl GetUnitDebuffEntry
-
+	mov r5, r0 @ debuff entry 
 	ldr r1, =RalliesOffset_Link
 	ldr r1, [r1] 
 	ldr r2, =RalliesNumberOfBits_Link
 	ldr r2, [r2] 
-	mov r3, r4 @ data to store 
+	bl UnpackData 
+	mov r3, r0 @ data 
+	mov r0, r5 @ debuff entry 
+	ldr r1, =RalliesOffset_Link
+	ldr r1, [r1] 
+	ldr r2, =RalliesNumberOfBits_Link
+	ldr r2, [r2] 
+	orr r3, r4 @ data to store 
 	bl PackData 
-		
-	pop {r4}
+	pop {r4-r5}
 	pop {r0}
 	bx r0
 

@@ -1,5 +1,5 @@
 .thumb
-.include "../_Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 @A button case
 
 .equ ActionID, 0x03
