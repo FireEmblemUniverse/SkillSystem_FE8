@@ -88,6 +88,10 @@
 //Author Unknown (Initial Commit)
 #define InspirationID 205
 
+//Divinely Inspiring: Adjacent allies deal +3 damage and receive -1 damage.
+//By Dragz
+#define DivinelyInspiringID 255
+
 //Intimidate: -10 Avoid to all enemies within 2 tiles.
 //Author Unknown (Initial Commit)
 #define IntimidateID 186
@@ -711,6 +715,29 @@
 //By Mikey Seregon
 #define WaterBoostID 255
 
+//Air Raid: Grants +5 or +15 on a stat when on a tile enemy cannot enter
+//By Jopettajah
+#define AirRaidAtkID 255
+#define AirRaidSpdID 255
+#define AirRaidDefID 255
+#define AirRaidCriID 255
+#define AirRaidHitID 255
+#define AirRaidAvoID 255
+#define AirRaidResID 255
+
+//Chaos Style: AS +3 during combat with a physical weapon against a foe armed with magic or vice versa.
+//By Jopettajah
+#define ChaosStyleID 255
+
+//Dragonskin: Halve damage taken
+//By Jopettajah
+#define DragonSkinID 255
+#define DragonskinID DragonSkinID //Alias
+
+//Stunning Smile: If foe is male, inflicts Avo-20 on that foe during combat.
+//By Jopettajah
+#define StunningSmileID 255
+
 
 //Proc Skills
 
@@ -730,7 +757,7 @@
 //Author Unknown (Initial Commit)
 #define AstraID 15
 
-//Bane: Leave the opponent at 1 HP. (Skill/2 % activation)
+//Bane: Leave the opponent at 1 HP if the attack would kill. (Skill/2 % activation)
 //Author Unknown (Initial Commit)
 #define BaneID 20
 
@@ -761,6 +788,7 @@
 //Countermagic: Reflect magic damage when attacked at 1-2 range.
 //Author Unknown (Initial Commit)
 #define CounterMagicID 19
+#define CountermagicID CounterMagicID //Alias
 
 //Deadeye: Doubles hit rate. Skill% chance to inflict sleep.
 //By Sme

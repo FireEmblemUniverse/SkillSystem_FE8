@@ -16,6 +16,8 @@
   #define Trv_Icon_Y 0x2E
   
   #include "DisplayGrowthsOptions/DisplayGrowthsOptions.event"
+  //#include "WeaponRankStatScreen/WeaponRankStatScreen.event"
+  #include "Background/Background.event"
  
   PUSH
     ORG 0x205b24 //24 for stat screen
@@ -202,7 +204,7 @@
 
   ALIGN 4
   NewPageNameLayout:
-    POIN $a008bc $a008d0 $a008bc $a008bc //$a008bc $a008d0 $a008de $a008bc 
+    POIN $a008bc $a008d0 $a008de $a008d0
 
   ALIGN 4
   NewPageNameTiles:

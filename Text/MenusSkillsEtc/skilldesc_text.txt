@@ -76,7 +76,8 @@ Lethality: Instantly kill opponent.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Bane
-Bane: Leave the opponent at 1 HP.[N]
+Bane: Leave the opponent at[N]
+1 HP if the attack would kill.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Luna
@@ -247,6 +248,10 @@ tiles receive +2 magic damage.[X]
 ## SD_Inspiration
 Inspiration: Allies within 2 tiles[N]
 deal +2 damage and receive -2 damage.[X]
+
+## SD_DivinelyInspiring
+Divinely Inspiring: Adjacent allies[N]
+deal +3 damage and receive -1 damage.[X]
 
 ## SD_Charm
 Charm: Allies within 2[N]
@@ -1698,3 +1703,46 @@ Soul Sap: At the end of your turn,[N]
 drain up to 10% health from every[N]
 unit within two tiles.[X]
 
+
+
+## SD_AirRaidAtk
+Air Raid (Atk): Grants +5 Atk when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidSpd
+Air Raid (Spd): Grants +5 AS when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidDef
+Air Raid (Def): Grants +5 Def when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidCri
+Air Raid (Crit): Grants +15 Crit when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidHit
+Air Raid (Hit): Grants +15 Hit when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidAvo
+Air Raid (Avo): Grants +15 Avo when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidRes
+Air Raid (Res): Grants +5 Res when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_ChaosStyle
+Chaos Style: AS +3 during combat with[N]
+a physical weapon against a foe armed[N]
+with magic or vice versa.[X]
+
+## SD_Dragonskin
+Dragonskin: Halves damage taken.[X]
+
+## SD_StunningSmile
+Stunning Smile: If foe is male, inflicts[N]
+Avo -20 on that foe during combat.[X]
+
+Text/MenusSkillsEtc/skilldesc_text.txt

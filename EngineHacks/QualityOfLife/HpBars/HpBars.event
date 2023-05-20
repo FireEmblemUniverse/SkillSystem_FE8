@@ -7,6 +7,8 @@
 #ifdef _FE8_
 
   {
+  
+  #include "GameOptions/Installer.event"
 
   PUSH
     ORG $276b4

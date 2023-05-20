@@ -93,9 +93,22 @@ WORD ENABLE_LEGACY_CANTO
 
 ALIGN 4
 CantoPlus:
-#incbin "CantoPlus/cantoplus.dmp"
+#include "CantoPlus/cantoplus.lyn.event"
 POIN SkillTester
 WORD CantoPlusID
+
+CantoAI_Label:
+WORD CANTO_AI 
+
+MoveActiveTo_sBCoords: 
+EVBIT_MODIFY 1 
+EVBIT_T 9 // follow camera 
+ASMC MoveActorToCoords_sB
+ENUN 
+SET_ENDTURN (-1) 
+//ASMC SetActorCoords 
+NoFade 
+ENDA 
 
 ALIGN 4
 ReMove:

@@ -92,6 +92,10 @@
 // All free ? 
 
 
+//Used For Consolidated AdvWeaponLocks 
+#define AdvWeaponLock 0x01000000
+
+
 // Weapon Effect
 #define NoEffect 0x0
 #define PoisonEffect 0x1

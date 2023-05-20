@@ -190,6 +190,8 @@ Proc_Eclipse:
 #incbin "Eclipse/proc_eclipse.dmp"
 POIN SkillTester
 WORD EclipseID
+WORD CounterID
+WORD CountermagicID
 
 ALIGN 4
 Proc_Corrosion:

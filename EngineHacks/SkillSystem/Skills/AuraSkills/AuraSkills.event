@@ -47,6 +47,12 @@ POIN NewAuraSkillCheck
 WORD InspirationID
 
 ALIGN 4
+DivinelyInspiring:
+#incbin "DivinelyInspiring/DivinelyInspiring.dmp"
+POIN NewAuraSkillCheck
+WORD DivinelyInspiringID
+
+ALIGN 4
 Charm:
 #incbin "Charm/Charm.dmp"
 POIN NewAuraSkillCheck
