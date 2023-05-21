@@ -18,19 +18,30 @@ void KeenFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 	} 
 } 
 
+void DoublingDamageModifierFunc(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (gBattleTarget.battleDefense) { // if def isn't calculated yet, do nothing 
+		if (CanUnitDouble(bunitB, bunitA)) { 
+		int dmg = bunitB->battleAttack - bunitA->battleDefense; 
+		if (dmg < 0) dmg = 0; 
+		int subDmg = (dmg/4); 
+		bunitB->battleAttack -= subDmg; 
+		} 
+	}
+} 
+
 void SteadyBrawler(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (SkillTester(&bunitB->unit, SteadyBrawlerID_Link)) { 
 		if (gBattleTarget.battleDefense) { // if def isn't calculated yet, do nothing 
 			if (CanUnitDouble(bunitB, bunitA)) { 
 			int dmg = bunitB->battleAttack - bunitA->battleDefense; 
 			if (dmg < 0) dmg = 0; 
-			int subDmg = (dmg/4); 
+			int subDmg = (dmg/5); 
 			bunitB->battleAttack -= subDmg; 
 			} 
 			else { 
 				int dmg = bunitB->battleAttack - bunitA->battleDefense; 
 				if (dmg < 0) dmg = 0; 
-				int addDmg = (dmg+2)/4; // for rounding 
+				int addDmg = (dmg+2)/5; // for rounding 
 				bunitB->battleAttack += addDmg; 
 			} 
 		}

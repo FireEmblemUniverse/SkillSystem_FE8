@@ -291,4 +291,3 @@ EALiterals:
 
 @ ItemTableLocation:
 @ .long 0x08809B10
-

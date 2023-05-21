@@ -234,6 +234,8 @@
 #define WonderGuardID 0xE8
 #define SturdyID 0xE9
 #define PowerfulAuraID 0xEA
+#define RecklessFighterID 0xEB
+#define SteadyBrawlerID 0xEC
 #define DownWithArchID 0xFF
 #define CharismaID 0xFF
 #define CharmID 0xFF
@@ -373,13 +375,11 @@
 #define ChaosStyleID 0xFF
 #define DragonSkinID 0xFF
 #define StunningSmileID 0xFF
-#define RecklessFighterID 0xFF
 #define KeenFighterID 0xFF
 #define PridefulWarriorID 0xFF
 #define LastWordID 0xFF
 #define BoldFighterID 0xFF
 #define VengefulFighterID 0xFF
-#define SteadyBrawlerID 0xFF
 #define QuickLearnerID 0xFF
 #define PassionsFlowID 0xFF
 #define BidingBlowID 0xFF

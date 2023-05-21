@@ -18,11 +18,36 @@ ALIGN 4
 NewWeaponDebuffTable: 
 // 	mag, str, skl, spd, def, res, luk, mov
 BYTE 0 0 0 0 0 0 0 0 // do nothing for 0th entry 
-WepDebuffEntry(0,0,1,1,2,2,0,0) //0x1: Bronze Shuriken debuff.
-WepDebuffEntry(0,2,0,0,3,3,0,0) //0x2: Iron Shuriken debuff.
-WepDebuffEntry(0,3,0,0,4,4,0,0) //0x3: Steel Shuriken debuff.
-WepDebuffEntry(0,0,0,4,4,4,0,0) //0x4: Silver Shuriken debuff.
-WepDebuffEntry(0,4,0,4,4,4,0,0) //0x5: Pebble debuff.
+
+// Str, Skill, Speed, Def, Res, Luck, Mag
+WepDebuffEntry(0,8,0,0,0,0,0,0) //0x1: Str debuff 
+WepDebuffEntry(0,0,15,0,0,0,0,0) //0x2: Skl debuff
+WepDebuffEntry(0,0,0,8,0,0,0,0) //0x3: Speed debuff 
+WepDebuffEntry(0,0,0,0,15,0,0,0) //0x4: Luk debuff 
+WepDebuffEntry(0,0,0,0,0,6,0,0) //0x5: Def debuff 
+WepDebuffEntry(0,0,0,0,0,0,6,0) //0x6: Res debuff.
+WepDebuffEntry(8,0,0,0,0,0,0,0) //0x7: Mag debuff 
+
+WepDebuffEntry(0,15,0,0,0,0,0,0) //0x8: Str debuff 
+WepDebuffEntry(0,0,15,0,0,0,0,0) //0x9: Skl debuff
+WepDebuffEntry(0,0,0,15,0,0,0,0) //0xA: Speed debuff 
+WepDebuffEntry(0,0,0,0,15,0,0,0) //0xB: Luk debuff 
+WepDebuffEntry(0,0,0,0,0,12,0,0) //0xC: Def debuff 
+WepDebuffEntry(0,0,0,0,0,0,12,0) //0xD: Res debuff.
+WepDebuffEntry(15,0,0,0,0,0,0,0) //0xE: Mag debuff 
+
+WepDebuffEntry(0,15,0,0,0,0,0,0) //0xF: Str debuff 
+WepDebuffEntry(0,0,15,0,0,0,0,0) //0x10: Skl debuff
+WepDebuffEntry(0,0,0,15,0,0,0,0) //0x11: Speed debuff 
+WepDebuffEntry(0,0,0,0,15,0,0,0) //0x12: Luk debuff 
+WepDebuffEntry(0,0,0,0,0,15,0,0) //0x13: Def debuff 
+WepDebuffEntry(0,0,0,0,0,0,15,0) //0x14: Res debuff.
+WepDebuffEntry(15,0,0,0,0,0,0,0) //0x15: Mag debuff 
+
+WepDebuffEntry(0,0,0,0,0,6,6,0) //0x16: Leer debuff 
+WepDebuffEntry(0,0,0,0,0,12,12,0) //0x17: Screech debuff 
+WepDebuffEntry(8,8,0,0,0,0,0,0) //0x18: Growl / Snarl debuff 
+
 BYTE 31 31|DebuffSelf 23|DebuffEnemy 24|BuffEnemy 25 26 27 28 // +31 Mag, -31 Str, -23 Skl for enemy, +24 Spd for enemy, +25/+26/+27/+28 Def/Res/Luk/Mov for user 
 WORD 0xFFFFFFFF 0xFFFFFFFF // For FEBuilder to show no further data with 
 
@@ -67,34 +92,7 @@ WORD 0xFFFFFFFF 0xFFFFFFFF // For FEBuilder to show no further data with
 #define CannotDouble 0xC
 
 
-// Str, Skill, Speed, Def, Res, Luck, Mag
-defWeaponDebuffs(8,0,0,0,0,0,0) //0x1: Str debuff 
-defWeaponDebuffs(0,15,0,0,0,0,0) //0x2: Skl debuff
-defWeaponDebuffs(0,0,8,0,0,0,0) //0x3: Speed debuff 
-defWeaponDebuffs(0,0,0,15,0,0,0) //0x4: Luk debuff 
-defWeaponDebuffs(0,0,0,0,6,0,0) //0x5: Def debuff 
-defWeaponDebuffs(0,0,0,0,0,6,0) //0x6: Res debuff.
-defWeaponDebuffs(0,0,0,0,0,0,8) //0x7: Mag debuff 
 
-defWeaponDebuffs(15,0,0,0,0,0,0) //0x8: Str debuff 
-defWeaponDebuffs(0,15,0,0,0,0,0) //0x9: Skl debuff
-defWeaponDebuffs(0,0,15,0,0,0,0) //0xA: Speed debuff 
-defWeaponDebuffs(0,0,0,15,0,0,0) //0xB: Luk debuff 
-defWeaponDebuffs(0,0,0,0,12,0,0) //0xC: Def debuff 
-defWeaponDebuffs(0,0,0,0,0,12,0) //0xD: Res debuff.
-defWeaponDebuffs(0,0,0,0,0,0,15) //0xE: Mag debuff 
-
-defWeaponDebuffs(15,0,0,0,0,0,0) //0xF: Str debuff 
-defWeaponDebuffs(0,15,0,0,0,0,0) //0x10: Skl debuff
-defWeaponDebuffs(0,0,15,0,0,0,0) //0x11: Speed debuff 
-defWeaponDebuffs(0,0,0,15,0,0,0) //0x12: Luk debuff 
-defWeaponDebuffs(0,0,0,0,15,0,0) //0x13: Def debuff 
-defWeaponDebuffs(0,0,0,0,0,15,0) //0x14: Res debuff.
-defWeaponDebuffs(0,0,0,0,0,0,15) //0x15: Mag debuff 
-
-defWeaponDebuffs(0,0,0,0,6,6,0) //0x16: Leer debuff 
-defWeaponDebuffs(0,0,0,0,12,12,0) //0x17: Screech debuff 
-defWeaponDebuffs(8,0,0,0,0,0,8) //0x18: Growl / Snarl debuff 
 
 
 

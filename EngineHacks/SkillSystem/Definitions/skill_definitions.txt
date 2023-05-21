@@ -945,7 +945,6 @@
 
 
 //Display-Only Skills
-
  CunningID
  NiceThighsID
  PersonalityID
@@ -955,6 +954,9 @@ ScaledBackID
 WonderGuardID 
 SturdyID
 PowerfulAuraID // Cannot be attacked 
+
+RecklessFighterID
+SteadyBrawlerID
 
 //Down With Arch: If the hit lands, instantly kill the enemy unit. (Only if name starts with "Arch")
  DownWithArchID 255
@@ -1264,13 +1266,11 @@ AirRaidResID
 ChaosStyleID 
 DragonSkinID 
 StunningSmileID
-RecklessFighterID
 KeenFighterID
 PridefulWarriorID
 LastWordID
 BoldFighterID
 VengefulFighterID
-SteadyBrawlerID
 QuickLearnerID
 PassionsFlowID
 BidingBlowID
