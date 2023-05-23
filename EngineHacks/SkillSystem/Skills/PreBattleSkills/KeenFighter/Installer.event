@@ -1,0 +1,10 @@
+#include "KeenFighter.lyn.event" 
+
+ALIGN 4 
+KeenFighterID_Link: 
+WORD KeenFighterID 
+SteadyBrawlerID_Link:
+WORD SteadyBrawlerID 
+
+
+
