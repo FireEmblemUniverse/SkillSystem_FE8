@@ -18,9 +18,10 @@ int __umodsi3(int a, int b);
 /**
 * Display standing map sprites and various tile/unit markers
 */
-
+extern UnitIconWait NewStandingMapSpriteTable[];
 extern UnitIconWait unit_icon_wait_table[];
 
+u8 EWRAM_DATA NewgSMSGfxIndexLookup[0xFF] = {};
 u8 EWRAM_DATA gSMSGfxIndexLookup[0xD0] = {};
 
 u8 EWRAM_DATA gSMSGfxBuffer[3][8*0x20*0x20] = {};
@@ -341,7 +342,9 @@ u16 CONST_DATA sSprite_32x32_Window[] = {
     0x0800, 0x8000, 0x0000,
 };
 
-#define GetInfo(id) (unit_icon_wait_table[(id) & ((1<<7)-1)])
+
+//#define GetInfo(id) (unit_icon_wait_table[(id) & ((1<<7)-1)])
+#define GetInfo(id) (NewStandingMapSpriteTable[(id)])
 
 /*
 //! FE8U = 0x08026618
@@ -376,8 +379,8 @@ void ResetUnitSprites(void) {
 
     int i;
 
-    for (i = 0xD0-1; i >= 0; i--) {
-        gSMSGfxIndexLookup[i] |= 0xff;
+    for (i = 0xFF; i >= 0; i--) {
+        NewgSMSGfxIndexLookup[i] |= 0xff;
     }
 
     gSMS32xGfxIndexCounter = 0;
@@ -392,8 +395,8 @@ void ResetUnitSpritesB(void) {
 
     int i;
 
-    for (i = 0xD0-1; i >= 0; i--) {
-        gSMSGfxIndexLookup[i] |= 0xff;
+    for (i = 0xFF; i >= 0; i--) {
+        NewgSMSGfxIndexLookup[i] |= 0xff;
     }
 
     gSMS32xGfxIndexCounter = 0;
@@ -402,7 +405,7 @@ void ResetUnitSpritesB(void) {
     return;
 }
 
-/*
+
 //! FE8U = 0x080266F0
 int SMS_80266F0(int smsId, int frameId) {
 
@@ -412,22 +415,22 @@ int SMS_80266F0(int smsId, int frameId) {
 
     switch (GetInfo(smsId).size) {
         case UNIT_ICON_SIZE_16x16:
-            gSMSGfxIndexLookup[frameId] = SomethingSMS_16x16(slot, smsId) / 2;
+            NewgSMSGfxIndexLookup[frameId] = SomethingSMS_16x16(slot, smsId) / 2;
 
             break;
 
         case UNIT_ICON_SIZE_16x32:
-            gSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage16x32(slot, smsId) / 2;
+            NewgSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage16x32(slot, smsId) / 2;
 
             break;
 
         case UNIT_ICON_SIZE_32x32:
-            gSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage32x32(slot, smsId) / 2;
+            NewgSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage32x32(slot, smsId) / 2;
 
             break;
     }
 
-    return gSMSGfxIndexLookup[frameId] << 1;
+    return NewgSMSGfxIndexLookup[frameId] << 1;
 }
 
 //! FE8U = 0x0802677C
@@ -437,41 +440,44 @@ int SMS_SomethingGmapUnit(int smsId, int frameId, int slot) {
 
     switch (GetInfo(smsId).size) {
         case UNIT_ICON_SIZE_16x16:
-            gSMSGfxIndexLookup[frameId] = SomethingSMS_16x16(slot, smsId) / 2;
+            NewgSMSGfxIndexLookup[frameId] = SomethingSMS_16x16(slot, smsId) / 2;
 
             break;
 
         case UNIT_ICON_SIZE_16x32:
 
-            gSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage16x32(slot, smsId) / 2;
+            NewgSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage16x32(slot, smsId) / 2;
 
             break;
 
         case UNIT_ICON_SIZE_32x32:
-            gSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage32x32(slot, smsId) / 2;
+            NewgSMSGfxIndexLookup[frameId] = ApplyUnitSpriteImage32x32(slot, smsId) / 2;
 
             break;
     }
 
-    return gSMSGfxIndexLookup[frameId] << 1;
+    return NewgSMSGfxIndexLookup[frameId] << 1;
 }
 
+
 //! FE8U = 0x080267FC
+// edits in BugFixesInstaller: SMS fix, SMS expand 0xFF from 0x7F, and TrapSMS_Size 
+/*
 int UseUnitSprite(u32 id) {
 
-    if (gSMSGfxIndexLookup[id] == 0xFF) {
+    if (NewgSMSGfxIndexLookup[id] == 0xFF) {
 
         Decompress(GetInfo(id).sheet, gpSMSGfxDecompBuffer);
 
         switch (GetInfo(id).size) {
             case UNIT_ICON_SIZE_16x16:
-                gSMSGfxIndexLookup[id] = ApplyUnitSpriteImage16x16(gSMS16xGfxIndexCounter, id) / 2;
+                NewgSMSGfxIndexLookup[id] = ApplyUnitSpriteImage16x16(gSMS16xGfxIndexCounter, id) / 2;
                 gSMS16xGfxIndexCounter -= 1;
 
                 break;
 
             case UNIT_ICON_SIZE_16x32:
-                gSMSGfxIndexLookup[id] = ApplyUnitSpriteImage16x32(gSMS32xGfxIndexCounter, id) / 2;
+                NewgSMSGfxIndexLookup[id] = ApplyUnitSpriteImage16x32(gSMS32xGfxIndexCounter, id) / 2;
                 gSMS32xGfxIndexCounter += 2;
 
                 break;
@@ -481,7 +487,7 @@ int UseUnitSprite(u32 id) {
                     gSMS32xGfxIndexCounter += 2;
                 }
 
-                gSMSGfxIndexLookup[id] = ApplyUnitSpriteImage32x32(gSMS32xGfxIndexCounter, id) / 2;
+                NewgSMSGfxIndexLookup[id] = ApplyUnitSpriteImage32x32(gSMS32xGfxIndexCounter, id) / 2;
                 gSMS32xGfxIndexCounter += 4;
 
                 break;
@@ -491,8 +497,9 @@ int UseUnitSprite(u32 id) {
 
     }
 
-    return gSMSGfxIndexLookup[id] << 1;
+    return NewgSMSGfxIndexLookup[id] << 1;
 }
+
 */
 /*
 //! FE8U = 0x080268C8
@@ -691,7 +698,7 @@ void sub_8026C1C(struct Unit* param_1, int param_2) {
 
 _08026EF2:
     if (param_2 == 0x3f) {
-        gSMSGfxIndexLookup[uVar6] |= 0xff;
+        NewgSMSGfxIndexLookup[uVar6] |= 0xff;
     }
     return;
 }
@@ -1065,7 +1072,7 @@ void sub_8026C1C(struct Unit* param_1, int param_2) {
         ldr r0, [sp]\n\
         cmp r0, #0x3f\n\
         bne _08026F02\n\
-        ldr r0, _08026F28  @ gSMSGfxIndexLookup\n\
+        ldr r0, _08026F28  @ NewgSMSGfxIndexLookup\n\
         ldr r1, [sp, #4]\n\
         adds r0, r1, r0\n\
         movs r1, #0xff\n\
@@ -1085,7 +1092,7 @@ void sub_8026C1C(struct Unit* param_1, int param_2) {
     _08026F1C: .4byte 0x06011400\n\
     _08026F20: .4byte 0x06011800\n\
     _08026F24: .4byte 0x06011C00\n\
-    _08026F28: .4byte gSMSGfxIndexLookup\n\
+    _08026F28: .4byte NewgSMSGfxIndexLookup\n\
         .syntax divided\n\
     ");
 

@@ -41,8 +41,9 @@ POP
 //I won't return it anymore, but lend me one. I just borrow until you die.
 //
 
-/*
+
 PUSH
+/*
 ORG 0x2668A
 BYTE 0xFF
 
@@ -55,12 +56,13 @@ BYTE 0xFF
 ORG 0x266EC
 WORD 0x0201F148
 
+
 ORG 0x26778
 WORD 0x0201F148
 
 ORG 0x267F8
 WORD 0x0201F148
-
+*/
 ORG 0x26834
 WORD 0x0201F148
 
@@ -71,7 +73,7 @@ ORG 0x26F28
 WORD 0x0201F148
 
 POP
-*/
+
 
 
 
