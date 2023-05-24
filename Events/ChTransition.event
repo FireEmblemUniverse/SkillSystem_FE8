@@ -452,7 +452,6 @@ ENDA
 
 
 GlobalAfev:
-
 //ReplenishDurability(0x7FFF)
 //SVAL r2 0 // Player allegiance 
 //CALL 0x89EE1B8 // When matching allegiance stops in range // This is dangerous, it seems. Doing it can lead into an infinite loop of cantoing by 1 tile. 
@@ -485,6 +484,10 @@ ENDA
 
 
 GlobalTurnEvent:
+//#ifdef FREE_MOVEMENT_INSTALLED
+//EnableFreeMovement
+//#endif 
+
 #ifndef DEBUG_MODE 
 CHECK_TURNS
 SVAL s1 1

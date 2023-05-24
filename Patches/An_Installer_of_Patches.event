@@ -1,3 +1,6 @@
+
+//#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
+
 //#include "SMS/Installer.event" 
 #include "HigherStatGains/Installer.event" 
 #include "Autosave/Installer.event" 
@@ -11,7 +14,7 @@
 #include "ProcSkills/Installer.event" 
 #include "Supply/Installer.event" 
 #include "ExtendWeaponDescBox/Installer.event" 
-//#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
+
 //#include "AllegiancePalette/Installer.event"
 #include "ReplaceMoves/Installer.event"
 #include "ReorderMoves/Installer.event" 
