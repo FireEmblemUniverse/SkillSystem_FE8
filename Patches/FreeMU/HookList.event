@@ -1,0 +1,68 @@
+#define FMU_FunctionList_End "WORD $0"	
+ALIGN 4
+FMU_FunctionList_OnPressA:
+	POIN FMUmisc_RunMapEvents|1
+	POIN FMUmisc_RunTalkEvents|1
+	POIN FMU_RunTrapASMC|1
+	FMU_FunctionList_End
+	
+ALIGN 4
+FMU_FunctionList_OnPressB:
+	POIN FMU_OnButton_EndFreeMove|1
+	FMU_FunctionList_End
+
+ALIGN 4
+FMU_FunctionList_OnPressL:
+	POIN FMU_OnButton_StartMenu|1
+	FMU_FunctionList_End
+
+ALIGN 4
+FMU_FunctionList_OnPressR:
+	FMU_FunctionList_End
+
+ALIGN 4
+FMU_FunctionList_OnPressSelect:
+	POIN FMU_OnButton_ChangeUnit|1
+	FMU_FunctionList_End
+
+ALIGN 4
+FMU_FunctionList_OnPressStart:
+	FMU_FunctionList_End	
+
+
+
+
+
+#define FMU_SetTrap(TrapID,TrapASMC) "BYTE TrapID 0 0 0; POIN TrapASMC|1"
+#define FMU_SetTrapEnd "WORD 0 0"
+ALIGN 4
+HookListFMU_TrapList_OnPressA:
+	FMU_SetTrap(0x6,TrapHurt10HpASMC|1)	//Example
+	FMU_SetTrapEnd
+
+ALIGN 4
+HookListFMU_TrapList_Auto:
+	FMU_SetTrap(0xE,TrapHurt10HpASMC|1)	//Example
+	FMU_SetTrapEnd
+	
+	
+
+#define FMU_SetLocEventType(LocID,TrapID) "BYTE LocID TrapID"
+#define FMU_SetLocEventTypeEnd "SHORT $0 $0"
+ALIGN 4
+HookListFMU_LocationBasedEvent:
+	FMU_SetLocEventType(0x14, 0x21)		// Chest
+	FMU_SetLocEventType(0x10, 0x3)		// Visit
+	FMU_SetLocEventType(0x10, 0x37)		// Visit
+	FMU_SetLocEventType(0x10, 0x38)		// Visit
+	FMU_SetLocEventType(0x11, 0)		// Size -> 0=No need trap
+	FMU_SetLocEventType(0x16, 0)		// Armory
+	FMU_SetLocEventType(0x17, 0)		// Vendor
+	FMU_SetLocEventType(0x18, 0)		// Scecret
+	FMU_SetLocEventTypeEnd
+	
+ALIGN 4
+HookListFMU_LocationBasedEventDoor:
+	FMU_SetLocEventType(0x12, 0x1E)		// Door
+	FMU_SetLocEventTypeEnd
+	

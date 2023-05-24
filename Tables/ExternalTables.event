@@ -23,29 +23,29 @@ BYTE 0 0 0 0 0 0 0 0 // do nothing for 0th entry
 WepDebuffEntry(0,8,0,0,0,0,0,0) //0x1: Str debuff 
 WepDebuffEntry(0,0,15,0,0,0,0,0) //0x2: Skl debuff
 WepDebuffEntry(0,0,0,8,0,0,0,0) //0x3: Speed debuff 
-WepDebuffEntry(0,0,0,0,15,0,0,0) //0x4: Luk debuff 
-WepDebuffEntry(0,0,0,0,0,6,0,0) //0x5: Def debuff 
-WepDebuffEntry(0,0,0,0,0,0,6,0) //0x6: Res debuff.
+WepDebuffEntry(0,0,0,0,0,0,15,0) //0x4: Luk debuff 
+WepDebuffEntry(0,0,0,0,6,0,0,0) //0x5: Def debuff 
+WepDebuffEntry(0,0,0,0,0,6,0,0) //0x6: Res debuff.
 WepDebuffEntry(8,0,0,0,0,0,0,0) //0x7: Mag debuff 
 
 WepDebuffEntry(0,15,0,0,0,0,0,0) //0x8: Str debuff 
 WepDebuffEntry(0,0,15,0,0,0,0,0) //0x9: Skl debuff
 WepDebuffEntry(0,0,0,15,0,0,0,0) //0xA: Speed debuff 
-WepDebuffEntry(0,0,0,0,15,0,0,0) //0xB: Luk debuff 
-WepDebuffEntry(0,0,0,0,0,12,0,0) //0xC: Def debuff 
-WepDebuffEntry(0,0,0,0,0,0,12,0) //0xD: Res debuff.
+WepDebuffEntry(0,0,0,0,0,0,15,0) //0xB: Luk debuff 
+WepDebuffEntry(0,0,0,0,12,0,0,0) //0xC: Def debuff 
+WepDebuffEntry(0,0,0,0,0,12,0,0) //0xD: Res debuff.
 WepDebuffEntry(15,0,0,0,0,0,0,0) //0xE: Mag debuff 
 
 WepDebuffEntry(0,15,0,0,0,0,0,0) //0xF: Str debuff 
 WepDebuffEntry(0,0,15,0,0,0,0,0) //0x10: Skl debuff
 WepDebuffEntry(0,0,0,15,0,0,0,0) //0x11: Speed debuff 
-WepDebuffEntry(0,0,0,0,15,0,0,0) //0x12: Luk debuff 
-WepDebuffEntry(0,0,0,0,0,15,0,0) //0x13: Def debuff 
-WepDebuffEntry(0,0,0,0,0,0,15,0) //0x14: Res debuff.
+WepDebuffEntry(0,0,0,0,0,0,15,0) //0x12: Luk debuff 
+WepDebuffEntry(0,0,0,0,15,0,0,0) //0x13: Def debuff 
+WepDebuffEntry(0,0,0,0,0,15,0,0) //0x14: Res debuff.
 WepDebuffEntry(15,0,0,0,0,0,0,0) //0x15: Mag debuff 
 
-WepDebuffEntry(0,0,0,0,0,6,6,0) //0x16: Leer debuff 
-WepDebuffEntry(0,0,0,0,0,12,12,0) //0x17: Screech debuff 
+WepDebuffEntry(0,0,0,0,6,6,0,0) //0x16: Leer debuff 
+WepDebuffEntry(0,0,0,0,12,12,0,0) //0x17: Screech debuff 
 WepDebuffEntry(8,8,0,0,0,0,0,0) //0x18: Growl / Snarl debuff 
 
 BYTE 31 31|DebuffSelf 23|DebuffEnemy 24|BuffEnemy 25 26 27 28 // +31 Mag, -31 Str, -23 Skl for enemy, +24 Spd for enemy, +25/+26/+27/+28 Def/Res/Luk/Mov for user 

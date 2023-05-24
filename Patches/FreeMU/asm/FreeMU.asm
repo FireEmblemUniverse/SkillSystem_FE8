@@ -66,7 +66,7 @@ strb r5,[r1,#0x19]
 mov r0,r13
 blh CheckEventDefinition
 cmp r0,#0
-beq ExitMiscBasedLoop
+beq NoEvent @ExitMiscBasedLoop
 blh ClearActiveEventRegistry
 EventCallLoop:
 mov r0,r13
@@ -76,7 +76,12 @@ mov r0,r13
 blh CheckNextEventDefinition
 cmp r0,#0
 bne EventCallLoop
+mov	r0, #1
+b	ExitMiscBasedLoop
 
+NoEvent:
+mov	r0, #0
+b	ExitMiscBasedLoop
 ExitMiscBasedLoop:
 add sp,#0x1C
 

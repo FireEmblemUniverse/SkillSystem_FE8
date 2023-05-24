@@ -1,6 +1,4 @@
 
-
-
 PUSH
 	ORG 0x788B0
 	jumpToHack(MU_ExecCmd_FixForFreeMU)

@@ -1,6 +1,6 @@
 .thumb
-.include 	"../src/include/_Definitions.h.s"
-.include 	"../src/include/MokhaRAMSpace.s"
+.include 	"../../../_FuncLib/_Definitions.h.s"
+.include 	"../../../_FuncLib/MokhaRAMSpace.s"
 
 SET_FUNC_INLINE		MU_ExecCmd_FixForFreeMU
 SET_FUNC_INLINE 	MU_CALL2_FixForFreeMU
@@ -128,6 +128,7 @@ MU_GetSpeed_FixForFreeMU:
 	cmp		r0, #0
 	beq		.MU_GetSpeed_ReturnNormal
 	ldr		r0, =FreeMU_MovingSpeed
+	ldrb	r0,[r0]
 	lsl		r0, #0x18
 	lsr		r0, #0x18
 	pop		{r4, pc}

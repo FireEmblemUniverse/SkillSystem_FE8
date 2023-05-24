@@ -1,0 +1,15 @@
+
+/*	How to Make a trap:
+	1. Include Sme's TrapRework in your buildfile;
+	2. Write your trap effect ASMC (Input r0=ParentProc and no Output);
+	3. Define your trap ID and include your TrapASMC here, then take them into HookListFMU_TrapList in file "../HookList.event" ;
+	4. Use macro "AddTrap" defined in TrapRework to your own chapter event;
+*/
+
+
+#define TrapIDHurt10Hp 0x10
+
+ALIGN 4
+#include "asm/TrapExample.lyn.event"
+	POIN TrapHurt10HpASMC
+
