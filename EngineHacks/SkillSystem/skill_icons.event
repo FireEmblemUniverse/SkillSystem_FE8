@@ -11,6 +11,8 @@ ORG SkillIcon(WonderGuardID)
 #incbin "SkillIcons/WonderGuard.dmp"
 ORG SkillIcon(SturdyID)
 #incbin "SkillIcons/Sturdy.dmp"
+ORG SkillIcon(ExpShareID)
+#incbin "SkillIcons/ExpShare.dmp"
 
 
 ORG SkillIcon(WeakChipDmgID)
