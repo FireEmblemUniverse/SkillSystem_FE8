@@ -96,8 +96,8 @@ Units1:
 UNIT ProtagID  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 #endif 
 #ifndef FREE_MOVEMENT_INSTALLED
-UNIT Eirika  ExeggutorID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
-UNIT 2  MagikarpID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MankeyID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT 2  GyaradosID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  AlakazamID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 3  GengarID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 6  MarowakID 0x1 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
@@ -277,7 +277,7 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 //EquipNewSkillAccessory(2, RenewalID) // GiveSkillAccessory(0, RenewalID)
 
-//SilentGiveSkillAccessory(2, RenewalID)
+SilentGiveSkillAccessory(1, ExpShareID)
 
 SupplyItem(ExoticCandy)
 SupplyItem(ExoticCandy)
@@ -319,10 +319,6 @@ SupplyItemWithDurability(StatAccessory, QuickBoots_BoostIndex)
 //SupplyItemWithDurability(SpellScroll, Spark)
 //SupplyItemWithDurability(SpellScroll, KarateChop)
 
-SilentGiveItemWithDurability(1, ThunderStone, 1)
-SilentGiveItemWithDurability(1, SpellScroll, HyperBeam)
-SilentGiveItemWithDurability(1, SpellScroll, Thunderbolt)
-SilentGiveItemWithDurability(1, SpellScroll, ThunderMove)
 //SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
@@ -384,7 +380,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(60, True, 0x145) // all 
+AutoLevelUnits(2, True, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
 //SetUnitStatus(1, 0x29, HyperBeam)
@@ -468,7 +464,7 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(13, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(22, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 ViridianCh
@@ -483,7 +479,7 @@ Write_Byte(22, YCoordNewArea)
 
 //MNC2 Route9ECh 
 //MNC2 ViridianForestSCh
-MNC2 CeladonCh 
+MNC2 Route1Ch 
 //MNC2 DebugCh 
 //MNC2 ChampionCh 
 //MNC2 VictoryRoadB2Ch 

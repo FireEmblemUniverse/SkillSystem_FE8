@@ -6,7 +6,7 @@ extern void* ShareExpEvent;
 void GrantExp(struct Unit* unit) { 
 	if (gActiveUnit->level >= unit->level) { 
 		if (SkillTester(unit, ExpShareID_Link)) { 
-			int expGain = gBattleActor.expGain / 2; 
+			int expGain = gBattleActor.expGain; 
 			gEventSlot[2] = unit->pCharacterData->number; 
 			gEventSlot[4] = expGain; 
 			CallMapEventEngine(&ShareExpEvent, 1);

@@ -184,6 +184,7 @@ Save(15,17) // Pokecenter
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(1,30, ChapterID*2, WardingStanceID)
+SkillAccessoryTrap(21,6, (ChapterID*2)+1, ExpShareID)
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 

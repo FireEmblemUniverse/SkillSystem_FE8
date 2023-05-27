@@ -183,6 +183,7 @@ ShopItems:
 //SHLI 0
 BYTE SkillAccShop(DazzleID)
 BYTE SkillAccShop(VantagePlusID)
+BYTE SkillAccShop(ExpShareID)
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SkillScroll PrescienceID 

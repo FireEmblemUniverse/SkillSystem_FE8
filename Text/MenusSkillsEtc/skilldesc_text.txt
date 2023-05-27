@@ -1312,6 +1312,10 @@ damage three times.[X]
 Multi-Hit: Hits 50%[N]
 damage two to five times.[X]
 
+## SD_ScaledUp
+Scaled Up: This unit[N]
+deals 20% more damage.[X]
+
 ## SD_ExpShare
 Exp Share: Gain exp when a[N]
 higher-levelled ally within[N]
@@ -1752,8 +1756,9 @@ Stunning Smile: If foe is male, inflicts[N]
 Avo -20 on that foe during combat.[X]
 
 ## SD_RecklessFighter
-Reckless Fighter: This unit and the[N]
-opponent always double.[X]
+Reckless Fighter: If below max HP,[N]
+this unit and the opponent[N]
+can always double.[X]
 
 ## SD_KeenFighter
 Keen Fighter: This unit takes 25%[N]

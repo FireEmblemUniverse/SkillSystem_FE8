@@ -149,7 +149,7 @@ int PridefulWarrior(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 
 
 int RecklessFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
-	if (SkillTester(&bunitA->unit, RecklessFighterID_Link) || SkillTester(&bunitB->unit, RecklessFighterID_Link)) { 
+	if ((SkillTester(&bunitA->unit, RecklessFighterID_Link) && bunitA->hpInitial < bunitA->unit.maxHP) || (SkillTester(&bunitB->unit, RecklessFighterID_Link) && bunitB->hpInitial < bunitB->unit.maxHP)) { 
 		return ForceDouble; } 
 	return NoChange; 
 } 

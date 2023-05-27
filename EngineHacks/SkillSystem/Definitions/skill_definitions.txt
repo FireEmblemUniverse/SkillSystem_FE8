@@ -950,7 +950,7 @@
  PersonalityID
 
 ScaledBackID
-
+ScaledUpID
 WonderGuardID 
 SturdyID
 PowerfulAuraID // Cannot be attacked 
@@ -958,6 +958,7 @@ PowerfulAuraID // Cannot be attacked
 RecklessFighterID
 SteadyBrawlerID
 ExpShareID 
+
 
 //Down With Arch: If the hit lands, instantly kill the enemy unit. (Only if name starts with "Arch")
  DownWithArchID 255

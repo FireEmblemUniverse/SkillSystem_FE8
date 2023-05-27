@@ -176,7 +176,8 @@ SkillAccessoryIcons(SteadyStanceID)
 SkillAccessoryIcons(WardingStanceID)
 #incbin "dmp/OldWard.dmp"
 
-
+SkillAccessoryIcons(ExpShareID)
+#incbin "dmp/ExpShare.dmp"
 
 POP 
 

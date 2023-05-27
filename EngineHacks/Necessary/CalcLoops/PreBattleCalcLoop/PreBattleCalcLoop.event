@@ -124,7 +124,7 @@ ALIGN 4
 DamageModifierCalcLoop:
 
 POIN WeaponsThatAlwaysDouble
-POIN WeakChipDmg
+POIN WeakChipDmg ScaledUp
 POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
 POIN TypeEffectiveness // also caps moves to deal max 255 
 #ifdef ENABLE_DAMAGE_REDUCTION

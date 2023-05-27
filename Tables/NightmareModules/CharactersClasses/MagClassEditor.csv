@@ -87,7 +87,7 @@ Rapidash,8,50,45,2
 Slowpoke,6,40,35,0
 Slowbro,14,65,50,8
 Magnemite,6,40,35,0
-Magneton,16,70,50,8
+Magneton,16,70,50,10
 Farfetchd,4,30,30,0
 Doduo,2,15,20,0
 Dodrio,4,30,25,2
@@ -141,7 +141,7 @@ Kingler,6,40,35,3
 Voltorb,6,35,35,0
 Electrode,10,60,45,4
 Exeggcute,7,45,40,0
-Exeggutor,18,75,55,8
+Exeggutor,18,75,55,11
 Cubone,3,25,25,0
 Marowak,4,30,30,1
 Hitmonlee,1,15,15,0
@@ -162,7 +162,7 @@ Staryu,6,35,35,0
 Starmie,11,65,50,5
 Mr. Mime,11,60,45,0
 Scyther,4,30,25,0
-Jynx,13,60,45,8
+Jynx,13,60,45,9
 Electabuzz,10,55,45,0
 Magmar,11,60,45,1
 Pinsir,5,35,30,0
@@ -172,8 +172,8 @@ Gyarados,4,35,25,3
 Lapras,9,60,45,5
 Ditto,3,20,30,0
 Eevee,5,35,35,2
-Vaporeon,14,70,55,8
-Jolteon,14,70,55,8
+Vaporeon,14,70,55,9
+Jolteon,14,70,55,9
 Flareon,10,65,50,5
 Porygon,9,55,40,0
 Omanyte,8,50,40,0
@@ -188,7 +188,7 @@ Moltres,18,85,60,0
 Dratini,5,35,35,0
 Dragonair,8,50,40,3
 Dragonite,11,75,55,3
-Mewtwo,27,115,60,8
+Mewtwo,27,115,60,16
 Mew,11,75,55,0
 balding_manID,0,0,0,0
 battle_girlID,0,0,0,0
@@ -237,7 +237,7 @@ ReceptionistID,0,0,0,0
 ClerkID,0,0,0,0
 ShedinjaID,1,10,15,1
 SableyeID,8,50,45,7
-MegaAlakazamID,25,115,60,8
+MegaAlakazamID,25,115,60,17
 MegaPidgeotID,21,95,60,0
 MegaVenusaurID,23,110,60,2
 MegaCharizardXID,22,110,60,0
