@@ -1,23 +1,34 @@
 #include "gbafe.h"
 extern int SkillTester(struct Unit* unit, int SkillID); 
 extern int ExpShareID_Link; 
+extern void* ShareExpEvent; 
 
 void GrantExp(struct Unit* unit) { 
-	if (SkillTester(unit, ExpShareID_Link)) { 
-		asm("mov r11, r11"); 
-
+	if (gActiveUnit->level >= unit->level) { 
+		if (SkillTester(unit, ExpShareID_Link)) { 
+			int expGain = gBattleActor.expGain / 2; 
+			gEventSlot[2] = unit->pCharacterData->number; 
+			gEventSlot[4] = expGain; 
+			CallMapEventEngine(&ShareExpEvent, 1);
+			//asm("mov r11, r11"); 
+		}
 	} 
 } 
 
 void ExpShare(struct Unit* actor, struct Unit* target) { 
 
-	if ((actor->index >> 7) && (gActionData.unitActionType == UNIT_ACTION_COMBAT)) { // player attacking only 
-		BmMapFill(gMapRange, 0);
-		SetSubjectMap(gMapRange);
-		//MapAddInRange(int x, int y, int range, int value); //! FE8U = 0x801AABD
+	if (!(actor->index >> 7) && (gActionData.unitActionType == UNIT_ACTION_COMBAT) && (gBattleActor.expGain)) { // player attacking only 
+		InitTargets(actor->xPos, actor->yPos); 
+		
+		
+		
+		//BmMapFill(gMapRange, 0);
+		//SetSubjectMap(gMapRange);
 		int range = 2; 
-		MapSetInRange(actor->xPos, actor->yPos, range, 1);
-		ForEachUnitInRange(void(*)GrantExp);
+		MapAddInRange(actor->xPos, actor->yPos, range, 1); //! FE8U = 0x801AABD
+		MapAddInRange(actor->xPos, actor->yPos, 0, (-1)); 
+		//MapSetInRange(actor->xPos, actor->yPos, range, 1);
+		ForEachUnitInRange(GrantExp);
 		//ForEachUnitInRange(void(*)(struct Unit*));
 
 

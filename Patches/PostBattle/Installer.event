@@ -3,6 +3,19 @@
 #include "ExpShare.lyn.event" 
 #include "SelfDebuffMoves.lyn.event" 
 
+ALIGN 4 
+ExpShareID_Link:
+WORD ExpShareID 
+
+ShareExpEvent:
+CUMO 0x7FFD 
+STAL 30 
+CURE 
+GiveEXP(0x7FFD)
+NoFade 
+ENDA 
+
+
 // If not a KO, self debuff by X 
 
 ALIGN 4 
