@@ -19,9 +19,9 @@ pMovModifiers: // Movement
 	POIN prNullifyIfFreeze
 	POIN TrappedStatus
 	POIN TrainerMovementBane
+	POIN prNullifyIfGuardAI
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
-	POIN MaxMovCap
 	#endif
 	POIN MaxMovCap
 WORD 0
