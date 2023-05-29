@@ -208,12 +208,12 @@ ORG FEBUILDER_DATA_ORG
 
 ALIGN 4
 SaveScreenNumbers:
-//#incbin "MapAnimations/Dmp/numbers.img.bin" //HINT=BIN // Gamma's 
-#incbin "MapAnimations/Dmp/NumbersFromSaveScreen.dmp"	//HINT=BIN
+//#incbin "MapAnimations/dmp/numbers.img.bin" //HINT=BIN // Gamma's 
+#incbin "MapAnimations/dmp/NumbersFromSaveScreen.dmp"	//HINT=BIN
 
 ALIGN 4
 SaveScreenNumbersPal:
-#incbin "MapAnimations/Dmp/NumbersFromSaveScreen_pal.dmp" //HINT=BIN
+#incbin "MapAnimations/dmp/NumbersFromSaveScreen_pal.dmp" //HINT=BIN
 
 
 ALIGN 4
