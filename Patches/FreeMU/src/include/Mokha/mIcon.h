@@ -1,7 +1,0 @@
-#ifndef HEARDERMOKHA_ICON
-#define HEARDERMOKHA_ICON
-
-
-
-
-#endif // HEARDERMOKHA_ICON

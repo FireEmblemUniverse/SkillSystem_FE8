@@ -29,7 +29,17 @@ static inline bool IsCharInvaild(Unit* unit){
 */
 
 void pFMU_MainLoop(struct FMUProc* proc){
-	if(MU_Exists()){
+	//if(MU_Exists()){
+	if (!MU_Exists()) { 
+	
+		struct MUProc* muProc = MU_Create(gActiveUnit);
+		HideUnitSMS(gActiveUnit);
+		
+		MU_SetFacing(muProc, MU_COMMAND_FACE_UP);
+		MU_Show(muProc);
+	} 
+		
+	if(MU_IsAnyActive()){
 		/* u8 iKeyDirec = FMU_CheckDirectionButtonPress();
 		if(0!=iKeyDirec)
 			*(gUnitMoveBuffer+0x4) = iKeyDirec; */
@@ -69,8 +79,8 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	}
 		
 	if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
-		if( !IsPosInvaild(x,y) )
-			MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10);
+		if( !IsPosInvaild(x,y) ) { } 
+			//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10);
 	}
 	else
 		ProcGoto((Proc*)proc,0x2);
