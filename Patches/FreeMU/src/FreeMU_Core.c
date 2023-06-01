@@ -33,9 +33,16 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	if (!MU_Exists()) { 
 	
 		struct MUProc* muProc = MU_Create(gActiveUnit);
-		HideUnitSMS(gActiveUnit);
+		muProc->stateId = MU_STATE_NONACTIVE; 
+		struct MUConfig* config = muProc->pMUConfig;
+		config->currentCommand = 1; 
+		for (int i = 0; i < MU_COMMAND_MAX_COUNT; i++) { 
+			config->commands[MU_COMMAND_MAX_COUNT] = MU_COMMAND_FACE_UP; // to idle ? 
+		} 
 		
-		MU_SetFacing(muProc, MU_COMMAND_FACE_UP);
+		//MU_StartActionAnim(muProc);
+		//MU_SetFacing(muProc, MU_COMMAND_FACE_UP);
+		HideUnitSMS(gActiveUnit);
 		MU_Show(muProc);
 	} 
 		
