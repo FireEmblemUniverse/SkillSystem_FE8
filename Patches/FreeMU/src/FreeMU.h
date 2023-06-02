@@ -14,6 +14,8 @@ struct FMUProc {
 	/* 2E */	s8 yCur;
 	/* 2F */	s8 yTo;
 	/* 30 */	Unit* FMUnit;
+	/* 34 */    s8 facingId; // MU facing identifiers
+	/* 35 */    u8 updateBool; 
 };
 
 struct FMUTrapDef{

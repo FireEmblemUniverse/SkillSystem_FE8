@@ -52,7 +52,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 				
 				MU_DisplayAsMMS(muProc);
 				HideUnitSMS(gActiveUnit);
-				proc->facingId = MU_FACING_UP;
+				
 				proc->updateBool = false; 
 				muProc->boolIsHidden = false; 
 				MU_Show(muProc);
@@ -142,35 +142,44 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	//proc->xCur = y;
 	//proc->xTo  = x;
 	//proc->xTo  = y;
-	int currCommand = MU_COMMAND_HALT; 
+	u8 mD[10]; //moveDirections[10]; 
+	mD[0] = MU_COMMAND_HALT; // default to do no movement 
+	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	
 	
 	if(0xF0&iKeyCur){
-		if(iKeyCur&0x10) 		{ x++; currCommand = MU_COMMAND_MOVE_RIGHT; } 
-		else if(iKeyCur&0x20)	{ x--; currCommand = MU_COMMAND_MOVE_LEFT; } 
-		else if(iKeyCur&0x40)	{ y--; currCommand = MU_COMMAND_MOVE_UP; } 
-		else if(iKeyCur&0x80)	{ y++; currCommand = MU_COMMAND_MOVE_DOWN; } 
+		if(iKeyCur&0x10) 		{ x++; if (muProc->facingId != MU_FACING_RIGHT) mD[0] = MU_COMMAND_FACE_RIGHT; else mD[0] = MU_COMMAND_MOVE_RIGHT; } 
+		else if(iKeyCur&0x20)	{ x--; if (muProc->facingId != MU_FACING_LEFT) mD[0] = MU_COMMAND_FACE_LEFT; else mD[0] = MU_COMMAND_MOVE_LEFT; } 
+		else if(iKeyCur&0x40)	{ y--; if (muProc->facingId != MU_FACING_UP) mD[0] = MU_COMMAND_FACE_UP; else mD[0] = MU_COMMAND_MOVE_UP; } 
+		else if(iKeyCur&0x80)	{ y++; if (muProc->facingId != MU_FACING_DOWN) mD[0] = MU_COMMAND_FACE_DOWN; else mD[0] = MU_COMMAND_MOVE_DOWN; } 
 	}
+	mD[1] = MU_COMMAND_HALT; // halt 
+	if (mD[0] > MU_COMMAND_HALT) {
+		MU_StartMoveScript(muProc, &mD[0]); // always change directions freely 
+		proc->facingId = mD[0] - 6; 
+	}
+	else { 
+		if( !IsPosInvaild(x,y) ){
+			proc->xTo = x;
+			proc->yTo = y;
+		}
+			
+		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
+			if( !IsPosInvaild(x,y) ) { } 
+				//MU_EndAll();
+				
+				
+				MU_StartMoveScript(muProc, &mD[0]); 
+				gActiveUnit->xPos = x; 
+				gActiveUnit->yPos = y; 
+				//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10);
+				proc->updateBool = true; 
+		}
+	} 
 	
-		
-	if( !IsPosInvaild(x,y) ){
-		proc->xTo = x;
-		proc->xTo = y;
+	if (mD[0] == MU_COMMAND_HALT) { 
+			ProcGoto((Proc*)proc,0x2);
 	}
-		
-	if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
-		if( !IsPosInvaild(x,y) ) { } 
-			//MU_EndAll();
-			struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-			u8 mD[10]; //moveDirections[10]; 
-			mD[0] = currCommand; 
-			mD[1] = 4; // halt 
-			MU_StartMoveScript(muProc, &mD[0]); 
-			//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10);
-			proc->updateBool = true; 
-	}
-	else
-		ProcGoto((Proc*)proc,0x2);
 	return;
 }
 

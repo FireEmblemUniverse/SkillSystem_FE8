@@ -19,7 +19,7 @@ TimerDelay:
 	The delay time from when the character stops any behavior to when the game starts to save the archive;
 	If you feel game jagging on operation, make a longer delay time. 
 	*/
-	BYTE 0xA
+	BYTE 0xFF
 	
 ALIGN 4
 FreeMU_MovingSpeed: 

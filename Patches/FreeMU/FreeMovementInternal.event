@@ -44,6 +44,7 @@ ALIGN 4
 	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow
 	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
 	_6C_CALL_ROUTINE(pFMU_InitTimer|1)
+	_6C_CALL_ROUTINE(InitUpdateBool|1)  
 	
 	_6C_LABEL(0)	//Idle
 	_6C_YIELD
@@ -67,7 +68,7 @@ ALIGN 4
 	_6C_YIELD		//Default(No Button Pressed)
 	_6C_CALL_ROUTINE(pFMU_RunLocBasedAsmcAuto|1)	
 	_6C_YIELD
-	_6C_CALL_ROUTINE(pFMU_HandleSave|1)
+	_6C_CALL_ROUTINE(pFMU_HandleSave|1) // timer to save (and end MMS)
 	_6C_YIELD
 	_6C_GOTO(0)
 	
