@@ -100,6 +100,11 @@ ALIGN 4
 	
 	_6C_LABEL(0xE)	//Save
 	_6C_YIELD
+	
+	
+	_6C_GOTO(0) // Saving ends the MMS, so skip instead  
+	
+	
 	_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
 	_6C_GOTO(0xC)
 	

@@ -41,88 +41,13 @@ void pFMU_MainLoop(struct FMUProc* proc){
 			return; // MU_COMMAND_HALT is the terminator 
 		} 
 	} 
-	
-	if (muProc) { 
-		if (muProc->pMUConfig->commands[muProc->pMUConfig->currentCommand] == MU_COMMAND_HALT) { 
-			if (proc->updateBool) { 
-				asm("mov r11, r11"); 
-				//MU_End(muProc);
-
-				//muProc->stateId = MU_STATE_NONACTIVE; // yes
-				//
-				//MU_DisplayAsMMS(muProc);
-				//HideUnitSMS(gActiveUnit);
-				//proc->facingId = MU_FACING_UP;
-				//proc->updateBool = false; 
-				//muProc->boolIsHidden = false; 
-				//MU_Show(muProc);
-			}
-		} 
-	} 
-	
 	else { 
-		//MU_EndAll();
 		struct MUProc* muProc = MU_Create(gActiveUnit);
-		//muProc->stateId = MU_STATE_NONACTIVE; // yes
 		MU_DisplayAsMMS(muProc);
 		HideUnitSMS(gActiveUnit);
-		//MU_SetFacing(muProc, proc->facingId);
-		//MU_Show(muProc);
 	} 
 	
 
-	
-	
-	if (muProc->facingId != MU_FACING_STANDING && muProc->facingId != MU_FACING_UNK11) { 
-		//return;
-	} 
-	//int finishedMov = ((u8)(muProc->stateId - MU_STATE_MOVEMENT) <= (MU_STATE_WAITING - MU_STATE_MOVEMENT)); 
-
-	
-
-	
-	// if muProc->pMUConfig.currentCommand hasn't changed ? 
-	
-
-	
-
-	 
-	//if (muProc->moveTimer == 0) { 
-	//if (!MU_IsAnyActive() || muProc->boolIsHidden) { 
-			//HideUnitSMS(gActiveUnit);
-			//muProc->boolIsHidden = false; 
-			//MU_SetFacing(muProc, MU_FACING_UP);
-	//} 
-	
-	
-	/*
-	if (!MU_Exists()) { 
-		struct MUProc* muProc = MU_Create(gActiveUnit);
-		muProc->stateId = MU_STATE_NONACTIVE; // yes 
-		
-		MU_SetFacing(muProc, MU_FACING_UP); //does these 2 commands below 
-		//muProc->facingId = MU_FACING_UP;
-		//AP_SwitchAnimation(proc->pAPHandle, proc->facingId);
-		
-		
-		
-		struct MUConfig* config = muProc->pMUConfig;
-		config->currentCommand = 1; 
-		for (int i = 0; i < MU_COMMAND_MAX_COUNT; i++) { 
-			config->commands[MU_COMMAND_MAX_COUNT] = MU_COMMAND_FACE_UP; // to idle ? 
-		} 
-		
-		//MU_StartActionAnim(muProc);
-		//MU_SetFacing(muProc, MU_COMMAND_FACE_UP);
-		
-		HideUnitSMS(gActiveUnit);
-		MU_Show(muProc);
-	} 
-		
-	if(MU_IsAnyActive()){
-		return;
-	}
-	*/
 	ProcGoto((Proc*)proc,0x1);
 	return;
 }
@@ -166,19 +91,15 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 			
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { } 
-				//MU_EndAll();
-				
-				
 				MU_StartMoveScript(muProc, &mD[0]); 
 				gActiveUnit->xPos = x; 
 				gActiveUnit->yPos = y; 
 				//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10);
-				proc->updateBool = true; 
 		}
 	} 
 	
 	if (mD[0] == MU_COMMAND_HALT) { 
-			//ProcGoto((Proc*)proc,0x2);
+			ProcGoto((Proc*)proc,0x2);
 	}
 	return;
 }
@@ -216,7 +137,7 @@ void pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
 
 void pFMU_HandleSave(struct FMUProc* proc){	//KeyPress Default
 	if( TimerDelay < ++proc->uTimer ){
-		ProcGoto((Proc*)proc,0xE);
+		//ProcGoto((Proc*)proc,0xE);
 		proc->uTimer=0;
 	}
 	return;
