@@ -81,7 +81,7 @@ ALIGN 4
 	_6C_GOTO(0xE)
 	
 	_6C_LABEL(5)	//Press B
-	_6C_CALL_ROUTINE(pFMU_PressB|1)
+	//_6C_CALL_ROUTINE(pFMU_PressB|1)
 	_6C_GOTO(0)
 	
 	_6C_LABEL(6)	//Press L

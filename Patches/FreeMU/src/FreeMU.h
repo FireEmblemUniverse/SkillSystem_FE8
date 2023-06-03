@@ -15,6 +15,8 @@ struct FMUProc {
 	/* 2F */	s8 yTo;
 	/* 30 */	Unit* FMUnit;
 	/* 34 */    s8 smsFacing; 
+	/* 35 */    u8 timerPress; 
+	/* 36 */    u16 bufferPress; 
 };
 
 struct FMUTrapDef{

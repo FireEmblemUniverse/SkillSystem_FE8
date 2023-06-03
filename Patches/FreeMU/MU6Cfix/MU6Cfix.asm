@@ -40,7 +40,6 @@ MU_ExecCmd_FixForFreeMU:
 	cmp		r0, #0
 	beq		.EndMain
 	add		r0, #0x40
-mov   r1, r5
 add   r5, #0x34
 strb  r7, [r5]          @ store facing direction in FreeMovementControlProc+0x34
 	ldrb	r5,[r0]					@ r5=x

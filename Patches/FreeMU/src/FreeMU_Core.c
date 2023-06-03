@@ -27,10 +27,19 @@ static inline bool IsCharInvaild(Unit* unit){
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
 void pFMU_MainLoop(struct FMUProc* proc){
+	if (proc->timerPress < 255) { 
+	proc->timerPress++; } 
+	if (gKeyState.heldKeys) { 
+		proc->bufferPress = gKeyState.heldKeys; 
+		proc->timerPress = 0; 
+	} 
+	
+	
 	if(MU_Exists()){
 		/* u8 iKeyDirec = FMU_CheckDirectionButtonPress();
 		if(0!=iKeyDirec)
 			*(gUnitMoveBuffer+0x4) = iKeyDirec; */
+		
 		return;
 	}
 	ProcGoto((Proc*)proc,0x1);
@@ -38,16 +47,21 @@ void pFMU_MainLoop(struct FMUProc* proc){
 }
 
 
-void pFMU_HanleContinueMove(struct FMUProc*){
+void pFMU_HanleContinueMove(struct FMUProc* proc){
+	if (proc->timerPress < 255) { 
+	proc->timerPress++; } 
+	if (gKeyState.heldKeys) { 
+		proc->bufferPress = gKeyState.heldKeys; 
+		proc->timerPress = 0; 
+	} 
 	return;
 }
 
-
+extern const struct SMSData NewStandingMapSpriteTable[];
 void pFMU_UpdateSMS(struct FMUProc* proc){
   u32 tileIndex = (proc->FMUnit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
   u8 smsID = proc->FMUnit->pClassData->SMSId;
-  //u16 size = gStandingMapSpriteData[smsID].size;
-  u16 size = 1; 
+  u16 size = NewStandingMapSpriteTable[smsID].size;
   u8 width =  size < 2 ? 16 : 32;
   u8 height = size > 0 ? 32 : 16;
   u32 srcOffs[3] = {0, 0, 0};
@@ -59,7 +73,7 @@ void pFMU_UpdateSMS(struct FMUProc* proc){
   
   // Decompress sms gfx.
   if (proc->smsFacing==2)
-    Decompress(gStandingMapSpriteData[smsID].pGraphics, gGenericBuffer);    // Downward facing sms.
+    Decompress(NewStandingMapSpriteTable[smsID].pGraphics, gGenericBuffer);    // Downward facing sms.
   else {
     Decompress(FMU_idleSMSGfxTable[smsID], gGenericBuffer);                 // Other direction-facing sms.
     srcOffs[0] = proc->smsFacing==3 ? proc->smsFacing-1 : proc->smsFacing;  // Up-facing sprite comes immediately after right.
@@ -101,9 +115,15 @@ void pFMUCtr_OnEnd(Proc* proc){
 
 void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	u16 iKeyCur = gKeyState.heldKeys;
+	if (proc->timerPress < 8) { 
+		iKeyCur = iKeyCur | proc->bufferPress; 
+		proc->bufferPress = 0; 
+	} // use latest button press within 8 frames 
 	s8 x = gActiveUnit->xPos;
 	s8 y = gActiveUnit->yPos;
   u8 facingCur = proc->smsFacing;
+  
+  
 	
 	//proc->xCur = x;
 	//proc->xCur = y;
@@ -113,36 +133,39 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	if(0xF0&iKeyCur){
 		if(iKeyCur&0x10) {
       x++;
-      proc->smsFacing = 1;
+      proc->smsFacing = MU_FACING_RIGHT;
     }
 		else if(iKeyCur&0x20) {
       x--;
-      proc->smsFacing = 0;
+      proc->smsFacing = MU_FACING_LEFT;
     }
 		else if(iKeyCur&0x40) {
       y--;
-      proc->smsFacing = 3;
+      proc->smsFacing = MU_FACING_UP;
     }
 		else if(iKeyCur&0x80) {
       y++;
-      proc->smsFacing = 2;
+      proc->smsFacing = MU_FACING_DOWN;
     }
 	}
-	
+	 
+    if (facingCur != proc->smsFacing) { 
+        pFMU_UpdateSMS(proc);
+	} 
+	else { 
 		
-	if( !IsPosInvaild(x,y) ){
-		proc->xTo = x;
-		proc->yTo = y;
-	}
-		
-	if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
-		if( !IsPosInvaild(x,y) )
-			MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
-	}
-	else
-    if (facingCur != proc->smsFacing)
-      pFMU_UpdateSMS(proc);
-		ProcGoto((Proc*)proc,0x2);
+		if( !IsPosInvaild(x,y) ){
+			proc->xTo = x;
+			proc->yTo = y;
+		}
+			
+		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
+			if( !IsPosInvaild(x,y) )
+				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+		}
+		else 
+			ProcGoto((Proc*)proc,0x2);
+	} 
 	return;
 }
 
@@ -152,6 +175,10 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 
 void pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
 	u16 iKeyCur = gKeyState.heldKeys;
+	if (proc->timerPress < 8) { 
+		iKeyCur = iKeyCur | proc->bufferPress; 
+		proc->bufferPress = 0; 
+	} // use latest button press within 8 frames 
 	if(1&iKeyCur){ 			//Press A
 		ProcGoto((Proc*)proc,0x4); 
 		return;
