@@ -70,8 +70,8 @@ void pFMU_UpdateSMS(struct FMUProc* proc){
   srcOffs[1] = srcOffs[0] + (0x80 << (size << 2));
   srcOffs[2] = srcOffs[1] + (0x80 << (size << 2));
   CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame1+(tileIndex<<5), width>>3, height>>3);
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[1], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[2], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
   
   // Overwrite VRAM with new SMS next frame. Timings taken from 0x8026F2C, SyncUnitSpriteSheet.
   if (frame < 31)
