@@ -1,4 +1,20 @@
 #include "FreeMU.h"
+Unit* GetUnitStructFromEventParameter(u16);
+extern const ProcCode gProc_CpPhase[]; // 0x85A7F08
+extern u8 MuCtr_StartMoveTowards(Unit*, u8 x, u8 y, u8, u8 flags); //0x8079DDD
+
+extern const struct SMSData g_StandingMapSpriteData[];
+
+#define SMSSIZE(aId) (g_StandingMapSpriteData[(aId)].size)
+
+unsigned SMS_RegisterUsage(unsigned id); //!< FE8U:080267FD
+
+void SMS_SyncIndirect(void); //!< FE8U:08026F95
+
+unsigned GetUnitBattleMapSpritePaletteIndex(struct Unit*); //!< FE8U:0802713D
+unsigned GetUnitMapSpritePaletteIndex(struct Unit*); //!< FE8U:08027169
+
+struct SMSHandle* SMS_GetNewInfoStruct(int y); //!< FE8U:0802736D
 
 /*
  * Basic! 
@@ -78,6 +94,7 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
  */
 void pFMU_OnInit(struct FMUProc* proc){
 	//vaild?
+	proc->smsFacing = 0;
 	if( 0 == proc->FMUnit )
 		proc->FMUnit = gUnitArrayBlue;
 	if( !( 1&(u32)(proc->FMUnit)>>0x11) )

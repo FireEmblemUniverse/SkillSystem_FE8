@@ -9,6 +9,7 @@
 	#include "src/FreeMU_SaveData.lyn.event"
 	#include "asm/FreeMU.lyn.event"
 	#include "MU6Cfix/_MU6Cfix.event"
+	#include "gfx/gfx.event" 
 
 
 PUSH
@@ -21,6 +22,9 @@ PUSH
 	ORG $59A2E4
 	POIN NewMakePhaseControllerFunc|1
 			//call FreeMovementControlProc
+			
+	ORG $9A2DBC
+	POIN pFMUCtr_OnEnd|1
 POP
 
 
@@ -44,7 +48,6 @@ ALIGN 4
 	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow
 	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
 	_6C_CALL_ROUTINE(pFMU_InitTimer|1)
-	_6C_CALL_ROUTINE(InitUpdateBool|1)  
 	
 	_6C_LABEL(0)	//Idle
 	_6C_YIELD
@@ -100,11 +103,6 @@ ALIGN 4
 	
 	_6C_LABEL(0xE)	//Save
 	_6C_YIELD
-	
-	
-	_6C_GOTO(0) // Saving ends the MMS, so skip instead  
-	
-	
 	_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
 	_6C_GOTO(0xC)
 	

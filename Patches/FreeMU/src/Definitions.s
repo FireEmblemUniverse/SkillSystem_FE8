@@ -1,5 +1,8 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+SET_DATA g_StandingMapSpriteData, 0x88AF880
+
+
 
 //@ Vanilla function declarations:
 

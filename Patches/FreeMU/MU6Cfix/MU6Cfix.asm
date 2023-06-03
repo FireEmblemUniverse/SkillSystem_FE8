@@ -1,6 +1,6 @@
 .thumb
-.include 	"../../../_FuncLib/_Definitions.h.s"
-.include 	"../../../_FuncLib/MokhaRAMSpace.s"
+.include 	"../src/_include/_Definitions.h.s"
+.include 	"../src/_include/MokhaRAMSpace.s"
 
 SET_FUNC_INLINE		MU_ExecCmd_FixForFreeMU
 SET_FUNC_INLINE 	MU_CALL2_FixForFreeMU
@@ -40,6 +40,9 @@ MU_ExecCmd_FixForFreeMU:
 	cmp		r0, #0
 	beq		.EndMain
 	add		r0, #0x40
+mov   r1, r5
+add   r5, #0x34
+strb  r7, [r5]          @ store facing direction in FreeMovementControlProc+0x34
 	ldrb	r5,[r0]					@ r5=x
 	ldrb	r6,[r0, #1]				@ r6=y
 	

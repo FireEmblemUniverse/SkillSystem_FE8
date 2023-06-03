@@ -22,6 +22,10 @@ static inline bool IsCharInvaild(Unit* unit){
 /*!!!!*/
 
 bool FMU_OnButton_StartMenu(FMUProc* proc){
+	gLCDIOBuffer.dispControl.enableWin0 = 0;
+	gLCDIOBuffer.dispControl.enableWin1 = 0;
+	gLCDIOBuffer.dispControl.enableObjWin = 0;
+	gLCDIOBuffer.blendControl.effect = 0;
 	StartMenuAdjusted(&FreeMovementLMenu,0,0,0);
 	return 1;
 }
