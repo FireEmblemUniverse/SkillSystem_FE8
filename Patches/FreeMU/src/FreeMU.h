@@ -1,6 +1,7 @@
 #pragma once
 #include "gbafe.h"
 
+enum State {yield=0, no_yield=1};
 
 typedef struct FMUProc FMUProc;
 typedef bool (*ButtonFunc) (struct FMUProc*);
@@ -15,8 +16,10 @@ struct FMUProc {
 	/* 2F */	s8 yTo;
 	/* 30 */	Unit* FMUnit;
 	/* 34 */    s8 smsFacing; 
-	/* 35 */    u8 timerPress; 
+	///* 35 */    u8 timerPress; 
 	/* 36 */    u16 bufferPress; 
+	/* 38 */    int timerPress;
+	/* 3c */    int timerYield; 
 };
 
 struct FMUTrapDef{
@@ -64,27 +67,28 @@ void NewPlayerPhaseEvaluationFunc(struct Proc*);
 void NewMakePhaseControllerFunc(struct Proc*);
 void pFMU_OnInit(struct FMUProc*);
 void pFMU_InitTimer(struct FMUProc*);
-void pFMU_CorrectCameraPosition(struct FMUProc*);
+int pFMU_CorrectCameraPosition(struct FMUProc*);
 u8 FMU_ChkKeyForMUExtra(void);
 
 
 /*------------- Core --------------*/
 void pFMU_MainLoop(struct FMUProc*);
-void pFMU_HanleContinueMove(struct FMUProc*);
-void pFMU_MoveUnit(struct FMUProc*);
-void pFMU_HandleKeyMisc(struct FMUProc*);
-void pFMU_HandleSave(struct FMUProc*);
+int pFMU_HanleContinueMove(struct FMUProc*);
+int pFMU_MoveUnit(struct FMUProc*);
+int pFMU_HandleKeyMisc(struct FMUProc*);
+int pFMU_HandleSave(struct FMUProc*);
 void pFMU_PressA(struct FMUProc*);
 void pFMU_PressB(struct FMUProc*);
 void pFMU_PressL(struct FMUProc*);
 void pFMU_PressR(struct FMUProc*);
 void pFMU_PressSelect(struct FMUProc*);
 void pFMU_PressStart(struct FMUProc*);
+void BufferButtonPresses(struct FMUProc*); 
 
 
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);
-void pFMU_RunLocBasedAsmcAuto(struct FMUProc*);
+int pFMU_RunLocBasedAsmcAuto(struct FMUProc*);
 bool FMUmisc_RunMapEvents(struct FMUProc*);
 bool FMUmisc_RunTalkEvents(struct FMUProc*);
 bool FMU_RunTrapASMC(FMUProc*);

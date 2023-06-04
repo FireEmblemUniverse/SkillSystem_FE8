@@ -8,16 +8,17 @@ void pFMU_RunMiscBasedEvents(struct FMUProc* proc){
 	return;
 }
 
-void pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
+int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
+	BufferButtonPresses(proc); 
 	if( (proc->xCur==gActiveUnit->xPos) & (proc->yCur==gActiveUnit->yPos) )
-		return;
+		return no_yield;
 	
 	if( FMU_RunTrapASMC_Auto(proc) )
 	{
 		proc->xCur = gActiveUnit->xPos;
 		proc->yCur = gActiveUnit->yPos;
 		ProcGoto((Proc*)proc,0xE); 
-		return;
+		return yield;
 	}
 	
 	//pFMU_RunMiscBasedEvents(proc);
@@ -26,9 +27,9 @@ void pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 		proc->xCur = gActiveUnit->xPos;
 		proc->yCur = gActiveUnit->yPos;
 		ProcGoto((Proc*)proc,0xE); 
-		return;
+		return yield;
 	}
-	return;
+	return no_yield;
 	
 }
 

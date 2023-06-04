@@ -26,36 +26,43 @@ static inline bool IsCharInvaild(Unit* unit){
 */
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
+void BufferButtonPresses(struct FMUProc* proc) { 
+	if ((GetGameClock() - proc->timerYield) >= 1) { // ignore input for a few frames after pressing a direction to move 
+		if (gKeyState.heldKeys) { 
+			proc->bufferPress = gKeyState.heldKeys; 
+			proc->timerPress = GetGameClock(); 
+		} 
+	}
+	else 
+		proc->bufferPress = 0; 
+} 
+
 void pFMU_MainLoop(struct FMUProc* proc){
-	if (proc->timerPress < 255) { 
-	proc->timerPress++; } 
-	if (gKeyState.heldKeys) { 
-		proc->bufferPress = gKeyState.heldKeys; 
-		proc->timerPress = 0; 
-	} 
-	
-	
+	BufferButtonPresses(proc); 
 	if(MU_Exists()){
-		/* u8 iKeyDirec = FMU_CheckDirectionButtonPress();
-		if(0!=iKeyDirec)
-			*(gUnitMoveBuffer+0x4) = iKeyDirec; */
 		
 		return;
 	}
-	ProcGoto((Proc*)proc,0x1);
+	pFMU_MoveUnit(proc);
+	//if(pFMU_MoveUnit(proc) == yield) {
+		//return; 
+	//}
+	//ProcGoto((Proc*)proc,0x1);
 	return;
 }
 
 
-void pFMU_HanleContinueMove(struct FMUProc* proc){
-	if (proc->timerPress < 255) { 
-	proc->timerPress++; } 
-	if (gKeyState.heldKeys) { 
-		proc->bufferPress = gKeyState.heldKeys; 
-		proc->timerPress = 0; 
-	} 
-	return;
+int pFMU_HanleContinueMove(struct FMUProc* proc){
+	BufferButtonPresses(proc); 
+	return yield;
 }
+
+
+extern void PlayerPhase_Suspend(void); 
+void FMU_ClearActionAndSave(struct FMUProc* proc) { 
+	BufferButtonPresses(proc); 
+	PlayerPhase_Suspend(); 
+} 
 
 extern const struct SMSData NewStandingMapSpriteTable[];
 void pFMU_UpdateSMS(struct FMUProc* proc){
@@ -113,9 +120,10 @@ void pFMUCtr_OnEnd(Proc* proc){
   return;
 }
 
-void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
+#define bufferFrames 5
+int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	u16 iKeyCur = gKeyState.heldKeys;
-	if (proc->timerPress < 8) { 
+	if ((GetGameClock() - proc->timerPress) <= bufferFrames) { 
 		iKeyCur = iKeyCur | proc->bufferPress; 
 		proc->bufferPress = 0; 
 	} // use latest button press within 8 frames 
@@ -160,58 +168,67 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 		}
 			
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
-			if( !IsPosInvaild(x,y) )
+			if( !IsPosInvaild(x,y) ) { 
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				proc->timerYield = GetGameClock(); 
+				return yield; 
+			} 
 		}
-		else 
+		else {
 			ProcGoto((Proc*)proc,0x2);
+			return yield; 
+		}
+			
 	} 
-	return;
+	return no_yield;
 }
 
 
 
 
 
-void pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
+int pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
+	BufferButtonPresses(proc); 
 	u16 iKeyCur = gKeyState.heldKeys;
-	if (proc->timerPress < 8) { 
+	if ((GetGameClock() - proc->timerPress) <= bufferFrames) { 
 		iKeyCur = iKeyCur | proc->bufferPress; 
 		proc->bufferPress = 0; 
 	} // use latest button press within 8 frames 
 	if(1&iKeyCur){ 			//Press A
 		ProcGoto((Proc*)proc,0x4); 
-		return;
+		return yield;
 		}			
 	if(2&iKeyCur){ 			//Press B
 		ProcGoto((Proc*)proc,0x5); 
-		return;
+		return yield;
 		}	
 	if(2&(iKeyCur>>0x8)){ 	//Press L
 		ProcGoto((Proc*)proc,0x6); 
-		return;
+		return yield;
 		}
 	if(1&(iKeyCur>>0x8)){ 	//Press R
 		ProcGoto((Proc*)proc,0x7); 
-		return;
+		return yield;
 		}
 	if(4&iKeyCur){ 			//Press Select
 		ProcGoto((Proc*)proc,0x8); 
-		return;
+		return yield;
 		}
 	if(8&iKeyCur){ 			//Press Start
 		ProcGoto((Proc*)proc,0x9); 
-		return;
+		return yield;
 		}
-	return;
+	return no_yield;
 }
 
-void pFMU_HandleSave(struct FMUProc* proc){	//KeyPress Default
+int pFMU_HandleSave(struct FMUProc* proc){	//KeyPress Default
+	BufferButtonPresses(proc); 
 	if( TimerDelay < ++proc->uTimer ){
-		//ProcGoto((Proc*)proc,0xE);
+		ProcGoto((Proc*)proc,0xE);
 		proc->uTimer=0;
+		return yield;
 	}
-	return;
+	return no_yield;
 }
 
 

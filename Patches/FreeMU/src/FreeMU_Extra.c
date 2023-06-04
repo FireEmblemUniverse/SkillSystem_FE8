@@ -94,12 +94,6 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
  */
 void pFMU_OnInit(struct FMUProc* proc){
 	//vaild?
-	if (proc->timerPress < 255) { 
-	proc->timerPress++; } 
-	if (gKeyState.heldKeys) { 
-		proc->bufferPress = gKeyState.heldKeys; 
-		proc->timerPress = 0; 
-	} 
 	if( 0 == proc->FMUnit )
 		proc->FMUnit = gUnitArrayBlue;
 	if( !( 1&(u32)(proc->FMUnit)>>0x11) )
@@ -113,7 +107,9 @@ void pFMU_OnInit(struct FMUProc* proc){
 
 
 void pFMU_InitTimer(struct FMUProc* proc){
-	proc->timerPress = 0xFF; 
+	pFMU_OnInit(proc);
+	proc->timerPress = 0; 
+	proc->timerYield = 0; 
 	proc->bufferPress = 0; 
 	
 	proc->smsFacing = 2;
@@ -122,14 +118,11 @@ void pFMU_InitTimer(struct FMUProc* proc){
 }
 
 
-void pFMU_CorrectCameraPosition(struct FMUProc* proc){
-	if (proc->timerPress < 255) { 
-	proc->timerPress++; } 
-	if (gKeyState.heldKeys) { 
-		proc->bufferPress = gKeyState.heldKeys; 
-		proc->timerPress = 0; 
-	} 
-	EnsureCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
+int pFMU_CorrectCameraPosition(struct FMUProc* proc){
+	BufferButtonPresses(proc);
+	if (EnsureCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos)) 
+		return yield;
+	return no_yield; 
 }
 
 
