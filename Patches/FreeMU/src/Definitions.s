@@ -1,7 +1,10 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 SET_DATA g_StandingMapSpriteData, 0x88AF880
-
+SET_FUNC GetCameraCenteredX, 0x8015a41 
+SET_FUNC GetCameraCenteredY, 0x8015a6d 
+SET_FUNC GetCameraAdjustedX, 0x80159b9
+SET_FUNC GetCameraAdjustedY, 0x80159fd 
 
 
 //@ Vanilla function declarations:

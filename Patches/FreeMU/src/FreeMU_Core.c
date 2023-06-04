@@ -26,15 +26,32 @@ static inline bool IsCharInvaild(Unit* unit){
 */
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
+extern int GetCameraCenteredX(int x); 
+extern int GetCameraAdjustedX(int x); 
+extern int GetCameraCenteredY(int y); 
+extern int GetCameraAdjustedY(int y); 
 extern const ProcInstruction* gProc_CameraMovement; 
-
+#define  MU_SUBPIXEL_PRECISION 4
 void pFMU_MainLoop(struct FMUProc* proc){
 	
 	
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	if (muProc) { 
 		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
-		CenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
+			
+			//gGameState.cameraRealPos.x = GetCameraCenteredX(muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->xSubOffset & 0xF);
+			//gGameState.cameraRealPos.y = GetCameraCenteredY(muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->ySubOffset & 0xF);
+			
+			//muProc->boolAttractCamera = true; 
+			//#define adjustBorder 4
+			//int right = (muProc->facingId == MU_FACING_RIGHT) * adjustBorder; 
+			//int left = (muProc->facingId == MU_FACING_LEFT) * adjustBorder; 
+			//int up = (muProc->facingId == MU_FACING_UP) * adjustBorder; 
+			//int down = (muProc->facingId == MU_FACING_DOWN) * adjustBorder; 
+			//gGameState.cameraRealPos.x = GetCameraAdjustedX((muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + right - left);
+			//gGameState.cameraRealPos.y = GetCameraAdjustedY((muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + down - up);
+			//muProc->boolAttractCamera = false; 
+			CenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
 		}
 	}
 	/*
@@ -219,8 +236,12 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 }
 
 
+void FMU_open_um(struct FMUProc* proc){
+//StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x16);
 
 
+	return;
+}
 
 int pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
 	u16 iKeyCur = gKeyState.heldKeys;

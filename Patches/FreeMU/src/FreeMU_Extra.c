@@ -61,7 +61,7 @@ void End6CInternal_FreeMU(FMUProc* proc){
  
 void ChangeControlledUnitASMC(struct FMUProc* proc){
 	proc->FMUnit=GetUnitStructFromEventParameter(gEventSlot[1]);
-	EnsureCameraOntoPosition(0,proc->FMUnit->xPos, proc->FMUnit->yPos);
+	CenterCameraOntoPosition(0,proc->FMUnit->xPos, proc->FMUnit->yPos);
 	return;
 }
 
@@ -107,6 +107,7 @@ void pFMU_OnInit(struct FMUProc* proc){
 
 
 void pFMU_InitTimer(struct FMUProc* proc){
+	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
 	pFMU_OnInit(proc);
 	proc->bufferPress = 0; 
 	proc->smsFacing = 2;
