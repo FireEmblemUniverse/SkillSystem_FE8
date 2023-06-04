@@ -108,10 +108,7 @@ void pFMU_OnInit(struct FMUProc* proc){
 
 void pFMU_InitTimer(struct FMUProc* proc){
 	pFMU_OnInit(proc);
-	proc->timerPress = 0; 
-	proc->timerYield = 0; 
 	proc->bufferPress = 0; 
-	
 	proc->smsFacing = 2;
 	proc->uTimer = 0;
 	return;
@@ -119,7 +116,6 @@ void pFMU_InitTimer(struct FMUProc* proc){
 
 
 int pFMU_CorrectCameraPosition(struct FMUProc* proc){
-	BufferButtonPresses(proc);
 	if (EnsureCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos)) 
 		return yield;
 	return no_yield; 

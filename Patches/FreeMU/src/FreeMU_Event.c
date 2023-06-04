@@ -9,7 +9,6 @@ void pFMU_RunMiscBasedEvents(struct FMUProc* proc){
 }
 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
-	BufferButtonPresses(proc); 
 	if( (proc->xCur==gActiveUnit->xPos) & (proc->yCur==gActiveUnit->yPos) )
 		return no_yield;
 	

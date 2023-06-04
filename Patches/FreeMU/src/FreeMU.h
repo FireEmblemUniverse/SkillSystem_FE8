@@ -18,8 +18,6 @@ struct FMUProc {
 	/* 34 */    s8 smsFacing; 
 	///* 35 */    u8 timerPress; 
 	/* 36 */    u16 bufferPress; 
-	/* 38 */    int timerPress;
-	/* 3c */    int timerYield; 
 };
 
 struct FMUTrapDef{
@@ -83,7 +81,6 @@ void pFMU_PressL(struct FMUProc*);
 void pFMU_PressR(struct FMUProc*);
 void pFMU_PressSelect(struct FMUProc*);
 void pFMU_PressStart(struct FMUProc*);
-void BufferButtonPresses(struct FMUProc*); 
 
 
 /*------------- Events --------------*/
