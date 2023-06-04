@@ -1,5 +1,7 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+SET_DATA gProcScr_CamMove, 0x859a548
+SET_DATA gBmSt, 0x202bcb0 
 SET_DATA g_StandingMapSpriteData, 0x88AF880
 SET_FUNC GetCameraCenteredX, 0x8015a41 
 SET_FUNC GetCameraCenteredY, 0x8015a6d 

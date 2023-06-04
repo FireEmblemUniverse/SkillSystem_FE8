@@ -26,11 +26,110 @@ static inline bool IsCharInvaild(Unit* unit){
 */
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
-extern int GetCameraCenteredX(int x); 
-extern int GetCameraAdjustedX(int x); 
-extern int GetCameraCenteredY(int y); 
-extern int GetCameraAdjustedY(int y); 
+extern u16 GetCameraCenteredX(int x); 
+extern u16 GetCameraAdjustedX(int x); 
+extern u16 GetCameraCenteredY(int y); 
+extern u16 GetCameraAdjustedY(int y); 
 extern const ProcInstruction* gProc_CameraMovement; 
+
+struct CamMoveProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Vec2 to;
+    /* 30 */ struct Vec2 from;
+    /* 34 */ struct Vec2 watchedCoordinate;
+    /* 38 */ s16 calibration;
+    /* 3A */ s16 distance;
+    /* 3C */ int frame;
+    /* 40 */ s8 xCalibrated;
+};
+struct ProcCmd
+{
+    short opcode;
+    short dataImm;
+    const void* dataPtr;
+};
+extern struct ProcCmd gProcScr_CamMove[];
+
+
+struct BmSt // Game State Struct
+{
+    /* 00 */ s8  mainLoopEndedFlag;
+
+    /* 01 */ s8  gameLogicSemaphore;
+    /* 02 */ s8  gameGfxSemaphore;
+
+    /* 03 */ u8  _unk04;
+
+    /* 04 */ u8  gameStateBits;
+
+    /* 05 */ u8  _unk05;
+
+    /* 06 */ u16 prevVCount;
+
+    /* 08 */ u32 _unk08;
+
+    /* 0C */ struct Vec2 camera;
+    /* 10 */ struct Vec2 cameraPrevious;
+    /* 14 */ struct Vec2 playerCursor;
+    /* 18 */ struct Vec2 cursorPrevious;
+    /* 1C */ struct Vec2 cursorTarget;
+    /* 20 */ struct Vec2 playerCursorDisplay;
+    /* 24 */ struct Vec2u mapRenderOrigin;
+    /* 28 */ struct Vec2 cameraMax;
+
+    /* 2C */ u16 itemUnk2C;
+    /* 2E */ u16 itemUnk2E;
+
+    /* 30 */ u16 unk30;
+    /* 32 */ s16 unk32;
+    /* 34 */ s16 unk34;
+    /* 36 */ s8 unk36;
+    /* 37 */ s8 unk37;
+    /* 38 */ u8 altBlendACa;
+    /* 39 */ u8 altBlendACb;
+    /* 3A */ u8 altBlendBCa;
+    /* 3B */ u8 altBlendBCb;
+    /* 3C */ u8 just_resumed;
+    /* 3D */ u8 unk3D;
+    /* 3E */ u8 unk3E;
+    /* 3F */ s8 unk3F;
+};
+extern struct BmSt gBmSt;
+
+s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
+    struct CamMoveProc* proc;
+
+    int xTarget = GetCameraAdjustedX(x*16);
+    int yTarget = GetCameraAdjustedY(y*16);
+	
+
+    if ((xTarget == gBmSt.camera.x) && (yTarget == gBmSt.camera.y)) {
+        return 0;
+    }
+
+    if (ProcFind(gProcScr_CamMove)) {
+        return 0;
+    }
+
+    if (parent) {
+        proc = (struct CamMoveProc*)ProcStartBlocking(gProcScr_CamMove, parent);
+    } else {
+        proc = (struct CamMoveProc*)ProcStart(gProcScr_CamMove, 3);
+    }
+
+    proc->from.x = gBmSt.camera.x;
+    proc->from.y = gBmSt.camera.y;
+
+    proc->to.x = xTarget;
+    proc->to.y = yTarget;
+
+    proc->watchedCoordinate.x = x*16;
+    proc->watchedCoordinate.y = y*16;
+
+    return 1;
+}
+
 #define  MU_SUBPIXEL_PRECISION 4
 void pFMU_MainLoop(struct FMUProc* proc){
 	
@@ -38,6 +137,9 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	if (muProc) { 
 		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
+			//EnsureCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
+			//VeslyCenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4 , ((muProc->ySubPosition)/16) >> 4);
+			VeslyCenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
 			
 			//gGameState.cameraRealPos.x = GetCameraCenteredX(muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->xSubOffset & 0xF);
 			//gGameState.cameraRealPos.y = GetCameraCenteredY(muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->ySubOffset & 0xF);
@@ -51,7 +153,10 @@ void pFMU_MainLoop(struct FMUProc* proc){
 			//gGameState.cameraRealPos.x = GetCameraAdjustedX((muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + right - left);
 			//gGameState.cameraRealPos.y = GetCameraAdjustedY((muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + down - up);
 			//muProc->boolAttractCamera = false; 
-			CenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
+			//CenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
+			
+			//gGameState.cameraRealPos.x = GetCameraAdjustedX(15); 
+			//gGameState.cameraRealPos.y = GetCameraAdjustedY(12); 
 		}
 	}
 	/*
@@ -237,7 +342,7 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 
 
 void FMU_open_um(struct FMUProc* proc){
-//StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x16);
+//StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gGameState.cursorTarget.x - gGameState.camera.x, 1, 0x16);
 
 
 	return;
