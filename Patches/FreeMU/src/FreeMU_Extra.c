@@ -116,8 +116,10 @@ void pFMU_InitTimer(struct FMUProc* proc){
 
 
 int pFMU_CorrectCameraPosition(struct FMUProc* proc){
-	if (EnsureCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos)) 
-		return yield;
+	
+	//if (CenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos)) 
+	//if (EnsureCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos)) 
+		//return yield;
 	return no_yield; 
 }
 

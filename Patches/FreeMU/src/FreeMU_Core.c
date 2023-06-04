@@ -26,7 +26,28 @@ static inline bool IsCharInvaild(Unit* unit){
 */
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
+extern const ProcInstruction* gProc_CameraMovement; 
+
 void pFMU_MainLoop(struct FMUProc* proc){
+	
+	
+	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+	if (muProc) { 
+		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
+		CenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
+		}
+	}
+	/*
+	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+	
+	if (muProc) { 
+		if (muProc->stateId >= MU_STATE_MOVEMENT) { 
+		return; 
+		}
+	} 
+	MU_EndAll();
+	*/
+	
 	if(MU_Exists()){
 		
 		return;
@@ -119,31 +140,33 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	} 
 	s8 x = gActiveUnit->xPos;
 	s8 y = gActiveUnit->yPos;
-  u8 facingCur = proc->smsFacing;
+	u8 facingCur = proc->smsFacing;
   
   
-	
-	//proc->xCur = x;
-	//proc->xCur = y;
-	//proc->xTo  = x;
-	//proc->xTo  = y;
+	u8 mD[10]; //moveDirections[10]; 
+	mD[0] = MU_COMMAND_HALT; // default to do no movement 
+
 	
 	if(0xF0&iKeyCur){
 		if(iKeyCur&0x10) {
       x++;
       proc->smsFacing = MU_FACING_RIGHT;
+	  mD[0] = MU_COMMAND_MOVE_RIGHT;
     }
 		else if(iKeyCur&0x20) {
       x--;
       proc->smsFacing = MU_FACING_LEFT;
+	  mD[0] = MU_COMMAND_MOVE_LEFT;
     }
 		else if(iKeyCur&0x40) {
       y--;
       proc->smsFacing = MU_FACING_UP;
+	  mD[0] = MU_COMMAND_MOVE_UP;
     }
 		else if(iKeyCur&0x80) {
       y++;
       proc->smsFacing = MU_FACING_DOWN;
+	  mD[0] = MU_COMMAND_MOVE_DOWN;
     }
 	}
 	 
@@ -159,7 +182,30 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 			
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
+				
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+				MU_DisableAttractCamera(muProc);
+				//gGameState.cameraRealPos.x+= 16; 
+
+				
+				/*
+				mD[1] = MU_COMMAND_CAMERA_ON; 
+				mD[2] = MU_COMMAND_HALT;
+				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+				if (!muProc) { 
+					muProc = MU_Create(gActiveUnit);
+				} 
+				MU_SetFacing(muProc, proc->smsFacing);
+				MU_DisplayAsMMS(muProc);
+				HideUnitSMS(gActiveUnit);
+				MU_EnableAttractCamera(muProc);
+				MU_StartMoveScript(muProc, &mD[0]); 
+				gActiveUnit->xPos = x; 
+				gActiveUnit->yPos = y; 
+				//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+				*/
 				return yield; 
 			} 
 		}

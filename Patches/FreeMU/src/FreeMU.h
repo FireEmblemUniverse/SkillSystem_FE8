@@ -106,3 +106,4 @@ extern u8 gSMSGfxBuffer_Frame3[0x2000];                                   //! FE
 const u8 CheckEventId(u16 eventId);                                       //! FE8U = 0x8083DA8
 const void CopyTileGfxForObj(void* src, void* dest, u8 width, u8 height); //! FE8U = 0x8013020
 const void MuCtr_OnEnd(Proc* proc);                                       //! FE8U = 0x807A1FD
+extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
