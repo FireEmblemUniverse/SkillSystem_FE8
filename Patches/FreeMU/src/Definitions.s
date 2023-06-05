@@ -1,5 +1,7 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+SET_FUNC StartSemiCenteredOrphanMenu, 0x804f64d
+SET_DATA gUnitActionMenuDef, 0x859d1f0
 SET_DATA gProcScr_CamMove, 0x859a548
 SET_DATA gBmSt, 0x202bcb0 
 SET_DATA g_StandingMapSpriteData, 0x88AF880

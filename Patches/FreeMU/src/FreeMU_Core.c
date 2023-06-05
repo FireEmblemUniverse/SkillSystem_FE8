@@ -98,8 +98,70 @@ struct BmSt // Game State Struct
 extern struct BmSt gBmSt;
 
 
+struct MenuRect { s8 x, y, w, h; };
+
+struct MenuDef;
+struct MenuItemDef;
+
+struct MenuProc;
+struct MenuItemProc;
+
+struct MenuItemProc
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2A */ short xTile;
+    /* 2C */ short yTile;
+
+    /* 30 */ const struct MenuItemDef* def;
+
+    /* 34 */ struct TextHandle text;
+
+    /* 3C */ s8 itemNumber;
+    /* 3D */ u8 availability;
+};
+
+struct MenuItemDef
+{
+    /* 00 */ const char* name;
+
+    /* 04 */ u16 nameMsgId, helpMsgId;
+    /* 08 */ u8 color, overrideId;
+
+    /* 0C */ u8(*isAvailable)(const struct MenuItemDef*, int number);
+
+    /* 10 */ int(*onDraw)(struct MenuProc*, struct MenuItemProc*);
+
+    /* 14 */ u8(*onSelected)(struct MenuProc*, struct MenuItemProc*);
+    /* 18 */ u8(*onIdle)(struct MenuProc*, struct MenuItemProc*);
+
+    /* 1C */ int(*onSwitchIn)(struct MenuProc*, struct MenuItemProc*);
+    /* 20 */ int(*onSwitchOut)(struct MenuProc*, struct MenuItemProc*);
+};
+
+struct MenuDef
+{
+    /* 00 */ struct MenuRect rect;
+    /* 04 */ u8 style;
+    /* 08 */ const struct MenuItemDef* menuItems;
+
+    /* 0C */ void(*onInit)(struct MenuProc*);
+    /* 10 */ void(*onEnd)(struct MenuProc*);
+    /* 14 */ void(*_u14)(struct MenuProc*);
+    /* 18 */ u8(*onBPress)(struct MenuProc*, struct MenuItemProc*);
+    /* 1C */ u8(*onRPress)(struct MenuProc*);
+    /* 20 */ u8(*onHelpBox)(struct MenuProc*, struct MenuItemProc*);
+};
+
+extern struct MenuProc* StartSemiCenteredOrphanMenu(const struct MenuDef* def, int xSubject, int xTileLeft, int xTileRight);
+extern const struct MenuDef gUnitActionMenuDef;
+void FMU_open_um(struct FMUProc* proc){
+	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x16);
+	return;
+}
+
 /*
-u16 GetCameraCenteredY(int y) {
+u16 NewGetCameraCenteredY(int y) {
 
     int result  = y - DISPLAY_HEIGHT / 2;
 
@@ -113,8 +175,17 @@ u16 GetCameraCenteredY(int y) {
 
     return result &~ 0xF;
 }
+*/
 
-u16 GetCameraAdjustedX(int x) {
+
+enum {
+    CAMERA_MARGIN_LEFT   = 16 * 7, //16 * 3,
+    CAMERA_MARGIN_RIGHT  = 16 * 7,//16 * 11,
+    CAMERA_MARGIN_TOP    = 16 * 5,//16 * 2,
+    CAMERA_MARGIN_BOTTOM = 16 * 5,//16 * 7,
+};
+
+u16 NewGetCameraCenteredX(int x) {
     int result = gBmSt.camera.x;
 
     if (gBmSt.camera.x + CAMERA_MARGIN_LEFT > x) {
@@ -132,7 +203,23 @@ u16 GetCameraAdjustedX(int x) {
     return result;
 }
 
-*/
+u16 NewGetCameraCenteredY(int y) {
+    int result = gBmSt.camera.y;
+
+    if (gBmSt.camera.y + CAMERA_MARGIN_TOP > y) {
+        result = y - CAMERA_MARGIN_TOP < 0
+            ? 0
+            : y - CAMERA_MARGIN_TOP;
+    }
+
+    if (gBmSt.camera.y + CAMERA_MARGIN_BOTTOM < y) {
+        result = y - CAMERA_MARGIN_BOTTOM > gBmSt.cameraMax.y
+            ? gBmSt.cameraMax.y
+            : y - CAMERA_MARGIN_BOTTOM;
+    }
+
+    return result;
+}
 
 
 //[202BCBC..202BCBF]!!
@@ -140,8 +227,8 @@ s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
     struct CamMoveProc* proc;
 	// camera is SHORT 0x0--p where -- is byte coord and p is number of pixels 
 
-    int xTarget = GetCameraCenteredX(x*16);
-    int yTarget = GetCameraCenteredY(y*16);
+    int xTarget = NewGetCameraCenteredX(x*16);
+    int yTarget = NewGetCameraCenteredY(y*16);
 	
 
     if ((xTarget == gBmSt.camera.x) && (yTarget == gBmSt.camera.y)) {
@@ -177,7 +264,16 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	if (muProc) { 
 		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
 			//EnsureCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
-			VeslyCenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4 , ((muProc->ySubPosition)/16) >> 4);
+			int right = (muProc->facingId == MU_FACING_RIGHT); 
+			int left = (muProc->facingId == MU_FACING_LEFT); 
+			int up = (muProc->facingId == MU_FACING_UP);
+			int down = (muProc->facingId == MU_FACING_DOWN);
+			if (right) right = 1; 
+			if (left) left = 1; 
+			if (up) up = 1; 
+			if (down) down = 1; 
+			
+			VeslyCenterCameraOntoPosition((Proc*)proc,((((muProc->xSubPosition)/16) >> 4) + right - left), ((((muProc->ySubPosition)/16) >> 4) + down - up));
 			//EnsureCameraOntoPosition((Proc*)proc,gActiveUnit->xPos, gActiveUnit->yPos);
 			//VeslyCenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
 			
@@ -381,12 +477,7 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 }
 
 
-void FMU_open_um(struct FMUProc* proc){
-//StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gGameState.cursorTarget.x - gGameState.camera.x, 1, 0x16);
 
-
-	return;
-}
 
 int pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
 	u16 iKeyCur = gKeyState.heldKeys;
