@@ -34,7 +34,7 @@ extern const ProcInstruction* gProc_CameraMovement;
 
 struct CamMoveProc {
     /* 00 */ PROC_HEADER;
-
+	/* 2a */ short dummy; 
     /* 2C */ struct Vec2 to;
     /* 30 */ struct Vec2 from;
     /* 34 */ struct Vec2 watchedCoordinate;
@@ -97,35 +97,74 @@ struct BmSt // Game State Struct
 };
 extern struct BmSt gBmSt;
 
+
+/*
+u16 GetCameraCenteredY(int y) {
+
+    int result  = y - DISPLAY_HEIGHT / 2;
+
+    if (result < 0) {
+        result = 0;
+    }
+
+    if (result > gBmSt.cameraMax.y) {
+        result = gBmSt.cameraMax.y;
+    }
+
+    return result &~ 0xF;
+}
+
+u16 GetCameraAdjustedX(int x) {
+    int result = gBmSt.camera.x;
+
+    if (gBmSt.camera.x + CAMERA_MARGIN_LEFT > x) {
+        result = x - CAMERA_MARGIN_LEFT < 0
+            ? 0
+            : x - CAMERA_MARGIN_LEFT;
+    }
+
+    if (gBmSt.camera.x + CAMERA_MARGIN_RIGHT < x) {
+        result = x - CAMERA_MARGIN_RIGHT > gBmSt.cameraMax.x
+            ? gBmSt.cameraMax.x
+            : x - CAMERA_MARGIN_RIGHT;
+    }
+
+    return result;
+}
+
+*/
+
+
+//[202BCBC..202BCBF]!!
 s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
     struct CamMoveProc* proc;
+	// camera is SHORT 0x0--p where -- is byte coord and p is number of pixels 
 
-    int xTarget = GetCameraAdjustedX(x*16);
-    int yTarget = GetCameraAdjustedY(y*16);
+    int xTarget = GetCameraCenteredX(x*16);
+    int yTarget = GetCameraCenteredY(y*16);
 	
 
     if ((xTarget == gBmSt.camera.x) && (yTarget == gBmSt.camera.y)) {
         return 0;
     }
-
-    if (ProcFind(gProcScr_CamMove)) {
+	
+    if (ProcFind((const ProcInstruction*)&gProcScr_CamMove)) {
         return 0;
     }
 
     if (parent) {
-        proc = (struct CamMoveProc*)ProcStartBlocking(gProcScr_CamMove, parent);
+        proc = (struct CamMoveProc*)ProcStartBlocking((const ProcInstruction*)&gProcScr_CamMove, parent);
     } else {
-        proc = (struct CamMoveProc*)ProcStart(gProcScr_CamMove, 3);
+        proc = (struct CamMoveProc*)ProcStart((const ProcInstruction*)&gProcScr_CamMove, 3);
     }
-
     proc->from.x = gBmSt.camera.x;
     proc->from.y = gBmSt.camera.y;
 
     proc->to.x = xTarget;
     proc->to.y = yTarget;
 
-    proc->watchedCoordinate.x = x*16;
-    proc->watchedCoordinate.y = y*16;
+    proc->watchedCoordinate.x = x;
+    proc->watchedCoordinate.y = y;
 
     return 1;
 }
@@ -138,8 +177,9 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	if (muProc) { 
 		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
 			//EnsureCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
-			//VeslyCenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4 , ((muProc->ySubPosition)/16) >> 4);
-			VeslyCenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
+			VeslyCenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4 , ((muProc->ySubPosition)/16) >> 4);
+			//EnsureCameraOntoPosition((Proc*)proc,gActiveUnit->xPos, gActiveUnit->yPos);
+			//VeslyCenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
 			
 			//gGameState.cameraRealPos.x = GetCameraCenteredX(muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->xSubOffset & 0xF);
 			//gGameState.cameraRealPos.y = GetCameraCenteredY(muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->ySubOffset & 0xF);
