@@ -133,7 +133,9 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #define CurrentChapter 		0x30017ae
 #define TeleportChapter 		0x30017af 
 #define RetreatChapter 		0x30017b0
-#define DigChapter 			0x30017b1 
+//#define DigChapter 			0x30017b1 
+#define FMU_SpeedRam 0x30017b1 
+
 #define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
 #define CurrentPartySizeRam 			0x30017b8 // used to check whether to autosave 
 

@@ -1,15 +1,16 @@
 #define FMU_FunctionList_End "WORD $0"	
 ALIGN 4
 FMU_FunctionList_OnPressA:
+	POIN FMUmisc_RunTalkEvents|1
 	POIN FMU_open_um|1
 	//POIN FMUmisc_RunMapEvents|1
-	//POIN FMUmisc_RunTalkEvents|1
 	//POIN FMU_RunTrapASMC|1
 	FMU_FunctionList_End
 	
 ALIGN 4
 FMU_FunctionList_OnPressB:
 	//POIN FMU_OnButton_EndFreeMove|1
+	POIN FMU_OnButton_ToggleSpeed|1
 	FMU_FunctionList_End
 
 ALIGN 4

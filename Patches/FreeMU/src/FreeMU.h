@@ -16,8 +16,7 @@ struct FMUProc {
 	/* 2F */	s8 yTo;
 	/* 30 */	Unit* FMUnit;
 	/* 34 */    s8 smsFacing; 
-	///* 35 */    u8 timerPress; 
-	/* 36 */    u16 bufferPress; 
+	/* 35 */    u8 moveSpeed; // hardcoded to this proc field in MU6Cfix
 };
 
 struct FMUTrapDef{
@@ -33,7 +32,11 @@ struct LocEventDef {
 	u8 TrapID;
 };
 
-
+struct speedToggleStruct { 
+	u8 speedA; 
+	u8 speedB; 
+}; 
+extern struct speedToggleStruct FreeMU_MovingSpeed; 
 extern struct LocEventDef HookListFMU_LocationBasedEvent[];
 extern struct LocEventDef HookListFMU_LocationBasedEventDoor[];
 extern ButtonFunc FMU_FunctionList_OnPressA[];

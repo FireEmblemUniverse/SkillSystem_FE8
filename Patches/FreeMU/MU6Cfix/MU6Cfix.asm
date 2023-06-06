@@ -146,10 +146,8 @@ MU_GetSpeed_FixForFreeMU:
 	blh		ProcFind
 	cmp		r0, #0
 	beq		.MU_GetSpeed_ReturnNormal
-	ldr		r0, =FreeMU_MovingSpeed
-	ldrb	r0,[r0]
-	lsl		r0, #0x18
-	lsr		r0, #0x18
+	add r0, #0x35 @moveSpeed
+	ldrb r0, [r0] @ speed 
 	pop		{r4, pc}
 	
 	.MU_GetSpeed_ReturnNormal:

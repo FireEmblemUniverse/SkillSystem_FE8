@@ -20,13 +20,18 @@ TimerDelay:
 	If you feel game jagging on operation, make a longer delay time. 
 	*/
 	BYTE 0xFF
-	
+
+ALIGN 4 
+FMU_SpeedRam_Link:
+WORD FMU_SpeedRam
+
 ALIGN 4
 FreeMU_MovingSpeed: 
 	/*
 	Moving speed can only set to 0x1/0x10/0x20/0x40/0x80/0x100
 	*/
-	BYTE 0x20
+	BYTE 0x20 0x40 0x00 0x00 
+	WORD 0x0 
 	
 	/*
 	Here you can set your own actions modularly

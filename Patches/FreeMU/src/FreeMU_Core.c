@@ -221,6 +221,23 @@ u16 NewGetCameraCenteredY(int y) {
     return result;
 }
 
+extern u8* FMU_SpeedRam_Link; 
+void FMU_ResetMoveSpeed(struct FMUProc* proc) { 
+	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedA;
+}
+void FMU_InitMoveSpeed(struct FMUProc* proc) { 
+	proc->moveSpeed = *FMU_SpeedRam_Link;
+}
+void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
+	if (*FMU_SpeedRam_Link == FreeMU_MovingSpeed.speedA) {
+	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedB;
+	proc->moveSpeed = FreeMU_MovingSpeed.speedB;
+	} 
+	else {
+	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedA;
+	proc->moveSpeed = FreeMU_MovingSpeed.speedA;
+	}
+} 
 
 //[202BCBC..202BCBF]!!
 s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
@@ -389,17 +406,24 @@ void pFMUCtr_OnEnd(Proc* proc){
   return;
 }
 
-#define bufferFrames 3
+#define bufferFramesMove 3
+#define bufferFramesAct 4
+
 int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	u16 iKeyCur = gKeyState.heldKeys;
-	if (gKeyState.ABLRPressed) 
-		iKeyCur = 0; // do not move if ABLR were pressed 
-	if (!(gKeyState.heldKeys)) { 
-		if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFrames)) { 
-			iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
-			proc->bufferPress = 0; 
-		} // use latest button press within x frames 
+	
+	// do not move if ABLR were pressed 
+	if ((gKeyState.lastPressKeys & 0x303) && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { // ABLR 
+		iKeyCur = 0; 
+	}
+	else { 
+		if (!(gKeyState.heldKeys)) { 
+			if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesMove)) { 
+				iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
+			} // use latest button press within x frames 
+		} 
 	} 
+	
 	s8 x = gActiveUnit->xPos;
 	s8 y = gActiveUnit->yPos;
 	u8 facingCur = proc->smsFacing;
@@ -486,9 +510,8 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 int pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
 	u16 iKeyCur = gKeyState.heldKeys;
 	if (!(gKeyState.heldKeys)) { 
-		if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFrames)) { 
+		if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { 
 			iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
-			proc->bufferPress = 0; 
 		} // use latest button press within x frames 
 	} 
 	if(1&iKeyCur){ 			//Press A
