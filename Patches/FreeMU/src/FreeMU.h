@@ -110,3 +110,142 @@ const u8 CheckEventId(u16 eventId);                                       //! FE
 const void CopyTileGfxForObj(void* src, void* dest, u8 width, u8 height); //! FE8U = 0x8013020
 const void MuCtr_OnEnd(Proc* proc);                                       //! FE8U = 0x807A1FD
 extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
+
+extern void MU_DisplayAsMMS(struct MUProc* proc); 
+
+extern u16 GetCameraCenteredX(int x); 
+extern u16 GetCameraAdjustedX(int x); 
+extern u16 GetCameraCenteredY(int y); 
+extern u16 GetCameraAdjustedY(int y); 
+extern const ProcInstruction* gProc_CameraMovement; 
+
+struct CamMoveProc {
+    /* 00 */ PROC_HEADER;
+	/* 2a */ short dummy; 
+    /* 2C */ struct Vec2 to;
+    /* 30 */ struct Vec2 from;
+    /* 34 */ struct Vec2 watchedCoordinate;
+    /* 38 */ s16 calibration;
+    /* 3A */ s16 distance;
+    /* 3C */ int frame;
+    /* 40 */ s8 xCalibrated;
+};
+struct ProcCmd
+{
+    short opcode;
+    short dataImm;
+    const void* dataPtr;
+};
+extern struct ProcCmd gProcScr_CamMove[];
+
+
+struct BmSt // Game State Struct
+{
+    /* 00 */ s8  mainLoopEndedFlag;
+
+    /* 01 */ s8  gameLogicSemaphore;
+    /* 02 */ s8  gameGfxSemaphore;
+
+    /* 03 */ u8  _unk04;
+
+    /* 04 */ u8  gameStateBits;
+
+    /* 05 */ u8  _unk05;
+
+    /* 06 */ u16 prevVCount;
+
+    /* 08 */ u32 _unk08;
+
+    /* 0C */ struct Vec2 camera;
+    /* 10 */ struct Vec2 cameraPrevious;
+    /* 14 */ struct Vec2 playerCursor;
+    /* 18 */ struct Vec2 cursorPrevious;
+    /* 1C */ struct Vec2 cursorTarget;
+    /* 20 */ struct Vec2 playerCursorDisplay;
+    /* 24 */ struct Vec2u mapRenderOrigin;
+    /* 28 */ struct Vec2 cameraMax;
+
+    /* 2C */ u16 itemUnk2C;
+    /* 2E */ u16 itemUnk2E;
+
+    /* 30 */ u16 unk30;
+    /* 32 */ s16 unk32;
+    /* 34 */ s16 unk34;
+    /* 36 */ s8 unk36;
+    /* 37 */ s8 unk37;
+    /* 38 */ u8 altBlendACa;
+    /* 39 */ u8 altBlendACb;
+    /* 3A */ u8 altBlendBCa;
+    /* 3B */ u8 altBlendBCb;
+    /* 3C */ u8 just_resumed;
+    /* 3D */ u8 unk3D;
+    /* 3E */ u8 unk3E;
+    /* 3F */ s8 unk3F;
+};
+extern struct BmSt gBmSt;
+
+
+struct MenuRect { s8 x, y, w, h; };
+
+struct MenuDef;
+struct MenuItemDef;
+
+struct MenuProc;
+struct MenuItemProc;
+
+struct MenuItemProc
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2A */ short xTile;
+    /* 2C */ short yTile;
+
+    /* 30 */ const struct MenuItemDef* def;
+
+    /* 34 */ struct TextHandle text;
+
+    /* 3C */ s8 itemNumber;
+    /* 3D */ u8 availability;
+};
+
+struct MenuItemDef
+{
+    /* 00 */ const char* name;
+
+    /* 04 */ u16 nameMsgId, helpMsgId;
+    /* 08 */ u8 color, overrideId;
+
+    /* 0C */ u8(*isAvailable)(const struct MenuItemDef*, int number);
+
+    /* 10 */ int(*onDraw)(struct MenuProc*, struct MenuItemProc*);
+
+    /* 14 */ u8(*onSelected)(struct MenuProc*, struct MenuItemProc*);
+    /* 18 */ u8(*onIdle)(struct MenuProc*, struct MenuItemProc*);
+
+    /* 1C */ int(*onSwitchIn)(struct MenuProc*, struct MenuItemProc*);
+    /* 20 */ int(*onSwitchOut)(struct MenuProc*, struct MenuItemProc*);
+};
+
+struct MenuDef
+{
+    /* 00 */ struct MenuRect rect;
+    /* 04 */ u8 style;
+    /* 08 */ const struct MenuItemDef* menuItems;
+
+    /* 0C */ void(*onInit)(struct MenuProc*);
+    /* 10 */ void(*onEnd)(struct MenuProc*);
+    /* 14 */ void(*_u14)(struct MenuProc*);
+    /* 18 */ u8(*onBPress)(struct MenuProc*, struct MenuItemProc*);
+    /* 1C */ u8(*onRPress)(struct MenuProc*);
+    /* 20 */ u8(*onHelpBox)(struct MenuProc*, struct MenuItemProc*);
+};
+
+
+
+
+
+
+
+
+
+

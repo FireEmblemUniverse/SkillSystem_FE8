@@ -17,7 +17,16 @@ static inline bool IsCharInvaild(Unit* unit){
 	return 0;
 }
 
-
+extern struct MenuProc* StartSemiCenteredOrphanMenu(const struct MenuDef* def, int xSubject, int xTileLeft, int xTileRight);
+extern const struct MenuDef gUnitActionMenuDef;
+bool FMU_open_um(struct FMUProc* proc){
+	gLCDIOBuffer.dispControl.enableWin0 = 0;
+	gLCDIOBuffer.dispControl.enableWin1 = 0;
+	gLCDIOBuffer.dispControl.enableObjWin = 0;
+	gLCDIOBuffer.blendControl.effect = 0;
+	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x14);
+	return 1;
+}
 
 /*!!!!*/
 
