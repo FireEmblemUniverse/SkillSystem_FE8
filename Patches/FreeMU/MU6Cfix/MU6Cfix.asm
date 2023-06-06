@@ -97,9 +97,25 @@ MU_CALL2_FixForFreeMU:
 	ldr		r0, =FreeMovementControlProc
 	blh		ProcFind
 	cmp		r0, #0
+	beq 	.ReturnCall2Camera
+	
+	ldrh r0, [r4] 
+	lsl r0, #0x10 
+	asr r0, #0x14 
+	bl NewGetCameraCenteredX
+	ldr r4, =0x202BCB0 
+	strh r0, [r4, #0x0C] @ Camera real X position 
+	ldrh r0, [r5] 
+	lsl r0, #0x10 
+	asr r0, #0x14 
+	bl NewGetCameraCenteredY
+	strh r0, [r4, #0x0E] @ camera real Y 
+	
+	
+	
 	b .ReturnCall2Normal
 	beq		.ReturnCall2Normal
-	
+	.ReturnCall2Camera: 
 	ldr		r0, =0x8078D23 // camera 
 	bx		r0
 		

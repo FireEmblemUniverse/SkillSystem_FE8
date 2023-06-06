@@ -107,7 +107,7 @@ void pFMU_OnInit(struct FMUProc* proc){
 
 
 void pFMU_InitTimer(struct FMUProc* proc){
-	//CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
+	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
 	pFMU_OnInit(proc);
 	proc->bufferPress = 0; 
 	proc->smsFacing = 2;

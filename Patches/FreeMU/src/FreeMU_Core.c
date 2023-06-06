@@ -259,7 +259,7 @@ s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
 #define  MU_SUBPIXEL_PRECISION 4
 void pFMU_MainLoop(struct FMUProc* proc){
 	
-	
+	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	if (muProc) { 
 		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
@@ -273,7 +273,10 @@ void pFMU_MainLoop(struct FMUProc* proc){
 			if (up) up = 1; 
 			if (down) down = 1; 
 			
-			VeslyCenterCameraOntoPosition((Proc*)proc,((((muProc->xSubPosition)/16) >> 4) + right - left), ((((muProc->ySubPosition)/16) >> 4) + down - up));
+			//VeslyCenterCameraOntoPosition((Proc*)proc,((((muProc->xSubPosition)/16) >> 4) + right - left), ((((muProc->ySubPosition)/16) >> 4) + down - up));
+			
+			
+			
 			//EnsureCameraOntoPosition((Proc*)proc,gActiveUnit->xPos, gActiveUnit->yPos);
 			//VeslyCenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
 			
@@ -295,6 +298,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 			//gGameState.cameraRealPos.y = GetCameraAdjustedY(12); 
 		}
 	}
+	*/
 	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	
@@ -401,30 +405,30 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 	u8 facingCur = proc->smsFacing;
   
   
-	u8 mD[10]; //moveDirections[10]; 
-	mD[0] = MU_COMMAND_HALT; // default to do no movement 
+	//u8 mD[10]; //moveDirections[10]; 
+	//mD[0] = MU_COMMAND_HALT; // default to do no movement 
 
 	
 	if(0xF0&iKeyCur){
 		if(iKeyCur&0x10) {
       x++;
       proc->smsFacing = MU_FACING_RIGHT;
-	  mD[0] = MU_COMMAND_MOVE_RIGHT;
+	  //mD[0] = MU_COMMAND_MOVE_RIGHT;
     }
 		else if(iKeyCur&0x20) {
       x--;
       proc->smsFacing = MU_FACING_LEFT;
-	  mD[0] = MU_COMMAND_MOVE_LEFT;
+	  //mD[0] = MU_COMMAND_MOVE_LEFT;
     }
 		else if(iKeyCur&0x40) {
       y--;
       proc->smsFacing = MU_FACING_UP;
-	  mD[0] = MU_COMMAND_MOVE_UP;
+	  //mD[0] = MU_COMMAND_MOVE_UP;
     }
 		else if(iKeyCur&0x80) {
       y++;
       proc->smsFacing = MU_FACING_DOWN;
-	  mD[0] = MU_COMMAND_MOVE_DOWN;
+	  //mD[0] = MU_COMMAND_MOVE_DOWN;
     }
 	}
 	 
@@ -443,7 +447,7 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 				
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-				MU_DisableAttractCamera(muProc);
+				//MU_DisableAttractCamera(muProc);
 				//gGameState.cameraRealPos.x+= 16; 
 
 				
