@@ -27,12 +27,19 @@ PUSH
 	POIN pFMUCtr_OnEnd|1
 POP
 
+ALIGN 4 
+FMU_InputLoopProc:
+	_6C_SET_NAME(FreeMovementInputProcName)
+	_6C_YIELD
+	_6C_LOOP_ROUTINE(pFMU_InputLoop|1)
+	_6C_END 
 
 ALIGN 4
 	FreeMovementControlProc:
 	_6C_SET_NAME(FreeMovementProcName)
 	_6C_SET_MARK(2)
 	_6C_YIELD
+	_6C_NEW_CHILD(FMU_InputLoopProc)
 	_6C_CALL_ROUTINE(FMU_ResetMoveSpeed|1)
 	_6C_CALL_ROUTINE(FMU_InitMoveSpeed|1)
 	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
@@ -56,7 +63,7 @@ ALIGN 4
 	//_6C_CALL_ROUTINE_2(pFMU_CorrectCameraPosition|1)
 	_6C_LABEL(0xD)	
 	_6C_LOOP_ROUTINE(pFMU_MainLoop|1)
-	//_6C_CALL_ROUTINE(pFMU_HanleContinueMove|1)	
+	//_6C_LOOP_ROUTINE(pFMU_HanleContinueMove|1)	
 	_6C_GOTO(0xD)
 	
 	_6C_LABEL(1)	//Try Move Unit by Button Press
@@ -64,36 +71,42 @@ ALIGN 4
 	_6C_GOTO(0)
 	
 	_6C_LABEL(2)	//Unit Not Move
-	_6C_CALL_ROUTINE_2(pFMU_HandleKeyMisc|1)
-	_6C_CALL_ROUTINE_2(pFMU_RunLocBasedAsmcAuto|1)	// conditionally yield 
-	_6C_CALL_ROUTINE_2(pFMU_HandleSave|1) // timer to save (and end MMS)
+	//_6C_CALL_ROUTINE_2(pFMU_HandleKeyMisc|1)
+	//_6C_CALL_ROUTINE_2(pFMU_RunLocBasedAsmcAuto|1)	// conditionally yield 
+	//_6C_CALL_ROUTINE_2(pFMU_HandleSave|1) // timer to save (and end MMS)
+	_6C_YIELD
 	_6C_GOTO(0)
 	
 	_6C_LABEL(4)	//Press A
 	_6C_CALL_ROUTINE(pFMU_PressA|1)
-	_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
+	//_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
 	_6C_YIELD
 	_6C_GOTO(0xE)
 	
 	_6C_LABEL(5)	//Press B
 	_6C_CALL_ROUTINE(pFMU_PressB|1)
+	_6C_YIELD 
 	_6C_GOTO(0)
 	
 	_6C_LABEL(6)	//Press L
 	_6C_CALL_ROUTINE(pFMU_PressL|1)
+	_6C_YIELD 
 	_6C_GOTO(0)
 	
 	_6C_LABEL(7)	//Press R
 	_6C_CALL_ROUTINE(pFMU_PressR|1)
+	_6C_YIELD 
 	_6C_GOTO(0)
 	
 	_6C_LABEL(8)	//Press Select
 	_6C_SLEEP(0x3)
 	_6C_CALL_ROUTINE(pFMU_PressSelect|1)
+	_6C_YIELD 
 	_6C_GOTO(0)
 	
 	_6C_LABEL(9)	//Press Start
 	_6C_CALL_ROUTINE(pFMU_PressStart|1)
+	_6C_YIELD 
 	_6C_GOTO(0)
 	
 	_6C_LABEL(0xE)	//Save
@@ -120,6 +133,11 @@ ALIGN 4
 	ALIGN 4
 	FreeMovementProcName:
 	String(E_FREEMOVE)
+	BYTE 0
+	
+	ALIGN 4
+	FreeMovementInputProcName:
+	String(E_FREEMOVE_INPUT)
 	BYTE 0
 	
 	ALIGN 4

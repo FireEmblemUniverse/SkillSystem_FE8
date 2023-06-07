@@ -17,6 +17,10 @@ struct FMUProc {
 	/* 30 */	Unit* FMUnit;
 	/* 34 */    s8 smsFacing; 
 	/* 35 */    u8 moveSpeed; // hardcoded to this proc field in MU6Cfix
+	/* 36 */    u16 curInput; 
+	/* 38 */    u16 lastInput; 
+	/* 3a */    u8 yield; 
+	/* 3b */    u8 yield_move; 
 };
 
 struct FMUTrapDef{
@@ -75,8 +79,8 @@ u8 FMU_ChkKeyForMUExtra(void);
 /*------------- Core --------------*/
 void pFMU_MainLoop(struct FMUProc*);
 int pFMU_HanleContinueMove(struct FMUProc*);
-int pFMU_MoveUnit(struct FMUProc*);
-int pFMU_HandleKeyMisc(struct FMUProc*);
+int pFMU_MoveUnit(struct FMUProc*, u16 iKeyCur);
+int pFMU_HandleKeyMisc(struct FMUProc*, u16 iKeyCur);
 int pFMU_HandleSave(struct FMUProc*);
 void pFMU_PressA(struct FMUProc*);
 void pFMU_PressB(struct FMUProc*);
@@ -84,6 +88,7 @@ void pFMU_PressL(struct FMUProc*);
 void pFMU_PressR(struct FMUProc*);
 void pFMU_PressSelect(struct FMUProc*);
 void pFMU_PressStart(struct FMUProc*);
+void pFMU_UpdateSMS(struct FMUProc* proc);
 
 
 /*------------- Events --------------*/

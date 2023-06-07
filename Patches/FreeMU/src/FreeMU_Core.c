@@ -19,75 +19,62 @@ static inline bool IsCharInvaild(Unit* unit){
 	return 0;
 }
 
-/*
- *
- *	In Core
- *
-*/
+#define bufferFramesMove 3
+#define bufferFramesAct 4
 
+void pFMU_InputLoop(struct Proc* inputProc) { 
+	struct FMUProc* proc = (struct FMUProc*)inputProc->parent; 
+	
+	
+	
+	
+	u16 iKeyCur = gKeyState.heldKeys;
+	
+	//if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesMove)) { 
+	//	iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
+	//} // use latest button press within x frames 
+	
+	
+	/*
 
+	else { 
+		if (!(gKeyState.heldKeys)) { 
+			
+		} 
+	} 
 
-
-/*
-u16 NewGetCameraCenteredY(int y) {
-
-    int result  = y - DISPLAY_HEIGHT / 2;
-
-    if (result < 0) {
-        result = 0;
-    }
-
-    if (result > gBmSt.cameraMax.y) {
-        result = gBmSt.cameraMax.y;
-    }
-
-    return result &~ 0xF;
+	if (!(gKeyState.heldKeys)) { 
+		if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { 
+			iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
+		} // use latest button press within x frames 
+	} 
+	*/
+	/*
+	if(0xF0&iKeyCur) { 
+		if (!proc->yield_move) { 
+			ProcGoto((Proc*)proc,0x1); // movement input 
+			return yield;
+		} 
+	} */ 
+	
+	proc->lastInput = proc->curInput; 
+	if (!(proc->yield)) { 
+		proc->curInput = iKeyCur; 
+		if (iKeyCur) { 
+			asm("mov r11, r11"); 
+			pFMU_HandleKeyMisc(proc, iKeyCur); 
+			proc->yield = true; 
+			if (!(proc->yield_move)) { 
+				pFMU_MoveUnit(proc, iKeyCur);
+				proc->yield_move = true; 
+			} 
+		} 
+	}
+	
 }
-*/
 
 
-enum {
-    CAMERA_MARGIN_LEFT   = 16 * 7, //16 * 3,
-    CAMERA_MARGIN_RIGHT  = 16 * 7,//16 * 11,
-    CAMERA_MARGIN_TOP    = 16 * 5,//16 * 2,
-    CAMERA_MARGIN_BOTTOM = 16 * 5,//16 * 7,
-};
 
-u16 NewGetCameraCenteredX(int x) {
-    int result = gBmSt.camera.x;
-
-    if (gBmSt.camera.x + CAMERA_MARGIN_LEFT > x) {
-        result = x - CAMERA_MARGIN_LEFT < 0
-            ? 0
-            : x - CAMERA_MARGIN_LEFT;
-    }
-
-    if (gBmSt.camera.x + CAMERA_MARGIN_RIGHT < x) {
-        result = x - CAMERA_MARGIN_RIGHT > gBmSt.cameraMax.x
-            ? gBmSt.cameraMax.x
-            : x - CAMERA_MARGIN_RIGHT;
-    }
-
-    return result;
-}
-
-u16 NewGetCameraCenteredY(int y) {
-    int result = gBmSt.camera.y;
-
-    if (gBmSt.camera.y + CAMERA_MARGIN_TOP > y) {
-        result = y - CAMERA_MARGIN_TOP < 0
-            ? 0
-            : y - CAMERA_MARGIN_TOP;
-    }
-
-    if (gBmSt.camera.y + CAMERA_MARGIN_BOTTOM < y) {
-        result = y - CAMERA_MARGIN_BOTTOM > gBmSt.cameraMax.y
-            ? gBmSt.cameraMax.y
-            : y - CAMERA_MARGIN_BOTTOM;
-    }
-
-    return result;
-}
 
 extern u8* FMU_SpeedRam_Link; 
 void FMU_ResetMoveSpeed(struct FMUProc* proc) { 
@@ -95,6 +82,8 @@ void FMU_ResetMoveSpeed(struct FMUProc* proc) {
 }
 void FMU_InitMoveSpeed(struct FMUProc* proc) { 
 	proc->moveSpeed = *FMU_SpeedRam_Link;
+	proc->curInput = 0; 
+	proc->lastInput = 0; 
 }
 void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
 	if (*FMU_SpeedRam_Link == FreeMU_MovingSpeed.speedA) {
@@ -107,46 +96,15 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 	}
 } 
 
-//[202BCBC..202BCBF]!!
-s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
-    struct CamMoveProc* proc;
-	// camera is SHORT 0x0--p where -- is byte coord and p is number of pixels 
-
-    int xTarget = NewGetCameraCenteredX(x*16);
-    int yTarget = NewGetCameraCenteredY(y*16);
-	
-
-    if ((xTarget == gBmSt.camera.x) && (yTarget == gBmSt.camera.y)) {
-        return 0;
-    }
-	
-    if (ProcFind((const ProcInstruction*)&gProcScr_CamMove)) {
-        return 0;
-    }
-
-    if (parent) {
-        proc = (struct CamMoveProc*)ProcStartBlocking((const ProcInstruction*)&gProcScr_CamMove, parent);
-    } else {
-        proc = (struct CamMoveProc*)ProcStart((const ProcInstruction*)&gProcScr_CamMove, (Proc*)3);
-    }
-    proc->from.x = gBmSt.camera.x;
-    proc->from.y = gBmSt.camera.y;
-
-    proc->to.x = xTarget;
-    proc->to.y = yTarget;
-
-    proc->watchedCoordinate.x = x;
-    proc->watchedCoordinate.y = y;
-
-    return 1;
-}
 
 extern const ProcInstruction* gProc_Menu; 
 #define  MU_SUBPIXEL_PRECISION 4
-void pFMU_MainLoop(struct FMUProc* proc){
+void pFMU_MainLoop(struct FMUProc* proc){ 
+	
 	if (ProcFind(gProc_Menu)) {
 		return; 
 	}
+	proc->yield = false;
 	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	if (muProc) { 
@@ -199,10 +157,10 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	*/
 	
 	if(MU_Exists()){
-		
 		return;
 	}
-	pFMU_MoveUnit(proc);
+	proc->yield_move = false; // 8002F24 proc goto 
+	
 	//if(pFMU_MoveUnit(proc) == yield) {
 		//return; 
 	//}
@@ -212,56 +170,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 
 
 int pFMU_HanleContinueMove(struct FMUProc* proc){
+	proc->yield = false;
 	return yield;
 }
 
 
-extern void PlayerPhase_Suspend(void); 
-void FMU_ClearActionAndSave(struct FMUProc* proc) { 
-	PlayerPhase_Suspend(); 
-} 
-
-extern const struct SMSData NewStandingMapSpriteTable[];
-void pFMU_UpdateSMS(struct FMUProc* proc){
-  u32 tileIndex = (proc->FMUnit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
-  u8 smsID = proc->FMUnit->pClassData->SMSId;
-  u16 size = NewStandingMapSpriteTable[smsID].size;
-  u8 width =  size < 2 ? 16 : 32;
-  u8 height = size > 0 ? 32 : 16;
-  u32 srcOffs[3] = {0, 0, 0};
-  int frame = GetGameClock() % 72;
-  
-  // Do nothing if no different-direction facing idle sprites exist.
-  if (FMU_idleSMSGfxTable[smsID] == NULL)
-    return;
-  
-  // Decompress sms gfx.
-  if (proc->smsFacing==2)
-    Decompress(NewStandingMapSpriteTable[smsID].pGraphics, gGenericBuffer);    // Downward facing sms.
-  else {
-    Decompress(FMU_idleSMSGfxTable[smsID], gGenericBuffer);                 // Other direction-facing sms.
-    srcOffs[0] = proc->smsFacing==3 ? proc->smsFacing-1 : proc->smsFacing;  // Up-facing sprite comes immediately after right.
-  }
-  
-  // Move sms gfx into smsbuffer.
-  srcOffs[0] = (srcOffs[0] << (7 + size)) * 3;
-  srcOffs[1] = srcOffs[0] + (0x80 << (size << 2));
-  srcOffs[2] = srcOffs[1] + (0x80 << (size << 2));
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame1+(tileIndex<<5), width>>3, height>>3);
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
-  
-  // Overwrite VRAM with new SMS next frame. Timings taken from 0x8026F2C, SyncUnitSpriteSheet.
-  if (frame < 31)
-    RegisterTileGraphics(gSMSGfxBuffer_Frame1, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame1));
-  else if (frame < 35)
-    RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
-  else if (frame < 67)
-    RegisterTileGraphics(gSMSGfxBuffer_Frame3, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame3));
-  else
-    RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
-  return;
-}
 
 // This replaces MuCtr_OnEnd.
 // Adapts different-facing SMS during free movement.
@@ -277,24 +190,11 @@ void pFMUCtr_OnEnd(Proc* proc){
   return;
 }
 
-#define bufferFramesMove 3
-#define bufferFramesAct 4
-
-int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
-	u16 iKeyCur = gKeyState.heldKeys;
-	
-	// do not move if ABLR were pressed 
-	if ((gKeyState.lastPressKeys & 0x303 || gKeyState.heldKeys & 0x303) && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { // ABLR 
-		iKeyCur = 0; 
-	}
-	else { 
-		if (!(gKeyState.heldKeys)) { 
-			if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesMove)) { 
-				iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
-			} // use latest button press within x frames 
-		} 
-	} 
-	
+int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
+	// do not consider input for movement if ABLR were pressed 
+	//if (((gKeyState.lastPressKeys & 0x303) || (gKeyState.heldKeys & 0x303)) && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { // ABLR 
+		//iKeyCur = 0; 
+	//}
 	s8 x = gActiveUnit->xPos;
 	s8 y = gActiveUnit->yPos;
 	u8 facingCur = proc->smsFacing;
@@ -378,35 +278,35 @@ int pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 
 
 
-int pFMU_HandleKeyMisc(struct FMUProc* proc){	//Label 2
-	u16 iKeyCur = gKeyState.heldKeys;
-	if (!(gKeyState.heldKeys)) { 
-		if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { 
-			iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
-		} // use latest button press within x frames 
-	} 
+int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
 	if(1&iKeyCur){ 			//Press A
 		ProcGoto((Proc*)proc,0x4); 
+		proc->yield_move = true; 
 		return yield;
 		}			
 	if(2&iKeyCur){ 			//Press B
 		ProcGoto((Proc*)proc,0x5); 
+		proc->yield_move = true; 
 		return yield;
 		}	
 	if(2&(iKeyCur>>0x8)){ 	//Press L
 		ProcGoto((Proc*)proc,0x6); 
+		proc->yield_move = true; 
 		return yield;
 		}
 	if(1&(iKeyCur>>0x8)){ 	//Press R
 		ProcGoto((Proc*)proc,0x7); 
+		proc->yield_move = true; 
 		return yield;
 		}
 	if(4&iKeyCur){ 			//Press Select
 		ProcGoto((Proc*)proc,0x8); 
+		proc->yield_move = true; 
 		return yield;
 		}
 	if(8&iKeyCur){ 			//Press Start
 		ProcGoto((Proc*)proc,0x9); 
+		proc->yield_move = true; 
 		return yield;
 		}
 	return no_yield;
@@ -423,7 +323,7 @@ int pFMU_HandleSave(struct FMUProc* proc){	//KeyPress Default
 
 
 void pFMU_PressA(struct FMUProc* proc){
-	u16 iKeyCur = gKeyState.heldKeys;
+	u16 iKeyCur = proc->curInput;
 	if( 0 == (1&iKeyCur) )
 		return;
 	
@@ -436,7 +336,7 @@ void pFMU_PressA(struct FMUProc* proc){
 
 
 void pFMU_PressB(struct FMUProc* proc){
-	u16 iKeyCur = gKeyState.heldKeys;
+	u16 iKeyCur = proc->curInput;
 	if( 0 == (2&iKeyCur) )
 		return;
 	
@@ -448,7 +348,7 @@ void pFMU_PressB(struct FMUProc* proc){
 }
 
 void pFMU_PressL(struct FMUProc* proc){
-	u16 iKeyCur = gKeyState.heldKeys;
+	u16 iKeyCur = proc->curInput;
 	if( 0 == (2&iKeyCur>>0x8) )
 		return;
 	
@@ -460,7 +360,7 @@ void pFMU_PressL(struct FMUProc* proc){
 }
 
 void pFMU_PressR(struct FMUProc* proc){
-	u16 iKeyCur = gKeyState.heldKeys;
+	u16 iKeyCur = proc->curInput;
 	if( 0 == (1&iKeyCur>>0x8) )
 		return;
 	
@@ -472,7 +372,7 @@ void pFMU_PressR(struct FMUProc* proc){
 }
 
 void pFMU_PressStart(struct FMUProc* proc){
-	u16 iKeyCur = gKeyState.heldKeys;
+	u16 iKeyCur = proc->curInput;
 	if( 0 == (8&iKeyCur) )
 		return;
 	
@@ -484,7 +384,7 @@ void pFMU_PressStart(struct FMUProc* proc){
 }
 
 void pFMU_PressSelect(struct FMUProc* proc){
-	u16 iKeyCur = gKeyState.heldKeys;
+	u16 iKeyCur = proc->curInput;
 	if( 0 == (4&iKeyCur) ) 			//Press Select
 		return;
 
@@ -496,6 +396,128 @@ void pFMU_PressSelect(struct FMUProc* proc){
 }
 
 
+enum {
+    CAMERA_MARGIN_LEFT   = 16 * 7, //16 * 3,
+    CAMERA_MARGIN_RIGHT  = 16 * 7,//16 * 11,
+    CAMERA_MARGIN_TOP    = 16 * 5,//16 * 2,
+    CAMERA_MARGIN_BOTTOM = 16 * 5,//16 * 7,
+};
+
+u16 NewGetCameraCenteredX(int x) {
+    int result = gBmSt.camera.x;
+
+    if (gBmSt.camera.x + CAMERA_MARGIN_LEFT > x) {
+        result = x - CAMERA_MARGIN_LEFT < 0
+            ? 0
+            : x - CAMERA_MARGIN_LEFT;
+    }
+
+    if (gBmSt.camera.x + CAMERA_MARGIN_RIGHT < x) {
+        result = x - CAMERA_MARGIN_RIGHT > gBmSt.cameraMax.x
+            ? gBmSt.cameraMax.x
+            : x - CAMERA_MARGIN_RIGHT;
+    }
+
+    return result;
+}
+
+u16 NewGetCameraCenteredY(int y) {
+    int result = gBmSt.camera.y;
+
+    if (gBmSt.camera.y + CAMERA_MARGIN_TOP > y) {
+        result = y - CAMERA_MARGIN_TOP < 0
+            ? 0
+            : y - CAMERA_MARGIN_TOP;
+    }
+
+    if (gBmSt.camera.y + CAMERA_MARGIN_BOTTOM < y) {
+        result = y - CAMERA_MARGIN_BOTTOM > gBmSt.cameraMax.y
+            ? gBmSt.cameraMax.y
+            : y - CAMERA_MARGIN_BOTTOM;
+    }
+
+    return result;
+}
+//[202BCBC..202BCBF]!!
+s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
+    struct CamMoveProc* proc;
+	// camera is SHORT 0x0--p where -- is byte coord and p is number of pixels 
+
+    int xTarget = NewGetCameraCenteredX(x*16);
+    int yTarget = NewGetCameraCenteredY(y*16);
+	
+
+    if ((xTarget == gBmSt.camera.x) && (yTarget == gBmSt.camera.y)) {
+        return 0;
+    }
+	
+    if (ProcFind((const ProcInstruction*)&gProcScr_CamMove)) {
+        return 0;
+    }
+
+    if (parent) {
+        proc = (struct CamMoveProc*)ProcStartBlocking((const ProcInstruction*)&gProcScr_CamMove, parent);
+    } else {
+        proc = (struct CamMoveProc*)ProcStart((const ProcInstruction*)&gProcScr_CamMove, (Proc*)3);
+    }
+    proc->from.x = gBmSt.camera.x;
+    proc->from.y = gBmSt.camera.y;
+
+    proc->to.x = xTarget;
+    proc->to.y = yTarget;
+
+    proc->watchedCoordinate.x = x;
+    proc->watchedCoordinate.y = y;
+
+    return 1;
+}
+
+extern void PlayerPhase_Suspend(void); 
+void FMU_ClearActionAndSave(struct FMUProc* proc) { 
+	PlayerPhase_Suspend(); 
+} 
+
+extern const struct SMSData NewStandingMapSpriteTable[];
+void pFMU_UpdateSMS(struct FMUProc* proc){
+  u32 tileIndex = (proc->FMUnit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
+  u8 smsID = proc->FMUnit->pClassData->SMSId;
+  u16 size = NewStandingMapSpriteTable[smsID].size;
+  u8 width =  size < 2 ? 16 : 32;
+  u8 height = size > 0 ? 32 : 16;
+  u32 srcOffs[3] = {0, 0, 0};
+  int frame = GetGameClock() % 72;
+  
+  // Do nothing if no different-direction facing idle sprites exist.
+  if (FMU_idleSMSGfxTable[smsID] == NULL)
+    return;
+  
+  // Decompress sms gfx.
+  if (proc->smsFacing==2)
+    Decompress(NewStandingMapSpriteTable[smsID].pGraphics, gGenericBuffer);    // Downward facing sms.
+  else {
+    Decompress(FMU_idleSMSGfxTable[smsID], gGenericBuffer);                 // Other direction-facing sms.
+    srcOffs[0] = proc->smsFacing==3 ? proc->smsFacing-1 : proc->smsFacing;  // Up-facing sprite comes immediately after right.
+  }
+  
+  // Move sms gfx into smsbuffer.
+  srcOffs[0] = (srcOffs[0] << (7 + size)) * 3;
+  srcOffs[1] = srcOffs[0] + (0x80 << (size << 2));
+  srcOffs[2] = srcOffs[1] + (0x80 << (size << 2));
+  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame1+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
+  
+  // Overwrite VRAM with new SMS next frame. Timings taken from 0x8026F2C, SyncUnitSpriteSheet.
+  if (frame < 31)
+    RegisterTileGraphics(gSMSGfxBuffer_Frame1, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame1));
+  else if (frame < 35)
+    RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
+  else if (frame < 67)
+    RegisterTileGraphics(gSMSGfxBuffer_Frame3, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame3));
+  else
+    RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
+  return;
+}
 
 /*
 void pFMU_MainLoop(struct FMUProc* proc){
