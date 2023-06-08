@@ -220,37 +220,26 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 
 	iKeyCur = iKeyCur & 0xF0; 
 	if(iKeyCur){
+		int i; 
 		
-		/*
-		int i = 0; 
 		
-		asm("mov r11, r11"); 
-		while ((iKeyCur != KEY_DPAD_RIGHT) || (iKeyCur != KEY_DPAD_LEFT) || (iKeyCur != KEY_DPAD_DOWN) || (iKeyCur != KEY_DPAD_UP)) { 
+		//while (!((iKeyCur != KEY_DPAD_RIGHT) || (iKeyCur != KEY_DPAD_LEFT) || (iKeyCur != KEY_DPAD_DOWN) || (iKeyCur != KEY_DPAD_UP))) { 
+		while (true) { 
+			if ((iKeyCur == KEY_DPAD_RIGHT) || (iKeyCur == KEY_DPAD_DOWN) || (iKeyCur == KEY_DPAD_LEFT) || (iKeyCur == KEY_DPAD_UP)) 
+				break; 
+			asm("mov r11, r11"); 
 			// choose which input at random instead of always prioritizing right > left > up > down 
-			i = NextRN_N(5); 
-			switch (i) { 
-				case 0: 
-					iKeyCur = iKeyCur & (KEY_DPAD_RIGHT|KEY_DPAD_LEFT|KEY_DPAD_DOWN); 
-					break; 
-				case 1: 
-					iKeyCur = iKeyCur & (KEY_DPAD_RIGHT|KEY_DPAD_UP|KEY_DPAD_DOWN); 
-					break; 
-				case 2: 
-					iKeyCur = iKeyCur & (KEY_DPAD_RIGHT|KEY_DPAD_UP|KEY_DPAD_LEFT); 
-					break; 
-				case 3: 
-					iKeyCur = iKeyCur & (KEY_DPAD_LEFT|KEY_DPAD_UP|KEY_DPAD_DOWN); 
-					break; 
-				case 4: 
-					iKeyCur = iKeyCur & (KEY_DPAD_LEFT|KEY_DPAD_UP|KEY_DPAD_RIGHT); 
-					break; 
-				case 5: 
-					iKeyCur = iKeyCur & (KEY_DPAD_LEFT|KEY_DPAD_DOWN|KEY_DPAD_RIGHT); 
-					//break; 
-			} 
-		
+			i = NextRN_N(4); 
+			if (i == 0) 
+				iKeyCur = iKeyCur & 0xE0;//&~ KEY_DPAD_RIGHT; 
+			if (i == 1)           //
+				iKeyCur = iKeyCur & 0xD0;//&~ KEY_DPAD_UP; 
+			if (i == 2)           //
+				iKeyCur = iKeyCur & 0xB0;//&~ KEY_DPAD_LEFT; 
+			if (i == 3)           //
+				iKeyCur = iKeyCur & 0x70;//&~ KEY_DPAD_DOWN; 
 		} 
-		*/
+		
 		
 		if(iKeyCur&0x10) {
 		x++;
