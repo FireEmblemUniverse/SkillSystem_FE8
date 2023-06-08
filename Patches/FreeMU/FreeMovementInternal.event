@@ -41,7 +41,7 @@ ALIGN 4
 	_6C_YIELD
 	_6C_NEW_CHILD(FMU_InputLoopProc)
 	_6C_CALL_ROUTINE(FMU_ResetMoveSpeed|1)
-	_6C_CALL_ROUTINE(FMU_InitMoveSpeed|1)
+	_6C_CALL_ROUTINE(FMU_InitVariables|1)
 	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
 	
 	_6C_LABEL(0xC)	//Proc Start

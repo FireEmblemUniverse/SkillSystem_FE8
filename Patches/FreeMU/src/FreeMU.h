@@ -21,6 +21,7 @@ struct FMUProc {
 	/* 38 */    u16 lastInput; 
 	/* 3a */    u8 yield; 
 	/* 3b */    u8 yield_move; 
+	/* 3c */    u8 countdown; 
 };
 
 struct FMUTrapDef{
@@ -74,7 +75,7 @@ void pFMU_OnInit(struct FMUProc*);
 void pFMU_InitTimer(struct FMUProc*);
 int pFMU_CorrectCameraPosition(struct FMUProc*);
 u8 FMU_ChkKeyForMUExtra(void);
-
+void FMU_InitVariables(struct FMUProc* proc); 
 
 /*------------- Core --------------*/
 void pFMU_MainLoop(struct FMUProc*);

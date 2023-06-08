@@ -44,7 +44,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 	} 
 
 	if (!(gKeyState.heldKeys)) { 
-		if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { 
+		if (gKeyState.lastPressKeys && ()) { 
 			iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
 		} // use latest button press within x frames 
 	} 
@@ -56,15 +56,17 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 			return yield;
 		} 
 	} */ 
-	
+	u16 iKeyOld = proc->lastInput; 
 	proc->lastInput = proc->curInput; 
 	if (!(proc->yield)) { 
 		proc->curInput = iKeyCur; 
-		if (iKeyCur) { 
-			asm("mov r11, r11"); 
-			pFMU_HandleKeyMisc(proc, iKeyCur); 
+		u16 iKeyAct = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
+		if (pFMU_HandleKeyMisc(proc, iKeyAct) == yield) { 
+			proc->countdown = 3; 
 			proc->yield = true; 
-			if (!(proc->yield_move)) { 
+		}
+		else if (!(proc->yield_move)) { 
+			if (iKeyCur) { 
 				pFMU_MoveUnit(proc, iKeyCur);
 				proc->yield_move = true; 
 			} 
@@ -80,12 +82,20 @@ extern u8* FMU_SpeedRam_Link;
 void FMU_ResetMoveSpeed(struct FMUProc* proc) { 
 	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedA;
 }
-void FMU_InitMoveSpeed(struct FMUProc* proc) { 
+void FMU_InitVariables(struct FMUProc* proc) { 
+	pFMU_OnInit(proc);
+	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
+	proc->smsFacing = 2;
 	proc->moveSpeed = *FMU_SpeedRam_Link;
 	proc->curInput = 0; 
 	proc->lastInput = 0; 
+	proc->countdown = 2; 
+	proc->yield = true; 
+	proc->yield_move = true; 
+	
 }
 void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
+	//asm("mov r11, r11"); 
 	if (*FMU_SpeedRam_Link == FreeMU_MovingSpeed.speedA) {
 	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedB;
 	proc->moveSpeed = FreeMU_MovingSpeed.speedB;
@@ -104,7 +114,12 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	if (ProcFind(gProc_Menu)) {
 		return; 
 	}
-	proc->yield = false;
+	if (!(proc->countdown)) { 
+		proc->yield = false;
+	} 
+	else { 
+		proc->countdown--; 
+	} 
 	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	if (muProc) { 
@@ -203,28 +218,60 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 	//u8 mD[10]; //moveDirections[10]; 
 	//mD[0] = MU_COMMAND_HALT; // default to do no movement 
 
-	
-	if(0xF0&iKeyCur){
+	iKeyCur = iKeyCur & 0xF0; 
+	if(iKeyCur){
+		
+		/*
+		int i = 0; 
+		
+		asm("mov r11, r11"); 
+		while ((iKeyCur != KEY_DPAD_RIGHT) || (iKeyCur != KEY_DPAD_LEFT) || (iKeyCur != KEY_DPAD_DOWN) || (iKeyCur != KEY_DPAD_UP)) { 
+			// choose which input at random instead of always prioritizing right > left > up > down 
+			i = NextRN_N(5); 
+			switch (i) { 
+				case 0: 
+					iKeyCur = iKeyCur & (KEY_DPAD_RIGHT|KEY_DPAD_LEFT|KEY_DPAD_DOWN); 
+					break; 
+				case 1: 
+					iKeyCur = iKeyCur & (KEY_DPAD_RIGHT|KEY_DPAD_UP|KEY_DPAD_DOWN); 
+					break; 
+				case 2: 
+					iKeyCur = iKeyCur & (KEY_DPAD_RIGHT|KEY_DPAD_UP|KEY_DPAD_LEFT); 
+					break; 
+				case 3: 
+					iKeyCur = iKeyCur & (KEY_DPAD_LEFT|KEY_DPAD_UP|KEY_DPAD_DOWN); 
+					break; 
+				case 4: 
+					iKeyCur = iKeyCur & (KEY_DPAD_LEFT|KEY_DPAD_UP|KEY_DPAD_RIGHT); 
+					break; 
+				case 5: 
+					iKeyCur = iKeyCur & (KEY_DPAD_LEFT|KEY_DPAD_DOWN|KEY_DPAD_RIGHT); 
+					//break; 
+			} 
+		
+		} 
+		*/
+		
 		if(iKeyCur&0x10) {
-      x++;
-      proc->smsFacing = MU_FACING_RIGHT;
-	  //mD[0] = MU_COMMAND_MOVE_RIGHT;
-    }
+		x++;
+		proc->smsFacing = MU_FACING_RIGHT;
+		//mD[0] = MU_COMMAND_MOVE_RIGHT;
+		}
 		else if(iKeyCur&0x20) {
-      x--;
-      proc->smsFacing = MU_FACING_LEFT;
-	  //mD[0] = MU_COMMAND_MOVE_LEFT;
-    }
+		x--;
+		proc->smsFacing = MU_FACING_LEFT;
+		//mD[0] = MU_COMMAND_MOVE_LEFT;
+		}
 		else if(iKeyCur&0x40) {
-      y--;
-      proc->smsFacing = MU_FACING_UP;
-	  //mD[0] = MU_COMMAND_MOVE_UP;
-    }
+		y--;
+		proc->smsFacing = MU_FACING_UP;
+		//mD[0] = MU_COMMAND_MOVE_UP;
+		}
 		else if(iKeyCur&0x80) {
-      y++;
-      proc->smsFacing = MU_FACING_DOWN;
-	  //mD[0] = MU_COMMAND_MOVE_DOWN;
-    }
+		y++;
+		proc->smsFacing = MU_FACING_DOWN;
+		//mD[0] = MU_COMMAND_MOVE_DOWN;
+		}
 	}
 	 
     if (facingCur != proc->smsFacing) { 
@@ -239,7 +286,6 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 			
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
-				
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 				//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 				//MU_DisableAttractCamera(muProc);
@@ -280,32 +326,32 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 
 int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
 	if(1&iKeyCur){ 			//Press A
-		ProcGoto((Proc*)proc,0x4); 
+		pFMU_PressA(proc); 
 		proc->yield_move = true; 
 		return yield;
 		}			
 	if(2&iKeyCur){ 			//Press B
-		ProcGoto((Proc*)proc,0x5); 
+		pFMU_PressB(proc);
 		proc->yield_move = true; 
 		return yield;
 		}	
 	if(2&(iKeyCur>>0x8)){ 	//Press L
-		ProcGoto((Proc*)proc,0x6); 
+		pFMU_PressL(proc);
 		proc->yield_move = true; 
 		return yield;
 		}
 	if(1&(iKeyCur>>0x8)){ 	//Press R
-		ProcGoto((Proc*)proc,0x7); 
+		pFMU_PressR(proc);
 		proc->yield_move = true; 
 		return yield;
 		}
 	if(4&iKeyCur){ 			//Press Select
-		ProcGoto((Proc*)proc,0x8); 
+		pFMU_PressSelect(proc);
 		proc->yield_move = true; 
 		return yield;
 		}
 	if(8&iKeyCur){ 			//Press Start
-		ProcGoto((Proc*)proc,0x9); 
+		pFMU_PressStart(proc);
 		proc->yield_move = true; 
 		return yield;
 		}
