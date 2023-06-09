@@ -22,6 +22,7 @@ struct FMUProc {
 	/* 3a */    u8 yield; 
 	/* 3b */    u8 yield_move; 
 	/* 3c */    u8 countdown; 
+	/* 3d */    u8 usedLedge; 
 };
 
 struct FMUTrapDef{
