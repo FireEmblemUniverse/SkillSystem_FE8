@@ -4,28 +4,19 @@ static bool RunTalkEventTemplate(u8, s8, s8);
 
 
 void pFMU_RunMiscBasedEvents(struct FMUProc* proc){
-	RunMiscBasedEvents(gActiveUnit->xPos, gActiveUnit->yPos);
+	RunMiscBasedEvents(proc->xCur, proc->yCur);
 	return;
 }
 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
-	if( (proc->xCur==gActiveUnit->xPos) & (proc->yCur==gActiveUnit->yPos) )
-		return no_yield;
-	
+	proc->xCur = proc->xTo; 
+	proc->yCur = proc->yTo; 
 	if( FMU_RunTrapASMC_Auto(proc) )
 	{
-		proc->xCur = gActiveUnit->xPos;
-		proc->yCur = gActiveUnit->yPos;
-		ProcGoto((Proc*)proc,0xE); 
 		return yield;
 	}
-	
-	//pFMU_RunMiscBasedEvents(proc);
-	if( RunMiscBasedEvents(gActiveUnit->xPos, gActiveUnit->yPos) )
+	if( RunMiscBasedEvents(proc->xCur, proc->yCur) )
 	{
-		proc->xCur = gActiveUnit->xPos;
-		proc->yCur = gActiveUnit->yPos;
-		ProcGoto((Proc*)proc,0xE); 
 		return yield;
 	}
 	return no_yield;

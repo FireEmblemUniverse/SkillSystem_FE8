@@ -98,7 +98,7 @@ AFEV 0 CityAfev 0
 AREA 0 ToRoute2S [15,0] [19,0] 
 AREA 0 ToRoute1 [18,37] [21,37] 
 AREA 0 ToRoute22 [0,16] [0,18] 
-//AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_A TutMsg1 0
 //AFEV DisableTutFlag_B TutMsg2 0
 //AFEV 0x19 TutMsg3 0
 END_MAIN

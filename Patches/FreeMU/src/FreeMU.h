@@ -25,6 +25,7 @@ struct FMUProc {
 	/* 3d */    u8 usedLedge; 
 	/* 3e */    u8 ledgeX; 
 	/* 3f */    u8 ledgeY; 
+	/* 40 */    u8 range_event; 
 };
 
 struct FMUTrapDef{
@@ -77,7 +78,7 @@ void NewMakePhaseControllerFunc(struct Proc*);
 void pFMU_OnInit(struct FMUProc*);
 void pFMU_InitTimer(struct FMUProc*);
 int pFMU_CorrectCameraPosition(struct FMUProc*);
-u8 FMU_ChkKeyForMUExtra(void);
+u8 FMU_ChkKeyForMUExtra(struct FMUProc*);
 void FMU_InitVariables(struct FMUProc* proc); 
 
 /*------------- Core --------------*/

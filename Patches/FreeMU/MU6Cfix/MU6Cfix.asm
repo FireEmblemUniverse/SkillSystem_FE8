@@ -25,11 +25,13 @@ MU_ExecCmd_FixForFreeMU:
 	cmp		r0, #0
 	beq		.EndMain
 	
-	ldr		r0,[r6, #0x34]			
-	ldrb	r0,[r0, #4]
-	cmp		r0, #1
+	ldr		r1,[r6, #0x34]			
+	ldrb	r1,[r1, #4]
+	cmp		r1, #1
 	beq		.EndMain				@ 第一次则直接过
 	
+	ldr		r0, =FreeMovementControlProc
+	blh		ProcFind
 	blh		FMU_ChkKeyForMUExtra
 	mov		r7, r0					@ r7 = 0L/1R/2D/3U
 	cmp		r0, #0x10
@@ -70,6 +72,26 @@ strb  r7, [r5]          @ store facing direction in FreeMovementControlProc+0x34
 	strb	r6,[r0, #1]
 	strb	r5,[r0, #2]
 	strb	r6,[r0, #3]
+	
+	ldr		r0, =FreeMovementControlProc
+	blh		ProcFind
+	add r0, #0x2c 
+	strb r5, [r0, #1] @ xx 
+	strb r6, [r0, #3] @ yy 
+	sub r0, #0x2c 
+	ldr r3, =gActiveUnit 
+	ldr r3, [r3] 
+	strb r5, [r3, #0x10] @ xx 
+	strb r6, [r3, #0x11] @ yy 
+	blh pFMU_RunLocBasedAsmcAuto
+	cmp r0, #0 
+	bne NoRangeEvent 
+	ldr		r0, =FreeMovementControlProc
+	blh		ProcFind
+	add r0, #0x40 
+	mov r1, #1 
+	strb r1, [r0] @ wait for event 
+	NoRangeEvent: 
 	
 	
 	lsl		r4, r7, #0x18	@ Vanilla 0x0788AE

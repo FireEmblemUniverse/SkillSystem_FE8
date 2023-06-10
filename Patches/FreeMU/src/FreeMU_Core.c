@@ -74,6 +74,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 				if (proc->lastInput & gKeyState.heldKeys) { // most recently pressed key, even if multiple are held down 
 					iKeyCur = proc->lastInput; 
 				} 
+				//asm("mov r11, r11"); 
 				pFMU_MoveUnit(proc, iKeyCur);
 				proc->yield_move = true; 
 			} 
@@ -92,6 +93,10 @@ void FMU_ResetMoveSpeed(struct FMUProc* proc) {
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
+	proc->xCur = gActiveUnit->xPos;
+	proc->yCur = gActiveUnit->yPos;
+	proc->xTo  = gActiveUnit->xPos;
+	proc->yTo  = gActiveUnit->yPos;
 	proc->usedLedge = false; 
 	proc->smsFacing = 2;
 	proc->moveSpeed = *FMU_SpeedRam_Link;
@@ -100,6 +105,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->countdown = 2; 
 	proc->yield = true; 
 	proc->yield_move = true; 
+	proc->range_event = false; 
 	
 }
 void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
@@ -114,7 +120,7 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 	}
 } 
 
-
+extern u8 MapEventEngineExists(void); 
 extern const ProcInstruction* gProc_Menu; 
 #define  MU_SUBPIXEL_PRECISION 4
 void pFMU_MainLoop(struct FMUProc* proc){ 
@@ -139,26 +145,48 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	} 
 	MU_EndAll();
 	*/
+	//asm("mov r11, r11"); // gActiveUnit
 	
-	if(MU_Exists()){
-		return;
+	if (MapEventEngineExists()) { // wait for events 
+		return; 
 	}
-	if (proc->usedLedge) { 
+	if (proc->range_event) { 
+		proc->range_event = false; 
+	} 
+	if (proc->yield_move) { 
 		//asm("mov r11, r11"); 
-		gMapTerrain[ledgeY][ledgeX] = LEDGE_JUMP; 
-		
-		
-		//gActiveUnit->state &= ~US_HIDDEN; 
-		//ShowUnitSMS(gActiveUnit);
-		//SMS_UpdateFromGameData(); 
-		//RenderBmMap();
+		proc->yield_move = false; // 8002F24 proc goto 
+	} 
+
+	//asm("mov r11, r11"); 
+	if (proc->usedLedge) { 
+		gMapTerrain[proc->ledgeY][proc->ledgeX] = LEDGE_JUMP; 
 		proc->usedLedge = false; 
 	}
-	proc->yield_move = false; // 8002F24 proc goto 
+	//if (proc->xTo != 0xFF) { //[2024ed4+0x2d]!! 
+	if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) { 
+		asm("mov r8, r8"); 
+	}
+	else {
+		//asm("mov r11, r11"); 
+		if (pFMU_RunLocBasedAsmcAuto(proc) == yield) { 
+			proc->countdown = 5; 
+			proc->yield_move = true; 
+			proc->yield = true; 
+			return; 
+		} 
+	} 
 	
+
+	//}
+
+
 	//if(pFMU_MoveUnit(proc) == yield) {
 		//return; 
 	//}
+	if(MU_Exists()){
+		return;
+	}
 	//ProcGoto((Proc*)proc,0x1);
 	return;
 }
@@ -186,10 +214,6 @@ void pFMUCtr_OnEnd(Proc* proc){
 }
 
 int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
-	// do not consider input for movement if ABLR were pressed 
-	//if (((gKeyState.lastPressKeys & 0x303) || (gKeyState.heldKeys & 0x303)) && (gKeyState.timeSinceNonStartSelect <= bufferFramesAct)) { // ABLR 
-		//iKeyCur = 0; 
-	//}
 	s8 x = gActiveUnit->xPos;
 	s8 y = gActiveUnit->yPos;
 	u8 facingCur = proc->smsFacing;
@@ -197,9 +221,6 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 	iKeyCur = iKeyCur & 0xF0; 
 	if(iKeyCur){
 		int i; 
-		
-		
-		//while (!((iKeyCur != KEY_DPAD_RIGHT) || (iKeyCur != KEY_DPAD_LEFT) || (iKeyCur != KEY_DPAD_DOWN) || (iKeyCur != KEY_DPAD_UP))) { 
 		while (true) { 
 			if ((iKeyCur == KEY_DPAD_RIGHT) || (iKeyCur == KEY_DPAD_DOWN) || (iKeyCur == KEY_DPAD_LEFT) || (iKeyCur == KEY_DPAD_UP)) 
 				break; 
@@ -272,25 +293,26 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 					gActiveUnit->yPos = y; 
 					// this version kinda works but does not call MU_CALL2_FixForFreeMU when it ends for whatever reason 
 					*/ 
+					
 					proc->usedLedge = true; 
 					gMapTerrain[y-1][x] = 1; 
 					proc->ledgeX = x; 
 					proc->ledgeY = y-1; 
 					MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+					proc->xTo  = x;
+					proc->yTo  = y;
 					return yield; 
 				}
 			}
 			return no_yield; 
 		} 
-		
-		if( !IsPosInvaild(x,y) ){
-			proc->xTo = x;
-			proc->yTo = y;
-		}
 			
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
+				
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				proc->xTo  = x;
+				proc->yTo  = y;
 				return yield; 
 			} 
 		}

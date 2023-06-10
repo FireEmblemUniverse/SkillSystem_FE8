@@ -122,7 +122,8 @@ int pFMU_CorrectCameraPosition(struct FMUProc* proc){
 }
 
 
-u8 FMU_ChkKeyForMUExtra(void){
+u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
+	if (!proc->range_event) { 
 	u16 iKeyCur = gKeyState.heldKeys;
 	if ( iKeyCur&0x10 )	//right
 		return 1;
@@ -132,6 +133,7 @@ u8 FMU_ChkKeyForMUExtra(void){
 		return 3;
 	if ( iKeyCur&0x80 )	//down
 		return 2;
+	}
 	return 0x10;	
 }
 
