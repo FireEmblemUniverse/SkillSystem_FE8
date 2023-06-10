@@ -23,6 +23,8 @@ struct FMUProc {
 	/* 3b */    u8 yield_move; 
 	/* 3c */    u8 countdown; 
 	/* 3d */    u8 usedLedge; 
+	/* 3e */    u8 ledgeX; 
+	/* 3f */    u8 ledgeY; 
 };
 
 struct FMUTrapDef{

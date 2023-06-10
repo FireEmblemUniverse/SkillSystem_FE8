@@ -19,6 +19,7 @@ static inline bool IsCharInvaild(Unit* unit){
 	return 0;
 }
 
+#define LEDGE_JUMP 0x26 // terrain type 
 #define bufferFramesMove 3
 #define bufferFramesAct 4
 
@@ -66,17 +67,13 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 		}
 		else if (!(proc->yield_move)) { 
 			if (iKeyCur & 0xF0) { 
-				iKeyUse = gKeyState.pressedKeys; // prioritize most recently pressed keys over held down keys 
-				if (iKeyUse & 0xF0) { 
+				iKeyUse = (gKeyState.pressedKeys & 0xF0); // prioritize most recently pressed keys over held down keys 
+				if (iKeyUse) { 
 					proc->lastInput = iKeyUse; 
 				}
-				if (proc->lastInput & 0xF0) { // most recently pressed key, even if multiple are held down 
-					//asm("mov r11, r11"); 
+				if (proc->lastInput & gKeyState.heldKeys) { // most recently pressed key, even if multiple are held down 
 					iKeyCur = proc->lastInput; 
 				} 
-				if (((gKeyState.heldKeys & 0xF0) == KEY_DPAD_LEFT) && ((gKeyState.pressedKeys & 0xF0) == KEY_DPAD_DOWN)) { 
-					asm("mov r11, r11");
-				}
 				pFMU_MoveUnit(proc, iKeyCur);
 				proc->yield_move = true; 
 			} 
@@ -131,46 +128,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	else { 
 		proc->countdown--; 
 	} 
-	/*
-	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-	if (muProc) { 
-		if (!(ProcFind((const ProcInstruction*)gProc_CameraMovement))) { 
-			//EnsureCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
-			int right = (muProc->facingId == MU_FACING_RIGHT); 
-			int left = (muProc->facingId == MU_FACING_LEFT); 
-			int up = (muProc->facingId == MU_FACING_UP);
-			int down = (muProc->facingId == MU_FACING_DOWN);
-			if (right) right = 1; 
-			if (left) left = 1; 
-			if (up) up = 1; 
-			if (down) down = 1; 
-			
-			//VeslyCenterCameraOntoPosition((Proc*)proc,((((muProc->xSubPosition)/16) >> 4) + right - left), ((((muProc->ySubPosition)/16) >> 4) + down - up));
-			
-			
-			
-			//EnsureCameraOntoPosition((Proc*)proc,gActiveUnit->xPos, gActiveUnit->yPos);
-			//VeslyCenterCameraOntoPosition((Proc*)proc, gActiveUnit->xPos, gActiveUnit->yPos);
-			
-			//gGameState.cameraRealPos.x = GetCameraCenteredX(muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->xSubOffset & 0xF);
-			//gGameState.cameraRealPos.y = GetCameraCenteredY(muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + (muProc->ySubOffset & 0xF);
-			
-			//muProc->boolAttractCamera = true; 
-			//#define adjustBorder 4
-			//int right = (muProc->facingId == MU_FACING_RIGHT) * adjustBorder; 
-			//int left = (muProc->facingId == MU_FACING_LEFT) * adjustBorder; 
-			//int up = (muProc->facingId == MU_FACING_UP) * adjustBorder; 
-			//int down = (muProc->facingId == MU_FACING_DOWN) * adjustBorder; 
-			//gGameState.cameraRealPos.x = GetCameraAdjustedX((muProc->xSubPosition >> MU_SUBPIXEL_PRECISION) + right - left);
-			//gGameState.cameraRealPos.y = GetCameraAdjustedY((muProc->ySubPosition >> MU_SUBPIXEL_PRECISION) + down - up);
-			//muProc->boolAttractCamera = false; 
-			//CenterCameraOntoPosition((Proc*)proc,((muProc->xSubPosition)/16) >> 4, ((muProc->ySubPosition)/16) >> 4);
-			
-			//gGameState.cameraRealPos.x = GetCameraAdjustedX(15); 
-			//gGameState.cameraRealPos.y = GetCameraAdjustedY(12); 
-		}
-	}
-	*/
+
 	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	
@@ -186,10 +144,14 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		return;
 	}
 	if (proc->usedLedge) { 
-		asm("mov r11, r11"); 
-		gActiveUnit->state &= ~US_HIDDEN; 
-		ShowUnitSMS(gActiveUnit);
-		SMS_UpdateFromGameData(); 
+		//asm("mov r11, r11"); 
+		gMapTerrain[ledgeY][ledgeX] = LEDGE_JUMP; 
+		
+		
+		//gActiveUnit->state &= ~US_HIDDEN; 
+		//ShowUnitSMS(gActiveUnit);
+		//SMS_UpdateFromGameData(); 
+		//RenderBmMap();
 		proc->usedLedge = false; 
 	}
 	proc->yield_move = false; // 8002F24 proc goto 
@@ -280,7 +242,7 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
         pFMU_UpdateSMS(proc);
 	} 
 	else { 
-		#define LEDGE_JUMP 0x26 
+		
 		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (facingCur == MU_FACING_DOWN)) { 
 			//x += (facingCur && MU_FACING_RIGHT); 
 			//x -= (facingCur && MU_FACING_LEFT); 
@@ -288,13 +250,15 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 			//y -= (facingCur && MU_FACING_UP); 
 			if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 				if( !IsPosInvaild(x,y) ) { 
+				
+					/*
 					u8 mD[8]; //moveDirections[8];
 					mD[0] = MU_COMMAND_MOVE_DOWN;
 					mD[1] = MU_COMMAND_CAMERA_ON;
 					mD[2] = MU_COMMAND_MOVE_DOWN;
 					mD[3] = MU_COMMAND_CAMERA_ON;
-					mD[4] = MU_COMMAND_END;
-					//mD[4] = MU_COMMAND_HALTMU_COMMAND_END;
+					mD[4] = MU_COMMAND_END; // MuCtr_StartMoveTowards ends with HALT 
+					mD[5] = MU_COMMAND_END;
 					struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 					if (!muProc) { 
 						muProc = MU_Create(gActiveUnit);
@@ -306,8 +270,13 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 					MU_StartMoveScript(muProc, &mD[0]); 
 					gActiveUnit->xPos = x; 
 					gActiveUnit->yPos = y; 
+					// this version kinda works but does not call MU_CALL2_FixForFreeMU when it ends for whatever reason 
+					*/ 
 					proc->usedLedge = true; 
-					//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+					gMapTerrain[y-1][x] = 1; 
+					proc->ledgeX = x; 
+					proc->ledgeY = y-1; 
+					MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 					return yield; 
 				}
 			}
