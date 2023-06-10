@@ -11,27 +11,43 @@ SET_FUNC_INLINE 	MU_GetSpeed_FixForFreeMU
 
 MU_ExecCmd_FixForFreeMU:
 	push	{r4-r7, lr}
+	mov r4, r8 
+	mov r5, r9 
+	mov r6, r10 
+	mov r7, r11 
+	push {r4-r7} 
+	
 	asr		r4, r0, #0x18
 	
 	ldr		r0, =FreeMovementControlProc
 	blh		ProcFind
-	mov		r5, r0					
+mov r8, r0 	
 	cmp		r0, #0
 	beq		.EndMain
 	
 	ldr		r0, =gProc_MoveUnit
 	blh		ProcFind
-	mov		r6, r0					
+	mov		r9, r0					
 	cmp		r0, #0
 	beq		.EndMain
 	
-	ldr		r1,[r6, #0x34]			
+	ldr		r1,[r0, #0x34]			
 	ldrb	r1,[r1, #4]
 	cmp		r1, #1
 	beq		.EndMain				@ 第一次则直接过
 	
-	ldr		r0, =FreeMovementControlProc
-	blh		ProcFind
+	@ldr r0, =0x8591AC0 @ gProc_MapEventEngine
+	@blh ProcFind 
+	@cmp r0, #0 
+	@beq Continue @.EndMain 
+	@add r0, #0x3e 
+	@ldrh r0, [r0] 
+	@cmp r0, #0 
+	@beq Continue
+	@mov r11, r11
+	@b .EndMain 
+	@Continue: 
+mov r0, r8 
 	blh		FMU_ChkKeyForMUExtra
 	mov		r7, r0					@ r7 = 0L/1R/2D/3U
 	cmp		r0, #0x10
@@ -39,11 +55,13 @@ MU_ExecCmd_FixForFreeMU:
 	
 	ldr		r0, =gProc_MuCtr
 	blh		ProcFind
+mov r10, r0 
 	cmp		r0, #0
 	beq		.EndMain
 	add		r0, #0x40
-add   r5, #0x34
-strb  r7, [r5]          @ store facing direction in FreeMovementControlProc+0x34
+mov r1, r8 
+add   r1, #0x34 @ FreeMovementControlProc
+strb  r7, [r1]          @ store facing direction in FreeMovementControlProc+0x34
 	ldrb	r5,[r0]					@ r5=x
 	ldrb	r6,[r0, #1]				@ r6=y
 	
@@ -58,37 +76,36 @@ strb  r7, [r5]          @ store facing direction in FreeMovementControlProc+0x34
 	beq		.EndMain
 	
 	@ <!> --------------- Set Here! ---------------------
-	ldr		r0, =gProc_MoveUnit
-	blh		ProcFind
+mov r0, r9 @ gProc_MoveUnit
 	ldr		r3,[r0, #0x34]			
 	mov		r0, #1
 	strb	r0,[r3, #4]
 	strb	r7,[r3, #5]
 	
-	ldr		r0, =gProc_MuCtr
-	blh		ProcFind
+mov r0, r10 @ gProc_MuCtr
 	add		r0, #0x40
 	strb	r5,[r0]
 	strb	r6,[r0, #1]
 	strb	r5,[r0, #2]
 	strb	r6,[r0, #3]
 	
-	ldr		r0, =FreeMovementControlProc
-	blh		ProcFind
+mov r0, r8 @ FMU 
 	add r0, #0x2c 
 	strb r5, [r0, #1] @ xx 
 	strb r6, [r0, #3] @ yy 
 	sub r0, #0x2c 
-	ldr r3, =gActiveUnit 
-	ldr r3, [r3] 
-	strb r5, [r3, #0x10] @ xx 
-	strb r6, [r3, #0x11] @ yy 
 	blh pFMU_RunLocBasedAsmcAuto
 	cmp r0, #0 
 	bne NoRangeEvent 
-	ldr		r0, =FreeMovementControlProc
-	blh		ProcFind
-	add r0, #0x40 
+mov r0, r8 @ FMU 
+	add r0, #0x3a 
+	mov r1, #1 
+	strb r1, [r0] 
+	strb r1, [r0, #1] 
+	add r0, #2 
+	mov r1, #25 @ countdown 
+	strb r1, [r0] 
+	add r0, #0x4
 	mov r1, #1 
 	strb r1, [r0] @ wait for event 
 	NoRangeEvent: 
@@ -104,6 +121,12 @@ strb  r7, [r5]          @ store facing direction in FreeMovementControlProc+0x34
 	lsl		r1, #0x10
 	add		r0, r1
 	asr		r0, #0x10
+
+	pop {r4-r7} 
+	mov r8, r4 
+	mov r9, r5 
+	mov r10, r6 
+	mov r11, r7 
 	
 	pop		{r4-r7}
 	pop		{r1}

@@ -111,7 +111,7 @@ ALIGN 4
 	
 	_6C_LABEL(0xE)	//Save
 	_6C_YIELD
-	_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
+	//_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
 	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
 	_6C_GOTO(0xC)
 	

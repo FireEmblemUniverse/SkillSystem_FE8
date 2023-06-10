@@ -108,6 +108,7 @@ bool FMU_RunTrapASMC_Auto(FMUProc*);
 bool FMU_OnButton_StartMenu(FMUProc*);
 bool FMU_OnButton_EndFreeMove(FMUProc*);
 bool FMU_OnButton_ChangeUnit(FMUProc*);
+u16 FMU_FilterMovementInput(struct FMUProc*, u16);
 
 /*------------- Graphics --------------*/
 extern void* FMU_idleSMSGfxTable[0xFF];
@@ -249,7 +250,38 @@ struct MenuDef
     /* 1C */ u8(*onRPress)(struct MenuProc*);
     /* 20 */ u8(*onHelpBox)(struct MenuProc*, struct MenuItemProc*);
 };
+struct EventEngineProc {
+    PROC_HEADER;
+	u8 dummy1;
+	u8 dummy2;
+	u8 dummy3;
 
+    /* 2C */ void (*pCallback)(struct EventEngineProc*);
+
+    /* 30 */ const u16* pEventStart;
+    /* 34 */ const u16* pEventIdk;
+    /* 38 */ const u16* pEventCurrent;
+
+    /* 3C */ u16 evStateBits;
+    /* 3E */ u16 evStallTimer;
+
+    /* 40 */ s8 overwrittenTextSpeed;
+    /* 41 */ u8 execType;
+    /* 42 */ u8 activeTextType;
+    /* 43 */ u8 chapterIndex;
+
+    /* 44 */ u16 mapSpritePalIdOverride;
+
+    /* 46 */ // pad
+
+    /* 48 */ const void* pUnitLoadData;
+    /* 4C */ s16 unitLoadCount;
+
+    /* 4E */ u8  idk4E;
+
+    /* 4F */ u8 _pad_4F[0x54 - 0x4F];
+    /* 54 */ struct Unit *unit;
+};
 
 
 

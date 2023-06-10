@@ -67,13 +67,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 		}
 		else if (!(proc->yield_move)) { 
 			if (iKeyCur & 0xF0) { 
-				iKeyUse = (gKeyState.pressedKeys & 0xF0); // prioritize most recently pressed keys over held down keys 
-				if (iKeyUse) { 
-					proc->lastInput = iKeyUse; 
-				}
-				if (proc->lastInput & gKeyState.heldKeys) { // most recently pressed key, even if multiple are held down 
-					iKeyCur = proc->lastInput; 
-				} 
+				iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
 				//asm("mov r11, r11"); 
 				pFMU_MoveUnit(proc, iKeyCur);
 				proc->yield_move = true; 
@@ -83,7 +77,35 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 	
 }
 
+u16 FMU_FilterMovementInput(struct FMUProc* proc, u16 iKeyCur) { 
+	iKeyCur &= 0xF0; 
+	u16 iKeyUse = (gKeyState.pressedKeys & 0xF0); // prioritize most recently pressed keys over held down keys 
+	if (iKeyUse) { 
+		proc->lastInput = iKeyUse; 
+	}
+	if (proc->lastInput & gKeyState.heldKeys) { // most recently pressed key, even if multiple are held down 
+		iKeyCur = proc->lastInput; 
+	} 
+	int i; 
+	while (iKeyCur) { 
+		if ((iKeyCur == KEY_DPAD_RIGHT) || (iKeyCur == KEY_DPAD_DOWN) || (iKeyCur == KEY_DPAD_LEFT) || (iKeyCur == KEY_DPAD_UP)) 
+			break; 
+		// choose which input at random instead of always prioritizing right > left > up > down 
+		i = NextRN_N(4); 
+		if (i == 0) 
+			iKeyCur &= ~KEY_DPAD_RIGHT; 
+		if (i == 1)         
+			iKeyCur &= ~KEY_DPAD_UP; 
+		if (i == 2)        
+			iKeyCur &= ~KEY_DPAD_LEFT; 
+		if (i == 3)         
+			iKeyCur &= ~KEY_DPAD_DOWN; 
+	} 
+	
 
+	return iKeyCur; 
+
+} 
 
 
 extern u8* FMU_SpeedRam_Link; 
@@ -153,6 +175,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	if (proc->range_event) { 
 		proc->range_event = false; 
 	} 
+	
+	if(MU_Exists()){
+		return;
+	}
+	
 	if (proc->yield_move) { 
 		//asm("mov r11, r11"); 
 		proc->yield_move = false; // 8002F24 proc goto 
@@ -164,6 +191,8 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->usedLedge = false; 
 	}
 	//if (proc->xTo != 0xFF) { //[2024ed4+0x2d]!! 
+	
+
 	if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) { 
 		asm("mov r8, r8"); 
 	}
@@ -177,6 +206,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		} 
 	} 
 	
+	
 
 	//}
 
@@ -184,9 +214,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	//if(pFMU_MoveUnit(proc) == yield) {
 		//return; 
 	//}
-	if(MU_Exists()){
-		return;
-	}
+
 	//ProcGoto((Proc*)proc,0x1);
 	return;
 }
@@ -220,21 +248,7 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 
 	iKeyCur = iKeyCur & 0xF0; 
 	if(iKeyCur){
-		int i; 
-		while (true) { 
-			if ((iKeyCur == KEY_DPAD_RIGHT) || (iKeyCur == KEY_DPAD_DOWN) || (iKeyCur == KEY_DPAD_LEFT) || (iKeyCur == KEY_DPAD_UP)) 
-				break; 
-			// choose which input at random instead of always prioritizing right > left > up > down 
-			i = NextRN_N(4); 
-			if (i == 0) 
-				iKeyCur &= ~KEY_DPAD_RIGHT; 
-			if (i == 1)         
-				iKeyCur &= ~KEY_DPAD_UP; 
-			if (i == 2)        
-				iKeyCur &= ~KEY_DPAD_LEFT; 
-			if (i == 3)         
-				iKeyCur &= ~KEY_DPAD_DOWN; 
-		} 
+
 		
 		
 		if(iKeyCur&0x10) {

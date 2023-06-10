@@ -11,6 +11,8 @@ void pFMU_RunMiscBasedEvents(struct FMUProc* proc){
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 	proc->xCur = proc->xTo; 
 	proc->yCur = proc->yTo; 
+	gActiveUnit->xPos = proc->xCur; 
+	gActiveUnit->yPos = proc->yCur; 
 	if( FMU_RunTrapASMC_Auto(proc) )
 	{
 		return yield;
