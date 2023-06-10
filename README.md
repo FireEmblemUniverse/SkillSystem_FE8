@@ -30,7 +30,7 @@ Check out our [issue tracker](https://github.com/FireEmblemUniverse/SkillSystem_
 
 ## Contributing
 
-We accept and review pull requests! If you don't know what that is, see [this guide](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)!
+We accept and review pull requests! If you don't know what that is, see [this guide](https://docs.github.com/en/get-started/quickstart/contributing-to-projects)!
 
 ## Credits
 
