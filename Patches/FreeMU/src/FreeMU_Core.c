@@ -19,7 +19,7 @@ static inline bool IsCharInvaild(Unit* unit){
 	return 0;
 }
 
-#define LEDGE_JUMP 0x26 // terrain type 
+
 #define bufferFramesMove 3
 #define bufferFramesAct 4
 
@@ -83,8 +83,9 @@ u16 FMU_FilterMovementInput(struct FMUProc* proc, u16 iKeyCur) {
 	if (iKeyUse) { 
 		proc->lastInput = iKeyUse; 
 	}
-	if (proc->lastInput & gKeyState.heldKeys) { // most recently pressed key, even if multiple are held down 
-		iKeyCur = proc->lastInput; 
+	iKeyUse = proc->lastInput & (gKeyState.heldKeys & 0xF0);
+	if (iKeyUse) { // most recently pressed key, even if multiple are held down 
+		iKeyCur = iKeyUse; 
 	} 
 	int i; 
 	while (iKeyCur) { 
@@ -107,11 +108,13 @@ u16 FMU_FilterMovementInput(struct FMUProc* proc, u16 iKeyCur) {
 
 } 
 
-
-extern u8* FMU_SpeedRam_Link; 
-void FMU_ResetMoveSpeed(struct FMUProc* proc) { 
-	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedA;
+void FMU_ResetMoveSpeed(void) { 
+	FreeMoveRam->running = false; 
 }
+void FMU_ResetDirection(void) { 
+	FreeMoveRam->dir = 2; // facing down 
+}
+
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
@@ -120,8 +123,15 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->xTo  = gActiveUnit->xPos;
 	proc->yTo  = gActiveUnit->yPos;
 	proc->usedLedge = false; 
-	proc->smsFacing = 2;
-	proc->moveSpeed = *FMU_SpeedRam_Link;
+	
+	
+	if (FreeMoveRam->running) 
+		proc->moveSpeed = FreeMU_MovingSpeed.speedB;
+	else 
+		proc->moveSpeed = FreeMU_MovingSpeed.speedA;
+	
+	proc->smsFacing = FreeMoveRam->dir;
+	proc->scriptedMovement = false; 
 	proc->curInput = 0; 
 	proc->lastInput = 0; 
 	proc->countdown = 2; 
@@ -132,12 +142,12 @@ void FMU_InitVariables(struct FMUProc* proc) {
 }
 void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
 	//asm("mov r11, r11"); 
-	if (*FMU_SpeedRam_Link == FreeMU_MovingSpeed.speedA) {
-	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedB;
+	if (FreeMoveRam->running == false) {
+	FreeMoveRam->running = true; // 
 	proc->moveSpeed = FreeMU_MovingSpeed.speedB;
 	} 
 	else {
-	*FMU_SpeedRam_Link = FreeMU_MovingSpeed.speedA;
+	FreeMoveRam->running = false;
 	proc->moveSpeed = FreeMU_MovingSpeed.speedA;
 	}
 } 
@@ -169,9 +179,9 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	*/
 	//asm("mov r11, r11"); // gActiveUnit
 	
-	if (MapEventEngineExists()) { // wait for events 
-		return; 
-	}
+	//if (MapEventEngineExists()) { // wait for events 
+	//	return; 
+	//}
 	if (proc->range_event) { 
 		proc->range_event = false; 
 	} 
@@ -275,10 +285,11 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 	 
     if (facingCur != proc->smsFacing) { 
         pFMU_UpdateSMS(proc);
+		FreeMoveRam->dir = proc->smsFacing; 
 	} 
 	else { 
 		
-		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (facingCur == MU_FACING_DOWN)) { 
+		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
 			//x += (facingCur && MU_FACING_RIGHT); 
 			//x -= (facingCur && MU_FACING_LEFT); 
 			y += (facingCur && MU_FACING_DOWN); 
@@ -307,12 +318,16 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 					gActiveUnit->yPos = y; 
 					// this version kinda works but does not call MU_CALL2_FixForFreeMU when it ends for whatever reason 
 					*/ 
-					
+					//proc->yield_move = true; 
+					//proc->yield = true; 
+					//proc->countdown = 10; 
+					proc->scriptedMovement = true; 
 					proc->usedLedge = true; 
 					gMapTerrain[y-1][x] = 1; 
 					proc->ledgeX = x; 
 					proc->ledgeY = y-1; 
 					MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+					
 					proc->xTo  = x;
 					proc->yTo  = y;
 					return yield; 

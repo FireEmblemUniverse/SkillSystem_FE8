@@ -6,6 +6,8 @@ enum State {yield=0, no_yield=1};
 typedef struct FMUProc FMUProc;
 typedef bool (*ButtonFunc) (struct FMUProc*);
 
+#define LEDGE_JUMP 0x26 // terrain type 
+
 struct FMUProc {
 	PROC_FIELDS;
 	/* 29 */	u8 uTimer;
@@ -26,6 +28,7 @@ struct FMUProc {
 	/* 3e */    u8 ledgeX; 
 	/* 3f */    u8 ledgeY; 
 	/* 40 */    u8 range_event; 
+	/* 41 */    u8 scriptedMovement; 
 };
 
 struct FMUTrapDef{
@@ -57,7 +60,14 @@ extern ButtonFunc FMU_FunctionList_OnPressStart[];
 
 extern const u8 TimerDelay;
 //#define FreeMoveFlag iFRAM[0]
-extern u8* const FreeMoveFlag;
+//extern u8* const FreeMoveFlag;
+struct FMURam { 
+	u8 state : 1; 
+	u8 running : 1; 
+	u8 dir : 2; 
+};
+
+extern struct FMURam* FreeMoveRam; 
 
 #define RunCharacterEvents ( (void(*)(u8,u8))(0x8083FB1) )
 #define CheckForCharacterEvents ( (u8(*)(u8,u8))(0x8083F69) )
@@ -80,7 +90,7 @@ void pFMU_InitTimer(struct FMUProc*);
 int pFMU_CorrectCameraPosition(struct FMUProc*);
 u8 FMU_ChkKeyForMUExtra(struct FMUProc*);
 void FMU_InitVariables(struct FMUProc* proc); 
-
+extern const void* StallEvent; 
 /*------------- Core --------------*/
 void pFMU_MainLoop(struct FMUProc*);
 int pFMU_HanleContinueMove(struct FMUProc*);

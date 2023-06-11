@@ -10,7 +10,7 @@
 #define DisableFreeMovement "ASMC DisableFreeMovementASMC"
 
 ALIGN 4
-FreeMoveFlag:
+FreeMoveRam:
 	WORD 0x02028924
 	
 ALIGN 4
@@ -21,16 +21,12 @@ TimerDelay:
 	*/
 	BYTE 0xFF
 
-ALIGN 4 
-FMU_SpeedRam_Link:
-WORD FMU_SpeedRam
-
 ALIGN 4
 FreeMU_MovingSpeed: 
 	/*
 	Moving speed can only set to 0x1/0x10/0x20/0x40/0x80/0x100
 	*/
-	BYTE 0x20 0x40 0x00 0x00 
+	BYTE 0x20 0x40 0x00 0x00 // walking, running, 0, 0 
 	WORD 0x0 
 	
 	/*

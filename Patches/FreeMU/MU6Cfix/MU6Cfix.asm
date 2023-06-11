@@ -67,6 +67,15 @@ strb  r7, [r1]          @ store facing direction in FreeMovementControlProc+0x34
 	
 	bl		PositionChange
 	
+	mov r0, r8 @ fmu proc 
+	mov r1, r5 @ x 
+	mov r2, r6 @ y 
+	bl FMU_CheckForLedge 
+	cmp r0, #0 
+	beq NoLedge 
+	add r6, #1 @ we move twice 
+	NoLedge: 
+	
 	ldr		r0, =gActiveUnit
 	ldr		r0,[r0]
 	mov		r1, r5
@@ -109,6 +118,7 @@ mov r0, r8 @ FMU
 	mov r1, #1 
 	strb r1, [r0] @ wait for event 
 	NoRangeEvent: 
+
 	
 	
 	lsl		r4, r7, #0x18	@ Vanilla 0x0788AE

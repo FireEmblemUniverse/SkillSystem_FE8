@@ -11,6 +11,13 @@
 	#include "MU6Cfix/_MU6Cfix.event"
 	#include "gfx/gfx.event" 
 
+/*
+ALIGN 4 
+StallEvent:
+STAL 20 
+//TutText(DebugText)
+NoFade 
+ENDA */
 
 PUSH
 	ORG $59A38C
@@ -40,7 +47,8 @@ ALIGN 4
 	_6C_SET_MARK(2)
 	_6C_YIELD
 	_6C_NEW_CHILD(FMU_InputLoopProc)
-	_6C_CALL_ROUTINE(FMU_ResetMoveSpeed|1)
+	//_6C_CALL_ROUTINE(FMU_ResetMoveSpeed|1)
+	//_6C_CALL_ROUTINE(FMU_ResetDirection|1)
 	_6C_CALL_ROUTINE(FMU_InitVariables|1)
 	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
 	

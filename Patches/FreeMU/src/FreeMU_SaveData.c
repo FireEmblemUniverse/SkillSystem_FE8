@@ -1,12 +1,12 @@
 #include "FreeMU.h"
 
 void MsuSave_FMUbit(void* dest, unsigned size){
-	WriteAndVerifySramFast( (const u8*)FreeMoveFlag, dest, size);
+	WriteAndVerifySramFast( (const u8*)FreeMoveRam, dest, size);
 	return;
 }
 
 
 void MsuLoad_FMUbit(const void* src, unsigned size){
-	(*ReadSramFast)(src, FreeMoveFlag, size);
+	(*ReadSramFast)(src, FreeMoveRam, size);
 	return;
 }

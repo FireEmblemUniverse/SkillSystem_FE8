@@ -19,6 +19,40 @@ struct SMSHandle* SMS_GetNewInfoStruct(int y); //!< FE8U:0802736D
 /*
  * Basic! 
  */
+static inline bool IsPosInvaild(s8 x, s8 y){
+	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );
+}
+
+
+bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y) { 
+	if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
+		y += (proc->smsFacing && MU_FACING_DOWN); 
+		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
+			if( !IsPosInvaild(x,y) ) { 
+				proc->usedLedge = true; 
+				proc->scriptedMovement = true; 
+				//proc->yield_move = true; 
+				//proc->yield = true; 
+				//proc->countdown = 10; 
+				gMapTerrain[y-1][x] = 1; 
+				proc->ledgeX = x; 
+				proc->ledgeY = y-1; 
+				//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				proc->xTo  = x;
+				proc->yTo  = y;
+				
+				return false; 
+				
+				//return true; 
+				
+			}
+		}
+	}
+	return false; 
+
+} 
+
+
 bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 	if (x < 0 || y < 0)
 		return 0; // position out of bounds
@@ -36,17 +70,17 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
  
 
 void EnableFreeMovementASMC(void){
-	*FreeMoveFlag |= 1;
+	FreeMoveRam->state = true; 
 	return;
 }
  
 void DisableFreeMovementASMC(void){
-	*FreeMoveFlag = (*FreeMoveFlag>>1)<<1;
+	FreeMoveRam->state = false; 
 	return;
 }
 
 u8 GetFreeMovementState(void){
-	return (*FreeMoveFlag&1);
+	return FreeMoveRam->state;
 }
 
 void End6CInternal_FreeMU(FMUProc* proc){
@@ -123,16 +157,24 @@ int pFMU_CorrectCameraPosition(struct FMUProc* proc){
 
 extern const ProcInstruction gProc_MapEventEngine; 
 u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
+
 	struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
 	if (eventProc) { 
 		if (eventProc->evStallTimer || eventProc->pUnitLoadData || eventProc->activeTextType) { 
+			//proc->usedLedge = false; 
 			return 0x10; 
 		}
 	} 
+	if (proc->scriptedMovement) { 
+		//CallMapEventEngine(&StallEvent, 1);
+		proc->scriptedMovement = false; 
+		return 2; // down 
+	}
 
-	if (!proc->range_event) { 
+	if ((!proc->range_event) && (!proc->usedLedge)) { 
 		u16 iKeyCur = gKeyState.heldKeys;
 		iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
+		FreeMoveRam->dir = proc->smsFacing; 
 		if ( iKeyCur&0x10 )	//right
 			return 1;
 		if ( iKeyCur&0x20 )	//left
