@@ -2,9 +2,9 @@
 ALIGN 4
 FMU_FunctionList_OnPressA:
 	POIN FMUmisc_RunTalkEvents|1
+	POIN FMUmisc_RunMapEvents|1
+	POIN FMU_RunTrapASMC|1
 	POIN FMU_open_um|1
-	//POIN FMUmisc_RunMapEvents|1
-	//POIN FMU_RunTrapASMC|1
 	FMU_FunctionList_End
 	
 ALIGN 4

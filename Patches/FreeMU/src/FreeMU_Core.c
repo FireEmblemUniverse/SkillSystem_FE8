@@ -153,11 +153,66 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 } 
 
 extern u8 MapEventEngineExists(void); 
-extern const ProcInstruction* gProc_Menu; 
+
 #define  MU_SUBPIXEL_PRECISION 4
+int FMU_HandleContinuedMovement(struct FMUProc* proc) { 
+
+	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 
+	//ProcFind(&gProc_Menu) || 
+	if ((!muProc) || (!ctrProc)) {
+		return (-1); }
+	if (muProc->pMUConfig->currentCommand != 1) {
+		return (-1); } 
+	u8 dir = FMU_ChkKeyForMUExtra(proc);
+	if (dir == 0x10) { 
+		return (-1); } 
+	proc->smsFacing = dir; 
+	int x = ctrProc->xPos; 
+	int y = ctrProc->yPos; 
+	asm("mov r11, r11"); 
+	//if (proc->xCur == (muProc->xSubPosition>>8 | (4<<(muProc->xSubPosition>>4 & 0x4))) && (proc->yCur == (muProc->ySubPosition>>8 | (4<<(muProc->ySubPosition>>4 & 0x4))))) 
+		//return (-1); 
+	if (dir == MU_FACING_RIGHT)
+	x++; 
+	if (dir == MU_FACING_LEFT)
+	x--; 
+	if (dir == MU_FACING_DOWN)
+	y++; 
+	if (dir == MU_FACING_UP)
+	y--; 
+
+	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
+	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 
+		return (-1); } 
+	muProc->pMUConfig->currentCommand = 1; 
+	muProc->pMUConfig->commands[0] = dir;
+	//muProc->pMUConfig->commands[1] = MU_COMMAND_CAMERA_ON;
+	//muProc->pMUConfig->commands[2] = MU_COMMAND_HALT;
+	ctrProc->xPos = x; 
+	ctrProc->yPos = y; 
+	ctrProc->xPos2 = x; 
+	ctrProc->yPos2 = y; 
+	
+	proc->xTo = x; 
+	proc->yTo = y; 
+	if (pFMU_RunLocBasedAsmcAuto(proc)) { 
+		proc->yield = true; 
+		proc->yield_move = true; 
+		proc->countdown = 25; 
+		proc->range_event = true; 
+
+	}  
+	
+	
+	return dir; 
+
+
+} 
+
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	
-	if (ProcFind(gProc_Menu)) {
+	if (ProcFind(&gProc_Menu)) {
 		return; 
 	}
 	if (!(proc->countdown)) { 
@@ -209,7 +264,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	else {
 		//asm("mov r11, r11"); 
 		if (pFMU_RunLocBasedAsmcAuto(proc) == yield) { 
-			proc->countdown = 5; 
+			proc->countdown = 1; 
 			proc->yield_move = true; 
 			proc->yield = true; 
 			return; 
@@ -290,10 +345,10 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 	else { 
 		
 		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
-			//x += (facingCur && MU_FACING_RIGHT); 
-			//x -= (facingCur && MU_FACING_LEFT); 
-			y += (facingCur && MU_FACING_DOWN); 
-			//y -= (facingCur && MU_FACING_UP); 
+			//x += (facingCur == MU_FACING_RIGHT); 
+			//x -= (facingCur == MU_FACING_LEFT); 
+			y += (facingCur == MU_FACING_DOWN); 
+			//y -= (facingCur == MU_FACING_UP); 
 			if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 				if( !IsPosInvaild(x,y) ) { 
 				
@@ -339,6 +394,7 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
 				
+				asm("mov r11, r11"); 
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 				proc->xTo  = x;
 				proc->yTo  = y;

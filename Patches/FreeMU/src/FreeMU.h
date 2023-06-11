@@ -31,6 +31,28 @@ struct FMUProc {
 	/* 41 */    u8 scriptedMovement; 
 };
 
+struct MuCtr { 
+	PROC_FIELDS; 
+	u8 dummy1; 
+	u8 dummy2; 
+	u8 dummy3; 
+	u32 dummyA; // 0x2c 
+	u32 dummyB; // 0x30 
+	u32 dummyC; // 0x34 
+	u32 dummyD; // 0x38
+	u32 dummyE; // 0x3C
+	u8 xPos; // 0x40 
+	u8 yPos; 
+	u8 xPos2; 
+	u8 yPos2; 
+
+
+}; 
+extern const ProcInstruction gUnknown_089A2DB0; 
+extern const ProcInstruction gProc_CameraMovement; 
+extern const ProcInstruction gProc_Menu; 
+
+
 struct FMUTrapDef{
 	u8 TrapID;
 	ButtonFunc Func;
@@ -104,7 +126,7 @@ void pFMU_PressR(struct FMUProc*);
 void pFMU_PressSelect(struct FMUProc*);
 void pFMU_PressStart(struct FMUProc*);
 void pFMU_UpdateSMS(struct FMUProc* proc);
-
+bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y);
 
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);
@@ -138,7 +160,7 @@ extern u16 GetCameraCenteredX(int x);
 extern u16 GetCameraAdjustedX(int x); 
 extern u16 GetCameraCenteredY(int y); 
 extern u16 GetCameraAdjustedY(int y); 
-extern const ProcInstruction* gProc_CameraMovement; 
+
 
 struct CamMoveProc {
     /* 00 */ PROC_HEADER;

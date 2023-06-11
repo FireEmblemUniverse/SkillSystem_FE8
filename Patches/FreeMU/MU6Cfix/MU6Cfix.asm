@@ -16,8 +16,28 @@ MU_ExecCmd_FixForFreeMU:
 	mov r6, r10 
 	mov r7, r11 
 	push {r4-r7} 
-	
 	asr		r4, r0, #0x18
+
+	ldr		r0, =FreeMovementControlProc
+	blh		ProcFind
+	cmp		r0, #0
+	beq		.EndMain
+	
+	@mov r1, #0xFF 
+	@lsl r1, #8 
+	@PointlessLoop:
+	@sub r1, #1 
+	@cmp r1, #0 
+	@bne PointlessLoop 
+	@
+	@bl FMU_HandleContinuedMovement 
+	@mov r1, #0 
+	@sub r1, #1 
+	@cmp r0, r1 
+	@beq .EndMain 
+	@mov r7, r0 @ direction 
+	@b NoRangeEvent 
+
 	
 	ldr		r0, =FreeMovementControlProc
 	blh		ProcFind
@@ -84,6 +104,7 @@ strb  r7, [r1]          @ store facing direction in FreeMovementControlProc+0x34
 	cmp		r0, #0
 	beq		.EndMain
 	
+	mov r11, r11 
 	@ <!> --------------- Set Here! ---------------------
 mov r0, r9 @ gProc_MoveUnit
 	ldr		r3,[r0, #0x34]			
@@ -141,7 +162,8 @@ mov r0, r8 @ FMU
 	pop		{r4-r7}
 	pop		{r1}
 	mov		lr, r1
-	ldr		r1, =0x80788BF
+	cmp r0, #0xF 
+	ldr		r1, =0x80788C1
 	bx		r1
 	
 	

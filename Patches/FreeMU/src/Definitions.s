@@ -1,5 +1,6 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+SET_DATA gUnknown_089A2DB0, 0x89A2DB0
 SET_DATA gProc_Menu, 0x85B64D0
 SET_FUNC StartSemiCenteredOrphanMenu, 0x804f64d
 SET_DATA gUnitActionMenuDef, 0x859d1f0

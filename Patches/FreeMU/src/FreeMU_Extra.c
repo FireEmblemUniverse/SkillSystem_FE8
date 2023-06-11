@@ -26,7 +26,7 @@ static inline bool IsPosInvaild(s8 x, s8 y){
 
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y) { 
 	if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
-		y += (proc->smsFacing && MU_FACING_DOWN); 
+		y += (proc->smsFacing == MU_FACING_DOWN); 
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
 				proc->usedLedge = true; 
