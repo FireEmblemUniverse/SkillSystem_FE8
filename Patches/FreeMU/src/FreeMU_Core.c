@@ -155,14 +155,14 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 extern u8 MapEventEngineExists(void); 
 
 #define  MU_SUBPIXEL_PRECISION 4
-int FMU_HandleContinuedMovement(struct FMUProc* proc) { 
-
+int FMU_HandleContinuedMovement(void) { 
+	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 
 	//ProcFind(&gProc_Menu) || 
-	if ((!muProc) || (!ctrProc)) {
+	if ((!proc) || (!muProc) || (!ctrProc)) {
 		return (-1); }
-	if (muProc->pMUConfig->currentCommand != 1) {
+	if (muProc->pMUConfig->currentCommand == 1) {
 		return (-1); } 
 	u8 dir = FMU_ChkKeyForMUExtra(proc);
 	if (dir == 0x10) { 
@@ -170,9 +170,6 @@ int FMU_HandleContinuedMovement(struct FMUProc* proc) {
 	proc->smsFacing = dir; 
 	int x = ctrProc->xPos; 
 	int y = ctrProc->yPos; 
-	asm("mov r11, r11"); 
-	//if (proc->xCur == (muProc->xSubPosition>>8 | (4<<(muProc->xSubPosition>>4 & 0x4))) && (proc->yCur == (muProc->ySubPosition>>8 | (4<<(muProc->ySubPosition>>4 & 0x4))))) 
-		//return (-1); 
 	if (dir == MU_FACING_RIGHT)
 	x++; 
 	if (dir == MU_FACING_LEFT)
@@ -187,8 +184,6 @@ int FMU_HandleContinuedMovement(struct FMUProc* proc) {
 		return (-1); } 
 	muProc->pMUConfig->currentCommand = 1; 
 	muProc->pMUConfig->commands[0] = dir;
-	//muProc->pMUConfig->commands[1] = MU_COMMAND_CAMERA_ON;
-	//muProc->pMUConfig->commands[2] = MU_COMMAND_HALT;
 	ctrProc->xPos = x; 
 	ctrProc->yPos = y; 
 	ctrProc->xPos2 = x; 
@@ -196,19 +191,15 @@ int FMU_HandleContinuedMovement(struct FMUProc* proc) {
 	
 	proc->xTo = x; 
 	proc->yTo = y; 
-	if (pFMU_RunLocBasedAsmcAuto(proc)) { 
+	if (!pFMU_RunLocBasedAsmcAuto(proc)) { 
 		proc->yield = true; 
 		proc->yield_move = true; 
-		proc->countdown = 25; 
+		proc->countdown = 2; 
 		proc->range_event = true; 
-
 	}  
-	
-	
 	return dir; 
-
-
 } 
+
 
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	
