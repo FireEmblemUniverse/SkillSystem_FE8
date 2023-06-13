@@ -1,15 +1,20 @@
 
+#define DefaultTextEntries "SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText"
+#define DefaultTextEntries256 "DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries"
+
 ALIGN 4
 SkillDescTable:
-ORG 2*0xFF+SkillDescTable
+DefaultTextEntries256
+//ORG 2*0xFF+SkillDescTable
 
 ALIGN 4
 SkillNameTable:
-ORG 2*0xFF+SkillNameTable
+DefaultTextEntries256
+//ORG 2*0xFF+SkillNameTable
 
 
-#define SkillDescription(skillID,description) "PUSH; ORG 2*skillID+SkillDescTable; SHORT description; POP"
-#define SkillName(skillID,name) "PUSH; ORG 2*skillID+SkillNameTable; SHORT name; POP"
+#define SkillDescription(skillID,description) "PUSH; ORG (2*skillID)+SkillDescTable; SHORT description; POP"
+#define SkillName(skillID,name) "PUSH; ORG (2*skillID)+SkillNameTable; SHORT name; POP"
 SkillDescription(PowerfulAuraID, SD_PowerfulAura)
 SkillDescription(WonderGuardID, SD_WonderGuard)
 SkillDescription(SturdyID, SD_Sturdy)

@@ -39,9 +39,9 @@ bool FMU_OnButton_StartMenu(FMUProc* proc){
 	return 1;
 }
 
-bool FMU_OnButton_EndFreeMove(FMUProc* proc){
-	//DisableFreeMovementASMC
-	//ProcGoto((Proc*)proc,0xF);
+bool FMU_OnButton_EndFreeMove(void){
+	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+	ProcGoto((Proc*)proc,0xF);
 	End6CInternal_FreeMU(proc);
 	return 1;
 }

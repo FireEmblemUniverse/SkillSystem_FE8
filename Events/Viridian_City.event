@@ -61,7 +61,7 @@ LABEL 63
 NoFade
 ENDA 
 
-
+ALIGN 4
 LocationBasedEvents:
 House(0,ViridianUpperHouseEvent, 21,11)
 House(EarthbadgeObtained,EnterGym,30,10) 
@@ -293,11 +293,12 @@ ShopItems:
 //SHLI 0
 //BYTE SuperPotion 12
 BYTE JellyDonut 3
+//BYTE $00; ALIGN 4
 BYTE SkillScroll FocusID 
 
 
-BYTE SpellScroll Tackle SpellScroll Scratch SpellScroll Leer SpellScroll Bite 
-BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+//BYTE SpellScroll Tackle SpellScroll Scratch SpellScroll Leer SpellScroll Bite 
+//BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
