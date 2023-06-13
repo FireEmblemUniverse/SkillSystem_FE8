@@ -13,16 +13,19 @@ of installation, such as FEBuilderGBA, are not officially supported.
 
 ## Installation
 
-1. Get the latest version of Event Assembler (v11.0.1 as of this release) and put it in the extracted folder.
+1. Download or clone this repository onto your device.
 2. Get a clean FE8U ROM, name it "FE8_clean.gba" and put it in the extracted folder.
-3. Run `MAKE_HACK_full` when you make text or table changes. If you aren't inserting new text or tables, you can use `MAKE_HACK_quick` instead.
+3. Run `MAKE_HACK_full` to generate SkillsTest.gba, an edited copy of FE8_clean with skills added.
+4. `MAKE_HACK_full` should be run whenever changes are intended to be made to the ROM. `MAKE_HACK_quick` can be run instead if not inserting any new text or tables.
 
 ## Basic Usage Notes
 
 - Only 254 skills can be used at a time. To configure which skills are in use, use `EngineHacks/SkillSystem/skill_definitions.event`. This also doubles as a list of all skills and their effects.
+- Skill effects themselves are sorted by skill type and located in `EngineHacks/SkillSystem/Skills`. To customize their effects, change the skill's corresponding .s file and drag it over `AssembleARM.bat`.
 - Several optional toggles for other assembly hacks (such as the STR/MAG split, save expansion, etc) as well as the configuration of the effects of various skills can be found in `EngineHacks/Config.event`.
 - To customize skill learnsets (what skills learned, at what level), see `EngineHacks/SkillSystem/Skill_lists.event`.
 - To customize things like personal skills, class skills, and other miscellaneous things, see the CSVs in `Tables/NightmareModules`.
+- For a more in-depth guide on using the Skill System, refer to [this topic](https://feuniverse.us/t/the-skill-system-and-you-maximizing-your-usage-of-fe8s-most-prolific-bundle-of-wizardry/8232).
 
 ## I found a bug! What can I do about it?
 
