@@ -87,6 +87,7 @@ struct FMURam {
 	u8 state : 1; 
 	u8 running : 1; 
 	u8 dir : 2; 
+	u8 silent : 1; 
 };
 
 extern struct FMURam* FreeMoveRam; 
@@ -138,7 +139,7 @@ bool FMU_RunTrapASMC_Auto(FMUProc*);
 
 /*------------- KeyPress --------------*/
 bool FMU_OnButton_StartMenu(FMUProc*);
-bool FMU_OnButton_EndFreeMove(void);
+int FMU_OnButton_EndFreeMove(void);
 bool FMU_OnButton_ChangeUnit(FMUProc*);
 u16 FMU_FilterMovementInput(struct FMUProc*, u16);
 

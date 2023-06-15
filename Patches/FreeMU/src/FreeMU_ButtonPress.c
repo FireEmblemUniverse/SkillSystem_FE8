@@ -39,11 +39,20 @@ bool FMU_OnButton_StartMenu(FMUProc* proc){
 	return 1;
 }
 
-bool FMU_OnButton_EndFreeMove(void){
+int FMU_OnButton_EndFreeMove(void){
+	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+	FreeMoveRam->silent = false; 
+	ProcGoto((Proc*)proc,0xF);
+	End6CInternal_FreeMU(proc);
+	return 0xB7; // close menu etc 
+}
+
+int FMU_EndFreeMoveSilent(void){
+	FreeMoveRam->silent = true; 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	ProcGoto((Proc*)proc,0xF);
 	End6CInternal_FreeMU(proc);
-	return 1;
+	return 0xB7; // close menu etc 
 }
 
 bool FMU_OnButton_ChangeUnit(FMUProc* proc){

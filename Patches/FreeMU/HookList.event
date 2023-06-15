@@ -24,7 +24,7 @@ FMU_FunctionList_OnPressR:
 
 ALIGN 4
 FMU_FunctionList_OnPressSelect:
-	POIN FMU_OnButton_ChangeUnit|1
+	//POIN FMU_OnButton_ChangeUnit|1
 	FMU_FunctionList_End
 
 ALIGN 4

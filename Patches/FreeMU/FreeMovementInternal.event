@@ -159,7 +159,7 @@ ALIGN 4
 	MM_Dunno1 // options 
 	//MM_Dunno2
 	MM_Suspend
-	MenuCommand(FMU_MenuName, FMU_MenuDesc, GreenText, AlwaysUsable, FMU_OnButton_EndFreeMove|1)
+	MenuCommand(FMU_MenuName, FMU_MenuDesc, GreenText, AlwaysUsable, FMU_EndFreeMoveSilent|1)
 	MM_Separator
 
 

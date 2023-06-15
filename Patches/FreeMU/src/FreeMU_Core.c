@@ -115,6 +115,52 @@ void FMU_ResetDirection(void) {
 	FreeMoveRam->dir = 2; // facing down 
 }
 
+void PhaseSwitchGfx_BreakIfNoUnits(struct Proc* proc) { 
+	if (FreeMoveRam->silent) {
+		//gChapterData.currentPhase = 0x80;
+		EndProc(proc);
+		if (gChapterData.currentPhase == 0x40)
+			FreeMoveRam->silent = false;
+		return; 
+	}
+
+	if (GetPhaseAbleUnitCount(gChapterData.currentPhase)) { //24CEC
+		return; 
+	}
+	EndProc(proc);
+} 
+
+unsigned GetPhaseAbleUnitCount(unsigned faction) {
+	if (FreeMoveRam->silent && (gChapterData.currentPhase == 0x40)) { 
+		return 0; 
+	}
+    int count = 0;
+    int id;
+    for (id = faction + 1; id < faction + 0x40; id++) {
+        struct Unit *unit = GetUnit(id);
+        if (UNIT_IS_VALID(unit)) {
+            u32 state = unit->state;
+            u32 notAble = (
+                US_UNSELECTABLE
+                | US_DEAD
+                | US_NOT_DEPLOYED
+                | US_RESCUED
+                | US_UNDER_A_ROOF
+                | US_BIT16);
+            if (!(state & notAble)) {
+                if (unit->statusIndex != UNIT_STATUS_SLEEP
+                    && unit->statusIndex != UNIT_STATUS_BERSERK)
+                {
+                    if (!(UNIT_CATTRIBUTES(unit) & CA_UNSELECTABLE)) {
+                        count += 1;
+                    }
+                }
+            }
+        }
+    }
+    return count;
+}
+
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
