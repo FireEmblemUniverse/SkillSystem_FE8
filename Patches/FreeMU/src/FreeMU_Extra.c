@@ -112,8 +112,15 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 	const ProcCode* pTmpProcCode = FreeMovementControlProc;
 	if(0==GetFreeMovementState())
 	{
-		if( 0==gChapterData.currentPhase )
+		
+		if( 0==gChapterData.currentPhase || FreeMoveRam->silent ) { 
 			pTmpProcCode=gProc_PlayerPhase;
+			//FreeMoveRam->silent = false; 
+			gChapterData.currentPhase = 0; 
+			if (FreeMoveRam->silent) { 
+			SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
+			} 
+		}
 		else
 			pTmpProcCode=gProc_CpPhase;
 	}

@@ -117,10 +117,13 @@ void FMU_ResetDirection(void) {
 
 void PhaseSwitchGfx_BreakIfNoUnits(struct Proc* proc) { 
 	if (FreeMoveRam->silent) {
-		//gChapterData.currentPhase = 0x80;
+		//
+		if (gChapterData.currentPhase == 0x80) { 
+		gChapterData.currentPhase = 0;
+		FreeMoveRam->silent = false; } 
+		
 		EndProc(proc);
-		if (gChapterData.currentPhase == 0x40)
-			FreeMoveRam->silent = false;
+
 		return; 
 	}
 
@@ -130,8 +133,9 @@ void PhaseSwitchGfx_BreakIfNoUnits(struct Proc* proc) {
 	EndProc(proc);
 } 
 
+
 unsigned GetPhaseAbleUnitCount(unsigned faction) {
-	if (FreeMoveRam->silent && (gChapterData.currentPhase == 0x40)) { 
+	if (FreeMoveRam->silent && (gChapterData.currentPhase & 0xC0)) { 
 		return 0; 
 	}
     int count = 0;
@@ -160,6 +164,7 @@ unsigned GetPhaseAbleUnitCount(unsigned faction) {
     }
     return count;
 }
+
 
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
