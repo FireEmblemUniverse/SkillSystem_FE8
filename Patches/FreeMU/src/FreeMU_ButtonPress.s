@@ -1,4 +1,6 @@
 	.cpu arm7tdmi
+	.arch armv4t
+	.fpu softvfp
 	.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
 	.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
 	.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
@@ -9,7 +11,7 @@
 	.eabi_attribute 34, 0	@ Tag_CPU_unaligned_access
 	.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
 	.file	"FreeMU_ButtonPress.c"
-@ GNU C17 (devkitARM release 56) version 11.1.0 (arm-none-eabi)
+@ GNU C17 (devkitARM release 59) version 12.2.0 (arm-none-eabi)
 @	compiled by GNU C version 10.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.18-GMP
 
 @ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -18,11 +20,9 @@
 	.align	1
 	.p2align 2,,3
 	.global	FMU_open_um
-	.arch armv4t
 	.syntax unified
 	.code	16
 	.thumb_func
-	.fpu softvfp
 	.type	FMU_open_um, %function
 FMU_open_um:
 	@ Function supports interworking.
@@ -79,7 +79,6 @@ FMU_open_um:
 	.syntax unified
 	.code	16
 	.thumb_func
-	.fpu softvfp
 	.type	FMU_OnButton_StartMenu, %function
 FMU_OnButton_StartMenu:
 	@ Function supports interworking.
@@ -128,7 +127,6 @@ FMU_OnButton_StartMenu:
 	.syntax unified
 	.code	16
 	.thumb_func
-	.fpu softvfp
 	.type	FMU_OnButton_EndFreeMove, %function
 FMU_OnButton_EndFreeMove:
 	@ Function supports interworking.
@@ -180,7 +178,6 @@ FMU_OnButton_EndFreeMove:
 	.syntax unified
 	.code	16
 	.thumb_func
-	.fpu softvfp
 	.type	FMU_EndFreeMoveSilent, %function
 FMU_EndFreeMoveSilent:
 	@ Function supports interworking.
@@ -232,7 +229,6 @@ FMU_EndFreeMoveSilent:
 	.syntax unified
 	.code	16
 	.thumb_func
-	.fpu softvfp
 	.type	FMU_OnButton_ChangeUnit, %function
 FMU_OnButton_ChangeUnit:
 	@ Function supports interworking.
@@ -247,24 +243,24 @@ FMU_OnButton_ChangeUnit:
 	ldrb	r0, [r3, #11]	@ tmp128,
 	adds	r0, r0, #1	@ tmp129,
 	lsls	r0, r0, #24	@ tmp131, tmp129,
-	ldr	r5, .L30	@ tmp145,
+	ldr	r5, .L29	@ tmp145,
 	lsrs	r0, r0, #24	@ tmp130, tmp131,
-	bl	.L32		@
+	bl	.L31		@
 .L17:
 @ FreeMU_ButtonPress.c:7: 	if(-1==unit->xPos)
 	movs	r3, #16	@ tmp135,
 	ldrsb	r3, [r0, r3]	@ tmp135,
 	adds	r3, r3, #1	@ tmp151, tmp135,
-	beq	.L29		@,
+	beq	.L19		@,
 @ FreeMU_ButtonPress.c:15: 	if(0==unit->pCharacterData)
 	ldr	r3, [r0]	@ UnitNext_8->pCharacterData, UnitNext_8->pCharacterData
 	cmp	r3, #0	@ UnitNext_8->pCharacterData,
-	beq	.L28		@,
+	beq	.L20		@,
 .L18:
 @ FreeMU_ButtonPress.c:77: }
 	@ sp needed	@
 @ FreeMU_ButtonPress.c:67: 			gActiveUnit = UnitNext;
-	ldr	r3, .L30+4	@ tmp143,
+	ldr	r3, .L29+4	@ tmp143,
 @ FreeMU_ButtonPress.c:66: 			proc->FMUnit = UnitNext;
 	str	r0, [r4, #48]	@ UnitNext, proc_14(D)->FMUnit
 @ FreeMU_ButtonPress.c:67: 			gActiveUnit = UnitNext;
@@ -274,40 +270,38 @@ FMU_OnButton_ChangeUnit:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L29:
+.L19:
 @ FreeMU_ButtonPress.c:62: 		UnitNext = GetUnit(UnitNext->index+1);
-	ldrb	r0, [r0, #11]	@ tmp137,
-	adds	r0, r0, #1	@ tmp138,
-	lsls	r0, r0, #24	@ tmp139, tmp138,
-	lsrs	r0, r0, #24	@ _7, tmp139,
-	bl	.L32		@
+	ldrb	r0, [r0, #11]	@ tmp138,
+	adds	r0, r0, #1	@ tmp139,
+	lsls	r0, r0, #24	@ tmp140, tmp139,
+	lsrs	r0, r0, #24	@ _7, tmp140,
+	bl	.L31		@
 @ FreeMU_ButtonPress.c:13: 	if(0==unit)
 	cmp	r0, #0	@ UnitNext,
-	bne	.L27		@,
-.L28:
+	beq	.L20		@,
+@ FreeMU_ButtonPress.c:15: 	if(0==unit->pCharacterData)
+	ldr	r3, [r0]	@ UnitNext_24->pCharacterData, UnitNext_24->pCharacterData
+	cmp	r3, #0	@ UnitNext_24->pCharacterData,
+	bne	.L17		@,
+.L20:
 @ FreeMU_ButtonPress.c:73: 		UnitNext = GetUnit(1);
 	movs	r0, #1	@,
-	bl	.L32		@
+	bl	.L31		@
 @ FreeMU_ButtonPress.c:76: 	return 1;
 	b	.L18		@
-.L27:
-@ FreeMU_ButtonPress.c:15: 	if(0==unit->pCharacterData)
-	ldr	r3, [r0]	@ UnitNext_23->pCharacterData, UnitNext_23->pCharacterData
-	cmp	r3, #0	@ UnitNext_23->pCharacterData,
-	bne	.L17		@,
-	b	.L28		@
-.L31:
-	.align	2
 .L30:
+	.align	2
+.L29:
 	.word	GetUnit
 	.word	gActiveUnit
 	.size	FMU_OnButton_ChangeUnit, .-FMU_OnButton_ChangeUnit
-	.ident	"GCC: (devkitARM release 56) 11.1.0"
+	.ident	"GCC: (devkitARM release 59) 12.2.0"
 	.code 16
 	.align	1
 .L12:
 	bx	r3
 .L5:
 	bx	r4
-.L32:
+.L31:
 	bx	r5

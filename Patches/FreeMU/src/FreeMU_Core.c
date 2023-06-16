@@ -268,6 +268,10 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	else { 
 		proc->countdown--; 
 	} 
+	FillRangeMapForDangerZone(1); // no staves 
+	//PlayerPhase_DisplayDangerZone();
+	//PlayerPhase_RangeDisplayIdle(); 
+	DisplayMoveRangeGraphics(2); 
 
 	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
@@ -306,7 +310,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	
 
 	if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) { 
-		asm("mov r8, r8"); 
+		//asm("mov r8, r8"); 
 	}
 	else {
 		//asm("mov r11, r11"); 

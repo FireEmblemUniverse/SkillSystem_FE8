@@ -65,11 +65,13 @@ ALIGN 4
 	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow
 	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
 	_6C_CALL_ROUTINE(pFMU_InitTimer|1)
+	//_6C_CALL_ROUTINE(0x801CCB5) //PlayerPhase_DisplayDangerZone();
 	
 	_6C_LABEL(0)	//Idle
 	//_6C_CALL_ROUTINE(pFMU_OnInit|1) // now called inside pFMU_InitTimer 
 	//_6C_CALL_ROUTINE_2(pFMU_CorrectCameraPosition|1)
 	_6C_LABEL(0xD)	
+	
 	_6C_LOOP_ROUTINE(pFMU_MainLoop|1)
 	//_6C_LOOP_ROUTINE(pFMU_HanleContinueMove|1)	
 	_6C_GOTO(0xD)
