@@ -174,6 +174,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->xTo  = gActiveUnit->xPos;
 	proc->yTo  = gActiveUnit->yPos;
 	proc->usedLedge = false; 
+	proc->end_after_movement = false; 
 	
 	
 	if (FreeMoveRam->running) 
@@ -229,6 +230,10 @@ int FMU_HandleContinuedMovement(void) {
 	y++; 
 	if (dir == MU_FACING_UP)
 	y--; 
+	if (gMapFog[y][x]) {
+		proc->end_after_movement = true; 
+		
+	}
 
 	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
 	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 

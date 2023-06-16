@@ -13,6 +13,11 @@ ALIGN 4
 FreeMoveRam:
 	WORD 0x02028924
 	
+ALIGN 4 
+FreeMove_Running:
+BYTE 1 
+
+	
 ALIGN 4
 TimerDelay:
 	/*

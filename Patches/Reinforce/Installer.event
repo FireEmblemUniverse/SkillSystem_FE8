@@ -32,7 +32,7 @@ ENUN
 #ifdef DRUnitBitMask
 CHECK_EVENTID DangerRadiusToggleFlag
 BNE 1 rC r0 
-SetNearbyDangerRadius // Pokemblem only 
+VeslySetDangerRadius // Pokemblem only 
 LABEL 1 
 #endif 
 NoFade

@@ -413,7 +413,7 @@ SetUnitStatus(SableyeUnitID, CurrentHP, 30)
 SCOORD sB [13,28]
 SET_CURSOR_SB
 CAM1 [13,28]
-SetNearbyDangerRadius
+VeslySetDangerRadius
 
 
 

@@ -95,7 +95,7 @@ SDIV s9 sC s1
 BGE 99 sA s9 // if over 1/3rd hp, do nothing  
 ENUT ZapdosFledFlag // 1/3rd or less hp, so flee 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 CALL ModularSummonWildTrainerEvent // looks for unit ID of attacker or defender from 0xD0 - 0xDF, originally 0xE0 - 0xEF 
 
 
@@ -193,7 +193,7 @@ ENUN
 AutoLevelUnits(WildLvl, True, 0x9B9B) // Wilds 
 // danger zone isn't updated properly like this fsr 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 NoFade 
 ENDA 
 
@@ -203,7 +203,7 @@ LOAD1 1 VoltorbRightUnitGroup
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x9C9C) // Wilds 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 NoFade 
 ENDA 
 
@@ -214,7 +214,7 @@ LOAD1 1 ElectrodeLeftUnitGroup
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x9E9E) // Wilds 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 NoFade 
 ENDA 
 
@@ -224,7 +224,7 @@ LOAD1 1 ElectrodeRightUnitGroup
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x9D9D) // Wilds 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 NoFade 
 ENDA 
 
@@ -234,7 +234,7 @@ LOAD1 1 ElectrodeLeftUnitGroup2
 ENUN 
 AutoLevelUnits(WildLvl, True, 0x9999) // Wilds 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 NoFade 
 ENDA 
 
@@ -245,7 +245,7 @@ ENUN
 AutoLevelUnits(WildLvl, True, 0x9A9A) // Wilds 
 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 NoFade 
 ENDA 
 

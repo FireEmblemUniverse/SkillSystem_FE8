@@ -28,7 +28,8 @@ struct FMUProc {
 	/* 3e */    u8 ledgeX; 
 	/* 3f */    u8 ledgeY; 
 	/* 40 */    u8 range_event; 
-	/* 41 */    u8 scriptedMovement; 
+	/* 41 */    u8 end_after_movement; 
+	/* 42 */    u8 scriptedMovement; 
 };
 
 struct MuCtr { 
@@ -97,6 +98,8 @@ extern struct FMURam* FreeMoveRam;
 extern const ProcCode FreeMovementControlProc[];
 extern const MenuDefinition FreeMovementLMenu;
 extern bool RunMiscBasedEvents(u8,u8);
+extern u8 GetLocationEventCommandAt(int x, int y); 
+extern void RunLocationEvents(int x, int y); 
 
 
 /*------------- External --------------*/

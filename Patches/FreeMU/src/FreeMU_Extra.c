@@ -177,6 +177,10 @@ u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
 		proc->scriptedMovement = false; 
 		return 2; // down 
 	}
+	if (proc->end_after_movement) { // after any scripted movement is done 
+		FMU_OnButton_EndFreeMove(); 
+		return 0x10; 
+	}
 
 	if ((!proc->range_event) && (!proc->usedLedge)) { 
 		u16 iKeyCur = gKeyState.heldKeys;
