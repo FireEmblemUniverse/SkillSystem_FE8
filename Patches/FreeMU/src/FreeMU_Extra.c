@@ -116,7 +116,7 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 		if( 0==gChapterData.currentPhase || FreeMoveRam->silent ) { 
 			pTmpProcCode=gProc_PlayerPhase;
 			//FreeMoveRam->silent = false; 
-			gChapterData.currentPhase = 0; 
+			//gChapterData.currentPhase = 0; 
 			if (FreeMoveRam->silent) { 
 			SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 			} 
@@ -178,7 +178,7 @@ u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
 		return 2; // down 
 	}
 	if (proc->end_after_movement) { // after any scripted movement is done 
-		FMU_OnButton_EndFreeMove(); 
+		FMU_EndFreeMoveSilent(); 
 		return 0x10; 
 	}
 

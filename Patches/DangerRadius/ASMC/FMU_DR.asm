@@ -35,4 +35,32 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global FMU_Mu_Ctr_DontRefreshFog
+.type FMU_Mu_Ctr_DontRefreshFog, %function 
+FMU_Mu_Ctr_DontRefreshFog:
+push {lr} 
+ldsb r1, [r4, r1] 
+ldr r0, [r0] 
+add r0, r1 
+ldrb r1, [r4, #0xB] 
+strb r1, [r0] 
+
+@ if free mu is on, set DR for all enemies 
+ldr r3, =FreeMoveRam
+ldr r3, [r3] 
+ldrb r0, [r3] 
+ldr r1, =FreeMove_Running
+ldrb r1, [r1] 
+ldr r2, =FreeMove_Silent
+ldrb r2, [r2] 
+orr r1, r2 
+tst r0, r1 
+bne DontUpdateFog
+blh 0x801A1F4 // RefreshEntityMaps 
+DontUpdateFog:
+pop {r0} 
+bx r0 
+.ltorg 
+
+
 

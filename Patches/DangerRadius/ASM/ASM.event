@@ -7,6 +7,11 @@
 
 PUSH
 
+// Don't refresh fog during FMU mode - Vesly 
+ORG $7A268 
+callHackNew(FMU_Mu_Ctr_DontRefreshFog)
+SHORT $46C0
+
   // Clear DR when player phase ends.
   ORG 0x59A274
   POIN EndDR|1

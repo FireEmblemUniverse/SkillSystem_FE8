@@ -143,6 +143,7 @@ bool FMU_RunTrapASMC_Auto(FMUProc*);
 /*------------- KeyPress --------------*/
 bool FMU_OnButton_StartMenu(FMUProc*);
 int FMU_OnButton_EndFreeMove(void);
+int FMU_EndFreeMoveSilent(void);
 bool FMU_OnButton_ChangeUnit(FMUProc*);
 u16 FMU_FilterMovementInput(struct FMUProc*, u16);
 

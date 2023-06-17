@@ -232,7 +232,6 @@ int FMU_HandleContinuedMovement(void) {
 	y--; 
 	if (gMapFog[y][x]) {
 		proc->end_after_movement = true; 
-		
 	}
 
 	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
@@ -255,7 +254,7 @@ int FMU_HandleContinuedMovement(void) {
 	}  
 	return dir; 
 } 
-
+//202f55a
 
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	
@@ -268,10 +267,6 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	else { 
 		proc->countdown--; 
 	} 
-	FillRangeMapForDangerZone(1); // no staves 
-	//PlayerPhase_DisplayDangerZone();
-	//PlayerPhase_RangeDisplayIdle(); 
-	DisplayMoveRangeGraphics(2); 
 
 	/*
 	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
@@ -313,14 +308,16 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		//asm("mov r8, r8"); 
 	}
 	else {
-		//asm("mov r11, r11"); 
 		if (pFMU_RunLocBasedAsmcAuto(proc) == yield) { 
 			proc->countdown = 1; 
 			proc->yield_move = true; 
 			proc->yield = true; 
-			return; 
+			//return; 
 		} 
 	} 
+	if (proc->end_after_movement) { // after any scripted movement is done 
+		FMU_EndFreeMoveSilent(); 
+	}
 	
 	
 
@@ -348,7 +345,7 @@ int pFMU_HanleContinueMove(struct FMUProc* proc){
 void pFMUCtr_OnEnd(Proc* proc){
   struct FMUProc* FMUproc = (FMUProc*)ProcFind(FreeMovementControlProc);
   
-  MuCtr_OnEnd(proc);
+  MuCtr_OnEnd(proc); // 0x807a270 
   
   // Determine facing direction and update sms.
   if (FMUproc!=NULL && GetFreeMovementState())
@@ -394,7 +391,9 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 		FreeMoveRam->dir = proc->smsFacing; 
 	} 
 	else { 
-		
+		if (gMapFog[y][x]) {
+			proc->end_after_movement = true; 
+		}
 		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
 			//x += (facingCur == MU_FACING_RIGHT); 
 			//x -= (facingCur == MU_FACING_LEFT); 
@@ -445,7 +444,7 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
 				
-				asm("mov r11, r11"); 
+				//asm("mov r11, r11"); 
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 				proc->xTo  = x;
 				proc->yTo  = y;

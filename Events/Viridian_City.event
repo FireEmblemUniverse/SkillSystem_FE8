@@ -144,9 +144,6 @@ CUMO [19,13]
 STAL 30
 CURE  
 TutText(TrainerTip_Catch)
-VeslySetDangerRadius
-SET_ACTIVE 0 
-EnableFreeMovement
 SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
 ASMC SetNewFlag_ASMC 
 LABEL 99 
@@ -191,8 +188,6 @@ CUMO [15,4]
 STAL 30
 CURE  
 TutText(TrainerTip_CursorJump) 
-VeslySetDangerRadius
-EnableFreeMovement
 SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
 ASMC SetNewFlag_ASMC 
 LABEL 99 

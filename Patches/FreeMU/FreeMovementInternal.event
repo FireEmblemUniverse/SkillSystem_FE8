@@ -54,10 +54,10 @@ ALIGN 4
 	
 	_6C_LABEL(0xC)	//Proc Start
 	_6C_YIELD
-	_6C_CALL_ROUTINE($801A1F5) // RefreshFogAndUnitMaps
+	//_6C_CALL_ROUTINE($801A1F5) // RefreshFogAndUnitMaps
 	_6C_CALL_ROUTINE($8019C3D) // UpdateGameTilesGraphics
 	_6C_YIELD
-	_6C_CALL_ROUTINE(0x80790A5)
+	_6C_CALL_ROUTINE(0x80790A5) // MU_EndAll
 	_6C_YIELD
 	_6C_CALL_ROUTINE($80271A1) // SMS_UpdateFromGameData
 	_6C_YIELD
@@ -65,6 +65,7 @@ ALIGN 4
 	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow
 	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
 	_6C_CALL_ROUTINE(pFMU_InitTimer|1)
+	_6C_CALL_ROUTINE(FMU_EnableDR|1)
 	//_6C_CALL_ROUTINE(0x801CCB5) //PlayerPhase_DisplayDangerZone();
 	
 	_6C_LABEL(0)	//Idle
@@ -120,10 +121,11 @@ ALIGN 4
 	_6C_GOTO(0)
 	
 	_6C_LABEL(0xE)	//Save
-	_6C_YIELD
+	//_6C_YIELD
 	//_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
 	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
-	_6C_GOTO(0xC)
+	_6C_GOTO(0)
+	//_6C_GOTO(0xC)
 	
 	_6C_LABEL(0xF)
 	_6C_END

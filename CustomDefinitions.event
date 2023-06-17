@@ -12,6 +12,7 @@
 PUSH; ORG $D74D0	//{U}
 String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
+#define ProtagID 0x45 
 
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
