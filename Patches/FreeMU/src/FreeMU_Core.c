@@ -175,6 +175,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->yTo  = gActiveUnit->yPos;
 	proc->usedLedge = false; 
 	proc->end_after_movement = false; 
+	//FreeMoveRam->silent = false; 
 	
 	
 	if (FreeMoveRam->running) 
