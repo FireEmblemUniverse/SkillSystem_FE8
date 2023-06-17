@@ -16,6 +16,12 @@ FILL(0x1C*0x100) 0
 // ALIGN 16 %[name|stripspecial]%Data: // %[national_dex|zeropad]%#incbin "Dmp/%[national_dex]%_mug.dmp" #incbin "Dmp/%[national_dex]%_frames.dmp" #incbin "Dmp/%[national_dex]%_palette.dmp" #incbin "Dmp/%[national_dex]%_minimug.dmp" setMugEntry(%[national_dex]%, %[name|stripspecial]%Data, 9, 9, 9, 9)
 // https://www.dragonflycave.com/resources/pokemon-list-generator?format=ALIGN+16+%3Cbr%3E%25%5Bname%7Cstripspecial%5D%25Data%3A+%2F%2F+%25%5Bnational_dex%7Czeropad%5D%25%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_mug.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_frames.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_palette.dmp%22+%3Cbr%3E%23incbin+%22Dmp%2F%25%5Bnational_dex%5D%25_minimug.dmp%22+%3Cbr%3EsetMugEntry%28%23%25%5Bnational_dex%5D%25%2C+%25%5Bname%7Cstripspecial%5D%25Data%2C+9%2C+9%2C+9%2C+9%29%3Cbr%3E&linebreaks=1&gens=1&order=national
 
+	ALIGN 4
+	Blank_Portrait:
+	//#incext PortraitFormatter "blank_portrait.png"
+	#incbin "blank_portrait.dmp"
+//	setMugEntry(0x1, Blank_Portrait, 3, 5, 3, 3)
+
 ALIGN 16 
 OakData: // 001
 #incbin "Dmp/Oak_mug.dmp" 

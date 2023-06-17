@@ -1,12 +1,16 @@
 #ifdef _FE8_
     #include "EAstdlib.event"
+	#include "Extensions/Hack Installation.txt"
     #include "CustomDefinitions.event"
-	
-	ORG 0x01000000
-	#include "Music/MusicInstaller.event"
-	MESSAGE Pokemblem music space ends at currentOffset
-	ASSERT (FreeSpace - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
-    ORG FreeSpace
+	#include "Music/MusicTrackDefinitions.event" 
+	#include "Maps/Definitions.event"
+ORG FreeSpace2
+    //CSV tables
+	//#include "Text/Text Definitions.event" 
+
+
+
+
 	
 	#include "repointedTextTable.event"
 	#include "Music/Text/ExtraText.event" 
@@ -16,28 +20,32 @@
 
     #include "Text/InstallTextData.event"
     MESSAGE Used text space ends at currentOffset
-
-	#include "Maps/Definitions.event"
-    //CSV tables
 	
+PUSH 
+ORG FreeSpace3
     #include "Tables/TableInstaller.event"
     MESSAGE Used table space ends at currentOffset
-	
+	#include "Graphics/IntegratedInstaller.event" 	
 	#include "Patches/ASMCs_Installer.event"
 	
 	#include "Patches/DebugCommand/Debug.lyn.event"
     //Engine Hacks
     #include "EngineHacks/_MasterHackInstaller.event"
-    MESSAGE Used hax space ends at currentOffset
-
-    //Maps
-    #include "Maps/SplitPList.event"
-
     //Patches
 	#define InstallPatches 
 	#ifdef InstallPatches 
 		#include "Patches/An_Installer_of_Patches.event"
 	#endif 
+#include "Maps/SplitPList.event" 
+    MESSAGE Used hax space ends at currentOffset
+	
+	EndOfFreeSpace: 
+POP 
+	
+
+
+
+
 	
 	#ifndef ENABLE_FixedDamageWeapons
 		#include "Patches/FixedDamageWeapons/FixedDamageWeaponsInstaller.event" 
@@ -46,27 +54,38 @@
 		#include "Patches/ModularSupply/ModularSupplyInstaller.event" 
 	#endif 
 	
-	MESSAGE Used patch space ends at currentOffset 
+
 	
-
-
-	//Graphics
-	#include "Graphics/GraphicsInstaller.event"
-
-
-
     //Events
 	#include "Events/EventsInstaller.event"
 	#include "A_Debug_Command.event"
+	MESSAGE Used events space ends at currentOffset 
+ASSERT (FreeSpace2_End - currentOffset)
+	
+
+	
+
+
+
+
+	
+
+
+
+
+
+
+
 
 ALIGN 4
 WORD 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 // Prevent NUPS from cutting off the last 6 bytes
 
-
+ORG EndOfFreeSpace 
+MESSAGE Used free space ends at currentOffset
 	
 	//ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
 	
-    MESSAGE Used free space ends at currentOffset
+    
 #else
     ERROR "You are not assembling FE8 events!"
 #endif

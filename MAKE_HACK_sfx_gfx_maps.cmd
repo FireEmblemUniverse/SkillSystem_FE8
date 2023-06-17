@@ -6,11 +6,10 @@
 
 @rem defining buildfile config
 
-set "source_rom=%~dp0sfx_gfx_maps.gba"
-set "main_event=%~dp0ROMBuildfile.event"
-set "target_rom=%~dp0FE8Hack.gba"
-set "target_ups=%~dp0Pokemblem.ups"
-set "target_sym=%~dp0FE8Hack.sym"
+set "source_rom=%~dp0FE8_clean.gba"
+set "main_event=%~dp0sfx_gfx_maps.event"
+set "target_rom=%~dp0sfx_gfx_maps.gba"
+set "target_sym=%~dp0sfx_gfx_maps.sym"
 
 @rem defining tools
 
@@ -31,45 +30,12 @@ echo Copying ROM
 
 copy "%source_rom%" "%target_rom%"
 
-if /I not [%1]==[quick] (
-
-  @rem only do the following if this isn't a make hack quick
-
-  echo:
-  echo Processing tables
-
-  cd "%base_dir%Tables"
-  echo: | ("%c2ea%" "%source_rom%" -installer "%base_dir%Tables/TableInstaller.event")
-
-  echo:
-  echo Processing text
-
-  cd "%base_dir%Text"
-  echo: | ("%textprocess%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
-
-  echo:
-  echo Processing maps
-
-  cd "%base_dir%Maps"
-  echo: | ("%tmx2ea%" -s "MasterMapInstaller.event")
-)
-
 echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times"
-@rem type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
-SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
-copy /y "%~dp0sfx_gfx_maps.sym" %destDir%\comment_.txt
-
-
-
-echo:
-echo Generating patch
-
-cd "%base_dir%"
-"%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
+@rem type "%~dp0FE8_clean.sym" >> "%~dp0sfx_gfx_maps.sym"
 
 echo:
 echo Generating sym file

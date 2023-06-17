@@ -1,5 +1,9 @@
 
 //#define FreeSpace 0xb2a610
+#define FreeSpace3 0x1200000 
+#define FreeSpace2 0xb2a610
+//#define FreeSpace2_End 0xFFFFFF
+#define FreeSpace2_End 0xC00000
 //#define FreeSpaceBLRange 0x1c1ec0
 //PROTECT $267FC $268C7
 // Comment out for public releases
@@ -70,6 +74,35 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
     #define ClassAnimTable (0xc00008-0x20)
 #endif
 
+
+#define MuscleBand_BoostIndex 1 
+#define WiseGlasses_BoostIndex 2
+#define LuckyBracer_BoostIndex 3
+#define LeatherShield_BoostIndex 4
+#define BronzeShield_BoostIndex 5
+#define OldWard_BoostIndex 6
+#define WornBoots_BoostIndex 7
+#define OldScope_BoostIndex 8
+#define EnergyBand_BoostIndex 9 
+
+#define MuscleBandT2_BoostIndex 10 
+#define WiseGlassesT2_BoostIndex 11 
+#define EnergyBandT2_BoostIndex 12 
+#define PaddedShield_BoostIndex 13
+#define IronShield_BoostIndex 14
+#define MagicWard_BoostIndex 15
+#define QuickBoots_BoostIndex 16
+#define SightScope_BoostIndex 17
+#define MuscleBandT3_BoostIndex 18
+#define WiseGlassesT3_BoostIndex 19
+#define EnergyBandT3_BoostIndex 20
+#define StuddedShield_BoostIndex 21
+#define SteelShield_BoostIndex 22
+#define EnhancedWard_BoostIndex 23
+#define VintageBoots_BoostIndex 24
+#define SilphScope_BoostIndex 25
+#define LuckyBracerT3_BoostIndex 26 
+#define EnergyBandT4_BoostIndex 27 
 
 #define ItemTable NewItemTable 
 #undef ClassTable 
@@ -169,6 +202,11 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 //item ID for skill scroll
 #define SkillScroll 0xF7
 #define SpellScroll 0xF8
+
+#define GaryHouseBG 56 
+#define ViridianForestBG 57 
+#define WorldMapBG 58
+#define ChampionsRoomBG 59 
 
 #include "EngineHacks/SkillSystem/Definitions/skill_definitions.enu.event"
 
