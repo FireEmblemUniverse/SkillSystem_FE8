@@ -98,6 +98,7 @@ extern struct FMURam* FreeMoveRam;
 extern const ProcCode FreeMovementControlProc[];
 extern const MenuDefinition FreeMovementLMenu;
 extern bool RunMiscBasedEvents(u8,u8);
+extern const ProcInstruction gProc_MapEventEngine; 
 extern u8 GetLocationEventCommandAt(int x, int y); 
 extern void RunLocationEvents(int x, int y); 
 

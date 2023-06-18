@@ -168,6 +168,13 @@ unsigned GetPhaseAbleUnitCount(unsigned faction) {
 
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
+	//UnpackChapterMapGraphics(gChapterData.chapterIndex);
+	//InitBaseTilesBmMap();
+	//RenderBmMap();
+	ShowUnitSMS(gActiveUnit);
+	gActiveUnit->state &= ~1; 
+	SMS_UpdateFromGameData();
+	
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
 	proc->xCur = gActiveUnit->xPos;
 	proc->yCur = gActiveUnit->yPos;
@@ -248,11 +255,17 @@ int FMU_HandleContinuedMovement(void) {
 	proc->xTo = x; 
 	proc->yTo = y; 
 	if (!pFMU_RunLocBasedAsmcAuto(proc)) { 
-		proc->yield = true; 
-		proc->yield_move = true; 
-		proc->countdown = 2; 
-		proc->range_event = true; 
-	}  
+		struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
+		if (eventProc) { 
+			if (eventProc->evStallTimer || eventProc->pUnitLoadData || eventProc->activeTextType) { 
+				proc->yield = true; 
+				proc->yield_move = true; 
+				proc->countdown = 2; 
+				proc->range_event = true; 
+			}
+		} 
+	}
+  
 	return dir; 
 } 
 //202f55a

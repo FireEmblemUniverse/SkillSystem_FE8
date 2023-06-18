@@ -29,10 +29,13 @@ b Exit
 StartFMUIfPeaceful:
 mov r0, r4 
 blh 0x801865C @ SetupActiveUnit 
-mov r0, r6 
-blh 0x8002D6C @ proc end (player phase) 
-@blh 0x8002E94 @ BreakProcLoop 
 
+mov r0, r6 
+blh 0x8002E94 @ BreakProcLoop 
+
+@blh 0x8002D6C @ proc end (player phase) 
+
+blh 0x80225F8 @ Commnd_EndEffect
 ldr r3, =FreeMoveRam
 ldr r3, [r3] 
 ldrb r0, [r3] 

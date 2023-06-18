@@ -42,17 +42,31 @@ bool FMU_OnButton_StartMenu(FMUProc* proc){
 int FMU_OnButton_EndFreeMove(void){
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	FreeMoveRam->silent = false; 
+	gLCDIOBuffer.dispControl.enableWin0 = 0;
+	gLCDIOBuffer.dispControl.enableWin1 = 0;
+	gLCDIOBuffer.dispControl.enableObjWin = 0;
+	gLCDIOBuffer.blendControl.effect = 0;
 	ProcGoto((Proc*)proc,0xF);
 	End6CInternal_FreeMU(proc);
 	return 0xB7; // close menu etc 
 }
 
+extern void SetupActiveUnit(struct Unit* unit); 
 extern int CallCommandEffect(void); 
 int FMU_EndFreeMoveSilent(void){
 	FreeMoveRam->silent = true; 
+	gLCDIOBuffer.dispControl.enableWin0 = 0;
+	gLCDIOBuffer.dispControl.enableWin1 = 0;
+	gLCDIOBuffer.dispControl.enableObjWin = 0;
+	gLCDIOBuffer.blendControl.effect = 0; // restore things back to normal - otherwise map can glitch 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
-	ProcGoto((Proc*)proc,0xF);
-	End6CInternal_FreeMU(proc);
+	if (proc) { 
+		gActiveUnit->xPos = proc->xTo; 
+		gActiveUnit->yPos = proc->yTo; 
+		ProcGoto((Proc*)proc,0xF);
+		End6CInternal_FreeMU(proc);
+	}
+	SetupActiveUnit(gActiveUnit); 
 	CallCommandEffect(); 
 	return 0xB7; // close menu etc 
 }

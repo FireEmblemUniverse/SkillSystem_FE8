@@ -49,14 +49,13 @@ bx r1
 .equ RunLocationEvents,0x080840C5
 
 RunMiscBasedEvents:				@[[59AB84(gProc_UnitSelect)]]->[59ACF4]->8445C(RunSelectEvents)
-push {r4-r5,r14}
+push {r4-r6,r14}
 sub sp,#0x1C
 mov r4,r0
 mov r5,r1
+mov r6, #0 @ false default 
 ldr r0,=gChapterData
 ldrb r0,[r0,#0xE]				@gChapterData.ChapterID
-	lsl		r0, r0, #0x18
-	lsr		r0, r0, #0x18
 blh GetChapterEventDataPointer
 ldr r0,[r0,#0xC]
 str r0,[sp]
@@ -67,6 +66,7 @@ mov r0,r13
 blh CheckEventDefinition
 cmp r0,#0
 beq NoEvent @ExitMiscBasedLoop
+mov r6, #1 
 blh ClearActiveEventRegistry
 EventCallLoop:
 mov r0,r13
@@ -83,11 +83,12 @@ NoEvent:
 mov	r0, #0
 b	ExitMiscBasedLoop
 ExitMiscBasedLoop:
+mov r0, r6 
 add sp,#0x1C
 
-pop {r4-r5}
-pop {r0}
-bx r0
+pop {r4-r6}
+pop {r1} @ returns true/false 
+bx r1
 
 
 

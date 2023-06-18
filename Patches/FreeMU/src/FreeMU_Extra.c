@@ -86,6 +86,7 @@ u8 GetFreeMovementState(void){
 void End6CInternal_FreeMU(FMUProc* proc){
 	DisableFreeMovementASMC();
 	ProcGoto((Proc*)proc,0xF);
+	EndProc((Proc*)proc); 
 	return;	
 }
 
@@ -162,7 +163,7 @@ int pFMU_CorrectCameraPosition(struct FMUProc* proc){
 	return no_yield; 
 }
 
-extern const ProcInstruction gProc_MapEventEngine; 
+
 u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
 
 	struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
