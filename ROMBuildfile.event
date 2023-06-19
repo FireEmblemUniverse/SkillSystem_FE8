@@ -4,14 +4,10 @@
     #include "CustomDefinitions.event"
 	#include "Music/MusicTrackDefinitions.event" 
 	#include "Maps/Definitions.event"
+	#include "Maps/MapMacros.event" 
 ORG FreeSpace2
     //CSV tables
 	//#include "Text/Text Definitions.event" 
-
-
-
-
-	
 	#include "repointedTextTable.event"
 	#include "Music/Text/ExtraText.event" 
 
@@ -23,7 +19,8 @@ ORG FreeSpace2
 	
 PUSH 
 ORG FreeSpace3
-    #include "Tables/TableInstaller.event"
+	#include "Maps/MapTables.event" 
+    #include "Tables/TableInstaller.event" // maps and tables must be directly at FreeSpace3, with ChapterDataTable being the first table 
     MESSAGE Used table space ends at currentOffset
 	#include "Graphics/IntegratedInstaller.event" 	
 	#include "Patches/ASMCs_Installer.event"
@@ -36,8 +33,8 @@ ORG FreeSpace3
 	#ifdef InstallPatches 
 		#include "Patches/An_Installer_of_Patches.event"
 	#endif 
-#include "Maps/SplitPList.event" 
-    MESSAGE Used hax space ends at currentOffset
+	#include "Maps/Master Map Installer.event"
+    //MESSAGE Used hax space ends at currentOffset
 	
 	EndOfFreeSpace: 
 POP 

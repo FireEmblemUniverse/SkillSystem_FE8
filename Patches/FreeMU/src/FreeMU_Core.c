@@ -171,9 +171,9 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	//UnpackChapterMapGraphics(gChapterData.chapterIndex);
 	//InitBaseTilesBmMap();
 	//RenderBmMap();
-	ShowUnitSMS(gActiveUnit);
-	gActiveUnit->state &= ~1; 
-	SMS_UpdateFromGameData();
+	//ShowUnitSMS(gActiveUnit);
+	//gActiveUnit->state &= ~1; 
+	//SMS_UpdateFromGameData();
 	
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
 	proc->xCur = gActiveUnit->xPos;
@@ -717,6 +717,30 @@ void pFMU_UpdateSMS(struct FMUProc* proc){
     RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
   return;
 }
+
+/* @blh 0x801865C @ SetupActiveUnit 
+void UnitBeginAction(struct Unit* unit) {
+    gActiveUnit = unit;
+    gActiveUnitId = unit->index;
+
+    gActiveUnitMoveOrigin.x = unit->xPos;
+    gActiveUnitMoveOrigin.y = unit->yPos;
+
+    gActionData.subjectIndex = unit->index;
+    gActionData.unitActionType = 0;
+    gActionData.moveCount = 0;
+
+    gBmSt.unk3D = 0;
+    gBmSt.unk3F = 0xFF;
+
+    sub_802C334();
+
+    gActiveUnit->state |= US_HIDDEN;
+    gBmMapUnit[unit->yPos][unit->xPos] = 0;
+}
+*/
+
+
 
 /*
 void pFMU_MainLoop(struct FMUProc* proc){

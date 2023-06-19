@@ -27,11 +27,21 @@ mov r0, r6
 blh 0x8002E94 @ BreakProcLoop 
 b Exit 
 StartFMUIfPeaceful:
-mov r0, r4 
-blh 0x801865C @ SetupActiveUnit 
 
 mov r0, r6 
 blh 0x8002E94 @ BreakProcLoop 
+
+mov r0, r4 
+@blh 0x801865C @ SetupActiveUnit 
+
+ldr r0, [r4, #0x0C] 
+mov r1, #1 
+bic r0, r1 
+str r0, [r4, #0x0C] @ remove hide bitflag 
+
+blh 0x80271A0 @ SMS_UpdateFromGameData
+
+
 
 @blh 0x8002D6C @ proc end (player phase) 
 
@@ -43,9 +53,10 @@ ldr r1, =FreeMove_Silent
 ldrb r1, [r1] 
 orr r0, r1 
 strb r0, [r3] 
-@
-@
-@blh 0x80225F8 @ Commnd_EndEffect
+
+
+
+
 bl EnableFreeMovementASMC
 
 Exit: 

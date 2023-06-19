@@ -3,12 +3,14 @@
 	#include "Maps/Definitions.event"
 	#include "Extensions/Hack Installation.txt"
 	#include "EventAssembler/Tools/Tool Helpers.txt"
-//PUSH 
-//ORG FreeSpace3 
-//NewChapterDataTable:
-//POP 
+	#include "Maps/MapMacros.event" 
+PUSH 
+ORG FreeSpace3 
+#include "Maps/MapTables.event" 
+NewChapterDataTable: // so we can see this for maps 
+POP 
 ORG FreeSpace2
-FILL(0xD59F0) 0 // 0 out where we'll write to 
+FILL(0xD59F0) 0 // 0 out where we'll write to: 0xD59F0 bytes of space 
 
 
 	ORG 0x01000000
@@ -19,8 +21,8 @@ FILL(0xD59F0) 0 // 0 out where we'll write to
 	ORG FreeSpace 
 	
     //Maps
-    //#include "Maps/SplitPList.event"
-		//Graphics
+    #include "Maps/SplitPList.event"
+	//Graphics
 	#include "Graphics/GraphicsInstaller.event"
 
 	ASSERT (FreeSpace3 - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
