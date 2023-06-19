@@ -56,6 +56,7 @@ extern const ProcInstruction gProc_Menu;
 
 struct FMUTrapDef{
 	u8 TrapID;
+	u8 adjacencyBool; 
 	ButtonFunc Func;
 };
 extern struct FMUTrapDef HookListFMU_TrapList_OnPressA[];

@@ -4,7 +4,7 @@ FMU_FunctionList_OnPressA:
 	POIN FMUmisc_RunTalkEvents|1
 	POIN FMUmisc_RunMapEvents|1
 	POIN FMU_RunTrapASMC|1
-	POIN FMU_open_um|1
+	//POIN FMU_open_um|1
 	FMU_FunctionList_End
 	
 ALIGN 4
@@ -35,16 +35,17 @@ FMU_FunctionList_OnPressStart:
 
 
 
-#define FMU_SetTrap(TrapID,TrapASMC) "BYTE TrapID 0 0 0; POIN TrapASMC|1"
+#define FMU_SetTrap(TrapID, AdjacencyBool, TrapASMC) "BYTE TrapID AdjacencyBool 0 0; POIN TrapASMC|1"
 #define FMU_SetTrapEnd "WORD 0 0"
 ALIGN 4
 HookListFMU_TrapList_OnPressA:
-	FMU_SetTrap(0x6,TrapHurt10HpASMC|1)	//Example
+	FMU_SetTrap(0x6, False, TrapHurt10HpASMC|1)	//Example
+	FMU_SetTrap(CoinsTrapID, True, NewObtainCoinsEffect|1)	//Example (adjacent) 
 	FMU_SetTrapEnd
 
 ALIGN 4
 HookListFMU_TrapList_Auto:
-	FMU_SetTrap(0xE,TrapHurt10HpASMC|1)	//Example
+	FMU_SetTrap(0xE, False, TrapHurt10HpASMC|1)	//Example
 	FMU_SetTrapEnd
 	
 	

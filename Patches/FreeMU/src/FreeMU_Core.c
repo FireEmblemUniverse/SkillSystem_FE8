@@ -478,37 +478,44 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 
 
 int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
+	int result = no_yield; 
 	if(1&iKeyCur){ 			//Press A
 		pFMU_PressA(proc); 
 		proc->yield_move = true; 
-		return yield;
+		result = yield;
 		}			
-	if(2&iKeyCur){ 			//Press B
+	else if(2&iKeyCur){ 			//Press B
 		pFMU_PressB(proc);
 		proc->yield_move = true; 
-		return yield;
+		result = yield;
 		}	
-	if(2&(iKeyCur>>0x8)){ 	//Press L
+	else if(2&(iKeyCur>>0x8)){ 	//Press L
 		pFMU_PressL(proc);
 		proc->yield_move = true; 
-		return yield;
+		result = yield;
 		}
-	if(1&(iKeyCur>>0x8)){ 	//Press R
+	else if(1&(iKeyCur>>0x8)){ 	//Press R
 		pFMU_PressR(proc);
 		proc->yield_move = true; 
-		return yield;
+		result = yield;
 		}
-	if(4&iKeyCur){ 			//Press Select
+	else if(4&iKeyCur){ 			//Press Select
 		pFMU_PressSelect(proc);
 		proc->yield_move = true; 
-		return yield;
+		result = yield;
 		}
-	if(8&iKeyCur){ 			//Press Start
+	else if(8&iKeyCur){ 			//Press Start
 		pFMU_PressStart(proc);
 		proc->yield_move = true; 
-		return yield;
+		result = yield;
 		}
-	return no_yield;
+	if (result) { 
+	gLCDIOBuffer.dispControl.enableWin0 = 0;
+	gLCDIOBuffer.dispControl.enableWin1 = 0;
+	gLCDIOBuffer.dispControl.enableObjWin = 0;
+	gLCDIOBuffer.blendControl.effect = 0;
+	}
+	return result;
 }
 
 int pFMU_HandleSave(struct FMUProc* proc){	//KeyPress Default

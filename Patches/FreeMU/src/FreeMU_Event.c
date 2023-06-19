@@ -47,10 +47,12 @@ bool FMUmisc_RunMapEvents(struct FMUProc* proc){
 		LocEventType++;
 	}
 	
-	if(RunMapDoorEventTemplate(x-1,y)) return 1;
-	else if(RunMapDoorEventTemplate(x+1,y)) return 1;
-	else if(RunMapDoorEventTemplate(x,y-1)) return 1;
-	else if(RunMapDoorEventTemplate(x,y+1)) return 1;
+	  if (proc->smsFacing==0)      x--;
+	  else if (proc->smsFacing==1) x++;
+	  else if (proc->smsFacing==2) y++;
+	  else                         y--;
+
+	if(RunMapDoorEventTemplate(x,y)) return 1;
 	return 0;
 }
 
@@ -83,12 +85,23 @@ bool FMU_RunTrapASMC(FMUProc* proc){
 	
 	while( 0 < trap->TrapID )
 	{
-		if(0!=trap->Func)
-			if(GetTrapAt(x,y)->type==trap->TrapID) 
+		if(0!=trap->Func) { 
+			
+			int xPos = x; 
+			int yPos = y; 
+			if (trap->adjacencyBool) { 
+			  if (proc->smsFacing==0)      xPos--;
+			  else if (proc->smsFacing==1) xPos++;
+			  else if (proc->smsFacing==2) yPos++;
+			  else                         yPos--;
+			} 
+		
+			if(GetTrapAt(xPos,yPos)->type==trap->TrapID) 
 			{
 				(trap->Func)(proc);
 				return 1;
 			}
+		}
 		trap++;
 	}
 	return 0;
@@ -123,10 +136,12 @@ bool FMUmisc_RunTalkEvents(struct FMUProc* proc){
 	u8 y = gActiveUnit->yPos;
 	u8 SubjectCharID = proc->FMUnit->pCharacterData->number;
 	
-	if(RunTalkEventTemplate(SubjectCharID,x-1,y)) return 1;
-	else if(RunTalkEventTemplate(SubjectCharID,x+1,y)) return 1;
-	else if(RunTalkEventTemplate(SubjectCharID,x,y-1)) return 1;
-	else if(RunTalkEventTemplate(SubjectCharID,x,y+1)) return 1;
+ if (proc->smsFacing==0)      x--;
+  else if (proc->smsFacing==1) x++;
+  else if (proc->smsFacing==2) y++;
+  else                         y--;
+
+  if(RunTalkEventTemplate(SubjectCharID,x,y)) return 1;
 	
 	return 0;
 }
