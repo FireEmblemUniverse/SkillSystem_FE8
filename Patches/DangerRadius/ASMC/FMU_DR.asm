@@ -17,8 +17,8 @@ ldr r1, =FreeMove_Running
 ldrb r1, [r1] 
 tst r0, r1 
 beq No_FMU
-@bl SetAllDR
-bl SetNearbyDR
+bl SetAllDR
+@bl SetNearbyDR
 blh 0x08019FA0   //UpdateUnitMapAndVision
 blh 0x0801A1A0   //UpdateTrapHiddenStates
 	blh  0x080271a0   @SMS_UpdateFromGameData

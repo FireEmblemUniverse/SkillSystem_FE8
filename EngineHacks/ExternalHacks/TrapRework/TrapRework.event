@@ -1,7 +1,7 @@
 #ifndef TRAP_REWORK_INSTALLED
 	#define TRAP_REWORK_INSTALLED
 
-	
+
 	
 	//vanilla trap ID defs
 	#define BallistaTrapID 1
@@ -27,6 +27,11 @@
 	//#define SkillAccessoryID 20 
 	
 	#define CoinsTrapID 21 // 
+ALIGN 4 
+CoinsTrapID_Link:
+WORD CoinsTrapID
+	
+	
 	#define OpenPokeballItemID 89	//blocks but cannot interact 
 	
 	#define ObstacleID 48 

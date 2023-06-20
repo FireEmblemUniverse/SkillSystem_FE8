@@ -28,6 +28,10 @@ blh 0x8002E94 @ BreakProcLoop
 b Exit 
 StartFMUIfPeaceful:
 
+bl AreAllPlayersSafe
+cmp r0, #0 
+bne Exit 
+
 mov r0, r6 
 blh 0x8002E94 @ BreakProcLoop 
 
