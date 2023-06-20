@@ -90,6 +90,7 @@ struct FMURam {
 	u8 running : 1; 
 	u8 dir : 2; 
 	u8 silent : 1; 
+	u8 use_dir : 1; 
 };
 
 extern struct FMURam* FreeMoveRam; 

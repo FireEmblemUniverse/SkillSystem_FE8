@@ -71,11 +71,13 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 
 void EnableFreeMovementASMC(void){
 	FreeMoveRam->state = true; 
+	FreeMoveRam->use_dir = true; 
 	return;
 }
  
 void DisableFreeMovementASMC(void){
 	FreeMoveRam->state = false; 
+	FreeMoveRam->use_dir = false; 
 	return;
 }
 

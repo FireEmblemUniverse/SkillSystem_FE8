@@ -105,6 +105,7 @@ WORD CoinsTrapID
 	
 	//macro for setting event initializers
 	#define SetTrapEventInit(trapID,ptr) "PUSH; ORG TrapInitFromEventsJumpTable+(4*(trapID-1)); POIN ptr; POP"
+	#define SetTrapInit(trapID,ptr) "PUSH; ORG TrapInitFromEventsFunctionTable+(4*(trapID-1)); POIN ptr; POP"
 	
 	SetTrapEventInit(BallistaTrapID,$37894)
 	SetTrapEventInit(AttackableTerrainTrapID,$37900)

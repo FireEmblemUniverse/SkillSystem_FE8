@@ -25,6 +25,7 @@
 
 	//SetTrapEventInit(CoinsTrapID,NewObtainCoinsInit)
 	SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
+	SetTrapInit(CoinsTrapID,NewObtainCoinsInit)
 		//SetTrapEventInit(CoinsTrapID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder22ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder23ID,ObtainItemInitialization)

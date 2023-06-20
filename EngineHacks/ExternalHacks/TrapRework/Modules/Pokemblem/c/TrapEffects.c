@@ -7,6 +7,7 @@ struct FMURam {
 	u8 running : 1; 
 	u8 dir : 2; 
 	u8 silent : 1; 
+	u8 use_dir : 1; 
 };
 
 extern struct FMURam* FreeMoveRam; 
@@ -27,7 +28,7 @@ struct Trap* NewGetAdjacentTrap(struct Unit* unit, int trapID_low, int trapID_hi
 	int x = unit->xPos; 
 	int y = unit->yPos; 
 	
-	if (FreeMoveRam->state) { 
+	if (FreeMoveRam->use_dir) { 
 		//struct FMUProc* proc = (FMUProc*)ProcFind(FreeMovementControlProc);
 		int dir = FreeMoveRam->dir; 
 		if (dir==0)      x--;
@@ -58,13 +59,8 @@ struct Trap* NewGetAdjacentTrapID(struct Unit* unit, int trapID) {
 } 
 
 void NewObtainCoinsInit(struct EventTrapData* eTrap) { 
-	asm("mov r0, r5"); // to get the EventTrapData pointer 
-	asm("mov r4, r5"); // to get the EventTrapData pointer 
 	//struct CoinsTrap* trap = (struct CoinsTrap*)AddTrapExt(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0);
-	AddTrapExt(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0);
-
-	asm("ldr r3, =0x8037901"); // vanilla return 
-	asm("bx r3"); 
+	AddTrapExt(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0); 
 
 } 
 
