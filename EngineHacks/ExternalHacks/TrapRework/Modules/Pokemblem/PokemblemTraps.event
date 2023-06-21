@@ -22,10 +22,8 @@
 	SetTrapEventInit(RedPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(GoldPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(HiddenPokeballItemID,ObtainItemInitialization)
-
-	//SetTrapEventInit(CoinsTrapID,NewObtainCoinsInit)
-	SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
-	SetTrapInit(CoinsTrapID,NewObtainCoinsInit)
+	//SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
+	SetTrapInit(CoinsTrapID,InitIfNewFlagInByte3IsOff)
 		//SetTrapEventInit(CoinsTrapID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder22ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder23ID,ObtainItemInitialization)
@@ -133,35 +131,59 @@ SetImpassableTrap(CompletionObstacleID)
 
 
 #define SignTrapID 80 //0x50 
-SetTrapEventInit(SignTrapID,DisplayTextInitialization)
+//SetTrapEventInit(SignTrapID,DisplayTextInitialization)
+SetTrapInit(SignTrapID, InitIfNewFlagInByte3IsOff)
 SetTrapMapSprite(SignTrapID,SignSMS)
 SetTrapMapSpritePalette(SignTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(SignTrapID)
+ALIGN 4 
+SignTrapID_Link: 
+WORD SignTrapID 
+ALIGN 4 
+HelpMsgFlagOffset_Link:
+SHORT HelpMsgFlagOffset
 
 
 #define Sign2TrapID 81 //0x51 
-SetTrapEventInit(Sign2TrapID,DisplayTextInitialization)
+//SetTrapEventInit(Sign2TrapID,DisplayTextInitialization)
+SetTrapInit(Sign2TrapID, InitIfNewFlagInByte3IsOff)
 SetTrapMapSprite(Sign2TrapID,Sign2SMS)
 SetTrapMapSpritePalette(Sign2TrapID,NPCTrapPaletteWord)
 SetImpassableTrap(Sign2TrapID)
+ALIGN 4 
+Sign2TrapID_Link: 
+WORD Sign2TrapID 
 
 #define BlankExamineID 82 //0x52
-SetTrapEventInit(BlankExamineID,DisplayTextInitialization)
+//SetTrapEventInit(BlankExamineID,DisplayTextInitialization)
+SetTrapInit(BlankExamineID, InitIfNewFlagInByte3IsOff)
 SetTrapMapSprite(BlankExamineID,BlankSMS)
 SetTrapMapSpritePalette(BlankExamineID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankExamineID)
+ALIGN 4 
+BlankExamineID_Link: 
+WORD BlankExamineID 
 
 #define BlankTalkID 83 //0x53
-SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
+//SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
+SetTrapInit(BlankTalkID, InitIfNewFlagInByte3IsOff)
 SetTrapMapSprite(BlankTalkID,BlankSMS)
 SetTrapMapSpritePalette(BlankTalkID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankTalkID)
+ALIGN 4 
+BlankTalkID_Link: 
+WORD BlankTalkID 
 
 #define TutSignID 84 // 0x54 
-SetTrapEventInit(TutSignID,DisplayTextInitialization0x54) // always initialize even if flag is on 
+//SetTrapEventInit(TutSignID,DisplayTextInitialization0x54) // always initialize even if flag is on 
+SetTrapInit(TutSignID, AlwaysInitTrap)
 SetTrapMapSprite(TutSignID,SignSMS)
 SetTrapMapSpritePalette(TutSignID,NPCTrapPaletteWord)
 SetImpassableTrap(TutSignID)
+
+ALIGN 4 
+TutSignID_Link: 
+WORD TutSignID 
 
 #define TutSign(XX,YY,CompletionFlag, TextID) "BYTE TutSignID XX YY CompletionFlag; SHORT TextID"
 
@@ -215,7 +237,8 @@ SetImpassableTrap(ObtainSpellID)
 
 
 #define BerryTreeTrapID 112 //0x70
-SetTrapEventInit(BerryTreeTrapID,BerryTreeInitialization)
+//SetTrapEventInit(BerryTreeTrapID,BerryTreeInitialization)
+SetTrapInit(BerryTreeTrapID,AlwaysInitTrap)
 SetTrapMapSprite(BerryTreeTrapID,BerryTreeSMS)
 //SetTrapMapSprite(BerryTreeTrapID,HealingTileSMS)
 SetTrapMapSpritePalette(BerryTreeTrapID,NPCTrapPaletteWord)

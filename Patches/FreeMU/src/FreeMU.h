@@ -135,6 +135,7 @@ void pFMU_PressSelect(struct FMUProc*);
 void pFMU_PressStart(struct FMUProc*);
 void pFMU_UpdateSMS(struct FMUProc* proc);
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y);
+void FMU_ResetLCDIO(void);
 
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);

@@ -44,7 +44,13 @@ ENDA
 ALIGN 4
 HookListFMU_TrapList_OnPressA:
 	FMU_SetTrap(0x6, False, TrapHurt10HpASMC, 0x804f449)	//Example with 0x804f449 (always usable) 
-	FMU_SetTrap(CoinsTrapID, True, NewObtainCoinsEffect, NewObtainCoinsUsability0x15)	//Example (adjacent) 
+	FMU_SetTrap(CoinsTrapID, 		True, NewObtainCoinsEffect, NewObtainCoinsUsability0x15)	//Example (adjacent) 
+	FMU_SetTrap(BerryTreeTrapID, 	True, NewPickBerryTreeEffect, NewBerryTreeUsability)	//Example (adjacent) 
+	FMU_SetTrap(SignTrapID, 		True, DisplayTextEffect0x50, DisplayTextUsability0x50)	 
+	FMU_SetTrap(Sign2TrapID, 		True, DisplayTextEffect0x51, DisplayTextUsability0x51)	 
+	FMU_SetTrap(BlankExamineID, 	True, DisplayTextEffect0x52, DisplayTextUsability0x52)	 
+	FMU_SetTrap(BlankTalkID, 		True, DisplayTextEffect0x53, DisplayTextUsability0x53)	 
+	FMU_SetTrap(TutSignID, 			True, DisplayTextEffect0x54, DisplayTextUsability0x54)	 
 	FMU_SetTrapEnd
 
 ALIGN 4

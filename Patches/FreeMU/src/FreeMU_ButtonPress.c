@@ -17,13 +17,17 @@ static inline bool IsCharInvaild(Unit* unit){
 	return 0;
 }
 
-extern struct MenuProc* StartSemiCenteredOrphanMenu(const struct MenuDef* def, int xSubject, int xTileLeft, int xTileRight);
-extern const struct MenuDef gUnitActionMenuDef;
-bool FMU_open_um(struct FMUProc* proc){
+void FMU_ResetLCDIO(void) { 
 	gLCDIOBuffer.dispControl.enableWin0 = 0;
 	gLCDIOBuffer.dispControl.enableWin1 = 0;
 	gLCDIOBuffer.dispControl.enableObjWin = 0;
 	gLCDIOBuffer.blendControl.effect = 0;
+} 
+
+extern struct MenuProc* StartSemiCenteredOrphanMenu(const struct MenuDef* def, int xSubject, int xTileLeft, int xTileRight);
+extern const struct MenuDef gUnitActionMenuDef;
+bool FMU_open_um(struct FMUProc* proc){
+	FMU_ResetLCDIO();
 	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x14);
 	return 1;
 }
@@ -31,10 +35,7 @@ bool FMU_open_um(struct FMUProc* proc){
 /*!!!!*/
 
 bool FMU_OnButton_StartMenu(FMUProc* proc){
-	gLCDIOBuffer.dispControl.enableWin0 = 0;
-	gLCDIOBuffer.dispControl.enableWin1 = 0;
-	gLCDIOBuffer.dispControl.enableObjWin = 0;
-	gLCDIOBuffer.blendControl.effect = 0;
+	FMU_ResetLCDIO();
 	StartMenuAdjusted(&FreeMovementLMenu,0,0,0);
 	return 1;
 }
@@ -42,10 +43,7 @@ bool FMU_OnButton_StartMenu(FMUProc* proc){
 int FMU_OnButton_EndFreeMove(void){
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	FreeMoveRam->silent = false; 
-	gLCDIOBuffer.dispControl.enableWin0 = 0;
-	gLCDIOBuffer.dispControl.enableWin1 = 0;
-	gLCDIOBuffer.dispControl.enableObjWin = 0;
-	gLCDIOBuffer.blendControl.effect = 0;
+	FMU_ResetLCDIO();
 	ProcGoto((Proc*)proc,0xF);
 	End6CInternal_FreeMU(proc);
 	return 0xB7; // close menu etc 
@@ -55,10 +53,7 @@ extern void SetupActiveUnit(struct Unit* unit);
 extern int CallCommandEffect(void); 
 int FMU_EndFreeMoveSilent(void){
 	FreeMoveRam->silent = true; 
-	gLCDIOBuffer.dispControl.enableWin0 = 0;
-	gLCDIOBuffer.dispControl.enableWin1 = 0;
-	gLCDIOBuffer.dispControl.enableObjWin = 0;
-	gLCDIOBuffer.blendControl.effect = 0; // restore things back to normal - otherwise map can glitch 
+	FMU_ResetLCDIO(); // restore things back to normal - otherwise map can glitch 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	if (proc) { 
 		gActiveUnit->xPos = proc->xTo; 

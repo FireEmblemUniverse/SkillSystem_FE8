@@ -188,15 +188,15 @@ u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
 	if ((!proc->range_event) && (!proc->usedLedge)) { 
 		u16 iKeyCur = gKeyState.heldKeys;
 		iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
-		FreeMoveRam->dir = proc->smsFacing; 
+		//FreeMoveRam->dir = proc->smsFacing; 
 		if ( iKeyCur&0x10 )	//right
-			return 1;
+			return MU_FACING_RIGHT;
 		if ( iKeyCur&0x20 )	//left
-			return 0;
+			return MU_FACING_LEFT;
 		if ( iKeyCur&0x40 )	//up
-			return 3;
+			return MU_FACING_UP;
 		if ( iKeyCur&0x80 )	//down
-			return 2;
+			return MU_FACING_DOWN;
 	}
 	//} 
 	return 0x10;	

@@ -12,7 +12,6 @@ SET_FUNC_INLINE 	MU_GetSpeed_FixForFreeMU
 MU_ExecCmd_FixForFreeMU:
 	push	{r4-r7, lr}
 	asr		r4, r0, #0x18
-
 	bl FMU_HandleContinuedMovement 
 	mov r1, #0 
 	sub r1, #1 

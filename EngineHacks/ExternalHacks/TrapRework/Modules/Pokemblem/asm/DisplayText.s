@@ -1,31 +1,31 @@
 .thumb
 .align 
 
-.global DisplayTextInitialization
-.type DisplayTextInitialization, %function
-.global DisplayTextInitialization0x54
-.type DisplayTextInitialization0x54, %function
-
-.global DisplayTextUsability0x50
-.type DisplayTextUsability0x50, %function
-
-.global DisplayTextUsability0x51
-.type DisplayTextUsability0x51, %function
-
-.global DisplayTextUsability0x52
-.type DisplayTextUsability0x52, %function
-
-.global DisplayTextUsability0x53
-.type DisplayTextUsability0x53, %function
-
-.global DisplayTextUsability0x54
-.type DisplayTextUsability0x54, %function
-
-
+@.global DisplayTextInitialization
+@.type DisplayTextInitialization, %function
+@.global DisplayTextInitialization0x54
+@.type DisplayTextInitialization0x54, %function
+@
+@.global DisplayTextUsability0x50
+@.type DisplayTextUsability0x50, %function
+@
+@.global DisplayTextUsability0x51
+@.type DisplayTextUsability0x51, %function
+@
+@.global DisplayTextUsability0x52
+@.type DisplayTextUsability0x52, %function
+@
+@.global DisplayTextUsability0x53
+@.type DisplayTextUsability0x53, %function
+@
+@.global DisplayTextUsability0x54
+@.type DisplayTextUsability0x54, %function
 
 
-.global DisplayTextEffect
-.type DisplayTextEffect, %function
+
+
+@.global DisplayTextEffect
+@.type DisplayTextEffect, %function
 
 
 .macro blh to, reg=r3
@@ -339,9 +339,9 @@ bx r1
 .ltorg
 .align
 
-.global DisplayTextEffect0x54
-.type DisplayTextEffect0x54, %function 
-DisplayTextEffect0x54:
+@.global DisplayTextEffect0x54
+@.type DisplayTextEffect0x54, %function 
+@DisplayTextEffect0x54:
 push {lr} 
 bl DisplayTextEffect 
 ldrb r0, [r1, #3] @ flag to set 
@@ -357,7 +357,7 @@ pop {r3}
 bx r3 
 .ltorg 
 
-DisplayTextEffect:
+@DisplayTextEffect:
 push {r4, lr}
 @Basically the execute event routine.
 

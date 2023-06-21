@@ -168,6 +168,7 @@ unsigned GetPhaseAbleUnitCount(unsigned faction) {
 
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
+	FMU_ResetLCDIO();
 	//UnpackChapterMapGraphics(gChapterData.chapterIndex);
 	//InitBaseTilesBmMap();
 	//RenderBmMap();
@@ -225,9 +226,11 @@ int FMU_HandleContinuedMovement(void) {
 	if (muProc->pMUConfig->currentCommand == 1) {
 		return (-1); } 
 	u8 dir = FMU_ChkKeyForMUExtra(proc);
+	
+	
+	
 	if (dir == 0x10) { 
 		return (-1); } 
-	proc->smsFacing = dir; 
 	int x = ctrProc->xPos; 
 	int y = ctrProc->yPos; 
 	if (dir == MU_FACING_RIGHT)
@@ -241,12 +244,24 @@ int FMU_HandleContinuedMovement(void) {
 	if (gMapFog[y][x]) {
 		proc->end_after_movement = true; 
 	}
+	if (dir != proc->smsFacing) { 
+		proc->smsFacing = dir; 
+		FreeMoveRam->dir = proc->smsFacing; 
+		return (-1); 
+	} 
 
 	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
 	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 
 		return (-1); } 
 	muProc->pMUConfig->currentCommand = 1; 
 	muProc->pMUConfig->commands[0] = dir;
+	
+	
+	struct CamMoveProc* camProc = (struct CamMoveProc*)ProcFind((const ProcInstruction*)&gProcScr_CamMove);
+	if (camProc) { // idk 
+	//camProc->distance++; 
+	} 
+	
 	ctrProc->xPos = x; 
 	ctrProc->yPos = y; 
 	ctrProc->xPos2 = x; 
@@ -265,7 +280,6 @@ int FMU_HandleContinuedMovement(void) {
 			}
 		} 
 	}
-  
 	return dir; 
 } 
 //202f55a
@@ -446,7 +460,8 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 					proc->ledgeX = x; 
 					proc->ledgeY = y-1; 
 					MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
-					
+					struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+					MU_EnableAttractCamera(muProc);
 					proc->xTo  = x;
 					proc->yTo  = y;
 					return yield; 
@@ -460,6 +475,8 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 				
 				//asm("mov r11, r11"); 
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+				MU_EnableAttractCamera(muProc);
 				proc->xTo  = x;
 				proc->yTo  = y;
 				return yield; 
@@ -608,6 +625,8 @@ enum {
     CAMERA_MARGIN_TOP    = 16 * 5,//16 * 2,
     CAMERA_MARGIN_BOTTOM = 16 * 5,//16 * 7,
 };
+
+
 
 u16 NewGetCameraCenteredX(int x) {
     int result = gBmSt.camera.x;

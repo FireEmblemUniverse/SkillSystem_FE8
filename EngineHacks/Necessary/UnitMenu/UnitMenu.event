@@ -211,10 +211,10 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Confirm, UM_ConfirmDesc, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
   
 
-  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x50, DisplayTextEffect) //Examine 
-  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x51, DisplayTextEffect) //Examine 
-  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect) //Read 
-  MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect) //Talk 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x50, DisplayTextEffect0x50) //Examine 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x51, DisplayTextEffect0x51) //Examine 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect0x52) //Read 
+  MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect0x53) //Talk 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x54, DisplayTextEffect0x54) //Examine 
   
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
