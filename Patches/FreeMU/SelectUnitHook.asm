@@ -6,6 +6,7 @@
 .endm
 
 .thumb 
+	.equ EventEngine, 0x800D07C
 .global SelectUnitHook
 .type SelectUnitHook, %function 
 SelectUnitHook: 
@@ -30,7 +31,7 @@ StartFMUIfPeaceful:
 
 bl AreAllPlayersSafe
 cmp r0, #0 
-bne Exit 
+beq NotSafeToFlee 
 
 mov r0, r6 
 blh 0x8002E94 @ BreakProcLoop 
@@ -57,11 +58,13 @@ ldr r1, =FreeMove_Silent
 ldrb r1, [r1] 
 orr r0, r1 
 strb r0, [r3] 
-
-
-
-
 bl EnableFreeMovementASMC
+b Exit 
+
+NotSafeToFlee: 
+ldr r0, =NotSafeToFleeEvent 
+mov r1, #1 
+blh EventEngine 
 
 Exit: 
 pop {r0} 

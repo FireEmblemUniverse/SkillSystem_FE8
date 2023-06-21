@@ -85,11 +85,13 @@ struct CoinsTrap {
 
 int NewObtainCoinsUsability(int trapID) { 
 	struct CoinsTrap* trap = (struct CoinsTrap*)NewGetAdjacentTrapID(gActiveUnit, CoinsTrapID_Link); 
-	if (!CheckNewFlag(trap->flag)) { 
-		if (!(gActiveUnit->state & US_CANTOING)) {
-			return true;  
-		}
-	} 
+	if (trap) { 
+		if (!CheckNewFlag(trap->flag)) { 
+			if (!(gActiveUnit->state & US_CANTOING)) {
+				return true;  
+			}
+		} 
+	}
 	return 3; // false 
 } 
 
@@ -98,7 +100,12 @@ int NewObtainCoinsUsability0x15(void) {
 }
 
 
+int TrapEffectCleanup(void) { 
+	gActionData.unitActionType = 0x10; // from wait routine 
+	SMS_UpdateFromGameData(); // needed while in FMU mode 
+	return 0x94; //  play beep sound & end menu on next frame & clear menu graphics
 
+} 
 
 
 int NewObtainCoinsEffect(void) { 
@@ -111,12 +118,33 @@ int NewObtainCoinsEffect(void) {
 	
 	CallMapEventEngine(&GiveCoinsEvent, EV_RUN_CUTSCENE);
 	RemoveLightRune((struct Trap*)trap); // also fixes the terrain 
-	gActionData.unitActionType = 0x10; // from wait routine 
+	
 	
 	//int result = ObtainCoinsEffect(); 
-	SMS_UpdateFromGameData(); // needed while in FMU mode 
-	return 0x94; //  play beep sound & end menu on next frame & clear menu graphics
+
+	return TrapEffectCleanup(); 
 } 
+
+extern int BerryTrapID_Link; 
+extern const void* PickBerryEvent; 
+extern const void* NoBerriesEvent; 
+int NewPickBerryTreeEffect(void) { 
+	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, BerryTrapID_Link); 
+	int berries = trap->data[0];
+	if (berries) { 
+		trap->data[0] = 0; // no more berries 
+		gEventSlot[4] = berries; 
+		CallMapEventEngine(&PickBerryEvent, EV_RUN_CUTSCENE);
+		gActionData.unitActionType = 0x10; // only use up turn if we got a berry 
+	} 
+	else {
+		CallMapEventEngine(&NoBerriesEvent, EV_RUN_CUTSCENE);
+		// set cantoing? 
+	}
+	return 0x94; 
+} 
+
+
 
 
 

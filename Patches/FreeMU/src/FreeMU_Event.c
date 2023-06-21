@@ -77,9 +77,20 @@ static bool RunMapDoorEventTemplate(s8 x, s8 y){
 	return 0;
 }
 
+bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trap);
 
 bool FMU_RunTrapASMC(FMUProc* proc){
 	struct FMUTrapDef* trap = &HookListFMU_TrapList_OnPressA[0];
+	return FMU_RunTrap(proc, trap); 
+}
+	
+	
+bool FMU_RunTrapASMC_Auto(FMUProc* proc){
+	struct FMUTrapDef* trap = &HookListFMU_TrapList_Auto[0];
+	return FMU_RunTrap(proc, trap); 
+}
+	
+bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trap){
 	s8 x = gActiveUnit->xPos;
 	s8 y = gActiveUnit->yPos;
 	
@@ -98,35 +109,16 @@ bool FMU_RunTrapASMC(FMUProc* proc){
 		
 			if(GetTrapAt(xPos,yPos)->type==trap->TrapID) 
 			{
-				(trap->Func)(proc);
-				return 1;
+				//if ((trap->Usab)(proc) == 1) { // returns 3 if false 
+					(trap->Func)(proc);
+					return 1;
+				//} 
 			}
 		}
 		trap++;
 	}
 	return 0;
 }
-
-
-bool FMU_RunTrapASMC_Auto(FMUProc* proc){
-	struct FMUTrapDef* trap = &HookListFMU_TrapList_Auto[0];
-	s8 x = gActiveUnit->xPos;
-	s8 y = gActiveUnit->yPos;
-	
-	while( 0 < trap->TrapID )
-	{
-		if(0!=trap->Func)
-			if(GetTrapAt(x,y)->type==trap->TrapID) 
-			{
-				(trap->Func)(proc);
-				return 1;
-			}
-		trap++;
-	}
-	return 0;
-}
-
-
 
 
 

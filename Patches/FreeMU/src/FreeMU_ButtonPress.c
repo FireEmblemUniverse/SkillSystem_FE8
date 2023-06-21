@@ -66,7 +66,7 @@ int FMU_EndFreeMoveSilent(void){
 		ProcGoto((Proc*)proc,0xF);
 		End6CInternal_FreeMU(proc);
 	}
-	SetupActiveUnit(gActiveUnit); 
+	//SetupActiveUnit(gActiveUnit); 
 	CallCommandEffect(); 
 	return 0xB7; // close menu etc 
 }

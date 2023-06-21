@@ -428,3 +428,14 @@ POIN GenericTrapDisappearTableOffset
 
 #include "GiveItemEvent.event"
 #include "ShowTextEvent.event"
+
+
+
+
+ALIGN 4 
+BerryTrapID_Link:
+WORD BerryTreeTrapID 
+
+
+
+

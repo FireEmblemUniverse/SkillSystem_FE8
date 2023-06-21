@@ -57,6 +57,10 @@ ALIGN 4
 	//_6C_CALL_ROUTINE(FMU_ResetMoveSpeed|1)
 	//_6C_CALL_ROUTINE(FMU_ResetDirection|1)
 	_6C_CALL_ROUTINE(FMU_InitVariables|1)
+	_6C_END_ALL(0x8A019E4) // gProc_PI (goal window) 
+	_6C_END_ALL(0x8A018AC) // gProc_TI (terrain interface) 
+	_6C_END_ALL(0x8A0190C) // gProc_UI1 (MMB)
+	_6C_END_ALL(0x8A01994) // gProc_UI2 (small minimug box) 
 	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
 	
 	_6C_LABEL(0xC)	//Proc Start
@@ -69,6 +73,9 @@ ALIGN 4
 	_6C_CALL_ROUTINE($80271A1) // SMS_UpdateFromGameData
 	_6C_YIELD
 	_6C_CALL_ROUTINE($80160D1) // UpdatePlayMapMusic
+	
+	// end terrain / goal windows 
+	
 	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow
 	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
 	_6C_CALL_ROUTINE(pFMU_InitTimer|1)

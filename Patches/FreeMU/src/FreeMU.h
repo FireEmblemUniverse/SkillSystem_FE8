@@ -58,6 +58,7 @@ struct FMUTrapDef{
 	u8 TrapID;
 	u8 adjacencyBool; 
 	ButtonFunc Func;
+	ButtonFunc Usab; 
 };
 extern struct FMUTrapDef HookListFMU_TrapList_OnPressA[];
 extern struct FMUTrapDef HookListFMU_TrapList_Auto[];
