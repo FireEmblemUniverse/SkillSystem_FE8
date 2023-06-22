@@ -189,6 +189,22 @@ SableyeData:
 #incbin "Dmp/Sableye_minimug.dmp" 
 setMugEntry(177, SableyeData, 9, 9, 9, 9)
 
+ALIGN 16 
+RedData: 
+#incbin "Dmp/Red_mug.dmp" 
+#incbin "Dmp/Red_frames.dmp" 
+#incbin "Dmp/Red_palette.dmp" 
+#incbin "Dmp/Red_minimug.dmp" 
+setMugEntry(178, RedData, 9, 9, 9, 9)
+
+ALIGN 16 
+GreenData: 
+#incbin "Dmp/Green_mug.dmp" 
+#incbin "Dmp/Green_frames.dmp" 
+#incbin "Dmp/Green_palette.dmp" 
+#incbin "Dmp/Green_minimug.dmp" 
+setMugEntry(179, GreenData, 9, 9, 9, 9)
+
 
 // Reserved 
 ALIGN 16 

@@ -27,10 +27,12 @@ static inline bool IsPosInvaild(s8 x, s8 y){
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y) { 
 	if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
 		y += (proc->smsFacing == MU_FACING_DOWN); 
-		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
+		if(FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
 				proc->usedLedge = true; 
-				proc->scriptedMovement = true; 
+				proc->commandID = 0;
+				proc->command[0] = MU_COMMAND_MOVE_DOWN;
+				proc->command[1] = 0xFF; 
 				//proc->yield_move = true; 
 				//proc->yield = true; 
 				//proc->countdown = 10; 
@@ -58,8 +60,8 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 		return 0; // position out of bounds
 	if (x >= gMapSize.x || y >= gMapSize.y)
 		return 0; // position out of bounds
-	if (gMapUnit[y][x])
-		return 0; // a unit is occupying this position
+	if (gMapUnit[y][x] > 0x3F) 
+		return 0; 
 	if (gMapHidden[y][x] & 1)
 		return 0; // a hidden unit is occupying this position	
 	return CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
@@ -175,10 +177,18 @@ u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
 			return 0x10; 
 		}
 	} 
-	if (proc->scriptedMovement) { 
+	if (proc->commandID != 0xFF) { 
+		int command = proc->command[proc->commandID];
+		if (command == 0xFF) 
+			proc->commandID = 0xFF; 
+		else { 
+		
+		proc->commandID++; 
+		proc->updateSMS = true; 
+		//SMS_UpdateFromGameData();
 		//CallMapEventEngine(&StallEvent, 1);
-		proc->scriptedMovement = false; 
-		return 2; // down 
+		return command; // down 
+		} 
 	}
 	if (proc->end_after_movement) { // after any scripted movement is done 
 		FMU_EndFreeMoveSilent(); 

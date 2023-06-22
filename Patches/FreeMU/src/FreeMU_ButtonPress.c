@@ -29,6 +29,7 @@ extern const struct MenuDef gUnitActionMenuDef;
 bool FMU_open_um(struct FMUProc* proc){
 	FMU_ResetLCDIO();
 	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x14);
+	proc->updateSMS = true; 
 	return 1;
 }
 

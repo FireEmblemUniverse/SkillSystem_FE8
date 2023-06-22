@@ -19,6 +19,12 @@ mov 	r4, r0
 mov 	r5, r1
 add 	sp, #-0x4
 mov 	r6, sp
+
+@bl StraightLine_Range 
+@cmp r0, #1 
+@beq End 
+
+
 mov 	r0, r5
 ldr 	r3, =#Item_MaxRange
 mov 	r14, r3

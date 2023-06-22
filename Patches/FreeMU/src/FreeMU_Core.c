@@ -177,6 +177,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	//SMS_UpdateFromGameData();
 	
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
+	proc->updateSMS = false; 
 	proc->xCur = gActiveUnit->xPos;
 	proc->yCur = gActiveUnit->yPos;
 	proc->xTo  = gActiveUnit->xPos;
@@ -192,7 +193,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 		proc->moveSpeed = FreeMU_MovingSpeed.speedA;
 	
 	proc->smsFacing = FreeMoveRam->dir;
-	proc->scriptedMovement = false; 
+	proc->commandID = (-1); 
 	proc->curInput = 0; 
 	proc->lastInput = 0; 
 	proc->countdown = 2; 
@@ -259,6 +260,12 @@ int FMU_HandleContinuedMovement(void) {
 	} 
 
 	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
+	if (gMapPUnit(x, y)) { // a unit is occupying this position
+		proc->commandID = 0;
+		proc->command[0] = proc->smsFacing;
+		proc->command[1] = 0xFF; 
+	} 
+	
 	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 
 		return (-1); } 
 	muProc->pMUConfig->currentCommand = 1; 
@@ -292,9 +299,26 @@ int FMU_HandleContinuedMovement(void) {
 } 
 //202f55a
 
+
+extern void MU_SetDefaultFacing_Auto(void); 
+
+void EndSupply_StartMMS(void) { // replaces a vanilla function 
+	if (gActiveUnit) { 
+		if (!FreeMoveRam->state) { // added 
+			HideUnitSMS(gActiveUnit); 
+			MU_Create(gActiveUnit); 
+			MU_SetDefaultFacing_Auto(); 
+		}
+	} 
+}; 
+
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	
 	if (ProcFind(&gProc_Menu)) {
+		return; 
+	}
+	if (ProcFind(&gProc_Supply)) { 
+		MU_EndAll();
 		return; 
 	}
 	if (!(proc->countdown)) { 
@@ -326,6 +350,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	if(MU_Exists()){
 		return;
 	}
+	if (proc->updateSMS) { // when units go through each other, this is needed afterwards 
+		RefreshUnitsOnBmMap();
+		SMS_UpdateFromGameData();
+		proc->updateSMS = false; 
+	} 
 	
 	if (proc->yield_move) { 
 		//asm("mov r11, r11"); 
@@ -389,6 +418,10 @@ void pFMUCtr_OnEnd(Proc* proc){
 
   return;
 }
+int gMapPUnit(int x, int y) { 
+	int deploymentID = gMapUnit[y][x];
+	return ((deploymentID > 0) && (deploymentID < 0x40)); 
+} 
 
 int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 	s8 x = gActiveUnit->xPos;
@@ -435,49 +468,61 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 			//x -= (facingCur == MU_FACING_LEFT); 
 			y += (facingCur == MU_FACING_DOWN); 
 			//y -= (facingCur == MU_FACING_UP); 
-			if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
-				if( !IsPosInvaild(x,y) ) { 
-				
-					/*
-					u8 mD[8]; //moveDirections[8];
-					mD[0] = MU_COMMAND_MOVE_DOWN;
-					mD[1] = MU_COMMAND_CAMERA_ON;
-					mD[2] = MU_COMMAND_MOVE_DOWN;
-					mD[3] = MU_COMMAND_CAMERA_ON;
-					mD[4] = MU_COMMAND_END; // MuCtr_StartMoveTowards ends with HALT 
-					mD[5] = MU_COMMAND_END;
-					struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-					if (!muProc) { 
-						muProc = MU_Create(gActiveUnit);
-					} 
-					MU_SetFacing(muProc, proc->smsFacing);
-					MU_DisplayAsMMS(muProc);
-					HideUnitSMS(gActiveUnit);
-					//MU_StartActionAnim(struct MUProc* moveunit);
-					MU_StartMoveScript(muProc, &mD[0]); 
-					gActiveUnit->xPos = x; 
-					gActiveUnit->yPos = y; 
-					// this version kinda works but does not call MU_CALL2_FixForFreeMU when it ends for whatever reason 
-					*/ 
-					//proc->yield_move = true; 
-					//proc->yield = true; 
-					//proc->countdown = 10; 
-					proc->scriptedMovement = true; 
-					proc->usedLedge = true; 
-					gMapTerrain[y-1][x] = 1; 
-					proc->ledgeX = x; 
-					proc->ledgeY = y-1; 
-					MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
-					struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-					MU_EnableAttractCamera(muProc);
-					proc->xTo  = x;
-					proc->yTo  = y;
-					return yield; 
+			
+			if (!gMapUnit[y][x]) {  // a unit is occupying under the cliff 
+				if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
+					if( !IsPosInvaild(x,y) ) { 
+					
+						/*
+						u8 mD[8]; //moveDirections[8];
+						mD[0] = MU_COMMAND_MOVE_DOWN;
+						mD[1] = MU_COMMAND_CAMERA_ON;
+						mD[2] = MU_COMMAND_MOVE_DOWN;
+						mD[3] = MU_COMMAND_CAMERA_ON;
+						mD[4] = MU_COMMAND_END; // MuCtr_StartMoveTowards ends with HALT 
+						mD[5] = MU_COMMAND_END;
+						struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+						if (!muProc) { 
+							muProc = MU_Create(gActiveUnit);
+						} 
+						MU_SetFacing(muProc, proc->smsFacing);
+						MU_DisplayAsMMS(muProc);
+						HideUnitSMS(gActiveUnit);
+						//MU_StartActionAnim(struct MUProc* moveunit);
+						MU_StartMoveScript(muProc, &mD[0]); 
+						gActiveUnit->xPos = x; 
+						gActiveUnit->yPos = y; 
+						// this version kinda works but does not call MU_CALL2_FixForFreeMU when it ends for whatever reason 
+						*/ 
+						//proc->yield_move = true; 
+						//proc->yield = true; 
+						//proc->countdown = 10; 
+						proc->commandID = 0;
+						proc->command[0] = MU_COMMAND_MOVE_DOWN;
+						proc->command[1] = 0xFF; 
+						
+						proc->usedLedge = true; 
+						gMapTerrain[y-1][x] = 1; 
+						proc->ledgeX = x; 
+						proc->ledgeY = y-1; 
+						MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+						struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+						MU_EnableAttractCamera(muProc);
+						proc->xTo  = x;
+						proc->yTo  = y;
+						return yield; 
+					}
 				}
-			}
+			} 
 			return no_yield; 
 		} 
-			
+		
+		if (gMapPUnit(x, y)) { // a unit is occupying this position
+			proc->commandID = 0;
+			proc->command[0] = proc->smsFacing;
+			proc->command[1] = 0xFF; 
+		} 
+		
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
 				
@@ -708,6 +753,14 @@ s8 VeslyCenterCameraOntoPosition(struct Proc* parent, int x, int y) {
 extern void PlayerPhase_Suspend(void); 
 void FMU_ClearActionAndSave(struct FMUProc* proc) { 
 	PlayerPhase_Suspend(); 
+} 
+
+extern void BuildStraightLineRangeFromUnitAndItem(struct Unit* unit, int itemID) { 
+	int x = unit->xPos;
+	int y = unit->yPos;
+	for (int i = 1; i < 6; i++) { 
+		gMapRange[y+i][x] = 1; 
+	}
 } 
 
 extern const struct SMSData NewStandingMapSpriteTable[];

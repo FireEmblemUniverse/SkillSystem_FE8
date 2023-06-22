@@ -171,7 +171,7 @@ SetSMS(CutBushSMS , 0 ,   CutBushStanding)
 SetSMS(RockSmashSMS , 0 ,  RockSmashStanding)
 SetSMS(StrengthBoulderSMS , 0 , StrengthBoulderStanding )
 SetSMS(GorgonEgg2SMS , 2 ,   m1Standing)
-SetSMS(Unused8SMS , 2 ,   m1Standing )
+SetSMS(GreenSMS , 1 ,   greenStanding )
 SetSMS(DeathgoyleSMS , 2 ,   m1Standing )
 SetSMS(DracoZombieSMS  , 2 ,   m1Standing)
 SetSMS(DemonKingSMS , 2 ,   m1Standing)
@@ -444,7 +444,7 @@ SetMMS(CutBushMMS ,    r1Moving,        DemonKingAP)
 SetMMS(RockSmashMMS ,   r1Moving,        DemonKingAP)
 SetMMS(StrengthBoulderMMS ,  r1Moving ,        DemonKingAP)
 SetMMS(GorgonEgg2MMS ,    r1Moving,        DemonKingAP)
-SetMMS(Unused8MMS ,    r1Moving ,        DemonKingAP)
+SetMMS(GreenMMS ,    greenMoving ,        DemonKingAP)
 SetMMS(DeathgoyleMMS ,    r1Moving ,        DemonKingAP)
 SetMMS(DracoZombieMMS  ,    r1Moving,        DemonKingAP)
 SetMMS(DemonKingMMS ,    r1Moving,        DemonKingAP)
@@ -2563,6 +2563,16 @@ red_normalStanding:
 ALIGN 4
 red_normalMoving:
 #incbin "Trainer_MMS/MMS_red_normal.dmp"
+
+
+ALIGN 4
+greenStanding:
+#incbin "Trainer_SMS/SMS_green.dmp"
+
+
+ALIGN 4
+greenMoving:
+#incbin "Trainer_MMS/MMS_green.dmp"
 
 
 

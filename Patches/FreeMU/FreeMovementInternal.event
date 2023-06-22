@@ -165,7 +165,7 @@ ALIGN 4
 	
 	ALIGN 4
 	FreeMovementLMenu:
-	MenuBoxFull($01, $02, $07, 0, 0, FreeMovementMenuTable, $0, $0, $0, FreeMovementMenuOnBPress, $4F521, $4F459)
+	MenuBoxFull($01, $02, $09, 0, 0, FreeMovementMenuTable, $0, $0, $0, FreeMovementMenuOnBPress, $4F521, $4F459)
 	
 	ALIGN 4
 	FreeMovementMenuTable:

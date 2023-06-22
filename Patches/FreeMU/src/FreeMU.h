@@ -29,7 +29,9 @@ struct FMUProc {
 	/* 3f */    u8 ledgeY; 
 	/* 40 */    u8 range_event; 
 	/* 41 */    u8 end_after_movement; 
-	/* 42 */    u8 scriptedMovement; 
+	/* 42 */    u8 updateSMS; 
+	/* 43 */    u8 commandID; //scriptedMovement 
+	/* 44 */    u8 command[0x20]; //scriptedMovement 
 };
 
 struct MuCtr { 
@@ -52,6 +54,7 @@ struct MuCtr {
 extern const ProcInstruction gUnknown_089A2DB0; 
 extern const ProcInstruction gProc_CameraMovement; 
 extern const ProcInstruction gProc_Menu; 
+extern const ProcInstruction gProc_Supply; 
 
 
 struct FMUTrapDef{
@@ -136,6 +139,7 @@ void pFMU_PressStart(struct FMUProc*);
 void pFMU_UpdateSMS(struct FMUProc* proc);
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y);
 void FMU_ResetLCDIO(void);
+int gMapPUnit(int x, int y);
 
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);

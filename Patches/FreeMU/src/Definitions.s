@@ -1,10 +1,12 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 SET_FUNC PhaseSwitchGfx_BreakIfNoUnits, 0x801F2AD
+SET_FUNC EndSupply_StartMMS, 0x809EB15 
 
 SET_FUNC SetupActiveUnit, 0x801865D 
 SET_DATA gUnknown_089A2DB0, 0x89A2DB0
 SET_DATA gProc_Menu, 0x85B64D0
+SET_DATA gProc_Supply, 0x8A192EC
 SET_FUNC StartSemiCenteredOrphanMenu, 0x804f64d
 SET_DATA gUnitActionMenuDef, 0x859d1f0
 SET_DATA gProcScr_CamMove, 0x859a548
