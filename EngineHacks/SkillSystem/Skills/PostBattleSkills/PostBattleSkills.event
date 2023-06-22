@@ -32,6 +32,7 @@ POIN SkillTester
 WORD FuryID
 POIN FuryEvent
 #include "Fury/FuryEvent.event"
+#include "Fury/fury_stat_modifier.lyn.event" 
 
 ALIGN 4
 #include "PoisonStrikeGrislyWound/PoisonStrikeGrislyWound.lyn.event"

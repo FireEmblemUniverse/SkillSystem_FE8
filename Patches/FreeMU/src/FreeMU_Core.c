@@ -225,6 +225,14 @@ int FMU_HandleContinuedMovement(void) {
 		return (-1); }
 	if (muProc->pMUConfig->currentCommand == 1) {
 		return (-1); } 
+		
+	proc->curInput = gKeyState.heldKeys; 
+	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
+	if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
+		proc->countdown = 3; 
+		proc->yield = true; 
+	}
+	
 	u8 dir = FMU_ChkKeyForMUExtra(proc);
 	
 	

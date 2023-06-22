@@ -32,12 +32,14 @@ mov	lr, r3
 cmp	r0,#0x00
 beq	CheckDefender
 
-@take 7 damage
+@take 10% hp damage
 ldrb	r1, [r4,#0x12]	@r1=maxhp
-mov r0, #furydamage
+asr r1, #1 
+ldr r0, =0x3334
+mul r0, r1 
+asr r0, #0x10 @ 10% approximation 
+
 ldrb	r2, [r4,#0x13]	@r2=currhp
-@cmp	r1, r2		@check if hp is already max
-@beq	End
 sub	r2, r0		@total healing
 cmp r2, #1    @is new hp<1?
 bge	StoreHP
@@ -76,12 +78,13 @@ mov lr, r3
 cmp r0,#0x00
 beq End
 
-@take 7 damage
-ldrb  r1, [r5,#0x12]  @r1=maxhp
-mov r0, #furydamage
+@take 10% hp damage
+ldrb	r1, [r5,#0x12]	@r1=maxhp
+asr r1, #1 
+ldr r0, =0x3334
+mul r0, r1 
+asr r0, #0x10 @ 10% approximation 
 ldrb  r2, [r5,#0x13]  @r2=currhp
-@cmp  r1, r2    @check if hp is already max
-@beq  End
 sub r2, r0    @total healing
 cmp r2, #1    @is new hp<1?
 bge StoreHP2

@@ -249,7 +249,7 @@ SkillAccessory_DescEntry(BlossomID, SD_Blossom)
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere
 SkillAccessory_NameEntry(FuryID, BerserkGeneName)
-SkillAccessory_DescEntry(FuryID, SD_Fury)
+SkillAccessory_DescEntry(FuryID, BerserkGeneDesc)
 //Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
 //Author Unknown (Initial Commit)
 SkillAccessory_NameEntry(LifetakerID, SN_Lifetaker)
@@ -366,11 +366,6 @@ SkillAccessory_DescEntry(FortuneID, SD_Fortune)
 //Blaine 
 
 
-//Giovanni 
-//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
-//By circleseverywhere
-SkillAccessory_NameEntry(FuryID, SN_Fury)
-SkillAccessory_DescEntry(FuryID, SD_Fury)
 //Hawkeye: User will always hit the enemy.
 //By SD9k
 SkillAccessory_NameEntry(HawkeyeID, SN_Hawkeye) // silph scope? 

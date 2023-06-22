@@ -147,10 +147,6 @@ ORG $CD0EC; BYTE 0x49 0xF7 0x1C 0xFD
 //ORG 0x0C18F8
 //BYTE $00 $00 $00 $00 
 
-// Show class instead of unit during no anims battle preview 
-ORG $7BEAE 
-SHORT 0x6840 
-
 // Level does not decrease with Promotion
 //  by 7743 
 ORG 0x2BE70 
@@ -309,6 +305,43 @@ POP
 
 
 
+// inline: make it get name as class name 
+PUSH
+ORG $8C5F4
+SHORT $6848
+ORG $86E50
+SHORT $6840 
+ORG $365F0
+SHORT $6850
+ORG $9A5F0
+SHORT $6868 
+ORG $9A97E
+SHORT $6868 
+ORG $9954A
+SHORT $6870 
+ORG $9A1DA
+SHORT $6868 
+ORG $5203C
+SHORT $6840 
+ORG $923AC
+SHORT $6840 
+ORG $9ECCE
+SHORT $6840 
+ORG $8E240
+SHORT $6870 
+ORG $34984
+SHORT $6848 
+ORG $2D34E
+SHORT $6840 
+ORG $2D37C
+SHORT $6840 
+ORG $9B9F2
+SHORT $6840 
+ORG $9BA24
+SHORT $6840 
+ORG $7BEAE
+SHORT $6840 
+POP
 
 
 #ifndef DEBUG_MODE
