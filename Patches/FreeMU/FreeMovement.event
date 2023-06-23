@@ -21,6 +21,10 @@ ALIGN 4
 FreeMove_Silent:
 BYTE 0x10 
 
+ALIGN 4 
+StraightLineWeaponsList: 
+BYTE OneRangeWep ThreeRangeWep FiveRangeWep // SevenRangeWep used by Gary is not 
+BYTE 0x0 
 	
 ALIGN 4
 TimerDelay:

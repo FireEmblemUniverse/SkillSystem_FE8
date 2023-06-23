@@ -755,12 +755,51 @@ void FMU_ClearActionAndSave(struct FMUProc* proc) {
 	PlayerPhase_Suspend(); 
 } 
 
-extern void BuildStraightLineRangeFromUnitAndItem(struct Unit* unit, int itemID) { 
+int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) { 
+	int result = false;
+	int unitID = unit->pCharacterData->number;
+	if ((unitID < 0xE0) ||(unitID > 0xEF)) {
+		return result; 
+	}
+	
+	
+	int dangerRadius = false; 
+	if (unit->supportBits & (1<<7)) { //@ Check if unit's DangerRadius is on 
+		dangerRadius = true; 
+	} 
+	
+	int wep = GetUnitEquippedWeapon(unit);
+	int c = 0; 
+	int range = 0; 
+	while (StraightLineWeaponsList[c]) { 
+		if (StraightLineWeaponsList[c] == wep) {
+			result = true; 
+			range = GetItemMaxRange(wep); 
+			break; 
+		}
+		c++; 
+	} 
+	
+	if (!result) { 
+		return result;
+	} 
+	
+	if (dangerRadius) {
+		int x = unit->xPos;
+		int y = unit->yPos;
+		for (int i = 1; i <= range; i++) { 
+			gMapRange[y+i][x] = 1; 
+			gMapFog[y+i][x] = 1; 
+		}
+		return result; 
+	}
+
 	int x = unit->xPos;
 	int y = unit->yPos;
-	for (int i = 1; i < 6; i++) { 
+	for (int i = 1; i <= range; i++) { 
 		gMapRange[y+i][x] = 1; 
 	}
+	return result; 
 } 
 
 extern const struct SMSData NewStandingMapSpriteTable[];
