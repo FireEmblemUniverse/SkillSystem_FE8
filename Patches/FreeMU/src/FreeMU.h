@@ -8,6 +8,8 @@ typedef bool (*ButtonFunc) (struct FMUProc*);
 
 #define LEDGE_JUMP 0x26 // terrain type 
 
+extern struct Unit* GetUnitStructFromEventParameter(int id); 
+
 struct FMUProc {
 	PROC_FIELDS;
 	/* 29 */	u8 uTimer;
@@ -100,6 +102,10 @@ struct FMURam {
 
 extern struct FMURam* FreeMoveRam; 
 
+struct unitFacing { // uses +0x38 supportBits 
+	u8 dir : 2; 
+};
+
 #define RunCharacterEvents ( (void(*)(u8,u8))(0x8083FB1) )
 #define CheckForCharacterEvents ( (u8(*)(u8,u8))(0x8083F69) )
 extern const ProcCode FreeMovementControlProc[];
@@ -141,6 +147,9 @@ void pFMU_UpdateSMS(struct FMUProc* proc);
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y);
 void FMU_ResetLCDIO(void);
 int gMapPUnit(int x, int y);
+void SetUnitFacing(struct Unit* unit, int dir);
+int GetUnitFacing(struct Unit* unit);
+void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing);
 
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);

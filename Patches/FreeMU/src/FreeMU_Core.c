@@ -187,12 +187,12 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	//FreeMoveRam->silent = false; 
 	
 	
-	if (FreeMoveRam->running) 
-		proc->moveSpeed = FreeMU_MovingSpeed.speedB;
-	else 
-		proc->moveSpeed = FreeMU_MovingSpeed.speedA;
+	if (FreeMoveRam->running) {
+	proc->moveSpeed = FreeMU_MovingSpeed.speedB; }
+	else {
+	proc->moveSpeed = FreeMU_MovingSpeed.speedA; } 
 	
-	proc->smsFacing = FreeMoveRam->dir;
+	proc->smsFacing = GetUnitFacing(gActiveUnit); //FreeMoveRam->dir;
 	proc->commandID = (-1); 
 	proc->curInput = 0; 
 	proc->lastInput = 0; 
@@ -256,6 +256,7 @@ int FMU_HandleContinuedMovement(void) {
 	if (dir != proc->smsFacing) { 
 		proc->smsFacing = dir; 
 		FreeMoveRam->dir = proc->smsFacing; 
+		SetUnitFacing(gActiveUnit, dir); 
 		return (-1); 
 	} 
 
@@ -458,6 +459,7 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
     if (facingCur != proc->smsFacing) { 
         pFMU_UpdateSMS(proc);
 		FreeMoveRam->dir = proc->smsFacing; 
+		SetUnitFacing(gActiveUnit, proc->smsFacing); 
 	} 
 	else { 
 		if (gMapFog[y][x]) {
@@ -755,6 +757,27 @@ void FMU_ClearActionAndSave(struct FMUProc* proc) {
 	PlayerPhase_Suspend(); 
 } 
 
+void SetUnitFacingASMC(void) { 
+	struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
+	int dir = gEventSlot[3]; 
+
+	((struct unitFacing*)&unit->supportBits)->dir = dir;
+	
+	u8 smsID = unit->pClassData->SMSId;
+	UpdateSMSDir(unit, smsID, dir); 
+	
+} 
+
+void SetUnitFacing(struct Unit* unit, int dir) { 
+	((struct unitFacing*)&unit->supportBits)->dir = dir;
+} 
+
+int GetUnitFacing(struct Unit* unit) { 
+	return ((struct unitFacing*)&unit->supportBits)->dir;
+} 
+
+
+
 int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) { 
 	int result = false;
 	int unitID = unit->pCharacterData->number;
@@ -803,9 +826,13 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 } 
 
 extern const struct SMSData NewStandingMapSpriteTable[];
-void pFMU_UpdateSMS(struct FMUProc* proc){
-  u32 tileIndex = (proc->FMUnit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
-  u8 smsID = proc->FMUnit->pClassData->SMSId;
+
+
+
+void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) { 
+
+	u32 tileIndex = (unit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
+
   u16 size = NewStandingMapSpriteTable[smsID].size;
   u8 width =  size < 2 ? 16 : 32;
   u8 height = size > 0 ? 32 : 16;
@@ -817,11 +844,11 @@ void pFMU_UpdateSMS(struct FMUProc* proc){
     return;
   
   // Decompress sms gfx.
-  if (proc->smsFacing==2)
+  if (facing==2)
     Decompress(NewStandingMapSpriteTable[smsID].pGraphics, gGenericBuffer);    // Downward facing sms.
   else {
     Decompress(FMU_idleSMSGfxTable[smsID], gGenericBuffer);                 // Other direction-facing sms.
-    srcOffs[0] = proc->smsFacing==3 ? proc->smsFacing-1 : proc->smsFacing;  // Up-facing sprite comes immediately after right.
+    srcOffs[0] = facing==3 ? facing-1 : facing;  // Up-facing sprite comes immediately after right.
   }
   
   // Move sms gfx into smsbuffer.
@@ -842,6 +869,13 @@ void pFMU_UpdateSMS(struct FMUProc* proc){
   else
     RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
   return;
+} 
+
+void pFMU_UpdateSMS(struct FMUProc* proc){
+	struct Unit* unit = proc->FMUnit; 
+	u8 smsID = proc->FMUnit->pClassData->SMSId;
+	int facing = proc->smsFacing; 
+ 	UpdateSMSDir(unit, smsID, facing);
 }
 
 /* @blh 0x801865C @ SetupActiveUnit 
