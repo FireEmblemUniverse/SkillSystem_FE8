@@ -4,6 +4,7 @@
   .short 0xf800
 .endm
 .thumb 
+.equ AutosaveNobodyDiedWithinTurns, CurrentPartySize_Link+4
 	.equ CheckEventId,0x8083da8
 @ function based on $154F4 
 .global AutosaveFunc
@@ -51,7 +52,7 @@ mov r0, #3
 blh 0x80A5A48 @SaveSuspendedGame
 b Exit
 DiedLastTurn: 
-ldr r1, =AutosaveNobodyDiedWithinTurns
+ldr r1, AutosaveNobodyDiedWithinTurns
 ldrb r1, [r1] 
 orr r3, r1 
 strb r3, [r2] 
