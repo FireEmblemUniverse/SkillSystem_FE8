@@ -1,3 +1,7 @@
+ALIGN 4 
+AutosaveNobodyDiedWithinTurns: 
+BYTE 2<<6 // Uses 0x40 / 0x80 bits. max 3
+
 //autosave_fix_with_skillsystems
 ALIGN 4
 PUSH 
