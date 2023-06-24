@@ -18,10 +18,23 @@ bne Exit
 bl CountDeployedPlayerUnits 
 ldr r2, CurrentPartySize_Link 
 ldrb r1, [r2] 
-strb r0, [r2] 
-cmp r0, r1 
-blt Exit @ we don't autosave if we have fewer party members than last time 
+mov r3, #0x3F 
+and r3, r1 
+cmp r0, r3
+blt DiedLastTurn @ we don't autosave if we have fewer party members than last time 
+@ no death but maybe previous turns 
+lsl r1, #24 @ all but 2 highest bits 
+lsr r1, #30
+cmp r1, #0 
+beq Continue
+sub r1, #1 
+lsl r1, #6 
+orr r3, r1 
+strb r3, [r1] @ countdown until we save again
+b Exit
 
+Continue: 
+strb r0, [r2]
 ldr r0, QuicksaveToggleFlag 
 cmp r0, #0 
 beq Skip 
@@ -36,6 +49,15 @@ mov r0, #9
 strb r0, [r1, #0x16] 
 mov r0, #3 
 blh 0x80A5A48 @SaveSuspendedGame
+b Exit
+DiedLastTurn: 
+ldr r1, =AutosaveNobodyDiedWithinTurns
+ldrb r1, [r1] 
+orr r3, r1 
+strb r3, [r2] 
+b Exit 
+
+
 Exit: 
 pop {r0} 
 bx r0 
