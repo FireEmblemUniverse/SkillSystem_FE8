@@ -18,6 +18,11 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 
 #define ProtagID 0x45 
 
+#define LVFACELEFT 2 
+#define LVFACERIGHT 1 
+#define LVFACEDOWN 0 
+#define LVFACEUP 3
+
 //#define ALT_TITLESCREEN
 //#define MagikarpOnly // Replace map sprites and mugs with Magikarp. Give all classes "ScaledBack" skill and "Splash" command. 
 

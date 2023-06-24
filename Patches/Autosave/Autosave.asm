@@ -4,7 +4,7 @@
   .short 0xf800
 .endm
 .thumb 
-.equ AutosaveNobodyDiedWithinTurns, CurrentPartySize_Link+4
+.equ AutosaveNobodyDiedWithinTurns, QuicksaveToggleFlag+4
 	.equ CheckEventId,0x8083da8
 @ function based on $154F4 
 .global AutosaveFunc

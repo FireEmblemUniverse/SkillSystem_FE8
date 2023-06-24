@@ -4,6 +4,8 @@
 	// By Mokha, origin from Sme
 	// Don't worry about FreeMU_Unit, it has been saved in proc now.
 
+// FMU_idleSMSGfxTable is found in Root/Graphics/MapSprites/MapSprites.event 
+
 #include FreeMovementInternal.event
 
 #define EnableFreeMovement "ASMC EnableFreeMovementASMC"

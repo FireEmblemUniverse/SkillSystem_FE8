@@ -1,5 +1,172 @@
 #include "Tools/Tool Helpers.txt"
 
+/*
+This table has 255 entries and is indexed by standing map sprites (SMS).
+It contains pointers to compressed graphics of the corresponding SMS,
+featuring the SMS facing right, left and up, in that order.
+*/
+
+#define FMU_gfx_entry(id, pointer) "PUSH; ORG FMU_idleSMSGfxTable + (4*id); POIN pointer; POP" 
+
+ALIGN 4; FMU_idleSMSGfxTable:
+FILL(256*4) 0 
+
+
+FMU_gfx_entry(AgathaSMS, FMU_agathaIdles) 
+FMU_gfx_entry(balding_manSMS, FMU_balding_manIdles) 
+FMU_gfx_entry(battle_girlSMS, FMU_battle_girlIdles) 
+FMU_gfx_entry(beautySMS, FMU_beautyIdles) 
+FMU_gfx_entry(billSMS, FMU_billIdles) 
+FMU_gfx_entry(blackbeltSMS, FMU_blackbeltIdles) 
+FMU_gfx_entry(BlaineSMS, FMU_blaineIdles) 
+FMU_gfx_entry(blueSMS, FMU_blueIdles) 
+FMU_gfx_entry(boySMS, FMU_boyIdles) 
+//FMU_gfx_entry(brendanSMS, FMU_brendanIdles) 
+FMU_gfx_entry(BrockSMS, FMU_brockIdles) 
+FMU_gfx_entry(BrunoSMS, FMU_brunoIdles) 
+FMU_gfx_entry(bug_catcherSMS, FMU_bug_catcherIdles) 
+FMU_gfx_entry(camperSMS, FMU_camperIdles) 
+FMU_gfx_entry(captainSMS, FMU_captainIdles) 
+FMU_gfx_entry(channelerSMS, FMU_channelerIdles) 
+FMU_gfx_entry(chefSMS, FMU_chefIdles) 
+FMU_gfx_entry(ClerkSMS, FMU_clerkIdles) 
+FMU_gfx_entry(cooltrainer_fSMS, FMU_cooltrainer_fIdles) 
+FMU_gfx_entry(ErikaSMS, FMU_erikaIdles) 
+FMU_gfx_entry(fat_manSMS, FMU_fat_manIdles) 
+FMU_gfx_entry(fisherSMS, FMU_fisherIdles) 
+FMU_gfx_entry(gentlemanSMS, FMU_gentlemanIdles) 
+FMU_gfx_entry(giovanniSMS, FMU_giovanniIdles) 
+FMU_gfx_entry(GreenSMS, FMU_greenIdles) 
+FMU_gfx_entry(hikerSMS, FMU_hikerIdles) 
+FMU_gfx_entry(KogaSMS, FMU_kogaIdles) 
+FMU_gfx_entry(LanceSMS, FMU_lanceIdles) 
+FMU_gfx_entry(lassSMS, FMU_lassIdles) 
+FMU_gfx_entry(LoreleiSMS, FMU_loreleiIdles) 
+FMU_gfx_entry(LtSurgeSMS, FMU_ltsurgeIdles) 
+//FMU_gfx_entry(maySMS, FMU_mayIdles) 
+FMU_gfx_entry(MistySMS, FMU_mistyIdles) 
+FMU_gfx_entry(MomSMS, FMU_momIdles) 
+FMU_gfx_entry(mrfujiSMS, FMU_mr_fujiIdles) 
+FMU_gfx_entry(NurseSMS, FMU_nurseIdles) 
+FMU_gfx_entry(picnickerSMS, FMU_picnickerIdles) 
+FMU_gfx_entry(policemanSMS, FMU_policemanIdles) 
+FMU_gfx_entry(prof_oakSMS, FMU_prof_oakIdles) 
+FMU_gfx_entry(ReceptionistSMS, FMU_receptionistIdles) 
+FMU_gfx_entry(RedSMS, FMU_redIdles) 
+FMU_gfx_entry(rockerSMS, FMU_rockerIdles) 
+FMU_gfx_entry(rocket_fSMS, FMU_rocket_fIdles) 
+FMU_gfx_entry(rocket_mSMS, FMU_rocket_mIdles) 
+FMU_gfx_entry(SabrinaSMS, FMU_sabrinaIdles) 
+FMU_gfx_entry(sailorSMS, FMU_sailorIdles) 
+FMU_gfx_entry(scientistSMS, FMU_scientistIdles) 
+FMU_gfx_entry(super_nerdSMS, FMU_super_nerdIdles) 
+FMU_gfx_entry(swimmer_f_landSMS, FMU_swimmer_f_landIdles) 
+FMU_gfx_entry(swimmer_m_landSMS, FMU_swimmer_m_landIdles) 
+
+
+ALIGN 4; FMU_agathaIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_agatha.dmp"
+ALIGN 4; FMU_balding_manIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_balding_man.dmp"
+ALIGN 4; FMU_battle_girlIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_battle_girl.dmp"
+ALIGN 4; FMU_beautyIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_beauty.dmp"
+ALIGN 4; FMU_billIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_bill.dmp"
+ALIGN 4; FMU_blackbeltIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_blackbelt.dmp"
+ALIGN 4; FMU_blaineIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_blaine.dmp"
+ALIGN 4; FMU_blueIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_blue.dmp"
+ALIGN 4; FMU_boyIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_boy.dmp"
+ALIGN 4; FMU_brendanIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_brendan.dmp"
+ALIGN 4; FMU_brockIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_brock.dmp"
+ALIGN 4; FMU_brunoIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_bruno.dmp"
+ALIGN 4; FMU_bug_catcherIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_bug_catcher.dmp"
+ALIGN 4; FMU_camperIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_camper.dmp"
+ALIGN 4; FMU_captainIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_captain.dmp"
+ALIGN 4; FMU_channelerIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_channeler.dmp"
+ALIGN 4; FMU_chefIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_chef.dmp"
+ALIGN 4; FMU_clerkIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_clerk.dmp"
+ALIGN 4; FMU_cooltrainer_fIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_cooltrainer_f.dmp"
+ALIGN 4; FMU_erikaIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_erika.dmp"
+ALIGN 4; FMU_fat_manIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_fat_man.dmp"
+ALIGN 4; FMU_fisherIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_fisher.dmp"
+ALIGN 4; FMU_gentlemanIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_gentleman.dmp"
+ALIGN 4; FMU_giovanniIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_giovanni.dmp"
+ALIGN 4; FMU_greenIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_green.dmp"
+ALIGN 4; FMU_hikerIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_hiker.dmp"
+ALIGN 4; FMU_kogaIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_koga.dmp"
+ALIGN 4; FMU_lanceIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_lance.dmp"
+ALIGN 4; FMU_lassIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_lass.dmp"
+ALIGN 4; FMU_loreleiIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_lorelei.dmp"
+ALIGN 4; FMU_ltsurgeIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_ltsurge.dmp"
+ALIGN 4; FMU_mayIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_may.dmp"
+ALIGN 4; FMU_mistyIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_misty.dmp"
+ALIGN 4; FMU_momIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_mom.dmp"
+ALIGN 4; FMU_mr_fujiIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_mr_fuji.dmp"
+ALIGN 4; FMU_nurseIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_nurse.dmp"
+ALIGN 4; FMU_picnickerIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_picnicker.dmp"
+ALIGN 4; FMU_policemanIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_policeman.dmp"
+ALIGN 4; FMU_prof_oakIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_prof_oak.dmp"
+ALIGN 4; FMU_receptionistIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_receptionist.dmp"
+ALIGN 4; FMU_redIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_red_normal.dmp"
+ALIGN 4; FMU_rockerIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_rocker.dmp"
+ALIGN 4; FMU_rocket_fIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_rocket_f.dmp"
+ALIGN 4; FMU_rocket_mIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_rocket_m.dmp"
+ALIGN 4; FMU_sabrinaIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_sabrina.dmp"
+ALIGN 4; FMU_sailorIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_sailor.dmp"
+ALIGN 4; FMU_scientistIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_scientist.dmp"
+ALIGN 4; FMU_super_nerdIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_super_nerd.dmp"
+ALIGN 4; FMU_swimmer_f_landIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_swimmer_f_land.dmp"
+ALIGN 4; FMU_swimmer_m_landIdles:
+#incbin "Trainer_SMS_Facing/SMS_facing_swimmer_m_land.dmp"
+
+
+
 ALIGN 4
 NewStandingMapSpriteTable:
 FILL(256*8)

@@ -1,5 +1,5 @@
 #include "Prebattle/Installer.event" 
-//#include "bmudisp/Installer.event" 
+#include "bmudisp/Installer.event" 
 
 #ifdef DEBUG_MODE 
 #include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 

@@ -806,13 +806,22 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 	if (!result) { 
 		return result;
 	} 
+	int facing = GetUnitFacing(unit); 
+	
+	int addX = 0; int addY = 0; int subX = 0; int subY = 0; 
+	if (facing == MU_FACING_RIGHT) addX = 1; 
+	if (facing == MU_FACING_LEFT) subX = 1;
+	if (facing == MU_FACING_DOWN) addY = 1; 
+	if (facing == MU_FACING_UP) subY = 1; 
+	
 	
 	if (dangerRadius) {
 		int x = unit->xPos;
 		int y = unit->yPos;
 		for (int i = 1; i <= range; i++) { 
-			gMapRange[y+i][x] = 1; 
-			gMapFog[y+i][x] = 1; 
+			
+			gMapRange[y+(i*addY)-(i*subY)][x+(i*addX)-(i*subX)] = 1; 
+			gMapFog[y+(i*addY)-(i*subY)][x+(i*addX)-(i*subX)] = 1; 
 		}
 		return result; 
 	}
@@ -820,7 +829,7 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 	int x = unit->xPos;
 	int y = unit->yPos;
 	for (int i = 1; i <= range; i++) { 
-		gMapRange[y+i][x] = 1; 
+		gMapRange[y+(i*addY)-(i*subY)][x+(i*addX)-(i*subX)] = 1; 
 	}
 	return result; 
 } 

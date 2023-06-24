@@ -39,6 +39,7 @@ for entry in dir_entries:
 
         
         blank_sms = Image.open("BlankSMS.png")
+        blank_sms_facing = Image.open("BlankSMS_Facing.png")
         blank_mms = Image.open("BlankMMS.png")
         
         im = Image.open(trainer_filename)
@@ -50,6 +51,28 @@ for entry in dir_entries:
         processed_sms.paste(frame_1, (0,frame_height*1))
         processed_sms.paste(frame_1, (0,frame_height*2)) 
         processed_sms.save(f"Trainer_SMS/SMS_{entry.name}", quality=100, optimize=True)
+
+
+        # SMS_Facing
+        frame_2 = im.crop((frame_width*1, 0, frame_width*2, frame_height))
+        frame_3 = im.crop((frame_width*2, 0, frame_width*3, frame_height))
+        frame_3_flip = frame_3.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        #.Transpose.FLIP_LEFT_RIGHT
+        
+        processed_sms = blank_sms_facing
+        processed_sms.paste(frame_3) # left 
+        processed_sms.paste(frame_3, (0,frame_height*1))
+        processed_sms.paste(frame_3, (0,frame_height*2))
+        processed_sms.paste(frame_3_flip, (0,frame_height*3)) # right 
+        processed_sms.paste(frame_3_flip, (0,frame_height*4))
+        processed_sms.paste(frame_3_flip, (0,frame_height*5))
+        processed_sms.paste(frame_2, (0,frame_height*6)) # up 
+        processed_sms.paste(frame_2, (0,frame_height*7))
+        processed_sms.paste(frame_2, (0,frame_height*8))
+        
+        processed_sms.save(f"Trainer_SMS_Facing/SMS_facing_{entry.name}", quality=100, optimize=True)
+
+
         # MMS
         # down 
         frame_4 = im.crop((frame_width*3, 0, frame_width*4, frame_height))
