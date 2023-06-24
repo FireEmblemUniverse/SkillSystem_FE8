@@ -438,6 +438,12 @@
 				#define MMBRenderInventoryAlternate
 			#endif // MMBRenderInventoryAlternate
 		#endif // MMBItem5Alternate
+		
+		#ifdef MMBDrawCaughtIconDef
+			#include "Modules/DrawCaughtIcon.lyn.event" 
+			SHORT (MMBInventoryObjectPaletteIndex << 12) | 0x340
+			BYTE MMBDrawCaughtX MMBDrawCaughtY
+		#endif 
 
 		#ifdef MMBRenderInventoryAlternate
 			#include "Modules/MMBResetDisplayedItemIndex.lyn.event"
@@ -1406,6 +1412,9 @@
 	ALIGN 4
 
 	MMBBuildRoutines:
+		#ifdef MMBDrawCaughtIconDef
+			POIN MMBDrawCaughtIcon
+		#endif 
 
 		#ifdef MMBRenderInventoryAlternate
 			POIN MMBResetDisplayedItemIndex
@@ -1500,7 +1509,10 @@
 	ALIGN 4
 
 	MMBDynamicRoutines:
-
+		#ifdef MMBDrawCaughtIconDef
+			POIN MMBRenderCaughtIcon 
+		#endif 
+		
 		#ifdef MMBBattleStruct
 			POIN MMBPrepStats
 		#endif // MMBBattleStruct

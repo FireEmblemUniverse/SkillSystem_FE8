@@ -148,6 +148,30 @@
   bx      r0 
 .endm
 
+.macro draw_pkmn_caught_icon_at, tileX, tileY
+  ldr     r0, [r7, #0xC]    @load unit's pointer
+
+ldr r0, [r0, #4] @ class 
+ldrb r0, [r0, #4] @ class id 
+bl CheckIfCaught
+mov r1, #0xAA 
+add r1, r0 @ add 1 for caught icon instead if caught 
+
+
+		@DrawIcon(
+		@out + TILEMAP_INDEX(6, 0),
+		@0xAB, TILEREF(0, 4));  TILEREF(aChar, aPal) ((aChar) + ((aPal) << 12))
+
+  @mov     r1, #2
+  @lsl     r1, #8
+  @orr     r1, r0      
+  mov     r2, #0x80      @ 0x4000 pal  
+  lsl     r2, r2, #0x7     
+  ldr     r0, =(gBg0MapBuffer+(0x20*2*\tileY)+(2*\tileX))
+  blh     DrawIcon 
+.endm
+
+
 .macro draw_textID_at tile_x, tile_y, textID=0, width=3, colour=3, growth_func=-1        @growth func is # of growth getter in growth_getters_table; 0=hp, 1=str, 2=skl, etc
   mov r3, r7
   mov r1, #\width

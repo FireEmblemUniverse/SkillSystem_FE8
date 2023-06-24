@@ -11,7 +11,8 @@ MSS_leftpage:
 leftpage_start
 
 @draw_character_name_at 3,10
-draw_class_name_at 3,10
+draw_class_name_at 4,10
+draw_pkmn_caught_icon_at 2,10
 
 @draw_class_name_at 1,13
 
