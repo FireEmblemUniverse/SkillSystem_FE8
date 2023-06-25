@@ -171,7 +171,8 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 
 #define CurrentChapter 		0x30017ae
 #define TeleportChapter 		0x30017af 
-#define RetreatChapter 		0x30017b0
+//#define RetreatChapter 		0x30017b0
+#define PlayerAvatarClass 0x30017b0
 //#define DigChapter 			0x30017b1 
 #define FMU_SpeedRam 0x30017b1 
 

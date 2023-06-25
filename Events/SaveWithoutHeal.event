@@ -66,8 +66,6 @@ Write_Byte(0, DisableMenuOptionsRam)
 Read_Byte(CurrentChapter)
 SADD r2 rC r0 
 Write_Byte(TeleportChapter)
-Write_Byte(RetreatChapter)
-
 Read_Byte(CurrentChapter)
 SADD r2 rC r0 
 MNC2 (-1) // uses s2 

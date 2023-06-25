@@ -229,8 +229,7 @@ ENUF SkipIntroFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
-
-
+ASMC SelectAvatarASMC
 //ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 
 LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
@@ -611,9 +610,18 @@ Write_Byte(15, YCoordNewArea)
 //MNC2 Route11Ch
 //MNC2 Route2NCh
 //MNC2 PewterCh
-FADU 16 
-ASMC SelectAvatarASMC
 
+//SVAL 0x2 0x35; // background 
+//REMOVEPORTRAITS 
+//BACG 0x35 
+
+//BYTE $42 $21 $35 $00 $00 $00 $3C $00
+
+//CALL $9EE2E8; 
+//FADU 16 
+
+//STAL 5 
+//TutText(DebugText) 
 NoFade
 ENDA
 
