@@ -1,3 +1,11 @@
 // MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,ReorderMovesUsability,ReorderMovesEffect)
 
 #include "ReorderMoves.lyn.event"
+
+ALIGN 4 
+AvatarClass_Table:
+BYTE RedID RedSMS GreenID GreenSMS
+BYTE 0 // maybe make it a list 
+
+
+
