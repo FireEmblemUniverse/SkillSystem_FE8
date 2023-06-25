@@ -531,7 +531,7 @@ mov r6, r2
 mov r0, r6 @ growths*levels in various stages 
 mov r1, r5 @ number of levels to gain 
 cmp r1, #1
-blt NoSub2 
+ble NoSub2 
 sub r1, #1 @ no level-up for level 0 to 1 
 NoSub2: 
 swi 6 @ divide 
