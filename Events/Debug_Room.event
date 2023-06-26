@@ -230,6 +230,8 @@ SetTactName(VeslyName)
 ASMC SaveGameSeed
 
 ASMC SelectAvatarASMC
+//Write_Byte(GreenID, PlayerAvatarClass) 
+
 //ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 
 LOAD1 0x1 Units1 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
@@ -468,7 +470,7 @@ ENUT SecretKeyObtained
 Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(15, YCoordNewArea)  
 //MNC2 MansionB4Ch 
-//MNC2 ViridianCh
+MNC2 ViridianCh
 
 
 //SetUnitStatus(1, CurrentHP, 5)

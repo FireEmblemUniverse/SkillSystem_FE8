@@ -110,6 +110,8 @@ FADI 16
 #endif 
 
 CALL NameInputEvent
+ASMC SelectAvatarASMC
+
 ASMC SaveGameSeed
 
 CAM1 [8,11]

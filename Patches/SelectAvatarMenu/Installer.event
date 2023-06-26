@@ -11,7 +11,10 @@ AvatarClass_Table:
 BYTE RedID RedSMS GreenID GreenSMS
 BYTE 0 // maybe make it a list 
 
-
+ALIGN 4 
+ProtagUnitGroup2:
+UNIT ProtagID  GreenID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
 
 
 
