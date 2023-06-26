@@ -51,6 +51,8 @@ void AvatarIdle(struct SelectAvatarProc* proc) {
 	//asm("mov r11, r11"); 
 	PutUnitSpriteForClassId(0, command0->xDrawTile*8+8, command0->yDrawTile*8, 0xC800, AvatarClass_Table[index0].classID);
 	PutUnitSpriteForClassId(0, command1->xDrawTile*8+8, command1->yDrawTile*8, 0xC800, AvatarClass_Table[index1].classID);
+	//SMS_SyncDirect(); //SyncUnitSpriteSheet
+	SMS_SyncIndirect(); //ForceSyncUnitSpriteSheet();
 	//PutUnitSpriteExt(10-i, x, y, (1 << 10), GetUnit(unit_id));
 	}
 return; 
@@ -152,6 +154,7 @@ int SelectAvatarASMC(struct Proc* parent)
 
 void SelectAvatar_StartMenu(struct SelectAvatarProc* proc) { 
 	StartFadeOutBlackFast();
+	SMS_Init(); //ResetUnitSprites();
 	proc->destruct = false; 
 	proc->menu = StartMenu(&Menu_SelectAvatar);
 }
