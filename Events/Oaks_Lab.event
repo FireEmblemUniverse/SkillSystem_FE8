@@ -110,7 +110,7 @@ FADI 16
 #endif 
 
 CALL NameInputEvent
-ASMC SelectAvatarASMC
+SelectAvatar
 
 ASMC SaveGameSeed
 

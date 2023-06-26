@@ -229,8 +229,7 @@ ENUF SkipIntroFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
-ASMC SelectAvatarASMC
-//Write_Byte(GreenID, PlayerAvatarClass) 
+//SelectAvatar
 
 //ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 
@@ -467,10 +466,10 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(15, YCoordNewArea)  
+Write_Byte(10, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(7, YCoordNewArea)  
 //MNC2 MansionB4Ch 
-MNC2 ViridianCh
+MNC2 Route10Ch
 
 
 //SetUnitStatus(1, CurrentHP, 5)

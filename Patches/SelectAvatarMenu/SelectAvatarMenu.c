@@ -179,7 +179,7 @@ void SelectAvatar_DrawTitle(struct SelectAvatarProc* proc) {
 
 
 extern struct UnitDefinition ProtagUnitGroup2; 
-extern struct ClassData NewClassTable; 
+extern struct ClassData NewClassTable[]; 
 int SelectAvatarCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
 	struct SelectAvatarProc* proc = (struct SelectAvatarProc*)ProcFind(Proc_SelectAvatar); 
@@ -191,7 +191,7 @@ int SelectAvatarCommandSelect(struct MenuProc* menu, struct MenuCommandProc* com
 	//for (int i = 0; i <= classID; i++) { 
 		//classTable++; 
 	//} 
-	//protagUnit->pClassData = classTable; 
+	protagUnit->pClassData = &NewClassTable[AvatarClass_Table[menu->commandIndex].classID]; 
 	//*PlayerAvatarClass_Link = AvatarClass_Table[menu->commandIndex].classID;
 	SMS_UpdateFromGameData();
 	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
