@@ -59,18 +59,23 @@ for entry in dir_entries:
         frame_3_flip = frame_3.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
         #.Transpose.FLIP_LEFT_RIGHT
         
-        processed_sms = blank_sms_facing
+        processed_sms = blank_sms
         processed_sms.paste(frame_3) # left 
         processed_sms.paste(frame_3, (0,frame_height*1))
         processed_sms.paste(frame_3, (0,frame_height*2))
-        processed_sms.paste(frame_3_flip, (0,frame_height*3)) # right 
-        processed_sms.paste(frame_3_flip, (0,frame_height*4))
-        processed_sms.paste(frame_3_flip, (0,frame_height*5))
-        processed_sms.paste(frame_2, (0,frame_height*6)) # up 
-        processed_sms.paste(frame_2, (0,frame_height*7))
-        processed_sms.paste(frame_2, (0,frame_height*8))
-        
-        processed_sms.save(f"Trainer_SMS_Facing/SMS_facing_{entry.name}", quality=100, optimize=True)
+        processed_sms.save(f"Trainer_SMS_Facing/SMS_facing_left_{entry.name}", quality=100, optimize=True)
+
+        processed_sms = blank_sms
+        processed_sms.paste(frame_3_flip, (0,frame_height*0)) # right 
+        processed_sms.paste(frame_3_flip, (0,frame_height*1))
+        processed_sms.paste(frame_3_flip, (0,frame_height*2))
+        processed_sms.save(f"Trainer_SMS_Facing/SMS_facing_right_{entry.name}", quality=100, optimize=True)
+
+        processed_sms = blank_sms
+        processed_sms.paste(frame_2, (0,frame_height*0)) # up 
+        processed_sms.paste(frame_2, (0,frame_height*1))
+        processed_sms.paste(frame_2, (0,frame_height*2))
+        processed_sms.save(f"Trainer_SMS_Facing/SMS_facing_up_{entry.name}", quality=100, optimize=True)
 
 
         # MMS

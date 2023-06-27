@@ -167,7 +167,9 @@ bool FMU_OnButton_ChangeUnit(FMUProc*);
 u16 FMU_FilterMovementInput(struct FMUProc*, u16);
 
 /*------------- Graphics --------------*/
-extern void* FMU_idleSMSGfxTable[0xFF];
+extern void* FMU_idleSMSGfxTable_left[0xFF];
+extern void* FMU_idleSMSGfxTable_right[0xFF];
+extern void* FMU_idleSMSGfxTable_up[0xFF];
 
 /*------------- Other -----------------*/
 extern u8 gSMSGfxBuffer_Frame1[0x2000];                                   //! FE8U = 0x2034010
