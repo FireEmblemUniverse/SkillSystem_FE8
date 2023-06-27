@@ -1,5 +1,5 @@
 #include "FreeMU.h"
-Unit* GetUnitStructFromEventParameter(u16);
+//Unit* GetUnitStructFromEventParameter(u16);
 extern const ProcCode gProc_CpPhase[]; // 0x85A7F08
 extern u8 MuCtr_StartMoveTowards(Unit*, u8 x, u8 y, u8, u8 flags); //0x8079DDD
 
@@ -140,12 +140,13 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
  */
 void pFMU_OnInit(struct FMUProc* proc){
 	//vaild?
+	proc->FMUnit = gActiveUnit; 
 	if( 0 == proc->FMUnit )
-		proc->FMUnit = gUnitArrayBlue;
-	if( !( 1&(u32)(proc->FMUnit)>>0x11) )
-		proc->FMUnit = gUnitArrayBlue;
-	if( !( 1&(u32)(proc->FMUnit)>>0x19) )
-		proc->FMUnit = gUnitArrayBlue;
+		proc->FMUnit = gUnitArrayBlue; // if no active unit, select the first player in ram 
+	//if( !( 1&(u32)(proc->FMUnit)>>0x11) )
+	//	proc->FMUnit = gUnitArrayBlue;
+	//if( !( 1&(u32)(proc->FMUnit)>>0x19) )
+	//	proc->FMUnit = gUnitArrayBlue;
 	
 	gActiveUnit = proc->FMUnit;
 	return;

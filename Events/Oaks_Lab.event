@@ -111,13 +111,16 @@ FADI 16
 
 CALL NameInputEvent
 SelectAvatar
+SVAL s1 ProtagID 
+SVAL s3 3 // up
+ASMC SetUnitFacingASMC
 
 ASMC SaveGameSeed
 
-CAM1 [8,11]
+SCOORD sB [8,11] 
+LOMA OaksLabCh 
+//CAM1 [8,11]
 FADU 44 
-
-
 
 EVBIT_MODIFY 3 // Dialogue skipping & fast-forwarding allowed 
 
@@ -212,6 +215,7 @@ AutoLevelUnits(1, True, 0x1FF) // all units to gain moves they should've learned
 
 LABEL 0x63
 ASMC RegisterAllOwnedPokemon
+
 NoFade
 ENDA
 

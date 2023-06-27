@@ -2,9 +2,7 @@
 #include "bmudisp/Installer.event" 
 #include "SelectAvatarMenu/Installer.event" 
 
-#ifdef DEBUG_MODE 
 #include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
-#endif 
 //#include "SMS/Installer.event" 
 #include "HigherStatGains/Installer.event" 
 #include "Autosave/Installer.event" 

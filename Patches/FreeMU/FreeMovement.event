@@ -11,6 +11,10 @@
 #define EnableFreeMovement "ASMC EnableFreeMovementASMC"
 #define DisableFreeMovement "ASMC DisableFreeMovementASMC"
 
+ALIGN 4 
+ProtagID_Link:
+WORD ProtagID 
+
 ALIGN 4
 FreeMoveRam:
 	WORD 0x02028924

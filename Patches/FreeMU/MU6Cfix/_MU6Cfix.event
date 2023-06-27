@@ -1,4 +1,4 @@
-
+#ifdef INSTALL_FMU
 PUSH
 	ORG 0x788B0
 	jumpToHack(MU_ExecCmd_FixForFreeMU)
@@ -9,7 +9,7 @@ PUSH
 	ORG 0x7947C
 	jumpToHack(MU_GetSpeed_FixForFreeMU)
 POP
-
+#endif 
 
 #include MU6Cfix.lyn.event
 ALIGN 4

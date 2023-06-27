@@ -20,6 +20,8 @@ ENDA */
 
 #include "SelectUnitHook.lyn.event" 
 
+
+#ifdef INSTALL_FMU
 PUSH
 
 ORG $1ca9c
@@ -39,6 +41,7 @@ SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0
 	ORG $9A2DBC
 	POIN pFMUCtr_OnEnd|1
 POP
+#endif 
 
 ALIGN 4 
 FMU_InputLoopProc:

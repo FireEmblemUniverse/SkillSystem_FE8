@@ -482,7 +482,7 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 #ifdef DEBUG_MODE 
 //SetMaxMove
 #endif 
-#ifdef FREE_MOVEMENT_INSTALLED
+#ifdef INSTALL_FMU
 CHECK_EXISTS ProtagID 
 BNE 0 sC s0 
 LOAD1 0 ProtagUnitGroup
@@ -524,7 +524,7 @@ ENDA
 
 
 GlobalTurnEvent:
-//#ifdef FREE_MOVEMENT_INSTALLED
+//#ifdef INSTALL_FMU
 //EnableFreeMovement
 //#endif 
 
@@ -1133,7 +1133,7 @@ ENDA
 
 ForceChTransition:
 ENUF TrainerBattleActiveFlag
-#ifdef FREE_MOVEMENT_INSTALLED
+#ifdef INSTALL_FMU
 DisableFreeMovement
 #endif 
 SADD 2 9 0 
@@ -1152,7 +1152,7 @@ ENDA
 
 ChTransition: 
 
-#ifdef FREE_MOVEMENT_INSTALLED
+#ifdef INSTALL_FMU
 DisableFreeMovement
 #endif 
 SVAL r2 0 // Player allegiance 
@@ -1222,6 +1222,7 @@ MNC2 SaveWithoutHealCh
 NoFade 
 ENDA 
 
+/*
 LoadMainUnit:
 LOAD3 0x0 First1Player //always should have one player, at least 
 SVAL r4 1
@@ -1229,7 +1230,7 @@ OnAllUnitState(0x01FF, Undeployed, Escaped|Undeployed|Hide, AnyArmy, AnyClass, A
 ENUN 
 CALL PlacePlayers
 NoFade 
-ENDA 
+ENDA */
 
 #define RefreshTerrainBmMap 0x8019A65 
 LoadAndPlacePlayers:

@@ -185,12 +185,7 @@ ALIGN 4
 	
 ALIGN 32
 BeginningScene:
-#ifdef FREE_MOVEMENT_INSTALLED
-CALL LoadMainUnit
-#endif 
-#ifndef FREE_MOVEMENT_INSTALLED
 CALL LoadAndPlacePlayers 
-#endif 
 CALL GlobalBeginningScene
 CALL CityBeginningScene
 #ifdef DEBUG_MODE 

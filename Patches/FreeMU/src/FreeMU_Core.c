@@ -1,5 +1,29 @@
 #include "FreeMU.h"
 extern u8 MuCtr_StartMoveTowards(Unit*, u8 x, u8 y, u8, u8 flags); //0x8079DDD
+extern int ProtagID_Link; 
+u16 CountAvailableBlueUnits(void) { // so we game over with only our Protag alive 
+    int i;
+
+    u16 result = 0;
+
+    for (i = 1; i < 0x40; ++i) {
+        struct Unit* unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+		
+		if (unit->pCharacterData->number == ProtagID_Link)
+			continue; 
+
+        ++result;
+    }
+
+    return result;
+}
+
 
 static inline bool IsPosInvaild(s8 x, s8 y){
 	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );
@@ -757,7 +781,7 @@ void FMU_ClearActionAndSave(struct FMUProc* proc) {
 	PlayerPhase_Suspend(); 
 } 
 
-void SetUnitFacingASMC(void) { 
+void SetUnitFacingASMC(void) { // this uses the generic buffer, so it must be used selectively! 
 	struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
 	int dir = gEventSlot[3]; 
 

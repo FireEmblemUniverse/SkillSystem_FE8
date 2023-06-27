@@ -140,8 +140,11 @@ WORD ACTION_SWAP
 WORD ACTION_PUSH
 WORD ACTION_SWARP
 
+PUSH 
 // at 801D28E it calls CanActiveUnitMove 0x8018BD8 
-// ORG $1D292 as mov r0, #1 will make it always autoselect? 
+ORG $1D28C 
+SHORT $E00C // always autoselect (it wasn't working when walking through water because no acrobat hook here) 
+POP 
 
 PUSH //some changes to vanilla code to make everything work
 ORG $1D24C //check for canto, modified to just check for cantoing bit set
