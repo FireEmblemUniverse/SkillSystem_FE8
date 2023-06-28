@@ -54,6 +54,10 @@ bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y) {
 
 } 
 
+inline s8 FMU_CanUnitCrossTerrain(struct Unit* unit, int terrain) {
+    const s8* lookup = (s8*)GetUnitMovementCost(unit);
+    return (lookup[terrain] > 0) ? TRUE : FALSE;
+}
 
 bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 	if (x < 0 || y < 0)
@@ -64,7 +68,7 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 		return 0; 
 	if (gMapHidden[y][x] & 1)
 		return 0; // a hidden unit is occupying this position	
-	return CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
+	return FMU_CanUnitCrossTerrain(unit, gMapTerrain[y][x]); //CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
 }
 
 
@@ -140,9 +144,10 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
  */
 void pFMU_OnInit(struct FMUProc* proc){
 	//vaild?
+	gActiveUnit = GetUnitStructFromEventParameter(ProtagID_Link); 
 	proc->FMUnit = gActiveUnit; 
 	if( 0 == proc->FMUnit )
-		proc->FMUnit = gUnitArrayBlue; // if no active unit, select the first player in ram 
+		proc->FMUnit = gUnitArrayBlue; // if no protag unit, select the first player in ram 
 	//if( !( 1&(u32)(proc->FMUnit)>>0x11) )
 	//	proc->FMUnit = gUnitArrayBlue;
 	//if( !( 1&(u32)(proc->FMUnit)>>0x19) )

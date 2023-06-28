@@ -13,10 +13,10 @@ int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 	proc->yCur = proc->yTo; 
 	gActiveUnit->xPos = proc->xCur; 
 	gActiveUnit->yPos = proc->yCur; 
-	if( FMU_RunTrapASMC_Auto(proc) )
-	{
-		return yield;
-	}
+	//if( FMU_RunTrapASMC_Auto(proc) )
+	//{
+	//	return yield;
+	//}
 	if( RunMiscBasedEvents(proc->xCur, proc->yCur) )
 	{
 		return yield;
@@ -91,8 +91,15 @@ bool FMU_RunTrapASMC_Auto(FMUProc* proc){
 }
 	
 bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trap){
-	s8 x = gActiveUnit->xPos;
-	s8 y = gActiveUnit->yPos;
+	int x = gActiveUnit->xPos;
+	int y = gActiveUnit->yPos;
+	//int leftx = x-1; 
+	//int rightx = x+1; 
+	//int abovey = y-1; 
+	//int belowy = y+1; 
+	
+	
+	
 	
 	while( 0 < trap->TrapID )
 	{

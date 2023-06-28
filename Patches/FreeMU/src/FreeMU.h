@@ -58,6 +58,7 @@ extern const ProcInstruction gProc_CameraMovement;
 extern const ProcInstruction gProc_Menu; 
 extern const ProcInstruction gProc_Supply; 
 
+extern int ProtagID_Link; 
 extern u8 StraightLineWeaponsList[];
 
 struct FMUTrapDef{

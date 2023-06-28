@@ -111,7 +111,11 @@ u16 FMU_FilterMovementInput(struct FMUProc* proc, u16 iKeyCur) {
 	if (iKeyUse) { // most recently pressed key, even if multiple are held down 
 		iKeyCur = iKeyUse; 
 	} 
+	
+	/*
 	int i; 
+	
+	
 	while (iKeyCur) { 
 		if ((iKeyCur == KEY_DPAD_RIGHT) || (iKeyCur == KEY_DPAD_DOWN) || (iKeyCur == KEY_DPAD_LEFT) || (iKeyCur == KEY_DPAD_UP)) 
 			break; 
@@ -126,7 +130,7 @@ u16 FMU_FilterMovementInput(struct FMUProc* proc, u16 iKeyCur) {
 		if (i == 3)         
 			iKeyCur &= ~KEY_DPAD_DOWN; 
 	} 
-	
+	*/
 
 	return iKeyCur; 
 
@@ -243,20 +247,24 @@ extern u8 MapEventEngineExists(void);
 #define  MU_SUBPIXEL_PRECISION 4
 int FMU_HandleContinuedMovement(void) { 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
-	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+	if (!proc) 
+		return (-1); 
+	
+	struct MUProc* muProc = (struct MUProc*)ProcFind(&gProc_MoveUnit[0]);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 
-	//ProcFind(&gProc_Menu) || 
-	if ((!proc) || (!muProc) || (!ctrProc)) {
-		return (-1); }
-	if (muProc->pMUConfig->currentCommand == 1) {
-		return (-1); } 
-		
 	proc->curInput = gKeyState.heldKeys; 
 	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
 	if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
 		proc->countdown = 3; 
 		proc->yield = true; 
 	}
+	
+	if ((!muProc) || (!ctrProc)) {
+		return (-1); }
+	if (muProc->pMUConfig->currentCommand == 1) {
+		return (-1); } 
+		
+
 	
 	u8 dir = FMU_ChkKeyForMUExtra(proc);
 	

@@ -6,6 +6,7 @@
 .endm
 
 .thumb 
+.equ gActiveUnit, 0x3004E50
 	.equ EventEngine, 0x800D07C
 .global SelectUnitHook
 .type SelectUnitHook, %function 
@@ -36,7 +37,8 @@ beq NotSafeToFlee
 mov r0, r6 
 blh 0x8002E94 @ BreakProcLoop 
 
-mov r0, r4 
+ldr r3, =gActiveUnit 
+str r4, [r3] 
 @blh 0x801865C @ SetupActiveUnit 
 
 ldr r0, [r4, #0x0C] 
