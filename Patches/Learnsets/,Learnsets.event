@@ -7,7 +7,7 @@ BYTE 1 GuardMove
 BYTE 1 Tackle // Goes at the start of each learnset
 BYTE 4 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
 BYTE 5 Leer
-BYTE 7 LeafFlurry
+BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
@@ -27,7 +27,7 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 Growl  
 BYTE 5 Leer
-BYTE 7 LeafFlurry
+BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
@@ -46,7 +46,7 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 Growl  
 BYTE 5 Leer
-BYTE 7 LeafFlurry
+BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
@@ -65,7 +65,7 @@ BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 5 TailWhip 
-BYTE 7 Ember
+BYTE 6 Ember
 BYTE 10 SandAttack
 BYTE 14 DragonRage
 BYTE 18 Scorch 
@@ -84,7 +84,7 @@ BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 5 TailWhip 
-BYTE 7 Ember
+BYTE 6 Ember
 BYTE 10 SandAttack
 BYTE 14 DragonRage
 BYTE 18 Scorch 
@@ -103,7 +103,7 @@ BYTE 1 GuardMove
 BYTE 1 Scratch
 BYTE 4 Growl
 BYTE 5 TailWhip 
-BYTE 7 Ember
+BYTE 6 Ember
 BYTE 10 SandAttack
 BYTE 14 DragonRage
 BYTE 18 Scorch 
@@ -122,7 +122,7 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip
 BYTE 5 Growl  
-BYTE 7 WaterGun
+BYTE 6 WaterGun
 BYTE 10 Bite
 //BYTE 12 RecoverMove //Withdraw
 BYTE 15 WaterPulse
@@ -142,7 +142,7 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip
 BYTE 5 Growl  
-BYTE 7 WaterGun
+BYTE 6 WaterGun
 BYTE 10 Bite
 //BYTE 12 RecoverMove //Withdraw
 BYTE 15 WaterPulse
@@ -162,7 +162,7 @@ BYTE 1 GuardMove
 BYTE 1 Tackle 
 BYTE 4 TailWhip
 BYTE 5 Growl  
-BYTE 7 WaterGun
+BYTE 6 WaterGun
 BYTE 10 Bite
 //BYTE 12 RecoverMove //Withdraw
 BYTE 15 WaterPulse
@@ -180,7 +180,8 @@ ALIGN 4
 CaterpieLearnset:
 BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 4 Harden 
+BYTE 3 Harden 
+BYTE 5 TailWhip 
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -200,9 +201,10 @@ BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
-BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 4 Harden 
+BYTE 1 Tackle
+BYTE 3 Harden 
+BYTE 5 TailWhip 
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -222,9 +224,10 @@ BYTE 0 0
 
 ALIGN 4
 ButterfreeLearnset:
-BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 4 Harden 
+BYTE 1 Tackle
+BYTE 3 Harden 
+BYTE 5 TailWhip
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -248,6 +251,7 @@ BYTE 1 Harden
 BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
+BYTE 5 TailWhip 
 BYTE 8 GuardMove 
 BYTE 10 BugBite
 BYTE 12 Peck
@@ -270,6 +274,7 @@ BYTE 1 Harden
 BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
+BYTE 5 TailWhip 
 BYTE 8 GuardMove 
 BYTE 10 BugBite
 BYTE 12 Peck
@@ -292,6 +297,7 @@ BYTE 1 Harden
 BYTE 1 PoisonSting
 BYTE 3 StringShot
 BYTE 4 Tackle
+BYTE 5 TailWhip 
 BYTE 8 GuardMove 
 BYTE 10 BugBite
 BYTE 12 Peck
@@ -312,6 +318,7 @@ ALIGN 4
 PidgeyLearnset:
 BYTE 1 Tackle
 BYTE 2 Gust
+BYTE 4 Leer 
 BYTE 5 SandAttack
 BYTE 7 Twister
 BYTE 9 MudShot
@@ -333,6 +340,7 @@ ALIGN 4
 PidgeottoLearnset:
 BYTE 1 Tackle
 BYTE 2 Gust
+BYTE 4 Leer 
 BYTE 5 SandAttack
 BYTE 7 Twister
 BYTE 9 MudShot
@@ -354,6 +362,7 @@ ALIGN 4
 PidgeotLearnset:
 BYTE 1 Tackle
 BYTE 2 Gust
+BYTE 4 Leer 
 BYTE 5 SandAttack
 BYTE 7 Twister
 BYTE 9 MudShot
@@ -490,8 +499,8 @@ PikachuLearnset:
 BYTE 1 Thundershock
 BYTE 3 Growl
 BYTE 5 TailWhip
+BYTE 8 QuickAttack
 BYTE 10 ThunderWave
-BYTE 13 QuickAttack
 BYTE 16 ShockWave
 BYTE 21 Slam
 BYTE 23 Swift
@@ -507,6 +516,7 @@ RaichuLearnset:
 BYTE 1 Thundershock
 BYTE 3 Growl
 BYTE 5 TailWhip
+BYTE 8 QuickAttack
 BYTE 10 ThunderWave
 BYTE 13 QuickAttack
 BYTE 16 ShockWave
@@ -567,10 +577,11 @@ ALIGN 4
 NidoranFLearnset:
 BYTE 1 Growl
 BYTE 1 Scratch
+BYTE 3 Peck 
 BYTE 5 Magnitude
 BYTE 7 PoisonSting 
+BYTE 8 Leer 
 BYTE 9 DoubleKick
-BYTE 13 Leer 
 BYTE 16 Dig
 BYTE 19 Bite
 BYTE 21 DoubleHit
@@ -587,10 +598,11 @@ ALIGN 4
 NidorinaLearnset:
 BYTE 1 Growl
 BYTE 1 Scratch
+BYTE 3 Peck 
 BYTE 5 Magnitude
 BYTE 7 PoisonSting 
+BYTE 8 Leer 
 BYTE 9 DoubleKick
-BYTE 13 Leer 
 BYTE 16 Dig
 BYTE 19 Bite
 BYTE 21 DoubleHit
@@ -607,10 +619,11 @@ ALIGN 4
 NidoqueenLearnset:
 BYTE 1 Growl
 BYTE 1 Scratch
+BYTE 3 Peck 
 BYTE 5 Magnitude
 BYTE 7 PoisonSting 
-BYTE 9 DoubleKick
-BYTE 13 Leer 
+BYTE 8 Leer 
+BYTE 9 DoubleKick 
 BYTE 16 Dig
 BYTE 19 Bite
 BYTE 21 DoubleHit
@@ -629,8 +642,8 @@ BYTE 1 Leer
 BYTE 1 Peck
 BYTE 5 Magnitude
 BYTE 7 PoisonSting
+BYTE 8 Growl 
 BYTE 9 DoubleKick 
-BYTE 13 Growl 
 BYTE 16 Dig
 BYTE 19 HornAttack
 BYTE 21 PinMissile
@@ -649,6 +662,7 @@ BYTE 1 Leer
 BYTE 1 Peck
 BYTE 5 Magnitude
 BYTE 7 PoisonSting
+BYTE 8 Growl 
 BYTE 9 DoubleKick 
 BYTE 13 Growl 
 BYTE 16 Dig
@@ -669,6 +683,7 @@ BYTE 1 Leer
 BYTE 1 Peck
 BYTE 5 Magnitude
 BYTE 7 PoisonSting
+BYTE 8 Growl 
 BYTE 9 DoubleKick 
 BYTE 13 Growl 
 BYTE 16 Dig
@@ -1085,9 +1100,9 @@ PsyduckLearnset:
 BYTE 1 Scratch 
 BYTE 3 Bubble 
 BYTE 5 TailWhip 
-BYTE 8 Confusion 
-BYTE 10 ConfuseRay
-BYTE 12 WaterGun 
+BYTE 6 Confusion 
+BYTE 8 WaterGun 
+BYTE 11 ConfuseRay
 BYTE 16 SandAttack
 BYTE 19 WaterPulse
 BYTE 23 Screech
@@ -1105,9 +1120,9 @@ GolduckLearnset:
 BYTE 1 Scratch 
 BYTE 3 Bubble 
 BYTE 5 TailWhip 
-BYTE 8 Confusion 
-BYTE 10 ConfuseRay
-BYTE 12 WaterGun 
+BYTE 6 Confusion 
+BYTE 8 WaterGun 
+BYTE 11 ConfuseRay
 BYTE 16 SandAttack
 BYTE 19 WaterPulse
 BYTE 23 Screech
@@ -1123,12 +1138,12 @@ BYTE 0 0
 ALIGN 4
 MankeyLearnset:
 BYTE 1 Scratch 
-BYTE 3 LowKick 
-BYTE 6 Leer 
-BYTE 9 Doubleslap
-BYTE 13 RollingKick
-BYTE 17 ThiefAtt
-BYTE 19 UTurn
+BYTE 2 LowKick 
+BYTE 4 Leer 
+BYTE 7 Doubleslap
+BYTE 11 RollingKick
+BYTE 14 ThiefAtt
+BYTE 18 UTurn
 BYTE 21 SeismicToss
 BYTE 23 MegaPunch
 BYTE 25 Screech
@@ -1143,12 +1158,12 @@ BYTE 0 0
 ALIGN 4
 PrimeapeLearnset:
 BYTE 1 Scratch 
-BYTE 3 LowKick 
-BYTE 6 Leer 
-BYTE 9 Doubleslap
-BYTE 13 RollingKick
-BYTE 17 ThiefAtt
-BYTE 19 UTurn
+BYTE 2 LowKick 
+BYTE 4 Leer 
+BYTE 7 Doubleslap
+BYTE 11 RollingKick
+BYTE 14 ThiefAtt
+BYTE 18 UTurn
 BYTE 21 SeismicToss
 BYTE 23 MegaPunch
 BYTE 25 Screech

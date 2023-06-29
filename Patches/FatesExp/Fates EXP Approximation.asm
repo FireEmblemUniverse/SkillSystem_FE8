@@ -63,6 +63,10 @@ unpromotedAttacker:
 
 @Now the defender
 ldrb r7, [r5, #0x8]     @Level
+cmp r7, #5 
+bge NoFloorEnemyLevel
+mov r7, #5 @ gain exp as if enemies are at least level 5+ 
+NoFloorEnemyLevel: 
 ldr r0, [r5]
 ldr r0, [r0, #0x28]
 ldr r3, [r5, #0x4]      @Class
@@ -281,7 +285,7 @@ ldrb r1, [r1, #4] @ unit ID
 mov r2, #0xA0
 cmp r1, r2 
 blt NoTrainerBonus
-lsl r0, #1 @ 2x exp against trainers 
+lsl r0, #1 @ 2x exp against trainers and route 1 wilds 
 NoTrainerBonus:
 
 cmp r0, #0x64

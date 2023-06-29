@@ -307,7 +307,7 @@ BYTE SkillScroll FocusID
 
 
 BYTE SpellScroll Tackle SpellScroll Scratch SpellScroll Leer SpellScroll Bite 
-BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
+BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry SpellScroll Confusion 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
