@@ -1,4 +1,7 @@
 
+
+#define CheckIfCaught(classID) "SVAL s1 classID; ASMC CheckIfCaughtASMC" 
+
 #include "RegisterPokemon.lyn.event"
 
 ALIGN 4

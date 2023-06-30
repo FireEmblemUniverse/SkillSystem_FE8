@@ -168,6 +168,19 @@ bx r1
 .ltorg 
 
 
+.global CheckIfCaughtASMC
+.type CheckIfCaughtASMC, %function 
+CheckIfCaughtASMC: 
+push {r4, lr} 
+ldr r4, =MemorySlot 
+ldr r0, [r4, #4] @ slot 1 as class ID 
+bl CheckIfCaught 
+str r0, [r4, #4*0x0C] 
+pop {r4} 
+pop {r1} 
+bx r1 
+.ltorg 
+
 
 .global CheckIfCaught
 .type CheckIfCaught, %function 

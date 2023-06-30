@@ -33,10 +33,68 @@ END_MAIN
 
 
 
-CharacterBasedEvents: 
+
+CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, 0xE1] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(0xE1) // NPC talk again 
 END_MAIN
+
+PurchasePsyduckevent:
+CheckIfCaught(CaterpieID) 
+BEQ 30 sC s0 
+CheckIfCaught(WeedleID)
+BEQ 30 sC s0 
+CheckIfCaught(PikachuID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseOddishText)
+LOAD1 1 OddishUnitGroup  
+ENUN 
+AutoLevelUnits(6, True,  TempAlly<<8|TempAlly) // Psyduck 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedOddishText)
+ENUF PurchasedOddishFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedOddishText)
+SADD sB sA s0  
+
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Oddish
+GOTO 22 
+LABEL 21 
+
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Oddish's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+WallText(CatchBeforePurchaseOddishText)
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -306,35 +364,13 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-EnemyUnitsA:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsB:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT
-
-EnemyUnitsC:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsD:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT
-
-EnemyUnitsE:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+PsyduckUnitGroup:
+UNIT TempAlly OddishID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 EnemyTrainersA:
 UNIT 0xE0 super_nerdID 0x0 Level(5, Enemy, 1) [38,19]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] DoNothingAI
+UNIT 0xE1 lassID 0x0 Level(5, Enemy, 1) [27,29]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT
 
 
@@ -349,6 +385,9 @@ TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 SHORT PewterCheckGymText // 0xE0 
+SHORT 600 
+SHORT P_lass_BD // captain after HM obtained 
+SHORT 600 // Gold 
 TDQ_TableTerminator ; } 
 
 

@@ -356,9 +356,17 @@ You find a world map![NL]
 You decide to leave it.[A][X]
 
 ## PurchasePsyduckText
+Ah, I see you've caught[N]
+the local species.[A][N]
 I'll let you have this 'ere[N]
 Psyduck for only 1000[Gold].[A][N]
 How's that sound?[A][X]
+
+## CatchBeforePurchasePsyduckText
+I'm one of Prof Oak's Aides.[A][N]
+I'll sell you a Psyduck if you've[N]
+caught a Mankey, Pidgey, and Rattata.[A][X]
+
 
 ## Yes_PurchasedPsyduckText
 Enjoy![A][X]
@@ -367,7 +375,31 @@ Enjoy![A][X]
 That's a shame.[A][X]
 
 ## V_Fisherman_BD
-No refunds, sorry![A][X]
+Take good care of Psyduck![A][X]
+
+
+## PurchaseOddishText
+Ah, you've caught them![N]
+Great work.[A][N]
+Would you like to add Oddish[N]
+to your team?[A][X]
+
+## CatchBeforePurchaseOddishText
+I support Prof Oak as an Aide.[A][N]
+I'm here to sell you an Oddish if you've[N]
+caught a Caterpie, Weedle, and Pikachu.[A][X]
+
+
+## Yes_PurchasedOddishText
+I know you'll show Oddish[N]
+love and support.[A][X]
+
+## No_PurchasedOddishText
+Come back if you change your mind.[A][X]
+
+## P_lass_BD
+I know you'll show Oddish[N]
+love and support.[A][X]
 
 ## GiveUpLearnMoveText
 Give up on new move?[NL]

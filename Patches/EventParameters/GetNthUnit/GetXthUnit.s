@@ -24,8 +24,10 @@
 	.type   Get5thUnit, function
 	.global Get6thUnit
 	.type   Get6thUnit, function
-
-	
+	.global Get7thUnit
+	.type   Get7thUnit, function
+	.global Get7thUnitASMC
+	.type   Get7thUnitASMC, function
 
 Get1stUnit:
 	push {r4-r7, lr}	
@@ -55,6 +57,21 @@ Get5thUnit:
 Get6thUnit:
 	push {r4-r7, lr}	
 	mov r6, #6
+	b Start
+.align 
+Get7thUnitASMC:
+push {lr} 
+bl Get7thUnit 
+ldr r3, =MemorySlot 
+str r0, [r3, #4*0x0C] 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+Get7thUnit:
+	push {r4-r7, lr}	
+	mov r6, #7
 	b Start
 .align 
 Start: 
@@ -94,5 +111,5 @@ bx r1
 
 .ltorg
 .align 
-	
+
 
