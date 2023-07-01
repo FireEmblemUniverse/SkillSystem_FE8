@@ -31,12 +31,13 @@ ENDA
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, 0xE1] 0 // NPC
-TrainerPostBattleTalk(0xE1) // NPC talk again 
+CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
 
 PurchasePsyduckevent:
 
+WallText(CatchBeforePurchasePsyduckText)
 CheckIfCaught(MankeyID) 
 BEQ 30 sC s0 
 CheckIfCaught(PidgeyID)
@@ -75,7 +76,7 @@ STAL 30
 UNCM(TempAlly, 0x10009) // Undeploy + escape the psyduck 
 GOTO 22 
 LABEL 21 
-
+DISA OaksAidePkmn
 MOVENEXTTO (-1) TempAlly 0x7FFe 
 ENUN 
 LABEL 22 
@@ -85,7 +86,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
-WallText(CatchBeforePurchasePsyduckText)
+
 
 LABEL 63 
 NoFade
@@ -297,9 +298,15 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
-LOAD1 1 FisherUnitGroup
+
+LOAD1 1 OaksAideUnitGroup
 ENUN 
-MarkTrainerAsDefeated(0xE1) 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedPsyduckFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
 
 CHECK_EVENTID VolcanobadgeObtained // trap exists after you have marshbadge until you get volcanobadge 
 BNE 0 sC s0  // old man is visiting Cinnabar 
@@ -359,9 +366,9 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
-FisherUnitGroup:
-UNIT 0xE1 fisherID 0x0 Level(LVFACERIGHT, Enemy, 1) [13,24]  0b 0x0	0x1 REDA13R24 [ThreeRangeWep,0x0,0x0,0x0] DoNothing
-UNIT 0x60 KrabbyID 0x0 Level(0, Enemy, 1) [14,24]  0b 0x0	0x1 REDA14R24 [Tackle,0x0,0x0,0x0] DoNothing
+OaksAideUnitGroup:
+UNIT OaksAide fisherID 0x0 Level(LVFACERIGHT, Enemy, 1) [13,24]  0b 0x0	0x1 REDA13R24 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn PsyduckID 0x0 Level(0, Enemy, 1) [14,24]  0b 0x0	0x1 REDA14R24 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 PsyduckUnitGroup:
@@ -372,15 +379,11 @@ UNIT
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 BQ(0xF, SSA_0xE0_BQ) // Gary 
 SHORT SSA_0xE0_BQ // gary
-SHORT SSA_0xE2_BQ // n/a
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xF, SSA_0xE0_BD, 1800) // Gary
-SHORT SSA_0xE0_BD // gary
-SHORT 1800 // Gold 
-SHORT V_Fisherman_BD // captain after HM obtained 
-SHORT 600 // Gold 
+BD((OaksAide-0xE0), ViridianOaksAideBD, 1) 
 }
 
 	

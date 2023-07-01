@@ -37,8 +37,64 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR PurchasedMagmarFlag PurchaseMagmarevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
+
+PurchaseMagmarevent:
+WallText(CatchBeforePurchaseMagmarText)
+CheckIfCaught(VenonatID) 
+BEQ 30 sC s0 
+CheckIfCaught(ExeggcuteID)
+BEQ 30 sC s0 
+CheckIfCaught(KrabbyID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseMagmarText)
+LOAD1 1 MagmarUnitGroup  
+ENUN 
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Magmar 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedMagmarText)
+ENUF PurchasedMagmarFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedMagmarText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Magmar
+GOTO 22 
+
+LABEL 21 
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Magmar's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -170,6 +226,15 @@ LOAD1 1 FencedPokemon
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 //AutoLevelUnits(TrainerL, False, 0xE0EF) // Trainers given visible levels 
+ 
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedMagmarFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
 LABEL 0x63
 NoFade
 ENDA
@@ -235,9 +300,22 @@ UNIT
 
 
 
+MagmarUnitGroup:
+UNIT TempAlly MagmarID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACEDOWN, Enemy, 1) [30,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn MagmarID 0x0 Level(0, Enemy, 1) [29,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT DebugText // 0xE0 
+TDQ_TableTerminator
 
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), FuschiaOaksAideBD, 1) 
+TDQ_TableTerminator ; } 
 	
 #undef GenericB 
 #undef WildLvl

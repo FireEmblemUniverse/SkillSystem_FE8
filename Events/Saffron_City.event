@@ -1,7 +1,7 @@
 #define ChapterID SaffronCh
 #define GenericB UnitCeruleanTrainer
 #define WildLvl 10 
-#define TrainerL 26 
+#define TrainerL 32
 
 
 
@@ -33,13 +33,126 @@ END_MAIN
 //}
 
 
+
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-//TrainerPostBattleTalk(0xE0) // NPC talk again 
-//TrainerPostBattleTalk(0xE1) // NPC talk again 
-//TrainerPostBattleTalk(0xE2) // NPC talk again 
-AllTrainersPostBattleTalk
+CHAR PurchasedHitmonchanFlag PurchaseHitmonchanevent [0x0, OaksAide] 0 // NPC
+CHAR PurchasedHitmonleeFlag PurchaseHitmonleeevent [0x0, OaksAide2] 0 // NPC
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
+TrainerPostBattleTalk(OaksAide2) // NPC talk again 
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(0xE1) // NPC talk again 
+TrainerPostBattleTalk(0xE2) // NPC talk again 
 END_MAIN
+
+PurchaseHitmonchanevent:
+WallText(CatchBeforePurchaseHitmonchanText)
+CheckIfCaught(ScytherID) 
+BEQ 30 sC s0 
+CheckIfCaught(PinsirID)
+BEQ 30 sC s0 
+CheckIfCaught(ChanseyID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseHitmonchanText)
+LOAD1 1 HitmonchanUnitGroup  
+ENUN 
+AutoLevelUnits(30, True,  TempAlly<<8|TempAlly) // Hitmonchan 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedHitmonchanText)
+ENUF PurchasedHitmonchanFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedHitmonchanText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Hitmonchan
+GOTO 22 
+
+LABEL 21 
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Hitmonchan's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+
+LABEL 63 
+NoFade
+ENDA 
+
+PurchaseHitmonleeevent:
+WallText(CatchBeforePurchaseHitmonleeText)
+CheckIfCaught(KangaskhanID) 
+BEQ 30 sC s0 
+CheckIfCaught(TaurosID)
+BEQ 30 sC s0 
+CheckIfCaught(DratiniID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseHitmonleeText)
+LOAD1 1 HitmonleeUnitGroup  
+ENUN 
+AutoLevelUnits(30, True,  TempAlly<<8|TempAlly) // Hitmonlee 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedHitmonleeText)
+ENUF PurchasedHitmonleeFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedHitmonleeText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Hitmonlee
+GOTO 22 
+
+LABEL 21 
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Hitmonlee's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+
+LABEL 63 
+NoFade
+ENDA 
+
 
 
 
@@ -197,6 +310,21 @@ LOAD1 1 RocketBlockingSilphCo
 ENUN
 LABEL 1 
 
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAide2) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+MarkTrainerAsDefeated(OaksAidePkmn2) 
+CHECK_EVENTID PurchasedHitmonchanFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
+CHECK_EVENTID PurchasedHitmonleeFlag 
+BEQ 35 sC s0 
+DISA OaksAidePkmn2 
+LABEL 35 
+
 LABEL 0x63
 MarkTrainerAsDefeated(0xE0)
 MarkTrainerAsDefeated(0xE1)
@@ -226,9 +354,11 @@ TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated
 BD(0, SaffronRocket_0, 1) 
 BD(1, SaffronRocket_1, 1) 
 BD(2, SaffronRocket_2, 1) 
+BD(2, SaffronRocket_2, 1) 
+BD((OaksAide-0xE0), SaffronOaksAide1BD, 1) 
+BD((OaksAide2-0xE0), SaffronOaksAide2BD, 1) 
 TDQ_TableTerminator
 }
-
 
 ALIGN 4
 ShopItems:
@@ -275,9 +405,19 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
+HitmonchanUnitGroup:
+UNIT TempAlly HitmonchanID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+HitmonleeUnitGroup:
+UNIT TempAlly HitmonleeID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
-
-
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACELEFT, Enemy, 1) [7,21]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAide2 OaksAideClass 0x0 Level(LVFACERIGHT, Enemy, 1) [31,21]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn HitmonchanID 0x0 Level(0, Enemy, 1) [7,22]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn2 HitmonleeID 0x0 Level(0, Enemy, 1) [31,22]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 	
 #undef GenericB 

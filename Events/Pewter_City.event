@@ -36,12 +36,13 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, 0xE1] 0 // NPC
+CHAR PurchasedOddishFlag PurchaseOddishevent [0x0, OaksAide] 0 // NPC
 TrainerPostBattleTalk(0xE0) // NPC talk again 
-TrainerPostBattleTalk(0xE1) // NPC talk again 
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
 
-PurchasePsyduckevent:
+PurchaseOddishevent:
+WallText(CatchBeforePurchaseOddishText)
 CheckIfCaught(CaterpieID) 
 BEQ 30 sC s0 
 CheckIfCaught(WeedleID)
@@ -53,7 +54,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseOddishText)
 LOAD1 1 OddishUnitGroup  
 ENUN 
-AutoLevelUnits(6, True,  TempAlly<<8|TempAlly) // Psyduck 
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Oddish 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
 SVAL sB 0x100 
 BEQ 10 sC sB 
@@ -72,15 +73,14 @@ SADD sA sC s0
 SET_ACTIVE 0
 WallText(Yes_PurchasedOddishText)
 SADD sB sA s0  
-
 ASMC Get7thUnitASMC
 BEQ 21 sC s0 
 WARP_OUT
 STAL 30
 UNCM(TempAlly, 0x10009) // Undeploy + escape the Oddish
 GOTO 22 
-LABEL 21 
 
+LABEL 21 
 MOVENEXTTO (-1) TempAlly 0x7FFe 
 ENUN 
 LABEL 22 
@@ -90,7 +90,6 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
-WallText(CatchBeforePurchaseOddishText)
 
 LABEL 63 
 NoFade
@@ -320,6 +319,15 @@ LOAD1 1 EnemyTrainersA
 ENUN 
 MarkTrainerAsDefeated(0xE0) 
 LABEL 0 
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedOddishFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
+
 LABEL 0x63
 NoFade
 ENDA
@@ -364,16 +372,18 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-PsyduckUnitGroup:
+OddishUnitGroup:
 UNIT TempAlly OddishID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 EnemyTrainersA:
 UNIT 0xE0 super_nerdID 0x0 Level(5, Enemy, 1) [38,19]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] DoNothingAI
-UNIT 0xE1 lassID 0x0 Level(5, Enemy, 1) [27,29]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT
 
-
+OaksAideUnitGroup:
+UNIT OaksAide lassID 0x0 Level(LVFACEDOWN, Enemy, 1) [27,29]  0b 0x0	0x1 REDA27R29 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn OddishID 0x0 Level(0, Enemy, 1) [28,29]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
@@ -384,10 +394,9 @@ SHORT R9W_0xE0_BQ // 0xE0
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), PewterOaksAideBD, 1) 
 SHORT PewterCheckGymText // 0xE0 
 SHORT 600 
-SHORT P_lass_BD // captain after HM obtained 
-SHORT 600 // Gold 
 TDQ_TableTerminator ; } 
 
 

@@ -1,9 +1,20 @@
 @Hook 1C92C
 
 .thumb
+.equ Table2, Table+4 
 
+ldr r1, [r0] 
+ldrb r1, [r1] 
+ldr r3, Table2 
+Loop2: 
+ldrb r2, [r3] 
+cmp r2, #0 
+beq Display_Exit 
+
+
+
+ldr r0, [r0, #4] 
 @r0 class id
-
 ldrb r0, [r0, #0x4]
 ldr r3, Table
 

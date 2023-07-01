@@ -355,28 +355,34 @@ You find a world map![NL]
 ...but it is all scribbled over.[A][NL]
 You decide to leave it.[A][X]
 
-## PurchasePsyduckText
-Ah, I see you've caught[N]
-the local species.[A][N]
-I'll let you have this 'ere[N]
-Psyduck for only 1000[Gold].[A][N]
-How's that sound?[A][X]
 
 ## CatchBeforePurchasePsyduckText
 I'm one of Prof Oak's Aides.[A][N]
 I'll sell you a Psyduck if you've[N]
 caught a Mankey, Pidgey, and Rattata.[A][X]
 
-
-## Yes_PurchasedPsyduckText
-Enjoy![A][X]
+## PurchasePsyduckText
+Ah, I see you've caught[N]
+them.[A][N]
+I'll let you have this 'ere[N]
+Psyduck for only 1000[Gold].[A][N]
+How's that sound?[A][X]
 
 ## No_PurchasedPsyduckText
 That's a shame.[A][X]
 
-## V_Fisherman_BD
+## Yes_PurchasedPsyduckText
+Enjoy![A][X]
+
+## ViridianOaksAideBD
 Take good care of Psyduck![A][X]
 
+
+
+## CatchBeforePurchaseOddishText
+I support Prof Oak as an Aide.[A][N]
+I'm here to sell you an Oddish if you've[N]
+caught a Caterpie, Weedle, and Pikachu.[A][X]
 
 ## PurchaseOddishText
 Ah, you've caught them![N]
@@ -384,22 +390,181 @@ Great work.[A][N]
 Would you like to add Oddish[N]
 to your team?[A][X]
 
-## CatchBeforePurchaseOddishText
-I support Prof Oak as an Aide.[A][N]
-I'm here to sell you an Oddish if you've[N]
-caught a Caterpie, Weedle, and Pikachu.[A][X]
-
+## No_PurchasedOddishText
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedOddishText
 I know you'll show Oddish[N]
 love and support.[A][X]
 
-## No_PurchasedOddishText
-Come back if you change your mind.[A][X]
-
-## P_lass_BD
+## PewterOaksAideBD
 I know you'll show Oddish[N]
 love and support.[A][X]
+
+
+
+
+## CatchBeforePurchaseGrowlitheText
+I'm an intern for the great[N]
+Prof Oak of Pallet Town.[A][N]
+If only I were paid...[A][N]
+Come see me when you have Bellsprout,[N]
+Ekans, and Sandshrew.[A][X]
+
+## PurchaseGrowlitheText
+Ah, you've been working hard[N]
+I see.[A][N]
+Will you adopt Growlithe[N]
+into your team?[A][X]
+
+## No_PurchasedGrowlitheText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedGrowlitheText
+I know you'll raise Growlithe well.[A][X]
+
+## CeruleanOaksAideBD
+I know you'll raise Growlithe well.[A][X]
+
+
+## CatchBeforePurchaseFarfetchdText
+I took this summer job for Oak,[N]
+but it doesn't pay much.[A][N]
+I wish I had a chair...[A][N]
+Come see me when you have Vulpix,[N]
+Meowth, and Drowzee.[A][X]
+
+## PurchaseFarfetchdText
+Ah, you've been collecting[N]
+a number of Pok[Eaccent]mon.[A][N]
+Are you interested in adding[N]
+Farfetch'd to your roster?[A][X]
+
+## No_PurchasedFarfetchdText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedFarfetchdText
+I know you'll take care[N]
+of Farfetch'd.[A][X]
+
+## VermilionOaksAideBD
+I know you'll take care[N]
+of Farfetch'd.[A][X]
+
+
+## CatchBeforePurchaseElectabuzzText
+Prof Oak has connections all[N]
+around Kanto.[A] He's entrusting[N]
+me with this special task.[A][N]
+I reward trainers who've caught[N]
+Geodude, Zubat, and Onix.[A][X]
+
+## PurchaseElectabuzzText
+Ah, you've been through[N]
+Rock Tunnel, I can tell.[A][N]
+Do you want Electabuzz[N]
+on your team?[A][X]
+
+## No_PurchasedElectabuzzText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedElectabuzzText
+I know you'll raise Electabuzz well.[A][X]
+
+## LavenderOaksAideBD
+I know you'll raise Electabuzz well.[A][X]
+
+
+
+## CatchBeforePurchaseMagmarText
+Prof Oak has connections all[N]
+around Kanto.[A] He's entrusting[N]
+me with this special task.[A][N]
+I reward trainers who've caught[N]
+Venonat, Exeggcute, and Krabby.[A][X]
+
+## PurchaseMagmarText
+Ah, you've been through[N]
+Rock Tunnel, I can tell.[A][N]
+Do you want Magmar[N]
+on your team?[A][X]
+
+## No_PurchasedMagmarText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedMagmarText
+I know Magmar's in good hands.[A][X]
+
+## FuschiaOaksAideBD
+I know Magmar's in good hands.[A][X]
+
+
+
+## CatchBeforePurchaseJynxText
+Prof Oak's my mentor. He asked me[N]
+to wait around here.[A]
+This way I can help trainers who have[N]
+Doduo, Ponyta, and Pidgeotto.[A][X]
+
+## PurchaseJynxText
+You must've been on cycling road[N]
+if you've caught them.[A][N]
+Do you want Jynx[N]
+on your team?[A][X]
+
+## No_PurchasedJynxText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedJynxText
+I know you'll raise Jynx well.[A][X]
+
+## CeladonOaksAideBD
+I know you'll raise Jynx well.[A][X]
+
+
+
+## CatchBeforePurchaseHitmonchanText
+I spar in my free time, and assist[N]
+Prof Oak when I'm not busy.[A][N]
+I'm here for trainers who've caught[N]
+Scyther, Pinsir, and Chansey.[A][X]
+
+## PurchaseHitmonchanText
+Wow, you must've spent a[N]
+while in the Safari Zone.[A][N]
+Do you want Hitmonchan[N]
+on your team?[A][X]
+
+## No_PurchasedHitmonchanText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedHitmonchanText
+I know you'll raise Hitmonchan well.[A][X]
+
+## SaffronOaksAide1BD
+I know you'll raise Hitmonchan well.[A][X]
+
+
+
+## CatchBeforePurchaseHitmonleeText
+The Safari Zone's a big place.[A][N]
+It can be tough to find[N]
+Kangaskhan, Tauros, and Dratini.[A][X]
+
+## PurchaseHitmonleeText
+...but you did it![A][N]
+Do you want Hitmonlee[N]
+on your team?[A][X]
+
+## No_PurchasedHitmonleeText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedHitmonleeText
+I know you'll raise Hitmonlee well.[A][X]
+
+## SaffronOaksAide2BD
+I know you'll raise Hitmonlee well.[A][X]
+
 
 ## GiveUpLearnMoveText
 Give up on new move?[NL]

@@ -12,7 +12,8 @@ ORG 0x879C4
 jumpToHack_r1(DisabledStatusScreen2)
 PROTECT $879c4 $879c4+7
 
-ORG 0x1C92C
+ORG 0x1C92A
+SHORT $46C0 
 jumpToHack(DisabledStatusScreen)
 PROTECT $1c92c $1c92c+7
 
@@ -21,14 +22,17 @@ POP
 DrawUnitItemScreen:
 #incbin "DrawUnitItemScreen.dmp"
 POIN DisabledStatusScreen_Table
+POIN DisabledStatusScreen_UnitTable
 
 DisabledStatusScreen:
 #incbin "DisabledStatusScreen.dmp"
 POIN DisabledStatusScreen_Table
+POIN DisabledStatusScreen_UnitTable
 
 DisabledStatusScreen2:
 #incbin "DisabledStatusScreen2.dmp"
 POIN DisabledStatusScreen_Table
+POIN DisabledStatusScreen_UnitTable
 
 #include "DisabledStatusScreen_Table.event"
 

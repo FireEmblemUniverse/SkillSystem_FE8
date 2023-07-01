@@ -36,10 +36,67 @@ END_MAIN
 
 
 
+
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR PurchasedGrowlitheFlag PurchaseGrowlitheevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
+
+PurchaseGrowlitheevent:
+WallText(CatchBeforePurchaseGrowlitheText)
+CheckIfCaught(BellsproutID) 
+BEQ 30 sC s0 
+CheckIfCaught(EkansID)
+BEQ 30 sC s0 
+CheckIfCaught(SandshrewID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseGrowlitheText)
+LOAD1 1 GrowlitheUnitGroup  
+ENUN 
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Growlithe 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedGrowlitheText)
+ENUF PurchasedGrowlitheFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedGrowlitheText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Growlithe
+GOTO 22 
+
+LABEL 21 
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Growlithe's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -233,7 +290,6 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
 CHECK_EVENTID CascadebadgeObtained
 BEQ 0 rC r0 
 CHECK_EVENTID SSAnneTicketFlag
@@ -254,11 +310,17 @@ ENUN
 GOTO 0x63 
 LABEL 10 
 CALL CityBeginningScene // Move bonus only when Gary is defeated 
-
 LABEL 0x63
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
 
-//SetUnitStatus(1, CurrentHP, 5)
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedGrowlitheFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
 
 NoFade
 ENDA
@@ -304,11 +366,21 @@ TDQ_TableTerminator;
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xF, GaryCeruleanDefeatText, 2000) 
+BD((OaksAide-0xE0), CeruleanOaksAideBD, 1) 
 SHORT GaryCeruleanDefeatText // 0xE0 
 SHORT 2000 // Gold 
 SHORT NoCascadeBadgeText // 0xE0 
 SHORT 2000 // Gold 
 TDQ_TableTerminator ; }
+
+GrowlitheUnitGroup:
+UNIT TempAlly GrowlitheID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACEDOWN, Enemy, 1) [12,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn GrowlitheID 0x0 Level(0, Enemy, 1) [11,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 GaryBattleUnitGroup:
 UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  

@@ -1,7 +1,7 @@
 #define ChapterID CeladonCh
 #define GenericB UnitCeruleanTrainer
 #define WildLvl 10 
-#define TrainerL 16 
+#define TrainerL 30 
 
 
 
@@ -37,8 +37,64 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR PurchasedJynxFlag PurchaseJynxevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
+
+PurchaseJynxevent:
+WallText(CatchBeforePurchaseJynxText)
+CheckIfCaught(DoduoID) 
+BEQ 30 sC s0 
+CheckIfCaught(PonytaID)
+BEQ 30 sC s0 
+CheckIfCaught(PidgeottoID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseJynxText)
+LOAD1 1 JynxUnitGroup  
+ENUN 
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Jynx 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedJynxText)
+ENUF PurchasedJynxFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedJynxText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Jynx
+GOTO 22 
+
+LABEL 21 
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Jynx's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -277,8 +333,14 @@ CALL LoadAndPlacePlayers
 
 CALL CityBeginningScene 
 
-
-//MOVE (-1) 2 [6,1]
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedJynxFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
 
 LABEL 0x63
 NoFade
@@ -383,6 +445,14 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
+JynxUnitGroup:
+UNIT TempAlly JynxID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACEDOWN, Enemy, 1) [10,16]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn JynxID 0x0 Level(0, Enemy, 1) [9,16]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 EeveeUnitGroup:
 UNIT TempAlly EeveeID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
@@ -398,6 +468,13 @@ UNIT
 
 // Abra, Clefairy, Eevee, Dratini, Porygon
 
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT DebugText // 0xE0 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), CeladonOaksAideBD, 1) 
+TDQ_TableTerminator ; } 
 	
 #undef GenericB 
 #undef WildLvl

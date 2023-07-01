@@ -334,12 +334,26 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #define ChampionDefeatedTemp 0xDB
 #define CompletedPokemonLeague 0xDC
 
+//#define PurchasedPsyduckFlag 0x98
+//#define ObtainedEeveeFlag 0xA1 
+#define PurchasedOddishFlag 0xDD 
+#define PurchasedGrowlitheFlag 0xDE
+#define PurchasedFarfetchdFlag 0xDF
+#define PurchasedElectabuzzFlag 0xE0
+#define PurchasedMagmarFlag 0xE1
+#define PurchasedJynxFlag 0xE2
+#define PurchasedHitmonchanFlag 0xE3
+#define PurchasedHitmonleeFlag 0xE4
 
 
+// Unit IDs 
+#define OaksAide 0xEA 
+#define OaksAide2 0xEC // used in Saffron for Hitmons 
+#define OaksAidePkmn 0xEB
+#define OaksAidePkmn2 0xED
+#define OaksAideClass gentlemanID 
 
-//#define RockSmashFlag 0x20
-//#define StrengthBoulderFlag 0x21
-
+// Flags 
 #define DebugPlaceUnitsFlag 0xAA 
 #define DebugPlaceUnitsFlagMenu 0xAB 
 
