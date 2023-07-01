@@ -344,6 +344,7 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #define PurchasedJynxFlag 0xE2
 #define PurchasedHitmonchanFlag 0xE3
 #define PurchasedHitmonleeFlag 0xE4
+#define PurchasedLaprasFlag 0xE5
 
 
 // Unit IDs 

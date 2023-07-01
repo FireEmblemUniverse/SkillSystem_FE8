@@ -49,7 +49,7 @@ ClassRoute9EWildA 0x2E,SpearowID,FarfetchdID,PidgeottoID,0x00,0x00,35,35,30,0,0,
 ClassRoute9EWildB 0x2F,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route9ECh,0
 ClassRoute10WildA 0x30,VoltorbID,MagnemiteID,PikachuID,0x00,0x00,65,20,15,0,0,Route10Ch,0
 ClassRoute10WildB 0x31,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route10Ch,0
-ClassRockTunnelWildA 0x32,ZubatID,MachopID,GeodudeID,OnixID,0x00,40,30,20,10,0,RockTunnelB1Ch,0
+ClassRockTunnelWildA 0x32,ZubatID,MachopID,GeodudeID,OnixID,KoffingID,50,10,20,10,10,RockTunnelB1Ch,0
 ClassRockTunnelWildB 0x33,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,RockTunnelB1Ch,0
 ClassPokeTowerWildA 0x34,GastlyID,CuboneID,0x00,0x00,0x00,90,10,0,0,0,PokemonTowerF2Ch,0
 ClassPokeTowerWildB 0x35,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,PokemonTowerF2Ch,0
@@ -68,7 +68,7 @@ ClassSafariWildD 0x41,KangaskhanID,ParasectID,VenonatID,0x00,0x00,30,30,40,0,0,S
 ClassSafariWildE 0x42,GoldeenID,PoliwagID,0x00,0x00,0x00,50,50,0,0,0,SafariSCh,0
 ClassRoute18WildA 0x43,FearowID,DoduoID,RaticateID,0x00,0x00,40,25,35,0,0,Route18Ch,0
 ClassRoute18WildB 0x44,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route18Ch,0
-ClassRoute17WildA 0x45,DoduoID,DodrioID,PonytaID,0x00,0x00,40,20,40,0,0,Route17SCh,0
+ClassRoute17WildA 0x45,DoduoID,GrimerID,PonytaID,0x00,0x00,40,30,30,0,0,Route17SCh,0
 ClassRoute17WildB 0x46,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route17SCh,0
 ClassRoute16WildA 0x47,SpearowID,DoduoID,RaticateID,0x00,0x00,20,30,50,0,0,Route16Ch,0
 ClassRoute16WildB 0x48,0x00,0x00,0x00,0x00,0x00,0,0,0,0,0,Route16Ch,0

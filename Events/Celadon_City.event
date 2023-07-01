@@ -56,7 +56,7 @@ WallText(PurchaseJynxText)
 LOAD1 1 JynxUnitGroup  
 ENUN 
 AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Jynx 
-SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 7000, 0, 0, 0, 0) 
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20

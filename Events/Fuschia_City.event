@@ -56,7 +56,7 @@ WallText(PurchaseMagmarText)
 LOAD1 1 MagmarUnitGroup  
 ENUN 
 AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Magmar 
-SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 6000, 0, 0, 0, 0) 
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20

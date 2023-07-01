@@ -566,6 +566,27 @@ I know you'll raise Hitmonlee well.[A][X]
 I know you'll raise Hitmonlee well.[A][X]
 
 
+## CatchBeforePurchaseLaprasText
+I work as Prof Oak's Aide.[A][N]
+I let trainers buy a Lapras once[N]
+they've fully-evolved their starter.[A][X]
+
+## PurchaseLaprasText
+Oh, you've done it![A][N]
+Do you want Lapras[N]
+on your team?[A][X]
+
+## No_PurchasedLaprasText
+Come back if you change your mind.[A][X]
+
+## Yes_PurchasedLaprasText
+I know Lapras will serve you well.[A][X]
+
+## PalletOaksAideBD
+I know Lapras will serve you well.[A][X]
+
+
+
 ## GiveUpLearnMoveText
 Give up on new move?[NL]
 [Yes][X]
@@ -2818,7 +2839,8 @@ Pok[Eaccent]mon?[A][X]
 
 ## R8_0xE4_BD
 Stop![A][N]
-Don't be so mean to my CLEFAIRY![A][X]
+Don't be so mean to my CLEFAIRY![A][N]
+What? I nicknamed her CLEFAIRY.[A][X]
 
 ## R8_0xE5_BQ
 You need strategy and determination[N]
