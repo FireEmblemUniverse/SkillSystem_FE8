@@ -66,8 +66,8 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 		return 0; // position out of bounds
 	if (gMapUnit[y][x] > 0x3F) 
 		return 0; 
-	if (gMapHidden[y][x] & 1)
-		return 0; // a hidden unit is occupying this position	
+	//if (gMapHidden[y][x] & 1)
+		//return 0; // a hidden unit is occupying this position	
 	return FMU_CanUnitCrossTerrain(unit, gMapTerrain[y][x]); //CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
 }
 

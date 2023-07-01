@@ -62,13 +62,14 @@ extern int ProtagID_Link;
 extern u8 StraightLineWeaponsList[];
 
 struct FMUTrapDef{
-	u8 TrapID;
-	u8 adjacencyBool; 
 	ButtonFunc Func;
 	ButtonFunc Usab; 
 };
-extern struct FMUTrapDef HookListFMU_TrapList_OnPressA[];
-extern struct FMUTrapDef HookListFMU_TrapList_Auto[];
+extern struct FMUTrapDef HookListFMU_TrapTable_PressA_Auto[];
+extern struct FMUTrapDef HookListFMU_TrapTable_PressA_Adjacent[];
+
+extern struct FMUTrapDef HookListFMU_TrapTable_Auto_On[];
+extern struct FMUTrapDef HookListFMU_TrapTable_Auto_Adjacent[];
 
 
 struct LocEventDef {
@@ -159,6 +160,7 @@ bool FMUmisc_RunMapEvents(struct FMUProc*);
 bool FMUmisc_RunTalkEvents(struct FMUProc*);
 bool FMU_RunTrapASMC(FMUProc*);
 bool FMU_RunTrapASMC_Auto(FMUProc*);
+bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trapEff, int x, int y);
 
 /*------------- KeyPress --------------*/
 bool FMU_OnButton_StartMenu(FMUProc*);

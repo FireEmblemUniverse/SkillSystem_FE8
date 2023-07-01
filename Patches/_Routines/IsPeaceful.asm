@@ -65,13 +65,19 @@ AreAllPlayersSafe:
 push {r4-r5, lr}
 @ check if any unit is in danger 
 
-
-ldr r0, =CallCountdownFlag @ Flag that prevents call 
-lsl r0, #24 
-lsr r0, #24 
-blh CheckEventId
-cmp r0, #0 
-bne InDanger
+@ldr r0, =AttackedThisTurnFlag @ Flag that prevents call 
+@lsl r0, #24 
+@lsr r0, #24 
+@blh CheckEventId
+@cmp r0, #0 
+@bne InDanger
+@
+@ldr r0, =CallCountdownFlag @ Flag that prevents call 
+@lsl r0, #24 
+@lsr r0, #24 
+@blh CheckEventId
+@cmp r0, #0 
+@bne InDanger
 
 ldr r0, =PlayableCutsceneFlag @ Flag that prevents call 
 lsl r0, #24 

@@ -4,15 +4,18 @@
 .equ Table2, Table+4 
 
 ldr r1, [r0] 
-ldrb r1, [r1] 
+ldrb r1, [r1, #4] 
 ldr r3, Table2 
 Loop2: 
 ldrb r2, [r3] 
 cmp r2, #0 
-beq Display_Exit 
+beq TryLoop
+cmp r1, r2 
+beq Found 
+add r3, #1 
+b Loop2 
 
-
-
+TryLoop: 
 ldr r0, [r0, #4] 
 @r0 class id
 ldrb r0, [r0, #0x4]

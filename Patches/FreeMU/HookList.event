@@ -39,24 +39,37 @@ NoFade
 ENDA 
 
 
-#define FMU_SetTrap(TrapID, AdjacencyBool, Func, Usab) "BYTE TrapID AdjacencyBool 0 0; POIN Func|1 Usab|1"
-#define FMU_SetTrapEnd "WORD 0 0 0"
-ALIGN 4
-HookListFMU_TrapList_OnPressA:
-	//FMU_SetTrap(0x6, False, TrapHurt10HpASMC, 0x804f449)	//Example with 0x804f449 (always usable) 
-	//FMU_SetTrap(CoinsTrapID, 		True, NewObtainCoinsEffect, NewObtainCoinsUsability0x15)	//Example (adjacent) 
-	//FMU_SetTrap(BerryTreeTrapID, 	True, NewPickBerryTreeEffect, NewBerryTreeUsability)	//Example (adjacent) 
-	//FMU_SetTrap(SignTrapID, 		True, DisplayTextEffect0x50, DisplayTextUsability0x50)	 
-	//FMU_SetTrap(Sign2TrapID, 		True, DisplayTextEffect0x51, DisplayTextUsability0x51)	 
-	//FMU_SetTrap(BlankExamineID, 	True, DisplayTextEffect0x52, DisplayTextUsability0x52)	 
-	//FMU_SetTrap(BlankTalkID, 		True, DisplayTextEffect0x53, DisplayTextUsability0x53)	 
-	//FMU_SetTrap(TutSignID, 			True, DisplayTextEffect0x54, DisplayTextUsability0x54)	 
-	FMU_SetTrapEnd
+#define FMU_SetTrapA_adj(TrapID, Func, Usab) "PUSH; ORG HookListFMU_TrapTable_PressA_Adjacent + (8*TrapID); POIN Func|1 Usab|1; POP"
+#define FMU_SetTrapA_on(TrapID, Func, Usab) "PUSH; ORG HookListFMU_TrapTable_PressA_Auto + (8*TrapID); POIN Func|1 Usab|1; POP"
+#define FMU_SetTrapAuto_adj(TrapID, Func, Usab) "PUSH; ORG HookListFMU_TrapTable_Auto_On + (8*TrapID); POIN Func|1 Usab|1; POP"
+#define FMU_SetTrapAuto_on(TrapID, Func, Usab) "PUSH; ORG HookListFMU_TrapTable_Auto_Adjacent + (8*TrapID); POIN Func|1 Usab|1; POP"
 
 ALIGN 4
-HookListFMU_TrapList_Auto:
-	//FMU_SetTrap(0xE, False, TrapHurt10HpASMC, 0x804f449)	//Example
-	FMU_SetTrapEnd
+HookListFMU_TrapTable_PressA_Adjacent:
+Fill(256*8) 0
+	//FMU_SetTrap(0x6, False, TrapHurt10HpASMC, 0x804f449)	//Example with 0x804f449 (always usable) 
+	FMU_SetTrapA_adj(CoinsTrapID, 		NewObtainCoinsEffect, NewObtainCoinsUsability0x15)	//Example (adjacent) 
+	FMU_SetTrapA_adj(BerryTreeTrapID, 	NewPickBerryTreeEffect, NewBerryTreeUsability)	//Example (adjacent) 
+	FMU_SetTrapA_adj(SignTrapID, 		DisplayTextEffect0x50, DisplayTextUsability0x50)	 
+	FMU_SetTrapA_adj(Sign2TrapID, 		DisplayTextEffect0x51, DisplayTextUsability0x51)	 
+	FMU_SetTrapA_adj(BlankExamineID, 	DisplayTextEffect0x52, DisplayTextUsability0x52)	 
+	FMU_SetTrapA_adj(BlankTalkID, 		DisplayTextEffect0x53, DisplayTextUsability0x53)	 
+	FMU_SetTrapA_adj(TutSignID, 			DisplayTextEffect0x54, DisplayTextUsability0x54)	 
+
+	
+ALIGN 4
+HookListFMU_TrapTable_PressA_Auto:
+Fill(256*8) 0
+	//FMU_SetTrapA_on(0x6, TrapHurt10HpASMC, 0x804f449)	//Example with 0x804f449 (always usable) 
+
+ALIGN 4
+HookListFMU_TrapTable_Auto_On:
+Fill(256*8) 0
+	//FMU_SetTrapAuto_on(0xE, False, TrapHurt10HpASMC, 0x804f449)	//Example
+	
+HookListFMU_TrapTable_Auto_Adjacent:
+Fill(256*8) 0
+	//FMU_SetTrapAuto_adj(0xE, False, TrapHurt10HpASMC, 0x804f449)	//Example
 	
 	
 

@@ -13,10 +13,10 @@ int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 	proc->yCur = proc->yTo; 
 	gActiveUnit->xPos = proc->xCur; 
 	gActiveUnit->yPos = proc->yCur; 
-	//if( FMU_RunTrapASMC_Auto(proc) )
-	//{
-	//	return yield;
-	//}
+	if( FMU_RunTrapASMC_Auto(proc) )
+	{
+		return yield;
+	}
 	if( RunMiscBasedEvents(proc->xCur, proc->yCur) )
 	{
 		return yield;
@@ -77,55 +77,81 @@ static bool RunMapDoorEventTemplate(s8 x, s8 y){
 	return 0;
 }
 
-bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trap);
-
 bool FMU_RunTrapASMC(FMUProc* proc){
-	struct FMUTrapDef* trap = &HookListFMU_TrapList_OnPressA[0];
-	return FMU_RunTrap(proc, trap); 
+	struct FMUTrapDef* trap = &HookListFMU_TrapTable_PressA_Auto[0];
+	int x = gActiveUnit->xPos;
+	int y = gActiveUnit->yPos;
+	
+	int result = FMU_RunTrap(proc, trap, x, y); 
+	if (!result) {
+		if (proc->smsFacing==0)      { x--; }
+		else if (proc->smsFacing==1) { x++; }
+		else if (proc->smsFacing==2) { y++; }
+		else                         { y--; }
+		trap = &HookListFMU_TrapTable_PressA_Adjacent[0];
+		result = FMU_RunTrap(proc, trap, x, y); 
+	}
+	return result; 
 }
 	
 	
 bool FMU_RunTrapASMC_Auto(FMUProc* proc){
-	struct FMUTrapDef* trap = &HookListFMU_TrapList_Auto[0];
-	return FMU_RunTrap(proc, trap); 
-}
-	
-bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trap){
+	struct FMUTrapDef* trapEff = &HookListFMU_TrapTable_Auto_On[0];
 	int x = gActiveUnit->xPos;
 	int y = gActiveUnit->yPos;
-	//int leftx = x-1; 
-	//int rightx = x+1; 
-	//int abovey = y-1; 
-	//int belowy = y+1; 
+	
+	int result = FMU_RunTrap(proc, trapEff, x, y); 
+	if (!result) {
+		if (proc->smsFacing==0)      { x--; }
+		else if (proc->smsFacing==1) { x++; }
+		else if (proc->smsFacing==2) { y++; }
+		else                         { y--; }
+		trapEff = &HookListFMU_TrapTable_Auto_Adjacent[0];
+		result = FMU_RunTrap(proc, trapEff, x, y); 
+	}
+	return result; 
+}
+	
+bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trapEff, int x, int y) {
+
+	struct Trap* trap = GetTrapAt(x,y); 
+	if (trap) { 
+		if (trapEff[trap->type].Usab) { 
+			if ((trapEff[trap->type].Usab)(proc) == 1) { // returns 3 if false 
+				(trapEff[trap->type].Func)(proc);
+				return true; 
+			}
+		}
+	}
+	return false; 
+} 
+		
 	
 	
-	
-	
-	while( 0 < trap->TrapID )
+	/*
+	while( 0 < trapEff->trapEffID )
 	{
-		if(0!=trap->Func) { 
+		if(0!=trapEff->Func) { 
 			
 			int xPos = x; 
 			int yPos = y; 
-			if (trap->adjacencyBool) { 
-			  if (proc->smsFacing==0)      xPos--;
-			  else if (proc->smsFacing==1) xPos++;
-			  else if (proc->smsFacing==2) yPos++;
-			  else                         yPos--;
+			if (trapEff->adjacencyBool) { 
+
 			} 
 		
-			if(GetTrapAt(xPos,yPos)->type==trap->TrapID) 
+			if(
 			{
-				//if ((trap->Usab)(proc) == 1) { // returns 3 if false 
-					(trap->Func)(proc);
+				if ((trapEff->Usab)(proc) == 1) { 
+					(trapEff->Func)(proc);
 					return 1;
-				//} 
+				} 
 			}
 		}
-		trap++;
+		trapEff++;
 	}
 	return 0;
 }
+*/ 
 
 
 

@@ -6,6 +6,7 @@
 
 @rem defining buildfile config
 
+set "vanilla_rom=%~dp0FE8_Clean.gba"
 set "source_rom=%~dp0sfx_gfx_maps.gba"
 set "main_event=%~dp0ROMBuildfile.event"
 set "target_rom=%~dp0FE8Hack.gba"
@@ -63,7 +64,7 @@ echo:
 echo Generating patch
 
 cd "%base_dir%"
-"%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
+"%ups%" diff -b "%vanilla_rom%" -m "%target_rom%" -o "%target_ups%"
 
 echo:
 echo Generating sym file

@@ -35,7 +35,7 @@ cmp r0, #0
 beq NotSafeToFlee 
 
 mov r0, r6 
-blh 0x8002E94 @ BreakProcLoop 
+@blh 0x8002E94 @ BreakProcLoop 
 
 ldr r3, =gActiveUnit 
 str r4, [r3] 
@@ -73,5 +73,36 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global ShouldRunTurnEventHook
+.type ShouldRunTurnEventHook, %function 
+ShouldRunTurnEventHook: 
+mov r3, r1 
+ldrb r0, [r5, #0xF] 
+cmp r0, r6 
+bne False 
+
+ldr r0, =FreeMoveRam 
+ldr r0, [r0] 
+ldrb r0, [r0] 
+ldr r1, =FreeMove_Running
+ldrb r1, [r1] 
+tst r0, r1 
+beq True @ FMU is not active, so run event 
+b False 
+
+True: 
+ldr r0, [r2, #4] 
+str r0, [r3, #4] 
+ldrh r0, [r2, #2] 
+str r0, [r3, #8] 
+mov r0, #1 
+b End 
+
+False: 
+mov r0, #0
+
+End: 
+bx lr 
+.ltorg 
 
 

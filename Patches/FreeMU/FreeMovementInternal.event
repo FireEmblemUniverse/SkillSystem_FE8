@@ -28,6 +28,12 @@ ORG $1ca9c
 callHackNew(SelectUnitHook)
 SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0 
 
+ORG $8388A 
+SHORT $1c19 // mov r1, r3 
+callHackNew(ShouldRunTurnEventHook)
+SHORT $46c0 
+
+
 	ORG $59A38C
 	POIN NewPlayerPhaseEvaluationFunc|1
 	ORG $59A3B4
