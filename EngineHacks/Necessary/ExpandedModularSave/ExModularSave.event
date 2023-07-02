@@ -30,18 +30,27 @@ WORD ConvoyExpansionRAMAddr
 // (don't edit sizes and offsets for block 5 & 6)
 // (you may break a bit of stuff otherwise)
 
+
+	
+	
+	
+	
+	
 ALIGN 4
 gSaveBlockDecl:
 	//    offst type // desc
-	SHORT $2F4C 0    // 0: game 1
-	SHORT $4290 0    // 1: game 2
-	SHORT $55D4 0    // 2: game 3
-	SHORT $00D4 1    // 3: suspend 1
-	SHORT $00D4 1    // 4: suspend 2 (now same as suspend 1)
+	SHORT $2F4C 0    // 0: game 1 SAVE_BLOCK_SAVE1      = 0,
+	SHORT $4290 0    // 1: game 2 SAVE_BLOCK_SAVE2      = 1,
+	SHORT $55D4 0    // 2: game 3 SAVE_BLOCK_SAVE3      = 2,
+	SHORT $00D4 1    // 3: suspend 1 SAVE_BLOCK_SUSPEND    = 3,
+	SHORT $00D4 1    // 4: suspend 2 (now same as suspend 1) SAVE_BLOCK_SUSPENDALT = 4,
 
+	SHORT $691C 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
+	SHORT $70BC 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
+	SHORT $785C 4 // 7: Pc box for save file 3	undefined 
 	// We don't change the two last blocks from vanilla, for the best
-	SHORT $691C 2    // 5: link arena
-	SHORT $7400 3    // 6: potentially interesting stuff that nobody really understands (save based chapters!)
+	//SHORT $691C 2    // 5: link arena
+	//SHORT $7400 3    // 6: potentially interesting stuff that nobody really understands (save based chapters!)
 
 // Vesly note: Chapter Titles uses offsets from here to figure out what new chapter title to use 
 // poor form but whatever 
@@ -49,10 +58,12 @@ ALIGN 4
 gSaveBlockTypeSizeLookup:
 	SHORT $1344 // type 0: game
 	SHORT $2E78 // type 1: suspend
+	SHORT $0AE4 // UNUSED type 2: link arena 
+	SHORT $0C00 // UNUSED type 3: potentially interesting stuff that nobody really understands (save based chapters!)
+	
+	SHORT $7A0 // type 4: pc box 
 
-	// We don't change the two last block types sizes from vanilla, for the best
-	SHORT $0AE4 // type 2: link arena
-	SHORT $0C00 // type 3: potentially interesting stuff that nobody really understands (save based chapters!)
+
 
 /* Colorz's plan:
   SAVE NAME       SAVE OFFSET     SAVE LENGTH     DEFAULT LENGTH  EXPANSION SIZE

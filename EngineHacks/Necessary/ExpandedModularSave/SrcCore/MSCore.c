@@ -1,7 +1,7 @@
 #include "ModularSave.h"
 
 void* MS_GetSaveAddressBySlot(unsigned slot) {
-	if (slot > SAVE_BLOCK_UNK6)
+	if (slot > 7) // 	SAVE_BLOCK_UNK6       = 6,
 		return NULL;
 
 	return (void*)(0xE000000) + gSaveBlockDecl[slot].offset;
