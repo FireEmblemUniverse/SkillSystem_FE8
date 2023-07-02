@@ -4,7 +4,8 @@ ALIGN 4
 BoxCapacity: 
 WORD 100 
 
-
+#define StoreUnit(unitID) "SVAL s1 unitID; ASMC PackUnitIntoBox_ASMC" 
+#define WithdrawUnit "ASMC UnpackUnitFromBox_ASMC" 
 
 
 

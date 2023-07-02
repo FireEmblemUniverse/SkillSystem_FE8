@@ -465,7 +465,7 @@ Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(21, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
-
+MNC2 DebugCh
 
 //SetUnitStatus(1, CurrentHP, 5)
 //MNC2 CeruleanCh
@@ -480,7 +480,7 @@ Write_Byte(21, YCoordNewArea)
 //MNC2 DebugCh 
 //MNC2 ChampionCh 
 //MNC2 VictoryRoadB2Ch 
-MNC2 ViridianCh
+//MNC2 ViridianCh
 //
 //MNC2 DebugCh 
 //MNC2 PewterCh 

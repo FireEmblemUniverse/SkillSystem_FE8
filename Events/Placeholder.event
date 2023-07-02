@@ -162,7 +162,8 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-House(0,GiveExp, 11,11)
+House(0,StoreUnitEvent, 11,11)
+House(0,WithdrawUnitEvent, 12,11)
 //House(0,SelectCharEvent, 11,11)
 
 
@@ -173,11 +174,17 @@ House(0,GiveExp, 11,11)
 //Seize(10,2)
 END_MAIN
 
-GiveExp:
-GiveEXP((-1), 100)
+StoreUnitEvent:
+StoreUnit(1)
+//GiveEXP((-1), 100)
 NoFade 
 ENDA 
 
+WithdrawUnitEvent:
+WithdrawUnit
+//GiveEXP((-1), 100)
+NoFade 
+ENDA 
 
 SelectCharEvent:
 SelectCharacter(Seth, Amelia, Ross, Colm, Neimi, 3000, 500, 1500, 1000, 0) 

@@ -26,20 +26,20 @@ extern int BoxCapacity;
 int GetFreeUnitID(void);
 int GetFreeDeploymentID(void);
 int IsBoxFull(void);
-struct BoxUnit GetFreeBoxSlot(void);
-struct BoxUnit GetTakenBoxSlot(void);
-struct BoxUnit ClearBoxUnit(struct BoxUnit);
+struct BoxUnit* GetFreeBoxSlot(void);
+struct BoxUnit* GetTakenBoxSlot(void);
+struct BoxUnit* ClearBoxUnit(struct BoxUnit*);
 void PackUnitIntoBox_ASMC(void);
 void UnpackUnitFromBox_ASMC(void);
-struct BoxUnit PackUnitIntoBox(struct BoxUnit boxRam, struct Unit* unit);
-struct Unit* UnpackUnitFromBox(struct Unit* unit, struct BoxUnit boxRam);
+struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit);
+struct Unit* UnpackUnitFromBox(struct Unit* unit, struct BoxUnit* boxRam);
 
 
 
 
 // Vanilla: 
 extern struct Unit* GetUnitStructFromEventParameter(int id); 
-
+extern int AddItemToConvoy(int); 
 
 
 
