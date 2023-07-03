@@ -53,6 +53,3 @@ extern const struct SaveBlockDecl PCBoxSaveBlockDecl[];
 extern struct Unit* GetUnitStructFromEventParameter(int id); 
 extern int AddItemToConvoy(int); 
 
-
-
-

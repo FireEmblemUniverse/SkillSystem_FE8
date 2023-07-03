@@ -12,7 +12,10 @@ enum {
 // Utility macros and constants
 extern u16 gPaletteBuffer[];
 
+// Some functions only match with one of the macros.
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
+#define TILEMAP_INDEX2(aX, aY) (((aY) << 5) + (aX))
+
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
 
 #define TILEREF(aChar, aPal) ((aChar) + ((aPal) << 12))
@@ -173,7 +176,7 @@ u16* BG_GetMapBuffer(int bg);
 void sub_8001C5C(u8);
 // ??? ShouldSkipHSScreen(???);
 void SoftResetIfKeyComboPressed();
-// ??? sub_8001CB0(???);
+void sub_8001CB0(int a);
 // ??? ExecBothHBlankHandlers(???);
 // ??? UpdateHBlankHandlerState(???);
 void SetPrimaryHBlankHandler(void (*hblankHandler)(void));

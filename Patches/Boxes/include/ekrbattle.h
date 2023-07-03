@@ -9,14 +9,14 @@ enum ekr_battle_unit_position {
     EKR_POS_R
 };
 
-int GetAISSubjectId(struct Anim *anim);
+int GetAnimPosition(struct Anim *anim);
 
 enum ekr_hit_identifer {
     EKR_HITTED = 0,
     EKR_MISS
 };
 
-enum ekr_hit_identifer EkrCheckHitOrMiss(s16);
+int CheckRoundMiss(s16);
 
 struct ProcEkrBattleDeamon {
     PROC_HEADER;
@@ -143,19 +143,32 @@ enum anim_round_type {
 };
 
 extern s16 gAnimRoundData[];
-s16 GetSomeAISRelatedIndexMaybeByID(int index);
-s16 GetAnimRoundType(int);
+s16 GetBattleAnimRoundType(int index);
+s16 GetBattleAnimRoundTypeFlags(int);
 
 extern u8 gEfxHpLut[];
 
-struct BanimRoundScripts {
+struct BanimRoundScript {
     u8 frame_front;
     u8 priority_front;
     u8 frame_back;
     u8 priority_back;
 };
 
-extern const struct BanimRoundScripts gBanimRoundScripts[ANIM_ROUND_MAX];
+// extern const struct BanimRoundScript gBanimRoundScripts[ANIM_ROUND_MAX * 4];
+extern const u8 gBanimRoundScripts[ANIM_ROUND_MAX * 4];
+
+struct ProcEkrSubAnimeEmulator {
+    PROC_HEADER;
+
+    STRUCT_PAD(0x29, 0x2E);
+    /* 2E */ s16 unk2E;
+    STRUCT_PAD(0x30, 0x32);
+    /* 32 */ s16 unk32;
+};
+
+struct ProcEkrSubAnimeEmulator *NewEkrsubAnimeEmulator(int x, int y, u16 *buf[], int, int, int, int);
+// ??? EkrsubAnimeEmulatorMain(???);
 
 extern int gEkrDebugTimer, gEkrDebugUnk1;
 
@@ -166,12 +179,13 @@ extern struct BattleUnit *gpEkrBattleUnitLeft;
 extern struct BattleUnit *gpEkrBattleUnitRight;
 extern struct Font gSomeFontStruct;
 
+extern void *gUnknown_02000010[2];
 extern int gEkrDebugUnk2;
 extern int gEkrDebugUnk3;
 extern s16 gEkrXPosBase[2];
 extern s16 gEkrYPosBase[2];
-// extern ??? gUnknown_02000030
-// extern ??? gUnknown_02000034
+extern u16 gUnknown_02000030[];
+extern u16 gUnknown_02000034[];
 extern struct Vec2 gEkrBg0QuakeVec;
 extern void *gUnknown_0200003C[2];
 extern void *gUnknown_02000044[2];
@@ -182,6 +196,7 @@ extern int *gpBanimModesRight;
 extern struct ProcEkrBattle *gpProcEkrBattle;
 extern struct ProcEkrGauge *gpProcEkrGauge;
 extern u8 gUnknown_02000088[];
+extern u8 gUnknown_02002088[];
 
 extern int gBanimLinkArenaFlag;
 extern int gBattleDeamonActive;
@@ -191,7 +206,7 @@ extern short gEkrPairSomeTile;
 extern short gEkrInitialHitSide;
 extern short gEkrSnowWeather;
 extern short gEkrPairSideVaild[2];
-extern short gUnknown_0203E108[2];
+extern short gEkrInitialPosition[2];
 extern short gBanimSomeObjPalIndex[2];
 extern short gEkrSpellAnimIndex[];
 // extern ??? gUnknown_0203E11A
@@ -204,7 +219,7 @@ extern u8 gEkrPids[2];
 extern struct Unit *gpEkrTriangleUnits[2];
 extern char *gBanimCharacterTSAs[2];
 extern int gUnknown_0203E1A4[2];
-extern short gEkrPairHpInitial[2];
+extern short gEkrGaugeHp[2];
 extern short gEkrPairMaxHP[2];
 extern short gUnknown_0203E1B4[2];
 extern short gEkrPairHit[2];
@@ -288,7 +303,7 @@ extern struct ProcCmd gProc_ekrbattleendin[];
 extern struct ProcCmd gProc_ekrWindowAppear[];
 extern struct ProcCmd gProc_ekrNamewinAppear[];
 extern struct ProcCmd ProcScr_ekrBaseAppear[];
-extern u32 gUnknown_085B9D5C[4];
+extern u32 BanimScr_085B9D5C[4];
 extern void *gUnknown_085B9D6C[];
 extern struct ProcCmd gProc_ekrChienCHR[];
 extern struct ProcCmd gProc_efxAnimeDrvProc[];
@@ -383,7 +398,7 @@ void EfxPrepareScreenFx(void);
 int GetEkrSomePosMaybe(void);
 void sub_8052214(int a, int b);
 void EkrEfxStatusClear(void);
-int sub_80522CC(void);
+int CheckEkrHitDone(void);
 short EkrEfxIsUnitHittedNow(int pos);
 void NewEfxHPBar(struct Anim *anim);
 // ??? EfxHp_BarDeclineWithDeathJudge(???);
@@ -420,7 +435,7 @@ void NewEfxHitQuake(struct Anim *anim1, struct Anim *anim2, int);
 // ??? sub_8053BBC(???);
 void StartSpellBG_FLASH(struct Anim *anim, int);
 // ??? sub_8053F4C(???);
-// ??? sub_8053F8C(???);
+void NewEfxFlashBG(struct Anim *anim, int);
 // ??? sub_8053FC4(???);
 // ??? sub_8053FE4(???);
 // ??? sub_805401C(???);
@@ -457,31 +472,31 @@ void NewEfxFlashUnit(struct Anim *anim, int a, int b, int c);
 // ??? sub_80549BC(???);
 
 void sub_805515C(void);
-void SetSomethingSpellFxToTrue(void);
-void SetSomethingSpellFxToFalse(void);
-void ClearBG1Setup(void);
-void ClearBG1(void);
-void sub_80551B0(void);
+void SpellFx_Begin(void);
+void SpellFx_Finish(void);
+void SpellFx_SpellFx_ClearBG1Position(void);
+void SpellFx_ClearBG1(void);
+void SpellFx_SetSomeColorEffect(void);
 void SetDefaultColorEffects_(void);
-void DoEkrOffensiveAtkHit(struct Anim *anim, int type);
+void StartBattleAnimHitEffectsDefault(struct Anim *anim, int type);
 void sub_8055288(struct Anim *anim, int type);
-void DoEkrOffensiveAtkHit_(struct Anim *anim, int type, int a, int b);
-// ??? DoEkrResire(???);
+void StartBattleAnimHitEffects(struct Anim *anim, int type, int a, int b);
+// ??? StartBattleAnimResireHitEffects(???);
 // ??? sub_8055518(???);
-struct Anim *EfxAnimCreate(struct Anim *anim, const u32 *scr1, const u32 *scr2, const u32 *scr3, const u32 *scr4);
-// ??? sub_80555B0(???);
+struct Anim *EfxAnimCreate1(struct Anim *anim, const u32 *scr1, const u32 *scr2, const u32 *scr3, const u32 *scr4);
+struct Anim *EfxAnimCreate2(struct Anim *anim, const u32 *scr1, const u32 *scr2, const u32 *scr3, const u32 *scr4);
 // ??? sub_805560C(???);
-void sub_8055670(struct Anim *anim, const u16 *src1, const u16 *src2);
+void SpellFx_WriteBgMap(struct Anim *anim, const u16 *src1, const u16 *src2);
 // ??? sub_80556F0(???);
 // ??? sub_805576C(???);
-void SomeImageStoringRoutine_SpellAnim(const u16 *img, u32 size);
-void SomePaletteStoringRoutine_SpellAnim(const u16 *pal, u32 size);
-void SomeImageStoringRoutine_SpellAnim2(const u16 *img, u32 size);
-void SomePaletteStoringRoutine_SpellAnim2(const u16 *pal, u32 size);
+void SpellFx_RegisterObjGfx(const u16 *img, u32 size);
+void SpellFx_RegisterObjPal(const u16 *pal, u32 size);
+void SpellFx_RegisterBgGfx(const u16 *img, u32 size);
+void SpellFx_RegisterBgPal(const u16 *pal, u32 size);
 // ??? sub_8055860(???);
 // ??? sub_805588C(???);
 // ??? sub_80558BC(???);
-s16 sub_80558F4(s16 *ptime, s16 *pcount, const s16 lut[]);
+s16 SpellFx_InterpretBgAnimScript(s16 *ptime, s16 *pcount, const s16 lut[]);
 // ??? sub_8055980(???);
 int GetAnimationStartFrameMaybe(void);
 // ??? sub_80559B0(???);
@@ -515,8 +530,8 @@ void NewEkrbattleending(void);
 void NewEkrBaseKaiten(struct Anim *anim);
 // ??? sub_8056864(???);
 void NewEkrUnitKakudai(struct Anim *anim);
-// ??? sub_8056974(???);
-// ??? sub_8056B70(???);
+// ??? UnitKakudai1(???);
+// ??? UnitKakudai2(???);
 // ??? sub_8056D18(???);
 void NewEkrWindowAppear(int, int);
 bool DoesEkrWindowAppearExist(void);
@@ -533,7 +548,7 @@ void EkrPrepareBanimfx(struct Anim *anim, u16);
 s16 GetEfxHp(int index);
 // ??? GetEfxHpModMaybe(???);
 // ??? IsItemDisplayedInBattle(???);
-// ??? IsWeaponLegency(???);
+u16 IsWeaponLegency(u16 item);
 // ??? sub_8058B08(???);
 // ??? sub_8058B24(???);
 // ??? sub_8058B64(???);
@@ -552,21 +567,21 @@ void RegisterAISSheetGraphics(struct Anim *anim);
 void sub_8059970(u32 *, int);
 int GetBanimPalette(int banim_id, enum ekr_battle_unit_position pos);
 void UpdateBanimFrame(void);
-void sub_8059D28(void);
-// ??? sub_8059DB8(???);
-// ??? sub_8059E18(???);
-// ??? sub_8059F5C(???);
-void BanimSetupRoundBasedScript(struct Anim *anim, int);
-int sub_805A154(struct Anim *anim);
+void InitBothAIS(void);
+void BattleAnimationAISInit(int, int);
+void InitLeftAnim(int);
+void InitRightAnim(int);
+void SwitchAISFrameDataFromBARoundType(struct Anim *anim, int);
+int GetAISLayerId(struct Anim *anim);
 
-int sub_805A1D0(s16);
-int sub_805A21C(s16);
-int sub_805A268(struct Anim *anim);
-struct Anim *GetCoreAIStruct(struct Anim *anim);
-// ??? sub_805A2D0(???);
-s16 sub_805A2F0(struct Anim *anim);
-s16 GetSomeAISRelatedIndexMaybe(struct Anim *anim);
-s16 sub_805A334(struct Anim *anim);
+int CheckRound1(s16);
+int CheckRound2(s16);
+int CheckRoundCrit(struct Anim *anim);
+struct Anim *GetAnimAnotherSide(struct Anim *anim);
+// ??? GetAnimRoundType(???);
+s16 GetAnimNextRoundType(struct Anim *anim);
+s16 GetAnimRoundTypeAnotherSide(struct Anim *anim);
+s16 GetAnimNextRoundTypeAnotherSide(struct Anim *anim);
 void SetAnimStateHidden(int ais_id);
 void SetAnimStateUnHidden(int ais_id);
 // ??? sub_805A3DC(???);
@@ -612,15 +627,14 @@ void sub_8071140(void *ptr, int);
 void EkrMaybePalFadeWithVal(void *pal_buf, int line, int length, int ref);
 void sub_807132C(void *ptr, int, int, int);
 void EfxSomePalFlash(u16 *pal, int, int, int r, int g, int b);
-// ??? sub_8071468(???);
+void sub_8071468(u16 *pal, u16 *, int);
 void sub_80714DC(u16 *, u8 *, int);
 void sub_807151C(u16 *, u8 *, int);
 void sub_8071574(s8 *, s8 *, u16 *, int, int);
 void sub_80715F4(void *, void *, void *, void *, int, int, int);
 void EkrUpdateSomePalMaybe(int);
 // ??? sub_80716B0(???);
-// ??? NewEkrsubAnimeEmulator(???);
-// ??? EkrsubAnimeEmulatorMain(???);
+
 // ??? sub_80717D4(???);
 // ??? sub_80717F0(???);
 // ??? EkrEfxHandleUnitHittedEffect(???);
@@ -633,9 +647,9 @@ void sub_8071A8C(void);
 // ??? sub_8071A98(???);
 // ??? sub_8071AA4(???);
 void M4aPlayWithPostionCtrl(int, int, int);
-// ??? sub_8071B6C(???);
+void EfxPlaySEwithCmdCtrl(struct Anim *anim, int);
 // ??? sub_8072258(???);
-// ??? sub_80723A4(???);
+int sub_80723A4(struct Anim *anim);
 // ??? sub_80723D4(???);
 // ??? sub_8072400(???);
 void sub_8072450(struct Anim *anim);

@@ -33,6 +33,12 @@ struct PrepUnitList {
     int latest_pid;     /* Last unit char-id when you leave the prep-unit-screen */
 };
 
+struct PrepScreenItemListEnt {
+    /* 00 */ u8 pid; // 0 if item is in Supply inventory
+    /* 01 */ u8 itemSlot;
+    /* 02 */ u16 item;
+};
+
 enum prep_atmenu_item_index {
     PREP_MAINMENU_UNIT = 0,
     PREP_MAINMENU_ITEM = 1,
@@ -213,10 +219,10 @@ extern struct TextHandle gPrepMainMenuTexts[9];
 extern u8 gPrepUnitPool[];
 extern u8 gBanimScrRight[];
 extern struct PrepUnitList gPrepUnitList;
-// extern ??? gUnknown_020122D4
-// extern ??? gUnknown_02012914
-// extern ??? gUnknown_02012F54
-// extern ??? gUnknown_02012F56
+extern struct PrepScreenItemListEnt gPrepScreenItemList[];
+extern struct PrepScreenItemListEnt gUnknown_02012914[];
+extern u16 gUnknown_02012F54;
+extern u16 gUnknown_02012F56;
 // extern ??? gUnknown_02012F58
 // extern ??? gUnknown_02013458
 // extern ??? gUnknown_02013460
@@ -263,8 +269,8 @@ extern CONST_DATA struct ProcCmd ProcScr_PrepMenu[];
 // extern ??? ProcScr_menu_scroll
 // extern ??? ProcScr_SallyCir
 // extern ??? ProcScr_ViewCounter
-// extern ??? gUnknown_08A188A8
-// extern ??? gUnknown_08A188C0
+// extern ??? gProcScr_PrepHelpboxListener
+// extern ??? gPrepItemTypePageLut
 // extern ??? gUnknown_08A188E4
 // extern ??? gUnknown_08A188F8
 // extern ??? gUnknown_08A18910
@@ -282,9 +288,9 @@ extern CONST_DATA struct ProcCmd ProcScr_PrepItemTradeScreen[];
 extern CONST_DATA struct ProcCmd ProcScr_PrepItemUseScreen[];
 extern CONST_DATA struct ProcCmd ProcScr_PrepItemUseBooster[];
 extern CONST_DATA struct ProcCmd ProcScr_PrepItemUseJunaFruit[];
-// extern ??? gUnknown_08A191F4
-// extern ??? gUnknown_08A19200
-// extern ??? gUnknown_08A19204
+// extern ??? gSupplyTextIndexLookup
+// extern ??? gpPrepItemSupplyStringBuffer
+// extern ??? gSupplyHelpTextIndexLookup
 extern CONST_DATA struct ProcCmd ProcScr_PrepItemSupplyScreen[];
 extern CONST_DATA struct ProcCmd ProcScr_BmSupplyScreen[];
 extern CONST_DATA struct ProcCmd ProcScr_PrepItemListScreen[];
@@ -378,7 +384,7 @@ void sub_80337F0(struct ProcPrepSallyCursor*);
 void InitPrepScreenUnitsAndCamera(void);
 void sub_80338C0(void);
 void sub_8033940(struct ProcPrepSallyCursor*);
-void PrepScreenProc_MapIdle(ProcPtr);
+void PrepScreenProc_MapIdle(struct ProcPrepSallyCursor* proc);
 int sub_8033BF8(void);
 void SALLYCURSOR6C_StartUnitSwap(struct ProcPrepSallyCursor*);
 void sub_8033C90(struct ProcPrepSallyCursor*);
@@ -511,33 +517,33 @@ void InitPrepSideBarImg(int, int);
 void PrepStartSideBarScroll(ProcPtr, int, int, int, int);
 // ??? sub_80977AC(???);
 // ??? sub_80977EC(???);
-// ??? sub_8097840(???);
-// ??? sub_809788C(???);
-// ??? sub_80979DC(???);
-// ??? sub_8097AA0(???);
-// ??? sub_8097AAC(???);
+// ??? SallyCir_OnHBlank(???);
+// ??? SallyCir_Init(???);
+// ??? SallyCir_Loop(???);
+// ??? SallyCir_OnEnd(???);
+// ??? StartSallyCirProc(???);
 // ??? sub_8097ACC(???);
 // ??? sub_8097B98(???);
 // ??? sub_8097CC4(???);
 // ??? GetConvoyItemCount_(???);
-// ??? sub_8097CD8(???);
-// ??? sub_8097D14(???);
+// ??? ViewCounter_Loop(???);
+// ??? StartViewCounter(???);
 void sub_8097D54(ProcPtr);
 void sub_8097D68(ProcPtr);
-// ??? sub_8097D80(???);
-void sub_8097DA8(int, int, int, ProcPtr);
-// ??? sub_8097DE0(???);
-// ??? sub_8097E08(???);
+// ??? PrepHbKeyListener_Loop(???);
+ProcPtr StartPrepErrorHelpbox(int, int, int, ProcPtr);
+// ??? IsWeaponUsable(???);
+// ??? CountUnitUsableWeapons(???);
 s8 sub_8097E38(struct Unit *unit);
-s8 sub_8097E74(struct Unit *unit);
-// ??? sub_8097EA0(???);
-// ??? sub_8097F44(???);
-// ??? sub_8097F98(???);
+s8 CanUnitBeDeployedLinkArena(struct Unit *unit);
+s8 CheckValidLinkArenaItemSwap(struct Unit*, int, struct Unit*, int);
+s8 CheckValidLinkArenaItemSupply(struct Unit*, int, int);
+s8 sub_8097F98(struct Unit*, int);
 // ??? sub_8097FDC(???);
-// ??? sub_8098014(???);
+int GetPrepPageForItem(int);
 // ??? sub_8098048(???);
-// ??? SomethingPrepListRelated(???);
-// ??? sub_80982B8(???);
+void SomethingPrepListRelated(struct Unit*, int, int);
+void sub_80982B8(void);
 // ??? sub_80982FC(???);
 // ??? sub_809831C(???);
 // ??? sub_8098344(???);
@@ -605,15 +611,15 @@ ProcPtr StartPrepItemScreen(ProcPtr);
 void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
 // ??? sub_809A504(???);
 // ??? sub_809A538(???);
-// ??? sub_809B538(???);
-// ??? sub_809B564(???);
-void DrawPrepScreenItems(u16*, struct TextHandle*, struct Unit*, int);
-// ??? sub_809B830(???);
-// ??? sub_809B86C(???);
-// ??? sub_809BB34(???);
-// ??? sub_809BE24(???);
+// ??? PrepItemTrade_ApplyItemSwap(???);
+// ??? PrepItemTrade_DpadKeyHandler(???);
+void DrawPrepScreenItems(u16*, struct TextHandle*, struct Unit*, u8);
+void DrawPrepScreenItemIcons(u16* tm, struct Unit* unit);
+// ??? PrepItemTrade_Init(???);
+// ??? PrepItemTrade_Loop_MainKeyHandler(???);
+// ??? PrepItemTrade_OnEnd(???);
 // ??? StartPrepItemTradeScreenProc(???);
-// ??? sub_809BE60(???);
+void sub_809BE60(struct Unit* unitA, struct Unit* unitB, int rightItemIdx, ProcPtr parent);
 
 /* PrepItemUse */
 bool PrepItemUseTryMoveHand(struct ProcPrepItemUse *proc);

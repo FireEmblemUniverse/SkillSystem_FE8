@@ -181,6 +181,26 @@ enum BmSt_gameStateBits {
     BM_FLAG_LINKARENA = (1 << 6),
 };
 
+struct PlaySt_30 {
+    int total_gold;
+
+    u32 unk_4_00 : 0x14;
+    u32 unk_4_14 : 0x0C;
+
+    u32 unk_8_1:8;
+    u32 unk_8_2:20; // Used by bmdifficulty (Valni/Lagdou)
+    u32 unk_8_3:4;
+
+    u32 unk_C_00 : 6;
+    u32 combatRank : 3;
+    u32 expRank : 3;
+    u32 unk_3D_04 : 3;
+    u32 fundsRank : 3;
+    u32 tacticsRank : 3;
+    u32 survivalRank : 3;
+    u32 unk_F_00 : 8;
+};
+
 struct PlaySt { // Chapter Data Struct
     /* 00 */ u32 time_saved;
     /* 04 */ u32 time_chapter_started;
@@ -225,23 +245,7 @@ struct PlaySt { // Chapter Data Struct
     u32 unk_2C_2:5;
     u32 unk_2C_3:4;
 
-    /* 30 */ int total_gold;
-
-    /* 34 */ u32 unk_34_00 : 0x14;
-             u32 unk_34_14 : 0x0C;
-
-    u32 unk_38_1:8;
-    u32 unk_38_2:20; // Used by bmdifficulty (Valni/Lagdou)
-    u32 unk_38_3:4;
-
-    /* 3C */ u32 unk_3C_00 : 6;
-    /* 3C */ u32 combatRank : 3;
-    /* 3D */ u32 expRank : 3;
-    /* 3D */ u32 unk_3D_04 : 3;
-    /* 3D */ u32 fundsRank : 3;
-    /* 3E */ u32 tacticsRank : 3;
-    /* 3E */ u32 survivalRank : 3;
-    /* 3F */ u32 unk_3F_00 : 8;
+    struct PlaySt_30 unk_30;
 
     // option bits
     u32 cfgUnitColor:1; // 1
@@ -262,8 +266,8 @@ struct PlaySt { // Chapter Data Struct
     u32 cfgBattleForecastType:2; // 2
     u32 cfgController:1; // 1
     u32 cfgRankDisplay:1; // unk
-    u32 unk42_8:2; // 2 (!)
-    u32 unk43_2:2; // 2
+    u32 debugControlRed:2; // 2 (!)
+    u32 debugControlGreen:2; // 2
     u32 unk43_4:5; // unk
 
     u8  unk44[0x48 - 0x44];
@@ -386,7 +390,7 @@ enum
     UNIT_ACTION_ARENA = 0x19,
     UNIT_ACTION_USE_ITEM = 0x1A,
     UNIT_ACTION_TRADED = 0x1B,
-    // 0x1C?
+    UNIT_ACTION_TRADED_SUPPLY = 0x1C,
     UNIT_ACTION_TRADED_1D = 0x1D,
     UNIT_ACTION_TRAPPED = 0x1E,
     // 0x1F?
@@ -431,7 +435,7 @@ enum
     WEATHER_FINE = 0,
     WEATHER_SNOW = 1,
     WEATHER_SNOWSTORM = 2,
-    WEATHER_3 = 3,
+    WEATHER_NIGHT = 3,
     WEATHER_RAIN = 4,
     WEATHER_FLAMES = 5,
     WEATHER_SANDSTORM = 6,
@@ -466,18 +470,51 @@ struct MMSData
     const void* pAnimation;
 };
 
+struct GMUnit {
+    /* 00 */ u8 state;
+    /* 01 */ u8 location;
+    /* 02 */ s16 id; // character or class ID
+};
+
+struct GMNode {
+    /* 00 */ u8 state;
+};
+
+union GMStateBits {
+    u8 raw;
+    struct {
+        u8 state_0   : 1;
+        u8 state_1   : 1;
+        u8 state_2   : 1;
+        u8 state_3   : 1;
+        u8 state_4_5 : 2;
+        u8 state_6   : 1;
+        u8 state_7   : 1;
+    } __attribute__((packed)) bits;
+} __attribute__((packed));
+
+struct OpenPaths {
+    s8 openPaths[0x20];
+    s8 openPathsLength;
+};
+
 struct GMapData
 {
-    /* 00 */ u8 state;
+    /* 00 */ union GMStateBits state;
     /* 01 */ u8 unk01;
     /* 02 */ short xCamera;
     /* 04 */ short yCamera;
     /* 08 */ u32 unk08;
     /* 0C */ u32 unk0C;
-    /* 10 */ struct { u8 state, location; u16 unk; } unk10[4];
-    /* 20 */ struct { u8 state, location; u16 unk; } unk20[4];
-    /* 30 */ struct { u8 unk; } unk30[0x1D];
+    /* 10 */ struct GMUnit unk10[8];
+    /* 30 */ struct GMNode unk30[0x1C];
+    /* A0 */ int unk_a0; // pad?
+    /* A4 */ struct OpenPaths routeData;
+    /* C8 */ u8 unk_c8; // entry node id?
+    /* C9 */ u8 unk_c9[3]; // List of active world map skirmishes
+    /* CC */ u8 unk_cc; // used to determine which skirmish enemy block to load
 };
+
 
 enum
 {
@@ -529,17 +566,6 @@ struct FaceVramEntry
     /* 04 */ u16 paletteId;
 };
 
-struct SupportTalkEnt {
-    /* 00 */ u16 unitA;
-    /* 02 */ u16 unitB;
-
-    /* 04 */ u16 msgSupportC;
-    /* 06 */ u16 msgSupportB;
-    /* 08 */ u16 msgSupportA;
-
-    u16 _pad[3];
-};
-
 struct Struct202B6B0 {
     u8 _pad00_[0x2A - 0x00];
     u16 unk2A;
@@ -551,6 +577,11 @@ struct Struct202B6B0 {
 
 struct Struct203E87C {
     u8 unk00[5];
+};
+
+struct EfxFrameConfig {
+    s16 value;
+    s16 duration;
 };
 
 #endif // GUARD_TYPES_H

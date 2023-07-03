@@ -5,6 +5,14 @@
 #include "bmunit.h"
 #include "bmbattle.h"
 #include "bmtrick.h"
+#include "bmdifficulty.h"
+#include "bonusclaim.h"
+
+enum {
+    UNIT_SAVE_AMOUNT_BLUE = 51,
+    UNIT_SAVE_AMOUNT_RED = 50,
+    UNIT_SAVE_AMOUNT_GREEN = 10,
+};
 
 enum save_chunk_index {
     SAVE_ID_GAME0,
@@ -78,16 +86,6 @@ struct SaveBlockInfo {
     /* 0C */ u32 checksum32;
 };
 
-struct SramHeader {
-    struct GlobalSaveInfo meta;
-    struct SaveBlockInfo chunks[0x7];
-};
-
-/* used in IsExtraBonusClaimEnabled */
-struct bmsave_unkstruct0 {
-    u8 unk[0x14];
-};
-
 struct GameRankSaveData {
     /* 00 */ u32 valid : 0x01;
              u32 unk00_01 : 0x03;
@@ -134,6 +132,11 @@ struct bmsave_unkstruct2 {
     u16 magic2;
 };
 
+struct bmsave_unkstruct3 {
+    struct BonusClaimEnt unk0[0x10];
+    u32 unk140;
+};
+
 enum
 {
     DEFEAT_CAUSE_0,
@@ -143,6 +146,7 @@ enum
     DEFEAT_CAUSE_POISON,
     DEFEAT_CAUSE_5,
     DEFEAT_CAUSE_ARENA,
+    DEFEAT_CAUSE_7,
 };
 
 struct UnitUsageStats {
@@ -329,6 +333,93 @@ struct ExtraMapInfo {
 
 #define EWRAM_XMAP_SIZE 0x1000u
 
+struct GMapSaveInfo {
+    /* 00 */ u8 nodes[8];
+    /* 08 */ u8 paths[4];
+    /* 0C */ u16 units[7];
+    /* 1A */ u8 xCursor;
+    /* 1B */ u8 yCursor;
+    /* 1C */ u8 unk_1c_1 : 1;
+    /* 1C */ u8 unk_1c_2 : 1;
+    /* 1C */ u8 unk_1c_3 : 2;
+    /* 1D */ u8 skirmishes[3];
+    /* 20 */ u8 skirmishState;
+};
+
+struct GameSaveBlock {
+    struct PlaySt playSt;
+    struct GameSavePackedUnit units[UNIT_SAVE_AMOUNT_BLUE];
+    struct GameSavePackedUnit gmUnit;
+    u16 supplyItems[0xB0 / 2];
+    struct UnitUsageStats pidStats[BWL_ARRAY_NUM];
+    struct ChapterStats chapterStats[WIN_ARRAY_NUM];
+    u8 permanentFlags[0x19];
+    u32 bonusClaimFlags;
+    struct GMapSaveInfo wmStuff;
+    struct Dungeon dungeons[2];
+}; /* size = 0xDC8 */
+
+struct SuspendSaveBlock {
+    struct PlaySt playSt;
+    struct ActionData action;
+    struct SuspendSavePackedUnit blueUnits[UNIT_SAVE_AMOUNT_BLUE];
+    struct SuspendSavePackedUnit wmMonsterUnit; // TODO: update this to `struct Dungeon dungeons[2]; u8 filler[0x1C];`?
+    struct SuspendSavePackedUnit redUnits[UNIT_SAVE_AMOUNT_RED];
+    struct SuspendSavePackedUnit greenUnits[UNIT_SAVE_AMOUNT_GREEN];
+    struct Trap traps[TRAP_MAX_COUNT];
+    u16 supplyItems[0xB0 / 2];
+    struct UnitUsageStats pidStats[BWL_ARRAY_NUM];
+    struct ChapterStats chapterStats[WIN_ARRAY_NUM];
+    u8 menuOverride[0x10];
+    u8 permanentFlags[0x19];
+    u8 chapterFlags[7];
+    struct GMapSaveInfo wmStuff;
+    struct Dungeon dungeon;
+    int eventSlotCnt;
+}; /* size = 0x1F78 */
+
+struct SaveBlocks {
+    /* 0x0000 */ struct GlobalSaveInfo globalSaveInfo;
+    /* 0x0064 */ struct SaveBlockInfo saveBlockInfo[SAVE_ID_MAX];
+    /* 0x00D4 */ struct SuspendSaveBlock suspendSaveBlocks[2];
+    /* 0x3FC4 */ struct GameSaveBlock gameSaveBlocks[3];
+    /* 0x691C */ u8 offset_5[0x874];
+    /* 0x7190 */ struct GameRankSaveDataPacks gameRankSave;
+    /* 0x7224 */ struct bmsave_unkstruct1 unkstruct1;
+    /* 0x7248 */ struct bmsave_unkstruct2 unkstruct2;
+    /* 0x725C */ struct bmsave_unkstruct3 unkstruct3;
+    /* 0x73A0 */ u8 unk_73A0[4];
+    /* 0x73A4 */ u8 unk_73A4[0x5C];
+    /* 0x7400 */ struct ExtraMapSaveHead offset_6; // see bmsave-xmap.c
+};
+
+// TODO: figure out how these structs work
+struct GameSaveBlockEwram {
+    struct PlaySt playSt;
+    u8 unk_4C[0xC];
+    u8 buffer_58[0xD1C];
+    u32 buffer_D74[0xC];
+}; /* size = 0xDA4 */
+
+struct SuspendSaveBlockEwram {
+    struct PlaySt playSt;
+    u8 unk_4C[0xC];
+    u8 buffer_58[0x1EC4];
+    u32 buffer_1F1C[0xF];
+}; /* size = 0x1F58 */
+
+struct SaveBlocksEwram {
+    /* 0x0000 */ struct GlobalSaveInfo globalSaveInfo;
+    /* 0x0064 */ struct SaveBlockInfo saveBlockInfo[SAVE_ID_MAX];
+    /* 0x00D4 */ struct SuspendSaveBlockEwram suspendSaveBlocks[2];
+    /* 0x3F84 */ struct GameSaveBlockEwram gameSaveBlocks[3];
+    /* 0x6870 */ u8 offset_5[0x874];
+    /* 0x70E4 */ struct GameRankSaveDataPacks gameRankSave;
+    /* 0x7178 */ struct bmsave_unkstruct1 unkstruct1;
+    /* 0x719C */ struct bmsave_unkstruct2 unkstruct2;
+    /* 0x71B0 */ struct bmsave_unkstruct3 unkstruct3;
+};
+
 extern struct UnitUsageStats *gPidStatsSaveLoc;
 extern struct UnitUsageStats gPidStatsData[BWL_ARRAY_NUM];
 #define gBWLDataArray (&gPidStatsData[-1])
@@ -339,7 +430,7 @@ extern struct MultiArenaSaveTeam EWRAM_DATA gMultiArenaSaveTeamBufA;
 extern struct MultiArenaSaveTeam EWRAM_DATA gMultiArenaSaveTeamBufB;
 
 extern EWRAM_DATA bool gBoolSramWorking;
-extern CONST_DATA u8 * gSram;
+extern CONST_DATA struct SaveBlocks *gSram;
 extern u32 gBonusContentClaimFlags;
 extern u8 gSuspendSaveIdOffset;    /* gSaveSuBaseSlot */
 extern CONST_DATA struct ExtraMapInfo *gExtraMapInfo;
@@ -366,7 +457,7 @@ void WriteChapterFlags(void *sram_dest);
 void WritePermanentFlags(void *sram_dest);
 void ReadChapterFlags(void *ewram_dest);
 void ReadPermanentFlags(void *ewram_dest);
-void ReadPermanentFlags_ret(void *sram_src, void *ewram_dest);
+void ReadPermanentFlags_ret(const void *sram_src, void *ewram_dest);
 void WriteSupplyItems(void *sram_dest);
 void ReadSupplyItems(const void *sram_src);
 bool null_true(void);
@@ -411,7 +502,7 @@ void sub_80A4000(struct bmsave_unkstruct2 *buf);
 int sub_80A402C(void *buf, int val);
 int sub_80A402C(void *buf, int val);
 void LoadAndVerifySramSaveData(void);
-void ClearPidChStatsSaveData(void *sram_dest);
+void ClearPidChStatsSaveData(struct GameSaveBlock *sram_dest);
 void ClearPidStats_ret(void);
 void ClearPidStats(void);
 void ReadPidStats(void *sram_src);
@@ -462,8 +553,8 @@ void SetGameEndFlag(void);
 struct UnitUsageStats* GetPidStats(u8 pid);
 u32 GetBonusContentClaimFlags(void);
 void SetBonusContentClaimFlags(u32 num);
-void WriteBonusContentClaimFlags(void *sram_dest);
-void ReadBonusContentClaimFlags(const void *sram_src);
+void WriteBonusContentClaimFlags(struct GameSaveBlock *sram_dest);
+void ReadBonusContentClaimFlags(const struct GameSaveBlock *sram_src);
 void WriteLastGameSaveId(int num);
 int ReadLastGameSaveId(void);
 void InvalidateGameSave(int);
@@ -474,7 +565,7 @@ void ReadGameSave(int slot);
 bool IsSaveValid(int);
 void ReadGameSavePlaySt(int, struct PlaySt*);
 u32 LoadSavedBonusClaimFlags(int slot);
-void LoadSavedWMStuff(int slot, void *dest);
+void LoadSavedWMStuff(int slot, struct GMapData *dest);
 s8 LoadSavedEid8A(int slot);
 bool IsGameNotFirstChapter(struct PlaySt *chapter_data);
 bool IsGameSaveNotFirstChapter(int);
@@ -529,17 +620,17 @@ void ReadExtraMapInfo(void);
 // ??? bmsave_null_false2(???);
 void NullBmMapHidden_(void);
 // ??? sub_80A6D4C(???);
-// ??? sub_80A6DA0(???);
-// ??? sub_80A6E24(???);
-// ??? sub_80A6EB0(???);
-// ??? sub_80A6F0C(???);
-// ??? sub_80A6F50(???);
-// ??? sub_80A6FBC(???);
-// ??? sub_80A7034(???);
-// ??? sub_80A7054(???);
+// ??? WriteWorldMapNodes(???);
+// ??? ReadWorldMapNodes(???);
+// ??? WriteWorldMapPaths(???);
+// ??? ReadWorldMapPaths(???);
+// ??? WriteWorldMapUnits(???);
+// ??? ReadWorldMapUnits(???);
+// ??? WriteWorldMapSkirmishes(???);
+// ??? ReadWorldMapSkirmishes(???);
 void ClearWorldMapStuff(void *ptr);
-void WriteWorldMapStuff(void *sram_dest, void *src); /* SaveWMStaff */
-void ReadWorldMapStuff(const void *sram_src, void *src);
+void WriteWorldMapStuff(void *sram_dest, void *src);
+void ReadWorldMapStuff(const void *sram_src, void *dst);
 void sub_80A71E4(void*);
 void sub_80A71F8(void*);
 // ??? sub_80A720C(???);
