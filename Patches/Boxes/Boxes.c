@@ -12,22 +12,8 @@ int SendItemsToConvoy(struct Unit* unit) {
 	return true; 
 } 
 
-int GetFreeUnitID(void) { 
-	struct Unit* unit; 
-	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
-		unit = GetUnitStructFromEventParameter(i); 
-		if (unit && unit->pCharacterData) { 
-			continue; 
-		}
-		else {
-			return i; 
-		}
-	}
-	return 0xFF; 
-} 
-
 int IsBoxFull(void) { 
-	struct BoxUnit* boxUnitSaved = (void*)MS_GetSaveAddressBySlot(gChapterData.saveSlotIndex+5); 
+	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(gChapterData.saveSlotIndex); 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if (!boxUnitSaved[i].classID)
 			return false; 
@@ -39,21 +25,21 @@ int IsBoxFull(void) {
 
 
 struct BoxUnit* GetFreeBoxSlot(void) { 
-	struct BoxUnit* boxUnitSaved = (void*)MS_GetSaveAddressBySlot(gChapterData.saveSlotIndex+5); 
+	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(gChapterData.saveSlotIndex); 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if ((boxUnitSaved[i].classID == 0) || (boxUnitSaved[i].classID == 0xFF))
 			return &boxUnitSaved[i]; 
 	} 
-	return (struct BoxUnit*)0; 
+	return NULL; 
 } 
 
 struct BoxUnit* GetTakenBoxSlot(void) { 
-	struct BoxUnit* boxUnitSaved = (void*)MS_GetSaveAddressBySlot(gChapterData.saveSlotIndex+5); 
+	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(gChapterData.saveSlotIndex); 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if (boxUnitSaved[i].classID && boxUnitSaved[i].classID != 0xFF)
 			return &boxUnitSaved[i]; 
 	} 
-	return (struct BoxUnit*)0; 
+	return NULL; 
 } 
 
 struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) { 
@@ -75,23 +61,76 @@ struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) {
 // need to clear all from save file on new game 
 // need to copy over box units when save file is copied, too 
 
+void ClearPCBoxUnitsBuffer(void) { 
+	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
+} 
+
 
 void PackUnitIntoBox_ASMC(void) { 
-	struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
-	if (unit && unit->pCharacterData) { 
-		PackUnitIntoBox(GetFreeBoxSlot(), unit); 
+	//struct Unit* unit = GetTakenTempUnitAddr(); 
+	struct Unit* unit = GetFreeTempUnitAddr(); 
+	
+	if (unit) { 
+	struct Unit* realUnit = GetUnitStructFromEventParameter(gEventSlot[1]);
+	memcpy(unit, realUnit, 0x48);
+	ClearUnit(realUnit); 
+	PackUnitIntoBox(GetFreeBoxSlot(), unit); 
 	} 
 } 
 void UnpackUnitFromBox_ASMC(void) { 
 	//struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
-	struct Unit* unit = GetFreeBlueUnit();
-	UnpackUnitFromBox(unit, GetTakenBoxSlot()); 
+	struct Unit* unit = GetTakenTempUnitAddr();
+	UnpackUnitFromBox(GetTakenBoxSlot(), unit); 
+	memcpy(GetFreeBlueUnit(), (void*)unit, 0x48);
+	
+	
+	//memset((void*)&unit, 0, 0x48);
+	ClearUnit(unit); 
 	return; 
 } 
 
 
+// ClearUnit(unit); // FE8U = 0x80177F5
+		//SMS_UpdateFromGameData();
+		//ClearBoxUnit(boxRam); 
 
-//  //! FE8U = 0x8017871
+
+void UnpackUnitsFromBox(void) { 
+	int i; 
+	struct Unit* unit; 
+	struct BoxUnit* bunit;
+	for (i=0; i<BoxCapacity; i++) { 
+		bunit = GetTakenBoxSlot();
+		if (!bunit) {
+			break;
+		}
+		unit = GetFreeTempUnitAddr(); 
+		if (!unit) { 
+			break;
+		}
+		UnpackUnitFromBox(bunit, unit); 
+	} 
+	return; 
+}
+
+void PackUnitsIntoBox(void) { 
+	int i; 
+	struct Unit* unit; 
+	struct BoxUnit* bunit;
+	for (i=0; i<BoxCapacity; i++) { 
+		bunit = GetFreeBoxSlot();
+		if (!bunit) {
+			break;
+		}
+		unit = GetTakenTempUnitAddr(); 
+		if (!unit) { 
+			break;
+		}
+		PackUnitIntoBox(bunit, unit); 
+	} 
+	return; 
+}
+
 	
 //struct BoxUnit PackUnitIntoBox(struct BoxUnit boxRam[], struct Unit* unit) { 
   struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
@@ -110,12 +149,12 @@ void UnpackUnitFromBox_ASMC(void) {
 		for (int i = 0; i<5; i++) { 
 			boxRam->moves[i] = unit->ranks[i];
 		} 
-		ClearUnit(unit); // FE8U = 0x80177F5
+		
 	} 
 	return boxRam; 
 } 
 	
-struct Unit* UnpackUnitFromBox(struct Unit* unit, struct BoxUnit* boxRam) { 
+struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	if ((boxRam->classID != 0xFF) && (boxRam->classID)) { 
 		unit->pClassData = &NewClassTable[boxRam->classID]; 
 		unit->maxHP = 		boxRam->hp ; 
@@ -130,7 +169,7 @@ struct Unit* UnpackUnitFromBox(struct Unit* unit, struct BoxUnit* boxRam) {
 		unit->level = 		boxRam->lvl; 
 		unit->exp = 		boxRam->exp; 
 		for (int i = 0; i<5; i++) { 
-			boxRam->moves[i] = unit->ranks[i];
+			unit->ranks[i] = boxRam->moves[i];
 		} 
 		
 		// zero things out 
@@ -171,8 +210,7 @@ struct Unit* UnpackUnitFromBox(struct Unit* unit, struct BoxUnit* boxRam) {
 		unit->index = GetFreeDeploymentID(); 
 		unit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
 		
-		SMS_UpdateFromGameData();
-		ClearBoxUnit(boxRam); 
+
 	} 
 
 	return unit; 
@@ -194,4 +232,53 @@ int GetFreeDeploymentID(void) {
 } 
 
 
+
+inline struct Unit* GetTempUnit(int i) { 
+	return &PCBoxUnitsBuffer[i]; 
+} 
+
+struct Unit* GetFreeTempUnitAddr(void) {
+    int i, last = BoxBufferCapacity;
+    for (i = 0; i < last; ++i) {
+        struct Unit* unit = GetTempUnit(i);
+
+        if (unit->pCharacterData == NULL)
+            return unit;
+    }
+    return NULL;
+}
+
+struct Unit* GetTakenTempUnitAddr(void) {
+    int i, last = BoxBufferCapacity;
+    for (i = 0; i < last; ++i) {
+        struct Unit* unit = GetTempUnit(i);
+        if (unit->pCharacterData)
+            return unit;
+    }
+    return NULL;
+}
+
+
+int GetFreeUnitID(void) { 
+	struct Unit* unit; 
+	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
+		unit = GetUnitStructFromEventParameter(i); 
+		if (unit && unit->pCharacterData) { 
+			continue; 
+		}
+		else {
+			return i; 
+		}
+	}
+	return 0xFF; 
+} 
+
+
+
+void* PC_GetSaveAddressBySlot(unsigned slot) {
+	if (slot > 2) 
+		return NULL;
+
+	return (void*)(0xE000000) + PCBoxSaveBlockDecl[slot].offset;
+}
 

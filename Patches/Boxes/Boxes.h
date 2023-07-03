@@ -19,6 +19,9 @@ struct BoxUnit {
 };
 
 extern int BoxCapacity; 
+extern int BoxBufferCapacity; 
+
+extern struct Unit PCBoxUnitsBuffer[]; //0x2026E30 size 0x2048 
 
 //extern struct BoxUnit BoxUnitSaved[]; 
 
@@ -32,10 +35,19 @@ struct BoxUnit* ClearBoxUnit(struct BoxUnit*);
 void PackUnitIntoBox_ASMC(void);
 void UnpackUnitFromBox_ASMC(void);
 struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit);
-struct Unit* UnpackUnitFromBox(struct Unit* unit, struct BoxUnit* boxRam);
+struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit);
+struct Unit* GetFreeTempUnitAddr(void);
+struct Unit* GetTakenTempUnitAddr(void);
+void* PC_GetSaveAddressBySlot(unsigned slot); 
+inline struct Unit* GetTempUnit(int i);
 
 
-
+struct SaveBlockDecl {
+	/* 00 */ u16 offset;
+	/* 02 */ u16 type;
+};
+extern const u16 PCBoxSizeLookup[];
+extern const struct SaveBlockDecl PCBoxSaveBlockDecl[];
 
 // Vanilla: 
 extern struct Unit* GetUnitStructFromEventParameter(int id); 

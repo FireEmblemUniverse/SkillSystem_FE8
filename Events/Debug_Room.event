@@ -465,6 +465,7 @@ Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(21, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
+ASMC ClearPCBoxUnitsBuffer
 MNC2 DebugCh
 
 //SetUnitStatus(1, CurrentHP, 5)

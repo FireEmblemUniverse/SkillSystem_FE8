@@ -4,6 +4,24 @@ ALIGN 4
 BoxCapacity: 
 WORD 100 
 
+ALIGN 4 
+BoxBufferCapacity:
+WORD 114 // 0x2028 bytes / 0x48 unit struct size = #0x72 / #114 units 
+
+
+ALIGN 4
+PCBoxSaveBlockDecl:
+	//    offst type // desc
+	SHORT $691C 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
+	SHORT $70BC 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
+	SHORT $785C 4 // 7: Pc box for save file 3	undefined 
+
+
+ALIGN 4
+PCBoxSizeLookup:
+	SHORT $7A0 // type 4: pc box 
+
+
 #define StoreUnit(unitID) "SVAL s1 unitID; ASMC PackUnitIntoBox_ASMC" 
 #define WithdrawUnit "ASMC UnpackUnitFromBox_ASMC" 
 
