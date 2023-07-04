@@ -6,6 +6,10 @@
 PUSH
   ORG 0x96350
   POIN PREEXT_StartExtraEntry
+  
+ ORG $9AF32 // kill PrepUnit_InitSMS(proc); from ProcPrepUnit_InitScreen as we call our own version 
+ SHORT $46c0 $46c0 
+  
 POP
 
 

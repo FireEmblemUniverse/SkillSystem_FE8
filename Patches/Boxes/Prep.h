@@ -1,4 +1,7 @@
 
+void* memcpy(void* dest, const void* src, unsigned int count); //! FE8U = (0x080D1C0C+1)
+void* memset(void* dest, int ch, unsigned int count); //! FE8U = (0x080D1C6C+1)
+
 #include "include/global.h"
 #include "include/functions.h"
 #include "include/variables.h"
@@ -18,6 +21,15 @@
 #include "include/constants/video-global.h"
 #include "include/bmlib.h"
 #include "include/prepscreen.h"
+
+
+void NewProcPrepUnit_InitScreen(struct ProcPrepUnit *proc);
+void NewPrepUnit_InitSMS(struct ProcPrepUnit *proc);
+void NewMakePrepUnitList(void);
+void NewProcPrepUnit_OnInit(struct ProcPrepUnit *proc);
+void Newsub_809B520(struct ProcPrepUnit *proc);
+void NewRegisterPrepUnitList(int index, struct Unit *unit);
+void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc);
 
 
 void ProcPrepUnit_OnEnd(struct ProcPrepUnit *proc);
@@ -54,8 +66,8 @@ static const struct ProcCmd ProcScr_PCBoxUnitScreen[] = {
     PROC_SET_END_CB(ProcPrepUnit_OnEnd),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_0),
-    PROC_CALL(ProcPrepUnit_OnInit),
-    PROC_CALL(ProcPrepUnit_InitScreen),
+    PROC_CALL(NewProcPrepUnit_OnInit),
+    PROC_CALL(NewProcPrepUnit_InitScreen),
     PROC_CALL_ARG(NewFadeIn, 0x10),
     PROC_WHILE(FadeInExists),
 
@@ -77,7 +89,7 @@ PROC_LABEL(PROC_LABEL_PREPUNIT_PRESS_SELECT),
     PROC_CALL(sub_809B458),
     PROC_YIELD,
     PROC_CALL(sub_809B478),
-    PROC_CALL(ProcPrepUnit_InitScreen),
+    PROC_CALL(NewProcPrepUnit_InitScreen),
     PROC_YIELD,
     PROC_CALL_ARG(NewFadeIn, 0x10),
     PROC_WHILE(FadeInExists),
@@ -89,14 +101,14 @@ PROC_LABEL(PROC_LABEL_PREPUNIT_PRESS_R),
     PROC_CALL(sub_809B014),
     PROC_CALL(sub_809B504),
     PROC_YIELD,
-    PROC_CALL(sub_809B520),
-    PROC_CALL(ProcPrepUnit_InitScreen),
+    PROC_CALL(Newsub_809B520),
+    PROC_CALL(NewProcPrepUnit_InitScreen),
     PROC_SLEEP(0x2),
     PROC_CALL(PrepUnitEnableDisp),
     PROC_GOTO(0x1),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_GAME_START),
-    PROC_CALL(ProcPrepUnit_OnGameStart),
+    PROC_CALL(NewProcPrepUnit_OnGameStart),
     PROC_SLEEP(0x1E),
     PROC_CALL_ARG(NewFadeOut, 0x8),
     PROC_WHILE(FadeOutExists),

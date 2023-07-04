@@ -8,7 +8,14 @@
 
 
 #include "Prep.h"
+#include "Boxes.h" 
 
+// 64 pointers to a unit struct 
+//struct PrepUnitList {
+//    struct Unit *units[0x40];
+//    int max_num;        /* A cunter maybe related to the amount of units in team */
+//    int latest_pid;     /* Last unit char-id when you leave the prep-unit-screen */
+//};
 
 void StartPCBoxUnitSelect(struct Proc* proc) { 
 	Proc_StartBlocking(ProcScr_PCBoxUnitScreen, proc); 
@@ -18,6 +25,93 @@ void StartPCBoxUnitSelect(struct Proc* proc) {
 
 
 
+
+void NewProcPrepUnit_InitScreen(struct ProcPrepUnit *proc) { 
+	ProcPrepUnit_InitScreen(proc);
+	NewPrepUnit_InitSMS(proc); 
+} 
+
+
+
+void NewPrepUnit_InitSMS(struct ProcPrepUnit *proc)
+{
+    SetupMapSpritesPalettes();
+    CpuFastFill(0, gUnknown_02022C08, 0x20);
+    NewMakePrepUnitList();
+    PrepAutoCapDeployUnits(proc->proc_parent);
+    PrepUpdateSMS();
+}
+void NewMakePrepUnitList()
+{
+    int i; 
+	int cur = CountTempUnits();
+    struct Unit *unit;
+    for (i = 1; i < 64; i++) {
+        unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (IsUnitInCurrentRoster(unit)) {
+            NewRegisterPrepUnitList(cur, unit);
+            cur++;
+        }
+    }
+
+    PrepSetUnitAmount(cur);
+}
+
+struct Unit *GetUnitFromPrepList(int index) // called in 6 other functions
+{
+   // return gPrepUnitList.units[index];
+   
+	return &PCBoxUnitsBuffer[index]; 
+}
+
+void NewRegisterPrepUnitList(int index, struct Unit *unit)
+{
+    gPrepUnitList.units[index] = unit;
+	struct Unit* destUnit = GetFreeTempUnitAddr();
+	memcpy(destUnit, unit, 0x48);
+	ClearUnit(unit);
+}
+
+
+void NewProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
+{
+    struct ProcAtMenu *parent;
+    NewMakePrepUnitList();
+    proc->list_num_cur = UnitGetIndexInPrepList(PrepGetLatestCharId());
+    proc->max_counter = ((struct ProcAtMenu *)(proc->proc_parent))->max_counter;
+    proc->cur_counter = ((struct ProcAtMenu *)(proc->proc_parent))->cur_counter;
+    proc->yDiff_cur = ((struct ProcAtMenu *)(proc->proc_parent))->yDiff;
+    proc->list_num_pre = proc->list_num_cur;
+    proc->button_blank = 0;
+}
+
+
+void Newsub_809B520(struct ProcPrepUnit *proc)
+{
+    int list_num;
+    NewMakePrepUnitList();
+
+    list_num = GetLatestUnitIndexInPrepListByUId();
+    proc->list_num_pre = list_num;
+    proc->list_num_cur = list_num;
+}
+
+extern void MS_SaveGame(unsigned slot);
+void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
+{
+    ((struct ProcAtMenu *)(proc->proc_parent))->end_prep = 1;
+    Proc_Goto(proc->proc_parent, 0x6);
+    proc->button_blank = 1;
+	
+	
+	DeploySelectedUnits(proc->cur_counter); 
+	MS_SaveGame(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
+	
+}
 
 
 
@@ -66,6 +160,7 @@ void PrepUnit_DrawUnitListNames(struct ProcPrepUnit *proc, int line)
 }
 */
 
+/*
 void PrepUpdateMenuTsaScroll(int val)
 {
     u32 _val = val * 2;
@@ -153,14 +248,6 @@ void PrepUnit_InitGfx()
     EnablePaletteSync();
 }
 
-void PrepUnit_InitSMS(struct ProcPrepUnit *proc)
-{
-    SetupMapSpritesPalettes();
-    CpuFastFill(0, gUnknown_02022C08, 0x20);
-    MakePrepUnitList();
-    PrepAutoCapDeployUnits(proc->proc_parent);
-    PrepUpdateSMS();
-}
 
 void PrepUnit_DrawLeftUnitName(struct Unit *unit)
 {
@@ -412,18 +499,18 @@ void sub_809AE10(struct ProcPrepUnit *proc)
 
     sub_80ACD60(msk);
 }
+*/
 
-void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
-{
-    struct ProcAtMenu *parent;
-    MakePrepUnitList();
-    proc->list_num_cur = UnitGetIndexInPrepList(PrepGetLatestCharId());
-    proc->max_counter = ((struct ProcAtMenu *)(proc->proc_parent))->max_counter;
-    proc->cur_counter = ((struct ProcAtMenu *)(proc->proc_parent))->cur_counter;
-    proc->yDiff_cur = ((struct ProcAtMenu *)(proc->proc_parent))->yDiff;
-    proc->list_num_pre = proc->list_num_cur;
-    proc->button_blank = 0;
-}
+
+
+
+
+
+
+
+
+
+
 /*
 // this screws up the gfx 
 void ProcPrepUnit_InitScreen(struct ProcPrepUnit *proc)
@@ -477,6 +564,20 @@ void ProcPrepUnit_InitScreen(struct ProcPrepUnit *proc)
 }
 */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void sub_809B014()
 {
     Delete6CMenuScroll();
@@ -673,12 +774,6 @@ void ProcPrepUnit_OnEnd(struct ProcPrepUnit *proc)
     EndBG3Slider_();
 }
 
-void ProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
-{
-    ((struct ProcAtMenu *)(proc->proc_parent))->end_prep = 1;
-    Proc_Goto(proc->proc_parent, 0x6);
-    proc->button_blank = 1;
-}
 
 void sub_809B458(struct ProcPrepUnit *proc)
 {
@@ -721,16 +816,7 @@ void sub_809B504(struct ProcPrepUnit *proc)
     SetStatScreenConfig(0x11);
     StartStatScreen(GetUnitFromPrepList(proc->list_num_cur), proc);
 }
-
-void sub_809B520(struct ProcPrepUnit *proc)
-{
-    int list_num;
-    MakePrepUnitList();
-
-    list_num = GetLatestUnitIndexInPrepListByUId();
-    proc->list_num_pre = list_num;
-    proc->list_num_cur = list_num;
-}
+*/
 
 /*
 */

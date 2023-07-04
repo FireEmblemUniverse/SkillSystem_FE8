@@ -65,6 +65,9 @@ int MS_CheckEid8AFromGameSave(unsigned slot) {
 	return ((u8(*)(unsigned eid, void* buf))(0x08083D34+1))(0x8A, gGenericBuffer);
 }
 
+extern int UnpackUnitsFromBox(int slot);
+extern void PackUnitsIntoBox(int slot);
+
 void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 	void* const source = GetSaveSourceAddress(sourceSlot);
 	void* const target = GetSaveTargetAddress(targetSlot);
@@ -73,6 +76,9 @@ void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 
 	ReadSramFast(source, gGenericBuffer, size);
 	WriteAndVerifySramFast(gGenericBuffer, target, size);
+	
+	UnpackUnitsFromBox(sourceSlot);
+	PackUnitsIntoBox(targetSlot); 
 
 	struct SaveBlockMetadata sbm;
 
@@ -81,6 +87,7 @@ void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 
 	SaveMetadata_Save(&sbm, targetSlot);
 }
+
 
 void MS_SaveGame(unsigned slot) {
 	void* const base = GetSaveTargetAddress(slot);
@@ -96,6 +103,9 @@ void MS_SaveGame(unsigned slot) {
 		if (chunk->save)
 			chunk->save(base + chunk->offset, chunk->size);
 
+
+
+	PackUnitsIntoBox(slot);
 	// Setup block metadata
 
 	struct SaveBlockMetadata sbm;
@@ -121,6 +131,8 @@ void MS_LoadGame(unsigned slot) {
 		if (chunk->load)
 			chunk->load(base + chunk->offset, chunk->size);
 
+
+	UnpackUnitsFromBox(slot);
 	// Update save slot in global metadata
 	UpdateLastUsedGameSaveSlot(slot);
 }

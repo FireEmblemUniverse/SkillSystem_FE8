@@ -1,10 +1,5 @@
+#include "gbafe.h"
 #include "Boxes.h" 
-
-
-
-
-
-
 
 
 
@@ -23,8 +18,8 @@ int SendItemsToConvoy(struct Unit* unit) {
 	return true; 
 } 
 
-int IsBoxFull(void) { 
-	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(gChapterData.saveSlotIndex); 
+int IsBoxFull(int slot) { 
+	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if (!boxUnitSaved[i].classID)
 			return false; 
@@ -35,8 +30,8 @@ int IsBoxFull(void) {
 
 
 
-struct BoxUnit* GetFreeBoxSlot(void) { 
-	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(gChapterData.saveSlotIndex); 
+struct BoxUnit* GetFreeBoxSlot(int slot) { 
+	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if ((boxUnitSaved[i].classID == 0) || (boxUnitSaved[i].classID == 0xFF))
 			return &boxUnitSaved[i]; 
@@ -44,8 +39,8 @@ struct BoxUnit* GetFreeBoxSlot(void) {
 	return NULL; 
 } 
 
-struct BoxUnit* GetTakenBoxSlot(void) { 
-	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(gChapterData.saveSlotIndex); 
+struct BoxUnit* GetTakenBoxSlot(int slot) { 
+	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if (boxUnitSaved[i].classID && boxUnitSaved[i].classID != 0xFF)
 			return &boxUnitSaved[i]; 
@@ -76,22 +71,32 @@ void ClearPCBoxUnitsBuffer(void) {
 	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
 } 
 
+void DeploySelectedUnits(int count) { 
+	for (int i = 0; i < count; i++) { 
+		memcpy(GetFreeBlueUnit(), (void*)GetTakenTempUnitAddr(), 0x48);
+
+	}
+} 
+
 
 void PackUnitIntoBox_ASMC(void) { 
 	//struct Unit* unit = GetTakenTempUnitAddr(); 
+	int slot = gChapterData.saveSlotIndex; 
+	
 	struct Unit* unit = GetFreeTempUnitAddr(); 
 	
 	if (unit) { 
 	struct Unit* realUnit = GetUnitStructFromEventParameter(gEventSlot[1]);
 	memcpy(unit, realUnit, 0x48);
 	ClearUnit(realUnit); 
-	PackUnitIntoBox(GetFreeBoxSlot(), unit); 
+	PackUnitIntoBox(GetFreeBoxSlot(slot), unit); 
 	} 
 } 
 void UnpackUnitFromBox_ASMC(void) { 
+	int slot = gChapterData.saveSlotIndex; 
 	//struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
 	struct Unit* unit = GetTakenTempUnitAddr();
-	UnpackUnitFromBox(GetTakenBoxSlot(), unit); 
+	UnpackUnitFromBox(GetTakenBoxSlot(slot), unit); 
 	memcpy(GetFreeBlueUnit(), (void*)unit, 0x48);
 	
 	
@@ -106,12 +111,12 @@ void UnpackUnitFromBox_ASMC(void) {
 		//ClearBoxUnit(boxRam); 
 
 
-void UnpackUnitsFromBox(void) { 
-	int i; 
+int UnpackUnitsFromBox(int slot) { 
+	int i, cur = 0; 
 	struct Unit* unit; 
 	struct BoxUnit* bunit;
 	for (i=0; i<BoxCapacity; i++) { 
-		bunit = GetTakenBoxSlot();
+		bunit = GetTakenBoxSlot(slot);
 		if (!bunit) {
 			break;
 		}
@@ -119,17 +124,18 @@ void UnpackUnitsFromBox(void) {
 		if (!unit) { 
 			break;
 		}
+		cur++;
 		UnpackUnitFromBox(bunit, unit); 
 	} 
-	return; 
+	return cur; 
 }
 
-void PackUnitsIntoBox(void) { 
+void PackUnitsIntoBox(int slot) { 
 	int i; 
 	struct Unit* unit; 
 	struct BoxUnit* bunit;
 	for (i=0; i<BoxCapacity; i++) { 
-		bunit = GetFreeBoxSlot();
+		bunit = GetFreeBoxSlot(slot);
 		if (!bunit) {
 			break;
 		}
@@ -162,6 +168,7 @@ void PackUnitsIntoBox(void) {
 		} 
 		
 	} 
+	//ClearUnit(unit); 
 	return boxRam; 
 } 
 	
@@ -244,10 +251,6 @@ int GetFreeDeploymentID(void) {
 
 
 
-inline struct Unit* GetTempUnit(int i) { 
-	return &PCBoxUnitsBuffer[i]; 
-} 
-
 struct Unit* GetFreeTempUnitAddr(void) {
     int i, last = BoxBufferCapacity;
     for (i = 0; i < last; ++i) {
@@ -267,6 +270,16 @@ struct Unit* GetTakenTempUnitAddr(void) {
             return unit;
     }
     return NULL;
+}
+int CountTempUnits(void) {
+	int cur = 0;
+    int i, last = BoxBufferCapacity;
+    for (i = 0; i < last; ++i) {
+        struct Unit* unit = GetTempUnit(i);
+        if (unit->pCharacterData)
+            cur++;
+    }
+    return cur;
 }
 
 

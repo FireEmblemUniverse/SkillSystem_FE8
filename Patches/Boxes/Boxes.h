@@ -1,4 +1,4 @@
-#include "gbafe.h"
+
 
 extern struct ClassData NewClassTable[]; 
 void* MS_GetSaveAddressBySlot(unsigned slot);
@@ -28,9 +28,9 @@ extern struct Unit PCBoxUnitsBuffer[]; //0x2026E30 size 0x2048
 
 int GetFreeUnitID(void);
 int GetFreeDeploymentID(void);
-int IsBoxFull(void);
-struct BoxUnit* GetFreeBoxSlot(void);
-struct BoxUnit* GetTakenBoxSlot(void);
+int IsBoxFull(int slot);
+struct BoxUnit* GetFreeBoxSlot(int slot);
+struct BoxUnit* GetTakenBoxSlot(int slot);
 struct BoxUnit* ClearBoxUnit(struct BoxUnit*);
 void PackUnitIntoBox_ASMC(void);
 void UnpackUnitFromBox_ASMC(void);
@@ -39,7 +39,10 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit);
 struct Unit* GetFreeTempUnitAddr(void);
 struct Unit* GetTakenTempUnitAddr(void);
 void* PC_GetSaveAddressBySlot(unsigned slot); 
-inline struct Unit* GetTempUnit(int i);
+int UnpackUnitsFromBox(int slot);
+void PackUnitsIntoBox(int slot);
+int CountTempUnits(void); 
+void DeploySelectedUnits(int count);
 
 
 struct SaveBlockDecl {
@@ -53,3 +56,6 @@ extern const struct SaveBlockDecl PCBoxSaveBlockDecl[];
 extern struct Unit* GetUnitStructFromEventParameter(int id); 
 extern int AddItemToConvoy(int); 
 
+inline struct Unit* GetTempUnit(int i) { 
+	return &PCBoxUnitsBuffer[i]; 
+} 
