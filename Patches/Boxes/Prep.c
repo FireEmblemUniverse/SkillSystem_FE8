@@ -1,9 +1,11 @@
 
 
 
+// start game -> visit center -> save -> deploy team -> visit center -> (saving this time deletes your pc box units!) 
+// declining to save deletes units > 50 
 
-
-
+// 202BE4C
+//2026E30
 
 
 
@@ -17,12 +19,37 @@
 //    int latest_pid;     /* Last unit char-id when you leave the prep-unit-screen */
 //};
 
-void StartPCBoxUnitSelect(struct Proc* proc) { 
+
+void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
+{
 	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
 	ClearPCBoxUnitsBuffer();
+	RelocateUnitsPast50(); 
 	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
+
 	
 	
+    PrepSetLatestCharId(0);
+    proc->xDiff = 0;
+    *((u16*)&proc->yDiff) = 0;    /* ? */
+
+    if (CheckInLinkArena())
+        proc->max_counter = 5;
+    else
+        proc->max_counter = GetChapterAllyUnitCount();
+
+    proc->unk_30 = 0;
+    proc->unk_31 = 0;
+    proc->unk_32 = 0;
+    proc->state = 0;
+    proc->do_help = 0;
+    proc->end_prep = 0;
+    proc->cur_cmd = 0;
+    proc->hand_pos = 0;
+}
+
+
+void StartPCBoxUnitSelect(struct Proc* proc) { 
 	Proc_StartBlocking(ProcScr_PCBoxUnitScreen, proc); 
 	
 	return; 
@@ -57,10 +84,10 @@ void NewMakePrepUnitList()
         if (!UNIT_IS_VALID(unit))
             continue;
 
-        if (IsUnitInCurrentRoster(unit)) {
+        //if (IsUnitInCurrentRoster(unit)) {
             //NewRegisterPrepUnitList(cur, unit);
             cur++;
-        }
+        //}
     }
 
     PrepSetUnitAmount(cur);
@@ -69,12 +96,13 @@ void NewMakePrepUnitList()
 int CountUnitsInUnitStructRam(void) { 
 	int cur = 0;
     struct Unit *unit;
-    for (int i = 1; i < 61; i++) {
+    for (int i = 0; i < 63; i++) {
         unit = &gUnitArrayBlue[i];
 
-        if (!UNIT_IS_VALID(unit))
-            continue;
-		cur++; 
+        if (UNIT_IS_VALID(unit)) { 
+            cur++; 
+		} 
+		
     }
 	return cur; 
 } 
@@ -88,7 +116,7 @@ struct Unit *GetUnitFromPrepList(int index) // called in 6 other functions
 		unit = &gUnitArrayBlue[index];
 	}
 	else { 
-		index -= c; 
+		index = index - c; 
 		unit = &PCBoxUnitsBuffer[index]; 
 	} 
 	return unit; 
@@ -136,8 +164,9 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
 	
 	
 	DeploySelectedUnits(); 
-	PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
-	ClearPCBoxUnitsBuffer();
+	
+	//PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
+	//ClearPCBoxUnitsBuffer();
 	//MS_SaveGame(gPlaySt.gameSaveSlot); 
 	
 }

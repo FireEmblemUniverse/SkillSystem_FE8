@@ -47,14 +47,38 @@ struct BoxUnit* GetFreeBoxSlot(int slot) {
 	return NULL; 
 } 
 
-struct BoxUnit* GetTakenBoxSlot(int slot) { 
+struct BoxUnit* GetTakenBoxSlot(int slot, int index) { 
 	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
+	int c = 0; 
 	for (int i = 0; i < BoxCapacity; i++) { 
-		if (boxUnitSaved[i].classID && boxUnitSaved[i].classID != 0xFF)
-			return &boxUnitSaved[i]; 
+		if (boxUnitSaved[i].classID && boxUnitSaved[i].classID != 0xFF) { 
+			
+			
+			if (c == index) { 
+				return &boxUnitSaved[i]; 
+			} 
+			c++; 
+		} 
+		
 	} 
+	
 	return NULL; 
 } 
+
+void ClearAllBoxUnitsASMC(void) { 
+	ClearAllBoxUnits(gChapterData.saveSlotIndex);
+} 
+
+void ClearAllBoxUnits(int slot) {
+	
+	struct BoxUnit* boxRam; 
+	void* baseRam = PC_GetSaveAddressBySlot(slot); 
+	for (int i = 0; i<BoxCapacity; i++) { 
+		boxRam = (struct BoxUnit*)baseRam; 
+		memset((void*)&boxRam[i], 0,  0x10); 
+		//ClearBoxUnit(&boxRam[i]);
+	}
+}
 
 struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) { 
 	boxRam->classID = 0; 
@@ -72,48 +96,53 @@ struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) {
 } 
 
 
-
+void RelocateUnitsPast50(void) { 
+	memcpy((void*)&PCBoxUnitsBuffer[0], (void*)&gUnitArrayBlue[50], 0x48*12);
+	memset(&gUnitArrayBlue[51], 0, 0x48*12); 
+} 
 
 void ClearPCBoxUnitsBuffer(void) { 
 	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
 } 
 
+extern struct Unit unit[62]; // gGenericBuffer 0x2020188
 void DeploySelectedUnits() { 
-	asm("mov r11, r11");
+	//asm("mov r11, r11");
 	
-	struct Unit* unit[50];
+	//struct Unit unit[50] = (struct Unit*)&gGenericBuffer[0];
+	//struct Unit unit[50] = (void*)gGenericBuffer;
 	struct Unit* unitTemp;
 	
-	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*50); // move all units to the stack 
-	memset(&gUnitArrayBlue[0], 0, 0x48*50); 
+	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*62); // move all units to the stack 
+	memset(&gUnitArrayBlue[0], 0, 0x48*62); 
 	
 	
 	for (int i = 0; i<50; i++) { // move units that were deployed back into unit struct ram 
-		if ((unit[i]->pCharacterData) && (!(unit[i]->state & US_NOT_DEPLOYED))) { 
-			memcpy(GetFreeBlueUnit(), (void*)unit[i], 0x48);
-			ClearUnit(unit[i]); 
+		if ((unit[i].pCharacterData) && (!(unit[i].state & US_NOT_DEPLOYED))) { 
+			memcpy(GetFreeBlueUnit(), (void*)&unit[i], 0x48);
+			ClearUnit(&unit[i]); 
 		}
 	} 
 	for (int i = 0; i<BoxBufferCapacity; i++) { 
 		unitTemp = &PCBoxUnitsBuffer[i]; 
-		if ((!unitTemp->pCharacterData) | (unitTemp->state & US_NOT_DEPLOYED)) {
-		continue; }
-		memcpy(GetFreeBlueUnit(), (void*)unitTemp, 0x48); // copy unit into a free slot in unit struct ram 
-		ClearUnit(unitTemp); 
+		if ((unitTemp->pCharacterData) && (!(unitTemp->state & US_NOT_DEPLOYED))) {
+			memcpy(GetFreeBlueUnit(), (void*)unitTemp, 0x48); // copy unit into a free slot in unit struct ram 
+			ClearUnit(unitTemp); 
+		}
 	}
 	
 	int c = CountUnitsInUnitStructRam();
 	
 	for (int i = 0; i<50; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
-		if ((unit[i]->pCharacterData)) { 
+		if ((unit[i].pCharacterData)) { 
 			if (c < 50) { 
-			memcpy(GetFreeBlueUnit(), (void*)unit[i], 0x48);
-			ClearUnit(unit[i]); 
+			memcpy(GetFreeBlueUnit(), (void*)&unit[i], 0x48);
+			ClearUnit(&unit[i]); 
 			c++; 
 			} 
 			else {
-				memcpy(GetFreeTempUnitAddr(), (void*)unit[i], 0x48); // copy unit into a free slot in pc 
-				ClearUnit(unit[i]); 
+				memcpy(GetFreeTempUnitAddr(), (void*)&unit[i], 0x48); // copy unit into a free slot in pc 
+				ClearUnit(&unit[i]); 
 			}
 		} 
 	} 
@@ -141,7 +170,7 @@ void UnpackUnitFromBox_ASMC(void) {
 	int slot = gChapterData.saveSlotIndex; 
 	//struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
 	struct Unit* unit = GetTakenTempUnitAddr();
-	UnpackUnitFromBox(GetTakenBoxSlot(slot), unit); 
+	UnpackUnitFromBox(GetTakenBoxSlot(slot, 0), unit); 
 	memcpy(GetFreeBlueUnit(), (void*)unit, 0x48);
 	
 	
@@ -161,7 +190,7 @@ int UnpackUnitsFromBox(int slot) {
 	struct Unit* unit; 
 	struct BoxUnit* bunit;
 	for (i=0; i<BoxCapacity; i++) { 
-		bunit = GetTakenBoxSlot(slot);
+		bunit = GetTakenBoxSlot(slot, i);
 		if (!bunit) {
 			break;
 		}
@@ -171,14 +200,17 @@ int UnpackUnitsFromBox(int slot) {
 		}
 		cur++;
 		UnpackUnitFromBox(bunit, unit); 
+		
 	} 
 	return cur; 
 }
 
 void PackUnitsIntoBox(int slot) { 
+	ClearAllBoxUnits(slot);
 	int i; 
 	struct Unit* unit; 
 	struct BoxUnit* bunit;
+	
 	for (i=0; i<BoxCapacity; i++) { 
 		bunit = GetFreeBoxSlot(slot);
 		if (!bunit) {
@@ -189,6 +221,7 @@ void PackUnitsIntoBox(int slot) {
 			break;
 		}
 		PackUnitIntoBox(bunit, unit); 
+		ClearUnit(unit); 
 	} 
 	return; 
 }
