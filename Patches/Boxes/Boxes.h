@@ -42,7 +42,7 @@ void* PC_GetSaveAddressBySlot(unsigned slot);
 int UnpackUnitsFromBox(int slot);
 void PackUnitsIntoBox(int slot);
 int CountTempUnits(void); 
-void DeploySelectedUnits(int count);
+void DeploySelectedUnits(void);
 int CountUnitsInUnitStructRam(void);
 void ClearPCBoxUnitsBuffer(void);
 

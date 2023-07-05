@@ -135,7 +135,7 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
     proc->button_blank = 1;
 	
 	
-	DeploySelectedUnits(proc->cur_counter); 
+	DeploySelectedUnits(); 
 	PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
 	ClearPCBoxUnitsBuffer();
 	//MS_SaveGame(gPlaySt.gameSaveSlot); 

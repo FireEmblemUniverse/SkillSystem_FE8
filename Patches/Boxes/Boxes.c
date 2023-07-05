@@ -78,26 +78,48 @@ void ClearPCBoxUnitsBuffer(void) {
 	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
 } 
 
-void DeploySelectedUnits(int count) { 
-
-	struct Unit* unit;
-	int c = CountUnitsInUnitStructRam(); 
-	// excess units past 30 in unit struct get stored 
-	if (c > 30) { 
-		for (int i = c; i<50; i++) { 
-		unit = &gUnitArrayBlue[i];
-		memcpy(GetFreeTempUnitAddr(), (void*)unit, 0x48); // copy unit into a free slot in pc 
-		ClearUnit(unit); 
+void DeploySelectedUnits() { 
+	asm("mov r11, r11");
+	
+	struct Unit* unit[50];
+	struct Unit* unitTemp;
+	
+	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*50); // move all units to the stack 
+	memset(&gUnitArrayBlue[0], 0, 0x48*50); 
+	
+	
+	for (int i = 0; i<50; i++) { // move units that were deployed back into unit struct ram 
+		if ((unit[i]->pCharacterData) && (!(unit[i]->state & US_NOT_DEPLOYED))) { 
+			memcpy(GetFreeBlueUnit(), (void*)unit[i], 0x48);
+			ClearUnit(unit[i]); 
 		}
+	} 
+	for (int i = 0; i<BoxBufferCapacity; i++) { 
+		unitTemp = &PCBoxUnitsBuffer[i]; 
+		if ((!unitTemp->pCharacterData) | (unitTemp->state & US_NOT_DEPLOYED)) {
+		continue; }
+		memcpy(GetFreeBlueUnit(), (void*)unitTemp, 0x48); // copy unit into a free slot in unit struct ram 
+		ClearUnit(unitTemp); 
 	}
 	
-	for (int i = 0; i<BoxBufferCapacity; i++) { 
-		unit = &PCBoxUnitsBuffer[i]; 
-		if (unit->state & US_NOT_DEPLOYED) {
-		continue; }
-		memcpy(GetFreeBlueUnit(), (void*)unit, 0x48); // copy unit into a free slot in unit struct ram 
-		ClearUnit(unit); 
-	}
+	int c = CountUnitsInUnitStructRam();
+	
+	for (int i = 0; i<50; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
+		if ((unit[i]->pCharacterData)) { 
+			if (c < 50) { 
+			memcpy(GetFreeBlueUnit(), (void*)unit[i], 0x48);
+			ClearUnit(unit[i]); 
+			c++; 
+			} 
+			else {
+				memcpy(GetFreeTempUnitAddr(), (void*)unit[i], 0x48); // copy unit into a free slot in pc 
+				ClearUnit(unit[i]); 
+			}
+		} 
+	} 
+	
+	
+
 	
 } 
 
