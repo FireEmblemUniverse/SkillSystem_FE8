@@ -3,7 +3,11 @@
 .thumb
 .equ Table2, Table+4 
 
+cmp r0, #0 
+beq Found 
 ldr r1, [r0] 
+cmp r1, #0 
+beq Found 
 ldrb r1, [r1, #4] 
 ldr r3, Table2 
 Loop2: 

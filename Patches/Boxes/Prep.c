@@ -18,6 +18,11 @@
 //};
 
 void StartPCBoxUnitSelect(struct Proc* proc) { 
+	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
+	ClearPCBoxUnitsBuffer();
+	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
+	
+	
 	Proc_StartBlocking(ProcScr_PCBoxUnitScreen, proc); 
 	
 	return; 
@@ -53,7 +58,7 @@ void NewMakePrepUnitList()
             continue;
 
         if (IsUnitInCurrentRoster(unit)) {
-            NewRegisterPrepUnitList(cur, unit);
+            //NewRegisterPrepUnitList(cur, unit);
             cur++;
         }
     }
@@ -61,13 +66,35 @@ void NewMakePrepUnitList()
     PrepSetUnitAmount(cur);
 }
 
+int CountUnitsInUnitStructRam(void) { 
+	int cur = 0;
+    struct Unit *unit;
+    for (int i = 1; i < 61; i++) {
+        unit = &gUnitArrayBlue[i];
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+		cur++; 
+    }
+	return cur; 
+} 
+
 struct Unit *GetUnitFromPrepList(int index) // called in 6 other functions
 {
-   // return gPrepUnitList.units[index];
-   
-	return &PCBoxUnitsBuffer[index]; 
+	// return gPrepUnitList.units[index];
+	struct Unit* unit;
+	int c = CountUnitsInUnitStructRam(); 
+	if (index < c) { 
+		unit = &gUnitArrayBlue[index];
+	}
+	else { 
+		index -= c; 
+		unit = &PCBoxUnitsBuffer[index]; 
+	} 
+	return unit; 
 }
 
+/*
 void NewRegisterPrepUnitList(int index, struct Unit *unit)
 {
     gPrepUnitList.units[index] = unit;
@@ -75,7 +102,7 @@ void NewRegisterPrepUnitList(int index, struct Unit *unit)
 	memcpy(destUnit, unit, 0x48);
 	ClearUnit(unit);
 }
-
+*/
 
 void NewProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
 {
@@ -109,7 +136,9 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
 	
 	
 	DeploySelectedUnits(proc->cur_counter); 
-	MS_SaveGame(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
+	PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
+	ClearPCBoxUnitsBuffer();
+	//MS_SaveGame(gPlaySt.gameSaveSlot); 
 	
 }
 
@@ -588,8 +617,9 @@ void sub_809B014()
 	sub_80ACDDC();
 	EndBG3Slider_();
 }
+*/
 
-void ProcPrepUnit_Idle(struct ProcPrepUnit *proc)
+void NewProcPrepUnit_Idle(struct ProcPrepUnit *proc)
 {
     int ret;
 
@@ -619,8 +649,11 @@ void ProcPrepUnit_Idle(struct ProcPrepUnit *proc)
         }
 
         if (R_BUTTON & gKeyStatusPtr->newKeys) {
-            Proc_Goto(proc, PROC_LABEL_PREPUNIT_PRESS_R);
-            return;
+			
+			if (CanShowUnitStatScreen(GetUnitFromPrepList(proc->list_num_cur))) { 
+				Proc_Goto(proc, PROC_LABEL_PREPUNIT_PRESS_R);
+				return;
+			} 
         }
 
         if (A_BUTTON & gKeyStatusPtr->newKeys) {
@@ -701,7 +734,7 @@ void ProcPrepUnit_Idle(struct ProcPrepUnit *proc)
 }
 
 
-
+/*
 void PrepUnit_DrawLeftUnitNameCur(struct ProcPrepUnit *proc)
 {
     PrepUnit_DrawLeftUnitName(GetUnitFromPrepList(proc->list_num_cur));

@@ -2,7 +2,15 @@
 #include "Boxes.h" 
 
 
+// on leaving prep: store excess units >30 party size into SRAM 
+// new units are added to unit struct ram up to 50 as usual 
+// prep displays unit struct ram + temp unit ram 
+// starting prep loads temp unit ram with the data from your SRAM 
 
+
+
+// need to clear all from save file on new game 
+// need to copy over box units when save file is copied, too 
 
 
 
@@ -64,18 +72,33 @@ struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) {
 } 
 
 
-// need to clear all from save file on new game 
-// need to copy over box units when save file is copied, too 
+
 
 void ClearPCBoxUnitsBuffer(void) { 
 	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
 } 
 
 void DeploySelectedUnits(int count) { 
-	for (int i = 0; i < count; i++) { 
-		memcpy(GetFreeBlueUnit(), (void*)GetTakenTempUnitAddr(), 0x48);
 
+	struct Unit* unit;
+	int c = CountUnitsInUnitStructRam(); 
+	// excess units past 30 in unit struct get stored 
+	if (c > 30) { 
+		for (int i = c; i<50; i++) { 
+		unit = &gUnitArrayBlue[i];
+		memcpy(GetFreeTempUnitAddr(), (void*)unit, 0x48); // copy unit into a free slot in pc 
+		ClearUnit(unit); 
+		}
 	}
+	
+	for (int i = 0; i<BoxBufferCapacity; i++) { 
+		unit = &PCBoxUnitsBuffer[i]; 
+		if (unit->state & US_NOT_DEPLOYED) {
+		continue; }
+		memcpy(GetFreeBlueUnit(), (void*)unit, 0x48); // copy unit into a free slot in unit struct ram 
+		ClearUnit(unit); 
+	}
+	
 } 
 
 

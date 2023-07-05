@@ -43,7 +43,8 @@ int UnpackUnitsFromBox(int slot);
 void PackUnitsIntoBox(int slot);
 int CountTempUnits(void); 
 void DeploySelectedUnits(int count);
-
+int CountUnitsInUnitStructRam(void);
+void ClearPCBoxUnitsBuffer(void);
 
 struct SaveBlockDecl {
 	/* 00 */ u16 offset;
@@ -55,6 +56,7 @@ extern const struct SaveBlockDecl PCBoxSaveBlockDecl[];
 // Vanilla: 
 extern struct Unit* GetUnitStructFromEventParameter(int id); 
 extern int AddItemToConvoy(int); 
+extern void ReorderPlayerUnitsBasedOnDeployment(void); 
 
 inline struct Unit* GetTempUnit(int i) { 
 	return &PCBoxUnitsBuffer[i]; 

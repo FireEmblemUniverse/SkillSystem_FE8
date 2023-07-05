@@ -235,6 +235,8 @@ gSuspendSaveChunks:
 	// Save Debuffs (TODO: maybe reduce size) // 900 size 
 	DeclSaveChunk($24A8, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
 	DeclSaveChunk($2858, BuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
+	
+	
 
 // $2A30 - $2DA8 free
  

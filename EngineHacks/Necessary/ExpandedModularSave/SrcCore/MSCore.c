@@ -105,7 +105,9 @@ void MS_SaveGame(unsigned slot) {
 
 
 
-	PackUnitsIntoBox(slot);
+	//PackUnitsIntoBox(slot);
+	
+	
 	// Setup block metadata
 
 	struct SaveBlockMetadata sbm;
@@ -132,7 +134,9 @@ void MS_LoadGame(unsigned slot) {
 			chunk->load(base + chunk->offset, chunk->size);
 
 
-	UnpackUnitsFromBox(slot);
+	//UnpackUnitsFromBox(slot);
+	
+	
 	// Update save slot in global metadata
 	UpdateLastUsedGameSaveSlot(slot);
 }

@@ -30,7 +30,7 @@ void NewProcPrepUnit_OnInit(struct ProcPrepUnit *proc);
 void Newsub_809B520(struct ProcPrepUnit *proc);
 void NewRegisterPrepUnitList(int index, struct Unit *unit);
 void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc);
-
+void NewProcPrepUnit_Idle(struct ProcPrepUnit *proc);
 
 void ProcPrepUnit_OnEnd(struct ProcPrepUnit *proc);
 void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc);
@@ -51,9 +51,17 @@ void sub_809B504(struct ProcPrepUnit *proc);
 void sub_809B520(struct ProcPrepUnit *proc);
 void PrepUnit_DrawLeftUnitNameCur(struct ProcPrepUnit *proc);
 void PrepUnit_DrawUnitListNames(struct ProcPrepUnit *proc, int line);
+s8 PrepUnit_HandlePressA(struct ProcPrepUnit *proc);
+void PrepUnit_DrawPickLeftBar(struct ProcPrepUnit *proc, s8 val);
+void PrepUnit_DrawUnitItems(struct Unit *unit);
+s8 ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc);
+void PrepUpdateMenuTsaScroll(int val);
+void sub_809AE10(struct ProcPrepUnit *proc);
+
+
 
 extern s8 CheckInLinkArena();
-
+extern int CanShowUnitStatScreen(struct Unit* unit); 
 
 
 
@@ -72,7 +80,7 @@ PROC_LABEL(PROC_LABEL_PREPUNIT_0),
     PROC_WHILE(FadeInExists),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_IDLE),
-    PROC_REPEAT(ProcPrepUnit_Idle),
+    PROC_REPEAT(NewProcPrepUnit_Idle),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_2),
     PROC_CALL(sub_809B370),
