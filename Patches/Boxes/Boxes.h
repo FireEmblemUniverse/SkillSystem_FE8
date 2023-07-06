@@ -1,23 +1,52 @@
 
+//#define POKEMBLEM_VERSION
+
 
 extern struct ClassData NewClassTable[]; 
 void* MS_GetSaveAddressBySlot(unsigned slot);
 
+#ifdef POKEMBLEM_VERSION 
 //struct __attribute__((packed)) BoxUnit { 
 struct __attribute__((packed)) BoxUnit { 
 	u8 classID : 8; 
-	u8 hp : 7; 
-	u8 mag : 6; 
-	u8 str : 6; 
-	u8 skl : 6; 
-	u8 spd : 6; 
-	u8 def : 6; 
-	u8 res : 6; 
-	u8 luk : 6; 
-	u8 lvl : 7; 
-	u8 exp : 7; 
-	u8 moves[5]; 
+	u8 moves[5];
+	u32 hp : 7; 
+	u32 lvl : 7; 
+	u32 exp : 7; 
+	u32 mag : 6; 
+	u32 str : 6; 
+	u32 skl : 6; 
+	u32 spd : 6; 
+	u32 def : 6; 
+	u32 res : 6; 
+	u32 luk : 6; 
 };
+#endif 
+#ifndef POKEMBLEM_VERSION 
+struct __attribute__((packed)) BoxUnit { 
+	u8 unitID; 
+	u8 classID; 
+	u8 supportBits; 
+	u32 metis : 1; 
+	u8 wexp[4];
+	u8 supports[2]; 
+	u32 support5 : 4; 
+	u32 unitLeader : 4; 
+	
+	u32 conBonus : 4; 
+	u32 movBonus : 4; 
+	u32 hp : 7; 
+	u32 lvl : 7; 
+	u32 exp : 7; 
+	u32 mag : 6; 
+	u32 str : 6; 
+	u32 skl : 6; 
+	u32 spd : 6; 
+	u32 def : 6; 
+	u32 res : 6; 
+	u32 luk : 6; // 152 or 19 / #0x13 bytes per unit to be saved = 102 units 
+};
+#endif 
 
 extern int BoxCapacity; 
 extern int BoxBufferCapacity; 

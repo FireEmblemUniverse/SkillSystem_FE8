@@ -246,8 +246,7 @@ void PackUnitsIntoBox(int slot) {
 	return; 
 }
 
-	
-//struct BoxUnit PackUnitIntoBox(struct BoxUnit boxRam[], struct Unit* unit) { 
+#ifdef POKEMBLEM_VERSION 
   struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
 		boxRam->classID = unit->pClassData->number; 
@@ -270,6 +269,7 @@ void PackUnitsIntoBox(int slot) {
 	return boxRam; 
 } 
 	
+
 struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	if ((boxRam->classID != 0xFF) && (boxRam->classID)) { 
 		unit->pClassData = &NewClassTable[boxRam->classID]; 
@@ -331,7 +331,7 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 
 	return unit; 
 } 
-
+#endif 
 
 int GetFreeDeploymentID(void) { 
 	struct Unit* unit; 
@@ -403,4 +403,139 @@ void* PC_GetSaveAddressBySlot(unsigned slot) {
 
 	return (void*)(0xE000000) + PCBoxSaveBlockDecl[slot].offset;
 }
+
+
+#ifndef POKEMBLEM_VERSION 
+
+int GetFlooredWEXP(int value) { 
+	if (!value) 
+		return value; 
+	
+	// 0 = 0 
+	// 1 = 1 
+	// 31 (D) becomes 0x3 
+	// 71 (C) 
+	// 121 (B) 
+	// 181 (A) 
+	
+	// 251+ becomes 0xF 
+	
+	// supports: 
+	// C at 51 (I guess 50 when ready?) 
+	// B at A1 
+	// A at F1 
+
+
+} 
+
+  struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
+	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
+		boxRam->unitID = unit->pCharacterData->number; 
+		boxRam->classID = unit->pClassData->number; 
+		boxRam->supportBits = unit->supportBits; 
+		boxRam->metis = ((unit->state & US_GROWTH_BOOST) != 0);
+		boxRam->wexp[0] = unit->ranks[0]>>4 | ((unit->ranks[1] >> 4) << 4); 
+		boxRam->wexp[1] = unit->ranks[2]>>4 | ((unit->ranks[3] >> 4) << 4); 
+		boxRam->wexp[2] = unit->ranks[4]>>4 | ((unit->ranks[5] >> 4) << 4); 
+		boxRam->wexp[3] = unit->ranks[6]>>4 | ((unit->ranks[7] >> 4) << 4); 
+		boxRam->supports[0] = unit->supports[0]>>4 | ((unit->supports[1] >> 4) << 4); 
+		boxRam->supports[1] = unit->supports[2]>>4 | ((unit->supports[3] >> 4) << 4); 
+		boxRam->support5 = unit->supports[4]>>4;
+		boxRam->unitLeader = unit->unitLeader; 
+		
+		boxRam->conBonus = unit->conBonus < 16 ? unit->conBonus : 15; 
+		boxRam->movBonus = unit->movBonus < 16 ? unit->movBonus : 15; 
+		
+		boxRam->hp = unit->maxHP<127 ? unit->maxHP : 127; 
+		boxRam->mag = unit->unk3A < 64 ? unit->unk3A : 63; 
+		boxRam->str = unit->pow < 64 ? unit->pow : 63;; 
+		boxRam->skl = unit->skl < 64 ? unit->skl : 63;; 
+		boxRam->spd = unit->spd < 64 ? unit->spd : 63;; 
+		boxRam->def = unit->def < 64 ? unit->def : 63;; 
+		boxRam->res = unit->res < 64 ? unit->res : 63;; 
+		boxRam->luk = unit->lck < 64 ? unit->lck : 63;; 
+		boxRam->lvl = unit->level < 127 ? unit->level : 127;; 
+		boxRam->exp = unit->exp < 127 ? unit->exp : 127;; 
+		
+	} 
+	//ClearUnit(unit); 
+	return boxRam; 
+} 
+
+
+
+struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) { 
+	if ((boxRam->classID != 0xFF) && (boxRam->classID)) { 
+		unit->pCharacterData = &gCharacterData[boxRam->unitID]; 
+		unit->pClassData = &NewClassTable[boxRam->classID]; 
+		unit->maxHP = 		boxRam->hp; 
+		unit->curHP = 		unit->maxHP; 
+		unit->unk3A = 		boxRam->mag; 
+		unit->pow = 		boxRam->str; 
+		unit->skl = 		boxRam->skl; 
+		unit->spd = 		boxRam->spd; 
+		unit->def = 		boxRam->def; 
+		unit->res = 		boxRam->res; 
+		unit->lck = 		boxRam->luk; 
+		unit->level = 		boxRam->lvl; 
+		unit->exp = 		boxRam->exp; 
+		if (unit->exp == 127) {
+			unit->exp = 255; // prevents levelling up 
+		}
+		
+		for (int i = 0; i<8; i++) { 
+			if (i & 1) { 
+				unit->ranks[i] = (boxRam->wexp[i/2] & 0xF0) >> 4;
+			} 
+			else 
+				unit->ranks[i] = (boxRam->wexp[i/2] & 0xF) >> 4;
+		} 
+		
+		// zero things out 
+		unit->aiFlag = 0; 
+		unit->conBonus = boxRam->conBonus; 
+		unit->rescueOtherUnit = 0; 
+		unit->ballistaIndex = 0; 
+		unit->movBonus = boxRam->movBonus; 
+		for (int i = 0; i<5; i++) { 
+			unit->items[i] = 0; 
+		}
+		unit->statusIndex = 0; 
+		unit->statusDuration = 0; 
+		unit->torchDuration = 0; 
+		unit->barrierDuration = 0; 
+		unit->supports[0] = (boxRam->supports[0] & 0xF) << 4; 
+		unit->supports[1] = ((boxRam->supports[0] & 0xF0) >> 4) << 4; 
+		unit->supports[2] = (boxRam->supports[1] & 0xF ) << 4; 
+		unit->supports[3] = ((boxRam->supports[1] & 0xF0) >> 4) << 4; 
+		unit->supports[4] = boxRam->support5 << 4; 
+		unit->unitLeader = boxRam->unitLeader << 4; 
+		unit->supportBits = boxRam->supportBits; 
+		
+		
+		
+		unit->unk3B = 0; 
+		unit->ai3And4 = 0; 
+		unit->ai1 = 0; 
+		unit->ai1data = 0; 
+		unit->ai2 = 0; 
+		unit->ai2data = 0; 
+		unit->unk46_saved = 0; 
+		unit->unk47 = 0; 
+		
+		
+		unit->pMapSpriteHandle = 0; 
+		unit->xPos = 63; 
+		unit->yPos = 63; 
+		unit->state = US_NOT_DEPLOYED | US_HIDDEN | US_BIT16 | ((boxRam->metis!=0)<<13); // 0x10009 Escaped, Undeployed, Hidden 
+		unit->index = GetFreeDeploymentID(); // maybe important 
+		
+		
+
+	} 
+
+	return unit; 
+} 
+#endif 
+
 
