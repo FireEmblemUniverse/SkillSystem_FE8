@@ -70,14 +70,17 @@ void ClearAllBoxUnitsASMC(void) {
 } 
 
 void ClearAllBoxUnits(int slot) {
+	memset((void*)PC_GetSaveAddressBySlot(slot), 0, PCBoxSizeLookup[0]);
 	
-	struct BoxUnit* boxRam; 
-	void* baseRam = PC_GetSaveAddressBySlot(slot); 
-	for (int i = 0; i<BoxCapacity; i++) { 
-		boxRam = (struct BoxUnit*)baseRam; 
-		memset((void*)&boxRam[i], 0,  0x10); 
-		//ClearBoxUnit(&boxRam[i]);
-	}
+	//struct BoxUnit* boxRam; 
+	//void* baseRam = PC_GetSaveAddressBySlot(slot); 
+	//
+	//
+	//for (int i = 0; i<BoxCapacity; i++) { 
+	//	boxRam = (struct BoxUnit*)baseRam; 
+	//	//memset((void*)&boxRam[i], 0,  ENTRYSIZE); 
+	//	ClearBoxUnit(&boxRam[i]);
+	//}
 }
 
 struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) { 
@@ -95,10 +98,25 @@ struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) {
 	return boxRam; 
 } 
 
+//extern struct Unit* GetUnitStructFromEventParameter(short index); 
 
-void RelocateUnitsPast50(void) { 
-	memcpy((void*)&PCBoxUnitsBuffer[0], (void*)&gUnitArrayBlue[50], 0x48*12);
+void RelocateUnitsPast50(int startingOffset) { 
+
+	// if protag is not in the first 50 units, don't let it go in box 
+	struct Unit unit;
+	unit.pCharacterData = 0; 
+	struct Unit* protag = GetUnitStructFromEventParameter(ProtagID_Link);
+	if (protag && protag->pCharacterData) { 
+		memcpy((void*)&unit, (void*)protag, 0x48); 
+		ClearUnit(protag); 
+	} 
+	
+	memcpy((void*)&PCBoxUnitsBuffer[startingOffset], (void*)&gUnitArrayBlue[51], 0x48*12);
 	memset(&gUnitArrayBlue[51], 0, 0x48*12); 
+	
+	if (unit.pCharacterData) { 
+		memcpy((void*)GetFreeBlueUnit(), (void*)&unit, 0x48); 
+	} 
 } 
 
 void ClearPCBoxUnitsBuffer(void) { 
@@ -113,8 +131,8 @@ void DeploySelectedUnits() {
 	//struct Unit unit[50] = (void*)gGenericBuffer;
 	struct Unit* unitTemp;
 	
-	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*62); // move all units to the stack 
-	memset(&gUnitArrayBlue[0], 0, 0x48*62); 
+	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*62); // move all units to gGenericBuffer 
+	memset(&gUnitArrayBlue[0], 0, 0x48*62); // clear units from unit struct ram 
 	
 	
 	for (int i = 0; i<50; i++) { // move units that were deployed back into unit struct ram 
@@ -126,6 +144,7 @@ void DeploySelectedUnits() {
 	for (int i = 0; i<BoxBufferCapacity; i++) { 
 		unitTemp = &PCBoxUnitsBuffer[i]; 
 		if ((unitTemp->pCharacterData) && (!(unitTemp->state & US_NOT_DEPLOYED))) {
+			unitTemp->state &= ~(US_BIT16); // remove "escaped" bitflag 
 			memcpy(GetFreeBlueUnit(), (void*)unitTemp, 0x48); // copy unit into a free slot in unit struct ram 
 			ClearUnit(unitTemp); 
 		}
@@ -146,6 +165,7 @@ void DeploySelectedUnits() {
 			}
 		} 
 	} 
+	
 	
 	
 

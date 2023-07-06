@@ -3,6 +3,7 @@
 extern struct ClassData NewClassTable[]; 
 void* MS_GetSaveAddressBySlot(unsigned slot);
 
+//struct __attribute__((packed)) BoxUnit { 
 struct __attribute__((packed)) BoxUnit { 
 	u8 classID : 8; 
 	u8 hp : 7; 
@@ -20,6 +21,7 @@ struct __attribute__((packed)) BoxUnit {
 
 extern int BoxCapacity; 
 extern int BoxBufferCapacity; 
+extern int ProtagID_Link; 
 
 extern struct Unit PCBoxUnitsBuffer[]; //0x2026E30 size 0x2048 
 
@@ -45,7 +47,7 @@ int CountTempUnits(void);
 void DeploySelectedUnits(void);
 int CountUnitsInUnitStructRam(void);
 void ClearPCBoxUnitsBuffer(void);
-void RelocateUnitsPast50(void);
+void RelocateUnitsPast50(int startingOffset);
 void ClearAllBoxUnits(int slot);
 void ClearAllBoxUnitsASMC(void);
 

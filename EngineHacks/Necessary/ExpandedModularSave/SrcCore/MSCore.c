@@ -68,7 +68,7 @@ int MS_CheckEid8AFromGameSave(unsigned slot) {
 extern int UnpackUnitsFromBox(int slot);
 extern void PackUnitsIntoBox(int slot);
 extern void ClearPCBoxUnitsBuffer(void);
-extern void RelocateUnitsPast50(void); 
+extern void RelocateUnitsPast50(int); 
 
 void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 	void* const source = GetSaveSourceAddress(sourceSlot);
@@ -109,7 +109,9 @@ void MS_SaveGame(unsigned slot) {
 
 	//PackUnitsIntoBox(slot);
 	ClearPCBoxUnitsBuffer();
-	RelocateUnitsPast50(); 
+	int index = UnpackUnitsFromBox(slot);
+	RelocateUnitsPast50(index); 
+	
 	PackUnitsIntoBox(slot); 
 	
 	

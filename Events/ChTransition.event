@@ -49,6 +49,12 @@
 08039d10 .thumb
 */
 
+HandleProtag:
+DISA ProtagID 
+NoFade 
+ENDA 
+
+
 
 //prep - make stuff unequipped 
 //leave prep chapter - auto equip accessories 
@@ -483,39 +489,39 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 //SetMaxMove
 #endif 
 #ifdef INSTALL_FMU
-CHECK_EXISTS ProtagID 
-BNE 0 sC s0 
-LOAD1 0 ProtagUnitGroup
-GOTO 1 
-LABEL 0 
-LOAD1 1 ProtagUnitGroup 
-LABEL 1 
-ENUN 
-
-
-SET_ACTIVE 0
-SPAWN_NPC 0xFD [0,0]
-Read_Byte(XCoordNewArea)
-SADD r5 rC r0 
-SVAL r1 0xFD //1st player unit 
-SVAL r3 0x10  	// X coord 
-SVAL r4 0x03 	// Byte 
-ASMC SetUnitStatus 
-
-Read_Byte(YCoordNewArea)
-SADD r5 rC r0 
-SVAL r1 0xFD //1st player unit 
-SVAL r3 0x11 	// Y coord 
-SVAL r4 0x03 	// Byte
-ASMC SetUnitStatus
-
-MOVENEXTTO 	(-1) ProtagID 0xFD 
-ENUN 
-CAM1 0xFD 
-DISA 0xFD 
-UNCR(ProtagID, 0x0D)
-SET_ACTIVE ProtagID
-EnableFreeMovement
+//CHECK_EXISTS ProtagID 
+//BNE 0 sC s0 
+//LOAD1 0 ProtagUnitGroup
+//GOTO 1 
+//LABEL 0 
+//LOAD1 1 ProtagUnitGroup 
+//LABEL 1 
+//ENUN 
+//
+//
+//SET_ACTIVE 0
+//SPAWN_NPC 0xFD [0,0]
+//Read_Byte(XCoordNewArea)
+//SADD r5 rC r0 
+//SVAL r1 0xFD //1st player unit 
+//SVAL r3 0x10  	// X coord 
+//SVAL r4 0x03 	// Byte 
+//ASMC SetUnitStatus 
+//
+//Read_Byte(YCoordNewArea)
+//SADD r5 rC r0 
+//SVAL r1 0xFD //1st player unit 
+//SVAL r3 0x11 	// Y coord 
+//SVAL r4 0x03 	// Byte
+//ASMC SetUnitStatus
+//
+//MOVENEXTTO 	(-1) ProtagID 0xFD 
+//ENUN 
+//CAM1 0xFD 
+//DISA 0xFD 
+//UNCR(ProtagID, 0x0D)
+//SET_ACTIVE ProtagID
+//EnableFreeMovement
 #endif 
 
 ASMC RegisterAllOwnedPokemon
@@ -1199,7 +1205,7 @@ ENUF TrainerBattleActiveFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
-
+CALL HandleProtag
 MNC2 SaveWithHealCh 
 NoFade 
 ENDA 
@@ -1217,7 +1223,7 @@ ENUF TrainerBattleActiveFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
-
+CALL HandleProtag
 MNC2 SaveWithoutHealCh 
 NoFade 
 ENDA 

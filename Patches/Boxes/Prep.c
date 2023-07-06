@@ -24,8 +24,8 @@ void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 {
 	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
 	ClearPCBoxUnitsBuffer();
-	RelocateUnitsPast50(); 
-	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
+	int index = UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
+	RelocateUnitsPast50(index); 
 
 	
 	
