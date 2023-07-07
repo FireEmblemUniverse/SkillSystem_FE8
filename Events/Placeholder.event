@@ -175,13 +175,13 @@ House(0,WithdrawUnitEvent, 12,11)
 END_MAIN
 
 StoreUnitEvent:
-StoreUnit(1)
+//StoreUnit(1)
 //GiveEXP((-1), 100)
 NoFade 
 ENDA 
 
 WithdrawUnitEvent:
-WithdrawUnit
+//WithdrawUnit
 //GiveEXP((-1), 100)
 NoFade 
 ENDA 

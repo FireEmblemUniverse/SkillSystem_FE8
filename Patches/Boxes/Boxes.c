@@ -2,11 +2,8 @@
 #include "Boxes.h" 
 
 
-// on leaving prep: store excess units >30 party size into SRAM 
-// new units are added to unit struct ram up to 50 as usual 
-// prep displays unit struct ram + temp unit ram 
-// starting prep loads temp unit ram with the data from your SRAM 
-
+// on saving: units beyond 45 are saved to pc box instead of unit struct ram 
+// this way new units shouldn't be deleted on suspend 
 
 
 // need to clear all from save file on new game 
@@ -83,7 +80,8 @@ void ClearAllBoxUnits(int slot) {
 	//}
 }
 
-struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) { 
+#ifdef POKEMBLEM_VERSION
+struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) { // unused 
 	boxRam->classID = 0; 
 	boxRam->hp 	= 0; 
 	boxRam->mag = 0; 
@@ -97,11 +95,13 @@ struct BoxUnit* ClearBoxUnit(struct BoxUnit* boxRam) {
 	boxRam->exp = 0;
 	return boxRam; 
 } 
+#endif 
 
 //extern struct Unit* GetUnitStructFromEventParameter(short index); 
 
-void RelocateUnitsPast50(int startingOffset) { 
+void RelocateUnitsPastThreshold(int startingOffset) { 
 
+	#ifdef POKEMBLEM_VERSION
 	// if protag is not in the first 50 units, don't let it go in box 
 	struct Unit unit;
 	unit.pCharacterData = 0; 
@@ -110,13 +110,16 @@ void RelocateUnitsPast50(int startingOffset) {
 		memcpy((void*)&unit, (void*)protag, 0x48); 
 		ClearUnit(protag); 
 	} 
+	#endif 
 	
-	memcpy((void*)&PCBoxUnitsBuffer[startingOffset], (void*)&gUnitArrayBlue[51], 0x48*12);
-	memset(&gUnitArrayBlue[51], 0, 0x48*12); 
+	memcpy((void*)&PCBoxUnitsBuffer[startingOffset], (void*)&gUnitArrayBlue[PartySizeThreshold], 0x48*(62 - PartySizeThreshold));
+	memset(&gUnitArrayBlue[PartySizeThreshold], 0, 0x48*(62 - PartySizeThreshold)); 
 	
+	#ifdef POKEMBLEM_VERSION
 	if (unit.pCharacterData) { 
 		memcpy((void*)GetFreeBlueUnit(), (void*)&unit, 0x48); 
 	} 
+	#endif 
 } 
 
 void ClearPCBoxUnitsBuffer(void) { 
@@ -407,16 +410,24 @@ void* PC_GetSaveAddressBySlot(unsigned slot) {
 
 #ifndef POKEMBLEM_VERSION 
 
-int GetFlooredWEXP(int value) { 
-	if (!value) 
-		return value; 
-	
-	// 0 = 0 
-	// 1 = 1 
-	// 31 (D) becomes 0x3 
-	// 71 (C) 
-	// 121 (B) 
-	// 181 (A) 
+int GetFlooredWEXP(int inputRank) { 
+  int i = 0;
+  if (inputRank > 0) i++; // E 
+  if (inputRank >= 16) i++;
+  if (inputRank >= 31) i++; // D
+  if (inputRank >= 51) i++;
+  if (inputRank >= 71) i++; // C 
+  if (inputRank >= 86) i++;
+  if (inputRank >= 101) i++; 
+  if (inputRank >= 121) i++; // B 
+  if (inputRank >= 151) i++;
+  if (inputRank >= 181) i++; // A 
+  if (inputRank >= 196) i++;
+  if (inputRank >= 211) i++;
+  if (inputRank >= 226) i++;
+  if (inputRank >= 241) i++;
+  if (inputRank >= 251) i = 0xF; // S 
+  return i;
 	
 	// 251+ becomes 0xF 
 	
@@ -428,20 +439,89 @@ int GetFlooredWEXP(int value) {
 
 } 
 
+int UnpackFlooredWEXP(int value) { 
+  if (value == 0)    return 0; // E 
+  if (value == 1)    return 1; // E 
+  if (value == 2)  return 16;
+  if (value == 3)  return 31; // D
+  if (value == 4)  return 51;
+  if (value == 5)  return 71; // C 
+  if (value == 6)  return 86;
+  if (value == 7) return 101; 
+  if (value == 8) return 121; // B 
+  if (value == 9) return 151;
+  if (value == 0xA) return 181; // A 
+  if (value == 0xB) return 196;
+  if (value == 0xC) return 211;
+  if (value == 0xD) return 226;
+  if (value == 0xE) return 241;
+  if (value == 0xF) return 255; // S 
+  return 0; 
+} 
+
+int GetFlooredSupportEXP(int inputRank) { 
+  int i = 0;
+  if (inputRank > 0) i++; 
+  if (inputRank >= 21) i++;
+  if (inputRank >= 41) i++;
+  if (inputRank >= 61) i++;
+  
+  if (inputRank >= 80) i++; 
+  if (inputRank >= 81) i++; // C 
+  
+  if (inputRank >= 101) i++; 
+  if (inputRank >= 121) i++; 
+  if (inputRank >= 141) i++; 
+  
+  if (inputRank >= 160) i++; 
+  if (inputRank >= 161) i++; // B 
+  
+  if (inputRank >= 186) i++;
+  if (inputRank >= 216) i++; 
+  
+  if (inputRank >= 240) i++;
+  if (inputRank >= 241) i++; // A 
+  return i;
+} 
+int UnpackFlooredSupportEXP(int value) { 
+  if (value == 0)    return 0; 
+  if (value == 1)    return 1; 
+  if (value == 2)  return 21;
+  if (value == 3)  return 41; 
+  if (value == 4)  return 61;
+  if (value == 5)  return 80; // C ready 
+  if (value == 6)  return 81; // C 
+  if (value == 7) return 101; 
+  if (value == 8) return 121; 
+  if (value == 9) return 141;
+  if (value == 0xA) return 160; // B ready 
+  if (value == 0xB) return 161; // B
+  if (value == 0xC) return 186;
+  if (value == 0xD) return 216;
+  if (value == 0xE) return 240; // A ready 
+  if (value == 0xF) return 255; // A 
+  return 0; 
+} 
+
+
+
   struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
 		boxRam->unitID = unit->pCharacterData->number; 
 		boxRam->classID = unit->pClassData->number; 
 		boxRam->supportBits = unit->supportBits; 
 		boxRam->metis = ((unit->state & US_GROWTH_BOOST) != 0);
-		boxRam->wexp[0] = unit->ranks[0]>>4 | ((unit->ranks[1] >> 4) << 4); 
-		boxRam->wexp[1] = unit->ranks[2]>>4 | ((unit->ranks[3] >> 4) << 4); 
-		boxRam->wexp[2] = unit->ranks[4]>>4 | ((unit->ranks[5] >> 4) << 4); 
-		boxRam->wexp[3] = unit->ranks[6]>>4 | ((unit->ranks[7] >> 4) << 4); 
-		boxRam->supports[0] = unit->supports[0]>>4 | ((unit->supports[1] >> 4) << 4); 
-		boxRam->supports[1] = unit->supports[2]>>4 | ((unit->supports[3] >> 4) << 4); 
-		boxRam->support5 = unit->supports[4]>>4;
-		boxRam->unitLeader = unit->unitLeader; 
+		boxRam->wexp[0] = GetFlooredWEXP(unit->ranks[0]) | (GetFlooredWEXP(unit->ranks[1]) << 4); 
+		boxRam->wexp[1] = GetFlooredWEXP(unit->ranks[2]) | (GetFlooredWEXP(unit->ranks[3]) << 4); 
+		boxRam->wexp[2] = GetFlooredWEXP(unit->ranks[4]) | (GetFlooredWEXP(unit->ranks[5]) << 4); 
+		boxRam->wexp[3] = GetFlooredWEXP(unit->ranks[6]) | (GetFlooredWEXP(unit->ranks[7]) << 4); 
+		boxRam->support0 = GetFlooredSupportEXP(unit->supports[0]);
+		boxRam->support1 = GetFlooredSupportEXP(unit->supports[1]);
+		boxRam->support2 = GetFlooredSupportEXP(unit->supports[2]);
+		boxRam->support3 = GetFlooredSupportEXP(unit->supports[3]);
+		boxRam->support4 = GetFlooredSupportEXP(unit->supports[4]);
+		boxRam->support5 = GetFlooredSupportEXP(unit->supports[5]);
+		boxRam->unitLeader = GetFlooredSupportEXP(unit->unitLeader); 
 		
 		boxRam->conBonus = unit->conBonus < 16 ? unit->conBonus : 15; 
 		boxRam->movBonus = unit->movBonus < 16 ? unit->movBonus : 15; 
@@ -485,10 +565,10 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		
 		for (int i = 0; i<8; i++) { 
 			if (i & 1) { 
-				unit->ranks[i] = (boxRam->wexp[i/2] & 0xF0) >> 4;
+				unit->ranks[i] = UnpackFlooredWEXP((boxRam->wexp[i/2] & 0xF0) >> 4);
 			} 
 			else 
-				unit->ranks[i] = (boxRam->wexp[i/2] & 0xF) >> 4;
+				unit->ranks[i] = UnpackFlooredWEXP((boxRam->wexp[i/2] & 0xF) >> 4);
 		} 
 		
 		// zero things out 
@@ -504,12 +584,13 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		unit->statusDuration = 0; 
 		unit->torchDuration = 0; 
 		unit->barrierDuration = 0; 
-		unit->supports[0] = (boxRam->supports[0] & 0xF) << 4; 
-		unit->supports[1] = ((boxRam->supports[0] & 0xF0) >> 4) << 4; 
-		unit->supports[2] = (boxRam->supports[1] & 0xF ) << 4; 
-		unit->supports[3] = ((boxRam->supports[1] & 0xF0) >> 4) << 4; 
-		unit->supports[4] = boxRam->support5 << 4; 
-		unit->unitLeader = boxRam->unitLeader << 4; 
+		unit->supports[0] = UnpackFlooredSupportEXP(boxRam->support0); 
+		unit->supports[1] = UnpackFlooredSupportEXP(boxRam->support1); 
+		unit->supports[2] = UnpackFlooredSupportEXP(boxRam->support2); 
+		unit->supports[3] = UnpackFlooredSupportEXP(boxRam->support3); 
+		unit->supports[4] = UnpackFlooredSupportEXP(boxRam->support4); 
+		unit->supports[5] = UnpackFlooredSupportEXP(boxRam->support5); 
+		unit->unitLeader = UnpackFlooredSupportEXP(boxRam->unitLeader); 
 		unit->supportBits = boxRam->supportBits; 
 		
 		

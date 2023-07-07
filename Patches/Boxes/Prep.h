@@ -1,4 +1,6 @@
 
+
+
 void* memcpy(void* dest, const void* src, unsigned int count); //! FE8U = (0x080D1C0C+1)
 void* memset(void* dest, int ch, unsigned int count); //! FE8U = (0x080D1C6C+1)
 
@@ -22,7 +24,7 @@ void* memset(void* dest, int ch, unsigned int count); //! FE8U = (0x080D1C6C+1)
 #include "include/bmlib.h"
 #include "include/prepscreen.h"
 
-
+void CallDeploySelectedUnits(void);
 void NewProcPrepUnit_InitScreen(struct ProcPrepUnit *proc);
 void NewPrepUnit_InitSMS(struct ProcPrepUnit *proc);
 void NewMakePrepUnitList(void);
@@ -57,7 +59,8 @@ void PrepUnit_DrawUnitItems(struct Unit *unit);
 s8 ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc);
 void PrepUpdateMenuTsaScroll(int val);
 void sub_809AE10(struct ProcPrepUnit *proc);
-
+s8 PrepCheckCanSelectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
+s8 PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
 
 
 extern s8 CheckInLinkArena();
@@ -119,6 +122,8 @@ PROC_LABEL(PROC_LABEL_PREPUNIT_GAME_START),
     PROC_CALL(NewProcPrepUnit_OnGameStart),
     PROC_SLEEP(0x1E),
     PROC_CALL_ARG(NewFadeOut, 0x8),
+	PROC_SLEEP(0x5),
+	PROC_CALL(CallDeploySelectedUnits), 
     PROC_WHILE(FadeOutExists),
     PROC_GOTO(PROC_LABEL_PREPUNIT_END),
 

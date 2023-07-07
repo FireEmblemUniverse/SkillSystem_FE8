@@ -25,7 +25,7 @@ void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
 	ClearPCBoxUnitsBuffer();
 	int index = UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
-	RelocateUnitsPast50(index); 
+	//RelocateUnitsPastThreshold(index); 
 
 	
 	
@@ -163,7 +163,7 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
     proc->button_blank = 1;
 	
 	
-	DeploySelectedUnits(); 
+	
 	
 	//PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
 	//ClearPCBoxUnitsBuffer();
@@ -171,7 +171,67 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
 	
 }
 
+void CallDeploySelectedUnits(void) {
+	DeploySelectedUnits(); 
+}
 
+
+/*
+s8 PrepUnit_HandlePressA(struct ProcPrepUnit *proc)
+{
+    struct Unit *unit = GetUnitFromPrepList(proc->list_num_cur);
+
+    if (unit->state & US_BIT25) {
+        u32 ilist = proc->list_num_cur;
+        StartPrepErrorHelpbox(
+            (ilist & 1) * 56 + 0x70,
+            (ilist / 2) * 16 - proc->yDiff_cur + 0x18,
+            0xC52,    // This unit cannot take part[NL]in this chapter. 
+            proc
+        );
+        return 0;
+    }
+
+    if (unit->state & US_NOT_DEPLOYED) {
+        if (CheckInLinkArena() && !CanUnitBeDeployedLinkArena(unit)) {
+            u32 ilist = proc->list_num_cur;
+            StartPrepErrorHelpbox(
+                (ilist & 1) * 56 + 0x70,
+                (ilist / 2) * 16 - proc->yDiff_cur + 0x18,
+                0x88A,    // This unit cannot be deployed.[.] 
+                proc
+            );
+            return 0;
+        }
+
+        if (CheckInLinkArena() && !sub_8097E38(unit)) {
+            u32 ilist = proc->list_num_cur;
+            StartPrepErrorHelpbox(
+                (ilist & 1) * 56 + 0x70,
+                (ilist / 2) * 16 - proc->yDiff_cur + 0x18,
+                0x889,    // This unit has no usable[.][NL]weapons, so it cannot join.[.] 
+                proc
+            );
+            return 0;
+        }
+
+        if (PrepCheckCanSelectUnit(proc, unit) == 0)
+            return 0;
+        else {
+			
+            return 1;
+		}
+
+    } else {
+        if (PrepCheckCanUnselectUnit(proc, unit) == 0)
+            return 0;
+        else {
+			
+            return 1;
+		}
+    }
+}
+*/
 
 extern struct TextHandle gPrepUnitTexts[];
 /*
@@ -453,56 +513,7 @@ s8 PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit)
     }
 }
 
-s8 PrepUnit_HandlePressA(struct ProcPrepUnit *proc)
-{
-    struct Unit *unit = GetUnitFromPrepList(proc->list_num_cur);
 
-    if (unit->state & US_BIT25) {
-        u32 ilist = proc->list_num_cur;
-        StartPrepErrorHelpbox(
-            (ilist & 1) * 56 + 0x70,
-            (ilist / 2) * 16 - proc->yDiff_cur + 0x18,
-            0xC52,    // This unit cannot take part[NL]in this chapter. 
-            proc
-        );
-        return 0;
-    }
-
-    if (unit->state & US_NOT_DEPLOYED) {
-        if (CheckInLinkArena() && !CanUnitBeDeployedLinkArena(unit)) {
-            u32 ilist = proc->list_num_cur;
-            StartPrepErrorHelpbox(
-                (ilist & 1) * 56 + 0x70,
-                (ilist / 2) * 16 - proc->yDiff_cur + 0x18,
-                0x88A,    // This unit cannot be deployed.[.] 
-                proc
-            );
-            return 0;
-        }
-
-        if (CheckInLinkArena() && !sub_8097E38(unit)) {
-            u32 ilist = proc->list_num_cur;
-            StartPrepErrorHelpbox(
-                (ilist & 1) * 56 + 0x70,
-                (ilist / 2) * 16 - proc->yDiff_cur + 0x18,
-                0x889,    // This unit has no usable[.][NL]weapons, so it cannot join.[.] 
-                proc
-            );
-            return 0;
-        }
-
-        if (PrepCheckCanSelectUnit(proc, unit) == 0)
-            return 0;
-        else
-            return 1;
-
-    } else {
-        if (PrepCheckCanUnselectUnit(proc, unit) == 0)
-            return 0;
-        else
-            return 1;
-    }
-}
 
 s8 ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc)
 {
@@ -693,6 +704,7 @@ void NewProcPrepUnit_Idle(struct ProcPrepUnit *proc)
         }
 
         if (B_BUTTON & gKeyStatusPtr->newKeys) {
+			DeploySelectedUnits(); 
             PlaySoundEffect(0x6B);
             Proc_Goto(proc, PROC_LABEL_PREPUNIT_PRESS_B);
             return;

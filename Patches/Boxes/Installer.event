@@ -1,7 +1,14 @@
 
+// Note: Extra units will only be shown in the "Pick Units" party of preparations menu. They do not show up in "items". 
+// Their items will be sent to supply when saving in order to maximize available space. Without doing this, we'd have 33% less space. 
 
 #include "PrepHooks.lyn.event" 
 #include "Prep.lyn.event" 
+#include "Boxes.lyn.event" 
+
+// Take over link arena SRAM 
+#define EXPAND_PARTY_MAX 
+// Allows for 97 extra units instead of 51 extra units to be saved. 
 
 PUSH
   ORG 0x96350
@@ -12,70 +19,51 @@ PUSH
   
 POP
 
-
-// 0x7A0 size but we have 0x550 available 
-
-
-#include "Boxes.lyn.event" 
+ALIGN 4 
+PartySizeThreshold: 
+WORD 45 // Units past this will be moved to PC box when saving 
 
 ALIGN 4 
 BoxCapacity: 
-WORD 100 
+#ifdef EXPAND_PARTY_MAX 
+WORD 97 
+#endif 
+#ifndef EXPAND_PARTY_MAX 
+WORD 51 
+#endif 
 
 ALIGN 4 
 BoxBufferCapacity:
 WORD 114 // 0x2028 bytes / 0x48 unit struct size = #0x72 / #114 units 
 
 
+
+
 ALIGN 4
 PCBoxSaveBlockDecl:
+#ifdef EXPAND_PARTY_MAX 
 	//    offst type // desc
 	SHORT $691C 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
 	SHORT $70BC 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
 	SHORT $785C 4 // 7: Pc box for save file 3	undefined 
-
+#endif 
+#ifndef EXPAND_PARTY_MAX 
+	SHORT $7400 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
+	SHORT $7800 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
+	SHORT $7C00 4 // 7: Pc box for save file 3	undefined 
+#endif 
 
 ALIGN 4
 PCBoxSizeLookup:
+#ifdef EXPAND_PARTY_MAX 
 	SHORT $7A0 // type 4: pc box 
+#endif 
+#ifndef EXPAND_PARTY_MAX 
+	SHORT $400 
+#endif 
+
+//#define StoreUnit(unitID) "SVAL s1 unitID; ASMC PackUnitIntoBox_ASMC" 
+//#define WithdrawUnit "ASMC UnpackUnitFromBox_ASMC" 
 
 
-#define StoreUnit(unitID) "SVAL s1 unitID; ASMC PackUnitIntoBox_ASMC" 
-#define WithdrawUnit "ASMC UnpackUnitFromBox_ASMC" 
-
-
-/*
-ALIGN 4
-Prep_PCBoxProc:
-PROC_YIELD
-PROC_SET_NAME(PCBoxProcName)
-
-PROC_CALL_ROUTINE(StartPCBoxUnitSelect)
-PROC_SLEEP(1)
-//PROC_NEW_CHILD_BLOCKING(0x8a18e8c)
-
-/*
-PROC_SET_DESTRUCTOR(0x8095A39)              // End scrolling BG3
-PROC_CALL_ROUTINE(ClearBGs|1)
-PROC_CALL_ROUTINE(0x8095A1D)                // Restart scrolling BG3
-PROC_CALL_ROUTINE_ARG(0x80AE2D1, 0x8)       // NewFadeIn
-PROC_WHILE_ROUTINE(0x80AE2A1)               // FadeInExists
-
-
-
-//PROC_CALL_ROUTINE(PREEXT_StartTextEngine|1) // Starts a Procs_BattleEventEngine
-//PROC_LOOP_ROUTINE(PREEXT_AppendText|1)      // Appends relevant text based on variables.
-//PROC_WHILE_EXISTS(0x8591AF8)                // Procs_BattleEventEngine.
-
-PROC_CALL_ROUTINE_ARG(0x80AE2F5, 0x8)       // NewFadeOut
-PROC_WHILE_ROUTINE(0x80AE2B9)               // FadeOutExists
-
-
-PROC_END
-
-	ALIGN 4
-	PCBoxProcName:
-	String(PCBox)
-	BYTE 0
-*/
 

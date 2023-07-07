@@ -29,7 +29,11 @@ struct __attribute__((packed)) BoxUnit {
 	u8 supportBits; 
 	u32 metis : 1; 
 	u8 wexp[4];
-	u8 supports[2]; 
+	u32 support0 : 4; 
+	u32 support1 : 4; 
+	u32 support2 : 4; 
+	u32 support3 : 4; 
+	u32 support4 : 4; 
 	u32 support5 : 4; 
 	u32 unitLeader : 4; 
 	
@@ -44,12 +48,14 @@ struct __attribute__((packed)) BoxUnit {
 	u32 spd : 6; 
 	u32 def : 6; 
 	u32 res : 6; 
-	u32 luk : 6; // 152 or 19 / #0x13 bytes per unit to be saved = 102 units 
+	u32 luk : 6; // 156 or 19 / #0x14 bytes per unit to be saved = 97 units or 69 without approximating 
+	// 60 bits are saved by approximating supports / wexp 
 };
 #endif 
 
 extern int BoxCapacity; 
 extern int BoxBufferCapacity; 
+extern int PartySizeThreshold; 
 extern int ProtagID_Link; 
 
 extern struct Unit PCBoxUnitsBuffer[]; //0x2026E30 size 0x2048 
@@ -76,7 +82,7 @@ int CountTempUnits(void);
 void DeploySelectedUnits(void);
 int CountUnitsInUnitStructRam(void);
 void ClearPCBoxUnitsBuffer(void);
-void RelocateUnitsPast50(int startingOffset);
+void RelocateUnitsPastThreshold(int startingOffset);
 void ClearAllBoxUnits(int slot);
 void ClearAllBoxUnitsASMC(void);
 
