@@ -9,7 +9,7 @@
 // need to clear all from save file on new game 
 // need to copy over box units when save file is copied, too 
 
-
+extern struct Unit unit[62]; // gGenericBuffer 0x2020188
 
 int SendItemsToConvoy(struct Unit* unit) { 
 	for (int i = 0; i<5; i++) { 
@@ -24,7 +24,9 @@ int SendItemsToConvoy(struct Unit* unit) {
 } 
 
 int IsBoxFull(int slot) { 
-	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
+	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
+	
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if (!boxUnitSaved[i].classID)
 			return false; 
@@ -36,16 +38,32 @@ int IsBoxFull(int slot) {
 
 
 struct BoxUnit* GetFreeBoxSlot(int slot) { 
-	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
+	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
+	
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if ((boxUnitSaved[i].classID == 0) || (boxUnitSaved[i].classID == 0xFF))
 			return &boxUnitSaved[i]; 
 	} 
 	return NULL; 
 } 
+struct BoxUnit* GetFreeBoxSRAM(int slot) { 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
+	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
+	struct BoxUnit* boxUnitSRAM = (void*)PC_GetSaveAddressBySlot(slot);
+	
+	for (int i = 0; i < BoxCapacity; i++) { 
+		if ((boxUnitSaved[i].classID == 0) || (boxUnitSaved[i].classID == 0xFF))
+			return &boxUnitSRAM[i]; 
+	} 
+	return NULL; 
+} 
+
 
 struct BoxUnit* GetTakenBoxSlot(int slot, int index) { 
-	struct BoxUnit* boxUnitSaved = (void*)PC_GetSaveAddressBySlot(slot); 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
+	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
+	
 	int c = 0; 
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if (boxUnitSaved[i].classID && boxUnitSaved[i].classID != 0xFF) { 
@@ -67,7 +85,9 @@ void ClearAllBoxUnitsASMC(void) {
 } 
 
 void ClearAllBoxUnits(int slot) {
-	memset((void*)PC_GetSaveAddressBySlot(slot), 0, PCBoxSizeLookup[0]);
+	memset((void*)&unit[0], 0, PCBoxSizeLookup[0]);
+	WriteAndVerifySramFast((void*)&unit[0], (void*)PC_GetSaveAddressBySlot(slot), PCBoxSizeLookup[0]);
+	
 	
 	//struct BoxUnit* boxRam; 
 	//void* baseRam = PC_GetSaveAddressBySlot(slot); 
@@ -126,7 +146,7 @@ void ClearPCBoxUnitsBuffer(void) {
 	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
 } 
 
-extern struct Unit unit[62]; // gGenericBuffer 0x2020188
+
 void DeploySelectedUnits() { 
 	//asm("mov r11, r11");
 	
@@ -210,19 +230,20 @@ void UnpackUnitFromBox_ASMC(void) {
 
 int UnpackUnitsFromBox(int slot) { 
 	int i, cur = 0; 
-	struct Unit* unit; 
+	struct Unit* unit2; 
 	struct BoxUnit* bunit;
 	for (i=0; i<BoxCapacity; i++) { 
 		bunit = GetTakenBoxSlot(slot, i);
 		if (!bunit) {
 			break;
 		}
-		unit = GetFreeTempUnitAddr(); 
-		if (!unit) { 
+		unit2 = GetFreeTempUnitAddr(); 
+		if (!unit2) { 
 			break;
 		}
 		cur++;
-		UnpackUnitFromBox(bunit, unit); 
+		(*ReadSramFast)(bunit, (void*)&unit[i], sizeof(*bunit)); // use the generic buffer instead of reading directly from SRAM 
+		UnpackUnitFromBox((struct BoxUnit*)&unit[i], unit2); 
 		
 	} 
 	return cur; 
@@ -231,7 +252,7 @@ int UnpackUnitsFromBox(int slot) {
 void PackUnitsIntoBox(int slot) { 
 	ClearAllBoxUnits(slot);
 	int i; 
-	struct Unit* unit; 
+	struct Unit* unit2; 
 	struct BoxUnit* bunit;
 	
 	for (i=0; i<BoxCapacity; i++) { 
@@ -239,11 +260,14 @@ void PackUnitsIntoBox(int slot) {
 		if (!bunit) {
 			break;
 		}
-		unit = GetTakenTempUnitAddr(); 
-		if (!unit) { 
+		unit2 = GetTakenTempUnitAddr(); 
+		if (!unit2) { 
 			break;
 		}
-		PackUnitIntoBox(bunit, unit); 
+		
+		PackUnitIntoBox((void*)&unit[i], unit2); 
+		// use the generic buffer instead of reading directly from SRAM 
+		WriteAndVerifySramFast((void*)GetFreeBoxSRAM(slot), (void*)bunit, sizeof(*bunit)); // src, dst, size 
 		ClearUnit(unit); 
 	} 
 	return; 
@@ -325,7 +349,7 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		unit->pMapSpriteHandle = 0; 
 		unit->xPos = 63; 
 		unit->yPos = 63; 
-		unit->state = US_NOT_DEPLOYED | US_HIDDEN | US_BIT16; // 0x10009 Escaped, Undeployed, Hidden 
+		unit->state = US_NOT_DEPLOYED | US_HIDDEN; // | US_BIT16; // 0x10009 Escaped, Undeployed, Hidden 
 		unit->index = GetFreeDeploymentID(); 
 		unit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
 		
@@ -428,15 +452,6 @@ int GetFlooredWEXP(int inputRank) {
   if (inputRank >= 241) i++;
   if (inputRank >= 251) i = 0xF; // S 
   return i;
-	
-	// 251+ becomes 0xF 
-	
-	// supports: 
-	// C at 51 (I guess 50 when ready?) 
-	// B at A1 
-	// A at F1 
-
-
 } 
 
 int UnpackFlooredWEXP(int value) { 

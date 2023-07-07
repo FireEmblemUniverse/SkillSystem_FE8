@@ -20,11 +20,28 @@
 //};
 
 
+void SavePCBox(int targetSlot) { 
+	ClearPCBoxUnitsBuffer();
+	int sourceSlot = gPlaySt.gameSaveSlot; 
+	if (sourceSlot != targetSlot) { 
+		ClearAllBoxUnits(targetSlot); 
+	}
+	int index = UnpackUnitsFromBox(sourceSlot); // because we might save to a different file 
+	RelocateUnitsPastThreshold(index); 
+	PackUnitsIntoBox(targetSlot);
+} 	
+
+void CopyPCBox(int sourceSlot, int targetSlot) { 
+	UnpackUnitsFromBox(sourceSlot); 
+	ClearAllBoxUnits(targetSlot); 
+	PackUnitsIntoBox(targetSlot); 
+}
+
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 {
 	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
 	ClearPCBoxUnitsBuffer();
-	int index = UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
+	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
 	//RelocateUnitsPastThreshold(index); 
 
 	
@@ -60,20 +77,20 @@ void StartPCBoxUnitSelect(struct Proc* proc) {
 
 void NewProcPrepUnit_InitScreen(struct ProcPrepUnit *proc) { 
 	ProcPrepUnit_InitScreen(proc);
-	NewPrepUnit_InitSMS(proc); 
+	PrepUnit_InitSMS(proc); 
 } 
 
 
 
-void NewPrepUnit_InitSMS(struct ProcPrepUnit *proc)
+void PrepUnit_InitSMS(struct ProcPrepUnit *proc)
 {
     SetupMapSpritesPalettes();
     CpuFastFill(0, gUnknown_02022C08, 0x20);
-    NewMakePrepUnitList();
+    MakePrepUnitList();
     PrepAutoCapDeployUnits(proc->proc_parent);
     PrepUpdateSMS();
 }
-void NewMakePrepUnitList()
+void MakePrepUnitList()
 {
     int i; 
 	int cur = CountTempUnits();
@@ -132,10 +149,10 @@ void NewRegisterPrepUnitList(int index, struct Unit *unit)
 }
 */
 
-void NewProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
+void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
 {
     struct ProcAtMenu *parent;
-    NewMakePrepUnitList();
+    MakePrepUnitList();
     proc->list_num_cur = UnitGetIndexInPrepList(PrepGetLatestCharId());
     proc->max_counter = ((struct ProcAtMenu *)(proc->proc_parent))->max_counter;
     proc->cur_counter = ((struct ProcAtMenu *)(proc->proc_parent))->cur_counter;
@@ -145,10 +162,10 @@ void NewProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
 }
 
 
-void Newsub_809B520(struct ProcPrepUnit *proc)
+void sub_809B520(struct ProcPrepUnit *proc)
 {
     int list_num;
-    NewMakePrepUnitList();
+    MakePrepUnitList();
 
     list_num = GetLatestUnitIndexInPrepListByUId();
     proc->list_num_pre = list_num;
@@ -156,6 +173,8 @@ void Newsub_809B520(struct ProcPrepUnit *proc)
 }
 
 extern void MS_SaveGame(unsigned slot);
+
+/*
 void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
 {
     ((struct ProcAtMenu *)(proc->proc_parent))->end_prep = 1;
@@ -170,6 +189,7 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
 	//MS_SaveGame(gPlaySt.gameSaveSlot); 
 	
 }
+*/
 
 void CallDeploySelectedUnits(void) {
 	DeploySelectedUnits(); 
@@ -659,7 +679,7 @@ void sub_809B014()
 }
 */
 
-void NewProcPrepUnit_Idle(struct ProcPrepUnit *proc)
+void ProcPrepUnit_Idle(struct ProcPrepUnit *proc)
 {
     int ret;
 

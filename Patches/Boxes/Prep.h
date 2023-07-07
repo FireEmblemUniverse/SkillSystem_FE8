@@ -34,6 +34,9 @@ void NewRegisterPrepUnitList(int index, struct Unit *unit);
 void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc);
 void NewProcPrepUnit_Idle(struct ProcPrepUnit *proc);
 
+
+void PrepUnit_InitSMS(struct ProcPrepUnit *proc);
+
 void ProcPrepUnit_OnEnd(struct ProcPrepUnit *proc);
 void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc);
 void ProcPrepUnit_InitScreen(struct ProcPrepUnit *proc);
@@ -77,13 +80,13 @@ static const struct ProcCmd ProcScr_PCBoxUnitScreen[] = {
     PROC_SET_END_CB(ProcPrepUnit_OnEnd),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_0),
-    PROC_CALL(NewProcPrepUnit_OnInit),
+    PROC_CALL(ProcPrepUnit_OnInit),
     PROC_CALL(NewProcPrepUnit_InitScreen),
     PROC_CALL_ARG(NewFadeIn, 0x10),
     PROC_WHILE(FadeInExists),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_IDLE),
-    PROC_REPEAT(NewProcPrepUnit_Idle),
+    PROC_REPEAT(ProcPrepUnit_Idle),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_2),
     PROC_CALL(sub_809B370),
@@ -112,14 +115,14 @@ PROC_LABEL(PROC_LABEL_PREPUNIT_PRESS_R),
     PROC_CALL(sub_809B014),
     PROC_CALL(sub_809B504),
     PROC_YIELD,
-    PROC_CALL(Newsub_809B520),
+    PROC_CALL(sub_809B520),
     PROC_CALL(NewProcPrepUnit_InitScreen),
     PROC_SLEEP(0x2),
     PROC_CALL(PrepUnitEnableDisp),
     PROC_GOTO(0x1),
 
 PROC_LABEL(PROC_LABEL_PREPUNIT_GAME_START),
-    PROC_CALL(NewProcPrepUnit_OnGameStart),
+    PROC_CALL(ProcPrepUnit_OnGameStart),
     PROC_SLEEP(0x1E),
     PROC_CALL_ARG(NewFadeOut, 0x8),
 	PROC_SLEEP(0x5),

@@ -304,9 +304,9 @@ ENUF SkipIntroFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
-ASMC ClearPCBoxUnitsBuffer
+//ASMC ClearPCBoxUnitsBuffer
+//ASMC ClearAllBoxUnitsASMC
 
-ASMC ClearAllBoxUnitsASMC
 //SelectAvatar
 
 //ENUT RandomizeClassesFlag // this should only be set once tact name is set 

@@ -11,6 +11,12 @@
 .equ FillBgMap, 0x8001220
 .equ gpBG0MapBuffer, 0x2022CA8
 
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
+
 .global PREEXT_StartExtraEntry
 .type PREEXT_StartExtraEntry, %function 
 PREEXT_StartExtraEntry:
@@ -97,6 +103,65 @@ bl    GOTO_R4
 pop   {r4-r7}
 pop   {r0}
 bx    r0
+.ltorg 
+
+.global HookCopyGameSave
+.type HookCopyGameSave, %function 
+HookCopyGameSave: 
+push {r4-r5, lr} 
+mov r2, r4 
+add r2, #0x2C 
+ldrb r5, [r2] 
+ldrb r4, [r1] 
+mov r0, r4 
+mov r1, r5 
+blh CopyGameSave 
+mov r0, r4 
+mov r1, r5 
+bl CopyPCBox
+pop {r4-r5} 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global HookSaveGame
+.type HookSaveGame, %function 
+HookSaveGame:
+push {lr} 
+
+mov r0, r4 
+add r0, #0x2c 
+ldrb r0, [r0] 
+bl SavePCBox
+
+mov r0, r4 
+add r0, #0x2c 
+ldrb r0, [r0] 
+blh SaveGame 
+
+mov r0, r4 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.equ CopyGameSave, 0x80A4E08 
+.equ SaveGame, 0x80A5010 
+.equ SetGameClock, 0x8000D34 
+.global HookInitSave
+.type HookInitSave, %function 
+HookInitSave:
+push {lr} 
+mov r0, #0 
+blh SetGameClock 
+
+mov r0, r10 @ slot 
+bl ClearAllBoxUnits @ Added 
+
+lsl r1, r4, #0x18 
+asr r1, #0x18 
+mov r0, r5 
+pop {r3} 
+bx r3 
 .ltorg 
 
 

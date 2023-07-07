@@ -16,6 +16,22 @@ PUSH
   
  ORG $9AF32 // kill PrepUnit_InitSMS(proc); from ProcPrepUnit_InitScreen as we call our own version 
  SHORT $46c0 $46c0 
+ 
+ORG $A92FC 
+callHackNew(HookCopyGameSave) 
+
+//ORG $AA0D8 
+//jumpToHack(HookLoadGameSave) 
+
+ORG $A9280 // when creating a new save file i guess 
+//jumpToHack(something) 
+
+ORG $A9428 
+callHackNew(HookSaveGame)
+
+ORG $A4EA4 
+callHackNew(HookInitSave) 
+
   
 POP
 
