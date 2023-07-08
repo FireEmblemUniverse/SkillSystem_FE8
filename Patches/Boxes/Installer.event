@@ -1,6 +1,9 @@
 
-// Note: Extra units will only be shown in the "Pick Units" party of preparations menu. They do not show up in "items". 
-// Their items will be sent to supply when saving in order to maximize available space. Without doing this, we'd have 33% less space. 
+// Note: Extra units' items will be sent to supply when saving in order to maximize available space. Without doing this, we'd have 33% less space. 
+// Gfx glitch of duplicated names at bottom of items menu when scrolling from the top 
+// Stat Screen from within Prep won't scroll to extra units 
+
+
 
 #include "PrepHooks.lyn.event" 
 #include "Prep.lyn.event" 
@@ -11,8 +14,24 @@
 // Allows for 97 extra units instead of 51 extra units to be saved. 
 
 PUSH
-  ORG 0x96350
-  POIN PREEXT_StartExtraEntry
+
+#ifdef EXPAND_PARTY_MAX 
+ORG 0x0AB90E
+BYTE 0x00 0x00 0x00 0x20 // Disable link arena 
+
+ORG $A3EA4 // something that writes to arena SRAM 
+SHORT $4770 // bx lr 
+
+ORG $A3984 // something that writes to arena SRAM 
+SHORT $4770 // bx lr 
+
+ORG $A2CA4 // tests SRAM by writing to $7EA0 in SRAM 
+WORD $7FFC // vanilla uses $E0073A0 to test SRAM  
+
+#endif 
+
+  ORG 0x96340
+  POIN PREEXT_StartExtraEntry // takes over 
   
  ORG $9AF32 // kill PrepUnit_InitSMS(proc); from ProcPrepUnit_InitScreen as we call our own version 
  SHORT $46c0 $46c0 
@@ -53,7 +72,7 @@ BoxBufferCapacity:
 WORD 114 // 0x2028 bytes / 0x48 unit struct size = #0x72 / #114 units 
 
 
-
+// 73A0 
 
 ALIGN 4
 PCBoxSaveBlockDecl:
@@ -77,9 +96,6 @@ PCBoxSizeLookup:
 #ifndef EXPAND_PARTY_MAX 
 	SHORT $400 
 #endif 
-
-//#define StoreUnit(unitID) "SVAL s1 unitID; ASMC PackUnitIntoBox_ASMC" 
-//#define WithdrawUnit "ASMC UnpackUnitFromBox_ASMC" 
 
 
 

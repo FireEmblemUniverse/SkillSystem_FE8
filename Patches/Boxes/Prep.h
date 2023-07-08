@@ -5,6 +5,7 @@ void* memcpy(void* dest, const void* src, unsigned int count); //! FE8U = (0x080
 void* memset(void* dest, int ch, unsigned int count); //! FE8U = (0x080D1C6C+1)
 
 #include "include/global.h"
+#include "include/bmsave.h"
 #include "include/functions.h"
 #include "include/variables.h"
 #include "include/hardware.h"

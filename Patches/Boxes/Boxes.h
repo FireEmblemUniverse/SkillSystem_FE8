@@ -53,6 +53,10 @@ struct __attribute__((packed)) BoxUnit {
 };
 #endif 
 
+
+extern struct Unit unit[62]; // gGenericBuffer 0x2020188
+extern struct BoxUnit bunit[100]; 
+
 extern int BoxCapacity; 
 extern int BoxBufferCapacity; 
 extern int PartySizeThreshold; 

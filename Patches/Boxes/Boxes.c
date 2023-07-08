@@ -9,7 +9,7 @@
 // need to clear all from save file on new game 
 // need to copy over box units when save file is copied, too 
 
-extern struct Unit unit[62]; // gGenericBuffer 0x2020188
+
 
 int SendItemsToConvoy(struct Unit* unit) { 
 	for (int i = 0; i<5; i++) { 
@@ -23,6 +23,7 @@ int SendItemsToConvoy(struct Unit* unit) {
 	return true; 
 } 
 
+/*
 int IsBoxFull(int slot) { 
 	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
 	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
@@ -33,13 +34,13 @@ int IsBoxFull(int slot) {
 	} 
 	return true; 
 } 
+*/
 
 
 
 
 struct BoxUnit* GetFreeBoxSlot(int slot) { 
-	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
-	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
+	struct BoxUnit* boxUnitSaved = (void*)&bunit[0]; 
 	
 	for (int i = 0; i < BoxCapacity; i++) { 
 		if ((boxUnitSaved[i].classID == 0) || (boxUnitSaved[i].classID == 0xFF))
@@ -47,22 +48,10 @@ struct BoxUnit* GetFreeBoxSlot(int slot) {
 	} 
 	return NULL; 
 } 
-struct BoxUnit* GetFreeBoxSRAM(int slot) { 
-	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
-	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
-	struct BoxUnit* boxUnitSRAM = (void*)PC_GetSaveAddressBySlot(slot);
-	
-	for (int i = 0; i < BoxCapacity; i++) { 
-		if ((boxUnitSaved[i].classID == 0) || (boxUnitSaved[i].classID == 0xFF))
-			return &boxUnitSRAM[i]; 
-	} 
-	return NULL; 
-} 
 
 
 struct BoxUnit* GetTakenBoxSlot(int slot, int index) { 
-	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&unit[0], PCBoxSizeLookup[0]);
-	struct BoxUnit* boxUnitSaved = (void*)&unit[0]; 
+	struct BoxUnit* boxUnitSaved = (void*)&bunit[0]; 
 	
 	int c = 0; 
 	for (int i = 0; i < BoxCapacity; i++) { 
@@ -76,17 +65,17 @@ struct BoxUnit* GetTakenBoxSlot(int slot, int index) {
 		} 
 		
 	} 
-	
 	return NULL; 
 } 
+
 
 void ClearAllBoxUnitsASMC(void) { 
 	ClearAllBoxUnits(gChapterData.saveSlotIndex);
 } 
 
 void ClearAllBoxUnits(int slot) {
-	memset((void*)&unit[0], 0, PCBoxSizeLookup[0]);
-	WriteAndVerifySramFast((void*)&unit[0], (void*)PC_GetSaveAddressBySlot(slot), PCBoxSizeLookup[0]);
+	memset((void*)&bunit[0], 0, PCBoxSizeLookup[0]);
+	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(slot), PCBoxSizeLookup[0]);
 	
 	
 	//struct BoxUnit* boxRam; 
@@ -196,45 +185,23 @@ void DeploySelectedUnits() {
 } 
 
 
-void PackUnitIntoBox_ASMC(void) { 
-	//struct Unit* unit = GetTakenTempUnitAddr(); 
-	int slot = gChapterData.saveSlotIndex; 
-	
-	struct Unit* unit = GetFreeTempUnitAddr(); 
-	
-	if (unit) { 
-	struct Unit* realUnit = GetUnitStructFromEventParameter(gEventSlot[1]);
-	memcpy(unit, realUnit, 0x48);
-	ClearUnit(realUnit); 
-	PackUnitIntoBox(GetFreeBoxSlot(slot), unit); 
-	} 
-} 
-void UnpackUnitFromBox_ASMC(void) { 
-	int slot = gChapterData.saveSlotIndex; 
-	//struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
-	struct Unit* unit = GetTakenTempUnitAddr();
-	UnpackUnitFromBox(GetTakenBoxSlot(slot, 0), unit); 
-	memcpy(GetFreeBlueUnit(), (void*)unit, 0x48);
-	
-	
-	//memset((void*)&unit, 0, 0x48);
-	ClearUnit(unit); 
-	return; 
-} 
-
-
-// ClearUnit(unit); // FE8U = 0x80177F5
-		//SMS_UpdateFromGameData();
-		//ClearBoxUnit(boxRam); 
-
+// 0xE00691C 
+// 0xE0070BC 
+// 2020188
 
 int UnpackUnitsFromBox(int slot) { 
 	int i, cur = 0; 
 	struct Unit* unit2; 
-	struct BoxUnit* bunit;
+	struct BoxUnit* bunit2;
+	
+	// src, dst, size 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], sizeof(*bunit)*BoxCapacity); // use the generic buffer instead of reading directly from SRAM 
+	
+	
+	
 	for (i=0; i<BoxCapacity; i++) { 
-		bunit = GetTakenBoxSlot(slot, i);
-		if (!bunit) {
+		bunit2 = GetTakenBoxSlot(slot, i); 
+		if (!bunit2) {
 			break;
 		}
 		unit2 = GetFreeTempUnitAddr(); 
@@ -242,8 +209,8 @@ int UnpackUnitsFromBox(int slot) {
 			break;
 		}
 		cur++;
-		(*ReadSramFast)(bunit, (void*)&unit[i], sizeof(*bunit)); // use the generic buffer instead of reading directly from SRAM 
-		UnpackUnitFromBox((struct BoxUnit*)&unit[i], unit2); 
+		
+		UnpackUnitFromBox((struct BoxUnit*)&bunit[i], unit2); 
 		
 	} 
 	return cur; 
@@ -253,23 +220,25 @@ void PackUnitsIntoBox(int slot) {
 	ClearAllBoxUnits(slot);
 	int i; 
 	struct Unit* unit2; 
-	struct BoxUnit* bunit;
+	//struct BoxUnit* bunit2;
+	//struct BoxUnit* bunitStart = GetFreeBoxSlot(slot);
 	
 	for (i=0; i<BoxCapacity; i++) { 
-		bunit = GetFreeBoxSlot(slot);
-		if (!bunit) {
-			break;
-		}
+		//bunit2 = GetFreeBoxSlot(slot);
+		//if (!bunit2) {
+		//	break;
+		//}
 		unit2 = GetTakenTempUnitAddr(); 
 		if (!unit2) { 
 			break;
 		}
 		
-		PackUnitIntoBox((void*)&unit[i], unit2); 
+		PackUnitIntoBox((void*)&bunit[i], unit2); 
 		// use the generic buffer instead of reading directly from SRAM 
-		WriteAndVerifySramFast((void*)GetFreeBoxSRAM(slot), (void*)bunit, sizeof(*bunit)); // src, dst, size 
-		ClearUnit(unit); 
+		
+		ClearUnit(unit2); 
 	} 
+	
 	return; 
 }
 

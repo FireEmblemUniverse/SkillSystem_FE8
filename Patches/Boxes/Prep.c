@@ -19,6 +19,7 @@
 //    int latest_pid;     /* Last unit char-id when you leave the prep-unit-screen */
 //};
 
+unsigned WriteAndVerifySramFast(const void* src, void* dest, unsigned size);
 
 void SavePCBox(int targetSlot) { 
 	ClearPCBoxUnitsBuffer();
@@ -29,12 +30,29 @@ void SavePCBox(int targetSlot) {
 	int index = UnpackUnitsFromBox(sourceSlot); // because we might save to a different file 
 	RelocateUnitsPastThreshold(index); 
 	PackUnitsIntoBox(targetSlot);
+	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(slot), sizeof(*bunit[0])*BoxCapacity); // src, dst, size 
+	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size
+	
+	struct SaveBlockInfo sbm;
+	sbm.magic32 = SAVEMAGIC32;
+	sbm.kind   = SAVEBLOCK_KIND_GAME;
+	WriteSaveBlockInfo(&sbm, targetSlot);
+	
+	UnpackUnitsFromBox(targetSlot); 
 } 	
 
 void CopyPCBox(int sourceSlot, int targetSlot) { 
 	UnpackUnitsFromBox(sourceSlot); 
 	ClearAllBoxUnits(targetSlot); 
 	PackUnitsIntoBox(targetSlot); 
+	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size 
+	
+	struct SaveBlockInfo sbm;
+	sbm.magic32 = SAVEMAGIC32;
+	sbm.kind   = SAVEBLOCK_KIND_GAME;
+	WriteSaveBlockInfo(&sbm, targetSlot);
+	
+	UnpackUnitsFromBox(targetSlot); 
 }
 
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
