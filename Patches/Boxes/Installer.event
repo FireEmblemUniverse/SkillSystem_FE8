@@ -13,6 +13,10 @@
 #define EXPAND_PARTY_MAX 
 // Allows for 97 extra units instead of 51 extra units to be saved. 
 
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#endif 
+
 PUSH
 
 #ifdef EXPAND_PARTY_MAX 
@@ -29,6 +33,19 @@ ORG $A2CA4 // tests SRAM by writing to $7EA0 in SRAM
 WORD $7FFC // vanilla uses $E0073A0 to test SRAM  
 
 #endif 
+
+// Checksum computation function now returns a constant
+// (This was already included in EMS) 
+ORG $0A6408
+SHORT $202A $4770 // mov r0, #42; bx lr
+
+ORG $A644C // makes it so if checksum for a save file is bad, it will still load the save file 
+SHORT $2001 // mov r0, #1 
+
+ORG $A2D9C // makes it so if your metadata is bad, it will still load your resume data 
+SHORT $2001 // mov r0, #1 
+
+
 
   ORG 0x96340
   POIN PREEXT_StartExtraEntry // takes over 

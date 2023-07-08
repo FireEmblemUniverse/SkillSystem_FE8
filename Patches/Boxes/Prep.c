@@ -12,6 +12,30 @@
 #include "Prep.h"
 #include "Boxes.h" 
 
+// This was for extra testing that nothing else was writing to my areas of SRAM 
+/*
+void WriteSramFast(const u8 *src, u8 *dest, u32 size)
+{
+	
+	if ((void*)dest > (void*)0xE00691C) {
+		if ((void*)dest < (void*) 0xE0070BC) 
+		asm("mov r11, r11");
+	}
+	if ((void*)dest > (void*)0xE0070BC) {
+		if ((void*)dest < (void*) 0xE00785C) 
+		asm("mov r11, r11");
+	}
+	if ((void*)dest > (void*)0xE00785C) {
+		if ((void*)dest < (void*) 0xE007FFC) 
+		asm("mov r11, r11");
+	}
+	
+    REG_WAITCNT = (REG_WAITCNT & ~3) | 3;
+    while (--size != -1)
+        *dest++ = *src++;
+}
+*/
+
 // 64 pointers to a unit struct 
 //struct PrepUnitList {
 //    struct Unit *units[0x40];

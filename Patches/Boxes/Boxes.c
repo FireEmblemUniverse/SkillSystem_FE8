@@ -268,7 +268,7 @@ void PackUnitsIntoBox(int slot) {
 
 struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	if ((boxRam->classID != 0xFF) && (boxRam->classID)) { 
-		unit->pClassData = &NewClassTable[boxRam->classID]; 
+		unit->pClassData = &(*classTablePoin)[boxRam->classID]; 
 		unit->maxHP = 		boxRam->hp ; 
 		unit->curHP = 		unit->maxHP; 
 		unit->unk3A = 		boxRam->mag; 
@@ -531,7 +531,7 @@ int UnpackFlooredSupportEXP(int value) {
 struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	if ((boxRam->classID != 0xFF) && (boxRam->classID)) { 
 		unit->pCharacterData = &gCharacterData[boxRam->unitID]; 
-		unit->pClassData = &NewClassTable[boxRam->classID]; 
+		unit->pClassData = &(*classTablePoin)[boxRam->classID]; 
 		unit->maxHP = 		boxRam->hp; 
 		unit->curHP = 		unit->maxHP; 
 		unit->unk3A = 		boxRam->mag; 

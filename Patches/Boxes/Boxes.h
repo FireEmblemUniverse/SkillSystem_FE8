@@ -2,7 +2,10 @@
 //#define POKEMBLEM_VERSION
 
 
-extern struct ClassData NewClassTable[]; 
+//extern struct ClassData NewClassTable[]; 
+extern struct ClassData* classTablePoin[]; 
+
+
 void* MS_GetSaveAddressBySlot(unsigned slot);
 
 #ifdef POKEMBLEM_VERSION 
