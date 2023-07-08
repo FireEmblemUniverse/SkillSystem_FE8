@@ -45,12 +45,12 @@ gSaveBlockDecl:
 	SHORT $00D4 1    // 3: suspend 1 SAVE_BLOCK_SUSPEND    = 3,
 	SHORT $00D4 1    // 4: suspend 2 (now same as suspend 1) SAVE_BLOCK_SUSPENDALT = 4,
 
-	SHORT $691C 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
-	SHORT $70BC 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
-	SHORT $785C 4 // 7: Pc box for save file 3	undefined 
+	//SHORT $691C 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
+	//SHORT $70BC 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
+	//SHORT $785C 4 // 7: Pc box for save file 3	undefined 
 	// We don't change the two last blocks from vanilla, for the best
-	//SHORT $691C 2    // 5: link arena
-	//SHORT $7400 3    // 6: potentially interesting stuff that nobody really understands (save based chapters!)
+	SHORT $691C 2    // 5: link arena
+	SHORT $7400 3    // 6: potentially interesting stuff that nobody really understands (save based chapters!)
 
 // Vesly note: Chapter Titles uses offsets from here to figure out what new chapter title to use 
 // poor form but whatever 
