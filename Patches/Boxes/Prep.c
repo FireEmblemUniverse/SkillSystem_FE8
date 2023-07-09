@@ -87,6 +87,11 @@ void CopyPCBox(int sourceSlot, int targetSlot) {
 
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 {
+	if (!CheckFlag(InitSRAM_Flag)) { 
+		ClearAllBoxUnits(gPlaySt.gameSaveSlot);
+		SetFlag(InitSRAM_Flag); 
+	} 
+	
 	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
 	ClearPCBoxUnitsBuffer();
 	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
