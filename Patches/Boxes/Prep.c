@@ -44,10 +44,16 @@ void WriteSramFast(const u8 *src, u8 *dest, u32 size)
 //};
 
 unsigned WriteAndVerifySramFast(const void* src, void* dest, unsigned size);
-
+//s8 GetEventTriggerState(u16 triggerId);
 void SavePCBox(int targetSlot) { 
 	ClearPCBoxUnitsBuffer();
 	int sourceSlot = gPlaySt.gameSaveSlot; 
+	
+	if (!CheckFlag(InitSRAM_Flag)) { 
+		ClearAllBoxUnits(targetSlot);
+		SetFlag(InitSRAM_Flag); 
+	} 
+	
 	if (sourceSlot != targetSlot) { 
 		ClearAllBoxUnits(targetSlot); 
 	}

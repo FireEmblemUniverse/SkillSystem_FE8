@@ -68,6 +68,48 @@ struct BoxUnit* GetTakenBoxSlot(int slot, int index) {
 	return NULL; 
 } 
 
+struct BoxUnit* GetCharIDFromBox(int slot, int index) { 
+	struct BoxUnit* boxUnitSaved = (void*)&bunit[0]; 
+	for (int i = 0; i < BoxCapacity; i++) { 
+		if (boxUnitSaved[i].classID && boxUnitSaved[i].classID != 0xFF) { 
+			if (boxUnitSaved[i].unitID == index) { 
+				return &boxUnitSaved[i]; 
+			} 
+		} 
+		
+	} 
+	return NULL; 
+} 
+
+void EnsureUnitInPartyASMC(void) { 
+	int slot = gChapterData.saveSlotIndex;
+	int charID = gEventSlot[1];
+	gEventSlot[0xC] = EnsureUnitInParty(slot, charID); 
+	
+} 
+
+
+int EnsureUnitInParty(int slot, int charID) { 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], sizeof(*bunit)*BoxCapacity); // use the generic buffer instead of reading directly from SRAM 
+	struct BoxUnit* boxUnitSaved = GetCharIDFromBox(slot, charID);
+	int result = false; 
+	struct Unit* newUnit; 
+	int deploymentID = 0; 
+	if (boxUnitSaved) { 
+		deploymentID = GetFreeDeploymentID(); 
+		newUnit = &gUnitArrayBlue[deploymentID];
+		UnpackUnitFromBox((struct BoxUnit*)boxUnitSaved, newUnit); 
+		newUnit->index = deploymentID; 
+		
+		result = true; 
+	} 
+	if (GetUnitStructFromEventParameter(charID)) { 
+		result = true; 
+	}
+
+	return result; 
+} 
+
 
 void ClearAllBoxUnitsASMC(void) { 
 	ClearAllBoxUnits(gChapterData.saveSlotIndex);
@@ -112,11 +154,11 @@ void RelocateUnitsPastThreshold(int startingOffset) {
 
 	#ifdef POKEMBLEM_VERSION
 	// if protag is not in the first 50 units, don't let it go in box 
-	struct Unit unit;
-	unit.pCharacterData = 0; 
+	struct Unit someUnit;
+	someUnit.pCharacterData = 0; 
 	struct Unit* protag = GetUnitStructFromEventParameter(ProtagID_Link);
 	if (protag && protag->pCharacterData) { 
-		memcpy((void*)&unit, (void*)protag, 0x48); 
+		memcpy((void*)&someUnit, (void*)protag, 0x48); 
 		ClearUnit(protag); 
 	} 
 	#endif 
@@ -125,10 +167,14 @@ void RelocateUnitsPastThreshold(int startingOffset) {
 	memset(&gUnitArrayBlue[PartySizeThreshold], 0, 0x48*(62 - PartySizeThreshold)); 
 	
 	#ifdef POKEMBLEM_VERSION
-	if (unit.pCharacterData) { 
-		memcpy((void*)GetFreeBlueUnit(), (void*)&unit, 0x48); 
+	if (someUnit.pCharacterData) { 
+		int deploymentID = GetFreeDeploymentID(); 
+		struct Unit* newUnit = &gUnitArrayBlue[deploymentID];
+		memcpy((void*)newUnit, (void*)&someUnit, 0x48);
+		newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
 	} 
 	#endif 
+	
 } 
 
 void ClearPCBoxUnitsBuffer(void) { 
@@ -142,6 +188,8 @@ void DeploySelectedUnits() {
 	//struct Unit unit[50] = (struct Unit*)&gGenericBuffer[0];
 	//struct Unit unit[50] = (void*)gGenericBuffer;
 	struct Unit* unitTemp;
+	struct Unit* newUnit; 
+	int deploymentID = 0; 
 	
 	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*62); // move all units to gGenericBuffer 
 	memset(&gUnitArrayBlue[0], 0, 0x48*62); // clear units from unit struct ram 
@@ -149,7 +197,11 @@ void DeploySelectedUnits() {
 	
 	for (int i = 0; i<50; i++) { // move units that were deployed back into unit struct ram 
 		if ((unit[i].pCharacterData) && (!(unit[i].state & US_NOT_DEPLOYED))) { 
-			memcpy(GetFreeBlueUnit(), (void*)&unit[i], 0x48);
+			deploymentID = GetFreeDeploymentID(); 
+			newUnit = &gUnitArrayBlue[deploymentID];
+			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
+			newUnit->index = deploymentID; 
+			
 			ClearUnit(&unit[i]); 
 		}
 	} 
@@ -157,17 +209,24 @@ void DeploySelectedUnits() {
 		unitTemp = &PCBoxUnitsBuffer[i]; 
 		if ((unitTemp->pCharacterData) && (!(unitTemp->state & US_NOT_DEPLOYED))) {
 			unitTemp->state &= ~(US_BIT16); // remove "escaped" bitflag 
-			memcpy(GetFreeBlueUnit(), (void*)unitTemp, 0x48); // copy unit into a free slot in unit struct ram 
+			deploymentID = GetFreeDeploymentID(); 
+			newUnit = &gUnitArrayBlue[deploymentID];
+			memcpy((void*)newUnit, (void*)unitTemp, 0x48);
+			newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
 			ClearUnit(unitTemp); 
 		}
 	}
 	
 	int c = CountUnitsInUnitStructRam();
 	
-	for (int i = 0; i<50; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
+	for (int i = 0; i<PartySizeThreshold; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
 		if ((unit[i].pCharacterData)) { 
-			if (c < 50) { 
-			memcpy(GetFreeBlueUnit(), (void*)&unit[i], 0x48);
+			if (c < PartySizeThreshold) { 
+			deploymentID = GetFreeDeploymentID(); 
+			newUnit = &gUnitArrayBlue[deploymentID];
+			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
+			newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
+			
 			ClearUnit(&unit[i]); 
 			c++; 
 			} 
@@ -220,7 +279,9 @@ void PackUnitsIntoBox(int slot) {
 	ClearAllBoxUnits(slot);
 	int i; 
 	struct Unit* unit2; 
-	//struct BoxUnit* bunit2;
+	#ifndef POKEMBLEM_VERSION
+	struct BoxUnit* bunit2;
+	#endif 
 	//struct BoxUnit* bunitStart = GetFreeBoxSlot(slot);
 	
 	for (i=0; i<BoxCapacity; i++) { 
@@ -233,6 +294,16 @@ void PackUnitsIntoBox(int slot) {
 			break;
 		}
 		
+		#ifndef POKEMBLEM_VERSION 
+		bunit2 = GetCharIDFromBox(slot, unit2->pCharacterData->number); // avoid duplicate char IDs in case EnsureUnitInParty has been used. 
+		if (bunit2) { 
+			PackUnitIntoBox((void*)bunit2, unit2); 
+			ClearUnit(unit2); 
+			return; 
+		}
+		#endif 
+		
+	
 		PackUnitIntoBox((void*)&bunit[i], unit2); 
 		// use the generic buffer instead of reading directly from SRAM 
 		
@@ -244,6 +315,7 @@ void PackUnitsIntoBox(int slot) {
 
 #ifdef POKEMBLEM_VERSION 
   struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
+
 	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
 		boxRam->classID = unit->pClassData->number; 
 		boxRam->hp = unit->maxHP; 
@@ -319,7 +391,7 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		unit->xPos = 63; 
 		unit->yPos = 63; 
 		unit->state = US_NOT_DEPLOYED | US_HIDDEN; // | US_BIT16; // 0x10009 Escaped, Undeployed, Hidden 
-		unit->index = GetFreeDeploymentID(); 
+		unit->index = 0; //GetFreeDeploymentID(); 
 		unit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
 		
 
@@ -332,8 +404,8 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 int GetFreeDeploymentID(void) { 
 	struct Unit* unit; 
 	for (int i = 0; i<0x40; i++) { // deployment ID 
-		unit = GetUnit(i); 
-		if (unit && unit->pCharacterData) { 
+		unit = &gUnitArrayBlue[i]; 
+		if (unit->pCharacterData) { 
 			continue; 
 		}
 		else {
@@ -380,8 +452,8 @@ int CountTempUnits(void) {
 int GetFreeUnitID(void) { 
 	struct Unit* unit; 
 	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
-		unit = GetUnitStructFromEventParameter(i); 
-		if (unit && unit->pCharacterData) { 
+		unit = &gUnitArrayBlue[i]; 
+		if (unit->pCharacterData) { 
 			continue; 
 		}
 		else {
@@ -490,6 +562,7 @@ int UnpackFlooredSupportEXP(int value) {
 
 
   struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
+	
 	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
 		boxRam->unitID = unit->pCharacterData->number; 
 		boxRam->classID = unit->pClassData->number; 
@@ -593,7 +666,7 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		unit->xPos = 63; 
 		unit->yPos = 63; 
 		unit->state = US_NOT_DEPLOYED | US_HIDDEN | US_BIT16 | ((boxRam->metis!=0)<<13); // 0x10009 Escaped, Undeployed, Hidden 
-		unit->index = GetFreeDeploymentID(); // maybe important 
+		unit->index = 0; //GetFreeDeploymentID(); // maybe important 
 		
 		
 

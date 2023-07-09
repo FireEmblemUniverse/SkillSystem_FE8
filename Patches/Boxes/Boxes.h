@@ -92,6 +92,8 @@ void ClearPCBoxUnitsBuffer(void);
 void RelocateUnitsPastThreshold(int startingOffset);
 void ClearAllBoxUnits(int slot);
 void ClearAllBoxUnitsASMC(void);
+void EnsureUnitInPartyASMC(void);
+int EnsureUnitInParty(int slot, int charID);
 
 
 struct SaveBlockDecl {

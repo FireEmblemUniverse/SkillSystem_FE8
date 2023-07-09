@@ -14,7 +14,10 @@
     .type \name, object
     .set \name, \value
 .endm
-dat 0x8002015, RegisterDataMove
+fun 0x8002015, RegisterDataMove
+fun 0x8083d81, SetFlag 
+fun 0x8083d95, ClearFlag 
+fun 0x8083da9, CheckFlag	
 
 dat 0x02000000, gUnknown_02000000
 dat 0x02000010, gUnknown_02000010

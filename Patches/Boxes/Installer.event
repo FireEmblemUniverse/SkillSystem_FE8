@@ -3,7 +3,11 @@
 // Gfx glitch of duplicated names at bottom of items menu when scrolling from the top 
 // Stat Screen from within Prep won't scroll to extra units 
 
+ALIGN 4 
+InitSRAM_Flag: 
+WORD 0xEB 
 
+#define EnsureUnitInParty(unitID) "SVAL s1 unitID; ASMC EnsureUnitInPartyASMC" 
 
 #include "PrepHooks.lyn.event" 
 #include "Prep.lyn.event" 

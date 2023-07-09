@@ -299,6 +299,11 @@ CALL GlobalBeginningScene
 CALL CityBeginningScene
 CALL LoadAndPlacePlayers 
 
+EnsureUnitInParty(59) 
+EnsureUnitInParty(60) 
+EnsureUnitInParty(61) 
+EnsureUnitInParty(62) 
+
 CheckIfCaught(AbraID)
 BNE 22 sC s0 
 LOAD1 1 Units14 
@@ -355,6 +360,10 @@ LABEL 0x63
 SVAL s1 1 // unit id 
 SVAL s3 1 // facing right 
 ASMC SetUnitFacingASMC
+
+
+
+
 NoFade
 ENDA
 

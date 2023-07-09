@@ -5,6 +5,7 @@ void* memcpy(void* dest, const void* src, unsigned int count); //! FE8U = (0x080
 void* memset(void* dest, int ch, unsigned int count); //! FE8U = (0x080D1C6C+1)
 
 #include "include/global.h"
+#include "include/ev_triggercheck.h"
 #include "include/bmsave.h"
 #include "include/functions.h"
 #include "include/variables.h"
@@ -69,7 +70,7 @@ s8 PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
 
 extern s8 CheckInLinkArena();
 extern int CanShowUnitStatScreen(struct Unit* unit); 
-
+extern int InitSRAM_Flag;
 
 
 
