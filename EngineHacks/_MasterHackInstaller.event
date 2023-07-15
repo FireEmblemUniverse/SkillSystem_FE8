@@ -123,6 +123,9 @@ POP
   //Stat Screens palette by allegiance
   #include "ExternalHacks/StatScreenAllegiance/StatScreenAllegiance.event"
 
+  //StealGfxFix
+  #include "QualityOfLife/StealGfxFix.event"
+
   //Menu Semitransparency
   #include "QualityOfLife/SemitransparencyChanges.event"
 
