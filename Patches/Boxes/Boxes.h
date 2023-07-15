@@ -1,5 +1,5 @@
 
-//#define POKEMBLEM_VERSION
+#define POKEMBLEM_VERSION
 
 
 //extern struct ClassData NewClassTable[]; 
@@ -58,7 +58,7 @@ struct __attribute__((packed)) BoxUnit {
 
 
 extern struct Unit unit[62]; // gGenericBuffer 0x2020188
-extern struct BoxUnit bunit[100]; 
+extern struct BoxUnit bunit[110]; 
 
 extern int BoxCapacity; 
 extern int BoxBufferCapacity; 

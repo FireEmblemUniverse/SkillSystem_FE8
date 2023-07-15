@@ -50,6 +50,14 @@ POP
 #endif 
 
 ALIGN 4 
+FMU_IdleProc: 
+	_6C_SET_NAME(FreeMovementInputProcName)
+	_6C_YIELD
+	_6C_LOOP_ROUTINE(pFMU_DoNothing|1)
+	_6C_END 
+
+
+ALIGN 4 
 FMU_InputLoopProc:
 	_6C_SET_NAME(FreeMovementInputProcName)
 	_6C_YIELD
@@ -147,6 +155,7 @@ ALIGN 4
 	//_6C_GOTO(0xC)
 	
 	_6C_LABEL(0xF)
+	_6C_END_ALL(FMU_IdleProc)
 	_6C_END
 	
 	

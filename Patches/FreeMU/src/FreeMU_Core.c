@@ -82,14 +82,16 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 		} 
 	} */ 
 	//u16 iKeyOld = proc->lastInput; 
+	
+	proc->curInput = iKeyCur; 
+	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
+	if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
+		proc->countdown = 3; 
+		proc->yield = true; 
+	}
+	else { 
 	if (!(proc->yield)) { 
-		proc->curInput = iKeyCur; 
-		u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
-		if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
-			proc->countdown = 3; 
-			proc->yield = true; 
-		}
-		else if (!(proc->yield_move)) { 
+		if (!(proc->yield_move)) { 
 			if (iKeyCur & 0xF0) { 
 				iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
 				//asm("mov r11, r11"); 
@@ -97,6 +99,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 				proc->yield_move = true; 
 			} 
 		} 
+	}
 	}
 	
 }
@@ -243,7 +246,7 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 } 
 
 extern u8 MapEventEngineExists(void); 
-
+// 0x80152F4 OnGameLoopMain 
 #define  MU_SUBPIXEL_PRECISION 4
 int FMU_HandleContinuedMovement(void) { 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
@@ -589,6 +592,7 @@ int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
 		result = yield;
 		}			
 	else if(2&iKeyCur){ 			//Press B
+		asm("mov r11, r11"); 
 		pFMU_PressB(proc);
 		proc->yield_move = true; 
 		result = yield;

@@ -10,6 +10,7 @@
 #define DEBUG_MODE 
 
 #define INSTALL_FMU 
+#define ENABLE_FMU 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
 #define USE_HGSS_SPRITES
@@ -19,6 +20,11 @@ PUSH; ORG $D74D0	//{U}
 String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
+
+#define NumberOfUnitsBeforeStoring 35 
+#define MaxStoredUnits 110 
+#define MaxPartyUnits 50 
+
 
 #define LVFACELEFT 2 
 #define LVFACERIGHT 1 

@@ -1,4 +1,7 @@
 
+ALIGN 4 
+MaxPartyUnits_Link:
+WORD MaxPartyUnits
 
 #define CheckIfCaught(classID) "SVAL s1 classID; ASMC CheckIfCaughtASMC" 
 

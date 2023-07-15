@@ -310,11 +310,11 @@ ASMC SaveGameSeed
 //SelectAvatar
 
 //ENUT RandomizeClassesFlag // this should only be set once tact name is set 
-
-LOAD1 0x1 Units10
-LOAD1 0x1 Units11
-LOAD1 0x1 Units12
-LOAD1 0x1 Units13
+LOAD1 1 Units1 
+//LOAD1 0x1 Units10
+//LOAD1 0x1 Units11
+//LOAD1 0x1 Units12
+//LOAD1 0x1 Units13
 
 //0x0 instead of 0x1 seems to be for allies on maps with prep screens
 //LOAD1 0x1 Units_Earlygame

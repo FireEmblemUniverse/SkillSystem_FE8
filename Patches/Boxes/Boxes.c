@@ -68,6 +68,7 @@ struct BoxUnit* GetTakenBoxSlot(int slot, int index) {
 	return NULL; 
 } 
 
+#ifndef POKEMBLEM_VERSION 
 struct BoxUnit* GetCharIDFromBox(int slot, int index) { 
 	struct BoxUnit* boxUnitSaved = (void*)&bunit[0]; 
 	for (int i = 0; i < BoxCapacity; i++) { 
@@ -80,6 +81,7 @@ struct BoxUnit* GetCharIDFromBox(int slot, int index) {
 	} 
 	return NULL; 
 } 
+
 
 void EnsureUnitInPartyASMC(void) { 
 	int slot = gChapterData.saveSlotIndex;
@@ -109,7 +111,7 @@ int EnsureUnitInParty(int slot, int charID) {
 
 	return result; 
 } 
-
+#endif 
 
 void ClearAllBoxUnitsASMC(void) { 
 	ClearAllBoxUnits(gChapterData.saveSlotIndex);

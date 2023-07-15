@@ -7,7 +7,7 @@ ALIGN 4
 InitSRAM_Flag: 
 WORD 0xEB 
 
-#define EnsureUnitInParty(unitID) "SVAL s1 unitID; ASMC EnsureUnitInPartyASMC" 
+//#define EnsureUnitInParty(unitID) "SVAL s1 unitID; ASMC EnsureUnitInPartyASMC" 
 
 #include "PrepHooks.lyn.event" 
 #include "Prep.lyn.event" 
@@ -77,16 +77,11 @@ POP
 
 ALIGN 4 
 PartySizeThreshold: 
-WORD 45 // Units past this will be moved to PC box when saving 
+WORD NumberOfUnitsBeforeStoring // Units past this will be moved to PC box when saving 
 
 ALIGN 4 
 BoxCapacity: 
-#ifdef EXPAND_PARTY_MAX 
-WORD 97 
-#endif 
-#ifndef EXPAND_PARTY_MAX 
-WORD 51 
-#endif 
+WORD MaxStoredUnits // 110 
 
 ALIGN 4 
 BoxBufferCapacity:

@@ -79,17 +79,19 @@ bx r0
 .global FindFreeSlot
 .type FindFreeSlot, %function 
 FindFreeSlot:
-push {r4, lr}
+push {r4-r5, lr}
 ldr r3, =0x8017D64 @ POIN CharacterTable 
 ldr r3, [r3] @ Char table unit 0 
 
 mov r4, #0x01 @counter 
+ldr r5, =MaxPartyUnits_Link
+ldr r5, [r5] 
 
 
 LoopThroughUnits:
 mov r0, r4 
-cmp r4, #40 @ 0x3F theoretical maximum 
-bgt Error 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
+cmp r4, r5 @ 0x3F theoretical maximum 
+bgt Error 		@ Can't have more than 50 units. TempAllies 0x373B are reserved for special events 
 blh GetUnitByEventParameter @ 0x0800BC51
 cmp r0,#0
 beq FoundUnit
@@ -101,7 +103,7 @@ mov r4, #0xFF
 FoundUnit:
 mov r0, r4 
 
-pop {r4}
+pop {r4-r5}
 pop {r1}
 bx r1 
 
@@ -216,7 +218,9 @@ strb 	r0,[r5,#0x13]
 
 
 bl FindFreeSlot
-cmp r0, #40 
+ldr r1, =MaxPartyUnits_Link 
+ldr r1, [r1] 
+cmp r0, r1  
 bgt FullBox
 
 

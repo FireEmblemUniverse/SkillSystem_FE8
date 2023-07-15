@@ -108,9 +108,16 @@ void ChangeControlledUnitASMC(struct FMUProc* proc){
 	return;
 }
 
+void pFMU_DoNothing(void) { 
+	return; 
+} 
+
 void NewPlayerPhaseEvaluationFunc(struct Proc* ParentProc){
-	if( GetFreeMovementState() )
-		ProcStartBlocking(FreeMovementControlProc,ParentProc);
+	if( GetFreeMovementState() ) { 
+		//ProcStartBlocking(FreeMovementControlProc,ParentProc);
+		ProcStartBlocking(FMU_IdleProc,ParentProc);
+		ProcStart(FreeMovementControlProc, ROOT_PROC_3);
+	} 
 	else
 		ProcGoto(ProcStartBlocking(gProc_PlayerPhase,ParentProc),0x7);
 	BreakProcLoop(ParentProc);
@@ -130,10 +137,16 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 			SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 			} 
 		}
-		else
+		else { 
 			pTmpProcCode=gProc_CpPhase;
+			ProcStartBlocking(pTmpProcCode,ParentProc);
+			BreakProcLoop(ParentProc);
+			return; 
+		} 	
 	}
-	ProcStartBlocking(pTmpProcCode,ParentProc);
+	
+	ProcStartBlocking(FMU_IdleProc,ParentProc);
+	ProcStart(pTmpProcCode, ROOT_PROC_3); 
 	BreakProcLoop(ParentProc);
 	return;
 }

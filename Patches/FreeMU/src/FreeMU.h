@@ -110,6 +110,7 @@ struct unitFacing { // uses +0x38 supportBits
 
 #define RunCharacterEvents ( (void(*)(u8,u8))(0x8083FB1) )
 #define CheckForCharacterEvents ( (u8(*)(u8,u8))(0x8083F69) )
+extern const ProcCode FMU_IdleProc[];
 extern const ProcCode FreeMovementControlProc[];
 extern const MenuDefinition FreeMovementLMenu;
 extern bool RunMiscBasedEvents(u8,u8);
@@ -182,6 +183,7 @@ const u8 CheckEventId(u16 eventId);                                       //! FE
 const void CopyTileGfxForObj(void* src, void* dest, u8 width, u8 height); //! FE8U = 0x8013020
 const void MuCtr_OnEnd(Proc* proc);                                       //! FE8U = 0x807A1FD
 extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
+void pFMU_DoNothing(void);
 
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
