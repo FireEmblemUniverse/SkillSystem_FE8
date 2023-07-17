@@ -57,6 +57,11 @@ FMU_IdleProc:
 	_6C_END 
 
 
+// Plan: 
+// Loop for input in pFMU_MainLoop 
+// in FMU_HandleContinuedMovement, if saved input, do stuff and erase saved inputs 
+
+
 ALIGN 4 
 FMU_InputLoopProc:
 	_6C_SET_NAME(FreeMovementInputProcName)

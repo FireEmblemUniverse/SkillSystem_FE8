@@ -83,13 +83,14 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 	} */ 
 	//u16 iKeyOld = proc->lastInput; 
 	
-	proc->curInput = iKeyCur; 
+	//proc->curInput = iKeyCur; 
 	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
 	if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
 		proc->countdown = 3; 
 		proc->yield = true; 
 	}
 	else { 
+	if (!proc->countdown) { 
 	if (!(proc->yield)) { 
 		if (!(proc->yield_move)) { 
 			if (iKeyCur & 0xF0) { 
@@ -100,6 +101,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 			} 
 		} 
 	}
+	} 
 	}
 	
 }
@@ -255,8 +257,10 @@ int FMU_HandleContinuedMovement(void) {
 	
 	struct MUProc* muProc = (struct MUProc*)ProcFind(&gProc_MoveUnit[0]);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 
-	proc->curInput = gKeyState.heldKeys; 
+	
 	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
+	iKeyUse |= proc->curInput; 
+	proc->curInput = 0; 
 	if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
 		proc->countdown = 3; 
 		proc->yield = true; 
@@ -266,10 +270,14 @@ int FMU_HandleContinuedMovement(void) {
 		return (-1); }
 	if (muProc->pMUConfig->currentCommand == 1) {
 		return (-1); } 
+	if (proc->countdown) { 
 		
+		return (-1); } 
+	asm("mov r11, r11"); 
 
-	
-	u8 dir = FMU_ChkKeyForMUExtra(proc);
+	iKeyUse |= gKeyState.heldKeys; // we want to move the direction of a key being held down 
+	//or a key that was pressed since we last started moving 
+	u8 dir = FMU_ChkKeyForMUExtra(proc, iKeyUse); 
 	
 	
 	
@@ -362,6 +370,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	} 
 	else { 
 		proc->countdown--; 
+	} 
+	
+	if (gKeyState.pressedKeys) { 
+		proc->curInput = gKeyState.pressedKeys; 
+		asm("mov r11, r11"); 
 	} 
 
 	/*
@@ -495,6 +508,9 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
         pFMU_UpdateSMS(proc);
 		FreeMoveRam->dir = proc->smsFacing; 
 		SetUnitFacing(gActiveUnit, proc->smsFacing); 
+		asm("mov r11, r11"); 
+		proc->curInput = 0; // so we don't immediately walk the next frame ? 
+		proc->countdown = 8; // STAL for 8 frames while we turn directions 
 	} 
 	else { 
 		if (gMapFog[y][x]) {

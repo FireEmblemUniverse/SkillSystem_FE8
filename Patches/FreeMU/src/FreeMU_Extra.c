@@ -187,7 +187,7 @@ int pFMU_CorrectCameraPosition(struct FMUProc* proc){
 }
 
 
-u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
+u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc, u16 iKeyUse){
 
 	struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
 	if (eventProc) { 
@@ -215,7 +215,7 @@ u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc){
 	}
 
 	if ((!proc->range_event) && (!proc->usedLedge)) { 
-		u16 iKeyCur = gKeyState.heldKeys;
+		u16 iKeyCur = iKeyUse; //gKeyState.heldKeys;
 		iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
 		//FreeMoveRam->dir = proc->smsFacing; 
 		if ( iKeyCur&0x10 )	//right

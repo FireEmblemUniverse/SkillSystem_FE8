@@ -131,7 +131,7 @@ void NewMakePhaseControllerFunc(struct Proc*);
 void pFMU_OnInit(struct FMUProc*);
 void pFMU_InitTimer(struct FMUProc*);
 int pFMU_CorrectCameraPosition(struct FMUProc*);
-u8 FMU_ChkKeyForMUExtra(struct FMUProc*);
+u8 FMU_ChkKeyForMUExtra(struct FMUProc*, u16);
 void FMU_InitVariables(struct FMUProc* proc); 
 extern const void* StallEvent; 
 /*------------- Core --------------*/
