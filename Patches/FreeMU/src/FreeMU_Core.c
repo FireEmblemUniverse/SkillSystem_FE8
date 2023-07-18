@@ -53,7 +53,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 	
 	
 	
-	u16 iKeyCur = gKeyState.heldKeys;
+	//u16 iKeyCur = gKeyState.heldKeys;
 	
 	//if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <= bufferFramesMove)) { 
 	//	iKeyCur = iKeyCur | gKeyState.lastPressKeys; 
@@ -83,27 +83,137 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 	} */ 
 	//u16 iKeyOld = proc->lastInput; 
 	
-	//proc->curInput = iKeyCur; 
-	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
-	if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
-		proc->countdown = 3; 
-		proc->yield = true; 
+	
+	
+
+	
+}
+
+
+void pFMU_MainLoop(struct FMUProc* proc){ 
+	int exit_early = false; 
+	if (ProcFind(&gProc_Menu) || ProcFind(&gProc_Shop)) {
+		exit_early = true; 
 	}
-	else { 
-	if (!proc->countdown) { 
-	if (!(proc->yield)) { 
-		if (!(proc->yield_move)) { 
-			if (iKeyCur & 0xF0) { 
-				iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
-				//asm("mov r11, r11"); 
-				pFMU_MoveUnit(proc, iKeyCur);
-				proc->yield_move = true; 
-			} 
-		} 
-	}
-	} 
+	if (ProcFind(&gProc_Supply)) { 
+		MU_EndAll();
+		exit_early = true; 
 	}
 	
+	if (exit_early) { 
+		proc->yield = true; 
+		proc->countdown = 1; 
+	} 
+	
+	if (MapEventEngineExists()) { // wait for events 
+	
+		exit_early = true; 
+	}
+
+	// maybe accept B inputs during range events? for toggling speed 
+
+	if (exit_early) { 
+		return; 
+	} 
+	
+
+	
+	
+	if (!(proc->countdown)) { 
+		proc->yield = false;
+	} 
+	else { 
+		proc->countdown--; 
+	} 
+	
+	if (gKeyState.pressedKeys) { 
+		proc->curInput = gKeyState.pressedKeys; // for directional movement 
+	} 
+
+	/*
+	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+	
+	if (muProc) { 
+		if (muProc->stateId >= MU_STATE_MOVEMENT) { 
+		return; 
+		}
+	} 
+	MU_EndAll();
+	*/
+	//asm("mov r11, r11"); // gActiveUnit
+	
+
+	if (proc->range_event) { 
+		proc->range_event = false; 
+	} 
+	
+	u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys; 
+	if (!proc->yield) { 
+		if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
+			proc->countdown = 3; 
+			proc->yield = true; 
+			return; 
+		}
+	} 
+	
+	if(MU_Exists()){
+		return;
+	}
+	if (proc->updateSMS) { // when units go through each other, this is needed afterwards 
+		RefreshUnitsOnBmMap();
+		SMS_UpdateFromGameData();
+		proc->updateSMS = false; 
+	} 
+	
+	if (proc->yield_move) { 
+		proc->yield_move = false; // 8002F24 proc goto 
+	} 
+
+	if (proc->usedLedge) { 
+		gMapTerrain[proc->ledgeY][proc->ledgeX] = LEDGE_JUMP; 
+		proc->usedLedge = false; 
+	}
+	//if (proc->xTo != 0xFF) { //[2024ed4+0x2d]!! 
+	
+
+	if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) { 
+		//asm("mov r8, r8"); 
+	}
+	else {
+		if (pFMU_RunLocBasedAsmcAuto(proc) == yield) { 
+			proc->countdown = 1; 
+			proc->yield_move = true; 
+			proc->yield = true; 
+			//return; 
+		} 
+	} 
+	if (proc->end_after_movement) { // after any scripted movement is done 
+		FMU_EndFreeMoveSilent(); 
+	}
+	
+
+	u16 iKeyCur = gKeyState.heldKeys;
+	if (!proc->countdown) { 
+		if (!(proc->yield)) { 
+			if (!(proc->yield_move)) { 
+				if (iKeyCur & 0xF0) { 
+					iKeyCur = FMU_FilterMovementInput(proc, iKeyCur); 
+					pFMU_MoveUnit(proc, iKeyCur);
+					proc->yield_move = true; 
+				} 
+			} 
+		}
+	} 
+
+	//}
+
+
+	//if(pFMU_MoveUnit(proc) == yield) {
+		//return; 
+	//}
+
+	//ProcGoto((Proc*)proc,0x1);
+	return;
 }
 
 u16 FMU_FilterMovementInput(struct FMUProc* proc, u16 iKeyCur) { 
@@ -236,7 +346,6 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	
 }
 void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
-	//asm("mov r11, r11"); 
 	if (FreeMoveRam->running == false) {
 	FreeMoveRam->running = true; // 
 	proc->moveSpeed = FreeMU_MovingSpeed.speedB;
@@ -247,13 +356,17 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 	}
 } 
 
-extern u8 MapEventEngineExists(void); 
+
 // 0x80152F4 OnGameLoopMain 
 #define  MU_SUBPIXEL_PRECISION 4
 int FMU_HandleContinuedMovement(void) { 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	if (!proc) 
 		return (-1); 
+	
+	if (proc->yield) 
+		return (-1); 
+	
 	
 	struct MUProc* muProc = (struct MUProc*)ProcFind(&gProc_MoveUnit[0]);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 
@@ -271,12 +384,16 @@ int FMU_HandleContinuedMovement(void) {
 	if (muProc->pMUConfig->currentCommand == 1) {
 		return (-1); } 
 	if (proc->countdown) { 
-		
 		return (-1); } 
-	asm("mov r11, r11"); 
-
+		
+	if (gKeyState.pressedKeys & 0xF0) { // if pressed a key this frame, prioritize it 
+	iKeyUse = gKeyState.pressedKeys; } 
+	
+	if ((iKeyUse & 0xF0) == 0) { 
+	// if we didn't press a key recently, use whatever is held down 
 	iKeyUse |= gKeyState.heldKeys; // we want to move the direction of a key being held down 
 	//or a key that was pressed since we last started moving 
+	}
 	u8 dir = FMU_ChkKeyForMUExtra(proc, iKeyUse); 
 	
 	
@@ -356,95 +473,6 @@ void EndSupply_StartMMS(void) { // replaces a vanilla function
 	} 
 }; 
 
-void pFMU_MainLoop(struct FMUProc* proc){ 
-	
-	if (ProcFind(&gProc_Menu)) {
-		return; 
-	}
-	if (ProcFind(&gProc_Supply)) { 
-		MU_EndAll();
-		return; 
-	}
-	if (!(proc->countdown)) { 
-		proc->yield = false;
-	} 
-	else { 
-		proc->countdown--; 
-	} 
-	
-	if (gKeyState.pressedKeys) { 
-		proc->curInput = gKeyState.pressedKeys; 
-		asm("mov r11, r11"); 
-	} 
-
-	/*
-	struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-	
-	if (muProc) { 
-		if (muProc->stateId >= MU_STATE_MOVEMENT) { 
-		return; 
-		}
-	} 
-	MU_EndAll();
-	*/
-	//asm("mov r11, r11"); // gActiveUnit
-	
-	//if (MapEventEngineExists()) { // wait for events 
-	//	return; 
-	//}
-	if (proc->range_event) { 
-		proc->range_event = false; 
-	} 
-	
-	if(MU_Exists()){
-		return;
-	}
-	if (proc->updateSMS) { // when units go through each other, this is needed afterwards 
-		RefreshUnitsOnBmMap();
-		SMS_UpdateFromGameData();
-		proc->updateSMS = false; 
-	} 
-	
-	if (proc->yield_move) { 
-		//asm("mov r11, r11"); 
-		proc->yield_move = false; // 8002F24 proc goto 
-	} 
-
-	//asm("mov r11, r11"); 
-	if (proc->usedLedge) { 
-		gMapTerrain[proc->ledgeY][proc->ledgeX] = LEDGE_JUMP; 
-		proc->usedLedge = false; 
-	}
-	//if (proc->xTo != 0xFF) { //[2024ed4+0x2d]!! 
-	
-
-	if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) { 
-		//asm("mov r8, r8"); 
-	}
-	else {
-		if (pFMU_RunLocBasedAsmcAuto(proc) == yield) { 
-			proc->countdown = 1; 
-			proc->yield_move = true; 
-			proc->yield = true; 
-			//return; 
-		} 
-	} 
-	if (proc->end_after_movement) { // after any scripted movement is done 
-		FMU_EndFreeMoveSilent(); 
-	}
-	
-	
-
-	//}
-
-
-	//if(pFMU_MoveUnit(proc) == yield) {
-		//return; 
-	//}
-
-	//ProcGoto((Proc*)proc,0x1);
-	return;
-}
 
 
 int pFMU_HanleContinueMove(struct FMUProc* proc){
@@ -578,8 +606,6 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 		
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
-				
-				//asm("mov r11, r11"); 
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 				MU_EnableAttractCamera(muProc);
@@ -608,7 +634,6 @@ int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
 		result = yield;
 		}			
 	else if(2&iKeyCur){ 			//Press B
-		asm("mov r11, r11"); 
 		pFMU_PressB(proc);
 		proc->yield_move = true; 
 		result = yield;

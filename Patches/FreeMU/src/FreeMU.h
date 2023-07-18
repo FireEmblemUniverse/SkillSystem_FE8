@@ -57,6 +57,7 @@ extern const ProcInstruction gUnknown_089A2DB0;
 extern const ProcInstruction gProc_CameraMovement; 
 extern const ProcInstruction gProc_Menu; 
 extern const ProcInstruction gProc_Supply; 
+extern const ProcInstruction gProc_Shop; 
 
 extern int ProtagID_Link; 
 extern u8 StraightLineWeaponsList[];
@@ -183,7 +184,9 @@ const u8 CheckEventId(u16 eventId);                                       //! FE
 const void CopyTileGfxForObj(void* src, void* dest, u8 width, u8 height); //! FE8U = 0x8013020
 const void MuCtr_OnEnd(Proc* proc);                                       //! FE8U = 0x807A1FD
 extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
-void pFMU_DoNothing(void);
+extern u8 MapEventEngineExists(void); 
+
+void pFMU_DoNothing(struct Proc* proc);
 
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
@@ -211,6 +214,7 @@ struct ProcCmd
     const void* dataPtr;
 };
 extern struct ProcCmd gProcScr_CamMove[];
+
 
 
 struct BmSt // Game State Struct

@@ -94,6 +94,7 @@ u8 GetFreeMovementState(void){
 void End6CInternal_FreeMU(FMUProc* proc){
 	DisableFreeMovementASMC();
 	ProcGoto((Proc*)proc,0xF);
+	BreakEachProcLoop(FMU_IdleProc); 
 	EndProc((Proc*)proc); 
 	return;	
 }
@@ -108,7 +109,7 @@ void ChangeControlledUnitASMC(struct FMUProc* proc){
 	return;
 }
 
-void pFMU_DoNothing(void) { 
+void pFMU_DoNothing(struct Proc* proc) { 
 	return; 
 } 
 
@@ -145,8 +146,13 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 		} 	
 	}
 	
+	if (pTmpProcCode == FreeMovementControlProc) { 
 	ProcStartBlocking(FMU_IdleProc,ParentProc);
 	ProcStart(pTmpProcCode, ROOT_PROC_3); 
+	} 
+	else { 
+		ProcStartBlocking(pTmpProcCode, ParentProc); 
+	} 
 	BreakProcLoop(ParentProc);
 	return;
 }
