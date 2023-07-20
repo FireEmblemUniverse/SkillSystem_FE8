@@ -89,7 +89,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 	
 }
 
-
+#define RealEventMinimumFrames 3 // we don't wait for events that have lasted 1-6 frames 
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	int exit_early = false; 
 	if (ProcFind(&gProc_Menu) || ProcFind(&gProc_Shop)) {
@@ -105,16 +105,51 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->countdown = 1; 
 	} 
 	
-	if (MapEventEngineExists()) { // wait for events 
-	
-		exit_early = true; 
+	struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
+	if (eventProc) { 
+		if (eventProc->evStallTimer || eventProc->pUnitLoadData || eventProc->activeTextType) { 
+			proc->yield = true; 
+			exit_early = true; 
+		}
 	}
+	
+		
+	if (eventProc) { // wait for events that exist for 3+ frames 
+		if (eventProc->pEventIdk == proc->pEventIdk) { // if the same event as last time, increment time this event has existed 
+			if (proc->eventEngineTimer < 255) { 
+			proc->eventEngineTimer++; 
+			} 
+		} 
+		else { 
+			proc->pEventIdk = eventProc->pEventIdk; 
+			proc->eventEngineTimer = 0; 
+		} 
+	}
+	else {
+	proc->eventEngineTimer = 0; }
 
 	// maybe accept B inputs during range events? for toggling speed 
 
 	if (exit_early) { 
 		return; 
 	} 
+	if (proc->eventEngineTimer >= RealEventMinimumFrames) {
+		//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+		//if (muProc) { 
+		//MU_DisableAttractCamera(muProc); } 
+		proc->updateCameraAfterEvent = true; 
+		return; 
+	}
+	
+	if (proc->updateCameraAfterEvent) { 
+		//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+		//if (muProc) { 
+		//MU_EnableAttractCamera(muProc); } 
+		CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
+		proc->updateCameraAfterEvent = false; 
+		return; 
+	}
+	
 	
 
 	
@@ -327,6 +362,9 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->yTo  = gActiveUnit->yPos;
 	proc->usedLedge = false; 
 	proc->end_after_movement = false; 
+	proc->eventEngineTimer = 0; 
+	proc->pEventIdk = NULL; 
+	proc->updateCameraAfterEvent = false;
 	//FreeMoveRam->silent = false; 
 	
 	
@@ -367,6 +405,8 @@ int FMU_HandleContinuedMovement(void) {
 	if (proc->yield) 
 		return (-1); 
 	
+	if (proc->eventEngineTimer >= RealEventMinimumFrames) 
+		return (-1); 
 	
 	struct MUProc* muProc = (struct MUProc*)ProcFind(&gProc_MoveUnit[0]);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 
@@ -383,6 +423,7 @@ int FMU_HandleContinuedMovement(void) {
 		return (-1); }
 	if (muProc->pMUConfig->currentCommand == 1) {
 		return (-1); } 
+	
 	if (proc->countdown) { 
 		return (-1); } 
 		
@@ -536,7 +577,7 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
         pFMU_UpdateSMS(proc);
 		FreeMoveRam->dir = proc->smsFacing; 
 		SetUnitFacing(gActiveUnit, proc->smsFacing); 
-		asm("mov r11, r11"); 
+		//asm("mov r11, r11"); 
 		proc->curInput = 0; // so we don't immediately walk the next frame ? 
 		proc->countdown = 8; // STAL for 8 frames while we turn directions 
 	} 

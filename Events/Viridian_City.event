@@ -121,15 +121,15 @@ ENDA
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
-AFEV 0 GlobalAfev 0
-AFEV 0 CityAfev 0
+//AFEV 0 GlobalAfev 0
+//AFEV 0 CityAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute2S [15,0] [19,0] 
 AREA 0 ToRoute1 [18,37] [21,37] 
 AREA 0 ToRoute22 [0,16] [0,18] 
-//AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_A TutMsg1 0
 //AFEV DisableTutFlag_B TutMsg2 0
 //AFEV 0x19 TutMsg3 0
 END_MAIN
@@ -170,7 +170,7 @@ CountPlayersInRange_ASMC(8,5,24,19)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
-CAM1 [19,13]
+CAMERA [19,13]
 CUMO [19,13]
 STAL 30
 CURE  
