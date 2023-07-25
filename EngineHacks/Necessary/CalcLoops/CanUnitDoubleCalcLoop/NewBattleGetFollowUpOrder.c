@@ -190,43 +190,42 @@ void NewBattleUnwind(void) {
         gBattleHitIterator->info |= BATTLE_HIT_INFO_BEGIN;
 
         if (!BattleGenerateRoundHits(attacker, defender)) { // attacker hits defender 
-			// if the initial hit doesn't kill:
-			if (DoesUnitImmediatelyFollowUp(attacker, defender)) {
-				int atkrDouble = CanUnitDouble(attacker, defender);
-				int desperationEnds = false; // names? idk
-				if (atkrDouble) {
+			// if not the initial hit: 
+			if (DoesUnitImmediatelyFollowUp(attacker, defender)) { 
+				int atkrDouble = false; 
+				if (CanUnitDouble(attacker, defender)) {
 					gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-					desperationEnds = BattleGenerateRoundHits(attacker, defender);
+					atkrDouble = BattleGenerateRoundHits(attacker, defender);
 				}
-				if (!desperationEnds) {
-					//int followUpHits = BattleGetFollowUpOrder(&attacker, &defender);
-					gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE; 
-					int countered = BattleGenerateRoundHits(&gBattleTarget, &gBattleActor); // defender (potentially) counter attacks 
-					if (!countered) {
-						if (!atkrDouble && (CanUnitDouble(&gBattleTarget, &gBattleActor))) {
-							gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-							BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
-						}
-					}
-				}
-			}
-			else {
-				gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE;
-				int countered = BattleGenerateRoundHits(defender, attacker); // defender (potentially) counter attacks 
+			
+				//int followUpHits = BattleGetFollowUpOrder(&attacker, &defender);
+				gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE; 
+				int countered = BattleGenerateRoundHits(&gBattleTarget, &gBattleActor); // defender (potentially) counter attacks 
 				if (!countered) {
-					//if not the counter attack, follow up attack 
-					
-					int followUpHits = BattleGetFollowUpOrder(&attacker, &defender);
-					if (followUpHits) {
+					if ((!atkrDouble) && (CanUnitDouble(&gBattleTarget, &gBattleActor))) { 
 						gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-						int atkrDouble = BattleGenerateRoundHits(attacker, defender); 
-						if ((!atkrDouble) && (followUpHits == BothFollowUp)) { 
-							gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
-							BattleGenerateRoundHits(defender, attacker);
-						}
-					}
-				}
+						BattleGenerateRoundHits(&gBattleTarget, &gBattleActor);
+					} 
+				} 
 			}
+		 
+			else { 
+			gBattleHitIterator->attributes |= BATTLE_HIT_ATTR_RETALIATE; 
+			int countered = BattleGenerateRoundHits(defender, attacker); // defender (potentially) counter attacks 
+			if (!countered) {
+				//if not the counter attack, follow up attack 
+				
+				int followUpHits = BattleGetFollowUpOrder(&attacker, &defender);
+				if (followUpHits) { 
+					gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+					int atkrDouble = BattleGenerateRoundHits(attacker, defender); 
+					if ((!atkrDouble) && (followUpHits == BothFollowUp)) { 
+						gBattleHitIterator->attributes = BATTLE_HIT_ATTR_FOLLOWUP;
+						BattleGenerateRoundHits(defender, attacker);
+					} 
+				}	
+			}
+			} 
         }
     } while (FALSE);
 

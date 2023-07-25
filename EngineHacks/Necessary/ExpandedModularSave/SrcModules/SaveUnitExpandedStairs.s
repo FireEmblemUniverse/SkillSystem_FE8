@@ -821,3 +821,8 @@ UnpackOtherSuspendSaveUnit:
 	@ Suspend red units
 	SAVE_UNIT_FUNC ESU_SaveRedSuspendUnits, PackOtherSuspendSaveUnit,   OtherSuspendSaveUnit.size, 0x80
 	LOAD_UNIT_FUNC ESU_LoadRedSuspendUnits, UnpackOtherSuspendSaveUnit, OtherSuspendSaveUnit.size, 0x80
+
+	@ Suspend purple units
+	SAVE_UNIT_FUNC ESU_SavePurpleSuspendUnits, PackOtherSuspendSaveUnit,   OtherSuspendSaveUnit.size, 0xC0
+	LOAD_UNIT_FUNC ESU_LoadPurpleSuspendUnits, UnpackOtherSuspendSaveUnit, OtherSuspendSaveUnit.size, 0xC0
+

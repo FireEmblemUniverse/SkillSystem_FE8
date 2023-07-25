@@ -114,8 +114,13 @@ beq EndOfNPC
 cmp r0, #0x40 
 beq EndOfEnemy 
 cmp r0, #0x80 
+beq EndOfFourth 
+cmp r0, #0xC0 
 beq EndOfPlayer 
 
+EndOfFourth: 
+mov r0, #0xC0 @ fourth 
+b CheckIfPhaseExists 
 EndOfNPC: 
 mov r0, #0x40 @ npc 
 b CheckIfPhaseExists 

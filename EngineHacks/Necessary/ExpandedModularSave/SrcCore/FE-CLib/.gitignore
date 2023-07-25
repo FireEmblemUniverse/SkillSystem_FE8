@@ -1,0 +1,10 @@
+# Objects
+*.o
+*.elf
+
+# lyn output
+*.lyn.event
+
+# lyn itself
+utility/lyn
+utility/lyn.exe

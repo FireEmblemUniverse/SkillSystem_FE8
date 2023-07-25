@@ -1086,6 +1086,15 @@
 
 //Miscellaneous Skills
 
+//All Half: Damage taken is halved.
+//By Shuusuke, with help from Dragz, Vesly, Retina and Contro
+#ifdef HalveDamage
+	#define AllHalfID 0
+#else
+	#define AllHalfID 255
+#endif
+
+
 //Savior: Can rescue without penalties.
 //Author Unknown (Initial Commit)
 #define SaviorID 107

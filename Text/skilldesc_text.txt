@@ -279,7 +279,7 @@ Impale: Deal 4x damage.[N]
 (Skill % activation)[X]
 
 ## SD_Colossus
-Colossus: Triples Attack.[N]
+Colossus: Triples Strength.[N]
 (Skill % activation)[X]
 
 ## SD_RallyStr
@@ -397,8 +397,8 @@ Lily's Poise: Adjacent allies gain[N]
 +1/-3 damage dealt/received.[X]
 
 ## SD_Expertise
-Expertise: Receive double damage[N]
-from crits instead of triple.[X]
+Expertise: Reduce bonus damage[N]
+from critical hits by 50%.[X]
 
 ## SD_Celerity
 Celerity: Movement +2.[X]
@@ -716,9 +716,8 @@ from enemy Critical Hits and[N]
 Skill Activations.[X]
 
 ## SD_Axefaith
-Axefaith: Axes can't lose durability,[N]
-and grants (Luck x 1.5) Hit when[N]
-wielding axes.[X]
+Axefaith: Axes can't lose durability, and[N]
+grants +Luck*1.5 Hit when wielding axes.[X]
 
 ## SD_ArmorMarch
 Armor March: At start of turn, if unit[N]
@@ -779,13 +778,13 @@ Hex: -15 avoid to all[N]
 adjacent enemies.[X]
 
 ## SD_Barricade
-Barricade: Take half damage from[N]
-all hits except the first one.[X]
+Barricade: Damage taken is[N]
+halved after first being struck.[X]
 
 ## SD_BarricadePlus
-Barricade+: Receive 1/2 damage[N]
-from the 2nd hit, 1/4 from the[N]
-3rd, and 1/8 from the 4th.[X]
+Barricade+: In combat, damage[N]
+recieved equals half of the[N]
+damage when struck last.[X]
 
 ## SD_PointBlank
 Point Blank: Minimum range of[N]
@@ -821,8 +820,7 @@ W. Weight, +2 dmg, +15% hit, +5% crit.[X]
 
 ## SD_Outrider
 Outrider: Take -1 damage and[N]
-gain +3% crit per space moved.[N]
-Bonuses disappear on enemy phase.[X]
+gain +3% crit per space moved.[X]
 
 ## SD_HeavyStrikes
 Heavy Strikes: Add weapon[N]
@@ -830,8 +828,7 @@ weight to critical chance.[X]
 
 ## SD_Charge
 Charge: Gain +1 damage for[N]
-every two squares moved.[N]
-Bonus disappears on enemy phase.[X]
+every two squares moved.[X]
 
 ## SD_Infiltrator
 Infiltrator: If within 2 spaces[N]
@@ -903,7 +900,7 @@ Blossom: 2x growth rates,[N]
 but 1/2 exp gain.[X]
 
 ## SD_Aptitude
-Aptitude: +20 to[N]
+Aptitude: +20% to[N]
 all growth rates.[X]
 
 ## SD_QuickRiposte

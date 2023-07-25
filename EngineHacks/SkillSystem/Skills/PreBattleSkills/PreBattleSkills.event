@@ -6,6 +6,12 @@ POIN SkillTester
 WORD AxeFaithID
 
 ALIGN 4
+AllHalf:
+#incbin "AllHalf/AllHalf.dmp"
+POIN SkillTester
+WORD AllHalfID
+
+ALIGN 4
 BattleVeteran:
 #incbin "BattleVeteran/BattleVeteran.dmp"
 POIN SkillTester

@@ -31,7 +31,7 @@ ldr r1, [r1]
 bl UnsetBit 
 unsetReit:
 add	r4,#1
-cmp	r4,#0xB3
+cmp	r4,#0xCC
 beq	allUnset
 b	unsetLoop
 
@@ -105,7 +105,7 @@ mov	r3,#1		@range
 .short	0xf800
 
 @check if any nearby unit is an armor
-ldr	r6,=#0x202B256	@bugger for the nearby units
+ldr	r6,=0x202B256	@bugger for the nearby units
 checkArmorsLoop:
 ldrb	r0,[r6]
 cmp	r0,#0
@@ -155,14 +155,23 @@ Unset:
 bl UnsetBit 
 
 Next:
+@ 0x08B6C912-0x08B6C91E  -> Armor March loop check
 add	r4,#1
-cmp	r4,#0x3F
-beq	End
-cmp	r4,#0x55
-beq	End
-cmp	r4,#0xB3
-beq	End
-b	Loop
+ldr r2, =gChapterData @ gPlaySt / gChapterData (0x0202BCF0)
+ldrb r2, [r2, #0x0F] @ gPlaySt.faction
+add r2, #0x40
+cmp r4, r2
+blt Loop
+
+@cmp	r4,#0x3F
+@beq	End
+@cmp	r4,#0x55
+@beq	End
+@cmp	r4,#0xB3
+@beq	End
+@cmp	r4,#0xCC @end of fourth allegiance units/prevent freezing
+@bgt	End
+@b	Loop
 
 
 End:

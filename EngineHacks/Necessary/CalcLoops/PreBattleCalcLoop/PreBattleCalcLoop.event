@@ -59,6 +59,8 @@ POIN KeenFighter SteadyBrawler // % Damage reduction if doubling goes near end
 POIN TowerShieldPlus
 // Dragonskin goes after anything effecting atk or def
 POIN Dragonskin
+//Needs to be after all skills that alter damage
+POIN AllHalf
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT
@@ -104,6 +106,8 @@ AuraSkillEntry(DriveResID)
 AuraSkillEntry(BloodTideID)
 AuraSkillEntry(WhitePoolID)
 AuraSkillEntry(NightTideID)
+
+
 
 PUSH
 ORG 0x2a3f8

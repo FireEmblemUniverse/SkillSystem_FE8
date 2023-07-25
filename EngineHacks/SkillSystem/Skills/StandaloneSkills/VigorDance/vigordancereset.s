@@ -30,14 +30,23 @@ ldr r1, [r1]
 bl UnsetBit 
 
 Next:
+@ 0x08B8185E-0x08B8186A -> Vigor Dance loop check
 add	r4,#1
-cmp	r4,#0x3F @end of player units
-beq	End
-cmp	r4,#0x55 @end of green units
-beq	End
-cmp	r4,#0xB3 @end of enemy units
-beq	End
-b	Loop
+ldr r1, =gChapterData @ gPlaySt / gChapterData (0x0202BCF0)
+ldrb r1, [r1, #0x0F] @ gPlaySt.faction
+add r1, #0x40
+cmp r4, r1
+blt Loop
+
+@cmp	r4,#0x3F @end of player units
+@beq	End
+@cmp	r4,#0x55 @end of green units
+@beq	End
+@cmp	r4,#0xB3 @end of enemy units
+@beq	End
+@cmp	r4,#0xCC @end of fourth allegiance units/prevent freezing
+@bgt	End
+@b	Loop
 
 End:
 mov r0, #0 @ no blocking proc / animation 

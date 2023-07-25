@@ -1,14 +1,23 @@
+.align 4
+.macro blh to, reg=r2
+ldr \reg, =\to
+mov lr, \reg
+.short 0xf800
+.endm
+
 .thumb
 .org 0x0
+.equ AreUnitsAllied, 0x08024D8C
 .equ PassID, SkillTester+4
 @Bx'd to from 3003D28
-@This function sets the Z flag if the moving unit can cross the other unit's tile, either because they're either both allied/npcs or enemies, or because the mover has Pass
+@This function sets the Z flag if the moving unit can cross the other unit's tile, either because their factions are allied (4th allegiance), or because the mover has Pass
 push  {r0-r6,r14}   @actually necessary to push the scratch registers in this case
 ldrb  r4,[r3,#0xA]  @allegiance byte of current unit
-eor   r4,r7     @r7 is allegiance byte of unit on tile we are looking at
-mov   r0,#0x80
-tst   r0,r4
-beq   GoBack      @if non-zero, then one character is an enemy and one is not. If zero, the z flag is set
+mov r0,r4
+mov r1,r7	@r7 is allegiance byte of unit on tile we are looking at
+blh AreUnitsAllied
+cmp r0,#0x01	
+bne GoBack
 ldr   r0,GetCharData
 mov   r14,r0
 ldrb  r0,[r3,#0xA]

@@ -182,23 +182,26 @@ gSuspendSaveChunks:
 	// You could cut the number of saved blue units by a bit (vanilla saves 51)
 	// This saves *all* of them
 
-	// Save 62 blue units (62 * 0x34 = $0C98)
-	DeclSaveChunk($08C0, $0C98, ESU_SavePlayerSuspendUnits, ESU_LoadPlayerSuspendUnits)
+	// Save 51 blue units (51 * 0x34 = $0A5C)
+    	DeclSaveChunk($08C0, $0A5C, ESU_SavePlayerSuspendUnits, ESU_LoadPlayerSuspendUnits)
 
 	// Save 50 red units (50 * 0x38 = $0AF0)
-	DeclSaveChunk($1558, $0AF0, ESU_SaveRedSuspendUnits,    ESU_LoadRedSuspendUnits)
+	DeclSaveChunk($131C, $0AF0, ESU_SaveRedSuspendUnits,    ESU_LoadRedSuspendUnits)
 
 	// Save 20 green units (20 * 0x38 = $0460)
-	DeclSaveChunk($2048, $0460, ESU_SaveGreenSuspendUnits,  ESU_LoadGreenSuspendUnits)
+	DeclSaveChunk($1E0C, $0460, ESU_SaveGreenSuspendUnits,  ESU_LoadGreenSuspendUnits)
+
+	// Save 15 purple units (15 * 0x38 = $0348)
+   	DeclSaveChunk($226C, $0348, ESU_SavePurpleSuspendUnits,  ESU_LoadPurpleSuspendUnits)
 
 	// Save Debuffs (TODO: maybe reduce size)
-	DeclSaveChunk($24A8, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
+	DeclSaveChunk($25B4, DebuffTableSize, SUD_SaveDebuffs,  SUD_LoadDebuffs)
 
 	// Permanent eids (moved here because of a mistake in the previous allocation)
-	DeclSaveChunk($2DA8, $0019, $0A3150+1, $0A3198+1)
+	DeclSaveChunk($2E54, $0019, $0A3150+1, $0A3198+1)
 
-	// ends at $2DC1
-	// free up to $2E78 ($B7 free bytes)
+	// ends at $2E6D
+	// free up to $2E78 ($0b free bytes)
 
 	DeclSaveChunk(0, 0, 0, MSu_LoadClaimFlagsFromParentSave) // Load Bonus Claim flags from parent save
 
