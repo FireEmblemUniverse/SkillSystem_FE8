@@ -13,6 +13,8 @@ ENDA
 #include "dmp/OathSkills.lyn.event" 
 #include "dmp/RouseSkills.lyn.event" 
 #include "dmp/InitiativeSkills.lyn.event" 
+#include "dmp/OddFooted.lyn.event"
+#include "dmp/EvenFooted.lyn.event"
 
 ALIGN 4 
 CleverInitAmount_Link: 
@@ -109,6 +111,10 @@ WORD 4
 MovTakerBuffAmount_Link: 
 WORD 3 
 
-
+ALIGN 4
+OddFootedAmount_Link:
+WORD 1
+EvenFootedAmount_Link:
+WORD 1
 
 

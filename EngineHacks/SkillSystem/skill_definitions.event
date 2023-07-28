@@ -212,6 +212,10 @@
 #define NimbleInitID 255 // Mov 
 #define SpectrumInitID 255 // All stats  
 
+// Even/Odd Footed: +1 Mov on Even/Odd turns
+// By Jopettajah
+#define OddFootedID 255
+#define EvenFootedID 255
 
 //Debuff Skills
 
@@ -951,7 +955,9 @@
 // By Vesly 
 #define BidingBlowID 255
 
-
+// Advantage Chaser: Unit always doubles when attacking with WTA.
+// By Jopettajah
+#define AdvantageChaserID 255
 
 //Stat Modifier Skills
 
