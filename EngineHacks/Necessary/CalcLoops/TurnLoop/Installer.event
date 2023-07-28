@@ -144,6 +144,10 @@ StartOfTurnBuffFunctionEntry(NimbleInitID	, IsInitApplicable,		NimbleInit)
 StartOfTurnBuffFunctionEntry(SpectrumInitID	, IsInitApplicable,		SpectrumInit) 
 StartOfTurnBuffFunctionEntry(RallyChaosID	, IsRallyApplicable,	RallyChaosFunc) 
 
+
+StartOfTurnBuffFunctionEntry(OddFootedID, IsOddFootedApplicable, OddFooted)
+StartOfTurnBuffFunctionEntry(EvenFootedID, IsEvenFootedApplicable, EvenFooted)
+
 #include "StartOfTurn_CalcLoop.lyn.event" 
 
 
