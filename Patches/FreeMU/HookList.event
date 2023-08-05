@@ -20,6 +20,7 @@ FMU_FunctionList_OnPressL:
 
 ALIGN 4
 FMU_FunctionList_OnPressR:
+	POIN FMU_OnButton_ViewStatusScreen|1
 	FMU_FunctionList_End
 
 ALIGN 4

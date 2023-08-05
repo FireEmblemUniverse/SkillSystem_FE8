@@ -1,8 +1,14 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+
+SET_FUNC StatScreen_OnClose, 0x80888b5
+SET_DATA gProcScr_SSGlowyBlendCtrl, 0x8a00844
 SET_FUNC PhaseSwitchGfx_BreakIfNoUnits, 0x801F2AD
 SET_FUNC EndSupply_StartMMS, 0x809EB15 
+SET_DATA gStatScreen, 0x2003bfc
+SET_DATA sStatScreenInfo, 0x203e764 
 
+SET_FUNC SetStatScreenConfig, 0x8086de5
 SET_FUNC SetupActiveUnit, 0x801865D 
 SET_DATA gUnknown_089A2DB0, 0x89A2DB0
 SET_DATA gProc_Menu, 0x85B64D0

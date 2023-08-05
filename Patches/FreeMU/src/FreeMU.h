@@ -35,8 +35,9 @@ struct FMUProc {
 	/* 43 */    u8 eventEngineTimer; 
 	/* 44 */    void* pEventIdk; 
 	/* 48 */    u8 updateCameraAfterEvent; 
-	/* 49 */    u8 commandID; //scriptedMovement 
-	/* 4A */    u8 command[0x16]; //scriptedMovement 
+	/* 49 */    u8 updateAfterStatusScreen;
+	/* 4a */    u8 commandID; //scriptedMovement 
+	/* 4b */    u8 command[0x15]; //scriptedMovement 
 };
 
 struct MuCtr { 

@@ -66,7 +66,7 @@
       callHack_r1(Load_Page)
 
     ORG $888BC //Stores byte to store 1 before stat screen struct
-      callHack_r3(Store_Page)
+      //callHack_r3(Store_Page)
 	  
 	#ifdef ENABLE_PERSONAL_INFO
 	

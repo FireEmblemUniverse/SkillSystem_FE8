@@ -100,6 +100,8 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		exit_early = true; 
 	}
 	
+	//if (ProcFind(&gProc_StatScreen)) { 
+	
 	if (exit_early) { 
 		proc->yield = true; 
 		proc->countdown = 1; 
@@ -150,7 +152,29 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		return; 
 	}
 	
-	
+	if (proc->updateAfterStatusScreen && (proc->countdown == 0)) {	
+		//asm("mov r11, r11"); 
+
+		
+		// see https://github.com/FireEmblemUniverse/fireemblem8u/blob/f27fe5c06962b4de940b7830564d70ff1e193e9c/src/statscreen.c#L430
+		extern ProcInstruction* gProcScr_SSGlowyBlendCtrl;
+		EndEachProc(gProcScr_SSGlowyBlendCtrl);
+		UnlockGameGraphicsLogic();
+		EndGreenTextColorManager();
+		
+		//StartFadeOutBlackMedium();
+		//RenderBmMap(); 
+		extern void ReloadGameCoreGraphics(void); 
+		ReloadGameCoreGraphics();
+		gLCDIOBuffer.dispControl.enableBg0 = true;
+		gLCDIOBuffer.dispControl.enableBg1 = true;
+		gLCDIOBuffer.dispControl.enableBg2 = true;
+		gLCDIOBuffer.dispControl.enableBg3 = true;
+		gLCDIOBuffer.dispControl.enableObj = true;
+		FMU_ResetLCDIO();
+		
+		proc->updateAfterStatusScreen = false; 
+	}
 
 	
 	
@@ -200,7 +224,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->updateSMS = false; 
 	} 
 	
-	if (proc->yield_move) { 
+	if (proc->yield_move && !(proc->countdown)) { 
 		proc->yield_move = false; // 8002F24 proc goto 
 	} 
 
@@ -365,6 +389,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->eventEngineTimer = 0; 
 	proc->pEventIdk = NULL; 
 	proc->updateCameraAfterEvent = false;
+	proc->updateAfterStatusScreen = false; 
 	//FreeMoveRam->silent = false; 
 	
 	
