@@ -69,6 +69,7 @@ parseCode specials lineNum ('[':xs) cont = parseSpecial specials lineNum xs (con
 parseCode specials lineNum (x:xs) cont = let value = fromIntegral (ord x) in
     if validASCII value
         then propogateError (cont xs) (value:)
+        --then propogateError (cont xs) ((fromChar x)<>)
         else Right (lineNum, "ASCII character out of range: " ++ show value) --Check this error first to catch the first error in the file.
 
 validASCII x = (x >= 0x20 && x <= 0x7F) || x >= 0xC0 || x `elem` [0x93, 0x94, 0xA1, 0xAB, 0xBB, 0xBF] -- Punctuation marks.
