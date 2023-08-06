@@ -33,6 +33,7 @@ import Control.Exception (try, IOException)
 import GBAUtilities (intToHex, stripExtension)
 import Prelude hiding (null)
 import qualified Prelude
+--import Data.ByteString.UTF8 (fromChar)
 --import Control.Exception --TODO: Make syntax errors imformative.
 type Definitions = Map String [Word8]
 
@@ -69,10 +70,19 @@ parseCode specials lineNum ('[':xs) cont = parseSpecial specials lineNum xs (con
 parseCode specials lineNum (x:xs) cont = let value = fromIntegral (ord x) in
     if validASCII value
         then propogateError (cont xs) (value:)
-        --then propogateError (cont xs) ((fromChar x)<>)
         else Right (lineNum, "ASCII character out of range: " ++ show value) --Check this error first to catch the first error in the file.
 
 validASCII x = (x >= 0x20 && x <= 0x7F) || x >= 0xC0 || x `elem` [0x93, 0x94, 0xA1, 0xAB, 0xBB, 0xBF] -- Punctuation marks.
+
+--parseCode specials lineNum (x:xs) cont = let value = fromIntegral (ord x) in
+----parseCode specials lineNum (x:xs) cont = propogateError (cont xs) ((fromChar x)<>)
+--    propogateError (cont xs) (value:)
+--    if validASCII value
+--        --then propogateError (cont xs) (value:)
+--        then propogateError (cont xs) ((fromChar x)<>)
+--        else Right (lineNum, "ASCII character out of range: " ++ show value) --Check this error first to catch the first error in the file.
+--
+--validASCII x = (x >= 0x20 && x <= 0x7F) || x >= 0xC0 || x `elem` [0x93, 0x94, 0xA1, 0xAB, 0xBB, 0xBF] -- Punctuation marks.
 
 parseSpecial::Definitions->Int->String->(String->Either [Word8] (Int, String))->Either [Word8] (Int, String)
 parseSpecial specials lineNum ('0':'x':xs) cont = parseNumber specials lineNum xs cont
