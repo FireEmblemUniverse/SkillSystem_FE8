@@ -1,0 +1,12 @@
+#ifdef CLASS_CHG_EXPANSION
+
+ALIGN 4
+gGetClasschgListFuncs:
+    POIN GetClasschgListVanilla GetClasschgListExpa GetClasschgListMod
+
+    POIN GetClasschgListPadFunc GetClasschgListPadFunc GetClasschgListPadFunc GetClasschgListPadFunc
+    WORD 0
+
+#include "ClassChgExpansionInternal.event"
+
+#endif /* CLASS_CHG_EXPANSION */

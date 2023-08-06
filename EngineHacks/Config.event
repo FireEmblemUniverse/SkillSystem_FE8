@@ -209,6 +209,9 @@
 #define REPOINT_UNIT_LOAD_BUFFER
 #define NewUnitLoadBufferLoc 0x2026E30
 
+// If uncommented, unit branched promotion list will be expanded to 6
+#define CLASS_CHG_EXPANSION
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================

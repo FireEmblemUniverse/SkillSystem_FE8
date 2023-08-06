@@ -53,6 +53,9 @@ POP
 
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 
+  // Expand unit promotion list
+  #include "ExternalHacks/ClassChgExpansion/ClassChgExpansion.event"
+
   // Display damage numbers in battle animations.
   #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
 
