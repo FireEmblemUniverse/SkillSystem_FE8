@@ -1,13 +1,14 @@
 
-//#define FreeSpace 0xb2a610
-#define FreeSpace3 0x1240000 
-#define FreeSpace2 0xb2a610
+
+#define FreeSpace 0x014C4AF0 // after music, some gfx, and fonts
+#define FreeSpace_Low 0xb2a610
+
 //#define FreeSpace2_End 0xFFFFFF
-#define FreeSpace2_End 0xC00000
+#define FreeSpace_Low_End 0xC00000
 //#define FreeSpaceBLRange 0x1c1ec0
-//PROTECT $267FC $268C7
+
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 
 #define INSTALL_FMU 
 #define ENABLE_FMU 
@@ -50,8 +51,6 @@ String("V1.07                 May 2023") ; BYTE 0; POP // this overflows into th
 #define BaseMov 5
 
 #define PortraitTable NewPortraitTable // Portrait table is an EA def, so no need to #undef it 
-
-#define FreeSpace 0x01081420
 
 //#define FreeSpace 0xb2a610
 //#define FreeSpaceEnd 0xC00000

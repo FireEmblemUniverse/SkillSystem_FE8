@@ -5,7 +5,7 @@
 	#include "Music/MusicTrackDefinitions.event" 
 	#include "Maps/Definitions.event"
 	#include "Maps/MapMacros.event" 
-ORG FreeSpace2
+ORG FreeSpace_Low
     //CSV tables
 	//#include "Text/Text Definitions.event" 
 	#include "repointedTextTable.event"
@@ -18,7 +18,7 @@ ORG FreeSpace2
     MESSAGE Used text space ends at currentOffset
 	
 PUSH 
-ORG FreeSpace3
+ORG FreeSpace
 	#include "Maps/MapTables.event" 
     #include "Tables/TableInstaller.event" // maps and tables must be directly at FreeSpace3, with ChapterDataTable being the first table 
     MESSAGE Used table space ends at currentOffset
@@ -57,7 +57,7 @@ POP
 	#include "Events/EventsInstaller.event"
 	#include "A_Debug_Command.event"
 	MESSAGE Used events space ends at currentOffset 
-ASSERT (FreeSpace2_End - currentOffset)
+ASSERT (FreeSpace_Low_End - currentOffset)
 	
 
 	

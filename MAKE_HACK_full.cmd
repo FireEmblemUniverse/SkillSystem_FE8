@@ -7,7 +7,7 @@
 @rem defining buildfile config
 
 set "vanilla_rom=%~dp0FE8_Clean.gba"
-set "source_rom=%~dp0sfx_gfx_maps.gba"
+set "source_rom=%~dp0baserom.gba"
 set "main_event=%~dp0ROMBuildfile.event"
 set "target_rom=%~dp0FE8Hack.gba"
 set "target_ups=%~dp0Pokemblem.ups"
@@ -55,7 +55,7 @@ echo Assembling
 
 cd "%base_dir%EventAssembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym" "--build-times"
-rem type "%~dp0sfx_gfx_maps.sym" >> "%~dp0FE8Hack.sym"
+rem type "%~dp0baserom.sym" >> "%~dp0FE8Hack.sym"
 
 
 

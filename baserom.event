@@ -5,27 +5,33 @@
 	#include "EventAssembler/Tools/Tool Helpers.txt"
 	#include "Maps/MapMacros.event" 
 PUSH 
-ORG FreeSpace3 
+ORG FreeSpace
 #include "Maps/MapTables.event" 
 NewChapterDataTable: // so we can see this for maps 
 POP 
-ORG FreeSpace2
+ORG FreeSpace_Low
 FILL(0xD59F0) 0 // 0 out where we'll write to: 0xD59F0 bytes of space 
 
 
 	ORG 0x01000000
-	#include "Music/MusicInstaller.event"
-	MESSAGE Pokemblem music space ends at currentOffset
-
-    
-	ORG FreeSpace 
+	#include "Music/MusicInstaller.event" 
+	
+	ORG 0x1081420 // export undo buffer will not put you in freespace 
+	#include "Fonts/UTF-8/Installer.event" 
+	#include "Fonts/chinese.event" 
+	ORG 0x1306248 // export undo buffer will not put you in freespace 
+    // 0x1080EF0 
+	MESSAGE Pokemblem music & font space ends at currentOffset
+	//ASSERT (FreeSpace-CurrentOffset)
+	
+	//ORG FreeSpace 
 	
     //Maps
     #include "Maps/SplitPList.event"
 	//Graphics
 	#include "Graphics/GraphicsInstaller.event"
 
-	ASSERT (FreeSpace3 - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
+	ASSERT (FreeSpace - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
 MESSAGE Used free space ends at currentOffset
 
 

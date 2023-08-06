@@ -163,7 +163,7 @@
 
 //If uncommented, Narrow Font will be implemented.
 //This allows for setting narrower text in addition to standard text.
-#define NARROW_FONT
+//#define NARROW_FONT
 
 // If uncommented, the fourth page of the stat screen will include personal information on the character.
 // This information can be edited in the "Personal Data Editor.csv" file.
