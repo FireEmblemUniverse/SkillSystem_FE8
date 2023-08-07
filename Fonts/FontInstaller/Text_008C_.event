@@ -1,0 +1,45 @@
+// Sub Font Installer
+ALIGN 4
+Fonts(0x004E, 13)
+	#incbin "../FontData/FontText二.fefont"
+
+ALIGN 4
+Fonts(0x0053, 13)
+	#incbin "../FontData/FontText厌.fefont"
+
+ALIGN 4
+Fonts(0x0054, 12)
+	#incbin "../FontData/FontText和.fefont"
+
+ALIGN 4
+Fonts(0x005B, 13)
+	#incbin "../FontData/FontText完.fefont"
+
+ALIGN 4
+Fonts(0x005C, 13)
+	#incbin "../FontData/FontText岌.fefont"
+
+ALIGN 4
+Fonts(0x0063, 13)
+	#incbin "../FontData/FontText掌.fefont"
+
+ALIGN 4
+Fonts(0x006D, 12)
+	#incbin "../FontData/FontText涌.fefont"
+
+ALIGN 4
+Fonts(0x0078, 13)
+	#incbin "../FontData/FontText碌.fefont"
+
+ALIGN 4
+Fonts(0x0080, 13)
+	#incbin "../FontData/FontText肌.fefont"
+
+ALIGN 4
+Fonts(0x008C, 13)
+	#incbin "../FontData/FontText貌.fefont"
+
+ALIGN 4
+Fonts(0x009A, 13)
+	#incbin "../FontData/FontText验.fefont"
+

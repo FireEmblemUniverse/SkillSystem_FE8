@@ -1,0 +1,23 @@
+
+
+/*
+ALIGN 4
+Fonts(0xE1B583, 6)
+	#incbin "a.fefont"
+
+ALIGN 4
+Fonts(0xE1B587, 5)
+	#incbin "b.fefont"
+*/
+//#ifndef INSTALL_VIA_FEBUILDER_EXPORT_EA 
+PUSH
+ORG 0x109D18C
+POIN Narrow_a_serif
+//at 0x109D18C is POIN Narrow_a_serif 
+POP
+
+ALIGN 4 
+Narrow_a_serif:
+BYTE $00 $00 $00 $00 $1D $04 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $2E $00 $00 $00 $B3 $00 $00 $00 $BC $00 $00 $00 $BB $00 $00 $00 $B3 $00 $00 $00 $B3 $00 $00 $00 $BB $00 $00 $00 $BC $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+//#endif 

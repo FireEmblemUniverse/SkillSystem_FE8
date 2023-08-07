@@ -1,0 +1,61 @@
+// Sub Font Installer
+ALIGN 4
+Fonts(0x004E, 8)
+	#incbin "../FontData/FontItem介.fefont"
+
+ALIGN 4
+Fonts(0x0052, 9)
+	#incbin "../FontData/FontItem勋.fefont"
+
+ALIGN 4
+Fonts(0x0053, 9)
+	#incbin "../FontData/FontItem友.fefont"
+
+ALIGN 4
+Fonts(0x0057, 9)
+	#incbin "../FontData/FontItem埋.fefont"
+
+ALIGN 4
+Fonts(0x0059, 9)
+	#incbin "../FontData/FontItem始.fefont"
+
+ALIGN 4
+Fonts(0x0060, 11)
+	#incbin "../FontData/FontItem惋.fefont"
+
+ALIGN 4
+Fonts(0x0065, 9)
+	#incbin "../FontData/FontItem旋.fefont"
+
+ALIGN 4
+Fonts(0x0068, 11)
+	#incbin "../FontData/FontItem棋.fefont"
+
+ALIGN 4
+Fonts(0x006B, 11)
+	#incbin "../FontData/FontItem毋.fefont"
+
+ALIGN 4
+Fonts(0x006D, 11)
+	#incbin "../FontData/FontItem淋.fefont"
+
+ALIGN 4
+Fonts(0x006E, 9)
+	#incbin "../FontData/FontItem滋.fefont"
+
+ALIGN 4
+Fonts(0x0078, 11)
+	#incbin "../FontData/FontItem磋.fefont"
+
+ALIGN 4
+Fonts(0x007A, 9)
+	#incbin "../FontData/FontItem立.fefont"
+
+ALIGN 4
+Fonts(0x0086, 9)
+	#incbin "../FontData/FontItem蛋.fefont"
+
+ALIGN 4
+Fonts(0x008D, 9)
+	#incbin "../FontData/FontItem跋.fefont"
+
