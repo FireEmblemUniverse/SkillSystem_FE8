@@ -19,7 +19,3 @@ ALIGN 4
 Fonts(0x0090, 9)
 	#incbin "../FontData/FontItem逞.fefont"
 
-ALIGN 4
-Fonts(0x0097, 9)
-	#incbin "../FontData/FontItem霞.fefont"
-

@@ -43,7 +43,3 @@ ALIGN 4
 Fonts(0x0085, 13)
 	#incbin "../FontData/FontText蔽.fefont"
 
-ALIGN 4
-Fonts(0x009E, 12)
-	#incbin "../FontData/FontText鸽.fefont"
-

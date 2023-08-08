@@ -16,10 +16,6 @@ Fonts(0x006C, 9)
 	#incbin "../FontData/FontItem法.fefont"
 
 ALIGN 4
-Fonts(0x0071, 10)
-	#incbin "../FontData/FontItem燕.fefont"
-
-ALIGN 4
 Fonts(0x0075, 9)
 	#incbin "../FontData/FontItem痕.fefont"
 

@@ -4,6 +4,10 @@ Fonts(0x0000, 4)
 	#incbin "../FontData/FontText-.fefont"
 
 ALIGN 4
+Fonts(0x0023, 5)
+	#incbin "../FontData/FontText⌭.fefont"
+
+ALIGN 4
 Fonts(0x004E, 12)
 	#incbin "../FontData/FontText中.fefont"
 
