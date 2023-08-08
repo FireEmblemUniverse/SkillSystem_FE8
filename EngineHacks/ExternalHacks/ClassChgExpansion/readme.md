@@ -11,12 +11,6 @@ Expand selectable classes during branched promotion to **SIX**
 
 <div align=left>
 
-## Note
-
-This is plan-B which may port to skillsystem. If you want to get patches for vanilla, see [Mokha's sundry repo](https://github.com/MokhaLeee/fe8_hacks_sundries/tree/main/wizardry/ClassChgExpansion).
-
-To fit to skillsys, you need put the function `BmPromotionItemCheckUsage` and `PrepPromotionItemCheckUsage` to the `IERevampTable`.
-
 ## Custom Usage
 
 ### Vanila table

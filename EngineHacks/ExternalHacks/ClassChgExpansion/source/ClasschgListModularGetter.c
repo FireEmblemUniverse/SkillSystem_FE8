@@ -1,7 +1,6 @@
 #include "global.h"
 #include "bmunit.h"
 #include "bmitem.h"
-#include "bmitemuse.h"
 
 #include "ClassChgExpansion.h"
 
@@ -13,9 +12,6 @@ int GetClasschgListVanilla(struct Unit * unit, u16 item, u8 * out, int len)
     u8 tmp_list[2];
 
     if (!UNIT_IS_VALID(unit))
-        return 0;
-
-    if (!CanUnitUsePromotionItem(unit, item))
         return 0;
 
     for (i = 0; i < 2; i++)

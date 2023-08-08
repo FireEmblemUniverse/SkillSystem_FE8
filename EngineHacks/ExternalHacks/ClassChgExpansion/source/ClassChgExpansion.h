@@ -48,7 +48,5 @@ struct ProcClassChgDataRepo {
 };
 struct ProcClassChgDataRepo * GetClassChgSelInfo(void);
 
-bool CanUnitUsePromotionItemVanilla(struct Unit * unit, int item);
-
 /* Utils */
 u16 GetClassAnimWeapon(u8 jid);

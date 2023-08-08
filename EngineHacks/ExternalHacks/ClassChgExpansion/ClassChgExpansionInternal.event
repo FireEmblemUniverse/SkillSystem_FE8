@@ -6,12 +6,9 @@ ALIGN 4
 #include "source/ClasschgListModularGetter.lyn.event"
 
 #include "source/Utils.lyn.event"
-#include "source/ItemUsability.lyn.event"
 #include "source/BmClassChg.lyn.event"
 
 #include "LynJump.event"
-
-#include "source/IER_port.lyn.event"
 
 PUSH
 /* Magic for FEB identification */
