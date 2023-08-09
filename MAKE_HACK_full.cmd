@@ -19,7 +19,7 @@ set "target_sym=%~dp0SkillsTest.sym"
 set "c2ea=%~dp0Tools\C2EA\c2ea"
 set "textprocess=%~dp0Tools\TextProcess\text-process-classic"
 set "ups=%~dp0Tools\ups\ups"
-set "parsefile=%~dp0EventAssembler\Tools\ParseFile.exe"
+set "parsefile=%~dp0EventAssembler\Tools\ParseFileUTF8.exe"
 set "tmx2ea=%~dp0Tools\tmx2ea\tmx2ea"
 set symcombo=%~dp0Tools\sym\SymCombo.exe
 
