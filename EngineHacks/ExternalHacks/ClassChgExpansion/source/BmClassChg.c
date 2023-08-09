@@ -59,7 +59,7 @@ u32 PromoHandler_SetupAndStartUI(struct ProcPromoHandler * proc)
                 {
                     amt = GetClasschgList(unit, unit->items[proc->item_slot], jid_list, sizeof(jid_list));
                     if (amt <= 0)
-                        return PROMO_HANDLER_STAT_END;
+                        continue;
 
                     if (amt == 1)
                     {
@@ -71,6 +71,7 @@ u32 PromoHandler_SetupAndStartUI(struct ProcPromoHandler * proc)
                     return PROMO_HANDLER_STAT_IDLE;
                 }
             }
+            return PROMO_HANDLER_STAT_END;
         }
     }
 
