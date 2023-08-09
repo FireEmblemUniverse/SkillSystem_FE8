@@ -5,6 +5,13 @@
 3. Paste the png image(s) into Fonts/FontData 
 4. Double click CreateFont.bat (you will need python installed for this) 
 
+After running CreateFont.Bat, edit the two short spaces mapped to ް to be width of 2 instead of 0/1. 
+
+Text_00B0_.event & Item_00B0_.event
+ALIGN 4
+Fonts(0x0007, 2)
+	#incbin "../FontData/FontItemް.fefont"
+
 5. If desired, add the symbol to ParseDefinitions.txt, located in Root/Text. 
 See chart below for what bytes to put for a character. 
 https://www.charset.org/utf-8/2 ctrl+f `ނ` or `DE 82` 
