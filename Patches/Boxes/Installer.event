@@ -66,8 +66,10 @@ callHackNew(HookCopyGameSave)
 ORG $A9280 // when creating a new save file i guess 
 //jumpToHack(something) 
 
-ORG $A9428 
+ORG $A9424
 callHackNew(HookSaveGame)
+SHORT $46c0 
+SHORT $1c20 // Mov r0, r4 (vanilla) 
 
 ORG $A4EA4 
 callHackNew(HookInitSave) 

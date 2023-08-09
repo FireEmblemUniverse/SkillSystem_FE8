@@ -129,6 +129,8 @@ bx r3
 HookSaveGame:
 push {lr} 
 
+cmp r1, #1 
+bne AltExit 
 mov r0, r4 
 add r0, #0x2c 
 ldrb r0, [r0] 
@@ -139,8 +141,12 @@ add r0, #0x2c
 ldrb r0, [r0] 
 blh SaveGame 
 
-mov r0, r4 
+@mov r0, r4 
 pop {r3} 
+bx r3 
+AltExit: 
+pop {r3} 
+ldr r3, =0x80A9455 
 bx r3 
 .ltorg 
 
