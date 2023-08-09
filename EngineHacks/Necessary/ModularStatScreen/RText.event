@@ -365,16 +365,16 @@
 #else // ONLY_SHOW_USED_RANKS
 
   ST_WRank1:
-  RMenu(0,ST_WRank2,ST_Name3,ST_WRank3,0x68,0x18,0,WeaponDescLooper,WeaponDescGetter)
+  RMenu(0,ST_WRank3,ST_Name3,ST_WRank2,0x68,0x18,0,WeaponDescLooper,WeaponDescGetter)
 
   ST_WRank2:
-  RMenu(ST_WRank1,ST_Supports,ST_Name3,ST_WRank4,0x68,0x28,1,WeaponDescLooper,WeaponDescGetter)
+  RMenu(0,ST_WRank4,ST_WRank1,0,0xA8,0x18,1,WeaponDescLooper,WeaponDescGetter)
 
   ST_WRank3:
-  RMenu(0,ST_WRank4,ST_WRank1,0,0xA8,0x18,2,WeaponDescLooper,WeaponDescGetter)
+  RMenu(ST_WRank1,ST_Supports,ST_Name3,ST_WRank4,0x68,0x28,2,WeaponDescLooper,WeaponDescGetter)
 
   ST_WRank4:
-  RMenu(ST_WRank3,ST_Supports,ST_WRank2,0,0xA8,0x28,3,WeaponDescLooper,WeaponDescGetter)
+  RMenu(ST_WRank2,ST_Supports,ST_WRank3,0,0xA8,0x28,3,WeaponDescLooper,WeaponDescGetter)
 
 #endif // ONLY_SHOW_USED_RANKS
 

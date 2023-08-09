@@ -24,6 +24,7 @@ adding yourself!
 - Mikey Seregon
 - Vesly 
 - Dragz
+- Jopettajah
 
 # Other
 

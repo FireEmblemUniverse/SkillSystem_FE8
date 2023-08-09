@@ -205,9 +205,12 @@
 
 // If uncommented, the unit load buffer will be repointed.
 // The location it is repointed to is also defined here. The default location is
-// the area that stores turn count information, and WILL break turn counts.
-// #define REPOINT_UNIT_LOAD_BUFFER
-// #define NewUnitLoadBufferLoc 0x203ED40
+// the area used for debug printing.
+#define REPOINT_UNIT_LOAD_BUFFER
+#define NewUnitLoadBufferLoc 0x2026E30
+
+// If uncommented, unit branched promotion list will be expanded to 6
+#define CLASS_CHG_EXPANSION
 
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
