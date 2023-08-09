@@ -164,6 +164,22 @@
 //If uncommented, Narrow Font will be implemented.
 //This allows for setting narrower text in addition to standard text.
 // #define NARROW_FONT
+#ifdef NARROW_FONT
+MESSAGE NARROW_FONT is being phased out for UTF-8 encoded Narrow Font. 
+MESSAGE If you have added custom characters, you will need to add them in Root\EngineHacks\ExternalHacks\Fonts. 
+MESSAGE Please see the README.md there or ask @Vesly for help. 
+#endif 
+
+//If uncommented, UTF-8 will be implemented. 
+//This allows for adding new fonts/characters and includes NarrowFont by default. 
+#define UTF8 
+
+// Do not define NARROW_FONT and UTF8 simultaneously. 
+#ifdef UTF8 
+	#ifdef NARROW_FONT 
+		#undef NARROW_FONT 
+	#endif 
+#endif 
 
 // If uncommented, the fourth page of the stat screen will include personal information on the character.
 // This information can be edited in the "Personal Data Editor.csv" file.

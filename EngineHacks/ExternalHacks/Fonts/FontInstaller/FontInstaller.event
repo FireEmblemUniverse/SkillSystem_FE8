@@ -1,0 +1,8195 @@
+#define Fonts(UTFlow, width) "ALIGN 4; PUSH; ORG CURRENTOFFSET-0x48; POIN CURRENTOFFSET+0x48; POP; WORD $0; BYTE UTFlow width 0 0"
+#ifdef ___Item_0000_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0000_Next:
+	#include "Item_0000_.event"
+#endif
+
+#ifdef ___Text_0000_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0000_Next:
+	#include "Text_0000_.event"
+#endif
+
+#ifdef ___Item_0001_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0001_Next:
+	#include "Item_0001_.event"
+#endif
+
+#ifdef ___Text_0001_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0001_Next:
+	#include "Text_0001_.event"
+#endif
+
+#ifdef ___Item_0002_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0002_Next:
+	#include "Item_0002_.event"
+#endif
+
+#ifdef ___Text_0002_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0002_Next:
+	#include "Text_0002_.event"
+#endif
+
+#ifdef ___Item_0003_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0003_Next:
+	#include "Item_0003_.event"
+#endif
+
+#ifdef ___Text_0003_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0003_Next:
+	#include "Text_0003_.event"
+#endif
+
+#ifdef ___Item_0004_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0004_Next:
+	#include "Item_0004_.event"
+#endif
+
+#ifdef ___Text_0004_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0004_Next:
+	#include "Text_0004_.event"
+#endif
+
+#ifdef ___Item_0005_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0005_Next:
+	#include "Item_0005_.event"
+#endif
+
+#ifdef ___Text_0005_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0005_Next:
+	#include "Text_0005_.event"
+#endif
+
+#ifdef ___Item_0006_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0006_Next:
+	#include "Item_0006_.event"
+#endif
+
+#ifdef ___Text_0006_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0006_Next:
+	#include "Text_0006_.event"
+#endif
+
+#ifdef ___Item_0007_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0007_Next:
+	#include "Item_0007_.event"
+#endif
+
+#ifdef ___Text_0007_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0007_Next:
+	#include "Text_0007_.event"
+#endif
+
+#ifdef ___Item_0008_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0008_Next:
+	#include "Item_0008_.event"
+#endif
+
+#ifdef ___Text_0008_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0008_Next:
+	#include "Text_0008_.event"
+#endif
+
+#ifdef ___Item_0009_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0009_Next:
+	#include "Item_0009_.event"
+#endif
+
+#ifdef ___Text_0009_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0009_Next:
+	#include "Text_0009_.event"
+#endif
+
+#ifdef ___Item_000A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_000A_Next:
+	#include "Item_000A_.event"
+#endif
+
+#ifdef ___Text_000A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_000A_Next:
+	#include "Text_000A_.event"
+#endif
+
+#ifdef ___Item_000B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_000B_Next:
+	#include "Item_000B_.event"
+#endif
+
+#ifdef ___Text_000B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_000B_Next:
+	#include "Text_000B_.event"
+#endif
+
+#ifdef ___Item_000C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_000C_Next:
+	#include "Item_000C_.event"
+#endif
+
+#ifdef ___Text_000C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_000C_Next:
+	#include "Text_000C_.event"
+#endif
+
+#ifdef ___Item_000D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_000D_Next:
+	#include "Item_000D_.event"
+#endif
+
+#ifdef ___Text_000D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_000D_Next:
+	#include "Text_000D_.event"
+#endif
+
+#ifdef ___Item_000E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_000E_Next:
+	#include "Item_000E_.event"
+#endif
+
+#ifdef ___Text_000E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_000E_Next:
+	#include "Text_000E_.event"
+#endif
+
+#ifdef ___Item_000F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_000F_Next:
+	#include "Item_000F_.event"
+#endif
+
+#ifdef ___Text_000F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_000F_Next:
+	#include "Text_000F_.event"
+#endif
+
+#ifdef ___Item_0010_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0010_Next:
+	#include "Item_0010_.event"
+#endif
+
+#ifdef ___Text_0010_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0010_Next:
+	#include "Text_0010_.event"
+#endif
+
+#ifdef ___Item_0011_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0011_Next:
+	#include "Item_0011_.event"
+#endif
+
+#ifdef ___Text_0011_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0011_Next:
+	#include "Text_0011_.event"
+#endif
+
+#ifdef ___Item_0012_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0012_Next:
+	#include "Item_0012_.event"
+#endif
+
+#ifdef ___Text_0012_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0012_Next:
+	#include "Text_0012_.event"
+#endif
+
+#ifdef ___Item_0013_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0013_Next:
+	#include "Item_0013_.event"
+#endif
+
+#ifdef ___Text_0013_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0013_Next:
+	#include "Text_0013_.event"
+#endif
+
+#ifdef ___Item_0014_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0014_Next:
+	#include "Item_0014_.event"
+#endif
+
+#ifdef ___Text_0014_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0014_Next:
+	#include "Text_0014_.event"
+#endif
+
+#ifdef ___Item_0015_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0015_Next:
+	#include "Item_0015_.event"
+#endif
+
+#ifdef ___Text_0015_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0015_Next:
+	#include "Text_0015_.event"
+#endif
+
+#ifdef ___Item_0016_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0016_Next:
+	#include "Item_0016_.event"
+#endif
+
+#ifdef ___Text_0016_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0016_Next:
+	#include "Text_0016_.event"
+#endif
+
+#ifdef ___Item_0017_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0017_Next:
+	#include "Item_0017_.event"
+#endif
+
+#ifdef ___Text_0017_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0017_Next:
+	#include "Text_0017_.event"
+#endif
+
+#ifdef ___Item_0018_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0018_Next:
+	#include "Item_0018_.event"
+#endif
+
+#ifdef ___Text_0018_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0018_Next:
+	#include "Text_0018_.event"
+#endif
+
+#ifdef ___Item_0019_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0019_Next:
+	#include "Item_0019_.event"
+#endif
+
+#ifdef ___Text_0019_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0019_Next:
+	#include "Text_0019_.event"
+#endif
+
+#ifdef ___Item_001A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_001A_Next:
+	#include "Item_001A_.event"
+#endif
+
+#ifdef ___Text_001A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_001A_Next:
+	#include "Text_001A_.event"
+#endif
+
+#ifdef ___Item_001B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_001B_Next:
+	#include "Item_001B_.event"
+#endif
+
+#ifdef ___Text_001B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_001B_Next:
+	#include "Text_001B_.event"
+#endif
+
+#ifdef ___Item_001C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_001C_Next:
+	#include "Item_001C_.event"
+#endif
+
+#ifdef ___Text_001C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_001C_Next:
+	#include "Text_001C_.event"
+#endif
+
+#ifdef ___Item_001D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_001D_Next:
+	#include "Item_001D_.event"
+#endif
+
+#ifdef ___Text_001D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_001D_Next:
+	#include "Text_001D_.event"
+#endif
+
+#ifdef ___Item_001E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_001E_Next:
+	#include "Item_001E_.event"
+#endif
+
+#ifdef ___Text_001E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_001E_Next:
+	#include "Text_001E_.event"
+#endif
+
+#ifdef ___Item_001F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_001F_Next:
+	#include "Item_001F_.event"
+#endif
+
+#ifdef ___Text_001F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_001F_Next:
+	#include "Text_001F_.event"
+#endif
+
+#ifdef ___Item_0020_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0020_Next:
+	#include "Item_0020_.event"
+#endif
+
+#ifdef ___Text_0020_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0020_Next:
+	#include "Text_0020_.event"
+#endif
+
+#ifdef ___Item_0021_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0021_Next:
+	#include "Item_0021_.event"
+#endif
+
+#ifdef ___Text_0021_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0021_Next:
+	#include "Text_0021_.event"
+#endif
+
+#ifdef ___Item_0022_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0022_Next:
+	#include "Item_0022_.event"
+#endif
+
+#ifdef ___Text_0022_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0022_Next:
+	#include "Text_0022_.event"
+#endif
+
+#ifdef ___Item_0023_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0023_Next:
+	#include "Item_0023_.event"
+#endif
+
+#ifdef ___Text_0023_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0023_Next:
+	#include "Text_0023_.event"
+#endif
+
+#ifdef ___Item_0024_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0024_Next:
+	#include "Item_0024_.event"
+#endif
+
+#ifdef ___Text_0024_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0024_Next:
+	#include "Text_0024_.event"
+#endif
+
+#ifdef ___Item_0025_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0025_Next:
+	#include "Item_0025_.event"
+#endif
+
+#ifdef ___Text_0025_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0025_Next:
+	#include "Text_0025_.event"
+#endif
+
+#ifdef ___Item_0026_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0026_Next:
+	#include "Item_0026_.event"
+#endif
+
+#ifdef ___Text_0026_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0026_Next:
+	#include "Text_0026_.event"
+#endif
+
+#ifdef ___Item_0027_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0027_Next:
+	#include "Item_0027_.event"
+#endif
+
+#ifdef ___Text_0027_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0027_Next:
+	#include "Text_0027_.event"
+#endif
+
+#ifdef ___Item_0028_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0028_Next:
+	#include "Item_0028_.event"
+#endif
+
+#ifdef ___Text_0028_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0028_Next:
+	#include "Text_0028_.event"
+#endif
+
+#ifdef ___Item_0029_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0029_Next:
+	#include "Item_0029_.event"
+#endif
+
+#ifdef ___Text_0029_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0029_Next:
+	#include "Text_0029_.event"
+#endif
+
+#ifdef ___Item_002A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_002A_Next:
+	#include "Item_002A_.event"
+#endif
+
+#ifdef ___Text_002A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_002A_Next:
+	#include "Text_002A_.event"
+#endif
+
+#ifdef ___Item_002B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_002B_Next:
+	#include "Item_002B_.event"
+#endif
+
+#ifdef ___Text_002B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_002B_Next:
+	#include "Text_002B_.event"
+#endif
+
+#ifdef ___Item_002C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_002C_Next:
+	#include "Item_002C_.event"
+#endif
+
+#ifdef ___Text_002C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_002C_Next:
+	#include "Text_002C_.event"
+#endif
+
+#ifdef ___Item_002D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_002D_Next:
+	#include "Item_002D_.event"
+#endif
+
+#ifdef ___Text_002D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_002D_Next:
+	#include "Text_002D_.event"
+#endif
+
+#ifdef ___Item_002E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_002E_Next:
+	#include "Item_002E_.event"
+#endif
+
+#ifdef ___Text_002E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_002E_Next:
+	#include "Text_002E_.event"
+#endif
+
+#ifdef ___Item_002F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_002F_Next:
+	#include "Item_002F_.event"
+#endif
+
+#ifdef ___Text_002F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_002F_Next:
+	#include "Text_002F_.event"
+#endif
+
+#ifdef ___Item_0030_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0030_Next:
+	#include "Item_0030_.event"
+#endif
+
+#ifdef ___Text_0030_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0030_Next:
+	#include "Text_0030_.event"
+#endif
+
+#ifdef ___Item_0031_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0031_Next:
+	#include "Item_0031_.event"
+#endif
+
+#ifdef ___Text_0031_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0031_Next:
+	#include "Text_0031_.event"
+#endif
+
+#ifdef ___Item_0032_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0032_Next:
+	#include "Item_0032_.event"
+#endif
+
+#ifdef ___Text_0032_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0032_Next:
+	#include "Text_0032_.event"
+#endif
+
+#ifdef ___Item_0033_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0033_Next:
+	#include "Item_0033_.event"
+#endif
+
+#ifdef ___Text_0033_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0033_Next:
+	#include "Text_0033_.event"
+#endif
+
+#ifdef ___Item_0034_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0034_Next:
+	#include "Item_0034_.event"
+#endif
+
+#ifdef ___Text_0034_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0034_Next:
+	#include "Text_0034_.event"
+#endif
+
+#ifdef ___Item_0035_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0035_Next:
+	#include "Item_0035_.event"
+#endif
+
+#ifdef ___Text_0035_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0035_Next:
+	#include "Text_0035_.event"
+#endif
+
+#ifdef ___Item_0036_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0036_Next:
+	#include "Item_0036_.event"
+#endif
+
+#ifdef ___Text_0036_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0036_Next:
+	#include "Text_0036_.event"
+#endif
+
+#ifdef ___Item_0037_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0037_Next:
+	#include "Item_0037_.event"
+#endif
+
+#ifdef ___Text_0037_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0037_Next:
+	#include "Text_0037_.event"
+#endif
+
+#ifdef ___Item_0038_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0038_Next:
+	#include "Item_0038_.event"
+#endif
+
+#ifdef ___Text_0038_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0038_Next:
+	#include "Text_0038_.event"
+#endif
+
+#ifdef ___Item_0039_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0039_Next:
+	#include "Item_0039_.event"
+#endif
+
+#ifdef ___Text_0039_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0039_Next:
+	#include "Text_0039_.event"
+#endif
+
+#ifdef ___Item_003A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_003A_Next:
+	#include "Item_003A_.event"
+#endif
+
+#ifdef ___Text_003A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_003A_Next:
+	#include "Text_003A_.event"
+#endif
+
+#ifdef ___Item_003B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_003B_Next:
+	#include "Item_003B_.event"
+#endif
+
+#ifdef ___Text_003B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_003B_Next:
+	#include "Text_003B_.event"
+#endif
+
+#ifdef ___Item_003C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_003C_Next:
+	#include "Item_003C_.event"
+#endif
+
+#ifdef ___Text_003C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_003C_Next:
+	#include "Text_003C_.event"
+#endif
+
+#ifdef ___Item_003D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_003D_Next:
+	#include "Item_003D_.event"
+#endif
+
+#ifdef ___Text_003D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_003D_Next:
+	#include "Text_003D_.event"
+#endif
+
+#ifdef ___Item_003E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_003E_Next:
+	#include "Item_003E_.event"
+#endif
+
+#ifdef ___Text_003E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_003E_Next:
+	#include "Text_003E_.event"
+#endif
+
+#ifdef ___Item_003F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_003F_Next:
+	#include "Item_003F_.event"
+#endif
+
+#ifdef ___Text_003F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_003F_Next:
+	#include "Text_003F_.event"
+#endif
+
+#ifdef ___Item_0040_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0040_Next:
+	#include "Item_0040_.event"
+#endif
+
+#ifdef ___Text_0040_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0040_Next:
+	#include "Text_0040_.event"
+#endif
+
+#ifdef ___Item_0041_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0041_Next:
+	#include "Item_0041_.event"
+#endif
+
+#ifdef ___Text_0041_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0041_Next:
+	#include "Text_0041_.event"
+#endif
+
+#ifdef ___Item_0042_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0042_Next:
+	#include "Item_0042_.event"
+#endif
+
+#ifdef ___Text_0042_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0042_Next:
+	#include "Text_0042_.event"
+#endif
+
+#ifdef ___Item_0043_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0043_Next:
+	#include "Item_0043_.event"
+#endif
+
+#ifdef ___Text_0043_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0043_Next:
+	#include "Text_0043_.event"
+#endif
+
+#ifdef ___Item_0044_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0044_Next:
+	#include "Item_0044_.event"
+#endif
+
+#ifdef ___Text_0044_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0044_Next:
+	#include "Text_0044_.event"
+#endif
+
+#ifdef ___Item_0045_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0045_Next:
+	#include "Item_0045_.event"
+#endif
+
+#ifdef ___Text_0045_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0045_Next:
+	#include "Text_0045_.event"
+#endif
+
+#ifdef ___Item_0046_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0046_Next:
+	#include "Item_0046_.event"
+#endif
+
+#ifdef ___Text_0046_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0046_Next:
+	#include "Text_0046_.event"
+#endif
+
+#ifdef ___Item_0047_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0047_Next:
+	#include "Item_0047_.event"
+#endif
+
+#ifdef ___Text_0047_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0047_Next:
+	#include "Text_0047_.event"
+#endif
+
+#ifdef ___Item_0048_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0048_Next:
+	#include "Item_0048_.event"
+#endif
+
+#ifdef ___Text_0048_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0048_Next:
+	#include "Text_0048_.event"
+#endif
+
+#ifdef ___Item_0049_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0049_Next:
+	#include "Item_0049_.event"
+#endif
+
+#ifdef ___Text_0049_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0049_Next:
+	#include "Text_0049_.event"
+#endif
+
+#ifdef ___Item_004A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_004A_Next:
+	#include "Item_004A_.event"
+#endif
+
+#ifdef ___Text_004A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_004A_Next:
+	#include "Text_004A_.event"
+#endif
+
+#ifdef ___Item_004B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_004B_Next:
+	#include "Item_004B_.event"
+#endif
+
+#ifdef ___Text_004B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_004B_Next:
+	#include "Text_004B_.event"
+#endif
+
+#ifdef ___Item_004C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_004C_Next:
+	#include "Item_004C_.event"
+#endif
+
+#ifdef ___Text_004C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_004C_Next:
+	#include "Text_004C_.event"
+#endif
+
+#ifdef ___Item_004D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_004D_Next:
+	#include "Item_004D_.event"
+#endif
+
+#ifdef ___Text_004D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_004D_Next:
+	#include "Text_004D_.event"
+#endif
+
+#ifdef ___Item_004E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_004E_Next:
+	#include "Item_004E_.event"
+#endif
+
+#ifdef ___Text_004E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_004E_Next:
+	#include "Text_004E_.event"
+#endif
+
+#ifdef ___Item_004F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_004F_Next:
+	#include "Item_004F_.event"
+#endif
+
+#ifdef ___Text_004F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_004F_Next:
+	#include "Text_004F_.event"
+#endif
+
+#ifdef ___Item_0050_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0050_Next:
+	#include "Item_0050_.event"
+#endif
+
+#ifdef ___Text_0050_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0050_Next:
+	#include "Text_0050_.event"
+#endif
+
+#ifdef ___Item_0051_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0051_Next:
+	#include "Item_0051_.event"
+#endif
+
+#ifdef ___Text_0051_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0051_Next:
+	#include "Text_0051_.event"
+#endif
+
+#ifdef ___Item_0052_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0052_Next:
+	#include "Item_0052_.event"
+#endif
+
+#ifdef ___Text_0052_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0052_Next:
+	#include "Text_0052_.event"
+#endif
+
+#ifdef ___Item_0053_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0053_Next:
+	#include "Item_0053_.event"
+#endif
+
+#ifdef ___Text_0053_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0053_Next:
+	#include "Text_0053_.event"
+#endif
+
+#ifdef ___Item_0054_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0054_Next:
+	#include "Item_0054_.event"
+#endif
+
+#ifdef ___Text_0054_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0054_Next:
+	#include "Text_0054_.event"
+#endif
+
+#ifdef ___Item_0055_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0055_Next:
+	#include "Item_0055_.event"
+#endif
+
+#ifdef ___Text_0055_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0055_Next:
+	#include "Text_0055_.event"
+#endif
+
+#ifdef ___Item_0056_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0056_Next:
+	#include "Item_0056_.event"
+#endif
+
+#ifdef ___Text_0056_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0056_Next:
+	#include "Text_0056_.event"
+#endif
+
+#ifdef ___Item_0057_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0057_Next:
+	#include "Item_0057_.event"
+#endif
+
+#ifdef ___Text_0057_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0057_Next:
+	#include "Text_0057_.event"
+#endif
+
+#ifdef ___Item_0058_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0058_Next:
+	#include "Item_0058_.event"
+#endif
+
+#ifdef ___Text_0058_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0058_Next:
+	#include "Text_0058_.event"
+#endif
+
+#ifdef ___Item_0059_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0059_Next:
+	#include "Item_0059_.event"
+#endif
+
+#ifdef ___Text_0059_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0059_Next:
+	#include "Text_0059_.event"
+#endif
+
+#ifdef ___Item_005A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_005A_Next:
+	#include "Item_005A_.event"
+#endif
+
+#ifdef ___Text_005A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_005A_Next:
+	#include "Text_005A_.event"
+#endif
+
+#ifdef ___Item_005B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_005B_Next:
+	#include "Item_005B_.event"
+#endif
+
+#ifdef ___Text_005B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_005B_Next:
+	#include "Text_005B_.event"
+#endif
+
+#ifdef ___Item_005C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_005C_Next:
+	#include "Item_005C_.event"
+#endif
+
+#ifdef ___Text_005C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_005C_Next:
+	#include "Text_005C_.event"
+#endif
+
+#ifdef ___Item_005D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_005D_Next:
+	#include "Item_005D_.event"
+#endif
+
+#ifdef ___Text_005D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_005D_Next:
+	#include "Text_005D_.event"
+#endif
+
+#ifdef ___Item_005E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_005E_Next:
+	#include "Item_005E_.event"
+#endif
+
+#ifdef ___Text_005E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_005E_Next:
+	#include "Text_005E_.event"
+#endif
+
+#ifdef ___Item_005F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_005F_Next:
+	#include "Item_005F_.event"
+#endif
+
+#ifdef ___Text_005F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_005F_Next:
+	#include "Text_005F_.event"
+#endif
+
+#ifdef ___Item_0060_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0060_Next:
+	#include "Item_0060_.event"
+#endif
+
+#ifdef ___Text_0060_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0060_Next:
+	#include "Text_0060_.event"
+#endif
+
+#ifdef ___Item_0061_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0061_Next:
+	#include "Item_0061_.event"
+#endif
+
+#ifdef ___Text_0061_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0061_Next:
+	#include "Text_0061_.event"
+#endif
+
+#ifdef ___Item_0062_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0062_Next:
+	#include "Item_0062_.event"
+#endif
+
+#ifdef ___Text_0062_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0062_Next:
+	#include "Text_0062_.event"
+#endif
+
+#ifdef ___Item_0063_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0063_Next:
+	#include "Item_0063_.event"
+#endif
+
+#ifdef ___Text_0063_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0063_Next:
+	#include "Text_0063_.event"
+#endif
+
+#ifdef ___Item_0064_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0064_Next:
+	#include "Item_0064_.event"
+#endif
+
+#ifdef ___Text_0064_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0064_Next:
+	#include "Text_0064_.event"
+#endif
+
+#ifdef ___Item_0065_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0065_Next:
+	#include "Item_0065_.event"
+#endif
+
+#ifdef ___Text_0065_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0065_Next:
+	#include "Text_0065_.event"
+#endif
+
+#ifdef ___Item_0066_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0066_Next:
+	#include "Item_0066_.event"
+#endif
+
+#ifdef ___Text_0066_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0066_Next:
+	#include "Text_0066_.event"
+#endif
+
+#ifdef ___Item_0067_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0067_Next:
+	#include "Item_0067_.event"
+#endif
+
+#ifdef ___Text_0067_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0067_Next:
+	#include "Text_0067_.event"
+#endif
+
+#ifdef ___Item_0068_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0068_Next:
+	#include "Item_0068_.event"
+#endif
+
+#ifdef ___Text_0068_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0068_Next:
+	#include "Text_0068_.event"
+#endif
+
+#ifdef ___Item_0069_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0069_Next:
+	#include "Item_0069_.event"
+#endif
+
+#ifdef ___Text_0069_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0069_Next:
+	#include "Text_0069_.event"
+#endif
+
+#ifdef ___Item_006A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_006A_Next:
+	#include "Item_006A_.event"
+#endif
+
+#ifdef ___Text_006A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_006A_Next:
+	#include "Text_006A_.event"
+#endif
+
+#ifdef ___Item_006B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_006B_Next:
+	#include "Item_006B_.event"
+#endif
+
+#ifdef ___Text_006B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_006B_Next:
+	#include "Text_006B_.event"
+#endif
+
+#ifdef ___Item_006C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_006C_Next:
+	#include "Item_006C_.event"
+#endif
+
+#ifdef ___Text_006C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_006C_Next:
+	#include "Text_006C_.event"
+#endif
+
+#ifdef ___Item_006D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_006D_Next:
+	#include "Item_006D_.event"
+#endif
+
+#ifdef ___Text_006D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_006D_Next:
+	#include "Text_006D_.event"
+#endif
+
+#ifdef ___Item_006E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_006E_Next:
+	#include "Item_006E_.event"
+#endif
+
+#ifdef ___Text_006E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_006E_Next:
+	#include "Text_006E_.event"
+#endif
+
+#ifdef ___Item_006F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_006F_Next:
+	#include "Item_006F_.event"
+#endif
+
+#ifdef ___Text_006F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_006F_Next:
+	#include "Text_006F_.event"
+#endif
+
+#ifdef ___Item_0070_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0070_Next:
+	#include "Item_0070_.event"
+#endif
+
+#ifdef ___Text_0070_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0070_Next:
+	#include "Text_0070_.event"
+#endif
+
+#ifdef ___Item_0071_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0071_Next:
+	#include "Item_0071_.event"
+#endif
+
+#ifdef ___Text_0071_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0071_Next:
+	#include "Text_0071_.event"
+#endif
+
+#ifdef ___Item_0072_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0072_Next:
+	#include "Item_0072_.event"
+#endif
+
+#ifdef ___Text_0072_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0072_Next:
+	#include "Text_0072_.event"
+#endif
+
+#ifdef ___Item_0073_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0073_Next:
+	#include "Item_0073_.event"
+#endif
+
+#ifdef ___Text_0073_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0073_Next:
+	#include "Text_0073_.event"
+#endif
+
+#ifdef ___Item_0074_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0074_Next:
+	#include "Item_0074_.event"
+#endif
+
+#ifdef ___Text_0074_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0074_Next:
+	#include "Text_0074_.event"
+#endif
+
+#ifdef ___Item_0075_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0075_Next:
+	#include "Item_0075_.event"
+#endif
+
+#ifdef ___Text_0075_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0075_Next:
+	#include "Text_0075_.event"
+#endif
+
+#ifdef ___Item_0076_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0076_Next:
+	#include "Item_0076_.event"
+#endif
+
+#ifdef ___Text_0076_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0076_Next:
+	#include "Text_0076_.event"
+#endif
+
+#ifdef ___Item_0077_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0077_Next:
+	#include "Item_0077_.event"
+#endif
+
+#ifdef ___Text_0077_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0077_Next:
+	#include "Text_0077_.event"
+#endif
+
+#ifdef ___Item_0078_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0078_Next:
+	#include "Item_0078_.event"
+#endif
+
+#ifdef ___Text_0078_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0078_Next:
+	#include "Text_0078_.event"
+#endif
+
+#ifdef ___Item_0079_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0079_Next:
+	#include "Item_0079_.event"
+#endif
+
+#ifdef ___Text_0079_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0079_Next:
+	#include "Text_0079_.event"
+#endif
+
+#ifdef ___Item_007A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_007A_Next:
+	#include "Item_007A_.event"
+#endif
+
+#ifdef ___Text_007A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_007A_Next:
+	#include "Text_007A_.event"
+#endif
+
+#ifdef ___Item_007B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_007B_Next:
+	#include "Item_007B_.event"
+#endif
+
+#ifdef ___Text_007B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_007B_Next:
+	#include "Text_007B_.event"
+#endif
+
+#ifdef ___Item_007C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_007C_Next:
+	#include "Item_007C_.event"
+#endif
+
+#ifdef ___Text_007C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_007C_Next:
+	#include "Text_007C_.event"
+#endif
+
+#ifdef ___Item_007D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_007D_Next:
+	#include "Item_007D_.event"
+#endif
+
+#ifdef ___Text_007D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_007D_Next:
+	#include "Text_007D_.event"
+#endif
+
+#ifdef ___Item_007E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_007E_Next:
+	#include "Item_007E_.event"
+#endif
+
+#ifdef ___Text_007E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_007E_Next:
+	#include "Text_007E_.event"
+#endif
+
+#ifdef ___Item_007F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_007F_Next:
+	#include "Item_007F_.event"
+#endif
+
+#ifdef ___Text_007F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_007F_Next:
+	#include "Text_007F_.event"
+#endif
+
+#ifdef ___Item_0080_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0080_Next:
+	#include "Item_0080_.event"
+#endif
+
+#ifdef ___Text_0080_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0080_Next:
+	#include "Text_0080_.event"
+#endif
+
+#ifdef ___Item_0081_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0081_Next:
+	#include "Item_0081_.event"
+#endif
+
+#ifdef ___Text_0081_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0081_Next:
+	#include "Text_0081_.event"
+#endif
+
+#ifdef ___Item_0082_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0082_Next:
+	#include "Item_0082_.event"
+#endif
+
+#ifdef ___Text_0082_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0082_Next:
+	#include "Text_0082_.event"
+#endif
+
+#ifdef ___Item_0083_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0083_Next:
+	#include "Item_0083_.event"
+#endif
+
+#ifdef ___Text_0083_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0083_Next:
+	#include "Text_0083_.event"
+#endif
+
+#ifdef ___Item_0084_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0084_Next:
+	#include "Item_0084_.event"
+#endif
+
+#ifdef ___Text_0084_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0084_Next:
+	#include "Text_0084_.event"
+#endif
+
+#ifdef ___Item_0085_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0085_Next:
+	#include "Item_0085_.event"
+#endif
+
+#ifdef ___Text_0085_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0085_Next:
+	#include "Text_0085_.event"
+#endif
+
+#ifdef ___Item_0086_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0086_Next:
+	#include "Item_0086_.event"
+#endif
+
+#ifdef ___Text_0086_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0086_Next:
+	#include "Text_0086_.event"
+#endif
+
+#ifdef ___Item_0087_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0087_Next:
+	#include "Item_0087_.event"
+#endif
+
+#ifdef ___Text_0087_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0087_Next:
+	#include "Text_0087_.event"
+#endif
+
+#ifdef ___Item_0088_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0088_Next:
+	#include "Item_0088_.event"
+#endif
+
+#ifdef ___Text_0088_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0088_Next:
+	#include "Text_0088_.event"
+#endif
+
+#ifdef ___Item_0089_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0089_Next:
+	#include "Item_0089_.event"
+#endif
+
+#ifdef ___Text_0089_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0089_Next:
+	#include "Text_0089_.event"
+#endif
+
+#ifdef ___Item_008A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_008A_Next:
+	#include "Item_008A_.event"
+#endif
+
+#ifdef ___Text_008A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_008A_Next:
+	#include "Text_008A_.event"
+#endif
+
+#ifdef ___Item_008B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_008B_Next:
+	#include "Item_008B_.event"
+#endif
+
+#ifdef ___Text_008B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_008B_Next:
+	#include "Text_008B_.event"
+#endif
+
+#ifdef ___Item_008C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_008C_Next:
+	#include "Item_008C_.event"
+#endif
+
+#ifdef ___Text_008C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_008C_Next:
+	#include "Text_008C_.event"
+#endif
+
+#ifdef ___Item_008D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_008D_Next:
+	#include "Item_008D_.event"
+#endif
+
+#ifdef ___Text_008D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_008D_Next:
+	#include "Text_008D_.event"
+#endif
+
+#ifdef ___Item_008E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_008E_Next:
+	#include "Item_008E_.event"
+#endif
+
+#ifdef ___Text_008E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_008E_Next:
+	#include "Text_008E_.event"
+#endif
+
+#ifdef ___Item_008F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_008F_Next:
+	#include "Item_008F_.event"
+#endif
+
+#ifdef ___Text_008F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_008F_Next:
+	#include "Text_008F_.event"
+#endif
+
+#ifdef ___Item_0090_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0090_Next:
+	#include "Item_0090_.event"
+#endif
+
+#ifdef ___Text_0090_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0090_Next:
+	#include "Text_0090_.event"
+#endif
+
+#ifdef ___Item_0091_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0091_Next:
+	#include "Item_0091_.event"
+#endif
+
+#ifdef ___Text_0091_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0091_Next:
+	#include "Text_0091_.event"
+#endif
+
+#ifdef ___Item_0092_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0092_Next:
+	#include "Item_0092_.event"
+#endif
+
+#ifdef ___Text_0092_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0092_Next:
+	#include "Text_0092_.event"
+#endif
+
+#ifdef ___Item_0093_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0093_Next:
+	#include "Item_0093_.event"
+#endif
+
+#ifdef ___Text_0093_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0093_Next:
+	#include "Text_0093_.event"
+#endif
+
+#ifdef ___Item_0094_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0094_Next:
+	#include "Item_0094_.event"
+#endif
+
+#ifdef ___Text_0094_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0094_Next:
+	#include "Text_0094_.event"
+#endif
+
+#ifdef ___Item_0095_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0095_Next:
+	#include "Item_0095_.event"
+#endif
+
+#ifdef ___Text_0095_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0095_Next:
+	#include "Text_0095_.event"
+#endif
+
+#ifdef ___Item_0096_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0096_Next:
+	#include "Item_0096_.event"
+#endif
+
+#ifdef ___Text_0096_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0096_Next:
+	#include "Text_0096_.event"
+#endif
+
+#ifdef ___Item_0097_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0097_Next:
+	#include "Item_0097_.event"
+#endif
+
+#ifdef ___Text_0097_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0097_Next:
+	#include "Text_0097_.event"
+#endif
+
+#ifdef ___Item_0098_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0098_Next:
+	#include "Item_0098_.event"
+#endif
+
+#ifdef ___Text_0098_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0098_Next:
+	#include "Text_0098_.event"
+#endif
+
+#ifdef ___Item_0099_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_0099_Next:
+	#include "Item_0099_.event"
+#endif
+
+#ifdef ___Text_0099_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_0099_Next:
+	#include "Text_0099_.event"
+#endif
+
+#ifdef ___Item_009A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_009A_Next:
+	#include "Item_009A_.event"
+#endif
+
+#ifdef ___Text_009A_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_009A_Next:
+	#include "Text_009A_.event"
+#endif
+
+#ifdef ___Item_009B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_009B_Next:
+	#include "Item_009B_.event"
+#endif
+
+#ifdef ___Text_009B_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_009B_Next:
+	#include "Text_009B_.event"
+#endif
+
+#ifdef ___Item_009C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_009C_Next:
+	#include "Item_009C_.event"
+#endif
+
+#ifdef ___Text_009C_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_009C_Next:
+	#include "Text_009C_.event"
+#endif
+
+#ifdef ___Item_009D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_009D_Next:
+	#include "Item_009D_.event"
+#endif
+
+#ifdef ___Text_009D_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_009D_Next:
+	#include "Text_009D_.event"
+#endif
+
+#ifdef ___Item_009E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_009E_Next:
+	#include "Item_009E_.event"
+#endif
+
+#ifdef ___Text_009E_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_009E_Next:
+	#include "Text_009E_.event"
+#endif
+
+#ifdef ___Item_009F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_009F_Next:
+	#include "Item_009F_.event"
+#endif
+
+#ifdef ___Text_009F_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_009F_Next:
+	#include "Text_009F_.event"
+#endif
+
+#ifdef ___Item_00A0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A0_Next:
+	#include "Item_00A0_.event"
+#endif
+
+#ifdef ___Text_00A0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A0_Next:
+	#include "Text_00A0_.event"
+#endif
+
+#ifdef ___Item_00A1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A1_Next:
+	#include "Item_00A1_.event"
+#endif
+
+#ifdef ___Text_00A1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A1_Next:
+	#include "Text_00A1_.event"
+#endif
+
+#ifdef ___Item_00A2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A2_Next:
+	#include "Item_00A2_.event"
+#endif
+
+#ifdef ___Text_00A2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A2_Next:
+	#include "Text_00A2_.event"
+#endif
+
+#ifdef ___Item_00A3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A3_Next:
+	#include "Item_00A3_.event"
+#endif
+
+#ifdef ___Text_00A3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A3_Next:
+	#include "Text_00A3_.event"
+#endif
+
+#ifdef ___Item_00A4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A4_Next:
+	#include "Item_00A4_.event"
+#endif
+
+#ifdef ___Text_00A4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A4_Next:
+	#include "Text_00A4_.event"
+#endif
+
+#ifdef ___Item_00A5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A5_Next:
+	#include "Item_00A5_.event"
+#endif
+
+#ifdef ___Text_00A5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A5_Next:
+	#include "Text_00A5_.event"
+#endif
+
+#ifdef ___Item_00A6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A6_Next:
+	#include "Item_00A6_.event"
+#endif
+
+#ifdef ___Text_00A6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A6_Next:
+	#include "Text_00A6_.event"
+#endif
+
+#ifdef ___Item_00A7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A7_Next:
+	#include "Item_00A7_.event"
+#endif
+
+#ifdef ___Text_00A7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A7_Next:
+	#include "Text_00A7_.event"
+#endif
+
+#ifdef ___Item_00A8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A8_Next:
+	#include "Item_00A8_.event"
+#endif
+
+#ifdef ___Text_00A8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A8_Next:
+	#include "Text_00A8_.event"
+#endif
+
+#ifdef ___Item_00A9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00A9_Next:
+	#include "Item_00A9_.event"
+#endif
+
+#ifdef ___Text_00A9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00A9_Next:
+	#include "Text_00A9_.event"
+#endif
+
+#ifdef ___Item_00AA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00AA_Next:
+	#include "Item_00AA_.event"
+#endif
+
+#ifdef ___Text_00AA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00AA_Next:
+	#include "Text_00AA_.event"
+#endif
+
+#ifdef ___Item_00AB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00AB_Next:
+	#include "Item_00AB_.event"
+#endif
+
+#ifdef ___Text_00AB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00AB_Next:
+	#include "Text_00AB_.event"
+#endif
+
+#ifdef ___Item_00AC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00AC_Next:
+	#include "Item_00AC_.event"
+#endif
+
+#ifdef ___Text_00AC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00AC_Next:
+	#include "Text_00AC_.event"
+#endif
+
+#ifdef ___Item_00AD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00AD_Next:
+	#include "Item_00AD_.event"
+#endif
+
+#ifdef ___Text_00AD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00AD_Next:
+	#include "Text_00AD_.event"
+#endif
+
+#ifdef ___Item_00AE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00AE_Next:
+	#include "Item_00AE_.event"
+#endif
+
+#ifdef ___Text_00AE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00AE_Next:
+	#include "Text_00AE_.event"
+#endif
+
+#ifdef ___Item_00AF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00AF_Next:
+	#include "Item_00AF_.event"
+#endif
+
+#ifdef ___Text_00AF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00AF_Next:
+	#include "Text_00AF_.event"
+#endif
+
+#ifdef ___Item_00B0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B0_Next:
+	#include "Item_00B0_.event"
+#endif
+
+#ifdef ___Text_00B0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B0_Next:
+	#include "Text_00B0_.event"
+#endif
+
+#ifdef ___Item_00B1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B1_Next:
+	#include "Item_00B1_.event"
+#endif
+
+#ifdef ___Text_00B1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B1_Next:
+	#include "Text_00B1_.event"
+#endif
+
+#ifdef ___Item_00B2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B2_Next:
+	#include "Item_00B2_.event"
+#endif
+
+#ifdef ___Text_00B2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B2_Next:
+	#include "Text_00B2_.event"
+#endif
+
+#ifdef ___Item_00B3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B3_Next:
+	#include "Item_00B3_.event"
+#endif
+
+#ifdef ___Text_00B3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B3_Next:
+	#include "Text_00B3_.event"
+#endif
+
+#ifdef ___Item_00B4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B4_Next:
+	#include "Item_00B4_.event"
+#endif
+
+#ifdef ___Text_00B4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B4_Next:
+	#include "Text_00B4_.event"
+#endif
+
+#ifdef ___Item_00B5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B5_Next:
+	#include "Item_00B5_.event"
+#endif
+
+#ifdef ___Text_00B5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B5_Next:
+	#include "Text_00B5_.event"
+#endif
+
+#ifdef ___Item_00B6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B6_Next:
+	#include "Item_00B6_.event"
+#endif
+
+#ifdef ___Text_00B6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B6_Next:
+	#include "Text_00B6_.event"
+#endif
+
+#ifdef ___Item_00B7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B7_Next:
+	#include "Item_00B7_.event"
+#endif
+
+#ifdef ___Text_00B7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B7_Next:
+	#include "Text_00B7_.event"
+#endif
+
+#ifdef ___Item_00B8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B8_Next:
+	#include "Item_00B8_.event"
+#endif
+
+#ifdef ___Text_00B8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B8_Next:
+	#include "Text_00B8_.event"
+#endif
+
+#ifdef ___Item_00B9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00B9_Next:
+	#include "Item_00B9_.event"
+#endif
+
+#ifdef ___Text_00B9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00B9_Next:
+	#include "Text_00B9_.event"
+#endif
+
+#ifdef ___Item_00BA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00BA_Next:
+	#include "Item_00BA_.event"
+#endif
+
+#ifdef ___Text_00BA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00BA_Next:
+	#include "Text_00BA_.event"
+#endif
+
+#ifdef ___Item_00BB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00BB_Next:
+	#include "Item_00BB_.event"
+#endif
+
+#ifdef ___Text_00BB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00BB_Next:
+	#include "Text_00BB_.event"
+#endif
+
+#ifdef ___Item_00BC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00BC_Next:
+	#include "Item_00BC_.event"
+#endif
+
+#ifdef ___Text_00BC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00BC_Next:
+	#include "Text_00BC_.event"
+#endif
+
+#ifdef ___Item_00BD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00BD_Next:
+	#include "Item_00BD_.event"
+#endif
+
+#ifdef ___Text_00BD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00BD_Next:
+	#include "Text_00BD_.event"
+#endif
+
+#ifdef ___Item_00BE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00BE_Next:
+	#include "Item_00BE_.event"
+#endif
+
+#ifdef ___Text_00BE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00BE_Next:
+	#include "Text_00BE_.event"
+#endif
+
+#ifdef ___Item_00BF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00BF_Next:
+	#include "Item_00BF_.event"
+#endif
+
+#ifdef ___Text_00BF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00BF_Next:
+	#include "Text_00BF_.event"
+#endif
+
+#ifdef ___Item_00C0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C0_Next:
+	#include "Item_00C0_.event"
+#endif
+
+#ifdef ___Text_00C0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C0_Next:
+	#include "Text_00C0_.event"
+#endif
+
+#ifdef ___Item_00C1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C1_Next:
+	#include "Item_00C1_.event"
+#endif
+
+#ifdef ___Text_00C1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C1_Next:
+	#include "Text_00C1_.event"
+#endif
+
+#ifdef ___Item_00C2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C2_Next:
+	#include "Item_00C2_.event"
+#endif
+
+#ifdef ___Text_00C2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C2_Next:
+	#include "Text_00C2_.event"
+#endif
+
+#ifdef ___Item_00C3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C3_Next:
+	#include "Item_00C3_.event"
+#endif
+
+#ifdef ___Text_00C3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C3_Next:
+	#include "Text_00C3_.event"
+#endif
+
+#ifdef ___Item_00C4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C4_Next:
+	#include "Item_00C4_.event"
+#endif
+
+#ifdef ___Text_00C4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C4_Next:
+	#include "Text_00C4_.event"
+#endif
+
+#ifdef ___Item_00C5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C5_Next:
+	#include "Item_00C5_.event"
+#endif
+
+#ifdef ___Text_00C5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C5_Next:
+	#include "Text_00C5_.event"
+#endif
+
+#ifdef ___Item_00C6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C6_Next:
+	#include "Item_00C6_.event"
+#endif
+
+#ifdef ___Text_00C6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C6_Next:
+	#include "Text_00C6_.event"
+#endif
+
+#ifdef ___Item_00C7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C7_Next:
+	#include "Item_00C7_.event"
+#endif
+
+#ifdef ___Text_00C7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C7_Next:
+	#include "Text_00C7_.event"
+#endif
+
+#ifdef ___Item_00C8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C8_Next:
+	#include "Item_00C8_.event"
+#endif
+
+#ifdef ___Text_00C8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C8_Next:
+	#include "Text_00C8_.event"
+#endif
+
+#ifdef ___Item_00C9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00C9_Next:
+	#include "Item_00C9_.event"
+#endif
+
+#ifdef ___Text_00C9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00C9_Next:
+	#include "Text_00C9_.event"
+#endif
+
+#ifdef ___Item_00CA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00CA_Next:
+	#include "Item_00CA_.event"
+#endif
+
+#ifdef ___Text_00CA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00CA_Next:
+	#include "Text_00CA_.event"
+#endif
+
+#ifdef ___Item_00CB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00CB_Next:
+	#include "Item_00CB_.event"
+#endif
+
+#ifdef ___Text_00CB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00CB_Next:
+	#include "Text_00CB_.event"
+#endif
+
+#ifdef ___Item_00CC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00CC_Next:
+	#include "Item_00CC_.event"
+#endif
+
+#ifdef ___Text_00CC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00CC_Next:
+	#include "Text_00CC_.event"
+#endif
+
+#ifdef ___Item_00CD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00CD_Next:
+	#include "Item_00CD_.event"
+#endif
+
+#ifdef ___Text_00CD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00CD_Next:
+	#include "Text_00CD_.event"
+#endif
+
+#ifdef ___Item_00CE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00CE_Next:
+	#include "Item_00CE_.event"
+#endif
+
+#ifdef ___Text_00CE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00CE_Next:
+	#include "Text_00CE_.event"
+#endif
+
+#ifdef ___Item_00CF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00CF_Next:
+	#include "Item_00CF_.event"
+#endif
+
+#ifdef ___Text_00CF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00CF_Next:
+	#include "Text_00CF_.event"
+#endif
+
+#ifdef ___Item_00D0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D0_Next:
+	#include "Item_00D0_.event"
+#endif
+
+#ifdef ___Text_00D0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D0_Next:
+	#include "Text_00D0_.event"
+#endif
+
+#ifdef ___Item_00D1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D1_Next:
+	#include "Item_00D1_.event"
+#endif
+
+#ifdef ___Text_00D1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D1_Next:
+	#include "Text_00D1_.event"
+#endif
+
+#ifdef ___Item_00D2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D2_Next:
+	#include "Item_00D2_.event"
+#endif
+
+#ifdef ___Text_00D2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D2_Next:
+	#include "Text_00D2_.event"
+#endif
+
+#ifdef ___Item_00D3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D3_Next:
+	#include "Item_00D3_.event"
+#endif
+
+#ifdef ___Text_00D3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D3_Next:
+	#include "Text_00D3_.event"
+#endif
+
+#ifdef ___Item_00D4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D4_Next:
+	#include "Item_00D4_.event"
+#endif
+
+#ifdef ___Text_00D4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D4_Next:
+	#include "Text_00D4_.event"
+#endif
+
+#ifdef ___Item_00D5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D5_Next:
+	#include "Item_00D5_.event"
+#endif
+
+#ifdef ___Text_00D5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D5_Next:
+	#include "Text_00D5_.event"
+#endif
+
+#ifdef ___Item_00D6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D6_Next:
+	#include "Item_00D6_.event"
+#endif
+
+#ifdef ___Text_00D6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D6_Next:
+	#include "Text_00D6_.event"
+#endif
+
+#ifdef ___Item_00D7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D7_Next:
+	#include "Item_00D7_.event"
+#endif
+
+#ifdef ___Text_00D7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D7_Next:
+	#include "Text_00D7_.event"
+#endif
+
+#ifdef ___Item_00D8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D8_Next:
+	#include "Item_00D8_.event"
+#endif
+
+#ifdef ___Text_00D8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D8_Next:
+	#include "Text_00D8_.event"
+#endif
+
+#ifdef ___Item_00D9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00D9_Next:
+	#include "Item_00D9_.event"
+#endif
+
+#ifdef ___Text_00D9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00D9_Next:
+	#include "Text_00D9_.event"
+#endif
+
+#ifdef ___Item_00DA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00DA_Next:
+	#include "Item_00DA_.event"
+#endif
+
+#ifdef ___Text_00DA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00DA_Next:
+	#include "Text_00DA_.event"
+#endif
+
+#ifdef ___Item_00DB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00DB_Next:
+	#include "Item_00DB_.event"
+#endif
+
+#ifdef ___Text_00DB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00DB_Next:
+	#include "Text_00DB_.event"
+#endif
+
+#ifdef ___Item_00DC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00DC_Next:
+	#include "Item_00DC_.event"
+#endif
+
+#ifdef ___Text_00DC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00DC_Next:
+	#include "Text_00DC_.event"
+#endif
+
+#ifdef ___Item_00DD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00DD_Next:
+	#include "Item_00DD_.event"
+#endif
+
+#ifdef ___Text_00DD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00DD_Next:
+	#include "Text_00DD_.event"
+#endif
+
+#ifdef ___Item_00DE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00DE_Next:
+	#include "Item_00DE_.event"
+#endif
+
+#ifdef ___Text_00DE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00DE_Next:
+	#include "Text_00DE_.event"
+#endif
+
+#ifdef ___Item_00DF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00DF_Next:
+	#include "Item_00DF_.event"
+#endif
+
+#ifdef ___Text_00DF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00DF_Next:
+	#include "Text_00DF_.event"
+#endif
+
+#ifdef ___Item_00E0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E0_Next:
+	#include "Item_00E0_.event"
+#endif
+
+#ifdef ___Text_00E0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E0_Next:
+	#include "Text_00E0_.event"
+#endif
+
+#ifdef ___Item_00E1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E1_Next:
+	#include "Item_00E1_.event"
+#endif
+
+#ifdef ___Text_00E1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E1_Next:
+	#include "Text_00E1_.event"
+#endif
+
+#ifdef ___Item_00E2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E2_Next:
+	#include "Item_00E2_.event"
+#endif
+
+#ifdef ___Text_00E2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E2_Next:
+	#include "Text_00E2_.event"
+#endif
+
+#ifdef ___Item_00E3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E3_Next:
+	#include "Item_00E3_.event"
+#endif
+
+#ifdef ___Text_00E3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E3_Next:
+	#include "Text_00E3_.event"
+#endif
+
+#ifdef ___Item_00E4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E4_Next:
+	#include "Item_00E4_.event"
+#endif
+
+#ifdef ___Text_00E4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E4_Next:
+	#include "Text_00E4_.event"
+#endif
+
+#ifdef ___Item_00E5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E5_Next:
+	#include "Item_00E5_.event"
+#endif
+
+#ifdef ___Text_00E5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E5_Next:
+	#include "Text_00E5_.event"
+#endif
+
+#ifdef ___Item_00E6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E6_Next:
+	#include "Item_00E6_.event"
+#endif
+
+#ifdef ___Text_00E6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E6_Next:
+	#include "Text_00E6_.event"
+#endif
+
+#ifdef ___Item_00E7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E7_Next:
+	#include "Item_00E7_.event"
+#endif
+
+#ifdef ___Text_00E7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E7_Next:
+	#include "Text_00E7_.event"
+#endif
+
+#ifdef ___Item_00E8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E8_Next:
+	#include "Item_00E8_.event"
+#endif
+
+#ifdef ___Text_00E8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E8_Next:
+	#include "Text_00E8_.event"
+#endif
+
+#ifdef ___Item_00E9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00E9_Next:
+	#include "Item_00E9_.event"
+#endif
+
+#ifdef ___Text_00E9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00E9_Next:
+	#include "Text_00E9_.event"
+#endif
+
+#ifdef ___Item_00EA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00EA_Next:
+	#include "Item_00EA_.event"
+#endif
+
+#ifdef ___Text_00EA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00EA_Next:
+	#include "Text_00EA_.event"
+#endif
+
+#ifdef ___Item_00EB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00EB_Next:
+	#include "Item_00EB_.event"
+#endif
+
+#ifdef ___Text_00EB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00EB_Next:
+	#include "Text_00EB_.event"
+#endif
+
+#ifdef ___Item_00EC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00EC_Next:
+	#include "Item_00EC_.event"
+#endif
+
+#ifdef ___Text_00EC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00EC_Next:
+	#include "Text_00EC_.event"
+#endif
+
+#ifdef ___Item_00ED_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00ED_Next:
+	#include "Item_00ED_.event"
+#endif
+
+#ifdef ___Text_00ED_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00ED_Next:
+	#include "Text_00ED_.event"
+#endif
+
+#ifdef ___Item_00EE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00EE_Next:
+	#include "Item_00EE_.event"
+#endif
+
+#ifdef ___Text_00EE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00EE_Next:
+	#include "Text_00EE_.event"
+#endif
+
+#ifdef ___Item_00EF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00EF_Next:
+	#include "Item_00EF_.event"
+#endif
+
+#ifdef ___Text_00EF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00EF_Next:
+	#include "Text_00EF_.event"
+#endif
+
+#ifdef ___Item_00F0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F0_Next:
+	#include "Item_00F0_.event"
+#endif
+
+#ifdef ___Text_00F0_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F0_Next:
+	#include "Text_00F0_.event"
+#endif
+
+#ifdef ___Item_00F1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F1_Next:
+	#include "Item_00F1_.event"
+#endif
+
+#ifdef ___Text_00F1_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F1_Next:
+	#include "Text_00F1_.event"
+#endif
+
+#ifdef ___Item_00F2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F2_Next:
+	#include "Item_00F2_.event"
+#endif
+
+#ifdef ___Text_00F2_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F2_Next:
+	#include "Text_00F2_.event"
+#endif
+
+#ifdef ___Item_00F3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F3_Next:
+	#include "Item_00F3_.event"
+#endif
+
+#ifdef ___Text_00F3_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F3_Next:
+	#include "Text_00F3_.event"
+#endif
+
+#ifdef ___Item_00F4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F4_Next:
+	#include "Item_00F4_.event"
+#endif
+
+#ifdef ___Text_00F4_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F4_Next:
+	#include "Text_00F4_.event"
+#endif
+
+#ifdef ___Item_00F5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F5_Next:
+	#include "Item_00F5_.event"
+#endif
+
+#ifdef ___Text_00F5_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F5_Next:
+	#include "Text_00F5_.event"
+#endif
+
+#ifdef ___Item_00F6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F6_Next:
+	#include "Item_00F6_.event"
+#endif
+
+#ifdef ___Text_00F6_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F6_Next:
+	#include "Text_00F6_.event"
+#endif
+
+#ifdef ___Item_00F7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F7_Next:
+	#include "Item_00F7_.event"
+#endif
+
+#ifdef ___Text_00F7_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F7_Next:
+	#include "Text_00F7_.event"
+#endif
+
+#ifdef ___Item_00F8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F8_Next:
+	#include "Item_00F8_.event"
+#endif
+
+#ifdef ___Text_00F8_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F8_Next:
+	#include "Text_00F8_.event"
+#endif
+
+#ifdef ___Item_00F9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00F9_Next:
+	#include "Item_00F9_.event"
+#endif
+
+#ifdef ___Text_00F9_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00F9_Next:
+	#include "Text_00F9_.event"
+#endif
+
+#ifdef ___Item_00FA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00FA_Next:
+	#include "Item_00FA_.event"
+#endif
+
+#ifdef ___Text_00FA_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00FA_Next:
+	#include "Text_00FA_.event"
+#endif
+
+#ifdef ___Item_00FB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00FB_Next:
+	#include "Item_00FB_.event"
+#endif
+
+#ifdef ___Text_00FB_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00FB_Next:
+	#include "Text_00FB_.event"
+#endif
+
+#ifdef ___Item_00FC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00FC_Next:
+	#include "Item_00FC_.event"
+#endif
+
+#ifdef ___Text_00FC_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00FC_Next:
+	#include "Text_00FC_.event"
+#endif
+
+#ifdef ___Item_00FD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00FD_Next:
+	#include "Item_00FD_.event"
+#endif
+
+#ifdef ___Text_00FD_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00FD_Next:
+	#include "Text_00FD_.event"
+#endif
+
+#ifdef ___Item_00FE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00FE_Next:
+	#include "Item_00FE_.event"
+#endif
+
+#ifdef ___Text_00FE_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00FE_Next:
+	#include "Text_00FE_.event"
+#endif
+
+#ifdef ___Item_00FF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Item_00FF_Next:
+	#include "Item_00FF_.event"
+#endif
+
+#ifdef ___Text_00FF_
+	ALIGN 4
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	WORD 0 0 0 0
+	Text_00FF_Next:
+	#include "Text_00FF_.event"
+#endif
+
+PUSH
+#ifdef ___Item_0000_
+	ORG Item_0000_ORG_
+	POIN Item_0000_Next
+#endif
+
+#ifdef ___Text_0000_
+	ORG Text_0000_ORG_
+	POIN Text_0000_Next
+#endif
+
+#ifdef ___Item_0001_
+	ORG Item_0001_ORG_
+	POIN Item_0001_Next
+#endif
+
+#ifdef ___Text_0001_
+	ORG Text_0001_ORG_
+	POIN Text_0001_Next
+#endif
+
+#ifdef ___Item_0002_
+	ORG Item_0002_ORG_
+	POIN Item_0002_Next
+#endif
+
+#ifdef ___Text_0002_
+	ORG Text_0002_ORG_
+	POIN Text_0002_Next
+#endif
+
+#ifdef ___Item_0003_
+	ORG Item_0003_ORG_
+	POIN Item_0003_Next
+#endif
+
+#ifdef ___Text_0003_
+	ORG Text_0003_ORG_
+	POIN Text_0003_Next
+#endif
+
+#ifdef ___Item_0004_
+	ORG Item_0004_ORG_
+	POIN Item_0004_Next
+#endif
+
+#ifdef ___Text_0004_
+	ORG Text_0004_ORG_
+	POIN Text_0004_Next
+#endif
+
+#ifdef ___Item_0005_
+	ORG Item_0005_ORG_
+	POIN Item_0005_Next
+#endif
+
+#ifdef ___Text_0005_
+	ORG Text_0005_ORG_
+	POIN Text_0005_Next
+#endif
+
+#ifdef ___Item_0006_
+	ORG Item_0006_ORG_
+	POIN Item_0006_Next
+#endif
+
+#ifdef ___Text_0006_
+	ORG Text_0006_ORG_
+	POIN Text_0006_Next
+#endif
+
+#ifdef ___Item_0007_
+	ORG Item_0007_ORG_
+	POIN Item_0007_Next
+#endif
+
+#ifdef ___Text_0007_
+	ORG Text_0007_ORG_
+	POIN Text_0007_Next
+#endif
+
+#ifdef ___Item_0008_
+	ORG Item_0008_ORG_
+	POIN Item_0008_Next
+#endif
+
+#ifdef ___Text_0008_
+	ORG Text_0008_ORG_
+	POIN Text_0008_Next
+#endif
+
+#ifdef ___Item_0009_
+	ORG Item_0009_ORG_
+	POIN Item_0009_Next
+#endif
+
+#ifdef ___Text_0009_
+	ORG Text_0009_ORG_
+	POIN Text_0009_Next
+#endif
+
+#ifdef ___Item_000A_
+	ORG Item_000A_ORG_
+	POIN Item_000A_Next
+#endif
+
+#ifdef ___Text_000A_
+	ORG Text_000A_ORG_
+	POIN Text_000A_Next
+#endif
+
+#ifdef ___Item_000B_
+	ORG Item_000B_ORG_
+	POIN Item_000B_Next
+#endif
+
+#ifdef ___Text_000B_
+	ORG Text_000B_ORG_
+	POIN Text_000B_Next
+#endif
+
+#ifdef ___Item_000C_
+	ORG Item_000C_ORG_
+	POIN Item_000C_Next
+#endif
+
+#ifdef ___Text_000C_
+	ORG Text_000C_ORG_
+	POIN Text_000C_Next
+#endif
+
+#ifdef ___Item_000D_
+	ORG Item_000D_ORG_
+	POIN Item_000D_Next
+#endif
+
+#ifdef ___Text_000D_
+	ORG Text_000D_ORG_
+	POIN Text_000D_Next
+#endif
+
+#ifdef ___Item_000E_
+	ORG Item_000E_ORG_
+	POIN Item_000E_Next
+#endif
+
+#ifdef ___Text_000E_
+	ORG Text_000E_ORG_
+	POIN Text_000E_Next
+#endif
+
+#ifdef ___Item_000F_
+	ORG Item_000F_ORG_
+	POIN Item_000F_Next
+#endif
+
+#ifdef ___Text_000F_
+	ORG Text_000F_ORG_
+	POIN Text_000F_Next
+#endif
+
+#ifdef ___Item_0010_
+	ORG Item_0010_ORG_
+	POIN Item_0010_Next
+#endif
+
+#ifdef ___Text_0010_
+	ORG Text_0010_ORG_
+	POIN Text_0010_Next
+#endif
+
+#ifdef ___Item_0011_
+	ORG Item_0011_ORG_
+	POIN Item_0011_Next
+#endif
+
+#ifdef ___Text_0011_
+	ORG Text_0011_ORG_
+	POIN Text_0011_Next
+#endif
+
+#ifdef ___Item_0012_
+	ORG Item_0012_ORG_
+	POIN Item_0012_Next
+#endif
+
+#ifdef ___Text_0012_
+	ORG Text_0012_ORG_
+	POIN Text_0012_Next
+#endif
+
+#ifdef ___Item_0013_
+	ORG Item_0013_ORG_
+	POIN Item_0013_Next
+#endif
+
+#ifdef ___Text_0013_
+	ORG Text_0013_ORG_
+	POIN Text_0013_Next
+#endif
+
+#ifdef ___Item_0014_
+	ORG Item_0014_ORG_
+	POIN Item_0014_Next
+#endif
+
+#ifdef ___Text_0014_
+	ORG Text_0014_ORG_
+	POIN Text_0014_Next
+#endif
+
+#ifdef ___Item_0015_
+	ORG Item_0015_ORG_
+	POIN Item_0015_Next
+#endif
+
+#ifdef ___Text_0015_
+	ORG Text_0015_ORG_
+	POIN Text_0015_Next
+#endif
+
+#ifdef ___Item_0016_
+	ORG Item_0016_ORG_
+	POIN Item_0016_Next
+#endif
+
+#ifdef ___Text_0016_
+	ORG Text_0016_ORG_
+	POIN Text_0016_Next
+#endif
+
+#ifdef ___Item_0017_
+	ORG Item_0017_ORG_
+	POIN Item_0017_Next
+#endif
+
+#ifdef ___Text_0017_
+	ORG Text_0017_ORG_
+	POIN Text_0017_Next
+#endif
+
+#ifdef ___Item_0018_
+	ORG Item_0018_ORG_
+	POIN Item_0018_Next
+#endif
+
+#ifdef ___Text_0018_
+	ORG Text_0018_ORG_
+	POIN Text_0018_Next
+#endif
+
+#ifdef ___Item_0019_
+	ORG Item_0019_ORG_
+	POIN Item_0019_Next
+#endif
+
+#ifdef ___Text_0019_
+	ORG Text_0019_ORG_
+	POIN Text_0019_Next
+#endif
+
+#ifdef ___Item_001A_
+	ORG Item_001A_ORG_
+	POIN Item_001A_Next
+#endif
+
+#ifdef ___Text_001A_
+	ORG Text_001A_ORG_
+	POIN Text_001A_Next
+#endif
+
+#ifdef ___Item_001B_
+	ORG Item_001B_ORG_
+	POIN Item_001B_Next
+#endif
+
+#ifdef ___Text_001B_
+	ORG Text_001B_ORG_
+	POIN Text_001B_Next
+#endif
+
+#ifdef ___Item_001C_
+	ORG Item_001C_ORG_
+	POIN Item_001C_Next
+#endif
+
+#ifdef ___Text_001C_
+	ORG Text_001C_ORG_
+	POIN Text_001C_Next
+#endif
+
+#ifdef ___Item_001D_
+	ORG Item_001D_ORG_
+	POIN Item_001D_Next
+#endif
+
+#ifdef ___Text_001D_
+	ORG Text_001D_ORG_
+	POIN Text_001D_Next
+#endif
+
+#ifdef ___Item_001E_
+	ORG Item_001E_ORG_
+	POIN Item_001E_Next
+#endif
+
+#ifdef ___Text_001E_
+	ORG Text_001E_ORG_
+	POIN Text_001E_Next
+#endif
+
+#ifdef ___Item_001F_
+	ORG Item_001F_ORG_
+	POIN Item_001F_Next
+#endif
+
+#ifdef ___Text_001F_
+	ORG Text_001F_ORG_
+	POIN Text_001F_Next
+#endif
+
+#ifdef ___Item_0020_
+	ORG Item_0020_ORG_
+	POIN Item_0020_Next
+#endif
+
+#ifdef ___Text_0020_
+	ORG Text_0020_ORG_
+	POIN Text_0020_Next
+#endif
+
+#ifdef ___Item_0021_
+	ORG Item_0021_ORG_
+	POIN Item_0021_Next
+#endif
+
+#ifdef ___Text_0021_
+	ORG Text_0021_ORG_
+	POIN Text_0021_Next
+#endif
+
+#ifdef ___Item_0022_
+	ORG Item_0022_ORG_
+	POIN Item_0022_Next
+#endif
+
+#ifdef ___Text_0022_
+	ORG Text_0022_ORG_
+	POIN Text_0022_Next
+#endif
+
+#ifdef ___Item_0023_
+	ORG Item_0023_ORG_
+	POIN Item_0023_Next
+#endif
+
+#ifdef ___Text_0023_
+	ORG Text_0023_ORG_
+	POIN Text_0023_Next
+#endif
+
+#ifdef ___Item_0024_
+	ORG Item_0024_ORG_
+	POIN Item_0024_Next
+#endif
+
+#ifdef ___Text_0024_
+	ORG Text_0024_ORG_
+	POIN Text_0024_Next
+#endif
+
+#ifdef ___Item_0025_
+	ORG Item_0025_ORG_
+	POIN Item_0025_Next
+#endif
+
+#ifdef ___Text_0025_
+	ORG Text_0025_ORG_
+	POIN Text_0025_Next
+#endif
+
+#ifdef ___Item_0026_
+	ORG Item_0026_ORG_
+	POIN Item_0026_Next
+#endif
+
+#ifdef ___Text_0026_
+	ORG Text_0026_ORG_
+	POIN Text_0026_Next
+#endif
+
+#ifdef ___Item_0027_
+	ORG Item_0027_ORG_
+	POIN Item_0027_Next
+#endif
+
+#ifdef ___Text_0027_
+	ORG Text_0027_ORG_
+	POIN Text_0027_Next
+#endif
+
+#ifdef ___Item_0028_
+	ORG Item_0028_ORG_
+	POIN Item_0028_Next
+#endif
+
+#ifdef ___Text_0028_
+	ORG Text_0028_ORG_
+	POIN Text_0028_Next
+#endif
+
+#ifdef ___Item_0029_
+	ORG Item_0029_ORG_
+	POIN Item_0029_Next
+#endif
+
+#ifdef ___Text_0029_
+	ORG Text_0029_ORG_
+	POIN Text_0029_Next
+#endif
+
+#ifdef ___Item_002A_
+	ORG Item_002A_ORG_
+	POIN Item_002A_Next
+#endif
+
+#ifdef ___Text_002A_
+	ORG Text_002A_ORG_
+	POIN Text_002A_Next
+#endif
+
+#ifdef ___Item_002B_
+	ORG Item_002B_ORG_
+	POIN Item_002B_Next
+#endif
+
+#ifdef ___Text_002B_
+	ORG Text_002B_ORG_
+	POIN Text_002B_Next
+#endif
+
+#ifdef ___Item_002C_
+	ORG Item_002C_ORG_
+	POIN Item_002C_Next
+#endif
+
+#ifdef ___Text_002C_
+	ORG Text_002C_ORG_
+	POIN Text_002C_Next
+#endif
+
+#ifdef ___Item_002D_
+	ORG Item_002D_ORG_
+	POIN Item_002D_Next
+#endif
+
+#ifdef ___Text_002D_
+	ORG Text_002D_ORG_
+	POIN Text_002D_Next
+#endif
+
+#ifdef ___Item_002E_
+	ORG Item_002E_ORG_
+	POIN Item_002E_Next
+#endif
+
+#ifdef ___Text_002E_
+	ORG Text_002E_ORG_
+	POIN Text_002E_Next
+#endif
+
+#ifdef ___Item_002F_
+	ORG Item_002F_ORG_
+	POIN Item_002F_Next
+#endif
+
+#ifdef ___Text_002F_
+	ORG Text_002F_ORG_
+	POIN Text_002F_Next
+#endif
+
+#ifdef ___Item_0030_
+	ORG Item_0030_ORG_
+	POIN Item_0030_Next
+#endif
+
+#ifdef ___Text_0030_
+	ORG Text_0030_ORG_
+	POIN Text_0030_Next
+#endif
+
+#ifdef ___Item_0031_
+	ORG Item_0031_ORG_
+	POIN Item_0031_Next
+#endif
+
+#ifdef ___Text_0031_
+	ORG Text_0031_ORG_
+	POIN Text_0031_Next
+#endif
+
+#ifdef ___Item_0032_
+	ORG Item_0032_ORG_
+	POIN Item_0032_Next
+#endif
+
+#ifdef ___Text_0032_
+	ORG Text_0032_ORG_
+	POIN Text_0032_Next
+#endif
+
+#ifdef ___Item_0033_
+	ORG Item_0033_ORG_
+	POIN Item_0033_Next
+#endif
+
+#ifdef ___Text_0033_
+	ORG Text_0033_ORG_
+	POIN Text_0033_Next
+#endif
+
+#ifdef ___Item_0034_
+	ORG Item_0034_ORG_
+	POIN Item_0034_Next
+#endif
+
+#ifdef ___Text_0034_
+	ORG Text_0034_ORG_
+	POIN Text_0034_Next
+#endif
+
+#ifdef ___Item_0035_
+	ORG Item_0035_ORG_
+	POIN Item_0035_Next
+#endif
+
+#ifdef ___Text_0035_
+	ORG Text_0035_ORG_
+	POIN Text_0035_Next
+#endif
+
+#ifdef ___Item_0036_
+	ORG Item_0036_ORG_
+	POIN Item_0036_Next
+#endif
+
+#ifdef ___Text_0036_
+	ORG Text_0036_ORG_
+	POIN Text_0036_Next
+#endif
+
+#ifdef ___Item_0037_
+	ORG Item_0037_ORG_
+	POIN Item_0037_Next
+#endif
+
+#ifdef ___Text_0037_
+	ORG Text_0037_ORG_
+	POIN Text_0037_Next
+#endif
+
+#ifdef ___Item_0038_
+	ORG Item_0038_ORG_
+	POIN Item_0038_Next
+#endif
+
+#ifdef ___Text_0038_
+	ORG Text_0038_ORG_
+	POIN Text_0038_Next
+#endif
+
+#ifdef ___Item_0039_
+	ORG Item_0039_ORG_
+	POIN Item_0039_Next
+#endif
+
+#ifdef ___Text_0039_
+	ORG Text_0039_ORG_
+	POIN Text_0039_Next
+#endif
+
+#ifdef ___Item_003A_
+	ORG Item_003A_ORG_
+	POIN Item_003A_Next
+#endif
+
+#ifdef ___Text_003A_
+	ORG Text_003A_ORG_
+	POIN Text_003A_Next
+#endif
+
+#ifdef ___Item_003B_
+	ORG Item_003B_ORG_
+	POIN Item_003B_Next
+#endif
+
+#ifdef ___Text_003B_
+	ORG Text_003B_ORG_
+	POIN Text_003B_Next
+#endif
+
+#ifdef ___Item_003C_
+	ORG Item_003C_ORG_
+	POIN Item_003C_Next
+#endif
+
+#ifdef ___Text_003C_
+	ORG Text_003C_ORG_
+	POIN Text_003C_Next
+#endif
+
+#ifdef ___Item_003D_
+	ORG Item_003D_ORG_
+	POIN Item_003D_Next
+#endif
+
+#ifdef ___Text_003D_
+	ORG Text_003D_ORG_
+	POIN Text_003D_Next
+#endif
+
+#ifdef ___Item_003E_
+	ORG Item_003E_ORG_
+	POIN Item_003E_Next
+#endif
+
+#ifdef ___Text_003E_
+	ORG Text_003E_ORG_
+	POIN Text_003E_Next
+#endif
+
+#ifdef ___Item_003F_
+	ORG Item_003F_ORG_
+	POIN Item_003F_Next
+#endif
+
+#ifdef ___Text_003F_
+	ORG Text_003F_ORG_
+	POIN Text_003F_Next
+#endif
+
+#ifdef ___Item_0040_
+	ORG Item_0040_ORG_
+	POIN Item_0040_Next
+#endif
+
+#ifdef ___Text_0040_
+	ORG Text_0040_ORG_
+	POIN Text_0040_Next
+#endif
+
+#ifdef ___Item_0041_
+	ORG Item_0041_ORG_
+	POIN Item_0041_Next
+#endif
+
+#ifdef ___Text_0041_
+	ORG Text_0041_ORG_
+	POIN Text_0041_Next
+#endif
+
+#ifdef ___Item_0042_
+	ORG Item_0042_ORG_
+	POIN Item_0042_Next
+#endif
+
+#ifdef ___Text_0042_
+	ORG Text_0042_ORG_
+	POIN Text_0042_Next
+#endif
+
+#ifdef ___Item_0043_
+	ORG Item_0043_ORG_
+	POIN Item_0043_Next
+#endif
+
+#ifdef ___Text_0043_
+	ORG Text_0043_ORG_
+	POIN Text_0043_Next
+#endif
+
+#ifdef ___Item_0044_
+	ORG Item_0044_ORG_
+	POIN Item_0044_Next
+#endif
+
+#ifdef ___Text_0044_
+	ORG Text_0044_ORG_
+	POIN Text_0044_Next
+#endif
+
+#ifdef ___Item_0045_
+	ORG Item_0045_ORG_
+	POIN Item_0045_Next
+#endif
+
+#ifdef ___Text_0045_
+	ORG Text_0045_ORG_
+	POIN Text_0045_Next
+#endif
+
+#ifdef ___Item_0046_
+	ORG Item_0046_ORG_
+	POIN Item_0046_Next
+#endif
+
+#ifdef ___Text_0046_
+	ORG Text_0046_ORG_
+	POIN Text_0046_Next
+#endif
+
+#ifdef ___Item_0047_
+	ORG Item_0047_ORG_
+	POIN Item_0047_Next
+#endif
+
+#ifdef ___Text_0047_
+	ORG Text_0047_ORG_
+	POIN Text_0047_Next
+#endif
+
+#ifdef ___Item_0048_
+	ORG Item_0048_ORG_
+	POIN Item_0048_Next
+#endif
+
+#ifdef ___Text_0048_
+	ORG Text_0048_ORG_
+	POIN Text_0048_Next
+#endif
+
+#ifdef ___Item_0049_
+	ORG Item_0049_ORG_
+	POIN Item_0049_Next
+#endif
+
+#ifdef ___Text_0049_
+	ORG Text_0049_ORG_
+	POIN Text_0049_Next
+#endif
+
+#ifdef ___Item_004A_
+	ORG Item_004A_ORG_
+	POIN Item_004A_Next
+#endif
+
+#ifdef ___Text_004A_
+	ORG Text_004A_ORG_
+	POIN Text_004A_Next
+#endif
+
+#ifdef ___Item_004B_
+	ORG Item_004B_ORG_
+	POIN Item_004B_Next
+#endif
+
+#ifdef ___Text_004B_
+	ORG Text_004B_ORG_
+	POIN Text_004B_Next
+#endif
+
+#ifdef ___Item_004C_
+	ORG Item_004C_ORG_
+	POIN Item_004C_Next
+#endif
+
+#ifdef ___Text_004C_
+	ORG Text_004C_ORG_
+	POIN Text_004C_Next
+#endif
+
+#ifdef ___Item_004D_
+	ORG Item_004D_ORG_
+	POIN Item_004D_Next
+#endif
+
+#ifdef ___Text_004D_
+	ORG Text_004D_ORG_
+	POIN Text_004D_Next
+#endif
+
+#ifdef ___Item_004E_
+	ORG Item_004E_ORG_
+	POIN Item_004E_Next
+#endif
+
+#ifdef ___Text_004E_
+	ORG Text_004E_ORG_
+	POIN Text_004E_Next
+#endif
+
+#ifdef ___Item_004F_
+	ORG Item_004F_ORG_
+	POIN Item_004F_Next
+#endif
+
+#ifdef ___Text_004F_
+	ORG Text_004F_ORG_
+	POIN Text_004F_Next
+#endif
+
+#ifdef ___Item_0050_
+	ORG Item_0050_ORG_
+	POIN Item_0050_Next
+#endif
+
+#ifdef ___Text_0050_
+	ORG Text_0050_ORG_
+	POIN Text_0050_Next
+#endif
+
+#ifdef ___Item_0051_
+	ORG Item_0051_ORG_
+	POIN Item_0051_Next
+#endif
+
+#ifdef ___Text_0051_
+	ORG Text_0051_ORG_
+	POIN Text_0051_Next
+#endif
+
+#ifdef ___Item_0052_
+	ORG Item_0052_ORG_
+	POIN Item_0052_Next
+#endif
+
+#ifdef ___Text_0052_
+	ORG Text_0052_ORG_
+	POIN Text_0052_Next
+#endif
+
+#ifdef ___Item_0053_
+	ORG Item_0053_ORG_
+	POIN Item_0053_Next
+#endif
+
+#ifdef ___Text_0053_
+	ORG Text_0053_ORG_
+	POIN Text_0053_Next
+#endif
+
+#ifdef ___Item_0054_
+	ORG Item_0054_ORG_
+	POIN Item_0054_Next
+#endif
+
+#ifdef ___Text_0054_
+	ORG Text_0054_ORG_
+	POIN Text_0054_Next
+#endif
+
+#ifdef ___Item_0055_
+	ORG Item_0055_ORG_
+	POIN Item_0055_Next
+#endif
+
+#ifdef ___Text_0055_
+	ORG Text_0055_ORG_
+	POIN Text_0055_Next
+#endif
+
+#ifdef ___Item_0056_
+	ORG Item_0056_ORG_
+	POIN Item_0056_Next
+#endif
+
+#ifdef ___Text_0056_
+	ORG Text_0056_ORG_
+	POIN Text_0056_Next
+#endif
+
+#ifdef ___Item_0057_
+	ORG Item_0057_ORG_
+	POIN Item_0057_Next
+#endif
+
+#ifdef ___Text_0057_
+	ORG Text_0057_ORG_
+	POIN Text_0057_Next
+#endif
+
+#ifdef ___Item_0058_
+	ORG Item_0058_ORG_
+	POIN Item_0058_Next
+#endif
+
+#ifdef ___Text_0058_
+	ORG Text_0058_ORG_
+	POIN Text_0058_Next
+#endif
+
+#ifdef ___Item_0059_
+	ORG Item_0059_ORG_
+	POIN Item_0059_Next
+#endif
+
+#ifdef ___Text_0059_
+	ORG Text_0059_ORG_
+	POIN Text_0059_Next
+#endif
+
+#ifdef ___Item_005A_
+	ORG Item_005A_ORG_
+	POIN Item_005A_Next
+#endif
+
+#ifdef ___Text_005A_
+	ORG Text_005A_ORG_
+	POIN Text_005A_Next
+#endif
+
+#ifdef ___Item_005B_
+	ORG Item_005B_ORG_
+	POIN Item_005B_Next
+#endif
+
+#ifdef ___Text_005B_
+	ORG Text_005B_ORG_
+	POIN Text_005B_Next
+#endif
+
+#ifdef ___Item_005C_
+	ORG Item_005C_ORG_
+	POIN Item_005C_Next
+#endif
+
+#ifdef ___Text_005C_
+	ORG Text_005C_ORG_
+	POIN Text_005C_Next
+#endif
+
+#ifdef ___Item_005D_
+	ORG Item_005D_ORG_
+	POIN Item_005D_Next
+#endif
+
+#ifdef ___Text_005D_
+	ORG Text_005D_ORG_
+	POIN Text_005D_Next
+#endif
+
+#ifdef ___Item_005E_
+	ORG Item_005E_ORG_
+	POIN Item_005E_Next
+#endif
+
+#ifdef ___Text_005E_
+	ORG Text_005E_ORG_
+	POIN Text_005E_Next
+#endif
+
+#ifdef ___Item_005F_
+	ORG Item_005F_ORG_
+	POIN Item_005F_Next
+#endif
+
+#ifdef ___Text_005F_
+	ORG Text_005F_ORG_
+	POIN Text_005F_Next
+#endif
+
+#ifdef ___Item_0060_
+	ORG Item_0060_ORG_
+	POIN Item_0060_Next
+#endif
+
+#ifdef ___Text_0060_
+	ORG Text_0060_ORG_
+	POIN Text_0060_Next
+#endif
+
+#ifdef ___Item_0061_
+	ORG Item_0061_ORG_
+	POIN Item_0061_Next
+#endif
+
+#ifdef ___Text_0061_
+	ORG Text_0061_ORG_
+	POIN Text_0061_Next
+#endif
+
+#ifdef ___Item_0062_
+	ORG Item_0062_ORG_
+	POIN Item_0062_Next
+#endif
+
+#ifdef ___Text_0062_
+	ORG Text_0062_ORG_
+	POIN Text_0062_Next
+#endif
+
+#ifdef ___Item_0063_
+	ORG Item_0063_ORG_
+	POIN Item_0063_Next
+#endif
+
+#ifdef ___Text_0063_
+	ORG Text_0063_ORG_
+	POIN Text_0063_Next
+#endif
+
+#ifdef ___Item_0064_
+	ORG Item_0064_ORG_
+	POIN Item_0064_Next
+#endif
+
+#ifdef ___Text_0064_
+	ORG Text_0064_ORG_
+	POIN Text_0064_Next
+#endif
+
+#ifdef ___Item_0065_
+	ORG Item_0065_ORG_
+	POIN Item_0065_Next
+#endif
+
+#ifdef ___Text_0065_
+	ORG Text_0065_ORG_
+	POIN Text_0065_Next
+#endif
+
+#ifdef ___Item_0066_
+	ORG Item_0066_ORG_
+	POIN Item_0066_Next
+#endif
+
+#ifdef ___Text_0066_
+	ORG Text_0066_ORG_
+	POIN Text_0066_Next
+#endif
+
+#ifdef ___Item_0067_
+	ORG Item_0067_ORG_
+	POIN Item_0067_Next
+#endif
+
+#ifdef ___Text_0067_
+	ORG Text_0067_ORG_
+	POIN Text_0067_Next
+#endif
+
+#ifdef ___Item_0068_
+	ORG Item_0068_ORG_
+	POIN Item_0068_Next
+#endif
+
+#ifdef ___Text_0068_
+	ORG Text_0068_ORG_
+	POIN Text_0068_Next
+#endif
+
+#ifdef ___Item_0069_
+	ORG Item_0069_ORG_
+	POIN Item_0069_Next
+#endif
+
+#ifdef ___Text_0069_
+	ORG Text_0069_ORG_
+	POIN Text_0069_Next
+#endif
+
+#ifdef ___Item_006A_
+	ORG Item_006A_ORG_
+	POIN Item_006A_Next
+#endif
+
+#ifdef ___Text_006A_
+	ORG Text_006A_ORG_
+	POIN Text_006A_Next
+#endif
+
+#ifdef ___Item_006B_
+	ORG Item_006B_ORG_
+	POIN Item_006B_Next
+#endif
+
+#ifdef ___Text_006B_
+	ORG Text_006B_ORG_
+	POIN Text_006B_Next
+#endif
+
+#ifdef ___Item_006C_
+	ORG Item_006C_ORG_
+	POIN Item_006C_Next
+#endif
+
+#ifdef ___Text_006C_
+	ORG Text_006C_ORG_
+	POIN Text_006C_Next
+#endif
+
+#ifdef ___Item_006D_
+	ORG Item_006D_ORG_
+	POIN Item_006D_Next
+#endif
+
+#ifdef ___Text_006D_
+	ORG Text_006D_ORG_
+	POIN Text_006D_Next
+#endif
+
+#ifdef ___Item_006E_
+	ORG Item_006E_ORG_
+	POIN Item_006E_Next
+#endif
+
+#ifdef ___Text_006E_
+	ORG Text_006E_ORG_
+	POIN Text_006E_Next
+#endif
+
+#ifdef ___Item_006F_
+	ORG Item_006F_ORG_
+	POIN Item_006F_Next
+#endif
+
+#ifdef ___Text_006F_
+	ORG Text_006F_ORG_
+	POIN Text_006F_Next
+#endif
+
+#ifdef ___Item_0070_
+	ORG Item_0070_ORG_
+	POIN Item_0070_Next
+#endif
+
+#ifdef ___Text_0070_
+	ORG Text_0070_ORG_
+	POIN Text_0070_Next
+#endif
+
+#ifdef ___Item_0071_
+	ORG Item_0071_ORG_
+	POIN Item_0071_Next
+#endif
+
+#ifdef ___Text_0071_
+	ORG Text_0071_ORG_
+	POIN Text_0071_Next
+#endif
+
+#ifdef ___Item_0072_
+	ORG Item_0072_ORG_
+	POIN Item_0072_Next
+#endif
+
+#ifdef ___Text_0072_
+	ORG Text_0072_ORG_
+	POIN Text_0072_Next
+#endif
+
+#ifdef ___Item_0073_
+	ORG Item_0073_ORG_
+	POIN Item_0073_Next
+#endif
+
+#ifdef ___Text_0073_
+	ORG Text_0073_ORG_
+	POIN Text_0073_Next
+#endif
+
+#ifdef ___Item_0074_
+	ORG Item_0074_ORG_
+	POIN Item_0074_Next
+#endif
+
+#ifdef ___Text_0074_
+	ORG Text_0074_ORG_
+	POIN Text_0074_Next
+#endif
+
+#ifdef ___Item_0075_
+	ORG Item_0075_ORG_
+	POIN Item_0075_Next
+#endif
+
+#ifdef ___Text_0075_
+	ORG Text_0075_ORG_
+	POIN Text_0075_Next
+#endif
+
+#ifdef ___Item_0076_
+	ORG Item_0076_ORG_
+	POIN Item_0076_Next
+#endif
+
+#ifdef ___Text_0076_
+	ORG Text_0076_ORG_
+	POIN Text_0076_Next
+#endif
+
+#ifdef ___Item_0077_
+	ORG Item_0077_ORG_
+	POIN Item_0077_Next
+#endif
+
+#ifdef ___Text_0077_
+	ORG Text_0077_ORG_
+	POIN Text_0077_Next
+#endif
+
+#ifdef ___Item_0078_
+	ORG Item_0078_ORG_
+	POIN Item_0078_Next
+#endif
+
+#ifdef ___Text_0078_
+	ORG Text_0078_ORG_
+	POIN Text_0078_Next
+#endif
+
+#ifdef ___Item_0079_
+	ORG Item_0079_ORG_
+	POIN Item_0079_Next
+#endif
+
+#ifdef ___Text_0079_
+	ORG Text_0079_ORG_
+	POIN Text_0079_Next
+#endif
+
+#ifdef ___Item_007A_
+	ORG Item_007A_ORG_
+	POIN Item_007A_Next
+#endif
+
+#ifdef ___Text_007A_
+	ORG Text_007A_ORG_
+	POIN Text_007A_Next
+#endif
+
+#ifdef ___Item_007B_
+	ORG Item_007B_ORG_
+	POIN Item_007B_Next
+#endif
+
+#ifdef ___Text_007B_
+	ORG Text_007B_ORG_
+	POIN Text_007B_Next
+#endif
+
+#ifdef ___Item_007C_
+	ORG Item_007C_ORG_
+	POIN Item_007C_Next
+#endif
+
+#ifdef ___Text_007C_
+	ORG Text_007C_ORG_
+	POIN Text_007C_Next
+#endif
+
+#ifdef ___Item_007D_
+	ORG Item_007D_ORG_
+	POIN Item_007D_Next
+#endif
+
+#ifdef ___Text_007D_
+	ORG Text_007D_ORG_
+	POIN Text_007D_Next
+#endif
+
+#ifdef ___Item_007E_
+	ORG Item_007E_ORG_
+	POIN Item_007E_Next
+#endif
+
+#ifdef ___Text_007E_
+	ORG Text_007E_ORG_
+	POIN Text_007E_Next
+#endif
+
+#ifdef ___Item_007F_
+	ORG Item_007F_ORG_
+	POIN Item_007F_Next
+#endif
+
+#ifdef ___Text_007F_
+	ORG Text_007F_ORG_
+	POIN Text_007F_Next
+#endif
+
+#ifdef ___Item_0080_
+	ORG Item_0080_ORG_
+	POIN Item_0080_Next
+#endif
+
+#ifdef ___Text_0080_
+	ORG Text_0080_ORG_
+	POIN Text_0080_Next
+#endif
+
+#ifdef ___Item_0081_
+	ORG Item_0081_ORG_
+	POIN Item_0081_Next
+#endif
+
+#ifdef ___Text_0081_
+	ORG Text_0081_ORG_
+	POIN Text_0081_Next
+#endif
+
+#ifdef ___Item_0082_
+	ORG Item_0082_ORG_
+	POIN Item_0082_Next
+#endif
+
+#ifdef ___Text_0082_
+	ORG Text_0082_ORG_
+	POIN Text_0082_Next
+#endif
+
+#ifdef ___Item_0083_
+	ORG Item_0083_ORG_
+	POIN Item_0083_Next
+#endif
+
+#ifdef ___Text_0083_
+	ORG Text_0083_ORG_
+	POIN Text_0083_Next
+#endif
+
+#ifdef ___Item_0084_
+	ORG Item_0084_ORG_
+	POIN Item_0084_Next
+#endif
+
+#ifdef ___Text_0084_
+	ORG Text_0084_ORG_
+	POIN Text_0084_Next
+#endif
+
+#ifdef ___Item_0085_
+	ORG Item_0085_ORG_
+	POIN Item_0085_Next
+#endif
+
+#ifdef ___Text_0085_
+	ORG Text_0085_ORG_
+	POIN Text_0085_Next
+#endif
+
+#ifdef ___Item_0086_
+	ORG Item_0086_ORG_
+	POIN Item_0086_Next
+#endif
+
+#ifdef ___Text_0086_
+	ORG Text_0086_ORG_
+	POIN Text_0086_Next
+#endif
+
+#ifdef ___Item_0087_
+	ORG Item_0087_ORG_
+	POIN Item_0087_Next
+#endif
+
+#ifdef ___Text_0087_
+	ORG Text_0087_ORG_
+	POIN Text_0087_Next
+#endif
+
+#ifdef ___Item_0088_
+	ORG Item_0088_ORG_
+	POIN Item_0088_Next
+#endif
+
+#ifdef ___Text_0088_
+	ORG Text_0088_ORG_
+	POIN Text_0088_Next
+#endif
+
+#ifdef ___Item_0089_
+	ORG Item_0089_ORG_
+	POIN Item_0089_Next
+#endif
+
+#ifdef ___Text_0089_
+	ORG Text_0089_ORG_
+	POIN Text_0089_Next
+#endif
+
+#ifdef ___Item_008A_
+	ORG Item_008A_ORG_
+	POIN Item_008A_Next
+#endif
+
+#ifdef ___Text_008A_
+	ORG Text_008A_ORG_
+	POIN Text_008A_Next
+#endif
+
+#ifdef ___Item_008B_
+	ORG Item_008B_ORG_
+	POIN Item_008B_Next
+#endif
+
+#ifdef ___Text_008B_
+	ORG Text_008B_ORG_
+	POIN Text_008B_Next
+#endif
+
+#ifdef ___Item_008C_
+	ORG Item_008C_ORG_
+	POIN Item_008C_Next
+#endif
+
+#ifdef ___Text_008C_
+	ORG Text_008C_ORG_
+	POIN Text_008C_Next
+#endif
+
+#ifdef ___Item_008D_
+	ORG Item_008D_ORG_
+	POIN Item_008D_Next
+#endif
+
+#ifdef ___Text_008D_
+	ORG Text_008D_ORG_
+	POIN Text_008D_Next
+#endif
+
+#ifdef ___Item_008E_
+	ORG Item_008E_ORG_
+	POIN Item_008E_Next
+#endif
+
+#ifdef ___Text_008E_
+	ORG Text_008E_ORG_
+	POIN Text_008E_Next
+#endif
+
+#ifdef ___Item_008F_
+	ORG Item_008F_ORG_
+	POIN Item_008F_Next
+#endif
+
+#ifdef ___Text_008F_
+	ORG Text_008F_ORG_
+	POIN Text_008F_Next
+#endif
+
+#ifdef ___Item_0090_
+	ORG Item_0090_ORG_
+	POIN Item_0090_Next
+#endif
+
+#ifdef ___Text_0090_
+	ORG Text_0090_ORG_
+	POIN Text_0090_Next
+#endif
+
+#ifdef ___Item_0091_
+	ORG Item_0091_ORG_
+	POIN Item_0091_Next
+#endif
+
+#ifdef ___Text_0091_
+	ORG Text_0091_ORG_
+	POIN Text_0091_Next
+#endif
+
+#ifdef ___Item_0092_
+	ORG Item_0092_ORG_
+	POIN Item_0092_Next
+#endif
+
+#ifdef ___Text_0092_
+	ORG Text_0092_ORG_
+	POIN Text_0092_Next
+#endif
+
+#ifdef ___Item_0093_
+	ORG Item_0093_ORG_
+	POIN Item_0093_Next
+#endif
+
+#ifdef ___Text_0093_
+	ORG Text_0093_ORG_
+	POIN Text_0093_Next
+#endif
+
+#ifdef ___Item_0094_
+	ORG Item_0094_ORG_
+	POIN Item_0094_Next
+#endif
+
+#ifdef ___Text_0094_
+	ORG Text_0094_ORG_
+	POIN Text_0094_Next
+#endif
+
+#ifdef ___Item_0095_
+	ORG Item_0095_ORG_
+	POIN Item_0095_Next
+#endif
+
+#ifdef ___Text_0095_
+	ORG Text_0095_ORG_
+	POIN Text_0095_Next
+#endif
+
+#ifdef ___Item_0096_
+	ORG Item_0096_ORG_
+	POIN Item_0096_Next
+#endif
+
+#ifdef ___Text_0096_
+	ORG Text_0096_ORG_
+	POIN Text_0096_Next
+#endif
+
+#ifdef ___Item_0097_
+	ORG Item_0097_ORG_
+	POIN Item_0097_Next
+#endif
+
+#ifdef ___Text_0097_
+	ORG Text_0097_ORG_
+	POIN Text_0097_Next
+#endif
+
+#ifdef ___Item_0098_
+	ORG Item_0098_ORG_
+	POIN Item_0098_Next
+#endif
+
+#ifdef ___Text_0098_
+	ORG Text_0098_ORG_
+	POIN Text_0098_Next
+#endif
+
+#ifdef ___Item_0099_
+	ORG Item_0099_ORG_
+	POIN Item_0099_Next
+#endif
+
+#ifdef ___Text_0099_
+	ORG Text_0099_ORG_
+	POIN Text_0099_Next
+#endif
+
+#ifdef ___Item_009A_
+	ORG Item_009A_ORG_
+	POIN Item_009A_Next
+#endif
+
+#ifdef ___Text_009A_
+	ORG Text_009A_ORG_
+	POIN Text_009A_Next
+#endif
+
+#ifdef ___Item_009B_
+	ORG Item_009B_ORG_
+	POIN Item_009B_Next
+#endif
+
+#ifdef ___Text_009B_
+	ORG Text_009B_ORG_
+	POIN Text_009B_Next
+#endif
+
+#ifdef ___Item_009C_
+	ORG Item_009C_ORG_
+	POIN Item_009C_Next
+#endif
+
+#ifdef ___Text_009C_
+	ORG Text_009C_ORG_
+	POIN Text_009C_Next
+#endif
+
+#ifdef ___Item_009D_
+	ORG Item_009D_ORG_
+	POIN Item_009D_Next
+#endif
+
+#ifdef ___Text_009D_
+	ORG Text_009D_ORG_
+	POIN Text_009D_Next
+#endif
+
+#ifdef ___Item_009E_
+	ORG Item_009E_ORG_
+	POIN Item_009E_Next
+#endif
+
+#ifdef ___Text_009E_
+	ORG Text_009E_ORG_
+	POIN Text_009E_Next
+#endif
+
+#ifdef ___Item_009F_
+	ORG Item_009F_ORG_
+	POIN Item_009F_Next
+#endif
+
+#ifdef ___Text_009F_
+	ORG Text_009F_ORG_
+	POIN Text_009F_Next
+#endif
+
+#ifdef ___Item_00A0_
+	ORG Item_00A0_ORG_
+	POIN Item_00A0_Next
+#endif
+
+#ifdef ___Text_00A0_
+	ORG Text_00A0_ORG_
+	POIN Text_00A0_Next
+#endif
+
+#ifdef ___Item_00A1_
+	ORG Item_00A1_ORG_
+	POIN Item_00A1_Next
+#endif
+
+#ifdef ___Text_00A1_
+	ORG Text_00A1_ORG_
+	POIN Text_00A1_Next
+#endif
+
+#ifdef ___Item_00A2_
+	ORG Item_00A2_ORG_
+	POIN Item_00A2_Next
+#endif
+
+#ifdef ___Text_00A2_
+	ORG Text_00A2_ORG_
+	POIN Text_00A2_Next
+#endif
+
+#ifdef ___Item_00A3_
+	ORG Item_00A3_ORG_
+	POIN Item_00A3_Next
+#endif
+
+#ifdef ___Text_00A3_
+	ORG Text_00A3_ORG_
+	POIN Text_00A3_Next
+#endif
+
+#ifdef ___Item_00A4_
+	ORG Item_00A4_ORG_
+	POIN Item_00A4_Next
+#endif
+
+#ifdef ___Text_00A4_
+	ORG Text_00A4_ORG_
+	POIN Text_00A4_Next
+#endif
+
+#ifdef ___Item_00A5_
+	ORG Item_00A5_ORG_
+	POIN Item_00A5_Next
+#endif
+
+#ifdef ___Text_00A5_
+	ORG Text_00A5_ORG_
+	POIN Text_00A5_Next
+#endif
+
+#ifdef ___Item_00A6_
+	ORG Item_00A6_ORG_
+	POIN Item_00A6_Next
+#endif
+
+#ifdef ___Text_00A6_
+	ORG Text_00A6_ORG_
+	POIN Text_00A6_Next
+#endif
+
+#ifdef ___Item_00A7_
+	ORG Item_00A7_ORG_
+	POIN Item_00A7_Next
+#endif
+
+#ifdef ___Text_00A7_
+	ORG Text_00A7_ORG_
+	POIN Text_00A7_Next
+#endif
+
+#ifdef ___Item_00A8_
+	ORG Item_00A8_ORG_
+	POIN Item_00A8_Next
+#endif
+
+#ifdef ___Text_00A8_
+	ORG Text_00A8_ORG_
+	POIN Text_00A8_Next
+#endif
+
+#ifdef ___Item_00A9_
+	ORG Item_00A9_ORG_
+	POIN Item_00A9_Next
+#endif
+
+#ifdef ___Text_00A9_
+	ORG Text_00A9_ORG_
+	POIN Text_00A9_Next
+#endif
+
+#ifdef ___Item_00AA_
+	ORG Item_00AA_ORG_
+	POIN Item_00AA_Next
+#endif
+
+#ifdef ___Text_00AA_
+	ORG Text_00AA_ORG_
+	POIN Text_00AA_Next
+#endif
+
+#ifdef ___Item_00AB_
+	ORG Item_00AB_ORG_
+	POIN Item_00AB_Next
+#endif
+
+#ifdef ___Text_00AB_
+	ORG Text_00AB_ORG_
+	POIN Text_00AB_Next
+#endif
+
+#ifdef ___Item_00AC_
+	ORG Item_00AC_ORG_
+	POIN Item_00AC_Next
+#endif
+
+#ifdef ___Text_00AC_
+	ORG Text_00AC_ORG_
+	POIN Text_00AC_Next
+#endif
+
+#ifdef ___Item_00AD_
+	ORG Item_00AD_ORG_
+	POIN Item_00AD_Next
+#endif
+
+#ifdef ___Text_00AD_
+	ORG Text_00AD_ORG_
+	POIN Text_00AD_Next
+#endif
+
+#ifdef ___Item_00AE_
+	ORG Item_00AE_ORG_
+	POIN Item_00AE_Next
+#endif
+
+#ifdef ___Text_00AE_
+	ORG Text_00AE_ORG_
+	POIN Text_00AE_Next
+#endif
+
+#ifdef ___Item_00AF_
+	ORG Item_00AF_ORG_
+	POIN Item_00AF_Next
+#endif
+
+#ifdef ___Text_00AF_
+	ORG Text_00AF_ORG_
+	POIN Text_00AF_Next
+#endif
+
+#ifdef ___Item_00B0_
+	ORG Item_00B0_ORG_
+	POIN Item_00B0_Next
+#endif
+
+#ifdef ___Text_00B0_
+	ORG Text_00B0_ORG_
+	POIN Text_00B0_Next
+#endif
+
+#ifdef ___Item_00B1_
+	ORG Item_00B1_ORG_
+	POIN Item_00B1_Next
+#endif
+
+#ifdef ___Text_00B1_
+	ORG Text_00B1_ORG_
+	POIN Text_00B1_Next
+#endif
+
+#ifdef ___Item_00B2_
+	ORG Item_00B2_ORG_
+	POIN Item_00B2_Next
+#endif
+
+#ifdef ___Text_00B2_
+	ORG Text_00B2_ORG_
+	POIN Text_00B2_Next
+#endif
+
+#ifdef ___Item_00B3_
+	ORG Item_00B3_ORG_
+	POIN Item_00B3_Next
+#endif
+
+#ifdef ___Text_00B3_
+	ORG Text_00B3_ORG_
+	POIN Text_00B3_Next
+#endif
+
+#ifdef ___Item_00B4_
+	ORG Item_00B4_ORG_
+	POIN Item_00B4_Next
+#endif
+
+#ifdef ___Text_00B4_
+	ORG Text_00B4_ORG_
+	POIN Text_00B4_Next
+#endif
+
+#ifdef ___Item_00B5_
+	ORG Item_00B5_ORG_
+	POIN Item_00B5_Next
+#endif
+
+#ifdef ___Text_00B5_
+	ORG Text_00B5_ORG_
+	POIN Text_00B5_Next
+#endif
+
+#ifdef ___Item_00B6_
+	ORG Item_00B6_ORG_
+	POIN Item_00B6_Next
+#endif
+
+#ifdef ___Text_00B6_
+	ORG Text_00B6_ORG_
+	POIN Text_00B6_Next
+#endif
+
+#ifdef ___Item_00B7_
+	ORG Item_00B7_ORG_
+	POIN Item_00B7_Next
+#endif
+
+#ifdef ___Text_00B7_
+	ORG Text_00B7_ORG_
+	POIN Text_00B7_Next
+#endif
+
+#ifdef ___Item_00B8_
+	ORG Item_00B8_ORG_
+	POIN Item_00B8_Next
+#endif
+
+#ifdef ___Text_00B8_
+	ORG Text_00B8_ORG_
+	POIN Text_00B8_Next
+#endif
+
+#ifdef ___Item_00B9_
+	ORG Item_00B9_ORG_
+	POIN Item_00B9_Next
+#endif
+
+#ifdef ___Text_00B9_
+	ORG Text_00B9_ORG_
+	POIN Text_00B9_Next
+#endif
+
+#ifdef ___Item_00BA_
+	ORG Item_00BA_ORG_
+	POIN Item_00BA_Next
+#endif
+
+#ifdef ___Text_00BA_
+	ORG Text_00BA_ORG_
+	POIN Text_00BA_Next
+#endif
+
+#ifdef ___Item_00BB_
+	ORG Item_00BB_ORG_
+	POIN Item_00BB_Next
+#endif
+
+#ifdef ___Text_00BB_
+	ORG Text_00BB_ORG_
+	POIN Text_00BB_Next
+#endif
+
+#ifdef ___Item_00BC_
+	ORG Item_00BC_ORG_
+	POIN Item_00BC_Next
+#endif
+
+#ifdef ___Text_00BC_
+	ORG Text_00BC_ORG_
+	POIN Text_00BC_Next
+#endif
+
+#ifdef ___Item_00BD_
+	ORG Item_00BD_ORG_
+	POIN Item_00BD_Next
+#endif
+
+#ifdef ___Text_00BD_
+	ORG Text_00BD_ORG_
+	POIN Text_00BD_Next
+#endif
+
+#ifdef ___Item_00BE_
+	ORG Item_00BE_ORG_
+	POIN Item_00BE_Next
+#endif
+
+#ifdef ___Text_00BE_
+	ORG Text_00BE_ORG_
+	POIN Text_00BE_Next
+#endif
+
+#ifdef ___Item_00BF_
+	ORG Item_00BF_ORG_
+	POIN Item_00BF_Next
+#endif
+
+#ifdef ___Text_00BF_
+	ORG Text_00BF_ORG_
+	POIN Text_00BF_Next
+#endif
+
+#ifdef ___Item_00C0_
+	ORG Item_00C0_ORG_
+	POIN Item_00C0_Next
+#endif
+
+#ifdef ___Text_00C0_
+	ORG Text_00C0_ORG_
+	POIN Text_00C0_Next
+#endif
+
+#ifdef ___Item_00C1_
+	ORG Item_00C1_ORG_
+	POIN Item_00C1_Next
+#endif
+
+#ifdef ___Text_00C1_
+	ORG Text_00C1_ORG_
+	POIN Text_00C1_Next
+#endif
+
+#ifdef ___Item_00C2_
+	ORG Item_00C2_ORG_
+	POIN Item_00C2_Next
+#endif
+
+#ifdef ___Text_00C2_
+	ORG Text_00C2_ORG_
+	POIN Text_00C2_Next
+#endif
+
+#ifdef ___Item_00C3_
+	ORG Item_00C3_ORG_
+	POIN Item_00C3_Next
+#endif
+
+#ifdef ___Text_00C3_
+	ORG Text_00C3_ORG_
+	POIN Text_00C3_Next
+#endif
+
+#ifdef ___Item_00C4_
+	ORG Item_00C4_ORG_
+	POIN Item_00C4_Next
+#endif
+
+#ifdef ___Text_00C4_
+	ORG Text_00C4_ORG_
+	POIN Text_00C4_Next
+#endif
+
+#ifdef ___Item_00C5_
+	ORG Item_00C5_ORG_
+	POIN Item_00C5_Next
+#endif
+
+#ifdef ___Text_00C5_
+	ORG Text_00C5_ORG_
+	POIN Text_00C5_Next
+#endif
+
+#ifdef ___Item_00C6_
+	ORG Item_00C6_ORG_
+	POIN Item_00C6_Next
+#endif
+
+#ifdef ___Text_00C6_
+	ORG Text_00C6_ORG_
+	POIN Text_00C6_Next
+#endif
+
+#ifdef ___Item_00C7_
+	ORG Item_00C7_ORG_
+	POIN Item_00C7_Next
+#endif
+
+#ifdef ___Text_00C7_
+	ORG Text_00C7_ORG_
+	POIN Text_00C7_Next
+#endif
+
+#ifdef ___Item_00C8_
+	ORG Item_00C8_ORG_
+	POIN Item_00C8_Next
+#endif
+
+#ifdef ___Text_00C8_
+	ORG Text_00C8_ORG_
+	POIN Text_00C8_Next
+#endif
+
+#ifdef ___Item_00C9_
+	ORG Item_00C9_ORG_
+	POIN Item_00C9_Next
+#endif
+
+#ifdef ___Text_00C9_
+	ORG Text_00C9_ORG_
+	POIN Text_00C9_Next
+#endif
+
+#ifdef ___Item_00CA_
+	ORG Item_00CA_ORG_
+	POIN Item_00CA_Next
+#endif
+
+#ifdef ___Text_00CA_
+	ORG Text_00CA_ORG_
+	POIN Text_00CA_Next
+#endif
+
+#ifdef ___Item_00CB_
+	ORG Item_00CB_ORG_
+	POIN Item_00CB_Next
+#endif
+
+#ifdef ___Text_00CB_
+	ORG Text_00CB_ORG_
+	POIN Text_00CB_Next
+#endif
+
+#ifdef ___Item_00CC_
+	ORG Item_00CC_ORG_
+	POIN Item_00CC_Next
+#endif
+
+#ifdef ___Text_00CC_
+	ORG Text_00CC_ORG_
+	POIN Text_00CC_Next
+#endif
+
+#ifdef ___Item_00CD_
+	ORG Item_00CD_ORG_
+	POIN Item_00CD_Next
+#endif
+
+#ifdef ___Text_00CD_
+	ORG Text_00CD_ORG_
+	POIN Text_00CD_Next
+#endif
+
+#ifdef ___Item_00CE_
+	ORG Item_00CE_ORG_
+	POIN Item_00CE_Next
+#endif
+
+#ifdef ___Text_00CE_
+	ORG Text_00CE_ORG_
+	POIN Text_00CE_Next
+#endif
+
+#ifdef ___Item_00CF_
+	ORG Item_00CF_ORG_
+	POIN Item_00CF_Next
+#endif
+
+#ifdef ___Text_00CF_
+	ORG Text_00CF_ORG_
+	POIN Text_00CF_Next
+#endif
+
+#ifdef ___Item_00D0_
+	ORG Item_00D0_ORG_
+	POIN Item_00D0_Next
+#endif
+
+#ifdef ___Text_00D0_
+	ORG Text_00D0_ORG_
+	POIN Text_00D0_Next
+#endif
+
+#ifdef ___Item_00D1_
+	ORG Item_00D1_ORG_
+	POIN Item_00D1_Next
+#endif
+
+#ifdef ___Text_00D1_
+	ORG Text_00D1_ORG_
+	POIN Text_00D1_Next
+#endif
+
+#ifdef ___Item_00D2_
+	ORG Item_00D2_ORG_
+	POIN Item_00D2_Next
+#endif
+
+#ifdef ___Text_00D2_
+	ORG Text_00D2_ORG_
+	POIN Text_00D2_Next
+#endif
+
+#ifdef ___Item_00D3_
+	ORG Item_00D3_ORG_
+	POIN Item_00D3_Next
+#endif
+
+#ifdef ___Text_00D3_
+	ORG Text_00D3_ORG_
+	POIN Text_00D3_Next
+#endif
+
+#ifdef ___Item_00D4_
+	ORG Item_00D4_ORG_
+	POIN Item_00D4_Next
+#endif
+
+#ifdef ___Text_00D4_
+	ORG Text_00D4_ORG_
+	POIN Text_00D4_Next
+#endif
+
+#ifdef ___Item_00D5_
+	ORG Item_00D5_ORG_
+	POIN Item_00D5_Next
+#endif
+
+#ifdef ___Text_00D5_
+	ORG Text_00D5_ORG_
+	POIN Text_00D5_Next
+#endif
+
+#ifdef ___Item_00D6_
+	ORG Item_00D6_ORG_
+	POIN Item_00D6_Next
+#endif
+
+#ifdef ___Text_00D6_
+	ORG Text_00D6_ORG_
+	POIN Text_00D6_Next
+#endif
+
+#ifdef ___Item_00D7_
+	ORG Item_00D7_ORG_
+	POIN Item_00D7_Next
+#endif
+
+#ifdef ___Text_00D7_
+	ORG Text_00D7_ORG_
+	POIN Text_00D7_Next
+#endif
+
+#ifdef ___Item_00D8_
+	ORG Item_00D8_ORG_
+	POIN Item_00D8_Next
+#endif
+
+#ifdef ___Text_00D8_
+	ORG Text_00D8_ORG_
+	POIN Text_00D8_Next
+#endif
+
+#ifdef ___Item_00D9_
+	ORG Item_00D9_ORG_
+	POIN Item_00D9_Next
+#endif
+
+#ifdef ___Text_00D9_
+	ORG Text_00D9_ORG_
+	POIN Text_00D9_Next
+#endif
+
+#ifdef ___Item_00DA_
+	ORG Item_00DA_ORG_
+	POIN Item_00DA_Next
+#endif
+
+#ifdef ___Text_00DA_
+	ORG Text_00DA_ORG_
+	POIN Text_00DA_Next
+#endif
+
+#ifdef ___Item_00DB_
+	ORG Item_00DB_ORG_
+	POIN Item_00DB_Next
+#endif
+
+#ifdef ___Text_00DB_
+	ORG Text_00DB_ORG_
+	POIN Text_00DB_Next
+#endif
+
+#ifdef ___Item_00DC_
+	ORG Item_00DC_ORG_
+	POIN Item_00DC_Next
+#endif
+
+#ifdef ___Text_00DC_
+	ORG Text_00DC_ORG_
+	POIN Text_00DC_Next
+#endif
+
+#ifdef ___Item_00DD_
+	ORG Item_00DD_ORG_
+	POIN Item_00DD_Next
+#endif
+
+#ifdef ___Text_00DD_
+	ORG Text_00DD_ORG_
+	POIN Text_00DD_Next
+#endif
+
+#ifdef ___Item_00DE_
+	ORG Item_00DE_ORG_
+	POIN Item_00DE_Next
+#endif
+
+#ifdef ___Text_00DE_
+	ORG Text_00DE_ORG_
+	POIN Text_00DE_Next
+#endif
+
+#ifdef ___Item_00DF_
+	ORG Item_00DF_ORG_
+	POIN Item_00DF_Next
+#endif
+
+#ifdef ___Text_00DF_
+	ORG Text_00DF_ORG_
+	POIN Text_00DF_Next
+#endif
+
+#ifdef ___Item_00E0_
+	ORG Item_00E0_ORG_
+	POIN Item_00E0_Next
+#endif
+
+#ifdef ___Text_00E0_
+	ORG Text_00E0_ORG_
+	POIN Text_00E0_Next
+#endif
+
+#ifdef ___Item_00E1_
+	ORG Item_00E1_ORG_
+	POIN Item_00E1_Next
+#endif
+
+#ifdef ___Text_00E1_
+	ORG Text_00E1_ORG_
+	POIN Text_00E1_Next
+#endif
+
+#ifdef ___Item_00E2_
+	ORG Item_00E2_ORG_
+	POIN Item_00E2_Next
+#endif
+
+#ifdef ___Text_00E2_
+	ORG Text_00E2_ORG_
+	POIN Text_00E2_Next
+#endif
+
+#ifdef ___Item_00E3_
+	ORG Item_00E3_ORG_
+	POIN Item_00E3_Next
+#endif
+
+#ifdef ___Text_00E3_
+	ORG Text_00E3_ORG_
+	POIN Text_00E3_Next
+#endif
+
+#ifdef ___Item_00E4_
+	ORG Item_00E4_ORG_
+	POIN Item_00E4_Next
+#endif
+
+#ifdef ___Text_00E4_
+	ORG Text_00E4_ORG_
+	POIN Text_00E4_Next
+#endif
+
+#ifdef ___Item_00E5_
+	ORG Item_00E5_ORG_
+	POIN Item_00E5_Next
+#endif
+
+#ifdef ___Text_00E5_
+	ORG Text_00E5_ORG_
+	POIN Text_00E5_Next
+#endif
+
+#ifdef ___Item_00E6_
+	ORG Item_00E6_ORG_
+	POIN Item_00E6_Next
+#endif
+
+#ifdef ___Text_00E6_
+	ORG Text_00E6_ORG_
+	POIN Text_00E6_Next
+#endif
+
+#ifdef ___Item_00E7_
+	ORG Item_00E7_ORG_
+	POIN Item_00E7_Next
+#endif
+
+#ifdef ___Text_00E7_
+	ORG Text_00E7_ORG_
+	POIN Text_00E7_Next
+#endif
+
+#ifdef ___Item_00E8_
+	ORG Item_00E8_ORG_
+	POIN Item_00E8_Next
+#endif
+
+#ifdef ___Text_00E8_
+	ORG Text_00E8_ORG_
+	POIN Text_00E8_Next
+#endif
+
+#ifdef ___Item_00E9_
+	ORG Item_00E9_ORG_
+	POIN Item_00E9_Next
+#endif
+
+#ifdef ___Text_00E9_
+	ORG Text_00E9_ORG_
+	POIN Text_00E9_Next
+#endif
+
+#ifdef ___Item_00EA_
+	ORG Item_00EA_ORG_
+	POIN Item_00EA_Next
+#endif
+
+#ifdef ___Text_00EA_
+	ORG Text_00EA_ORG_
+	POIN Text_00EA_Next
+#endif
+
+#ifdef ___Item_00EB_
+	ORG Item_00EB_ORG_
+	POIN Item_00EB_Next
+#endif
+
+#ifdef ___Text_00EB_
+	ORG Text_00EB_ORG_
+	POIN Text_00EB_Next
+#endif
+
+#ifdef ___Item_00EC_
+	ORG Item_00EC_ORG_
+	POIN Item_00EC_Next
+#endif
+
+#ifdef ___Text_00EC_
+	ORG Text_00EC_ORG_
+	POIN Text_00EC_Next
+#endif
+
+#ifdef ___Item_00ED_
+	ORG Item_00ED_ORG_
+	POIN Item_00ED_Next
+#endif
+
+#ifdef ___Text_00ED_
+	ORG Text_00ED_ORG_
+	POIN Text_00ED_Next
+#endif
+
+#ifdef ___Item_00EE_
+	ORG Item_00EE_ORG_
+	POIN Item_00EE_Next
+#endif
+
+#ifdef ___Text_00EE_
+	ORG Text_00EE_ORG_
+	POIN Text_00EE_Next
+#endif
+
+#ifdef ___Item_00EF_
+	ORG Item_00EF_ORG_
+	POIN Item_00EF_Next
+#endif
+
+#ifdef ___Text_00EF_
+	ORG Text_00EF_ORG_
+	POIN Text_00EF_Next
+#endif
+
+#ifdef ___Item_00F0_
+	ORG Item_00F0_ORG_
+	POIN Item_00F0_Next
+#endif
+
+#ifdef ___Text_00F0_
+	ORG Text_00F0_ORG_
+	POIN Text_00F0_Next
+#endif
+
+#ifdef ___Item_00F1_
+	ORG Item_00F1_ORG_
+	POIN Item_00F1_Next
+#endif
+
+#ifdef ___Text_00F1_
+	ORG Text_00F1_ORG_
+	POIN Text_00F1_Next
+#endif
+
+#ifdef ___Item_00F2_
+	ORG Item_00F2_ORG_
+	POIN Item_00F2_Next
+#endif
+
+#ifdef ___Text_00F2_
+	ORG Text_00F2_ORG_
+	POIN Text_00F2_Next
+#endif
+
+#ifdef ___Item_00F3_
+	ORG Item_00F3_ORG_
+	POIN Item_00F3_Next
+#endif
+
+#ifdef ___Text_00F3_
+	ORG Text_00F3_ORG_
+	POIN Text_00F3_Next
+#endif
+
+#ifdef ___Item_00F4_
+	ORG Item_00F4_ORG_
+	POIN Item_00F4_Next
+#endif
+
+#ifdef ___Text_00F4_
+	ORG Text_00F4_ORG_
+	POIN Text_00F4_Next
+#endif
+
+#ifdef ___Item_00F5_
+	ORG Item_00F5_ORG_
+	POIN Item_00F5_Next
+#endif
+
+#ifdef ___Text_00F5_
+	ORG Text_00F5_ORG_
+	POIN Text_00F5_Next
+#endif
+
+#ifdef ___Item_00F6_
+	ORG Item_00F6_ORG_
+	POIN Item_00F6_Next
+#endif
+
+#ifdef ___Text_00F6_
+	ORG Text_00F6_ORG_
+	POIN Text_00F6_Next
+#endif
+
+#ifdef ___Item_00F7_
+	ORG Item_00F7_ORG_
+	POIN Item_00F7_Next
+#endif
+
+#ifdef ___Text_00F7_
+	ORG Text_00F7_ORG_
+	POIN Text_00F7_Next
+#endif
+
+#ifdef ___Item_00F8_
+	ORG Item_00F8_ORG_
+	POIN Item_00F8_Next
+#endif
+
+#ifdef ___Text_00F8_
+	ORG Text_00F8_ORG_
+	POIN Text_00F8_Next
+#endif
+
+#ifdef ___Item_00F9_
+	ORG Item_00F9_ORG_
+	POIN Item_00F9_Next
+#endif
+
+#ifdef ___Text_00F9_
+	ORG Text_00F9_ORG_
+	POIN Text_00F9_Next
+#endif
+
+#ifdef ___Item_00FA_
+	ORG Item_00FA_ORG_
+	POIN Item_00FA_Next
+#endif
+
+#ifdef ___Text_00FA_
+	ORG Text_00FA_ORG_
+	POIN Text_00FA_Next
+#endif
+
+#ifdef ___Item_00FB_
+	ORG Item_00FB_ORG_
+	POIN Item_00FB_Next
+#endif
+
+#ifdef ___Text_00FB_
+	ORG Text_00FB_ORG_
+	POIN Text_00FB_Next
+#endif
+
+#ifdef ___Item_00FC_
+	ORG Item_00FC_ORG_
+	POIN Item_00FC_Next
+#endif
+
+#ifdef ___Text_00FC_
+	ORG Text_00FC_ORG_
+	POIN Text_00FC_Next
+#endif
+
+#ifdef ___Item_00FD_
+	ORG Item_00FD_ORG_
+	POIN Item_00FD_Next
+#endif
+
+#ifdef ___Text_00FD_
+	ORG Text_00FD_ORG_
+	POIN Text_00FD_Next
+#endif
+
+#ifdef ___Item_00FE_
+	ORG Item_00FE_ORG_
+	POIN Item_00FE_Next
+#endif
+
+#ifdef ___Text_00FE_
+	ORG Text_00FE_ORG_
+	POIN Text_00FE_Next
+#endif
+
+#ifdef ___Item_00FF_
+	ORG Item_00FF_ORG_
+	POIN Item_00FF_Next
+#endif
+
+#ifdef ___Text_00FF_
+	ORG Text_00FF_ORG_
+	POIN Text_00FF_Next
+#endif
+
+POP
