@@ -15,7 +15,10 @@ ORG FreeSpace_Low
 	//#undef TEXT_INSTALLER_TEXT_BUILDFILE_TXT
 
     #include "Text/InstallTextData.event"
+	#include "Languages.event" 
     MESSAGE Used text space ends at currentOffset
+	
+	#include "Language/TextTableCode/Installer.event" 
 	
 PUSH 
 ORG FreeSpace

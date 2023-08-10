@@ -1,0 +1,23 @@
+#undef TEXT_INSTALLER_TEXT_BUILDFILE_TXT
+
+ALIGN 4 
+TextTable_Spanish: 
+#incbin "Text/PokemblemTextTable.dmp" 
+  ORG TextTable_Spanish + (MaxTextEntries) * 4
+
+#undef setText 
+#define setText(textID, offset) "PUSH; ORG (TextTable_Spanish+4*textID); POIN (offset | 0x80000000); POP" //Anti-huffman
+
+#include "Text/InstallTextData.event" // Carbon copy English 
+#undef TEXT_INSTALLER_TEXT_BUILDFILE_TXT
+#include "Language/Spanish/InstallTextData.event" // Overwrite with the language where possible 
+
+
+
+
+
+
+
+
+
+

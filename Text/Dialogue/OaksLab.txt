@@ -1,24 +1,26 @@
-//## EnableRandomizerText
-//Use the randomizer?[N]
-//[No][X]
+## EnableRandomizerText
+Use the randomizer?[N]
+[No][X]
+
+
 // missing: S Xₓ
 // ⌭ ⌫
 // ჯ Ⴝ
-## EnableRandomizerText//_Chinese
-要使用宝可梦随机生成器吗?[N]
-á é í ó ú ñ ü [colon] [comma] [squote][N]
-à è ù ç â ê î[N]
-ô û ë ï ü [PI] [SI] [Gold][A][N]
-: , . " ( - + ) / [N]
-[period] [dquote] [monster] [lock] [lpar] [minus] [plus] [rpar] [slash][N]
-[zero][one][two][three][four][five][six][seven][eight][nine][N]//[colon] [comma] [squote]
-0123456789[A][N]
-ᴛʜᴇ[sp]ǫᴜɪᴄᴋ[sp]ʙʀᴏᴡɴ[sp]ғᴏჯ[sp]ᴊᴜᴍᴘႽ[sp]ᴏᴠᴇʀ[sp]ᴛʜᴇ[sp]ʟᴀᴢʏ[sp]ᴅᴏɢ[N]
-THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG[N]
-ᵗʰᵉ[sp]ᵠᵘᶦᶜᵏ[sp]ᵇʳᵒʷⁿ[sp]ᶠᵒˣ[sp]ʲᵘᵐᵖˢ[sp]ᵒᵛᵉʳ[sp]ᵗʰᵉ[sp]ˡᵃᶻʸ[sp]ᵈᵒᵍ[N]
-the quick brown fox jumps over the lazy dog[A][N]
-[anima] [armor] [axe] [bow] [dark] [dragon][N]
-[flier] [horse] [lance] [light] [staff] [sword][A][X]
+//## EnableRandomizerText//_Chinese
+//要使用宝可梦随机生成器吗?[N]
+//á é í ó ú ñ ü [colon] [comma] [squote][N]
+//à è ù ç â ê î[N]
+//ô û ë ï ü [PI] [SI] [Gold][A][N]
+//: , . " ( - + ) / [N]
+//[period] [dquote] [monster] [lock] [lpar] [minus] [plus] [rpar] [slash][N]
+//[zero][one][two][three][four][five][six][seven][eight][nine][N]//[colon] [comma] [squote]
+//0123456789[A][N]
+//ᴛʜᴇ[sp]ǫᴜɪᴄᴋ[sp]ʙʀᴏᴡɴ[sp]ғᴏჯ[sp]ᴊᴜᴍᴘႽ[sp]ᴏᴠᴇʀ[sp]ᴛʜᴇ[sp]ʟᴀᴢʏ[sp]ᴅᴏɢ[N]
+//THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG[N]
+//ᵗʰᵉ[sp]ᵠᵘᶦᶜᵏ[sp]ᵇʳᵒʷⁿ[sp]ᶠᵒˣ[sp]ʲᵘᵐᵖˢ[sp]ᵒᵛᵉʳ[sp]ᵗʰᵉ[sp]ˡᵃᶻʸ[sp]ᵈᵒᵍ[N]
+//the quick brown fox jumps over the lazy dog[A][N]
+//[anima] [armor] [axe] [bow] [dark] [dragon][N]
+//[flier] [horse] [lance] [light] [staff] [sword][A][X]
 //[Rock] [Water] [Psychic] [Poison] [Bug] [Normal][N]
 //[Ice][Ground][Grass][Ghost][Flying][N]
 //[Fire][Fighting][Steel][Electric][Dragon][N]

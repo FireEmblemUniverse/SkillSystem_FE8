@@ -23,7 +23,7 @@ FILL(0xD59F0) 0 // 0 out where we'll write to: 0xD59F0 bytes of space
 	
 	ORG 0x1081420 // export undo buffer will not put you in freespace 
 	
-	#include "Fonts/Installer.event" // 0x12a3dd0
+	#include "Language/Installer.event" // 0x12a3dd0
 	//#include "Fonts/UTF-8/Installer.event" 
 	//#include "Fonts/chinese.event" 
 	

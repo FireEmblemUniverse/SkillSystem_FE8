@@ -1,0 +1,1508 @@
+// Find: 
+// [#] 0x[0-9]{3,4}.*[\n]{1}([^{\s]*)[\s]([^\s[]*)[[]*X]
+// ## $1$2Name\n$1 $2[X]
+//[#] 0x[0-9]{3,4}.*[\n]{1}([^\s[]*)[[]*X]
+//## $1Name\n$1[X]
+// Find: 
+// [#] 0x[0-9]{3,4}.*[\n]{1}([^{\s]*)[\s]([^\s[]*)[[]*X]
+// ## $1$2Name\n$1 $2[X]
+
+# 0x1329
+FirstEntry[X]
+
+// Items use ^ for narrowfont I guess, while classes use * 
+## DebugTextHere
+ Debug[A][X]
+
+## SwordsDanceName
+Swords Dance[X]
+
+## SwordsDanceDesc 
++10 Str.[X]
+
+## HardenName
+Harden[X]
+
+## HardenDesc
++5 Def.[X]
+
+## TailwindName
+Tailwind[X]
+
+## TailwindDesc
++5 Spd to nearby allies.[X]
+
+## HealPulseName
+Heal Pulse[X]
+
+## HealPulseDesc
+Restores HP to a nearby ally.[X]
+
+## WishName
+Wish[X]
+
+## WishDesc
+Restores HP to nearby allies.[X]
+
+## BulkUpName
+Bulk Up[X]
+
+## BulkUpDesc
++5 Str/Def.[X]
+
+## CalmMindName
+Calm Mind[X]
+
+## CalmMindDesc
++5 Mag/Res.[X]
+
+## HoneClawsName
+Hone Claws[X]
+
+## HoneClawsDesc
++5 Str, +10 Skl.[X]
+
+## FocusEnergyName
+Focus Energy[X]
+
+## FocusEnergyDesc
++10 Skl.[X]
+
+## AgilityName
+Agility[X]
+## AgilityDesc
++10 Spd.[X]
+## AmnesiaName
+Amnesia[X]
+## AmnesiaDesc
++10 Mag/Res.[X]
+
+
+
+
+
+
+## RecoverMoveText
+Recover[X]
+
+## RecoverDescText
+Restore 25% HP.[X]
+
+
+## HeavyWardName ^
+Heavy Ward[X]
+
+## HeavyWardDesc
++6 Res while defending.[X]
+
+## HeavyShieldName ^
+Heavy Shield[X]
+
+## HeavyShieldDesc
++6 Def while defending.[X]
+
+## StatBoostAccessoryHelpText
+Grants a stat boost.[NL]
+Press R for details.[X]
+
+## SkillAccessoryHelpText
+Grants a skill.[NL]
+Press R for details.[X]
+
+## EnergyBandNameText
+Energy Band[X]
+## EnergyBandDescText
+Str/Skl/Spd + 2.[X]
+
+
+## PerfectionistAccNameText
+Perfect Ring[X]
+## PerfectionistAccDescText
++10 Hit/Avo while full HP.[X]
+
+## DazzleAccNameText
+Dark Robe[X]
+## DazzleAccDescText
+Prevents counterattacks.[X]
+
+
+## SealStrAccNameText
+Strength Seal[X]
+## SealStrAccDescText
+Debuffs enemy Str[NL]
+by 6 after combat.[X]
+
+## SealMagAccNameText
+Magic Seal[X]
+## SealMagAccDescText
+Debuffs enemy Mag[NL]
+by 6 after combat.[X]
+
+## SealSklAccNameText
+Skill Seal[X]
+## SealSklAccDescText
+Debuffs enemy Skl[NL]
+by 6 after combat.[X]
+
+## SealSpdAccNameText
+Speed Seal[X]
+## SealSpdAccDescText
+Debuffs enemy Spd[NL]
+by 6 after combat.[X]
+
+## SealLukAccNameText
+Luck Seal[X]
+## SealLukAccDescText
+Debuffs enemy Luk[NL]
+by 6 after combat.[X]
+
+## SealResAccNameText
+Resistance Seal[X]
+## SealResAccDescText
+Debuffs enemy Res[NL]
+by 6 after combat.[X]
+
+
+## SealDefAccNameText
+Defence Seal[X]
+## SealDefAccDescText
+Debuffs enemy Def[NL]
+by 6 after combat.[X]
+
+
+
+
+
+
+## LeatherShieldNameText ^
+Leather Shield[X]
+
+## LeatherShieldDescText
+Def/Res +2.[X]
+
+## BronzeShieldNameText ^
+Bronze Shield[X]
+
+## BronzeShieldDescText
+Def+4.[X]
+
+## OldWardNameText
+Old Ward[X]
+
+## OldWardDescText
+Res+5.[X]
+
+## WornBootsNameText ^
+Worn Boots[X]
+
+## WornBootsDescText
+Spd+4.[X]
+
+## OldScopeNameText ^
+Old Scope[X]
+
+## OldScopeDescText
+Skl+5.[X]
+
+
+
+## MuscleBandT2NameText
+Muscle Band+[X]
+## MuscleBandT2DescText
+Str+5.[X]
+## WiseGlassesT2NameText
+Wise Glasses+[X]
+## WiseGlassesT2DescText
+Mag+5.[X]
+## EnergyBandT2NameText
+Energy Band+[X]
+## EnergyBandT2DescText
+Str/Skl/Spd+4.[X]
+## PaddedShieldNameText
+Padded Shield[X]
+## PaddedShieldDescText
+Def/Res+4.[X]
+## IronShieldNameText
+Iron Shield[X]
+## IronShieldDescText
+Def+7.[X]
+## MagicWardNameText
+Magic Ward[X]
+## MagicWardDescText
+Res+8.[X]
+## QuickBootsNameText
+Quick Boots[X]
+## QuickBootsDescText
+Spd+7.[X]
+## SightScopeNameText
+Sight Scope[X]
+## SightScopeDescText
+Skl+7.[X]
+## MuscleBandT3NameText
+Muscle Band++[X]
+## MuscleBandT3DescText
+Str+8.[X]
+## WiseGlassesT3NameText
+Wise Glasses++[X]
+## WiseGlassesT3DescText
+Mag+8.[X]
+## EnergyBandT3NameText
+Energy Band++[X]
+## EnergyBandT3DescText
+Str/Skl/Spd+6.[X]
+## StuddedShieldNameText
+Studded Shield[X]
+## StuddedShieldDescText
+Def/Res+6.[X]
+## SteelShieldNameText
+Steel Shield[X]
+## SteelShieldDescText
+Def+10.[X]
+## EnhancedWardNameText
+Enhanced Ward[X]
+## EnhancedWardDescText
+Res+10.[X]
+## VintageBootsNameText
+Vintage Boots[X]
+## VintageBootsDescText
+Spd+10.[X]
+## SilphScopeNameText
+Silph Scope[X]
+## SilphScopeDescText
+Skl+10.[X]
+## LuckyBracerT3NameText
+Lucky Bracer[X]
+## LuckyBracerT3DescText
+Luk+10.[X]
+
+
+## BerserkGeneName
+Berserk Gene[X]
+
+
+## RockyHelmetNameText ^
+Rocky Helmet[X]
+
+## RockyHelmetDescText
+Opponents take 20% HP[NL]
+after attacking the holder.[X]
+
+## SurgesSigilNameText
+Surge's Sigil[X]
+
+## SurgesSigilDescText
++6 dmg dealt and received.[X]
+
+## ObliviousRingNameText ^
+Oblivious Ring[X]
+
+## ObliviousRingDescText
+Cannot double or be doubled.[X]
+
+## LuckyBracerNameText ^
+Lucky Bracer[X]
+
+## LuckyBracerDescText
+Grants +15 Crit.[X]
+ 
+## BlackbeltText
+Blackbelt[X]
+
+## BlackbeltDescText
+Slightly powers up[NL]
+FIGHTING moves.[X]
+
+
+## BlackbeltUseDesc
+Slightly powers up[NL]
+FIGHTING moves.[X]
+
+## DryingPanText
+Drying Pan[X]
+
+## DryingPanDescText
+Negates weakness to[NL]
+WATER moves.[X]
+
+
+## ChoiceBandText ^
+Choice Band[X]
+
+## ChoiceBandDescText
+Powers up a single[NL]
+move.[X]
+
+## JellyDonutText
+Jelly Donut[X]
+
+## JellyDonutDescText
+Dub-exclusive.[NL]
+Heals 15 HP.[X]
+
+ 
+## WiseGlassesNameText
+Wise Glasses[X]
+
+## WiseGlassesDescText
+Grants Mag+3.[X]
+
+## WiseGlassesUseDesc
+Grants Mag+3.[X]
+
+
+ ## EvioliteNameText
+Eviolite[X]
+
+## EvioliteDescText
+Grants Def/Res+2.[X]
+
+## EvioliteUseDesc
+Grants Def/Res+2.[X]
+
+## MuscleBandNameText
+Muscle Band[X]
+
+## MuscleBandDescText
+Grants Str+3.[X]
+
+## MuscleBandUseDesc
+Grants Str+3.[X]
+
+
+
+ 
+ 
+## CloakNameText
+Cloak[X]
+
+## CloakDescText
+Grants Shade+: Enemies[N]
+won't target this unit.[X]
+
+## CloakUseDesc
+Grants Shade+: Enemies[N]
+won't target this unit.[X]
+ 
+ 
+## QuickClawNameText
+Quick Claw[X]
+
+## QuickClawDescText
+Attack first[NL]
+while defending.[X]
+
+## QuickClawUseDesc
+Attack first[NL]
+while defending.[X]
+ 
+## RenewalRingNameText
+Renewal Ring[X]
+
+## RenewalRingDescText
+Grants Renewal: Heal[N]
+30% HP each turn.[X]
+
+## RenewalRingUseDesc
+Grants Renewal: Heal[N]
+30% HP each turn.[X]
+ 
+ 
+## ExpShareNameText
+Exp. Share[X]
+
+## ExpShareDescText
+Grants Exp. to adjacent[NL]
+units after battle.[X]
+
+## ExpShareUseDesc
+Gives EXP to adjacent[N]
+allies after combat.[X]
+
+## PursuitRingNameText
+Pursuit Ring[X]
+
+## PursuitRingDescText
+Reduces the amount of AS required[N]
+to double an enemy from 4 to 1.[X]
+
+## PursuitRingUseDesc
+1 AS to double[X]
+
+## ArcanaShieldNameText
+Arcana Shield[X]
+
+## ArcanaShieldDescText
+Reduces all magical damage[N]
+received by 25%.[X]
+
+## ArcanaShieldUseDesc
+-25% magic damage[N]
+received[X]
+
+## WhetstoneNameText
+Whetstone[X]
+
+## WhetstoneDescText
+Effective weapons have a 4x[N]
+multiplier on might.[X]
+
+## WhetstoneUseDesc
+Effectiveness x4[X]
+
+## AngelRingNameText
+Angel Ring[X]
+
+## AngelRingDescText
+All level up gains are doubled.[N]
++1 becomes +2, +2 becomes +4.[X]
+
+## AngelRingUseDesc
+Double stat gains[X]
+ 
+ 
+## SuperPotionText
+Super Potion[X]
+ 
+## PotionText
+Potion[X]
+
+## HyperPotionText
+Hyper Potion[X]
+ 
+## MaxPotionText
+Max Potion[X]
+ 
+## BerryText
+Berry[X]
+
+## SitrusBerryText
+Sitrus Berry[X]
+
+## PotionDescText
+Restores 15 HP.[X]
+
+## SuperPotionDescText
+Restores 25 HP.[X]
+ 
+## HyperPotionDescText
+Restores 40 HP.[X]
+
+## MaxPotionDescText
+Restores all HP.[X]
+ 
+## BerryDescText
+Restores 8 HP.[N]
+Consumed at low HP.[X]
+
+## SitrusBerryDescText
+Restores 20 HP.[N]
+Consumed at low HP.[X]
+
+## PokeballName
+Pokeball[X]
+
+
+
+
+
+
+
+
+
+## BarrageName
+Barrage[X]
+## BindName
+Bind[X]
+## BodySlamName
+Body Slam[X]
+## CometPunchName
+Comet Punch[X]
+## ConstrictName
+Constrict[X]
+## CovetName
+Covet[X]
+
+
+
+
+
+
+## CutName
+Cut[X]
+## DoubleHitName
+Double Hit[X]
+## DoubleEdgeName
+Double Edge[X]
+## EggBombName
+Egg Bomb[X]
+## ExplosionName
+Explosion[X]
+## FlashName
+Flash[X]
+## FuryName
+Fury [X]
+## GlareName
+Glare[X]
+## GrowlName
+Growl[X]
+## GrowthName
+Growth[X]
+## VineWhipName
+Vine Whip[X]
+## HazeName
+Haze[X]
+## DoubleKickName
+Double Kick[X]
+## GuillotineName
+Guillotine[X]
+## HeadbuttName
+Headbutt[X]
+## HornAttackName
+Horn Attack[X]
+## HornDrillName
+Horn Drill[X]
+## HyperBeamName
+Hyper Beam[X]
+## HyperFangName
+Hyper Fang[X]
+## LeerName
+Leer[X]
+## LovelyKissName
+Lovely Kiss[X]
+## MegaKickName
+Mega Kick[X]
+## MegaPunchName
+Mega Punch[X]
+## MetronomeName
+Metronome[X]
+
+## IceBeamName
+Ice Beam[X]
+## VoltTackleName
+Volt Tackle[X]
+## ThunderboltName
+Thunderbolt[X]
+## KarateChopName
+Karate Chop[X]
+## CounterName
+Counter[X]
+## MinimizeName
+Minimize[X]
+## PayDayName
+Pay Day[X]
+## PoundName
+Pound[X]
+## QuickAttackName ^
+Quick Attack[X]
+## RageName
+Rage[X]
+## RecoverName
+Recover[X]
+## RoarName
+Roar[X]
+## SandAttackName ^
+Sand-Attack[X]
+## ScratchName
+Scratch[X]
+## SingName
+Sing[X]
+## SlamName
+Slam[X]
+## SlashName
+Slash[X]
+## SplashName
+Splash[X]
+## DragonAxeName
+Dragon Axe[X]
+## ThunderName
+Thunder[X]
+## IcePunchName
+Ice Punch[X]
+## AttackPulseName ^
+Attack Pulse[X]
+## SuperFangName
+Super Fang[X]
+## SwiftName
+Swift[X]
+
+## TackleName
+Tackle[X]
+## TailWhipName
+Tail Whip[X]
+## TakeDownName
+Take Down[X]
+## ThrashName
+Thrash[X]
+## TriAttackName
+Tri Attack[X]
+## EmberName
+Ember[X]
+## FirePunchName
+Fire Punch[X]
+## FlameWheelName
+Flame Wheel[X]
+## AvalancheName
+Avalanche[X]
+## BlizzardName
+Blizzard[X]
+## RollingKickName
+Rolling Kick[X]
+## HiJumpKickName
+Hi Jump Kick[X]
+## JumpKickName
+Jump Kick[X]
+## LowKickName
+Low Kick[X]
+
+## ThundershockName ^
+Thundershock[X]
+## AcidName
+Acid[X]
+## PoisonGasName
+Poison Gas[X]
+
+## PoisonStingName ^
+Poison Sting[X]
+## SludgeName
+Sludge[X]
+## SmogName
+Smog[X]
+## LeafBladeName
+Leaf Blade[X]
+## SleepPowderName ^
+Sleep Powder[X]
+## SolarBeamName ^
+Solar Beam[X]
+## RazorLeafName ^
+Razor Leaf[X]
+
+## ScorchName
+Scorch[X]
+## FlamethrowerName ^
+Flamethrower[X]
+## FireSpinName
+Fire Spin[X]
+## BoneClubName
+Bone Club[X]
+## FireBlastName
+Fire Blast[X]
+## SacredFireName ^
+Sacred Fire[X]
+## WaterGunName
+Water Gun[X]
+## ClampName
+Clamp[X]
+## CrabhammerName
+Crabhammer[X]
+## BubblebeamName ^
+Bubble Beam[X]
+
+## SurfName
+Surf[X]
+## ThunderPunchName ^
+Thunder Punch[X]
+## WithdrawName
+Withdraw[X]
+## AbsorbName
+Absorb[X]
+## GrassKnotName ^
+Grass Knot[X]
+## MegaDrainName ^
+Mega Drain[X]
+## PetalDanceName
+Petal Dance[X]
+## LeafFlurryName ^
+Leaf Flurry[X]
+## AuroraBeamName ^
+Aurora Beam[X]
+## DigName
+Dig[X]
+## PoisonJabName
+Poison Jab[X]
+## ToxicName
+Toxic[X]
+## SeismicTossName ^
+Seismic Toss[X]
+## SubmissionName
+Submission[X]
+
+## ConstrictDesc
+Chip damage. Debuffs Spd by 5.[X]
+
+
+## DoubleHitDesc
+Hits twice.[X]
+## LeerDesc
+Chip damage. Debuffs Def by 5.[X]
+## TailWhipDesc
+Chip damage. Debuffs Def by 5.[X]
+
+## FlashDesc
+Chip damage. Greatly debuffs Skl.[X]
+
+
+## GrowlDesc
+Chip damage. Debuffs Str by 5.[X]
+
+## VineWhipDesc
+[PI] A weak whipping attack.[X]
+
+## HeadbuttDesc
+[PI] The user attacks with its head.[X]
+
+
+
+
+## MegaPunchDesc
+[PI] A powerful punch.[X]
+
+## ThunderboltDesc
+[SI] A powerful bolt of electricity.[X]
+
+## PoundDesc
+[PI] Debuffs Luk.[X]
+## QuickAttackDesc
+[PI] Strike first when attacked.[X]
+
+
+## SandAttackDesc
+Chip damage. Debuffs Skl by 5.[X]
+## ScratchDesc
+[PI] A weak scratch.[X]
+
+## BodySlamDesc
+[PI] A full body slam.[.][X]
+## SlashDesc
+[PI] High critical hit ratio.[X]
+
+## AttackPulseDesc
+[SI] A special pulse of power.[.][X]
+
+## TackleDesc 
+[PI] A weak full-body attack.[X]
+
+
+## EmberDesc
+[SI] A weak flame.[X]
+
+## KarateChopDesc
+[PI] A swift chop.[X]
+## LowKickDesc
+[PI] A low blow.[X]
+
+## ThundershockDesc
+[SI] A weak jolt of electricity.[X]
+## AcidDesc
+[SI] Debuffs Res by 5.[X]
+
+## PoisonStingDesc
+[PI] A weak, venomous sting.[X]
+## SmogDesc
+Chip damage. Debuffs Res.[X]
+
+## WaterGunDesc
+[SI] A weak spout of water.[X]
+
+## BubblebeamDesc
+[SI] A powerful stream of bubbles.[X]
+
+## ThunderPunchDesc
+[PI] An electric punch.[X]
+
+## AbsorbDesc
+[SI] Saps some health.[X]
+
+## LeafFlurryDesc 
+[SI] A flurry of leaves.[X]
+
+## PoisonJamDesc
+[PI] A powerful, venomous jab.[X]
+
+
+ 
+
+
+
+## DoubleslapName
+Doubleslap[X]
+## DoubleslapDesc
+Hits with 50% Atk 2-5 times.[X]
+## BubbleName
+Bubble[X]
+## BubbleDesc
+[SI] A weak froth of bubbles.[X]
+
+
+## BonemerangName ^
+Bonemerang[X]
+
+## EarthquakeName
+Earthquake[X]
+
+## FissureName
+Fissure[X]
+
+## MagnitudeName
+Magnitude[X]
+## MagnitudeDesc
+[SI] A small quake.[X]
+## EarthPowerName
+Earth Power[X]
+
+## DrillPeckName
+Drill Peck[X]
+
+## FlyName
+Fly[X]
+
+## GustName
+Gust[X]
+## GustDesc
+[SI] A weak gust of wind.[X]
+## PeckName
+Peck[X]
+## PeckDesc
+[PI] A small peck on the cheek![X]
+## SkyAttackName
+Sky Attack[X]
+## SkyAttackDesc
+[SI] Placeholder description.[X]
+## MirrorMoveName ^
+Mirror Move[X]
+## WingAttackName ^
+Wing Attack[X]
+## WingAttackDesc
+[PI] A strong, winged attack.[X]
+
+
+
+
+
+## BarrierName
+Barrier[X]
+## BarrierDesc
+[SI] Placeholder description.[X]
+## ConfusionName
+Confusion[X]
+## ConfusionDesc
+[SI] A weak psychic pulse.[X]
+## DreamEaterName
+Dream Eater[X]
+## DreamEaterDesc
+[SI] Placeholder description.[X]
+## HypnosisName
+Hypnosis[X]
+## HypnosisDesc
+[SI] Placeholder description.[X]
+## LightScreenName ^
+Light Screen[X]
+## LightScreenDesc
++5 Res to nearby allies.[X]
+## ReflectName
+Reflect[X]
+## ReflectDesc
++5 Def to nearby allies.[X]
+## PsybeamName
+Psybeam[X]
+## PsybeamDesc
+[SI] Placeholder description.[X]
+## PsychicName
+Psychic[X]
+## PsychicDesc
+[SI] Placeholder description.[X]
+## RestName
+Rest[X]
+## RestDesc
+[SI] Placeholder description.[X]
+## TeleportName
+Teleport[X]
+## TeleportDesc
+Does nothing currently.[X]
+## RockSlideName
+Rock Slide[X]
+## RockSlideDesc
+[PI] A barrage of rocks.[X]
+## RockThrowName
+Rock Throw[X]
+## RockThrowDesc
+[PI] Thrown rocks.[X]
+## AncientpowerName ^
+Ancientpower[X]
+## AncientpowerDesc
+[SI] Placeholder description.[X]
+## RockTombName
+Rock Tomb[X]
+## RockTombDesc
+[PI] Debuffs Spd.[X]
+## RolloutName
+Rollout[X]
+## RolloutDesc
+[SI] Placeholder description.[X]
+## SandstormName
+Sandstorm[X]
+## SandstormDesc
+[SI] Placeholder description.[X]
+## ConfuseRayName ^
+Confuse Ray[X]
+## ConfuseRayDesc
+[SI] May inflict confusion.[X]
+## LickName
+Lick[X]
+## LickDesc
+[PI] A baffling lick attack.[X]
+## NightShadeName ^
+Night Shade[X]
+## NightShadeDesc
+[SI] A ghostly pulse.[X]
+## NightmareName
+Nightmare[X]
+## NightmareDesc
+[SI] Placeholder description.[X]
+## ShadowBallName ^
+Shadow Ball[X]
+## ShadowBallDesc
+[SI] Placeholder description.[X]
+## ShadowPunchName ^
+Shadow Punch[X]
+## ShadowPunchDesc
+[SI] Placeholder description.[X]
+## DragonClawName ^
+Dragon Claw[X]
+## DragonClawDesc
+[SI] Placeholder description.[X]
+## DragonDanceName ^
+Dragon Dance[X]
+## DragonDanceDesc
+[SI] Placeholder description.[X]
+## DragonRageName ^
+Dragon Rage[X]
+## DragonRageDesc
+[SI] Negates half of def.[X]
+## DragonbreathName
+Dragonbreath[X]
+## DragonbreathDesc
+[SI] Placeholder description.[X]
+## OutrageName
+Outrage[X]
+## OutrageDesc
+[SI] Placeholder description.[X]
+## TwisterName
+Twister[X]
+## TwisterDesc
+[SI] A draconic storm.[X]
+## BugBiteName
+Bug Bite[X]
+## BugBiteDesc
+[PI] A vicious bite.[X]
+## BugBuzzName
+Bug Buzz[X]
+## BugBuzzDesc
+[SI] A swarming buzz.[X]
+## FuryCutterName
+Fury Cutter[X]
+## FuryCutterDesc
+[SI] Placeholder description.[X]
+## LeechLifeName
+Leech Life[X]
+## LeechLifeDesc
+[PI] Saps a little health.[X]
+## MegahornName
+Megahorn[X]
+## MegahornDesc
+[SI] Placeholder description.[X]
+## PinMissileName
+Pin Missile[X]
+## PinMissileDesc
+[SI] Placeholder description.[X]
+## SignalBeamName
+Signal Beam[X]
+## SignalBeamDesc
+[SI] Placeholder description.[X]
+## StringShotName
+String Shot[X]
+## StringShotDesc
+Chip damage. Debuffs Spd by 5.  [X]
+## UTurnName
+U-Turn[X]
+## UTurnDesc
+[SI] Placeholder description.[X]
+## XScissorName
+X-Scissor[X]
+## XScissorDesc
+[PI] Placeholder description.[X]
+
+
+
+## ScreechName
+Screech[X]
+
+## ScreechDesc
+Chip damage. Greatly debuffs Def/Res.[X]
+
+## ThunderWaveName ^
+Thunder Wave[X]
+## ThunderWaveDesc
+Chip damage. Greatly debuffs Spd.[X]
+## MagicalLeafName
+Magical Leaf[X]
+## MagicalLeafDesc
+[SI] Perfect accuracy.[X]
+## SparkName
+Spark[X]
+## SparkDesc
+[PI] A weak spark.[X]
+
+
+## BiteNameText
+Bite[X]
+
+## BiteDescText
+[PI] A weak bite.[X]
+
+## ThiefNameText
+Thief[X]
+
+## ThiefDescText
+[PI] A weak pickpocket.[X]
+
+## SnarlNameText
+Snarl[X]
+
+## SnarlDescText
+Chip damage. Debuffs Mag.[X]
+
+## CometPunchDesc 
+[PI] Placeholder description.[X]
+
+## CovetDesc
+[PI] Placeholder description.[X]
+
+## CrushClawName
+Crush Claw[X]
+
+## CrushClawDesc
+[PI] Placeholder description.[X]
+
+## CutDesc
+[PI] Placeholder description.[X]
+
+## DoubleEdgeDesc
+[PI] Placeholder description.[X]
+
+## EggBombDesc 
+[PI] Placeholder description.[X]
+
+## ExplosionDesc
+[PI] Placeholder description.[X]
+
+## GlareDesc
+[PI] Placeholder description.[X]
+
+## GrowthDesc
++5 Str/Mag/Spd.[X]
+
+## GuillotineDesc
+[PI] An extremely powerful cutting blow.[X]
+
+## HornAttackDesc
+[PI] Impales the foe with a horn.[X]
+
+## HornDrillDesc
+[PI] Turns a horn into a powerful drill.[X]
+
+## HyperBeamDesc
+[SI] A powerful beam that tires the user.[X]
+
+## HyperFangDesc
+[PI] Bites with superior fangs.[X]
+
+## MegaKickDesc
+[PI] A fiersomely normal kick.[X]
+
+## PayDayDesc
+[PI] Throws coins to damage foes.[X]
+
+## RageDesc
+[PI] Strikes with anger and fury.[X]
+
+
+## MetalClawName
+Metal Claw[X]
+
+## MetalClawDesc
+[PI] Slashes the foe with metalic claws.[X]
+
+## IronTailName
+Iron Tail[X]
+
+## IronTailDesc
+[PI] Steels the tail for a sturdy strike.[X]
+
+## MeteorMashName
+Meteor Mash[X]
+
+## MeteorMashDesc
+[PI] A powerful metallic strike.[X]
+
+## MirrorShotName
+Mirror Shot[X]
+
+## MirrorShotDesc
+[SI] Uses technology to strike.[X]
+
+## FlashCannonName
+Flash Cannon[X]
+
+## FlashCannonDesc
+[SI] Emits a harsh technological light.[X]
+
+## MetalSoundName
+Metal Sound[X]
+
+## MetalSoundDesc
+Chip damage. Reduces Res by -4.[X]
+
+## SlamDesc
+[PI] Slams the foe with a powerful tackle.[X]
+
+## SplashDesc
+Does nothing.[X]
+
+## SuperFangDesc
+[PI] Bites with hard fangs.[X]
+
+## SwiftDesc
+[SI] Strikes with perfect accuracy.[X]
+
+
+
+## TakeDownDesc
+[PI] A harsh tackle that injures the user.[X]
+
+## ThrashDesc
+[PI] A rough series of strikes a blows.[X]
+
+## TriAttackDesc
+[SI] A fiery, icy and electric blast.[X]
+
+## FirePunchDesc
+[PI] A blazing punch of flame.[X]
+
+## FlameWheelDesc
+[PI] A blazing fiery tackle.[X]
+
+## ScorchDesc
+[SI] A burst of hot flame.[X]
+
+## FlamethrowerDesc
+[SI] A searing torrent of flame.[X]
+
+## FireSpinDesc
+[SI] An entrapping circle of flames.[X]
+
+## FireBlastDesc
+[SI] An intense blast of fire.[X]
+
+## SacredFireDesc
+[SI] A blast of searing holy flame.[X]
+
+## ClampDesc
+[PI] Clamps down hard on the foe.[X]
+
+## CrabhammerDesc
+[PI] Swats at the foe with a crabbed arm.[X]
+
+## HydroPumpDesc
+[SI] Blasts the foe with water jets.[X]
+
+## SurfDesc
+[SI] Torrents of water strike the foe.[X]
+
+## WaterfallDesc
+[PI] Crashes the foe with a waterfall.[X]
+
+## WaterPulseDesc
+[SI] Pulses water at the foe.[X]
+
+## HydroPumpName ^
+Hydro Pump[X]
+//THE QUICK BROWN[X]
+
+## WaterPulseName ^
+Water Pulse[X]
+//FOX JUMPS OVER[X]
+
+## WaterfallName ^
+Waterfall[X]
+//THE LAZY DOG[X]
+
+
+
+
+
+## LeechSeedDesc
+[SI] Saps the health of the target.[X]
+
+## GrassKnotDesc
+[PI] Trip the foe with a vine.[X]
+
+## MegaDrainDesc
+[SI] Drains the health of the foe.[X]
+
+## PetalDanceDesc
+[PI] A powerful display of plant power.[X]
+
+## LeafBladeDesc
+[PI] A cutting blade of sharp leaves.[X]
+
+## SolarBeamDesc
+[SI] A beam of charged solar power.[X]
+
+## RazorLeafDesc
+[PI] Launches a barrage of cutting leaves.[X]
+
+## ThunderDesc
+[SI] A fierce but innacurate electric strike.[X]
+
+## VoltTackleDesc
+[PI] A powerful electric tackle.[X]
+
+## BlizzardDesc
+[SI] Unleashes a harsh blizzard on foe.[X]
+
+## AuroraBeamDesc
+[SI] Creates a chilly beam of frost.[X]
+
+## IceBeamDesc
+[SI] Blasts a harsh frosty beam.[X]
+
+## IcePunchDesc
+[PI] Strikes with an icy fist.[X]
+
+## AvalancheDesc
+[PI] Calls forth a blanket of snow.[X]
+
+## DoubleKickDesc
+[PI] Hits twice.[X]
+
+## HiJumpKickDesc
+[PI] A bigger leaping kick of strength.[X]
+
+## JumpKickDesc
+[PI] A leaping kick of power.[X]
+
+## RollingKickDesc
+[PI] User rolls about unleashing kicks.[X]
+
+## SeismicTossDesc
+[PI] A hardy judo throw.[X]
+
+## SubmissionDesc
+[PI] Throws the foe with all their might.[X]
+
+## PoisonGasDesc
+[SI] A foul smelling poison gas attack.[X]
+
+## PoisonPowderName ^
+Poison Powder[X]
+
+## PoisonPowderDesc
+Chip damage. A poisonous powder.[X]
+
+## SludgeDesc
+[SI] A poisonous goo hurled at the foe.[X]
+
+## PoisonJabDesc
+[PI] A poisonous strike.[X]
+
+## ToxicDesc
+Chip damage. Badly poisons target on hit.[X]
+
+## DigDesc
+[PI] Digs down for an earthy strike.[X]
+
+## BonemerangDesc
+[PI] Whip a bone boomerang at the foe.[X]
+
+## EarthquakeDesc
+[PI] Shatters techtonics to destroy foes.[X]
+
+## FissureDesc
+[PI] Creates an earthen rift to swallow foes.[X]
+
+## EarthPowerDesc
+[SI] Strikes by shaking the earth itself.[X]
+
+## MudBombName
+Mud Bomb[X]
+
+## MudBombDesc
+[SI] Shoots a massive wad of mud.[X]
+
+## MudShotName
+Mud Shot[X]
+
+## MudShotDesc
+[SI] Shoots a wad of mud.[X]
+
+## DrillPeckDesc
+[PI] A drilling peck from the sky.[X]
+
+## FlyDesc
+[PI] Flies high and then attacks.[X]
+
+## AirSlashName
+Air Slash[X]
+
+## AirSlashDesc
+[PI] A diving slash of wind and wings.[X]
+
+## HexName
+Hex[X]
+
+## HexDesc
+[SI] A spirit's vengeful curse.[X]
+
+
+## NightSlashName
+Night Slash[X]
+
+## NightSlashDesc
+[PI] A daring and dark strike.[X]
+
+## DarkPulseName
+Dark Pulse[X]
+
+## DarkPulseDesc
+[SI] A painful wave of darkness.[X]
+
+## NightDazeName
+Night Daze[X]
+
+## NightDazeDesc
+[SI] A dark gaze that strikes fear.[X]
+
+## BindDesc
+[PI] Traps the foe in a binding grip.[X]
+
+
+## MoonStoneName
+Moon Stone[X]
+## MoonStoneDesc
+For Clefairy, Jigglypuff, Nidorina,[N]
+and Nidorino.[X]
+
+## LinkStoneName
+Link Stone[X]
+## LinkStoneDesc
+For Kadabra, Machoke,[N]
+Haunter, and Graveller.[X]
+
+## ThunderStoneName
+Thunder Stone[X]
+## ThunderStoneDesc
+For Pikachu[N]
+and Eevee.[X]
+
+## LeafStoneName
+Leaf Stone[X]
+## LeafStoneDesc
+For Weepinbell,[N]
+Gloom, and Exeggcute.[X]
+
+## WaterStoneName 
+Water Stone[X]
+## WaterStoneDesc
+For Poliwhirl, Shellder,[N]
+Staryu, and Eevee.[X]
+
+## FireStoneName
+Fire Stone[X]
+## FireStoneDesc
+For Vulpix, Growlithe,[N]
+or Eevee.[X]
+
+## SacredStoneName
+Sacred Stone[X]
+
+## SacredStoneDesc
+For any Pokémon[N]
+yet to evolve.[X]
+
+
+
+
+
+
+
+
+
+## FireStoneUse
+Use this on Vulpix,[N]
+Growlithe, or Eevee.[X]
+
+## HPUpName
+HP Up[X]
+## HPUpDesc
+Increases HP by a max of[N]
+5 points. Vanishes after use.[X]
+
+## ProteinName
+Protein[X]
+## ProteinDesc
+Increases Str by[N]
+2 points. Vanishes after use.[X]
+
+## SecretTonicName
+Secret Tonic[X]
+## SecretTonicDesc
+Increases stats by 2 points.[N]
+Vanishes after use.[X]
+
+## CarbosName
+Carbos[X]
+## CarbosDesc
+Increases speed by[N]
+2 points. Vanishes after use.[X]
+
+## LuckyTonicName
+Luck[X]
+## LuckyTonicDesc
+Increases luck by[N]
+2 points. Vanishes after use.[X]
+
+## IronName
+Iron[X]
+## IronDesc
+Increases defense by[N]
+2 points. Vanishes after use.[X]
+
+## ZincName
+Zinc[X]
+## ZincDesc
+Increases resistance by[N]
+1 point. Vanishes after use.[X]
+
+## CalciumName
+Calcium[X]
+## CalciumDesc
+Increases SpA by[N]
+2 points. Vanishes after use.[X]
+
+## ConBoosterName
+Bulk Up[X]
+## ConBoosterDesc
+Increases constitution by[N]
+2 points. Vanishes after use.[X]
+
+
+
+
+
+
+
+
+
+
+
+
