@@ -17,8 +17,8 @@ str r5, [r6, #0x3c]
 
 mov r0, r6 @ unit 
 bl GetUnitFacing
-cmp r0, #2 @ facing downwards already 
-beq Exit 
+@cmp r0, #2 @ facing downwards already 
+@beq Exit 
 
 mov r2, r0 @ facing 
 mov r0, r6 @ unit 
@@ -72,7 +72,7 @@ StoreFace:
 mov r0, r5 @ unit 
 @ r1 is direction to face by default 
 bl SetUnitFacing @ (struct Unit* unit, int dir)
-
+@bl SetUnitFacingAndUpdateGfx
 
 End: 
 pop {r3} 
