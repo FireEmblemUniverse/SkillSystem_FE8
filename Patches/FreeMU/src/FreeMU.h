@@ -105,6 +105,7 @@ struct FMURam {
 	u8 dir : 2; 
 	u8 silent : 1; 
 	u8 use_dir : 1; 
+	//u8 hp_bar_cache: 1; 
 };
 
 extern struct FMURam* FreeMoveRam; 

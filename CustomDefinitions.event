@@ -12,7 +12,7 @@
 #define DEBUG_MODE 
 
 #define INSTALL_FMU 
-//#define ENABLE_FMU 
+#define ENABLE_FMU 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
 #define USE_HGSS_SPRITES

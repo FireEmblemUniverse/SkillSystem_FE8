@@ -153,13 +153,6 @@
   #else // ENABLE_PERSONAL_INFO
   
       #include "pages/mss_page4.lyn.event"
-		
-    ALIGN 4
-    TxtData0x0D4B:
-      String("Debug Error")
-      BYTE 0
-
-    setText(0x0D4B,TxtData0x0D4B)
   
   #endif // ENABLE_PERSONAL_INFO
   

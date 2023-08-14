@@ -200,6 +200,9 @@ ldrb	r0,[r6,#0xC]			@status byte
 mov		r1,#1					@do not display standing map sprite
 tst		r0,r1
 bne		CheckIfFirstPass
+bl HpBarIsFMUActive
+cmp r0, #0
+bne CheckIfFirstPass 
 
 UnitNotSelected:
 ldr		r0,=WarningCache

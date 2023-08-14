@@ -81,7 +81,7 @@ ENDA
 
 	POP 
 
-
+/*
 	#ifndef setText 
 		#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset | 0x80000000); POP" 
 	#endif 
@@ -104,6 +104,7 @@ ENDA
 	PlaceUnitsHelpText:
 	String("Freely place units.")
 	BYTE 0
+*/
 
 	ALIGN 4
 	ChapterMenu:

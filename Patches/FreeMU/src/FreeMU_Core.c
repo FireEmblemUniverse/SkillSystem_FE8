@@ -24,6 +24,19 @@ u16 CountAvailableBlueUnits(void) { // so we game over with only our Protag aliv
     return result;
 }
 
+int HpBarIsFMUActive(void) { 
+	struct FMUProc* FMUproc = (FMUProc*)ProcFind(FreeMovementControlProc);
+	if (FMUproc && GetFreeMovementState()) { 
+		return true; 
+	
+		//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+		//if (muProc) return; 
+		//asm("mov r11, r11"); 
+	}
+	return false; 
+	
+
+} 
 
 static inline bool IsPosInvaild(s8 x, s8 y){
 	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );

@@ -1,9 +1,5 @@
 EventPointerTable(OaksLabCh,ThisChapter)
-setText(0x160, NewChName)
-ALIGN 4
-NewChName:
-String("Oak")
-BYTE 0
+
 
 ALIGN 4
 ThisChapter:
