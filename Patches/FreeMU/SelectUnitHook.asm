@@ -5,6 +5,10 @@
   .short 0xf800
 .endm
 
+@ https://github.com/FireEmblemUniverse/fireemblem8u/blob/1fe93f07433683fe30cbc34b2488e2fe9937d656/src/bm.c#L459
+@ BmMain_ChangePhase 
+@ 0x8083Eb8 RunPhaseSwitchEvents 
+
 .thumb 
 .equ gActiveUnit, 0x3004E50
 	.equ EventEngine, 0x800D07C
@@ -52,7 +56,7 @@ blh 0x80271A0 @ SMS_UpdateFromGameData
 
 @blh 0x8002D6C @ proc end (player phase) 
 
-blh 0x80225F8 @ Commnd_EndEffect
+
 ldr r3, =FreeMoveRam
 ldr r3, [r3] 
 ldrb r0, [r3] 
@@ -61,6 +65,10 @@ ldrb r1, [r1]
 orr r0, r1 
 strb r0, [r3] 
 bl EnableFreeMovementASMC
+
+@ https://github.com/FireEmblemUniverse/fireemblem8u/blob/1fe93f07433683fe30cbc34b2488e2fe9937d656/src/bm.c#L109
+blh 0x80225F8 @ Commnd_EndEffect
+
 b Exit 
 
 NotSafeToFlee: 
@@ -72,6 +80,7 @@ Exit:
 pop {r0} 
 bx r0 
 .ltorg 
+
 
 .global ShouldRunTurnEventHook
 .type ShouldRunTurnEventHook, %function 

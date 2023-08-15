@@ -1,28 +1,7 @@
 #include "FreeMU.h"
 extern u8 MuCtr_StartMoveTowards(Unit*, u8 x, u8 y, u8, u8 flags); //0x8079DDD
 extern int ProtagID_Link; 
-u16 CountAvailableBlueUnits(void) { // so we game over with only our Protag alive 
-    int i;
 
-    u16 result = 0;
-
-    for (i = 1; i < 0x40; ++i) {
-        struct Unit* unit = GetUnit(i);
-
-        if (!UNIT_IS_VALID(unit))
-            continue;
-
-        if (unit->state & US_UNAVAILABLE)
-            continue;
-		
-		if (unit->pCharacterData->number == ProtagID_Link)
-			continue; 
-
-        ++result;
-    }
-
-    return result;
-}
 
 // used in WarningAndHpBars.s so talk bubble shows up during FMU 
 /* 
@@ -338,14 +317,41 @@ void FMU_ResetDirection(void) {
 	FreeMoveRam->dir = 2; // facing down 
 }
 
+
+u16 CountAvailableBlueUnits(void) { // so we game over with only our Protag alive 
+    int i;
+
+    u16 result = 0;
+
+    for (i = 1; i < 0x40; ++i) {
+        struct Unit* unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+		
+		if (unit->pCharacterData->number == ProtagID_Link)
+			continue; 
+
+        ++result;
+    }
+
+    return result;
+}
+
+
+
 void PhaseSwitchGfx_BreakIfNoUnits(struct Proc* proc) { 
 	if (FreeMoveRam->silent) {
-		//
-		if (gChapterData.currentPhase == 0x80) { 
-		gChapterData.currentPhase = 0;
-		FreeMoveRam->silent = false; } 
-		
 		EndProc(proc);
+		//
+		//if (gChapterData.currentPhase == 0x80) { 
+		//gChapterData.currentPhase = 0;
+		//FreeMoveRam->silent = false; } 
+		//
+		//EndProc(proc);
 
 		return; 
 	}
@@ -357,6 +363,45 @@ void PhaseSwitchGfx_BreakIfNoUnits(struct Proc* proc) {
 } 
 
 
+
+void ProcFun_ResetCursorPosition(Proc* proc)
+{
+    int x, y;
+    
+    x = -1;
+    y = -1;
+	
+	if (FreeMoveRam->silent) {
+        EndProc(proc);
+        return;
+    }
+
+    if (0 == GetPhaseAbleUnitCount(gChapterData.currentPhase)) {
+        EndProc(proc);
+        return;
+    }
+
+    switch (gChapterData.currentPhase) {
+    case FACTION_BLUE:
+        GetPlayerStartCursorPosition(&x, &y);
+        break;
+    
+    case FACTION_GREEN:
+    case FACTION_RED:
+        GetEnemyStartCursorPosition(&x, &y);
+        break;
+    
+    default:
+        break;
+    }
+
+    if ((x >= 0) && (y >= 0)) {
+        EnsureCameraOntoPosition(proc, x, y);
+        SetCursorMapPosition(x, y);
+    }
+}
+
+/*
 unsigned GetPhaseAbleUnitCount(unsigned faction) {
 	if (FreeMoveRam->silent && (gChapterData.currentPhase & 0xC0)) { 
 		return 0; 
@@ -387,7 +432,7 @@ unsigned GetPhaseAbleUnitCount(unsigned faction) {
     }
     return count;
 }
-
+*/
 
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);

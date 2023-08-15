@@ -62,6 +62,7 @@ extern const ProcInstruction gProc_CameraMovement;
 extern const ProcInstruction gProc_Menu; 
 extern const ProcInstruction gProc_Supply; 
 extern const ProcInstruction gProc_Shop; 
+extern const ProcInstruction gProc_MapMain; 
 
 extern int ProtagID_Link; 
 extern u8 StraightLineWeaponsList[];
@@ -105,7 +106,6 @@ struct FMURam {
 	u8 dir : 2; 
 	u8 silent : 1; 
 	u8 use_dir : 1; 
-	//u8 hp_bar_cache: 1; 
 };
 
 extern struct FMURam* FreeMoveRam; 
@@ -130,7 +130,7 @@ bool FMU_CanUnitBeOnPos(Unit*, s8, s8);
 void EnableFreeMovementASMC(void);
 void DisableFreeMovementASMC(void);
 u8 GetFreeMovementState(void);
-void End6CInternal_FreeMU(FMUProc* proc);
+void End6CInternal_FreeMU();
 void ChangeControlledUnitASMC(struct FMUProc*);
 void NewPlayerPhaseEvaluationFunc(struct Proc*);
 void NewMakePhaseControllerFunc(struct Proc*);
@@ -190,6 +190,7 @@ const void CopyTileGfxForObj(void* src, void* dest, u8 width, u8 height); //! FE
 const void MuCtr_OnEnd(Proc* proc);                                       //! FE8U = 0x807A1FD
 extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
 extern u8 MapEventEngineExists(void); 
+void FMU_StartPlayerPhase(void);
 
 void pFMU_DoNothing(struct Proc* proc);
 
@@ -199,6 +200,9 @@ extern u16 GetCameraCenteredX(int x);
 extern u16 GetCameraAdjustedX(int x); 
 extern u16 GetCameraCenteredY(int y); 
 extern u16 GetCameraAdjustedY(int y); 
+
+extern void GetPlayerStartCursorPosition(int *px, int *py);
+extern void GetEnemyStartCursorPosition(int *px, int *py); 
 
 
 struct CamMoveProc {

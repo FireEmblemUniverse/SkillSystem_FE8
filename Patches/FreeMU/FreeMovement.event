@@ -9,7 +9,7 @@
 #include FreeMovementInternal.event
 
 #define EnableFreeMovement "ASMC EnableFreeMovementASMC"
-#define DisableFreeMovement "ASMC DisableFreeMovementASMC"
+#define DisableFreeMovement "ASMC End6CInternal_FreeMU"
 
 ALIGN 4 
 ProtagID_Link:

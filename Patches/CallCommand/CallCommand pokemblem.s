@@ -71,7 +71,7 @@ Start:
 LoopThroughFirst5Units:
 add r4, #1  @ r4 also increases in NextUnit 
 add r5, #1 
-cmp r5, #6 
+cmp r5, #7 
 bge End @ We have found all the units we need to act upon 
 
 LoopThroughUnits:

@@ -46,7 +46,9 @@ int FMU_OnButton_EndFreeMove(void){
 	FreeMoveRam->silent = false; 
 	FMU_ResetLCDIO();
 	ProcGoto((Proc*)proc,0xF);
-	End6CInternal_FreeMU(proc);
+	End6CInternal_FreeMU();
+	FMU_StartPlayerPhase();
+	SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 	return 0xB7; // close menu etc 
 }
 
@@ -60,9 +62,11 @@ int FMU_EndFreeMoveSilent(void){
 		gActiveUnit->xPos = proc->xTo; 
 		gActiveUnit->yPos = proc->yTo; 
 		ProcGoto((Proc*)proc,0xF);
-		End6CInternal_FreeMU(proc);
+		End6CInternal_FreeMU();
 	}
 	//SetupActiveUnit(gActiveUnit); 
+	FMU_StartPlayerPhase();
+	SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 	CallCommandEffect(); 
 	return 0xB7; // close menu etc 
 }

@@ -76,6 +76,7 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
  
 
 void EnableFreeMovementASMC(void){
+	gChapterData.currentPhase = 0x40;
 	FreeMoveRam->state = true; 
 	FreeMoveRam->use_dir = true; 
 	return;
@@ -91,11 +92,15 @@ u8 GetFreeMovementState(void){
 	return FreeMoveRam->state;
 }
 
-void End6CInternal_FreeMU(FMUProc* proc){
-	DisableFreeMovementASMC();
-	ProcGoto((Proc*)proc,0xF);
-	BreakEachProcLoop(FMU_IdleProc); 
-	EndProc((Proc*)proc); 
+void End6CInternal_FreeMU(){
+	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+	FreeMoveRam->state = false; 
+	FreeMoveRam->use_dir = false; 
+	if (proc) { 
+		ProcGoto((Proc*)proc,0xF);
+		BreakEachProcLoop(FMU_IdleProc); 
+		EndProc((Proc*)proc); 
+	} 
 	return;	
 }
 
@@ -113,14 +118,24 @@ void pFMU_DoNothing(struct Proc* proc) {
 	return; 
 } 
 
+void FMU_StartPlayerPhase() { 
+	ProcGoto(ProcFind(&gProc_MapMain),0x5);
+	//gChapterData.currentPhase = 0; 
+	FreeMoveRam->silent = false; 
+	FreeMoveRam->state = false; 
+}
+
 void NewPlayerPhaseEvaluationFunc(struct Proc* ParentProc){
 	if( GetFreeMovementState() ) { 
 		//ProcStartBlocking(FreeMovementControlProc,ParentProc);
 		ProcStartBlocking(FMU_IdleProc,ParentProc);
 		ProcStart(FreeMovementControlProc, ROOT_PROC_3);
 	} 
-	else
+	else { 
 		ProcGoto(ProcStartBlocking(gProc_PlayerPhase,ParentProc),0x7);
+		//gChapterData.currentPhase = 0; 
+		//FreeMoveRam->silent = false; 
+	} 
 	BreakProcLoop(ParentProc);
 	return;
 }

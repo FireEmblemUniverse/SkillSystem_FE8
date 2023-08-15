@@ -1,6 +1,10 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 
+SET_FUNC ProcFun_ResetCursorPosition, 0x801def1 
+SET_FUNC GetPlayerStartCursorPosition, 0x801DE31 
+SET_FUNC GetEnemyStartCursorPosition, 0x801de89 
+
 SET_FUNC StatScreen_OnClose, 0x80888b5
 SET_DATA gProcScr_SSGlowyBlendCtrl, 0x8a00844
 SET_FUNC PhaseSwitchGfx_BreakIfNoUnits, 0x801F2AD
