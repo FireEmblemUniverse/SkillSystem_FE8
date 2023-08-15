@@ -244,7 +244,7 @@ ldr r3, =0x203A958 @ ActionStruct
 mov r0, r5 @ Unit 
 ldrb r1, [r3, #0x13] @ X 
 ldrb r2, [r3, #0x14] @ Y 
-@bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
+bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
 
 
 @ldrb r1, [r5, #0x10] @ x 

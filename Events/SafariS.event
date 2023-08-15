@@ -43,7 +43,7 @@ Reinforce(0xF0, 1, ReinforcementUnits, 4, 4)
 Reinforce(0xF1, 1, ReinforcementUnits, 6, 4) 
 Reinforce(0xF2, 1, ReinforcementUnits, 5, 4) 
 Reinforce(0xF3, 1, ReinforcementUnits, 2, 4) 
-Reinforce(0xF4, 1, ReinforcementUnits, 3, 4) 
+Reinforce(0xF4, 1, ReinforcementUnits_Water, 3, 4) 
 }
 
 
@@ -214,6 +214,10 @@ UNIT
 
 ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
+
+ReinforcementUnits_Water:
+UNIT Reinforcement0 ClassSafariWildE 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
 BossUnit:
