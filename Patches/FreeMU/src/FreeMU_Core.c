@@ -24,6 +24,16 @@ u16 CountAvailableBlueUnits(void) { // so we game over with only our Protag aliv
     return result;
 }
 
+// used in WarningAndHpBars.s so talk bubble shows up during FMU 
+/* 
+ldrb	r0,[r6,#0xC]			@status byte
+mov		r1,#1					@do not display standing map sprite
+tst		r0,r1
+bne		CheckIfFirstPass
+bl HpBarIsFMUActive
+cmp r0, #0
+bne CheckIfFirstPass 
+*/ 
 int HpBarIsFMUActive(void) { 
 	struct FMUProc* FMUproc = (FMUProc*)ProcFind(FreeMovementControlProc);
 	if (FMUproc && GetFreeMovementState()) { 
@@ -34,8 +44,6 @@ int HpBarIsFMUActive(void) {
 		//asm("mov r11, r11"); 
 	}
 	return false; 
-	
-
 } 
 
 static inline bool IsPosInvaild(s8 x, s8 y){

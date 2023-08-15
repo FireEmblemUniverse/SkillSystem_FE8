@@ -21,6 +21,12 @@ ASMC Reinforce_SpawnIfFull
 NoFade 
 ENDA 
 
+MoveNextToEvent: 
+MOVENEXTTO (-1) 0x7FFE 0x7FFD 
+ENUN 
+NoFade 
+ENDA 
+
 ENUNEvent:
 //ShowAnimationAll(healing_ID)
 // Sparkle_4 ? SummonGfx? LightRuneAnim? 

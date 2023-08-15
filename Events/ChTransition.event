@@ -655,7 +655,7 @@ NoFade
 ENDA 
 
 
-LoadReinforcements2:
+//LoadReinforcements2:
 CHECK_ALIVE 0x7FFD 
 BEQ 0x63 rC r0 //If bush is dead, break 
 

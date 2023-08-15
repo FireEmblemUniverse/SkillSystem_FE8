@@ -244,7 +244,23 @@ ldr r3, =0x203A958 @ ActionStruct
 mov r0, r5 @ Unit 
 ldrb r1, [r3, #0x13] @ X 
 ldrb r2, [r3, #0x14] @ Y 
-bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
+@bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
+
+
+@ldrb r1, [r5, #0x10] @ x 
+@ldrb r2, [r5, #0x11] @ y 
+@ldr r3, =MemorySlot 
+@add r3, #4*0x0B 
+@mov r0, #0 
+@str r0, [r3] 
+@strb r1, [r3] 
+@strb r2, [r3, #2] 
+@
+@ldr r0, =MoveNextToEvent
+@mov r1, #1 
+@blh EventEngine 
+
+
 
 
 
@@ -321,8 +337,9 @@ str r3,[sp,#0x10]
 str r3,[sp,#0x14]
 str r3,[sp,#0x18]
 @str r3,[sp,#0x1C] @ this was a mistake Sme made, as it overwrites something we haven't allocated 
-
-mov r3,#2 @ Speed 
+@mov r3, #0 r3 is already 0 
+sub r3, #1 
+@mov r3,#0xFF @ Speed 
 @r0 = char struct, target x coord, target y coord, speed 
 blh MuCtr_CreateWithReda, r4 @ 0x8079DDC
 add sp,#0x1C 
