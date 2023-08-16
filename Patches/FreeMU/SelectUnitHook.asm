@@ -53,8 +53,15 @@ str r0, [r4, #0x0C] @ remove hide bitflag
 blh 0x80271A0 @ SMS_UpdateFromGameData
 
 
+ldr r0, [r6, #0x14] @ proc parent 
+mov r1, #5 @ label 5 (start phase) 
+blh 0x8002F24 @ ProcGoto (bmmapmain) 
 
-@blh 0x8002D6C @ proc end (player phase) 
+mov r0, r6 
+blh 0x8002D6C @ proc end (player phase) 
+
+
+
 
 
 ldr r3, =FreeMoveRam
@@ -67,7 +74,7 @@ strb r0, [r3]
 bl EnableFreeMovementASMC
 
 @ https://github.com/FireEmblemUniverse/fireemblem8u/blob/1fe93f07433683fe30cbc34b2488e2fe9937d656/src/bm.c#L109
-blh 0x80225F8 @ Commnd_EndEffect
+@blh 0x80225F8 @ Commnd_EndEffect
 
 b Exit 
 

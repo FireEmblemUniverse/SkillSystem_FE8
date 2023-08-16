@@ -1,3 +1,5 @@
+
+#ifdef INSTALL_OTHER_LANGUAGES 
 #include "GetStringFromIndex.lyn.event" 
 
 ALIGN 4 
@@ -10,6 +12,6 @@ POIN TextTable
 POIN TextTable_Spanish
 //POIN TextTable_Chinese 
 
-
+#endif 
 
 

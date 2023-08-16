@@ -11,10 +11,13 @@
 // Comment out for public releases
 #define DEBUG_MODE 
 
+// Config options 
 #define INSTALL_FMU 
 #define ENABLE_FMU 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
+//#define INSTALL_OTHER_LANGUAGES
+//#define INSTALL_SPANISH 
 #define USE_HGSS_SPRITES
 //#define USE_PMD_SPRITES
 
