@@ -243,7 +243,8 @@ bl    GOTO_R4
 Return:
 
 mov r8, r8 
-mov  r11, r11 
+mov r8, r8 
+@mov  r11, r11 
 mov r8, r8 
 
 pop   {r4-r7}

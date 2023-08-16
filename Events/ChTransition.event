@@ -54,7 +54,33 @@ DISA ProtagID
 NoFade 
 ENDA 
 
+PUSH 
+ORG $D38C 
+POIN NewSuspendEvent 
+POP 
 
+NewSuspendEvent: 
+EVBIT_MODIFY 0x4
+TEXTSTART
+TEXTSHOW 0x8FE
+TEXTEND
+SVAL 0x7 0x1
+BNE 0x0 0xC 0x7
+ASMC 0xB5D5D
+TEXTSHOW2 0x8FF
+TEXTEND
+MUSCMID 0x7FFF
+FADI 4
+#ifdef INSTALL_FMU
+DisableFreeMovement
+ASMC EnableFreeMovementBits // enable the ram 
+
+#endif 
+MNTS 0x0
+LABEL 0x0
+REMA
+EVBIT_T 0x7
+ENDA
 
 //prep - make stuff unequipped 
 //leave prep chapter - auto equip accessories 
@@ -1323,6 +1349,7 @@ UNCR(0x7FFD, 0x42)
 CHECK_COORDS 0x7FFD 
 SADD rB rC r0 
 SET_CURSOR_SB
+//OverrideActorCoords
 
 EVBIT_F 2
 NoFade 

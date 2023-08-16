@@ -71,12 +71,17 @@ bool FMU_CanUnitBeOnPos(Unit* unit, s8 x, s8 y){
 	return FMU_CanUnitCrossTerrain(unit, gMapTerrain[y][x]); //CanUnitCrossTerrain(unit, gMapTerrain[y][x]);
 }
 
-
+void EnableFreeMovementBits(void){ // used by suspend after ending FMU 
+	//gChapterData.currentPhase = 0x40;
+	FreeMoveRam->state = true; 
+	FreeMoveRam->use_dir = true; 
+	return;
+}
 
  
 
 void EnableFreeMovementASMC(void){
-	gChapterData.currentPhase = 0x40;
+	//gChapterData.currentPhase = 0x40;
 	FreeMoveRam->state = true; 
 	FreeMoveRam->use_dir = true; 
 	return;
@@ -121,7 +126,7 @@ void pFMU_DoNothing(struct Proc* proc) {
 void FMU_StartPlayerPhase() { 
 	ProcGoto(ProcFind(&gProc_MapMain),0x5);
 	//gChapterData.currentPhase = 0; 
-	FreeMoveRam->silent = false; 
+	//FreeMoveRam->silent = false; 
 	FreeMoveRam->state = false; 
 }
 
@@ -140,27 +145,29 @@ void NewPlayerPhaseEvaluationFunc(struct Proc* ParentProc){
 	return;
 }
  
+
 void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 	const ProcCode* pTmpProcCode = FreeMovementControlProc;
 	if(0==GetFreeMovementState())
 	{
-		
+		// if not FMU, start PlayerPhase or AiPhase 
 		if( 0==gChapterData.currentPhase || FreeMoveRam->silent ) { 
 			pTmpProcCode=gProc_PlayerPhase;
 			//FreeMoveRam->silent = false; 
 			//gChapterData.currentPhase = 0; 
 			if (FreeMoveRam->silent) { 
-			SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
+			//SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 			} 
 		}
 		else { 
-			pTmpProcCode=gProc_CpPhase;
+			pTmpProcCode=gProc_CpPhase; // ai phase 
 			ProcStartBlocking(pTmpProcCode,ParentProc);
 			BreakProcLoop(ParentProc);
 			return; 
 		} 	
 	}
 	
+	// if FMU, start FMU phase 
 	if (pTmpProcCode == FreeMovementControlProc) { 
 	ProcStartBlocking(FMU_IdleProc,ParentProc);
 	ProcStart(pTmpProcCode, ROOT_PROC_3); 
@@ -171,6 +178,7 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 	BreakProcLoop(ParentProc);
 	return;
 }
+
 
 
 /*

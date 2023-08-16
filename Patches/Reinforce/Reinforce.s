@@ -337,9 +337,7 @@ str r3,[sp,#0x10]
 str r3,[sp,#0x14]
 str r3,[sp,#0x18]
 @str r3,[sp,#0x1C] @ this was a mistake Sme made, as it overwrites something we haven't allocated 
-@mov r3, #0 r3 is already 0 
-sub r3, #1 
-@mov r3,#0xFF @ Speed 
+mov r3,#2 @ Speed 
 @r0 = char struct, target x coord, target y coord, speed 
 blh MuCtr_CreateWithReda, r4 @ 0x8079DDC
 add sp,#0x1C 

@@ -373,6 +373,7 @@ void ProcFun_ResetCursorPosition(Proc* proc)
 	
 	if (FreeMoveRam->silent) {
         EndProc(proc);
+		FreeMoveRam->silent = false; 
         return;
     }
 

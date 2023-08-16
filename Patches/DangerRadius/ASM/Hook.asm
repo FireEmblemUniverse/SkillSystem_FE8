@@ -21,7 +21,7 @@ bne   Return                      @ Return (KeyStatusBuffer) if start was presse
   beq   Return                    @ Return if select wasn't pressed.
 
     @ Select was pressed.
-    bl    DetermineDR
+    @bl    DetermineDR
     
 
 Return:
