@@ -2,7 +2,7 @@
 #include "Extensions\Hack Installation.txt"
 
 #ifdef _FE8_
-
+//r4=0xd001d001
 PUSH
 
 ORG 0x1336
@@ -18,7 +18,7 @@ RNGBodyFE8:
 PUSH
 
 ORG 0x0A4C
-jumpToHack(bootHackBodyFE8)
+//jumpToHack(bootHackBodyFE8)
 
 POP
 
@@ -28,8 +28,8 @@ bootHackBodyFE8:
 
 PUSH
 
-ORG 0xC3C
-jumpToHack(resumeHackBodyFE8)
+ORG 0xC3C // 0x8000C34
+//jumpToHack(resumeHackBodyFE8)
 
 POP
 
@@ -38,3 +38,4 @@ resumeHackBodyFE8:
 #incbin ResumeHackFE8.dmp
 
 #endif
+
