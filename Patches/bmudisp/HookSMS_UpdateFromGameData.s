@@ -16,7 +16,7 @@ SkipLines:
 str r5, [r6, #0x3c] 
 
 mov r0, r6 @ unit 
-bl GetUnitFacing
+@bl GetUnitFacing
 @cmp r0, #2 @ facing downwards already 
 @beq Exit 
 
@@ -24,7 +24,12 @@ mov r2, r0 @ facing
 mov r0, r6 @ unit 
 ldr r1, [r0, #4] @ class 
 ldrb r1, [r1, #6] @ smsID 
-bl UpdateSMSDir @(struct Unit* unit, u8 smsID, int facing)
+
+mov r1, r2 @ direction 
+bl SetUnitFacing 
+
+@ previously crashed here sometimes during enemy phase ai stuff 
+@bl UpdateSMSDir @(struct Unit* unit, u8 smsID, int facing)
 Exit: 
 
 
@@ -71,8 +76,9 @@ b StoreFace
 StoreFace: 
 mov r0, r5 @ unit 
 @ r1 is direction to face by default 
-bl SetUnitFacing @ (struct Unit* unit, int dir)
-@bl SetUnitFacingAndUpdateGfx
+@bl SetUnitFacing @ (struct Unit* unit, int dir)
+@ this may be dangerous idk 
+bl SetUnitFacingAndUpdateGfx
 
 End: 
 pop {r3} 

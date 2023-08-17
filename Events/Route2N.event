@@ -97,6 +97,7 @@ CountPlayersInRange_ASMC(2, 2, 11, 12)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
+STAL 5
 CAM1 [9,7]
 CUMO [9,7]
 STAL 30

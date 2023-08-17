@@ -39,7 +39,8 @@ END_MAIN
 
 RocketMagikarpEvent:
 
-EVBIT_MODIFY 4 
+EVBIT_MODIFY 4
+STAL 5
 CAM1 [10,11]
 TEXTSTART 
 TEXTSHOW RocketMagikarpText_A
@@ -116,6 +117,7 @@ CountPlayersInRange_ASMC(3,4, 21, 19)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
+STAL 5
 CAM1 [14,11]
 CUMO [14,11]
 STAL 30

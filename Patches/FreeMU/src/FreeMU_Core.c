@@ -982,6 +982,12 @@ void SetUnitFacing(struct Unit* unit, int dir) {
 	((struct unitFacing*)&unit->supportBits)->dir = dir;
 } 
 
+void SetUnitFacingAndUpdateGfx(struct Unit* unit, int dir) { 
+	((struct unitFacing*)&unit->supportBits)->dir = dir;
+	u8 smsID = unit->pClassData->SMSId;
+	UpdateSMSDir(unit, smsID, dir); 
+} 
+
 int GetUnitFacing(struct Unit* unit) { 
 	return ((struct unitFacing*)&unit->supportBits)->dir;
 } 
@@ -1021,8 +1027,8 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 	
 	int addX = 0; int addY = 0; int subX = 0; int subY = 0; 
 	if (facing == MU_FACING_RIGHT) addX = 1; 
-	if (facing == MU_FACING_LEFT) subX = 1;
-	if (facing == MU_FACING_DOWN) addY = 1; 
+	if (facing == MU_FACING_DOWN) subX = 1; // This is intentional; unit facing is not the same as MU_FACING I guess 
+	if (facing == MU_FACING_LEFT) addY = 1; // yes 
 	if (facing == MU_FACING_UP) subY = 1; 
 	
 	
