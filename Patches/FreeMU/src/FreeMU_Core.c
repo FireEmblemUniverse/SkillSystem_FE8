@@ -640,8 +640,10 @@ void pFMUCtr_OnEnd(Proc* proc){
   MuCtr_OnEnd(proc); // 0x807a270 
   
   // Determine facing direction and update sms.
-  if (FMUproc!=NULL && GetFreeMovementState())
+  if (FMUproc!=NULL && GetFreeMovementState()) { 
+	gActiveUnit->state &= ~US_HIDDEN; 
     pFMU_UpdateSMS(FMUproc);
+  } 
 
   return;
 }
@@ -1070,7 +1072,7 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 
 extern const struct SMSData NewStandingMapSpriteTable[];
 
-
+extern u8 gGenericBuffer2[0x1000];
 // u8 EWRAM_DATA gSMSGfxBuffer[3][8*0x20*0x20] = {};
 void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) { 
 
@@ -1091,23 +1093,23 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
     return;
   
   if (facing == MU_FACING_LEFT) {
-	Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer);
+	Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer2);
 	//Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer);
 	//Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer);
   }
   
    if (facing == MU_FACING_RIGHT) {
-	Decompress(FMU_idleSMSGfxTable_right[smsID]+srcOffs[0], gGenericBuffer);
+	Decompress(FMU_idleSMSGfxTable_right[smsID]+srcOffs[0], gGenericBuffer2);
 	//Decompress(FMU_idleSMSGfxTable_right[smsID]+srcOffs[0], gGenericBuffer);
 	//Decompress(FMU_idleSMSGfxTable_right[smsID]+srcOffs[0], gGenericBuffer);
   }
   if (facing == MU_FACING_UP) {
-	Decompress(FMU_idleSMSGfxTable_up[smsID]+srcOffs[0], gGenericBuffer);
+	Decompress(FMU_idleSMSGfxTable_up[smsID]+srcOffs[0], gGenericBuffer2);
 	//Decompress(FMU_idleSMSGfxTable_up[smsID]+srcOffs[0], gGenericBuffer);
 	//Decompress(FMU_idleSMSGfxTable_up[smsID]+srcOffs[0], gGenericBuffer);
   }
   if (facing == MU_FACING_DOWN) {
-	Decompress(NewStandingMapSpriteTable[smsID].pGraphics+srcOffs[0], gGenericBuffer);
+	Decompress(NewStandingMapSpriteTable[smsID].pGraphics+srcOffs[0], gGenericBuffer2);
 	//Decompress(NewStandingMapSpriteTable[smsID].pGraphics+srcOffs[0], gGenericBuffer);
 	//Decompress(NewStandingMapSpriteTable[smsID].pGraphics+srcOffs[0], gGenericBuffer);
   }
@@ -1126,9 +1128,9 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
   srcOffs[1] = srcOffs[0] + (0x80 << (size << 2));
   srcOffs[2] = srcOffs[1] + (0x80 << (size << 2));
   */
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[0], (void*)gSMSGfxBuffer_Frame1+(tileIndex<<5), width>>3, height>>3);
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[1], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
-  CopyTileGfxForObj((void*)gGenericBuffer+srcOffs[2], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer2+srcOffs[0], (void*)gSMSGfxBuffer_Frame1+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer2+srcOffs[1], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
+  CopyTileGfxForObj((void*)gGenericBuffer2+srcOffs[2], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
   
   
   // Overwrite VRAM with new SMS next frame. Timings taken from 0x8026F2C, SyncUnitSpriteSheet.

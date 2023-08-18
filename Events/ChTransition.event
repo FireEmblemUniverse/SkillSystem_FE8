@@ -1079,14 +1079,13 @@ ENDA
 
 
 VisitPokecenter:
-
 CHECK_COORDS 0x7FFF
 SADD rB rC r0 
 CALL ConvertFromMemSlotBCoord
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
-
+CALL HandleProtag 
 MNC2 PCBoxCh 
 NoFade 
 ENDA 

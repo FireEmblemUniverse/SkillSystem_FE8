@@ -1,5 +1,6 @@
 
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+SET_DATA gGenericBuffer2, 0x2021188 
 
 SET_FUNC ProcFun_ResetCursorPosition, 0x801def1 
 SET_FUNC GetPlayerStartCursorPosition, 0x801DE31 
