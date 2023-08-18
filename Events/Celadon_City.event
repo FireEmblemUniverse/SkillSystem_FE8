@@ -43,6 +43,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchaseJynxevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseJynxText)
 CheckIfCaught(DoduoID) 
 BEQ 30 sC s0 
@@ -51,7 +52,6 @@ BEQ 30 sC s0
 CheckIfCaught(PidgeottoID)
 BEQ 30 sC s0 
 
-EVBIT_MODIFY 4 
 WallText(PurchaseJynxText)
 LOAD1 1 JynxUnitGroup  
 ENUN 
@@ -91,6 +91,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedJynxFlag
 
 LABEL 63 
 NoFade
@@ -200,6 +201,7 @@ CHECK_EVENTID RandomizeClassesFlag
 BEQ 0 sC s0 
 TutText(SlotMachineDoesntWorkProperly)
 LABEL 0 
+PauseFreeMovement
 CALL SlotMachine_Main
 //TutText(ComingSoonText)
 NoFade 

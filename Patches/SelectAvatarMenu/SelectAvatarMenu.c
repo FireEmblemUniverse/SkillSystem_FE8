@@ -187,21 +187,17 @@ int SelectAvatarCommandSelect(struct MenuProc* menu, struct MenuCommandProc* com
 {
 	struct SelectAvatarProc* proc = (struct SelectAvatarProc*)ProcFind(Proc_SelectAvatar); 
 	proc->destruct = true; 
-	//ProcGoto((Proc*)proc, 1); // Destructor label 
-	//struct ClassData classTable = &NewClassTable; 
-	struct Unit* protagUnit = LoadUnit(&ProtagUnitGroup2);
-	//int classID = AvatarClass_Table[menu->commandIndex].classID; 
-	//for (int i = 0; i <= classID; i++) { 
-		//classTable++; 
-	//} 
+
+	//struct Unit* protagUnit = LoadUnit(&ProtagUnitGroup2);
+
 	u8 classID = AvatarClass_Table[menu->commandIndex].classID;
-	protagUnit->pClassData = &NewClassTable[classID]; 
+	//protagUnit->pClassData = &NewClassTable[classID]; 
 	if (classID != RedID_Link) { 
 		SetEventId(GirlProtagFlag_Link); 
 	}
 	
 	//*PlayerAvatarClass_Link = AvatarClass_Table[menu->commandIndex].classID;
-	SMS_UpdateFromGameData();
+	//SMS_UpdateFromGameData();
 	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 
     //return ME_PLAY_BEEP;

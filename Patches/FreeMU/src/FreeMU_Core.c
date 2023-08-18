@@ -92,7 +92,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 #define RealEventMinimumFrames 3 // we don't wait for events that have lasted 1-6 frames 
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	int exit_early = false; 
-	if (ProcFind(&gProc_Menu) || ProcFind(&gProc_Shop)) {
+	if (ProcFind(&gProc_Menu) || ProcFind(&gProc_Shop) || ProcFind(&gProc_TargetSelection) || ProcFind(&gProc_TradeMenu)) {
 		exit_early = true; 
 	}
 	if (ProcFind(&gProc_Supply)) { 
@@ -147,7 +147,10 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->updateCameraAfterEvent = true; 
 		return; 
 	}
-	
+	if (FreeMoveRam->pause) {
+		FreeMoveRam->pause = false; 
+		pFMU_OnInit(proc); // setup active unit 
+	} 
 	if (proc->updateCameraAfterEvent) { 
 		//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 		//if (muProc) { 
@@ -157,10 +160,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		return; 
 	}
 	
-	if (FreeMoveRam->pause) {
-		FreeMoveRam->pause = false; 
-		pFMU_OnInit(proc); // setup active unit 
-	} 
+
 	
 	if (proc->updateAfterStatusScreen && (proc->countdown == 0)) {	
 		//asm("mov r11, r11"); 
@@ -454,6 +454,10 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	//ShowUnitSMS(gActiveUnit);
 	//gActiveUnit->state &= ~1; 
 	//SMS_UpdateFromGameData();
+	for (int i = 1; i<0x40; i++) { // refresh all players when starting FMU 
+		struct Unit* unit = GetUnit(i); 
+		unit->state &= ~(US_UNSELECTABLE | US_CANTOING); 
+	} 
 	
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
 	proc->updateSMS = false; 

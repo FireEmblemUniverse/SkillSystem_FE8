@@ -29,6 +29,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchaseLaprasevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseLaprasText)
 CheckIfCaught(VenusaurID) 
 BNE 31 sC s0 
@@ -78,6 +79,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedLaprasFlag
 
 LABEL 63 
 NoFade
@@ -171,6 +173,7 @@ CountPlayersInRange_ASMC(0,0,23,19)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [5,14]
 CUMO [5,14]

@@ -36,7 +36,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchasePsyduckevent:
-
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchasePsyduckText)
 CheckIfCaught(MankeyID) 
 BEQ 30 sC s0 
@@ -45,7 +45,7 @@ BEQ 30 sC s0
 CheckIfCaught(RattataID)
 BEQ 30 sC s0 
 
-EVBIT_MODIFY 4 
+
 WallText(PurchasePsyduckText)
 LOAD1 1 PsyduckUnitGroup  
 ENUN 
@@ -86,7 +86,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
-
+ENUF PurchasedPsyduckFlag 
 
 LABEL 63 
 NoFade
@@ -170,6 +170,7 @@ CountPlayersInRange_ASMC(8,5,24,19)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAMERA [19,13]
 CUMO [19,13]
@@ -193,6 +194,7 @@ CountPlayersInRange_ASMC(7,19,26,34)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_B
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [15,25]
 CUMO [15,25]
@@ -216,6 +218,7 @@ CountPlayersInRange_ASMC(8,0,19,11)
 BEQ 99 sC s0 
 ENUT 0x19
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [15,4]
 CUMO [15,4]
@@ -540,6 +543,7 @@ TDQ_TableTerminator
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xF, SSA_0xE0_BD, 1800) // Gary
 BD((OaksAide-0xE0), ViridianOaksAideBD, 1) 
+TDQ_TableTerminator
 }
 
 	

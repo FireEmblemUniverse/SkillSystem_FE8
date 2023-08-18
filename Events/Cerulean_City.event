@@ -45,6 +45,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchaseGrowlitheevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseGrowlitheText)
 CheckIfCaught(BellsproutID) 
 BEQ 30 sC s0 
@@ -93,6 +94,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedGrowlitheFlag
 
 LABEL 63 
 NoFade
@@ -215,6 +217,7 @@ CountPlayersInRange_ASMC(0,16,31,31)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [25,31]
 CUMO [25,31]

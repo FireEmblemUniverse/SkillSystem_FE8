@@ -107,9 +107,20 @@ FADI 16
 
 CALL NameInputEvent
 SelectAvatar
-SVAL s1 ProtagID 
-SVAL s3 3 // up
-ASMC SetUnitFacingASMC
+
+CHECK_EVENTID GirlProtagFlag 
+BEQ 31 sC s0 
+LOAD1 1 ProtagUnitGroupFemaleSelect
+GOTO 32 
+LABEL 31 
+LOAD1 1 ProtagUnitGroupMaleSelect
+LABEL 32 
+ENUN 
+
+
+//SVAL s1 ProtagID 
+//SVAL s3 3 // up
+//ASMC SetUnitFacingASMC
 
 ASMC SaveGameSeed
 
@@ -215,6 +226,14 @@ ASMC RegisterAllOwnedPokemon
 NoFade
 ENDA
 
+ALIGN 4 
+ProtagUnitGroupMaleSelect:
+UNIT ProtagID  RedID 0x1 Level(LVFACEUP,Ally,0)   [7,13] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+ALIGN 4 
+ProtagUnitGroupFemaleSelect:
+UNIT ProtagID  GreenID 0x1 Level(LVFACEUP,Ally,0)   [7,13] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
 
 
 ShopItems:

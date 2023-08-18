@@ -84,6 +84,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 ENUF ChampionDefeatedPhaseOne
 LOAD1 1 BossTrainer
 ENUN 

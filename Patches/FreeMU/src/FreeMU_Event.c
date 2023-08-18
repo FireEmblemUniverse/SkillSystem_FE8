@@ -161,10 +161,15 @@ bool FMUmisc_RunTalkEvents(struct FMUProc* proc){
 	u8 y = gActiveUnit->yPos;
 	u8 SubjectCharID = proc->FMUnit->pCharacterData->number;
 	
+	
  if (proc->smsFacing==0)      x--;
   else if (proc->smsFacing==1) x++;
   else if (proc->smsFacing==2) y++;
   else                         y--;
+	u8 targetDeployID = gMapUnit[y][x];
+	if (targetDeployID) 
+		gActionData.targetIndex = targetDeployID; 
+
 
   if(RunTalkEventTemplate(SubjectCharID,x,y)) return 1;
 	

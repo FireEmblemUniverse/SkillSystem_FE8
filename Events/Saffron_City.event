@@ -46,6 +46,7 @@ TrainerPostBattleTalk(0xE2) // NPC talk again
 END_MAIN
 
 PurchaseHitmonchanevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseHitmonchanText)
 CheckIfCaught(ScytherID) 
 BEQ 30 sC s0 
@@ -94,12 +95,14 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedHitmonchanFlag
 
 LABEL 63 
 NoFade
 ENDA 
 
 PurchaseHitmonleeevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseHitmonleeText)
 CheckIfCaught(KangaskhanID) 
 BEQ 30 sC s0 
@@ -148,6 +151,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedHitmonleeFlag
 
 LABEL 63 
 NoFade

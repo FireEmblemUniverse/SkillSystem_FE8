@@ -51,6 +51,7 @@
 
 HandleProtag:
 DisableFreeMovement 
+SendAllTransporter(ProtagID)
 DISA ProtagID 
 NoFade 
 ENDA 
@@ -523,7 +524,7 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 #ifdef ENABLE_FMU
 CHECK_EVENTID GirlProtagFlag 
 BEQ 0 sC s0 
-LOAD1 0 ProtagUnitGroupFemale
+LOAD1 1 ProtagUnitGroupFemale
 GOTO 1 
 LABEL 0 
 LOAD1 1 ProtagUnitGroupMale 
@@ -1191,9 +1192,7 @@ ENDA
 
 ChTransition: 
 
-#ifdef INSTALL_FMU
-CALL HandleProtag 
-#endif 
+
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
 
@@ -1203,6 +1202,9 @@ EVBIT_F 2
 SVAL r7 1 
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
+#ifdef INSTALL_FMU
+CALL HandleProtag 
+#endif 
 
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0
@@ -1348,7 +1350,7 @@ SPAWN_NPC 0xFD [-1,-1]
 EVBIT_T 2 // Scene skipping 
 MOVENEXTTO (-1) 0x7FFD 0x7FFE // speed, unit unit 
 ENUN 
-
+STAL 5 
 CAM1 0xFD 
 DISA 0xFD 
 UNCR(0x7FFD, 0x42) 

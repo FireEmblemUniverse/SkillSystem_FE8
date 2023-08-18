@@ -86,7 +86,14 @@ ldrb r3, [r3, #4] @ unit ID
 ldr r2, =ProtagID_Link 
 ldr r2, [r2] 
 cmp r2, r3 
+bne Continue 
+ldr r1, =CurrentUnit 
+ldr r1, [r1] @ Current unit ram struct pointer 
+ldr r1, [r1] @ unit pointer 
+ldrb r1, [r1, #4] 
+cmp r1, r2 
 beq NextUnit 
+Continue:  
 ldr r3,[r0,#0xC] @ condition word
 @ if you add +1 to include Hide (eg 0x4F), it'll ignore the active unit, which may be useful 
 mov r2,#0x4F @ moved/dead/undeployed/cantoing 

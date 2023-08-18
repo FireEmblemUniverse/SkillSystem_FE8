@@ -220,6 +220,9 @@ ENDA
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 CHECK_EVENTID VolcanobadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag

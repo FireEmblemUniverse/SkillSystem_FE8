@@ -41,6 +41,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchaseFarfetchdevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseFarfetchdText)
 CheckIfCaught(VulpixID) 
 BEQ 30 sC s0 
@@ -89,6 +90,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedFarfetchdFlag
 
 LABEL 63 
 NoFade
@@ -151,6 +153,7 @@ CountPlayersInRange_ASMC(25,12, 41,16)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_A
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [32,13]
 CUMO [32,13]
@@ -174,6 +177,7 @@ CountPlayersInRange_ASMC(25,12, 41,16)
 BEQ 99 sC s0 
 ENUT DisableTutFlag_B
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [30,12]
 CUMO [30,12]
@@ -197,6 +201,7 @@ CountPlayersInRange_ASMC(25,12, 41,16)
 BEQ 99 sC s0 
 ENUT 0x19
 EVBIT_MODIFY 4
+PauseFreeMovement
 STAL 5
 CAM1 [34,12]
 CUMO [34,12]

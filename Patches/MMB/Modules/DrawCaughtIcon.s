@@ -74,6 +74,15 @@ MMBDrawCaughtIcon:
 
 cmp r1, #0 
 beq End 
+
+@ only display for wild pokemon (unit IDs 0x50 - 0x9F) 
+ldr r0, [r5] 
+ldrb r0, [r0, #4] @ unit ID 
+cmp r0, #0x50 
+blt End 
+cmp r0, #0xA0 
+bge End 
+
 	@ Check if caught
 	ldr r0, [r5, #4] 
 	ldrb r0, [r0, #4] @ class id 

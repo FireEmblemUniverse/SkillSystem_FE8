@@ -58,6 +58,8 @@ struct MuCtr {
 
 }; 
 extern const ProcInstruction gUnknown_089A2DB0; 
+extern const ProcInstruction gProc_TargetSelection; 
+extern const ProcInstruction gProc_TradeMenu; 
 extern const ProcInstruction gProc_CameraMovement; 
 extern const ProcInstruction gProc_Menu; 
 extern const ProcInstruction gProc_Supply; 

@@ -95,8 +95,10 @@ void DisableFreeMovementASMC(void){
 
 void PauseFreeMovementASMC(void){
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
-	if (proc) 
+	if (proc) {
 		FreeMoveRam->pause = true; 
+		proc->updateCameraAfterEvent = true; 
+	}
 	
 	return; 
 } 

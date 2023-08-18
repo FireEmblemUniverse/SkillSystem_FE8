@@ -132,6 +132,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 MOVE (-1) 0x101 [13,28]
 MOVE (-1) 0x102 [13,29]
 MOVE (-1) 0x103 [19,28]

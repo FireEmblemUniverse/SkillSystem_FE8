@@ -26,7 +26,7 @@ void AlwaysInitTrap(struct EventTrapData* eTrap) {
 	AddTrapExtFix(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0, 0); 
 } 
 void InitIfNewFlagInByte3IsOff(struct EventTrapData* eTrap) { 
-	if (!(CheckNewFlag_No_sC(eTrap->data[3]))) { 
+	if (!(CheckNewFlag_No_sC(eTrap->data[2]))) { // 2 because type comes first 
 		AddTrapExtFix(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0, 0); 
 	}
 } 
@@ -34,7 +34,7 @@ void InitIfNewFlagInByte3IsOff(struct EventTrapData* eTrap) {
 
 	
 struct Trap* NewGetAdjacentTrap(struct Unit* unit, int trapID_low, int trapID_high) { 
-	struct Trap* trap = 0; 
+	struct Trap* trap = NULL; 
 	int x = unit->xPos; 
 	int y = unit->yPos; 
 	
@@ -52,15 +52,26 @@ struct Trap* NewGetAdjacentTrap(struct Unit* unit, int trapID_low, int trapID_hi
 			return 0; 
 	} 
 	
-	//for (int i = 0; i < 4; i++) { 
-	//	if (i == 0) x++; 
-	//	if (i == 1) x-= 2; 
-	//	if (i == 2) { x++; y++; } 
-	//	if (i == 3) y-= 2; 
-	//	trap = GetTrapAt(x, y);
-	//	if ((trap->type >= trapID_low) && (trap->type <= trapID_high)) 
-	//		return trap;
-	//} 
+	x++; 
+	trap = GetTrapAt(x, y); 
+	if (trap && (trap->type >= trapID_low) && (trap->type <= trapID_high)) {
+	return trap; } 
+	x--; x--; 
+	trap = GetTrapAt(x, y); 
+	if (trap && (trap->type >= trapID_low) && (trap->type <= trapID_high)) {
+	return trap; } 
+	
+	x++; y++; 
+	trap = GetTrapAt(x, y); 
+	if (trap && (trap->type >= trapID_low) && (trap->type <= trapID_high)) {
+	return trap; } 
+	
+	y--; y--; 
+	trap = GetTrapAt(x, y); 
+	if (trap && (trap->type >= trapID_low) && (trap->type <= trapID_high)) {
+	return trap; } 
+	
+
 	return 0; 
 } 
 
@@ -138,8 +149,8 @@ int NewPickBerryTreeEffect(void) {
 	int berries = 0; 
 	if (trap) berries = trap->data[0];
 	if (berries) { 
-		trap->data[0] = 0; // no more berries 
 		gEventSlot[4] = berries; 
+		trap->data[0] = 0; // no more berries 
 		CallMapEventEngine(&PickBerryEvent, EV_RUN_CUTSCENE);
 		gActionData.unitActionType = 0x10; // only use up turn if we got a berry 
 	} 

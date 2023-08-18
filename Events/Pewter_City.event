@@ -42,6 +42,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchaseOddishevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseOddishText)
 CheckIfCaught(CaterpieID) 
 BEQ 30 sC s0 
@@ -90,6 +91,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedOddishFlag
 
 LABEL 63 
 NoFade

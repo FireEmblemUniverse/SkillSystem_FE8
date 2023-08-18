@@ -43,6 +43,7 @@ TrainerPostBattleTalk(OaksAide) // NPC talk again
 END_MAIN
 
 PurchaseMagmarevent:
+EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseMagmarText)
 CheckIfCaught(VenonatID) 
 BEQ 30 sC s0 
@@ -91,6 +92,7 @@ SET_ACTIVE 0x7ffe
 GOTO 63 
 
 LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedMagmarFlag
 
 LABEL 63 
 NoFade
