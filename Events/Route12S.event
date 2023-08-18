@@ -71,6 +71,7 @@ ENUF 0x10
 SetUnitStatus(0xEE, BadStatus, 0) // [0202D22C]?
 STAL 40
 ReturnToMapBGM
+PauseFreeMovement
 SET_ACTIVE 0
 EndTurn
 GOTO 63 

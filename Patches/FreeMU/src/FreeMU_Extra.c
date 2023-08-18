@@ -93,6 +93,14 @@ void DisableFreeMovementASMC(void){
 	return;
 }
 
+void PauseFreeMovementASMC(void){
+	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+	if (proc) 
+		FreeMoveRam->pause = true; 
+	
+	return; 
+} 
+
 u8 GetFreeMovementState(void){
 	return FreeMoveRam->state;
 }

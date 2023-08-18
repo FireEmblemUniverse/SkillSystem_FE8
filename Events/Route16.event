@@ -71,6 +71,7 @@ EnterGateNE:
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [20,6]
 ENUN
@@ -83,6 +84,7 @@ EnterGateNW:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [27,6]
 ENUN
@@ -94,6 +96,7 @@ EnterGateSE:
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [20,13]
 ENUN
@@ -106,6 +109,7 @@ EnterGateSW:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [27,13]
 ENUN

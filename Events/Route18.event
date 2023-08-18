@@ -60,6 +60,7 @@ LABEL 10
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [41,9]
 ENUN
@@ -73,6 +74,7 @@ EnterGateW:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [48,9]
 ENUN

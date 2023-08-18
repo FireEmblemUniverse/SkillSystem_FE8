@@ -1,9 +1,6 @@
 .thumb
 
 pop {r3}
-b ReturnSequence
-ldr r0, GetRandomNumberFunction
-bl bxr0
 
 
 ldr r0, AttackerData
@@ -17,9 +14,9 @@ ldrb r0, [r0, #0x00]
 cmp r0, #0x00
 bne ReturnSequence
 
-@ldr r0, GetRandomNumberFunction
-@bl bxr0
-@b ReturnSequence
+ldr r0, GetRandomNumberFunction
+bl bxr0
+b ReturnSequence
 
 or1:
 ldr r0, ActiveUnitDeploymentNumber

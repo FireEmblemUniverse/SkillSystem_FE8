@@ -82,6 +82,11 @@ blh GetUnit @ 19430
 ldr r3,[r0]
 cmp r3,#0
 beq NextUnit
+ldrb r3, [r3, #4] @ unit ID 
+ldr r2, =ProtagID_Link 
+ldr r2, [r2] 
+cmp r2, r3 
+beq NextUnit 
 ldr r3,[r0,#0xC] @ condition word
 @ if you add +1 to include Hide (eg 0x4F), it'll ignore the active unit, which may be useful 
 mov r2,#0x4F @ moved/dead/undeployed/cantoing 

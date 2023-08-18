@@ -108,6 +108,7 @@ Vendor(ShopItems,22,27)
 END_MAIN
 
 EnterPillagedHouseS:
+PauseFreeMovement
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
 SET_ACTIVE 0
@@ -119,6 +120,7 @@ ENDA
 
 
 EnterPillagedHouseN:
+PauseFreeMovement
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
 SET_ACTIVE 0

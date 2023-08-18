@@ -246,9 +246,9 @@ b TeleportSignUsability
 
 
 TeleportSignUsability:
-bl GetFreeMovementState
-cmp r0, #0 
-bne Usability_RetFalse
+@bl GetFreeMovementState
+@cmp r0, #0 
+@bne Usability_RetFalse
 
 ldr r4,=#0x3004E50
 ldr r0,[r4]

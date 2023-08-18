@@ -179,6 +179,7 @@ GenericDisappearEffect(11, PowerPlantRightElectrode2)
 GenericDisappearEffect(12, PowerPlantLeftElectrode2)
 
 EndActionEvent: 
+PauseFreeMovement
 CHECK_COORDS 0x7FFf
 SADD rB rC r0 
 SET_CURSOR_SB

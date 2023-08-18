@@ -30,6 +30,7 @@ FMU_FunctionList_OnPressSelect:
 
 ALIGN 4
 FMU_FunctionList_OnPressStart:
+	POIN FMU_OnButton_StartMenu|1
 	FMU_FunctionList_End	
 
 

@@ -99,6 +99,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		MU_EndAll();
 		exit_early = true; 
 	}
+	struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
+	if (eventProc && FreeMoveRam->pause) { 
+		exit_early = true; 
+	}
+	
 	
 	//if (ProcFind(&gProc_StatScreen)) { 
 	
@@ -107,7 +112,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->countdown = 1; 
 	} 
 	
-	struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
+	
 	if (eventProc) { 
 		if (eventProc->evStallTimer || eventProc->pUnitLoadData || eventProc->activeTextType) { 
 			proc->yield = true; 
@@ -151,6 +156,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->updateCameraAfterEvent = false; 
 		return; 
 	}
+	
+	if (FreeMoveRam->pause) {
+		FreeMoveRam->pause = false; 
+		pFMU_OnInit(proc); // setup active unit 
+	} 
 	
 	if (proc->updateAfterStatusScreen && (proc->countdown == 0)) {	
 		//asm("mov r11, r11"); 
@@ -499,6 +509,13 @@ int FMU_HandleContinuedMovement(void) {
 	
 	if (proc->eventEngineTimer >= RealEventMinimumFrames) 
 		return (-1); 
+	
+	if (FreeMoveRam->pause) { 
+		struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
+		if (eventProc) { 
+			return (-1); 
+		} 
+	}
 	
 	struct MUProc* muProc = (struct MUProc*)ProcFind(&gProc_MoveUnit[0]);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 

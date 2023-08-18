@@ -50,6 +50,7 @@
 */
 
 HandleProtag:
+DisableFreeMovement 
 DISA ProtagID 
 NoFade 
 ENDA 
@@ -505,7 +506,11 @@ NoFade
 ENDA 
 
 ALIGN 4 
-ProtagUnitGroup:
+ProtagUnitGroupMale:
+UNIT ProtagID  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+ALIGN 4 
+ProtagUnitGroupFemale:
 UNIT ProtagID  GreenID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 
 
@@ -516,12 +521,12 @@ SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, 
 #endif 
 #ifdef INSTALL_FMU
 #ifdef ENABLE_FMU
-CHECK_EXISTS ProtagID 
-BNE 0 sC s0 
-LOAD1 0 ProtagUnitGroup
+CHECK_EVENTID GirlProtagFlag 
+BEQ 0 sC s0 
+LOAD1 0 ProtagUnitGroupFemale
 GOTO 1 
 LABEL 0 
-LOAD1 1 ProtagUnitGroup 
+LOAD1 1 ProtagUnitGroupMale 
 LABEL 1 
 ENUN 
 
@@ -601,6 +606,7 @@ ENDA
 
 
 HealPartyWithSFXEvent:
+PauseFreeMovement
 _MUSICSOMETHING 0x7FFF 
 SOUN 0x19 // Pokecenter chime 
 CALL HealPartyEvent 
@@ -1168,7 +1174,7 @@ ENDA
 ForceChTransition:
 ENUF TrainerBattleActiveFlag
 #ifdef INSTALL_FMU
-DisableFreeMovement
+CALL HandleProtag 
 #endif 
 SADD 2 9 0 
 MNC2 (-1) 
@@ -1187,7 +1193,7 @@ ENDA
 ChTransition: 
 
 #ifdef INSTALL_FMU
-DisableFreeMovement
+CALL HandleProtag 
 #endif 
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
@@ -1331,6 +1337,7 @@ ENDA
 
 
 FastTravelEvent:
+PauseFreeMovement
 TutText(KnowledgeArea)
 CHECK_ACTIVE 
 SADD r2 rC r0 
@@ -1373,6 +1380,7 @@ NoFade
 ENDA 
 
 PlacePlayers:
+PauseFreeMovement
 SET_ACTIVE 0
 SPAWN_NPC 0xFD [0,0]
 Read_Byte(XCoordNewArea)

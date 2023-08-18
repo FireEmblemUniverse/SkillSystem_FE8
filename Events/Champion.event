@@ -258,7 +258,7 @@ SADD s9 sC s0
 MUSI; 
 SMOV 0x2 ChampionsRoomBG; // background 
 CALL $9EE2E8; 
-
+PauseFreeMovement
 SET_ACTIVE 0 
 
 

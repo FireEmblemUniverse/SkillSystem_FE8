@@ -90,7 +90,7 @@ MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,AlwaysUsable,ReorderMovesEf
   UM_Drop
 //UM_Item
 MenuCommand(UM_Learnset, UM_LearnsetDesc, NormalText, AlwaysUsable, ViewLearnsetCommand_OnSelect)
-MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, AlwaysUsable, ReleaseCommandEffect)
+MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, ReleaseCommandUsability, ReleaseCommandEffect)
  
 /*
 BYTE 0xB0 0x7D 0xD 0x8 0x8D 0x6 0xD3 0x6 0x0 0x67 0x0 0x0 0xB9 0x32 0x2 0x8 0 0 0 0 0xE9 0x32 0x2 0x8 0 0 0 0 0 0 0 0 0 0 0 0	//持ち物 Item

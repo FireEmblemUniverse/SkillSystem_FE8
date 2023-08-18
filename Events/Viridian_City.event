@@ -19,7 +19,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-TurnEventPlayer(0,DebugTurnEvent, 2, 255)
+//TurnEventPlayer(0,DebugTurnEvent, 2, 255)
 
 END_MAIN
 

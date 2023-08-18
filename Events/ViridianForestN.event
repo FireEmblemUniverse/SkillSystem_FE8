@@ -180,6 +180,7 @@ EVBIT_MODIFY 4
 WallText(HireGeodudeText)
 LOAD1 1 HireGeodudeUnitGroup  
 ENUN 
+PauseFreeMovement
 SelectCharacter(HiredPokemonUnitID, 0, 0, 0, 0, 800, 0, 0, 0, 0) 
 SVAL sB 0x100 
 BEQ 10 sC sB 

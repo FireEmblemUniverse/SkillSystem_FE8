@@ -7,6 +7,10 @@ ALIGN 4
 PlayerAvatarClass_Link:
 WORD PlayerAvatarClass
 
+RedID_Link: 
+WORD RedID 
+GirlProtagFlag_Link: 
+WORD GirlProtagFlag 
 
 ALIGN 4 
 AvatarClass_Table:

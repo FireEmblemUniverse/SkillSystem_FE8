@@ -141,10 +141,10 @@ int SelectAvatarCommandDraw(struct MenuProc* menu, struct MenuCommandProc* comma
 int SelectAvatarASMC(struct Proc* parent)
 {
 	struct SelectAvatarProc* proc;
-	if (parent != NULL)
-        proc = (void*) ProcStartBlocking(Proc_SelectAvatar, parent);
-    else
-        proc = (void*) ProcStart(Proc_SelectAvatar, ROOT_PROC_3);
+	if (parent != NULL) { 
+	proc = (void*) ProcStartBlocking(Proc_SelectAvatar, parent); } 
+    else { 
+	proc = (void*) ProcStart(Proc_SelectAvatar, ROOT_PROC_3); } 
 	
 	ResetMapSpriteHoverTimer();
     proc->countdown = 0; 
@@ -180,6 +180,9 @@ void SelectAvatar_DrawTitle(struct SelectAvatarProc* proc) {
 
 extern struct UnitDefinition ProtagUnitGroup2; 
 extern struct ClassData NewClassTable[]; 
+extern void SetEventId(int flag);
+extern int RedID_Link; 
+extern int GirlProtagFlag_Link; 
 int SelectAvatarCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
 	struct SelectAvatarProc* proc = (struct SelectAvatarProc*)ProcFind(Proc_SelectAvatar); 
@@ -191,7 +194,12 @@ int SelectAvatarCommandSelect(struct MenuProc* menu, struct MenuCommandProc* com
 	//for (int i = 0; i <= classID; i++) { 
 		//classTable++; 
 	//} 
-	protagUnit->pClassData = &NewClassTable[AvatarClass_Table[menu->commandIndex].classID]; 
+	u8 classID = AvatarClass_Table[menu->commandIndex].classID;
+	protagUnit->pClassData = &NewClassTable[classID]; 
+	if (classID != RedID_Link) { 
+		SetEventId(GirlProtagFlag_Link); 
+	}
+	
 	//*PlayerAvatarClass_Link = AvatarClass_Table[menu->commandIndex].classID;
 	SMS_UpdateFromGameData();
 	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;

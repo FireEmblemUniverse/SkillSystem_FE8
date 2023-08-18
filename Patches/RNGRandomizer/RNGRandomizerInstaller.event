@@ -18,7 +18,7 @@ RNGBodyFE8:
 PUSH
 
 ORG 0x0A4C
-//jumpToHack(bootHackBodyFE8)
+jumpToHack(bootHackBodyFE8)
 
 POP
 
@@ -29,7 +29,7 @@ bootHackBodyFE8:
 PUSH
 
 ORG 0xC3C // 0x8000C34
-//jumpToHack(resumeHackBodyFE8)
+jumpToHack(resumeHackBodyFE8)
 
 POP
 
