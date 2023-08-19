@@ -361,11 +361,11 @@ LABEL 1
 
 
 LABEL 0x63
-//SVAL s1 1 // unit id 
-//SVAL s3 1 // facing right 
-//ASMC SetUnitFacingASMC
+SVAL s1 0xEA // unit id 
+SVAL s3 1 // facing right 
+ASMC SetUnitFacingASMC
 
-
+//ASMC UpdateSMSDir_All
 
 
 NoFade

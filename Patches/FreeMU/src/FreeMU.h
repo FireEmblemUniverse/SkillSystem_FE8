@@ -113,7 +113,7 @@ struct FMURam {
 
 extern struct FMURam* FreeMoveRam; 
 
-struct unitFacing { // uses +0x38 supportBits 
+struct unitFacing { // uses +0x39 supportBits 
 	u8 dir : 2; 
 };
 

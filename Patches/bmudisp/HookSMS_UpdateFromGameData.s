@@ -74,11 +74,17 @@ mov r1, #0
 b StoreFace 
 
 StoreFace: 
+mov r2, #3 
+and r1, r2 
+
+Store2: 
 mov r0, r5 @ unit 
 @ r1 is direction to face by default 
-@bl SetUnitFacing @ (struct Unit* unit, int dir)
+mov r11, r11 
+bl SetUnitFacing @ (struct Unit* unit, int dir)
+
 @ this may be dangerous idk 
-bl SetUnitFacingAndUpdateGfx
+@bl SetUnitFacingAndUpdateGfx
 
 End: 
 pop {r3} 

@@ -9,7 +9,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 
 // Config options 
 #define INSTALL_FMU 
@@ -348,14 +348,14 @@ String("V1.07                 Aug 2023") ; BYTE 0; POP // this overflows into th
 #define PurchasedOddishFlag 0xDD 
 #define PurchasedGrowlitheFlag 0xDE
 #define PurchasedFarfetchdFlag 0xDF
-#define PurchasedElectabuzzFlag 0xE0
+//#define CasualModeFlag_2 0xE0
 #define PurchasedMagmarFlag 0xE1
 #define PurchasedJynxFlag 0xE2
 #define PurchasedHitmonchanFlag 0xE3
 #define PurchasedHitmonleeFlag 0xE4
 #define PurchasedLaprasFlag 0xE5
 #define GirlProtagFlag 0xE6 
-
+#define PurchasedElectabuzzFlag 0xE7
 
 // Unit IDs 
 #define OaksAide 0xEA 

@@ -994,7 +994,7 @@ void SetUnitFacingASMC(void) { // this uses the generic buffer, so it must be us
 	struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
 	int dir = gEventSlot[3]; 
 
-	((struct unitFacing*)&unit->supportBits)->dir = dir;
+	((struct unitFacing*)&unit->supports[5])->dir = dir;
 	
 	u8 smsID = unit->pClassData->SMSId;
 	UpdateSMSDir(unit, smsID, dir); 
@@ -1002,17 +1002,17 @@ void SetUnitFacingASMC(void) { // this uses the generic buffer, so it must be us
 } 
 
 void SetUnitFacing(struct Unit* unit, int dir) { 
-	((struct unitFacing*)&unit->supportBits)->dir = dir;
+	((struct unitFacing*)&unit->supports[5])->dir = dir;
 } 
 
 void SetUnitFacingAndUpdateGfx(struct Unit* unit, int dir) { 
-	((struct unitFacing*)&unit->supportBits)->dir = dir;
+	((struct unitFacing*)&unit->supports[5])->dir = dir;
 	u8 smsID = unit->pClassData->SMSId;
 	UpdateSMSDir(unit, smsID, dir); 
 } 
 
 int GetUnitFacing(struct Unit* unit) { 
-	return ((struct unitFacing*)&unit->supportBits)->dir;
+	return ((struct unitFacing*)&unit->supports[5])->dir;
 } 
 
 
@@ -1095,9 +1095,9 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
    // Do nothing if no different-direction facing idle sprites exist.
   if (FMU_idleSMSGfxTable_left[smsID] == NULL)
     return;
-  
+// I've had issue with using this at the same time as the map is being updated, which also uses gGenericBuffer, so I moved it 0x1000 in. 
   if (facing == MU_FACING_LEFT) {
-	Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer2);
+	Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer2);  
 	//Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer);
 	//Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer);
   }
@@ -1147,6 +1147,28 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
   else
     RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
   return;
+} 
+
+void UpdateSMSDir_All(void) { 
+	struct Unit* unit = NULL; 
+	u8 smsID; 
+	int dir; 
+	int limit = 10; 
+	
+	for (int i = 1; i<0xC0; i++) { 
+		unit = GetUnit(i); 
+		if (!UNIT_IS_VALID(unit)) {
+			continue; }
+		dir = GetUnitFacing(unit); //MU_COMMAND_FACE_DOWN
+		if (dir != MU_COMMAND_FACE_DOWN) { 
+			smsID = unit->pClassData->SMSId;
+			UpdateSMSDir(unit, smsID, dir);
+			limit--;  
+			if (limit < 1) { 
+				break; 
+			} 
+		} 
+	} 
 } 
 
 void pFMU_UpdateSMS(struct FMUProc* proc){
