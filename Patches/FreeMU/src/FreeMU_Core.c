@@ -990,29 +990,40 @@ void FMU_ClearActionAndSave(struct FMUProc* proc) {
 	PlayerPhase_Suspend(); 
 } 
 
+
+extern int FacingBitOffset_Link; 
+extern int DirectionNumberOfBits_Link; 
+extern u32* GetUnitDebuffEntry(struct Unit* unit); 
+extern u32 UnpackData(u32*, int, int); 
+extern u32 PackData(u32*, int, int, int value); 
+
 void SetUnitFacingASMC(void) { // this uses the generic buffer, so it must be used selectively! 
 	struct Unit* unit = GetUnitStructFromEventParameter(gEventSlot[1]); 
 	int dir = gEventSlot[3]; 
 
-	((struct unitFacing*)&unit->supports[5])->dir = dir;
-	
+	//((struct unitFacing*)&unit->supports[5])->dir = dir;
+	PackData(GetUnitDebuffEntry(unit), FacingBitOffset_Link, DirectionNumberOfBits_Link, dir);
 	u8 smsID = unit->pClassData->SMSId;
 	UpdateSMSDir(unit, smsID, dir); 
 	
 } 
 
+
 void SetUnitFacing(struct Unit* unit, int dir) { 
-	((struct unitFacing*)&unit->supports[5])->dir = dir;
+	//((struct unitFacing*)&unit->supports[5])->dir = dir;
+	PackData(GetUnitDebuffEntry(unit), FacingBitOffset_Link, DirectionNumberOfBits_Link, dir);
 } 
 
 void SetUnitFacingAndUpdateGfx(struct Unit* unit, int dir) { 
-	((struct unitFacing*)&unit->supports[5])->dir = dir;
+	//((struct unitFacing*)&unit->supports[5])->dir = dir;
+	PackData(GetUnitDebuffEntry(unit), FacingBitOffset_Link, DirectionNumberOfBits_Link, dir);
 	u8 smsID = unit->pClassData->SMSId;
 	UpdateSMSDir(unit, smsID, dir); 
 } 
 
 int GetUnitFacing(struct Unit* unit) { 
-	return ((struct unitFacing*)&unit->supports[5])->dir;
+	//return ((struct unitFacing*)&unit->supports[5])->dir;
+	return UnpackData(GetUnitDebuffEntry(unit), FacingBitOffset_Link, DirectionNumberOfBits_Link);
 } 
 
 
@@ -1159,8 +1170,8 @@ void UpdateSMSDir_All(void) {
 		unit = GetUnit(i); 
 		if (!UNIT_IS_VALID(unit)) {
 			continue; }
-		dir = GetUnitFacing(unit); //MU_COMMAND_FACE_DOWN
-		if (dir != MU_COMMAND_FACE_DOWN) { 
+		dir = GetUnitFacing(unit); //MU_FACING_DOWN
+		if (dir != MU_FACING_DOWN) { 
 			smsID = unit->pClassData->SMSId;
 			UpdateSMSDir(unit, smsID, dir);
 			limit--;  

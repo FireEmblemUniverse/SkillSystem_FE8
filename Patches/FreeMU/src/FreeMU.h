@@ -160,6 +160,7 @@ bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y);
 void FMU_ResetLCDIO(void);
 int gMapPUnit(int x, int y);
 void SetUnitFacing(struct Unit* unit, int dir);
+void SetUnitFacingAndUpdateGfx(struct Unit* unit, int dir);
 int GetUnitFacing(struct Unit* unit);
 void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing);
 

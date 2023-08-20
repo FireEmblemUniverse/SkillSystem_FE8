@@ -78,7 +78,13 @@ void EnableFreeMovementBits(void){ // used by suspend after ending FMU
 	return;
 }
 
- 
+void SuspendDisableFreeMovement(void) { 
+	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+	if (proc) {
+		End6CInternal_FreeMU();
+		EnableFreeMovementBits(); 
+	}
+} 
 
 void EnableFreeMovementASMC(void){
 	//gChapterData.currentPhase = 0x40;

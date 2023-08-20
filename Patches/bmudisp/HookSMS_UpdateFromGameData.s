@@ -16,7 +16,7 @@ SkipLines:
 str r5, [r6, #0x3c] 
 
 mov r0, r6 @ unit 
-@bl GetUnitFacing
+bl GetUnitFacing
 @cmp r0, #2 @ facing downwards already 
 @beq Exit 
 
@@ -79,8 +79,9 @@ and r1, r2
 
 Store2: 
 mov r0, r5 @ unit 
+@mov r1, #3 
 @ r1 is direction to face by default 
-mov r11, r11 
+@mov r11, r11 
 bl SetUnitFacing @ (struct Unit* unit, int dir)
 
 @ this may be dangerous idk 

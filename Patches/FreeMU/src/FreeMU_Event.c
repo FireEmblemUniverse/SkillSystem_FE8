@@ -7,12 +7,47 @@ void pFMU_RunMiscBasedEvents(struct FMUProc* proc){
 	RunMiscBasedEvents(proc->xCur, proc->yCur);
 	return;
 }
+// ORG $271F8 SHORT $46C0 // make units not in the unit map still appear 
+// maybe hook around here and check for FMU running 
+void TryUnhideSteppedOnUnit(struct FMUProc* proc, int x, int y) { 
+	struct Unit* unit; 
+	for (int i = 1; i<0xC0; i++) { 
+		unit = GetUnit(i); 
+		if (!UNIT_IS_VALID(unit)) { 
+		continue; }
+		if ((unit->xPos != x) || (unit->yPos != y)) {
+		continue; }
+		if (unit == gActiveUnit) { 
+		continue; } 
+		if (proc->commandID != 0xFF) { 
+		continue; } 
+		//asm("mov r11, r11"); 
+		//gMapUnit[y][x] = unit->index; 
+		
+		//RefreshUnitsOnBmMap();
+		//SMS_UpdateFromGameData();
+		//unit->state &= ~US_HIDDEN; 
+		proc->countdown = 10; 
+		proc->yield = true; 
+		
+		//proc->commandID = 0;
+		//proc->command[0] = 0xFF; 
+		
+		proc->updateSMS = true; 
+
+	} 
+} 
 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
+	int x = proc->xCur; 
+	int y = proc->yCur; 
 	proc->xCur = proc->xTo; 
 	proc->yCur = proc->yTo; 
 	gActiveUnit->xPos = proc->xCur; 
 	gActiveUnit->yPos = proc->yCur; 
+	TryUnhideSteppedOnUnit(proc, x, y); 
+	
+	
 	if( FMU_RunTrapASMC_Auto(proc) )
 	{
 		return yield;
@@ -184,6 +219,25 @@ static bool RunTalkEventTemplate(u8 SubjectCharID, s8 x, s8 y){
 	Unit* UnitTowards = GetUnit(gMapUnit[y][x]);
 	u8 TargetCharID  = UnitTowards->pCharacterData->number;
 	if(CheckForCharacterEvents(SubjectCharID,TargetCharID)){
+		int activeX = gActiveUnit->xPos; 
+		int activeY = gActiveUnit->yPos; 
+		int targetX = UnitTowards->xPos; 
+		int targetY = UnitTowards->yPos; 
+		int dirX = activeX - targetX; 
+		int dirY = activeY - targetY; 
+		if (dirX == 1) { // 
+		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_RIGHT); }
+		if (dirX == (-1)) { // 
+		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_LEFT); }
+		if (dirY == 1) { // 
+		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_DOWN); }
+		if (dirY == (-1)) { // 
+		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_UP); }
+		
+			
+		
+		
+		
 		RunCharacterEvents(SubjectCharID,TargetCharID);
 		return 1;
 	}

@@ -98,6 +98,10 @@ ALIGN 4
 DebuffStatNumberOfBits_Link:
 WORD DebuffStatNumberOfBits 
 
+ALIGN 4 
+DirectionNumberOfBits_Link: 
+WORD 2 
+
 // Buffs/Debuffs - Rallies - Half Str/Mag/Hp - Armor March - Vigor Dance 
 // Cut: Steel/Silver self-debuffs that restore independently 
 // These now debuff yourself regularly (eg. you don't recover a self-debuff and an enemy debuff independently) 
@@ -155,6 +159,8 @@ ArmorMarchBitOffset_Link:
 WORD MiscOffset+3
 VigorDanceBitOffset_Link:
 WORD MiscOffset+4 
+FacingBitOffset_Link:
+WORD MiscOffset+5 // also +6 
 
 
 ALIGN 4 

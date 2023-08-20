@@ -74,9 +74,7 @@ TEXTEND
 MUSCMID 0x7FFF
 FADI 4
 #ifdef INSTALL_FMU
-DisableFreeMovement
-ASMC EnableFreeMovementBits // enable the ram 
-
+ASMC SuspendDisableFreeMovement // enable the ram 
 #endif 
 MNTS 0x0
 LABEL 0x0
