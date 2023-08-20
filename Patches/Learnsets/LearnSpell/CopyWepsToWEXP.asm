@@ -31,13 +31,13 @@ add r5, #1
 add r6, #2 
 cmp r6, #0x28 
 bge Exit 
-ldrb r0, [r4, r6] 
-blh GetItemAttributes
+@ldrb r0, [r4, r6] 
+@blh GetItemAttributes
 ldrb r2, [r4, r6] 
-mov r1, #1 @ equip 
-tst r0, r1 
-bne Store 
-mov r2, #0 
+@mov r1, #1 @ equip 
+@tst r0, r1 
+@bne Store 
+@mov r2, #0 
 Store: 
 strb r2, [r4, r5] 
 b Loop 

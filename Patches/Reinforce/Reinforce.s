@@ -118,7 +118,9 @@ ldrb r0, [r0, #4] @ Unit ID
 bl Reinforce_GetTableEntry
 ldr r1, =0xFFFFFFFF 
 cmp r0, r1 
-beq False 
+bne ContinueHere
+b False 
+ContinueHere: 
 
 mov r7, r0 
 mov r1, #0 
@@ -239,7 +241,34 @@ ldrb r1, [r3, #0x14] @ Y
 
 bl AddToMaps @ r0 XX, r1 YY 
 
+@ on randomized mode, do not move spawned pkmn if on water 
+ldr r0, =RandomizeClassesFlag 
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+beq Continue 
+ldrb r0, [r5, #0x10] @ X 
+ldrb r1, [r5, #0x11] @ Y 
 
+ldr		r2,=0x202E4DC @ terrain map 	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+cmp r0, #0x10 @ shallow 
+beq GotoNextLoop 
+cmp r0, #0x15 @ sea 
+beq GotoNextLoop 
+cmp r0, #0x16 @ shallow 
+beq GotoNextLoop 
+cmp r0, #0x36 @ deeps 
+beq GotoNextLoop 
+
+
+Continue: 
 ldr r3, =0x203A958 @ ActionStruct 
 mov r0, r5 @ Unit 
 ldrb r1, [r3, #0x13] @ X 

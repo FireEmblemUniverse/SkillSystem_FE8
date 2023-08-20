@@ -1070,8 +1070,12 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 	if (facing == MU_FACING_LEFT) subX = 1; 
 	if (facing == MU_FACING_DOWN) addY = 1; 
 	if (facing == MU_FACING_UP) subY = 1; 
-	
-	
+	if (range == 3) { 
+		range = 4; 
+	} 
+	if (range < 3) { 
+		range = 3; 
+	} 
 	if (dangerRadius) {
 		int x = unit->xPos;
 		int y = unit->yPos;
