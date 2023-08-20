@@ -77,8 +77,8 @@ bge End @ We have found all the units we need to act upon
 LoopThroughUnits:
 mov r0,r4
 blh GetUnit @ 19430
-@cmp r0,#0
-@beq NextUnit
+cmp r0,#0
+beq NextUnit
 ldr r3,[r0]
 cmp r3,#0
 beq NextUnit
