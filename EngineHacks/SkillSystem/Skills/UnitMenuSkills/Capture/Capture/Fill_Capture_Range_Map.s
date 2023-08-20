@@ -16,6 +16,9 @@ mov		r5,#0x11
 ldsb	r5,[r0,r5]
 ldr		r1,Const1
 str		r0,[r1]
+
+
+
 ldr		r0,Clear_Map_Func
 mov		r14,r0
 ldr		r0,RangeMap
@@ -39,21 +42,29 @@ bl All_Weapons_One_Square
 
 @extern void MakeTargetListForWeapon(Unit* unit, int item); // 0x080251B4.
 
+ldr		r0,Clear_Map_Func
+mov		r14,r0
+ldr		r0,RangeMap
+ldr		r0,[r0]
+mov		r1,#0x0
+.short	0xF800
+
+@ based on ForEachPosIn12Range at 0x8025038 
 mov r0, r4 
 mov r1, r5 
-blh 0x804F8A4 @ Init Targets 
+blh 0x804F8A4 @ Init Targets @ (Route 1 testing 30013D3 ?? but 3001406+ is fine)
 
-@mov r0, r4 
-@mov r1, r5 
-@mov r2, #1 
-@mov r3, #1 @ value  
-@blh 0x801AABC @ 
-@mov r3, #1 
-@neg r3, r3 
-@mov r0, r4 
-@mov r1, r5 
-@mov r2, #0 @ can't attack at 0 range  
-@blh 0x801AABC @ map add in range 
+mov r0, r4 
+mov r1, r5 
+mov r2, #2 
+mov r3, #1 @ value  
+blh 0x801AABC @ 
+mov r3, #1 
+neg r3, r3 
+mov r0, r4 
+mov r1, r5 
+mov r2, #0 @ can't attack at 0 range  
+blh 0x801AABC @ map add in range 
 
 
 ldr		r0, =ForEachUnitInRange		

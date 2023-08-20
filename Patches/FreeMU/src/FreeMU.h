@@ -36,8 +36,9 @@ struct FMUProc {
 	/* 44 */    void* pEventIdk; 
 	/* 48 */    u8 updateCameraAfterEvent; 
 	/* 49 */    u8 updateAfterStatusScreen;
-	/* 4a */    u8 commandID; //scriptedMovement 
-	/* 4b */    u8 command[0x15]; //scriptedMovement 
+	/* 4a */    u8 updateDangerZone; 
+	/* 4b */    u8 commandID; //scriptedMovement 
+	/* 4c */    u8 command[0x14]; //scriptedMovement 
 };
 
 struct MuCtr { 
@@ -196,6 +197,7 @@ extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
 extern u8 MapEventEngineExists(void); 
 void FMU_StartPlayerPhase(void);
 
+void FMU_EnableDR(void);
 void pFMU_DoNothing(struct Proc* proc);
 
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
@@ -204,6 +206,9 @@ extern u16 GetCameraCenteredX(int x);
 extern u16 GetCameraAdjustedX(int x); 
 extern u16 GetCameraCenteredY(int y); 
 extern u16 GetCameraAdjustedY(int y); 
+
+extern void SetEventId(int); 
+extern void UnsetEventId(int); 
 
 extern void GetPlayerStartCursorPosition(int *px, int *py);
 extern void GetEnemyStartCursorPosition(int *px, int *py); 

@@ -22,6 +22,15 @@ MMBRenderCaughtIcon:
 	push	{r4, lr}
 
 	mov		r4, r0
+	
+@ only display for wild pokemon (unit IDs 0x50 - 0x9F) 
+ldr r0, [r1] 
+ldrb r0, [r0, #4] @ unit ID 
+cmp r0, #0x50 
+blt End2 
+cmp r0, #0xA0 
+bge End2 
+	
 
 	@@ Otherwise r0 contains the slot,
 	@@ use to get the proper icon tile

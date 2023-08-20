@@ -38,6 +38,9 @@ SHORT $1c19 // mov r1, r3
 callHackNew(ShouldRunTurnEventHook)
 SHORT $46c0 
 
+ORG $271EC 
+callHackNew(DoNotHideOverlappingUnitsHook) 
+
 
 	ORG $59A38C
 	POIN NewPlayerPhaseEvaluationFunc|1

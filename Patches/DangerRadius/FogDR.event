@@ -60,6 +60,18 @@ PROTECT $1CF48
   
 POP
 
+
+
 #include "Graphics/Graphics.event"
 #include "ASM/ASM.event"
 #include "ASMC/ASMC.event"
+
+ALIGN 4 
+EnableDangerRadiusEvent: 
+VeslySetDangerRadius
+NoFade 
+ENDA 
+
+
+
+

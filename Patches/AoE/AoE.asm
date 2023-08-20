@@ -257,338 +257,8 @@ pop {r0}
 bx r0 
 
 .ltorg 
-.global AoE_DrawDamageDealt
-.type AoE_DrawDamageDealt, %function 
-AoE_DrawDamageDealt: 
-push {r4-r7, lr} 
-mov r4, r8 
-push {r4} 
-mov r5, r9
-push {r5} 
-mov r6, r10 
-push {r6} 
-mov r8, r0 @ aoe table entry 
 
-bl Draw_LoadNumbers @ so palette etc will be ready 
 
-@ find all affected tiles in movement map and display a number there 
-ldr r4, =MovementMap @ Movement Map	@{U}
-ldr r4, [r4] 
-mov r9, r4 
-
-ldr r3, =0x202E4D4 @ Map Size	@{U}
-@ldr r3, =0x202E4D0 @ Map Size	@{J}
-ldrh r6, [r3] @ XX Boundary size 
-ldrh r7, [r3, #2] @ YY Boundary size 
-
-
-
-mov r5, #0 @ Y coord 
-sub r5, #1 
-
-DamageDealt_YLoop:
-add r5, #1 
-cmp r5, r7 
-bge BreakDamageDealtLoop
-
-mov r4, #0 
-sub r4, #1 
-DamageDealt_XLoop:
-lsl r0, r5, #2 @ 4 times Y coord 
-mov r3, r9 @ movement map 
-ldr r1, [r3, r0] @ beginning of Y row 
-
-DamageDealt_XLoop_2:
-add r4, #1 
-cmp r4, r6 
-bge DamageDealt_YLoop @ Finished the row, so +1 to Y coord 
-ldrb r0, [r1, r4] @ Xcoord to check 
-cmp r0, #0xFF 
-beq DamageDealt_XLoop_2
-
-@ We found a valid tile 
-mov r0, r4 @ XX 
-mov r1, r5 @ YY
-
-
-
-ldr 	r2, =UnitMapRows
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@deployment byte 
-cmp r0, #0 
-beq DamageDealt_XLoop 
-blh GetUnit 
-cmp r0, #0 
-beq DamageDealt_XLoop 
-mov r10, r0 @ Target 
-ldr r1, [r0] @ char 
-ldrb r1, [r1, #4] @ unit ID 
-cmp r1, #0xE0 
-blt NotTrainer2 
-cmp r1, #0xF0 
-bge NotTrainer2 
-b DamageDealt_XLoop 
-NotTrainer2: 
-
-
-@ drawing part 
-ldr r0, =CurrentUnit 
-ldr r0, [r0] @ actor 
-mov r1, r10 @ target 
-
-mov r3, r8 @ table 
-ldrb r3, [r3, #ConfigByte]
-mov r2, #HealBool
-tst r3, r2 
-beq PreviewDamage
-mov r2, r8 @ table 
-mov r3, #1 @ always return minimum damage / highest possible hp left 
-bl AoE_HealedTargetFinalHp
-mov r3, r10 @ target 
-ldrb r3, [r3, #0x12] @ Max HP 
-cmp r0, r3 
-ble ContinuePreviewHpBars 
-mov r0, r3 
-b ContinuePreviewHpBars
-
-
-PreviewDamage: 
-mov r2, r8 @ table 
-mov r3, #1 @ always return minimum damage / highest possible hp left 
-bl AoE_CalcTargetRemainingHP
-cmp r0, #0 
-bge ContinuePreviewHpBars 
-mov r0, #0 
-
-ContinuePreviewHpBars:
-mov r3, r10 @ target 
-ldrb r3, [r3, #0x12] @ Max HP 
-cmp r3, r0 
-beq DamageDealt_ShowFull 
-cmp r0, #0 
-beq DamageDealt_ShowEmpty 
-
-sub r3, r0 @ damage
-
-@mov r0, r4 @ XX 
-@mov r1, r5 @ YY
-@ r0 = xx coord 
-@ r1 = yy coord 
-@mov r2, #0 @ frames since started 
-@ r3 = damage to deal 
-@bl Draw_NumberDuringAoE
-
-@ r0 as remaining hp 
-mov r3, r10 @ target 
-ldrb r1, [r3, #0x12] @ Max HP 
-mov r3, r1 
-sub r3, r0 @ max hp - final hp = damage taken 
-mov r0, r3 
-
-mov r2, #11
-mul r0, r2 
-mov r3, r10 @ target 
-
-cmp r1, #0 @ max hp 
-beq DamageDealt_XLoop @ do not divide by 0 
-swi #6 @ @damage*12/maxHP
-mov r2, r0 @ fraction of hp bar to be damaged by 
-b CallDrawHpBar 
-
-DamageDealt_ShowEmpty:
-mov r2, #11 
-b CallDrawHpBar 
-DamageDealt_ShowFull:
-mov r2, #12
-b CallDrawHpBar 
-
-
-CallDrawHpBar: 
-mov r0, r4 @ XX 
-mov r1, r5 @ YY
-
-bl Draw_HPBar_AoE
-
-b DamageDealt_XLoop 
-
-
-BreakDamageDealtLoop: 
-pop {r6}
-mov r10, r6 
-pop {r5}
-mov r9, r5 
-pop {r4} 
-mov r8, r4 
-pop {r4-r7} 
-pop {r0} 
-bx r0 
-.ltorg 
-
-
-.global AoE_DrawNumber
-.type AoE_DrawNumber, %function 
-AoE_DrawNumber: 
-push {r4-r7, lr} 
-mov r4, r8 
-push {r4} 
-mov r5, r9
-push {r5} 
-mov r6, r10 
-push {r6} 
-mov r7, r11 
-push {r7} 
-mov r8, r0 @ aoe table entry 
-mov r11, r1 @ parent proc 
-
-
-ldrb r0, [r0, #ConfigByte]
-mov r1, #HealBool
-tst r0, r1 
-beq Yellow
-bl LoadBlueNumbers @ healing uses blue numbers 
-b DoneLoadingNumbers 
-
-Yellow: 
-bl Draw_LoadNumbers @ so palette etc will be ready 
-
-DoneLoadingNumbers: 
-
-@ find all affected tiles in movement map and display a number there 
-ldr r4, =MovementMap @ Movement Map	@{U}
-ldr r4, [r4] 
-mov r9, r4 
-
-ldr r3, =0x202E4D4 @ Map Size	@{U}
-@ldr r3, =0x202E4D0 @ Map Size	@{J}
-ldrh r6, [r3] @ XX Boundary size 
-ldrh r7, [r3, #2] @ YY Boundary size 
-
-
-
-mov r5, #0 @ Y coord 
-sub r5, #1 
-
-Number_YLoop:
-add r5, #1 
-cmp r5, r7 
-bge BreakNumberLoop
-
-mov r4, #0 
-sub r4, #1 
-Number_XLoop:
-lsl r0, r5, #2 @ 4 times Y coord 
-mov r3, r9 @ movement map 
-ldr r1, [r3, r0] @ beginning of Y row 
-
-Number_XLoop_2:
-add r4, #1 
-cmp r4, r6 
-bge Number_YLoop @ Finished the row, so +1 to Y coord 
-ldrb r0, [r1, r4] @ Xcoord to check 
-cmp r0, #0xFF 
-beq Number_XLoop_2
-
-@ We found a valid tile 
-mov r0, r4 @ XX 
-mov r1, r5 @ YY
-
-
-
-ldr 	r2, =UnitMapRows
-ldr		r2,[r2]			@Offset of map's table of row pointers
-lsl		r1,#0x2			@multiply y coordinate by 4
-add		r2,r1			@so that we can get the correct row pointer
-ldr		r2,[r2]			@Now we're at the beginning of the row data
-add		r2,r0			@add x coordinate
-ldrb	r0,[r2]			@deployment byte 
-cmp r0, #0 
-beq Number_XLoop 
-blh GetUnit 
-cmp r0, #0 
-beq Number_XLoop 
-mov r10, r0 @ Target 
-
-ldr r1, [r0] @ char pointer 
-ldrb r1, [r1, #4] @ unit ID 
-cmp r1, #0xE0 
-blt NotTrainer
-cmp r1, #0xF0 
-bge NotTrainer 
-b Number_XLoop 
-
-NotTrainer: 
-
-@ drawing part 
-
-
-
-
-ldr r0, =CurrentUnit 
-ldr r0, [r0] @ actor 
-mov r1, r10 @ target 
-
-
-mov r3, r8 @ table 
-ldrb r3, [r3, #ConfigByte]
-mov r2, #HealBool
-tst r3, r2 
-beq DamageNotHeal
-
-mov r2, r8 @ table 
-mov r3, #1 @ always return minimum damage 
-bl AoE_HealedTargetFinalHp
-mov r3, r10 @ target 
-ldrb r2, [r3, #0x12] @ max hp 
-ldrb r3, [r3, #0x13] 
-cmp r2, r3 
-beq Number_XLoop @ if full hp, don't draw a number 
-sub r3, r0, r3 @ amount healed  
-b ContinueDrawNumber 
-
-DamageNotHeal: 
-mov r2, r8 @ table 
-mov r3, #1 @ always return minimum damage / highest possible hp left 
-bl AoE_CalcTargetRemainingHP
-@ need the actual damage that we did 
-@ r0 as remaining hp of target 
-mov r3, r10 @ target 
-ldrb r3, [r3, #0x13] 
-sub r3, r0 @ damage 
-
-ContinueDrawNumber: 
-
-
-
-
-mov r2, r11 @ parent proc 
-ldr r2, [r2, #0x2c] @ start time 
-
-
-
-mov r0, r4 @ XX 
-mov r1, r5 @ YY
-bl Draw_NumberDuringAoE
-
-b Number_XLoop 
-
-
-BreakNumberLoop: 
-pop {r7} 
-mov r11, r7 
-pop {r6}
-mov r10, r6 
-pop {r5}
-mov r9, r5 
-pop {r4} 
-mov r8, r4 
-pop {r4-r7} 
-pop {r0} 
-bx r0 
-.ltorg 
 
 
 .type AoE_DrawDamageFunc, %function 
@@ -1694,6 +1364,7 @@ pop {r0}
 bx r0 
 
 
+
 .type AoE_EffectCreateRangeMap, %function 
 .align 4
 .global AoE_EffectCreateRangeMap
@@ -2704,6 +2375,343 @@ bx r3
 
 
 .ltorg
+
+.global AoE_DrawDamageDealt
+.type AoE_DrawDamageDealt, %function 
+AoE_DrawDamageDealt: 
+push {r4-r7, lr} 
+mov r4, r8 
+push {r4} 
+mov r5, r9
+push {r5} 
+mov r6, r10 
+push {r6} 
+mov r8, r0 @ aoe table entry 
+
+bl Draw_LoadNumbers @ so palette etc will be ready 
+
+@ find all affected tiles in movement map and display a number there 
+ldr r4, =MovementMap @ Movement Map	@{U}
+ldr r4, [r4] 
+mov r9, r4 
+
+ldr r3, =0x202E4D4 @ Map Size	@{U}
+@ldr r3, =0x202E4D0 @ Map Size	@{J}
+ldrh r6, [r3] @ XX Boundary size 
+ldrh r7, [r3, #2] @ YY Boundary size 
+
+
+
+mov r5, #0 @ Y coord 
+sub r5, #1 
+
+DamageDealt_YLoop:
+add r5, #1 
+cmp r5, r7 
+bge BreakDamageDealtLoop
+
+mov r4, #0 
+sub r4, #1 
+DamageDealt_XLoop:
+lsl r0, r5, #2 @ 4 times Y coord 
+mov r3, r9 @ movement map 
+ldr r1, [r3, r0] @ beginning of Y row 
+
+DamageDealt_XLoop_2:
+add r4, #1 
+cmp r4, r6 
+bge DamageDealt_YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r1, r4] @ Xcoord to check 
+cmp r0, #0xFF 
+beq DamageDealt_XLoop_2
+
+@ We found a valid tile 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+
+
+ldr 	r2, =UnitMapRows
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq DamageDealt_XLoop 
+blh GetUnit 
+cmp r0, #0 
+beq DamageDealt_XLoop 
+mov r10, r0 @ Target 
+
+ldr r3, AoE_PokemblemImmuneTargets
+cmp r3, #0 
+beq NotTrainer2 
+mov lr, r3 
+.short 0xF800 
+cmp r0, #0
+beq NotTrainer2 
+b DamageDealt_XLoop 
+NotTrainer2: 
+
+
+@ drawing part 
+ldr r0, =CurrentUnit 
+ldr r0, [r0] @ actor 
+mov r1, r10 @ target 
+
+mov r3, r8 @ table 
+ldrb r3, [r3, #ConfigByte]
+mov r2, #HealBool
+tst r3, r2 
+beq PreviewDamage
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage / highest possible hp left 
+bl AoE_HealedTargetFinalHp
+mov r3, r10 @ target 
+ldrb r3, [r3, #0x12] @ Max HP 
+cmp r0, r3 
+ble ContinuePreviewHpBars 
+mov r0, r3 
+b ContinuePreviewHpBars
+
+
+PreviewDamage: 
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage / highest possible hp left 
+bl AoE_CalcTargetRemainingHP
+cmp r0, #0 
+bge ContinuePreviewHpBars 
+mov r0, #0 
+
+ContinuePreviewHpBars:
+mov r3, r10 @ target 
+ldrb r3, [r3, #0x12] @ Max HP 
+cmp r3, r0 
+beq DamageDealt_ShowFull 
+cmp r0, #0 
+beq DamageDealt_ShowEmpty 
+
+sub r3, r0 @ damage
+
+@mov r0, r4 @ XX 
+@mov r1, r5 @ YY
+@ r0 = xx coord 
+@ r1 = yy coord 
+@mov r2, #0 @ frames since started 
+@ r3 = damage to deal 
+@bl Draw_NumberDuringAoE
+
+@ r0 as remaining hp 
+mov r3, r10 @ target 
+ldrb r1, [r3, #0x12] @ Max HP 
+mov r3, r1 
+sub r3, r0 @ max hp - final hp = damage taken 
+mov r0, r3 
+
+mov r2, #11
+mul r0, r2 
+mov r3, r10 @ target 
+
+cmp r1, #0 @ max hp 
+beq DamageDealt_XLoop @ do not divide by 0 
+swi #6 @ @damage*12/maxHP
+mov r2, r0 @ fraction of hp bar to be damaged by 
+b CallDrawHpBar 
+
+DamageDealt_ShowEmpty:
+mov r2, #11 
+b CallDrawHpBar 
+DamageDealt_ShowFull:
+mov r2, #12
+b CallDrawHpBar 
+
+
+CallDrawHpBar: 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+bl Draw_HPBar_AoE
+
+b DamageDealt_XLoop 
+
+
+BreakDamageDealtLoop: 
+pop {r6}
+mov r10, r6 
+pop {r5}
+mov r9, r5 
+pop {r4} 
+mov r8, r4 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+.global AoE_DrawNumber
+.type AoE_DrawNumber, %function 
+AoE_DrawNumber: 
+push {r4-r7, lr} 
+mov r4, r8 
+push {r4} 
+mov r5, r9
+push {r5} 
+mov r6, r10 
+push {r6} 
+mov r7, r11 
+push {r7} 
+mov r8, r0 @ aoe table entry 
+mov r11, r1 @ parent proc 
+
+
+ldrb r0, [r0, #ConfigByte]
+mov r1, #HealBool
+tst r0, r1 
+beq Yellow
+bl LoadBlueNumbers @ healing uses blue numbers 
+b DoneLoadingNumbers 
+
+Yellow: 
+bl Draw_LoadNumbers @ so palette etc will be ready 
+
+DoneLoadingNumbers: 
+
+@ find all affected tiles in movement map and display a number there 
+ldr r4, =MovementMap @ Movement Map	@{U}
+ldr r4, [r4] 
+mov r9, r4 
+
+ldr r3, =0x202E4D4 @ Map Size	@{U}
+@ldr r3, =0x202E4D0 @ Map Size	@{J}
+ldrh r6, [r3] @ XX Boundary size 
+ldrh r7, [r3, #2] @ YY Boundary size 
+
+
+
+mov r5, #0 @ Y coord 
+sub r5, #1 
+
+Number_YLoop:
+add r5, #1 
+cmp r5, r7 
+bge BreakNumberLoop
+
+mov r4, #0 
+sub r4, #1 
+Number_XLoop:
+lsl r0, r5, #2 @ 4 times Y coord 
+mov r3, r9 @ movement map 
+ldr r1, [r3, r0] @ beginning of Y row 
+
+Number_XLoop_2:
+add r4, #1 
+cmp r4, r6 
+bge Number_YLoop @ Finished the row, so +1 to Y coord 
+ldrb r0, [r1, r4] @ Xcoord to check 
+cmp r0, #0xFF 
+beq Number_XLoop_2
+
+@ We found a valid tile 
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+
+
+
+ldr 	r2, =UnitMapRows
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@deployment byte 
+cmp r0, #0 
+beq Number_XLoop 
+blh GetUnit 
+cmp r0, #0 
+beq Number_XLoop 
+mov r10, r0 @ Target 
+
+ldr r3, AoE_PokemblemImmuneTargets
+cmp r3, #0 
+beq NotTrainer
+mov lr, r3 
+.short 0xF800 
+cmp r0, #0
+beq NotTrainer
+b Number_XLoop 
+
+NotTrainer: 
+
+@ drawing part 
+
+
+
+
+ldr r0, =CurrentUnit 
+ldr r0, [r0] @ actor 
+mov r1, r10 @ target 
+
+
+mov r3, r8 @ table 
+ldrb r3, [r3, #ConfigByte]
+mov r2, #HealBool
+tst r3, r2 
+beq DamageNotHeal
+
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage 
+bl AoE_HealedTargetFinalHp
+mov r3, r10 @ target 
+ldrb r2, [r3, #0x12] @ max hp 
+ldrb r3, [r3, #0x13] 
+cmp r2, r3 
+beq Number_XLoop @ if full hp, don't draw a number 
+sub r3, r0, r3 @ amount healed  
+b ContinueDrawNumber 
+
+DamageNotHeal: 
+mov r2, r8 @ table 
+mov r3, #1 @ always return minimum damage / highest possible hp left 
+bl AoE_CalcTargetRemainingHP
+@ need the actual damage that we did 
+@ r0 as remaining hp of target 
+mov r3, r10 @ target 
+ldrb r3, [r3, #0x13] 
+sub r3, r0 @ damage 
+
+ContinueDrawNumber: 
+
+
+
+
+mov r2, r11 @ parent proc 
+ldr r2, [r2, #0x2c] @ start time 
+
+
+
+mov r0, r4 @ XX 
+mov r1, r5 @ YY
+bl Draw_NumberDuringAoE
+
+b Number_XLoop 
+
+
+BreakNumberLoop: 
+pop {r7} 
+mov r11, r7 
+pop {r6}
+mov r10, r6 
+pop {r5}
+mov r9, r5 
+pop {r4} 
+mov r8, r4 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
 
 .global AoE_DamageUnitsInRange
 .type AoE_DamageUnitsInRange, %function 

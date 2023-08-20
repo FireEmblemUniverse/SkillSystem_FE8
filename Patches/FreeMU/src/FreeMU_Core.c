@@ -159,6 +159,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->updateCameraAfterEvent = false; 
 		return; 
 	}
+	if (proc->updateDangerZone) { 
+		proc->updateDangerZone = false; 
+		FMU_EnableDR(); 
+		return; 
+	} 
 	
 
 	
@@ -471,6 +476,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->pEventIdk = NULL; 
 	proc->updateCameraAfterEvent = false;
 	proc->updateAfterStatusScreen = false; 
+	proc->updateDangerZone = false; 
 	//FreeMoveRam->silent = false; 
 	
 	
@@ -1061,8 +1067,8 @@ int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) {
 	
 	int addX = 0; int addY = 0; int subX = 0; int subY = 0; 
 	if (facing == MU_FACING_RIGHT) addX = 1; 
-	if (facing == MU_FACING_DOWN) subX = 1; // This is intentional; unit facing is not the same as MU_FACING I guess 
-	if (facing == MU_FACING_LEFT) addY = 1; // yes 
+	if (facing == MU_FACING_LEFT) subX = 1; 
+	if (facing == MU_FACING_DOWN) addY = 1; 
 	if (facing == MU_FACING_UP) subY = 1; 
 	
 	

@@ -99,12 +99,17 @@ void DisableFreeMovementASMC(void){
 	return;
 }
 
+extern void* EnableDangerRadiusEvent; 
 void PauseFreeMovementASMC(void){
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	if (proc) {
 		FreeMoveRam->pause = true; 
 		proc->updateCameraAfterEvent = true; 
+		proc->updateDangerZone = true; 
 	}
+	else { 
+		CallMapEventEngine(&EnableDangerRadiusEvent, 1); 
+	} 
 	
 	return; 
 } 
@@ -190,6 +195,7 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 	} 
 	else { 
 		ProcStartBlocking(pTmpProcCode, ParentProc); 
+		FMU_EnableDR();
 	} 
 	BreakProcLoop(ParentProc);
 	return;

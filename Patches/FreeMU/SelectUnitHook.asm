@@ -121,4 +121,41 @@ End:
 bx lr 
 .ltorg 
 
+.global DoNotHideOverlappingUnitsHook
+.type DoNotHideOverlappingUnitsHook, %function 
+DoNotHideOverlappingUnitsHook:
+push {r2} 
+ldr r3, [r6, #0xC] @ unit state 
+mov r2, r0 
+
+ldr r0, =FreeMoveRam 
+ldr r0, [r0] 
+ldrb r0, [r0] 
+ldr r1, =FreeMove_Running
+ldrb r1, [r1] 
+tst r0, r1 
+beq Vanilla @ FMU is not active, so run event 
+mov r0, #1 
+cmp r0, #0 
+pop {r2} 
+bx lr 
+.ltorg 
+
+Vanilla: 
+mov r1, #0x10 
+ldsb r1, [r6, r1] 
+ldr r0, [r2] 
+add r0, r1 
+ldrb r0, [r0] 
+cmp r0, #0 
+pop {r2} 
+bx lr 
+
+
+
+
+.ltorg 
+
+
+
 

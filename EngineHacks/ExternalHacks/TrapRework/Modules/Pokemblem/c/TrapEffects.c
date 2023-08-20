@@ -38,7 +38,7 @@ struct Trap* NewGetAdjacentTrap(struct Unit* unit, int trapID_low, int trapID_hi
 	int x = unit->xPos; 
 	int y = unit->yPos; 
 	
-	if (FreeMoveRam->use_dir) { 
+	if (FreeMoveRam->use_dir && GetFreeMovementState()) { 
 		//struct FMUProc* proc = (FMUProc*)ProcFind(FreeMovementControlProc);
 		int dir = FreeMoveRam->dir; 
 		if (dir==MU_FACING_LEFT)      x--;

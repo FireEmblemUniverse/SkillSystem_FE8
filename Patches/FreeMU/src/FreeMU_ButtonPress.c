@@ -68,6 +68,7 @@ int FMU_EndFreeMoveSilent(void){
 	FMU_StartPlayerPhase();
 	SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 	CallCommandEffect(); 
+	UnsetEventId(0x8); // so can call 
 	return 0xB7; // close menu etc 
 }
 
