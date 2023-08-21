@@ -39,8 +39,8 @@ void TryUnhideSteppedOnUnit(struct FMUProc* proc, int x, int y) {
 } 
 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
-	int x = proc->xCur; 
-	int y = proc->yCur; 
+	//int x = proc->xCur; 
+	//int y = proc->yCur; 
 	proc->xCur = proc->xTo; 
 	proc->yCur = proc->yTo; 
 	gActiveUnit->xPos = proc->xCur; 
@@ -152,7 +152,7 @@ bool FMU_RunTrap(FMUProc* proc, struct FMUTrapDef* trapEff, int x, int y) {
 	struct Trap* trap = GetTrapAt(x,y); 
 	if (trap) { 
 		if (trapEff[trap->type].Usab) { 
-			if ((trapEff[trap->type].Usab)(proc) == 1) { // returns 3 if false 
+			if ((trapEff[trap->type].Usab)(proc) != 3) { // returns 3 if false 
 				(trapEff[trap->type].Func)(proc);
 				return true; 
 			}

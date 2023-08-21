@@ -57,6 +57,9 @@ Fill(256*8) 0
 	FMU_SetTrapA_adj(BlankExamineID, 	DisplayTextEffect0x52, DisplayTextUsability0x52)	 
 	FMU_SetTrapA_adj(BlankTalkID, 		DisplayTextEffect0x53, DisplayTextUsability0x53)	 
 	FMU_SetTrapA_adj(TutSignID, 			DisplayTextEffect0x54, DisplayTextUsability0x54)	 
+	FMU_SetTrapA_adj(CutBushTrapID, 			NewCutBushEffect, NewCutBushUsability)	 
+	FMU_SetTrapA_adj(RockSmashTrapID, 			NewRockSmashEffect, NewRockSmashUsability)	 
+	FMU_SetTrapA_adj(StrengthBoulderTrapID, 		 StrengthBoulderEffect,	NewStrengthBoulderUsability)	 
 
 	
 ALIGN 4
@@ -80,13 +83,14 @@ Fill(256*8) 0
 ALIGN 4
 HookListFMU_LocationBasedEvent:
 	FMU_SetLocEventType(0x14, 0x21)		// Chest
-	FMU_SetLocEventType(0x10, 0x3)		// Visit
+	FMU_SetLocEventType(0x10, 0x3)		// Visit (tile changes?) 
 	FMU_SetLocEventType(0x10, 0x37)		// Visit
 	FMU_SetLocEventType(0x10, 0x38)		// Visit
 	FMU_SetLocEventType(0x11, 0)		// Size -> 0=No need trap
 	FMU_SetLocEventType(0x16, 0)		// Armory
 	FMU_SetLocEventType(0x17, 0)		// Vendor
 	FMU_SetLocEventType(0x18, 0)		// Scecret
+	FMU_SetLocEventType(0x10, 0)		// House (no tile changes) 
 	FMU_SetLocEventTypeEnd
 	
 ALIGN 4

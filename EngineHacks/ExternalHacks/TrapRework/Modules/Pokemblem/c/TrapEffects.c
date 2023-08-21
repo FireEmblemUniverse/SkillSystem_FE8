@@ -16,7 +16,7 @@ extern struct FMURam* FreeMoveRam;
 
 extern void SetNewFlag(int); 
 extern int CheckNewFlag_No_sC(int id);
-
+extern int GetFreeMovementState(void); 
 
 extern struct Trap* AddTrapExtFix(int x, int y, int type, int ext1, int ext2, int ext3, int ext4, int ext5);  //! FE8U = (0x0802E2E0+1)
 extern const void* GiveCoinsEvent; 
@@ -249,6 +249,76 @@ int DisplayTextEffect(struct Trap* trap) {
 	return returnValue; 
 } 
 
+
+struct ObstacleTrap { 
+	/* 00 */ u8 xPosition;
+	/* 01 */ u8 yPosition;
+	/* 02 */ u8 type;
+	/* 03 */ u8 pad1;
+	/* 03 */ u8 pad2;
+	/* 04 */ u8 effectID; 
+};
+
+extern int CheckEventId(int); 
+extern int CutBushTrapID_Link; 
+extern int RockSmashTrapID_Link; 
+extern int StrengthBoulderTrapID_Link; 
+extern int ObtainedCutFlag_Link; 
+extern int RockSmashFlag_Link; 
+extern int StrengthBoulderFlag_Link; 
+// AlwaysInitTrap
+
+int NewCutBushUsability() { 
+	if (CheckEventId(ObtainedCutFlag_Link)) { 
+		struct ObstacleTrap* trap = (struct ObstacleTrap*)NewGetAdjacentTrapID(gActiveUnit, CutBushTrapID_Link); 
+		if (trap) { 
+			if (!(gActiveUnit->state & US_CANTOING)) {
+				return true;  
+			}
+		}
+	} 
+	return 3; // false 
+} 
+int NewRockSmashUsability() { 
+	if (CheckEventId(RockSmashFlag_Link)) { 
+		struct ObstacleTrap* trap = (struct ObstacleTrap*)NewGetAdjacentTrapID(gActiveUnit, RockSmashTrapID_Link); 
+		if (trap) { 
+			if (!(gActiveUnit->state & US_CANTOING)) {
+				return true;  
+			}
+		}
+	} 
+	return 3; // false 
+} 
+int NewStrengthBoulderUsability() { 
+	if (CheckEventId(StrengthBoulderFlag_Link)) { 
+		struct ObstacleTrap* trap = (struct ObstacleTrap*)NewGetAdjacentTrapID(gActiveUnit, StrengthBoulderTrapID_Link); 
+		if (trap) { 
+			if (!(gActiveUnit->state & US_CANTOING)) {
+				return true;  
+			}
+		}
+	} 
+	return 3; // false 
+} 
+
+int NewCutBushEffect(void) { 
+	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, CutBushTrapID_Link); 
+	if (trap) { 
+	//CallMapEventEngine(&GiveCoinsEvent, EV_RUN_CUTSCENE);
+		RemoveLightRune((struct Trap*)trap); // also fixes the terrain 
+	}
+	return TrapEffectCleanup(); 
+} 
+int NewRockSmashEffect(void) { 
+	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, RockSmashTrapID_Link); 
+	if (trap) { 
+	//CallMapEventEngine(&GiveCoinsEvent, EV_RUN_CUTSCENE);
+		RemoveLightRune((struct Trap*)trap); // also fixes the terrain 
+	}
+	return TrapEffectCleanup(); 
+} 
+//int NewStrengthBoulderEffect(void) { } // done in asm 
 
 
 

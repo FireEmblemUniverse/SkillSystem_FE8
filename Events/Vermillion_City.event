@@ -159,7 +159,7 @@ CAM1 [32,13]
 CUMO [32,13]
 STAL 30
 CURE  
-TutText(TrainerTip_ReorderMoves)
+TutText(TrainerTip_Submenu)
 SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
 ASMC SetNewFlag_ASMC 
 LABEL 99 
@@ -224,6 +224,9 @@ Traps1:
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
 CutBush(17,22)
+RockSmash(19,12)
+StrengthBoulder(21,12)
+
 Save(13,3) // Pokecenter 
 
 TutSign(32,13,ChapterID*2, TrainerTip_Submenu)

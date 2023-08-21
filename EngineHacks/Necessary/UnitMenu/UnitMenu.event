@@ -139,15 +139,15 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   UM_Vendor
   
   //UM_Strength
-  MenuCommand(UM_Strength,UM_StrengthDesc,BlueText, GenericTrapDisappearUsability0x22, StrengthBoulderEffect) 
+  MenuCommand(UM_Strength,UM_StrengthDesc,BlueText, NewStrengthBoulderUsability, StrengthBoulderEffect) 
 
 
   
 //Disappear after use
   //UM_Cut
-  MenuCommand(UM_Cut,UM_CutDesc,BlueText, GenericTrapDisappearUsability0x20, GenericTrapDisappearEffect)
+  MenuCommand(UM_Cut,UM_CutDesc,BlueText, NewCutBushUsability, NewCutBushEffect)
   //UM_RockSmash
-  MenuCommand(UM_RockSmash,UM_RockSmashDesc,BlueText, GenericTrapDisappearUsability0x21, GenericTrapDisappearEffect)
+  MenuCommand(UM_RockSmash,UM_RockSmashDesc,BlueText, NewRockSmashUsability, NewRockSmashEffect)
 
 
 

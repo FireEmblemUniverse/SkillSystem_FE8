@@ -35,6 +35,12 @@ ldr r3, =ActionStruct @0x203A958
 mov r0, #0 
 strb r0, [r3, #0x12] @ Inventory slot #0 
 
+ldr r0, =CurrentUnit 
+ldr r0, [r0] 
+ldr r0, [r0, #4] 
+ldrb r0, [r0, #4] @ class ID 
+bl RegisterPokemon
+
 mov r0, r4 
 blh PromoteActiveUnit
 

@@ -101,7 +101,7 @@
 #define CompletionObstacleID 51 
 //#define GenericCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE CompletionObstacleID XX YY CompletionFlag Sprite EffectID"
 #define GenericCompletion(XX,YY,Sprite, TextID) "BYTE CompletionObstacleID XX YY Sprite; SHORT TextID"
-SetTrapEventInit(CompletionObstacleID, GenericTrapDisappearCompletionInitialization)
+SetTrapEventInit(CompletionObstacleID, GenericTrapInitialization)
 SetTrapMapSpritePalette(CompletionObstacleID,NPCTrapPaletteWord)
 SetImpassableTrap(CompletionObstacleID)
 
@@ -458,7 +458,18 @@ POIN GenericTrapDisappearTableOffset
 ALIGN 4 
 BerryTrapID_Link:
 WORD BerryTreeTrapID 
-
+CutBushTrapID_Link:
+WORD CutBushTrapID
+RockSmashTrapID_Link:
+WORD RockSmashTrapID
+StrengthBoulderTrapID_Link:
+WORD StrengthBoulderTrapID
+ObtainedCutFlag_Link:
+WORD ObtainedCutFlag
+RockSmashFlag_Link:
+WORD RockSmashFlag
+StrengthBoulderFlag_Link:
+WORD StrengthBoulderFlag
 
 
 

@@ -5,6 +5,7 @@ enum State {yield=0, no_yield=1};
 
 typedef struct FMUProc FMUProc;
 typedef bool (*ButtonFunc) (struct FMUProc*);
+typedef int (*UsabilityFunc)(struct FMUProc*);
 
 #define LEDGE_JUMP 0x26 // terrain type 
 
@@ -72,7 +73,7 @@ extern u8 StraightLineWeaponsList[];
 
 struct FMUTrapDef{
 	ButtonFunc Func;
-	ButtonFunc Usab; 
+	UsabilityFunc Usab; 
 };
 extern struct FMUTrapDef HookListFMU_TrapTable_PressA_Auto[];
 extern struct FMUTrapDef HookListFMU_TrapTable_PressA_Adjacent[];
