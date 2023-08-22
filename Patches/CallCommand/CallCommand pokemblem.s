@@ -93,6 +93,11 @@ ldr r1, [r1] @ unit pointer
 ldrb r1, [r1, #4] 
 cmp r1, r2 
 beq NextUnit 
+mov r0, #1 @ Battle 
+blh CheckEventId
+cmp r0, #0 
+bne NextUnit @ do not move the protag unit if we attacked or were in FMU 
+
 Continue:  
 ldr r3,[r0,#0xC] @ condition word
 @ if you add +1 to include Hide (eg 0x4F), it'll ignore the active unit, which may be useful 

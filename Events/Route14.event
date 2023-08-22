@@ -274,6 +274,7 @@ SHORT R14_0xE3_BD // 0xE0
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 //UNIT 0xE0 picnickerID 0x0 Level(0, Enemy, 1) [15,11]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT 0xE1 cooltrainer_fID 0x0 Level(0, Enemy, 1) [18,32]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI

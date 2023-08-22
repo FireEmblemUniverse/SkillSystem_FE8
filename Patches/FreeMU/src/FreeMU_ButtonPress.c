@@ -67,8 +67,10 @@ int FMU_EndFreeMoveSilent(void){
 	//SetupActiveUnit(gActiveUnit); 
 	FMU_StartPlayerPhase();
 	SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
+	SetEventId(0x1); // so can only call once - if this flag is on, do not move protag 
 	CallCommandEffect(); 
 	UnsetEventId(0x8); // so can call 
+	
 	return 0xB7; // close menu etc 
 }
 

@@ -151,11 +151,37 @@ cmp r0, #0
 pop {r2} 
 bx lr 
 
-
-
-
 .ltorg 
 
+	.equ GetUnitByEventParameter, 0x0800BC50
+.global NewHandleAutoEndHook
+.type NewHandleAutoEndHook, %function 
+NewHandleAutoEndHook: 
+push {r5, lr} 
+mov r5, r0 
+ldr r0, =ProtagID_Link 
+ldr r0, [r0] 
+blh GetUnitByEventParameter 
+cmp r0, #0 
+beq NoProtag 
+ldr r1, [r0] 
+cmp r1, #0 
+beq NoProtag 
+ldr r1, [r0, #0x0C] 
+ldr r2, =0x1000D 
+tst r1, r2 
+bne NoProtag 
+sub r5, #1 
+NoProtag: 
+cmp r5, #0 
+bgt DontAutoEnd 
 
-
+mov r0, r4 
+mov r1, #3 
+blh 0x8002F24 @ Goto6CLabel 
+DontAutoEnd: 
+pop {r5} 
+pop {r3} 
+bx r3 
+.ltorg 
 

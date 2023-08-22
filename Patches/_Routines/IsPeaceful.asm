@@ -72,12 +72,12 @@ push {r4-r5, lr}
 @cmp r0, #0 
 @bne InDanger
 @
-@ldr r0, =CallCountdownFlag @ Flag that prevents call 
-@lsl r0, #24 
-@lsr r0, #24 
-@blh CheckEventId
-@cmp r0, #0 
-@bne InDanger
+ldr r0, =CallCountdownFlag @ Flag that prevents call 
+lsl r0, #24 
+lsr r0, #24 
+blh CheckEventId
+cmp r0, #0 
+bne InDanger
 
 ldr r0, =PlayableCutsceneFlag @ Flag that prevents call 
 lsl r0, #24 

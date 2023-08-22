@@ -33,6 +33,9 @@ ORG $1ca9c
 callHackNew(SelectUnitHook)
 SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0 
 
+ORG $1DBBC 
+callHackNew(NewHandleAutoEndHook) 
+
 ORG $8388A 
 SHORT $1c19 // mov r1, r3 
 callHackNew(ShouldRunTurnEventHook)

@@ -9,6 +9,7 @@ bl BuildStraightLineRangeFromUnitAndItem
 pop {r1} 
 cmp r0, #1 
 beq Exit 
+mov r0, r4 @ unit 
 ldr		r2,WeaponCheck
 @ldr		r3,ReturnRangeBitfield
 @bl		goto_r3

@@ -1020,11 +1020,24 @@ void SetUnitFacing(struct Unit* unit, int dir) {
 	PackData(GetUnitDebuffEntry(unit), FacingBitOffset_Link, DirectionNumberOfBits_Link, dir);
 } 
 
+void UpdateFacingAllIdenticalSpriteUnits(int smsID, int dir) { 
+	struct Unit* unit; 
+	for (int i = 1; i<0xC0; i++) { 
+		unit = GetUnit(i); 
+		if (!UNIT_IS_VALID(unit)) { 
+		continue; }
+		if (unit->pClassData->SMSId != smsID) { 
+		continue; } 
+		SetUnitFacing(unit, dir); 
+	} 
+} 
+
 void SetUnitFacingAndUpdateGfx(struct Unit* unit, int dir) { 
 	//((struct unitFacing*)&unit->supports[5])->dir = dir;
 	PackData(GetUnitDebuffEntry(unit), FacingBitOffset_Link, DirectionNumberOfBits_Link, dir);
 	u8 smsID = unit->pClassData->SMSId;
 	UpdateSMSDir(unit, smsID, dir); 
+	UpdateFacingAllIdenticalSpriteUnits(smsID, dir); 
 } 
 
 int GetUnitFacing(struct Unit* unit) { 
@@ -1180,6 +1193,9 @@ void UpdateSMSDir_All(void) {
 		unit = GetUnit(i); 
 		if (!UNIT_IS_VALID(unit)) {
 			continue; }
+		if (unit->pCharacterData->number != ProtagID_Link && (unit->pCharacterData->number < 0xE0 || unit->pCharacterData->number > 0xEF)) {
+		continue; } 
+		
 		dir = GetUnitFacing(unit); //MU_FACING_DOWN
 		if (dir != MU_FACING_DOWN) { 
 			smsID = unit->pClassData->SMSId;

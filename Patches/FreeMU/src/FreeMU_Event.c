@@ -210,6 +210,26 @@ bool FMUmisc_RunTalkEvents(struct FMUProc* proc){
 	
 	return 0;
 }
+
+void ChangeTargetFacing(struct Unit* UnitTowards) { 
+	int activeX = gActiveUnit->xPos; 
+	int activeY = gActiveUnit->yPos; 
+	int targetX = UnitTowards->xPos; 
+	int targetY = UnitTowards->yPos; 
+
+	int dirX = activeX - targetX; 
+	int dirY = activeY - targetY; 
+	if (dirX > 0) { // 
+	SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_RIGHT); }
+	if (dirX < 0) { // 
+	SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_LEFT); }
+	if (dirY > 0) { // 
+	SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_DOWN); }
+	if (dirY < 0) { // 
+	SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_UP); }
+
+} 
+
 static bool RunTalkEventTemplate(u8 SubjectCharID, s8 x, s8 y){
 	if( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) )
 		return 0;
@@ -219,27 +239,18 @@ static bool RunTalkEventTemplate(u8 SubjectCharID, s8 x, s8 y){
 	Unit* UnitTowards = GetUnit(gMapUnit[y][x]);
 	u8 TargetCharID  = UnitTowards->pCharacterData->number;
 	if(CheckForCharacterEvents(SubjectCharID,TargetCharID)){
-		int activeX = gActiveUnit->xPos; 
-		int activeY = gActiveUnit->yPos; 
-		int targetX = UnitTowards->xPos; 
-		int targetY = UnitTowards->yPos; 
-		int dirX = activeX - targetX; 
-		int dirY = activeY - targetY; 
-		if (dirX == 1) { // 
-		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_RIGHT); }
-		if (dirX == (-1)) { // 
-		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_LEFT); }
-		if (dirY == 1) { // 
-		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_DOWN); }
-		if (dirY == (-1)) { // 
-		SetUnitFacingAndUpdateGfx(UnitTowards, MU_FACING_UP); }
-		
-			
-		
-		
-		
-		RunCharacterEvents(SubjectCharID,TargetCharID);
-		return 1;
+		ChangeTargetFacing(UnitTowards); 
+
+		if (!GetUnitEquippedWeapon(UnitTowards)) { 
+			RunCharacterEvents(SubjectCharID,TargetCharID);
+			return 1;
+		} // can't talk to someone with a weapon 
+		else { 
+		//FMU_EnableDR(); 
+		struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+		proc->end_after_movement = true; 
+		return 1; 
+		} 
 	}
 	return 0;
 }

@@ -513,11 +513,7 @@ ProtagUnitGroupFemale:
 UNIT ProtagID  GreenID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 
 
-GlobalBeginningScene:
-SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
-#ifdef DEBUG_MODE 
-//SetMaxMove
-#endif 
+LoadAndPlaceProtag: 
 #ifdef INSTALL_FMU
 #ifdef ENABLE_FMU
 CHECK_EVENTID GirlProtagFlag 
@@ -531,7 +527,7 @@ ENUN
 
 
 SET_ACTIVE 0
-SPAWN_NPC 0xFD [0,0]
+SPAWN_NPC 0xFD [0,0] // SPAWN_NPC 0xFD [-1,-1] 
 Read_Byte(XCoordNewArea)
 SADD r5 rC r0 
 SVAL r1 0xFD //1st player unit 
@@ -552,10 +548,34 @@ CAM1 0xFD
 DISA 0xFD 
 UNCR(ProtagID, 0x0D)
 SET_ACTIVE ProtagID
+
+//SVAL s1 ProtagID 
+//SVAL s3 0x10 // x 
+//SVAL s4 0x03 // byte 
+//ASMC GetUnitStatus 
+//SADD sA sC s0 
+//SVAL s1 ProtagID 
+//SVAL s3 0x11 // y 
+//SVAL s4 0x03 // byte 
+//ASMC GetUnitStatus 
+//SADD sB sC s0 
+//SVAL s1 16 
+//SLSL sB sB s1 
+//SADD sB sB sA 
+//ASMC SetActorCoords
+
+
 EnableFreeMovement
 #endif 
 #endif 
+NoFade 
+ENDA 
 
+GlobalBeginningScene:
+SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
+#ifdef DEBUG_MODE 
+//SetMaxMove
+#endif 
 ASMC RegisterAllOwnedPokemon
 NoFade 
 ENDA
@@ -1379,7 +1399,7 @@ NoFade
 ENDA 
 
 PlacePlayers:
-PauseFreeMovement
+//PauseFreeMovement
 SET_ACTIVE 0
 SPAWN_NPC 0xFD [0,0]
 Read_Byte(XCoordNewArea)
@@ -1414,7 +1434,7 @@ CAM1 0xFD
 DISA 0xFD 
 UNCR(0x0101, 0x0D)
 ASMC UndeployBadCoordMons // in CallCommand Pokemblem 
-//Text(0x9DD)
+CALL LoadAndPlaceProtag
 
 //MOVE 
 NoFade
@@ -1430,6 +1450,7 @@ ENDA
 #define EndLabel 63 
 
 CheckDeployed:
+ReorderParty
 GetNthUnit(6)
 BEQ Try5Label rC r0 
 LOAD3 0x0 First6Players 

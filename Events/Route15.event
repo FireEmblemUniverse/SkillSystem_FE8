@@ -226,7 +226,7 @@ ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 
- 
+ // all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 //UNIT 0xE0 cooltrainer_fID 0x0 Level(0, Enemy, 1) [48,5]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 picnickerID 0x0 Level(0, Enemy, 1) [47,11]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
