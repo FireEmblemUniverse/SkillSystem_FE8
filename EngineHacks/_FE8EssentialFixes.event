@@ -79,6 +79,10 @@ POP
   ORG $2b168
   SHORT 0
 
+// make BWL not ignore units with no affinity 
+ORG $A4D12 
+SHORT $46c0 
+
 //12 Tracks/16 Sounds Fix (credit Agro/Brendor)
   ORG $2900
   SHORT $e00c
