@@ -12,9 +12,9 @@
 .global IsPeaceful
 .type IsPeaceful, %function 
 IsPeaceful:
-push {r4, lr}
+push {r4-r5, lr}
 
-
+ldr r5, =0x401000C
 @ check for if peaceful map 
 
 @ check for at least one valid enemy eg. unit ID that is not 0xE0 - 0xEF 
@@ -32,8 +32,7 @@ ldr r1, [r0]
 cmp r1, #0 
 beq LoopThroughUnits
 ldr r1, [r0, #0x0C]
-mov r2, #0x0C 
-tst r1, r2 @ dead/undeployed 
+tst r1, r5 @ dead/undeployed 
 bne LoopThroughUnits
 ldr r1, [r0] @ char pointer 
 ldrb r1, [r1, #4] @ char id 
@@ -52,7 +51,7 @@ mov r0, #1
 
 Exit:
 
-pop {r4}
+pop {r4-r5}
 pop {r1}
 bx r1
 
@@ -62,7 +61,7 @@ bx r1
 .global AreAllPlayersSafe
 .type AreAllPlayersSafe, %function 
 AreAllPlayersSafe:
-push {r4-r5, lr}
+push {r4-r6, lr}
 @ check if any unit is in danger 
 
 @ldr r0, =AttackedThisTurnFlag @ Flag that prevents call 
@@ -95,6 +94,7 @@ bne InDanger
 
 ldr		r5,=0x202E4E8 @ fog
 ldr		r5,[r5]	
+ldr r6, =0x401000C
 
 @ check for at least one valid enemy eg. unit ID that is not 0xE0 - 0xEF 
 mov r4,#0x0 @ current deployment id
@@ -111,8 +111,7 @@ ldr r1, [r0]
 cmp r1, #0 
 beq Loop
 ldr r1, [r0, #0x0C]
-mov r2, #0x0C 
-tst r1, r2 @ dead/undeployed 
+tst r1, r6 @ dead/undeployed 
 bne Loop
 
 ldrb r1, [r0, #0x11] @ y 
@@ -136,7 +135,7 @@ mov r0, #1
 
 End:
 
-pop {r4-r5}
+pop {r4-r6}
 pop {r1}
 bx r1
 .ltorg 

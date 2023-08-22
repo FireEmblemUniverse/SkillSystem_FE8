@@ -4,13 +4,15 @@
 	.equ MemorySlot3,0x30004C4    @item ID to give @[0x30004C4]!!?
 @at 2d760 write b4 f0 42 f8 00 00 00 00
 
-push {r4-r5,lr}
+push {r4-r7,lr}
 ldr r0, =MemorySlot3 
 str r0, [r0] @[0x30004C4]!!?
 
+mov r7, r6 @ unit2 
+mov r6, r5 @ unit1 
 
 mov r4,r1    @save inventory ptrs
-mov r5,r2
+mov r5,r2 @ unit2
 
 ldrb r0,[r4] @get item data
 
@@ -86,8 +88,21 @@ NotAccessory2:
 pop {r1-r3}
 CheckAcc2End:
 
-strh r1,[r4]
-strh r0,[r5]
+mov r2, #0 
+strh r2, [r4] 
+strh r2, [r5] 
+
+push {r1} 
+mov r1, r0 @ item 
+mov r0, r6 @ unit 
+
+bl UnitAddItem @ (struct Unit* unit, u16 item)
+pop {r1} 
+mov r0, r7 
+bl UnitAddItem 
+
+@strh r1,[r4]
+@strh r0,[r5]
 b End
 NoTrade:
 ldr r0, MuteCheck
@@ -100,14 +115,14 @@ ldr r1, PlaySound
 mov lr,r1
 .short 0xF800
 Mute:
-pop {r4-r5}
+pop {r4-r7}
 pop {r0}
 pop {r4}
 pop {r0}
 ldr r0, ReturnSkip
 bx r0
 End:
-pop {r4-r5}
+pop {r4-r7}
 pop {r1}
 bx r1
 .align
