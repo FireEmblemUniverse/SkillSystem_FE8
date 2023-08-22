@@ -16,6 +16,10 @@ BYTE 0x00 0x00 0x00 0x20
 ORG $AB944 // Remove creature campaign 
 BYTE 0x00 0x00 0x00 0x20
 
+ORG $A4D12 // make BWL not ignore units with no affinity 
+SHORT $46c0 
+//[0x2026bb0..0x2026bbc]!! 0x80A4CFC
+
 POP 
 
 
