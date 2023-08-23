@@ -36,10 +36,23 @@ bool FMU_open_um(struct FMUProc* proc){
 /*!!!!*/
 
 bool FMU_OnButton_StartMenu(FMUProc* proc){
+	//MU_EndAll();
+	//EndPlayerPhaseSideWindows();
 	FMU_ResetLCDIO();
+	//proc->updateSMS = true; 
 	StartMenuAdjusted(&FreeMovementLMenu,0,0,0);
 	return 1;
 }
+
+extern int MapMenuCommnd_StatusEffect(void); // Procs  
+int FMU_CallStatus() { 
+	//FMU_ResetLCDIO();
+	// There's a graphical glitch when opening the status menu 
+	// it starts proc A01B54. Config starts proc A2ECE0 and doesn't glitch 
+	// might need to fade to black with FMU before starting this proc, idk 
+	MapMenuCommnd_StatusEffect(); 
+	return 0x17; 
+} 
 
 int FMU_OnButton_EndFreeMove(void){
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
@@ -95,9 +108,7 @@ bool FMU_OnButton_ChangeUnit(FMUProc* proc){
 	return 1;
 }
 
-extern int CanShowUnitStatScreen(struct Unit* unit); 
-extern void EndPlayerPhaseSideWindows(void); 
-extern void SetStatScreenConfig(int config); 
+
 
 bool FMU_OnButton_ViewStatusScreen(FMUProc* proc) { 
 

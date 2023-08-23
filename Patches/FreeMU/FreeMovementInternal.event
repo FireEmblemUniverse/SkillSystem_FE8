@@ -203,7 +203,8 @@ ALIGN 4
 	
 	ALIGN 4
 	FreeMovementMenuTable:
-	MM_Status
+	MenuCommand(0x690, 0x6E0, NormalText, AlwaysUsable, FMU_CallStatus) 
+	//MM_Status
 	//MM_Guide
 	MM_Dunno1 // options 
 	//MM_Dunno2

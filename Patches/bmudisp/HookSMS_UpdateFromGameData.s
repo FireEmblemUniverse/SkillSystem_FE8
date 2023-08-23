@@ -54,10 +54,15 @@ mov r2, r8
 
 ldr r0, [r5] @ unit 
 ldrb r0, [r0, #4] 
+ldr r1, =ProtagID_Link 
+ldr r1, [r1] 
+cmp r0, r1 
+beq Continue 
 cmp r0, #0xE0 @ trainers only 
 blt End 
 cmp r0, #0xEF @ trainers 
 bgt End 
+Continue: 
 
 ldrb r1, [r6, #3] 
 lsr r1, #3 @ remove <8 

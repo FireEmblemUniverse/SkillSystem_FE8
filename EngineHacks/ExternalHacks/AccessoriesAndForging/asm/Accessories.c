@@ -326,8 +326,12 @@ void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defe
 int UnitAddItem(struct Unit* unit, u16 item) {
     int i;
 	
-	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
-	unit->state |= 0x400; // used galeforce this turn 
+	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) {
+		if (!(unit->index & 0xC0)) { 
+			item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+			unit->state |= 0x400; // used galeforce this turn 
+		} 
+	} 
     for (i = 0; i < 5; ++i) {
         if (unit->items[i] == 0) {
             unit->items[i] = item;

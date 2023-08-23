@@ -203,6 +203,7 @@ void pFMU_DoNothing(struct Proc* proc);
 
 extern void MU_DisplayAsMMS(struct MUProc* proc); 
 
+extern u8 MuCtr_StartMoveTowards(Unit*, u8 x, u8 y, u8, u8 flags); //0x8079DDD
 extern u16 GetCameraCenteredX(int x); 
 extern u16 GetCameraAdjustedX(int x); 
 extern u16 GetCameraCenteredY(int y); 
@@ -213,6 +214,9 @@ extern void UnsetEventId(int);
 
 extern void GetPlayerStartCursorPosition(int *px, int *py);
 extern void GetEnemyStartCursorPosition(int *px, int *py); 
+extern int CanShowUnitStatScreen(struct Unit* unit); 
+extern void EndPlayerPhaseSideWindows(void); 
+extern void SetStatScreenConfig(int config); 
 
 
 struct CamMoveProc {

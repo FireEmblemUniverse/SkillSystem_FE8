@@ -1,5 +1,5 @@
 #include "FreeMU.h"
-extern u8 MuCtr_StartMoveTowards(Unit*, u8 x, u8 y, u8, u8 flags); //0x8079DDD
+
 extern int ProtagID_Link; 
 
 
@@ -48,7 +48,7 @@ static inline bool IsCharInvaild(Unit* unit){
 #define bufferFramesAct 4
 
 void pFMU_InputLoop(struct Proc* inputProc) { 
-	struct FMUProc* proc = (struct FMUProc*)inputProc->parent; 
+	//struct FMUProc* proc = (struct FMUProc*)inputProc->parent; 
 	
 	
 	
@@ -261,9 +261,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 			//return; 
 		} 
 	} 
-	if (proc->end_after_movement) { // after any scripted movement is done 
-		FMU_EndFreeMoveSilent(); 
-	}
+
 	
 
 	u16 iKeyCur = gKeyState.heldKeys;
@@ -279,6 +277,10 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		}
 	} 
 
+	if (proc->end_after_movement) { // after any scripted movement is done 
+		FMU_EndFreeMoveSilent(); 
+		return; 
+	}
 	//}
 
 
@@ -571,7 +573,9 @@ int FMU_HandleContinuedMovement(void) {
 	if (dir == MU_FACING_UP)
 	y--; 
 	if (gMapFog[y][x]) {
-		proc->end_after_movement = true; 
+		proc->end_after_movement = true; // causing a crash 
+		//proc->yield = true; // comment for crash 
+		//proc->countdown = 2; // comment for crash 
 	}
 	if (dir != proc->smsFacing) { 
 		proc->smsFacing = dir; 
@@ -589,7 +593,7 @@ int FMU_HandleContinuedMovement(void) {
 	
 	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 
 		return (-1); } 
-	muProc->pMUConfig->currentCommand = 1; 
+	muProc->pMUConfig->currentCommand = 1; // 03001900
 	muProc->pMUConfig->commands[0] = dir;
 	
 	

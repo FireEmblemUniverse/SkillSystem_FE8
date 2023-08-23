@@ -217,8 +217,8 @@ SkillAccessory_DescEntry(FortuneID, SD_Fortune)
 
 //Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
 //By circleseverywhere
-SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife) 
-SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife) 
+SkillAccessory_NameEntry(BreathOfLifeID, ShellBellName) 
+SkillAccessory_DescEntry(BreathOfLifeID, ShellBellDesc) 
 
 SkillAccessory_NameEntry(CounterID, SN_Counter)
 SkillAccessory_DescEntry(CounterID, SD_Counter)

@@ -244,7 +244,7 @@ u8 FMU_ChkKeyForMUExtra(struct FMUProc* proc, u16 iKeyUse){
 	if (eventProc) { 
 		if (eventProc->evStallTimer || eventProc->pUnitLoadData || eventProc->activeTextType) { 
 			//proc->usedLedge = false; 
-			return 0x10; 
+			return 0x10; // if this returns 0x10, the parent returns (-1) 
 		}
 	} 
 	if (proc->commandID != 0xFF) { 
