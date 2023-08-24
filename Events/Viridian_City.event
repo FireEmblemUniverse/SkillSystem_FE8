@@ -74,6 +74,7 @@ BEQ 21 sC s0
 WARP_OUT
 STAL 30
 UNCM(TempAlly, 0x10009) // Undeploy + escape the psyduck 
+DISA OaksAidePkmn
 GOTO 22 
 LABEL 21 
 DISA OaksAidePkmn

@@ -76,11 +76,11 @@ ASSERT (FreeSpace_Low_End - currentOffset)
 
 
 
-
+ORG EndOfFreeSpace 
 ALIGN 4
 WORD 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 // Prevent NUPS from cutting off the last 6 bytes
 
-ORG EndOfFreeSpace 
+
 MESSAGE Used free space ends at currentOffset
 	
 	//ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace

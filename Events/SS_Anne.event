@@ -47,7 +47,7 @@ TrainerPostBattleTalk(0xE4)
 END_MAIN
 
 CaptainHMevent:
-TutText(CaptainTeachHMText)
+BottomWallText(CaptainTeachHMText)
 STAL 15 
 TutText(LearnedCutText)
 NoFade

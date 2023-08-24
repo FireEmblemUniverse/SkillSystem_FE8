@@ -5,6 +5,7 @@
 #include "SelectAvatarMenu/Installer.event" 
 
 #include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
+#include "DangerRadius/FogDR.event" 
 //#include "SMS/Installer.event" 
 #include "HigherStatGains/Installer.event" 
 #include "Autosave/Installer.event" 
@@ -98,7 +99,7 @@
 #include "FastMovement/Installer.event"
 
 
-#include "DangerRadius/FogDR.event" 
+
 #include "MultiTileMarker/MultiTileMarker_Install.event"
 
 

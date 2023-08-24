@@ -487,7 +487,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	else {
 	proc->moveSpeed = FreeMU_MovingSpeed.speedA; } 
 	
-	proc->smsFacing = GetUnitFacing(gActiveUnit); //FreeMoveRam->dir;
+
 	proc->commandID = (-1); 
 	proc->curInput = 0; 
 	proc->lastInput = 0; 
@@ -495,6 +495,11 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->yield = true; 
 	proc->yield_move = true; 
 	proc->range_event = false; 
+	
+	//proc->smsFacing = GetUnitFacing(gActiveUnit); //FreeMoveRam->dir;
+	proc->smsFacing = FreeMoveRam->dir;
+	SetUnitFacing(gActiveUnit, proc->smsFacing); 
+	UpdateSMSDir(gActiveUnit, gActiveUnit->pClassData->SMSId, proc->smsFacing);
 	
 }
 void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) { 
