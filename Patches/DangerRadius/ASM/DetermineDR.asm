@@ -91,6 +91,10 @@ beq   L3
 	ldrb  r1, [r1, #4] @Unit ID 
 	cmp   r1, #0xF0
 	bge   L3
+	@ldr r1, [r0, #0x0C] 
+	@ldr r2, =0x1000C 
+	@tst r1, r2 
+	@bne L3 @ don't DR for escaped/undeployed units 
   
     @ Unit is enemy, flip DR bit
     @ and increment/decrement DR counter

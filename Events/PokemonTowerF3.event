@@ -209,7 +209,7 @@ BD(0x0, PTF3_0xE0_BD, 2000)
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [11,3]  0b 0x0	0x1 REDA11R3 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI  
+UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [11,3]  0b 0x0	0x1 REDA11R3 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI  
 UNIT 
 
 

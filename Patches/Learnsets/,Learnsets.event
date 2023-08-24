@@ -2012,14 +2012,14 @@ BYTE 0 0
 
 ALIGN 4
 VoltorbLearnset:
+BYTE 1 Leer
 BYTE 1 Thundershock // Charge
 BYTE 5 Tackle
 BYTE 7 AttackPulse // SonicBoom 
-BYTE 12 Leer
+BYTE 12 Screech
 BYTE 15 ShockWave
 BYTE 17 MirrorShot
 BYTE 19 Swift
-BYTE 22 Screech
 //BYTE 22 LightScreen
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct
@@ -2033,14 +2033,14 @@ BYTE 0 0
 
 ALIGN 4
 ElectrodeLearnset:
+BYTE 1 Leer
 BYTE 1 Thundershock // Charge
 BYTE 5 Tackle
 BYTE 7 AttackPulse // SonicBoom 
-BYTE 12 Leer
+BYTE 12 Screech
 BYTE 15 ShockWave
 BYTE 17 MirrorShot
 BYTE 19 Swift
-BYTE 22 Screech
 //BYTE 22 LightScreen
 BYTE 26 Thunderbolt // ChargeBeam
 // BYTE 29 Selfdestruct

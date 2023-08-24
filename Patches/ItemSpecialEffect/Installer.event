@@ -32,7 +32,10 @@ WORD 0 0 0 // Terminator
 
 ALIGN 4
 ExampleEvent:
-Text(0x9df) 
+SVAL s1 250 
+ASMC UseRepelEffect 
+MemSlotToString(0xC)
+TutText(RepelStepsRemainingText) 
 NoFade 
 ENDA 
 
@@ -90,6 +93,7 @@ ALIGN 4
 ItemMenuTable:
 
 MenuCommand(0x505, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
+//MenuCommand(UseName, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
 IM_Use
 IM_Equip
 IM_Trade

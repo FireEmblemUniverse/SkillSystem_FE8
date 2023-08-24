@@ -220,7 +220,7 @@ BD(0xE, PTF4_MarowakDefeatText, 0)
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [15,5]  0b 0x0	0x1 REDA15R5 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
+UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [15,5]  0b 0x0	0x1 REDA15R5 [FiveRangeWep,0x0,0x0,0x0] TrainerAI  
 UNIT
 
 BossGroup:

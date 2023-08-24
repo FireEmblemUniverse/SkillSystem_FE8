@@ -274,18 +274,10 @@ orr		r0,r1
 str		r0, [r5, #0xC]
 
 
-mov	r3, #0x00
-ldrb	r0, [r4,#0x11]		@load y coordinate of character
-lsl	r0, #16
-add	r3, r0
-ldrb	r0, [r4,#0x10]		@load x coordinate of character
-add	r3, r0
-ldr r2, =MemorySlot
-str	r3, [r2, #4*0x0B] 		@and store them in sB for the event engine
-
-ldr r0, [r5]
-ldrb r0, [r0, #4] 	
-str r0, [r2, #4*0x02] @unit ID in s2 
+ldrb r0, [r5, #0x0B] 
+ldr r1, =CapturedPkmnDeploymentID_Link 
+ldr r1, [r1] 
+strb r0, [r1] 
 
 ldr	r0, =PartyFullEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
@@ -303,10 +295,10 @@ b End_LoopThroughUnits
 @ run event where unit was not caught 
 FullBox:
 
-ldr r2, =MemorySlot
-ldr r0, [r5]
-ldrb r0, [r0, #4] 	
-str r0, [r2, #4*0x02] @unit ID in s2 
+ldrb r0, [r5, #0x0B] 
+ldr r1, =CapturedPkmnDeploymentID_Link 
+ldr r1, [r1] 
+strb r0, [r1] 
 
 ldr	r0, =PCBoxFullEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
@@ -349,16 +341,12 @@ lsl	r0, #16
 add	r3, r0
 ldrb	r0, [r4,#0x10]		@load x coordinate of character
 add	r3, r0
-ldr r2, =MemorySlot
-str	r3, [r2, #4*0x0B] 		@and store them in sB for the event engine
 
-@strh r4, [r3, #4*0x0B+0] @ XX
-@strh r5, [r3, #4*0x0B+2] @ YY 
 
-ldr r0, [r5]
-ldrb r0, [r0, #4] 	
-str r0, [r2, #4*0x02] @unit ID in s2 
-
+ldrb r0, [r5, #0x0B] 
+ldr r1, =CapturedPkmnDeploymentID_Link 
+ldr r1, [r1] 
+strb r0, [r1] 
 
 ldr	r0, =CapturePokemonEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
@@ -378,3 +366,30 @@ Break:
 	pop {r0}
 	bx r0 
 .ltorg 
+
+.global CopyCaughtPkmnToMemSlot2
+.type CopyCaughtPkmnToMemSlot2, %function 
+CopyCaughtPkmnToMemSlot2: 
+push {lr} 
+ldr r0, =CapturedPkmnDeploymentID_Link
+ldr r0, [r0] 
+ldrb r0, [r0] 
+blh GetUnit 
+ldr r3, =MemorySlot 
+mov r1, #0 
+str r1, [r3, #4*2] @ default as 0 in slot 2 
+cmp r0, #0 
+beq Exit 
+ldr r1, [r0] 
+cmp r1, #0 
+beq Exit 
+ldrb r1, [r1, #4] @ unit ID 
+str r1, [r3, #4*2] @ slot 2 
+Exit: 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
+

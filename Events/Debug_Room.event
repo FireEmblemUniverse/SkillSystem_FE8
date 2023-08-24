@@ -362,7 +362,7 @@ SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
 
 
 
-EquipNewSkillAccessory(1, SealStrID) // GiveSkillAccessory(0, RenewalID)
+EquipNewSkillAccessory(1, BreathOfLifeID) // GiveSkillAccessory(0, RenewalID)
 
 //SilentGiveSkillAccessory(1, ExpShareID)
 
@@ -467,7 +467,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(11, True, 0x145) // all 
+AutoLevelUnits(17, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 //SetUnitStatus(1, 0x28, ThunderWave)
@@ -553,7 +553,7 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(27, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(10, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(8, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
@@ -573,7 +573,8 @@ Write_Byte(8, YCoordNewArea)
 //MNC2 DebugCh 
 //MNC2 ChampionCh 
 //MNC2 VictoryRoadB2Ch 
-MNC2 ViridianCh
+//MNC2 ViridianCh
+MNC2 PokemonTowerF4Ch
 //MNC2 SafariSCh
 //
 //MNC2 DebugCh 

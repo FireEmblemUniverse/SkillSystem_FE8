@@ -10,6 +10,9 @@ WORD MaxPartyUnits
 ALIGN 4
 PartyFullEvent:
 EVBIT_MODIFY 1
+ASMC CopyCaughtPkmnToMemSlot2
+CHECK_COORDS (-1) // active unit coords 
+SADD sB sC s0 
 CUSA 0x7FFD //enemy to player 
 CAM1 0xFFFF
 WARP_IN
@@ -23,6 +26,7 @@ ENDA
 ALIGN 4
 PCBoxFullEvent:
 EVBIT_MODIFY 1
+ASMC CopyCaughtPkmnToMemSlot2
 DISA 0x7FFD //enemy to player 
 Text(CannotCaptureText)
 NoFade
@@ -36,17 +40,23 @@ ENDA
 #define MonsterFaceGraphic 0x14
 #define EmoticonSlotB(Graphic) "BYTE $4B $0D $00 Graphic; POIN Show_map_emotion_Install|1"
 
+ALIGN 4 
+CapturedPkmnDeploymentID_Link:
+WORD CapturedPkmnDeploymentID
+
 ALIGN 4
 CapturePokemonEvent:
 // s2 is unit id of newly captured unit 
-// sB is coords of existing unit 
+// sB is coords of active unit 
 //EVBIT_F 2 
 //FADI 16 
 ///LOAD1 1 EphraimUnitGroup
 //ENUN 
 //Text(DebugTextHere)
-
 EVBIT_MODIFY 1
+ASMC CopyCaughtPkmnToMemSlot2
+CHECK_COORDS (-1) // active unit coords 
+SADD sB sC s0 
 CUSA 0x7FFD //enemy to player 
 EmoticonSlotB(OpenPokeballGraphic)
 

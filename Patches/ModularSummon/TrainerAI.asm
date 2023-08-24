@@ -205,7 +205,78 @@ bx r1
 .equ UnsetEventId, 0x8083D94
 @.equ CheckEventId, 0x8083DA8
 	
+.global DebuffIfRematch
+.type DebuffIfRematch, %function 
+DebuffIfRematch:
+push {r4-r5, lr}
+mov r4, r0 @ movement 
+mov r5, r1 @ unit 
 
+ldr r1, [r5] 
+ldrb r1, [r1, #4] @ Unit ID we're interested in 
+cmp r1, #0xE0 
+blt NoDebuffRematch 
+cmp r1, #0xF0 
+bge NoDebuffRematch 
+mov r0, r5 
+bl CheckTrainerFlag @ given unit struct r0, check if their flag is set or not 
+cmp r0, #0 
+beq NoDebuffRematch 
+@lsr r4, #1 @ half move for rematches 
+mov r4, #1 @ 1 mov 
+NoDebuffRematch: 
+mov r0, r4 
+pop {r4-r5} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+.global UseRepelEffect 
+.type UseRepelEffect, %function 
+UseRepelEffect: 
+ldr r3, =MemorySlot 
+ldr r1, [r3, #4*1] @ s1 as number of steps to add 
+mov r0, #0xFF 
+lsl r0, #8 @ 0xFF00 
+ldr r3, =RepelStepsRam_Link 
+ldr r3, [r3] 
+ldrh r2, [r3] 
+add r2, r1 @ add to the steps 
+cmp r2, r0 @ no more than 0xFF00 
+blt NoCap 
+mov r2, r0 @ max 
+NoCap: 
+strh r2, [r3] 
+ldr r3, =MemorySlot 
+str r2, [r3, #4*0x0C] 
+bx lr 
+.ltorg 
+
+.global DebuffIfRepel
+.type DebuffIfRepel, %function 
+DebuffIfRepel: 
+push {r4-r5, lr}
+mov r4, r0 @ movement 
+mov r5, r1 @ unit 
+ldr r1, [r5] 
+ldrb r1, [r1, #4] 
+cmp r1, #0x50 
+blt NoDebuffRepel 
+cmp r1, #0xA0 
+bge NoDebuffRepel 
+ldr r3, =RepelStepsRam_Link 
+ldr r3, [r3] 
+ldrh r3, [r3] 
+cmp r3, #0 
+beq NoDebuffRepel 
+lsr r4, #1 @ half movement if repelled 
+
+NoDebuffRepel: 
+mov r0, r4 
+pop {r4-r5} 
+pop {r1} 
+bx r1 
+.ltorg 
 
 .global TrainerMovementBane
 .type TrainerMovementBane, %function 

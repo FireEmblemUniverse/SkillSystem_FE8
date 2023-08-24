@@ -3,6 +3,10 @@
 .thumb
 
 push  {r4-r7,r14}
+mov r4, r8 
+push {r4} 
+ldr r4, =0x1000C @ escaped, undeployed, dead 
+mov r8, r4 
 ldr   r0, =DRUnitByte
 lsl   r0, #0x5
 lsr   r5, r0, #0x5
@@ -25,6 +29,10 @@ Loop:
     ldr   r1, [r0]
     cmp   r1, #0x0
     beq   NextIteration
+	ldr r1, [r0, #0x0C] 
+	mov r2, r8 
+	tst r1, r2 
+	bne NextIteration 
 
       @ Set DR-bit and increment DRCounter.
       add   r4, #0x1
@@ -45,7 +53,8 @@ strb  r4, [r0]            @ Reset DRCountByte.
 
 bl    InitializeDR
 
-
+pop {r4} 
+mov r8, r4 
 pop   {r4-r7}
 pop   {r0}
 bx    r0

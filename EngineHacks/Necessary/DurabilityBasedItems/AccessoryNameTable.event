@@ -325,11 +325,6 @@ SkillAccessory_DescEntry(DazzleID, SD_Dazzle)
 SkillAccessory_NameEntry(PoisonStrikeID, SN_Poison_Strike)
 SkillAccessory_DescEntry(PoisonStrikeID, SD_Poison_Strike)
 
-//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
-//By circleseverywhere
-SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife)
-SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife)
-
 // Toxic Ring
 //Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
 //By circleseverywhere

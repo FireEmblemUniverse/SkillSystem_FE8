@@ -19,12 +19,18 @@ pMovModifiers: // Movement
 	POIN prNullifyIfFreeze
 	POIN TrappedStatus
 	POIN TrainerMovementBane
+	POIN DebuffIfRepel
+	POIN DebuffIfRematch
 	POIN prNullifyIfGuardAI
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
 	POIN MaxMovCap
 WORD 0
+
+ALIGN 4 
+RepelStepsRam_Link:
+WORD RepelStepsRam
 
 ALIGN 4 
 MaxMovementValue_Link: 
