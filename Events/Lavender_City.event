@@ -167,7 +167,7 @@ SkillAccessoryTrap(13,27, ChapterID*2, DazzleID)
 
 RedPokeballTrap(11,12, (ChapterID*2)+1, SuperPotion) 
 
-SignBTrap(3,35, ChapterID, 0x0) //no extra text 
+SignBTrap(12,35, ChapterID, 0x0) //no extra text 
 SignATrap(11,9, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 //SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
@@ -223,12 +223,14 @@ ShopItems:
 //SHLI 0
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
+BYTE SuperRepel 1
+BYTE SuperRepel 10 
 BYTE SkillScroll PatienceID 
 BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
 BYTE SpellScroll Headbutt 
 BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion
 BYTE SpellScroll ShadowPunch SpellScroll RockTomb SpellScroll JumpKick
-BYTE SpellScroll BubbleBeam SpellScroll MudBomb 
+BYTE SpellScroll BubbleBeam SpellScroll MudBomb // 18 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

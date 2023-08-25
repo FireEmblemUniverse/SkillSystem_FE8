@@ -24,7 +24,8 @@ POIN PostCombatSkills
 
 ALIGN 4
 PostCombatSkills:
-POIN EnsureMovementCap_ActiveUnit
+POIN DepleteRepel
+//POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce
 POIN CheckIfGameOver
 POIN IsTrainersTeamDefeated

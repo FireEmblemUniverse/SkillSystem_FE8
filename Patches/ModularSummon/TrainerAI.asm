@@ -278,6 +278,47 @@ pop {r1}
 bx r1 
 .ltorg 
 
+.global DepleteRepelByStep
+.type DepleteRepelByStep, %function 
+DepleteRepelByStep: 
+ldr r3, =RepelStepsRam_Link 
+ldr r3, [r3] 
+ldrh r1, [r3] @ steps left 
+mov r0, #1 
+sub r1, r0 
+cmp r1, #0 
+bge StoreRepelStepsLeft2 
+mov r1, #0 
+StoreRepelStepsLeft2: 
+strh r1, [r3] 
+bx lr 
+.ltorg 
+
+.global DepleteRepel
+.type DepleteRepel, %function 
+DepleteRepel: 
+@push {lr} 
+ldr r3, =CurrentUnit 
+ldr r3, [r3] 
+ldrb r0, [r3, #0x0B] @ actor deployment byte 
+cmp r0, #0x40 
+bge ExitDepleteRepel
+ldr r3, =RepelStepsRam_Link 
+ldr r3, [r3] 
+ldrh r1, [r3] @ steps left 
+ldr r2, =0x203A958 @gActionData 
+ldrb r0, [r2, #0x10] @ steps taken 
+lsr r0, #1 @ half of steps taken to be generous 
+sub r1, r0 
+cmp r1, #0 
+bge StoreRepelStepsLeft 
+mov r1, #0 
+StoreRepelStepsLeft: 
+strh r1, [r3] 
+ExitDepleteRepel:
+bx lr 
+.ltorg 
+
 .global TrainerMovementBane
 .type TrainerMovementBane, %function 
 TrainerMovementBane:

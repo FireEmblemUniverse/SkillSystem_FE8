@@ -322,9 +322,9 @@ void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defe
 	}
 }
 
-
+extern u8 DurabilityItemList[]; 
 int UnitAddItem(struct Unit* unit, u16 item) {
-    int i;
+    int i = 0;
 	
 	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) {
 		if (!(unit->index & 0xC0)) { 
@@ -332,12 +332,52 @@ int UnitAddItem(struct Unit* unit, u16 item) {
 			unit->state |= 0x400; // used galeforce this turn 
 		} 
 	} 
-    for (i = 0; i < 5; ++i) {
-        if (unit->items[i] == 0) {
-            unit->items[i] = item;
-            return TRUE;
-        }
-    }
+	
+	int maxUse = GetItemMaxUses(item);
+	int curUse = GetItemUses(item); 
+	
+	int newItem = GetItemIndex(item); 
+	int invSlotItem; 
+	
+	int durBased = false; 
+	// try to automatically combine items if it isn't an accessory / durability based item 
+	while (DurabilityItemList[i] != 0) { 
+		if (newItem == DurabilityItemList[i]) { 
+			durBased = true; 
+			break; 
+		} 
+		i++; 
+	} 
+	
+	if ((!(GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY)) & (!durBased)) { 
+		for (i = 0; i < 5; ++i) {
+			invSlotItem = unit->items[i];
+			if (invSlotItem == 0) {
+				unit->items[i] = item;
+				return TRUE;
+			}
+			if (GetItemIndex(invSlotItem) == newItem) { 
+				// can they combine? 
+				if ((curUse + GetItemUses(invSlotItem)) <= maxUse) { 
+					unit->items[i] = invSlotItem + (curUse << 8); 
+					return true; 
+				} 
+				// if not, just add it to an empty slot 
+			} 
+		}
+	
+	
+	} 
+	
+	else { // accessory gets added regularly now 
+		for (i = 0; i < 5; ++i) {
+			if (unit->items[i] == 0) {
+				unit->items[i] = item;
+				return TRUE;
+			}
+		}
+	} 
+	// auto combine items? 
 	
 
     return FALSE;

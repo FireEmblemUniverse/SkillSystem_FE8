@@ -347,10 +347,11 @@ BYTE StatAccessory MuscleBand_BoostIndex
 BYTE StatAccessory WiseGlasses_BoostIndex
 BYTE JellyDonut 4
 BYTE SkillScroll PatienceID
-
+BYTE SuperRepel 1
+BYTE SuperRepel 10
 BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot 
 BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
-BYTE SpellScroll Gust SpellScroll Confusion 
+BYTE SpellScroll Gust SpellScroll Confusion // 14 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

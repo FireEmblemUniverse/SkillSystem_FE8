@@ -23,7 +23,7 @@ ALIGN 4
 ItemSpecialEffectTable:
 // 12 bytes per entry 
 // ItemID, unit, class, hp%, ReqFlag, TextID, POIN EventAddress 
-BYTE 0xBB   0        0    0; SHORT 0     0     ; POIN ExampleEvent // 0xBB is gold gem 
+BYTE SuperRepel   0        0    0; SHORT 0 UseName          ; POIN RepelEvent //
 
 //BYTE OrionBolt Eirika EirikaLord 80 ; SHORT 0 0x508; POIN ExampleEvent // only usable at 80% or less hp 
 // Entries
@@ -31,11 +31,11 @@ WORD 0 0 0 // Terminator
 
 
 ALIGN 4
-ExampleEvent:
+RepelEvent:
 SVAL s1 250 
 ASMC UseRepelEffect 
 MemSlotToString(0xC)
-TutText(RepelStepsRemainingText) 
+Text(RepelStepsRemainingText) 
 NoFade 
 ENDA 
 
@@ -47,7 +47,10 @@ POIN ItemSpecialEffectUsability
 
 
 ALIGN 4
+PUSH 
+ORG CurrentOffset+1 
 ItemSpecialEffectUsability:
+POP 
 #incbin "ItemSpecialEffectUsability.dmp"
 POIN ItemSpecialEffectTable
 
@@ -92,8 +95,8 @@ POP
 ALIGN 4
 ItemMenuTable:
 
-MenuCommand(0x505, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
-//MenuCommand(UseName, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
+//MenuCommand(0x505, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
+MenuCommand(UseName, 0, BlueText, ItemSpecialEffectCallUsability|1, ItemSpecialDraw|1, ItemSpecialEffect|1)
 IM_Use
 IM_Equip
 IM_Trade

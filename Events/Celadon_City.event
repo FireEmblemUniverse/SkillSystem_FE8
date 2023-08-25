@@ -362,6 +362,8 @@ BYTE StatAccessory EnergyBandT2_BoostIndex
 BYTE SkillAccShop(RenewalID)
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
+BYTE SuperRepel 1
+BYTE SuperRepel 10
 BYTE HyperPotion 4
 BYTE MaxPotion 2 
 BYTE FullHeal 5 

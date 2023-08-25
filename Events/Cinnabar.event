@@ -355,11 +355,12 @@ BYTE SkillAccShop(AmaterasuID)
 BYTE HyperPotion 5 
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
+BYTE SuperRepel 10
 BYTE SpellScroll IceBeam SpellScroll TriAttack
 BYTE SpellScroll Psychic SpellScroll PetalDance
 BYTE SpellScroll Screech SpellScroll SwordsDance
 BYTE SpellScroll BugBuzz SpellScroll CalmMind SpellScroll Ancientpower
-BYTE SpellScroll GrassKnot SpellScroll Surf 
+BYTE SpellScroll GrassKnot SpellScroll Surf // 17 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4

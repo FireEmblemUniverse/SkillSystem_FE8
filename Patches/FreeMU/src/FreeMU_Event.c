@@ -38,6 +38,7 @@ void TryUnhideSteppedOnUnit(struct FMUProc* proc, int x, int y) {
 	} 
 } 
 
+extern void DepleteRepelByStep(void); 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 	//int x = proc->xCur; 
 	//int y = proc->yCur; 
@@ -45,6 +46,7 @@ int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 	proc->yCur = proc->yTo; 
 	gActiveUnit->xPos = proc->xCur; 
 	gActiveUnit->yPos = proc->yCur; 
+	DepleteRepelByStep(); 
 	//TryUnhideSteppedOnUnit(proc, x, y); 
 	
 	
