@@ -204,7 +204,9 @@ void DeploySelectedUnits() {
 			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
 			newUnit->index = deploymentID; 
 			#ifdef POKEMBLEM_VERSION 
-			newUnit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+			if (newUnit->pCharacterData->number == 0xFF) { 
+				newUnit->pCharacterData = &gCharacterData[GetFreeUnitID(&unit[0])]; 
+			} 
 			#endif 
 			
 			ClearUnit(&unit[i]); 
@@ -219,7 +221,9 @@ void DeploySelectedUnits() {
 			memcpy((void*)newUnit, (void*)unitTemp, 0x48);
 			newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
 			#ifdef POKEMBLEM_VERSION 
-			newUnit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+			if (newUnit->pCharacterData->number == 0xFF) { 
+				newUnit->pCharacterData = &gCharacterData[GetFreeUnitID(&unit[0])]; 
+			} 
 			#endif 
 			ClearUnit(unitTemp); 
 		}
@@ -235,7 +239,9 @@ void DeploySelectedUnits() {
 			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
 			newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
 			#ifdef POKEMBLEM_VERSION 
-			newUnit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+			if (newUnit->pCharacterData->number == 0xFF) { 
+				newUnit->pCharacterData = &gCharacterData[GetFreeUnitID(&unit[0])]; 
+			} 
 			#endif 
 			ClearUnit(&unit[i]); 
 			c++; 
@@ -402,7 +408,8 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		unit->yPos = 63; 
 		unit->state = US_NOT_DEPLOYED | US_HIDDEN; // | US_BIT16; // 0x10009 Escaped, Undeployed, Hidden 
 		unit->index = 0; //GetFreeDeploymentID(); 
-		unit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+		//unit->pCharacterData = &gCharacterData[GetFreeUnitID(&gUnitArrayBlue[0])]; 
+		unit->pCharacterData = &gCharacterData[0xFF]; 
 		
 
 	} 
@@ -500,13 +507,13 @@ int CountUnusableStoredUnitsUpToIndex(int index) {
 }
 
 
-struct Unit* GetBoxUnitStructFromCharID(int id) { 
+inline struct Unit* GetBoxUnitStructFromCharID(int id) { 
 	struct Unit* unit = NULL; 
 	
 	int i;
     for (i = 0; i < BoxBufferCapacity; ++i) {
         unit = GetTempUnit(i);
-        if (unit->pCharacterData->number == id) { 
+        if ((unit->pCharacterData) && (unit->pCharacterData->number == id)) { 
             return unit;
 		} 
     }
@@ -514,50 +521,110 @@ struct Unit* GetBoxUnitStructFromCharID(int id) {
 	return NULL; 
 } 
 
-/*
-int GetFreeUnitID(void) { 
+inline struct Unit* GetGenericBufferUnitStructFromCharID(int id) { 
+	struct Unit* unit = NULL; 
+	
+	int i;
+    for (i = 0; i < BoxBufferCapacity; ++i) {
+        unit = GetGenericBufferUnit(i);
+        if ((unit->pCharacterData) && (unit->pCharacterData->number == id)) { 
+            return unit;
+		} 
+    }
+
+	return NULL; 
+} 
+inline struct Unit* GetUnitStructFromEventParameter_Inline(int id) { 
+	struct Unit* unit = NULL; 
+	
+	int i;
+    for (i = 0; i < 0x40; ++i) {
+        unit = &gUnitArrayBlue[i];
+		if (!unit->pCharacterData) { 
+			continue; 
+		} 
+        if ((unit->pCharacterData) && (unit->pCharacterData->number == id)) { 
+            return unit;
+		} 
+    }
+
+	return NULL; 
+} 
+
+int GetFreeUnitID(struct Unit buffer[]) { 
 	struct Unit* unit; 
 	int result = 0xFF; 
+	int section = 0; 
+	if (&buffer[0] == &gUnitArrayBlue[0]) { section = 1; } 
 	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
-		unit = GetUnitStructFromEventParameter(i); 
-		if (unit) { 
-			continue; 
-		}
-		else {
+		if (section == 0) { 
 			unit = GetBoxUnitStructFromCharID(i); 
+			if (unit) { 
+				continue; 
+			} 
+		} 
+		if (section == 0) { 
+			unit = GetGenericBufferUnitStructFromCharID(i); 
 			if (unit) { 
 			continue; 
 			} 
-			else { 
-			result = i; 
+		} 
+		//if (section == 0) { 
+			unit = GetUnitStructFromEventParameter_Inline(i); 
+			if (unit) { 
+			continue; 
+			}
+		//}  
+		result = i; 
+		break; 
+	}
+	
+	
+	return result; 
+} 
+
+
+/*
+int GetFreeUnitID(struct Unit buffer[]) { 
+	struct Unit* unit; 
+	int result = 0xFF; 
+	int c = 1; // unit ID
+	for (int i = 1; i<0x40; i++) { // deployment ID 
+		unit = &buffer[i]; 
+		if (i == 0x3F) { // searched all units and did not find this unit ID 
+			result = c; 
+			asm("mov r11, r11"); 
 			break; 
-			} 
 		}
+		if (!unit->pCharacterData) { 
+			continue; // try next unit 
+		}
+		if (unit->pCharacterData->number == c) {  
+			c++; i = 1; // go to next unit ID and deployment ID 
+			//asm("mov r11, r11"); 
+		} 
+		
+		
+		if (&buffer[i] != &gUnitArrayBlue[i]) { 
+			unit = &gUnitArrayBlue[i];
+			if (!unit->pCharacterData) { 
+				continue; 
+			} 
+			if (unit->pCharacterData->number == c) { 
+				c++; i = 1;  // go to next unit ID and deployment ID 
+				asm("mov r11, r11");
+			} 
+		} 
+		
+		
+		
+
 	}
 	
 	
 	return result; 
 } 
 */
-
-int GetFreeUnitID(void) { 
-	struct Unit* unit; 
-	int result = 0xFF; 
-	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
-		unit = GetUnitStructFromEventParameter(i); 
-		if (unit) { 
-			continue; 
-		}
-		else {
-			result = i; 
-			break; 
-		}
-	}
-	
-	
-	return result; 
-} 
-
 
 
 void* PC_GetSaveAddressBySlot(unsigned slot) {

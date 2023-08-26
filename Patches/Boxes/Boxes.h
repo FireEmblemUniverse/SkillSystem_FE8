@@ -72,7 +72,7 @@ extern struct Unit PCBoxUnitsBuffer[]; //0x2026E30 size 0x2048
 //extern struct BoxUnit BoxUnitSaved[]; 
 
 void NewRegisterPrepUnitList(int index, struct Unit *unit);
-int GetFreeUnitID(void);
+int GetFreeUnitID(struct Unit buffer[]);
 int GetFreeDeploymentID(void);
 int IsBoxFull(int slot);
 struct BoxUnit* GetFreeBoxSlot(int slot);
@@ -117,4 +117,7 @@ extern void ReorderPlayerUnitsBasedOnDeployment(void);
 
 inline struct Unit* GetTempUnit(int i) { 
 	return &PCBoxUnitsBuffer[i]; 
+} 
+inline struct Unit* GetGenericBufferUnit(int i) { 
+	return &unit[i]; 
 } 
