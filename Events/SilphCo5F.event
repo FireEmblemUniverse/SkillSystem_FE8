@@ -270,7 +270,7 @@ BD(0xF, SilphCo_Giovanni_Defeat, 5000)
 TDQ_TableTerminator ; } 
 
 GiovanniBattleUnitGroup:
-UNIT 0xEF giovanniID 0x0 Level(0, Enemy, 1) [8,8]  0b 0x0	0x1 REDA8R8 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xEF giovanniID 0x0 Level(0, Enemy, 1) [8,8]  0b 0x0	0x1 REDA8R8 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
 //UNIT GenericB	SquirtleID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [JellyDonut,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB	OnixID 0xE0 Level(0, Enemy, 1)   [9,30] 	0b	0x0 0x01 REDA9R30 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT 

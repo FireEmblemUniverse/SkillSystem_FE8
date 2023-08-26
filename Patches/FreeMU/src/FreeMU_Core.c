@@ -712,9 +712,6 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 		proc->countdown = 8; // STAL for 8 frames while we turn directions 
 	} 
 	else { 
-		if (gMapFog[y][x]) {
-			proc->end_after_movement = true; 
-		}
 		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
 			//x += (facingCur == MU_FACING_RIGHT); 
 			//x -= (facingCur == MU_FACING_LEFT); 
@@ -724,7 +721,9 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 			if (!gMapUnit[y][x]) {  // a unit is occupying under the cliff 
 				if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 					if( !IsPosInvaild(x,y) ) { 
-					
+					if (gMapFog[y][x]) {
+						proc->end_after_movement = true; 
+					}
 						/*
 						u8 mD[8]; //moveDirections[8];
 						mD[0] = MU_COMMAND_MOVE_DOWN;
@@ -769,14 +768,17 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 			return no_yield; 
 		} 
 		
-		if (gMapPUnit(x, y)) { // a unit is occupying this position
-			proc->commandID = 0;
-			proc->command[0] = proc->smsFacing;
-			proc->command[1] = 0xFF; 
-		} 
+		//if (gMapPUnit(x, y)) { // a unit is occupying this position
+		//	proc->commandID = 0;
+		//	proc->command[0] = proc->smsFacing;
+		//	proc->command[1] = 0xFF; 
+		//} 
 		
 		if( FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
+				if (gMapFog[y][x]) {
+					proc->end_after_movement = true; 
+				}
 				MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
 				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 				MU_EnableAttractCamera(muProc);

@@ -33,6 +33,7 @@ NewAI1Entry(34, GuidePlayerAILabel)
 
 // AI 2 list
 // Vanilla entries take up 0 - 18
+NewAI2Entry(0, MoveTowardsEnemy_AI2)
 NewAI2Entry(21, DoNothingAI2)
 NewAI2Entry(22, Within_2_Safest_Zoning_AI2)
 NewAI2Entry(23, Safest_Zoning_AI2)
@@ -214,6 +215,11 @@ ALIGN 32
 ALIGN 32
 MoveTowardsE0Label:
 MoveTowardsIfOutOfRange(0xE0)
+Goto(0)
+
+ALIGN 32
+MoveTowardsEnemy_AI2:
+MoveTowardsOpponentsExcept(DoNotApproachTheseUnits)
 Goto(0)
 
 ALIGN 32

@@ -487,8 +487,7 @@ I reward trainers who've caught[N]
 Venonat, Exeggcute, and Krabby.[A][X]
 
 ## PurchaseMagmarText
-Ah, you've been through[N]
-Rock Tunnel, I can tell.[A][N]
+Wow, you've done it.[A][N]
 Do you want Magmar[N]
 on your team?[A][X]
 
@@ -505,7 +504,7 @@ I know Magmar's in good hands.[A][X]
 
 ## CatchBeforePurchaseJynxText
 Prof Oak's my mentor. He asked me[N]
-to wait around here.[A]
+to wait around here.[A][N]
 This way I can help trainers who have[N]
 Doduo, Ponyta, and Pidgeotto.[A][X]
 
@@ -1623,8 +1622,8 @@ Which way is out?[A][X]
 	
 ## RTB1_0xE2_BQ  
 Eek![A][N]
-Don't try anything funny in the[N]
-dark![A][X]
+Don't try anything[N]
+funny in here![A][X]
 
 ## RTB1_0xE2_BD  
 It was too dark...[A][X]
@@ -2335,7 +2334,7 @@ Who needs strategy guides, anyway?[A][X]
 Words echoed in your mind...[A][X]
 
 ## ReleaseThemText
-Release.. them...[A][X]
+[OpenMidRight][LoadOak][OpenMidRight][ToggleColorInvert]Release.. them...[ToggleColorInvert][A][X]
 
 ## ThisIsntTheTimeText
 [OpenMidRight][LoadOak][OpenMidRight][ToggleColorInvert]This isn't the time to use that![ToggleColorInvert][A][X]
@@ -2552,8 +2551,8 @@ Or I'll have to hurt you![A][X]
 [Tact]?[A][Clear]
 Hahaha! I thought you'd[N]
 turn up if I waited here![A][N]
-[LoadGaryPoint]I guess TEAM ROCKET slowed you[N]
-down! Not that I care![A][N]
+//[LoadGaryPoint]I guess TEAM ROCKET slowed you[N]
+//down! Not that I care![A][N]
 [LoadGaryBattle]I saw you in SAFFRON, so I decided[N]
 to see if you got better![A][X]
 

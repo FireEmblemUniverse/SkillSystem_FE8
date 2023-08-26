@@ -135,12 +135,15 @@ LABEL 20
 CHECK_COORDS 0x7fff
 SADD sB sC s0  
 WARP_OUT
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
 SET_ACTIVE 0
 WallText(Yes_PurchasedEeveeText)
-
+SADD sB sA s0  
 UNCM(TempAlly, 0x10009) // Undeploy + escape the mon
 SVAL s1 TempAlly 
 ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
 LABEL 63 
 NoFade
 ENDA 
@@ -174,9 +177,11 @@ SADD s2 sC s0
 CHECK_COORDS 0x7fff
 SADD sB sC s0  
 WARP_OUT
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
 SET_ACTIVE 0
 WallText(Yes_PurchasedPrizeText)
-
+SADD sB sA s0  
 UNCM(0x7ffd, 0x10009) // Undeploy + escape the mon
 SADD s1 s2 s0 //  
 ASMC ChangeS1UnitIntoLowestUnitID
@@ -185,6 +190,7 @@ DISA TempAlly_B
 DISA TempAlly_C
 DISA TempAlly_D
 DISA TempAlly_E
+SET_ACTIVE 0x7ffe
 LABEL 63 
 
 NoFade 

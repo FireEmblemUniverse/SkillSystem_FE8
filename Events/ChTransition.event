@@ -1208,7 +1208,7 @@ ChTransition:
 
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
-
+PauseFreeMovement 
 
 EVBIT_MODIFY 4
 EVBIT_F 2 

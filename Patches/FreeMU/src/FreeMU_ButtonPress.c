@@ -66,6 +66,7 @@ int FMU_OnButton_EndFreeMove(void){
 }
 
 extern void SetupActiveUnit(struct Unit* unit); 
+extern int AreAllPlayersSafe(void);
 extern int CallCommandEffect(void); 
 int FMU_EndFreeMoveSilent(void){
 	FreeMoveRam->silent = true; 
@@ -82,6 +83,9 @@ int FMU_EndFreeMoveSilent(void){
 	SetCursorMapPosition(gActiveUnit->xPos, gActiveUnit->yPos);
 	SetEventId(0x1); // so can only call once - if this flag is on, do not move protag 
 	CallCommandEffect(); 
+	if (AreAllPlayersSafe()) { 
+		UnsetEventId(0x1); 
+	} 
 	UnsetEventId(0x8); // so can call 
 	
 	return 0xB7; // close menu etc 
