@@ -48,7 +48,6 @@ void WriteSramFast(const u8 *src, u8 *dest, u32 size)
 unsigned WriteAndVerifySramFast(const void* src, void* dest, unsigned size);
 //s8 GetEventTriggerState(u16 triggerId);
 void SavePCBox(int targetSlot) { 
-	//ClearPCBoxUnitsBuffer();
 	int sourceSlot = gPlaySt.gameSaveSlot; 
 	
 	if (!CheckFlag(InitSRAM_Flag)) { 
@@ -59,8 +58,12 @@ void SavePCBox(int targetSlot) {
 	if (sourceSlot != targetSlot) { 
 		ClearAllBoxUnits(targetSlot); 
 	}
-	//int index = UnpackUnitsFromBox(sourceSlot); // because we might save to a different file 
-	//RelocateUnitsPastThreshold(index); 
+	
+	if (!(Proc_Find(ProcScr_PrepMenu) || Proc_Find(gProcScr_SALLYCURSOR))) { 
+		ClearPCBoxUnitsBuffer();
+		int index = UnpackUnitsFromBox(sourceSlot); // because we might save to a different file 
+		RelocateUnitsPastThreshold(index); 
+	}
 	PackUnitsIntoBox(targetSlot);
 	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(slot), sizeof(*bunit[0])*BoxCapacity); // src, dst, size 
 	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size

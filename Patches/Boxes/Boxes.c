@@ -203,6 +203,9 @@ void DeploySelectedUnits() {
 			newUnit = &gUnitArrayBlue[deploymentID];
 			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
 			newUnit->index = deploymentID; 
+			#ifdef POKEMBLEM_VERSION 
+			newUnit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+			#endif 
 			
 			ClearUnit(&unit[i]); 
 		}
@@ -215,6 +218,9 @@ void DeploySelectedUnits() {
 			newUnit = &gUnitArrayBlue[deploymentID];
 			memcpy((void*)newUnit, (void*)unitTemp, 0x48);
 			newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
+			#ifdef POKEMBLEM_VERSION 
+			newUnit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+			#endif 
 			ClearUnit(unitTemp); 
 		}
 	}
@@ -228,7 +234,9 @@ void DeploySelectedUnits() {
 			newUnit = &gUnitArrayBlue[deploymentID];
 			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
 			newUnit->index = deploymentID;  // copy unit into a free slot in unit struct ram 
-			
+			#ifdef POKEMBLEM_VERSION 
+			newUnit->pCharacterData = &gCharacterData[GetFreeUnitID()]; 
+			#endif 
 			ClearUnit(&unit[i]); 
 			c++; 
 			} 
@@ -490,6 +498,8 @@ int CountUnusableStoredUnitsUpToIndex(int index) {
     }
     return cur;
 }
+
+
 struct Unit* GetBoxUnitStructFromCharID(int id) { 
 	struct Unit* unit = NULL; 
 	
@@ -504,6 +514,7 @@ struct Unit* GetBoxUnitStructFromCharID(int id) {
 	return NULL; 
 } 
 
+/*
 int GetFreeUnitID(void) { 
 	struct Unit* unit; 
 	int result = 0xFF; 
@@ -521,6 +532,25 @@ int GetFreeUnitID(void) {
 			result = i; 
 			break; 
 			} 
+		}
+	}
+	
+	
+	return result; 
+} 
+*/
+
+int GetFreeUnitID(void) { 
+	struct Unit* unit; 
+	int result = 0xFF; 
+	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
+		unit = GetUnitStructFromEventParameter(i); 
+		if (unit) { 
+			continue; 
+		}
+		else {
+			result = i; 
+			break; 
 		}
 	}
 	
