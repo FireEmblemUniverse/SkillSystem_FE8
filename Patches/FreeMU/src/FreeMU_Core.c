@@ -798,7 +798,6 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 
 
 
-
 int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
 	int result = no_yield; 
 	if(1&iKeyCur){ 			//Press A
@@ -1225,6 +1224,29 @@ void pFMU_UpdateSMS(struct FMUProc* proc){
 	int facing = proc->smsFacing; 
  	UpdateSMSDir(unit, smsID, facing);
 }
+
+
+#ifdef POKEMBLEM_VERSION 
+extern int GetConvoyItemSlot(int item); 
+extern void RemoveItemFromConvoy(int index);
+extern int SuperRepel_Link; 
+// calling RemoveItemFromConvoy / ShrinkConvoyItemList
+// can break the convoy if called while the generic buffer is in use ! 
+
+void GiveRepelsToProtag(void) { 
+	struct Unit* unit = GetUnitStructFromEventParameter(ProtagID_Link); 
+	if (!unit) { return; } 
+	int slot = GetConvoyItemSlot(SuperRepel_Link); 
+	if (slot < 0) { return; } 
+	if (unit->items[0] != 0) { return; } 
+	unit->items[0] = GetConvoyItemArray()[slot]; 
+	RemoveItemFromConvoy(slot); 
+} 
+
+
+#endif 
+
+
 
 /* @blh 0x801865C @ SetupActiveUnit 
 void UnitBeginAction(struct Unit* unit) {

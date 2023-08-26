@@ -43,7 +43,9 @@ struct __attribute__((packed)) BoxUnit {
 	u32 conBonus : 4; 
 	u32 movBonus : 4; 
 	u32 hp : 7; 
-	u32 lvl : 7; 
+	u32 lvl : 6; 
+	u32 escaped : 1; 
+	u32 departed : 1; 
 	u32 exp : 7; 
 	u32 mag : 6; 
 	u32 str : 6; 
@@ -58,7 +60,7 @@ struct __attribute__((packed)) BoxUnit {
 
 
 extern struct Unit unit[62]; // gGenericBuffer 0x2020188
-extern struct BoxUnit bunit[110]; 
+extern struct BoxUnit bunit[100]; 
 
 extern int BoxCapacity; 
 extern int BoxBufferCapacity; 
@@ -69,7 +71,7 @@ extern struct Unit PCBoxUnitsBuffer[]; //0x2026E30 size 0x2048
 
 //extern struct BoxUnit BoxUnitSaved[]; 
 
-
+void NewRegisterPrepUnitList(int index, struct Unit *unit);
 int GetFreeUnitID(void);
 int GetFreeDeploymentID(void);
 int IsBoxFull(int slot);
@@ -86,6 +88,7 @@ void* PC_GetSaveAddressBySlot(unsigned slot);
 int UnpackUnitsFromBox(int slot);
 void PackUnitsIntoBox(int slot);
 int CountTempUnits(void); 
+int CountAndUndeployTempUnits(void);
 void DeploySelectedUnits(void);
 int CountUnitsInUnitStructRam(void);
 void ClearPCBoxUnitsBuffer(void);
@@ -94,6 +97,10 @@ void ClearAllBoxUnits(int slot);
 void ClearAllBoxUnitsASMC(void);
 void EnsureUnitInPartyASMC(void);
 int EnsureUnitInParty(int slot, int charID);
+
+int CountTotalUnitsInUnitStructRam(void); 
+int CountUnusableUnitsUpToIndex(int index);
+int CountUnusableStoredUnitsUpToIndex(int index);
 
 
 struct SaveBlockDecl {

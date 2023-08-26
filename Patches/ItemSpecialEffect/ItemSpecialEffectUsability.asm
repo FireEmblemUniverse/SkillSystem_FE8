@@ -15,8 +15,8 @@
 .type ItemSpecialEffectUsability, %function
 ItemSpecialEffectUsability:
 push {r4-r6, lr} 
-
-mov r4, r0 @ item ID 
+mov r4, #0xFF 
+and r4, r0 @ item ID 
 mov r5, r1 @ unit 
 
 ldr r6, ItemSpecialEffectTable

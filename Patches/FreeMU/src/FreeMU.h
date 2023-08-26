@@ -1,6 +1,8 @@
 #pragma once
 #include "gbafe.h"
 
+#define POKEMBLEM_VERSION
+
 enum State {yield=0, no_yield=1};
 
 typedef struct FMUProc FMUProc;

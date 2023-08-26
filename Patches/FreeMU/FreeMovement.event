@@ -16,6 +16,9 @@
 ALIGN 4 
 ProtagID_Link:
 WORD ProtagID 
+ALIGN 4 
+SuperRepel_Link:
+WORD SuperRepel 
 
 ALIGN 4
 FreeMoveRam:

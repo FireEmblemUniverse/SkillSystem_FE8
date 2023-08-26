@@ -519,7 +519,7 @@ LABEL 0
 LOAD1 1 ProtagUnitGroupMale 
 LABEL 1 
 ENUN 
-
+//ASMC GiveRepelsToProtag // breaks supply atm 
 
 SET_ACTIVE 0
 SPAWN_NPC 0xFD [0,0] // SPAWN_NPC 0xFD [-1,-1] 

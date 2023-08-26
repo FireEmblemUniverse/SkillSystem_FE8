@@ -210,7 +210,7 @@ void DeploySelectedUnits() {
 	for (int i = 0; i<BoxBufferCapacity; i++) { 
 		unitTemp = &PCBoxUnitsBuffer[i]; 
 		if ((unitTemp->pCharacterData) && (!(unitTemp->state & US_NOT_DEPLOYED))) {
-			unitTemp->state &= ~(US_BIT16); // remove "escaped" bitflag 
+			//unitTemp->state &= ~(US_BIT16); // remove "escaped" bitflag 
 			deploymentID = GetFreeDeploymentID(); 
 			newUnit = &gUnitArrayBlue[deploymentID];
 			memcpy((void*)newUnit, (void*)unitTemp, 0x48);
@@ -219,7 +219,7 @@ void DeploySelectedUnits() {
 		}
 	}
 	
-	int c = CountUnitsInUnitStructRam();
+	int c = CountTotalUnitsInUnitStructRam();
 	
 	for (int i = 0; i<PartySizeThreshold; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
 		if ((unit[i].pCharacterData)) { 
@@ -450,19 +450,82 @@ int CountTempUnits(void) {
     return cur;
 }
 
+extern s8 IsUnitInCurrentRoster(struct Unit *unit);
+int CountAndUndeployTempUnits(void) {
+	int cur = 0;
+    int i, last = BoxBufferCapacity;
+    for (i = 0; i < last; ++i) {
+        struct Unit* unit = GetTempUnit(i);
+        if (unit->pCharacterData) { 
+			if (IsUnitInCurrentRoster(unit)) {
+				NewRegisterPrepUnitList(cur, unit);
+				cur++;
+			}
+			else { 
+				unit->state |= US_NOT_DEPLOYED; 
+			}
+		}
+    }
+    return cur;
+}
+
+
+int CountUnusableStoredUnitsUpToIndex(int index) {
+	int cur = 0;
+    int i;
+    for (i = 0; i < BoxCapacity; ++i) {
+        struct Unit* unit = GetTempUnit(i);
+        if (unit->pCharacterData) { 
+			if (!IsUnitInCurrentRoster(unit)) { 
+				cur++;
+			}
+			else { 
+				//cur++;
+				if (i >= index) { 
+					break; // keep counting until we find a valid unit so we know how many units to skip over 
+				} 
+			}
+			
+		} 
+    }
+    return cur;
+}
+struct Unit* GetBoxUnitStructFromCharID(int id) { 
+	struct Unit* unit = NULL; 
+	
+	int i;
+    for (i = 0; i < BoxBufferCapacity; ++i) {
+        unit = GetTempUnit(i);
+        if (unit->pCharacterData->number == id) { 
+            return unit;
+		} 
+    }
+
+	return NULL; 
+} 
 
 int GetFreeUnitID(void) { 
 	struct Unit* unit; 
+	int result = 0xFF; 
 	for (int i = 1; i<0x40; i++) { // unit ID, not deployment ID 
-		unit = &gUnitArrayBlue[i]; 
-		if (unit->pCharacterData) { 
+		unit = GetUnitStructFromEventParameter(i); 
+		if (unit) { 
 			continue; 
 		}
 		else {
-			return i; 
+			unit = GetBoxUnitStructFromCharID(i); 
+			if (unit) { 
+			continue; 
+			} 
+			else { 
+			result = i; 
+			break; 
+			} 
 		}
 	}
-	return 0xFF; 
+	
+	
+	return result; 
 } 
 
 
@@ -566,6 +629,8 @@ int UnpackFlooredSupportEXP(int value) {
   struct BoxUnit* PackUnitIntoBox(struct BoxUnit* boxRam, struct Unit* unit) { 
 	
 	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
+		boxRam->escaped = ((unit->state & US_BIT16) != 0);
+		boxRam->departed = ((unit->state & (1<<24)) != 0);
 		boxRam->unitID = unit->pCharacterData->number; 
 		boxRam->classID = unit->pClassData->number; 
 		boxRam->supportBits = unit->supportBits; 
@@ -587,14 +652,14 @@ int UnpackFlooredSupportEXP(int value) {
 		
 		boxRam->hp = unit->maxHP<127 ? unit->maxHP : 127; 
 		boxRam->mag = unit->unk3A < 64 ? unit->unk3A : 63; 
-		boxRam->str = unit->pow < 64 ? unit->pow : 63;; 
-		boxRam->skl = unit->skl < 64 ? unit->skl : 63;; 
-		boxRam->spd = unit->spd < 64 ? unit->spd : 63;; 
-		boxRam->def = unit->def < 64 ? unit->def : 63;; 
-		boxRam->res = unit->res < 64 ? unit->res : 63;; 
-		boxRam->luk = unit->lck < 64 ? unit->lck : 63;; 
-		boxRam->lvl = unit->level < 127 ? unit->level : 127;; 
-		boxRam->exp = unit->exp < 127 ? unit->exp : 127;; 
+		boxRam->str = unit->pow < 64 ? unit->pow : 63; 
+		boxRam->skl = unit->skl < 64 ? unit->skl : 63; 
+		boxRam->spd = unit->spd < 64 ? unit->spd : 63; 
+		boxRam->def = unit->def < 64 ? unit->def : 63; 
+		boxRam->res = unit->res < 64 ? unit->res : 63; 
+		boxRam->luk = unit->lck < 64 ? unit->lck : 63;
+		boxRam->lvl = unit->level < 127 ? unit->level : 127;
+		boxRam->exp = unit->exp < 127 ? unit->exp : 127;
 		
 	} 
 	//ClearUnit(unit); 
@@ -667,7 +732,7 @@ struct Unit* UnpackUnitFromBox(struct BoxUnit* boxRam, struct Unit* unit) {
 		unit->pMapSpriteHandle = 0; 
 		unit->xPos = 63; 
 		unit->yPos = 63; 
-		unit->state = US_NOT_DEPLOYED | US_HIDDEN | US_BIT16 | ((boxRam->metis!=0)<<13); // 0x10009 Escaped, Undeployed, Hidden 
+		unit->state = US_NOT_DEPLOYED | US_HIDDEN | ((boxRam->escaped!=0)<<16) | ((boxRam->departed!=0)<<24) | ((boxRam->metis!=0)<<13); // 0x10009 Escaped, Undeployed, Hidden 
 		unit->index = 0; //GetFreeDeploymentID(); // maybe important 
 		
 		

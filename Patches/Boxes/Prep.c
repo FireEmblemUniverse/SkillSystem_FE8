@@ -43,10 +43,12 @@ void WriteSramFast(const u8 *src, u8 *dest, u32 size)
 //    int latest_pid;     /* Last unit char-id when you leave the prep-unit-screen */
 //};
 
+// select unit -> it's put in party -> save (now it's in party and still in pc box) -> restart chapter 
+
 unsigned WriteAndVerifySramFast(const void* src, void* dest, unsigned size);
 //s8 GetEventTriggerState(u16 triggerId);
 void SavePCBox(int targetSlot) { 
-	ClearPCBoxUnitsBuffer();
+	//ClearPCBoxUnitsBuffer();
 	int sourceSlot = gPlaySt.gameSaveSlot; 
 	
 	if (!CheckFlag(InitSRAM_Flag)) { 
@@ -57,8 +59,8 @@ void SavePCBox(int targetSlot) {
 	if (sourceSlot != targetSlot) { 
 		ClearAllBoxUnits(targetSlot); 
 	}
-	int index = UnpackUnitsFromBox(sourceSlot); // because we might save to a different file 
-	RelocateUnitsPastThreshold(index); 
+	//int index = UnpackUnitsFromBox(sourceSlot); // because we might save to a different file 
+	//RelocateUnitsPastThreshold(index); 
 	PackUnitsIntoBox(targetSlot);
 	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(slot), sizeof(*bunit[0])*BoxCapacity); // src, dst, size 
 	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size
@@ -68,6 +70,7 @@ void SavePCBox(int targetSlot) {
 	sbm.kind   = SAVEBLOCK_KIND_GAME;
 	WriteSaveBlockInfo(&sbm, targetSlot);
 	
+	ClearPCBoxUnitsBuffer();
 	UnpackUnitsFromBox(targetSlot); 
 } 	
 
@@ -85,6 +88,36 @@ void CopyPCBox(int sourceSlot, int targetSlot) {
 	UnpackUnitsFromBox(targetSlot); 
 }
 
+void PrepAutoCapDeployUnits(struct ProcAtMenu* proc)
+{
+    int i;
+    struct Unit *unit;
+
+    proc->cur_counter = 0;
+    proc->unit_count = 0;
+
+    //for (i = 0; i < PrepGetUnitAmount(); proc->unit_count++, i++) {
+    for (i = 0; i < 150; proc->unit_count++, i++) {
+        unit = GetUnitFromPrepList(i);
+
+        if (unit->state & US_DEAD)
+            continue;
+
+        if (unit->state & US_NOT_DEPLOYED)
+            continue;
+        {
+            if (proc->cur_counter >= proc->max_counter)
+                unit->state = 8;
+            else
+                proc->cur_counter++;
+        }
+    }
+
+    if (proc->unit_count < proc->max_counter)
+        proc->max_counter = proc->unit_count;
+}
+
+
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 {
 	if (!CheckFlag(InitSRAM_Flag)) { 
@@ -92,7 +125,7 @@ void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 		SetFlag(InitSRAM_Flag); 
 	} 
 	
-	ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
+	//ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
 	ClearPCBoxUnitsBuffer();
 	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
 	//RelocateUnitsPastThreshold(index); 
@@ -143,10 +176,12 @@ void PrepUnit_InitSMS(struct ProcPrepUnit *proc)
     PrepAutoCapDeployUnits(proc->proc_parent);
     PrepUpdateSMS();
 }
+
+ // latest unit is in proc+0x2C 
 void MakePrepUnitList()
 {
     int i; 
-	int cur = CountTempUnits();
+	int cur = CountAndUndeployTempUnits();
     struct Unit *unit;
     for (i = 1; i < 64; i++) {
         unit = GetUnit(i);
@@ -154,15 +189,17 @@ void MakePrepUnitList()
         if (!UNIT_IS_VALID(unit))
             continue;
 
-        //if (IsUnitInCurrentRoster(unit)) {
-            //NewRegisterPrepUnitList(cur, unit);
+        if (IsUnitInCurrentRoster(unit)) {
+            NewRegisterPrepUnitList(cur, unit);
             cur++;
-        //}
+        }
+		else { unit->state |= US_NOT_DEPLOYED; } 
     }
 
     PrepSetUnitAmount(cur);
 }
 
+/*
 int CountUnitsInUnitStructRam(void) { 
 	int cur = 0;
     struct Unit *unit;
@@ -170,37 +207,81 @@ int CountUnitsInUnitStructRam(void) {
         unit = &gUnitArrayBlue[i];
 
         if (UNIT_IS_VALID(unit)) { 
-            cur++; 
+			if (IsUnitInCurrentRoster(unit)) {
+				NewRegisterPrepUnitList(cur, unit);
+				cur++;
+			}
+		} 
+		
+    }
+	return cur; 
+} 
+*/
+
+
+
+int CountTotalUnitsInUnitStructRam(void) { 
+	int cur = 0;
+    struct Unit *unit;
+    for (int i = 0; i < 63; i++) {
+        unit = &gUnitArrayBlue[i];
+
+        if (UNIT_IS_VALID(unit)) { 
+			cur++;
 		} 
 		
     }
 	return cur; 
 } 
 
+int CountUnusableUnitsUpToIndex(int index) { 
+	int cur = 0;
+    struct Unit *unit;
+    for (int i = 0; i < 64; i++) {
+        unit = &gUnitArrayBlue[i];
+
+        if (UNIT_IS_VALID(unit)) { 
+			if (!IsUnitInCurrentRoster(unit)) {
+				//NewRegisterPrepUnitList(cur, unit);
+				cur++;
+			}
+			else { 
+				//cur++;
+				if (i >= index) { 
+					break; // keep counting until we find a valid unit so we know how many units to skip over 
+				} 
+			}
+		} 
+		
+    }
+	return cur; 
+} 
+
+
 struct Unit *GetUnitFromPrepList(int index) // called in 6 other functions
 {
 	// return gPrepUnitList.units[index];
 	struct Unit* unit;
-	int c = CountUnitsInUnitStructRam(); 
+	int c = CountTotalUnitsInUnitStructRam(); 
+	
 	if (index < c) { 
-		unit = &gUnitArrayBlue[index];
+		int offset = CountUnusableUnitsUpToIndex(index); 
+		unit = &gUnitArrayBlue[index+offset];
 	}
 	else { 
 		index = index - c; 
-		unit = &PCBoxUnitsBuffer[index]; 
+		int offset = CountUnusableStoredUnitsUpToIndex(index); 
+		unit = &PCBoxUnitsBuffer[index + offset]; 
 	} 
 	return unit; 
 }
 
-/*
+
 void NewRegisterPrepUnitList(int index, struct Unit *unit)
 {
     gPrepUnitList.units[index] = unit;
-	struct Unit* destUnit = GetFreeTempUnitAddr();
-	memcpy(destUnit, unit, 0x48);
-	ClearUnit(unit);
 }
-*/
+
 
 void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc)
 {
