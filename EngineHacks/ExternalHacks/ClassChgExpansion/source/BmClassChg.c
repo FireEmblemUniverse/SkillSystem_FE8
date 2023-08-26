@@ -47,12 +47,12 @@ u32 PromoHandler_SetupAndStartUI(struct ProcPromoHandler * proc)
             if (!UNIT_IS_VALID(unit))
                 continue;
 
+            if (unit->state & (US_BIT16 | US_DEAD))
+                continue;
+
             for (it = gpTraineesRe; it->jid != 0; it++)
             {
                 if (it->jid != UNIT_CLASS_ID(unit))
-                    continue;
-
-                if (unit->state & (US_BIT16 | US_DEAD))
                     continue;
 
                 if (unit->level >= it->level)
@@ -71,8 +71,8 @@ u32 PromoHandler_SetupAndStartUI(struct ProcPromoHandler * proc)
                     return PROMO_HANDLER_STAT_IDLE;
                 }
             }
-            return PROMO_HANDLER_STAT_END;
         }
+        return PROMO_HANDLER_STAT_END;
     }
 
     proc->sel_en = true;
