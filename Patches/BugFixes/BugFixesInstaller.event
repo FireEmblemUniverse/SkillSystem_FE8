@@ -273,8 +273,18 @@ BYTE 0xFF
 ORG $A8A22 //remove r-text from save screen because why not
 SHORT 0xE025
 
+ORG $3152C 
+replaceWithHack(ShrinkConvoyFix) 
 
 POP 
+
+ALIGN 4 
+PUSH 
+ORG CurrentOffset+1 
+ShrinkConvoyFix: 
+POP 
+#incbin "ShrinkConvoy.dmp" 
+
 
 ALIGN 4
 CGFix:
