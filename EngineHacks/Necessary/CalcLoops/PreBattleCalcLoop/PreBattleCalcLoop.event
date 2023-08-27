@@ -25,7 +25,7 @@ BtlLoopList:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_WRank BC_Status // maybe I don't need BC_Support ? 
 POIN InitializePreBattleLoop
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
-
+POIN Intimidate_Prebattle
 // I've decided to comment out stuff that I'm not using for the time being in order to speed up AI - Vesly 
 
 

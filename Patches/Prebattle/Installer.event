@@ -3,10 +3,13 @@
 ALIGN 4 
 ScaledUpID_Link:
 WORD ScaledUpID 
+Intimidate2ID_Link:
+WORD Intimidate2ID 
 
-
-
-
+ALIGN 4 
+IntimidateDebuffs:
+//WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepDebuffEntry(  0,    25,   0,    0,   0,   0,   0,   0)
 
 
 
