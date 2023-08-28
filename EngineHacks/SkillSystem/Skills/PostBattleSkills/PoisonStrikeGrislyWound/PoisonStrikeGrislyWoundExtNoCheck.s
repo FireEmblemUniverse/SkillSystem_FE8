@@ -22,7 +22,7 @@ cmp r1, #0xEF
 ble EndInjureAttacker @ don't hit trainers 
 Continue: 
 
-ldrb r0, [ r4, #0x12 ] @ Max HP
+ldrb r0, [ r4, #0x13 ] @ CurrHP
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
 @mov r1, #10
@@ -59,7 +59,7 @@ cmp r1, #0xEF
 ble EndInjureDefender @ don't hit trainers 
 Continue2: 
 
-ldrb r0, [ r5, #0x12 ] @ Max HP
+ldrb r0, [ r5, #0x13 ] @ Curr HP
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
 @mov r1, #10

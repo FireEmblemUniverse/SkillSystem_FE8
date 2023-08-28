@@ -397,8 +397,9 @@ Foreign Princess: Foreign army units[N]
 take -2/+2 damage dealt/taken.[X]
 
 ## SD_SavageBlow
-Savage Blow: After attacking, enemies[N]
-within 2 tiles take 25% damage.[X]
+Savage Blow: After attacking,[N]
+enemies within 2 tiles lose[N]
+25% of their current HP.[X]
 
 ## SD_Relief
 Relief: Recover 20% HP each turn if[N]
@@ -793,12 +794,12 @@ the curse spreads to the enemy as well.[N]
 
 ## SD_Poison_Strike
 Poison Strike: Deals damage equal to[N]
-25% of the enemy's max HP after[N]
+25% of the enemy's current HP after[N]
 battle this unit initiates.[X]
 
 ## SD_Grisly_Wound
 Grisly Wound: Deals damage equal[N]
-to 25% of the enemy's max[N]
+to 25% of the enemy's current[N]
 HP after every battle.[X]
 
 ## SD_Hex

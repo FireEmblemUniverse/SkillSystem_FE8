@@ -31,7 +31,7 @@ mov r2, #0x5C
 ldrh r0, [ r6, r2 ] @ Get defense
 cmp r0, r1
 bge EndInjureAttacker @ Leave if the defender isn't doing damage. The defense is greater than the attack
-ldrb r0, [ r4, #0x12 ] @ Max HP
+ldrb r0, [ r4, #0x13 ] @ CurrHP
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
 @mov r1, #10
@@ -77,7 +77,7 @@ mov r2, #0x5C
 ldrh r0, [ r7, r2 ] @ Get defense
 cmp r0, r1
 bge EndInjureDefender @ Leave if the attacker isn't doing damage.
-ldrb r0, [ r5, #0x12 ] @ Max HP of defender
+ldrb r0, [ r5, #0x13 ] @ CurrHP of defender
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
 @mov r1, #10

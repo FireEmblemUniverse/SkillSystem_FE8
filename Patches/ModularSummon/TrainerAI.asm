@@ -270,6 +270,9 @@ ldrh r3, [r3]
 cmp r3, #0 
 beq NoDebuffRepel 
 lsr r4, #1 @ half movement if repelled 
+cmp r4, #3 
+blt NoDebuffRepel
+mov r4, #2 @ up to 2 mvt while repelled 
 
 NoDebuffRepel: 
 mov r0, r4 

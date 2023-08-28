@@ -1369,6 +1369,7 @@ BellsproutLearnset:
 BYTE 1 VineWhip 
 BYTE 4 Constrict
 BYTE 7 Leer
+BYTE 8 LeafFlurry
 BYTE 10 Bite
 BYTE 13 Acid
 BYTE 15 RazorLeaf
@@ -1389,6 +1390,7 @@ WeepinbellLearnset:
 BYTE 1 VineWhip 
 BYTE 4 Constrict
 BYTE 7 Leer
+BYTE 8 LeafFlurry
 BYTE 10 Bite
 BYTE 13 Acid
 BYTE 15 RazorLeaf
@@ -1409,6 +1411,7 @@ VictreebelLearnset:
 BYTE 1 VineWhip 
 BYTE 4 Constrict
 BYTE 7 Leer
+BYTE 8 LeafFlurry
 BYTE 10 Bite
 BYTE 13 Acid
 BYTE 15 RazorLeaf
@@ -2546,11 +2549,13 @@ BYTE 9 AuroraBeam
 // BYTE 8 Resv LovelyKiss 
 BYTE 12 Flash
 BYTE 15 Doubleslap
-BYTE 18 Psybeam
+BYTE 18 IcePunch // PowderSnow  11 + Avalanche 33 /2 = 22
+BYTE 21 NightShade
+BYTE 25 Psybeam
 // BYTE 21 Resv MeanLook
-BYTE 22 IcePunch // PowderSnow  11 + Avalanche 33 /2 = 22
+BYTE 28 AuroraBeam
 // BYTE 25 Resv FakeTears 
-BYTE 25 NightShade
+
 BYTE 30 SeismicToss // WakeUpSlap
 BYTE 34 Psychic
 BYTE 38 Screech

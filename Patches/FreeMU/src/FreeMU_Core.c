@@ -590,11 +590,11 @@ int FMU_HandleContinuedMovement(void) {
 	} 
 
 	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
-	if (gMapPUnit(x, y)) { // a unit is occupying this position
-		proc->commandID = 0;
-		proc->command[0] = proc->smsFacing;
-		proc->command[1] = 0xFF; 
-	} 
+	//if (gMapPUnit(x, y)) { // a unit is occupying this position
+	//	proc->commandID = 0;
+	//	proc->command[0] = proc->smsFacing;
+	//	proc->command[1] = 0xFF; 
+	//} 
 	
 	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 
 		return (-1); } 

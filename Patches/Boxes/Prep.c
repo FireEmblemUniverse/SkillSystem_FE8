@@ -12,6 +12,93 @@
 #include "Prep.h"
 #include "Boxes.h" 
 
+
+#ifdef POKEMBLEM_VERSION 
+
+extern struct ProcCmd gProcScr_PlayerPhase[];
+extern struct ProcCmd ProcScr_PrepMenu[];
+extern int AreAllPlayersSafe(void); 
+
+int PrepMenu_CtrlLoop_PressStartUsability(void) { 
+    //struct ProcPrepMenu *proc;
+    //proc = Proc_Find(ProcScr_PrepMenu);
+	//if (proc) { 
+	//	if (proc->proc_parent) { 
+	//	asm("mov r11, r11"); 
+	//	} 
+	//	if (proc->on_PressStart) {
+	//		if (proc->on_PressStart(proc->proc_parent)) { 
+	//		return 1; } 
+	//	}
+	//} 
+	return 1; 
+}
+
+int PrepMenu_CtrlLoop_PressStartUsabilityGrey(void) { 
+    //struct ProcPrepMenu *proc;
+    //proc = Proc_Find(ProcScr_PrepMenu);
+	//if (proc) { 
+	//	//if (A_BUTTON | START_BUTTON & gKeyStatusPtr->newKeys) {
+	//		//if (proc->on_PressStart) {
+	//			return 1;
+	//		//}
+	//	}
+	if (PrepGetDeployedUnitAmt()) {
+	return 1; } 
+		
+	return 0; 
+}
+
+int PrepMenu_CtrlLoop_PressStart(void) { 
+    struct ProcPrepMenu *proc;
+    proc = Proc_Find(ProcScr_PrepMenu);
+	if (proc) { 
+		//if (A_BUTTON | START_BUTTON & gKeyStatusPtr->newKeys) {
+			if (proc->on_PressStart) {
+				if (proc->on_PressStart(proc->proc_parent))
+				return 1; 
+			}
+		//}
+	} 
+	return 0; 
+}
+
+s8 TrySetCursorOn(int unitId) {
+    ProcPtr proc;
+
+    struct Unit* unit = GetUnit(unitId);
+
+    if (!UNIT_IS_VALID(unit)) {
+        return 0;
+    }
+
+    if (unit->state & (US_HIDDEN | US_UNSELECTABLE | US_DEAD | US_BIT16)) {
+        return 0;
+    }
+    
+    if (unit->statusIndex == UNIT_STATUS_BERSERK || unit->statusIndex == UNIT_STATUS_SLEEP) {
+        return 0;
+    }
+	
+	if (unit->pCharacterData->number == ProtagID_Link) { 
+		if (!AreAllPlayersSafe()) { 
+		return 0; 
+		} 
+	}
+    
+    proc = Proc_Find(gProcScr_PlayerPhase);
+
+    if (!proc) {
+        proc = Proc_Find(gProcScr_SALLYCURSOR);
+    }
+
+    EnsureCameraOntoPosition(proc, unit->xPos, unit->yPos);
+    SetCursorMapPosition(unit->xPos, unit->yPos);
+
+    return 1;
+}
+#endif 
+
 // This was for extra testing that nothing else was writing to my areas of SRAM 
 /*
 void WriteSramFast(const u8 *src, u8 *dest, u32 size)
@@ -100,11 +187,14 @@ void PrepAutoCapDeployUnits(struct ProcAtMenu* proc)
     proc->unit_count = 0;
 
     //for (i = 0; i < PrepGetUnitAmount(); proc->unit_count++, i++) {
-    for (i = 0; i < 150; proc->unit_count++, i++) {
+    for (i = 0; i < 150; i++) {
         unit = GetUnitFromPrepList(i);
-
-        if (unit->state & US_DEAD)
-            continue;
+		if (!unit->pCharacterData) { 
+			continue; 
+		} 
+        if (unit->state & US_DEAD) { 
+		continue; } 
+		proc->unit_count++; // this shows 3 ?????? 
 
         if (unit->state & US_NOT_DEPLOYED)
             continue;
@@ -114,10 +204,17 @@ void PrepAutoCapDeployUnits(struct ProcAtMenu* proc)
             else
                 proc->cur_counter++;
         }
+		
     }
 
+
+	//asm("mov r11, r11"); 
     if (proc->unit_count < proc->max_counter)
         proc->max_counter = proc->unit_count;
+	
+	//int unitAmount = PrepGetUnitAmount();
+    //if (unitAmount < proc->max_counter)
+    //    proc->max_counter = unitAmount;
 }
 
 

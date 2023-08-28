@@ -254,7 +254,7 @@ LOAD1 1 OaksAideUnitGroup
 ENUN 
 MarkTrainerAsDefeated(OaksAide) 
 MarkTrainerAsDefeated(OaksAidePkmn) 
-CHECK_EVENTID PurchasedFarfetchdFlag 
+CHECK_EVENTID PurchasedLaprasFlag 
 BEQ 34 sC s0 
 DISA OaksAidePkmn 
 LABEL 34 
