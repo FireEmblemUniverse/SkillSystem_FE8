@@ -15,7 +15,8 @@ ORG SkillIcon(ScaledUpID)
 #incbin "SkillIcons/ScaledUp.dmp"
 ORG SkillIcon(ExpShareID)
 #incbin "SkillIcons/ExpShare.dmp"
-
+ORG SkillIcon(Intimidate2ID)
+#incbin "SkillIcons/Intimidate.dmp"
 
 ORG SkillIcon(WeakChipDmgID)
 #incbin "SkillIcons/Acrobat.dmp"

@@ -5,7 +5,7 @@
 //extern struct ClassData NewClassTable[]; 
 extern struct ClassData* classTablePoin[]; 
 
-
+extern void InitUnits(void); 
 void* MS_GetSaveAddressBySlot(unsigned slot);
 
 #ifdef POKEMBLEM_VERSION 

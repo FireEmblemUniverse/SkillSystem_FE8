@@ -13,6 +13,10 @@
 	
 	.equ GetUnit, 0x8019431
 
+// There was a game crash after capturing a pokemon due to it having no deployment ID 
+// This was caused by the boxes unit expansion using memset instead of InitUnits(); 
+// it zeroed out all player ram instead of writing the ordered deployment IDs there 
+
 .global ChangeS1UnitIntoLowestUnitID
 .type ChangeS1UnitIntoLowestUnitID, %function 
 ChangeS1UnitIntoLowestUnitID:

@@ -166,7 +166,8 @@ void RelocateUnitsPastThreshold(int startingOffset) {
 	#endif 
 	
 	memcpy((void*)&PCBoxUnitsBuffer[startingOffset], (void*)&gUnitArrayBlue[PartySizeThreshold], 0x48*(62 - PartySizeThreshold));
-	memset(&gUnitArrayBlue[PartySizeThreshold], 0, 0x48*(62 - PartySizeThreshold)); 
+	//memset(&gUnitArrayBlue[PartySizeThreshold], 0, 0x48*(62 - PartySizeThreshold)); // This broke things 
+	InitUnits(); // do not write 0 to their deployment ID! 
 	
 	#ifdef POKEMBLEM_VERSION
 	if (someUnit.pCharacterData) { 
@@ -194,8 +195,8 @@ void DeploySelectedUnits() {
 	int deploymentID = 0; 
 	
 	memcpy((void*)&unit[0], (void*)&gUnitArrayBlue[0], 0x48*62); // move all units to gGenericBuffer 
-	memset(&gUnitArrayBlue[0], 0, 0x48*62); // clear units from unit struct ram 
-	
+	//memset(&gUnitArrayBlue[0], 0, 0x48*62); // clear units from unit struct ram // This broke things 
+	InitUnits(); // do not write 0 to their deployment ID! 
 	
 	for (int i = 0; i<50; i++) { // move units that were deployed back into unit struct ram 
 		if ((unit[i].pCharacterData) && (!(unit[i].state & US_NOT_DEPLOYED))) { 

@@ -23,7 +23,7 @@ PostCombatLoop:
 POIN PostCombatSkills
 
 ALIGN 4
-PostCombatSkills:
+PostCombatSkills: // 
 POIN DepleteRepel
 //POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce

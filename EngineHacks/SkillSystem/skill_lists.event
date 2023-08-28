@@ -1,5 +1,6 @@
 
 // Level SkillID 
+ALIGN 4 
 EphraimLordSkillList:
 //BYTE 1 RallyStrID
 BYTE 00 00
@@ -14,6 +15,12 @@ BYTE 00 00
 BYTE 00 00
 BYTE 00 00
 ALIGN 4
+
+GyaradosSkillList:
+BYTE 00 00 // maybe Intimidate2ID here 
+BYTE 00 00 
+ALIGN 4
+
 
 BulbasaurSkillList:
 //BYTE 1 ReliefID

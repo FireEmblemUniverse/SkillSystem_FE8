@@ -1,4 +1,4 @@
-
+//PROTECT $18430 $18440 
 //PROTECT $16854
 //#define FreeSpace 0x012a49a8 // after music, some gfx, and fonts
 #define FreeSpace 0x01300000 // after music, some gfx, and fonts
@@ -9,7 +9,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 
 // Config options 
 #define INSTALL_FMU 

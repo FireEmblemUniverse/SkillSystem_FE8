@@ -44,27 +44,27 @@ void Intimidate_Prebattle(struct BattleUnit* bunitA, struct BattleUnit* bunitB) 
 			void* debuffRam = GetUnitDebuffEntry(&bunitA->unit); 
 			int str = bunitA->unit.pow; 
 			int subStr = (str+2)/4; 
-			if (UnpackData_Signed(debuffRam, DebuffStatBitOffset_Str, DebuffStatNumberOfBits_Link) > (0-subStr)) { 
+			if (UnpackData_Signed(debuffRam, DebuffStatBitOffset_Str, DebuffStatNumberOfBits_Link) >= 0) { 
 				// if enemy is not already debuffed, do stuff 
 				bunitA->battleAttack -= subStr; 
 				if (bunitA->battleAttack < 1) { bunitA->battleAttack = 1; } 
-				if (gBattleStats.config & BATTLE_CONFIG_REAL) { 
-					//asm("mov r11, r11"); 
-					struct weaponDebuffTableStruct tempDebuffTable; 
-					tempDebuffTable.mag = 0; 
-					tempDebuffTable.str = subStr|0x80; //((str+2)/4)|0x80;  
-					tempDebuffTable.skl = 0; 
-					tempDebuffTable.spd = 0; 
-					tempDebuffTable.def = 0; 
-					tempDebuffTable.res = 0; 
-					tempDebuffTable.luk = 0; 
-					tempDebuffTable.mov = 0; 
-					//DebuffGivenTableEntry(debuffRam, IntimidateDebuffs, 0); 
-					DebuffGivenTableEntry(debuffRam, &tempDebuffTable, 0); 
-					// apply some debuff here ? or make it always happen post-battle 
-				} 
-			} 
 
+			} 
+			if (gBattleStats.config & BATTLE_CONFIG_REAL) { 
+				//asm("mov r11, r11"); 
+				struct weaponDebuffTableStruct tempDebuffTable; 
+				tempDebuffTable.mag = 0; 
+				tempDebuffTable.str = subStr|0x80; //((str+2)/4)|0x80;  
+				tempDebuffTable.skl = 0; 
+				tempDebuffTable.spd = 0; 
+				tempDebuffTable.def = 0; 
+				tempDebuffTable.res = 0; 
+				tempDebuffTable.luk = 0; 
+				tempDebuffTable.mov = 0; 
+				//DebuffGivenTableEntry(debuffRam, IntimidateDebuffs, 0); 
+				DebuffGivenTableEntry(debuffRam, &tempDebuffTable, 0); 
+				// apply some debuff here ? or make it always happen post-battle 
+			} 
 
 
 			} 
