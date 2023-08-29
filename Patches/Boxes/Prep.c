@@ -372,6 +372,10 @@ struct Unit *GetUnitFromPrepList(int index) // called in 6 other functions
 		index = index - c; 
 		int offset = CountUnusableStoredUnitsUpToIndex(index); 
 		unit = &PCBoxUnitsBuffer[index + offset]; 
+		if ((u32*)&PCBoxUnitsBuffer[index + offset] > (u32*)0x2028E54) { 
+		unit = &PCBoxUnitsBuffer[113]; // prevent overflow 
+		//I think this happens because it ignores empty unit struct ram. If it's not empty, then indexes >113 are valid 
+		} 
 	} 
 	return unit; 
 }

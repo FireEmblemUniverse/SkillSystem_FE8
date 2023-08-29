@@ -27,6 +27,14 @@ beq StartFMUIfPeaceful
 mov r0, r4 
 blh 0x801865C @ SetupActiveUnit 
 ldr r0, [r4] 
+
+@ Remove "capturing" bitflag in case it was set. 
+ldr r3, [r4, #0x0C] @ state 
+mov r2, #0x40 
+lsl r2, #24 
+bic r3, r2 
+str r3, [r4, #0x0C] @ 
+
 ldrb r0, [r0, #4] 
 blh 0x80A474C @ BWL_IncrementMoveValue 
 mov r0, r6 
