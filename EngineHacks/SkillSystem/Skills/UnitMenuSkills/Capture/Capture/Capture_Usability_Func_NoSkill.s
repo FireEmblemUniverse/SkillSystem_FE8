@@ -7,6 +7,10 @@
 .global Capture_Usability
 .type Capture_Usability, %function 
 
+
+@ gaiden magic calls this 
+@ Fill_Capture_RangeMap sets up range map and calls ForEachUnitInRange with the Capture_Target_Check as the function to call 
+@ This is then called on some units 
 Capture_Usability:
 push	{r4-r6,r14}
 
@@ -37,7 +41,7 @@ ItemLoop:
 lsl		r4,r6,#0x0 @ not short, byte 
 add		r4,#0x28 @ wexp 
 add		r4,r5
-ldrh	r4,[r4]
+ldrb	r4,[r4]
 cmp		r4,#0x0
 beq		RetFalse
 ldr		r0,Weapon_Wield_Check

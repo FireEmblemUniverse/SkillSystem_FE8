@@ -471,11 +471,11 @@ LABEL 0x63
 AutoLevelUnits(10, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
-//SetUnitStatus(1, 0x28, ThunderWave)
-//SetUnitStatus(1, 0x29, HyperBeam)
-//SetUnitStatus(1, 0x2A, Psychic)
-//SetUnitStatus(1, 0x2B, BodySlam)
-//SetUnitStatus(1, 0x2C, Growth)
+SetUnitStatus(1, 0x28, Gust)
+SetUnitStatus(1, 0x29, HyperBeam)
+SetUnitStatus(1, 0x2A, Psychic)
+SetUnitStatus(1, 0x2B, Flamethrower)
+SetUnitStatus(1, 0x2C, Growth)
 
 
 
