@@ -46,9 +46,8 @@ ALIGN 4
 ShopItems_A:  // Supplies + StatBoosters 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
-SHLI SuperPotion JellyDonut 
 BYTE SuperRepel 10
-SHLI HyperPotion MaxPotion FullHeal HPUp Protein Calcium Carbos Iron Zinc RareCandy
+SHLI SuperPotion JellyDonut HyperPotion MaxPotion FullHeal HPUp Protein Calcium Carbos Iron Zinc RareCandy
 //SHLI MoonStone FireStone WaterStone ThunderStone LeafStone LinkStone 
 BYTE $0 0; ALIGN 4
 
@@ -133,11 +132,12 @@ BYTE $0 0; ALIGN 4
 ALIGN 4
 ShopItems_E: // SkillAccessories ? 
 BYTE SkillAccShop(RockyHelmetSkillID)
-BYTE SkillAccShop(FuryID)
+//BYTE SkillAccShop(FuryID) // berserk gene too good 
 BYTE SkillAccShop(WaryFighterID)
 BYTE SkillAccShop(RenewalID)
 //SealSpdAccessory 
 BYTE SkillAccShop(PoisonStrikeID)
+BYTE SkillAccShop(SavageBlowID)
 BYTE SkillAccShop(VantagePlusID)
 BYTE SkillAccShop(DazzleID)
 BYTE SkillAccShop(BreathOfLifeID)

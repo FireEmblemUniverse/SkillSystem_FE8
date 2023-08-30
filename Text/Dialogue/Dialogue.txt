@@ -2080,7 +2080,7 @@ There are some rare Pokémon that[N]
 can only be caught there.[A][X]
 
 ## FuschiaWHouseBText
-Koga uses Poison Pokémon.[A][Clear]
+Koga uses Poison Pokémon.[N]
 Hmm?[.....] Why aren't they[N]
 called Venom Pokémon?[A][N]
 I dunno.[.....] Maybe they eat[N]
@@ -3153,7 +3153,7 @@ for the Pokémon LEAGUE![A][N]
 Come on![A][X]
 
 ## GaryRoute22DefeatText
-[LoadGaryPoint]What!?[A][N]
+[LoadGaryPoint]What!?[N]
 I was just careless, you![A][Clear]
 [LoadGaryShrug]That loosened me up.[N]
 I'm ready for the Pokémon LEAGUE![A][N]
@@ -3170,7 +3170,7 @@ I wonder if you are good enough[N]
 for me?[A][X]
 
 ## VRB1_0xE0_BD
-I lost out...[A][N][Clear]
+I lost out...[N]
 I never wanted to lose to anybody,[N]
 especially to a younger kid...[A][X]
 
@@ -3190,7 +3190,7 @@ This here is VICTORY ROAD.[N]
 It's the final test for TRAINERS![A][X]
 
 ## VRB2_0xE0_BD
-Atcho![A][N][Clear]
+Atcho![N]
 If you get stuck, try moving some[N]
 boulders around.[A][X]
 
@@ -3222,7 +3222,7 @@ I'll never forgive you![A][X]
 
 
 ## VRB2_0xE3_BD
-Ahh!![A][N][Clear]
+Ahh!![N]
 Hmm? Who am I?[N]
 Yeah, right.[A][N]
 Like you could forget your rival...[A][X]
@@ -3232,7 +3232,7 @@ Like you could forget your rival...[A][X]
 Is VICTORY ROAD too tough?[A][X]
 
 ## VRB3_0xE0_BD 
-Well done![A][N][Clear]
+Well done![N]
 Many TRAINERS give up their[N]
 challenge here and go home.[A][X]
 	
@@ -3245,7 +3245,7 @@ challenge here and go home.[A][X]
 I heard rumors of a child prodigy.[A][X]
 
 ## VRB3_0xE1_BD
-The rumors were true![A][N][Clear]
+The rumors were true![N]
 So, it was you who beat GIOVANNI[N]
 of TEAM ROCKET?[A][X]
 
@@ -3263,7 +3263,7 @@ I'll show you just how good you[N]
 are. Not![A][X]
 
 ## VRB3_0xE3_BD 
-I'm furious![A][N][Clear]
+I'm furious![N]
 You showed me just how good[N]
 I was...[A][X]
 
@@ -3271,7 +3271,7 @@ I was...[A][X]
 Only the chosen can pass here![A][X]
 
 ## VRB3_0xE4_BD
-I don't believe it![A][N][Clear]
+I don't believe it![N]
 All TRAINERS here are headed to[N]
 the Pokémon League.[A][N]
 Don't let down your guard.[A][X]
@@ -3313,8 +3313,8 @@ Of course, this wouldn't be complete[N]
 without a battle, would it?[A][X]
 
 ## VeslyRoute23DefeatText 
-I never had a chance, did I?[A][N][Clear]
-It seems you're ready.[N]
+I never had a chance, did I?[A][N]
+It seems you're ready.[A][N]
 Ready to challenge the Elite Four.[A][N]
 Good luck, [Tact].[A][X]
 
@@ -3465,7 +3465,7 @@ League Champion.[A][X]
 
 
 ## GaryChallengeText
-[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hey, [Tact]![A][Clear]
+[OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hey, [Tact]![N]
 I was looking forward to meeting[N]
 you here, [Tact].[A][N]
 My rival should be strong[N]
