@@ -471,5 +471,16 @@ WORD RockSmashFlag
 StrengthBoulderFlag_Link:
 WORD StrengthBoulderFlag
 
+WORD CoinsFlagOffset //0x0 
+WORD SignAreaFlagOffset //0x20 
+WORD ObtainSpellFlagOffset //0x40 
+WORD ObtainSkillFlagOffset //0x60 
+WORD ObtainItemFlagOffset //0x80 
+WORD TrainerDefeatedFlagOffset //0xA0 // should use about 0x100 bytes? 128 chapters max * 2 bytes each 
+WORD ObtainAccessoryFlagOffset //0x1A0 // should use 0x20 bytes (128 * (1/4)) 
+WORD PokedexCaughtFlagOffset //0x1C0 // RegisterPokemon in trap rework because most pokemblem ram usage is there i guess 
+WORD PokedexSeenFlagOffset //0x1E0 
+WORD HelpMsgFlagOffset //0x200 // until 0x220 
+
 
 

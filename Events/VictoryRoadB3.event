@@ -235,7 +235,7 @@ ReinforcementUnitsA:
 UNIT Reinforcement0 ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
 UNIT 
 EnemyTrainers:
-UNIT 0xE0 battle_girlID 0x0 Level(0, Enemy, 1) 	[24,3]  0b 0x0	1 REDA24R3  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE0 battle_girlID 0x0 Level(0, Enemy, 1) 	[24,3]  0b 0x0	1 REDA24R3  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 blackbeltID 0x0 Level(0, Enemy, 1) 	[14,5]  0b 0x0	1 REDA14R5  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 //UNIT 0xE2 hikerID 0x0 Level(0, Enemy, 1) 		[9,16]  0b 0x0	1 REDA9R16  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 battle_girlID 0x0 Level(0, Enemy, 1) 	[16,17]  0b 0  1 REDA16R17 [OneRangeWep,0x0,0x0,0x0] TrainerAI

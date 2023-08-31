@@ -450,34 +450,34 @@ int HasSufficientHP(Unit* unit, int spell)
 int CanCastSpellNow(Unit* unit, int spell)
 {
 	// This function should do a bit of miscellaneous conditional stuff.
-	int type = GetItemType(spell);
-	if ( type != ITYPE_STAFF )
-	{
+	//int type = GetItemType(spell);
+	//if ( type != ITYPE_STAFF )
+	//{
 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
-	}
-	else
-	{
-		return CanUnitUseItem(gActiveUnit,spell);
-	}
+	//}
+	//else
+	//{
+		//return CanUnitUseItem(gActiveUnit,spell);
+	//}
 }
 
 int CanCastSpell(Unit* unit, int spell) // Same as CanCastSpellNow but calls the functions... without the "Now."
 {
 	int type = GetItemType(spell);
-	if ( type != ITYPE_STAFF )
-	{
+	//if ( type != ITYPE_STAFF )
+	//{
 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
-	}
-	else
-	{
-		return CanUnitUseItem(gActiveUnit,spell);
-	}
+	//}
+	//else
+	//{
+	//	return CanUnitUseItem(gActiveUnit,spell);
+	//}
 }
 
 int CanUseAttackSpellsNow(Unit* unit, int type) // Can the unit use a Gaiden spell now that's an attack?

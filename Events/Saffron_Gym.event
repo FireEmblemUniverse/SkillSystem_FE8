@@ -202,7 +202,7 @@ GIVETOMAIN 0
 TEXTSHOW SabrinaWaitText
 TEXTEND 
 REMA
-//GiveSkillAccessory(0, AmaterasuID)
+GiveSkillAccessory(0, HoverBoardID)
 GiveItemWithDurability(0, HoplonGuard2, 1)
 TEXTSTART
 TEXTSHOW SabrinaRewardText

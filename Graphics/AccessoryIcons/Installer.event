@@ -126,8 +126,10 @@ SkillAccessoryIcons(BlossomID)
 SkillAccessoryIcons(VoiceOfPeaceID)
 #incbin "dmp/SootheBell.dmp"
 
-
-
+SkillAccessoryIcons(SurfBoardID)
+#incbin "dmp/SplashPlate.dmp"
+SkillAccessoryIcons(HoverBoardID)
+#incbin "dmp/AirBalloon.dmp"
 
 
 
