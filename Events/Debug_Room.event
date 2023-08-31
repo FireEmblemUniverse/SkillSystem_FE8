@@ -363,7 +363,8 @@ SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
 
 
 
-EquipNewSkillAccessory(1, BreathOfLifeID) // GiveSkillAccessory(0, RenewalID)
+EquipNewSkillAccessory(1, SurfBoardID) // GiveSkillAccessory(0, RenewalID)
+EquipNewSkillAccessory(1, HoverBoardID) // GiveSkillAccessory(0, RenewalID)
 
 //SilentGiveSkillAccessory(1, ExpShareID)
 

@@ -146,7 +146,7 @@ Traps1:
 //RockSmash(29,9)
 
 //StrengthBoulder(4,3)
-
+SkillAccessoryTrap(13,2, (ChapterID*2)+1, SurfBoardID) 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 RedPokeballTrap(19,20, (ChapterID*2)+1, WaterStone) 

@@ -364,6 +364,7 @@ String("V1.08                 Aug 2023") ; BYTE 0; POP // this overflows into th
 #define PurchasedLaprasFlag 0xE5
 #define GirlProtagFlag 0xE6 
 #define PurchasedElectabuzzFlag 0xE7
+#define CannotCaptureFlag 0xE8 
 
 // Unit IDs 
 #define OaksAide 0xEA 

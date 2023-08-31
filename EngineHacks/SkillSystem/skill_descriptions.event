@@ -394,6 +394,8 @@ SkillDescription(ScaledBackID,SD_ScaledBack)
 SkillDescription(ScaledUpID,SD_ScaledUp)
 SkillDescription(ExpShareID,SD_ExpShare)
 SkillDescription(Intimidate2ID,SD_Intimidate2)
+SkillDescription(SurfBoardID,SD_Surf)
+SkillDescription(HoverBoardID,SD_Hover)
 
 
 
@@ -779,7 +781,8 @@ SkillName(ScaledBackID,SN_ScaledBack)
 SkillName(ScaledUpID,SN_ScaledUp)
 SkillName(ExpShareID,SN_ExpShare)
 SkillName(Intimidate2ID,SN_Intimidate2)
-
+SkillName(SurfBoardID,SN_Surf)
+SkillName(HoverBoardID,SN_Hover)
 
 
 

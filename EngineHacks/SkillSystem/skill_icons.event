@@ -13,6 +13,11 @@ ORG SkillIcon(SturdyID)
 #incbin "SkillIcons/Sturdy.dmp"
 ORG SkillIcon(ScaledUpID)
 #incbin "SkillIcons/ScaledUp.dmp"
+ORG SkillIcon(SurfBoardID)
+#incbin "SkillIcons/ScaledUp.dmp"
+ORG SkillIcon(HoverBoardID)
+#incbin "SkillIcons/ScaledUp.dmp"
+
 ORG SkillIcon(ExpShareID)
 #incbin "SkillIcons/ExpShare.dmp"
 ORG SkillIcon(Intimidate2ID)

@@ -159,6 +159,12 @@ StatAccessory_DescEntry(LuckyBracerT3_BoostIndex, LuckyBracerT3DescText)
 SkillAccessory_NameEntry(RenewalID, RenewalRingNameText)
 SkillAccessory_DescEntry(RenewalID, RenewalRingDescText)
 
+SkillAccessory_NameEntry(SurfBoardID, SurfBoardName)
+SkillAccessory_DescEntry(SurfBoardID, SurfBoardDesc)
+
+SkillAccessory_NameEntry(HoverBoardID, HoverBoardName)
+SkillAccessory_DescEntry(HoverBoardID, HoverBoardDesc)
+
 SkillAccessory_NameEntry(RockyHelmetSkillID, RockyHelmetNameText)
 SkillAccessory_DescEntry(RockyHelmetSkillID, RockyHelmetDescText)
 

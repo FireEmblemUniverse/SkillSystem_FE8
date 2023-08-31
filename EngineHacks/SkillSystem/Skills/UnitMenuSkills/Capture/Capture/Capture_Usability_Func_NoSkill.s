@@ -6,13 +6,24 @@
 
 .global Capture_Usability
 .type Capture_Usability, %function 
-
-
+	.equ CheckEventId,0x8083da8
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
 @ gaiden magic calls this 
 @ Fill_Capture_RangeMap sets up range map and calls ForEachUnitInRange with the Capture_Target_Check as the function to call 
 @ This is then called on some units 
 Capture_Usability:
 push	{r4-r6,r14}
+
+ldr r0, =CannotCaptureFlag
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+bne RetFalse 
 
 ldr		r0,CurrentCharPtr
 ldr		r0,[r0]

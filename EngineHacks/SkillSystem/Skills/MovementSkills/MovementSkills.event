@@ -14,7 +14,7 @@ POP
 
 ALIGN 4
 AcrobatCheck:
-#incbin "Acrobat/Acrobat.dmp"
+#include "Acrobat/Acrobat.lyn.event"
 WORD MarshbadgeObtained // new usasbility is based on this flag being set 
 WORD AcrobatID
 
