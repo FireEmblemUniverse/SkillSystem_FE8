@@ -14,7 +14,7 @@ struct FMURam {
 
 extern struct FMURam* FreeMoveRam; 
 
-extern void SetNewFlag(int); 
+extern void SetNewFlag_No_sC(int); 
 extern int CheckNewFlag_No_sC(int id);
 extern int GetFreeMovementState(void); 
 
@@ -25,10 +25,15 @@ extern int CoinsTrapID_Link;
 void AlwaysInitTrap(struct EventTrapData* eTrap) { 
 	AddTrapExtFix(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0, 0); 
 } 
+
+// this won't work for all trap types because diff trap types have flag offsets 
 void InitIfNewFlagInByte3IsOff(struct EventTrapData* eTrap) { 
-	if (!(CheckNewFlag_No_sC(eTrap->data[2]))) { // 2 because type comes first 
-		AddTrapExtFix(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0, 0); 
+	if (eTrap->data[2]) { 
+		if (CheckNewFlag_No_sC(eTrap->data[2])) { // 2 because type comes first 
+		return; 
+		}
 	}
+	AddTrapExtFix(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0, 0); 
 } 
 
 
@@ -119,7 +124,7 @@ int NewObtainCoinsEffect(void) {
 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, CoinsTrapID_Link); 
 	if (trap) { 
-	SetNewFlag(trap->data[0]); 
+	SetNewFlag_No_sC(trap->data[0]); 
 	short gold = trap->data[1] | trap->data[2]<<8; 
 	gEventSlot[3] = gold; 
 	
@@ -191,8 +196,8 @@ int DisplayTextUsability0x54(void) {
 int DisplayTextUsability(int id) { 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id);
 	if (trap) { 
-		if (!(CheckNewFlag_No_sC(trap->data[0]))) { 
-		return true; 
+		if ((trap->data[0] == 0) || !(CheckNewFlag_No_sC(trap->data[0]))) { 
+		return 1; 
 		} 
 	} 
 	return 3; 
@@ -201,29 +206,29 @@ int DisplayTextUsability(int id) {
 int DisplayTextEffect0x50(void) { 
 	int id1 = SignTrapID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag(trap->data[0]); // maybe should use a defined offset for the flag 
-	//SetNewFlag(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
+	if (trap) SetNewFlag_No_sC(trap->data[0]); // maybe should use a defined offset for the flag 
+	//SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect0x51(void) { 
 	int id1 = Sign2TrapID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag(trap->data[0]); 
+	if (trap) SetNewFlag_No_sC(trap->data[0]); 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect0x52(void) { 
 	int id1 = BlankExamineID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag(trap->data[0]); 
+	if (trap) SetNewFlag_No_sC(trap->data[0]); 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect0x53(void) { 
 	int id1 = BlankTalkID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag(trap->data[0]); 
+	if (trap) SetNewFlag_No_sC(trap->data[0]); 
 	return DisplayTextEffect(trap); 
 } 
 
@@ -231,13 +236,13 @@ int DisplayTextEffect0x53(void) {
 int DisplayTextEffect0x54(void) { 
 	int id1 = TutSignID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
+	if (trap) SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect(struct Trap* trap) { 
 	if (trap) { 
-	SetNewFlag(trap->data[0]);
+	SetNewFlag_No_sC(trap->data[0]);
 	int textID = trap->data[1] | trap->data[2]<<8; 
 	gEventSlot[2] = textID; 
 		

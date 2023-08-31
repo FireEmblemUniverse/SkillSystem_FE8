@@ -27,6 +27,9 @@ void FMU_ResetLCDIO(void) {
 extern struct MenuProc* StartSemiCenteredOrphanMenu(const struct MenuDef* def, int xSubject, int xTileLeft, int xTileRight);
 extern const struct MenuDef gUnitActionMenuDef;
 bool FMU_open_um(struct FMUProc* proc){
+	if (FMU_ShouldWeYieldForEvent(proc)) { 
+		return 0; 
+	} 
 	FMU_ResetLCDIO();
 	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x14);
 	proc->updateSMS = true; 
@@ -36,6 +39,10 @@ bool FMU_open_um(struct FMUProc* proc){
 /*!!!!*/
 
 bool FMU_OnButton_StartMenu(FMUProc* proc){
+	if (FMU_ShouldWeYieldForEvent(proc)) { 
+		return 0; 
+	} 
+	
 	//MU_EndAll();
 	//EndPlayerPhaseSideWindows();
 	FMU_ResetLCDIO();

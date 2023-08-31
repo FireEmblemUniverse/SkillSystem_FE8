@@ -87,6 +87,14 @@ CheckNewFlag_No_sC:	@Check whether ON or OFF
 	b 		Start
 
 Start:
+cmp r2, #2 @ store zero to sC if we were given 0 as the flag to check  
+bne Continue 
+cmp r0, #0 
+beq StoreZero 
+
+Continue: 
+cmp r0, #0 
+beq Exit @ if no flag, just return false 
 	ldr 	r3, =NewFlagsRam
 	
 	lsl 	r0, #16 @ shorts only 

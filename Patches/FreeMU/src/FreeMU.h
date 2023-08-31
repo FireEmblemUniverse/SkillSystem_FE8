@@ -61,6 +61,8 @@ struct MuCtr {
 
 
 }; 
+extern const ProcInstruction gProc_Config1; 
+extern const ProcInstruction gProc_ChapterStatusScreen; 
 extern const ProcInstruction gUnknown_089A2DB0; 
 extern const ProcInstruction gProc_TargetSelection; 
 extern const ProcInstruction gProc_TradeMenu; 
@@ -167,6 +169,7 @@ void SetUnitFacing(struct Unit* unit, int dir);
 void SetUnitFacingAndUpdateGfx(struct Unit* unit, int dir);
 int GetUnitFacing(struct Unit* unit);
 void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing);
+int FMU_ShouldWeYieldForEvent(struct FMUProc* proc);
 
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);

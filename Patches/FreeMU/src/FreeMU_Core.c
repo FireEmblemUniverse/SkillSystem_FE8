@@ -92,7 +92,7 @@ void pFMU_InputLoop(struct Proc* inputProc) {
 #define RealEventMinimumFrames 3 // we don't wait for events that have lasted 1-6 frames 
 void pFMU_MainLoop(struct FMUProc* proc){ 
 	int exit_early = false; 
-	if (ProcFind(&gProc_Menu) || ProcFind(&gProc_Shop) || ProcFind(&gProc_TargetSelection) || ProcFind(&gProc_TradeMenu)) {
+	if (ProcFind(&gProc_Menu) || ProcFind(&gProc_Config1) || ProcFind(&gProc_ChapterStatusScreen) || ProcFind(&gProc_Shop) || ProcFind(&gProc_TargetSelection) || ProcFind(&gProc_TradeMenu)) {
 		exit_early = true; 
 	}
 	if (ProcFind(&gProc_Supply)) { 
@@ -513,26 +513,39 @@ void FMU_OnButton_ToggleSpeed(struct FMUProc* proc) {
 	}
 } 
 
+int FMU_ShouldWeYieldForEvent(struct FMUProc* proc) { 
+
+	if (!proc) 
+		return true; 
+	
+	if (proc->yield) 
+		return true; 
+	
+	if (proc->eventEngineTimer >= RealEventMinimumFrames) 
+		return true; 
+	
+	if (FreeMoveRam->pause) { 
+		struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
+		if (eventProc) { 
+			return true; 
+		} 
+	}
+	return false;
+
+} 
+
 
 // 0x80152F4 OnGameLoopMain 
 #define  MU_SUBPIXEL_PRECISION 4
 int FMU_HandleContinuedMovement(void) { 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
-	if (!proc) 
-		return (-1); 
+
 	
-	if (proc->yield) 
+	if (FMU_ShouldWeYieldForEvent(proc)) { 
 		return (-1); 
+	} 
 	
-	if (proc->eventEngineTimer >= RealEventMinimumFrames) 
-		return (-1); 
-	
-	if (FreeMoveRam->pause) { 
-		struct EventEngineProc* eventProc = (struct EventEngineProc*)ProcFind(&gProc_MapEventEngine);
-		if (eventProc) { 
-			return (-1); 
-		} 
-	}
+
 	
 	struct MUProc* muProc = (struct MUProc*)ProcFind(&gProc_MoveUnit[0]);
 	struct MuCtr* ctrProc = (struct MuCtr*)ProcFind(&gUnknown_089A2DB0); 

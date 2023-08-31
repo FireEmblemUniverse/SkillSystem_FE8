@@ -100,12 +100,33 @@ void DisableFreeMovementASMC(void){
 }
 
 extern void* EnableDangerRadiusEvent; 
+enum
+{
+    // Menu state bits
+
+    MENU_STATE_GAMELOCKING = (1 << 0),
+    MENU_STATE_UNUSED1 = (1 << 1),
+    MENU_STATE_ENDING = (1 << 2),
+    MENU_STATE_NOTSHOWN = (1 << 3),
+    MENU_STATE_FLAT = (1 << 4),
+    MENU_STATE_NOCURSOR = (1 << 5),
+    MENU_STATE_FROZEN = (1 << 6),
+    MENU_STATE_DOOMED = (1 << 7),
+};
+
 void PauseFreeMovementASMC(void){
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
 	if (proc) {
 		FreeMoveRam->pause = true; 
 		proc->updateCameraAfterEvent = true; 
 		proc->updateDangerZone = true; 
+		struct MenuProc* menu = (MenuProc*)ProcFind(&gProc_Menu);
+		if (menu) { 
+			//menu->stateBits = MENU_STATE_NOTSHOWN|MENU_STATE_NOCURSOR|MENU_STATE_DOOMED; 
+			EndAllMenus(menu);
+			ClearBG0BG1();
+			//ClearMenuCommandOverride();
+		} 
 	}
 	else { 
 		CallMapEventEngine(&EnableDangerRadiusEvent, 1); 
