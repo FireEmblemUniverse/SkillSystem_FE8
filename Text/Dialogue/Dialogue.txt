@@ -2453,7 +2453,8 @@ Wait! Don't say a word![A][N]
 You wanted this![A][X]
 
 ## PsychicSaffronText2
-You already know, don't you?[A][N]
+You already know,[N]
+don't you?[A][Clear]
 PSYCHIC types are overpowered[N]
 in generation one.[A][X]
 
@@ -2465,16 +2466,16 @@ Saffron Gym[A][X]
 Saffron Dojo[A][X]
 
 ## SaffronNWHouseText
-.........[A][N]
+.........[N]
 ...........[A][N]
-.......[A][N]
+.......[N]
 ...............[A][N]
 Gah! You're no fun.[A][N]
 I can't mimic you[N]
 if you're silent.[A][X]
 
 ## SaffronWHouseText
-The COPYCAT is cute![A] I'm[N]
+The COPYCAT is cute! I'm[N]
 getting her a POKé DOLL.[A][X]
 
 ## SaffronKaraokeClub

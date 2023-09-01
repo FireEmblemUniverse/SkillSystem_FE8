@@ -190,7 +190,14 @@ int DisplayTextUsability0x53(void) {
 	return DisplayTextUsability(BlankTalkID_Link); 
 } 
 int DisplayTextUsability0x54(void) { 
-	return DisplayTextUsability(TutSignID_Link); 
+	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, TutSignID_Link);
+	if (trap) { 
+		//if ((trap->data[0] == 0) || !(CheckNewFlag_No_sC(trap->data[0] | (HelpMsgFlagOffset_Link)))) { // we want it to always be readable 
+		// this flag is only set so the automatic message is not repeatedly shown 
+		return 1; 
+		//} 
+	} 
+	return 3; 
 } 
 
 int DisplayTextUsability(int id) { 
@@ -236,13 +243,16 @@ int DisplayTextEffect0x53(void) {
 int DisplayTextEffect0x54(void) { 
 	int id1 = TutSignID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
+	//if (trap) SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
+	if (trap) { 
+	SetNewFlag_No_sC(trap->data[0] | (HelpMsgFlagOffset_Link)); } 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect(struct Trap* trap) { 
 	if (trap) { 
-	SetNewFlag_No_sC(trap->data[0]);
+	//SetNewFlag_No_sC(trap->data[0]); TutorialTraps have a different ram offset!
+	// Do not set flag in this function 
 	int textID = trap->data[1] | trap->data[2]<<8; 
 	gEventSlot[2] = textID; 
 		

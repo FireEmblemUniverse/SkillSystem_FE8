@@ -677,7 +677,7 @@ ENDA
 //#define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
 
 
-#define Reinforce2(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements2"
+//#define Reinforce2(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements2"
 
 
 /*
@@ -694,7 +694,7 @@ If AI2 counter is 1 less than TurnToOccur, display angry face at coords +10000 (
 
 If AI2 counter is equal or greater than TurnToOccur, load unit r8 times 
 */
-
+/*
 SpawnUnitsEvent:
 //ASMC Reinforce_ASMC
 NoFade 
@@ -727,7 +727,7 @@ SADD rB r5 r0
 SENQUEUE r7 
 SENQUEUE r8 
 
-
+*/
 /*
 r6 GracePeriod    +5 
 r7 FrequencyInTurns
@@ -750,7 +750,7 @@ Freq - 1
 Add MaxHP+(Freq-1) / (Freq) // For friendly rounding 
 */
 
-
+/*
 CAM1 0x7FFD 
 
 
@@ -918,7 +918,7 @@ SADD rB r5 r0
 SENQUEUE r7 
 SENQUEUE r8 
 
-
+*/
 /*
 r6 GracePeriod    +5 
 r7 FrequencyInTurns
@@ -940,7 +940,7 @@ If hp is dn bge max-X, set AI2Counter to r4
 Freq - 1 
 Add MaxHP+(Freq-1) / (Freq) // For friendly rounding 
 */
-
+/*
 
 CAM1 0x7FFD 
 
@@ -1082,7 +1082,7 @@ Label 20
 Label 0x63 
 NoFade
 ENDA 
-
+*/
 
 CityAfev:
 //ASMC CallCommandEffect
