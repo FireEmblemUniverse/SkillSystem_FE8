@@ -37,8 +37,19 @@ ORG FreeSpace
 		#include "Patches/An_Installer_of_Patches.event"
 	#endif 
 	#include "Maps/Master Map Installer.event"
-    //MESSAGE Used hax space ends at currentOffset
-	
+  	//Soaring outside bl range includes
+    ALIGN 4
+    #include "EngineHacks/Soaring/src/hostable.lyn.event"
+    ALIGN 4
+    heightMap:
+    #incbin "EngineHacks/Soaring/Graphics/magvel_hmap.img.bin"
+    ALIGN 4
+    pleftmatrix:
+    #incbin "EngineHacks/Soaring/src/pleftmatrix.dmp"
+    ALIGN 4
+    #include "EngineHacks/Soaring/Graphics/Master Graphics Installer.event"
+    ALIGN 4
+    MESSAGE Used hax space ends at currentOffset
 	EndOfFreeSpace: 
 POP 
 	

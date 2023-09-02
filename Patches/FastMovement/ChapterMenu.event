@@ -150,7 +150,8 @@ BYTE  0x76
 SHORT 0x0
 POIN FlyCommandUsability
 WORD  0x0
-POIN  FlyCommandEffect
+// POIN  FlyCommandEffect
+POIN StartSoaring
 WORD  0x0
 WORD  0x0
 WORD  0x0
