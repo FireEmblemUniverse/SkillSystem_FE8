@@ -12,10 +12,12 @@ extern u16 SaffronArrivedLabel;
 extern u16 CinnabarArrivedLabel;
 extern u16 IndigoPlateauArrivedLabel;
 int canLandHere(SoarProc* CurrentProc);
+int isMaleAvatar(void);
 static void SoaringLandRoutine(SoarProc* CurrentProc);
 extern u8 FlyLocationTable[10];
 extern u32 FlyDestinationEvent;
 const u8 originCoords[106][2];
+extern int ProtagID_Link;
 //procs
 
 extern const ProcCode Proc_Soaring[] = { //expose it to lyn
@@ -148,6 +150,13 @@ int canLandHere(SoarProc* CurrentProc){
 	return CheckEventId_(label);
 }
 
+int isMaleAvatar(){
+	struct Unit* protag = GetUnitStructFromEventParameter(ProtagID_Link);
+	struct ClassData* protagClass = protag->pClassData;
+	if (protagClass->number == 0x63) {return FALSE;};
+	return TRUE;
+}
+
 void SetUpNewWMGraphics(SoarProc* CurrentProc){
 	int StartX = originCoords[gChapterData.chapterIndex][0];
 	int StartY = originCoords[gChapterData.chapterIndex][1];
@@ -208,14 +217,20 @@ void SetUpNewWMGraphics(SoarProc* CurrentProc){
 };
 
 void LoadSprite(){
-	LZ77UnCompVram(&pkSprite, &tile_mem[5][0]); //first tile of the hi block 0x6014000
+	if (isMaleAvatar())	{
+		LZ77UnCompVram(&pkSprite, &tile_mem[5][0]);
+		ApplyPalette(&pkPal, 0x1c);
+	} //first tile of the hi block 0x6014000
+	else	{
+		LZ77UnCompVram(&pkSpriteF, &tile_mem[5][0]);
+		ApplyPalette(&pkPalF, 0x1c);
+	}; //first tile of the hi block 0x6014000
 	LZ77UnCompVram(&locationSprites, &tile_mem[5][64]); //yeah 
 	LZ77UnCompVram(&miniCursorSprite, &tile_mem[5][192]);
 	LZ77UnCompVram(&minimapSprite, &tile_mem[5][193]);
 	LZ77UnCompVram(&fpsSprite, &tile_mem[5][257]); //fps numbers
 	LZ77UnCompVram(&lensFlareSprite, &tile_mem[5][289]);
 	// LoadMapSpritePalettes(); //puts in palette 0xc
-	ApplyPalette(&pkPal, 0x1c);
 	ApplyPalette(&miniCursorPal, 0x1d);
 	ApplyPalette(&locationPal, 0x1e);
 	ApplyPalette(&minimapPal, 0x12);

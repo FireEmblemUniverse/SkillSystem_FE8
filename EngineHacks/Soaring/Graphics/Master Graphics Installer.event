@@ -16,8 +16,16 @@ pkSprite:
 #incbin "sprites/latias.img.bin"
 ALIGN 4
 
+pkSpriteF:
+#incbin "sprites/latiasF.img.bin"
+ALIGN 4
+
 pkPal:
 #incbin "sprites/latias.pal.bin"
+ALIGN 4
+
+pkPalF:
+#incbin "sprites/latiasF.pal.bin"
 ALIGN 4
 
 miniCursorSprite:
