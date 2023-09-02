@@ -568,7 +568,7 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 	CurrentProc->sFocusPtY = CurrentProc->sPlayerPosY + cam_pivot_dy_Angles[CurrentProc->sPlayerYaw]; // set focal point
 	#endif
 
-	if (gKeyState.pressedKeys & START_BUTTON){
+	if (gKeyState.pressedKeys & (START_BUTTON|A_BUTTON)){
 		if (canLandHere(CurrentProc))
 		{
 			CurrentProc->landingTransition = TRUE;
@@ -576,7 +576,8 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 		else if (gChapterData.muteSfxOption == 0) m4aSongNumStart(0x6c); //invalid sfx
 	};
 
-	if (gKeyState.pressedKeys & SELECT_BUTTON) CurrentProc->ShowFPS ^= 1;
+	// FPS 
+	//if (gKeyState.pressedKeys & SELECT_BUTTON) CurrentProc->ShowFPS ^= 1;
 
 	// if ((gKeyState.pressedKeys & L_BUTTON) && (CurrentProc->sunTransition==0)){
 	// 	if (CurrentProc->sunsetVal) CurrentProc->sunTransition = -1;
@@ -600,7 +601,7 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 		CurrentProc->ShowMap ^= 1;
 	};
 
-	if (gKeyState.heldKeys & DPAD_UP){ //turbo
+	if (gKeyState.heldKeys & B_BUTTON){ //turbo
 		CurrentProc->sPlayerPosX += cam_dx_Angles[CurrentProc->sPlayerYaw];
 		CurrentProc->sPlayerPosY += cam_dy_Angles[CurrentProc->sPlayerYaw];
 	};
@@ -619,14 +620,14 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 		CurrentProc->sPlayerPosZ += CAMERA_Z_STEP;
 		CurrentProc->sPlayerStepZ += 1;
 	}
-	else if (gKeyState.heldKeys & B_BUTTON){ //prevent clipping through ground
+	else if (gKeyState.heldKeys & DPAD_DOWN){ //prevent clipping through ground
 		if ((CurrentProc->sPlayerPosZ>CAMERA_MIN_HEIGHT) & (camera_ht > (player_terrain_ht+CAMERA_Z_STEP)) & (camera_ht > (camera_terrain_ht+CAMERA_Z_STEP))){
 			CurrentProc->sPlayerPosZ -= CAMERA_Z_STEP;
 			CurrentProc->sPlayerStepZ -= 1;
 			BumpScreen(bump_down);
 		};
 	};
-	if (gKeyState.heldKeys & A_BUTTON){
+	if (gKeyState.heldKeys & DPAD_UP){
 		if (CurrentProc->sPlayerPosZ<CAMERA_MAX_HEIGHT){
 			CurrentProc->sPlayerPosZ += CAMERA_Z_STEP;
 			CurrentProc->sPlayerStepZ += 1;
