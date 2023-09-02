@@ -43,24 +43,28 @@ POIN Wrath //SpurStr SpurMag SpurSpd SpurDef SpurRes
 //POIN DriveStr DriveMag DriveSpd DriveDef DriveRes
 //POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
 //POIN Demoiselle Gentilhomme 
-POIN MaleficAura Intimidate Tantivy Focus Inspiration DivinelyInspiring Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex Loyalty Infiltrator
-POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant AssassinateDamageBonus ArcaneBlade
-POIN Daunt BloodTide WhitePool NightTide Insight Prescience Vigilance DefiantAvo DefiantCrit TowerShield ShortShield //IndoorFighter OutdoorFighter Deadeye Fortune ChaosStyle StunningSmile
+//POIN MaleficAura Intimidate 
+POIN Tantivy Focus Anathema Loyalty FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist 
+POIN BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant AssassinateDamageBonus ArcaneBlade
+//Inspiration DivinelyInspiring Charm Solidarity VoiceOfPeace  LilysPoise Charisma Hex  Infiltrator
+//POIN ElbowRoom NaturalCover Gamble 
+POIN NightTide Insight Prescience Vigilance DefiantAvo DefiantCrit TowerShield ShortShield
+//POIN Daunt BloodTide WhitePool  //IndoorFighter OutdoorFighter Deadeye Fortune ChaosStyle StunningSmile
 POIN ChargePlus
-POIN BlueFlame BlueFlameAura DoubleLion //Cultured Thighdeology Thotslayer KeepUp Armorboost Horseguard Skyguard ForeignPrincess 
+//POIN BlueFlame BlueFlameAura DoubleLion //Cultured Thighdeology Thotslayer KeepUp Armorboost Horseguard Skyguard ForeignPrincess 
 POIN Frenzy // This was moved here because Str/Mag Split conflict, and... I'm not sure why it wouldn't be here in the first place.
 //POIN UpWithArch
 //POIN AxefaithHit
 POIN StancesASM
-POIN AirRaidSkillCheck
+//POIN AirRaidSkillCheck
 #ifdef ENABLE_GBA_LETHALITY
-POIN LethalitySkill 
+//POIN LethalitySkill 
 #else
-POIN LethalitySkill NonGBALethalitySkill 
+//POIN LethalitySkill NonGBALethalitySkill 
 #endif
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS
-	POIN ModularPreBattleSkill 
+	//POIN ModularPreBattleSkill 
 #endif // MODULAR_PRE_BATTLE_SKILLS
 //add any new ones before here
 

@@ -44,24 +44,13 @@ void GaidenRTextLooper(RTextProc* proc)
 	int index = *(proc->rTextData+0x12);
 	if ( proc->direction == DIRECTION_UP )
 	{
-		// If we're coming from above, go left.
-		if ( !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
+		// If we're coming from the right, go up. We need to call RTextUp until we can use a spell there.
+		while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
 		{
 			RTextUp(proc);
-			// We're in the right column, and there isn't a spell in the left column one row below we can't jump to, go left again.
-			if (!DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index-1]) ) { RTextUp(proc); }
+			index -= 1;
 		}
 	}
-	
-	//if ( proc->direction == DIRECTION_RIGHT )
-	//{
-	//	// If we're coming from the right, go up. We need to call RTextUp until we can use a spell there.
-	//	while ( index >= 0 && !DoesUnitKnowSpell(gpStatScreenUnit,SpellsGetter(gpStatScreenUnit,-1)[index]) )
-	//	{
-	//		RTextUp(proc);
-	//		index -= 1;
-	//	}
-	//}
 	if ( proc->direction == DIRECTION_DOWN )
 	{
 		// If we're coming from above, go left.

@@ -1,0 +1,46 @@
+
+PUSH 
+ORG $7F45C 
+jumpToHack(LevelUpSpeedHook_1)
+SHORT $46c0 
+ORG $741D4
+callHackNew(LevelUpSpeedHook_2)
+SHORT $46C0 
+
+
+// Delay for EXP bar 
+ORG $9A3720 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20)
+ORG $9A3740 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20)
+
+ORG $9A3FA4
+//PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 70)
+
+//BYTE 0 // 70 default - don't show the Level Up popup 
+
+ORG $7F47A // don't wait 13 frames for some level up sfx (possibly volume reduction) related thing 
+SHORT $2300 // mov r3, #0 
+
+ORG $7F54A // don't wait another 13 frames for some level up sfx (possibly volume reduction) related thing 
+SHORT $2300 // mov r3, #0 
+
+
+//PROC_CALL_ROUTINE_ARG(aprRoutine, aArgument)
+
+POP 
+
+
+#include "Speedup.lyn.event" 
+
+
+
+
+
+
+
+
+
+
+
+

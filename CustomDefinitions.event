@@ -9,7 +9,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 
 // Config options 
 #define INSTALL_FMU 
@@ -366,7 +366,7 @@ String("V1.08                 Sep 2023") ; BYTE 0; POP // this overflows into th
 #define PurchasedElectabuzzFlag 0xE7
 #define CannotCaptureFlag 0xE8 
 #define RefreshEvenInTrainerBattleFlag 0xE9 
-
+#define SpeedupFlag 0xEA 
 
 
 

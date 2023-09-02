@@ -65,10 +65,11 @@
 
 #define RepelIcon 0xDA
 #define SuperRepelIcon 0xD5 // 0xDB is hoplon guard 
-#define TMIcon 0xDB 
+
 //#define SkillScrollIcon 0xDC 
 #define MaximumRepelIcon 0xDD
 #define ReviveIcon 0xDE
+#define TMIcon 0xDF
 
 #define PotionIcon 0xCB
 #define SuperPotionIcon 0xCC

@@ -223,6 +223,8 @@ int DisplayTextUsability(int id) {
 int DisplayTextEffect0x50(void) { 
 	int id1 = SignTrapID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
+	// for some reason these use SetNewFlag yet the initialization uses CheckEventId 
+	// the asm I wrote does this so whatever, I'm leaving it like this for now 
 	if (trap) SetNewFlag_No_sC(trap->data[0]); // maybe should use a defined offset for the flag 
 	//SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
 	return DisplayTextEffect(trap); 
