@@ -28,7 +28,7 @@ lsl r0, #16
 lsr r0, #16 @ Flags are shorts 
 blh CheckEventId
 cmp r0, #1 
-bne RetFalse
+@ bne RetFalse
 
 @ check if indoors 
 ldr r3, =IndoorMapsList

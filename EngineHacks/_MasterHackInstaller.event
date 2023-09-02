@@ -48,6 +48,23 @@ ORG FreeSpaceBLRange //defined in custom definitions
 	#include "ExternalHacks/StrMagSplit/BLRange.event"
   #endif // USE_STRMAG_SPLIT
 	
+  //Soaring stuff
+  #define RefreshWMSprite 0x80bf555
+  #define RefreshWMProc 0x80b9155
+  #define gObj_8x8 0x8590F44
+  #define gObj_32x32 0x8590F54
+  #define ObjInsertSafe 0x80053E9
+  #include "Soaring/src/soar_voxel.lyn.event"
+  ALIGN 4
+  #define iwram_clr_blend_asm 0x3007000+clr_blend_asm_ofs-NewWMLoop
+  #define iwram_Render_arm 0x3007000+Render_arm_ofs-NewWMLoop
+  #include "Soaring/arm/soar_wram.arm.lyn.event"
+
+  clr_blend_asm_ofs:
+  #include "Soaring/arm/pal_blend.arm.lyn.event"
+  ALIGN 4
+  Render_arm_ofs:
+  #include "Soaring/arm/soar_wram_hand.arm.lyn.event"
 #undef inBLRange
 POP
 
@@ -59,8 +76,8 @@ POP
   //HP Bars (and effective weapon warning)
   #include "QualityOfLife/HpBars/HpBars.event"
 
-  //Improved Sound Mixer
-  #include "QualityOfLife/ImprovedSoundMixer/SoundMixer.event"
+  //Improved Sound Mixer (INCOMPATIBLE WITH SOARING)
+  // #include "QualityOfLife/ImprovedSoundMixer/SoundMixer.event"
 
   //Danger Zone (select button)
   #include "QualityOfLife/DangerZone/DangerZone.event"

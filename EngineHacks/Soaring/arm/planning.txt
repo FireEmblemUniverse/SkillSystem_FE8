@@ -1,0 +1,21 @@
+variables:
+dx			1 (put on stack)
+dy			1 (put on stack)
+altitude	1 (put on stack?)
+offsetx		2
+offsety		2
+sunsetval	3
+zdist		2
+loopindex	4
+
+values to save within a loop:
+ybuffer[i]
+ylen
+
+addresses:
+vid_page			2
+hostables			1
+colourmap 			1
+colourmap_sunset 	1
+heightmap 			1
+iwram_clr_blend_asm 2  inlined it lol
