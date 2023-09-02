@@ -9,7 +9,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 
 // Config options 
 #define INSTALL_FMU 
@@ -22,7 +22,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.08                 Sep 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.08a                Sep 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 

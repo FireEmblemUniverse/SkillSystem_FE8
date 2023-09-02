@@ -2,22 +2,13 @@
 #define INSTALL_BONUS_ANIMATIONS // Uncomment for additional animations 
 #define VRAM_Address 0x6013300 // Where in VRAM (see No$Gba Obj window) to draw animation 
 #define MinimumFrames 35 //35 //28 // Vanilla does 28 frames 
-#define TargetCursorFrames 0 // Vanilla does 45 
+
 
 #ifndef BATTLE_MAPANIMATION_NUMBERS_FLAG 
 	#define BATTLE_MAPANIMATION_NUMBERS_FLAG 0xEE
 #endif 
 
-PUSH 
 
-ORG $39e92 
-SHORT $46c0 $46c0 // never display cursor 
-
-ORG $39EAE 
-BYTE TargetCursorFrames // Vanilla default 
-ORG $39Eb1 
-BYTE $DB // to stop it from doing even 1 frame 
-POP 
 
 
 // Impact1 can be Dark if used 

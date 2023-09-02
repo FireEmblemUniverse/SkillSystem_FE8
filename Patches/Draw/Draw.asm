@@ -250,10 +250,14 @@ bx r0
 .global Draw_WaitXFrames
 .type Draw_WaitXFrames, %function 
 Draw_WaitXFrames:
-push {r4, lr}
+push {r4-r6, lr}
 
 mov r4, r0 @ Parent? 
 
+ldr r2, =MinimumFramesLink
+ldr r0, [r2] 
+bl AdjustSleepTime
+mov r6, r0 
 
 ldr r3, =MemorySlot
 add r3, #0x0B*4 
@@ -286,9 +290,7 @@ mov r2, r0
 NoSetTime: 
 sub r0, r2 @ Number of frames since then 
 
-ldr r2, =MinimumFramesLink
-ldr r2, [r2] 
-cmp r0, r2 
+cmp r0, r6
 bgt Continue_DrawPause 
 mov r0, #0 
 b End_DrawPause @ regardless of animation or not, always pause at least X frames 
@@ -337,7 +339,7 @@ blh 0x8081914 @ default routine wait for hp to finish going down	@{U}
 mov r0, #1
 End_DrawPause:
 
-pop {r4}
+pop {r4-r6}
 pop {r1}
 bx r1 
 

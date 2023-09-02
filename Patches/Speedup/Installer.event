@@ -1,4 +1,15 @@
 
+//#define SpeedupFlag 0xEA 
+// ProcVariableSleep calls AdjustSleepTime
+	// if SpeedupFlag is on, wait 0 frames 
+	// else if A is held down, wait half as many frames 
+
+#define MinHalf 50<<8 
+
+ALIGN 4 
+SpeedupFlag_Link:
+WORD SpeedupFlag
+
 PUSH 
 ORG $7F45C 
 jumpToHack(LevelUpSpeedHook_1)
@@ -15,9 +26,11 @@ ORG $9A3740
 PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20)
 
 ORG $9A3FA4
-//PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 70)
-
-//BYTE 0 // 70 default - don't show the Level Up popup 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 70)
+ORG $9A3FE4
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 30)
+ORG $9A3FF4
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 60|MinHalf)
 
 ORG $7F47A // don't wait 13 frames for some level up sfx (possibly volume reduction) related thing 
 SHORT $2300 // mov r3, #0 
@@ -26,7 +39,87 @@ ORG $7F54A // don't wait another 13 frames for some level up sfx (possibly volum
 SHORT $2300 // mov r3, #0 
 
 
-//PROC_CALL_ROUTINE_ARG(aprRoutine, aArgument)
+// Poison animation 
+ORG $8193C
+callHackNew(ShouldShowPoisonSplatHook)
+ORG $9A50AC // from this proc 9A508C 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 40) // vanilla 50 Frames to wait during poison anim before hp drains 
+ORG $9A50BC 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 30) // vanilla 30 frames before hp bar disappears 
+ORG $9A50CC
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10) // vanilla 44 frames to wait before going to the next unit 
+
+
+
+
+// by Vesly 
+// speed for battle map anim rounds 
+// just from the proc MapAnimBattle 9A49FC
+// vanilla is 30 30 30 10 30 
+ORG $9A4A04 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 30 
+
+ORG $9A4A14 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 30 
+
+ORG $9A4A24 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|MinHalf) // vanilla is 30 
+
+ORG $9A4A34
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10|MinHalf) // vanilla is 10 
+
+ORG $9A4A44
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|MinHalf) // vanilla is 30 
+
+
+
+ORG 0x9A3528 // speed up map battle anim start? 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 2) // vanilla is 2 
+ORG 0x9A3540
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 5) // vanilla is 5 
+ORG 0x9A3568 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 15) // vanilla is 15 
+ORG 0x9A360A 
+BYTE 0x08	//do not change!
+ORG 0x9A3628
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 2) // vanilla is 2 
+
+ORG 0x9A47B4 // delay between rounds for map battle anims 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 2) // vanilla is 2 
+ORG 0x9A47C4
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 8) // vanilla is 8 
+ORG 0x9A480C
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 20 
+
+
+
+//ORG $7A92E // dunno what this does 
+//BYTE 45 // vanilla is 100 frames to display poison hp bar ? 
+
+ORG $114FA // frames to show "got item" popup 
+BYTE 45 //96 is vanilla 
+ORG $1166C // frames to show "got gold" popup 
+BYTE 45 //96 is vanilla 
+
+
+
+// by 7743 
+ORG $7BCE2 // double speed of vuln animation by 7743 
+BYTE 0x08 0x34 0x24 0x04 0x24 0x0c 0x00 0x00 0x00 0x00 0x8c 0x42 0x09 0xda
+
+
+ORG $39e92 
+SHORT $46c0 $46c0 // never display cursor 
+
+#define TargetCursorFrames 0 // Vanilla does 45 
+ORG $39EAE 
+BYTE TargetCursorFrames // Vanilla is 45 
+ORG $39Eb1 
+BYTE $DB // to stop it from doing even 1 frame 
+
+
+
+
 
 POP 
 

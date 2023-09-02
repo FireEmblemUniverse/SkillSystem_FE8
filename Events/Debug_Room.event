@@ -92,7 +92,7 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  CharizardID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  MagikarpID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 UNIT 2  AlakazamID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  VictreebelID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 3  GyaradosID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
@@ -363,7 +363,7 @@ SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
 
 
 
-EquipNewSkillAccessory(1, SurfBoardID) // GiveSkillAccessory(0, RenewalID)
+EquipNewSkillAccessory(1, ExpShareID) // GiveSkillAccessory(0, RenewalID)
 EquipNewSkillAccessory(1, HoverBoardID) // GiveSkillAccessory(0, RenewalID)
 
 //SilentGiveSkillAccessory(1, ExpShareID)
@@ -469,7 +469,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(5, True, 0x145) // all 
+AutoLevelUnits(22, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 SetUnitStatus(1, 0x28, Gust)
@@ -555,8 +555,8 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(6, YCoordNewArea)  
+Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(16, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
@@ -577,7 +577,7 @@ Write_Byte(6, YCoordNewArea)
 //MNC2 VictoryRoadB2Ch 
 //MNC2 Route4WCh 
 //MNC2 SaffronCh 
-MNC2 LanceCh
+MNC2 ViridianCh
 //MNC2 PokemonTowerF4Ch
 //MNC2 SafariSCh
 //
