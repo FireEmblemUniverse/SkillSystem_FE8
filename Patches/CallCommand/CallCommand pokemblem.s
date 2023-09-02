@@ -286,6 +286,12 @@ blh CheckEventId
 cmp r0, #0 
 bne Usability_False
 
+ldr r0, =RefreshEvenInTrainerBattleFlag_Link 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne ReturnTrue 
+
 ldr r0, =PlayableCutsceneFlag @ Flag that prevents call 
 lsl r0, #24 
 lsr r0, #24 
@@ -303,6 +309,7 @@ bne Usability_False
 blh Get2ndFreeUnit
 cmp r0, #0 
 beq Usability_False 
+ReturnTrue: 
 mov r0, #1 
 b Exit 
 

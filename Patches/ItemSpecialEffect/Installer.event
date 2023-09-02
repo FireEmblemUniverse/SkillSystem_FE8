@@ -35,7 +35,14 @@ RepelEvent:
 SVAL s1 250 
 ASMC UseRepelEffect 
 MemSlotToString(0xC)
+#ifdef DRUnitBitMask
+CHECK_EVENTID DangerRadiusToggleFlag
+BNE 1 rC r0 
+VeslySetDangerRadius
+LABEL 1 
+#endif 
 Text(RepelStepsRemainingText) 
+
 NoFade 
 ENDA 
 

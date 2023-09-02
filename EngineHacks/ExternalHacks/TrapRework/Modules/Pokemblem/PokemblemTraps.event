@@ -132,7 +132,7 @@ SetImpassableTrap(CompletionObstacleID)
 
 #define SignTrapID 80 //0x50 
 //SetTrapEventInit(SignTrapID,DisplayTextInitialization)
-SetTrapInit(SignTrapID, InitIfNewFlagInByte3IsOff)
+SetTrapInit(SignTrapID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(SignTrapID,SignSMS)
 SetTrapMapSpritePalette(SignTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(SignTrapID)
@@ -146,7 +146,7 @@ SHORT HelpMsgFlagOffset
 
 #define Sign2TrapID 81 //0x51 
 //SetTrapEventInit(Sign2TrapID,DisplayTextInitialization)
-SetTrapInit(Sign2TrapID, InitIfNewFlagInByte3IsOff)
+SetTrapInit(Sign2TrapID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(Sign2TrapID,Sign2SMS)
 SetTrapMapSpritePalette(Sign2TrapID,NPCTrapPaletteWord)
 SetImpassableTrap(Sign2TrapID)
@@ -156,7 +156,7 @@ WORD Sign2TrapID
 
 #define BlankExamineID 82 //0x52
 //SetTrapEventInit(BlankExamineID,DisplayTextInitialization)
-SetTrapInit(BlankExamineID, InitIfNewFlagInByte3IsOff)
+SetTrapInit(BlankExamineID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(BlankExamineID,BlankSMS)
 SetTrapMapSpritePalette(BlankExamineID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankExamineID)
@@ -166,7 +166,7 @@ WORD BlankExamineID
 
 #define BlankTalkID 83 //0x53
 //SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
-SetTrapInit(BlankTalkID, InitIfNewFlagInByte3IsOff)
+SetTrapInit(BlankTalkID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(BlankTalkID,BlankSMS)
 SetTrapMapSpritePalette(BlankTalkID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankTalkID)

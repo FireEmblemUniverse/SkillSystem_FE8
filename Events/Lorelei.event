@@ -147,7 +147,7 @@ CHECK_EVENTID LoreleiDefeatedTemp
 BEQ 10 sC s0 
 MarkTrainerAsDefeated(0xE1)
 TILECHANGE 0
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 GOTO 99 
 LABEL 10 
 ENUT TrainerBattleActiveFlag
@@ -218,7 +218,7 @@ GIVETOMAIN 0
 ENUT LoreleiDefeatedTemp
 MarkTrainerAsDefeated(0xE1)
 ReviveParty 
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 LABEL 99 
 NoFade
 ENDA

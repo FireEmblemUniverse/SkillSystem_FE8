@@ -23,14 +23,14 @@ ble EndInjureAttacker @ don't hit trainers
 Continue: 
 
 @ I also need to check if the defender did no damage.
-mov r2, #0x5A
-ldrh r1, [ r7, r2 ] @ Get attack
-cmp r1, #0xFF
-beq EndInjureAttacker @ If attack is 0xFF, the defender cannot attack.
-mov r2, #0x5C
-ldrh r0, [ r6, r2 ] @ Get defense
-cmp r0, r1
-bge EndInjureAttacker @ Leave if the defender isn't doing damage. The defense is greater than the attack
+@mov r2, #0x5A
+@ldrh r1, [ r7, r2 ] @ Get attack
+@cmp r1, #0xFF
+@beq EndInjureAttacker @ If attack is 0xFF, the defender cannot attack.
+@mov r2, #0x5C
+@ldrh r0, [ r6, r2 ] @ Get defense
+@cmp r0, r1
+@bge EndInjureAttacker @ Leave if the defender isn't doing damage. The defense is greater than the attack
 ldrb r0, [ r4, #0x13 ] @ CurrHP
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
@@ -69,14 +69,14 @@ ble EndInjureDefender @ don't hit trainers
 Continue2: 
 
 @ I also need to check if the attacker did no damage.
-mov r2, #0x5A
-ldrh r1, [ r6, r2 ] @ Get attack
-cmp r1, #0xFF
-beq EndInjureDefender @ If the attacker cannot attack... wait what? Whatever. I'll check this for consistency's sake.
-mov r2, #0x5C
-ldrh r0, [ r7, r2 ] @ Get defense
-cmp r0, r1
-bge EndInjureDefender @ Leave if the attacker isn't doing damage.
+@mov r2, #0x5A
+@ldrh r1, [ r6, r2 ] @ Get attack
+@cmp r1, #0xFF
+@beq EndInjureDefender @ If the attacker cannot attack... wait what? Whatever. I'll check this for consistency's sake.
+@mov r2, #0x5C
+@ldrh r0, [ r7, r2 ] @ Get defense
+@cmp r0, r1
+@bge EndInjureDefender @ Leave if the attacker isn't doing damage.
 ldrb r0, [ r5, #0x13 ] @ CurrHP of defender
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2

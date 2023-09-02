@@ -213,6 +213,7 @@ LABEL 0 // if yes, do stuff here
 TutText(StatsSapped)
 DebuffUnit(0x7FFF, 0x0AAAAAAA)
 LABEL 99 
+ENUF RefreshEvenInTrainerBattleFlag
 NoFade 
 ENDA 
 
@@ -226,6 +227,7 @@ DisableFreeMovement
 CHECK_EVENTID VolcanobadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
+ENUT RefreshEvenInTrainerBattleFlag
 MUSC 0x7FFF // Mute 
 CAM1 [8,6] 
 

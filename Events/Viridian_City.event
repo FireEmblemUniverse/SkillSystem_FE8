@@ -360,6 +360,10 @@ RemoveTrap(21,18)
 ENUN
 LABEL 1
 
+CHECK_EVENTID VolcanobadgeObtained 
+BEQ 2 sC s0  
+RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge 
+LABEL 2 
 
 LABEL 0x63
 

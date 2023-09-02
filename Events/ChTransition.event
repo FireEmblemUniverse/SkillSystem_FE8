@@ -154,7 +154,7 @@ GenericEffect(3, SaveWithoutHeal) //
 //GenericEffect(6, CallToggleMansionB3) // 
 //GenericEffect(7, CallToggleMansionB4) // 
 GenericEffect(8, CallSuspiciousRockEvent) // for rocks that strength boulder triggers will disappear 
-
+GenericEffect(9, ReviveAndSaveEvent) 
 
 GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(3, ObtainSecretKeyEvent) // 
@@ -394,6 +394,7 @@ ENDA
 HoleInOneEffect:
 CHECK_ALLEGIANCE 0x7fff
 BNE 10 sC s0 // not player 
+PauseFreeMovement 
 SADD sA sB s0 
 ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
 STAL 5 
@@ -416,6 +417,7 @@ ENDA
 FallInHoleEffect:
 CHECK_ALLEGIANCE 0x7fff
 BNE 10 sC s0 // not player 
+PauseFreeMovement 
 EndMMS 
 EARTHQUAKE_START 0 // 0 - Sway, 1 - Tremor 
 STARTFADE 
@@ -1112,6 +1114,10 @@ ALIGN 4
 TrainerBattleActiveFlagLink:
 BYTE TrainerBattleActiveFlag
 
+ALIGN 4 
+RefreshEvenInTrainerBattleFlag_Link: 
+WORD RefreshEvenInTrainerBattleFlag 
+
 
 ALIGN 4 
 RefreshIfNotInDanger:
@@ -1186,6 +1192,7 @@ ENDA
 
 ForceChTransition:
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
 #ifdef INSTALL_FMU
 CALL HandleProtag 
 #endif 
@@ -1223,6 +1230,7 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
 ENUF DisableTutFlag_A
 ENUF DisableTutFlag_B
 SADD 2 9 0 
@@ -1239,6 +1247,11 @@ EVBIT_MODIFY 0
 NoFade
 ENDA 
 
+ReviveAndSaveEvent:
+ReviveParty 
+CALL SaveWithHeal 
+NoFade 
+ENDA 
 
 SaveWithHeal:
 CHECK_COORDS 0x7FFF
@@ -1249,6 +1262,7 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
 
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
@@ -1267,6 +1281,7 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
 
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 

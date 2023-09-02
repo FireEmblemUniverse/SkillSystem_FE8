@@ -150,7 +150,7 @@ BerryTree(21,6,5)
 BerryTree(23,6,5) 
 
 //SkillScrollTrap(42,16, ChapterID*2, PatienceID)
-//SpellScrollTrap(18,9, (ChapterID*2)+1, DoubleHit)
+SpellScrollTrap(51,18, (ChapterID*2)+1, PoisonPowder)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

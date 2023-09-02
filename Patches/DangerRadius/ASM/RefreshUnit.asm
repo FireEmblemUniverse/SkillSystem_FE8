@@ -107,12 +107,18 @@ bx r0
 RefreshIfFlagsPermitIt:
 push {lr}
 
+ldr r0, =RefreshEvenInTrainerBattleFlag_Link 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne Continue2 
+
 ldr r0, =TrainerBattleActiveFlagLink 
 ldrb r0, [r0] 
 blh CheckEventId 
 cmp r0, #0 
 bne DontRefresh
-
+Continue2: 
  
 ldr r0, =AttackedThisTurnFlagLink 
 ldrb r0, [r0] 
@@ -136,6 +142,11 @@ bx    r1
 
 RefreshUnitWithoutFogASMC:
 push {lr}
+ldr r0, =RefreshEvenInTrainerBattleFlag_Link 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne Continue 
 
 ldr r0, =TrainerBattleActiveFlagLink 
 ldrb r0, [r0] 
@@ -143,6 +154,7 @@ blh CheckEventId
 cmp r0, #0 
 bne DoNotRefresh2
 
+Continue: 
  
 ldr r0, =AttackedThisTurnFlagLink 
 ldrb r0, [r0] 

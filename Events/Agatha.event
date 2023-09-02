@@ -131,14 +131,16 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 LOAD1 1 BossTrainer
 ENUN 
 CHECK_EVENTID AgathaDefeatedTemp 
 BEQ 10 sC s0 
 MarkTrainerAsDefeated(0xE1)
 TILECHANGE 0
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 GOTO 99 
 LABEL 10 
 ENUT TrainerBattleActiveFlag
@@ -207,7 +209,7 @@ SVAL r3 5000
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
 ReviveParty 
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 ENUT AgathaDefeatedTemp
 
 LABEL 99 

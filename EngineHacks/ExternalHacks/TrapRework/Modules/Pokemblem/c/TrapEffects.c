@@ -16,6 +16,7 @@ extern struct FMURam* FreeMoveRam;
 
 extern void SetNewFlag_No_sC(int); 
 extern int CheckNewFlag_No_sC(int id);
+extern int CheckEventId(int); 
 extern int GetFreeMovementState(void); 
 
 extern struct Trap* AddTrapExtFix(int x, int y, int type, int ext1, int ext2, int ext3, int ext4, int ext5);  //! FE8U = (0x0802E2E0+1)
@@ -30,6 +31,15 @@ void AlwaysInitTrap(struct EventTrapData* eTrap) {
 void InitIfNewFlagInByte3IsOff(struct EventTrapData* eTrap) { 
 	if (eTrap->data[2]) { 
 		if (CheckNewFlag_No_sC(eTrap->data[2])) { // 2 because type comes first 
+		return; 
+		}
+	}
+	AddTrapExtFix(eTrap->data[0], eTrap->data[1], eTrap->type, eTrap->data[2], eTrap->data[3], eTrap->data[4], 0, 0); 
+} 
+
+void InitIfFlagInByte3IsOff(struct EventTrapData* eTrap) { 
+	if (eTrap->data[2]) { 
+		if (CheckEventId(eTrap->data[2])) { // 2 because type comes first 
 		return; 
 		}
 	}
@@ -274,7 +284,7 @@ struct ObstacleTrap {
 	/* 04 */ u8 effectID; 
 };
 
-extern int CheckEventId(int); 
+
 extern int CutBushTrapID_Link; 
 extern int RockSmashTrapID_Link; 
 extern int StrengthBoulderTrapID_Link; 
