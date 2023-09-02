@@ -30,11 +30,20 @@ bool FMU_open_um(struct FMUProc* proc){
 	if (FMU_ShouldWeYieldForEvent(proc)) { 
 		return 0; 
 	} 
+	gActiveUnit->xPos = proc->xTo; 
+	gActiveUnit->yPos = proc->yTo; 
 	FMU_ResetLCDIO();
 	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x14);
 	proc->updateSMS = true; 
 	return 1;
 }
+
+extern const void* HandleProtag; 
+extern int StartSoaring(Proc* MenuProc);
+int CallSoarEffect(struct Proc* menu) { 
+	CallMapEventEngine(&HandleProtag, 3);
+	return StartSoaring(menu); 
+} 
 
 /*!!!!*/
 

@@ -14,6 +14,19 @@ ORG $8D2F6
 BYTE $48 // length in pixels? (Vanilla is 0x40)
 ORG $8D3E8 
 BYTE $48 // length in pixels for "Last turn" (Vanilla is 0x40)
+
+//Prep screen text width
+ORG 0x99554 //Prep screen item menu selected pixel width
+BYTE 0x2B
+ORG 0x9878C //Prep screen item menu selected tile width
+BYTE 0x6
+ORG 0x9A820 //Prep screen item menu tile width
+BYTE 0x6
+ORG 0x98728 //Prep screen pick units tile width
+BYTE 0x6
+ORG $99554 
+BYTE $30 // centered something 
+
  
 
 ORG $86B84 
