@@ -1,21 +1,5 @@
 #include "FreeMU.h"
-static inline bool IsPosInvaild(s8 x, s8 y){
-	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );
-}
 
-static inline bool IsCharNotOnMap(Unit* unit){
-	if(-1==unit->xPos)
-		return 1;
-	return 0;
-}
-
-static inline bool IsCharInvaild(Unit* unit){
-	if(0==unit)
-		return 1;
-	if(0==unit->pCharacterData)
-		return 1;
-	return 0;
-}
 
 void FMU_ResetLCDIO(void) { 
 	gLCDIOBuffer.dispControl.enableWin0 = 0;
@@ -30,8 +14,14 @@ bool FMU_open_um(struct FMUProc* proc){
 	if (FMU_ShouldWeYieldForEvent(proc)) { 
 		return 0; 
 	} 
-	gActiveUnit->xPos = proc->xTo; 
-	gActiveUnit->yPos = proc->yTo; 
+	if ((proc->xCur != proc->xTo) || (proc->yCur != proc->yTo)) { 
+	proc->xCur = proc->xTo; 
+	proc->yCur = proc->yTo; 
+	gActiveUnit->xPos = proc->xCur; 
+	gActiveUnit->yPos = proc->yCur; 
+	} 
+
+	
 	FMU_ResetLCDIO();
 	StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursorTarget.x - gBmSt.camera.x, 1, 0x14);
 	proc->updateSMS = true; 

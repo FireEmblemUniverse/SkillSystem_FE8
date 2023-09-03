@@ -1,5 +1,6 @@
 #include "FreeMU.h"
 
+
 extern int ProtagID_Link; 
 
 
@@ -1354,3 +1355,9 @@ void pFMU_MoveUnit(struct FMUProc* proc){	//Label 1
 }
 
 */
+
+#include "FreeMU_ButtonPress.c" 
+#include "FreeMU_Event.c" 
+#include "FreeMU_Extra.c" 
+#include "FreeMU_SaveData.c" 
+

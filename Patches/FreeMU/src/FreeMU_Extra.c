@@ -19,9 +19,7 @@ struct SMSHandle* SMS_GetNewInfoStruct(int y); //!< FE8U:0802736D
 /*
  * Basic! 
  */
-static inline bool IsPosInvaild(s8 x, s8 y){
-	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );
-}
+
 
 
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y) { 

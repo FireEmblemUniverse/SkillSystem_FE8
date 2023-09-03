@@ -333,7 +333,7 @@ UNCM(0x12, 0x9)
 UNCM(0x13, 0x9)
 UNCM(0x14, 0x9)
 //SilentGiveItemWithDurability(Eirika, SkillScroll,GaleforceID)
-SilentGiveItemWithDurability(Eirika, SuperRepel, 3)
+//SilentGiveItemWithDurability(Eirika, SuperRepel, 3)
 /*
 SilentGiveItemWithDurability(Eirika, SkillScroll,AcrobatID)
 SilentGiveItemWithDurability(Eirika, Tackle,0x01)
@@ -351,7 +351,7 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 //SilentGiveItemWithDurability(Eirika, WaterStone, 0x3)
 
 
-SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
+//SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
 //SilentGiveItemWithDurability(Eirika, DryingPan, 1|0x80)
 //SilentGiveItemWithDurability(1, Berry, 0x87) // Pikachu 
 
@@ -363,8 +363,8 @@ SilentGiveItemWithDurability(Eirika, StatAccessory, QuickBoots_BoostIndex|0x80)
 
 
 
-EquipNewSkillAccessory(1, ExpShareID) // GiveSkillAccessory(0, RenewalID)
-EquipNewSkillAccessory(1, HoverBoardID) // GiveSkillAccessory(0, RenewalID)
+//EquipNewSkillAccessory(1, ExpShareID) // GiveSkillAccessory(0, RenewalID)
+//EquipNewSkillAccessory(1, HoverBoardID) // GiveSkillAccessory(0, RenewalID)
 
 //SilentGiveSkillAccessory(1, ExpShareID)
 
@@ -409,7 +409,11 @@ SupplyItemWithDurability(StatAccessory, QuickBoots_BoostIndex)
 //SupplyItemWithDurability(SpellScroll, KarateChop)
 
 //SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
+SilentGiveItemWithDurability(1, SacredStone, 1)
+SilentGiveItemWithDurability(1, SacredStone, 1)
+SilentGiveItemWithDurability(1, SacredStone, 1)
+SilentGiveItemWithDurability(1, SacredStone, 1)
+SilentGiveItemWithDurability(1, SacredStone, 1)
 
 
 //SilentGiveItemWithDurability(3, StatAccessory, EnergyBandT4_BoostIndex|0x80)
@@ -418,7 +422,8 @@ SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 //SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
-SilentGiveItemWithDurability(1, SkillScroll, PoisonStrikeID)
+//SilentGiveItemWithDurability(1, SkillScroll, PoisonStrikeID)
+//SilentGiveItemWithDurability(1, SkillScroll, PoisonStrikeID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
 //GiveItemWithDurability(1, SpellScroll, LeafFlurry)

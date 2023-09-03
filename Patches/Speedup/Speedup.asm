@@ -40,30 +40,17 @@ AdjustSleepTime:
 push {r4-r5, lr} 
 @ given r0 = frames to wait, adjust based on flag / A button being held down 
 mov r4, #0xFF 
-lsr r5, r0, #8 @ minimum percentage 
+lsr r5, r0, #8 @ minimum frames  
 and r4, r0 @ never sleep > 255 frames 
 
 
 ldr r0, =SpeedupFlag_Link
 ldr r0, [r0] 
 blh CheckEventId 
-mov r1, r7 
-add r1, #0x31 
 cmp r0, #0 
 beq NoSpeedupFlag
-cmp r5, #0 
-bne MinimumDivisor
-mov r4, #0x0 @ 0 frames 
-b NoSpeedupFlag 
-MinimumDivisor: 
-mov r0, r4 
-mul r0, r5 
-mov r1, #100 
-swi 6 
-mov r4, r0 @ minimum percent of frames 
-
-NoSpeedupFlag: 
-
+mov r4, #0 @ sleep 0 frames 
+NoSpeedupFlag:
 ldr r3, =gKeyState 
 ldrh r0, [r3, #4] @ held keys 
 mov r1, #1 @ KEY_BUTTON_A
@@ -71,6 +58,10 @@ tst r0, r1
 beq NoSpeedupButtonHeld 
 lsr r4, #1 @ half the frames if A is held 
 NoSpeedupButtonHeld: 
+cmp r4, r5 
+bge ExitAdjustSleepTime 
+mov r4, r5 @ minimum frames 
+ExitAdjustSleepTime:
 mov r0, r4 
 pop {r4-r5} 
 pop {r3} 
@@ -143,8 +134,30 @@ pop {r3}
 bx r3 
 .ltorg 
 
-
-
+.global LightRuneAnimHook_3 
+.type LightRuneAnimHook_3, %function 
+LightRuneAnimHook_3:
+push {lr} 
+ldrh r0, [r1] 
+add r0, #1 
+strh r0, [r1] 
+mov r2, #0 
+ldsh r0, [r1, r2] 
+push {r0} 
+mov r0, #1 
+lsl r0, #8 
+mov r1, #4 
+orr r0, r1 @ 4(1<<8): 4 frames default 
+bl AdjustSleepTime @ will return 1, 2, or 4 
+mov r1, r0 
+pop {r0} 
+cmp r1, #4 
+bne SkipVanillaSet 
+mov r1, #3 @ max 3 is what we want 
+SkipVanillaSet: 
+pop {r3} 
+bx r3 
+.ltorg 
 
 
 

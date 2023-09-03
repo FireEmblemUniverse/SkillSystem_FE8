@@ -22,7 +22,7 @@ ldr r3, [r3]
 cmp r3,  #0 
 beq Exit 
 
-ldrh r0, [r3, #0x1E] @ Item slot 1 
+ldrh r0, [r3, #0x26] @ Item slot 5
 ldr r2, =MemorySlot 
 str r0, [r2, #0x4*3] @s3 
 
@@ -32,8 +32,8 @@ mov r0, #0x1
 strb r0, [r1,#0x11]
 
 ldr r3, =ActionStruct @0x203A958
-mov r0, #0 
-strb r0, [r3, #0x12] @ Inventory slot #0 
+mov r0, #4 
+strb r0, [r3, #0x12] @ Inventory slot #4
 
 ldr r0, =CurrentUnit 
 ldr r0, [r0] 

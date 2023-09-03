@@ -18,6 +18,12 @@ ORG $741D4
 callHackNew(LevelUpSpeedHook_2)
 SHORT $46C0 
 
+ORG $21798 // These 3 are all identical code and can use the same hook 
+callHackNew(LightRuneAnimHook_3)
+ORG $21604 
+callHackNew(LightRuneAnimHook_3)
+ORG $2192C 
+callHackNew(LightRuneAnimHook_3)
 
 // Delay for EXP bar 
 ORG $9A3720 
@@ -30,7 +36,7 @@ PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 70)
 ORG $9A3FE4
 PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 30)
 ORG $9A3FF4
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 60|MinHalf)
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 60|(30<<8))
 
 ORG $7F47A // don't wait 13 frames for some level up sfx (possibly volume reduction) related thing 
 SHORT $2300 // mov r3, #0 
@@ -63,13 +69,13 @@ ORG $9A4A14
 PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 30 
 
 ORG $9A4A24 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|MinHalf) // vanilla is 30 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|(10<<8)) // vanilla is 30 
 
 ORG $9A4A34
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10|MinHalf) // vanilla is 10 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10|(5<<8)) // vanilla is 10 
 
 ORG $9A4A44
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|MinHalf) // vanilla is 30 
+PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|(10<<8)) // vanilla is 30 
 
 
 

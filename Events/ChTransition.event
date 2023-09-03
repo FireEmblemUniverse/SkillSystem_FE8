@@ -1322,6 +1322,8 @@ NoFade
 ENDA 
 
 SendOutPkmnSlotB:
+CHECK_EVENTID SpeedupFlag
+BNE 1 sC s0 
 EmoticonSlotB(PokeballGraphic)
 STAL 14 
 EmoticonSlotB(OpenPokeballGraphic)
@@ -1335,6 +1337,21 @@ RemoveTrap
 
 DISA 0xFC 
 STAL 10
+GOTO 99 
+
+LABEL 1 // Same event but faster 
+
+LOAD_S2 1 // No restriction: always load 
+ENUN 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+STAL 7 
+RemoveTrap 
+DISA 0xFC 
+STAL 3
+
+
+LABEL 99 
 NoFade 
 ENDA 
 
@@ -1342,6 +1359,9 @@ LightruneAnimSlotB:
 SVAL sC 0 
 CHECK_CLASS 0x7FFE 
 BEQ 99 sC s0 
+CHECK_EVENTID SpeedupFlag
+BNE 1 sC s0 
+
 CAM1 0x7FFE 
 EmoticonSlotB(PokeballGraphic)
 STAL 14 
@@ -1355,6 +1375,20 @@ RemoveTrap
 
 DISA 0xFC 
 STAL 10
+
+LABEL 1 // Sped up version 
+CAM1 0x7FFE 
+UNCR(0x7FFE, Hide) 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+STAL 7 
+RemoveTrap 
+
+DISA 0xFC 
+STAL 3
+LABEL 99 
+
+
 LABEL 99 
 NoFade 
 ENDA 
