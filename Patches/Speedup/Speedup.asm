@@ -100,7 +100,10 @@ push {lr}
 mov r1, r8 
 strb r0, [r1] 
 
-mov r0, #0xF @ 15 frames default 
+@mov r1, #0 @ min 0 
+@lsl r1, #8 
+mov r0, #0xF
+@orr r0, r1   
 bl AdjustSleepTime 
 mov r1, r7
 add r1, #0x31 
@@ -116,10 +119,11 @@ LevelUpSpeedHook_2:
 push {lr} 
 mov r5, r0 
 
-
-mov r0, #0xF 
+mov r1, #1 @ this one needs to be min 1 
+lsl r1, #8 
+mov r0, #0xF
+orr r0, r1  
 bl AdjustSleepTime 
-@add r0, #1 @ this is what FEB does 
 
 ldrh r1, [r5, #0x2c] 
 add r1, #1 

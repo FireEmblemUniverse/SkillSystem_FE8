@@ -4,19 +4,22 @@
 	// if SpeedupFlag is on, wait 0 frames 
 	// else if A is held down, wait half as many frames 
 
-#define MinHalf 50<<8 
-
 ALIGN 4 
 SpeedupFlag_Link:
 WORD SpeedupFlag
 
 PUSH 
+
+// This part is entangled with skillsys strmag split 
+// Need to check if it works with vanilla 
 ORG $7F45C 
 jumpToHack(LevelUpSpeedHook_1)
 SHORT $46c0 
 ORG $741D4
 callHackNew(LevelUpSpeedHook_2)
 SHORT $46C0 
+
+
 
 ORG $21798 // These 3 are all identical code and can use the same hook 
 callHackNew(LightRuneAnimHook_3)
@@ -37,6 +40,7 @@ ORG $9A3FE4
 PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 30)
 ORG $9A3FF4
 PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 60|(30<<8))
+
 
 ORG $7F47A // don't wait 13 frames for some level up sfx (possibly volume reduction) related thing 
 SHORT $2300 // mov r3, #0 
@@ -76,7 +80,6 @@ PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10|(5<<8)) // vanilla is 10
 
 ORG $9A4A44
 PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|(10<<8)) // vanilla is 30 
-
 
 
 ORG 0x9A3528 // speed up map battle anim start? 
