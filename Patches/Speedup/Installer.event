@@ -17,6 +17,14 @@ WORD SpeedupFlag
 
 PUSH 
 
+ORG $80E56 
+BYTE 2 // make summon animation twice as fast 
+ORG $80FDA 
+BYTE 2 // make summon animation twice as fast 
+ORG $8117C 
+BYTE 2 // make summon animation twice as fast 
+
+
 // This part is entangled with skillsys strmag split 
 // Need to check if it works with vanilla 
 ORG $7F45C 
@@ -74,10 +82,10 @@ SleepVar(10) // vanilla 44 frames to wait before going to the next unit
 // just from the proc MapAnimBattle 9A49FC
 // vanilla is 30 30 30 10 30 
 ORG $9A4A04 
-SleepVar(20) // vanilla is 30 
+SleepVar(10, 20) // vanilla is 30 
 
 ORG $9A4A14 
-SleepVar(20) // vanilla is 30 
+SleepVar(10, 20) // vanilla is 30 
 
 ORG $9A4A24 
 SleepVar(15, 20) // vanilla is 30 
@@ -94,7 +102,7 @@ SleepVar(2) // vanilla is 2
 ORG 0x9A3540
 SleepVar(5) // vanilla is 5 
 ORG 0x9A3568 
-SleepVar(15) // vanilla is 15 
+SleepVar(5, 15) // vanilla is 15 
 ORG 0x9A360A 
 BYTE 0x08	//do not change!
 ORG 0x9A3628

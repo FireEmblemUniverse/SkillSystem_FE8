@@ -68,11 +68,16 @@ DISA 0xFC
 GOTO 20 
 LABEL 10 
 SPAWN_NPC 0xFC [-1,-1] 
-STAL 22 
+CHECK_EVENTID SpeedupFlag
+BNE 11 sC s0 
+//STAL 22 
+LABEL 11
 DISA 0xFC 
 
 LABEL 20 
 ASMC 0x8026689 //SMS_Init - refresh SMS in case we've gone overboard 
+CHECK_EVENTID SpeedupFlag
+BNE 99 sC s0 
 STAL 5
 
 
