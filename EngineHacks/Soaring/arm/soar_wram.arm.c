@@ -64,7 +64,7 @@ static inline void UpdateSprites(SoarProc* CurrentProc){
 
 	if (CurrentProc->ShowFPS) ObjInsertSafe(8, 0, 0, &gObj_8x8, (OAM_ATTR2(FPSBaseTID + FPS_CURRENT, 2, 0xC))); //fps counter
 
-	if (CurrentProc->sunsetVal < 3)
+	if (CurrentProc->disableFlare == 0)
 	{
 		//draw lens flare test
 		int flarex = 64;

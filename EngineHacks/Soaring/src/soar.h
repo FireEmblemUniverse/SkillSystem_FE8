@@ -168,7 +168,8 @@ struct SoarProc { //so we can store this info locally.
   u8 ShowFPS: 1;
   u8 takeOffTransition: 1;
   u8 landingTransition: 1;
-  u8 unused:4;
+  u8 disableFlare: 1;
+  u8 unused:3;
   s8 oceanOffset;
   u8 oceanClock;
   int sFocusPtX;

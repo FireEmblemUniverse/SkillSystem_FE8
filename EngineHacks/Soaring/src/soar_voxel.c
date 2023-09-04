@@ -141,6 +141,38 @@ static void SoaringLandRoutine(SoarProc* CurrentProc){
     CallMapEventEngine((void*) (0x202B670), 1);
 }
 
+bool ram_overclock()
+{
+		volatile unsigned int* memctrl_register = (volatile unsigned int*)0x4000800;
+				*memctrl_register = 0x0E000020;
+		volatile int* ewram_static_data = &ewram_static_data;
+				*ewram_static_data = 1;
+
+    if (ewram_static_data != 1) {
+        memctrl_register = 0x0D000020;
+        return false;
+    } else {
+        return true;
+    }
+}
+
+static bool detect_android_myboy_emulator()
+{
+    const u16 prev_dispcnt = REG_DISPCNT;
+
+    REG_DISPCNT = DCNT_MODE0 | DCNT_BG0;
+
+
+
+    // RAM overclocking in MyBoy! erroneously clears REG_DISPCNT.
+    ram_overclock();
+
+    const bool detected = !(REG_DISPCNT & DCNT_BG0);
+
+    REG_DISPCNT = prev_dispcnt;
+    return detected;
+}
+
 int canLandHere(SoarProc* CurrentProc){
 	if (CurrentProc->location == 0){return FALSE;}
 	u16 label = 0;
@@ -170,6 +202,7 @@ void SetUpNewWMGraphics(SoarProc* CurrentProc){
 	CurrentProc->sunTransition = 0;
 	CurrentProc->takeOffTransition = 1;
 	CurrentProc->landingTransition = 0;
+	CurrentProc->disableFlare = detect_android_myboy_emulator();
 	// CurrentProc->animClock = 0;
 	#ifdef __PAGEFLIP__
 	    CurrentProc->vid_page = (u16*)(0x600A000);
