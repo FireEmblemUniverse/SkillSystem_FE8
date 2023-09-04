@@ -79,7 +79,12 @@ jumpToHack(Unset_Attack_Flag_2)
 
 ORG $2B918
 jumpToHack(RemoveRoundHack)
+
+ORG $1D0A8
+jumpToHack(MenuResetSkillBuffer)
 POP
+
+#include "MenuResetSkillBuffer.lyn.event"
 
 ALIGN 4
 KeepProcSkillIcon:
