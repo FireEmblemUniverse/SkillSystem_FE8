@@ -55,14 +55,14 @@ static inline void UpdateSprites(SoarProc* CurrentProc){
 	// int animClock = GetGameClock() & 0x3F;
 	u8 animClock = *(u8*)(0x3000014) & 0x3F;
 
-	if (animClock < 0x10) ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, 0xca00); //player frames
-	else if (animClock < 0x20)	ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, 0xca10);
-	else if (animClock < 0x30)	ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, 0xca20);
-	else ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, 0xca30);
+	if (animClock < 0x10) ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, OAM_ATTR2(PKBaseTID, 2, 0xC)); //player frames
+	else if (animClock < 0x20)	ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, OAM_ATTR2(PKBaseTID+0x10, 2, 0xC));
+	else if (animClock < 0x30)	ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, OAM_ATTR2(PKBaseTID+0x20, 2, 0xC));
+	else ObjInsertSafe(8, 0x68, 0x58, &gObj_32x32, OAM_ATTR2(PKBaseTID+0x30, 2, 0xC));
 
-	if (CurrentProc->ShowMap) ObjInsertSafe(8, 176, 0, &gObj_64x64, 0x2a60+96); //draw minimap
+	if (CurrentProc->ShowMap) ObjInsertSafe(8, 176, 0, &gObj_64x64, OAM_ATTR2(MinimapBaseTID-1, 2, 0x2)); //draw minimap
 
-	if (CurrentProc->ShowFPS) ObjInsertSafe(8, 0, 0, &gObj_8x8, (0xcaa1 +96 + (FPS_CURRENT))); //fps counter
+	if (CurrentProc->ShowFPS) ObjInsertSafe(8, 0, 0, &gObj_8x8, (OAM_ATTR2(FPSBaseTID + FPS_CURRENT, 2, 0xC))); //fps counter
 
 	if (CurrentProc->sunsetVal < 3)
 	{
@@ -79,7 +79,7 @@ static inline void UpdateSprites(SoarProc* CurrentProc){
 			case a_SW:
 			flarex += 32;
 			case a_SSW:
-			ObjInsertSafe(9, flarex, flarey, &gObj_aff32x32, 0x3aa1+96+31);
+			ObjInsertSafe(9, flarex, flarey, &gObj_aff32x32, OAM_ATTR2(LensFlareBaseTID-1, 2, 0x3));
 		};
 	};
 
@@ -90,15 +90,15 @@ static inline void UpdateSprites(SoarProc* CurrentProc){
 	u8 loc = 0;
 
 	if ((posY > MAP_YOFS) && (posY < (MAP_DIMENSIONS - MAP_YOFS)) && (posX > 0) && (posX < MAP_DIMENSIONS)) {
-		if (CurrentProc->ShowMap) ObjInsertSafe(8, (176 + (posX>>4)), (posY-MAP_YOFS)>>4, &gObj_8x8, 0xda60+96); //draw cursor on minimap
+		if (CurrentProc->ShowMap) ObjInsertSafe(8, (176 + (posX>>4)), (posY-MAP_YOFS)>>4, &gObj_8x8, OAM_ATTR2(CursorBaseTID+CurrentProc->sPlayerYaw, 2, 0xD)); //draw cursor on minimap
 		posX >>= 6;
 		posY = (posY-MAP_YOFS)>>6;
 		loc = WorldMapNodes[posY][posX];
 	};
 	CurrentProc->location = translatedLocations[loc];
 	if (loc>0) {
-		ObjInsertSafe(8, 0x10, 0x10, &gObj_32x8, (0xea38+(loc<<3))); //draw in the top corner if we're there
-		ObjInsertSafe(8, 0x30, 0x10, &gObj_32x8, (0xea38+(loc<<3)+4)); //draw in the top corner if we're there
+		ObjInsertSafe(8, 0x10, 0x10, &gObj_32x8, (OAM_ATTR2(LocationBaseTID+((loc-1)<<3), 2, 0xe))); //draw in the top corner if we're there
+		ObjInsertSafe(8, 0x30, 0x10, &gObj_32x8, (OAM_ATTR2(LocationBaseTID+((loc-1)<<3)+4, 2, 0xe))); //draw in the top corner if we're there
 	};
 };
 

@@ -43,6 +43,8 @@
 #define VID_FLIP 0xa000 //page buffers
 #define DCNT_PAGE 0x10
 
+#define OAM_ATTR2(tile_id, prio, pal) ((0x200 + tile_id) | (prio<<0xA) | (pal<<0xC))
+
 #define MOVEMENT_STEP 4
 
 #define FREE_WRAM 0x3007000 //i sure hope this is free lol it's between the heap and the stack
@@ -81,6 +83,19 @@ extern const u16 gObj_aff32x32[3];
 extern const u8 WorldMapNodes[16][16];
 extern const u8 translatedLocations[];
 
+#define sizeofPKSprite 64
+#define sizeofLocationSprites 128
+#define sizeofCursorSprite 16
+#define sizeofMinimapSprite 64
+#define sizeofFPSSprite 32
+#define sizeofLensFlareSprite 16
+
+#define PKBaseTID 0
+#define LocationBaseTID PKBaseTID+sizeofPKSprite
+#define CursorBaseTID LocationBaseTID+sizeofLocationSprites
+#define MinimapBaseTID CursorBaseTID+sizeofCursorSprite
+#define FPSBaseTID MinimapBaseTID+sizeofMinimapSprite
+#define LensFlareBaseTID FPSBaseTID+sizeofFPSSprite
 
 //from tonc
 // tile 8x8@4bpp: 32bytes; 8 ints

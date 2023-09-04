@@ -29,11 +29,11 @@ pkPalF:
 ALIGN 4
 
 miniCursorSprite:
-#incbin "sprites/cursor.img.bin"
+#incbin "sprites/cursors.img.bin"
 ALIGN 4
 
 miniCursorPal:
-#incbin "sprites/cursor.pal.bin"
+#incbin "sprites/cursors.pal.bin"
 ALIGN 4
 
 minimapSprite:
