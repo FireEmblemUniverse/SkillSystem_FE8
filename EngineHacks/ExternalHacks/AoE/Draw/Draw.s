@@ -271,7 +271,7 @@ bx r0
 .global Draw_WaitXFrames
 .type Draw_WaitXFrames, %function 
 Draw_WaitXFrames:
-push {r4, lr}
+push {r4-r5, lr}
 
 mov r4, r0 @ Parent? 
 
@@ -358,7 +358,7 @@ blh 0x8081914 @ default routine wait for hp to finish going down	@{U}
 mov r0, #1
 End_DrawPause:
 
-pop {r4}
+pop {r4-r5}
 pop {r1}
 bx r1 
 
@@ -1031,17 +1031,34 @@ bx r1
 .type Draw_NumberDuringAoE, %function 
 Draw_NumberDuringAoE:
 push {r4-r7, lr}
+mov r4, r8 
+push {r4} 
 
 mov r6, r2 @ start time 
 mov r7, r3 @ damage to display 
-
-lsl r0, #4 
-lsl r1, #4 
 
 ldr r3, =0x202BCBC @(gCurrentRealCameraPos )	@{U}
 @ldr r3, =0x202BCB8 @(gCurrentRealCameraPos )	@{J}
 ldrh r2, [r3]
 ldrh r3, [r3, #2] 
+
+mov r4, #12 @ max height 
+mov r8, r4 
+mov r4, #1 @ so they wiggle at different start times when adjacent 
+tst r4, r0 
+bne NoDelay
+sub r6, #12 @ so they wiggle at different start times when adjacent 
+mov r4, #18 @ max height 
+mov r8, r4 
+NoDelay: 
+
+lsl r0, #4 
+lsl r1, #4 
+
+
+
+
+
 
 sub r0, r2 
 sub r1, r3 
@@ -1066,13 +1083,17 @@ bne ExitDraw_NumberDuringAoE
 
 
 blh GetGameClock 
+
+cmp r0, r6 @ sep 2023 
+blt ExitDraw_NumberDuringAoE
+
 mov r2, r6 @ frames since started 
 sub r0, r2 @ Number of frames since animation started 
 mov r6, r0 
 lsr r6, #1 @ every 2 frames move upwards 
-cmp r6, #12 
+cmp r6, r8
 blt Continue_DrawNumber2
-mov r6, #12 @ max height is +12 above 
+mov r6, r8 @ max height is +12 or +18 above 
 Continue_DrawNumber2:
 sub r5, r6 
 
@@ -1129,10 +1150,12 @@ mov r2, r7
 bl Draw_NumberOAM
 
 ExitDraw_NumberDuringAoE:
-
+pop {r4} 
+mov r8, r4 
 pop {r4-r7}
 pop {r1}
 bx r1 
+
 
 
 
