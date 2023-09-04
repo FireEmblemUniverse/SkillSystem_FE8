@@ -1,8 +1,15 @@
 
+#ifndef PROC_CALL_ROUTINE_ARG
+	#define PROC_CALL_ROUTINE_ARG(aprRoutine, aArgument) "SHORT 0x18 aArgument; POIN aprRoutine"
+#endif 
 //#define SpeedupFlag 0xEA 
 // ProcVariableSleep calls AdjustSleepTime
 	// if SpeedupFlag is on, wait 0 frames 
 	// else if A is held down, wait half as many frames 
+	
+#define SleepVar(Min, Default) "PROC_CALL_ROUTINE_ARG(ProcVariableSleep, Min<<8|Default)" 
+#define SleepVar(Default) "PROC_CALL_ROUTINE_ARG(ProcVariableSleep, Default)" 
+	
 
 ALIGN 4 
 SpeedupFlag_Link:
@@ -30,16 +37,16 @@ callHackNew(LightRuneAnimHook_3)
 
 // Delay for EXP bar 
 ORG $9A3720 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20)
+SleepVar(20)
 ORG $9A3740 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20)
+SleepVar(20)
 
 ORG $9A3FA4
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 70)
+SleepVar(70)
 ORG $9A3FE4
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 30)
+SleepVar(30)
 ORG $9A3FF4
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 60|(30<<8))
+SleepVar(30, 60)
 
 
 ORG $7F47A // don't wait 13 frames for some level up sfx (possibly volume reduction) related thing 
@@ -53,11 +60,11 @@ SHORT $2300 // mov r3, #0
 ORG $8193C
 callHackNew(ShouldShowPoisonSplatHook)
 ORG $9A50AC // from this proc 9A508C 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 40) // vanilla 50 Frames to wait during poison anim before hp drains 
+SleepVar(40) // vanilla 50 Frames to wait during poison anim before hp drains 
 ORG $9A50BC 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 30) // vanilla 30 frames before hp bar disappears 
+SleepVar(30) // vanilla 30 frames before hp bar disappears 
 ORG $9A50CC
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10) // vanilla 44 frames to wait before going to the next unit 
+SleepVar(10) // vanilla 44 frames to wait before going to the next unit 
 
 
 
@@ -67,38 +74,38 @@ PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10) // vanilla 44 frames to wait before
 // just from the proc MapAnimBattle 9A49FC
 // vanilla is 30 30 30 10 30 
 ORG $9A4A04 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 30 
+SleepVar(20) // vanilla is 30 
 
 ORG $9A4A14 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 30 
+SleepVar(20) // vanilla is 30 
 
 ORG $9A4A24 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|(10<<8)) // vanilla is 30 
+SleepVar(15, 20) // vanilla is 30 
 
 ORG $9A4A34
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 10|(5<<8)) // vanilla is 10 
+SleepVar(5, 10) // vanilla is 10 
 
 ORG $9A4A44
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20|(10<<8)) // vanilla is 30 
+SleepVar(10, 20) // vanilla is 30 
 
 
 ORG 0x9A3528 // speed up map battle anim start? 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 2) // vanilla is 2 
+SleepVar(2) // vanilla is 2 
 ORG 0x9A3540
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 5) // vanilla is 5 
+SleepVar(5) // vanilla is 5 
 ORG 0x9A3568 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 15) // vanilla is 15 
+SleepVar(15) // vanilla is 15 
 ORG 0x9A360A 
 BYTE 0x08	//do not change!
 ORG 0x9A3628
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 2) // vanilla is 2 
+SleepVar(2) // vanilla is 2 
 
 ORG 0x9A47B4 // delay between rounds for map battle anims 
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 2) // vanilla is 2 
+SleepVar(2) // vanilla is 2 
 ORG 0x9A47C4
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 8) // vanilla is 8 
+SleepVar(8) // vanilla is 8 
 ORG 0x9A480C
-PROC_CALL_ROUTINE_ARG(ProcVariableSleep, 20) // vanilla is 20 
+SleepVar(5, 20) // vanilla is 20 
 
 
 

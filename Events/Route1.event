@@ -614,7 +614,7 @@ TBQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0, R1_0xE0_BD, 300) 
-BD(1, R1_0xE0_BD, 450) 
+BD(1, R1_0xE1_BD, 450) 
 TDQ_TableTerminator ; }
 
 

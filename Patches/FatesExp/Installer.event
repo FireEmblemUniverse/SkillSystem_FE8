@@ -23,14 +23,14 @@ CanGainExpVesly: ; POP
 
 ALIGN 4 
 maxLevelTableHard:
-BYTE 12 // Boulderbadge 
-BYTE 18
-BYTE 24
-BYTE 30 
-BYTE 35
-BYTE 40 
+BYTE 14 // Boulderbadge 
+BYTE 20
+BYTE 28
+BYTE 35 
+BYTE 40
 BYTE 45 
-BYTE 50  
+BYTE 50 
+BYTE 55  
 BYTE 100 
 
 
