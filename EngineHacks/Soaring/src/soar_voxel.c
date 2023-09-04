@@ -11,6 +11,7 @@ int MU_AllEnable(void);
 extern u16 SaffronArrivedLabel;
 extern u16 CinnabarArrivedLabel;
 extern u16 IndigoPlateauArrivedLabel;
+extern u16 GirlProtagFlag_Link;
 int canLandHere(SoarProc* CurrentProc);
 int isMaleAvatar(void);
 static void SoaringLandRoutine(SoarProc* CurrentProc);
@@ -140,6 +141,38 @@ static void SoaringLandRoutine(SoarProc* CurrentProc){
     CallMapEventEngine((void*) (0x202B670), 1);
 }
 
+bool ram_overclock()
+{
+		volatile unsigned int* memctrl_register = (volatile unsigned int*)0x4000800;
+				*memctrl_register = 0x0E000020;
+		volatile int* ewram_static_data = &ewram_static_data;
+				*ewram_static_data = 1;
+
+    if (ewram_static_data != 1) {
+        memctrl_register = 0x0D000020;
+        return false;
+    } else {
+        return true;
+    }
+}
+
+static bool detect_android_myboy_emulator()
+{
+    const u16 prev_dispcnt = REG_DISPCNT;
+
+    REG_DISPCNT = DCNT_MODE0 | DCNT_BG0;
+
+
+
+    // RAM overclocking in MyBoy! erroneously clears REG_DISPCNT.
+    ram_overclock();
+
+    const bool detected = !(REG_DISPCNT & DCNT_BG0);
+
+    REG_DISPCNT = prev_dispcnt;
+    return detected;
+}
+
 int canLandHere(SoarProc* CurrentProc){
 	if (CurrentProc->location == 0){return FALSE;}
 	u16 label = 0;
@@ -151,10 +184,7 @@ int canLandHere(SoarProc* CurrentProc){
 }
 
 int isMaleAvatar(){
-	struct Unit* protag = GetUnitStructFromEventParameter(ProtagID_Link);
-	struct ClassData* protagClass = protag->pClassData;
-	if (protagClass->number == 0x63) {return FALSE;};
-	return TRUE;
+	return !CheckEventId_(GirlProtagFlag_Link);
 }
 
 void SetUpNewWMGraphics(SoarProc* CurrentProc){
@@ -172,6 +202,7 @@ void SetUpNewWMGraphics(SoarProc* CurrentProc){
 	CurrentProc->sunTransition = 0;
 	CurrentProc->takeOffTransition = 1;
 	CurrentProc->landingTransition = 0;
+	CurrentProc->disableFlare = detect_android_myboy_emulator();
 	// CurrentProc->animClock = 0;
 	#ifdef __PAGEFLIP__
 	    CurrentProc->vid_page = (u16*)(0x600A000);
@@ -217,19 +248,20 @@ void SetUpNewWMGraphics(SoarProc* CurrentProc){
 };
 
 void LoadSprite(){
+
 	if (isMaleAvatar())	{
-		LZ77UnCompVram(&pkSprite, &tile_mem[5][0]);
+		LZ77UnCompVram(&pkSprite, &tile_mem[5][PKBaseTID]);
 		ApplyPalette(&pkPal, 0x1c);
 	} //first tile of the hi block 0x6014000
 	else	{
-		LZ77UnCompVram(&pkSpriteF, &tile_mem[5][0]);
+		LZ77UnCompVram(&pkSpriteF, &tile_mem[5][PKBaseTID]);
 		ApplyPalette(&pkPalF, 0x1c);
 	}; //first tile of the hi block 0x6014000
-	LZ77UnCompVram(&locationSprites, &tile_mem[5][64]); //yeah 
-	LZ77UnCompVram(&miniCursorSprite, &tile_mem[5][192]);
-	LZ77UnCompVram(&minimapSprite, &tile_mem[5][193]);
-	LZ77UnCompVram(&fpsSprite, &tile_mem[5][257]); //fps numbers
-	LZ77UnCompVram(&lensFlareSprite, &tile_mem[5][289]);
+	LZ77UnCompVram(&locationSprites, &tile_mem[5][LocationBaseTID]); //yeah 
+	LZ77UnCompVram(&miniCursorSprite, &tile_mem[5][CursorBaseTID]);
+	LZ77UnCompVram(&minimapSprite, &tile_mem[5][MinimapBaseTID]);
+	LZ77UnCompVram(&fpsSprite, &tile_mem[5][FPSBaseTID]); //fps numbers
+	LZ77UnCompVram(&lensFlareSprite, &tile_mem[5][LensFlareBaseTID]);
 	// LoadMapSpritePalettes(); //puts in palette 0xc
 	ApplyPalette(&miniCursorPal, 0x1d);
 	ApplyPalette(&locationPal, 0x1e);
