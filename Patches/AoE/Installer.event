@@ -156,6 +156,8 @@ MenuCommandID(ThiefName, 		UM_AoEDesc, NormalText, 108, AoE_SpecificUsability|1,
 MenuCommandID(RolloutName, 		UM_AoEDesc, NormalText, 109, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(MegaPunchName, 		UM_AoEDesc, NormalText, 110, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(MegaKickName, 		UM_AoEDesc, NormalText, 111, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SubmissionName, 		UM_AoEDesc, NormalText, 112, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HiJumpKickName, 		UM_AoEDesc, NormalText, 113, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 
 
 UM_Separator 
@@ -1787,6 +1789,32 @@ BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
 BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Submission // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallMeleeLine fightingAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 HiJumpKick // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallMeleeLine fightingAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 

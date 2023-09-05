@@ -256,7 +256,7 @@ mov r4, r0 @ Parent?
 
 ldr r2, =MinimumFramesLink
 ldr r0, [r2] 
-bl AdjustSleepTime
+bl AdjustSleepTime_AB_Press
 mov r6, r0 
 
 ldr r3, =MemorySlot

@@ -5,13 +5,16 @@
 
 PUSH 
 
+//8036818
 // Make text in Cmb Preview window longer https://github.com/FireEmblemUniverse/fireemblem8u/blob/d800860c04e74d85c7caa76f93336b37906328a3/src/bksel.c#L427C6-L427C25
 ORG $36DD6 
-BYTE 8 // Name1 (vanilla 6) 
+BYTE 9 // Name1 (vanilla 6) 
+ORG $365FA 
+BYTE 52 // Centered text something 
 ORG $36DE0 
-BYTE 8 // Name2 
-//ORG $36DEA 
-//BYTE 8 // item (vanilla 7) 
+BYTE 9 // Name2 
+ORG $36DEA 
+BYTE 8 // item (vanilla 7) 
 
 
 

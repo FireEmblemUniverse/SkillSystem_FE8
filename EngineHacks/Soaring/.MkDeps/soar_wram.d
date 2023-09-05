@@ -1,16 +1,16 @@
 arm/soar_wram.o arm/soar_wram.asm: arm/soar_wram.arm.c \
  arm/../src/cHacks.h arm/../src/libgbafe/gbafe.h \
  arm/../src/libgbafe/gba/gba.h arm/../src/libgbafe/gba/types.h \
- c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stdint.h \
+ c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stdint.h \
  c:\devkitpro\devkitarm\arm-none-eabi\include\stdint.h \
  c:\devkitpro\devkitarm\arm-none-eabi\include\machine\_default_types.h \
  c:\devkitpro\devkitarm\arm-none-eabi\include\sys\features.h \
  c:\devkitpro\devkitarm\arm-none-eabi\include\_newlib_version.h \
  c:\devkitpro\devkitarm\arm-none-eabi\include\sys\_intsup.h \
  c:\devkitpro\devkitarm\arm-none-eabi\include\sys\_stdint.h \
- c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stddef.h \
- c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stdbool.h \
- c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stdnoreturn.h \
+ c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stddef.h \
+ c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stdbool.h \
+ c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stdnoreturn.h \
  arm/../src/libgbafe/gba/defines.h arm/../src/libgbafe/gba/ioreg.h \
  arm/../src/libgbafe/gba/syscall.h arm/../src/libgbafe/gba/macro.h \
  arm/../src/libgbafe/gbafe/armfunc.h arm/../src/libgbafe/gbafe/common.h \
@@ -46,16 +46,16 @@ arm/../src/cHacks.h:
 arm/../src/libgbafe/gbafe.h:
 arm/../src/libgbafe/gba/gba.h:
 arm/../src/libgbafe/gba/types.h:
-c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stdint.h:
+c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stdint.h:
 c:\devkitpro\devkitarm\arm-none-eabi\include\stdint.h:
 c:\devkitpro\devkitarm\arm-none-eabi\include\machine\_default_types.h:
 c:\devkitpro\devkitarm\arm-none-eabi\include\sys\features.h:
 c:\devkitpro\devkitarm\arm-none-eabi\include\_newlib_version.h:
 c:\devkitpro\devkitarm\arm-none-eabi\include\sys\_intsup.h:
 c:\devkitpro\devkitarm\arm-none-eabi\include\sys\_stdint.h:
-c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stddef.h:
-c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stdbool.h:
-c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\12.1.0\include\stdnoreturn.h:
+c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stddef.h:
+c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stdbool.h:
+c:\devkitpro\devkitarm\lib\gcc\arm-none-eabi\11.1.0\include\stdnoreturn.h:
 arm/../src/libgbafe/gba/defines.h:
 arm/../src/libgbafe/gba/ioreg.h:
 arm/../src/libgbafe/gba/syscall.h:

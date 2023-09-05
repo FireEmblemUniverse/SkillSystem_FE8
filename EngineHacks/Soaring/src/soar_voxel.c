@@ -177,7 +177,7 @@ int canLandHere(SoarProc* CurrentProc){
 	if (CurrentProc->location == 0){return FALSE;}
 	u16 label = 0;
 	if (CurrentProc->location == 9){label = SaffronArrivedLabel;}
-	else if (CurrentProc->location == 10){return false; label = CinnabarArrivedLabel;}
+	else if (CurrentProc->location == 10){label = CinnabarArrivedLabel;}
 	else if (CurrentProc->location == 11){label = IndigoPlateauArrivedLabel;};
 	if (label == 0) {return true;};
 	return CheckEventId_(label);
