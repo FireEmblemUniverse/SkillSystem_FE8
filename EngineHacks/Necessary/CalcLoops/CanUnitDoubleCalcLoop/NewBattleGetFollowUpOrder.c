@@ -231,8 +231,8 @@ void NewBattleUnwind(void) {
 
     gBattleHitIterator->info |= BATTLE_HIT_INFO_END;
 	
-	asm("mov r0, #0"); // This is what a hook for Barricade did  
-	asm("mov r11, r0"); // for some reason it sets r11 to 0. r11 is not used by this function. 
+	//asm("mov r0, #0"); // This is what a hook for Barricade did  
+	//asm("mov r11, r0"); // for some reason it sets r11 to 0. r11 is not used by this function. 
 	// "Barricade uses r11 for various things through combat. This unsets it afterward."
 }
 

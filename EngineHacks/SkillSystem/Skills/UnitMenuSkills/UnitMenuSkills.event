@@ -1,8 +1,8 @@
 
 #include "Capture/Capture.event"
-
-#include "StealPlus/StealPlus.event"
-
+#ifdef SkillSys_HookAiTryDoOffensiveAction
+	#include "StealPlus/StealPlus.event"
+#endif 
 #include "HeroesMovement/HeroesMovement.event"
 
 ALIGN 4

@@ -4,6 +4,8 @@
 #define FreeSpace 0x01300000 // after music, some gfx, and fonts
 #define FreeSpace_Low 0xb2a610
 
+//#define SkillSys_HookAiTryDoOffensiveAction
+
 //#define FreeSpace2_End 0xFFFFFF
 #define FreeSpace_Low_End 0xC00000
 //#define FreeSpaceBLRange 0x1c1ec0

@@ -17,8 +17,11 @@ strh 	r2, [r0, #0x0]
 lsl 	r1, r1, #0x10
 asr		r1, r1, #0x10
 mov 	r5, r1
-cmp 	r1, #0x27
-ble 	Continue
+ldr r0, =EmoticonSleepTime_Link 
+ldr r0, [r0] 
+bl AdjustSleepTime_AB_Press 
+cmp 	r5, r0 
+blt 	Continue
 	mov 	r0, r4
 	blh 	0x08002E94   	@Break6CLoop	{U}
 @	blh 	0x08002DE4   	@Break6CLoop	{J}

@@ -14,9 +14,11 @@ jumpToHack(LungeAI)
 ORG $3E154
 callHack_r1(Shade)
 
-//Shade+
-ORG $3D5A0
-jumpToHack(ShadePlus) // skips over 803C864 IsUnitEnemyAndNotInTheAiInstList 
+#ifdef SkillSys_HookAiTryDoOffensiveAction
+	//Shade+
+	ORG $3D5A0
+	jumpToHack(ShadePlus) // skips over 803C864 IsUnitEnemyAndNotInTheAiInstList 
+#endif 
 ORG $3C824
 SHORT 0x0E00 // lsr instead of asr for some reason 
 

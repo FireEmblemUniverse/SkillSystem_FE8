@@ -16,7 +16,7 @@ SADD sB sC s0
 CUSA 0x7FFD //enemy to player 
 CAM1 0xFFFF
 WARP_IN
-STAL 0x32
+StalVar(20, 50)
 Text(PokemonCapturedText)
 SVAL r3 300 
 GIVETOSLOT3 // Take 300 gold from the player 
@@ -59,14 +59,12 @@ CHECK_COORDS (-1) // active unit coords
 SADD sB sC s0 
 CUSA 0x7FFD //enemy to player 
 
-CHECK_EVENTID SpeedupFlag
-BNE 1 sC s0 
 EmoticonSlotB(OpenPokeballGraphic)
 
-STAL 0x22 
+StalVar(7, 14) // 14 ? 
 EmoticonSlotB(PokeballGraphic)
 
-STAL 0x32 
+StalVar(11, 22) // 22 ? 
 LABEL 1 
 SPAWN_NPC 0xFD [-1, -1] 
 //SPAWN_ALLY 0xFD [-1, -1] 

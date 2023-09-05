@@ -11,9 +11,16 @@
 #define SleepVar(Default) "PROC_CALL_ROUTINE_ARG(ProcVariableSleep, Default)" 
 #define SpeedVar(Min, Default) "WORD Default|(Min<<8)" 
 
+#define StalVar(Min, Default) "BYTE $4B $0D Default Min; POIN StalVariableSleep|1; STAL 1" 
+// ASMC returns EVC_ADVANCE_YIELD but STAL returns EVC_STOP_YIELD - we need the latter, so we call STAL the next frame 
+#define StalVar(Default) "BYTE $4B $0D Default 0; POIN StalVariableSleep|1; STAL 1" 
+
+
 ALIGN 4 
 SpeedupFlag_Link:
 WORD SpeedupFlag
+
+
 
 ALIGN 4 
 LevelUpSpeed_Link: 
@@ -26,6 +33,8 @@ VulneraryAnimationSpeed_Link:
 	// fastest, default 
 	SpeedVar(4, 1) // Vanilla is 1x speed 
 	// It's only valid to put 1, 2, 4, or 8x speed in here 
+EmoticonSleepTime_Link:
+	SpeedVar(10, 40) 
 
 
 PUSH 
@@ -166,8 +175,9 @@ BYTE $DB // to stop it from doing even 1 frame
 
 POP 
 
-
+#include "CpDecide.lyn.event" 
 #include "Speedup.lyn.event" 
+#include "STAL.lyn.event" 
 
 
 
