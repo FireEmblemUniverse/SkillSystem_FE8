@@ -26,7 +26,7 @@
 
 void CpOrderFunc_BeginDecide(ProcPtr proc)
 {
-	asm("mov r11, r11");
+	//asm("mov r11, r11");
     int unitAmt = BuildAiUnitList();
 
     if (unitAmt != 0)
@@ -43,7 +43,7 @@ void CpOrderFunc_BeginDecide(ProcPtr proc)
 
         Proc_StartBlocking(gProcScr_CpDecide, proc);
     }
-	asm("mov r11, r11");
+	//asm("mov r11, r11");
 }
 
 /*

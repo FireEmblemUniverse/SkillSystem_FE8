@@ -10,6 +10,7 @@
 #define SleepVar(Min, Default) "PROC_CALL_ROUTINE_ARG(ProcVariableSleep, Min<<8|Default)" 
 #define SleepVar(Default) "PROC_CALL_ROUTINE_ARG(ProcVariableSleep, Default)" 
 #define SpeedVar(Min, Default) "WORD Default|(Min<<8)" 
+#define SpeedVar(Default) "WORD Default" 
 
 #define StalVar(Min, Default) "BYTE $4B $0D Default Min; POIN StalVariableSleep|1; STAL 1" 
 // ASMC returns EVC_ADVANCE_YIELD but STAL returns EVC_STOP_YIELD - we need the latter, so we call STAL the next frame 
@@ -35,9 +36,16 @@ VulneraryAnimationSpeed_Link:
 	// It's only valid to put 1, 2, 4, or 8x speed in here 
 EmoticonSleepTime_Link:
 	SpeedVar(10, 40) 
+AiTargetCursor_Link:
+	SpeedVar(30) // Vanilla does 45 
 
 
 PUSH 
+
+ORG $59ADE0 // gProc_BMXFADE 
+//PROC_END // remove some 16 frame fade after each action ? // seems to glitch 
+ORG $1DD24 
+BYTE $1 // remove ~14 frames related to some fade after each action ? 
 
 ORG $80E54 
 callHackNew(SummonSpeedHook_1) // These three hooks are basically identical 
@@ -91,31 +99,36 @@ callHackNew(ShouldShowPoisonSplatHook) // if flag is on (eg. we'll go too fast) 
 ORG $9A50AC // from this proc 9A508C 
 SleepVar(40) // vanilla 50 Frames to wait during poison anim before hp drains 
 ORG $9A50BC 
-SleepVar(30) // vanilla 30 frames before hp bar disappears 
+SleepVar(5,30) // vanilla 30 frames before hp bar disappears 
 ORG $9A50CC
 SleepVar(10) // vanilla 44 frames to wait before going to the next unit 
 ORG $7A928 
 callHackNew(PoisonHPBarHook)
 
 
+ORG $9A3BBC // from 9A3BA4 // This makes vulnerary animations work 
+SleepVar(30) // vanilla is 30 
+
 // by Vesly 
 // speed for battle map anim rounds 
 // just from the proc MapAnimBattle 9A49FC
 // vanilla is 30 30 30 10 30 
 ORG $9A4A04 
-SleepVar(10, 20) // vanilla is 30 
+SleepVar(20) // vanilla is 30 
 
 ORG $9A4A14 
-SleepVar(10, 20) // vanilla is 30 
+SleepVar(20) // vanilla is 30 
 
 ORG $9A4A24 
-SleepVar(15, 20) // vanilla is 30 
+//SleepVar(18, 20) // vanilla is 30 // min 16 or vuln will screw up 
+SleepVar(20) // vanilla is 30 // min 16 or vuln will screw up 
 
 ORG $9A4A34
-SleepVar(5, 10) // vanilla is 10 
+SleepVar(10) // vanilla is 10 
 
 ORG $9A4A44
-SleepVar(10, 20) // vanilla is 30 
+//SleepVar(10, 20) // vanilla is 30 // min 10 or vuln will screw up 
+SleepVar(20) // vanilla is 30 // min 10 or vuln will screw up 
 
 
 ORG 0x9A3528 // speed up map battle anim start? 
@@ -134,7 +147,7 @@ SleepVar(2) // vanilla is 2
 ORG 0x9A47C4
 SleepVar(8) // vanilla is 8 
 ORG 0x9A480C
-SleepVar(5, 20) // vanilla is 20 
+SleepVar(20) // vanilla is 20 
 
 
 // https://github.com/FireEmblemUniverse/fireemblem8u/blob/b9ad9bcafd9d4ecb7fc13cc77a464e2a82ac8338/src/popup.c#L418
@@ -160,45 +173,48 @@ SHORT 0xda09 // bge instead of bne (7743 did this too)
 
 
 // This part is not configurable yet 
-ORG $39e92 
-SHORT $46c0 $46c0 // never display cursor 
+ORG $39e8C
+callHackNew(ShouldAiDisplayTargetCursor_Hook) // do not display if SpeedupFlag is on 
+ORG $39EA4 
+callHackNew(HowManyFramesShouldAiDisplayTargetCursor_Hook)
 
-#define TargetCursorFrames 0 // Vanilla does 45 
-ORG $39EAE 
-BYTE TargetCursorFrames // Vanilla is 45 
+
 ORG $39Eb1 
-BYTE $DB // to stop it from doing even 1 frame 
+BYTE $DB // blt instead of ble 
 
-
+ORG $794EE 
+SHORT $0 // lsl r0, #0 (Author / Source:Gryz https://feuniverse.us/t/unit-movement-speed/920) 
+ORG $794F0 
+callHackNew(SpeedupMovementHook) 
 
 
 
 POP 
 
-// PopR_GetLength ? 
+
 #include "Speedup.lyn.event" 
 #include "STAL.lyn.event" 
 
 
-PUSH 
-ORG $3D450 
-#include "AiAttemptOffensiveAction.lyn.event" 
-// 0x3D5F0 
-ASSERT $3D6AC - CurrentOffset
-MESSAGE CurrentOffset 
+#ifdef POKEMBLEM
+	// don't use this part unless you know what you are doing 
+	PUSH 
+	ORG $3D450 
+	#include "AiAttemptOffensiveAction.lyn.event" 
+	// 0x3D5F0 
+	ASSERT $3D6AC - CurrentOffset
+	MESSAGE CurrentOffset 
 
-ORG $39B54 // Since we added RefreshEntityBmMaps(); RenderBmMap(); and RefreshUnitSprites();
-// to CpOrderFunc_BeginDecide, we can remove them from CpDecide_Main
-SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0 
+	ORG $39B54 // Since we added RefreshEntityBmMaps(); RenderBmMap(); and RefreshUnitSprites();
+	// to CpOrderFunc_BeginDecide, we can remove them from CpDecide_Main
+	SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0 
 
-ORG $59ADE0 // gProc_BMXFADE 
-//PROC_END // remove some 16 frame fade after each action ? // seems to glitch 
-ORG $1DD24 
-BYTE $1 // remove some 16 frame fade after each action ? 
-POP 
+	POP 
 
-#include "CpDecide.lyn.event" 
-//#include "AiTryMoveTowards.lyn.event" 
+	#include "CpDecide.lyn.event" 
+	//#include "AiTryMoveTowards.lyn.event" 
+#endif 
+
 
 
 

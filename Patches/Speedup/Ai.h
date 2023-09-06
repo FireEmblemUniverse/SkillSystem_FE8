@@ -76,6 +76,7 @@ s8 AiSimulateBestBattleAgainstTarget(struct AiCombatSimulationSt*) SHORTCALL;
 void AiSetDecision(s16 xMove, s16 yMove, u8 actionId, u8 targetId, u8 itemSlot, u8 xTarget, u8 yTarget) SHORTCALL;
 s8 AreUnitsAllied(int left, int right) SHORTCALL CONSTFUNC;
 struct Unit* GetUnit(int id) SHORTCALL CONSTFUNC;
+int GetItemMinRange(int item) SHORTCALL CONSTFUNC;
 #endif 
 
 

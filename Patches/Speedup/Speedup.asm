@@ -379,6 +379,67 @@ pop {r3}
 bx r3 
 .ltorg 
 
+.global ShouldAiDisplayTargetCursor_Hook
+.type ShouldAiDisplayTargetCursor_Hook, %function 
+ShouldAiDisplayTargetCursor_Hook: 
+push {lr} 
+ldr r0, =SpeedupFlag_Link 
+ldr r0, [r0] 
+blh CheckEventId 
+cmp r0, #1 
+beq DoNotDisplayCursorForAiTarget
+ldr r0, [r4, #0x2c] 
+ldr r1, [r4, #0x30] 
+ldr r2, [r4, #0x58] 
+blh 0x8015A98 @ DisplayCursor 
+DoNotDisplayCursorForAiTarget: 
+ldr r0, =0x8039EC8
+ldr r0, [r0] 
+pop {r3} 
+bx r3 
+.ltorg 
 
+.global HowManyFramesShouldAiDisplayTargetCursor_Hook
+.type HowManyFramesShouldAiDisplayTargetCursor_Hook, %function 
+HowManyFramesShouldAiDisplayTargetCursor_Hook: // vanilla actually does like 1 frame if you hold down a button anyway 
+push {lr} 
+ldr r0, =AiTargetCursor_Link
+ldr r0, [r0] 
+bl AdjustSleepTime 
+mov r3, r0 @ result 
+mov r0, r4 
+add r0, #0x64 
+mov r2, #0 
+ldsh r1, [r0, r2] 
+mov r2, r0 
+cmp r1, r3 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global SpeedupMovementHook
+.type SpeedupMovementHook, %function 
+SpeedupMovementHook: 
+push {lr} 
+ldr r0, =SpeedupFlag_Link 
+ldr r0, [r0] 
+blh CheckEventId 
+cmp r0, #1 
+bne SpeedUpMovementIfAIsHeld 
+mov r0, #1
+b Exit_SpeedupMovementHook 
+SpeedUpMovementIfAIsHeld: 
+ldr r0, =0x8079504
+ldr r0, [r0] 
+ldr r0, [r0] @ KeyStatusBuffer
+ldr r1, [r0, #4] 
+mov r0, #1 
+and r0, r1 
+
+Exit_SpeedupMovementHook: 
+cmp r0, #0 
+pop {r3} 
+bx r3 
+.ltorg 
 
 

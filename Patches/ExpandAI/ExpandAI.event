@@ -1,6 +1,15 @@
 #ifndef EXPAND_AI 
 #define EXPAND_AI
 
+PUSH 
+ORG $3C86C 
+#include "IsUnitIDNotInTableHook.lyn.event" // make it read DoNotAttackTheseUnits / DoNotApproach as a table instead of as a list 
+// short enough to fit inline so whatever 
+SHORT $46C0 
+
+POP 
+
+
 #include "ExpandAI_Internals.event"
 
 #include "MakeAIWait.lyn.event" 
@@ -175,42 +184,46 @@ Goto_End(0)
 // 0x30017cc determines whether to use ai1 or ai2? 
 // fallback ai1 is 0x85a812c 
 
+#define DoNotAttackUnitEntry(unitID) "ORG DoNotAttackTheseUnits+(unitID*2); SHORT 1" 
 
 ALIGN 32
 DoNotAttackTheseUnits:
-SHORT ProtagID 
-SHORT 0xE0 // Unit IDs to not move towards / target 
-SHORT 0xE1
-SHORT 0xE2
-SHORT 0xE3
-SHORT 0xE4
-SHORT 0xE5
-SHORT 0xE6
-SHORT 0xE7
-SHORT 0xE8
-SHORT 0xE9
-SHORT 0xEA
-SHORT 0xEB
-SHORT 0xEC
-SHORT 0xED
-SHORT 0xEE
-SHORT 0xEF
-SHORT 0xF0 // Unit IDs to not move towards / target 
-SHORT 0xF1
-SHORT 0xF2
-SHORT 0xF3
-SHORT 0xF4
-SHORT 0xF5
-SHORT 0xF6
-SHORT 0xF7
-SHORT 0xF8
-SHORT 0xF9
-SHORT 0xFA
-SHORT 0xFB
-SHORT 0xFC
-SHORT 0xFD
-BYTE 0 //byte + align as terminator
-ALIGN 32 
+FILL(256*2) 
+
+PUSH 
+DoNotAttackUnitEntry(ProtagID)
+DoNotAttackUnitEntry(0xE0) // Unit IDs to not move towards / target 
+DoNotAttackUnitEntry(0xE1)
+DoNotAttackUnitEntry(0xE2)
+DoNotAttackUnitEntry(0xE3)
+DoNotAttackUnitEntry(0xE4)
+DoNotAttackUnitEntry(0xE5)
+DoNotAttackUnitEntry(0xE6)
+DoNotAttackUnitEntry(0xE7)
+DoNotAttackUnitEntry(0xE8)
+DoNotAttackUnitEntry(0xE9)
+DoNotAttackUnitEntry(0xEA)
+DoNotAttackUnitEntry(0xEB)
+DoNotAttackUnitEntry(0xEC)
+DoNotAttackUnitEntry(0xED)
+DoNotAttackUnitEntry(0xEE)
+DoNotAttackUnitEntry(0xEF)
+DoNotAttackUnitEntry(0xF0) // Unit IDs to not move towards / target 
+DoNotAttackUnitEntry(0xF1)
+DoNotAttackUnitEntry(0xF2)
+DoNotAttackUnitEntry(0xF3)
+DoNotAttackUnitEntry(0xF4)
+DoNotAttackUnitEntry(0xF5)
+DoNotAttackUnitEntry(0xF6)
+DoNotAttackUnitEntry(0xF7)
+DoNotAttackUnitEntry(0xF8)
+DoNotAttackUnitEntry(0xF9)
+DoNotAttackUnitEntry(0xFA)
+DoNotAttackUnitEntry(0xFB)
+DoNotAttackUnitEntry(0xFC)
+DoNotAttackUnitEntry(0xFD)
+POP 
+ORG DoNotAttackTheseUnits + (256*2) 
 
 ALIGN 32
 MoveTowardsE0Label:
@@ -301,40 +314,46 @@ Goto(1)
 ALIGN 32 
 }
 
+#define DoNotApproachUnitEntry(unitID) "ORG DoNotApproachTheseUnits+(unitID*2); SHORT 1" 
+
 ALIGN 32
 DoNotApproachTheseUnits:
-SHORT ProtagID 
-SHORT 0xE0 // Unit IDs to not move towards / target 
-SHORT 0xE1
-SHORT 0xE2
-SHORT 0xE3
-SHORT 0xE4
-SHORT 0xE5
-SHORT 0xE6
-SHORT 0xE7
-SHORT 0xE8
-SHORT 0xE9
-SHORT 0xEA
-SHORT 0xEB
-SHORT 0xEC
-SHORT 0xED
-SHORT 0xEE
-SHORT 0xEF
-SHORT 0xF0 // Unit IDs to not move towards / target 
-SHORT 0xF1
-SHORT 0xF2
-SHORT 0xF3
-SHORT 0xF4
-SHORT 0xF5
-SHORT 0xF6
-SHORT 0xF7
-SHORT 0xF8
-SHORT 0xF9
-SHORT 0xFA
-SHORT 0xFB
-SHORT 0xFC
-SHORT 0xFD
-BYTE 0 //byte + align as terminator
+FILL(256*2) 
+
+PUSH 
+DoNotApproachUnitEntry(ProtagID)
+DoNotApproachUnitEntry(0xE0) // Unit IDs to not move towards / target 
+DoNotApproachUnitEntry(0xE1)
+DoNotApproachUnitEntry(0xE2)
+DoNotApproachUnitEntry(0xE3)
+DoNotApproachUnitEntry(0xE4)
+DoNotApproachUnitEntry(0xE5)
+DoNotApproachUnitEntry(0xE6)
+DoNotApproachUnitEntry(0xE7)
+DoNotApproachUnitEntry(0xE8)
+DoNotApproachUnitEntry(0xE9)
+DoNotApproachUnitEntry(0xEA)
+DoNotApproachUnitEntry(0xEB)
+DoNotApproachUnitEntry(0xEC)
+DoNotApproachUnitEntry(0xED)
+DoNotApproachUnitEntry(0xEE)
+DoNotApproachUnitEntry(0xEF)
+DoNotApproachUnitEntry(0xF0) // Unit IDs to not move towards / target 
+DoNotApproachUnitEntry(0xF1)
+DoNotApproachUnitEntry(0xF2)
+DoNotApproachUnitEntry(0xF3)
+DoNotApproachUnitEntry(0xF4)
+DoNotApproachUnitEntry(0xF5)
+DoNotApproachUnitEntry(0xF6)
+DoNotApproachUnitEntry(0xF7)
+DoNotApproachUnitEntry(0xF8)
+DoNotApproachUnitEntry(0xF9)
+DoNotApproachUnitEntry(0xFA)
+DoNotApproachUnitEntry(0xFB)
+DoNotApproachUnitEntry(0xFC)
+DoNotApproachUnitEntry(0xFD)
+POP 
+ORG DoNotApproachTheseUnits + (256*2) 
 ALIGN 32 
 
 #endif 

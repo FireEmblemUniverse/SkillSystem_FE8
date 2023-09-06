@@ -27,7 +27,7 @@
 // Please comment out asm("mov r11, r0"); from EngineHacks\Necessary\CalcLoops\CanUnitDoubleCalcLoop and make 
 // can break at start and end of 8039858
 s8 NewAiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit* unit)) {
-	asm("mov r11, r11"); 
+	//asm("mov r11, r11"); 
     struct AiCombatSimulationSt tmpResult;
     struct AiCombatSimulationSt finalResult;
 
@@ -95,7 +95,7 @@ s8 NewAiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit* unit)) {
             break;
         }
 		#ifdef USE_CLOSEST_TARGET 
-		if (bestDist <= 1) { 
+		if (bestDist <= GetItemMinRange(item)) { 
 			break; 
 		} 
 		#endif 
@@ -190,7 +190,7 @@ _0803D628:
         }
 #endif 
     }
-	asm("mov r11, r11"); 
+	//asm("mov r11, r11"); 
 	return 0; // added so the compiler doesn't get mad at me 
 }
 
