@@ -302,6 +302,7 @@ ldr r0, =GotItemPopupSpeed_Link
 ldr r0, [r0] 
 bl AdjustSleepTime_B_Press
 mov r1, r0 @ minimum frames 
+mov r0, r4 @ gPopup_GotGold 
 mov r2, #0 
 mov r3, r6 @ vanilla 
 blh 0x8011474, r4 

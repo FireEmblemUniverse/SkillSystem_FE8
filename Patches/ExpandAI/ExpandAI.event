@@ -234,7 +234,7 @@ Goto(0)
 
 ALIGN 32
 AttackIfEnemyInRange:
-ActionInRange
+ActionInRangeExcept(DoNotAttackTheseUnits)
 Goto(0)
 
 ALIGN 32

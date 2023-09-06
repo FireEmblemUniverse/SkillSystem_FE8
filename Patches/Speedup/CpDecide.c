@@ -1,54 +1,5 @@
 
-#include "include/global.h"
-#include "include/proc.h"
-#include "include/bmunit.h"
-#include "include/bmmap.h"
-#include "include/bmtrick.h"
-#include "include/bmarch.h"
-#include "include/bmudisp.h"
-#include "include/cp_utility.h"
-#include "include/cp_script.h"
-#include "include/bmsave.h"
-#include "include/constants/classes.h"
-#include "include/cp_common.h"
-
-#include "include/bmidoten.h"
-#include "include/bmitem.h"
-#include "include/bmphase.h"
-#include "include/bmbattle.h"
-#include "include/cp_data.h"
-#include "include/constants/items.h"
-
-#include "include/rng.h"
-#include "include/constants/terrains.h"
-#include "include/cp_utility.h"
-
-// forward decl.
-s8 AiGetChestUnlockItemSlot(u8*);
-void SetupUnitStatusStaffAIFlags(struct Unit*, u16);
-void SetupUnitHealStaffAIFlags(struct Unit*, u16);
-void SaveNumberOfAlliedUnitsIn0To8Range(struct Unit*);
-
-//static const struct AiCombatScoreCoefficients* sCombatScoreCoefficients;
-
-struct AiCombatSimulationSt {
-    /* 00 */ u8 xMove;
-    /* 01 */ u8 yMove;
-    /* 02 */ u8 targetId;
-    /* 04 */ u16 itemSlot;
-    /* 08 */ u32 score;
-};
-
-void AiFillReversedAttackRangeMap(struct Unit*, u16);
-s8 AiAttemptBallistaCombat(s8 (*isEnemy)(struct Unit* unit), struct AiCombatSimulationSt*);
-s8 AiAttemptStealActionWithinMovement(void);
-s8 AiSimulateBestBattleAgainstTarget(struct AiCombatSimulationSt*);
-s8 AiSimulateBestBallistaBattleAgainstTarget(struct AiCombatSimulationSt*, u16);
-u32 AiGetCombatPositionScore(int, int, struct AiCombatSimulationSt*);
-s8 AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt*);
-void AiComputeCombatScore(struct AiCombatSimulationSt*);
-int AiGetInRangeCombatPositionScoreComponent(int, int, struct Unit*);
-
+#include "Ai.h" 
 
 
 // can break at start and end of 8039858 CpOrderFunc_BeginDecide to see how much lag there is 
@@ -58,11 +9,49 @@ int AiGetInRangeCombatPositionScoreComponent(int, int, struct Unit*);
 // AiTryMoveTowards 0x803BA08 
 // if these function are optimized, the ai will be faster 
 
+// in proc gProcScr_CpPerform it calls CpPerform_803A63C
+// which calls AiRefreshMap(); which calls 
+//  RefreshEntityBmMaps(); RenderBmMap(); and RefreshUnitSprites();
+// Therefore we only need them to be called before the first unit 
+// so we'll add them to CpOrder_BuildUnitList at 0x8039858 
 
+// time between 8037744 HandlePostActionTraps and 8039F0C CpPerform_MoveCameraOntoUnit: 11.8m - 18.8m cycles or 36-56 frames 
+// after cmb window disappears, 21 frames until greyed out 
+// then 51 frames until next unit starts moving 
 
-void CpDecide_Main(ProcPtr proc)
+// 2m cycles on 59D908 MapTask (weather?) 
+// does AiDecideMain at 39CAC which calls NewAiAttemptOffensiveAction which can take 11m cycles 
+
+// 17 frames spent between battle on 0x802A398 
+
+void CpOrderFunc_BeginDecide(ProcPtr proc)
+{
+	asm("mov r11, r11");
+    int unitAmt = BuildAiUnitList();
+
+    if (unitAmt != 0)
+    {
+        SortAiUnitList(unitAmt);
+
+        gAiState.units[unitAmt] = 0;
+        gAiState.unitIt = gAiState.units;
+
+        AiDecideMainFunc = AiDecideMain;
+        RefreshEntityBmMaps(); 
+        RenderBmMap();
+        RefreshUnitSprites();
+
+        Proc_StartBlocking(gProcScr_CpDecide, proc);
+    }
+	asm("mov r11, r11");
+}
+
+/*
+void NewCpDecide_Main(ProcPtr proc)
+//void CpDecide_Main(ProcPtr proc)
 {
 	//asm("mov r11, r11"); 
+
 next_unit:
     gAiState.decideState = 0;
 
@@ -82,9 +71,9 @@ next_unit:
         do
         {
 			// These 3 add some lag - maybe they can be done conditionally?
-            RefreshEntityBmMaps(); 
-            RenderBmMap();
-            RefreshUnitSprites();
+            //RefreshEntityBmMaps(); 
+            //RenderBmMap();
+            //RefreshUnitSprites();
 
             AiUpdateNoMoveFlag(gActiveUnit);
 
@@ -98,6 +87,7 @@ next_unit:
             AiDecideMainFunc();  // Lag from ai scripts eg. 
 				// AiTryDoOffensiveAction 0x803D450
 				// AiTryMoveTowards 0x803BA08 
+*/
 /* 
 // Try each AI until one is accepted 
 static DecideFunc CONST_DATA sDecideFuncList[] =
@@ -117,7 +107,7 @@ void AiDecideMain(void)
     }
 }
 */
-
+/*
             gActiveUnit->state |= US_HAS_MOVED_AI;
 
             if (!gAiDecision.actionPerformed ||
@@ -126,8 +116,8 @@ void AiDecideMain(void)
                 // Ignoring actions that are just moving to the same square
 
                 gAiState.unitIt++;
-                Proc_Goto(proc, 0);
-				//goto next_unit; // maybe faster? 
+                //Proc_Goto(proc, 0);
+				goto next_unit; // maybe faster? 
             }
             else
             {
@@ -142,194 +132,12 @@ void AiDecideMain(void)
         Proc_End(proc);
     }
 }
-
-
-//! FE8U = 0x0803D450
-// NOTE: Shade+ and Steal+ hook this function 
-// WARNING: Barricade normally sets r11 to 0 despite not pushing / popping r11  
-// Please comment out asm("mov r11, r0"); from EngineHacks\Necessary\CalcLoops\CanUnitDoubleCalcLoop and make 
-s8 AiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit* unit)) {
-    struct AiCombatSimulationSt tmpResult;
-    struct AiCombatSimulationSt finalResult;
-
-    int i;
-
-    finalResult.targetId = 0;
-    finalResult.score = 0;
-
-    if (gActiveUnit->state & US_IN_BALLISTA) {
-        BmMapFill(gBmMapMovement, -1);
-        gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-
-        if (GetRiddenBallistaAt(gActiveUnit->xPos, gActiveUnit->yPos) != 0) {
-            goto _0803D628;
-        }
-
-        TryRemoveUnitFromBallista(gActiveUnit);
-    } else {
-        if (UNIT_CATTRIBUTES(gActiveUnit) & CA_STEAL) {
-
-            if (GetUnitItemCount(gActiveUnit) < UNIT_ITEM_COUNT) {
-                GenerateUnitMovementMap(gActiveUnit);
-                MarkMovementMapEdges();
-
-                if (AiAttemptStealActionWithinMovement() == 1) {
-                    return 0;
-                }
-            }
-        }
-
-        if (gAiState.flags & AI_FLAG_1) {
-            BmMapFill(gBmMapMovement, -1);
-            gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
-        } else {
-            GenerateUnitMovementMap(gActiveUnit);
-        }
-
-        if (UnitHasMagicRank(gActiveUnit)) {
-            GenerateMagicSealMap(-1);
-        }
-    }
-
-    SetWorkingBmMap(gBmMapRange);
-
-    for (i = 0; i < UNIT_ITEM_COUNT; i++) {
-        u16 item = gActiveUnit->items[i];
-
-        if (item == 0) {
-            break;
-        }
-
-        if (item == ITEM_NIGHTMARE) {
-            continue;
-        }
-
-        if (!CanUnitUseWeapon(gActiveUnit, item)) {
-            continue;
-        }
-
-        tmpResult.itemSlot = i;
-
-        {
-            int uid;
-            for (uid = 1; uid < 0xC0; uid++) {
-                struct Unit* unit = GetUnit(uid);
-
-                if (!UNIT_IS_VALID(unit)) {
-                    continue;
-                }
-
-                if (unit->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16)) {
-                    continue;
-                }
-
-                if (!isEnemy(unit)) {
-                    continue;
-                }
-                if (!AiReachesByBirdsEyeDistance(gActiveUnit, unit, item)) {
-                    continue;
-                }
-
-                AiFillReversedAttackRangeMap(unit, item);
-
-                tmpResult.targetId = unit->index;
-
-                if (!AiSimulateBestBattleAgainstTarget(&tmpResult)) {
-                    continue;
-                }
-
-                if (tmpResult.score >= finalResult.score) {
-                    finalResult = tmpResult;
-                    finalResult.itemSlot = i;
-                }
-            }
-        }
-    }
-
-_0803D628:
-    if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BALLISTAE) {
-        if (AiAttemptBallistaCombat(isEnemy, &tmpResult) == 1) {
-            if (tmpResult.score >= finalResult.score) {
-                finalResult = tmpResult;
-            }
-        }
-    }
-
-    if ((finalResult.score != 0) || (finalResult.targetId != 0)) {
-        AiSetDecision(finalResult.xMove, finalResult.yMove, 1, finalResult.targetId, finalResult.itemSlot, 0, 0);
-
-        if ((s8)finalResult.itemSlot != -1) {
-            TryRemoveUnitFromBallista(gActiveUnit);
-        }
-    }
-	return 0; // added so the compiler doesn't get mad at me 
-}
+*/
 
 
 
-//! FE8U = 0x0803BA08
-// NOTE: MSG/3rdParty/InjectMovGetters hooks this function 
-void AiTryMoveTowards(s16 x, s16 y, u8 action, u8 maxDanger, u8 unk) {
-    s16 ix;
-    s16 iy;
 
-    u8 bestRange;
 
-    s16 xOut = 0;
-    s16 yOut = 0;
-
-    if ((gActiveUnit->xPos == x) && (gActiveUnit->yPos == y))  {
-        AiSetDecision(gActiveUnit->xPos, gActiveUnit->yPos, action, 0, 0, 0, 0);
-        return;
-    }
-
-    if (unk) {
-        GenerateExtendedMovementMapOnRange(x, y, GetUnitMovementCost(gActiveUnit));
-    } else {
-        sub_80410C4(x, y, gActiveUnit);
-    }
-
-    GenerateUnitMovementMap(gActiveUnit);
-
-    bestRange = gBmMapRange[gActiveUnit->yPos][gActiveUnit->xPos];
-    xOut = -1;
-
-    for (iy = gBmMapSize.y - 1; iy >= 0; iy--) {
-        for (ix = gBmMapSize.x - 1; ix >= 0; ix--) {
-            if (gBmMapMovement[iy][ix] > MAP_MOVEMENT_MAX) {
-                continue;
-            }
-
-            if (gBmMapUnit[iy][ix] != 0 && gBmMapUnit[iy][ix] != gActiveUnitId) {
-                continue;
-            }
-
-            if (maxDanger == 0) {
-                if (UNIT_MOV(gActiveUnit) < gAiState.bestBlueMov && gBmMapOther[iy][ix] != 0) {
-                    continue;
-                }
-            }
-
-            if (!AiCheckDangerAt(ix, iy, maxDanger)) {
-                continue;
-            }
-
-            if (gBmMapRange[iy][ix] > bestRange) {
-                continue;
-            }
-
-            bestRange = gBmMapRange[iy][ix];
-            xOut = ix;
-            yOut = iy;
-        }
-    }
-
-    if (xOut >= 0) {
-        AiSetDecision(xOut, yOut, action, 0, 0, 0, 0);
-    }
-
-    return;
-}
 
 
 

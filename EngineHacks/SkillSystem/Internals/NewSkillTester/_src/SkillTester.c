@@ -143,7 +143,8 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
     int count = 0;
     int distance = 0;
 
-    for (int i = 0; i < 0x100; ++i) {
+    //for (int i = 0; i < 0x100; ++i) {
+    for (int i = 0; i < 0x40; ++i) { // only players will have aura skills 
         Unit* other = gUnitLookup[i];
         if (!IsUnitOnField(other) || unit->index == i) {
             continue;

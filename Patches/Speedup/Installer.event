@@ -175,15 +175,30 @@ BYTE $DB // to stop it from doing even 1 frame
 
 POP 
 
-#include "CpDecide.lyn.event" 
+// PopR_GetLength ? 
 #include "Speedup.lyn.event" 
 #include "STAL.lyn.event" 
 
 
+PUSH 
+ORG $3D450 
+#include "AiAttemptOffensiveAction.lyn.event" 
+// 0x3D5F0 
+ASSERT $3D6AC - CurrentOffset
+MESSAGE CurrentOffset 
 
+ORG $39B54 // Since we added RefreshEntityBmMaps(); RenderBmMap(); and RefreshUnitSprites();
+// to CpOrderFunc_BeginDecide, we can remove them from CpDecide_Main
+SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0 
 
+ORG $59ADE0 // gProc_BMXFADE 
+//PROC_END // remove some 16 frame fade after each action ? // seems to glitch 
+ORG $1DD24 
+BYTE $1 // remove some 16 frame fade after each action ? 
+POP 
 
-
+#include "CpDecide.lyn.event" 
+//#include "AiTryMoveTowards.lyn.event" 
 
 
 
