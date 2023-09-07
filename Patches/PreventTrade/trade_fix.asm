@@ -98,6 +98,17 @@ mov r0, r6 @ unit
 
 bl UnitAddItem @ (struct Unit* unit, u16 item)
 pop {r1} 
+
+cmp r4, r5 
+bne ContinueC @ as to not duplicate items 
+ldr r3, =0x202BCF0
+ldrb r2, [r3, #0xE] @ chapterID 
+ldr r3, =CinnabarCh
+lsl r3, #16 
+lsr r3, #16 
+cmp r2, r3 
+bne End @ only allow duplicating items on cinnabar because lol (trade yourself your own item to duplicate it) 
+ContinueC: 
 mov r0, r7 
 bl UnitAddItem 
 

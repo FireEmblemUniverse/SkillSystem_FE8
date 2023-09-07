@@ -4,15 +4,15 @@ PUSH
 
 //Provoke
 ORG $3DF78
-jumpToHack(Provoke)
+//jumpToHack(Provoke)
 
 //LungeAI
 ORG $3A094
-jumpToHack(LungeAI)
+//jumpToHack(LungeAI)
 
 //Shade
 ORG $3E154
-callHack_r1(Shade)
+//callHack_r1(Shade)
 
 #ifdef SkillSys_HookAiTryDoOffensiveAction
 	//Shade+

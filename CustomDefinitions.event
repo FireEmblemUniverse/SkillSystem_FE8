@@ -6,13 +6,14 @@
 #define POKEMBLEM
 
 //#define SkillSys_HookAiTryDoOffensiveAction
+// Shade+ (in AiSkills), Steal+, and Barricade hook this function so I've disabled them 
 
 //#define FreeSpace2_End 0xFFFFFF
 #define FreeSpace_Low_End 0xC00000
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 
 // Config options 
 #define INSTALL_FMU 
@@ -200,7 +201,7 @@ String("V1.08.c               Sep 2023") ; BYTE 0; POP // this overflows into th
 #define DRSingleRam 			0x30017bb
 #define UnitPointerRam 0x30017BC // - BF
 #define CapturedPkmnDeploymentID 0x30017C0 
-//#define CapturedPkmnDeploymentID 0x30017C1  
+#define SpeedupRam 0x30017C1 // bit1 is used in Speedup.asm for light runes if you're holding A 
 #define RepelStepsRam 0x30017C2 // SHORT (& 0x30017C3) 
 
 #define StartTimeSeedRam 0x203F7C4 // end of pokemblem ram 

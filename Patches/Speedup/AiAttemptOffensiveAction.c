@@ -32,7 +32,6 @@ s8 NewAiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit* unit)) {
     struct AiCombatSimulationSt finalResult;
 
     int i;
-	//asm("mov r11, r11"); 
 	struct Unit* actor = gActiveUnit; 
 	
 
@@ -86,88 +85,106 @@ s8 NewAiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit* unit)) {
 	int yPos = actor->yPos; 
 	int bestDist = 0xFF; 
 	int currDist; 
+	int numberOfTargetsTried = 0; 
+	int triedUnit = false; 
+	int actorUID = actor->pCharacterData->number; 
 	#endif 
 
-    for (i = 0; i < 5; i++) {
-        u16 item = actor->items[i];
 
-        if (item == 0) {
-            break;
-        }
+	int startID = 1; int endID = 0x7F; // actor is an enemy so they target players/npcs 
+	if (AreUnitsAllied(actor->index, 1)) { 
+		startID = 0x80; endID = 0xC0; // actor is a player/npc so they target enemies 
+	} 
+	//else { 
+		//startID = 1; endID = 0x7F; // actor is an enemy so they target players/npcs 
+	//} 
+	for (int uid = startID; uid < endID; uid++) {
+		if (triedUnit) { 
+			if (numberOfTargetsTried >= 3) { // no matter what, only bother looking at the first 3 valid targets as to not cause lag 
+				break; 
+			} 
+			numberOfTargetsTried++; 
+			triedUnit = false; 
+
+		} 
+		
+		
+		
+		struct Unit* unit = GetUnit(uid);
+
+		if (!UNIT_IS_VALID(unit)) {
+			continue;
+		}
+
+		if (unit->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16)) {
+			continue;
+		}
+		
 		#ifdef USE_CLOSEST_TARGET 
-		if (bestDist <= GetItemMinRange(item)) { 
-			break; 
+		 
+		currDist = abs(unit->xPos - xPos) + abs(unit->yPos - yPos);
+		if (actorUID < 0xA0) { 
+			if (currDist >= bestDist) { // wild pokemon skip units that are farther away from them (up to 3 units are checked) 
+				continue; 
+			} 
 		} 
 		#endif 
 
-#ifndef POKEMBLEM_VERSION
-        if (item == ITEM_NIGHTMARE) {
-            continue;
-        }
-#endif 
+		if (!isEnemy(unit)) { // This checks specific unit IDs to not target as well as AreUnitsAllied 
+			continue;
+		}
+		
+		for (i = 0; i < 5; i++) {
+			u16 item = actor->items[i];
 
-        if (!CanUnitUseWeapon(actor, item)) {
-            continue;
-        }
+			if (item == 0) {
+				break;
+			}
 
-        tmpResult.itemSlot = i;
+	#ifndef POKEMBLEM_VERSION
+			if (item == ITEM_NIGHTMARE) {
+				continue;
+			}
+	#endif 
 
-        {
-            int startID = 1; int endID = 0x7F; // actor is an enemy so they target players/npcs 
-            if (AreUnitsAllied(actor->index, 1)) { 
-				startID = 0x80; endID = 0xC0; // actor is a player/npc so they target enemies 
-			} 
-            //else { 
-				//startID = 1; endID = 0x7F; // actor is an enemy so they target players/npcs 
-			//} 
-            for (int uid = startID; uid < endID; uid++) {
-				
-                struct Unit* unit = GetUnit(uid);
+			if (!CanUnitUseWeapon(actor, item)) {
+				continue;
+			}
 
-                if (!UNIT_IS_VALID(unit)) {
-                    continue;
-                }
+			tmpResult.itemSlot = i;
+			if (!AiReachesByBirdsEyeDistance(actor, unit, item)) {
+				continue;
+			}
 
-                if (unit->state & (US_HIDDEN | US_DEAD | US_RESCUED | US_BIT16)) {
-                    continue;
-                }
+			AiFillReversedAttackRangeMap(unit, item);
+
+			tmpResult.targetId = unit->index;
+
+			if (!AiSimulateBestBattleAgainstTarget(&tmpResult)) { // 800k cycles per unit 
+				continue;
+			}
+			#ifdef USE_CLOSEST_TARGET 
+			triedUnit = true; 
+			#endif 
+
+			if (tmpResult.score >= finalResult.score) {
+				finalResult = tmpResult;
+				finalResult.itemSlot = i;
 				
 				#ifdef USE_CLOSEST_TARGET 
-				//asm("mov r11, r11"); 
-				currDist = abs(unit->xPos - xPos) + abs(unit->yPos - yPos);
-				if (currDist >= bestDist) { 
-					continue; 
-				} 
+				bestDist = currDist; 
+				//if (bestDist <= 1) { 
+					//break; 
+				//} 
 				#endif 
+			}
+	}
 
-                if (!isEnemy(unit)) { // This checks specific unit IDs to not target as well as AreUnitsAllied 
-                    continue;
-                }
-                if (!AiReachesByBirdsEyeDistance(actor, unit, item)) {
-                    continue;
-                }
 
-                AiFillReversedAttackRangeMap(unit, item);
 
-                tmpResult.targetId = unit->index;
 
-                if (!AiSimulateBestBattleAgainstTarget(&tmpResult)) { // 800k cycles per unit 
-                    continue;
-                }
 
-                if (tmpResult.score >= finalResult.score) {
-                    finalResult = tmpResult;
-                    finalResult.itemSlot = i;
-					
-					#ifdef USE_CLOSEST_TARGET 
-					bestDist = currDist; 
-					if (bestDist <= 1) { 
-						break; 
-					} 
-					#endif 
-                }
-            }
-        }
+
     }
 
 #ifndef POKEMBLEM_VERSION 

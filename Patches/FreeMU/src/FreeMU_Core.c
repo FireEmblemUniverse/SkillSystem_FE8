@@ -14,6 +14,8 @@ bl HpBarIsFMUActive
 cmp r0, #0
 bne CheckIfFirstPass 
 */ 
+
+// 859AE38 SendItemConvoy proc 
 int HpBarIsFMUActive(void) { 
 	struct FMUProc* FMUproc = (FMUProc*)ProcFind(FreeMovementControlProc);
 	if (FMUproc && GetFreeMovementState()) { 

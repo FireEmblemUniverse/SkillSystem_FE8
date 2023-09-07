@@ -20,7 +20,7 @@ ASMC ModularSummon_UnhideActive
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 CUMO 0x7fff
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-STAL 20 
+StalVar(20)
 CURE
 SVAL s5 0 // Pokeball animation as the default 
 CHECK_ACTIVE 
@@ -108,7 +108,7 @@ SADD rA rC r0
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
 SADD s8 sB s0 
 CUMO 0x7ffE
-STAL 20 
+StalVar(20)
 CURE 
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 

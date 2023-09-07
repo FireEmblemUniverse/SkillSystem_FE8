@@ -20,8 +20,13 @@
 ALIGN 4 
 SpeedupFlag_Link:
 WORD SpeedupFlag
-
-
+SpeedupRam_Link:
+#ifdef POKEMBLEM 
+WORD SpeedupRam
+#endif 
+#ifndef POKEMBLEM 
+WORD 0 
+#endif 
 
 ALIGN 4 
 LevelUpSpeed_Link: 
@@ -32,7 +37,7 @@ GotItemPopupSpeed_Link:
 	SpeedVar(1, 60) // Vanilla is 96 
 VulneraryAnimationSpeed_Link: 
 	// fastest, default 
-	SpeedVar(4, 1) // Vanilla is 1x speed 
+	SpeedVar(4, 2) // Vanilla is 1x speed 
 	// It's only valid to put 1, 2, 4, or 8x speed in here 
 EmoticonSleepTime_Link:
 	SpeedVar(10, 40) 
@@ -107,7 +112,7 @@ callHackNew(PoisonHPBarHook)
 
 
 ORG $9A3BBC // from 9A3BA4 // This makes vulnerary animations work 
-SleepVar(30) // vanilla is 30 
+SleepVar(15) // vanilla is 30 
 
 // by Vesly 
 // speed for battle map anim rounds 
@@ -120,15 +125,13 @@ ORG $9A4A14
 SleepVar(20) // vanilla is 30 
 
 ORG $9A4A24 
-//SleepVar(18, 20) // vanilla is 30 // min 16 or vuln will screw up 
-SleepVar(20) // vanilla is 30 // min 16 or vuln will screw up 
+SleepVar(20) 
 
 ORG $9A4A34
 SleepVar(10) // vanilla is 10 
 
 ORG $9A4A44
-//SleepVar(10, 20) // vanilla is 30 // min 10 or vuln will screw up 
-SleepVar(20) // vanilla is 30 // min 10 or vuln will screw up 
+SleepVar(20) 
 
 
 ORG 0x9A3528 // speed up map battle anim start? 

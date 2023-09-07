@@ -228,6 +228,7 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 void pFMU_OnInit(struct FMUProc* proc){
 	//vaild?
 	gActiveUnit = GetUnitStructFromEventParameter(ProtagID_Link); 
+	gActionData.subjectIndex = gActiveUnit->index; 
 	proc->FMUnit = gActiveUnit; 
 	if( 0 == proc->FMUnit )
 		proc->FMUnit = gUnitArrayBlue; // if no protag unit, select the first player in ram 

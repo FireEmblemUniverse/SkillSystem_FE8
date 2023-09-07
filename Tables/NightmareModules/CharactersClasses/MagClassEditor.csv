@@ -133,8 +133,8 @@ Cloyster,9,55,45,4
 Gastly,7,50,40,0
 Haunter,12,60,45,5
 Gengar,16,75,55,4
-Onix,1,15,10,0
-Drowzee,5,30,35,4
+Onix,2,20,15,0
+Drowzee,5,30,35,3
 Hypno,10,55,45,5
 Krabby,3,25,25,0
 Kingler,6,40,35,3
@@ -151,8 +151,8 @@ Koffing,6,40,40,0
 Weezing,11,60,45,5
 Rhyhorn,1,15,15,0
 Rhydon,3,25,20,2
-Chansey,6,40,35,3
-Tangela,11,60,45,5
+Chansey,6,40,40,3
+Tangela,12,65,50,6
 Kangaskhan,2,20,15,0
 Horsea,6,35,35,4
 Seadra,11,60,45,5
@@ -169,12 +169,12 @@ Pinsir,5,35,30,0
 Tauros,4,30,25,0
 Magikarp,1,5,10,0
 Gyarados,4,35,25,3
-Lapras,9,60,45,5
+Lapras,10,60,50,6
 Ditto,3,20,30,0
 Eevee,5,35,35,2
 Vaporeon,14,70,55,9
 Jolteon,14,70,55,9
-Flareon,10,65,50,5
+Flareon,14,70,55,9
 Porygon,9,55,40,0
 Omanyte,8,50,40,0
 Omastar,15,70,55,7
@@ -254,4 +254,4 @@ Unused77ID,1,10,0,0
 Unused78ID,1,20,0,0
 Unused79ID,1,35,0,0
 SnagID,1,45,0,0
-0xff,1,15,20,0
+0xff,1,15,20,20

@@ -191,6 +191,7 @@ pop {r3}
 bx r3 
 .ltorg 
 
+#ifdef POKEMBLEM_VERSION 
 .global LightRuneAnimHook_3 
 .type LightRuneAnimHook_3, %function 
 LightRuneAnimHook_3:
@@ -208,13 +209,57 @@ orr r0, r1 @ 4(1<<8): 4 frames default
 bl AdjustSleepTime_AB_Press @ will return 1, 2, or 4 
 mov r1, r0 
 pop {r0} 
-cmp r1, #4 
-bne SkipVanillaSet 
-mov r1, #3 @ max 3 is what we want 
+
+cmp r1, #1 
+beq SkipVanillaSet 
+
+cmp r0, #1 
+bne CheckRamInstead 
+cmp r1, #2 
+bne ZeroThenVanillaSet 
+@mov r0, #1 
+ldr r3, =SpeedupRam_Link 
+ldr r3, [r3] 
+cmp r3, #0 
+beq VanillaSet 
+ldrb r2, [r3] 
+mov r1, #1 
+orr r2, r1 
+strb r2, [r3] 
+mov r1, #2 
+b SkipVanillaSet 
+
+ZeroThenVanillaSet: 
+ldr r3, =SpeedupRam_Link 
+ldr r3, [r3] 
+cmp r3, #0 
+beq VanillaSet 
+ldrb r2, [r3] 
+mov r1, #1 
+bic r2, r3 
+strb r2, [r3] @ remove the speedup light runes bitflag 
+b SkipVanillaSet 
+
+CheckRamInstead: 
+ldr r3, =SpeedupRam_Link 
+ldr r3, [r3] 
+cmp r3, #0 
+beq VanillaSet 
+ldrb r2, [r3] 
+mov r1, #1 
+tst r1, r2 
+beq VanillaSet 
+mov r1, #2 @ a bit faster 
+b SkipVanillaSet 
+
+
+VanillaSet: 
+mov r1, #3 @ 3 unless flag is on 
 SkipVanillaSet: 
 pop {r3} 
 bx r3 
 .ltorg 
+#endif 
 
 .global MapAnimLevelUp_SoundHook
 .type MapAnimLevelUp_SoundHook, %function 
