@@ -1,3 +1,8 @@
+#ifdef ENABLE_PERSONAL_INFO
+#ifndef NARROW_FONT
+#define NARROW_FONT
+#endif // NARROW_FONT
+#endif // PENABLE_PERSONAL_INFO
 
 #ifdef NARROW_FONT
 

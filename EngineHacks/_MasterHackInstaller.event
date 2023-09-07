@@ -178,10 +178,6 @@ POP
   ALIGN 4
   #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
   
-  //UTF8 Fonts by Vesly, 7743, Mokha, Colorz, Scraiza, MintX, and Bly
-  ALIGN 4 
-  #include "ExternalHacks/Fonts/Installer.event" 
-  
   //Crit Cap
   #ifdef CRIT_CAP
     #include "ExternalHacks/CritCap/CritCap.event"
