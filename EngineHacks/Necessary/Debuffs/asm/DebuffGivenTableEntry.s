@@ -27,7 +27,19 @@ add r5, #1
 cmp r5, r4 
 bge End
 
+ldrb r1, [r4, r5] @ what should the next byte do 
+cmp r1, #0 
+beq Loop 
 mov r0, r6 @ debuff entry 
+mov r2, #0xC0
+and r1, r2 
+cmp r1, #0 
+beq User 
+cmp r1, #0xC0 
+beq User 
+mov r0, r7 @ enemy 
+User: 
+
 ldr r2, =DebuffStatNumberOfBits_Link
 ldr r2, [r2] 
 mov r1, r5 @ counter 
@@ -69,7 +81,7 @@ cmp r3, r0
 blt Loop @ if buffed stat is worse than what we already had, do nothing 
 tst r1, r2 
 beq AffectUser
-b End
+b AffectEnemy 
 
 NegativeA: @ new value will be negative 
 mov r3, #0x3F 
@@ -82,7 +94,7 @@ DontAddToValue_Negative:
 cmp r3, r0 
 bgt Loop @ if debuffed stat is less bad than before (a higher # since we're negative), do nothing 
 tst r1, r2 
-beq End 
+beq AffectEnemy 
 
 AffectUser:  
 mov r0, r6 @ debuff entry 
@@ -91,6 +103,23 @@ ldr r2, [r2]
 mov r1, r5 @ counter 
 mul r1, r2 @ bit offset 
 bl PackData_Signed 
+b Loop 
+
+
+AffectEnemy: 
+mov r0, r6 @ debuff entry 
+ldr r2, =DebuffStatNumberOfBits_Link
+ldr r2, [r2] 
+mov r1, r5 @ counter 
+mul r1, r2 @ bit offset 
+bl PackData_Signed 
+@mov r0, r6 @ debuff entry 
+@ldr r2, =DebuffStatNumberOfBits_Link
+@ldr r2, [r2] 
+@mov r1, r5 @ counter 
+@mul r1, r2 @ bit offset 
+@bl UnpackData_Signed @ ???????????? 
+@mov r11, r11 @ this was done for testing that inputted value = outputted value 
 b Loop 
 
 End: 
