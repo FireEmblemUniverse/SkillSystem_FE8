@@ -260,6 +260,8 @@ TutText(SkipTutorialText)
 BNE 10 rC r7
 GOTO 0x63 
 LABEL 10 
+DisableFreeMovement
+ENUT 1
 EnqueneTutorialEvent_6_PlayerPhaseStart(MyTutorial1)
 
 LABEL 0x63

@@ -30,7 +30,7 @@ WORD 0
 
 ALIGN 4 
 LevelUpSpeed_Link: 
-	SpeedVar(0, 15) // Vanilla is 20 default 
+	SpeedVar(1, 15) // Vanilla is 20 default - this might need to be minimum 1 
 PoisonHpBarSpeed_Link: 
 	SpeedVar(30, 60) // Vanilla is 100  
 GotItemPopupSpeed_Link: 

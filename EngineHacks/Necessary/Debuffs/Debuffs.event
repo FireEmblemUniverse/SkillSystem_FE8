@@ -17,7 +17,7 @@ ALIGN 4
 BuffDepletePerTurnAmount_Link:
 WORD 1 
 
-#define RequireDamageToDebuff True 
+#define RequireDamageToDebuff False 
 RequireDamageToDebuff_Link: 
 WORD RequireDamageToDebuff
 

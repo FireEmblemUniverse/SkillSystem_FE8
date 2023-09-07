@@ -171,7 +171,19 @@ add r5, #1
 cmp r5, r8 
 bge BreakLoop  
 
+ldrb r1, [r4, r5] @ what should the next byte do 
+cmp r1, #0 
+beq Loop 
 mov r0, r6 @ debuff entry 
+mov r2, #0xC0
+and r1, r2 
+cmp r1, #0 
+beq User 
+cmp r1, #0xC0 
+beq User 
+mov r0, r7 @ enemy 
+User: 
+
 ldr r2, =DebuffStatNumberOfBits_Link
 ldr r2, [r2] 
 mov r1, r5 @ counter 
