@@ -34,10 +34,10 @@ PUSH
   ORG $22882
     BYTE $01 // left x coord (go back 1)
 
+  */
+
   ORG $22884
     BYTE $14 // right x coord (go back 1)
-
-  */
 
   ORG $22818
     BYTE $01 // left x coord (go back 2)
