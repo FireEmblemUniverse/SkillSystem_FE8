@@ -3,8 +3,8 @@
 #define GenericB UnitViridianForestSTrainer
 #define ClassA ClassRoute2SWildA
 #define ClassB ClassRoute2SWildB
-#define WildLvl 1 
-#define TrainerL 2
+#define WildLvl 4
+#define TrainerL 4 
 
 EventPointerTable(ChapterID,ThisChapter)
 

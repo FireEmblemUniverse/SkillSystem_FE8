@@ -3,8 +3,8 @@
 #define GenericB UnitRoute2NTrainer
 #define ClassA ClassRoute2NWildA
 #define ClassB ClassRoute2NWildB
-#define WildLvl 6 
-#define TrainerL 6 
+#define WildLvl 9 
+#define TrainerL 9 
 #define KadabraLvl 20
 
 
@@ -161,11 +161,7 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-LOAD1 0x1 BossUnit
-ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(16,27,21,31)) //SE 
-UnmarkTrainerAsDefeated(0xEE)
-AutoLevelUnits(KadabraLvl, True, 0xE0EF) // Wilds  & bushes 
+
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
@@ -178,7 +174,11 @@ RandomizeEnemyCoords(Grass, Range(0,0,2,2), Range(2,2,8,8)) //grass
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  & bushes 
 
- 
+LOAD1 0x1 BossUnit
+ENUN
+RandomizeEnemyCoords(Grass, Range(0,0,1,1), Range(16,27,21,31)) //SE 
+UnmarkTrainerAsDefeated(0xEE)
+AutoLevelUnits(KadabraLvl, True, 0xE0EF) // Wilds  & bushes 
 
 
 CALL SetBushHpEvent
