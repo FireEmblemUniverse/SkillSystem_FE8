@@ -11,8 +11,21 @@ IntimidateDebuffs:
 //WepBuffEntry(mag, str, skl, spd, def, res, luk, mov)
 WepDebuffEntry(  0,    25,   0,    0,   0,   0,   0,   0)
 
-
-
+ALIGN 4 
+MegaKick_Link:
+WORD MegaKick
+DoubleKick_Link: 
+WORD DoubleKick
+HiJumpKick_Link:
+WORD HiJumpKick
+JumpKick_Link:
+WORD JumpKick
+LowKick_Link:
+WORD LowKick
+RollingKick_Link:
+WORD RollingKick
+Submission_Link:
+WORD Submission
 
 
 

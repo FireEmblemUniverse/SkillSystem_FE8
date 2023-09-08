@@ -100,6 +100,54 @@ pop {r3}
 bx r3 
 .ltorg 
 
+.global CheckTempSpeedupFlag
+.type CheckTempSpeedupFlag, %function 
+CheckTempSpeedupFlag: @ void; returns bool 
+ldr r3, =SpeedupRam_Link 
+ldr r3, [r3] 
+cmp r3, #0 
+beq TempSpeedupFlag_False
+ldrb r2, [r3] 
+mov r1, #1 
+tst r1, r2 
+beq TempSpeedupFlag_False 
+mov r0, #1 
+bx lr 
+
+TempSpeedupFlag_False: 
+mov r0, #0 
+bx lr 
+.ltorg 
+
+.global SetTempSpeedupFlag
+.type SetTempSpeedupFlag, %function 
+SetTempSpeedupFlag:
+ldr r3, =SpeedupRam_Link 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Exit_SetTempSpeedupFlag  
+ldrb r2, [r3] 
+mov r1, #1 
+orr r2, r1 
+strb r2, [r3] 
+Exit_SetTempSpeedupFlag: 
+bx lr 
+.ltorg 
+
+.global UnsetTempSpeedupFlag
+.type UnsetTempSpeedupFlag, %function 
+UnsetTempSpeedupFlag: @ void; returns void 
+ldr r3, =SpeedupRam_Link 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Exit_UnsetTempSpeedupFlag 
+ldrb r2, [r3] 
+mov r1, #1 
+bic r2, r3 
+strb r2, [r3] @ remove the speedup bitflag 
+Exit_UnsetTempSpeedupFlag: 
+bx lr 
+.ltorg 
 
 
 .global ShouldShowPoisonSplatHook
@@ -165,101 +213,114 @@ bx r3
 .global LevelUpSpeedHook_2
 .type LevelUpSpeedHook_2, %function 
 LevelUpSpeedHook_2: 
-push {lr} 
+push {r4, r6, lr} 
 mov r5, r0 
 
-mov r1, #1 @ this one needs to be min 1 
-lsl r1, #8 
-ldr r0, =LevelUpSpeed_Link 
-ldr r0, [r0] 
-cmp r0, #0xFF 
+mov r0, #1 @ this one needs to be min 1 
+lsl r0, #8 
+ldr r4, =LevelUpSpeed_Link 
+ldr r4, [r4] 
+cmp r4, #0xFF 
 bge NoMinLvlUpSpd
-orr r0, r1  
+orr r4, r0  
 NoMinLvlUpSpd: 
+mov r0, r4 
 bl AdjustSleepTime_AB_Press
+mov r6, r0 
 
 ldrh r1, [r5, #0x2c] 
 add r1, #1 
 strh r1, [r5, #0x2c] 
-lsl r1, #0x10 
-asr r1, #0x10 
+cmp r6, #1 
+beq Exit_LevelupSpeedHook2
+cmp r1, #1 
+bne CheckRamInsteadLevelup 
+mov r2, #0xFF 
+and r2, r4 
+cmp r6, r2 
+beq ZeroThenVanillaSetLevelupSpeed
+bl SetTempSpeedupFlag 
+b SpeedupLevelup
 
+
+CheckRamInsteadLevelup: 
+bl CheckTempSpeedupFlag
+cmp r0, #0 
+beq VanillaSetLevelupSpeed 
+SpeedupLevelup: 
+mov r0, #0xFF 
+and r0, r4 
+lsr r0, #1  
+ldrh r1, [r5, #0x2c] 
+b Exit_LevelupSpeedHook2 
+
+ZeroThenVanillaSetLevelupSpeed:
+bl UnsetTempSpeedupFlag
+VanillaSetLevelupSpeed: 
+mov r0, #0xFF 
+and r0, r4 
+ldrh r1, [r5, #0x2c] 
+
+Exit_LevelupSpeedHook2: 
 cmp r1, r0 
 
-
+pop {r4, r6} 
 pop {r3} 
 bx r3 
 .ltorg 
 
-#ifdef POKEMBLEM_VERSION 
+
 .global LightRuneAnimHook_3 
 .type LightRuneAnimHook_3, %function 
 LightRuneAnimHook_3:
-push {lr} 
+push {r4, lr} 
 ldrh r0, [r1] 
 add r0, #1 
 strh r0, [r1] 
 mov r2, #0 
-ldsh r0, [r1, r2] 
-push {r0} 
+ldsh r4, [r1, r2] 
+
 mov r0, #1 
 lsl r0, #8 
 mov r1, #4 
 orr r0, r1 @ 4(1<<8): 4 frames default 
 bl AdjustSleepTime_AB_Press @ will return 1, 2, or 4 
 mov r1, r0 
-pop {r0} 
 
 cmp r1, #1 
-beq SkipVanillaSet 
+beq SkipVanillaSetLightRune
 
-cmp r0, #1 
-bne CheckRamInstead 
+cmp r4, #1 
+bne CheckRamInsteadLightRune 
 cmp r1, #2 
-bne ZeroThenVanillaSet 
-@mov r0, #1 
-ldr r3, =SpeedupRam_Link 
-ldr r3, [r3] 
-cmp r3, #0 
-beq VanillaSet 
-ldrb r2, [r3] 
-mov r1, #1 
-orr r2, r1 
-strb r2, [r3] 
+bne ZeroThenVanillaSetLightRune 
+bl SetTempSpeedupFlag 
 mov r1, #2 
-b SkipVanillaSet 
+b SkipVanillaSetLightRune 
 
-ZeroThenVanillaSet: 
-ldr r3, =SpeedupRam_Link 
-ldr r3, [r3] 
-cmp r3, #0 
-beq VanillaSet 
-ldrb r2, [r3] 
-mov r1, #1 
-bic r2, r3 
-strb r2, [r3] @ remove the speedup light runes bitflag 
-b SkipVanillaSet 
+ZeroThenVanillaSetLightRune: 
+bl UnsetTempSpeedupFlag
+b VanillaSetLightRune 
 
-CheckRamInstead: 
-ldr r3, =SpeedupRam_Link 
-ldr r3, [r3] 
-cmp r3, #0 
-beq VanillaSet 
-ldrb r2, [r3] 
-mov r1, #1 
-tst r1, r2 
-beq VanillaSet 
+CheckRamInsteadLightRune: 
+bl CheckTempSpeedupFlag 
+cmp r0, #0 
+beq VanillaSetLightRune 
 mov r1, #2 @ a bit faster 
-b SkipVanillaSet 
+b SkipVanillaSetLightRune 
 
 
-VanillaSet: 
+VanillaSetLightRune: 
 mov r1, #3 @ 3 unless flag is on 
-SkipVanillaSet: 
+SkipVanillaSetLightRune: 
+mov r0, r4 
+@ returns in r1 because hooks vanilla 
+pop {r4} 
 pop {r3} 
 bx r3 
 .ltorg 
-#endif 
+
+
 
 .global MapAnimLevelUp_SoundHook
 .type MapAnimLevelUp_SoundHook, %function 

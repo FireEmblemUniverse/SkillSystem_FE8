@@ -848,7 +848,8 @@ May paralyze.[X]
 ## KarateChopDesc
 [PI] A swift chop.[X]
 ## LowKickDesc
-[PI] A low blow.[X]
+[PI] A low blow. Inflicts[N]
+more damage on heavier foes.[X]
 
 ## ThundershockDesc
 [SI] A weak jolt of electricity.[X]
@@ -1197,8 +1198,8 @@ if it doesn't KO. Cannot double.[X]
 [PI] Bites with superior fangs.[X]
 
 ## MegaKickDesc
-[PI] A fiersomely normal kick.[X]
-
+[PI] A fiersomely normal kick. Inflicts[N]
+more damage on heavier foes.[X]
 ## PayDayDesc
 [PI] Throws coins to damage foes.[X]
 
@@ -1368,23 +1369,28 @@ if it doesn't KO. Cannot double.[X]
 [PI] Calls forth a blanket of snow.[X]
 
 ## DoubleKickDesc
-[PI] Hits twice.[X]
+[PI] Hits twice. Inflicts[N]
+more damage on heavier foes.[X]
 
 ## HiJumpKickDesc
-[PI] A bigger leaping kick of strength.[X]
+[PI] A leaping kick of strength.[N]
+Inflicts extra on heavier foes.[X]
 
 ## JumpKickDesc
-[PI] A leaping kick of power.[X]
+[PI] A leaping kick of power.[N]
+Inflicts extra on heavier foes.[X]
 
 ## RollingKickDesc
-[PI] User rolls about unleashing kicks.[X]
+[PI] User rolls about unleashing kicks.[N]
+Inflicts extra on heavier foes.[X]
 
 ## SeismicTossDesc
 [PI] A hardy judo throw.[N]
 Negates 50% Def. Cannot double.[X]
 
 ## SubmissionDesc
-[PI] Throws the foe with all their might.[X]
+[PI] Throws the foe with all their might.[N]
+Inflicts extra on heavier foes.[X]
 
 ## PoisonGasDesc
 [SI] A foul smelling poison gas attack.[X]

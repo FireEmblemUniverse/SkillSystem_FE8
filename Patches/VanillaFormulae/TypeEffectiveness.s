@@ -18,7 +18,7 @@ push {r4-r7, lr}
 mov r4, r0 @ Atkr 
 mov r5, r1 @ dfdr 
 
-mov r3, #0x48 @ 
+mov r3, #0x4A @ 
 ldrh r0, [r4, r3] @ Attacker's weapon 
 mov r1, r5 @ dfdr 
 blh Check_Effectiveness
@@ -94,19 +94,24 @@ bge NoCapEnemyDef
 mov r2, #0 
 NoCapEnemyDef:
 
-@add r2, #1 
-@lsr r2, #1 @ 1/2 of enemy def added to att 
-mov r1, r0 
+@ r0 = bAtt - (1/2 enemy bDef) 
+mov r1, r0 @ 
 lsr r1, #1 @ 1/2 att 
 lsl r0, #1 @ 2x att 
-sub r0, r1 @ (att + 1/2 enemy def) * 1.5   
+sub r0, r1 @ (att*1.5) 
 
 mov r3, #0x5A @ att 
 mov r2, #0x5C 
 ldsh r1, [r5, r2] @ def 
 lsr r1, #1 @ half 
-add r0, r1 @ add back def after 
-strh r0, [r4, r3] @ 2x att 
+add r0, r1 @ add back half def after 
+ldrb r2, [r5, #0x0B] 
+cmp r2, #0x40 
+blt NoBonusEffDmg 
+lsr r1, #1 @ 1/4 
+add r0, r1 
+NoBonusEffDmg: 
+strh r0, [r4, r3] @ 1.5x att + (1/4 enemy def) 
 b Exit
 
 Store: 

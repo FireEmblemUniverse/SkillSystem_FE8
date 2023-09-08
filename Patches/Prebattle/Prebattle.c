@@ -17,6 +17,26 @@ void ScaledUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 } 
 
 
+extern int MegaKick_Link;
+extern int DoubleKick_Link; 
+extern int HiJumpKick_Link;
+extern int JumpKick_Link;
+extern int LowKick_Link;
+extern int RollingKick_Link;
+extern int Submission_Link;
+void EnemyWeightBonus(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) {
+		if (!(bunitA->weaponAttributes & IA_MAGIC)) { 
+		int item = bunitA->weaponBefore & 0xFF; 
+			if ((item == MegaKick_Link) || (item == DoubleKick_Link) || (item == HiJumpKick_Link) || (item == JumpKick_Link) || (item == LowKick_Link) || (item == RollingKick_Link) || (item == Submission_Link)) { 
+			bunitA->battleAttack += (bunitB->unit.pClassData->baseCon / 3); 
+			} 
+		}
+	} 
+} 
+
+
+
 //extern IntimidateDebuffs[]; 
 struct weaponDebuffTableStruct { 
 	u8 mag;
