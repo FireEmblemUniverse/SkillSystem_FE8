@@ -8,7 +8,7 @@
 .endm
 
 .thumb
-push {r4, r5, lr}
+push {r4-r6, lr}
 mov 	r4, r0
 add 	r0, #0x64
 ldrh 	r1, [r0, #0x0]
@@ -20,8 +20,9 @@ mov 	r5, r1
 ldr r0, =EmoticonSleepTime_Link 
 ldr r0, [r0] 
 bl AdjustSleepTime_AB_Press 
-cmp 	r5, r0 
-blt 	Continue
+mov r6, r0 
+cmp 	r5, r6 
+ble 	Continue
 	mov 	r0, r4
 	blh 	0x08002E94   	@Break6CLoop	{U}
 @	blh 	0x08002DE4   	@Break6CLoop	{J}
@@ -36,13 +37,13 @@ blh 	0x080092BC   		@TCS_Update	{U}
 @blh 	0x080091AC   		@TCS_Update	{J}
 
 @Added - call TCS_End to free AP space when finished
-cmp 	r5, #0x27
+cmp 	r5, r6
 ble 	End
 	ldr 	r0, [r4, #0x50] @AP pointer
 	blh 	0x080092A4 		@TCS_End	{U}
 @	blh 	0x08009194 		@TCS_End	{J}
 
 End:
-pop {r4, r5}
+pop {r4-r6}
 pop {r0}
 bx r0
