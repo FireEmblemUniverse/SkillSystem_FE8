@@ -458,6 +458,7 @@ unsigned GetPhaseAbleUnitCount(unsigned faction) {
 void FMU_InitVariables(struct FMUProc* proc) { 
 	pFMU_OnInit(proc);
 	FMU_ResetLCDIO();
+	MU_EndAll();
 	//UnpackChapterMapGraphics(gChapterData.chapterIndex);
 	//InitBaseTilesBmMap();
 	//RenderBmMap();
