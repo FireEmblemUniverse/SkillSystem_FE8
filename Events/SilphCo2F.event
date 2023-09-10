@@ -3,8 +3,8 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute17WildA
 #define ClassB ClassRoute17WildB
-#define WildLvl 33
-#define TrainerL 36
+#define WildLvl 35
+#define TrainerL 40
 
 
 
@@ -34,11 +34,11 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 2, ReinforcementUnits, 1, 5) 
-Reinforce(0xF1, 2, ReinforcementUnits, 2, 5) 
-Reinforce(0xF2, 2, ReinforcementUnits, 3, 5) 
-Reinforce(0xF3, 2, ReinforcementUnits, 2, 5) 
-Reinforce(0xF4, 2, ReinforcementUnits, 1, 5) 
+Reinforce(0xF0, 1, ReinforcementUnits, 4, 5) 
+Reinforce(0xF1, 1, ReinforcementUnits, 5, 5) 
+Reinforce(0xF2, 1, ReinforcementUnits, 6, 5) 
+Reinforce(0xF3, 1, ReinforcementUnits, 7, 5) 
+Reinforce(0xF4, 1, ReinforcementUnits, 8, 5) 
 }
 
 
@@ -210,12 +210,12 @@ UNIT
 
 
 HumanTrainers:
-UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [30,9]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [30,9]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 rocket_fID 0x0 Level(0, Enemy, 1) [21,12]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 rocket_fID 0x0 Level(0, Enemy, 1) [5,11]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 rocket_fID 0x0 Level(0, Enemy, 1) [23,4]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE4 rocket_mID 0x0 Level(0, Enemy, 1) [33,16]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE5 rocket_mID 0x0 Level(0, Enemy, 1) [10,18]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE4 rocket_mID 0x0 Level(LVFACELEFT, Enemy, 1) [34,18]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE5 rocket_mID 0x0 Level(LVFACELEFT, Enemy, 1) [10,18]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 

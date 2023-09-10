@@ -164,6 +164,16 @@ void SavePCBox(int targetSlot) {
 	UnpackUnitsFromBox(targetSlot); 
 } 	
 
+extern void MS_SaveGame(unsigned slot);
+void CallDeploySelectedUnits(void) {
+	DeploySelectedUnits(); 
+	#ifdef POKEMBLEM_VERSION 
+	SavePCBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
+	//ClearPCBoxUnitsBuffer();
+	MS_SaveGame(gPlaySt.gameSaveSlot); 
+	#endif 
+}
+
 void CopyPCBox(int sourceSlot, int targetSlot) { 
 	UnpackUnitsFromBox(sourceSlot); 
 	ClearAllBoxUnits(targetSlot); 
@@ -410,7 +420,7 @@ void sub_809B520(struct ProcPrepUnit *proc)
     proc->list_num_cur = list_num;
 }
 
-extern void MS_SaveGame(unsigned slot);
+
 
 /*
 void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
@@ -422,16 +432,13 @@ void NewProcPrepUnit_OnGameStart(struct ProcPrepUnit *proc)
 	
 	
 	
-	//PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
-	//ClearPCBoxUnitsBuffer();
-	//MS_SaveGame(gPlaySt.gameSaveSlot); 
+	PackUnitsIntoBox(gPlaySt.gameSaveSlot); // so box units don't need to exist on suspend 
+	ClearPCBoxUnitsBuffer();
+	MS_SaveGame(gPlaySt.gameSaveSlot); 
 	
 }
 */
 
-void CallDeploySelectedUnits(void) {
-	DeploySelectedUnits(); 
-}
 
 
 /*

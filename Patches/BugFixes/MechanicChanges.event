@@ -38,8 +38,9 @@ BYTE 0x6
 ORG 0x98728 //Prep screen pick units tile width
 BYTE 0x6
 ORG $99554 
-BYTE $30 // centered something 
-
+BYTE $30 // centered name in prep items 
+ORG $9A976
+BYTE $1C // centered name in prep unit select 
  
 
 ORG $86B84 

@@ -162,8 +162,7 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-House(0,StoreUnitEvent, 11,11)
-House(0,WithdrawUnitEvent, 12,11)
+House(0,GiveExpEvent, 11,11)
 //House(0,SelectCharEvent, 11,11)
 
 
@@ -174,17 +173,12 @@ House(0,WithdrawUnitEvent, 12,11)
 //Seize(10,2)
 END_MAIN
 
-StoreUnitEvent:
-//StoreUnit(1)
-//GiveEXP((-1), 100)
+GiveExpEvent:
+GiveEXP(0x7FFF, 100)
+//TutText(DebugText) 
 NoFade 
 ENDA 
 
-WithdrawUnitEvent:
-//WithdrawUnit
-//GiveEXP((-1), 100)
-NoFade 
-ENDA 
 
 SelectCharEvent:
 SelectCharacter(Seth, Amelia, Ross, Colm, Neimi, 3000, 500, 1500, 1000, 0) 
@@ -195,10 +189,16 @@ MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AFEV 0 RefreshStuff 0 
+//AFEV 0 CallTextEv 0 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 ////AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
+
+CallTextEv: 
+TutText(DebugText) 
+NoFade 
+ENDA 
 
 RefreshStuff:
 //UNCR(0x7fff, 0x42)

@@ -200,6 +200,15 @@ void ClearPCBoxUnitsBuffer(void) {
 	memset((void*)&PCBoxUnitsBuffer[0], 0, BoxBufferCapacity*0x48);
 } 
 
+// save an ID for each pokemon 
+// if ID exists, erase it from SRAM 
+
+// put box buffer unit into unit struct 
+// clear buffer unit 
+// erase SRAM unit ? 
+// forcibly save 
+
+
 
 void DeploySelectedUnits() { 
 	//asm("mov r11, r11");

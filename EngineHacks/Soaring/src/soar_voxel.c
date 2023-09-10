@@ -202,6 +202,7 @@ void SetUpNewWMGraphics(SoarProc* CurrentProc){
 	CurrentProc->sunTransition = 0;
 	CurrentProc->takeOffTransition = 1;
 	CurrentProc->landingTransition = 0;
+	CurrentProc->turningCooldown = 0; 
 	CurrentProc->disableFlare = detect_android_myboy_emulator();
 	// CurrentProc->animClock = 0;
 	#ifdef __PAGEFLIP__
@@ -566,6 +567,10 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 	int newx,  newy;
 
 	if (gKeyState.heldKeys & DPAD_LEFT){
+		
+		if (CurrentProc->turningCooldown) { CurrentProc->turningCooldown--; } 
+		else { 
+		CurrentProc->turningCooldown = 1; 
 		newx = CurrentProc->sPlayerPosX + cam_pivot_dx_Angles[CurrentProc->sPlayerYaw]; // step forward to focal point
 		newy = CurrentProc->sPlayerPosY + cam_pivot_dy_Angles[CurrentProc->sPlayerYaw]; // step forward to focal point
 		CurrentProc->sPlayerYaw = (CurrentProc->sPlayerYaw - 1)&0xF; //16 angles so skip the conditional
@@ -574,8 +579,12 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 		CurrentProc->sPlayerPosX = newx;
 		CurrentProc->sPlayerPosY = newy;
 		BumpScreen(bump_left);
+		} 
 	}
 	else if (gKeyState.heldKeys & DPAD_RIGHT){
+		if (CurrentProc->turningCooldown) { CurrentProc->turningCooldown--; } 
+		else { 
+		CurrentProc->turningCooldown = 1; 
 		newx = CurrentProc->sPlayerPosX + cam_pivot_dx_Angles[CurrentProc->sPlayerYaw]; // step forward to focal point
 		newy = CurrentProc->sPlayerPosY + cam_pivot_dy_Angles[CurrentProc->sPlayerYaw]; // step forward to focal point
 		CurrentProc->sPlayerYaw = (CurrentProc->sPlayerYaw + 1)&0xF; //16 angles so skip the conditional
@@ -584,6 +593,7 @@ int thumb_loop(SoarProc* CurrentProc) //return 1 if continuing, else 0 to break
 		CurrentProc->sPlayerPosX = newx;
 		CurrentProc->sPlayerPosY = newy;
 		BumpScreen(bump_right);
+		}
 	}
 	else if (gKeyState.prevKeys & (DPAD_LEFT|DPAD_RIGHT)) {
 		BumpScreen(4); //reset

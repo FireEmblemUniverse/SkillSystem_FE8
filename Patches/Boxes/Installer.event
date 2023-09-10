@@ -3,9 +3,13 @@
 // Gfx glitch of duplicated names at bottom of items menu when scrolling from the top 
 // Stat Screen from within Prep won't scroll to extra units 
 
+#ifndef InitSramFlag
+	#define InitSramFlag 0xEB 
+#endif 
+
 ALIGN 4 
 InitSRAM_Flag: 
-WORD 0xEB 
+WORD InitSramFlag
 
 #define EnsureUnitInParty(unitID) "SVAL s1 unitID; ASMC EnsureUnitInPartyASMC" 
 

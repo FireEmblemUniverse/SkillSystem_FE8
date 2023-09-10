@@ -3,8 +3,8 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute17WildA
 #define ClassB ClassRoute17WildB
-#define WildLvl 33
-#define TrainerL 36
+#define WildLvl 35
+#define TrainerL 40
 
 
 
@@ -34,8 +34,8 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnits, 1, 4) 
-Reinforce(0xF1, 1, ReinforcementUnits, 2, 4) 
+Reinforce(0xF0, 1, ReinforcementUnits, 3, 4) 
+Reinforce(0xF1, 1, ReinforcementUnits, 4, 4) 
 }
 
 

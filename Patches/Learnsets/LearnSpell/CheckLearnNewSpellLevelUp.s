@@ -120,6 +120,7 @@ mov r2, r4 @ Parent proc
 mov r0, r5 
 blh prLearnNewSpell
 
+bl CallWaitForMenusEvent
 
 
 Exit:
