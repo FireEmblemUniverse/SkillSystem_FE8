@@ -565,10 +565,10 @@ Write_Byte(18, YCoordNewArea)
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
-//MNC2 DebugCh
+MNC2 DebugCh
 
 //SetUnitStatus(1, CurrentHP, 5)
-MNC2 CeruleanCh
+//MNC2 CeruleanCh
 //MNC2 MtMoonB2Ch
 //MNC2 SeafoamB3Ch
 

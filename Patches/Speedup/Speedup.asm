@@ -222,10 +222,11 @@ ldr r4, =LevelUpSpeed_Link
 ldr r4, [r4] 
 cmp r4, #0xFF 
 bge NoMinLvlUpSpd
-orr r4, r0  
+@orr r4, r0  
 NoMinLvlUpSpd: 
 mov r0, r4 
 bl AdjustSleepTime_AB_Press
+add r0, #1 @ this one needs to be min 1 and 1 more than the other one 
 mov r6, r0 
 
 ldrh r1, [r5, #0x2c] 
