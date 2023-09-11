@@ -14,13 +14,24 @@
 	
 	#include "Extensions/Hack Installation.txt"
 	
-	// #ifndef Free_Space
-	// 	#define Free_Space 0xB2B000
-	// 	ORG Free_Space
-	// #endif
+	ALIGN 4
+SokaballaMenuPalette:
+#incbin "dmp/SokaballaMenuPalette.png_pal.dmp"
+#define SokaballaMenuPaletteBlue  SokaballaMenuPalette
+#define SokaballaMenuPaletteRed   SokaballaMenuPalette + 0x20
+#define SokaballaMenuPaletteGreen SokaballaMenuPalette + 0x40
+#define SokaballaMenuPaletteGray  SokaballaMenuPalette + 0x60
 	
 	PUSH
-	
+		// Battle Stats Anims Off
+ORG 0x7BDF8
+POIN SokaballaMenuPaletteBlue
+ORG 0x7BE00
+POIN SokaballaMenuPaletteRed
+ORG 0x7BE08
+POIN SokaballaMenuPaletteGreen
+ORG 0x7BE10
+POIN SokaballaMenuPaletteGray
 	//Update the graphics
 	ORG $7BC44
 	POIN New_Battle_Anims_Off_Graphics
@@ -56,17 +67,17 @@
 	ALIGN 4
 	New_Battle_Anims_Off_Graphics:
 	//#incext Png2Dmp "Anims_Off_Battle_Graphic New.png" --lz77
-	#incbin "Anims_Off_Battle_Graphic-New.dmp"
+	#incbin "Dmp/Anims_Off_Battle_Graphic-Sokaballa.dmp"
 	
 	ALIGN 4
 	New_Battle_Anims_Off_Right_TSA:
 	#incbin "src/RightBox.dmp" 
-	//#incbin "New_Battle_Anims_Off_Right_TSA.dmp"
+	//#incbin "dmp/New_Battle_Anims_Off_Right_TSA_Sokaballa.dmp"
 	
 	ALIGN 4
 	New_Battle_Anims_Off_Left_TSA:
 	#incbin "src/LeftBox.dmp" 
-	//#incbin "New_Battle_Anims_Off_Left_TSA.dmp"
+	//#incbin "dmp/New_Battle_Anims_Off_Left_TSA_Sokaballa.dmp"
 	
 	ALIGN 4
 	Show_Battle_Stats:
@@ -94,17 +105,17 @@
 	ALIGN 4
 	Battle_Name_Graphics:
 	//#incext Png2Dmp "New_Stat_Names.png" --lz77
-	#incbin "New_Stat_Names.dmp"
+	#incbin "Dmp/New_Stat_Names_Sokaballa.dmp"
 	
 	ALIGN 4
 	Battle_Name_Palette:
 	//#incext Png2Dmp "New_Stat_Names.png" --palette-only
-	#incbin "New_Stat_Names_pal.dmp"
+	#incbin "Dmp/New_Stat_Names_pal_Sokaballa.dmp"
 	
 	ALIGN 4
 	New_Numbers:
 	//#incext Png2Dmp "new_numbers.png" --lz77
-	#incbin "new_numbers.dmp"
+	#incbin "Dmp/new_numbers.dmp"
 	
 // #else
 // 	ERROR "You're not assembling FE8 events!"
