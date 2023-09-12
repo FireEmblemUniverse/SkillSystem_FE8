@@ -4,7 +4,21 @@
 #include "Extensions/Hack Installation.txt"
 #include "_UnitMenuDefs.event"
 
+#define ChapterMenuWidth 9
+#define ChapterMenuRightXCoord 17
+
+#define UnitMenuWidth 9
+#define UnitMenuLeftXCoord 1
+#define UnitMenuRightXCoord 14
+
 PUSH
+
+  // Chapter Menu stuff
+  ORG $59D216
+    BYTE ChapterMenuWidth // width
+  ORG $1CA86
+    BYTE ChapterMenuRightXCoord
+
   // Repoint Unit Menu
 
   ORG $59D1F8
@@ -13,19 +27,19 @@ PUSH
   // Make the unit menu wider (to fit longer words)
 
   ORG $59d1f2 
-    BYTE 0x9 // width
+    BYTE UnitMenuWidth // width
 
   ORG $1d4fa
-    BYTE $01 // left x coord (open 1)
+    BYTE UnitMenuLeftXCoord // left x coord (open 1)
 
   ORG $1d4fc
-    BYTE $14 // right x coord (open 1)
+    BYTE UnitMenuRightXCoord // right x coord (open 1)
 
   ORG $1D44E
-    BYTE $01 // left x coord (open 2)
+    BYTE UnitMenuLeftXCoord // left x coord (open 2)
 
   ORG $1D450
-    BYTE $14 // right x coord (open 2)
+    BYTE UnitMenuRightXCoord // right x coord (open 2)
 
   /*
 
@@ -37,25 +51,25 @@ PUSH
   */
 
   ORG $22884
-    BYTE $14 // right x coord (go back 1)
+    BYTE UnitMenuRightXCoord // right x coord (go back 1)
 
   ORG $22818
-    BYTE $01 // left x coord (go back 2)
+    BYTE UnitMenuLeftXCoord // left x coord (go back 2)
 
   ORG $2281A
-    BYTE $14 // right x coord (go back 2)
+    BYTE UnitMenuRightXCoord // right x coord (go back 2)
 
   ORG $22772
-    BYTE $01 // left x coord (go back 3)
+    BYTE UnitMenuLeftXCoord // left x coord (go back 3)
 
   ORG $22774
-    BYTE $14 // right x coord (go back 3)
+    BYTE UnitMenuRightXCoord // right x coord (go back 3)
 
   ORG $23660
-    BYTE $01 // left x coord (go back 4)
+    BYTE UnitMenuLeftXCoord // left x coord (go back 4)
 
   ORG $23662
-    BYTE $14 // right x coord (go back 4)
+    BYTE UnitMenuRightXCoord // right x coord (go back 4)
 
 POP
 
