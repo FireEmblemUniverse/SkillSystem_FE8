@@ -194,17 +194,53 @@ bx r3
 .global LevelUpSpeedHook_1
 .type LevelUpSpeedHook_1, %function 
 LevelUpSpeedHook_1: 
-push {lr} 
-mov r1, r8 
+push {r4-r6, lr} 
+mov r1, r8 @ vanilla 
 strb r0, [r1] 
 
-ldr r0, =LevelUpSpeed_Link 
-ldr r0, [r0] 
+mov r5, r0 
 
+ldr r4, =LevelUpSpeed_Link 
+ldr r4, [r4] 
+mov r0, r4 
 bl AdjustSleepTime_AB_Press
-mov r1, r7
+mov r6, r0 
+
+lsr r3, r4, #8 
+cmp r6, r3 @ if the minimum time, exit 
+beq Exit_LevelupSpeedHook1
+
+cmp r5, #1 @ first frame? 
+bne CheckRamInsteadLevelup1 
+mov r2, #0xFF 
+and r2, r4 
+cmp r6, r2 
+beq ZeroThenVanillaSetLevelupSpeed1
+bl SetTempSpeedupFlag 
+b SpeedupLevelup1
+
+CheckRamInsteadLevelup1: 
+bl CheckTempSpeedupFlag
+cmp r0, #0 
+beq VanillaSetLevelupSpeed1 
+SpeedupLevelup1: 
+mov r0, #0xFF 
+and r0, r4 
+lsr r0, #1  
+b Exit_LevelupSpeedHook1 
+
+ZeroThenVanillaSetLevelupSpeed1:
+bl UnsetTempSpeedupFlag
+VanillaSetLevelupSpeed1: 
+mov r0, #0xFF 
+and r0, r4 
+
+
+Exit_LevelupSpeedHook1: 
+mov r1, r7 @ vanilla 
 add r1, #0x31 
-@strb r0, [r1] 
+@ r0 = total frames to do 
+pop {r4-r6} 
 pop {r3} 
 ldr r3, =0x807F465 @ return address 
 bx r3 
@@ -214,16 +250,10 @@ bx r3
 .type LevelUpSpeedHook_2, %function 
 LevelUpSpeedHook_2: 
 push {r4, r6, lr} 
-mov r5, r0 
+mov r5, r0 @ vanilla 
 
-mov r0, #1 @ this one needs to be min 1 
-lsl r0, #8 
 ldr r4, =LevelUpSpeed_Link 
 ldr r4, [r4] 
-cmp r4, #0xFF 
-bge NoMinLvlUpSpd
-@orr r4, r0  
-NoMinLvlUpSpd: 
 mov r0, r4 
 bl AdjustSleepTime_AB_Press
 add r0, #1 @ this one needs to be min 1 and 1 more than the other one 
@@ -232,7 +262,10 @@ mov r6, r0
 ldrh r1, [r5, #0x2c] 
 add r1, #1 
 strh r1, [r5, #0x2c] 
-cmp r6, #1 
+
+lsr r3, r4, #8 
+add r3, #1 
+cmp r6, r3 @ if the minimum time, exit 
 beq Exit_LevelupSpeedHook2
 cmp r1, #1 
 bne CheckRamInsteadLevelup 

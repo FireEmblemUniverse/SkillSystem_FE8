@@ -381,7 +381,8 @@ add r1, r0 @ add 1 for caught icon instead if caught
   mov     r3, #0x19
   ldsb    r3, [r1, r3]     
   str     r0, [sp]     
-  mov     r0, #0x1e  @cap is always 30
+  mov     r0, #50 @ cap is always 50 
+  mov r11, r11 
   str     r0, [sp, #0x4]    
   mov     r0, #0x6   
   mov     r1, #(\bar_x-11)

@@ -7,6 +7,8 @@
 
 PUSH
 
+// NOTE: Luck cap is in mss_page1 within the draw_luck_bar_at macro 
+// currently 50 
   //Stat bar drawing
   ORG $87132
   BYTE $3c				//max stat cap to 60 (3Ch)

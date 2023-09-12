@@ -15,6 +15,7 @@
 #define SmallCross 9
 #define SmallX 11 
 #define SmallLine 14 
+#define SmallestTriangle 21
 
 
 
@@ -146,6 +147,11 @@ POIN RangeTemplateTable_All
 POIN RangeTemplateTable_All
 POIN RangeTemplateTable_All
 
+ALIGN 16; POIN RangeTemplateTable_SmallestTriangle1 // 21
+POIN RangeTemplateTable_SmallestTriangle2
+POIN RangeTemplateTable_SmallestTriangle3
+POIN RangeTemplateTable_SmallestTriangle4
+
 WORD 0 0 0 0 // Terminator 
 
 ALIGN 4
@@ -268,6 +274,38 @@ BYTE 0 1 0
 BYTE 1 0 1 
 
 
+ALIGN 4
+RangeTemplateTable_SmallestTriangle1:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 1 0              
+BYTE 1 0 1              
+BYTE 0 0 0      
+
+ALIGN 4
+RangeTemplateTable_SmallestTriangle2:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 1 0              
+BYTE 0 0 1              
+BYTE 0 1 0    
+
+ALIGN 4
+RangeTemplateTable_SmallestTriangle3:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 0 0              
+BYTE 1 0 1              
+BYTE 0 1 0    
+
+ALIGN 4
+RangeTemplateTable_SmallestTriangle4:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 1 0              
+BYTE 1 0 0              
+BYTE 0 1 0    
+
 
 ALIGN 4
 RangeTemplateTable_VerticalLine:
@@ -359,6 +397,7 @@ ALIGN 4
 RangeTemplateTable_SmallCurve2:
 BYTE 2 3 
 BYTE 1 0 
+
 BYTE 0 1 
 BYTE 1 0
 BYTE 1 0
@@ -374,6 +413,7 @@ ALIGN 4
 RangeTemplateTable_SmallCurve4:
 BYTE 2 3 
 BYTE 0 2 
+
 BYTE 0 1 
 BYTE 0 1
 BYTE 1 0

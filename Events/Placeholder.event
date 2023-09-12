@@ -266,7 +266,7 @@ UNIT
 
 
 Traps1:
-
+CoinsTrap(8,11, 1, 250)
 //SaveWithoutHeal(11,10) 
 
 //GenericDisappearCompletion(12, 5, 0, GarySMS, 0) // xx, yy, flag, sprite, effectID 
@@ -332,7 +332,7 @@ ENUN
 AutoLevelUnits(2, True, 0x50FF)
 RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-//SetUnitStatus(1, CurrentHP, 25)
+SetUnitStatus(1, CurrentHP, 5)
 
 //SetUnitStatus(2, CurrentHP, 25)
 

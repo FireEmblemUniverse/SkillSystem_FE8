@@ -37,7 +37,7 @@ check_acting:
 	ldrb r2, [r0, r1] 
 	ldrb r1, [r0, #0x08] @ Current level 
 	cmp r1, r2 
-	beq check_target 
+	ble check_target 
 	
 	ldrb r0, [r0, #0x0B] @ Unit Index
 	mov r1, #0xC0
@@ -53,6 +53,9 @@ check_target:
 	
 	@ apparently snags want to learn moves too 
 	ldr r1, [r0, #4] @ class table pointer 
+	cmp r1, #0 @ after an enemy attacks you and you learn a move, you could do some actions to learn the move again 
+	@ but the class pointer for the target is set to zero upon MMB being loaded, so this should fix it 
+	beq Exit 
 	ldrb r1, [r1, #4] @ class id 
 	ldr r2, =SnagID 
 	lsl r2, #24 
@@ -65,7 +68,7 @@ check_target:
 	ldrb r2, [r0, r1] 
 	ldrb r1, [r0, #0x08] @ Current level 
 	cmp r1, r2 
-	beq Exit 
+	ble Exit 
 	
 	ldrb r0, [r0, #0x0B] @ Unit Index
 	mov r1, #0xC0

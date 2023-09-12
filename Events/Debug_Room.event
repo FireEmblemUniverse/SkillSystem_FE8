@@ -409,11 +409,11 @@ SupplyItemWithDurability(StatAccessory, QuickBoots_BoostIndex)
 //SupplyItemWithDurability(SpellScroll, KarateChop)
 
 //SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT4_BoostIndex|0x80)
-SilentGiveItemWithDurability(1, SacredStone, 1)
-SilentGiveItemWithDurability(1, SacredStone, 1)
-SilentGiveItemWithDurability(1, SacredStone, 1)
-SilentGiveItemWithDurability(1, SacredStone, 1)
-SilentGiveItemWithDurability(1, SacredStone, 1)
+SilentGiveItemWithDurability(1, SuperPotion, 1)
+
+
+
+//SilentGiveItemWithDurability(1, SacredStone, 1)
 
 
 //SilentGiveItemWithDurability(3, StatAccessory, EnergyBandT4_BoostIndex|0x80)
@@ -560,13 +560,14 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(18, YCoordNewArea)  
+Write_Byte(4, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(4, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
-MNC2 DebugCh
-
+//MNC2 DebugCh
+SetUnitStatus(1, Exp, 99)
+MNC2 Route25Ch
 //SetUnitStatus(1, CurrentHP, 5)
 //MNC2 CeruleanCh
 //MNC2 MtMoonB2Ch

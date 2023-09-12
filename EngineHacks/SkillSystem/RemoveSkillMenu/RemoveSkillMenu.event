@@ -94,7 +94,7 @@ _pProc_FromMiscActionProc:
 	_6C_SLEEP(1)
 	_6C_CALL_ROUTINE(0x02CC1C|1) // SaveInstigatorFromBattle
 	_6C_CALL_ROUTINE_2(_prCheckForBattleSkillForgetting|1)
-	_6C_CALL_ROUTINE_2(CheckLearnNewSpellLevelUp|1)
+	_6C_CALL_ROUTINE_2(CheckLearnNewSpellLevelUp|1) // so AoE can learn spells 
 	_6C_YIELD
 	_6C_END
 
