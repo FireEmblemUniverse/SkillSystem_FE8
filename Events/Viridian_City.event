@@ -240,7 +240,7 @@ Traps1:
 
 //SignTrap(15,17, ViridianCityText)
 TutSign(19,13, ChapterID*2,TrainerTip_Catch)
-TutSign(15,25, ChapterID*2,TrainerTip_Water)
+TutSign(15,25, ChapterID*2+1,TrainerTip_Water)
 TutSign(15,4, ChapterID*2+3,TrainerTip_CursorJump)
 //SignTrap(15,25, TrainerTip_Skills)
 

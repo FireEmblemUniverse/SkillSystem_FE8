@@ -29,7 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-//TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 TurnEventPlayer(DisableTutFlag_B, TutMsg2, 0, 255) // 
 
 END_MAIN
@@ -147,7 +147,7 @@ HealTile(22,19)
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
-//SignTrap(26,21, TrainerTip_DangerZone2)
+SignTrap(26,21, TrainerTip_DangerZone2)
 SignTrap(41,22, TrainerTip_Zoning)
 //
 StatAccessoryTrap(32,26, ChapterID*2, LeatherShield_BoostIndex)

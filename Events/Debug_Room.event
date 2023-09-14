@@ -477,9 +477,9 @@ LABEL 0x63
 AutoLevelUnits(16, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
-SetUnitStatus(1, 0x28, RockTomb)
-SetUnitStatus(1, 0x29, IcyWind)
-SetUnitStatus(1, 0x2A, Psychic)
+SetUnitStatus(1, 0x28, DragonRage)
+SetUnitStatus(1, 0x29, Ember)
+SetUnitStatus(1, 0x2A, MudShot)
 SetUnitStatus(1, 0x2B, Flamethrower)
 SetUnitStatus(1, 0x2C, Growth)
 
@@ -560,16 +560,17 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(4, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(4, YCoordNewArea)  
+Write_Byte(7, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(14, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
 //MNC2 DebugCh
-SetUnitStatus(1, Exp, 99)
-MNC2 Route25Ch
+//SetUnitStatus(1, Exp, 99)
+//MNC2 CeruleanGymCh
+//MNC2 PewterGymCh
 //SetUnitStatus(1, CurrentHP, 5)
-//MNC2 CeruleanCh
+MNC2 CeruleanCh
 //MNC2 MtMoonB2Ch
 //MNC2 SeafoamB3Ch
 

@@ -11,7 +11,7 @@
 // SHORT CategoryText
 
 // By Pikmin, Huichelaar 
-#define PageCount 3 // This must be less than or equal to the number of entries you have in GuideCategoryTable
+#define PageCount 4 // This must be less than or equal to the number of entries you have in GuideCategoryTable
 
 //Disable guide sort for glitchiness reasons
 PUSH
@@ -60,28 +60,62 @@ ReadFlag - eid set when the entry has been read
 
 #define GuideCategoryEntry(CategoryText) "SHORT CategoryText"
 
+#define Intro_Cat 1 
+#define Btl_Cat 2
+#define Tips_Cat 3
+#define Misc_Cat 4
 
-ALIGN 4
-GuideEntryTable:
-GuideEntry(1,1,GuideMenuEffectivenessSubHeaderText,GuideMenuEffectivenessBodyText,0xB0,0xB1) 
-GuideEntry(1,2,GuideMenuResistSubHeaderText,GuideMenuResistBodyText,0xB0,0xB1) 
-GuideEntry(0xC,0,0,0,0,0) //terminator?
-GuideTerminator
-
-ALIGN 4
-GuideChapterTable:
-GuideChapterEntry(GuideMenuEffectivenessHeaderText)
-GuideChapterEntry(GuideMenuResistHeaderText)
-BYTE 0x0 0x0 0xC9 0x5 //terminator?
-GuideTerminator
 
 ALIGN 4
 GuideCategoryTable:
 GuideCategoryEntry(0x0)
-GuideCategoryEntry(GuideMenuEffectivenessTitleText)
-GuideCategoryEntry(GuideMenuResistTitleText)
+GuideCategoryEntry(GM_IntroTitle) // General 
+GuideCategoryEntry(GM_CombatTitle) // Combat 
+//GuideCategoryEntry(GM_ResistTitle)
+GuideCategoryEntry(GM_TipsTitle) // Tips
+GuideCategoryEntry(GM_MiscTitle) // Misc 
 GuideEntry(PageCount,0,0,0,0,0) //terminator?
 GuideTerminator
+
+ALIGN 4
+GuideChapterTable: // what does this do?????? 
+GuideChapterEntry(GM_Test)
+GuideChapterEntry(GM_EffectivenessHeaderText)
+GuideChapterEntry(GM_ResistHeaderText)
+GuideChapterEntry(GM_LevelupsHeaderText)
+GuideChapterEntry(GM_ResistHeaderText)
+GuideChapterEntry(GM_ResistHeaderText)
+GuideChapterEntry(GM_ResistHeaderText)
+GuideChapterEntry(GM_ResistHeaderText)
+BYTE 0x0 0x0 0xC9 0x5 //terminator?
+GuideTerminator
+
+
+
+ALIGN 4
+GuideEntryTable:
+GuideEntry(Intro_Cat,0,GM_Roaming_SH, GM_Roaming,0xB0,0xB0) 
+GuideEntry(Intro_Cat,0,GM_Bushes_SH, GM_Bushes,0xB0,0xB0) 
+GuideEntry(Intro_Cat,0,GM_Quicksave_SH, GM_Quicksave,0xB0,0xB0) 
+GuideEntry(Intro_Cat,0,GM_Trainers_SH, GM_Trainers,0xB0,0xB0) 
+GuideEntry(Intro_Cat,0,GM_Discord_SH, GM_Discord,0xB0,0xB0) 
+GuideEntry(Btl_Cat,0,GM_Hitrate_SH, GM_Hitrate,0xB0,0xB0) 
+GuideEntry(Btl_Cat,0,GM_Capture_SH, GM_Capture,0xB0,0xB0) 
+GuideEntry(Btl_Cat,0,GM_Party_SH, GM_CatchTip,0xB0,0xB0) 
+GuideEntry(Btl_Cat,0,GM_AoE_SH, GM_AoE,0xB0,0xB0) 
+GuideEntry(Btl_Cat,0,GM_Effectiveness_SH, GM_Effectiveness,0xB0,0xB0) 
+GuideEntry(Btl_Cat,0,GM_TypeCombinations_SH, GM_TypeCombinations,0xB0,0xB0) 
+GuideEntry(Misc_Cat,0,GM_Levelups_SH, GM_Levelups,0xB0,0xB0) 
+GuideEntry(Misc_Cat,0,GM_Grinding_SH, GM_Grinding,0xB0,0xB0) 
+GuideEntry(Misc_Cat,0,GM_Rematches_SH, GM_Rematches,0xB0,0xB0) 
+GuideEntry(Misc_Cat,0,GM_Call_SH, GM_Call,0xB0,0xB0) 
+GuideEntry(Misc_Cat,0,GM_Submenu_SH, GM_Submenu,0xB0,0xB0) 
+GuideEntry(Misc_Cat,0,GM_Repels_SH, GM_Repels,0xB0,0xB0) 
+GuideEntry(0xC,0,0,0,0,0) //terminator?
+GuideTerminator
+
+
+
 
 
 PUSH

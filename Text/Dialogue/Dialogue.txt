@@ -59,34 +59,243 @@ Rematch trainer?[NL]
 
 ## SavingHelpText
 Your emulator's save type should be[N]
-"auto" for them to work properly.[A][X]
+"auto" for it to work properly.[A][X]
 
-## GuideMenuEffectivenessTitleText
-Dmg Mdfy[X]
+## GM_IntroTitle
+Pokémblem[X]
 
-## GuideMenuEffectivenessHeaderText
+## GM_Roaming_SH
+Roaming[X]
+
+## GM_Test
+Test[X]
+
+
+
+## GM_Roaming
+When you walk onto a dangerous[N]
+tile, battle will begin.[N]
+Press A on the protagonist to[N]
+explore in free movement mode[N]
+when it's safe again.[X]
+
+## GM_Quicksave_SH 
+Quicksave[X]
+
+## GM_Quicksave
+Reset and Resume to go back to[N]
+the last turn you had no[N]
+Pokémon faint on.[N]
+Or turn Autosave in Options off,[N]
+so Quicksave can act as a[N]
+savestate.[X]
+
+## GM_Trainers_SH 
+Trainers[X]
+
+## GM_Trainers
+If you're within range of a trainer[N]
+on enemy phase, they'll challenge[N]
+you to a battle.[N]
+If one of your Pokémon leaves[N]
+the area, you can escape battle.[X]
+
+## GM_Discord_SH
+Discord[X]
+
+## GM_Discord
+Go to:[N]
+discord.com/invite/XEZjTJQ[N]
+to join the community.[X]
+
+
+// misc 
+## GM_Bushes_SH
+Wild Pokémon[X]
+
+## GM_Bushes
+Wild Pokémon spawn from bushes[N]
+and attack. They'll stop[N]
+appearing for a while if you[N]
+attack the bushes.[X]
+
+
+## GM_CombatTitle
+Combat[X]
+
+## GM_TipsTitle
+Tips[X]
+
+## GM_MiscTitle
+Misc[X]
+
+## GM_Capture_SH
+Capture[X]
+
+## GM_Capture 
+Knock out a wild Pokémon while[N]
+capturing to add them to[N]
+your team, as long as you[N]
+can afford the 300 gold.[X]
+
+## GM_Party_SH
+Party[X]
+
+## GM_CatchTip
+If you have less than 6 Pokémon[N]
+with you and catch a new one,[N]
+it will immediately join you,[N]
+even if yours had fainted.[X]
+
+## GM_Hitrate_SH
+Hitrate[X]
+
+## GM_Hitrate
+Attacks cannot miss in this game.[N]
+Instead, a "miss" becomes a[N]
+glancing blow, which deals[N]
+half damage.[X]
+
+
+
+## GM_AoETitle
+AoE[X]
+
+## GM_AoE_SH
+Area of Effect[X]
+
+## GM_AoEIntro_SH
+Intro[X]
+
+## GM_AoE
+Area of Effect (AoE) attacks[N]
+deal 2/3rds damage but can hit[N]
+multiple targets.[N]
+Press L or R to rotate[N]
+AoE attacks.[X]
+
+## GM_EffectivenessHeaderText
 Effective Dmg[X]
 
-## GuideMenuEffectivenessSubHeaderText
-Super Effectiveness[X]
+## GM_Effectiveness_SH
+Effectiveness[X]
 
-## GuideMenuEffectivenessBodyText
+## GM_Effectiveness
 Super effective attacks[NL]
-deal around 200% damage.[N]
-The user takes 75% damage.[X]
+deal around 150% damage.[N]
+The user takes 75% damage.[N]
+Resisted attacks deal 50%.[X]
 
-## GuideMenuResistTitleText
+## GM_ResistTitle
 Dmg Mdfy[X]
 
-## GuideMenuResistHeaderText
+## GM_ResistHeaderText
 Ineffective Dmg[X]
 
-## GuideMenuResistSubHeaderText
+## GM_Resist_SH
 Resistance[X]
 
-## GuideMenuResistBodyText
+## GM_Resist
 Resisted attacks[NL]
 deal 50% damage.[X]
+
+## GM_TypeCombinations_SH
+Type Combinations[X]
+
+## GM_TypeCombinations
+Resistances / Immunities override[N]
+weaknesses in Pokémblem.[N]
+A Normal/Flying type resists[N]
+fighting. Additionally, Pokémon[N]
+cannot be doubly weak to moves.[X]
+
+
+
+## GM_AoERotate_SH
+Rotate[X]
+
+## GM_RotateAoE
+Use L or R to rotate[N]
+area of effect attacks.[X]
+
+
+
+
+## GM_LevelupsHeaderText
+Leveling[X]
+
+## GM_Levelups_SH
+RNG[X]
+
+## GM_Levelups
+A Pokémon cannot be more[N]
+than 3 points below average[N]
+in a stat; you cannot[N]
+be stat-screwed.[X]
+
+## GM_Grinding_SH
+Grinding[X]
+
+## GM_Grinding
+You will not gain exp if[N]
+you are overleveled.[N]
+Exp is very fast if[N]
+you are underleveled.[X]
+
+
+
+## GM_Repels_SH
+Repels[X]
+
+## GM_Repels
+Repels reduce wild Pokémon's[N]
+movement to 2, which makes[N]
+them less likely to attack.[X]
+
+
+## GM_Rematches_SH
+Rematches[X]
+
+## GM_Rematches
+Trainers provide 50% more exp[N]
+and can be rematched. But they[N]
+yield 1/4 the money this way.[X]
+
+
+
+
+## GM_Call_SH
+Call[X]
+
+## GM_Call
+Use the Call command when[N]
+outside of a trainer battle[N]
+to summon your team to you.[X]
+
+## GM_Submenu_SH
+Submenu[X]
+
+## GM_Submenu 
+Access the Submenu by moving to[N]
+a tile and pressing <- or ->.[N]
+Here you will find a Pokémon's[N]
+learnset and can reorder moves.[X]
+
+
+## GM_Items_Title
+Items[X]
+
+## GM_Equipment_SH
+Equipment[X]
+
+## GM_Equipment 
+Accessories can be equipped[N]
+to provide a stat boost or[N]
+special effect.[X]
+
+
+
+
 
 ## PalletTrainerTipsText 
 Save by visiting home or a Pokecenter.[NL]
@@ -94,7 +303,8 @@ Save by visiting home or a Pokecenter.[NL]
 
 ## TrainerTip_Quicksave
 The game autosaves at the[N]
-start of your turn.[A][N]
+start of your turn,[N]
+unless your Pokémon fainted.[A][N]
 Change this in [Red]Options[Red][N]
 to manually [Red]Quicksave[Red].[N]
         - Trainer's Tips.[A][X]
@@ -107,7 +317,11 @@ They're tasty, too![N]
 
 ## TrainerTip_Catch
 Press [ToggleRed]R[ToggleRed] on most things[N]
-to see additional details.[N]
+to see additional details.[A][N]
+Press [Red]L[Red] to jump the cursor[N]
+to the next unit.[A][N]
+Hold [Red]B[Red] to move[N]
+the cursor faster.[A][N]
         - Trainer's Tips.[A][X]
 
 ## TrainerTip_Water
@@ -116,8 +330,11 @@ shallow water or ledges.[N]
         - Trainer's Tips.[A][X]
 
 ## TrainerTip_DangerZone
-[Red]Danger Zone[Red] pops up[N]
-automatically.[A][N]//but can
+Area of Effect (AoE) attacks[N]
+deal 2/3rds damage, but can hit[N]
+multiple targets.[N]
+//[Red]Danger Zone[Red] pops up[N]
+//automatically.[A][N]//but can
 //be turned off in [Red]Config[Red].[N]
         - Trainer's Tips.[A][X]
 
@@ -136,15 +353,23 @@ their spawns are defeated.[N]
 
 
 ## TrainerTip_DangerZone2
-Press [Red]Select[Red] on an enemy[N]
-to toggle [Red]Danger Zone[Red],[A][N]
-or press [Red]Select[Red] on an empty tile[N]
-to toggle [Red]Danger Zone[Red] nearby.[N]
+A Pokémon cannot be more[N]
+than 3 points below average[N]
+in a stat;[A] you cannot[N]
+be stat-screwed.[N]
+//Press [Red]Select[Red] on an enemy[N]
+//to toggle [Red]Danger Zone[Red],[A][N]
+//or press [Red]Select[Red] on an empty tile[N]
+//to toggle [Red]Danger Zone[Red] nearby.[N]
         - Trainer's Tips.[A][X]
 
 ## TrainerTip_Zoning
-Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
-you out, avoiding combat.[NL]
+Attacks cannot miss in this game.[N]
+But they will sometimes deal a[N]
+glancing blow instead,[A][N]
+which deals half damage.[N]
+//Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
+//you out, avoiding combat.[NL]
         - Trainer's Tips.[A][X]
 
 ## TrainerTip_Accessory
@@ -154,16 +379,20 @@ Equip an item for extra benefits.[N]
 
 
 ## TrainerTip_Def
-Some Pokémon are weak to special[N]
-attacks,[A] while others are weak to[N]
-physical attacks.[N]
+Access the Submenu by moving to[N]
+a tile and pressing [Red]<-[Red] or [Red]->[Red].[A][N]
+Here you will find a Pokémon's[N]
+learnset and can reorder moves.[N]
         - Trainer's Tips.[A][X]
 
 
 
 ## TrainerTip_Mart
 TMs from the Mart can be[N]
-a great way to power-up![N]
+a great way to power-up![A][N]
+Some Pokémon are weak to special[N]
+attacks,[A] while others are weak to[N]
+physical attacks.[N]
         - Trainer's Tips.[A][X]
 
 ## PewterFlowerSignText
@@ -199,13 +428,17 @@ to see their weaknesses.[N]
 
 		
 ## TrainerTip_MoveMapFaster
-Hold [Red]B[Red] to move[N]
-the cursor faster.[N]
+Use the Call command when[N]
+outside of a trainer battle[N]
+to summon your team to you.[N]
         - Trainer's Tips.[A][X]
 		
 ## TrainerTip_CursorJump
-Press [Red]L[Red] to jump the cursor[N]
-to the next unit.[N]
+Resistances / Immunities override[N]
+weaknesses in Pokémblem.[A][N]
+A Normal/Flying type resists[N]
+fighting.[A] Additionally, Pokémon[N]
+cannot be doubly weak to moves.[N]
         - Trainer's Tips.[A][X]
 		
 ## TrainerTip_MaxPokemon
@@ -294,7 +527,7 @@ dmg, hit rate, and crit chance.[A][N]
 You cannot miss; glancing[N]
 blows instead deal half damage.[A][N]
 Knock out an enemy while[N]
-capturing to catch them all![A][X]
+capturing to catch 'em all![A][X]
 
 ## CatchPokemonTutorial_7
 Well done![A] Catch lots[N]
@@ -3475,7 +3708,7 @@ League Champion.[A][X]
 
 ## GaryChallengeText
 [OpenMidLeft][LoadGaryPoint][OpenMidLeft]Hey, [Tact]![N]
-I was looking forward to meeting[N][A]
+I was looking forward to meeting[A][N]
 you here, [Tact].[A][N]
 My rival should be strong[N]
 to keep me sharp.[A][N]

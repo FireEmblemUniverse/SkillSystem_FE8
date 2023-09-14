@@ -83,6 +83,8 @@
 	POIN SkillTester
 	WORD NullifyID
 	WORD IsAccessory 
+	WORD HoverBoardID 
+	WORD GroundTypeWep
 
 	ALIGN 4
 	Redone_Redone_Slayer:

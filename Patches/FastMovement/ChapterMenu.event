@@ -49,23 +49,24 @@ WORD  0x0
 
 
 // Guide
-//WORD  0x80D7ECC
-//SHORT 0x69C
-//SHORT 0x6E5
-//BYTE  0x4
-//BYTE  0x74
-//SHORT 0x0
-//WORD  0x8022661
-//WORD  0x8022679
+WORD  0x80D7ECC
+SHORT 0x69C
+SHORT 0x6E5
+BYTE  0x4
+BYTE  0x74
+SHORT 0x0
+WORD  0x8022661
+WORD  0x8022679
 //#ifdef Debug
-//  POIN  WinFunctionality+0x1
+  //POIN  WinFunctionality+0x1
 //#else
-//  WORD  0x80226E5
+  WORD  0x80226E5
 //#endif
-//WORD  0x0
-//WORD  0x0
-//WORD  0x0
+WORD  0x0
+WORD  0x0
+WORD  0x0
 
+/*
 // Records
 WORD  0x80D7EC4
 SHORT 0x69E
@@ -79,6 +80,7 @@ WORD  0x8024CBD
 WORD  0x0
 WORD  0x0
 WORD  0x0
+*/
 
 // Options
 WORD  0x80D7EBC
@@ -94,6 +96,7 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
+/*
 // Retreat
 WORD  0x80D7EB4
 SHORT 0x69D
@@ -107,6 +110,7 @@ WORD  0x8024CE1
 WORD  0x0
 WORD  0x0
 WORD  0x0
+*/ 
 
 // Suspend
 WORD  0x80D7EAC
@@ -141,6 +145,7 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
+#ifndef DEBUG_MODE 
 // Fly
 WORD  0x0
 SHORT UM_Fly
@@ -155,6 +160,7 @@ POIN StartSoaring
 WORD  0x0
 WORD  0x0
 WORD  0x0
+#endif 
 
 // Fly
 WORD  0x0

@@ -18,6 +18,21 @@ push {r4-r7, lr}
 mov r4, r0 @ Atkr 
 mov r5, r1 @ dfdr 
 
+@ if non-player defender and cannot counter, then do not reduce incoming damage even if you have a normally supereffective move 
+ldr r3, =0x203A56C @ defender 
+cmp r3, r4 
+bne Continue 
+ldrb r0, [r3, #0x0B] @ deployment byte 
+lsr r0, #6 
+cmp r0, #0 
+beq Continue @ players still get def bonus I guess 
+add r3, #0x52 @ can counter 
+ldrb r0, [r3] 
+cmp r0, #0 
+beq DoNothing 
+
+Continue: 
+
 mov r3, #0x4A @ 
 ldrh r0, [r4, r3] @ Attacker's weapon 
 mov r1, r5 @ dfdr 
