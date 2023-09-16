@@ -126,6 +126,9 @@ This function is used to initialize the PreBattle loop and not have to rely on M
 
 Does not return a value.
 
+### InitSkillBuffers()
+Sets `gAttackerSkillBuffer` and `gDefenderSkillBuffer`'s `lastUnitChecked` value to 0, forcing `SkillTester` to rebuild both skill buffers.
+
 ### GetUnitsInRange (Unit* unit, int allyOption, int range)
 Loops through each unit and checks if they meet the given requirements, and if so, their RAM unitID gets added to the `UnitRangeBuffer`.  
 

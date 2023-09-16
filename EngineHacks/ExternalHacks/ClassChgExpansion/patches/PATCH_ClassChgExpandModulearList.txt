@@ -1,0 +1,20 @@
+NAME=ClassChg Modular Expand List
+AUTHOR=Mokha(悠木晓缺)
+
+IF:0xCCD5C=0x4D 0x6F 0x6B 0x68 0x61
+
+TYPE=STRUCT
+TAG=#ENGINE
+
+INFO=Config expanded unit promotion list
+
+POINTER=$GREP4END 0x43 0x6C 0x61 0x73 0x73 0x43 0x68 0x67 0x45 0x78 0x70 0x61 0x4D 0x6F 0x64 0x00
+DATASIZE=0x8
+DATACOUNT=$GREP4 0 0 0 0 0 0 0 0
+
+LISTNAME=DECIMAL
+B0:CLASS=Promotion class
+B1:CLASS=Current class
+B2:UNIT=Character, 0=ANY
+W4:ITEM=Item, 0=ANY
+W6:FLAG=Event flag, 0=ANY

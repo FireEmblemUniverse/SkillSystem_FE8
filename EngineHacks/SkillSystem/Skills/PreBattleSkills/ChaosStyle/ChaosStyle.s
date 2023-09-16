@@ -1,4 +1,5 @@
 .equ ChaosStyleID, SkillTester+4
+.equ gBattleData, 0x203a4d4
 .thumb
 
 push {r4-r7,lr}
