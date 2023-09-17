@@ -211,4 +211,39 @@ Select an area to Heal. Press L/R to Rotate.[X]
  Thunder[X]
 ## UM_AoEExcalibur
  Excalibur[X]
+## UM_DrawBack
+ Draw Back[X]
  
+## UM_Sacrifice
+ Sacrifice[X]
+
+## UM_ArdentSacrifice
+ Sacrifice[X]
+ 
+## UM_ReciprocalAid
+ Reciprocal Aid[X]//Swaid[X]
+
+## UM_DrawBackDesc
+Unit moves 1 space away from[N]
+target ally. Ally moves to[N]
+unit’s previous space.[X]
+
+## UM_SacrificeDesc
+Drains the user’s HP to[N]
+restore the HP and cure[N]
+status of another allied unit.[X]
+
+## UM_ArdentSacrificeDesc
+Restores 10 HP to[N]
+target, but drops user’s[N]
+HP by 10.[X]
+
+## UM_ReciprocalAidDesc
+User and target ally switch[N]
+their current HP totals.[X]
+
+## HealTargetBottomText
+Select an ally to heal.[X]
+
+## DrawBackTargetBottomText
+Select an ally to pull.[X]
