@@ -226,16 +226,16 @@ Select an area to Heal. Press L/R to Rotate.[X]
 ## UM_DrawBackDesc
 Unit moves 1 space away from[N]
 target ally. Ally moves to[N]
-unit’s previous space.[X]
+unit's previous space.[X]
 
 ## UM_SacrificeDesc
-Drains the user’s HP to[N]
+Drains the user's HP to[N]
 restore the HP and cure[N]
 status of another allied unit.[X]
 
 ## UM_ArdentSacrificeDesc
 Restores 10 HP to[N]
-target, but drops user’s[N]
+target, but drops user's[N]
 HP by 10.[X]
 
 ## UM_ReciprocalAidDesc
