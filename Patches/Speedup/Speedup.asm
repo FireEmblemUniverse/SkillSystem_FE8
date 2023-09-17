@@ -248,9 +248,19 @@ bx r3
 
 .global LevelUpSpeedHook_2
 .type LevelUpSpeedHook_2, %function 
-LevelUpSpeedHook_2: 
-push {r4, r6, lr} 
+LevelUpSpeedHook_2:  @ 807419c
 mov r5, r0 @ vanilla 
+push {r4-r6, lr} 
+
+@mov r0, #0x14
+@ldrh r1, [r5, #0x2c] 
+@add r1, #1 
+@strh r1, [r5, #0x2c] 
+@cmp r1, r0 
+@pop {r4-r6} 
+@pop {r3} 
+@bx r3 
+
 
 ldr r4, =LevelUpSpeed_Link 
 ldr r4, [r4] 
@@ -268,37 +278,36 @@ add r3, #1
 cmp r6, r3 @ if the minimum time, exit 
 beq Exit_LevelupSpeedHook2
 cmp r1, #1 
-bne CheckRamInsteadLevelup 
+bne CheckRamInsteadLevelup2 
 mov r2, #0xFF 
 and r2, r4 
 cmp r6, r2 
-beq ZeroThenVanillaSetLevelupSpeed
+beq ZeroThenVanillaSetLevelupSpeed2
 bl SetTempSpeedupFlag 
-b SpeedupLevelup
+b SpeedupLevelup2
 
 
-CheckRamInsteadLevelup: 
+CheckRamInsteadLevelup2: 
 bl CheckTempSpeedupFlag
 cmp r0, #0 
-beq VanillaSetLevelupSpeed 
-SpeedupLevelup: 
+beq VanillaSetLevelupSpeed2 
+SpeedupLevelup2: 
 mov r0, #0xFF 
 and r0, r4 
 lsr r0, #1  
 ldrh r1, [r5, #0x2c] 
 b Exit_LevelupSpeedHook2 
 
-ZeroThenVanillaSetLevelupSpeed:
+ZeroThenVanillaSetLevelupSpeed2:
 bl UnsetTempSpeedupFlag
-VanillaSetLevelupSpeed: 
+VanillaSetLevelupSpeed2: 
 mov r0, #0xFF 
 and r0, r4 
 ldrh r1, [r5, #0x2c] 
 
 Exit_LevelupSpeedHook2: 
 cmp r1, r0 
-
-pop {r4, r6} 
+pop {r4-r6} 
 pop {r3} 
 bx r3 
 .ltorg 
