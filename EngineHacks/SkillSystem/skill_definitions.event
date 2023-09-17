@@ -1075,35 +1075,35 @@
 
 //Swap: Allows unit to swap positions with an adjacent ally.
 //By StanH
-#define SwapID 255 // 68
+#define SwapID 68
 
 //Swarp: Allows unit to swap positions with a distant ally.
 //Be Sme
-#define SwarpID 255 // 69 
+#define SwarpID 69 
 
 //Steal: Unit can steal items.
 //By Tequila
-#define StealID 255 // 56 
+#define StealID 56 
 
 //Steal+: Unit can steal unequipped weapons and staves if con>weight.
 //By Tequila
-#define StealPlusID 255 // 57 
+#define StealPlusID 57 
 
 //Draw Back: Unit moves 1 space away from target ally. Ally moves to unit’s previous space. 
 //By Vesly 
-#define DrawBackID 68 
+#define DrawBackID 255
 
 //Sacrifice: Drains the user’s HP to restore the HP of another allied unit. It also cures status effects, with no HP cost to the user.
 //By Vesly 
-#define SacrificeID 69 
+#define SacrificeID 255
 
 //Ardent Sacrifice: Restores 10 HP to target, but drops user’s HP by 10. 
 //By Vesly 
-#define ArdentSacrificeID 56
+#define ArdentSacrificeID 255
 
 //Reciprocal Aid: User and target ally switch their current HP totals. 
 //By Vesly 
-#define ReciprocalAidID 57 
+#define ReciprocalAidID 255
 
 
 
