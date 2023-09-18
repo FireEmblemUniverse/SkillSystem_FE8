@@ -1,0 +1,115 @@
+#include "Sacrifice.lyn.event" 
+
+ALIGN 4 
+DrawBackID_Link: 
+WORD DrawBackID
+SacrificeID_Link: 
+WORD SacrificeID
+ArdentSacrificeID_Link: 
+WORD ArdentSacrificeID
+ReciprocalAidID_Link: 
+WORD ReciprocalAidID
+HealTargetBottomText_Link:
+WORD HealTargetBottomText 
+DrawBackTargetBottomText_Link:
+WORD DrawBackTargetBottomText 
+DrawBackActID_Link: 
+WORD 0x28
+SacrificeActID_Link: 
+WORD 0x29
+ArdentSacrificeActID_Link: 
+WORD 0x2a
+ReciprocalAidActID_Link: 
+WORD 0x2b
+
+
+//s1 Unit
+//s6 HealValue
+ALIGN 4
+ASMC_HealLikeVulnerary:
+#incbin "ASMC_HealLikeVulnerary.dmp"
+POIN WaitForMotionEndProc
+
+ALIGN 4
+ASMC_SelfDamageLikeBomb:
+#incbin "ASMC_SelfDamageLikeBomb.dmp"
+POIN WaitForMotionEndProc
+
+ALIGN 4
+WaitForMotionEnd:
+#incbin "WaitForMotionEnd.dmp"
+
+#include "ProcDefinitions.event"
+ALIGN 4
+WaitForMotionEndProc:	//HINT=PROCS
+PROC_SET_NAME(WaitForMotionEndName)
+PROC_LOOP_ROUTINE(WaitForMotionEnd|1)
+PROC_END
+
+ALIGN 4
+WaitForMotionEndName:
+String(WaitForMotionEnd);	BYTE 0x0
+
+ALIGN 4  
+HarmAndHealEvent:
+ASMC ASMC_SelfDamageLikeBomb|1
+SADD s1 s2 s0 // unit to heal 
+ASMC ASMC_HealLikeVulnerary|1
+NoFade 
+ENDA 
+
+ALIGN 4  
+HealTargetEvent:
+ASMC ASMC_HealLikeVulnerary|1
+NoFade 
+ENDA 
+
+
+ALIGN 4
+gSacrificeTargetSelection: 
+POIN HealTargetInit // Init
+POIN 0x0804E885 // End
+POIN 0x00000000 // Init Target
+POIN 0x080247D1 // Switch In
+POIN 0x00000000 // Switch Out
+POIN SacrificeTargetAPress // A Press
+POIN 0x08022749 // B Press
+POIN 0x00000000 // R Press
+
+ALIGN 4
+gArdentSacrificeTargetSelection: 
+POIN HealTargetInit // Init
+POIN 0x0804E885 // End
+POIN 0x00000000 // Init Target
+POIN 0x080247D1 // Switch In
+POIN 0x00000000 // Switch Out
+POIN ArdentSacrificeTargetAPress // A Press
+POIN 0x08022749 // B Press
+POIN 0x00000000 // R Press
+
+ALIGN 4
+gReciprocalAidTargetSelection: 
+POIN HealTargetInit // Init
+POIN 0x0804E885 // End
+POIN 0x00000000 // Init Target
+POIN 0x080247D1 // Switch In
+POIN 0x00000000 // Switch Out
+POIN ReciprocalAidTargetAPress // A Press
+POIN 0x08022749 // B Press
+POIN 0x00000000 // R Press
+
+ALIGN 4
+gDrawBackTargetSelection: 
+POIN DrawBackTargetInit // Init
+POIN 0x0804E885 // End
+POIN 0x00000000 // Init Target
+POIN 0x080247D1 // Switch In
+POIN 0x00000000 // Switch Out
+POIN DrawBackTargetAPress // A Press
+POIN 0x08022749 // B Press
+POIN 0x00000000 // R Press
+
+
+
+
+

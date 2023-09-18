@@ -1619,8 +1619,24 @@ unit makes a guaranteed follow-up.[X]
 
 
 
+## SD_DrawBack
+Draw Back: Unit moves 1 space away[N]
+from target ally. Ally moves to[N]
+unit's previous space.[X]
 
+## SD_Sacrifice
+Sacrifice: Drains HP from the[N]
+user to restore the HP and cure[N]
+status of another allied unit.[X]
 
+## SD_ArdentSacrifice
+Ardent Sacrifice: Restores 10[N]
+HP to target, but drops user's[N]
+HP by 10.[X]
+
+## SD_ReciprocalAid
+Reciprocal Aid:: User and target[N]
+ally switch their current HP totals.[X]
 
 
 
