@@ -20,9 +20,22 @@ ORG $A4D12 // make BWL not ignore units with no affinity
 SHORT $46c0 
 //[0x2026bb0..0x2026bbc]!! 0x80A4CFC
 
+// remove vanilla read of wrong address 
+// doesn't necessarily fix anything but gets rid of a no$ halt 
+// 
+ORG $A52BC 
+BYTE $00 $28 $0B $D0 $12 $18 $11 $7D $20 $20 $08 $40 $00 $28 $05 $d1 $0E $20 $10 $56
+BYTE $00 $28 $01 $d1 $00 $20 $00 $E0 $01 $20 $70 $47 //$10 $B5 $93 $b0 
+
+ORG $5738 
+replaceWithHack(NewEndFace|1)
+
+
 POP 
 
-
+ALIGN 4
+NewEndFace: 
+#incbin "EndFace.dmp" 
 
 
 

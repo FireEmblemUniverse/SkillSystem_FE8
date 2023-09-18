@@ -135,7 +135,7 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 	
 	int vanillaEquipped = GetVanillaEquipped(unit);
 	//return vanillaEquipped;
-	if (!UNIT_IS_VALID(aUnit)) return vanillaEquipped; 
+	if (!UNIT_IS_VALID(unit)) return vanillaEquipped; 
 	
 	//u8* spells = SpellsGetter(unit, 1);
 	//return 0xFF30; // Always equipped with tackle I guess? lol 

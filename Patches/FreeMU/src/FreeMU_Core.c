@@ -467,7 +467,9 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	//SMS_UpdateFromGameData();
 	for (int i = 1; i<0x40; i++) { // refresh all players when starting FMU 
 		struct Unit* unit = GetUnit(i); 
+		if (unit) { 
 		unit->state &= ~(US_UNSELECTABLE | US_CANTOING); 
+		} 
 	} 
 	
 	CenterCameraOntoPosition((Proc*)proc,gActiveUnit->xPos,gActiveUnit->yPos);
