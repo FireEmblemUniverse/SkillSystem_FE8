@@ -123,6 +123,7 @@ callHackNew(PoisonHPBarHook)
 ORG $9A3BBC // from 9A3BA4 // This makes vulnerary animations work 
 SleepVar(15) // vanilla is 30 
 
+
 // by Vesly 
 // speed for battle map anim rounds 
 // just from the proc MapAnimBattle 9A49FC
@@ -140,7 +141,13 @@ ORG $9A4A34
 SleepVar(10) // vanilla is 10 
 
 ORG $9A4A44
-SleepVar(20) 
+SleepVar(14,20) // min 14 to avoid some bug with AP_SetAnimation
+// 95a8 AP_SetAnimation 
+// // 80786D0 break 
+// [20254EC]!!
+// AP_SetAnimation is given r0 = 1200200 
+// r2=0xD00ED00E
+
 
 
 ORG 0x9A3528 // speed up map battle anim start? 
@@ -160,6 +167,7 @@ ORG 0x9A47C4
 SleepVar(8) // vanilla is 8 
 ORG 0x9A480C
 SleepVar(20) // vanilla is 20 
+
 
 
 // https://github.com/FireEmblemUniverse/fireemblem8u/blob/b9ad9bcafd9d4ecb7fc13cc77a464e2a82ac8338/src/popup.c#L418

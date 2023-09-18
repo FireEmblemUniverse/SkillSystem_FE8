@@ -4,6 +4,17 @@ PUSH
 ORG $1A4CC
 jumpToHack(AcrobatCheck)
 
+// Acrobat needs a rewrite and this is a suspect way to fix it. 
+// Instead of rewriting, I'm just putting the unit in r2 in a few places 
+ORG $7A660 
+// instead of loading the class movement cost table in r2, we'll just put the unit in r2 
+SHORT $1C22 $46C0 
+ORG $7A6C0 
+SHORT $1C22 $46C0 
+ORG $7A514
+SHORT $46C0 $46C0 // put unit in r2 before bl to GenerateExtendedMovementMapOnRange 801a43c
+
+
 //Pass
 ORG $800 //modifies movement ARM code
 WORD 0xE59FC000 0xE12FFF1C //ldr r12,Pass; bx r12
