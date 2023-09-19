@@ -1306,7 +1306,7 @@ bl AoE_ClearBG2
 
 
 
-blh 0x8019b18 @UpdateGameTileGfx	@{U}
+@blh 0x8019b18 @UpdateGameTileGfx	@{U} @ this takes parameters lol 
 @blh 0x80197F0 @UpdateGameTileGfx	@{J}
 
 @blh ClearBG0BG1

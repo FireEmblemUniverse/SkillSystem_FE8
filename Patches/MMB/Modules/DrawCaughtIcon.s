@@ -23,6 +23,8 @@ MMBRenderCaughtIcon:
 
 	mov		r4, r0
 	
+cmp r1, #0 
+beq End2 
 @ only display for wild pokemon (unit IDs 0x50 - 0x9F) 
 ldr r0, [r1] 
 ldrb r0, [r0, #4] @ unit ID 

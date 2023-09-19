@@ -100,6 +100,8 @@ mov r0,r5
 sub r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq CheckA 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -119,6 +121,8 @@ mov r0,r5
 mov r1,r6
 sub r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq CheckB 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -138,6 +142,8 @@ mov r0,r5
 add r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq CheckC 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -156,6 +162,8 @@ mov r0,r5
 mov r1,r6
 add r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq ReturnD 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -199,6 +207,8 @@ mov r0,r5
 sub r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq aCheckA 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -207,11 +217,13 @@ mov r2, r7
 cmp r1, r2
 beq RetTrapIndividual
 
-
+aCheckA: 
 mov r0,r5
 mov r1,r6
 sub r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq aCheckB 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -220,11 +232,13 @@ mov r2, r7
 cmp r1, r2
 beq RetTrapIndividual
 
-
+aCheckB: 
 mov r0,r5
 add r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq aCheckC 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -233,11 +247,13 @@ mov r2, r7
 cmp r1, r2
 beq RetTrapIndividual
 
-
+aCheckC: 
 mov r0,r5
 mov r1,r6
 add r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq aReturnD 
 
 mov r1, #0
 ldrb r1,[r0,#2]
@@ -245,7 +261,7 @@ ldrb r1,[r0,#2]
 mov r2, r7
 cmp r1, r2
 beq RetTrapIndividual
-
+aReturnD: 
 mov r0,#0	@no trap so return 0
 
 

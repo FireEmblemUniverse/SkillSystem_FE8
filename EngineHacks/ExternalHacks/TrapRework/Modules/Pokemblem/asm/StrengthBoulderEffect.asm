@@ -169,38 +169,50 @@ mov r0,r5
 sub r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq CheckA 
 mov r1, #0 @ left 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+CheckA: 
 mov r0,r5
 mov r1,r6
 sub r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq CheckB 
 mov r1, #3 @ up 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+CheckB: 
 mov r0,r5
 add r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq CheckC 
 mov r1, #1 @ right 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+CheckC: 
 mov r0,r5
 mov r1,r6
 add r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq ReturnD 
 mov r1, #2 @ down 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+ReturnD: 
 @ false 
 mov r0,#0	@no trap so return 0
 

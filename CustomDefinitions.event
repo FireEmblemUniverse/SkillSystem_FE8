@@ -1,5 +1,4 @@
 // 0x80ABC14 being called without proper something 
-//PROTECT $16854
 
 //#define FreeSpace 0x012a49a8 // after music, some gfx, and fonts
 #define FreeSpace 0x01300000 // after music, some gfx, and fonts

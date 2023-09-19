@@ -1,5 +1,6 @@
 .equ DragonSkinID, SkillTester+4
 .thumb
+.equ gBattleData, 0x203a4d4 
 push {r4-r7,lr}
 @goes in the battle loop.
 @r0 is the defender

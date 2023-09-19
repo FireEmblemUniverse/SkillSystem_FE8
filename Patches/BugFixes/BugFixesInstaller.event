@@ -30,6 +30,9 @@ BYTE $00 $28 $01 $d1 $00 $20 $00 $E0 $01 $20 $70 $47 //$10 $B5 $93 $b0
 ORG $5738 
 replaceWithHack(NewEndFace|1)
 
+ORG $5758 
+//replaceWithHack(NewEndFaceByID|1)
+
 
 POP 
 
@@ -37,6 +40,9 @@ ALIGN 4
 NewEndFace: 
 #incbin "EndFace.dmp" 
 
+ALIGN 4
+NewEndFaceByID: 
+#incbin "EndFace.dmp" 
 
 
 

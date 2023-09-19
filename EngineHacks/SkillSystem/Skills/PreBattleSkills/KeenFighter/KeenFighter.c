@@ -30,6 +30,9 @@ void DoublingDamageModifierFunc(struct BattleUnit* bunitA, struct BattleUnit* bu
 } 
 
 void SteadyBrawler(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
+	if (!(bunitB->unit.pCharacterData)) { 
+	return;
+	}
 	if (SkillTester(&bunitB->unit, SteadyBrawlerID_Link)) { 
 		if (gBattleTarget.battleDefense) { // if def isn't calculated yet, do nothing 
 			if (CanUnitDouble(bunitB, bunitA)) { 

@@ -149,8 +149,10 @@ Break:
 mov r0, #0 
 blh GetTrap 
 mov r3, r0 
+cmp r3, #0 
+beq NoLoadByte
 ldrb r0, [r3, #2] 
-
+NoLoadByte: 
 pop {r4-r7} 
 pop {r1} 
 ldr r1, =0x801A1B1 
