@@ -203,6 +203,8 @@ bool FMUmisc_RunTalkEvents(struct FMUProc* proc){
   else if (proc->smsFacing==1) x++;
   else if (proc->smsFacing==2) y++;
   else                         y--;
+  
+  if (IsPosInvaild(x, y)) { return 0; } 
 	u8 targetDeployID = gMapUnit[y][x];
 	if (targetDeployID) 
 		gActionData.targetIndex = targetDeployID; 

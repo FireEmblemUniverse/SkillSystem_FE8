@@ -9,7 +9,7 @@ POIN LungeUpdate
 	POIN FixWait2
 #endif // STAIRS_ASM
 #ifdef ESCAPE_ARRIVE
-	POIN FinalEscapeThing
+	//POIN FinalEscapeThing
 #endif // ESCAPE_ARRIVE
 
 

@@ -22,6 +22,8 @@ cmp	r0, r1		@check if same character
 bne	End
 
 @check if killed enemy
+cmp r5, #0 
+beq End
 ldrb	r0, [r5, #0x13]	@currhp
 cmp	r0, #0
 bne	End

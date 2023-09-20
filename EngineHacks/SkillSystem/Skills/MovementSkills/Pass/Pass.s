@@ -23,7 +23,11 @@ mov r14, r1
 .short 0xF800 
 pop {r1} @ actor 
 @ r0 = target 
+cmp r0, #0 
+beq ReturnTrue 
 ldr r0, [r0] @ char pointer 
+cmp r0, #0 
+beq ReturnTrue @ unit has died 
 ldrb r0, [r0, #4] @ unit ID 
 ldr r2, [r1] @ char pointer 
 ldrb r2, [r2, #4] @ unit ID 

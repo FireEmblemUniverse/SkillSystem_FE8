@@ -29,7 +29,7 @@ int HpBarIsFMUActive(void) {
 } 
 
 static inline bool IsPosInvaild(s8 x, s8 y){
-	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );
+	return( (x<0) || (x>gMapSize.x) || (y<0) || (y>gMapSize.y) );
 }
 
 static inline bool IsCharNotOnMap(Unit* unit){

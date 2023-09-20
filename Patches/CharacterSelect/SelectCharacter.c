@@ -122,10 +122,7 @@ struct Struct_SelectCharacterProc
 	u8 platformType; // 0x2A.
 	u8 currOptionIndex; // 0x2B. 0 = first option, 1 = 2nd option, etc. 
 	Unit* activeUnit; // 0x2C. 
-	struct
-	{
-		Unit* unitRam; // 0x30, 0x34, 0x38, 0x3c, 0x40, 0x44 
-	} list[5];
+	Unit* unitRam[5]; // 0x30, 0x34, 0x38, 0x3c, 0x40, 0x44 
 	Proc* menu_proc; 
 };
 
@@ -136,7 +133,7 @@ struct Struct_ConfirmationProc
 
 void CreatorIdle(Struct_SelectCharacterProc* proc)
 {
-
+	return; 
 }
 
 static const struct ProcInstruction ProcInstruction_SelectCharacter[] =
@@ -257,16 +254,16 @@ void SelectCharacter_StartMenu(struct Struct_SelectCharacterProc* proc)
 
 	for ( int i = 0 ; i < 5 ; i++ ) // Mem slots 1 - 5 as unit IDs to display 
 	{ 	
-		proc->list[i].unitRam = GetUnitByCharId(gEventSlot[i+1]); //Unit* 
+		proc->unitRam[i] = GetUnitByCharId(gEventSlot[i+1]); //Unit* 
 	}
 	
 	proc->currOptionIndex = 0;
 	// Determine menu size based on values in memory slots 1-5 being non-zero. 
-    if 		(proc->list[4].unitRam && proc->list[3].unitRam && proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter5);
-	else if (proc->list[3].unitRam && proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter4);
-	else if (proc->list[2].unitRam && proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter3);
-	else if (proc->list[1].unitRam && proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter2);
-	else if (proc->list[0].unitRam) StartMenu(&MenuDef_SelectCharacter1);
+    if 		(proc->unitRam[4] && proc->unitRam[3] && proc->unitRam[2] && proc->unitRam[1] && proc->unitRam[0]) StartMenu(&MenuDef_SelectCharacter5);
+	else if (proc->unitRam[3] && proc->unitRam[2] && proc->unitRam[1] && proc->unitRam[0]) StartMenu(&MenuDef_SelectCharacter4);
+	else if (proc->unitRam[2] && proc->unitRam[1] && proc->unitRam[0]) StartMenu(&MenuDef_SelectCharacter3);
+	else if (proc->unitRam[1] && proc->unitRam[0]) StartMenu(&MenuDef_SelectCharacter2);
+	else if (proc->unitRam[0]) StartMenu(&MenuDef_SelectCharacter1);
 	
 }
 
@@ -292,12 +289,12 @@ void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 	if (cost) BgMap_ApplyTsa(&gBG1MapBuffer[11][20], &gCostUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
 	
 
-	Unit* unit = (proc->list[i].unitRam);
+	//Unit* unit = (proc->unitRam[i]);
 
-	if ( unit->items[0] ) BgMap_ApplyTsa(&gBG1MapBuffer[13][28], &gItemUIBoxTSA, 0); 
-	if ( unit->items[1] ) BgMap_ApplyTsa(&gBG1MapBuffer[13][26], &gItemUIBoxTSA, 0); 
-	if ( unit->items[2] ) BgMap_ApplyTsa(&gBG1MapBuffer[15][28], &gItemUIBoxTSA, 0); 
-	if ( unit->items[3] ) BgMap_ApplyTsa(&gBG1MapBuffer[15][26], &gItemUIBoxTSA, 0); 
+	if ( proc->unitRam[i]->items[0] ) BgMap_ApplyTsa(&gBG1MapBuffer[13][28], &gItemUIBoxTSA, 0); 
+	if ( proc->unitRam[i]->items[1] ) BgMap_ApplyTsa(&gBG1MapBuffer[13][26], &gItemUIBoxTSA, 0); 
+	if ( proc->unitRam[i]->items[2] ) BgMap_ApplyTsa(&gBG1MapBuffer[15][28], &gItemUIBoxTSA, 0); 
+	if ( proc->unitRam[i]->items[3] ) BgMap_ApplyTsa(&gBG1MapBuffer[15][26], &gItemUIBoxTSA, 0); 
 	
 
 	EnableBgSyncByMask(2);
@@ -316,9 +313,14 @@ void StartPlatform(CreatorClassProcStruct* proc)
 
 	Struct_SelectCharacterProc* parent_proc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
 	proc->platformType = 0x3F; // Temple ?  
-	for ( int i = 0 ; i < 5 ; i++ ) { proc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; }
+	for ( int i = 0 ; i < 5 ; i++ ) { 
+	proc->classes[i] = 0; 
+	if (parent_proc->unitRam[i]) { 
+		proc->classes[i] = parent_proc->unitRam[i]->pClassData->number; 
+		}
+	}
 	proc->menuItem = parent_proc->currOptionIndex;
-	proc->charID = parent_proc->list[proc->menuItem].unitRam->pCharacterData->number;
+	proc->charID = parent_proc->unitRam[proc->menuItem]->pCharacterData->number;
 	proc->mode = 1; 
 	
 	
@@ -419,7 +421,7 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	
 	CharacterSelectDrawUIBox(parent_proc);
 
-	Unit* unit = (parent_proc->list[parent_proc->currOptionIndex].unitRam);
+	Unit* unit = (parent_proc->unitRam[parent_proc->currOptionIndex]);
 	//asm("mov r11,r11");
 
 // Looks like the battle platform uses the same area in obj VRAM as MMS, so we can't show it. 
@@ -647,15 +649,15 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
     //Text_Clear(someTextHandleArray);
     //Text_InsertString(someTextHandleArray, 0, 0, GetStringFromIndex(0x5AA));
 	
-	
-	u8 charName0 = GetStringTextWidthAscii(GetStringFromIndex(parent_proc->list[0].unitRam->pClassData->nameTextId));
+
+	u8 charName0 = GetStringTextWidthAscii(GetStringFromIndex(parent_proc->unitRam[0]->pClassData->nameTextId));
 
 	TextHandle char0NameHandle = {
 		.tileIndexOffset = gpCurrentFont->tileNext+tile,
 		.tileWidth = 6, //charName0,
 		.xCursor = 2, 
-		//GetCharTextWidthAscii(GetStringFromIndex(parent_proc->list[0].unitRam->pCharacterData->nameTextId), &char0NameHandle.tileWidth)
-		//GetStringTextWidthAscii(GetStringFromIndex(parent_proc->list[0].unitRam->pCharacterData->nameTextId))
+		//GetCharTextWidthAscii(GetStringFromIndex(parent_proc->unitRam[0]->pCharacterData->nameTextId), &char0NameHandle.tileWidth)
+		//GetStringTextWidthAscii(GetStringFromIndex(parent_proc->unitRam[0]->pCharacterData->nameTextId))
 	};
 	tile += 6;
 	//Text_InitClear(&char0NameHandle, 5);
@@ -710,36 +712,36 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	if (CanWeSelectCharacter(4)==1) Text_SetColorId(&char4NameHandle,TEXT_COLOR_GOLD);
 	
 	// Display main menu options based on character ID  
-	if (parent_proc->list[4].unitRam && parent_proc->list[3].unitRam && parent_proc->list[2].unitRam && parent_proc->list[1].unitRam && parent_proc->list[0].unitRam) 
+	if (parent_proc->unitRam[4] && parent_proc->unitRam[3] && parent_proc->unitRam[2] && parent_proc->unitRam[1] && parent_proc->unitRam[0]) 
 	{
-		Text_DrawString(&char4NameHandle, GetStringFromIndex(parent_proc->list[4].unitRam->pClassData->nameTextId));
-		//Text_InsertString(&char4NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->list[4].unitRam->pCharacterData->nameTextId));
+		Text_DrawString(&char4NameHandle, GetStringFromIndex(parent_proc->unitRam[4]->pClassData->nameTextId));
+		//Text_InsertString(&char4NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->unitRam[4]->pCharacterData->nameTextId));
 		Text_Display(&char4NameHandle,&gBG0MapBuffer[17][13]);		
 	}
-	if (parent_proc->list[3].unitRam && parent_proc->list[2].unitRam && parent_proc->list[1].unitRam && parent_proc->list[0].unitRam) 
+	if (parent_proc->unitRam[3] && parent_proc->unitRam[2] && parent_proc->unitRam[1] && parent_proc->unitRam[0]) 
 	{
-		//Text_InsertString(&char3NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->list[3].unitRam->pCharacterData->nameTextId));
-		Text_DrawString(&char3NameHandle, GetStringFromIndex(parent_proc->list[3].unitRam->pClassData->nameTextId));
+		//Text_InsertString(&char3NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->unitRam[3]->pCharacterData->nameTextId));
+		Text_DrawString(&char3NameHandle, GetStringFromIndex(parent_proc->unitRam[3]->pClassData->nameTextId));
 		Text_Display(&char3NameHandle,&gBG0MapBuffer[15][13]);
 	}
 	
-	if (parent_proc->list[2].unitRam && parent_proc->list[1].unitRam && parent_proc->list[0].unitRam) 
+	if (parent_proc->unitRam[2] && parent_proc->unitRam[1] && parent_proc->unitRam[0]) 
 	{
-		//Text_InsertString(&char2NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->list[2].unitRam->pCharacterData->nameTextId));
-		Text_DrawString(&char2NameHandle, GetStringFromIndex(parent_proc->list[2].unitRam->pClassData->nameTextId));
+		//Text_InsertString(&char2NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->unitRam[2]->pCharacterData->nameTextId));
+		Text_DrawString(&char2NameHandle, GetStringFromIndex(parent_proc->unitRam[2]->pClassData->nameTextId));
 		Text_Display(&char2NameHandle,&gBG0MapBuffer[13][13]);	
 	}
 
-	if (parent_proc->list[1].unitRam && parent_proc->list[0].unitRam) 
+	if (parent_proc->unitRam[1] && parent_proc->unitRam[0]) 
 	{
-		//Text_InsertString(&char1NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->list[1].unitRam->pCharacterData->nameTextId));
-		Text_DrawString(&char1NameHandle, GetStringFromIndex(parent_proc->list[1].unitRam->pClassData->nameTextId));
+		//Text_InsertString(&char1NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->unitRam[1]->pCharacterData->nameTextId));
+		Text_DrawString(&char1NameHandle, GetStringFromIndex(parent_proc->unitRam[1]->pClassData->nameTextId));
 		Text_Display(&char1NameHandle,&gBG0MapBuffer[11][13]);
 	}
-	if (parent_proc->list[0].unitRam) 
+	if (parent_proc->unitRam[0]) 
 	{
-		//Text_InsertString(&char0NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->list[0].unitRam->pCharacterData->nameTextId));
-		Text_DrawString(&char0NameHandle, GetStringFromIndex(parent_proc->list[0].unitRam->pClassData->nameTextId));
+		//Text_InsertString(&char0NameHandle,2,TEXT_COLOR_GOLD,GetStringFromIndex(parent_proc->unitRam[0]->pCharacterData->nameTextId));
+		Text_DrawString(&char0NameHandle, GetStringFromIndex(parent_proc->unitRam[0]->pClassData->nameTextId));
 		Text_Display(&char0NameHandle,&gBG0MapBuffer[9][13]);	
 	}
 	
@@ -859,12 +861,19 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 		
 		// Otherwise, update relevant fields.
 		classProc->mode = 1;
-		for ( int i = 0 ; i < 5 ; i++ ) { classProc->classes[i] = parent_proc->list[i].unitRam->pClassData->number; } 
+		
+		for ( int i = 0 ; i < 5 ; i++ ) { 
+		//asm("mov r11, r11"); 
+		classProc->classes[i] = 0; 
+		if (parent_proc->unitRam[i]) { 
+			classProc->classes[i] = parent_proc->unitRam[i]->pClassData->number; 
+			} 
+		} 
 		
 		
 		classProc->menuItem = parent_proc->currOptionIndex;
 		//classProc->menuItem = commandProc->commandDefinitionIndex;
-		classProc->charID = parent_proc->list[parent_proc->currOptionIndex].unitRam->pCharacterData->number;
+		classProc->charID = parent_proc->unitRam[parent_proc->currOptionIndex]->pCharacterData->number;
 		//classProc->charID = parent_proc->list[commandProc->commandDefinitionIndex].unitRam->pCharacterData->number;
 		
 	}
@@ -958,7 +967,7 @@ static int SelectYes(struct MenuProc* menu, struct MenuCommandProc* command)
 	//ProcGoto(proc, 1); // Destructor label 
 	
 	Struct_SelectCharacterProc* selectCharProc = (Struct_SelectCharacterProc*)ProcFind(&ProcInstruction_SelectCharacter);
-	gEventSlot[0xC] = selectCharProc->list[selectCharProc->currOptionIndex].unitRam->pCharacterData->number;
+	gEventSlot[0xC] = selectCharProc->unitRam[selectCharProc->currOptionIndex]->pCharacterData->number;
 
 	
 	int playerGold = gPlayerGold; 

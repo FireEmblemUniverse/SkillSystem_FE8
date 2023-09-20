@@ -4,13 +4,6 @@
 .global InitTrapsHook 
 .type InitTrapsHook, %function 
 InitTrapsHook: 
-
-
-
-
-
-ldrb r1, [r0, #1] @ first opcode being 
-
 ldr r3, =TrapInitFromEventsFunctionTable
 add r3, r0 
 ldr r3, [r3] 

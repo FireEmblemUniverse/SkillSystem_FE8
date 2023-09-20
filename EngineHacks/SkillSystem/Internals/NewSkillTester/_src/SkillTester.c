@@ -54,7 +54,11 @@ bool NihilTester(Unit* unit, u8 skillID) {
 
 //Makes skill buffer at a given location.
 SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
-    int unitNum = unit->pCharacterData->number;
+	
+	if (!unit) { asm("mov r11, r11"); } 
+	int unitNum = 0; 
+	if (unit->pCharacterData) { unitNum = unit->pCharacterData->number; }
+
     int count = 0, temp = 0;
     buffer->lastUnitChecked = unit->index;
 
@@ -202,6 +206,8 @@ bool CheckSkillBuffer(Unit* unit, u8 skillID) {
 bool SkillTester(Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
+	if (!unit) { asm("mov r11, r11"); } 
+	if (!(unit->pCharacterData)) { return false; } 
 
     int index = unit->index;
 

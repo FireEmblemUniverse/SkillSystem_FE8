@@ -48,6 +48,8 @@ bx r0
 .type PSGWInjureDefender, %function
 PSGWInjureDefender: @ r4 = attacker's characterr struct, @ r5 = defender's character struct, 6 = attack struct, r7 = defense struct
 push { lr }
+cmp r5, #0 
+beq EndInjureDefender 
 ldrb r1, [ r5, #0x13 ]
 cmp r1, #0x00
 beq EndInjureDefender @ Leave if the defender is already dead.

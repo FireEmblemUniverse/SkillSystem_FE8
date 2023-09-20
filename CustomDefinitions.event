@@ -1,4 +1,3 @@
-// 0x80ABC14 being called without proper something 
 
 //#define FreeSpace 0x012a49a8 // after music, some gfx, and fonts
 #define FreeSpace 0x01300000 // after music, some gfx, and fonts
@@ -26,7 +25,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.09.B               Sep 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.09.C               Sep 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 

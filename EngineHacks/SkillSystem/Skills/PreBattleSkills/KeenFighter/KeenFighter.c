@@ -6,7 +6,9 @@ extern int KeenFighterID_Link;
 extern int SteadyBrawlerID_Link; 
 
 void KeenFighter(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
-
+	if ((!bunitB->unit.pCharacterData) || (!bunitB->unit.pClassData) ) { 
+	return;
+	}
 	if (SkillTester(&bunitB->unit, KeenFighterID_Link)) { 
 		// if they can double or have a brave weapon 
 		if (CanUnitDouble(bunitA, bunitB) || (GetItemAttributes(bunitA->weaponBefore) & IA_BRAVE)) { 
@@ -30,7 +32,7 @@ void DoublingDamageModifierFunc(struct BattleUnit* bunitA, struct BattleUnit* bu
 } 
 
 void SteadyBrawler(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
-	if (!(bunitB->unit.pCharacterData)) { 
+	if ((!bunitB->unit.pCharacterData) || (!bunitB->unit.pClassData) ) { 
 	return;
 	}
 	if (SkillTester(&bunitB->unit, SteadyBrawlerID_Link)) { 

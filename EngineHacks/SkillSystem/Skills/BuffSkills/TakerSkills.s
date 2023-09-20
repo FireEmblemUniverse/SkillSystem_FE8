@@ -136,6 +136,8 @@ cmp	r3, #0x00
 beq	RetFalse
 
 @check if killed enemy
+cmp r1, #0 
+beq RetFalse 
 ldrb	r3, [r1,#0x13]	@currhp
 cmp	r3, #0
 bne	RetFalse

@@ -54,6 +54,7 @@ ORG $3798C // kill GetBallistaItemAt
 SHORT $2000 // mov r0, #0 
 SHORT $4770 // bx lr 
 
+
 ORG $35728 // Kill Prepare Blank Tile by 7743  
 WORD 0 
 
