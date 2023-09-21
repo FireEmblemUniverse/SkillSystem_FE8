@@ -45,6 +45,8 @@
 */
 
 HandleProtag:
+//ASMC 0x8009261 //@ ap_clearall 
+//ASMC 0x80053a5 //@ ClearSprites // maybe helpful? 
 DisableFreeMovement 
 SendAllTransporter(ProtagID)
 DISA ProtagID 

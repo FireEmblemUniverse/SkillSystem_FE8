@@ -46,10 +46,10 @@ AiTargetCursor_Link:
 
 
 PUSH 
+// 85b6510 t sProc_MenuItem 
+// 08587970 T sMusicProc2Script
 
-ORG $59ADE0 // gProc_BMXFADE 
-//PROC_END // remove some 16 frame fade after each action ? // seems to glitch 
-ORG $1DD24 
+ORG $1DD24 // in gProc_BMXFADE 
 BYTE $1 // remove ~14 frames related to some fade after each action ? 
 
 ORG $80E54 
@@ -60,24 +60,29 @@ ORG $8117C
 callHackNew(SummonSpeedHook_1)
 
 
-// This part is entangled with skillsys strmag split 
-// Need to check if it works with vanilla 
-
-
-ORG $7F45C 
+ORG $7F45C // [20254bc+0x31]!!
 jumpToHack(LevelUpSpeedHook_1)
 SHORT $46c0 
-
-
 ORG $741D4
 callHackNew(LevelUpSpeedHook_2)
 SHORT $4288 // cmp r0, r1 
 //SHORT $DB5C // blt instead of bne 
+
+ORG $7F3AF // arrg 
+//BYTE $DD // ble 0 instead of beq 0 
+// 807ee84
+
 //ORG $742A4
 //SHORT $D104 // blt instead of bne 
 
 
+//ORG 0x07F464; BYTE 0x02 // faster levelups by 7743 
+//ORG 0x0741E0; BYTE 0x03 // faster levelups by 7743 
 
+
+ORG $D2F7C // overwrite vsprintf (debug print text) 
+LevelUpCheckProcExists: // 3000108
+#incbin "LevelUpCheckProcExists.dmp" 
 
 
 ORG $21798 // These 3 are all identical code and can use the same hook 
@@ -102,6 +107,7 @@ SleepVar(30, 60)
 
 
 ORG $7F47C // These two hooks are the same 
+// this might cause a proc to never end so I'm commenting it out for now 
 callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
 ORG $7F54C 
 callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
