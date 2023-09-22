@@ -277,7 +277,7 @@ BYTE 1 0 1
 ALIGN 4
 RangeTemplateTable_SmallestTriangle1:
 BYTE 3 3 
-BYTE 1 1 
+BYTE 1 0 
 BYTE 0 1 0              
 BYTE 1 0 1              
 BYTE 0 0 0      
@@ -285,7 +285,7 @@ BYTE 0 0 0
 ALIGN 4
 RangeTemplateTable_SmallestTriangle2:
 BYTE 3 3 
-BYTE 1 1 
+BYTE 2 1 
 BYTE 0 1 0              
 BYTE 0 0 1              
 BYTE 0 1 0    
@@ -293,7 +293,7 @@ BYTE 0 1 0
 ALIGN 4
 RangeTemplateTable_SmallestTriangle3:
 BYTE 3 3 
-BYTE 1 1 
+BYTE 1 2 
 BYTE 0 0 0              
 BYTE 1 0 1              
 BYTE 0 1 0    
@@ -301,7 +301,7 @@ BYTE 0 1 0
 ALIGN 4
 RangeTemplateTable_SmallestTriangle4:
 BYTE 3 3 
-BYTE 1 1 
+BYTE 0 1 
 BYTE 0 1 0              
 BYTE 1 0 0              
 BYTE 0 1 0    

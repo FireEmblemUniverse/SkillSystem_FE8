@@ -606,7 +606,7 @@ ENUF CallCountdownFlag_2 // 1 turn until auto refresh again
 #ifdef DRUnitBitMask
 CHECK_EVENTID DangerRadiusToggleFlag
 BNE 1 rC r0 
-VeslySetDangerRadius
+//VeslySetDangerRadius // already set in NewMakePhaseControllerFunc
 LABEL 1 
 #endif 
 ENUF CallCountdownFlag // Can 'Call' again 

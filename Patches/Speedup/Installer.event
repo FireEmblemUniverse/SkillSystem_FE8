@@ -46,8 +46,11 @@ AiTargetCursor_Link:
 
 
 PUSH 
-// 85b6510 t sProc_MenuItem 
-// 08587970 T sMusicProc2Script
+
+ORG $59AF00
+SleepVar(1, 6) // phase gfx 
+ORG $59AF20
+SleepVar(6, 30) // phase gfx 
 
 ORG $1DD24 // in gProc_BMXFADE 
 BYTE $1 // remove ~14 frames related to some fade after each action ? 
@@ -80,10 +83,6 @@ ORG $7F3AF // arrg
 //ORG 0x0741E0; BYTE 0x03 // faster levelups by 7743 
 
 
-ORG $D2F7C // overwrite vsprintf (debug print text) 
-LevelUpCheckProcExists: // 3000108
-#incbin "LevelUpCheckProcExists.dmp" 
-
 
 ORG $21798 // These 3 are all identical code and can use the same hook 
 callHackNew(LightRuneAnimHook_3)
@@ -92,11 +91,23 @@ callHackNew(LightRuneAnimHook_3)
 ORG $2192C 
 callHackNew(LightRuneAnimHook_3)
 
+
+// after a player acts, 5m cycles / ~16 frames are used on InitializeDR 
+// it also occurs at the start of player phase twice 
+
+ORG $59DAEC
+SleepVar(8,32) // after action ? 
+
+
+//ORG $7C102
+//SHORT $3003 // make exp bar move 3x as fast 
+// experimental.. might break something 
+
 // Delay for EXP bar 
 ORG $9A3720 
 SleepVar(20)
 ORG $9A3740 
-SleepVar(20)
+SleepVar(5,20) // keep exp bar on screen for a bit afterwards 
 
 ORG $9A3FA4
 SleepVar(70)
@@ -107,6 +118,9 @@ SleepVar(30, 60)
 
 
 #ifdef POKEMBLEM
+ORG $59A2C0
+PROC_SLEEP(0) // replace gorgon egg hatch proc call with nothing 
+
 ORG $7F47C // These two hooks are the same 
 // this might cause a proc to never end so I'm commenting it out for now 
 // yeah this breaks everything overtime unless you forcibly end 8587970 
@@ -219,6 +233,9 @@ callHackNew(SpeedupMovementHook)
 
 POP 
 
+ALIGN 4 // called in FreeMovementInternal hook at ORG $1ca9c right after SelectUnitHook 
+LevelUpCheckProcExists: // 3000108
+#incbin "LevelUpCheckProcExists.dmp" 
 
 #include "Speedup.lyn.event" 
 #include "STAL.lyn.event" 

@@ -16,6 +16,8 @@
 	ORG FreeSpace
 #endif
 
+#include "C/Installer.event" // Vesly 
+
 //{
 // Definitions, don't change these.
 #define DRUnitBitMask 0x1<<DRUnitBit

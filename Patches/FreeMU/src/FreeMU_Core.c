@@ -409,6 +409,9 @@ void ProcFun_ResetCursorPosition(Proc* proc)
     
     case FACTION_GREEN:
     case FACTION_RED:
+	#ifdef POKEMBLEM_VERSION
+	return; 
+	#endif 
         GetEnemyStartCursorPosition(&x, &y);
         break;
     
