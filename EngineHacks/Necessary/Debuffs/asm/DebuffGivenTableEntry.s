@@ -27,7 +27,7 @@ add r5, #1
 cmp r5, r4 
 bge End
 
-ldrb r1, [r4, r5] @ what should the next byte do 
+ldrb r1, [r7, r5] @ what should the next byte do 
 cmp r1, #0 
 beq Loop 
 mov r0, r6 @ debuff entry 
