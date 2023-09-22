@@ -41,24 +41,28 @@ s8 AreAllegiancesAllied(int left, int right);
 void StartUnitHpInfoWindow(struct Proc*);
 
 // headers 
-void TryAddAllyTargetList(struct Unit* unit);
-void MakeTargetListForAdjacentAlly(struct Unit* unit);
+void TryAddToReciprocalAidTargetList(struct Unit* unit);
+void MakeReciprocalAidTargetList(struct Unit* unit);
 void TryDrawBackAllyToTargetList(struct Unit* unit);
 void MakeDrawBackTargetListForAdjacentAlly(struct Unit* unit);
 struct Vec2u GetDrawBackCoord(int x1, int x2, int y1, int y2);
 int DrawBackAction(struct MenuProc* menu);
 int DrawBack_Usability(struct MenuProc* menu);
 int DrawBack_Effect(struct MenuProc* menu);
+void MakeSacrificeTargetList(struct Unit*); 
 
  
 int Sacrifice_Usability(struct MenuProc* menu) { 
+	if (gActiveUnit->curHP <= 1) { 
+		return 3; // false 
+	} 
 	if (gActiveUnit->state & US_CANTOING) { 
 		return 3; // false 
 	} 
 	if (SkillTester(gActiveUnit, SacrificeID_Link) == 0) { 
 		return 3; // false 
 	}
-	MakeTargetListForAdjacentHeal(gActiveUnit); 
+	MakeSacrificeTargetList(gActiveUnit); 
 	if (GetTargetListSize()) { 
 		return 1; // usable 
 	} 
@@ -194,7 +198,7 @@ int DrawBackTargetAPress(struct TargetSelectionProc* targetProc, struct TargetEn
 
 
 int Sacrifice_Effect(struct MenuProc* menu) { 
-	MakeTargetListForAdjacentHeal(gActiveUnit); 
+	MakeSacrificeTargetList(gActiveUnit); 
 	StartTargetSelection(&gSacrificeTargetSelection); // returns TargetSelectionProc* 
 	return 7; // close menu and such 
 } 
@@ -204,12 +208,15 @@ int ArdentSacrifice_Effect(struct MenuProc* menu) {
 	return 7; // close menu and such 
 } 
 int ReciprocalAid_Effect(struct MenuProc* menu) { 
-	MakeTargetListForAdjacentAlly(gActiveUnit); 
+	MakeReciprocalAidTargetList(gActiveUnit); 
 	StartTargetSelection(&gReciprocalAidTargetSelection); // returns TargetSelectionProc* 
 	return 7; // close menu and such 
 } 
 
 int ArdentSacrifice_Usability(struct MenuProc* menu) { 
+	if (gActiveUnit->curHP <= 1) { 
+		return 3; // false 
+	} 
 	if (gActiveUnit->state & US_CANTOING) { 
 		return 3; // false 
 	} 
@@ -230,7 +237,7 @@ int ReciprocalAid_Usability(struct MenuProc* menu) {
 	if (SkillTester(gActiveUnit, ReciprocalAidID_Link) == 0) { 
 		return 3; // false 
 	}
-	MakeTargetListForAdjacentAlly(gActiveUnit); // calls InitTargets 
+	MakeReciprocalAidTargetList(gActiveUnit); // calls InitTargets 
 	if (GetTargetListSize()) { 
 		return 1; // usable 
 	} 
@@ -244,11 +251,7 @@ int ReciprocalAid_Usability(struct MenuProc* menu) {
  
  
  
- 
- 
- 
-  
-void TryAddAllyTargetList(struct Unit* unit) {
+ void TryAddToSacrificeTargetList(struct Unit* unit) {
 
     if (!AreAllegiancesAllied(gSubjectUnit->index, unit->index)) {
         return;
@@ -257,13 +260,17 @@ void TryAddAllyTargetList(struct Unit* unit) {
     if (unit->state & US_RESCUED) {
         return;
     }
+	// if target is at full hp and not statused, exit 
+	if ((unit->statusIndex == 0) && (unit->maxHP == unit->curHP)) {
+		return; 
+	}
 
     AddTarget(unit->xPos, unit->yPos, unit->index, 0);
 
     return;
 }
  
-void MakeTargetListForAdjacentAlly(struct Unit* unit) {
+void MakeSacrificeTargetList(struct Unit* unit) {
     int x = unit->xPos;
     int y = unit->yPos;
 
@@ -271,7 +278,44 @@ void MakeTargetListForAdjacentAlly(struct Unit* unit) {
 
     BmMapFill(gMapRange, 0);
 
-    ForEachAdjacentUnit(x, y, TryAddAllyTargetList);
+    ForEachAdjacentUnit(x, y, TryAddToSacrificeTargetList);
+
+    return;
+}
+ 
+ 
+  
+void TryAddToReciprocalAidTargetList(struct Unit* unit) {
+
+    if (!AreAllegiancesAllied(gSubjectUnit->index, unit->index)) {
+        return;
+    }
+
+    if (unit->state & US_RESCUED) {
+        return;
+    }
+	// if both units are full hp, exit 
+	if ((gSubjectUnit->maxHP == gSubjectUnit->curHP) && (unit->maxHP == unit->curHP)) {
+		return; 
+	}
+	if ((unit->maxHP == unit->curHP) && (unit->maxHP < gSubjectUnit->curHP)) { 
+		return; 
+	} 
+
+    AddTarget(unit->xPos, unit->yPos, unit->index, 0);
+
+    return;
+}
+ 
+void MakeReciprocalAidTargetList(struct Unit* unit) {
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    gSubjectUnit = unit;
+
+    BmMapFill(gMapRange, 0);
+
+    ForEachAdjacentUnit(x, y, TryAddToReciprocalAidTargetList);
 
     return;
 }
