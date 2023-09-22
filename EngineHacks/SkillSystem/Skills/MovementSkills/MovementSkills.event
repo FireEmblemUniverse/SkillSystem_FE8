@@ -3,21 +3,22 @@ PUSH
 //Acrobat
 ORG $1A4CC
 jumpToHack(AcrobatCheck)
-//
-//// Acrobat needs a rewrite and this is a suspect way to fix it. 
-//// Instead of rewriting, I'm just putting the unit in r2 in a few places 
-ORG $7A65C // instead of loading the class movement cost table in r2, we'll just put the unit in r3 
+
+//// Acrobat needs a rewrite and this is a suspect way to fix some invalid skill tester calls 
+//// Instead of rewriting, I'm just putting the unit in r3 in a few places 
+ORG $7A65C // put the unit in r3 
 SHORT $7C61 $6862 $6B92 $1C23 
 ORG $7a6bC 
 SHORT $7C61 $6862 $6B92 $1C23 
 
+ORG $1A440 
+callHack_r0(MapRangeFillMovementHook) 
 
-// These need to hook instead 
-ORG $7A514
-//SHORT $46C0 $46C0 // put unit in r2 before bl to GenerateExtendedMovementMapOnRange 801a43c
-//ORG $1a442 
-ORG $3bE42 
-//SHORT $46C0 $46C0 
+// Might need to do these in the future - Vesly 
+// These need to hook instead of fixing inline 
+//ORG $7A514
+//ORG $3bE42 
+
 
 
 //Pass
@@ -26,6 +27,8 @@ WORD 0xE59FC000 0xE12FFF1C //ldr r12,Pass; bx r12
 POIN PassCheck|1
 
 POP
+
+#include "Acrobat/MapRangeFillMovementHook.lyn.event" 
 
 
 ALIGN 4
