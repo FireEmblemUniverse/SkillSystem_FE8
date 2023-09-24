@@ -47,6 +47,9 @@ AiTargetCursor_Link:
 
 PUSH 
 
+
+
+
 ORG $59AF00
 SleepVar(1, 6) // phase gfx 
 ORG $59AF20

@@ -210,24 +210,16 @@ ldrh r0, [r3, r1] @ Coords
 strh r0, [r5, #0x10] @ Coords 
 
 @ AutoLevelUnits(15, True, 0x50FF)
-ldr r3, =MemorySlot 
-add r3, #4 @ s1 
-ldrb r0, [r4, #8] 
-str r0, [r3] @ # of levels equal to the bush 
 
+ldr r3, =MemorySlot 
 mov r0, #1 @ True IncreaseDisplayedLevelBoolean s3 
-add r3, #8 @ s3 
-str r0, [r3] 
-ldr r0, [r5]
-ldrb r0, [r0, #4] @ Unit ID 
-str r0, [r3, #4] @ s4 UnitIDRange
-mov r0, #0 
-ldrb r0, [r5, #0x10] @ XX 
-strh r0, [r3, #8] 
-ldrb r1, [r5, #0x11] @ YY 
-strh r1, [r3, #10] @ YY 
-@SVAL 3 ; SVAL 4 ; SVAL 5 0; ASMC AutoLevelUnits" 
-bl AutoLevelUnits
+str r0, [r3, #4*3] 
+
+ldrb r1, [r4, #8] @ # of levels equal to the bush 
+mov r0, r5 @ unit 
+bl AutoLevelSummonedUnit
+
+
 
 ldrh r0, [r4, #0x10] @ Coords 
 strh r0, [r5, #0x10] @ Coords 

@@ -53,9 +53,8 @@ AutoLevelUnits:
 @ r6 as valid terrain types 
 
 ldr r0, =MemorySlot 
-mov r6, #0x0 
+mov r6, #0x1 
 ldr r7, [r0, #4*0x01] @r7 / s1 as number of levels 
-@mov r7, #21 
 
 LoopThroughUnits:
 mov r0,r6
@@ -522,6 +521,11 @@ mov r2, r1 @ 0 levels in this form if we're lower level than evolution level, th
 LevelsInCurrentForm: 
 
 sub r1, r2 @ Number of levels in current stage 
+cmp r1, #0 
+bge NoIssue
+mov r1, #0 
+NoIssue: 
+
 mul r0, r1 @ levels * growth 
 mov r2, r6 @ current levels * growth 
 add r2, r0 

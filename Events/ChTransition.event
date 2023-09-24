@@ -43,15 +43,25 @@
 08039cac AiMasterDecisionMaker - break here first, then break on 08039c20 AiSetDecision
 08039d10 .thumb
 */
-
+ALIGN 4 
 HandleProtag:
-//ASMC 0x8009261 //@ ap_clearall 
-//ASMC 0x80053a5 //@ ClearSprites // maybe helpful? 
 DisableFreeMovement 
 SendAllTransporter(ProtagID)
+ASMC 0x8009261 //@ ap_clearall 
+ASMC 0x80053a5 //@ ClearSprites // maybe helpful? 
 DISA ProtagID 
 NoFade 
 ENDA 
+
+
+PUSH 
+ORG $D2F7C // overwrite vsprintf (debug print text) 
+//RefreshSomeThings:
+//NoFade 
+//ENDA 
+
+
+POP 
 
 PUSH 
 ORG $D38C 
@@ -606,7 +616,7 @@ ENUF CallCountdownFlag_2 // 1 turn until auto refresh again
 #ifdef DRUnitBitMask
 CHECK_EVENTID DangerRadiusToggleFlag
 BNE 1 rC r0 
-//VeslySetDangerRadius // already set in NewMakePhaseControllerFunc
+VeslySetDangerRadius // already set in NewMakePhaseControllerFunc
 LABEL 1 
 #endif 
 ENUF CallCountdownFlag // Can 'Call' again 

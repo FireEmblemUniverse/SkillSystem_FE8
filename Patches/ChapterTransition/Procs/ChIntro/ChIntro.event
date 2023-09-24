@@ -2,8 +2,8 @@
 // Copy 0859B1B0
 PROC_CALL_ROUTINE(0x30185)
 PROC_SLEEP(0x1)
-PROC_NEW_CHILD(0x59B0F0)
-PROC_CALL_ROUTINE_ARG(0x21081, 0x1)
+PROC_NEW_CHILD(0x59B0F0) // loop for button press 
+PROC_CALL_ROUTINE_ARG(0x21081, 0x1) // label to go to when button is pressed 
 
 // Check if IntroScreen should be skipped
 PROC_CALL_ROUTINE_ARG(SkipIntroCheck|0x01, SkipIntroFlag)
@@ -27,7 +27,7 @@ PROC_SLEEP(0x1)
 PROC_WHILE_ROUTINE(End_Seg2|0x01)
 
 //Copy 0x0859B1B0+0xC8
-PROC_CALL_ROUTINE_ARG(0x21081, 0x0)
+PROC_CALL_ROUTINE_ARG(0x21081, 0x0) // at 1FDEC in the child it skips to the end if label provided is 0 
 
   // Run on Skip
   PROC_LABEL(0x1)
