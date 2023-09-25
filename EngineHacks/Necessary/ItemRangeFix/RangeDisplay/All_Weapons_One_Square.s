@@ -5,7 +5,7 @@
 push	{r4,r14}
 mov		r4,r0
 push {r1} 
-bl BuildStraightLineRangeFromUnitAndItem
+bl BuildStraightLineRangeFromUnit
 pop {r1} 
 cmp r0, #1 
 beq Exit 

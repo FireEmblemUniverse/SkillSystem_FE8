@@ -25,8 +25,7 @@ mov r5, r2 @ func?
 
 
 @ r0 = unit 
-mov r1, #1 @ r1 = item ID 
-bl BuildStraightLineRangeFromUnitAndItem 
+bl BuildStraightLineRangeFromUnit 
 cmp r0, #1 
 beq Exit 
 

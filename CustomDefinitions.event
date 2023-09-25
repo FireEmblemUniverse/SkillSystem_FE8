@@ -1,4 +1,4 @@
-//PROTECT $1b810 $1B94A
+PROTECT $1489d40 $1489dC0
 //#define FreeSpace 0x012a49a8 // after music, some gfx, and fonts
 #define FreeSpace 0x01300000 // after music, some gfx, and fonts
 #define FreeSpace_Low 0xb2a610
@@ -13,6 +13,7 @@
 
 // Comment out for public releases
 //#define DEBUG_MODE 
+#define TESTING_RANGES
 
 // Config options 
 #define INSTALL_FMU 

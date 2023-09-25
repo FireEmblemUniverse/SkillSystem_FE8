@@ -1,7 +1,7 @@
 ALIGN 4
 WORD $1C04B510
 SHORT $B402
-SHORT ((BuildStraightLineRangeFromUnitAndItem-4-CURRENTOFFSET>>12)&$7FF)|$F000 ((BuildStraightLineRangeFromUnitAndItem-4-CURRENTOFFSET>>1)&$7FF)|$F800
+SHORT ((BuildStraightLineRangeFromUnit-4-CURRENTOFFSET>>12)&$7FF)|$F000 ((BuildStraightLineRangeFromUnit-4-CURRENTOFFSET>>1)&$7FF)|$F800
 SHORT $BC02
 WORD $D00D2801 $4A081C20
 SHORT ((Return_Range_Bitfield-4-CURRENTOFFSET>>12)&$7FF)|$F000 ((Return_Range_Bitfield-4-CURRENTOFFSET>>1)&$7FF)|$F800

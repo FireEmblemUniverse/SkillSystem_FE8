@@ -132,7 +132,12 @@ UpdateDRMove:
 //}
 ALIGN 4
 InitializeDR:
+#ifdef TESTING_RANGES
+#include "InitializeDR_Debug.lyn.event" 
+#endif 
+#ifndef TESTING_RANGES
 #include "InitializeDR.lyn.event"
+#endif 
 
 #include "CallUpdateDRMoveProc.lyn.event" 
 

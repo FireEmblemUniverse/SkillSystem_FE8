@@ -1079,7 +1079,7 @@ int GetUnitFacing(struct Unit* unit) {
 
 
 
-int BuildStraightLineRangeFromUnitAndItem(struct Unit* unit) { 
+int BuildStraightLineRangeFromUnit(struct Unit* unit) { 
 	int result = false;
 	int unitID = unit->pCharacterData->number;
 	int NotFreeMove = FreeMoveRam->state; 

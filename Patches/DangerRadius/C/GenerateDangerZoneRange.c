@@ -140,6 +140,29 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 	asm("mov r11, r11"); 
 }
 
+int doesUnitHaveSpecialRange(struct Unit* unit) { 
+
+
+    int i, item, result = 0;
+	//u32 range = 0; 
+
+    for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i)
+        //if (CanUnitUseWeapon(unit, item))
+            result |= PokemblemGetItemReachBits(item);
+
+	if (result > 0x10) { 
+		return true; 
+	}
+	return false; 
+	//GetItemData(ITEM_INDEX(item))->encodedRange;
+
+
+} 
+
+#ifdef POKEMBLEM_VERSION 
+extern int BuildStraightLineRangeFromUnit(struct Unit* unit); 
+#endif 
+
 void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
 {
     int ix, iy;
@@ -173,6 +196,34 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
             } \
         }
 #endif 
+	#ifdef POKEMBLEM_VERSION 
+	if (BuildStraightLineRangeFromUnit(unit)) { 
+		SetWorkingBmMap(gBmMapMovement);
+		return; 
+	} 
+	#endif 
+
+
+	if (doesUnitHaveSpecialRange(unit)) { 
+		u32 minRange; 
+		u32 maxRange; 
+		int i, item; 
+	    for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i) { 
+			if (item) { 
+				if (CanUnitUseWeapon(unit, item)) { 
+					minRange = GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
+					maxRange = (GetItemData(ITEM_INDEX(item))->encodedRange & 0xF0) >> 4; 
+					FOR_EACH_IN_MOVEMENT_RANGE({
+					MapAddInBoundedRange(ix, iy, minRange, maxRange);
+					})
+				}
+			} 
+		} 
+	
+	
+	} 
+	
+	else { 
     switch (PokemblemGetUnitWeaponReachBits(unit, -1))
     {
 
@@ -256,7 +307,7 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
         break;
 
     } // switch (GetUnitWeaponReachBits(unit, -1))
-
+	} 
 	#ifndef POKEMBLEM_VERSION
     if (UNIT_CATTRIBUTES(unit) & CA_BALLISTAE)
     {
