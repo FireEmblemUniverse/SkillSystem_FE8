@@ -1,9 +1,8 @@
 
 
-#define IRAM_MapAddInRange 0x3007300
-#define IRAM_ForEachInMovementRange 0x3007000
-#define IRAM_MapAddInRange_Size 0x200 
-#define IRAM_ForEachInMovementRange_Size 0x640 
+#define IRAM_MapAddInRange 0x3007000
+#define IRAM_ForEachInMovementRange 0x3007100
+#define IRAM_MapAddInRange_Size 0x100 
 
 
 ALIGN 4 
@@ -11,14 +10,12 @@ IRAM_MapAddInRange_Link:
 WORD IRAM_MapAddInRange 
 SIZEOF_MapAddInRange_Link:
 WORD IRAM_MapAddInRange_Size
-IRAM_ForEachInMovementRange_Link:
+IRAM_ForEachInMovement_Link:
 WORD IRAM_ForEachInMovementRange 
-SIZEOF_ForEachInMovementRange_Link:
-WORD IRAM_ForEachInMovementRange_Size
 
 #include "CallMapAddInRange.lyn.event" 
 #include "GenerateDangerZoneRange.lyn.event" 
 ALIGN 4 
 NewMapInRangeSizeLabel: 
 #include "NewMapAddInRange/NewMapAddInRange.lyn.event" 
-ASSERT IRAM_ForEachInMovementRange_Size - (CurrentOffset - NewMapInRangeSizeLabel) 
+ASSERT IRAM_MapAddInRange_Size - (CurrentOffset - NewMapInRangeSizeLabel) 
