@@ -4,8 +4,8 @@
 
 void CopyNewMapAddInRangeToIWRAM(void) { 
 		//copy render code into IWRAM
-	CpuFastCopy(PokemblemMapAddInRange, (void*)IRAM_MapAddInRange, SIZEOF_MapAddInRange_Link);
-	CpuFastCopy(ForEachInMovementRange, (void*)IRAM_ForEachInMovementRange, SIZEOF_MapAddInRange_Link);
+	//CpuFastCopy(PokemblemMapAddInRange, (void*)IRAM_MapAddInRange, SIZEOF_MapAddInRange_Link);
+	CpuFastCopy(NewForEachInMovementRange, (void*)IRAM_ForEachInMovementRange, SIZEOF_ForEachInMovementRange_Link);
 }
 
 
@@ -182,7 +182,7 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
 					minRange = GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
 					maxRange = (GetItemData(ITEM_INDEX(item))->encodedRange & 0xF0) >> 4; 
 					
-					
+					CallForEachInMovementRange(minRange, maxRange); 
 					//FOR_EACH_IN_MOVEMENT_RANGE({
 					//PokemblemMapAddInBoundedRange(ix, iy, minRange, maxRange);
 					//})
@@ -198,81 +198,68 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
     {
 
     case REACH_RANGE1:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 1);
-        })
+		CallForEachInMovementRange(1, 1); 
 
         break;
 
     case REACH_RANGE1 | REACH_RANGE2:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 2);
-        })
+		CallForEachInMovementRange(1, 2); 
 
         break;
 
     case REACH_RANGE1 | REACH_RANGE2 | REACH_RANGE3:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 3);
-        })
+		CallForEachInMovementRange(1,3); 
 
         break;
 
     case REACH_RANGE2:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 2, 2);
-        })
+		CallForEachInMovementRange(2, 2); 
 
         break;
 
     case REACH_RANGE2 | REACH_RANGE3:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 2, 3);
-        })
+		CallForEachInMovementRange(2, 3); 
 
         break;
 
     case REACH_RANGE3:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 3, 3);
-        })
+		CallForEachInMovementRange(3,3); 
 
         break;
 
     case REACH_RANGE3 | REACH_TO10:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 3, 10);
-        })
+		CallForEachInMovementRange(3, 10); 
 
         break;
 
     case REACH_RANGE1 | REACH_RANGE3:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 1);
-            PokemblemMapAddInBoundedRange(ix, iy, 3, 3);
-        })
+	// dunno if faster to use CallForEachInMovementRange(minRange, maxRange); or not 
+	CallForEachInMovementRange(1, 1);
+	CallForEachInMovementRange(3,3);
+        //FOR_EACH_IN_MOVEMENT_RANGE({
+        //    PokemblemMapAddInBoundedRange(ix, iy, 1, 1);
+        //    PokemblemMapAddInBoundedRange(ix, iy, 3, 3);
+        //})
 
         break;
 
     case REACH_RANGE1 | REACH_RANGE3 | REACH_TO10:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 1);
-            PokemblemMapAddInBoundedRange(ix, iy, 3, 10);
-        })
+		CallForEachInMovementRange(1, 1);
+		CallForEachInMovementRange(3, 10);
+        //FOR_EACH_IN_MOVEMENT_RANGE({
+        //    PokemblemMapAddInBoundedRange(ix, iy, 1, 1);
+        //    PokemblemMapAddInBoundedRange(ix, iy, 3, 10);
+        //})
 
         break;
 
     case REACH_RANGE1 | REACH_RANGE2 | REACH_RANGE3 | REACH_TO10:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 10);
-        })
+		CallForEachInMovementRange(1, 10); 
 
         break;
 
     case REACH_RANGE1 | REACH_TO10:
-        FOR_EACH_IN_MOVEMENT_RANGE({
-            PokemblemMapAddInBoundedRange(ix, iy, 1, 4);
-        })
+		CallForEachInMovementRange(1, 4); 
 
         break;
 
@@ -370,11 +357,11 @@ int PokemblemGetItemReachBits(int item) {
     } // switch (GetItemEncodedRange(item))
 }
 
-extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
-extern void CallMapAddInRange(int x, int y, int range, int value); 
+/*
 void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange)
 {
     CallMapAddInRange(x, y, maxRange,     +1);
     CallMapAddInRange(x, y, minRange - 1, -1);
     //IRAM_MapAddInRange(x, y, minRange - 1, -1);
 }
+*/

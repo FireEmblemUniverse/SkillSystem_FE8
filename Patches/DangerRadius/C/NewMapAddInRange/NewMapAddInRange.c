@@ -8,7 +8,7 @@
 // draw fog in this function if DR state is set 
 
 
-void ForEachInMovementRange(int minRange, int maxRange) { 
+void NewForEachInMovementRange(int minRange, int maxRange) { 
 	int ix, iy;
 	for (iy = gBmMapSize.y - 1; iy >= 0; --iy) 
         { 
@@ -19,14 +19,14 @@ void ForEachInMovementRange(int minRange, int maxRange) {
                 if (gBmMapUnit[iy][ix]) 
                     continue; 
                 
-				CallMapAddInRange(ix, iy, maxRange,     +1);
-				CallMapAddInRange(ix, iy, minRange - 1, -1);
+				PokemblemMapAddInRange(ix, iy, maxRange,     +1);
+				PokemblemMapAddInRange(ix, iy, minRange - 1, -1);
             } 
         }
 		
 } 
 
-void PokemblemMapAddInRange(int x, int y, int range, int value) // 
+inline void PokemblemMapAddInRange(int x, int y, int range, int value) // 
 {
     int ix, iy, iRange;
 	int setFog = (gBmSt.gameStateBits & BM_FLAG_3); // @ Check if we're called by DangerRadius
