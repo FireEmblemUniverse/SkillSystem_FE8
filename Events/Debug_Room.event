@@ -561,11 +561,11 @@ ENUT SecretKeyObtained
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 Write_Byte(17, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(14, YCoordNewArea)  
+Write_Byte(24, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
-MNC2 DebugCh
+//MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh
@@ -577,7 +577,7 @@ MNC2 DebugCh
 //MNC2 CeruleanGymCh
 
 //MNC2 Route9ECh 
-//MNC2 ViridianForestSCh
+MNC2 ViridianForestSCh
 //MNC2 Route20ECh
 //MNC2 DebugCh 
 //MNC2 ChampionCh 
