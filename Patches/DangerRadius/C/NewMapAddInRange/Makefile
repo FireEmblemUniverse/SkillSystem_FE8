@@ -13,7 +13,7 @@ include $(DEVKITARM)/base_tools
 LYN := "C:/devkitPro/lyn.exe"
 
 # setting up compilation flags
-ARCH   := -mcpu=arm7tdmi -mthumb -mthumb-interwork
+ARCH   := -mcpu=arm7tdmi
 CFLAGS := $(ARCH) -Wall -mtune=arm7tdmi -O2 -mlong-calls
 
 # C to ASM rule

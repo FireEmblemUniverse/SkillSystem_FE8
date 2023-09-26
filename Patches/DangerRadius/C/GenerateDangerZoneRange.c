@@ -2,6 +2,12 @@
 //#include "NewMapAddInRange.c"
 #define POKEMBLEM_VERSION 
 
+void CopyNewMapAddInRangeToIWRAM(void) { 
+		//copy render code into IWRAM
+	CpuFastCopy(PokemblemMapAddInRange, (void*)IRAM_MapAddInRange, SIZEOF_MapAddInRange_Link);
+	CpuFastCopy(ForEachInMovementRange, (void*)IRAM_ForEachInMovementRange, SIZEOF_MapAddInRange_Link);
+}
+
 
 
 #ifdef POKEMBLEM_VERSION 
@@ -12,8 +18,8 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 #endif 
 {
 	asm("mov r11, r11"); 
-		//copy render code into IWRAM
-	//CpuFastCopy(NewWMLoop, IRAM_NewWMLoop, SIZEOF_NewWMLoop);
+	CopyNewMapAddInRangeToIWRAM(); 
+
 	
 	struct Unit* unit;
     int i, enemyFaction;
@@ -175,9 +181,11 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
 				if (CanUnitUseWeapon(unit, item)) { 
 					minRange = GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
 					maxRange = (GetItemData(ITEM_INDEX(item))->encodedRange & 0xF0) >> 4; 
-					FOR_EACH_IN_MOVEMENT_RANGE({
-					PokemblemMapAddInBoundedRange(ix, iy, minRange, maxRange);
-					})
+					
+					
+					//FOR_EACH_IN_MOVEMENT_RANGE({
+					//PokemblemMapAddInBoundedRange(ix, iy, minRange, maxRange);
+					//})
 				}
 			} 
 		} 
@@ -363,9 +371,10 @@ int PokemblemGetItemReachBits(int item) {
 }
 
 extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
-
+extern void CallMapAddInRange(int x, int y, int range, int value); 
 void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange)
 {
-    PokemblemMapAddInRange(x, y, maxRange,     +1);
-    PokemblemMapAddInRange(x, y, minRange - 1, -1);
+    CallMapAddInRange(x, y, maxRange,     +1);
+    CallMapAddInRange(x, y, minRange - 1, -1);
+    //IRAM_MapAddInRange(x, y, minRange - 1, -1);
 }

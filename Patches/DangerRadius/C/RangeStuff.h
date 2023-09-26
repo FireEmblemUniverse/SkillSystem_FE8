@@ -1,4 +1,13 @@
 
+#define IRAM_MapAddInRange 0x3007000
+extern int SIZEOF_MapAddInRange_Link; 
+#define IRAM_ForEachInMovementRange 0x3007100 
+
+
+//void* IRAM_MapAddInRange_Link(int x, int y, int range, int value); 
+//void* IRAM_ForEachInMovementRange_Link(int minRange, int maxRange); 
+void* ForEachInMovementRange(int minRange, int maxRange); 
+
 #define SHORTCALL __attribute__((short_call))
 #define CONSTFUNC __attribute__((const))
 

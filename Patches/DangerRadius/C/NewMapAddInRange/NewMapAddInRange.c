@@ -6,6 +6,26 @@
 // ItemRangeFix.event "//Fix my ballista issues the lazy way (instead of not passing in bool via r12, just make range function not use r12)" 
 // edits the vanilla version of this function 
 // draw fog in this function if DR state is set 
+
+
+void ForEachInMovementRange(int minRange, int maxRange) { 
+	int ix, iy;
+	for (iy = gBmMapSize.y - 1; iy >= 0; --iy) 
+        { 
+            for (ix = gBmMapSize.x - 1; ix >= 0; --ix) 
+            { 
+                if (gBmMapMovement[iy][ix] > MAP_MOVEMENT_MAX) 
+                    continue; 
+                if (gBmMapUnit[iy][ix]) 
+                    continue; 
+                
+				CallMapAddInRange(ix, iy, maxRange,     +1);
+				CallMapAddInRange(ix, iy, minRange - 1, -1);
+            } 
+        }
+		
+} 
+
 void PokemblemMapAddInRange(int x, int y, int range, int value) // 
 {
     int ix, iy, iRange;
