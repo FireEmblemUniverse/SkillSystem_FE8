@@ -1,12 +1,10 @@
 
 #define IRAM_MapAddInRange 0x3007000
 extern int SIZEOF_MapAddInRange_Link; 
-#define IRAM_ForEachInMovementRange 0x3007100 
 
+extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
+extern void CallMapAddInRange(int x, int y, int range, int value); 
 
-//void* IRAM_MapAddInRange_Link(int x, int y, int range, int value); 
-//void* IRAM_ForEachInMovementRange_Link(int minRange, int maxRange); 
-void* ForEachInMovementRange(int minRange, int maxRange); 
 
 #define SHORTCALL __attribute__((short_call))
 #define CONSTFUNC __attribute__((const))
@@ -50,7 +48,7 @@ extern int prMovGetter(struct Unit* unit); // skillsys mov getter
 
 
 
-
+#define USE_ARM 
 
 struct Unit* GetUnitInline(int id);
 extern void AcrobatSetWorkingMoveCosts(const s8 mct[TERRAIN_COUNT], int, struct Unit*); 
@@ -60,7 +58,7 @@ void PokemblemGenerateUnitMovementMapExt(struct Unit* unit, s8 movement);
 int PokemblemGetUnitWeaponReachBits(struct Unit* unit, int itemSlot);
 int PokemblemGetItemReachBits(int item);
 void PokemblemMapAddInRange(int x, int y, int range, int value);
-void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange);
+inline void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange);
 extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
 
 

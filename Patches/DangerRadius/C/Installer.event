@@ -1,8 +1,7 @@
 
 
 #define IRAM_MapAddInRange 0x3007000
-#define IRAM_ForEachInMovementRange 0x3007100
-#define IRAM_MapAddInRange_Size 0x100 
+#define IRAM_MapAddInRange_Size 0x200 
 
 
 ALIGN 4 
@@ -10,8 +9,6 @@ IRAM_MapAddInRange_Link:
 WORD IRAM_MapAddInRange 
 SIZEOF_MapAddInRange_Link:
 WORD IRAM_MapAddInRange_Size
-IRAM_ForEachInMovement_Link:
-WORD IRAM_ForEachInMovementRange 
 
 #include "CallMapAddInRange.lyn.event" 
 #include "GenerateDangerZoneRange.lyn.event" 

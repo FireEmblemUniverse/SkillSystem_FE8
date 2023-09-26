@@ -5,7 +5,6 @@
 void CopyNewMapAddInRangeToIWRAM(void) { 
 		//copy render code into IWRAM
 	CpuFastCopy(PokemblemMapAddInRange, (void*)IRAM_MapAddInRange, SIZEOF_MapAddInRange_Link);
-	CpuFastCopy(ForEachInMovementRange, (void*)IRAM_ForEachInMovementRange, SIZEOF_MapAddInRange_Link);
 }
 
 
@@ -18,8 +17,10 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 #endif 
 {
 	asm("mov r11, r11"); 
+	
+	#ifdef USE_ARM 
 	CopyNewMapAddInRangeToIWRAM(); 
-
+	#endif 
 	
 	struct Unit* unit;
     int i, enemyFaction;
@@ -183,9 +184,9 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
 					maxRange = (GetItemData(ITEM_INDEX(item))->encodedRange & 0xF0) >> 4; 
 					
 					
-					//FOR_EACH_IN_MOVEMENT_RANGE({
-					//PokemblemMapAddInBoundedRange(ix, iy, minRange, maxRange);
-					//})
+					FOR_EACH_IN_MOVEMENT_RANGE({
+					PokemblemMapAddInBoundedRange(ix, iy, minRange, maxRange);
+					})
 				}
 			} 
 		} 
@@ -370,11 +371,93 @@ int PokemblemGetItemReachBits(int item) {
     } // switch (GetItemEncodedRange(item))
 }
 
-extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
-extern void CallMapAddInRange(int x, int y, int range, int value); 
-void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange)
+#ifndef USE_ARM 
+inline void ThumbPokemblemMapAddInRange(int x, int y, int range, int value);
+#endif 
+
+
+inline void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange)
 {
+	#ifdef USE_ARM
     CallMapAddInRange(x, y, maxRange,     +1);
-    CallMapAddInRange(x, y, minRange - 1, -1);
+	CallMapAddInRange(x, y, minRange - 1, -1);
+	#else 
+    ThumbPokemblemMapAddInRange(x, y, maxRange,     +1);
+    ThumbPokemblemMapAddInRange(x, y, minRange - 1, -1);
+	#endif 
     //IRAM_MapAddInRange(x, y, minRange - 1, -1);
 }
+
+#ifndef USE_ARM 
+inline void ThumbPokemblemMapAddInRange(int x, int y, int range, int value) // 
+{
+    int ix, iy, iRange;
+	int setFog = (gBmSt.gameStateBits & BM_FLAG_3); // @ Check if we're called by DangerRadius
+
+
+    // Handles rows [y, y+range]
+    // For each row, decrement range
+    for (iRange = range, iy = y; (iy <= y + range) && (iy < gBmMapSize.y); --iRange, ++iy)
+    {
+        int xMin, xMax, xRange;
+
+        xMin = x - iRange;
+        xRange = 2 * iRange + 1;
+
+        if (xMin < 0)
+        {
+            xRange += xMin;
+            xMin = 0;
+        }
+
+        xMax = xMin + xRange;
+
+        if (xMax > gBmMapSize.x)
+        {
+            xMax -= (xMax - gBmMapSize.x);
+            xMax = gBmMapSize.x;
+        }
+
+        for (ix = xMin; ix < xMax; ++ix)
+        {
+            gWorkingBmMap[iy][ix] += value;
+			if (setFog) { 
+				gBmMapFog[iy][ix] = 1; 
+			} 
+        }
+    }
+
+    // Handle rows [y-range, y-1], starting from the bottom most row
+    // For each row, decrement range
+    for (iRange = (range - 1), iy = (y - 1); (iy >= y - range) && (iy >= 0); --iRange, --iy)
+    {
+        int xMin, xMax, xRange;
+
+        xMin = x - iRange;
+        xRange = 2 * iRange + 1;
+
+        if (xMin < 0)
+        {
+            xRange += xMin;
+            xMin = 0;
+        }
+
+        xMax = xMin + xRange;
+
+        if (xMax > gBmMapSize.x)
+        {
+            xMax -= (xMax - gBmMapSize.x);
+            xMax = gBmMapSize.x;
+        }
+
+        for (ix = xMin; ix < xMax; ++ix)
+        {
+            gWorkingBmMap[iy][ix] += value;
+			if (setFog) { 
+				gBmMapFog[iy][ix] = 1; 
+			} 
+        }
+    }
+}
+#endif 
+
