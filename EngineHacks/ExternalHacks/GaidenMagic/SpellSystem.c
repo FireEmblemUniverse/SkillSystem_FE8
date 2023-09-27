@@ -8,10 +8,10 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 {
 	// Treat level = -1 as any level equal to or below the unit's current level.
 	int unitLevel = unit->level;
-	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
+	//if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
 	u8* currBuffer = SpellsBuffer;
 	//SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
-	SpellList* ROMList = SpellListTable[unit->pClassData->number];	
+	//SpellList* ROMList = SpellListTable[unit->pClassData->number];	
 
 	for ( int i = 0 ; i < 5 ; i++ )	
 	{
@@ -23,7 +23,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 		}
 	}
 
-	
+	/*
 	if ( ROMList )
 	{
 		// ROMList is a non-null pointer.
@@ -40,6 +40,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 			}
 		}
 	}
+	*/
 	// Whether or not there were any matching spells (or if the list even existed), we need to terminate the list.
 	*currBuffer = 0;
 	return SpellsBuffer;

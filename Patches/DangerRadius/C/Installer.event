@@ -9,6 +9,12 @@ IRAM_MapAddInRange_Link:
 WORD IRAM_MapAddInRange 
 SIZEOF_MapAddInRange_Link:
 WORD IRAM_MapAddInRange_Size
+UsingGaidenMagic:
+#ifdef GAIDEN_MAGIC 
+WORD True 
+#else 
+WORD False 
+#endif 
 
 #include "CallMapAddInRange.lyn.event" 
 #include "GenerateDangerZoneRange.lyn.event" 

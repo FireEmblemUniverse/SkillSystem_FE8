@@ -1,16 +1,10 @@
 #include "RangeStuff.h" 
 //#include "NewMapAddInRange.c"
-#define POKEMBLEM_VERSION 
-
-void CopyNewMapAddInRangeToIWRAM(void) { 
-		//copy render code into IWRAM
-	CpuFastCopy(PokemblemMapAddInRange, (void*)IRAM_MapAddInRange, SIZEOF_MapAddInRange_Link);
-}
 
 
 
 #ifdef POKEMBLEM_VERSION 
-void PokemblemGenerateDangerZoneRange(void)
+void PokemblemGenerateDangerZoneRange(void) // I don't use staves 
 #endif 
 #ifndef POKEMBLEM_VERSION
 void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
@@ -18,9 +12,7 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 {
 	asm("mov r11, r11"); 
 	
-	#ifdef USE_ARM 
-	CopyNewMapAddInRangeToIWRAM(); 
-	#endif 
+
 	
 	struct Unit* unit;
     int i, enemyFaction;
@@ -102,7 +94,7 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
             GenerateUnitCompleteStaffRange(unit);
         else
 		#endif 
-            PokemblemGenerateUnitCompleteAttackRange(unit);
+            NewGenerateUnitCompleteAttackRange(unit);
 
         gBmMapUnit[unit->yPos][unit->xPos] = savedUnitId;
     }
@@ -111,13 +103,31 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 
 int doesUnitHaveSpecialRange(struct Unit* unit) { 
 
-
+	
     int i, item, result = 0;
-	//u32 range = 0; 
+	if (UsingGaidenMagic) { 
+		if (!(unit->index & 0xC0)) { 
+			for (i = 0; i<5; i++) { 
+			item = GM_GetNthSpell(unit, i); 
+			result |= PokemblemGetItemReachBits(item);
+			} 
+		}
+	}
+	
 
-    for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i)
-        //if (CanUnitUseWeapon(unit, item))
-            result |= PokemblemGetItemReachBits(item);
+	//u32 range = 0; 
+	#ifdef POKEMBLEM_VERSION 
+	if (unit->index & 0xC0) { // players do not use regular weapons in pokemblem 
+	#endif 
+		for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i) { 
+			//if (CanUnitUseWeapon(unit, item))
+				result |= PokemblemGetItemReachBits(item);
+		}
+	#ifdef POKEMBLEM_VERSION 
+	} 
+	#endif 
+
+	
 
 	if (result > 0x10) { 
 		return true; 
@@ -132,9 +142,12 @@ int doesUnitHaveSpecialRange(struct Unit* unit) {
 extern int BuildStraightLineRangeFromUnit(struct Unit* unit); 
 #endif 
 
-void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
+void NewGenerateUnitCompleteAttackRange(struct Unit* unit)
 {
     int ix, iy;
+	#ifdef USE_ARM 
+	CpuFastCopy(PokemblemMapAddInRange, (void*)IRAM_MapAddInRange, SIZEOF_MapAddInRange_Link);  //copy render code into IWRAM
+	#endif 
 
 #ifndef POKEMBLEM_VERSION
     #define FOR_EACH_IN_MOVEMENT_RANGE(block) \
@@ -172,16 +185,38 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
 	} 
 	#endif 
 
-
 	if (doesUnitHaveSpecialRange(unit)) { 
 		u32 minRange; 
 		u32 maxRange; 
-		int i, item; 
+		int i, item, range; 
+		
+		if (UsingGaidenMagic) { 
+			if (!(unit->index & 0xC0)) { 
+				for (i = 0; i < 5; i++) { 
+					range = PokemblemGetItemEncodedRange(GM_GetNthSpell(unit, i)); 
+					if (range == 0) { break; } 
+					minRange = range & 0xF;
+					maxRange = (range & 0xF0) >> 4; 
+					FOR_EACH_IN_MOVEMENT_RANGE({
+					PokemblemMapAddInBoundedRange(ix, iy, minRange, maxRange);
+					})
+				} 
+			}
+		}
+		
+		
+		#ifdef POKEMBLEM_VERSION 
+		if (!(unit->index & 0xC0)) { 
+			SetWorkingBmMap(gBmMapMovement);
+			return; // players do not use regular weapons in pokemblem 
+		} 
+		#endif 
 	    for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i) { 
 			if (item) { 
 				if (CanUnitUseWeapon(unit, item)) { 
-					minRange = GetItemData(ITEM_INDEX(item))->encodedRange & 0xF;
-					maxRange = (GetItemData(ITEM_INDEX(item))->encodedRange & 0xF0) >> 4; 
+					range = PokemblemGetItemEncodedRange(item);
+					minRange = range & 0xF;
+					maxRange = (range & 0xF0) >> 4; 
 					
 					
 					FOR_EACH_IN_MOVEMENT_RANGE({
@@ -190,8 +225,6 @@ void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit)
 				}
 			} 
 		} 
-	
-	
 	} 
 	
 	else { 
@@ -321,9 +354,37 @@ struct Unit* GetUnitInline(int id) {
 
 int PokemblemGetUnitWeaponReachBits(struct Unit* unit, int itemSlot) {
     int i, item, result = 0;
-
+	
+	if (UsingGaidenMagic) { 
+		if (itemSlot >= 0) { 
+			if (!(unit->index & 0xC0)) { // players use gaiden magic 
+				result = PokemblemGetItemReachBits(GM_GetNthSpell(unit, itemSlot)); 
+			}
+		}
+		else { 
+			if (!(unit->index & 0xC0)) { // players use gaiden magic
+				for (i = 0; (i < 5) && (item = GM_GetNthSpell(unit, i)); ++i) { 
+					#ifndef POKEMBLEM_VERSION
+					if (CanUnitUseWeapon(unit, item)) { // pokemon can always use moves they've learned already 
+					#endif 
+						result |= PokemblemGetItemReachBits(item);
+					#ifndef POKEMBLEM_VERSION
+					}
+					#endif 
+				}
+			}
+			#ifdef POKEMBLEM_VERSION 
+			if (!(unit->index & 0xC0)) { // players use gaiden magic
+				return result; // pokemblem units do not use regular weapons 
+			}
+			#endif 
+		} 
+		
+	} 
+	
+	
     if (itemSlot >= 0)
-        return PokemblemGetItemReachBits(unit->items[itemSlot]);
+        return PokemblemGetItemReachBits(unit->items[itemSlot]) | result; // use gaiden magic? or not? 
 
     for (i = 0; (i < UNIT_ITEM_COUNT) && (item = unit->items[i]); ++i)
         if (CanUnitUseWeapon(unit, item))
@@ -331,8 +392,11 @@ int PokemblemGetUnitWeaponReachBits(struct Unit* unit, int itemSlot) {
 
     return result;
 }
+
+
 int PokemblemGetItemEncodedRange(int item) {
-    return GetItemData(ITEM_INDEX(item))->encodedRange;
+	if (item) return GetItemData(ITEM_INDEX(item))->encodedRange;
+	return 0; 
 }
 int PokemblemGetItemReachBits(int item) {
 	u32 result = PokemblemGetItemEncodedRange(item);
@@ -460,4 +524,27 @@ inline void ThumbPokemblemMapAddInRange(int x, int y, int range, int value) //
     }
 }
 #endif 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

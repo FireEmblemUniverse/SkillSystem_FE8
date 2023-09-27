@@ -1,10 +1,10 @@
 
+#define POKEMBLEM_VERSION 
+#define USE_ARM 
+
 #define IRAM_MapAddInRange 0x3007000
 extern int SIZEOF_MapAddInRange_Link; 
-
-extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
-extern void CallMapAddInRange(int x, int y, int range, int value); 
-
+extern int UsingGaidenMagic; 
 
 #define SHORTCALL __attribute__((short_call))
 #define CONSTFUNC __attribute__((const))
@@ -34,30 +34,32 @@ extern void CallMapAddInRange(int x, int y, int range, int value);
 #include "include/face.h"
 #include "include/anime.h"
 
-
-
 #include "include/bmphase.h"
 #include "include/bmunit.h"
 #include "include/proc.h"
 #include "include/bmarch.h"
 #include "include/bmidoten.h"
 
+extern int GM_GetUnitRangeBySpellIndex(struct Unit* unit, int index);
+extern int GM_doesUnitHaveSpecialRange(struct Unit* unit); 
+extern int GM_GetNthSpell(struct Unit* unit, int index);
+extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
+extern void CallMapAddInRange(int x, int y, int range, int value); 
 extern int prMovGetter(struct Unit* unit); // skillsys mov getter 
 //inline void PokemblemGenerateUnitMovementMapExt(struct Unit* unit, s8 movement); 
 //inline struct Unit* GetUnitInline(int id); 
 
 
 
-#define USE_ARM 
-
 struct Unit* GetUnitInline(int id);
 extern void AcrobatSetWorkingMoveCosts(const s8 mct[TERRAIN_COUNT], int, struct Unit*); 
-void PokemblemGenerateUnitCompleteAttackRange(struct Unit* unit); 
+void NewGenerateUnitCompleteAttackRange(struct Unit* unit); 
 void PokemblemSetWorkingBmMap(u8** map);
 void PokemblemGenerateUnitMovementMapExt(struct Unit* unit, s8 movement);
 int PokemblemGetUnitWeaponReachBits(struct Unit* unit, int itemSlot);
 int PokemblemGetItemReachBits(int item);
 void PokemblemMapAddInRange(int x, int y, int range, int value);
+int PokemblemGetItemEncodedRange(int item);
 inline void PokemblemMapAddInBoundedRange(short x, short y, short minRange, short maxRange);
 extern void PokemblemMapAddInRange(int x, int y, int range, int value); 
 

@@ -272,9 +272,10 @@
 	
 	ORG $1ACBC // Writes the attackable squares for each square that can be moved to.
 	All_Weapons_All_Squares:
-	#include "RangeDisplay/All_Weapons_All_Squares.lyn.event"
+	replaceWithHack(NewGenerateUnitCompleteAttackRange) 
+	//#include "RangeDisplay/All_Weapons_All_Squares.lyn.event"
 	//#incbin "All Weapons All Squares.dmp"
-	POIN All_Moveable_Squares|1
+	//POIN All_Moveable_Squares|1
 	
 	ALIGN 4
 	All_Staffs_All_Squares:
