@@ -533,7 +533,7 @@ bx r1
 
 .global HookAddBushes 
 .type HookAddBushes, %function 
-HookAddBushes: 
+HookAddBushes: @ MakeTerrainHealTargetList is a bit slow. 
 push {lr} 
 ldr r0, =0x202BCF0 
 ldrb r0, [r0, #0xF] 
@@ -542,7 +542,7 @@ ldr r0, =0x202BCF0
 ldrb r0, [r0, #0xF] 
 cmp r0, #0 
 bne SkipReinforce @ Occur only on player phase 
-bl Reinforce_AddBushToPlayerHpRestorationTargetList 
+bl Reinforce_AddBushToPlayerHpRestorationTargetList @ 140k cycles so <1 frame 
 SkipReinforce: 
 blh 0x804FD28 @ GetTargetListSize 
 

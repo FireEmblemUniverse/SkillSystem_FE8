@@ -48,7 +48,8 @@ AiTargetCursor_Link:
 PUSH 
 
 
-
+ORG $9A35A0 // after battle? 
+SleepVar(5) 
 
 ORG $59AF00
 SleepVar(1, 6) // phase gfx 

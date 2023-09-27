@@ -17,8 +17,9 @@ bne CheckIfFirstPass
 
 // 859AE38 SendItemConvoy proc 
 int HpBarIsFMUActive(void) { 
+	if (!GetFreeMovementState()) return false; 
 	struct FMUProc* FMUproc = (FMUProc*)ProcFind(FreeMovementControlProc);
-	if (FMUproc && GetFreeMovementState()) { 
+	if (FMUproc) { 
 		return true; 
 	
 		//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
