@@ -94,7 +94,7 @@ Traps1:
 //RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 
 
-SkillAccessoryTrap(19,29, (ChapterID*2), SealDefID) 
+//SkillAccessoryTrap(19,29, (ChapterID*2), SealDefID) 
 RedPokeballTrap(19,50, (ChapterID*2)+1, Protein) 
 SkillAccessoryTrap(17,17, (ChapterID*2)+1, BreathOfLifeID) 
 

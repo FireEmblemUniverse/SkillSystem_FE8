@@ -378,9 +378,14 @@ SkillAccessory_DescEntry(GaleforceID, SD_Galeforce)
 SkillAccessory_NameEntry(ExpShareID, SN_ExpShare)
 SkillAccessory_DescEntry(ExpShareID, SD_ExpShare)
 
+SkillAccessory_NameEntry(DowngradeID, SN_Downgrade)
+SkillAccessory_DescEntry(DowngradeID, SD_Downgrade)
 
+SkillAccessory_NameEntry(Intimidate2ID, SN_Intimidate2)
+SkillAccessory_DescEntry(Intimidate2ID, SD_Intimidate2)
 
-
+SkillAccessory_NameEntry(GuardBreakerID, SN_GuardBreaker)
+SkillAccessory_DescEntry(GuardBreakerID, SD_GuardBreaker)
 
 
 

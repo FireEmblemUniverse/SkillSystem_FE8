@@ -148,9 +148,9 @@
 //Author Unknown (Initial Commit)
  SealStrID
  SealSklID
- SealSpdID
+ DowngradeID
  SealLukID
- SealDefID
+GuardBreakerID
  SealResID
 //By Snakey1
  SealMagID
@@ -1209,6 +1209,9 @@ WindBoostID
 WaterBoostID
 EarthBoostID
 FireBoostID
+
+SealSpdID 
+SealDefID
 
 StrTakerID
 SklTakerID

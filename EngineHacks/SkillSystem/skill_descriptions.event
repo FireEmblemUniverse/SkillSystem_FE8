@@ -396,6 +396,8 @@ SkillDescription(ExpShareID,SD_ExpShare)
 SkillDescription(Intimidate2ID,SD_Intimidate2)
 SkillDescription(SurfBoardID,SD_Surf)
 SkillDescription(HoverBoardID,SD_Hover)
+SkillDescription(DowngradeID,SD_Downgrade)
+SkillDescription(GuardBreakerID,SD_GuardBreaker)
 
 
 
@@ -783,7 +785,8 @@ SkillName(ExpShareID,SN_ExpShare)
 SkillName(Intimidate2ID,SN_Intimidate2)
 SkillName(SurfBoardID,SN_Surf)
 SkillName(HoverBoardID,SN_Hover)
-
+SkillName(DowngradeID,SN_Downgrade)
+SkillName(GuardBreakerID,SN_GuardBreaker)
 
 
 

@@ -58,7 +58,7 @@ blh GetUnitDebuffEntry
 @mov r6, r0 @ unit debuff entry 
 ldr r1, =SelfDebuffTable 
 mov r2, r7 @ entry ID 
-
+mov r3, r0 
 
 bl DebuffGivenTableEntry 
 

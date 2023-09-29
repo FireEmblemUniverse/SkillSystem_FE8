@@ -10,7 +10,7 @@ void PokemblemGenerateDangerZoneRange(void) // I don't use staves
 void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 #endif 
 {
-	asm("mov r11, r11"); 
+	//asm("mov r11, r11"); 
 	
 
 	
@@ -98,7 +98,7 @@ void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 
         gBmMapUnit[unit->yPos][unit->xPos] = savedUnitId;
     }
-	asm("mov r11, r11"); 
+	//asm("mov r11, r11"); 
 }
 
 int doesUnitHaveSpecialRange(struct Unit* unit) { 

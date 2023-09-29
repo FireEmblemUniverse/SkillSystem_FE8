@@ -173,6 +173,13 @@ SkillAccessoryIcons(SealLukID)
 SkillAccessoryIcons(SealMagID)
 #incbin "dmp/SealMag.dmp"
 
+SkillAccessoryIcons(Intimidate2ID)
+#incbin "dmp/SealStr.dmp"
+SkillAccessoryIcons(GuardBreakerID)
+#incbin "dmp/SealDef.dmp"
+SkillAccessoryIcons(DowngradeID)
+#incbin "dmp/SealSpd.dmp"
+
 SkillAccessoryIcons(SteadyStanceID)
 #incbin "dmp/BronzeShield.dmp"
 SkillAccessoryIcons(WardingStanceID)

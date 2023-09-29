@@ -16,7 +16,7 @@
 #define SmallX 11 
 #define SmallLine 14 
 #define SmallestTriangle 21
-
+#define SmallL 22 
 
 
 ALIGN 16 
@@ -151,6 +151,11 @@ ALIGN 16; POIN RangeTemplateTable_SmallestTriangle1 // 21
 POIN RangeTemplateTable_SmallestTriangle2
 POIN RangeTemplateTable_SmallestTriangle3
 POIN RangeTemplateTable_SmallestTriangle4
+
+ALIGN 16; POIN RangeTemplateTable_SmallL1 // 22
+POIN RangeTemplateTable_SmallL2
+POIN RangeTemplateTable_SmallL3
+POIN RangeTemplateTable_SmallL4
 
 WORD 0 0 0 0 // Terminator 
 
@@ -686,7 +691,37 @@ BYTE 1 1 1 1 1 1 1 1 1
 
 
 
+ALIGN 4
+RangeTemplateTable_SmallL1:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 0 0              
+BYTE 0 1 1              
+BYTE 0 0 1      
 
+ALIGN 4
+RangeTemplateTable_SmallL2:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 0 0              
+BYTE 0 1 0              
+BYTE 1 1 0    
+
+ALIGN 4
+RangeTemplateTable_SmallL3:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 1 0 0              
+BYTE 1 1 0              
+BYTE 0 0 0    
+
+ALIGN 4
+RangeTemplateTable_SmallL4:
+BYTE 3 3 
+BYTE 1 1 
+BYTE 0 1 1              
+BYTE 0 1 0              
+BYTE 0 0 0   
 
 
 

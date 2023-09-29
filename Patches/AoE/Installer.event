@@ -145,10 +145,10 @@ MenuCommandID(ToxicName, 		UM_AoEDesc, NormalText, 97, AoE_SpecificUsability|1, 
 MenuCommandID(IcyWindName, 		UM_AoEDesc, NormalText, 98, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(WaterPulseName, 		UM_AoEDesc, NormalText, 99, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(FireSpinName, 		UM_AoEDesc, NormalText, 100, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(BodySlamName, 		UM_AoEDesc, NormalText, 101, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SlamName, 		UM_AoEDesc, NormalText, 101, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(RockThrowName, 		UM_AoEDesc, NormalText, 102, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(KarateChopName, 		UM_AoEDesc, NormalText, 103, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
-MenuCommandID(DoubleKickName, 		UM_AoEDesc, NormalText, 104, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(ScratchName, 		UM_AoEDesc, NormalText, 104, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(TackleName, 		UM_AoEDesc, NormalText, 105, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(LowKickName, 		UM_AoEDesc, NormalText, 106, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(PeckName, 		UM_AoEDesc, NormalText, 107, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
@@ -162,6 +162,7 @@ MenuCommandID(GrassKnotName, 		UM_AoEDesc, NormalText, 114, AoE_SpecificUsabilit
 MenuCommandID(SolarBeamName, 		UM_AoEDesc, NormalText, 115, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(MegaDrainName, 		UM_AoEDesc, NormalText, 116, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(SkyAttackName, 		UM_AoEDesc, NormalText, 117, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(BubbleName, 		UM_AoEDesc, NormalText, 118, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 
 
 UM_Separator 
@@ -293,20 +294,20 @@ ENDA
 #define GrowlDebuffID 1 
 #define LeerDebuffID 2 
 #define ScreechDebuffID 3 
-#define FlashDebuffID 4 
+#define SandAttackDebuffID 4 
 #define StringShotDebuffID 5 
-#define PoundDebuffID 6 
+#define FlashDebuffID 6 
 
 ALIGN 4
 AoE_DebuffTable:
 WORD 0 0 
 //DebuffUnitEntry(mag, str, skl, spd, def, res, luk, mov)
 DebuffUnitEntry(5, 5, 0,0,0,0,0,0)// -5 mag/str from Growl/Snarl 
-DebuffUnitEntry(0,0,0,0, 4, 4, 0,0)// -4 Res/Def Leer/Tail whip/Acid 
+DebuffUnitEntry(0,0,0,0, 5, 5, 0,0)// -5 Res/Def Leer/Tail whip/Acid 
 DebuffUnitEntry(0,0,0,0, 8, 8, 0,0)// -8 Res/Def from Screech 
-DebuffUnitEntry(0,0, 8, 0, 0,0,0,0)// -8 Skl from Sand Attack/Flash 
+DebuffUnitEntry(2,2,2,2, 2, 2, 2,0)// -2 all stats from Sand Attack/Pound
 DebuffUnitEntry(0,0,0, 5, 0,0,0,0)// -5 Spd from Constrict/Rock Tomb/String Shot/IcyWind 
-DebuffUnitEntry(0,0,0,0, 0,0,8,0)// -8 Luk from Pound 
+DebuffUnitEntry(2,2,2,2, 2, 2, 2,0)// -2 in stats from flash 
 WORD 0xFFFFFFFF 0xFFFFFFFF 
 
 
@@ -429,7 +430,7 @@ BYTE 0 0 0 WaterGun // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
-BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -442,7 +443,7 @@ BYTE 0 0 0 BubbleBeam // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
-BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -455,7 +456,7 @@ BYTE 0 0 0 Surf // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
-BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -468,7 +469,7 @@ BYTE 0 0 0 HydroPump // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
-BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -481,7 +482,7 @@ BYTE 0 0 0 Waterfall // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallMeleeLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -791,7 +792,7 @@ BYTE 0 0 0 Magnitude // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallMeleeLine groundAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallCross groundAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -804,7 +805,7 @@ BYTE 0 0 0 Dig // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallMeleeLine groundAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallCross groundAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -817,7 +818,7 @@ BYTE 0 0 0 Earthquake // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallMeleeLine groundAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallCross groundAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1215,7 +1216,7 @@ BYTE 0 0 0 BodySlam // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1254,7 +1255,7 @@ BYTE 0 0 0 DoubleEdge // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1306,7 +1307,7 @@ BYTE 0 0 0 HyperFang // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1332,7 +1333,7 @@ BYTE 0 0 0 Slash // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1482,7 +1483,7 @@ BYTE 3 T1AoE_Var // variance range of 0 - 2
 BYTE 1 2 // Attack range
 BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
-BYTE FlashDebuffID 0 // DebuffID, EventIndex
+BYTE SandAttackDebuffID 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE DebuffConfigTwoByte // Config2
@@ -1547,7 +1548,7 @@ BYTE 3 T1AoE_Var // variance range of 0 - 2
 BYTE 1 1 // Attack range
 BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
-BYTE PoundDebuffID 0 // DebuffID, EventIndex
+BYTE SandAttackDebuffID 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE DebuffConfigTwoByte // Config2
@@ -1638,7 +1639,7 @@ BYTE 0 0 0 WaterPulse // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
-BYTE SmallLine waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1660,7 +1661,7 @@ BYTE DebuffConfigTwoByte // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 BodySlam // Always usable by anyone 
+BYTE 0 0 0 Slam // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
@@ -1699,11 +1700,11 @@ BYTE 0 // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 DoubleKick // Always usable by anyone 
+BYTE 0 0 0 Scratch // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallestLine fightingAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallestLine normalAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -1879,6 +1880,18 @@ BYTE 0xFF 0 // Weapon Type and WEXP to use this.
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
 
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Bubble // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE SpeMin 2 // Attack range
+BYTE SmallL waterAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
 
 
 AoE_TableTerminator

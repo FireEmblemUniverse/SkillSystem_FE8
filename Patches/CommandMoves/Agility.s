@@ -66,6 +66,7 @@ ldr r1, =AgilityBuffs
 @r1 debuff table to use 
 @r2 entry ID of the given table 
 mov r2, #0 
+mov r3, r0 
 bl DebuffGivenTableEntry 
 
 

@@ -112,7 +112,7 @@ SkillAccessoryTrap(5,5, (ChapterID*2)+1, CertainBlowID)
 
 //SpellScrollTrap(7,33, (ChapterID*2)+1, DoubleHit)
 
-SkillAccessoryTrap(7,33, (ChapterID*2), SealSpdID)
+SkillAccessoryTrap(7,33, (ChapterID*2), DowngradeID)
 
 
 //SkillScrollTrap(17,18, (ChapterID*2)+1, PerfectionistID) 

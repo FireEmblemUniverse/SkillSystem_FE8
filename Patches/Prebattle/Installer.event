@@ -5,6 +5,11 @@ ScaledUpID_Link:
 WORD ScaledUpID 
 Intimidate2ID_Link:
 WORD Intimidate2ID 
+GuardBreakerID_Link:
+WORD GuardBreakerID
+DowngradeID_Link:
+WORD DowngradeID 
+
 
 ALIGN 4 
 IntimidateDebuffs:

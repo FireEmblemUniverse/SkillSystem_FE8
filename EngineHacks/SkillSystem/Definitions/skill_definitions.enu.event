@@ -24,9 +24,9 @@
 #define AnathemaID 0x7
 #define SealStrID 0x8
 #define SealSklID 0x9
-#define SealSpdID 0xA
+#define DowngradeID 0xA
 #define SealLukID 0xB
-#define SealDefID 0xC
+#define GuardBreakerID 0xC
 #define SealResID 0xD
 #define SealMagID 0xE
 #define FullMetalBodyID 0xF
@@ -320,6 +320,8 @@
 #define WaterBoostID 0xFF
 #define EarthBoostID 0xFF
 #define FireBoostID 0xFF
+#define SealSpdID 0xFF
+#define SealDefID 0xFF
 #define StrTakerID 0xFF
 #define SklTakerID 0xFF
 #define SpdTakerID 0xFF

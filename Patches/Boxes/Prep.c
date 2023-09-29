@@ -969,7 +969,7 @@ void ProcPrepUnit_Idle(struct ProcPrepUnit *proc)
         }
 
         if (B_BUTTON & gKeyStatusPtr->newKeys) {
-			DeploySelectedUnits(); 
+			CallDeploySelectedUnits(); 
             PlaySoundEffect(0x6B);
             Proc_Goto(proc, PROC_LABEL_PREPUNIT_PRESS_B);
             return;

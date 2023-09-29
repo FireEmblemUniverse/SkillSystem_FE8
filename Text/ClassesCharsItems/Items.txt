@@ -241,15 +241,15 @@ Skl+5.[X]
 
 
 ## MuscleBandT2NameText
-Muscle Band[X]
+Muscler Band[X]
 ## MuscleBandT2DescText
 Str+5.[X]
 ## WiseGlassesT2NameText
-Wise Glasses[X]
+Wiser Glasses[X]
 ## WiseGlassesT2DescText
 Mag+5.[X]
 ## EnergyBandT2NameText
-Energy Band[X]
+Energer Band[X]
 ## EnergyBandT2DescText
 Str/Skl/Spd/Mag+4.[X]
 ## PaddedShieldNameText ^
@@ -273,15 +273,15 @@ Sight Scope[X]
 ## SightScopeDescText
 Skl+7.[X]
 ## MuscleBandT3NameText
-Muscle Band[X]
+Musclest Band[X]
 ## MuscleBandT3DescText
 Str+8.[X]
 ## WiseGlassesT3NameText
-Wise Glasses[X]
+Wisest Glasses[X]
 ## WiseGlassesT3DescText
 Mag+8.[X]
 ## EnergyBandT3NameText
-Energy Band[X]
+Energest Band[X]
 ## EnergyBandT3DescText
 Str/Skl/Spd/Mag+6.[X]
 ## EnergyBandT4NameText
@@ -781,17 +781,17 @@ AoE: Debuffs Spd by 5.[X]
 Hits twice.[X]
 ## LeerDesc
 Chip damage.[N]
-Debuffs Def/Res by 6.[N]
-AoE: Debuffs Def/Res by 4.[X]
+Debuffs Def/Res by 8.[N]
+AoE: Debuffs Def/Res by 5.[X]
 ## TailWhipDesc
 Chip damage.[N]
-Debuffs Def/Res by 6.[N]
-AoE: Debuffs Def/Res by 4.[X]
+Debuffs Def/Res by 8.[N]
+AoE: Debuffs Def/Res by 5.[X]
 
 ## FlashDesc
 Chip damage.[N]
-Debuffs Skill by 15.[N]
-AoE:Debuffs Skl by 8.[X]
+Debuffs stats by 4.[N]
+AoE: Debuffs stats by 2.[X]
 
 
 ## GrowlDesc
@@ -815,17 +815,17 @@ AoE: Debuffs Str/Mag by 5.[X]
 [SI] A powerful bolt of electricity.[X]
 
 ## PoundDesc
-*Chip damage.[N]
-Debuffs Luk by 15.[N]
-AoE: Debuffs Luk by 8.[X]
+Chip damage.[N]
+Debuffs stats by 4.[N]
+AoE: Debuffs stats by 2.[X]
 ## QuickAttackDesc
 [PI] Strike first when attacked.[X]
 
 
 ## SandAttackDesc
 Chip damage.[N]
-Debuffs Skl by 15.[N]
-AoE: Debuffs Skl by 8.[X]
+Debuffs stats by 4.[N]
+AoE: Debuffs stats by 2.[X]
 ## ScratchDesc
 [PI] A weak scratch.[X]
 
@@ -856,8 +856,8 @@ more damage on heavier foes.[X]
 
 ## AcidDesc
 Chip damage.[N]
-Debuffs Def/Res by 6.[N]
-AoE: Debuffs Def/Res by 4.[X]
+Debuffs Def/Res by 8.[N]
+AoE: Debuffs Def/Res by 5.[X]
 
 ## PoisonStingDesc
 [PI] A weak, venomous sting.[X]

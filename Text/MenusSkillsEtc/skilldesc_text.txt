@@ -12,7 +12,15 @@ Powerful Aura: Temporarily[N]
 immune to attacks![X]
 
 ## SD_Intimidate2
-Intimidate: Enemy Str is[N]
+Intimidate: Enemy Str/Mag is[N]
+reduced by 25% when attacking.[X]
+
+## SD_GuardBreaker
+Guard Breaker: Enemy Def/Res[N]
+is reduced by 25% when attacking.[X]
+
+## SD_Downgrade
+Downgrade: Enemy Spd is[N]
 reduced by 25% when attacking.[X]
 
 // used these for skill names 

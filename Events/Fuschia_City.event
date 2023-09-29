@@ -167,8 +167,8 @@ Traps1:
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
 CutBush(21,19)
-CutBush(29,13)
-CutBush(27,7)
+//CutBush(29,13)
+//CutBush(27,7)
 CutBush(18,10)
 Save(22,27) // Pokecenter 
 
@@ -189,7 +189,7 @@ SignATrap(38,17, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
 //OpenPokeball(8,3)
 
-RedPokeballTrap(29,11, ChapterID*2, FireStone)
+RedPokeballTrap(12,11, ChapterID*2, FireStone)
 
 BlankExamineTrap(4,28,FuschiaGymSignText)
 BlankExamineTrap(28,28,FuschiaSESignText)
@@ -201,7 +201,7 @@ EnterWallTrap(17,28, FuschiaWHouseBText) //
 EnterWallTrap(30,28, FuschiaSEHouseAText) // 
 EnterWallTrap(35,28, FuschiaSEHouseBText)
 
-EnterWallTrap(25,13, FuschiaMidHouseText) //   
+EnterWallTrap(33,13, FuschiaMidHouseText) //   
 
 
 Flower(29,21)
@@ -227,7 +227,7 @@ CALL CityBeginningScene
 
 LOAD1 1 FencedPokemon
 ENUN 
-AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
+//AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 //AutoLevelUnits(TrainerL, False, 0xE0EF) // Trainers given visible levels 
  
 LOAD1 1 OaksAideUnitGroup
@@ -275,7 +275,7 @@ UNIT 0xE0 	GrowlitheID 	0 		Level(0, Enemy, 1) [8,10]    0b 0x0	0x1 REDA8R10 [0x
 UNIT 0xE0 	LaprasID 	0 		Level(0, Enemy, 1) [12,17]    0b 0x0	0x1 REDA12R17 [0x0,0x0,0x0,0x0] [0,0,0,0]
 UNIT 0xE0 	TaurosID 	0 		Level(0, Enemy, 1) [30,6]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
 UNIT 0xE0 	TaurosID 	0 		Level(0, Enemy, 1) [36,6]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
-UNIT 0xE0 	KangaskhanID 	0 		Level(0, Enemy, 1) [32,12]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
+//UNIT 0xE0 	KangaskhanID 	0 		Level(0, Enemy, 1) [32,12]    0b 0x0	0 0 [0x0,0x0,0x0,0x0] [0,0,0,0]
 UNIT
 
 
