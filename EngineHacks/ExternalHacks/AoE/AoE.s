@@ -1423,7 +1423,7 @@ ldrb r2, [r5, #DebuffID]
 @r0 @ debuff entry 
 @r1 debuff table to use 
 @r2 entry ID of the given table 
-mov r0, r6 @ debuffs pointer 
+mov r3, r0 @ also debuffs pointer 
 bl DebuffGivenTableEntry 
 
 NoDebuffsPossible: 

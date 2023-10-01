@@ -68,7 +68,7 @@ Up:
 sub r7, #1 
 
 Continue: 
-
+mov r0, r5 @ unit 
 mov r1, r6 
 mov r2, r7 
 
