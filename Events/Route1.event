@@ -98,6 +98,15 @@ CURE
 TutText(TrainerTip_Quicksave)
 SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
 ASMC SetNewFlag_ASMC 
+
+SET_ACTIVE 1 
+//AoE_ASMC(Unit, AoE_ID, RotationID, CoordX, CoordY)
+AoE_ASMC(1, 3, 0, 10, 10)
+AoE_ASMC(1, 3, 0, 10, 20)
+AoE_ASMC(1, 3, 0, 10, 30)
+
+
+
 LABEL 99 
 NoFade 
 ENDA 

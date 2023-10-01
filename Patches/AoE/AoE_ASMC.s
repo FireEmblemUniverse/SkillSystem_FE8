@@ -79,10 +79,11 @@ bl AoE_Animation
 
 @mov r0, r4 @ parent 
 @bl AoE_GenericEffect
-
-ldr r0, =AoE_MainEvent
-mov r1, #1 
-blh EventEngine 
+mov r0, r4 @ parent 
+bl AoE_StartBlockingProc
+@ldr r0, =AoE_MainEvent
+@mov r1, #1 
+@blh EventEngine 
 
 
 bl AoE_ClearGraphics
