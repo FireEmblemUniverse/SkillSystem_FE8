@@ -4,9 +4,13 @@
 .type DebuffGivenTableEntry, %function 
 DebuffGivenTableEntry: 
 push {r4-r7, lr} 
+mov r4, r8 
+push {r4} 
+
 mov r6, r0 @ debuff entry 
 @r1 debuff table to use 
 @r2 entry ID of the given table 
+mov r8, r3 @ enemy debuff entry 
 
 lsl r2, #3 @ 8 bytes per entry 
 add r1, r2 @ table entry we desire 
@@ -37,7 +41,7 @@ cmp r1, #0
 beq User 
 cmp r1, #0xC0 
 beq User 
-mov r0, r7 @ enemy 
+mov r0, r8 @ enemy 
 User: 
 
 ldr r2, =DebuffStatNumberOfBits_Link
@@ -107,7 +111,7 @@ b Loop
 
 
 AffectEnemy: 
-mov r0, r6 @ debuff entry 
+mov r0, r8 @ debuff entry 
 ldr r2, =DebuffStatNumberOfBits_Link
 ldr r2, [r2] 
 mov r1, r5 @ counter 
@@ -124,6 +128,8 @@ b Loop
 
 End: 
 
+pop {r4} 
+mov r8, r4 
 pop {r4-r7} 
 pop {r0} 
 bx r0 
