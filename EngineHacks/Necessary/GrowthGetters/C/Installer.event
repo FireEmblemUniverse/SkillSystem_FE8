@@ -3,6 +3,25 @@
 
 
 
+ALIGN 4 
+GrowthOptions_Link:
+WORD Growth_Options
 
+
+ALIGN 4 
+BRACKETED_GROWTHS_FLAG_ID_Link:
+WORD BRACKETED_GROWTHS_FLAG_ID
+
+ALIGN 4 
+minStatGain_Link:
+WORD MIN_STAT_GAIN  
+
+ALIGN 4 
+ForceWhenBelowAverageBy_Link:
+WORD FORCE_WHEN_BELOW_AVERAGE_BY_AMOUNT
+
+ALIGN 4 
+PreventWhenAboveAverageBy_Link: 
+WORD PREVENT_WHEN_ABOVE_AVERAGE_BY_AMOUNT 
 
 
