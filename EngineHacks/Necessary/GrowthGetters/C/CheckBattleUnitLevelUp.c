@@ -53,6 +53,20 @@ int GetBaseStatFromDefinition(int id, struct Unit* unit) { // unit required beca
 	return 0; 
 } 
 
+int GetMaxStatFromDefinition(int id, struct Unit* unit) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
+	switch (id) { 
+	//case hpStat: return unit->pClassData->maxHP; // classes do not have hp caps 
+	case strStat: return unit->pClassData->maxPow; 
+	case sklStat: return unit->pClassData->maxSkl; 
+	case spdStat: return unit->pClassData->maxSpd; 
+	case defStat: return unit->pClassData->maxDef; 
+	case resStat: return unit->pClassData->maxRes; 
+	//case lukStat: return unit->pClassData->maxLck; // classes do not have luck caps 
+	case magStat: return MagClassTable[unit->pClassData->number].cap; 
+	} 
+	return 255; // doesn't really matter much that you'll still roll for stat ups in hp / luck even if you've capped them 
+} 
+
 int GetNumberOfLevelUps(struct BattleUnit* bu) { // I just copied exactly what Teq did for this section 
 	int numberOfLevels = bu->unit.level - 1; 
 	if ((bu->unit.pCharacterData->attributes | bu->unit.pClassData->attributes) & CA_PROMOTED) { 
@@ -64,6 +78,8 @@ int GetNumberOfLevelUps(struct BattleUnit* bu) { // I just copied exactly what T
 
 int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  struct Unit* unit) { 
     int result = 0;
+	int currentStat = GetStatFromDefinition(stat, unit); 
+	if (GetMaxStatFromDefinition(stat, unit) < currentStat+1) { return 0; } // no point trying to raise a stat if we've hit the caps. This'll improve our rerolled statups when caps have been hit 
 
 	if (mode == fixedGrowths) { 
 		result = (((growth * GetNumberOfLevelUps(bu)) % 100) + growth) / 100;  // I just copied exactly what Teq did for this
@@ -72,15 +88,15 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 	
 	if (mode == bracketedGrowths) { 
 		int averageStat = GetAverageStat(growth, stat, unit, GetNumberOfLevelUps(bu)); 
-		int currentStat = GetStatFromDefinition(stat, unit); 
 		while (growth > 100) {
 			result++;
 			growth -= 100;
 		}
-		if ((averageStat + PreventWhenAboveAverageBy_Link) > currentStat) { 
+		if (currentStat > (averageStat + PreventWhenAboveAverageBy_Link)) { 
+		//asm("mov r11, r11"); 
 		return result; 
 		} 
-		if ((currentStat + ForceWhenBelowAverageBy_Link) < currentStat) { 
+		if ((currentStat + ForceWhenBelowAverageBy_Link) < averageStat) { 
 		result++; 
 		} 
 		else if (Roll1RN(growth))
@@ -115,12 +131,12 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int mode = regularGrowths; // default  
 		struct Unit* unit = NULL; 
 		if (GrowthOptions_Link.FIXED_GROWTHS_MODE) { 
-			if (CheckEventId(GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID)) { 
+			if (CheckEventId(GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID) || (!GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID)) { 
 			mode = fixedGrowths; 
 			}
 		} 
 		if (GrowthOptions_Link.STAT_BRACKETING_EXISTS) { 
-			if (CheckEventId(BRACKETED_GROWTHS_FLAG_ID_Link)) { 
+			if (CheckEventId(BRACKETED_GROWTHS_FLAG_ID_Link) || (!BRACKETED_GROWTHS_FLAG_ID_Link)) { 
 			mode = bracketedGrowths; 
 			unit = GetUnit(bu->unit.index); // required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 			}
@@ -153,7 +169,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int magGrowth = 0; 
 		if (gMagGrowth) { magGrowth = gMagGrowth(&bu->unit); } 
 		
-		asm("mov r11, r11");
+		//asm("mov r11, r11");
         bu->changeHP  = NewGetStatIncrease(hpGrowth, mode, hpStat, bu, unit);
         statGainTotal += bu->changeHP;
 
@@ -179,8 +195,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
         statGainTotal += bu->changeCon;
 		
         if (statGainTotal < minStatGain_Link) {
-            for (int attempts = 0; attempts < 5; ++attempts) {
-				asm("mov r11, r11"); 
+            for (int attempts = 0; attempts < 5; attempts++) {
+				//asm("mov r11, r11"); 
 
 				// if we did not get atleast x stat ups on level, try each of these in order 
 				// previously you'd often get +1 hp and nothing else on bad level ups because of the order 
