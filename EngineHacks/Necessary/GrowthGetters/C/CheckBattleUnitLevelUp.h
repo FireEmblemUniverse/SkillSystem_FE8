@@ -25,6 +25,17 @@
 #include "include/bmbattle.h"
 #include "include/mapanim.h"
 
+
+
+int GetBaseStatFromDefinition(int id, struct Unit* unit); 
+int GetStatFromDefinition(int id, struct Unit* unit);
+int GetAverageStat(int growth, int stat, struct Unit* unit, int levels);
+
+
+
+
+
+
 int CheckEventId(int id); 
 
 extern u8 Class_Level_Cap_Table[]; 
@@ -39,7 +50,20 @@ extern int Get_Res_Growth(struct Unit* unit);
 extern int Get_Luk_Growth(struct Unit* unit); 
 extern int Get_Mag_Growth(struct Unit* unit); 
 
+struct MagClassTable_Struct { 
+	u8 base; 
+	u8 growth; 
+	u8 cap; 
+	u8 promo; 
+};
+struct MagCharTable_Struct { 
+	u8 base; 
+	u8 growth; 
 
+};
+extern struct MagClassTable_Struct MagClassTable[]; 
+extern struct MagCharTable_Struct MagCharTable[]; 
+extern int magExists; 
 
 struct GrowthOptions { 
 u8 FIXED_GROWTHS_MODE : 1; 

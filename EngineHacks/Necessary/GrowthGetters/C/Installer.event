@@ -23,5 +23,12 @@ WORD FORCE_WHEN_BELOW_AVERAGE_BY_AMOUNT
 ALIGN 4 
 PreventWhenAboveAverageBy_Link: 
 WORD PREVENT_WHEN_ABOVE_AVERAGE_BY_AMOUNT 
-
+ALIGN 4 
+gMagGrowth:
+magExists:
+#ifdef USE_STRMAG_SPLIT
+POIN Get_Mag_Growth
+#else 
+WORD 0 
+#endif 
 

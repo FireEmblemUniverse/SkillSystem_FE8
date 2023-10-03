@@ -18,61 +18,38 @@ extern int GetAverageStat(int growth, int stat, struct Unit* unit, int levels); 
 #else 
 int GetAverageStat(int growth, int stat, struct Unit* unit, int levels) { 
 	int result = 0; 
-
-// get base stat 
-
-	int baseStat = 
-
-mov r6, r0 @ Base stat 
-mov r0, r4 @ Growth 
-mul r0, r5 @ Growth * Levels gained 
-mov r1, #100 
-swi 6 @ div 
-add r0, r6 @ Average stat 
-
-
-
-
+	int baseStat = GetBaseStatFromDefinition(stat, unit); 
+	result = ((growth * levels) / 100) + baseStat; 
 	return result; 
 
 } 
 #endif 
 
 int GetStatFromDefinition(int id, struct Unit* unit) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
-	if (id == hpStat) return unit->maxHP; 
-	if (id == strStat) return unit->pow; 
-	if (id == sklStat) return unit->skl; 
-	if (id == spdStat) return unit->spd; 
-	if (id == defStat) return unit->def; 
-	if (id == resStat) return unit->res; 
-	if (id == lukStat) return unit->lck; 
-	if (id == magStat) return unit->_u3A; // mag 
+	switch (id) { 
+	case hpStat: return unit->maxHP; 
+	case strStat: return unit->pow; 
+	case sklStat: return unit->skl; 
+	case spdStat: return unit->spd; 
+	case defStat: return unit->def; 
+	case resStat: return unit->res; 
+	case lukStat: return unit->lck; 
+	case magStat: return unit->_u3A; // mag 
+	}
 	return 0; 
 } 
 
 int GetBaseStatFromDefinition(int id, struct Unit* unit) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
-	if (id == hpStat) return unit->maxHP; 
-	if (id == strStat) return unit->pow; 
-	if (id == sklStat) return unit->skl; 
-	if (id == spdStat) return unit->spd; 
-	if (id == defStat) return unit->def; 
-	if (id == resStat) return unit->res; 
-	if (id == lukStat) return unit->lck; 
-	if (id == magStat) return unit->_u3A; // mag 
-	
-	/*
-	void UnitLoadStatsFromChracter(struct Unit* unit, const struct CharacterData* character) {
-    int i;
-
-    unit->maxHP = character->baseHP + unit->pClassData->baseHP;
-    unit->pow   = character->basePow + unit->pClassData->basePow;
-    unit->skl   = character->baseSkl + unit->pClassData->baseSkl;
-    unit->spd   = character->baseSpd + unit->pClassData->baseSpd;
-    unit->def   = character->baseDef + unit->pClassData->baseDef;
-    unit->res   = character->baseRes + unit->pClassData->baseRes;
-    unit->lck   = character->baseLck;
-	*/
-	
+	switch (id) { 
+	case hpStat: return unit->pCharacterData->baseHP + unit->pClassData->baseHP; 
+	case strStat: return unit->pCharacterData->basePow + unit->pClassData->basePow; 
+	case sklStat: return unit->pCharacterData->baseSkl + unit->pClassData->baseSkl; 
+	case spdStat: return unit->pCharacterData->baseSpd + unit->pClassData->baseSpd; 
+	case defStat: return unit->pCharacterData->baseDef + unit->pClassData->baseDef; 
+	case resStat: return unit->pCharacterData->baseRes + unit->pClassData->baseRes; 
+	case lukStat: return unit->pCharacterData->baseLck; // classes do not have base luck + unit->pClassData->baseLck; 
+	case magStat: return MagCharTable[unit->pCharacterData->number].base + MagClassTable[unit->pClassData->number].base; 
+	} 
 	return 0; 
 } 
 
@@ -131,7 +108,7 @@ extern int Get_Spd_Growth(struct Unit* unit);
 extern int Get_Def_Growth(struct Unit* unit); 
 extern int Get_Res_Growth(struct Unit* unit); 
 extern int Get_Luk_Growth(struct Unit* unit); 
-extern int Get_Mag_Growth(struct Unit* unit); 
+extern int* gMagGrowth(struct Unit* unit); 
 
 void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
@@ -173,7 +150,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int defGrowth = Get_Def_Growth(&bu->unit); 
 		int resGrowth = Get_Res_Growth(&bu->unit); 
 		int lukGrowth = Get_Luk_Growth(&bu->unit); 
-		int magGrowth = Get_Mag_Growth(&bu->unit); 
+		int magGrowth = 0; 
+		if (magExists) { magGrowth = *gMagGrowth(&bu->unit); } 
 
         bu->changeHP  = NewGetStatIncrease(hpGrowth, mode, hpStat, bu, unit);
         statGainTotal += bu->changeHP;
