@@ -101,14 +101,14 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
     return result;
 }
 
-extern int Get_Hp_Growth(struct Unit* unit); 
-extern int Get_Str_Growth(struct Unit* unit); 
-extern int Get_Skl_Growth(struct Unit* unit); 
-extern int Get_Spd_Growth(struct Unit* unit); 
-extern int Get_Def_Growth(struct Unit* unit); 
-extern int Get_Res_Growth(struct Unit* unit); 
-extern int Get_Luk_Growth(struct Unit* unit); 
-extern int* gMagGrowth(struct Unit* unit); 
+extern int (*gGet_Hp_Growth)(struct Unit* unit); 
+extern int (*gGet_Str_Growth)(struct Unit* unit); 
+extern int (*gGet_Skl_Growth)(struct Unit* unit); 
+extern int (*gGet_Spd_Growth)(struct Unit* unit); 
+extern int (*gGet_Def_Growth)(struct Unit* unit); 
+extern int (*gGet_Res_Growth)(struct Unit* unit); 
+extern int (*gGet_Luk_Growth)(struct Unit* unit); 
+extern int (*gMagGrowth)(struct Unit* unit); 
 
 void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
@@ -143,16 +143,17 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
             bu->unit.exp = UNIT_EXP_DISABLED;
         }
 
-		int hpGrowth = Get_Hp_Growth(&bu->unit); 
-		int strGrowth = Get_Str_Growth(&bu->unit); 
-		int sklGrowth = Get_Skl_Growth(&bu->unit); 
-		int spdGrowth = Get_Spd_Growth(&bu->unit); 
-		int defGrowth = Get_Def_Growth(&bu->unit); 
-		int resGrowth = Get_Res_Growth(&bu->unit); 
-		int lukGrowth = Get_Luk_Growth(&bu->unit); 
+		int hpGrowth =  gGet_Hp_Growth(&bu->unit); 
+		int strGrowth = gGet_Str_Growth(&bu->unit); 
+		int sklGrowth = gGet_Skl_Growth(&bu->unit); 
+		int spdGrowth = gGet_Spd_Growth(&bu->unit); 
+		int defGrowth = gGet_Def_Growth(&bu->unit); 
+		int resGrowth = gGet_Res_Growth(&bu->unit); 
+		int lukGrowth = gGet_Luk_Growth(&bu->unit); 
 		int magGrowth = 0; 
-		if (magExists) { magGrowth = *gMagGrowth(&bu->unit); } 
-
+		if (gMagGrowth) { magGrowth = gMagGrowth(&bu->unit); } 
+		
+		asm("mov r11, r11");
         bu->changeHP  = NewGetStatIncrease(hpGrowth, mode, hpStat, bu, unit);
         statGainTotal += bu->changeHP;
 
@@ -179,6 +180,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		
         if (statGainTotal < minStatGain_Link) {
             for (int attempts = 0; attempts < 5; ++attempts) {
+				asm("mov r11, r11"); 
 
 				// if we did not get atleast x stat ups on level, try each of these in order 
 				// previously you'd often get +1 hp and nothing else on bad level ups because of the order 

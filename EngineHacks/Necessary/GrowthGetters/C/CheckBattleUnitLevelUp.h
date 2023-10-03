@@ -41,14 +41,7 @@ int CheckEventId(int id);
 extern u8 Class_Level_Cap_Table[]; 
 
 extern int minStatGain_Link; 
-extern int Get_Hp_Growth(struct Unit* unit); 
-extern int Get_Str_Growth(struct Unit* unit); 
-extern int Get_Skl_Growth(struct Unit* unit); 
-extern int Get_Spd_Growth(struct Unit* unit); 
-extern int Get_Def_Growth(struct Unit* unit); 
-extern int Get_Res_Growth(struct Unit* unit); 
-extern int Get_Luk_Growth(struct Unit* unit); 
-extern int Get_Mag_Growth(struct Unit* unit); 
+
 
 struct MagClassTable_Struct { 
 	u8 base; 
@@ -63,7 +56,6 @@ struct MagCharTable_Struct {
 };
 extern struct MagClassTable_Struct MagClassTable[]; 
 extern struct MagCharTable_Struct MagCharTable[]; 
-extern int magExists; 
 
 struct GrowthOptions { 
 u8 FIXED_GROWTHS_MODE : 1; 
