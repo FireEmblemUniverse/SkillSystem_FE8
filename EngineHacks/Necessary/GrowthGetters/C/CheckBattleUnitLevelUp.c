@@ -13,17 +13,46 @@
 #define lukStat 6
 #define magStat 7
 
-#ifdef POKEMBLEM_VERSION
-extern int GetAverageStat(int growth, int stat, struct Unit* unit, int levels); // written in asm already 
-#else 
-int GetAverageStat(int growth, int stat, struct Unit* unit, int levels) { 
+// repurpose bwl->moveAmt into bwl->promotionLvl 
+u8 GetUnitPromotionLevel(struct Unit* unit) // https://github.com/FireEmblemUniverse/fireemblem8u/blob/ba48415eb29806813106e5874969421ea759d507/src/bmsave-bwl.c#L375
+{
+    extern u8 gBWLDataStorage[];
+	int maxLevel = Class_Level_Cap_Table[unit->pClassData->number]; 
+	int uid = unit->pCharacterData->number;
+	if (uid > 0x45) { return maxLevel; }
+	int result = *(gBWLDataStorage + 0x10 * (uid - 1) + 8); // repurpose bwl->moveAmt into bwl->promotionLvl 
+	if (result < 10) { return 10; } 
+	
+	if (result > maxLevel) { return maxLevel; } 
+    return result; 
+}
+
+// repurpose bwl->moveAmt into bwl->promotionLvl 
+void SetUnitPromotionLevel(struct Unit* unit, int level) // https://github.com/FireEmblemUniverse/fireemblem8u/blob/ba48415eb29806813106e5874969421ea759d507/src/bmsave-bwl.c#L375
+{
+    extern u8 gBWLDataStorage[];
+	int uid = unit->pCharacterData->number;
+	if (uid > 0x45) { return; }
+    gBWLDataStorage[(0x10 * (uid - 1)) + 8] = level; // repurpose bwl->moveAmt into bwl->promotionLvl 
+}
+
+u8 NewPromoHandler_SetInitStat(struct ProcPromoHandler *proc) // repoint so we also save the unit's promo level 
+{
+    proc->stat = PROMO_HANDLER_STAT_INIT;
+	if (proc->unit) { 
+		SetUnitPromotionLevel(proc->unit, proc->unit->level); 
+	} 
+    return 0;
+}
+
+
+int GetAverageStat(int growth, int stat, struct Unit* unit, int levels) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 	int result = 0; 
 	int baseStat = GetBaseStatFromDefinition(stat, unit); 
 	result = ((growth * levels) / 100) + baseStat; 
 	return result; 
 
 } 
-#endif 
 
 int GetStatFromDefinition(int id, struct Unit* unit) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 	switch (id) { 
@@ -39,7 +68,7 @@ int GetStatFromDefinition(int id, struct Unit* unit) { // unit required because 
 	return 0; 
 } 
 
-int GetBaseStatFromDefinition(int id, struct Unit* unit) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
+int GetBaseStatFromDefinition(int id, struct Unit* unit) { 
 	switch (id) { 
 	case hpStat: return unit->pCharacterData->baseHP + unit->pClassData->baseHP; 
 	case strStat: return unit->pCharacterData->basePow + unit->pClassData->basePow; 
@@ -53,7 +82,7 @@ int GetBaseStatFromDefinition(int id, struct Unit* unit) { // unit required beca
 	return 0; 
 } 
 
-int GetMaxStatFromDefinition(int id, struct Unit* unit) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
+int GetMaxStatFromDefinition(int id, struct Unit* unit) { // only used to avoid rerolls 
 	switch (id) { 
 	//case hpStat: return unit->pClassData->maxHP; // classes do not have hp caps 
 	case strStat: return unit->pClassData->maxPow; 
@@ -67,10 +96,10 @@ int GetMaxStatFromDefinition(int id, struct Unit* unit) { // unit required becau
 	return 255; // doesn't really matter much that you'll still roll for stat ups in hp / luck even if you've capped them 
 } 
 
-int GetNumberOfLevelUps(struct BattleUnit* bu) { // I just copied exactly what Teq did for this section 
+int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account for trainees, but there isn't much we can do about that 
 	int numberOfLevels = bu->unit.level - 1; 
 	if ((bu->unit.pCharacterData->attributes | bu->unit.pClassData->attributes) & CA_PROMOTED) { 
-		numberOfLevels += 19; 
+		numberOfLevels += GetUnitPromotionLevel(&bu->unit); 
 	} 
 	if (numberOfLevels < 0) return 0; // probably unnecessary 
 	return numberOfLevels; 
@@ -82,7 +111,14 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 	if (GetMaxStatFromDefinition(stat, unit) < currentStat+1) { return 0; } // no point trying to raise a stat if we've hit the caps. This'll improve our rerolled statups when caps have been hit 
 
 	if (mode == fixedGrowths) { 
-		result = (((growth * GetNumberOfLevelUps(bu)) % 100) + growth) / 100;  // I just copied exactly what Teq did for this
+		int averageStat = GetAverageStat(growth, stat, unit, GetNumberOfLevelUps(bu)); 
+		while (growth > 100) {
+			result++;
+			growth -= 100;
+		}
+		if (currentStat < averageStat) { 
+			result++; 
+		} 
 		return result; 
 	} 
 	
@@ -92,8 +128,7 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 			result++;
 			growth -= 100;
 		}
-		if (currentStat > (averageStat + PreventWhenAboveAverageBy_Link)) { 
-		//asm("mov r11, r11"); 
+		if (currentStat >= (averageStat + PreventWhenAboveAverageBy_Link)) { 
 		return result; 
 		} 
 		if ((currentStat + ForceWhenBelowAverageBy_Link) < averageStat) { 
@@ -129,7 +164,7 @@ extern int (*gMagGrowth)(struct Unit* unit);
 void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
 		int mode = regularGrowths; // default  
-		struct Unit* unit = NULL; 
+		struct Unit* unit = GetUnit(bu->unit.index); // required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 		if (GrowthOptions_Link.FIXED_GROWTHS_MODE) { 
 			if (CheckEventId(GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID) || (!GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID)) { 
 			mode = fixedGrowths; 
@@ -138,10 +173,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		if (GrowthOptions_Link.STAT_BRACKETING_EXISTS) { 
 			if (CheckEventId(BRACKETED_GROWTHS_FLAG_ID_Link) || (!BRACKETED_GROWTHS_FLAG_ID_Link)) { 
 			mode = bracketedGrowths; 
-			unit = GetUnit(bu->unit.index); // required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 			}
 		} 
-
 		
 		
         int statGainTotal = 0;
@@ -169,7 +202,6 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int magGrowth = 0; 
 		if (gMagGrowth) { magGrowth = gMagGrowth(&bu->unit); } 
 		
-		//asm("mov r11, r11");
         bu->changeHP  = NewGetStatIncrease(hpGrowth, mode, hpStat, bu, unit);
         statGainTotal += bu->changeHP;
 
@@ -194,9 +226,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		bu->changeCon = NewGetStatIncrease(magGrowth, mode, magStat, bu, unit); // mag uses the changeCon byte (and always has) 
         statGainTotal += bu->changeCon;
 		
-        if (statGainTotal < minStatGain_Link) {
+        if ((statGainTotal < minStatGain_Link) && (mode != fixedGrowths)) {
             for (int attempts = 0; attempts < 5; attempts++) {
-				//asm("mov r11, r11"); 
 
 				// if we did not get atleast x stat ups on level, try each of these in order 
 				// previously you'd often get +1 hp and nothing else on bad level ups because of the order 

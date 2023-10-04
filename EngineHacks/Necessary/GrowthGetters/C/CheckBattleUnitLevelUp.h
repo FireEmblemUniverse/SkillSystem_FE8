@@ -24,6 +24,7 @@
 #include "include/ekrbattle.h"
 #include "include/bmbattle.h"
 #include "include/mapanim.h"
+#include "include/classchg.h"
 
 
 
