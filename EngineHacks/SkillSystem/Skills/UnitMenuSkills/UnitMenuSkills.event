@@ -3,6 +3,8 @@
 #include "StealPlus/StealPlus.event"
 #include "HeroesMovement/HeroesMovement.event"
 
+#include "SacrificeDrawBack/Installer.event" 
+
 ALIGN 4
 NewDanceUsability:
 #incbin "Dance/NewDanceUsability.dmp"

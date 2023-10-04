@@ -2,7 +2,7 @@
 .equ gBattleData, 0x203a4d4
 @assassinate: When initiating battle at 1 range: +2 Damage, Double attacks occur before counter
 .equ AssassinateID, SkillTester+4
-
+.equ gBattleData, 0x203A4D4
 push {r4-r7, lr}
 mov r4, r0 @atkr
 mov r5, r1 @dfdr
@@ -40,6 +40,7 @@ pop {r0}
 bx r0
 
 .ltorg
+.align
 SkillTester:
 @poin SkillTester
 @word AssassinateID

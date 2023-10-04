@@ -176,6 +176,7 @@ Skill Systems Contributors:
 - Mikey Seregon
 - Vesly 
 - Dragz
+- Jopettajah
 
 # Other
 

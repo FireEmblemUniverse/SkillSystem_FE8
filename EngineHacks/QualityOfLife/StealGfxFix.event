@@ -1,0 +1,26 @@
+// Clear text tiles when starting steal targeting routine.
+// Makes it less likely for text to overlap with portrait gfx.
+
+PUSH
+  ORG 0x24220
+    jumpToHack(fixStealGfx)
+POP
+
+ALIGN 4; fixStealGfx:
+SHORT 0x4B06            // ldr  r3, =Text_ResetTileAllocation
+SHORT 0xF000 0xF809     // bl   GOTO_R3
+SHORT 0x1C20            // mov  r0, r4
+SHORT 0x4B05            // ldr  r3, =NewUnitInfoWindow_WithAllLines
+SHORT 0xF000 0xF805     // bl   GOTO_R3
+SHORT 0x4805            // ldr  r0, =0x86D
+SHORT 0x4B05            // ldr  r3, =String_GetFromIndex
+SHORT 0xF000 0xF801     // bl   GOTO_R3
+SHORT 0x4B05            // ldr  r3, =0x802422B
+                        // GOTO_R3:
+SHORT 0x4718            // bx   r3
+SHORT 0x0
+POIN 0x3D21             // Text_ResetTileAllocation
+POIN 0x34C19            // NewUnitInfoWindow_WithAllLines
+SHORT 0x86D 0x0         // 0x86D
+POIN 0xA241             // String_Get_fromIndex
+POIN 0x2422B            // Return address.

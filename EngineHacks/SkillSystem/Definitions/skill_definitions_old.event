@@ -229,6 +229,10 @@
 #define NimbleInitID 255 // Mov 
 #define SpectrumInitID 255 // All stats  
 
+// Even/Odd Footed: +1 Mov on Even/Odd turns
+// By Jopettajah
+#define OddFootedID 255
+#define EvenFootedID 255
 
 //Debuff Skills
 
@@ -973,7 +977,9 @@
 // By Vesly 
 #define BidingBlowID 255
 
-
+// Advantage Chaser: Unit always doubles when attacking with WTA.
+// By Jopettajah
+#define AdvantageChaserID 255
 
 //Stat Modifier Skills
 
@@ -1095,15 +1101,33 @@
 
 //Swarp: Allows unit to swap positions with a distant ally.
 //Be Sme
-#define SwarpID 69
+#define SwarpID 69 
 
 //Steal: Unit can steal items.
 //By Tequila
-#define StealID 56
+#define StealID 56 
 
 //Steal+: Unit can steal unequipped weapons and staves if con>weight.
 //By Tequila
-#define StealPlusID 57
+#define StealPlusID 57 
+
+//Draw Back: Unit moves 1 space away from target ally. Ally moves to unit’s previous space. 
+//By Vesly 
+#define DrawBackID 255
+
+//Sacrifice: Drains the user’s HP to restore the HP of another allied unit. It also cures status effects, with no HP cost to the user.
+//By Vesly 
+#define SacrificeID 255
+
+//Ardent Sacrifice: Restores 10 HP to target, but drops user’s HP by 10. 
+//By Vesly 
+#define ArdentSacrificeID 255
+
+//Reciprocal Aid: User and target ally switch their current HP totals. 
+//By Vesly 
+#define ReciprocalAidID 255
+
+
 
 
 //Miscellaneous Skills

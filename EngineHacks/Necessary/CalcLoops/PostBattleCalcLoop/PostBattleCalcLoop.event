@@ -24,6 +24,7 @@ POIN PostCombatSkills
 
 ALIGN 4
 PostCombatSkills: // 
+POIN InitSkillBuffers //Refresh skill buffers so freshly learned post-battle skills can apply
 POIN DepleteRepel
 //POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce

@@ -1107,6 +1107,23 @@ ORG SkillIcon(PassionsFlowID)
 ORG SkillIcon(BidingBlowID)
 #incbin "SkillIcons/BidingBlow.dmp"
 
+ORG SkillIcon(OddFootedID)
+#incbin "SkillIcons/OddFooted.dmp"
+
+ORG SkillIcon(EvenFootedID)
+#incbin "SkillIcons/EvenFooted.dmp"
+
+ORG SkillIcon(AdvantageChaserID)
+#incbin "SkillIcons/AdvantageChaser.dmp"
+
+ORG SkillIcon(DrawBackID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SacrificeID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(ArdentSacrificeID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(ReciprocalAidID)
+#incbin "SkillIcons/Acrobat.dmp"
 
 ORG SkillIcons+0x8000
 
