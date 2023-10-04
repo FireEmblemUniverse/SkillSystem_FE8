@@ -1,10 +1,11 @@
   //Growth Bonuses from skills are located in the GrowthSkills folder
   #include "GrowthBonuses/GrowthBonuses.event"
+  #include "C/Installer.event" 
   
   PUSH
   
     ORG $2BA28
-      jumpToHack(Write_Growths_To_Battle_Struct)
+      //jumpToHack(Write_Growths_To_Battle_Struct)
 
     ORG $2B9C4
       jumpToHack(Enemy_Autolevel)
