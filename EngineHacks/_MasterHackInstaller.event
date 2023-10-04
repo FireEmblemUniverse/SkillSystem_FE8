@@ -71,10 +71,10 @@ POP
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 
   // Expand unit promotion list
-  #include "ExternalHacks/ClassChgExpansion/ClassChgExpansion.event"
+ // #include "ExternalHacks/ClassChgExpansion/ClassChgExpansion.event"
 
   // Display damage numbers in battle animations.
-  #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
+ // #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
 
   //HP Bars (and effective weapon warning)
   #include "QualityOfLife/HpBars/HpBars.event"
@@ -195,7 +195,7 @@ POP
   
   //UTF8 Fonts by Vesly, 7743, Mokha, Colorz, Scraiza, MintX, and Bly
   ALIGN 4 
-  #include "ExternalHacks/Fonts/Installer.event" 
+  //#include "ExternalHacks/Fonts/Installer.event" 
   
   //Crit Cap
   #ifdef CRIT_CAP

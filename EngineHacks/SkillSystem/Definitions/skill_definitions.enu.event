@@ -390,5 +390,12 @@
 #define QuickLearnerID 0xFF
 #define PassionsFlowID 0xFF
 #define BidingBlowID 0xFF
+#define OddFootedID 0xFF
+#define EvenFootedID 0xFF
+#define AdvantageChaserID 0xFF
+#define DrawBackID 0xFF
+#define SacrificeID 0xFF
+#define ArdentSacrificeID 0xFF
+#define ReciprocalAidID 0xFF
 #define Roll12ID 0xFF
 #define TraceID 0xFF
