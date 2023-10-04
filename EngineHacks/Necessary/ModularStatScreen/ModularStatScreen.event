@@ -215,6 +215,7 @@
     POIN Get_Hp_Growth
     POIN Get_Palette_Index
 
+/*
 // Vesly's stuff 
 #include "asm/GetAverageStat.lyn.event"
 
@@ -245,7 +246,7 @@ WORD PreventStatGainXAboveAverage
 	WORD MinimumStatsOnLevelUpDef
 	
 ALIGN 4
-
+*/
 
   ALIGN 4
 /*
