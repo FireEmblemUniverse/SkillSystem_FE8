@@ -360,18 +360,18 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 #define USE_STAT_COLORS True
 
 //When leveling up, the game rerolls (up to 5 times) until you gain at least this many points
-#define MIN_STAT_GAIN 2 // vanilla is 1 
+#define MIN_STAT_GAIN 1 // vanilla is 1 
 
 //If true, Fixed Growths mode will exist.
 // Note: this takes promotion level into account, but does not take stat boosters into account 
-#define FIXED_GROWTHS_MODE True
+#define FIXED_GROWTHS_MODE False
 
 //ID of flag to use for fixed growths mode, if enabled (also works if flag here is defined as 0)
 #define FIXED_GROWTHS_FLAG_ID 0xEF 
 
 //If true, Stat bracketing mode will exist. This keeps your stats within X points of the average. 
 // Note: this takes promotion level into account, but does not take stat boosters into account 
-#define STAT_BRACKETING_EXISTS True 
+#define STAT_BRACKETING_EXISTS False 
 
 //ID of flag to use for bracketed growths mode, if enabled (also works if flag here is defined as 0)
 #define BRACKETED_GROWTHS_FLAG_ID 0xED // 0xEE is used to hide dmg numbers in battle
