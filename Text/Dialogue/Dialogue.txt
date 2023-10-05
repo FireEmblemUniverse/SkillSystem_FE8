@@ -5,6 +5,12 @@ Debug[A][X]
 ## TurnTwoText
 This occurs on turn 2.[A][X]
 
+## CannotSurfYetText
+You cannot cross deep water[N]
+until defeating Sabrina.[A][X]
+
+
+
 ## NotSafeToFleeText
 It's not safe to move![A][X]
 
@@ -3286,6 +3292,8 @@ I'm exhausted...[A][X]
 ## ObtainedSecretKeyText
 Obtained the Secret Key![A][X]
 
+## ObtainedCardKeyText
+Obtained the Card Key![A][X]
 
 ## MissingNoHintText
 I done 'ere seen it![N]
@@ -3326,6 +3334,8 @@ Cinnabar Mansion[X]
 [OpenMidRight][LoadBlaine][OpenMidRight]Hah![A][N]
 I am BLAINE, the red-hot LEADER[N]
 of CINNABAR GYM![A][N]
+Answer the quiz machines or[N]
+get burned![A][N]
 My fiery Pokémon are all rough[N]
 and ready with intense heat![A][N]
 They incinerate all challengers![A][N]

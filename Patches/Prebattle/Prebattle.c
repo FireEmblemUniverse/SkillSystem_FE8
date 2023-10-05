@@ -5,6 +5,20 @@ extern int Intimidate2ID_Link;
 extern int GuardBreakerID_Link; 
 extern int DowngradeID_Link; 
 
+void RemoveAllMineTraps(void) { 
+	struct Trap* trap; 
+	for (int i = 0; i<=50; i++) { 
+		trap = GetTrap(i); 
+		if (!trap) { break; } 
+		if (trap->type == TRAP_MINE) { 
+			RemoveTrap(trap); 
+			i--; // must start again from previous slot as RemoveTrap also moves all traps up to leave no blank spots 
+		} 
+	} 
+} 
+
+
+
 // deal 20% more dmg 
 void ScaledUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (SkillTester(&bunitB->unit, ScaledUpID_Link)) { 

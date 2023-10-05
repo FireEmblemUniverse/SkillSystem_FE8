@@ -103,8 +103,11 @@ EscapeTileTerminator ; }
 
 NW_StatsDrained:
 PlayerInRange
+CHECK_EVENTID CardKeyFlag 
+BNE 99 sC s0 
 TutText(StrFeelsSapped)
 DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk 
+LABEL 99 
 NoFade 
 ENDA 
 
@@ -190,8 +193,10 @@ LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
-
-LABEL 0x63
+CHECK_EVENTID CardKeyFlag 
+BEQ 99 sC s0 
+ASMC RemoveAllMineTraps
+LABEL 99
 NoFade
 ENDA
 

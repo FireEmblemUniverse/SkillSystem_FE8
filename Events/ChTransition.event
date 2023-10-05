@@ -181,6 +181,7 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(12, PowerPlant) // spawn voltorbs 
 //GenericDisappearEffect(13, ObtainHelixFossilEvent) // 
 //GenericDisappearEffect(14, ObtainDomeFossilEvent) // 
+//GenericDisappearEffect(15, ObtainKeyCardEvent) // 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)

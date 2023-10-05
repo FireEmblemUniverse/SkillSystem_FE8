@@ -31,7 +31,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.10.H               Sep 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.10.I               Oct 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 
@@ -377,7 +377,7 @@ String("V1.10.H               Sep 2023") ; BYTE 0; POP // this overflows into th
 #define RefreshEvenInTrainerBattleFlag 0xE9 
 #define SpeedupFlag 0xEA 
 #define InitSramFlag 0xEB 
-
+#define CardKeyFlag 0xEC 
 // 0xEF fixed growths 
 
 

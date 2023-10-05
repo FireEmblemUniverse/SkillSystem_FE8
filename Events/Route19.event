@@ -57,6 +57,7 @@ AFEV 0 GlobalAfev 0
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToFuschia [7,0][16,0] 
 AREA 0 ToRoute20E [0,34][0,41] 
+AREA 0x13 SurfMessageEvent [7,8][16,36] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -75,7 +76,13 @@ ToRoute20E:
 ChapterTransition(Route20ECh, 57,8)
 
 
-
+SurfMessageEvent: 
+CHECK_EVENTID MarshbadgeObtained
+BNE 99 sC s0 
+TutText(CannotSurfYetText) 
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 

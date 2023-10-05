@@ -62,6 +62,7 @@ AREA 0 ToPallet_W [6,0][6,0]
 AREA 0 ToPallet_E [11,0][11,0] 
 AREA 0 ToPallet_Water [7,0][10,0] 
 AREA 0 ToCinnabar [4,52][17,52] 
+AREA 0x13 SurfMessageEvent [6,0][16,10] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -84,7 +85,13 @@ ChapterTransition(PalletCh, 6, 18)
 ToCinnabar:
 ChapterTransition(CinnabarCh, 12, 1)
 
-
+SurfMessageEvent: 
+CHECK_EVENTID MarshbadgeObtained
+BNE 99 sC s0 
+TutText(CannotSurfYetText) 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 

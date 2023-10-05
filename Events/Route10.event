@@ -57,6 +57,7 @@ AFEV 0 GlobalAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute9E [0,8] [0,10] 
+AREA 0x13 SurfMessageEvent [2,4][18,4] 
 //AREA 0 ToRockTunnel 
 
 END_MAIN
@@ -79,7 +80,13 @@ ChapterTransition(RockTunnelB1Ch, 20,2)
 ToPowerPlant:
 ChapterTransition(PowerPlantCh, 5,28)
 
-
+SurfMessageEvent: 
+CHECK_EVENTID MarshbadgeObtained
+BNE 99 sC s0 
+TutText(CannotSurfYetText) 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 

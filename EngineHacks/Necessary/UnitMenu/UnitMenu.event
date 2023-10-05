@@ -25,6 +25,8 @@ PUSH
 ORG $4EBB6 
 //BYTE GeneralMenusLeft 
 
+ORG $59D215 
+BYTE 1 // Start at 1st Y tile instead of 2nd
 // Make the chapter menu wider 
 ORG $59D216 
 BYTE ChMenuWidth 
