@@ -49,6 +49,7 @@ BEQ 30 sC s0
 WallText(PurchasePsyduckText)
 LOAD1 1 PsyduckUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(3, True,  TempAlly<<8|TempAlly) // Psyduck 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 1000, 0, 0, 0, 0) 
 SVAL sB 0x100 

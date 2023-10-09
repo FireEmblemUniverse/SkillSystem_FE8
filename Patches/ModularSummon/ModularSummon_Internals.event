@@ -87,6 +87,7 @@ ENDA
 
 
 ModularSummon_RestoreCameraEvent: // This is an event so that it gets queued after X number of warp animation events, instead of happening beforehand 
+ENUF FIXED_GROWTHS_FLAG_ID
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 ENUT TrainerBattleActiveFlag 
 NoFade 

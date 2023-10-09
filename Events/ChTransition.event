@@ -256,6 +256,7 @@ ENDA
 
 
 GenericAutolevelEvent:
+ENUT FIXED_GROWTHS_FLAG_ID // AutoLevelUnits macro also turns off flag FIXED_GROWTHS_FLAG_ID
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 
@@ -275,6 +276,7 @@ NoFade
 ENDA 
 
 GenericAutolevelEvent_Earlygame:
+ENUT FIXED_GROWTHS_FLAG_ID
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 

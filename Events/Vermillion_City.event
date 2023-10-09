@@ -54,6 +54,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseFarfetchdText)
 LOAD1 1 FarfetchdUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Farfetchd 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 4000, 0, 0, 0, 0) 
 SVAL sB 0x100 

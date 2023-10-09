@@ -55,6 +55,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseOddishText)
 LOAD1 1 OddishUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Oddish 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
 SVAL sB 0x100 

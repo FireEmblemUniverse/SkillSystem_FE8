@@ -76,7 +76,9 @@ CAM1 [8,11]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(FuschiaGymBonus, False, 0x90EF) // +7 hidden levels regardless of difficulty 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
 

@@ -59,6 +59,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseHitmonchanText)
 LOAD1 1 HitmonchanUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(30, True,  TempAlly<<8|TempAlly) // Hitmonchan 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 8000, 0, 0, 0, 0) 
 SVAL sB 0x100 
@@ -116,6 +117,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseHitmonleeText)
 LOAD1 1 HitmonleeUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(30, True,  TempAlly<<8|TempAlly) // Hitmonlee 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 8000, 0, 0, 0, 0) 
 SVAL sB 0x100 

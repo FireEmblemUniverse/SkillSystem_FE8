@@ -55,6 +55,7 @@ BEQ 30 sC s0
 WallText(PurchaseJynxText)
 LOAD1 1 JynxUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Jynx 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 7000, 0, 0, 0, 0) 
 SVAL sB 0x100 
@@ -118,6 +119,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseEeveeText)
 LOAD1 1 EeveeUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(20, True, TempAlly<<8|TempAlly) // 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 1000, 0, 0, 0, 0) 
 SVAL sB 0x100 
@@ -154,6 +156,7 @@ EVBIT_MODIFY 4
 WallText(PurchasePrizeText)
 LOAD1 1 PrizesUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(19, True, TempAlly_A<<8|TempAlly_E) // 
 // Abra, Clefairy, Dratini, Lickitung, Snorlax
 SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 4500, 6000, 10000, 30000) // Porygon for cheap since in SilphCo for free 

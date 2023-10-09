@@ -58,6 +58,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseGrowlitheText)
 LOAD1 1 GrowlitheUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Growlithe 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 3000, 0, 0, 0, 0) 
 SVAL sB 0x100 

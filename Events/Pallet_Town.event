@@ -43,6 +43,7 @@ EVBIT_MODIFY 4
 WallText(PurchaseLaprasText)
 LOAD1 1 LaprasUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(35, True,  TempAlly<<8|TempAlly) // Lapras 
 SelectCharacter(TempAlly, 0, 0, 0, 0, 9000, 0, 0, 0, 0) 
 SVAL sB 0x100 

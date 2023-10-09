@@ -393,7 +393,7 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 #define STAT_BRACKETING_EXISTS True 
 
 //ID of flag to use for bracketed growths mode, if enabled (also works if flag here is defined as 0)
-#define BRACKETED_GROWTHS_FLAG_ID 0 // 0xEE is used to hide dmg numbers in battle
+#define BRACKETED_GROWTHS_FLAG_ID BracketedGrowthsFlag // 0xEE is used to hide dmg numbers in battle
 
 //If using stat bracketing and your stat is below average by this many points, always gain it on levelup 
 #define FORCE_WHEN_BELOW_AVERAGE_BY_AMOUNT 3 

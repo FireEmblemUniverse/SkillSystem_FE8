@@ -77,7 +77,9 @@ CAM1 [8,6]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(VermillionGymBonus, False, 0x90EF) 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 

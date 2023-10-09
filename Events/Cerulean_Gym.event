@@ -78,6 +78,7 @@ CAM1 [7,0]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
 
