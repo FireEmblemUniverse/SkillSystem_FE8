@@ -98,6 +98,11 @@ int GetMaxStatFromDefinition(int id, struct Unit* unit) { // only used to avoid 
 
 int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account for trainees, but there isn't much we can do about that 
 	int numberOfLevels = bu->unit.level - 1; 
+	if (GrowthOptions_Link.BRACKETING_USE_BASE_LEVEL) { 
+		numberOfLevels -= (bu->unit.pCharacterData->baseLevel) - 1; 
+		if (numberOfLevels < 0) { numberOfLevels = 0; } 
+	} 
+	
 	if ((bu->unit.pCharacterData->attributes | bu->unit.pClassData->attributes) & CA_PROMOTED) { 
 		numberOfLevels += GetUnitPromotionLevel(&bu->unit); 
 	} 

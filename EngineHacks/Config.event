@@ -362,6 +362,9 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 //When leveling up, the game rerolls (up to 5 times) until you gain at least this many points
 #define MIN_STAT_GAIN 1 // vanilla is 1 
 
+// If true, fixed/bracketed levels will consider your lowest level as the level inputted in the character table
+#define BRACKETING_USE_BASE_LEVEL False 
+
 //If true, Fixed Growths mode will exist.
 // Note: this takes promotion level into account, but does not take stat boosters into account 
 #define FIXED_GROWTHS_MODE False
