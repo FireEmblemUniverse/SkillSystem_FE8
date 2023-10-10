@@ -128,9 +128,10 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 			result++;
 			growth -= 100;
 		}
-		int levels = GetNumberOfLevelUps(bu)+1; //so the first levelup isn't always blank in fixed growths 
-		int averageStat = GetAverageStat(growth, stat, unit, levels); 
-		if (currentStat < averageStat) { 
+		int prevLevel = GetNumberOfLevelUps(bu);
+		int levels = prevLevel+1; //so the first levelup isn't always blank in fixed growths 
+		
+		if (((growth * prevLevel) / 100) < ((growth * levels) / 100)) { 
 			result++; 
 		} 
 		return result; 
