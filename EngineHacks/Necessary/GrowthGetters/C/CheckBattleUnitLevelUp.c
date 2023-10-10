@@ -21,7 +21,8 @@ u8 GetUnitPromotionLevel(struct Unit* unit) // https://github.com/FireEmblemUniv
 	int uid = unit->pCharacterData->number;
 	if (uid > 0x45) { return maxLevel; }
 	int result = *(gBWLDataStorage + 0x10 * (uid - 1) + 8); // repurpose bwl->moveAmt into bwl->promotionLvl 
-	if (!result) { return result; } 
+	struct ClassData* table = &(*classTablePoin)[unit->pCharacterData->defaultClass]; 
+	if ((unit->pCharacterData->attributes & CA_PROMOTED) || (table->attributes & CA_PROMOTED)) { return 0; } // if the character started as promoted, they should have 0 as their promotion level 
 	if (result < 10) { return 10; } 
 	
 	if (result > maxLevel) { return maxLevel; } 
@@ -100,7 +101,7 @@ int GetMaxStatFromDefinition(int id, struct Unit* unit) { // only used to avoid 
 } 
 
 int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account for trainees, but there isn't much we can do about that 
-	int numberOfLevels = bu->unit.level - 1; 
+	int numberOfLevels = bu->unit.level - 1;
 	if (GrowthOptions_Link.BRACKETING_USE_BASE_LEVEL) { 
 		numberOfLevels -= (bu->unit.pCharacterData->baseLevel) - 1; 
 		if (numberOfLevels < 0) { numberOfLevels = 0; } 
@@ -117,15 +118,18 @@ int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account 
 
 int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  struct Unit* unit) { 
     int result = 0;
+	if ((stat == magStat) && (!gMagGrowth)) { return 0; } 
+	
 	int currentStat = GetStatFromDefinition(stat, unit); 
 	if (GetMaxStatFromDefinition(stat, unit) < currentStat+1) { return 0; } // no point trying to raise a stat if we've hit the caps. This'll improve our rerolled statups when caps have been hit 
 
 	if (mode == fixedGrowths) { 
-		int averageStat = GetAverageStat(growth, stat, unit, GetNumberOfLevelUps(bu)); 
 		while (growth > 100) {
 			result++;
 			growth -= 100;
 		}
+		int levels = GetNumberOfLevelUps(bu)+1; //so the first levelup isn't always blank in fixed growths 
+		int averageStat = GetAverageStat(growth, stat, unit, levels); 
 		if (currentStat < averageStat) { 
 			result++; 
 		} 
@@ -133,7 +137,7 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 	} 
 	
 	if (mode == bracketedGrowths) { 
-		int averageStat = GetAverageStat(growth, stat, unit, GetNumberOfLevelUps(bu)); 
+		int averageStat = GetAverageStat(growth, stat, unit, GetNumberOfLevelUps(bu)+1); 
 		while (growth > 100) {
 			result++;
 			growth -= 100;
@@ -162,14 +166,7 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
     return result;
 }
 
-extern int (*gGet_Hp_Growth)(struct Unit* unit); 
-extern int (*gGet_Str_Growth)(struct Unit* unit); 
-extern int (*gGet_Skl_Growth)(struct Unit* unit); 
-extern int (*gGet_Spd_Growth)(struct Unit* unit); 
-extern int (*gGet_Def_Growth)(struct Unit* unit); 
-extern int (*gGet_Res_Growth)(struct Unit* unit); 
-extern int (*gGet_Luk_Growth)(struct Unit* unit); 
-extern int (*gMagGrowth)(struct Unit* unit); 
+
 
 void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
@@ -211,6 +208,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int resGrowth = gGet_Res_Growth(unit); 
 		int lukGrowth = gGet_Luk_Growth(unit); 
 		int magGrowth = 0; 
+		
 		if (gMagGrowth) { magGrowth = gMagGrowth(&bu->unit); } 
 		
         bu->changeHP  = NewGetStatIncrease(hpGrowth, mode, hpStat, bu, unit);

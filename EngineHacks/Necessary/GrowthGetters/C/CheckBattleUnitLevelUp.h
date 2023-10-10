@@ -26,14 +26,21 @@
 #include "include/mapanim.h"
 #include "include/classchg.h"
 
-
+extern struct ClassData* classTablePoin[]; 
 
 int GetBaseStatFromDefinition(int id, struct Unit* unit); 
 int GetStatFromDefinition(int id, struct Unit* unit);
 int GetAverageStat(int growth, int stat, struct Unit* unit, int levels);
 
 
-
+extern int (*gGet_Hp_Growth)(struct Unit* unit); 
+extern int (*gGet_Str_Growth)(struct Unit* unit); 
+extern int (*gGet_Skl_Growth)(struct Unit* unit); 
+extern int (*gGet_Spd_Growth)(struct Unit* unit); 
+extern int (*gGet_Def_Growth)(struct Unit* unit); 
+extern int (*gGet_Res_Growth)(struct Unit* unit); 
+extern int (*gGet_Luk_Growth)(struct Unit* unit); 
+extern int (*gMagGrowth)(struct Unit* unit); 
 
 
 
