@@ -45,11 +45,29 @@ u8 NewPromoHandler_SetInitStat(struct ProcPromoHandler *proc) // repoint so we a
     return 0;
 }
 
-
+extern int OldGetAverageStat(int growth, int levels); 
 int GetAverageStat(int growth, int stat, struct Unit* unit, int levels) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 	int result = 0; 
+	#ifdef TESTING
+	int unitID = unit->pCharacterData->number; 
+	if (unitID == 1) { 
+	asm("mov r11, r11"); 
+	} 
+	#endif 
 	int baseStat = GetBaseStatFromDefinition(stat, unit); 
+	#ifdef TESTING
+	int otherAverage = OldGetAverageStat(growth, levels) + baseStat; 
+	#endif 
+	
 	result = ((growth * levels) / 100) + baseStat; 
+	
+	#ifdef TESTING
+	if (result != otherAverage) { 
+		if (unitID == 1) { 
+		asm("mov r11, r11");
+		}
+	} 
+	#endif 
 	return result; 
 
 } 
@@ -98,13 +116,22 @@ int GetMaxStatFromDefinition(int id, struct Unit* unit) { // only used to avoid 
 
 int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account for trainees, but there isn't much we can do about that 
 	int numberOfLevels = bu->unit.level - 1; 
+	#ifdef TESTING 
+	if (bu->unit.pCharacterData->number == 2) { 
+	if (bu->unit.level == 19) { 
+	asm("mov r11, r11"); 
+	} 
+	} 
+	#endif 
 	if (GrowthOptions_Link.BRACKETING_USE_BASE_LEVEL) { 
 		numberOfLevels -= (bu->unit.pCharacterData->baseLevel) - 1; 
 		if (numberOfLevels < 0) { numberOfLevels = 0; } 
 	} 
 	
 	if ((bu->unit.pCharacterData->attributes | bu->unit.pClassData->attributes) & CA_PROMOTED) { 
-		numberOfLevels += GetUnitPromotionLevel(&bu->unit); 
+		int promLevel = GetUnitPromotionLevel(&bu->unit);
+		if (promLevel > 0) { promLevel--; } 
+		numberOfLevels +=  promLevel; 
 	} 
 	if (numberOfLevels < 0) return 0; // probably unnecessary 
 	return numberOfLevels; 
@@ -197,13 +224,20 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
             bu->unit.exp = UNIT_EXP_DISABLED;
         }
 
-		int hpGrowth =  gGet_Hp_Growth(&bu->unit); 
-		int strGrowth = gGet_Str_Growth(&bu->unit); 
-		int sklGrowth = gGet_Skl_Growth(&bu->unit); 
-		int spdGrowth = gGet_Spd_Growth(&bu->unit); 
-		int defGrowth = gGet_Def_Growth(&bu->unit); 
-		int resGrowth = gGet_Res_Growth(&bu->unit); 
-		int lukGrowth = gGet_Luk_Growth(&bu->unit); 
+		#ifdef TESTING
+		//int unitID = unit->pCharacterData->number; 
+		//if (unitID == 1) { 
+		//asm("mov r11, r11"); 
+		//} 
+		#endif 
+		
+		int hpGrowth =  gGet_Hp_Growth(unit); 
+		int strGrowth = gGet_Str_Growth(unit); 
+		int sklGrowth = gGet_Skl_Growth(unit); 
+		int spdGrowth = gGet_Spd_Growth(unit); 
+		int defGrowth = gGet_Def_Growth(unit); 
+		int resGrowth = gGet_Res_Growth(unit); 
+		int lukGrowth = gGet_Luk_Growth(unit); 
 		int magGrowth = 0; 
 		if (gMagGrowth) { magGrowth = gMagGrowth(&bu->unit); } 
 		
