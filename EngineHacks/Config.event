@@ -370,7 +370,7 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 #define FIXED_GROWTHS_MODE True
 
 //ID of flag to use for fixed growths mode, if enabled (also works if flag here is defined as 0)
-#define FIXED_GROWTHS_FLAG_ID 0
+#define FIXED_GROWTHS_FLAG_ID 0 
 
 //If true, Stat bracketing mode will exist. This keeps your stats within X points of the average. 
 // Note: this takes promotion level into account, but does not take stat boosters into account 

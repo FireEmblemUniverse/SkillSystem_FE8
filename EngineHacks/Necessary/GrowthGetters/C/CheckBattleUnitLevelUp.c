@@ -49,26 +49,10 @@ u8 NewPromoHandler_SetInitStat(struct ProcPromoHandler *proc) // repoint so we a
 extern int OldGetAverageStat(int growth, int levels); 
 int GetAverageStat(int growth, int stat, struct Unit* unit, int levels) { // unit required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 	int result = 0; 
-	#ifdef TESTING
-	int unitID = unit->pCharacterData->number; 
-	if (unitID == 1) { 
-	asm("mov r11, r11"); 
-	} 
-	#endif 
 	int baseStat = GetBaseStatFromDefinition(stat, unit); 
-	#ifdef TESTING
-	int otherAverage = OldGetAverageStat(growth, levels) + baseStat; 
-	#endif 
 	
 	result = ((growth * levels) / 100) + baseStat; 
 	
-	#ifdef TESTING
-	if (result != otherAverage) { 
-		if (unitID == 1) { 
-		asm("mov r11, r11");
-		}
-	} 
-	#endif 
 	return result; 
 
 } 
@@ -117,13 +101,6 @@ int GetMaxStatFromDefinition(int id, struct Unit* unit) { // only used to avoid 
 
 int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account for trainees, but there isn't much we can do about that 
 	int numberOfLevels = bu->unit.level - 1; 
-	#ifdef TESTING 
-	if (bu->unit.pCharacterData->number == 2) { 
-	if (bu->unit.level == 19) { 
-	asm("mov r11, r11"); 
-	} 
-	} 
-	#endif 
 	if (GrowthOptions_Link.BRACKETING_USE_BASE_LEVEL) { 
 		numberOfLevels -= (bu->unit.pCharacterData->baseLevel) - 1; 
 		if (numberOfLevels < 0) { numberOfLevels = 0; } 
@@ -225,12 +202,6 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
             bu->unit.exp = UNIT_EXP_DISABLED;
         }
 
-		#ifdef TESTING
-		//int unitID = unit->pCharacterData->number; 
-		//if (unitID == 1) { 
-		//asm("mov r11, r11"); 
-		//} 
-		#endif 
 		
 		int hpGrowth =  gGet_Hp_Growth(unit); 
 		int strGrowth = gGet_Str_Growth(unit); 
