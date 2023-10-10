@@ -21,6 +21,7 @@ u8 GetUnitPromotionLevel(struct Unit* unit) // https://github.com/FireEmblemUniv
 	int uid = unit->pCharacterData->number;
 	if (uid > 0x45) { return maxLevel; }
 	int result = *(gBWLDataStorage + 0x10 * (uid - 1) + 8); // repurpose bwl->moveAmt into bwl->promotionLvl 
+	if (!result) { return result; } 
 	if (result < 10) { return 10; } 
 	
 	if (result > maxLevel) { return maxLevel; } 
