@@ -26,14 +26,21 @@
 #include "include/mapanim.h"
 #include "include/classchg.h"
 
-
+extern struct ClassData* classTablePoin[]; 
 
 int GetBaseStatFromDefinition(int id, struct Unit* unit); 
 int GetStatFromDefinition(int id, struct Unit* unit);
 int GetAverageStat(int growth, int stat, struct Unit* unit, int levels);
 
 
-
+extern int (*gGet_Hp_Growth)(struct Unit* unit); 
+extern int (*gGet_Str_Growth)(struct Unit* unit); 
+extern int (*gGet_Skl_Growth)(struct Unit* unit); 
+extern int (*gGet_Spd_Growth)(struct Unit* unit); 
+extern int (*gGet_Def_Growth)(struct Unit* unit); 
+extern int (*gGet_Res_Growth)(struct Unit* unit); 
+extern int (*gGet_Luk_Growth)(struct Unit* unit); 
+extern int (*gMagGrowth)(struct Unit* unit); 
 
 
 
@@ -65,6 +72,7 @@ u8 STACKABLE_GROWTH_BOOSTS : 1;
 u8 ENEMY_NPC_FIXED_GROWTHS : 1; 
 u8 USE_STAT_COLORS : 1; 
 u8 STAT_BRACKETING_EXISTS : 1; 
+u8 BRACKETING_USE_BASE_LEVEL : 1; 
 u8 METIS_TOME_BOOST; 
 u16 FIXED_GROWTHS_FLAG_ID; 
 };
