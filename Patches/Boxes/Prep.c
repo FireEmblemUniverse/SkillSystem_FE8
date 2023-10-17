@@ -152,8 +152,8 @@ void SavePCBox(int targetSlot) {
 		RelocateUnitsPastThreshold(index); 
 	}
 	PackUnitsIntoBox(targetSlot);
-	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(slot), sizeof(*bunit[0])*BoxCapacity); // src, dst, size 
-	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size
+	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size
+	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), PCBoxSizeLookup[0]); // src, dst, size
 	
 	struct SaveBlockInfo sbm;
 	sbm.magic32 = SAVEMAGIC32;
@@ -178,7 +178,8 @@ void CopyPCBox(int sourceSlot, int targetSlot) {
 	UnpackUnitsFromBox(sourceSlot); 
 	ClearAllBoxUnits(targetSlot); 
 	PackUnitsIntoBox(targetSlot); 
-	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size 
+	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), sizeof(bunit[0])*BoxCapacity); // src, dst, size 
+	WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(targetSlot), PCBoxSizeLookup[0]); // src, dst, size
 	
 	struct SaveBlockInfo sbm;
 	sbm.magic32 = SAVEMAGIC32;
@@ -236,10 +237,27 @@ void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 	} 
 	
 	//ReorderPlayerUnitsBasedOnDeployment(); // removes gaps 
+	//int slot = gPlaySt.gameSaveSlot; 
+	//UnpackUnitsFromBox(slot); 
+	//ClearAllBoxUnits(slot); 
+	//DeploySelectedUnits();
+	//PackUnitsIntoBox(slot); 
+	//WriteAndVerifySramFast((void*)&bunit[0], (void*)PC_GetSaveAddressBySlot(slot), PCBoxSizeLookup[0]); // src, dst, size
+	//
+	//struct SaveBlockInfo sbm;
+	//sbm.magic32 = SAVEMAGIC32;
+	//sbm.kind   = SAVEBLOCK_KIND_GAME;
+	//WriteSaveBlockInfo(&sbm, slot);
+	//
+	//UnpackUnitsFromBox(slot); 
+	
 	ClearPCBoxUnitsBuffer();
 	UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
-	//RelocateUnitsPastThreshold(index); 
-
+	//RelocateUnitsPastThreshold(gPlaySt.gameSaveSlot); 
+	DeploySelectedUnits(); 
+	SavePCBox(gPlaySt.gameSaveSlot);
+	//ClearPCBoxUnitsBuffer();
+	//UnpackUnitsFromBox(gPlaySt.gameSaveSlot); 
 	
 	
     PrepSetLatestCharId(0);

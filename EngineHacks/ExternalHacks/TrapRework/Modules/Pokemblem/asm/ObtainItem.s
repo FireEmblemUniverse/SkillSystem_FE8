@@ -381,6 +381,8 @@ beq DeleteTrap
 
 ldr r1,=MemorySlot3
 strb r2,[r1]		@overwrite s3 
+ldrb r2, [r4, #0x5] @ durability 
+strb r2, [r1, #1] 
 
 ldr	r0, =GiveItemEvent	@this event gives item found in byte 0x4 of the trap
 mov	r1, #0x01		@0x01 = wait for events

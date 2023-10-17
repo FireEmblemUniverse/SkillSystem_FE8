@@ -92,7 +92,8 @@ void EnsureUnitInPartyASMC(void) {
 
 
 int EnsureUnitInParty(int slot, int charID) { 
-	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], sizeof(*bunit)*BoxCapacity); // use the generic buffer instead of reading directly from SRAM 
+	//(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], sizeof(*bunit)*BoxCapacity); // use the generic buffer instead of reading directly from SRAM 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], PCBoxSizeLookup[0]); // use the generic buffer instead of reading directly from SRAM 
 	struct BoxUnit* boxUnitSaved = GetCharIDFromBox(slot, charID);
 	int result = false; 
 	struct Unit* newUnit; 
@@ -258,9 +259,9 @@ void DeploySelectedUnits() {
 	
 	int c = CountTotalUnitsInUnitStructRam();
 	
-	for (int i = 0; i<PartySizeThreshold; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
+	for (int i = 0; i<PartySizeThreshold+1; i++) { // move units that were undeployed back into unit struct ram until it's full. Then into PC box 
 		if ((unit[i].pCharacterData)) { 
-			if (c < PartySizeThreshold) { 
+			if (c < PartySizeThreshold+1) { 
 			deploymentID = GetFreeDeploymentID(); 
 			newUnit = &gUnitArrayBlue[deploymentID];
 			memcpy((void*)newUnit, (void*)&unit[i], 0x48);
@@ -297,7 +298,8 @@ int UnpackUnitsFromBox(int slot) {
 	struct BoxUnit* bunit2;
 	
 	// src, dst, size 
-	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], sizeof(*bunit)*BoxCapacity); // use the generic buffer instead of reading directly from SRAM 
+	//(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], sizeof(*bunit)*BoxCapacity); // use the generic buffer instead of reading directly from SRAM 
+	(*ReadSramFast)((void*)PC_GetSaveAddressBySlot(slot), (void*)&bunit[0], PCBoxSizeLookup[0]); // use the generic buffer instead of reading directly from SRAM 
 	
 	
 	
@@ -473,7 +475,8 @@ struct Unit* GetFreeTempUnitAddr(void) {
 }
 
 struct Unit* GetTakenTempUnitAddr(void) {
-    int i, last = BoxBufferCapacity;
+    int i;
+	int last = BoxBufferCapacity;
     for (i = 0; i < last; ++i) {
         struct Unit* unit = GetTempUnit(i);
         if (unit->pCharacterData)

@@ -34,8 +34,14 @@ BYTE 0x00 0x00 0x00 0x20 // Disable link arena
 ORG $A3EA4 // something that writes to arena SRAM 
 SHORT $4770 // bx lr 
 
-ORG $A3984 // something that writes to arena SRAM 
+ORG $a3950 // save bonus content something 
 SHORT $4770 // bx lr 
+
+ORG $A3984 // save rankings something 
+SHORT $4770 // bx lr 
+
+ORG $A4000 // something that writes to arena SRAM 
+SHORT $4770 
 
 ORG $A2CA4 // tests SRAM by writing to $7EA0 in SRAM 
 WORD $7FFC // vanilla uses $E0073A0 to test SRAM  

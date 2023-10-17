@@ -351,6 +351,7 @@ ENDA
 #define SkillScrollTrap(XX,YY, Flag, SkillID) "BYTE ObtainSkillID XX YY Flag SkillScroll SkillID" 
 #define SpellScrollTrap(XX,YY, Flag, SpellID) "BYTE ObtainSpellID XX YY Flag SpellScroll SpellID" // 2nd last byte is ItemID defined in custom definitions in root  
 #define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID Flag 0x0"
+#define RedPokeballTrap(XX,YY, Flag, ItemID, Durability) "BYTE RedPokeballItemID XX YY ItemID Flag Durability"
 #define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID Flag 0x0"
 
 

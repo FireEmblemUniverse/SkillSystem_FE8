@@ -326,10 +326,12 @@ extern u8 DurabilityItemList[];
 int UnitAddItem(struct Unit* unit, u16 item) {
     int i = 0;
 	
-	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) {
-		if (!(unit->index & 0xC0)) { 
-			item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
-			unit->state |= 0x400; // used galeforce this turn 
+	if (!Proc_Find((const ProcInstruction*)0x8A1829C)) { // prep 
+		if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) {
+			if (!(unit->index & 0xC0)) { 
+				item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+				unit->state |= 0x400; // used galeforce this turn 
+			} 
 		} 
 	} 
 	
