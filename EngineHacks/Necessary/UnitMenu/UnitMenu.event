@@ -183,7 +183,12 @@ UnitMenuTable:
 	MenuCommand(UM_Swap,       UM_SwapDesc,       NormalText, prSwapCommand_Usability,       prSwapCommand_Effect)
 	MenuCommand(UM_Swarp,      UM_SwarpDesc,      NormalText, prSwarpCommand_Usability,      prSwarpCommand_Effect)
   #endif // COMBAT_ARTS
-  
+ MenuCommand(UM_DrawBack, UM_DrawBackDesc, NormalText, DrawBack_Usability, DrawBack_Effect) 
+ MenuCommand(UM_Sacrifice, UM_SacrificeDesc, NormalText, Sacrifice_Usability, Sacrifice_Effect)
+ MenuCommand(UM_ArdentSacrifice, UM_ArdentSacrificeDesc, NormalText, ArdentSacrifice_Usability, ArdentSacrifice_Effect)
+ MenuCommand(UM_ReciprocalAid, UM_ReciprocalAidDesc, NormalText, ReciprocalAid_Usability, ReciprocalAid_Effect)
+ 
+ 
   UM_Rescue
   UM_Give
   UM_Take

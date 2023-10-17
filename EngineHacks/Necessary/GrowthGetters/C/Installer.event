@@ -1,0 +1,60 @@
+
+#include "CheckBattleUnitLevelUp.lyn.event" 
+#include "HookPromo.lyn.event" 
+
+
+PUSH 
+// do not save squares moved in BWL 
+ORG $A4862 
+SHORT $46c0 
+ORG $a4856 
+SHORT $46c0 
+
+// save level that you promote at instead 
+ORG $cc904 
+jumpToHack(CallNewPromoHandler_SetInitStat) 
+
+POP 
+
+ALIGN 4 
+GrowthOptions_Link:
+WORD Growth_Options
+
+
+ALIGN 4 
+BRACKETED_GROWTHS_FLAG_ID_Link:
+WORD BRACKETED_GROWTHS_FLAG_ID
+
+ALIGN 4 
+minStatGain_Link:
+WORD MIN_STAT_GAIN  
+
+ALIGN 4 
+ForceWhenBelowAverageBy_Link:
+WORD FORCE_WHEN_BELOW_AVERAGE_BY_AMOUNT
+
+ALIGN 4 
+PreventWhenAboveAverageBy_Link: 
+WORD PREVENT_WHEN_ABOVE_AVERAGE_BY_AMOUNT 
+ALIGN 4 
+gMagGrowth:
+#ifdef USE_STRMAG_SPLIT
+POIN Get_Mag_Growth|1
+#else 
+WORD 0 
+#endif 
+
+gGet_Hp_Growth:
+POIN Get_Hp_Growth|1
+gGet_Str_Growth:
+POIN Get_Str_Growth|1
+gGet_Skl_Growth:
+POIN Get_Skl_Growth|1
+gGet_Spd_Growth:
+POIN Get_Spd_Growth|1
+gGet_Def_Growth:
+POIN Get_Def_Growth|1
+gGet_Res_Growth:
+POIN Get_Res_Growth|1
+gGet_Luk_Growth:
+POIN Get_Luk_Growth|1
