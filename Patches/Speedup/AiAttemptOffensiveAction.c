@@ -20,6 +20,7 @@
 // 801D301 MaybeRunPostActionEvents ~880k 
 // 803A63D Procs CpPerform CallASM ~700k 
 
+extern u8 BossChapterTable[]; 
 
 //! FE8U = 0x0803D450
 // NOTE: Shade+ and Steal+ hook this function 
@@ -100,9 +101,9 @@ s8 NewAiAttemptOffensiveAction(s8 (*isEnemy)(struct Unit* unit)) {
 	//} 
 	for (int uid = startID; uid < endID; uid++) {
 		if (triedUnit) { 
-			if (numberOfTargetsTried >= 3) { // no matter what, only bother looking at the first 3 valid targets as to not cause lag 
-				break; 
-			} 
+			if (numberOfTargetsTried >= 7) { break; } // against bosses we'll check everyone 
+			if ((BossChapterTable[gPlaySt.chapterIndex] == 0) && (numberOfTargetsTried >= 3)) { break; } // only bother looking at the first 3 valid targets as to not cause lag
+			//else 
 			numberOfTargetsTried++; 
 			triedUnit = false; 
 

@@ -28,6 +28,40 @@ WORD SpeedupRam
 WORD 0 
 #endif 
 
+
+#ifdef POKEMBLEM 
+ALIGN 4 
+BossChapterTable: 
+FILL(256) 
+
+
+#define BossChEntry(id) "PUSH; ORG BossChapterTable+id; BYTE 1; POP;" 
+
+BossChEntry(PewterGymCh) 
+BossChEntry(CeruleanGymCh) 
+BossChEntry(VermillionGymCh) 
+BossChEntry(FuschiaGymCh) 
+BossChEntry(CeladonGymCh) 
+BossChEntry(SaffronGymCh) 
+BossChEntry(CinnabarGymCh) 
+BossChEntry(ViridianGymCh) 
+//BossChEntry(Route2SCh) // for Gary  
+BossChEntry(CeruleanCh) // for Gary  
+BossChEntry(SSAnneCh) // for Gary  
+BossChEntry(PokemonTowerF1Ch) // for Gary  
+BossChEntry(SaffronDojoCh)  
+BossChEntry(SilphCo1FCh) // for Gary  
+BossChEntry(SilphCo5FCh) // for Giovanni 
+BossChEntry(Route22Ch) // for Gary  
+BossChEntry(LoreleiCh)
+BossChEntry(BrunoCh)
+BossChEntry(AgathaCh)
+BossChEntry(LanceCh)
+BossChEntry(ChampionCh)
+
+
+#endif 
+
 ALIGN 4 
 LevelUpSpeed_Link: 
 	SpeedVar(8, 15) // Vanilla is 20 default - this might need to be minimum 8 
