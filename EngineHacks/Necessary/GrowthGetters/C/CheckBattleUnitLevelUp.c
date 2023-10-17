@@ -116,6 +116,34 @@ int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account 
 	return numberOfLevels; 
 } 
 
+void* gGrowthGetterFromStatDefinition(int id) { 
+	switch (id) { 
+	case hpStat: return  gGet_Hp_Growth; 
+	case strStat: return gGet_Str_Growth; 
+	case sklStat: return gGet_Skl_Growth; 
+	case spdStat: return gGet_Spd_Growth; 
+	case defStat: return gGet_Def_Growth; 
+	case resStat: return gGet_Res_Growth; 
+	case lukStat: return gGet_Luk_Growth; 
+	case magStat: return gMagGrowth; 
+	}
+	return NULL; 
+} 
+
+int gStatByteOffsetFromStatDefintion(int id) { 
+	switch (id) { 
+	case hpStat: return 0x1B; // growth byte of class table 
+	case strStat: return 0x1C; 
+	case sklStat: return 0x1D; 
+	case spdStat: return 0x1E; 
+	case defStat: return 0x1F; 
+	case resStat: return 0x20; 
+	case lukStat: return 0x21; 
+	case magStat: return 0x3a; 
+	} 
+	return 0; 
+}  
+
 int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  struct Unit* unit) { 
     int result = 0;
 	if ((stat == magStat) && (!gMagGrowth)) { return 0; } 
@@ -138,7 +166,14 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 	} 
 	
 	if (mode == bracketedGrowths) { 
-		int averageStat = GetAverageStat(growth, stat, unit, GetNumberOfLevelUps(bu)+1); 
+		int levels = GetNumberOfLevelUps(bu)+1;
+		int statByteOffset = gStatByteOffsetFromStatDefintion(stat); 
+		int anotherLevel = levels-unit->level;
+		if (anotherLevel < 1) { anotherLevel = 1; } // probably always 1? 
+		
+		int avgGrowth = Get_Growth_With_Evolutions(unit, anotherLevel, gGrowthGetterFromStatDefinition(stat), statByteOffset); 
+	
+		int averageStat = GetAverageStat(avgGrowth, stat, unit, levels); 
 		while (growth > 100) {
 			result++;
 			growth -= 100;

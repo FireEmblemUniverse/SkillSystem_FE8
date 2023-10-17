@@ -479,7 +479,7 @@ LABEL 0x63
 AutoLevelUnits(16, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
-SetUnitStatus(1, 0x28, DragonRage)
+SetUnitStatus(1, 0x28, NightShade)
 SetUnitStatus(1, 0x29, Ember)
 SetUnitStatus(1, 0x2A, MudShot)
 SetUnitStatus(1, 0x2B, Flamethrower)
@@ -577,7 +577,7 @@ Write_Byte(22, YCoordNewArea)
 //MNC2 SeafoamB3Ch
 
 //MNC2 CeruleanGymCh
-MNC2 PewterCh
+MNC2 DebugCh
 //MNC2 Route9ECh 
 //MNC2 SilphCo2FCh
 //MNC2 Route20ECh

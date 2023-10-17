@@ -356,7 +356,8 @@ b NextUnit
 .ltorg
 .align 
 
-
+.global Get_Growth_With_Evolutions
+.type Get_Growth_With_Evolutions, %function 
 Get_Growth_With_Evolutions:
 push {r4-r7, lr}
 mov r4, r8

@@ -105,7 +105,7 @@ DamageModifierCalcLoopHook:
 @mov r4, r0 
 mov r6, r1 
 ldr r5, [r4, #0x4c]
-mov r0, #0x40 
+mov r0, #0x0 @ vanilla does mov r0, #0x40 which makes it so that weps that use Mag instead of Str cannot negate def? 
 and r5, r0 
 
 push {lr} @ save lr so we can bl / blh 

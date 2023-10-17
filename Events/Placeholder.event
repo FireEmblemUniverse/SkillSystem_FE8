@@ -237,7 +237,7 @@ UNIT
 EnemyUnits:
 //UNIT 0x50 ClassRoute2NWildA 0x0 Level(0, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
 //UNIT 0x50 ParasectID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 KakunaID 0x0 Level(0, Enemy, 1)   [13,9] 0b	0x0 0x01 REDA13R9 [SolarBeam,0x0,0x0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 EeveeID 0x0 Level(0, Enemy, 1)   [13,9] 0b	0x0 0x01 REDA13R9 [SolarBeam,0x0,0x0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
@@ -329,10 +329,10 @@ LOAD1 1 EnemyUnits
 ENUN 
 //LOAD1 1 Units3 
 //ENUN 
-AutoLevelUnits(2, True, 0x50FF)
+AutoLevelUnits(15, True, 0x50FF)
 RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-SetUnitStatus(1, CurrentHP, 5)
+//SetUnitStatus(1, CurrentHP, 5)
 
 //SetUnitStatus(2, CurrentHP, 25)
 
@@ -357,6 +357,7 @@ SetUnitStatus(4, 0x2A, Bolting)
 SetUnitStatus(0x50, MaxHP, 99)
 SetUnitStatus(0x50, CurrentHP, 99)
 SetUnitStatus(0x50, Defence, 45)
+SetUnitStatus(0x50, Resistance, 15)
 
 SetUnitStatus(0x50, 0x8, 60)
 //SetUnitStatus(2, 0x2A, Agility)

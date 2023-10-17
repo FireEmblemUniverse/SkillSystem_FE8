@@ -32,7 +32,7 @@ int GetBaseStatFromDefinition(int id, struct Unit* unit);
 int GetStatFromDefinition(int id, struct Unit* unit);
 int GetAverageStat(int growth, int stat, struct Unit* unit, int levels);
 
-
+extern int Get_Growth_With_Evolutions(struct Unit*, int, void(struct Unit* unit), int); 
 extern int (*gGet_Hp_Growth)(struct Unit* unit); 
 extern int (*gGet_Str_Growth)(struct Unit* unit); 
 extern int (*gGet_Skl_Growth)(struct Unit* unit); 
