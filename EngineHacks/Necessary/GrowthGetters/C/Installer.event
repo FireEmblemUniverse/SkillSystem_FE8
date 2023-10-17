@@ -2,6 +2,7 @@
 #include "CheckBattleUnitLevelUp.lyn.event" 
 #include "HookPromo.lyn.event" 
 
+
 PUSH 
 // do not save squares moved in BWL 
 ORG $A4862 

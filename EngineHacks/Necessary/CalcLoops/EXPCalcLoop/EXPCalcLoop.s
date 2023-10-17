@@ -44,8 +44,9 @@ strb r0, [ r6 ]
 mov r0, r4 @ Defense struct
 mov r1, r5 @ Attack struct
 blh ComputeEXPFromBattle, r2
-@cmp r0, #0x00
-@beq DefenderStore @ Immediately end if 0 EXP is passed through.
+ldrb r2, [r2,#0x13]
+cmp r2, #0
+beq DefenderDead @ Immediately end if defender is dead
 ldr r7, =EXPCalcFunctions
 DefenderLoop:
 ldr r3, [ r7 ]
@@ -62,6 +63,9 @@ EndDefenderLoop:
 cmp r0, #100
 ble DefenderStore
 	mov r0, #100
+	b DefenderStore
+DefenderDead:
+mov r0,#0
 DefenderStore:
 
 mov r1, r4
