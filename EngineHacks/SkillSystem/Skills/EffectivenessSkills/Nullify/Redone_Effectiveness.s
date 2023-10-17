@@ -19,6 +19,46 @@ beq		RetFalse			@if weapon isn't effective, end
 ldr		r1,[r5,#0x4]
 mov		r6,#0x50
 ldr		r6,[r1,r6]			@class weaknesses
+
+
+@ used with Dragz's Effectiveness Items
+/*
+push 	{r0-r3}
+mov 	r0,r5
+bl 		GetUnitDebuffEntry 
+ldr 	r1, =FlammableBitOffset_Link
+ldr 	r1, [r1] 
+bl 		CheckBit 
+cmp		r0,#0
+beq		DousedCheck
+mov		r2, #0x40
+orr		r6, r2
+
+DousedCheck:
+mov 	r0,r5
+bl 		GetUnitDebuffEntry 
+ldr 	r1, =DousedBitOffset_Link
+ldr 	r1, [r1] 
+bl 		CheckBit 
+cmp		r0,#0
+beq		LevitatingCheck
+mov		r2, #0x80
+orr		r6, r2
+
+LevitatingCheck:
+mov 	r0,r5
+bl 		GetUnitDebuffEntry 
+ldr 	r1, =LevitatingBitOffset_Link
+ldr 	r1, [r1] 
+bl 		CheckBit 
+cmp		r0,#0
+beq		DebuffEnd
+mov		r2, #0x04
+orr		r6, r2
+DebuffEnd:
+pop 	{r0-r3}
+*/
+
 cmp		r6,#0
 beq		RetFalse			@if class has no weaknesses, end
 
@@ -82,4 +122,4 @@ bx		r1
 
 .ltorg
 SkillTester:
-@
+@WORD NullifyID

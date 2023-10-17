@@ -85,6 +85,15 @@ FlierAndMonster2: //Nidhogg
 SetWeaponEffectiveness(FlierType, 6)
 SetWeaponEffectiveness(MonsterType, 4)
 WORD 0
+//Used with Dragz's Effectiveness Items
+/*
+FlammableEffectiveness:
+SetWeaponEffectiveness(Flammable, 4)
+WORD 0
+DousedEffectiveness:
+SetWeaponEffectiveness(Doused, 4)
+WORD 0
+*/
 
 #define SetProtection(type_list) "SHORT 0 type_list"
 FlierProtection:

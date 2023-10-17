@@ -68,7 +68,7 @@
 	
 	ALIGN 4
 	Redone_Effectiveness:
-	#incbin "Redone_Effectiveness.dmp"
+	#include "Redone_Effectiveness.lyn.event"
 	POIN SkillTester
 	WORD NullifyID
 
