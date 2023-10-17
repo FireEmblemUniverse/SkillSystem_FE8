@@ -3,7 +3,7 @@
 .type TakeFromSupplyHook, %function 
 TakeFromSupplyHook:
 push {lr} 
-mov r0, r6 
+add r0, r6 
 ldrh r0, [r0] 
 lsl r0, #2 
 add r0, r4 
