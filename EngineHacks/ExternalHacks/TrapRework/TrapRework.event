@@ -106,7 +106,7 @@
 	#define AddTrap(trapID,x,y) "SVAL 1 trapID; SVAL 0xB (x|(y<<16)); ASMC AddTrapASMC"
 	#define RemoveTrapAtCoords(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
 	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
-	#define GetTrapExt1At(X,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
+	#define GetTrapExt1At(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
 	
 	
 	//Macro for setting traps as light sources (uses ext1 for vision range)
