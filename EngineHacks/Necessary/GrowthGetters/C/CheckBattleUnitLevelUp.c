@@ -180,7 +180,9 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		} 
 		if (GrowthOptions_Link.STAT_BRACKETING_EXISTS) { 
 			if (CheckEventId(BRACKETED_GROWTHS_FLAG_ID_Link) || (!BRACKETED_GROWTHS_FLAG_ID_Link)) { 
-			mode = bracketedGrowths; 
+				if (mode != fixedGrowths) { // added for pokemblem 
+						mode = bracketedGrowths; 
+				} 
 			}
 		} 
 		
