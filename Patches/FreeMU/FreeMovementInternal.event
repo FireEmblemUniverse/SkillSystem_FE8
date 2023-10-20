@@ -204,7 +204,8 @@ ALIGN 4
 	//MM_Status
 	//MM_Guide
 	MM_Dunno1 // options 
-	MenuCommand(UM_Fly, UM_FlyDesc, NormalText, FlyCommandUsability|1, CallSoarEffect|1)
+	//MenuCommand(UM_Fly, UM_FlyDesc, NormalText, FlyCommandUsability|1, CallSoarEffect|1)
+	MenuCommand(UM_Travel, UM_TravelDesc, NormalText, TravelCommandUsability, TravelCommandEffect)
 	//MM_Dunno2
 	MM_Suspend
 	MenuCommand(FMU_MenuName, FMU_MenuDesc, GreenText, AlwaysUsable, FMU_EndFreeMoveSilent|1)

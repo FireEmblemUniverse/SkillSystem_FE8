@@ -370,11 +370,14 @@ EquipNewSkillAccessory(2, DowngradeID) // GiveSkillAccessory(0, RenewalID)
 
 //SilentGiveSkillAccessory(1, IntimidateID)
 
+
 SupplyItem(ExoticCandy)
 SupplyItem(ExoticCandy)
 SupplyItem(ExoticCandy)
 SupplyItem(ExoticCandy)
-SupplyItem(ExoticCandy)
+SupplyItem(Revive)
+SupplyItem(WarpCrystal)
+SupplyItem(EscapeRope)
 //SupplyItem(RedGem)
 SupplyItem(MoonStone)
 SupplyItem(FireStone)

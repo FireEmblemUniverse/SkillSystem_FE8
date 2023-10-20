@@ -145,13 +145,30 @@ WORD  0x0
 WORD  0x0
 WORD  0x0
 
+// Travel: Dig, Teleport, Fly, EscapeRope 
+WORD  0x0
+SHORT UM_Travel
+SHORT UM_TravelDesc
+BYTE  0x0
+BYTE  0x76
+SHORT 0x0
+POIN TravelCommandUsability
+WORD  0x0
+POIN  TravelCommandEffect
+//POIN StartSoaring
+WORD  0x0
+WORD  0x0
+WORD  0x0
+
+// if only 1 travel command option, maybe do not open submenu? 
+/*
 #ifndef DEBUG_MODE 
 // Fly
 WORD  0x0
 SHORT UM_Fly
 SHORT UM_FlyDesc
 BYTE  0x0
-BYTE  0x76
+BYTE  0x77
 SHORT 0x0
 POIN FlyCommandUsability
 WORD  0x0
@@ -167,7 +184,7 @@ WORD  0x0
 SHORT UM_Fly2
 SHORT UM_FlyDesc2
 BYTE  0x0
-BYTE  0x76
+BYTE  0x77
 SHORT 0x0
 POIN FlyCommandUsability
 WORD  0x0
@@ -176,6 +193,7 @@ POIN  FlyCommandEffect
 WORD  0x0
 WORD  0x0
 WORD  0x0
+*/
 
 /*
 #ifdef DEBUG_MODE

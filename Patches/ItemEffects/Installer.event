@@ -1,6 +1,63 @@
 
 
-//#include "ItemEffects.lyn.event" 
+#include "ItemEffects.lyn.event" 
+
+
+ALIGN 4 
+TeleportEvent:
+TutText(DebugText)
+NoFade 
+ENDA 
+
+
+ALIGN 4 
+DigEvent:
+TutText(DebugText)
+NoFade 
+ENDA 
+
+ALIGN 4 
+WarpCrystal_Link:
+WORD WarpCrystal 
+EscapeRope_Link: 
+WORD EscapeRope 
+Revive_Link: 
+WORD Revive 
+Teleport_Link: 
+//WORD Teleport 
+WORD 255 
+Dig_Link: 
+WORD Dig 
+DigChapterRam_Link: 
+WORD DigChapterRam
+TeleportChapter_Link: 
+WORD TeleportChapter 
+PsychicType_Link: 
+WORD PsychicType 
+
+
+ALIGN 4 
+gTravelMenuItems: 
+MenuCommand(UM_Fly, UM_FlyDesc, NormalText, FlyCommandUsability, StartSoaring)
+MenuCommand(UM_Fly2, UM_FlyDesc2, NormalText, FlyMenuCommandUsability, FlyCommandEffect)
+MenuCommand(CM_Dig, CM_DigDesc, NormalText, DigFieldMoveUsability, DigFieldMoveEffect)
+MenuCommand(CM_EscapeRope, CM_EscapeRopeDesc, NormalText, EscapeRopeUsability, EscapeRopeMenuEffect)
+MenuCommand(CM_Teleport, CM_TeleportDesc, NormalText, TeleportFieldMoveUsability, TeleportFieldMoveEffect)
+MenuCommand(CM_WarpCrystal, CM_WarpCrystalDesc, NormalText, WarpCrystalUsability, WarpCrystalMenuEffect)
+UM_Separator
+
+
+#define MenuCancelSelect 0x804f455 
+#define MenuAutoHelpBoxSelect 0x804f521
+#define MenuStdHelpBox 0x804f459
+
+ALIGN 4
+travelSubMenuDef:
+BYTE 1 1 9 0
+WORD 0
+POIN gTravelMenuItems
+POIN 0 0 0 TravelCancelSelect MenuAutoHelpBoxSelect MenuStdHelpBox
+
 
 
 ALIGN 4 
@@ -59,7 +116,6 @@ FILL(256)
 //CannotTeleportEntry(SaffronGymCh)
 //CannotTeleportEntry(CinnabarGymCh)
 //CannotTeleportEntry(ViridianGymCh)
-
 
 
 
