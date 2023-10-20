@@ -76,10 +76,10 @@ ToPewter:
 ChapterTransition(PewterCh, 19, 36)
 
 ToViridianForestN:
-ChapterTransition(ViridianForestNCh, 5, 7)
+DigChapterTransition(ChapterID, ViridianForestNCh, 5, 7)
 
 ToDiglettsCave:
-ForcedChapterTransition(DiglettsCaveCh, 4, 1)
+DigForcedChapterTransition(ChapterID, DiglettsCaveCh, 4, 1)
 
 ToRoute2S:
 ChapterTransition(Route2SCh, 19, 5)

@@ -1302,11 +1302,11 @@ add r1, r0 @ add 1 for caught icon instead if caught
   add     r2, #0x20
   ldr     r1, =(0x20*2*\tile_y)+(2*\tile_x) @#0x342
   add     r1, r8
-  str     r4, [sp]
   str     r0, [sp, #4]
   mov     r0, r2
   mov     r2, #0
   mov     r3, #0
+  str r3, [sp] @ width is 0 fsr 
   blh     DrawTextInline
 .endm
 

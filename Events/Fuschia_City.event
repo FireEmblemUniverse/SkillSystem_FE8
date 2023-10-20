@@ -151,7 +151,7 @@ ChapterTransition(Route18Ch, 59,9)
 
 EnterSafariZone:
 TutText(EnterSafariZoneText)
-ChapterTransition(SafariSCh, 20,25)
+DigChapterTransition(ChapterID, SafariSCh, 20,25)
 NoFade 
 ENDA 
 //ChapterTransition(SafariZoneACh, 59,9)

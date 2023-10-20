@@ -1200,8 +1200,9 @@ NoFade
 ENDA 
 
 
-
+#define DigChapterTransition(ChapterID, DestChapter, DestX, DestY) "Write_Byte(ChapterID, DigChapterRam); Write_Byte(DestX, XCoordDig); Write_Byte(DestY, YCoordDig); Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA"
 #define ChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA" 
+#define DigForcedChapterTransition(ChapterID, DestChapter, DestX, DestY) "Write_Byte(ChapterID, DigChapterRam); Write_Byte(DestX, XCoordDig); Write_Byte(DestY, YCoordDig); Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 #define ForcedChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 #define ForcedChapterTransitionHole(DestChapter, DestX, DestY) "PlayerInRange; Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 
@@ -1282,6 +1283,7 @@ ENUF RefreshEvenInTrainerBattleFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
+Write_Byte(TeleportChapter) // teleport chapter needs to know where you last saved + healed
 CALL HandleProtag
 MNC2 SaveWithHealCh 
 NoFade 

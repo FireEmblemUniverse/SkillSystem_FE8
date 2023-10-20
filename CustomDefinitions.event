@@ -190,6 +190,11 @@ String("V1.10.K               Oct 2023") ; BYTE 0; POP // this overflows into th
 #define BuffTableSize 0x1D8 // Pokemblem - 50 players/enemies, 15 NPCs - regular would be $21C i think 
 #define BuffTableEntrySize 4 
 
+#define FreeRamByte1 0x30017A0 // - 0x30017A9 
+
+#define XCoordTeleport 0x30017AA
+#define YCoordTeleport 0x30017AB
+
 #define XCoordNewArea 			0x30017ac
 #define YCoordNewArea 			0x30017ad
 #define CurrentChapter 		0x30017ae
@@ -198,9 +203,12 @@ String("V1.10.K               Oct 2023") ; BYTE 0; POP // this overflows into th
 #define PlayerAvatarClass 0x30017b0
 //#define DigChapter 			0x30017b1 
 #define CurrentLanguage 0x30017b1 
-#define PostTrainerBattleRamLocat 0x30017b3 
 #define GaryStarterClass 		0x30017b2 //we can set this at the beginning and then add 1 a couple times to evolve, maybe? 
-#define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
+#define PostTrainerBattleRamLocat 0x30017b3 
+#define DisableMenuOptionsRam 0x30017b4 // byte bitflags: gaiden, capture, submenu, (guard & call use definitions)  
+#define DigChapterRam 0x30017B5 
+#define XCoordDig 0x30017B6 
+#define YCoordDig 0x30017B7 
 #define CurrentPartySizeRam 			0x30017b8 // used to check whether to autosave 
 #define BerryDurabilityToggleRam 			0x30017b9 
 #define ReturnTMRam 			0x30017ba // Also used for enemy AI 

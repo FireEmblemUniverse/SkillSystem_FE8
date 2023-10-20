@@ -100,7 +100,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToMtMoonB1:
-ChapterTransition(MtMoonB1Ch, 13,32)
+DigChapterTransition(ChapterID, MtMoonB1Ch, 13,32)
 
 ToRoute3:
 ChapterTransition(Route3Ch, 52,0)

@@ -236,7 +236,7 @@ ENDA
 
 
 EnterMansion:
-ForcedChapterTransition(MansionB1Ch, 8,25)
+DigForcedChapterTransition(ChapterID, MansionB1Ch, 8,25)
 NoFade 
 ENDA 
 

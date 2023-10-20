@@ -16,51 +16,54 @@
 #define DragonTypeIcon 229 
 #define DryingPanIcon 230 
 #define ElectricTypeIcon 231 
-#define FairyTypeIcon 232 
-#define FightingTypeIcon 233 
-#define FireStoneIcon 234 
-#define FireTypeIcon 235 
-#define FlyingTypeIcon 236 
-#define GhostTypeIcon 237 
-#define GrassTypeIcon 238 
-#define GroundTypeIcon 239 
-#define HPUpIcon 240 
-#define HyperPotionIcon 241 
-#define IceTypeIcon 242 
-#define image_palIcon 243 
-#define IronIcon 244 
-#define JellyDonutIcon 245 
-#define LeafStoneIcon 246 
-#define LinkStoneIcon 247 
-#define LuckIcon 248 
-#define LuckyBracerIcon 249 
-#define MaximumRepelIcon 250 
-#define MoonStoneIcon 251 
-#define MuscleBandIcon 252 
-#define NormalTypeIcon 253 
-#define OpenPokeballIcon 254 
-#define PoisonTypeIcon 255 
-#define PokeballIcon 256 
-#define PokemonLocationIcon 257 
-#define PotionIcon 258 
-#define ProteinIcon 259 
-#define PsychicTypeIcon 260 
-#define QuickClawIcon 261 
-#define RareCandyIcon 262 
-#define RepelIcon 263 
-#define ReviveIcon 264 
-#define RockTypeIcon 265 
-#define SacredStoneIcon 266 
-#define SecretTonicIcon 267 
-#define SteelTypeIcon 268 
-#define SuperPotionIcon 269 
-#define SuperRepelIcon 270 
-#define ThunderStoneIcon 271 
-#define TMIcon 272 
-#define WaterStoneIcon 273 
-#define WaterTypeIcon 274 
-#define WiseGlassesIcon 275 
-#define ZincIcon 276 
+#define EscapeRopeIcon 232 
+#define FairyTypeIcon 233 
+#define FightingTypeIcon 234 
+#define FireStoneIcon 235 
+#define FireTypeIcon 236 
+#define FlyingTypeIcon 237 
+#define GhostTypeIcon 238 
+#define GrassTypeIcon 239 
+#define GroundTypeIcon 240 
+#define HawkeyeIcon 241 
+#define HPUpIcon 242 
+#define HyperPotionIcon 243 
+#define IceTypeIcon 244 
+#define image_palIcon 245 
+#define IronIcon 246 
+#define JellyDonutIcon 247 
+#define LeafStoneIcon 248 
+#define LinkStoneIcon 249 
+#define LuckIcon 250 
+#define LuckyBracerIcon 251 
+#define MaximumRepelIcon 252 
+#define MoonStoneIcon 253 
+#define MuscleBandIcon 254 
+#define NormalTypeIcon 255 
+#define OpenPokeballIcon 256 
+#define PoisonTypeIcon 257 
+#define PokeballIcon 258 
+#define PokemonLocationIcon 259 
+#define PotionIcon 260 
+#define ProteinIcon 261 
+#define PsychicTypeIcon 262 
+#define QuickClawIcon 263 
+#define RareCandyIcon 264 
+#define RepelIcon 265 
+#define ReviveIcon 266 
+#define RockTypeIcon 267 
+#define SacredStoneIcon 268 
+#define SecretTonicIcon 269 
+#define SteelTypeIcon 270 
+#define SuperPotionIcon 271 
+#define SuperRepelIcon 272 
+#define ThunderStoneIcon 273 
+#define TMIcon 274 
+#define WarpCrystalIcon 275 
+#define WaterStoneIcon 276 
+#define WaterTypeIcon 277 
+#define WiseGlassesIcon 278 
+#define ZincIcon 279 
 */ 
  
  
@@ -100,6 +103,9 @@ ItemIconEntry(DryingPanIcon)
 ItemIconEntry(ElectricTypeIcon) 
 #incbin "dmp/ElectricType.dmp" 
  
+ItemIconEntry(EscapeRopeIcon) 
+#incbin "dmp/EscapeRope.dmp" 
+ 
 ItemIconEntry(FairyTypeIcon) 
 #incbin "dmp/FairyType.dmp" 
  
@@ -123,6 +129,9 @@ ItemIconEntry(GrassTypeIcon)
  
 ItemIconEntry(GroundTypeIcon) 
 #incbin "dmp/GroundType.dmp" 
+ 
+ItemIconEntry(HawkeyeIcon) 
+#incbin "dmp/Hawkeye.dmp" 
  
 ItemIconEntry(HPUpIcon) 
 #incbin "dmp/HPUp.dmp" 
@@ -222,6 +231,9 @@ ItemIconEntry(ThunderStoneIcon)
  
 ItemIconEntry(TMIcon) 
 #incbin "dmp/TM.dmp" 
+ 
+ItemIconEntry(WarpCrystalIcon) 
+#incbin "dmp/WarpCrystal.dmp" 
  
 ItemIconEntry(WaterStoneIcon) 
 #incbin "dmp/WaterStone.dmp" 

@@ -73,7 +73,7 @@ ChapterTransition(Route2NCh, 19, 41)
 ToViridianForestS:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
-ChapterTransition(ViridianForestSCh, 28, 28)
+DigChapterTransition(ChapterID, ViridianForestSCh, 28, 28)
 
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent

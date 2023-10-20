@@ -1,3 +1,5 @@
+@ this file is unused 
+
 @ Hook at RefreshFogAndUnitMaps.
 @ Updates the danger radius.
 .thumb

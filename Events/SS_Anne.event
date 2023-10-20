@@ -60,7 +60,7 @@ NoFade
 ENDA 
 
 LocationBasedEvents:
-House(0, ToVermillion, 19,2) 
+House(0, ToVermilion, 19,2) 
 //House(0, UpperBoat, 2,6) 
 END_MAIN
 
@@ -77,10 +77,10 @@ EscapeTileEntry(19,2)
 EscapeTileTerminator ; } 
 #endif 
 
-ToVermillion:
+ToVermilion:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
-ChapterTransition(VermillionCh, 21,33)
+ChapterTransition(VermilionCh, 21,33)
 
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent

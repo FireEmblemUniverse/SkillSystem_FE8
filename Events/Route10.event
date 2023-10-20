@@ -75,10 +75,10 @@ ToRoute9E:
 ChapterTransition(Route9ECh, 40,9)
 
 ToRockTunnel:
-ChapterTransition(RockTunnelB1Ch, 20,2)
+DigChapterTransition(ChapterID, RockTunnelB1Ch, 20,2)
 
 ToPowerPlant:
-ChapterTransition(PowerPlantCh, 5,28)
+DigChapterTransition(ChapterID, PowerPlantCh, 5,28)
 
 SurfMessageEvent: 
 CHECK_EVENTID MarshbadgeObtained

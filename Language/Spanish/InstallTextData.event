@@ -7102,11 +7102,11 @@ __TEXTPROCESS1A15:
 setText($1A15, __TEXTPROCESS1A15)
 
 __TEXTPROCESS1A16:
-#incbin ".TextEntries/text_buildfileVermillionChText.fetxt.dmp"
+#incbin ".TextEntries/text_buildfileVermilionChText.fetxt.dmp"
 setText($1A16, __TEXTPROCESS1A16)
 
 __TEXTPROCESS1A17:
-#incbin ".TextEntries/text_buildfileVermillionGymChText.fetxt.dmp"
+#incbin ".TextEntries/text_buildfileVermilionGymChText.fetxt.dmp"
 setText($1A17, __TEXTPROCESS1A17)
 
 __TEXTPROCESS1A18:

@@ -68,7 +68,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToSeafoam:
-ChapterTransition(SeafoamB1Ch, 32, 21)
+DigChapterTransition(ChapterID, SeafoamB1Ch, 32, 21)
 
 ToCinnabar:
 ChapterTransition(CinnabarCh, 22, 15)

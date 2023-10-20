@@ -1,0 +1,65 @@
+
+
+//#include "ItemEffects.lyn.event" 
+
+
+ALIGN 4 
+EscapeRopeChapterTable: // chapters that you can use an escape rope in 
+FILL(256) 
+#define EscRopeEntry(ID) "PUSH; ORG EscapeRopeChapterTable+ID; BYTE 1; POP" 
+EscRopeEntry(ViridianForestSCh)
+EscRopeEntry(ViridianForestNCh)
+EscRopeEntry(MtMoonB1Ch)
+EscRopeEntry(MtMoonB2Ch)
+EscRopeEntry(MtMoonB3Ch)
+EscRopeEntry(CeruleanCaveB1Ch)
+EscRopeEntry(CeruleanCaveB2Ch)
+EscRopeEntry(CeruleanCaveB3Ch)
+EscRopeEntry(SSAnneCh)
+EscRopeEntry(DiglettsCaveCh)
+EscRopeEntry(RockTunnelB1Ch)
+EscRopeEntry(RockTunnelB2Ch)
+EscRopeEntry(PokemonTowerF1Ch)
+EscRopeEntry(PokemonTowerF2Ch)
+EscRopeEntry(PokemonTowerF3Ch)
+EscRopeEntry(PokemonTowerF4Ch)
+EscRopeEntry(PokemonTowerF5Ch)
+EscRopeEntry(SafariSCh)
+EscRopeEntry(SafariECh)
+EscRopeEntry(SafariNCh)
+EscRopeEntry(SafariWCh)
+EscRopeEntry(SilphCo1FCh)
+EscRopeEntry(SilphCo2FCh)
+EscRopeEntry(SilphCo3FCh)
+EscRopeEntry(SilphCo4FCh)
+EscRopeEntry(SilphCo5FCh)
+EscRopeEntry(SeafoamB1Ch)
+EscRopeEntry(SeafoamB2Ch)
+EscRopeEntry(SeafoamB3Ch)
+EscRopeEntry(SeafoamB4Ch)
+EscRopeEntry(SeafoamB5Ch)
+EscRopeEntry(MansionB1Ch)
+EscRopeEntry(MansionB2Ch)
+EscRopeEntry(MansionB3Ch)
+EscRopeEntry(MansionB4Ch)
+EscRopeEntry(PowerPlantCh)
+EscRopeEntry(VictoryRoadB1Ch)
+EscRopeEntry(VictoryRoadB2Ch)
+EscRopeEntry(VictoryRoadB3Ch)
+
+ALIGN 4 
+CannotTeleportChapterTable: 
+FILL(256)
+#define CannotTeleportEntry(id) "PUSH; ORG CannotTeleportChapterTable+id; BYTE 1; POP" 
+//CannotTeleportEntry(PewterGymCh)
+//CannotTeleportEntry(CeruleanGymCh)
+//CannotTeleportEntry(VermilionGymCh)
+//CannotTeleportEntry(FuschiaGymCh)
+//CannotTeleportEntry(CeladonGymCh)
+//CannotTeleportEntry(SaffronGymCh)
+//CannotTeleportEntry(CinnabarGymCh)
+//CannotTeleportEntry(ViridianGymCh)
+
+
+
+

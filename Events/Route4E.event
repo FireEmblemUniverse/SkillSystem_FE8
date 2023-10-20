@@ -72,11 +72,11 @@ EscapeTileTerminator ; }
 #endif 
 
 ToMtMoonB2_Exit:
-ChapterTransition(MtMoonB2Ch, 28, 5)
+DigChapterTransition(ChapterID, MtMoonB2Ch, 28, 5)
 
 ToCeruleanCave:
 CALL ClosedArea
-ChapterTransition(MtMoonB2Ch, 0,0)
+DigChapterTransition(ChapterID, MtMoonB2Ch, 0,0)
 
 ToCeruleanWater:
 ChapterTransition(CeruleanCh, 1,2)

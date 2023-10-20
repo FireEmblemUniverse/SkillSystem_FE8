@@ -79,9 +79,9 @@ EscapeTileTerminator ; }
 #endif 
 
 ToVictoryRoadB1:
-ChapterTransition(VictoryRoadB1Ch, 11, 20)
+DigChapterTransition(ChapterID, VictoryRoadB1Ch, 11, 20)
 ToVictoryRoadB2:
-ChapterTransition(VictoryRoadB2Ch, 38,12)
+DigChapterTransition(ChapterID, VictoryRoadB2Ch, 38,12)
 ToPokecenterLeague:
 ChapterTransition(PokecenterLeagueCh, 11,16)
 ToRoute23M:

@@ -215,7 +215,7 @@ NoFade
 ENDA 
 
 EnterSilphCo:
-ForcedChapterTransition(SilphCo1FCh, 8,19)
+DigForcedChapterTransition(ChapterID, SilphCo1FCh, 8,19)
 NoFade 
 ENDA 
 

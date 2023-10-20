@@ -182,7 +182,7 @@
 #define Dig 0xB6
 #define ExoticCandy 0xB7
 #define Gold150x 0xB8
-#define Gold200x 0xB9
+#define WarpCrystal 0xB9
 #define BlackGem2 0xBA
 #define SuperRepel 0xBB
 #define Bonemerang 0xBC
@@ -202,7 +202,7 @@
 #define FocusEnergy 0xCA
 #define Confusion 0xCB
 #define Hurricane 0xCC
-#define Hypnosis 0xCD
+#define EscapeRope 0xCD
 #define ShockWave 0xCE
 #define IcyWind 0xCF
 #define Psybeam 0xD0
@@ -218,7 +218,7 @@
 #define ConfuseRay 0xDA
 #define Lick 0xDB
 #define NightShade 0xDC
-#define Nightmare4 0xDD
+#define Revive 0xDD
 #define ShadowBall 0xDE
 #define ShadowPunch 0xDF
 #define HexAtt 0xE0

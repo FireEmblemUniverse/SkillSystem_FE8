@@ -58,7 +58,7 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
-AREA 0 ToVermillion [10,39] [12,39] 
+AREA 0 ToVermilion [10,39] [12,39] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID)  
@@ -69,8 +69,8 @@ EscapeTileEntry(11,39)
 EscapeTileTerminator ; } 
 #endif 
 
-ToVermillion:
-ChapterTransition(VermillionCh, 21,0)
+ToVermilion:
+ChapterTransition(VermilionCh, 21,0)
 
 ToRoute5:
 TutText(0x35,UndergroundPassText) // black bg 
