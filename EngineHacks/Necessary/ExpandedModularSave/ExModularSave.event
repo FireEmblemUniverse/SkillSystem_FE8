@@ -170,7 +170,7 @@ gGameSaveChunks:
 	DeclSaveChunk($104d, PokemblemRamSize, StorePokeRamToSaveFile, LoadPokeRamFromSaveFile, EMS_CHUNK_POKE) // prev $118 bytes 
 
 // $78 bytes or $12CC - $1344 free 
-
+DeclSaveChunk($12CC, $00C, MSa_SaveDungeonState2, MSa_LoadDungeonState2) // Valni/Lagdou permanent data
 
 
 	DeclSaveChunkEnd
@@ -245,7 +245,7 @@ gSuspendSaveChunks:
 
 	// ends at $2DC1
 	// free up to $2E78 ($B7 free bytes)
-
+	DeclSaveChunk($2DC1, $00C, MSa_SaveDungeonState2, MSa_LoadDungeonState2) // Valni/Lagdou permanent data
 	DeclSaveChunk(0, 0, 0, MSu_LoadClaimFlagsFromParentSave) // Load Bonus Claim flags from parent save
 
 	DeclSaveChunkEnd

@@ -300,7 +300,8 @@ BYTE SkillAccShop(WaryFighterID)
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SuperRepel 1
-BYTE SuperRepel 10
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
 BYTE SkillScroll PatienceID 
 BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
 BYTE SpellScroll Headbutt 

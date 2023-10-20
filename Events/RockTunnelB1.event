@@ -121,6 +121,7 @@ SaveCost(8,13)
 
 
 RedPokeballTrap(26,12, ChapterID*2, MoonStone)
+RedPokeballTrap(21, 5, (ChapterID*2)+1, EscapeRope, 5)
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 

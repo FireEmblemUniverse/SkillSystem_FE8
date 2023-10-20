@@ -367,8 +367,9 @@ BYTE SkillAccShop(BreathOfLifeID)
 BYTE SkillAccShop(AmaterasuID)
 BYTE HyperPotion 5 
 BYTE SuperPotion 5 
-BYTE JellyDonut 5
-BYTE SuperRepel 10
+BYTE SuperRepel 5
+BYTE EscapeRope 5
+BYTE WarpCrystal 5
 BYTE SpellScroll IceBeam SpellScroll TriAttack
 BYTE SpellScroll Psychic SpellScroll PetalDance
 BYTE SpellScroll Screech SpellScroll SwordsDance

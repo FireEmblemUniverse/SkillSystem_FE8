@@ -61,6 +61,21 @@ WORD 0
 ORG $A42BC // Kill GetNextChapterWinDataEntryIndex
 SHORT $2001 $4770 // mov r0, #1 - bx lr 
 
+ORG $37E08 
+SHORT $4770 // kill SaveDungeonState
+ORG $37e4c 
+//SHORT $4770 // SaveDungeonRecords
+ORG $37e7c 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $37eb0 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $37fcc 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $38134 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $38e38 
+SHORT $4770 // kill DungeonRecordUi_UpdateRunningTime
+
 
 // footsteps table by 7743 
 ORG $78D84 

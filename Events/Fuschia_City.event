@@ -254,9 +254,9 @@ BYTE SkillAccShop(DazzleID)
 BYTE SkillAccShop(VantagePlusID)
 BYTE SkillAccShop(ExpShareID)
 BYTE SuperPotion 5 
-BYTE JellyDonut 5
 BYTE SuperRepel 1
-BYTE SuperRepel 10
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
 BYTE SkillScroll PrescienceID 
 BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion 
 BYTE SpellScroll FirePunch SpellScroll ThunderPunch SpellScroll IcePunch 

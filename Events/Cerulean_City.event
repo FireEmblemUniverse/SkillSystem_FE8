@@ -345,9 +345,10 @@ BYTE StatAccessory EnergyBand_BoostIndex
 
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
-BYTE SkillScroll TantivyID 
+//BYTE SkillScroll TantivyID 
 BYTE SuperRepel 1
-BYTE SuperRepel 10
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
 BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll IcyWind
 BYTE SpellScroll AttackPulse
 BYTE SpellScroll DoubleHit SpellScroll SignalBeam SpellScroll MagicalLeaf 

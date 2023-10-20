@@ -137,6 +137,7 @@ TutSign(5,23,ChapterID*2, TrainerTip_DangerZone)
 StatAccessoryTrap(13,18, (ChapterID*2), WiseGlasses_BoostIndex)
 
 RedPokeballTrap(21,31, ChapterID*2, ExoticCandy) // Requires Cut / diglett's cave 
+RedPokeballTrap(7, 24, (ChapterID*2)+1, WarpCrystal, 2) 
 
 SignBTrap(8,11, ChapterID, 0x0) //no extra text 
 SignATrap(10,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

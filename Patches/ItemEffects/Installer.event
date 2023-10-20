@@ -5,14 +5,36 @@
 
 ALIGN 4 
 TeleportEvent:
-TutText(DebugText)
+Read_Byte(XCoordTeleport)
+SADD s2 sC s0 
+Write_Byte(XCoordNewArea) 
+Read_Byte(YCoordTeleport)
+SADD s2 sC s0 
+Write_Byte(YCoordNewArea) 
+Read_Byte(TeleportChapter)
+SADD s2 sC s0 
+Write_Byte(CurrentChapter)
+CALL HandleProtag 
+MNC2 PCBoxCh 
 NoFade 
 ENDA 
 
 
 ALIGN 4 
 DigEvent:
-TutText(DebugText)
+Read_Byte(XCoordDig)
+SADD s2 sC s0 
+Write_Byte(XCoordNewArea) 
+Read_Byte(YCoordDig)
+SADD s2 sC s0 
+Write_Byte(YCoordNewArea) 
+Read_Byte(DigChapterRam)
+SADD s9 sC s0 
+CALL ForceChTransition 
+//Write_Byte(CurrentChapter)
+//CALL HandleProtag 
+//MNC2 PCBoxCh 
+//TutText(DebugText)
 NoFade 
 ENDA 
 

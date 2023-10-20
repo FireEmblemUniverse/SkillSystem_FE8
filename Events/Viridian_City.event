@@ -387,7 +387,8 @@ BYTE JellyDonut 3
 //BYTE $00; ALIGN 4
 BYTE SkillScroll FocusID 
 BYTE SuperRepel 1
-BYTE SuperRepel 10
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
 
 BYTE SpellScroll Tackle SpellScroll Scratch SpellScroll Leer SpellScroll Bite 
 BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry SpellScroll Confusion 
