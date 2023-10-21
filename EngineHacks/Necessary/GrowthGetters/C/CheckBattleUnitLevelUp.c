@@ -166,25 +166,31 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 	} 
 	
 	if (mode == bracketedGrowths) { 
-		int levels = GetNumberOfLevelUps(bu)+1;
-		int statByteOffset = gStatByteOffsetFromStatDefintion(stat); 
-		int anotherLevel = levels-unit->level;
-		if (anotherLevel < 1) { anotherLevel = 1; } // probably always 1? 
-		
-		int avgGrowth = Get_Growth_With_Evolutions(unit, anotherLevel, gGrowthGetterFromStatDefinition(stat), statByteOffset); 
-	
-		int averageStat = GetAverageStat(avgGrowth, stat, unit, levels); 
+		int originalGrowth = growth; 
 		while (growth > 100) {
 			result++;
 			growth -= 100;
 		}
-		if (currentStat >= (averageStat + PreventWhenAboveAverageBy_Link)) { 
-		return result; 
-		} 
-		if ((currentStat + ForceWhenBelowAverageBy_Link) < averageStat) { 
-		result++; 
-		} 
-		else if (Roll1RN(growth))
+		if (originalGrowth < 100) { // no bracketed levels when growths are >100 - this mostly matters for blossom 
+			int levels = GetNumberOfLevelUps(bu)+1;
+			int statByteOffset = gStatByteOffsetFromStatDefintion(stat); 
+			int anotherLevel = levels-unit->level;
+			if (anotherLevel < 1) { anotherLevel = 1; } // probably always 1? 
+			
+			int avgGrowth = Get_Growth_With_Evolutions(unit, anotherLevel, gGrowthGetterFromStatDefinition(stat), statByteOffset); 
+		
+			int averageStat = GetAverageStat(avgGrowth, stat, unit, levels); 
+
+			if (currentStat >= (averageStat + PreventWhenAboveAverageBy_Link)) { 
+			return result; 
+			} 
+			if ((currentStat + ForceWhenBelowAverageBy_Link) < averageStat) { 
+			result++; 
+			return result; 
+			} 
+		}
+		
+		if (Roll1RN(growth))
         result++;
 		return result; 
 	} 

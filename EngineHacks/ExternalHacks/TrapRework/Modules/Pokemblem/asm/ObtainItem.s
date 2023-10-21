@@ -423,7 +423,7 @@ bl goto_r3
 
 Continue:
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x10
+mov r0, #0x1
 strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics

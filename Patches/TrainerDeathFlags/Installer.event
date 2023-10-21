@@ -237,7 +237,7 @@ GOTO 10
 
 
 LABEL 10 // Unit ID to teleport in s2 
-WarpOutEvent 
+CALL TheWarpOutEvent 
 LABEL 99
 NoFade 
 ENDA 
@@ -247,4 +247,14 @@ CALL ModularSummonWildTrainerEvent // identical for now
 NoFade 
 ENDA 
 
+TheWarpOutEvent: 
+CAM1 0x7FFD 
+CHECK_COORDS 0x7FFD 
+SADD sB sC s0 
+WARPOUT_SB
+STAL 20 
+DISA 0x7FFD // delete them now 
+ENDWARP 
+NoFade 
+ENDA 
 

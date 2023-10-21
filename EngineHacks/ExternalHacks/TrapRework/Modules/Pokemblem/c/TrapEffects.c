@@ -123,7 +123,7 @@ int NewObtainCoinsUsability0x15(void) {
 
 
 int TrapEffectCleanup(void) { 
-	gActionData.unitActionType = 0x10; // from wait routine 
+	gActionData.unitActionType = 0x1; // from wait routine 
 	SMS_UpdateFromGameData(); // needed while in FMU mode 
 	return returnValue; //  play beep sound & end menu on next frame & clear menu graphics
 
@@ -167,7 +167,7 @@ int NewPickBerryTreeEffect(void) {
 		gEventSlot[4] = berries; 
 		trap->data[0] = 0; // no more berries 
 		CallMapEventEngine(&PickBerryEvent, EV_RUN_CUTSCENE);
-		gActionData.unitActionType = 0x10; // only use up turn if we got a berry 
+		gActionData.unitActionType = 0x1; // only use up turn if we got a berry 
 	} 
 	else {
 		CallMapEventEngine(&NoBerriesEvent, EV_RUN_CUTSCENE);
@@ -270,7 +270,7 @@ int DisplayTextEffect(struct Trap* trap) {
 		
 	if (textID) { 
 		CallMapEventEngine(&TutTextEvent, EV_RUN_CUTSCENE);
-		gActionData.unitActionType = 0x10; // only use up turn if we got a berry 
+		gActionData.unitActionType = 0x1; // only use up turn if we got a berry 
 	} 
 	} 
 	return returnValue; 
