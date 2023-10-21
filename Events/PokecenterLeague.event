@@ -46,6 +46,7 @@ ALIGN 4
 ShopItems_A:  // Supplies + StatBoosters 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE Revive 1 
 BYTE SuperRepel 5
 BYTE EscapeRope 5
 BYTE WarpCrystal 5

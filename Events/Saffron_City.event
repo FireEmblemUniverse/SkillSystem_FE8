@@ -375,10 +375,11 @@ ShopItems:
 BYTE SkillAccShop(MiracleID)
 BYTE SkillAccShop(CounterMagicID)
 BYTE SkillAccShop(CounterID)
+BYTE Revive 1 
 BYTE SuperPotion 5 
 BYTE SuperRepel 10
 BYTE SpellScroll Screech SpellScroll FirePunch SpellScroll ThunderPunch SpellScroll IcePunch 
-BYTE SpellScroll ShadowPunch SpellScroll JumpKick
+BYTE SpellScroll JumpKick
 BYTE SpellScroll BubbleBeam SpellScroll DrillPeck
 BYTE SpellScroll RockSlide SpellScroll Dragonbreath
 //BYTE SpellScroll HealPulse SpellScroll RockSlide SpellScroll Dragonbreath

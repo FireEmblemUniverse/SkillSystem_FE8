@@ -142,7 +142,81 @@ bx r1
 
 
 
+.global AreAllPlayersSafeToStartFMU
+.type AreAllPlayersSafeToStartFMU, %function 
+AreAllPlayersSafeToStartFMU:
+push {r4-r6, lr}
+@ check if any unit is in danger 
 
+@ldr r0, =AttackedThisTurnFlag @ Flag that prevents call 
+@lsl r0, #24 
+@lsr r0, #24 
+@blh CheckEventId
+@cmp r0, #0 
+@bne InDanger
+@
+
+ldr r0, =PlayableCutsceneFlag @ Flag that prevents call 
+lsl r0, #24 
+lsr r0, #24 
+blh CheckEventId
+cmp r0, #0 
+bne InDanger2
+
+ldr r0, =TrainerBattleActiveFlag @ Flag that prevents call 
+lsl r0, #24 
+lsr r0, #24 
+blh CheckEventId
+cmp r0, #0 
+bne InDanger2
+
+ldr		r5,=0x202E4E8 @ fog
+ldr		r5,[r5]	
+ldr r6, =0x401000C
+
+@ check for at least one valid enemy eg. unit ID that is not 0xE0 - 0xEF 
+mov r4,#0x0 @ current deployment id
+@mov r11, r11 
+Loop2:
+add r4, #1 
+cmp r4, #0x40
+bge IsSafe2
+mov r0,r4
+blh GetUnit @ 19430
+cmp r0, #0
+beq Loop2
+ldr r1, [r0]
+cmp r1, #0 
+beq Loop2
+ldr r1, [r0, #0x0C]
+tst r1, r6 @ dead/undeployed 
+bne Loop2
+
+ldrb r1, [r0, #0x11] @ y 
+ldrb r0, [r0, #0x10] @ x 
+mov 	r2, r5 
+lsl		r1,#0x2			
+add		r2,r1			
+ldr		r2,[r2]			
+add		r2,r0			
+ldrb	r0,[r2]	
+cmp r0, #0 
+bne InDanger2 
+
+b Loop2
+InDanger2:
+mov r0, #0 
+b End2
+
+IsSafe2:
+mov r0, #1
+
+End2:
+
+pop {r4-r6}
+pop {r1}
+bx r1
+.ltorg 
 
 
 

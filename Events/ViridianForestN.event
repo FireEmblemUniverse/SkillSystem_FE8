@@ -152,7 +152,7 @@ SignTrap(41,22, TrainerTip_Zoning)
 //
 StatAccessoryTrap(32,26, ChapterID*2, LeatherShield_BoostIndex)
 
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+RedPokeballTrap(36,25, (ChapterID*2)+1, Revive, 3)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(6,10, ChapterID, 0x0) //no extra text 

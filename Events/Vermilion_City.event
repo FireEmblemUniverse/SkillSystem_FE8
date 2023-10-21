@@ -297,6 +297,7 @@ ShopItems:
 BYTE SkillAccShop(RockyHelmetSkillID)
 BYTE StatAccessory EnergyBand_BoostIndex 
 BYTE SkillAccShop(WaryFighterID)
+BYTE Revive 1 
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
 BYTE SuperRepel 1
@@ -305,7 +306,7 @@ BYTE WarpCrystal 1
 BYTE SkillScroll PatienceID 
 BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
 BYTE SpellScroll Headbutt 
-BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion // 16 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion // 18 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
