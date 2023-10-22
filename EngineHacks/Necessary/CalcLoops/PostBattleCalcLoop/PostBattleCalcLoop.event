@@ -15,6 +15,9 @@ POIN InitSkillBuffers //Refresh skill buffers so freshly learned post-battle ski
 POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
 POIN StrTaker SklTaker SpdTaker DefTaker ResTaker LukTaker MagTaker MovTaker 
 POIN Canto CantoPlus Galeforce ReMove Powerstaff CulturedPostCombat Gridmaster //this order for canto and friends is the only one I tested
+#ifdef GAIDEN_MAGIC
+	POIN GaidenZeroOutSpellVariables // without this there was an R-text bug when obtaining an item during the end scene after KOing an enemy 
+#endif // GAIDEN_MAGIC
 WORD 0 //Terminator
 
 PROTECT $1D308 $1D314
