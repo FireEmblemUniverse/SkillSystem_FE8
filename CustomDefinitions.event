@@ -1,5 +1,4 @@
 //PROTECT $1489d40 $1489dC0
-//PROTECT $1479B7C
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
 // post action events? 1-2 frames? 
@@ -17,8 +16,8 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
-
+#define DEBUG_MODE 
+// [203e77a]!!
 #define TESTING_RANGES
 
 // Config options 
@@ -32,7 +31,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.10.M               Oct 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.10.N               Oct 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 

@@ -46,7 +46,7 @@ AllTrainersPostBattleTalk
 END_MAIN
 CallRevivePartyCostEvent:
 SVAL s2 Route14NurseJoyText
-SVAL s3 5000 // amount it costs 
+SVAL s3 2000 // amount it costs 
 CALL RevivePartyCostEvent
 NoFade 
 ENDA 

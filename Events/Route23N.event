@@ -40,14 +40,14 @@ END_MAIN
 
 CallRevivePartyCostEvent:
 SVAL s2 VictoryRoadNurseJoyText_A
-SVAL s3 5000 // amount it costs 
+SVAL s3 3000 // amount it costs 
 CALL RevivePartyCostEvent
 NoFade 
 ENDA 
 
 CallRevivePartyCostEvent2:
 SVAL s2 VictoryRoadNurseJoyText_B
-SVAL s3 5000 // amount it costs 
+SVAL s3 3000 // amount it costs 
 CALL RevivePartyCostEvent
 NoFade 
 ENDA 

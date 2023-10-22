@@ -24,6 +24,9 @@ POIN PostCombatSkills
 
 ALIGN 4
 PostCombatSkills: // 
+#ifdef GAIDEN_MAGIC
+	POIN GaidenZeroOutSpellVariables // without this there was an R-text bug when obtaining an item during the end scene after KOing an enemy 
+#endif // GAIDEN_MAGIC
 POIN InitSkillBuffers //Refresh skill buffers so freshly learned post-battle skills can apply
 POIN DepleteRepel
 //POIN EnsureMovementCap_ActiveUnit
