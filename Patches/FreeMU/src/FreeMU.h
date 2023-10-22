@@ -74,6 +74,9 @@ extern const ProcInstruction gProc_Shop;
 extern const ProcInstruction gProc_MapMain; 
 
 extern int ProtagID_Link; 
+extern int EquippedAirBalloon_Link;
+extern int EquippedSurfBoard_Link;
+extern int EquippedCleats_Link;
 extern u8 StraightLineWeaponsList[];
 
 struct FMUTrapDef{

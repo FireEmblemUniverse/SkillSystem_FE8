@@ -14,6 +14,15 @@
 #define PauseFreeMovement "ASMC PauseFreeMovementASMC" 
 
 ALIGN 4 
+EquippedAirBalloon_Link:
+WORD Ves_SkillBlockOne_ItemID + (HoverBoardID >> 6) | 0x8000 | ((HoverBoardID & 0x3F) << 8)
+EquippedSurfBoard_Link:
+WORD Ves_SkillBlockOne_ItemID + (SurfBoardID >> 6) | 0x8000 | ((SurfBoardID & 0x3F) << 8)
+EquippedCleats_Link: 
+WORD Ves_SkillBlockOne_ItemID + (CleatsID >> 6) | 0x8000 | ((CleatsID & 0x3F) << 8)
+
+
+ALIGN 4 
 ProtagID_Link:
 WORD ProtagID 
 ALIGN 4 

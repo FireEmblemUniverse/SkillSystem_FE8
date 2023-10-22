@@ -44,6 +44,12 @@ BYTE $1C // centered name in prep unit select
  
 ORG $2FEC6
 BYTE 8 // Vulnerary heal amount (used by HoardersBane) 
+ORG $2CFBC 
+//SHORT $2000 // "Supply" command does not use up action whatsoever 
+// WARNING: this likely causes issues with "friendlier fog" hack 
+// if you cannot return to your original position due to bumping into a unit / being hit by a mine, using the supply in the same action will create an endless loop 
+// instead, hook the code and check for action type 0x1E or 0x1F I think 
+
 
 ORG $86B84 
 SHORT $3801 // Make things that normally scroll left instead scroll right (such as the prep screen bg) 

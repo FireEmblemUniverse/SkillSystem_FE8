@@ -38,7 +38,8 @@ water.[X]
 Air Balloon[X]
 
 ## HoverBoardDesc
-Can float over ledges and water.[N]
+Cannot pop. Can float over[N]
+ledges, ice, and water.[N]
 Ground moves deal neutral damage.[X]
 
 ## SuperRepelName
@@ -454,7 +455,14 @@ while defending.[X]
 ## QuickClawUseDesc
 Attack first[NL]
 while defending.[X]
- 
+
+## CleatsNameText
+Cleats[X]
+
+## CleatsDescText
+Can traverse ice[N]
+without sliding.[X]
+
 ## RenewalRingNameText
 Renewal Ring[X]
 
@@ -552,7 +560,8 @@ Restores all HP.[X]
  
 ## BerryDescText
 Restores 8 HP.[N]
-Consumed at low HP.[X]
+If equipped, consumed[N]
+automatically at low HP.[X]
 
 ## SitrusBerryDescText
 Restores 20 HP.[N]

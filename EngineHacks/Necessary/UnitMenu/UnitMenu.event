@@ -385,7 +385,7 @@ MenuCommand(UM_FocusEnergyName, UM_FocusEnergyDesc, BlueText, FocusEnergyCommand
 
   
   //UM_Supply
-  MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+  MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,NewSupplyEffect)
 MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
 
 

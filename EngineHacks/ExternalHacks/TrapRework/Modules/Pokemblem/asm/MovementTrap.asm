@@ -282,12 +282,14 @@ ldr r2, [r2]
 ldr r1, =FlyingTypeLink 
 ldr r1, [r1] 
 orr r1, r2 
-ldr r2, =WaterTypeLink 
-ldr r2, [r2] 
-orr r1, r2 
 tst r0, r1 
 bne NoIssue @ they can traverse it no problem 
+bl DoesActorHaveCleatsOrBalloonEquipped
+cmp r0, #0 
+bne NoIssue 
 
+ldr r3, =CurrentUnit 
+ldr r3, [r3]
 ldr r1, [r3, #4] @ class pointer 
 ldr r1, [r1, #0x38] @ movement cost pointer 
 ldr r0, =IceTerrainTypeLink 

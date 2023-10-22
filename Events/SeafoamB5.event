@@ -147,7 +147,7 @@ StrengthBoulder(9,18)
 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
+SkillAccessoryTrap(31,4, ChapterID*2, CleatsID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 

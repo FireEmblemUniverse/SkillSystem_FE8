@@ -19,34 +19,49 @@ struct SMSHandle* SMS_GetNewInfoStruct(int y); //!< FE8U:0802736D
 /*
  * Basic! 
  */
+int DoesUnitHaveItemWithSpecificDurability(struct Unit* unit, int id) { 
+	for (int c = 0; c < 5; c++) { 
+		int item = unit->items[c]; 
+		if (!item) { break; } 
+		if (item == id) { return true; } 
+	} 
+	return false; 
+} 
+int DoesActorHaveCleatsOrBalloonEquipped(void) { 
+	int result = false; 
+	result |= DoesUnitHaveItemWithSpecificDurability(gActiveUnit, EquippedAirBalloon_Link); 
+	result |= DoesUnitHaveItemWithSpecificDurability(gActiveUnit, EquippedCleats_Link); 
+	return result; 
+} 
 
 extern int IceTerrainTypeLink; 
 bool FMU_CheckForIce(struct FMUProc* proc, int x, int y) { // checks tile we're moving to 
 	if (gMapTerrain[y][x] == IceTerrainTypeLink) { 
 		if(FMU_CanUnitBeOnPos(gActiveUnit, x, y) ){
 			if( !IsPosInvaild(x,y) ) { 
-				proc->usedIce = true; 
-				proc->commandID = 0;
-				proc->command[0] = proc->smsFacing;
-				proc->command[1] = 0xFF; 
-				//proc->yield_move = true; 
-				//proc->yield = true; 
-				//proc->countdown = 20; 
-				//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
-				proc->xTo  = x;
-				proc->yTo  = y;
-				
-				struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-				if (!muProc) { 
-					MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+				if (!DoesActorHaveCleatsOrBalloonEquipped()) { 
+					proc->usedIce = true; 
+					proc->commandID = 0;
+					proc->command[0] = proc->smsFacing;
+					proc->command[1] = 0xFF; 
+					//proc->yield_move = true; 
+					//proc->yield = true; 
+					//proc->countdown = 20; 
+					//MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+					proc->xTo  = x;
+					proc->yTo  = y;
+					
 					struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
-					MU_EnableAttractCamera(muProc);
-				} 
-				
-				return true; 
-				
-				//return true; 
-				
+					if (!muProc) { 
+						MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
+						struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
+						MU_EnableAttractCamera(muProc);
+					} 
+					
+					return true; 
+					
+					//return true; 
+				}
 			}
 		}
 	}

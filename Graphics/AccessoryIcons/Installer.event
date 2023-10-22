@@ -98,7 +98,8 @@ AccessoryIcon(EnergyBandT4_BoostIndex) // Def
 
 
 
-
+SkillAccessoryIcons(CleatsID) // Speed 
+#incbin "dmp/SpeedyBoots.dmp"
 SkillAccessoryIcons(RenewalID)
 #incbin "dmp/RenewalRing.dmp"
 

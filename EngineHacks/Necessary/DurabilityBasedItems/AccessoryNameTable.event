@@ -155,6 +155,8 @@ StatAccessory_DescEntry(LuckyBracerT3_BoostIndex, LuckyBracerT3DescText)
 
 
 // Skills 
+SkillAccessory_NameEntry(CleatsID, CleatsNameText)
+SkillAccessory_DescEntry(CleatsID, CleatsDescText)
 
 SkillAccessory_NameEntry(RenewalID, RenewalRingNameText)
 SkillAccessory_DescEntry(RenewalID, RenewalRingDescText)
