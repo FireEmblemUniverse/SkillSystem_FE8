@@ -241,6 +241,7 @@
 #define Intimidate2ID 0xEF
 #define SurfBoardID 0xF0
 #define HoverBoardID 0xF1
+#define HoardersBaneID 0xF2
 #define DownWithArchID 0xFF
 #define CharismaID 0xFF
 #define CharmID 0xFF
@@ -368,7 +369,6 @@
 #define StrongConstitutionID 0xFF
 #define ShrewdPotentialID 0xFF
 #define RallyChaosID 0xFF
-#define HoardersBaneID 0xFF
 #define DarkBargainID 0xFF
 #define SoulSapID 0xFF
 #define DivinelyInspiringID 0xFF

@@ -42,6 +42,8 @@ BYTE $30 // centered name in prep items
 ORG $9A976
 BYTE $1C // centered name in prep unit select 
  
+ORG $2FEC6
+BYTE 8 // Vulnerary heal amount (used by HoardersBane) 
 
 ORG $86B84 
 SHORT $3801 // Make things that normally scroll left instead scroll right (such as the prep screen bg) 

@@ -160,7 +160,10 @@ cmp r0, #0
 bne HoardersBaneUsability_True
 
 BreakInvLoop: 
-
+ldrb r3, [r4, #0x0B] 
+lsr r3, #6 
+cmp r3, #0 
+bne HoardersBaneUsability_False 
 ldr r3, HoardersBane_UseConvoyLink 
 cmp r3, #0 
 beq HoardersBaneUsability_False
