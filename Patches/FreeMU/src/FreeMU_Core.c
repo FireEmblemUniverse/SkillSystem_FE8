@@ -24,7 +24,6 @@ int HpBarIsFMUActive(void) {
 	
 		//struct MUProc* muProc = MU_GetByUnit(gActiveUnit);
 		//if (muProc) return; 
-		//asm("mov r11, r11"); 
 	}
 	return false; 
 } 
@@ -204,6 +203,13 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		proc->countdown--; 
 	} 
 	
+	
+	if (proc->usedIce) { 
+		//if (!MU_Exists()) { asm("mov r11, r11"); } 
+		return; 
+	} 
+	
+	
 	if (gKeyState.pressedKeys) { 
 		proc->curInput = gKeyState.pressedKeys; // for directional movement 
 	} 
@@ -218,7 +224,6 @@ void pFMU_MainLoop(struct FMUProc* proc){
 	} 
 	MU_EndAll();
 	*/
-	//asm("mov r11, r11"); // gActiveUnit
 	
 
 	if (proc->range_event) { 
@@ -483,6 +488,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	proc->xTo  = gActiveUnit->xPos;
 	proc->yTo  = gActiveUnit->yPos;
 	proc->usedLedge = false; 
+	proc->usedIce = false; 
 	proc->end_after_movement = false; 
 	proc->eventEngineTimer = 0; 
 	proc->pEventIdk = NULL; 
@@ -544,12 +550,11 @@ int FMU_ShouldWeYieldForEvent(struct FMUProc* proc) {
 
 } 
 
-
+// [2024cc4]! [2024ccA]! 800135C [2024cc4..2024cd4]?
 // 0x80152F4 OnGameLoopMain 
 #define  MU_SUBPIXEL_PRECISION 4
 int FMU_HandleContinuedMovement(void) { 
 	struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
-
 	
 	if (FMU_ShouldWeYieldForEvent(proc)) { 
 		return (-1); 
@@ -600,19 +605,18 @@ int FMU_HandleContinuedMovement(void) {
 	y++; 
 	if (dir == MU_FACING_UP)
 	y--; 
-	if (gMapFog[y][x]) {
-		proc->end_after_movement = true; // causing a crash 
-		//proc->yield = true; // comment for crash 
-		//proc->countdown = 2; // comment for crash 
-	}
+
 	if (dir != proc->smsFacing) { 
 		proc->smsFacing = dir; 
 		FreeMoveRam->dir = proc->smsFacing; 
 		SetUnitFacing(gActiveUnit, dir); 
 		return (-1); 
 	} 
+	
 
+	FMU_CheckForIce(proc, x, y); // enables scripted movement 
 	FMU_CheckForLedge(proc, x, y); // enables scripted movement 
+	
 	//if (gMapPUnit(x, y)) { // a unit is occupying this position
 	//	proc->commandID = 0;
 	//	proc->command[0] = proc->smsFacing;
@@ -621,6 +625,13 @@ int FMU_HandleContinuedMovement(void) {
 	
 	if (!FMU_CanUnitBeOnPos(gActiveUnit, x, y)) { 
 		return (-1); } 
+	
+	if (gMapFog[y][x]) { // after checking that we can go here 
+		proc->end_after_movement = true; // was causing a crash 
+		//proc->yield = true; // comment for crash 
+		//proc->countdown = 2; // comment for crash 
+	}
+		
 	muProc->pMUConfig->currentCommand = 1; // 03001900
 	muProc->pMUConfig->commands[0] = dir;
 	
@@ -735,6 +746,9 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 		proc->countdown = 8; // STAL for 8 frames while we turn directions 
 	} 
 	else { 
+		if (FMU_CheckForIce(proc, x, y)) { 
+			return yield; 
+		} 
 		if ((gMapTerrain[y][x] == LEDGE_JUMP) && (proc->smsFacing == MU_FACING_DOWN)) { 
 			//x += (facingCur == MU_FACING_RIGHT); 
 			//x -= (facingCur == MU_FACING_LEFT); 
@@ -823,6 +837,10 @@ int pFMU_MoveUnit(struct FMUProc* proc, u16 iKeyCur){	//Label 1
 
 int pFMU_HandleKeyMisc(struct FMUProc* proc, u16 iKeyCur){	//Label 2
 	int result = no_yield; 
+	if (proc->usedIce || proc->usedLedge) { 
+	return result; } 
+	
+	
 	if(1&iKeyCur){ 			//Press A
 		pFMU_PressA(proc); 
 		proc->yield_move = true; 

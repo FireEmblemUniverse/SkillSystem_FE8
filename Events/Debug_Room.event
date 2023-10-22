@@ -574,8 +574,8 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(5, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(8, YCoordNewArea)  
+Write_Byte(6, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(14, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
@@ -589,7 +589,7 @@ Write_Byte(8, YCoordNewArea)
 //MNC2 SeafoamB3Ch
 
 //MNC2 CeruleanGymCh
-MNC2 ViridianGymCh
+MNC2 SeafoamB2Ch
 //MNC2 Route9ECh 
 //MNC2 SilphCo2FCh
 //MNC2 Route20ECh

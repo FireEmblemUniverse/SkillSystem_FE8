@@ -16,7 +16,8 @@ extern struct Unit* GetUnitStructFromEventParameter(int id);
 struct FMUProc {
 	PROC_FIELDS;
 	/* 29 */	u8 uTimer;
-	/* 2A */	u16 Free;
+	/* 2A */	u8 Free;
+	/* 2B */    u8 usedIce; 
 	/* 2C */	s8 xCur;
 	/* 2D */	s8 xTo;
 	/* 2E */	s8 yCur;
@@ -163,6 +164,7 @@ void pFMU_PressSelect(struct FMUProc*);
 void pFMU_PressStart(struct FMUProc*);
 void pFMU_UpdateSMS(struct FMUProc* proc);
 bool FMU_CheckForLedge(struct FMUProc* proc, int x, int y);
+bool FMU_CheckForIce(struct FMUProc* proc, int x, int y); 
 void FMU_ResetLCDIO(void);
 int gMapPUnit(int x, int y);
 void SetUnitFacing(struct Unit* unit, int dir);
