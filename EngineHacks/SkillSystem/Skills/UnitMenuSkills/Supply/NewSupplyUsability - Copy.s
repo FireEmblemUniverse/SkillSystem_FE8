@@ -25,7 +25,7 @@ add	r0,#0x3D
 ldrb r0, [r0] 
 mov r1, #1 @ PARTIAL_ACTION_RESCUE_TRANSFER
 tst r0, r1 
-bne ReturnFalse 
+beq ReturnFalse 
 
 ldr r0, =DisableMenuOptionsRamLink
 ldr r0, [r0] 

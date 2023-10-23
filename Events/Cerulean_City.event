@@ -251,7 +251,7 @@ Save(15,17) // Pokecenter
 SkillAccessoryTrap(1,30, ChapterID*2, WardingStanceID)
 SkillAccessoryTrap(21,6, (ChapterID*2)+1, ExpShareID)
 
-//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+RedPokeballTrap(11,6, (ChapterID*2)+1, ExoticCandy) // unobtainable 
 
 SignBTrap(30,9, ChapterID, 0x0) //no extra text 
 SignATrap(1,22, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

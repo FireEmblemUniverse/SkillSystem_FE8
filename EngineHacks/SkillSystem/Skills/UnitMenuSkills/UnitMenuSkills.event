@@ -21,6 +21,14 @@ WORD SupplyID
 WORD ALSO_USE_VANILLA_SUPPLY_CHECK
 
 ALIGN 4
+NewSupplyUsability2:
+#include "Supply/NewSupplyUsability - Copy.lyn.event" 
+//#incbin "Supply/NewSupplyUsability.dmp"
+POIN SkillTester
+WORD SupplyID
+WORD ALSO_USE_VANILLA_SUPPLY_CHECK
+
+ALIGN 4
 NewSummonUsability:
 #incbin "Summon/NewSummonUsability.dmp"
 POIN SkillTester
