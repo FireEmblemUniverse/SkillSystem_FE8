@@ -14,6 +14,7 @@
 .equ GetChapterEventDataPointer,0x80346B1
 .equ gChapterData,0x202BCF0
 .equ CheckEventDefinition,0x8082ec5
+.equ gActionData,0x203A958 
 
 .macro blh to,reg=r3
 	push {\reg}
@@ -22,6 +23,8 @@
 	pop {\reg}
 	.short 0xF800
 .endm
+
+.set ChestActionId, 0x14
 
 FixDurabilityChestPopupASMC: @this is now an ASMC
 
@@ -47,7 +50,18 @@ ldr r3,[r0,#8] @LocationBasedEvents
 @!!! this may break an unlock staff that works on chests if the chest has durability set !!!
 @so instead, let's grab target coords from the action struct and use those
 
-ldr r0,=#0x203A958 @action struct
+ldr r0,=gActionData
+
+@first we'll check if we're using a chest key, if so, use subject coords
+ldrb r1, [r0, #0x11] @Unit action ID
+cmp  r1, #ChestActionId
+bne  NotKey
+  ldrb r5,[r0,#0xE] @subject x coord
+  ldrb r6,[r0,#0xF] @subject y coord
+  b LoopStart
+
+NotKey:
+@we aren't, so let's use the target coords
 ldrb r5,[r0,#0x13] @target x coord
 ldrb r6,[r0,#0x14] @target y coord
 
