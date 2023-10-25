@@ -5,11 +5,11 @@
 #include "_UnitMenuDefs.event"
 
 #define ChapterMenuWidth 9
-#define ChapterMenuRightXCoord 17
+#define ChapterMenuRightXCoord 20
 
 #define UnitMenuWidth 9
 #define UnitMenuLeftXCoord 1
-#define UnitMenuRightXCoord 14
+#define UnitMenuRightXCoord 20
 
 PUSH
 
