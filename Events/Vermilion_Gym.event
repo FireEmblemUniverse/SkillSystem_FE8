@@ -34,7 +34,7 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0,ToVermilion,7,24)
+House(0,ToVermilion,7,22)
 END_MAIN
 
 MiscBasedEvents:
@@ -48,7 +48,7 @@ DefeatAll(EndingScene)
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(7,24) 
+EscapeTileEntry(7,22) 
 EscapeTileTerminator ; } 
 #endif 
 
@@ -167,7 +167,7 @@ UNIT 0xA0 MagnemiteID 0xD0 Level(0, Enemy, 1) [6,10]  0b 0x0	0x1 REDA6R10 	[Thun
 UNIT 0xA1 VoltorbID 0xD0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Screech,ThunderWave,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [4,10]  0b 0x0 0x1 REDA4R10 [ThunderPunch,IcePunch,FirePunch,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [10,10]  0b 0x0	0x1 REDA10R10 	[Thundershock,TailWhip,TakeDown,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 CuboneID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 
 

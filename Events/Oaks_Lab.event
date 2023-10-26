@@ -87,6 +87,17 @@ NoFade
 ENDA 
 
 BeginningScene:
+
+CHECK_EVENTID FlyFlag
+BEQ 91 sC s0 
+
+// If we're accidentally sent to Oak's Lab later in the game, go to pallet instead 
+Write_Byte(16, XCoordNewArea)    
+Write_Byte(13, YCoordNewArea)    
+MNC2 PalletCh 
+GOTO 0x63 
+
+LABEL 91 
 ENUT BracketedGrowthsFlag
 ENUT CasualModeFlag
 ENUT CasualModeFlag_2

@@ -162,10 +162,10 @@ UNIT
 EnemyTrainersA:
 UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Psybeam,SignalBeam,Sludge,0] PursueWithoutHeedAI
 UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,12]  0b 0x0	0x1 REDA8R12 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
-UNIT 0xA1 GrimerID 		0xD0 Level(0, Enemy, 1) [10,12]  0b 0x0	0x1 REDA10R12 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
-UNIT 0xA2 KoffingID 	0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0 	0x1 REDA6R12 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
+UNIT 0xA1 MukID 		0xD0 Level(0, Enemy, 1) [10,12]  0b 0x0	0x1 REDA10R12 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
+UNIT 0xA2 WeezingID 	0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0 	0x1 REDA6R12 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
 UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,9]  0b 0x0	0x1 REDA5R9 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
-UNIT 0xA4 KabutoID 	0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0	0x1 REDA11R9 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
+UNIT 0xA4 KabutopsID 	0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0	0x1 REDA11R9 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
 //UNIT 0xA4 HypnoID 		0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Psybeam, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
 UNIT
 

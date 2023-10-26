@@ -206,12 +206,12 @@ UNIT
 
 
 EnemyTrainersA:
-UNIT 0xD0 GloomID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x1 REDA6R4 	[MagicalLeaf,Sludge,0x0,0x0]		ZoningHeal50GroupOneAI
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x1 REDA6R4 	[MagicalLeaf,Sludge,0x0,0x0]		ZoningHeal50GroupOneAI
 UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R4 	[MegaDrain,Constrict,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA1 WeepinbellID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggcuteID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] 	ZoningHeal50GroupOneAI
+UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psybeam,MagicalLeaf,0x0,0x0] 	ZoningHeal50GroupOneAI
 UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[LeechLife, Slash, 0x0 ,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA4 OmanyteID 0xD0 Level(0, Enemy, 1) [8,4]  0b 0x0	0x1 REDA8R4 	[Ancientpower,Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
+UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [8,4]  0b 0x0	0x1 REDA8R4 	[Ancientpower,Surf,0x0,0x0] 		ZoningHeal50GroupOneAI
 UNIT
 
 EnemyTrainersB: // rematch 
