@@ -12,6 +12,7 @@
 .equ FillBgMap, 0x08001221
 .equ EnableBgSyncByIndex, 0x08001FBD
 .equ UnitDecreaseItemUse, 0x08018995
+.equ BWL_GetEntry, 0x80A4CFD
 
 
 
@@ -29,10 +30,44 @@
 
 
 MultiScrollPrepUsability:
+mov r0,r5
+mov r5,r4 @r5 = item
+mov r4,r0 @r4 = unit
+
+@do we have 4 learned skills?
+ldr r0,[r4]
+ldrb r0,[r0,#4]
+blh BWL_GetEntry
+add r0,#1
+mov r2,#0
+
+PrepUse_LoopStart:
+cmp r2,#4
+beq PrepUse_LoopExit
+ldrb r1,[r0]
+cmp r1,#0
+beq PrepUse_LoopExit
+cmp r1,#255
+beq PrepUse_LoopExit
+add r2,#1
+add r0,#1
+b PrepUse_LoopStart
+
+PrepUse_LoopExit:
+cmp r2,#4
+beq PrepUse_False
+b PrepUse_NormalVersion
+
+PrepUse_False:
+mov r0,#0
+b PrepUse_Return
+
+PrepUse_NormalVersion:
 ldr r0,=MultiScrollUsability
 mov r14,r0
-mov r0,r5
 .short 0xF800
+
+PrepUse_Return:
 
 pop {r4-r5}
 pop {r1}
@@ -44,7 +79,7 @@ bx r1
 
 MultiScrollUsability:
 lsr r1, r5, #8 @ top 8 bits of item (normally durability) hold the scroll's skill id
-mov r0,r4
+mov r0, r4
 
 ldr 	r3, =SkillTester @r0 = char ID, r1 = skill ID; returns true/false in r0
 mov 	lr, r3
