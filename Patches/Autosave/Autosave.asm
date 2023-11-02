@@ -10,7 +10,11 @@
 .global AutosaveFunc
 .type AutosaveFunc, %function 
 AutosaveFunc: 
-push {lr} 
+
+
+
+
+push {r4, lr} 
 ldr r0, =0x202BCF0 
 ldrb r0, [r0, #0xF] 
 cmp r0, #0 
@@ -18,21 +22,36 @@ bne Exit
 
 bl CountDeployedPlayerUnits 
 ldr r2, CurrentPartySize_Link 
-ldrb r1, [r2] 
+ldrb r4, [r2] 
 mov r3, #0x3F 
-and r3, r1 
-cmp r0, r3
-blt DiedLastTurn @ we don't autosave if we have fewer party members than last time 
-@ no death but maybe previous turns 
-lsl r1, #24 @ all but 2 highest bits 
-lsr r1, #30
-cmp r1, #0 
-beq Continue
-sub r1, #1 
-lsl r1, #6 
-orr r3, r1 
-strb r3, [r1] @ countdown until we save again
-b Exit
+and r3, r4 
+cmp r3, r0 
+beq Continue @ save game if number is the same 
+
+ldr r1, AutosaveNobodyDiedWithinTurns @ turns til save again 
+mov r3, #0xC0 
+and r3, r4 
+cmp r3, r1 
+beq UpdateNumberAlive 
+lsr r3, r4, #6 @ top 3 bits 
+add r3, #1 
+lsl r3, #6 @ top 3 bits 
+mov r1, #0x3F 
+and r1, r4 
+orr r1, r3 
+strb r1, [r2] @ didn't update number alive, but incremented counter 
+b Exit 
+
+UpdateNumberAlive: 
+strb r0, [r2] @ number alive is updated 
+@ and autosave now 
+@b Exit
+@ 6 -> 0x86 -> 0x46 -> 0x5 
+@ turn we die: set to 0x46 
+@ next turn: to 0x86 
+@ final turn: if & 0x80, set to 0x5 
+
+
 
 Continue: 
 strb r0, [r2]
@@ -43,23 +62,14 @@ blh CheckEventId
 cmp r0, #0 
 bne Exit 
 Skip: 
-
-
 ldr r1, =0x203A958 
 mov r0, #9 
 strb r0, [r1, #0x16] 
 mov r0, #3 
 blh 0x80A5A48 @SaveSuspendedGame
-b Exit
-DiedLastTurn: 
-ldr r1, AutosaveNobodyDiedWithinTurns
-ldrb r1, [r1] 
-orr r3, r1 
-strb r3, [r2] 
-b Exit 
-
 
 Exit: 
+pop {r4} 
 pop {r0} 
 bx r0 
 .ltorg 

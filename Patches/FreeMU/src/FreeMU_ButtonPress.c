@@ -74,6 +74,7 @@ int FMU_OnButton_EndFreeMove(void){
 extern void SetupActiveUnit(struct Unit* unit); 
 extern int AreAllPlayersSafe(void);
 extern int CallCommandEffect(void); 
+extern void TurnOnBGMFlag(void); 
 int FMU_EndFreeMoveSilent(void){
 	FreeMoveRam->silent = true; 
 	FMU_ResetLCDIO(); // restore things back to normal - otherwise map can glitch 
@@ -93,6 +94,9 @@ int FMU_EndFreeMoveSilent(void){
 	if (AreAllPlayersSafe()) { 
 		UnsetEventId(0x1); 
 	} 
+	else { 
+		TurnOnBGMFlag(); 
+	}
 	
 	
 	return 0xB7; // close menu etc 

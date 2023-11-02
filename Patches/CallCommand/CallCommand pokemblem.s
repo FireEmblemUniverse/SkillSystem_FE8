@@ -62,6 +62,11 @@ bne SetNoCallFlag
 b Start 
 
 SetNoCallFlag: 
+
+bl GetFreeMovementState
+cmp r0, #0 
+bne Start @ if FMU is active, do not set flag to prevent calling 
+
 mov r0, #8 @ Cannot call 
 blh SetEventId
 

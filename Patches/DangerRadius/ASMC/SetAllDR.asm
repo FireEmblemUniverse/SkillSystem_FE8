@@ -55,6 +55,7 @@ bl    InitializeDR
 
 pop {r4} 
 mov r8, r4 
+bl TurnOffBGMFlagIfPeaceful
 pop   {r4-r7}
 pop   {r0}
 bx    r0

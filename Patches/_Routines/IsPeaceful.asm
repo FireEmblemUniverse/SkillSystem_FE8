@@ -6,8 +6,10 @@
   .short 0xf800
 .endm
 
-	.equ GetUnit, 0x8019430
-	.equ CheckEventId,0x8083da8
+.equ SetEventId, 0x8083d80 
+.equ UnsetEventId, 0x8083D94
+.equ GetUnit, 0x8019430
+.equ CheckEventId,0x8083da8
 	
 .global IsPeaceful
 .type IsPeaceful, %function 
@@ -219,8 +221,40 @@ bx r1
 .ltorg 
 
 
+.global TurnOffBGMFlagIfPeaceful
+.type TurnOffBGMFlagIfPeaceful, %function 
+TurnOffBGMFlagIfPeaceful: 
+push {lr} 
 
+ldr r3, =0x202BCF0
+ldrb r0, [r3, #0x0F] 
+cmp r0, #0 
+bne DoNothing @ non-player phase has no fog, so do nothing 
 
+bl AreAllPlayersSafeToStartFMU
+cmp r0, #0 
+beq DoNothing 
+ldr r0, =AltBGMFlag
+lsl r0, #16 
+lsr r0, #16 
+blh UnsetEventId 
+
+DoNothing: 
+pop {r0} 
+bx r0 
+.ltorg 
+
+.global TurnOnBGMFlag
+.type TurnOnBGMFlag, %function 
+TurnOnBGMFlag: 
+push {lr} 
+ldr r0, =AltBGMFlag
+lsl r0, #16 
+lsr r0, #16 
+blh SetEventId 
+pop {r0} 
+bx r0 
+.ltorg 
 
 
 
