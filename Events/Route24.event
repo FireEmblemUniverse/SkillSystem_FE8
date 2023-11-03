@@ -108,6 +108,14 @@ CutBush(7,6)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
+PlatformTrap(5, 39)
+PlatformTrap(6, 39)
+PlatformTrap(7, 39)
+PlatformTrap(5, 38)
+PlatformTrap(6, 38)
+PlatformTrap(7, 38)
+PlatformTrap(6, 37)
+
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 RedPokeballTrap(4,31, (ChapterID*2), Calcium) 

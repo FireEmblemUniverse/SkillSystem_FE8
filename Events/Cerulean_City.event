@@ -241,6 +241,14 @@ Traps1:
 //CoinsTrap(28,14,ChapterID*2,350)
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
+PlatformTrap(10,0)
+PlatformTrap(11,0)
+PlatformTrap(12,0)
+PlatformTrap(10,1)
+PlatformTrap(11,1)
+PlatformTrap(12,1)
+PlatformTrap(11,2)
+
 CutBush(19,31)
 CutBush(29,19)
 Save(15,17) // Pokecenter 

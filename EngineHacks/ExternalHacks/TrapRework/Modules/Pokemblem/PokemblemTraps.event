@@ -68,7 +68,13 @@
 	
 	SetTrapEventInit(FlowerTrapID,GenericTrapInitialization)
 	
-	SetTrapEventInit(52,GenericTrapInitialization)
+	#define PlatformTrapID 52 
+	SetTrapEventInit(PlatformTrapID,GenericTrapInitialization)
+	SetTerrainForTrap(PlatformTrapID, 1) // ground 
+SetTrapMapSpritePalette(PlatformTrapID,NPCTrapPaletteWord)
+#define PlatformTrap(XX,YY) "BYTE PlatformTrapID XX YY 0x0 PlatformSMS 0x0"
+	
+	
 	SetTrapEventInit(53,GenericTrapInitialization)
 	SetTrapEventInit(54,GenericTrapInitialization)
 	SetTrapEventInit(55,GenericTrapInitialization)
