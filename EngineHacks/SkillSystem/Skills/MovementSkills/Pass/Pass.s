@@ -30,6 +30,9 @@ cmp r0, #0
 beq ReturnTrue @ unit has died 
 ldrb r0, [r0, #4] @ unit ID 
 ldr r2, [r1] @ char pointer 
+cmp r2, #0 
+beq ReturnTrue 
+
 ldrb r2, [r2, #4] @ unit ID 
 cmp r0, #0xE0 
 bge MaybeTrainer1 

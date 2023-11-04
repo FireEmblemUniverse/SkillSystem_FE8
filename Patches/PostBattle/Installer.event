@@ -8,13 +8,27 @@ ExpShareID_Link:
 WORD ExpShareID 
 
 ShareExpEvent:
+ASMC ExpShareSetupMemorySlots
 CUMO 0x7FFD 
 STAL 30 
 CURE 
 GiveEXP(0x7FFD)
+ASMC ExpShareRestoreMemorySlots
 NoFade 
 ENDA 
 
+ALIGN 4 
+ExpShareUnitID_Link:
+WORD ExpShareUnitID
+
+ExpShareAmount_Link:
+WORD ExpShareAmount // ram 
+TempRamWhileExpShare_Link:
+WORD TempRamWhileExpShare
+TempRamWhileExpShare_Link2:
+WORD TempRamWhileExpShare2 
+TempRamWhileExpShare_Link3:
+WORD TempRamWhileExpShare3 
 
 // If not a KO, self debuff by X 
 

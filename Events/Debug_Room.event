@@ -368,7 +368,7 @@ SilentGiveItemWithDurability(Eirika, SuperPotion, 1)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Fissure)
 //GiveSkillAccessory(0, BlossomID)
 //EquipNewSkillAccessory(1, Intimidate2ID) // GiveSkillAccessory(0, RenewalID)
-EquipNewSkillAccessory(1, CleatsID) // GiveSkillAccessory(0, RenewalID)
+EquipNewSkillAccessory(1, ExpShareID) // GiveSkillAccessory(0, RenewalID)
 //
 //EquipNewSkillAccessory(1, DowngradeID) // GiveSkillAccessory(0, RenewalID)
 //EquipNewSkillAccessory(1, DowngradeID) // GiveSkillAccessory(0, RenewalID)
@@ -488,7 +488,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(16, True, 0x145) // all 
+AutoLevelUnits(3, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 SetUnitStatus(1, 0x28, NightShade)
@@ -574,8 +574,8 @@ ENUT SecretKeyObtained
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(11, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(0, YCoordNewArea)  
+Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(23, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 
@@ -589,7 +589,7 @@ Write_Byte(0, YCoordNewArea)
 //MNC2 SeafoamB3Ch
 
 //MNC2 CeruleanGymCh
-MNC2 CeruleanCh
+MNC2 Route1Ch
 //MNC2 Route9ECh 
 //MNC2 SilphCo2FCh
 //MNC2 Route20ECh

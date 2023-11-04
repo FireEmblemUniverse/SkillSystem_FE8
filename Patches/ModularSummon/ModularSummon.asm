@@ -142,8 +142,10 @@ beq GotoRestoreCamera @ We went through all units, so end
 
 ldrb r0, [r5] @ unit id 
 
-ldr r2, [r7] 
-ldrb r2, [r2, #4] 
+ldr r2, =CurrentUnit 
+ldr r2, [r2] 
+ldr r2, [r2] @ char table entry  
+ldrb r2, [r2, #4] @ unit ID 
 cmp r0, r2 
 beq LoadEachSummonLoop @ You cannot summon yourself
 

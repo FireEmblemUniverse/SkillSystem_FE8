@@ -70,12 +70,13 @@ blh UpdateGameTilesGraphics
 
 SkipPostBattleCalcLoop:
 
-
+cmp r4, #0 
+beq ExitRightNow
 ldrb r0, [r4, #4] 
 ldr r1, =gActionData 
 ldrb r1, [r1, #0x10] @ tiles moved 
 blh BWL_AddTilesMoved
-
+ExitRightNow: 
 pop {r4} 
 ldr r5, [r6] @ vanilla 
 pop {r0}

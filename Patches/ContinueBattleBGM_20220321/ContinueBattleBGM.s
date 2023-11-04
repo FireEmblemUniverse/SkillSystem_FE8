@@ -14,7 +14,6 @@
 .endm
 
 .thumb
-mov r11, r11 
 @もし、0xFFFF を戦闘BGMとして指定した場合は、絶対に切り替えない
 ldr r3, =0xFFFF
 cmp r3, r4

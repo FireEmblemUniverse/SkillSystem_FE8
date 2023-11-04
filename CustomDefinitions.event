@@ -33,7 +33,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.10.S               Oct 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.10.T               Oct 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 
@@ -193,6 +193,12 @@ String("V1.10.S               Oct 2023") ; BYTE 0; POP // this overflows into th
 
 #define FreeRamByte1 0x30017A0 // - 0x30017A9 
 
+#define TempRamWhileExpShare 0x2026E30 // used in pc boxes too 
+#define TempRamWhileExpShare2 0x2026E34 // used in pc boxes too 
+#define TempRamWhileExpShare3 0x2026E38 // used in pc boxes too 
+
+#define ExpShareUnitID 0x30017A8 
+#define ExpShareAmount 0x30017A9 
 #define XCoordTeleport 0x30017AA
 #define YCoordTeleport 0x30017AB
 
@@ -214,7 +220,7 @@ String("V1.10.S               Oct 2023") ; BYTE 0; POP // this overflows into th
 #define BerryDurabilityToggleRam 			0x30017b9 
 #define ReturnTMRam 			0x30017ba // Also used for enemy AI 
 #define DRSingleRam 			0x30017bb
-#define UnitPointerRam 0x30017BC // - BF
+#define UnitPointerRam 0x30017BC // - BF // used in ReplaceMoveMenu 
 #define CapturedPkmnDeploymentID 0x30017C0 
 #define SpeedupRam 0x30017C1 // bit1 is used in Speedup.asm for light runes if you're holding A 
 #define RepelStepsRam 0x30017C2 // SHORT (& 0x30017C3) 

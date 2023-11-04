@@ -32,8 +32,9 @@ POIN DepleteRepel
 //POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce
 POIN CheckIfGameOver
-//POIN IsTrainersTeamDefeated // if event, use mem slot: 2, 3, 9, B and once event starts: 7, 8, C 
-POIN ExpShare // ExpShare uses s2 and s4 and calls IsTrainersTeamDefeated and does nothing if they're defeated //
+POIN ExpShare // ExpShare uses s2 and s4 but restores these afterwards as part of its event 
+POIN IsTrainersTeamDefeated // if event, use mem slot: 2, 3, 9, B and once event starts: 7, 8, C 
+
 POIN CapturePokemon // needs to be after IsTrainersTeamDefeated 
 POIN RockyHelmetFunc
 POIN SavageBlow  //I like having savage blow as the first one because it makes the activation sound play first

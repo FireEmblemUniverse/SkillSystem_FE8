@@ -41,6 +41,12 @@ ldr r0, [r0, #4]
 ldrb r0, [r0, #4] @ class ID 
 bl RegisterPokemon
 
+ldr r3, =0x203A56C @ dfdr 
+add r3, #0x6F 
+mov r0, #0xFF @ -1 
+strb r0, [r3] @ gBattleTarget.statusOut = -1; see https://github.com/FireEmblemUniverse/fireemblem8u/blob/0fe689f4c8171344b0e7f317589c12529ab236d8/src/bmusemind.c#L1018
+
+
 mov r0, r4 
 blh PromoteActiveUnit
 
