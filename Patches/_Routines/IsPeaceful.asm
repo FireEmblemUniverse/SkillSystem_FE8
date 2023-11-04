@@ -58,6 +58,60 @@ pop {r1}
 bx r1
 
 .ltorg 
+
+
+.global IsPeacefulNoTrainers
+.type IsPeacefulNoTrainers, %function 
+IsPeacefulNoTrainers:
+push {r4-r5, lr}
+
+ldr r5, =0x401000C
+@ check for if peaceful map 
+
+@ check for at least one valid enemy eg. unit ID that is not 0xE0 - 0xEF 
+mov r4,#0x7F @ current deployment id
+@mov r11, r11 
+LoopThroughUnits9:
+add r4, #1 
+cmp r4, #0xC0 
+bge IsPeaceful_True9
+mov r0,r4
+blh GetUnit @ 19430
+cmp r0, #0
+beq LoopThroughUnits9
+ldr r1, [r0]
+cmp r1, #0 
+beq LoopThroughUnits9
+ldr r1, [r0, #0x0C]
+tst r1, r5 @ dead/undeployed 
+bne LoopThroughUnits9
+ldr r1, [r0] @ char pointer 
+ldrb r1, [r1, #4] @ char id 
+cmp r1, #0xE0 
+blt ValidEnemy9
+cmp r1, #0xEF 
+bgt ValidEnemy9
+
+mov r1, #0x2D 
+ldrb r1, [r0, r1] 
+cmp r1, #50
+beq LoopThroughUnits9
+
+ValidEnemy9:
+mov r0, #0 
+b Exit9 
+
+IsPeaceful_True9:
+mov r0, #1
+
+Exit9:
+
+pop {r4-r5}
+pop {r1}
+bx r1
+
+.ltorg 
+
 .align 
 
 .global AreAllPlayersSafe

@@ -673,6 +673,7 @@ SetSMS(RedPokeballSMS  , 0 ,   RedPokeballStanding)
 SetSMS(GoldPokeballSMS  , 0 ,   GoldPokeballStanding)
 SetSMS(GarySMS, 2 ,   GaryStanding)  
 SetSMS(PlatformSMS , 2 ,   PlatformStanding) 
+SetSMS(RaftSMS , 2 ,   RaftStanding) 
 SetSMS(BlankSMS, 0 ,   BlankStanding)
 SetSMS(SavePointSMS , 0 ,   SavePointStanding)
 SetSMS(BushSMS, 0 ,  GrassStanding )  
@@ -768,7 +769,6 @@ SetSMS(swimmer_m_landSMS , 1 ,    swimmer_m_landStanding)
 SetSMS(swimmer_m_waterSMS , 1 ,    swimmer_m_waterStanding)
 SetSMS(tuber_m_waterSMS , 1 ,    tuber_m_waterStanding)
 SetSMS(rockSMS , 0 ,    rockStanding)
-SetSMS(Unused2SMS , 0 ,    m1Standing)
 SetSMS(puddleSMS , 0 ,    puddleStanding)
 SetSMS(LoreleiSMS , 1 ,    LoreleiStanding)
 SetSMS(BrunoSMS , 1 ,    BrunoStanding)
@@ -5156,6 +5156,10 @@ GaryStanding:
 ALIGN 4
 PlatformStanding:
 #incbin "More SMS/Platform.dmp"
+
+ALIGN 4 
+RaftStanding: 
+#incbin "More Sms/Raft.dmp" 
 
 
 ALIGN 4

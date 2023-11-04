@@ -74,7 +74,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToPallet_Water:
-ChapterTransition(PalletCh, 8, 18)
+ChapterTransition(PalletCh, 11, 18)
 
 ToPallet_E:
 ChapterTransition(PalletCh, 11, 18)

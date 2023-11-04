@@ -256,6 +256,13 @@ ldr r1, =TrainerDifficultyBonusLink_Lunatic
 ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
 
 NoMoreBonusLevels: 
+ldr r2, =0x202BCF0 @ ch data 
+ldrb r2, [r2, #0x0E] @ chapter ID 
+cmp r2, #9 
+bge DontReduceBonusLevelsForEarlyChapters 
+lsr r1, #1 
+DontReduceBonusLevelsForEarlyChapters: 
+
 ldr r0, [r6] @ unit ID 
 ldrb r0, [r0, #4] 
 cmp r0, #0xA0 

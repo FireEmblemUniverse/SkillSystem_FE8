@@ -18,6 +18,9 @@ EXPCalcLoop: @ Autohook to 0x0802b960. This is gonna be kinda weird tbh.
 mov r6, r5
 add r6, r6, #0x6E @ r6 is used later in the vanilla function to load EXP. Use r4 and r5.
 push { r7 }
+ldrb r2, [r5, #0x13] @ curr hp of attacker 
+cmp r2, #0 
+beq EndAttackerLoop 
 @cmp r0, #0x00
 @beq AttackerStore @ Immediately end if 0 EXP is passed through.
 @NO, this means that any AI units are never check on their phase
@@ -44,7 +47,7 @@ strb r0, [ r6 ]
 mov r0, r4 @ Defense struct
 mov r1, r5 @ Attack struct
 blh ComputeEXPFromBattle, r2
-ldrb r2, [r2,#0x13]
+ldrb r2, [r4,#0x13]
 cmp r2, #0
 beq DefenderDead @ Immediately end if defender is dead
 ldr r7, =EXPCalcFunctions
