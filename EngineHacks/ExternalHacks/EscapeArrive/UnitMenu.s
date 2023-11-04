@@ -338,7 +338,7 @@ mov r1,#1
 strb r1,[r0,#0x11]
 
 @set flag to denote escape should be triggered
-ldr r0,=#0x2040000
+ldr r0,=#0x203FFDF
 ldrb r1,[r0]
 mov r2,#0x4
 orr r1,r2
