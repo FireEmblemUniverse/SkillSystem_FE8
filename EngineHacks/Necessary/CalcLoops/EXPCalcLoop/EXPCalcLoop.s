@@ -44,7 +44,7 @@ strb r0, [ r6 ]
 mov r0, r4 @ Defense struct
 mov r1, r5 @ Attack struct
 blh ComputeEXPFromBattle, r2
-ldrb r2, [r2,#0x13]
+ldrb r2, [r4,#0x13]
 cmp r2, #0
 beq DefenderDead @ Immediately end if defender is dead
 ldr r7, =EXPCalcFunctions
