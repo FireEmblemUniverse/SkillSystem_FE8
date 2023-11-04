@@ -51,7 +51,7 @@ BYTE $0 $F8
 SHORT $2800 $D02D $E031
 BYTE $7C $D0 $0 $8
 POIN EscapeEvent
-BYTE $58 $A9 $3 $2 $0 $0 $4 $2 $50 $4E $0 $3 $31 $94 $1 $8
+BYTE $58 $A9 $3 $2 $DF $FF $3 $2 $50 $4E $0 $3 $31 $94 $1 $8
 POIN AllUnitsMustEscapeFlagLink
 BYTE $A8 $3D $8 $8 $F1 $8F $1 $8
 SHORT $4814 $8800 $4914 $468E
