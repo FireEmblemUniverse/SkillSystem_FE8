@@ -65,9 +65,6 @@ Write_Byte(0, DisableMenuOptionsRam)
 	//Return 
 Read_Byte(CurrentChapter)
 SADD r2 rC r0 
-Write_Byte(TeleportChapter)
-Read_Byte(CurrentChapter)
-SADD r2 rC r0 
 MNC2 (-1) // uses s2 
 
 LABEL 0x63

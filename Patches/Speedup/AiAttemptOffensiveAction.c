@@ -6,7 +6,7 @@
 
 #include "Ai.h" 
 
-
+extern void TurnOnBGMFlag(void); 
 // AiSimulateBestBattleAgainstTarget takes ~100k cycles before getting to: 
 	// AiSimulateBattleAgainstTargetAtPosition->
 // BattleGenerateSimulationInternal calls InitBattleUnit twice  which is a little expensive at 100k 
@@ -201,6 +201,7 @@ _0803D628:
 
     if ((finalResult.score != 0) || (finalResult.targetId != 0)) {
         AiSetDecision(finalResult.xMove, finalResult.yMove, 1, finalResult.targetId, finalResult.itemSlot, 0, 0);
+		TurnOnBGMFlag(); 
 
 #ifndef POKEMBLEM_VERSION 
         if ((s8)finalResult.itemSlot != -1) {

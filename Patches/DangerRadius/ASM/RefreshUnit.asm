@@ -64,6 +64,7 @@ bne Return
 
 
 DoNotRefresh:
+bl TurnOnBGMFlag
 ldr r0, =AttackedThisTurnFlagLink
 ldrb r0, [r0] 
 blh 0x8083bd8 @SetLocalEventId
@@ -128,6 +129,7 @@ bne DontRefresh
 bl RefreshNow
 b Exit 
 DontRefresh:
+bl TurnOnBGMFlag
 mov r0, #0 
 Exit:
 pop   {r1}
@@ -196,6 +198,7 @@ bl RefreshNow
 b Return2 
 
 DoNotRefresh2:
+bl TurnOnBGMFlag
 ldr r0, =AttackedThisTurnFlagLink
 ldrb r0, [r0] 
 blh 0x8083bd8 @SetLocalEventId

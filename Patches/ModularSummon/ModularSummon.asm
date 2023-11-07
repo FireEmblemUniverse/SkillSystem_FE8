@@ -20,6 +20,7 @@ push {r7} @ Save r8 to restore at the end
 mov r8, r0 @ Parent proc 
 mov r6, r9 
 push {r6} 
+bl TurnOnBGMFlag
 bl EmptyMemorySlotQueue
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 

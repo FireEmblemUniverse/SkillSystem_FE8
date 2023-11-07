@@ -159,7 +159,7 @@ ENUN
 ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(19, True, TempAlly_A<<8|TempAlly_E) // 
 // Abra, Clefairy, Dratini, Lickitung, Snorlax
-SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 4500, 6000, 10000, 30000) // Porygon for cheap since in SilphCo for free 
+SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000, 4500, 6000, 8000, 15000) // Porygon for cheap since in SilphCo for free 
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20
