@@ -31,7 +31,6 @@ beq   L1
   b     Return
 
 L1:
-
   @ FOW not active, we handle it.
   @ Mimic PlayerPhase_DisplayDangerZone, 0x1CCB4.
   
