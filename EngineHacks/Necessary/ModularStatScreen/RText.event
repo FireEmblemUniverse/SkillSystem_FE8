@@ -152,7 +152,10 @@
 	#ifdef BIORHYTHM
 	   RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,SS_BiorhythmRText)
 	#endif //BIORHYTHM
-       RMenu(ST_Trv,ST_Cond,ST_Spd,0,0xa6,0x38,0x551)
+       RMenu(ST_Trv,ST_Cond,ST_Spd,ST_AffinDesc,0xa6,0x38,0x551)
+	   
+  ST_AffinDesc:
+	RMenu(ST_Trv,ST_Cond,ST_Affin,0,0xbe,0x38,AffinityDescLooper,AffinityDescGetter)
 
   ST_Cond:
     RMenu(ST_Affin,ST_Talk,ST_Luck,0,0xA6,0x48,0x552,ConditionGetter)
@@ -251,8 +254,11 @@
     #ifdef LEADERSHIP_STARS
       RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xa6,0x48,LeadRText)
     #else
-      RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xa6,0x48,0x551)
+      RMenu(ST_Cond,ST_Talk,ST_Spd,ST_AffinDesc,0xa6,0x48,0x551)
     #endif
+
+  ST_AffinDesc:
+    RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xbe,0x48,AffinityDescLooper,AffinityDescGetter)
 
   //ST_Cond:
     //RMenu(ST_Affin,ST_Talk,ST_Spd,0,0xA6,0x48,0x552,ConditionGetter)

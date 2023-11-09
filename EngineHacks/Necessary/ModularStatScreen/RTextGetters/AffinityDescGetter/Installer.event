@@ -1,0 +1,16 @@
+#define AffinityDescEntry(affinity, text) "PUSH; ORG AffinityDescTable + (affinity*2); SHORT text; POP"
+
+ALIGN 4
+AffinityDescTable:
+FILL 8*2 // change if expanding affinity count
+
+// Example macro usage
+AffinityDescEntry(FireAffinity, FireAffinityDesc)
+AffinityDescEntry(ThunderAffinity, ThunderAffinityDesc)
+AffinityDescEntry(WindAffinity, WindAffinityDesc)
+AffinityDescEntry(IceAffinity, IceAffinityDesc)
+AffinityDescEntry(DarkAffinity, DarkAffinityDesc)
+AffinityDescEntry(LightAffinity, LightAffinityDesc)
+AffinityDescEntry(AnimaAffinity, AnimaAffinityDesc)
+
+#include "AffinityDescGetter.lyn.event"
