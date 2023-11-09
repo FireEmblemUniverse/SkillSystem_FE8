@@ -14,3 +14,5 @@ SkillDescGetter: //given skill number, get description text ID
 POIN SkillDescTable
 POIN Skill_Getter
 WORD SS_SkillsDefaultRText
+
+#include "AffinityDescGetter/Installer.event"
