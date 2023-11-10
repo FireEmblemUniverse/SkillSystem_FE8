@@ -18,9 +18,10 @@ cmp r0, #0
 beq End
 
 @make sure we're in combat (or combat prep)
-ldrb r3, =gBattleData
+ldr r3, =gBattleData
 ldrb r3, [r3]
-cmp r3, #4
+mov r0, #0x4
+tst r3, r0
 beq End
 
 @store attacker weight in r6
