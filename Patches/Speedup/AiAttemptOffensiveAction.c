@@ -201,7 +201,9 @@ _0803D628:
 
     if ((finalResult.score != 0) || (finalResult.targetId != 0)) {
         AiSetDecision(finalResult.xMove, finalResult.yMove, 1, finalResult.targetId, finalResult.itemSlot, 0, 0);
+		#ifdef POKEMBLEM_VERSION
 		TurnOnBGMFlag(); 
+		#endif 
 
 #ifndef POKEMBLEM_VERSION 
         if ((s8)finalResult.itemSlot != -1) {

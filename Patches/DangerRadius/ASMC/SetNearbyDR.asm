@@ -147,8 +147,8 @@ mov   r1, r9
 strb  r1, [r0]            @ Reset DRCountByte.
 
 bl    InitializeDR
+bl ToggleBGMFlagIfNeeded
 
-bl TurnOffBGMFlagIfPeaceful
 
 pop   {r4-r7}
 mov   r8, r4

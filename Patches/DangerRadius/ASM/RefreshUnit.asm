@@ -64,7 +64,7 @@ bne Return
 
 
 DoNotRefresh:
-bl TurnOnBGMFlag
+bl ToggleBGMFlagIfNeeded
 ldr r0, =AttackedThisTurnFlagLink
 ldrb r0, [r0] 
 blh 0x8083bd8 @SetLocalEventId
@@ -81,6 +81,7 @@ bx    r0
 
 RefreshNow:
 push {lr}
+bl ToggleBGMFlagIfNeeded
 
 @ previously in event code has auto-refresh if no enemies 
 

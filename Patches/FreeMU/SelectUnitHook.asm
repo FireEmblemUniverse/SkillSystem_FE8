@@ -59,7 +59,7 @@ bic r0, r1
 str r0, [r4, #0x0C] @ remove hide bitflag 
 
 blh 0x80271A0 @ SMS_UpdateFromGameData
-bl TurnOffBGMFlagIfPeaceful
+bl TurnOffBGMFlag
 
 ldr r0, [r6, #0x14] @ proc parent 
 mov r1, #5 @ label 5 (start phase) 

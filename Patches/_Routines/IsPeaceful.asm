@@ -274,6 +274,23 @@ pop {r1}
 bx r1
 .ltorg 
 
+.global ToggleBGMFlagIfNeeded
+.type ToggleBGMFlagIfNeeded, %function 
+ToggleBGMFlagIfNeeded: 
+push {lr} 
+bl TurnOffBGMFlagIfPeaceful 
+cmp r0, #1 
+beq ExitToggle 
+mov r1, #0 
+sub r1, #1 
+cmp r0, r1 
+beq ExitToggle 
+bl TurnOnBGMFlag
+ExitToggle: 
+
+pop {r0} 
+bx r0 
+.ltorg 
 
 .global TurnOffBGMFlagIfPeaceful
 .type TurnOffBGMFlagIfPeaceful, %function 
@@ -283,19 +300,21 @@ push {lr}
 ldr r3, =0x202BCF0
 ldrb r0, [r3, #0x0F] 
 cmp r0, #0 
-bne DoNothing @ non-player phase has no fog, so do nothing 
+bne PeacefulError_BGM @ non-player phase has no fog, so do nothing 
 
 bl AreAllPlayersSafeToStartFMU
 cmp r0, #0 
 beq DoNothing 
-ldr r0, =AltBGMFlag
-lsl r0, #16 
-lsr r0, #16 
-blh UnsetEventId 
+bl TurnOffBGMFlag 
+mov r0, #1 @ true peaceful 
+b DoNothing 
+PeacefulError_BGM: 
+mov r0, #0 
+sub r0, #1 @ -1 
 
 DoNothing: 
-pop {r0} 
-bx r0 
+pop {r1} 
+bx r1 
 .ltorg 
 
 .global TurnOnBGMFlag
@@ -310,7 +329,18 @@ pop {r0}
 bx r0 
 .ltorg 
 
-
+.global TurnOffBGMFlag
+.type TurnOffBGMFlag, %function 
+TurnOffBGMFlag: 
+push {lr} 
+ldr r0, =AltBGMFlag
+lsl r0, #16 
+lsr r0, #16 
+blh UnsetEventId 
+blh 0x80160D0 @ return to map BGM 
+pop {r0} 
+bx r0 
+.ltorg 
 
 
 

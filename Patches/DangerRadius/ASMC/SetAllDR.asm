@@ -57,10 +57,10 @@ lsr   r0, #0x5
 strb  r4, [r0]            @ Reset DRCountByte.
 
 bl    InitializeDR
+bl ToggleBGMFlagIfNeeded
 
 pop {r4} 
 mov r8, r4 
-bl TurnOffBGMFlagIfPeaceful
 pop   {r4-r7}
 pop   {r0}
 bx    r0
