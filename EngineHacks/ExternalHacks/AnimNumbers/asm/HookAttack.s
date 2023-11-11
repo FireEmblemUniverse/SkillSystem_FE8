@@ -16,7 +16,7 @@ mov   r5, r0
 @ Opposing AIS. Can heal or take damage due to
 @ Sol/Aether or Counter/Countermagic respectively.
 mov   r0, r4
-ldr   r3, =GetOpponentFrontAIS
+ldr   r3, =GetAnimAnotherSide
 bl    GOTO_R3
 mov   r1, #0x1
 mov   r2, #0x2
@@ -27,7 +27,7 @@ bl    BAN_DisplayDamage
 
 @ Vanilla. Overwritten by hook.
 mov   r0, r4
-ldr   r3, =GetAISSubjectId
+ldr   r3, =GetAnimPosition
 bl    GOTO_R3
 ldr   r3, =0x805230D
 GOTO_R3:

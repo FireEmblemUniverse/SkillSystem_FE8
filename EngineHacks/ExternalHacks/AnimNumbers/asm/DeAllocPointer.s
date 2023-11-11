@@ -8,7 +8,7 @@
 
 @ Vanilla, overwritten by hook.
 @ Deletes the subAnimeEmulator proc.
-ldr   r3, =EndProc
+ldr   r3, =Proc_End
 bl    GOTO_R3
 
 mov   r0, #0x0
@@ -16,7 +16,7 @@ str   r0, [r4, #0x60]         @ NULL [DamageMoji+0x60], pointer to subAnimeEmula
 
 @ Vanilla, overwritten by hook.
 mov   r0, r4
-ldr   r3, =BreakProcLoop
+ldr   r3, =Proc_Break
 bl    GOTO_R3
 
 ldr   r3, =0x806C717
