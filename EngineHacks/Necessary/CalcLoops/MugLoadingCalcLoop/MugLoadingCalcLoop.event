@@ -1,6 +1,14 @@
 
 	/* Mug loading calculation loop */
 
+PUSH
+	ORG $7898
+		ALIGN 4
+		SHORT $4778 $46C0
+		WORD $E59FC000 $E12FFF1C
+		POIN MugLoadCalcLoop
+POP
+
 #include "MugLoadLoop.lyn.event"
 MugLoadingFunctions: // Each function will check for a passed in control code, returning a mug. If a mug is returned, all functions following will be ignored.
 // If the function returns 0, the nothing will occur, and the next function will be checked.

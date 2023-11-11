@@ -1,5 +1,5 @@
 .thumb
-.include "ItemTargeting/_TargetSelectionDefinitions.s"
+.include "../ItemTargeting/_TargetSelectionDefinitions.s"
 
 @arguments
 	@r0 = unit pointer

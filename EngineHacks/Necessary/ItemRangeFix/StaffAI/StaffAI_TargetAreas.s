@@ -1,6 +1,6 @@
 .thumb
 
-.include "_ItemAIDefinitions.h.s"
+.include "_ItemAIDefinitions.s"
 
 .equ MovGetter, OffsetList + 0x0
 .equ StaffRangeGetter, OffsetList + 0x4

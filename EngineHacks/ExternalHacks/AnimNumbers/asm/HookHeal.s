@@ -15,7 +15,7 @@ mov   r4, r0
 
 @ Opposing AIS. Can heal due to LiveToServe.
 mov   r0, r7
-ldr   r3, =GetOpponentFrontAIS
+ldr   r3, =GetAnimAnotherSide
 bl    GOTO_R3
 mov   r1, #0x1
 mov   r2, #0x2

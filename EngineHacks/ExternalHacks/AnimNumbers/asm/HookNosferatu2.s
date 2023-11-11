@@ -15,7 +15,7 @@ bl    BAN_DisplayDamage
 
 @ Vanilla. Overwritten by hook.
 mov   r0, r5
-ldr   r3, =GetAISSubjectId
+ldr   r3, =GetAnimPosition
 bl    GOTO_R3
 lsl   r0, #0x1
 add   r0, r4

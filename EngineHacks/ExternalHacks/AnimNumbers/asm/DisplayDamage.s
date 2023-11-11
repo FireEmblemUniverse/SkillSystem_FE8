@@ -18,7 +18,7 @@ str   r3, [sp, #0x4]
 ldr   r0, =BATTLE_ANIMATION_NUMBERS_FLAG
 lsl   r0, #0x5
 lsr   r0, #0x5
-ldr   r3, =CheckEventId
+ldr   r3, =CheckFlag
 bl    GOTO_R3
 cmp   r0, #0x0
 bne   End
@@ -27,7 +27,7 @@ bne   End
   @ Recipient's AIS might still be finishing up their round,
   @ so we grab the highest round.
   mov   r0, r4
-  ldr   r3, =GetOpponentFrontAIS
+  ldr   r3, =GetAnimAnotherSide
   bl    GOTO_R3
   ldrh  r0, [r0, #0xE]
   ldrh  r1, [r4, #0xE]
@@ -58,7 +58,7 @@ bne   End
     @ Start proc which will put digits in VRAM.
     ldr   r0, =BAN_Proc_DelayDigits
     mov   r1, #0x3
-    ldr   r3, =ProcStart
+    ldr   r3, =Proc_Start
     bl    GOTO_R3
     strh  r7, [r0, #0x2A]   @ Damage/heal.
     mov   r7, r0
@@ -80,7 +80,7 @@ bne   End
     mov   r0, #0x29
     strb  r6, [r7, r0]      @ Number of digits.
     mov   r0, r4
-    ldr   r3, =GetAISSubjectId
+    ldr   r3, =GetAnimPosition
     bl    GOTO_R3
     mov   r1, #0x2C
     strb  r0, [r7, r1]      @ AISSubjectId. 0 if left, 1 if right.
@@ -187,7 +187,7 @@ ldsh  r0, [r4, r0]        @ X.
 @lsl   r1, r6, #0x3       @ Can centre X like this. But I decided to bake this
 @add   r1, #0x4           @ into the frameData. If someone decides to use one
 @sub   r0, r1             @ frameData for each digitcount, this code could be used.
-ldr   r1, =StartEkrsubAnimeEmulator
+ldr   r1, =NewEkrsubAnimeEmulator
 mov   r12, r1
 mov   r1, #0x4
 ldsh  r1, [r4, r1]
@@ -196,9 +196,9 @@ bl    GOTO_R12
 mov   r5, r0
 
 @ Start gProc_efxDamageMojiEffectOBJ
-ldr   r0, =gProc_efxDamageMojiEffectOBJ
+ldr   r0, =ProcScr_efxDamageMojiEffectOBJ
 mov   r1, #0x3
-ldr   r3, =ProcStart
+ldr   r3, =Proc_Start
 bl    GOTO_R3
 mov   r6, r0
 str   r4, [r6, #0x5C]     @ AIS.

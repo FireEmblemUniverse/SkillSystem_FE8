@@ -18,7 +18,7 @@ MS_BWLSaveHook:
 	@ STEP 1 : SUSPEND SAVE
 
 	mov r0, #3
-	ldr r3, =GetSaveTargetAddress
+	ldr r3, =GetSaveWriteAddr
 	bl  BXR3
 
 	@ var r4 = Suspend Save target address
@@ -47,19 +47,19 @@ MS_BWLSaveHook:
 	mov r0, sp @ arg r0 = $10 byte buffer
 	mov r1, #3 @ arg r1 = block id
 
-	ldr r3, =SaveMetadata_Load
+	ldr r3, =ReadSaveBlockInfo
 	bl  BXR3
 
 	mov r0, sp @ arg r0 = $10 byte buffer
 	mov r1, #3 @ arg r1 = block id
 
-	ldr r3, =SaveMetadata_Save
+	ldr r3, =WriteSaveBlockInfo
 	bl  BXR3
 
 	@ STEP 2 : GAME SAVE
 
 	ldrb r0, [r7, #0x0C] @ ChapterSate.saveSlot
-	ldr r3, =GetSaveTargetAddress
+	ldr r3, =GetSaveWriteAddr
 	bl  BXR3
 
 	@ var r4 = Game Save target address
@@ -91,13 +91,13 @@ MS_BWLSaveHook:
 	mov  r0, sp          @ arg r0 = $10 byte buffer
 	ldrb r1, [r7, #0x0C] @ arg r1 = block id
 
-	ldr r3, =SaveMetadata_Load
+	ldr r3, =ReadSaveBlockInfo
 	bl  BXR3
 
 	mov  r0, sp          @ arg r0 = $10 byte buffer
 	ldrb r1, [r7, #0x0C] @ arg r1 = block id
 
-	ldr r3, =SaveMetadata_Save
+	ldr r3, =WriteSaveBlockInfo
 	bl  BXR3
 
 	ldr r3, =ReturnLocation

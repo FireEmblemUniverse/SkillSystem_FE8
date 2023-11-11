@@ -1,5 +1,5 @@
 .thumb
-.include "../_ItemAIDefinitions.h.s"
+.include "../_ItemAIDefinitions.s"
 @parameters: 
 	@r0 = stack pocket pointer
 	@r1= active unit
