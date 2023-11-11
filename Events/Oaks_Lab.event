@@ -109,6 +109,10 @@ MUSCFAST 0x16 // Intro
 FADU 44 
 EVBIT_F 7 // not scene skipping 
 EVBIT_MODIFY 4 
+ASMC CheckSRAMWorking
+BNE 79 sC s0 
+TutText(SRAMNotWorkingText) 
+LABEL 79 
 TutText(EnableRandomizerText)
 SVAL s7 1 
 BNE 73 sC s7 

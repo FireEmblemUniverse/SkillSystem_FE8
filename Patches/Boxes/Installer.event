@@ -16,6 +16,7 @@ WORD InitSramFlag
 #include "PrepHooks.lyn.event" 
 #include "Prep.lyn.event" 
 #include "Boxes.lyn.event" 
+#include "CheckSRAM.lyn.event" 
 
 // Take over link arena SRAM 
 #define EXPAND_PARTY_MAX 
@@ -43,6 +44,7 @@ SHORT $4770 // bx lr
 ORG $A4000 // something that writes to arena SRAM 
 SHORT $4770 
 
+// func SRAMInit at 0x80A2C3C 
 ORG $A2CA4 // tests SRAM by writing to $7EA0 in SRAM 
 WORD $7FFC // vanilla uses $E0073A0 to test SRAM  
 
