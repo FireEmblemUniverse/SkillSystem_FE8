@@ -22,8 +22,8 @@ bne   NoRounds
     cmp   r6, #0xFF
     beq   Return
       @ Check if mapbattlebox exists.
-      ldr   r0, =gProc_MapAnimBattleInfoBox
-      ldr   r3, =ProcFind
+      ldr   r0, =ProcScr_MapBattleInfoBox
+      ldr   r3, =Proc_Find
       bl    GOTO_R3
       cmp   r0, #0x0
       beq   Return
@@ -33,7 +33,7 @@ bne   NoRounds
 mov   r7, r0
 ldr   r0, =SPD_Map_main_Proc
 mov   r1, r4
-ldr   r3, =ProcStart
+ldr   r3, =Proc_Start
 bl    GOTO_R3
 
 mov   r1, #0x29

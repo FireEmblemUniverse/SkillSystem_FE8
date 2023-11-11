@@ -7,7 +7,7 @@ Hex: @r0, r1 are battle structs
 push { r4, r5, lr }
 mov r4, r0
 mov r5, r1
-ldr r0, =AuraSkillCheck
+ldr r0, =NewAuraSkillCheck
 mov lr, r0
 mov r0, r4 @attacker
 ldr r1, =HexIDLink

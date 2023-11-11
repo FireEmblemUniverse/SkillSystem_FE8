@@ -8,7 +8,7 @@ mov   r4, r0
 ldr   r0, [r4, #0x2C]               @ RTextstruct
 ldrh  r0, [r0, #0x12]               @ TextID, add to WeaponHelpTextID
 add   r0, #0x1
-ldr   r1, =StatScreenStruct
+ldr   r1, =gStatScreen
 ldr   r1, [r1, #0xC]                @ Pointer to Unit RAM of current unit
 add   r1, #0x28                     @ Weapon ranks
 mov   r2, #0x0

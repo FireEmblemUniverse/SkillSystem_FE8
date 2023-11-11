@@ -8,7 +8,7 @@ mov   r5, r0
 ldr   r0, [r5, #0x2C]               @ RTextstruct
 ldrh  r4, [r0, #0x12]               @ TextID, Indicates which weapon rank we are
 add   r0, r4, #0x1
-ldr   r1, =StatScreenStruct
+ldr   r1, =gStatScreen
 ldr   r1, [r1, #0xC]                @ Pointer to Unit RAM of current unit
 add   r1, #0x28                     @ Weapon ranks
 mov   r2, #0x0
@@ -41,22 +41,22 @@ blt   Return                        @ Weapon rank exists, display RText
   mov   r1, #0x10
   tst   r1, r0
   beq   CheckLeft
-    ldr   r4, =MoveCursorRight
+    ldr   r4, =TryRelocateHbRight
     b     L2
       CheckLeft:
       mov   r1, #0x20
       tst   r1, r0
       beq   CheckUp
-        ldr   r4, =MoveCursorLeft
+        ldr   r4, =TryRelocateHbLeft
         b     L2
           CheckUp:
           mov   r1, #0x40
           tst   r1, r0
           beq   Down
-            ldr   r4, =MoveCursorUp
+            ldr   r4, =TryRelocateHbUp
             b     L2
               Down:
-              ldr   r4, =MoveCursorDown
+              ldr   r4, =TryRelocateHbDown
 L2:
 mov   r0, r5
 bl    GOTO_R4

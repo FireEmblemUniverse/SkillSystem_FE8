@@ -6,9 +6,9 @@
 .endm
 .equ proc_truehit, 0x802A558
 .equ d100Result, 0x802a52c
-.global Proc_Start
-.type Proc_Start, %function
-Proc_Start: @ r0 is attacker, r1 is defender, r2 is current buffer, r3 is battle data
+.global ProcLoop_Start
+.type ProcLoop_Start, %function
+ProcLoop_Start: @ r0 is attacker, r1 is defender, r2 is current buffer, r3 is battle data
 push {r4-r7,lr}
 mov r4, r0 @attacker
 mov r5, r1 @defender

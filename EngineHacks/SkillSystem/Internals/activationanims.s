@@ -7,7 +7,7 @@ push  {r4-r7}
 mov   r7, r0
 
 
-ldr   r3, =GetAISSubjectId
+ldr   r3, =GetAnimPosition
 bl    GOTO_R3
 mov   r5, r0
 ldrh  r0, [r7, #0xE]
@@ -66,14 +66,14 @@ cmp   r0, #0
 bne   End
 
   @ Start SkillProcDisplay (prefix SPD) proc.
-  ldr   r0, =gProc_ekrGauge
-  ldr   r3, =ProcFind
+  ldr   r0, =ProcScr_ekrGauge
+  ldr   r3, =Proc_Find
   bl    GOTO_R3
   cmp   r0, #0x0
   beq   L2                      @ This proc should exist, so this shouldn't happen.
     mov   r1, r0
     ldr   r0, =SPD_main_Proc
-    ldr   r3, =ProcStart
+    ldr   r3, =Proc_Start
     bl    GOTO_R3
     mov   r1, #0x29
     strb  r4, [r0, r1]            @ +0x29, byte, is procced skill.

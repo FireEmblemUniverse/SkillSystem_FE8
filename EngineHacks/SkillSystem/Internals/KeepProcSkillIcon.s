@@ -7,7 +7,7 @@
 
 ldr   r1, =0x6013000
 ldr   r2, =0x380
-ldr   r5, =RegisterTileGraphics
+ldr   r5, =RegisterDataMove
 bl    GOTO_R5
 
 ldr   r0, =0x2017248

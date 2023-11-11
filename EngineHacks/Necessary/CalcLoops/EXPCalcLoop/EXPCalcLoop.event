@@ -1,6 +1,13 @@
 
 	/* EXP calculation loop */
 
+PUSH
+	ORG $2b960
+		ALIGN 4
+		SHORT $4778 $46C0
+		WORD $E59FC000 $E12FFF1C
+		POIN EXPCalcLoop
+POP
 
 #include "EXPCalcLoop.lyn.event"
 EXPCalcFunctions:
