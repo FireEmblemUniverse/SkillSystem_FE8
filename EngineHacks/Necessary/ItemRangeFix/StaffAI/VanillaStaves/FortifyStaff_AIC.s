@@ -1,5 +1,5 @@
 .thumb
-.include "../_ItemAIDefinitions.h.s"
+.include "../_ItemAIDefinitions.s"
 @AI_TA condition for fortify
 
 @arguments:

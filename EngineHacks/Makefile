@@ -59,11 +59,15 @@ $(LYN_REF): $(FE8_REF)
 	@echo "[AS ]	$@"
 	@cp $(FE8_REF) $(LYN_REF:.o=.s)
 	@$(AS) $(LYN_REF:.o=.s) -o $@
-	
+
+# Build rules
+
+#.o to .lyn.event rule	
 %.lyn.event: %.o $(LYN_REF)
 	@echo "[LYN]	$@"
 	@$(LYN) $< $(LYN_REF) > $@
 
+#.o to .dmp rule
 %.dmp: %.o
 	@echo "[GEN]	$@"
 	@$(OBJCOPY) -S $< -O binary $@
@@ -82,12 +86,12 @@ $(LYN_REF): $(FE8_REF)
 	
 # Avoid make deleting objects it thinks it doesn't need anymore
 # Without this make may fail to detect some files as being up to date
-.PRECIOUS: %.o;
+#.PRECIOUS: %.o;
 
 -include $(wildcard $(CACHE_DIR)/*.d)
 
 CFILES := $(shell find $(HAX_DIR) -type f -name '*.c')
-CLEAN_FILES += $(CFILES:.c=.o) $(CFILES:.c=.lyn.event)
+CLEAN_FILES += $(CFILES:.c=.o)
 
 LYN_EVENTS := $(CFILES:.c=.lyn.event)
 
