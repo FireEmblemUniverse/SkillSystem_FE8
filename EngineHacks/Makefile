@@ -28,11 +28,14 @@ OBJCOPY := $(PREFIX)objcopy$(EXE)
 EA_DIR  := ../EventAssembler
 EA_DEP  := $(TOOL_DIR)/ea-dep/ea-dep$(EXE)
 MAIN    := ./_MasterHackInstaller.event
+LYN     := $(EA_DIR)/Tools/lyn$(EXE)
+
+DUMMY_INC := $(TOOL_DIR)/ea-dep
 
 # ============
 # = MAKE HAX =
 # ============
-MAIN_DEPS := $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR) --add-missings)
+MAIN_DEPS := $(shell $(EA_DEP) $(MAIN) -I $(EA_DIR))
 
 default: $(MAIN_DEPS)
 
@@ -40,7 +43,7 @@ default: $(MAIN_DEPS)
 # = Wizardry =
 # ============
 
-INC_DIRS := include $(LIB_DIR)/include
+INC_DIRS := include $(LIB_DIR)/include $(DUMMY_INC)
 INC_FLAG := $(foreach dir, $(INC_DIRS), -I $(dir))
 
 ARCH    := -mcpu=arm7tdmi -mthumb -mthumb-interwork
@@ -73,7 +76,7 @@ $(LYN_REF): $(FE8_REF)
 	@echo "[CC ]	$@"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -g -c $< -o $@
 
-%.asm: %.c
+%.s: %.c
 	@echo "[CC ]	$@"
 	@$(CC) $(CFLAGS) $(CDEPFLAGS) -S $< -o $@ -fverbose-asm
 	
