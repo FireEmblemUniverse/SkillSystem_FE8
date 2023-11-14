@@ -8,12 +8,23 @@
 
 #ifdef _FE8_
 
-  #define Skl_Arrow_X 0x78
-  #define Skl_Arrow_Y 0x28
-  #define Spd_Arrow_X 0x78
-  #define Spd_Arrow_Y 0x38
-  #define Trv_Icon_X 0xB8
-  #define Trv_Icon_Y 0x2E
+  #ifndef USE_STRMAG_SPLIT
+	//normal positions
+    #define Skl_Arrow_X 0x78
+    #define Skl_Arrow_Y 0x28
+    #define Spd_Arrow_X 0x78
+    #define Spd_Arrow_Y 0x38
+    #define Trv_Icon_X 0xB8
+    #define Trv_Icon_Y 0x2E
+  #else // USE_STRMAG_SPLIT
+	//strmag positions
+	#define Skl_Arrow_X 0x78
+    #define Skl_Arrow_Y 0x38
+    #define Spd_Arrow_X 0x78
+    #define Spd_Arrow_Y 0x48
+    #define Trv_Icon_X 0xB8
+    #define Trv_Icon_Y 0x2E 
+  #endif // USE_STRMAG_SPLIT
   
   #include "DisplayGrowthsOptions/DisplayGrowthsOptions.event"
   #include "WeaponRankStatScreen/WeaponRankStatScreen.event"
