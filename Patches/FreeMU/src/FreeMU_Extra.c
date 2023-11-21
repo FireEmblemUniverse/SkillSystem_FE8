@@ -251,6 +251,12 @@ void NewMakePhaseControllerFunc(struct Proc* ParentProc){
 			pTmpProcCode=gProc_CpPhase; // ai phase 
 			ProcStartBlocking(pTmpProcCode,ParentProc);
 			BreakProcLoop(ParentProc);
+			// if ai phase, ensure FMU is not running 
+			struct FMUProc* proc = (struct FMUProc*)ProcFind(FreeMovementControlProc);
+			if (proc) { 
+				ProcGoto((Proc*)proc,0xF);
+				End6CInternal_FreeMU();
+			}
 			return; 
 		} 	
 	}
