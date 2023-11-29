@@ -114,9 +114,9 @@ Traps1:
 HealTile(43,25)
 
 //CoinsTrap(42,13,(ChapterID*2)+1,400)
-SpellScrollTrap(42,13, (ChapterID*2)+1, LeechLife)
+SpellScrollTrap(42,13, (ChapterID*2)+1, AttackPulse)
 
-SpellScrollTrap(18,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
+SkillScrollTrap(18,0, (ChapterID*2)+2, TantivyID) // Found in next ch, so +2
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)

@@ -5,8 +5,9 @@ BulbasaurLearnset:
 // BYTE Level Move 
 BYTE 1 GuardMove
 BYTE 1 Tackle // Goes at the start of each learnset
-BYTE 4 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
-BYTE 5 Leer
+BYTE 3 Growl  // They can all be on one line, or separate lines, but 1st, 3rd, 5th, etc. entries are Level 
+BYTE 4 Leer
+BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
@@ -25,8 +26,9 @@ ALIGN 4
 IvysaurLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 4 Growl  
-BYTE 5 Leer
+BYTE 3 Growl  
+BYTE 4 Leer
+BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
@@ -35,7 +37,7 @@ BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 29 PetalDance
-BYTE 33 RecoverMove //?Buff (RecoverMove)
+BYTE 33 RecoverMove 
 BYTE 37 EarthPower
 BYTE 44 SolarBeam
 BYTE 0 0
@@ -44,8 +46,9 @@ ALIGN 4
 VenusaurLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 4 Growl  
-BYTE 5 Leer
+BYTE 3 Growl  
+BYTE 4 Leer
+BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
@@ -54,7 +57,7 @@ BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 29 PetalDance
-BYTE 33 RecoverMove //?Buff (RecoverMove)
+BYTE 33 RecoverMove 
 BYTE 37 EarthPower
 BYTE 44 SolarBeam
 BYTE 0 0

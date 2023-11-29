@@ -4,6 +4,16 @@ extern int ScaledUpID_Link;
 extern int Intimidate2ID_Link; 
 extern int GuardBreakerID_Link; 
 extern int DowngradeID_Link; 
+extern int SuperFangID_Link; 
+
+extern int MegaKick_Link;
+extern int DoubleKick_Link; 
+extern int HiJumpKick_Link;
+extern int JumpKick_Link;
+extern int LowKick_Link;
+extern int RollingKick_Link;
+extern int Submission_Link;
+extern int GrassKnot_Link;
 
 void RemoveAllMineTraps(void) { 
 	struct Trap* trap; 
@@ -17,7 +27,18 @@ void RemoveAllMineTraps(void) {
 	} 
 } 
 
-
+void SuperFangEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
+	if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) {
+		if ((bunitA->weaponBefore & 0xFF) == SuperFangID_Link) { 
+			int hp = bunitB->hpInitial; 
+			if (hp) { 
+				bunitA->battleAttack = (hp+3)/4; 
+				bunitB->battleDefense = 0; 
+			} 
+		}
+	}
+	else { bunitA->battleAttack = 0; } 
+} 
 
 // deal 20% more dmg 
 void ScaledUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
@@ -33,14 +54,7 @@ void ScaledUp(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 } 
 
 
-extern int MegaKick_Link;
-extern int DoubleKick_Link; 
-extern int HiJumpKick_Link;
-extern int JumpKick_Link;
-extern int LowKick_Link;
-extern int RollingKick_Link;
-extern int Submission_Link;
-extern int GrassKnot_Link;
+
 void EnemyWeightBonus(struct BattleUnit* bunitA, struct BattleUnit* bunitB) { 
 	if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) {
 		if (!(bunitA->weaponAttributes & IA_MAGIC)) { 

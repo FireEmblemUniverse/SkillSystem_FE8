@@ -356,7 +356,7 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 #define HOARDERS_BANE_USE_CONVOY True
 
 // If true, enemies/npcs with Canto+ will retreat to their safest tile with any remaining movement after their action. 
-#define CANTO_AI True
+#define CANTO_AI False
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =

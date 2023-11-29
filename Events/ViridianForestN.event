@@ -158,8 +158,8 @@ RedPokeballTrap(36,25, (ChapterID*2)+1, Revive, 3)
 SignBTrap(6,10, ChapterID, 0x0) //no extra text 
 SignATrap(44,28, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-SkillScrollTrap(44,14, ChapterID*2, TantivyID)
-SpellScrollTrap(20,30, (ChapterID*2)+1, AttackPulse)
+SkillScrollTrap(20,30, ChapterID*2, TantivyID)
+SpellScrollTrap(44, 14, (ChapterID*2)+1, LeechLife)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -182,6 +182,8 @@ EVBIT_MODIFY 4
 WallText(HireGeodudeText)
 LOAD1 1 HireGeodudeUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(TrainerL, True,  HiredPokemonUnitID<<8|HiredPokemonUnitID)
 PauseFreeMovement
 SelectCharacter(HiredPokemonUnitID, 0, 0, 0, 0, 800, 0, 0, 0, 0) 
 SVAL sB 0x100 

@@ -9,6 +9,8 @@ GuardBreakerID_Link:
 WORD GuardBreakerID
 DowngradeID_Link:
 WORD DowngradeID 
+SuperFangID_Link:
+WORD SuperFang 
 
 
 ALIGN 4 

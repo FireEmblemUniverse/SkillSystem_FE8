@@ -560,8 +560,8 @@ Restores all HP.[X]
  
 ## BerryDescText
 Restores 8 HP.[N]
-If equipped, consumed[N]
-automatically at low HP.[X]
+If equipped, eaten[N]
+in a pinch.[X]
 
 ## SitrusBerryDescText
 Restores 20 HP.[N]
@@ -1278,7 +1278,8 @@ powerful tackle.[X]
 Does nothing.[X]
 
 ## SuperFangDesc
-[PI] Bites with hard fangs.[X]
+Bites with hard fangs.[N]
+Deals 1/4 remaining HP.[X]
 
 ## SwiftDesc
 [SI] Strikes with perfect accuracy.[X]

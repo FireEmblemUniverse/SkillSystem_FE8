@@ -72,7 +72,7 @@ POIN KeenFighter SteadyBrawler // % Damage reduction if doubling goes near end
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 
-
+POIN SuperFangEffect 
 POIN WeakChipDmg
 
 // Dragonskin goes after anything effecting atk or def
@@ -139,6 +139,7 @@ POIN DoublingDamageModifierFunc // this also occurs on weapons that cannot doubl
 POIN ScaledBackFunc
 POIN MinimumDamage
 POIN MaximumDamage // caps moves to 99 dmg 
+POIN SuperFangEffect 
 POIN FixedDamageWeapons
 POIN ImmuneToDamage
 POIN 0 
