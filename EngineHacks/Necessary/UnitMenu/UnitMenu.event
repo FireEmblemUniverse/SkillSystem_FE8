@@ -195,7 +195,8 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainItemUsability0x10, ObtainItemEffect) //Take
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainItemUsability0x11, ObtainItemEffect) //Take (Gold pokeball) 
-  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, NewObtainCoinsUsability0x15, NewObtainCoinsEffect) //Take 
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, NewObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
+  //MenuCommand(UM_Take2, UM_Take2Desc, BlueText, NewObtainCoinsUsability0x15, NewObtainCoinsEffect) //Take 
   
   
   MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)

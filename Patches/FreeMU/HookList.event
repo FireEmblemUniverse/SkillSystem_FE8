@@ -50,7 +50,7 @@ ALIGN 4
 HookListFMU_TrapTable_PressA_Adjacent:
 Fill(256*8) 0
 	//FMU_SetTrap(0x6, False, TrapHurt10HpASMC, 0x804f449)	//Example with 0x804f449 (always usable) 
-	FMU_SetTrapA_adj(CoinsTrapID, 		NewObtainCoinsEffect, NewObtainCoinsUsability0x15)	//Example (adjacent) 
+	//FMU_SetTrapA_adj(CoinsTrapID, 		NewObtainCoinsEffect, NewObtainCoinsUsability0x15)	//Example (adjacent) 
 	FMU_SetTrapA_adj(BerryTreeTrapID, 	NewPickBerryTreeEffect, NewBerryTreeUsability)	//Example (adjacent) 
 	FMU_SetTrapA_adj(SignTrapID, 		DisplayTextEffect0x50, DisplayTextUsability0x50)	 
 	FMU_SetTrapA_adj(Sign2TrapID, 		DisplayTextEffect0x51, DisplayTextUsability0x51)	 

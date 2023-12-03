@@ -32,13 +32,31 @@ PUSH
 ORG 0x0AB90E
 BYTE 0x00 0x00 0x00 0x20 // Disable link arena 
 
-ORG $A3EA4 // something that writes to arena SRAM 
-SHORT $4770 // bx lr 
+ORG $a6560 
+SHORT $4770 // WriteNewMultiArenaSave
+ORG $a6738 // WriteMultiArenaSaveTeamName	
+SHORT $4770 
+ORG $a6774 // WipeMultiArenaSaveTeam
+SHORT $4770 
+ORG $a67c8 // CopyMultiArenaSaveTeam
+SHORT $4770 
+ORG $a6840 // SwapMultiArenaSaveTeams
+SHORT $4770 
+ORG $a68dc // WriteMultiArenaSaveTeam
+SHORT $4770 
+ORG $a69a0 // WriteMultiArenaSaveRankings	
+SHORT $4770 
+ORG $a6a04 // WriteMultiArenaSaveConfig
+SHORT $4770 
+
 
 ORG $a3950 // save bonus content something 
 SHORT $4770 // bx lr 
 
 ORG $A3984 // save rankings something 
+SHORT $4770 // bx lr 
+
+ORG $A3EA4 // something that writes to sound room SRAM 
 SHORT $4770 // bx lr 
 
 ORG $A4000 // something that writes to arena SRAM 
