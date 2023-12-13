@@ -50,7 +50,7 @@ SHORT $46C0
   
   // If FOW not active, invert fog tile marks:
   // 0: nofog, 1: fog.
-  ORG 0x19B38
+  ORG 0x19B38 
   SHORT 0x1C22 0x1844
   jumpToHack_r0(InvertFog)
   SHORT 0x1C22

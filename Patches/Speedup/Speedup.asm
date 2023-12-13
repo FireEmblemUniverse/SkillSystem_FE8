@@ -200,6 +200,8 @@ strb r0, [r1]
 
 mov r5, r0 
 
+@bl Proc_FindDuplicate
+
 ldr r4, =LevelUpSpeed_Link 
 ldr r4, [r4] 
 mov r0, r4 
@@ -251,6 +253,9 @@ bx r3
 LevelUpSpeedHook_2:  @ 807419c
 mov r5, r0 @ vanilla 
 push {r4-r6, lr} 
+
+@bl Proc_FindDuplicate
+
 
 @mov r0, #0x14
 @ldrh r1, [r5, #0x2c] 
@@ -381,7 +386,7 @@ mov r0, #0x80
 lsl r0, #1 
 mov r1, #0x80 
 mov r2, #0x10 
-blh 0x8002730 @ SongVolumeTransitionB
+blh 0x8002730, r4 @ SongVolumeTransitionB
 pop {r4} 
 pop {r3} 
 bx r3 

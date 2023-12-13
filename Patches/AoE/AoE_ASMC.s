@@ -23,7 +23,7 @@
 @s7 Rotate
 @sB X,Y
 
-.equ ActionID, 0x01
+.equ ActionID, 0x2C
 
 .global AoE_ASMC 
 .type AoE_ASMC, %function 

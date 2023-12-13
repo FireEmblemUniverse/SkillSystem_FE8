@@ -10,7 +10,7 @@
   mov lr, \reg
   .short 0xf800
 .endm
-
+.equ ActionID, 0x2C
 	
 .align 4
 .global AoE_Usability 
@@ -1082,7 +1082,7 @@ blh 0x8024eac @ForEachUnitInRange
 
 End_AoE:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x1
+mov r0, #ActionID 
 strb r0, [r1,#0x11]
 
 

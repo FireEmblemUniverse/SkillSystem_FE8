@@ -1,6 +1,6 @@
 #include "MechanicChanges.event" 
 #include "HPClassLimit/Installer.event"
-
+#include "DuplicateProcFinder/Installer.event" 
 
 PUSH 
 ORG $A644C // makes it so if checksum for a save file is bad, it will still load the save file 

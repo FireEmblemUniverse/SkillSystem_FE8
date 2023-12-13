@@ -66,7 +66,10 @@ pActionRoutineTable:
 	NoActionRoutine               // 0x1F Backing out (from a trap?)
 	NoActionRoutine               // 0x20 ?
 	NoActionRoutine               // 0x21 Ride Ballista
-	NoActionRoutine               // 0x22 Exit Ballista
+	NoActionRoutine               // 0x22 Exit Ballista 
+	
+	// at 0x801D0B2 it compares the action type to 0x22 and has another jump table 
+	
 	ActionRoutine(_prMoveTargetUnitAction+1)     // 0x23 ACTION_MOVETARGET
 	ActionRoutine(_prMoveActiveUnitAction+1)     // 0x24 ACTION_MOVEACTIVE
 	ActionRoutine(_prSwapAction+1)               // 0x25 ACTION_SWAP
@@ -76,7 +79,7 @@ pActionRoutineTable:
 	NoActionRoutine //ActionRoutine(SacrificeAction) // 0x29 
 	NoActionRoutine //ActionRoutine(ArdentSacrificeAction) // 0x2A 
 	NoActionRoutine //ActionRoutine(ReciprocalAidAction)  // 0x2B 
-	NoActionRoutine               // 0x2C FREE
+	NoActionRoutine               // 0x2C // AoE 
 	NoActionRoutine               // 0x2D FREE
 	NoActionRoutine               // 0x2E FREE
 	NoActionRoutine               // 0x2F FREE etc...

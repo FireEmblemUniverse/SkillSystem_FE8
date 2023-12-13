@@ -47,6 +47,7 @@ int GaidenWhiteMagicUMUsability(void)
 
 static int GaidenMagicUMUsabilityExt(u8* spellList)
 {
+	if (gActiveUnit->state & US_CANTOING) { return 3; } 
 	u8* validList = gGenericBuffer; // Let's build a list of valid spells.
 	for ( int i = 0 ; spellList[i] ; i++ )
 	{	

@@ -161,7 +161,8 @@ PROC_SLEEP(0) // replace gorgon egg hatch proc call with nothing
 
 ORG $7F47C // These two hooks are the same 
 // this might cause a proc to never end so I'm commenting it out for now 
-// yeah this breaks everything overtime unless you forcibly end 8587970 
+// yeah this breaks everything over time unless you forcibly end 8587970 
+// possibly fixed now, but select unit hook also forcibly ends duplicates 
 callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
 ORG $7F54C 
 callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
