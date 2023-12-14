@@ -9,15 +9,6 @@ POP
 #incbin "GetDifficulty.dmp"
 
 
-PUSH 
-ORG $1D088 
-//callHackNew(CantoPlusFix) 
-POP 
-
-#include "CantoPlusFix.lyn.event" 
-
-
-
 
 #include "IsPeaceful.lyn.event"
 

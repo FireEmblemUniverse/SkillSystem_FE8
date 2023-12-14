@@ -69,6 +69,7 @@ pActionRoutineTable:
 	NoActionRoutine               // 0x22 Exit Ballista 
 	
 	// at 0x801D0B2 it compares the action type to 0x22 and has another jump table 
+	// nevermind this is just for action types that will open the menu again like trading 
 	
 	ActionRoutine(_prMoveTargetUnitAction+1)     // 0x23 ACTION_MOVETARGET
 	ActionRoutine(_prMoveActiveUnitAction+1)     // 0x24 ACTION_MOVEACTIVE

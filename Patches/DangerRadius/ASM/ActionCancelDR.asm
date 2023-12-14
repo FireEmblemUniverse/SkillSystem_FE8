@@ -84,6 +84,13 @@ beq   L1
     bl    GOTO_R4
     ldr   r4, =UpdateUnitMapAndVision
     bl    GOTO_R4
+	
+	@ to fix canto+ purple squares 
+	ldr r0, =0x202e4e4 @ range map 
+	ldr r0, [r0] 
+	mov   r1, #0x0
+    ldr   r4, =ClearMapWith
+	bl    GOTO_R4
     b     Return
     
 L1:
