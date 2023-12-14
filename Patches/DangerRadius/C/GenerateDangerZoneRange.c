@@ -395,10 +395,11 @@ int PokemblemGetUnitWeaponReachBits(struct Unit* unit, int itemSlot) {
 
 
 int PokemblemGetItemEncodedRange(int item) {
-	if (item) return GetItemData(ITEM_INDEX(item))->encodedRange;
+	if (item&0xFF) return GetItemData(ITEM_INDEX(item))->encodedRange;
 	return 0; 
 }
 int PokemblemGetItemReachBits(int item) {
+	if (!(GetItemData(ITEM_INDEX(item))->attributes & IA_WEAPON)) { return 0; } // needs to be equippable 
 	u32 result = PokemblemGetItemEncodedRange(item);
     switch (result) {
 

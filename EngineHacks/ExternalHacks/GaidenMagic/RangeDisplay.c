@@ -119,10 +119,11 @@ int GM_GetUnitRangeBySpellIndex(struct Unit* unit, int index) {
 int GM_GetNthSpell(struct Unit* unit, int index) { 
 	int spell;
 	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
-	spell = spells[index]|0xFF00;
+	spell = spells[index];
+	if (spell) { spell |= 0xFF00; } 
 	return spell; 
 	//if ( CanCastSpell(unit,spell)) return spell; // this is only for after you've moved 
-	return 0; 
+	//return 0; 
 
 } 
 
