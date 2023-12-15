@@ -105,7 +105,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(CascadebadgeObtained,EnterGym,24,20) //
+House(CeruleanGymClosedFlag,EnterGym,24,20) //
 House(0, EnterPillagedHouseS, 23,10) 
 House(0, EnterPillagedHouseN, 24, 7)
 Vendor(ShopItems,22,27)
@@ -135,7 +135,7 @@ NoFade
 ENDA 
 
 EnterGym:
-ENUF CascadebadgeObtained 
+ENUF CeruleanGymClosedFlag 
 ForcedChapterTransition(CeruleanGymCh, 9, 17)
 NoFade 
 ENDA 

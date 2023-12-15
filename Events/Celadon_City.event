@@ -102,7 +102,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(RainbowbadgeObtained,EnterGym,9,26) 
+House(CeladonGymClosedFlag,EnterGym,9,26) 
 Vendor(ShopItems_A,6,11)
 Vendor(ShopItems_B,9,11)
 Vendor(ShopItems_C,12,11)
@@ -219,7 +219,7 @@ ENDA
 
 
 EnterGym:
-ENUF RainbowbadgeObtained 
+ENUF CeladonGymClosedFlag 
 ForcedChapterTransition(CeladonGymCh, 7,17)
 NoFade 
 ENDA 

@@ -217,7 +217,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(VolcanobadgeObtained,EnterGym,20,11) 
+House(CinnabarGymClosedFlag,EnterGym,20,11) 
 House(0,EnterMansion,8,10) 
 House(0,EnterLab,8,16) 
 Vendor(ShopItems,19,18)
@@ -229,7 +229,7 @@ END_MAIN
 
 
 EnterGym:
-ENUF VolcanobadgeObtained  
+ENUF CinnabarGymClosedFlag  
 ForcedChapterTransition(CinnabarGymCh, 25,13)
 NoFade 
 ENDA 

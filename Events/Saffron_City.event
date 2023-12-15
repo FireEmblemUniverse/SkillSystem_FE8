@@ -165,7 +165,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(MarshbadgeObtained,EnterGym,30,5) 
+House(SaffronGymClosedFlag,EnterGym,30,5) 
 House(DojoDefeated,EnterDojo,24,5) 
 House(0,EnterSilphCo,17,23) 
 House(PsychicObtained,ObtainPsychicEvent,27,31) 
@@ -203,7 +203,7 @@ ENDA
 
 
 EnterGym:
-ENUF MarshbadgeObtained  
+ENUF SaffronGymClosedFlag  
 ForcedChapterTransition(SaffronGymCh, 6,17)
 NoFade 
 ENDA 

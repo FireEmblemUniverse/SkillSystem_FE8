@@ -510,11 +510,77 @@ NoFade
 ENDA 
 
 CityBeginningScene:
+CALL SetGymFlags
 SetMaxMove
 //SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 
 NoFade 
 ENDA 
+
+SetGymFlags: // close gyms you've beaten until you defeat Giovanni 
+CHECK_EVENTID CompletedPokemonLeague // open Viridian Gym 
+BNE 20 sC s0 
+CHECK_EVENTID EarthbadgeObtained // open other gyms 
+BNE 10 sC s0 
+CHECK_EVENTID BoulderbadgeObtained
+BEQ 1 sC s0 
+ENUT PewterGymClosedFlag
+LABEL 1 
+CHECK_EVENTID CascadebadgeObtained
+BEQ 2 sC s0 
+ENUT CeruleanGymClosedFlag
+LABEL 2 
+CHECK_EVENTID ThunderbadgeObtained
+BEQ 3 sC s0 
+ENUT VermilionGymClosedFlag
+LABEL 3 
+CHECK_EVENTID SoulbadgeObtained
+BEQ 4 sC s0 
+ENUT FuschiaGymClosedFlag
+LABEL 4 
+CHECK_EVENTID RainbowbadgeObtained
+BEQ 5 sC s0 
+ENUT CeladonGymClosedFlag
+LABEL 5 
+CHECK_EVENTID MarshbadgeObtained
+BEQ  sC s0 
+ENUT SaffronGymClosedFlag
+LABEL  
+CHECK_EVENTID VolcanobadgeObtained
+BEQ 6 sC s0 
+ENUT CinnabarGymClosedFlag
+LABEL 6 
+GOTO 99 
+
+LABEL 20 // Defeated champion 
+ENUF ViridianGymClosedFlag 
+
+LABEL 10 // Defeated Giovanni already 
+ENUF PewterGymClosedFlag 
+ENUF CeruleanGymClosedFlag 
+ENUF VermilionGymClosedFlag
+ENUF FuschiaGymClosedFlag 
+ENUF CeladonGymClosedFlag 
+ENUF SaffronGymClosedFlag 
+ENUF CinnabarGymClosedFlag 
+
+
+LABEL 99 
+NoFade 
+ENDA 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ALIGN 4 
 ProtagUnitGroupMale:

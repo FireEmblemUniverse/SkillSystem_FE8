@@ -100,12 +100,12 @@ ENDA
 
 
 LocationBasedEvents:
-House(ThunderbadgeObtained,EnterGym,12,23) //
+House(VermilionGymClosedFlag,EnterGym,12,23) //
 Vendor(ShopItems,27,11)
 END_MAIN
 
 EnterGym:
-ENUF ThunderbadgeObtained 
+ENUF VermilionGymClosedFlag 
 ForcedChapterTransition(VermilionGymCh, 7,22)
 NoFade 
 ENDA 

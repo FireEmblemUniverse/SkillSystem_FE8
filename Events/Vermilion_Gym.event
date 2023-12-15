@@ -116,7 +116,7 @@ ENDA
 
 EndingScene: 
 CHECK_EVENTID ThunderbadgeObtained 
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
 #ifdef UnsetAllDangerRadius
@@ -128,6 +128,7 @@ MUSCSLOW GymBGM
 Text(LtSurgeDefeatText)
 GiveItemWithDurability(0, SpellScroll, Thunderbolt)
 ENUT ThunderbadgeObtained 
+ENUT VermilionGymClosedFlag
 SVAL r3 6000 
 GIVETOMAIN 0 
 TEXTSHOW LtSurgeWaitText
@@ -140,7 +141,27 @@ TEXTEND
 FADI 4 
 REMA 
 ForcedChapterTransition(VermilionCh, 12,23)
-LABEL 0x63 
+GOTO 99 
+
+LABEL 10 // Rematch 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+Text(LtSurgeDefeatText)
+GiveItemWithDurability(0, SpellScroll, Thunderbolt)
+SVAL r3 5000 
+GIVETOMAIN 0 
+GiveSkillAccessory(0, LifeAndDeathID)
+FADI 4 
+ForcedChapterTransition(VermilionCh, 12,23)
+
+
+LABEL 99 
 NoFade
 ENDA
 
@@ -170,7 +191,14 @@ UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [10,10]  0b 0x0	0x1 REDA10R10 	[Thun
 UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,Leer,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 
-
+EnemyTrainersB:
+UNIT 0xD0 RaichuID 0x0 Level(0, Enemy, 1) [7,8]  0b 0x0	0x1 REDA7R8 		[Thunderbolt,GrassKnot,Surf,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [6,10]  0b 0x0	0x1 REDA6R10 	[Thunderbolt,Screech,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 ElectrodeID 0xD0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Screech,Explosion,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [4,10]  0b 0x0 0x1 REDA4R10 [ThunderPunch,IcePunch,FirePunch,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [10,10]  0b 0x0	0x1 REDA10R10 	[Thunderbolt,SignalBeam, 0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,RockSlide,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT
 	
 
 #undef WildLvl
