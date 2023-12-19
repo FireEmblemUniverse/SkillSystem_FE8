@@ -77,7 +77,7 @@ extern const void* SPD_ProcDisplayTiles;
 extern const void* SPD_ProcDisplayTSA;
 
 extern void CopyTileGfxForObj(void* src, void* dest, u8 width, u8 height); //! FE8U = 0x8013021
-extern char gCurrentTextString[]; //! FE8U = 0x202A6AC
+extern char sMsgString[]; //! FE8U = 0x202A6AC
 extern const u16 gIconPalettes[]; //! FE8U = 0x85996F4
 
 #endif // SKILLPROCDISPLAY_H

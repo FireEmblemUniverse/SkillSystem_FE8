@@ -1,4 +1,6 @@
 
+#define classTablePoin 0x8017AB8
+
 #include "CheckBattleUnitLevelUp.lyn.event" 
 #include "HookPromo.lyn.event" 
 
@@ -15,6 +17,26 @@ ORG $cc904
 jumpToHack(CallNewPromoHandler_SetInitStat) 
 
 POP 
+
+// names changed so these lyn autohooks are now manualhooks
+PUSH
+ORG $2af90
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewBattleGetFollowUpOrder
+POP
+PUSH
+ORG $366a0
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewInitBattleForecastBattleStats
+POP
+PUSH
+ORG $2aed0
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN NewBattleUnwind
+POP
 
 ALIGN 4 
 GrowthOptions_Link:

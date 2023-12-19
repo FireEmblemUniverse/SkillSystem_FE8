@@ -18,23 +18,23 @@ void SPD_init(struct SPD_ProcStateMain* proc) {
   if (!proc->skill || proc->skill == 0xFF)
     proc->skill = 1;
   
-  CopyTileGfxForObj(&SkillIcons[proc->skill], (void*)0x6013380, 2, 2);
+  Copy2dChr(&SkillIcons[proc->skill], (void*)0x6013380, 2, 2);
   
   // Prepare skill name.
   GetStringFromIndex((int)SkillDescTable[proc->skill]);
   int i = 0;
-  while (gCurrentTextString[i] != 0x3A) // 0x3A = ":", we cut off everything past colon.
+  while (sMsgString[i] != 0x3A) // 0x3A = ":", we cut off everything past colon.
     i++;
-  gCurrentTextString[i] = 0;
+  sMsgString[i] = 0;
   
   // Draw skill name.
   struct Font* font = (struct Font*)0x2017648;
   InitTextFont(font, (void*)0x6000020, 1, 0);
   *(u32*)((u32)font+8) = 0x8004269;    // Draws glyphs by overwriting pixels instead of adding.
   InitText(&proc->textHandle, 8);
-  Text_SetCursor(&proc->textHandle, (int)GetStringTextCenteredPos(SKILLDISPLAY_WIDTH*8, gCurrentTextString));
+  Text_SetCursor(&proc->textHandle, (int)GetStringTextCenteredPos(SKILLDISPLAY_WIDTH*8, sMsgString));
   CpuFastCopy(&SPD_ProcDisplayTiles, (void*)0x6000020, SKILLDISPLAY_WIDTH*64);
-  Text_DrawString(&proc->textHandle, gCurrentTextString);
+  Text_DrawString(&proc->textHandle, sMsgString);
   
   proc->timer = 0;
 }
@@ -141,7 +141,7 @@ void SPD_Map_init(struct SPD_Map_ProcStateMain* proc) {
     proc->skill = 1;
   
   CpuFastCopy(&SkillIcons[proc->skill], (void*)0x6000C00, 0x80);
-  ApplyPalettes(gIconPalettes, 4, 1);
+  ApplyPalettes(item_icon_palette, 4, 1);
   
   proc->timer = 0;
 }

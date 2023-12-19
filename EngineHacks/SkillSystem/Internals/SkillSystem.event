@@ -109,6 +109,12 @@ Skill_Getter: // gets a list of skills
 	POIN (GetInitialSkillList|1)
 
 
+#define gAttackerSkillBuffer 0x02026BB0
+#define gDefenderSkillBuffer 0x02026C00
+#define gTempSkillBuffer     0x02026B90
+#define gAuraSkillBuffer     0x02027200
+#define gUnitRangeBuffer     0x0202764C
+
 #include "NewSkillTester/_src/SkillTester.lyn.event"
 
 //Pointer with thumb bit set for NewSkillTester to use

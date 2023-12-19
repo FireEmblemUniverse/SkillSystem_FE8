@@ -27,6 +27,7 @@
 #include "include/classchg.h"
 
 extern struct ClassData* classTablePoin[]; 
+//extern u8 gPidStatsData[];
 
 int GetBaseStatFromDefinition(int id, struct Unit* unit); 
 int GetStatFromDefinition(int id, struct Unit* unit);

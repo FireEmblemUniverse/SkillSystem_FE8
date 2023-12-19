@@ -16,11 +16,11 @@
 // repurpose bwl->moveAmt into bwl->promotionLvl 
 u8 GetUnitPromotionLevel(struct Unit* unit) // https://github.com/FireEmblemUniverse/fireemblem8u/blob/ba48415eb29806813106e5874969421ea759d507/src/bmsave-bwl.c#L375
 {
-    extern u8 gBWLDataStorage[];
+    //extern u8 gPidStatsData[];
 	int maxLevel = Class_Level_Cap_Table[unit->pClassData->number]; 
 	int uid = unit->pCharacterData->number;
 	if (uid > 0x45) { return maxLevel; }
-	int result = *(gBWLDataStorage + 0x10 * (uid - 1) + 8); // repurpose bwl->moveAmt into bwl->promotionLvl 
+	int result = gPidStatsData[uid-1].moveAmt; // repurpose bwl->moveAmt into bwl->promotionLvl 
 	struct ClassData* table = &(*classTablePoin)[unit->pCharacterData->defaultClass]; 
 	if ((unit->pCharacterData->attributes & CA_PROMOTED) || (table->attributes & CA_PROMOTED)) { return 0; } // if the character started as promoted, they should have 0 as their promotion level 
 	if (result < 10) { return 10; } 
@@ -32,10 +32,10 @@ u8 GetUnitPromotionLevel(struct Unit* unit) // https://github.com/FireEmblemUniv
 // repurpose bwl->moveAmt into bwl->promotionLvl 
 void SetUnitPromotionLevel(struct Unit* unit, int level) // https://github.com/FireEmblemUniverse/fireemblem8u/blob/ba48415eb29806813106e5874969421ea759d507/src/bmsave-bwl.c#L375
 {
-    extern u8 gBWLDataStorage[];
+    //extern u8 gPidStatsData[];
 	int uid = unit->pCharacterData->number;
 	if (uid > 0x45) { return; }
-    gBWLDataStorage[(0x10 * (uid - 1)) + 8] = level; // repurpose bwl->moveAmt into bwl->promotionLvl 
+    gPidStatsData[uid-1].moveAmt = level; // repurpose bwl->moveAmt into bwl->promotionLvl 
 }
 
 u8 NewPromoHandler_SetInitStat(struct ProcPromoHandler *proc) // repoint so we also save the unit's promo level 
@@ -174,12 +174,12 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int mode = regularGrowths; // default  
 		struct Unit* unit = GetUnit(bu->unit.index); // required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
 		if (GrowthOptions_Link.FIXED_GROWTHS_MODE) { 
-			if (CheckEventId(GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID) || (!GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID)) { 
+			if (GetEventTriggerState(GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID) || (!GrowthOptions_Link.FIXED_GROWTHS_FLAG_ID)) { 
 			mode = fixedGrowths; 
 			}
 		} 
 		if (GrowthOptions_Link.STAT_BRACKETING_EXISTS) { 
-			if (CheckEventId(BRACKETED_GROWTHS_FLAG_ID_Link) || (!BRACKETED_GROWTHS_FLAG_ID_Link)) { 
+			if (GetEventTriggerState(BRACKETED_GROWTHS_FLAG_ID_Link) || (!BRACKETED_GROWTHS_FLAG_ID_Link)) { 
 			mode = bracketedGrowths; 
 			}
 		} 
