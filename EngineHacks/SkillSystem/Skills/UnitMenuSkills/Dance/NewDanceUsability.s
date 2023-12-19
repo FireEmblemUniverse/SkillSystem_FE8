@@ -17,7 +17,7 @@
 @old at 8023194
 
 push {r4,r14}
-mov r3,r0
+mov r4,r0
 
 
 ldr r0,=gActiveUnit
@@ -52,7 +52,7 @@ CheckTargetList:
 ldr r1,=gGameState
 mov r0,#0xA5
 strh r0,[r1,#0x2C]
-mov r0,r3
+mov r0,r4
 blh GetDancerTargetResult,r4 
 b GoBack
 
