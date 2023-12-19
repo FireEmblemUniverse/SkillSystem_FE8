@@ -33,28 +33,28 @@ extern const struct SaveChunkDecl gSuspendSaveChunks[];
 void* MS_GetSaveAddressBySlot(unsigned slot);
 const struct SaveChunkDecl* MS_FindGameSaveChunk(unsigned chunkId);
 const struct SaveChunkDecl* MS_FindSuspendSaveChunk(unsigned chunkId);
-void MS_LoadChapterStateFromGameSave(unsigned slot, struct ChapterState* target);
+void MS_LoadChapterStateFromGameSave(unsigned slot, struct PlaySt* target);
 u32 MS_GetClaimFlagsFromGameSave(unsigned slot);
 
 // TODO: add to libgbafe
 
-void SaveUnit(struct Unit* unit, void* target) __attribute__((long_call));
-void LoadSavedUnit(void* source, struct Unit* unit) __attribute__((long_call));
+//void SaveUnit(struct Unit* unit, void* target) __attribute__((long_call));
+//void LoadSavedUnit(void* source, struct Unit* unit) __attribute__((long_call));
 
-void SaveWMStuff(void*, void*) __attribute__((long_call));
-void LoadWMStuff(void*, void*) __attribute__((long_call));
+//void SaveWMStuff(void*, void*) __attribute__((long_call));
+//void LoadWMStuff(void*, void*) __attribute__((long_call));
 
-extern u8 gGMData;
+//extern u8 gGMData;
 
-void StoreRNStateToActionStruct(void) __attribute__((long_call));
-void LoadRNStateFromActionStruct(void) __attribute__((long_call));
+//void StoreRNStateToActionStruct(void) __attribute__((long_call));
+//void LoadRNStateFromActionStruct(void) __attribute__((long_call));
 
 // Those aren't consistent:
 // the packing function works with a buffer
 // But the unpacking functions loads from SRAM directly
-void PackUnitStructForSuspend(struct Unit* unit, void* target) __attribute__((long_call));
-void UnpackUnitStructFromSuspend(void* source, struct Unit* unit) __attribute__((long_call));
+//void PackUnitStructForSuspend(struct Unit* unit, void* target) __attribute__((long_call));
+//void UnpackUnitStructFromSuspend(void* source, struct Unit* unit) __attribute__((long_call));
 
-void SetBonusContentClaimFlags(u32 value) __attribute__((long_call));
+//void SetBonusContentClaimFlags(u32 value) __attribute__((long_call));
 
 #endif // MODULAR_SAVE_H

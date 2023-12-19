@@ -1,7 +1,7 @@
 #include "ModularSave.h"
 
 void* MS_GetSaveAddressBySlot(unsigned slot) {
-	if (slot > SAVE_BLOCK_UNK6)
+	if (slot > SAVE_ID_XMAP)
 		return NULL;
 
 	return (void*)(0xE000000) + gSaveBlockDecl[slot].offset;
@@ -23,15 +23,15 @@ const struct SaveChunkDecl* MS_FindSuspendSaveChunk(unsigned chunkId) {
 	return NULL;
 }
 
-void MS_LoadChapterStateFromGameSave(unsigned slot, struct ChapterState* target) {
-	void* const source = GetSaveSourceAddress(slot);
+void MS_LoadChapterStateFromGameSave(unsigned slot, struct PlaySt* target) {
+	void* const source = GetSaveReadAddr(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_ChapterStateChunkId);
 
 	ReadSramFast(source + chunk->offset, target, chunk->size);
 }
 
-void MS_LoadChapterStateFromSuspendSave(unsigned slot, struct ChapterState* target) {
-	void* const source = GetSaveSourceAddress(slot);
+void MS_LoadChapterStateFromSuspendSave(unsigned slot, struct PlaySt* target) {
+	void* const source = GetSaveReadAddr(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindSuspendSaveChunk(gMS_ChapterStateChunkId);
 
 	ReadSramFast(source + chunk->offset, target, chunk->size);
@@ -40,7 +40,7 @@ void MS_LoadChapterStateFromSuspendSave(unsigned slot, struct ChapterState* targ
 u32 MS_GetClaimFlagsFromGameSave(unsigned slot) {
 	u32 buf;
 
-	void* const source = GetSaveSourceAddress(slot);
+	void* const source = GetSaveReadAddr(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_ClaimFlagsChunkId);
 
 	ReadSramFast(source + chunk->offset, &buf, 4);
@@ -50,14 +50,14 @@ u32 MS_GetClaimFlagsFromGameSave(unsigned slot) {
 
 // TODO: use eventual proper WMData struct definition, or something
 void MS_LoadWMDataFromGameSave(unsigned slot, void* target) {
-	void* const source = GetSaveSourceAddress(slot);
+	void* const source = GetSaveReadAddr(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_WMDataChunkId);
 
-	LoadWMStuff(source + chunk->offset, target);
+	ReadWorldMapStuff(source + chunk->offset, target);
 }
 
 int MS_CheckEid8AFromGameSave(unsigned slot) {
-	void* const source = GetSaveSourceAddress(slot);
+	void* const source = GetSaveReadAddr(slot);
 	const struct SaveChunkDecl* const chunk = MS_FindGameSaveChunk(gMS_PermanentEidsChunkId);
 
 	// TODO: fix this mess
@@ -66,30 +66,30 @@ int MS_CheckEid8AFromGameSave(unsigned slot) {
 }
 
 void MS_CopyGameSave(int sourceSlot, int targetSlot) {
-	void* const source = GetSaveSourceAddress(sourceSlot);
-	void* const target = GetSaveTargetAddress(targetSlot);
+	void* const source = GetSaveReadAddr(sourceSlot);
+	void* const target = GetSaveWriteAddr(targetSlot);
 
-	unsigned size = gSaveBlockTypeSizeLookup[SAVE_TYPE_GAME];
+	unsigned size = gSaveBlockTypeSizeLookup[SAVEBLOCK_KIND_GAME];
 
 	ReadSramFast(source, gGenericBuffer, size);
 	WriteAndVerifySramFast(gGenericBuffer, target, size);
 
-	struct SaveBlockMetadata sbm;
+	struct SaveBlockInfo sbm;
 
-	sbm.magic1 = SBM_MAGIC1_GAME;
-	sbm.type   = SAVE_TYPE_GAME;
+	sbm.magic32 = SAVEMAGIC32;
+	sbm.kind    = SAVEBLOCK_KIND_GAME;
 
-	SaveMetadata_Save(&sbm, targetSlot);
+	WriteSaveBlockInfo(&sbm, targetSlot);
 }
 
 void MS_SaveGame(unsigned slot) {
-	void* const base = GetSaveTargetAddress(slot);
+	void* const base = GetSaveWriteAddr(slot);
 
 	// Clear suspend
-	ClearSaveBlock(SAVE_BLOCK_SUSPEND);
+	InvalidateSuspendSave(SAVE_ID_SUSPEND);
 
 	// Update save slot index
-	gChapterData.saveSlotIndex = slot;
+	gPlaySt.gameSaveSlot = slot;
 
 	// Actual save!
 	for (const struct SaveChunkDecl* chunk = gGameSaveChunks; chunk->offset != 0xFFFF; ++chunk)
@@ -98,23 +98,23 @@ void MS_SaveGame(unsigned slot) {
 
 	// Setup block metadata
 
-	struct SaveBlockMetadata sbm;
+	struct SaveBlockInfo sbm;
 
-	sbm.magic1 = SBM_MAGIC1_GAME;
-	sbm.type   = SAVE_TYPE_GAME;
+	sbm.magic32 = SAVEMAGIC32;
+	sbm.kind    = SAVEBLOCK_KIND_GAME;
 
-	SaveMetadata_Save(&sbm, slot);
+	WriteSaveBlockInfo(&sbm, slot);
 
 	// Update save slot in global metadata
-	UpdateLastUsedGameSaveSlot(slot);
+	WriteLastGameSaveId(slot);
 }
 
 void MS_LoadGame(unsigned slot) {
-	void* const base = GetSaveSourceAddress(slot);
+	void* const base = GetSaveReadAddr(slot);
 
-	if (!(gChapterData.chapterStateBits & 0x40))
+	if (!(gPlaySt.chapterStateBits & 0x40))
 		// Clear suspend if not loading for link arena
-		ClearSaveBlock(SAVE_BLOCK_SUSPEND);
+		InvalidateSuspendSave(SAVE_ID_SUSPEND);
 
 	// Actual load!
 	for (const struct SaveChunkDecl* chunk = gGameSaveChunks; chunk->offset != 0xFFFF; ++chunk)
@@ -122,17 +122,17 @@ void MS_LoadGame(unsigned slot) {
 			chunk->load(base + chunk->offset, chunk->size);
 
 	// Update save slot in global metadata
-	UpdateLastUsedGameSaveSlot(slot);
+	WriteLastGameSaveId(slot);
 }
 
 void MS_SaveSuspend(unsigned slot) {
-	if (gChapterData.chapterStateBits & 8)
+	if (gPlaySt.chapterStateBits & 8)
 		return;
 
 	if (!IsSramWorking())
 		return;
 
-	void* const base = GetSaveTargetAddress(slot);
+	void* const base = GetSaveWriteAddr(slot);
 
 	// Actual save!
 	for (const struct SaveChunkDecl* chunk = gSuspendSaveChunks; chunk->offset != 0xFFFF; ++chunk)
@@ -141,18 +141,18 @@ void MS_SaveSuspend(unsigned slot) {
 
 	// Setup block metadata
 
-	struct SaveBlockMetadata sbm;
+	struct SaveBlockInfo sbm;
 
-	sbm.magic1 = SBM_MAGIC1_GAME;
-	sbm.type   = SAVE_TYPE_SUSPEND;
+	sbm.magic32 = SAVEMAGIC32;
+	sbm.kind    = SAVEBLOCK_KIND_SUSPEND;
 
-	SaveMetadata_Save(&sbm, slot);
+	WriteSaveBlockInfo(&sbm, slot);
 
-	gGameState.boolHasJustResumed = FALSE;
+	gBmSt.just_resumed = FALSE;
 }
 
 void MS_LoadSuspend(unsigned slot) {
-	void* const base = GetSaveSourceAddress(slot);
+	void* const base = GetSaveReadAddr(slot);
 
 	for (const struct SaveChunkDecl* chunk = gSuspendSaveChunks; chunk->offset != 0xFFFF; ++chunk)
 		if (chunk->load)

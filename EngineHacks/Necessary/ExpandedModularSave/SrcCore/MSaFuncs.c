@@ -5,31 +5,31 @@
 // If a Suspend chunk function is also used in a Save chunk, it will be here
 
 void MSa_SaveChapterState(void* target, unsigned size) {
-	gChapterData._u00 = GetGameClock();
-	WriteAndVerifySramFast(&gChapterData, target, size);
+	gPlaySt.time_saved = GetGameClock();
+	WriteAndVerifySramFast(&gPlaySt, target, size);
 }
 
 void MSa_LoadChapterState(void* source, unsigned size) {
-	ReadSramFast(source, &gChapterData, size);
-	SetGameClock(gChapterData._u00);
+	ReadSramFast(source, &gPlaySt, size);
+	SetGameTime(gPlaySt.time_saved);
 }
 
 void MSa_SaveUnits(void* target, unsigned size) {
-	struct SaveGlobalMetadata sgm;
-	LoadGeneralGameMetadata(&sgm);
+	struct GlobalSaveInfo sgm;
+	ReadGlobalSaveInfo(&sgm);
 
 	for (unsigned i = 0; i < 51; ++i) {
 		struct Unit* unit = GetUnit(i+1);
 
 		// Save unit
-		SaveUnit(unit, target + (0x24*i));
+		WriteGameSavePackedUnit(unit, target + (0x24*i));
 
 		// Register it to be known
 		if (unit->pCharacterData)
 			SGM_SetCharacterKnown(unit->pCharacterData->number, &sgm);
 	}
 
-	SaveGeneralGameMetadata(&sgm);
+	WriteGlobalSaveInfo(&sgm);
 }
 
 void MSa_LoadUnits(void* source, unsigned size) {
@@ -46,11 +46,11 @@ void MSa_LoadBonusClaim(void* source, unsigned size) {
 }
 
 void MSa_SaveWMStuff(void* target, unsigned size) {
-	SaveWMStuff(target, &gGMData);
+	WriteWorldMapStuff(target, &gGMData);
 }
 
 void MSa_LoadWMStuff(void* source, unsigned size) {
-	LoadWMStuff(source, &gGMData);
+	ReadWorldMapStuff(source, &gGMData);
 }
 
 void MSa_SaveDungeonState(void* target, unsigned size) {
