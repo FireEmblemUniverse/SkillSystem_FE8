@@ -32,7 +32,11 @@ Loop:
 ldr r2, [r7]
 cmp r2, #0x0
 beq EndLoop
-    mov r14, r2
+	mov r14, r2
+	@ give relevant info as args
+	mov r0, r4 @ battle struct or char data ptr
+	mov r1, r5 @ growth so far (from char data)
+	mov r2, r6 @ index in stat booster pointer of growth
     .short 0xF800
     add r7, #0x4
     b Loop
