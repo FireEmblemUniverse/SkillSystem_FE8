@@ -9,7 +9,7 @@ extern s8 BattleGenerateRoundHits(struct BattleUnit* attacker, struct BattleUnit
 extern void BattleGetBattleUnitOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
 extern void ClearBattleHits(void); 
 extern void BattleForecastHitCountUpdate(struct BattleUnit* battleUnit, u8* hitsCounter, int* usesCounter); 
-extern int IsUnitEffectiveAgainst(struct BattleUnit* attacker, struct BattleUnit* defender);
+//extern int IsUnitEffectiveAgainst(struct BattleUnit* attacker, struct BattleUnit* defender);
 extern s8 BattleGetFollowUpOrder(struct BattleUnit** outAttacker, struct BattleUnit** outDefender);
 
 
@@ -318,9 +318,9 @@ struct BattleForecastProc {
     /* 34 */ s8 needContentUpdate;
     /* 35 */ s8 side; // -1 is left, +1 is right
     /* 36 */ s8 unk_36;
-    /* 38 */ struct TextHandle unitNameTextA;
-    /* 40 */ struct TextHandle unitNameTextB;
-    /* 48 */ struct TextHandle itemNameText;
+    /* 38 */ struct Text unitNameTextA;
+    /* 40 */ struct Text unitNameTextB;
+    /* 48 */ struct Text itemNameText;
     /* 50 */ s8 hitCountA;
     /* 51 */ s8 hitCountB;
     /* 52 */ s8 isEffectiveA;
