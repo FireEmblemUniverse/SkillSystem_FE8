@@ -59,13 +59,20 @@ $(LYN_REF): $(FE8_REF)
 	@echo "[AS ]	$@"
 	@cp $(FE8_REF) $(LYN_REF:.o=.s)
 	@$(AS) $(LYN_REF:.o=.s) -o $@
+	
+SKILLSYS_REF := $(CACHE_DIR)/skillsys-ref.o
+	
+$(SKILLSYS_REF) : ./skillsys-ref.s
+	@echo "[AS ]	$@"
+	@cp ./skillsys-ref.s $(SKILLSYS_REF:.o=.s)
+	@$(AS) $(SKILLSYS_REF:.o=.s) -o $@
 
 # Build rules
 
 #.o to .lyn.event rule	
-%.lyn.event: %.o $(LYN_REF)
+%.lyn.event: %.o $(LYN_REF) $(SKILLSYS_REF)
 	@echo "[LYN]	$@"
-	@$(LYN) $< $(LYN_REF) > $@
+	@$(LYN) $< $(LYN_REF) $(SKILLSYS_REF) > $@
 
 #.o to .dmp rule
 %.dmp: %.o

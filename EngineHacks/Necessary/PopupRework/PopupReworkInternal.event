@@ -19,16 +19,6 @@
 	#define POPR_COMPONENT_COUNT 0x10 // Little extra space because why not
 #endif
 
-#define gAnimScr_PopupIcon 0x878D518
-#define gGfx_BattlePopup 0x8803B30
-#define gPal_BattlePopup 0x8803CB0
-#define gGfx_BattlePopupTextBg 0x8803BD0
-#define gSpellFxTsaBuffer 0x2019790
-#define gTsa_BattlePopup 0x8803CD0
-#define SomeBattlePlaySound_8071990 0x8071991
-#define gpUnitRight_BattleStruct 0x203E18C
-#define gpUnitLeft_BattleStruct 0x203E188
-
 #include "Src/PopRCore.lyn.event"
 #include "Src/PopRComponents.lyn.event"
 #include "Src/PopRAnimsOn.lyn.event"
