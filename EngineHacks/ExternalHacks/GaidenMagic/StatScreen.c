@@ -1,8 +1,8 @@
 
-TextHandle* GaidenStatScreen(int x, int y, TextHandle* currHandle) // Called from MSS. Returns the next "blank" text handle.
+Text* GaidenStatScreen(int x, int y, Text* currHandle) // Called from MSS. Returns the next "blank" text handle.
 {
 	u8* spells = SpellsGetter(gpStatScreenUnit,-1);
-	int tile = (currHandle-1)->tileIndexOffset;
+	int tile = (currHandle-1)->chr_position;
 	int iconX = x;
 	int iconY = y;
 	for ( int i = 0 ; spells[i] ; i++ )
@@ -11,18 +11,18 @@ TextHandle* GaidenStatScreen(int x, int y, TextHandle* currHandle) // Called fro
 		DrawIcon(&StatScreenBufferMap[iconY][iconX],item->iconId,0x4000);
 		
 		tile += 6;
-		currHandle->tileIndexOffset = tile;
-		currHandle->xCursor = 0;
-		currHandle->colorId = TEXT_COLOR_NORMAL;
-		currHandle->tileWidth = 6;
-		currHandle->useDoubleBuffer = 0;
-		currHandle->currentBufferId = 0;
-		currHandle->unk07 = 0;
+		currHandle->chr_position = tile;
+		currHandle->x = 0;
+		currHandle->colorId = TEXT_COLOR_SYSTEM_WHITE;
+		currHandle->tile_width = 6;
+		currHandle->db_enabled = 0;
+		currHandle->db_id = 0;
+		currHandle->is_printing = 0;
 		
-		Text_Clear(currHandle);
-		Text_SetColorId(currHandle,TEXT_COLOR_NORMAL);
-		Text_InsertString(currHandle,0,TEXT_COLOR_NORMAL,GetStringFromIndex(item->nameTextId));
-		Text_Display(currHandle,&StatScreenBufferMap[iconY][iconX+2]);
+		ClearText(currHandle);
+		Text_SetColor(currHandle,TEXT_COLOR_SYSTEM_WHITE);
+		Text_InsertDrawString(currHandle,0,TEXT_COLOR_SYSTEM_WHITE,GetStringFromIndex(item->nameTextId));
+		PutText(currHandle,&StatScreenBufferMap[iconY][iconX+2]);
 		
 		currHandle++;
 		if ( iconX == x ) { iconX += 8; }

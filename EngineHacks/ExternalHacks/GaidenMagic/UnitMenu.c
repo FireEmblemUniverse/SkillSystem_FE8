@@ -34,32 +34,32 @@ static int GaidenMagicUMUsabilityExt(u8* spellList)
 	return 2; // There were valid spells, but we don't have enough HP to cast any of them. Return greyed out.
 }
 
-int GaidenBlackMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc)
+int GaidenBlackMagicUMEffect(MenuProc* proc, MenuItemProc* commandProc)
 {
 	UsingSpellMenu = BLACK_MAGIC;
 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,BLACK_MAGIC),proc,commandProc);
 }
 
-int GaidenWhiteMagicUMEffect(MenuProc* proc, MenuCommandProc* commandProc)
+int GaidenWhiteMagicUMEffect(MenuProc* proc, MenuItemProc* commandProc)
 {
 	UsingSpellMenu = WHITE_MAGIC;
 	return GaidenMagicUMEffectExt(SpellsGetter(gActiveUnit,WHITE_MAGIC),proc,commandProc);
 }
 
-int GaidenMagicUMEffectExt(u8* spellsList, MenuProc* proc, MenuCommandProc* commandProc)
+int GaidenMagicUMEffectExt(u8* spellsList, MenuProc* proc, MenuItemProc* commandProc)
 {
 	if ( proc && commandProc->availability == 2 )
 	{
 		// Option is greyed out. Error R-text!
-		MenuCallHelpBox(proc,gGaidenMagicUMErrorText);
+		MenuFrozenHelpBox(proc,gGaidenMagicUMErrorText);
 		return 0x08;
 	}	
 	else
 	{
-		_ResetIconGraphics();
+		ResetIconGraphics_();
 		SelectedSpell = spellsList[0];
 		LoadIconPalettes(4);
-		MenuProc* menu = StartMenu(&SpellSelectMenuDefs);
+		MenuProc* menu = StartMenu(&SpellSelectMenuDefs, 0);
 		// We're going to load a face now. I'm going to leave out the hardcoded check for the phantom (for now at least).
 		StartFace(0,GetUnitPortraitId(gActiveUnit),0xB0,0xC,2);
 		SetFaceBlinkControlById(0,5);
@@ -71,8 +71,8 @@ int GaidenMagicUMEffectExt(u8* spellsList, MenuProc* proc, MenuCommandProc* comm
 int GaidenBlackMagicUMHover(MenuProc* proc)
 {
 	UsingSpellMenu = BLACK_MAGIC;
-	BmMapFill(gMapMovement,-1);
-	BmMapFill(gMapRange,0);
+	BmMapFill(gBmMapMovement,-1);
+	BmMapFill(gBmMapRange,0);
 	if ( CanUseAttackSpellsNow(gActiveUnit,BLACK_MAGIC) ) // If we can use an attack spell now, display the red range.
 	{
 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckNotStaff);
@@ -92,8 +92,8 @@ int GaidenBlackMagicUMHover(MenuProc* proc)
 int GaidenWhiteMagicUMHover(MenuProc* proc)
 {
 	UsingSpellMenu = WHITE_MAGIC;
-	BmMapFill(gMapMovement,-1);
-	BmMapFill(gMapRange,0);
+	BmMapFill(gBmMapMovement,-1);
+	BmMapFill(gBmMapRange,0);
 	if ( CanUseAttackSpellsNow(gActiveUnit,WHITE_MAGIC) ) // If we can use an attack spell now, display the red range.
 	{
 		All_Spells_One_Square(gActiveUnit,&RangeUsabilityCheckNotStaff);

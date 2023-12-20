@@ -331,10 +331,10 @@ bx r1
 .global GaidenTargetSelectionCamWaitBPressHack
 .type GaidenTargetSelectionCamWaitBPressHack, %function
 GaidenTargetSelectionCamWaitBPressHack: @ Autohook to 0x08022844. Same as before but with a different function.
-blh Text_ResetTileAllocation, r0
-ldr r0, =gProc_GoBackToUnitMenu
+blh ResetTextFont, r0
+ldr r0, =gProcScr_BackToUnitMenu
 mov r1, #0x03
-blh ProcStart, r2
+blh Proc_Start, r2
 bl GaidenZeroOutSpellVariables
 mov r0, #0x19
 pop { r1 }
@@ -376,7 +376,7 @@ mov r0, r5
 blh Text_DrawString, r2
 add r1, r7, #0x04
 mov r0, r5
-blh Text_Display, r2
+blh PutText, r2
 @ Everything above this is unrelated vanilla behavior. Now we need to check if we're using the spell menu.
 ldr r0, =UsingSpellMenu
 ldrb r0, [ r0 ]

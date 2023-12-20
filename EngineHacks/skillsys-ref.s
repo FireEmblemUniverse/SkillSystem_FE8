@@ -65,12 +65,15 @@ fun (0x0802CC80+1), GaidenStaffInventoryHack
 fun (0x08022780+1), GaidenTargetSelectionBPressHack
 fun (0x08016884+1), GaidenMenuSpellCostHack
 fun (0x08022844+1), GaidenTargetSelectionCamWaitBPressHack
+fun (0x0859D3F8+1), SpellTargetSelection
 
 dat 0x0202B6D1, SpellsBuffer
 dat 0x0203F080, SelectedSpell
 dat 0x0203F082, UsingSpellMenu
 dat 0x0203F084, DidSelectSpell
-dat 0x0859D3F8, SpellTargetSelection
+
 dat 0x02003C94, StatScreenBufferMap
 dat 0x02022CA8, gBG0MapBuffer
 dat 0x0203A608, gpCurrentRound
+dat 0x02003C08, gpStatScreenUnit
+dat 0x02022CA8, gBG0TilemapBuffer2D
