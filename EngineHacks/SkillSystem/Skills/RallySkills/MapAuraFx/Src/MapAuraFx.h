@@ -5,7 +5,7 @@
 
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
-#define BG_LOCATED_TILE(aMap, aX, aY) (&(aMap)[(aX) + (aY) * 0x20])
+#define BG_LOCATED_TILE(aMap, aX, aY) ((aMap)[(aX) + (aY) * 0x20])
 
 void StartMapAuraFx(void);
 void EndMapAuraFx(void);
