@@ -77,3 +77,9 @@ dat 0x02022CA8, gBG0MapBuffer
 dat 0x0203A608, gpCurrentRound
 dat 0x02003C08, gpStatScreenUnit
 dat 0x02022CA8, gBG0TilemapBuffer2D
+
+@ ScrollingStatscreenBackground
+dat 0x02003D2C, gpStatScreenPageBg0Map
+dat 0x0200422C, gpStatScreenPageBg1Map
+dat 0x0200472C, gpStatScreenPageBg2Map
+dat 0x02003BFC, StatScreenStruct

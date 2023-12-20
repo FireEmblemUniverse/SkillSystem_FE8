@@ -9,7 +9,7 @@ struct SSS_MainProcState {
   
 };
 
-extern const ProcInstruction SSS_mainProc[];
+extern const struct ProcCmd SSS_mainProc[];
 void SSS_init(struct SSS_MainProcState* proc);
 void SSS_loop(struct SSS_MainProcState* proc);
 void SSS_clearBG1Tiles();
