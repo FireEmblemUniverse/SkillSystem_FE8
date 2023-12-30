@@ -41,6 +41,10 @@ SHORT $46c0
 ORG $271EC 
 callHackNew(DoNotHideOverlappingUnitsHook) 
 
+ORG $22F38 
+jumpToHack(TradeUsabilityFMUFix) 
+
+
 
 	ORG $59A38C
 	POIN NewPlayerPhaseEvaluationFunc|1
