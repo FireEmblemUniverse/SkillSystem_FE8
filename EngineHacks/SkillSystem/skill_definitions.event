@@ -369,7 +369,11 @@
 
 //Galeforce: Move again after attacking and defeating an enemy.
 //Author Unknown (Initial Commit)
-#define GaleforceID 117
+#define GaleforceID 255 
+
+//Fail 'n Gale: Move again after attacking but failing to harm an enemy. 
+//By Vesly 
+#define FailGaleID 117 
 
 //Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
 //Author Unknown (Initial Commit)

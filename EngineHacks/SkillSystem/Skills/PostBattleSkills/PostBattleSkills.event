@@ -124,6 +124,10 @@ POIN PowerstaffEvent
 
 #include "Cultured/Cultured.event"
 
+
+#include "FailGale/Installer.event" 
+
+
 ALIGN 4
 Gridmaster:
 #incbin "Gridmaster/Gridmaster.dmp"
