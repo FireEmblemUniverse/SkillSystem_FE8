@@ -35,9 +35,9 @@ void SuperFangEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 				bunitA->battleAttack = (hp+3)/4; 
 				bunitB->battleDefense = 0; 
 			} 
+			else { bunitA->battleAttack = 0; } 
 		}
 	}
-	else { bunitA->battleAttack = 0; } 
 } 
 
 // deal 20% more dmg 

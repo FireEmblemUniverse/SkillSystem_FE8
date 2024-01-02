@@ -47,6 +47,7 @@ int pFMU_RunLocBasedAsmcAuto(struct FMUProc* proc){
 	gActiveUnit->xPos = proc->xCur; 
 	gActiveUnit->yPos = proc->yCur; 
 	DepleteRepelByStep(); 
+	//RefreshUnitsOnBmMap();
 	//TryUnhideSteppedOnUnit(proc, x, y); 
 	
 	

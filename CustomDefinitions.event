@@ -22,8 +22,6 @@
 // when fmu walking out from underneath a mon to adjacent to them, trade doesn't appear initially 
 // maybe the unit map isn't refreshed in time for the trade target list to be populated? 
 
-// player units' displayed range is sometimes shown as 1-2 range weps if they have any move eg. level 1 pidgey 
-
 
 #define TESTING_RANGES
 
@@ -38,7 +36,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.11.01 DEBUG BUILD  Dec 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.12.00 DEBUG BUILD  Jan 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 
