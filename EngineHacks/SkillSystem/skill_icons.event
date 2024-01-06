@@ -1096,6 +1096,8 @@ ORG SkillIcon(ArdentSacrificeID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(ReciprocalAidID)
 #incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(FailGaleID)
+#incbin "SkillIcons/FailGale.dmp"
 
 ORG SkillIcons+0x8000
 
