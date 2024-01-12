@@ -1,0 +1,153 @@
+
+PUSH
+ORG $59A288 // where "ResetCursorPos" was 
+PROC_CALL_ROUTINE_2(TurnLoopMaster)
+ORG $59A294 
+POIN NewgProc_PhaseSwitchGfx // Put ResetCursorPos at the start of this proc 
+POP
+
+
+
+ALIGN 4 
+TurnCalcLoop_Silent: // Effects that do not pause the game 
+POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset UpdateSMSDir_All// Standalone things that loop through all units and do not pause the game 
+WORD 0 
+
+
+ALIGN 4 
+EndOfTurnCalcLoop: 
+POIN EndOfTurn_HealSkillTable CallEndOfTurnHealLoop
+POIN 0 0 
+
+ALIGN 4 
+StartOfTurnCalcLoop: 
+// Each entry (when actually called) take a few frames to run 
+// Start of turn ones begin below 
+POIN StartOfTurn_BuffSkillTable CallBuffAnimationSkillLoop
+WORD 0 0 
+
+
+ALIGN 4 
+NewgProc_PhaseSwitchGfx: // Had to repoint this. I tried having my custom proc call this vanilla one as a child, which caused bugs to occur. 
+// For example, enemies were teleporting to their target rather than walking 
+PROC_YIELD // Buffer.
+PROC_NEW_CHILD(0x859AE00) // ResetCursorPos 
+PROC_CALL_ROUTINE(0x801F2AD) // Vanilla below 
+PROC_CALL_ROUTINE(0x801F2CD) 
+PROC_NEW_CHILD(0x859AEF8)
+PROC_NEW_CHILD(0x859AF40)
+PROC_NEW_CHILD(0x859AF60)
+PROC_CALL_ROUTINE(0x801F3A9) 
+PROC_LOOP_ROUTINE(0x801F491) 
+PROC_CALL_ROUTINE(0x80160D1) 
+PROC_END 
+
+
+
+ALIGN 4
+TurnCalcLoop_Proc: // Loops through each function and starts a proc for it 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(StartOfTurnCalcLoopName)
+PROC_LOOP_ROUTINE(TurnLoop_Idle) // Do nothing until ProcGoto is used. 
+PROC_LABEL(0) 
+PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
+PROC_LOOP_ROUTINE(EndOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
+PROC_LABEL(1) 
+PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
+PROC_LABEL(2) 
+PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
+PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
+PROC_END
+
+
+ALIGN 4
+BuffAnimationSkillProc: // Block this proc if you'd like to show animations 
+PROC_YIELD // Buffer.
+PROC_SET_NAME(BuffAnimationSkillName)
+PROC_SLEEP(0)
+PROC_CALL_ROUTINE(BuffAnimationSkillInit) 
+PROC_LABEL(0)
+PROC_CALL_ROUTINE(BuffAnimationSkillLoop)
+PROC_SLEEP(0)
+PROC_LOOP_ROUTINE(BuffAnimationIdle) // wait for rally animation to end. If done, goto label 0. If destructor is set (+0x30), goto label 1. 
+PROC_LABEL(2) 
+PROC_END_ALL(0x859A548) // destroy camera proc that moves to Lord at start of phase 
+PROC_CALL_ROUTINE(Buff_EnsureCamera)
+PROC_LOOP_ROUTINE(BuffWaitForCamera)
+PROC_LABEL(3)
+PROC_CALL_ROUTINE(BuffExecuteFunc) 
+PROC_LOOP_ROUTINE(BuffAnimationIdle) // wait for rally animation to end. If done, goto label 0. If destructor is set (+0x30), goto label 1. 
+PROC_LABEL(1) // Destructor 
+PROC_END
+
+
+StartOfTurnCalcLoopName:
+String("StartOfTurnCalcLoop") ; BYTE 0
+ALIGN 4
+
+BuffAnimationSkillName:
+String("BuffAnimationSkill") ; BYTE 0
+ALIGN 4
+
+
+ALIGN 4 
+EndOfTurn_HealSkillTable:
+FILL(256*8) 
+
+#define EndOfTurnHealFunctionEntry(skillID, usability, effect) "PUSH; ORG EndOfTurn_HealSkillTable+(skillID*8); POIN usability|1 effect|1; POP" 
+EndOfTurnHealFunctionEntry(HoardersBaneID, HoardersBane_CanUnitHeal, HoardersBane_HealAmount) 
+EndOfTurnHealFunctionEntry(DarkBargainID, DarkBargain_CanUnitHeal, DarkBargain_HealAmount) 
+EndOfTurnHealFunctionEntry(SoulSapID, SoulSap_CanUnitHeal, SoulSap_HealAmount) 
+
+
+// Executes a function where the unit has already been deemed to be on the field with the relevant skill 
+// loops through all units, checks if fielded, creates a buffer of skills, then runs the function for each skill ID that has an entry here 
+ALIGN 4 
+StartOfTurn_BuffSkillTable: 
+FILL(256*8) 
+
+#define StartOfTurnBuffFunctionEntry(skillID, usability, effect) "PUSH; ORG StartOfTurn_BuffSkillTable+(skillID*8); POIN usability|1 effect|1; POP" 
+
+StartOfTurnBuffFunctionEntry(HoneMagID, IsHoneApplicable, HoneMag) 
+StartOfTurnBuffFunctionEntry(HoneStrID, IsHoneApplicable, HoneStr) 
+StartOfTurnBuffFunctionEntry(HoneSklID, IsHoneApplicable, HoneSkl) 
+StartOfTurnBuffFunctionEntry(HoneSpdID, IsHoneApplicable, HoneSpd) 
+StartOfTurnBuffFunctionEntry(HoneDefID, IsHoneApplicable, HoneDef) 
+StartOfTurnBuffFunctionEntry(HoneResID, IsHoneApplicable, HoneRes) 
+StartOfTurnBuffFunctionEntry(HoneLukID, IsHoneApplicable, HoneLuk) 
+StartOfTurnBuffFunctionEntry(HoneMovID, IsHoneApplicable, HoneMov) 
+StartOfTurnBuffFunctionEntry(MagOathID, IsOathApplicable, OathMag) 
+StartOfTurnBuffFunctionEntry(StrOathID, IsOathApplicable, OathStr) 
+StartOfTurnBuffFunctionEntry(SklOathID, IsOathApplicable, OathSkl) 
+StartOfTurnBuffFunctionEntry(SpdOathID, IsOathApplicable, OathSpd) 
+StartOfTurnBuffFunctionEntry(DefOathID, IsOathApplicable, OathDef) 
+StartOfTurnBuffFunctionEntry(ResOathID, IsOathApplicable, OathRes) 
+StartOfTurnBuffFunctionEntry(LukOathID, IsOathApplicable, OathLuk) 
+StartOfTurnBuffFunctionEntry(MovOathID, IsOathApplicable, OathMov) 
+StartOfTurnBuffFunctionEntry(RouseMagID, IsRouseApplicable, RouseMag) 
+StartOfTurnBuffFunctionEntry(RouseStrID, IsRouseApplicable, RouseStr) 
+StartOfTurnBuffFunctionEntry(RouseSklID, IsRouseApplicable, RouseSkl) 
+StartOfTurnBuffFunctionEntry(RouseSpdID, IsRouseApplicable, RouseSpd) 
+StartOfTurnBuffFunctionEntry(RouseDefID, IsRouseApplicable, RouseDef) 
+StartOfTurnBuffFunctionEntry(RouseResID, IsRouseApplicable, RouseRes) 
+StartOfTurnBuffFunctionEntry(RouseLukID, IsRouseApplicable, RouseLuk) 
+StartOfTurnBuffFunctionEntry(RouseMovID, IsRouseApplicable, RouseMov) 
+
+StartOfTurnBuffFunctionEntry(CleverInitID	, IsInitApplicable,		CleverInit) 
+StartOfTurnBuffFunctionEntry(StrongInitID	, IsInitApplicable,		StrongInit) 
+StartOfTurnBuffFunctionEntry(DeftInitID		, IsInitApplicable,		DeftInit	) 
+StartOfTurnBuffFunctionEntry(QuickInitID	, IsInitApplicable,		QuickInit	) 
+StartOfTurnBuffFunctionEntry(LuckyInitID	, IsInitApplicable,		LuckyInit	) 
+StartOfTurnBuffFunctionEntry(SturdyInitID	, IsInitApplicable,		SturdyInit) 
+StartOfTurnBuffFunctionEntry(CalmInitID		, IsInitApplicable,		CalmInit	) 
+StartOfTurnBuffFunctionEntry(NimbleInitID	, IsInitApplicable,		NimbleInit) 
+StartOfTurnBuffFunctionEntry(SpectrumInitID	, IsInitApplicable,		SpectrumInit) 
+StartOfTurnBuffFunctionEntry(RallyChaosID	, IsRallyApplicable,	RallyChaosFunc) 
+
+
+StartOfTurnBuffFunctionEntry(OddFootedID, IsOddFootedApplicable, OddFooted)
+StartOfTurnBuffFunctionEntry(EvenFootedID, IsEvenFootedApplicable, EvenFooted)
+
+#include "StartOfTurn_CalcLoop.lyn.event" 
+
+

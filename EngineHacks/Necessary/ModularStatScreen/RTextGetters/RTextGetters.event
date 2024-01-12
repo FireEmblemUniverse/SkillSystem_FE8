@@ -1,0 +1,16 @@
+
+#define MovDesc 0x054D
+#define HPDesc  0x0544
+
+ALIGN 4
+MovHPDescGetter:
+#incbin "MovHPDescGetter/MovHPDescGetter.dmp"
+WORD MovDesc
+WORD HPDesc
+
+ALIGN 4
+SkillDescGetter: //given skill number, get description text ID
+#incbin "SkillDescGetter/SkillDescGetter.dmp"
+POIN SkillDescTable
+POIN Skill_Getter
+WORD SS_SkillsDefaultRText

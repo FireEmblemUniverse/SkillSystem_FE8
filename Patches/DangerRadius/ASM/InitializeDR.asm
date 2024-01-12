@@ -31,7 +31,6 @@ beq   L1
   b     Return
 
 L1:
-
   @ FOW not active, we handle it.
   @ Mimic PlayerPhase_DisplayDangerZone, 0x1CCB4.
   
@@ -53,6 +52,7 @@ L1:
   mov   r0, #0x1
   and   r0, r1
   
+  @bl PokemblemGenerateDangerZoneRange
   ldr   r4, =ApplyStuffToRangeMaps @FillRangeMapForDangerZone
   bl    GOTO_R4
   ldr   r0, =MovementMap

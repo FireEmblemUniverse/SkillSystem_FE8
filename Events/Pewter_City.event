@@ -33,10 +33,71 @@ END_MAIN
 
 
 
-CharacterBasedEvents: 
+
+CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR PurchasedOddishFlag PurchaseOddishevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
+
+PurchaseOddishevent:
+EVBIT_MODIFY 4 
+WallText(CatchBeforePurchaseOddishText)
+CheckIfCaught(CaterpieID) 
+BEQ 30 sC s0 
+CheckIfCaught(WeedleID)
+BEQ 30 sC s0 
+CheckIfCaught(PikachuID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseOddishText)
+LOAD1 1 OddishUnitGroup  
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Oddish 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 2000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedOddishText)
+ENUF PurchasedOddishFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedOddishText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Oddish
+DISA OaksAidePkmn 
+GOTO 22 
+LABEL 21
+DISA OaksAidePkmn  
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Oddish's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedOddishFlag
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -74,6 +135,8 @@ AFEV 0 CityAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AREA 0 ToRoute2N [17,37] [21,37] 
 AREA 0 ToRoute3W [39,19] [39,22] 
+AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_B TutMsg2 0
 //AREA 0 ToPewterGym [12,16] [12,16] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -99,6 +162,55 @@ CUMO [38,19]
 CAM1 [38,19]
 BottomWallText(NoBoulderbadgeText)
 CURE 
+NoFade 
+ENDA 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(3,12,18,33) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [17,18]
+CUMO [17,18]
+STAL 30
+CURE  
+TutText(TrainerTip_Def)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(19,8,35,33) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [26,20]
+CUMO [26,20]
+STAL 30
+CURE  
+TutText(TrainerTip_Mart) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
 NoFade 
 ENDA 
 
@@ -131,8 +243,8 @@ BlankExamineTrap(8,16,PewterGymSignText)
 
 SignTrap(16,7, PewterMuseumSignText) // Metal ? 
 SignTrap(27,27, PewterFlowerSignText) // Wooden 
-SignTrap(17,18, TrainerTip_Def)
-SignTrap(26, 20, TrainerTip_Mart)
+TutSign(17,18,ChapterID*2, TrainerTip_Def)
+TutSign(26, 20,ChapterID*2+1, TrainerTip_Mart)
 
 EnterWallTrap(14,6, PewterMuseumText) // Museum
 EnterWallTrap(29,11, PewterNEHouseText) // Ne house trade 
@@ -215,6 +327,15 @@ LOAD1 1 EnemyTrainersA
 ENUN 
 MarkTrainerAsDefeated(0xE0) 
 LABEL 0 
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedOddishFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
+
 LABEL 0x63
 NoFade
 ENDA
@@ -227,10 +348,12 @@ BYTE StatAccessory MuscleBand_BoostIndex
 BYTE StatAccessory WiseGlasses_BoostIndex
 BYTE JellyDonut 4
 BYTE SkillScroll PatienceID
-
+BYTE SuperRepel 1
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
 BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot 
 BYTE SpellScroll Ember SpellScroll Bubble  SpellScroll LeafFlurry
-BYTE SpellScroll Gust SpellScroll Confusion 
+BYTE SpellScroll Gust SpellScroll Confusion // 14 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
@@ -259,38 +382,18 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-EnemyUnitsA:
-//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsB:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,3] 001b	0x0 0x01 REDA0R3 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT
-
-EnemyUnitsC:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,4] 001b	0x0 0x01 REDA0R4 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF2 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT 
-
-EnemyUnitsD:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,1] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF1 BushID 0x0 Level(5, Enemy, 1)   [4,4] 0b	0x0 0x01 REDA4R4 [0x0,0x0,0x0,0x0] BushAI
-UNIT
-
-EnemyUnitsE:
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+OddishUnitGroup:
+UNIT TempAlly OddishID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 EnemyTrainersA:
 UNIT 0xE0 super_nerdID 0x0 Level(5, Enemy, 1) [38,19]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] DoNothingAI
 UNIT
 
-
+OaksAideUnitGroup:
+UNIT OaksAide lassID 0x0 Level(LVFACEDOWN, Enemy, 1) [27,29]  0b 0x0	0x1 REDA27R29 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn OddishID 0x0 Level(0, Enemy, 1) [28,29]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 ReinforcementUnits:
 UNIT Reinforcement0 ClassA 0x0 Level(5, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
@@ -301,7 +404,9 @@ SHORT R9W_0xE0_BQ // 0xE0
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), PewterOaksAideBD, 1) 
 SHORT PewterCheckGymText // 0xE0 
+SHORT 600 
 TDQ_TableTerminator ; } 
 
 

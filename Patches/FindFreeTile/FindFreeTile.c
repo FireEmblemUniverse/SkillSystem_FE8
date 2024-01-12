@@ -42,7 +42,8 @@ void const FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 	
 	
     // Put the active unit on the unit map (kinda, just marking its spot)
-    gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF;
+	if (gActiveUnit) { 
+    gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0xFF; } 
 
 
 	// idk
@@ -119,7 +120,8 @@ void const FindFreeTile(struct Unit *unit, int* xOut, int* yOut)
 
 
 
-
+	if (gActiveUnit) { 
     // Remove the active unit from the unit map again
     gMapUnit[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
+	}
 }

@@ -54,20 +54,25 @@ SongTable(IntroSfx,ChapterIntro0,0)
 #include "songs/ChapterIntro0.event"
 }
 
+{
+SongTable(0x58, soaring, 1)
+#include "songs/soaring_wav.event"
+}
+
 //installation of ipatix's sound mixer. Essential if you want to use GS synths; also makes most music sound better by reducing background noise.
 
-PUSH
-ORG $d01d0
-BYTE 0xb0 0x6c 0x00 0x03 0x18 0x02
-ORG $CF53C
-BYTE 0xb1 0x6c 0x00 0x03
-ORG $D01CC
-POIN Sound_Mixer_Dump
-POP
-ALIGN 4
+// PUSH
+// ORG $d01d0
+// BYTE 0xb0 0x6c 0x00 0x03 0x18 0x02
+// ORG $CF53C
+// BYTE 0xb1 0x6c 0x00 0x03
+// ORG $D01CC
+// POIN Sound_Mixer_Dump
+// POP
+// ALIGN 4
 
-Sound_Mixer_Dump:
-#incbin SoundMixer.bin
+// Sound_Mixer_Dump:
+// #incbin SoundMixer.bin
 
 //voice table entry definitions
   #define VoiceDirect(VoiceTable,VoiceIndex,BaseNote,Address,FixedFreq,IsForcedPan,Pan,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $00+FixedFreq*0x8 BaseNote $00 IsForcedPan*Pan; POIN Address; BYTE EnvAtk EnvDec EnvSus EnvRel"
@@ -138,6 +143,7 @@ VoiceDirect(MusicVoices,0x7,0x3c,0x028F524,0x0,0x0,0x0,0xff,0xf5,0xa0,0xa0)
 VoiceDirect(MusicVoices,0x8,0x3c,0x04C4758,0x0,0x0,0x0,0xff,0x0,0xff,0xa5)
 //9
 VoiceDummy(MusicVoices,0x9)
+    // VoiceDirect(MusicVoices,0x9,0x3c, Falcon_WavData, 0, 0, 0, 0xff, 0, 0xff, 0)
 //10 music box - C4
 VoiceDirect(MusicVoices,0xa,0x3c,0x02C0D0C,0x0,0x0,0x0,0xff,0x0,0xff,0xe0)
 //11 vibraphone (same sample as celesta? recommend use 8 instead) - C4

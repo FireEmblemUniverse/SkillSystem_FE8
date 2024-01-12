@@ -63,11 +63,12 @@ int GetItemCrit(int item) {
 */
 
 
-
+extern int ItemSpecialEffectUsability(int item, struct Unit* unit); 
 void DrawItemMenuLine(struct TextHandle* text, int item, s8 isUsable, u16* mapOut) {
 	
 	int isItemAnAccessory = GetItemAttributes(item) & IA_ACCESSORY;
 	int textColor = TEXT_COLOR_NORMAL;
+	isUsable |= (ItemSpecialEffectUsability(item, gActiveUnit)==1); 
 	
 	if(!isUsable & !isItemAnAccessory) textColor = TEXT_COLOR_GRAY;
 	

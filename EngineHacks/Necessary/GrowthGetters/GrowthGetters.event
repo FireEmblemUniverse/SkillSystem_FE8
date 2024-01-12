@@ -1,11 +1,28 @@
   //Growth Bonuses from skills are located in the GrowthSkills folder
   #include "GrowthBonuses/GrowthBonuses.event"
-
+  #include "C/Installer.event" 
   
+  PUSH
+  
+    ORG $2BA28
+      //jumpToHack(Write_Growths_To_Battle_Struct)
+
+    ORG $2B9C4
+      jumpToHack(Enemy_Autolevel)
+
+    ORG $17E98
+      callHack_r3(New_Unit_Exp)
+      SHORT 0xE005
+	  
+  POP
+  
+
   ALIGN 4
   Growth_Bonus_CalcLoop:
   POIN BlossomGrowthModifier AptitudeGrowthModifier MetisTomeCheck ScrollsCheck
   WORD 0 //Terminator
+  
+  
 
   #ifndef USE_STRMAG_SPLIT
   ALIGN 4
@@ -21,20 +38,20 @@
 
   ALIGN 4
   Get_Hp_Growth:
-    #incbin "Get_Hp_Growth.dmp"
+    #incbin "asm/Get_Hp_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   ALIGN 4
   Get_Str_Growth:
-    #incbin "Get_Str_Growth.dmp"
+    #incbin "asm/Get_Str_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   #ifdef USE_STRMAG_SPLIT
   ALIGN 4
   Get_Mag_Growth:
-	#incbin "Get_Mag_Growth.dmp"
+	#incbin "asm/Get_Mag_Growth.dmp"
 	POIN Extra_Growth_Boosts|1
 	POIN MagCharTable
 	POIN MagClassTable
@@ -43,36 +60,59 @@
 	
   ALIGN 4
   Get_Skl_Growth:
-    #incbin "Get_Skl_Growth.dmp"
+    #incbin "asm/Get_Skl_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   ALIGN 4
   Get_Spd_Growth:
-    #incbin "Get_Spd_Growth.dmp"
+    #incbin "asm/Get_Spd_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   ALIGN 4
   Get_Def_Growth:
-    #incbin "Get_Def_Growth.dmp"
+    #incbin "asm/Get_Def_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   ALIGN 4
   Get_Res_Growth:
-    #incbin "Get_Res_Growth.dmp"
+    #incbin "asm/Get_Res_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
 
   ALIGN 4
   Get_Luk_Growth:
-    #incbin "Get_Luk_Growth.dmp"
+    #incbin "asm/Get_Luk_Growth.dmp"
     POIN Extra_Growth_Boosts|1
 	WORD USE_CHAR_AND_CLASS_GROWTHS
   
   ALIGN 4
   Extra_Growth_Boosts:
-    #incbin "Extra_Growth_Boosts.dmp"
+    #incbin "asm/Extra_Growth_Boosts.dmp"
     WORD Growth_Options
 	POIN Growth_Bonus_CalcLoop
+
+  ALIGN 4
+  //Write_Growths_To_Battle_Struct:
+    #incbin "asm/Write_Growths_To_Battle_Struct.dmp"
+        POIN Class_Level_Cap_Table Get_Hp_Growth Get_Str_Growth
+	#ifdef USE_STRMAG_SPLIT
+		POIN Get_Mag_Growth
+	#else
+		WORD 0 // Code in this function treats 0 here as strmag not installed and does nothing.
+	#endif // USE_STRMAG_SPLIT
+	POIN Get_Skl_Growth Get_Spd_Growth Get_Def_Growth Get_Res_Growth Get_Luk_Growth
+    WORD Growth_Options
+
+  ALIGN 4
+  Enemy_Autolevel:
+    #incbin "asm/Enemy_Autolevel.dmp"
+    WORD Growth_Options
+
+  ALIGN 4
+  New_Unit_Exp:
+    #incbin "asm/New_Unit_Exp.dmp"
+    POIN Class_Level_Cap_Table
+

@@ -20,7 +20,7 @@ ASMC ModularSummon_UnhideActive
 ASMC ModularSummon_RestoreCameraASMC // Move back to active unit using CenterCameraOntoPosition
 CUMO 0x7fff
 ASMC 0x80790a5 //MU_EndAll //deselect unit
-STAL 20 
+StalVar(20)
 CURE
 SVAL s5 0 // Pokeball animation as the default 
 CHECK_ACTIVE 
@@ -55,6 +55,7 @@ GOTO 0x63
 
 LABEL 20 // Playable cutscene eg. rival battle 
 ENUT PlayableCutsceneFlag
+ENUT FIXED_GROWTHS_FLAG_ID
 TEXTSTART; TEXTSHOW (-1); TEXTEND; REMA 
 ASMC ModularSummonEffect 
 GOTO 0x63 
@@ -69,6 +70,7 @@ LABEL 41
 
 ASMC CallCheckTrainerFlag 
 BNE 60 rC r0 // If flag is unset, always call modular summon
+ENUT FIXED_GROWTHS_FLAG_ID
 ENUT PlayableCutsceneFlag
 SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND //; REMA //BottomWallS2Text 
 REMA 
@@ -81,6 +83,7 @@ ASMC ModularSummonEffect
 GOTO 0x63 
 
 LABEL 22 // Vesly self-insert
+ENUT FIXED_GROWTHS_FLAG_ID
 ENUT PlayableCutsceneFlag
 STAL 20 
 CURE
@@ -99,6 +102,7 @@ NoFade
 ENDA 
 
 TrainerDefeatedEvent:
+VeslySetDangerRadius
 //ASMC BreakPointASMC
 //BottomWallText(ViridianForestTrainerE4DefeatText)
 EVBIT_MODIFY 4
@@ -107,7 +111,7 @@ SADD rA rC r0
 ASMC ModularSummon_CenterCameraASMC //SHORT 0x2629 0xFFFE // CAM2 - older EA doesn't have _0x2629 defined & this can freeze the game 
 SADD s8 sB s0 
 CUMO 0x7ffE
-STAL 20 
+StalVar(20)
 CURE 
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
@@ -233,7 +237,7 @@ GOTO 10
 
 
 LABEL 10 // Unit ID to teleport in s2 
-WarpOutEvent 
+CALL TheWarpOutEvent 
 LABEL 99
 NoFade 
 ENDA 
@@ -243,4 +247,14 @@ CALL ModularSummonWildTrainerEvent // identical for now
 NoFade 
 ENDA 
 
+TheWarpOutEvent: 
+CAM1 0x7FFD 
+CHECK_COORDS 0x7FFD 
+SADD sB sC s0 
+WARPOUT_SB
+STAL 20 
+DISA 0x7FFD // delete them now 
+ENDWARP 
+NoFade 
+ENDA 
 

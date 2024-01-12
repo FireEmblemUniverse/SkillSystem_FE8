@@ -1,6 +1,5 @@
 @ Updates DR after moving a unit and before committing to an action.
 .thumb
-
 push {r4-r7, r14}
 
 
@@ -9,47 +8,47 @@ push {r4-r7, r14}
 ldr   r4, =ActionData
 ldr   r5, =ActiveUnit
 ldr   r5, [r5]
-ldrb  r6, [r4, #0xE]
-ldrb  r7, [r5, #0x10]
-ldrb  r2, [r4, #0xF]
-ldrb  r3, [r5, #0x11]
-strb  r6, [r5, #0x10]           @ Vanilla updates
-strb  r2, [r5, #0x11]           @ these values like this.
+@ldrb  r6, [r4, #0xE]
+@ldrb  r7, [r5, #0x10]
+@ldrb  r2, [r4, #0xF]
+@ldrb  r3, [r5, #0x11]
+@strb  r6, [r5, #0x10]           @ Vanilla updates
+@strb  r2, [r5, #0x11]           @ these values like this.
+@
+@mov r0, r6 @ x1 
+@mov r1, r2 @ y1 
+@mov r2, r7 @ x2
+@sub   r0, r2 @ X difference 
+@sub   r1, r3 @ Y difference 
+@
+@@ Take coordinates'
+@@ absolute values.				
+@asr r3, r0, #31
+@add r0, r0, r3
+@eor r0, r3
+@
+@asr r3, r1, #31
+@add r1, r1, r3
+@eor r1, r3
+@
+@add r0, r1 
+@strb r0, [r4, #0x10] @ tiles moved in ActionData to be updated for LineOfSight 
+@
+@
+@mov r0, r6 
+@mov r1, r7 
+@ldrb  r2, [r4, #0xF]
+@ldrb  r3, [r5, #0x11]
 
-mov r0, r6 @ x1 
-mov r1, r2 @ y1 
-mov r2, r7 @ x2
-sub   r0, r2 @ X difference 
-sub   r1, r3 @ Y difference 
-
-@ Take coordinates'
-@ absolute values.				
-asr r3, r0, #31
-add r0, r0, r3
-eor r0, r3
-
-asr r3, r1, #31
-add r1, r1, r3
-eor r1, r3
-
-add r0, r1 
-strb r0, [r4, #0x10] @ tiles moved in ActionData to be updated for LineOfSight 
-
-
-mov r0, r6 
-mov r1, r7 
-ldrb  r2, [r4, #0xF]
-ldrb  r3, [r5, #0x11]
-
-mov   r6, #0x0
-cmp   r0, r1
-bne   L3
-  cmp   r2, r3
-  bne   L3
-    b     L4
-L3:
-mov   r6, #0x1
-L4:
+@mov   r6, #0x0
+@cmp   r0, r1
+@bne   L3
+@  cmp   r2, r3
+@  bne   L3
+@    b     L4
+@L3:
+@mov   r6, #0x1
+@L4:
 
 
 @ Vanilla.
@@ -57,10 +56,12 @@ mov   r0, r5
 ldr   r4, =ApplyUnitMovement
 bl    GOTO_R4
 
-
+ldrb r0, [r4, #0x10] @ tiles moved 
+cmp r0, #0 
+beq Return 
 @ Skip if unit didn't move.
-cmp   r6, #0x0
-beq   Return
+@cmp   r6, #0x0
+@beq   Return
   @ Check for FOW.
   ldr   r0, =ChapterData
   ldrb  r0, [r0, #0xD]

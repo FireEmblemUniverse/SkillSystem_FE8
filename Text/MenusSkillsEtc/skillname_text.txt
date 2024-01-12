@@ -1,5 +1,15 @@
+
+## SN_Surf
+Surf[X]
+
+## SN_Hover
+Hover[X]
+
 ## SN_PowerfulAura
 Powerful Aura[X]
+
+## SN_Intimidate2
+Intimidate[X]
 
 ## SN_WonderGuard
 Wonder Guard[X]
@@ -12,6 +22,15 @@ ChipDmg[X]
 
 ## SN_ScaledBack
 Scaled Back[X]
+
+## SN_ScaledUp
+Scaled Up[X]
+
+## SN_Downgrade
+Downgrade[X]
+
+## SN_GuardBreaker ^
+Guard Breaker[X]
 
 ## SN_Savior
 Savior[X]
@@ -184,7 +203,7 @@ Inspiration[X]
 ## SN_Charm
 Charm[X]
 
-## SN_VoiceOfPeace
+## SN_VoiceOfPeace ^ 
 Voice of Peace[X]
 
 ## SN_Amaterasu
@@ -202,7 +221,7 @@ Spur Speed[X]
 ## SN_SpurDef
 Spur Defense[X]
 
-## SN_SpurRes
+## SN_SpurRes ^ 
 Spur Resistance[X]
 
 ## SN_Nihil
@@ -919,33 +938,6 @@ Synchronize[X]
 ## SN_Swarp
 Swarp[X]
 
-## SN_SK1
-My Skill1[X]
-
-## SN_SK2
-My Skill2[X]
-
-## SN_SK3
-My Skill3[X]
-
-## SN_SK4
-My Skill4[X]
-
-## SN_SK5
-My Skill5[X]
-
-## SN_SK6
-My Skill6[X]
-
-## SN_SK7
-My Skill7[X]
-
-## SN_SK8
-My Skill8[X]
-
-## SN_SK9
-My Skill9[X]
-
 ## SN_Absorb
 Absorb[X]
 
@@ -958,68 +950,231 @@ Triple Hit[X]
 ## SN_MultiHit
 Multi-Hit[X]
 
-## SN_SK10
-My Skill 10[X]
-## SN_SK12
-My Skill 12[X]
-## SN_SK14
-My Skill 14[X]
-## SN_SK16
-My Skill 16[X]
-## SN_SK18
-My Skill 18[X]
-## SN_SK20
-My Skill 20[X]
-## SN_SK22
-My Skill 22[X]
-## SN_SK24
-My Skill 24[X]
-## SN_SK26
-My Skill 26[X]
-## SN_SK28
-My Skill 28[X]
-## SN_SK30
-My Skill 30[X]
-## SN_SK32
-My Skill 32[X]
-## SN_SK34
-My Skill 34[X]
-## SN_SK36
-My Skill 36[X]
-## SN_SK38
-My Skill 38[X]
-## SN_SK40
-My Skill 40[X]
-## SN_SK42
-My Skill 42[X]
-## SN_SK44
-My Skill 44[X]
-## SN_SK46
-My Skill 46[X]
-## SN_SK48
-My Skill 48[X]
-## SN_SK50
-My Skill 50[X]
-## SN_SK52
-My Skill 52[X]
-## SN_SK54
-My Skill 54[X]
-## SN_SK56
-My Skill 56[X]
-## SN_SK58
-My Skill 58[X]
-## SN_SK60
-My Skill 60[X]
-## SN_SK62
-My Skill 62[X]
-## SN_SK64
-My Skill 64[X]
-## SN_SK66
-My Skill 66[X]
-## SN_SK68
-My Skill 68[X]
-## SN_SK70
-My Skill 70[X]
+## SN_ExpShare
+Exp Share[X]
+
+## SN_DivinelyInspiring
+Divinely Inspiring[X]
+
+## SN_HeavyBlade
+Heavy Blade[X]
+
+## SN_StrTaker
+Str Taker[X]
+
+## SN_SklTaker
+Skl Taker[X]
+
+## SN_SpdTaker
+Spd Taker[X]
+
+## SN_DefTaker
+Def Taker[X]
+
+## SN_ResTaker
+Res Taker[X]
+
+## SN_LukTaker
+Luk Taker[X]
+
+## SN_MagTaker
+Mag Taker[X]
+
+## SN_MovTaker
+Mov Taker[X]
+
+## SN_HoneMag
+Hone Mag[X]
+
+## SN_HoneStr
+Hone Str[X]
+
+## SN_HoneSkl
+Hone Skl[X]
+
+## SN_HoneSpd
+Hone Spd[X]
+
+## SN_HoneDef
+Hone Def[X]
+
+## SN_HoneRes
+Hone Res[X]
+
+## SN_HoneLuk
+Hone Luk[X]
+
+## SN_HoneMov
+Hone Mov[X]
+
+## SN_MagOath
+Mag Oath[X]
+
+## SN_StrOath
+Str Oath[X]
+
+## SN_SklOath
+Skl Oath[X]
+
+## SN_SpdOath
+Spd Oath[X]
+
+## SN_DefOath
+Def Oath[X]
+
+## SN_ResOath
+Res Oath[X]
+
+## SN_LukOath
+Luk Oath[X]
+
+## SN_MovOath
+Mov Oath[X]
+
+## SN_RouseMag
+Rouse Mag[X]
+
+## SN_RouseStr
+Rouse Str[X]
+
+## SN_RouseSkl
+Rouse Skl[X]
+## SN_RouseSpd
+Rouse Spd[X]
+## SN_RouseDef
+Rouse Def[X]
+
+## SN_RouseRes
+Rouse Res[X]
+
+## SN_RouseLuk
+Rouse Luk[X]
+
+## SN_RouseMov
+Rouse Mov[X]
+
+## SN_CleverInit
+Clever Init[X]
+
+## SN_StrongInit
+Strong Init[X]
+
+## SN_DeftInit
+Deft Init[X]
+
+## SN_QuickInit
+Quick Init[X]
+
+## SN_LuckyInit
+Lucky Init[X]
+
+## SN_SturdyInit
+SturdyInit[X]
+
+## SN_CalmInit
+Calm Init[X]
+
+## SN_NimbleInit
+Nimble Init[X]
+
+## SN_SpectrumInit
+SpectrumInit[X]
+
+## SN_EternalVanity
+Eternal Vanity[X]
+
+## SN_Guts
+Guts[X]
+
+## SN_StrongConstitution
+Strong Constitution[X]
+
+## SN_ShrewdPotential
+Shrewd Potential[X]
+
+## SN_RallyChaos
+Rally Chaos[X]
+
+## SN_ChaosStyle
+Chaos Style[X]
+
+## SN_HoardersBane
+Gluttony[X]
+
+## SN_DarkBargain
+Dark Bargain[X]
+
+## SN_SoulSap
+Soul Sap[X]
+
+## SN_AirRaidAtk
+Air Raid Atk[X]
+
+## SN_AirRaidSpd
+Air Raid Spd[X]
+
+## SN_AirRaidDef
+Air Raid Def[X]
+
+## SN_AirRaidCri
+Air Raid Crit[X]
+
+## SN_AirRaidHit
+Air Raid Hit[X]
+
+## SN_AirRaidAvo
+Air Raid Avo[X]
+
+## SN_AirRaidRes
+Air Raid Res[X]
+
+## SN_Dragonskin
+Dragonskin[X]
+
+## SN_StunningSmile
+Stunning Smile[X]
+
+## SN_RecklessFighter
+Reckless Fighter[X]
+
+## SN_KeenFighter
+Keen Fighter[X]
+
+## SN_LastWord
+Last Word[X]
+
+## SN_PridefulWarrior
+Prideful Warrior[X]
+
+## SN_BoldFighter
+Bold Fighter[X]
+
+## SN_VengefulFighter
+Vengeful Fighter[X]
+
+## SN_SteadyBrawler
+Steady Brawler[X]
+
+## SN_QuickLearner
+Quick Learner[X]
+
+## SN_PassionsFlow
+Passion's Flow[X]
+
+## SN_BidingBlow
+Biding Blow[X]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

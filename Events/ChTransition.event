@@ -8,17 +8,12 @@
 //#define CurrentChapter 		0x30017ae
 //#define TeleportChapter 		0x30017af 
 //#define RetreatChapter 		0x30017b0
-//#define DigChapter 			0x30017b1 
-#define GaryStarterClass 		0x30017b2 //we can set this at the beginning and then add 1 a couple times to evolve, maybe? 
+//#define DigChapter 			0x30017b5 
+
 //#define Player1UnitID 			0x30017b3 // PostTrainerBattleRamLocat now a byte 
 //#define DisableMenuOptionsRam 0x30017b4 // gaiden, capture, submenu, (guard & call use definitions)  
 
-#define BerryDurabilityToggleRam 			0x30017b9 
 
-#define ReturnTMRam 			0x30017ba // Also used for enemy AI 
-#define DRSingleRam 			0x30017bb
-#define UnitPointerRam 0x30017BC // - BF
-#define WepRamLocat 0x30017C0 
 //#define StartTimeSeedRam 0x30017C4 // - c7 
 //#define PostTrainerBattleRamLocat 0x30017C4 //- c7 
 // past this is volatile?
@@ -48,7 +43,51 @@
 08039cac AiMasterDecisionMaker - break here first, then break on 08039c20 AiSetDecision
 08039d10 .thumb
 */
+ALIGN 4 
+HandleProtag:
+DisableFreeMovement 
+SendAllTransporter(ProtagID)
+ASMC 0x8009261 //@ ap_clearall 
+ASMC 0x80053a5 //@ ClearSprites // maybe helpful? 
+DISA ProtagID 
+NoFade 
+ENDA 
 
+
+PUSH 
+ORG $D2F7C // overwrite vsprintf (debug print text) 
+//RefreshSomeThings:
+//NoFade 
+//ENDA 
+
+
+POP 
+
+PUSH 
+ORG $D38C 
+POIN NewSuspendEvent 
+POP 
+
+NewSuspendEvent: 
+EVBIT_MODIFY 0x4
+TEXTSTART
+TEXTSHOW 0x8FE
+TEXTEND
+SVAL 0x7 0x1
+BNE 0x0 0xC 0x7
+ASMC 0xB5D5D
+TEXTSHOW2 0x8FF
+TEXTEND
+MUSCMID 0x7FFF
+FADI 4
+#ifdef INSTALL_FMU
+ASMC SuspendDisableFreeMovement // enable the ram 
+#endif 
+MNTS 0x0
+LABEL 0x0
+REMA
+EVBIT_T 0x7
+ENDA
 
 //prep - make stuff unequipped 
 //leave prep chapter - auto equip accessories 
@@ -59,6 +98,7 @@ GetUnitStatus(0x7fff, CurrentHP); BNE 10 sC s0; SVAL s2 5; GOTO 11; LABEL 10; SV
 
 
 ReleasePokemonEvent:
+ASMC RegisterAllOwnedPokemon
 EVBIT_MODIFY 4
 CURSOR_FLASHING 0x7FFF // Shiny frame ? 
 CHECK_COORDS 0x7FFF 
@@ -126,7 +166,7 @@ GenericEffect(3, SaveWithoutHeal) //
 //GenericEffect(6, CallToggleMansionB3) // 
 //GenericEffect(7, CallToggleMansionB4) // 
 GenericEffect(8, CallSuspiciousRockEvent) // for rocks that strength boulder triggers will disappear 
-
+GenericEffect(9, ReviveAndSaveEvent) 
 
 GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(3, ObtainSecretKeyEvent) // 
@@ -141,6 +181,7 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(12, PowerPlant) // spawn voltorbs 
 //GenericDisappearEffect(13, ObtainHelixFossilEvent) // 
 //GenericDisappearEffect(14, ObtainDomeFossilEvent) // 
+//GenericDisappearEffect(15, ObtainKeyCardEvent) // 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)
@@ -215,6 +256,7 @@ ENDA
 
 
 GenericAutolevelEvent:
+ENUT FIXED_GROWTHS_FLAG_ID // AutoLevelUnits macro also turns off flag FIXED_GROWTHS_FLAG_ID
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 
@@ -234,6 +276,7 @@ NoFade
 ENDA 
 
 GenericAutolevelEvent_Earlygame:
+ENUT FIXED_GROWTHS_FLAG_ID
 // Check difficulty 
 CHECK_TUTORIAL
 BEQ 0 rC r0 
@@ -366,6 +409,7 @@ ENDA
 HoleInOneEffect:
 CHECK_ALLEGIANCE 0x7fff
 BNE 10 sC s0 // not player 
+PauseFreeMovement 
 SADD sA sB s0 
 ASMC 0x80271A1 // SMS_UpdateFromGameData, 0x80271A1
 STAL 5 
@@ -388,6 +432,7 @@ ENDA
 FallInHoleEffect:
 CHECK_ALLEGIANCE 0x7fff
 BNE 10 sC s0 // not player 
+PauseFreeMovement 
 EndMMS 
 EARTHQUAKE_START 0 // 0 - Sway, 1 - Tremor 
 STARTFADE 
@@ -452,7 +497,6 @@ ENDA
 
 
 GlobalAfev:
-
 //ReplenishDurability(0x7FFF)
 //SVAL r2 0 // Player allegiance 
 //CALL 0x89EE1B8 // When matching allegiance stops in range // This is dangerous, it seems. Doing it can lead into an infinite loop of cantoing by 1 tile. 
@@ -468,8 +512,73 @@ ENDA
 CityBeginningScene:
 SetMaxMove
 //SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
-#ifdef FREE_MOVEMENT_INSTALLED
+
+NoFade 
+ENDA 
+
+ALIGN 4 
+ProtagUnitGroupMale:
+UNIT ProtagID  RedID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+ALIGN 4 
+ProtagUnitGroupFemale:
+UNIT ProtagID  GreenID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+
+LoadAndPlaceProtag: 
+#ifdef INSTALL_FMU
+#ifdef ENABLE_FMU
+CHECK_EVENTID GirlProtagFlag 
+BEQ 0 sC s0 
+LOAD1 1 ProtagUnitGroupFemale
+GOTO 1 
+LABEL 0 
+LOAD1 1 ProtagUnitGroupMale 
+LABEL 1 
+ENUN 
+ASMC GiveRepelsToProtag // breaks supply atm 
+
+SET_ACTIVE 0
+SPAWN_NPC 0xFD [0,0] // SPAWN_NPC 0xFD [-1,-1] 
+Read_Byte(XCoordNewArea)
+SADD r5 rC r0 
+SVAL r1 0xFD //1st player unit 
+SVAL r3 0x10  	// X coord 
+SVAL r4 0x03 	// Byte 
+ASMC SetUnitStatus 
+
+Read_Byte(YCoordNewArea)
+SADD r5 rC r0 
+SVAL r1 0xFD //1st player unit 
+SVAL r3 0x11 	// Y coord 
+SVAL r4 0x03 	// Byte
+ASMC SetUnitStatus
+
+MOVENEXTTO 	(-1) ProtagID 0xFD 
+ENUN 
+CAM1 0xFD 
+DISA 0xFD 
+UNCR(ProtagID, 0x0D)
+SET_ACTIVE ProtagID
+
+//SVAL s1 ProtagID 
+//SVAL s3 0x10 // x 
+//SVAL s4 0x03 // byte 
+//ASMC GetUnitStatus 
+//SADD sA sC s0 
+//SVAL s1 ProtagID 
+//SVAL s3 0x11 // y 
+//SVAL s4 0x03 // byte 
+//ASMC GetUnitStatus 
+//SADD sB sC s0 
+//SVAL s1 16 
+//SLSL sB sB s1 
+//SADD sB sB sA 
+//ASMC SetActorCoords
+
+
 EnableFreeMovement
+#endif 
 #endif 
 NoFade 
 ENDA 
@@ -485,6 +594,10 @@ ENDA
 
 
 GlobalTurnEvent:
+//#ifdef INSTALL_FMU
+//EnableFreeMovement
+//#endif 
+
 #ifndef DEBUG_MODE 
 CHECK_TURNS
 SVAL s1 1
@@ -506,7 +619,7 @@ ENUF CallCountdownFlag_2 // 1 turn until auto refresh again
 #ifdef DRUnitBitMask
 CHECK_EVENTID DangerRadiusToggleFlag
 BNE 1 rC r0 
-SetNearbyDangerRadius
+//VeslySetDangerRadius // already set in NewMakePhaseControllerFunc
 LABEL 1 
 #endif 
 ENUF CallCountdownFlag // Can 'Call' again 
@@ -524,6 +637,7 @@ ENDA
 
 
 HealPartyWithSFXEvent:
+PauseFreeMovement
 _MUSICSOMETHING 0x7FFF 
 SOUN 0x19 // Pokecenter chime 
 CALL HealPartyEvent 
@@ -580,7 +694,7 @@ ENDA
 //#define Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements"
 
 
-#define Reinforce2(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements2"
+//#define Reinforce2(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns) "SVAL r5 UnitGroup|IsPointer; SVAL r6 GracePeriod+6; SVAL r7 FrequencyInTurns; SVAL r2 BushUnitID; SVAL r8 NumberOfEnemies; Call LoadReinforcements2"
 
 
 /*
@@ -597,14 +711,14 @@ If AI2 counter is 1 less than TurnToOccur, display angry face at coords +10000 (
 
 If AI2 counter is equal or greater than TurnToOccur, load unit r8 times 
 */
-
+/*
 SpawnUnitsEvent:
 //ASMC Reinforce_ASMC
 NoFade 
 ENDA 
 
 
-LoadReinforcements2:
+//LoadReinforcements2:
 CHECK_ALIVE 0x7FFD 
 BEQ 0x63 rC r0 //If bush is dead, break 
 
@@ -630,7 +744,7 @@ SADD rB r5 r0
 SENQUEUE r7 
 SENQUEUE r8 
 
-
+*/
 /*
 r6 GracePeriod    +5 
 r7 FrequencyInTurns
@@ -653,7 +767,7 @@ Freq - 1
 Add MaxHP+(Freq-1) / (Freq) // For friendly rounding 
 */
 
-
+/*
 CAM1 0x7FFD 
 
 
@@ -821,7 +935,7 @@ SADD rB r5 r0
 SENQUEUE r7 
 SENQUEUE r8 
 
-
+*/
 /*
 r6 GracePeriod    +5 
 r7 FrequencyInTurns
@@ -843,7 +957,7 @@ If hp is dn bge max-X, set AI2Counter to r4
 Freq - 1 
 Add MaxHP+(Freq-1) / (Freq) // For friendly rounding 
 */
-
+/*
 
 CAM1 0x7FFD 
 
@@ -985,7 +1099,7 @@ Label 20
 Label 0x63 
 NoFade
 ENDA 
-
+*/
 
 CityAfev:
 //ASMC CallCommandEffect
@@ -996,14 +1110,23 @@ ENDA
 
 
 VisitPokecenter:
-
 CHECK_COORDS 0x7FFF
 SADD rB rC r0 
-CALL ConvertFromMemSlotBCoord
+
+SVAL rC 0x10000 
+SMOD r2 rB rC  
+Write_Byte(XCoordTeleport)
+Write_Byte(XCoordNewArea)
+SVAL rC 0x10000
+SDIV r2 rB rC 
+Write_Byte(YCoordTeleport) 
+Write_Byte(YCoordNewArea) 
+
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
-
+Write_Byte(TeleportChapter) // teleport chapter needs to know where you last visited 
+CALL HandleProtag 
 MNC2 PCBoxCh 
 NoFade 
 ENDA 
@@ -1015,6 +1138,10 @@ BYTE AttackedThisTurnFlag
 ALIGN 4
 TrainerBattleActiveFlagLink:
 BYTE TrainerBattleActiveFlag
+
+ALIGN 4 
+RefreshEvenInTrainerBattleFlag_Link: 
+WORD RefreshEvenInTrainerBattleFlag 
 
 
 ALIGN 4 
@@ -1052,8 +1179,8 @@ LABEL 63
 //#ifdef DRUnitBitMask
 //CHECK_EVENTID 1 // Auto refresh if not in danger 
 //BNE 0 rC r0 
-//SetNearbyDangerRadius
-//SetNearbyDangerRadius
+//VeslySetDangerRadius
+//VeslySetDangerRadius
 //ASMC InitializeDR|1 
 //LABEL 0
 //#endif 
@@ -1083,15 +1210,17 @@ NoFade
 ENDA 
 
 
-
+#define DigChapterTransition(ChapterID, DestChapter, DestX, DestY) "Write_Byte(ChapterID, DigChapterRam); CHECK_COORDS 0x7FFF; SADD sB sC s0; SVAL sC 24; SLSL s2 sB sC; SLSR s2 s2 sC; Write_Byte(XCoordDig); SVAL sC 8; SLSL s2 sB sC; SVAL sC 24; SLSR s2 s2 sC; Write_Byte(YCoordDig); Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA"
 #define ChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ChTransition; NoFade; ENDA" 
+#define DigForcedChapterTransition(ChapterID, DestChapter, DestX, DestY) "Write_Byte(ChapterID, DigChapterRam); CHECK_COORDS 0x7FFF; SADD sB sC s0; SVAL sC 24; SLSL s2 sB sC; SLSR s2 s2 sC; Write_Byte(XCoordDig); SVAL sC 8; SLSL s2 sB sC; SVAL sC 24; SLSR s2 s2 sC; Write_Byte(YCoordDig); Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 #define ForcedChapterTransition(DestChapter, DestX, DestY) "Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 #define ForcedChapterTransitionHole(DestChapter, DestX, DestY) "PlayerInRange; Write_Byte(DestX, XCoordNewArea); Write_Byte(DestY, YCoordNewArea); SVAL r9 DestChapter; CALL ForceChTransition; NoFade; ENDA" 
 
 ForceChTransition:
 ENUF TrainerBattleActiveFlag
-#ifdef FREE_MOVEMENT_INSTALLED
-DisableFreeMovement
+ENUF RefreshEvenInTrainerBattleFlag
+#ifdef INSTALL_FMU
+CALL HandleProtag 
 #endif 
 SADD 2 9 0 
 MNC2 (-1) 
@@ -1099,6 +1228,8 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF DisableTutFlag_A
+ENUF DisableTutFlag_B
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
@@ -1107,23 +1238,27 @@ ENDA
 
 ChTransition: 
 
-#ifdef FREE_MOVEMENT_INSTALLED
-DisableFreeMovement
-#endif 
+
 SVAL r2 0 // Player allegiance 
 CALL 0x89EE1B8 // When matching allegiance stops in range 
-
+PauseFreeMovement 
 
 EVBIT_MODIFY 4
 EVBIT_F 2 
 SVAL r7 1 
 TutText(ProceedAreaText) 
 BNE 0x63 rC r7
+#ifdef INSTALL_FMU
+CALL HandleProtag 
+#endif 
 
 DISABLEOPTIONS 0 // Ensure all menu options are enabled by default  
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
+ENUF DisableTutFlag_A
+ENUF DisableTutFlag_B
 SADD 2 9 0 
 
 MNC2 (-1) 
@@ -1138,6 +1273,11 @@ EVBIT_MODIFY 0
 NoFade
 ENDA 
 
+ReviveAndSaveEvent:
+ReviveParty 
+CALL SaveWithHeal 
+NoFade 
+ENDA 
 
 SaveWithHeal:
 CHECK_COORDS 0x7FFF
@@ -1148,11 +1288,12 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
 
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
-
+CALL HandleProtag
 MNC2 SaveWithHealCh 
 NoFade 
 ENDA 
@@ -1166,15 +1307,17 @@ DISABLEOPTIONS 0 // Ensure all menu options are enabled by default
 IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
+ENUF RefreshEvenInTrainerBattleFlag
 
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
-
+CALL HandleProtag
 MNC2 SaveWithoutHealCh 
 NoFade 
 ENDA 
 
+/*
 LoadMainUnit:
 LOAD3 0x0 First1Player //always should have one player, at least 
 SVAL r4 1
@@ -1182,7 +1325,7 @@ OnAllUnitState(0x01FF, Undeployed, Escaped|Undeployed|Hide, AnyArmy, AnyClass, A
 ENUN 
 CALL PlacePlayers
 NoFade 
-ENDA 
+ENDA */
 
 #define RefreshTerrainBmMap 0x8019A65 
 LoadAndPlacePlayers:
@@ -1205,19 +1348,36 @@ NoFade
 ENDA 
 
 SendOutPkmnSlotB:
+CHECK_EVENTID SpeedupFlag
+BNE 1 sC s0 
 EmoticonSlotB(PokeballGraphic)
-STAL 14 
+StalVar(7,14)
 EmoticonSlotB(OpenPokeballGraphic)
-STAL 18
+StalVar(11,22)
 LOAD_S2 1 // No restriction: always load 
 ENUN 
 SPAWN_NPC 0xFC [-1,-1] 
 AddAnimTrap(LightRuneTrapID)
-STAL 22 
+StalVar(22)
 RemoveTrap 
 
 DISA 0xFC 
 STAL 10
+GOTO 99 
+
+LABEL 1 // Same event but faster 
+
+LOAD_S2 1 // No restriction: always load 
+ENUN 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+StalVar(7,22)
+RemoveTrap 
+DISA 0xFC 
+STAL 3
+
+
+LABEL 99 
 NoFade 
 ENDA 
 
@@ -1225,19 +1385,36 @@ LightruneAnimSlotB:
 SVAL sC 0 
 CHECK_CLASS 0x7FFE 
 BEQ 99 sC s0 
+CHECK_EVENTID SpeedupFlag
+BNE 1 sC s0 
+
 CAM1 0x7FFE 
 EmoticonSlotB(PokeballGraphic)
-STAL 14 
+StalVar(7,14)
 EmoticonSlotB(OpenPokeballGraphic)
-STAL 18
+StalVar(11,22)
 UNCR(0x7FFE, Hide) 
 SPAWN_NPC 0xFC [-1,-1] 
 AddAnimTrap(LightRuneTrapID)
-STAL 22 
+StalVar(22)
 RemoveTrap 
 
 DISA 0xFC 
 STAL 10
+
+LABEL 1 // Sped up version 
+CAM1 0x7FFE 
+UNCR(0x7FFE, Hide) 
+SPAWN_NPC 0xFC [-1,-1] 
+AddAnimTrap(LightRuneTrapID)
+StalVar(7,22)
+RemoveTrap 
+
+DISA 0xFC 
+STAL 3
+LABEL 99 
+
+
 LABEL 99 
 NoFade 
 ENDA 
@@ -1249,6 +1426,7 @@ ENDA
 
 
 FastTravelEvent:
+PauseFreeMovement
 TutText(KnowledgeArea)
 CHECK_ACTIVE 
 SADD r2 rC r0 
@@ -1260,13 +1438,14 @@ SPAWN_NPC 0xFD [-1,-1]
 EVBIT_T 2 // Scene skipping 
 MOVENEXTTO (-1) 0x7FFD 0x7FFE // speed, unit unit 
 ENUN 
-
+STAL 5 
 CAM1 0xFD 
 DISA 0xFD 
 UNCR(0x7FFD, 0x42) 
 CHECK_COORDS 0x7FFD 
 SADD rB rC r0 
 SET_CURSOR_SB
+//OverrideActorCoords
 
 EVBIT_F 2
 NoFade 
@@ -1290,6 +1469,7 @@ NoFade
 ENDA 
 
 PlacePlayers:
+//PauseFreeMovement
 SET_ACTIVE 0
 SPAWN_NPC 0xFD [0,0]
 Read_Byte(XCoordNewArea)
@@ -1324,7 +1504,7 @@ CAM1 0xFD
 DISA 0xFD 
 UNCR(0x0101, 0x0D)
 ASMC UndeployBadCoordMons // in CallCommand Pokemblem 
-//Text(0x9DD)
+CALL LoadAndPlaceProtag
 
 //MOVE 
 NoFade
@@ -1340,6 +1520,7 @@ ENDA
 #define EndLabel 63 
 
 CheckDeployed:
+ReorderParty
 GetNthUnit(6)
 BEQ Try5Label rC r0 
 LOAD3 0x0 First6Players 

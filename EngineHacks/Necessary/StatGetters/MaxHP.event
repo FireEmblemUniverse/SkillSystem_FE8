@@ -8,6 +8,7 @@ pMaxHPModifiers: // Maximum HP
 	#ifdef ACCESSORIES_AND_FORGING
 		//POIN prAddAccessoryHP
 	#endif 
+	POIN prAddEquipHP prItemPassiveHp
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -23,10 +24,6 @@ prAddEquipHP:
 prAddAccessoryHP:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityHPBonus-1)))
 	#endif 
-
-prHexingRodEffect:
-	#incbin "_asm/HexingRod.bin"
-	WORD DebuffTable
 
 prItemPassiveHp:
 #ifndef DONT_STACK_BOOSTS

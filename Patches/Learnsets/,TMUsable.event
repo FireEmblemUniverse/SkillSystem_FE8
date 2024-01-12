@@ -34,6 +34,8 @@
 #define Barrage 255 
 #define LightScreen 255 
 #define Reflect 255 
+#define Nightmare4 255 
+#define Hypnosis 255 
 
 
 ALIGN 4
@@ -873,7 +875,7 @@ BYTE 0
 ALIGN 4
 PinsirTMs:
 BYTE BodySlam BulkUp DoubleEdge Harden Guillotine Headbutt HyperBeam Rage Slash SwordsDance TakeDown Thrash SeismicToss Submission Dig Earthquake FocusEnergy Rest RockSlide RockTomb ThiefAtt Cut Bind
-BYTE KarateChop Magnitude RockThrow
+BYTE KarateChop Magnitude RockThrow HiJumpKick
 BYTE Constrict RollingKick
 BYTE 0
 
@@ -1027,15 +1029,21 @@ MewTMs:
 BYTE BodySlam BulkUp Constrict Screech Doubleslap DoubleHit DoubleEdge Harden Explosion Flash RecoverMove Glare Growl Guillotine Headbutt HornAttack HornDrill HyperBeam HyperFang Leer MegaKick MegaPunch PayDay Pound QuickAttack Rage SandAttack Scratch MetalClaw IronTail MeteorMash MirrorShot FlashCannon MetalSound Slam Slash Splash AttackPulse SuperFang Swift SwordsDance Tackle TailWhip Leer TakeDown Thrash TriAttack Ember FirePunch FlameWheel Scorch Flamethrower FireSpin FireBlast SacredFire Bubble WaterGun Clamp Crabhammer BubbleBeam HydroPump Surf Waterfall WaterPulse Absorb GrassKnot MegaDrain PetalDance LeafFlurry HoneClaws GuardMove LeafBlade MagicalLeaf SolarBeam RazorLeaf VineWhip ThunderMove ThunderPunch Thundershock Thunderbolt VoltTackle ThunderWave Spark Blizzard AuroraBeam IceBeam IcePunch Avalanche KarateChop DoubleKick Nightmare4 HiJumpKick JumpKick LowKick RollingKick SeismicToss Submission Acid PoisonGas PoisonPowder PoisonSting Sludge Smog PoisonJab Toxic Dig Bonemerang Earthquake Fissure Magnitude EarthPower MudBomb MudShot DrillPeck Fly Gust Peck SkyAttack AirSlash WingAttack FocusEnergy Hurricane ShockWave Tailwind RockSlide RockThrow Ancientpower RockTomb Rollout Wish ConfuseRay Lick NightShade ShadowBall ShadowPunch HexAtt DragonClaw DragonRage Dragonbreath Outrage Twister BugBite BugBuzz FuryCutter LeechLife Megahorn PinMissile SignalBeam StringShot UTurn XScissor ThiefAtt NightSlash DarkPulse NightDaze Bite Snarl Cut Covet Bind CometPunch Sandstorm EggBomb Roar Metronome DragonDance Withdraw SleepPowder LovelyKiss Sing Haze Minimize MirrorMove Counter Barrage IcyWind
 BYTE 0
 
+ALIGN 4 
+NoTMs:
+BYTE 0
+BYTE 0 
 
 
 // Stuff for Vesly 
 #define TMList(ClassID,pointer) "PUSH ; ORG TMListTable + ClassID * 4 ; POIN pointer ; POP"
 
+#define DefaultTMs16 "POIN NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs NoTMs" 
+#define DefaultTMs256 "DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16; DefaultTMs16"
 
 ALIGN 4
 TMListTable: // Allocate space for the spell list pointer table.
-FILL 4*0xFF
+DefaultTMs256 
 
 ALIGN 4
 TMList(BulbasaurID,BulbasaurTMs)

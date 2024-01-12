@@ -11,14 +11,11 @@ mov		r5,#0x40	@Magic Sword
 tst		r5,r0
 bne		Magic		@IsMagicSword?
 
-mov 	r0,#0x50	@weaponType
-ldrb	r0,[r4,r0]
-cmp		r0,#0x4		@4 = Staff 
-beq		Magic
-b 		IsStr 
+mov r5, #0x2 @IsMagic
+tst r5, r0
+bne Magic
 
-@cmp		r0,#0x4		@0=sword 1=lance 2=axs 3=bow
-@blt		IsStr		@IsPhysicalWeapon? 4=staff 5=anima ... 0xff = staff(when alone)
+b IsStr
 
 Magic:
 mov		r7,#0x3A

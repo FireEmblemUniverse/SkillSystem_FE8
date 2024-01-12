@@ -65,6 +65,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 EVBIT_MODIFY 4 
 CHECK_EVENTID CascadebadgeObtained
 BNE 0x63 rC r0 
@@ -75,6 +78,7 @@ CAM1 [7,0]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) // Trainers given +5 visible levels 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
 

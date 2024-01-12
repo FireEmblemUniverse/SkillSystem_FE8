@@ -22,7 +22,7 @@ cmp r1, #0xEF
 ble EndInjureAttacker @ don't hit trainers 
 Continue: 
 
-ldrb r0, [ r4, #0x12 ] @ Max HP
+ldrb r0, [ r4, #0x13 ] @ CurrHP
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
 @mov r1, #10
@@ -48,6 +48,8 @@ bx r0
 .type PSGWInjureDefender, %function
 PSGWInjureDefender: @ r4 = attacker's characterr struct, @ r5 = defender's character struct, 6 = attack struct, r7 = defense struct
 push { lr }
+cmp r5, #0 
+beq EndInjureDefender 
 ldrb r1, [ r5, #0x13 ]
 cmp r1, #0x00
 beq EndInjureDefender @ Leave if the defender is already dead.
@@ -59,7 +61,7 @@ cmp r1, #0xEF
 ble EndInjureDefender @ don't hit trainers 
 Continue2: 
 
-ldrb r0, [ r5, #0x12 ] @ Max HP
+ldrb r0, [ r5, #0x13 ] @ Curr HP
 lsr r0, #2 @ 1/4 hp 
 @lsl r0, r0, #1 @ Multiply by 2
 @mov r1, #10

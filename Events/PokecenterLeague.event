@@ -1,5 +1,5 @@
 #define ChapterID PokecenterLeagueCh
-#define GenericA UnitRoute21Wild
+#define GenericA 0xF0
 #define GenericB UnitRoute21Trainer
 #define ClassA ClassRoute21WildA
 #define ClassB ClassRoute21WildB
@@ -46,6 +46,10 @@ ALIGN 4
 ShopItems_A:  // Supplies + StatBoosters 
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI 0
+BYTE Revive 1 
+BYTE SuperRepel 5
+BYTE EscapeRope 5
+BYTE WarpCrystal 5
 SHLI SuperPotion JellyDonut HyperPotion MaxPotion FullHeal HPUp Protein Calcium Carbos Iron Zinc RareCandy
 //SHLI MoonStone FireStone WaterStone ThunderStone LeafStone LinkStone 
 BYTE $0 0; ALIGN 4
@@ -131,11 +135,12 @@ BYTE $0 0; ALIGN 4
 ALIGN 4
 ShopItems_E: // SkillAccessories ? 
 BYTE SkillAccShop(RockyHelmetSkillID)
-BYTE SkillAccShop(FuryID)
+//BYTE SkillAccShop(FuryID) // berserk gene too good 
 BYTE SkillAccShop(WaryFighterID)
 BYTE SkillAccShop(RenewalID)
 //SealSpdAccessory 
 BYTE SkillAccShop(PoisonStrikeID)
+BYTE SkillAccShop(SavageBlowID)
 BYTE SkillAccShop(VantagePlusID)
 BYTE SkillAccShop(DazzleID)
 BYTE SkillAccShop(BreathOfLifeID)

@@ -1,0 +1,162 @@
+
+
+#include "ItemEffects.lyn.event" 
+#include "Aum.lyn.event" // by Sme 
+
+ALIGN 4 
+TeleportEvent:
+Read_Byte(XCoordTeleport)
+SADD s2 sC s0 
+Write_Byte(XCoordNewArea) 
+Read_Byte(YCoordTeleport)
+SADD s2 sC s0 
+Write_Byte(YCoordNewArea) 
+Read_Byte(TeleportChapter)
+SADD s2 sC s0 
+Write_Byte(CurrentChapter)
+CALL HandleProtag 
+MNC2 PCBoxCh 
+NoFade 
+ENDA 
+
+
+ALIGN 4 
+DigEvent:
+Read_Byte(XCoordDig)
+SADD s2 sC s0 
+Write_Byte(XCoordNewArea) 
+Read_Byte(YCoordDig)
+SADD s2 sC s0 
+Write_Byte(YCoordNewArea) 
+Read_Byte(DigChapterRam)
+SADD s9 sC s0 
+CALL ForceChTransition 
+//Write_Byte(CurrentChapter)
+//CALL HandleProtag 
+//MNC2 PCBoxCh 
+//TutText(DebugText)
+NoFade 
+ENDA 
+
+ALIGN 4 
+WarpCrystal_Link:
+WORD WarpCrystal 
+EscapeRope_Link: 
+WORD EscapeRope 
+Revive_Link: 
+WORD Revive 
+Teleport_Link: 
+//WORD Teleport 
+WORD 255 
+Dig_Link: 
+WORD Dig 
+DigChapterRam_Link: 
+WORD DigChapterRam
+TeleportChapter_Link: 
+WORD TeleportChapter 
+PsychicType_Link: 
+WORD PsychicType 
+
+
+ALIGN 4 
+gTravelMenuItems: 
+MenuCommand(UM_Fly, UM_FlyDesc, NormalText, FlyCommandUsability, CallSoarEffect|1)
+MenuCommand(UM_Fly2, UM_FlyDesc2, NormalText, FlyMenuCommandUsability, FlyCommandEffect)
+MenuCommand(CM_Dig, CM_DigDesc, NormalText, DigFieldMoveUsability, DigFieldMoveEffect)
+MenuCommand(CM_EscapeRope, CM_EscapeRopeDesc, NormalText, EscapeRopeUsability, EscapeRopeMenuEffect)
+MenuCommand(CM_Teleport, CM_TeleportDesc, NormalText, TeleportFieldMoveUsability, TeleportFieldMoveEffect)
+MenuCommand(CM_WarpCrystal, CM_WarpCrystalDesc, NormalText, WarpCrystalUsability, WarpCrystalMenuEffect)
+UM_Separator
+
+
+#define MenuCancelSelect 0x804f455 
+#define MenuAutoHelpBoxSelect 0x804f521
+#define MenuStdHelpBox 0x804f459
+
+ALIGN 4
+travelSubMenuDef:
+BYTE 1 1 9 0
+WORD 0
+POIN gTravelMenuItems
+POIN 0 0 0 TravelCancelSelect MenuAutoHelpBoxSelect MenuStdHelpBox
+
+
+
+ALIGN 4 
+EscapeRopeChapterTable: // chapters that you can use an escape rope in 
+FILL(256) 
+#define EscRopeEntry(ID) "PUSH; ORG EscapeRopeChapterTable+ID; BYTE 1; POP" 
+EscRopeEntry(ViridianForestSCh)
+EscRopeEntry(ViridianForestNCh)
+EscRopeEntry(MtMoonB1Ch)
+EscRopeEntry(MtMoonB2Ch)
+EscRopeEntry(MtMoonB3Ch)
+EscRopeEntry(CeruleanCaveB1Ch)
+EscRopeEntry(CeruleanCaveB2Ch)
+EscRopeEntry(CeruleanCaveB3Ch)
+EscRopeEntry(SSAnneCh)
+EscRopeEntry(DiglettsCaveCh)
+EscRopeEntry(RockTunnelB1Ch)
+EscRopeEntry(RockTunnelB2Ch)
+EscRopeEntry(PokemonTowerF1Ch)
+EscRopeEntry(PokemonTowerF2Ch)
+EscRopeEntry(PokemonTowerF3Ch)
+EscRopeEntry(PokemonTowerF4Ch)
+EscRopeEntry(PokemonTowerF5Ch)
+EscRopeEntry(SafariSCh)
+EscRopeEntry(SafariECh)
+EscRopeEntry(SafariNCh)
+EscRopeEntry(SafariWCh)
+EscRopeEntry(SilphCo1FCh)
+EscRopeEntry(SilphCo2FCh)
+EscRopeEntry(SilphCo3FCh)
+EscRopeEntry(SilphCo4FCh)
+EscRopeEntry(SilphCo5FCh)
+EscRopeEntry(SeafoamB1Ch)
+EscRopeEntry(SeafoamB2Ch)
+EscRopeEntry(SeafoamB3Ch)
+EscRopeEntry(SeafoamB4Ch)
+EscRopeEntry(SeafoamB5Ch)
+EscRopeEntry(MansionB1Ch)
+EscRopeEntry(MansionB2Ch)
+EscRopeEntry(MansionB3Ch)
+EscRopeEntry(MansionB4Ch)
+EscRopeEntry(PowerPlantCh)
+EscRopeEntry(VictoryRoadB1Ch)
+EscRopeEntry(VictoryRoadB2Ch)
+EscRopeEntry(VictoryRoadB3Ch)
+
+ALIGN 4 
+CannotTeleportChapterTable: 
+FILL(256)
+#define CannotTeleportEntry(id) "PUSH; ORG CannotTeleportChapterTable+id; BYTE 1; POP" 
+//CannotTeleportEntry(PewterGymCh)
+//CannotTeleportEntry(CeruleanGymCh)
+//CannotTeleportEntry(VermilionGymCh)
+//CannotTeleportEntry(FuschiaGymCh)
+//CannotTeleportEntry(CeladonGymCh)
+//CannotTeleportEntry(SaffronGymCh)
+//CannotTeleportEntry(CinnabarGymCh)
+//CannotTeleportEntry(ViridianGymCh)
+
+ ALIGN 4 
+CannotReviveChapterTable: 
+ FILL(256) 
+ #define CannotReviveEntry(id) "PUSH; ORG CannotReviveChapterTable+id; BYTE 1; POP" 
+CannotReviveEntry(PewterGymCh)
+CannotReviveEntry(CeruleanGymCh)
+CannotReviveEntry(VermilionGymCh)
+CannotReviveEntry(FuschiaGymCh)
+CannotReviveEntry(CeladonGymCh)
+CannotReviveEntry(SaffronGymCh)
+CannotReviveEntry(CinnabarGymCh)
+CannotReviveEntry(ViridianGymCh)
+//CannotReviveEntry(SilphCo1FCh)
+//CannotReviveEntry(SilphCo5FCh)
+CannotReviveEntry(LoreleiCh)
+CannotReviveEntry(BrunoCh)
+CannotReviveEntry(AgathaCh)
+CannotReviveEntry(LanceCh)
+CannotReviveEntry(ChampionCh)
+
+

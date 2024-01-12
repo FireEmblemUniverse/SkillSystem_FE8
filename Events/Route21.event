@@ -34,11 +34,11 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 1, ReinforcementUnitsA, 2, 4) 
-Reinforce(0xF1, 1, ReinforcementUnitsA, 3, 4) 
-Reinforce(0xF2, 1, ReinforcementUnitsB, 3, 4) 
-Reinforce(0xF3, 1, ReinforcementUnitsB, 3, 4) 
-Reinforce(0xF4, 1, ReinforcementUnitsB, 3, 4) 
+//Reinforce(0xF0, 1, ReinforcementUnitsA, 2, 4) 
+Reinforce(0xF1, 1, ReinforcementUnitsA, 4, 4) 
+Reinforce(0xF2, 1, ReinforcementUnitsB, 5, 4) 
+//Reinforce(0xF3, 1, ReinforcementUnitsB, 3, 4) 
+Reinforce(0xF4, 1, ReinforcementUnitsB, 6, 4) 
 }
 
 
@@ -62,6 +62,7 @@ AREA 0 ToPallet_W [6,0][6,0]
 AREA 0 ToPallet_E [11,0][11,0] 
 AREA 0 ToPallet_Water [7,0][10,0] 
 AREA 0 ToCinnabar [4,52][17,52] 
+AREA 0x13 SurfMessageEvent [6,0][16,10] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -73,7 +74,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToPallet_Water:
-ChapterTransition(PalletCh, 8, 18)
+ChapterTransition(PalletCh, 11, 18)
 
 ToPallet_E:
 ChapterTransition(PalletCh, 11, 18)
@@ -84,7 +85,13 @@ ChapterTransition(PalletCh, 6, 18)
 ToCinnabar:
 ChapterTransition(CinnabarCh, 12, 1)
 
-
+SurfMessageEvent: 
+CHECK_EVENTID MarshbadgeObtained
+BNE 99 sC s0 
+TutText(CannotSurfYetText) 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -146,7 +153,7 @@ CALL LoadAndPlacePlayers
 
 CHECK_EVENTID VolcanobadgeObtained 
 BNE 0 sC s0 
-TILECHANGE 0 
+//TILECHANGE 0 
 LABEL 0 
 
 LOAD1 0x1 EnemyUnitsA
@@ -219,8 +226,8 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
@@ -240,14 +247,14 @@ UNIT
 
 EnemyUnitsD:
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT 0xF3 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
+//UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT 0xF3 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsE:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF4 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -261,12 +268,12 @@ UNIT
 
  
 HumanTrainers:
-UNIT 0xE0 swimmer_f_landID 0x0 Level(0, Enemy, 1) [10,21]  0b 0x0	0x1 REDA36R16  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 swimmer_m_landID 0x0 Level(0, Enemy, 1) [17,24]  0b 0x0	0x0 0x0  		[OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 swimmer_f_landID 0x0 Level(0, Enemy, 1) [8,30]  0b 0x0	0x0 0x0  		[ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 swimmer_m_landID 0x0 Level(0, Enemy, 1) [15,39]  0b 0x0	0x0 0x0  		[ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE4 swimmer_f_waterID 0x0 Level(0, Enemy, 1) [13,46]  0b 0x0	1 REDA13R46	 			 [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE5 swimmer_f_waterID 	0x0 Level(0, Enemy, 1) [6,42]  0b 0x0	1 REDA6R42  		[ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE0 swimmer_f_landID 0x0 Level(LVFACEUP, Enemy, 1) [10,21]  0b 0x0	0x1 REDA10R21  [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE1 swimmer_m_landID 0x0 Level(0, Enemy, 1) [17,24]  0b 0x0	0x0 0x0  		[OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE2 swimmer_f_landID 0x0 Level(0, Enemy, 1) [8,30]  0b 0x0	0x0 0x0  		[ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 swimmer_m_landID 0x0 Level(LVFACELEFT, Enemy, 1) [15,39]  0b 0x0	0x0 0x0  		[ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE4 swimmer_f_waterID 0x0 Level(LVFACEUP, Enemy, 1) [10,46]  0b 0x0	1 REDA10R46	 			 [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE5 swimmer_f_waterID 	0x0 Level(0, Enemy, 1) [6,42]  0b 0x0	1 REDA6R42  		[ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
@@ -292,12 +299,12 @@ BQ(0xE, 0)
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
-BD(0, R21_0xE0_BD, 600)
-BD(1, R21_0xE1_BD, 600)
-BD(2, R21_0xE2_BD, 600)
-BD(3, R21_0xE3_BD, 600)
-BD(4, R21_0xE4_BD, 600)
-BD(5, R21_0xE5_BD, 600)
+BD(0, R21_0xE0_BD, 900)
+BD(1, R21_0xE1_BD, 800)
+BD(2, R21_0xE2_BD, 900)
+BD(3, R21_0xE3_BD, 500)
+BD(4, R21_0xE4_BD, 1200)
+BD(5, R21_0xE5_BD, 1300)
 BD(0xE, 0, 0)
 TDQ_TableTerminator ; }
 

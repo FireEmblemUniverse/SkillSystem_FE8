@@ -2,7 +2,7 @@
 
 #define PewterGymLevel 11 // 11 
 #define CeruleanGymLevel 17 // 17 
-#define VermillionGymLevel 23 // 23 
+#define VermilionGymLevel 23 // 23 
 #define FuschiaGymLevel 29 // 29 
 #define CeladonGymLevel 35 // 35 
 #define SaffronGymLevel 41 // 41 
@@ -10,10 +10,10 @@
 #define ViridianGymLevel 50 // 53 
 
 
-#define SaffronDojoLevel 40
+#define SaffronDojoLevel 46
 
 // hidden levels applied to gyms 
-#define VermillionGymBonus 3
+#define VermilionGymBonus 3
 #define FuschiaGymBonus 5
 #define CeladonGymBonus 2
 #define SaffronGymBonus 2 
@@ -209,6 +209,8 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define TempAlly_E 0x3B
 #define TempAllies 0x373B 
 
+//#define ProtagID 0x45 
+
 #define OaksPikachu 0x4F
 #define UnitPalletTownWild 0x50
 #define UnitRoute1Wild 0x51
@@ -279,7 +281,7 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitRoute11Trainer 0xAE
 #define UnitDiglettsCaveTrainer 0xAE // unused? 
 #define UnitSSAnneTrainer 0xAF
-#define UnitVermillionGymTrainer 0xB0
+#define UnitVermilionGymTrainer 0xB0
 #define UnitRoute9ETrainer 0xB1 
 #define UnitRoute10Trainer 0xB2
 #define UnitRockTunnelTrainer 0xB3 

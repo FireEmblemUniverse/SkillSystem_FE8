@@ -98,17 +98,7 @@ WORD 0
 
 ALIGN 4
 CMTextIDs:
-SHORT 0xf78 0xf79 0x0
+SHORT TxtData0xF04 TxtData0xF05 0x0
 
-ALIGN 4
-TxtData0xf78:	//CasualModeMenuOption
-#incbin "0xf78.bin"
-
-TxtData0xf79:	//ClassicModeMenuOption
-#incbin "0xf79.bin"
-
-//#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP" //With Huffman
-setText(0xf78,TxtData0xf78)
-setText(0xf79,TxtData0xf79)
 
 ALIGN 4

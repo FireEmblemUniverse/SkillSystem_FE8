@@ -24,8 +24,10 @@
 	.type   Get5thUnit, function
 	.global Get6thUnit
 	.type   Get6thUnit, function
-
-	
+	.global Get7thUnit
+	.type   Get7thUnit, function
+	.global Get7thUnitASMC
+	.type   Get7thUnitASMC, function
 
 Get1stUnit:
 	push {r4-r7, lr}	
@@ -57,6 +59,21 @@ Get6thUnit:
 	mov r6, #6
 	b Start
 .align 
+Get7thUnitASMC:
+push {lr} 
+bl Get7thUnit 
+ldr r3, =MemorySlot 
+str r0, [r3, #4*0x0C] 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+Get7thUnit:
+	push {r4-r7, lr}	
+	mov r6, #7
+	b Start
+.align 
 Start: 
 
 mov r4,#1 @ current deployment id
@@ -65,20 +82,24 @@ mov r5,#0 @ counter
 LoopThroughUnits:
 mov r0,r4
 blh GetUnit @ 19430
-mov r1, r0 
-mov r0, #0
-cmp r1,#0
+cmp r0,#0
 beq NextUnit
-ldr r3,[r1]
-cmp r3,#0
-beq NextUnit
-ldr r3,[r1,#0xC] @ condition word
+ldr r3,[r0,#0xC] @ condition word
 ldr r2, =#0x1000C @ escaped, benched/dead
 tst r3,r2
 bne NextUnit
+ldr r3,[r0]
+cmp r3,#0
+beq NextUnit
+ldrb r3, [r3, #4] 
+ldr r2, =ProtagID_Link 
+ldr r2, [r2] 
+cmp r2, r3 
+beq NextUnit @ ignore protag 
+
+
 @ if you got here, unit exists and is not dead or undeployed, so go ham
 @r0 is Ram Unit Struct 
-mov r0, r1 
 add r5,#1
 cmp r5,r6
 bge End_LoopThroughUnits
@@ -94,5 +115,5 @@ bx r1
 
 .ltorg
 .align 
-	
+
 

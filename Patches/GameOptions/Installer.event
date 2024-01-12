@@ -1,9 +1,12 @@
 
-#define GameOptionsMaxEntries 0x12 // There are a couple places where the game checks the size of this table. 
-#define NumberOfOptionsToDisplay 10 
+#define GameOptionsMaxEntries 0x13 // There are a couple places where the game checks the size of this table. 
+#define NumberOfOptionsToDisplay 11 
 
 #define AutosaveOpt 0x11 // New entries start at 0x11 
-#define DangerRadiusOpt 0x12 
+#define HelpInfoOpt 0x12 
+#define TurboOpt 0x13 
+#define DangerRadiusOpt 0x14 
+
 
 // CustomDefinitions 
 //#define QuicksaveToggleFlag 0x96 
@@ -34,10 +37,33 @@ GenericCheckCurrentOptionCode
 
 
 ALIGN 4
+HelpInfoToggleFunc:
+BYTE DisableTutMsgsFlag $20 // mov r0, #Index
+GenericToggleFunctionCode
+
+ALIGN 4
+HelpInfoCheckCurrentOption:
+BYTE DisableTutMsgsFlag $20 // mov r0, #Index
+GenericCheckCurrentOptionCode
+
+ALIGN 4
+TurboToggleFunc:
+BYTE SpeedupFlag $20 // mov r0, #Index
+GenericToggleFunctionCode
+
+ALIGN 4
+TurboCheckCurrentOption:
+BYTE SpeedupFlag $20 // mov r0, #Index
+GenericCheckCurrentOptionCode
+
+
+ALIGN 4
 GameOptionsOrderList:
 //BYTE AnimationOpt
 BYTE AutosaveOpt
-BYTE DangerRadiusOpt
+//BYTE DangerRadiusOpt
+BYTE HelpInfoOpt
+BYTE TurboOpt 
 BYTE GameSpeedOpt 
 BYTE TextSpeedOpt 
 //BYTE TerrainOpt 
@@ -55,6 +81,8 @@ BYTE 0 0  // Terminator?
 
 // Set text/position/icon/checkCurrent / toggle routine for the entry 
 GameOptionsEntry(AutosaveOpt, QuicksaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) 
-GameOptionsEntry(DangerRadiusOpt, DangerRadiusText, DangerRadiusHelpText, DangerRadiusAutoText, 368, DangerRadiusManualHelpText, DangerRadiusManualText, 1167, 0x14, DangerRadiusCheckCurrentOption, DangerRadiusToggleFunc) 
+GameOptionsEntry(TurboOpt, TurboText, TurboHelpText, HelpInfoDisableText, 368, TurboHelpText, HelpInfoEnableText, 1167, 0x14, TurboCheckCurrentOption, TurboToggleFunc) 
+//GameOptionsEntry(DangerRadiusOpt, DangerRadiusText, DangerRadiusHelpText, DangerRadiusAutoText, 368, DangerRadiusManualHelpText, DangerRadiusManualText, 1167, 0x14, DangerRadiusCheckCurrentOption, DangerRadiusToggleFunc) 
+GameOptionsEntry(HelpInfoOpt, HelpInfoText, HelpInfoHelpText, HelpInfoEnableText, 368, HelpInfoDisableHelpText, HelpInfoDisableText, 1167, 0x4, HelpInfoCheckCurrentOption, HelpInfoToggleFunc) 
 
 

@@ -168,12 +168,15 @@ int ReplaceMoveCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* c
 {
     struct ReplaceMoveProc* proc = (void*) ProcStart(Proc_ReplaceMove, ROOT_PROC_3);
     //struct ReplaceMoveProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
+	gActiveUnit->state &= ~US_HIDDEN; 
+	SMS_UpdateFromGameData(); 
+	MU_EndAll();
 	
 	int* gVeslyUnit = (int*) 0x30017BC;
 	int* gVeslySkill = (int*) 0x0202BCDE;	
 	proc->moveReplacement = *gVeslySkill; // Short 
     proc->unit = (struct Unit*) *gVeslyUnit; // Struct UnitRamPointer 
-
+	
 	
 	int* MemorySlot1 = (int*) 0x30004BC;
 	int* MemorySlot3 = (int*) 0x30004C4; 

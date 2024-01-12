@@ -4,7 +4,7 @@
 //0x10 - 0x19 obtain item //"Take" or #16 - 31 
 //0x20 - 0x29 generictrap disappear // "Interact" or 32 - 47 
 //other - display only or 64+ 
-
+#include "c/Installer.event" 
 
 	#define CustomTrapID 50 //just sequentially after what i'm aware of being used by other hacks already
 
@@ -22,8 +22,8 @@
 	SetTrapEventInit(RedPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(GoldPokeballItemID,ObtainItemInitialization)
 	SetTrapEventInit(HiddenPokeballItemID,ObtainItemInitialization)
-
-	SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
+	//SetTrapEventInit(CoinsTrapID,ObtainCoinsInitialization)
+	SetTrapInit(CoinsTrapID,InitIfNewFlagInByte3IsOff)
 		//SetTrapEventInit(CoinsTrapID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder22ID,ObtainItemInitialization)
 	SetTrapEventInit(Placeholder23ID,ObtainItemInitialization)
@@ -68,7 +68,13 @@
 	
 	SetTrapEventInit(FlowerTrapID,GenericTrapInitialization)
 	
-	SetTrapEventInit(52,GenericTrapInitialization)
+	#define RaftTrapID 52 
+	SetTrapEventInit(RaftTrapID,GenericTrapInitialization)
+	SetTerrainForTrap(RaftTrapID, 1) // ground 
+SetTrapMapSpritePalette(RaftTrapID,NPCTrapPaletteWord)
+#define RaftTrap(XX,YY) "BYTE RaftTrapID XX YY 0x0 RaftSMS 0x0"
+	
+	
 	SetTrapEventInit(53,GenericTrapInitialization)
 	SetTrapEventInit(54,GenericTrapInitialization)
 	SetTrapEventInit(55,GenericTrapInitialization)
@@ -101,7 +107,7 @@
 #define CompletionObstacleID 51 
 //#define GenericCompletion(XX,YY,CompletionFlag, Sprite, EffectID) "BYTE CompletionObstacleID XX YY CompletionFlag Sprite EffectID"
 #define GenericCompletion(XX,YY,Sprite, TextID) "BYTE CompletionObstacleID XX YY Sprite; SHORT TextID"
-SetTrapEventInit(CompletionObstacleID, GenericTrapDisappearCompletionInitialization)
+SetTrapEventInit(CompletionObstacleID, GenericTrapInitialization)
 SetTrapMapSpritePalette(CompletionObstacleID,NPCTrapPaletteWord)
 SetImpassableTrap(CompletionObstacleID)
 
@@ -131,29 +137,61 @@ SetImpassableTrap(CompletionObstacleID)
 
 
 #define SignTrapID 80 //0x50 
-SetTrapEventInit(SignTrapID,DisplayTextInitialization)
+//SetTrapEventInit(SignTrapID,DisplayTextInitialization)
+SetTrapInit(SignTrapID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(SignTrapID,SignSMS)
 SetTrapMapSpritePalette(SignTrapID,NPCTrapPaletteWord)
 SetImpassableTrap(SignTrapID)
+ALIGN 4 
+SignTrapID_Link: 
+WORD SignTrapID 
+ALIGN 4 
+HelpMsgFlagOffset_Link:
+SHORT HelpMsgFlagOffset
 
 
 #define Sign2TrapID 81 //0x51 
-SetTrapEventInit(Sign2TrapID,DisplayTextInitialization)
+//SetTrapEventInit(Sign2TrapID,DisplayTextInitialization)
+SetTrapInit(Sign2TrapID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(Sign2TrapID,Sign2SMS)
 SetTrapMapSpritePalette(Sign2TrapID,NPCTrapPaletteWord)
 SetImpassableTrap(Sign2TrapID)
+ALIGN 4 
+Sign2TrapID_Link: 
+WORD Sign2TrapID 
 
 #define BlankExamineID 82 //0x52
-SetTrapEventInit(BlankExamineID,DisplayTextInitialization)
+//SetTrapEventInit(BlankExamineID,DisplayTextInitialization)
+SetTrapInit(BlankExamineID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(BlankExamineID,BlankSMS)
 SetTrapMapSpritePalette(BlankExamineID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankExamineID)
+ALIGN 4 
+BlankExamineID_Link: 
+WORD BlankExamineID 
 
-#define BlankTalkID 83 //0x52
-SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
+#define BlankTalkID 83 //0x53
+//SetTrapEventInit(BlankTalkID,DisplayTextInitialization)
+SetTrapInit(BlankTalkID, InitIfFlagInByte3IsOff)
 SetTrapMapSprite(BlankTalkID,BlankSMS)
 SetTrapMapSpritePalette(BlankTalkID,NPCTrapPaletteWord)
 SetImpassableTrap(BlankTalkID)
+ALIGN 4 
+BlankTalkID_Link: 
+WORD BlankTalkID 
+
+#define TutSignID 84 // 0x54 
+//SetTrapEventInit(TutSignID,DisplayTextInitialization0x54) // always initialize even if flag is on 
+SetTrapInit(TutSignID, AlwaysInitTrap)
+SetTrapMapSprite(TutSignID,SignSMS)
+SetTrapMapSpritePalette(TutSignID,NPCTrapPaletteWord)
+SetImpassableTrap(TutSignID)
+
+ALIGN 4 
+TutSignID_Link: 
+WORD TutSignID 
+
+#define TutSign(XX,YY,CompletionFlag, TextID) "BYTE TutSignID XX YY CompletionFlag; SHORT TextID"
 
 // same but not adjacent: on instead 
 #define BlankCGEnterID 90 //0x5A 
@@ -205,7 +243,8 @@ SetImpassableTrap(ObtainSpellID)
 
 
 #define BerryTreeTrapID 112 //0x70
-SetTrapEventInit(BerryTreeTrapID,BerryTreeInitialization)
+//SetTrapEventInit(BerryTreeTrapID,BerryTreeInitialization)
+SetTrapInit(BerryTreeTrapID,AlwaysInitTrap)
 SetTrapMapSprite(BerryTreeTrapID,BerryTreeSMS)
 //SetTrapMapSprite(BerryTreeTrapID,HealingTileSMS)
 SetTrapMapSpritePalette(BerryTreeTrapID,NPCTrapPaletteWord)
@@ -318,6 +357,7 @@ ENDA
 #define SkillScrollTrap(XX,YY, Flag, SkillID) "BYTE ObtainSkillID XX YY Flag SkillScroll SkillID" 
 #define SpellScrollTrap(XX,YY, Flag, SpellID) "BYTE ObtainSpellID XX YY Flag SpellScroll SpellID" // 2nd last byte is ItemID defined in custom definitions in root  
 #define RedPokeballTrap(XX,YY, Flag, ItemID) "BYTE RedPokeballItemID XX YY ItemID Flag 0x0"
+#define RedPokeballTrap(XX,YY, Flag, ItemID, Durability) "BYTE RedPokeballItemID XX YY ItemID Flag Durability"
 #define GoldPokeballTrap(XX,YY, Flag, ItemID) "BYTE GoldPokeballItemID XX YY ItemID Flag 0x0"
 
 
@@ -418,3 +458,36 @@ POIN GenericTrapDisappearTableOffset
 
 #include "GiveItemEvent.event"
 #include "ShowTextEvent.event"
+
+
+
+
+ALIGN 4 
+BerryTrapID_Link:
+WORD BerryTreeTrapID 
+CutBushTrapID_Link:
+WORD CutBushTrapID
+RockSmashTrapID_Link:
+WORD RockSmashTrapID
+StrengthBoulderTrapID_Link:
+WORD StrengthBoulderTrapID
+ObtainedCutFlag_Link:
+WORD ObtainedCutFlag
+RockSmashFlag_Link:
+WORD RockSmashFlag
+StrengthBoulderFlag_Link:
+WORD StrengthBoulderFlag
+
+WORD CoinsFlagOffset //0x0 
+WORD SignAreaFlagOffset //0x20 
+WORD ObtainSpellFlagOffset //0x40 
+WORD ObtainSkillFlagOffset //0x60 
+WORD ObtainItemFlagOffset //0x80 
+WORD TrainerDefeatedFlagOffset //0xA0 // should use about 0x100 bytes? 128 chapters max * 2 bytes each 
+WORD ObtainAccessoryFlagOffset //0x1A0 // should use 0x20 bytes (128 * (1/4)) 
+WORD PokedexCaughtFlagOffset //0x1C0 // RegisterPokemon in trap rework because most pokemblem ram usage is there i guess 
+WORD PokedexSeenFlagOffset //0x1E0 
+WORD HelpMsgFlagOffset //0x200 // until 0x220 
+
+
+

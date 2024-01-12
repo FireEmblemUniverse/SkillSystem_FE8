@@ -233,6 +233,9 @@ void TrapUnitMenu(TrapHandlerProc* proc) {
 		//MU_StartActionAnim(muProc);
 		
 		StartMenu_AndDoSomethingCommands(&gMenu_UnitMenu, x1, 1, 20); //! FE8U = 0x804F64D
+		
+ 
+		
 		Proc* playerPhaseProc = ProcFind(&gProc_PlayerPhase[0]); //! FE8U = (0x08002E9C+1)
 		ProcGoto(playerPhaseProc, 7); // apply unit action etc. //! FE8U = (0x08002F24+1)
 	} 
@@ -297,7 +300,8 @@ void TrapHandlerCheck(TrapHandlerProc* proc) {
 			u32 bicState = ~0x42; // canto / ended turn already 
 			proc->pUnit->state = (proc->pUnit->state & bicState) | 0x1; // add hide bitflag if it wasn't already there (eg. for chained movements) 
 			SMS_UpdateFromGameData(); // so they will be hidden during chained movement 
-			
+			//this makes the unit action end if B is pressed
+			gGameState.partialActionTaken = PARTIAL_ACTION_RESCUE_TRANSFER;
 			struct Vec2 dest = GetPushPosition(proc->pUnit, direction, 0);
 			struct Vec2 start;
 			start.x = x; 

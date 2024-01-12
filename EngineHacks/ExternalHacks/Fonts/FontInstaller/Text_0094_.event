@@ -1,0 +1,5 @@
+// Sub Font Installer
+ALIGN 4
+Fonts(0x0007, 12)
+	#incbin "../FontData/FontTextޔ.fefont"
+

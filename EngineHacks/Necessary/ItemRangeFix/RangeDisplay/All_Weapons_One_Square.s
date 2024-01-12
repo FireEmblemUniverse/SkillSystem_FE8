@@ -4,6 +4,12 @@
 @r0 has char data, r1 has slot # (-1 in this case)
 push	{r4,r14}
 mov		r4,r0
+push {r1} 
+bl BuildStraightLineRangeFromUnit
+pop {r1} 
+cmp r0, #1 
+beq Exit 
+mov r0, r4 @ unit 
 ldr		r2,WeaponCheck
 @ldr		r3,ReturnRangeBitfield
 @bl		goto_r3
@@ -20,6 +26,7 @@ ldsb	r1,[r4,r1]
 @bl		goto_r4
 bl		Write_Range
 @bl LineOfSight 
+Exit: 
 pop		{r4}
 pop		{r0}
 bx		r0

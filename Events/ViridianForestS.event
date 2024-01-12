@@ -3,8 +3,8 @@
 #define GenericB UnitViridianForestSTrainer
 #define ClassA ClassViridianForestSWildA
 #define ClassB ClassViridianForestSWildB
-#define WildLvl 2
-#define TrainerL 5
+#define WildLvl 4
+#define TrainerL 8
 
 
 
@@ -29,7 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 
 END_MAIN
 
@@ -82,6 +82,30 @@ ChapterTransition(ViridianForestNCh, 43, 31)
 ToViridianForestN_B:
 ChapterTransition(ViridianForestNCh, 37, 32)
 
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(35,0,45,27) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [39,11]
+CUMO [39,11]
+STAL 30
+CURE  
+TutText(TrainerTip_TMs_2)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -90,14 +114,14 @@ Traps1:
 HealTile(43,25)
 
 //CoinsTrap(42,13,(ChapterID*2)+1,400)
-SpellScrollTrap(42,13, (ChapterID*2)+1, LeechLife)
+SpellScrollTrap(42,13, (ChapterID*2)+1, AttackPulse)
 
-SpellScrollTrap(18,0, (ChapterID*2)+3, AttackPulse) // Found in next ch, so +3
+SkillScrollTrap(18,0, (ChapterID*2)+2, TantivyID) // Found in next ch, so +2
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
-//RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
+RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
@@ -119,8 +143,8 @@ SaveCost(42,7)
 BerryTree(27,9,5)
 BerryTree(10,14,5)
 
-SignTrap(39,11, TrainerTip_TMs_2)
-SignTrap(25,24, TrainerTip_WildBosses)
+TutSign(39,11,ChapterID*2, TrainerTip_TMs_2)
+TutSign(25,24,ChapterID*2+1, TrainerTip_WildBosses)
 
 
 ENDTRAP
@@ -236,7 +260,7 @@ UNIT
 
 
 BeedrillUnitGroup:
-UNIT 0xEE BeedrillID 0x0 Level(5, Enemy, 1)   [24,11] 0b	0x0 0x01 REDA24R11 [0x0,0x0,0x0,0x0] BeedrillAI
+UNIT 0xEE BeedrillID 0x0 Level(2, Enemy, 1)   [24,11] 0b	0x0 0x01 REDA24R11 [0x0,0x0,0x0,0x0] BeedrillAI
 UNIT 
 
 
@@ -246,9 +270,9 @@ UNIT
 
 BossSummons: 
 UNIT GenericA 	WeedleID		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
-UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [11,11]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
-UNIT GenericA 	ClassA 	0xEE 	Level(0, Enemy, 1) [10,10]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
-UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	PikachuID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+UNIT GenericA 	CaterpieID 	0xEE 	Level(0, Enemy, 1) [10,10]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
+//UNIT GenericA 	ClassA 		0xEE 	Level(0, Enemy, 1) [9,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
 //UNIT GenericA 	ClassA		0xEE 	Level(0, Enemy, 1) [11,9]  1b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupSevenAI
 UNIT
 

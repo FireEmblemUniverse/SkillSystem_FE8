@@ -22,32 +22,38 @@ ldr r0, =gCurrentUnit
 ldr r0, [r0]
 cmp r0, #0 
 beq Exit 
-
-bl GetAdjacentTrap
+ldr r1, =StrengthBoulderTrapID_Link 
+ldr r1, [r1] 
+bl NewGetAdjacentTrapID
 cmp r0, #0 
 beq Exit 
 mov r4, r0  
-mov r5, r1 @ direction 
 
-	// right, down, left, up are all defined in EA already 
-	// (1 2 0 3)
-
-
-ldr r0, =gCurrentUnit
-ldr r0, [r0] @ unit 
 mov r1, #0 
 ldsb r6, [r4, r1] @ xx 
 mov r2, #1
 ldsb r7, [r4, r2] @ yy 
 
-cmp r5, #0 
-beq Left 
-cmp r5, #1 
-beq Right 
-cmp r5, #2 
-beq Down 
-cmp r5, #3 
-beq Up 
+
+ldr r5, =gCurrentUnit
+ldr r5, [r5] @ unit 
+
+ldrb r0, [r5, #0x10] @ xx 
+ldrb r1, [r5, #0x11] @ yy 
+mov r2, r6 
+mov r3, r7 
+sub r2, r0 
+sub r3, r1 
+cmp r2, #0 
+bgt Right 
+cmp r2, #0 
+blt Left 
+cmp r3, #0 
+bgt Down 
+cmp r3, #0 
+blt Up 
+// right, down, left, up are all defined in EA already 
+// (1 2 0 3)
 b Exit 
 Left: 
 sub r6, #1 
@@ -62,7 +68,7 @@ Up:
 sub r7, #1 
 
 Continue: 
-
+mov r0, r5 @ unit 
 mov r1, r6 
 mov r2, r7 
 
@@ -112,21 +118,27 @@ NotBoulderReceptacle:
 
 ldr r0, =gCurrentUnit
 ldr r0, [r0]
-bl GetAdjacentTrap
+ldr r1, =StrengthBoulderTrapID_Link 
+ldr r1, [r1] 
+bl NewGetAdjacentTrapID
 mov r4, r0 @ we must find the trap again after removing traps, 
 @ as removing traps moves all traps to fill in any empty spaces 
 strb r6, [r4, #0] 
 strb r7, [r4, #1] 
 blh RefreshTerrainBmMap @ this includes UpdateAllLightRunes 
 
-
+blh  0x080271a0   @SMS_UpdateFromGameData
+blh  0x08019c3c   @UpdateGameTilesGraphics
 
 Exit:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x10
+mov r0, #0x1
 strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+
+
+
 
 pop {r4-r7}
 pop {r1}
@@ -157,38 +169,50 @@ mov r0,r5
 sub r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq CheckA 
 mov r1, #0 @ left 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+CheckA: 
 mov r0,r5
 mov r1,r6
 sub r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq CheckB 
 mov r1, #3 @ up 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+CheckB: 
 mov r0,r5
 add r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq CheckC 
 mov r1, #1 @ right 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+CheckC: 
 mov r0,r5
 mov r1,r6
 add r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq ReturnD 
 mov r1, #2 @ down 
 ldrb r2,[r0,#2]
 cmp r7, r2 
 beq RetTrap 
 
+ReturnD: 
 @ false 
 mov r0,#0	@no trap so return 0
 

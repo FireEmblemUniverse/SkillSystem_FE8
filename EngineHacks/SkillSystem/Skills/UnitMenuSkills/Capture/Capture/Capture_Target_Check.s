@@ -16,7 +16,7 @@ beq		GoBack 		@can't be captured if they have watchful
 ldr		r0,Comp_Allegiance_Func
 mov		r14,r0
 ldr		r0,TargetQueuePtr
-ldr		r5,[r0]
+ldr		r5,[r0] @ this is the actor 
 mov		r1,#0xB
 ldsb	r0,[r5,r1]
 ldsb	r1,[r4,r1]

@@ -118,7 +118,9 @@ ldrb r0, [r0, #4] @ Unit ID
 bl Reinforce_GetTableEntry
 ldr r1, =0xFFFFFFFF 
 cmp r0, r1 
-beq False 
+bne ContinueHere
+b False 
+ContinueHere: 
 
 mov r7, r0 
 mov r1, #0 
@@ -208,24 +210,16 @@ ldrh r0, [r3, r1] @ Coords
 strh r0, [r5, #0x10] @ Coords 
 
 @ AutoLevelUnits(15, True, 0x50FF)
-ldr r3, =MemorySlot 
-add r3, #4 @ s1 
-ldrb r0, [r4, #8] 
-str r0, [r3] @ # of levels equal to the bush 
 
+ldr r3, =MemorySlot 
 mov r0, #1 @ True IncreaseDisplayedLevelBoolean s3 
-add r3, #8 @ s3 
-str r0, [r3] 
-ldr r0, [r5]
-ldrb r0, [r0, #4] @ Unit ID 
-str r0, [r3, #4] @ s4 UnitIDRange
-mov r0, #0 
-ldrb r0, [r5, #0x10] @ XX 
-strh r0, [r3, #8] 
-ldrb r1, [r5, #0x11] @ YY 
-strh r1, [r3, #10] @ YY 
-@SVAL 3 ; SVAL 4 ; SVAL 5 0; ASMC AutoLevelUnits" 
-bl AutoLevelUnits
+str r0, [r3, #4*3] 
+
+ldrb r1, [r4, #8] @ # of levels equal to the bush 
+mov r0, r5 @ unit 
+bl AutoLevelSummonedUnit
+
+
 
 ldrh r0, [r4, #0x10] @ Coords 
 strh r0, [r5, #0x10] @ Coords 
@@ -239,12 +233,55 @@ ldrb r1, [r3, #0x14] @ Y
 
 bl AddToMaps @ r0 XX, r1 YY 
 
+@ on randomized mode, do not move spawned pkmn if on water 
+ldr r0, =RandomizeClassesFlag 
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+beq Continue 
+ldrb r0, [r5, #0x10] @ X 
+ldrb r1, [r5, #0x11] @ Y 
 
+ldr		r2,=0x202E4DC @ terrain map 	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+cmp r0, #0x10 @ shallow 
+beq GotoNextLoop 
+cmp r0, #0x15 @ sea 
+beq GotoNextLoop 
+cmp r0, #0x16 @ shallow 
+beq GotoNextLoop 
+cmp r0, #0x36 @ deeps 
+beq GotoNextLoop 
+
+
+Continue: 
 ldr r3, =0x203A958 @ ActionStruct 
 mov r0, r5 @ Unit 
 ldrb r1, [r3, #0x13] @ X 
 ldrb r2, [r3, #0x14] @ Y 
 bl CreateREDA @ @r0 = char struct, target x coord, target y coord, 0
+
+
+@ldrb r1, [r5, #0x10] @ x 
+@ldrb r2, [r5, #0x11] @ y 
+@ldr r3, =MemorySlot 
+@add r3, #4*0x0B 
+@mov r0, #0 
+@str r0, [r3] 
+@strb r1, [r3] 
+@strb r2, [r3, #2] 
+@
+@ldr r0, =MoveNextToEvent
+@mov r1, #1 
+@blh EventEngine 
+
+
 
 
 
@@ -321,7 +358,6 @@ str r3,[sp,#0x10]
 str r3,[sp,#0x14]
 str r3,[sp,#0x18]
 @str r3,[sp,#0x1C] @ this was a mistake Sme made, as it overwrites something we haven't allocated 
-
 mov r3,#2 @ Speed 
 @r0 = char struct, target x coord, target y coord, speed 
 blh MuCtr_CreateWithReda, r4 @ 0x8079DDC
@@ -497,7 +533,7 @@ bx r1
 
 .global HookAddBushes 
 .type HookAddBushes, %function 
-HookAddBushes: 
+HookAddBushes: @ MakeTerrainHealTargetList is a bit slow. 
 push {lr} 
 ldr r0, =0x202BCF0 
 ldrb r0, [r0, #0xF] 
@@ -506,7 +542,7 @@ ldr r0, =0x202BCF0
 ldrb r0, [r0, #0xF] 
 cmp r0, #0 
 bne SkipReinforce @ Occur only on player phase 
-bl Reinforce_AddBushToPlayerHpRestorationTargetList 
+bl Reinforce_AddBushToPlayerHpRestorationTargetList @ 140k cycles so <1 frame 
 SkipReinforce: 
 blh 0x804FD28 @ GetTargetListSize 
 

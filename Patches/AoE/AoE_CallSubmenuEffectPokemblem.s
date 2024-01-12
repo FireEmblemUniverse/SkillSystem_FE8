@@ -5,6 +5,7 @@
   mov lr, \reg
   .short 0xf800
 .endm
+.equ CurrentUnit, 0x3004E50 
 
 .global AoE_AreAnyUsable
 .type AoE_AreAnyUsable, %function
@@ -12,7 +13,7 @@
 AoE_AreAnyUsable:
 push {r4,r14}
 
-bl IsPeaceful
+bl IsPeacefulNoTrainers
 cmp r0, #1
 beq RetFalse
 
@@ -22,6 +23,12 @@ beq RetFalse
 
 
 End: 
+ldr r0, =CurrentUnit
+ldr r0, [r0] 
+ldr r0, [r0, #0xC] @ state 
+mov r1, #0x40 @ canto 
+tst r0, r1 
+bne RetFalse 
 
 
 @loop through all menu command usabilities looking for one that returns true

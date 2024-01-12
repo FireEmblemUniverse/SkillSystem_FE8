@@ -45,28 +45,42 @@ ORG FreeSpaceBLRange //defined in custom definitions
   #incbin "SkillSystem/Internals/unset_attack_flag.dmp"
 
   #ifdef USE_STRMAG_SPLIT
-    
-    #ifndef USE_SAVE_EXPANSION
-	  #define USE_SAVE_EXPANSION // Force use of EMS with Str/Mag Split
-	#endif // USE_SAVE_EXPANSION
-	
 	#include "ExternalHacks/StrMagSplit/BLRange.event"
-  
   #endif // USE_STRMAG_SPLIT
 	
+  //Soaring stuff
+  #define RefreshWMSprite 0x80bf555
+  #define RefreshWMProc 0x80b9155
+  #define gObj_8x8 0x8590F44
+  #define gObj_32x32 0x8590F54
+  #define ObjInsertSafe 0x80053E9
+  #include "Soaring/src/soar_voxel.lyn.event"
+  ALIGN 4
+  #define iwram_clr_blend_asm 0x3007000+clr_blend_asm_ofs-NewWMLoop
+  #define iwram_Render_arm 0x3007000+Render_arm_ofs-NewWMLoop
+  #include "Soaring/arm/soar_wram.arm.lyn.event"
+
+  clr_blend_asm_ofs:
+  #include "Soaring/arm/pal_blend.arm.lyn.event"
+  ALIGN 4
+  Render_arm_ofs:
+  #include "Soaring/arm/soar_wram_hand.arm.lyn.event"
 #undef inBLRange
 POP
 
 ////////////////////////////////FREE SPACE OUT OF BL RANGE
 
+  // Expand unit promotion list
+ // #include "ExternalHacks/ClassChgExpansion/ClassChgExpansion.event"
+
   // Display damage numbers in battle animations.
-  #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
+ // #include "ExternalHacks/AnimNumbers/AnimNumbers.event"
 
   //HP Bars (and effective weapon warning)
   #include "QualityOfLife/HpBars/HpBars.event"
 
-  //Improved Sound Mixer
-  #include "QualityOfLife/ImprovedSoundMixer/SoundMixer.event"
+  //Improved Sound Mixer (INCOMPATIBLE WITH SOARING)
+  // #include "QualityOfLife/ImprovedSoundMixer/SoundMixer.event"
 
   //Danger Zone (select button)
   #include "QualityOfLife/DangerZone/DangerZone.event"
@@ -122,10 +136,13 @@ POP
   #include "ExternalHacks/EscapeArrive/EscapeArrive.event"
   
   //Debuffs
-  #include "Necessary/SuspendDebuffs/Debuffs.event"
+  #include "Necessary/Debuffs/Debuffs.event"
 
   //Stat Screens palette by allegiance
   #include "ExternalHacks/StatScreenAllegiance/StatScreenAllegiance.event"
+
+  //StealGfxFix
+  #include "QualityOfLife/StealGfxFix.event"
 
   //Menu Semitransparency
   #include "QualityOfLife/SemitransparencyChanges.event"
@@ -176,6 +193,10 @@ POP
   ALIGN 4
   #include "ExternalHacks/NarrowFont/NarrowFontInstaller.event"
   
+  //UTF8 Fonts by Vesly, 7743, Mokha, Colorz, Scraiza, MintX, and Bly
+  ALIGN 4 
+  //#include "ExternalHacks/Fonts/Installer.event" 
+  
   //Crit Cap
   #ifdef CRIT_CAP
     #include "ExternalHacks/CritCap/CritCap.event"
@@ -186,6 +207,9 @@ POP
   
   //Durability-Based Items, for Skill Scrolls
   #include "Necessary/DurabilityBasedItems/DurabilityBasedItems.event"
+  
+  //Generic routines that other things may rely on 
+  #include "Necessary/Routines/Installer.event" 
 
   // Gaiden Magic 2.0
   #include "ExternalHacks/GaidenMagic/GaidenMagic.event"
@@ -224,27 +248,6 @@ POP
   
   #include "Necessary/CalcLoops/CalcLoops.event"
 
-  #ifdef STAIRS_ASM
-    #ifndef USE_SAVE_EXPANSION
-	  #define USE_SAVE_EXPANSION // Force use of EMS with Stairs (for saving the stair debuff byte in suspend).
-	#endif // USE_SAVE_EXPANSION
-  #endif // STAIRS_ASM
-  
   // Save/Suspend Expansion
-  #ifdef USE_SAVE_EXPANSION
-
-    // Use new EMS-based expansion
-
-    MESSAGE "Using EMS Save/Suspend Expansion"
-
     #include "Necessary/ExpandedModularSave/ExModularSave.event"
 
-  #else // USE_SAVE_EXPANSION
-
-    // Use legacy suspend expansion (for compatibility)
-
-    MESSAGE "Using Legacy Suspend Expansion"
-
-    #include "Necessary/SuspendDebuffs/SuspendExpansion.event"
-
-  #endif // USE_SAVE_EXPANSION

@@ -1,7 +1,7 @@
 #define ChapterID CeruleanCh
 #define GenericB UnitCeruleanTrainer
 #define WildLvl 5 
-#define TrainerL 10 
+#define TrainerL 14 
 
 
 
@@ -36,10 +36,71 @@ END_MAIN
 
 
 
+
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-AllTrainersPostBattleTalk
+CHAR PurchasedGrowlitheFlag PurchaseGrowlitheevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
+
+PurchaseGrowlitheevent:
+EVBIT_MODIFY 4 
+WallText(CatchBeforePurchaseGrowlitheText)
+CheckIfCaught(BellsproutID) 
+BEQ 30 sC s0 
+CheckIfCaught(EkansID)
+BEQ 30 sC s0 
+CheckIfCaught(SpearowID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseGrowlitheText)
+LOAD1 1 GrowlitheUnitGroup  
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Growlithe 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 3000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedGrowlitheText)
+ENUF PurchasedGrowlitheFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedGrowlitheText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Growlithe
+DISA OaksAidePkmn 
+GOTO 22 
+LABEL 21
+DISA OaksAidePkmn  
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Growlithe's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedGrowlitheFlag
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -51,6 +112,7 @@ Vendor(ShopItems,22,27)
 END_MAIN
 
 EnterPillagedHouseS:
+PauseFreeMovement
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
 SET_ACTIVE 0
@@ -62,6 +124,7 @@ ENDA
 
 
 EnterPillagedHouseN:
+PauseFreeMovement
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
 SET_ACTIVE 0
@@ -91,6 +154,7 @@ AREA 0 ToRoute24_Walk_E [19,0] [21,0]
 AREA 0 ToRoute24_Swim [9,0] [13,0] 
 AREA 0 ToRoute9W [31,10] [31,18] 
 AREA 0 ToRoute5 [19,31] [19,31] // Cut bush 
+AFEV DisableTutFlag_A TutMsg1 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -144,7 +208,29 @@ ToRoute24_Swim:
 ChapterTransition(Route24Ch,6, 38)
 
 
-
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(0,16,31,31) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [25,31]
+CUMO [25,31]
+STAL 30
+CURE  
+TutText(TrainerTip_FourSkills)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -155,6 +241,14 @@ Traps1:
 //CoinsTrap(28,14,ChapterID*2,350)
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
+RaftTrap(10,0)
+RaftTrap(11,0)
+RaftTrap(12,0)
+RaftTrap(10,1)
+RaftTrap(11,1)
+RaftTrap(12,1)
+RaftTrap(11,2)
+
 CutBush(19,31)
 CutBush(29,19)
 Save(15,17) // Pokecenter 
@@ -163,8 +257,9 @@ Save(15,17) // Pokecenter
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(1,30, ChapterID*2, WardingStanceID)
+SkillAccessoryTrap(21,6, (ChapterID*2)+1, ExpShareID)
 
-//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+RedPokeballTrap(11,6, (ChapterID*2)+1, ExoticCandy) // unobtainable 
 
 SignBTrap(30,9, ChapterID, 0x0) //no extra text 
 SignATrap(1,22, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
@@ -175,7 +270,7 @@ SignATrap(1,22, ChapterID, 0x0) // Can use ChapterID as the flagID if only using
 
 BlankExamineTrap(20,20,CeruleanGymSignText)
 SignTrap(4,27, CeruleanBicycleShopSignText) // Wooden 
-SignTrap(25,31, CeruleanBottomSignText) // Wooden 
+TutSign(25,31, ChapterID*2, TrainerTip_FourSkills) // Wooden 
 //Sign2Trap(16,7, PewterMuseumSignText) // Metal ? 
 EnterWallTrap(3,10, CeruleanCityNWHouseText) // 
 EnterWallTrap(10,10, CeruleanCityNHouseText) // 
@@ -211,7 +306,6 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
-
 CHECK_EVENTID CascadebadgeObtained
 BEQ 0 rC r0 
 CHECK_EVENTID SSAnneTicketFlag
@@ -232,11 +326,17 @@ ENUN
 GOTO 0x63 
 LABEL 10 
 CALL CityBeginningScene // Move bonus only when Gary is defeated 
-
 LABEL 0x63
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given +5 visible levels 
 
-//SetUnitStatus(1, CurrentHP, 5)
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedGrowlitheFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
 
 NoFade
 ENDA
@@ -253,12 +353,14 @@ BYTE StatAccessory EnergyBand_BoostIndex
 
 BYTE SuperPotion 5 
 BYTE JellyDonut 5
-BYTE SkillScroll TantivyID 
-
-BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll Ember SpellScroll WaterGun  SpellScroll LeafFlurry
+//BYTE SkillScroll TantivyID 
+BYTE SuperRepel 1
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
+BYTE SpellScroll Leer SpellScroll Bite SpellScroll MudShot SpellScroll IcyWind
 BYTE SpellScroll AttackPulse
 BYTE SpellScroll DoubleHit SpellScroll SignalBeam SpellScroll MagicalLeaf 
-BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion // 19 
+BYTE SpellScroll Gust SpellScroll Magnitude SpellScroll Confusion // 19
 //SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
 //SHLI SuperPotion
 BYTE $00; ALIGN 4
@@ -282,11 +384,21 @@ TDQ_TableTerminator;
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xF, GaryCeruleanDefeatText, 2000) 
+BD((OaksAide-0xE0), CeruleanOaksAideBD, 1) 
 SHORT GaryCeruleanDefeatText // 0xE0 
 SHORT 2000 // Gold 
 SHORT NoCascadeBadgeText // 0xE0 
 SHORT 2000 // Gold 
 TDQ_TableTerminator ; }
+
+GrowlitheUnitGroup:
+UNIT TempAlly GrowlitheID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACEDOWN, Enemy, 1) [12,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn GrowlitheID 0x0 Level(0, Enemy, 1) [11,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 GaryBattleUnitGroup:
 UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [16,0]  0b 0x0	0x1 REDA16R0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  

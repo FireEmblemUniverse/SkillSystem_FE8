@@ -27,6 +27,8 @@ Title screen - redppr
 
 Most item icons - Lukirioh
 
+Map Sprites - redppr 
+
 Pokemart Clerk, Beta Trainer Sprites, Choice Band, Muscle Band - Zaim
 
 Tileset water animations, Evolution stones, Jelly Donut, Drying Pan - N426
@@ -37,7 +39,9 @@ PMD Minimugs - Akim2007
 
 Pewter Tileset Palette improvements - Zoramine
 
-Stat Screen by SD9K with alternate palettes by Aqua 
+Stat Screens by Lukirioh, SD9K and Aqua 
+
+Level Up screen by Lukirioh 
 
 ChilanBerry, Rurouni, ScubaLuigi - help with items & learnsets
 
@@ -124,6 +128,7 @@ Fix LZ77 - Tequila
 GetPressedKeys - Shuusuke, 7743
 GetDifficulty - 7743
 GetUnitDistance - Snakey1
+HigherPromoBonuses - Scraiza 
 RescueEvent - circles
 EMS - Stan
 Ai & LeaderAI fix - Stan
@@ -151,7 +156,9 @@ L-Button Cycling - Aura Wolf
 Skill Systems Contributors: 
 # Skill contributors
 
+- circleseverywhere
 - Tequila
+- Colorz
 - Rossendale
 - StanH
 - Leonarth
@@ -166,15 +173,28 @@ Skill Systems Contributors:
 - Kirb
 - Sme
 - Ganzap
+- Mikey Seregon
+- Vesly 
+- Dragz
+- Jopettajah
+
+# Other
+
 - 7743: various bugfixes
 - RobertFPY, Pikmin1211, and Snakey1: Str/Mag Split Finalization
 
-# Skill System Icons
+# Graphics
+
 - Monkeybard, Black Mage
 - Blaze: Stances
 - vlak: Drives
 - Pikmin1211: Miscellaneous
 - 2WB: Miscellaneous
+- Someone: Taker, Hone, Oath, Rouse, Guts, Strong Con, Rally Chaos, Hoarders Bane, Shrewd Potential, Eternal Vanity 
+- Alice: Dancing/Heavy Blade, Dark Bargain, Soul Sap 
+- VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
+- Dragz: Divinely Inspiring
+- circleseverywhere: Skill Animations
 

@@ -3,8 +3,8 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute18WildA
 #define ClassB ClassRoute18WildB
-#define WildLvl 26
-#define TrainerL 30
+#define WildLvl 30
+#define TrainerL 33
 
 
 
@@ -60,6 +60,7 @@ LABEL 10
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [41,9]
 ENUN
@@ -73,6 +74,7 @@ EnterGateW:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [48,9]
 ENUN
@@ -217,7 +219,7 @@ UNIT
  
 HumanTrainers:
 UNIT 0xE0 cooltrainer_fID 0x0 Level(0, Enemy, 1) [50,7]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [14,6]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [14,6]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 
@@ -245,7 +247,7 @@ TDQ_TableTerminator ; }
 // trainer exclusive: slowpoke, gyarados, fearow 
 
 EnemyTrainers0: // cooltrainer_fID
-UNIT GenericB 	FearowID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	FearowID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	DragonairID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	GyaradosID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	DoduoID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI

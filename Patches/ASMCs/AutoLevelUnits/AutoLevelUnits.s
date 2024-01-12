@@ -53,9 +53,8 @@ AutoLevelUnits:
 @ r6 as valid terrain types 
 
 ldr r0, =MemorySlot 
-mov r6, #0x0 
+mov r6, #0x1 
 ldr r7, [r0, #4*0x01] @r7 / s1 as number of levels 
-@mov r7, #21 
 
 LoopThroughUnits:
 mov r0,r6
@@ -357,7 +356,8 @@ b NextUnit
 .ltorg
 .align 
 
-
+.global Get_Growth_With_Evolutions
+.type Get_Growth_With_Evolutions, %function 
 Get_Growth_With_Evolutions:
 push {r4-r7, lr}
 mov r4, r8
@@ -522,6 +522,11 @@ mov r2, r1 @ 0 levels in this form if we're lower level than evolution level, th
 LevelsInCurrentForm: 
 
 sub r1, r2 @ Number of levels in current stage 
+cmp r1, #0 
+bge NoIssue
+mov r1, #0 
+NoIssue: 
+
 mul r0, r1 @ levels * growth 
 mov r2, r6 @ current levels * growth 
 add r2, r0 
@@ -531,7 +536,9 @@ mov r6, r2
 mov r0, r6 @ growths*levels in various stages 
 mov r1, r5 @ number of levels to gain 
 cmp r1, #1
-blt NoSub2 
+bgt Sub2 
+mov r1, #2 @ min 1 
+Sub2:
 sub r1, #1 @ no level-up for level 0 to 1 
 NoSub2: 
 swi 6 @ divide 

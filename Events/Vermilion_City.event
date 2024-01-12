@@ -1,0 +1,367 @@
+#define ChapterID VermilionCh
+#define GenericB UnitCeruleanTrainer
+#define WildLvl 10 
+#define TrainerL 16 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+//{ ; ReinforceEntry(ChapterID)
+//}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR PurchasedFarfetchdFlag PurchaseFarfetchdevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
+END_MAIN
+
+PurchaseFarfetchdevent:
+EVBIT_MODIFY 4 
+WallText(CatchBeforePurchaseFarfetchdText)
+CheckIfCaught(VulpixID) 
+BEQ 30 sC s0 
+CheckIfCaught(MeowthID)
+BEQ 30 sC s0 
+CheckIfCaught(DrowzeeID)
+BEQ 30 sC s0 
+
+EVBIT_MODIFY 4 
+WallText(PurchaseFarfetchdText)
+LOAD1 1 FarfetchdUnitGroup  
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(TrainerL, True,  TempAlly<<8|TempAlly) // Farfetchd 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 4000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedFarfetchdText)
+ENUF PurchasedFarfetchdFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedFarfetchdText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Farfetchd
+DISA OaksAidePkmn 
+GOTO 22 
+LABEL 21
+DISA OaksAidePkmn  
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Farfetchd's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedFarfetchdFlag
+
+LABEL 63 
+NoFade
+ENDA 
+
+
+LocationBasedEvents:
+House(ThunderbadgeObtained,EnterGym,12,23) //
+Vendor(ShopItems,27,11)
+END_MAIN
+
+EnterGym:
+ENUF ThunderbadgeObtained 
+ForcedChapterTransition(VermilionGymCh, 7,22)
+NoFade 
+ENDA 
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV 0 CityAfev 0
+//AFEV 0 RefreshIfNotInDanger 0 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToRoute6 [20,0] [22,0] 
+AREA 0 ToRoute11 [41,13] [41,16] 
+AREA 0 ToSSAnne [20,33] [22,33] 
+AFEV DisableTutFlag_A TutMsg1 0
+AFEV DisableTutFlag_B TutMsg2 0
+AFEV 0x19 TutMsg3 0
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(21,0) 
+EscapeTileEntry(41,14) 
+EscapeTileEntry(41,15) 
+EscapeTileEntry(21,33) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToRoute6:
+ChapterTransition(Route6Ch, 11,39)
+
+ToRoute11:
+ChapterTransition(Route11Ch, 0, 9)
+
+
+ToSSAnne:
+DigChapterTransition(ChapterID, SSAnneCh, 19,3)
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(25,12, 41,16) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [32,13]
+CUMO [32,13]
+STAL 30
+CURE  
+TutText(TrainerTip_Submenu)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(25,12, 41,16) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [30,12]
+CUMO [30,12]
+STAL 30
+CURE  
+TutText(TrainerTip_Release) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg3: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF 0x19
+SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(25,12, 41,16) 
+BEQ 99 sC s0 
+ENUT 0x19
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [34,12]
+CUMO [34,12]
+STAL 30
+CURE  
+TutText(TrainerTip_ReorderMoves) 
+SVAL s1 ((ChapterID*2+3)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(28,14,ChapterID*2,350)
+//CoinsTrap(43,13,(ChapterID*2)+1,400)
+
+CutBush(17,22)
+
+
+Save(13,3) // Pokecenter 
+
+TutSign(32,13,ChapterID*2, TrainerTip_Submenu)
+TutSign(30,12,ChapterID*2+1, TrainerTip_Release)
+TutSign(34,12,ChapterID*2+3, TrainerTip_ReorderMoves)
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+//StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
+SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
+
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+SignBTrap(36,18, ChapterID, 0x0) //no extra text 
+SignATrap(18,5, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+//OpenPokeball(8,3)
+
+BlankExamineTrap(8,22,VermilionGymSignText)
+SignTrap(8,15, VermilionFanClubSignText) // Wooden 
+
+
+
+EnterWallTrap(7,4, VermilionNWHouseText) // 
+EnterWallTrap(10,15, FanClubText) // 
+
+EnterWallTrap(17,15, VermilionMidHouseText) // 
+EnterWallTrap(23,18, VermilionSEHouseText)
+
+//EnterWallTrap(23,18, DoorLockedText) //   
+
+
+//Flower(10,6)
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+CALL CityBeginningScene 
+LOAD1 1 OaksAideUnitGroup
+ENUN 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedFarfetchdFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+ALIGN 4
+ShopItems:
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI 0
+BYTE SkillAccShop(RockyHelmetSkillID)
+BYTE StatAccessory EnergyBand_BoostIndex 
+BYTE SkillAccShop(WaryFighterID)
+BYTE Revive 1 
+BYTE SuperPotion 5 
+BYTE JellyDonut 5
+BYTE SuperRepel 1
+BYTE EscapeRope 1
+BYTE WarpCrystal 1
+BYTE SkillScroll PatienceID 
+BYTE SpellScroll MagicalLeaf SpellScroll WaterGun SpellScroll Scorch SpellScroll Dig 
+BYTE SpellScroll Headbutt 
+BYTE SpellScroll SignalBeam SpellScroll Magnitude SpellScroll Confusion // 18 
+//SHLI Elfire Nosferatu Divine Mend Physic PureWater Elixir
+//SHLI SuperPotion
+BYTE $00; ALIGN 4
+
+
+
+
+
+
+ArmoryItems:
+SHLI SteelAxe SteelLance SteelBow SteelSword HandAxe Javelin
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+FarfetchdUnitGroup:
+UNIT TempAlly FarfetchdID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACEDOWN, Enemy, 1) [25,5]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn FarfetchdID 0x0 Level(0, Enemy, 1) [26,5]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT DebugText // 0xE0 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), VermilionOaksAideBD, 1) 
+SHORT PewterCheckGymText // 0xE0 
+SHORT 600 
+TDQ_TableTerminator ; } 
+
+
+	
+#undef GenericB 
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

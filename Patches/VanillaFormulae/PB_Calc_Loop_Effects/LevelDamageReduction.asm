@@ -30,19 +30,22 @@ beq Lunatic
 b Exit 
 
 Easy: 
-cmp r1, #0 
+cmp r1, #0 @ player attacks enemy 
 beq Exit @ players / npcs attacking an enemy get no damage reduction on easy 
-mov r7, #0 @ enemies attacking players on easy get Level% damage reduction 
+mov r7, #3 @ enemies attacking players on easy get 50% damage reduction 
 b CalcDamageReduction 
 
 Difficult: 
 mov r7, #1 @ players and enemies on difficult get (Level% / 2) damage reduction 
+cmp r1, #0 
+beq CalcDamageReduction @ player attacks enemy gets (Level% / 2) dmg reduction 
+mov r7, #4 @ enemy attacks player gets 12-25% dmg reduction 
 b CalcDamageReduction 
 
 Lunatic: 
 cmp r1, #0 
 beq CalcDamageReduction @ players attacking enemies get Level% dmg reduction 
-mov r7, #2 @ enemies attacking players get (Level%/4) damage reduction 
+mov r7, #2 @ enemies attacking players get (Level%/4) / 0-12% damage reduction 
 b CalcDamageReduction 
 
 
@@ -56,6 +59,17 @@ cmp r0, #0
 blt Exit @ they will deal min damage twice 
 mov r6, r0 @ dmg 
 ldrb r1, [r5, #8] @ level 
+cmp r7, #3 
+bne NotEasyMode
+add r1, #50 @ on easy mode, start with 25% dmg reduction (maxes at 50% dmg reduction by lvl 25) 
+mov r7, #0 
+NotEasyMode: 
+cmp r7, #4 
+bne NotDifficultMode 
+add r1, #25 
+mov r7, #1 
+NotDifficultMode: 
+
 cmp r1, #50 
 blt NoCapLevel 
 mov r1, #50 

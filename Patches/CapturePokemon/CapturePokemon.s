@@ -13,6 +13,10 @@
 	
 	.equ GetUnit, 0x8019431
 
+// There was a game crash after capturing a pokemon due to it having no deployment ID 
+// This was caused by the boxes unit expansion using memset instead of InitUnits(); 
+// it zeroed out all player ram instead of writing the ordered deployment IDs there 
+
 .global ChangeS1UnitIntoLowestUnitID
 .type ChangeS1UnitIntoLowestUnitID, %function 
 ChangeS1UnitIntoLowestUnitID:
@@ -79,17 +83,19 @@ bx r0
 .global FindFreeSlot
 .type FindFreeSlot, %function 
 FindFreeSlot:
-push {r4, lr}
+push {r4-r5, lr}
 ldr r3, =0x8017D64 @ POIN CharacterTable 
 ldr r3, [r3] @ Char table unit 0 
 
 mov r4, #0x01 @counter 
+ldr r5, =MaxPartyUnits_Link
+ldr r5, [r5] 
 
 
 LoopThroughUnits:
 mov r0, r4 
-cmp r4, #40 @ 0x3F theoretical maximum 
-bgt Error 		@ Can't have more than 40 units. Ten Units (0x29 - 0x33) are reserved for special events 
+cmp r4, r5 @ 0x3F theoretical maximum 
+bgt Error 		@ Can't have more than 50 units. TempAllies 0x373B are reserved for special events 
 blh GetUnitByEventParameter @ 0x0800BC51
 cmp r0,#0
 beq FoundUnit
@@ -101,7 +107,7 @@ mov r4, #0xFF
 FoundUnit:
 mov r0, r4 
 
-pop {r4}
+pop {r4-r5}
 pop {r1}
 bx r1 
 
@@ -216,7 +222,9 @@ strb 	r0,[r5,#0x13]
 
 
 bl FindFreeSlot
-cmp r0, #40 
+ldr r1, =MaxPartyUnits_Link 
+ldr r1, [r1] 
+cmp r0, r1  
 bgt FullBox
 
 
@@ -270,18 +278,10 @@ orr		r0,r1
 str		r0, [r5, #0xC]
 
 
-mov	r3, #0x00
-ldrb	r0, [r4,#0x11]		@load y coordinate of character
-lsl	r0, #16
-add	r3, r0
-ldrb	r0, [r4,#0x10]		@load x coordinate of character
-add	r3, r0
-ldr r2, =MemorySlot
-str	r3, [r2, #4*0x0B] 		@and store them in sB for the event engine
-
-ldr r0, [r5]
-ldrb r0, [r0, #4] 	
-str r0, [r2, #4*0x02] @unit ID in s2 
+ldrb r0, [r5, #0x0B] 
+ldr r1, =CapturedPkmnDeploymentID_Link 
+ldr r1, [r1] 
+strb r0, [r1] 
 
 ldr	r0, =PartyFullEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
@@ -299,10 +299,10 @@ b End_LoopThroughUnits
 @ run event where unit was not caught 
 FullBox:
 
-ldr r2, =MemorySlot
-ldr r0, [r5]
-ldrb r0, [r0, #4] 	
-str r0, [r2, #4*0x02] @unit ID in s2 
+ldrb r0, [r5, #0x0B] 
+ldr r1, =CapturedPkmnDeploymentID_Link 
+ldr r1, [r1] 
+strb r0, [r1] 
 
 ldr	r0, =PCBoxFullEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
@@ -345,16 +345,12 @@ lsl	r0, #16
 add	r3, r0
 ldrb	r0, [r4,#0x10]		@load x coordinate of character
 add	r3, r0
-ldr r2, =MemorySlot
-str	r3, [r2, #4*0x0B] 		@and store them in sB for the event engine
 
-@strh r4, [r3, #4*0x0B+0] @ XX
-@strh r5, [r3, #4*0x0B+2] @ YY 
 
-ldr r0, [r5]
-ldrb r0, [r0, #4] 	
-str r0, [r2, #4*0x02] @unit ID in s2 
-
+ldrb r0, [r5, #0x0B] 
+ldr r1, =CapturedPkmnDeploymentID_Link 
+ldr r1, [r1] 
+strb r0, [r1] 
 
 ldr	r0, =CapturePokemonEvent	@this event is 
 mov	r1, #0x01		@0x01 = wait for events
@@ -374,3 +370,30 @@ Break:
 	pop {r0}
 	bx r0 
 .ltorg 
+
+.global CopyCaughtPkmnToMemSlot2
+.type CopyCaughtPkmnToMemSlot2, %function 
+CopyCaughtPkmnToMemSlot2: 
+push {lr} 
+ldr r0, =CapturedPkmnDeploymentID_Link
+ldr r0, [r0] 
+ldrb r0, [r0] 
+blh GetUnit 
+ldr r3, =MemorySlot 
+mov r1, #0 
+str r1, [r3, #4*2] @ default as 0 in slot 2 
+cmp r0, #0 
+beq Exit 
+ldr r1, [r0] 
+cmp r1, #0 
+beq Exit 
+ldrb r1, [r1, #4] @ unit ID 
+str r1, [r3, #4*2] @ slot 2 
+Exit: 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
+

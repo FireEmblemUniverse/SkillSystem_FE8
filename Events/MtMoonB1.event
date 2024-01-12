@@ -3,8 +3,8 @@
 #define GenericB UnitMtMoonTrainer
 #define ClassA ClassMtMoonB1WildA
 #define ClassB ClassMtMoonB1WildB
-#define WildLvl 6 
-#define TrainerL 8 
+#define WildLvl 9 
+#define TrainerL 13 
 
 
 
@@ -97,6 +97,7 @@ SignTrap(24,5, TrainerTip_Typing)
 SkillScrollTrap(15,4, ChapterID*2, PrescienceID)
 SpellScrollTrap(3,21, (ChapterID*2)+1, WaterGun)
 RedPokeballTrap(33,25, ChapterID*2, ExoticCandy)
+RedPokeballTrap(14, 27, (ChapterID*2)+1, EscapeRope, 3)
 StatAccessoryTrap(3,2, (ChapterID*2)+1, EnergyBand_BoostIndex)
 
 CoinsTrap(10,19,ChapterID*2,650)
@@ -242,10 +243,11 @@ SHORT MMB1_0xE5_BD // 0xE4
 SHORT 500 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 UNIT 0xE0 bug_catcherID 0x0 Level(0, Enemy, 1) [6,23]  0b 0x0	0x1 REDA6R23 [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [19,20]  0b 0x0	0x1 		REDA19R20 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE2 super_nerdID 0x0 Level(0, Enemy, 1) [29,24]  0b 0x0	0x1 REDA29R24 [OneRangeWep,0x0,0x0,0x0] TrainerFleeAI
+UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [19,20]  0b 0x0	0x1 		REDA17R15 [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE2 super_nerdID 0x0 Level(LVFACELEFT, Enemy, 1) [29,24]  0b 0x0	0x1 REDA29R24 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT 0xE3 bug_catcherID 0x0 Level(0, Enemy, 1) [30,08]  0b 0x0	0x1 REDA30R8 [OneRangeWep,0x0,0x0,0x0] TrainerAI //
 UNIT 0xE4 hikerID 0x0 Level(0, Enemy, 1) [18,05]  0b 0x0	0x1 		REDA18R5 [OneRangeWep,0x0,0x0,0x0] TrainerAI 
 UNIT 0xE5 hikerID 0x0 Level(0, Enemy, 1) [5,12]  0b 0x0	0x1 		REDA5R12 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI // TrainerBossAI

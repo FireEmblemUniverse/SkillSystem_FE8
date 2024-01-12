@@ -3,8 +3,8 @@
 #define GenericB UnitViridianForestNTrainer
 #define ClassA ClassViridianForestNWildA
 #define ClassB ClassViridianForestNWildB
-#define WildLvl 3 
-#define TrainerL 6 
+#define WildLvl 5 
+#define TrainerL 9 
 
 
 
@@ -29,7 +29,8 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
-
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
+TurnEventPlayer(DisableTutFlag_B, TutMsg2, 0, 255) // 
 
 END_MAIN
 
@@ -84,6 +85,56 @@ ChapterTransition(ViridianForestSCh, 41, 0)
 ToViridianForestS_B:
 ChapterTransition(ViridianForestSCh, 35, 0)
 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(19,3,35,23) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [26,21]
+CUMO [26,21]
+STAL 30
+CURE  
+TutText(TrainerTip_DangerZone2)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+TutMsg2: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0
+ENUF DisableTutFlag_B 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(36,13,45,32) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_B
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [41,22]
+CUMO [41,22]
+STAL 30
+CURE  
+TutText(TrainerTip_Zoning) 
+SVAL s1 ((ChapterID*2+1)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -101,14 +152,14 @@ SignTrap(41,22, TrainerTip_Zoning)
 //
 StatAccessoryTrap(32,26, ChapterID*2, LeatherShield_BoostIndex)
 
-//RedPokeballTrap(18,25, ChapterID*2, Vulnerary)
+RedPokeballTrap(36,25, (ChapterID*2)+1, Revive, 3)
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
 SignBTrap(6,10, ChapterID, 0x0) //no extra text 
 SignATrap(44,28, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
-SkillScrollTrap(44,14, ChapterID*2, TantivyID)
-SpellScrollTrap(20,30, (ChapterID*2)+1, AttackPulse)
+SkillScrollTrap(20,30, ChapterID*2, TantivyID)
+SpellScrollTrap(44, 14, (ChapterID*2)+1, LeechLife)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 
@@ -131,6 +182,9 @@ EVBIT_MODIFY 4
 WallText(HireGeodudeText)
 LOAD1 1 HireGeodudeUnitGroup  
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(TrainerL, True,  HiredPokemonUnitID<<8|HiredPokemonUnitID)
+PauseFreeMovement
 SelectCharacter(HiredPokemonUnitID, 0, 0, 0, 0, 800, 0, 0, 0, 0) 
 SVAL sB 0x100 
 BEQ 10 sC sB 
@@ -305,10 +359,11 @@ SHORT HiredGeodudeText // 0xE4
 SHORT 900 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 UNIT 0xE0 bug_catcherID 0x0 Level(0, Enemy, 1) [39,18]  0b 0x0	0x1 REDA39R18 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 bug_catcherID 0x0 Level(0, Enemy, 1) [29,13]  0b 0x0	0x1 REDA29R13 [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 bug_catcherID 0x0 Level(0, Enemy, 1) [19,14]  0b 0x0	0x1 REDA19R14 [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE2 bug_catcherID 0x0 Level(0, Enemy, 1) [19,14]  0b 0x0	0x1 REDA19R14 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 bug_catcherID 0x0 Level(0, Enemy, 1) [12,8 ]  0b 0x0	0x1 REDA12R8  [OneRangeWep,0x0,0x0,0x0] TrainerFleeAI // This makes them run into a corner i think 
 UNIT 0xE4 bug_catcherID 0x0 Level(0, Enemy, 1) [9,25]  0b 0x0	0x1 REDA9R25 [OneRangeWep,0x0,0x0,0x0] TrainerAI 
 UNIT 0xE5 hikerID 		0x0 Level(0, Enemy, 1) [43,24]  0b 0x0	0x0 0 [0x0,0x0,0x0,0x0] DoNothing

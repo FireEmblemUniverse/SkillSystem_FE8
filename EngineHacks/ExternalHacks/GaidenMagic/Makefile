@@ -10,7 +10,7 @@ endif
 # Including devkitARM tool definitions
 include $(DEVKITARM)/base_tools
 # defining path of lyn
-LYN := "$(abspath .)/FE-CLib-master/utility/lyn.exe"
+LYN := "C:/devkitPro/lyn.exe"
 
 # setting up compilation flags
 ARCH   := -mcpu=arm7tdmi -mthumb -mthumb-interwork

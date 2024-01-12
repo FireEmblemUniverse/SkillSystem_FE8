@@ -2,8 +2,47 @@
 Use the randomizer?[N]
 [No][X]
 
+
+// missing: S Xₓ
+// ⌭ ⌫
+// ჯ Ⴝ
+//## EnableRandomizerText//_Chinese
+//要使用宝可梦随机生成器吗?[N]
+//á é í ó ú ñ ü [colon] [comma] [squote][N]
+//à è ù ç â ê î[N]
+//ô û ë ï ü [PI] [SI] [Gold][A][N]
+//: , . " ( - + ) / [N]
+//[period] [dquote] [monster] [lock] [lpar] [minus] [plus] [rpar] [slash][N]
+//[zero][one][two][three][four][five][six][seven][eight][nine][N]//[colon] [comma] [squote]
+//0123456789[A][N]
+//ᴛʜᴇ[sp]ǫᴜɪᴄᴋ[sp]ʙʀᴏᴡɴ[sp]ғᴏჯ[sp]ᴊᴜᴍᴘႽ[sp]ᴏᴠᴇʀ[sp]ᴛʜᴇ[sp]ʟᴀᴢʏ[sp]ᴅᴏɢ[N]
+//THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG[N]
+//ᵗʰᵉ[sp]ᵠᵘᶦᶜᵏ[sp]ᵇʳᵒʷⁿ[sp]ᶠᵒˣ[sp]ʲᵘᵐᵖˢ[sp]ᵒᵛᵉʳ[sp]ᵗʰᵉ[sp]ˡᵃᶻʸ[sp]ᵈᵒᵍ[N]
+//the quick brown fox jumps over the lazy dog[A][N]
+//[anima] [armor] [axe] [bow] [dark] [dragon][N]
+//[flier] [horse] [lance] [light] [staff] [sword][A][X]
+//[Rock] [Water] [Psychic] [Poison] [Bug] [Normal][N]
+//[Ice][Ground][Grass][Ghost][Flying][N]
+//[Fire][Fighting][Steel][Electric][Dragon][N]
+//ᵃᵇᶜᵈᵉᶠᵍʰᶦʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻ[N]
+//ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀႽᴛᴜᴠჯᴡʏᴢ[A][X]
+//ᵀʰᵉ ᵠᵘᶦᶜᵏ ᵇʳᵒʷⁿ ᶠᵒˣ ʲᵘᵐᵖˢ ᵒᵛᵉʳ ᵗʰᵉ ˡᵃᶻʸ ᵈᵒᵍ.
+//*{The quick brown fox jumps over the lazy dog.}[N]
+//[No][X]
+//NARROW_DICT = {"a":"[0xe1][0xb5][0x83]", "b":"[0xe1][0xb5][0x87]", "c":"[0xe1][0xb6][0x9c]","d":"[0xe1][0xb5][0x88]", "e":"[0xe1][0xb5][0x89]", "f":"[0xe1][0xb6][0xa0]", "g":"[0xe1][0xb5][0x8d]","h":"[0xca][0xb0]", "k":"[0xe1][0xb5][0x8f]", "n":"[0xe2][0x81][0xbf]", "o":"[0xe1][0xb5][0x92]","p":"[0xe1][0xb5][0x96]", "q":"[0xe1][0xb5][0xa0]", "r":"[0xca][0xb3]", "s":"[0xcb][0xa2]","t":"[0xe1][0xb5][0x97]", "u":"[0xe1][0xb5][0x98]", "v":"[0xe1][0xb5][0x9b]", "x":"[0xcb][0xa3]","y":"[0xca][0xb8]", "z":"[0xe1][0xb6][0xbb]", "A":"[0xe1][0xb4][0x80]", "B":"[0xca][0x99]","C":"[0xe1][0xb4][0x84]", "D":"[0xe1][0xb4][0x85]", "E":"[0xe1][0xb4][0x87]", "F":"[0xd2][0x93]","G":"[0xc9][0xa2]", "H":"[0xca][0x9c]", "J":"[0xe1][0xb4][0x8a]", "K":"[0xe1][0xb4][0x8b]","L":"[0xca][0x9f]", "O":"[0xe1][0xb4][0x8f]", "P":"[0xe1][0xb4][0x98]", "Q":"[0xc7][0xab]","R":"[0xca][0x80]", "S":"[0xe1][0x82][0xbd]", "U":"[0xe1][0xb4][0x9c]", "V":"[0xe1][0xb4][0xa0]","X":"[0xe1][0x83][0xaf]", "Y":"[0xca][0x8f]", "Z":"[0xe1][0xb4][0xa2]", " ":"[0xDE][0xB0]",
+
+## SRAMNotWorkingText
+Saving may not have worked.[N]
+Does your save file say[N]
+NO DATA?[A][N]
+Emulator: Change your save type in[N]
+[ToggleRed]Settings[ToggleRed] to [ToggleRed]Automatic[ToggleRed] or [ToggleRed]SRAM[ToggleRed].[A][N]
+GBA Hardware: Your flashcard/gamepak[N]
+does not support SRAM and cannot save[N]
+for this game. Sorry.[A][X]
+
 ## GenericUnitDesc
-A Pok[Eaccent]mon.[X]
+A Pokémon.[X]
 
 ## ErrorText
 Error.[N]
@@ -14,13 +53,13 @@ Please send report.[A][X]
 I mentioned they were coming, [NL]
 remember?[A][NL]
 [OpenLeft][ToggleColorInvert]Tcch.[A][NL]
-[ToggleColorInvert][OpenLeft][ClearFace][OpenMidRight][MoveRight][OpenRight]Welcome to the world of Pok[Eaccent]mblem.[A][2NL]
+[ToggleColorInvert][OpenLeft][ClearFace][OpenMidRight][MoveRight][OpenRight]Welcome to the world of Pokémblem.[A][2NL]
 My name is OAK![NL]
-People call me the Pok[Eaccent]mblem PROF![A][CloseSpeechFast][NL]
+People call me the Pokémblem PROF![A][CloseSpeechFast][NL]
 [OpenLeft][LoadGaryPoint][OpenLeft][ToggleColorInvert]"Welcome to the world"?[NL]
 What're you saying, old man?[A][NL]
 [ToggleColorInvert][OpenRight]Hush now, Gary.[A][CloseSpeechSlow][NL]
-[OpenLeft][ClearFace][OpenRight]Your very own Pok[Eaccent]mblem legend[NL]
+[OpenLeft][ClearFace][OpenRight]Your very own Pokémblem legend[NL]
 is about to unfold! [A][NL]
 A world of dreams and adventures-[A][NL]
 [OpenLeft][LoadGaryShrug][OpenLeft][ToggleColorInvert]Get on with it already![A][NL]
@@ -65,6 +104,11 @@ I won't keep you, then.[A][X]
 Well, that's a surprise.[A][NL]
 Here's something extra[NL]
 special, just for you.[A][X]
+
+## ChallengeRunMessage
+[OpenMidRight][LoadOak][OpenMidRight]Hello, [Tact]. You [ToggleRed]cannot[NL]
+capture Pokémon[ToggleRed] in this mode.[A][N]
+But you may still struggle through...[A][X]
 
 ## NiceTryText
 [OpenMidRight][LoadOak][OpenMidRight]Oh, you wanted[NL]

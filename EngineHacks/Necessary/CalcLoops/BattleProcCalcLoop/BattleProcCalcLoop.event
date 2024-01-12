@@ -6,56 +6,58 @@ ProcLoopParent:
 #incbin "ProcLoop/proc_loop.dmp"
 POIN Proc_Start	//start
 
-POIN Proc_Devil	//devil effect
+//POIN Proc_Devil	//devil effect
 
 //POIN CannotDieEffect
 
 #ifndef COMBAT_ARTS
-	POIN Proc_Sureshot Proc_Luna 
+	//POIN Proc_Sureshot Proc_Luna 
 #else //COMBAT_ARTS
-	POIN CombatArt_SureShot CombatArt_Luna
+	//POIN CombatArt_SureShot CombatArt_Luna
 #endif // COMBAT_ARTS
 
-POIN Proc_Moonbow 
+//POIN Proc_Moonbow 
 
 #ifndef COMBAT_ARTS
-	POIN Proc_Adept Proc_DragonFang 
+	//POIN Proc_Adept Proc_DragonFang 
 #else // COMBAT_ARTS
-	POIN CombatArt_Adept CombatArt_DragonFang
+	//POIN CombatArt_Adept CombatArt_DragonFang
 #endif // COMBAT_ARTS
 
-POIN Proc_Eclipse	//skills that do damage and all that
+//POIN Proc_Eclipse	//skills that do damage and all that
 
-POIN Proc_Impale Proc_Colossus 
+//POIN Proc_Impale Proc_Colossus 
 #ifndef COMBAT_ARTS
-	POIN Proc_Ignis Proc_AetherDamage 
+	//POIN Proc_Ignis Proc_AetherDamage 
 #else // COMBAT_ARTS
-	POIN CombatArt_Ignis CombatArt_AetherDamage
+	//POIN CombatArt_Ignis CombatArt_AetherDamage
 #endif // COMBAT_ARTS
-POIN Proc_Corona Proc_Flare 
-
-#ifndef COMBAT_ARTS
-	POIN Proc_Glacies
-#else // COMBAT_ARTS
-	POIN CombatArt_Glacies
-#endif // COMBAT_ARTS
-
-POIN Proc_Vengeance //more damage
+//POIN Proc_Corona Proc_Flare 
 
 #ifndef COMBAT_ARTS
-	POIN Proc_Astra	//astra should be the last one before the ones that set damage
+	//POIN Proc_Glacies
 #else // COMBAT_ARTS
-	POIN CombatArt_Astra
+	//POIN CombatArt_Glacies
 #endif // COMBAT_ARTS
 
-POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
+//POIN Proc_Vengeance //more damage
+
+#ifndef COMBAT_ARTS
+	//POIN Proc_Astra	//astra should be the last one before the ones that set damage
+#else // COMBAT_ARTS
+	//POIN CombatArt_Astra
+#endif // COMBAT_ARTS
+
+//POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 #ifdef ReplaceMissWithHalfDamage
 POIN NeverMiss
 #endif 
 
 POIN Proc_CapDamage	//check that damage is not over cap
 
-POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise Proc_GreatShield 	//skills that set damage to 0 or lower it
+//POIN Proc_Foresight 
+POIN Proc_Miracle 
+// POIN Proc_Mercy Proc_Aegis Proc_Pavise Proc_GreatShield 	//skills that set damage to 0 or lower it
 
 POIN Proc_StealHP 
 
@@ -65,14 +67,14 @@ POIN Proc_StealHP
 	POIN CombatArt_Sol
 #endif // COMBAT_ARTS
 
-POIN Proc_AetherHeal	//skills that heal based on final damage
+//POIN Proc_AetherHeal	//skills that heal based on final damage
 
 //POIN WeaponsRestorePercentHealthHack // Vesly added nvm
 
 POIN Proc_TripleHit Proc_MultiHit Proc_Absorb Proc_Drain
 
 
-POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
+//POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
 
 #ifdef STATUS_WEAPONS
 	POIN Proc_StatusWeapons 
@@ -82,7 +84,7 @@ POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a
 	POIN Proc_CombatArtCost
 #endif // COMBAT_ARTS
 
-POIN Proc_Corrosion //skills that don't affect damage
+//POIN Proc_Corrosion //skills that don't affect damage
 
 
 #ifdef GAIDEN_MAGIC

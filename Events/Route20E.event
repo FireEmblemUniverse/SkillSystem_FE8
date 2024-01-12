@@ -68,10 +68,10 @@ EscapeTileTerminator ; }
 #endif 
 
 ToSeafoam:
-ChapterTransition(SeafoamB1Ch, 6, 20)
+DigChapterTransition(ChapterID, SeafoamB1Ch, 6, 20)
 
 ToRoute19:
-ChapterTransition(Route19Ch, 11, 35)
+ChapterTransition(Route19Ch, 11, 34)
 
 
 

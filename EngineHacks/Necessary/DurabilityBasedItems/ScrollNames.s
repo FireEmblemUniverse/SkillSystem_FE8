@@ -241,6 +241,20 @@ FoundColon3:
 mov r1,#0
 strb r1,[r0]
 
+@For this specific instance, we also need to empty the text buffer
+@Keep going until we find an existing 0 in the buffer
+
+LoopStart3B:
+add r0,#1
+ldrb r1,[r0]
+cmp r1,#0
+beq LoopExit3B
+mov r1,#0
+strb r1,[r0]
+b LoopStart3B
+
+LoopExit3B:
+
 SkipColonTermination3:
 LoopExit3:
 ldr r3,=ReturnPoint4

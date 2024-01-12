@@ -104,7 +104,7 @@ beq RandomizerDoesntMatter
 	cmp r3, #5 @ We've already learned 5 moves, so end 
 	bge End 
 	add r3, #0x28 
-	strb r0, [r4, r3] 
+	strb r0, [r4, r3] @ this is overwritten by some CopyOver function I think 
 	sub r3, #0x27 @ add 1 
 	
 	

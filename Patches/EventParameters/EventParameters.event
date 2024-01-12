@@ -48,6 +48,7 @@
 	EventParameter(0x0104,Get4thUnit)
 	EventParameter(0x0105,Get5thUnit)
 	EventParameter(0x0106,Get6thUnit)
+	EventParameter(0x0107,Get7thUnit)
 	
 	EventParameter(0x0201,Get1stFreeUnit) //Get 1st player unit that hasn't acted this turn 
 	EventParameter(0x0202,Get2ndFreeUnit)

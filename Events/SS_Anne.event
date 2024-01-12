@@ -4,7 +4,7 @@
 #define ClassA ClassSSAnneWildA
 #define ClassB ClassSSAnneWildB
 #define WildLvl 16 
-#define TrainerL 16
+#define TrainerL 20
 
 
 
@@ -47,7 +47,7 @@ TrainerPostBattleTalk(0xE4)
 END_MAIN
 
 CaptainHMevent:
-TutText(CaptainTeachHMText)
+BottomWallText(CaptainTeachHMText)
 STAL 15 
 TutText(LearnedCutText)
 NoFade
@@ -60,7 +60,7 @@ NoFade
 ENDA 
 
 LocationBasedEvents:
-House(0, ToVermillion, 19,2) 
+House(0, ToVermilion, 19,2) 
 //House(0, UpperBoat, 2,6) 
 END_MAIN
 
@@ -77,10 +77,10 @@ EscapeTileEntry(19,2)
 EscapeTileTerminator ; } 
 #endif 
 
-ToVermillion:
+ToVermilion:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
-ChapterTransition(VermillionCh, 21,33)
+ChapterTransition(VermilionCh, 21,33)
 
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent
@@ -258,7 +258,7 @@ SHORT 800 // Gold
 TDQ_TableTerminator ; }
 
 GaryUnitGroup:
-UNIT 0xEF blueID 0x0 Level(0, Enemy, 1) [21,21]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xEF blueID 0x0 Level(LVFACELEFT, Enemy, 1) [27,17]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 
 
 CaptainUnitGroup:
@@ -269,7 +269,7 @@ UNIT
 HumanTrainers:
 UNIT 0xE2 sailorID 0x0 Level(0, Enemy, 1) [12,6]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 gentlemanID 0x0 Level(0, Enemy, 1) [5,20]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE4 sailorID 0x0 Level(0, Enemy, 1) [2,14]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE4 sailorID 0x0 Level(0, Enemy, 1) [2,14]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
 
@@ -278,7 +278,7 @@ GaryUnitsA:
 UNIT GenericB	IvysaurID 0xEF Level(0, Enemy, 1)   [9,9] 0b	0x0 	0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
 UNIT GenericB 	RaticateID 0xEF Level(0, Enemy, 1)   [9,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT GenericB 	BeedrillID 0xEF Level(0, Enemy, 1)   [11,9]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
-UNIT GenericB 	KadabraID 0xEF Level(0, Enemy, 1)   [9,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
+UNIT GenericB 	KadabraID 0xEF Level(0, Enemy, 1)   [10,10]  0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 //UNIT GenericB 	PidgeottoID 0xEF Level(0, Enemy, 1)   [11,11] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT GenericB 	NidorinoID 0xEF Level(0, Enemy, 1)   [11,12] 0b	0x0 0x0  0x0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI 
 UNIT

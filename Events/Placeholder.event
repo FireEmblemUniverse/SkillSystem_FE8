@@ -71,8 +71,8 @@ EventPointerTable(SaffronCh                        ,ThisChapter)
 EventPointerTable(SaffronDojoCh                    ,ThisChapter)
 EventPointerTable(SaffronGymCh                     ,ThisChapter)
 EventPointerTable(SSAnneCh                         ,ThisChapter)
-EventPointerTable(VermillionCh                     ,ThisChapter)
-EventPointerTable(VermillionGymCh                  ,ThisChapter)
+EventPointerTable(VermilionCh                     ,ThisChapter)
+EventPointerTable(VermilionGymCh                  ,ThisChapter)
 EventPointerTable(ViridianCh                       ,ThisChapter)
 EventPointerTable(ViridianForestNCh                ,ThisChapter)
 EventPointerTable(ViridianForestSCh                ,ThisChapter)
@@ -162,7 +162,7 @@ CharacterBasedEvents:
 END_MAIN
 
 LocationBasedEvents:
-House(0,GiveExp, 11,11)
+House(0,GiveExpEvent, 11,11)
 //House(0,SelectCharEvent, 11,11)
 
 
@@ -173,8 +173,9 @@ House(0,GiveExp, 11,11)
 //Seize(10,2)
 END_MAIN
 
-GiveExp:
-GiveEXP((-1), 100)
+GiveExpEvent:
+GiveEXP(0x7FFF, 100)
+//TutText(DebugText) 
 NoFade 
 ENDA 
 
@@ -188,10 +189,16 @@ MiscBasedEvents:
 CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AFEV 0 RefreshStuff 0 
+//AFEV 0 CallTextEv 0 
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 ////AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
+
+CallTextEv: 
+TutText(DebugText) 
+NoFade 
+ENDA 
 
 RefreshStuff:
 //UNCR(0x7fff, 0x42)
@@ -230,8 +237,26 @@ UNIT
 EnemyUnits:
 //UNIT 0x50 ClassRoute2NWildA 0x0 Level(0, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
 //UNIT 0x50 ParasectID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 ExeggutorID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA13R11 [SolarBeam,0x0,0x0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0xA0 BeedrillID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0x50 EeveeID 0x0 Level(0, Enemy, 1)   [13,9] 0b	0x0 0x01 REDA13R9 [SolarBeam,0x0,0x0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
+//UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0x61 ButterfreeID 0x0 Level(0, Enemy, 1)   [11,12] 0b	0x0 0x01 REDA14R12 [0x0,0x0,0x0,0x0] [0,0,0,32]
 
 
@@ -241,7 +266,7 @@ UNIT
 
 
 Traps1:
-
+CoinsTrap(8,11, 1, 250)
 //SaveWithoutHeal(11,10) 
 
 //GenericDisappearCompletion(12, 5, 0, GarySMS, 0) // xx, yy, flag, sprite, effectID 
@@ -304,10 +329,10 @@ LOAD1 1 EnemyUnits
 ENUN 
 //LOAD1 1 Units3 
 //ENUN 
-AutoLevelUnits(60, True, 0x50FF)
+AutoLevelUnits(15, True, 0x50FF)
 RandomizeEnemyCoords(Ground, Range(0,0,2,2), Range(2,2,15,10))
 LABEL 0x63
-//SetUnitStatus(1, CurrentHP, 25)
+//SetUnitStatus(1, CurrentHP, 5)
 
 //SetUnitStatus(2, CurrentHP, 25)
 
@@ -332,6 +357,7 @@ SetUnitStatus(4, 0x2A, Bolting)
 SetUnitStatus(0x50, MaxHP, 99)
 SetUnitStatus(0x50, CurrentHP, 99)
 SetUnitStatus(0x50, Defence, 45)
+SetUnitStatus(0x50, Resistance, 15)
 
 SetUnitStatus(0x50, 0x8, 60)
 //SetUnitStatus(2, 0x2A, Agility)
@@ -359,6 +385,10 @@ ENUT 0xAE
 //CAM1 [23,26]
 //CAM1 [23, 0]
 //CAM1 0 // Unit 0 
+
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 
 NoFade
 ENDA

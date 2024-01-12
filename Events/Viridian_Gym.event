@@ -104,6 +104,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 CHECK_EVENTID EarthbadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
@@ -113,7 +116,9 @@ CAM1 [5,6]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(ViridianGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
@@ -121,6 +126,7 @@ CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
+SilentGiveItemWithDurability(0xD0, StatAccessory, 0x80|EnergyBandT3_BoostIndex)
 //SilentGiveSkillAccessory(0xD0, AmaterasuID)
 SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
 //SilentGiveItemWithDurability(0xA0, Berry,0x8A)

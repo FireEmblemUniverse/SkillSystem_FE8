@@ -3,8 +3,8 @@
 #define GenericB UnitRoute13Trainer
 #define ClassA ClassRoute13WildA
 #define ClassB ClassRoute13WildB
-#define WildLvl 22
-#define TrainerL 25
+#define WildLvl 23
+#define TrainerL 27
 
 
 
@@ -250,10 +250,11 @@ SHORT R13_0xE2_BD // 0xE0
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 UNIT 0xE0 picnickerID 0x0 Level(0, Enemy, 1) [29,11]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 picnickerID 0x0 Level(0, Enemy, 1) [43,7]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE2 lassID 0x0 Level(0, Enemy, 1) [14,7]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
+//UNIT 0xE2 lassID 0x0 Level(0, Enemy, 1) [14,7]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT
 
 

@@ -46,9 +46,7 @@
 		
 		CheckIfValidForLPressCursorLoop:
 		mov		r0, r4
-		ldr		r3, CheckIfValidForLPressCursor
-		mov		lr, r3
-		.short	0xF800
+		bl TrySetCursorOn
 		
 		lsl		r0, #0x18
 		cmp		r0, #0

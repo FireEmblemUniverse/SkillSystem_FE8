@@ -1,0 +1,529 @@
+##########
+FREE SPACE:
+
+FE7: 
+CB51A-CB7E8 (used by feditor)
+D00000-E00000
+
+FE8:
+1C1EC0-1C33C8 (FE6 credits; useful for BL calls)
+3C0010-3C0044 (used by feditor)
+B2A610-C00000
+
+
+
+
+
+
+
+
+############
+BUTTON PRESSES:
+
+FE6: [858E578] = 2023B20
+FE7: [8B857F8] = 2024C78
+FE8: [858791C] = 2024CC0 (FE8J is at 5775CC)
+AW2: [8090C20] = 3002EE0
+AW1: 3001EC0 ([30031B4]?)
+
+Button presses are stored at these pointers +0x4
+
+4000130h - KEYINPUT - Key Status (R)
+  Bit   Expl.
+  0     Button A        (0=Pressed, 1=Released)
+  1     Button B        (etc.)
+  2     Select          (etc.)
+  3     Start           (etc.)
+  4     Right           (etc.)
+  5     Left            (etc.)
+  6     Up              (etc.)
+  7     Down            (etc.)
+  8     Button R        (etc.)
+  9     Button L        (etc.)
+  10-15 Not used
+ 
+To find a keypress, set a break on read to the rom pointer and look for a bitwise 'and' with the bit you want.
+
+VOCAB:
+    Pressed  = Current == 1
+    Released = Current == 0
+    Press    = (Current == 0 && Previous == 0)
+    Release  = (Current == 0 && Previous == 1)
+    
+    Tick     = 1 When TickDownCounter reaches 0 (Downcounter is reset to NextTickDelay), 0 Otherwise
+
+KeyStatusBuffer Struct: (at [0858791C] = 02024CC0)
+    0x00 | byte  | FirstTickDelay
+    0x01 | byte  | NextTickDelay
+    0x02 | byte  | TickDownCounter (decreased by one each frame, reset to FirstTickDelay when Presses change and NextTickDelay when reaches 0)
+    0x03 | unused byte
+    0x04 | short | Current
+    0x06 | short | TickPresses: 1 For Press|Tick&Pressed, 0 Otherwise (d-pad; 0x10 = right, 0x20 = left, 0x40 = up, 0x80 = down)
+    0x08 | short | NewPresses:  1 For Press, 0 Otherwise
+    0x0A | short | Previous
+    0x0C | short | LastPressState: Current, but set only if NewPresses is not null
+    0x0E | short | 1 for Release (A B L R Only), 0 Otherwise
+    0x10 | short | Another NewPresses?
+    0x12 | short | Time since no last Non-Start Non-Select Button was pressed
+
+
+
+
+
+
+
+############
+MAPS:
+Map size: 202D200 (FE6) 202E3D8 (FE7) 202E4D4 (FE8) 202E4D0 (FE8J): Has length and height as halfwords. Note: These are 1-aligned, not 0-aligned.
+
+There's a table of pointers immediately afterwards:
+
+FE6		FE7		FE8		Description
+202D204 202E3DC	202E4D8	Unit map (allegiance byte)
+202D208 202E3E0	202E4DC	Terrain map (tile id)
+202D20C 202E3E4	202E4E0	Movement map (movement cost to move to a specific tile when selecting a character; 0xFF else)
+202D210 202E3E8	202E4E4	Range map (nonzero if square can be reached/targeted)
+202D214 202E3EC	202E4E8	Fog (nonzero if square can be seen)
+202D218 202E3F0	202E4EC	Unknown (code at 18592 in FE8 suggests this is a bitfield, which isn't spectacularly helpful)
+202D21C 202E3F4	202E4F0	Backup movement map (seems to be used when exiting the moveable tile zone and entering on another tile to calculate the new path, also used for enemy movement?) (also filled in with squares covered by magic seals prior to displaying red squares when selecting a unit in FE7) (AI stores potential target (str + weapon might)/2 for calcs)
+202D220 202E3F8	202E4F4	Middle of the unit map? Seems unused
+202D224 202E3FC	202E4F8	Middle of the unit map? Seems unused
+
+The pointers at these locations point to another table of row pointers for that particular map. A row pointer, as the name suggests, points to the beginning of a row. Given a set of coordinates, you can retrieve the map data at that file with the following (assume r0 = x and r1 = y):
+ldr		r2,Map_Offset	@Load the location in the table of tables of the map you want
+ldr		r2,[r2]			@Offset of map's table of row pointers
+lsl		r1,#0x2			@multiply y coordinate by 4
+add		r2,r1			@so that we can get the correct row pointer
+ldr		r2,[r2]			@Now we're at the beginning of the row data
+add		r2,r0			@add x coordinate
+ldrb	r0,[r2]			@load datum at those coordinates
+
+NOTE: Each row seems to have an extra two bytes as a buffer. This also helps explain why the largest map possible is NOT a square; a new row costs 6 more bytes than a column, due to needing an extra row pointer + buffer.
+
+
+
+
+
+
+
+
+
+############
+CHARACTER AND BATTLE STRUCT:
+
+Each character has a 0x48-byte struct in RAM that stores things like status, location, stats, etc, beginning at 202AB78 (FE6), 202BD50 (FE7), or 202BE4C (FE8).
+The battle structs (which is more of an 'interaction struct', since it gets called for non-battle stuff as well) are 0x80 bytes long, of which the first 0x48 are essentially the same as the character structs. There are two of these, one for the attacker/instigator at 203A3F0 (FE7)/203A4EC (FE8) and one for the defender/target at 203A470 (FE7)/203A56C (FE8).
+FE6-Attacker at 2039214 and defender is at 2039290; each one is 0x7C bytes long because weapon abilities are a halfword and there's no lethality
+
+Character struct:
+Byte	Type	Description
+0x00	Word	Pointer to character data
+0x04	Word	Pointer to class data
+0x08	Byte	Level
+0x09	Byte	Experience
+0x0A	Byte	Seems to be used for AI decisions since the value here depends on weapon type/range/other things (3C120 deals with this?)
+	0x01		Has magic weapon (also seems to be used for 'is in recovery mode' depending on phase)
+	0x02		Has staff
+	0x04		Has item with staff/use effect (byte 0x1E in item data) as 1-5 (healing staff) or 0x21-0x22 (vulnerary/elixir)
+	0x08		Has item 0x51 (silence)
+	0x10		Has item 0x52 (sleep)
+	0x20		Has item 0x53 (berserk)
+	0x40		Has weapon with more than 1 range
+	0x80		?
+0x0B	Byte	Deployment byte; top two bits are used for allegiance (0x00 for player, 0x40 for NPC, 0x80 for enemy) and to retrieve character data using the unit map (see Map section)
+0x0C	Word	Unit state bitfield, as follows: NOTE: FE6 ONLY HAS 2 BYTES FOR THIS
+	Byte 0xC
+	0x01		Selected/not drawn
+	0x02		Unselectable
+	0x04		Dead (used in conjunction with 0x1 to not display)
+	0x08		Not deployed
+	0x10		Rescuing someone
+	0x20		Being rescued
+	0x40		Moved this turn/canto-ing
+	0x80		On a roof tile (basically, a do-not-display). Checked at 79FFC. Also skips displaying danger zone at 1B894.
+				//well checked in $18D50 (if Ballista then can get 沙漠?)
+	
+	Byte 0xD
+	0x01		Makes the movement squares appear over the standing map sprites, but the function at 1895C clears this from all units every time a unit is selected. Checked at 27260. May be related to bit 0x2, since if that's set outside the link arena, if you select and deselect a unit, 0x2 is cleared and 0x1 is set.
+	0x02		In the link arena, doesn't display map sprite if you set 'Hide Units' to On (and presumably calls function to display that weird arrow thing instead)
+	0x04		Gets cleared when being danced, but no idea what it does (set at 39B92, cleared at 18836) (doesn't seem to be read; maybe part of a special AI)(definitely AI related)
+	0x08		Inside ballista
+	0x10		Drop last item
+	0x20		Afa's drops/Metis tome
+	0x40		Solo Animation 1
+	0x80		Solo Animation 2
+	
+	Byte 0xE
+	0x01		Skip unit (used to disappear the main party during 5x and Ephraim and co. after until they return in ch8, and presumably the route split)
+	0x02		After battle, store turn word from battle struct to char data, then store these 3 bits at 3003060 (2C20A), but doesn't seem to be used there
+	0x04		^ (also written at 2CE60 and 317AA) (not used here either)
+	0x08		^ However, B5998 checks if 0x08 and either 0x04 or 0x02 are set; if true, it actives a super-arena mode (different conversation and higher-level enemies). They still don't seem to get set, however, and the alternate text is glitchy.
+	0x20		Not deployed in previous chapter
+	0x40		Seems to be set when creating new units, but idk when or why (FE7: A678)
+	0x80		Increase portrait index by 1
+	
+	Byte 0xF
+	0x01		Makes the standing map sprite shake very quickly (checked at 27270)
+	0x02		Unit cannot take part in chapter (at least, in fe7). Checked at 34298 and 1239E
+	0x04		Is set if 0x10000 is set when disappearing units for chapter 5x
+	0x08		Link arena palette (checked at 27146) (may be for a general "alternate map palette" thing, since it's also used for Ephidel and the dragon disintegrating in FE7 Ch19/Ch20)
+	0x40		Unused as far as I know; used by me for Capture
+	
+0x10	Byte	X coordinate (0xFF if undeployed)
+0x11	Byte	Y coordinate
+0x12	Byte	Max HP
+0x13	Byte	Current HP
+0x14	Byte	Strength
+0x15	Byte	Skill
+0x16	Byte	Speed
+0x17	Byte	Defense
+0x18	Byte	Resistance
+0x19	Byte	Luck
+0x1A	Byte	Constitution bonus (note, this is the BONUS, not the actual stat. There's no con getter (I made one though), so it's calculated as the sum of (char con) + (class con)
+0x1B	Byte	If rescuing, allegiance byte of unit being rescued; if being rescued, allegiance byte of rescuer
+0x1C	Byte	Index of ballista trap data (if riding)
+0x1D	Byte	Movement bonus (same deal that applies to con applies here, although there's no 'char mov' value)
+0x1E	Short	First item and uses
+0x20	Short	Second item and uses
+0x22	Short	Third item and uses
+0x24	Short	Fourth item and uses
+0x26	Short	Fifth item and uses
+0x28	Byte	Sword rank (the weapon ranks are in the same order as the weapon type byte in the item struct)
+0x29	Byte	Lance rank
+0x2A	Byte	Axe rank
+0x2B	Byte	Bow rank
+0x2C	Byte	Staff rank
+0x2D	Byte	Anima rank		0x804F449
+0x2E	Byte	Light rank
+0x2F	Byte	Dark rank
+0x30	Byte	Lower order nibble is status, higher order nibble is status duration
+0x31	Byte	Lower order nibble is torch duration, higher order nibble is Barrier duration
+0x32	Byte	Support #1
+0x33	Byte	Support #2
+0x34	Byte	Support #3
+0x35	Byte	Support #4
+0x36	Byte	Support #5
+0x37	Byte	Support #6
+0x38	Byte	Support #7 (For non-player units, has char byte of leader)
+0x39	Byte	Bitfield; each bit is a support partner (in the order they appear in) and is set if a support has been obtained in that chapter
+0x3A	Byte	??
+0x3B	Byte	?? (nintenlord's doc says Leader, but I'm not sure if that's true, since leader appears to be 0x38)
+0x3C	Word	Pointer to map sprite data in RAM
+0x40	Byte	AI 3 byte
+0x41	Byte	AI 4 byte
+0x42	Byte	AI 1 byte
+0x43	Byte	AI 1 counter
+0x44	Byte	AI 2 byte
+0x45	Byte	AI 2 counter
+0x46	Byte	?? (something about how many allies there are within 8-square radius?)
+0x47	Byte	??
+
+
+
+
+
+
+The data from here on is for the battle struct only
+
+Byte	Type	Description
+0x48	Short	Equipped item and uses after battle
+0x4A	Short	Equipped item and uses before battle
+0x4C	Word	Equipped item's weapon ability word (+0x8 in item struct) (only a halfword in FE6, so everything after this will be off by 2)
+0x50	Byte	Weapon type; writes appropriate magic type if using a magic sword (hardcoded to item id, function at 2A882 (FE8)
+0x51	Byte	Inventory slot of equipped weapon? (8 for in ballista) (should always be 0 for battle since equipped item moves to the top of the list?)
+0x52	Byte	Bool?; read when calculating weapon xp apparently (seems to be "can counter") Saved in BattleGenerateInternal(2A20C)->SetUpBattleWeaponData(2A730)->2A760
+0x53	Byte	Weapon triangle hit effect
+0x54	Byte	Weapon triangle damage effect
+0x55	Byte	Terrain tile ID
+0x56	Byte	Terrain defense
+0x57	Byte	Terrain avoid
+0x58	Byte	Terrain resistance
+0x59	Byte	?? (seems to be unused)
+0x5A	Short	Attack
+0x5C	Short	Defense
+0x5E	Short	Attack Speed
+0x60	Short	Hit
+0x62	Short	Avoid
+0x64	Short	Battle Hit (Hit - enemy avoid)
+0x66	Short	Crit
+0x68	Short	Crit avoid
+0x6A	Short	Battle Crit (Crit - enemy crit avoid)
+0x6C	Short	Lethality chance (0x32 (50) if unit has lethality, 0x19 (25) if unit has lethality and enemy has boss flag, 0 if has lethality and enemy has no exp ability) (doesn't exist in FE6, so everything after this will be off by 4)
+0x6E	Byte	Experience gained in this battle
+0x6F	Byte	Status to write back
+0x70	Byte	Level prior to battle
+0x71	Byte	Experience prior to battle
+0x72	Byte	Current hp (hp of snag before attack?)
+0x73	Byte	HP change (when levelling up)
+0x74	Byte	Str change
+0x75	Byte	Skl change
+0x76	Byte	Spd change
+0x77	Byte	Def change
+0x78	Byte	Res change
+0x79	Byte	Luk change
+0x7A	Byte	Con change (unused; is read when levelling up but is never written to normally)
+0x7B	Byte	Multipler for weapon exp
+0x7C	Byte	Bool; true if damage is non-zero (used in exp calculations) 
+0x7D	Byte	Bool; true if weapon broke
+0x7E	Byte	??; 1D1E6 and 322C4 set this to 0, but it doesn't seem to be read
+0x7F	Byte	?? (seems to be unused)
+
+
+
+
+Just before the attacker's battle struct is data used to display the pre-battle numbers and calculate the rounds data
+gBattleStats: 203A4D4 (FE8) 203A4D0 (FE8J)
+
+0x00	Short	Seems to be a bitfield (0x2 seems to be 'battle hasn't started yet') (0x20 is arena) (0x80 is staff?) (0x40 = dance) (0x200 = dancer ring)
+Byte 0x0:
+	0x01 ?	BattleNotBallista?($3229C ActionCombat-[NotBallista] BL BattleGenerateReal)
+	0x02 Battle not started yet
+	0x04 Check for MagicSword?
+	0x08 Ballista
+	0x10 ? judged at 5704C
+	0x20 Arena battle
+	0x40 Dance
+	0x80 Staff
+Byte 0x1:
+	0x01 Scripted battle?
+	0x02 Dancer ring
+0x02	Short	(AttackRange)Type of animation? -Appears to be range
+0x04	Short	Damage (Attack - defense)
+0x06	Short	Attack
+0x08	Short	Defense
+0x0A	Short	Battle hit
+0x0C	Short	Battle crit
+0x0E	Short	Lethality chance
+
+
+
+
+
+
+After the defender's battle struct is the rounds data. Each round is a word, and there's room for 7 rounds (presumably, for arena battles and the like, the buffer is cleared and recalculated after 7 rounds)
+203A5EC (FE8)
+First 0x13 bits are a bitfield as follows:
+Byte 0x0:
+	0x01 Critical
+	0x02 Miss
+	0x04 
+	0x08 
+	0x10 Brave
+	0x20 
+	0x40 Poison
+	0x80 Devil
+Byte 0x1:
+	0x01 Steal HP
+	0x02 Half hp?
+	0x04 Triangle attack
+	0x08 Lethality
+	0x10 
+	0x20 Petrified
+	0x40 Sure Shot
+	0x80 Great Shield
+Byte 0x2:
+	0x01 Pierce
+	0x02 
+	0x04 
+	0x08 End Battle
+	0x10 
+
+Byte 0x3 is damage
+
+
+
+
+
+
+
+############
+ACTION STRUCT (203A958) (FE7: 203A85C) (FE6: 203956C)
+
+Thus called because it contains things like where the current character is moving to, target's allegiance byte, action taken, etc
++0x00		The 3 current RN seeds are stored here on save/suspend (shorts)
++0x06		Apparently sometimes has the item id
++0x0C		(UnitIndex) Current character's allegiance byte
++0x0D		(TargetIndex) Target's allegiance byte (once selected)
++0x0E		Current character's moved-to x coordinate
++0x0F		Same, but for y
++0x10		Squares moved this turn
++0x11	ActionID	Action taken this turn
+	0x01	Wait
+	0x02	Combat (Attack)
+	0x03	Staff
+	0x04	Dance/Play
+	0x05	Unused?
+	0x06	Steal
+	0x07	Summon
+	0x08	DK Summoning (I think)
+	0x09	Rescue
+	0x0A	Drop
+	0x0B	Take
+	0x0C	Give
+	0x0D	Unused? (I use this for auto-promotions)
+	0x0E	Talk
+	0x0F	Support
+	0x10	Visit
+	0x11	Seize
+	0x12	Door
+	0x13	Unused?
+	0x14	Chest
+	0x15	Pick
+	0x16	Unused?
+	0x17	Bought something from shop/armory/(presumably) secret shop
+	0x18	Unused?
+	0x19	Arena
+	0x1A	Use itemNo$GBA Debugger
+	0x1B	Unused? (stored at 2D774)
+	0x1C	Unused? (stored at 9E3BA/9E8F2)
+	0x1D	Trade/Supply
+	0x1E	Wait due to finding an enemy in fog
+	0x1F	Backing out of an action, under certain circumstances
+	0x20	
+	0x21	Ride (ballista)
+	0x22	Exit (ballista)
++0x12	Inventory slot number (0-4)	
+// 0x8=Ballista
+// Maybe used in ActionSteal to judge which item to steal I thought
++0x13		x-coordinate of target
++0x14		y-coordinate of target
++0x15		hp (of snags, I guess) (item slot to use Hammerne on, as well)
+
+
+
+
+
+
+
+
+############
+CHAPTER DATA STRUCT (202BCF0) (FE7: 202BBF8) (FE6: 202AA48) (FE7J: 202BBF4) (FE8J: 202BCEC)
+
++0x00	Word	Game clock is copied here when suspending
++0x04
++0x08	Word	Money
++0x0C	Byte	Seems to be save slot number
++0x0D	Byte	Vision range (0 if there's no fog)
++0x0E	Byte	Chapter ID
++0x0F	Byte	Phase (0x0 for player, 0x40 for allied, 0x80 for enemy)
++0x10	Short	Turn number
++0x12	Byte	Cursor x position (only when displaying a menu?)
++0x13	Byte	Cursor y position (only when displaying a menu?)
++0x14	Byte	Chapter Stuff
+	+0x01	Stat screen page 1 (Inventory) (0 = stats) (these are set after backing out of the stat menu)
+	+0x02	Stat screen page 2 (Difficulty)
+	+0x04	Set when in postgame
+	+0x10	Set when on prep screen
+	+0x20	? (trial map mode in FE6)
+	+0x40	Set for hard mode
+	+0x80	Don't gain weapon exp (not sure what this is for)
++0x15	Byte	Weather (0=clear, 1=snow, 2=snowstorm, 4=rain) (funnily enough, if non-zero, arena battles take support bonuses into account)
++0x16	Short	Number of support points gained this chapter?
++0x18	Byte	Playthrough ID
++0x1B	Byte	Mode (1 for prologue-8, 2 for Eirika route, 3 for Ephraim route)
++0x20	Byte	?
++0x28	Word	? Something
++0x2C	Word	? Something ^ if hard mode (Loaded as both a word and a short, so idk) (seems to be treated as a word though, at A4EEE)
++0x2E	??		I don't even know anymore, but 0x80 - 0x800 (inclusive) are global playthrough count
+The following 3 bytes are at 0x1C/D/E in FE6
++0x40	Byte	Option byte 1
+	+0x01	In FE6, changes battle palettes to link arena player1 palette...or something, if set. Seems useless. Option only appears after at least one playthrough.
+	+0x02	Terrain window (set = off, not set = on)
+	+0x04	Unit window (set = burst, not set = panel)
+	+0x08	Unit window (set = off, not set = panel)
+	+0x10	Autocursor (set = off, not set = on)
+	+0x20	Text speed (set = normal, not set = slow)
+	+0x40	Text speed (set = fast, not set = slow, set + 0x20 also set = max)
+	+0x80	Game speed (set = fast, not set = normal)
++0x41	Byte	Option byte 2
+	+0x01	Music (set = off, not set = on)
+	+0x02	Sound effects (set = off, not set = on)
+	+0x04	Window color (set = orange, not set = blue)
+	+0x08	Window color (set = green, not set = blue, set + 0x08 also set = black)
+	+0x10	Something about displaying B/W/L on the stat screen
+	+0x40	Autoend turns (set = off, not set = on)
+	+0x80	Subtitle help (set = off, not set = on)
++0x42	Byte	Option byte 3
+	+0x01	Show objective (set = off, not set = on) (doesn't exist in fe6)
+	+0x02	Combat animations off (if both 2 and 4 are set, combat animations are on with backgrounds on)
+	+0x04	Combat animations solo (if both 2 and 4 are not set, combat animations are on with backgrounds off)
+	+0x08	Combat info window (set = detail, not set = strat)
+	+0x10	Combat info window (set = off, not set = strat)
+	+0x20	Set if not easy mode
+
+
+
+
+
+
+	
+############
+CHARACTER BATTLE STATISTIC STRUCT (203E884) (FE6: 203D524)
+More commonly known as the B/W/L table, this holds a bunch of (relatively useless) statistics that no one cares about. If you need room to save something, odds are this is a good place to start. There are 0x46 entries, each 0x10 bytes long.
+
++0x00	Losses
++0x01	Number of times a unit performs an action (seems to increase by 2) (non-aligned halfword)
++0x03	Number of times selected (caps at 199)
++0x04	Number of times viewed in stat screen (caps at 199)
++0x05	Lower 4 bits are the (most recent) chapter number they died on, upper 4 bits (along with byte 0x6) are the turn number they died on
++0x06	See above
++0x09	Top 4 bits, along with 0xA, is exp gained this chapter
++0x0A	See above
++0x0B	Along with bottom 2 bits of 0xC, wins
++0x0C	Bottom 2 bits are wins, top 6 bits, along with the bottom 6 bits of 0xD, are battles
++0x0D	See above
++0x0E	Character number of the most recent killer
++0x0F	Unused?
+
+
+
+
+
+
+
+############
+Table offsets:				FE8		FE7		FE6			Notes
+Item Usability				288B0	26D10	22FF8		item ids 4B-C1
+Item Effect					2FC90	2D04C	27FD4		item ids 4B-C1
+Item Target					28E8C	27128	234B8		item ids 4B-8C
+Prep screen item usability	29F34						item ids 5B-C1
+Item						809B10
+Main unit menu (End, etc)	59CE6C
+Unit action menu (Attack)	59CA34
+
+
+
+
+
+############
+Other useful offsets
+
+Current unit data pointer: 3004E50 (FE7: 3004690) (FE6: 30044B0) (FE7J: 30045B0) (FE8J: 3004DF0)
+
+Convoy's item list: 203A81C
+
+Palette wram buffer: 20228A8 (FE7: 2022860)
+BG 0 wram buffer: 2022CA8 (FE7: 2022C60) (FE6: 2021B08)
+BG 1 wram buffer: 20234A8 (FE7: 2023460) (FE6: 2022308)
+BG 2 wram buffer: 2023CA8 (FE7: 2023C60) (FE6: 2022B08)
+BG 3 wram buffer: 20244A8 (FE7: 2024460) (FE6: 2023308)
+
+Unit data loaded from events: 203EFB8 (max of 0x1F characters can be loaded at once, I think)
+
+Stat screen data (+0xC has current unit pointer): 2003BFC (FE7: 200310C) (FE6: 2003108)
+
+I/O (4000000) gets updated once per frame from E9C (FE8)/11B0 (FE7)
+
+FE6 permanent events stored at 3004890, temporary at 3004898
+
+Weapon icons start at 5926F4, palette at 5996F4
+
+FE8: LoEventCodeCallTable = 591B28, HiEventCodeCallTable (0x80+) = 591C98
+
+
+
+
+
+
+Origin Character Pointer只会在角色初次出场初始化时产生作用，一旦进入队列则不在产生作用。举例：
+FEB查询Eirika的人物指针是803D64，你在其中修改她的力量，只会在重启序章时有用。而NO$GBA真正会在战斗内读取的是[Current unit data pointer]：从3004E50H读取得到的 0202BE94H才是修改之后有效的数据。

@@ -137,6 +137,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 
 LOAD1 1 BossTrainer
 ENUN 
@@ -144,7 +147,7 @@ CHECK_EVENTID LoreleiDefeatedTemp
 BEQ 10 sC s0 
 MarkTrainerAsDefeated(0xE1)
 TILECHANGE 0
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 GOTO 99 
 LABEL 10 
 ENUT TrainerBattleActiveFlag
@@ -155,7 +158,9 @@ ReorderParty
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(LoreleiBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
@@ -215,7 +220,7 @@ GIVETOMAIN 0
 ENUT LoreleiDefeatedTemp
 MarkTrainerAsDefeated(0xE1)
 ReviveParty 
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 LABEL 99 
 NoFade
 ENDA

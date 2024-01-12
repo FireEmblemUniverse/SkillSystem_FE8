@@ -77,6 +77,25 @@ blh CheckEventId
 cmp r0, #1 
 beq Loop 
 AnyFlag: 
+
+
+@ this might fix a bug where the enemy is at 1 hp and is not immune 
+@	.equ GetUnit, 0x8019430
+@NoReduceDmg: 
+@@only activate if damage > current enemy hp-1
+@ldrb	r1,[r5,#0x13]
+@cmp r1, #1 
+@bne ContinueStuff
+@add r1, #1 
+@strb r1, [r5, #0x13] @ must have at least 2 hp? 
+@ldrb r0, [r5, #0x0B] 
+@push {r1} 
+@blh GetUnit 
+@pop {r1} 
+@strb r1, [r0, #0x13] @ hp 
+@
+@ContinueStuff: 
+
 @only activate if damage > current enemy hp-1
 ldrb	r5,[r5,#0x13]
 @mov	r0,#0x01

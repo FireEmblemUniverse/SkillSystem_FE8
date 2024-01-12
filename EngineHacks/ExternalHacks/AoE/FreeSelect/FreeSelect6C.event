@@ -16,19 +16,19 @@ p6C_FreeSelect:
 #endif
 	
 	_6C_CALL_ROUTINE(_prFreeSelect6C_Init+1)
-	//_6C_CALL_ROUTINE(0x15361) // Block Game Logic
 	_6C_SET_DESTRUCTOR(_prFreeSelect6C_Destruct+1)
 	
 	_6C_YIELD
 	
 	
-	_6C_UNIL_EXISTS(0x59A548) // GENS 6C, camera movement
+	_6C_UNIL_EXISTS(0x59A548) // GENS 6C, camera movement	//{U}
+//	_6C_UNIL_EXISTS(0x5C29C8) // GENS 6C, camera movement	//{J}
 	_6C_LOOP_ROUTINE(_prFreeSelect6C_Loop+1)
 	
 	_6C_YIELD
 	
-	_6C_UNIL_EXISTS(0x59A548) // GENS 6C, camera movement
-	//_6C_CALL_ROUTINE(0x15371) // Unblock Game Logic
+	_6C_UNIL_EXISTS(0x59A548) // GENS 6C, camera movement	//{U}
+//	_6C_UNIL_EXISTS(0x5C29C8) // GENS 6C, camera movement	//{J}
 	_6C_END
 
 #ifndef NDEBUG
@@ -44,11 +44,9 @@ _prFreeSelect6C_Init:
 ALIGN 4
 _prFreeSelect6C_Loop:
 	#include "AoE_fsInputLoop.lyn.event"
-	//#incbin "fsInputLoop.dmp"
 
 ALIGN 4
 _prFreeSelect6C_Destruct:
-	//#incbin "fsDestructor.dmp"
 	#include "fsDestructor.lyn.event"
 }
 

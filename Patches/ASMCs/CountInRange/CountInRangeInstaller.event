@@ -1,1 +1,8 @@
 #include "CountInRange.lyn.event"
+
+
+
+#define CountPlayersInRange_ASMC(x1, y1, x2, y2) "SVAL s1 0; SVAL s2 0; SVAL s3 0; SVAL s4 0; SVAL s5 y1 << 16 | x1; SVAL s6 y2 << 16 | x2; ASMC CountInRange" 
+
+
+

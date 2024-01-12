@@ -19,7 +19,7 @@ BEQ Exit
     MOV r2, #0x8F
     LDR r3, =0x00030102
     LSL r2 ,r2 ,#0x2
-    STRH r2, [r3, #0x2]
+    @STRH r2, [r3, #0x2] @idk - ask Nat
     LDR r1, [r0, #0x30] @pointer:089A2C78 (gWalkSpeedLookup ) -> 00000102
     LDRH r3, [r1, #0x22]
     LSR r3 ,r3 ,#0xA

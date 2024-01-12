@@ -30,6 +30,37 @@ Height:[X]
 Age:[X]
 
 
+#0x9E TxtData0x09E
+[OpenRight][X]
+#0xBA TxtData0x0BA
+[OpenRight][X]
+
+#0xF04 TxtData0xF04
+Fallen units return
+in next chapter.
+Recommended for 
+Casual Gamers and
+IronMan player.[X]
+
+#0xF05 TxtData0xF05
+Fallen units are
+gone and disappear.
+Recommended for if
+you want to play
+tough simulations.[X]
+
+
+#0x9B7 PlaceUnitsText
+ Toy Box[X]
+
+#0x9B8 PlaceUnitsHelpText
+Freely place units.[X]
+
+#0xF17 TxtData0xF17
+ Wait >>[X]
+
+#0xD4B TxtData0x0D4B
+Debug Error[X]
 
 #0xEA0 HouseText
 //#first text ID in the free block
@@ -115,4 +146,7 @@ Cost[X]
  Skill learned[X]
  
  #include "unitinfo_text.txt"
+ 
+ 
+ 
  

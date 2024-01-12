@@ -1,4 +1,6 @@
 SavageBlowEvent:
+CHECK_EVENTID SpeedupFlag
+BNE 99 sC s0 
 CAM1 0xFFFF
 SOUN 0xCB
 STAL 0x16
@@ -6,5 +8,6 @@ SOUN 0xCB
 STAL 0x16
 SOUN 0xD5
 STAL 0x16
+LABEL 99 
 NoFade
 ENDA

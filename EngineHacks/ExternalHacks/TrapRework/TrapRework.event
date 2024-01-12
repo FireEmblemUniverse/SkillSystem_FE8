@@ -1,7 +1,7 @@
 #ifndef TRAP_REWORK_INSTALLED
 	#define TRAP_REWORK_INSTALLED
 
-	
+
 	
 	//vanilla trap ID defs
 	#define BallistaTrapID 1
@@ -27,6 +27,11 @@
 	//#define SkillAccessoryID 20 
 	
 	#define CoinsTrapID 21 // 
+ALIGN 4 
+CoinsTrapID_Link:
+WORD CoinsTrapID
+	
+	
 	#define OpenPokeballItemID 89	//blocks but cannot interact 
 	
 	#define ObstacleID 48 
@@ -100,6 +105,7 @@
 	
 	//macro for setting event initializers
 	#define SetTrapEventInit(trapID,ptr) "PUSH; ORG TrapInitFromEventsJumpTable+(4*(trapID-1)); POIN ptr; POP"
+	#define SetTrapInit(trapID,ptr) "PUSH; ORG TrapInitFromEventsFunctionTable+(4*(trapID-1)); POIN ptr; POP"
 	
 	SetTrapEventInit(BallistaTrapID,$37894)
 	SetTrapEventInit(AttackableTerrainTrapID,$37900)
@@ -286,6 +292,9 @@
 	#define AddTrapExt(trapID, x, y, ext1, ext2, ext3, ext4, ext5) "SVAL s1 trapID; SVAL 0xB (x|(y<<16)); SVAL s2 ext1; SVAL s3 ext2; SVAL s4 ext3; SVAL s5 ext4; SVAL s6 ext5; ASMC AddTrapExtASMC"  
 	#define AddTrapExt(trapID, x, y, ext1, ext2, ext3, ext4) "SVAL s1 trapID; SVAL 0xB (x|(y<<16)); SVAL s2 ext1; SVAL s3 ext2; SVAL s4 ext3; SVAL s5 ext4; SVAL s6 ext5; ASMC AddTrapExtASMC"  
 	#define AddTrapExt(trapID, x, y, ext1, ext2, ext3) "SVAL s1 trapID; SVAL 0xB (x|(y<<16)); SVAL s2 ext1; SVAL s3 ext2; SVAL s4 ext3; SVAL s5 0; SVAL s6 0; ASMC AddTrapExtASMC"  
+	#define RemoveTrapAtCoords(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
+	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
+	#define GetTrapExt1At(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
 	
 	
 	//BYTE $40 0D 0D $01 // $01 is animated 
@@ -296,13 +305,10 @@
 	
 	
 	
-	#define RemoveTrapAtCoords(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
 	#define RemoveTrap(x,y) "SVAL 0xB (x|(y<<16)); ASMC RemoveTrapAtCoordsASMC"
 	
 	#define RemoveTrap "ASMC RemoveTrapAtCoordsASMC"
-	#define GetTrapIDAt(x,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapIDAtASMC"
 	#define IsTrapAtCoordMatchingType(x, y, ID) "SVAL 0xB (x|(y<<16)); SVAL s1 ID; ASMC ASMC_IsTrapAtCoordMatchingType"
-	#define GetTrapExt1At(X,y) "SVAL 0xB (x|(y<<16)); ASMC GetTrapExt1AtASMC"
 	#define RemoveMatchingTrapTypeAtCoord(x, y, ID) "SVAL 0xB (x|(y<<16)); SVAL s1 ID; ASMC ASMC_RemoveMatchingTrapTypeAtCoord"
 	
 	//Macro for setting traps as light sources (uses ext1 for vision range)

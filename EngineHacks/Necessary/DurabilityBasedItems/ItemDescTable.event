@@ -1,8 +1,15 @@
 
 // Copied from the item table's name column  
 // There is probably a better way to do this lol 
+#define DefaultTextEntries "SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText; SHORT DebugText"
+#define DefaultTextEntries256 "DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries; DefaultTextEntries"
+
 
 ItemNameTable:
+DefaultTextEntries256
+ORG ItemNameTable 
+
+
 SHORT 0
 SHORT 0x0354
 SHORT 0x0354
@@ -269,6 +276,8 @@ WORD 0
 
 ALIGN 4 
 ItemDescTable: 
+DefaultTextEntries256
+ORG ItemDescTable 
 SHORT 0x00
 SHORT 0x0409
 SHORT 0x0409
@@ -534,7 +543,8 @@ ALIGN 4
 WORD 0 
 
 
-
+#undef DefaultTextEntries256
+#undef DefaultTextEntries
 
 
 

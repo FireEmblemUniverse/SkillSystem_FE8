@@ -1,4 +1,16 @@
+
+#include "ItemEffects/Installer.event" 
+#include "Speedup/Installer.event" 
+#include "bmidoten/Installer.event" // range stuff 
+#include "Boxes/Installer.event" 
+#include "Prebattle/Installer.event" 
+#include "bmudisp/Installer.event" 
+#include "SelectAvatarMenu/Installer.event" 
+
+#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
+#include "DangerRadius/FogDR.event" 
 //#include "SMS/Installer.event" 
+#include "HigherStatGains/Installer.event" 
 #include "Autosave/Installer.event" 
 #include "Randomize/Installer.event" 
 
@@ -10,7 +22,7 @@
 #include "ProcSkills/Installer.event" 
 #include "Supply/Installer.event" 
 #include "ExtendWeaponDescBox/Installer.event" 
-//#include "FreeMU/FreeMovement.event" // If defined, start cities in FreeMovement mode 
+
 //#include "AllegiancePalette/Installer.event"
 #include "ReplaceMoves/Installer.event"
 #include "ReorderMoves/Installer.event" 
@@ -59,7 +71,7 @@
 
 #include "CustomSkills/Installer.event"
 
-#include "ContinueBattleBGM_20200919/Installer.event"
+#include "ContinueBattleBGM_20220321/Installer.event"
 
 #include "TrainerDeathFlags/Installer.event"
 
@@ -90,7 +102,7 @@
 #include "FastMovement/Installer.event"
 
 
-#include "DangerRadius/FogDR.event" 
+
 #include "MultiTileMarker/MultiTileMarker_Install.event"
 
 

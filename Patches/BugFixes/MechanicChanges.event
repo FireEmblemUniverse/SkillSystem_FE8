@@ -5,11 +5,84 @@
 
 PUSH 
 
+//8036818
+// Make text in Cmb Preview window longer https://github.com/FireEmblemUniverse/fireemblem8u/blob/d800860c04e74d85c7caa76f93336b37906328a3/src/bksel.c#L427C6-L427C25
+ORG $36DD6 
+BYTE 9 // Name1 (vanilla 6) 
+ORG $365FA 
+BYTE 52 // Centered text something 
+ORG $36DE0 
+BYTE 9 // Name2 
+ORG $36DEA 
+BYTE 8 // item (vanilla 7) 
+
+
+
+// make goal window text slightly longer 
+ORG $8D2A6 
+BYTE 10 // Width of line 1 (Vanilla is 8)
+ORG $8D2B2 
+BYTE 10 // Width of line 2 (Vanilla is 8)
+ORG $8D2F6 
+BYTE $48 // length in pixels? (Vanilla is 0x40)
+ORG $8D3E8 
+BYTE $48 // length in pixels for "Last turn" (Vanilla is 0x40)
+
+//Prep screen text width
+ORG 0x99554 //Prep screen item menu selected pixel width
+BYTE 0x2B
+ORG 0x9878C //Prep screen item menu selected tile width
+BYTE 0x6
+ORG 0x9A820 //Prep screen item menu tile width
+BYTE 0x6
+ORG 0x98728 //Prep screen pick units tile width
+BYTE 0x6
+ORG $99554 
+BYTE $30 // centered name in prep items 
+ORG $9A976
+BYTE $1C // centered name in prep unit select 
+ 
+ORG $2FEC6
+BYTE 8 // Vulnerary heal amount (used by HoardersBane) 
+ORG $2CFBC 
+//SHORT $2000 // "Supply" command does not use up action whatsoever 
+// WARNING: this likely causes issues with "friendlier fog" hack 
+// if you cannot return to your original position due to bumping into a unit / being hit by a mine, using the supply in the same action will create an endless loop 
+// instead, hook the code and check for action type 0x1E or 0x1F I think 
+
+
+ORG $86B84 
+SHORT $3801 // Make things that normally scroll left instead scroll right (such as the prep screen bg) 
+ORG $86B8C
+SHORT $46c0 $46c0 $46c0 
+ORG $86BA2 
+SHORT $46C0 $46c0 $46c0 
+
+ORG $3798C // kill GetBallistaItemAt 
+SHORT $2000 // mov r0, #0 
+SHORT $4770 // bx lr 
+
+
 ORG $35728 // Kill Prepare Blank Tile by 7743  
 WORD 0 
 
 ORG $A42BC // Kill GetNextChapterWinDataEntryIndex
 SHORT $2001 $4770 // mov r0, #1 - bx lr 
+
+ORG $37E08 
+SHORT $4770 // kill SaveDungeonState
+ORG $37e4c 
+SHORT $4770 // SaveDungeonRecords
+ORG $37e7c 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $37eb0 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $37fcc 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $38134 
+SHORT $4770 // kill UpdateDungeonRecordsSomething
+ORG $38e38 
+SHORT $4770 // kill DungeonRecordUi_UpdateRunningTime
 
 
 // footsteps table by 7743 
@@ -21,57 +94,6 @@ ORG $078DC4
 BYTE  $FE;
 
 
-// by Vesly 
-// speed for battle map anim rounds 
-// just from the proc MapAnimBattle 9A49FC
-// vanilla is 30 30 30 10 30 
-ORG $9A4A06 
-BYTE 10 
-ORG $9A4A16 
-BYTE 15 
-ORG $9A4A26 
-BYTE 10 
-ORG $9A4A36
-BYTE 5 
-ORG $9A4A46
-BYTE 15  
-
-
-//ORG $7A92E // dunno what this does 
-//BYTE 45 // vanilla is 100 frames to display poison hp bar ? 
-
-ORG $114FA // frames to show "got item" popup 
-BYTE 45 //96 is vanilla 
-ORG $1166C // frames to show "got gold" popup 
-BYTE 45 //96 is vanilla 
-
-
-
-// by 7743 
-ORG $7BCE2 // double speed of vuln animation by 7743 
-BYTE 0x08 0x34 0x24 0x04 0x24 0x0c 0x00 0x00 0x00 0x00 0x8c 0x42 0x09 0xda
-
-ORG 0x07F464
-BYTE 15 // Frames to show the level up screen 
-
-
-ORG 0x9A352A // speed up map battle anim start? 
-BYTE 0x01
-ORG 0x9A3542 
-BYTE 0x03
-ORG 0x9A356A 
-BYTE 0x07
-ORG 0x9A360A 
-BYTE 0x08	//do not change!
-ORG 0x9A362A 
-BYTE 0x01
-
-ORG 0x9A47B6 // delay between rounds for map battle anims 
-BYTE 0x01
-ORG 0x9A47C6
-BYTE 0x04
-ORG 0x9A480E
-BYTE 0x0A
 
 // EXPERIMENTAL 
     // prevent debuffs and loading issue (Kirb)
@@ -124,10 +146,6 @@ ORG $CD0EC; BYTE 0x49 0xF7 0x1C 0xFD
   // Disable skirmishes from appearing on the world map by 7743 
 //ORG 0x0C18F8
 //BYTE $00 $00 $00 $00 
-
-// Show class instead of unit during no anims battle preview 
-ORG $7BEAE 
-SHORT 0x6840 
 
 // Level does not decrease with Promotion
 //  by 7743 
@@ -287,6 +305,43 @@ POP
 
 
 
+// inline: make it get name as class name 
+PUSH
+ORG $8C5F4
+SHORT $6848
+ORG $86E50
+SHORT $6840 
+ORG $365F0
+SHORT $6850
+ORG $9A5F0
+SHORT $6868 
+ORG $9A97E
+SHORT $6868 
+ORG $9954A
+SHORT $6870 
+ORG $9A1DA
+SHORT $6868 
+ORG $5203C
+SHORT $6840 
+ORG $923AC
+SHORT $6840 
+ORG $9ECCE
+SHORT $6840 
+ORG $8E240
+SHORT $6870 
+ORG $34984
+SHORT $6848 
+ORG $2D34E
+SHORT $6840 
+ORG $2D37C
+SHORT $6840 
+ORG $9B9F2
+SHORT $6840 
+ORG $9BA24
+SHORT $6840 
+ORG $7BEAE
+SHORT $6840 
+POP
 
 
 #ifndef DEBUG_MODE

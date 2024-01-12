@@ -1,0 +1,214 @@
+
+
+	#include _6CDefinitions.event
+
+	#include "src/FreeMU_Core.lyn.event"
+	#include "asm/FreeMU.lyn.event"
+	#include "MU6Cfix/_MU6Cfix.event"
+
+/*
+ALIGN 4 
+StallEvent:
+STAL 20 
+//TutText(DebugText)
+NoFade 
+ENDA */
+
+#include "SelectUnitHook.lyn.event" 
+
+
+
+#ifdef INSTALL_FMU
+PUSH
+
+ORG $1C998 
+BYTE $81 // pressing R or B on a unit will open their status screen 
+//BYTE $84 // pressing R or Start on a unit will open their status screen 
+
+ORG $1ca9c
+callHackNew(SelectUnitHook)
+callHackNew(LevelUpCheckProcExists)
+//SHORT $46c0 $46c0 $46c0 $46c0 $46c0 $46c0 
+
+ORG $1DBBC 
+callHackNew(NewHandleAutoEndHook) 
+
+ORG $8388A 
+SHORT $1c19 // mov r1, r3 
+callHackNew(ShouldRunTurnEventHook)
+SHORT $46c0 
+
+ORG $271EC 
+callHackNew(DoNotHideOverlappingUnitsHook) 
+
+
+	ORG $59A38C
+	POIN NewPlayerPhaseEvaluationFunc|1
+	ORG $59A3B4
+	POIN NewPlayerPhaseEvaluationFunc|1
+			//call FreeMovementControlProc
+	
+	ORG $59A2E4
+	POIN NewMakePhaseControllerFunc|1
+			//call FreeMovementControlProc
+			
+	ORG $9A2DBC
+	POIN pFMUCtr_OnEnd|1
+POP
+#endif 
+
+ALIGN 4 
+FMU_IdleProc: 
+	_6C_SET_NAME(FreeMovementInputProcName)
+	_6C_YIELD
+	_6C_LOOP_ROUTINE(pFMU_DoNothing|1)
+	_6C_END 
+
+
+// Plan: 
+// Loop for input in pFMU_MainLoop 
+// in FMU_HandleContinuedMovement, if saved input, do stuff and erase saved inputs 
+
+
+ALIGN 4 
+FMU_InputLoopProc:
+	_6C_SET_NAME(FreeMovementInputProcName)
+	_6C_YIELD
+	_6C_LOOP_ROUTINE(pFMU_InputLoop|1)
+	_6C_END 
+
+ALIGN 4
+	FreeMovementControlProc:
+	_6C_SET_NAME(FreeMovementProcName)
+	_6C_SET_MARK(2)
+	_6C_YIELD
+	_6C_NEW_CHILD(FMU_InputLoopProc)
+	//_6C_CALL_ROUTINE(FMU_ResetMoveSpeed|1)
+	//_6C_CALL_ROUTINE(FMU_ResetDirection|1)
+	_6C_CALL_ROUTINE(FMU_InitVariables|1)
+	_6C_CALL_ROUTINE(0x808D151) // EndPlayerPhaseSideWindows
+	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
+	
+	_6C_LABEL(0xC)	//Proc Start
+	_6C_YIELD
+	//_6C_CALL_ROUTINE($801A1F5) // RefreshFogAndUnitMaps
+	_6C_CALL_ROUTINE($8019C3D) // UpdateGameTilesGraphics
+	_6C_YIELD
+	_6C_CALL_ROUTINE(0x80790A5) // MU_EndAll
+	_6C_YIELD
+	_6C_CALL_ROUTINE($80271A1) // SMS_UpdateFromGameData
+	_6C_YIELD
+	_6C_CALL_ROUTINE($80160D1) // UpdatePlayMapMusic
+	
+	// end terrain / goal windows 
+	
+	//_6C_CALL_ROUTINE($808D13D) // start player phase SideWindow
+	_6C_CALL_ROUTINE($8027A41) // reset map sprite hover timer
+	_6C_CALL_ROUTINE(pFMU_InitTimer|1)
+	_6C_CALL_ROUTINE(FMU_EnableDR|1)
+	//_6C_CALL_ROUTINE(0x801CCB5) //PlayerPhase_DisplayDangerZone();
+	
+	_6C_LABEL(0)	//Idle
+	//_6C_CALL_ROUTINE(pFMU_OnInit|1) // now called inside pFMU_InitTimer 
+	//_6C_CALL_ROUTINE_2(pFMU_CorrectCameraPosition|1)
+	_6C_LABEL(0xD)	
+	
+	_6C_LOOP_ROUTINE(pFMU_MainLoop|1)
+	//_6C_LOOP_ROUTINE(pFMU_HanleContinueMove|1)	
+	_6C_GOTO(0xD)
+	
+	_6C_LABEL(1)	//Try Move Unit by Button Press
+	_6C_CALL_ROUTINE_2(pFMU_MoveUnit|1)
+	_6C_GOTO(0)
+	
+	_6C_LABEL(2)	//Unit Not Move
+	//_6C_CALL_ROUTINE_2(pFMU_HandleKeyMisc|1)
+	//_6C_CALL_ROUTINE_2(pFMU_RunLocBasedAsmcAuto|1)	// conditionally yield 
+	//_6C_CALL_ROUTINE_2(pFMU_HandleSave|1) // timer to save (and end MMS)
+	_6C_YIELD
+	_6C_GOTO(0)
+	
+	_6C_LABEL(4)	//Press A
+	_6C_CALL_ROUTINE(pFMU_PressA|1)
+	//_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
+	_6C_YIELD
+	_6C_GOTO(0xE)
+	
+	_6C_LABEL(5)	//Press B
+	_6C_CALL_ROUTINE(pFMU_PressB|1)
+	_6C_YIELD 
+	_6C_GOTO(0)
+	
+	_6C_LABEL(6)	//Press L
+	_6C_CALL_ROUTINE(pFMU_PressL|1)
+	_6C_YIELD 
+	_6C_GOTO(0)
+	
+	_6C_LABEL(7)	//Press R
+	_6C_CALL_ROUTINE(pFMU_PressR|1)
+	_6C_YIELD 
+	_6C_GOTO(0)
+	
+	_6C_LABEL(8)	//Press Select
+	_6C_SLEEP(0x3)
+	_6C_CALL_ROUTINE(pFMU_PressSelect|1)
+	_6C_YIELD 
+	_6C_GOTO(0)
+	
+	_6C_LABEL(9)	//Press Start
+	_6C_CALL_ROUTINE(pFMU_PressStart|1)
+	_6C_YIELD 
+	_6C_GOTO(0)
+	
+	_6C_LABEL(0xE)	//Save
+	//_6C_YIELD
+	//_6C_CALL_ROUTINE(FMU_ClearActionAndSave)
+	//_6C_CALL_ROUTINE($801C895) // ClearActionAndSave
+	_6C_GOTO(0)
+	//_6C_GOTO(0xC)
+	
+	_6C_LABEL(0xF)
+	_6C_END_ALL(FMU_IdleProc)
+	
+	_6C_END
+	
+	
+	
+	#define MM_Status	  "BYTE $D4 $7E $0D $08 $90 $06 $E0 $06 $00 $6F $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $51 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Guide	  "BYTE $CC $7E $0D $08 $9C $06 $E5 $06 $04 $74 $00 $00 $61 $26 $02 $08 $79 $26 $02 $08 $E5 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Options	  "BYTE $C4 $7E $0D $08 $9E $06 $E3 $06 $00 $70 $00 $00 $41 $4C $02 $08 $00 $00 $00 $00 $BD $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Suspend 	  "BYTE $AC $7E $0D $08 $9F $06 $E4 $06 $00 $73 $00 $00 $B1 $25 $02 $08 $00 $00 $00 $00 $D1 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Dunno1     "BYTE $BC $7E $0D $08 $9B $06 $E1 $06 $00 $71 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $29 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Dunno2     "BYTE $B4 $7E $0D $08 $9D $06 $E2 $06 $00 $72 $00 $00 $49 $F4 $04 $08 /*$CD $4C $02 $08 */$00 $00 $00 $00 $E1 $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00"
+	#define MM_Separator  "WORD 0 0 0 0 0 0 0 0 0"
+	#define MenuBox(XCoord, YCoord, Width, Height, Style, CommandListPointer) "BYTE XCoord YCoord Width Height; WORD Style; POIN CommandListPointer"
+	#define MenuBoxFull(XCoord, YCoord, Width, Height, Style, CommandListPointer, Constructor, RPressStart, Pointer3, OnBPress, OnRPress, RPressEnd) "BYTE XCoord YCoord Width Height; WORD Style; POIN CommandListPointer Constructor RPressStart Pointer3 OnBPress OnRPress RPressEnd"
+	
+	ALIGN 4
+	FreeMovementProcName:
+	String(E_FREEMOVE)
+	BYTE 0
+	
+	ALIGN 4
+	FreeMovementInputProcName:
+	String(E_FREEMOVE_INPUT)
+	BYTE 0
+	
+	ALIGN 4
+	FreeMovementLMenu:
+	MenuBoxFull($01, $02, $09, 0, 0, FreeMovementMenuTable, $0, $0, $0, FreeMovementMenuOnBPress, $4F521, $4F459)
+	
+	ALIGN 4
+	FreeMovementMenuTable:
+	MenuCommand(0x690, 0x6E0, NormalText, AlwaysUsable, FMU_CallStatus) 
+	//MM_Status
+	//MM_Guide
+	MM_Dunno1 // options 
+	//MenuCommand(UM_Fly, UM_FlyDesc, NormalText, FlyCommandUsability|1, CallSoarEffect|1)
+	MenuCommand(UM_Travel, UM_TravelDesc, NormalText, TravelCommandUsability, TravelCommandEffect)
+	//MM_Dunno2
+	MM_Suspend
+	MenuCommand(FMU_MenuName, FMU_MenuDesc, GreenText, AlwaysUsable, FMU_EndFreeMoveSilent|1)
+	MM_Separator
+
+

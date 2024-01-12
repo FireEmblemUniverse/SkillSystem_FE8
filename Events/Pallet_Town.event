@@ -21,10 +21,71 @@ TurnEventPlayer(0,GlobalTurnEvent,0,255)
 //TurnEventPlayer(0,CityBeginningScene,1,1)
 END_MAIN
 
-ALIGN 32
+ALIGN 32 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR PurchasedLaprasFlag PurchaseLaprasevent [0x0, OaksAide] 0 // NPC
+TrainerPostBattleTalk(OaksAide) // NPC talk again 
 END_MAIN
+
+PurchaseLaprasevent:
+EVBIT_MODIFY 4 
+WallText(CatchBeforePurchaseLaprasText)
+CheckIfCaught(VenusaurID) 
+BNE 31 sC s0 
+CheckIfCaught(CharizardID)
+BNE 31 sC s0 
+CheckIfCaught(BlastoiseID)
+BNE 31 sC s0
+GOTO 30 
+LABEL 31 
+EVBIT_MODIFY 4 
+WallText(PurchaseLaprasText)
+LOAD1 1 LaprasUnitGroup  
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(35, True,  TempAlly<<8|TempAlly) // Lapras 
+SelectCharacter(TempAlly, 0, 0, 0, 0, 9000, 0, 0, 0, 0) 
+SVAL sB 0x100 
+BEQ 10 sC sB 
+GOTO 20
+
+LABEL 10 
+UNCR(0x7fff, 1) // SelectCharacter ends MMS 
+WallText(No_PurchasedLaprasText)
+ENUF PurchasedLaprasFlag
+DISA TempAlly
+GOTO 63
+
+LABEL 20
+CHECK_COORDS 0x7fff
+SADD sA sC s0  
+SET_ACTIVE 0
+WallText(Yes_PurchasedLaprasText)
+SADD sB sA s0  
+ASMC Get7thUnitASMC
+BEQ 21 sC s0 
+WARP_OUT
+STAL 30
+UNCM(TempAlly, 0x10009) // Undeploy + escape the Lapras
+DISA OaksAidePkmn 
+GOTO 22 
+LABEL 21
+DISA OaksAidePkmn  
+MOVENEXTTO (-1) TempAlly 0x7FFe 
+ENUN 
+LABEL 22 
+SVAL s1 TempAlly // Lapras's UnitID 
+ASMC ChangeS1UnitIntoLowestUnitID
+SET_ACTIVE 0x7ffe
+GOTO 63 
+
+LABEL 30 // Haven't caught the pokemon 
+ENUF PurchasedLaprasFlag
+
+LABEL 63 
+NoFade
+ENDA 
 
 
 
@@ -41,6 +102,7 @@ AREA 0 ToRoute21WBush [6,19] [6,19]
 AREA 0 ToRoute21EBush [11,19] [11,19] 
 AREA 0 ToRoute21Water [7,19] [10,19] 
 AREA 0 ToRoute1 [12,0] [13,0] 
+AFEV DisableTutFlag_A TutMsg1 0
 END_MAIN
 
 #ifdef MultiTileMarker_Installer
@@ -101,6 +163,32 @@ Seize(10,2)
 */
 END_MAIN
 
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(0,0,23,19) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [5,14]
+CUMO [5,14]
+STAL 30
+CURE  
+TutText(PalletTrainerTipsText)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
+
+
 Traps1:
 //CoinsTrap(8,2,3,65535)
 //RedPokeballTrap(5,9, 1, Vulnerary)
@@ -123,7 +211,7 @@ EnterTrap(16,13, EnterOaksLabText)
 BlankExamineTrap(4,7,RedHouseText)
 BlankExamineTrap(13,7,GaryHouseText)
 
-SignTrap(5,14, PalletTrainerTipsText)
+TutSign(5,14, ChapterID*2,PalletTrainerTipsText)
 Sign2Trap(9, 11, PalletTownText) 
 
 
@@ -160,18 +248,17 @@ ALIGN 4
 	
 ALIGN 32
 BeginningScene:
-#ifdef FREE_MOVEMENT_INSTALLED
-CALL LoadMainUnit
-#endif 
-#ifndef FREE_MOVEMENT_INSTALLED
 CALL LoadAndPlacePlayers 
-#endif 
 CALL GlobalBeginningScene
 CALL CityBeginningScene
-#ifdef DEBUG_MODE 
-LOAD1 1 WaterUnits
+LOAD1 1 OaksAideUnitGroup
 ENUN 
-#endif 
+MarkTrainerAsDefeated(OaksAide) 
+MarkTrainerAsDefeated(OaksAidePkmn) 
+CHECK_EVENTID PurchasedLaprasFlag 
+BEQ 34 sC s0 
+DISA OaksAidePkmn 
+LABEL 34 
 LABEL 0x63
 NoFade 
 ENDA 
@@ -218,32 +305,22 @@ UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,
 UNIT 
 
 
-WaterUnits: 
-//UNIT 0x51  BurrowID 0x1 Level(0, Enemy, 1)     [8,17] 0b 0x0 0x1 REDA8R17 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
-UNIT 0xF0  SuspiciousWaterID 0x1 Level(0, Enemy, 1)     [9,18] 0b 0x0 0x1 REDA9R18 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 
+LaprasUnitGroup:
+UNIT TempAlly LaprasID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
-TalkEvent:
-Text(0x9DD) 
-NoFade
-ENDA 
+OaksAideUnitGroup:
+UNIT OaksAide OaksAideClass 0x0 Level(LVFACEUP, Enemy, 1) [8,16]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT OaksAidePkmn LaprasID 0x0 Level(0, Enemy, 1) [8,17]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
-VillageEvent:
-	VillageEventItem(VillageText, Village, Boots)
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT DebugText // 0xE0 
+TDQ_TableTerminator
 
-HouseEvent:
-	// Set parameters
-	SVAL r1 NiceThighsID
-	SVAL r2 (-1) // (-1) is active unit
-	// Check if unit has skill
-	// If they have, goto label #0 (end)
-	ASMC (ASMC_HasSkill|1)
-	BNE 0 rC r0
-	// Learn skill to unit
-	ASMC (ASMC_LearnNewSkill|1)
-LABEL 0
-	Text(HouseText)	
-	NoFade
-	ENDA
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), PalletOaksAideBD, 1) 
+TDQ_TableTerminator ; } 
+
 	
 #undef ChapterID 

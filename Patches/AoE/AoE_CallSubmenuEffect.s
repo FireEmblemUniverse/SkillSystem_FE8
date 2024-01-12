@@ -1,12 +1,19 @@
 .thumb
 .align
 
-
+.include "Definitions.s"
 .global AoE_AreAnyUsable
 .type AoE_AreAnyUsable, %function
-
+.equ CurrentUnit, 0x3004E50 
 AoE_AreAnyUsable:
 push {r4,r14}
+
+ldr r0, =CurrentUnit
+ldr r0, [r0] 
+ldr r0, [r0, #0xC] @ state 
+mov r1, #0x40 @ canto 
+tst r0, r1 
+bne RetFalse 
 
 @loop through all menu command usabilities looking for one that returns true
 

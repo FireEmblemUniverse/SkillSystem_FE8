@@ -526,11 +526,14 @@ __psName:
 	BYTE ALSO_USE_MOVEMENT_SKILL_CHECK
 #endif // HEROES_MOVEMENT_SKILL_REQUIRED
 
+//relocated directly to UnitActionRework table
+/*
 SetUnitAction(ACTION_MOVETARGET, ActionRoutine(_prMoveTargetUnitAction+1))
 SetUnitAction(ACTION_MOVEACTIVE, ActionRoutine(_prMoveActiveUnitAction+1))
 SetUnitAction(ACTION_SWAP,       ActionRoutine(_prSwapAction+1))
 SetUnitAction(ACTION_PUSH,       ActionRoutine(_prPushAction+1))
 SetUnitAction(ACTION_SWARP,		 ActionRoutine(_prSwapAction+1))
+*/
 
 ALIGN 4 // For good measure
 

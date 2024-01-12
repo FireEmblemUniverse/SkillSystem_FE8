@@ -19,6 +19,11 @@ ldr r0, =#0x0203A958
 ldrb r0, [ r0, #0x11 ]
 cmp r0, #0x02
 bne End @ End if this isn't combat.
+cmp r5, #0 
+beq End 
+ldrb r0, [r5, #0x13] @ current hp 
+cmp r0, #0 
+beq End 
 mov r0, r5
 ldr r1, =RockyHelmetIDLink
 ldrb r1, [ r1 ]
@@ -75,6 +80,11 @@ ldr r7, =#0x0203A56C @ Defense struct
 bl PSGWInjureDefender
 
 CheckGrislyWoundDefender:
+cmp r5, #0 
+beq End 
+ldrb r0, [r5, #0x13] @ current hp 
+cmp r0, #0 
+beq End 
 mov r0, r5
 ldr r1, =GrislyWoundIDLink
 ldrb r1, [ r1 ]

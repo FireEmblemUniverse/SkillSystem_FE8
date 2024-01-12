@@ -20,6 +20,7 @@ push {r7} @ Save r8 to restore at the end
 mov r8, r0 @ Parent proc 
 mov r6, r9 
 push {r6} 
+bl TurnOnBGMFlag
 bl EmptyMemorySlotQueue
 ldr r3, =CurrentUnit 
 ldr r3, [r3] @ unit struct ram pointer 
@@ -142,8 +143,10 @@ beq GotoRestoreCamera @ We went through all units, so end
 
 ldrb r0, [r5] @ unit id 
 
-ldr r2, [r7] 
-ldrb r2, [r2, #4] 
+ldr r2, =CurrentUnit 
+ldr r2, [r2] 
+ldr r2, [r2] @ char table entry  
+ldrb r2, [r2, #4] @ unit ID 
 cmp r0, r2 
 beq LoadEachSummonLoop @ You cannot summon yourself
 
@@ -256,6 +259,13 @@ ldr r1, =TrainerDifficultyBonusLink_Lunatic
 ldr r1, [r1] @ Additional hidden levels for trainer's pokemon on higher difficulties 
 
 NoMoreBonusLevels: 
+ldr r2, =0x202BCF0 @ ch data 
+ldrb r2, [r2, #0x0E] @ chapter ID 
+cmp r2, #9 
+bge DontReduceBonusLevelsForEarlyChapters 
+lsr r1, #1 
+DontReduceBonusLevelsForEarlyChapters: 
+
 ldr r0, [r6] @ unit ID 
 ldrb r0, [r0, #4] 
 cmp r0, #0xA0 

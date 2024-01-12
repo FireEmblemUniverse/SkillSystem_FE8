@@ -19,7 +19,7 @@ target_sym="$base_dir/SkillsTest.sym"
 
 c2ea_py="$base_dir/Tools/C2EA/c2ea.py"
 textprocess_py="$base_dir/Tools/TextProcess/text-process-classic.py"
-parsefile="$base_dir/EventAssembler/Tools/ParseFile"
+parsefile="$base_dir/EventAssembler/Tools/ParseFileUTF8"
 tmx2ea="$base_dir/Tools/tmx2ea/tmx2ea.py"
 symcombo="$base_dir/Tools/sym/SymCombo.py"
 

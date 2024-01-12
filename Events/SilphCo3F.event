@@ -3,8 +3,8 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute17WildA
 #define ClassB ClassRoute17WildB
-#define WildLvl 33
-#define TrainerL 36
+#define WildLvl 35
+#define TrainerL 40
 
 
 
@@ -34,11 +34,11 @@ END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
 { ; ReinforceEntry(ChapterID)
-Reinforce(0xF0, 2, ReinforcementUnits, 1, 5) 
-Reinforce(0xF1, 2, ReinforcementUnits, 2, 5) 
-Reinforce(0xF2, 2, ReinforcementUnits, 3, 5) 
-Reinforce(0xF3, 2, ReinforcementUnits, 2, 5) 
-Reinforce(0xF4, 2, ReinforcementUnits, 1, 5) 
+Reinforce(0xF0, 1, ReinforcementUnits, 4, 5) 
+Reinforce(0xF1, 1, ReinforcementUnits, 6, 5) 
+Reinforce(0xF2, 1, ReinforcementUnits, 7, 5) 
+Reinforce(0xF3, 1, ReinforcementUnits, 3, 5) 
+Reinforce(0xF4, 1, ReinforcementUnits, 5, 5) 
 }
 
 
@@ -103,8 +103,11 @@ EscapeTileTerminator ; }
 
 NW_StatsDrained:
 PlayerInRange
+CHECK_EVENTID CardKeyFlag 
+BNE 99 sC s0 
 TutText(StrFeelsSapped)
 DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk 
+LABEL 99 
 NoFade 
 ENDA 
 
@@ -190,8 +193,10 @@ LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
-
-LABEL 0x63
+CHECK_EVENTID CardKeyFlag 
+BEQ 99 sC s0 
+ASMC RemoveAllMineTraps
+LABEL 99
 NoFade
 ENDA
 
@@ -219,7 +224,7 @@ UNIT 0xE0 rocket_mID 0x0 Level(0, Enemy, 1) [4,9]  0b 0x0	0x0 0x0  [OneRangeWep,
 UNIT 0xE1 scientistID 0x0 Level(0, Enemy, 1) [15,10]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 scientistID 0x0 Level(0, Enemy, 1) [22,17]  0b 0x0	0x0 0x0  [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE3 rocket_fID 0x0 Level(0, Enemy, 1) [28,5]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE4 rocket_mID 0x0 Level(0, Enemy, 1) [32,12]  0b 0x0	0x0 0x0  [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE4 rocket_mID 0x0 Level(0, Enemy, 1) [32,12]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT
 
 // ChapterID is defined in each chapter.event. The { } brackets are necessary here. 

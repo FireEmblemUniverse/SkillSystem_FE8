@@ -3,8 +3,8 @@
 #define GenericB UnitRoute12Trainer
 #define ClassA ClassRoute12WildA
 #define ClassB ClassRoute12WildB
-#define WildLvl 19
-#define TrainerL 22 // allow a little grinding before Gary at lvl 20 i guess 
+#define WildLvl 22
+#define TrainerL 26  
 
 
 
@@ -91,9 +91,10 @@ Traps1:
 
 //StrengthBoulder(4,3)
 
+//RedPokeballTrap(34,7, (ChapterID*2), SuperPotion) 
 
 
-SkillAccessoryTrap(19,29, (ChapterID*2), SealDefID) 
+//SkillAccessoryTrap(19,29, (ChapterID*2), SealDefID) 
 RedPokeballTrap(19,50, (ChapterID*2)+1, Protein) 
 SkillAccessoryTrap(17,17, (ChapterID*2)+1, BreathOfLifeID) 
 
@@ -191,19 +192,19 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsC:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF2 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -236,20 +237,21 @@ TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated
 SHORT R12N_0xE0_BD // 0xE0 
 SHORT 600 // Gold 
 SHORT R12N_0xE1_BD // 0xE0 
-SHORT 612 // Gold 
+SHORT 700 // Gold 
 SHORT R12N_0xE2_BD // 0xE0 
-SHORT 612 // Gold 
+SHORT 500 // Gold 
 SHORT R12N_0xE3_BD // 0xE0 
-SHORT 612 // Gold 
+SHORT 800 // Gold 
 SHORT R12N_0xE4_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
-UNIT 0xE0 fisherID 0x0 Level(0, Enemy, 1) [8,14]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [12,22]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 sailorID 0x0 Level(LVFACERIGHT, Enemy, 1) [8,14]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [12,22]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 fisherID 0x0 Level(0, Enemy, 1) [18,32]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 fisherID 0x0 Level(0, Enemy, 1) [14,40]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE3 fisherID 0x0 Level(0, Enemy, 1) [14,40]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE4 fisherID 0x0 Level(0, Enemy, 1) [17,51]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 

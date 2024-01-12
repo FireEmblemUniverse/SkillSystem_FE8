@@ -13,11 +13,26 @@ POIN SupplyImageBig
 ORG $9F0E0 
 POIN SupplyImageBig 
 
-ORG $A1A084 // palette for supply image big 
+
+ORG $91178 
+POIN SupplyPalette 
+ORG $9DC64 
+POIN SupplyPalette
+ORG $9F0E8
+POIN SupplyPalette
+ORG $B53F4
+//POIN SupplyPalette // this one is used in shops for the up/down arrows. Vanilla has it point to $A1A084 as the same palette 
+
+
+//ORG $A1A084 // palette for supply image big 
 //BYTE $55 $53 $98 $00 $00 $00 $2A $21 $DE $7F $E2 $7D $37 $6F $38 $62 $B1 $19 $30 $4E $15 $77 $BE $3B $56 $16 $1F $7C $E0 $7F $FF $7F
-#incbin "SupplyImage_Big.png.pal.dmp" 
+//
 
 POP 
+
+ALIGN 4 
+SupplyPalette:
+#incbin "SupplyImage_Big.png.pal.dmp" 
 
 // Import with febuilder, then copy paste hex at 0x9000000 into a .dmp 
 // or use export with EA 

@@ -3,8 +3,8 @@
 #define GenericB UnitRoute3Trainer
 #define ClassA ClassRoute3WildA
 #define ClassB ClassRoute3WildB
-#define WildLvl 6 
-#define TrainerL 7 
+#define WildLvl 12 
+#define TrainerL 15 
 
 
 
@@ -29,6 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 END_MAIN
 
 CharacterBasedEvents:
@@ -38,7 +39,9 @@ END_MAIN
 
 RocketMagikarpEvent:
 
-EVBIT_MODIFY 4 
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
 CAM1 [10,11]
 TEXTSTART 
 TEXTSHOW RocketMagikarpText_A
@@ -97,11 +100,36 @@ EscapeTileTerminator ; }
 #endif 
 
 ToMtMoonB1:
-ChapterTransition(MtMoonB1Ch, 13,32)
+DigChapterTransition(ChapterID, MtMoonB1Ch, 13,32)
 
 ToRoute3:
 ChapterTransition(Route3Ch, 52,0)
 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(3,4, 21, 19) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [14,11]
+CUMO [14,11]
+STAL 30
+CURE  
+TutText(TrainerTip_LearnTMs)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -110,7 +138,7 @@ ChapterTransition(Route3Ch, 52,0)
 Traps1:
 CoinsTrap(6,4,ChapterID*2,450)
 
-SignTrap(14,11, TrainerTip_LearnTMs)
+TutSign(14,11,ChapterID*2, TrainerTip_LearnTMs)
 //CutBush(4,2)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)

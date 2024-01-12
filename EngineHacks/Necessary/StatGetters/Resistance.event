@@ -4,12 +4,15 @@
 #include "_Common.event"
 
 pResistanceModifiers: // Resistance
-	POIN prAddUnitResistance prHalveIfCapturing prDebuffRes prAddEquipResistance prItemPassiveResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury prFortressResistanceRes prDefiantRes prPushRes
-	POIN prResBuff
+	POIN prAddUnitResistance prHalveIfCapturing 
+	POIN PoisonStatus FreezeStatus
+	POIN prDebuffRes StrongCon 
+	POIN prAddEquipResistance prItemPassiveResistance prRallyRes prAddPureWaterBarrierMod prLifeAndDeathMinus prSkillFury prFortressResistanceRes prDefiantRes prPushRes
+	//POIN prResBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryResistance
 	#endif 
-	POIN PoisonStatus FreezeStatus
+
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero
 	#endif
@@ -28,14 +31,6 @@ prAddAccessoryResistance:
 
 prAddPureWaterBarrierMod: // Upper part of byte 0x31 in unit struct is current pure water/barrier bonus duration
 	rAdd(rUpperHalfByteOf(rUByteAt(0x31)))
-
-prDebuffRes:
-	#include "_asm/DebuffRes.lyn.event"
-	POIN GetDebuffs|1
-
-prRallyRes:
-	#include "_asm/RallyRes.lyn.event"
-	POIN GetDebuffs|1
 
 prLifeAndDeathMinus:
 _testSkill(HeroesLifeAndDeathID,0,5)

@@ -1,29 +1,31 @@
 .thumb
 .align 
 
-.global DisplayTextInitialization
-.type DisplayTextInitialization, %function
+@.global DisplayTextInitialization
+@.type DisplayTextInitialization, %function
+@.global DisplayTextInitialization0x54
+@.type DisplayTextInitialization0x54, %function
+@
+@.global DisplayTextUsability0x50
+@.type DisplayTextUsability0x50, %function
+@
+@.global DisplayTextUsability0x51
+@.type DisplayTextUsability0x51, %function
+@
+@.global DisplayTextUsability0x52
+@.type DisplayTextUsability0x52, %function
+@
+@.global DisplayTextUsability0x53
+@.type DisplayTextUsability0x53, %function
+@
+@.global DisplayTextUsability0x54
+@.type DisplayTextUsability0x54, %function
 
-.global DisplayTextUsability0x50
-.type DisplayTextUsability0x50, %function
-
-.global DisplayTextUsability0x51
-.type DisplayTextUsability0x51, %function
-
-.global DisplayTextUsability0x52
-.type DisplayTextUsability0x52, %function
-
-.global DisplayTextUsability0x53
-.type DisplayTextUsability0x53, %function
-
-.global DisplayTextUsability0x54
-.type DisplayTextUsability0x54, %function
 
 
 
-
-.global DisplayTextEffect
-.type DisplayTextEffect, %function
+@.global DisplayTextEffect
+@.type DisplayTextEffect, %function
 
 
 .macro blh to, reg=r3
@@ -47,6 +49,8 @@
 .equ SpawnTrap,0x802E2B8 @r0 = x coord, r1 = y coord, r2 = trap ID
 .equ Init_ReturnPoint,0x8037901
 @.equ GiveCoinsEvent, DisplayTextID+4
+DisplayTextInitialization0x54:
+b SkipCheckEventId 
 
 DisplayTextInitialization:
 mov r0, #0x3
@@ -270,7 +274,22 @@ b DisplayTextUsability
 DisplayTextUsability0x54:
 push {r4,r7,r14}
 mov r7, #0x54
-b DisplayTextUsability
+ldr r4,=#0x3004E50
+ldr r0,[r4]
+mov r1, r7 
+bl GetAdjacentTrapIndividual
+mov r4, r0  @&The DV
+cmp r0,#0
+beq Usability_RetFalse
+ldr r4,=#0x3004E50
+@can't use if cantoing
+ldr r0,[r4]
+ldr r0,[r0,#0xC]
+mov r1,#0x40
+and r0,r1
+cmp r0,#0
+beq Usability_RetTrue
+b Usability_RetFalse
 
 
 
@@ -287,7 +306,7 @@ beq Usability_RetFalse
 
 mov r0, #0x3 
 ldrb r0, [r4, r0]     @Completion flag
-blh CheckNewFlag
+blh CheckNewFlag_No_sC
 cmp r0, #0
 bne Usability_RetFalse
 
@@ -320,9 +339,25 @@ bx r1
 .ltorg
 .align
 
+@.global DisplayTextEffect0x54
+@.type DisplayTextEffect0x54, %function 
+@DisplayTextEffect0x54:
+push {lr} 
+bl DisplayTextEffect 
+ldrb r0, [r1, #3] @ flag to set 
+mov r11, r11 
+ldr r1, =HelpMsgFlagOffset
+lsl r1, #16 
+lsr r1, #16 
+lsl r1, #3 @8 flags per byte 
+orr r0, r1 
+bl SetNewFlag 
+mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
+pop {r3} 
+bx r3 
+.ltorg 
 
-
-DisplayTextEffect:
+@DisplayTextEffect:
 push {r4, lr}
 @Basically the execute event routine.
 
@@ -369,11 +404,11 @@ bl goto_r3
 
 Continue:
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x10
+mov r0, #0x1
 strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics
-
+mov r1, r4 
 pop {r4}
 pop {r3}
 goto_r3:

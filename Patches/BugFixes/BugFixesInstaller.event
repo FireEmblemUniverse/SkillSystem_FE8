@@ -1,6 +1,6 @@
 #include "MechanicChanges.event" 
 #include "HPClassLimit/Installer.event"
-
+#include "DuplicateProcFinder/Installer.event" 
 
 PUSH 
 ORG $A644C // makes it so if checksum for a save file is bad, it will still load the save file 
@@ -16,10 +16,46 @@ BYTE 0x00 0x00 0x00 0x20
 ORG $AB944 // Remove creature campaign 
 BYTE 0x00 0x00 0x00 0x20
 
+ORG $A4D12 // make BWL not ignore units with no affinity 
+SHORT $46c0 
+//[0x2026bb0..0x2026bbc]!! 0x80A4CFC
+
+// Fix REDA / MOVE from crashing on impassible terrain 
+// by 7743 
+ORG 0x01A77E; BYTE 0xFF 0x2D 0x29 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
+
+ORG $CC73A 
+SHORT $E01C // b 0x80CC776 // mov r6, #1 and skip reading null unit as valid 
+
+// remove vanilla read of wrong address 
+// doesn't necessarily fix anything but gets rid of a no$ halt 
+ORG $A52BC 
+BYTE $02 $28 $0B $DD $12 $18 $11 $7D $20 $20 $08 $40 $00 $28 $05 $d1 $0E $20 $10 $56
+BYTE $00 $28 $01 $d1 $00 $20 $00 $E0 $01 $20 $70 $47 //$10 $B5 $93 $b0 
+
+ORG $57448 
+jumpToHack(NoDefenderHook1)
+ORG $57AFC 
+jumpToHack(NoDefenderHook2)
+ORG $57B30 
+jumpToHack(NoDefenderHook3)
+ORG $57B64 
+jumpToHack(NoDefenderHook4)
+ORG $57B94 
+jumpToHack(NoDefenderHook5)
+ORG $7ABEC 
+jumpToHack(NoDefenderHook6)
+ORG $7AC24
+jumpToHack(NoDefenderHook7)
+
+
 POP 
+// [30049B1]!!
+// PostCombatLoop 
 
+#include "NoDefenderAnimationFix.lyn.event" 
 
-
+#include "VanillaRoutineFixes.lyn.event" 
 
 
 
@@ -43,6 +79,7 @@ POP
 
 
 PUSH
+
 ORG 0x2668A
 BYTE 0xFF
 
@@ -55,12 +92,13 @@ BYTE 0xFF
 ORG 0x266EC
 WORD 0x0201F148
 
+
 ORG 0x26778
 WORD 0x0201F148
 
 ORG 0x267F8
 WORD 0x0201F148
-
+/**/
 ORG 0x26834
 WORD 0x0201F148
 
@@ -267,8 +305,18 @@ BYTE 0xFF
 ORG $A8A22 //remove r-text from save screen because why not
 SHORT 0xE025
 
+ORG $3152C 
+replaceWithHack(ShrinkConvoyFix) 
 
 POP 
+
+ALIGN 4 
+PUSH 
+ORG CurrentOffset+1 
+ShrinkConvoyFix: 
+POP 
+#incbin "ShrinkConvoy.dmp" 
+
 
 ALIGN 4
 CGFix:

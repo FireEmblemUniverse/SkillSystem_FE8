@@ -283,36 +283,48 @@ mov r0,r5
 sub r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq NextA
 
 ldrb r1,[r0,#2]
 mov r2, #0x70
 cmp r1, r2
 beq RetTrap
+
+NextA:
 
 mov r0,r5
 mov r1,r6
 sub r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq NextB
 
 ldrb r1,[r0,#2]
 mov r2, #0x70
 cmp r1, r2
 beq RetTrap
+NextB:
 
 mov r0,r5
 add r0,#1
 mov r1,r6
 blh GetTrapAt
+cmp r0, #0 
+beq NextC
 ldrb r1,[r0,#2]
 
 mov r2, #0x70
 cmp r1, r2
 beq RetTrap
+NextC:
 
 mov r0,r5
 mov r1,r6
 add r1,#1
 blh GetTrapAt
+cmp r0, #0 
+beq ReturnD
 ldrb r1,[r0,#2]
 
 mov r2, #0x70
@@ -425,7 +437,7 @@ bl goto_r3
 
 Continue:
 ldr r1, CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x10
+mov r0, #0x1
 strb r0, [r1,#0x11]
 @mov r0, #0x17	@makes the unit wait?? makes the menu disappear after command is selected??
 mov r0,#0x94		@play beep sound & end menu on next frame & clear menu graphics

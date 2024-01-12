@@ -60,3 +60,11 @@ void MSa_SaveDungeonState(void* target, unsigned size) {
 void MSa_LoadDungeonState(void* source, unsigned size) {
 	ReadSramFast(source, (void*)(0x30017AC), size);
 }
+
+void MSa_SaveDungeonState2(void* target, unsigned size) {
+	WriteAndVerifySramFast((void*)(0x30017A0), target, size);
+}
+
+void MSa_LoadDungeonState2(void* source, unsigned size) {
+	ReadSramFast(source, (void*)(0x30017A0), size);
+}

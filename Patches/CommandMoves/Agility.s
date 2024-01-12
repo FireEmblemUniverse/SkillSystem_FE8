@@ -13,6 +13,16 @@
 .equ EventEngine, 0x800D07C
 .equ CurrentUnitFateData, 0x203A958 
 
+.global GetBuff 
+.type GetBuff, %function 
+GetBuff: 
+push {lr} 
+
+bl GetUnitDebuffEntry 
+pop {r1} 
+bx r1 
+.ltorg 
+
 	
 .global AgilityCommandUsability 
 .type AgilityCommandUsability, %function 
@@ -49,26 +59,18 @@ push {lr}
 
 ldr r3, =CurrentUnit 
 ldr r0, [r3] 
-blh GetBuff 
 
-ldr r2, [r0] 
-ldr r3, =0xF00 
+bl GetUnitDebuffEntry
+ldr r1, =AgilityBuffs
+@r0 @ debuff entry 
+@r1 debuff table to use 
+@r2 entry ID of the given table 
+mov r2, #0 
+mov r3, r0 
+bl DebuffGivenTableEntry 
 
-and r2, r3 
 
-@ldr r1, =0xFEDCBA98 @ Empty Mag, Luck Res, Def Spd, Skl Str 
-ldr r1, =0xA00 @  
-
-cmp r1, r2 
-blo DoNothing @ New buff is less than current buff / bhs 
-ldr r2, [r0] 
-bic r2, r3 
-orr r2, r1
-
-str r2, [r0] @ store buffs back in 
-DoNothing: 
-
-blh StartBuffFx
+bl StartBuffFxUser
 
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
 mov r0, #0x1

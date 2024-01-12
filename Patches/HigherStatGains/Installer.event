@@ -1,0 +1,21 @@
+
+PUSH
+ORG $9ACC98
+#incbin "dmp/SmallNumber.dmp"
+
+ORG $74C10
+jumpToHack(BigNumberGet)
+POP
+
+ALIGN 4
+POIN BigNumber2
+POIN BigNumber
+BigNumberGet:
+#incbin "Numberproc.dmp"
+
+ALIGN 4
+BigNumber:
+#incbin "dmp/BigNumber.dmp"
+ALIGN 4
+BigNumber2:
+#incbin "dmp/BigNumber2.dmp"

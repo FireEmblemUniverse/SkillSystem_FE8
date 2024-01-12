@@ -1,0 +1,15 @@
+ALIGN 4
+TileConfigPLIST:
+ORG TileConfigPLIST + (0xFF * 4)
+
+ObjTypePalettePLIST:
+ORG ObjTypePalettePLIST + (0xFF * 4)
+
+TileAnimPLIST:
+ORG TileAnimPLIST + (0xFF * 4)
+
+MapPLIST:
+ORG MapPLIST + (0xFF * 4)
+
+MapChangesPLIST:
+ORG MapChangesPLIST + (0xFF * 4)

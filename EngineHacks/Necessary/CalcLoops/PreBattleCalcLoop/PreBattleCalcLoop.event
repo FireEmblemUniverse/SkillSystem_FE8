@@ -25,7 +25,7 @@ BtlLoopList:
 POIN BC_DefRes BC_Power BC_ASpd BC_Hit BC_Avo BC_Crit CritUpSkill BC_Dodge BC_WRank BC_Status // maybe I don't need BC_Support ? 
 POIN InitializePreBattleLoop
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
-
+POIN Intimidate_Prebattle GuardBreaker_Prebattle Downgrade_Prebattle
 // I've decided to comment out stuff that I'm not using for the time being in order to speed up AI - Vesly 
 
 
@@ -39,41 +39,44 @@ POIN DefendingCheck
 #ifdef BIORHYTHM
   POIN BiorhythmFunc
 #endif //BIORHYTHM
-
 POIN Wrath //SpurStr SpurMag SpurSpd SpurDef SpurRes
 //POIN DriveStr DriveMag DriveSpd DriveDef DriveRes
-//POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn //POIN Demoiselle Gentilhomme 
-POIN MaleficAura Intimidate Tantivy Focus Inspiration Charm Solidarity VoiceOfPeace Anathema LilysPoise Charisma Hex Loyalty Infiltrator
-POIN ElbowRoom NaturalCover Gamble FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant AssassinateDamageBonus ArcaneBlade
-POIN Daunt BloodTide WhitePool NightTide Insight Prescience Vigilance DefiantAvo DefiantCrit TowerShield ShortShield  Deadeye Fortune ChargePlus //IndoorFighter OutdoorFighter
-POIN BlueFlame BlueFlameAura DoubleLion //Cultured Thighdeology Thotslayer KeepUp Armorboost Horseguard Skyguard ForeignPrincess
+//POIN LuckySeven OddRhythm EvenRhythm QuickBurn SlowBurn
+//POIN Demoiselle Gentilhomme 
+//POIN MaleficAura Intimidate 
+POIN Tantivy Focus Anathema Loyalty FieryBlood LifeAndDeath WindDisciple Perfectionist Puissance Hawkeye LightWeight Trample Opportunist 
+POIN BattleVeteran SilentPride Thunderstorm Outrider HeavyStrikes Charge Vanity KnightAspirant AssassinateDamageBonus ArcaneBlade
+//Inspiration DivinelyInspiring Charm Solidarity VoiceOfPeace  LilysPoise Charisma Hex  Infiltrator
+//POIN ElbowRoom NaturalCover Gamble 
+POIN NightTide Insight Prescience Vigilance DefiantAvo DefiantCrit TowerShield ShortShield
+//POIN Daunt BloodTide WhitePool  //IndoorFighter OutdoorFighter Deadeye Fortune ChaosStyle StunningSmile
+POIN ChargePlus
+//POIN BlueFlame BlueFlameAura DoubleLion //Cultured Thighdeology Thotslayer KeepUp Armorboost Horseguard Skyguard ForeignPrincess 
 POIN Frenzy // This was moved here because Str/Mag Split conflict, and... I'm not sure why it wouldn't be here in the first place.
 //POIN UpWithArch
 //POIN AxefaithHit
 POIN StancesASM
+//POIN AirRaidSkillCheck
 #ifdef ENABLE_GBA_LETHALITY
-POIN LethalitySkill Bane
+//POIN LethalitySkill 
 #else
-POIN LethalitySkill NonGBALethalitySkill Bane
+//POIN LethalitySkill NonGBALethalitySkill 
 #endif
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS
-	POIN ModularPreBattleSkill 
+	//POIN ModularPreBattleSkill 
 #endif // MODULAR_PRE_BATTLE_SKILLS
 //add any new ones before here
 
-//quick riposte goes after everything that might touch AS
-POIN QuickRiposte
-
-
-
-
+POIN KeenFighter SteadyBrawler // % Damage reduction if doubling goes near end 
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
 
-
+POIN SuperFangEffect 
 POIN WeakChipDmg
 
+// Dragonskin goes after anything effecting atk or def
+POIN Dragonskin
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT
@@ -87,10 +90,13 @@ ALIGN 4
 AuraSkillTable:
 FILL 0xFF
 
+AuraSkillEntry(CantoID)
+AuraSkillEntry(CantoPlusID)
 AuraSkillEntry(CharmID)
 AuraSkillEntry(DemoiselleID)
 AuraSkillEntry(GentilhommeID)
 AuraSkillEntry(InspirationID)
+AuraSkillEntry(DivinelyInspiringID)
 AuraSkillEntry(LilysPoiseID)
 AuraSkillEntry(SpurStrID)
 AuraSkillEntry(SpurMagID)
@@ -122,7 +128,8 @@ ALIGN 4
 DamageModifierCalcLoop:
 
 POIN WeaponsThatAlwaysDouble
-POIN WeakChipDmg
+POIN WeakChipDmg ScaledUp
+POIN EnemyWeightBonus
 POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
 POIN TypeEffectiveness // also caps moves to deal max 255 
 #ifdef ENABLE_DAMAGE_REDUCTION
@@ -132,6 +139,7 @@ POIN DoublingDamageModifierFunc // this also occurs on weapons that cannot doubl
 POIN ScaledBackFunc
 POIN MinimumDamage
 POIN MaximumDamage // caps moves to 99 dmg 
+POIN SuperFangEffect 
 POIN FixedDamageWeapons
 POIN ImmuneToDamage
 POIN 0 

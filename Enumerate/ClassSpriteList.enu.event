@@ -96,7 +96,7 @@
 #define RockSmashSMS 0x5F
 #define StrengthBoulderSMS 0x60
 #define GorgonEgg2SMS 0x61
-#define Unused8SMS 0x62
+#define GreenSMS 0x62
 #define DeathgoyleSMS 0x63
 #define DracoZombieSMS 0x64
 #define DemonKingSMS 0x65
@@ -214,7 +214,7 @@
 #define swimmer_m_waterSMS 0xD5
 #define tuber_m_waterSMS 0xD6
 #define rockSMS 0xD7
-#define Unused2SMS 0xD8
+#define RaftSMS 0xD8
 #define puddleSMS 0xD9
 #define LoreleiSMS 0xDA
 #define BrunoSMS 0xDB
@@ -350,7 +350,7 @@
 #define RockSmashMMS 0x60
 #define StrengthBoulderMMS 0x61
 #define GorgonEgg2MMS 0x62
-#define Unused8MMS 0x63
+#define GreenMMS 0x63
 #define DeathgoyleMMS 0x64
 #define DracoZombieMMS 0x65
 #define DemonKingMMS 0x66

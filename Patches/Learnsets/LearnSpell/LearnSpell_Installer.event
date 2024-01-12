@@ -1,7 +1,7 @@
 
 
 #include "PokemblemSpellLists.event" 
-
+#include "CopyWepsToWEXP.lyn.event" 
 #include "LearnSpell.lyn.event" 
 #include "CheckLearnNewSpellLevelUp.lyn.event"
 
@@ -67,8 +67,19 @@ _pPopupDef: // Copied from the one in Internals
 	WORD 0x00 0x00
 }
 
+ALIGN 4 
+WaitForMenusEvent: 
+ASMC CallWaitForMenusASMC
+NoFade 
+ENDA 
 
+ALIGN 4 
+WaitForMenusProc: 
+PROC_YIELD 
+PROC_LOOP_ROUTINE(WaitForMenusASM)
+PROC_END 
 
+#include "WaitForMenus.lyn.event" 
 
 
 /*

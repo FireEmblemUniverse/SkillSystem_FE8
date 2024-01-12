@@ -135,7 +135,22 @@ StrengthBoulder(8,18)
 StrengthBoulder(9,18) 
 // Conditionally deleted 
  
+RaftTrap(26,18)
+RaftTrap(27,18)
+RaftTrap(28,18)
+RaftTrap(26,17)
+RaftTrap(27,17)
+RaftTrap(28,17)
+RaftTrap(27,16)
 
+RaftTrap(8,17)
+RaftTrap(9,17)
+RaftTrap(7,16)
+RaftTrap(8,16)
+RaftTrap(9,16)
+RaftTrap(10,16)
+RaftTrap(8,15)
+RaftTrap(9,15)
 
 //StrengthBoulder(4,3)
 
@@ -147,7 +162,7 @@ StrengthBoulder(9,18)
 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-//SkillAccessoryTrap(37,14, ChapterID*2, DeathBlowID) 
+SkillAccessoryTrap(31,4, ChapterID*2, CleatsID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 

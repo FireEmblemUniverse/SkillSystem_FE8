@@ -53,6 +53,8 @@ lsl r1, #0x10
 asr r1, #0x10
 sub r0, r1
 
+b StoreDamage2 @ Vesly added - skip all of Barricade stuff 
+
 @ Cool. Time to check for BarricadePlus. r0 has the damage to write. r9 has a counter of times struck this combat. r4 = inflicter of this strike, r5 = defender of this strike.
 cmp r0, #0x00
 beq StoreDamage2 @ We don't want any of this shit if the damage is 0.
@@ -161,10 +163,13 @@ cmp r0, #1
 bne End
 
 @if crit:
-mov r0,r5		@defender
-ldr r1, =ExpertiseIDLink
-ldrb r1, [ r1 ]
-blh SkillTester, r3
+
+// Vesly commented out 
+@mov r0,r5		@defender
+@ldr r1, =ExpertiseIDLink
+@ldrb r1, [ r1 ]
+@blh SkillTester, r3
+mov r0, #0 @ we do not have expertise 
 
 mov r1, #4
 ldrsh r1, [r7, r1]

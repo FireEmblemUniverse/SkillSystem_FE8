@@ -37,7 +37,7 @@ PUSH
 ORG CurrentOffset+1
 PromoteStart:
 POP
-#incbin "PromoteStart.dmp"
+#include "PromoteStart.lyn.event"
 
 ALIGN 4
 PUSH 

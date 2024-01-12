@@ -3,8 +3,8 @@
 #define GenericB UnitRoute12Trainer
 #define ClassA ClassRoute12WildA
 #define ClassB ClassRoute12WildB
-#define WildLvl 21
-#define TrainerL 24
+#define WildLvl 23
+#define TrainerL 27
 
 
 
@@ -71,6 +71,7 @@ ENUF 0x10
 SetUnitStatus(0xEE, BadStatus, 0) // [0202D22C]?
 STAL 40
 ReturnToMapBGM
+PauseFreeMovement
 SET_ACTIVE 0
 EndTurn
 GOTO 63 
@@ -145,7 +146,7 @@ Traps1:
 //RockSmash(29,9)
 
 //StrengthBoulder(4,3)
-
+SkillAccessoryTrap(13,2, (ChapterID*2)+1, SurfBoardID) 
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 RedPokeballTrap(19,20, (ChapterID*2)+1, WaterStone) 
@@ -254,13 +255,13 @@ UNIT
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsB:
 UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -299,18 +300,19 @@ TBQ_TableTerminator
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0xE, SnorlaxLeftText, 0)
 SHORT R12S_0xE0_BD // 0xE0 
-SHORT 612 // Gold 
+SHORT 650 // Gold 
 SHORT R12S_0xE1_BD // 0xE0 
-SHORT 612 // Gold 
+SHORT 400 // Gold 
 SHORT R12S_0xE2_BD // 0xE0 
-SHORT 612 // Gold 
+SHORT 900 // Gold 
 SHORT R12S_0xE3_BD // 0xE0 
 SHORT 600 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 UNIT 0xE0 fisherID 0x0 Level(0, Enemy, 1) [10,18]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [17,27]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+//UNIT 0xE1 fisherID 0x0 Level(0, Enemy, 1) [17,27]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 fisherID 0x0 Level(0, Enemy, 1) [10,39]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 //UNIT 0xE3 fisherID 0x0 Level(0, Enemy, 1) [18,37]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
@@ -330,7 +332,7 @@ UNIT
 
 // Tentacool? 
 // Krabby, Horsea, poliwag - wild 
-// trainer exclusive: psyduck, vaporeon 
+// trainer exclusive: psyduck
 
 
 EnemyTrainers0: // fisher 
@@ -343,7 +345,7 @@ UNIT GenericB 	KrabbyID 0xE0 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x
 UNIT
 
 EnemyTrainers1: // fisher 
-UNIT GenericB 	TentacoolID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	HorseaID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	PoliwagID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	HorseaID 		0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	PoliwagID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
@@ -352,15 +354,15 @@ UNIT
 EnemyTrainers2: // fisher 
 UNIT GenericB 	PoliwagID 		0xE2 		Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	HorseaID 		0xE2 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
-UNIT GenericB 	VaporeonID 		0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+//UNIT GenericB 	VaporeonID 		0xE2 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	PsyduckID 		0xE2 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT
 
 EnemyTrainers3: // fisher 
-UNIT GenericB 	TentacoolID 	0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	HorseaID 	0xE3 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT GenericB 	PsyduckID 		0xE3 		Level(0, Enemy, 1) [11,11]   0b 0x0 0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT GenericB 	PsyduckID 		0xE3 		Level(0, Enemy, 1) [9,9]     0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	TentacoolID 	0xE3 		Level(0, Enemy, 1) [11,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+UNIT GenericB 	HorseaID 	0xE3 		Level(0, Enemy, 1) [11,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT
 
 

@@ -64,6 +64,7 @@ bne Return
 
 
 DoNotRefresh:
+bl ToggleBGMFlagIfNeeded
 ldr r0, =AttackedThisTurnFlagLink
 ldrb r0, [r0] 
 blh 0x8083bd8 @SetLocalEventId
@@ -80,6 +81,7 @@ bx    r0
 
 RefreshNow:
 push {lr}
+bl ToggleBGMFlagIfNeeded
 
 @ previously in event code has auto-refresh if no enemies 
 
@@ -107,12 +109,18 @@ bx r0
 RefreshIfFlagsPermitIt:
 push {lr}
 
+ldr r0, =RefreshEvenInTrainerBattleFlag_Link 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne Continue2 
+
 ldr r0, =TrainerBattleActiveFlagLink 
 ldrb r0, [r0] 
 blh CheckEventId 
 cmp r0, #0 
 bne DontRefresh
-
+Continue2: 
  
 ldr r0, =AttackedThisTurnFlagLink 
 ldrb r0, [r0] 
@@ -122,6 +130,7 @@ bne DontRefresh
 bl RefreshNow
 b Exit 
 DontRefresh:
+bl TurnOnBGMFlag
 mov r0, #0 
 Exit:
 pop   {r1}
@@ -136,6 +145,11 @@ bx    r1
 
 RefreshUnitWithoutFogASMC:
 push {lr}
+ldr r0, =RefreshEvenInTrainerBattleFlag_Link 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne Continue 
 
 ldr r0, =TrainerBattleActiveFlagLink 
 ldrb r0, [r0] 
@@ -143,6 +157,7 @@ blh CheckEventId
 cmp r0, #0 
 bne DoNotRefresh2
 
+Continue: 
  
 ldr r0, =AttackedThisTurnFlagLink 
 ldrb r0, [r0] 
@@ -184,6 +199,7 @@ bl RefreshNow
 b Return2 
 
 DoNotRefresh2:
+bl TurnOnBGMFlag
 ldr r0, =AttackedThisTurnFlagLink
 ldrb r0, [r0] 
 blh 0x8083bd8 @SetLocalEventId

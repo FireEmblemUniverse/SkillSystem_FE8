@@ -4,7 +4,7 @@
 #define ClassA ClassPokeTowerWildA
 #define ClassB ClassPokeTowerWildB
 #define WildLvl 22
-#define TrainerL 22
+#define TrainerL 26
 
 
 
@@ -203,7 +203,7 @@ BD(0x0, PTF2_0xE0_BD, 2000)
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [14,6]  0b 0x0	0x1 REDA14R6 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI  
+UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [14,6]  0b 0x0	0x1 REDA14R6 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI  
 UNIT 
 
 

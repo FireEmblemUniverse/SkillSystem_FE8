@@ -40,6 +40,8 @@ beq CannotAttack
 mov r4, r0 
 
 ldr r5, [r4] @ Unit pointer 
+cmp r5, #0 
+beq CannotAttack 
 ldrb r5, [r5, #4] @ Char ID 
 
  

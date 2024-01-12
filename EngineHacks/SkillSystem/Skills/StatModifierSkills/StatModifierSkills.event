@@ -1,11 +1,12 @@
 
+
+
 ALIGN 4
 prArmorMarchCheck: //check if the bit is set and if so give the unit some stats
-#incbin "ArmorMarch/armormarchcheck.dmp"
-WORD DebuffTable
-WORD ArmorMarchBit
-WORD 8 //size of a debuff table entry
-WORD 2 //amount of movement to grant
+#include "ArmorMarch/armormarchcheck.lyn.event"
+ALIGN 4 
+ArmorMarchBoost: 
+WORD 2 
 
 #include "DefiantSkills/DefiantSkills.event"
 
@@ -17,3 +18,14 @@ WORD ResolveID
 #include "PushSkills/PushSkills.event"
 
 #include "LullSkills/LullSkills.event"
+
+#include "Guts/Guts.lyn.event" 
+ALIGN 4 
+StrongConAmount_Link: 
+WORD 5 
+GutsAmount_Link:
+WORD 5 
+StrongConID_Link: 
+WORD StrongConstitutionID 
+GutsID_Link:
+WORD GutsID 

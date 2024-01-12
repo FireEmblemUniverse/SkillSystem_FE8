@@ -39,12 +39,7 @@ callHack_r3(PoisonDamageHook)
 ORG $7CCD0 
 callHack_r3(PoisonAnimHook)
 
-ORG $9A50AE // from this proc 9A508C 
-BYTE 30 // default 50 Frames to wait during poison anim before hp drains 
-ORG $9A50BE 
-BYTE 15 // default 30 frames before hp bar disappears 
-ORG $9A50CE 
-BYTE 5 // default 44 frames to wait before going to the next unit 
+
 
 
 POP 

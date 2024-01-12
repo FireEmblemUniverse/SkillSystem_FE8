@@ -42,19 +42,13 @@ ldr r1, CounterMagicID
 cmp r0, #0x01
 beq End
 
-@check if bane
-mov	r1, #0x6c
-ldrb	r1,[r4,r1]
-cmp	r1,#0x7F	@I set the value to 7F in battle calculations loop to tell bane and lethality apart
-bne	End
-
 @only activate if damage > current enemy hp-1
 ldrb	r5,[r5,#0x13]
 mov	r0,#0x01
 sub	r5,r0
-ldrh    r0,[r7,#0x04]
-cmp	r5,r0
-blo End
+ldrb    r0,[r7,#0x04]
+cmp	r0,r5
+blt End
 
 ldr	r0,=#0x80191D0	@call skill getter
 mov	r14,r0
@@ -62,26 +56,20 @@ mov	r0,r4
 .short	0xF800
 lsr	r0,#0x01	@divide skill by 2 to get our chance
 
+
 mov r1, r4 @skill user
 blh d100Result
 cmp r0, #1		@check if roll was successful
 bne End
 
-@ @check for Lethality proc - this check may be done elsewhere...
-@ ldr r0, SkillTester
-@ mov lr, r0
-@ mov r0, r4 @attacker data
-@ ldr r1, LethalityID
-@ .short 0xf800
-@ cmp r0, #0
-@ beq End
-@ @if user has lethality:
+mov r0, r4 @skill user
+ldr r1, BaneID @skill ID
+ldr r2, SkillTester
+mov lr, r2
+.short 0xf800
+cmp r0,#1
+bne End
 
-@ mov r0, r4	@commented this out because it now checks for lethality ability to determine immunity (no demon king/necromancer immunity if they don't have lethality)
-@ mov r1, r5
-@ blh 0x802B38C @check for demon king/necromancer
-@ cmp r0, #0
-@ beq End
 
 @if we proc, set offensive skill flag
 ldr     r2,[r6]    
@@ -95,32 +83,12 @@ and     r0,r2                @ 0802B436 4010
 orr     r0,r1                @ 0802B438 4308     
 str     r0,[r6]                @ 0802B43A 6018  
 
-mov	r0,#0xFF	@no animation!
+ldrb	r0, BaneID
 strb	r0,[r6,#4]
 
-@if we proc, set the lethality flag
-ldr     r3,[r6]    
-lsl     r1,r3,#0xD                @ 0802B4D0 0359     
-lsr     r1,r1,#0xD                @ 0802B4D2 0B49     
-mov     r0,#0x80                @ 0802B4D4 2080     
-lsl     r0,r0,#0x4  @ 0x800, lethality flag     @ 0802B4D6 0100     
-orr     r1,r0                @ 0802B4D8 4301     
-ldr     r2,=#0xFFF80000                @ 0802B4DA 4A0A     
-mov     r0,r2                @ 0802B4DC 1C10     
-and     r0,r3                @ 0802B4DE 4018     
-orr     r0,r1                @ 0802B4E0 4308     
-str     r0,[r6]                @ 0802B4E2 6020  
-
-strh    r5,[r7,#0x4]                @ 0802B4E6 80A8  
-
-ldr     r3,[r6]                @ 0802B4E8 6823     
-lsl     r0,r3,#0xD                @ 0802B4EA 0358     
-lsr     r0,r0,#0xD                @ 0802B4EC 0B40     
-ldr     r1,=#0xFFFF7FFF                @ 0802B4EE 4906     
-and     r0,r1                @ 0802B4F0 4008     
-and     r2,r3                @ 0802B4F2 401A     
-orr     r2,r0                @ 0802B4F4 4302     
-str     r2,[r6]                @ 0802B4F6 6022       
+@if we proc, get enemy HP, subtract 1, and set as damage dealt 
+mov r0,r5
+strb r0,[r7,#4]  
 
 End:
 pop {r4-r7}

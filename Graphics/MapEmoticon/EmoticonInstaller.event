@@ -33,7 +33,8 @@ Show_map_emotion_Show_without_SE:
 
 ALIGN 4
 Show_map_emotion_Destructor:
-#incbin "Show_map_emotion_Destructor.dmp"
+#include "Show_map_emotion_Destructor.lyn.event" 
+//#incbin "Show_map_emotion_Destructor.dmp"
 
 ALIGN 4
 Show_map_emotion_Proc_without_SE:
@@ -126,7 +127,7 @@ POIN emotion15_gaan; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHO
 POIN emotion16_dollmark; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
 POIN emotion17_beer; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
 POIN emotion18_pokeball; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
-POIN emotion19_openball; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
+POIN emotion19_openball; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x00 0x00
 POIN emotion20_monsterface; WORD 0x089A8EF8; POIN Show_map_emotion_Proc_without_SE; SHORT 0x77 0x00
 
 

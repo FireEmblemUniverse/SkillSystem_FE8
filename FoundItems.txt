@@ -1,8 +1,8 @@
 Pallet: Nothing
-Route1: 500g, Super potion, MuscleBandAccessory
+Route1: 500g, Super Repel, MuscleBandAccessory
 Viridian: 600g, LeechLife, ReliefSS
 store: FocusSS, Tackle, Scratch, TailWhip, Bite, Ember, Bubble, LeafFlurry
-Route2S: WiseGlassesAccessory, RareCandy(Cut), PinMissile(Cut)
+Route2S: WiseGlassesAccessory, WarpCrystal, RareCandy(Cut), PinMissile(Cut)
 ViridianForestS: 400g
 ViridianForestN: 850g, LeatherShieldAccessory, TantivtySS, AttackPulse
 Route2N: 900g,, MegaPunch(Cut)
@@ -11,10 +11,10 @@ store: PatienceSS, Tackle, Leer, Ember, Bite, Bubble, LeafFlurry, Gust, Magnitud
 PewterGym: RockTomb, DryingPanAccessory
 Route3: 1150g, ParagonSS, DoubleHit
 Route4W: 450g
-MtMoonB1: OldScopeAccessory, RareCandy, PrescienceSS, WaterGun, 650g
+MtMoonB1: EscapeRope, OldScopeAccessory, RareCandy, PrescienceSS, WaterGun, 650g
 MtMoonB2: Harden, Iron 
 MtMoonB3: BronzeShieldAccessory, RockyHelmetAccessory, StrongRiposteSS, KarateChop
-Route4E: 450g, WindDiscipleSS, BerserkGeneAccessory, MoonStone(Cut)
+Route4E: 450g, WindDiscipleSS, BerserkGeneAccessory, PoisonPowder, MoonStone(Cut)
 CeruleanCity: WardingStance
 store: TantivtySS, AttackPulse, WaterGun, SignalBeam, Bite, DoubleHit, Gust, Magnitude, Confusion 
 Route24: SuperPotion, WingAttack, ThunderWave, WaryFighterAccessory, Calcium 
@@ -22,23 +22,23 @@ Route25: ChivalrySS, OldWardAccessory,
 CeruleanGym: Bubblebeam, RenewalRingAccessory
 Route5: PerfectionistSS
 Route6: CertainBlowAccessory, SealSpdAccessory 
-VermillionCity: PoisonStrikeAccessory
+VermilionCity: PoisonStrikeAccessory
 store: PatienceSS, MagicalLeaf, WaterGun, Scorch, Dig, Headbutt, SignalBeam, Magnitude, Confusion
 Diglett'sCave: , Carbos  
 Route11: Scorch, SealResAccessory, Iron 
 SSAnne: QuickClawAccessory, BodySlam
-VermillionGym: Thunderbolt, Surge'sSigilAccessory
+VermilionGym: Thunderbolt, Surge'sSigilAccessory
 Route9W: InsightSS, SealStrAccessory
 Route9E: PaddedShieldAccessory, HealPulse, 1000g, HelixFossil
 Route10: PragmaticSS, ThunderStone 
-RockTunnelB1: SealSklAccessory, RockSlide, MoonStone
+RockTunnelB1: SealSklAccessory, RockSlide, MoonStone, EscapeRope 
 RockTunnelB2: VigilanceSS, IronShield, 1500g, DomeFossil  
 LavenderTown: DazzleAccessory, SuperPotion 
 PokeTowerF2: AnathemaSS, WiseGlassesT2
 PokeTowerF3: ExoticCandy, ShadowPunch 
 PokeTowerF4: SealMagAccessory, OpportunistSS  
 Route12N: SealDefAccessory, BreathOfLifeAcc, Protein 
-Route12S: Clamp, FierceStanceSS, WaterStone 
+Route12S: Surf Board, Clamp, FierceStanceSS, WaterStone 
 Route13: CounterAcc, MuscleBandT2, FullHeal, HPUp
 Route14: LeafBlade, LeafStone 
 Route15: DartingStanceSS, Zinc, LinkStone 
@@ -61,7 +61,7 @@ SilphCo3F: SwordsDance, SilentPrideSS, Calcium, HPUp, SteelShield, 3000g
 SilphCo4F: BugBuzz
 SilphCo5F: SilphScope 
 Dojo: HiJumpKick, BulkUp, MuscleBandT3 
-SaffronGym: CalmMind, HoplonGuard 
+SaffronGym: CalmMind, HoplonGuard, Hover Board
 Route8: QuickDrawSS, LeafStone, 800g
 PowerPlant: Thunder, VintageBoots, ThunderStone, Carbos 
 Route19: Ancientpower, HoneClaws

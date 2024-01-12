@@ -104,7 +104,7 @@ const char* Text_GetStringNextLine(const char*); //! FE8U = 0x8003FF5
 void Text_DrawString(struct TextHandle*, const char*); //! FE8U = 0x8004005
 void Text_DrawNumber(struct TextHandle*, int); //! FE8U = 0x8004075
 void Text_DrawNumberOr2Dashes(struct TextHandle*, u8); //! FE8U = 0x8004145
-void Text_DrawChar(struct TextHandle*, const char*); //! FE8U = 0x8004181
+void Text_DrawChar(struct TextHandle*, char); //! FE8U = 0x8004181
 
 // TODO: figure more out
 // (I only have vague knowledge on what most things past here does)
@@ -131,9 +131,6 @@ unsigned GetStringTextWidthAscii(const char*); //! FE8U = 0x8004569
 void Font_InitForObj(struct FontData*, void* vram, int pal); //! FE8U = 0x800459D
 void Text_Init2DLine(struct TextHandle*); //! FE8U = 0x80045D9
 void Text_Fill2DLine(struct TextHandle*); //! FE8U = 0x80046B5
-
-void NewGreenTextColorManager(struct Proc* parent); //!< FE8U:080049AD
-void EndGreenTextColorManager(void); //!< FE8U:080049D1
 
 void DrawSpecialUiChar(u16* out, int color, int chr);
 void DrawUiNumber(u16* out, int color, int number);

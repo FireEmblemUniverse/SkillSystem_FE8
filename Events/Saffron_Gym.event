@@ -74,8 +74,8 @@ DefeatAll(EndingScene)
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 AREA 0xF TurnOffWallFlag [12,9] [20,14]
-AREA 0 MineEvent_Str [16,14] [16,14]
-AREA 0 MineEvent_Mag [16,9] [16,9]
+//AREA 0 MineEvent_Str [16,14] [16,14]
+//AREA 0 MineEvent_Mag [16,9] [16,9]
 //AFEV 0 RefreshIfNotInDanger 0 
 END_MAIN
 #ifdef MultiTileMarker_Installer
@@ -91,16 +91,16 @@ ChapterTransition(SaffronCh, 30,6)
 
 MineEvent_Mag:
 PlayerInRange
-TutText(MagicFeelsDrained)
+//TutText(MagicFeelsDrained)
 //DebuffUnit(0x7FFF, 0x09876543) // -9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
-DebuffUnit(0x7FFF, 0x05550500) // -10 mag/res/spd, -5 luk 
+//DebuffUnit(0x7FFF, 0x05550500) // -10 mag/res/spd, -5 luk 
 NoFade 
 ENDA 
 
 MineEvent_Str:
 PlayerInRange
-TutText(StrFeelsSapped)
-DebuffUnit(0x7FFF, 0x00505055) // -10 str/def/skl, -5 luk 
+//TutText(StrFeelsSapped)
+//DebuffUnit(0x7FFF, 0x00505055) // -10 str/def/skl, -5 luk 
 NoFade 
 ENDA 
 
@@ -114,7 +114,7 @@ GenericCompletion(6,3,SabrinaSMS, DebugText) // requires flag 6 to be on (defeat
 //MineTrap(16,13)
 //MineTrap(16,14)
 MineTrap(16,14)
-MineTrap(16,14)
+//MineTrap(16,14)
 //MineTrap(16,15)
 //MineTrap(16,15)
 //MineTrap(16,15)
@@ -125,7 +125,7 @@ MineTrap(16,14)
 //MineTrap(16,8)
 //MineTrap(16,9)
 MineTrap(16,9)
-MineTrap(16,9)
+//MineTrap(16,9)
 //MineTrap(16,10)
 //MineTrap(16,10)
 //MineTrap(16,10)
@@ -136,6 +136,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 CHECK_EVENTID MarshbadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
@@ -145,7 +148,9 @@ CAM1 [8,6]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
@@ -199,7 +204,7 @@ GIVETOMAIN 0
 TEXTSHOW SabrinaWaitText
 TEXTEND 
 REMA
-//GiveSkillAccessory(0, AmaterasuID)
+GiveSkillAccessory(0, HoverBoardID)
 GiveItemWithDurability(0, HoplonGuard2, 1)
 TEXTSTART
 TEXTSHOW SabrinaRewardText

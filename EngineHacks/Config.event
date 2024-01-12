@@ -25,14 +25,13 @@
 #define ENABLE_SLAYER_AND_EFFECTIVENESS_REWORK
 
 // If uncommented, a full str/split will be implemented without replacing any stats
-// USE_SAVE_EXPANSION will be used even if commented
 // TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
 #define USE_STRMAG_SPLIT
 
-// If uncommented, will use a full (EMS-based) save expansion instead of the "old" suspend expansion
-// Enabling this *will* break saves, but allows for higher stats and other things.
-#define USE_SAVE_EXPANSION
+// If uncommented, the statscreen will have a moving background similar to FE6 and FE7.
+// Customization of graphical assets is possible in Necessary/ModularStatScreen/Background/Graphics/Graphics.event.
+// #define SCROLLING_STATSCREEN_BACKGROUND
 
 //If uncommented, will enable Battle Stats with Animations Off.
 #define BATTLE_STATS
@@ -153,7 +152,10 @@
 
 //If uncommented, AdvWeaponLocks will be implemented.
 //This is a rewrite of venno's array-based weapon locks.
-#define ADV_WEAPON_LOCKS
+// #define ADV_WEAPON_LOCKS
+//If uncommented, AdvWeaponLocks will use only the lowest bit of the weapon ability word's 4th byte rather than the entire thing.
+//Requires additional configuration in WeaponLockArray/AdvWeaponLocks.event.
+// #define CONSOLIDATED_ADV_WEAPON_LOCKS
 
 //If uncommented, Status-Inflicting Weapons will be implemented.
 //Setting weapon effect 0xD will apply the effect ID at item data +0x22.
@@ -161,7 +163,23 @@
 
 //If uncommented, Narrow Font will be implemented.
 //This allows for setting narrower text in addition to standard text.
-#define NARROW_FONT
+// #define NARROW_FONT
+#ifdef NARROW_FONT
+MESSAGE NARROW_FONT is being phased out for UTF-8 encoded Narrow Font. 
+MESSAGE If you have added custom characters, you will need to add them in Root\EngineHacks\ExternalHacks\Fonts. 
+MESSAGE Please see the README.md there or ask @Vesly for help. 
+#endif 
+
+//If uncommented, UTF-8 will be implemented. 
+//This allows for adding new fonts/characters and includes NarrowFont by default. 
+#define UTF8 
+
+// Do not define NARROW_FONT and UTF8 simultaneously. 
+#ifdef UTF8 
+	#ifdef NARROW_FONT 
+		#undef NARROW_FONT 
+	#endif 
+#endif 
 
 // If uncommented, the fourth page of the stat screen will include personal information on the character.
 // This information can be edited in the "Personal Data Editor.csv" file.
@@ -208,6 +226,15 @@
 // If uncommented all boss kills will play critical hit animations.
 // #define FLASHY_MODE
 
+// If uncommented, the unit load buffer will be repointed.
+// The location it is repointed to is also defined here. The default location is
+// the area used for debug printing.
+#define REPOINT_UNIT_LOAD_BUFFER
+#define NewUnitLoadBufferLoc 0x2026E30
+
+// If uncommented, unit branched promotion list will be expanded to 6
+//#define CLASS_CHG_EXPANSION
+
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
 // =================================
@@ -215,6 +242,9 @@
 // If set to false, passive skills will not stack and only the first item with one will have an effect.
 // Setting the 0x00800000 bit in the item ability bitfield will enable passive skills.
 #define PASSIVE_SKILLS_STACK True
+
+// If set to true, units under roof tiles will be considered for aura skills
+#define ROOF_UNIT_AURAS True
 
 // if uncommented units will be select automatically after galeforce (pressing b won't end their turn)
 #define ENABLE_GALEFORCE_AUTOSELECT
@@ -321,6 +351,12 @@
 //	This list can be edited, and is located in
 //	SkillSystem/Skills/WeaponUsabilitySkills/WeaponUsabilitySkills.event.
 
+// If true, Hoarders Bane will consume vulneraries from your inventory and the supply (as long as your party can access the supply). 
+// If false, it will only consume vulneraries from your inventory. 
+#define HOARDERS_BANE_USE_CONVOY True
+
+// If true, enemies/npcs with Canto+ will retreat to their safest tile with any remaining movement after their action. 
+#define CANTO_AI False
 
 // ================================
 // = GROWTH DISPLAY CONFIGURATION =
@@ -333,19 +369,41 @@
 #define USE_STAT_COLORS False
 
 //If true, Tiered Growths mode will exist. 
-#define TIERED_GROWTHS_MODE True
+//#define TIERED_GROWTHS_MODE True
 
-#define ForcedStatGainXBelowAverage 3
-#define PreventStatGainXAboveAverage 5
-#define MinimumStatsOnLevelUpDef 2 
+//#define ForcedStatGainXBelowAverage 3
+//#define PreventStatGainXAboveAverage 5
+//#define MinimumStatsOnLevelUpDef 2 
 
 
+
+
+//When leveling up, the game rerolls (up to 5 times) until you gain at least this many points
+#define MIN_STAT_GAIN 2 // vanilla is 1 
+
+// If true, fixed/bracketed levels will consider your lowest level as the level inputted in the character table
+#define BRACKETING_USE_BASE_LEVEL False 
 
 //If true, Fixed Growths mode will exist.
+// Note: this takes promotion level into account, but does not take stat boosters into account 
+
 #define FIXED_GROWTHS_MODE True
 
-//ID of flag to use for fixed growths mode, if enabled
-#define FIXED_GROWTHS_FLAG_ID 0xEF
+//ID of flag to use for fixed growths mode, if enabled (also works if flag here is defined as 0)
+#define FIXED_GROWTHS_FLAG_ID 0xEF 
+
+//If true, Stat bracketing mode will exist. This keeps your stats within X points of the average. 
+// Note: this takes promotion level into account, but does not take stat boosters into account 
+#define STAT_BRACKETING_EXISTS True 
+
+//ID of flag to use for bracketed growths mode, if enabled (also works if flag here is defined as 0)
+#define BRACKETED_GROWTHS_FLAG_ID BracketedGrowthsFlag // 0xEE is used to hide dmg numbers in battle
+
+//If using stat bracketing and your stat is below average by this many points, always gain it on levelup 
+#define FORCE_WHEN_BELOW_AVERAGE_BY_AMOUNT 3 
+
+//If using stat bracketing and your stat is above average by this many points, never gain it on levelup 
+#define PREVENT_WHEN_ABOVE_AVERAGE_BY_AMOUNT 5 
 
 //If true, passive growth boosters and metis tome will not affect growths in fixed growths mode.
 #define FIXED_GROWTHS_DONT_BOOST True

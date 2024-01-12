@@ -39,7 +39,7 @@ MMBBuildWindow:
 
 	mov		r1, r4
 	add		r1, #BattleStructFlag
-	str		r0, [r1]
+	strb		r0, [r1]
 
 	@ Loop through all build routines
 

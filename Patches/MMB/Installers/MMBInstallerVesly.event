@@ -684,12 +684,16 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBRTGY 48
 
 	// Current HP number
-	#define MMBCurrentHPX 76
+	#define MMBCurrentHPX 64
 	#define MMBCurrentHPY 24
 
 	// Max HP number
 	#define MMBMaxHPX 112
 	#define MMBMaxHPY 8
+	
+	#define MMBDrawCaughtX 72
+	#define MMBDrawCaughtY 18
+	#define MMBDrawCaughtIconDef
 
 // Label modules
 
@@ -801,7 +805,7 @@ After each set of module options are definitions that you can use to adjust the 
 	#define MMBRTGLabelTileCount 2
 
 	// HP label
-	#define MMBHPLabelX 6
+	#define MMBHPLabelX 5
 	#define MMBHPLabelY 3
 	#define MMBHPLabelVRAMTile 0x120
 	#define MMBHPLabelPaletteIndex 2

@@ -13,7 +13,7 @@
 ALIGN 4 
 AoE_GetDebuffs: 
 #ifdef DEBUFFS_HACK
-	POIN GetDebuffs|1 
+	POIN GetUnitDebuffEntry|1 
 #else 
 	WORD 0 
 #endif 
@@ -44,6 +44,7 @@ AoE_Pokemblem_MoveTester:
 	ALIGN 4
 	AoE_PokemblemImmuneTargets:
 	#incbin "AoE_PokemblemImmuneTargets.dmp"
+	POIN ProtagID_Link 
 	ALIGN 4
 	AoE_PokemblemMtGetter:
 	#include "AoE_PokemblemMtGetter.lyn.event" 

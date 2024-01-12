@@ -43,6 +43,10 @@ Loop:
     cmp   r1, #0x0
     beq   NextIteration
 	
+ldrb r1, [r0, #0x13] @ curr hp 
+cmp r1, #0 
+ble NextIteration 
+	
 	ldr r1, [r0, #0x0C] 
 	ldr r2, =0x1000C
 	tst r1, r2 
@@ -143,7 +147,7 @@ mov   r1, r9
 strb  r1, [r0]            @ Reset DRCountByte.
 
 bl    InitializeDR
-
+bl ToggleBGMFlagIfNeeded
 
 
 pop   {r4-r7}

@@ -7,8 +7,9 @@
 #define SetAllDangerRadius "ASMC SetAllDR|1"
 #define UnsetAllDangerRadius "ASMC UnsetAllDR|1"
 #define SetNearbyDangerRadius "ASMC SetNearbyDR|1"
+#define VeslySetDangerRadius "ASMC FMU_EnableDR|1" 
 
-
+#include "FMU_DR.lyn.event" 
 ALIGN 4
 CheckDR:
 #include "CheckDR.lyn.event"

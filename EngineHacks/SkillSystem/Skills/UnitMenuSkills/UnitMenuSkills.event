@@ -1,9 +1,9 @@
 
 #include "Capture/Capture.event"
-
 #include "StealPlus/StealPlus.event"
-
 #include "HeroesMovement/HeroesMovement.event"
+
+//#include "SacrificeDrawBack/Installer.event" // we already have heal like a vuln 
 
 ALIGN 4
 NewDanceUsability:
@@ -15,6 +15,14 @@ WORD ALSO_USE_VANILLA_DANCE_CHECK
 ALIGN 4
 NewSupplyUsability:
 #include "Supply/NewSupplyUsability.lyn.event" 
+//#incbin "Supply/NewSupplyUsability.dmp"
+POIN SkillTester
+WORD SupplyID
+WORD ALSO_USE_VANILLA_SUPPLY_CHECK
+
+ALIGN 4
+NewSupplyUsability2:
+#include "Supply/NewSupplyUsability - Copy.lyn.event" 
 //#incbin "Supply/NewSupplyUsability.dmp"
 POIN SkillTester
 WORD SupplyID

@@ -1,0 +1,30 @@
+
+#define SelectAvatar "ASMC SelectAvatarASMC; FADI 16; CLEAN"
+
+#include "SelectAvatarMenu.lyn.event" 
+
+ALIGN 4 
+PlayerAvatarClass_Link:
+WORD PlayerAvatarClass
+
+RedID_Link: 
+WORD RedID 
+GirlProtagFlag_Link: 
+WORD GirlProtagFlag 
+
+ALIGN 4 
+AvatarClass_Table:
+BYTE RedID RedSMS GreenID GreenSMS
+BYTE 0 // maybe make it a list 
+
+ALIGN 4 
+ProtagUnitGroup2:
+UNIT ProtagID  GreenID 0x1 Level(0,Ally,True)   [7,13] 0b 0x0 0x1 REDA7R13 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+
+
+

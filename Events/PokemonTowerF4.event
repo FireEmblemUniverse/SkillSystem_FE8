@@ -4,7 +4,7 @@
 #define ClassA ClassPokeTowerWildA
 #define ClassB ClassPokeTowerWildB
 #define WildLvl 22
-#define TrainerL 22
+#define TrainerL 26
 
 
 
@@ -105,7 +105,7 @@ Traps1:
 //SkillAccessoryTrap(17,20, (ChapterID*2)+1, VantagePlusID) 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
-SkillAccessoryTrap(12,11, ChapterID*2, SealMagID) 
+//SkillAccessoryTrap(12,11, ChapterID*2, SealMagID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
@@ -197,7 +197,7 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] [AttackInRange,RandomMovement,0,0] // Ghosts to move randomly 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] [AttackInRange,RandomMovement,0,0]
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] [AttackInRange,RandomMovement,0,0]
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,2] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] [AttackInRange,RandomMovement,0,0]
 UNIT 
 
 
@@ -220,7 +220,7 @@ BD(0xE, PTF4_MarowakDefeatText, 0)
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [15,5]  0b 0x0	0x1 REDA15R5 [SevenRangeWep,0x0,0x0,0x0] TrainerAI  
+UNIT 0xE0 channelerID 0x0 Level(0, Enemy, 1) [15,5]  0b 0x0	0x1 REDA15R5 [FiveRangeWep,0x0,0x0,0x0] TrainerAI  
 UNIT
 
 BossGroup:
@@ -240,7 +240,7 @@ UNIT
 
 MarowakUnits: // Marowak 
 UNIT GenericA 	GastlyID 		0xEE 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericA 	GastlyID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+//UNIT GenericA 	GastlyID 		0xEE 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericA 	CuboneID 		0xEE 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericA 	GastlyID 		0xEE 	Level(0, Enemy, 1) [11,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT

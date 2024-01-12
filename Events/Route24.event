@@ -3,8 +3,8 @@
 #define GenericB UnitRoute24Trainer
 #define ClassA ClassRoute24WildA
 #define ClassB ClassRoute24WildB
-#define WildLvl 11 
-#define TrainerL 14 
+#define WildLvl 13 
+#define TrainerL 17
 
 
 
@@ -108,6 +108,14 @@ CutBush(7,6)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
+RaftTrap(5, 39)
+RaftTrap(6, 39)
+RaftTrap(7, 39)
+RaftTrap(5, 38)
+RaftTrap(6, 38)
+RaftTrap(7, 38)
+RaftTrap(6, 37)
+
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 RedPokeballTrap(4,31, (ChapterID*2), Calcium) 
@@ -204,7 +212,7 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-// Wilds - AbraID	BellsproutID	PoliwagID
+// Wilds - AbraID	PoliwagID Magikarp Horsea Gyarados (Rattata) 
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
@@ -271,8 +279,8 @@ SHORT 600 // Gold
 TDQ_TableTerminator ; }
 
 HumanTrainers:
-UNIT 0xE0 boyID 0x0 Level(0, Enemy, 1) [13,30]  0b 0x0	0x1 REDA13R30 [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE1 boyID 0x0 Level(0, Enemy, 1) [11,22]  0b 0x0	0x1 REDA11R22 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE0 boyID 0x0 Level(LVFACELEFT, Enemy, 1) [13,34]  0b 0x0	0x0 0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE1 lassID 0x0 Level(LVFACERIGHT, Enemy, 1) [11,26]  0b 0x0	0x1 REDA11R26 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT 0xE2 rocket_mID 0x0 Level(0, Enemy, 1) [12,12]  0b 0x0	0x1 REDA12R12 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
@@ -284,10 +292,10 @@ UNIT GenericB 	AbraID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,
 UNIT GenericB 	RattataID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
-EnemyTrainers1: // Boy 
+EnemyTrainers1: // Lass 
 UNIT GenericB 	PoliwagID 0xE1 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	BellsproutID 0xE1 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB  HorseaID 0xE1  	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB 	HorseaID 0xE1 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+UNIT GenericB  PoliwagID 0xE1  	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 EnemyTrainers2: // Rocket

@@ -241,7 +241,6 @@ bx r0
 
 AnimLightRuneASMC: @memory slot 1 = trap ID, memory slot B = coords
 push {r14}
-
 ldr r0,=MemorySlot1
 ldr r2,[r0] @r2 = trap ID
 ldr r1,=MemorySlotB
@@ -262,9 +261,8 @@ lsr r2,r2,#16 @r1 = y coord
 lsl r1,r1,#16
 lsr r1,r1,#16 @r0 = x coord
 
-mov r0, #0x1
+mov r0, #0
 blh	0x08021684+1             @FE8U BeginLightRuneMapAnim
-
 
 pop {r0}
 bx r0

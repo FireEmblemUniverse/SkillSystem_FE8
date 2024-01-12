@@ -1,0 +1,225 @@
+
+
+#include "MapAnimations/v2Animations.event" 
+#include "Draw.lyn.event"
+#include "EAstdlib.event"
+#include "ProcDefinitions.event"
+
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+
+// proc 9A3508 at 9A3580 call 807A8F1 MapAnim_DisplayRoundAnim
+// some proc 9A4A54 called when using a heal staff on a unit 
+
+PUSH 
+ORG $7D844 // vulnerary from 7D82C
+callHackNew(CallShowHealsplatProc) 
+POP 
+
+
+
+// Vanilla's default is 28 frames here. 
+ALIGN 4
+MinimumFramesLink:
+WORD MinimumFrames 
+
+ALIGN 4
+VRAM_Address_Link:
+WORD VRAM_Address 
+
+ALIGN 4
+BATTLE_MAPANIMATION_NUMBERS_FLAGLink:
+WORD BATTLE_MAPANIMATION_NUMBERS_FLAG
+
+
+#ifndef SilverSword 
+	#define SilverSword 4 
+#endif 
+
+
+#define AnimTable_Entry(ID, SpecificAnimationTable) "PUSH; ORG AnimTable2 + (ID*8); POIN SpecificAnimationTable; SHORT 0 0; POP"
+
+#define FillWithZeroes "WORD 0 0 0 0 0 0 0 0" // 4 entries 
+#define FillFortyEntries "FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes; FillWithZeroes"
+
+
+
+ALIGN 4
+AnimTable2:
+WORD 0 0 // 0th animation is blank 
+FillFortyEntries 
+
+ALIGN 4 
+HPBarsTiles_Left: 
+SHORT 0x12
+SHORT 0x14
+SHORT 0x16
+SHORT 0x32
+SHORT 0x34
+SHORT 0x36
+SHORT 0x52
+SHORT 0x54
+SHORT 0x56
+SHORT 0x72
+SHORT 0x74
+SHORT 0x75 // empty bar special case: flipped horizontally 
+SHORT 0x12 // full 
+
+
+ALIGN 4 
+HPBarsTiles_Right: 
+SHORT 0x13
+SHORT 0x15
+SHORT 0x17
+SHORT 0x33
+SHORT 0x35
+SHORT 0x37
+SHORT 0x53
+SHORT 0x55
+SHORT 0x57
+SHORT 0x73
+SHORT 0x75
+SHORT 0x75 // empty special case 
+SHORT 0x12 // full hp bar and flipped horizontally 
+
+
+
+
+ALIGN 4 
+ShowHealsplatProc:
+PROC_YIELD 
+PROC_SET_NAME(ShowHealsplatProcName)
+PROC_CALL_ROUTINE(0x8015681) //LoadObjUiGfx just in case it isn't loaded already 
+PROC_CALL_ROUTINE(LoadBlueNumbers) 
+PROC_LABEL(0)
+PROC_SLEEP(1) 
+PROC_LOOP_ROUTINE(DrawHealsplatFunc)
+
+PROC_LABEL(1) 
+PROC_END
+
+//PROC_WHILE_EXISTS(0x89A49FC) //MapAnimBattle (also used for vulneraries and poison damage etc.) 
+ShowHealsplatProcName:
+String("HealsplatProc") ; BYTE 0
+ALIGN 4
+
+#ifndef PROC_YIELD
+	#define PROC_YIELD "PROC_YEILD"
+#endif 
+
+
+ALIGN 4
+DrawSpriteProc:							//HINT=PROCS
+PROC_YIELD 
+PROC_SET_NAME(ASMC_DrawProcName)
+PROC_CALL_ROUTINE(Draw_Camera)
+PROC_CALL_ROUTINE(Draw_StoreToBuffer)
+PROC_LOOP_ROUTINE(Draw_PushToOam)
+PROC_CALL_ROUTINE(Draw_Cleanup) 
+PROC_END
+
+ASMC_DrawProcName:
+String("PausesStuffWhileAnimationIsGoing") ; BYTE 0
+ALIGN 4
+
+
+// gProc_MapAnimDefaultRound at 9A4764
+// Copied the vanilla proc with our own routine added 
+ALIGN 4
+gProc_MapAnimRound_Animation:			//HINT=PROCS
+PROC_YIELD 
+PROC_SET_NAME(gProc_MapAnimRound_AnimationName)
+PROC_CALL_ROUTINE($80813F9) // Begin Rounds Animation	//{U}
+//PROC_CALL_ROUTINE($8083739) // Begin Rounds Animation	//{J}
+PROC_CALL_ROUTINE($80814D5) // Move towards target	//{U}
+//PROC_CALL_ROUTINE($8083815) // Move towards target	//{J}
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($80814D5)		//{U}
+//PROC_CALL_ROUTINE($08083815)	//{J}
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($80814D5)		//{U}
+//PROC_CALL_ROUTINE($08083815)	//{J}
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($80814D5)		//{U}
+//PROC_CALL_ROUTINE($08083815)	//{J}
+PROC_SLEEP(1)
+
+PROC_CALL_ROUTINE($80815C1) // Camera Onto Target	//{U}
+//PROC_CALL_ROUTINE($8083901) // Camera Onto Target	//{J}
+PROC_SLEEP(2)
+PROC_CALL_ROUTINE($808161D) // Specific vanilla animations	{U}
+//PROC_CALL_ROUTINE($0808395D) // Specific vanilla animations	{J}
+
+PROC_CALL_ROUTINE(Draw_SetupMemorySlots)
+
+PROC_NEW_CHILD(DrawSpriteProc)
+PROC_YIELD
+//PROC_LOOP_ROUTINE($8081915) // Wait for HP to end changing	//{U}
+////PROC_LOOP_ROUTINE($8083C55) // Wait for HP to end changing	//{J}
+PROC_CALL_ROUTINE($8081535) // Move away	{U}
+//PROC_CALL_ROUTINE($8083875) // Move away	{J}
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($8081535) // Move away	{U}
+//PROC_CALL_ROUTINE($8083875) // Move away	{J}
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($8081535) // Move away	{U}
+//PROC_CALL_ROUTINE($8083875) // Move away	{J}
+PROC_SLEEP(1)
+PROC_CALL_ROUTINE($8081535) // Move away	{U}
+//PROC_CALL_ROUTINE($8083875) // Move away	{J}
+PROC_LOOP_ROUTINE(Draw_WaitXFrames)
+PROC_CALL_ROUTINE(Draw_RoundCleanup)	//cleaup palette
+PROC_END
+
+
+gProc_MapAnimRound_AnimationName:
+String("gProc_MapAnimRound_Animation_Repointed") ; BYTE 0
+ALIGN 4
+
+
+
+
+/*
+BYTE Confusion FreezeAnimID
+BYTE SandAttack Splash1AnimID
+BYTE Magnitude Splash2AnimID
+//BYTE Tackle Empty_AnimID
+BYTE TakeDown Break1AnimID
+BYTE Tackle Break2AnimID
+BYTE SeismicToss CircleAnimID
+BYTE Swift Hit1AnimID
+BYTE QuickAttack Hit2AnimID
+BYTE Gust Shards1AnimID
+BYTE PoisonPowder Shards2AnimID
+BYTE Growl FlashAnimID
+BYTE Leer FlashAnimID 
+BYTE VineWhip ThinSlashAnimID
+*/
+
+
+#ifdef FEBUILDER_DATA_ORG
+PUSH
+ORG FEBUILDER_DATA_ORG
+#endif
+
+//This line should occur before this #include: #define INSTALL_BONUS_ANIMATIONS (if installing them)
+#include "MapAnimations/Installer.event" 
+
+ALIGN 4
+SaveScreenNumbers:
+//#incbin "MapAnimations/dmp/numbers.img.bin" //HINT=BIN // Gamma's 
+#incbin "MapAnimations/dmp/NumbersFromSaveScreen.dmp"	//HINT=BIN
+
+ALIGN 4
+SaveScreenNumbersPal:
+#incbin "MapAnimations/dmp/NumbersFromSaveScreen_pal.dmp" //HINT=BIN
+
+
+ALIGN 4
+SaveScreenNumbersPal_Blue:
+BYTE $0E $52 $A4 $1C $e9 $7f $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+#ifdef FEBUILDER_DATA_ORG
+POP
+#endif

@@ -1,0 +1,327 @@
+#ifndef DEBUFFS_HACK
+#define DEBUFFS_HACK
+
+// Debuffs
+// hack by CrazyColorz5, with additions by circleseverywhere and Kirb
+// Largely rewritten by Vesly 
+
+#ifdef _FE8_
+
+
+
+ALIGN 4 
+DebuffRestorePerTurnAmount_Link:
+WORD 2 
+
+ALIGN 4 
+BuffDepletePerTurnAmount_Link:
+WORD 1 
+
+#define RequireDamageToDebuff True // or make it so they can at least counter attack 
+RequireDamageToDebuff_Link: 
+WORD RequireDamageToDebuff
+
+
+
+// the "stat" field in the ASMCs below 
+#define MagBuffOffset_ASMC 0 
+#define StrBuffOffset_ASMC 1
+#define SklBuffOffset_ASMC 2 
+#define SpdBuffOffset_ASMC 3 
+#define DefBuffOffset_ASMC 4 
+#define ResBuffOffset_ASMC 5 
+#define LukBuffOffset_ASMC 6 
+#define MovBuffOffset_ASMC 7
+ 
+#define SetBuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 amount; ASMC SetUnitDebuff_ASMC" 
+#define SetDebuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 (-amount); ASMC SetUnitDebuff_ASMC" 
+
+#define BuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 amount; ASMC AddUnitDebuff_ASMC" 
+#define DebuffUnit(unitID, stat, amount) "SVAL s1 unitID; SVAL s3 stat; SVAL s4 amount; ASMC SubUnitDebuff_ASMC" 
+
+// Overwrites all buffs/debuffs/rallies etc. 
+#define OverwriteBuffUnit(unitID, value1, value2) "SVAL s1 unitID; SVAL s3 value1; SVAL s4 value2; ASMC OverwriteUnitDebuff_ASMC"
+
+
+
+
+ALIGN 4 
+EternalVanity_Link: 
+WORD EternalVanityID 
+
+
+SpecRallyAmount_Link: 
+WORD 2 
+MagRallyAmount_Link: 
+WORD 4 
+StrRallyAmount_Link: 
+WORD 4 
+SklRallyAmount_Link: 
+WORD 4 
+SpdRallyAmount_Link: 
+WORD 4 
+
+DefRallyAmount_Link: 
+WORD 4 
+ResRallyAmount_Link: 
+WORD 4 
+LukRallyAmount_Link: 
+WORD 8 
+MovRallyAmount_Link: 
+WORD 2 
+
+
+#define DebuffEntrySize 8 // Number of bytes 
+
+// NOTE: If you wish to use more bits in the debuff table, please use the provided functions for ease of use. 
+/*
+GetUnitDebuffEntry 	@ r0 = unit struct @ returns debuff entry address 
+@ this address is then used by the following functions: 
+SetBit 					@ r0 = address, r1 = bitoffset 
+UnsetBit 				@ r0 = address, r1 = bitoffset 
+CheckBit 				@ r0 = address, r1 = bitoffset @ returns true/false 
+
+UnpackData				@ r0 = address, r1 = bit offset, r2 = number of bits @ returns the data we want as an unsigned 32
+PackData 				@ r0 = address, r1 = bit offset, r2 = number of bits, r3 = data to store @ caps data at max value if you overflow 
+UnpackData_Signed		@ r0 = address, r1 = bit offset, r2 = number of bits @ returns the data we want as an int 
+PackData_Signed 		@ r0 = address, r1 = bit offset, r2 = number of bits, r3 = data to store @ caps data at max value if you overflow while respecting positive/negative 
+*/ 
+
+// Currently ending at VigorDance sizes: 
+//#define DebuffStatNumberOfBits 5 // Up to +/- 15 in a stat // Requires 54 bits / 7 bytes 
+#define DebuffStatNumberOfBits 6 // Up to +/- 31 in a stat // Requires 62 bits / 8 bytes 
+//#define DebuffStatNumberOfBits 7   // Up to +/- 63 in a stat // Requires 70 bits / 9 bytes per entry 
+// more than +63 in a stat is not currently supported by buffs
+#define RalliesNumberOfBits 9 
+
+ALIGN 4 
+DebuffStatNumberOfBits_Link:
+WORD DebuffStatNumberOfBits 
+
+ALIGN 4 
+DirectionNumberOfBits_Link: 
+WORD 2 
+
+// Buffs/Debuffs - Rallies - Half Str/Mag/Hp - Armor March - Vigor Dance 
+// Cut: Steel/Silver self-debuffs that restore independently 
+// These now debuff yourself regularly (eg. you don't recover a self-debuff and an enemy debuff independently) 
+
+ALIGN 4 
+DebuffStatBitOffset_Mag: 
+WORD 0*DebuffStatNumberOfBits
+DebuffStatBitOffset_Str: 
+WORD 1*DebuffStatNumberOfBits
+DebuffStatBitOffset_Skl: 
+WORD 2*DebuffStatNumberOfBits
+DebuffStatBitOffset_Spd: 
+WORD 3*DebuffStatNumberOfBits
+DebuffStatBitOffset_Def: 
+WORD 4*DebuffStatNumberOfBits
+DebuffStatBitOffset_Res: 
+WORD 5*DebuffStatNumberOfBits
+DebuffStatBitOffset_Luk: 
+WORD 6*DebuffStatNumberOfBits
+DebuffStatBitOffset_Mov: 
+WORD 7*DebuffStatNumberOfBits
+
+#define RalliesOffset 8*DebuffStatNumberOfBits
+ALIGN 4 
+RalliesOffset_Link:
+WORD RalliesOffset 
+
+StrRallyOffset_Link: 
+WORD 0+RalliesOffset 
+SklRallyOffset_Link: 
+WORD 1+RalliesOffset 
+SpdRallyOffset_Link: 
+WORD 2+RalliesOffset 
+DefRallyOffset_Link: 
+WORD 3+RalliesOffset 
+ResRallyOffset_Link: 
+WORD 4+RalliesOffset 
+LukRallyOffset_Link: 
+WORD 5+RalliesOffset 
+MovRallyOffset_Link: 
+WORD 6+RalliesOffset 
+SpecRallyOffset_Link: 
+WORD 7+RalliesOffset 
+MagRallyOffset_Link: 
+WORD 8+RalliesOffset 
+
+#define MiscOffset 9+RalliesOffset 
+HalfStrBitOffset_Link: 
+WORD MiscOffset
+HalfMagBitOffset_Link:
+WORD MiscOffset+1 
+HalfHpBitOffset_Link:
+WORD MiscOffset+2 
+ArmorMarchBitOffset_Link: 
+WORD MiscOffset+3
+VigorDanceBitOffset_Link:
+WORD MiscOffset+4 
+FacingBitOffset_Link:
+WORD MiscOffset+5 // also +6 
+
+
+ALIGN 4 
+RalliesNumberOfBits_Link:
+WORD RalliesNumberOfBits
+
+
+
+
+
+
+
+ALIGN 4 
+DebuffAssertTable: 
+ORG DebuffAssertTable+((MiscOffset+5)>>3)
+BYTE 0 
+
+
+DebuffTooBig:  // give us an error if we accidentally include too much data in the debuff table 
+ASSERT (DebuffAssertTable+DebuffEntrySize)-DebuffTooBig 
+
+
+
+
+
+
+TeamDebuffTables:
+  {
+  #define MaxPlayerUnits 62+1
+  #define MaxEnemyUnits 50+1
+  #define MaxGreenUnits 20+1
+  
+  #define PUDebuffTable DebuffTableRam
+  #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*DebuffEntrySize)"
+  #define GUDebuffTable "EUDebuffTable + (MaxEnemyUnits*DebuffEntrySize)"
+  #define OUDebuffTable "GUDebuffTable + (MaxGreenUnits*DebuffEntrySize)"
+  ALIGN 4
+  WORD PUDebuffTable
+  WORD GUDebuffTable
+  WORD EUDebuffTable
+  WORD OUDebuffTable
+  }
+  
+  {
+
+  PUSH
+
+    ORG 0x17D7C // To zero out the additional data upon making a new unit.
+      gotoHackWithR3(InitDebuffs)
+
+    ORG 0xA5808 // This is for loading a previously deployed unit for the first time on a map.
+      gotoHackWithR3(ReloadDebuffs)
+
+    ORG 0x188A8 // This is for decreasing the debuffs each turn/ending rally
+      jumpToHack(ProcessPureWater)
+
+    ORG 0x59A308 // Clear debuffs on chapter switch
+      WORD $0D; POIN MapMainClearProc
+
+    ORG 0x59191C // Clear debuffs on chapter switch
+      WORD $0D; POIN GameCtrlClearProc
+
+	#ifdef REPOINT_UNIT_LOAD_BUFFER
+
+		// prevent debuffs and loading issue (Kirb)
+
+		ORG 0xBA30
+		  WORD NewUnitLoadBufferLoc
+
+		ORG 0xBA54
+		  WORD NewUnitLoadBufferLoc
+
+		ORG 0xFA34
+		  WORD NewUnitLoadBufferLoc
+
+		ORG 0xD5B80
+		  WORD NewUnitLoadBufferLoc
+	
+	#endif // REPOINT_UNIT_LOAD_BUFFER
+
+    // new stat getters
+    // see modular stat getters
+
+    // Weapons/Battle
+
+    ORG 0x2B54E
+      SHORT 0x46C0 // nop
+      jumpToHack(damagedThisTurn)
+
+    ORG 0x2B422
+      #incbin "asm/SetHitThisTurn.dmp"
+
+    // ORG 0x2C086
+      // SHORT 0x46C0 // nop
+      // jumpToHack(setDebuffs) // now SealSkills hooks this instead ? 
+
+    ORG 0x2C078
+      callHack_r3(setDebuffs)
+
+  POP
+
+
+  ALIGN 4
+  damagedThisTurn:
+    #incbin "asm/SetDamagedThisTurn.dmp"
+
+
+
+   
+    
+
+
+  ALIGN 4
+  MapMainClearProc:
+    WORD $02; POIN (ClearAllDebuffs|1)
+    WORD $02 $80155C5
+    WORD $0D $859A310
+
+  ALIGN 4
+  GameCtrlClearProc:
+    WORD $02; POIN (ClearAllDebuffs|1)
+    WORD $02 $8009D99
+    WORD $0D $8591924
+
+  }
+
+  ALIGN 4
+  setDebuffs:
+    #include "asm/SetDebuffs.lyn.event"
+    POIN ItemTable
+
+	#include "asm/Reload.lyn.event"
+	#include "asm/InitDebuffs.lyn.event"
+    #include "asm/ClearDebuffs.lyn.event"
+    #include "asm/GetUnitDebuffEntry.lyn.event"
+	#include "asm/ProcessDebuffs.lyn.event"
+	#include "asm/SetUnitDebuffASMC.lyn.event" 
+	#include "asm/DebuffGivenTableEntry.lyn.event" 
+
+ALIGN 4 
+DebuffNumberOfStats_Link:
+WORD 8 // Mag, Str, Skl, Spd, Def, Res, Luk, Mov 
+
+
+ALIGN 4 
+DebuffEntrySize_Link:
+WORD DebuffEntrySize 
+
+ALIGN 4 
+DebuffTableRam_Link:
+WORD DebuffTableRam 
+
+ALIGN 4 
+DebuffTableSize_Link: 
+WORD DebuffTableSize 
+
+
+
+
+#else // _FE8_
+  ERROR Suspend Expansion and Debuff hack is for FE8
+#endif // _FE8_
+
+#endif // DEBUFFS_HACK

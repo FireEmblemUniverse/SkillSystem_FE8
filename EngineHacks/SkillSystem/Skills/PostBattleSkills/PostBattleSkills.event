@@ -32,6 +32,7 @@ POIN SkillTester
 WORD FuryID
 POIN FuryEvent
 #include "Fury/FuryEvent.event"
+#include "Fury/fury_stat_modifier.lyn.event" 
 
 ALIGN 4
 #include "PoisonStrikeGrislyWound/PoisonStrikeGrislyWound.lyn.event"
@@ -93,9 +94,22 @@ WORD ENABLE_LEGACY_CANTO
 
 ALIGN 4
 CantoPlus:
-#incbin "CantoPlus/cantoplus.dmp"
+#include "CantoPlus/cantoplus.lyn.event"
 POIN SkillTester
 WORD CantoPlusID
+
+CantoAI_Label:
+WORD CANTO_AI 
+
+MoveActiveTo_sBCoords: 
+EVBIT_MODIFY 1 
+EVBIT_T 9 // follow camera 
+ASMC MoveActorToCoords_sB
+ENUN 
+SET_ENDTURN (-1) 
+//ASMC SetActorCoords 
+NoFade 
+ENDA 
 
 ALIGN 4
 ReMove:
@@ -126,6 +140,11 @@ WORD ACTION_SWAP
 WORD ACTION_PUSH
 WORD ACTION_SWARP
 
+PUSH 
+// at 801D28E it calls CanActiveUnitMove 0x8018BD8 
+ORG $1D28C 
+SHORT $E00C // always autoselect (it wasn't working when walking through water because no acrobat hook here) 
+POP 
 
 PUSH //some changes to vanilla code to make everything work
 ORG $1D24C //check for canto, modified to just check for cantoing bit set

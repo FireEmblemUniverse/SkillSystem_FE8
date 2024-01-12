@@ -1,7 +1,7 @@
 #include "ModularSave.h"
 
 void* MS_GetSaveAddressBySlot(unsigned slot) {
-	if (slot > SAVE_BLOCK_UNK6)
+	if (slot > 7) // 	SAVE_BLOCK_UNK6       = 6,
 		return NULL;
 
 	return (void*)(0xE000000) + gSaveBlockDecl[slot].offset;
@@ -65,6 +65,11 @@ int MS_CheckEid8AFromGameSave(unsigned slot) {
 	return ((u8(*)(unsigned eid, void* buf))(0x08083D34+1))(0x8A, gGenericBuffer);
 }
 
+//extern int UnpackUnitsFromBox(int slot);
+//extern void PackUnitsIntoBox(int slot);
+//extern void ClearPCBoxUnitsBuffer(void);
+//extern void RelocateUnitsPastThreshold(int); 
+
 void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 	void* const source = GetSaveSourceAddress(sourceSlot);
 	void* const target = GetSaveTargetAddress(targetSlot);
@@ -73,6 +78,9 @@ void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 
 	ReadSramFast(source, gGenericBuffer, size);
 	WriteAndVerifySramFast(gGenericBuffer, target, size);
+	
+	//UnpackUnitsFromBox(sourceSlot);
+	//PackUnitsIntoBox(targetSlot); 
 
 	struct SaveBlockMetadata sbm;
 
@@ -81,6 +89,7 @@ void MS_CopyGameSave(int sourceSlot, int targetSlot) {
 
 	SaveMetadata_Save(&sbm, targetSlot);
 }
+
 
 void MS_SaveGame(unsigned slot) {
 	void* const base = GetSaveTargetAddress(slot);
@@ -96,6 +105,16 @@ void MS_SaveGame(unsigned slot) {
 		if (chunk->save)
 			chunk->save(base + chunk->offset, chunk->size);
 
+
+
+	//PackUnitsIntoBox(slot);
+	//ClearPCBoxUnitsBuffer();
+	//int index = UnpackUnitsFromBox(slot);
+	//RelocateUnitsPastThreshold(index); 
+	//
+	//PackUnitsIntoBox(slot); 
+	
+	
 	// Setup block metadata
 
 	struct SaveBlockMetadata sbm;
@@ -121,6 +140,10 @@ void MS_LoadGame(unsigned slot) {
 		if (chunk->load)
 			chunk->load(base + chunk->offset, chunk->size);
 
+
+	//UnpackUnitsFromBox(slot);
+	
+	
 	// Update save slot in global metadata
 	UpdateLastUsedGameSaveSlot(slot);
 }
@@ -148,7 +171,7 @@ void MS_SaveSuspend(unsigned slot) {
 
 	SaveMetadata_Save(&sbm, slot);
 
-	gGameState._unk3C = FALSE; // TODO: figure out. This is set on resume. May be "no suspend since resume" flag
+	gGameState.boolHasJustResumed = FALSE;
 }
 
 void MS_LoadSuspend(unsigned slot) {

@@ -6,16 +6,30 @@ jumpToHack(SealSkills)
 
 POP
 
+ALIGN 4 
+DebuffAmount: 
+WORD 10
+
 ALIGN 4
 SealSkills:
 #include "SealSkills/SealSkills.lyn.event"
 POIN SkillTester
 POIN SealSkillList
-POIN GetDebuffs|1
+POIN GetUnitDebuffEntry
 POIN ItemTable
 WORD FullMetalBodyID
-POIN WeaponDebuffTable
 
 SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID SealMagID
 ALIGN 4
+SealDebuffIndex: 
+POIN DebuffStatBitOffset_Str
+POIN DebuffStatBitOffset_Skl
+POIN DebuffStatBitOffset_Spd
+POIN DebuffStatBitOffset_Def
+POIN DebuffStatBitOffset_Res
+POIN DebuffStatBitOffset_Luk
+POIN DebuffStatBitOffset_Mag
+
+
+

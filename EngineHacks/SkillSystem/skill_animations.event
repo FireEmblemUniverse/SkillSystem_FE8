@@ -20,7 +20,6 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
-SkillAnimation(SureShotID,SureShotAnim)
 SkillAnimation(AdeptID,AdeptAnim)
 SkillAnimation(LunaID,LunaAnim)
 SkillAnimation(SolID,SolAnim)
@@ -34,11 +33,10 @@ SkillAnimation(IgnisID,IgnisAnim)
 SkillAnimation(FlareID,IgnisAnim)
 SkillAnimation(CoronaID,IgnisAnim)
 SkillAnimation(PetrifyID,PaviseAnim)
-SkillAnimation(EnrageID,AegisAnim)
-SkillAnimation(DeadeyeID,SureShotAnim)
-SkillAnimation(DragonFangID,SureShotAnim)
-SkillAnimation(EclipseID,SureShotAnim)
-SkillAnimation(CorrosionID,SureShotAnim)
+SkillAnimation(EnrageID,ColossusAnim)
+SkillAnimation(DragonFangID,ColossusAnim)
+SkillAnimation(EclipseID,IgnisAnim)
+SkillAnimation(CorrosionID,ColossusAnim)
 SkillAnimation(GlaciesID,IgnisAnim)
 SkillAnimation(GreatShieldID,PaviseAnim)
 SkillAnimation(VengeanceID,ImpaleAnim)

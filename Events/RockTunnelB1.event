@@ -4,7 +4,7 @@
 #define ClassA ClassRockTunnelWildA
 #define ClassB ClassRockTunnelWildB
 #define WildLvl 20
-#define TrainerL 20
+#define TrainerL 23
 
 
 
@@ -113,7 +113,7 @@ RockSmash(24,12)
 RockSmash(11,25)
 RockSmash(32,25)
 
-SaveCost(15,5) 
+SaveCost(8,13) 
 
 
 //RockSmash(3,2)
@@ -121,10 +121,11 @@ SaveCost(15,5)
 
 
 RedPokeballTrap(26,12, ChapterID*2, MoonStone)
+RedPokeballTrap(21, 5, (ChapterID*2)+1, EscapeRope, 5)
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
-SkillAccessoryTrap(19,16, (ChapterID*2)+1, SealSklID) 
+//SkillAccessoryTrap(19,16, (ChapterID*2)+1, SealSklID) 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
 //SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
@@ -271,6 +272,7 @@ SHORT 600 // Gold
 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
 UNIT 0xE0 hikerID 0x0 Level(0, Enemy, 1) [29,2]  0b 0x0	0x1 REDA29R2 [OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE1 hikerID 0x0 Level(0, Enemy, 1) [11,3]  0b 0x0	0x1 REDA11R3 [OneRangeWep,0x0,0x0,0x0] TrainerAI
@@ -285,24 +287,24 @@ UNIT
 EnemyTrainers0: // hiker
 UNIT GenericB 	GeodudeID 		0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	MachopID 		0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	GeodudeID 		0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	GeodudeID 		0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	ZubatID 		0xE0 	Level(0, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 EnemyTrainers1: // hiker
 UNIT GenericB 	ZubatID 		0xE1 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	GeodudeID 		0xE1 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+//UNIT GenericB 	GeodudeID 		0xE1 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	OnixID 		0xE1 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	GeodudeID 		0xE1 	Level(0, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 EnemyTrainers2: // picnicker
-UNIT GenericB 	SandshrewID		0xE2 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
+//UNIT GenericB 	SandshrewID		0xE2 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	GeodudeID 		0xE2 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	BellsproutID 	0xE2 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT GenericB 	ZubatID 		0xE2 	Level(0, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupThreeAI
 UNIT
 EnemyTrainers3: // picnicker
 UNIT GenericB 	SandshrewID 		0xE3 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
-UNIT GenericB 	SandshrewID 		0xE3 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
+//UNIT GenericB 	SandshrewID 		0xE3 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT GenericB 	BellsproutID 		0xE3 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT GenericB 	ZubatID 			0xE3 	Level(0, Enemy, 1) [11, 9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupFourAI
 UNIT

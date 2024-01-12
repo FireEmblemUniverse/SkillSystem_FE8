@@ -1,19 +1,13 @@
 .thumb
-.equ ItemTable, SkillTester+4
-.equ HolyAuraID, ItemTable+4
+.equ HolyAuraID, SkillTester+4
 
 push {r4-r7, lr}
 mov r4, r0 @atkr
 mov r5, r1 @dfdr
 
-mov r0,#0x1e
-ldrb r0,[r4,r0] @ItemID
-ldr r1,ItemTable
-mov r2,#36
-mul r2,r0
-add r1,r2
-ldrb r1,[r1,#0x7]
-cmp r1,#0x6
+mov r0, #0x50
+ldrb r0, [r4, r0] @r0 = Equipped weapon type
+cmp r0, #0x6 @Light weapon type
 bne End
 
 

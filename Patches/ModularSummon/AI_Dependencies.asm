@@ -603,8 +603,11 @@ ldrh r0, [r3, r1] @ Current unit coords
 ldr r2, =0x203AA96 @ AI decision +0x92 (XX) 
 strh r0, [r2, #0] @ 
 ldr r2, =0x203A958 @ Action struct 
-mov r1, #0x13
-strh r0, [r2, r1] @ Action Struct @ 203A958
+add r2, #0x13 
+
+strb r0, [r2] @ Action Struct @ 203A958
+lsr r1, r0, #8 
+strb r1, [r2, #1] @ Action Struct @ 203A958
 
 ldrb r0, [r3, #0x10] @ No decision made by move towards enemy 
 ldrb r1, [r3, #0x11] @ so put in our current coords 

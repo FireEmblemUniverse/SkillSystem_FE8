@@ -22,6 +22,8 @@ ldr r5, =0x859a5d0 @pointers to ram
 EnemyLoop:
 lsl r0, r4, #2
 ldr r6, [r5,r0]
+cmp r6, #0 
+beq NextEnemy 
 mov r0, #0x30
 add r0, r6 @status
 ldrb r1, [r0]

@@ -1,0 +1,120 @@
+
+ALIGN 4 
+ShowBuffEvent: 
+SVAL s1 (-1) // active unit 
+//SVAL s3 1 // str // This event is called from asm that stores a value to s3 
+SVAL s4 0 // range (self) 
+ASMC BuffFx_ASMC 
+NoFade 
+ENDA 
+
+#include "dmp/TakerSkills.lyn.event" 
+#include "dmp/HoneSkills.lyn.event" 
+#include "dmp/OathSkills.lyn.event" 
+#include "dmp/RouseSkills.lyn.event" 
+#include "dmp/InitiativeSkills.lyn.event" 
+#include "dmp/OddFooted.lyn.event"
+#include "dmp/EvenFooted.lyn.event"
+
+ALIGN 4 
+CleverInitAmount_Link: 
+WORD 7
+StrongInitAmount_Link: 
+WORD 7 
+DeftInitAmount_Link: 
+WORD 7 
+QuickInitAmount_Link: 
+WORD 7 
+LuckyInitAmount_Link: 
+WORD 7 
+SturdyInitAmount_Link: 
+WORD 7 
+CalmInitAmount_Link: 
+WORD 7 
+NimbleInitAmount_Link: 
+WORD 7 
+
+ALIGN 4 
+HoneMagAmount_Link: 
+WORD 3 
+OathMagAmount_Link: 
+WORD 4 
+RouseMagAmount_Link: 
+WORD 4 
+HoneStrAmount_Link: 
+WORD 3 
+OathStrAmount_Link: 
+WORD 4 
+RouseStrAmount_Link: 
+WORD 4 
+HoneSklAmount_Link: 
+WORD 3 
+OathSklAmount_Link: 
+WORD 4 
+RouseSklAmount_Link: 
+WORD 4 
+HoneSpdAmount_Link: 
+WORD 3 
+OathSpdAmount_Link: 
+WORD 4 
+RouseSpdAmount_Link: 
+WORD 4 
+HoneDefAmount_Link: 
+WORD 3 
+OathDefAmount_Link: 
+WORD 4 
+RouseDefAmount_Link: 
+WORD 4 
+HoneResAmount_Link: 
+WORD 3 
+OathResAmount_Link: 
+WORD 4 
+RouseResAmount_Link: 
+WORD 4 
+HoneLukAmount_Link: 
+WORD 3 
+OathLukAmount_Link: 
+WORD 4 
+RouseLukAmount_Link: 
+WORD 4 
+HoneMovAmount_Link: 
+WORD 3 
+OathMovAmount_Link: 
+WORD 4 
+RouseMovAmount_Link: 
+WORD 4 
+
+
+ALIGN 4 
+TakerMaxBuff_Link: 
+WORD 10 // Won't buff above 10. 
+
+ALIGN 4 
+TakerSkillsStackable_Link: 
+WORD True 
+
+ALIGN 4 
+StrTakerBuffAmount_Link: 
+WORD 4 
+SklTakerBuffAmount_Link: 
+WORD 4 
+SpdTakerBuffAmount_Link: 
+WORD 4 
+DefTakerBuffAmount_Link: 
+WORD 4 
+ResTakerBuffAmount_Link: 
+WORD 4 
+LukTakerBuffAmount_Link: 
+WORD 4 
+MagTakerBuffAmount_Link: 
+WORD 4 
+MovTakerBuffAmount_Link: 
+WORD 3 
+
+ALIGN 4
+OddFootedAmount_Link:
+WORD 1
+EvenFootedAmount_Link:
+WORD 1
+
+

@@ -103,7 +103,7 @@ SDIV s9 sC s1
 BGE 99 sA s9 // if over 1/3rd hp, do nothing  
 ENUT MoltresFledFlag // 1/3rd or less hp, so flee 
 UnsetAllDangerRadius
-SetNearbyDangerRadius
+VeslySetDangerRadius
 CALL ModularSummonWildTrainerEvent // looks for unit ID of attacker or defender from 0xD0 - 0xDF, originally 0xE0 - 0xEF 
 
 

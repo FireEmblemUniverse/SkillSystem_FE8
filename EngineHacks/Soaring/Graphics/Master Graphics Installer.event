@@ -1,0 +1,87 @@
+
+// PUSH
+// ORG 0x5926F4+(0x80*0xd8)
+// #incext Png2Dmp "featherbraceicon.png"
+// POP
+
+// NewTitleLogo:
+// #incext Png2Dmp "FE_Title.png" --lz77
+// ALIGN 4
+
+// NewTitleScroll:
+// #incext Png2Dmp "scroll.png" --lz77
+// ALIGN 4
+
+pkSprite:
+#incbin "sprites/latias.img.bin"
+ALIGN 4
+
+pkSpriteF:
+#incbin "sprites/latiasF.img.bin"
+ALIGN 4
+
+pkPal:
+#incbin "sprites/latias.pal.bin"
+ALIGN 4
+
+pkPalF:
+#incbin "sprites/latiasF.pal.bin"
+ALIGN 4
+
+miniCursorSprite:
+#incbin "sprites/cursors.img.bin"
+ALIGN 4
+
+miniCursorPal:
+#incbin "sprites/cursors.pal.bin"
+ALIGN 4
+
+minimapSprite:
+#incbin "sprites/minimap.img.bin"
+ALIGN 4
+
+minimapPal:
+#incbin "sprites/minimap.pal.bin"
+ALIGN 4
+
+locationSprites:
+#incbin "sprites/locations.img.bin"
+ALIGN 4
+locationPal:
+#incbin "sprites/locations.pal.bin"
+ALIGN 4
+
+fpsSprite:
+#incbin "sprites/fps.img.bin"
+ALIGN 4
+
+lensFlareSprite:
+#incbin "sprites/lensflare.img.bin"
+ALIGN 4
+
+lensFlarePal:
+#incbin "sprites/lensflare.pal.bin"
+ALIGN 4
+
+SkyBG:
+#incbin "sky_wrap.img.bin"
+ALIGN 4
+// SkyBG_sunset:
+// #incbin "sky_wrap_sunset.img.bin"
+// ALIGN 4
+// SkyBG_lighter:
+// #incbin "sky_wrap_lighter.img.bin"
+// ALIGN 4
+// SkyBG_darker:
+// #incbin "sky_wrap_darker.img.bin"
+// ALIGN 4
+
+colourMap:
+#incbin "ue4_magvel_wmap.img.bin"
+ALIGN 4
+// colourMap_sunset:
+// #incbin "Magvel_Map_sunset.img.bin"
+// ALIGN 4
+oceanMap:
+#incbin "oceanmap.img.bin"
+ALIGN 4

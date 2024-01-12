@@ -16,7 +16,30 @@ struct AuraSkillBuffer {
 };
 ```
 
+```c
+struct SkillTestConfig {
+/*00*/  u16 auraSkillBufferLimit;
+/*02*/  u8 genericLearnedSkillLimit;
+/*03*/  u8 passiveSkillStack;
+/*04*/  u8 roofUnitAuras;
+};
+```
+
 ## Functions
+
+### IsUnitOnField(Unit* unit)
+Checks if a unit is currently on the field.  
+
+Whether or not units under roofs are considered to be on the field can be configured at `Root/EngineHacks/Config.event` with the `ROOF_UNIT_AURAS` option.  
+
+Returns true if unit is none of the following:
+- Rescued.
+- Not Deployed.
+- Dead.
+- Hidden with REMU.
+- Under a roof if units under roofs are considered not on the field.
+
+Returns false otherwise.
 
 ### IsSkillInBuffer (SkillBuffer* buffer, u8 skillID)
 Loops through a given buffer to find the given skillID.  
@@ -36,6 +59,11 @@ Checks a unit for skills, stores found skills in the given buffer, then returns 
 If the unit is in battle, the equipped weapon data is gotten from the battle unit struct.  
 Stores the RAM unitID of the last unit checked in `SkillBuffer.lastUnitChecked` for future reference.  
 
+If a unit does not have BWL data (And is thus considered generic), their learned skills will be collected from the learned skills lists.  
+The limit of learned generic skills can be configred in `Root/EngineHacks/SkillSystem/Internals/Skillsystem.event`.  
+
+Passive item skills stacking can be configured in `Root/EngineHacks/Config.event` with the `PASSIVE_SKILLS_STACK` option.  
+
 Returns the `SkillBuffer` pointer passed to it.  
 
 
@@ -49,7 +77,7 @@ Returns a pointer to `AuraSkillBuffer`.
 `AuraSkillTable` can be found in  
 `Root/EngineHacks/Necessary/CalcLoops/PreBattleCalcLoop/PreBattleCalcLoop.event`  
 
-The maximum number of `AuraSkillBuffer` entries can be set in `EngineHacks/SkillSystem/Internals/Skillsystem.event`.
+The maximum number of `AuraSkillBuffer` entries can be set in `Root/EngineHacks/SkillSystem/Internals/Skillsystem.event`.
 
 `MakeAuraSkillBuffer` can be called directly from any calcloop.  
 
@@ -97,6 +125,9 @@ Calls `AuraSkillBuffer` and `MakeSkillBuffer` for the attacker. If a real battle
 This function is used to initialize the PreBattle loop and not have to rely on MSG calling `SkillTester` on the defender.  
 
 Does not return a value.
+
+### InitSkillBuffers()
+Sets `gAttackerSkillBuffer` and `gDefenderSkillBuffer`'s `lastUnitChecked` value to 0, forcing `SkillTester` to rebuild both skill buffers.
 
 ### GetUnitsInRange (Unit* unit, int allyOption, int range)
 Loops through each unit and checks if they meet the given requirements, and if so, their RAM unitID gets added to the `UnitRangeBuffer`.  

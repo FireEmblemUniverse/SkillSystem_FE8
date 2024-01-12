@@ -1,12 +1,13 @@
 #ifdef _FE8_
     #include "EAstdlib.event"
+	#include "Extensions/Hack Installation.txt"
     #include "CustomDefinitions.event"
-	
-	ORG 0x01000000
-	#include "Music/MusicInstaller.event"
-	MESSAGE Pokemblem music space ends at currentOffset
-    ORG FreeSpace
-	
+	#include "Music/MusicTrackDefinitions.event" 
+	#include "Maps/Definitions.event"
+	#include "Maps/MapMacros.event" 
+ORG FreeSpace_Low
+    //CSV tables
+	//#include "Text/Text Definitions.event" 
 	#include "repointedTextTable.event"
 	#include "Music/Text/ExtraText.event" 
 
@@ -14,29 +15,48 @@
 	//#undef TEXT_INSTALLER_TEXT_BUILDFILE_TXT
 
     #include "Text/InstallTextData.event"
+	#include "Languages.event" 
     MESSAGE Used text space ends at currentOffset
-
-	#include "Maps/Definitions.event"
-    //CSV tables
 	
-    #include "Tables/TableInstaller.event"
+	#include "Language/TextTableCode/Installer.event" 
+	
+PUSH 
+ORG FreeSpace
+	#include "Maps/MapTables.event" 
+    #include "Tables/TableInstaller.event" // maps and tables must be directly at FreeSpace3, with ChapterDataTable being the first table 
     MESSAGE Used table space ends at currentOffset
-	
+	#include "Graphics/IntegratedInstaller.event" 	
 	#include "Patches/ASMCs_Installer.event"
 	
 	#include "Patches/DebugCommand/Debug.lyn.event"
     //Engine Hacks
     #include "EngineHacks/_MasterHackInstaller.event"
-    MESSAGE Used hax space ends at currentOffset
-
-    //Maps
-    #include "Maps/SplitPList.event"
-
     //Patches
 	#define InstallPatches 
 	#ifdef InstallPatches 
 		#include "Patches/An_Installer_of_Patches.event"
 	#endif 
+	#include "Maps/Master Map Installer.event"
+  	//Soaring outside bl range includes
+    ALIGN 4
+    #include "EngineHacks/Soaring/src/hostable.lyn.event"
+    ALIGN 4
+    heightMap:
+    #incbin "EngineHacks/Soaring/Graphics/magvel_hmap.img.bin"
+    ALIGN 4
+    pleftmatrix:
+    #incbin "EngineHacks/Soaring/src/pleftmatrix.dmp"
+    ALIGN 4
+    #include "EngineHacks/Soaring/Graphics/Master Graphics Installer.event"
+    ALIGN 4
+    MESSAGE Used hax space ends at currentOffset
+	EndOfFreeSpace: 
+POP 
+	
+
+
+
+
 	
 	#ifndef ENABLE_FixedDamageWeapons
 		#include "Patches/FixedDamageWeapons/FixedDamageWeaponsInstaller.event" 
@@ -45,25 +65,38 @@
 		#include "Patches/ModularSupply/ModularSupplyInstaller.event" 
 	#endif 
 	
-	MESSAGE Used patch space ends at currentOffset 
+
 	
-
-
-	//Graphics
-	#include "Graphics/GraphicsInstaller.event"
-
-
-
     //Events
 	#include "Events/EventsInstaller.event"
 	#include "A_Debug_Command.event"
+	MESSAGE Used events space ends at currentOffset 
+ASSERT (FreeSpace_Low_End - currentOffset)
+	
 
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+ORG EndOfFreeSpace 
 ALIGN 4
 WORD 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 // Prevent NUPS from cutting off the last 6 bytes
 
 
+MESSAGE Used free space ends at currentOffset
 	
-    MESSAGE Used free space ends at currentOffset
+	//ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
+	
+    
 #else
     ERROR "You are not assembling FE8 events!"
 #endif

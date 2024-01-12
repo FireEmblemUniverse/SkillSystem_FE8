@@ -1,0 +1,15 @@
+
+#ifdef INSTALL_FMU
+PUSH 
+ORG $27274 
+//callHackNew(HookSMS_UpdateFromGameData) 
+//SHORT $46c0 
+
+ORG $F88C 
+callHackNew(HookUnitLoadForDirection)
+POP 
+#endif 
+
+#include "HookSMS_UpdateFromGameData.lyn.event" 
+
+//#include "bmudisp.lyn.event" 

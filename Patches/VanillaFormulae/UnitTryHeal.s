@@ -13,6 +13,7 @@ ble NoFullHeal
 mov r0, r3 
 NoFullHeal:
 strb r0, [r4, #0x13] 
+bx lr 
 
 .ltorg 
 

@@ -2,10 +2,13 @@
 
 // HP Bars, Effectiveness warning icons and talk indicators.
 // hack by circleseverywhere, with additions by Tequila, lynified by hypergammaspaces
+// Graphics by Alusq
 
 #ifdef _FE8_
 
   {
+  
+  //#include "GameOptions/Installer.event"
 
   PUSH
     ORG $276b4

@@ -148,9 +148,9 @@
 //Author Unknown (Initial Commit)
  SealStrID
  SealSklID
- SealSpdID
+ DowngradeID
  SealLukID
- SealDefID
+GuardBreakerID
  SealResID
 //By Snakey1
  SealMagID
@@ -945,16 +945,24 @@
 
 
 //Display-Only Skills
-
  CunningID
  NiceThighsID
  PersonalityID
 
 ScaledBackID
-
+ScaledUpID
 WonderGuardID 
 SturdyID
 PowerfulAuraID // Cannot be attacked 
+
+RecklessFighterID
+SteadyBrawlerID
+ExpShareID 
+Intimidate2ID
+SurfBoardID
+HoverBoardID
+HoardersBaneID
+CleatsID
 
 //Down With Arch: If the hit lands, instantly kill the enemy unit. (Only if name starts with "Arch")
  DownWithArchID 255
@@ -1203,6 +1211,89 @@ WindBoostID
 WaterBoostID
 EarthBoostID
 FireBoostID
+
+SealSpdID 
+SealDefID
+
+StrTakerID
+SklTakerID
+SpdTakerID
+DefTakerID
+ResTakerID
+LukTakerID
+MagTakerID
+MovTakerID 
+HoneMagID
+HoneStrID
+HoneSklID 
+HoneSpdID 
+HoneDefID 
+HoneResID
+HoneLukID
+HoneMovID
+MagOathID 
+StrOathID 
+SklOathID 
+SpdOathID 
+DefOathID 
+ResOathID 
+LukOathID 
+MovOathID 
+RouseMagID 
+RouseStrID 
+RouseSklID 
+RouseSpdID
+RouseDefID 
+RouseResID 
+RouseLukID 
+RouseMovID 
+CleverInitID 
+StrongInitID 
+DeftInitID 
+QuickInitID 
+LuckyInitID
+SturdyInitID 
+CalmInitID 
+NimbleInitID 
+SpectrumInitID 
+EternalVanityID 
+GutsID 
+StrongConstitutionID 
+ShrewdPotentialID
+RallyChaosID 
+
+DarkBargainID
+SoulSapID 
+DivinelyInspiringID 
+AirRaidAtkID 
+AirRaidSpdID 
+AirRaidDefID 
+AirRaidCriID 
+AirRaidHitID
+AirRaidAvoID
+AirRaidResID
+ChaosStyleID 
+DragonSkinID 
+StunningSmileID
+KeenFighterID
+PridefulWarriorID
+LastWordID
+BoldFighterID
+VengefulFighterID
+QuickLearnerID
+PassionsFlowID
+BidingBlowID
+OddFootedID
+EvenFootedID
+AdvantageChaserID
+DrawBackID
+SacrificeID
+ArdentSacrificeID
+ReciprocalAidID
+
+
+
+
 
 
 

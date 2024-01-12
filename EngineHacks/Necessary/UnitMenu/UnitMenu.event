@@ -25,6 +25,8 @@ PUSH
 ORG $4EBB6 
 //BYTE GeneralMenusLeft 
 
+ORG $59D215 
+BYTE 1 // Start at 1st Y tile instead of 2nd
 // Make the chapter menu wider 
 ORG $59D216 
 BYTE ChMenuWidth 
@@ -139,15 +141,15 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   UM_Vendor
   
   //UM_Strength
-  MenuCommand(UM_Strength,UM_StrengthDesc,BlueText, GenericTrapDisappearUsability0x22, StrengthBoulderEffect) 
+  MenuCommand(UM_Strength,UM_StrengthDesc,BlueText, NewStrengthBoulderUsability, StrengthBoulderEffect) 
 
 
   
 //Disappear after use
   //UM_Cut
-  MenuCommand(UM_Cut,UM_CutDesc,BlueText, GenericTrapDisappearUsability0x20, GenericTrapDisappearEffect)
+  MenuCommand(UM_Cut,UM_CutDesc,BlueText, NewCutBushUsability, NewCutBushEffect)
   //UM_RockSmash
-  MenuCommand(UM_RockSmash,UM_RockSmashDesc,BlueText, GenericTrapDisappearUsability0x21, GenericTrapDisappearEffect)
+  MenuCommand(UM_RockSmash,UM_RockSmashDesc,BlueText, NewRockSmashUsability, NewRockSmashEffect)
 
 
 
@@ -184,7 +186,7 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainSkillAccessoryUsability0x14, ObtainSkillAccessoryEffect) //take accessory 
   
   MenuCommand(UM_HealTile, UM_HealTileDesc, GreenText, HealTileUsability, HealTileEffect) //Enter  
-  MenuCommand(UM_PickBerry, UM_PickBerryDesc, BlueText, BerryTreeUsability, PickBerryTreeEffect) //Enter  
+  MenuCommand(UM_PickBerry, UM_PickBerryDesc, BlueText, BerryTreeUsability, NewPickBerryTreeEffect) //Enter  
 //  ## UM_EatBerry
 // Eat[X]
 //## UM_EatBerryDesc
@@ -193,7 +195,8 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
 
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainItemUsability0x10, ObtainItemEffect) //Take
   MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainItemUsability0x11, ObtainItemEffect) //Take (Gold pokeball) 
-  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, ObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
+  MenuCommand(UM_Take2, UM_Take2Desc, BlueText, NewObtainCoinsUsability0x15, ObtainCoinsEffect) //Take 
+  //MenuCommand(UM_Take2, UM_Take2Desc, BlueText, NewObtainCoinsUsability0x15, NewObtainCoinsEffect) //Take 
   
   
   MenuCommand(UM_AoEName, UM_AoEDesc, NormalText, AoE_AreAnyUsable, AoE_Effect)
@@ -211,11 +214,12 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Confirm, UM_ConfirmDesc, BlueText, GenericTrapUsability0x37, GenericTrapEffect) //Confirm
   
 
-  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x50, DisplayTextEffect) //Examine 
-  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x51, DisplayTextEffect) //Examine 
-  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect) //Read 
-  MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect) //Talk 
-
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x50, DisplayTextEffect0x50) //Examine 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x51, DisplayTextEffect0x51) //Examine 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x52, DisplayTextEffect0x52) //Read 
+  MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, DisplayTextUsability0x53, DisplayTextEffect0x53) //Talk 
+  MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, DisplayTextUsability0x54, DisplayTextEffect0x54) //Examine 
+  
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x30, GenericTrapEffect) //Wait
   MenuCommand(UM_Interact, UM_InteractDesc, BlueText, GenericTrapUsability0x31, GenericTrapEffect) //Interact
   MenuCommand(UM_Talk2, UM_Talk2Desc, GreenText, GenericTrapUsability0x32, GenericTrapEffect) //GreenTalk
@@ -382,7 +386,8 @@ MenuCommand(UM_FocusEnergyName, UM_FocusEnergyDesc, BlueText, FocusEnergyCommand
 
   
   //UM_Supply
-  MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,0x23FB8)
+  MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,NewSupplyEffect)
+  MenuCommand(0x68F,0x6D5,NormalText,NewSupplyUsability2,NewSupplyEffect)
 MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
 
 

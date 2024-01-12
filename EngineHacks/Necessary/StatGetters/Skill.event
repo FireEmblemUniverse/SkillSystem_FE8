@@ -4,8 +4,10 @@
 #include "_Common.event"
 
 pSkillModifiers: // Skill
-	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing prDebuffSkl prAddEquipSkill prItemPassiveSkl prRallySkl prResolve prDefiantSkl prPushSkl
-	POIN prSklBuff
+	POIN prAddUnitSkill prHalveIfRescuing prHalveIfCapturing 
+	POIN prDebuffSkl 
+	POIN prAddEquipSkill prItemPassiveSkl prRallySkl prResolve prDefiantSkl prPushSkl
+	//POIN prSklBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessorySkill
 	#endif 
@@ -24,14 +26,6 @@ prAddEquipSkill:
 prAddAccessorySkill:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilitySklBonus-1)))
 	#endif 
-
-prDebuffSkl:
-	#include "_asm/DebuffSkl.lyn.event"
-	POIN GetDebuffs|1
-
-prRallySkl:
-	#include "_asm/RallySkl.lyn.event"
-	POIN GetDebuffs|1
 
 prItemPassiveSkl:
 #ifndef DONT_STACK_BOOSTS

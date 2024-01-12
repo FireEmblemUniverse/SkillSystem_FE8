@@ -1,13 +1,22 @@
 
+ALIGN 4 
+MaxPartyUnits_Link:
+WORD MaxPartyUnits
+
+#define CheckIfCaught(classID) "SVAL s1 classID; ASMC CheckIfCaughtASMC" 
+
 #include "RegisterPokemon.lyn.event"
 
 ALIGN 4
 PartyFullEvent:
 EVBIT_MODIFY 1
+ASMC CopyCaughtPkmnToMemSlot2
+CHECK_COORDS (-1) // active unit coords 
+SADD sB sC s0 
 CUSA 0x7FFD //enemy to player 
 CAM1 0xFFFF
 WARP_IN
-STAL 0x32
+StalVar(20, 50)
 Text(PokemonCapturedText)
 SVAL r3 300 
 GIVETOSLOT3 // Take 300 gold from the player 
@@ -17,6 +26,7 @@ ENDA
 ALIGN 4
 PCBoxFullEvent:
 EVBIT_MODIFY 1
+ASMC CopyCaughtPkmnToMemSlot2
 DISA 0x7FFD //enemy to player 
 Text(CannotCaptureText)
 NoFade
@@ -30,30 +40,41 @@ ENDA
 #define MonsterFaceGraphic 0x14
 #define EmoticonSlotB(Graphic) "BYTE $4B $0D $00 Graphic; POIN Show_map_emotion_Install|1"
 
+ALIGN 4 
+CapturedPkmnDeploymentID_Link:
+WORD CapturedPkmnDeploymentID
+
 ALIGN 4
 CapturePokemonEvent:
 // s2 is unit id of newly captured unit 
-// sB is coords of existing unit 
+// sB is coords of active unit 
 //EVBIT_F 2 
 //FADI 16 
 ///LOAD1 1 EphraimUnitGroup
 //ENUN 
 //Text(DebugTextHere)
-
 EVBIT_MODIFY 1
+ASMC CopyCaughtPkmnToMemSlot2
+CHECK_COORDS (-1) // active unit coords 
+SADD sB sC s0 
 CUSA 0x7FFD //enemy to player 
+
 EmoticonSlotB(OpenPokeballGraphic)
 
-STAL 0x22 
+StalVar(7, 14) // 14 ? 
 EmoticonSlotB(PokeballGraphic)
 
-STAL 0x32 
+StalVar(11, 22) // 22 ? 
+LABEL 1 
 SPAWN_NPC 0xFD [-1, -1] 
 //SPAWN_ALLY 0xFD [-1, -1] 
 MOVENEXTTO 7 0x7FFD 0x7FFE
 ENUN 
 DISA 0xFD 
+CHECK_EVENTID SpeedupFlag
+BNE 2 sC s0 
 Text(PokemonCapturedText)
+LABEL 2 
 EVBIT_MODIFY 0
 //ASMC 0x080956d9 // Reorder player units
 NoFade

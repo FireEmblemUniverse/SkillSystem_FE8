@@ -1,6 +1,32 @@
+
+## SD_Surf
+Surf: Can traverse[N]
+deep waters.[X]
+
+## SD_Hover
+Hover: Can go over[N]
+ledges and water.[X]
+
 ## SD_PowerfulAura
 Powerful Aura: Temporarily[N]
 immune to attacks![X]
+
+## SD_Intimidate2
+Intimidate: Enemy Str/Mag is[N]
+reduced by 25% when attacking.[X]
+
+## SD_GuardBreaker
+Guard Breaker: Enemy Def/Res[N]
+is reduced by 25% when attacking.[X]
+
+## SD_Downgrade
+Downgrade: Enemy Spd is[N]
+reduced by 25% when attacking.[X]
+
+// used these for skill names 
+//([:][^\n]*[\[X\]])
+//([:][^\n]*[\n][^\n]*[\[X\]])
+//([:][^\n]*[\n][^\n]*[\n][^\n]*[\[X\]])
 
 ## SD_WonderGuard
 Wonder Guard: Immune to[N]
@@ -72,7 +98,8 @@ Lethality: Instantly kill opponent.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Bane
-Bane: Leave the opponent at 1 HP.[N]
+Bane: Leave the opponent at[N]
+1 HP if the attack would kill.[N]
 (Skill/2 % activation)[X]
 
 ## SD_Luna
@@ -244,6 +271,10 @@ tiles receive +2 magic damage.[X]
 Inspiration: Allies within 2 tiles[N]
 deal +2 damage and receive -2 damage.[X]
 
+## SD_DivinelyInspiring
+Divinely Inspiring: Adjacent allies[N]
+deal +3 damage and receive -1 damage.[X]
+
 ## SD_Charm
 Charm: Allies within 2[N]
 tiles deal +2 damage.[X]
@@ -383,8 +414,9 @@ Foreign Princess: Foreign army units[N]
 take -2/+2 damage dealt/taken.[X]
 
 ## SD_SavageBlow
-Savage Blow: After attacking, enemies[N]
-within 2 tiles take 25% damage.[X]
+Savage Blow: After attacking,[N]
+enemies within 2 tiles lose[N]
+25% of their current HP.[X]
 
 ## SD_Relief
 Relief: Recover 20% HP each turn if[N]
@@ -431,31 +463,31 @@ when on terrain with effects.[X]
 
 ## SD_SealStr
 Seal Strength: Debuff opponent's Str[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_SealSkl
 Seal Skill: Debuff opponent's Skl[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_SealSpd
 Seal Speed: Debuff opponent's Spd[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_SealLuk
 Seal Luck: Debuff opponent's Luck[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_SealDef
 Seal Defense: Debuff opponent's Def[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_SealRes
 Seal Resistance: Debuff opponent's Res[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_SealMag
 Seal Magic: Debuff opponent's Mag[N]
-by 6 after combat. (Recover 1/turn)[X]
+by 10 after combat. (Recover 2/turn)[X]
 
 ## SD_Gamble
 Gamble: A reckless attack with[N]
@@ -587,7 +619,7 @@ with an adjacent ally.[X]
 
 ## SD_BreathOfLife
 Breath of Life: After attacking,[N]
-allies in 2 tiles heal of 20% max HP.[X]
+allies in 2 tiles heal 20% of max HP.[X]
 
 ## SD_Fury
 Fury: +2 Atk/Spd/Def/Res. Unit[N]
@@ -779,12 +811,12 @@ the curse spreads to the enemy as well.[N]
 
 ## SD_Poison_Strike
 Poison Strike: Deals damage equal to[N]
-25% of the enemy's max HP after[N]
+25% of the enemy's current HP after[N]
 battle this unit initiates.[X]
 
 ## SD_Grisly_Wound
 Grisly Wound: Deals damage equal[N]
-to 25% of the enemy's max[N]
+to 25% of the enemy's current[N]
 HP after every battle.[X]
 
 ## SD_Hex
@@ -862,7 +894,7 @@ Knight Aspirant: When above 75%[N]
 health, +2 damage, +15% avoid.[X]
 
 ## SD_Watchful
-Watchful: This Pok[Eaccent]mon[N]
+Watchful: This Pokémon[N]
 cannot be captured.[X]
 
 ## SD_Hero
@@ -910,8 +942,8 @@ Drive Resistance: Allies within[N]
 2 spaces receive +4 resistance.[X]
 
 ## SD_Blossom
-Blossom: 2x growth rates,[N]
-but 1/2 exp gain.[X]
+Blossom: 2x growth rates[N]
+and 2x exp gain.[X]
 
 ## SD_Aptitude
 Aptitude: +20% to[N]
@@ -920,7 +952,7 @@ all growth rates.[X]
 ## SD_QuickRiposte
 Quick Riposte: If defending and[N]
 HP is 50% or higher, unit doubles[N]
-and attacker does not double.[X]
+and attacker cannot double.[X]
 
 ## SD_Resolve
 Resolve: When HP < 50%,[N]
@@ -1302,6 +1334,15 @@ damage three times.[X]
 Multi-Hit: Hits 50%[N]
 damage two to five times.[X]
 
+## SD_ScaledUp
+Scaled Up: This unit[N]
+deals 20% more damage.[X]
+
+## SD_ExpShare
+Exp Share: Gain exp when a[N]
+higher-levelled ally within[N]
+2 tiles attacks an enemy.[X]
+
 ## SD_SK10
 My Skill 10: Has an effect.[X]
 ## SD_SK11
@@ -1453,8 +1494,335 @@ least 3 higher than the enemy's.[X]
 Water Boost: Grants +6 Resistance[N]
 if unit's current HP is at[N]
 least 3 higher than the enemy's.[X]
-// used these for skill names 
-//([:][^\n]*[\[X\]])
-//([:][^\n]*[\n][^\n]*[\[X\]])
-//([:][^\n]*[\n][^\n]*[\n][^\n]*[\[X\]])
+
+
+
+
+## SD_MagTaker
+Magic Taker: After attacking and[N]
+defeating an enemy, gain +4 Mag.[N]
+(Max +10)[X]
+
+## SD_StrTaker
+Strength Taker: After attacking and[N]
+defeating an enemy, gain +4 Str.[N]
+(Max +10)[X]
+
+## SD_SklTaker
+Skill Taker: After attacking and[N]
+defeating an enemy, gain +4 Skl.[N]
+(Max +10)[X]
+
+## SD_SpdTaker
+Speed Taker: After attacking and[N]
+defeating an enemy, gain +4 Spd.[N]
+(Max +10)[X]
+
+## SD_DefTaker
+Defense Taker: After attacking and[N]
+defeating an enemy, gain +4 Def.[N]
+(Max +10)[X]
+
+## SD_ResTaker
+Resistance Taker: After attacking and[N]
+defeating an enemy, gain +4 Res.[N]
+(Max +10)[X]
+
+## SD_LukTaker
+Luck Taker: After attacking and[N]
+defeating an enemy, gain +4 Luk.[N]
+(Max +10)[X]
+
+## SD_MovTaker
+Movement Taker: After attacking and[N]
+defeating an enemy, gain +3 Mov.[N]
+(Max +10)[X]
+
+
+
+## SD_MagOath
+Magic Oath: At the start of[N]
+your turn, gain up to +4 Mag if[N]
+adjacent to an ally.[X]
+
+## SD_StrOath
+Strength Oath: At the start of[N]
+your turn, gain up to +4 Str if[N]
+adjacent to an ally.[X]
+
+## SD_SklOath
+Skill Oath: At the start of[N]
+your turn, gain up to +4 Skl if[N]
+adjacent to an ally.[X]
+
+## SD_SpdOath
+Speed Oath: At the start of[N]
+your turn, gain up to +4 Spd if[N]
+adjacent to an ally.[X]
+
+## SD_DefOath
+Defense Oath: At the start of[N]
+your turn, gain up to +4 Def if[N]
+adjacent to an ally.[X]
+
+## SD_ResOath
+Resistance Oath: At the start of[N]
+your turn, gain up to +4 Res if[N]
+adjacent to an ally.[X]
+
+## SD_LukOath
+Luck Oath: At the start of[N]
+your turn, gain up to +4 Luk if[N]
+adjacent to an ally.[X]
+
+## SD_MovOath
+Movement Oath: At the start of[N]
+your turn, gain up to +4 Mov if[N]
+adjacent to an ally.[X]
+
+
+## SD_CleverInit
+Clever Initiative: Begin the[N]
+chapter with +7 Mag.[X]
+
+## SD_StrongInit
+Strong Initiative: Begin the[N]
+chapter with +7 Str.[X]
+
+## SD_DeftInit
+Deft Initiative: Begin the[N]
+chapter with +7 Skl.[X]
+
+## SD_QuickInit
+Quick Initiative: Begin the[N]
+chapter with +7 Spd.[X]
+
+## SD_SturdyInit
+Sturdy Initiative: Begin the[N]
+chapter with +7 Def.[X]
+
+## SD_CalmInit
+Calm Initiative: Begin the[N]
+chapter with +7 Res.[X]
+
+## SD_LuckyInit
+Lucky Initiative: Begin the[N]
+chapter with +7 Luk.[X]
+
+## SD_NimbleInit
+Nimble Initiative: Begin the[N]
+chapter with +7 Mov.[X]
+
+## SD_SpectrumInit
+Spectrum Initiative: Begin the[N]
+chapter with +7 in all stats.[X]
+
+
+## SD_RouseMag
+Rouse Magic: At the start of[N]
+your turn, gain up to +4 Mag if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseStr
+Rouse Strength: At the start of[N]
+your turn, gain up to +4 Str if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseSkl
+Rouse Skill: At the start of[N]
+your turn, gain up to +4 Skl if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseSpd
+Rouse Speed: At the start of[N]
+your turn, gain up to +4 Spd if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseDef
+Rouse Defense: At the start of[N]
+your turn, gain up to +4 Def if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseRes
+Rouse Resistance: At the start of[N]
+your turn, gain up to +4 Res if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseLuk
+Rouse Luck: At the start of[N]
+your turn, gain up to +4 Luk if[N]
+not adjacent to an ally.[X]
+
+## SD_RouseMov
+Rouse Movement: At the start of[N]
+your turn, gain up to +4 Mov if[N]
+not adjacent to an ally.[X]
+
+
+## SD_HoneMag
+Hone Magic: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Mag.[X]
+
+## SD_HoneStr
+Hone Strength: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Str.[X]
+
+## SD_HoneSkl
+Hone Skill: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Skl.[X]
+
+## SD_HoneSpd
+Hone Speed: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Spd.[X]
+
+## SD_HoneDef
+Hone Defense: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Def.[X]
+
+## SD_HoneRes
+Hone Resistance: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Res.[X]
+
+## SD_HoneLuk
+Hone Luck: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Luk.[X]
+
+## SD_HoneMov
+Hone Movement: At the start of[N]
+your turn, give adjacent allies[N]
+up to +3 Mov.[X]
+
+## SD_EternalVanity
+Eternal Vanity: Your temporary[N]
+stat buffs do not deplete.[X]
+
+## SD_Guts
+Guts: +5 Str while afflicted[N]
+by any status condition.[X]
+
+## SD_StrongConstitution 
+Strong Constitution: +5[N]
+Def/Res while afflicted by[N]
+any status condition.[X]
+
+## SD_ShrewdPotential
+Shrewd Potential: Stat Boosters[N]
+grant +1 more for this unit.[X]
+
+## SD_RallyChaos
+Rally Chaos: At the start of[N]
+your turn, perform a random rally.[X]
+
+## SD_HoardersBane
+Gluttony: At the end of your[N]
+turn, consume a berry if below[N]
+full health.[X]
+
+## SD_DarkBargain
+Dark Bargain: At the end of your[N]
+turn, sacrifice extra exp to[N]
+heal by that much.[X]
+
+## SD_SoulSap
+Soul Sap: At the end of your turn,[N]
+drain up to 10% health from every[N]
+unit within two tiles.[X]
+
+
+
+## SD_AirRaidAtk
+Air Raid (Atk): Grants +5 Atk when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidSpd
+Air Raid (Spd): Grants +5 AS when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidDef
+Air Raid (Def): Grants +5 Def when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidCri
+Air Raid (Crit): Grants +15 Crit when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidHit
+Air Raid (Hit): Grants +15 Hit when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidAvo
+Air Raid (Avo): Grants +15 Avo when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_AirRaidRes
+Air Raid (Res): Grants +5 Res when[N]
+on a tile the enemy cannot enter.[X]
+
+## SD_ChaosStyle
+Chaos Style: AS +3 during combat with[N]
+a physical weapon against a foe armed[N]
+with magic or vice versa.[X]
+
+## SD_Dragonskin
+Dragonskin: Halves damage taken.[X]
+
+## SD_StunningSmile
+Stunning Smile: If foe is male, inflicts[N]
+Avo -20 on that foe during combat.[X]
+
+## SD_RecklessFighter
+Reckless Fighter: If below max HP,[N]
+this unit and the opponent[N]
+can always double.[X]
+
+## SD_KeenFighter
+Keen Fighter: This unit takes 25%[N]
+less damage if the opponent doubles.[X]
+
+## SD_PridefulWarrior 
+Prideful Warrior: This unit always[N]
+attacks after the enemy, but[N]
+always doubles.[X]
+
+## SD_LastWord
+Last Word: When doubled, this unit[N]
+also doubles.[X]
+
+
+## SD_BoldFighter
+Bold Fighter: When attacking,[N]
+this unit always doubles.[X]
+
+## SD_VengefulFighter
+Vengeful Fighter: When defending,[N]
+this unit always doubles.[X]
+
+
+## SD_SteadyBrawler
+Steady Brawler: This unit deals[N]
+20% less damage while doubling,[N]
+but 20% more when not.[X]
+
+## SD_QuickLearner
+Quick Learner: When attacking a[N]
+higher leveled enemy, this unit doubles.[X]
+
+## SD_PassionsFlow
+Passion's Flow: If gaining support[N]
+bonuses, this unit always doubles[N]
+while attacking.[X]
+
+
+## SD_BidingBlow
+Biding Blow: If the opponent[N]
+cannot counter, this unit doubles.[X]
+
+
 

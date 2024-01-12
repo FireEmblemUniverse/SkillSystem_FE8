@@ -101,6 +101,7 @@ int EquipAccessoryEffect(void *CurrentMenuProc) {
 	if (gActionData.itemSlotIndex >= 2) gActiveUnit->items[2] = gActiveUnit->items[1];
 	if (gActionData.itemSlotIndex >= 1) gActiveUnit->items[1] = gActiveUnit->items[0];
 	gActiveUnit->items[0] = newItemZero;
+	gActiveUnit->state |= 0x400; // used galeforce this turn 
 			
 
 	return CancelMenu(CurrentMenuProc);
@@ -321,18 +322,65 @@ void Proc_CheckForAccessory(struct BattleUnit* attacker, struct BattleUnit* defe
 	}
 }
 
-
+extern u8 DurabilityItemList[]; 
 int UnitAddItem(struct Unit* unit, u16 item) {
-    int i;
+    int i = 0;
 	
-	if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
-
-    for (i = 0; i < 5; ++i) {
-        if (unit->items[i] == 0) {
-            unit->items[i] = item;
-            return TRUE;
-        }
-    }
+	if (!Proc_Find((const ProcInstruction*)0x8A1829C)) { // prep 
+		if ((GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY) && !(EquippedAccessoryGetter(unit))) {
+			if (!(unit->index & 0xC0)) { 
+				item |= 0x8000; // Auto-Equip accessory if there is none currently equipped
+				unit->state |= 0x400; // used galeforce this turn 
+			} 
+		} 
+	} 
+	
+	int maxUse = GetItemMaxUses(item);
+	int curUse = GetItemUses(item); 
+	
+	int newItem = GetItemIndex(item); 
+	int invSlotItem; 
+	
+	int durBased = false; 
+	// try to automatically combine items if it isn't an accessory / durability based item 
+	while (DurabilityItemList[i] != 0) { 
+		if (newItem == DurabilityItemList[i]) { 
+			durBased = true; 
+			break; 
+		} 
+		i++; 
+	} 
+	
+	if ((!(GetItemAttributes(ITEM_INDEX(item)) & IA_ACCESSORY)) & (!durBased)) { 
+		for (i = 0; i < 5; ++i) {
+			invSlotItem = unit->items[i];
+			if (invSlotItem == 0) {
+				unit->items[i] = item;
+				return TRUE;
+			}
+			if (GetItemIndex(invSlotItem) == newItem) { 
+				// can they combine? 
+				if ((curUse + GetItemUses(invSlotItem)) <= maxUse) { 
+					unit->items[i] = invSlotItem + (curUse << 8); 
+					return true; 
+				} 
+				// if not, just add it to an empty slot 
+			} 
+		}
+	
+	
+	} 
+	
+	else { // accessory gets added regularly now 
+		for (i = 0; i < 5; ++i) {
+			if (unit->items[i] == 0) {
+				unit->items[i] = item;
+				return TRUE;
+			}
+		}
+	} 
+	// auto combine items? 
+	
 
     return FALSE;
 }

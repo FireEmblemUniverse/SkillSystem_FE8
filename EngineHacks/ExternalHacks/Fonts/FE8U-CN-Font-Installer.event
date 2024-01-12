@@ -1,0 +1,45 @@
+
+PUSH
+
+// #define __DEBUG__
+
+
+// Start of font glyphes space
+#ifndef FreeSpaceFont
+	#define FreeSpaceFont  $EFB2E0	// End: $FE0000; size E4D20
+	#define FreeSpaceFontEnd 0xFE0000
+#endif // FreeSpaceFont
+
+
+
+ORG FreeSpaceFont
+	#include "FontInstaller/FontPatches.event"
+	#include "FontInstaller/FontTableDef.event"
+	#include "FontInstaller/InstallConfig.event"
+	#include "FontInstaller/FontInstaller.event"
+
+
+
+#ifdef __DEBUG__
+
+	// replace Eirika's name as ""
+
+	#include "Tools/Tool Helpers.txt"
+	setText(0x212, NameMokha)
+
+	ALIGN 4
+	NameMokha:
+		#incbin "FontInstaller/Debug_Text.txt"
+		BYTE 0
+		ALIGN 4
+
+#endif // __DEBUG__
+
+
+
+#ifdef FreeSpaceFontEnd
+	ASSERT (FreeSpaceFontEnd - CURRENTOFFSET)
+#endif // FreeSpaceFontEnd
+
+POP
+

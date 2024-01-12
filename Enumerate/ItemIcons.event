@@ -59,22 +59,28 @@
 #define OpenPokeballIcon 0xAA
 #define PokeballIcon 0xAB
 
+#define PotionIcon 0xCB
+#define SuperPotionIcon 0xCC
+#define HyperPotionIcon 0xCD
+#define BerryIcon 0xCE
+#define JellyDonutIcon 0xCF 
+
 #define SacredStoneIcon 0xD9 
 
 #define image_palIcon 0xDA
 
 #define RepelIcon 0xDA
 #define SuperRepelIcon 0xD5 // 0xDB is hoplon guard 
-#define TMIcon 0xDB 
+#define WarpCrystalIcon 0xD6 
+#define EscapeRopeIcon 0xD7 
+#define ReviveIcon 0xD8 
+#define HawkeyeIcon 0xD9 // idk if used? 
+
 //#define SkillScrollIcon 0xDC 
 #define MaximumRepelIcon 0xDD
-#define ReviveIcon 0xDE
+#define TMIcon 0xDF
 
-#define PotionIcon 0xCB
-#define SuperPotionIcon 0xCC
-#define HyperPotionIcon 0xCD
-#define BerryIcon 0xCE
-#define JellyDonutIcon 0xCF 
+
 
 
 

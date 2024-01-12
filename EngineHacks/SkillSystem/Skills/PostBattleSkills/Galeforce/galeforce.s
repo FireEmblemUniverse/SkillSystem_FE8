@@ -12,6 +12,9 @@ ldrb	r0, [r4,#0x13]
 cmp	r0, #0x00
 beq	End
 
+@check if killed enemy
+cmp r5, #0 
+beq End
 ldrb    r0, [r5,#0x13]
 cmp    r0, #0x00
 bne    End

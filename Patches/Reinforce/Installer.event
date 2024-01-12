@@ -10,7 +10,7 @@ callHack_r3(HookSpawnUnits)
 POP 
 
 
-
+ALIGN 4 
 DefaultReinforcementUnitGroup:
 UNIT 0x60 MagikarpID 0x0 Level(0, Enemy, 1)   [0,0] 0b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
 UNIT 
@@ -32,7 +32,7 @@ ENUN
 #ifdef DRUnitBitMask
 CHECK_EVENTID DangerRadiusToggleFlag
 BNE 1 rC r0 
-SetNearbyDangerRadius // Pokemblem only 
+VeslySetDangerRadius // Pokemblem only 
 LABEL 1 
 #endif 
 NoFade

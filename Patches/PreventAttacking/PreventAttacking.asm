@@ -108,6 +108,8 @@ Capturing:
 cmp r5, #0xA0 @ Unit ID 
 blt WeCanAttack 
 
+@ this was causing an issue due to the capture bit not always being unset?? 
+
 ldr r1, =CurrentUnit 
 @ldr r1, =0x2033F3C @ gUnitSubject 
 ldr r3, [r1] 

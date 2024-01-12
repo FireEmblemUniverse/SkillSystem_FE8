@@ -16,7 +16,7 @@ mov lr, r2
 cmp r0, #0x00
 beq End
 	
-lsr r4, r4, #0x01 @ Halve EXP if they have Blossom.
+lsl r4, r4, #0x01 @ Double EXP if they have Blossom.
 cmp r4,#0
 bne End
 add r4,#1	

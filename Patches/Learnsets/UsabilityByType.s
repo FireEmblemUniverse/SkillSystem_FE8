@@ -47,12 +47,16 @@ blh EffectivenessToTypeBitfield
 ldr r2, [r4, #4] @Class pointer 
 mov r1, #0x50  		@ Class type 
 ldrh r1, [r2, r1] 	@ Class type bitfield eg. 0x810 is Grass/Poison 
-
+cmp r1, #0 
+beq NeverUsable
 and r0, r1 
 cmp r0, #0 
 beq CheckSpecificList
 mov r0, #1
 b Exit
+NeverUsable: 
+mov r0, #0 
+b Exit 
 CheckSpecificList:
 ldr r2, [r4, #4] @Class pointer 
 ldrb r2, [r2, #4] @ Class ID 

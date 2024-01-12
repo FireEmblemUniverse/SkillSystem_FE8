@@ -15,6 +15,34 @@
 @ given r0 as Short of which flag, we will Set, Unset, or Check it. 
 @ check returns boolean in r0 of 1 = true, 0 = false 
 
+.global CheckNewFlag_ASMC
+.type CheckNewFlag_ASMC, %function 
+CheckNewFlag_ASMC: 
+push {lr} 
+ldr r2, =MemorySlot 
+ldr r0, [r2, #4] @ s1 
+mov r2, #2 @ check and store to sC 
+b Start
+.ltorg 
+
+.global UnsetNewFlag_ASMC
+.type UnsetNewFlag_ASMC, %function 
+UnsetNewFlag_ASMC: 
+push {lr} 
+ldr r2, =MemorySlot 
+ldr r0, [r2, #4] @ s1 
+mov r2, #1 @ check and store to sC 
+b Start
+.ltorg 
+.global SetNewFlag_ASMC
+.type SetNewFlag_ASMC, %function 
+SetNewFlag_ASMC: 
+push {lr} 
+ldr r2, =MemorySlot 
+ldr r0, [r2, #4] @ s1 
+mov r2, #0 @ check and store to sC 
+b Start
+
 
 	.global SetNewFlag
 	.type   SetNewFlag, function
@@ -59,6 +87,14 @@ CheckNewFlag_No_sC:	@Check whether ON or OFF
 	b 		Start
 
 Start:
+cmp r2, #2 @ store zero to sC if we were given 0 as the flag to check  
+bne Continue 
+cmp r0, #0 
+beq StoreZero 
+
+Continue: 
+cmp r0, #0 
+beq Exit @ if no flag, just return false 
 	ldr 	r3, =NewFlagsRam
 	
 	lsl 	r0, #16 @ shorts only 

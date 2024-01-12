@@ -3,8 +3,8 @@
 #define GenericB UnitViridianForestSTrainer
 #define ClassA ClassRoute2SWildA
 #define ClassB ClassRoute2SWildB
-#define WildLvl 1 
-#define TrainerL 2
+#define WildLvl 4
+#define TrainerL 4 
 
 EventPointerTable(ChapterID,ThisChapter)
 
@@ -27,6 +27,7 @@ TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
 TurnEventNPC(0,GlobalNPCTurnEvent,0,255) // placeholder
 TurnEventEnemy(0,GlobalEnemyTurnEvent,0,255)// placeholder
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 //TurnEventNPC(0,TurnNPCsToEnemies,0,255) // Instead made it so Gary / unit id 0xFA cannot be targeted despite being an enemy 
 //TurnEventEnemy(0,TurnEnemiesToNPCs,0,255) // See "ForEachUnitInRangeHack.asm" 
 END_MAIN
@@ -72,7 +73,7 @@ ChapterTransition(Route2NCh, 19, 41)
 ToViridianForestS:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
-ChapterTransition(ViridianForestSCh, 28, 28)
+DigChapterTransition(ChapterID, ViridianForestSCh, 28, 28)
 
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent
@@ -84,6 +85,31 @@ ENDA
 ToViridian:
 ChapterTransition(ViridianCh, 17, 0)
 
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(2, 15, 13, 26) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [5,23]
+CUMO [5,23]
+STAL 30
+CURE  
+TutText(TrainerTip_DangerZone)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -98,7 +124,7 @@ CutBush(15,26)
 CutBush(16,21)
 CutBush(16,27)
 
-SignTrap(5,23, TrainerTip_DangerZone)
+TutSign(5,23,ChapterID*2, TrainerTip_DangerZone)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 //CoinsTrap(28,14,ChapterID*2,350)
@@ -111,6 +137,7 @@ SignTrap(5,23, TrainerTip_DangerZone)
 StatAccessoryTrap(13,18, (ChapterID*2), WiseGlasses_BoostIndex)
 
 RedPokeballTrap(21,31, ChapterID*2, ExoticCandy) // Requires Cut / diglett's cave 
+RedPokeballTrap(7, 24, (ChapterID*2)+1, WarpCrystal, 2) 
 
 SignBTrap(8,11, ChapterID, 0x0) //no extra text 
 SignATrap(10,31, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 

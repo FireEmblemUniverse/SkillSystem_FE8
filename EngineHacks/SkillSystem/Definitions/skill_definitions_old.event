@@ -88,6 +88,10 @@
 //Author Unknown (Initial Commit)
 #define InspirationID 205
 
+//Divinely Inspiring: Adjacent allies deal +3 damage and receive -1 damage.
+//By Dragz
+#define DivinelyInspiringID 255
+
 //Intimidate: -10 Avoid to all enemies within 2 tiles.
 //Author Unknown (Initial Commit)
 #define IntimidateID 186
@@ -146,6 +150,89 @@
 #define ArmorBoostID ArmorboostID //Alias\
 
 
+// Turn Skills
+
+// Rally Chaos: At the start of your turn, perform a random rally. 
+// Author: Vesly 
+#define RallyChaosID 255
+
+//Hoarder's Bane: At the end of your turn, consume a vulnerary from the supply if below full health.
+// Author: Vesly 
+#define HoardersBaneID 255
+
+// Dark Bargain: At the end of your turn, sacrifice extra exp to heal by that much.
+// Author: Vesly 
+#define DarkBargainID 255
+
+#define SoulSapID 255
+
+
+// Buff Skills
+
+//Eternal Vanity: Your buffed stats do not deplete each turn. 
+// Author: Vesly 
+#define EternalVanityID 255
+
+// _ Taker: After attacking and defeating an enemy, gain +4 _. (Max +10) 
+// Author: Vesly 
+#define StrTakerID 255
+#define SklTakerID 255 
+#define SpdTakerID 255 
+#define DefTakerID 255 
+#define ResTakerID 255 
+#define LukTakerID 255 
+#define MagTakerID 255 
+#define MovTakerID 255 
+
+// Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
+// Author: Vesly 
+#define HoneMagID  255 
+#define HoneStrID  255
+#define HoneSklID  255 
+#define HoneSpdID  255 
+#define HoneDefID  255 
+#define HoneResID  255 
+#define HoneLukID  255 
+#define HoneMovID  255 
+
+// _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
+// Author: Vesly 
+#define MagOathID  255 
+#define StrOathID  255
+#define SklOathID  255 
+#define SpdOathID  255 
+#define DefOathID  255 
+#define ResOathID  255 
+#define LukOathID  255 
+#define MovOathID  255 
+
+// Rouse _ : At the start of your turn, gain up to +4 _ if not adjacent to an ally.
+// Author: Vesly 
+#define RouseMagID 255 
+#define RouseStrID 255
+#define RouseSklID 255 
+#define RouseSpdID 255 
+#define RouseDefID 255 
+#define RouseResID 255 
+#define RouseLukID 255 
+#define RouseMovID 255 
+
+// _ Initiative: Begin the chapter with +7 __. 
+// Author: Vesly 
+#define CleverInitID 255 // Mag
+#define StrongInitID 255 // Str 
+#define DeftInitID 255 // Skl 
+#define QuickInitID 255 // Spd 
+#define LuckyInitID 255 // Luk 
+#define SturdyInitID 255 // Def 
+#define CalmInitID 255 // Res 
+#define NimbleInitID 255 // Mov 
+#define SpectrumInitID 255 // All stats  
+
+// Even/Odd Footed: +1 Mov on Even/Odd turns
+// By Jopettajah
+#define OddFootedID 255
+#define EvenFootedID 255
 
 //Debuff Skills
 
@@ -157,7 +244,7 @@
 #define SealLukID 85
 #define SealDefID 83
 #define SealResID 84
-//By Snakey1
+////By Snakey1
 #define SealMagID 80
 
 //Full Metal Body: This unit is immune to all the Seal skills.
@@ -632,6 +719,37 @@
 //By Mikey Seregon
 #define WaterBoostID 255
 
+//Air Raid: Grants +5 or +15 on a stat when on a tile enemy cannot enter
+//By Jopettajah
+#define AirRaidAtkID 255
+#define AirRaidSpdID 255
+#define AirRaidDefID 255
+#define AirRaidCriID 255
+#define AirRaidHitID 255
+#define AirRaidAvoID 255
+#define AirRaidResID 255
+
+//Chaos Style: AS +3 during combat with a physical weapon against a foe armed with magic or vice versa.
+//By Jopettajah
+#define ChaosStyleID 255
+
+//Dragonskin: Halve damage taken
+//By Jopettajah
+#define DragonSkinID 255
+#define DragonskinID DragonSkinID //Alias
+
+//Stunning Smile: If foe is male, inflicts Avo-20 on that foe during combat.
+//By Jopettajah
+#define StunningSmileID 255
+
+// Keen Fighter: Unit takes 75% damage if the opponent can double. 
+// By Vesly 
+#define KeenFighterID 255
+
+// Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
+// By Vesly 
+#define SteadyBrawlerID 255
+
 
 //Proc Skills
 
@@ -651,7 +769,7 @@
 //Author Unknown (Initial Commit)
 #define AstraID 15
 
-//Bane: Leave the opponent at 1 HP. (Skill/2 % activation)
+//Bane: Leave the opponent at 1 HP if the attack would kill. (Skill/2 % activation)
 //Author Unknown (Initial Commit)
 #define BaneID 20
 
@@ -682,6 +800,7 @@
 //Countermagic: Reflect magic damage when attacked at 1-2 range.
 //Author Unknown (Initial Commit)
 #define CounterMagicID 19
+#define CountermagicID CounterMagicID //Alias
 
 //Deadeye: Doubles hit rate. Skill% chance to inflict sleep.
 //By Sme
@@ -815,11 +934,52 @@
 //By Zeta
 #define AssassinateID 139
 
+// Prideful Warrior: This unit always attacks after the enemy, but always doubles.
+// By Vesly 
+#define PridefulWarriorID 255
+
+// Doubling Skills 
+
 //Moonlight: Cannot double but opponent cannot counterattack.
 //By Sme
 #define MoonlightID 142
 
+// Reckless Fighter: Both units in combat always double. 
+// By Vesly 
+#define RecklessFighterID 255
 
+
+//Wary Fighter: Unit cannot double or be doubled.
+//By Tequila
+#define WaryFighterID 111
+
+// Last Word: When doubled, this unit also doubles.
+// By Vesly 
+#define LastWordID 255
+
+// Bold Fighter: When attacking, this unit always doubles. 
+// By Vesly 
+#define BoldFighterID 255 
+
+// Vengeful Fighter: When defending, this unit always doubles. 
+// By Vesly 
+#define VengefulFighterID 255
+
+// Quick Learner: When attacking a higher leveled enemy, this unit doubles.
+// By Vesly 
+#define QuickLearnerID 255
+
+// Passion's Flow: If gaining support bonuses, this unit always doubles while attacking.
+// by Vesly 
+#define PassionsFlowID 255
+
+// Biding Blow: If the opponent cannot counterattack, this unit doubles. 
+// By Vesly 
+#define BidingBlowID 255
+
+// Advantage Chaser: Unit always doubles when attacking with WTA.
+// By Jopettajah
+#define AdvantageChaserID 255
 
 //Stat Modifier Skills
 
@@ -868,6 +1028,13 @@
 #define LullDefID 255
 #define LullResID 255
 #define LullSpectrumID 155
+
+//Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
+// Author: Vesly 
+#define GutsID 255
+//Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
+// Author: Vesly 
+#define StrongConstitutionID 255
 
 
 //Unit Menu Skills
@@ -934,22 +1101,36 @@
 
 //Swarp: Allows unit to swap positions with a distant ally.
 //Be Sme
-#define SwarpID 69
+#define SwarpID 69 
 
 //Steal: Unit can steal items.
 //By Tequila
-#define StealID 56
+#define StealID 56 
 
 //Steal+: Unit can steal unequipped weapons and staves if con>weight.
 //By Tequila
-#define StealPlusID 57
+#define StealPlusID 57 
+
+//Draw Back: Unit moves 1 space away from target ally. Ally moves to unit’s previous space. 
+//By Vesly 
+#define DrawBackID 255
+
+//Sacrifice: Drains the user’s HP to restore the HP of another allied unit. It also cures status effects, with no HP cost to the user.
+//By Vesly 
+#define SacrificeID 255
+
+//Ardent Sacrifice: Restores 10 HP to target, but drops user’s HP by 10. 
+//By Vesly 
+#define ArdentSacrificeID 255
+
+//Reciprocal Aid: User and target ally switch their current HP totals. 
+//By Vesly 
+#define ReciprocalAidID 255
+
+
 
 
 //Miscellaneous Skills
-
-//Wary Fighter: Unit cannot double or be doubled.
-//By Tequila
-#define WaryFighterID 111
 
 //Savior: Can rescue without penalties.
 //Author Unknown (Initial Commit)
@@ -1069,6 +1250,10 @@
 
 //Triangle Attack: Allows this unit to perform a triangle attack with 2 other units who have this skill.
 #define TriangleAttackID 6
+
+// Shrewd Potential: Stat boosters provide +1 more than usual. 
+// Author: Vesly 
+#define ShrewdPotentialID 255
 
 
 //Biorhythm Skills: Double or halve biorhythm effects.

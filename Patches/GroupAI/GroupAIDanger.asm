@@ -80,6 +80,8 @@ beq End
 
 ldr r2, =gpAiBattleWeightFactorTable 
 ldr r2, [r2] 
+cmp r2, #0 
+beq End 
 ldrb r2, [r2, #6] @ should ai ignore dangerous tiles 
 cmp r2, #0 
 beq End @ if the ai does not care about dangerous tiles, then they won't all trigger when one enters opposing attack range 

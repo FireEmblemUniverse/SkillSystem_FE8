@@ -4,4 +4,5 @@ Items,1,0x0576,0x00,0x00,0x057C,0x57D,0x080951CD
 Support,4,0x577,PrepScreenReturnFalse|IsPointer,PrepScreenSaveGreyUsability|IsPointer,0x057E,0x57D,0x080951E1
 Check Map,7,0x0578,PrepScreenReturnFalse|IsPointer,PrepScreenReturnFalse|IsPointer,0x0580,0x57D,0x080952C1
 Save,2,0x0579,0x804f449,0x804f449,0x0581,0x57D,0x08095211
+Exit,8,PrepScreenExitText,PrepMenu_CtrlLoop_PressStartUsability|IsPointer,PrepMenu_CtrlLoop_PressStartUsabilityGrey|IsPointer,PrepScreenExitHelpText,0x57D,PrepMenu_CtrlLoop_PressStart|IsPointer
 Terminator,0,0x00,0x00,0x00,0x00,0x00,0x00

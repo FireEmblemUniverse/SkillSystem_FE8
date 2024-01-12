@@ -1,0 +1,70 @@
+#define TileConfigPointerTable(aId, apointer) "PUSH; ORG TileConfigPLIST+(0x4 * aId); POIN apointer; POP"
+// Confchip_config
+
+#define ObjTypePalettePointerTable(aId, apointer) "PUSH; ORG ObjTypePalettePLIST+(0x4 * aId); POIN apointer; POP"
+// 
+
+
+#define TileAnimPointerTable(aId, apointer) "PUSH; ORG TileAnimPLIST+(0x4 * aId); POIN apointer; POP"
+
+//Map_Pointer_Table and ConfChangesPointerTable ? 
+
+
+
+#define Map_Pointer_Table(aId, apointer) "PUSH; ORG MapPLIST+(4*aId); POIN apointer; POP"
+#define Map_Pointer_Table2(aId, apointer) "PUSH; ORG MapPLIST+(4*aId); WORD apointer; POP"
+
+
+// By default, TMX2EA generates this: 
+//EventPointerTable(ViridianForestNCh, MapChanges)
+// but we want it to make this instead: 
+#define MapChangesPointerTable(aId, apointer) "PUSH; ORG MapChangesPLIST+(0x4 * aId); POIN apointer; POP"
+
+
+// Vesly added for convenience 
+// But you could edit this in your csv if you prefer 
+#define EventsIDEntry(ChapterID) "PUSH; ORG NewChapterDataTable +(148 * ChapterID)+ 116 ; BYTE ChapterID+1; POP" // 116 is the offset of the EventsID byte, while each row has 148 bytes of data  
+
+// if you really want to have it not just be identical to your chapter ID+1, then use this below I guess 
+#define EventsIDEntry(ChapterID, EventID) "PUSH; ORG NewChapterDataTable +(148 * ChapterID)+ 116 ; BYTE EventID; POP" // 116 is the offset of the EventsID byte, while each row has 148 bytes of data  
+
+// to do: test & use these so I don't have to manually type them in the csv lol 
+
+
+#define WaterAnimationID 1 
+#define BeachAnimationID 2 
+#define SeafoamWaterID 3
+#define CeruleanCaveWaterID 4 
+#define UpdatedVillageAnimations 6
+
+
+
+// ------------------------------- MAP CHANGES ----------------------------
+
+// #define MapChangesPointerTable(aId, apointer) "PUSH; ORG MapChangesPLIST+(0x4 * aId); POIN apointer; POP"
+
+// to do: make this part of the automation 
+// they just need to be put in the definitions automation part 
+// functionally it doesn't really matter what numbers they have 
+// so you could probably just do WhicheverCh and it'd work fine 
+
+// note that opening and closing the Fly Menu (not available indoors) will remove any tile changes that have occurred 
+
+#define ViridianForestNMapChanges 120 
+#define SaffronGymMapChanges 121 
+#define Route21MapChanges 122
+#define MansionB1MapChanges 123
+#define MansionB2MapChanges 124
+#define MansionB3MapChanges 125
+#define MansionB4MapChanges 126
+#define LoreleiMapChanges 127
+#define BrunoMapChanges 128
+#define AgathaMapChanges 129
+#define LanceMapChanges 130 
+#define ChampionMapChanges 131
+#define SeafoamB4MapChanges 132 
+#define SeafoamB5MapChanges 133
+#define CinnabarGymMapChanges 134 
+
+
+

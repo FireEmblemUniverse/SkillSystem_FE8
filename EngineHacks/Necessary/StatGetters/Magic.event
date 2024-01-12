@@ -4,8 +4,10 @@
 #include "_Common.event"
 
 pMagicModifiers: // Magic
-	POIN prAddUnitMagic prAddEquipMagic prDebuffMag-1 prRallyMag-1 prSkillFury prFortressDefensePow prFortressResistancePow prItemPassiveMag VigorDanceCheck prLifeAndDeathBonus prDefiantMag prPushMag
-	POIN prMagBuff
+	POIN prAddUnitMagic prAddEquipMagic 
+	POIN prDebuffMag 
+	POIN prRallyMag prSkillFury prFortressDefensePow prFortressResistancePow prItemPassiveMag VigorDanceCheck prLifeAndDeathBonus prDefiantMag prPushMag
+	//POIN prMagBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryMagic
 	#endif 
@@ -24,10 +26,6 @@ prAddEquipMagic:
 prAddAccessoryMagic:
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityMagBonus-1)))
 	#endif 
-
-#include "_asm/Mag.lyn.event" // Contains prDebuffMag and prRallyMag
-MagDebuffTableLink:
-POIN GetDebuffs|1
 
 prItemPassiveMag:
 #ifndef DONT_STACK_BOOSTS

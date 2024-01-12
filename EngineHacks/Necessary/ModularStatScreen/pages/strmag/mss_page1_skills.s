@@ -260,6 +260,6 @@ bx		r14
 Const2_2028E70:
 .long 0x02028E70
 
-.include "GetTalkee.asm"
+.include "GetTalkee.s"
 
 .ltorg

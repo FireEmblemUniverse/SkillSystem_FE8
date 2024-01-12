@@ -2,6 +2,7 @@
 
 pop {r3}
 
+
 ldr r0, AttackerData
 ldr r0, [r0]
 cmp r0, #0x00000000
@@ -32,15 +33,16 @@ beq Return
 bl bxr0
 
 Return:
-ldr r0, RandomizerReturnTo
-bx r0
+pop {r0} 
+ldr r1, RandomizerReturnTo
+bx r1
 
 bxr0:
 bx r0
-
+.ltorg 
 .align 4
 RandomizerReturnTo:
-.long 0x08001342|1
+.long 0x08001344|1
 GetRandomNumberFunction:
 .long 0x08000C64|1
 AttackerData:

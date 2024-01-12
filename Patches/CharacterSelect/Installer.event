@@ -47,7 +47,7 @@ BYTE 0 0 0 0; ALIGN 4
 #include "CreatorClassDisplayLoop.lyn.event"
 
 
-
+#include "LoadBattleSpritesForBranchScreen.lyn.event" 
 #include "SelectCharacter.lyn.event"
 
 #include "MakeThumb.lyn.event"

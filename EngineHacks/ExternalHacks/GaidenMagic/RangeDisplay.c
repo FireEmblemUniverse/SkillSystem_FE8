@@ -85,3 +85,52 @@ void All_Spells_One_Square(Unit* unit, int(*usability)(Unit* unit, int item))
 	gWrite_Range(unit->xPos,unit->yPos,mask);
 	asm("pop { r7 }");
 }
+
+int GM_doesUnitHaveSpecialRange(struct Unit* unit) { // based on GetUnitRangeMaskForSpells - Vesly 
+	int i, spell, result = 0;
+	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
+	for ( i = 0 ; spells[i] ; i++ )
+	{
+		spell = spells[i]|0xFF00;
+		result |= gGet_Item_Range(unit,spell);
+		//if ( usability == NULL )
+		//{
+			//if ( CanCastSpell(unit,spell) ) { result |= gGet_Item_Range(unit,spell); }
+		//}
+		//else
+		//{
+			//if ( usability(unit,spell) ) { current = IncorporateNewRange(current,gGet_Item_Range(unit,spell)); }
+		//}
+	}
+	if (result > 0x10) { 
+		return true; 
+	}
+	return false; 
+}
+int GM_GetUnitRangeBySpellIndex(struct Unit* unit, int index) { 
+
+	int spell;
+	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
+	spell = spells[index]|0xFF00;
+	if ( CanCastSpell(unit,spell)) return gGet_Item_Range(unit,spell); 
+	return 0; 
+} 
+
+int GM_GetNthSpell(struct Unit* unit, int index) { 
+	int spell;
+	u8* spells = SpellsGetter(unit,(UsingSpellMenu ? UsingSpellMenu : -1)); // If UsingSpellMenu is nonzero, only get Gaiden spells of that type.
+	spell = spells[index];
+	if (spell) { spell |= 0xFF00; } 
+	return spell; 
+	//if ( CanCastSpell(unit,spell)) return spell; // this is only for after you've moved 
+	//return 0; 
+
+} 
+
+
+
+
+
+
+
+

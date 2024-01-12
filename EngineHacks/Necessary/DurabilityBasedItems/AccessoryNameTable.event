@@ -155,9 +155,17 @@ StatAccessory_DescEntry(LuckyBracerT3_BoostIndex, LuckyBracerT3DescText)
 
 
 // Skills 
+SkillAccessory_NameEntry(CleatsID, CleatsNameText)
+SkillAccessory_DescEntry(CleatsID, CleatsDescText)
 
 SkillAccessory_NameEntry(RenewalID, RenewalRingNameText)
 SkillAccessory_DescEntry(RenewalID, RenewalRingDescText)
+
+SkillAccessory_NameEntry(SurfBoardID, SurfBoardName)
+SkillAccessory_DescEntry(SurfBoardID, SurfBoardDesc)
+
+SkillAccessory_NameEntry(HoverBoardID, HoverBoardName)
+SkillAccessory_DescEntry(HoverBoardID, HoverBoardDesc)
 
 SkillAccessory_NameEntry(RockyHelmetSkillID, RockyHelmetNameText)
 SkillAccessory_DescEntry(RockyHelmetSkillID, RockyHelmetDescText)
@@ -217,8 +225,8 @@ SkillAccessory_DescEntry(FortuneID, SD_Fortune)
 
 //Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
 //By circleseverywhere
-SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife) 
-SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife) 
+SkillAccessory_NameEntry(BreathOfLifeID, ShellBellName) 
+SkillAccessory_DescEntry(BreathOfLifeID, ShellBellDesc) 
 
 SkillAccessory_NameEntry(CounterID, SN_Counter)
 SkillAccessory_DescEntry(CounterID, SD_Counter)
@@ -249,7 +257,7 @@ SkillAccessory_DescEntry(BlossomID, SD_Blossom)
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere
 SkillAccessory_NameEntry(FuryID, BerserkGeneName)
-SkillAccessory_DescEntry(FuryID, SD_Fury)
+SkillAccessory_DescEntry(FuryID, BerserkGeneDesc)
 //Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
 //Author Unknown (Initial Commit)
 SkillAccessory_NameEntry(LifetakerID, SN_Lifetaker)
@@ -325,11 +333,6 @@ SkillAccessory_DescEntry(DazzleID, SD_Dazzle)
 SkillAccessory_NameEntry(PoisonStrikeID, SN_Poison_Strike)
 SkillAccessory_DescEntry(PoisonStrikeID, SD_Poison_Strike)
 
-//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
-//By circleseverywhere
-SkillAccessory_NameEntry(BreathOfLifeID, SN_BreathOfLife)
-SkillAccessory_DescEntry(BreathOfLifeID, SD_BreathOfLife)
-
 // Toxic Ring
 //Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
 //By circleseverywhere
@@ -366,11 +369,6 @@ SkillAccessory_DescEntry(FortuneID, SD_Fortune)
 //Blaine 
 
 
-//Giovanni 
-//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
-//By circleseverywhere
-SkillAccessory_NameEntry(FuryID, SN_Fury)
-SkillAccessory_DescEntry(FuryID, SD_Fury)
 //Hawkeye: User will always hit the enemy.
 //By SD9k
 SkillAccessory_NameEntry(HawkeyeID, SN_Hawkeye) // silph scope? 
@@ -379,11 +377,17 @@ SkillAccessory_DescEntry(HawkeyeID, SD_Hawkeye)
 SkillAccessory_NameEntry(GaleforceID, SN_Galeforce)
 SkillAccessory_DescEntry(GaleforceID, SD_Galeforce)
 
+SkillAccessory_NameEntry(ExpShareID, SN_ExpShare)
+SkillAccessory_DescEntry(ExpShareID, SD_ExpShare)
 
+SkillAccessory_NameEntry(DowngradeID, SN_Downgrade)
+SkillAccessory_DescEntry(DowngradeID, SD_Downgrade)
 
+SkillAccessory_NameEntry(Intimidate2ID, SN_Intimidate2)
+SkillAccessory_DescEntry(Intimidate2ID, SD_Intimidate2)
 
-
-
+SkillAccessory_NameEntry(GuardBreakerID, SN_GuardBreaker)
+SkillAccessory_DescEntry(GuardBreakerID, SD_GuardBreaker)
 
 
 

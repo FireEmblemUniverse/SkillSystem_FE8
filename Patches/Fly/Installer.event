@@ -46,7 +46,7 @@ BYTE MtMoonB1Ch
 BYTE MtMoonB2Ch 
 BYTE MtMoonB3Ch 
 BYTE CeruleanGymCh 
-BYTE VermillionGymCh 
+BYTE VermilionGymCh 
 BYTE SSAnneCh
 BYTE DiglettsCaveCh
 BYTE RockTunnelB1Ch
@@ -110,7 +110,7 @@ FlyEntry(PalletCh, 6, 7)
 FlyEntry(ViridianCh, 23, 25)
 FlyEntry(PewterCh, 16, 25)
 FlyEntry(CeruleanCh, 15, 18)
-FlyEntry(VermillionCh, 13, 4)
+FlyEntry(VermilionCh, 13, 4)
 FlyEntry(LavenderCh, 6,35)
 FlyEntry(FuschiaCh, 22, 28)
 FlyEntry(CeladonCh, 36, 10)

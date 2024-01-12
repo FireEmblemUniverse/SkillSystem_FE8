@@ -6,6 +6,10 @@ ORG $A39768
 EVBIT_MODIFY 0x1
 SKIPWN
 ENDA
+
+    ORG $09E00 // Mokha - skip world map stuff at the start (faster) 
+    SHORT $4770
+
 POP
 
 #ifndef WorldMapPointerTable

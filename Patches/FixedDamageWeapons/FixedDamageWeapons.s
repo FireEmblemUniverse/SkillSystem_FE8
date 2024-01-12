@@ -40,6 +40,10 @@ ldrb r0,[r1,#0x15] @r0 = item might
 mov r1,r4
 add r1,#0x5A
 strh r0,[r1]
+mov r1, r5 @ dfdr 
+add r1, #0x5C @ def 
+mov r0, #0 
+strh r0, [r1] 
 
 @put this at the end of the pre battle calc loop
 

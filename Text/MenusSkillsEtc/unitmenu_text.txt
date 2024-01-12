@@ -1,4 +1,69 @@
 
+## UM_Travel
+ Travel[X]
+
+## UM_TravelDesc
+Travel via fly, dig[N]
+or teleport.[X]
+
+## CM_Dig
+ Dig[X]
+ 
+## CM_DigDesc
+Dig out of dungeons.[X]
+
+## CM_EscapeRope
+ Escape Rope[X]
+ 
+## CM_EscapeRopeDesc
+Escape out of dungeons.[X]
+
+## CM_Teleport
+ Teleport[X]
+
+## CM_TeleportDesc 
+Teleport to your last[N]
+visited Pokécenter.[X]
+
+## CM_WarpCrystal
+ Warp Crystal[X]
+
+## CM_WarpCrystalDesc 
+Teleport to your last[N]
+visited Pokécenter.[X]
+
+## UM_Revive
+ Revive[X]
+
+## UM_ReviveDesc
+Revive a fainted Pokémon.[X]
+
+
+## TurboText
+Turbo[X]
+ 
+## TurboHelpText
+Speedup various mechanics.[X]
+
+## PrepScreenExitText
+Exit[X]
+
+## PrepScreenExitHelpText
+Leave this menu.[X]
+
+## UseName
+ Use[X]
+ 
+ ## RepelStepsRemainingText
+[LoadDex]Your repel will last[N]
+another [G] steps.[A][X]
+
+## FMU_MenuName
+ Grid Mode[X]
+
+## FMU_MenuDesc
+Control multiple units[N]
+on a grid.[X]
 
 ## UM_Learnset
  Learnset[X]
@@ -15,10 +80,10 @@ Heal nearby units.[X]
 A suspicious looking rock...[A][X]
 
 ## PokedexNameText
- Pok[Eaccent]dex[X]
+ Pokédex[X]
 
 ## PokedexDescText
-View Pok[Eaccent]mon data[X]
+View Pokémon data[X]
 
 ## OrderMovesName
  Moves[X]
@@ -49,6 +114,13 @@ reason not to evolve immediately.[X]
 ## UM_FlyDesc
 Fly to a destination.[X]
 
+## UM_Fly2
+ Fly Menu[X]
+
+## UM_FlyDesc2
+Fly to a destination[N]
+with a basic menu.[X]
+
 ## QuicksaveText
 Quicksave[X]
 ## PlayerPhaseHelpText
@@ -70,6 +142,17 @@ Auto[X]
 Press Select to toggle Danger Zone.[X]
 ## DangerRadiusManualText
 Manual[X]
+
+## HelpInfoText
+Help Info[X]
+## HelpInfoHelpText
+Provide helpful information.[X]
+## HelpInfoEnableText
+ON[X]
+## HelpInfoDisableHelpText
+Disable helpful information.[X]
+## HelpInfoDisableText
+OFF[X]
 
 ## FullyParalyzedText
 Fully Paralyzed![A][X]
@@ -254,10 +337,10 @@ Boosts Str/Mag/Skl+5.[X]
  Release[X]
  
 ## UM_ReleaseDesc
-Let the Pok[Eaccent]mon free.[X]
+Let the Pokémon free.[X]
 
 ## ReleasePokemonText
-Will you release this Pok[Eaccent]mon?[NL]
+Will you release this Pokémon?[NL]
 [No][X]
 
 ## GoodbyeReleasePokemonText
@@ -497,7 +580,7 @@ ally.[X]
  Capture[X]
 
 ## UM_CaptureDesc
-Capture a Pok[Eaccent]mon.[X]
+Capture a Pokémon.[X]
 
 ## UM_EditSkill
  Edit Skills[X]

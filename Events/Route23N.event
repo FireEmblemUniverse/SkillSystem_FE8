@@ -40,14 +40,14 @@ END_MAIN
 
 CallRevivePartyCostEvent:
 SVAL s2 VictoryRoadNurseJoyText_A
-SVAL s3 5000 // amount it costs 
+SVAL s3 3000 // amount it costs 
 CALL RevivePartyCostEvent
 NoFade 
 ENDA 
 
 CallRevivePartyCostEvent2:
 SVAL s2 VictoryRoadNurseJoyText_B
-SVAL s3 5000 // amount it costs 
+SVAL s3 3000 // amount it costs 
 CALL RevivePartyCostEvent
 NoFade 
 ENDA 
@@ -79,9 +79,9 @@ EscapeTileTerminator ; }
 #endif 
 
 ToVictoryRoadB1:
-ChapterTransition(VictoryRoadB1Ch, 11, 20)
+DigChapterTransition(ChapterID, VictoryRoadB1Ch, 11, 20)
 ToVictoryRoadB2:
-ChapterTransition(VictoryRoadB2Ch, 38,12)
+DigChapterTransition(ChapterID, VictoryRoadB2Ch, 38,12)
 ToPokecenterLeague:
 ChapterTransition(PokecenterLeagueCh, 11,16)
 ToRoute23M:

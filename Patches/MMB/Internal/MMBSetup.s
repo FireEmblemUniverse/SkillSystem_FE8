@@ -29,11 +29,14 @@ MMBSetup:
 	beq		End
 	@ save unit slot
 	ldr		r5,[r0,#0]	@unit pointer
-	ldr 		r6,=#0x88068F0 @ address of unit pointer of 0xE0 - 1 @DF0	@address of unit pointer of 0xF0
-					@(0xF0 * 0x32) = 30c0
-					@unit pointer starts at 8803d30
-	cmp		r5, r6  	@8803d30 + 30c0 = 8806DF0
+	ldrb r5, [r5, #4] @ unit ID 
+	cmp r5, #0xE0 
 	bge		PreEnd 		@unit 0 + 0xF0 times 0x32 bytes = 8806df0
+	ldr r6, =ProtagID
+	lsl r6, #24 
+	lsr r6, #24 
+	cmp r5, r6 
+	beq PreEnd
 	b		Saveunit	@so units of id 0xF0 or greater ignored
 
 PreEnd:

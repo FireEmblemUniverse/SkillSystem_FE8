@@ -1,4 +1,21 @@
 cFreeMovement by Mokha：
+<Tutorial Basic>
+1. Include "FreeMovement.event" in your buildfile.
+2. Use the macro "EnableFreeMovement" in beginning event of the chapter, then you can enter the FreeMovement proc.
+3. Press Button A, you can interact with chest, Visit, Armory, Vendor, Scecret, Talk events. Traps can also get effect but need you work on it (I will cover it in "Tutorial Advanced").
+4. Press Button B will end the FreeMovement and goto Enimy Phase.
+5. Press Button L will call for menu.
+6. Press Button "Select" will change unit to move.
+
+<Tutorial Advanced>
+1. You can now modify the program modularly!
+2. Functions called at each Button pressed now can be modified modularly in the file "HookList.event" (FMU_FunctionList_OnPressXs). These On-Button-Pressed functions are defined in file "/src/FreeMU_ButtonPress.c" , both of which are defined as "Bool Fuction(Proc*)": if they successfully trigered, then they will return TRUE, otherwase FALSE. Following this format, you can define your own On-Button-Pressed functions. These functions have Prioritization: (For example) Once you press Button "A" and successfully RunMapEvents, then you will not trigger TalkEvents and TrapEvents this time.
+3. Traps: now FreeMU has been adapted to TrapRework... but not not fully adapted. You  can use macro "AddTrap(trapID,x,y)" (which is defined in TrapRework) in your chapter, but to make them work properly, you need to do more:
+
+<Toturial on Traps>
+1. To determine a trap effect. You should select a trapID (Same as TrapRework), and write the effect function for your trap. For now, the effect can only defined in ASMC, not in Event Code. I make an example in "/Examples/_TrapExample.event", you can refer on it.
+2. Once you end up working on effect routine, you should insert it in "HookList/HookListFMU_TrapList_OnPressA" or "HookListFMU_TrapList_Auto" by  using the macro FMU_SetTrap(ID,ASMC). Currently there are two types of traps defined: Triggered by pressing button A, or triggered automaticlly.
+3. Now use macro "AddTrap(ID,x,y)" to set traps on map. You should set this macro in BeginningScene of your chapter.
 
 <Problems on original version:>
 1. The introduction of automaticly save operation will  cause lag in the interaction between the game and the player.
@@ -14,13 +31,13 @@ cFreeMovement by Mokha：
 4. Reorganize the interaction process with EventEngine to ensure that single trigger events such as chests and character dialogues do not run repeatedly;
 
 <how to use:>
-1. Just use the macro "EnableFreeMovement" in beginning event of the chapter, then you can enter the FreeMovement proc. Correspondingly, it can be turned off by calling "DisableFreeMovement", which is consistent with the SME version.
-2. Press button "Select", you can freely switch the mobile unit between deployed units on the map.
+See Tutorials ！
+
 
 
 <Other considerations:>
 1. It can interact with EventEngine correctly: chest, Visit, Armory, Vendor, Scecret, Talk events. Currently problems still exixt with the Size event (I don't know why, but it has been not triggered yet). MiscEvents has not been verified, but I think it should be effective, because MiscEvents is directly used the original assembly code ( well my poor programming ability really does not allow this complex assembly code to be transcribed into C :(
-2. The free movement flag is at 0x2028924+0x3, which is not saved in the SaveData. Please use ExpandedModularSave to save this flag bit;
+2. The free movement flag is at 0x2028924 (Defined at FreeMovement.event), which is not saved in the SaveData. Please use ExpandedModularSave to save this flag bit;
 
 <Credits:>
 FreeMovement prototype made by Sme;
@@ -29,6 +46,8 @@ Proc tutorial, C language compilation tutorial and library functions shared by S
 Suggestions, tutorials and tools provided by Vesly and all FEU friends.
 
 
+<!>
+<Update>
 
 
 
@@ -59,8 +78,13 @@ Readme-cn：
 1. 可与EventEngine之间正确交互：chest、Visit、Armory、Vendor、Scecret、Talk事件。Size事件目前存在问题（不知道为什么，没有正确触发）。MiscEvents未做验证，但是我觉着应该能够生效，因为MiscEvents是直接用的原本的汇编代码（我那可怜的编程能力实在不允许把这段复杂的汇编代码转写成C了）；
 2. 自由移动的标志位在0x2028924，这一标志位并没有保存在存档中。请自行使用存档扩展将这一标志位进行保存；
 
+
 Credits：
 Sme所做的FreeMovement原型；
 Tequilla分享的ASM教程；
 StanH分享的Proc教程、C语言编译教程与库函数；
 Vesly等所有FEU的朋友们提供的建议、教程与工具。
+
+
+<!>更新！
+1. 现在已经可以与Sme的TrapRework进行互动

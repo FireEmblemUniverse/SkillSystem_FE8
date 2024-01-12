@@ -72,7 +72,7 @@ EscapeTileTerminator ; }
 ToAgatha:
 ChapterTransition(AgathaCh, 12,3)
 ToChampion:
-ChapterTransition(ChampionCh, 13,28)
+ChapterTransition(ChampionCh, 10,24)
 
 Traps1:
 
@@ -84,6 +84,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 ENUF ChampionDefeatedPhaseOne
 LOAD1 1 BossTrainer
 ENUN 
@@ -91,7 +94,7 @@ CHECK_EVENTID LanceDefeatedTemp
 BEQ 10 sC s0 
 MarkTrainerAsDefeated(0xE1)
 TILECHANGE 0
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 GOTO 99 
 LABEL 10 
 
@@ -102,7 +105,9 @@ CAM1 [12,0]
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(LanceBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
@@ -161,7 +166,7 @@ SVAL r3 5000
 GIVETOMAIN 0 
 MarkTrainerAsDefeated(0xE1)
 ReviveParty 
-AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 2)
+AddTrapExt(SaveCostID, 11, 3, 0, SavePointSMS, 9) // GenericEffect(9) calls ReviveAndSaveEvent
 ENUT LanceDefeatedTemp
 LABEL 99 
 NoFade

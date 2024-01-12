@@ -1,5 +1,5 @@
 .thumb
-.include "_FE8Definitions.h.s"
+.include "../_TargetSelectionDefinitions.s"
 
 push 	{r4, lr}
 mov 	r4, r0

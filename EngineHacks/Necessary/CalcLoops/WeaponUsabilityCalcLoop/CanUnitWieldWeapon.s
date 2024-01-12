@@ -55,10 +55,6 @@ ldr r1,[r1,#0x28]
 orr r0,r1
 mov r6,r0 @r6= char/class ability word
 
-ldr r0,=#0xF0070000
-tst r0,r6
-beq CannotWield @don't run the loop if we don't have any weapon locks set, we know we can't use it since to reach this point it needs to have a lock
-
 mov r1,#0xFF
 and r1,r5
 mov r0,#0x24

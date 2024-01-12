@@ -57,23 +57,19 @@ ldrb  r0, VengeanceID
 strb  r0, [r6,#4] 
 
 @get HP before battle
-ldrb r0,[r4,#0x0B] @deployment byte
-ldr r1,=GetUnit
-mov r14,r1
-.short 0xF800
-ldrb r0,[r0,#0x13] @current HP before battle
+mov r0,r4
+add r0,#0x72
+ldrb r0,[r0] @current HP before battle
 ldrb r1,[r4,#0x13] @current HP during battle
 sub r0,r1 @r0=difference in HP
 lsr r0,#1 @r0=difference in HP/2
-mov r1,r4
-add r1,#0x5A
-ldrb r2,[r1]
+ldrb r2,[r7,#4]
 add r2,r0 @add half damage taken to attack
 cmp r2,#0x7f @damage cap of 127
 ble NotCap
 mov r0, #0x7f
 NotCap:
-strb r2,[r1] @final damage
+strb r2,[r7,#4] @final damage
 
 
 End:

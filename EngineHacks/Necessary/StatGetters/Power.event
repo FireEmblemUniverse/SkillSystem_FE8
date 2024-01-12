@@ -4,8 +4,10 @@
 #include "_Common.event"
 
 pPowerModifiers: // Power
-	POIN prAddUnitPower prHalveIfCapturing prDebuffStr prAddEquipPower prItemPassivePow prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow prResolve prDefiantStr prPushStr
-	POIN prStrBuff
+	POIN prAddUnitPower prHalveIfCapturing //HalfStrFunc
+	POIN prDebuffStr Guts
+	POIN prAddEquipPower prItemPassivePow prRallyStr prLifeAndDeathBonus prSkillFury prFortressDefensePow VigorDanceCheck prFortressResistancePow prResolve prDefiantStr prPushStr
+	//POIN prStrBuff
 	#ifdef ACCESSORIES_AND_FORGING
 		POIN prAddAccessoryPower
 	#endif 
@@ -26,23 +28,9 @@ prAddAccessoryPower:
 	//rAdd(rForUnitEquippedAccessory(rCallExternal(prGetItemPowBonus)))
 	rAdd(rForUnitEquippedDurabilityAccessory(rCallExternal(GetDurabilityPowBonus-1))) // -1 because rCallExternal adds +1 to make it thumb, I guess 
 	#endif 
-	
-	
-
-prDebuffStr:
-	#include "_asm/DebuffStr.lyn.event"
-	POIN GetDebuffs|1
-
-prRallyStr:
-	#include "_asm/RallyStr.lyn.event"
-	POIN GetDebuffs|1
 
 prLifeAndDeathBonus:
 	_testSkill(HeroesLifeAndDeathID,5,0)
-
-prSkillFury:
-  rIfUnitHasSkill(FuryID)
-    rAddConst(2)
 
 prFortressDefensePow:
 	_testSkill(FortressDefenseID,0,3)

@@ -153,7 +153,7 @@ const struct ProcInstruction gProc_PopR_AnimsOnWrapper[] = {
 
 PROC_LABEL(0),
 	PROC_LOOP_ROUTINE(PopR_AnimsOffWrapperLoop),
-	PROC_SLEEP(8),
+	PROC_SLEEP(0),
 
 	PROC_GOTO(0),
 

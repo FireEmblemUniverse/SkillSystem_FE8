@@ -57,15 +57,11 @@ POIN ShowMenu+1
 ALIGN 4
 DisplayedWaitmarkIfSubMenu:
 #incbin "Displayed Wait mark if SubMenu.dmp"
-WORD 0xF17  //Text "Wait >>"
+WORD TxtData0xF17  //Text "Wait >>"
 
-ALIGN 4
-TxtData0xF17:
-#incbin "0xF17.bin"
+//#define setText_WithAntiHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (0x80000000+offset); POP"
 
-#define setText_WithAntiHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (0x80000000+offset); POP"
-
-setText_WithAntiHuffman(0xF17,TxtData0xF17)
+//setText_WithAntiHuffman(0xF17,TxtData0xF17)
 
 ALIGN 4
 SubMenuSample:
@@ -94,7 +90,7 @@ MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,AlwaysUsable,ReorderMovesEf
   UM_Drop
 //UM_Item
 MenuCommand(UM_Learnset, UM_LearnsetDesc, NormalText, AlwaysUsable, ViewLearnsetCommand_OnSelect)
-MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, AlwaysUsable, ReleaseCommandEffect)
+MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, ReleaseCommandUsability, ReleaseCommandEffect)
  
 /*
 BYTE 0xB0 0x7D 0xD 0x8 0x8D 0x6 0xD3 0x6 0x0 0x67 0x0 0x0 0xB9 0x32 0x2 0x8 0 0 0 0 0xE9 0x32 0x2 0x8 0 0 0 0 0 0 0 0 0 0 0 0	//持ち物 Item

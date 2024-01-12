@@ -3,8 +3,8 @@
 #define GenericB UnitCyclingRoadTrainer
 #define ClassA ClassRoute16WildA
 #define ClassB ClassRoute16WildB
-#define WildLvl 27
-#define TrainerL 30
+#define WildLvl 31
+#define TrainerL 34
 
 
 
@@ -71,6 +71,7 @@ EnterGateNE:
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [20,6]
 ENUN
@@ -83,6 +84,7 @@ EnterGateNW:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [27,6]
 ENUN
@@ -94,6 +96,7 @@ EnterGateSE:
 SetMaxMove
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [20,13]
 ENUN
@@ -106,6 +109,7 @@ EnterGateSW:
 SetUnitStatusAll(Any, MovBonus, 0, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 CHECK_COORDS 0x7FFF 
 SADD sB sC s0 
+PauseFreeMovement
 SET_ACTIVE 0
 MOVE (-1) 0x7FFE [27,13]
 ENUN
@@ -236,7 +240,7 @@ UNIT
 
  
 HumanTrainers:
-UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [5,13]  0b 0x0	0x0 0x0  [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE0 bikerID 0x0 Level(0, Enemy, 1) [5,13]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI
 UNIT 0xE1 bikerID 0x0 Level(0, Enemy, 1) [17,11]  0b 0x0	0x0 0x0  [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT
 
@@ -269,14 +273,14 @@ EnemyTrainers0: // biker
 UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	WeezingID 0xE0 	Level(0, Enemy, 1) [10,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	PrimeapeID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
-UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
+//UNIT GenericB 	MachokeID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT
 
 EnemyTrainers1: // biker
 UNIT GenericB 	WeezingID 	0xE1 		Level(0, Enemy, 1) [9,11]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	ElectrodeID 		0xE1 		Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT GenericB 	MachokeID 	0xE1 		Level(0, Enemy, 1) [9,9]    0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
-UNIT GenericB 	PrimeapeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
+//UNIT GenericB 	PrimeapeID 		0xE1 		Level(0, Enemy, 1) [11,9]   0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupTwoAI
 UNIT
 
 	

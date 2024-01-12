@@ -21,8 +21,12 @@ MS_SaveSizeHook:
 	beq blank_block
 
 	@ Not too much please
-	cmp r0, #3
+	@cmp r0, #4 
+	@beq VeslyContinue 
+	@cmp r0, #1 @ Vesly - so we don't save link arena / other stuff ? 
+	cmp r0, #3 
 	bhi end
+	VeslyContinue: 
 
 	@ Load size from external lookup
 

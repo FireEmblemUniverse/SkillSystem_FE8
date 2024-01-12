@@ -59,7 +59,7 @@ add r4,#1
 cmp r4,#5 @(cmp 5 instead of r5, may be a couple extra loops but who cares)
 bge EndLoop
 add r0,r4,r6
-cmp r0,#0x63
+cmp r0,#0xC7
 ble Loop
 EndLoop:
 ldr r0,ReturnTo

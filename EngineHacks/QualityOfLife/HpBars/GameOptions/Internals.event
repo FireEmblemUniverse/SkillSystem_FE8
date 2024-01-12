@@ -1,0 +1,184 @@
+#define AnimationOpt 0
+#define GameSpeedOpt 5
+#define TextSpeedOpt 4
+#define TerrainOpt 1
+#define UnitOpt 2
+#define CombatOpt 0xA 
+#define ShowObjectiveOpt 0xE 
+#define HPBarsOpt 0xB 
+#define AutocursorOpt 3
+#define AutoendTurnsOpt 0xC 
+#define MusicOpt 6
+#define SoundFXOpt 7
+#define WindowColorOpt 8 
+
+ALIGN 4
+GameOptionsTable:
+//	Item Name	Selector 1 Help	Selector 1 Text	Selector 1 Display Position	Selector 1 Unknown 2	Selector 2 Help	Selector 2 Text	Selector 2 Display position	Selector 2 Unknown 2	Selector 3 Help	Selector 3 Text	Selector 3 Display Position	Selector 3 Unknown 2	Selector 4 Help	Selector 4 Text	Selector 4 Display position	Selector 4 Unknown 2	Icon (value * 8)	ASM Function
+WORD 0x90;SHORT 0xA1 0xBF 368 0x00 0xA2 0xC0 383 0x00 0xA3 0xBE 654 0x00 0xA4 0xC7 677 0x00;WORD 0x00;POIN 0x0B1D15 //00 Animation
+WORD 0x91;SHORT 0xAB 0xBD 624 0x00 0xAB 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x02;POIN 0x0B1D15 //01 Terrain
+WORD 0x92;SHORT 0xAC 0xCA 880 0x00 0xAD 0xCB 1167 0x00 0xAE 0xBE 694 0x00 0x00 0x00 189 0x00;WORD 0x04;POIN 0x0B1D15 //02 Unit
+WORD 0x95;SHORT 0xB3 0xBD 624 0x00 0xB3 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x06;POIN 0x0B1D15 //03 Autocursor
+WORD 0x96;SHORT 0xA7 0xC3 880 0x00 0xA8 0xC4 911 0x00 0xA9 0xC5 942 0x00 0xAA 0xC6 717 0x00;WORD 0x08;POIN 0x0B1D15 //04 Text Speed
+WORD 0x97;SHORT 0xA5 0xC4 880 0x00 0xA6 0xC5 911 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x0A;POIN 0x0B1D15 //05 Game Speed
+WORD 0x98;SHORT 0xB5 0xBD 624 0x00 0xB5 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x0C;POIN 0x0B1CAD //06 Music
+WORD 0x99;SHORT 0xB6 0xBD 624 0x00 0xB6 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x0E;POIN 0x0B1D15 //07 Sound Effects
+WORD 0x9A;SHORT 0xB7 0xBF 368 0x00 0xB7 0xC0 383 0x00 0xB7 0xC1 398 0x00 0xB7 0xC2 413 0x00;WORD 0x10;POIN 0x0B1C91 //08 Window Color
+WORD 0x9B;SHORT 0xB8 0xBF 368 0x00 0xB8 0xC0 383 0x00 0xB8 0xC1 398 0x00 0x00 0x00 189 0x00;WORD 0x12;POIN 0x0B1D15 //09 CPU Level
+WORD 0x93;SHORT 0xAF 0xC8 880 0x00 0xB0 0xC9 911 0x00 0xB1 0xBE 694 0x00 0x00 0x00 189 0x00;WORD 0x14;POIN 0x0B1D15 //0A Combat
+WORD 0x94;SHORT 0xB2 0xBD 624 0x00 0xB2 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x16;POIN 0x0B1D15 //0B HP Bars
+WORD 0x9C;SHORT 0xB4 0xBD 624 0x00 0xB4 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x18;POIN 0x0B1D15 //0C Autoend Turns
+WORD 0x9D;SHORT 0xB9 0xBD 624 0x00 0xB9 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x1A;POIN 0x0B1D15 //0D Unit Color
+WORD 0x9E;SHORT 0xBA 0xBD 624 0x00 0xBA 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x1C;POIN 0x0B1D15 //0E Show Objective
+WORD 0x9F;SHORT 0xBB 0xBD 624 0x00 0xBB 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x1E;POIN 0x0B1D15 //0F Controller
+WORD 0xA0;SHORT 0xBC 0xBD 624 0x00 0xBC 0xBE 647 0x00 0x00 0x00 190 0x00 0x00 0x00 189 0x00;WORD 0x20;POIN 0x0B1D15 //10 Rank Display
+ORG GameOptionsTable+44*(GameOptionsMaxEntries+1)
+WORD 0 0 0 0 0 0 0 0 0 0 0 
+// Table, so no terminator needed. This makes febuilder happy, though. 
+
+ALIGN 4
+GameOptionsCheckCurrentJumpTable:
+BYTE $C8 $1F $0B $08 $30 $20 $0B $08 $48 $20 $0B $08 $60 $20 $0B $08 $78 $20 $0B $08 $90 $20 $0B $08 $9C $20 $0B $08 $B4 $20 $0B $08 $CC $20 $0B $08 $80 $21 $0B $08 $E4 $20 $0B $08 $FC $20 $0B $08 $14 $21 $0B $08 $20 $21 $0B $08 $38 $21 $0B $08 $50 $21 $0B $08 $68 $21 $0B $08
+// End of vanilla data
+ORG GameOptionsCheckCurrentJumpTable+4*(GameOptionsMaxEntries+1)
+
+
+ALIGN 4
+GameOptionsEffectTable:
+BYTE $48 $1E $0B $08 
+BYTE $7E $1E $0B $08 
+BYTE $8C $1E $0B $08 
+BYTE $98 $1E $0B $08 
+BYTE $A8 $1E $0B $08 
+BYTE $B8 $1E $0B $08 
+BYTE $C4 $1E $0B $08 
+BYTE $D4 $1E $0B $08 
+BYTE $E4 $1E $0B $08 
+BYTE $5A $1F $0B $08 
+BYTE $F4 $1E $0B $08 
+BYTE $04 $1F $0B $08 
+BYTE $14 $1F $0B $08 
+BYTE $20 $1F $0B $08 
+BYTE $30 $1F $0B $08 
+BYTE $40 $1F $0B $08 
+BYTE $50 $1F $0B $08 // Last vanilla entry 0x1 
+ORG GameOptionsEffectTable+4*(GameOptionsMaxEntries+1)
+
+
+// GameOptTable + (x+1)*8 + $2c*TableEntryID 
+#define GameOptionsEntry(EntryID, MainText, Selection1HelpText, Selection1Text, Pos_Sel1, Selection2HelpText, Selection2Text, Pos_Sel2, IconID, CurrOptionFunc, EffectFunction)"PUSH; ORG GameOptionsTable+44*EntryID; WORD MainText; SHORT Selection1HelpText Selection1Text Pos_Sel1 0 Selection2HelpText Selection2Text Pos_Sel2 0 0 0 190 0 0 0 189 0; WORD IconID; POIN 0x80B1D15|1; ORG GameOptionsEffectTable+4*EntryID; POIN CurrOptionFunc|1; ORG GameOptionsCheckCurrentJumpTable+4*EntryID; POIN EffectFunction|1; POP"
+
+#define GenericToggleFunctionCode "SHORT $4B01 $4718 $46C0; POIN GenericToggleFunc"
+#define GenericCheckCurrentOptionCode "SHORT $4B01 $4718 $46C0; POIN GenericCheckOption"
+//BYTE  AutosaveOpt $20 // mov r0, #Index
+//SHORT $4B01 // ldr r3, POIN ____
+//SHORT $4718 // bx r3 
+//SHORT $46C0 // nop 
+//POIN GenericToggleFunc
+
+
+
+
+// Repoint stuff 
+PUSH 
+
+ORG $B1A32 
+BYTE NumberOfOptionsToDisplay
+
+
+ORG $B1DF0
+BYTE GameOptionsMaxEntries 
+ORG $B1F6E 
+BYTE GameOptionsMaxEntries
+
+ORG $B1E00
+POIN GameOptionsEffectTable
+
+ORG $B1F80
+POIN GameOptionsCheckCurrentJumpTable
+
+ORG $B176C
+POIN GameOptionsTable
+ORG $B17D8
+POIN GameOptionsTable
+ORG $B1844
+POIN GameOptionsTable
+ORG $B1914
+POIN GameOptionsTable
+ORG $B19FC
+POIN GameOptionsTable
+ORG $B1DDC
+POIN GameOptionsTable
+ORG $B2404
+POIN GameOptionsTable
+
+ORG $B16F8
+POIN GameOptionsOrderList
+ORG $B1770
+POIN GameOptionsOrderList
+ORG $B17DC
+POIN GameOptionsOrderList
+ORG $B1848
+POIN GameOptionsOrderList
+ORG $B1910
+POIN GameOptionsOrderList
+ORG $B19F0
+POIN GameOptionsOrderList
+ORG $B1CD8
+POIN GameOptionsOrderList
+ORG $B1D68
+POIN GameOptionsOrderList
+ORG $B22E0
+POIN GameOptionsOrderList
+ORG $B2408
+POIN GameOptionsOrderList
+
+POP 
+
+// This part was done by Gamma to extend past the default of 0xD options to display. 
+PUSH
+    //Start drawing options to BG1 on the second row of tiles instead of the sixth to avoid a buffer overflow 
+    ORG $B1704
+    SHORT $1852 // vanilla value 
+    ORG $B19DA
+    SHORT $6830 $8DC1 $39E0
+    ORG $B1A2E
+    SHORT $4652 $864A 
+	// This next line was edited already above 
+	//BYTE NumberOfOptionsToDisplay $20 // mov r0, #NumberOfOptionsToDisplay 
+	ORG $B1A34 
+	SHORT $8688 $20E0 $854A $858A $85C8
+	// Gfx 
+    ORG $B1BE2
+    BYTE 0x1
+    ORG $B1BE6
+    BYTE 0x1
+    ORG $B1DAE
+    BYTE 0x1
+    ORG $B2190
+    SHORT $1C45
+    ORG $B21C6
+    BYTE 0x1
+    ORG $B21E6
+    BYTE 0xA2 //move bottom text down to compensate
+    ORG $B2380
+    BYTE 0x20
+
+// Replace subtitle help with Hp Bars toggle by Gamma 
+    ORG $35718 // Force Subtitle Help (option replaced by hp bars toggle)
+      SHORT $46C0
+    ORG $B1E30
+    POIN HpBarGetterFunc
+    ORG $B1FB0
+    POIN HpBarSetterFunc
+    
+    ORG $B1F20 //Actually toggle the hp bars on options screen (option byte 0x41&20)
+    HpBarGetterFunc:
+    SHORT $4802 $3041 $7800 $0680 $E016
+    
+    ORG $B2120 //Actually toggle the hp bars on options screen (option byte 0x41&20)
+    HpBarSetterFunc:    
+    SHORT $4A04 $3241 $2001 $1C19 $4001 $0149 $7813 $2021 $4240 $E022
+POP
+
+

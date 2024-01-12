@@ -231,7 +231,7 @@ TDQ_TableTerminator ; }
 
 HumanTrainers:
 UnitsA:
-UNIT 0xE0 cooltrainer_fID 	0x0 Level(0, Enemy, 1) [6,42]  0b 0x0	0 0 		[ThreeRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE0 cooltrainer_fID 	0x0 Level(0, Enemy, 1) [6,43]  0b 0x0	0 0 		[ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 //UNIT 0xE1 swimmer_m_landID 0x0 Level(0, Enemy, 1) [17,24]  0b 0x0	0x0 0x0  		[OneRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT 0xE2 swimmer_f_waterID 0x0 Level(0, Enemy, 1) [14,24]  0b 0x0	1 REDA14R24	 			 [ThreeRangeWep,0x0,0x0,0x0] TrainerAI
 UNIT

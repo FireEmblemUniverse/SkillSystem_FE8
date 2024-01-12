@@ -1,5 +1,6 @@
 #include "SortSupply.lyn.event" 
 #include "IsTMUsable.lyn.event" 
+#include "NewSupplyEffect.lyn.event" 
 // 16F6C end of IsItemUsable ? 
 // 8016EE4 
 // 9D37A IsItemUsable 
@@ -7,6 +8,12 @@
 // 0809DB26 PrepScreenItemsMenu CallASM
 
 PUSH
+
+ORG $9E3B0 
+callHackNew(WithdrawItemSupplyAction) 
+ORG $9E8E8 
+callHackNew(DepositItemSupplyAction) 
+SHORT $46C0 
 
 ORG $16EE4
 SHORT $B570 // Push r4-r6 

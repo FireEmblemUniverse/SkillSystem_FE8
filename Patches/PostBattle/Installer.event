@@ -1,19 +1,48 @@
 
 
-
+#include "ExpShare.lyn.event" 
 #include "SelfDebuffMoves.lyn.event" 
+
+ALIGN 4 
+ExpShareID_Link:
+WORD ExpShareID 
+
+ShareExpEvent:
+ASMC ExpShareSetupMemorySlots
+CUMO 0x7FFD 
+STAL 30 
+CURE 
+GiveEXP(0x7FFD)
+ASMC ExpShareRestoreMemorySlots
+NoFade 
+ENDA 
+
+ALIGN 4 
+ExpShareUnitID_Link:
+WORD ExpShareUnitID
+
+ExpShareAmount_Link:
+WORD ExpShareAmount // ram 
+TempRamWhileExpShare_Link:
+WORD TempRamWhileExpShare
+TempRamWhileExpShare_Link2:
+WORD TempRamWhileExpShare2 
+TempRamWhileExpShare_Link3:
+WORD TempRamWhileExpShare3 
 
 // If not a KO, self debuff by X 
 
 ALIGN 4 
 SelfDebuffTable: 
-FILL(4*0xFF) 
+FILL(8*0x100) 
 
-#define SelfDebuffEntry(ItemID, Value) "PUSH; ORG SelfDebuffTable + (4 * ItemID); WORD Value; POP" 
+#define DebuffSelfEntry(ItemID, mag, str, skl, spd, def, res, luk, mov) "PUSH; ORG SelfDebuffTable + (8 * ItemID); BYTE mag|DebuffSelf str|DebuffSelf skl|DebuffSelf spd|DebuffSelf def|DebuffSelf res|DebuffSelf luk|DebuffSelf mov|DebuffSelf; POP" 
+
 // @ Empty Mag, Luck Res, Def Spd, Skl Str 
-SelfDebuffEntry(HyperBeam, 0x08000008) 
-SelfDebuffEntry(SolarBeam, 0x08000008) 
-SelfDebuffEntry(SkyAttack, 0x08000008) 
+//DebuffSelfEntry(mag, str, skl, spd, def, res, luk, mov)
+DebuffSelfEntry(HyperBeam, 8, 8, 0,0,0, 0,0,0)
+DebuffSelfEntry(SolarBeam, 8, 8, 0,0,0, 0,0,0)
+DebuffSelfEntry(SkyAttack, 8, 8, 0,0,0, 0,0,0)
 // WORD DebuffValue 
 
 

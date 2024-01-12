@@ -23,18 +23,27 @@ PostCombatLoop:
 POIN PostCombatSkills
 
 ALIGN 4
-PostCombatSkills:
-POIN EnsureMovementCap_ActiveUnit
+PostCombatSkills: // 
+#ifdef GAIDEN_MAGIC
+	POIN GaidenZeroOutSpellVariables // without this there was an R-text bug when obtaining an item during the end scene after KOing an enemy 
+#endif // GAIDEN_MAGIC
+POIN InitSkillBuffers //Refresh skill buffers so freshly learned post-battle skills can apply
+POIN DepleteRepel
+//POIN EnsureMovementCap_ActiveUnit
 POIN SpawnIceIfIce
 POIN CheckIfGameOver
-POIN IsTrainersTeamDefeated
+POIN ExpShare // ExpShare uses s2 and s4 but restores these afterwards as part of its event 
+POIN IsTrainersTeamDefeated // if event, use mem slot: 2, 3, 9, B and once event starts: 7, 8, C 
+
 POIN CapturePokemon // needs to be after IsTrainersTeamDefeated 
 POIN RockyHelmetFunc
 POIN SavageBlow  //I like having savage blow as the first one because it makes the activation sound play first
 POIN SelfDebuffMoves
 POIN GroupAI 
 POIN BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
+POIN StrTaker SklTaker SpdTaker DefTaker ResTaker LukTaker MagTaker MovTaker 
 POIN Canto CantoPlus Galeforce ReMove Powerstaff CulturedPostCombat Gridmaster //this order for canto and friends is the only one I tested
+//POIN TurnOffBGMFlagIfPeaceful // now called at the end of SetAllDR and SetNearbyDR // needs to be after Canto as that refreshes fog 
 WORD 0 //Terminator
 
 PROTECT $37744 $3774C

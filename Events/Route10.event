@@ -3,8 +3,8 @@
 #define GenericB UnitRoute10Trainer
 #define ClassA ClassRoute10WildA
 #define ClassB ClassRoute10WildB
-#define WildLvl 16
-#define TrainerL 19
+#define WildLvl 18
+#define TrainerL 22
 
 
 
@@ -57,6 +57,7 @@ AFEV 0 GlobalAfev 0
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToRoute9E [0,8] [0,10] 
+AREA 0x13 SurfMessageEvent [2,4][18,4] 
 //AREA 0 ToRockTunnel 
 
 END_MAIN
@@ -74,12 +75,18 @@ ToRoute9E:
 ChapterTransition(Route9ECh, 40,9)
 
 ToRockTunnel:
-ChapterTransition(RockTunnelB1Ch, 20,2)
+DigChapterTransition(ChapterID, RockTunnelB1Ch, 20,2)
 
 ToPowerPlant:
-ChapterTransition(PowerPlantCh, 5,28)
+DigChapterTransition(ChapterID, PowerPlantCh, 5,28)
 
-
+SurfMessageEvent: 
+CHECK_EVENTID MarshbadgeObtained
+BNE 99 sC s0 
+TutText(CannotSurfYetText) 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -227,7 +234,7 @@ UNIT
 
 
 
-EnemyTrainers0: // bug catcher or bird keeper - attacks from ledge 
+EnemyTrainers0: 
 UNIT GenericB 	PidgeyID 0xE0 	Level(0, Enemy, 1) [9,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	SpearowID 0xE0 	Level(0, Enemy, 1) [11,11]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI
 UNIT GenericB 	PidgeottoID 0xE0 	Level(0, Enemy, 1) [9,9]  0b 0x0	0x0 0x00 [0x0,0x0,0x0,0x0] SafestZoningGroupOneAI

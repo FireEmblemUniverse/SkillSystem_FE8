@@ -12,6 +12,17 @@ push  {r4-r7}
 mov   r10, r0
 mov   r11, r1
 
+ldr r3, =FreeMoveRam
+ldr r3, [r3] 
+ldrb r0, [r3] 
+ldr r1, =FreeMove_Running
+ldrb r1, [r1] 
+ldr r2, =FreeMove_Silent
+ldrb r2, [r2] 
+orr r1, r2 
+tst r0, r1 
+bne Return
+
 
 @ Check for FOW.
 ldr   r0, =ChapterData

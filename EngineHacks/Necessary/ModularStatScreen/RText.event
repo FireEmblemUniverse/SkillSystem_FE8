@@ -1,4 +1,5 @@
-  /*
+  #include "RTextGetters/RTextGetters.event"
+    /*
 
   stat screen R menu is at 8a00b38
   find by breaking on key press while R menu open
@@ -246,7 +247,7 @@ ST_Skill6:
 
   ST_HP4:
 	#ifdef GAIDEN_MAGIC
-      RMenu(ST_Level4,0,ST_Spell6,ST_Spell8,0x6,0x88,0x544)
+      RMenu(ST_Level4,0,ST_Spell5,ST_Spell5,0x6,0x88,0x544)
 	#else
 	  RMenu(ST_Level4,0,0,0,0x6,0x88,0x544)
 	#endif
@@ -284,23 +285,23 @@ ALIGN 4
 
 #ifdef GAIDEN_MAGIC
   ST_Class4:
-    RMenu(ST_HP4,ST_Level4,ST_Spell9,ST_Spell1,0x18, 0x50,0x6E8,ClassDescGetter)
+    RMenu(ST_HP4,ST_Level4,ST_Spell1,ST_Spell1,0x18, 0x50,0x6E8,ClassDescGetter)
     //RMenu(0,0,0,0,0x18,0x50,0x0,NameDescGetter)
 
   ST_Name4:
-    RMenu(ST_HP4,ST_Level4,ST_Spell9,ST_Spell1,0x18, 0x50,0x6E8,ClassDescGetter)
+    RMenu(ST_HP4,ST_Level4,ST_Spell5,ST_Spell5,0x18, 0x50,0x6E8,ClassDescGetter)
 
   ST_Level4:
-    RMenu(ST_Class4,ST_HP4,ST_Spell9,ST_Exp4,0x6,0x78,0x542)
+    RMenu(ST_Class4,ST_HP4,ST_Spell5,ST_Exp4,0x6,0x78,0x542)
 
   ST_Exp4:
-    RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Spell1,0x26,0x78,0x543)
+    RMenu(ST_Class4,ST_HP4,ST_Level4,ST_Spell5,0x26,0x78,0x543)
 
   ST_HP4:
-    RMenu(ST_Level4,ST_Class4,ST_Spell9,ST_Spell1,0x6,0x88,0x544)
+    RMenu(ST_Level4,ST_Class4,ST_Spell5,ST_Spell5,0x6,0x88,0x544)
 
     ST_Spell1:
-      RMenu(0,ST_Spell2,ST_Class4,ST_Spell9,0x66,0x18,0,GaidenRTextLooper,GaidenRTextGetter) //      RMenu(ST_Spell8,ST_Spell2,ST_Class4,ST_Spell9,0x66,0x18,0,GaidenRTextLooper,GaidenRTextGetter)
+      RMenu(ST_Spell5,ST_Spell2,ST_Class4,ST_Class4,0x66,0x18,0,GaidenRTextLooper,GaidenRTextGetter) //      RMenu(ST_Spell8,ST_Spell2,ST_Class4,ST_Spell9,0x66,0x18,0,GaidenRTextLooper,GaidenRTextGetter)
 
 
   ST_Donate:
@@ -313,39 +314,41 @@ ALIGN 4
 
 #ifdef GAIDEN_MAGIC
 
+//(up,down,left,right,xcoord,ycoord,TID)
+
   ST_Spell2:
-    RMenu(ST_Spell1,ST_Spell3,ST_Class4,ST_Spell10,0x66,0x28,2,GaidenRTextLooper,GaidenRTextGetter)
+    RMenu(ST_Spell1,ST_Spell3,ST_Class4,ST_Class4,0x66,0x28,1,GaidenRTextLooper,GaidenRTextGetter)
 
   ST_Spell3:
-    RMenu(ST_Spell2,ST_Spell4,ST_Class4,ST_Spell11,0x66,0x38,4,GaidenRTextLooper,GaidenRTextGetter)
+    RMenu(ST_Spell2,ST_Spell4,ST_Class4,ST_Class4,0x66,0x38,2,GaidenRTextLooper,GaidenRTextGetter)
   ST_Spell4:
-    RMenu(ST_Spell3,ST_Spell5,ST_Class4,ST_Spell12,0x66,0x48,6,GaidenRTextLooper,GaidenRTextGetter)
+    RMenu(ST_Spell3,ST_Spell5,ST_Class4,ST_Class4,0x66,0x48,3,GaidenRTextLooper,GaidenRTextGetter)
   ST_Spell5:
-    RMenu(ST_Spell4,ST_Spell6,ST_Class4,ST_Spell13,0x66,0x58,8,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell6:
-    RMenu(ST_Spell5,ST_Spell7,ST_Exp4,ST_Spell14,0x66,0x68,10,GaidenRTextLooper,GaidenRTextGetter)
-	
-  ST_Spell7:
-    RMenu(ST_Spell6,ST_Spell8,ST_HP4,ST_Spell15,0x66,0x78,12,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell8:
-    RMenu(ST_Spell7,ST_Spell1,ST_HP4,ST_Spell16,0x66,0x88,14,GaidenRTextLooper,GaidenRTextGetter)
-	
-  ST_Spell9:
-    RMenu(0,ST_Spell10,ST_Spell1,ST_Class4,0xA6,0x18,1,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell10:
-    RMenu(ST_Spell9,ST_Spell11,ST_Spell2,ST_Class4,0xA6,0x28,3,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell11:
-    RMenu(ST_Spell10,ST_Spell12,ST_Spell3,ST_Class4,0xA6,0x38,5,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell12:
-    RMenu(ST_Spell11,ST_Spell13,ST_Spell4,ST_Class4,0xA6,0x48,7,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell13:
-    RMenu(ST_Spell12,ST_Spell14,ST_Spell5,ST_Class4,0xA6,0x58,9,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell14:
-    RMenu(ST_Spell13,ST_Spell15,ST_Spell6,ST_Level4,0xA6,0x68,11,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell15:
-    RMenu(ST_Spell14,ST_Spell16,ST_Spell7,ST_HP4,0xA6,0x78,13,GaidenRTextLooper,GaidenRTextGetter)
-  ST_Spell16:
-    RMenu(ST_Spell15,ST_Spell9,ST_Spell8,ST_HP4,0xA6,0x88,15,GaidenRTextLooper,GaidenRTextGetter)
+    RMenu(ST_Spell4,ST_Spell1,ST_Class4,ST_Class4,0x66,0x58,4,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell6:
+  //  RMenu(ST_Spell5,ST_Spell7,ST_Exp4,ST_Spell14,0x66,0x68,10,GaidenRTextLooper,GaidenRTextGetter)
+	//
+  //ST_Spell7:
+  //  RMenu(ST_Spell6,ST_Spell8,ST_HP4,ST_Spell15,0x66,0x78,12,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell8:
+  //  RMenu(ST_Spell7,ST_Spell1,ST_HP4,ST_Spell16,0x66,0x88,14,GaidenRTextLooper,GaidenRTextGetter)
+	//
+  //ST_Spell9:
+  //  RMenu(0,ST_Spell10,ST_Spell1,ST_Class4,0xA6,0x18,1,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell10:
+  //  RMenu(ST_Spell9,ST_Spell11,ST_Spell2,ST_Class4,0xA6,0x28,3,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell11:
+  //  RMenu(ST_Spell10,ST_Spell12,ST_Spell3,ST_Class4,0xA6,0x38,5,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell12:
+  //  RMenu(ST_Spell11,ST_Spell13,ST_Spell4,ST_Class4,0xA6,0x48,7,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell13:
+  //  RMenu(ST_Spell12,ST_Spell14,ST_Spell5,ST_Class4,0xA6,0x58,9,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell14:
+  //  RMenu(ST_Spell13,ST_Spell15,ST_Spell6,ST_Level4,0xA6,0x68,11,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell15:
+  //  RMenu(ST_Spell14,ST_Spell16,ST_Spell7,ST_HP4,0xA6,0x78,13,GaidenRTextLooper,GaidenRTextGetter)
+  //ST_Spell16:
+  //  RMenu(ST_Spell15,ST_Spell9,ST_Spell8,ST_HP4,0xA6,0x88,15,GaidenRTextLooper,GaidenRTextGetter)
 
 
 

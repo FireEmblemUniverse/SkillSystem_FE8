@@ -8,10 +8,10 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 {
 	// Treat level = -1 as any level equal to or below the unit's current level.
 	int unitLevel = unit->level;
-	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
+	//if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
 	u8* currBuffer = SpellsBuffer;
 	//SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
-	SpellList* ROMList = SpellListTable[unit->pClassData->number];	
+	//SpellList* ROMList = SpellListTable[unit->pClassData->number];	
 
 	for ( int i = 0 ; i < 5 ; i++ )	
 	{
@@ -23,7 +23,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 		}
 	}
 
-	
+	/*
 	if ( ROMList )
 	{
 		// ROMList is a non-null pointer.
@@ -40,6 +40,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 			}
 		}
 	}
+	*/
 	// Whether or not there were any matching spells (or if the list even existed), we need to terminate the list.
 	*currBuffer = 0;
 	return SpellsBuffer;
@@ -132,8 +133,10 @@ int GetValidSpellToAttackWith(Unit* unit, u8* spells)
 int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 {
 // Vanilla behaviour 
+	
 	int vanillaEquipped = GetVanillaEquipped(unit);
 	//return vanillaEquipped;
+	if (!UNIT_IS_VALID(unit)) return vanillaEquipped; 
 	
 	//u8* spells = SpellsGetter(unit, 1);
 	//return 0xFF30; // Always equipped with tackle I guess? lol 
@@ -410,8 +413,7 @@ void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
 		int cost = GetSpellCost(unit->weapon);
 		// Let's set the HP depletion bit.
 		buffer->attributes |= BATTLE_HIT_ATTR_HPSTEAL; // "HP drain" bit.
-		// Now let's subtract the cost from their HP. The check before gurantees they have enough HP to cast right now.
-		unit->unit.curHP -= cost;
+		// Now let's subtract the cost from the HP change. The check before gurantees they have enough HP to cast right now.
 		buffer->damage -= cost;
 	}
 	else
@@ -451,34 +453,34 @@ int HasSufficientHP(Unit* unit, int spell)
 int CanCastSpellNow(Unit* unit, int spell)
 {
 	// This function should do a bit of miscellaneous conditional stuff.
-	int type = GetItemType(spell);
-	if ( type != ITYPE_STAFF )
-	{
+	//int type = GetItemType(spell);
+	//if ( type != ITYPE_STAFF )
+	//{
 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
-	}
-	else
-	{
-		return CanUnitUseItem(gActiveUnit,spell);
-	}
+	//}
+	//else
+	//{
+		//return CanUnitUseItem(gActiveUnit,spell);
+	//}
 }
 
 int CanCastSpell(Unit* unit, int spell) // Same as CanCastSpellNow but calls the functions... without the "Now."
 {
 	int type = GetItemType(spell);
-	if ( type != ITYPE_STAFF )
-	{
+	//if ( type != ITYPE_STAFF )
+	//{
 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
-	}
-	else
-	{
-		return CanUnitUseItem(gActiveUnit,spell);
-	}
+	//}
+	//else
+	//{
+	//	return CanUnitUseItem(gActiveUnit,spell);
+	//}
 }
 
 int CanUseAttackSpellsNow(Unit* unit, int type) // Can the unit use a Gaiden spell now that's an attack?

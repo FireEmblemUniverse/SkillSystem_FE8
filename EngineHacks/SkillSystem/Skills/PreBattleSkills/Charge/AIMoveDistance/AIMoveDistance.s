@@ -18,6 +18,9 @@ AIMoveDistance:
 
 	// new code
 
+
+	push {r0-r4}
+
 	ldr r2, = gActionData
 
 	// x and y moved to
@@ -26,7 +29,7 @@ AIMoveDistance:
 
 	// total distance
 
-	push {r4}
+	
 	mov r4, #0
 
 	ldr r2, =gActiveUnit
@@ -61,19 +64,19 @@ AIMoveDistance:
 	ldr r2, = gActionData
 	strb r4, [r2, #0x10]
 
-	pop {r4}
+	pop {r0-r4}
 
 	// vanilla code
 
 	mov r0, r8
 	strb r0, [r4, #0x8]
 	mov r0, r9
-	strb r0, [r4, #0xA]
+	strb r0, [r4, #0x9]
 
 	// return
 
-	ldr r0, =#0x8039C4C + 1
-	bx r0
+	ldr r1, =#0x8039C4C + 1
+	bx r1
 
 	.pool
 	.align

@@ -132,6 +132,9 @@ ALIGN 4
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 MOVE (-1) 0x101 [13,28]
 MOVE (-1) 0x102 [13,29]
 MOVE (-1) 0x103 [19,28]
@@ -179,8 +182,9 @@ LOAD_S2 1
 SetUnitStatusAll(0xA0DF, State, Hide, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 ENUN 
 
-
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(TrainerL, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(ChampionBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
@@ -258,7 +262,7 @@ SADD s9 sC s0
 MUSI; 
 SMOV 0x2 ChampionsRoomBG; // background 
 CALL $9EE2E8; 
-
+PauseFreeMovement
 SET_ACTIVE 0 
 
 
@@ -292,6 +296,7 @@ CHECK_TUTORIAL
 BNE 12 sC s0 
 CHECK_HARD 
 BNE 13 sC s0 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(39, True, 0x90EF) 
 DISA SableyeUnitID // only 1 hackmon on difficult 
 // Difficult mode 
@@ -300,11 +305,13 @@ SetUnitStatus(ShedinjaUnitID, YCoord, 12)
 GOTO 14 
 
 LABEL 12 // Normal mode 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(30, True, 0x90EF) 
 DISA ShedinjaUnitID 
 DISA SableyeUnitID 
 GOTO 14 
 LABEL 13 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(99, True, 0x90EF) // lvl 99 on Lunatic only 
 //AutoLevelUnits(SaffronGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
@@ -413,7 +420,7 @@ SetUnitStatus(SableyeUnitID, CurrentHP, 30)
 SCOORD sB [13,28]
 SET_CURSOR_SB
 CAM1 [13,28]
-SetNearbyDangerRadius
+VeslySetDangerRadius
 
 
 

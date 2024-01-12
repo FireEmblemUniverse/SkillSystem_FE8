@@ -19,6 +19,18 @@ beq		NoBallistaAbility
 mov		r1,#0x1
 NoBallistaAbility:
 mov		r12,r1					@r12 has ballista check flag
+mov r4, r0 @ unit 
+mov r5, r2 @ func? 
+
+
+
+@ r0 = unit 
+bl BuildStraightLineRangeFromUnit 
+cmp r0, #1 
+beq Exit 
+
+mov r0, r4 
+mov r2, r5 @ func? 
 mov		r1,#0x1
 neg		r1,r1
 @ldr		r3,GetRangeBitfield
@@ -136,7 +148,7 @@ str		r1,[r0]
 @Continue: 
 @bl LineOfSight 
 
-
+Exit: 
 pop		{r7}
 mov		r8,r7
 pop		{r4-r7}

@@ -1,0 +1,14 @@
+#ifdef ENABLE_PERSONAL_INFO
+	#ifndef UTF8 
+		#define UTF8 
+	#endif // NARROW_FONT
+#endif // PENABLE_PERSONAL_INFO
+
+#ifdef UTF8 
+	#include "FontInstaller/FontPatches.event"
+	#include "FontInstaller/FontTableDef.event"
+	#include "FontInstaller/InstallConfig.event"
+	#include "FontInstaller/FontInstaller.event"
+#endif 
+
+	

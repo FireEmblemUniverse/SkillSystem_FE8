@@ -1,0 +1,155 @@
+
+// Note: Extra units' items will be sent to supply when saving in order to maximize available space. Without doing this, we'd have 33% less space. 
+// Gfx glitch of duplicated names at bottom of items menu when scrolling from the top 
+// Stat Screen from within Prep won't scroll to extra units 
+
+#ifndef InitSramFlag
+	#define InitSramFlag 0xEB 
+#endif 
+
+ALIGN 4 
+InitSRAM_Flag: 
+WORD InitSramFlag
+
+#define EnsureUnitInParty(unitID) "SVAL s1 unitID; ASMC EnsureUnitInPartyASMC" 
+
+#include "PrepHooks.lyn.event" 
+#include "Prep.lyn.event" 
+#include "Boxes.lyn.event" 
+#include "CheckSRAM.lyn.event" 
+
+// Take over link arena SRAM 
+#define EXPAND_PARTY_MAX 
+// Allows for 97 extra units instead of 51 extra units to be saved. 
+
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#endif 
+
+PUSH
+
+#ifdef EXPAND_PARTY_MAX 
+ORG 0x0AB90E
+BYTE 0x00 0x00 0x00 0x20 // Disable link arena 
+
+ORG $a6560 
+SHORT $4770 // WriteNewMultiArenaSave
+ORG $a6738 // WriteMultiArenaSaveTeamName	
+SHORT $4770 
+ORG $a6774 // WipeMultiArenaSaveTeam
+SHORT $4770 
+ORG $a67c8 // CopyMultiArenaSaveTeam
+SHORT $4770 
+ORG $a6840 // SwapMultiArenaSaveTeams
+SHORT $4770 
+ORG $a68dc // WriteMultiArenaSaveTeam
+SHORT $4770 
+ORG $a69a0 // WriteMultiArenaSaveRankings	
+SHORT $4770 
+ORG $a6a04 // WriteMultiArenaSaveConfig
+SHORT $4770 
+
+
+ORG $a3950 // save bonus content something 
+SHORT $4770 // bx lr 
+
+ORG $A3984 // save rankings something 
+SHORT $4770 // bx lr 
+
+ORG $A3EA4 // something that writes to sound room SRAM 
+SHORT $4770 // bx lr 
+
+ORG $A4000 // something that writes to arena SRAM 
+SHORT $4770 
+
+// func SRAMInit at 0x80A2C3C 
+ORG $A2CA4 // tests SRAM by writing to $7EA0 in SRAM 
+WORD $7FFC // vanilla uses $E0073A0 to test SRAM  
+
+#endif 
+
+// Checksum computation function now returns a constant
+// (This was already included in EMS) 
+ORG $0A6408
+SHORT $202A $4770 // mov r0, #42; bx lr
+
+ORG $A644C // makes it so if checksum for a save file is bad, it will still load the save file 
+SHORT $2001 // mov r0, #1 
+
+ORG $A2D9C // makes it so if your metadata is bad, it will still load your resume data 
+SHORT $2001 // mov r0, #1 
+
+
+
+  ORG 0x96340
+  POIN PREEXT_StartExtraEntry // takes over 
+  
+ ORG $9AF32 // kill PrepUnit_InitSMS(proc); from ProcPrepUnit_InitScreen as we call our own version 
+ SHORT $46c0 $46c0 
+ 
+ORG $A92FC 
+callHackNew(HookCopyGameSave) 
+
+//ORG $AA0D8 
+//jumpToHack(HookLoadGameSave) 
+
+ORG $A9280 // when creating a new save file i guess 
+//jumpToHack(something) 
+
+ORG $A9424
+callHackNew(HookSaveGame)
+SHORT $46c0 
+SHORT $1c20 // Mov r0, r4 (vanilla)
+
+ORG $A4EA4 
+callHackNew(HookInitSave) 
+
+  
+POP
+
+ALIGN 4 
+PartySizeThreshold: 
+WORD NumberOfUnitsBeforeStoring
+//WORD 45 // Units past this will be moved to PC box when saving 
+
+ALIGN 4 
+BoxCapacity: 
+#ifdef EXPAND_PARTY_MAX 
+WORD 97 
+#endif 
+#ifndef EXPAND_PARTY_MAX 
+WORD 51 
+#endif 
+
+ALIGN 4 
+BoxBufferCapacity:
+WORD 114 // 0x2028 bytes / 0x48 unit struct size = #0x72 / #114 units 
+
+
+// 73A0 
+
+ALIGN 4
+PCBoxSaveBlockDecl:
+#ifdef EXPAND_PARTY_MAX 
+	//    offst type // desc
+	SHORT $691C 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
+	SHORT $70BC 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
+	SHORT $785C 4 // 7: Pc box for save file 3	undefined 
+#endif 
+#ifndef EXPAND_PARTY_MAX 
+	SHORT $7400 4 // 5: Pc box for save file 1 	SAVE_BLOCK_LINKARENA  = 5,
+	SHORT $7800 4 // 6: Pc box for save file 2 	SAVE_BLOCK_UNK6       = 6,
+	SHORT $7C00 4 // 7: Pc box for save file 3	undefined 
+#endif 
+
+ALIGN 4
+PCBoxSizeLookup:
+#ifdef EXPAND_PARTY_MAX 
+	SHORT $7A0 // type 4: pc box 
+#endif 
+#ifndef EXPAND_PARTY_MAX 
+	SHORT $400 
+#endif 
+
+
+

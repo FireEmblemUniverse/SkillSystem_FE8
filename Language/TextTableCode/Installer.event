@@ -1,0 +1,17 @@
+
+#ifdef INSTALL_OTHER_LANGUAGES 
+#include "GetStringFromIndex.lyn.event" 
+
+ALIGN 4 
+CurrentLanguage_Link: 
+WORD CurrentLanguage
+
+ALIGN 4 
+TextTables: 
+POIN TextTable
+POIN TextTable_Spanish
+//POIN TextTable_Chinese 
+
+#endif 
+
+

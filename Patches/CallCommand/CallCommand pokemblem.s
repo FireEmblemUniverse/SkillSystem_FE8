@@ -62,26 +62,54 @@ bne SetNoCallFlag
 b Start 
 
 SetNoCallFlag: 
+
+bl GetFreeMovementState
+cmp r0, #0 
+bne Start @ if FMU is active, do not set flag to prevent calling 
+
 mov r0, #8 @ Cannot call 
 blh SetEventId
 
 Start: 
 
+bl AreAllPlayersSafe
+mov r7, r0 
 
 LoopThroughFirst5Units:
 add r4, #1  @ r4 also increases in NextUnit 
 add r5, #1 
-cmp r5, #6 
+cmp r5, #7 
 bge End @ We have found all the units we need to act upon 
 
 LoopThroughUnits:
 mov r0,r4
 blh GetUnit @ 19430
-@cmp r0,#0
-@beq NextUnit
+cmp r0,#0
+beq NextUnit
 ldr r3,[r0]
 cmp r3,#0
 beq NextUnit
+ldrb r3, [r3, #4] @ unit ID 
+ldr r2, =ProtagID_Link 
+ldr r2, [r2] 
+cmp r2, r3 
+bne Continue 
+ldr r1, =CurrentUnit 
+ldr r1, [r1] @ Current unit ram struct pointer 
+ldr r1, [r1] @ unit pointer 
+ldrb r1, [r1, #4] 
+cmp r1, r2 
+beq NextUnit 
+mov r6, r0 
+mov r0, #1 @ Battle 
+blh CheckEventId
+cmp r0, #1 
+beq NextUnit @ do not move the protag unit if we attacked or were in FMU 
+cmp r7, #0 
+beq NextUnit @ do not move the protag unit if it's unsafe 
+mov r0, r6 
+
+Continue:  
 ldr r3,[r0,#0xC] @ condition word
 @ if you add +1 to include Hide (eg 0x4F), it'll ignore the active unit, which may be useful 
 mov r2,#0x4F @ moved/dead/undeployed/cantoing 
@@ -263,6 +291,12 @@ blh CheckEventId
 cmp r0, #0 
 bne Usability_False
 
+ldr r0, =RefreshEvenInTrainerBattleFlag_Link 
+ldrb r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne ReturnTrue 
+
 ldr r0, =PlayableCutsceneFlag @ Flag that prevents call 
 lsl r0, #24 
 lsr r0, #24 
@@ -280,6 +314,7 @@ bne Usability_False
 blh Get2ndFreeUnit
 cmp r0, #0 
 beq Usability_False 
+ReturnTrue: 
 mov r0, #1 
 b Exit 
 

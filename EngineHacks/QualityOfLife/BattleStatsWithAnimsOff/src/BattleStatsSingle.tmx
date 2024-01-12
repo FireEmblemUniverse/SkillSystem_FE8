@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="12" height="5" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="AnimOff" tilewidth="8" tileheight="8" tilecount="32" columns="8">
+  <image source="Anims_Off_Battle_Graphic-Sokaballa.png" width="64" height="32"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="12" height="5">
+  <data encoding="csv">
+5,7,7,8,8,8,8,8,8,2147483655,2147483655,2147483653,
+4,9,10,11,12,9,10,11,12,9,10,2147483652,
+4,17,18,19,20,17,18,19,20,17,18,2147483652,
+4,14,15,16,14,15,16,14,15,16,14,2147483652,
+1073741829,1073741831,1073741831,1073741832,1073741832,1073741832,1073741832,1073741832,1073741832,3221225479,3221225479,3221225477
+</data>
+ </layer>
+</map>

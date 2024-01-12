@@ -3,8 +3,8 @@
 #define GenericB UnitRoute2NTrainer
 #define ClassA ClassRoute2NWildA
 #define ClassB ClassRoute2NWildB
-#define WildLvl 6 
-#define TrainerL 6 
+#define WildLvl 9 
+#define TrainerL 9 
 #define KadabraLvl 20
 
 
@@ -29,6 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -75,13 +76,39 @@ ToPewter:
 ChapterTransition(PewterCh, 19, 36)
 
 ToViridianForestN:
-ChapterTransition(ViridianForestNCh, 5, 7)
+DigChapterTransition(ChapterID, ViridianForestNCh, 5, 7)
 
 ToDiglettsCave:
-ForcedChapterTransition(DiglettsCaveCh, 4, 1)
+DigForcedChapterTransition(ChapterID, DiglettsCaveCh, 4, 1)
 
 ToRoute2S:
 ChapterTransition(Route2SCh, 19, 5)
+
+
+
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(2, 2, 11, 12) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [9,7]
+CUMO [9,7]
+STAL 30
+CURE  
+TutText(TrainerTip_Accessory)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
@@ -96,7 +123,7 @@ CutBush(11,13)
 CutBush(21,10)
 
 //RockSmash(3,2)
-SignTrap(9,7, TrainerTip_Accessory)
+TutSign(9,7,ChapterID*2, TrainerTip_Accessory)
 
 //StrengthBoulder(4,3)
 
@@ -134,21 +161,24 @@ BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
 
-LOAD1 0x1 BossUnit
-ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(16,27,21,31)) //SE 
-UnmarkTrainerAsDefeated(0xEE)
-AutoLevelUnits(KadabraLvl, True, 0xE0EF) // Wilds  & bushes 
+
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Grass, Range(0,0,2,2), Range(2,2,8,8)) //patch 
+RandomizeEnemyCoords(Grass, Range(0,0,2,2), Range(2,2,5,7)) //NW section of the grass 
+LOAD1 0x1 EnemyUnitsB
+ENUN
+RandomizeEnemyCoords(Grass, Range(0,0,2,2), Range(2,2,8,8)) //grass
 
 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  & bushes 
 
- 
+LOAD1 0x1 BossUnit
+ENUN
+RandomizeEnemyCoords(Grass, Range(0,0,1,1), Range(16,27,21,31)) //SE 
+UnmarkTrainerAsDefeated(0xEE)
+AutoLevelUnits(KadabraLvl, True, 0xE0EF) // Wilds  & bushes 
 
 
 CALL SetBushHpEvent
@@ -204,9 +234,10 @@ EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [1,2] 001b	0x0 0x01 REDA1R2 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+//UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT 
 
-
+EnemyUnitsB:
 UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [1,0] 0b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] BushAI
 UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [1,1] 0b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] BushAI
 

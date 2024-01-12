@@ -32,8 +32,8 @@
 #ifndef ItemTable
   #define ItemTable 0x809B10
 #endif
-#ifndef DebuffTable
-  #define DebuffTable 0x203f100
+#ifndef DebuffTableRam
+  #define DebuffTableRam 0x203f100
 #endif
 //#ifndef PersonalMusicTable
   //#define PersonalMusicTable 0x758a60
@@ -90,6 +90,10 @@
 
 // Weapon ability 4 definitions: 
 // All free ? 
+
+
+//Used For Consolidated AdvWeaponLocks 
+#define AdvWeaponLock 0x01000000
 
 
 // Weapon Effect

@@ -213,6 +213,7 @@ LABEL 0 // if yes, do stuff here
 TutText(StatsSapped)
 DebuffUnit(0x7FFF, 0x0AAAAAAA)
 LABEL 99 
+ENUF RefreshEvenInTrainerBattleFlag
 NoFade 
 ENDA 
 
@@ -220,16 +221,22 @@ ENDA
 BeginningScene:
 CALL GlobalBeginningScene
 CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
 CHECK_EVENTID VolcanobadgeObtained
 BNE 0x63 rC r0 
 ENUT TrainerBattleActiveFlag
+ENUT RefreshEvenInTrainerBattleFlag
 MUSC 0x7FFF // Mute 
 CAM1 [8,6] 
 
 
 LOAD1 0x1 EnemyTrainersA
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(CinnabarGymLevel, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(CinnabarGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 

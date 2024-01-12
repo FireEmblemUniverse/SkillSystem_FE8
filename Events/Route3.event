@@ -3,8 +3,8 @@
 #define GenericB UnitRoute3Trainer
 #define ClassA ClassRoute3WildA
 #define ClassB ClassRoute3WildB
-#define WildLvl 5
-#define TrainerL 7 
+#define WildLvl 9
+#define TrainerL 13
 
 
 
@@ -29,6 +29,7 @@ POIN BeginningScene EndingScene
 
 TurnBasedEvents:
 TurnEventPlayer(0,GlobalTurnEvent,0,255)
+TurnEventPlayer(DisableTutFlag_A, TutMsg1, 0, 255) // 
 END_MAIN
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -79,6 +80,29 @@ ToRoute4W:
 ChapterTransition(Route4WCh, 12, 19)
 
 
+TutMsg1: 
+CHECK_EVENTID DisableTutMsgsFlag
+BNE 99 sC s0 
+ENUF DisableTutFlag_A
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC CheckNewFlag_ASMC 
+BNE 99 sC s0 
+CountPlayersInRange_ASMC(21, 6, 33,16) 
+BEQ 99 sC s0 
+ENUT DisableTutFlag_A
+EVBIT_MODIFY 4
+PauseFreeMovement
+STAL 5
+CAM1 [32,11]
+CUMO [32,11]
+STAL 30
+CURE  
+TutText(TrainerTip_PartySize)
+SVAL s1 ((ChapterID*2)+(HelpMsgFlagOffset<<3)) 
+ASMC SetNewFlag_ASMC 
+LABEL 99 
+NoFade 
+ENDA 
 
 
 // Allocated 2 traps per chapter, in most cases 
@@ -89,7 +113,7 @@ Traps1:
 CoinsTrap(13,15,ChapterID*2,550)
 CoinsTrap(57,15,(ChapterID*2)+1,600)
 
-SignTrap(32,11, TrainerTip_PartySize)
+TutSign(32,11, ChapterID*2,TrainerTip_PartySize)
 
 //CutBush(4,2)
 //RockSmash(3,2)
@@ -250,14 +274,15 @@ SHORT R3_0xE6_BD // 0xE4
 SHORT 650 // Gold 
 TDQ_TableTerminator ; }
 
+// all trainers with the same sprite will face the same direction! 
 HumanTrainers:
-UNIT 0xE0 bug_catcherID 0x0 Level(0, Enemy, 1) [7,8]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE1 lassID 0x0 Level(0, Enemy, 1) [13,03]  0b 0x0	0x0 0x0 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
-UNIT 0xE2 bug_catcherID 0x0 Level(0, Enemy, 1) [23,03]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
-UNIT 0xE3 lassID 0x0 Level(0, Enemy, 1) [30,09]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI //
-UNIT 0xE4 camperID 0x0 Level(0, Enemy, 1) [35,05]  0b 0x0	0x0 0x0 [SevenRangeWep,0x0,0x0,0x0] TrainerBossAI // TrainerBossAI
-UNIT 0xE5 lassID 0x0 Level(0, Enemy, 1) [45,11]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI // TrainerBossAI
-UNIT 0xE6 camperID 0x0 Level(0, Enemy, 1) [52,08]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI // TrainerBossAI
+UNIT 0xE0 bug_catcherID 0x0 Level(0, Enemy, 1) [22,3]  0b 0x0	0x0 0x0 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE1 lassID 0x0 Level(LVFACELEFT, Enemy, 1) [11,09]  0b 0x0	0x0 0x0 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI
+UNIT 0xE2 bug_catcherID 0x0 Level(0, Enemy, 1) [45,11]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI
+UNIT 0xE3 lassID 0x0 Level(LVFACELEFT, Enemy, 1) [34,10]  0b 0x0	0x0 0x0 [ThreeRangeWep,0x0,0x0,0x0] TrainerBossAI //
+//UNIT 0xE4 camperID 0x0 Level(0, Enemy, 1) [35,05]  0b 0x0	0x0 0x0 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI // TrainerBossAI
+//UNIT 0xE5 lassID 0x0 Level(0, Enemy, 1) [45,11]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI // TrainerBossAI
+UNIT 0xE6 camperID 0x0 Level(LVFACERIGHT, Enemy, 1) [49,6]  0b 0x0	0x0 0x0 [OneRangeWep,0x0,0x0,0x0] TrainerAI // TrainerBossAI
 UNIT
 
 

@@ -23,7 +23,6 @@
 	#incbin "Staff_tsStart2.dmp"
 
 	Staff6C_fsDelete:
-	//#incbin "Staff_fsDelete.dmp"
 	#include "Staff_fsDelete.lyn.event"
 	
 	Staff6C_tsCreate:

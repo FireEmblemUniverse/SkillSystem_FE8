@@ -149,8 +149,10 @@ Break:
 mov r0, #0 
 blh GetTrap 
 mov r3, r0 
+cmp r3, #0 
+beq NoLoadByte
 ldrb r0, [r3, #2] 
-
+NoLoadByte: 
 pop {r4-r7} 
 pop {r1} 
 ldr r1, =0x801A1B1 
@@ -280,12 +282,14 @@ ldr r2, [r2]
 ldr r1, =FlyingTypeLink 
 ldr r1, [r1] 
 orr r1, r2 
-ldr r2, =WaterTypeLink 
-ldr r2, [r2] 
-orr r1, r2 
 tst r0, r1 
 bne NoIssue @ they can traverse it no problem 
+bl DoesActorHaveCleatsOrBalloonEquipped
+cmp r0, #0 
+bne NoIssue 
 
+ldr r3, =CurrentUnit 
+ldr r3, [r3]
 ldr r1, [r3, #4] @ class pointer 
 ldr r1, [r1, #0x38] @ movement cost pointer 
 ldr r0, =IceTerrainTypeLink 

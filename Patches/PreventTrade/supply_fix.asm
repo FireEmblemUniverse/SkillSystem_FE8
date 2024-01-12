@@ -37,8 +37,7 @@ mov r0,r4
 
 mov r4,r1
 
-ldr r2, =MemorySlot3 
-str r0, [r2] @[0x30004C4]!!?
+
 
 mov r2, #0 @Counter 
 PreventTradingLoop:
