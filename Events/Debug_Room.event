@@ -488,7 +488,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(33, True, 0x145) // all 
+AutoLevelUnits(32, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 SetUnitStatus(1, 0x28, IceBeam)
@@ -496,6 +496,7 @@ SetUnitStatus(1, 0x29, Ember)
 SetUnitStatus(1, 0x2A, MudShot)
 SetUnitStatus(1, 0x2B, Flamethrower)
 SetUnitStatus(1, 0x2C, Growth)
+SetUnitStatus(1, 9, 97)
 
 
 
@@ -552,9 +553,9 @@ ENUT DomeFossilFlag
 
 ENUT PokefluteFlag
 
-//ENUT BoulderbadgeObtained 
-//ENUT CascadebadgeObtained 
-//ENUT ThunderbadgeObtained 
+ENUT BoulderbadgeObtained 
+ENUT CascadebadgeObtained 
+ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
 ENUT CutHmFlag
 ENUT StrengthBoulderFlag

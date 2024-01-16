@@ -137,3 +137,43 @@ pop {r4-r5}
 pop {r1}
 bx r1 
 .ltorg 
+
+.global MoveToLearnAtLevel 
+.type MoveToLearnAtLevel, %function 
+MoveToLearnAtLevel: 
+push {r4, lr} 
+mov r4, r0 @ unit 
+@mov r5, r1 @ level 
+	ldr r0, [r4, #4] @ Class pointer 
+	ldrb r0, [r0, #4] @ Class ID 
+	lsl r0, #2 @ 4 bytes per entry in table as it's a bunch of POINs
+	
+	ldr r3, =MoveListTable @ A bunch of POINs
+	ldr r3, [r3, r0] @ Class ID entry 
+	mov r0, #0 
+	cmp r3, #0 
+	beq Exit2 @ no poin error, so exit 
+	mov r2, #0 @ Counter 
+
+	MoveToLearnLoop2:
+	ldrh r0, [r3, r2] 
+	cmp r0, #0 @ Learning move '--' at level 0 terminates the list 
+	beq Exit2 
+	ldrb r0, [r3, r2] 
+	cmp r0, r1 @ r1 as current level 
+	beq LearnMove2 @ Required level is the same as your current level 
+	add r2, #2 @ Level, Move as 2 bytes per entry 
+	b MoveToLearnLoop2
+	LearnMove2:
+	
+
+Exit2: 
+pop {r4} 
+pop {r1} 
+bx r1 
+.ltorg 
+
+
+
+
+
