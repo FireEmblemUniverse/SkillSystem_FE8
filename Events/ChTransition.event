@@ -522,6 +522,8 @@ CHECK_EVENTID CompletedPokemonLeague // open Viridian Gym
 BNE 20 sC s0 
 CHECK_EVENTID EarthbadgeObtained // open other gyms 
 BNE 10 sC s0 
+
+// this part is for compatibility with save files before 1.12 
 CHECK_EVENTID BoulderbadgeObtained
 BEQ 1 sC s0 
 ENUT PewterGymClosedFlag
@@ -543,13 +545,13 @@ BEQ 5 sC s0
 ENUT CeladonGymClosedFlag
 LABEL 5 
 CHECK_EVENTID MarshbadgeObtained
-BEQ  sC s0 
-ENUT SaffronGymClosedFlag
-LABEL  
-CHECK_EVENTID VolcanobadgeObtained
 BEQ 6 sC s0 
-ENUT CinnabarGymClosedFlag
+ENUT SaffronGymClosedFlag
 LABEL 6 
+CHECK_EVENTID VolcanobadgeObtained
+BEQ 7 sC s0 
+ENUT CinnabarGymClosedFlag
+LABEL 7 
 GOTO 99 
 
 LABEL 20 // Defeated champion 

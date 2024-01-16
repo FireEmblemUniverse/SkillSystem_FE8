@@ -411,6 +411,14 @@ String("V1.12.00 DEBUG BUILD  Jan 2023") ; BYTE 0; POP // this overflows into th
 #define CinnabarGymClosedFlag 0x126 
 #define ViridianGymClosedFlag 0x125 
 
+#define PewterGymRematchedFlag 0x124 
+#define CeruleanGymRematchedFlag 0x123
+#define VermilionGymRematchedFlag 0x122
+#define FuschiaGymRematchedFlag 0x121
+#define CeladonGymRematchedFlag 0x120 
+#define SaffronGymRematchedFlag 0x11F 
+#define CinnabarGymRematchedFlag 0x11E 
+#define ViridianGymRematchedFlag 0x11D 
 
 // Unit IDs 
 #define OaksAide 0xEA 

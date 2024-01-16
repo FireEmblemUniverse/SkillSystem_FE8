@@ -132,7 +132,7 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 
 MUSCFAST IntroBGM 
 ShowMap
-Text(MistyChallengeText)
+Text(MistyRematchText)
 
 
 
@@ -187,6 +187,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(MistyRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, HydroPump)
+ENUT CeruleanGymRematchedFlag 
 SVAL r3 5000 
 GIVETOMAIN 0 
 GiveSkillAccessory(0, RenewalID)
@@ -213,8 +214,15 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-
 EnemyTrainersA:
+UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[BubbleBeam,Confusion,Leer,0x0] ZoningHeal80GroupOneAI
+UNIT 0xA0 SeelID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[AuroraBeam,WaterGun,Tackle,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 PsyduckID 0xD0 Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[WaterGun,Confusion,TailWhip,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA2 HorseaID 0xD0 Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Bubble,Leer,Tackle,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 GoldeenID 0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[Headbutt,WaterGun,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 DratiniID 0xD0 Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[Leer,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+
+EnemyTrainersB:
 UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[HydroPump, Psychic, Thunderbolt,0x0] ZoningHeal80GroupOneAI
 UNIT 0xA0 DewgongID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[IceBeam,Surf,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA1 GolduckID 0xD0 Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[Waterfall,BodySlam,0x0,0x0] ZoningHeal50GroupOneAI

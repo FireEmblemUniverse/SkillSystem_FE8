@@ -69,7 +69,7 @@ CALL LoadAndPlacePlayers
 DisableFreeMovement
 #endif
 CHECK_EVENTID ThunderbadgeObtained
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [8,6] 
@@ -104,10 +104,42 @@ Text(LtSurgeChallengeText)
 ASMC 0x80160D1 // Return to map BGM 
 
 CAM1 [7,12] 
+GOTO 99 
+
+LABEL 10 // Rematch 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [8,6] 
+
+
+LOAD1 0x1 EnemyTrainersA
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(RematchLevel, True, 0x90EF) // Trainers given +5 visible levels 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveSkillAccessory(0xD0, LifeAndDeathID)
+//SilentGiveItemWithDurability(0xD0, SuperPotion,0x1)
+//SilentGiveItemWithDurability(0xA0, Berry,0x82)
+//SilentGiveItemWithDurability(0xA1, Berry,0x82)
+//SilentGiveItemWithDurability(0xA2, Berry,0x82)
+//SilentGiveItemWithDurability(0xA3, Berry,0x82)
+
+
+MUSCFAST IntroBGM 
+ShowMap
+Text(LtSurgeChallengeText)
 
 
 
-LABEL 0x63
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12]  
+
+LABEL 99
 NoFade
 ENDA
 
@@ -152,11 +184,11 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
-Text(LtSurgeDefeatText)
-GiveItemWithDurability(0, SpellScroll, Thunderbolt)
+Text(LtSurgeRematchDefeatText)
+GiveItemWithDurability(0, SpellScroll, Agility)
+ENUT VermilionGymRematchedFlag
 SVAL r3 5000 
 GIVETOMAIN 0 
-GiveSkillAccessory(0, LifeAndDeathID)
 FADI 4 
 ForcedChapterTransition(VermilionCh, 12,23)
 

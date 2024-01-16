@@ -57,7 +57,7 @@ ToViridian:
 ChapterTransition(ViridianCh, 30,11)
 
 Traps1:
-GenericCompletion(3,2,garySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+GenericCompletion(3,2,GarySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
 
 
 ENDTRAP
@@ -89,18 +89,18 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
 SilentGiveItemWithDurability(0xD0, StatAccessory, 0x80|EnergyBandT3_BoostIndex)
-//SilentGiveSkillAccessory(0xD0, AmaterasuID)
-SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
-//SilentGiveItemWithDurability(0xA0, Berry,0x8A)
-SilentGiveItemWithDurability(0xA0, SuperPotion,0x1)
-//SilentGiveItemWithDurability(0xA1, Berry,0x8A)
-SilentGiveItemWithDurability(0xA1, SuperPotion,0x1)
-//SilentGiveItemWithDurability(0xA2, Berry,0x8A)
-SilentGiveItemWithDurability(0xA2, SuperPotion,0x1)
-//SilentGiveItemWithDurability(0xA3, Berry,0x8A)
-SilentGiveItemWithDurability(0xA3, SuperPotion,0x1)
-//SilentGiveItemWithDurability(0xA4, Berry,0x8A)
-SilentGiveItemWithDurability(0xA4, SuperPotion,0x1)
+////SilentGiveSkillAccessory(0xD0, AmaterasuID)
+//SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+////SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA0, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA1, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA2, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA3, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA4, SuperPotion,0x1)
 
 
 MUSCFAST IntroBGM 
@@ -133,7 +133,8 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(GaryRematchDefeatText)
 //GiveItemWithDurability(0, SpellScroll, Fissure)
-ENUT EarthbadgeObtained 
+GiveItemWithDurability(0, SpellScroll, Bonemerang)
+ENUT ViridianGymRematchedFlag
 SVAL r3 10000 
 GIVETOMAIN 0 
 GiveSkillAccessory(0, BlossomID)
@@ -164,8 +165,8 @@ UNIT
 
 
 EnemyTrainersB: // rematch 
-UNIT 0xA6	MegaVenusaurID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [Solarbeam,Screech,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA7	MegaCharizardID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA6	MegaVenusaurID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [SolarBeam,Screech,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7	MegaCharizardXID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA8	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [HydroPump,Blizzard,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xA9 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
 UNIT 0xAA 	MegaAlakazamID 	0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
