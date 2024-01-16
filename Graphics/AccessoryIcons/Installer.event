@@ -144,6 +144,9 @@ SkillAccessoryIcons(CritUpID)
 SkillAccessoryIcons(LifeAndDeathID)
 #incbin "dmp/LifeAndDeathSurge.dmp"
 
+SkillAccessoryIcons(CantoPlusID)
+#incbin "dmp/Saddle.dmp"
+
 SkillAccessoryIcons(WaryFighterID)
 #incbin "dmp/WaryRing.dmp"
 

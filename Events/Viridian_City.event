@@ -159,11 +159,23 @@ EnterGym:
 ENUF ViridianGymClosedFlag 
 CHECK_EVENTID EarthbadgeObtained
 BEQ 10 sC s0 
-ForcedChapterTransition(ViridianGym2Ch, 15,19)
+CALL CallVirGym2
+GOTO 99 
 LABEL 10
+CALL CallVirGym
+LABEL 99 
+NoFade 
+ENDA 
+
+CallVirGym: 
 ForcedChapterTransition(ViridianGymCh, 15,19)
+NoFade 
+ENDA 
 
-
+CallVirGym2: 
+ForcedChapterTransition(ViridianGym2Ch, 15,19)
+NoFade 
+ENDA 
 
 
 TutMsg1: 

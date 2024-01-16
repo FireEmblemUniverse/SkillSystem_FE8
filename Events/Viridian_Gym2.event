@@ -85,6 +85,12 @@ AutoLevelUnits(ViridianGymBonus, False, 0x90EF) // 9 hidden levels regardless of
 //AutoLevelUnits(3, False, 0x90EF) 
 CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
 
+
+SetUnitStatus(ShedinjaUnitID, MaxHP, 1) // Shedinja 
+SetUnitStatus(SableyeUnitID, MaxHP, 30) // Sableye
+SetUnitStatus(ShedinjaUnitID, CurrentHP, 1)
+SetUnitStatus(SableyeUnitID, CurrentHP, 30)
+
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
@@ -105,7 +111,7 @@ SilentGiveItemWithDurability(0xD0, StatAccessory, 0x80|EnergyBandT3_BoostIndex)
 
 MUSCFAST IntroBGM 
 ShowMap
-Text(Giovanni_Gym_ChallengeText)
+Text(GaryRematchText)
 
 
 
@@ -133,11 +139,13 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 Text(GaryRematchDefeatText)
 //GiveItemWithDurability(0, SpellScroll, Fissure)
-GiveItemWithDurability(0, SpellScroll, Bonemerang)
+//GiveItemWithDurability(0, SpellScroll, Bonemerang)
+GiveItemWithDurability(0, ExoticCandy, 1)
 ENUT ViridianGymRematchedFlag
 SVAL r3 10000 
 GIVETOMAIN 0 
-GiveSkillAccessory(0, BlossomID)
+
+//GiveSkillAccessory(0, BlossomID)
 FADI 4 
 ForcedChapterTransition(ViridianCh, 30,11)
 LABEL 0x63 
@@ -165,13 +173,13 @@ UNIT
 
 
 EnemyTrainersB: // rematch 
-UNIT 0xA6	MegaVenusaurID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [SolarBeam,Screech,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA7	MegaCharizardXID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA8	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [13,10]	0b	0x0 0x1  REDA13R10 [HydroPump,Blizzard,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xA9 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [11,11] 0b	0x0 0x1  REDA11R11 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xAA 	MegaAlakazamID 	0xE1 Level(0, Enemy, 1)   [15,11]  0b	0x0 0x1  REDA15R11 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD5  	ShedinjaID 		0xE1 Level(0, Enemy, 1)   [10,13] 0b	0x0 0x1  REDA10R13 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
-UNIT 0xD6 	SableyeID 			0xE1 Level(0, Enemy, 1)   [16,13] 0b	0x0 0x1  REDA16R13 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA6	MegaVenusaurID 	0xE1 Level(0, Enemy, 1)   [2,3]	0b	0x0 0 0 [SolarBeam,Screech,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7	MegaCharizardXID 	0xE1 Level(0, Enemy, 1)   [3,4]	0b	0x0 0 0 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA8	MegaBlastoiseID 	0xE1 Level(0, Enemy, 1)   [4,3]	0b	0x0 0 0 [HydroPump,Blizzard,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA9 	MegaPidgeotID 		0xE1 Level(0, Enemy, 1)   [1,4] 0b	0x0 0 0 [SkyAttack,DoubleEdge,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xAA 	MegaAlakazamID 	0xE1 Level(0, Enemy, 1)   [5,4]  0b	0x0 0 0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xD5  	ShedinjaID 		0xE1 Level(0, Enemy, 1)   [2,5] 0b	0x0 0 0 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xD6 	SableyeID 			0xE1 Level(0, Enemy, 1)   [4,5] 0b	0x0 0 0 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
 UNIT
 	
 

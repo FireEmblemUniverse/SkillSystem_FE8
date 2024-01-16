@@ -237,6 +237,7 @@ TutSign(34,12,ChapterID*2+3, TrainerTip_ReorderMoves)
 //StrengthBoulder(4,3)
 //StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
 SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
+SkillAccessoryTrap(32,8, (ChapterID*2)+1, CantoPlusID)
 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
 
