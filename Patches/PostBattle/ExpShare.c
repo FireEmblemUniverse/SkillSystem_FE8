@@ -9,10 +9,23 @@ extern u32** TempRamWhileExpShare_Link;
 extern u32** TempRamWhileExpShare_Link2;
 extern u32** TempRamWhileExpShare_Link3;
 
+extern int MoveToLearnAtLevel(struct Unit* unit, int level); 
+
+int WillUnitLearnMove(struct Unit* unit, int expGain) { 
+	if ((expGain + unit->exp) < 100) return false; 
+	
+	return MoveToLearnAtLevel(unit, unit->level+1); 
+} 
+
 void GrantExp(struct Unit* unit) { 
 	if (gActiveUnit->level >= unit->level) { 
 		if (SkillTester(unit, ExpShareID_Link)) { 
 			int expGain = gBattleActor.expGain; 
+			
+			if (WillUnitLearnMove(unit, expGain)) { 
+			expGain = 99 - unit->exp; // cap them at 99 exp if they are about to learn a move 
+			if (expGain <= 0) return; 
+			} 
 			
 			//gEventSlot[1] = unit->pCharacterData->number; 
 			*ExpShareUnitID_Link[0] = unit->pCharacterData->number; 
