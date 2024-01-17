@@ -1,0 +1,53 @@
+//#define SongTableOffset  0x224470
+//#define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+SongTable(0x315,ring,7)
+
+    #include "MPlayDef.event"
+
+    #define    loop_sfx_grp_ring  ring_map
+    #define    loop_sfx_pri_ring  0
+    #define    loop_sfx_rev_ring  0
+    #define    loop_sfx_mvl_ring  127
+    #define    loop_sfx_key_ring  0
+    #define    loop_sfx_tbs_ring  1
+    #define    loop_sfx_exg_ring  0
+    #define    loop_sfx_cmp_ring  1
+
+    ALIGN 4
+
+loop_sfx_1:
+    BYTE        VOL     127*loop_sfx_mvl_ring/mxv
+    BYTE    KEYSH   loop_sfx_key_ring+0
+    BYTE        VOICE   0
+    BYTE        TIE     Cn3   v064
+    BYTE    W96
+loop_sfx_1_B1:
+    BYTE    W96
+    BYTE    W96
+    BYTE    GoTo
+     POIN2    loop_sfx_1_B1
+loop_sfx_1_B2:
+    BYTE    W06
+    BYTE        EOT     Cn3 
+    BYTE    FINE
+
+    ALIGN 4
+
+ring:
+    BYTE    1    // NumTrks
+    BYTE    0    // NumBlks
+    BYTE    loop_sfx_pri_ring    // Priority
+    BYTE    loop_sfx_rev_ring    // Reverb.
+
+    POIN2    loop_sfx_grp_ring
+
+    POIN2    loop_sfx_1
+
+    
+ring_map:
+WORD $3c00
+POIN ring_wav
+WORD $FF00FF
+
+ring_wav:
+#incbin "ring.bin"

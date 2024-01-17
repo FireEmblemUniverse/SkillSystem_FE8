@@ -110,7 +110,7 @@ MUSC 0x7FFF // Mute
 CAM1 [8,11] 
 
 
-LOAD1 0x1 EnemyTrainersA
+LOAD1 0x1 EnemyTrainersB
 ENUN 
 ENUT FIXED_GROWTHS_FLAG_ID
 AutoLevelUnits(RematchLevel, True, 0x90EF) // Trainers given +5 visible levels 

@@ -557,6 +557,8 @@ GOTO 99
 LABEL 20 // Defeated champion 
 ENUF ViridianGymClosedFlag 
 
+
+
 LABEL 10 // Defeated Giovanni already 
 ENUF PewterGymClosedFlag 
 ENUF CeruleanGymClosedFlag 
@@ -565,7 +567,6 @@ ENUF FuschiaGymClosedFlag
 ENUF CeladonGymClosedFlag 
 ENUF SaffronGymClosedFlag 
 ENUF CinnabarGymClosedFlag 
-
 
 LABEL 99 
 NoFade 

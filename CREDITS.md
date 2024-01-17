@@ -51,6 +51,8 @@ Blackbelt - Gabriel Knight
 
 Quick Claw - HusbandoEmblem
 
+Saddle - redppr 
+
 Difficulty Selection - Halbreadier
 
 # Sources:
@@ -149,6 +151,7 @@ Sound_NIMAP - circles, Alusq
 Submenu - 7743 
 UnitActionRework - Stanh
 L-Button Cycling - Aura Wolf
+Telephone - Sme 
 
 
 

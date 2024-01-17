@@ -383,11 +383,30 @@ BEQ 2 sC s0
 RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge 
 LABEL 2 
 
-LABEL 0x63
+CHECK_EVENTID RematchNotify2
+BNE 10 sC s0 
+ShowMap
+SVAL s2 OakNotifyRematches2Text
+CALL TelephoneEvent
+ENUT RematchNotify2 
+ENUT RematchNotify1 
+
+LABEL 10 
+
+CHECK_EVENTID RematchNotify1
+BNE 99 sC s0 
+ShowMap
+SVAL s2 OakNotifyRematchesText
+CALL TelephoneEvent
+ENUT RematchNotify1 
+
+
+LABEL 99
 
 #ifdef INSTALL_FMU 
 //ASMC UpdateSMSDir_All // make this a turn 1 thing instead ? 
 #endif 
+
 
 
 NoFade
