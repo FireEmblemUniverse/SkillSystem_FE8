@@ -221,14 +221,15 @@ UNIT 0xA1 PsyduckID 0xD0 Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[WaterG
 UNIT 0xA2 HorseaID 0xD0 Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Bubble,Leer,Tackle,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA3 GoldeenID 0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[Headbutt,WaterGun,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA4 DratiniID 0xD0 Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[Leer,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 
 
 EnemyTrainersB:
-UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[HydroPump, Psychic, Thunderbolt,0x0] ZoningHeal80GroupOneAI
-UNIT 0xA0 DewgongID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[IceBeam,Surf,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 GolduckID 0xD0 Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[Waterfall,BodySlam,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA2 SeadraID 0xD0 Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Surf,Outrage,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 SeakingID 0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[HornDrill,Waterfall,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 DragonairID 0xD0 Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[ThunderWave,Screech,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT StarmieRenewalUnitID StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[HydroPump, Psychic, Thunderbolt,0x0] ZoningHeal80GroupOneAI
+UNIT 0xA0 DewgongID StarmieRenewalUnitID Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[IceBeam,Surf,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA1 GolduckID StarmieRenewalUnitID Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[Waterfall,BodySlam,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA2 SeadraID StarmieRenewalUnitID Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Surf,Outrage,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA3 SeakingID StarmieRenewalUnitID Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[HornDrill,Waterfall,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xA4 DragonairID StarmieRenewalUnitID Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[ThunderWave,Screech,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 
 
