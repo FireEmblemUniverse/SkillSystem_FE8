@@ -383,8 +383,17 @@ BEQ 2 sC s0
 RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge 
 LABEL 2 
 
+SVAL sC 0 
+CHECK_COORDS [30,11] 
+BNE 99 sC s0 // if someone is at the gym coords, do not receive phone call 
+
+CHECK_EVENTID EarthbadgeObtained 
+BEQ 99 sC s0 // if we haven't beaten all 8 gyms, do no notification 
+CHECK_EVENTID CompletedPokemonLeague
+BEQ 10 sC s0 // if we haven't beaten the league, do first notification 
+
 CHECK_EVENTID RematchNotify2
-BNE 10 sC s0 
+BNE 99 sC s0 // if we already were notified the 2nd time, exit 
 ShowMap
 SVAL s2 OakNotifyRematches2Text
 CALL TelephoneEvent
@@ -394,7 +403,7 @@ ENUT RematchNotify1
 LABEL 10 
 
 CHECK_EVENTID RematchNotify1
-BNE 99 sC s0 
+BNE 99 sC s0 // if we were notified the 1st time already, exit 
 ShowMap
 SVAL s2 OakNotifyRematchesText
 CALL TelephoneEvent

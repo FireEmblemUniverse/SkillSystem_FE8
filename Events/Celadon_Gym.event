@@ -165,8 +165,12 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveSkillAccessory(0xD0, AmaterasuID)
-SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+SilentGiveSkillAccessory(0xD0, MiracleID) // Vileplume  
+SilentGiveSkillAccessory(0xA0, AmaterasuID) // Tangela 
+SilentGiveSkillAccessory(0xA1, BreathOfLifeID) // Victreebel  
+SilentGiveItemWithDurability(0xA2, WiseGlassesT3_BoostIndex,0x80) // Exeggutor  
+SilentGiveItemWithDurability(0xA3, MuscleBandT3_BoostIndex,0x80) // Parasect 
+SilentGiveItemWithDurability(0xA4, EnergyBandT3_BoostIndex,0x80) // Omastar 
 
 
 
@@ -265,12 +269,12 @@ UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [8,4]  0b 0x0	0x1 REDA8R4 	[Ancientp
 UNIT
 
 EnemyTrainersB: // rematch 
-UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x1 REDA6R4 	[PetalDance,Sludge,0x0,0x0] 			ZoningHeal50GroupOneAI
-UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 			ZoningHeal50GroupOneAI
-UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] 			ZoningHeal50GroupOneAI
-UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [8,4]  0b 0x0	0x1 REDA8R4 	[Ancientpower,Surf,0x0,0x0] 			ZoningHeal50GroupOneAI
+UNIT 0xD0 VileplumeID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x1 REDA6R4 	[PetalDance,Sludge,0x0,0x0] 			PursueWithoutHeedAI
+UNIT 0xA0 TangelaID 0xD0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R6 	[MegaDrain,Constrict,0x0,0x0] 		PursueWithoutHeedAI
+UNIT 0xA1 VictreebelID 0xD0 Level(0, Enemy, 1) [4,4]  0b 0x0	0x1 REDA4R4 	[RazorLeaf,Sludge,0x0,0x0] 			PursueWithoutHeedAI
+UNIT 0xA2 ExeggutorID 0xD0 Level(0, Enemy, 1) [5,5]  0b 0x0 0x1 REDA5R5 	[Psychic,MagicalLeaf,BodySlam,0x0] 	PursueWithoutHeedAI
+UNIT 0xA3 ParasectID 0xD0 Level(0, Enemy, 1) [9,5]  0b 0x0	0x1 REDA9R5 	[XScissor, Slash, 0x0 ,0x0] 			PursueWithoutHeedAI
+UNIT 0xA4 OmastarID 0xD0 Level(0, Enemy, 1) [8,4]  0b 0x0	0x1 REDA8R4 	[Ancientpower,Surf,0x0,0x0] 			PursueWithoutHeedAI
 UNIT
 	
 

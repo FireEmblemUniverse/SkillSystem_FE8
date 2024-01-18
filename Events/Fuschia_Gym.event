@@ -119,6 +119,14 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
+SilentGiveSkillAccessory(0xD0, SavageBlowID) // Venomoth 
+SilentGiveSkillAccessory(0xA0, GrislyWoundID) // Tentacruel  
+SilentGiveSkillAccessory(0xA1, PoisonStrikeID) // Muk 
+SilentGiveItemWithDurability(0xA2, StuddedShield_BoostIndex,0x80) // Hypno   
+SilentGiveItemWithDurability(0xA3, EnergyBandT3_BoostIndex,0x80) // Scyther  
+SilentGiveItemWithDurability(0xA4, MuscleBandT3_BoostIndex,0x80) // Kabutops 
+
+
 SilentGiveSkillAccessory(0xD0, GrislyWoundID)
 
 
@@ -223,10 +231,10 @@ EnemyTrainersB:
 UNIT 0xD0 VenomothID 	0x0 Level(0, Enemy, 1) [8,13]  0b 0x0	0x1 REDA8R13 	[Psychic,SignalBeam,Sludge,0] PursueWithoutHeedAI
 UNIT 0xA0 TentacruelID 	0xD0 Level(0, Enemy, 1) [8,15]  0b 0x0	0x1 REDA8R15 	[Surf, Sludge, IceBeam, 0x0] PursueWithoutHeedAI
 UNIT 0xA1 MukID 		0xD0 Level(0, Enemy, 1) [10,12]  0b 0x0	0x1 REDA10R12 	[PoisonJab, FirePunch, ThunderPunch,0x0] PursueWithoutHeedAI
-UNIT 0xA2 WeezingID 	0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0 	0x1 REDA6R12 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
+UNIT 0xA2 HypnoID 		0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0	0x1 REDA6R12 	[Psychic, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
+//UNIT 0xA2 WeezingID 	0xD0 Level(0, Enemy, 1) [6,12]  0b 0x0 	0x1 REDA6R12 	[Sludge,FireBlast,Flash,0x0] PursueWithoutHeedAI
 UNIT 0xA3 ScytherID 	0xD0 Level(0, Enemy, 1) [5,9]  0b 0x0	0x1 REDA5R9 	[XScissor, WingAttack,Slash,0] PursueWithoutHeedAI
 UNIT 0xA4 KabutopsID 	0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0	0x1 REDA11R9 	[Waterfall, RockSlide,Slash,0x0] PursueWithoutHeedAI
-//UNIT 0xA4 HypnoID 		0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Psybeam, Headbutt,PoisonGas,0x0] PursueWithoutHeedAI
 UNIT
 	
 

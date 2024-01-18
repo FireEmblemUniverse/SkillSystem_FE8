@@ -163,9 +163,13 @@ ORG $7F47C // These two hooks are the same
 // this might cause a proc to never end so I'm commenting it out for now 
 // yeah this breaks everything over time unless you forcibly end 8587970 
 // possibly fixed now, but select unit hook also forcibly ends duplicates 
-callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
+
+// Jan 2024: Commenting out again as someone reported infinite loop while promoting in latest build 
+// This issue is caused by duplicate procs. This hook creates duplicate procs which are supposed to be cleared whenever you 
+// select a unit. I think it's safer to just comment this out again for now. 
+//callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
 ORG $7F54C 
-callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
+//callHackNew(MapAnimLevelUp_SoundHook) // conditionally skip 13 sleep frames for some level up sfx (possibly volume reduction) related thing 
 #endif 
 
 // Poison animation 

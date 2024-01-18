@@ -120,14 +120,14 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
-
-// Teach starmie renewal? 
-//SilentGiveSkillAccessory(0xD0, RenewalID)
-//SilentGiveItemWithDurability(0xD0, JellyDonut,0x1)
-//SilentGiveItemWithDurability(0xA0, Berry,0x81)
-//SilentGiveItemWithDurability(0xA1, Berry,0x81)
-//SilentGiveItemWithDurability(0xA2, Berry,0x81)
-//SilentGiveItemWithDurability(0xA3, Berry,0x81)
+SilentGiveSkillAccessory(StarmieRenewalUnitID, CounterMagicID) // Starmie 
+SilentGiveSkillAccessory(0xA1, DazzleID) // Golduck 
+SilentGiveSkillAccessory(0xA0, WaryFighterID) // Dewgong 
+//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex,0x80)
+SilentGiveItemWithDurability(0xA3, MuscleBandT3_BoostIndex,0x80) // Seaking 
+SilentGiveItemWithDurability(0xA2, StuddedShield_BoostIndex,0x80) // Seadra  
+//SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex,0x80) // Sandslash 
+SilentGiveItemWithDurability(0xA1, EnergyBandT3_BoostIndex,0x80) // Golduck
 
 
 MUSCFAST IntroBGM 
@@ -224,12 +224,12 @@ UNIT 0xA4 DratiniID 0xD0 Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[Leer,C
 UNIT 
 
 EnemyTrainersB:
-UNIT StarmieRenewalUnitID StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[HydroPump, Psychic, Thunderbolt,0x0] ZoningHeal80GroupOneAI
-UNIT 0xA0 DewgongID StarmieRenewalUnitID Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[IceBeam,Surf,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 GolduckID StarmieRenewalUnitID Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[Waterfall,BodySlam,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA2 SeadraID StarmieRenewalUnitID Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Surf,Outrage,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 SeakingID StarmieRenewalUnitID Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[HornDrill,Waterfall,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 DragonairID StarmieRenewalUnitID Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[ThunderWave,Screech,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT StarmieRenewalUnitID StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[HydroPump, Psychic, Thunderbolt,0x0] PursueWithoutHeedAI
+UNIT 0xA0 DewgongID StarmieRenewalUnitID Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[IceBeam,Surf,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA1 GolduckID StarmieRenewalUnitID Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[Waterfall,BodySlam,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA2 SeadraID StarmieRenewalUnitID Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Surf,Outrage,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA3 SeakingID StarmieRenewalUnitID Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[HornDrill,Waterfall,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA4 DragonairID StarmieRenewalUnitID Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[ThunderWave,Screech,0x0,0x0] PursueWithoutHeedAI
 UNIT
 
 

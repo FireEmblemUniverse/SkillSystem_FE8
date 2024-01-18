@@ -168,13 +168,14 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-//SilentGiveSkillAccessory(0xD0, HoverBoardID)
-SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex,0x81)
-SilentGiveItemWithDurability(0xA0, SteelShield_BoostIndex,0x81)
-SilentGiveItemWithDurability(0xA1, SteelShield_BoostIndex,0x81)
-SilentGiveItemWithDurability(0xA2, SteelShield_BoostIndex,0x81)
-SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex,0x81)
-SilentGiveItemWithDurability(0xA4, SteelShield_BoostIndex,0x81)
+SilentGiveSkillAccessory(0xD0, CounterID) // Onix 
+SilentGiveSkillAccessory(0xA1, RockyHelmetID) // golem 
+SilentGiveSkillAccessory(0xA3, WaryFighterID) // Sandslash 
+//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex,0x80)
+SilentGiveItemWithDurability(0xA0, VintageBoots_BoostIndex,0x80) // Dugtrio 
+SilentGiveItemWithDurability(0xA2, WiseGlassesT3_BoostIndex,0x80) // Ninetales 
+//SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex,0x80) // Sandslash 
+SilentGiveItemWithDurability(0xA4, SteelShield_BoostIndex,0x80) // Rhydon 
 
 EVBIT_MODIFY 4 
 MUSCFAST PreIntroBGM
@@ -272,12 +273,12 @@ UNIT 0xA3 SandshrewID 0xD0 Level(0, Enemy, 1) [11,8]  0b 0x0 0x1 REDA11R8 [0x0,0
 UNIT
 
 EnemyTrainersB:
-UNIT 0xD0 OnixID 0x0 Level(0, Enemy, 1) [7,7]  0b 0x0	0x1 REDA7R7 		[0x0,0x0,0x0,0x0] ZoningHeal80GroupOneAI
-UNIT 0xA0 DugtrioID 0xD0 Level(0, Enemy, 1) [5,8]  0b 0x0	0x1 REDA5R8 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 GolemID 0xD0 Level(0, Enemy, 1) [9,8]  0b 0x0	0x1 REDA9R8 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA2 NinetalesID 0xD0 Level(0, Enemy, 1) [3,9]  0b 0x0	0x1 REDA3R9 	[0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 SandslashID 0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0 0x1 REDA11R9 [0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 RhydonID 0xD0 Level(0, Enemy, 1) [7,9]  0b 0x0 0x1 REDA7R9 [0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 OnixID 0x0 Level(0, Enemy, 1) [7,7]  0b 0x0	0x1 REDA7R7 		[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA0 DugtrioID 0xD0 Level(0, Enemy, 1) [5,8]  0b 0x0	0x1 REDA5R8 	[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA1 GolemID 0xD0 Level(0, Enemy, 1) [9,8]  0b 0x0	0x1 REDA9R8 	[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA2 NinetalesID 0xD0 Level(0, Enemy, 1) [3,9]  0b 0x0	0x1 REDA3R9 	[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA3 SandslashID 0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0 0x1 REDA11R9 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA4 RhydonID 0xD0 Level(0, Enemy, 1) [7,9]  0b 0x0 0x1 REDA7R9 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
 UNIT
 
 	

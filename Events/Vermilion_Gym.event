@@ -121,12 +121,12 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveSkillAccessory(0xD0, LifeAndDeathID)
-//SilentGiveItemWithDurability(0xD0, SuperPotion,0x1)
-//SilentGiveItemWithDurability(0xA0, Berry,0x82)
-//SilentGiveItemWithDurability(0xA1, Berry,0x82)
-//SilentGiveItemWithDurability(0xA2, Berry,0x82)
-//SilentGiveItemWithDurability(0xA3, Berry,0x82)
+SilentGiveItemWithDurability(0xD0, WiseGlassesT3_BoostIndex,0x80) // Raichu 
+SilentGiveSkillAccessory(0xA0, HoverBoardID) // Magneton  
+SilentGiveSkillAccessory(0xA1, SavageBlowID) // Electrode 
+SilentGiveItemWithDurability(0xA2, MuscleBandT3_BoostIndex,0x80) // Electabuzz 
+SilentGiveItemWithDurability(0xA3, VintageBoots_BoostIndex,0x80) // Jolteon
+SilentGiveSkillAccessory(0xA4, VantagePlusID) // Marowak 
 
 
 MUSCFAST IntroBGM 
@@ -224,12 +224,12 @@ UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Boneme
 UNIT
 
 EnemyTrainersB:
-UNIT 0xD0 RaichuID 0x0 Level(0, Enemy, 1) [7,8]  0b 0x0	0x1 REDA7R8 		[Thunderbolt,GrassKnot,Surf,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [6,10]  0b 0x0	0x1 REDA6R10 	[Thunderbolt,Screech,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA1 ElectrodeID 0xD0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Screech,Explosion,0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [4,10]  0b 0x0 0x1 REDA4R10 [ThunderPunch,IcePunch,FirePunch,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [10,10]  0b 0x0	0x1 REDA10R10 	[Thunderbolt,SignalBeam, 0x0,0x0] ZoningHeal50GroupOneAI
-UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Bonemerang,RockSlide,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 0xD0 RaichuID 0x0 Level(0, Enemy, 1) [7,8]  0b 0x0	0x1 REDA7R8 		[Thunderbolt,GrassKnot,Surf,0x0] PursueWithoutHeedAI
+UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Thunder,Screech,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA1 ElectrodeID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Screech,Explosion,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [4,10]  0b 0x0 0x1 REDA4R10 [ThunderPunch,IcePunch,FirePunch,0x0] PursueWithoutHeedAI
+UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [10,10]  0b 0x0	0x1 REDA10R10 	[Thunderbolt,SignalBeam, 0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA4 MarowakID 0xD0 Level(0, Enemy, 1) [6,10]  0b 0x0	0x1 REDA6R10 	[Bonemerang,RockSlide,0x0,0x0] PursueWithoutHeedAI
 UNIT
 	
 
