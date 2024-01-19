@@ -1,0 +1,251 @@
+#define ChapterID CeruleanCaveB1Ch
+#define GenericA UnitCeruleanCaveWild
+#define GenericB UnitCeruleanCaveBoss
+#define ClassA ClassCeruleanCaveWildA
+#define ClassB ClassCeruleanCaveWildB
+#define ClassC ClassCeruleanCaveWildC
+#define ClassD ClassCeruleanCaveWildD
+#define ClassE ClassCeruleanCaveWildE
+#define ClassF ClassCeruleanCaveWildF
+#define WildLvl 64
+#define TrainerL 69
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+{ ; ReinforceEntry(ChapterID)
+Reinforce(0xF0, 1, ReinforcementUnits, 1, 4) 
+Reinforce(0xF1, 1, ReinforcementUnits, 2, 4) 
+Reinforce(0xF2, 1, ReinforcementUnits, 3, 4) 
+}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+AllTrainersPostBattleTalk
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0, ToRoute4E, 33,22) 
+House(0, ToCeruleanCaveB2_NE, 34,2) 
+House(0, ToCeruleanCaveB2_E, 30,10) 
+House(0, ToCeruleanCaveB2_M, 24,11) 
+House(0, ToCeruleanCaveB2_N, 10,2) 
+House(0, ToCeruleanCaveB2_NW, 2,4) 
+House(0, ToCeruleanCaveB3, 1,7) 
+House(0, ToCeruleanCaveB2_SW, 5,15) 
+
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(33,22)
+EscapeTileEntry(30,10)
+EscapeTileEntry(34,2)
+EscapeTileEntry(24,11)
+EscapeTileEntry(10,2)
+EscapeTileEntry(2,4)
+EscapeTileEntry(1,7)
+EscapeTileEntry(5,15)
+EscapeTileTerminator ; } 
+#endif 
+
+
+ToRoute4E:
+ChapterTransition(Route4ECh, 52,3)
+
+ToCeruleanCaveB2_NE:
+ChapterTransition(CeruleanCaveB2Ch, 24,3)
+
+ToCeruleanCaveB2_NW:
+ChapterTransition(CeruleanCaveB2Ch, 5,6)
+
+ToCeruleanCaveB2_M:
+ChapterTransition(CeruleanCaveB2Ch, 17,11)
+
+ToCeruleanCaveB2_N:
+ChapterTransition(CeruleanCaveB2Ch, 13,3)
+
+ToCeruleanCaveB2_E:
+ChapterTransition(CeruleanCaveB2Ch, 25,10)
+
+ToCeruleanCaveB3:
+ChapterTransition(CeruleanCaveB3Ch, 5,7)
+
+
+ToCeruleanCaveB2_SW:
+ChapterTransition(CeruleanCaveB2Ch, 6,12)
+
+
+
+
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+//CoinsTrap(29,18,ChapterID*2,450)
+//CoinsTrap(57,15,(ChapterID*2)+1,600)
+
+
+//RockSmash(5,10)
+//RockSmash(16,17)
+//RockSmash(24,12)
+//RockSmash(11,25)
+//RockSmash(32,25)
+//
+//SaveCost(8,13) 
+
+
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+
+
+//RedPokeballTrap(26,12, ChapterID*2, MoonStone)
+//RedPokeballTrap(21, 5, (ChapterID*2)+1, EscapeRope, 5)
+
+//StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+//SkillAccessoryTrap(19,16, (ChapterID*2)+1, SealSklID) 
+//StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
+//SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
+//SkillScrollTrap(18,28, ChapterID*2, StrongRiposteID)
+
+//SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
+
+SignBTrap(1,5, ChapterID, 0x0) //no extra text 
+SignATrap(32,18, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+
+
+//BerryTree(2,28,5)
+
+//SkillScrollTrap(42,16, ChapterID*2, PatienceID)
+//SpellScrollTrap(28,26, (ChapterID*2)+1, RockSlide)
+//OpenPokeball(8,3)
+//Sign(8,4, 2)
+
+//Save(10,4)
+//SaveCost(43,3) 
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+
+
+LOAD1 0x1 EnemyUnitsA
+ENUN
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(3,0,39,22)) 
+LOAD1 0x1 EnemyUnitsB
+ENUN
+RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(9,1,38,15)) 
+
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+ShopItems:
+SHLI Elfire 
+ALIGN 4
+
+ArmoryItems:
+SHLI SteelAxe
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+// no reinforcements. 6 unique classes 
+EnemyUnitsA: 
+// ClassA: Golbat, Graveller, Magneton, Hypno, Rhydon 
+// ClassB: Arbok, Venomoth, Dodrio, Parasect, Lickitung
+// ClassC: Raichu, Sandslash, Gloom, Weepinbell, Chansey 
+// ClassD: Primeape, Ditto, Kadabra,	Rapidash,	Marowak
+// ClassE: Wigglytuff, Clefable,	Raticate, Rhyhorn
+//   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
+UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT GenericA ClassC 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R2 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT GenericA ClassD 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA1R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT GenericA ClassE 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA1R1 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
+
+EnemyUnitsB: 
+// ClassF: Seadra, Slowbro, Seaking, Golduck, 
+UNIT GenericA ClassF 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA2R0 [0x0,0x0,0x0,0x0] AttackIfWithin2
+UNIT 
+
+
+
+
+	
+#undef GenericA 
+#undef GenericB 
+#undef ClassA
+#undef ClassB
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID
