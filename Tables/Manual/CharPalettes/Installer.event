@@ -1,0 +1,30 @@
+
+PUSH 
+ORG $59BFC 
+POIN NewCharPalettes
+ORG $59CD0
+POIN NewCharPalettes
+ORG $59D24 
+POIN NewCharPalettes
+ORG $5A7AC 
+POIN NewCharPalettes
+ORG $5A928 
+POIN NewCharPalettes
+POP 
+
+
+ALIGN 4 
+NewCharPalettes: 
+// no palettes unique to characters 
+WORD 0 0 0 0 // Terminator 
+
+
+
+
+
+
+
+
+
+
+
