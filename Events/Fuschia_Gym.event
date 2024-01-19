@@ -122,9 +122,9 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 SilentGiveSkillAccessory(0xD0, SavageBlowID) // Venomoth 
 SilentGiveSkillAccessory(0xA0, GrislyWoundID) // Tentacruel  
 SilentGiveSkillAccessory(0xA1, PoisonStrikeID) // Muk 
-SilentGiveItemWithDurability(0xA2, StuddedShield_BoostIndex,0x80) // Hypno   
-SilentGiveItemWithDurability(0xA3, EnergyBandT3_BoostIndex,0x80) // Scyther  
-SilentGiveItemWithDurability(0xA4, MuscleBandT3_BoostIndex,0x80) // Kabutops 
+SilentGiveItemWithDurability(0xA2, StatAccessory, StuddedShield_BoostIndex|0x80) // Hypno   
+SilentGiveItemWithDurability(0xA3, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Scyther  
+SilentGiveItemWithDurability(0xA4, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Kabutops 
 
 
 SilentGiveSkillAccessory(0xD0, GrislyWoundID)

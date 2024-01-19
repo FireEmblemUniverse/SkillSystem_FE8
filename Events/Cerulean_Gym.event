@@ -123,11 +123,10 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 SilentGiveSkillAccessory(StarmieRenewalUnitID, CounterMagicID) // Starmie 
 SilentGiveSkillAccessory(0xA1, DazzleID) // Golduck 
 SilentGiveSkillAccessory(0xA0, WaryFighterID) // Dewgong 
-//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex,0x80)
-SilentGiveItemWithDurability(0xA3, MuscleBandT3_BoostIndex,0x80) // Seaking 
-SilentGiveItemWithDurability(0xA2, StuddedShield_BoostIndex,0x80) // Seadra  
-//SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex,0x80) // Sandslash 
-SilentGiveItemWithDurability(0xA1, EnergyBandT3_BoostIndex,0x80) // Golduck
+//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA3, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Seaking 
+SilentGiveItemWithDurability(0xA2, StatAccessory, StuddedShield_BoostIndex|0x80) // Seadra  
+SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Dragonair 
 
 
 MUSCFAST IntroBGM 

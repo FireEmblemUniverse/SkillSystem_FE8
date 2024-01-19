@@ -121,11 +121,11 @@ CALL GenericAutolevelEvent // Trainers given invisible levels based on difficult
 SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
-SilentGiveItemWithDurability(0xD0, WiseGlassesT3_BoostIndex,0x80) // Raichu 
+SilentGiveItemWithDurability(0xD0, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Raichu 
 SilentGiveSkillAccessory(0xA0, HoverBoardID) // Magneton  
 SilentGiveSkillAccessory(0xA1, SavageBlowID) // Electrode 
-SilentGiveItemWithDurability(0xA2, MuscleBandT3_BoostIndex,0x80) // Electabuzz 
-SilentGiveItemWithDurability(0xA3, VintageBoots_BoostIndex,0x80) // Jolteon
+SilentGiveItemWithDurability(0xA2, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Electabuzz 
+SilentGiveItemWithDurability(0xA3, StatAccessory, VintageBoots_BoostIndex|0x80) // Jolteon
 SilentGiveSkillAccessory(0xA4, VantagePlusID) // Marowak 
 
 

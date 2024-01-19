@@ -197,12 +197,12 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
 SilentGiveSkillAccessory(0xD0, MiracleID) // Alakazam 
-SilentGiveItemWithDurability(0xA0, SteelShield_BoostIndex,0x80) // Mr Mime 
+SilentGiveItemWithDurability(0xA0, StatAccessory, SteelShield_BoostIndex|0x80) // Mr Mime 
 SilentGiveSkillAccessory(0xA1, RenewalID) // Hypno 
-SilentGiveItemWithDurability(0xA2, StuddedShield_BoostIndex,0x80) // Jynx      
+SilentGiveItemWithDurability(0xA2, StatAccessory, StuddedShield_BoostIndex|0x80) // Jynx      
 SilentGiveSkillAccessory(0xA3, Intimidate2ID) // Porygon 
 SilentGiveSkillAccessory(0xA4, CritUpID) // Farfetchd 
-//SilentGiveItemWithDurability(0xA4, MuscleBandT3_BoostIndex,0x80) // Farfetchd  
+//SilentGiveItemWithDurability(0xA4, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Farfetchd  
 
 
 
@@ -317,7 +317,7 @@ EnemyTrainersB: // rematch
 UNIT 0xD0 AlakazamID 0x0 Level(0, Enemy, 1) [6,4]  0b 0x0	0x0 0	[Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI
 UNIT 0xA0 MrMimeID 0xD0 Level(0, Enemy, 1) [4,5]  0b 0x0		0x0 0 	[Psychic,DarkPulse,0x0,0x0] PursueWithoutHeedAI
 UNIT 0xA1 HypnoID 0xD0 Level(0, Enemy, 1) [8,5]  0b 0x0		0x0 0	[Psychic,BodySlam,0x0,0x0] 		PursueWithoutHeedAI
-UNIT 0xA2 JynxID 0xD0 Level(0, Enemy, 1) [3,7] 	 0b 0x0 	0x0 0	[Psychic,IceBeam,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA2 JynxID 0xD0 Level(0, Enemy, 1) [3,7] 	 0b 0x0 	0x0 0	[Psychic,Blizzard,0x0,0x0] PursueWithoutHeedAI
 UNIT 0xA3 PorygonID 0xD0 Level(0, Enemy, 1) [9,7]  0b 0x0	0x0 0	[Screech, 0, 0 ,0x0] PursueWithoutHeedAI
 UNIT 0xA4 FarfetchdID 0xD0 Level(0, Enemy, 1) [6,6]  0b 0x0	0x0 0	[Guillotine,SkyAttack,0x0,0x0] 			PursueWithoutHeedAI
 UNIT

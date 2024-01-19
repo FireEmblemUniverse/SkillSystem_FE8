@@ -168,9 +168,9 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 SilentGiveSkillAccessory(0xD0, MiracleID) // Vileplume  
 SilentGiveSkillAccessory(0xA0, AmaterasuID) // Tangela 
 SilentGiveSkillAccessory(0xA1, BreathOfLifeID) // Victreebel  
-SilentGiveItemWithDurability(0xA2, WiseGlassesT3_BoostIndex,0x80) // Exeggutor  
-SilentGiveItemWithDurability(0xA3, MuscleBandT3_BoostIndex,0x80) // Parasect 
-SilentGiveItemWithDurability(0xA4, EnergyBandT3_BoostIndex,0x80) // Omastar 
+SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Exeggutor  
+SilentGiveItemWithDurability(0xA3, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Parasect 
+SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Omastar 
 
 
 

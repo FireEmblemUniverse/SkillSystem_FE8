@@ -384,7 +384,8 @@ RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge
 LABEL 2 
 
 SVAL sC 0 
-CHECK_COORDS [30,11] 
+SCOORD sB [30, 11] 
+CHECK_CLASS 0x7FFE // at sB coords  
 BNE 99 sC s0 // if someone is at the gym coords, do not receive phone call 
 
 CHECK_EVENTID EarthbadgeObtained 

@@ -169,13 +169,13 @@ SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange,
 // 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
 
 SilentGiveSkillAccessory(0xD0, CounterID) // Onix 
-SilentGiveSkillAccessory(0xA1, RockyHelmetID) // golem 
+SilentGiveSkillAccessory(0xA1, RockyHelmetSkillID) // golem 
 SilentGiveSkillAccessory(0xA3, WaryFighterID) // Sandslash 
-//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex,0x80)
-SilentGiveItemWithDurability(0xA0, VintageBoots_BoostIndex,0x80) // Dugtrio 
-SilentGiveItemWithDurability(0xA2, WiseGlassesT3_BoostIndex,0x80) // Ninetales 
-//SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex,0x80) // Sandslash 
-SilentGiveItemWithDurability(0xA4, SteelShield_BoostIndex,0x80) // Rhydon 
+//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA0, StatAccessory, VintageBoots_BoostIndex|0x80) // Dugtrio 
+SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Ninetales 
+//SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex|0x80) // Sandslash 
+SilentGiveItemWithDurability(0xA4, StatAccessory, SteelShield_BoostIndex|0x80) // Rhydon 
 
 EVBIT_MODIFY 4 
 MUSCFAST PreIntroBGM
