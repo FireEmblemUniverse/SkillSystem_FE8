@@ -8,8 +8,8 @@
 #define HealTilesTrapID 0xE
 #define HealTileTrapID HealTilesTrapID //aaaaa
 
-#define HealTile(XX,YY,HealPercent) "BYTE HealTileTrapID XX YY 0x0 HealPercent 0x0"
-#define HealTile(XX,YY,HealPercent,EventID) "BYTE HealTileTrapID XX YY 0x0 HealPercent EventID"
+#define HealTile(XX,YY,HealPercent) "BYTE HealTileTrapID XX YY 0 HealPercent 0x0"
+#define HealTile(XX,YY,HealPercent,EventID) "BYTE HealTileTrapID XX YY 0 HealPercent EventID"
 
 HealTrapIDLink:
 HealTileTrapIDLink:
@@ -18,7 +18,7 @@ BYTE HealTilesTrapID
 #include "HealTiles.lyn.event"
 
 
-SetTrapEventInit(HealTilesTrapID,$378EC)
+SetTrapEventInit(HealTilesTrapID,HealTileInitializer)
 SetTrapMapSprite(HealTilesTrapID,HealMapSpriteID)
 SetTrapMapSpritePalette(HealTilesTrapID,EnemyTrapPaletteWord)
 SetTrapMapSpriteFunc(HealTilesTrapID,HealTiles_MapSpriteFunc)
@@ -35,6 +35,10 @@ ALIGN 4
 HealGraphics:
 //#incext Png2Dmp "sparkle_final_4.png" --lz77
 #incbin "sparkle_final_4.dmp"
+
+ALIGN 4
+HealTileInitializer:
+#incbin "HealTiles/Initialize.dmp"
 
 //the part that actually does healing
 #include "HealTiles/HealTiles.lyn.event"
