@@ -135,12 +135,13 @@ Traps1:
 CoinsTrap(8,19,ChapterID*2,250)
 CoinsTrap(20,35,(ChapterID*2)+1,250)
 
-//CutBush(4,2)
+CutBush(4,27)
 //RockSmash(3,2)
 //StrengthBoulder(4,3)
 
 RedPokeballTrap(18,25, ChapterID*2, SuperRepel, 3) // 3 uses 
 StatAccessoryTrap(14,13, (ChapterID*2)+1, MuscleBand_BoostIndex) 
+SkillAccessoryTrap(3,27, (ChapterID*2), VantagePlusID) 
 
 SignBTrap(14,2, ChapterID, 0x0) //no extra text 
 SignATrap(13,34, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
@@ -186,9 +187,9 @@ Flower(19,18)
 Flower(21,18)
 Flower(18,19)
 Flower(20,19)
-Flower(3,27)
+//Flower(3,27)
 Flower(5,27)
-Flower(2,28)
+//Flower(2,28)
 Flower(4,28)
 Flower(6,34)
 Flower(10,34)

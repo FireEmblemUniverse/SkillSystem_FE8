@@ -58,7 +58,14 @@ ChapterTransition(ViridianCh, 30,11)
 
 Traps1:
 GenericCompletion(3,2,GarySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
-
+FireTrap(5,10,1,1)
+FireTrap(0,11,1,1)
+FireTrap(1,13,1,1)
+FireTrap(14,13,1,1)
+FireTrap(16,14,1,1)
+FireTrap(4,17,1,1)
+FireTrap(11,17,1,1)
+FireTrap(11,18,1,1)
 
 ENDTRAP
 ALIGN 4

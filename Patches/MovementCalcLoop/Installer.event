@@ -20,7 +20,7 @@ BYTE 0
 
 ALIGN 4
 PullBackItemList:
-BYTE Constrict Clamp FireSpin Bind
+BYTE Constrict Clamp FireSpin //Bind
 BYTE 0 
 
 ALIGN 4 
