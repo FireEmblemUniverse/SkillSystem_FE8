@@ -31,7 +31,7 @@ ldrb r2, [r3, #0x13] @ Curr HP
 ldrb r1, [r3, #0x12] @ Max HP 
 cmp r2, r1 
 bge RetFalse @ Full hp, so cannot heal self 
-bl IsPeaceful
+bl IsPeacefulInclNoEnemyTrainers
 cmp r0, #1 
 beq RetFalse 
 mov r0, #1 

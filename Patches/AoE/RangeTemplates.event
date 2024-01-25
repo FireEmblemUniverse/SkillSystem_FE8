@@ -17,6 +17,7 @@
 #define SmallLine 14 
 #define SmallestTriangle 21
 #define SmallL 22 
+#define BigSquare 23 
 
 
 ALIGN 16 
@@ -156,6 +157,11 @@ ALIGN 16; POIN RangeTemplateTable_SmallL1 // 22
 POIN RangeTemplateTable_SmallL2
 POIN RangeTemplateTable_SmallL3
 POIN RangeTemplateTable_SmallL4
+
+ALIGN 16; POIN RangeTemplateTable_5x5Square // 23 
+POIN RangeTemplateTable_5x5Square 
+POIN RangeTemplateTable_5x5Square 
+POIN RangeTemplateTable_5x5Square 
 
 WORD 0 0 0 0 // Terminator 
 
@@ -724,7 +730,15 @@ BYTE 0 1 0
 BYTE 0 0 0   
 
 
-
+ALIGN 4
+RangeTemplateTable_5x5Square:
+BYTE 5 5
+BYTE 3 3 
+BYTE 1 1 1 1 1
+BYTE 1 1 1 1 1
+BYTE 1 1 1 1 1
+BYTE 1 1 1 1 1
+BYTE 1 1 1 1 1
 
 
 

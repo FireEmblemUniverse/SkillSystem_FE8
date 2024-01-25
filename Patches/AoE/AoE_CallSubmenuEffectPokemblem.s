@@ -13,7 +13,7 @@
 AoE_AreAnyUsable:
 push {r4,r14}
 
-bl IsPeacefulNoTrainers
+bl IsPeacefulInclNoEnemyTrainers
 cmp r0, #1
 beq RetFalse
 

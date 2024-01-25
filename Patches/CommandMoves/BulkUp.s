@@ -28,7 +28,7 @@ lsr r1, #24
 bl MoveTester 
 cmp r0, #0
 beq RetFalse  
-bl IsPeaceful
+bl IsPeacefulInclNoEnemyTrainers
 cmp r0, #1 
 beq RetFalse 
 mov r0, #1 

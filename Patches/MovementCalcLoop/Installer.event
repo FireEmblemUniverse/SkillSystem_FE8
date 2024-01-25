@@ -15,22 +15,22 @@ WORD KNOCKBACK_ADJACENT_ONLY
 
 ALIGN 4 
 KnockbackItemList:
-BYTE Tackle BodySlam Headbutt MegaPunch MegaKick 
+BYTE Tackle BodySlam Headbutt //MegaPunch MegaKick 
 BYTE 0 
 
 ALIGN 4
 PullBackItemList:
-BYTE Constrict Clamp FireSpin 
+BYTE Constrict Clamp FireSpin Bind
 BYTE 0 
 
 ALIGN 4 
 HitAndRunItemList:
-BYTE ThiefAtt ShadowPunch UTurn
+BYTE ThiefAtt //ShadowPunch //UTurn
 BYTE 0 
 
 ALIGN 4 
 PivotItemList:
-BYTE Rollout RollingKick HiJumpKick
+BYTE Rollout RollingKick HiJumpKick MegaKick
 BYTE 0 
 
 ALIGN 4 

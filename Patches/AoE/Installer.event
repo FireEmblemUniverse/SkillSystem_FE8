@@ -1373,7 +1373,7 @@ BYTE 0 0 0 0xFF // Not usable by anyone
 BYTE 0 HealBool|MagBasedBool
 BYTE 50 0 // damage range 
 BYTE 0 4 // Attack range 
-BYTE Square HealingTileAnimationID // Index of RangeMask, AnimationALL,
+BYTE BigSquare HealingTileAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
