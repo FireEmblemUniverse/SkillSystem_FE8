@@ -1,6 +1,6 @@
 
 
-//#include "DebuffUnit.lyn.event"
+#include "DebuffUnit.lyn.event"
 //POIN GetDebuffs|1
 
 
@@ -9,13 +9,28 @@ eg.
 DebuffUnit((-1), 0x09876543)
 -9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
 */
-#define DebuffUnit(UnitID, DebuffValue) "SVAL s1 UnitID; SVAL s3 DebuffValue;" // ASMC DebuffUnit|1"
+#define DebuffUnit(UnitID, DebuffValuePointer) "SVAL s1 UnitID; SVAL s3 DebuffValuePointer|IsPointer; ASMC DebuffUnitASMC|1"
+
+ALIGN 4
+StrSklDefDebuff:
+//WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov)
+DebuffSelfEntry(  0,     10,   10,    0,   10,    0,   5,   0)
+
+ALIGN 4
+MagResSpdDebuff:
+//WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov)
+DebuffSelfEntry(  10,     0,   0,    10,   0,    10,   5,   0)
+
+ALIGN 4
+StatsDebuffBy10:
+//WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov)
+DebuffSelfEntry(  10,     10,   10,    10,   10,    10,   10,   0)
 
 
-
-
-
-
+ALIGN 4
+DefResDebuff:
+//WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov)
+DebuffSelfEntry(  0,     0,   0,    0,   10,    10,   5,   0)
 
 
 

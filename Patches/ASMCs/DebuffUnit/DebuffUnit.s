@@ -13,9 +13,9 @@
 .equ GetUnitByEventParameter, 0x0800BC50
 .equ MemorySlot, 0x30004B8 
 
-.type DebuffUnit, %function
-.global DebuffUnit 
-DebuffUnit:
+.type DebuffUnitASMC, %function
+.global DebuffUnitASMC 
+DebuffUnitASMC:
 push {r4-r5, lr}
 
 ldr r3, =MemorySlot
@@ -25,37 +25,18 @@ cmp r0, #0
 beq Error
 mov r4, r0 
 
-blh_2 GetDebuffs
-mov r5, r0 @ ram address of unit's debuffs - 8 bytes 
+bl GetUnitDebuffEntry
+mov r11, r11 
 ldr r4, =MemorySlot
-ldr r3, [r4, #4*3] @ Debuffs to do 
-cmp r3, #0 
-beq ClearAllDebuffs
+ldr r1, [r4, #4*3] @ Debuffs to do 
+@r0 @ debuff entry 
+@r1 debuff table to use 
+@r2 entry ID of the given table 
+mov r2, #0 
+mov r3, r0 
+bl DebuffGivenTableEntry 
 
-ldrb r0, [r5] @ (str/skl/spd/def/res/luk)
-orr r0, r3 
-strb r0, [r5] 
-lsr r3, #8 @ for next byte 
 
-ldrb r0, [r5, #1]
-orr r0, r3 
-strb r0, [r5, #1] 
-lsr r3, #8 
-
-ldrb r0, [r5, #2] 
-orr r0, r3
-strb r0, [r5, #2] 
-lsr r3, #8 
-
-ldrb r0, [r5, #5] 
-orr r0, r3 
-strb r0, [r5, #5] 
-b End 
-@lsl r0, #28
-@lsr r0, #28 @ mag only 
-ClearAllDebuffs:
-str r3, [r5] 
-str r3, [r5, #4] @ All cleared 
 
 End:
 Error:

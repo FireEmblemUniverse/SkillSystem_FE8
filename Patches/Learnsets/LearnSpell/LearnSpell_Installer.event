@@ -10,7 +10,7 @@ ALIGN 4
 prLearnNewSpell:
 // Arguments: r0 = Unit, r1 = Spell Index, r2 = Parent proc
 // Returns:   r0 = proc (if you really need it)
-{  
+//{  
 	#incbin "LearnSpellSetup.dmp" 
 	POIN pProc_NewSpellLearn
 	POIN (LearnNewSpell|1)
@@ -19,8 +19,9 @@ prLearnNewSpell:
 
 ALIGN 4 
 pProc_NewSpellLearn:
+PROC_YIELD 
 	_6C_SET_NAME(_psName)
-	_6C_CALL_ROUTINE_2(prCallSpellLearnedPopup|1)
+	_6C_CALL_ROUTINE(prCallSpellLearnedPopup|1)
 	//_6C_CALL_ROUTINE_2(ClearSpellLearnedRam|1)
 	//_6C_CALL_ROUTINE_2(_prCheckForget|1)
 	_6C_END
@@ -33,12 +34,13 @@ _psName:
 ALIGN 4 
 pProc_ReplaceSpellLearn:
 	//_6C_SET_NAME(_psName)
-	_6C_CALL_ROUTINE_2(ReplaceMoveCommand_OnSelect|1)
+PROC_YIELD 
+	_6C_CALL_ROUTINE(ReplaceMoveCommand_OnSelect|1)
 	//_6C_CALL_ROUTINE_2(ClearSpellLearnedRam|1)
 	_6C_END
 	
 	
-}
+//}
 
 
 

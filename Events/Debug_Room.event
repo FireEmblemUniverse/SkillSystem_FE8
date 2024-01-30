@@ -491,7 +491,7 @@ LABEL 0x63
 AutoLevelUnits(50, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
-SetUnitStatus(1, 0x28, IceBeam)
+SetUnitStatus(1, 0x28, Explosion)
 SetUnitStatus(1, 0x29, Psychic)
 SetUnitStatus(1, 0x2A, MudShot)
 SetUnitStatus(1, 0x2B, Flamethrower)
@@ -581,8 +581,9 @@ Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this
 Write_Byte(10, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
-MNC2 ViridianCh 
-//MNC2 DebugCh
+//MNC2 ViridianCh 
+//MNC2 ChampionCh
+MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

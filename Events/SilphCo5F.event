@@ -89,7 +89,7 @@ NW_StatsDrained:
 PlayerInRange
 CHECK_EVENTID CardKeyFlag 
 BNE 99 sC s0 
-DebuffUnit(0x7FFF, 0x005AA000) // -5 luk, -10 def/res
+DebuffUnit(0x7FFF, DefResDebuff) // -5 luk, -10 def/res
 TutText(DefFeelsSapped)
 LABEL 99 
 NoFade 
