@@ -59,11 +59,13 @@ SecretHouse:
 BottomWallText(SecretHouseFlyText)
 TutText(LearnFlyText) // learn to fly 
 BottomWallText(UseFlyText)
+TutText(HowToFlyText) 
 NoFade 
 ENDA 
 
 SecretHouse2:
 BottomWallText(UseFlyText) 
+TutText(HowToFlyText)
 NoFade 
 ENDA 
 

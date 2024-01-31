@@ -132,7 +132,7 @@ SetImpassableTrap(CompletionObstacleID)
 	//#define FlowerTrapID 65 
 	// Display only 
 #define Flower(XX,YY) "BYTE FlowerTrapID XX YY 0x0 FlowerSMS 0x0"
-
+#define HealingSprite(XX,YY) "BYTE FlowerTrapID XX YY 0x0 HealingTileSMS 0x0"
 
 
 

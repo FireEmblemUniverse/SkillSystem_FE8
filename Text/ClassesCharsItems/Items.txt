@@ -14,7 +14,8 @@ FirstEntry[X]
 Warp Crystal[X]
 ## WarpCrystalDesc
 Teleport to your last[N]
-visited Pokécenter.[X]
+visited Pokécenter[N]
+via the Travel command.[X]
 
 ## SaddleName
 Saddle[X]
@@ -26,7 +27,8 @@ Grants Canto+.[X]
 ## EscapeRopeName
 Escape Rope[X]
 ## EscapeRopeDesc
-Escape out of dungeons.[X]
+Escape out of dungeons[N]
+via the Travel command.[X]
 
 ## ReviveName
 Revive[X]
@@ -807,8 +809,8 @@ Submission[X]
 
 ## ConstrictDesc
 Chip damage.[N]
-Debuffs Spd by 8.[N]
-AoE: Debuffs Spd by 5.[X]
+Pulls the target towards you.[N]
+Debuffs Spd by 8 (AoE: by 5).[X]
 
 
 ## DoubleHitDesc
@@ -837,7 +839,8 @@ AoE: Debuffs Str/Mag by 5.[X]
 [PI] A weak whipping attack.[X]
 
 ## HeadbuttDesc
-[PI] The user attacks with its head.[X]
+[PI] The user attacks with its head.[N]
+Knocks the target back.[X]
 
 
 
@@ -864,8 +867,9 @@ AoE: Debuffs stats by 2.[X]
 [PI] A weak scratch.[X]
 
 ## BodySlamDesc
-[PI] A full body slam.[N]
-May paralyze.[X]
+[PI] A full body slam. May paralyze.[N]
+Knocks the target back.[X]
+
 ## SlashDesc
 [PI] High critical hit ratio.[X]
 
@@ -873,7 +877,8 @@ May paralyze.[X]
 [SI] A special pulse of power.[.][X]
 
 ## TackleDesc 
-[PI] A weak full-body attack.[X]
+[PI] A weak full-body attack.[N]
+Knocks the target back.[X]
 
 
 ## EmberDesc
@@ -1040,7 +1045,8 @@ AoE: Debuffs Spd by 5.[X]
 ## RolloutName ^
 Rollout[X]
 ## RolloutDesc
-[PI] An intense, rolling attack.[X]
+[PI] An intense, rolling attack.[N]
+Lands on the other side of the target.[X]
 ## SandstormName ^
 Sandstorm[X]
 ## SandstormDesc
@@ -1173,7 +1179,8 @@ Bite[X]
 Thief[X]
 
 ## ThiefDesc
-[PI] A weak pickpocket.[X]
+[PI] A weak swipe.[N]
+Does not steal anything.[X]
 
 ## SnarlName
 Snarl[X]
@@ -1233,7 +1240,8 @@ if it doesn't KO. Cannot double.[X]
 
 ## MegaKickDesc
 [PI] A fiersomely normal kick. Inflicts[N]
-more damage on heavier foes.[X]
+more damage on heavier foes.[N]
+Lands on the other side of the target.[X]
 ## PayDayDesc
 [PI] Throws coins to damage foes.[X]
 
@@ -1316,7 +1324,8 @@ Deals 1/4 remaining HP.[X]
 [SI] A searing torrent of flame.[X]
 
 ## FireSpinDesc
-[SI] An entrapping circle of flames.[X]
+[SI] An entrapping circle of flames.[N]
+Pulls the target and binds them.[X]
 
 ## FireBlastDesc
 [SI] An intense blast of fire.[X]
@@ -1325,7 +1334,8 @@ Deals 1/4 remaining HP.[X]
 [PI] A blast of searing holy flame.[X]
 
 ## ClampDesc
-[PI] Clamps down hard on the foe.[X]
+[PI] Clamps down hard on the foe.[N]
+Pulls the target and binds them.[X]
 
 ## CrabhammerDesc
 [PI] Swats at the foe with a crabbed arm.[X]
@@ -1409,7 +1419,8 @@ more damage on heavier foes.[X]
 
 ## HiJumpKickDesc
 [PI] A leaping kick of strength.[N]
-Inflicts extra on heavier foes.[X]
+Inflicts extra on heavier foes.[N]
+Lands on the other side of the target.[X]
 
 ## JumpKickDesc
 [PI] A leaping kick of power.[N]
@@ -1417,7 +1428,8 @@ Inflicts extra on heavier foes.[X]
 
 ## RollingKickDesc
 [PI] User rolls about unleashing kicks.[N]
-Inflicts extra on heavier foes.[X]
+Inflicts extra on heavier foes.[N]
+Lands on the other side of the target.[X]
 
 ## SeismicTossDesc
 [PI] A hardy judo throw.[N]
@@ -1513,7 +1525,8 @@ Night Daze[X]
 [SI] A dark gaze that strikes fear.[X]
 
 ## BindDesc
-[PI] Traps the foe in a binding grip.[X]
+[PI] Traps the foe in a vicious grip.[N]
+Pulls the target and binds them.[X]
 
 ## HurricaneName
 Hurricane[X]

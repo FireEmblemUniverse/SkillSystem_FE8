@@ -1470,6 +1470,7 @@ RemoveTrap
 
 DISA 0xFC 
 STAL 10
+GOTO 99 
 
 LABEL 1 // Sped up version 
 CAM1 0x7FFE 

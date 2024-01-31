@@ -189,7 +189,7 @@ GiveItemWithDurability(0, SpellScroll, HydroPump)
 ENUT CeruleanGymRematchedFlag 
 SVAL r3 5000 
 GIVETOMAIN 0 
-GiveSkillAccessory(0, RenewalID)
+//GiveSkillAccessory(0, RenewalID)
 FADI 4 
 ForcedChapterTransition(CeruleanCh, 24, 20)
 

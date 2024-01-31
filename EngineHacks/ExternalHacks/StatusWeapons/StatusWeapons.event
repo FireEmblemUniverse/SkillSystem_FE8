@@ -31,6 +31,8 @@ StatusEntry(FirePunch, BurnStatusID_Def, 10)
 StatusEntry(FlameWheel, BurnStatusID_Def, 10)
 StatusEntry(Scorch, BurnStatusID_Def, 10)
 StatusEntry(Flamethrower, BurnStatusID_Def, 10)
+//StatusEntry(WillOWisp, BurnStatusID_Def, 100)
+
 
 StatusEntry(FireBlast, BurnStatusID_Def, 10)
 StatusEntry(SacredFire, BurnStatusID_Def, 50)
