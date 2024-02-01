@@ -16,3 +16,4 @@ POIN Skill_Getter
 WORD SS_SkillsDefaultRText
 
 #include "AffinityDescGetter/Installer.event"
+#include "StatusDescGetter/Installer.event"

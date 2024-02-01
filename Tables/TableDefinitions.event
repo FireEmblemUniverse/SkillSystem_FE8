@@ -178,6 +178,8 @@
 #define SickStatusID 9
 #define PetrifyStatusID 13
 
+#define StatusCount 14
+
 //for setting what status effect 
 //status staves will give 
 #define ItemStatus(StatusID,Duration) "StatusID | (Duration << 4)"

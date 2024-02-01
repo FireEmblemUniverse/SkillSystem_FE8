@@ -1,0 +1,45 @@
+#ifndef STATUS_DESC_GETTER_INSTALLED
+#define STATUS_DESC_GETTER_INSTALLED
+
+/**
+* Small hack to replace the vanilla stat screen "status condition" R-Text at FE8U:0x08088A2C.
+*/
+
+#define StatusDescEntry(statusIndex, text) "PUSH; ORG StatusDescTable + (statusIndex*2); SHORT text; POP"
+
+ALIGN 4
+
+#ifdef FREEZE_HACK
+#define FreezeStatusID SickStatusID
+#endif
+
+StatusDescTable:
+    FILL StatusCount * 2
+
+    StatusDescEntry(NoStatusID,         0x552)
+    StatusDescEntry(PoisonStatusID,     0x553)
+    StatusDescEntry(SleepStatusID,      0x554)
+    StatusDescEntry(SilenceStatusID,    0x556)
+    StatusDescEntry(BerserkStatusID,    0x555)
+    StatusDescEntry(AtkRingStatusID,    0x558)
+    StatusDescEntry(DefRingStatusID,    0x559)
+    StatusDescEntry(CritRingStatusID,   0x55A)
+    StatusDescEntry(AvoRingStatusID,    0x55B)
+#ifdef FREEZE_HACK
+    StatusDescEntry(FreezeStatusID,     0x518) // "Sick"
+#else
+    StatusDescEntry(SickStatusID,       0x518) // "Sick"
+#endif
+    StatusDescEntry(10,                 0x519) // "Recovr"
+    StatusDescEntry(11,                 0x557)
+    StatusDescEntry(12,                 0x552)
+    StatusDescEntry(PetrifyStatusID,    0x557)
+
+ALIGN 4
+
+gStatusMaxCount:
+    WORD StatusCount
+
+#include "StatusDescGetter.lyn.event"
+
+#endif /* STATUS_DESC_GETTER_INSTALLED */
