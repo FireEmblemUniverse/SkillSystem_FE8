@@ -168,6 +168,7 @@ GenericEffect(3, SaveWithoutHeal) //
 GenericEffect(8, CallSuspiciousRockEvent) // for rocks that strength boulder triggers will disappear 
 GenericEffect(9, ReviveAndSaveEvent) 
 
+
 GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(3, ObtainSecretKeyEvent) // 
 //GenericDisappearEffect(4, CinnabarGymQuiz_A) // 
@@ -182,12 +183,12 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(13, ObtainHelixFossilEvent) // 
 //GenericDisappearEffect(14, ObtainDomeFossilEvent) // 
 //GenericDisappearEffect(15, ObtainKeyCardEvent) // 
+//GenericEffect(16, MewTruckEvent) 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)
 NoFade 
 ENDA 
-
 
 TestCase:
 GiveEXP(0x7FFF, 100)

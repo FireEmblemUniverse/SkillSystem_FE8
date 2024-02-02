@@ -8,7 +8,8 @@
 .type GenericTrapDisappearCompletionUsability0x29, %function
 .global GenericTrapDisappearCompletionUsability0x2A
 .type GenericTrapDisappearCompletionUsability0x2A, %function
-
+.global GenericTrapDisappearCompletionUsability0x2B
+.type GenericTrapDisappearCompletionUsability0x2B, %function
 
 .global GenericTrapDisappearCompletionEffect
 .type GenericTrapDisappearCompletionEffect, %function
@@ -92,7 +93,7 @@ cmp r1, r2
 bge CheckA 
 b ReturnA
 CheckA:
-mov r2, #0x2A
+mov r2, #0x2B
 cmp r1, r2
 ble RetTrap
 
@@ -113,7 +114,7 @@ cmp r1, r2
 bge CheckB 
 b ReturnB
 CheckB:
-mov r2, #0x2A
+mov r2, #0x2B
 cmp r1, r2
 ble RetTrap
 
@@ -134,7 +135,7 @@ cmp r1, r2
 bge CheckC 
 b ReturnC
 CheckC:
-mov r2, #0x2A
+mov r2, #0x2B
 cmp r1, r2
 ble RetTrap
 ReturnC:
@@ -154,7 +155,7 @@ cmp r1, r2
 bge CheckD 
 b ReturnD
 CheckD:
-mov r2, #0x2A
+mov r2, #0x2B
 cmp r1, r2
 ble RetTrap
 
@@ -257,6 +258,10 @@ b GenericTrapDisappearCompletionUsability
 GenericTrapDisappearCompletionUsability0x2A:
 push {r4,r7,r14}
 mov r7, #0x2A
+b GenericTrapDisappearCompletionUsability
+GenericTrapDisappearCompletionUsability0x2B:
+push {r4,r7,r14}
+mov r7, #0x2B
 b GenericTrapDisappearCompletionUsability
 
 

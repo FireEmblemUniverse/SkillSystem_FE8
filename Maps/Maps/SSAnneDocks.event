@@ -2,7 +2,7 @@
 
 #include eastdlib.event
 
-SetChapterData(SSAnneDocksCh,VermilionObj,0,VermilionPal,VermilionConf,SSAnneDocksMap,Map,0,0,0)
+SetChapterData(SSAnneDocksCh,VermilionObj,0,VermilionPal,VermilionConf,SSAnneDocksMap,Map,WaterAnimationID,0,0)
 Map:
 #incbin "SSAnneDocks_data.dmp"
 Map_Pointer_Table(SSAnneDocksMap,Map)
