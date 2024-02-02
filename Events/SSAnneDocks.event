@@ -70,11 +70,29 @@ ToSSAnne:
 DigChapterTransition(ChapterID, SSAnneCh, 19,3)
 
 
-GenericEffect(16, MewTruckEvent) 
+GenericDisappearEffect(16, MewTruckEvent) 
 MewTruckEvent:
+ENUT MewFledFlag 
+ENUT HideUnitIconsFlag
+EVBIT_MODIFY 1 // cannot scene skip 
+CAM1 [36,6]
+EVBIT_T 9 // follow moving units 
 LOAD1 1 MewUnitGroup 
 ENUN 
-TutText(DebugText)
+CURSOR_FLASHING [36,6] 
+STAL 45 
+CURE
+Emoticon(QuestionmarkEmoticon, Coord(36,6)) 
+STAL 45
+
+MOVE 8 0xD0 [39,5]
+ENUN
+STAL 10 
+Text(MewAlertedText)
+SCOORD sB [39,5] 
+CALL MyWarpOutEvent
+DISA 0xD0 
+ENUF HideUnitIconsFlag
 NoFade 
 ENDA 
 
@@ -137,6 +155,10 @@ CALL LoadAndPlacePlayers
 
 CALL CityBeginningScene 
 
+CHECK_EVENTID MewFledFlag 
+BEQ 99 sC s0 
+RemoveTrap(36,6)
+
 LABEL 0x63
 NoFade
 ENDA
@@ -179,7 +201,7 @@ UNIT
 
 
 MewUnitGroup:
-UNIT MewID OaksAideClass 0x0 Level(LVFACEDOWN, Enemy, 1) [25,5]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xD0 MewID 0x0 Level(LVFACEDOWN, Enemy, 1) [36,6]  0b 0x0	1 REDA36R6 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 

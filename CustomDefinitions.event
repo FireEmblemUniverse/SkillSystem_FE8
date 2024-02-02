@@ -415,7 +415,7 @@ String("V1.12.00              Jan 2024") ; BYTE 0; POP // this overflows into th
 #define CinnabarGymRematchedFlag 0x11E 
 #define ViridianGymRematchedFlag 0x11D 
 #define RematchNotify1 0x11C 
-#define RematchNotify2 0x11B 
+#define RematchNotify2 0x11B  
 
 // Unit IDs 
 #define OaksAide 0xEA 

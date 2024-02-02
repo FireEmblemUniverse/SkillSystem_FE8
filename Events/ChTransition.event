@@ -183,7 +183,7 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(13, ObtainHelixFossilEvent) // 
 //GenericDisappearEffect(14, ObtainDomeFossilEvent) // 
 //GenericDisappearEffect(15, ObtainKeyCardEvent) // 
-//GenericEffect(16, MewTruckEvent) 
+//GenericDisappearEffect(16, MewTruckEvent) 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)
