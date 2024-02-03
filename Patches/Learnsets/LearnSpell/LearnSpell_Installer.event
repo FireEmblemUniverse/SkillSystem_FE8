@@ -21,7 +21,7 @@ ALIGN 4
 pProc_NewSpellLearn:
 PROC_YIELD 
 	_6C_SET_NAME(_psName)
-	_6C_CALL_ROUTINE(prCallSpellLearnedPopup|1)
+	_6C_CALL_ROUTINE_2(prCallSpellLearnedPopup|1)
 	//_6C_CALL_ROUTINE_2(ClearSpellLearnedRam|1)
 	//_6C_CALL_ROUTINE_2(_prCheckForget|1)
 	_6C_END
@@ -36,6 +36,7 @@ pProc_ReplaceSpellLearn:
 	//_6C_SET_NAME(_psName)
 PROC_YIELD 
 	_6C_CALL_ROUTINE(ReplaceMoveCommand_OnSelect|1)
+	PROC_SLEEP(0)
 	//_6C_CALL_ROUTINE_2(ClearSpellLearnedRam|1)
 	_6C_END
 	
