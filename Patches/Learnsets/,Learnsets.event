@@ -798,8 +798,9 @@ BYTE 1 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
-BYTE 11 Swift
+BYTE 11 CalmMind
 BYTE 13 MagicalLeaf
+BYTE 15 Swift
 BYTE 17 WaterPulse
 BYTE 21 Amnesia
 BYTE 25 Screech
@@ -821,8 +822,9 @@ BYTE 1 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
-BYTE 11 Swift
+BYTE 11 CalmMind
 BYTE 13 MagicalLeaf
+BYTE 15 Swift
 BYTE 17 WaterPulse
 BYTE 21 Amnesia
 BYTE 25 Screech
