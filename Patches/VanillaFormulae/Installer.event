@@ -44,8 +44,6 @@ callHackNew(CritRateLabel|1)
 //ORG $2ABE8
 //jumpToHack(AvoidLabel)
 
-ORG $2AE1E // all weapon special abilities as negate def 
-//SHORT $46C0 
 ORG $2AE54
 jumpToHack_r0(NegateDefHack)
 

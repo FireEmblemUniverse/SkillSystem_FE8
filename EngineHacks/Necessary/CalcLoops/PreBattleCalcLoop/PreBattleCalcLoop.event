@@ -129,6 +129,7 @@ DamageModifierCalcLoop:
 POIN WeaponsThatAlwaysDouble
 POIN WeakChipDmg ScaledUp
 POIN EnemyWeightBonus
+POIN TransformFunction 
 POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
 POIN TypeEffectiveness // also caps moves to deal max 255 
 #ifdef ENABLE_DAMAGE_REDUCTION
@@ -136,10 +137,10 @@ POIN TypeEffectiveness // also caps moves to deal max 255
 #endif 
 POIN DoublingDamageModifierFunc // this also occurs on weapons that cannot double if you would be able to otherwise 
 POIN ScaledBackFunc
+POIN TransformFunction 
 POIN MinimumDamage
 POIN MaximumDamage // caps moves to 99 dmg 
 POIN SuperFangEffect 
-POIN TransformFunction 
 POIN FixedDamageWeapons
 POIN ImmuneToDamage
 POIN 0 
