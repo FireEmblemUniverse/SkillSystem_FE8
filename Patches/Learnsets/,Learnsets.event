@@ -798,8 +798,9 @@ BYTE 1 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
-BYTE 11 Swift
+BYTE 11 CalmMind
 BYTE 13 MagicalLeaf
+BYTE 15 Swift
 BYTE 17 WaterPulse
 BYTE 21 Amnesia
 BYTE 25 Screech
@@ -821,8 +822,9 @@ BYTE 1 Bubble
 BYTE 5 AttackPulse
 BYTE 7 Snarl
 BYTE 9 RecoverMove 
-BYTE 11 Swift
+BYTE 11 CalmMind
 BYTE 13 MagicalLeaf
+BYTE 15 Swift
 BYTE 17 WaterPulse
 BYTE 21 Amnesia
 BYTE 25 Screech
@@ -982,19 +984,23 @@ ALIGN 4
 VenonatLearnset:
 BYTE 1 Tackle 
 BYTE 1 StringShot  
-BYTE 5 Pound
-BYTE 7 Confusion
+BYTE 2 Pound
+BYTE 4 Leer
+BYTE 6 Confusion
+BYTE 9 LeafFlurry
 BYTE 11 PoisonPowder
 BYTE 13 SignalBeam
 BYTE 15 Psybeam
 BYTE 17 NightDaze
 BYTE 19 CalmMind
-BYTE 22 Screech
+BYTE 21 Screech
+BYTE 23 MegaDrain
 //BYTE 23 ??? //StunSpore
 BYTE 25 Sludge
 BYTE 30 BugBuzz
 BYTE 32 AirSlash
 BYTE 35 DarkPulse
+BYTE 37 PetalDance
 //BYTE 37 DreamEater
 //BYTE 37 Toxic //PoisonFang
 BYTE 40 Psychic
@@ -1005,19 +1011,23 @@ ALIGN 4
 VenomothLearnset:
 BYTE 1 Tackle 
 BYTE 1 StringShot  
-BYTE 5 Pound
-BYTE 7 Confusion
+BYTE 2 Pound
+BYTE 4 Leer
+BYTE 6 Confusion
+BYTE 9 LeafFlurry
 BYTE 11 PoisonPowder
 BYTE 13 SignalBeam
 BYTE 15 Psybeam
 BYTE 17 NightDaze
 BYTE 19 CalmMind
-BYTE 22 Screech
+BYTE 21 Screech
+BYTE 23 MegaDrain
 //BYTE 23 ??? //StunSpore
 BYTE 25 Sludge
 BYTE 30 BugBuzz
 BYTE 32 AirSlash
 BYTE 35 DarkPulse
+BYTE 37 PetalDance
 //BYTE 37 DreamEater
 //BYTE 37 Toxic //PoisonFang
 BYTE 40 Psychic
@@ -1030,15 +1040,19 @@ BYTE 1 Scratch
 BYTE 1 SandAttack 
 BYTE 4 Growl 
 BYTE 7 Magnitude
-BYTE 12 ConfuseRay
+BYTE 10 ConfuseRay
+BYTE 12 Slash
 BYTE 15 MudShot
 BYTE 18 Dig
 BYTE 20 Screech
-BYTE 23 ThiefAtt
-BYTE 26 EarthPower
-BYTE 29 NightSlash
-BYTE 34 Slash
-BYTE 37 Earthquake
+BYTE 22 ThiefAtt
+BYTE 24 EarthPower
+BYTE 26 Agility
+BYTE 28 Earthquake
+BYTE 30 NightSlash
+BYTE 32 RockSlide
+BYTE 34 DoubleEdge
+BYTE 37 SwordsDance
 BYTE 40 Fissure 
 BYTE 0 0
 
@@ -1048,15 +1062,19 @@ BYTE 1 Scratch
 BYTE 1 SandAttack 
 BYTE 4 Growl 
 BYTE 7 Magnitude
-BYTE 12 ConfuseRay
+BYTE 10 ConfuseRay
+BYTE 12 Slash
 BYTE 15 MudShot
 BYTE 18 Dig
 BYTE 20 Screech
-BYTE 23 ThiefAtt
-BYTE 26 EarthPower
-BYTE 29 NightSlash
-BYTE 34 Slash
-BYTE 37 Earthquake
+BYTE 22 ThiefAtt
+BYTE 24 EarthPower
+BYTE 26 Agility
+BYTE 28 Earthquake
+BYTE 30 NightSlash
+BYTE 32 RockSlide
+BYTE 34 DoubleEdge
+BYTE 37 SwordsDance
 BYTE 40 Fissure 
 BYTE 0 0
 
@@ -1766,9 +1784,9 @@ BYTE 20 MudBomb
 BYTE 23 Sludge
 BYTE 26 Dig
 BYTE 28 Bite // Fling
-BYTE 30 Earthquake
+BYTE 30 PoisonJab
 BYTE 33 Screech
-BYTE 36 PoisonJab
+BYTE 36 Earthquake
 // BYTE 39 Resv Acid Armor
 BYTE 40 ShadowPunch
 BYTE 45 Explosion // Resv Memento
@@ -1788,9 +1806,9 @@ BYTE 20 MudBomb
 BYTE 23 Sludge
 BYTE 26 Dig
 BYTE 28 Bite // Fling
-BYTE 30 Earthquake
+BYTE 30 PoisonJab
 BYTE 33 Screech
-BYTE 36 PoisonJab
+BYTE 36 Earthquake
 // BYTE 39 Resv Acid Armor
 BYTE 40 ShadowPunch
 BYTE 45 Explosion // Resv Memento
@@ -1944,6 +1962,7 @@ BYTE 35 PoisonJab
 // BYTE 37 Resv Swagger
 BYTE 36 Psychic
 BYTE 40 DarkPulse
+BYTE 45 Amnesia
 //BYTE 50 Warp // ZenHeadbutt
 BYTE 0 0
 
@@ -1967,6 +1986,7 @@ BYTE 35 PoisonJab
 // BYTE 37 Resv Swagger
 BYTE 36 Psychic
 BYTE 40 DarkPulse
+BYTE 45 Amnesia
 //BYTE 50 Warp // ZenHeadbutt
 BYTE 0 0 // Gets Nightmare and Switcheroo on evo in Gen 4, also should probably look at Butterfree as well if warp is not meant to be allowed
 
@@ -2226,12 +2246,13 @@ BYTE 12 Snarl
 BYTE 15 Scorch
 BYTE 17 NightDaze // Assurance
 BYTE 20 Screech
-BYTE 24 AuroraBeam
+BYTE 22 AuroraBeam
+BYTE 24 Sludge
 BYTE 26 HexAtt
 BYTE 28 RecoverMove
 BYTE 31 MudBomb
 BYTE 35 Flamethrower
-BYTE 40 Sludge
+BYTE 40 Amnesia
 BYTE 42 DarkPulse // Memento
 BYTE 45 Explosion
 BYTE 0 0
@@ -2246,14 +2267,16 @@ BYTE 12 Snarl
 BYTE 15 Scorch
 BYTE 17 NightDaze // Assurance
 BYTE 20 Screech
-BYTE 24 AuroraBeam
+BYTE 22 AuroraBeam
+BYTE 24 Sludge
 BYTE 26 HexAtt
 BYTE 28 RecoverMove
 BYTE 31 MudBomb
 BYTE 35 Flamethrower
-BYTE 40 Sludge
+BYTE 40 Amnesia
 BYTE 42 DarkPulse // Memento
 BYTE 45 Explosion
+BYTE 0 0
 BYTE 0 0
 
 ALIGN 4
