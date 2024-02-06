@@ -1,4 +1,4 @@
-#define ChapterID CeruleanCaveB1Ch
+#define ChapterID CeruleanCaveB2Ch
 #define GenericA UnitCeruleanCaveWild
 #define GenericB UnitCeruleanCaveBoss
 #define ClassA ClassCeruleanCaveWildA
@@ -38,7 +38,6 @@ END_MAIN
 
 
 
-
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 AllTrainersPostBattleTalk
@@ -47,15 +46,12 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(0, ToRoute4E, 33,22) 
-House(0, ToCeruleanCaveB2_NE, 34,2) 
-House(0, ToCeruleanCaveB2_E, 30,10) 
-House(0, ToCeruleanCaveB2_M, 24,11) 
-House(0, ToCeruleanCaveB2_N, 10,2) 
-House(0, ToCeruleanCaveB2_NW, 2,4) 
-House(0, ToCeruleanCaveB3, 1,7) 
-House(0, ToCeruleanCaveB2_SW, 5,15) 
-
+House(0, ToCeruleanCaveB1_N, 13,3) 
+House(0, ToCeruleanCaveB1_NE, 24,3) 
+House(0, ToCeruleanCaveB1_NW, 5,6) 
+House(0, ToCeruleanCaveB1_E, 25,10) 
+House(0, ToCeruleanCaveB1_SW, 6,12) 
+House(0, ToCeruleanCaveB1_M, 17,11) 
 END_MAIN
 
 MiscBasedEvents:
@@ -67,43 +63,33 @@ AFEV 0 GlobalAfev 0
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
-EscapeTileEntry(33,22)
-EscapeTileEntry(30,10)
-EscapeTileEntry(34,2)
-EscapeTileEntry(24,11)
-EscapeTileEntry(10,2)
-EscapeTileEntry(2,4)
-EscapeTileEntry(1,7)
-EscapeTileEntry(5,15)
+EscapeTileEntry(13,3)
+EscapeTileEntry(24,3)
+EscapeTileEntry(5,6)
+EscapeTileEntry(25,10)
+EscapeTileEntry(6,12)
+EscapeTileEntry(17,11)
 EscapeTileTerminator ; } 
 #endif 
 
 
-ToRoute4E:
-ChapterTransition(Route4ECh, 52,3)
+ToCeruleanCaveB1_N:
+ChapterTransition(CeruleanCaveB1Ch, 10,12)
 
-ToCeruleanCaveB2_NE:
-ChapterTransition(CeruleanCaveB2Ch, 24,3)
+ToCeruleanCaveB1_NE:
+ChapterTransition(CeruleanCaveB1Ch, 34,2)
 
-ToCeruleanCaveB2_NW:
-ChapterTransition(CeruleanCaveB2Ch, 5,6)
+ToCeruleanCaveB1_NW:
+ChapterTransition(CeruleanCaveB1Ch, 2,4)
 
-ToCeruleanCaveB2_M:
-ChapterTransition(CeruleanCaveB2Ch, 17,11)
+ToCeruleanCaveB1_SW:
+ChapterTransition(CeruleanCaveB1Ch, 5,15)
 
-ToCeruleanCaveB2_N:
-ChapterTransition(CeruleanCaveB2Ch, 13,3)
+ToCeruleanCaveB1_M:
+ChapterTransition(CeruleanCaveB1Ch, 24,11)
 
-ToCeruleanCaveB2_E:
-ChapterTransition(CeruleanCaveB2Ch, 25,10)
-
-ToCeruleanCaveB3:
-ChapterTransition(CeruleanCaveB3Ch, 5,7)
-
-
-ToCeruleanCaveB2_SW:
-ChapterTransition(CeruleanCaveB2Ch, 6,12)
-
+ToCeruleanCaveB1_E:
+ChapterTransition(CeruleanCaveB1Ch, 30,10)
 
 
 
@@ -142,8 +128,8 @@ Traps1:
 
 //SkillScrollTrap(27,2, (ChapterID*2)+1, ChivalryID) 
 
-SignBTrap(1,5, ChapterID, 0x0) //no extra text 
-SignATrap(32,18, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+//SignBTrap(1,5, ChapterID, 0x0) //no extra text 
+//SignATrap(32,18, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
 
 
 
@@ -172,10 +158,7 @@ CALL LoadAndPlacePlayers
 
 LOAD1 0x1 EnemyUnitsA
 ENUN
-RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(3,0,39,22)) 
-LOAD1 0x1 EnemyUnitsB
-ENUN
-RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(9,1,38,15)) 
+RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(4,3,27,17)) 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
@@ -248,4 +231,3 @@ UNIT
 #undef WildLvl
 #undef TrainerL
 #undef ChapterID
-

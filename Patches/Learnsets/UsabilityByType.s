@@ -21,6 +21,12 @@ push {r4-r5, lr}
 mov r4, r0 
 mov r5, r1 @ item ID 
 
+ldr r2, [r4, #4] @ class 
+ldrb r2, [r2, #4] @ class ID 
+ldr r3, =DittoID_Link 
+ldr r3, [r3] 
+cmp r2, r3 
+beq RetFalse @ Ditto cannot learn TMs 
 
 mov r2, #0x27 
 CheckIfAlreadyLearnedLoop:

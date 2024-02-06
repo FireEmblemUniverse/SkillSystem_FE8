@@ -5,10 +5,16 @@
 #define GameOverFlag 0x65
 #define CheckNoPlayersDeathQuote(UnitID) "BYTE UnitID 0x0 0xff 0xff 0x00 0x00; SHORT 0x00; WORD 0" //POIN CheckIfNoPlayerUnits" 
 #define EventDeathQuote(UnitID, EventLabelName) "BYTE UnitID 0x0 0xff 0xff 0x00 0x00; SHORT 0x00; POIN EventLabelName" //POIN CheckIfNoPlayerUnits" 
+#define FlagDeathQuote(UnitID, FlagID) "BYTE UnitID 0x0 0xff 0xff; SHORT FlagID; SHORT 0x00; WORD 0"
 // previously how I did it 
 
 ALIGN 4
 DeathQuoteTable:
+FlagDeathQuote(UnitArticunoWild, ArticunoDefeatedFlag)
+FlagDeathQuote(UnitZapdosWild,   ZapdosDefeatedFlag)
+FlagDeathQuote(UnitMoltresWild,  MoltresDefeatedFlag)
+FlagDeathQuote(UnitMewWild,      MewDefeatedFlag)
+FlagDeathQuote(UnitMewtwoWild,   MewtwoDefeatedFlag)
 EventDeathQuote(0xDE, ModularSummonWildTrainerEvent)
 EventDeathQuote(0xEE, ModularSummonWildTrainerEvent_LeaderDefeated)
 CheckNoPlayersDeathQuote(0x01 )

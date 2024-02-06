@@ -2571,24 +2571,21 @@ BYTE 1 Pound
 BYTE 1 Lick
 BYTE 1 ConfuseRay
 BYTE 5 Confusion 
-BYTE 9 AuroraBeam
 // BYTE 8 Resv LovelyKiss 
+BYTE 9 Doubleslap
 BYTE 12 Flash
-BYTE 15 Doubleslap
-BYTE 18 IcePunch // PowderSnow  11 + Avalanche 33 /2 = 22
-BYTE 21 NightShade
-BYTE 25 Psybeam
-// BYTE 21 Resv MeanLook
-BYTE 28 AuroraBeam
-// BYTE 25 Resv FakeTears 
-
-BYTE 30 SeismicToss // WakeUpSlap
+BYTE 15 AuroraBeam
+BYTE 18 IcePunch
+BYTE 21 Psybeam
+BYTE 25 NightShade
+BYTE 28 SeismicToss
+BYTE 31 IceBeam
 BYTE 34 Psychic
-BYTE 38 Screech
-BYTE 40 IceBeam
+BYTE 37 Screech
+BYTE 40 RecoverMove
 BYTE 42 HyperBeam // WringOut
-// BYTE 49 Resv PerishSong
 BYTE 45 Blizzard
+// BYTE 49 Resv PerishSong
 BYTE 0 0
 
 ALIGN 4
@@ -2741,7 +2738,7 @@ BYTE 0 0
 ALIGN 4
 DittoLearnset:
 BYTE 1 Transform
-BYTE 1 Tackle
+//BYTE 1 Tackle
 BYTE 0 0
 
 ALIGN 4

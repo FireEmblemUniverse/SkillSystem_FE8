@@ -256,15 +256,22 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitCyclingRoadWild 0x83
 #define UnitRoute7Wild 0x84
 #define UnitRoute8Wild 0x85 
-#define UnitRoute19Wild 0x86
-#define UnitRoute20Wild 0x87
-#define UnitRoute21Wild 0x88
-#define UnitMansionWild 0x89
-#define UnitSeafoamWild 0x8A
-#define UnitRoute22Wild 0x8B 
-#define UnitRoute23Wild 0x8C 
-#define UnitVictoryRoadWild 0x8D 
-#define UnitCeruleanCaveWild 0x8E 
+#define UnitRoute19Wild 0x85
+#define UnitRoute20Wild 0x85
+#define UnitRoute21Wild 0x85
+#define UnitMansionWild 0x85
+#define UnitSeafoamWild 0x85
+#define UnitRoute22Wild 0x85 
+#define UnitRoute23Wild 0x85
+
+#define UnitVictoryRoadWild 0x86 
+#define UnitCeruleanCaveWild 0x87 
+
+#define UnitArticunoWild 0x88 
+#define UnitZapdosWild 0x89 
+#define UnitMoltresWild 0x8A
+#define UnitMewWild 0x8B 
+#define UnitMewtwoWild 0x8C
 
 
 #define UnitRoute1Trainer 0xA0
