@@ -12,7 +12,7 @@ ORG FreeSpace
 #define ManimTransformEnt(itemId, sourceClassId, displayClassId, palette) "BYTE itemId; BYTE sourceClassId; BYTE displayClassId; BYTE 0; WORD palette"
 
 //#define AnyClass 0x00
-
+ALIGN 4 
 gMultiTransformManimList:
     //ManimTransformEnt(Dragonstone, Manakete_2_F, Manakete, 0x089A8F74)
     //ManimTransformEnt(Rapier, EirikaLord, Bael, 0x0859EEA0)

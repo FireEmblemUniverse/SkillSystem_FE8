@@ -573,18 +573,24 @@ ENUT IndigoPlateauArrived
 ENUT SecretKeyObtained
 ENUT CompletedPokemonLeague
 
+ENUT MoltresFledFlag  
+ENUT ArticunoFledFlag 
+ENUT ZapdosFledFlag 
+ENUT MewFledFlag 
+
 //ENUF CasualModeFlag 
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(21, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(30, YCoordNewArea)  
+Write_Byte(51, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(3, YCoordNewArea)  
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 //MNC2 ViridianCh 
 //MNC2 ChampionCh
 //MNC2 VermilionCh
-MNC2 DebugCh
+MNC2 Route4ECh
+//MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

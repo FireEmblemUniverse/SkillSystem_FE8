@@ -1,7 +1,19 @@
 
 #include "gbafe.h"
 
-
+struct StatScreenSt
+{
+    /* 00 */ u8 page;
+    /* 01 */ u8 pageAmt;
+    /* 02 */ u16 pageSlideKey; // 0, DPAD_RIGHT or DPAD_LEFT
+    /* 04 */ short xDispOff; // Note: Always 0, not properly taked into account by most things
+    /* 06 */ short yDispOff;
+    /* 08 */ s8 inTransition;
+    /* 0C */ struct Unit* unit;
+    /* 10 */ struct MUProc* mu;
+    /* 14 */ const struct HelpBoxInfo* help;
+};
+extern struct StatScreenSt gStatScreen; // statscreen state
 enum { UNIT_MOVE_COUNT = 5 };
 
 
@@ -121,7 +133,7 @@ static const struct MenuCommandDefinition MenuCommands_ViewRelearn[] =
 
         .onDraw = DoNothing,
 		.onIdle = List_Idle,
-        //.onEffect = MoveCommandSelect,
+        .onEffect = MoveCommandSelect,
     },
 	
 	
@@ -131,7 +143,7 @@ static const struct MenuCommandDefinition MenuCommands_ViewRelearn[] =
         .onDraw = DoNothing,
 		.onIdle = List_Idle,
 		
-        //.onEffect = MoveCommandSelect,
+        .onEffect = MoveCommandSelect,
     },
 	
     {
@@ -139,7 +151,7 @@ static const struct MenuCommandDefinition MenuCommands_ViewRelearn[] =
 
         .onDraw = DoNothing,
 		.onIdle = List_Idle,
-        //.onEffect = MoveCommandSelect,
+        .onEffect = MoveCommandSelect,
     },
 	
 	
@@ -148,14 +160,14 @@ static const struct MenuCommandDefinition MenuCommands_ViewRelearn[] =
 
         .onDraw = DoNothing,
 		.onIdle = List_Idle,
-        //.onEffect = MoveCommandSelect,
+        .onEffect = MoveCommandSelect,
     },
     {
 		.isAvailable = MenuCommandAlwaysUsable,
 
         .onDraw = DoNothing,
 		.onIdle = List_Idle,
-        //.onEffect = MoveCommandSelect,
+        .onEffect = MoveCommandSelect,
     },
 
 	
@@ -172,14 +184,16 @@ static const struct MenuDefinition Menu_ViewRelearnDef =
     .commandList = MenuCommands_ViewRelearn,
 
     .onEnd = ViewRelearnMenuEnd,
+    .onBPress = ViewRelearnMenuEnd,
 	
-    .onBPress = (void*) (0x08022860+1), // FIXME
+    //.onBPress = (void*) (0x08022860+1), // FIXME
 };
 
 extern const ProcCode gProc_8A01650[]; 
-int ViewRelearnCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command)
+int ViewRelearnCommand_OnSelect(struct Proc* event_proc)
 {
-    struct ViewRelearnProc* proc = (void*) ProcStart(Proc_ViewRelearn, ROOT_PROC_3);
+	gEventSlot[0xC] = 0; 
+    struct ViewRelearnProc* proc = (void*) ProcStartBlocking(Proc_ViewRelearn, event_proc);
     //struct ViewRelearnProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
 	
 	int* gCurrentUnit = (int*) 0x3004E50;
@@ -387,6 +401,7 @@ static int GetNumLines(char* string) // Basically count the number of NL codes.
 }
 
 
+
 void UpdateItemInfo_Relearn(struct MenuProc* menu, struct MenuCommandProc* command, struct ViewRelearnProc* proc)
 {
 
@@ -543,6 +558,10 @@ void UpdateItemInfo_Relearn(struct MenuProc* menu, struct MenuCommandProc* comma
 	Text_Display(&proc->handle[0], &gBG0MapBuffer[15][5+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 
 	// 0x8004AE8 = POIN gSpecialUiCharAllocationTable 
+	
+
+	gStatScreen.unit = proc->unit; 
+	
 	PrepareText(&proc->handle[1], GetItemDisplayRangeString(item));
 	Text_Display(&proc->handle[1], &gBG0MapBuffer[15][10+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 
@@ -681,12 +700,22 @@ static void ViewRelearnCommandDraw(struct MenuProc* menu, struct MenuCommandProc
 
 
 
-
+extern void prLearnNewSpell(struct Unit* unit, int spellID, struct Proc* proc); 
+// Arguments: r0 = Unit, r1 = Spell Index, r2 = Parent proc
+void prLearnNewSpell_ASMC(struct Proc* proc) { 
+	prLearnNewSpell((struct Unit*)gEventSlot[1], (int)gEventSlot[2], proc);
+} 	
 
 static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
+	struct ViewRelearnProc* const proc = (void*) menu->parent;
+	gEventSlot[0xC] = 1; 
+	gEventSlot[1] = (u32)proc->unit; 
+	gEventSlot[2] = proc->move_hovering; 
+	//prLearnNewSpell(proc->unit, proc->move_hovering, proc->parent); 
 	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }
+
 
 
    
