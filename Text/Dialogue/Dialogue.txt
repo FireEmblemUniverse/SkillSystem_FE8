@@ -907,7 +907,30 @@ up in here like ya own the place?[A][NL]
 This is private property![NL]
 Let me sip my coffee in peace.[A][X]
 
+## MissingNoHintText
+I done 'ere seen it![N]
+Taller'an you or me![A][N]
+A giant Tetris block![N]
+L-shaped and spooky like...[A][X]
 
+## CinnabarOldManText2
+My home's back in Viridian.[A][N]
+I thought this 'ere sea would[N]
+do these ole bones some good.[A][N]
+Terrified I am, now.[N]
+Perhaps I should head home soon..[A][X]
+
+## ViridianGrumpyManText2
+I used to teach 'em, y'kno.[N]
+Wouldn't let'em past 'til[N]
+I showed 'em my weedle.[A][N]
+Made 'em catch it 'n everything.[A][N]
+Now I'm under house arrest[N]
+'n haunted by tetris blocks...[A][X]
+
+## PolicemanOldManText
+Yeah yeah, that's what[N]
+they all say...[A][X]
 
 
 ## PewterMuseumText
@@ -3184,18 +3207,7 @@ Obtained the Secret Key![A][X]
 ## ObtainedCardKeyText
 Obtained the Card Key![A][X]
 
-## MissingNoHintText
-I done 'ere seen it![N]
-Taller than you or me![A][N]
-A giant Tetris block![N]
-L-shaped and spooky like...[A][X]
 
-## CinnabarOldManText2
-My home's back in Viridian.[A][N]
-I thought this 'ere sea would[N]
-do these ole bones some good.[A][N]
-I'm terrified of it, now.[N]
-Perhaps I should head home soon..[A][X]
 
 ## TombstonerText
 Is tombstoner the ultimate[N]
@@ -4008,8 +4020,12 @@ To that I ask, why are[N]
 any of us here?[A][N]
 ...oh, right![N]
 I'm the Move Reminder.[A][N]
-For a heart scale, I can remind[N]
-a Pokémon of who they once were.[A][N]
+//For a heart scale, I can remind[N]
+//a Pokémon of who they once were.[A][N]
+I can remind a Pokémon[N]
+of who they once were.[A][X]
+
+## MoveRelearnerYes
 Shall I reinvigorate a Pokémon?[N]
 [Yes][X]
 

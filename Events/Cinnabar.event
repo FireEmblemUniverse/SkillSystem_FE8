@@ -37,6 +37,7 @@ CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 CHAR 0x10 OldManTalk [0x0, 0xE0] 0 // NPC
 TrainerPostBattleTalk(0xE0) // NPC talk again 
+TrainerPostBattleTalk(0xE1) // NPC talk again 
 END_MAIN
 
 OldManTalk:
@@ -336,6 +337,7 @@ LABEL 1
 
 LABEL 0x63
 MarkTrainerAsDefeated(0xE0)
+MarkTrainerAsDefeated(0xE1)
 
 
 NoFade
@@ -344,6 +346,7 @@ ENDA
 
 OldMan:
 UNIT 0xE0 balding_manID 0x0 Level(0, Enemy, 1) [21,13]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xE1 policemanID 0x0 Level(0, Enemy, 1) [20,13]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 
@@ -351,10 +354,12 @@ UNIT
 
 { ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
 BQ(0, SSA_0xE0_BQ) // unused
+BQ(1, SSA_0xE0_BQ) // unused
 TDQ_TableTerminator
 
 TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
 BD(0, CinnabarOldManText2, 1) 
+BD(1, PolicemanOldManText, 1) 
 TDQ_TableTerminator
 }
 

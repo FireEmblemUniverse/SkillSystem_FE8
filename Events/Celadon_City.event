@@ -45,8 +45,14 @@ END_MAIN
 
 MoveRelearnerEvent:
 PauseFreeMovement
+SVAL 0xB 0xFFFFFFFF; 
+SOLOTEXTBOXSTART; 
+TEXTSHOW MoveRelearnerIntro; 
+TEXTEND; 
+//EVBIT_F 7 
 EVBIT_MODIFY 1 // no text skip 
-WallText(MoveRelearnerIntro)
+TEXTSHOW MoveRelearnerYes
+TEXTEND; REMA
 SVAL s1 1 
 BNE 99 sC s1 
 CHECK_ACTIVE 

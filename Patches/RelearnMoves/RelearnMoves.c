@@ -124,7 +124,8 @@ static const struct MenuCommandDefinition MenuCommands_ViewRelearn[] =
     {
         .isAvailable = MenuCommandAlwaysUsable,
         .onDraw = ViewRelearnCommandDraw,
-		.onIdle = List_Idle
+		.onIdle = List_Idle,
+		.onEffect = MoveCommandSelect,
 
     },
 
@@ -711,7 +712,7 @@ static int MoveCommandSelect(struct MenuProc* menu, struct MenuCommandProc* comm
 	struct ViewRelearnProc* const proc = (void*) menu->parent;
 	gEventSlot[0xC] = 1; 
 	gEventSlot[1] = (u32)proc->unit; 
-	gEventSlot[2] = proc->move_hovering; 
+	gEventSlot[2] = UnitGetMoveList(proc->unit, proc->offset)[(proc->move_hovering*2)+1]; 
 	//prLearnNewSpell(proc->unit, proc->move_hovering, proc->parent); 
 	return ME_DISABLE | ME_END | ME_PLAY_BEEP | ME_CLEAR_GFX;
 }

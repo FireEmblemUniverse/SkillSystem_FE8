@@ -488,7 +488,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(50, True, 0x145) // all 
+AutoLevelUnits(30, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 SetUnitStatus(1, 0x28, Transform)
@@ -584,11 +584,15 @@ ENUT MewFledFlag
 //ASMC SeePokedex
 Write_Byte(51, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(3, YCoordNewArea)  
+
+//Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
+//Write_Byte(18, YCoordNewArea) 
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 //MNC2 ViridianCh 
 //MNC2 ChampionCh
 //MNC2 VermilionCh
+//MNC2 CeladonCh
 MNC2 Route4ECh
 //MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)

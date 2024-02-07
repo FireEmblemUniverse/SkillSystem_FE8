@@ -1191,7 +1191,7 @@ SVAL rC 0x10000
 SDIV r2 rB rC 
 Write_Byte(YCoordTeleport) 
 Write_Byte(YCoordNewArea) 
-
+ENUF MissingnoFlag 
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
@@ -1300,6 +1300,7 @@ Write_Byte(0, DisableMenuOptionsRam)
 ENUF TrainerBattleActiveFlag
 ENUF DisableTutFlag_A
 ENUF DisableTutFlag_B
+ENUF MissingnoFlag
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
@@ -1329,6 +1330,7 @@ ENUF TrainerBattleActiveFlag
 ENUF RefreshEvenInTrainerBattleFlag
 ENUF DisableTutFlag_A
 ENUF DisableTutFlag_B
+ENUF MissingnoFlag
 SADD 2 9 0 
 
 MNC2 (-1) 
@@ -1359,7 +1361,7 @@ IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
 ENUF RefreshEvenInTrainerBattleFlag
-
+ENUF MissingnoFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
@@ -1378,7 +1380,7 @@ IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
 ENUF RefreshEvenInTrainerBattleFlag
-
+ENUF MissingnoFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
