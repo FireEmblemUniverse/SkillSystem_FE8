@@ -52,7 +52,8 @@
 	SetTrapEventInit(TakeTriggerID,GenericTrapDisappearCompletionInitialization)
 	#define Examine2ID 42 
 	SetTrapEventInit(Examine2ID,GenericTrapDisappearInitialization)
-	SetTrapEventInit(Placeholder43ID,GenericTrapDisappearInitialization)
+	#define StrengthMewID 43 
+	SetTrapEventInit(StrengthMewID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder44ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder45ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder46ID,GenericTrapDisappearInitialization)

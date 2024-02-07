@@ -92,7 +92,7 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  MewtwoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  DittoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 UNIT 2  MewtwoID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  MewtwoID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 3  MewtwoID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
@@ -363,8 +363,8 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 SilentGiveItemWithDurability(1, StatAccessory, QuickBoots_BoostIndex|0x80)
 SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT3_BoostIndex)
-SilentGiveItemWithDurability(Eirika, Berry, 6)
-SilentGiveItemWithDurability(Eirika, SuperPotion, 1)
+//SilentGiveItemWithDurability(Eirika, Berry, 6)
+//SilentGiveItemWithDurability(Eirika, SuperPotion, 1)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Fissure)
 //GiveSkillAccessory(0, BlossomID)
 //EquipNewSkillAccessory(1, Intimidate2ID) // GiveSkillAccessory(0, RenewalID)
@@ -436,7 +436,7 @@ SilentGiveItemWithDurability(1, SuperPotion, 1)
 //SilentGiveItemWithDurability(6, StatAccessory, EnergyBandT4_BoostIndex|0x80)
 
 //SilentGiveSkillAccessory(1, FuryID)
-//SilentGiveItemWithDurability(1, SkillScroll, PoisonStrikeID)
+SilentGiveItemWithDurability(1, SpellScroll, Tackle)
 //SilentGiveItemWithDurability(1, SkillScroll, PoisonStrikeID)
 
 //GiveItemWithDurability(UnitID, Item, Durability)
@@ -488,14 +488,14 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(50, True, 0x145) // all 
+AutoLevelUnits(30, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
-SetUnitStatus(1, 0x28, Explosion)
-SetUnitStatus(1, 0x29, Psychic)
-SetUnitStatus(1, 0x2A, MudShot)
-SetUnitStatus(1, 0x2B, Flamethrower)
-SetUnitStatus(1, 0x2C, Growth)
+SetUnitStatus(1, 0x28, Transform)
+//SetUnitStatus(1, 0x29, Psychic)
+//SetUnitStatus(1, 0x2A, MudShot)
+//SetUnitStatus(1, 0x2B, Flamethrower)
+//SetUnitStatus(1, 0x2C, Growth)
 //SetUnitStatus(1, 9, 97)
 
 
@@ -573,17 +573,28 @@ ENUT IndigoPlateauArrived
 ENUT SecretKeyObtained
 ENUT CompletedPokemonLeague
 
+ENUT MoltresFledFlag  
+ENUT ArticunoFledFlag 
+ENUT ZapdosFledFlag 
+ENUT MewFledFlag 
+
 //ENUF CasualModeFlag 
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(18, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(10, YCoordNewArea)  
+Write_Byte(51, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(3, YCoordNewArea)  
+
+//Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
+//Write_Byte(18, YCoordNewArea) 
 //MNC2 MansionB4Ch 
 //MNC2 Route10Ch
 //MNC2 ViridianCh 
 //MNC2 ChampionCh
-MNC2 DebugCh
+//MNC2 VermilionCh
+//MNC2 CeladonCh
+MNC2 Route4ECh
+//MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

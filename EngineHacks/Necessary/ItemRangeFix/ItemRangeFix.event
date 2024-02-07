@@ -253,6 +253,8 @@
 	SHORT 0x1C03 0x1C0C
 	B($3D8BA)
 	
+	// This adds UNIT as a parameter to GetItemRange!
+	// Any hack that uses GetItemRange must put unit into 0x02003BFC+0x0C! 
 	ORG $16CC0 //Shows the correct range numbers when displaying an item's R-menu 
 	jumpToHack(StatScreenRangeDisplay)
 	jumpToHack(ItemDescRangeDisplay)

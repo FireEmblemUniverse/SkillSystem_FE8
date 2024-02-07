@@ -85,6 +85,7 @@
 	WORD IsAccessory 
 	WORD HoverBoardID 
 	WORD GroundTypeWep
+	WORD DittoID 
 
 	ALIGN 4
 	Redone_Redone_Slayer:

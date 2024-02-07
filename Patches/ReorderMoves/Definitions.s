@@ -2,6 +2,7 @@
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 
 //@ Vanilla function declarations:
+SET_DATA gStatScreen, 0x2003BFC 
 
 SET_FUNC GetUnitRangeMask, (0x080171E8+1)
 

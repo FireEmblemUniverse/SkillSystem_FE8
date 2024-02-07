@@ -1,7 +1,19 @@
 
 #include "gbafe.h"
 
-
+struct StatScreenSt
+{
+    /* 00 */ u8 page;
+    /* 01 */ u8 pageAmt;
+    /* 02 */ u16 pageSlideKey; // 0, DPAD_RIGHT or DPAD_LEFT
+    /* 04 */ short xDispOff; // Note: Always 0, not properly taked into account by most things
+    /* 06 */ short yDispOff;
+    /* 08 */ s8 inTransition;
+    /* 0C */ struct Unit* unit;
+    /* 10 */ struct MUProc* mu;
+    /* 14 */ const struct HelpBoxInfo* help;
+};
+extern struct StatScreenSt gStatScreen; // statscreen state
 enum { UNIT_SKILL_COUNT = 5 };
 
 #define BG_SYNC_BIT(aBg) (1 << (aBg))

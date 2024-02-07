@@ -16,6 +16,7 @@ cmp		r0,#0
 beq		Label1
 mov		r5,r0
 Label1:
+
 ldrh	r0,[r7]		@attacker's item
 mov		r1,r8
 ldr r3,=Check_Effectiveness 	@added

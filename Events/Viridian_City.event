@@ -97,6 +97,7 @@ ENDA
 ALIGN 4
 LocationBasedEvents:
 House(0,ViridianUpperHouseEvent, 21,11)
+House(0x16, OldManHouseEvent, 21,18) 
 House(ViridianGymClosedFlag,EnterGym,30,10) 
 Vendor(ShopItems,30,19)
 /*
@@ -117,6 +118,20 @@ LABEL 0
 TutText(ViridianUpperHouseText_Lategame)
 LABEL 99 
 NoFade
+ENDA 
+
+OldManHouseEvent: 
+CHECK_EVENTID 0x17 
+BNE 0 sC s0 
+WallText(ViridianGrumpyManText)
+GOTO 99 
+LABEL 0 
+//EVBIT_MODIFY 
+WallText(ViridianGrumpyManText2)
+ENUT MissingnoFlag
+LABEL 99 
+ENUF 0x16 
+NoFade 
 ENDA 
 
 
@@ -266,7 +281,7 @@ TutSign(15,4, ChapterID*2+3,TrainerTip_CursorJump)
 BlankExamineTrap(26,10, ViridianGymText)
 //BlankExamineTrap(30,10, DoorLockedText) // Gym 
 //EnterWallTrap(21,11, ViridianUpperHouseText) 
-EnterWallTrap(21,18, ViridianGrumpyManText) 
+//EnterWallTrap(21,18, ViridianGrumpyManText) 
 Save(23,24) // 1N of Pokecenter - you can save while adjacent 
 //SaveCost(24,26)
 CutBush(13,5)
@@ -369,19 +384,25 @@ BEQ 34 sC s0
 DISA OaksAidePkmn 
 LABEL 34 
 
+CHECK_EVENTID EarthbadgeObtained
+BNE 1 sC s0 
 CHECK_EVENTID VolcanobadgeObtained // trap exists after you have marshbadge until you get volcanobadge 
 BNE 0 sC s0  // old man is visiting Cinnabar 
 CHECK_EVENTID MarshbadgeObtained
-BEQ 1 sC s0 
+BEQ 2 sC s0 
+
 LABEL 0 
-RemoveTrap(21,18)
+ENUT 0x16 //RemoveTrap(21,18)
 ENUN
-LABEL 1
+GOTO 2 
+LABEL 1 
+ENUT 0x17 // some flag 
+LABEL 2
 
 CHECK_EVENTID VolcanobadgeObtained 
-BEQ 2 sC s0  
+BEQ 3 sC s0  
 RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge 
-LABEL 2 
+LABEL 3 
 
 SVAL sC 0 
 SCOORD sB [30, 11] 

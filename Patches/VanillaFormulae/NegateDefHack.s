@@ -23,7 +23,6 @@ push {r4-r6, lr}
 mov r4, r0 
 mov r6, r2 @ Dunno if this is necessary tbh 
 
-
 mov r0, #0x48 
 ldrb r1, [r4, r0] @ Item ID ? 
 ldr r3, =NegateDefAmountTable @ Indexed by item ID 
@@ -70,7 +69,6 @@ End:
 mov r0, r4 @ Atkr 
 mov r1, r6 @ Dfdr 
 bl DamageModifierCalcLoopFunc
-
 pop {r4-r6}
 pop {r0}
 mov lr, r0 
