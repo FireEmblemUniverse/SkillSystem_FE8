@@ -770,14 +770,14 @@ BYTE 13 Scorch
 BYTE 16 ConfuseRay
 BYTE 19 HexAtt
 BYTE 21 FireSpin
-BYTE 24 Flamethrower
-BYTE 26 Psybeam
-BYTE 28 RecoverMove //?Support Safeguard
-BYTE 31 NightDaze
+BYTE 23 Psybeam
+BYTE 25 Flamethrower
+BYTE 27 RecoverMove //?Support Safeguard
+BYTE 30 NightDaze
 BYTE 34 Psychic
 //BYTE 36 Resv //Captivate
-BYTE 38 ShadowBall
-BYTE 40 CalmMind
+BYTE 40 ShadowBall
+BYTE 41 CalmMind
 BYTE 44 FireBlast
 BYTE 0 0
 
@@ -792,14 +792,14 @@ BYTE 13 Scorch
 BYTE 16 ConfuseRay
 BYTE 19 HexAtt
 BYTE 21 FireSpin
-BYTE 24 Flamethrower
-BYTE 26 Psybeam
-BYTE 28 RecoverMove //?Support Safeguard
-BYTE 31 NightDaze
+BYTE 23 Psybeam
+BYTE 25 Flamethrower
+BYTE 27 RecoverMove //?Support Safeguard
+BYTE 30 NightDaze
 BYTE 34 Psychic
 //BYTE 36 Resv //Captivate
-BYTE 38 ShadowBall
-BYTE 40 CalmMind
+BYTE 40 ShadowBall
+BYTE 41 CalmMind
 BYTE 44 FireBlast
 BYTE 0 0
 
@@ -2884,8 +2884,8 @@ BYTE 2 AttackPulse
 // BYTE 1 Resv Sharpen
 // BYTE 1 Resv Conversion
 BYTE 4 Thundershock
-BYTE 7 RecoverMove
-BYTE 9 Flash
+BYTE 7 Flash
+BYTE 9 RecoverMove
 BYTE 12 Agility
 BYTE 15 ShockWave
 BYTE 18 SignalBeam
