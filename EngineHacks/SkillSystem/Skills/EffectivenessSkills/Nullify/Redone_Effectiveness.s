@@ -23,7 +23,7 @@ mov lr, r3
 .short 0xf800 
 mov r8, r0 @ item type 
 
-mov r11, r11 
+
 @ is attacking side Ditto? 
 ldr r2, =0x203A4EC @ atkr
 ldr r3, [r5, #4] 
