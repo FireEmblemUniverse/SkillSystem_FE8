@@ -1,7 +1,19 @@
 
 #include "gbafe.h"
 
-
+struct StatScreenSt
+{
+    /* 00 */ u8 page;
+    /* 01 */ u8 pageAmt;
+    /* 02 */ u16 pageSlideKey; // 0, DPAD_RIGHT or DPAD_LEFT
+    /* 04 */ short xDispOff; // Note: Always 0, not properly taked into account by most things
+    /* 06 */ short yDispOff;
+    /* 08 */ s8 inTransition;
+    /* 0C */ struct Unit* unit;
+    /* 10 */ struct MUProc* mu;
+    /* 14 */ const struct HelpBoxInfo* help;
+};
+extern struct StatScreenSt gStatScreen; // statscreen state
 enum { UNIT_MOVE_COUNT = 5 };
 
 
@@ -545,6 +557,7 @@ void UpdateItemInfo(struct MenuProc* menu, struct MenuCommandProc* command, stru
 	Text_Display(&proc->handle[0], &gBG0MapBuffer[15][5+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 
 	// 0x8004AE8 = POIN gSpecialUiCharAllocationTable 
+gStatScreen.unit = proc->unit; 
 	PrepareText(&proc->handle[1], GetItemDisplayRangeString(item));
 	Text_Display(&proc->handle[1], &gBG0MapBuffer[15][10+x]); i++; 
 	//gpCurrentFont->tileNext = gpCurrentFont->tileNext + 3; 

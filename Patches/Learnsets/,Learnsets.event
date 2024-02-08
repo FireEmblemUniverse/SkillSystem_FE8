@@ -2768,8 +2768,13 @@ BYTE 0 0
 
 ALIGN 4
 DittoLearnset:
-// BYTE 1 Transform
-BYTE 1 Tackle
+BYTE 1 Transform
+//BYTE 1 Tackle
+BYTE 0 0
+BYTE 0 0
+BYTE 0 0
+BYTE 0 0
+BYTE 0 0
 BYTE 0 0
 
 ALIGN 4
@@ -3188,12 +3193,13 @@ BYTE 20 Psybeam
 BYTE 25 TriAttack
 BYTE 30 SeismicToss
 BYTE 35 HealPulse
-BYTE 40 ShadowBall
-BYTE 45 Psychic
+//BYTE 40 ShadowBall
+BYTE 45 FlashCannon 
 BYTE 50 DarkPulse
 BYTE 55 Amnesia
-BYTE 60 FlashCannon
-BYTE 65 HyperBeam
+BYTE 60 ShadowBall
+BYTE 65 Psychic
+BYTE 75 HyperBeam
 //BYTE 64 ??? ?Buff (Power Swap, Guard Swap)
 //BYTE 79 ??? ?Buff (Me First)
 //BYTE 93 ??? ?Buff (Safeguard)

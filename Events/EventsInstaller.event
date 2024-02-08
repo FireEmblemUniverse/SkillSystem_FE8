@@ -3,7 +3,6 @@
 #include "WorldMap/WorldMapEvents.event"
 
 #include "TutorialDef.event"
-#include "DefinitionsUnitAndClass.event"
 #include "REDAHelpers.event" 
 #include "ChTransition.event" 
 #include "SlotMachine.event"
@@ -359,5 +358,15 @@
 {
 #include "Viridian_Gym2.event" 
 } 
-
-
+{
+#include "SSAnneDocks.event" 
+} 
+{ 
+#include "CeruleanCaveB1.event" 
+} 
+{ 
+#include "CeruleanCaveB2.event" 
+} 
+{ 
+#include "CeruleanCaveB3.event" 
+} 

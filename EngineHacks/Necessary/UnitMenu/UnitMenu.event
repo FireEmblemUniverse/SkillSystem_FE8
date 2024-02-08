@@ -204,6 +204,8 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   
   
   MenuCommand(UM_Examine,UM_ExamineDesc,BlueText, GenericTrapDisappearCompletionUsability0x2A, GenericTrapDisappearCompletionEffect)
+  MenuCommand(UM_Strength, UM_StrengthDesc, GreenText, GenericTrapDisappearCompletionUsability0x2B, GenericTrapDisappearCompletionEffect) //Strength for mew 
+
 
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignAUsability0x60, TeleportSignAEffect) //Examine
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, TeleportSignBUsability0x61, TeleportSignBEffect) //Examine
@@ -229,7 +231,9 @@ MenuCommand(UM_Capture, UM_CaptureDesc,NormalText,CaptureGaidenBlackMagicUMUsabi
   MenuCommand(UM_Examine, UM_ExamineDesc, BlueText, GenericTrapUsability0x39, GenericTrapEffect) //Examine
   //MenuCommand(UM_Use, UM_UseDesc, GreenText, GenericTrapUsability0x3A, GenericTrapEffect) //Use
   MenuCommand(UM_Enter, UM_EnterDesc, GreenText, GenericTrapUsability0x3C, GenericTrapEffect) //Enter
+  
   MenuCommand(UM_Exit2, UM_Exit2Desc, GreenText, GenericTrapUsability0x3D, GenericTrapEffect) //Exit
+
 
 
   MenuCommand(UM_Examine, UM_ExamineDesc, GreenText, ObtainItemUsability0x12, ObtainItemEffect) //Examine

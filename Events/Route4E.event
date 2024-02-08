@@ -75,8 +75,61 @@ ToMtMoonB2_Exit:
 DigChapterTransition(ChapterID, MtMoonB2Ch, 28, 5)
 
 ToCeruleanCave:
-CALL ClosedArea
-DigChapterTransition(ChapterID, MtMoonB2Ch, 0,0)
+//CALL ClosedArea
+CHECK_EVENTID CompletedPokemonLeague
+BEQ 10 sC s0 
+CHECK_EVENTID MewFledFlag
+BEQ 50 sC s0 
+CHECK_EVENTID ArticunoFledFlag
+BEQ 50 sC s0 
+CHECK_EVENTID ZapdosFledFlag
+BEQ 50 sC s0 
+CHECK_EVENTID MoltresFledFlag
+BEQ 50 sC s0 
+GOTO 80 // all flags are on 
+
+
+LABEL 50 // Some flag(s) are off
+TUTORIALTEXTBOXSTART  
+TEXTSHOW CeruleanCaveSealText
+TEXTEND
+CHECK_EVENTID MewFledFlag
+BNE 1 sC s0 
+TEXTSHOW MewSealText
+TEXTEND 
+LABEL 1 
+CHECK_EVENTID ArticunoFledFlag
+BNE 2 sC s0 
+TEXTSHOW ArticunoSealText
+TEXTEND 
+LABEL 2
+CHECK_EVENTID ZapdosFledFlag
+BNE 3 sC s0
+TEXTSHOW ZapdosSealText
+TEXTEND 
+LABEL 3  
+CHECK_EVENTID MoltresFledFlag
+BNE 4 sC s0 
+TEXTSHOW MoltresSealText
+TEXTEND 
+LABEL 4 
+REMA 
+GOTO 99 
+
+LABEL 10 
+TutText(CeruleanCaveUnworhtyText)
+GOTO 99 
+
+LABEL 80 
+CALL EnterCeruleanCave
+GOTO 99 
+
+LABEL 99 
+NoFade 
+ENDA 
+
+EnterCeruleanCave:
+DigChapterTransition(ChapterID, CeruleanCaveB1Ch, 33,20)
 
 ToCeruleanWater:
 ChapterTransition(CeruleanCh, 1,2)
