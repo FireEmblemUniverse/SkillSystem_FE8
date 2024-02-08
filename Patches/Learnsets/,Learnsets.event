@@ -391,9 +391,8 @@ BYTE 3 Growl
 BYTE 5 QuickAttack
 BYTE 7 HoneClaws
 BYTE 10 Bite
-BYTE 12 SuperFang
-BYTE 14 TakeDown
-BYTE 16 Rollout
+BYTE 12 TakeDown
+BYTE 15 Rollout
 BYTE 18 Dig
 BYTE 20 Agility
 BYTE 22 HyperFang
@@ -401,6 +400,7 @@ BYTE 24 FlameWheel
 BYTE 28 PoisonJab
 BYTE 33 DoubleEdge
 BYTE 37 NightSlash
+BYTE 40 SuperFang
 BYTE 0 0
 
 ALIGN 4
@@ -411,9 +411,8 @@ BYTE 3 Growl
 BYTE 5 QuickAttack
 BYTE 7 HoneClaws
 BYTE 10 Bite
-BYTE 12 SuperFang
-BYTE 14 TakeDown
-BYTE 16 Rollout
+BYTE 12 TakeDown
+BYTE 15 Rollout
 BYTE 18 Dig
 BYTE 20 Agility
 BYTE 22 HyperFang
@@ -421,6 +420,7 @@ BYTE 24 FlameWheel
 BYTE 28 PoisonJab
 BYTE 33 DoubleEdge
 BYTE 37 NightSlash
+BYTE 40 SuperFang
 BYTE 0 0
 
 ALIGN 4
@@ -2013,14 +2013,15 @@ ALIGN 4
 KrabbyLearnset:
 BYTE 1 Bubble 
 // BYTE 1 Resv MudSport
-BYTE 5 Scratch // ViceGrip 
+BYTE 1 Scratch // ViceGrip 
+BYTE 5 Clamp
+BYTE 7 RockThrow
 BYTE 9 Leer 
-BYTE 11 Clamp
+BYTE 11 MudShot
 BYTE 13 FuryCutter
 BYTE 15 BubbleBeam
-BYTE 19 MudShot
-BYTE 21 MetalClaw
-BYTE 23 Waterfall
+BYTE 18 MetalClaw
+BYTE 22 Waterfall
 BYTE 25 Slash // Stomp
 BYTE 28 Dig
 BYTE 31 SwordsDance
@@ -2036,14 +2037,15 @@ ALIGN 4
 KinglerLearnset:
 BYTE 1 Bubble 
 // BYTE 1 Resv MudSport
-BYTE 5 Scratch // ViceGrip 
+BYTE 1 Scratch // ViceGrip 
+BYTE 5 Clamp
+BYTE 7 RockThrow
 BYTE 9 Leer 
-BYTE 11 Clamp
+BYTE 11 MudShot
 BYTE 13 FuryCutter
 BYTE 15 BubbleBeam
-BYTE 19 MudShot
-BYTE 21 MetalClaw
-BYTE 23 Waterfall
+BYTE 18 MetalClaw
+BYTE 22 Waterfall
 BYTE 25 Slash // Stomp
 BYTE 28 Dig
 BYTE 31 SwordsDance
