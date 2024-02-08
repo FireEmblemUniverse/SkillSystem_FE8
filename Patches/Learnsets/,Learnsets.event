@@ -204,8 +204,8 @@ BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
-BYTE 1 StringShot
 BYTE 1 Tackle
+BYTE 1 StringShot
 BYTE 3 Harden 
 BYTE 5 TailWhip 
 BYTE 8 GuardMove
@@ -227,10 +227,10 @@ BYTE 0 0
 
 ALIGN 4
 ButterfreeLearnset:
-BYTE 1 StringShot
 BYTE 1 Tackle
+BYTE 1 StringShot
 BYTE 3 Harden 
-BYTE 5 TailWhip
+BYTE 5 TailWhip 
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -386,13 +386,16 @@ BYTE 0 0
 ALIGN 4
 RattataLearnset:
 BYTE 1 Tackle
-BYTE 3 TailWhip 
-BYTE 5 Growl 
-BYTE 7 QuickAttack
+BYTE 1 TailWhip 
+BYTE 3 Growl 
+BYTE 5 QuickAttack
+BYTE 7 HoneClaws
 BYTE 10 Bite
-BYTE 14 SuperFang
+BYTE 12 SuperFang
+BYTE 14 TakeDown
 BYTE 16 Rollout
 BYTE 18 Dig
+BYTE 20 Agility
 BYTE 22 HyperFang
 BYTE 24 FlameWheel
 BYTE 28 PoisonJab
@@ -403,13 +406,16 @@ BYTE 0 0
 ALIGN 4
 RaticateLearnset:
 BYTE 1 Tackle
-BYTE 3 TailWhip 
-BYTE 5 Growl 
-BYTE 7 QuickAttack
+BYTE 1 TailWhip 
+BYTE 3 Growl 
+BYTE 5 QuickAttack
+BYTE 7 HoneClaws
 BYTE 10 Bite
-BYTE 14 SuperFang
+BYTE 12 SuperFang
+BYTE 14 TakeDown
 BYTE 16 Rollout
 BYTE 18 Dig
+BYTE 20 Agility
 BYTE 22 HyperFang
 BYTE 24 FlameWheel
 BYTE 28 PoisonJab
@@ -590,7 +596,7 @@ BYTE 19 Bite
 BYTE 21 DoubleHit
 BYTE 23 RecoverMove //?Support HelpingHand
 BYTE 25 SeismicToss
-BYTE 31 Sludge
+BYTE 30 Sludge
 BYTE 33 Earthquake
 BYTE 35 PoisonJab
 //BYTE 43 Resv //Captivate
@@ -611,7 +617,7 @@ BYTE 19 Bite
 BYTE 21 DoubleHit
 BYTE 23 RecoverMove //?Support HelpingHand
 BYTE 25 SeismicToss
-BYTE 31 Sludge
+BYTE 30 Sludge
 BYTE 33 Earthquake
 BYTE 35 PoisonJab
 //BYTE 43 Resv //Captivate
@@ -632,7 +638,7 @@ BYTE 19 Bite
 BYTE 21 DoubleHit
 BYTE 23 RecoverMove //?Support HelpingHand
 BYTE 25 SeismicToss
-BYTE 31 Sludge
+BYTE 30 Sludge
 BYTE 33 Earthquake
 BYTE 35 PoisonJab
 //BYTE 43 Resv //Captivate
@@ -642,7 +648,8 @@ BYTE 0 0
 ALIGN 4
 NidoranMLearnset:
 BYTE 1 Leer
-BYTE 1 Peck
+BYTE 1 Scratch
+BYTE 3 Peck
 BYTE 5 Magnitude
 BYTE 7 PoisonSting
 BYTE 8 Growl 
@@ -662,7 +669,8 @@ BYTE 0 0
 ALIGN 4
 NidorinoLearnset:
 BYTE 1 Leer
-BYTE 1 Peck
+BYTE 1 Scratch
+BYTE 3 Peck
 BYTE 5 Magnitude
 BYTE 7 PoisonSting
 BYTE 8 Growl 
@@ -683,7 +691,8 @@ BYTE 0 0
 ALIGN 4
 NidokingLearnset:
 BYTE 1 Leer
-BYTE 1 Peck
+BYTE 1 Scratch
+BYTE 3 Peck
 BYTE 5 Magnitude
 BYTE 7 PoisonSting
 BYTE 8 Growl 
@@ -887,8 +896,9 @@ BYTE 0 0
 
 ALIGN 4
 OddishLearnset:
-BYTE 1 Absorb 
-BYTE 5 Constrict  
+BYTE 1 Absorb
+BYTE 1 Constrict
+BYTE 5 AttackPulse
 BYTE 8 LeafFlurry
 BYTE 11 Acid
 BYTE 14 MagicalLeaf
@@ -905,8 +915,9 @@ BYTE 0 0
 
 ALIGN 4
 GloomLearnset:
-BYTE 1 Absorb 
-BYTE 5 Constrict  
+BYTE 1 Absorb
+BYTE 1 Constrict
+BYTE 5 AttackPulse
 BYTE 8 LeafFlurry
 BYTE 11 Acid
 BYTE 14 MagicalLeaf
@@ -923,8 +934,9 @@ BYTE 0 0
 
 ALIGN 4
 VileplumeLearnset:
-BYTE 1 Absorb 
-BYTE 5 Constrict  
+BYTE 1 Absorb
+BYTE 1 Constrict
+BYTE 5 AttackPulse
 BYTE 8 LeafFlurry
 BYTE 11 Acid
 BYTE 14 MagicalLeaf
@@ -1041,12 +1053,12 @@ ALIGN 4
 DiglettLearnset:
 BYTE 1 Scratch 
 BYTE 1 SandAttack 
-BYTE 4 Growl 
-BYTE 7 Magnitude
-BYTE 10 ConfuseRay
+BYTE 1 Growl
+BYTE 4 Magnitude
+BYTE 7 ConfuseRay
 BYTE 12 Slash
 BYTE 15 MudShot
-BYTE 18 Dig
+BYTE 17 Dig
 BYTE 20 Screech
 BYTE 22 ThiefAtt
 BYTE 24 EarthPower
@@ -1063,12 +1075,12 @@ ALIGN 4
 DugtrioLearnset:
 BYTE 1 Scratch 
 BYTE 1 SandAttack 
-BYTE 4 Growl 
-BYTE 7 Magnitude
-BYTE 10 ConfuseRay
+BYTE 1 Growl
+BYTE 4 Magnitude
+BYTE 7 ConfuseRay
 BYTE 12 Slash
 BYTE 15 MudShot
-BYTE 18 Dig
+BYTE 17 Dig
 BYTE 20 Screech
 BYTE 22 ThiefAtt
 BYTE 24 EarthPower
@@ -1206,12 +1218,13 @@ GrowlitheLearnset:
 BYTE 1 QuickAttack
 BYTE 1 Growl
 BYTE 1 Ember
-BYTE 4 Bite
-BYTE 6 DoubleKick
-BYTE 9 Leer
-BYTE 11 RecoverMove //?Support HelpingHand
-BYTE 14 FlameWheel
-BYTE 17 BodySlam
+BYTE 3 Bite
+BYTE 5 DoubleKick
+BYTE 8 Leer
+BYTE 10 RecoverMove //?Support HelpingHand
+BYTE 13 FlameWheel
+BYTE 16 FireSpin
+BYTE 18 BodySlam
 BYTE 21 RollingKick
 BYTE 26 Flamethrower
 BYTE 28 Dig
@@ -1227,12 +1240,13 @@ ArcanineLearnset:
 BYTE 1 QuickAttack
 BYTE 1 Growl
 BYTE 1 Ember
-BYTE 4 Bite
-BYTE 6 DoubleKick
-BYTE 9 Leer
-BYTE 11 RecoverMove //?Support HelpingHand
-BYTE 14 FlameWheel
-BYTE 17 BodySlam
+BYTE 3 Bite
+BYTE 5 DoubleKick
+BYTE 8 Leer
+BYTE 10 RecoverMove //?Support HelpingHand
+BYTE 13 FlameWheel
+BYTE 16 FireSpin
+BYTE 18 BodySlam
 BYTE 21 RollingKick
 BYTE 26 Flamethrower
 BYTE 28 Dig
@@ -1839,7 +1853,7 @@ BYTE 28 Avalanche // IceShard
 BYTE 32 IceBeam // AuroraBeam
 BYTE 36 Waterfall // Whirlpool
 BYTE 39 Surf
-BYTE 41 MirrorShot // IronDefense
+BYTE 41 FlashCannon // IronDefense
 BYTE 43 Blizzard
 BYTE 45 HydroPump // Brine
 BYTE 0 0
@@ -1863,7 +1877,7 @@ BYTE 28 Avalanche // IceShard
 BYTE 32 IceBeam // AuroraBeam
 BYTE 36 Waterfall // Whirlpool
 BYTE 39 Surf
-BYTE 41 MirrorShot // IronDefense
+BYTE 41 FlashCannon // IronDefense
 BYTE 43 Blizzard
 BYTE 45 HydroPump // Brine
 BYTE 0 0
@@ -1963,7 +1977,7 @@ BYTE 23 Psybeam
 BYTE 29 ShadowBall
 // BYTE 29 Resv Psych Up
 BYTE 32 Submission
-BYTE 35 PoisonJab
+BYTE 34 PoisonJab
 // BYTE 37 Resv Swagger
 BYTE 36 Psychic
 BYTE 40 DarkPulse
@@ -1987,7 +2001,7 @@ BYTE 23 Psybeam
 BYTE 29 ShadowBall
 // BYTE 29 Resv Psych Up
 BYTE 32 Submission
-BYTE 35 PoisonJab
+BYTE 34 PoisonJab
 // BYTE 37 Resv Swagger
 BYTE 36 Psychic
 BYTE 40 DarkPulse
@@ -2327,19 +2341,20 @@ ALIGN 4
 ChanseyLearnset:
 BYTE 1 Pound
 BYTE 1 Snarl
-BYTE 8 Doubleslap
+BYTE 1 AttackPulse
+BYTE 5 Doubleslap
+BYTE 8 ConfuseRay
 // BYTE 9 Resv Refresh
 BYTE 12 TailWhip
-BYTE 15 ThunderWave
-BYTE 18 RecoverMove
+BYTE 15 HealPulse
+BYTE 18 ThunderWave
 BYTE 20 NightShade
 // BYTE 20 Resv Minimize
 // BYTE 23 Sleep2 // Sing
 BYTE 23 Swift
-BYTE 27 HealPulse
-BYTE 29 ConfuseRay
+BYTE 27 RecoverMove
+BYTE 30 TriAttack
 // BYTE 31 Resv DefenseCurl
-BYTE 31 TriAttack
 BYTE 33 Amnesia
 BYTE 35 SeismicToss
 BYTE 38 HyperBeam
@@ -2379,9 +2394,11 @@ BYTE 5 Rage
 BYTE 7 Snarl // FakeOut
 BYTE 11 Bite
 BYTE 15 MegaPunch
-BYTE 22 Magnitude
-BYTE 25 SeismicToss
-BYTE 31 ShadowPunch
+BYTE 18 Magnitude
+BYTE 21 SeismicToss
+BYTE 25 Thrash
+BYTE 29 ShadowPunch
+BYTE 31 RockSlide
 BYTE 34 RecoverMove // Endure
 BYTE 37 Outrage
 BYTE 40 Earthquake
@@ -2495,7 +2512,8 @@ BYTE 24 Psybeam
 BYTE 28 HealPulse
 // BYTE 33 Resv Minimize
 BYTE 33 Surf
-BYTE 37 MirrorShot // GyroBall
+BYTE 37 FlashCannon // GyroBall
+BYTE 40 Psychic
 //BYTE 42 LightScreen
 BYTE 42 Ancientpower
 // BYTE 51 Resv CosmicPower
@@ -2516,7 +2534,8 @@ BYTE 24 Psybeam
 BYTE 28 HealPulse
 // BYTE 33 Resv Minimize
 BYTE 33 Surf
-BYTE 37 MirrorShot // GyroBall
+BYTE 37 FlashCannon // GyroBall
+BYTE 40 Psychic
 //BYTE 42 LightScreen
 BYTE 42 Ancientpower
 // BYTE 51 Resv CosmicPower
@@ -2541,7 +2560,7 @@ BYTE 21 Amnesia
 //BYTE 22 Reflect
 BYTE 25 Psybeam
 BYTE 29 Screech
-BYTE 35 MirrorShot
+BYTE 35 FlashCannon
 // BYTE 29 Resv Substitute
 // BYTE 32 Resv Recycle
 // BYTE 36 Resv Trick
@@ -2577,7 +2596,7 @@ JynxLearnset:
 BYTE 1 IcyWind
 BYTE 1 Pound
 BYTE 1 Lick
-BYTE 1 ConfuseRay
+BYTE 3 ConfuseRay
 BYTE 5 Confusion 
 // BYTE 8 Resv LovelyKiss 
 BYTE 9 Doubleslap
@@ -2755,9 +2774,9 @@ BYTE 0 0
 
 ALIGN 4
 EeveeLearnset:
+BYTE 1 Growl
 BYTE 1 Tackle
 BYTE 1 TailWhip
-BYTE 1 Growl
 BYTE 5 SandAttack
 BYTE 8 Swift
 BYTE 10 QuickAttack
@@ -2772,9 +2791,9 @@ BYTE 0 0
 
 ALIGN 4
 VaporeonLearnset:
+BYTE 1 Growl
 BYTE 1 Tackle
 BYTE 1 TailWhip
-BYTE 1 Growl
 BYTE 1 WaterGun
 BYTE 5 SandAttack
 BYTE 7 Swift
@@ -2796,9 +2815,9 @@ BYTE 0 0
 
 ALIGN 4
 JolteonLearnset:
+BYTE 1 Growl
 BYTE 1 Tackle
 BYTE 1 TailWhip
-BYTE 1 Growl
 BYTE 1 Thundershock
 BYTE 5 SandAttack
 BYTE 7 Swift
@@ -2820,8 +2839,9 @@ BYTE 0 0
 
 ALIGN 4
 FlareonLearnset:
-BYTE 1 TailWhip
 BYTE 1 Growl
+BYTE 1 Tackle
+BYTE 1 TailWhip
 BYTE 1 Ember
 BYTE 5 SandAttack
 BYTE 7 Swift
@@ -2834,7 +2854,7 @@ BYTE 25 Dig
 BYTE 28 PoisonJab
 BYTE 30 SwordsDance
 BYTE 32 DoubleEdge
-BYTE 35 FireSpin
+BYTE 35 Flamethrower
 BYTE 38 TriAttack
 BYTE 40 FireBlast
 BYTE 42 SacredFire
@@ -2876,11 +2896,11 @@ BYTE 8 Leer
 BYTE 10 WaterGun 
 BYTE 12 MudShot
 BYTE 15 Rollout 
-BYTE 20 BubbleBeam 
-BYTE 25 AuroraBeam
+BYTE 18 BubbleBeam 
+BYTE 20 AuroraBeam
+BYTE 25 Ancientpower  
+BYTE 30 MudBomb
 //BYTE 34 Barrier //?Support (Protect)
-BYTE 28 RockSlide 
-BYTE 32 Ancientpower 
 BYTE 35 Surf
 BYTE 37 Waterfall
 BYTE 40 EarthPower
@@ -2898,11 +2918,11 @@ BYTE 8 Leer
 BYTE 10 WaterGun 
 BYTE 12 MudShot
 BYTE 15 Rollout 
-BYTE 20 BubbleBeam 
-BYTE 25 AuroraBeam
-//BYTE 27 Barrier //?Support (Protect)
-BYTE 28 RockSlide 
-BYTE 32 Ancientpower 
+BYTE 18 BubbleBeam 
+BYTE 20 AuroraBeam
+BYTE 25 Ancientpower  
+BYTE 30 MudBomb
+//BYTE 34 Barrier //?Support (Protect)
 BYTE 35 Surf
 BYTE 37 Waterfall
 BYTE 40 EarthPower
