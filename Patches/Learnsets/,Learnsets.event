@@ -181,69 +181,72 @@ BYTE 0 0
 
 ALIGN 4
 CaterpieLearnset:
+BYTE 1 Harden 
 BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 3 Harden 
-BYTE 5 TailWhip 
+BYTE 3 TailWhip
+BYTE 6 ConfuseRay
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
 BYTE 14 PoisonPowder
 BYTE 16 MegaDrain
-BYTE 20 SignalBeam
+BYTE 18 SignalBeam
 BYTE 22 RecoverMove
 BYTE 24 Psybeam
 BYTE 26 AirSlash
 BYTE 28 BugBuzz
 //BYTE 30 Tailwind
-BYTE 34 HealPulse //?Buff (Safeguard)
-BYTE 38 CalmMind
+BYTE 33 HealPulse //?Buff (Safeguard)
+BYTE 36 CalmMind
 BYTE 40 Psychic
 BYTE 42 Hurricane
 BYTE 0 0
 
 ALIGN 4
 MetapodLearnset:
+BYTE 1 Harden 
 BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 3 Harden 
-BYTE 5 TailWhip 
+BYTE 3 TailWhip
+BYTE 6 ConfuseRay
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
 BYTE 14 PoisonPowder
 BYTE 16 MegaDrain
-BYTE 20 SignalBeam
+BYTE 18 SignalBeam
 BYTE 22 RecoverMove
 BYTE 24 Psybeam
 BYTE 26 AirSlash
 BYTE 28 BugBuzz
 //BYTE 30 Tailwind
-BYTE 34 HealPulse //?Buff (Safeguard)
-BYTE 38 CalmMind
+BYTE 33 HealPulse //?Buff (Safeguard)
+BYTE 36 CalmMind
 BYTE 40 Psychic
 BYTE 42 Hurricane
 BYTE 0 0
 
 ALIGN 4
 ButterfreeLearnset:
+BYTE 1 Harden 
 BYTE 1 Tackle
 BYTE 1 StringShot
-BYTE 3 Harden 
-BYTE 5 TailWhip 
+BYTE 3 TailWhip
+BYTE 6 ConfuseRay
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
 BYTE 14 PoisonPowder
 BYTE 16 MegaDrain
-BYTE 20 SignalBeam
+BYTE 18 SignalBeam
 BYTE 22 RecoverMove
 BYTE 24 Psybeam
 BYTE 26 AirSlash
 BYTE 28 BugBuzz
 //BYTE 30 Tailwind
-BYTE 34 HealPulse //?Buff (Safeguard)
-BYTE 38 CalmMind
+BYTE 33 HealPulse //?Buff (Safeguard)
+BYTE 36 CalmMind
 BYTE 40 Psychic
 BYTE 42 Hurricane
 BYTE 0 0
@@ -251,18 +254,18 @@ BYTE 0 0
 ALIGN 4
 WeedleLearnset:
 BYTE 1 Harden
+BYTE 1 StringShot
 BYTE 1 PoisonSting
-BYTE 3 StringShot
-BYTE 4 Tackle
-BYTE 5 TailWhip 
+BYTE 3 Tackle
+BYTE 6 TailWhip 
 BYTE 8 GuardMove 
 BYTE 10 PinMissile 
 BYTE 12 Peck
-BYTE 15 BugBite
-BYTE 17 ThiefAtt
-BYTE 19 DoubleHit
+BYTE 14 FocusEnergy
+BYTE 16 BugBite
+BYTE 18 ThiefAtt
 BYTE 22 Agility
-BYTE 24 UTurn
+BYTE 24 Slash
 BYTE 26 PoisonJab
 BYTE 28 XScissor
 BYTE 33 HornDrill
@@ -274,18 +277,18 @@ BYTE 0 0
 ALIGN 4
 KakunaLearnset:
 BYTE 1 Harden
+BYTE 1 StringShot
 BYTE 1 PoisonSting
-BYTE 3 StringShot
-BYTE 4 Tackle
-BYTE 5 TailWhip 
+BYTE 3 Tackle
+BYTE 6 TailWhip 
 BYTE 8 GuardMove 
 BYTE 10 PinMissile 
 BYTE 12 Peck
-BYTE 15 BugBite
-BYTE 17 ThiefAtt
-BYTE 19 DoubleHit
+BYTE 14 FocusEnergy
+BYTE 16 BugBite
+BYTE 18 ThiefAtt
 BYTE 22 Agility
-BYTE 24 UTurn
+BYTE 24 Slash
 BYTE 26 PoisonJab
 BYTE 28 XScissor
 BYTE 33 HornDrill
@@ -297,18 +300,18 @@ BYTE 0 0
 ALIGN 4
 BeedrillLearnset:
 BYTE 1 Harden
+BYTE 1 StringShot
 BYTE 1 PoisonSting
-BYTE 3 StringShot
-BYTE 4 Tackle
-BYTE 5 TailWhip 
+BYTE 3 Tackle
+BYTE 6 TailWhip 
 BYTE 8 GuardMove 
 BYTE 10 PinMissile 
 BYTE 12 Peck
-BYTE 15 BugBite
-BYTE 17 ThiefAtt
-BYTE 19 DoubleHit
+BYTE 14 FocusEnergy
+BYTE 16 BugBite
+BYTE 18 ThiefAtt
 BYTE 22 Agility
-BYTE 24 UTurn
+BYTE 24 Slash
 BYTE 26 PoisonJab
 BYTE 28 XScissor
 BYTE 33 HornDrill
@@ -1950,7 +1953,7 @@ BYTE 14 Bite
 BYTE 17 Slam
 BYTE 19 Dig
 BYTE 21 BulkUp
-BYTE 21 Screech
+BYTE 23 Screech
 BYTE 25 RockSlide
 BYTE 27 PoisonJab
 BYTE 29 DoubleEdge
