@@ -582,8 +582,8 @@ ENUT MewFledFlag
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(16, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(18, YCoordNewArea)  
+Write_Byte(4, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(4, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -592,7 +592,7 @@ Write_Byte(18, YCoordNewArea)
 //MNC2 ViridianCh 
 //MNC2 ChampionCh
 //MNC2 VermilionCh
-MNC2 CeladonCh
+MNC2 CeruleanCaveB3Ch
 //MNC2 SilphCo2FCh 
 //MNC2 Route4ECh
 //MNC2 DebugCh
