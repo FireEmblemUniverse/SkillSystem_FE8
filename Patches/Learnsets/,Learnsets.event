@@ -1969,23 +1969,26 @@ DrowzeeLearnset:
 BYTE 1 Tackle
 BYTE 1 Pound
 // BYTE 1 Sleep2 // Hypnosis
-BYTE 5 PoisonGas
-BYTE 7 RecoverMove // Resv Disable 
+BYTE 3 Smog
+BYTE 5 ThiefAtt
+BYTE 7 Headbutt
 BYTE 9 Confusion 
 BYTE 11 NightShade
-BYTE 15 Headbutt
-BYTE 17 ThiefAtt
-BYTE 20 SeismicToss
-BYTE 23 Psybeam
+BYTE 15 PoisonGas
+BYTE 17 RecoverMove // Resv Disable 
+BYTE 19 TakeDown
+BYTE 21 Psybeam
+BYTE 23 SeismicToss
+BYTE 26 PoisonJab
 BYTE 29 ShadowBall
 // BYTE 29 Resv Psych Up
 BYTE 32 Submission
-BYTE 34 PoisonJab
+BYTE 34 Sludge
 // BYTE 37 Resv Swagger
 BYTE 36 Psychic
 BYTE 40 DarkPulse
 BYTE 45 Amnesia
-//BYTE 50 Warp // ZenHeadbutt
+//BYTE 50 Warp
 BYTE 0 0
 
 ALIGN 4
@@ -1993,23 +1996,26 @@ HypnoLearnset:
 BYTE 1 Tackle
 BYTE 1 Pound
 // BYTE 1 Sleep2 // Hypnosis
-BYTE 5 PoisonGas
-BYTE 7 RecoverMove // Resv Disable 
+BYTE 3 Smog
+BYTE 5 ThiefAtt
+BYTE 7 Headbutt
 BYTE 9 Confusion 
 BYTE 11 NightShade
-BYTE 15 Headbutt
-BYTE 17 ThiefAtt
-BYTE 20 SeismicToss
-BYTE 23 Psybeam
+BYTE 15 PoisonGas
+BYTE 17 RecoverMove // Resv Disable 
+BYTE 19 TakeDown
+BYTE 21 Psybeam
+BYTE 23 SeismicToss
+BYTE 26 PoisonJab
 BYTE 29 ShadowBall
 // BYTE 29 Resv Psych Up
 BYTE 32 Submission
-BYTE 34 PoisonJab
+BYTE 34 Sludge
 // BYTE 37 Resv Swagger
 BYTE 36 Psychic
 BYTE 40 DarkPulse
 BYTE 45 Amnesia
-//BYTE 50 Warp // ZenHeadbutt
+//BYTE 50 Warp
 BYTE 0 0 // Gets Nightmare and Switcheroo on evo in Gen 4, also should probably look at Butterfree as well if warp is not meant to be allowed
 
 ALIGN 4
