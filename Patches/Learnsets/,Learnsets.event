@@ -2117,14 +2117,13 @@ BYTE 1 ConfuseRay // Hypnosis
 BYTE 4 Absorb
 BYTE 8 Confusion
 BYTE 11 LeafFlurry // Leech Seed
-BYTE 15 Acid
-BYTE 19 BodySlam
-BYTE 21 PoisonPowder
-BYTE 23 Swift
+BYTE 14 Acid
+BYTE 17 Swift
+BYTE 19 MagicalLeaf
+BYTE 22 PoisonPowder
 // BYTE 23 Sleep2 // Sleep2 Powder
-BYTE 25 MagicalLeaf
-BYTE 27 Psybeam
-BYTE 30 RecoverMove // Resv WorrySeed
+BYTE 24 Psybeam
+BYTE 29 RecoverMove // Resv WorrySeed
 BYTE 33 PetalDance
 BYTE 37 TriAttack
 BYTE 40 Explosion
@@ -2139,14 +2138,13 @@ BYTE 1 ConfuseRay // Hypnosis
 BYTE 4 Absorb
 BYTE 8 Confusion
 BYTE 11 LeafFlurry // Leech Seed
-BYTE 15 Acid
-BYTE 19 BodySlam
-BYTE 21 PoisonPowder
-BYTE 23 Swift
+BYTE 14 Acid
+BYTE 17 Swift
+BYTE 19 MagicalLeaf
+BYTE 22 PoisonPowder
 // BYTE 23 Sleep2 // Sleep2 Powder
-BYTE 25 MagicalLeaf
-BYTE 27 Psybeam
-BYTE 30 RecoverMove // Resv WorrySeed
+BYTE 24 Psybeam
+BYTE 29 RecoverMove // Resv WorrySeed
 BYTE 33 PetalDance
 BYTE 37 TriAttack
 BYTE 40 Explosion
