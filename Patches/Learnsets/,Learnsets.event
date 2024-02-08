@@ -1010,15 +1010,15 @@ BYTE 6 Confusion
 BYTE 9 LeafFlurry
 BYTE 11 PoisonPowder
 BYTE 13 SignalBeam
-BYTE 15 Psybeam
-BYTE 17 NightDaze
+BYTE 15 NightDaze
+BYTE 17 Psybeam
 BYTE 19 CalmMind
 BYTE 21 Screech
-BYTE 23 MegaDrain
+BYTE 25 MegaDrain
 //BYTE 23 ??? //StunSpore
-BYTE 25 Sludge
-BYTE 30 BugBuzz
-BYTE 32 AirSlash
+BYTE 29 Sludge
+BYTE 31 BugBuzz
+BYTE 33 AirSlash
 BYTE 35 DarkPulse
 BYTE 37 PetalDance
 //BYTE 37 DreamEater
@@ -1037,15 +1037,15 @@ BYTE 6 Confusion
 BYTE 9 LeafFlurry
 BYTE 11 PoisonPowder
 BYTE 13 SignalBeam
-BYTE 15 Psybeam
-BYTE 17 NightDaze
+BYTE 15 NightDaze
+BYTE 17 Psybeam
 BYTE 19 CalmMind
 BYTE 21 Screech
-BYTE 23 MegaDrain
+BYTE 25 MegaDrain
 //BYTE 23 ??? //StunSpore
-BYTE 25 Sludge
-BYTE 30 BugBuzz
-BYTE 32 AirSlash
+BYTE 29 Sludge
+BYTE 31 BugBuzz
+BYTE 33 AirSlash
 BYTE 35 DarkPulse
 BYTE 37 PetalDance
 //BYTE 37 DreamEater
