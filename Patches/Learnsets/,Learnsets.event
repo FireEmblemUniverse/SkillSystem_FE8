@@ -963,9 +963,10 @@ BYTE 1 LeechLife
 BYTE 3 Absorb
 BYTE 6 PoisonPowder  
 BYTE 10 RazorLeaf
-BYTE 13 Slash
-BYTE 15 Growth
-BYTE 18 BugBite
+BYTE 12 Slash
+BYTE 14 Growth
+BYTE 16 BugBite
+BYTE 18 MegaDrain
 BYTE 20 Dig
 BYTE 22 HoneClaws
 //BYTE 25 Sleep2 //Spore
@@ -985,9 +986,10 @@ BYTE 1 LeechLife
 BYTE 3 Absorb
 BYTE 6 PoisonPowder  
 BYTE 10 RazorLeaf
-BYTE 13 Slash
-BYTE 15 Growth
-BYTE 18 BugBite
+BYTE 12 Slash
+BYTE 14 Growth
+BYTE 16 BugBite
+BYTE 18 MegaDrain
 BYTE 20 Dig
 BYTE 22 HoneClaws
 //BYTE 25 Sleep2 //Spore
@@ -2309,7 +2311,6 @@ BYTE 35 Flamethrower
 BYTE 40 Amnesia
 BYTE 42 DarkPulse // Memento
 BYTE 45 Explosion
-BYTE 0 0
 BYTE 0 0
 
 ALIGN 4
