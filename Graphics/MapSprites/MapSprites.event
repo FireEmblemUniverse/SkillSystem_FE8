@@ -555,7 +555,7 @@ SetSMS(PidgeySMS, 2 ,    m16Standing)
 SetSMS(PidgeottoSMS , 2 ,   m17Standing)
 SetSMS(PidgeotSMS , 2 ,   m18Standing)
 SetSMS(SuspiciousWaterSMS, 0 ,  SuspiciousWaterStanding) // Treeko ? 
-SetSMS(CrobatSMS, 2 ,  CrobatStanding)
+SetSMS(KabutopsSkeletonSMS, 2 ,  CrobatStanding)
 SetSMS(RedSMS , 1 ,  red_normalStanding)
 SetSMS(TeleporterSMS , 0 ,  TeleporterStanding)
 SetSMS(RattataSMS , 2 ,    m19Standing) 
@@ -604,7 +604,7 @@ SetSMS(GloomSMS, 2 ,    m44Standing)
 SetSMS(VileplumeSMS , 2 ,    m45Standing) 
 SetSMS(ParasSMS, 2 ,     m46Standing)  
 SetSMS(ParasectSMS , 2 ,    m47Standing) 
-SetSMS(GorgonEggSMS , 2 ,  m1Standing)
+SetSMS(AerodactylSkeletonSMS , 2 ,  m1Standing)
 SetSMS(VenonatSMS , 2 ,      m48Standing) 
 SetSMS(VenomothSMS , 2 ,     m49Standing)
 SetSMS(DugtrioSMS , 2 ,     m51Standing)
@@ -795,7 +795,7 @@ SetSMS(MegaVenusaurSMS , 2 ,    MegaVenusaurStanding)
 SetSMS(MegaBlastoiseSMS , 2 ,    MegaBlastoiseStanding)
 SetSMS(MegaCharizardXSMS , 2 ,    MegaCharizardXStanding)
 SetSMS(HealingTileSMS , 0 ,    HealingTileStanding)
-SetSMS(Unused70SMS , 0 ,    m1Standing)
+SetSMS(MissingnoSMS , 2 ,    MissingnoStanding)
 SetSMS(Unused71SMS , 0 ,    m1Standing)
 SetSMS(Unused72SMS , 0 ,    m1Standing)
 SetSMS(Unused73SMS , 0 ,    m1Standing)
@@ -1068,7 +1068,7 @@ SetMMS(MegaVenusaurMMS ,     MegaVenusaurMoving,        DemonKingAP)
 SetMMS(MegaBlastoiseMMS ,     MegaBlastoiseMoving,        DemonKingAP)
 SetMMS(MegaCharizardXMMS ,     MegaCharizardXMoving,        DemonKingAP)
 SetMMS(HealingTileMMS ,     HealingTileMoving,        DemonKingAP)
-SetMMS(Unused70MMS ,     r1Moving,        DemonKingAP)
+SetMMS(MissingnoMMS ,     MissingnoMoving,        DemonKingAP)
 SetMMS(Unused71MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused72MMS ,     r1Moving,        DemonKingAP)
 SetMMS(Unused73MMS ,     r1Moving,        DemonKingAP)
@@ -3246,7 +3246,9 @@ HealingTileMoving:
 ALIGN 4 
 TeleporterMoving:
 #incbin "More MMS/Teleporter.dmp" 
-
+ALIGN 4 
+MissingnoMoving:
+#incbin "More MMS/Missingno.dmp"
 
 
 //Map sprites
@@ -5324,7 +5326,15 @@ HealingTileStanding:
 ALIGN 4 
 TeleporterStanding:
 #incbin "More SMS/Teleporter.dmp" 
-
+ALIGN 4 
+MissingnoStanding:
+#incbin "More SMS/Missingno.dmp" 
+ALIGN 4 
+AerodactylSkeletonStanding:
+#incbin "More SMS/AerodactylSkeleton.dmp" 
+ALIGN 4 
+KabutopsSkeletonStanding:
+#incbin "More SMS/KabutopsSkeleton.dmp" 
 
 //SYSTEM PALETTES 
 
