@@ -209,7 +209,7 @@ MU_CALL2_FixForFreeMU:
 	ldr		r0, =gProc_CameraMovement
 	blh		ProcFind
 	cmp		r0, #0
-	beq		.ReturnCall2SkipCamera
+	beq		.ReturnCall2Camera
 	.ReturnCall2SkipCamera:
 	ldr		r1, =0x8078D3D
 	bx		r1
