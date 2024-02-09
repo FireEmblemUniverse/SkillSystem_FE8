@@ -15,10 +15,11 @@ BYTE 15 MegaDrain
 BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
-BYTE 29 PetalDance
-BYTE 33 RecoverMove //?Buff (RecoverMove)
+BYTE 28 PetalDance
+BYTE 32 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
-BYTE 44 SolarBeam
+BYTE 40 LeafBlade
+BYTE 45 SolarBeam
 BYTE 0 0// Goes at the end of each learnset 
 	
 
@@ -36,10 +37,11 @@ BYTE 15 MegaDrain
 BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
-BYTE 29 PetalDance
-BYTE 33 RecoverMove 
+BYTE 28 PetalDance
+BYTE 32 RecoverMove 
 BYTE 37 EarthPower
-BYTE 44 SolarBeam
+BYTE 40 LeafBlade
+BYTE 45 SolarBeam
 BYTE 0 0
 
 ALIGN 4
@@ -56,127 +58,140 @@ BYTE 15 MegaDrain
 BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
-BYTE 29 PetalDance
-BYTE 33 RecoverMove 
+BYTE 28 PetalDance
+BYTE 32 RecoverMove 
 BYTE 37 EarthPower
-BYTE 44 SolarBeam
+BYTE 40 LeafBlade
+BYTE 45 SolarBeam
 BYTE 0 0
 
 ALIGN 4
 CharmanderLearnset:
 BYTE 1 GuardMove
 BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 5 TailWhip 
-BYTE 6 Ember
-BYTE 10 SandAttack
-BYTE 14 DragonRage
-BYTE 18 Scorch 
-BYTE 21 FlameWheel
-BYTE 24 Slash
-BYTE 28 FireSpin
-BYTE 32 Flamethrower
-BYTE 36 AirSlash
-BYTE 39 FireBlast
-BYTE 44 Hurricane 
+BYTE 3 Growl
+BYTE 4 TailWhip 
+BYTE 5 Ember
+BYTE 6 SandAttack
+BYTE 9 Slash
+BYTE 13 DragonRage
+BYTE 15 Scorch 
+BYTE 17 FlameWheel
+BYTE 20 Dragonbreath
+BYTE 24 FireSpin
+BYTE 28 Flamethrower
+BYTE 32 DragonClaw
+BYTE 37 AirSlash
+BYTE 40 FireBlast
+BYTE 45 Hurricane 
 BYTE 0 0
 
 ALIGN 4
 CharmeleonLearnset:
 BYTE 1 GuardMove
 BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 5 TailWhip 
-BYTE 6 Ember
-BYTE 10 SandAttack
-BYTE 14 DragonRage
-BYTE 18 Scorch 
-BYTE 21 FlameWheel
-BYTE 24 Slash
-BYTE 28 FireSpin
-BYTE 32 Flamethrower
-BYTE 36 AirSlash
-BYTE 39 FireBlast
-BYTE 44 Hurricane 
+BYTE 3 Growl
+BYTE 4 TailWhip 
+BYTE 5 Ember
+BYTE 6 SandAttack
+BYTE 9 Slash
+BYTE 13 DragonRage
+BYTE 15 Scorch 
+BYTE 17 FlameWheel
+BYTE 20 Dragonbreath
+BYTE 24 FireSpin
+BYTE 28 Flamethrower
+BYTE 32 DragonClaw
+BYTE 37 AirSlash
+BYTE 40 FireBlast
+BYTE 45 Hurricane 
 BYTE 0 0
 
 ALIGN 4
 CharizardLearnset:
 BYTE 1 GuardMove
 BYTE 1 Scratch
-BYTE 4 Growl
-BYTE 5 TailWhip 
-BYTE 6 Ember
-BYTE 10 SandAttack
-BYTE 14 DragonRage
-BYTE 18 Scorch 
-BYTE 21 FlameWheel
-BYTE 24 Slash
-BYTE 28 FireSpin
-BYTE 32 Flamethrower
-BYTE 36 AirSlash
-BYTE 39 FireBlast
-BYTE 44 Hurricane 
+BYTE 3 Growl
+BYTE 4 TailWhip 
+BYTE 5 Ember
+BYTE 6 SandAttack
+BYTE 9 Slash
+BYTE 13 DragonRage
+BYTE 15 Scorch 
+BYTE 17 FlameWheel
+BYTE 20 Dragonbreath
+BYTE 24 FireSpin
+BYTE 28 Flamethrower
+BYTE 32 DragonClaw
+BYTE 37 AirSlash
+BYTE 40 FireBlast
+BYTE 45 Hurricane 
 BYTE 0 0
 
 ALIGN 4
 SquirtleLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 4 TailWhip
-BYTE 5 Growl  
-BYTE 6 WaterGun
-BYTE 10 Bite
-//BYTE 12 RecoverMove //Withdraw
+BYTE 3 TailWhip
+BYTE 4 Growl  
+BYTE 5 WaterGun
+BYTE 6 FocusEnergy
+BYTE 9 Bite
+BYTE 13 RecoverMove //Withdraw
 BYTE 15 WaterPulse
-BYTE 18 MudBomb
-BYTE 22 Waterfall
-BYTE 25 Surf
+BYTE 17 MudBomb
+BYTE 20 Waterfall
+BYTE 24 Surf
 //BYTE 25 ??? ?Buff (Protect)
 BYTE 28 IceBeam
 BYTE 32 DarkPulse
 BYTE 37 FlashCannon
-BYTE 44 HydroPump
+BYTE 40 HyperBeam
+BYTE 45 HydroPump
 BYTE 0 0
 
 ALIGN 4
 WartortleLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 4 TailWhip
-BYTE 5 Growl  
-BYTE 6 WaterGun
-BYTE 10 Bite
-//BYTE 12 RecoverMove //Withdraw
+BYTE 3 TailWhip
+BYTE 4 Growl  
+BYTE 5 WaterGun
+BYTE 6 FocusEnergy
+BYTE 9 Bite
+BYTE 13 RecoverMove //Withdraw
 BYTE 15 WaterPulse
-BYTE 18 MudBomb
-BYTE 22 Waterfall
-BYTE 25 Surf
+BYTE 17 MudBomb
+BYTE 20 Waterfall
+BYTE 24 Surf
 //BYTE 25 ??? ?Buff (Protect)
 BYTE 28 IceBeam
 BYTE 32 DarkPulse
 BYTE 37 FlashCannon
-BYTE 44 HydroPump
+BYTE 40 HyperBeam
+BYTE 45 HydroPump
 BYTE 0 0
 
 ALIGN 4
 BlastoiseLearnset:
 BYTE 1 GuardMove
 BYTE 1 Tackle 
-BYTE 4 TailWhip
-BYTE 5 Growl  
-BYTE 6 WaterGun
-BYTE 10 Bite
-//BYTE 12 RecoverMove //Withdraw
+BYTE 3 TailWhip
+BYTE 4 Growl  
+BYTE 5 WaterGun
+BYTE 6 FocusEnergy
+BYTE 9 Bite
+BYTE 13 RecoverMove //Withdraw
 BYTE 15 WaterPulse
-BYTE 18 MudBomb
-BYTE 22 Waterfall
-BYTE 25 Surf
+BYTE 17 MudBomb
+BYTE 20 Waterfall
+BYTE 24 Surf
 //BYTE 25 ??? ?Buff (Protect)
 BYTE 28 IceBeam
 BYTE 32 DarkPulse
 BYTE 37 FlashCannon
-BYTE 44 HydroPump
+BYTE 40 HyperBeam
+BYTE 45 HydroPump
 BYTE 0 0
 
 ALIGN 4
