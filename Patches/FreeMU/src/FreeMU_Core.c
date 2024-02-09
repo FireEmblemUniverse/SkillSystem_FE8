@@ -235,6 +235,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
 			proc->countdown = 3; 
 			proc->yield = true; 
+			proc->startTime = GetGameClock(); 
 			return; 
 		}
 	} 
@@ -284,6 +285,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 				} 
 			} 
 		}
+	} 
+	if (!(iKeyCur & 0xF0)) { 
+		//if (!(gKeyState.prevKeys & 0xF0)) { 
+			proc->startTime = GetGameClock(); // no keys held down this frame or previous frame, so reset speed 
+		//} 
 	} 
 
 	if (proc->end_after_movement) { // after any scripted movement is done 
@@ -468,6 +474,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	pFMU_OnInit(proc);
 	FMU_ResetLCDIO();
 	MU_EndAll();
+	proc->startTime = GetGameClock(); 
 	//UnpackChapterMapGraphics(gChapterData.chapterIndex);
 	//InitBaseTilesBmMap();
 	//RenderBmMap();

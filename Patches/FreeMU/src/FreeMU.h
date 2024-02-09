@@ -42,7 +42,8 @@ struct FMUProc {
 	/* 49 */    u8 updateAfterStatusScreen;
 	/* 4a */    u8 updateDangerZone; 
 	/* 4b */    u8 commandID; //scriptedMovement 
-	/* 4c */    u8 command[0x14]; //scriptedMovement 
+	/* 4c */    u32 startTime; // hardcoded to this proc field in MU6Cfix
+	/* 50 */    u8 command[0x14]; //scriptedMovement 
 };
 
 struct MuCtr { 

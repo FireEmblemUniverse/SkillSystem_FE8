@@ -55,7 +55,6 @@ PlayerInRange
 CHECK_EVENTID 0x10 
 BNE 0 sC s0 
 TutText(MagicFeelsDrained)
-//DebuffUnit(0x7FFF, 0x09876543) // -9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
 DebuffUnit(0x7FFF, MagResSpdDebuff) // -10 mag/res/spd, -5 luk 
 LABEL 0 
 NoFade 
@@ -163,7 +162,7 @@ ENUT 0x10 // if yes, set flag 0x10 so no debuffs
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, MagResSpdDebuff)
 LABEL 99 
 NoFade 
 ENDA 
@@ -187,7 +186,7 @@ ENUT 0x11 // if yes, set flag 0x10 so no debuffs
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, StrSklDefDebuff)
 LABEL 99 
 NoFade 
 ENDA 
@@ -216,7 +215,7 @@ ENUT 0x12 // if no, set flag so no debuffs
 GOTO 99 
 LABEL 0 // if yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, StatsDebuffBy10)
 TileChange 0 
 LABEL 99 
 ENUF RefreshEvenInTrainerBattleFlag
