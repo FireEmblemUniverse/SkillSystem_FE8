@@ -1361,6 +1361,7 @@ ALIGN 4
 AbraLearnset:
 BYTE 1 Leer 
 BYTE 1 AttackPulse
+BYTE 7 Flash
 BYTE 16 Confusion
 BYTE 18 Swift
 BYTE 23 Psybeam
@@ -1375,6 +1376,7 @@ ALIGN 4
 KadabraLearnset:
 BYTE 1 Leer 
 BYTE 1 AttackPulse
+BYTE 7 Flash
 BYTE 16 Confusion
 BYTE 18 Swift
 BYTE 23 Psybeam
@@ -1389,6 +1391,7 @@ ALIGN 4
 AlakazamLearnset:
 BYTE 1 Leer 
 BYTE 1 AttackPulse
+BYTE 7 Flash
 BYTE 16 Confusion
 BYTE 18 Swift
 BYTE 23 Psybeam
