@@ -1585,7 +1585,7 @@ BYTE DebuffConfigTwoByte // Config2
 BYTE 0 0 0 0
 BYTE 0 0 0 PoisonPowder // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool
-BYTE 2 T1AoE_Var // variance range of 0 - 2 
+BYTE 5 T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range
 BYTE Square powderAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0x21 // poison 2 turns 
@@ -1611,7 +1611,7 @@ BYTE 0 // Config2
 BYTE 0 0 0 0
 BYTE 0 0 0 PoisonGas // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool
-BYTE 2 T1AoE_Var // variance range of 0 - 2 
+BYTE 5 T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range
 BYTE Square poisonAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0x21 // poison 2 turns 
@@ -1624,10 +1624,10 @@ BYTE 0 // Config2
 BYTE 0 0 0 0
 BYTE 0 0 0 Toxic // Always usable by anyone 
 BYTE 0 FriendlyFireBool|FixedDamageBool
-BYTE 5 T1AoE_Var // variance range of 0 - 2 
+BYTE 8 T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range
 BYTE Square poisonAnimationID // Index of RangeMask, AnimationALL,
-BYTE 100 0x21 // poison 2 turns 
+BYTE 100 0x31 // poison 3 turns 
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.

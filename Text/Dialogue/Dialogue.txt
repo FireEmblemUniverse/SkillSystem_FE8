@@ -1043,7 +1043,7 @@ Please release some Pokémon.[A][X]
 Have I got a deal for you![A][2NL]
 I'll let you have[NL]
 a swell MAGIKARP[A][NL]
-for just 2000 [Gold]![A][NL]
+for just 2000[Gold]![A][NL]
 What do you say?[NL]
      [No][X]
 
@@ -1094,12 +1094,12 @@ Show it off - you've[NL]
 done well.[A][X]
 
 ## SaveCostText
-[OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G] [Gold]?[NL]
+[OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G][Gold]?[NL]
 [Yes][X]
 
 ## TooPoorToSaveText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[NL]
-Requires 500+ [Gold].[A][X]
+Requires 500[Gold].[A][X]
 
 ## BillHouseText
 My name's Bill.[NL]
@@ -2612,6 +2612,7 @@ I wonder when I[N]
 should sell...[A][X]
 
 ## PlaySlotsText
+1000[Gold] a game.[N]
 Play the slots?[N]
 [Yes][X]
 
@@ -4037,6 +4038,11 @@ a heart scale.[A][X]
 Just have your Pokémon[N]
 come up to me.[A][X]
 
+## MewtwoChallengeText
+[OpenMidLeft][LoadMewtwo][OpenMidLeft][ToggleColorInvert]You, champion of Kanto,[N]
+I sense your overwhelming ambition.[A][N]
+If you desire power, then[N]
+I will show you power.[A][X]
 
 
 

@@ -69,9 +69,9 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AREA 0 ToSilphCo2F_Tele [23,19][23,19] 
 AREA 0 ToSilphCo3F_Tele [12,18][12,18] 
-AREA 0 NW_StatsDrained [4,11][4,12] // nw 
+AREA 0 NW_StatsDrained [3,11][4,12] // nw 
 //AREA 0 NW_StatsDrained [3,11][4,12] // nw 
-AREA 0 NW_StatsDrained [9,17][9,18] // sw
+AREA 0 NW_StatsDrained [8,17][9,18] // sw
 //AREA 0 NW_StatsDrained [8,17][9,18] // sw
 AREA 0 NW_StatsDrained [22,8][23,8] // ne 
 //AREA 0 NW_StatsDrained [22,7][23,8] // ne 

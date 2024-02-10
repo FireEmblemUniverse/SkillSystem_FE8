@@ -144,10 +144,7 @@ RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(17,8,32,19))
 LOAD1 0x1 EnemyUnitsC
 ENUN 
 
-CHECK_EVENTID MewtwoDefeatedFlag
-BEQ 1 sC s0 
-DISA UnitMewtwoWild 
-LABEL 1 
+
 
 CHECK_EVENTID MewDefeatedFlag
 BEQ 2 sC s0 
@@ -169,6 +166,19 @@ BEQ 5 sC s0
 DISA UnitMoltresWild 
 LABEL 5 
 
+CHECK_EVENTID MewtwoDefeatedFlag
+BEQ 1 sC s0 
+DISA UnitMewtwoWild 
+GOTO 6 
+LABEL 1
+ShowMap
+CAM1 [7,13] 
+CURSOR_FLASHING UnitMewtwoWild
+STAL 45
+CURE 
+Text(MewtwoChallengeText) 
+
+LABEL 6 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 

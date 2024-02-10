@@ -357,7 +357,7 @@
   mov     r3, #0x19
   ldsb    r3, [r1, r3]     
   str     r0, [sp]     
-  mov     r0, #50  @luck cap is always 50
+  mov     r0, #60  @luck cap is always 50
   str     r0, [sp, #0x4]    
   mov     r0, #0x6   
   mov     r1, #(\bar_x-11)
