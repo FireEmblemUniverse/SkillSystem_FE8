@@ -163,7 +163,7 @@ ENUT 0x10 // if yes, set flag 0x10 so no debuffs
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, MagResSpdDebuff)
 LABEL 99 
 NoFade 
 ENDA 
@@ -187,7 +187,7 @@ ENUT 0x11 // if yes, set flag 0x10 so no debuffs
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, StrSklDefDebuff)
 LABEL 99 
 NoFade 
 ENDA 
@@ -216,7 +216,7 @@ ENUT 0x12 // if no, set flag so no debuffs
 GOTO 99 
 LABEL 0 // if yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, StatsDebuffBy10)
 TileChange 0 
 LABEL 99 
 ENUF RefreshEvenInTrainerBattleFlag
