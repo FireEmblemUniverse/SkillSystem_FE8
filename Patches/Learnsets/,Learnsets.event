@@ -2634,12 +2634,12 @@ BYTE 1 Leer
 BYTE 5 FocusEnergy
 BYTE 8 ThiefAtt // Pursuit 
 BYTE 10 FuryCutter
-BYTE 13 TakeDown // FalseSwipe
+BYTE 13 Swift
 BYTE 16 WingAttack
-BYTE 19 Swift
+BYTE 19 Slash
 BYTE 21 Agility
 BYTE 25 BugBite
-BYTE 29 Slash
+BYTE 29 TakeDown // FalseSwipe
 BYTE 33 UTurn
 BYTE 35 AirSlash
 BYTE 38 NightSlash
