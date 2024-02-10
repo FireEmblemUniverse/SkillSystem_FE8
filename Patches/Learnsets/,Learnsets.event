@@ -622,10 +622,10 @@ BYTE 12 Bite
 BYTE 16 Dig
 BYTE 21 SeismicToss
 BYTE 23 RecoverMove //?Support HelpingHand
-BYTE 25 EarthPower
-BYTE 30 Sludge
-BYTE 33 Earthquake
-BYTE 35 PoisonJab
+BYTE 25 Sludge
+BYTE 30 EarthPower
+BYTE 33 PoisonJab
+BYTE 35 Earthquake
 BYTE 40 NightSlash
 BYTE 43 Submission
 //BYTE 43 Resv //Captivate
@@ -645,10 +645,10 @@ BYTE 12 Bite
 BYTE 16 Dig
 BYTE 21 SeismicToss
 BYTE 23 RecoverMove //?Support HelpingHand
-BYTE 25 EarthPower
-BYTE 30 Sludge
-BYTE 33 Earthquake
-BYTE 35 PoisonJab
+BYTE 25 Sludge
+BYTE 30 EarthPower
+BYTE 33 PoisonJab
+BYTE 35 Earthquake
 BYTE 40 NightSlash
 BYTE 43 Submission
 //BYTE 43 Resv //Captivate
@@ -668,10 +668,10 @@ BYTE 12 Bite
 BYTE 16 Dig
 BYTE 21 SeismicToss
 BYTE 23 RecoverMove //?Support HelpingHand
-BYTE 25 EarthPower
-BYTE 30 Sludge
-BYTE 33 Earthquake
-BYTE 35 PoisonJab
+BYTE 25 Sludge
+BYTE 30 EarthPower
+BYTE 33 PoisonJab
+BYTE 35 Earthquake
 BYTE 40 NightSlash
 BYTE 43 Submission
 //BYTE 43 Resv //Captivate
@@ -692,10 +692,10 @@ BYTE 16 Dig
 BYTE 21 PinMissile
 BYTE 23 RecoverMove //?Support HelpingHand
 //BYTE 27 Resv //ToxicSpikes
-BYTE 25 EarthPower
-BYTE 30 Sludge
-BYTE 33 PoisonJab
-BYTE 35 Earthquake
+BYTE 25 PoisonJab
+BYTE 30 Earthquake
+BYTE 33 Sludge
+BYTE 35 EarthPower
 BYTE 40 RockSlide
 BYTE 43 MegaHorn
 //BYTE 43 Resv //Captivate
@@ -716,10 +716,10 @@ BYTE 16 Dig
 BYTE 21 PinMissile
 BYTE 23 RecoverMove //?Support HelpingHand
 //BYTE 27 Resv //ToxicSpikes
-BYTE 25 EarthPower
-BYTE 30 Sludge
-BYTE 33 PoisonJab
-BYTE 35 Earthquake
+BYTE 25 PoisonJab
+BYTE 30 Earthquake
+BYTE 33 Sludge
+BYTE 35 EarthPower
 BYTE 40 RockSlide
 BYTE 43 MegaHorn
 //BYTE 43 Resv //Captivate
@@ -740,10 +740,10 @@ BYTE 16 Dig
 BYTE 21 PinMissile
 BYTE 23 RecoverMove //?Support HelpingHand
 //BYTE 27 Resv //ToxicSpikes
-BYTE 25 EarthPower
-BYTE 30 Sludge
-BYTE 33 PoisonJab
-BYTE 35 Earthquake
+BYTE 25 PoisonJab
+BYTE 30 Earthquake
+BYTE 33 Sludge
+BYTE 35 EarthPower
 BYTE 40 RockSlide
 BYTE 43 MegaHorn
 //BYTE 43 Resv //Captivate
