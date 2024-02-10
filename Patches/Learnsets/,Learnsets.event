@@ -2292,6 +2292,7 @@ BYTE 0 0
 ALIGN 4
 LickitungLearnset:
 BYTE 1 Lick
+BYTE 1 Tackle
 BYTE 5 Pound
 BYTE 7 VineWhip
 // BYTE 9 DefenseCurl
@@ -2558,11 +2559,11 @@ StaryuLearnset:
 BYTE 1 Tackle
 BYTE 1 Harden
 BYTE 5 WaterGun
+BYTE 8 ConfuseRay
 BYTE 10 Confusion
 BYTE 13 RecoverMove
 BYTE 17 BubbleBeam
-BYTE 19 Flash // Resv Camouflage
-BYTE 20 ConfuseRay
+BYTE 20 Swift
 BYTE 24 Psybeam
 BYTE 28 HealPulse
 // BYTE 33 Resv Minimize
@@ -2580,11 +2581,11 @@ StarmieLearnset:
 BYTE 1 Tackle
 BYTE 1 Harden
 BYTE 5 WaterGun
+BYTE 8 ConfuseRay
 BYTE 10 Confusion
 BYTE 13 RecoverMove
 BYTE 17 BubbleBeam
-BYTE 19 Flash // Resv Camouflage
-BYTE 20 ConfuseRay
+BYTE 20 Swift
 BYTE 24 Psybeam
 BYTE 28 HealPulse
 // BYTE 33 Resv Minimize
@@ -2651,11 +2652,10 @@ JynxLearnset:
 BYTE 1 IcyWind
 BYTE 1 Pound
 BYTE 1 Lick
-BYTE 3 ConfuseRay
 BYTE 5 Confusion 
 // BYTE 8 Resv LovelyKiss 
-BYTE 9 Doubleslap
-BYTE 12 Flash
+BYTE 8 Doubleslap
+BYTE 12 ConfuseRay
 BYTE 15 AuroraBeam
 BYTE 18 IcePunch
 BYTE 21 Psybeam
