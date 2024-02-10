@@ -23,7 +23,7 @@ POP
 ALIGN 4 
 NewCharPalettes: 
 // no palettes unique to characters 
-//FILL(256*4)
+FILL(256*4)
 WORD 0 0 0 0 // Terminator 
 
 
