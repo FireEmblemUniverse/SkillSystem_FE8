@@ -1,6 +1,6 @@
 #define ChapterID CinnabarCh
 #define GenericB UnitCeruleanTrainer
-#define WildLvl 10 
+#define WildLvl 30 
 #define TrainerL 26 
 
 
@@ -333,6 +333,14 @@ BNE 1 sC s0
 LOAD1 1 OldMan
 ENUN
 LABEL 1
+CHECK_EVENTID MissingnoFlag
+BEQ 2 sC s0 
+LOAD1 1 MissingnoUnitGroup
+ENUN 
+AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+// maybe a 2nd pkmn of any random class? 
+RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(23,14,23,23)) 
+LABEL 2 
 
 
 LABEL 0x63
@@ -346,7 +354,7 @@ ENDA
 
 OldMan:
 UNIT 0xE0 balding_manID 0x0 Level(0, Enemy, 1) [21,13]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
-UNIT 0xE1 policemanID 0x0 Level(0, Enemy, 1) [20,13]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xE1 policemanID 0x0 Level(LVFACERIGHT, Enemy, 1) [20,13]  0b 0x0	0 0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 
@@ -424,7 +432,9 @@ AerodactylUnitGroup:
 UNIT TempAlly AerodactylID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
-
+MissingnoUnitGroup:
+UNIT 0x80 MissingnoID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 
 

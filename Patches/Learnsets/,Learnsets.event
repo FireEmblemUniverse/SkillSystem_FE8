@@ -3197,6 +3197,14 @@ BYTE 90 HyperBeam
 BYTE 95 Explosion
 BYTE 0 0
 
+ALIGN 4
+MissingnoLearnset:
+// BYTE Level Move 
+BYTE 1 WaterGun 
+BYTE 2 WaterGun 
+BYTE 3 SkyAttack
+BYTE 0 0
+
 ALIGN 4 
 
 
@@ -3357,3 +3365,4 @@ GaidenList(DragonairID,DragonairLearnset)
 GaidenList(DragoniteID,DragoniteLearnset)
 GaidenList(MewtwoID,MewtwoLearnset)
 GaidenList(MewID,MewLearnset)
+GaidenList(MissingnoID,MissingnoLearnset)

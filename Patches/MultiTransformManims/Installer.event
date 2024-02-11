@@ -38,4 +38,8 @@ PUSH
 }
 POP
 
+ALIGN 4 
+MissingnoID_Link:
+WORD MissingnoID 
+
 #endif /* MULTI_TRANSFORM_MANIMS_INSTALLED */
