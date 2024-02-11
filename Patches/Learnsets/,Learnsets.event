@@ -855,8 +855,7 @@ BYTE 29 TriAttack
 BYTE 33 PetalDance
 BYTE 37 Surf
 BYTE 39 SeismicToss
-BYTE 41 HealPulse //?Support Rest
-BYTE 43 Explosion
+BYTE 43 HealPulse //?Support Rest
 BYTE 45 HyperBeam
 BYTE 0 0
 
@@ -879,8 +878,7 @@ BYTE 29 TriAttack
 BYTE 33 PetalDance
 BYTE 37 Surf
 BYTE 39 SeismicToss
-BYTE 41 HealPulse //?Support Rest
-BYTE 43 Explosion
+BYTE 43 HealPulse //?Support Rest
 BYTE 45 HyperBeam
 BYTE 0 0
 
@@ -2421,7 +2419,6 @@ BYTE 35 SeismicToss
 BYTE 38 HyperBeam
 BYTE 42 Blizzard
 // BYTE 42 Resv HealingWish
-BYTE 45 Explosion
 BYTE 0 0
 
 ALIGN 4
