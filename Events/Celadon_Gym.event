@@ -141,6 +141,7 @@ SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(ErikaChallengeText)
 
 
@@ -176,6 +177,7 @@ SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT3_BoostIndex|0x80) 
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(ErikaRematchText)
 
 
@@ -203,6 +205,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(ErikaDefeatText)
 GiveItemWithDurability(0, SpellScroll, PetalDance)
 ENUT RainbowbadgeObtained 
@@ -229,6 +232,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(ErikaRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, SolarBeam)
 ENUT CeladonGymRematchedFlag

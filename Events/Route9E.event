@@ -78,6 +78,7 @@ ChapterTransition(Route9WCh, 40,14)
 GenericDisappearEffect(13, ObtainHelixFossilEvent)
 
 ObtainHelixFossilEvent:
+EVBIT_MODIFY 4 
 TutText(WordsEchoedText)
 Text(ThisIsntTheTimeText)
 TutText(ObtainHelixFossilText) 

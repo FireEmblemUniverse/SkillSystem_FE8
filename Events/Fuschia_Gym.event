@@ -95,6 +95,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x82)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(KogaChallengeText)
 
 
@@ -132,6 +133,7 @@ SilentGiveItemWithDurability(0xA4, StatAccessory, MuscleBandT3_BoostIndex|0x80) 
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(KogaRematchText)
 
 
@@ -159,6 +161,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(KogaDefeatText)
 GiveItemWithDurability(0, SpellScroll, PoisonJab)
 ENUT SoulbadgeObtained 
@@ -185,6 +188,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(KogaRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, SwordsDance)
 ENUT FuschiaGymRematchedFlag

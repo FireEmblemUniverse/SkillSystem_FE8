@@ -76,38 +76,7 @@ void MTM_TrySetSpecialClassSprite(int actorNum) {
 
     return;
 }
-extern int MissingnoID_Link; 
-/*
-extern const void** ggChapterDataAssetTable[];
-void UnpackChapterMapPalette(void) {
-	if ((gActionData.subjectIndex) && (gActionData.unitActionType)) { 
-		if (GetUnit(gActionData.subjectIndex)->pClassData->number == MissingnoID_Link) { 
-			ApplyPalettes(
-				//gChapterDataAssetTable[GetROMChapterStruct(NextRN_N(gPlaySt.chapterIndex))->map.paletteId],
-				*ggChapterDataAssetTable[GetROMChapterStruct(NextRN_N(50))->map.paletteId],
-				6, 10); // TODO: palette id constant?
-			return; 
-		}  
-	}
-	
-    ApplyPalettes(
-        *ggChapterDataAssetTable[GetROMChapterStruct(gPlaySt.chapterIndex)->map.paletteId],
-        6, 10); // TODO: palette id constant?
-}
-*/
 
-void MissingnoEffect(struct Unit* actor, struct Unit* target) { 
-	if (actor->pClassData->number == MissingnoID_Link) { 
-		if (!(actor->index >> 7) && (gActionData.unitActionType == UNIT_ACTION_COMBAT) && (gBattleActor.expGain)) { // player attacking only 
-			
-			target->pMapSpriteHandle = actor->pMapSpriteHandle; 
-			
-		
-		
-		} 
-		//UnpackChapterMapPalette(); 
-	}
-}
 
 
 

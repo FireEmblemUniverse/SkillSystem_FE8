@@ -168,6 +168,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x82)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(SabrinaChallengeText)
 
 
@@ -208,6 +209,7 @@ SilentGiveSkillAccessory(0xA4, CritUpID) // Farfetchd
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(SabrinaRematchText)
 
 
@@ -242,6 +244,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(SabrinaDefeatText)
 GiveItemWithDurability(0, SpellScroll, CalmMind)
 ENUT MarshbadgeObtained // unlocks surf 
@@ -270,6 +273,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(SabrinaRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, Amnesia)
 ENUT SaffronGymRematchedFlag

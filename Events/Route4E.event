@@ -78,6 +78,7 @@ ToCeruleanCave:
 //CALL ClosedArea
 CHECK_EVENTID CompletedPokemonLeague
 BEQ 10 sC s0 
+EVBIT_MODIFY 4 
 CHECK_EVENTID MewFledFlag
 BEQ 50 sC s0 
 CHECK_EVENTID ArticunoFledFlag
@@ -90,6 +91,7 @@ GOTO 80 // all flags are on
 
 
 LABEL 50 // Some flag(s) are off
+SVAL sB 0xFFFFFFFF
 TUTORIALTEXTBOXSTART  
 TEXTSHOW CeruleanCaveSealText
 TEXTEND
@@ -117,6 +119,7 @@ REMA
 GOTO 99 
 
 LABEL 10 
+EVBIT_MODIFY 4 
 TutText(CeruleanCaveUnworhtyText)
 GOTO 99 
 

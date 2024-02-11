@@ -306,6 +306,7 @@ special effect.[X]
 ## PalletTrainerTipsText 
 Save and revive Pokémon by visiting[N]
 home or a Pokecenter.[NL]
+[ToggleRed]There is no permadeath.[ToggleRed][N]
             -Trainer's Tips[A][X]
 
 ## TrainerTip_Quicksave
@@ -334,6 +335,8 @@ the cursor faster.[A][N]
 ## TrainerTip_Water
 Some Pokémon can traverse[N]
 shallow water or ledges.[N]
+Press [ToggleRed]L[ToggleRed] or [ToggleRed]Start[ToggleRed] to[N]
+access grid mode.[N]
         - Trainer's Tips.[A][X]
 
 ## TrainerTip_DangerZone
@@ -574,6 +577,11 @@ Exit the area?[N]
 ## ExitTowerText
 Exit the tower?[N]
 [Yes][X]
+
+## Route2UpperHouseText
+Whenever I come out of my house,[N]
+a Kadabra is waiting for me...[A][N]
+It knows what I did...[A][X]
 
 ## EnterOaksLabText
 [OpenMidRight][LoadOak][OpenMidRight]A world of catching[N]

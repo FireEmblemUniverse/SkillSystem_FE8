@@ -175,6 +175,7 @@ Vendor(ShopItems,24,14)
 END_MAIN
 
 ObtainPsychicEvent:
+EVBIT_MODIFY 4 
 BottomWallText(PsychicSaffronText)
 GiveItemWithDurability(0x7fff, SpellScroll, Psychic)
 BottomWallText(PsychicSaffronText2)
@@ -182,6 +183,7 @@ NoFade
 ENDA 
 
 ObtainPsychicEvent2:
+EVBIT_MODIFY 4 
 BottomWallText(PsychicSaffronText2)
 NoFade 
 ENDA 

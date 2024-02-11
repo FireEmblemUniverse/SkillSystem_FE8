@@ -97,6 +97,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x82)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(LtSurgeChallengeText)
 
 
@@ -131,6 +132,7 @@ SilentGiveSkillAccessory(0xA4, VantagePlusID) // Marowak
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(LtSurgeRematchText)
 
 
@@ -157,6 +159,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(LtSurgeDefeatText)
 GiveItemWithDurability(0, SpellScroll, Thunderbolt)
 ENUT ThunderbadgeObtained 
@@ -184,6 +187,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(LtSurgeRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, Agility)
 ENUT VermilionGymRematchedFlag

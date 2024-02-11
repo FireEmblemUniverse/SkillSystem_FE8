@@ -18,3 +18,4 @@ SET_FUNC __aeabi_idivmod, __modsi3
 
 SET_DATA classTablePoin, 0x8017AB8 
 
+SET_DATA ggChapterDataAssetTable, 0x801999C

@@ -88,6 +88,7 @@ STAL 45
 MOVE 8 0xD0 [39,5]
 ENUN
 STAL 10 
+EVBIT_MODIFY 4 
 Text(MewAlertedText)
 SCOORD sB [39,5] 
 CALL MyWarpOutEvent

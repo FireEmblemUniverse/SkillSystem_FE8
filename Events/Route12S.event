@@ -66,6 +66,7 @@ SVAL s1 TrainerAI_chai
 CHAI 0xEE
 UnmarkTrainerAsDefeated(0xEE)
 MUSCFAST JigglypuffSFX // lol 
+EVBIT_MODIFY 4 
 BottomWallText(PlayPokefluteText)
 ENUF 0x10 
 SetUnitStatus(0xEE, BadStatus, 0) // [0202D22C]?

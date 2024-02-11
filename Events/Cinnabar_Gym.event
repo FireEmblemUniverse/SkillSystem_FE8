@@ -266,6 +266,7 @@ SilentGiveItemWithDurability(0xA4, HyperPotion,0x1)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(BlaineChallengeText)
 
 
@@ -341,6 +342,7 @@ ENUT 0x12 // So no debuffs from squares that normally have mines
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(BlaineRematchText)
 
 
@@ -369,6 +371,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(BlaineDefeatText)
 GiveItemWithDurability(0, SpellScroll, FireBlast)
 ENUT VolcanobadgeObtained
@@ -396,6 +399,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(BlaineRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, SacredFire)
 ENUT CinnabarGymRematchedFlag

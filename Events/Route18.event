@@ -54,6 +54,7 @@ END_MAIN
 EnterGateE:
 CHECK_EVENTID SoulbadgeObtained
 BNE 10 sC s0 
+EVBIT_MODIFY 4 
 TutText(CompleteGymFirst)
 GOTO 99 
 LABEL 10 

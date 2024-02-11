@@ -206,6 +206,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(BrockDefeatText)
 GiveItemWithDurability(0, SpellScroll, RockTomb)
 //GiveItemWithDurability(0, SpellScroll, RockTomb)
@@ -235,6 +236,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(BrockRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, BulkUp)
 ENUT PewterGymRematchedFlag 

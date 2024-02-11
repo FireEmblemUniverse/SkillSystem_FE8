@@ -49,6 +49,7 @@ END_MAIN
 CaptainHMevent:
 BottomWallText(CaptainTeachHMText)
 STAL 15 
+EVBIT_MODIFY 4 
 TutText(LearnedCutText)
 NoFade
 ENDA 

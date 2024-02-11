@@ -48,6 +48,7 @@ END_MAIN
 
 MrFujievent:
 BottomWallText(MrFujiText)
+EVBIT_MODIFY 4 
 TutText(ObtainedPokefluteText)
 BottomWallText(MrFujiText2)
 NoFade 

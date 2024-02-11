@@ -41,6 +41,7 @@ TrainerPostBattleTalk(0xE1) // NPC talk again
 END_MAIN
 
 OldManTalk:
+EVBIT_MODIFY 4 
 BottomWallText(MissingNoHintText) 
 NoFade 
 ENDA 
@@ -433,7 +434,7 @@ UNIT TempAlly AerodactylID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,
 UNIT
 
 MissingnoUnitGroup:
-UNIT 0x80 MissingnoID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0x80 MissingnoID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT
 
 

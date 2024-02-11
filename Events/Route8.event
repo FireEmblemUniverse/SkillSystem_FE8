@@ -74,6 +74,7 @@ ChapterTransition(LavenderCh, 1,40)
 ToSaffron:
 CHECK_EVENTID RainbowbadgeObtained
 BNE 10 sC s0 
+EVBIT_MODIFY 4 
 TutText(CompleteGymFirst)
 GOTO 99 
 LABEL 10 

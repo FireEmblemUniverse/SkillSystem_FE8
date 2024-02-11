@@ -179,6 +179,7 @@ SilentGiveItemWithDurability(0xA4, MaxPotion,0x1)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(AgathaChallengeText)
 MarkTrainerAsDefeated(0xE1)
 

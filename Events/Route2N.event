@@ -118,6 +118,7 @@ Traps1:
 //CoinsTrap(28,14,ChapterID*2,350)
 //CoinsTrap(43,13,(ChapterID*2)+1,400)
 
+EnterWallTrap(17,22, Route2UpperHouseText) 
 CutBush(11,13)
 
 CutBush(21,10)

@@ -73,6 +73,7 @@ EscapeTileTerminator ; }
 GenericDisappearEffect(14, ObtainDomeFossilEvent)
 
 ObtainDomeFossilEvent:
+EVBIT_MODIFY 4 
 TutText(WordsEchoedText)
 Text(ReleaseThemText)
 TutText(ObtainDomeFossilText) 

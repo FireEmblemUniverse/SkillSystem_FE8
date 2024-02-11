@@ -110,6 +110,7 @@ END_MAIN
 OldAmberEvent:
 CHECK_EVENTID OldAmberFlag 
 BNE 0 sC s0 
+EVBIT_MODIFY 4 
 BottomWallText(ObtainOldAmber)
 TutText(ObtainOldAmber2)
 ENUT OldAmberFlag 

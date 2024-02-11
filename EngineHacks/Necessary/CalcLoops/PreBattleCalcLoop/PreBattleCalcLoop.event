@@ -76,7 +76,7 @@ POIN SuperFangEffect
 POIN WeakChipDmg
 
 // Dragonskin goes after anything effecting atk or def
-POIN Dragonskin
+POIN Dragonskin MultiscaleEffect 
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT

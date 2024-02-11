@@ -88,6 +88,7 @@ CHECK_EVENTID PokefluteFlag
 BEQ 10 sC s0
 ForcedChapterTransition(Route12SCh, 1,4)
 Label 10 
+EVBIT_MODIFY 4 
 TutText(Route12ClosedText)
 NoFade 
 ENDA 

@@ -53,12 +53,14 @@ StatusEntry(ThunderWave, ParalyzeStatusID_Def, 100)
 StatusEntry(Acid, PoisonStatusID_Def, 5)
 StatusEntry(PoisonGas, PoisonStatusID_Def, 100)
 StatusEntry(PoisonPowder, PoisonStatusID_Def, 100)
-StatusEntry(PoisonSting, PoisonStatusID_Def, 20)
+StatusEntry(PoisonSting, PoisonStatusID_Def, 30)
 StatusEntry(Sludge, PoisonStatusID_Def, 20)
 StatusEntry(Smog, PoisonStatusID_Def, 20)
-StatusEntry(PoisonJab, PoisonStatusID_Def, 20)
+StatusEntry(PoisonJab, PoisonStatusID_Def, 30)
 StatusEntry(Toxic, PoisonStatusID_Def, 100)
 
+StatusEntry(ConfuseRay, BerserkStatusID, 40)
+StatusEntry(Hurricane, BerserkStatusID, 10)
 //StatusEntry(Hypnosis, SleepStatusID_Def, 30)
 
 

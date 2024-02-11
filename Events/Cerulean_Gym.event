@@ -96,6 +96,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x81)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(MistyChallengeText)
 
 
@@ -131,6 +132,7 @@ SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT3_BoostIndex|0x80) 
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(MistyRematchText)
 
 
@@ -157,6 +159,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(MistyDefeatText)
 GiveItemWithDurability(0, SpellScroll, BubbleBeam)
 ENUT CascadebadgeObtained 
@@ -184,6 +187,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(MistyRematchDefeatText)
 GiveItemWithDurability(0, SpellScroll, HydroPump)
 ENUT CeruleanGymRematchedFlag 

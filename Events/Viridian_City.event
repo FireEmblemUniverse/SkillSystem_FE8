@@ -112,6 +112,7 @@ END_MAIN
 ViridianUpperHouseEvent: 
 CHECK_EVENTID VolcanobadgeObtained 
 BNE 0 sC s0
+EVBIT_MODIFY 4 
 TutText(ViridianUpperHouseText)
 GOTO 99 
 LABEL 0 
@@ -123,10 +124,12 @@ ENDA
 OldManHouseEvent: 
 CHECK_EVENTID 0x17 
 BNE 0 sC s0 
+EVBIT_MODIFY 4 
 WallText(ViridianGrumpyManText)
 GOTO 99 
 LABEL 0 
 //EVBIT_MODIFY 
+EVBIT_MODIFY 4 
 WallText(ViridianGrumpyManText2)
 ENUT MissingnoFlag
 LABEL 99 
