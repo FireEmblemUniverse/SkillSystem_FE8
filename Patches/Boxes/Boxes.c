@@ -363,16 +363,16 @@ void PackUnitsIntoBox(int slot) {
 
 	if (SendItemsToConvoy(unit)) { // if convoy is full, do not deposit unit into pc box 
 		boxRam->classID = unit->pClassData->number; 
-		boxRam->hp = unit->maxHP; 
-		boxRam->mag = unit->unk3A; 
-		boxRam->str = unit->pow; 
-		boxRam->skl = unit->skl; 
-		boxRam->spd = unit->spd; 
-		boxRam->def = unit->def; 
-		boxRam->res = unit->res; 
-		boxRam->luk = unit->lck; 
-		boxRam->lvl = unit->level; 
-		boxRam->exp = unit->exp; 
+		boxRam->hp = unit->maxHP<127 ? unit->maxHP : 127; 
+		boxRam->mag = unit->unk3A < 64 ? unit->unk3A : 63; 
+		boxRam->str = unit->pow < 64 ? unit->pow : 63; 
+		boxRam->skl = unit->skl < 64 ? unit->skl : 63; 
+		boxRam->spd = unit->spd < 64 ? unit->spd : 63; 
+		boxRam->def = unit->def < 64 ? unit->def : 63; 
+		boxRam->res = unit->res < 64 ? unit->res : 63; 
+		boxRam->luk = unit->lck < 64 ? unit->lck : 63;
+		boxRam->lvl = unit->level < 127 ? unit->level : 127;
+		boxRam->exp = unit->exp < 127 ? unit->exp : 127;
 		for (int i = 0; i<5; i++) { 
 			boxRam->moves[i] = unit->ranks[i];
 		} 
