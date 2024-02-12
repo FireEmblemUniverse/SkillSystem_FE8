@@ -221,8 +221,8 @@ ORG 0x9A3540
 SleepVar(5) // vanilla is 5 
 ORG 0x9A3568 
 SleepVar(5, 15) // vanilla is 15 
-ORG 0x9A360A 
-BYTE 0x08	//do not change!
+//ORG 0x9A360A 
+//BYTE 0x08	//do not change!
 ORG 0x9A3628
 SleepVar(2) // vanilla is 2 
 

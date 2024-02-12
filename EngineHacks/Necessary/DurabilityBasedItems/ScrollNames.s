@@ -31,7 +31,7 @@
 
 GetItemNameString: @hook at 174F8
 
-push {r4-r7}
+push {r4-r7, lr}
 mov r4,r0
 
 @get ID from item table
@@ -98,12 +98,14 @@ strb r1,[r0]
 SkipDoingColonTerminaton:
 LoopExit:
 pop {r4-r7}
+pop {r3} 
 ldr r3,=ReturnPoint2
 bx r3
 
 
 VanillaFunc1:
 pop {r4-r7}
+pop {r3} 
 ldr r3,=ReturnPoint1
 bx r3
 
@@ -115,7 +117,7 @@ bx r3
 .equ ReturnPoint5,0x8016A5D
 
 NewItemNameGetter1: @hook at 16A54
-
+push {lr} 
 lsl r1,r1,#2
 ldr r0,=ItemTable
 add r6,r1,r0
@@ -172,10 +174,12 @@ strb r1,[r0]
 
 SkipColonTermination2:
 LoopExit2:
+pop {r3} 
 ldr r3,=ReturnPoint3
 bx r3
 
 VanillaFunc2:
+pop {r3} 
 ldr r3,=ReturnPoint5
 bx r3
 
@@ -188,6 +192,7 @@ bx r3
 .equ ReturnPoint6,0x801687D
 
 NewItemNameGetter2: @ hook at 16874
+push {lr} 
 lsl r1,r1,#2
 ldr r0,=ItemTable
 add r4,r1,r0
@@ -257,10 +262,12 @@ LoopExit3B:
 
 SkipColonTermination3:
 LoopExit3:
+pop {r3} 
 ldr r3,=ReturnPoint4
 bx r3
 
 VanillaFunc3:
+pop {r3} 
 ldr r3,=ReturnPoint6
 bx r3
 
