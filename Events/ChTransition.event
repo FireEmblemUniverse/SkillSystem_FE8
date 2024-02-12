@@ -522,7 +522,7 @@ SetGymFlags: // close gyms you've beaten until you defeat Giovanni
 CHECK_EVENTID CompletedPokemonLeague // open Viridian Gym 
 BNE 20 sC s0 
 CHECK_EVENTID EarthbadgeObtained // open other gyms 
-BNE 10 sC s0 
+BNE 11 sC s0 
 
 // this part is for compatibility with save files before 1.12 
 CHECK_EVENTID BoulderbadgeObtained
@@ -554,6 +554,9 @@ BEQ 7 sC s0
 ENUT CinnabarGymClosedFlag
 LABEL 7 
 GOTO 99 
+LABEL 11 
+ENUT ViridianGymClosedFlag 
+GOTO 10
 
 LABEL 20 // Defeated champion 
 ENUF ViridianGymClosedFlag 

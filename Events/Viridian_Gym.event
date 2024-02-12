@@ -176,6 +176,7 @@ EVBIT_MODIFY 4
 Text(Giovanni_GymDefeatText)
 GiveItemWithDurability(0, SpellScroll, Fissure)
 ENUT EarthbadgeObtained 
+ENUT ViridianGymClosedFlag
 ENUT StrengthBoulderFlag
 SVAL r3 10000 
 GIVETOMAIN 0 
