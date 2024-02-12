@@ -28,6 +28,8 @@ ORG SkillIcon(GuardBreakerID)
 #incbin "SkillIcons/SealDef.dmp"
 ORG SkillIcon(MultiscaleID)
 #incbin "SkillIcons/PowerfulAura.dmp" 
+ORG SkillIcon(SilphScopeID)
+#incbin "SkillIcons/PowerfulAura.dmp" 
 
 ORG SkillIcon(WeakChipDmgID)
 #incbin "SkillIcons/Acrobat.dmp"

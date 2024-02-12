@@ -2,7 +2,8 @@
 ALIGN 4 
 MultiscaleID_Link:
 WORD MultiscaleID 
-ALIGN 4 
+SilphScopeID_Link:
+WORD SilphScopeID 
 MissingnoID_Link:
 WORD MissingnoID 
 #include "C_Code.lyn.event" 

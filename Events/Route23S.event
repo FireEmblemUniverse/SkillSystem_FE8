@@ -98,8 +98,9 @@ Traps1:
 //VictoryRoad: Outrage, Protein, Iron 
 //VictoryRoad: Megahorn 
 
-
-SkillAccessoryTrap(9,16, (ChapterID*2)+1, VoiceOfPeaceID) 
+RedPokeballTrap(9,16, (ChapterID*2), ExoticCandy) 
+//StatAccessoryTrap(9,16, (ChapterID*2), EnhancedWard_BoostIndex) 
+//SkillAccessoryTrap(9,16, (ChapterID*2)+1, VoiceOfPeaceID) 
 //SkillAccessoryTrap(13,11, (ChapterID*2), BlossomID) 
 
 

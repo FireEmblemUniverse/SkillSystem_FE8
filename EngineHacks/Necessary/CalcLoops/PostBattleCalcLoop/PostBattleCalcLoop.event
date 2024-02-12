@@ -43,7 +43,7 @@ POIN GroupAI
 POIN BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
 POIN StrTaker SklTaker SpdTaker DefTaker ResTaker LukTaker MagTaker MovTaker 
 POIN Canto CantoPlus Galeforce ReMove Powerstaff CulturedPostCombat Gridmaster //this order for canto and friends is the only one I tested
-//POIN MissingnoEffect
+POIN MissingnoEffect
 //POIN TurnOffBGMFlagIfPeaceful // now called at the end of SetAllDR and SetNearbyDR // needs to be after Canto as that refreshes fog 
 WORD 0 //Terminator
 

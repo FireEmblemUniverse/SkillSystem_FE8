@@ -192,6 +192,9 @@ SkillAccessoryIcons(WardingStanceID)
 SkillAccessoryIcons(ExpShareID)
 #incbin "dmp/ExpShare.dmp"
 
+SkillAccessoryIcons(SilphScopeID) 
+#incbin "dmp/ZoomLens.dmp"
+
 POP 
 
 

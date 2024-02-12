@@ -92,12 +92,12 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  DittoID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  JynxID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 UNIT 2  MissingnoID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  DragoniteID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 3  MewtwoID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 5  SnorlaxID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
-UNIT 6  MewtwoID 0x1 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT 6  DittoID 0x1 Level(0, Ally, True)   [12,11] 0b	0x0 0x00 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 //UNIT 5  RaichuID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 //UNIT 7  DragonairID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 //UNIT 8  PidgeotID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
@@ -361,14 +361,14 @@ SilentGiveItemWithDurability(Amelia, WiseGlasses, 1|0x80)
 
 //SilentGiveItemWithDurability(2, SpellScroll, AttackPulse)
 
-SilentGiveItemWithDurability(1, StatAccessory, QuickBoots_BoostIndex|0x80)
-SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT3_BoostIndex)
+//SilentGiveItemWithDurability(1, StatAccessory, QuickBoots_BoostIndex|0x80)
+//SilentGiveItemWithDurability(1, StatAccessory, EnergyBandT3_BoostIndex)
 //SilentGiveItemWithDurability(Eirika, Berry, 6)
 //SilentGiveItemWithDurability(Eirika, SuperPotion, 1)
 //SilentGiveItemWithDurability(Eirika, SpellScroll, Fissure)
 //GiveSkillAccessory(0, BlossomID)
 //EquipNewSkillAccessory(1, Intimidate2ID) // GiveSkillAccessory(0, RenewalID)
-EquipNewSkillAccessory(1, ExpShareID) // GiveSkillAccessory(0, RenewalID)
+EquipNewSkillAccessory(1, SilphScopeID) // GiveSkillAccessory(0, RenewalID)
 //
 //EquipNewSkillAccessory(1, DowngradeID) // GiveSkillAccessory(0, RenewalID)
 //EquipNewSkillAccessory(1, DowngradeID) // GiveSkillAccessory(0, RenewalID)
@@ -488,7 +488,7 @@ LABEL 0x63
 // 203A4EC+6e [203a55a]?!!
 // 203A56C+6e [203a5da]?!!
 // [203AE
-AutoLevelUnits(60, True, 0x145) // all 
+AutoLevelUnits(10, True, 0x145) // all 
 //AutoLevelUnits(40, False, 0x145) // all 
 //SetUnitStatus(5, 0x29, Leer)
 SetUnitStatus(1, 0x28, Transform)
@@ -596,8 +596,8 @@ Write_Byte(12, YCoordNewArea)
 //MNC2 SilphCo2FCh 
 //MNC2 Route4ECh
 ENUT MissingnoFlag
-MNC2 CinnabarCh 
-//MNC2 DebugCh
+//MNC2 CinnabarCh 
+MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh
