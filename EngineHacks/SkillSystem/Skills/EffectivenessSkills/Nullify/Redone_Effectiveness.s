@@ -23,7 +23,6 @@ mov lr, r3
 .short 0xf800 
 mov r8, r0 @ item type 
 
-
 @ is attacking side Ditto? 
 ldr r2, =0x203A4EC @ atkr
 ldr r3, [r5, #4] 
@@ -48,7 +47,7 @@ cmp		r0,#0
 beq		RetFalse			@if weapon isn't effective, end
 
 
-
+mov r1, r5 
 ldr r2, =0x203A56C @ dfdr
 @ is target side Ditto? 
 ldr r3, [r5, #4] 

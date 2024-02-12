@@ -74,7 +74,7 @@ EscapeTileTerminator ; }
 
 
 ToCeruleanCaveB1_N:
-ChapterTransition(CeruleanCaveB1Ch, 10,12)
+ChapterTransition(CeruleanCaveB1Ch, 10,2)
 
 ToCeruleanCaveB1_NE:
 ChapterTransition(CeruleanCaveB1Ch, 34,2)
