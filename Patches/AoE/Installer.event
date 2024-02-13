@@ -191,6 +191,11 @@ MenuCommandID(HurricaneName, 				UM_AoEDesc, NormalText, 143, AoE_SpecificUsabil
 MenuCommandID(MetalClawName, 				UM_AoEDesc, NormalText, 144, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(NightShadeName, 				UM_AoEDesc, NormalText, 145, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(SeismicTossName, 				UM_AoEDesc, NormalText, 146, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HornAttackName, 				UM_AoEDesc, NormalText, 147, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AbsorbName, 					UM_AoEDesc, NormalText, 148, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PoisonStingName, 				UM_AoEDesc, NormalText, 149, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(RageName, 						UM_AoEDesc, NormalText, 150, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SmogName, 						UM_AoEDesc, NormalText, 151, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 //MenuCommandID(ConfuseRayName, 				UM_AoEDesc, NormalText, 131, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 
 
@@ -2278,6 +2283,73 @@ BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 HornAttack // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Absorb // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE SpeMin 2 // Attack range
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 PoisonSting // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallLine poisonAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Rage // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Smog // Always usable by anyone 
+BYTE 0 FriendlyFireBool|FixedDamageBool
+BYTE 5 T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range
+BYTE Square poisonAnimationID // Index of RangeMask, AnimationALL,
+BYTE 100 0x21 // poison 2 turns 
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+
 
 AoE_TableTerminator
 

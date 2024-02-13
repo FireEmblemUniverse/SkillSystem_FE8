@@ -514,14 +514,14 @@ ALIGN 4
 TentacoolTMs:
 BYTE Constrict Screech DoubleEdge Rage SwordsDance TakeDown MegaDrain Blizzard IceBeam Rest HexAtt ThiefAtt Cut Barrier4
 BYTE Absorb IcyWind ShadowBall DarkPulse
-BYTE Pound RecoverMove Leer Shockwave
+BYTE Pound RecoverMove Leer ShockWave
 BYTE 0
 
 ALIGN 4
 TentacruelTMs:
 BYTE Constrict Screech DoubleEdge HyperBeam Rage SwordsDance TakeDown MegaDrain Blizzard IceBeam Rest HexAtt ThiefAtt Cut Barrier4
 BYTE Absorb IcyWind ShadowBall DarkPulse
-BYTE Pound RecoverMove Leer Shockwave
+BYTE Pound RecoverMove Leer ShockWave
 BYTE 0
 
 ALIGN 4

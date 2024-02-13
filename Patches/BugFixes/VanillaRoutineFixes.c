@@ -1,61 +1,12 @@
-#include "include/global.h"
-#include "include/hardware.h"
 
-#include "include/unit_icon_data.h"
-#include "include/bmunit.h"
-#include "include/bmmap.h"
-#include "include/bmtrick.h"
-#include "include/chapterdata.h"
-#include "include/ctc.h"
-#include "include/mu.h"
-#include "include/bmudisp.h"
-#include "include/bmlib.h"
-#include "include/terrains.h"
-#include "include/proc.h"
-#include "include/rng.h"
-#include "include/bm.h"
-#include "include/bmlib.h"
-#include "include/prepscreen.h"
-#include "include/constants/faces.h"
-#include "include/face.h"
-#include "include/anime.h"
+#include "gbafe.h"
 
-struct FaceBlinkProc {
-    /* 00 */ PROC_HEADER;
 
-    /* 2C */ struct FaceProc* pFaceProc;
-
-    /* 30 */ s16 blinkControl;
-    /* 32 */ s16 unk_32;
-    /* 34 */ s16 unk_34;
-
-    /* 38 */ int unk_38;
-    /* 3C */ u16* unk_3c;
-
-    /* 40 */ u16 tileId;
-    /* 42 */ u16 palId;
-    /* 44 */ u16 faceId;
-};
 
 
 extern struct Anim* sFirstAnim;
 
-
-struct DeleteFaceProc {
-    /* 00 */ PROC_HEADER;
-
-    /* 29 */ u8 pad[0x54-0x29];
-
-    /* 54 */ struct FaceProc* target;
-};
-
-struct UnkFaceProc {
-    /* 00 */ PROC_HEADER;
-
-    /* 2C */ struct FaceProc* pFaceProc;
-    /* 30 */ const struct FaceData* pFaceInfo;
-    /* 34 */ int faceId;
-};
+extern struct MsgBuffer sMsgString;
 
 
 //! FE8U = 0x08005738
@@ -119,5 +70,53 @@ void StartLightRuneAnim(ProcPtr parent, int x, int y)
     BG_SetPosition(0, -x, -y);
 }
 
+char * StrInsertTact(void)
+{
+    u8 * r5 = sMsgString.buffer4;
+    u8 * r4 = sMsgString.buffer5;
+    u8 r1;
+    u32 r0;
 
+    CopyString(r5, sMsgString.buffer1);
+
+    while ((r0 = *r5))
+    {
+        r1 = r0;
+        while (0) ;
+        if (r1 < 0x20)
+        {
+            *r4 = r0;
+            ++r5;
+            ++r4;
+        }
+        else if (r1 != 0x80)
+        {
+            *r4 = r0;
+            ++r5;
+            ++r4;
+        }
+        else
+        {
+            /* "\xxx\x80" */
+            r5++;
+            if (*r5 != 0x20)
+            {
+                *r4++ = r1;
+				if (*r5 == 0x0) break; // added for UTF8 compatibility 
+                *r4++ = *r5++;
+				
+            }
+            else
+            {
+                /* [Tact]: "\x20\x80" */
+                CopyString(r4, GetTacticianName());
+                while (*r4 != 0)
+                    r4++;
+                r5++;
+            }
+        }
+    }
+    *r4 = 0;
+    return sMsgString.buffer5;
+}
 

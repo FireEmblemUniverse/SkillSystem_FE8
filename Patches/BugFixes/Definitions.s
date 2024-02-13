@@ -1,6 +1,20 @@
-.include "C:/Users/David/Desktop/Pokemblem/Patches/bmudisp/fe8.s" 
-.include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
+.include "fe8.s" 
 
-SET_DATA NewgSMSGfxIndexLookup, 0x201F148 // sound room buffer 
+.macro SET_FUNC name, value
+	.global \name
+	.type   \name, function
+	.set    \name, \value
+.endm
 
+.macro SET_DATA name, value
+	.global \name
+	.type   \name, object
+	.set    \name, \value
+.endm
+
+@ division & other libgcc functions
+SET_FUNC __aeabi_idiv,    __divsi3
+SET_FUNC __aeabi_idivmod, __modsi3
+
+SET_DATA classTablePoin, 0x8017AB8 
 
